@@ -5,10 +5,15 @@
     "summary": "ALS患者のBreanna Olsonが脳波だけでMRアバターを操り、10年ぶりにステージに立って踊った——NTTとDentsu Labによるブレインマシンインターフェース・パフォーマンス。",
     "client": "NTT Inc.",
     "agency": "Dentsu Lab Tokyo / Dentsu Creative Amsterdam",
-    "categories": ["テクノロジー×アイデア", "社会包摂"],
+    "categories": [
+      "テクノロジー×アイデア",
+      "社会包摂"
+    ],
     "award": "Cannes Lions 2026 Innovation Lions Shortlist (Societal Innovation)",
     "year": "2026",
-    "regions": ["国内"],
+    "regions": [
+      "国内"
+    ],
     "link": "https://lbbonline.com/news/NTT-Inc-Pushes-Boundaries-of-Human-Potential-with-Waves-of-Will",
     "thumbnail": "https://i.ytimg.com/vi/9047RCg3F0Q/hqdefault.jpg",
     "overview": "元プロダンサーでALS患者のBreanna Olsonが、EEGデバイスで取得した脳波だけでMR（複合現実）アバターを動かし、生でステージパフォーマンスを披露するシステム。NTTのネットワーク技術とDentsu Lab Tokyoのクリエイティブテクノロジーが融合したProject Humanityの集大成。",
@@ -22,10 +27,16 @@
     "summary": "ダイヤルを回すと1950〜2025年の記憶が蘇る——AIが個人の黄金時代を再現するラジオで認知症ケアを革新した試み。",
     "client": "ニチイ学館",
     "agency": "TBWA HAKUHODO",
-    "categories": ["AIクリエイティブ", "社会包摂", "コンテンツ革新"],
+    "categories": [
+      "AIクリエイティブ",
+      "社会包摂",
+      "コンテンツ革新"
+    ],
     "award": "Cannes Lions 2026 Health & Wellness Lions Shortlist",
     "year": "2026",
-    "regions": ["国内"],
+    "regions": [
+      "国内"
+    ],
     "link": "https://www.tbwahakuhodo.co.jp/en/news/260305-rtm/",
     "thumbnail": "https://i.ytimg.com/vi/6D2-Kl0Hw0E/hqdefault.jpg",
     "overview": "1950〜60年代スタイルのラジオ型デバイス。ダイヤルを年代ごとに回すと、その年のニュース・流行歌・生活音をGenerative AIがリアルタイム生成し「本物のラジオ番組」として再現する。Reminiscence Therapyの非薬物アプローチを機器化。",
@@ -39,10 +50,15 @@
     "summary": "ティラノサウルスの化石タンパク質から培養した「恐竜レザー」で作った世界初のバッグ——生命倫理と素材革新の挑発的実験。",
     "client": "Lab-Grown Leather Ltd / The Organoid Company",
     "agency": "VML",
-    "categories": ["テクノロジー×アイデア", "カルチャーインサイト"],
+    "categories": [
+      "テクノロジー×アイデア",
+      "カルチャーインサイト"
+    ],
     "award": "Cannes Lions 2026 Innovation Lions Shortlist",
     "year": "2026",
-    "regions": ["欧州"],
+    "regions": [
+      "欧州"
+    ],
     "link": "https://www.vml.com/news/worlds-first-t-rex-leather-product-unveiled-a-luxury-handbag-designed-by-enfin-leve",
     "thumbnail": "https://i.ytimg.com/vi/engAJ6mSYg8/hqdefault.jpg",
     "overview": "T. rex化石サンプルから古代タンパク質断片を抽出し、他の動物の細胞に挿入してコラーゲン産生を誘導。動物を屠殺せず、森林破壊もクロム鞣しも不要なバイオ由来の革を生成。世界初の「恐竜レザー製バッグ」をEnfin Levéがデザインし、2026年6月9日パリオークションに出品（開始価格約7,500万円）。",
@@ -56,10 +72,15 @@
     "summary": "ダウン症アスリートChris Nikicと共同設計した世界初の本格的アダプティブ・ランニングシューズ——後付けではなくアスリートが起点のデザイン革命。",
     "client": "adidas",
     "agency": "TBWA\\Canada",
-    "categories": ["社会包摂", "ブランドエクスペリエンス"],
+    "categories": [
+      "社会包摂",
+      "ブランドエクスペリエンス"
+    ],
     "award": "Cannes Lions 2026 Design Lions Grand Prix",
     "year": "2026",
-    "regions": ["北米"],
+    "regions": [
+      "北米"
+    ],
     "link": "https://lbbonline.com/news/adidas-Down-Syndrome-Shoe-Supernova-Rise-3-Adaptive-Chris-Nikic-TBWA-Canada",
     "thumbnail": "https://i.ytimg.com/vi/3CAoxajDU-c/hqdefault.jpg",
     "overview": "World Down Syndrome Day（3月21日）に発売。鉄人三種競技を完走した初のダウン症選手Chris Nikicの運動経験を起点に、パラリンピアンら100人超と共同開発。片手でも脱ぎ履きできるヒール、低圧レースシステム、触覚マーカーなど28の独自改良を実装。",
@@ -73,10 +94,15 @@
     "summary": "広告をダークモードに変えるだけで最大74%省エネ——DOOHの電力消費という業界課題をクリエイティブで解決したエネルギー節約広告プラットフォーム。",
     "client": "Plenitude (ENI)",
     "agency": "LePub Milan",
-    "categories": ["メディア発明", "テクノロジー×アイデア"],
+    "categories": [
+      "メディア発明",
+      "テクノロジー×アイデア"
+    ],
     "award": "Cannes Lions 2026 Outdoor Lions Grand Prix",
     "year": "2026",
-    "regions": ["欧州"],
+    "regions": [
+      "欧州"
+    ],
     "link": "https://corporate.eniplenitude.com/en/about/partnerships-and-events/darkmodeads",
     "thumbnail": "https://i.ytimg.com/vi/TFJez2Jgqtg/hqdefault.jpg",
     "overview": "デジタルビルボード1枚の年間消費電力は一般家庭23軒分。LePubが開発したDark Mode Adsプラットフォームは、広告クリエイティブを自動でダークモード変換し、視覚的インパクトを保ちながら消費電力を最大74%削減する。",
@@ -90,10 +116,15 @@
     "summary": "地球を離れない宇宙計画——SKFが月の引力で動く潮力タービンをフェロー諸島の海底に設置し、月のエネルギーで島を動かすプロジェクト。",
     "client": "SKF / Minesto / SEV",
     "agency": "NORD DDB",
-    "categories": ["カルチャーインサイト", "メディア発明"],
+    "categories": [
+      "カルチャーインサイト",
+      "メディア発明"
+    ],
     "award": "Cannes Lions 2026 Titanium Lions Shortlist",
     "year": "2026",
-    "regions": ["欧州"],
+    "regions": [
+      "欧州"
+    ],
     "link": "https://lbbonline.com/news/NORD-DDB-SKF-Minesto-Sev-Faroe-Islands-Space-Program",
     "thumbnail": "https://i.ytimg.com/vi/RpnyotHMOyQ/hqdefault.jpg",
     "overview": "軸受メーカーSKFが、潮力エネルギー企業Minestoとフェロー諸島電力会社SEVと組み、北大西洋の海底に「宇宙船のように泳ぐ」潮力カイトを設置。月の引力が生む海流を電力に変えるこの仕組みを「地球を離れない宇宙計画」と命名した。",
@@ -107,10 +138,15 @@
     "summary": "家族写真をAIが解析して子どもの近視の初期サインを発見——世界初の「カメラロールが視力検査になる」ツール。",
     "client": "1001 Optometry",
     "agency": "VML Sydney",
-    "categories": ["社会包摂", "テクノロジー×アイデア"],
+    "categories": [
+      "社会包摂",
+      "テクノロジー×アイデア"
+    ],
     "award": "Cannes Lions 2026 Innovation Lions Shortlist",
     "year": "2026",
-    "regions": ["グローバル"],
+    "regions": [
+      "グローバル"
+    ],
     "link": "https://www.vml.com/work/magnifeye",
     "thumbnail": "https://i.ytimg.com/vi/tZMJaNFHgFo/hqdefault.jpg",
     "overview": "World Optometry Day（3月）にリリース。5枚以上の家族写真をWebアプリにアップロードするだけで、AIが子どもの近視初期サインを自動検出し、眼科受診を促す。5人に1人が未診断の近視を持つという課題に対応。",
@@ -124,10 +160,15 @@
     "summary": "ペルーで毎日4,000件の携帯盗難——銀行口座を守るための緊急網を、街角の決済端末で構築した。",
     "client": "BCP（Banco de Crédito del Perú）",
     "agency": "Circus Grey Peru",
-    "categories": ["メディア発明", "社会包摂"],
+    "categories": [
+      "メディア発明",
+      "社会包摂"
+    ],
     "award": "Cannes Lions 2026 Creative Commerce Lions Shortlist",
     "year": "2026",
-    "regions": ["グローバル"],
+    "regions": [
+      "グローバル"
+    ],
     "link": "https://www.llllitl.fr/2026/06/bcp-sos-pos/",
     "thumbnail": "https://i.ytimg.com/vi/GVdCoJEhO6M/hqdefault.jpg",
     "overview": "ペルーでは毎日4,000件以上のスマートフォン盗難が発生し、被害者は数分以内に銀行口座を空にされる。SOS POSは街の小規模店舗にある決済端末（POS）を緊急ネットワークに転換。被害者はスマホなし・アプリなし・通話なしで、最寄りの端末から身元確認するだけで口座を即時ロックできる。",
@@ -141,10 +182,15 @@
     "summary": "「女の子みたいに走る」というステレオタイプを覆す——思春期前の少女の自己肯定感を守るために放ったAlwaysの社会変革キャンペーン。",
     "client": "Always (P&G)",
     "agency": "Leo Burnett Toronto",
-    "categories": ["カルチャーインサイト", "社会包摂"],
+    "categories": [
+      "カルチャーインサイト",
+      "社会包摂"
+    ],
     "award": "Cannes Lions 2015 Film Grand Prix / Glass Lion初代グランプリ",
     "year": "2014",
-    "regions": ["グローバル"],
+    "regions": [
+      "グローバル"
+    ],
     "link": "https://www.always.com/",
     "thumbnail": "https://i.ytimg.com/vi/dxrPeFKtUwQ/hqdefault.jpg",
     "overview": "「女の子みたいに〜して」という言葉が少女の自信を傷つける瞬間を捉えたドキュメンタリー形式のフィルム。監督Lauren GreenFieldが大人と10歳以下の女の子に「女の子みたいに走って」と指示。大人は誇張した動作をするが、少女たちは全力で走る。",
@@ -158,10 +204,15 @@
     "summary": "FBI認定の法廷肖像画家が「自己描写」と「他者描写」を比較——Doveが女性の自己認識の歪みを可視化した史上最多シェア広告。",
     "client": "Dove (Unilever)",
     "agency": "Ogilvy Brazil",
-    "categories": ["カルチャーインサイト", "コンテンツ革新"],
+    "categories": [
+      "カルチャーインサイト",
+      "コンテンツ革新"
+    ],
     "award": "Cannes Lions 2013 Titanium Grand Prix / Film Grand Prix",
     "year": "2013",
-    "regions": ["グローバル"],
+    "regions": [
+      "グローバル"
+    ],
     "link": "https://www.dove.com/",
     "thumbnail": "https://i.ytimg.com/vi/CSWanX7UTVk/hqdefault.jpg",
     "overview": "FBI認定法廷肖像画家Gil Zamoraが「自分の顔の特徴」を聞いて似顔絵を描き、次に別人から同じ被験者の印象を聞いた絵と並べると、他者描写の方が常に美しかった。自己認識の歪みを可視化した3分間のドキュメンタリー。",
@@ -175,10 +226,15 @@
     "summary": "「障害があるのに、すごい」という偏見を——Channel 4がパラリンピアンの圧倒的パフォーマンスと一言のタイトルで覆した。",
     "client": "Channel 4",
     "agency": "4Creative London",
-    "categories": ["社会包摂", "コンテンツ革新"],
+    "categories": [
+      "社会包摂",
+      "コンテンツ革新"
+    ],
     "award": "Cannes Lions 2025 Film Grand Prix",
     "year": "2025",
-    "regions": ["欧州"],
+    "regions": [
+      "欧州"
+    ],
     "link": "https://www.channel4.com/",
     "thumbnail": "https://i.ytimg.com/vi/FNKDrsT-WZ4/hqdefault.jpg",
     "overview": "「障害があるにもかかわらず」という常套句「Considering What?（何を考慮して？）」をタイトルに。パリ2024パラリンピック選手たちの超人的パフォーマンスを連続で見せ、タイトルだけで偏見を問い返す構成。",
@@ -192,12 +248,17 @@
     "summary": "「自然」をSpotifyの公式アーティストに登録——楽曲のロイヤリティを生態系保全に充てる仕組みを作った環境×音楽の革新。",
     "client": "Spotify / Museum for the United Nations",
     "agency": "AKQA Copenhagen",
-    "categories": ["メディア発明", "テクノロジー×アイデア"],
+    "categories": [
+      "メディア発明",
+      "テクノロジー×アイデア"
+    ],
     "award": "Cannes Lions 2025 Innovation Grand Prix",
     "year": "2025",
-    "regions": ["グローバル"],
-    "link": "https://open.spotify.com/",
-    "thumbnail": "https://picsum.photos/seed/spotify-sounds-right/1200/630",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.akqa.com/work/sounds-right/",
+    "thumbnail": "https://images.ctfassets.net/feazk3r7m969/4eibW4LOXYyfyVmMbJkkZ0/f488abf82f45fd6cd068d69897df1b8b/AKQA.com_THUMB2-work.png?w=1280",
     "overview": "「Nature（自然）」をSpotifyの公式アーティストアカウントとして登録。自然の音をフィーチャーしたトラックがストリームされるたびにロイヤリティが発生し、そのすべてがEarthPercentを通じてアマゾンや Indo-Burma の生態系保全に充てられる。",
     "mechanism": "David Bowie、Ellie Goulding、BTSのVなどのアーティストと「Feat. NATURE」コラボを実現。Spotify内アプリ・OOH・専用サイトで展開。2024年アースデー前後にグローバルリリース。",
     "impact": "「Feat. NATURE」プレイリストが数百万回のストリームを記録。消費行動の自動化による自然保護モデルが高評価。",
@@ -209,11 +270,16 @@
     "summary": "「配偶者の暴力」を正式な保険補償の理由に追加——AXAがたった3単語の約款改定で社会問題に応えた。",
     "client": "AXA France",
     "agency": "Publicis Conseil Paris",
-    "categories": ["社会包摂", "ブランドエクスペリエンス"],
+    "categories": [
+      "社会包摂",
+      "ブランドエクスペリエンス"
+    ],
     "award": "Cannes Lions 2025 Titanium Grand Prix",
     "year": "2025",
-    "regions": ["欧州"],
-    "link": "https://www.axa.fr/",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://lbbonline.com/news/axa-home-insurance-policies-recognises-domestic-abuse-with-three-words",
     "thumbnail": "https://picsum.photos/seed/axa-three-words/1200/630",
     "overview": "フランスでは家庭内暴力から逃れたくても住居契約が足かせになるケースが多発。AXAはフランスの住宅保険約款にたった3単語（「配偶者の暴力による」）を追加することで、DV被害者が保険を使って住居を変更できるようにした。",
     "mechanism": "法務・保険数理チームと連携し約款改定を実行。「3 mots（3つの言葉）」というPRとして発表し、他保険会社への採用も呼びかけ。",
@@ -226,12 +292,18 @@
     "summary": "「Because I'm Worth It」を書いた23歳の女性コピーライターの名前が、50年間クレジットされなかった——L'Oréalがその不正義をフィルムで認めた。",
     "client": "L'Oréal Paris",
     "agency": "McCann Paris",
-    "categories": ["カルチャーインサイト", "社会包摂"],
+    "categories": [
+      "カルチャーインサイト",
+      "社会包摂"
+    ],
     "award": "Cannes Lions 2025 Film Grand Prix",
     "year": "2025",
-    "regions": ["欧州", "北米"],
-    "link": "https://www.loreal-paris.fr/",
-    "thumbnail": "https://picsum.photos/seed/loreal-final-copy/1200/630",
+    "regions": [
+      "欧州",
+      "北米"
+    ],
+    "link": "https://www.adobomagazine.com/advertising-awards/loreal-paris-wins-film-grand-prix-at-cannes-lions-2025-for-the-final-copy-of-ilon-specht/",
+    "thumbnail": "https://www.adobomagazine.com/wp-content/uploads/2025/07/FILM-GRAND-PRIX-WINNER-CL2025-Hero.jpg",
     "overview": "1973年、23歳の女性コピーライターIlon Spechtが書いた「Because I'm Worth It」は世界最長寿の広告コピーとなった。しかし50年間、彼女の名前は広告史から消えていた。L'Oréalがその事実を認め、Spechtを主役にしたフィルムで歴史を書き直した。",
     "mechanism": "Spechtへのインタビューと当時の資料映像を組み合わせたドキュメンタリー形式。「クレジットを返す」という行為自体がキャンペーンのコアメッセージ。",
     "impact": "広告業界における女性クリエイターの不可視化問題が再び注目される契機に。",
@@ -243,11 +315,16 @@
     "summary": "スーパーボウルの全広告商品を一人の消費者にプレゼント——DoorDashが競合他社のCMを乗っ取って「何でも届ける」ことを証明した。",
     "client": "DoorDash",
     "agency": "Wieden+Kennedy Portland / Superette San Francisco",
-    "categories": ["メディア発明", "カルチャーインサイト"],
+    "categories": [
+      "メディア発明",
+      "カルチャーインサイト"
+    ],
     "award": "Cannes Lions 2024 Titanium Grand Prix",
     "year": "2024",
-    "regions": ["北米"],
-    "link": "https://www.doordash.com/",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://lbbonline.com/news/cannes-lions-titanium-grand-prix-awarded-to-doordash-all-the-ads",
     "thumbnail": "https://picsum.photos/seed/doordash-all-the-ads/1200/630",
     "overview": "2024年スーパーボウル、DoorDashは自社CMで「今日放映される全広告の商品をすべて1人にプレゼントする」と発表。Budweiser・Doritos・Hellmann'sなど競合含む全ブランドが対象。応募コードはCMの中に含まれていた。",
     "mechanism": "CMに表示される超長いプロモコードを視聴者がリアルタイムで入力し応募。DoorDashが文字通り「全ての広告商品」を当選者に届けた。他ブランドの広告費がすべてDoorDashの話題形成に貢献した構造的逆転。",
@@ -260,11 +337,16 @@
     "summary": "家庭の75種類の音を識別してスマホに通知——聴覚障害者が「聞こえない音」を「見える情報」に変えるAIスマートホームデバイス。",
     "client": "Wavio",
     "agency": "Area 23 / FCB Health",
-    "categories": ["社会包摂", "テクノロジー×アイデア"],
+    "categories": [
+      "社会包摂",
+      "テクノロジー×アイデア"
+    ],
     "award": "Cannes Lions 2024 Innovation Grand Prix",
     "year": "2024",
-    "regions": ["北米"],
-    "link": "https://www.wavio.com/",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.adweek.com/creativity/wavio-and-area-23s-see-sound-project-wins-top-innovation-grand-prix-at-cannes-lions/",
     "thumbnail": "https://picsum.photos/seed/wavio-see-sound/1200/630",
     "overview": "コンセントに差し込むだけで機能するAIデバイス。赤ちゃんの泣き声・火災警報・ドアベル・ガラスの破損音など75種類の生活音を識別し、スマートフォンに即時通知。YouTubeから数百万のクリップを収集して学習したアルゴリズムを搭載。",
     "mechanism": "機械学習モデルが音の波形パターンを分類 → BLEでスマホアプリに通知。聴覚障害者だけでなく高齢者・乳幼児のいる家庭でも有用。",
@@ -277,11 +359,16 @@
     "summary": "71歳フォロワーゼロのモデルが屋外広告でデビュー——JCDecauxがエイジズムに反論するためにOOHそのものを使った。",
     "client": "JCDecaux",
     "agency": "DAVID Madrid",
-    "categories": ["社会包摂", "OOH革新"],
+    "categories": [
+      "社会包摂",
+      "OOH革新"
+    ],
     "award": "Cannes Lions 2024 Titanium Lions",
     "year": "2024",
-    "regions": ["欧州"],
-    "link": "https://www.jcdecaux.com/",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://lbbonline.com/news/ogilvy-wins-grand-prix-for-ceraves-michael-cerave-and-jcdecauxs-meet-marina-prieto",
     "thumbnail": "https://picsum.photos/seed/jcdecaux-marina-prieto/1200/630",
     "overview": "71歳のMarina Prietoはフォロワーゼロのモデル志望。JCDecauxがスペインの主要OOHロケーション全面でMarinaの写真を掲出し、「屋外広告が最大のソーシャルメディア」という逆説を体現。フォロワー数至上主義へのアンチテーゼ。",
     "mechanism": "自社OOHに掲出 → メディアが記事化 → Marinaのフォロワーが急増 → ブランド各社からオファー。広告自体が「社会的プルーフ」を代替するメカニズム。",
@@ -294,12 +381,17 @@
     "summary": "冷凍温度を-18℃から-15℃にするだけで年間CO2を1,760万トン削減できる——DP Worldが業界標準を変えた。",
     "client": "DP World",
     "agency": "VML Dubai",
-    "categories": ["テクノロジー×アイデア", "社会包摂"],
+    "categories": [
+      "テクノロジー×アイデア",
+      "社会包摂"
+    ],
     "award": "Cannes Lions 2024 Titanium Lions",
     "year": "2024",
-    "regions": ["グローバル"],
+    "regions": [
+      "グローバル"
+    ],
     "link": "https://www.dpworld.com/",
-    "thumbnail": "https://picsum.photos/seed/dp-world-minus15/1200/630",
+    "thumbnail": "https://dpw-p-001.sitecorecontenthub.cloud/api/public/content/og-7324d2a8316b4a8da223e7b2559a1905?v=365923f6",
     "overview": "世界の冷凍食品標準温度は-18℃。しかし食品の安全性は-15℃でも維持できると科学的に証明されている。DP Worldは-15℃標準化を提唱し、業界団体・政策立案者・サプライチェーン企業を巻き込んで実現。3℃の差が英国全体の年間排出量に相当するCO2削減に繋がる。",
     "mechanism": "科学的根拠を国際食品規格委員会（Codex）に提出 → 業界コンソーシアム形成 → 大手小売チェーンとの試験実施 → 標準改定ロビー活動。広告ではなく制度変革がキャンペーン。",
     "impact": "複数の主要スーパーマーケットチェーンが試験採用。EU内での規制改正議論に影響。「最もスケーラブルな環境介入」として引用。",
@@ -311,12 +403,17 @@
     "summary": "FIFAプレイヤーをプロサッカーの実際の戦術分析官として採用——Xboxがゲームキャリアの現実的価値を証明した。",
     "client": "Xbox (Microsoft) / Bromley FC",
     "agency": "McCann London",
-    "categories": ["ブランドエクスペリエンス", "カルチャーインサイト"],
+    "categories": [
+      "ブランドエクスペリエンス",
+      "カルチャーインサイト"
+    ],
     "award": "Cannes Lions 2024 Titanium Lions",
     "year": "2024",
-    "regions": ["欧州"],
+    "regions": [
+      "欧州"
+    ],
     "link": "https://www.xbox.com/",
-    "thumbnail": "https://picsum.photos/seed/xbox-everyday-tactician/1200/630",
+    "thumbnail": "https://assets.xboxservices.com/assets/5c/55/5c554715-fac4-4c09-8006-d8e62d355157.jpg?n=Xbox_Sharing_Xbox-2019-White-on-Green_200x200.jpg",
     "overview": "「ゲームは時間の無駄」という偏見に対し、XboxとBromley FCが「FC24のプレイヤーを実際のプロサッカークラブの戦術分析官として採用する」プログラムを開始。選考は実際のFC24の戦術構築スコアで実施。",
     "mechanism": "公開オーディション → FC24で戦術設定タスク → Bromley FCのコーチ陣が審査 → 採用者がリアルな試合分析に参加。一般ゲーマーが実際にプロクラブのスタッフになった。",
     "impact": "採用された選手の分析が実際の試合戦術に採用された事例が発生。「ゲームスキル＝実社会スキル」の証拠としてメディアが報道。",
@@ -328,11 +425,16 @@
     "summary": "「安全な選択しかしてこなかった」という自己批判——世界遺産が挑戦への讃歌として放った50周年フィルム。",
     "client": "Sydney Opera House",
     "agency": "The Monkeys / Accenture Song Sydney",
-    "categories": ["コンテンツ革新", "ブランドエクスペリエンス"],
+    "categories": [
+      "コンテンツ革新",
+      "ブランドエクスペリエンス"
+    ],
     "award": "Cannes Lions 2024 Film Grand Prix",
     "year": "2024",
-    "regions": ["グローバル"],
-    "link": "https://www.sydneyoperahouse.com/",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.adnews.com.au/news/the-monkeys-sydney-opera-house-play-it-safe-wins-film-grand-prix",
     "thumbnail": "https://picsum.photos/seed/sydney-opera-house/1200/630",
     "overview": "「もし我々がずっと安全な選択しかしていたら」を主題に、Tim Minchiが作詞・出演した楽曲「Play It Safe」を軸にした長編フィルム。設計のJørn Utzonsが「不可能」と言われ続けながら建設を完遂したことへの讃歌であり、現代のリスク回避文化への批判。",
     "mechanism": "実際のアーカイブ映像と再現シーンを組み合わせた演出。建設当時の困難と、それを乗り越えた事実を感情的に描くことで「挑戦の価値」を普遍化。",
@@ -345,12 +447,17 @@
     "summary": "男子サッカーのハイライトをディープフェイクで女性選手に差し替え——Orangeがフランス女子代表の試合前に流した「メッシへのラブレター」。",
     "client": "Orange France",
     "agency": "Marcel Paris",
-    "categories": ["テクノロジー×アイデア", "社会包摂"],
+    "categories": [
+      "テクノロジー×アイデア",
+      "社会包摂"
+    ],
     "award": "Cannes Lions 2023 Film Grand Prix",
     "year": "2023",
-    "regions": ["欧州"],
-    "link": "https://www.orange.fr/",
-    "thumbnail": "https://picsum.photos/seed/orange-womens-football/1200/630",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.contagious.com/en/article/news-and-views/campaign-of-the-week-orange-employs-digital-fakery-in-support-of-les-bleues",
+    "thumbnail": "https://cdn.builder.io/api/v1/image/assets%2F1e8574dde0344e78be7badd3d8cbc1bb%2Fb4e54ac1f70b43f69422625d01f5130f",
     "overview": "女子サッカーの試合前に流れるハイライト映像。メッシやネイマール、エムバペの「伝説のゴール」に見えるが、実はディープフェイクで合成した女性選手の映像だった。最後に「女子代表を男子と同じ目で見ていましたか？」というメッセージが流れる。",
     "mechanism": "女性選手のプレー映像に男性スター選手の顔をディープフェイクで合成し「男子の名プレー」として提示。偏見の構造そのものを逆用したトリック構成。",
     "impact": "フランス女子代表への注目が急増。女性スポーツへの視聴者数・スポンサー問い合わせ数が前年比大幅増。",
@@ -362,12 +469,18 @@
     "summary": "海面上昇で消えゆく島国ツバルが、国ごとメタバースに移転——国家・文化・法的地位をデジタル空間に保存する前例なきプロジェクト。",
     "client": "Government of Tuvalu",
     "agency": "The Monkeys / Accenture Song Sydney",
-    "categories": ["テクノロジー×アイデア", "社会包摂", "空間体験"],
+    "categories": [
+      "テクノロジー×アイデア",
+      "社会包摂",
+      "空間体験"
+    ],
     "award": "Cannes Lions 2023 Titanium Grand Prix",
     "year": "2023",
-    "regions": ["グローバル"],
-    "link": "https://www.gov.tv/",
-    "thumbnail": "https://picsum.photos/seed/tuvalu-digital-nation/1200/630",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://newsroom.accenture.com/news/2023/accenture-song-wins-dan-wieden-titanium-grand-prix-for-tuvalu-the-first-digital-nation",
+    "thumbnail": "https://newsroom.accenture.com/news/2023/media_179b246ced96033a7b1802378732745043c6086c8.jpeg?width=1200&#x26;format=pjpg&#x26;optimize=medium",
     "overview": "南太平洋の島国ツバルは2050年までに海面上昇で国土の大部分が水没する見込み。ツバル政府はデジタル空間に国家全体を移転するプロジェクトを発表。土地・文化・法的地位をデジタルで保全し、物理的な国土がなくなっても国家として機能し続けることを宣言。",
     "mechanism": "国土全域を3Dスキャン → 文化遺産・法律・記録をブロックチェーンに保存 → デジタル市民権制度を構築 → 国連での外交的地位の維持を国際社会に要求。",
     "impact": "COP27で世界の気候変動政策議論の焦点に。主権・国籍・文化保全の法的定義を問い直す国際法的議論を引き起こした。",
@@ -379,12 +492,17 @@
     "summary": "加害者がそばにいても被害者が無言でSOSを送れる——韓国警察が「112番にかけて任意のキーを押すだけ」の緊急通報システムを導入した。",
     "client": "Korean National Police Agency",
     "agency": "Cheil Worldwide",
-    "categories": ["テクノロジー×アイデア", "社会包摂"],
+    "categories": [
+      "テクノロジー×アイデア",
+      "社会包摂"
+    ],
     "award": "Cannes Lions 2023 Glass Grand Prix",
     "year": "2023",
-    "regions": ["アジア"],
-    "link": "https://www.police.go.kr/",
-    "thumbnail": "https://picsum.photos/seed/knock-knock-police/1200/630",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.brandinginasia.com/cheil-worldwide-takes-home-glass-the-lion-for-change-grand-prix-at-cannes-lions-2023/",
+    "thumbnail": "https://www.brandinginasia.com/wp-content/uploads/2023/03/Knock-Knock-Abuse-Hotliine-Korea-Cheil.jpg",
     "overview": "DV・デートDV・児童虐待の被害者が「加害者と同じ空間にいる」ためにSOSを声で言えない問題に対応。緊急番号112に発信し、無言のまま任意のキーを押すだけで「Visible 112」リンクが被害者のスマホに届き、位置情報と共に警察に通知される。",
     "mechanism": "既存の緊急通報インフラに「サイレントSOS」機能を追加するだけで全国展開。特別なアプリ不要、電話機能だけで使える普及性の高い設計。",
     "impact": "韓国全国展開後、DV通報件数が大幅増加。他国警察への輸出・導入が進む。",
@@ -396,11 +514,17 @@
     "summary": "15歳で刺殺された天才サッカー少年を、FIFAゲームで「彼が生きていれば30歳だった選手」として復活させた——ナイフ犯罪防止キャンペーン。",
     "client": "EA Sports / Kiyan Prince Foundation",
     "agency": "Engine London",
-    "categories": ["テクノロジー×アイデア", "社会包摂", "AIクリエイティブ"],
+    "categories": [
+      "テクノロジー×アイデア",
+      "社会包摂",
+      "AIクリエイティブ"
+    ],
     "award": "Cannes Lions 2022 Titanium Grand Prix",
     "year": "2022",
-    "regions": ["欧州"],
-    "link": "https://www.kiyanprincefoundation.org/",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://lbbonline.com/news/digitally-resurrecting-kiyan-prince-to-prevent-knife-crime",
     "thumbnail": "https://picsum.photos/seed/kiyan-prince/1200/630",
     "overview": "2006年、15歳のKiyan Princeは刺殺された。死から15周年の2021年、EA SportsはAIで「もし生きていたら30歳になったKiyan」のFIFA選手データを作成。adidas・JDスポーツなど実在スポンサー契約を結び、現役選手と同じ扱いでゲームと現実世界に登場させた。",
     "mechanism": "顔復元AI・体型推定・サッカー能力分析を組み合わせ「30歳のKiyan」を生成 → FIFA22に実際のプレイアブルキャラとして実装 → スポンサー・カードなど現役選手と同等の扱い。",
@@ -413,10 +537,15 @@
     "summary": "世界中のスポーツ映像を完璧なスプリットスクリーンで繋いだ——コロナ禍のスポーツ停止に対するNikeの反論。",
     "client": "Nike",
     "agency": "Wieden+Kennedy Portland",
-    "categories": ["コンテンツ革新", "カルチャーインサイト"],
+    "categories": [
+      "コンテンツ革新",
+      "カルチャーインサイト"
+    ],
     "award": "Emmy Award Outstanding Commercial 2021 / Cannes Lions Gold",
     "year": "2020",
-    "regions": ["グローバル"],
+    "regions": [
+      "グローバル"
+    ],
     "link": "https://www.nike.com/",
     "thumbnail": "https://i.ytimg.com/vi/pcXTnyCmQbg/hqdefault.jpg",
     "overview": "4,000本以上の映像素材から完璧にシンクロするスプリットスクリーンペアを手作業で発掘・編集。LeBron James・Serena Williams・Luka Dončičら36名のアスリートが登場。スプリット画面が一瞬スポーツの垣根を越えて統合される編集が感動の核。",
@@ -430,10 +559,15 @@
     "summary": "34日間かけてカビだらけになったバーガーの写真を広告にした——Burger Kingが「人工保存料ゼロ」をビジュアルで証明した挑発作。",
     "client": "Burger King",
     "agency": "INGO Stockholm / DAVID Miami / Publicis Bucharest",
-    "categories": ["カルチャーインサイト", "コンテンツ革新"],
+    "categories": [
+      "カルチャーインサイト",
+      "コンテンツ革新"
+    ],
     "award": "Cannes Lions 2020 Titanium Lions / Film Grand Prix",
     "year": "2020",
-    "regions": ["グローバル"],
+    "regions": [
+      "グローバル"
+    ],
     "link": "https://www.burgerking.com/",
     "thumbnail": "https://i.ytimg.com/vi/oSDC4C3_16Y/hqdefault.jpg",
     "overview": "グローバルで8,500トンの人工保存料を除去したことを証明するため、Whopperを34日間そのまま放置してカビが生える過程をタイムラプスで撮影。「The Beauty of Real Food Is That It Gets Ugly」のコピーとともに広告として使用。",
@@ -447,11 +581,16 @@
     "summary": "月経・流産・子宮内膜症・閉経——女性の身体に起きることを初めてリアルに描いた生理用品の広告。",
     "client": "Bodyform / Libresse (Essity)",
     "agency": "AMV BBDO London",
-    "categories": ["社会包摂", "コンテンツ革新"],
+    "categories": [
+      "社会包摂",
+      "コンテンツ革新"
+    ],
     "award": "Cannes Lions 2021 Titanium Grand Prix",
     "year": "2020",
-    "regions": ["欧州"],
-    "link": "https://www.bodyform.co.uk/",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adweek.com/agencies/womb-stories-wins-4-grands-prix-at-cannes-but-its-creators-warn-taboos-remain-the-norm/",
     "thumbnail": "https://picsum.photos/seed/bodyform-womb-stories/1200/630",
     "overview": "月経・流産・不妊・子宮内膜症・更年期といった女性の身体的経験を、「爽やかな青い液体」の広告文法を完全に捨てて描写。痛み・出血・感情の複雑さを美しいアニメーションと実写で表現した4分間のフィルム。",
     "mechanism": "「女性の身体について語ること自体がタブー」という文化的制約を破ることがキャンペーンの核。製品を一切登場させない潔さが逆説的に最も強いブランドメッセージになった。",
@@ -464,12 +603,17 @@
     "summary": "車椅子ユーザー・片腕の少年・ALS患者が初めてゲームで遊べた——Xbox Adaptive Controllerを「共に遊ぶ」感動でデビューさせたスーパーボウルCM。",
     "client": "Microsoft Xbox",
     "agency": "McCann New York",
-    "categories": ["社会包摂", "テクノロジー×アイデア"],
+    "categories": [
+      "社会包摂",
+      "テクノロジー×アイデア"
+    ],
     "award": "Cannes Lions 2019 Film Grand Prix",
     "year": "2019",
-    "regions": ["北米"],
+    "regions": [
+      "北米"
+    ],
     "link": "https://www.xbox.com/",
-    "thumbnail": "https://picsum.photos/seed/microsoft-we-all-win/1200/630",
+    "thumbnail": "https://assets.xboxservices.com/assets/5c/55/5c554715-fac4-4c09-8006-d8e62d355157.jpg?n=Xbox_Sharing_Xbox-2019-White-on-Green_200x200.jpg",
     "overview": "身体障害を持つ子どもたちが、コントローラーの操作が難しくゲームを諦めていた現実を描写。2019年スーパーボウルでXbox Adaptive Controllerを発表。片腕・脳性麻痺・筋ジストロフィーなど様々な障害を持つ子どもたちが初めてゲームで遊ぶ瞬間を収めた。",
     "mechanism": "製品のスペック説明ゼロ。子どもの感動と親の表情だけで製品価値を伝える純粋な感情訴求。",
     "impact": "スーパーボウル最高評価CM（当年度）。Adaptive Controllerが発売3日で完売。障害者のゲームアクセシビリティへの産業的取り組みが加速。",
@@ -481,10 +625,15 @@
     "summary": "Colin Kaepernickを起用した「Just Do It 30周年」——ナイキが経済的リスクを承知で社会的スタンスを表明した転換点。",
     "client": "Nike",
     "agency": "Wieden+Kennedy Portland",
-    "categories": ["カルチャーインサイト", "コンテンツ革新"],
+    "categories": [
+      "カルチャーインサイト",
+      "コンテンツ革新"
+    ],
     "award": "Cannes Lions 2019 Titanium Grand Prix / Emmy Award",
     "year": "2018",
-    "regions": ["グローバル"],
+    "regions": [
+      "グローバル"
+    ],
     "link": "https://www.nike.com/",
     "thumbnail": "https://i.ytimg.com/vi/WW2yKSt2C_A/hqdefault.jpg",
     "overview": "NFL選手Colin KaepernickがBLMへの連帯として国歌斉唱中に起立を拒否し解雇された後、NikeはJust Do It 30周年キャンペーンの顔に起用。「Believe in something. Even if it means sacrificing everything.」のコピー。",
@@ -498,12 +647,17 @@
     "summary": "パラオ入国時にパスポートへの誓約スタンプを義務化——国家がビザの代わりに「自然保護の誓い」を観光客に求めた世界初の制度。",
     "client": "Palau Legacy Project",
     "agency": "Host/Havas Sydney",
-    "categories": ["社会包摂", "カルチャーインサイト"],
+    "categories": [
+      "社会包摂",
+      "カルチャーインサイト"
+    ],
     "award": "Cannes Lions 2018 Titanium Grand Prix",
     "year": "2017",
-    "regions": ["アジア"],
+    "regions": [
+      "アジア"
+    ],
     "link": "https://www.palaupledge.com/",
-    "thumbnail": "https://picsum.photos/seed/palau-pledge/1200/630",
+    "thumbnail": "https://palaupledge.com/assets/images/global/social/share_fb.jpg",
     "overview": "南太平洋の島国パラオが「子孫のために自然を守る」誓いを観光客入国時にパスポートにスタンプすることを義務化。入国カードへの署名という行政手続きをブランドコミュニケーションに変換した世界初の試み。",
     "mechanism": "誓約文を「子どもたちへのラブレター」として設計 → 入国時スタンプ → SNSでのシェア誘発 → 世界的報道 → パラオのブランド認知向上。",
     "impact": "実施後パラオの観光客が自発的にゴミを拾う行動が増加。世界の観光地でサステナブル観光への転換議論が活性化。",
@@ -515,11 +669,16 @@
     "summary": "ウォール街の雄牛の前に立ちふさがる少女の像——State Street Globalが国際女性デーに仕掛けたジェンダー格差への静かな抗議。",
     "client": "State Street Global Advisors",
     "agency": "McCann New York",
-    "categories": ["OOH革新", "社会包摂"],
+    "categories": [
+      "OOH革新",
+      "社会包摂"
+    ],
     "award": "Cannes Lions 2017 Titanium Grand Prix / Outdoor Grand Prix",
     "year": "2017",
-    "regions": ["北米"],
-    "link": "https://www.ssga.com/",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.campaignlive.co.uk/article/fearless-girl-wins-titanium-grand-prix-mccann-new-york/1437567",
     "thumbnail": "https://picsum.photos/seed/fearless-girl/1200/630",
     "overview": "2017年3月8日（国際女性デー）の深夜、ニューヨーク証券取引所前の「チャージング・ブル」像の正面に少女の銅像「Fearless Girl」を設置。手を腰に当て、牛をにらみつける姿勢。企業の取締役会における女性比率改善を要求するキャンペーンの一環。",
     "mechanism": "ゲリラ設置 → SNS拡散 → 市が正式設置許可 → 世界的シンボル化。銅像という物理的永続性とSNSの拡散速度の組み合わせ。",
@@ -532,12 +691,17 @@
     "summary": "共通点ゼロの2人が家具を組み立てながら関係を築き、互いの立場の違いを知っても乾杯できるか——Heinekenが分断時代に放った社会実験広告。",
     "client": "Heineken",
     "agency": "Publicis London",
-    "categories": ["カルチャーインサイト", "コンテンツ革新"],
+    "categories": [
+      "カルチャーインサイト",
+      "コンテンツ革新"
+    ],
     "award": "Cannes Lions 2017 Film Craft Grand Prix",
     "year": "2017",
-    "regions": ["グローバル"],
-    "link": "https://www.heineken.com/",
-    "thumbnail": "https://picsum.photos/seed/heineken-worlds-apart/1200/630",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.contagious.com/en/article/news-and-views/insight-strategy-worlds-apart",
+    "thumbnail": "https://cdn.builder.io/api/v1/image/assets%2F1e8574dde0344e78be7badd3d8cbc1bb%2Faf931ec1db8b42d49bdc767c2dfdd73f",
     "overview": "「気候変動否定者と環境活動家」「トランス嫌悪者とトランス女性」「フェミニスト嫌いと熱烈なフェミニスト」の3組のペアが、互いの信念を知らずに協力作業をし友好関係を築く。最後に相手の本音ビデオを見て、それでも向き合うか選択する。",
     "mechanism": "社会科学的「接触仮説」をリアリティ番組形式で体現。ドキュメンタリー演出で「実験」の信憑性を担保。",
     "impact": "公開24時間で1,200万回視聴。「分断を扱う広告」の倫理基準を定めた作品として語られる。",
@@ -549,12 +713,17 @@
     "summary": "ブラックフライデーに全店舗を閉めて従業員を野外に送り出した——REIが「利益より価値観」を実際の意思決定で示した。",
     "client": "REI (Recreational Equipment Inc.)",
     "agency": "Venables Bell & Partners",
-    "categories": ["ブランドエクスペリエンス", "カルチャーインサイト"],
+    "categories": [
+      "ブランドエクスペリエンス",
+      "カルチャーインサイト"
+    ],
     "award": "Cannes Lions 2016 Titanium Grand Prix",
     "year": "2015",
-    "regions": ["北米"],
+    "regions": [
+      "北米"
+    ],
     "link": "https://www.rei.com/",
-    "thumbnail": "https://picsum.photos/seed/rei-opt-outside/1200/630",
+    "thumbnail": "https://www.rei.com/assets/img/seo/evergreen/rei-og.jpg",
     "overview": "米最大の買い物デー「ブラックフライデー」にREIが全143店舗を閉店し、1万2,000人の従業員に有給休暇を与えて「外に出かけよう」と促した。小売業最大の商機を自ら拒否することがREIの価値観の究極の体現。",
     "mechanism": "#OptOutsideのハッシュタグとシンプルなWebサイトで呼びかけ。2年目以降は他の自然保護団体も参加し、年間ムーブメントに発展。",
     "impact": "#OptOutsideに140万人以上が参加。広告費ゼロで最大露出を獲得。ブランドパーパスを事業判断で証明した最も誠実な事例の一つ。",
@@ -566,10 +735,15 @@
     "summary": "「あなたの彼氏は私じゃない。でも彼がOld Spiceを使えば私みたいな匂いがするかも」——デジタル時代最初の口コミ爆発CM。",
     "client": "Old Spice (P&G)",
     "agency": "Wieden+Kennedy Portland",
-    "categories": ["コンテンツ革新", "カルチャーインサイト"],
+    "categories": [
+      "コンテンツ革新",
+      "カルチャーインサイト"
+    ],
     "award": "Cannes Lions 2010 Film Grand Prix / Cyber Grand Prix",
     "year": "2010",
-    "regions": ["グローバル"],
+    "regions": [
+      "グローバル"
+    ],
     "link": "https://www.oldspice.com/",
     "thumbnail": "https://i.ytimg.com/vi/owGykVbfgUE/hqdefault.jpg",
     "overview": "Isaiah Mustafaが風呂場・ボート・砂浜をワンカットで移動する36秒CM。女性向けの語りかけという逆説的ターゲティングで男性ケア製品を女性の「プレゼント選択」に食い込んだ。続く72時間の「個人返信動画」200本でSNSインタラクティブ広告を発明した。",
@@ -583,10 +757,15 @@
     "summary": "Jean-Claude Van Dammeが走行中の2台のトラックの間で開脚——Volvoの操舵精度を最も非常識な方法で証明した傑作ライブテスト。",
     "client": "Volvo Trucks",
     "agency": "Forsman & Bodenfors",
-    "categories": ["コンテンツ革新", "テクノロジー×アイデア"],
+    "categories": [
+      "コンテンツ革新",
+      "テクノロジー×アイデア"
+    ],
     "award": "Cannes Lions 2014 Titanium Grand Prix / Film Grand Prix",
     "year": "2013",
-    "regions": ["グローバル"],
+    "regions": [
+      "グローバル"
+    ],
     "link": "https://www.volvotrucks.com/",
     "thumbnail": "https://i.ytimg.com/vi/M7FIvfx5J10/hqdefault.jpg",
     "overview": "早朝のスペインの港湾。後進する2台のVolvoトラックの上にVan Dammeが逆向きに立ちゆっくり開脚していく。Enya「Only Time」をBGMに、夜明けの光と共に撮影されたノーCGの「ライブテスト」。Dynamic Steeringの操舵精度を実証する製品デモが美的昇華した。",
@@ -600,10 +779,15 @@
     "summary": "Felix Baumgartnerが高度39,000mから音速を超えて落下——Red Bullが「翼を授ける」を地球規模のライブ体験に変えた歴史的プロジェクト。",
     "client": "Red Bull",
     "agency": "Red Bull Media House",
-    "categories": ["ブランドエクスペリエンス", "メディア発明"],
+    "categories": [
+      "ブランドエクスペリエンス",
+      "メディア発明"
+    ],
     "award": "Cannes Lions 2013 Titanium Grand Prix",
     "year": "2012",
-    "regions": ["グローバル"],
+    "regions": [
+      "グローバル"
+    ],
     "link": "https://www.redbull.com/",
     "thumbnail": "https://i.ytimg.com/vi/_S5UxmW8FUc/hqdefault.jpg",
     "overview": "2012年10月14日、Felix Baumgartnerが成層圏39,045mから自由落下。最高速度1,357.64km/h（音速を超えた）を記録し世界記録を4つ樹立。YouTube同時視聴者800万人超で当時の最高同時視聴記録を更新。",
@@ -617,12 +801,17 @@
     "summary": "ダース・ベイダーのコスチュームを着た子どもが「フォース」を試み続け、最後にパパのVWで成功する——スーパーボウル史上最多シェアのCM。",
     "client": "Volkswagen America",
     "agency": "Deutsch LA",
-    "categories": ["コンテンツ革新", "ブランドエクスペリエンス"],
+    "categories": [
+      "コンテンツ革新",
+      "ブランドエクスペリエンス"
+    ],
     "award": "Cannes Lions 2011 Film Grand Prix",
     "year": "2011",
-    "regions": ["北米"],
+    "regions": [
+      "北米"
+    ],
     "link": "https://www.vw.com/",
-    "thumbnail": "https://picsum.photos/seed/vw-the-force/1200/630",
+    "thumbnail": "https://www.vw.com/etc.clientlibs/clientlibs/vwa-ngw18/ngw18-frontend/apps/resources/statics/img/vw-logo-2x.png",
     "overview": "ダース・ベイダー姿の少年が家中の物に「フォース」を使おうと試みるが全て失敗。最後に父親のVW Passatに手をかざすと、父がリモコンでエンジンを始動させ少年が驚く。台詞なし、60秒。スーパーボウル放映前日にYouTubeで先行公開し翌日には1,700万回再生。",
     "mechanism": "スーパーボウル放映前日のYouTube先行公開という「フライング戦略」。本番CMへの期待感を事前に醸成し、本番が確認行為に変わる構造。",
     "impact": "スーパーボウル期間最多シェア（当時）。Passatの実際の販売に寄与。",
@@ -634,12 +823,17 @@
     "summary": "氷水を頭からかぶって次の人を指名する——自然発生し、ALS協会に1億ドルを集めたバイラル現象。",
     "client": "ALS Association",
     "agency": "（ユーザー発生型）",
-    "categories": ["カルチャーインサイト", "コンテンツ革新"],
+    "categories": [
+      "カルチャーインサイト",
+      "コンテンツ革新"
+    ],
     "award": "Cannes Lions 2015 Titanium Lions",
     "year": "2014",
-    "regions": ["グローバル"],
-    "link": "https://www.als.org/",
-    "thumbnail": "https://picsum.photos/seed/ice-bucket-challenge/1200/630",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.nationalgeographic.com/science/article/als-ice-bucket-challenge-research-impact",
+    "thumbnail": "https://i.natgeofe.com/n/c8e22763-643e-4ff7-83ae-27fb175e1b73/h_14851210_16x9.jpg?w=1200",
     "overview": "ゴルフ選手Corey Griffenが2014年7月にALS患者の友人のために始めた動画チャレンジが爆発的に拡散。Bill Gates・Mark Zuckerberg等も参加。ALS協会は8週間で1億1,500万ドルの寄付を受けた（前年比3,500%増）。",
     "mechanism": "「チャレンジ→指名→シェア」の連鎖構造が自己増殖。SNSの「タグ機能」「シェア文化」「セレブリティ参加」が三位一体で機能。",
     "impact": "2014年夏に世界で1,700万本の動画が投稿。ALS研究への寄付前年比3,500%増。その資金でALS研究の重要な遺伝子変異（NEK1）が発見された。",
@@ -651,12 +845,17 @@
     "summary": "Willie Nelsonの「The Scientist」で農業産業化の悲劇と回帰を描いた——チポトレが「持続可能な農業」をアニメで訴えたサステナブル広告の先駆け。",
     "client": "Chipotle Mexican Grill",
     "agency": "CAA (Creative Artists Agency)",
-    "categories": ["コンテンツ革新", "カルチャーインサイト"],
+    "categories": [
+      "コンテンツ革新",
+      "カルチャーインサイト"
+    ],
     "award": "Cannes Lions 2012 Film Grand Prix",
     "year": "2012",
-    "regions": ["北米"],
+    "regions": [
+      "北米"
+    ],
     "link": "https://www.chipotle.com/",
-    "thumbnail": "https://picsum.photos/seed/chipotle-back-to-start/1200/630",
+    "thumbnail": "https://www.chipotle.com/content/dam/chipotle/pages/farm-to-foil/lifestyle-burrito-with-guac.jpg",
     "overview": "小さな農場が工場農業に変貌し、農家が後悔して持続可能な農業に戻る過程をStop-Motionアニメで描いた2分間のフィルム。Willie NelsonがColdplayの「The Scientist」をカバーした音楽と共に農業産業化への批判を感情的に伝えた。",
     "mechanism": "商品や価格の一切言及なし。ブランドロゴは最後の3秒だけ。「Chipotle＝サステナブル農業支持」のポジショニングを感情的ストーリーで構築。",
     "impact": "グラミー授賞式にも出場。Chipotle Cultivate財団への寄付急増。食農問題への関心を若年層に広げた先駆け。",
@@ -668,12 +867,17 @@
     "summary": "オリンピアンを育てたのは「母」だった——P&Gがアスリートの後ろにいた存在を主役にしたロンドン五輪キャンペーン。",
     "client": "P&G (Procter & Gamble)",
     "agency": "Wieden+Kennedy Portland",
-    "categories": ["コンテンツ革新", "カルチャーインサイト"],
+    "categories": [
+      "コンテンツ革新",
+      "カルチャーインサイト"
+    ],
     "award": "Cannes Lions 2012 Film Grand Prix",
     "year": "2012",
-    "regions": ["グローバル"],
+    "regions": [
+      "グローバル"
+    ],
     "link": "https://www.pg.com/",
-    "thumbnail": "https://picsum.photos/seed/pg-thank-you-mom/1200/630",
+    "thumbnail": "https://images.ctfassets.net/oggad6svuzkv/6eWEFfxHDZrqJ2DGt1NqpQ/0919f47f4215e2e27fb754a821a5e685/PG_logo_OGtransparent.png",
     "overview": "世界中のオリンピアンが5歳の頃から練習を重ね、五輪本番まで支え続けた母親の姿を描いた「Best Job（最高の仕事）」フィルム。台詞なし、子ども・青年・成人アスリートの成長を断片的に見せ、その裏に常に母の存在がある構成。",
     "mechanism": "P&Gの個別ブランドではなく企業ブランドとしての初のグローバルキャンペーン。オリンピックスポンサーシップを「感情的意味」に変換した。",
     "impact": "P&GのBrand Favorabilityが米国で過去最高。「Thank You, Mom」フレーズが文化的慣用句化。",
@@ -685,12 +889,17 @@
     "summary": "プロカメラマンではなく一般ユーザーの写真で世界中の屋外広告を埋めた——Appleが「誰でも写真家になれる」を証明したグローバルキャンペーン。",
     "client": "Apple",
     "agency": "TBWAMedia Arts Lab",
-    "categories": ["ブランドエクスペリエンス", "OOH革新"],
+    "categories": [
+      "ブランドエクスペリエンス",
+      "OOH革新"
+    ],
     "award": "Cannes Lions 2015 Outdoor Grand Prix",
     "year": "2015",
-    "regions": ["グローバル"],
+    "regions": [
+      "グローバル"
+    ],
     "link": "https://www.apple.com/iphone/",
-    "thumbnail": "https://picsum.photos/seed/apple-shot-on-iphone/1200/630",
+    "thumbnail": "https://www.apple.com/v/iphone/home/cj/images/meta/iphone__bh930eyjnj0i_og.png?202606161406",
     "overview": "iPhone 6のカメラ性能を証明するため、世界162都市の一般ユーザーが撮影した写真を収集し、ビルボード・バス停・デジタルサイネージ計10,000カ所に掲出。広告クリエイティブをユーザーが作るという逆転。",
     "mechanism": "ソーシャルメディアでの募集 → キュレーション → 世界同時OOH掲出。撮影者の名前を入れることで「私の写真が世界の広告になった」体験を提供。",
     "impact": "参加ユーザーが自発的に拡散。iPhone 6の販売が前年比40%増。現在も毎年更新される最長寿スマートフォンキャンペーン。",
@@ -702,12 +911,17 @@
     "summary": "冬眠するクマのために初めてクリスマスを体験させてあげるウサギの物語——John Lewisが英国クリスマス広告を「国民的文化行事」に変えた傑作。",
     "client": "John Lewis",
     "agency": "adam&eveDDB",
-    "categories": ["コンテンツ革新", "ブランドエクスペリエンス"],
+    "categories": [
+      "コンテンツ革新",
+      "ブランドエクスペリエンス"
+    ],
     "award": "Cannes Lions 2014 Film Grand Prix",
     "year": "2013",
-    "regions": ["欧州"],
+    "regions": [
+      "欧州"
+    ],
     "link": "https://www.johnlewis.com/",
-    "thumbnail": "https://picsum.photos/seed/john-lewis-bear-hare/1200/630",
+    "thumbnail": "https://media.johnlewiscontent.com/i/JohnLewis/ogFeatureImage-johnLewisPartners-040918?fmt=auto",
     "overview": "毎年冬眠してクリスマスを知らないクマの友人のために、ウサギがプレゼントを贈る物語。Lily AllenがKeyeによる「Somewhere Only We Know」を歌い、2Dアニメーションで描かれた2分間のフィルム。",
     "mechanism": "商品紹介一切なし。「贈ること＝愛」という感情だけを訴求。毎年公開直前から「今年のジョン・ルイスは？」という社会的期待が醸成される年次イベント化。",
     "impact": "英国クリスマス商戦売上が前年比過去最高。Lily AllenのカバーがUKチャート入り。「英国の文化」として報道されるレベルに昇華。",
@@ -719,12 +933,17 @@
     "summary": "普通の女性が広告用モデルに変貌する1分間——Doveが美容業界の「作られた美」を業界自ら暴いた草分け的作品。",
     "client": "Dove (Unilever)",
     "agency": "Ogilvy Toronto",
-    "categories": ["カルチャーインサイト", "コンテンツ革新"],
+    "categories": [
+      "カルチャーインサイト",
+      "コンテンツ革新"
+    ],
     "award": "Cannes Lions 2007 Film Grand Prix / Cyber Grand Prix",
     "year": "2006",
-    "regions": ["グローバル"],
+    "regions": [
+      "グローバル"
+    ],
     "link": "https://www.dove.com/",
-    "thumbnail": "https://picsum.photos/seed/dove-evolution/1200/630",
+    "thumbnail": "https://assets.unileversolutions.com/v1/459759.jpg",
     "overview": "ナチュラルな女性がプロのヘアメイクとPhotoshop加工で「美容広告のモデル」に変貌するタイムラプス動画。「No wonder our perception of beauty is distorted」のコピー。Dove Real Beautyキャンペーンの原点となった1分間の傑作。",
     "mechanism": "テレビCMではなくYouTube（黎明期）に投稿し、有機的にバイラル拡散。購入媒体費ゼロで1,000万回以上の再生を達成した草分け的「バイラル動画」。",
     "impact": "Dove Real Beautyシリーズの世界的認知を確立し、20年続くブランドプラットフォームの礎に。",
@@ -736,12 +955,18 @@
     "summary": "ダンスと時計を融合したウェブサービスが世界中のブログに埋め込まれた——ユニクロが「バナー広告」の概念を壊したCannes Cyber Grand Prix作品。",
     "client": "UNIQLO",
     "agency": "Projector Inc. (Tokyo)",
-    "categories": ["メディア発明", "コンテンツ革新"],
+    "categories": [
+      "メディア発明",
+      "コンテンツ革新"
+    ],
     "award": "Cannes Lions 2008 Cyber Grand Prix",
     "year": "2008",
-    "regions": ["国内", "グローバル"],
-    "link": "https://www.uniqlo.com/",
-    "thumbnail": "https://picsum.photos/seed/uniqlock-uniqlo/1200/630",
+    "regions": [
+      "国内",
+      "グローバル"
+    ],
+    "link": "https://www.campaignasia.com/article/uniqlo-japan-wins-cyber-grand-prix-at-cannes/206499",
+    "thumbnail": "https://www.campaignasia.com/media/default.jpg",
     "overview": "ユニクロの服を着たダンサーが5秒間のループ動画で踊り続け、現在時刻を表示するFlashウィジェット「UNIQLOCK」。ブログパーツとして無料配布し、世界中のブロガーが自発的に自分のブログに埋め込んだ。",
     "mechanism": "ブログパーツの埋め込みコードを無料配布 → ブロガーが自発的に使用 → 世界中のブログにユニクロコンテンツが常設。朝・昼・夜で異なる音楽・ダンスに変化する工夫でリピート需要を生んだ。",
     "impact": "世界109カ国200万以上のブログに埋め込まれた。日本ブランドとして初のCannes Cyber Grand Prix受賞。コンテンツマーケティングの原型。",
@@ -753,12 +978,17 @@
     "summary": "スクールバスをARで火星に変えた——Lockheed Martinが子どもたちに宇宙探査の夢を「体験」として与えたテクノロジー・デモ。",
     "client": "Lockheed Martin",
     "agency": "McCann New York",
-    "categories": ["空間体験", "テクノロジー×アイデア"],
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
     "award": "Cannes Lions 2016 Outdoor Grand Prix / Innovation Grand Prix",
     "year": "2016",
-    "regions": ["北米"],
+    "regions": [
+      "北米"
+    ],
     "link": "https://www.lockheedmartin.com/",
-    "thumbnail": "https://picsum.photos/seed/field-trip-to-mars/1200/630",
+    "thumbnail": "https://www.lockheedmartin.com/content/dam/lockheed-martin/general/LM-logo_blue.jpg",
     "overview": "普通のスクールバスの窓をAR透明ディスプレイに変え、外の景色がリアルタイムで「火星の地表」に置き換わる。加速・停止・カーブが実際の車両運動と同期するため「本当に火星にいる」没入感を実現。Lockheed Martinの有人火星探査計画「Generation Beyond」の啓発として実施。",
     "mechanism": "バスの外部カメラが取得した映像を火星風景と合成してAR処理 → 車窓の液晶に投影。加速・停止・カーブが実際の車両運動と同期。",
     "impact": "参加した小学生の「将来宇宙飛行士になりたい」回答が体験後に大幅増。NASAとの共同プログラムへの参加者数増加に貢献。",
@@ -770,12 +1000,17 @@
     "summary": "「あなたが今年最も聴いた音楽」を毎年12月に届ける——SpotifyがUGC×パーソナライゼーションで世界最大の自発的広告プラットフォームを作った。",
     "client": "Spotify",
     "agency": "Spotify In-House",
-    "categories": ["データクリエイティブ", "メディア発明"],
+    "categories": [
+      "データクリエイティブ",
+      "メディア発明"
+    ],
     "award": "Cannes Lions 2019 Creative Data Grand Prix",
     "year": "2017",
-    "regions": ["グローバル"],
-    "link": "https://www.spotify.com/wrapped/",
-    "thumbnail": "https://picsum.photos/seed/spotify-wrapped/1200/630",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://adage.com/creativity/work/spotify-wrapped-2019/2220696",
+    "thumbnail": "https://www.adage.com/resizer/GQM5MoMvrZM2rcbf7E-X4T8lrvE=/arc-photo-crain/arc2-prod/public/DQDJ6ITTZRERPB3Q6B6JPO4PPM.jpg?width=1200#.jpg",
     "overview": "毎年12月に各ユーザーの1年分のリスニングデータをビジュアル化して公開。自分の「音楽的自画像」をSNSでシェアする文化が世界中に定着。広告費ゼロで数億人のユーザーが自発的にSpotifyの宣伝をする仕組みを作り上げた。",
     "mechanism": "個人データの可視化 → シェアしたくなるデザイン → SNSへの投稿 → 非ユーザーへのリーチ。パーソナライゼーションと社会的比較欲求を巧みに組み合わせた。",
     "impact": "毎年12月の世界的トレンドとして定着。2023年には8億人以上のユーザーが参加。",
@@ -787,12 +1022,17 @@
     "summary": "階段をピアノにしたら使う人が66%増えた——Volkswagenが「楽しさが行動を変える」という仮説を公開実験で証明した参加型キャンペーン。",
     "client": "Volkswagen",
     "agency": "DDB Stockholm",
-    "categories": ["カルチャーインサイト", "ブランドエクスペリエンス"],
+    "categories": [
+      "カルチャーインサイト",
+      "ブランドエクスペリエンス"
+    ],
     "award": "Cannes Lions 2010 Titanium Grand Prix / Cyber Grand Prix",
     "year": "2009",
-    "regions": ["欧州"],
+    "regions": [
+      "欧州"
+    ],
     "link": "https://www.volkswagen.com/",
-    "thumbnail": "https://picsum.photos/seed/vw-fun-theory/1200/630",
+    "thumbnail": "https://www.volkswagen.co.jp/etc.clientlibs/clientlibs/vwa-ngw18/ngw18-frontend/apps/resources/statics/img/vw-logo-2x.png",
     "overview": "ストックホルムの地下鉄駅の階段を「ピアノの鍵盤」に変え、踏むと音が鳴るよう改造。隣のエスカレーターと比較計測した結果、ピアノ階段の利用者が66%増加。「Fun Theory（楽しさ理論）」と名付けてVWがWebで公開し、世界中のユーザーが参加する投稿プラットフォームに発展。",
     "mechanism": "実験動画のバイラル拡散 → Fun Theory Award（参加型コンペ）の開催 → 世界中のアイデア投稿で自律的コンテンツ生成。",
     "impact": "YouTube 3,000万回再生。世界700件以上の「Fun Theory実験」が投稿。行動科学とマーケティングの交差点として学術的にも引用。",
@@ -804,12 +1044,17 @@
     "summary": "Hondaのパーツが2分間のドミノ倒しで連鎖する——CGなしで撮影された「不可能な精度」の映像がHondaの品質哲学を体現した。",
     "client": "Honda UK",
     "agency": "Wieden+Kennedy London",
-    "categories": ["コンテンツ革新", "テクノロジー×アイデア"],
+    "categories": [
+      "コンテンツ革新",
+      "テクノロジー×アイデア"
+    ],
     "award": "Cannes Lions 2003 Film Grand Prix",
     "year": "2003",
-    "regions": ["欧州"],
-    "link": "https://www.honda.co.uk/",
-    "thumbnail": "https://picsum.photos/seed/honda-the-cog/1200/630",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://en.wikipedia.org/wiki/Cog_(advertisement)",
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/en/2/26/Honda_cog_commercial.jpg",
     "overview": "Accordの実際のパーツ（タイヤ・エンジン・ワイパー・座席など）が精密にセッティングされた連鎖反応で次々と動いていき、最後に完成した車が転がり出す2分間のワンショット映像。「Isn't it nice when things just work?」のコピーのみ。CGは一切使用していない。",
     "mechanism": "606回の試行錯誤と6週間のセッティングで撮影成功。技術的誠実さがメッセージそのもの。60秒のCM枠を2分で押し通したメディア購入の大胆さも含めて評価された。",
     "impact": "放映後Honda Accordの試乗申込が200%増。「ここまでする企業が作った車は壊れない」という信頼感を購買動機に転換。",

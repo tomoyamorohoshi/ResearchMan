@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "fetch-thumbnails": "node scripts/fetch-thumbnails.mjs"
   },
   "dependencies": {
     "next": "16.2.9",
