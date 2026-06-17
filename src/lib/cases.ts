@@ -13,9 +13,14 @@ export type Case = {
   link: string;
   thumbnail: string;
   overview: string;
-  mechanism: string;
-  impact: string;
-  evaluation: string;
+  background: string;
+  execution: string;
+  evaluationImpact: string;
+  relatedWorks: string;
+  // legacy fields (backward compat)
+  mechanism?: string;
+  impact?: string;
+  evaluation?: string;
 };
 
 export const cases: Case[] = casesData as Case[];

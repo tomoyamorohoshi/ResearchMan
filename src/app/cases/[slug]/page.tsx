@@ -88,24 +88,28 @@ export default async function CasePage({
           </a>
         )}
 
-        <div className="space-y-8">
+        <div className="space-y-10">
           <Section title="概要" content={c.overview} />
-          <Section title="仕組み" content={c.mechanism} />
-          <Section title="インパクト" content={c.impact} />
-          <Section title="評価ポイント" content={c.evaluation} />
+          <Section title="背景" content={c.background ?? c.mechanism ?? ""} />
+          <Section title="企画・エグゼキューション" content={c.execution ?? c.mechanism ?? ""} />
+          <Section title="評価ポイント・世の中的インパクト" content={c.evaluationImpact ?? `${c.evaluation ?? ""}\n\n${c.impact ?? ""}`.trim()} />
+          {(c.relatedWorks) && (
+            <Section title="関連事例" content={c.relatedWorks} accent />
+          )}
         </div>
       </div>
     </div>
   );
 }
 
-function Section({ title, content }: { title: string; content: string }) {
+function Section({ title, content, accent }: { title: string; content: string; accent?: boolean }) {
+  if (!content) return null;
   return (
     <div>
-      <h2 className="text-base font-bold text-gray-900 mb-2 pb-2 border-b border-gray-100">
+      <h2 className={`text-base font-bold mb-3 pb-2 border-b ${accent ? "text-indigo-700 border-indigo-100" : "text-gray-900 border-gray-100"}`}>
         {title}
       </h2>
-      <p className="text-gray-700 text-sm leading-relaxed">{content}</p>
+      <p className="text-gray-700 text-sm leading-relaxed whitespace-pre-line">{content}</p>
     </div>
   );
 }
