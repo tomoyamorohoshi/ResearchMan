@@ -1,5 +1,455 @@
 [
   {
+    "id": "decode-jayz-bing",
+    "title": "DECODED: JAY-Z with Bing",
+    "summary": "Jay-Zの自伝本の全ページを世界13都市の実際の場所に掲示し、Bingの検索・地図機能と連動させたARGキャンペーン。屋外広告とデジタル検索を融合した宝探し体験を構築。",
+    "client": "Jay-Z / Microsoft Bing",
+    "agency": "Droga5 New York",
+    "categories": ["メディア発明", "ブランドエクスペリエンス", "テクノロジー×アイデア"],
+    "award": "Cannes Lions 2011 Outdoor Grand Prix / Integrated Grand Prix / Titanium Lion",
+    "year": "2010",
+    "regions": ["グローバル"],
+    "link": "https://www.youtube.com/watch?v=wqo1HV_lB0U",
+    "thumbnail": "https://i.ytimg.com/vi/wqo1HV_lB0U/hqdefault.jpg",
+    "videoId": "wqo1HV_lB0U",
+    "overview": "Jay-Zの自伝『Decoded』の発売を告知するため、本の全320ページをニューヨーク、マイアミ、ロサンゼルスなど13都市の実際の場所（ビルボード、プール、衣料品など）に、各ページの内容と関連する場所を選んで掲示した。ファンはTwitter・ラジオ・Facebookのヒントをもとにbingで検索・地図機能を駆使しながらページを探し、bing.com/jayzで答え合わせをするARG（代替現実ゲーム）形式のキャンペーン。",
+    "background": "Jay-Zの自伝出版に際し、MicrosoftのBing検索エンジンのブランド認知を高めながらアルバム・書籍の両方をプロモートするというダブルゴールがあった。Droga5はBingの検索・地図機能の強みをゲームメカニクスに転換し、ARGとしてデザインすることで従来の広告を超えた参加型体験を実現した。",
+    "execution": "本の全ページを世界13都市のリアルな場所（ページ内容と意味的に連動した場所を選定）に掲示。Twitter・ラジオ・Facebookにヒントを配置し、Bingの検索と地図機能で謎を解くARGとして設計。bing.com/jayzで全ページのデジタルモザイクが完成する仕組み。期間中ファンが自発的にページを発見・共有することで口コミが拡大した。",
+    "evaluationImpact": "11億を超えるグローバルメディアインプレッションを獲得、Bing.comへの訪問数を11.7%増加。Cannes Lions 2011でOutdoor Grand Prix、Integrated Grand Prix、Titanium Lionを受賞し、音楽・屋外広告・デジタルを統合した新しいキャンペーン形式の先駆けとなった。",
+    "relatedWorks": [
+      {
+        "title": "Tracking Bad Bunny (2025年）",
+        "description": "GoogleストリートビューをARGに転用してアルバムタイトルを宝探しさせた。「既存プラットフォーム×謎解き」という設計思想がDecoded Jay-Zと共鳴する。",
+        "url": "https://www.youtube.com/watch?v=odwi6eFznM4"
+      },
+      {
+        "title": "Spotify「Spreadbeats」(2024年）",
+        "description": "Excelをミュージックビデオに転用した「メディア発明」事例。既存ツールをエンターテインメントのキャンバスに変える同様の発想。",
+        "url": "https://www.youtube.com/watch?v=ErTCQB09rsM"
+      }
+    ]
+  },
+  {
+    "id": "logic-1800-273-8255",
+    "title": "1-800-273-8255 (Logic feat. Alessia Cara & Khalid)",
+    "summary": "楽曲タイトルを全米自殺防止ライフラインの実際の電話番号にし、音楽リリースそのものをPSAキャンペーンへと変換——リリース当日にライフラインへの電話が27%増加した。",
+    "client": "Visionary Music Group / Def Jam Recordings",
+    "agency": "Visionary Music Group / Def Jam Recordings",
+    "categories": ["カルチャーインサイト", "社会包摂", "コンテンツ革新"],
+    "award": "Clio Music Grand Clio (Music Marketing / Film)",
+    "year": "2018",
+    "regions": ["北米"],
+    "link": "https://clios.com/winners-gallery/details/80446",
+    "thumbnail": "https://i.ytimg.com/vi/XnTdtGNYew4/hqdefault.jpg",
+    "videoId": "XnTdtGNYew4",
+    "overview": "LogicはアルバムトラックのタイトルをNational Suicide Prevention Lifeline（1-800-273-8255）の実際の電話番号にすることで、楽曲リリース自体を自殺防止キャンペーンへと変換した。ミュージックビデオはLGBTQ+の若者が自殺を思いとどまる物語を描き、Alessia CaraとKhalidをフィーチャリングした。",
+    "background": "Logicは自身もメンタルヘルスの問題を抱えた経験を持ち、ファンからの自殺願望を訴えるメッセージを受け取っていた。楽曲タイトルをそのまま電話番号にすることで、広告費ゼロで音楽メディアを公共広告インフラに変えるアプローチを選んだ。",
+    "execution": "楽曲タイトルを全米自殺防止ライフラインの実際の電話番号（1-800-273-8255）に設定。MV内でLGBTQ+の若者が自殺を思いとどまるストーリーを描き、2017年MTV VMAsでパフォーマンス。ライフラインのスタッフ増員が追いつかないほどの電話増加が発生した。",
+    "evaluationImpact": "リリース当日ライフラインへの電話が27%増加、MTV VMAsパフォーマンス後数時間で50%増という記録的な急増。2021年英医学誌BMJの研究では、この楽曲が期待値より245件の自殺減少に関連していたことが示された。Clio Music Grand Clioを受賞し、エンターテインメントが公衆衛生に与えうる影響を証明した事例として引用される。",
+    "relatedWorks": [
+      {
+        "title": "Specsavers「The Misheard Version」(2024年）",
+        "description": "音楽と公共的メッセージを融合させた事例。難聴啓発を音楽体験に組み込んだという点でLogicの楽曲と同じ「楽曲=メッセージ」の構造を持つ。",
+        "url": "https://www.youtube.com/watch?v=rvmohdd68_4"
+      },
+      {
+        "title": "Sounds Right（2024年）",
+        "description": "音楽ストリーミングを自然保護資金調達に転換。「音楽消費=社会貢献」という構造でLogicの取り組みと共鳴する。",
+        "url": "https://www.youtube.com/watch?v=mwaic-ptw2A"
+      }
+    ]
+  },
+  {
+    "id": "disturbed-bad-man",
+    "title": "BAD MAN (Disturbed)",
+    "summary": "Midjourney AIで生成した数千枚のフレームで構成された完全AI生成アニメーションMV——ロシアのウクライナ侵攻に着想を得た独裁主義批判のナラティブをAIビジュアルで描いた。",
+    "client": "Warner Records / Disturbed",
+    "agency": "Doomsday Entertainment / Warner Records / Final Cut",
+    "categories": ["AIクリエイティブ", "コンテンツ革新"],
+    "award": "ADC Awards 2023 Merit Honor (Motion / Film / Music Video)",
+    "year": "2023",
+    "regions": ["グローバル"],
+    "link": "https://www.oneclub.org/awards/adcawards/-award/47375/bad-man/",
+    "thumbnail": "https://i.ytimg.com/vi/fpUpVznI4Yc/hqdefault.jpg",
+    "videoId": "fpUpVznI4Yc",
+    "overview": "DisturbedのシングルBad ManのMVは、ディレクターTristan Holmesが約1か月かけてMidjourney AIで生成した数千枚のフレームを編集して制作した完全AI生成アニメーション作品。ロシアのウクライナ侵攻に着想を得た楽曲に合わせ、世界的な独裁主義の台頭を描いたナラティブを構築している。",
+    "background": "ロシアによるウクライナ侵攻を背景に制作されたDisturbedの社会批判的楽曲のために、実写撮影の代わりにAI生成ビジュアルを用いた新しいMV制作手法が採用された。Midjourney v4以降の急速な進化がこの試みを可能にした。",
+    "execution": "ディレクターTristan HolmesがMidjourney AIを使って約1か月間で数千枚のフレームを生成。楽曲のナラティブに合わせてフレームを編集・合成し、独裁主義の台頭をシンボリックに描くアニメーションMVとして完成させた。Doomsday EntertainmentとWarner Records、Final Cutが連携してリリース。",
+    "evaluationImpact": "ADC Awards 2023でMotion/Film/Music Videoカテゴリーのメリット賞を受賞。音楽業界における完全AI生成MVの先駆的事例として、生成AIをクリエイティブツールとして本格活用した初期の実例となった。",
+    "relatedWorks": [
+      {
+        "title": "Coca-Cola「Create Real Magic」(2023年）",
+        "description": "生成AIをクリエイティブキャンペーンの核に据えた事例。AIアート生成のブランド活用という共通テーマ。",
+        "url": "https://www.coca-colacompany.com/media-center/coca-cola-invites-digital-artists-to-create-real-magic-using-new-ai-platform"
+      }
+    ]
+  },
+  {
+    "id": "girls-who-code-dojacode",
+    "title": "DOJACODE (Girls Who Code × Doja Cat)",
+    "summary": "Doja Catのヒット曲「Woman」をCSS・JavaScript・Pythonでカスタマイズできる世界初の「コーダブル・ミュージックビデオ」——コーディングをポップカルチャーと融合させてZ世代女性をプログラミングへ誘導。",
+    "client": "Girls Who Code",
+    "agency": "Mojo Supermarket + Active Theory",
+    "categories": ["テクノロジー×アイデア", "コンテンツ革新", "社会包摂"],
+    "award": "The One Show 2022 Best of Discipline Pencil（Branded Entertainment / Interactive & Mobile Craft）",
+    "year": "2022",
+    "regions": ["グローバル"],
+    "link": "https://dojacode.com/",
+    "thumbnail": "https://i.ytimg.com/vi/D3Phbpa7qTg/hqdefault.jpg",
+    "videoId": "D3Phbpa7qTg",
+    "overview": "Girls Who Codeはドージャ・キャットと組み、彼女のヒット曲「Woman」を使った世界初の「コーダブル・ミュージックビデオ」DojaCodeを2021年末に公開した。ユーザーはdojacode.comでCSS・JavaScript・Pythonのいずれかでコードを書くことで、映像演出をリアルタイムで変化させることができる。",
+    "background": "Women in Techの比率を高めることを目的とするGirls Who Codeは、Z世代の女性がコーディングを「自分のもの」と感じるための接点を探していた。Doja Catというポップアイコンとのコラボレーションにより、プログラミング学習の入り口をエンターテインメントとして設計した。",
+    "execution": "dojacode.comでCSS・JavaScript・Pythonの3言語からいずれかを選択し、コードを書くとリアルタイムでMVの演出が変化する。ネイルデザインの変更・空の色の操作・ドージャ・キャット本人の登場などが実装されており、コーディングの手応えをゲーム感覚で体験できる。",
+    "evaluationImpact": "The One Show 2022でBranded EntertainmentとInteractive & Mobile Craftの2部門でBest of Discipline Pencilを受賞（全体Best of ShowはLeo Burnett Chicagoの「The Lost Class」）。コーディングとポップカルチャーの接点を創出し、Girls Who Codeへの関心喚起に大きく貢献した。",
+    "relatedWorks": [
+      {
+        "title": "Spotify「Spreadbeats」(2024年）",
+        "description": "Excelをミュージックビデオのキャンバスに変えた事例。「既存ツール×インタラクティブ体験」という設計思想がDojaCodeと共鳴する。",
+        "url": "https://www.youtube.com/watch?v=ErTCQB09rsM"
+      },
+      {
+        "title": "Microsoft「We All Win」(2019年）",
+        "description": "テクノロジーと社会包摂を組み合わせたキャンペーン。テック企業が多様性・包摂をプロダクト体験で表現する先行事例。",
+        "url": "https://www.youtube.com/watch?v=WfM5Yg0-QL8"
+      }
+    ]
+  },
+  {
+    "id": "m83-my-tears-becoming-sea",
+    "title": "M83 – My Tears Are Becoming a Sea",
+    "summary": "胎内の子どもが超自然的な力で両親を事故から救うという、スーパーヒーロー誕生の起源を描いた超現実的MV——D&AD 2022 Graphite Pencil受賞。",
+    "client": "M83 / DIVISION",
+    "agency": "DIVISION",
+    "categories": ["コンテンツ革新"],
+    "award": "D&AD 2022 Graphite Pencil (Music Videos)",
+    "year": "2022",
+    "regions": ["グローバル"],
+    "link": "https://www.dandad.org/awards/professional/2022/235950/m83/",
+    "thumbnail": "https://i.ytimg.com/vi/UJrMB4QhNok/hqdefault.jpg",
+    "videoId": "UJrMB4QhNok",
+    "overview": "フランス出身のエレクトロニックアーティストM83の楽曲「My Tears Are Becoming a Sea」のオフィシャルMV。病院へ向かう途中に大きな交通事故に遭遇した妊婦カップルを描き、胎内の子どもが超自然的な力で両親を救うというスーパーヒーロー誕生の起源（プリクエル）を描いた作品。",
+    "background": "M83のアルバム『Hurry Up, We're Dreaming』の10周年記念として制作された本MVは、先行する「My Tears Are Becoming a Sea」のMVのプリクエルとして位置づけられ、スーパーヒーロー神話の新しい語り直しを試みた。",
+    "execution": "DIVISIONが制作を担当。事故に遭遇した妊婦カップルが窮地に陥る場面から始まり、胎内の子どもの視点から超自然的な力による救出を描く。超現実的なビジュアルと映画的な演出でスーパーヒーロー起源神話を再解釈。2021年12月リリース。",
+    "evaluationImpact": "D&AD 2022でGraphite Pencilを受賞。胎内という前例のない視点からスーパーヒーロー神話を語り直した映像表現が評価され、音楽ビデオの物語構造の可能性を広げた作品として認識されている。",
+    "relatedWorks": [
+      {
+        "title": "Michael Kiwanuka「Beautiful Life」(2023年）",
+        "description": "映画的品質とDMT（臨死体験）という極限状況の心理描写を組み合わせたMV。映画的ストーリーテリングのMV活用という共通テーマ。",
+        "url": "https://www.youtube.com/watch?v=TiaxTzkkzB0"
+      }
+    ]
+  },
+  {
+    "id": "asap-ferg-green-juice",
+    "title": "ASAP FERG – Green Juice",
+    "summary": "フォトグラメトリー・LiDARスキャン・Unity3Dリアルタイムエンジンを組み合わせた無限トラベリングショットで、ハーレムの記憶を現実から仮想空間へとシームレスに変換したMV。",
+    "client": "ASAP Ferg",
+    "agency": "DIVISION (Paris) / Machine Molle — Director: Valentin Petit",
+    "categories": ["テクノロジー×アイデア", "コンテンツ革新"],
+    "award": "D&AD 2022 Graphite Pencil ×2 / Wood Pencil ×2 (Music Videos)",
+    "year": "2022",
+    "regions": ["グローバル"],
+    "link": "https://www.dandad.org/awards/professional/2022/236470/asap-ferg/",
+    "thumbnail": "https://i.ytimg.com/vi/jEZ6wAuMMl0/hqdefault.jpg",
+    "videoId": "jEZ6wAuMMl0",
+    "overview": "ASAP Ferg、Pharrell Williams & The Neptunesの楽曲「Green Juice」のMV。ファーグの故郷ハーレムの記憶をフォトグラメトリーやLiDARスキャンで立体的に捉え、無限に続くひとつの連続ショットで現実からグリッチだらけのデジタル地下世界へと観客を誘う。",
+    "background": "パリのプロダクションカンパニーDIVISIONがハーレムの空間記憶をデジタル技術で再現するというコンセプトを立案。Valentin Petitが監督し、VFXスタジオMachine MolleがUnity3Dリアルタイムエンジンを活用したシームレスな現実/仮想移行を実現した。",
+    "execution": "フォトグラメトリーとLiDARスキャナー、360°カメラアレイでハーレムの実空間をキャプチャ。Unity3DリアルタイムエンジンとカスタムポイントクラウドVFXを組み合わせ、現実の街並みからグリッチしたデジタル地下世界への無限トラベリングショットを1本のシームレスな映像として構築した。",
+    "evaluationImpact": "D&AD 2022でGraphite Pencil 2本・Wood Pencil 2本のペンシルを受賞。フォトグラメトリー×リアルタイムエンジンを組み合わせたMV表現の可能性を切り拓き、現実と仮想のボーダーを音楽ビデオで表現した先駆的事例となった。",
+    "relatedWorks": [
+      {
+        "title": "Pharrell Williams「Cash In Cash Out」(2023年）",
+        "description": "同じく高度なCGI技術でゾートロープ空間を構築したMV。ASAP FergのMVと同じPharrell Williamsが関与し、先進的VFX技術を音楽表現に活用する共通テーマを持つ。",
+        "url": "https://www.youtube.com/watch?v=cKEwnhc8ItY"
+      }
+    ]
+  },
+  {
+    "id": "lgbt-network-we-will-become-better",
+    "title": "WE WILL BECOME BETTER (LGBT Network Russia × Sansara)",
+    "summary": "ロシアの同性愛宣伝禁止法下で制作された反同性愛嫌悪MV——2人のダンサーが離れた場所で同じ動きを「共鳴」させることで、法的リスクを冒して愛と連帯を可視化。",
+    "client": "LGBT Network Russia",
+    "agency": "Halal (Amsterdam) / Voskhod",
+    "categories": ["社会包摂", "コンテンツ革新", "カルチャーインサイト"],
+    "award": "D&AD 2022 Graphite Pencil (1) + Wood Pencil (2) (Music Videos)",
+    "year": "2022",
+    "regions": ["東欧", "グローバル"],
+    "link": "https://www.dandad.org/awards/professional/2022/236299/we-will-become-better/",
+    "thumbnail": "https://i.ytimg.com/vi/ENYwwbcn4V0/hqdefault.jpg",
+    "videoId": "ENYwwbcn4V0",
+    "overview": "ロシアのロックバンドSansaraの楽曲を用いたMV。2013年の同性愛宣伝禁止法と2020年の憲法改正による同性婚禁止に抗議するために制作された。二人の男性が離れたアパートで同じダンスを踊るという詩的な映像表現で、分断と愛を同時に描く。",
+    "background": "ロシアのLGBT Network（LGBT権利団体）が、同性愛宣伝禁止法という法的制約の中で可能な表現方法を模索。制作会社Halal Amsterdamが、直接的な描写を避けながら2人のダンサーの「共鳴」という詩的手法で愛と連帯を可視化する解決策を提案した。",
+    "execution": "監督Andzej Gavrissのもと、Halal AmsterdamとVoskhod制作。2人の男性が物理的に離れた異なるアパートで同じダンスを踊る映像を並置。直接的な接触を避けることで法律の抜け穴をついた表現を実現し、YouTubeで公開した。",
+    "evaluationImpact": "ロシアのメディアは法的リスクを恐れ掲載を拒否したが、YouTubeで22万8千回以上再生。D&AD 2022でGraphite Pencil 1本・Wood Pencil 2本を受賞。法的制約の中で創造的表現を貫いた事例として国際的に注目された。",
+    "relatedWorks": [
+      {
+        "title": "Bodyform「Womb Stories」(2021年）",
+        "description": "社会的タブーを映像で正面から描いた事例。ジェンダーと身体性という社会的テーマを大胆な映像表現で扱う点でWe Will Become Betterと共鳴。",
+        "url": "https://www.youtube.com/watch?v=mya3HerRBR4"
+      }
+    ]
+  },
+  {
+    "id": "pharrell-cash-in-cash-out",
+    "title": "CASH IN CASH OUT (Pharrell Williams ft. 21 Savage & Tyler, The Creator)",
+    "summary": "ゾートロープ（回転のぞき絵）にインスパイアされた完全CGアニメーションMV——1年以上かけて手作業で制作された3Dキャラクターが無限回転ステージでパフォーマンス。D&AD Black Pencil受賞。",
+    "client": "Pharrell Williams / Columbia Records",
+    "agency": "DIVISION / Electric Theatre Collective — Director: François Rousselet",
+    "categories": ["テクノロジー×アイデア", "コンテンツ革新", "AIクリエイティブ"],
+    "award": "D&AD 2023 Black Pencil + Yellow Pencil ×5 (計10 Pencils) / Cannes Lions 2023 Entertainment Lions for Music Gold Lion",
+    "year": "2023",
+    "regions": ["グローバル"],
+    "link": "https://www.dandad.org/awards/professional/2023/237575/pharrell-21-savage-and-tyler-the-creator-cash-in-cash-out/",
+    "thumbnail": "https://i.ytimg.com/vi/cKEwnhc8ItY/hqdefault.jpg",
+    "videoId": "cKEwnhc8ItY",
+    "overview": "Pharrell Williams、21 Savage、Tyler, The Creatorが出演するこのMVは、実写撮影を一切使わずにフルCGIで制作された。ゾートロープにインスパイアされた無限回転する3D空間で3人のフォトリアルなCGキャラクターがパフォーマンスを繰り広げる。",
+    "background": "COVID-19による撮影停止期間中に開発が始まった。DivisionのFrançois RouseletとElectric Theatre Collectiveがアーティストのライブ映像を徹底研究し、1年以上をかけてフォトリアルな3Dアバターを手作業でアニメーション化した。",
+    "execution": "Pharrell、Tyler, The Creator、21 SavageのフォトリアルなCGアバターが、金とスーパーカーに囲まれた無限に回転するゾートロープ空間でパフォーマンス。DivisionとElectric Theatre Collectiveが1年以上かけて3Dキャラクターを手作業でアニメーション化。4分間の映像で実写と見紛うほどの完成度を実現。",
+    "evaluationImpact": "D&AD 2023でBlack Pencil 1本・Yellow Pencil 5本・Graphite Pencil 2本・Wood Pencil 2本（計10本）を受賞。Cannes Lions 2023 Entertainment Lions for Music部門ゴールドライオンも獲得。「本当に実写で撮影したのではないか」と審査員に思わせるほどの完成度が評価された。",
+    "relatedWorks": [
+      {
+        "title": "ASAP Ferg「Green Juice」(2022年）",
+        "description": "同じく先進的CG技術を用いた音楽ビデオ。フォトグラメトリー×リアルタイムエンジンで現実/仮想の境界を溶かす表現はCash In Cash Outのゾートロープ手法と共鳴する。",
+        "url": "https://www.youtube.com/watch?v=jEZ6wAuMMl0"
+      },
+      {
+        "title": "Gorillaz「Skinny Ape」AR体験",
+        "description": "CGキャラクターと音楽の融合という共通テーマ。バーチャルアーティストが現実世界に登場するという発想はPharrellのCGアバターMVと同じ系譜。",
+        "url": "https://www.gorillaz.com/"
+      }
+    ]
+  },
+  {
+    "id": "little-simz-flood",
+    "title": "FLOOD (Little Simz)",
+    "summary": "マクベス・市民ケーンなどの古典映画からインスパイアされた「ネオ寓話」——16mmフィルム的映像美と力強いビジュアルストーリーテリングでCannes Lions 2025 Silver Lion受賞。",
+    "client": "Little Simz / AWAL",
+    "agency": "Prettybird London — Director: Salomon Ligthelm",
+    "categories": ["コンテンツ革新", "カルチャーインサイト"],
+    "award": "Cannes Lions 2025 Entertainment Lions for Music Silver Lion (Music Video) / UKMVA x MUVID 2025 Best International Video",
+    "year": "2025",
+    "regions": ["UK", "グローバル"],
+    "link": "https://www.youtube.com/watch?v=GvrNPiz7rHw",
+    "thumbnail": "https://i.ytimg.com/vi/GvrNPiz7rHw/hqdefault.jpg",
+    "videoId": "GvrNPiz7rHw",
+    "overview": "UKラッパー・マーキュリー賞受賞者のLittle Simzによる楽曲「Flood」のオフィシャルMV。監督はSalomon Ligthelm（Prettybird London）で、2025年2月26日にアルバム『Lotus』のリードシングルとして公開された。マクベス・第七の封印・市民ケーンなどの古典映画を参照した「ネオ寓話」として制作。",
+    "background": "Little SimzはUKヒップホップシーンで最も批評家の評価が高いアーティストの一人で、マーキュリー賞を受賞している。アルバム『Lotus』の世界観を映像で体現するため、古典映画の美学とスタイリッシュな映像美を組み合わせたネオ寓話的MVを制作した。",
+    "execution": "Prettybird London所属のSalomon Ligthelm監督のもと制作。マクベス・第七の封印・市民ケーンなどの古典作品を参照した映像文法と、物質的なものと精神的なものの緊張関係を主題としたビジュアルストーリーテリングを展開。2025年2月26日にリリース。",
+    "evaluationImpact": "Cannes Lions 2025 Entertainment Lions for Music部門（Music Videoカテゴリー）でSilver Lionを受賞。UKMVA x MUVID 2025で最優秀インターナショナルビデオ賞も獲得。クラフトの卓越性と映像詩的表現が評価された。",
+    "relatedWorks": [
+      {
+        "title": "Michael Kiwanuka「Beautiful Life」(2023年）",
+        "description": "同じく映画的映像美とストーリーテリングを追求したMVでCannes Grand Prix受賞。少人数の物語と高い映像品質という共通の美学。",
+        "url": "https://www.youtube.com/watch?v=TiaxTzkkzB0"
+      }
+    ]
+  },
+  {
+    "id": "beyonce-verizon-cant-b-broken",
+    "title": "CAN'T B BROKEN (Beyoncé × Verizon)",
+    "summary": "「ビヨンセはインターネットを壊せる。ではVerizonのネットワークは壊せるか？」——スーパーボウルCMでアルバム先行告知も組み込んだ音楽×ブランドの融合事例。Cannes Lions 2024 Gold Lion。",
+    "client": "Verizon",
+    "agency": "Ogilvy New York",
+    "categories": ["ブランドエクスペリエンス", "カルチャーインサイト", "コンテンツ革新"],
+    "award": "Cannes Lions 2024 Entertainment Lions for Music Gold Lion (Brand or Product Integration into Music Content)",
+    "year": "2024",
+    "regions": ["北米", "グローバル"],
+    "link": "https://www.ogilvy.com/work/cant-b-broken",
+    "thumbnail": "https://i.ytimg.com/vi/yQBB3x6Y9kA/hqdefault.jpg",
+    "videoId": "yQBB3x6Y9kA",
+    "overview": "OgilvyニューヨークはビヨンセとVerizonのために、「ビヨンセはインターネットを壊せる。では、Verizonのネットワークは壊せるか？」という問いをクリエイティブの前提とした2024年スーパーボウルCMを制作。ビヨンセが新曲を含むさまざまな手段でネットワーク負荷をかけようとする様子をライブアクションで描いた。",
+    "background": "Verizonは通信ネットワークの品質を広告で伝える際、従来型のスペック訴求を避けた感情的・エンタメ的アプローチを模索していた。ビヨンセがカントリーアルバム「Cowboy Carter」のリリース前という絶好のタイミングと、スーパーボウルという最大の広告枠を組み合わせた。",
+    "execution": "スーパーボウルのCM枠でビヨンセが新曲を使ったパフォーマンスでVerizonのネットワークを「壊そうとする」ライブアクションを展開。CM内でアルバム「Cowboy Carter」の先行告知も組み込み、ブランド広告と音楽リリースを融合。290億インプレッションを獲得した。",
+    "evaluationImpact": "合計290億インプレッションを獲得。Cannes Lions 2024でEntertainment Lions for Music部門のゴールドライオンを受賞。スーパーボウルCMを活用したアーティスト×ブランドの新しい融合モデルとして評価された。「Cowboy Carter」は後に大きな商業的成功を収め、ビヨンセの音楽キャリアのターニングポイントとなった。",
+    "relatedWorks": [
+      {
+        "title": "Beyoncé「RENAISSANCE」ビジュアルアルバム（2022年）",
+        "description": "ビヨンセが音楽とビジュアルを融合した大型プロジェクト。Can't B BrokenはRENAISSANCE後のCowboy Carterキャンペーンの一環として機能した。",
+        "url": "https://www.beyonce.com/"
+      },
+      {
+        "title": "Apple「Welcome Home」ft. FKA twigs (2018年）",
+        "description": "アーティストをプロダクトの感情的約束の中心に置くという同じ手法。テック/通信ブランド×音楽アーティストの融合という共通テーマ。",
+        "url": "https://www.youtube.com/watch?v=LuCgUjmjkcY"
+      }
+    ]
+  },
+  {
+    "id": "asap-rocky-tailor-swif",
+    "title": "TAILOR SWIF (A$AP Rocky)",
+    "summary": "タイトルでテイラー・スウィフトを想起させながら、ウクライナ・キーウを舞台にした奇想天外なミーム的ビネットで「ファッションへの執着とウィット」を体現したMV。Cannes Lions 2025 Gold Lion。",
+    "client": "A$AP Rocky / RCA Records",
+    "agency": "Iconoclast — Director: Vania Heymann & Gal Muggia / Production: shelter.film (Kyiv)",
+    "categories": ["コンテンツ革新", "カルチャーインサイト"],
+    "award": "Cannes Lions 2025 Entertainment Lions for Music Gold Lion (Excellence in Music Video)",
+    "year": "2025",
+    "regions": ["グローバル"],
+    "link": "https://www.youtube.com/watch?v=5URefVYaJrA",
+    "thumbnail": "https://i.ytimg.com/vi/5URefVYaJrA/hqdefault.jpg",
+    "videoId": "5URefVYaJrA",
+    "overview": "ウクライナ・キーウを舞台に、犬が車を運転したりビッグフットが登場したりする奇想天外なミーム的ビネットを矢継ぎ早に連ねたMV。タイトルはテイラー・スウィフトを想起させるが実態はA$APロッキーのファッションへの執着とウィットを体現した作品。",
+    "background": "ヴァニア・ヘイマンとガル・ムジアが監督し、キーウに拠点を置くshelter.filmが2024年8月30日にリリース。タイトルによる意図的なミスリーディングの下に社会的メッセージを潜ませた構造。キーウでの撮影はロシア侵攻中という文脈でも注目を集めた。",
+    "execution": "Iconoclast所属のVania HeymannとGal Muggia（イスラエル人監督デュオ）が監督。キーウ・ウクライナでプロダクションhouseのshelter.filmと共同制作。ミーム的な超短尺ビネットを高速で連ねる構成で、視聴者を笑わせながら社会的メッセージを忍び込ませた。",
+    "evaluationImpact": "Cannes Lions 2025 Entertainment Lions for Music部門（Excellence in Music Video）でGold Lionを受賞。タイトルによるミスリーディングと奇想天外なビジュアルが独自の文化的反響を生み、音楽ビデオのユーモアと社会性の融合の新しい形を示した。",
+    "relatedWorks": [
+      {
+        "title": "Childish Gambino「This Is America」(2019年）",
+        "description": "エンタメ性の裏に鋭い社会批評を潜ませる構造。「楽しさの仮面の下に本質的なメッセージがある」という点でTailor Swifと共鳴する。",
+        "url": "https://www.youtube.com/watch?v=VYOjWnS4cMY"
+      }
+    ]
+  },
+  {
+    "id": "lil-nas-x-old-town-road",
+    "title": "OLD TOWN ROAD – Official Movie (Lil Nas X ft. Billy Ray Cyrus)",
+    "summary": "Billboard Hot 100で19週連続1位という史上最長記録の楽曲を、5分超の西部劇映画パロディとして映像化——クリス・ロック等豪華ゲストと1889年〜2019年のタイムトラベルを描く。",
+    "client": "Lil Nas X / Columbia Records",
+    "agency": "PRETTYBIRD — Director: Calmatic",
+    "categories": ["コンテンツ革新", "カルチャーインサイト"],
+    "award": "Cannes Lions 2021 Entertainment Lions for Music Grand Prix",
+    "year": "2021",
+    "regions": ["グローバル"],
+    "link": "https://www.youtube.com/watch?v=w2Ov5jzm3j8",
+    "thumbnail": "https://i.ytimg.com/vi/w2Ov5jzm3j8/hqdefault.jpg",
+    "videoId": "w2Ov5jzm3j8",
+    "overview": "Lil Nas XとBilly Ray Cyrussが1889年の銀行強盗から2019年へタイムトラベルするストーリー仕立ての本格西部劇映画パロディMV。Chris Rock（保安官役）、Diplo、Vince Staples、Rico Nastyらが豪華カメオ出演し、ジャンルを越えた映画的映像表現が高く評価された。",
+    "background": "カントリーとヒップホップを横断した「Old Town Road」がBillboard Hot 100で19週連続1位という史上最長記録を樹立。PRETTYBIRD所属のCalmaticが、この記録的ヒットを視覚的な文化イベントへと昇華させる本格映画パロディのMVを制作。",
+    "execution": "Ad Age「2020年度監督オブ・ザ・イヤー」に選ばれたCalmatic（PRETTYBIRD）が監督。2019年5月17日にYouTubeで公開された約5分の「オフィシャル・ムービー」。豪華スター総出演のシネマティックな西部劇短編映画として設計。",
+    "evaluationImpact": "YouTubeで8億4500万回以上の再生数を記録。Cannes Lions 2021「Entertainment Lions for Music」部門でGrand Prixを受賞し、審査委員長Wyclef Jeanが「エンゲージメント・勇気・不屈の精神」を受賞理由として挙げた。楽曲の商業的成功を超えた文化的インパクトを証明。",
+    "relatedWorks": [
+      {
+        "title": "JAY-Z「Smile」(2018年）",
+        "description": "同じくCannes Lions Entertainment Lions for Music Grand Prix受賞。音楽ビデオを超えた短編映画的アプローチという共通テーマ。",
+        "url": "https://www.youtube.com/watch?v=SSumXG5_rs8"
+      },
+      {
+        "title": "Apple「Welcome Home」ft. FKA twigs (2018年）",
+        "description": "映画的演出とアーティストパフォーマンスを融合させた同カテゴリーGrand Prix受賞作。「MVの映画化」という共通の方向性。",
+        "url": "https://www.youtube.com/watch?v=LuCgUjmjkcY"
+      }
+    ]
+  },
+  {
+    "id": "mercado-libre-feed-parade",
+    "title": "FEED PARADE (Mercado Libre × Gloria Groove)",
+    "summary": "COVID-19でサンパウロ・プライドパレードが中止となった際、InstagramフィードをそのままパレードルートのMVとして再現——2万人以上がデジタルパレードに「参加」した。",
+    "client": "Mercado Libre (Mercado Livre)",
+    "agency": "GUT São Paulo",
+    "categories": ["メディア発明", "社会包摂", "ブランドエクスペリエンス"],
+    "award": "Cannes Lions 2021 Entertainment Lions for Music Grand Prix / Mobile Gold Lion",
+    "year": "2021",
+    "regions": ["ブラジル", "グローバル"],
+    "link": "https://www.youtube.com/watch?v=jIeD7vhLR0Y",
+    "thumbnail": "https://i.ytimg.com/vi/jIeD7vhLR0Y/hqdefault.jpg",
+    "videoId": "jIeD7vhLR0Y",
+    "overview": "COVID-19でサンパウロ・プライドパレードが中止となった際、メインスポンサーのMercado LibreがドローンでパウリスタAv.2.5kmを撮影した279枚の画像をGloria GrooveのInstagramに手動アップロード。フィード全体をパレードルートのMVとして再現し、タグ付けした人全員がビデオ内に登場する仕組みを実現した。",
+    "background": "LGBTQのブラジルにおける権利向上に取り組むMercado Libreがサンパウロ・プライドパレードのメインスポンサーを務めていた。コロナ禍でパレードが中止となった際に、デジタルでの代替手段を模索。ブラジル最大のLGBTQ+アイコン、Gloria Grooveとの協力でこのキャンペーンが生まれた。",
+    "execution": "ドローンで撮影したパウリスタ大通り2.5km分、279枚の写真をGloria GrooveのInstagramに手動アップロード。インフルエンサーが@paradanofeedにコメント参加を呼びかけると15分で沿道が参加者で埋まった。全参加者のInstagramハンドルを楽曲「Gloriosa」のMVに組み込んでリリース。",
+    "evaluationImpact": "6,300万人にリーチし5億インプレッションを記録。Cannes Lions 2021でEntertainment Lions for Music Grand PrixとMobile Gold Lionを受賞。デジタル空間でのLGBTQ+コミュニティの可視化と、SNSプラットフォームをメディアに転用した革新的手法が評価された。",
+    "relatedWorks": [
+      {
+        "title": "Tracking Bad Bunny (2025年）",
+        "description": "既存プラットフォーム（Googleストリートビュー）をエンターテインメントに転用。Mercado LibreのInstagramフィード活用と同じ「プラットフォームの転用」思想。",
+        "url": "https://www.youtube.com/watch?v=odwi6eFznM4"
+      },
+      {
+        "title": "Adidas「Never Finished」(2022年）",
+        "description": "LGBTQインクルージョンをテーマにしたスポーツブランドの取り組み。同じく社会包摂をエンターテインメントとして展開した事例。",
+        "url": "https://www.youtube.com/watch?v=xnEMaLmFOR4"
+      }
+    ]
+  },
+  {
+    "id": "jay-z-smile",
+    "title": "SMILE (JAY-Z feat. Gloria Carter)",
+    "summary": "JAY-Zの母グロリア・カーターが同性愛者であることを隠して4人の子を育てた実話を35mmフィルムで映像化——クライマックスでグロリア本人が詩を朗読。Cannes Lions 2018 Grand Prix。",
+    "client": "Roc Nation / Def Jam Recordings",
+    "agency": "Smuggler New York — Director: Miles Jay",
+    "categories": ["コンテンツ革新", "カルチャーインサイト", "社会包摂"],
+    "award": "Cannes Lions 2018 Entertainment Lions for Music Grand Prix（Apple「Welcome Home」と共同受賞）",
+    "year": "2018",
+    "regions": ["グローバル"],
+    "link": "https://www.youtube.com/watch?v=SSumXG5_rs8",
+    "thumbnail": "https://i.ytimg.com/vi/SSumXG5_rs8/hqdefault.jpg",
+    "videoId": "SSumXG5_rs8",
+    "overview": "JAY-Zが育ったブルックリン・マーシー・プロジェクツの実際のアパートで撮影。1970年代を舞台に4人の子どもを育てながら同性愛者であることを隠して生きた母グロリア・カーターの実話を描いた短編映像作品。女優ドミニク・フィッシュバックが若き日のグロリアを演じ、ラストで現在のグロリア本人が自作詩を朗読する。",
+    "background": "JAY-Zのアルバム『4:44』は個人的な告白と家族の物語を核としたアルバムで、「Smile」は母グロリア・カーターへの楽曲。アルバムプロモーションの一環として、グロリアの実話を短編映画として映像化。マーシー・プロジェクツという実際の出身地での撮影が作品の真実性を高めた。",
+    "execution": "Smuggler New York所属のMiles Jayが監督。実際のマーシー・プロジェクツのアパートで35mmフィルムを使用して撮影。1970年代の雰囲気をリアルに再現し、ドミニク・フィッシュバックが若き日のグロリアを演じる。ビデオのクライマックスでは現在のグロリア・カーター本人が自作詩を朗読。",
+    "evaluationImpact": "Cannes Lions 2018 Entertainment Lions for MusicでApple「Welcome Home」と同時グランプリを受賞。自伝的な実話と本人出演という真実性が審査員から高評価。広告代理店なしでの制作・受賞が「音楽ビデオの新しい基準」を示した。",
+    "relatedWorks": [
+      {
+        "title": "Lil Nas X「Old Town Road」Official Movie (2021年）",
+        "description": "同じくCannes Lions Entertainment Lions for Music Grand Prix受賞。音楽ビデオを短編映画として制作するアプローチを共有。",
+        "url": "https://www.youtube.com/watch?v=w2Ov5jzm3j8"
+      },
+      {
+        "title": "Johnnie Walker「ERRATA AT 88」(2024年）",
+        "description": "歴史的に消された人物の物語を正面から描き音楽と連動させた事例。「音楽を通じた個人の物語の可視化」という共通テーマ。",
+        "url": "https://www.youtube.com/watch?v=GH4nkkp3n7Y"
+      }
+    ]
+  },
+  {
+    "id": "apple-welcome-home",
+    "title": "WELCOME HOME (Apple HomePod ft. FKA twigs)",
+    "summary": "スパイク・ジョーンズ監督、FKA twigs主演——Apple HomePodで音楽を再生するとアパートが物理的に変容するという4分間の映像詩。プロダクト広告・MV・ダンスアートを融合させたCannes Lions 2018 Grand Prix。",
+    "client": "Apple",
+    "agency": "TBWA\\Media Arts Lab — Director: Spike Jonze",
+    "categories": ["コンテンツ革新", "ブランドエクスペリエンス", "空間体験"],
+    "award": "Cannes Lions 2018 Entertainment Lions for Music Grand Prix（JAY-Z「Smile」と共同受賞）",
+    "year": "2018",
+    "regions": ["グローバル"],
+    "link": "https://www.youtube.com/watch?v=LuCgUjmjkcY",
+    "thumbnail": "https://i.ytimg.com/vi/LuCgUjmjkcY/hqdefault.jpg",
+    "videoId": "LuCgUjmjkcY",
+    "overview": "スパイク・ジョーンズ監督、FKA twigs主演。疲れ果てたオフィスワーカーがApple HomePodを起動してAnderson .Paakの「Till It's Over」を再生すると、アパートが音楽に合わせて物理的に拡張・変容するファンタジーを描いた4分間のショートフィルム。",
+    "background": "Apple HomePodの発売に際し、TBWA\\Media Arts Labはプロダクトのスペック訴求ではなく「音楽を家に迎え入れることの感情的価値」を映像化するアプローチを選択。スパイク・ジョーンズという映画監督を起用しFKA twigsをアーティスト兼主演俳優として配置した。",
+    "execution": "スパイク・ジョーンズがTBWA\\Media Arts Labの制作のもとで監督。FKA twigsが主人公兼パフォーマー。Anderson .Paakの「Till It's Over」に合わせてアパートが変容するVFXと実写ダンスを融合。4分間の映像で「音楽が空間を変える」体験を凝縮した。",
+    "evaluationImpact": "Cannes Lions 2018 Entertainment Lions for Music部門でJAY-Z「Smile」と同時グランプリを受賞。「アーティストをプロダクトの感情的約束の中心に置く」ブランドフィルムの新しい形を示し、テックブランドのMV活用における先駆的事例となった。",
+    "relatedWorks": [
+      {
+        "title": "JAY-Z「Smile」(2018年）",
+        "description": "同年同カテゴリーのCannes Grand Prix共同受賞作。「音楽ビデオの短編映画化」という共通アプローチ。",
+        "url": "https://www.youtube.com/watch?v=SSumXG5_rs8"
+      },
+      {
+        "title": "Beyoncé×Verizon「Can't B Broken」(2024年）",
+        "description": "通信テック系ブランド×音楽アーティストの融合事例。「テック企業の感情的価値をアーティストで体現する」同じ手法。",
+        "url": "https://www.youtube.com/watch?v=yQBB3x6Y9kA"
+      }
+    ]
+  },
+  {
+    "id": "baco-exu-bluesman",
+    "title": "BLUESMAN (Baco Exu do Blues)",
+    "summary": "ブラジルにおける制度的人種差別を8分間の短編映画で告発——Childish Gambino「This Is America」と同年・同カテゴリーでCannes Grand Prix W受賞という異例の結果。",
+    "client": "Baco Exu do Blues / Sony Music Brasil",
+    "agency": "AKQA São Paulo",
+    "categories": ["コンテンツ革新", "カルチャーインサイト", "社会包摂"],
+    "award": "Cannes Lions 2019 Entertainment Lions for Music Grand Prix（「This Is America」と共同受賞）",
+    "year": "2019",
+    "regions": ["ブラジル", "グローバル"],
+    "link": "https://www.youtube.com/watch?v=-xFz8zZo-Dw",
+    "thumbnail": "https://i.ytimg.com/vi/-xFz8zZo-Dw/hqdefault.jpg",
+    "videoId": "-xFz8zZo-Dw",
+    "overview": "ブラジル人ラッパーBaco Exu do Bluesの8分間ショートフィルム「Bluesman」は、ブラジルの制度的人種差別を正面から告発し、同名コンセプトアルバムと一体化したキャンペーンとして展開。陪審員が賛否同数で割れたためChildish Gambino「This Is America」と共同受賞という異例の結果となった。",
+    "background": "AKQA São PauloはBaco Exu do Bluesの音楽的メッセージをアルバムキャンペーン全体として設計。ブラジルにおける人種差別の現実を国際的な広告賞の文脈で語ることで、ブラジルとして初めてこのカテゴリーのGrand Prixを受賞することになった。",
+    "execution": "8分間の本格的なショートフィルムとしてのMVを制作し、同名コンセプトアルバムと連動。ブラジルの制度的人種差別の具体的な現実と歴史を映像化。AKQA São Pauloが広告・クリエイティブエージェンシーとしてキャンペーン全体を統括。",
+    "evaluationImpact": "Cannes Lions 2019で陪審員が4対4で割れた末に「This Is America」と共同Grand Prixという異例の受賞。ブラジルとしてEntertainment Lions for Music部門初のGrand Prix受賞。人種的平等と暴力への抗議というテーマをChildish Gambinoの楽曲と共有していたことが同時受賞の理由とされた。",
+    "relatedWorks": [
+      {
+        "title": "Childish Gambino「This Is America」(2019年）",
+        "description": "同年同カテゴリーのCannes Grand Prix共同受賞作。人種差別と暴力という同テーマを別国・別文脈で描いた。",
+        "url": "https://www.youtube.com/watch?v=VYOjWnS4cMY"
+      },
+      {
+        "title": "Residente「This Is Not America」(2022年）",
+        "description": "ラテンアメリカ視点から「アメリカ」という概念を問い直す作品。Bluesmanのブラジル視点と共鳴するラテン系アーティストによる社会批評MV。",
+        "url": "https://www.youtube.com/watch?v=GK87AKIPyZY"
+      }
+    ]
+  },
+  {
     "id": "tracking-bad-bunny",
     "title": "TRACKING BAD BUNNY",
     "summary": "Bad Bunnyのアルバム発売をGoogleストリートビューでのプエルトリコ横断宝探しに変えた——ファンが実際の街角を「ハント」することで楽曲タイトルを解読する世界規模のARG。",
