@@ -2,6 +2,7 @@ import { cases, getCaseById } from "@/lib/cases";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import VideoPlayer from "@/components/VideoPlayer";
 
 export function generateStaticParams() {
   return cases.map((c) => ({ slug: c.id }));
@@ -26,15 +27,19 @@ export default async function CasePage({
           ← 一覧に戻る
         </Link>
 
-        <div className="relative aspect-video rounded-xl overflow-hidden mb-8 bg-gray-100">
-          <Image
-            src={c.thumbnail}
-            alt={c.title}
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
+        {c.videoId ? (
+          <VideoPlayer videoId={c.videoId} title={c.title} />
+        ) : (
+          <div className="relative aspect-video rounded-xl overflow-hidden mb-8 bg-gray-100">
+            <Image
+              src={c.thumbnail}
+              alt={c.title}
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+        )}
 
         <div className="flex flex-wrap gap-2 mb-4">
           {c.categories.map((cat) => (

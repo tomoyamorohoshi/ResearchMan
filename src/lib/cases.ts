@@ -12,6 +12,7 @@ export type Case = {
   regions: string[];
   link: string;
   thumbnail: string;
+  videoId?: string;
   overview: string;
   background: string;
   execution: string;
