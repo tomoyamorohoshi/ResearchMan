@@ -12,9 +12,12 @@ type Props = {
   regions: string[];
 };
 
+type SortOrder = "added" | "year";
+
 export default function GalleryClient({ cases, categories, years, regions }: Props) {
   const [filters, setFilters] = useState({ category: "", year: "", region: "" });
   const [query, setQuery] = useState("");
+  const [sort, setSort] = useState<SortOrder>("added");
 
   const filtered = cases.filter((c) => {
     if (filters.category && !c.categories.includes(filters.category)) return false;
@@ -32,16 +35,36 @@ export default function GalleryClient({ cases, categories, years, regions }: Pro
     return true;
   });
 
+  const sorted = sort === "year"
+    ? [...filtered].sort((a, b) => parseInt(b.year) - parseInt(a.year))
+    : filtered; // "added" = JSON順をそのまま維持
+
   return (
     <>
-      <div className="mb-6">
+      <div className="flex flex-wrap items-center gap-3 mb-6">
         <input
           type="text"
           placeholder="タイトル・クライアント・エージェンシーで検索..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="w-full max-w-md px-4 py-2 rounded-lg border border-gray-200 text-sm focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400"
+          className="flex-1 min-w-48 max-w-md px-4 py-2 rounded-lg border border-gray-200 text-sm focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400"
         />
+        <div className="flex items-center gap-1 text-xs">
+          <span className="text-gray-400 mr-1">並び順:</span>
+          {(["added", "year"] as SortOrder[]).map((s) => (
+            <button
+              key={s}
+              onClick={() => setSort(s)}
+              className={`px-3 py-1.5 rounded-full border transition-colors ${
+                sort === s
+                  ? "bg-gray-900 text-white border-gray-900"
+                  : "bg-white text-gray-600 border-gray-200 hover:border-gray-400"
+              }`}
+            >
+              {s === "added" ? "更新順" : "年代順"}
+            </button>
+          ))}
+        </div>
       </div>
 
       <FilterBar
@@ -54,15 +77,15 @@ export default function GalleryClient({ cases, categories, years, regions }: Pro
         }
       />
 
-      <p className="text-sm text-gray-400 mb-6">{filtered.length} 件</p>
+      <p className="text-sm text-gray-400 mb-6">{sorted.length} 件</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        {filtered.map((c) => (
+        {sorted.map((c) => (
           <CaseCard key={c.id} c={c} />
         ))}
       </div>
 
-      {filtered.length === 0 && (
+      {sorted.length === 0 && (
         <div className="text-center py-20 text-gray-400">
           条件に一致する事例が見つかりませんでした
         </div>
