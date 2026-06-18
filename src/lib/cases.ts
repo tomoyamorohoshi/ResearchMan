@@ -16,7 +16,7 @@ export type Case = {
   background: string;
   execution: string;
   evaluationImpact: string;
-  relatedWorks: string;
+  relatedWorks: Array<{ title: string; description: string; url: string }> | string;
   // legacy fields (backward compat)
   mechanism?: string;
   impact?: string;

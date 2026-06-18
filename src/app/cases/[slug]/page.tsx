@@ -93,8 +93,8 @@ export default async function CasePage({
           <Section title="背景" content={c.background ?? c.mechanism ?? ""} />
           <Section title="企画・エグゼキューション" content={c.execution ?? c.mechanism ?? ""} />
           <Section title="評価ポイント・世の中的インパクト" content={c.evaluationImpact ?? `${c.evaluation ?? ""}\n\n${c.impact ?? ""}`.trim()} />
-          {(c.relatedWorks) && (
-            <Section title="関連事例" content={c.relatedWorks} accent />
+          {c.relatedWorks && (
+            <RelatedWorksSection works={c.relatedWorks} />
           )}
         </div>
       </div>
@@ -110,6 +110,37 @@ function Section({ title, content, accent }: { title: string; content: string; a
         {title}
       </h2>
       <p className="text-gray-700 text-sm leading-relaxed whitespace-pre-line">{content}</p>
+    </div>
+  );
+}
+
+type RelatedWork = { title: string; description: string; url: string };
+
+function RelatedWorksSection({ works }: { works: RelatedWork[] | string }) {
+  return (
+    <div>
+      <h2 className="text-base font-bold text-indigo-700 mb-3 pb-2 border-b border-indigo-100">
+        関連事例
+      </h2>
+      {Array.isArray(works) ? (
+        <div className="space-y-4">
+          {works.map((w, i) => (
+            <div key={i} className="pl-3 border-l-2 border-indigo-100">
+              <a
+                href={w.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-semibold text-indigo-600 hover:text-indigo-800 hover:underline"
+              >
+                {w.title} →
+              </a>
+              <p className="text-gray-600 text-sm mt-0.5 leading-relaxed">{w.description}</p>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p className="text-gray-700 text-sm leading-relaxed whitespace-pre-line">{works}</p>
+      )}
     </div>
   );
 }
