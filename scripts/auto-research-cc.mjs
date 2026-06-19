@@ -9,7 +9,7 @@
  *   node scripts/auto-research-cc.mjs --dry-run
  */
 
-import { execSync } from "child_process";
+import { execSync, spawnSync } from "child_process";
 import fs from "fs/promises";
 import https from "https";
 import path from "path";
@@ -94,30 +94,30 @@ regions候補: 国内 / 北米 / 欧州 / アジア / グローバル
 
 不明な情報は空文字。youtube_idが不明の場合も空文字。`;
 
-  // プロンプトを一時ファイルに書き出し
-  const promptFile = path.join(__dirname, "../.tmp-research-prompt.txt");
-  await fs.writeFile(promptFile, prompt);
-
   console.log("Claude Code で事例リサーチ中（WebSearch使用）...\n");
 
-  let output = "";
-  try {
-    output = execSync(
-      `claude --print --allowedTools WebSearch < "${promptFile}"`,
-      {
-        encoding: "utf-8",
-        timeout: 180000, // 3分
-        maxBuffer: 1024 * 1024 * 10,
-      }
-    );
-  } finally {
-    await fs.unlink(promptFile).catch(() => {});
+  // spawnSync でシェルを介さず直接 stdin に渡す
+  const result = spawnSync("claude", ["--print"], {
+    input: prompt,           // stdin にプロンプトを渡す
+    encoding: "utf-8",
+    timeout: 300000,         // 5分
+    maxBuffer: 1024 * 1024 * 20,
+  });
+
+  if (result.error) {
+    throw new Error(`Claude CLI エラー: ${result.error.message}`);
+  }
+  if (result.status !== 0) {
+    console.error("Claude stderr:", result.stderr?.slice(0, 400));
+    throw new Error(`Claude CLI が終了コード ${result.status} で終了しました`);
   }
 
-  // JSONを抽出
+  const output = result.stdout || "";
+
+  // JSONを抽出（Claudeが説明文を含む場合も対応）
   const jsonMatch = output.match(/\{[\s\S]*"cases"[\s\S]*\}/);
   if (!jsonMatch) {
-    console.error("JSONが見つかりません。Claudeの出力:");
+    console.error("JSONが見つかりません。Claudeの出力（先頭800字）:");
     console.error(output.slice(0, 800));
     return [];
   }
