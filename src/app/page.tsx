@@ -3,24 +3,29 @@ import GalleryClient from "@/components/GalleryClient";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 py-10">
-        <div className="mb-10">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            🌐 CREATIVE EDGE
+    <main className="min-h-screen">
+      {/* ヘッダー */}
+      <header className="border-b border-gray-300 px-4 py-4 max-w-[1600px] mx-auto flex items-end justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-black tracking-tight text-gray-900 leading-none">
+            ResearchMan
           </h1>
-          <p className="text-gray-500 text-sm">
-            Cannes Lions / D&AD / Clio / ACC — 世界と国内のクリエイティブ事例アーカイブ
+          <p className="text-[10px] tracking-[0.25em] uppercase text-gray-400 mt-1">
+            Creative Case Archive
           </p>
         </div>
+        <p className="text-[9px] tracking-widest uppercase text-gray-400 text-right leading-relaxed hidden sm:block">
+          Cannes Lions / D&amp;AD<br />
+          Clio / ACC / Spikes Asia
+        </p>
+      </header>
 
-        <GalleryClient
-          cases={cases}
-          categories={allCategories}
-          years={allYears}
-          regions={allRegions}
-        />
-      </div>
+      <GalleryClient
+        cases={cases}
+        categories={allCategories}
+        years={allYears}
+        regions={allRegions}
+      />
     </main>
   );
 }

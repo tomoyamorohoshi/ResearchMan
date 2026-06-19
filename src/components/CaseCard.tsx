@@ -12,39 +12,69 @@ type Props = {
 
 export default function CaseCard({ c, isFavorite, onToggleFavorite }: Props) {
   return (
-    <div className="group relative">
-      <Link href={`/cases/${c.id}`} className="block">
-        <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-200">
-          <div className="relative aspect-video bg-gray-100 overflow-hidden">
-            <Image
-              src={c.thumbnail}
-              alt={c.title}
-              fill
-              className="object-cover group-hover:scale-105 transition-transform duration-300"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            />
-          </div>
-          <div className="p-4">
-            <div className="flex flex-wrap gap-1 mb-2">
-              {c.categories.slice(0, 2).map((cat) => (
-                <span
-                  key={cat}
-                  className="text-xs px-2 py-0.5 bg-indigo-50 text-indigo-600 rounded-full font-medium"
-                >
-                  {cat}
-                </span>
-              ))}
-            </div>
-            <h2 className="font-bold text-gray-900 text-sm leading-tight mb-1 line-clamp-2">
-              {c.title}
-            </h2>
-            <p className="text-xs text-gray-500 line-clamp-2 mb-3">{c.summary}</p>
-            <div className="flex items-center justify-between text-xs text-gray-400">
-              <span>{c.agency}</span>
-              <span>{c.year}</span>
-            </div>
+    <div className="group relative bg-white flex flex-col">
+      {/* ── 上段：テキストエリア ── */}
+      <Link href={`/cases/${c.id}`} className="block flex-1 p-4 pb-3">
+        {/* ロゴマーク + カテゴリ */}
+        <div className="flex items-start justify-between mb-3">
+          <span
+            className="text-[11px] font-black tracking-[0.2em] uppercase text-gray-900 leading-none"
+            style={{ fontVariant: "all-small-caps" }}
+          >
+            RM
+          </span>
+          <div className="text-right">
+            {c.categories.slice(0, 1).map((cat) => (
+              <span
+                key={cat}
+                className="text-[9px] tracking-widest uppercase text-gray-400 leading-tight block"
+              >
+                {cat}
+              </span>
+            ))}
+            {c.categories[1] && (
+              <span className="text-[9px] tracking-widest uppercase text-gray-400 leading-tight block">
+                {c.categories[1]}
+              </span>
+            )}
           </div>
         </div>
+
+        {/* タイトル */}
+        <h2 className="text-base font-black leading-tight text-gray-900 mb-2 tracking-tight">
+          {c.title}
+        </h2>
+
+        {/* 区切り線 */}
+        <div className="w-5 h-px bg-gray-900 mb-2" />
+
+        {/* クライアント + 受賞 */}
+        <p className="text-[10px] text-gray-500 leading-snug line-clamp-2">
+          <span className="font-bold text-gray-700">{c.client}</span>
+          {c.client && c.agency ? " / " : ""}
+          {c.agency}
+        </p>
+      </Link>
+
+      {/* 年・受賞バッジ */}
+      <div className="px-4 pb-3 flex items-center justify-between">
+        <span className="text-[9px] tracking-widest text-gray-400 uppercase leading-none">
+          {c.award.split(" ").slice(0, 3).join(" ")}
+        </span>
+        <span className="text-xs font-black text-gray-900 tabular-nums">
+          {c.year}
+        </span>
+      </div>
+
+      {/* ── 下段：画像エリア ── */}
+      <Link href={`/cases/${c.id}`} className="block relative aspect-square overflow-hidden">
+        <Image
+          src={c.thumbnail}
+          alt={c.title}
+          fill
+          className="object-cover group-hover:scale-105 transition-transform duration-500"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+        />
       </Link>
 
       {/* お気に入りボタン */}
@@ -55,10 +85,10 @@ export default function CaseCard({ c, isFavorite, onToggleFavorite }: Props) {
           onToggleFavorite(c.id);
         }}
         aria-label={isFavorite ? "お気に入りを解除" : "お気に入りに追加"}
-        className={`absolute top-2 right-2 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-150 shadow-sm
+        className={`absolute bottom-2 right-2 w-7 h-7 flex items-center justify-center transition-all duration-150
           ${isFavorite
-            ? "bg-yellow-400 text-white opacity-100"
-            : "bg-white/80 text-gray-400 opacity-0 group-hover:opacity-100 hover:text-yellow-400"
+            ? "text-yellow-400 opacity-100"
+            : "text-white/80 opacity-0 group-hover:opacity-100 hover:text-yellow-300"
           }`}
       >
         <svg
@@ -66,7 +96,7 @@ export default function CaseCard({ c, isFavorite, onToggleFavorite }: Props) {
           fill={isFavorite ? "currentColor" : "none"}
           stroke="currentColor"
           strokeWidth={2}
-          className="w-4 h-4"
+          className="w-4 h-4 drop-shadow"
         >
           <path
             strokeLinecap="round"
