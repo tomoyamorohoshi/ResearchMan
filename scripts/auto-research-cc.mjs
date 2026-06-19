@@ -96,13 +96,21 @@ regions候補: 国内 / 北米 / 欧州 / アジア / グローバル
 
   console.log("Claude Code で事例リサーチ中（WebSearch使用）...\n");
 
-  // spawnSync でシェルを介さず直接 stdin に渡す
-  const result = spawnSync("claude", ["--print"], {
-    input: prompt,           // stdin にプロンプトを渡す
-    encoding: "utf-8",
-    timeout: 300000,         // 5分
-    maxBuffer: 1024 * 1024 * 20,
-  });
+  // プロンプトを位置引数として渡す（claude [options] [prompt] の仕様）
+  const result = spawnSync(
+    "claude",
+    [
+      "--print",                    // 非対話モード
+      "--allowedTools", "WebSearch", // WebSearch ツールを許可
+      prompt,                       // プロンプトを位置引数として渡す
+    ],
+    {
+      encoding: "utf-8",
+      timeout: 300000,              // 5分
+      maxBuffer: 1024 * 1024 * 20,
+      stdio: ["ignore", "pipe", "pipe"], // stdin は無視
+    }
+  );
 
   if (result.error) {
     throw new Error(`Claude CLI エラー: ${result.error.message}`);
