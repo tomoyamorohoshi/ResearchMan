@@ -10,7 +10,9 @@
     "fetch-thumbnails": "node scripts/fetch-thumbnails.mjs",
     "check-links": "node scripts/check-links.mjs",
     "auto-research": "node scripts/auto-research.mjs",
-    "auto-research:dry": "node scripts/auto-research.mjs --dry-run"
+    "auto-research:dry": "node scripts/auto-research.mjs --dry-run",
+    "auto-research:cc": "node scripts/auto-research-cc.mjs",
+    "auto-research:cc:dry": "node scripts/auto-research-cc.mjs --dry-run"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.105.0",
