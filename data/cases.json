@@ -1,14 +1,92 @@
 [
   {
+    "id": "sounds-right-nature-as-an-artist-2024",
+    "title": "SOUNDS RIGHT（NATURE as an Artist）",
+    "summary": "自然そのものを「NATURE」としてストリーミングの公式アーティストに登録し、再生印税を生物多様性保全へ還流させたムーブメント。",
+    "client": "Museum for the United Nations – UN Live / Spotify",
+    "agency": "AKQA",
+    "categories": [
+      "メディア発明",
+      "社会包摂",
+      "データクリエイティブ"
+    ],
+    "award": "Cannes Lions 2025 Innovation グランプリ",
+    "year": "2024",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.soundsright.earth/",
+    "thumbnail": "https://i.ytimg.com/vi/5newTxSZ9bU/hqdefault.jpg",
+    "videoId": "5newTxSZ9bU",
+    "overview": "国連のMuseum for the United Nations – UN LiveとSpotifyが、波の音や鳥のさえずり、熱帯雨林の環境音といった自然音を「NATURE」名義の公式アーティストとしてストリーミングに登録。リスナーが自然音入りの楽曲を再生するたびに発生する印税が、EarthPercentを通じて最前線の保全プロジェクトに還元される。デヴィッド・ボウイ×ブライアン・イーノ、エリー・ゴールディングらが参加した。",
+    "background": "気候・生物多様性危機への関心は高いが、個人の日常行動を継続的な資金支援に変換する仕組みが乏しかった。一方で音楽ストリーミングは世界6億人超が日常的に使うインフラであり、再生＝印税という既存の経済構造を持つ。ここに「自然をアーティストとして経済主体化する」という発想を接続し、リスニングという無意識の行為を保全への寄付行為へと転換する設計が求められた。",
+    "execution": "Spotify・Apple Music・Deezer等に世界で初めて「NATURE」をアーティストとして実装。アーティストとの共作トラックに自然音をクレジットし、サウンドウェーブから着想したフォントやポップカルチャー的カラーパレットでNATUREの世界観をデザイン化。2024年アースデイにローンチし、再生印税はEarthPercent経由でアンデス熱帯地域などの先住民・地域主導の保全に直接配分した。",
+    "evaluationImpact": "ストリーミングの印税構造を保全資金調達のメカニズムへ転用した発明性が評価され、Cannes Lions 2025でInnovation部門グランプリを受賞。launch初期で22.5万ドル超を保全に拠出し、4年間で6億人超のリスナーから4,000万ドル超の調達を見込む。「自然を権利を持つアーティスト＝経済主体とみなす」という概念提示自体が、自然の権利をめぐる文化的議論を喚起した。",
+    "relatedWorks": [
+      {
+        "title": "EcoRecord（Coldplay × Moon Music）",
+        "description": "音楽消費そのものを環境アクションに変換した先行事例",
+        "url": "https://www.akqa.com/work/sounds-right/"
+      },
+      {
+        "title": "Sounds Right Fund — EarthPercent",
+        "description": "印税を保全に分配するファンドの仕組み",
+        "url": "https://www.earthpercent.org/sounds-right-fund"
+      }
+    ]
+  },
+  {
+    "id": "iown-perfume-2025",
+    "title": "IOWN × Perfume",
+    "summary": "NTTの次世代基盤IOWNで万博記念公園と夢洲をリアルタイム3D空間伝送し、Perfumeが時空を超えるライブを世界初で実演。",
+    "client": "NTT",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "空間体験",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "ACC TOKYO CREATIVITY AWARDS 2025 総務大臣賞／ACCグランプリ（ブランデッド・コミュニケーション部門）",
+    "year": "2025",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://group.ntt/jp/topics/2025/11/21/acc2025.html",
+    "thumbnail": "https://i.ytimg.com/vi/jGhVLy6Rpoc/hqdefault.jpg",
+    "videoId": "jGhVLy6Rpoc",
+    "overview": "大阪・関西万博のNTTパビリオンで、1970年万博の地・万博記念公園（吹田）と2025年万博の地・夢洲をIOWNで接続し、Perfumeのパフォーマンスをリアルタイムに3D空間伝送。新曲「ネビュラロマンス」を世界初のリアルタイム空間伝送ライブとして披露し、離れた二つの場所で身体感覚を共有する未来のコミュニケーションを提示した。",
+    "background": "NTTは次世代情報通信基盤IOWN（特に光ベースのAPN：高速・大容量・低遅延ネットワーク）の価値を、技術スペックではなく体験として一般に伝える必要があった。万博という「過去の万博と現在の万博」という時間軸の対比を物語の核に据え、テクノポップの象徴であり万博的未来観と親和性の高いPerfumeを起用することで、抽象的なネットワーク構想を感情的に理解可能な体験へ翻訳した。",
+    "execution": "特設ステージ周囲にLiDARセンサ3台＋光学カメラ1台のシステムを7セット配置し、Perfumeの動きを3D点群データとして計測。4K立体カメラ映像やダンサーの加速度・位置情報とともにIOWN APNで夢洲へ伝送した。受信側では床下に128個の振動子を埋め込み、床全体の振動で遠隔パフォーマンスの臨場感を再現。記録データは万博会期中にパビリオンで追体験コンテンツとして展開した。",
+    "evaluationImpact": "通信インフラという無形の技術を、アーティストの身体表現を媒介に「時空を超えるライブ」という文化的事件へ昇華した点が高く評価され、ACC TOKYO CREATIVITY AWARDS 2025で総務大臣賞／ACCグランプリを受賞。3D点群・触覚伝送・低遅延ネットワークを統合した遠隔ライブの代表的初例として、エンタメ×テレプレゼンスの新フォーマットを提示した。",
+    "relatedWorks": [
+      {
+        "title": "Travis Scott × Fortnite「ASTRONOMICAL」",
+        "description": "場所の制約を超えるライブ体験の先行例",
+        "url": "https://www.rd.ntt/research/JN202508_35380.html"
+      },
+      {
+        "title": "Perfume「ネビュラロマンス」MV",
+        "description": "本企画で初披露された新曲",
+        "url": "https://www.youtube.com/watch?v=7LgGlNb3yyI"
+      }
+    ]
+  },
+  {
     "id": "spotify-fc-barcelona-motomami",
     "title": "Spotify × FC Barcelona: MOTOMAMI Jersey",
     "summary": "エルクラシコの胸スポンサー枠をROSALÍAのアルバム『MOTOMAMI』ロゴに差し替え、グローバルスポーツ中継を音楽プロモーションの舞台に転換したメディアアクティベーション。",
     "client": "Spotify / FC Barcelona",
     "agency": "Spotify In-House",
-    "categories": ["メディア発明", "ブランドエクスペリエンス"],
+    "categories": [
+      "メディア発明",
+      "ブランドエクスペリエンス"
+    ],
     "award": "Cannes Lions 2023 Bronze (Entertainment Lions for Music)",
     "year": "2023",
-    "regions": ["ヨーロッパ", "グローバル"],
+    "regions": [
+      "ヨーロッパ",
+      "グローバル"
+    ],
     "link": "https://www.youtube.com/watch?v=fPivYigzHt4",
     "thumbnail": "https://i.ytimg.com/vi/fPivYigzHt4/hqdefault.jpg",
     "videoId": "fPivYigzHt4",
@@ -17,8 +95,16 @@
     "execution": "2023年3月のエルクラシコ（FCバルセロナ対レアル・マドリード）で、Spotifyのロゴの代わりにROSALÍAの『MOTOMAMI』ロゴを胸部に掲出。男子チームは3月19日、女子チームは3月25日に着用。試合は全世界数億人が視聴するグローバルイベントで、限定蛍光ロゴジャージ22枚が即完売。試合後もデジタルコンテンツが急拡散し、SpotifyでのROSALÍA検索数はスペイン国内で約200%増加した。",
     "evaluationImpact": "デジタルコンテンツ累計6億6900万ビュー、5600万インタラクションを記録。スポーツメディアをアーティストプロモーションに転用するという斬新な発想がカンヌライオンズ2023でブロンズを受賞。胸スポンサー枠を「広告看板」から「アーティストとのコラボスペース」へと再定義し、スポーツ×音楽×ブランドの三位一体を実現したメディアイノベーションとして高く評価された。",
     "relatedWorks": [
-      {"title": "Gorillaz Skinny Ape AR OOH", "description": "OOHメディアを音楽アクティベーションに転用した事例", "url": ""},
-      {"title": "Spotify Wrapped", "description": "Spotifyの年次大型キャンペーン", "url": ""}
+      {
+        "title": "Gorillaz Skinny Ape AR OOH",
+        "description": "OOHメディアを音楽アクティベーションに転用した事例",
+        "url": ""
+      },
+      {
+        "title": "Spotify Wrapped",
+        "description": "Spotifyの年次大型キャンペーン",
+        "url": ""
+      }
     ]
   },
   {
@@ -27,10 +113,17 @@
     "summary": "ユーザー個人のストリーミングデータをタイムズスクエアやピカデリーサーカスなど5か国の主要OOH面にリアルタイム表示した、世界初のマルチマーケット・パーソナライズドDOOHキャンペーン。",
     "client": "Spotify",
     "agency": "Grand Visual / OpenLoop (QDOT) / UM London",
-    "categories": ["OOH革新", "データクリエイティブ"],
+    "categories": [
+      "OOH革新",
+      "データクリエイティブ"
+    ],
     "award": "Cannes Lions 2019 OOH Finalist",
     "year": "2018",
-    "regions": ["北米", "ヨーロッパ", "グローバル"],
+    "regions": [
+      "北米",
+      "ヨーロッパ",
+      "グローバル"
+    ],
     "link": "https://grandvisual.com/work/spotify-2018-wrapped/",
     "thumbnail": "https://i.ytimg.com/vi/xSk5hBxUvrE/hqdefault.jpg",
     "videoId": "xSk5hBxUvrE",
@@ -39,8 +132,16 @@
     "execution": "7,640名のSpotifyプレミアムユーザーがオプトインし、自分のリスニングデータがタイムズスクエアやピカデリーサーカスなどの巨大スクリーンに表示された。OpenLoopのシステムがリアルタイムでデータを更新し、各ユーザーの顔写真・トップアーティスト・ジャンル・総再生時間がダイナミックに表示された。音楽ブランドとして初のリアルタイムOOH施策であり、史上最大のマルチマーケットライブDOOH実施例となった。",
     "evaluationImpact": "音楽ブランドがデータドリブンDOOHを先駆けた事例として業界に大きな影響を与えた。個人のプライベートな音楽体験を公共空間の文化現象に昇華させるというコンセプトが評価され、その後多くのブランドが参照するベンチマーク事例となった。Spotifyは同年Cannes LionsのMedia Brand of the Yearを受賞している。",
     "relatedWorks": [
-      {"title": "Spotify Wrapped", "description": "Spotifyの年次パーソナライゼーションキャンペーン", "url": ""},
-      {"title": "Spotify 2018 Goals OOH", "description": "データドリブンOOHの原点", "url": ""}
+      {
+        "title": "Spotify Wrapped",
+        "description": "Spotifyの年次パーソナライゼーションキャンペーン",
+        "url": ""
+      },
+      {
+        "title": "Spotify 2018 Goals OOH",
+        "description": "データドリブンOOHの原点",
+        "url": ""
+      }
     ]
   },
   {
@@ -49,10 +150,16 @@
     "summary": "コンサート会場のUSBドライブ・偽装ウェブサイト・謎の電話番号・フィジカルな偽造文書をつなぎ、18か月間にわたるフィジカル×デジタル融合ARGを音楽プロモーションとして展開した先駆的事例。",
     "client": "Nine Inch Nails / Interscope Records",
     "agency": "42 Entertainment",
-    "categories": ["テクノロジー×アイデア", "ブランドエクスペリエンス"],
+    "categories": [
+      "テクノロジー×アイデア",
+      "ブランドエクスペリエンス"
+    ],
     "award": "Cannes Lions Cyber Grand Prix 2008",
     "year": "2007",
-    "regions": ["北米", "グローバル"],
+    "regions": [
+      "北米",
+      "グローバル"
+    ],
     "link": "https://www.youtube.com/watch?v=BRCR6onaASU",
     "thumbnail": "https://i.ytimg.com/vi/BRCR6onaASU/hqdefault.jpg",
     "videoId": "BRCR6onaASU",
@@ -61,8 +168,16 @@
     "execution": "2007年2月のポルトガル公演で配布されたTシャツにUVで隠されたURLが発見されたことから始まり、42の関連ウェブサイト、謎の電話番号（1-216-333-1810）、偽造政府文書・フライヤーなどが次々と登場。ファンがオンラインコミュニティで協力して謎を解く世界規模の体験が展開された。2007年5月にはアルバムが発売され、ビルボード200で2位を記録した。",
     "evaluationImpact": "Rolling Stoneが「漏洩セックステープ以来最も革新的な音楽プロモーション」と絶賛。Cannes Lions 2008でCyber Grand Prixを受賞し、音楽ARGキャンペーンの原型として今も多くのキャンペーンが参照する。音楽マーケティングにおけるファンの能動的参加とデジタル×フィジカル融合の先駆的事例として業界史に刻まれた。",
     "relatedWorks": [
-      {"title": "Mesmer & Braid ARG", "description": "ARGを活用したゲームプロモーション", "url": ""},
-      {"title": "Tyler the Creator Call Me If You Get Lost", "description": "OOHと音声体験を融合したアルバムプロモーション", "url": ""}
+      {
+        "title": "Mesmer & Braid ARG",
+        "description": "ARGを活用したゲームプロモーション",
+        "url": ""
+      },
+      {
+        "title": "Tyler the Creator Call Me If You Get Lost",
+        "description": "OOHと音声体験を融合したアルバムプロモーション",
+        "url": ""
+      }
     ]
   },
   {
@@ -71,10 +186,15 @@
     "summary": "BRITs授賞式での女性アーティスト軽視に対抗し、OOH広告看板をライブコンサートステージに転用して女性・ノンバイナリーのライジングアーティストにパフォーマンス機会を提供した社会派OOHアクティベーション。",
     "client": "Budweiser / AB InBev",
     "agency": "FCB New York / Grand Visual",
-    "categories": ["OOH革新", "社会包摂"],
+    "categories": [
+      "OOH革新",
+      "社会包摂"
+    ],
     "award": "Cannes Lions 2023 Bronze Media Lion",
     "year": "2023",
-    "regions": ["ヨーロッパ"],
+    "regions": [
+      "ヨーロッパ"
+    ],
     "link": "https://www.youtube.com/watch?v=TCB4EwWByyo",
     "thumbnail": "https://i.ytimg.com/vi/TCB4EwWByyo/hqdefault.jpg",
     "videoId": "TCB4EwWByyo",
@@ -83,8 +203,16 @@
     "execution": "BRITsの開催週にロンドン市内のOOH看板をライブパフォーマンスステージとして設営。女性・ノンバイナリーのアーティストMychelle、Flo、Olivia Deanらが実際の屋外ビルボード上でパフォーマンスを実施し、その様子をSNSでライブ配信。アーティストMychelleはキャンペーンがきっかけとなりKobalt Musicとのレコード契約を獲得した。",
     "evaluationImpact": "SNS視聴数がキャンペーン期間中に1,300%増加。参加アーティストMychelleのメジャーデビューという具体的な成果を生み出し、OOHを単なる広告媒体から社会変革の実行装置として機能させた。Cannes Lions 2023 Media Lion Bronze受賞。広告空間のアクティベーション用途としての可能性を証明した先進事例。",
     "relatedWorks": [
-      {"title": "1 Second Ads Budweiser", "description": "Budweiserの音楽活用型キャンペーン", "url": ""},
-      {"title": "Fearless Girl", "description": "社会的メッセージをOOHで発信した事例", "url": ""}
+      {
+        "title": "1 Second Ads Budweiser",
+        "description": "Budweiserの音楽活用型キャンペーン",
+        "url": ""
+      },
+      {
+        "title": "Fearless Girl",
+        "description": "社会的メッセージをOOHで発信した事例",
+        "url": ""
+      }
     ]
   },
   {
@@ -93,10 +221,16 @@
     "summary": "7,000万曲の歌詞データを言語聴覚士と解析し、言語療法に適した音節パターンを含む楽曲をプレイリスト化。Dua LipaやLizzoのヒット曲が子どもの言語療法ツールとなったデータドリブン音楽活用事例。",
     "client": "Warner Music Group / Apple Music",
     "agency": "Rothco (Accenture Interactive)",
-    "categories": ["データクリエイティブ", "社会包摂"],
+    "categories": [
+      "データクリエイティブ",
+      "社会包摂"
+    ],
     "award": "Cannes Lions 2021 Grand Prix (Creative Data Lions)",
     "year": "2021",
-    "regions": ["ヨーロッパ", "グローバル"],
+    "regions": [
+      "ヨーロッパ",
+      "グローバル"
+    ],
     "link": "https://www.youtube.com/watch?v=ZLoqYztnm3E",
     "thumbnail": "https://i.ytimg.com/vi/ZLoqYztnm3E/hqdefault.jpg",
     "videoId": "ZLoqYztnm3E",
@@ -105,8 +239,16 @@
     "execution": "言語聴覚士と連携してs、sh、th、rなど言語療法で重点的に練習される音節パターンを特定し、7,000万曲の歌詞データをアルゴリズムで解析して各パターンに適した楽曲を抽出。10カテゴリー・173曲のプレイリストを作成し、Apple Musicで無料公開した。参加した言語聴覚士の96%が「患者のモチベーション向上に有効」と評価。広告費ゼロで1億5,000万件以上のメディアインプレッションを獲得した。",
     "evaluationImpact": "データと音楽を組み合わせた社会課題解決の先駆的事例としてCannes Lions 2021 Creative Data Lionsでグランプリを受賞。D&AD 2021 Pencilも獲得。「音楽は娯楽だけでなく医療ツールにもなる」という概念をデータで実証し、音楽産業と医療分野の新たな接点を切り開いた。",
     "relatedWorks": [
-      {"title": "Sounds Right", "description": "音楽を社会課題解決に活用したSpotifyキャンペーン", "url": ""},
-      {"title": "Journa-Rhythm", "description": "音楽をジャーナリズムに転用した朝日新聞キャンペーン", "url": ""}
+      {
+        "title": "Sounds Right",
+        "description": "音楽を社会課題解決に活用したSpotifyキャンペーン",
+        "url": ""
+      },
+      {
+        "title": "Journa-Rhythm",
+        "description": "音楽をジャーナリズムに転用した朝日新聞キャンペーン",
+        "url": ""
+      }
     ]
   },
   {
@@ -115,10 +257,19 @@
     "summary": "半開きのドアというビジュアルメタファーを世界中に展開した謎めいたティーザーOOHから始まり、16都市のポップアップショップとAmerican Express独占アーリーアクセスを組み合わせた多層型アルバムローンチキャンペーン。",
     "client": "Harry Styles / Columbia Records",
     "agency": "Columbia Records / MCMD Studio",
-    "categories": ["OOH革新", "ブランドエクスペリエンス", "コンテンツ革新"],
+    "categories": [
+      "OOH革新",
+      "ブランドエクスペリエンス",
+      "コンテンツ革新"
+    ],
     "award": "Clio Music Grand Award 2024 (Integrated Campaign)",
     "year": "2022",
-    "regions": ["北米", "ヨーロッパ", "アジア", "グローバル"],
+    "regions": [
+      "北米",
+      "ヨーロッパ",
+      "アジア",
+      "グローバル"
+    ],
     "link": "https://www.youtube.com/watch?v=zVANaD9WSTA",
     "thumbnail": "https://i.ytimg.com/vi/zVANaD9WSTA/hqdefault.jpg",
     "videoId": "zVANaD9WSTA",
@@ -127,8 +278,16 @@
     "execution": "2022年3月の発売前から世界各国の新聞にアーティスト名なしの謎広告を掲出。youarehome.coでは毎日ドアが開いてアルバム情報が小出しにされ、ファンコミュニティが世界規模で謎解きに参加。発売と同時にアムステルダム・ロンドン・NY・東京など16都市でポップアップを同時開催し、American Expressカード会員には1時間のアーリーアクセスと限定グッズを提供した。",
     "evaluationImpact": "アルバムは発売後に複数のストリーミング記録を更新し、初週米国内100万枚以上のアルバム販売相当を達成。2024年Clio Music Grand Award（Integrated Campaign部門）を受賞し、Creative EffectivenessのゴールドほかSilver4本を獲得。OOHからデジタル体験・リアルポップアップまでを一貫したビジュアルメタファーで統合した教科書的なキャンペーン設計が高く評価された。",
     "relatedWorks": [
-      {"title": "Billie Eilish Experience", "description": "没入型ポップアップ体験型アルバムプロモーション", "url": ""},
-      {"title": "Donda Listening Parties", "description": "スタジアムを活用したアルバムローンチ体験", "url": ""}
+      {
+        "title": "Billie Eilish Experience",
+        "description": "没入型ポップアップ体験型アルバムプロモーション",
+        "url": ""
+      },
+      {
+        "title": "Donda Listening Parties",
+        "description": "スタジアムを活用したアルバムローンチ体験",
+        "url": ""
+      }
     ]
   },
   {
@@ -137,10 +296,15 @@
     "summary": "ニューヨークの地下鉄駅をデヴィッド・ボウイの没入型ミュージアムに変貌させ、通常広告に使用できない駅の構造梁まで許可取得して活用した文化体験型OOHキャンペーン。",
     "client": "Spotify / David Bowie",
     "agency": "UM New York",
-    "categories": ["OOH革新", "空間体験"],
+    "categories": [
+      "OOH革新",
+      "空間体験"
+    ],
     "award": "Cannes Lions 2018 Gold Lion x2 (Outdoor)",
     "year": "2018",
-    "regions": ["北米"],
+    "regions": [
+      "北米"
+    ],
     "link": "https://www.youtube.com/watch?v=Q50E6dvvHc8",
     "thumbnail": "https://i.ytimg.com/vi/Q50E6dvvHc8/hqdefault.jpg",
     "videoId": "Q50E6dvvHc8",
@@ -149,8 +313,16 @@
     "execution": "ブロードウェイ＝ラファイエット駅の改札・柱・150フィートの鉄骨梁にレアフォト・歌詞・楽曲QRコードを展示。通行人がスキャンすると直接Spotifyでボウイの楽曲が再生される仕組みを導入。設置期間中、Instagram・Twitterで有機的に5700万人にリーチし、ニューヨーク国内のSpotifyでのボウイ楽曲ストリーム数を28%増加させた。",
     "evaluationImpact": "Cannes Lions 2018でGold Lion 2本（屋外部門：空間・彫刻的インスタレーション／体験カテゴリー）を受賞。Spotifyは同年Media Brand of the Yearも受賞し、この事例がその代表作となった。ブランドコンテンツと文化体験の境界を消した先駆的事例として広告業界に大きな影響を与えた。",
     "relatedWorks": [
-      {"title": "Spotify 2018 Goals", "description": "同年のSpotifyデータドリブンOOHキャンペーン", "url": ""},
-      {"title": "Sphere Las Vegas", "description": "空間全体を媒体として活用した体験型OOH", "url": ""}
+      {
+        "title": "Spotify 2018 Goals",
+        "description": "同年のSpotifyデータドリブンOOHキャンペーン",
+        "url": ""
+      },
+      {
+        "title": "Sphere Las Vegas",
+        "description": "空間全体を媒体として活用した体験型OOH",
+        "url": ""
+      }
     ]
   },
   {
@@ -159,10 +331,17 @@
     "summary": "匿名ユーザーの行動データをユーモラスな「2018年の目標」コピーに変換し、世界18市場のビルボードに展開したデータドリブンOOHキャンペーン。個人の共感を呼ぶデータ活用広告のベンチマークとなった。",
     "client": "Spotify",
     "agency": "Spotify Creative Studio (In-House)",
-    "categories": ["OOH革新", "データクリエイティブ"],
+    "categories": [
+      "OOH革新",
+      "データクリエイティブ"
+    ],
     "award": "Platinum OBIE Award / D&AD 2018 Pencil / Cannes Lions 2018 Bronze",
     "year": "2017",
-    "regions": ["北米", "ヨーロッパ", "グローバル"],
+    "regions": [
+      "北米",
+      "ヨーロッパ",
+      "グローバル"
+    ],
     "link": "https://www.dandad.org/awards/professional/2018/outdoor-advertising/26580/2018-goals/",
     "thumbnail": "https://i.ytimg.com/vi/K9fhpstop4o/hqdefault.jpg",
     "videoId": "K9fhpstop4o",
@@ -171,8 +350,16 @@
     "execution": "プラットフォームの匿名行動データから統計的に興味深いパターンを抽出し（「某国の大統領選投票日の翌朝にMiserable Morningプレイリストの再生が300%増加」など）、それを共感を呼ぶユーモラスなコピーに変換。世界18市場・70アーティスト以上のビルボードを展開し、特定都市や特定イベントに連動したローカライズドコピーも多数用意した。",
     "evaluationImpact": "Platinum OBIE Award（屋外広告最優秀賞）、D&AD 2018 Pencil（Outdoor Advertising/Tactical）、Cannes Lions 2018 Bronzeを受賞。データがクリエイティブの核になる「データドリブンOOH」フォーマットのベンチマークとして、その後多くのブランドに参照される業界標準を確立した。",
     "relatedWorks": [
-      {"title": "Spotify Wrapped", "description": "ユーザーデータ活用キャンペーンの最大版", "url": ""},
-      {"title": "David Bowie Is Here", "description": "同年SpotifyのOOH代表作", "url": ""}
+      {
+        "title": "Spotify Wrapped",
+        "description": "ユーザーデータ活用キャンペーンの最大版",
+        "url": ""
+      },
+      {
+        "title": "David Bowie Is Here",
+        "description": "同年SpotifyのOOH代表作",
+        "url": ""
+      }
     ]
   },
   {
@@ -181,10 +368,16 @@
     "summary": "Jay-Zの自伝本の全ページを世界13都市の実際の場所に掲示し、Bingの検索・地図機能と連動させたARGキャンペーン。屋外広告とデジタル検索を融合した宝探し体験を構築。",
     "client": "Jay-Z / Microsoft Bing",
     "agency": "Droga5 New York",
-    "categories": ["メディア発明", "ブランドエクスペリエンス", "テクノロジー×アイデア"],
+    "categories": [
+      "メディア発明",
+      "ブランドエクスペリエンス",
+      "テクノロジー×アイデア"
+    ],
     "award": "Cannes Lions 2011 Outdoor Grand Prix / Integrated Grand Prix / Titanium Lion",
     "year": "2010",
-    "regions": ["グローバル"],
+    "regions": [
+      "グローバル"
+    ],
     "link": "https://www.youtube.com/watch?v=wqo1HV_lB0U",
     "thumbnail": "https://i.ytimg.com/vi/wqo1HV_lB0U/hqdefault.jpg",
     "videoId": "wqo1HV_lB0U",
@@ -211,10 +404,16 @@
     "summary": "楽曲タイトルを全米自殺防止ライフラインの実際の電話番号にし、音楽リリースそのものをPSAキャンペーンへと変換——リリース当日にライフラインへの電話が27%増加した。",
     "client": "Visionary Music Group / Def Jam Recordings",
     "agency": "Visionary Music Group / Def Jam Recordings",
-    "categories": ["カルチャーインサイト", "社会包摂", "コンテンツ革新"],
+    "categories": [
+      "カルチャーインサイト",
+      "社会包摂",
+      "コンテンツ革新"
+    ],
     "award": "Clio Music Grand Clio (Music Marketing / Film)",
     "year": "2018",
-    "regions": ["北米"],
+    "regions": [
+      "北米"
+    ],
     "link": "https://clios.com/winners-gallery/details/80446",
     "thumbnail": "https://i.ytimg.com/vi/XnTdtGNYew4/hqdefault.jpg",
     "videoId": "XnTdtGNYew4",
@@ -241,10 +440,15 @@
     "summary": "Midjourney AIで生成した数千枚のフレームで構成された完全AI生成アニメーションMV——ロシアのウクライナ侵攻に着想を得た独裁主義批判のナラティブをAIビジュアルで描いた。",
     "client": "Warner Records / Disturbed",
     "agency": "Doomsday Entertainment / Warner Records / Final Cut",
-    "categories": ["AIクリエイティブ", "コンテンツ革新"],
+    "categories": [
+      "AIクリエイティブ",
+      "コンテンツ革新"
+    ],
     "award": "ADC Awards 2023 Merit Honor (Motion / Film / Music Video)",
     "year": "2023",
-    "regions": ["グローバル"],
+    "regions": [
+      "グローバル"
+    ],
     "link": "https://www.oneclub.org/awards/adcawards/-award/47375/bad-man/",
     "thumbnail": "https://i.ytimg.com/vi/fpUpVznI4Yc/hqdefault.jpg",
     "videoId": "fpUpVznI4Yc",
@@ -266,10 +470,16 @@
     "summary": "Doja Catのヒット曲「Woman」をCSS・JavaScript・Pythonでカスタマイズできる世界初の「コーダブル・ミュージックビデオ」——コーディングをポップカルチャーと融合させてZ世代女性をプログラミングへ誘導。",
     "client": "Girls Who Code",
     "agency": "Mojo Supermarket + Active Theory",
-    "categories": ["テクノロジー×アイデア", "コンテンツ革新", "社会包摂"],
+    "categories": [
+      "テクノロジー×アイデア",
+      "コンテンツ革新",
+      "社会包摂"
+    ],
     "award": "The One Show 2022 Best of Discipline Pencil（Branded Entertainment / Interactive & Mobile Craft）",
     "year": "2022",
-    "regions": ["グローバル"],
+    "regions": [
+      "グローバル"
+    ],
     "link": "https://dojacode.com/",
     "thumbnail": "https://i.ytimg.com/vi/D3Phbpa7qTg/hqdefault.jpg",
     "videoId": "D3Phbpa7qTg",
@@ -296,10 +506,14 @@
     "summary": "胎内の子どもが超自然的な力で両親を事故から救うという、スーパーヒーロー誕生の起源を描いた超現実的MV——D&AD 2022 Graphite Pencil受賞。",
     "client": "M83 / DIVISION",
     "agency": "DIVISION",
-    "categories": ["コンテンツ革新"],
+    "categories": [
+      "コンテンツ革新"
+    ],
     "award": "D&AD 2022 Graphite Pencil (Music Videos)",
     "year": "2022",
-    "regions": ["グローバル"],
+    "regions": [
+      "グローバル"
+    ],
     "link": "https://www.dandad.org/awards/professional/2022/235950/m83/",
     "thumbnail": "https://i.ytimg.com/vi/UJrMB4QhNok/hqdefault.jpg",
     "videoId": "UJrMB4QhNok",
@@ -321,10 +535,15 @@
     "summary": "フォトグラメトリー・LiDARスキャン・Unity3Dリアルタイムエンジンを組み合わせた無限トラベリングショットで、ハーレムの記憶を現実から仮想空間へとシームレスに変換したMV。",
     "client": "ASAP Ferg",
     "agency": "DIVISION (Paris) / Machine Molle — Director: Valentin Petit",
-    "categories": ["テクノロジー×アイデア", "コンテンツ革新"],
+    "categories": [
+      "テクノロジー×アイデア",
+      "コンテンツ革新"
+    ],
     "award": "D&AD 2022 Graphite Pencil ×2 / Wood Pencil ×2 (Music Videos)",
     "year": "2022",
-    "regions": ["グローバル"],
+    "regions": [
+      "グローバル"
+    ],
     "link": "https://www.dandad.org/awards/professional/2022/236470/asap-ferg/",
     "thumbnail": "https://i.ytimg.com/vi/jEZ6wAuMMl0/hqdefault.jpg",
     "videoId": "jEZ6wAuMMl0",
@@ -346,10 +565,17 @@
     "summary": "ロシアの同性愛宣伝禁止法下で制作された反同性愛嫌悪MV——2人のダンサーが離れた場所で同じ動きを「共鳴」させることで、法的リスクを冒して愛と連帯を可視化。",
     "client": "LGBT Network Russia",
     "agency": "Halal (Amsterdam) / Voskhod",
-    "categories": ["社会包摂", "コンテンツ革新", "カルチャーインサイト"],
+    "categories": [
+      "社会包摂",
+      "コンテンツ革新",
+      "カルチャーインサイト"
+    ],
     "award": "D&AD 2022 Graphite Pencil (1) + Wood Pencil (2) (Music Videos)",
     "year": "2022",
-    "regions": ["東欧", "グローバル"],
+    "regions": [
+      "東欧",
+      "グローバル"
+    ],
     "link": "https://www.dandad.org/awards/professional/2022/236299/we-will-become-better/",
     "thumbnail": "https://i.ytimg.com/vi/ENYwwbcn4V0/hqdefault.jpg",
     "videoId": "ENYwwbcn4V0",
@@ -371,10 +597,16 @@
     "summary": "ゾートロープ（回転のぞき絵）にインスパイアされた完全CGアニメーションMV——1年以上かけて手作業で制作された3Dキャラクターが無限回転ステージでパフォーマンス。D&AD Black Pencil受賞。",
     "client": "Pharrell Williams / Columbia Records",
     "agency": "DIVISION / Electric Theatre Collective — Director: François Rousselet",
-    "categories": ["テクノロジー×アイデア", "コンテンツ革新", "AIクリエイティブ"],
+    "categories": [
+      "テクノロジー×アイデア",
+      "コンテンツ革新",
+      "AIクリエイティブ"
+    ],
     "award": "D&AD 2023 Black Pencil + Yellow Pencil ×5 (計10 Pencils) / Cannes Lions 2023 Entertainment Lions for Music Gold Lion",
     "year": "2023",
-    "regions": ["グローバル"],
+    "regions": [
+      "グローバル"
+    ],
     "link": "https://www.dandad.org/awards/professional/2023/237575/pharrell-21-savage-and-tyler-the-creator-cash-in-cash-out/",
     "thumbnail": "https://i.ytimg.com/vi/cKEwnhc8ItY/hqdefault.jpg",
     "videoId": "cKEwnhc8ItY",
@@ -401,10 +633,16 @@
     "summary": "マクベス・市民ケーンなどの古典映画からインスパイアされた「ネオ寓話」——16mmフィルム的映像美と力強いビジュアルストーリーテリングでCannes Lions 2025 Silver Lion受賞。",
     "client": "Little Simz / AWAL",
     "agency": "Prettybird London — Director: Salomon Ligthelm",
-    "categories": ["コンテンツ革新", "カルチャーインサイト"],
+    "categories": [
+      "コンテンツ革新",
+      "カルチャーインサイト"
+    ],
     "award": "Cannes Lions 2025 Entertainment Lions for Music Silver Lion (Music Video) / UKMVA x MUVID 2025 Best International Video",
     "year": "2025",
-    "regions": ["UK", "グローバル"],
+    "regions": [
+      "UK",
+      "グローバル"
+    ],
     "link": "https://www.youtube.com/watch?v=GvrNPiz7rHw",
     "thumbnail": "https://i.ytimg.com/vi/GvrNPiz7rHw/hqdefault.jpg",
     "videoId": "GvrNPiz7rHw",
@@ -426,10 +664,17 @@
     "summary": "「ビヨンセはインターネットを壊せる。ではVerizonのネットワークは壊せるか？」——スーパーボウルCMでアルバム先行告知も組み込んだ音楽×ブランドの融合事例。Cannes Lions 2024 Gold Lion。",
     "client": "Verizon",
     "agency": "Ogilvy New York",
-    "categories": ["ブランドエクスペリエンス", "カルチャーインサイト", "コンテンツ革新"],
+    "categories": [
+      "ブランドエクスペリエンス",
+      "カルチャーインサイト",
+      "コンテンツ革新"
+    ],
     "award": "Cannes Lions 2024 Entertainment Lions for Music Gold Lion (Brand or Product Integration into Music Content)",
     "year": "2024",
-    "regions": ["北米", "グローバル"],
+    "regions": [
+      "北米",
+      "グローバル"
+    ],
     "link": "https://www.ogilvy.com/work/cant-b-broken",
     "thumbnail": "https://i.ytimg.com/vi/yQBB3x6Y9kA/hqdefault.jpg",
     "videoId": "yQBB3x6Y9kA",
@@ -456,10 +701,15 @@
     "summary": "タイトルでテイラー・スウィフトを想起させながら、ウクライナ・キーウを舞台にした奇想天外なミーム的ビネットで「ファッションへの執着とウィット」を体現したMV。Cannes Lions 2025 Gold Lion。",
     "client": "A$AP Rocky / RCA Records",
     "agency": "Iconoclast — Director: Vania Heymann & Gal Muggia / Production: shelter.film (Kyiv)",
-    "categories": ["コンテンツ革新", "カルチャーインサイト"],
+    "categories": [
+      "コンテンツ革新",
+      "カルチャーインサイト"
+    ],
     "award": "Cannes Lions 2025 Entertainment Lions for Music Gold Lion (Excellence in Music Video)",
     "year": "2025",
-    "regions": ["グローバル"],
+    "regions": [
+      "グローバル"
+    ],
     "link": "https://www.youtube.com/watch?v=5URefVYaJrA",
     "thumbnail": "https://i.ytimg.com/vi/5URefVYaJrA/hqdefault.jpg",
     "videoId": "5URefVYaJrA",
@@ -481,10 +731,15 @@
     "summary": "Billboard Hot 100で19週連続1位という史上最長記録の楽曲を、5分超の西部劇映画パロディとして映像化——クリス・ロック等豪華ゲストと1889年〜2019年のタイムトラベルを描く。",
     "client": "Lil Nas X / Columbia Records",
     "agency": "PRETTYBIRD — Director: Calmatic",
-    "categories": ["コンテンツ革新", "カルチャーインサイト"],
+    "categories": [
+      "コンテンツ革新",
+      "カルチャーインサイト"
+    ],
     "award": "Cannes Lions 2021 Entertainment Lions for Music Grand Prix",
     "year": "2021",
-    "regions": ["グローバル"],
+    "regions": [
+      "グローバル"
+    ],
     "link": "https://www.youtube.com/watch?v=w2Ov5jzm3j8",
     "thumbnail": "https://i.ytimg.com/vi/w2Ov5jzm3j8/hqdefault.jpg",
     "videoId": "w2Ov5jzm3j8",
@@ -511,10 +766,17 @@
     "summary": "COVID-19でサンパウロ・プライドパレードが中止となった際、InstagramフィードをそのままパレードルートのMVとして再現——2万人以上がデジタルパレードに「参加」した。",
     "client": "Mercado Libre (Mercado Livre)",
     "agency": "GUT São Paulo",
-    "categories": ["メディア発明", "社会包摂", "ブランドエクスペリエンス"],
+    "categories": [
+      "メディア発明",
+      "社会包摂",
+      "ブランドエクスペリエンス"
+    ],
     "award": "Cannes Lions 2021 Entertainment Lions for Music Grand Prix / Mobile Gold Lion",
     "year": "2021",
-    "regions": ["ブラジル", "グローバル"],
+    "regions": [
+      "ブラジル",
+      "グローバル"
+    ],
     "link": "https://www.youtube.com/watch?v=jIeD7vhLR0Y",
     "thumbnail": "https://i.ytimg.com/vi/jIeD7vhLR0Y/hqdefault.jpg",
     "videoId": "jIeD7vhLR0Y",
@@ -541,10 +803,16 @@
     "summary": "JAY-Zの母グロリア・カーターが同性愛者であることを隠して4人の子を育てた実話を35mmフィルムで映像化——クライマックスでグロリア本人が詩を朗読。Cannes Lions 2018 Grand Prix。",
     "client": "Roc Nation / Def Jam Recordings",
     "agency": "Smuggler New York — Director: Miles Jay",
-    "categories": ["コンテンツ革新", "カルチャーインサイト", "社会包摂"],
+    "categories": [
+      "コンテンツ革新",
+      "カルチャーインサイト",
+      "社会包摂"
+    ],
     "award": "Cannes Lions 2018 Entertainment Lions for Music Grand Prix（Apple「Welcome Home」と共同受賞）",
     "year": "2018",
-    "regions": ["グローバル"],
+    "regions": [
+      "グローバル"
+    ],
     "link": "https://www.youtube.com/watch?v=SSumXG5_rs8",
     "thumbnail": "https://i.ytimg.com/vi/SSumXG5_rs8/hqdefault.jpg",
     "videoId": "SSumXG5_rs8",
@@ -571,10 +839,16 @@
     "summary": "スパイク・ジョーンズ監督、FKA twigs主演——Apple HomePodで音楽を再生するとアパートが物理的に変容するという4分間の映像詩。プロダクト広告・MV・ダンスアートを融合させたCannes Lions 2018 Grand Prix。",
     "client": "Apple",
     "agency": "TBWA\\Media Arts Lab — Director: Spike Jonze",
-    "categories": ["コンテンツ革新", "ブランドエクスペリエンス", "空間体験"],
+    "categories": [
+      "コンテンツ革新",
+      "ブランドエクスペリエンス",
+      "空間体験"
+    ],
     "award": "Cannes Lions 2018 Entertainment Lions for Music Grand Prix（JAY-Z「Smile」と共同受賞）",
     "year": "2018",
-    "regions": ["グローバル"],
+    "regions": [
+      "グローバル"
+    ],
     "link": "https://www.youtube.com/watch?v=LuCgUjmjkcY",
     "thumbnail": "https://i.ytimg.com/vi/LuCgUjmjkcY/hqdefault.jpg",
     "videoId": "LuCgUjmjkcY",
@@ -601,10 +875,17 @@
     "summary": "ブラジルにおける制度的人種差別を8分間の短編映画で告発——Childish Gambino「This Is America」と同年・同カテゴリーでCannes Grand Prix W受賞という異例の結果。",
     "client": "Baco Exu do Blues / Sony Music Brasil",
     "agency": "AKQA São Paulo",
-    "categories": ["コンテンツ革新", "カルチャーインサイト", "社会包摂"],
+    "categories": [
+      "コンテンツ革新",
+      "カルチャーインサイト",
+      "社会包摂"
+    ],
     "award": "Cannes Lions 2019 Entertainment Lions for Music Grand Prix（「This Is America」と共同受賞）",
     "year": "2019",
-    "regions": ["ブラジル", "グローバル"],
+    "regions": [
+      "ブラジル",
+      "グローバル"
+    ],
     "link": "https://www.youtube.com/watch?v=-xFz8zZo-Dw",
     "thumbnail": "https://i.ytimg.com/vi/-xFz8zZo-Dw/hqdefault.jpg",
     "videoId": "-xFz8zZo-Dw",
