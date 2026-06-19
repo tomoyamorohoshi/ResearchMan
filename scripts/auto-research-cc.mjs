@@ -97,18 +97,19 @@ regions候補: 国内 / 北米 / 欧州 / アジア / グローバル
   console.log("Claude Code で事例リサーチ中（WebSearch使用）...\n");
 
   // プロンプトを位置引数として渡す（claude [options] [prompt] の仕様）
+  // --allowedTools は <tools...> で可変長のため、= 記法でプロンプトと分離する
   const result = spawnSync(
     "claude",
     [
-      "--print",                    // 非対話モード
-      "--allowedTools", "WebSearch", // WebSearch ツールを許可
-      prompt,                       // プロンプトを位置引数として渡す
+      "--print",
+      "--allowedTools=WebSearch",   // = で繋げてプロンプトを巻き込まない
+      prompt,                       // 位置引数として渡す
     ],
     {
       encoding: "utf-8",
       timeout: 300000,              // 5分
       maxBuffer: 1024 * 1024 * 20,
-      stdio: ["ignore", "pipe", "pipe"], // stdin は無視
+      stdio: ["ignore", "pipe", "pipe"],
     }
   );
 
