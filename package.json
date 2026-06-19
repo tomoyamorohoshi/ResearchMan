@@ -8,9 +8,12 @@
     "start": "next start",
     "lint": "eslint",
     "fetch-thumbnails": "node scripts/fetch-thumbnails.mjs",
-    "check-links": "node scripts/check-links.mjs"
+    "check-links": "node scripts/check-links.mjs",
+    "auto-research": "node scripts/auto-research.mjs",
+    "auto-research:dry": "node scripts/auto-research.mjs --dry-run"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.105.0",
     "next": "16.2.9",
     "react": "19.2.4",
     "react-dom": "19.2.4"
