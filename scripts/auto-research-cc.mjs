@@ -19,6 +19,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CASES_PATH = path.join(__dirname, "../data/cases.json");
 const DRY_RUN = process.argv.includes("--dry-run");
 const MAX_ADD = 5;
+const LAST_RUN_PATH = path.join(__dirname, "../.last-research-run.txt");
 
 // YouTube ID の有効性確認
 function verifyYouTubeId(ytId) {
@@ -41,29 +42,54 @@ function toId(title, year) {
     .slice(0, 60);
 }
 
+// 前回実行日時の読み書き
+async function getLastRunDate() {
+  try {
+    const raw = await fs.readFile(LAST_RUN_PATH, "utf-8");
+    return new Date(raw.trim());
+  } catch {
+    // 初回は3日前をデフォルトに
+    return new Date(Date.now() - 3 * 24 * 60 * 60 * 1000);
+  }
+}
+
+async function saveLastRunDate() {
+  if (!DRY_RUN) {
+    await fs.writeFile(LAST_RUN_PATH, new Date().toISOString());
+  }
+}
+
 // Claude Code CLI で事例リサーチ
-async function runClaudeResearch(existingTitles) {
-  const today = new Date().toLocaleDateString("ja-JP");
+async function runClaudeResearch(existingTitles, lastRunDate) {
+  const now = new Date();
+  const today = now.toLocaleDateString("ja-JP", { year: "numeric", month: "long", day: "numeric" });
+  const lastRun = lastRunDate.toLocaleDateString("ja-JP", { year: "numeric", month: "long", day: "numeric" });
+  const daysDiff = Math.round((now - lastRunDate) / (1000 * 60 * 60 * 24));
 
-  const prompt = `今日は${today}です。
+  const prompt = `今日は${today}です。前回の調査日は${lastRun}（約${daysDiff}日前）です。
 
-CREATIVE EDGEというクリエイティブ事例データベース用に、クライテリアに合致する新しい事例を3〜5件調べてください。
+ResearchManというクリエイティブ事例データベース用に、**${lastRun}以降〜${today}の間に世の中に出た・話題になった**事例を3〜5件探してください。
 
-## クライテリア
-「新しいメディアから新しい表現が生まれる」事例。以下のいずれかに該当：
-- Cannes / D&AD / One Show / Clio / ACC / Spikes Asia の受賞またはショートリスト
-- 文化的事件として広く記録・引用される事例
-- 特定技術・表現フォーマットの代表的初例
-- デジタル×クリエイティブの注目事例
+## 重要：「今」をリサーチする
+過去の名作・受賞作ではなく、**この${daysDiff}日間に新たに発生・公開・話題になったもの**を探す。
+- 「先週ローンチされた」「今週発表された」「現在バイラル中」「先日受賞が発表された」などが対象
+- 数年前の事例を掘り起こすのは目的外
 
-## 検索してほしい範囲
-- 直近のCannes/D&AD/Clio受賞・ショートリスト発表
-- LBBOnline / Contagious / Adweek の最新記事
-- アーティストの革新的なアルバムプロモーション・アクティベーション
-- AI×クリエイティブ、XR、メディアアート
-- 日本国内のACC受賞・話題キャンペーン
+## 検索する情報源（最新記事を確認）
+- lbbonline.com / contagious.com / adweek.com / campaignbrief.com の直近記事
+- カンヌ・D&AD・Clio等の直近の受賞・ショートリスト発表（開催中または直前の発表）
+- X（Twitter）やSNSでクリエイティブ業界がいま話題にしているもの
+- 日本: advertimes.com / itmedia.co.jp / campaign-jp.com の最新記事
+- 音楽アーティストの新しいプロモーション・アクティベーション
+- AI×クリエイティブの最新事例、新サービス・新技術のクリエイティブ応用
 
-## 既存（重複を避ける）
+## 選定基準（以下のいずれかに該当すれば可）
+- 直近に受賞またはショートリスト入り（時期は問わず最新発表のもの）
+- 業界メディアが直近に取り上げ話題になっている
+- アーティスト・ブランドが直近にローンチしたクリエイティブな施策
+- テクノロジー×クリエイティブの新しい事例として業界で共有されている
+
+## 既存事例（重複を避ける）
 ${existingTitles}
 
 ## 出力形式（JSON のみ、説明不要）
@@ -153,7 +179,7 @@ regions候補: 国内 / 北米 / 欧州 / アジア / グローバル
 
 // メイン処理
 async function main() {
-  console.log(`\n🎨 CREATIVE EDGE 自動収集`);
+  console.log(`\nResearchMan 自動収集`);
   console.log(`   ${new Date().toLocaleString("ja-JP")}`);
   if (DRY_RUN) console.log("   ⚠ DRY RUN（cases.jsonは更新しません）");
   console.log("");
@@ -162,9 +188,14 @@ async function main() {
   const existingIds = new Set(existingCases.map((c) => c.id));
   const existingTitles = existingCases.slice(0, 60).map((c) => c.title).join(" / ");
 
+  // 前回実行日時を取得（「この期間に出た事例」の基準に使う）
+  const lastRunDate = await getLastRunDate();
+  const daysSince = Math.round((Date.now() - lastRunDate) / (1000 * 60 * 60 * 24));
   console.log(`既存: ${existingCases.length}件`);
+  console.log(`前回実行: ${lastRunDate.toLocaleDateString("ja-JP")}（${daysSince}日前）`);
+  console.log(`検索対象期間: 直近${daysSince}日間の新着事例\n`);
 
-  const candidates = await runClaudeResearch(existingTitles);
+  const candidates = await runClaudeResearch(existingTitles, lastRunDate);
   console.log(`候補: ${candidates.length}件\n`);
 
   if (!candidates.length) {
@@ -223,7 +254,8 @@ async function main() {
   }
 
   if (!toAdd.length) {
-    console.log("\n追加対象がありませんでした");
+    console.log("\n追加対象がありませんでした（新着事例なし or YouTube ID未確認）");
+    await saveLastRunDate(); // 次回の基準日として今日を記録
     return 0;
   }
 
@@ -234,6 +266,7 @@ async function main() {
 
   const updated = [...toAdd, ...existingCases];
   await fs.writeFile(CASES_PATH, JSON.stringify(updated, null, 2));
+  await saveLastRunDate(); // 実行日時を保存（次回の検索期間の起点）
   console.log(`\n✅ ${toAdd.length}件追加 → 合計${updated.length}件`);
 
   return toAdd.length;
