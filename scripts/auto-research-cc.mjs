@@ -9,7 +9,7 @@
  *   node scripts/auto-research-cc.mjs --dry-run
  */
 
-import { execSync, spawnSync } from "child_process";
+import { execSync, spawnSync, execFileSync } from "child_process";
 import fs from "fs/promises";
 import https from "https";
 import path from "path";
@@ -96,18 +96,29 @@ regions候補: 国内 / 北米 / 欧州 / アジア / グローバル
 
   console.log("Claude Code で事例リサーチ中（WebSearch使用）...\n");
 
-  // プロンプトを位置引数として渡す（claude [options] [prompt] の仕様）
-  // --allowedTools は <tools...> で可変長のため、= 記法でプロンプトと分離する
+  // .command ファイルなど PATH が通っていない環境に対応
+  const CLAUDE_PATHS = [
+    "/Users/tm/.local/bin/claude",
+    "/usr/local/bin/claude",
+    "/opt/homebrew/bin/claude",
+  ];
+  let claudeBin = "claude";
+  try {
+    claudeBin = execFileSync("which", ["claude"], { encoding: "utf-8" }).trim();
+  } catch {
+    for (const p of CLAUDE_PATHS) {
+      try { execFileSync(p, ["--version"], { encoding: "utf-8" }); claudeBin = p; break; } catch {}
+    }
+  }
+  console.log(`Claude bin: ${claudeBin}\n`);
+
+  // --allowedTools は <tools...> 可変長のため = で繋いでプロンプトと分離
   const result = spawnSync(
-    "claude",
-    [
-      "--print",
-      "--allowedTools=WebSearch",   // = で繋げてプロンプトを巻き込まない
-      prompt,                       // 位置引数として渡す
-    ],
+    claudeBin,
+    ["--print", "--allowedTools=WebSearch", prompt],
     {
       encoding: "utf-8",
-      timeout: 300000,              // 5分
+      timeout: 300000,
       maxBuffer: 1024 * 1024 * 20,
       stdio: ["ignore", "pipe", "pipe"],
     }
