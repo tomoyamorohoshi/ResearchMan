@@ -1,5 +1,101 @@
 [
   {
+    "id": "caption-with-intention-2025",
+    "title": "Caption with Intention",
+    "summary": "50年間ほぼ進化しなかった「字幕」を、色・タイミング・アニメーションで感情や話者を伝える動的デザインシステムに変え、ろう者・難聴者の視聴体験を刷新した事例。",
+    "client": "Chicago Hearing Society",
+    "agency": "FCB Chicago",
+    "categories": [
+      "社会包摂",
+      "コンテンツ革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "Cannes Lions 2025 グランプリ×2（Design / Digital Craft、同日2部門制覇）",
+    "year": "2025",
+    "regions": [
+      "北米",
+      "グローバル"
+    ],
+    "link": "https://adage.com/events-awards/cannes-lions/aa-caption-with-intention-digital-design/",
+    "thumbnail": "https://i.ytimg.com/vi/YTNyUIBa_mk/hqdefault.jpg",
+    "videoId": "YTNyUIBa_mk",
+    "overview": "映画・TVの字幕は50年以上ほぼ機能一辺倒のまま放置されてきた。Caption with Intentionは、色・配置・タイミング・動きをリアルタイムに変化させ、話者の識別、感情、声のリズムまで表現する初の字幕デザインシステム。ろう者・難聴者にとって字幕を単なる文字情報から「演出の一部」へと昇華させ、健聴者と同等の物語体験を可能にした。Cannes Lions 2025で同日にDesignとDigital Craftの2グランプリを獲得した稀有な事例。",
+    "background": "世界の字幕規格は機能性のみを前提に設計され、誰が話しているか、どんな感情か、音楽や環境音のニュアンスは伝わりにくい。ストリーミング時代に字幕利用は健聴者にも拡大したが、表現面の進化は止まっていた。FCB Chicagoはこの「見過ごされたメディア＝字幕」自体を表現領域として再定義し、アクセシビリティを後付けの義務ではなく制作の根幹に組み込むことを目指した。",
+    "execution": "話者ごとに色や位置を割り当て、声の大きさや間でフォントサイズ・タイミングを動かし、音楽や効果音を視覚的リズムとして表現する設計システムを構築。実際の映像作品に適用してプロトタイプを提示し、オープンな仕様として制作者が採用できる形で公開した。米国映画芸術科学アカデミー（オスカー）の応募ルールブックにも組み込まれ、業界標準化への道を開いた。",
+    "evaluationImpact": "「字幕」という最も地味なメディアから新しい表現様式を生み出した点が高く評価され、Cannes Lions 2025でDesignとDigital Craftの2グランプリを同日獲得。アクセシビリティを制約ではなくクリエイティブの源泉に転換し、アカデミー賞の応募基準にも採用された。社会包摂とコンテンツ革新を両立させた、フォーマット発明型の代表事例。",
+    "relatedWorks": [
+      {
+        "title": "Caption With Intention (Case Study)",
+        "description": "Cannes Lions 2025グランプリ受賞のケーススタディ動画",
+        "url": "https://www.youtube.com/watch?v=YTNyUIBa_mk"
+      }
+    ]
+  },
+  {
+    "id": "haaland-payback-time-2025",
+    "title": "Haaland Payback Time",
+    "summary": "サッカー界のスター、アーリング・ハーランドをゲーム史上初の実在プレイアブルキャラとして実装し、ライバルクラブ近隣のリアルタイムOOHで「ヘイター」を新規プレイヤーに転換したClash of Clansの事例。",
+    "client": "Supercell（Clash of Clans）",
+    "agency": "DAVID New York",
+    "categories": [
+      "カルチャーインサイト",
+      "ブランドエクスペリエンス",
+      "メディア発明"
+    ],
+    "award": "Cannes Lions 2025 グランプリ（Entertainment for Gaming）",
+    "year": "2025",
+    "regions": [
+      "欧州",
+      "グローバル"
+    ],
+    "link": "https://www.wpp.com/en-us/featured/work/2025/06/david-supercell-haaland-payback-time",
+    "thumbnail": "https://i.ytimg.com/vi/XaT5MmcKbcA/hqdefault.jpg",
+    "videoId": "XaT5MmcKbcA",
+    "overview": "Clash of Clans 11周年を機に、Supercellはサッカー選手アーリング・ハーランドをゲーム内で完全に操作可能な実在プレイアブルキャラとして初実装。さらに、ハーランドが10年以上かけてゲーム内に築いた村を、ライバルチームのファン＝「ヘイター」が襲撃できる仕掛けを用意した。実在スポーツスターのアンチ感情をゲームのプレイ動機に変換し、Cannes Lions 2025でグランプリを獲得した。",
+    "background": "2024年に実在人物ハーランドを初投入したものの、さらなる新規ユーザー獲得には未開拓の層が必要だった。Supercellは熱心なファンではなく、ハーランドの「ヘイター（アンチ）」という負の感情を持つ巨大なオーディエンスに着目。敵意をエンゲージメントへ転換するというカルチャーインサイトを起点に据えた。",
+    "execution": "ヘイターがハーランドの村を襲撃・破壊できるゲーム内イベントを軸に、ライバルクラブのスタジアム近隣にビルボードを設置。試合結果や状況に連動するリアルタイム広告で対抗心を煽り、現実世界のスポーツの文脈とゲーム内アクションをシームレスに接続した。OOHとゲームを横断する設計で話題を拡張した。",
+    "evaluationImpact": "実在スポーツスターをプレイアブル化し、アンチ感情という負のエネルギーをプレイ動機へ転換した発想と、リアルタイムOOHで現実のライバル文化と接続した統合設計が評価され、Cannes Lions 2025グランプリを獲得。数百万人の『ヘイター』を新規プレイヤーへと変えた、カルチャーインサイト×メディア発明の代表例。",
+    "relatedWorks": [
+      {
+        "title": "HAALAND PAYBACK TIME | CLASH OF CLANS",
+        "description": "DAVID New York制作のケース動画",
+        "url": "https://www.youtube.com/watch?v=XaT5MmcKbcA"
+      }
+    ]
+  },
+  {
+    "id": "abracadabra-from-fan-to-featured-2025",
+    "title": "Abracadabra: From Fan to Featured",
+    "summary": "Lady Gagaのファン32人を実際のミュージックビデオ出演者として起用し『ファンから出演者へ』を実現した、Mastercardによるファン参加型MV事例。",
+    "client": "Mastercard",
+    "agency": "McCann XBC New York",
+    "categories": [
+      "社会包摂",
+      "カルチャーインサイト",
+      "コンテンツ革新"
+    ],
+    "award": "Cannes Lions 2025 Entertainment for Music ゴールド／Social & Creator ブロンズ",
+    "year": "2025",
+    "regions": [
+      "北米",
+      "グローバル"
+    ],
+    "link": "https://lbbonline.com/news/mastercard-winners-celebrate-little-monsters-in-lady-gaga-fan-edit",
+    "thumbnail": "https://i.ytimg.com/vi/q0KNF54p6og/hqdefault.jpg",
+    "videoId": "q0KNF54p6og",
+    "overview": "MastercardはLady Gagaの楽曲『Abracadabra』の公開に合わせ、ファンにダンスの再現を呼びかけ、選ばれた32人の『Little Monsters』を公式ミュージックビデオの特別エディットに本物の出演者として起用。振付師Parris Goebelの演出で『ファンから出演者へ』を実現し、ブランドのスポンサーシップを観客自身が主役になる体験へと転換した。",
+    "background": "ブランドが音楽スポンサーシップで存在感を出すには、ロゴ露出ではなくファンとアーティストの関係性に本質的価値を加える必要がある。Mastercardは『Priceless（プライスレス）』という資産を、ファンが憧れのアーティストのMVに出演するという到達不可能な体験の提供として具現化し、ファンダムのエネルギーを起点に据えた。",
+    "execution": "ファンにダンス再現の参加を募り、選抜した32名を実際のMV特別版に出演させ、Parris Goebelが振付・演出。障害のある人、プラスサイズ、ジェンダー・ノンコンフォーミングなど多様な人々を、アイデンティティを過度に強調せず自然に作品へ織り込んだ。完成MVはTikTokを中心に拡散した。",
+    "evaluationImpact": "ファン参加企画を『本物のミュージックビデオ出演』にまで引き上げ、ブランド体験とポップカルチャーを融合させた点、ならびに多様性を演出的に消費せず自然に内包した点が評価された。Gen Zで同社史上最高29%のブランドリフトを記録し、TikTokユーザーの2/3が48時間以内に視聴。Cannes Lions 2025でMusic部門ゴールドを獲得した。",
+    "relatedWorks": [
+      {
+        "title": "From Fan To Featured (Case Study)",
+        "description": "Mastercardのケーススタディ動画",
+        "url": "https://www.youtube.com/watch?v=q0KNF54p6og"
+      }
+    ]
+  },
+  {
     "id": "sounds-right-nature-as-an-artist-2024",
     "title": "SOUNDS RIGHT（NATURE as an Artist）",
     "summary": "自然そのものを「NATURE」としてストリーミングの公式アーティストに登録し、再生印税を生物多様性保全へ還流させたムーブメント。",
