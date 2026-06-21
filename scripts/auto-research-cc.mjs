@@ -21,6 +21,78 @@ const DRY_RUN = process.argv.includes("--dry-run");
 const MAX_ADD = 5;
 const LAST_RUN_PATH = path.join(__dirname, "../.last-research-run.txt");
 
+// ── サムネイル取得ユーティリティ ──────────────────────────────
+
+// 記事 URL から画像を取得（og:image → twitter:image → コンテンツ内画像の順）
+function fetchImageFromUrl(url) {
+  return new Promise((resolve) => {
+    if (!url || !url.startsWith("http")) return resolve(null);
+    const mod = url.startsWith("https") ? https : require("http");
+    const req = mod.get(url, {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/124.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml",
+      },
+    }, (res) => {
+      // リダイレクト追跡（最大1回）
+      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+        req.destroy();
+        return resolve(fetchImageFromUrl(res.headers.location));
+      }
+      let html = "";
+      res.on("data", (d) => { html += d; if (html.length > 30000) req.destroy(); });
+      res.on("end", () => {
+        // 1. og:image
+        const og = html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i)
+                 || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i);
+        if (og?.[1]?.startsWith("http")) return resolve(og[1]);
+
+        // 2. twitter:image
+        const tw = html.match(/<meta[^>]+name=["']twitter:image["'][^>]+content=["']([^"']+)["']/i)
+                 || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+name=["']twitter:image["']/i);
+        if (tw?.[1]?.startsWith("http")) return resolve(tw[1]);
+
+        // 3. ページ内の大きな画像（width属性や src が .jpg/.png/.webp の img タグ）
+        const imgs = [...html.matchAll(/<img[^>]+src=["']([^"']+\.(jpg|jpeg|png|webp)[^"']*)["']/gi)];
+        const candidate = imgs.find(m => {
+          const src = m[1];
+          return src.startsWith("http") && !src.includes("logo") && !src.includes("icon") && !src.includes("avatar");
+        });
+        if (candidate) return resolve(candidate[1]);
+
+        resolve(null);
+      });
+    });
+    req.on("error", () => resolve(null));
+    req.setTimeout(10000, () => { req.destroy(); resolve(null); });
+  });
+}
+
+// Claude CLI で YouTube ID を検索
+function findYouTubeId(title, client, claudeBin) {
+  const query = `"${title}"${client ? " " + client : ""}`;
+  const result = spawnSync(claudeBin, [
+    "--print",
+    "--allowedTools=WebSearch",
+    "--dangerously-skip-permissions",
+    `Search YouTube for the official campaign video or case film for: ${query}
+Return ONLY the 11-character YouTube video ID (e.g. dQw4w9WgXcQ).
+If you find multiple, choose the most official one (brand channel or award case study).
+If nothing found, return: NOT_FOUND`,
+  ], {
+    encoding: "utf-8",
+    timeout: 60000,
+    maxBuffer: 1024 * 1024 * 5,
+    stdio: ["ignore", "pipe", "pipe"],
+  });
+
+  const out = (result.stdout || "").trim();
+  // 11文字のYouTube IDパターンを抽出
+  const match = out.match(/\b([A-Za-z0-9_-]{11})\b/);
+  if (!match || out.includes("NOT_FOUND")) return null;
+  return match[1];
+}
+
 // YouTube ID の有効性確認
 function verifyYouTubeId(ytId) {
   return new Promise((resolve) => {
@@ -216,27 +288,57 @@ async function main() {
       continue;
     }
 
-    // YouTube ID 検証（なくても追加可能、og:image/picsumにフォールバック）
+    // ── サムネイル取得（3段階フォールバック）──────────────────
     let thumbnail = "";
     let videoId = "";
 
+    // Step 1: Claude が返した YouTube ID を検証
     if (c.youtube_id) {
-      process.stdout.write(`検証中: ${c.title} ... `);
+      process.stdout.write(`  [1] YouTube ID検証: ${c.youtube_id} ... `);
       const valid = await verifyYouTubeId(c.youtube_id);
       if (valid) {
         thumbnail = `https://i.ytimg.com/vi/${c.youtube_id}/hqdefault.jpg`;
         videoId = c.youtube_id;
-        console.log("✓ YouTube");
+        console.log("✓");
       } else {
-        console.log("✗ YouTube ID無効 → picsum使用");
+        console.log("✗ 無効");
       }
-    } else {
-      console.log(`サムネイルなし → picsum使用: ${c.title}`);
     }
 
-    // フォールバック: picsumプレースホルダー
+    // Step 2: 記事URLから画像取得（og:image → twitter:image → ページ内画像）
+    if (!thumbnail && c.link) {
+      process.stdout.write(`  [2] 記事画像取得: ${c.link.slice(0, 50)}... `);
+      const pageImg = await fetchImageFromUrl(c.link);
+      if (pageImg) {
+        thumbnail = pageImg;
+        console.log("✓");
+      } else {
+        console.log("✗");
+      }
+    }
+
+    // Step 3: Claude CLI で YouTube 検索
+    if (!thumbnail) {
+      process.stdout.write(`  [3] YouTube検索: "${c.title}" ... `);
+      const foundId = findYouTubeId(c.title, c.client, claudeBin);
+      if (foundId) {
+        const valid = await verifyYouTubeId(foundId);
+        if (valid) {
+          thumbnail = `https://i.ytimg.com/vi/${foundId}/hqdefault.jpg`;
+          videoId = foundId;
+          console.log(`✓ (${foundId})`);
+        } else {
+          console.log("✗ ID無効");
+        }
+      } else {
+        console.log("✗ 見つからず");
+      }
+    }
+
+    // Step 4: 最終フォールバック（picsum）
     if (!thumbnail) {
       thumbnail = `https://picsum.photos/seed/${id}/1200/630`;
+      console.log(`  [4] picsum使用（サムネイル未取得）`);
     }
 
     toAdd.push({
