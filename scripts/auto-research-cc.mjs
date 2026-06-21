@@ -139,9 +139,10 @@ regions候補: 国内 / 北米 / 欧州 / アジア / グローバル
   console.log(`Claude bin: ${claudeBin}\n`);
 
   // --allowedTools は <tools...> 可変長のため = で繋いでプロンプトと分離
+  // --dangerously-skip-permissions: 非対話実行でパーミッション確認をスキップ
   const result = spawnSync(
     claudeBin,
-    ["--print", "--allowedTools=WebSearch", prompt],
+    ["--print", "--allowedTools=WebSearch", "--dangerously-skip-permissions", prompt],
     {
       encoding: "utf-8",
       timeout: 300000,
@@ -186,7 +187,8 @@ async function main() {
 
   const existingCases = JSON.parse(await fs.readFile(CASES_PATH, "utf-8"));
   const existingIds = new Set(existingCases.map((c) => c.id));
-  const existingTitles = existingCases.slice(0, 60).map((c) => c.title).join(" / ");
+  // 直近30件のみ渡す（プロンプト肥大化防止）
+  const existingTitles = existingCases.slice(0, 30).map((c) => c.title).join(" / ");
 
   // 前回実行日時を取得（「この期間に出た事例」の基準に使う）
   const lastRunDate = await getLastRunDate();
@@ -214,19 +216,28 @@ async function main() {
       continue;
     }
 
-    // YouTube ID 検証
-    if (!c.youtube_id) {
-      console.log(`スキップ（YouTube IDなし）: ${c.title}`);
-      continue;
+    // YouTube ID 検証（なくても追加可能、og:image/picsumにフォールバック）
+    let thumbnail = "";
+    let videoId = "";
+
+    if (c.youtube_id) {
+      process.stdout.write(`検証中: ${c.title} ... `);
+      const valid = await verifyYouTubeId(c.youtube_id);
+      if (valid) {
+        thumbnail = `https://i.ytimg.com/vi/${c.youtube_id}/hqdefault.jpg`;
+        videoId = c.youtube_id;
+        console.log("✓ YouTube");
+      } else {
+        console.log("✗ YouTube ID無効 → picsum使用");
+      }
+    } else {
+      console.log(`サムネイルなし → picsum使用: ${c.title}`);
     }
 
-    process.stdout.write(`検証中: ${c.title} ... `);
-    const valid = await verifyYouTubeId(c.youtube_id);
-    if (!valid) {
-      console.log("✗ YouTube ID無効");
-      continue;
+    // フォールバック: picsumプレースホルダー
+    if (!thumbnail) {
+      thumbnail = `https://picsum.photos/seed/${id}/1200/630`;
     }
-    console.log("✓");
 
     toAdd.push({
       id,
@@ -239,8 +250,8 @@ async function main() {
       year: String(c.year),
       regions: c.regions || ["グローバル"],
       link: c.link || "",
-      thumbnail: `https://i.ytimg.com/vi/${c.youtube_id}/hqdefault.jpg`,
-      videoId: c.youtube_id,
+      thumbnail,
+      videoId,
       overview: c.overview || "",
       background: c.background || "",
       execution: c.execution || "",
