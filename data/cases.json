@@ -57,8 +57,8 @@
       "グローバル"
     ],
     "link": "https://alonewithme.ai",
-    "thumbnail": "https://picsum.photos/seed/weeknd-alone-with-me-ai/1200/630",
-    "videoId": "",
+    "thumbnail": "https://i.ytimg.com/vi/H5v3kku4y6Q/hqdefault.jpg",
+    "videoId": "H5v3kku4y6Q",
     "overview": "AloneWithMe.aiにSpotifyアカウントでログインするとThe WeekndのAI3D映像が出現し、個人の視聴データ（初めて聴いた曲・最多再生曲・聴き始めた年）を織り交ぜて名前で話しかけてくる体験。3曲をパーソナライズされた文脈で視聴できる。公開後48時間で60万アクセスを記録した。",
     "background": "「サイトがあなたを知っている」という驚きを核にしたパーソナライズ体験。After Hoursアルバムキャンペーンの一環として制作。Spotify APIのリスニングデータを活用し、ファンごとに異なるナラティブを自動生成するシステムを構築した。",
     "execution": "Spotify OAuth連携でユーザー認証。個人のリスニング履歴をリアルタイム取得し、AIがパーソナライズされたスクリプトを生成してThe Weekndの3D映像と組み合わせて配信。48時間で60万アクセスという実績を残し、音楽×AI×ストリーミングデータの三位一体を実証した。",
@@ -98,8 +98,8 @@
       "グローバル"
     ],
     "link": "https://boniver.withspotify.com",
-    "thumbnail": "https://picsum.photos/seed/bon-iver-viisualiizer/1200/630",
-    "videoId": "",
+    "thumbnail": "https://i.ytimg.com/vi/XQCPmECH8IU/hqdefault.jpg",
+    "videoId": "XQCPmECH8IU",
     "overview": "boniver.withspotify.comにアクセスすると、無数の光点（各点がリアルタイムリスナー）が画面を埋める。マウスを動かすと光点が波紋のように動き、歌詞の断片やアートワークが浮かび上がる。累計再生時間・最もアクティブな国のライブカウンターが表示され、タイポグラフィがリスニング密度に同期して脈打つ体験。",
     "background": "Bon Iverのアルバム「i,i」のSpotifyコラボレーションとして制作。「今この瞬間、自分以外にも同じ音楽を聴いている人がいる」という事実を視覚化することで孤独な聴取体験をグローバルな共同体験に変換した。Active Theory制作。",
     "execution": "Spotify APIでリアルタイムのグローバルリスナーデータを取得。各リスナーを光点として地球上に配置し、データ密度に応じてタイポグラフィと視覚エフェクトが変化するWebGLベースの体験を構築。マウスインタラクションで歌詞断片とアートワークが出現する設計。",
@@ -139,8 +139,8 @@
       "グローバル"
     ],
     "link": "https://weather.tychomusic.com",
-    "thumbnail": "https://picsum.photos/seed/tycho-forecast-weather/1200/630",
-    "videoId": "",
+    "thumbnail": "https://i.ytimg.com/vi/4CSsinZlQfQ/hqdefault.jpg",
+    "videoId": "4CSsinZlQfQ",
     "overview": "weather.tychomusic.comにアクセスすると現在地を自動検出し、晴れ・雨・曇り・雪・風などの天気状態に対応するTychoの楽曲セットが即座に生成される。異なる日・異なる都市で訪問すると毎回異なるプレイリスト。ワンクリックでSpotify / Apple Musicに保存できる。",
     "background": "Scott Hansen（Tycho）が「天気と音楽の感情的な対応関係」を実験的に実装したプロジェクト。音楽をシーン・感情・環境に対応させる「コンテキスト音楽」の発想をウェブ体験として具現化した。技術的にはシンプルなAPIの組み合わせで実現。",
     "execution": "ブラウザのGeolocation APIで現在地取得 → Weather APIで天気状態取得 → 天気カテゴリ（晴れ/雨/雪/風等）に対応したTychoのプレイリストを返す → Spotify/Apple Music APIでプレイリスト保存。シンプルな実装で「毎回異なる体験」と「実用的な音楽発見」を両立。",
@@ -262,8 +262,8 @@
       "グローバル"
     ],
     "link": "https://store.epicgames.com/p/kid-a-mnesia-exhibition",
-    "thumbnail": "https://picsum.photos/seed/radiohead-kid-a-mnesia/1200/630",
-    "videoId": "",
+    "thumbnail": "https://i.ytimg.com/vi/AOinMjQ9jo8/hqdefault.jpg",
+    "videoId": "AOinMjQ9jo8",
     "overview": "Kid A（2000年）とAmnesiac（2001年）の21周年記念。Epic Games StoreおよびPS5から無料ダウンロード可能。22の抽象的な3D空間を自由探索するウォーキングシミュレーター。「Paper Chamber」（手書きメモが舞う）「TV Room」（CRT映像の壁）「Pyramid Room」（楽曲が建築として流れる空間）など。目的・スコア・タイマーなし。Nigel Godrichの3Dサラウンドリミックスが移動に連動して変化する。",
     "background": "2年かけてThom Yorke、Stanley Donwood、Nigel Godrichが関与して開発。当初はV&Aでの物理インスタレーションとして構想されたが、COVID-19で中止となりデジタル空間に転換された経緯を持つ。「新商業的コンテンツを排除し当時のアーカイブ素材のみ」という制作原則が誠実さを担保した。",
     "execution": "Unreal Engine 4 + Wwise（空間オーディオ）でプレイヤーの3D座標に応じてリアルタイムで音楽の各要素をミックス。72本の映像ストリームを低コストで実装するためUVマッピング技術を活用。Epic Gamesが無料配信プラットフォームとして参加し、音楽ファン以外のゲームコミュニティへのリーチを拡大。約1〜1.5時間の体験。",
