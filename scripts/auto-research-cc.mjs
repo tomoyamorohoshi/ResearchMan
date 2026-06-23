@@ -13,6 +13,7 @@ import { execSync, spawnSync, execFileSync } from "child_process";
 import fs from "fs/promises";
 import https from "https";
 import path from "path";
+import { saveThumbnail, saveThumbnailFromPage } from "./save-thumbnail.mjs";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -292,53 +293,53 @@ async function main() {
     let thumbnail = "";
     let videoId = "";
 
-    // Step 1: Claude が返した YouTube ID を検証
+    // Step 1: Claude が返した YouTube ID を検証 → ローカル保存
     if (c.youtube_id) {
       process.stdout.write(`  [1] YouTube ID検証: ${c.youtube_id} ... `);
       const valid = await verifyYouTubeId(c.youtube_id);
       if (valid) {
-        thumbnail = `https://i.ytimg.com/vi/${c.youtube_id}/hqdefault.jpg`;
-        videoId = c.youtube_id;
-        console.log("✓");
+        const ytUrl = `https://i.ytimg.com/vi/${c.youtube_id}/hqdefault.jpg`;
+        const local = await saveThumbnail(id, ytUrl);
+        if (local) { thumbnail = local; videoId = c.youtube_id; console.log("✓ ローカル保存"); }
+        else { thumbnail = ytUrl; videoId = c.youtube_id; console.log("✓（ローカル保存失敗→外部URL）"); }
       } else {
         console.log("✗ 無効");
       }
     }
 
-    // Step 2: 記事URLから画像取得（og:image → twitter:image → ページ内画像）
+    // Step 2: 記事URLから画像取得 → ローカル保存
     if (!thumbnail && c.link) {
       process.stdout.write(`  [2] 記事画像取得: ${c.link.slice(0, 50)}... `);
-      const pageImg = await fetchImageFromUrl(c.link);
-      if (pageImg) {
-        thumbnail = pageImg;
-        console.log("✓");
-      } else {
-        console.log("✗");
+      const local = await saveThumbnailFromPage(id, c.link);
+      if (local) { thumbnail = local; console.log("✓ ローカル保存"); }
+      else {
+        // フォールバック: ページ内画像を外部URLで使用
+        const pageImg = await fetchImageFromUrl(c.link);
+        if (pageImg) { thumbnail = pageImg; console.log("✓（外部URL）"); }
+        else { console.log("✗"); }
       }
     }
 
-    // Step 3: Claude CLI で YouTube 検索
+    // Step 3: Claude CLI で YouTube 検索 → ローカル保存
     if (!thumbnail) {
       process.stdout.write(`  [3] YouTube検索: "${c.title}" ... `);
       const foundId = findYouTubeId(c.title, c.client, claudeBin);
       if (foundId) {
         const valid = await verifyYouTubeId(foundId);
         if (valid) {
-          thumbnail = `https://i.ytimg.com/vi/${foundId}/hqdefault.jpg`;
+          const ytUrl = `https://i.ytimg.com/vi/${foundId}/hqdefault.jpg`;
+          const local = await saveThumbnail(id, ytUrl);
+          thumbnail = local || ytUrl;
           videoId = foundId;
           console.log(`✓ (${foundId})`);
-        } else {
-          console.log("✗ ID無効");
-        }
-      } else {
-        console.log("✗ 見つからず");
-      }
+        } else { console.log("✗ ID無効"); }
+      } else { console.log("✗ 見つからず"); }
     }
 
-    // Step 4: 最終フォールバック（picsum）
+    // Step 4: picsum（ローカル保存はできないが登録はする。repair-thumbnailsで後で修正）
     if (!thumbnail) {
       thumbnail = `https://picsum.photos/seed/${id}/1200/630`;
-      console.log(`  [4] picsum使用（サムネイル未取得）`);
+      console.log(`  [4] picsum暫定（repair-thumbnailsで修正予定）`);
     }
 
     toAdd.push({
