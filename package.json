@@ -13,7 +13,8 @@
     "auto-research:dry": "node scripts/auto-research.mjs --dry-run",
     "auto-research:cc": "node scripts/auto-research-cc.mjs",
     "auto-research:cc:dry": "node scripts/auto-research-cc.mjs --dry-run",
-    "repair-thumbnails": "node scripts/repair-thumbnails.mjs"
+    "repair-thumbnails": "node scripts/repair-thumbnails.mjs",
+    "self-heal": "node scripts/self-heal-thumbnails.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.105.0",

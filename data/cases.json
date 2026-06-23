@@ -1404,8 +1404,8 @@
       "グローバル"
     ],
     "link": "https://www.rollingstone.com/music/music-news/twenty-one-pilots-trench-arg-alternate-reality-game-725793/",
-    "thumbnail": "https://picsum.photos/seed/twenty-one-pilots-dmaorg/1200/630",
-    "videoId": "",
+    "thumbnail": "/thumbnails/twenty-one-pilots-dmaorg-arg.jpg",
+    "videoId": "HDI9inno86U",
     "overview": "Spotify Canvasの楽曲映像に座標が出現するのをファンが発見。解読するとロンドンのビルディングの場所。現地に行くと楽曲の歌詞と多言語翻訳・Spotifyスキャンコードのビルボードが存在。スキャンすると限定プレイリストが解禁。翌日また新しい座標がCanvasに出現し、次の都市へ——毎日継続して世界中を巡る連鎖ARGが展開された。dmaorg.infoという謎のサイトも並行して稼働し数年にわたる潜在的ARGとして機能した。",
     "background": "Twenty One Pilotsは「Trench」アルバム発売以来、複雑な世界観ARG（DEMA, Bishop）を継続的に展開してきた。Spotify CanvasというビジュアルレイヤーをARGの手がかりメディアに転用することでストリーミングプラットフォームの視聴体験をキャンペーンの入口に変えた。",
     "execution": "Spotify Canvas動画にフレームレベルで座標や数字を埋め込む。ファンのコミュニティ（Reddit / Twitterファングループ）が変化を検知・解読。物理ビルボードを複数都市に設置し、Spotify QRコードと紐付け。毎日新しいCanvas更新→座標→都市→ビルボード→限定コンテンツのサイクルを繰り返す。",
