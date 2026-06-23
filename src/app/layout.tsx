@@ -15,6 +15,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "ResearchMan — Creative Case Archive",
   description: "Cannes Lions / D&AD / Clio / ACC — 世界と国内のクリエイティブ事例アーカイブ",
+  icons: {
+    icon: "/icon.svg",
+    apple: "/apple-icon.svg",
+  },
 };
 
 export default function RootLayout({

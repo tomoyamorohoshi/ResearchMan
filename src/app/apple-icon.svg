@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+  <!-- Apple推奨: 180×180 -->
+  <rect width="180" height="180" rx="40" fill="#111111"/>
+  <!-- 虫眼鏡レンズ -->
+  <circle cx="76" cy="74" r="44" fill="none" stroke="#eeece7" stroke-width="14"/>
+  <!-- 虫眼鏡ハンドル -->
+  <line x1="109" y1="107" x2="152" y2="150" stroke="#eeece7" stroke-width="14" stroke-linecap="round"/>
+  <!-- R -->
+  <text
+    x="76" y="96"
+    font-family="'Helvetica Neue',Helvetica,Arial,sans-serif"
+    font-weight="900"
+    font-size="48"
+    text-anchor="middle"
+    fill="#eeece7"
+  >R</text>
+</svg>
