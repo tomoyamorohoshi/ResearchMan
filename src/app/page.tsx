@@ -1,5 +1,6 @@
 import { cases, allCategories, allYears, allRegions } from "@/lib/cases";
 import GalleryClient from "@/components/GalleryClient";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -14,10 +15,25 @@ export default function Home() {
             Creative Case Archive
           </p>
         </div>
-        <p className="text-[9px] tracking-widest uppercase text-gray-400 text-right leading-relaxed hidden sm:block">
-          Cannes Lions / D&amp;AD<br />
-          Clio / ACC / Spikes Asia
-        </p>
+        <nav className="text-[9px] tracking-widest uppercase text-gray-400 text-right leading-relaxed hidden sm:flex flex-wrap justify-end gap-x-2 gap-y-0.5">
+          {[
+            { href: "/awards/cannes", label: "Cannes Lions" },
+            { href: "/awards/dad",    label: "D&AD"         },
+            { href: "/awards/clio",   label: "Clio"         },
+            { href: "/awards/acc",    label: "ACC"          },
+            { href: "/awards/spikes", label: "Spikes Asia"  },
+          ].map((item, i, arr) => (
+            <span key={item.href} className="flex items-center gap-x-2">
+              <Link
+                href={item.href}
+                className="hover:text-gray-900 transition-colors"
+              >
+                {item.label}
+              </Link>
+              {i < arr.length - 1 && <span className="text-gray-300">/</span>}
+            </span>
+          ))}
+        </nav>
       </header>
 
       <GalleryClient
