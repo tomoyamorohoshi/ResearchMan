@@ -261,8 +261,8 @@
       "グローバル"
     ],
     "link": "https://www.wired.com/2008/01/the-cloverfield/",
-    "thumbnail": "https://i.ytimg.com/vi/4WyaKvNwS1Q/hqdefault.jpg",
-    "videoId": "4WyaKvNwS1Q",
+    "thumbnail": "/thumbnails/cloverfield-arg.jpg",
+    "videoId": "_afPFLvh2qg",
     "overview": "映画Cloverfieldの予告篇にはタイトルなし、キャストなし、ただ「1-18-08」という日付のみ。1-18-08.comはポラロイド写真だけが掲載され説明ゼロ。予告篇に映り込む「Slusho」TシャツからSlusho.jp（架空日本スラッシードリンク会社）が発見され、その親会社Tagruato.jp（深海掘削企業）、内部告発NGO「TIDOWave.com」へと世界観が広がった。",
     "background": "2007年当時、インターネットで映画情報を探すファン文化が成熟しつつあった。J.J. Abramsはこの習性を逆手に取り「情報を隠すことで最大の話題を生む」戦略を設計。架空企業サイトが現実のインターネットに存在することで、フィクションと現実の境界を曖昧にした。",
     "execution": "6ヶ月間、1-18-08.comが「唯一の公式情報源」として機能。Tagruato.jpは深海掘削企業の完全な企業サイトとして運営（採用情報・プレスリリース・財務情報付き）。映画公開前にTagruato衛星の大西洋への落下・Chuai Station掘削基地の謎の沈没がサイト上で「報告」される。",
@@ -301,8 +301,8 @@
       "グローバル"
     ],
     "link": "https://www.theguardian.com/film/2012/may/31/prometheus-viral-campaign-weyland-industries",
-    "thumbnail": "https://i.ytimg.com/vi/4PPGrNsJxEI/hqdefault.jpg",
-    "videoId": "4PPGrNsJxEI",
+    "thumbnail": "/thumbnails/prometheus-weyland-industries.jpg",
+    "videoId": "ejd4Uhw5tFc",
     "overview": "WeylandIndustries.comが映画Prometheusの設定上の企業として2年前から運営。CEO Peter WeylandによるTED講演（設定上2023年の未来）をYouTubeで公開。製品ライン・採用情報・株主向けIR・プレスリリースを完備した。映画公開直前、エンジニアリング部門ページが異星人の発見を示唆するコンテンツに変化。",
     "background": "Ridley Scott監督のPrometheus公開前キャンペーン。「映画のプロモーション」ではなく「映画の世界の企業Webサイト」として設計。Cloverfield ARGの架空企業サイト手法を本格的に洗練させた事例。",
     "execution": "Guy Pearce演じるPeter WeylandがTED2023で「不死」について語る4分間の講演をYouTubeで公開（撮影はTEDの本物のステージで）。weylandindustries.comには採用ページ・財務報告・製品カタログを掲載。公開2週間前、サイトが「外星体発見」に関するシグナルを受信したというフィクション更新が行われた。",
@@ -750,8 +750,8 @@
       "欧州"
     ],
     "link": "https://www.contagious.com/en/article/news-and-views/honda-the-other-side",
-    "thumbnail": "https://i.ytimg.com/vi/CUFhMT2vINY/hqdefault.jpg",
-    "videoId": "CUFhMT2vINY",
+    "thumbnail": "/thumbnails/honda-the-other-side.jpg",
+    "videoId": "pEmmUDg2kuI",
     "overview": "Hondaのサイトで通常版Civic（家族向け）のCMが流れる。キーボードの「R」を押すと瞬時に同じシーン・同じ俳優でCivic Type R（スポーツ）バージョンに切り替わる。ストーリーが完全に反転（普通の父親 vs 夜の裏社会レーサー）しながら、同じロケーション・同じカット割りで展開。「R」を押し続ける間だけ「もう一つの世界」が見える。",
     "background": "Honda Civic Type Rの新型モデルローンチに際し、「同じ車の表と裏」というコンセプトを映像表現に落とした。単一キー操作でパラレルワールドに移動するという体験設計は、当時のWeb技術の限界に挑戦した。",
     "execution": "同一のシーンを2バージョンで撮影し、JavaScriptでキー入力を検知して動画ストリームをシームレス切り替え。両バージョンは完全に同期しており、どの時点でも「R」を押せば正確に対応するシーンに移行。",
@@ -1917,8 +1917,8 @@
       "グローバル"
     ],
     "link": "https://adage.com/events-awards/cannes-lions/aa-ai-titanium-jury/",
-    "thumbnail": "https://www.adage.com/resizer/v2/DHQFJAMXNBATDAI6OFEPN2ZTBU.jpg?auth=ce21f540bff7d3d1e9ecbe8cf3fc60b37e14b9fae531084926542bcc7d96c20f&amp;width=1200#.jpg",
-    "videoId": "",
+    "thumbnail": "/thumbnails/the-ai-jury-2026.jpg",
+    "videoId": "seOY2jGblGw",
     "overview": "Cannes Lions 2026の開幕に合わせ、NYのエージェンシーRiseが構築したAI審査員団の実験。『Craft Purist』『Scalable Skeptic』といったペルソナを持つAI審査員が、最高峰のチタニウム・グランプリ受賞作を予測。結果としてLePub制作のHeineken『Pub Succession』を選出した。AIが業界の創造性をどう『見る』かを可視化する試み。",
     "background": "AIがクリエイティブ審査に介入しうるかという議論がカンヌで活発化する中、Riseは『AIは脅威ではなく、より創造的になるための招待状』という立場を提示。人間の審美眼とアルゴリズムの判断の差異を実証的に示す狙いがあった。",
     "execution": "AI審査員団は20年分のカンヌ受賞作と歴代ジャッジの審議議事録で事前訓練。脚本も誘導もなしに自律的に審議させ、その過程をGoogleのVeo3で映像化して1本のフィルムに仕立てた。CCOのFlavio Vidigalは『これが機械から見た我々の業界の姿だ』とコメントした。",
