@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Case } from "@/lib/cases";
+import { getAwardLevel } from "@/lib/awardLevel";
 
 type Props = {
   c: Case;
@@ -11,6 +12,7 @@ type Props = {
 };
 
 export default function CaseCard({ c, isFavorite, onToggleFavorite }: Props) {
+  const level = getAwardLevel(c.award);
   return (
     <div className="group relative bg-white flex flex-col">
       {/* ── 上段：テキストエリア ── */}
@@ -57,11 +59,19 @@ export default function CaseCard({ c, isFavorite, onToggleFavorite }: Props) {
       </Link>
 
       {/* 年・受賞バッジ */}
-      <div className="px-4 pb-3 flex items-center justify-between">
-        <span className="text-[9px] tracking-widest text-gray-400 uppercase leading-none">
-          {c.award.split(" ").slice(0, 3).join(" ")}
-        </span>
-        <span className="text-xs font-black text-gray-900 tabular-nums">
+      <div className="px-4 pb-3 flex items-center justify-between gap-2">
+        {level ? (
+          <span
+            className={`text-[9px] font-black tracking-[0.15em] leading-none px-1.5 py-1 ${level.color} ${level.bg}`}
+          >
+            {level.label}
+          </span>
+        ) : (
+          <span className="text-[9px] tracking-widest text-gray-400 uppercase leading-none truncate">
+            {c.award.split(" ").slice(0, 3).join(" ")}
+          </span>
+        )}
+        <span className="text-xs font-black text-gray-900 tabular-nums shrink-0">
           {c.year}
         </span>
       </div>

@@ -4,20 +4,22 @@ import { useState } from "react";
 import type { Case } from "@/lib/cases";
 import CaseCard from "./CaseCard";
 import { useFavorites } from "@/hooks/useFavorites";
+import { compareByAward } from "@/lib/awardLevel";
 
 type Props = {
   cases: Case[];
   categories: string[];
   years: string[];
   regions: string[];
+  defaultSort?: SortOrder;
 };
 
-type SortOrder = "added" | "year";
+type SortOrder = "added" | "year" | "award";
 
-export default function GalleryClient({ cases, categories, years, regions }: Props) {
+export default function GalleryClient({ cases, categories, years, regions, defaultSort = "added" }: Props) {
   const [filters, setFilters] = useState({ category: "", year: "", region: "" });
   const [query, setQuery] = useState("");
-  const [sort, setSort] = useState<SortOrder>("added");
+  const [sort, setSort] = useState<SortOrder>(defaultSort);
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
   const { favorites, toggle, mounted } = useFavorites();
@@ -39,9 +41,12 @@ export default function GalleryClient({ cases, categories, years, regions }: Pro
     return true;
   });
 
-  const sorted = sort === "year"
-    ? [...filtered].sort((a, b) => parseInt(b.year) - parseInt(a.year))
-    : filtered;
+  const sorted =
+    sort === "year"
+      ? [...filtered].sort((a, b) => parseInt(b.year) - parseInt(a.year))
+      : sort === "award"
+        ? [...filtered].sort(compareByAward)
+        : filtered;
 
   const favoriteCount = mounted ? favorites.size : 0;
   const activeFilterCount = [filters.category, filters.year, filters.region].filter(Boolean).length;
@@ -73,7 +78,7 @@ export default function GalleryClient({ cases, categories, years, regions }: Pro
           <span className="text-gray-300">|</span>
 
           {/* ソート */}
-          {(["added", "year"] as SortOrder[]).map((s) => (
+          {(["added", "year", "award"] as SortOrder[]).map((s) => (
             <button
               key={s}
               onClick={() => setSort(s)}
@@ -81,7 +86,7 @@ export default function GalleryClient({ cases, categories, years, regions }: Pro
                 sort === s ? "text-gray-900" : "text-gray-400 hover:text-gray-900"
               }`}
             >
-              {s === "added" ? "New" : "Year"}
+              {s === "added" ? "New" : s === "year" ? "Year" : "Award"}
             </button>
           ))}
 

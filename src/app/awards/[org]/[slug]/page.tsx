@@ -71,6 +71,7 @@ export default async function CollectionPage({
         categories={categories}
         years={years}
         regions={regions}
+        defaultSort="award"
       />
     </div>
   );
