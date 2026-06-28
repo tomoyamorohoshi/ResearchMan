@@ -18,6 +18,8 @@ export type Case = {
   execution: string;
   evaluationImpact: string;
   relatedWorks: Array<{ title: string; description: string; url: string }> | string;
+  // どのリサーチ文脈で収集したかを示すソースタグ（例: "Cannes 2026", "Web & Social", "Radar"）
+  sources?: string[];
   // legacy fields (backward compat)
   mechanism?: string;
   impact?: string;
@@ -36,6 +38,10 @@ export const allYears = Array.from(new Set(cases.map((c) => c.year))).sort(
 
 export const allRegions = Array.from(
   new Set(cases.flatMap((c) => c.regions))
+).sort();
+
+export const allSources = Array.from(
+  new Set(cases.flatMap((c) => c.sources ?? []))
 ).sort();
 
 export function getCaseById(id: string): Case | undefined {

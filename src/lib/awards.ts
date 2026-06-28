@@ -122,3 +122,13 @@ export function getCollectionBySlug(orgKey: OrgKey, slug: string): AwardCollecti
 export function getOrgByKey(key: string) {
   return AWARD_ORGS.find(o => o.key === key);
 }
+
+// 1ケースのaward文字列に複数の受賞が "/" 区切りで含まれる場合に分解して返す。
+// 例: "Cannes Lions Film Craft Grand Prix 2015 / D&AD Yellow Pencil / FWA" → 3件。
+// CaseCard の「+N」バッジ（複数部門受賞の表示）に使う。
+export function getCaseAwardRefs(c: Case): string[] {
+  return (c.award ?? '')
+    .split('/')
+    .map(s => s.trim())
+    .filter(Boolean);
+}

@@ -1,4 +1,4 @@
-import { cases, allCategories, allYears, allRegions } from "@/lib/cases";
+import { cases, allCategories, allYears, allRegions, allSources } from "@/lib/cases";
 import GalleryClient from "@/components/GalleryClient";
 import Link from "next/link";
 
@@ -41,6 +41,7 @@ export default function Home() {
         categories={allCategories}
         years={allYears}
         regions={allRegions}
+        sources={allSources}
       />
     </main>
   );

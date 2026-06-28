@@ -11,13 +11,14 @@ type Props = {
   categories: string[];
   years: string[];
   regions: string[];
+  sources?: string[];
   defaultSort?: SortOrder;
 };
 
 type SortOrder = "added" | "year" | "award";
 
-export default function GalleryClient({ cases, categories, years, regions, defaultSort = "added" }: Props) {
-  const [filters, setFilters] = useState({ category: "", year: "", region: "" });
+export default function GalleryClient({ cases, categories, years, regions, sources = [], defaultSort = "added" }: Props) {
+  const [filters, setFilters] = useState({ category: "", year: "", region: "", source: "" });
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<SortOrder>(defaultSort);
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
@@ -29,6 +30,7 @@ export default function GalleryClient({ cases, categories, years, regions, defau
     if (filters.category && !c.categories.includes(filters.category)) return false;
     if (filters.year && c.year !== filters.year) return false;
     if (filters.region && !c.regions.includes(filters.region)) return false;
+    if (filters.source && !(c.sources ?? []).includes(filters.source)) return false;
     if (query) {
       const q = query.toLowerCase();
       return (
@@ -49,7 +51,7 @@ export default function GalleryClient({ cases, categories, years, regions, defau
         : filtered;
 
   const favoriteCount = mounted ? favorites.size : 0;
-  const activeFilterCount = [filters.category, filters.year, filters.region].filter(Boolean).length;
+  const activeFilterCount = [filters.category, filters.year, filters.region, filters.source].filter(Boolean).length;
 
   return (
     <>
@@ -119,9 +121,13 @@ export default function GalleryClient({ cases, categories, years, regions, defau
               onSelect={(v) => setFilters((p) => ({ ...p, year: p.year === v ? "" : v }))} />
             <FilterGroup label="Region" options={regions} value={filters.region}
               onSelect={(v) => setFilters((p) => ({ ...p, region: p.region === v ? "" : v }))} />
+            {sources.length > 0 && (
+              <FilterGroup label="Source" options={sources} value={filters.source} prefix="#"
+                onSelect={(v) => setFilters((p) => ({ ...p, source: p.source === v ? "" : v }))} />
+            )}
             {activeFilterCount > 0 && (
               <button
-                onClick={() => setFilters({ category: "", year: "", region: "" })}
+                onClick={() => setFilters({ category: "", year: "", region: "", source: "" })}
                 className="text-[10px] tracking-widest uppercase text-gray-400 hover:text-gray-900 self-center"
               >
                 Clear all
@@ -155,9 +161,9 @@ export default function GalleryClient({ cases, categories, years, regions, defau
 }
 
 function FilterGroup({
-  label, options, value, onSelect,
+  label, options, value, onSelect, prefix = "",
 }: {
-  label: string; options: string[]; value: string; onSelect: (v: string) => void;
+  label: string; options: string[]; value: string; onSelect: (v: string) => void; prefix?: string;
 }) {
   return (
     <div className="flex items-center gap-2 flex-wrap">
@@ -172,7 +178,7 @@ function FilterGroup({
               : "border-gray-300 text-gray-400 hover:border-gray-600 hover:text-gray-700"
           }`}
         >
-          {opt}
+          {prefix}{opt}
         </button>
       ))}
     </div>

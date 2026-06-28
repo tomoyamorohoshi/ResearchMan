@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Case } from "@/lib/cases";
 import { getAwardLevel } from "@/lib/awardLevel";
+import { getCaseAwardRefs } from "@/lib/awards";
 
 type Props = {
   c: Case;
@@ -13,6 +14,7 @@ type Props = {
 
 export default function CaseCard({ c, isFavorite, onToggleFavorite }: Props) {
   const level = getAwardLevel(c.award);
+  const awardCount = getCaseAwardRefs(c).length;
   return (
     <div className="group relative bg-white flex flex-col">
       {/* ── 上段：テキストエリア ── */}
@@ -60,17 +62,27 @@ export default function CaseCard({ c, isFavorite, onToggleFavorite }: Props) {
 
       {/* 年・受賞バッジ */}
       <div className="px-4 pb-3 flex items-center justify-between gap-2">
-        {level ? (
-          <span
-            className={`text-[9px] font-black tracking-[0.15em] leading-none px-1.5 py-1 ${level.color} ${level.bg}`}
-          >
-            {level.label}
-          </span>
-        ) : (
-          <span className="text-[9px] tracking-widest text-gray-400 uppercase leading-none truncate">
-            {c.award.split(" ").slice(0, 3).join(" ")}
-          </span>
-        )}
+        <div className="flex items-center gap-1 min-w-0">
+          {level ? (
+            <span
+              className={`text-[9px] font-black tracking-[0.15em] leading-none px-1.5 py-1 ${level.color} ${level.bg}`}
+            >
+              {level.label}
+            </span>
+          ) : (
+            <span className="text-[9px] tracking-widest text-gray-400 uppercase leading-none truncate">
+              {c.award.split(" ").slice(0, 3).join(" ")}
+            </span>
+          )}
+          {awardCount > 1 && (
+            <span
+              className="text-[9px] font-black leading-none px-1 py-1 border border-gray-900 text-gray-900 shrink-0"
+              title={`${awardCount}部門で受賞`}
+            >
+              +{awardCount - 1}
+            </span>
+          )}
+        </div>
         <span className="text-xs font-black text-gray-900 tabular-nums shrink-0">
           {c.year}
         </span>

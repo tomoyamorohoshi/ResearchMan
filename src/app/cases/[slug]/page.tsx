@@ -64,6 +64,14 @@ export default async function CasePage({
               {r}
             </span>
           ))}
+          {(c.sources ?? []).map((s) => (
+            <span
+              key={s}
+              className="text-xs px-2 py-0.5 border border-gray-900 text-gray-900 rounded-full font-medium"
+            >
+              #{s}
+            </span>
+          ))}
         </div>
 
         <h1 className="text-2xl font-bold text-gray-900 mb-2">{c.title}</h1>
