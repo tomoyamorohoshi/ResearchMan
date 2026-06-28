@@ -5,6 +5,7 @@ import type { Case } from "@/lib/cases";
 import CaseCard from "./CaseCard";
 import { useFavorites } from "@/hooks/useFavorites";
 import { compareByAward } from "@/lib/awardLevel";
+import { tabSources, getSourceKind } from "@/lib/researchSources";
 
 type Props = {
   cases: Case[];
@@ -19,13 +20,26 @@ type SortOrder = "added" | "year" | "award";
 
 export default function GalleryClient({ cases, categories, years, regions, sources = [], defaultSort = "added" }: Props) {
   const [filters, setFilters] = useState({ category: "", year: "", region: "", source: "" });
+  const [tab, setTab] = useState("");
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<SortOrder>(defaultSort);
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
   const { favorites, toggle, mounted } = useFavorites();
 
+  // タブ（リサーチオーダー／Radar）— データに1件以上あるものだけ件数付きで表示
+  const tabs = tabSources
+    .map((s) => ({
+      ...s,
+      count: cases.filter((c) => (c.sources ?? []).includes(s.tag)).length,
+    }))
+    .filter((s) => s.count > 0);
+
+  // 「#」ハッシュタグフィルターはアワード系ソースのみ（タブと役割を分ける）
+  const awardSources = sources.filter((s) => getSourceKind(s) === "award");
+
   const filtered = cases.filter((c) => {
+    if (tab && !(c.sources ?? []).includes(tab)) return false;
     if (showFavoritesOnly && !favorites.has(c.id)) return false;
     if (filters.category && !c.categories.includes(filters.category)) return false;
     if (filters.year && c.year !== filters.year) return false;
@@ -57,6 +71,28 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
     <>
       {/* ── コントロールバー ── */}
       <div className="border-b border-gray-300 bg-[#eeece7] sticky top-0 z-10">
+        {/* リサーチオーダー別タブ */}
+        {tabs.length > 0 && (
+          <div className="border-b border-gray-200">
+            <div
+              className="max-w-[1600px] mx-auto px-4 flex items-stretch gap-1 overflow-x-auto"
+              role="tablist"
+              aria-label="リサーチオーダー"
+            >
+              <TabButton label="All" active={tab === ""} onClick={() => setTab("")} />
+              {tabs.map((t) => (
+                <TabButton
+                  key={t.tag}
+                  label={t.label}
+                  count={t.count}
+                  radar={t.kind === "radar"}
+                  active={tab === t.tag}
+                  onClick={() => setTab(tab === t.tag ? "" : t.tag)}
+                />
+              ))}
+            </div>
+          </div>
+        )}
         <div className="max-w-[1600px] mx-auto px-4 py-3 flex items-center gap-3 flex-wrap">
           {/* 検索 */}
           <input
@@ -121,8 +157,8 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
               onSelect={(v) => setFilters((p) => ({ ...p, year: p.year === v ? "" : v }))} />
             <FilterGroup label="Region" options={regions} value={filters.region}
               onSelect={(v) => setFilters((p) => ({ ...p, region: p.region === v ? "" : v }))} />
-            {sources.length > 0 && (
-              <FilterGroup label="Source" options={sources} value={filters.source} prefix="#"
+            {awardSources.length > 0 && (
+              <FilterGroup label="Source" options={awardSources} value={filters.source} prefix="#"
                 onSelect={(v) => setFilters((p) => ({ ...p, source: p.source === v ? "" : v }))} />
             )}
             {activeFilterCount > 0 && (
@@ -157,6 +193,31 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
         </div>
       )}
     </>
+  );
+}
+
+function TabButton({
+  label, count, active, radar = false, onClick,
+}: {
+  label: string; count?: number; active: boolean; radar?: boolean; onClick: () => void;
+}) {
+  return (
+    <button
+      role="tab"
+      aria-selected={active}
+      onClick={onClick}
+      className={`relative shrink-0 px-3 py-2.5 text-[10px] tracking-[0.15em] uppercase font-bold transition-colors border-b-2 -mb-px flex items-center gap-1.5 ${
+        active
+          ? "text-gray-900 border-gray-900"
+          : "text-gray-400 border-transparent hover:text-gray-700"
+      }`}
+    >
+      {radar && <span className="w-1 h-1 rounded-full bg-[#b08d2d]" aria-hidden="true" />}
+      {label}
+      {typeof count === "number" && (
+        <span className="text-[9px] text-gray-400 tabular-nums font-normal">{count}</span>
+      )}
+    </button>
   );
 }
 

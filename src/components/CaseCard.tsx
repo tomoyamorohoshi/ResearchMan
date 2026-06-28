@@ -5,6 +5,7 @@ import Image from "next/image";
 import type { Case } from "@/lib/cases";
 import { getAwardLevel } from "@/lib/awardLevel";
 import { getCaseAwardRefs } from "@/lib/awards";
+import { isRadarCase } from "@/lib/researchSources";
 
 type Props = {
   c: Case;
@@ -15,17 +16,30 @@ type Props = {
 export default function CaseCard({ c, isFavorite, onToggleFavorite }: Props) {
   const level = getAwardLevel(c.award);
   const awardCount = getCaseAwardRefs(c).length;
+  const isRadar = isRadarCase(c);
   return (
-    <div className="group relative bg-white flex flex-col">
+    <div
+      className={`group relative flex flex-col ${
+        isRadar ? "bg-[#f6efdd]" : "bg-white"
+      }`}
+    >
       {/* ── 上段：テキストエリア ── */}
       <Link href={`/cases/${c.id}`} className="block flex-1 p-4 pb-3">
         {/* ロゴマーク + カテゴリ */}
         <div className="flex items-start justify-between mb-3">
-          <span
-            className="text-[11px] font-black tracking-[0.2em] uppercase text-gray-900 leading-none"
-            style={{ fontVariant: "all-small-caps" }}
-          >
-            RM
+          <span className="flex items-center gap-1.5">
+            <span
+              className="text-[11px] font-black tracking-[0.2em] uppercase text-gray-900 leading-none"
+              style={{ fontVariant: "all-small-caps" }}
+            >
+              RM
+            </span>
+            {isRadar && (
+              <span className="flex items-center gap-1 text-[8px] font-black tracking-[0.18em] uppercase text-[#9c7a1f] leading-none">
+                <span className="w-1 h-1 rounded-full bg-[#b08d2d]" aria-hidden="true" />
+                Radar
+              </span>
+            )}
           </span>
           <div className="text-right">
             {c.categories.slice(0, 1).map((cat) => (
@@ -48,6 +62,13 @@ export default function CaseCard({ c, isFavorite, onToggleFavorite }: Props) {
         <h2 className="text-base font-black leading-tight text-gray-900 mb-2 tracking-tight">
           {c.title}
         </h2>
+
+        {/* 概要文 */}
+        {c.summary && (
+          <p className="text-[11px] text-gray-600 leading-relaxed mb-2 line-clamp-3">
+            {c.summary}
+          </p>
+        )}
 
         {/* 区切り線 */}
         <div className="w-5 h-px bg-gray-900 mb-2" />
