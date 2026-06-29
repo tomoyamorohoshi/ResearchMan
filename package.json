@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "audit:cannes": "node scripts/audit-cannes.mjs",
+    "audit:thumbnails": "node scripts/audit-thumbnails.mjs",
     "fetch-thumbnails": "node scripts/fetch-thumbnails.mjs",
     "check-links": "node scripts/check-links.mjs",
     "auto-research": "node scripts/auto-research.mjs",
