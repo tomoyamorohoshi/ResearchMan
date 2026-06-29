@@ -23,7 +23,18 @@ export default function CaseCard({ c, isFavorite, onToggleFavorite }: Props) {
         isRadar ? "bg-[#f6efdd]" : "bg-white"
       }`}
     >
-      {/* ── 上段：テキストエリア ── */}
+      {/* ── 上段：画像エリア ── */}
+      <Link href={`/cases/${c.id}`} className="block relative aspect-square overflow-hidden">
+        <Image
+          src={c.thumbnail}
+          alt={c.title}
+          fill
+          className="object-cover group-hover:scale-105 transition-transform duration-500"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+        />
+      </Link>
+
+      {/* ── 下段：テキストエリア ── */}
       <Link href={`/cases/${c.id}`} className="block flex-1 p-4 pb-3">
         {/* ロゴマーク + カテゴリ */}
         <div className="flex items-start justify-between mb-3">
@@ -109,18 +120,7 @@ export default function CaseCard({ c, isFavorite, onToggleFavorite }: Props) {
         </span>
       </div>
 
-      {/* ── 下段：画像エリア ── */}
-      <Link href={`/cases/${c.id}`} className="block relative aspect-square overflow-hidden">
-        <Image
-          src={c.thumbnail}
-          alt={c.title}
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-        />
-      </Link>
-
-      {/* お気に入りボタン */}
+      {/* お気に入りボタン（画像に重ねる） */}
       <button
         onClick={(e) => {
           e.preventDefault();
@@ -128,7 +128,7 @@ export default function CaseCard({ c, isFavorite, onToggleFavorite }: Props) {
           onToggleFavorite(c.id);
         }}
         aria-label={isFavorite ? "お気に入りを解除" : "お気に入りに追加"}
-        className={`absolute bottom-2 right-2 w-7 h-7 flex items-center justify-center transition-all duration-150
+        className={`absolute top-2 right-2 w-7 h-7 flex items-center justify-center transition-all duration-150
           ${isFavorite
             ? "text-yellow-400 opacity-100"
             : "text-white/80 opacity-0 group-hover:opacity-100 hover:text-yellow-300"
