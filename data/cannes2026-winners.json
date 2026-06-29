@@ -1,0 +1,3447 @@
+{
+  "_note": "Cannes Lions 2026 公式受賞作の正解リスト（監査の単一ソース）。6体の独立監査エージェントが lovethework公式DB＋トレード各誌から構築。Silver/Bronzeは公開記録に名前がある分のみ（大規模部門は完全名簿が非公開）。",
+  "generatedFrom": "6 audit agents",
+  "count": 430,
+  "winners": [
+    {
+      "category": "Audio & Radio",
+      "level": "Silver",
+      "title": "A Mother's Commentary",
+      "brand": "Reporters Without Borders",
+      "agency": "The Good Company Paris",
+      "market": "France"
+    },
+    {
+      "category": "Audio & Radio",
+      "level": "Bronze",
+      "title": "Ads in My Phone Call",
+      "brand": "Skinny",
+      "agency": "Colenso BBDO Auckland",
+      "market": "New Zealand"
+    },
+    {
+      "category": "Audio & Radio",
+      "level": "Bronze",
+      "title": "Beat Cancer Off",
+      "brand": "F Cancer",
+      "agency": "VML New York",
+      "market": "US"
+    },
+    {
+      "category": "Audio & Radio",
+      "level": "Grand Prix",
+      "title": "Coquí Alarmed",
+      "brand": "Hyundai Puerto Rico",
+      "agency": "BBDO Puerto Rico (Guaynabo)",
+      "market": "Puerto Rico"
+    },
+    {
+      "category": "Audio & Radio",
+      "level": "Bronze",
+      "title": "Duobell",
+      "brand": "Škoda",
+      "agency": "AMV BBDO London",
+      "market": "UK"
+    },
+    {
+      "category": "Audio & Radio",
+      "level": "Bronze",
+      "title": "Hansa Pilsener (Healing Era/The Hustle/Delulu)",
+      "brand": "Hansa Pilsener",
+      "agency": "Joe Public Johannesburg",
+      "market": "South Africa"
+    },
+    {
+      "category": "Audio & Radio",
+      "level": "Bronze",
+      "title": "Played by Humans",
+      "brand": "Jazz Is Dead",
+      "agency": "TBWA\\Chiat\\Day LA",
+      "market": "US"
+    },
+    {
+      "category": "Audio & Radio",
+      "level": "Gold",
+      "title": "Searching for Birds on Wires",
+      "brand": "Abradee",
+      "agency": "Africa Creative São Paulo",
+      "market": "Brazil"
+    },
+    {
+      "category": "Audio & Radio",
+      "level": "Gold",
+      "title": "Sleep Talk Reviews",
+      "brand": "IKEA",
+      "agency": "Rethink Toronto",
+      "market": "Canada"
+    },
+    {
+      "category": "Audio & Radio",
+      "level": "Silver",
+      "title": "The Unofficial Official Sound of F1",
+      "brand": "Sting",
+      "agency": "Leo India Mumbai",
+      "market": "India"
+    },
+    {
+      "category": "Audio & Radio",
+      "level": "Silver",
+      "title": "The Yangzhou Qiao Bei Musical Suite",
+      "brand": "Yangzhou Bureau of Culture/Tourism",
+      "agency": "TBWA\\China Shanghai",
+      "market": "China"
+    },
+    {
+      "category": "Audio & Radio",
+      "level": "Bronze",
+      "title": "Voice of Food",
+      "brand": "Ajinomoto",
+      "agency": "Dentsu Inc. Tokyo",
+      "market": "Japan"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "level": "Silver",
+      "title": "Build Your Own Super Bowl Commercial",
+      "brand": "Uber Eats",
+      "agency": "Special",
+      "market": "USA"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "level": "Gold",
+      "title": "Cif Clean My Name",
+      "brand": "Cif",
+      "agency": "Droga5 (Accenture Song)",
+      "market": "United Kingdom"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "level": "Gold",
+      "title": "Could Have Been a Heineken",
+      "brand": "Heineken",
+      "agency": "LePub",
+      "market": "Italy / Brazil"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "level": "Silver",
+      "title": "Dove R/eal Reviews",
+      "brand": "Dove",
+      "agency": "David",
+      "market": "UK / Spain"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "level": "Grand Prix",
+      "title": "Expedition Impossible",
+      "brand": "Columbia Sportswear",
+      "agency": "adam&eve\\TBWA, London",
+      "market": "United Kingdom"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "level": "Gold",
+      "title": "Expensive Sh*t",
+      "brand": "Huggies",
+      "agency": "McCann New York",
+      "market": "USA"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "level": "Bronze",
+      "title": "Gaming Flute",
+      "brand": "Skittles",
+      "agency": "TBWA\\Chiat\\Day, Chicago",
+      "market": "USA"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "level": "Silver",
+      "title": "Haven",
+      "brand": "Suncorp Insurance",
+      "agency": "Leo Australia",
+      "market": "Australia"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "level": "Bronze",
+      "title": "Heinz Dipper",
+      "brand": "Heinz Ketchup",
+      "agency": "Rethink",
+      "market": "Canada"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "level": "Gold",
+      "title": "Kyle F*cking Connor",
+      "brand": "KFC",
+      "agency": "Courage",
+      "market": "Canada"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "level": "Gold",
+      "title": "Lucky Fan Index",
+      "brand": "Wisła Kraków FC",
+      "agency": "VML Warsaw",
+      "market": "Poland"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "level": "Silver",
+      "title": "No Frame Missed",
+      "brand": "Apple",
+      "agency": "TBWA\\Media Arts Lab",
+      "market": "USA"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "level": "Gold",
+      "title": "Oreo Cows",
+      "brand": "Oreo",
+      "agency": "VML (New York / Mexico City)",
+      "market": "USA / Mexico"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "level": "Bronze",
+      "title": "Santa María Pueblo Hotel",
+      "brand": "Senatur",
+      "agency": "Oniria\\TBWA",
+      "market": "Paraguay"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "level": "Gold",
+      "title": "SOS POS",
+      "brand": "BCP",
+      "agency": "Circus Grey",
+      "market": "Peru"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "level": "Silver",
+      "title": "The Last Coke in the Desert",
+      "brand": "Coca-Cola",
+      "agency": "VML (NY / São Paulo / Mexico City)",
+      "market": "USA / Brazil / Mexico"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "level": "Silver",
+      "title": "The Thousand Sponsors of Muni",
+      "brand": "Club Deportivo Municipal",
+      "agency": "McCann Lima",
+      "market": "Peru"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "level": "Silver",
+      "title": "Welcome Back, Paisano",
+      "brand": "Tecate",
+      "agency": "LePub",
+      "market": "Mexico"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "level": "Bronze",
+      "title": "You Must Love Coke",
+      "brand": "Coca-Cola",
+      "agency": "Grey New York / Grey Argentina / VML",
+      "market": "USA / Argentina"
+    },
+    {
+      "category": "Creative B2B",
+      "level": "Bronze",
+      "title": "Dark Mode Ads",
+      "brand": "Plenitude",
+      "agency": "LePub",
+      "market": "Italy"
+    },
+    {
+      "category": "Creative B2B",
+      "level": "Silver",
+      "title": "Keep Thinking",
+      "brand": "Claude (Anthropic)",
+      "agency": "Mother",
+      "market": "UK / USA"
+    },
+    {
+      "category": "Creative B2B",
+      "level": "Silver",
+      "title": "Reverse Media Schedule",
+      "brand": "Sea Cleaners & JCDecaux",
+      "agency": "Dentsu Creative",
+      "market": "France"
+    },
+    {
+      "category": "Creative B2B",
+      "level": "Gold",
+      "title": "Soil Stay",
+      "brand": "Tra Mongkut Fertilizer",
+      "agency": "VML, Bangkok",
+      "market": "Thailand"
+    },
+    {
+      "category": "Creative B2B",
+      "level": "Bronze",
+      "title": "T-Rex Leather",
+      "brand": "Lab-Grown Leather",
+      "agency": "VML",
+      "market": "France"
+    },
+    {
+      "category": "Creative B2B",
+      "level": "Grand Prix",
+      "title": "The Faroe Islands Space Program",
+      "brand": "SKF",
+      "agency": "Nord, Stockholm",
+      "market": "Sweden"
+    },
+    {
+      "category": "Creative B2B",
+      "level": "Bronze",
+      "title": "The Pub That Refused to Die",
+      "brand": "Heineken",
+      "agency": "LePub",
+      "market": "Ireland / Italy"
+    },
+    {
+      "category": "Creative B2B",
+      "level": "Silver",
+      "title": "The Trojan Fax",
+      "brand": "IUCN French Committee x Fujifilm Print",
+      "agency": "BETC",
+      "market": "France"
+    },
+    {
+      "category": "Creative B2B",
+      "level": "Gold",
+      "title": "Tocayos",
+      "brand": "Heineken",
+      "agency": "LePub, Milan",
+      "market": "Italy"
+    },
+    {
+      "category": "Creative B2B",
+      "level": "Bronze",
+      "title": "Vaseline Originals",
+      "brand": "Vaseline",
+      "agency": "Ogilvy Singapore",
+      "market": "Singapore"
+    },
+    {
+      "category": "Creative Brand",
+      "level": "Grand Prix",
+      "title": "AB InBev: Creativity at Scale",
+      "brand": "AB InBev",
+      "agency": "AB InBev (in-house) — Creative Marketer of the Year 2026",
+      "market": "Belgium"
+    },
+    {
+      "category": "Creative Business Transformation",
+      "level": "Silver",
+      "title": "Code for the Protection and Inclusion of Black Consumers",
+      "brand": "L'Oréal Luxe",
+      "agency": "Beta Collective",
+      "market": "France/Brazil"
+    },
+    {
+      "category": "Creative Business Transformation",
+      "level": "Gold",
+      "title": "Protect the Peanut",
+      "brand": "M&M's / Mars Snacking",
+      "agency": "BBDO Chicago",
+      "market": "USA"
+    },
+    {
+      "category": "Creative Business Transformation",
+      "level": "Grand Prix",
+      "title": "The Wedding Rice",
+      "brand": "Wikifarmer",
+      "agency": "McCann Athens",
+      "market": "Greece"
+    },
+    {
+      "category": "Creative Business Transformation",
+      "level": "Bronze",
+      "title": "Tocayos",
+      "brand": "Heineken",
+      "agency": "LePub Milan",
+      "market": "Spain"
+    },
+    {
+      "category": "Creative Business Transformation",
+      "level": "Silver",
+      "title": "Vaseline Verified",
+      "brand": "Vaseline",
+      "agency": "Ogilvy Singapore",
+      "market": "Singapore"
+    },
+    {
+      "category": "Creative Business Transformation",
+      "level": "Bronze",
+      "title": "Vaseline Verified (End-to-End Transformation)",
+      "brand": "Vaseline",
+      "agency": "Ogilvy Singapore",
+      "market": "Singapore"
+    },
+    {
+      "category": "Creative Business Transformation",
+      "level": "Bronze",
+      "title": "Vaseline Verified (Transformative Strategy)",
+      "brand": "Vaseline",
+      "agency": "Ogilvy Singapore",
+      "market": "Singapore"
+    },
+    {
+      "category": "Creative Commerce",
+      "level": "Bronze",
+      "title": "A Drugstore in Your Pesebre",
+      "brand": "Farmacias Económicas",
+      "agency": "Be Flamingo",
+      "market": "El Salvador"
+    },
+    {
+      "category": "Creative Commerce",
+      "level": "Bronze",
+      "title": "An Agent 'Como a Gente'",
+      "brand": "Magazine Luiza",
+      "agency": "Ogilvy",
+      "market": "Brazil"
+    },
+    {
+      "category": "Creative Commerce",
+      "level": "Bronze",
+      "title": "Cancer Prevention Discounts",
+      "brand": "Broadfork Produce",
+      "agency": "Tank Worldwide",
+      "market": "USA"
+    },
+    {
+      "category": "Creative Commerce",
+      "level": "Bronze",
+      "title": "Cif Clean My Name",
+      "brand": "Cif",
+      "agency": "Droga5 (Accenture Song)",
+      "market": "United Kingdom"
+    },
+    {
+      "category": "Creative Commerce",
+      "level": "Silver",
+      "title": "Copycats Welcome",
+      "brand": "Clash Royale",
+      "agency": "David",
+      "market": "USA"
+    },
+    {
+      "category": "Creative Commerce",
+      "level": "Grand Prix",
+      "title": "Lucky Fan Index",
+      "brand": "Wisła Kraków FC",
+      "agency": "VML Warsaw",
+      "market": "Poland"
+    },
+    {
+      "category": "Creative Commerce",
+      "level": "Silver",
+      "title": "Mandatory Vacation Packages",
+      "brand": "Cámara Colombiana de Comercio Electrónico",
+      "agency": "NAME",
+      "market": "Colombia"
+    },
+    {
+      "category": "Creative Commerce",
+      "level": "Silver",
+      "title": "Oreo Cows",
+      "brand": "Oreo",
+      "agency": "VML",
+      "market": "USA / Mexico"
+    },
+    {
+      "category": "Creative Commerce",
+      "level": "Bronze",
+      "title": "Resize the Price",
+      "brand": "Aguila",
+      "agency": "David",
+      "market": "Colombia"
+    },
+    {
+      "category": "Creative Commerce",
+      "level": "Bronze",
+      "title": "The Golden Zone",
+      "brand": "McDonald's",
+      "agency": "TBWA\\Colombia",
+      "market": "Colombia"
+    },
+    {
+      "category": "Creative Commerce",
+      "level": "Silver",
+      "title": "The Password Heist",
+      "brand": "Leroy Merlin",
+      "agency": "BETC",
+      "market": "France"
+    },
+    {
+      "category": "Creative Commerce",
+      "level": "Bronze",
+      "title": "Vaseline Originals",
+      "brand": "Vaseline",
+      "agency": "Ogilvy Singapore",
+      "market": "Singapore"
+    },
+    {
+      "category": "Creative Data",
+      "level": "Gold",
+      "title": "600K Network",
+      "brand": "Comando con Venezuela",
+      "agency": "Rainbow Lobster",
+      "market": "Venezuela/Mexico"
+    },
+    {
+      "category": "Creative Data",
+      "level": "Silver",
+      "title": "DuoBell",
+      "brand": "Škoda",
+      "agency": "AMV BBDO",
+      "market": "Czech Republic"
+    },
+    {
+      "category": "Creative Data",
+      "level": "Bronze",
+      "title": "Fantasy Herd",
+      "brand": "Meadow Fresh",
+      "agency": "McCann New Zealand",
+      "market": "New Zealand"
+    },
+    {
+      "category": "Creative Data",
+      "level": "Bronze",
+      "title": "Forests Without Names",
+      "brand": "Hyundai",
+      "agency": "BBDO New York",
+      "market": "USA"
+    },
+    {
+      "category": "Creative Data",
+      "level": "Bronze",
+      "title": "Haven",
+      "brand": "Suncorp Insurance",
+      "agency": "Leo Australia",
+      "market": "Australia"
+    },
+    {
+      "category": "Creative Data",
+      "level": "Bronze",
+      "title": "Here to Stay",
+      "brand": "Mastercard",
+      "agency": "McCann Poland",
+      "market": "Poland"
+    },
+    {
+      "category": "Creative Data",
+      "level": "Silver",
+      "title": "Lucky Fan Index",
+      "brand": "Wisła Kraków FC",
+      "agency": "VML",
+      "market": "Poland"
+    },
+    {
+      "category": "Creative Data",
+      "level": "Bronze",
+      "title": "Nigrum Corpus",
+      "brand": "Idomed & Instituto Yduqs",
+      "agency": "Artplan",
+      "market": "Brazil"
+    },
+    {
+      "category": "Creative Data",
+      "level": "Grand Prix",
+      "title": "SOS POS",
+      "brand": "BCP (Banco de Crédito del Perú)",
+      "agency": "Circus Grey Lima",
+      "market": "Peru"
+    },
+    {
+      "category": "Creative Data",
+      "level": "Bronze",
+      "title": "The Philipstown WireCar",
+      "brand": "The Philipstown WireCar Foundation",
+      "agency": "Accenture Song South Africa",
+      "market": "South Africa"
+    },
+    {
+      "category": "Creative Data",
+      "level": "Silver",
+      "title": "Unwatched Goals",
+      "brand": "Brahma",
+      "agency": "Africa Creative",
+      "market": "Brazil"
+    },
+    {
+      "category": "Creative Effectiveness",
+      "level": "Silver",
+      "title": "Football Is for Food",
+      "brand": "Uber Eats",
+      "agency": "Special",
+      "market": "USA/Australia"
+    },
+    {
+      "category": "Creative Effectiveness",
+      "level": "Silver",
+      "title": "IKEA Hidden Tags",
+      "brand": "IKEA",
+      "agency": "Uzina Lisbon",
+      "market": "Portugal"
+    },
+    {
+      "category": "Creative Effectiveness",
+      "level": "Bronze",
+      "title": "My Japan Railway",
+      "brand": "JR Group",
+      "agency": "Dentsu Inc. Tokyo",
+      "market": "Japan"
+    },
+    {
+      "category": "Creative Effectiveness",
+      "level": "Gold",
+      "title": "Pedigree Caramelo",
+      "brand": "Pedigree (Mars)",
+      "agency": "AlmapBBDO São Paulo",
+      "market": "Brazil"
+    },
+    {
+      "category": "Creative Effectiveness",
+      "level": "Bronze",
+      "title": "The Final Copy of Ilon Specht",
+      "brand": "L'Oréal Paris",
+      "agency": "McCann Paris",
+      "market": "France"
+    },
+    {
+      "category": "Creative Effectiveness",
+      "level": "Grand Prix",
+      "title": "Three Words",
+      "brand": "AXA France",
+      "agency": "Publicis Conseil Paris",
+      "market": "France"
+    },
+    {
+      "category": "Creative Effectiveness",
+      "level": "Silver",
+      "title": "Vaseline Verified",
+      "brand": "Vaseline",
+      "agency": "Ogilvy Singapore",
+      "market": "Singapore"
+    },
+    {
+      "category": "Creative Strategy",
+      "level": "Silver",
+      "title": "#UnCensorYourHealth",
+      "brand": "Ladywell",
+      "agency": "Saatchi & Saatchi",
+      "market": "USA"
+    },
+    {
+      "category": "Creative Strategy",
+      "level": "Silver",
+      "title": "A Time and a Place",
+      "brand": "Claude (Anthropic)",
+      "agency": "Mother",
+      "market": "USA/UK"
+    },
+    {
+      "category": "Creative Strategy",
+      "level": "Bronze",
+      "title": "Delivered by Tetris",
+      "brand": "La Poste",
+      "agency": "BETC",
+      "market": "France"
+    },
+    {
+      "category": "Creative Strategy",
+      "level": "Gold",
+      "title": "Dove R/eal Reviews",
+      "brand": "Dove",
+      "agency": "DAVID London/Madrid",
+      "market": "UK/Spain"
+    },
+    {
+      "category": "Creative Strategy",
+      "level": "Bronze",
+      "title": "Explore Your Story",
+      "brand": "Coach",
+      "agency": "Forsman & Bodenfors",
+      "market": "USA"
+    },
+    {
+      "category": "Creative Strategy",
+      "level": "Bronze",
+      "title": "Long Lasting Passport",
+      "brand": "Darty",
+      "agency": "Publicis Conseil",
+      "market": "France"
+    },
+    {
+      "category": "Creative Strategy",
+      "level": "Silver",
+      "title": "Made to Share",
+      "brand": "Cadbury",
+      "agency": "VCCP",
+      "market": "UK"
+    },
+    {
+      "category": "Creative Strategy",
+      "level": "Bronze",
+      "title": "No Frame Missed",
+      "brand": "Apple",
+      "agency": "TBWA\\Media Arts Lab",
+      "market": "USA"
+    },
+    {
+      "category": "Creative Strategy",
+      "level": "Bronze",
+      "title": "Paid Sick Leave for Cows",
+      "brand": "Too Good",
+      "agency": "The Partnership Agency",
+      "market": "unconfirmed"
+    },
+    {
+      "category": "Creative Strategy",
+      "level": "Bronze",
+      "title": "Preserved Promos",
+      "brand": "Ziploc",
+      "agency": "VML",
+      "market": "USA"
+    },
+    {
+      "category": "Creative Strategy",
+      "level": "Bronze",
+      "title": "Recipe for Change",
+      "brand": "Puck",
+      "agency": "FP7 McCann Dubai",
+      "market": "UAE"
+    },
+    {
+      "category": "Creative Strategy",
+      "level": "Gold",
+      "title": "The Faroe Islands Space Program",
+      "brand": "SKF",
+      "agency": "NORD Stockholm",
+      "market": "Sweden"
+    },
+    {
+      "category": "Creative Strategy",
+      "level": "Bronze",
+      "title": "The Period Uniform",
+      "brand": "Somos Martina",
+      "agency": "Serviceplan",
+      "market": "Germany/Colombia"
+    },
+    {
+      "category": "Creative Strategy",
+      "level": "Grand Prix",
+      "title": "The Pub that Refused to Die",
+      "brand": "Heineken",
+      "agency": "LePub Milan / Publicis Dublin",
+      "market": "Ireland"
+    },
+    {
+      "category": "Creative Strategy",
+      "level": "Gold",
+      "title": "The Swedish Prescription",
+      "brand": "Visit Sweden",
+      "agency": "Prime Weber Shandwick",
+      "market": "Sweden"
+    },
+    {
+      "category": "Creative Strategy",
+      "level": "Silver",
+      "title": "Tocayos",
+      "brand": "Heineken",
+      "agency": "LePub Milan",
+      "market": "Spain"
+    },
+    {
+      "category": "Creative Strategy",
+      "level": "Silver",
+      "title": "U Up?",
+      "brand": "IKEA",
+      "agency": "Rethink Toronto",
+      "market": "Canada"
+    },
+    {
+      "category": "Creative Strategy",
+      "level": "Silver",
+      "title": "Vaseline Verified",
+      "brand": "Vaseline",
+      "agency": "Ogilvy Singapore",
+      "market": "Singapore"
+    },
+    {
+      "category": "Creative Strategy",
+      "level": "Bronze",
+      "title": "Zip Code Exam",
+      "brand": "Equality Health Foundation",
+      "agency": "Area 23",
+      "market": "USA"
+    },
+    {
+      "category": "Design",
+      "level": "Silver",
+      "title": "Amazonia",
+      "brand": "Embratur and RAI",
+      "agency": "FutureBrand",
+      "market": "Brazil"
+    },
+    {
+      "category": "Design",
+      "level": "Grand Prix",
+      "title": "Apple TV Rebrand",
+      "brand": "Apple",
+      "agency": "TBWA\\Media Arts Lab",
+      "market": "USA"
+    },
+    {
+      "category": "Design",
+      "level": "Silver",
+      "title": "Craftman.Ships",
+      "brand": "SHIPS",
+      "agency": "Hakuhodo Gravity",
+      "market": "Japan"
+    },
+    {
+      "category": "Design",
+      "level": "Gold",
+      "title": "Dancebook Brasil",
+      "brand": "Bradesco",
+      "agency": "Lovely",
+      "market": "Brazil"
+    },
+    {
+      "category": "Design",
+      "level": "Silver",
+      "title": "Dear Difference",
+      "brand": "Nikka Whisky (Taketsuru Pure Malt)",
+      "agency": "Dentsu Inc.",
+      "market": "Japan"
+    },
+    {
+      "category": "Design",
+      "level": "Bronze",
+      "title": "DIN – The Magazine in All Forms",
+      "brand": "DIN",
+      "agency": "Deutsches Institut für Normung",
+      "market": "Germany"
+    },
+    {
+      "category": "Design",
+      "level": "Bronze",
+      "title": "Dressed for Wimbledon",
+      "brand": "Stella Artois",
+      "agency": "GUT",
+      "market": "USA"
+    },
+    {
+      "category": "Design",
+      "level": "Bronze",
+      "title": "Lime Guides",
+      "brand": "Corona",
+      "agency": "Grey",
+      "market": "USA"
+    },
+    {
+      "category": "Design",
+      "level": "Bronze",
+      "title": "Little Breaks",
+      "brand": "KitKat",
+      "agency": "VML",
+      "market": "UK"
+    },
+    {
+      "category": "Design",
+      "level": "Gold",
+      "title": "NPR: For Your Right To Be Curious",
+      "brand": "NPR",
+      "agency": "Mischief at No Fixed Address",
+      "market": "USA"
+    },
+    {
+      "category": "Design",
+      "level": "Bronze",
+      "title": "Rail Clock",
+      "brand": "Network Rail",
+      "agency": "Design Bridge and Partners",
+      "market": "UK"
+    },
+    {
+      "category": "Design",
+      "level": "Bronze",
+      "title": "Stranger Things in Search",
+      "brand": "Google and Netflix",
+      "agency": "Google",
+      "market": "USA"
+    },
+    {
+      "category": "Design",
+      "level": "Gold",
+      "title": "Supernova Adaptive",
+      "brand": "Adidas",
+      "agency": "TBWA\\Canada",
+      "market": "Canada"
+    },
+    {
+      "category": "Design",
+      "level": "Bronze",
+      "title": "The Birdwatcher",
+      "brand": "Spoor",
+      "agency": "FP7 McCann",
+      "market": "UAE"
+    },
+    {
+      "category": "Design",
+      "level": "Bronze",
+      "title": "The Grit & The Glitter",
+      "brand": "London Museum",
+      "agency": "Uncommon Creative Studio",
+      "market": "UK"
+    },
+    {
+      "category": "Design",
+      "level": "Bronze",
+      "title": "The Periodic Fable",
+      "brand": "The Ordinary",
+      "agency": "Uncommon Creative Studio",
+      "market": "UK"
+    },
+    {
+      "category": "Design",
+      "level": "Bronze",
+      "title": "The Thousand Sponsors of Muni",
+      "brand": "Club Deportivo Municipal",
+      "agency": "McCann Lima",
+      "market": "Peru"
+    },
+    {
+      "category": "Design",
+      "level": "Gold",
+      "title": "The Volvo Cars Safety Standard",
+      "brand": "Volvo",
+      "agency": "AKQA / Volvo Cars",
+      "market": "Sweden"
+    },
+    {
+      "category": "Design",
+      "level": "Silver",
+      "title": "Tigris – Condensed Identity",
+      "brand": "Tigris",
+      "agency": "Hakuhodo / Hakuhodo Design",
+      "market": "Japan"
+    },
+    {
+      "category": "Design",
+      "level": "Silver",
+      "title": "Tilt Accessible Beauty – Inclusive Design",
+      "brand": "Tilt",
+      "agency": "Established",
+      "market": "USA"
+    },
+    {
+      "category": "Design",
+      "level": "Silver",
+      "title": "Tilt Accessible Beauty – Product Design",
+      "brand": "Tilt",
+      "agency": "Established",
+      "market": "USA"
+    },
+    {
+      "category": "Design",
+      "level": "Bronze",
+      "title": "Vision Pulse: Sight Beyond Seeing",
+      "brand": "Hyundai",
+      "agency": "Paulus",
+      "market": "South Korea"
+    },
+    {
+      "category": "Design",
+      "level": "Silver",
+      "title": "Zip Code Exam",
+      "brand": "Equality Health Foundation",
+      "agency": "Area 23",
+      "market": "USA"
+    },
+    {
+      "category": "Digital Craft",
+      "level": "Silver",
+      "title": "A Critter Carol",
+      "brand": "Apple",
+      "agency": "TBWA\\Media Arts Lab",
+      "market": "USA"
+    },
+    {
+      "category": "Digital Craft",
+      "level": "Silver",
+      "title": "Amazonia",
+      "brand": "Embratur and RAI",
+      "agency": "FutureBrand São Paulo",
+      "market": "Brazil"
+    },
+    {
+      "category": "Digital Craft",
+      "level": "Bronze",
+      "title": "Code Her",
+      "brand": "Boticário",
+      "agency": "AlmapBBDO",
+      "market": "Brazil"
+    },
+    {
+      "category": "Digital Craft",
+      "level": "Gold",
+      "title": "Language of Bedwetting",
+      "brand": "Autism Society",
+      "agency": "McCann New York",
+      "market": "USA"
+    },
+    {
+      "category": "Digital Craft",
+      "level": "Bronze",
+      "title": "No Frame Missed",
+      "brand": "Apple",
+      "agency": "TBWA\\Media Arts Lab",
+      "market": "USA"
+    },
+    {
+      "category": "Digital Craft",
+      "level": "Grand Prix",
+      "title": "Project Genie",
+      "brand": "Google (DeepMind, Genie 3)",
+      "agency": "Google",
+      "market": "USA"
+    },
+    {
+      "category": "Digital Craft",
+      "level": "Bronze",
+      "title": "Run Back the Miracle",
+      "brand": "Michelob Ultra",
+      "agency": "Wieden+Kennedy",
+      "market": "USA"
+    },
+    {
+      "category": "Digital Craft",
+      "level": "Gold",
+      "title": "SOS POS",
+      "brand": "BCP",
+      "agency": "Circus Grey",
+      "market": "Peru"
+    },
+    {
+      "category": "Digital Craft",
+      "level": "Silver",
+      "title": "The Birdwatcher",
+      "brand": "Spoor",
+      "agency": "FP7 McCann Dubai",
+      "market": "UAE"
+    },
+    {
+      "category": "Direct",
+      "level": "Gold",
+      "title": "Build Your Own Super Bowl Commercial",
+      "brand": "Uber Eats",
+      "agency": "Special Los Angeles",
+      "market": "US"
+    },
+    {
+      "category": "Direct",
+      "level": "Gold",
+      "title": "Could Have Been a Heineken",
+      "brand": "Heineken",
+      "agency": "LePub Milan & São Paulo",
+      "market": "Italy/Brazil"
+    },
+    {
+      "category": "Direct",
+      "level": "Gold",
+      "title": "Everybody Coinbase",
+      "brand": "Coinbase",
+      "agency": "Isle of Any",
+      "market": "US"
+    },
+    {
+      "category": "Direct",
+      "level": "Gold",
+      "title": "Expedition Impossible",
+      "brand": "Columbia Sportswear",
+      "agency": "adam&eveTBWA London",
+      "market": "UK"
+    },
+    {
+      "category": "Direct",
+      "level": "Bronze",
+      "title": "Haven",
+      "brand": "Suncorp Insurance",
+      "agency": "Leo Sydney (Hogarth/OMD)",
+      "market": "Australia"
+    },
+    {
+      "category": "Direct",
+      "level": "Bronze",
+      "title": "Let It Fly",
+      "brand": "Saudia Airlines",
+      "agency": "Publicis KSA / Saatchi & Saatchi ME",
+      "market": "Saudi Arabia"
+    },
+    {
+      "category": "Direct",
+      "level": "Gold",
+      "title": "Lime Guides",
+      "brand": "Corona",
+      "agency": "Grey New York",
+      "market": "US"
+    },
+    {
+      "category": "Direct",
+      "level": "Gold",
+      "title": "Oreo Cows",
+      "brand": "Oreo",
+      "agency": "VML New York & Mexico City",
+      "market": "US/Mexico"
+    },
+    {
+      "category": "Direct",
+      "level": "Gold",
+      "title": "The Heinz Dipper",
+      "brand": "Heinz Ketchup",
+      "agency": "Rethink Toronto",
+      "market": "Canada"
+    },
+    {
+      "category": "Direct",
+      "level": "Silver",
+      "title": "The Periodic Fable",
+      "brand": "The Ordinary",
+      "agency": "Uncommon Creative Studio",
+      "market": "UK"
+    },
+    {
+      "category": "Direct",
+      "level": "Grand Prix",
+      "title": "Uva Uva Bombón",
+      "brand": "UVA App",
+      "agency": "de la Cruz Ogilvy San Juan",
+      "market": "Puerto Rico"
+    },
+    {
+      "category": "Direct",
+      "level": "Bronze",
+      "title": "Vaseline Originals",
+      "brand": "Vaseline",
+      "agency": "Ogilvy Singapore",
+      "market": "Singapore"
+    },
+    {
+      "category": "Entertainment",
+      "level": "Bronze",
+      "title": "A Minecraft Movie Meal",
+      "brand": "McDonald's",
+      "agency": "Wieden+Kennedy",
+      "market": "USA"
+    },
+    {
+      "category": "Entertainment",
+      "level": "Silver",
+      "title": "Big Man (Shot on iPhone)",
+      "brand": "Apple",
+      "agency": "Apple",
+      "market": "USA"
+    },
+    {
+      "category": "Entertainment",
+      "level": "Silver",
+      "title": "Change My Mind",
+      "brand": "Czech Television",
+      "agency": "Punk Film",
+      "market": "Czechia"
+    },
+    {
+      "category": "Entertainment",
+      "level": "Gold",
+      "title": "Everybody Coinbase",
+      "brand": "Coinbase",
+      "agency": "Isle of Any",
+      "market": "USA"
+    },
+    {
+      "category": "Entertainment",
+      "level": "Bronze",
+      "title": "For Papa!",
+      "brand": "Instacart",
+      "agency": "McCann New York",
+      "market": "USA"
+    },
+    {
+      "category": "Entertainment",
+      "level": "Bronze",
+      "title": "Goodbye RX-7: Saying Farewell To A Dear Friend",
+      "brand": "Mazda",
+      "agency": "Luck",
+      "market": "Japan"
+    },
+    {
+      "category": "Entertainment",
+      "level": "Bronze",
+      "title": "Hawkstone - Hard To Make Easy To Drink",
+      "brand": "Hawkstone",
+      "agency": "Smith & Jones Films",
+      "market": "UK"
+    },
+    {
+      "category": "Entertainment",
+      "level": "Grand Prix",
+      "title": "Original Forever",
+      "brand": "adidas (x Oasis)",
+      "agency": "Johannes Leonardo, New York / adidas, London",
+      "market": "USA/UK"
+    },
+    {
+      "category": "Entertainment",
+      "level": "Bronze",
+      "title": "Played by Humans",
+      "brand": "Jazz Is Dead",
+      "agency": "TBWA\\Chiat\\Day",
+      "market": "USA"
+    },
+    {
+      "category": "Entertainment",
+      "level": "Bronze",
+      "title": "Pocket-sized Halftime Show",
+      "brand": "Clash Royale",
+      "agency": "Uncommon Creative Studio, Stockholm",
+      "market": "Sweden/UK"
+    },
+    {
+      "category": "Entertainment",
+      "level": "Bronze",
+      "title": "Sosegá",
+      "brand": "Cervezas Alhambra",
+      "agency": "LLYC",
+      "market": "Spain"
+    },
+    {
+      "category": "Entertainment",
+      "level": "Silver",
+      "title": "The Grey Swan",
+      "brand": "Nycoplus",
+      "agency": "11:11",
+      "market": "Norway"
+    },
+    {
+      "category": "Entertainment",
+      "level": "Bronze",
+      "title": "The Most Epic Watch Party Group",
+      "brand": "Lay's",
+      "agency": "Slap Global",
+      "market": "USA"
+    },
+    {
+      "category": "Entertainment",
+      "level": "Silver",
+      "title": "The Philipstown Wirecar Grand Prix",
+      "brand": "The Philipstown Wirecar Foundation",
+      "agency": "Accenture Song South Africa",
+      "market": "South Africa"
+    },
+    {
+      "category": "Entertainment",
+      "level": "Bronze",
+      "title": "The Pub That Refused To Die",
+      "brand": "Heineken",
+      "agency": "LePub",
+      "market": "Netherlands/Italy"
+    },
+    {
+      "category": "Entertainment",
+      "level": "Gold",
+      "title": "The Tiger",
+      "brand": "Gucci",
+      "agency": "MJZ",
+      "market": "Italy"
+    },
+    {
+      "category": "Entertainment",
+      "level": "Bronze",
+      "title": "The Triangle Theory",
+      "brand": "Doritos",
+      "agency": "AlmapBBDO",
+      "market": "Brazil"
+    },
+    {
+      "category": "Entertainment",
+      "level": "Bronze",
+      "title": "The Wizard of Oz at Sphere",
+      "brand": "Sphere Studios",
+      "agency": "Sphere Entertainment",
+      "market": "USA"
+    },
+    {
+      "category": "Entertainment",
+      "level": "Silver",
+      "title": "Tiffany & Co. x Netflix's Frankenstein",
+      "brand": "Tiffany & Co.",
+      "agency": "Tiffany & Co. / Netflix Brand Creative Studio",
+      "market": "USA"
+    },
+    {
+      "category": "Entertainment",
+      "level": "Gold",
+      "title": "Who's Waiting For You?",
+      "brand": "Cerveza Victoria",
+      "agency": "Wieden+Kennedy",
+      "market": "Mexico"
+    },
+    {
+      "category": "Entertainment for Gaming",
+      "level": "Grand Prix",
+      "title": "Copycats Welcome",
+      "brand": "Clash Royale",
+      "agency": "David, New York (Ogilvy network)",
+      "market": "USA"
+    },
+    {
+      "category": "Entertainment for Gaming",
+      "level": "Bronze",
+      "title": "Delivered by Tetris",
+      "brand": "La Poste",
+      "agency": "BETC",
+      "market": "France"
+    },
+    {
+      "category": "Entertainment for Gaming",
+      "level": "Bronze",
+      "title": "Gaming Flute",
+      "brand": "Skittles",
+      "agency": "TBWA\\Chiat\\Day, Chicago",
+      "market": "USA"
+    },
+    {
+      "category": "Entertainment for Gaming",
+      "level": "Gold",
+      "title": "Pocket-sized Halftime Show",
+      "brand": "Clash Royale",
+      "agency": "Uncommon Creative Studio, Stockholm",
+      "market": "Sweden/UK"
+    },
+    {
+      "category": "Entertainment for Gaming",
+      "level": "Bronze",
+      "title": "R2R←",
+      "brand": "Brahma",
+      "agency": "Africa Creative",
+      "market": "Brazil"
+    },
+    {
+      "category": "Entertainment for Gaming",
+      "level": "Bronze",
+      "title": "Silent Cleaning",
+      "brand": "Kao",
+      "agency": "Whatever, Tokyo",
+      "market": "Japan"
+    },
+    {
+      "category": "Entertainment for Gaming",
+      "level": "Silver",
+      "title": "The Club Is Yours",
+      "brand": "EA Sports",
+      "agency": "Uncommon Creative Studio",
+      "market": "UK"
+    },
+    {
+      "category": "Entertainment for Music",
+      "level": "Silver",
+      "title": "867-5309",
+      "brand": "The Cancer Support Community",
+      "agency": "Klick Health",
+      "market": "USA"
+    },
+    {
+      "category": "Entertainment for Music",
+      "level": "Bronze",
+      "title": "AXA x Sonita: The Lone Voice",
+      "brand": "AXA",
+      "agency": "Publicis Conseil",
+      "market": "France"
+    },
+    {
+      "category": "Entertainment for Music",
+      "level": "Silver",
+      "title": "Bad Bunny Halftime Show Campaign",
+      "brand": "Apple",
+      "agency": "Apple (in-house)",
+      "market": "USA"
+    },
+    {
+      "category": "Entertainment for Music",
+      "level": "Gold",
+      "title": "Beat Cancer Off",
+      "brand": "Fuck Cancer",
+      "agency": "VML",
+      "market": "USA"
+    },
+    {
+      "category": "Entertainment for Music",
+      "level": "Bronze",
+      "title": "I Think of You Dying",
+      "brand": "Life360",
+      "agency": "Alto",
+      "market": "USA"
+    },
+    {
+      "category": "Entertainment for Music",
+      "level": "Gold",
+      "title": "I'm Not Remarkable",
+      "brand": "Apple",
+      "agency": "Apple (in-house)",
+      "market": "USA"
+    },
+    {
+      "category": "Entertainment for Music",
+      "level": "Bronze",
+      "title": "Juan Gabriel – The Ballad of Alberto",
+      "brand": "Netflix",
+      "agency": "Netflix (in-house)",
+      "market": "Mexico"
+    },
+    {
+      "category": "Entertainment for Music",
+      "level": "Bronze",
+      "title": "Luther",
+      "brand": "Kendrick Lamar",
+      "agency": "Fela",
+      "market": "USA"
+    },
+    {
+      "category": "Entertainment for Music",
+      "level": "Grand Prix",
+      "title": "Original Forever",
+      "brand": "adidas (x Oasis)",
+      "agency": "Johannes Leonardo, New York / adidas, London",
+      "market": "USA/UK"
+    },
+    {
+      "category": "Entertainment for Music",
+      "level": "Bronze",
+      "title": "Played by Humans",
+      "brand": "Jazz Is Dead",
+      "agency": "TBWA\\Chiat\\Day",
+      "market": "USA"
+    },
+    {
+      "category": "Entertainment for Music",
+      "level": "Bronze",
+      "title": "Pocket-sized Halftime Show",
+      "brand": "Clash Royale",
+      "agency": "Uncommon Creative Studio, Stockholm",
+      "market": "Sweden/UK"
+    },
+    {
+      "category": "Entertainment for Music",
+      "level": "Grand Prix",
+      "title": "Rosalía Ft. Björk, Yves Tumor – Berghain",
+      "brand": "Rosalía",
+      "agency": "CANADA, Barcelona (dir. Nicolás Méndez)",
+      "market": "Spain"
+    },
+    {
+      "category": "Entertainment for Music",
+      "level": "Bronze",
+      "title": "Uva Uva Bombón",
+      "brand": "Uva App",
+      "agency": "De La Cruz Ogilvy",
+      "market": "Latin America"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "level": "Silver",
+      "title": "A Mother's Commentary",
+      "brand": "Reporters Without Borders",
+      "agency": "The Good Company",
+      "market": "Spain"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "level": "Silver",
+      "title": "AXA – Nothing Stops Women's Rugby",
+      "brand": "AXA France",
+      "agency": "Publicis Conseil",
+      "market": "France"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "level": "Silver",
+      "title": "CeraVe - The New Face of Legs",
+      "brand": "CeraVe",
+      "agency": "L'Oréal",
+      "market": "USA"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "level": "Bronze",
+      "title": "Curfew Hostels",
+      "brand": "Tiger Beer",
+      "agency": "LePub",
+      "market": "Singapore"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "level": "Bronze",
+      "title": "Dirt is Glory",
+      "brand": "Dirt is Good / OMO",
+      "agency": "Frank",
+      "market": "Brazil"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "level": "Bronze",
+      "title": "Discount Chants",
+      "brand": "Mercado Libre",
+      "agency": "GUT",
+      "market": "Latin America"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "level": "Bronze",
+      "title": "Fair Play",
+      "brand": "Public Prosecutor's Office of DF",
+      "agency": "Ogilvy Health",
+      "market": "Brazil"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "level": "Bronze",
+      "title": "Fragmental Medal",
+      "brand": "Gatorade",
+      "agency": "Tombras",
+      "market": "USA"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "level": "Bronze",
+      "title": "Game On Ball",
+      "brand": "True Hockey",
+      "agency": "Dentsu Creative",
+      "market": "Canada"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "level": "Bronze",
+      "title": "Jell-Ometer",
+      "brand": "Jell-O",
+      "agency": "GUT",
+      "market": "USA"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "level": "Silver",
+      "title": "Kyle F*cking Connor",
+      "brand": "KFC",
+      "agency": "Courage",
+      "market": "Canada"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "level": "Gold",
+      "title": "Lucky Fan Index",
+      "brand": "Wisła Kraków Football Club",
+      "agency": "VML",
+      "market": "Poland"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "level": "Bronze",
+      "title": "Missing Managers",
+      "brand": "Xbox",
+      "agency": "McCann London",
+      "market": "UK"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "level": "Gold",
+      "title": "Resize The Price",
+      "brand": "Águila",
+      "agency": "David",
+      "market": "Colombia"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "level": "Bronze",
+      "title": "Supernova Adaptive",
+      "brand": "Adidas",
+      "agency": "TBWA\\Canada",
+      "market": "Canada"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "level": "Gold",
+      "title": "The New Face of Legs",
+      "brand": "CeraVe",
+      "agency": "L'Oréal",
+      "market": "USA"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "level": "Silver",
+      "title": "The Switch Hit by Mikkeller",
+      "brand": "Mikkeller & Ugly Half Beer",
+      "agency": "Ogilvy",
+      "market": "Taiwan"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "level": "Grand Prix",
+      "title": "The Thousand Sponsors of Muni",
+      "brand": "Club Deportivo Municipal",
+      "agency": "McCann, Lima",
+      "market": "Peru"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "level": "Bronze",
+      "title": "The Triangle Theory",
+      "brand": "Doritos",
+      "agency": "AlmapBBDO",
+      "market": "Brazil"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "level": "Bronze",
+      "title": "Two-Way Deal",
+      "brand": "Clash of Clans",
+      "agency": "David",
+      "market": "USA"
+    },
+    {
+      "category": "Film",
+      "level": "Silver",
+      "title": "A Critter Carol",
+      "brand": "Apple",
+      "agency": "TBWA\\Media Arts Lab",
+      "market": "USA"
+    },
+    {
+      "category": "Film",
+      "level": "Gold",
+      "title": "A Time and a Place",
+      "brand": "Claude (Anthropic)",
+      "agency": "Mother London",
+      "market": "United Kingdom"
+    },
+    {
+      "category": "Film",
+      "level": "Gold",
+      "title": "Apple Music x Bad Bunny Halftime Show – Shot on iPhone",
+      "brand": "Apple",
+      "agency": "HPLA",
+      "market": "USA"
+    },
+    {
+      "category": "Film",
+      "level": "Gold",
+      "title": "Based on a True Story",
+      "brand": "Missing People",
+      "agency": "BBH London",
+      "market": "United Kingdom"
+    },
+    {
+      "category": "Film",
+      "level": "Silver",
+      "title": "Beat Cancer Off",
+      "brand": "Fuck Cancer",
+      "agency": "VML",
+      "market": "USA"
+    },
+    {
+      "category": "Film",
+      "level": "Gold",
+      "title": "Bullet Machine",
+      "brand": "La Unión Newspaper / Article 19",
+      "agency": "Grey Mexico City",
+      "market": "Mexico"
+    },
+    {
+      "category": "Film",
+      "level": "Grand Prix",
+      "title": "Claude: Can I Get a Six Pack Quickly? / How Can I Communicate Better With My Mom?",
+      "brand": "Claude (Anthropic)",
+      "agency": "Mother London",
+      "market": "United Kingdom"
+    },
+    {
+      "category": "Film",
+      "level": "Silver",
+      "title": "Drop In",
+      "brand": "Electronic Arts (Skate)",
+      "agency": "Uncommon Creative Studio",
+      "market": "UK/USA"
+    },
+    {
+      "category": "Film",
+      "level": "Silver",
+      "title": "For Papa!",
+      "brand": "Instacart",
+      "agency": "McCann New York",
+      "market": "USA"
+    },
+    {
+      "category": "Film",
+      "level": "Gold",
+      "title": "I Think of You Dying",
+      "brand": "Life360",
+      "agency": "Alto",
+      "market": "USA"
+    },
+    {
+      "category": "Film",
+      "level": "Silver",
+      "title": "L'Ultimo Uomo Reale (The Last Real Man)",
+      "brand": "The RealReal",
+      "agency": "Team One",
+      "market": "USA"
+    },
+    {
+      "category": "Film",
+      "level": "Gold",
+      "title": "No Project Without Drama",
+      "brand": "Hornbach",
+      "agency": "Heimat\\TBWA Berlin",
+      "market": "Germany"
+    },
+    {
+      "category": "Film",
+      "level": "Silver",
+      "title": "Tableau",
+      "brand": "John Lewis & Partners",
+      "agency": "Saatchi & Saatchi",
+      "market": "United Kingdom"
+    },
+    {
+      "category": "Film",
+      "level": "Gold",
+      "title": "Try Oslo (Hope / Mornings / Picky / Awake)",
+      "brand": "IKEA",
+      "agency": "TRY",
+      "market": "Norway"
+    },
+    {
+      "category": "Film",
+      "level": "Silver",
+      "title": "Unfading Love",
+      "brand": "Thai Life Insurance",
+      "agency": "Ogilvy",
+      "market": "Thailand"
+    },
+    {
+      "category": "Film",
+      "level": "Gold",
+      "title": "Your Way Out",
+      "brand": "Coinbase",
+      "agency": "Isle of Any",
+      "market": "USA"
+    },
+    {
+      "category": "Film Craft",
+      "level": "Bronze",
+      "title": "70 Ans",
+      "brand": "Alpine",
+      "agency": "Mathematic Studio",
+      "market": "France"
+    },
+    {
+      "category": "Film Craft",
+      "level": "Silver",
+      "title": "A Critter Carol",
+      "brand": "Apple",
+      "agency": "TBWA\\Media Arts Lab",
+      "market": "USA"
+    },
+    {
+      "category": "Film Craft",
+      "level": "Silver",
+      "title": "AXA – Nothing Stops Women's Rugby",
+      "brand": "AXA France",
+      "agency": "Publicis Conseil",
+      "market": "France"
+    },
+    {
+      "category": "Film Craft",
+      "level": "Silver",
+      "title": "Beat Cancer Off",
+      "brand": "Fuck Cancer",
+      "agency": "VML",
+      "market": "Canada"
+    },
+    {
+      "category": "Film Craft",
+      "level": "Gold",
+      "title": "Bullet Machine",
+      "brand": "La Unión Newspaper / Article 19",
+      "agency": "Grey",
+      "market": "Mexico"
+    },
+    {
+      "category": "Film Craft",
+      "level": "Bronze",
+      "title": "Departures",
+      "brand": "Boticário",
+      "agency": "AlmapBBDO",
+      "market": "Brazil"
+    },
+    {
+      "category": "Film Craft",
+      "level": "Bronze",
+      "title": "Don't Look Up",
+      "brand": "Steadfast",
+      "agency": "TBWA\\Lintas",
+      "market": "India"
+    },
+    {
+      "category": "Film Craft",
+      "level": "Silver",
+      "title": "Dress Yourself",
+      "brand": "Simons",
+      "agency": "Scouts Honour",
+      "market": "Canada"
+    },
+    {
+      "category": "Film Craft",
+      "level": "Bronze",
+      "title": "Drop In",
+      "brand": "Electronic Arts (Skate)",
+      "agency": "Uncommon Creative Studio",
+      "market": "UK"
+    },
+    {
+      "category": "Film Craft",
+      "level": "Silver",
+      "title": "For Papa!",
+      "brand": "Instacart",
+      "agency": "McCann New York",
+      "market": "USA"
+    },
+    {
+      "category": "Film Craft",
+      "level": "Gold",
+      "title": "Helicopter",
+      "brand": "AWGE (A$AP Rocky)",
+      "agency": "Somesuch",
+      "market": "USA"
+    },
+    {
+      "category": "Film Craft",
+      "level": "Bronze",
+      "title": "I Think of You Dying",
+      "brand": "Life360",
+      "agency": "Alto",
+      "market": "USA"
+    },
+    {
+      "category": "Film Craft",
+      "level": "Gold",
+      "title": "I'm Not Remarkable",
+      "brand": "Apple",
+      "agency": "Apple",
+      "market": "USA"
+    },
+    {
+      "category": "Film Craft",
+      "level": "Bronze",
+      "title": "L'Ultimo Uomo Reale (The Last Real Man)",
+      "brand": "The RealReal",
+      "agency": "Team One",
+      "market": "Italy"
+    },
+    {
+      "category": "Film Craft",
+      "level": "Bronze",
+      "title": "Light Hole",
+      "brand": "Kodansha Ltd.",
+      "agency": "Kodansha Tokyo / Geek Pictures Tokyo",
+      "market": "Japan"
+    },
+    {
+      "category": "Film Craft",
+      "level": "Gold",
+      "title": "No Project Without Drama",
+      "brand": "Hornbach",
+      "agency": "Heimat\\TBWA",
+      "market": "Germany"
+    },
+    {
+      "category": "Film Craft",
+      "level": "Bronze",
+      "title": "Oreo Cows",
+      "brand": "Oreo",
+      "agency": "VML",
+      "market": "USA"
+    },
+    {
+      "category": "Film Craft",
+      "level": "Bronze",
+      "title": "Own Your Flow",
+      "brand": "Kotex",
+      "agency": "McCann New York",
+      "market": "USA"
+    },
+    {
+      "category": "Film Craft",
+      "level": "Gold",
+      "title": "Shape of Dreams",
+      "brand": "On",
+      "agency": "On AG",
+      "market": "Switzerland"
+    },
+    {
+      "category": "Film Craft",
+      "level": "Bronze",
+      "title": "Tableau",
+      "brand": "John Lewis & Partners",
+      "agency": "Saatchi & Saatchi",
+      "market": "UK"
+    },
+    {
+      "category": "Film Craft",
+      "level": "Silver",
+      "title": "The Gucci Lido Campaign",
+      "brand": "Gucci",
+      "agency": "Smuggler",
+      "market": "Italy"
+    },
+    {
+      "category": "Film Craft",
+      "level": "Bronze",
+      "title": "The Kaprao Criminals",
+      "brand": "KFC Thailand",
+      "agency": "Wolf BKK",
+      "market": "Thailand"
+    },
+    {
+      "category": "Film Craft",
+      "level": "Bronze",
+      "title": "The Ring: The Legacy Continues",
+      "brand": "The Ring",
+      "agency": "Bigtime Creative Shop",
+      "market": "Saudi Arabia"
+    },
+    {
+      "category": "Film Craft",
+      "level": "Bronze",
+      "title": "The Treasure Hunt",
+      "brand": "Ministry for Equality",
+      "agency": "Ogilvy Spain",
+      "market": "Spain"
+    },
+    {
+      "category": "Film Craft",
+      "level": "Silver",
+      "title": "Unavailable",
+      "brand": "Squarespace",
+      "agency": "Squarespace",
+      "market": "USA"
+    },
+    {
+      "category": "Film Craft",
+      "level": "Bronze",
+      "title": "Who's Waiting for You?",
+      "brand": "Cerveza Victoria",
+      "agency": "Wieden+Kennedy",
+      "market": "Mexico"
+    },
+    {
+      "category": "Film Craft",
+      "level": "Grand Prix",
+      "title": "Your Way Out",
+      "brand": "Coinbase",
+      "agency": "Isle of Any",
+      "market": "USA"
+    },
+    {
+      "category": "Glass: The Lion for Change",
+      "level": "Grand Prix",
+      "title": "Nigrum Corpus",
+      "brand": "IDOMED & Instituto Yduqs",
+      "agency": "Artplan, São Paulo",
+      "market": "Brazil"
+    },
+    {
+      "category": "Glass: The Lion for Change",
+      "level": "Bronze",
+      "title": "Recipe for Change",
+      "brand": "Puck",
+      "agency": "FP7 McCann, Dubai",
+      "market": "UAE"
+    },
+    {
+      "category": "Glass: The Lion for Change",
+      "level": "Gold",
+      "title": "The Māori Roll Call",
+      "brand": "Whānau Ora",
+      "agency": "Motion Sickness, Auckland",
+      "market": "New Zealand"
+    },
+    {
+      "category": "Glass: The Lion for Change",
+      "level": "Silver",
+      "title": "The Unburied Casket",
+      "brand": "Women for Change",
+      "agency": "Edelman SA, Johannesburg",
+      "market": "South Africa"
+    },
+    {
+      "category": "Glass: The Lion for Change",
+      "level": "Bronze",
+      "title": "Welcome Back, Paisano",
+      "brand": "Tecate",
+      "agency": "LePub, Mexico City",
+      "market": "Mexico"
+    },
+    {
+      "category": "Grand Prix for Good",
+      "level": "Grand Prix",
+      "title": "600K Network",
+      "brand": "Comando Con Venezuela",
+      "agency": "Rainbow Lobster, Mexico City & Comando Con Venezuela, Caracas",
+      "market": "Mexico/Venezuela"
+    },
+    {
+      "category": "Health & Wellness",
+      "level": "Gold",
+      "title": "Art's Missing Period",
+      "brand": "Kotex",
+      "agency": "DAVID London / Ogilvy Singapore",
+      "market": "UK/Singapore"
+    },
+    {
+      "category": "Health & Wellness",
+      "level": "Gold",
+      "title": "Beat Cancer Off",
+      "brand": "Fuck Cancer",
+      "agency": "VML, New York",
+      "market": "USA"
+    },
+    {
+      "category": "Health & Wellness",
+      "level": "Bronze",
+      "title": "Colorfood",
+      "brand": "Auchan",
+      "agency": "",
+      "market": ""
+    },
+    {
+      "category": "Health & Wellness",
+      "level": "Gold",
+      "title": "Donate to Play",
+      "brand": "Grupo Pulsa",
+      "agency": "Publicis, São Paulo",
+      "market": "Brazil"
+    },
+    {
+      "category": "Health & Wellness",
+      "level": "Silver",
+      "title": "DuoBell",
+      "brand": "Škoda",
+      "agency": "AMV BBDO",
+      "market": ""
+    },
+    {
+      "category": "Health & Wellness",
+      "level": "Bronze",
+      "title": "Escape Vehicle",
+      "brand": "Toyota",
+      "agency": "",
+      "market": ""
+    },
+    {
+      "category": "Health & Wellness",
+      "level": "Bronze",
+      "title": "Hearapy",
+      "brand": "Samsung",
+      "agency": "",
+      "market": ""
+    },
+    {
+      "category": "Health & Wellness",
+      "level": "Silver",
+      "title": "Indianis Dentris",
+      "brand": "Colgate",
+      "agency": "",
+      "market": ""
+    },
+    {
+      "category": "Health & Wellness",
+      "level": "Silver",
+      "title": "Magnif-eye",
+      "brand": "1001 Optometry",
+      "agency": "VML Sydney",
+      "market": "Australia"
+    },
+    {
+      "category": "Health & Wellness",
+      "level": "Bronze",
+      "title": "No Frame Missed",
+      "brand": "Apple",
+      "agency": "",
+      "market": ""
+    },
+    {
+      "category": "Health & Wellness",
+      "level": "Gold",
+      "title": "Supernova Adaptive",
+      "brand": "Adidas",
+      "agency": "TBWA\\Canada, Toronto",
+      "market": "Canada"
+    },
+    {
+      "category": "Health & Wellness",
+      "level": "Bronze",
+      "title": "The New Face of Legs",
+      "brand": "CeraVe",
+      "agency": "",
+      "market": ""
+    },
+    {
+      "category": "Health & Wellness",
+      "level": "Grand Prix",
+      "title": "The Periodic Fable",
+      "brand": "The Ordinary",
+      "agency": "Uncommon Creative Studio / SMUGGLER, London",
+      "market": "UK"
+    },
+    {
+      "category": "Health & Wellness",
+      "level": "Bronze",
+      "title": "The Swedish Prescription",
+      "brand": "Visit Sweden",
+      "agency": "",
+      "market": "Sweden"
+    },
+    {
+      "category": "Health & Wellness",
+      "level": "Silver",
+      "title": "The Undropped Kit",
+      "brand": "ASICS",
+      "agency": "Golin Ketchum",
+      "market": "UK"
+    },
+    {
+      "category": "Health & Wellness",
+      "level": "Bronze",
+      "title": "Unloved",
+      "brand": "Intermarché",
+      "agency": "",
+      "market": ""
+    },
+    {
+      "category": "Health & Wellness",
+      "level": "Bronze",
+      "title": "Vaseline and the Real Nigerian Prince",
+      "brand": "Vaseline",
+      "agency": "",
+      "market": "Nigeria"
+    },
+    {
+      "category": "Health & Wellness",
+      "level": "Gold",
+      "title": "Vehicle of Hope",
+      "brand": "Caritas",
+      "agency": "Differ, Stockholm",
+      "market": "Sweden"
+    },
+    {
+      "category": "Industry Craft",
+      "level": "Silver",
+      "title": "Amazonia",
+      "brand": "Embratur and RAI",
+      "agency": "FutureBrand São Paulo",
+      "market": "Brazil"
+    },
+    {
+      "category": "Industry Craft",
+      "level": "Silver",
+      "title": "Amazônia Alive – Book",
+      "brand": "Vale SA",
+      "agency": "Artplan",
+      "market": "Brazil"
+    },
+    {
+      "category": "Industry Craft",
+      "level": "Bronze",
+      "title": "Craftman.ships",
+      "brand": "SHIPS",
+      "agency": "Hakuhodo Gravity",
+      "market": "Japan"
+    },
+    {
+      "category": "Industry Craft",
+      "level": "Bronze",
+      "title": "Dancebook Brasil",
+      "brand": "Bradesco",
+      "agency": "Lovely",
+      "market": "Brazil"
+    },
+    {
+      "category": "Industry Craft",
+      "level": "Gold",
+      "title": "Dear Difference",
+      "brand": "Nikka Whisky",
+      "agency": "Dentsu Inc.",
+      "market": "Japan"
+    },
+    {
+      "category": "Industry Craft",
+      "level": "Bronze",
+      "title": "Fascinating",
+      "brand": "Shenzhen Tourism Bureau",
+      "agency": "The Nine",
+      "market": "China"
+    },
+    {
+      "category": "Industry Craft",
+      "level": "Bronze",
+      "title": "Glowing Relief",
+      "brand": "Alivia Health",
+      "agency": "De la Cruz Ogilvy",
+      "market": "Puerto Rico"
+    },
+    {
+      "category": "Industry Craft",
+      "level": "Bronze",
+      "title": "Moving Landscapes",
+      "brand": "BMW",
+      "agency": "Serviceplan Spain",
+      "market": "Spain"
+    },
+    {
+      "category": "Industry Craft",
+      "level": "Bronze",
+      "title": "Racing, Club, Vamos",
+      "brand": "Coca-Cola",
+      "agency": "Grey",
+      "market": "Argentina"
+    },
+    {
+      "category": "Industry Craft",
+      "level": "Bronze",
+      "title": "Suffering",
+      "brand": "Musée de la Grande Guerre",
+      "agency": "BBDO Paris",
+      "market": "France"
+    },
+    {
+      "category": "Industry Craft",
+      "level": "Silver",
+      "title": "Sunburnt Car",
+      "brand": "MyCar",
+      "agency": "TBWA\\Sydney",
+      "market": "Australia"
+    },
+    {
+      "category": "Industry Craft",
+      "level": "Silver",
+      "title": "Terms and Conditions of Being a Girl",
+      "brand": "Ville de Paris",
+      "agency": "BETC",
+      "market": "France"
+    },
+    {
+      "category": "Industry Craft",
+      "level": "Grand Prix",
+      "title": "Tiny Coffee Shops",
+      "brand": "De'Longhi",
+      "agency": "LOLA, Madrid",
+      "market": "Spain"
+    },
+    {
+      "category": "Industry Craft",
+      "level": "Gold",
+      "title": "Try Oslo (Hope / Mornings / Picky)",
+      "brand": "IKEA",
+      "agency": "TRY",
+      "market": "Norway"
+    },
+    {
+      "category": "Innovation",
+      "level": "Silver",
+      "title": "Radio Time Machine",
+      "brand": "Nichii Gakkan",
+      "agency": "TBWA\\Hakuhodo Tokyo",
+      "market": "Japan"
+    },
+    {
+      "category": "Innovation",
+      "level": "Bronze",
+      "title": "SOS POS",
+      "brand": "BCP (Banco de Crédito del Perú)",
+      "agency": "Circus Grey Lima",
+      "market": "Peru"
+    },
+    {
+      "category": "Innovation",
+      "level": "Grand Prix",
+      "title": "Supernova Adaptive",
+      "brand": "adidas",
+      "agency": "TBWA\\Canada Toronto",
+      "market": "Canada"
+    },
+    {
+      "category": "Innovation",
+      "level": "Bronze",
+      "title": "T-Rex Leather",
+      "brand": "Lab-Grown Leather (BSF Enterprise)",
+      "agency": "VML Paris",
+      "market": "France"
+    },
+    {
+      "category": "Innovation",
+      "level": "Gold",
+      "title": "Utrecht Energized",
+      "brand": "Renault",
+      "agency": "Publicis Amsterdam",
+      "market": "Netherlands"
+    },
+    {
+      "category": "Luxury",
+      "level": "Bronze",
+      "title": "Born in Roma Rendez-Vous Ivory Collection",
+      "brand": "Valentino Beauty",
+      "agency": "Maison BETC",
+      "market": "France/Italy"
+    },
+    {
+      "category": "Luxury",
+      "level": "Silver",
+      "title": "Code for the Protection and Inclusion of Black Consumers",
+      "brand": "L'Oréal Luxe",
+      "agency": "Beta Collective, São Paulo",
+      "market": "Brazil"
+    },
+    {
+      "category": "Luxury",
+      "level": "Bronze",
+      "title": "Owners Reunions",
+      "brand": "Porsche",
+      "agency": "The Community",
+      "market": "Latin America"
+    },
+    {
+      "category": "Luxury",
+      "level": "Gold",
+      "title": "Tiffany & Co. x Netflix's Frankenstein",
+      "brand": "Tiffany & Co.",
+      "agency": "Tiffany & Co. / Netflix Brand Creative Studio (partners CREATEOLOGY; prod. Blinkink)",
+      "market": "USA"
+    },
+    {
+      "category": "Luxury",
+      "level": "Grand Prix",
+      "title": "Warmer Together",
+      "brand": "Moncler",
+      "agency": "WeSayHi, Sliema (photographer Platon)",
+      "market": "Malta"
+    },
+    {
+      "category": "Media",
+      "level": "Bronze",
+      "title": "A.I. Irresponsibly",
+      "brand": "Brewlander",
+      "agency": "BLKJ Havas",
+      "market": "Singapore"
+    },
+    {
+      "category": "Media",
+      "level": "Grand Prix",
+      "title": "Build Your Own Super Bowl (Commercial)",
+      "brand": "Uber Eats",
+      "agency": "Special",
+      "market": "US (Los Angeles)"
+    },
+    {
+      "category": "Media",
+      "level": "Gold",
+      "title": "CeraVe – The New Face of Legs",
+      "brand": "CeraVe",
+      "agency": "Beauty Co-Lab / L'Oréal",
+      "market": "US"
+    },
+    {
+      "category": "Media",
+      "level": "Silver",
+      "title": "Cheetos Thing-ertips",
+      "brand": "Cheetos",
+      "agency": "Goodby Silverstein & Partners",
+      "market": "US"
+    },
+    {
+      "category": "Media",
+      "level": "Gold",
+      "title": "Could Have Been a Heineken",
+      "brand": "Heineken",
+      "agency": "LePub",
+      "market": "Italy/Brazil"
+    },
+    {
+      "category": "Media",
+      "level": "Gold",
+      "title": "Dark Mode Ads",
+      "brand": "Plenitude",
+      "agency": "LePub",
+      "market": "Italy"
+    },
+    {
+      "category": "Media",
+      "level": "Gold",
+      "title": "Defining Help",
+      "brand": "Kids Help Phone",
+      "agency": "Epitaph Group & McCann Canada",
+      "market": "Canada"
+    },
+    {
+      "category": "Media",
+      "level": "Bronze",
+      "title": "Expensive Sh*t",
+      "brand": "Huggies",
+      "agency": "McCann New York / New Zealand",
+      "market": "New Zealand"
+    },
+    {
+      "category": "Media",
+      "level": "Silver",
+      "title": "Firecatchers",
+      "brand": "Sapeurs Pompiers de France",
+      "agency": "Havas Play",
+      "market": "France"
+    },
+    {
+      "category": "Media",
+      "level": "Silver",
+      "title": "IKEA Preowned",
+      "brand": "IKEA",
+      "agency": "McCann Spain",
+      "market": "Spain"
+    },
+    {
+      "category": "Media",
+      "level": "Bronze",
+      "title": "Laws Under Attack",
+      "brand": "ICRC",
+      "agency": "TBWA\\RAAD",
+      "market": "UAE"
+    },
+    {
+      "category": "Media",
+      "level": "Silver",
+      "title": "Prime Time 0.7",
+      "brand": "Frecuencia Latina",
+      "agency": "Fahrenheit DDB",
+      "market": "Peru"
+    },
+    {
+      "category": "Media",
+      "level": "Silver",
+      "title": "Recipe for Change",
+      "brand": "Puck",
+      "agency": "FP7 McCann",
+      "market": "UAE"
+    },
+    {
+      "category": "Media",
+      "level": "Silver",
+      "title": "ScoreCoupons",
+      "brand": "Mercado Libre",
+      "agency": "GUT",
+      "market": "Brazil"
+    },
+    {
+      "category": "Media",
+      "level": "Silver",
+      "title": "Serving Singles",
+      "brand": "Knorr",
+      "agency": "Frank",
+      "market": ""
+    },
+    {
+      "category": "Media",
+      "level": "Silver",
+      "title": "Spots for Shops",
+      "brand": "Parkin",
+      "agency": "FP7 McCann",
+      "market": "UAE"
+    },
+    {
+      "category": "Media",
+      "level": "Gold",
+      "title": "The KitKat Heist",
+      "brand": "KitKat",
+      "agency": "VML (with Burson London)",
+      "market": "UK"
+    },
+    {
+      "category": "Media",
+      "level": "Silver",
+      "title": "The Life-Saving Receipt",
+      "brand": "Chorogusan for Children",
+      "agency": "Dminusone Seoul",
+      "market": "South Korea"
+    },
+    {
+      "category": "Media",
+      "level": "Silver",
+      "title": "The Most Epic Watch Party Group",
+      "brand": "Lay's",
+      "agency": "Slap Global",
+      "market": ""
+    },
+    {
+      "category": "Media",
+      "level": "Silver",
+      "title": "TikTok Currency",
+      "brand": "Verkkokauppa.com",
+      "agency": "Bob the Robot",
+      "market": "Finland"
+    },
+    {
+      "category": "Media",
+      "level": "Bronze",
+      "title": "Untaught History Edition",
+      "brand": "Annahar",
+      "agency": "Impact BBDO",
+      "market": "UAE/Lebanon"
+    },
+    {
+      "category": "Media",
+      "level": "Bronze",
+      "title": "Vaseline and the Real Nigerian Prince",
+      "brand": "Vaseline",
+      "agency": "Leo Singapore",
+      "market": "Singapore"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Silver",
+      "title": "2036",
+      "brand": "Association Antoine Alléno",
+      "agency": "Havas Paris",
+      "market": "France"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Bronze",
+      "title": "A.I. Irresponsibly",
+      "brand": "Brewlander",
+      "agency": "BLKJ Havas Singapore",
+      "market": "Singapore"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Silver",
+      "title": "Back to Kai Tak",
+      "brand": "Cathay",
+      "agency": "Leo Hong Kong",
+      "market": "Hong Kong"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Silver",
+      "title": "Blizzard As Usual",
+      "brand": "Tim Hortons",
+      "agency": "GUT Toronto",
+      "market": "Canada"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Gold",
+      "title": "Coincidence?",
+      "brand": "Heinz Ketchup",
+      "agency": "Rethink Toronto",
+      "market": "Canada"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Gold",
+      "title": "Could Have Been a Heineken",
+      "brand": "Heineken",
+      "agency": "LePub Milan/São Paulo",
+      "market": "Italy/Brazil"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Silver",
+      "title": "Dark Mode Ads",
+      "brand": "Plenitude",
+      "agency": "LePub Milan",
+      "market": "Italy"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Bronze",
+      "title": "Dirty Business",
+      "brand": "Channel 4",
+      "agency": "4Creative London",
+      "market": "UK"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Silver",
+      "title": "Discount Chants",
+      "brand": "Mercado Libre",
+      "agency": "GUT Buenos Aires",
+      "market": "Argentina"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Bronze",
+      "title": "Fatal Question",
+      "brand": "StreetDoctors",
+      "agency": "Saatchi & Saatchi London",
+      "market": "UK"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Grand Prix",
+      "title": "Field Barcode",
+      "brand": "Mercado Livre",
+      "agency": "GUT São Paulo",
+      "market": "Brazil"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Gold",
+      "title": "Gig / Wedding / Bowling",
+      "brand": "McDonald's",
+      "agency": "Leo London",
+      "market": "UK"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Bronze",
+      "title": "Heinz Dipper",
+      "brand": "Heinz Ketchup",
+      "agency": "Rethink Toronto",
+      "market": "Canada"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Bronze",
+      "title": "Icedentity",
+      "brand": "Aguila Light",
+      "agency": "DAVID Bogotá",
+      "market": "Colombia"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Silver",
+      "title": "Ikea Brighton Store Launch",
+      "brand": "Ikea",
+      "agency": "Mother London",
+      "market": "UK"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Silver",
+      "title": "It Starts Outside",
+      "brand": "Dirt Is Good / Persil",
+      "agency": "Frank London / Unilever",
+      "market": "UK"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Silver",
+      "title": "KitKat Security Detail",
+      "brand": "KitKat",
+      "agency": "Courage Toronto",
+      "market": "Canada"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Silver",
+      "title": "Let It Fly",
+      "brand": "Saudia Airlines",
+      "agency": "Publicis KSA / Saatchi & Saatchi ME",
+      "market": "Saudi Arabia/UAE"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Gold",
+      "title": "Let's End Fast Tech",
+      "brand": "Back Market",
+      "agency": "Marcel Paris",
+      "market": "France"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Bronze",
+      "title": "Lime Guides",
+      "brand": "Corona",
+      "agency": "Grey New York",
+      "market": "US"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Bronze",
+      "title": "Listening/Strumming/Reading/Daydreaming",
+      "brand": "KitKat",
+      "agency": "VML London",
+      "market": "UK"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Silver",
+      "title": "London / Marrakesh / Bahamas",
+      "brand": "British Airways",
+      "agency": "Uncommon London",
+      "market": "UK"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Bronze",
+      "title": "Look Familiar?",
+      "brand": "Heinz Ketchup",
+      "agency": "Rethink Toronto",
+      "market": "Canada"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Silver",
+      "title": "Look for the Leaf",
+      "brand": "Maple Leaf Foods",
+      "agency": "No Fixed Address Toronto",
+      "market": "Canada"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Bronze",
+      "title": "McDelivery Speed Camera Ads",
+      "brand": "McDonald's",
+      "agency": "Scholz & Friends Hamburg",
+      "market": "Germany"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Bronze",
+      "title": "New York/Pyrenees/Abuja",
+      "brand": "British Airways",
+      "agency": "Uncommon London",
+      "market": "UK"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Bronze",
+      "title": "Rooftop Revival",
+      "brand": "Heineken",
+      "agency": "LePub Singapore/Milan",
+      "market": "Singapore/Italy"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Silver",
+      "title": "Showroom On Ice",
+      "brand": "Loods 5",
+      "agency": "Ogilvy Amsterdam",
+      "market": "Netherlands"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Bronze",
+      "title": "Sleep Talk Reviews",
+      "brand": "Ikea",
+      "agency": "Rethink Toronto",
+      "market": "Canada"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Bronze",
+      "title": "Socializing Billboards",
+      "brand": "Heineken / iFood",
+      "agency": "LePub São Paulo",
+      "market": "Brazil"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Bronze",
+      "title": "Steph Curry Shoots the Moon",
+      "brand": "Random House",
+      "agency": "Known New York",
+      "market": "US"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Gold",
+      "title": "Sunburnt Car",
+      "brand": "mycar",
+      "agency": "TBWA\\Sydney",
+      "market": "Australia"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Bronze",
+      "title": "TD Fractional Window Shopping",
+      "brand": "TD",
+      "agency": "Ogilvy Toronto",
+      "market": "Canada"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Bronze",
+      "title": "The Catrace",
+      "brand": "Strava",
+      "agency": "BETC Paris",
+      "market": "France"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Gold",
+      "title": "The Last Coke in the Desert",
+      "brand": "Coca-Cola",
+      "agency": "VML (NY/São Paulo/Mexico City)",
+      "market": "US/Brazil/Mexico"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Silver",
+      "title": "The Periodic Fable",
+      "brand": "The Ordinary",
+      "agency": "Uncommon London",
+      "market": "UK"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Gold",
+      "title": "Tiny Coffee Shops",
+      "brand": "De'Longhi",
+      "agency": "LOLA Madrid",
+      "market": "Spain"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Bronze",
+      "title": "Ukraine Air Raid Alerts",
+      "brand": "UNICEF Finland",
+      "agency": "United Imaginations Helsinki",
+      "market": "Finland"
+    },
+    {
+      "category": "Outdoor",
+      "level": "Bronze",
+      "title": "Waoo Wifi Invasion",
+      "brand": "Waoo Wifi",
+      "agency": "Uncle Grey Copenhagen",
+      "market": "Denmark"
+    },
+    {
+      "category": "Pharma",
+      "level": "Bronze",
+      "title": "Animal Attraction",
+      "brand": "Gilead Sciences Canada",
+      "agency": "The Local Collective",
+      "market": "Canada"
+    },
+    {
+      "category": "Pharma",
+      "level": "Grand Prix",
+      "title": "Relax Your Tight End",
+      "brand": "Novartis",
+      "agency": "Fallon, Minneapolis",
+      "market": "USA"
+    },
+    {
+      "category": "Pharma",
+      "level": "Bronze",
+      "title": "Sawaal Uthao",
+      "brand": "Tata 1mg",
+      "agency": "Humour Me",
+      "market": "India"
+    },
+    {
+      "category": "Pharma",
+      "level": "Bronze",
+      "title": "See a Seizure",
+      "brand": "Jazz Pharmaceuticals",
+      "agency": "21GRAMS",
+      "market": "USA"
+    },
+    {
+      "category": "Pharma",
+      "level": "Silver",
+      "title": "The Safe Pack",
+      "brand": "TuPharma 365",
+      "agency": "VML Madrid",
+      "market": "Spain"
+    },
+    {
+      "category": "Pharma",
+      "level": "Gold",
+      "title": "Viagra Blue Brands",
+      "brand": "Viagra (Viatris)",
+      "agency": "Ogilvy Shanghai",
+      "market": "China"
+    },
+    {
+      "category": "PR",
+      "level": "Gold",
+      "title": "600K Network",
+      "brand": "Comando Con Venezuela",
+      "agency": "Rainbow Lobster",
+      "market": "Mexico"
+    },
+    {
+      "category": "PR",
+      "level": "Bronze",
+      "title": "A Mother's Commentary",
+      "brand": "Reporters Without Borders",
+      "agency": "The Good Company",
+      "market": "Spain"
+    },
+    {
+      "category": "PR",
+      "level": "Silver",
+      "title": "CeraVe - The New Face of Legs",
+      "brand": "CeraVe",
+      "agency": "L'Oréal (in-house)",
+      "market": "USA"
+    },
+    {
+      "category": "PR",
+      "level": "Gold",
+      "title": "Expedition Impossible",
+      "brand": "Columbia Sportswear",
+      "agency": "adam&eve\\TBWA",
+      "market": "United Kingdom"
+    },
+    {
+      "category": "PR",
+      "level": "Silver",
+      "title": "Kyle F*cking Connor",
+      "brand": "KFC",
+      "agency": "Courage",
+      "market": "Canada"
+    },
+    {
+      "category": "PR",
+      "level": "Gold",
+      "title": "One More Question",
+      "brand": "LALCEC",
+      "agency": "Grey Argentina",
+      "market": "Argentina"
+    },
+    {
+      "category": "PR",
+      "level": "Bronze",
+      "title": "Sleep Talk Reviews",
+      "brand": "IKEA",
+      "agency": "Rethink",
+      "market": "Canada"
+    },
+    {
+      "category": "PR",
+      "level": "Gold",
+      "title": "T-Rex Leather",
+      "brand": "Lab-Grown Leather",
+      "agency": "VML",
+      "market": "France"
+    },
+    {
+      "category": "PR",
+      "level": "Silver",
+      "title": "The Bite",
+      "brand": "Burger King",
+      "agency": "Mojo Supermarket",
+      "market": "USA"
+    },
+    {
+      "category": "PR",
+      "level": "Silver",
+      "title": "The Kidney Pass",
+      "brand": "Way Out West",
+      "agency": "Nord",
+      "market": "Sweden"
+    },
+    {
+      "category": "PR",
+      "level": "Grand Prix",
+      "title": "The KitKat Heist",
+      "brand": "KitKat",
+      "agency": "Burson, London (VML-credited family)",
+      "market": "United Kingdom"
+    },
+    {
+      "category": "PR",
+      "level": "Gold",
+      "title": "The Relationship Aid",
+      "brand": "Specsavers",
+      "agency": "Golin / Ketchum",
+      "market": "United Kingdom"
+    },
+    {
+      "category": "PR",
+      "level": "Silver",
+      "title": "The Swedish Prescription",
+      "brand": "Visit Sweden",
+      "agency": "Prime Weber Shandwick",
+      "market": "Sweden"
+    },
+    {
+      "category": "PR",
+      "level": "Bronze",
+      "title": "The Thousand Sponsors of Muni",
+      "brand": "Club Deportivo Municipal",
+      "agency": "McCann Lima",
+      "market": "Peru"
+    },
+    {
+      "category": "PR",
+      "level": "Silver",
+      "title": "Tocayos",
+      "brand": "Heineken",
+      "agency": "LePub",
+      "market": "Italy"
+    },
+    {
+      "category": "PR",
+      "level": "Bronze",
+      "title": "Uncovering Racism",
+      "brand": "Sport Club Corinthians Paulista",
+      "agency": "AlmapBBDO",
+      "market": "Brazil"
+    },
+    {
+      "category": "PR",
+      "level": "Silver",
+      "title": "Vaseline Originals",
+      "brand": "Vaseline",
+      "agency": "Ogilvy Singapore",
+      "market": "Singapore"
+    },
+    {
+      "category": "PR",
+      "level": "Silver",
+      "title": "Welcome Back, Paisano",
+      "brand": "Tecate",
+      "agency": "LePub",
+      "market": "Mexico"
+    },
+    {
+      "category": "Print & Publishing",
+      "level": "Bronze",
+      "title": "30Under30",
+      "brand": "Change the Ref",
+      "agency": "Founders Miami",
+      "market": "US"
+    },
+    {
+      "category": "Print & Publishing",
+      "level": "Bronze",
+      "title": "Georgia / Missouri / Pennsylvania",
+      "brand": "Change the Ref",
+      "agency": "Alma Miami",
+      "market": "US"
+    },
+    {
+      "category": "Print & Publishing",
+      "level": "Gold",
+      "title": "Iconic Home (Original/French Vanilla/Midnight)",
+      "brand": "Dunkin' At Home",
+      "agency": "BBH New York",
+      "market": "US"
+    },
+    {
+      "category": "Print & Publishing",
+      "level": "Bronze",
+      "title": "Is That A Pinntorp?",
+      "brand": "IKEA Alsulaiman",
+      "agency": "Memac Ogilvy Dubai",
+      "market": "UAE"
+    },
+    {
+      "category": "Print & Publishing",
+      "level": "Bronze",
+      "title": "It Starts Outside",
+      "brand": "Dirt Is Good / Persil",
+      "agency": "FRANK London / Unilever",
+      "market": "UK"
+    },
+    {
+      "category": "Print & Publishing",
+      "level": "Bronze",
+      "title": "Let's End Fast Tech",
+      "brand": "Back Market",
+      "agency": "Marcel Paris",
+      "market": "France"
+    },
+    {
+      "category": "Print & Publishing",
+      "level": "Grand Prix",
+      "title": "Look Familiar?",
+      "brand": "Heinz Ketchup",
+      "agency": "Rethink Toronto",
+      "market": "Canada"
+    },
+    {
+      "category": "Print & Publishing",
+      "level": "Silver",
+      "title": "Los Campeones / Lo de Facu / La Guitarrita",
+      "brand": "Amstel",
+      "agency": "INGO Stockholm / Ogilvy Amsterdam",
+      "market": "Sweden/Netherlands"
+    },
+    {
+      "category": "Print & Publishing",
+      "level": "Silver",
+      "title": "No Blue, No Green",
+      "brand": "SOS Oceano",
+      "agency": "Droga5 (Accenture Song) São Paulo",
+      "market": "Brazil"
+    },
+    {
+      "category": "Print & Publishing",
+      "level": "Silver",
+      "title": "Silent Edition",
+      "brand": "Jeep",
+      "agency": "Publicis Canada Toronto",
+      "market": "Canada"
+    },
+    {
+      "category": "Print & Publishing",
+      "level": "Gold",
+      "title": "The Trojan Fax",
+      "brand": "IUCN French Committee x Fujifilm",
+      "agency": "BETC Paris",
+      "market": "France"
+    },
+    {
+      "category": "Print & Publishing",
+      "level": "Silver",
+      "title": "Uncovering Racism",
+      "brand": "SC Corinthians Paulista",
+      "agency": "AlmapBBDO São Paulo",
+      "market": "Brazil"
+    },
+    {
+      "category": "Print & Publishing",
+      "level": "Bronze",
+      "title": "Wherever Life Goes",
+      "brand": "IKEA",
+      "agency": "NoA Akestam Holst Stockholm",
+      "market": "Sweden"
+    },
+    {
+      "category": "Social & Creator",
+      "level": "Bronze",
+      "title": "CeraVe - The New Face of Legs",
+      "brand": "CeraVe",
+      "agency": "L'Oréal (in-house)",
+      "market": "USA"
+    },
+    {
+      "category": "Social & Creator",
+      "level": "Gold",
+      "title": "Chicken Screams for Coke",
+      "brand": "Coca-Cola",
+      "agency": "VML, New York",
+      "market": "USA"
+    },
+    {
+      "category": "Social & Creator",
+      "level": "Silver",
+      "title": "Code Her",
+      "brand": "Boticario",
+      "agency": "AlmapBBDO",
+      "market": "Brazil"
+    },
+    {
+      "category": "Social & Creator",
+      "level": "Silver",
+      "title": "Copycats Welcome",
+      "brand": "Clash Royale",
+      "agency": "David",
+      "market": "USA"
+    },
+    {
+      "category": "Social & Creator",
+      "level": "Grand Prix",
+      "title": "Could Have Been a Heineken",
+      "brand": "Heineken",
+      "agency": "LePub Milan & LePub São Paulo",
+      "market": "Italy / Brazil"
+    },
+    {
+      "category": "Social & Creator",
+      "level": "Silver",
+      "title": "Donate to Play",
+      "brand": "Grupo Pulsa",
+      "agency": "Publicis Brasil",
+      "market": "Brazil"
+    },
+    {
+      "category": "Social & Creator",
+      "level": "Gold",
+      "title": "Dove R/eal Reviews",
+      "brand": "Dove",
+      "agency": "David (London & Madrid)",
+      "market": "UK / Spain"
+    },
+    {
+      "category": "Social & Creator",
+      "level": "Gold",
+      "title": "Everyone Wants a Piece",
+      "brand": "Lego",
+      "agency": "Wieden+Kennedy Amsterdam / Our Lego Agency",
+      "market": "Netherlands / Denmark"
+    },
+    {
+      "category": "Social & Creator",
+      "level": "Silver",
+      "title": "Expedition Impossible",
+      "brand": "Columbia Sportswear",
+      "agency": "adam&eve\\TBWA",
+      "market": "United Kingdom"
+    },
+    {
+      "category": "Social & Creator",
+      "level": "Silver",
+      "title": "Expensive Sh*t",
+      "brand": "Huggies",
+      "agency": "McCann New York",
+      "market": "USA"
+    },
+    {
+      "category": "Social & Creator",
+      "level": "Bronze",
+      "title": "Mntana Ka Gogo",
+      "brand": "Vaseline",
+      "agency": "VML South Africa",
+      "market": "South Africa"
+    },
+    {
+      "category": "Social & Creator",
+      "level": "Silver",
+      "title": "Olympic Rings Pasta",
+      "brand": "International Olympic Committee",
+      "agency": "IOC (in-house)",
+      "market": "Switzerland"
+    },
+    {
+      "category": "Social & Creator",
+      "level": "Bronze",
+      "title": "OM BDR",
+      "brand": "KFC",
+      "agency": "TBWA\\RAAD",
+      "market": "United Arab Emirates"
+    },
+    {
+      "category": "Social & Creator",
+      "level": "Silver",
+      "title": "Played by Humans",
+      "brand": "Jazz Is Dead",
+      "agency": "TBWA\\Chiat\\Day",
+      "market": "USA"
+    },
+    {
+      "category": "Social & Creator",
+      "level": "Gold",
+      "title": "Pope Yes",
+      "brand": "Popeyes Louisiana Kitchen",
+      "agency": "Gut Miami",
+      "market": "USA"
+    },
+    {
+      "category": "Social & Creator",
+      "level": "Bronze",
+      "title": "Socializing Billboards",
+      "brand": "Heineken",
+      "agency": "LePub São Paulo",
+      "market": "Brazil"
+    },
+    {
+      "category": "Social & Creator",
+      "level": "Silver",
+      "title": "The Choice",
+      "brand": "Pepsi",
+      "agency": "PepsiCo (in-house)",
+      "market": "USA"
+    },
+    {
+      "category": "Social & Creator",
+      "level": "Silver",
+      "title": "The Dr Pepper Jingle",
+      "brand": "Dr Pepper",
+      "agency": "Deutsch",
+      "market": "USA"
+    },
+    {
+      "category": "Social & Creator",
+      "level": "Silver",
+      "title": "The Feathered Lamb",
+      "brand": "Visa France",
+      "agency": "Marcel",
+      "market": "France"
+    },
+    {
+      "category": "Social & Creator",
+      "level": "Gold",
+      "title": "The KitKat Heist",
+      "brand": "KitKat",
+      "agency": "VML",
+      "market": "United Kingdom"
+    },
+    {
+      "category": "Social & Creator",
+      "level": "Gold",
+      "title": "Uberlândia E.C.",
+      "brand": "Uber",
+      "agency": "Wieden+Kennedy São Paulo",
+      "market": "Brazil"
+    },
+    {
+      "category": "Social & Creator",
+      "level": "Silver",
+      "title": "Uva Uva Bombón",
+      "brand": "Uva App",
+      "agency": "De La Cruz Ogilvy",
+      "market": "Dominican Republic"
+    },
+    {
+      "category": "Social & Creator",
+      "level": "Gold",
+      "title": "Vaseline and the Real Nigerian Prince",
+      "brand": "Vaseline",
+      "agency": "Leo, Singapore",
+      "market": "Singapore"
+    },
+    {
+      "category": "Social & Creator",
+      "level": "Gold",
+      "title": "Vaseline Originals",
+      "brand": "Vaseline",
+      "agency": "Ogilvy Singapore",
+      "market": "Singapore"
+    },
+    {
+      "category": "Social & Creator",
+      "level": "Silver",
+      "title": "You've Been Warned",
+      "brand": "Netflix",
+      "agency": "Wieden+Kennedy",
+      "market": "USA"
+    },
+    {
+      "category": "Sustainable Development Goals",
+      "level": "Bronze",
+      "title": "Bedtime Donations",
+      "brand": "Royal Society for Blind Children",
+      "agency": "",
+      "market": "UK"
+    },
+    {
+      "category": "Sustainable Development Goals",
+      "level": "Bronze",
+      "title": "Fertilizer 2.5",
+      "brand": "Thai Health Promotion Foundation",
+      "agency": "",
+      "market": "Thailand"
+    },
+    {
+      "category": "Sustainable Development Goals",
+      "level": "Bronze",
+      "title": "It's Time to Stop!",
+      "brand": "Bingo Group",
+      "agency": "",
+      "market": ""
+    },
+    {
+      "category": "Sustainable Development Goals",
+      "level": "Grand Prix",
+      "title": "Paid Sick Leave for Cows",
+      "brand": "Too Good",
+      "agency": "The Partnership Agency, Nairobi",
+      "market": "Kenya"
+    },
+    {
+      "category": "Sustainable Development Goals",
+      "level": "Bronze",
+      "title": "Santa Maria Pueblo Hotel",
+      "brand": "Senatur",
+      "agency": "",
+      "market": "Paraguay"
+    },
+    {
+      "category": "Sustainable Development Goals",
+      "level": "Silver",
+      "title": "The Healing Stage",
+      "brand": "Armed Forces of Ukraine",
+      "agency": "",
+      "market": "Ukraine"
+    },
+    {
+      "category": "Sustainable Development Goals",
+      "level": "Gold",
+      "title": "The Māori Roll Call",
+      "brand": "Whānau Ora",
+      "agency": "Motion Sickness, Auckland",
+      "market": "New Zealand"
+    },
+    {
+      "category": "Sustainable Development Goals",
+      "level": "Gold",
+      "title": "The Period Uniform",
+      "brand": "Somos Martina",
+      "agency": "Serviceplan, Munich",
+      "market": "Germany"
+    },
+    {
+      "category": "Sustainable Development Goals",
+      "level": "Silver",
+      "title": "Three Words",
+      "brand": "AXA France",
+      "agency": "",
+      "market": "France"
+    },
+    {
+      "category": "Titanium",
+      "level": "Titanium",
+      "title": "600K Network",
+      "brand": "Comando Con Venezuela",
+      "agency": "Rainbow Lobster, Mexico City & Comando Con Venezuela, Caracas",
+      "market": "Mexico/Venezuela"
+    },
+    {
+      "category": "Titanium",
+      "level": "Titanium",
+      "title": "Expedition Impossible",
+      "brand": "Columbia Sportswear",
+      "agency": "adam&eveDDB / adam&eve\\TBWA London",
+      "market": "UK/USA"
+    },
+    {
+      "category": "Titanium",
+      "level": "Grand Prix",
+      "title": "Haven",
+      "brand": "Suncorp Insurance",
+      "agency": "Leo Australia (Melbourne)",
+      "market": "Australia"
+    },
+    {
+      "category": "Titanium",
+      "level": "Titanium",
+      "title": "Oreo Cows",
+      "brand": "Oreo",
+      "agency": "VML New York & Mexico City",
+      "market": "USA/Mexico"
+    },
+    {
+      "category": "Titanium",
+      "level": "Titanium",
+      "title": "The Legacy of Virginia Giuffre",
+      "brand": "—",
+      "agency": "Dini von Muffling Communications",
+      "market": "USA"
+    }
+  ]
+}

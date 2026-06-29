@@ -76,6 +76,33 @@ function parseCollection(
   return { year, category: cat || 'Other' };
 }
 
+// award文字列に複数受賞（"/"区切り）が含まれる場合、各セグメントを別々のコレクションとして解釈する。
+// これにより1作品が複数部門で受賞していれば全部門ページに出る（多重受賞の取りこぼし防止）。
+function segmentBelongsToOrg(seg: string, orgKey: OrgKey): boolean {
+  const s = seg.toLowerCase();
+  const hasAnyOrg = AWARD_ORGS.some(o => o.key === 'dad' ? s.includes('d&ad') : s.includes(o.key));
+  // org名を明示するセグメントは当該orgのみ。org名が無いセグメント（例 "Design Lions Gold"）は親awardのorgを継承。
+  return matchesOrg(seg, orgKey) || !hasAnyOrg;
+}
+
+function parseCollectionsAll(
+  awardStr: string,
+  caseYear: string,
+  orgKey: OrgKey,
+): Array<{ year: string; category: string }> {
+  const results: Array<{ year: string; category: string }> = [];
+  const seen = new Set<string>();
+  for (const seg of awardStr.split('/')) {
+    if (!seg.trim()) continue;
+    if (!segmentBelongsToOrg(seg, orgKey)) continue;
+    const { year, category } = parseCollection(seg, caseYear, orgKey);
+    if (!category || category === 'Other') continue;
+    const key = `${year}::${category}`;
+    if (!seen.has(key)) { seen.add(key); results.push({ year, category }); }
+  }
+  return results;
+}
+
 function toSlug(year: string, category: string): string {
   return `${year}-${category.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`;
 }
@@ -94,10 +121,11 @@ export function getAwardCollections(orgKey: OrgKey): AwardCollection[] {
 
   const map = new Map<string, { year: string; category: string; cases: Case[] }>();
   for (const c of matched) {
-    const { year, category } = parseCollection(c.award ?? '', c.year, orgKey);
-    const key = `${year}::${category}`;
-    if (!map.has(key)) map.set(key, { year, category, cases: [] });
-    map.get(key)!.cases.push(c);
+    for (const { year, category } of parseCollectionsAll(c.award ?? '', c.year, orgKey)) {
+      const key = `${year}::${category}`;
+      if (!map.has(key)) map.set(key, { year, category, cases: [] });
+      map.get(key)!.cases.push(c);
+    }
   }
 
   return Array.from(map.values())
