@@ -115,6 +115,16 @@ function toId(title, year) {
     .slice(0, 60);
 }
 
+// タイトル正規化（id違いの重複を検出するため）。記号・空白・年を除去して比較する。
+function normTitle(t) {
+  return (t || "")
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/\b20\d{2}\b/g, "")
+    .replace(/[^a-z0-9]+/g, "");
+}
+
 // 前回実行日時の読み書き
 async function getLastRunDate() {
   try {
@@ -260,6 +270,9 @@ async function main() {
 
   const existingCases = JSON.parse(await fs.readFile(CASES_PATH, "utf-8"));
   const existingIds = new Set(existingCases.map((c) => c.id));
+  // id違いの重複（例: columbia-expedition-impossible vs expedition-impossible-2026）を防ぐため
+  // 正規化タイトルでも既存判定する。
+  const existingTitleKeys = new Set(existingCases.map((c) => normTitle(c.title)));
   // 直近30件のみ渡す（プロンプト肥大化防止）
   const existingTitles = existingCases.slice(0, 30).map((c) => c.title).join(" / ");
 
@@ -284,10 +297,15 @@ async function main() {
     if (toAdd.length >= MAX_ADD) break;
 
     const id = toId(c.title, c.year);
-    if (existingIds.has(id)) {
+    // id・正規化タイトルのどちらかで既存と一致すれば重複としてスキップ（サムネも取得しない＝孤立ファイルを作らない）
+    if (existingIds.has(id) || existingTitleKeys.has(normTitle(c.title))) {
       console.log(`スキップ（重複）: ${c.title}`);
       continue;
     }
+
+    // 1件の処理失敗（ネットワーク停止・例外）で全体を落とさない。
+    // 途中保存したサムネが孤立しないよう、失敗時は掃除する。
+    try {
 
     // ── サムネイル取得（3段階フォールバック）──────────────────
     let thumbnail = "";
@@ -365,6 +383,16 @@ async function main() {
         url: w.url || "",
       })),
     });
+    // 追加確定したら以後の重複判定にも反映
+    existingIds.add(id);
+    existingTitleKeys.add(normTitle(c.title));
+
+    } catch (err) {
+      console.log(`  ⚠ スキップ（処理失敗: ${err.message}）: ${c.title}`);
+      // 途中で保存されたローカルサムネが事例なしで残らないよう掃除
+      const orphan = path.join(__dirname, `../public/thumbnails/${id}.jpg`);
+      try { await fs.unlink(orphan); } catch {}
+    }
   }
 
   if (!toAdd.length) {

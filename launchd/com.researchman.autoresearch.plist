@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.researchman.autoresearch</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/zsh</string>
+    <string>-c</string>
+    <string>
+      export PATH="$HOME/.local/bin:/usr/local/bin:/opt/homebrew/bin:$PATH";
+      cd /Users/tm/Projects/Claude/ResearchMan;
+      LOG=/tmp/researchman-auto.log;
+      echo "===== Run start: $(date) =====" &gt;&gt; $LOG;
+      node scripts/auto-research-cc.mjs &gt;&gt; $LOG 2&gt;&amp;1;
+      node scripts/self-heal-thumbnails.mjs &gt;&gt; $LOG 2&gt;&amp;1;
+      git add data/cases.json public/thumbnails/ &gt;&gt; $LOG 2&gt;&amp;1;
+      if git diff --quiet HEAD; then
+        echo "変更なし（新規事例なし）: $(date)" &gt;&gt; $LOG;
+      else
+        git commit -m "Auto research: $(date '+%Y-%m-%d')" &gt;&gt; $LOG 2&gt;&amp;1;
+        if git push &gt;&gt; $LOG 2&gt;&amp;1; then
+          node scripts/verify-deploy.mjs &gt;&gt; $LOG 2&gt;&amp;1 &amp;&amp; echo "反映まで確認OK: $(date)" &gt;&gt; $LOG || echo "push成功だが反映未確認（時間切れ）: $(date)" &gt;&gt; $LOG;
+        else
+          echo "push失敗（pre-push監査で中止の可能性）。コミットはローカル残存。要手動対応: $(date)" &gt;&gt; $LOG;
+        fi;
+      fi;
+      echo "Completed: $(date)" &gt;&gt; $LOG
+    </string>
+  </array>
+
+  <!-- 3日ごと（72時間） -->
+  <key>StartInterval</key>
+  <integer>259200</integer>
+
+  <!-- PC起動時に自動開始 -->
+  <key>RunAtLoad</key>
+  <false/>
+
+  <!-- クラッシュ時に再起動しない -->
+  <key>KeepAlive</key>
+  <false/>
+
+  <!-- ログ -->
+  <key>StandardOutPath</key>
+  <string>/tmp/researchman-auto.log</string>
+  <key>StandardErrorPath</key>
+  <string>/tmp/researchman-auto-error.log</string>
+</dict>
+</plist>
