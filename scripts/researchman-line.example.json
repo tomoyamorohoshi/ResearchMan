@@ -1,13 +1,14 @@
 {
   "channelAccessToken": "Messaging APIチャネルの長期チャネルアクセストークン",
-  "to": "Uxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx（自分のuserId）",
+  "_to_任意": "Uxxxx...（特定userId宛にしたい場合のみ。省略すると全友だちへbroadcast）",
   "_手順": [
-    "1. https://developers.line.biz/ でプロバイダー作成 → Messaging APIチャネル作成",
-    "2. チャネル基本設定 → 『チャネルアクセストークン(長期)』を発行し channelAccessToken に貼る",
-    "3. 発行された公式アカウントを自分のLINEで友だち追加",
-    "4. 自分の userId を取得して to に貼る（Webhookのeventログ、または /v2/bot/... のfollow eventで確認）",
+    "1. https://developers.line.biz/ でプロバイダー作成 → LINE公式アカウント作成(Messaging API有効化)",
+    "2. Developers Console → チャネル → 『Messaging API』タブ → 『チャネルアクセストークン(長期)』を Issue",
+    "3. その値を channelAccessToken に貼る",
+    "4. 発行された公式アカウントを自分のLINEで友だち追加(QRコードから)",
     "5. このファイルを ~/.researchman-line.json にコピー: cp scripts/researchman-line.example.json ~/.researchman-line.json",
     "6. chmod 600 ~/.researchman-line.json",
-    "7. node scripts/notify-line.mjs --dry-run で本文確認 → 引数なしで実送信テスト"
+    "7. node scripts/notify-line.mjs --dry-run で本文確認 → 引数なしで実送信テスト",
+    "備考: to を省略すると broadcast(全友だち宛)。個人通知用途では自分1人が友だちなので to 不要。"
   ]
 }

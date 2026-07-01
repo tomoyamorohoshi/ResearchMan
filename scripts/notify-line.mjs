@@ -5,9 +5,10 @@
  * ※ LINE Notify は 2025-03-31 で終了したため Messaging API を使う。
  *
  * 認証情報はリポジトリに置かない。ホーム直下の ~/.researchman-line.json を読む:
- *   { "channelAccessToken": "長いトークン", "to": "Uxxxxxxxx（自分のuserId）" }
+ *   { "channelAccessToken": "長いトークン" }              // broadcast（全友だち宛。個人通知botはこれで十分）
+ *   { "channelAccessToken": "長いトークン", "to": "Uxxx" } // push（特定userId宛。to があればこちらを優先）
  *   - LINE Developers でプロバイダー→Messaging APIチャネル作成 → チャネルアクセストークン(長期)発行
- *   - 公式アカウントを自分で友だち追加 → Webhook等で自分の userId を確認して "to" に設定
+ *   - 公式アカウントを自分で友だち追加（broadcast は友だち全員に届く。自分1人ならその1人に届く）
  *
  * 追加事例は auto-research-cc.mjs が書く /tmp/researchman-last-add.json を読む。
  *
@@ -29,6 +30,7 @@ const CONFIG_PATH = path.join(os.homedir(), ".researchman-line.json");
 const LAST_ADD_PATH = "/tmp/researchman-last-add.json";
 const SITE = "https://research-man.vercel.app";
 const PUSH_URL = "https://api.line.me/v2/bot/message/push";
+const BROADCAST_URL = "https://api.line.me/v2/bot/message/broadcast";
 
 function log(msg) {
   console.log(`[notify-line] ${msg}`);
@@ -41,8 +43,8 @@ function loadConfig() {
   }
   try {
     const cfg = JSON.parse(fs.readFileSync(CONFIG_PATH, "utf8"));
-    if (!cfg.channelAccessToken || !cfg.to) {
-      log("設定に channelAccessToken/to が不足 → 通知スキップ");
+    if (!cfg.channelAccessToken) {
+      log("設定に channelAccessToken が不足 → 通知スキップ");
       return null;
     }
     return cfg;
@@ -87,11 +89,16 @@ function buildText(summary, head) {
   return lines.join("\n");
 }
 
-function pushMessage(cfg, text) {
+function sendMessage(cfg, text) {
+  // to があれば push（特定userId宛）、無ければ broadcast（全友だち宛）
+  const url = cfg.to ? PUSH_URL : BROADCAST_URL;
   return new Promise((resolve) => {
-    const body = JSON.stringify({ to: cfg.to, messages: [{ type: "text", text }] });
+    const payload = cfg.to
+      ? { to: cfg.to, messages: [{ type: "text", text }] }
+      : { messages: [{ type: "text", text }] };
+    const body = JSON.stringify(payload);
     const req = https.request(
-      PUSH_URL,
+      url,
       {
         method: "POST",
         headers: {
@@ -126,9 +133,10 @@ async function main() {
   const cfg = loadConfig();
   if (!cfg) return; // 未設定なら静かにスキップ
 
-  const r = await pushMessage(cfg, text);
+  const mode = cfg.to ? `push(userId=${cfg.to})` : "broadcast(全友だち)";
+  const r = await sendMessage(cfg, text);
   if (r.status === 200) {
-    log(`送信OK → userId=${cfg.to}`);
+    log(`送信OK → ${mode}`);
   } else {
     log(`送信失敗（status=${r.status} ${r.body}）— 本体処理には影響なし`);
   }
