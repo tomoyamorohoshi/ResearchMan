@@ -25,6 +25,7 @@
           if node scripts/verify-deploy.mjs &gt;&gt; $LOG 2&gt;&amp;1; then
             echo "反映まで確認OK: $(date)" &gt;&gt; $LOG;
             node scripts/send-mail.mjs &gt;&gt; $LOG 2&gt;&amp;1;
+            node scripts/notify-line.mjs &gt;&gt; $LOG 2&gt;&amp;1;
           else
             echo "push成功だが反映未確認（時間切れ）: $(date)" &gt;&gt; $LOG;
           fi;
