@@ -1,0 +1,12 @@
+{
+  "user": "あなたのGmailアドレス@gmail.com",
+  "appPassword": "アプリパスワード16桁（例: abcd efgh ijkl mnop）",
+  "to": "morohoshi.tomoya@dentsu.co.jp",
+  "_手順": [
+    "1. https://myaccount.google.com/apppasswords でアプリパスワードを発行",
+    "2. このファイルを ~/.researchman-mail.json にコピーして値を埋める",
+    "   cp scripts/researchman-mail.example.json ~/.researchman-mail.json",
+    "3. chmod 600 ~/.researchman-mail.json （自分だけ読める権限に）",
+    "4. node scripts/send-mail.mjs --dry-run で本文確認 → 引数なしで実送信テスト"
+  ]
+}

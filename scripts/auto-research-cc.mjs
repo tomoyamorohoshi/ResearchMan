@@ -21,6 +21,7 @@ const CASES_PATH = path.join(__dirname, "../data/cases.json");
 const DRY_RUN = process.argv.includes("--dry-run");
 const MAX_ADD = 5;
 const LAST_RUN_PATH = path.join(__dirname, "../.last-research-run.txt");
+const LAST_ADD_PATH = "/tmp/researchman-last-add.json"; // 反映後の通知メール用サマリー
 
 // ── サムネイル取得ユーティリティ ──────────────────────────────
 
@@ -410,6 +411,19 @@ async function main() {
   await fs.writeFile(CASES_PATH, JSON.stringify(updated, null, 2));
   await saveLastRunDate(); // 実行日時を保存（次回の検索期間の起点）
   console.log(`\n✅ ${toAdd.length}件追加 → 合計${updated.length}件`);
+
+  // 反映後の通知メール用サマリー（send-mail.mjs が読む）。
+  // /tmp に置き、次回実行で必ず上書き。読み手が無くても害はない。
+  try {
+    await fs.writeFile(
+      LAST_ADD_PATH,
+      JSON.stringify(
+        { count: toAdd.length, cases: toAdd.map((c) => ({ id: c.id, title: c.title, year: c.year })) },
+        null,
+        2
+      )
+    );
+  } catch {}
 
   return toAdd.length;
 }
