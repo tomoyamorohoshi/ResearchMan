@@ -1,5 +1,6 @@
 import { cases, allCategories, allYears, allRegions, allSources, allTags } from "@/lib/cases";
 import GalleryClient from "@/components/GalleryClient";
+import TopTabs from "@/components/TopTabs";
 import Link from "next/link";
 
 export default function Home() {
@@ -35,6 +36,11 @@ export default function Home() {
           ))}
         </nav>
       </header>
+
+      {/* Case Study / Technology 大分類タブ */}
+      <div className="border-b border-gray-300 bg-[#eeece7]">
+        <TopTabs active="cases" />
+      </div>
 
       <GalleryClient
         cases={cases}
