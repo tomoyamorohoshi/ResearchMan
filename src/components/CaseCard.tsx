@@ -6,6 +6,7 @@ import type { Case } from "@/lib/cases";
 import { getAwardLevel } from "@/lib/awardLevel";
 import { getCaseAwardRefs } from "@/lib/awards";
 import { isRadarCase } from "@/lib/researchSources";
+import { tagLabel } from "@/lib/tags";
 
 type Props = {
   c: Case;
@@ -90,6 +91,17 @@ export default function CaseCard({ c, isFavorite, onToggleFavorite }: Props) {
           {c.client && c.agency ? " / " : ""}
           {c.agency}
         </p>
+
+        {/* ハッシュタグ（逆引き導線。最大4つ） */}
+        {(c.tags ?? []).length > 0 && (
+          <p className="mt-1.5 flex flex-wrap gap-x-1.5 gap-y-0.5">
+            {(c.tags ?? []).slice(0, 4).map((t) => (
+              <span key={t} className="text-[9px] tracking-wider text-gray-400">
+                #{tagLabel(t)}
+              </span>
+            ))}
+          </p>
+        )}
       </Link>
 
       {/* 年・受賞バッジ */}

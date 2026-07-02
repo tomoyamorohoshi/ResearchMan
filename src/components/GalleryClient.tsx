@@ -6,6 +6,7 @@ import CaseCard from "./CaseCard";
 import { useFavorites } from "@/hooks/useFavorites";
 import { compareByAward } from "@/lib/awardLevel";
 import { tabSources, getSourceKind } from "@/lib/researchSources";
+import { TAG_AXES, tagAxis, tagLabel } from "@/lib/tags";
 
 type Props = {
   cases: Case[];
@@ -13,13 +14,14 @@ type Props = {
   years: string[];
   regions: string[];
   sources?: string[];
+  tags?: string[];
   defaultSort?: SortOrder;
 };
 
 type SortOrder = "added" | "year" | "award";
 
-export default function GalleryClient({ cases, categories, years, regions, sources = [], defaultSort = "added" }: Props) {
-  const [filters, setFilters] = useState({ category: "", year: "", region: "", source: "" });
+export default function GalleryClient({ cases, categories, years, regions, sources = [], tags = [], defaultSort = "added" }: Props) {
+  const [filters, setFilters] = useState({ category: "", year: "", region: "", source: "", tag: "" });
   const [tab, setTab] = useState("");
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<SortOrder>(defaultSort);
@@ -45,13 +47,15 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
     if (filters.year && c.year !== filters.year) return false;
     if (filters.region && !c.regions.includes(filters.region)) return false;
     if (filters.source && !(c.sources ?? []).includes(filters.source)) return false;
+    if (filters.tag && !(c.tags ?? []).includes(filters.tag)) return false;
     if (query) {
       const q = query.toLowerCase();
       return (
         c.title.toLowerCase().includes(q) ||
         c.summary.toLowerCase().includes(q) ||
         c.client.toLowerCase().includes(q) ||
-        c.agency.toLowerCase().includes(q)
+        c.agency.toLowerCase().includes(q) ||
+        (c.tags ?? []).some((t) => t.toLowerCase().includes(q))
       );
     }
     return true;
@@ -65,7 +69,7 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
         : filtered;
 
   const favoriteCount = mounted ? favorites.size : 0;
-  const activeFilterCount = [filters.category, filters.year, filters.region, filters.source].filter(Boolean).length;
+  const activeFilterCount = [filters.category, filters.year, filters.region, filters.source, filters.tag].filter(Boolean).length;
 
   return (
     <>
@@ -161,9 +165,19 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
               <FilterGroup label="Source" options={awardSources} value={filters.source} prefix="#"
                 onSelect={(v) => setFilters((p) => ({ ...p, source: p.source === v ? "" : v }))} />
             )}
+            {/* ハッシュタグ（Tech/Form/Theme の3軸。表示は #キーワードのみ、値はフルパス） */}
+            {TAG_AXES.map((axis) => {
+              const axisTags = tags.filter((t) => tagAxis(t) === axis);
+              if (axisTags.length === 0) return null;
+              return (
+                <FilterGroup key={axis} label={axis} options={axisTags} value={filters.tag}
+                  prefix="#" format={tagLabel} limit={16}
+                  onSelect={(v) => setFilters((p) => ({ ...p, tag: p.tag === v ? "" : v }))} />
+              );
+            })}
             {activeFilterCount > 0 && (
               <button
-                onClick={() => setFilters({ category: "", year: "", region: "", source: "" })}
+                onClick={() => setFilters({ category: "", year: "", region: "", source: "", tag: "" })}
                 className="text-[10px] tracking-widest uppercase text-gray-400 hover:text-gray-900 self-center"
               >
                 Clear all
@@ -222,14 +236,15 @@ function TabButton({
 }
 
 function FilterGroup({
-  label, options, value, onSelect, prefix = "",
+  label, options, value, onSelect, prefix = "", format, limit = 12,
 }: {
-  label: string; options: string[]; value: string; onSelect: (v: string) => void; prefix?: string;
+  label: string; options: string[]; value: string; onSelect: (v: string) => void;
+  prefix?: string; format?: (v: string) => string; limit?: number;
 }) {
   return (
     <div className="flex items-center gap-2 flex-wrap">
       <span className="text-[9px] tracking-[0.25em] uppercase text-gray-400 font-bold w-14 shrink-0">{label}</span>
-      {options.slice(0, 12).map((opt) => (
+      {options.slice(0, limit).map((opt) => (
         <button
           key={opt}
           onClick={() => onSelect(opt)}
@@ -239,7 +254,7 @@ function FilterGroup({
               : "border-gray-300 text-gray-400 hover:border-gray-600 hover:text-gray-700"
           }`}
         >
-          {prefix}{opt}
+          {prefix}{format ? format(opt) : opt}
         </button>
       ))}
     </div>

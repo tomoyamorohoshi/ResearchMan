@@ -1,119 +1,72 @@
 /**
- * CREATIVE EDGE 自動収集スクリプト（Claude Code CLI版）
+ * ResearchMan 自動収集スクリプト（Claude Code CLI版）
  *
  * ANTHROPIC_API_KEY 不要。Claude Code のログイン認証を使用。
- * .command ファイルから呼ばれる。
+ * launchd（毎時起動→run-if-due.mjs が72時間ゲート）から呼ばれる。
+ *
+ * キュレーション方針（デジクリラジオの興味プロファイル準拠）:
+ *   広告賞に限らず「デジタル×クリエイティブ」全域を広く収集する。
+ *   厳選しない。新規5件たまるまで最大3ラウンド検索を繰り返す。
+ *
+ * アーキテクチャ（2段階。1プロンプト過積載によるタイムアウトを防ぐ）:
+ *   Phase A 発見    … 軽量リスト（title/client/link等）を10〜14件返させる
+ *   Phase B 記事化  … 重複除外・link実在・サムネ検証を通過した候補だけ個別に本文生成
+ *   → 重複候補に長文生成の時間を浪費しない・1回のCLI呼び出しが短く確実に完了する
+ *
+ * 正確性の担保（絶対ルール）:
+ *   - link は実際に到達確認できたものだけ登録（404/死は候補ごと却下）
+ *   - videoId は YouTube oEmbed で実在＋タイトル一致を確認できたものだけ登録
+ *   - サムネイルは 検証済みYouTube → og:image の実画像のみ。picsum等のダミー禁止
+ *   - 検証を通らない候補は登録しない（間違った情報を載せるより載せない）
  *
  * 使い方:
  *   node scripts/auto-research-cc.mjs
  *   node scripts/auto-research-cc.mjs --dry-run
  */
 
-import { execSync, spawnSync, execFileSync } from "child_process";
+import { execFileSync, spawnSync } from "child_process";
 import fs from "fs/promises";
-import https from "https";
 import path from "path";
 import { saveThumbnail, saveThumbnailFromPage } from "./save-thumbnail.mjs";
+import { isUrlAlive, fetchYouTubeInfo, videoMatchesCase } from "./verify-video.mjs";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CASES_PATH = path.join(__dirname, "../data/cases.json");
+const VOCAB_PATH = path.join(__dirname, "../data/tag-vocabulary.json");
 const DRY_RUN = process.argv.includes("--dry-run");
-const MAX_ADD = 5;
 const LAST_RUN_PATH = path.join(__dirname, "../.last-research-run.txt");
 const LAST_ADD_PATH = "/tmp/researchman-last-add.json"; // 反映後の通知メール用サマリー
 
-// ── サムネイル取得ユーティリティ ──────────────────────────────
+const TARGET_NEW = 5; // 新規がこれだけたまったらラウンド終了
+const MAX_ADD = 10; // 1回の実行で追加する上限（厳選しない方針なので多め）
+const MAX_ROUNDS = 3; // 発見リトライ上限（重複ばかりでも粘る）
+// リサーチ・記事化はSonnetで十分（既定の上位モデルだと遅くタイムアウトしやすい）
+const MODEL = "sonnet";
+const DISCOVER_TIMEOUT_MS = 420000;
+const ARTICLE_TIMEOUT_MS = 300000;
 
-// 記事 URL から画像を取得（og:image → twitter:image → コンテンツ内画像の順）
-function fetchImageFromUrl(url) {
-  return new Promise((resolve) => {
-    if (!url || !url.startsWith("http")) return resolve(null);
-    const mod = url.startsWith("https") ? https : require("http");
-    const req = mod.get(url, {
-      headers: {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/124.0.0.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml",
-      },
-    }, (res) => {
-      // リダイレクト追跡（最大1回）
-      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
-        req.destroy();
-        return resolve(fetchImageFromUrl(res.headers.location));
-      }
-      let html = "";
-      res.on("data", (d) => { html += d; if (html.length > 30000) req.destroy(); });
-      res.on("end", () => {
-        // 1. og:image
-        const og = html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i)
-                 || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i);
-        if (og?.[1]?.startsWith("http")) return resolve(og[1]);
+// ── ID・タイトル正規化 ────────────────────────────────────────
 
-        // 2. twitter:image
-        const tw = html.match(/<meta[^>]+name=["']twitter:image["'][^>]+content=["']([^"']+)["']/i)
-                 || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+name=["']twitter:image["']/i);
-        if (tw?.[1]?.startsWith("http")) return resolve(tw[1]);
-
-        // 3. ページ内の大きな画像（width属性や src が .jpg/.png/.webp の img タグ）
-        const imgs = [...html.matchAll(/<img[^>]+src=["']([^"']+\.(jpg|jpeg|png|webp)[^"']*)["']/gi)];
-        const candidate = imgs.find(m => {
-          const src = m[1];
-          return src.startsWith("http") && !src.includes("logo") && !src.includes("icon") && !src.includes("avatar");
-        });
-        if (candidate) return resolve(candidate[1]);
-
-        resolve(null);
-      });
-    });
-    req.on("error", () => resolve(null));
-    req.setTimeout(10000, () => { req.destroy(); resolve(null); });
-  });
+function shortHash(s) {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0;
+  return (h >>> 0).toString(36);
 }
 
-// Claude CLI で YouTube ID を検索
-function findYouTubeId(title, client, claudeBin) {
-  const query = `"${title}"${client ? " " + client : ""}`;
-  const result = spawnSync(claudeBin, [
-    "--print",
-    "--allowedTools=WebSearch",
-    "--dangerously-skip-permissions",
-    `Search YouTube for the official campaign video or case film for: ${query}
-Return ONLY the 11-character YouTube video ID (e.g. dQw4w9WgXcQ).
-If you find multiple, choose the most official one (brand channel or award case study).
-If nothing found, return: NOT_FOUND`,
-  ], {
-    encoding: "utf-8",
-    timeout: 60000,
-    maxBuffer: 1024 * 1024 * 5,
-    stdio: ["ignore", "pipe", "pipe"],
-  });
-
-  const out = (result.stdout || "").trim();
-  // 11文字のYouTube IDパターンを抽出
-  const match = out.match(/\b([A-Za-z0-9_-]{11})\b/);
-  if (!match || out.includes("NOT_FOUND")) return null;
-  return match[1];
-}
-
-// YouTube ID の有効性確認
-function verifyYouTubeId(ytId) {
-  return new Promise((resolve) => {
-    if (!ytId || ytId.length < 5) return resolve(false);
-    const req = https.get(
-      `https://i.ytimg.com/vi/${ytId}/hqdefault.jpg`,
-      (res) => resolve(res.statusCode === 200)
-    );
-    req.on("error", () => resolve(false));
-    req.setTimeout(6000, () => { req.destroy(); resolve(false); });
-  });
-}
-
-function toId(title, year) {
-  return (title + "-" + year)
-    .toLowerCase()
-    .replace(/[^\w]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .slice(0, 60);
+function toId(title, year, client = "") {
+  const slugOf = (s) =>
+    (s || "")
+      .toLowerCase()
+      .replace(/[^\w]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  let base = slugOf(title);
+  // 日本語のみのタイトルはスラッグが空になる → クライアント名 or ハッシュで一意化
+  if (base.replace(/[\d-]/g, "").length < 3) {
+    const clientSlug = slugOf(client);
+    base = clientSlug.replace(/[\d-]/g, "").length >= 3 ? clientSlug : `case-${shortHash(title)}`;
+  }
+  return `${base}-${year}`.replace(/-+/g, "-").slice(0, 60).replace(/^-+|-+$/g, "");
 }
 
 // タイトル正規化（id違いの重複を検出するため）。記号・空白・年を除去して比較する。
@@ -123,16 +76,16 @@ function normTitle(t) {
     .normalize("NFKD")
     .replace(/[̀-ͯ]/g, "")
     .replace(/\b20\d{2}\b/g, "")
-    .replace(/[^a-z0-9]+/g, "");
+    .replace(/[^a-z0-9ぁ-んァ-ヶ一-龠]+/g, "");
 }
 
-// 前回実行日時の読み書き
+// ── 前回実行日時 ─────────────────────────────────────────────
+
 async function getLastRunDate() {
   try {
     const raw = await fs.readFile(LAST_RUN_PATH, "utf-8");
     return new Date(raw.trim());
   } catch {
-    // 初回は3日前をデフォルトに
     return new Date(Date.now() - 3 * 24 * 60 * 60 * 1000);
   }
 }
@@ -143,277 +96,398 @@ async function saveLastRunDate() {
   }
 }
 
-// Claude Code CLI で事例リサーチ
-async function runClaudeResearch(existingTitles, lastRunDate) {
+// ── Claude CLI ───────────────────────────────────────────────
+
+function resolveClaudeBin() {
+  const CLAUDE_PATHS = ["/Users/tm/.local/bin/claude", "/usr/local/bin/claude", "/opt/homebrew/bin/claude"];
+  try {
+    return execFileSync("which", ["claude"], { encoding: "utf-8" }).trim();
+  } catch {
+    for (const p of CLAUDE_PATHS) {
+      try {
+        execFileSync(p, ["--version"], { encoding: "utf-8" });
+        return p;
+      } catch {}
+    }
+  }
+  return "claude";
+}
+
+// Claude CLI を1回呼び、出力から最初のJSONブロックを抽出して返す
+function runClaudeJson(claudeBin, prompt, { timeout, marker }) {
+  const result = spawnSync(
+    claudeBin,
+    ["--print", "--model", MODEL, "--allowedTools=WebSearch", "--dangerously-skip-permissions", prompt],
+    { encoding: "utf-8", timeout, maxBuffer: 1024 * 1024 * 20, stdio: ["ignore", "pipe", "pipe"] }
+  );
+  if (result.error) throw new Error(`Claude CLI エラー: ${result.error.message}`);
+  if (result.status !== 0) {
+    // CLIはエラーをstdout側に出すことがある（usage limit等）ため両方を報告する
+    const detail = [result.stderr, result.stdout].filter(Boolean).join(" | ").slice(0, 400);
+    throw new Error(`Claude CLI 終了コード ${result.status}: ${detail}`);
+  }
+  const output = result.stdout || "";
+  const re = new RegExp(`\\{[\\s\\S]*${marker}[\\s\\S]*\\}`);
+  const m = output.match(re);
+  if (!m) {
+    console.error(`JSONが見つかりません（marker=${marker}）。出力先頭400字:\n${output.slice(0, 400)}`);
+    return null;
+  }
+  try {
+    return JSON.parse(m[0]);
+  } catch (e) {
+    console.error("JSON解析エラー:", e.message);
+    return null;
+  }
+}
+
+// ── Phase A: 発見（軽量リスト） ──────────────────────────────
+
+function buildDiscoveryPrompt({ lastRunDate, existingTitles, seenThisRun, round }) {
   const now = new Date();
   const today = now.toLocaleDateString("ja-JP", { year: "numeric", month: "long", day: "numeric" });
   const lastRun = lastRunDate.toLocaleDateString("ja-JP", { year: "numeric", month: "long", day: "numeric" });
-  const daysDiff = Math.round((now - lastRunDate) / (1000 * 60 * 60 * 24));
+  const daysDiff = Math.max(1, Math.round((now - lastRunDate) / (1000 * 60 * 60 * 24)));
 
-  const prompt = `今日は${today}です。前回の調査日は${lastRun}（約${daysDiff}日前）です。
+  const retryNote =
+    round > 1
+      ? `\n## リトライ指示（${round}ラウンド目）\n前ラウンドの候補は既存と重複が多かった。**今回は違う情報源・違うジャンル・よりロングテール（有名すぎない）な事例**を探すこと。今回すでに見た候補: ${seenThisRun.slice(-30).join(" / ") || "なし"}\n`
+      : "";
 
-ResearchManというクリエイティブ事例データベース用に、**${lastRun}以降〜${today}の間に世の中に出た・話題になった**事例を3〜5件探してください。
+  return `今日は${today}。前回調査日は${lastRun}（約${daysDiff}日前）。
+ResearchManというデジタルクリエイティブ事例データベースのために、**${lastRun}〜${today}に公開・発表・話題化した事例を10〜14件**リストアップしてください。この段階では詳細記事は不要（後工程で書く）。発見とURL確認に集中すること。
 
-## 重要：「今」をリサーチする
-過去の名作・受賞作ではなく、**この${daysDiff}日間に新たに発生・公開・話題になったもの**を探す。
-- 「先週ローンチされた」「今週発表された」「現在バイラル中」「先日受賞が発表された」などが対象
-- 数年前の事例を掘り起こすのは目的外
+## 興味プロファイル（利用者の関心領域。広告キャンペーンに限定しない）
+デジタル×クリエイティブの全域。特に：
+- **AI×クリエイティブ**（生成AIの表現活用、新ツール・新モデルのクリエイティブ応用）※最重要
+- 音楽×テクノロジー（アーティストのプロモ施策、MV、ライブ演出、音楽制作ツール）
+- イベント・展示・インスタレーション・メディアアート（国内外の展覧会・フェス含む）
+- XR（AR/VR/MR）・メタバース・空間体験
+- ゲーム・ゲームエンジンの転用事例
+- ロボット・ドローン・デバイス・ハードウェア×表現
+- すぐれたWebサイト・インタラクティブ・アプリ
+- 映像表現・VFX・アニメーション・新しい映像手法
+- OOH・ライブ・ブランド体験、PRスタント
+- ファッション/スポーツ/食×テック、VTuber・バーチャルヒューマン、SNS発カルチャー
+- 広告賞（Cannes/D&AD/One Show/ACC等）の直近発表も対象（ただし全体の半分以下に）
 
-## 検索する情報源（最新記事を確認）
-- lbbonline.com / contagious.com / adweek.com / campaignbrief.com の直近記事
-- カンヌ・D&AD・Clio等の直近の受賞・ショートリスト発表（開催中または直前の発表）
-- X（Twitter）やSNSでクリエイティブ業界がいま話題にしているもの
-- 日本: advertimes.com / itmedia.co.jp / campaign-jp.com の最新記事
-- 音楽アーティストの新しいプロモーション・アクティベーション
-- AI×クリエイティブの最新事例、新サービス・新技術のクリエイティブ応用
+## 情報源（幅広く。1つのメディアに偏らない）
+- 海外広告・クリエイティブ: lbbonline.com / contagious.com / adweek.com / campaignbrief.com / musebycl.io / adsoftheworld.com / itsnicethat.com / creativereview.co.uk
+- テック: theverge.com / techcrunch.com / wired.com / gigazine.net / itmedia.co.jp
+- デザイン・アート・展示: dezeen.com / designboom.com / creativeapplications.net / 美術手帖(bijutsutecho.com)
+- XR・ゲーム: moguravr.com / roadtovr.com / uploadvr.com / automaton-media.com
+- 音楽: cdm.link / pitchfork.com / 音楽ナタリー(natalie.mu)
+- 国内広告・マーケ: advertimes.com / campaign-jp.com / prtimes.jp / markezine.jp
+- カンファレンス・フェス: SXSW / Ars Electronica / CES / WWDC / 各種展示会の発表
+- X(Twitter)・Reddit等でいまバイラル中のクリエイティブ
 
-## 選定基準（以下のいずれかに該当すれば可）
-- 直近に受賞またはショートリスト入り（時期は問わず最新発表のもの）
-- 業界メディアが直近に取り上げ話題になっている
-- アーティスト・ブランドが直近にローンチしたクリエイティブな施策
-- テクノロジー×クリエイティブの新しい事例として業界で共有されている
-
-## 既存事例（重複を避ける）
+## 厳守事項
+1. **鮮度**: この${daysDiff}日間に「公開/発表/受賞/バイラル化」したものだけ。過去の名作の掘り起こしは禁止。
+2. **多様性**: 最低3件は日本国内の事例。最低3件は広告キャンペーン以外（展示・ツール・プロダクト・音楽・Web等）。有名ブランドの大型事例だけでなく、小規模でも面白いものを混ぜる。
+3. **linkの正確性（最重要）**: linkには**あなたがWebSearchの結果で実際に確認した実在のURL**のみを書く。記憶からURLを組み立てることを禁止。確認できたURLがない事例は含めない。
+4. **既存事例との重複禁止**: 下記の既存リストにあるものは出さない。
+${retryNote}
+## 既存事例（これらは出さない）
 ${existingTitles}
 
-## 出力形式（JSON のみ、説明不要）
+## 出力形式（JSON のみ、説明文なし）
 {
-  "cases": [
+  "found": [
     {
-      "title": "キャンペーン名",
-      "summary": "1文サマリー（日本語）",
-      "client": "クライアント名",
-      "agency": "エージェンシー名",
-      "categories": ["コンテンツ革新"],
-      "award": "受賞情報",
-      "year": "2025",
-      "regions": ["グローバル"],
-      "link": "https://...",
-      "youtube_id": "YouTubeのvideoID（11文字）",
-      "overview": "概要200字（日本語）",
-      "background": "背景200字（日本語）",
-      "execution": "企画・エグゼキューション200字（日本語）",
-      "evaluationImpact": "評価ポイント200字（日本語）",
-      "related_works": [{"title": "関連作品名", "description": "説明", "url": "https://..."}]
+      "title": "事例名（正式名称）",
+      "client": "クライアント/ブランド/アーティスト名",
+      "agency": "エージェンシー/制作会社（不明なら空文字）",
+      "year": "2026",
+      "link": "https://（WebSearch結果で確認済みの記事/公式URL）",
+      "youtube_id": "公式動画のYouTube ID 11文字（検索結果で確認できた場合のみ。不明なら空文字）",
+      "note": "どんな事例か1行（日本語）"
     }
   ]
+}`;
+}
+
+// ── Phase B: 記事化（検証済み候補のみ・1件ずつ） ──────────────
+
+function buildArticlePrompt(cand, vocab) {
+  const allTags = [...vocab.Tech, ...vocab.Form, ...vocab.Theme].join(" / ");
+  return `以下のデジタルクリエイティブ事例について、WebSearchで事実確認しながら日本語のデータベース記事を書いてください。
+
+事例: ${cand.title}
+クライアント: ${cand.client || "不明"}
+制作: ${cand.agency || "不明"}
+年: ${cand.year}
+参考URL: ${cand.link}
+メモ: ${cand.note || ""}
+
+## 厳守事項
+- WebSearchで確認できた事実のみ書く。憶測・捏造禁止。確認できない項目は空文字。
+- summary は「何が新しいか」まで言い切る具体的な1文（60字前後）。
+
+## 出力形式（JSON のみ、説明文なし）
+{
+  "summary": "1文サマリー（日本語60字前後）",
+  "categories": ["コンテンツ革新"],
+  "award": "受賞情報（なければ空文字）",
+  "regions": ["国内"],
+  "tags": ["Tech/AI", "Form/Event"],
+  "overview": "概要200字（日本語）",
+  "background": "背景200字（日本語）",
+  "execution": "企画・エグゼキューション200字（日本語）",
+  "evaluationImpact": "評価ポイント・世の中的インパクト200字（日本語）",
+  "related_works": [{"title": "関連作品名", "description": "説明", "url": "https://..."}]
 }
 
 categories候補: コンテンツ革新 / カルチャーインサイト / テクノロジー×アイデア / 社会包摂 / ブランドエクスペリエンス / メディア発明 / AIクリエイティブ / 空間体験 / OOH革新 / データクリエイティブ
-regions候補: 国内 / 北米 / 欧州 / アジア / グローバル
-
-不明な情報は空文字。youtube_idが不明の場合も空文字。`;
-
-  console.log("Claude Code で事例リサーチ中（WebSearch使用）...\n");
-
-  // .command ファイルなど PATH が通っていない環境に対応
-  const CLAUDE_PATHS = [
-    "/Users/tm/.local/bin/claude",
-    "/usr/local/bin/claude",
-    "/opt/homebrew/bin/claude",
-  ];
-  let claudeBin = "claude";
-  try {
-    claudeBin = execFileSync("which", ["claude"], { encoding: "utf-8" }).trim();
-  } catch {
-    for (const p of CLAUDE_PATHS) {
-      try { execFileSync(p, ["--version"], { encoding: "utf-8" }); claudeBin = p; break; } catch {}
-    }
-  }
-  console.log(`Claude bin: ${claudeBin}\n`);
-
-  // --allowedTools は <tools...> 可変長のため = で繋いでプロンプトと分離
-  // --dangerously-skip-permissions: 非対話実行でパーミッション確認をスキップ
-  const result = spawnSync(
-    claudeBin,
-    ["--print", "--allowedTools=WebSearch", "--dangerously-skip-permissions", prompt],
-    {
-      encoding: "utf-8",
-      timeout: 300000,
-      maxBuffer: 1024 * 1024 * 20,
-      stdio: ["ignore", "pipe", "pipe"],
-    }
-  );
-
-  if (result.error) {
-    throw new Error(`Claude CLI エラー: ${result.error.message}`);
-  }
-  if (result.status !== 0) {
-    console.error("Claude stderr:", result.stderr?.slice(0, 400));
-    throw new Error(`Claude CLI が終了コード ${result.status} で終了しました`);
-  }
-
-  const output = result.stdout || "";
-
-  // JSONを抽出（Claudeが説明文を含む場合も対応）
-  const jsonMatch = output.match(/\{[\s\S]*"cases"[\s\S]*\}/);
-  if (!jsonMatch) {
-    console.error("JSONが見つかりません。Claudeの出力（先頭800字）:");
-    console.error(output.slice(0, 800));
-    return [];
-  }
-
-  try {
-    const parsed = JSON.parse(jsonMatch[0]);
-    return parsed.cases || [];
-  } catch (e) {
-    console.error("JSON解析エラー:", e.message);
-    return [];
-  }
+regions候補: 国内 / 北米 / 中南米 / 欧州 / アジア / 中東・アフリカ / オセアニア / グローバル
+tags候補（この中からのみ2〜5個。Form軸を必ず1つ以上）: ${allTags}`;
 }
 
-// メイン処理
+// Claude CLI で YouTube ID を検索（最後の手段。結果は必ず oEmbed 照合にかける）
+function findYouTubeId(title, client, claudeBin) {
+  const query = `"${title}"${client ? " " + client : ""}`;
+  const result = spawnSync(
+    claudeBin,
+    [
+      "--print",
+      "--model",
+      MODEL,
+      "--allowedTools=WebSearch",
+      "--dangerously-skip-permissions",
+      `Search YouTube for the official campaign video or case film for: ${query}
+Return ONLY the 11-character YouTube video ID (e.g. dQw4w9WgXcQ).
+If you find multiple, choose the most official one (brand channel or award case study).
+If nothing found, return: NOT_FOUND`,
+    ],
+    { encoding: "utf-8", timeout: 120000, maxBuffer: 1024 * 1024 * 5, stdio: ["ignore", "pipe", "pipe"] }
+  );
+  const out = (result.stdout || "").trim();
+  const match = out.match(/\b([A-Za-z0-9_-]{11})\b/);
+  if (!match || out.includes("NOT_FOUND")) return null;
+  return match[1];
+}
+
+// 検証を通った場合のみ {thumbnail, videoId} を返す。ダミー画像は絶対に使わない。
+async function acquireVerifiedThumbnail(id, cand, claudeBin) {
+  // Step 1: 発見時の YouTube ID → oEmbed 実在＋タイトル照合
+  if (cand.youtube_id) {
+    process.stdout.write(`  [1] YouTube ID検証: ${cand.youtube_id} ... `);
+    const info = await fetchYouTubeInfo(cand.youtube_id);
+    if (info && videoMatchesCase(info, cand.title, cand.client)) {
+      const local =
+        (await saveThumbnail(id, `https://i.ytimg.com/vi/${cand.youtube_id}/maxresdefault.jpg`)) ||
+        (await saveThumbnail(id, `https://i.ytimg.com/vi/${cand.youtube_id}/hqdefault.jpg`));
+      if (local) {
+        console.log(`✓ 一致（${info.title.slice(0, 40)}）`);
+        return { thumbnail: local, videoId: cand.youtube_id };
+      }
+      console.log("✗ 画像保存失敗");
+    } else {
+      console.log(info ? `✗ タイトル不一致（${info.title.slice(0, 40)}）` : "✗ 動画が存在しない");
+    }
+  }
+
+  // Step 2: 記事URLの og:image（saveThumbnail 側で 5KB 未満の疑似画像は却下される）
+  if (cand.link) {
+    process.stdout.write(`  [2] 記事og:image: ${cand.link.slice(0, 50)}... `);
+    const local = await saveThumbnailFromPage(id, cand.link);
+    if (local) {
+      console.log("✓");
+      return { thumbnail: local, videoId: "" };
+    }
+    console.log("✗");
+  }
+
+  // Step 3: Claude CLI で YouTube 検索 → 必ず oEmbed 照合
+  process.stdout.write(`  [3] YouTube検索: "${cand.title.slice(0, 40)}" ... `);
+  const foundId = findYouTubeId(cand.title, cand.client, claudeBin);
+  if (foundId) {
+    const info = await fetchYouTubeInfo(foundId);
+    if (info && videoMatchesCase(info, cand.title, cand.client)) {
+      const local =
+        (await saveThumbnail(id, `https://i.ytimg.com/vi/${foundId}/maxresdefault.jpg`)) ||
+        (await saveThumbnail(id, `https://i.ytimg.com/vi/${foundId}/hqdefault.jpg`));
+      if (local) {
+        console.log(`✓ (${foundId})`);
+        return { thumbnail: local, videoId: foundId };
+      }
+    }
+    console.log("✗ 照合不一致");
+  } else {
+    console.log("✗ 見つからず");
+  }
+
+  // ダミー画像へのフォールバックはしない（誤サムネ・無関係画像の根絶）
+  return null;
+}
+
 async function main() {
   console.log(`\nResearchMan 自動収集`);
   console.log(`   ${new Date().toLocaleString("ja-JP")}`);
   if (DRY_RUN) console.log("   ⚠ DRY RUN（cases.jsonは更新しません）");
   console.log("");
 
+  const vocab = JSON.parse(await fs.readFile(VOCAB_PATH, "utf-8"));
+  const validTags = new Set([...vocab.Tech, ...vocab.Form, ...vocab.Theme]);
+
   const existingCases = JSON.parse(await fs.readFile(CASES_PATH, "utf-8"));
   const existingIds = new Set(existingCases.map((c) => c.id));
-  // id違いの重複（例: columbia-expedition-impossible vs expedition-impossible-2026）を防ぐため
-  // 正規化タイトルでも既存判定する。
   const existingTitleKeys = new Set(existingCases.map((c) => normTitle(c.title)));
-  // 直近30件のみ渡す（プロンプト肥大化防止）
-  const existingTitles = existingCases.slice(0, 30).map((c) => c.title).join(" / ");
+  // 全既存タイトルを渡す（以前は直近30件のみ→モデルが既出の有名事例を再提案し全滅していた）
+  const existingTitles = existingCases.map((c) => c.title).join(" / ");
 
-  // 前回実行日時を取得（「この期間に出た事例」の基準に使う）
   const lastRunDate = await getLastRunDate();
   const daysSince = Math.round((Date.now() - lastRunDate) / (1000 * 60 * 60 * 24));
   console.log(`既存: ${existingCases.length}件`);
   console.log(`前回実行: ${lastRunDate.toLocaleDateString("ja-JP")}（${daysSince}日前）`);
-  console.log(`検索対象期間: 直近${daysSince}日間の新着事例\n`);
+  console.log(`検索対象期間: 直近${daysSince}日間 / 目標新規${TARGET_NEW}件以上（最大${MAX_ROUNDS}ラウンド）\n`);
 
-  const candidates = await runClaudeResearch(existingTitles, lastRunDate);
-  console.log(`候補: ${candidates.length}件\n`);
-
-  if (!candidates.length) {
-    console.log("新規事例が見つかりませんでした");
-    return 0;
-  }
+  const claudeBin = resolveClaudeBin();
+  console.log(`Claude bin: ${claudeBin}\n`);
 
   const toAdd = [];
+  const seenThisRun = [];
+  const stats = { candidates: 0, dup: 0, rejected: 0 };
 
-  for (const c of candidates) {
-    if (toAdd.length >= MAX_ADD) break;
-
-    const id = toId(c.title, c.year);
-    // id・正規化タイトルのどちらかで既存と一致すれば重複としてスキップ（サムネも取得しない＝孤立ファイルを作らない）
-    if (existingIds.has(id) || existingTitleKeys.has(normTitle(c.title))) {
-      console.log(`スキップ（重複）: ${c.title}`);
+  for (let round = 1; round <= MAX_ROUNDS && toAdd.length < TARGET_NEW; round++) {
+    console.log(`── ラウンド ${round}/${MAX_ROUNDS}: 発見フェーズ ──`);
+    let found = [];
+    try {
+      const parsed = runClaudeJson(
+        claudeBin,
+        buildDiscoveryPrompt({ lastRunDate, existingTitles, seenThisRun, round }),
+        { timeout: DISCOVER_TIMEOUT_MS, marker: '"found"' }
+      );
+      found = parsed?.found || [];
+    } catch (e) {
+      console.error(`発見フェーズ失敗: ${e.message}`);
       continue;
     }
+    console.log(`候補: ${found.length}件`);
+    stats.candidates += found.length;
 
-    // 1件の処理失敗（ネットワーク停止・例外）で全体を落とさない。
-    // 途中保存したサムネが孤立しないよう、失敗時は掃除する。
-    try {
+    for (const cand of found) {
+      if (toAdd.length >= MAX_ADD) break;
+      if (!cand?.title || !cand?.year) continue;
+      seenThisRun.push(cand.title);
 
-    // ── サムネイル取得（3段階フォールバック）──────────────────
-    let thumbnail = "";
-    let videoId = "";
+      const id = toId(cand.title, cand.year, cand.client);
+      if (existingIds.has(id) || existingTitleKeys.has(normTitle(cand.title))) {
+        console.log(`スキップ（重複）: ${cand.title}`);
+        stats.dup++;
+        continue;
+      }
 
-    // Step 1: Claude が返した YouTube ID を検証 → ローカル保存
-    if (c.youtube_id) {
-      process.stdout.write(`  [1] YouTube ID検証: ${c.youtube_id} ... `);
-      const valid = await verifyYouTubeId(c.youtube_id);
-      if (valid) {
-        const ytUrl = `https://i.ytimg.com/vi/${c.youtube_id}/hqdefault.jpg`;
-        const local = await saveThumbnail(id, ytUrl);
-        if (local) { thumbnail = local; videoId = c.youtube_id; console.log("✓ ローカル保存"); }
-        else { thumbnail = ytUrl; videoId = c.youtube_id; console.log("✓（ローカル保存失敗→外部URL）"); }
-      } else {
-        console.log("✗ 無効");
+      try {
+        // ── link 実在検証（誤リンクの根絶）──
+        if (!cand.link || !(await isUrlAlive(cand.link))) {
+          console.log(`却下（リンク到達不可）: ${cand.title} → ${cand.link || "(なし)"}`);
+          stats.rejected++;
+          continue;
+        }
+
+        // ── 検証済みサムネイル取得（取れなければ記事化前に却下）──
+        console.log(`検証中: ${cand.title}`);
+        const thumb = await acquireVerifiedThumbnail(id, cand, claudeBin);
+        if (!thumb) {
+          console.log(`却下（検証済みサムネイル取得不可）: ${cand.title}`);
+          stats.rejected++;
+          const orphan = path.join(__dirname, `../public/thumbnails/${id}.jpg`);
+          try {
+            await fs.unlink(orphan);
+          } catch {}
+          continue;
+        }
+
+        // ── 記事化（検証通過後のみ長文生成コストを払う）──
+        process.stdout.write(`  [4] 記事生成中... `);
+        const art = runClaudeJson(claudeBin, buildArticlePrompt(cand, vocab), {
+          timeout: ARTICLE_TIMEOUT_MS,
+          marker: '"overview"',
+        });
+        if (!art || !(art.summary || "").trim() || (art.overview || "").length < 50) {
+          console.log("✗ 生成失敗/説明不足 → 却下");
+          stats.rejected++;
+          const orphan = path.join(__dirname, `../public/thumbnails/${id}.jpg`);
+          try {
+            await fs.unlink(orphan);
+          } catch {}
+          continue;
+        }
+        console.log("✓");
+
+        // ── related_works の死リンクは除外（事例自体は残す）──
+        const relatedWorks = [];
+        for (const w of art.related_works || []) {
+          if (!w?.url) continue;
+          if (await isUrlAlive(w.url)) {
+            relatedWorks.push({ title: w.title || "", description: w.description || "", url: w.url });
+          }
+        }
+
+        toAdd.push({
+          id,
+          title: cand.title,
+          summary: art.summary,
+          client: cand.client || "",
+          agency: cand.agency || "",
+          categories: art.categories?.length ? art.categories : ["コンテンツ革新"],
+          award: art.award || "",
+          year: String(cand.year),
+          regions: art.regions?.length ? art.regions : ["グローバル"],
+          link: cand.link,
+          thumbnail: thumb.thumbnail,
+          videoId: thumb.videoId,
+          overview: art.overview || "",
+          background: art.background || "",
+          execution: art.execution || "",
+          evaluationImpact: art.evaluationImpact || "",
+          relatedWorks,
+          sources: ["Radar"], // TOPカードの専用色・Radarタブの対象
+          tags: (art.tags || []).filter((t) => validTags.has(t)).slice(0, 5),
+        });
+        existingIds.add(id);
+        existingTitleKeys.add(normTitle(cand.title));
+        console.log(`✅ 採用: ${cand.title}`);
+      } catch (err) {
+        console.log(`  ⚠ スキップ（処理失敗: ${err.message}）: ${cand.title}`);
+        stats.rejected++;
+        const orphan = path.join(__dirname, `../public/thumbnails/${id}.jpg`);
+        try {
+          await fs.unlink(orphan);
+        } catch {}
       }
     }
-
-    // Step 2: 記事URLから画像取得 → ローカル保存
-    if (!thumbnail && c.link) {
-      process.stdout.write(`  [2] 記事画像取得: ${c.link.slice(0, 50)}... `);
-      const local = await saveThumbnailFromPage(id, c.link);
-      if (local) { thumbnail = local; console.log("✓ ローカル保存"); }
-      else {
-        // フォールバック: ページ内画像を外部URLで使用
-        const pageImg = await fetchImageFromUrl(c.link);
-        if (pageImg) { thumbnail = pageImg; console.log("✓（外部URL）"); }
-        else { console.log("✗"); }
-      }
-    }
-
-    // Step 3: Claude CLI で YouTube 検索 → ローカル保存
-    if (!thumbnail) {
-      process.stdout.write(`  [3] YouTube検索: "${c.title}" ... `);
-      const foundId = findYouTubeId(c.title, c.client, claudeBin);
-      if (foundId) {
-        const valid = await verifyYouTubeId(foundId);
-        if (valid) {
-          const ytUrl = `https://i.ytimg.com/vi/${foundId}/hqdefault.jpg`;
-          const local = await saveThumbnail(id, ytUrl);
-          thumbnail = local || ytUrl;
-          videoId = foundId;
-          console.log(`✓ (${foundId})`);
-        } else { console.log("✗ ID無効"); }
-      } else { console.log("✗ 見つからず"); }
-    }
-
-    // Step 4: picsum（ローカル保存はできないが登録はする。repair-thumbnailsで後で修正）
-    if (!thumbnail) {
-      thumbnail = `https://picsum.photos/seed/${id}/1200/630`;
-      console.log(`  [4] picsum暫定（repair-thumbnailsで修正予定）`);
-    }
-
-    toAdd.push({
-      id,
-      title: c.title,
-      summary: c.summary || "",
-      client: c.client || "",
-      agency: c.agency || "",
-      categories: c.categories || ["コンテンツ革新"],
-      award: c.award || "（受賞情報なし）",
-      year: String(c.year),
-      regions: c.regions || ["グローバル"],
-      link: c.link || "",
-      thumbnail,
-      videoId,
-      overview: c.overview || "",
-      background: c.background || "",
-      execution: c.execution || "",
-      evaluationImpact: c.evaluationImpact || "",
-      relatedWorks: (c.related_works || []).map((w) => ({
-        title: w.title || "",
-        description: w.description || "",
-        url: w.url || "",
-      })),
-    });
-    // 追加確定したら以後の重複判定にも反映
-    existingIds.add(id);
-    existingTitleKeys.add(normTitle(c.title));
-
-    } catch (err) {
-      console.log(`  ⚠ スキップ（処理失敗: ${err.message}）: ${c.title}`);
-      // 途中で保存されたローカルサムネが事例なしで残らないよう掃除
-      const orphan = path.join(__dirname, `../public/thumbnails/${id}.jpg`);
-      try { await fs.unlink(orphan); } catch {}
-    }
+    console.log(
+      `ラウンド${round}終了: 累計採用${toAdd.length} / 候補${stats.candidates} / 重複${stats.dup} / 検証却下${stats.rejected}\n`
+    );
   }
 
   if (!toAdd.length) {
-    console.log("\n追加対象がありませんでした（新着事例なし or YouTube ID未確認）");
-    await saveLastRunDate(); // 次回の基準日として今日を記録
+    console.log("追加対象がありませんでした（全候補が重複または検証却下）");
+    await saveLastRunDate();
     return 0;
   }
 
-  console.log(`\n追加予定: ${toAdd.length}件`);
-  toAdd.forEach((c) => console.log(`  + ${c.title} (${c.year})`));
+  console.log(`追加: ${toAdd.length}件`);
+  toAdd.forEach((c) => console.log(`  + ${c.title} (${c.year}) [${(c.tags || []).join(", ")}]`));
 
-  if (DRY_RUN) return 0;
+  if (DRY_RUN) {
+    // dry-run で保存したサムネイルは掃除（登録なしの孤立ファイルを残さない）
+    for (const c of toAdd) {
+      const f = path.join(__dirname, `../public/thumbnails/${c.id}.jpg`);
+      try {
+        await fs.unlink(f);
+      } catch {}
+    }
+    return 0;
+  }
 
   const updated = [...toAdd, ...existingCases];
   await fs.writeFile(CASES_PATH, JSON.stringify(updated, null, 2));
-  await saveLastRunDate(); // 実行日時を保存（次回の検索期間の起点）
+  await saveLastRunDate();
   console.log(`\n✅ ${toAdd.length}件追加 → 合計${updated.length}件`);
 
-  // 反映後の通知メール用サマリー（send-mail.mjs が読む）。
-  // /tmp に置き、次回実行で必ず上書き。読み手が無くても害はない。
+  // 反映後の通知メール/LINE用サマリー（send-mail.mjs / notify-line.mjs が読む）
   try {
     await fs.writeFile(
       LAST_ADD_PATH,
@@ -429,10 +503,7 @@ async function main() {
 }
 
 main()
-  .then((count) => {
-    if (count > 0) process.exit(0);
-    else process.exit(0);
-  })
+  .then(() => process.exit(0))
   .catch((e) => {
     console.error("\n❌ エラー:", e.message);
     process.exit(1);

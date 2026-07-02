@@ -22,12 +22,15 @@ function fetchImage(url) {
       if (res.statusCode === 301 || res.statusCode === 302) {
         return resolve(fetchImage(res.headers.location));
       }
-      if (res.statusCode !== 200) return resolve(null);
+      if (res.statusCode !== 200) { res.resume(); return resolve(null); }
       const ct = res.headers["content-type"] || "";
-      if (!ct.startsWith("image/")) return resolve(null);
+      if (!ct.startsWith("image/")) { res.resume(); return resolve(null); }
       const chunks = [];
       res.on("data", (d) => chunks.push(d));
       res.on("end", () => resolve(Buffer.concat(chunks)));
+      // 接続が途中で切れてもPromiseを必ず解決する（未解決awaitでプロセスが静かに死ぬのを防ぐ）
+      res.on("close", () => resolve(null));
+      res.on("error", () => resolve(null));
     });
     req.on("error", () => resolve(null));
     req.setTimeout(10000, () => { req.destroy(); resolve(null); });
@@ -69,19 +72,30 @@ export async function saveThumbnailFromPage(id, pageUrl) {
   return saveThumbnail(id, ogImage);
 }
 
-function fetchOgImage(url) {
+function fetchOgImage(url, redirects = 3) {
   return new Promise((resolve) => {
     const mod = url.startsWith("https") ? https : http;
     const req = mod.get(url, { headers: { "User-Agent": UA } }, (res) => {
+      // リダイレクト追跡（従来は3xxでhtml空→og:image取れず失敗していた）
+      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location && redirects > 0) {
+        req.destroy();
+        const next = new URL(res.headers.location, url).toString();
+        return resolve(fetchOgImage(next, redirects - 1));
+      }
       let html = "";
-      res.on("data", (d) => { html += d; if (html.length > 20000) req.destroy(); });
-      res.on("end", () => {
+      const finish = () => {
         const m = html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i)
                 || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i)
                 || html.match(/<meta[^>]+name=["']twitter:image["'][^>]+content=["']([^"']+)["']/i);
         const img = m?.[1];
         resolve(img && img.startsWith("http") ? img : null);
-      });
+      };
+      res.on("data", (d) => { html += d; if (html.length > 60000) req.destroy(); });
+      res.on("end", finish);
+      // req.destroy() 後は end が発火しない。closeでも必ず解決する
+      // （未解決awaitが残るとNodeがイベントループ枯渇で静かに終了し、呼び出し元が途中死する）
+      res.on("close", finish);
+      res.on("error", () => resolve(null));
     });
     req.on("error", () => resolve(null));
     req.setTimeout(8000, () => { req.destroy(); resolve(null); });

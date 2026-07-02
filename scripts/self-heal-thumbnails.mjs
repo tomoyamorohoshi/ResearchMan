@@ -13,7 +13,8 @@ import https from "https";
 import path from "path";
 import { spawnSync } from "child_process";
 import { fileURLToPath } from "url";
-import { saveThumbnail } from "./save-thumbnail.mjs";
+import { saveThumbnail, saveThumbnailFromPage } from "./save-thumbnail.mjs";
+import { fetchYouTubeInfo, videoMatchesCase } from "./verify-video.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CASES_PATH = path.join(__dirname, "../data/cases.json");
@@ -62,10 +63,12 @@ If found, return just the ID. If not found, return: NOT_FOUND`;
 
   const result = spawnSync(CLAUDE_BIN, [
     "--print",
+    "--model",
+    "sonnet",
     "--allowedTools=WebSearch",
     "--dangerously-skip-permissions",
     prompt,
-  ], { encoding: "utf-8", timeout: 60000, stdio: ["ignore", "pipe", "pipe"] });
+  ], { encoding: "utf-8", timeout: 120000, stdio: ["ignore", "pipe", "pipe"] });
 
   const out = (result.stdout || "").trim();
   if (out.includes("NOT_FOUND") || !out) return null;
@@ -73,11 +76,6 @@ If found, return just the ID. If not found, return: NOT_FOUND`;
   // 11文字のYouTube IDを抽出
   const match = out.match(/\b([A-Za-z0-9_-]{11})\b/);
   return match ? match[1] : null;
-}
-
-async function verifySingleYouTubeId(ytId) {
-  const url = `https://i.ytimg.com/vi/${ytId}/hqdefault.jpg`;
-  return checkUrl(url);
 }
 
 // ── メイン ──────────────────────────────────────────────
@@ -113,27 +111,50 @@ async function main() {
 
   let fixed = 0, failed = 0;
 
+  // 修復は「検証済みの画像」しか使わない。
+  // かつてytimg 200チェックのみでClaude検索結果を採用していたため、
+  // 無関係な動画のサムネ/videoIdで上書きする事故が多発した。その再発防止。
   for (const c of broken) {
-    process.stdout.write(`[${c.id}] Claude でYouTube検索中... `);
+    process.stdout.write(`[${c.id}] 修復中... `);
 
-    const ytId = findAndSaveThumbnail(c.id, c.title, c.client);
-    if (!ytId) { console.log("✗ 見つからず"); failed++; continue; }
-
-    // 確認
-    const valid = await verifySingleYouTubeId(ytId);
-    if (!valid) { console.log(`✗ ID無効 (${ytId})`); failed++; continue; }
-
-    // ローカル保存
-    const local = await saveThumbnail(c.id, `https://i.ytimg.com/vi/${ytId}/hqdefault.jpg`);
-    if (local) {
-      c.thumbnail = local;
-      c.videoId = ytId;
-      fixed++;
-      console.log(`✓ 修復完了 (${ytId})`);
-    } else {
-      console.log(`✗ 保存失敗`);
-      failed++;
+    // 1. 既存videoIdが正しい（ローカルファイル欠損だけ）なら再保存
+    if (c.videoId) {
+      const info = await fetchYouTubeInfo(c.videoId);
+      if (info && videoMatchesCase(info, c.title, c.client)) {
+        const local =
+          (await saveThumbnail(c.id, `https://i.ytimg.com/vi/${c.videoId}/maxresdefault.jpg`)) ||
+          (await saveThumbnail(c.id, `https://i.ytimg.com/vi/${c.videoId}/hqdefault.jpg`));
+        if (local) { c.thumbnail = local; fixed++; console.log(`✓ 既存videoIdから再保存`); continue; }
+      }
     }
+
+    // 2. 記事URLの og:image
+    if (c.link) {
+      const local = await saveThumbnailFromPage(c.id, c.link);
+      if (local) { c.thumbnail = local; fixed++; console.log("✓ 記事og:imageから修復"); continue; }
+    }
+
+    // 3. Claude でYouTube検索 → 必ずoEmbedタイトル照合してから採用
+    const ytId = findAndSaveThumbnail(c.id, c.title, c.client);
+    if (ytId) {
+      const info = await fetchYouTubeInfo(ytId);
+      if (info && videoMatchesCase(info, c.title, c.client)) {
+        const local =
+          (await saveThumbnail(c.id, `https://i.ytimg.com/vi/${ytId}/maxresdefault.jpg`)) ||
+          (await saveThumbnail(c.id, `https://i.ytimg.com/vi/${ytId}/hqdefault.jpg`));
+        if (local) {
+          c.thumbnail = local;
+          c.videoId = ytId;
+          fixed++;
+          console.log(`✓ 修復完了 (${ytId})`);
+          continue;
+        }
+      }
+    }
+
+    // 検証を通る画像が見つからない場合は上書きしない（誤画像より現状維持）
+    console.log("✗ 検証済み画像が見つからず（未修復のまま）");
+    failed++;
   }
 
   await fs.writeFile(CASES_PATH, JSON.stringify(cases, null, 2));

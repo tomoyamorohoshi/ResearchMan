@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import VideoPlayer from "@/components/VideoPlayer";
+import { tagLabel } from "@/lib/tags";
 
 export function generateStaticParams() {
   return cases.map((c) => ({ slug: c.id }));
@@ -70,6 +71,15 @@ export default async function CasePage({
               className="text-xs px-2 py-0.5 border border-gray-900 text-gray-900 rounded-full font-medium"
             >
               #{s}
+            </span>
+          ))}
+          {(c.tags ?? []).map((t) => (
+            <span
+              key={t}
+              className="text-xs px-2 py-0.5 bg-white border border-gray-300 text-gray-600 rounded-full"
+              title={t}
+            >
+              #{tagLabel(t)}
             </span>
           ))}
         </div>

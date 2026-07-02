@@ -1,0 +1,42 @@
+{
+  "Tech": [
+    "Tech/AI",
+    "Tech/XR",
+    "Tech/Game",
+    "Tech/Web",
+    "Tech/Data",
+    "Tech/Robotics",
+    "Tech/3D",
+    "Tech/Device",
+    "Tech/Projection",
+    "Tech/Audio"
+  ],
+  "Form": [
+    "Form/Film",
+    "Form/MV",
+    "Form/Website",
+    "Form/App",
+    "Form/SNS",
+    "Form/Event",
+    "Form/Exhibition",
+    "Form/Installation",
+    "Form/OOH",
+    "Form/Product",
+    "Form/Print",
+    "Form/Stunt"
+  ],
+  "Theme": [
+    "Theme/Music",
+    "Theme/Sports",
+    "Theme/Fashion",
+    "Theme/Art",
+    "Theme/Entertainment",
+    "Theme/Food",
+    "Theme/Health",
+    "Theme/Education",
+    "Theme/SocialGood",
+    "Theme/Sustainability",
+    "Theme/Retail",
+    "Theme/Mobility"
+  ]
+}

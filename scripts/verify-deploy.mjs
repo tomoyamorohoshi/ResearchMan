@@ -6,7 +6,10 @@
  *   1. origin/main == ローカルHEAD（push が実際に landed したか）
  *   2. 本番トップページが HTTP 200
  *   3. 追加サムネ（引数で渡した /thumbnails/xxx.jpg）がライブでローカルと同一ハッシュで配信されるか
- * 最大 ~3分ポーリング。全条件満たせば exit 0、時間切れは exit 1。
+ *   4. 直近追加事例の詳細ページ（/cases/<id>）が本番で 200 を返すか
+ *      ※旧ビルドでもトップは200を返すため、これが「新ビルドが実際に出た」ことの証明になる。
+ *        /tmp/researchman-last-add.json（auto-research-cc.mjs が実行毎に書く）から自動取得。
+ * 最大 ~6分ポーリング。全条件満たせば exit 0、時間切れは exit 1。
  *
  * 使い方: node scripts/verify-deploy.mjs [thumbPath ...]
  *   例) node scripts/verify-deploy.mjs /thumbnails/foo.jpg /thumbnails/bar.jpg
@@ -21,8 +24,10 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
 const SITE = "https://research-man.vercel.app";
-const MAX_TRIES = 24;      // 24回 × ~8秒 ≒ 3分
+const MAX_TRIES = 45;      // 45回 × ~8秒 ≒ 6分（SSG 450ページ超のVercelビルドは3分を超えることがある）
 const INTERVAL_MS = 8000;
+const LAST_ADD_PATH = "/tmp/researchman-last-add.json";
+const LAST_ADD_MAX_AGE_MS = 2 * 60 * 60 * 1000; // 古いサマリーで誤検証しない
 
 const thumbs = process.argv.slice(2).filter((a) => a.startsWith("/thumbnails/"));
 
@@ -58,6 +63,17 @@ for (const t of thumbs) {
   if (fs.existsSync(p)) localThumbHash[t] = md5(fs.readFileSync(p));
 }
 
+// 直近実行で追加された事例の詳細ページを「新ビルドが出た」証拠として検証する
+let newCasePaths = [];
+try {
+  const st = fs.statSync(LAST_ADD_PATH);
+  if (Date.now() - st.mtimeMs < LAST_ADD_MAX_AGE_MS) {
+    const lastAdd = JSON.parse(fs.readFileSync(LAST_ADD_PATH, "utf-8"));
+    newCasePaths = (lastAdd.cases || []).slice(0, 2).map((c) => `/cases/${c.id}`);
+  }
+} catch {}
+if (newCasePaths.length) console.log(`[verify-deploy] 新規ページ検証対象: ${newCasePaths.join(", ")}`);
+
 console.log(`[verify-deploy] HEAD=${localHead.slice(0, 8)} 反映確認中（最大${Math.round(MAX_TRIES * INTERVAL_MS / 1000)}秒）...`);
 
 let ok = false;
@@ -70,9 +86,14 @@ for (let i = 1; i <= MAX_TRIES; i++) {
     const r = await fetchBuf(SITE + t);
     if (!(r.status === 200 && r.buf && md5(r.buf) === localThumbHash[t])) { thumbsOk = false; break; }
   }
-  if (landed && home.status === 200 && thumbsOk) { ok = true; console.log(`[verify-deploy] ✓ 反映確認（試行${i}回目）: push landed / home 200 / thumbs一致`); break; }
+  let pagesOk = true;
+  for (const p of newCasePaths) {
+    const r = await fetchBuf(SITE + p);
+    if (r.status !== 200) { pagesOk = false; break; }
+  }
+  if (landed && home.status === 200 && thumbsOk && pagesOk) { ok = true; console.log(`[verify-deploy] ✓ 反映確認（試行${i}回目）: push landed / home 200 / thumbs一致 / 新規ページ${newCasePaths.length}件 200`); break; }
   if (i === MAX_TRIES) {
-    console.log(`[verify-deploy] ⏳ 時間切れ: landed=${landed} home=${home.status} thumbs=${thumbsOk}`);
+    console.log(`[verify-deploy] ⏳ 時間切れ: landed=${landed} home=${home.status} thumbs=${thumbsOk} pages=${pagesOk}`);
   } else {
     await sleep(INTERVAL_MS);
   }

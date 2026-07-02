@@ -1,4 +1,5 @@
 import casesData from "../../data/cases.json";
+import { ALL_TAGS } from "./tags";
 
 export type Case = {
   id: string;
@@ -20,6 +21,8 @@ export type Case = {
   relatedWorks: Array<{ title: string; description: string; url: string }> | string;
   // どのリサーチ文脈で収集したかを示すソースタグ（例: "Cannes 2026", "Web & Social", "Radar"）
   sources?: string[];
+  // 逆引き用ハッシュタグ（統制語彙は src/lib/tags.ts。例: "Tech/AI", "Form/MV", "Theme/Music"）
+  tags?: string[];
   // legacy fields (backward compat)
   mechanism?: string;
   impact?: string;
@@ -43,6 +46,10 @@ export const allRegions = Array.from(
 export const allSources = Array.from(
   new Set(cases.flatMap((c) => c.sources ?? []))
 ).sort();
+
+// 実データに登場するタグのみ（語彙順を保つため tags.ts の ALL_TAGS でソート）
+const usedTags = new Set(cases.flatMap((c) => c.tags ?? []));
+export const allTags = ALL_TAGS.filter((t) => usedTags.has(t));
 
 export function getCaseById(id: string): Case | undefined {
   return cases.find((c) => c.id === id);

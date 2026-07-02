@@ -12,7 +12,8 @@
     <string>
       export PATH="$HOME/.local/bin:/usr/local/bin:/opt/homebrew/bin:$PATH";
       cd /Users/tm/Projects/Claude/ResearchMan;
-      LOG=/tmp/researchman-auto.log;
+      LOG=$HOME/Library/Logs/researchman-auto.log;
+      node scripts/run-if-due.mjs &gt;&gt; $LOG 2&gt;&amp;1 || exit 0;
       echo "===== Run start: $(date) =====" &gt;&gt; $LOG;
       node scripts/auto-research-cc.mjs &gt;&gt; $LOG 2&gt;&amp;1;
       node scripts/self-heal-thumbnails.mjs &gt;&gt; $LOG 2&gt;&amp;1;
@@ -37,22 +38,23 @@
     </string>
   </array>
 
-  <!-- 3日ごと（72時間） -->
+  <!-- 毎時起動して run-if-due.mjs が「前回から72時間経過」を判定する。
+       スリープ/シャットダウンで実行時刻を逃しても、復帰後1時間以内に必ず走る。 -->
   <key>StartInterval</key>
-  <integer>259200</integer>
+  <integer>3600</integer>
 
-  <!-- PC起動時に自動開始 -->
+  <!-- ログイン/再起動直後にも判定を走らせる（復旧時の即時キャッチアップ） -->
   <key>RunAtLoad</key>
-  <false/>
+  <true/>
 
   <!-- クラッシュ時に再起動しない -->
   <key>KeepAlive</key>
   <false/>
 
-  <!-- ログ -->
+  <!-- ログ（/tmpは再起動で消えるためLibrary/Logsに置く） -->
   <key>StandardOutPath</key>
-  <string>/tmp/researchman-auto.log</string>
+  <string>/Users/tm/Library/Logs/researchman-auto.log</string>
   <key>StandardErrorPath</key>
-  <string>/tmp/researchman-auto-error.log</string>
+  <string>/Users/tm/Library/Logs/researchman-auto-error.log</string>
 </dict>
 </plist>
