@@ -82,25 +82,26 @@ export async function saveThumbnailFromPage(id, pageUrl) {
 
 function fetchOgImage(url, redirects = 3) {
   return new Promise((resolve) => {
+    let settled = false;
+    const settle = (v) => { if (settled) return; settled = true; resolve(v); };
     const mod = url.startsWith("https") ? https : http;
     const req = mod.get(url, { headers: { "User-Agent": UA } }, (res) => {
       // リダイレクト追跡（従来は3xxでhtml空→og:image取れず失敗していた）
       if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location && redirects > 0) {
-        req.destroy();
+        res.resume();
         const next = new URL(res.headers.location, url).toString();
-        return resolve(fetchOgImage(next, redirects - 1));
+        settle(fetchOgImage(next, redirects - 1));
+        req.destroy();
+        return;
       }
       let html = "";
-      let settled = false;
       const finish = () => {
-        if (settled) return;
-        settled = true;
         const m = html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i)
                 || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i)
                 || html.match(/<meta[^>]+name=["']twitter:image["'][^>]+content=["']([^"']+)["']/i);
         // og:image URLはHTMLエスケープされていることがある（&amp; → &）
         const img = m?.[1]?.replace(/&amp;/g, "&");
-        resolve(img && img.startsWith("http") ? img : null);
+        settle(img && img.startsWith("http") ? img : null);
       };
       // 60KB超で打ち切る際は必ず「先に」finishする。
       // req.destroy()はreqの\x27error\x27(ECONNRESET)を先に発火させるため、
@@ -113,7 +114,7 @@ function fetchOgImage(url, redirects = 3) {
       res.on("error", finish);
     });
     // 打ち切りdestroy時はfinish済み（settled）なのでこのresolve(null)は無効化される
-    req.on("error", () => resolve(null));
-    req.setTimeout(8000, () => { req.destroy(); resolve(null); });
+    req.on("error", () => settle(null));
+    req.setTimeout(8000, () => { settle(null); req.destroy(); });
   });
 }

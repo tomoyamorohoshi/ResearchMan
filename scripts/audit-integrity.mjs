@@ -41,6 +41,7 @@ function httpGet(url, { maxBytes = 5000, redirects = 4 } = {}) {
     };
     const req = mod.get(url, { headers: { "User-Agent": UA } }, (res) => {
       if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location && redirects > 0) {
+        res.resume();
         const next = new URL(res.headers.location, url).toString();
         settle(httpGet(next, { maxBytes, redirects: redirects - 1 }));
         req.destroy();

@@ -45,12 +45,14 @@ async function checkLocalThumbnail(id) {
 function checkUrl(url) {
   return new Promise((resolve) => {
     if (!url?.startsWith("http")) return resolve(false);
+    let settled = false;
+    const settle = (v) => { if (settled) return; settled = true; resolve(v); };
     const req = https.get(url, { headers: { "User-Agent": "Mozilla/5.0" } }, (res) => {
-      resolve(res.statusCode === 200);
+      settle(res.statusCode === 200);
       res.resume();
     });
-    req.on("error", () => resolve(false));
-    req.setTimeout(5000, () => { req.destroy(); resolve(false); });
+    req.on("error", () => settle(false));
+    req.setTimeout(5000, () => { settle(false); req.destroy(); });
   });
 }
 

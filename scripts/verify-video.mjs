@@ -30,6 +30,7 @@ export function httpGet(url, { maxBytes = 30000, redirects = 4 } = {}) {
       { headers: { "User-Agent": UA, Accept: "text/html,application/json,*/*" } },
       (res) => {
         if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location && redirects > 0) {
+          res.resume();
           const next = new URL(res.headers.location, url).toString();
           settle(httpGet(next, { maxBytes, redirects: redirects - 1 }));
           req.destroy();
