@@ -11,11 +11,8 @@
     "audit:thumbnails": "node scripts/audit-thumbnails.mjs",
     "fetch-thumbnails": "node scripts/fetch-thumbnails.mjs",
     "check-links": "node scripts/check-links.mjs",
-    "auto-research": "node scripts/auto-research.mjs",
-    "auto-research:dry": "node scripts/auto-research.mjs --dry-run",
     "auto-research:cc": "node scripts/auto-research-cc.mjs",
     "auto-research:cc:dry": "node scripts/auto-research-cc.mjs --dry-run",
-    "repair-thumbnails": "node scripts/repair-thumbnails.mjs",
     "self-heal": "node scripts/self-heal-thumbnails.mjs"
   },
   "dependencies": {
