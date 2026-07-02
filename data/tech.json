@@ -1,0 +1,799 @@
+[
+  {
+    "id": "any4d",
+    "title": "Any4D",
+    "org": "Carnegie Mellon University (AirLab)",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D"
+    ],
+    "date": "2026-06",
+    "year": "2026",
+    "summary": "RGB動画に加えRGB-D・IMU・レーダーなど任意のセンサ入力から、実寸スケールの動く3D世界（メトリック4D）を1回の推論で復元するフィードフォワードモデル。",
+    "point": "従来の4D再構成は長い最適化計算が必要だったが、Any4Dは動画を入れると即座に「実寸スケールの動く3D空間」が出てくる。センサを柔軟に足せるので precision も上げられる。広告・体験では、ロケハン映像から実寸の3D空間を即座に起こしてCG合成やAR演出の土台にする、イベント会場のスキャンから空間演出をプレビズする、といった空間系ワークフローの高速化に直結する。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "Any4DリポジトリはApache-2.0（374 stars）"
+    },
+    "links": [
+      {
+        "kind": "post",
+        "url": "https://x.com/Nik__V__/status/2061929833584533801"
+      },
+      {
+        "kind": "project",
+        "url": "https://any-4d.github.io/"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/Any-4D/Any4D"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2512.10935"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/any4d.jpg",
+    "relatedWorks": [
+      {
+        "title": "VGGT",
+        "description": "画像群から3D属性を一括推論するフィードフォワード3D基盤モデル",
+        "url": "https://vgg-t.github.io/"
+      },
+      {
+        "title": "MegaSaM",
+        "description": "動的シーン動画からのカメラ・深度推定の代表的先行研究",
+        "url": "https://mega-sam.github.io/"
+      },
+      {
+        "title": "One4D",
+        "description": "4D再構成と生成を統一する同時期の研究",
+        "url": "https://mizhenxing.github.io/One4D/"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "multi-view-foundation-models",
+    "title": "Multi-View Foundation Models",
+    "org": "テルアビブ大学",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D"
+    ],
+    "date": "2025-12",
+    "year": "2025",
+    "summary": "DINO・SAM・CLIPなどの2D基盤モデルに「マルチビュー空間アダプタ」を挿入し、明示的な3D再構成なしで視点間一貫の特徴を出せるようアップグレードする汎用フレームワーク。",
+    "point": "画像AIの定番モデルは「同じ物体でも撮る角度が変わると認識がブレる」弱点があったが、軽いアダプタを差し込むだけで、どの角度から見ても一貫した理解を持つ3D対応モデルに変身させる。広告・体験では、商品を1クリック指定すると全アングル映像で自動追従セグメントして演出を乗せる、空間スキャンした店舗内でのオブジェクト認識AR、多視点撮影素材の自動マスク生成などの下地技術になり得る。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "本体はMITでフル実装公開済み。ただしDINO/SAM/CLIP等アップストリームモデルの各ライセンスに従う必要あり"
+    },
+    "links": [
+      {
+        "kind": "post",
+        "url": "https://x.com/Or_Hirsch/status/2001679147895046385"
+      },
+      {
+        "kind": "project",
+        "url": "https://leosegre.github.io/Multi-View-Foundation-Models/"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/leosegre/Multi-View-Foundation-Models"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2512.15708"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/multi-view-foundation-models.jpg",
+    "relatedWorks": [
+      {
+        "title": "FiT3D",
+        "description": "3D Gaussianを介して2D特徴の3D認識を改善する先行研究（ECCV 2024）",
+        "url": "https://ywyue.github.io/FiT3D/"
+      },
+      {
+        "title": "Feature 3DGS",
+        "description": "3D Gaussian Splattingに基盤モデル特徴を蒸留する代表研究",
+        "url": "https://feature-3dgs.github.io/"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "artifixer",
+    "title": "ArtiFixer",
+    "org": "NVIDIA Spatial Intelligence Lab（ETH Zurich / Cornell / Univ. of Toronto 共同）",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "GenVideo"
+    ],
+    "date": "2026-06",
+    "year": "2026",
+    "summary": "壊れた・ぼやけた3D再構成（Gaussian Splatting等）のレンダリングを、Wan2.1ベースの自己回帰ビデオ拡散モデルで綺麗に修復し、撮影していないアングルまで生成補完するNVIDIAの研究。SIGGRAPH 2026採択。",
+    "point": "スマホで雑に撮った3Dスキャンは、撮り漏らした角度がグチャグチャに崩れるのが常識だった。ArtiFixerは動画生成AIの「それっぽく描き足す力」を使って、崩れた部分を修復し、存在しないカメラアングルまで作り出す。従来手法より70倍速く、画質指標でも約3dB上回る。広告や体験づくりでは、ロケ地や商品を数分スキャンするだけで自由にカメラを飛ばせる高品質3D空間が作れるため、CMのバーチャルロケハン、店舗のデジタルツイン、実在の街を舞台にしたWeb体験などの制作コストを大きく下げられる可能性がある。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "research-only",
+      "note": "GitHubのコードはApache-2.0だが、HuggingFace配布のモデル重みはNVIDIA非商用ライセンス（研究開発限定）"
+    },
+    "links": [
+      {
+        "kind": "project",
+        "url": "https://research.nvidia.com/labs/sil/projects/artifixer/"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/nv-tlabs/artifixer"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2603.00492"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/nvidia/ArtiFixer"
+      },
+      {
+        "kind": "post",
+        "url": "https://x.com/HowToPrompt__/status/2071163216756150453"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/artifixer.jpg",
+    "relatedWorks": [
+      {
+        "title": "Difix3D+",
+        "description": "同じくNVIDIAによる単一ステップ拡散での3D再構成アーティファクト修復の先行研究",
+        "url": "https://arxiv.org/abs/2503.01774"
+      },
+      {
+        "title": "CAT3D",
+        "description": "Googleによるマルチビュー拡散モデルでの3Dシーン生成。ArtiFixerが上回った従来SOTA",
+        "url": "https://cat3d.github.io/"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "lingbot-map",
+    "title": "LingBot-Map",
+    "org": "Robbyant（Ant Group系のロボティクス/身体性AI企業）",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D"
+    ],
+    "date": "2026-04",
+    "year": "2026",
+    "summary": "LiDAR不要・単眼カメラ映像だけで、シーンの3D形状をストリーミング（約20FPS）でリアルタイム再構成するフィードフォワード3D基盤モデル。1万フレーム超の長尺でもドリフト補正しながら動作する。",
+    "point": "普通、部屋や街を3D化するには高価なLiDARか、撮影後の長い計算処理が必要だった。LingBot-Mapは普通のカメラ1台の映像を流し込むだけで、その場でリアルタイムに3D空間が立ち上がっていく。しかも1万フレーム超の長回しでもズレを自動補正し続けるのが画期的。GitHubスター9千超と注目度も高い。広告・体験づくりでは、来場者がスマホで会場を歩くだけでその空間の3Dモデルが即座に生成されるインスタレーションや、ロケ現場を歩くだけで完成するバーチャル店舗ツアー、ロボット・ドローン演出の空間認識基盤などに使えそうだ。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "GitHubリポジトリはApache-2.0。モデルはHuggingFace/ModelScopeで公開"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Robbyant/lingbot-map"
+      },
+      {
+        "kind": "project",
+        "url": "https://technology.robbyant.com/lingbot-map"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2604.14141"
+      },
+      {
+        "kind": "post",
+        "url": "https://x.com/IlirAliu_/status/2070568712264929475"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/lingbot-map.jpg",
+    "relatedWorks": [
+      {
+        "title": "DUSt3R",
+        "description": "Naverによるキャリブレーション不要の3D再構成基盤モデル。この分野の火付け役",
+        "url": "https://github.com/naver/dust3r"
+      },
+      {
+        "title": "VGGT",
+        "description": "Meta AIのフィードフォワード3D再構成トランスフォーマー（CVPR 2025 Best Paper）",
+        "url": "https://github.com/facebookresearch/vggt"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "cyanpuppets-1b-parameter-ai-motion-capture",
+    "title": "CYANPUPPETS 1B-parameter AI Motion Capture",
+    "org": "CyanPuppets",
+    "type": "Tool",
+    "domains": [
+      "Motion/Body",
+      "CreatorTools"
+    ],
+    "date": "2026-06",
+    "year": "2026",
+    "summary": "10億パラメータのAIモデルをローカル実行し、1080pカメラ1台または動画アップロードから全身33点＋顔140点＋指を含む208キーポイントをリアルタイム抽出するマーカーレスモーションキャプチャ。UE/Unity/Blenderに対応。",
+    "point": "従来は専用スーツや複数カメラが必要だったモーションキャプチャを、カメラ1台＋ゲーミングPC級のGPU（VRAM 8GB）だけでリアルタイムに実現する。体・指・表情まで208点を遅延0.1秒で拾い、FBX書き出しやMetaHuman・VRMへのリターゲットまで一気通貫。広告・体験づくりでは、イベント来場者の動きをその場でブランドキャラクターに憑依させるライブ演出、店頭サイネージでの「あなたがアバターになる」体験、低コストなVTuber型キャンペーンなどが1台のカメラで組める。※「スマホ1台で」は入力映像の話で、処理にはVRAM 8GBのPCが必要。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "クローズドソースの商用製品。UE/Blender向けプラグインに無料版あり（VRAM 8GB必要）。Webカメラ版$50/月、エンタープライズ版$1,499などの有償ラインも併存"
+    },
+    "links": [
+      {
+        "kind": "post",
+        "url": "https://x.com/ai_hakase_/status/2068816985433985077"
+      },
+      {
+        "kind": "product",
+        "url": "https://cyanpuppets.com/product_EN.html"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/cyanpuppets-1b-parameter-ai-motion-capture.jpg",
+    "relatedWorks": [
+      {
+        "title": "Move AI",
+        "description": "マーカーレスモーキャプの代表的商用サービス",
+        "url": "https://www.move.ai"
+      },
+      {
+        "title": "DeepMotion Animate 3D",
+        "description": "動画アップロード型のAIモーションキャプチャSaaSの先行例",
+        "url": "https://www.deepmotion.com"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "spherope",
+    "title": "SpheRoPE",
+    "org": "Amazon Prime Video × Tel Aviv University × Hebrew University of Jerusalem",
+    "type": "Research",
+    "domains": [
+      "GenVideo",
+      "Spatial/3D"
+    ],
+    "date": "2026-06",
+    "year": "2026",
+    "summary": "学習済みDiffusion Transformer（FLUX、LTX-2.3等）の位置エンコーディングに球面幾何の事前知識を注入し、追加学習ゼロで継ぎ目のない360°パノラマ画像・動画を生成するzero-shotフレームワーク。",
+    "point": "普通の画像生成AIでVR用の360°パノラマを作ると、左右の端がつながらなかったり天頂・足元が歪んだりする。SpheRoPEは、モデルを再学習する代わりに「画像内の位置の数え方」を球面仕様に差し替えるだけで、既存の最新モデルからそのまま歪みのない全天球画像・動画を出せるのが賢い。プロンプト一発で「その世界に入れる」360°素材が作れるため、VRゴーグルやドーム型会場でのブランド世界体験、WebのパノラマビューアーでのSNSキャンペーンなど、空間まるごとの広告表現を低コストで量産できる可能性がある。",
+    "license": {
+      "spdx": "CC-BY-NC-4.0",
+      "commercial": "research-only",
+      "note": "リポジトリはCC BY-NC 4.0（非商用）。加えてベースモデル（FLUX / LTX-2.3）各自のライセンスが別途適用"
+    },
+    "links": [
+      {
+        "kind": "project",
+        "url": "https://orhir.github.io/SpheRoPE"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/orhir/SpheRoPE"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2606.32033"
+      },
+      {
+        "kind": "post",
+        "url": "https://x.com/Or_Hirsch/status/2072351681665282093"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/spherope.jpg",
+    "relatedWorks": [
+      {
+        "title": "PanFusion",
+        "description": "360°パノラマ生成のデュアルブランチ拡散モデル（CVPR 2024、要学習型の先行研究）",
+        "url": "https://chengzhag.github.io/publication/panfusion"
+      },
+      {
+        "title": "MVDiffusion",
+        "description": "対応点アウェアな多視点拡散によるパノラマ・テクスチャ生成（NeurIPS 2023）",
+        "url": "https://mvdiffusion.github.io"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "akasaki-c1-loop-motion-tool",
+    "title": "C1連続 in-loop-out モーション生成ツール",
+    "org": "あかさき（個人・テクニカルアーティスト）",
+    "type": "Prototype",
+    "domains": [
+      "Motion/Body",
+      "CreatorTools"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "モーションキャプチャの任意区間から、開始・終了のポーズと速度まで一致するC1連続のループアニメーション（in→loop→out）を自動生成する個人開発ツール。差分をinertializationで上乗せする方式。",
+    "point": "ゲームやCGでキャラの動きを繰り返すと、ループのつなぎ目で一瞬「カクッ」と不自然になるのが定番の悩み。このツールはモーキャプデータのループ始点と終点で、ポーズだけでなく速度まで滑らかにつながるよう差分を計算して自動補正するので、手作業のブレンド調整なしで違和感ゼロの無限ループが作れる。研究論文ではなく現場のTAが作った実用装置なのが良く、展示サイネージで踊り続けるキャラ、Webサイトの背景で自然に動き続ける3Dマスコットなど、「ずっと見ていられる」ループ演出の量産に直結する技術。",
+    "license": {
+      "spdx": null,
+      "commercial": "none",
+      "note": "個人開発の未配布プロトタイプ。作者は関連OSS（MuscleInertialization等）をGitHubで公開"
+    },
+    "links": [
+      {
+        "kind": "post",
+        "url": "https://x.com/akasaki1211/status/2072338958676345005"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/akasaki1211/MuscleInertialization"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/akasaki-c1-loop-motion-tool.jpg",
+    "relatedWorks": [
+      {
+        "title": "Inertialization (GDC 2018)",
+        "description": "本手法の基盤となったアニメーション遷移手法のオリジナル講演",
+        "url": "https://www.gdcvault.com/play/1025165/Inertialization-High-Performance-Animation-Transitions"
+      },
+      {
+        "title": "MuscleInertialization",
+        "description": "同作者によるUnity Humanoid向けinertialization実装（OSS）",
+        "url": "https://github.com/akasaki1211/MuscleInertialization"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "editanything",
+    "title": "EditAnything (LTX-2.3 Video Edit LoRA)",
+    "org": "Alissonerdx（個人開発者）",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-06",
+    "year": "2026",
+    "summary": "動画生成モデルLTX-2.3をプロンプト指示型の動画編集モデルに変えるLoRA。背景/被写体の除去、モーション転写、要素の置き換え等をテキスト指示で実行できる。重み・ComfyUIワークフロー付きでHugging Face公開。",
+    "point": "「この動画から人物だけ消して」「この動きを別キャラに移して」といった編集は、本来ロトスコープやVFXの専門作業。EditAnythingは巨大な動画生成モデルに小さな追加学習パーツ（LoRA）を載せるだけで、既存動画をプロンプトで編集できるようにしてしまう。OSSでワークフローごと公開されているのが強みで、撮影済みCM素材の背景差し替えバリエーション量産、UGC動画を使ったモーション転写ミーム企画など、「撮り直さずに作り変える」映像制作パイプラインを自前で組める。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "LoRA自体はApache 2.0だが、ベースモデルLightricks LTX-2.3のライセンス条件が別途適用"
+    },
+    "links": [
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/Alissonerdx/EditAnything"
+      },
+      {
+        "kind": "post",
+        "url": "https://x.com/SD_Tutorial/status/2071864037969944778"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/editanything.jpg",
+    "relatedWorks": [
+      {
+        "title": "Runway Aleph",
+        "description": "商用のin-context動画編集モデルの代表格",
+        "url": "https://runwayml.com/research/introducing-runway-aleph"
+      },
+      {
+        "title": "VACE (Alibaba)",
+        "description": "動画生成と編集を統一したオールインワンモデル（OSS圏の競合）",
+        "url": "https://ali-vilab.github.io/VACE-Page/"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "aurora-film-lab-v1-0",
+    "title": "AURORA Film Lab v1.0",
+    "org": "D.Daniel（個人・フィルム/カラーグレーディング専門）",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools"
+    ],
+    "date": "2026-06",
+    "year": "2026",
+    "summary": "55種のフィルムでカラーチャートを実際に撮影・計測した実測データから選抜した12種のルックを混合し、独自のフィルム調カラーを作れるDaVinci Resolve用グレーディングツール。Randomize機能で1,440通りの組み合わせを探索できる。",
+    "point": "映像の「フィルムっぽい色」は通常、既製LUTを当てるだけで、みんな同じ色になりがち。AURORA Film Labは作者が55本のフィルムを実際に撮影して色を科学的に計測し、その実測データ12種を絵の具のように混ぜて「自分だけのフィルム」を作れるのが新しい。ワンクリックで数千通りの色をガチャ的に試せるRandomize機能も探索的で楽しい。ブランドムービーやMVで競合と被らない独自のシグネチャールックを開発したり、キャンペーン全体のトーンを一貫させる色設計の起点として、映像制作の現場でそのまま使える。",
+    "license": {
+      "spdx": null,
+      "commercial": "paid",
+      "note": "買い切り$119-149（生涯アップデート付）。商用利用可と明記。DaVinci Resolve無償版/Studio版両対応のPowerGrade形式"
+    },
+    "links": [
+      {
+        "kind": "product",
+        "url": "https://aurorafilmlab.com"
+      },
+      {
+        "kind": "post",
+        "url": "https://x.com/d_daniel_film/status/2071889971464552715"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/aurora-film-lab-v1-0.jpg",
+    "relatedWorks": [
+      {
+        "title": "ARRI Film Lab",
+        "description": "ARRI公式のリアルタイムフィルムエミュレーションプラグイン",
+        "url": "https://www.cined.com/arri-film-lab-announced-real-time-analog-film-emulation-plugin-for-davinci-resolve-baselight-nuke/"
+      },
+      {
+        "title": "CinePrint35",
+        "description": "人気のフィルムエミュレーションPowerGrade/LUT（先行例）",
+        "url": "https://www.tombolles.net/cineprint35"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "viggle-pinoc-seedance-workflow",
+    "title": "Viggle PINOC × Seedance ワークフロー",
+    "org": "Viggle AI",
+    "type": "Tool",
+    "domains": [
+      "Motion/Body",
+      "GenVideo"
+    ],
+    "date": "2026-06",
+    "year": "2026",
+    "summary": "Viggleの無料ツールPINOC（動画→モーキャプ抽出＋画像1枚からGaussian Splattingキャラ生成、FBX/GLB/BVH出力）で3Dプリビズを作り、Seedanceで最終映像化するワークフロー。手付けキーフレームゼロでチェイスシーンを構築。",
+    "point": "激しいアクション映像をAIで作ろうとすると、プロンプトだけではカメラとキャラの動きが制御できず崩壊しがち。このワークフローは、スーツ不要のAIモーキャプ（PINOC）で実写動画から動きを抜き、写真1枚から作った3Dキャラに載せてビューポートで構図を固め、それを下絵にSeedanceで映像化する。「動きの演出は3Dで正確に、絵作りはAIで豪華に」という分業で、キーフレームを1枚も打たずにチェイスシーンが完成する。スタント撮影なしのアクションCM、タレントの動きだけ借りたキャラクターPVなど、低予算で演出精度の高いAI映像が作れる。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "PINOCは現在無料・無制限と公式明記。FBX/GLB/BVHエクスポート対応。生成部分はSeedance（ByteDance）の利用規約に依存"
+    },
+    "links": [
+      {
+        "kind": "product",
+        "url": "https://viggle.ai/pinoc"
+      },
+      {
+        "kind": "post",
+        "url": "https://x.com/Viggle_PINOC/status/2071745589507657992"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/viggle-pinoc-seedance-workflow.jpg",
+    "relatedWorks": [
+      {
+        "title": "Move AI",
+        "description": "マーカーレスAIモーションキャプチャの代表的サービス",
+        "url": "https://www.move.ai"
+      },
+      {
+        "title": "Wonder Studio",
+        "description": "実写動画にCGキャラを自動合成するAI VFXツール",
+        "url": "https://wonderdynamics.com"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "ue58-metahuman-markerless-mocap",
+    "title": "MetaHuman Animator マーカーレスMocap（UE 5.8）× AI再レンダリング検証",
+    "org": "Epic Games（Mocap技術はMeshcapade提供）／検証: KakuDrop（個人クリエイター）",
+    "type": "Prototype",
+    "domains": [
+      "Motion/Body",
+      "GenVideo"
+    ],
+    "date": "2026-06",
+    "year": "2026",
+    "summary": "UE 5.8のMetaHuman Animatorに追加されたWebカメラ1台のマーカーレス全身Mocapを検証し、有料マーカーレスMocapを超える品質と報告。プレビズのモーションブラーがAI再レンダリング（Seedance 2.0）後の動画にも継承されるという発見を共有。",
+    "point": "これまで数十万円のスーツや複数カメラが必要だったモーションキャプチャが、UE 5.8ではWebカメラ1台・無料でできるようになった。この投稿が面白いのは単なる機能紹介ではなく、「UEのプレビズで付けたモーションブラーがAI動画生成後も引き継がれる」という実践的発見まで検証していること。ゲームエンジンで丁寧にカメラ設定した映像をAIでシネマ級に仕上げるパイプラインが個人レベルで成立する。広告制作では、俳優なしのバーチャルタレントCM、絵コンテ代わりの高品質プレビズ、SNS向け縦型シネマティック動画の量産などに直結するワークフロー。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "UE/MetaHumanはEpicのEULA下で商用可（大規模収益時ロイヤリティ）。マーカーレスMocapプラグインはWindows向けExperimental機能"
+    },
+    "links": [
+      {
+        "kind": "post",
+        "url": "https://x.com/KakuDrop/status/2071471484921696332"
+      },
+      {
+        "kind": "product",
+        "url": "https://www.metahuman.com/news/metahuman-5-8-is-now-available"
+      },
+      {
+        "kind": "project",
+        "url": "https://dev.epicgames.com/documentation/metahuman/metahuman-animation-from-mono-video-capture-in-unreal-engine"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/ue58-metahuman-markerless-mocap.jpg",
+    "relatedWorks": [
+      {
+        "title": "Move AI",
+        "description": "スマホカメラでのマーカーレスMocapを提供する有料サービス",
+        "url": "https://www.move.ai/"
+      },
+      {
+        "title": "Wonder Studio",
+        "description": "実写映像にCGキャラを自動合成するAI VFXツール",
+        "url": "https://wonderdynamics.com/"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "splice-mcp-claude-beatmaking",
+    "title": "Splice MCP Server × Claude Cowork によるAIビートメイク検証",
+    "org": "Splice／Anthropic／検証: DJ TAKI-SHIT",
+    "type": "Prototype",
+    "domains": [
+      "Audio/Music",
+      "AI/Agents"
+    ],
+    "date": "2026-06",
+    "year": "2026",
+    "summary": "Spliceが公式提供するMCPサーバーをClaude Coworkに接続し、自然言語の指示だけでDJプレミア風ヒップホップトラックを組めるか検証したYouTube動画付きポスト。",
+    "point": "「90年代NYヒップホップっぽい埃っぽいドラムを探して」と日本語で頼むだけで、AIが世界最大級のサンプル素材サービスSpliceから音源を検索・選定し、トラックの土台まで組んでくれる——そんな未来をDJが実際に検証した企画。ポイントは音楽生成AI（Suno等）と違い、人間のアーティストが作った実在のサンプルを組み合わせる点で、権利がクリアかつ「自分で作った感」が残ること。広告制作では、ブランドの世界観を言葉で伝えるだけでCM音楽のデモを高速に量産したり、来場者の言葉からその場でオリジナルビートを作るインタラクティブ体験などに応用できそうだ。",
+    "license": {
+      "spdx": null,
+      "commercial": "paid",
+      "note": "Splice MCP Serverはベータ版でSpliceアカウントがあれば利用可。サンプルDLにはクレジット（有料サブスク）が必要だが、DLした音源はロイヤリティフリーで商用利用可"
+    },
+    "links": [
+      {
+        "kind": "post",
+        "url": "https://x.com/DJTAKISHIT/status/2071185119269023874"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=GPSEc2awDBY"
+      },
+      {
+        "kind": "product",
+        "url": "https://splice.com/tools/mcp-server"
+      },
+      {
+        "kind": "project",
+        "url": "https://splice.com/blog/splice-sounds-in-claude-mcp/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/splice-mcp-claude-beatmaking.jpg",
+    "relatedWorks": [
+      {
+        "title": "Suno",
+        "description": "テキストから完成曲を生成するAI。投稿者が比較対象として言及",
+        "url": "https://suno.com/"
+      },
+      {
+        "title": "Splice Stacks",
+        "description": "Splice公式のAIレイヤリング機能。MCP経由でスタック構築が可能",
+        "url": "https://splice.com/sounds/stacks"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "comfyui-cinematic-annotate-video",
+    "title": "ComfyUI「Cinematic Annotate Video」ワークフロー",
+    "org": "Comfy Org／テンプレート作者: Sirolim",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-06",
+    "year": "2026",
+    "summary": "画像の上に線や注釈を描くだけでキャラの移動経路やカメラワークを指定でき、統合されたLLMがその描き込みをSeedance 2.0用のモーションプロンプトへ自動翻訳して動画を生成するComfyUIワークフロー。",
+    "point": "AI動画生成の最大のストレスは「右奥へゆっくりドリーしながら…」と動きを言葉で説明しきれないこと。このワークフローは絵コンテに矢印を描く感覚で、画像に直接線を引けば、LLMがそれを読み取って動画AIへの指示文に変換してくれる。「言葉で演出する」から「描いて演出する」への転換だ。広告制作では、商品カットに矢印を1本引くだけでカメラが回り込むシネマティック動画が作れるため、絵コンテからそのままビデオコンテを起こす、SNS動画のカメラワークをディレクターが直接描いて指示する、といった使い方ができる。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "ワークフロー自体は無料公開（ComfyUI本体はGPL-3.0のOSS）。動画生成に使うSeedance 2.0はAPI経由の有料モデルで、商用利用可否はAPI提供元の規約に依存"
+    },
+    "links": [
+      {
+        "kind": "project",
+        "url": "https://comfy.org/workflows/cinematic_annotate_video-0136284ecc19/"
+      },
+      {
+        "kind": "post",
+        "url": "https://x.com/ai_hakase_/status/2070676487192101064"
+      },
+      {
+        "kind": "product",
+        "url": "https://comfy.org/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/comfyui-cinematic-annotate-video.jpg",
+    "relatedWorks": [
+      {
+        "title": "Wan ATI Motion Control",
+        "description": "画像上に軌跡パスを描いて動きを制御する先行ワークフロー",
+        "url": "https://www.comfy.org/workflows/templates_rob_wan_ati_motion_control-585c7006af9f/"
+      },
+      {
+        "title": "DragNUWA",
+        "description": "ドラッグ軌跡で動画の動きを制御する研究の先行例",
+        "url": "https://github.com/ProjectNUWA/DragNUWA"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "rerun-booster-robotics-k1",
+    "title": "Rerun × Booster Robotics K1",
+    "org": "Rerun (rerun.io)",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "Spatial/3D",
+      "Motion/Body"
+    ],
+    "date": "2026-06",
+    "year": "2026",
+    "summary": "OSSの時系列マルチモーダル可視化ツールRerunで、ヒューマノイドK1がサッカーボールを蹴る動作のセンサ・3D状態をリアルタイムにロギング・可視化したデモ。",
+    "point": "ロボットの関節角度・カメラ映像・3D姿勢といったバラバラなデータを、数行のコードで時間同期された3Dビューアに流し込める。ゲームのリプレイ画面のようにロボットの「頭の中」を巻き戻して見られる。広告・体験の文脈では、ロボットやドローンを使ったイベント演出の裏側可視化、センサ連動インスタレーションのデバッグ兼「見せる制作過程」コンテンツ、データビジュアライゼーション自体を魅せる展示などに使える。",
+    "license": {
+      "spdx": "MIT OR Apache-2.0",
+      "commercial": "ok",
+      "note": "Rerun本体はMIT/Apache-2.0デュアルライセンスのOSS（11,000+ stars）"
+    },
+    "links": [
+      {
+        "kind": "post",
+        "url": "https://x.com/pablovelagomez1/status/2069192301872898393"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/rerun-io/rerun"
+      },
+      {
+        "kind": "product",
+        "url": "https://rerun.io"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/rerun-booster-robotics-k1.jpg",
+    "relatedWorks": [
+      {
+        "title": "Foxglove",
+        "description": "ロボティクスデータ可視化・観測の商用プラットフォーム（競合）",
+        "url": "https://foxglove.dev/"
+      },
+      {
+        "title": "VGGT",
+        "description": "Rerunがデモ可視化に多用される3D再構成研究の例",
+        "url": "https://vgg-t.github.io/"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "levifab",
+    "title": "LeviFab",
+    "org": "筑波大学 Digital Nature Group（落合陽一研究室）",
+    "type": "Prototype",
+    "domains": [
+      "HCI/MediaArt"
+    ],
+    "date": "2017-07",
+    "year": "2017",
+    "summary": "液体窒素で冷却した超伝導体のピン止め効果を使い、磁石を埋め込んだ3Dプリント物体を空中に安定浮遊・操作するHCI研究（SIGGRAPH 2017）。約10分間の浮遊中にインタラクションも可能。",
+    "point": "映画のような「物が宙に浮く」演出を、プロジェクション等のごまかしなしに物理現象（超伝導の磁束ピン止め）で実現している。しかも浮かせる物体は3Dプリントで自由にデザインでき、動かして操作までできる。広告・体験づくりでは、商品を本当に宙に浮かせるショーウィンドウや店頭什器、ローンチイベントでの「重力からの解放」演出、メディアアート展示など、実物が浮くこと自体が絵になる体験に直結する。",
+    "license": {
+      "spdx": null,
+      "commercial": "none",
+      "note": "ハードウェア研究のためコード/ライセンスなし。論文はACM SIGGRAPH 2017 Studio & Posters"
+    },
+    "links": [
+      {
+        "kind": "post",
+        "url": "https://x.com/labDNG/status/2068884176477233636"
+      },
+      {
+        "kind": "project",
+        "url": "https://digitalnature.slis.tsukuba.ac.jp/2017/06/levifab/"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=TQtPjvab22s"
+      },
+      {
+        "kind": "paper",
+        "url": "https://doi.org/10.1145/3084863.3084871"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/levifab.jpg",
+    "relatedWorks": [
+      {
+        "title": "ZeroN (MIT Media Lab)",
+        "description": "磁気浮遊させた球体を3D空間内で動かすタンジブルインターフェースの先駆",
+        "url": "https://vimeo.com/33329835"
+      },
+      {
+        "title": "Levitrope",
+        "description": "同じく落合陽一による浮遊するキネティック彫刻作品",
+        "url": "https://www.youtube.com/watch?v=f3jSG_YHIYE"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "ceb-sam-3d-body-v4",
+    "title": "CEB SAM 3D Body v4 (Blender addon)",
+    "org": "Carlos Barreto (CEB Studios)",
+    "type": "Tool",
+    "domains": [
+      "Motion/Body",
+      "CreatorTools"
+    ],
+    "date": "2026-06",
+    "year": "2026",
+    "summary": "MetaのSAM 3D BodyをBlenderから直接使えるようにした個人開発アドオンのv4。動画フッテージから3D人体ポーズを推定し、Blender上のアニメーションデータ（モーキャプ）として読み込める。",
+    "point": "Metaの最新3D人体推定モデル「SAM 3D Body」を、研究者向けコードのままではなくBlenderのボタン操作で使えるようにした点がすごい。普通の動画を放り込むだけで俳優のいらないモーションキャプチャが完成し、スタジオも専用スーツも不要。v4では複数のモデル（Fast版・CPP版）を切り替える新ツールが追加された。広告・体験づくりでは、TikTokダンスや店頭で撮ったお客さんの動きをそのままキャラクターアニメに変換するCGM施策や、低予算でのキャラクターMV・バーチャルタレント制作のパイプラインに組み込める。",
+    "license": {
+      "spdx": null,
+      "commercial": "paid",
+      "note": "アドオン本体はPatreon経由で配布される独自ツール。基盤のMeta SAM 3D Bodyは独自SAMライセンス"
+    },
+    "links": [
+      {
+        "kind": "post",
+        "url": "https://x.com/carlosedubarret/status/2068767810939998231"
+      },
+      {
+        "kind": "product",
+        "url": "https://www.patreon.com/cebstudios"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/carlosedubarreto/sam-3d-body"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/ceb-sam-3d-body-v4.jpg",
+    "relatedWorks": [
+      {
+        "title": "SAM 3D Body (Meta)",
+        "description": "本アドオンの基盤となるMetaの単眼3D人体・ポーズ推定基盤モデル",
+        "url": "https://github.com/facebookresearch/sam-3d-body"
+      },
+      {
+        "title": "CEB 4D Humans",
+        "description": "同作者による4D-Humansベースの先行Blenderモーキャプアドオン",
+        "url": "https://github.com/carlosedubarreto/CEB_4d_Humans"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  }
+]

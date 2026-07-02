@@ -13,8 +13,8 @@ const THUMBNAILS_DIR = path.join(__dirname, "../public/thumbnails");
 
 const UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36";
 
-/** URLから画像をダウンロードしてバッファで返す */
-function fetchImage(url, redirects = 4) {
+/** URLから画像をダウンロードしてバッファで返す（tech系スクリプトも共用） */
+export function fetchImage(url, redirects = 4) {
   return new Promise((resolve) => {
     if (!url || !url.startsWith("http")) return resolve(null);
     let settled = false;
@@ -80,7 +80,7 @@ export async function saveThumbnailFromPage(id, pageUrl) {
   return saveThumbnail(id, ogImage);
 }
 
-function fetchOgImage(url, redirects = 3) {
+export function fetchOgImage(url, redirects = 3) {
   return new Promise((resolve) => {
     let settled = false;
     const settle = (v) => { if (settled) return; settled = true; resolve(v); };

@@ -1,0 +1,159 @@
+/**
+ * Technology タブのデータ組み立てスクリプト。
+ *
+ * 調査済みJSON（エージェント調査結果 or 手動作成）から:
+ *   1. verdict=adopt のみ抽出
+ *   2. 主要リンクの死活を機械再検証（一次ソース必達の品質バー）
+ *   3. Case Study (cases.json) との重複チェック（正規化タイトル）
+ *   4. サムネイルを public/thumbnails/tech/ へ取得・保存
+ *   5. data/tech.json へ書き込み（既存エントリとidマージ）
+ *
+ * 使い方: node scripts/build-tech-from-research.mjs <research1.json> [research2.json ...]
+ *         --dry-run で tech.json を更新せず結果のみ表示
+ */
+import fs from "fs/promises";
+import path from "path";
+import { fileURLToPath } from "url";
+import { fetchImage, fetchOgImage } from "./save-thumbnail.mjs";
+import { isUrlAlive } from "./verify-video.mjs";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const TECH_PATH = path.join(__dirname, "../data/tech.json");
+const CASES_PATH = path.join(__dirname, "../data/cases.json");
+const VOCAB_PATH = path.join(__dirname, "../data/tech-tag-vocabulary.json");
+const THUMB_DIR = path.join(__dirname, "../public/thumbnails/tech");
+
+const DRY_RUN = process.argv.includes("--dry-run");
+const inputFiles = process.argv.slice(2).filter((a) => !a.startsWith("--"));
+
+const MIN_THUMB_BYTES = 5000; // これ未満はプレースホルダ疑いとして不採用（Case Studyと同基準）
+
+function toId(name) {
+  return name
+    .toLowerCase()
+    .replace(/[（(].*?[）)]/g, "")
+    .replace(/[:：].*$/, "")
+    .replace(/[^a-z0-9぀-ヿ一-龯]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 60);
+}
+
+function normTitle(t) {
+  return (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+}
+
+async function saveThumb(id, sourceUrl) {
+  await fs.mkdir(THUMB_DIR, { recursive: true });
+  const localPath = path.join(THUMB_DIR, `${id}.jpg`);
+  try {
+    await fs.access(localPath);
+    return `/thumbnails/tech/${id}.jpg`;
+  } catch {}
+
+  // 直接画像URL（拡張子あり or 既知の画像ホスト）はそのまま、ページURLはog:image経由
+  const isDirectImage =
+    /\.(jpg|jpeg|png|webp)(\?|$)/i.test(sourceUrl) ||
+    /^https:\/\/(opengraph\.githubassets\.com|pbs\.twimg\.com|avatars\.githubusercontent\.com)\//.test(sourceUrl);
+  let imgUrl = sourceUrl;
+  if (!isDirectImage) {
+    imgUrl = await fetchOgImage(sourceUrl);
+    if (!imgUrl) return null;
+  }
+  const buf = await fetchImage(imgUrl);
+  if (!buf || buf.length < MIN_THUMB_BYTES) return null;
+  await fs.writeFile(localPath, buf);
+  return `/thumbnails/tech/${id}.jpg`;
+}
+
+async function main() {
+  if (!inputFiles.length) {
+    console.error("usage: node scripts/build-tech-from-research.mjs <research.json> ...");
+    process.exit(1);
+  }
+  const vocab = JSON.parse(await fs.readFile(VOCAB_PATH, "utf-8"));
+  const validDomains = new Set(vocab.Domain);
+  const validTypes = new Set(vocab.Type);
+
+  const cases = JSON.parse(await fs.readFile(CASES_PATH, "utf-8"));
+  const caseTitleKeys = new Set(cases.map((c) => normTitle(c.title)));
+
+  const existing = JSON.parse(await fs.readFile(TECH_PATH, "utf-8"));
+  const existingIds = new Set(existing.map((t) => t.id));
+
+  const candidates = [];
+  for (const f of inputFiles) {
+    const arr = JSON.parse(await fs.readFile(f, "utf-8"));
+    for (const r of arr) {
+      if (r.verdict === "adopt" || r.verdict === "adopt-adjusted") candidates.push(r);
+    }
+  }
+  console.log(`採用候補: ${candidates.length}件\n`);
+
+  const added = [];
+  const failed = [];
+  for (const r of candidates) {
+    const title = r.techName.replace(/[:：].*$/, "").trim() || r.techName;
+    const id = toId(r.techName);
+    console.log(`── ${title} (${id})`);
+
+    if (existingIds.has(id)) { console.log("  スキップ: 既存"); continue; }
+    if (caseTitleKeys.has(normTitle(title))) {
+      console.log("  ✗ Case Studyと重複 → 除外");
+      failed.push({ id, reason: "Case Study重複" });
+      continue;
+    }
+    if (!validTypes.has(r.type)) { failed.push({ id, reason: `不正type: ${r.type}` }); continue; }
+
+    // 一次ソースの機械再検証（github/project/product の先頭1本は必達）
+    const primary = r.links.find((l) => ["github", "project", "product"].includes(l.kind));
+    if (!primary) { failed.push({ id, reason: "一次ソースなし" }); console.log("  ✗ 一次ソースなし"); continue; }
+    const alive = await isUrlAlive(primary.url);
+    if (!alive) {
+      console.log(`  ✗ 一次ソース到達不可: ${primary.url}`);
+      failed.push({ id, reason: `一次ソース死: ${primary.url}` });
+      continue;
+    }
+    console.log(`  一次ソースOK: ${primary.url}`);
+
+    // サムネイル（必達）
+    const thumb = await saveThumb(id, r.thumbnailSource);
+    if (!thumb) {
+      console.log(`  ✗ サムネイル取得不可: ${r.thumbnailSource}`);
+      failed.push({ id, reason: `サムネ取得不可: ${r.thumbnailSource}` });
+      continue;
+    }
+    console.log(`  サムネイルOK: ${thumb}`);
+
+    added.push({
+      id,
+      title,
+      org: r.org,
+      type: r.type,
+      domains: (r.domains || []).filter((d) => validDomains.has(d)),
+      date: r.date,
+      year: String(r.date).slice(0, 4),
+      summary: r.summaryJa,
+      point: r.pointJa,
+      license: {
+        spdx: r.license?.spdx ?? null,
+        commercial: r.license?.commercial ?? "none",
+        ...(r.license?.note ? { note: r.license.note } : {}),
+      },
+      links: r.links.map(({ kind, url }) => ({ kind, url })),
+      thumbnail: thumb,
+      relatedWorks: r.relatedWorks || [],
+      sources: ["X Bookmarks"],
+    });
+    existingIds.add(id);
+  }
+
+  console.log(`\n追加: ${added.length}件 / 失敗: ${failed.length}件`);
+  failed.forEach((f) => console.log(`  ✗ ${f.id}: ${f.reason}`));
+
+  if (DRY_RUN) { console.log("(dry-run: tech.json未更新)"); return; }
+  const updated = [...added, ...existing];
+  await fs.writeFile(TECH_PATH, JSON.stringify(updated, null, 2));
+  console.log(`✅ data/tech.json → 合計${updated.length}件`);
+}
+
+main().then(() => process.exit(0)).catch((e) => { console.error("❌", e); process.exit(1); });

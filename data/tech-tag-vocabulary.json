@@ -1,0 +1,12 @@
+{
+  "Domain": [
+    "Spatial/3D",
+    "Motion/Body",
+    "GenVideo",
+    "CreatorTools",
+    "AI/Agents",
+    "HCI/MediaArt",
+    "Audio/Music"
+  ],
+  "Type": ["Research", "Prototype", "Tool"]
+}
