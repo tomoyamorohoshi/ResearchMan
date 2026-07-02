@@ -476,7 +476,15 @@ async function main() {
 
   if (!toAdd.length) {
     console.log("追加対象がありませんでした（全候補が重複または検証却下）");
-    await saveLastRunDate();
+    // dry-runで本番の72h周期を消費しない（手動テストが次回自動実行を遅らせる事故防止）
+    if (!DRY_RUN) {
+      await saveLastRunDate();
+      // 前回実行のサマリーが残ると、self-heal起因のコミットで通知が走った際に
+      // 旧事例を再通知してしまう（stale通知）。0件でも必ず上書きする
+      try {
+        await fs.writeFile(LAST_ADD_PATH, JSON.stringify({ count: 0, cases: [] }, null, 2));
+      } catch {}
+    }
     return 0;
   }
 
