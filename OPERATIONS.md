@@ -12,6 +12,16 @@
 - 事例ソース: award（受賞作）/ order（発注実績）/ radar（自動収集）。`sources` フィールドで区別
 - タグ体系: `data/tag-vocabulary.json`（Tech / Form / Theme の3軸。自動収集はこの語彙外のタグを捨てる）
 
+### Technology タブ（2026-07-03新設）
+
+Case Study と並ぶ第2のTOP（`/technology`）。AI/HCI/CG/先端メディア技術の研究・プロトタイプ・ツールを収集。
+- 仕様の単一ソース: **`TECHNOLOGY_SPEC.md`**（クライテリア・メディアリスト・運用フロー）
+- データ: `data/tech.json` + `data/tech-tag-vocabulary.json`（Domain 7種 × Type 3種）。cases.json と完全分離
+- サムネイル: `public/thumbnails/tech/`（既存のサムネイル監査の対象外）
+- 取り込み: ユーザーのXブックマーク（`data/inbox/x-bookmarks-*.txt`）→ 調査 →
+  `scripts/build-tech-from-research.mjs`（一次ソース死活・Case Study重複・サムネ下限を機械検証）
+- 日次自動収集（Step 1）は**未実装**。パイロット20件をユーザーが確認してから着手する約束
+
 ## 2. 自動収集パイプライン（無人運用の本体）
 
 ```
@@ -114,6 +124,13 @@ const settle = (v) => { if (settled) return; settled = true; resolve(v); };
 
 ### 通知が来ない
 1. verify-deploy が時間切れだと通知はスキップされる（ログに「push成功だが反映未確認」）→ 反映は成功していることが多い。`node scripts/verify-deploy.mjs` を再実行して確認
+
+### verify-deploy の限界（新ルート追加時の注意）
+- 「landed」判定は **git の origin/main == HEAD 確認**であり、**Vercelビルド完了の確認ではない**。
+  検査対象も home / サムネイル / cases.json の新規ページのみ。
+- **新しいルート**（例: /technology）を追加した場合は、verify-deploy PASS後に
+  `curl -s -o /dev/null -w "%{http_code}" https://research-man.vercel.app/<新ルート>` が
+  200 になるまで別途確認すること（Vercelビルド中は旧デプロイが404を返す）
 2. LINE: `node scripts/notify-line.mjs --dry-run` で本文確認 → 設定は `~/.researchman-line.json`
 3. メール: `~/.researchman-mail.json` が未設定なら仕様どおりスキップ
 
