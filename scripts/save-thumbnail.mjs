@@ -14,26 +14,34 @@ const THUMBNAILS_DIR = path.join(__dirname, "../public/thumbnails");
 const UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36";
 
 /** URLから画像をダウンロードしてバッファで返す */
-function fetchImage(url) {
+function fetchImage(url, redirects = 4) {
   return new Promise((resolve) => {
     if (!url || !url.startsWith("http")) return resolve(null);
+    let settled = false;
+    const settle = (v) => { if (settled) return; settled = true; resolve(v); };
     const mod = url.startsWith("https") ? https : http;
     const req = mod.get(url, { headers: { "User-Agent": UA } }, (res) => {
-      if (res.statusCode === 301 || res.statusCode === 302) {
-        return resolve(fetchImage(res.headers.location));
+      // 301/302に加え303/307/308も追跡する（CDNは307/308を常用する）
+      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location && redirects > 0) {
+        res.resume();
+        const next = new URL(res.headers.location, url).toString();
+        settle(fetchImage(next, redirects - 1));
+        req.destroy();
+        return;
       }
-      if (res.statusCode !== 200) { res.resume(); return resolve(null); }
+      if (res.statusCode !== 200) { res.resume(); return settle(null); }
       const ct = res.headers["content-type"] || "";
-      if (!ct.startsWith("image/")) { res.resume(); return resolve(null); }
+      if (!ct.startsWith("image/")) { res.resume(); return settle(null); }
       const chunks = [];
       res.on("data", (d) => chunks.push(d));
-      res.on("end", () => resolve(Buffer.concat(chunks)));
-      // 接続が途中で切れてもPromiseを必ず解決する（未解決awaitでプロセスが静かに死ぬのを防ぐ）
-      res.on("close", () => resolve(null));
-      res.on("error", () => resolve(null));
+      res.on("end", () => settle(Buffer.concat(chunks)));
+      // 接続が途中で切れてもPromiseを必ず解決する（未解決awaitでプロセスが静かに死ぬのを防ぐ）。
+      // 画像は部分受信だと壊れたファイルになるため、end以外は必ずnullで確定する
+      res.on("close", () => settle(null));
+      res.on("error", () => settle(null));
     });
-    req.on("error", () => resolve(null));
-    req.setTimeout(10000, () => { req.destroy(); resolve(null); });
+    req.on("error", () => settle(null));
+    req.setTimeout(10000, () => { settle(null); req.destroy(); });
   });
 }
 

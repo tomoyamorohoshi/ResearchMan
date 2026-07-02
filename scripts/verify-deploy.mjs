@@ -36,14 +36,20 @@ const md5 = (buf) => crypto.createHash("md5").update(buf).digest("hex");
 
 function fetchBuf(url) {
   return new Promise((resolve) => {
+    let settled = false;
+    const settle = (v) => { if (settled) return; settled = true; resolve(v); };
     const req = https.get(url, { headers: { "User-Agent": "verify-deploy" } }, (res) => {
-      if (res.statusCode !== 200) { res.resume(); return resolve({ status: res.statusCode, buf: null }); }
+      if (res.statusCode !== 200) { res.resume(); return settle({ status: res.statusCode, buf: null }); }
       const ch = [];
+      const finish = () => settle({ status: 200, buf: Buffer.concat(ch) });
       res.on("data", (d) => ch.push(d));
-      res.on("end", () => resolve({ status: 200, buf: Buffer.concat(ch) }));
+      res.on("end", finish);
+      // 本文受信中に接続が切れてもPromiseを必ず解決する（未解決awaitでプロセスが静かに死ぬのを防ぐ）
+      res.on("close", finish);
+      res.on("error", finish);
     });
-    req.on("error", () => resolve({ status: 0, buf: null }));
-    req.setTimeout(15000, () => { req.destroy(); resolve({ status: 0, buf: null }); });
+    req.on("error", () => settle({ status: 0, buf: null }));
+    req.setTimeout(15000, () => { settle({ status: 0, buf: null }); req.destroy(); });
   });
 }
 

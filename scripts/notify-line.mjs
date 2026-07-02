@@ -93,6 +93,8 @@ function sendMessage(cfg, text) {
   // to があれば push（特定userId宛）、無ければ broadcast（全友だち宛）
   const url = cfg.to ? PUSH_URL : BROADCAST_URL;
   return new Promise((resolve) => {
+    let settled = false;
+    const settle = (v) => { if (settled) return; settled = true; resolve(v); };
     const payload = cfg.to
       ? { to: cfg.to, messages: [{ type: "text", text }] }
       : { messages: [{ type: "text", text }] };
@@ -109,12 +111,16 @@ function sendMessage(cfg, text) {
       },
       (res) => {
         const chunks = [];
+        const finish = () => settle({ status: res.statusCode, body: Buffer.concat(chunks).toString() });
         res.on("data", (d) => chunks.push(d));
-        res.on("end", () => resolve({ status: res.statusCode, body: Buffer.concat(chunks).toString() }));
+        res.on("end", finish);
+        // 本文受信中に接続が切れてもPromiseを必ず解決する（未解決awaitでプロセスが静かに死ぬのを防ぐ）
+        res.on("close", finish);
+        res.on("error", finish);
       }
     );
-    req.on("error", (e) => resolve({ status: 0, body: e.message }));
-    req.setTimeout(15000, () => { req.destroy(); resolve({ status: 0, body: "timeout" }); });
+    req.on("error", (e) => settle({ status: 0, body: e.message }));
+    req.setTimeout(15000, () => { settle({ status: 0, body: "timeout" }); req.destroy(); });
     req.write(body);
     req.end();
   });
