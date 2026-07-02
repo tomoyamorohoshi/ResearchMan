@@ -83,20 +83,28 @@ function fetchOgImage(url, redirects = 3) {
         return resolve(fetchOgImage(next, redirects - 1));
       }
       let html = "";
+      let settled = false;
       const finish = () => {
+        if (settled) return;
+        settled = true;
         const m = html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i)
                 || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i)
                 || html.match(/<meta[^>]+name=["']twitter:image["'][^>]+content=["']([^"']+)["']/i);
-        const img = m?.[1];
+        // og:image URLはHTMLエスケープされていることがある（&amp; → &）
+        const img = m?.[1]?.replace(/&amp;/g, "&");
         resolve(img && img.startsWith("http") ? img : null);
       };
-      res.on("data", (d) => { html += d; if (html.length > 60000) req.destroy(); });
+      // 60KB超で打ち切る際は必ず「先に」finishする。
+      // req.destroy()はreqの\x27error\x27(ECONNRESET)を先に発火させるため、
+      // 後からfinishしてもPromiseはすでにnullで解決済みになる（60KB超ページで全滅していた実バグ）
+      res.on("data", (d) => { html += d; if (html.length > 60000) { finish(); req.destroy(); } });
       res.on("end", finish);
       // req.destroy() 後は end が発火しない。closeでも必ず解決する
       // （未解決awaitが残るとNodeがイベントループ枯渇で静かに終了し、呼び出し元が途中死する）
       res.on("close", finish);
-      res.on("error", () => resolve(null));
+      res.on("error", finish);
     });
+    // 打ち切りdestroy時はfinish済み（settled）なのでこのresolve(null)は無効化される
     req.on("error", () => resolve(null));
     req.setTimeout(8000, () => { req.destroy(); resolve(null); });
   });

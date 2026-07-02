@@ -16,28 +16,42 @@ export function httpGet(url, { maxBytes = 30000, redirects = 4 } = {}) {
   return new Promise((resolve) => {
     if (!url || !/^https?:\/\//.test(url)) return resolve(null);
     const mod = url.startsWith("https") ? https : http;
+    // req.destroy()はreqの'error'(ECONNRESET)を発火させ、resolve(null)が
+    // 正常な結果より先に走る（=生きているリンクを「死」と誤判定する実バグ）。
+    // 必ず「先に」settleしてからdestroyすること。
+    let settled = false;
+    const settle = (v) => {
+      if (settled) return;
+      settled = true;
+      resolve(v);
+    };
     const req = mod.get(
       url,
       { headers: { "User-Agent": UA, Accept: "text/html,application/json,*/*" } },
       (res) => {
         if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location && redirects > 0) {
-          req.destroy();
           const next = new URL(res.headers.location, url).toString();
-          return resolve(httpGet(next, { maxBytes, redirects: redirects - 1 }));
+          settle(httpGet(next, { maxBytes, redirects: redirects - 1 }));
+          req.destroy();
+          return;
         }
         let body = "";
+        const finish = () => settle({ status: res.statusCode, body });
         res.on("data", (d) => {
           body += d;
-          if (body.length > maxBytes) req.destroy();
+          if (body.length > maxBytes) {
+            finish();
+            req.destroy();
+          }
         });
-        res.on("end", () => resolve({ status: res.statusCode, body }));
-        res.on("close", () => resolve({ status: res.statusCode, body }));
+        res.on("end", finish);
+        res.on("close", finish);
       }
     );
-    req.on("error", () => resolve(null));
+    req.on("error", () => settle(null));
     req.setTimeout(10000, () => {
+      settle(null);
       req.destroy();
-      resolve(null);
     });
   });
 }
