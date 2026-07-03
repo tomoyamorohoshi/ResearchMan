@@ -158,9 +158,12 @@ async function main() {
   const claudeBin = resolveClaudeBin();
   const seenThisRun = [];
   const candidates = [];
+  let discoveryErrors = 0;
+  let roundsAttempted = 0;
 
   for (let round = 1; round <= MAX_ROUNDS && candidates.length < MAX_ADD; round++) {
     console.log(`── ラウンド ${round}/${MAX_ROUNDS}: 発見フェーズ ──`);
+    roundsAttempted++;
     let found = [];
     try {
       found = runClaudeJsonArray(claudeBin, buildPrompt({ lane, existingTitles, seenThisRun }), {
@@ -168,6 +171,7 @@ async function main() {
       });
     } catch (e) {
       console.error(`発見フェーズ失敗: ${e.message}`);
+      discoveryErrors++;
       continue;
     }
     console.log(`候補: ${found.length}件`);
@@ -177,6 +181,12 @@ async function main() {
       candidates.push(c);
       if (candidates.length >= MAX_ADD) break;
     }
+  }
+
+  // 全ラウンドがエラー＝「0件」ではなく「収集失敗」。exit 1でplistのエラー通知経路へ
+  if (!candidates.length && discoveryErrors >= roundsAttempted && discoveryErrors > 0) {
+    console.error("発見フェーズが全ラウンド失敗 → 収集エラーとして終了");
+    process.exit(1);
   }
 
   if (!candidates.length) {

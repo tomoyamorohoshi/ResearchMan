@@ -359,9 +359,12 @@ async function main() {
   const toAdd = [];
   const seenThisRun = [];
   const stats = { candidates: 0, dup: 0, rejected: 0 };
+  let discoveryErrors = 0;
+  let roundsAttempted = 0;
 
   for (let round = 1; round <= MAX_ROUNDS && toAdd.length < TARGET_NEW; round++) {
     console.log(`── ラウンド ${round}/${MAX_ROUNDS}: 発見フェーズ ──`);
+    roundsAttempted++;
     let found = [];
     try {
       const parsed = runClaudeJson(
@@ -372,6 +375,7 @@ async function main() {
       found = parsed?.found || [];
     } catch (e) {
       console.error(`発見フェーズ失敗: ${e.message}`);
+      discoveryErrors++;
       continue;
     }
     console.log(`候補: ${found.length}件`);
@@ -472,6 +476,14 @@ async function main() {
     console.log(
       `ラウンド${round}終了: 累計採用${toAdd.length} / 候補${stats.candidates} / 重複${stats.dup} / 検証却下${stats.rejected}\n`
     );
+  }
+
+  // 全ラウンドがエラーで候補ゼロ＝「0件」ではなく「収集失敗」。
+  // exit 1 で呼び出し元(plist)のエラー通知経路に乗せる（セッション制限等で
+  // 「本日の新規追加なし（収集は正常実行）」と誤報告した2026-07-03の実障害の再発防止）
+  if (!toAdd.length && stats.candidates === 0 && discoveryErrors >= roundsAttempted && discoveryErrors > 0) {
+    console.error("発見フェーズが全ラウンド失敗 → 収集エラーとして終了");
+    process.exit(1);
   }
 
   if (!toAdd.length) {
