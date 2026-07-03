@@ -1,7 +1,7 @@
 {
-  "_note": "Cannes Lions 2026 公式受賞作の正解リスト（監査の単一ソース）。6体の独立監査エージェントが lovethework公式DB＋トレード各誌から構築。Silver/Bronzeは公開記録に名前がある分のみ（大規模部門は完全名簿が非公開）。",
+  "_note": "Cannes Lions 2026 公式受賞作の正解リスト（監査の単一ソース）。6体の独立監査エージェントが lovethework公式DB＋トレード各誌から構築。Silver/Bronzeは公開記録に名前がある分のみ（大規模部門は完全名簿が非公開）。 2026-07-04追記: Oreo Cows(BE&A Silver)とWelcome Back Paisano(BE&A Gold)は一次情報(Campaign US, merca20.com)でGold+Silver両方受賞を確認し追加。",
   "generatedFrom": "6 audit agents",
-  "count": 430,
+  "count": 432,
   "winners": [
     {
       "category": "Audio & Radio",
@@ -3442,6 +3442,22 @@
       "brand": "—",
       "agency": "Dini von Muffling Communications",
       "market": "USA"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "level": "Silver",
+      "title": "Oreo Cows",
+      "brand": "Oreo",
+      "agency": "VML (New York / Mexico City)",
+      "market": "USA / Mexico"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "level": "Gold",
+      "title": "Welcome Back, Paisano",
+      "brand": "Tecate",
+      "agency": "LePub",
+      "market": "Mexico"
     }
   ]
 }

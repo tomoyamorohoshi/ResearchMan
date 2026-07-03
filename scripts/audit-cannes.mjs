@@ -21,7 +21,7 @@ const norm = (s) => deaccent(s || "").toLowerCase().replace(/[（(].*?[）)]/g, 
 const toks = (s) => new Set(norm(s).split(/\s+/).filter((w) => w && w.length > 1 && !STOP.has(w)));
 const jac = (a, b) => { const i = [...a].filter((x) => b.has(x)).length; const u = new Set([...a, ...b]).size; return u ? i / u : 0; };
 const flat = (s) => norm(s).replace(/\s/g, "");
-const ALIAS = { "claudecanigetasixpackquicklyhowcanicommunicatebetterwithmymom": "anthropic-claude-super-bowl", "atimeandaplace": "anthropic-claude-super-bowl", "rosaliaftbjorkyvestumorberghain": "rosalia-berghain" };
+const ALIAS = { "claudecanigetasixpackquicklyhowcanicommunicatebetterwithmymom": "anthropic-claude-super-bowl", "atimeandaplace": "anthropic-claude-super-bowl", "rosaliaftbjorkyvestumorberghain": "rosalia-berghain", "thefinalcopyofilonspecht": "loreal-final-copy" };
 
 function findAllRM(rec) {
   const f = flat(rec.title); if (ALIAS[f]) { const a = cn.find((c) => c.id === ALIAS[f]); return a ? [a] : []; }
