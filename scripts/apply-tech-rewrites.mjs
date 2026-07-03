@@ -1,7 +1,9 @@
 /**
  * Technology 記事文章の一括適用。
- * 入力: [{id, pointJa, detailJa}] のJSONファイル（複数可）
- * data/tech.json の該当エントリの point / detail を上書きする。
+ * 入力形式は2種類（混在可）:
+ *   1. [{id, pointJa, detailJa}] … point/detailの全文置き換え（従来形式）
+ *   2. [{id, field, corrected}] … field("summary"|"point"|"detail")のみ上書き
+ *      （factcheck-tech.mjs のレポートをレビュー後、承認分だけ抽出して渡す想定）
  * 使い方: node scripts/apply-tech-rewrites.mjs <rewrites1.json> [rewrites2.json ...]
  */
 import fs from "fs/promises";
@@ -26,6 +28,16 @@ for (const f of files) {
   for (const r of arr) {
     const t = byId.get(r.id);
     if (!t) { console.log(`✗ 不明id: ${r.id}`); continue; }
+    if (r.field && r.corrected) {
+      if (!["summary", "point", "detail"].includes(r.field)) {
+        console.log(`✗ 不正field: ${r.id} = "${r.field}"`);
+        continue;
+      }
+      t[r.field] = r.corrected;
+      applied++;
+      console.log(`✓ ${r.id} (${r.field} ${r.corrected.length}字)`);
+      continue;
+    }
     if (r.pointJa) t.point = r.pointJa;
     if (r.detailJa) t.detail = r.detailJa;
     applied++;
