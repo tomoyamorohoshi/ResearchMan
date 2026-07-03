@@ -14,7 +14,7 @@
 import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
-import { fetchImage, fetchOgImage } from "./save-thumbnail.mjs";
+import { fetchKeyVisual } from "./tech-thumbs.mjs";
 import { isUrlAlive } from "./verify-video.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -42,20 +42,6 @@ function normTitle(t) {
   return (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
 }
 
-async function fetchThumbBuf(sourceUrl) {
-  // 直接画像URL（拡張子あり or 既知の画像ホスト）はそのまま、ページURLはog:image経由
-  const isDirectImage =
-    /\.(jpg|jpeg|png|webp)(\?|$)/i.test(sourceUrl) ||
-    /^https:\/\/(opengraph\.githubassets\.com|pbs\.twimg\.com|avatars\.githubusercontent\.com)\//.test(sourceUrl);
-  let imgUrl = sourceUrl;
-  if (!isDirectImage) {
-    imgUrl = await fetchOgImage(sourceUrl);
-    if (!imgUrl) return null;
-  }
-  const buf = await fetchImage(imgUrl);
-  return buf && buf.length >= MIN_THUMB_BYTES ? buf : null;
-}
-
 async function saveThumb(id, sourceUrl, fallbackLinks = []) {
   await fs.mkdir(THUMB_DIR, { recursive: true });
   const localPath = path.join(THUMB_DIR, `${id}.jpg`);
@@ -64,24 +50,12 @@ async function saveThumb(id, sourceUrl, fallbackLinks = []) {
     return `/thumbnails/tech/${id}.jpg`;
   } catch {}
 
-  // 第一候補が落ちたら他のリンクのog:imageへフォールバック
-  // （GitHub OGPはレート制限(100回/窓)で失敗しうる実績あり。初回日次運転で2件脱落した教訓）
-  const sources = [
-    sourceUrl,
-    ...fallbackLinks
-      .filter((l) => ["project", "product", "post", "github"].includes(l.kind))
-      .map((l) => l.url)
-      .filter((u) => u !== sourceUrl),
-  ];
-  for (const src of sources) {
-    const buf = await fetchThumbBuf(src);
-    if (buf) {
-      if (src !== sourceUrl) console.log(`  （サムネはフォールバック: ${src}）`);
-      await fs.writeFile(localPath, buf);
-      return `/thumbnails/tech/${id}.jpg`;
-    }
-  }
-  return null;
+  // キービジュアル優先（GitHub OGPカードは全候補失敗時の最終手段）。tech-thumbs.mjs参照
+  const found = await fetchKeyVisual(fallbackLinks, sourceUrl);
+  if (!found) return null;
+  if (found.src !== sourceUrl) console.log(`  （サムネ取得元: ${found.src}）`);
+  await fs.writeFile(localPath, found.buf);
+  return `/thumbnails/tech/${id}.jpg`;
 }
 
 async function main() {

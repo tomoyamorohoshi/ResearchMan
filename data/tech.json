@@ -32,7 +32,7 @@
         "url": "https://amap-ml.github.io/DreamX_World"
       }
     ],
-    "thumbnail": "/thumbnails/tech/dreamx-world-1-0.jpg",
+    "thumbnail": "/thumbnails/tech/dreamx-world-1-0-kv.jpg",
     "relatedWorks": [
       {
         "title": "World Labs Marble",
@@ -87,7 +87,7 @@
         "url": "https://huggingface.co/tencent/HY-WorldPlay"
       }
     ],
-    "thumbnail": "/thumbnails/tech/hy-world-1-5-worldplay.jpg",
+    "thumbnail": "/thumbnails/tech/hy-world-1-5-worldplay-kv2.jpg",
     "relatedWorks": [
       {
         "title": "FlashWorld",
@@ -133,7 +133,7 @@
         "url": "https://aholojs.dev"
       }
     ],
-    "thumbnail": "/thumbnails/tech/aholo-viewer.jpg",
+    "thumbnail": "/thumbnails/tech/aholo-viewer-kv2.jpg",
     "relatedWorks": [
       {
         "title": "gsplat",
@@ -175,7 +175,7 @@
         "url": "https://github.com/lightningpixel/modly"
       }
     ],
-    "thumbnail": "/thumbnails/tech/modly.jpg",
+    "thumbnail": "/thumbnails/tech/modly-kv2.jpg",
     "relatedWorks": [
       {
         "title": "HunyuanWorld-Mirror",
@@ -270,7 +270,7 @@
         "url": "https://arxiv.org/abs/2604.04063"
       }
     ],
-    "thumbnail": "/thumbnails/tech/4c4d.jpg",
+    "thumbnail": "/thumbnails/tech/4c4d-kv.jpg",
     "relatedWorks": [
       {
         "title": "RiGS",
@@ -324,7 +324,7 @@
         "url": "https://huggingface.co/zx1239856/PixARMesh-EdgeRunner"
       }
     ],
-    "thumbnail": "/thumbnails/tech/pixarmesh.jpg",
+    "thumbnail": "/thumbnails/tech/pixarmesh-kv2.jpg",
     "relatedWorks": [
       {
         "title": "Modly",
@@ -378,7 +378,7 @@
         "url": "https://arxiv.org/abs/2602.07439"
       }
     ],
-    "thumbnail": "/thumbnails/tech/textop.jpg",
+    "thumbnail": "/thumbnails/tech/textop-kv.jpg",
     "relatedWorks": [
       {
         "title": "PBHC / KungfuBot",
@@ -428,7 +428,7 @@
         "url": "https://arxiv.org/abs/2511.07820"
       }
     ],
-    "thumbnail": "/thumbnails/tech/sonic.jpg",
+    "thumbnail": "/thumbnails/tech/sonic-kv.jpg",
     "relatedWorks": [
       {
         "title": "Kimodo",
@@ -483,7 +483,7 @@
         "url": "https://arxiv.org/abs/2606.10804"
       }
     ],
-    "thumbnail": "/thumbnails/tech/scail-2.jpg",
+    "thumbnail": "/thumbnails/tech/scail-2-kv2.jpg",
     "relatedWorks": [
       {
         "title": "SCAIL v1",
@@ -538,7 +538,7 @@
         "url": "https://arxiv.org/abs/2605.22344"
       }
     ],
-    "thumbnail": "/thumbnails/tech/bernini.jpg",
+    "thumbnail": "/thumbnails/tech/bernini-kv2.jpg",
     "relatedWorks": [
       {
         "title": "Wan 2.2",
@@ -589,7 +589,7 @@
         "url": "https://fireredteam-firered-openstoryline.hf.space/"
       }
     ],
-    "thumbnail": "/thumbnails/tech/firered-openstoryline.jpg",
+    "thumbnail": "/thumbnails/tech/firered-openstoryline-kv2.jpg",
     "relatedWorks": [
       {
         "title": "CutClaw",
@@ -639,7 +639,7 @@
         "url": "https://arxiv.org/abs/2601.10632"
       }
     ],
-    "thumbnail": "/thumbnails/tech/comovi.jpg",
+    "thumbnail": "/thumbnails/tech/comovi-kv.jpg",
     "relatedWorks": [
       {
         "title": "Wan 2.2",
@@ -837,7 +837,7 @@
         "url": "https://researchr.org/publication/JohnS26"
       }
     ],
-    "thumbnail": "/thumbnails/tech/hapticlens.jpg",
+    "thumbnail": "/thumbnails/tech/hapticlens-kv.jpg",
     "relatedWorks": [
       {
         "title": "TECHTILE toolkit（南澤・筧ら）",
@@ -880,7 +880,7 @@
         "url": "https://github.com/ace-step/ACE-Step-1.5"
       }
     ],
-    "thumbnail": "/thumbnails/tech/ace-step-1-5.jpg",
+    "thumbnail": "/thumbnails/tech/ace-step-1-5-kv2.jpg",
     "relatedWorks": [
       {
         "title": "YuE",
@@ -931,7 +931,7 @@
         "url": "https://www.youtube.com/watch?v=Y7JmwJnjDtA"
       }
     ],
-    "thumbnail": "/thumbnails/tech/obsidian-neural.jpg",
+    "thumbnail": "/thumbnails/tech/obsidian-neural-kv.jpg",
     "relatedWorks": [
       {
         "title": "ACE-Step 1.5",
@@ -984,7 +984,7 @@
         "url": "https://arxiv.org/abs/2601.03233"
       }
     ],
-    "thumbnail": "/thumbnails/tech/ltx-2.jpg",
+    "thumbnail": "/thumbnails/tech/ltx-2-kv2.jpg",
     "relatedWorks": [
       {
         "title": "Wan 2.2",
@@ -1036,7 +1036,7 @@
         "url": "https://www.youtube.com/@OpenMontage"
       }
     ],
-    "thumbnail": "/thumbnails/tech/openmontage.jpg",
+    "thumbnail": "/thumbnails/tech/openmontage-kv2.jpg",
     "relatedWorks": [
       {
         "title": "ViMax",
@@ -1091,7 +1091,7 @@
         "url": "https://hyperframes.heygen.com/introduction"
       }
     ],
-    "thumbnail": "/thumbnails/tech/hyperframes.jpg",
+    "thumbnail": "/thumbnails/tech/hyperframes-kv.jpg",
     "relatedWorks": [
       {
         "title": "Remotion",
@@ -1138,7 +1138,7 @@
         "url": "https://github.com/browser-use/video-use"
       }
     ],
-    "thumbnail": "/thumbnails/tech/video-use.jpg",
+    "thumbnail": "/thumbnails/tech/video-use-kv.jpg",
     "relatedWorks": [
       {
         "title": "browser-use",
@@ -1189,7 +1189,7 @@
         "url": "https://github.com/sakalond/StableGen/releases"
       }
     ],
-    "thumbnail": "/thumbnails/tech/stablegen-v0-3.jpg",
+    "thumbnail": "/thumbnails/tech/stablegen-v0-3-kv2.jpg",
     "relatedWorks": [
       {
         "title": "TRELLIS",
@@ -1245,7 +1245,7 @@
         "url": "https://www.youtube.com/watch?v=JZkXO1NG2Ok"
       }
     ],
-    "thumbnail": "/thumbnails/tech/videoagent.jpg",
+    "thumbnail": "/thumbnails/tech/videoagent-kv.jpg",
     "relatedWorks": [
       {
         "title": "ViMax",
@@ -1302,7 +1302,7 @@
         "url": "https://arxiv.org/abs/2512.10935"
       }
     ],
-    "thumbnail": "/thumbnails/tech/any4d.jpg",
+    "thumbnail": "/thumbnails/tech/any4d-kv.jpg",
     "relatedWorks": [
       {
         "title": "VGGT",
@@ -1360,7 +1360,7 @@
         "url": "https://arxiv.org/abs/2512.15708"
       }
     ],
-    "thumbnail": "/thumbnails/tech/multi-view-foundation-models.jpg",
+    "thumbnail": "/thumbnails/tech/multi-view-foundation-models-kv.jpg",
     "relatedWorks": [
       {
         "title": "FiT3D",
@@ -1418,7 +1418,7 @@
         "url": "https://x.com/HowToPrompt__/status/2071163216756150453"
       }
     ],
-    "thumbnail": "/thumbnails/tech/artifixer.jpg",
+    "thumbnail": "/thumbnails/tech/artifixer-kv2.jpg",
     "relatedWorks": [
       {
         "title": "Difix3D+",
@@ -1471,7 +1471,7 @@
         "url": "https://x.com/IlirAliu_/status/2070568712264929475"
       }
     ],
-    "thumbnail": "/thumbnails/tech/lingbot-map.jpg",
+    "thumbnail": "/thumbnails/tech/lingbot-map-kv.jpg",
     "relatedWorks": [
       {
         "title": "DUSt3R",

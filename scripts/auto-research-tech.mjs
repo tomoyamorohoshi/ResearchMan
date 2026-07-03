@@ -130,7 +130,7 @@ function buildPrompt({ lane, existingTitles, seenThisRun }) {
   "license": {"spdx":"...or null","commercial":"ok|conditional|research-only|paid|none","note":"..."},
   "summaryJa": "概要1-2行", "pointJa": "...", "detailJa": "...",
   "relatedWorks": [{"title":"...","description":"1行","url":"..."} 2-3件],
-  "thumbnailSource": "og:imageが取れるページURL or 直接画像URL（GitHubは https://opengraph.githubassets.com/1/<owner>/<repo> が確実）",
+  "thumbnailSource": "技術のデモ・キービジュアルが写る画像URL or そのog:imageを持つページURL（プロジェクトページやREADMEのヒーロー画像を優先。GitHubのopengraphカードはテキスト画像なので不可＝最終フォールバックは自動で入る）",
   "verdict": "adopt", "verdictReason": "..."
 }]`;
 }

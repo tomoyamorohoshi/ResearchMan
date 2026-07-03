@@ -20,7 +20,7 @@ Case Study と並ぶ第2のTOP（`/technology`）。AI/HCI/CG/先端メディア
 - サムネイル: `public/thumbnails/tech/`（既存のサムネイル監査の対象外）
 - 取り込み: ユーザーのXブックマーク（`data/inbox/x-bookmarks-*.txt`）→ 調査 →
   `scripts/build-tech-from-research.mjs`（一次ソース死活・Case Study重複・サムネ下限を機械検証）
-- **日次自動収集（Step 1）: 2026-07-03稼働開始**。launchd `com.researchman.techresearch`
+- **日次自動収集（Step 1）: 2026-07-03稼働開始**。launchd `com.researchman.techresearch`（毎朝10時）
   （毎時起動+23hゲート、状態: `.last-tech-research-run.txt`、ログ: `~/Library/Logs/researchman-tech.log`）
   - 流れ: `auto-research-tech.mjs`（Tier1ソースを4レーン日替わり巡回・日次3件上限）
     → `build-tech-from-research.mjs`（機械検証）→ commit/push → `verify-deploy.mjs`
@@ -122,10 +122,11 @@ const settle = (v) => { if (settled) return; settled = true; resolve(v); };
 ## 6. トラブルシューティング・ランブック
 
 ### 自動実行が走っていない
-1. `launchctl list | grep researchman` … 登録確認（無ければ `launchctl load ~/Library/LaunchAgents/com.researchman.autoresearch.plist`）
-2. `cat .last-research-run.txt` … 前回実行時刻（+71h が次回）
-3. ログが 0 バイトなのは期限前スキップの正常動作（§2）
-4. 即時実行したいとき: `rm .last-research-run.txt` → 次の毎時起動で発火。またはログ付きで手動実行:
+1. `launchctl list | grep researchman` … 登録確認（無ければ `launchctl load ~/Library/LaunchAgents/com.researchman.*.plist`）
+2. `cat .last-research-run.txt`（Case Study）/ `.last-tech-research-run.txt`（Technology）… 前回実行時刻。
+   **両方とも毎朝10時実行**（2026-07-03変更。10時にPCが落ちていても23時まで毎正時にキャッチアップ）
+3. ログに何も出ないのは期限前スキップの正常動作（§2）
+4. 即時実行したいとき: 状態ファイルを削除 → 次の正時に発火。またはログ付きで手動実行:
    plist 内のシェル部分をそのまま端末に貼る
 
 ### push が失敗した（ログに「pre-push監査で中止の可能性」）
