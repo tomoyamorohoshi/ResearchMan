@@ -14,7 +14,7 @@ import path from "path";
 import { spawnSync } from "child_process";
 import { fileURLToPath } from "url";
 import { saveThumbnail, saveThumbnailFromPage } from "./save-thumbnail.mjs";
-import { fetchYouTubeInfo, videoMatchesCase } from "./verify-video.mjs";
+import { fetchYouTubeInfo, videoMatchesCase, isHumanVerifiedVideo } from "./verify-video.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CASES_PATH = path.join(__dirname, "../data/cases.json");
@@ -119,10 +119,13 @@ async function main() {
   for (const c of broken) {
     process.stdout.write(`[${c.id}] 修復中... `);
 
-    // 1. 既存videoIdが正しい（ローカルファイル欠損だけ）なら再保存
+    // 1. 既存videoIdが正しい（ローカルファイル欠損だけ）なら再保存。
+    //    人が視聴確認済みのペアは、タイトル照合ルールの表記揺れで不一致判定されても
+    //    再検索・上書きしない（誤って正しいvideoIdを消す事故の防止）
     if (c.videoId) {
       const info = await fetchYouTubeInfo(c.videoId);
-      if (info && videoMatchesCase(info, c.title, c.client)) {
+      const ok = info && (videoMatchesCase(info, c.title, c.client) || (await isHumanVerifiedVideo(c.id, c.videoId)));
+      if (ok) {
         const local =
           (await saveThumbnail(c.id, `https://i.ytimg.com/vi/${c.videoId}/maxresdefault.jpg`)) ||
           (await saveThumbnail(c.id, `https://i.ytimg.com/vi/${c.videoId}/hqdefault.jpg`));

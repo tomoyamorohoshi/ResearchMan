@@ -8,6 +8,12 @@
  */
 import https from "https";
 import http from "http";
+import fs from "fs/promises";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const VERIFIED_VIDEOS_PATH = path.join(__dirname, "../data/verified-videos.json");
 
 const UA =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/124.0.0.0 Safari/537.36";
@@ -83,31 +89,75 @@ export async function fetchYouTubeInfo(ytId) {
   }
 }
 
-// 動画タイトル/チャンネル名が事例と関係あるか（無関係動画の採用を防ぐ）
-export function videoMatchesCase(info, caseTitle, client) {
-  if (!info) return false;
+// 動画タイトル/チャンネル名が事例と関係あるか（無関係動画の採用を防ぐ）。
+// 理由文字列つきで判定する版。audit側でどのルールで一致/不一致になったかを出せるようにする。
+export function videoMatchScore(info, caseTitle, client) {
+  if (!info) return { match: false, reason: "no-info" };
   const hay = `${info.title} ${info.author}`.toLowerCase();
   const norm = (s) => (s || "").toLowerCase();
+  // 単語境界一致用（記号をスペースに変換。"art"が"startup"にマッチする類の誤検知を避ける）
+  const hayWords = hay.replace(/[^a-z0-9]+/g, " ").trim();
+
   // 1. 英数トークン（3文字以上）の一致数で判定
   const tokens = (norm(caseTitle).match(/[a-z0-9]{3,}/g) || []).filter(
     (t) => !["the", "and", "for", "with"].includes(t)
   );
   const hit = tokens.filter((t) => hay.includes(t)).length;
-  if (tokens.length >= 2 && hit >= Math.ceil(tokens.length / 2)) return true;
-  if (tokens.length === 1 && hit === 1) return true;
-  // 2. クライアント名一致（日本語タイトル等でトークンが取れない場合の救済）
-  const clientNorm = norm(client).replace(/[^a-z0-9]/g, "");
-  if (clientNorm.length >= 3) {
-    if (hay.replace(/[^a-z0-9]/g, "").includes(clientNorm)) return true;
+  if (tokens.length >= 2 && hit >= Math.ceil(tokens.length / 2)) {
+    return { match: true, reason: `title-tokens(${hit}/${tokens.length})` };
   }
+  if (tokens.length === 1 && hit === 1) {
+    return { match: true, reason: "title-token-single" };
+  }
+
+  // 2. クライアント名一致（日本語タイトル等でトークンが取れない場合の救済）。
+  //    5文字以上は部分一致、3-4文字の短い名前（例: KFC/IKEA）は単語境界一致のみ許可
+  //    （includes()の部分一致だけだと短い名前ほど誤検知しやすいため）
+  const clientNorm = norm(client).replace(/[^a-z0-9]/g, "");
+  if (clientNorm.length >= 5) {
+    if (hay.replace(/[^a-z0-9]/g, "").includes(clientNorm)) {
+      return { match: true, reason: "client-substring" };
+    }
+  } else if (clientNorm.length >= 3) {
+    const re = new RegExp(`\\b${clientNorm}\\b`);
+    if (re.test(hayWords)) {
+      return { match: true, reason: "client-word-boundary" };
+    }
+  }
+
   // 3. 日本語タイトルの部分一致（4文字以上の日本語連続部分）
   const jp = (caseTitle || "").match(/[ぁ-んァ-ヶ一-龠]{4,}/g) || [];
-  if (jp.some((seg) => `${info.title}${info.author}`.includes(seg))) return true;
-  return false;
+  if (jp.some((seg) => `${info.title}${info.author}`.includes(seg))) {
+    return { match: true, reason: "jp-substring" };
+  }
+
+  return { match: false, reason: "no-match" };
+}
+
+// 動画タイトル/チャンネル名が事例と関係あるか（無関係動画の採用を防ぐ）
+export function videoMatchesCase(info, caseTitle, client) {
+  return videoMatchScore(info, caseTitle, client).match;
 }
 
 // 検証済みの動画だけ true を返すワンストップ判定
 export async function isVerifiedVideo(ytId, caseTitle, client) {
   const info = await fetchYouTubeInfo(ytId);
   return !!(info && videoMatchesCase(info, caseTitle, client));
+}
+
+// 人が視聴確認済みのペア（caseId+videoId一致）かどうか。
+// data/verified-videos.json: { "<caseId>": { "videoId": "...", "verifiedAt": "...", "note": "..." } }
+// タイトル照合ルールを強化・変更しても、確認済みペアは再flag/再検索されない
+// （audit-integrity.mjs / self-heal-thumbnails.mjs が共用）
+let _verifiedCache = null;
+export async function isHumanVerifiedVideo(caseId, videoId) {
+  if (!_verifiedCache) {
+    try {
+      _verifiedCache = JSON.parse(await fs.readFile(VERIFIED_VIDEOS_PATH, "utf-8"));
+    } catch {
+      _verifiedCache = {};
+    }
+  }
+  const v = _verifiedCache[caseId];
+  return !!(v && v.videoId === videoId);
 }
