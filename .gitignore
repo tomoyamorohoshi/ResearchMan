@@ -39,4 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-.last-research-run.txt
+.last-*-run.txt
+
+# 企画仕込みシート・プレゼンデッキ（クライアント情報を含みうるためローカルのみ）
+/ideation/
+/decks/

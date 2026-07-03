@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.researchman.ideaseeds</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/zsh</string>
+    <string>-c</string>
+    <string>
+      export PATH="$HOME/.local/bin:/usr/local/bin:/opt/homebrew/bin:$PATH";
+      cd /Users/tm/Projects/Claude/ResearchMan;
+      LOG=$HOME/Library/Logs/researchman-ideas.log;
+      node scripts/run-if-due.mjs --state .last-idea-seeds-run.txt --daily-at 10 &gt;&gt; $LOG 2&gt;&amp;1 || exit 0;
+      # 収集2本（autoresearch/techresearch）と同じ排他ロックで直列化（CLI同時実行を避ける）
+      LOCK=/tmp/researchman-git.lock; waited=0;
+      while ! mkdir $LOCK 2&gt;/dev/null; do sleep 30; waited=$((waited+30)); [ $waited -ge 2700 ] &amp;&amp; { echo "ロック取得タイムアウト: $(date)" &gt;&gt; $LOG; exit 0; }; done;
+      trap "rmdir $LOCK 2&gt;/dev/null" EXIT;
+      echo "===== Idea seeds start: $(date) =====" &gt;&gt; $LOG;
+      if node scripts/generate-idea-seeds.mjs &gt;&gt; $LOG 2&gt;&amp;1; then
+        node scripts/notify-line.mjs --text-file /tmp/researchman-idea-seeds.txt &gt;&gt; $LOG 2&gt;&amp;1;
+      else
+        echo "生成エラー終了: $(date)" &gt;&gt; $LOG;
+        node scripts/run-if-due.mjs --state .last-idea-seeds-run.txt --mark &gt;&gt; $LOG 2&gt;&amp;1;
+        node scripts/notify-line.mjs --result error --label IdeaSeeds &gt;&gt; $LOG 2&gt;&amp;1;
+      fi;
+      echo "Idea seeds completed: $(date)" &gt;&gt; $LOG
+    </string>
+  </array>
+
+  <!-- 毎朝10時（10時にPCが落ちていても23時まで毎正時にキャッチアップ）。
+       収集2本と同時刻発火だがロックで直列化されるため、実際の配信は収集完了後になる -->
+  <key>StartCalendarInterval</key>
+  <array>
+    <dict><key>Hour</key><integer>10</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>11</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>12</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>13</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>14</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>15</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>16</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>17</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>18</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>19</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>20</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>21</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>22</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>23</integer><key>Minute</key><integer>0</integer></dict>
+  </array>
+
+  <key>RunAtLoad</key>
+  <true/>
+
+  <key>KeepAlive</key>
+  <false/>
+
+  <key>StandardOutPath</key>
+  <string>/Users/tm/Library/Logs/researchman-ideas.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/tm/Library/Logs/researchman-ideas-error.log</string>
+</dict>
+</plist>

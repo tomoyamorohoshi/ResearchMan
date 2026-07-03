@@ -173,8 +173,24 @@ function sendMessage(cfg, text) {
 }
 
 async function main() {
-  const summary = loadSummary();
-  const text = buildText(summary, gitHead());
+  // --text-file <path>: サマリー整形を使わず、ファイルの中身をそのまま本文として送る
+  // （アイデアの種の配信など、収集結果以外の定期メッセージに使う）
+  const textFile = argOf("--text-file", null);
+  let text;
+  if (textFile) {
+    try {
+      text = fs.readFileSync(textFile, "utf8").trim();
+    } catch (e) {
+      log(`本文ファイル読込失敗（${e.message}）→ 送信スキップ`);
+      return;
+    }
+    if (!text) {
+      log("本文が空 → 送信スキップ");
+      return;
+    }
+  } else {
+    text = buildText(loadSummary(), gitHead());
+  }
 
   if (DRY_RUN) {
     log("--dry-run（送信しません）");

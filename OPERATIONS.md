@@ -71,6 +71,18 @@ launchd (10〜23時の毎正時 + ログイン時)
 「本日の新規追加なし（収集は正常実行）」を送る。無音=障害か0件か区別できない問題の解消。
 サマリーが6時間より古い場合は0件として扱う（収集クラッシュ時に旧事例を再通知しない鮮度ガード）。
 
+### アイデアの種（毎朝10時の第3ジョブ・2026-07-03新設）
+
+launchd `com.researchman.ideaseeds` が毎朝10時、Case Study（企画性）× Technology（技術）の
+掛け合わせで「アイデアの種」10個をLINE配信する。
+- `scripts/generate-idea-seeds.mjs`: 事例14件+技術12件を毎日ランダムサンプリングし、
+  Claude CLI（sonnet）が「技術×技術 / 文脈×技術 / 転用」の3パターン混合で生成
+- 重複回避: 直近60個の種を `~/.researchman-idea-history.json` に保持しプロンプトで回避
+- 配信: `notify-line.mjs --text-file /tmp/researchman-idea-seeds.txt`（本文そのまま送信モード）
+- 状態: `.last-idea-seeds-run.txt`、ログ: `~/Library/Logs/researchman-ideas.log`。
+  収集2本と同じ排他ロックで直列化されるため、配信は収集完了後になる。生成エラー時は
+  「❌ IdeaSeeds: 収集がエラー終了」を通知して翌朝再挑戦
+
 ## 3. 検証・監査スクリプト
 
 | コマンド | 用途 |
