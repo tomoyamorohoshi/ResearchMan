@@ -69,15 +69,19 @@ for (const t of thumbs) {
   if (fs.existsSync(p)) localThumbHash[t] = md5(fs.readFileSync(p));
 }
 
-// 直近実行で追加された事例の詳細ページを「新ビルドが出た」証拠として検証する
+// 直近実行で追加された事例の詳細ページを「新ビルドが出た」証拠として検証する。
+// --skip-pages 指定時は省略（Technology日次パイプライン用。tech側の新規ページ検証は
+// verify-tech-pages.mjs が担うため、Case Study用サマリーをここで読むと誤検証になる）
 let newCasePaths = [];
-try {
-  const st = fs.statSync(LAST_ADD_PATH);
-  if (Date.now() - st.mtimeMs < LAST_ADD_MAX_AGE_MS) {
-    const lastAdd = JSON.parse(fs.readFileSync(LAST_ADD_PATH, "utf-8"));
-    newCasePaths = (lastAdd.cases || []).slice(0, 2).map((c) => `/cases/${c.id}`);
-  }
-} catch {}
+if (!process.argv.includes("--skip-pages")) {
+  try {
+    const st = fs.statSync(LAST_ADD_PATH);
+    if (Date.now() - st.mtimeMs < LAST_ADD_MAX_AGE_MS) {
+      const lastAdd = JSON.parse(fs.readFileSync(LAST_ADD_PATH, "utf-8"));
+      newCasePaths = (lastAdd.cases || []).slice(0, 2).map((c) => `/cases/${c.id}`);
+    }
+  } catch {}
+}
 if (newCasePaths.length) console.log(`[verify-deploy] 新規ページ検証対象: ${newCasePaths.join(", ")}`);
 
 console.log(`[verify-deploy] HEAD=${localHead.slice(0, 8)} 反映確認中（最大${Math.round(MAX_TRIES * INTERVAL_MS / 1000)}秒）...`);

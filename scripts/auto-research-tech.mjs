@@ -190,17 +190,16 @@ async function main() {
     return;
   }
 
-  // 検証・追加は実績のある build-tech-from-research.mjs に委譲
-  const tmpFile = path.join(os.tmpdir(), `tech-daily-${Date.now()}.json`);
+  // 検証・追加は実績のある build-tech-from-research.mjs に委譲。
+  // 候補ファイルは削除せず残す（検証で脱落した候補の調査・手動再取り込みに使う）
+  const day = new Date().toISOString().slice(0, 10);
+  const tmpFile = path.join(os.tmpdir(), `researchman-tech-candidates-${day}.json`);
   await fs.writeFile(tmpFile, JSON.stringify(candidates, null, 2));
   console.log(`\n候補${candidates.length}件を機械検証へ → ${tmpFile}`);
 
   const buildArgs = [path.join(__dirname, "build-tech-from-research.mjs"), tmpFile];
   if (DRY_RUN) buildArgs.push("--dry-run");
   const build = spawnSync("node", buildArgs, { encoding: "utf-8", stdio: "inherit", timeout: 600000 });
-  try {
-    await fs.unlink(tmpFile);
-  } catch {}
   if (build.status !== 0) {
     console.error("検証・追加フェーズが異常終了");
     process.exitCode = 1;

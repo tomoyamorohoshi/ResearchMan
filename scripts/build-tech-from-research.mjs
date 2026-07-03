@@ -42,14 +42,7 @@ function normTitle(t) {
   return (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
 }
 
-async function saveThumb(id, sourceUrl) {
-  await fs.mkdir(THUMB_DIR, { recursive: true });
-  const localPath = path.join(THUMB_DIR, `${id}.jpg`);
-  try {
-    await fs.access(localPath);
-    return `/thumbnails/tech/${id}.jpg`;
-  } catch {}
-
+async function fetchThumbBuf(sourceUrl) {
   // 直接画像URL（拡張子あり or 既知の画像ホスト）はそのまま、ページURLはog:image経由
   const isDirectImage =
     /\.(jpg|jpeg|png|webp)(\?|$)/i.test(sourceUrl) ||
@@ -60,9 +53,35 @@ async function saveThumb(id, sourceUrl) {
     if (!imgUrl) return null;
   }
   const buf = await fetchImage(imgUrl);
-  if (!buf || buf.length < MIN_THUMB_BYTES) return null;
-  await fs.writeFile(localPath, buf);
-  return `/thumbnails/tech/${id}.jpg`;
+  return buf && buf.length >= MIN_THUMB_BYTES ? buf : null;
+}
+
+async function saveThumb(id, sourceUrl, fallbackLinks = []) {
+  await fs.mkdir(THUMB_DIR, { recursive: true });
+  const localPath = path.join(THUMB_DIR, `${id}.jpg`);
+  try {
+    await fs.access(localPath);
+    return `/thumbnails/tech/${id}.jpg`;
+  } catch {}
+
+  // 第一候補が落ちたら他のリンクのog:imageへフォールバック
+  // （GitHub OGPはレート制限(100回/窓)で失敗しうる実績あり。初回日次運転で2件脱落した教訓）
+  const sources = [
+    sourceUrl,
+    ...fallbackLinks
+      .filter((l) => ["project", "product", "post", "github"].includes(l.kind))
+      .map((l) => l.url)
+      .filter((u) => u !== sourceUrl),
+  ];
+  for (const src of sources) {
+    const buf = await fetchThumbBuf(src);
+    if (buf) {
+      if (src !== sourceUrl) console.log(`  （サムネはフォールバック: ${src}）`);
+      await fs.writeFile(localPath, buf);
+      return `/thumbnails/tech/${id}.jpg`;
+    }
+  }
+  return null;
 }
 
 async function main() {
@@ -116,7 +135,7 @@ async function main() {
     console.log(`  一次ソースOK: ${primary.url}`);
 
     // サムネイル（必達）
-    const thumb = await saveThumb(id, r.thumbnailSource);
+    const thumb = await saveThumb(id, r.thumbnailSource, r.links || []);
     if (!thumb) {
       console.log(`  ✗ サムネイル取得不可: ${r.thumbnailSource}`);
       failed.push({ id, reason: `サムネ取得不可: ${r.thumbnailSource}` });

@@ -20,7 +20,13 @@ Case Study と並ぶ第2のTOP（`/technology`）。AI/HCI/CG/先端メディア
 - サムネイル: `public/thumbnails/tech/`（既存のサムネイル監査の対象外）
 - 取り込み: ユーザーのXブックマーク（`data/inbox/x-bookmarks-*.txt`）→ 調査 →
   `scripts/build-tech-from-research.mjs`（一次ソース死活・Case Study重複・サムネ下限を機械検証）
-- 日次自動収集（Step 1）は**未実装**。パイロット20件をユーザーが確認してから着手する約束
+- **日次自動収集（Step 1）: 2026-07-03稼働開始**。launchd `com.researchman.techresearch`
+  （毎時起動+23hゲート、状態: `.last-tech-research-run.txt`、ログ: `~/Library/Logs/researchman-tech.log`）
+  - 流れ: `auto-research-tech.mjs`（Tier1ソースを4レーン日替わり巡回・日次3件上限）
+    → `build-tech-from-research.mjs`（機械検証）→ commit/push → `verify-deploy.mjs`
+    → `verify-tech-pages.mjs`（新規 /technology/{id} が200になるまでポーリング）→ LINE通知
+  - Case Study側と同時発火してもgit競合しないよう `/tmp/researchman-git.lock` で排他
+  - 通知サマリー: `/tmp/researchman-tech-last-add.json`（0件でも上書き=stale防止）
 
 ## 2. 自動収集パイプライン（無人運用の本体）
 

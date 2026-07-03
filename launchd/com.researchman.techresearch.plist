@@ -26,7 +26,7 @@
       else
         git commit -m "Tech radar: $(date '+%Y-%m-%d')" &gt;&gt; $LOG 2&gt;&amp;1;
         if git push &gt;&gt; $LOG 2&gt;&amp;1; then
-          if node scripts/verify-deploy.mjs &gt;&gt; $LOG 2&gt;&amp;1 &amp;&amp; node scripts/verify-tech-pages.mjs &gt;&gt; $LOG 2&gt;&amp;1; then
+          if node scripts/verify-deploy.mjs --skip-pages &gt;&gt; $LOG 2&gt;&amp;1 &amp;&amp; node scripts/verify-tech-pages.mjs &gt;&gt; $LOG 2&gt;&amp;1; then
             echo "反映まで確認OK: $(date)" &gt;&gt; $LOG;
             node scripts/notify-line.mjs --summary /tmp/researchman-tech-last-add.json --route technology --label Technology &gt;&gt; $LOG 2&gt;&amp;1;
           else
