@@ -97,6 +97,18 @@ export default async function TechPage({
           </p>
         </section>
 
+        {/* 技術の詳細 */}
+        {t.detail && (
+          <section className="mb-8">
+            <h2 className="text-[10px] tracking-[0.3em] uppercase text-gray-400 font-bold mb-2">
+              技術の詳細
+            </h2>
+            <p className="text-sm text-gray-800 leading-relaxed whitespace-pre-line">
+              {t.detail}
+            </p>
+          </section>
+        )}
+
         {/* 商用利用の補足 */}
         {t.license.note && (
           <section className="mb-8">

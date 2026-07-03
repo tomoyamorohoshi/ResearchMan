@@ -25,6 +25,8 @@ export type TechItem = {
   summary: string;
   // 「何がすごいか」+「広告・体験づくりで何が作れそうか」のライト解説
   point: string;
+  // 技術の詳細: 仕組み・従来との違い・使うのに必要なものを、技術者でなくてもわかるように具体的に
+  detail?: string;
   license: { spdx: string | null; commercial: Commercial; note?: string };
   links: TechLink[];
   thumbnail: string;

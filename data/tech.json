@@ -1,5 +1,1218 @@
 [
   {
+    "id": "hy-world-1-5-worldplay",
+    "title": "HY-World 1.5 / WorldPlay",
+    "org": "Tencent Hunyuan",
+    "type": "Prototype",
+    "domains": [
+      "Spatial/3D",
+      "GenVideo"
+    ],
+    "date": "2026-01",
+    "year": "2026",
+    "summary": "1枚の画像やテキストから、ユーザーの操作に24fpsでリアルタイム反応する“歩き回れる映像世界”を生成するオープンな世界モデル。",
+    "point": "すごいのは、AIが生成した映像の中を、まるでゲームのようにその場で歩き回れること。従来のAI動画は一度書き出したら固定の映像だったが、HY-WorldPlayはユーザーが「右を向く」「前に進む」と入力するたびに、次の16フレームを即座に予測して映像を継ぎ足していく。しかも長く歩いても風景の位置関係が破綻しにくい（幾何的な一貫性）。広告・体験づくりでは、写真1枚から入場者が自由に探索できるバーチャル空間を素早く立ち上げたり、商品や世界観のイメージを「動いて確かめられる空間」として提示したりできる。ロケ地を撮らずにキービジュアルから没入型の体験デモを作る、といった企画段階のプロトタイピングが一気に速くなる。",
+    "detail": "仕組みはこうだ。AIに1枚の画像かテキストを渡すと、それを起点に「次の一瞬の映像」を少しずつ描き続ける。ポイントは、キーボードやマウスの操作を条件として受け取りながら、16フレームずつの短い塊を連続で生成し続ける「ストリーミング推論」という方式。Context Forcingという蒸留技術で過去に見た風景を記憶しながら描くため、振り返っても同じ景色が保たれる。\n\n従来のAI動画生成は、プロンプトを入れて数十秒待ち、完成した固定の映像を受け取るものだった。そのため「見る」ことはできても「入り込んで操作する」ことはできなかった。HY-WorldPlayは生成と操作を同時に回すことで、実質的に遊べる（playable）世界を成立させた点が新しい。ゲームエンジンで作り込むのとは違い、素材や3Dモデルを用意せずに映像そのものから空間が立ち上がる。\n\n使うにはNVIDIAのGPUとPython環境が要る。コードとWorldPlay-5Bの重みはGitHub・Hugging Faceで公開されており（テンセント独自のコミュニティライセンスで、一定規模までは商用利用可）、まず触ってみるならテンセント公式のWeb体験ページからブラウザで試せる。本格運用には高性能GPUが前提となる。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "Tencent Hunyuan Community License。月間アクティブユーザー数の上限までは商用可、超える場合は別途ライセンスが必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Tencent-Hunyuan/HY-WorldPlay"
+      },
+      {
+        "kind": "project",
+        "url": "https://3d-models.hunyuan.tencent.com/world"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/tencent/HY-WorldPlay"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/hy-world-1-5-worldplay.jpg",
+    "relatedWorks": [
+      {
+        "title": "FlashWorld",
+        "description": "画像やテキストから数秒で3Dガウシアン空間を生成するフィードフォワード手法",
+        "url": "https://github.com/imlixinyang/FlashWorld"
+      },
+      {
+        "title": "WorldGen",
+        "description": "テキスト/画像から歩き回れる3Dシーンを1コマンドで生成するOSSツール",
+        "url": "https://worldgen.github.io/"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "aholo-viewer",
+    "title": "Aholo Viewer",
+    "org": "Manycore Tech (Kujiale / 酷家乐)",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-05",
+    "year": "2026",
+    "summary": "インストール不要のブラウザだけで、最大10億スプラット級の巨大な3D空間をなめらかに表示できるOSSレンダラ。",
+    "point": "すごいのは、専用ソフトのインストールなしで、ブラウザだけで最大10億個の点（スプラット）でできた街まるごとのような巨大な3D空間をなめらかに表示できること。3D Gaussian Splattingは写真から本物そっくりの3D空間を作れる技術だが、データが重く、Webで大規模に見せるのが難しかった。Aholoは表示範囲に応じて必要な部分だけ読み込む仕組み（LOD）と、壁や地面との当たり判定まで備え、重い空間でも軽快に歩ける。広告・体験づくりでは、実在の店舗や街並みをスキャンした超高精細な3D空間を、アプリ不要でスマホやPCのブラウザにそのまま届けられる。バーチャル店舗、ロケ地の下見、没入型のブランド体験サイトなどを、重さを気にせず一般ユーザーに配信できるのが強みだ。",
+    "detail": "仕組みを身近に言うと、巨大な3D空間を細かなブロックに分割し、カメラから見えて近い部分だけを高精細に、遠い部分は粗く読み込む。ゲームの地図が近づくほど鮮明になるのと同じ発想（チャンク単位のLOD）で、10億スプラット級でもメモリ破綻せずに描画する。ply・spz・sog・splat・ksplatなど主要なスプラット形式に対応し、光線・カプセル・地面・壁といった衝突判定も内蔵するため、単なるビューアでなく歩き回れる空間として使える。\n\n従来のWeb向けスプラット表示は数百万〜数千万点が限界で、街規模を出すと固まっていた。Aholoはストリーミング読み込みと3段階の品質プリセットで、この規模の壁を大きく押し上げた点が新しい。ゲームエンジンで作り込むのと違い、実写スキャンした空間をそのまま高精細に配信できる。\n\n使うにはnpmパッケージ（@manycore/aholo-viewer）を導入し、TypeScript/WebGLで組み込む。ライセンスはMITで商用利用も自由。手元のスプラットデータさえあれば、公式のオンライン・プレイグラウンドですぐに表示を試せる。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "MITライセンス。商用利用自由（npm: @manycore/aholo-viewer）"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/manycoretech/aholo-viewer"
+      },
+      {
+        "kind": "project",
+        "url": "https://aholojs.dev"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/aholo-viewer.jpg",
+    "relatedWorks": [
+      {
+        "title": "gsplat",
+        "description": "3Dガウススプラッティングの学習・描画を担う定番OSSライブラリ",
+        "url": "https://github.com/nerfstudio-project/gsplat"
+      },
+      {
+        "title": "Gaussian SplatKing",
+        "description": "iPhoneでスプラット用の高品質な撮影データを取れる無料アプリ",
+        "url": "https://apps.apple.com/us/app/gaussian-splatking/id6759175085"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "modly",
+    "title": "Modly",
+    "org": "lightningpixel (OSSコミュニティ)",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-06",
+    "year": "2026",
+    "summary": "写真をクラウドに送らず、自分のPCのGPUだけで3Dメッシュ化できる完全ローカルの画像→3Dデスクトップアプリ。",
+    "point": "すごいのは、写真からAIが3Dモデル（メッシュ）を作る処理を、クラウドに送らず自分のパソコンのGPUだけで完結できること。しかもWindows・Linux・Apple Silicon対応の、そのままインストールして使えるデスクトップアプリになっている。従来の画像→3D変換は多くがクラウド課金制で、商用素材を外部に送る不安や従量コストがつきまとった。Modlyは完全ローカルなので、機密性の高い商品画像やデザイン案も外に出さずに3D化でき、生成後の滑らか化・ポリゴン削減といった仕上げ機能やコマンドライン操作まで備える。広告・体験づくりでは、商品写真から3Dモデルを量産してAR試着やWeb3Dビューアに載せる、絵コンテやキービジュアルの小物を素早く立体化する、といった制作を社内で完結できる。",
+    "detail": "仕組みはシンプルで、写真を読み込むとAIモデルが被写体の形と表面を推定し、3Dメッシュを出力する。特徴は、その計算をユーザー自身のGPU上で走らせる点。ElectronのデスクトップアプリにPythonのAIバックエンドを同梱し、モデル部分は差し替え可能な設計（プラガブル）なので、新しい画像→3Dモデルが出れば載せ替えられる。生成後はスムージングやポリゴン削減で扱いやすいデータに整えられ、スクリプトから一括処理できるCLIも付く。\n\n従来この種の変換はクラウドサービス経由が主流で、商用データの外部送信や従量課金がネックだった。Modlyは完全ローカル・オフラインで動くため、機密素材でも安心して3D化でき、回数を気にせず試行錯誤できるのが新しい。\n\n使うにはある程度の性能のGPUを積んだPC（またはApple Silicon Mac）が必要。ソフト自体はMITライセンスのOSSでGitHubから無料入手でき、商用利用も可能。インストーラを入れ、使いたい画像→3Dモデルを選べばすぐ動かせる。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "MIT（表示要件あり）。商用利用可のデスクトップアプリ"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/lightningpixel/modly"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/modly.jpg",
+    "relatedWorks": [
+      {
+        "title": "HunyuanWorld-Mirror",
+        "description": "画像/動画から点群・深度・スプラット等を一括推論するテンセントの3D基盤",
+        "url": "https://github.com/Tencent-Hunyuan/HunyuanWorld-Mirror"
+      },
+      {
+        "title": "Luma AI",
+        "description": "スマホ撮影から3D/スプラットを作れる代表的なクラウドサービス",
+        "url": "https://lumalabs.ai/"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "gaussian-splatking",
+    "title": "Gaussian SplatKing",
+    "org": "Radiance Fields",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "iPhoneのデュアルレンズとLiDARで、ガウススプラッティング向けの高品質な撮影データを無料で取得できるiOSアプリ。",
+    "point": "すごいのは、3D空間を写真から再現する「ガウススプラッティング」向けの“良い撮影データ”を、iPhoneひとつで手軽かつ高品質に取れること。この技術は入力する写真の質で仕上がりが大きく変わるが、SplatKingは広角＋超広角の2つのレンズで同時に4K撮影し、LiDARによる奥行き情報やカメラの位置・向きのデータまで一緒に書き出す。しかもCOLMAPという定番形式で出せるので、後段のどんな3D化ツールにもそのまま渡せる。しかも無料。広告・体験づくりでは、店舗・イベント会場・商品などを現場でサッとスキャンし、そのデータからバーチャル空間やAR演出、超高精細な3Dビューアを起こす、という制作の入口を一気に手軽にできる。撮影の失敗も一枚ごとの品質評価で現場で気づける。",
+    "detail": "仕組みは、通常のカメラアプリのように動画や写真を撮るだけ。ただし中身が特殊で、1倍と0.5倍のレンズを同時に回して視点の情報を増やし、LiDAR搭載機なら奥行き（点群）も同時取得する。さらにカメラの内部パラメータや姿勢（intrinsics/pose）といった、3D復元に不可欠なメタデータを付けて書き出す。歪み補正済みの出力やCOLMAP形式のエクスポートに対応するため、撮ったデータはそのまま各種スプラット/NeRFパイプラインに流し込める。\n\nこれまでスプラット制作は、普通のスマホ動画を撮ってPC側で苦労して整える工程が多く、撮影の良し悪しが後になって分かるのが難点だった。SplatKingは撮影の段階で品質評価やLiDAR・メタデータ付与まで済ませ、“作り直しの少ない良い入力”を現場で確保できる点が新しい。パイプライン非依存なので特定ツールに縛られない。\n\n使うにはiOS 17以降のiPhone（LiDAR搭載のPro系推奨）が必要。App Storeから無料でダウンロードでき（寄付は任意）、商用の撮影にも使える。あとは撮ったデータを手持ちの3D化ツールに渡すだけだ。",
+    "license": {
+      "spdx": null,
+      "commercial": "ok",
+      "note": "無料iOSアプリ（寄付は任意）。クローズドソースだが商用の撮影にも利用可"
+    },
+    "links": [
+      {
+        "kind": "product",
+        "url": "https://apps.apple.com/us/app/gaussian-splatking/id6759175085"
+      },
+      {
+        "kind": "project",
+        "url": "https://radiancefields.com/splatking"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/gaussian-splatking.jpg",
+    "relatedWorks": [
+      {
+        "title": "Polycam",
+        "description": "スマホでフォトグラメトリ/スプラットを撮れる定番3Dキャプチャアプリ",
+        "url": "https://poly.cam/"
+      },
+      {
+        "title": "Luma AI",
+        "description": "動画からスプラット/NeRFを生成するクラウド型3Dキャプチャ",
+        "url": "https://lumalabs.ai/"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "4c4d",
+    "title": "4C4D",
+    "org": "Junsheng Zhou ほか（学術, CVPR 2026）",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D"
+    ],
+    "date": "2026-04",
+    "year": "2026",
+    "summary": "たった4台のカメラ映像から、動く3D空間（4D）を高精細に復元するCVPR 2026の研究。",
+    "point": "すごいのは、動く3D空間（4D＝立体＋時間）を、たった4台のカメラの映像から高精細に復元できること。人物やパフォーマンスを全方位から立体的に記録する“ボリュメトリック撮影”は通常、数十台のカメラを並べた大がかりなスタジオが必要で、費用も準備も重かった。4C4Dは、カメラが極端に少なくても形が破綻しないよう、点（ガウシアン）の不透明度を賢く減衰させる仕組みで幾何情報を補い、わずか4台でも見られる品質を出す。広告・体験づくりでは、ダンスや商品の動き、タレントの演技などを少ない機材で立体キャプチャし、自由視点映像やARコンテンツ、バーチャルライブ素材にできる。ボリュメトリック制作の“設備の壁”を大きく下げ、企画段階の試作や小規模スタジオでの実現に近づける点が魅力だ。",
+    "detail": "仕組みを身近に言うと、四方に置いた4台のカメラ映像から、動く被写体を無数の小さな粒（3Dガウシアン）の集まりとして時間方向まで含めて再構成する。カメラが少ないと“見えていない角度”が増えて形が崩れやすいが、4C4Dは新提案のNeural Decaying Function（不透明度を状況に応じて減衰させる関数）で、幾何と見た目の学習のバランスを取り、疎な視点でも安定した形状を保つ。\n\n従来の4D／ボリュメトリック再構成は、視点をたくさん用意することが前提で、数十台規模のカメラリグが事実上の必須だった。4台という現実的な台数で高品質を狙える点が、この研究の新しさだ。設営・同期・コストの負担が大きく下がる。\n\n使うにはPythonとCUDA対応GPUの環境が必要。コードはMITライセンスでGitHubに公開され（CVPR 2026採択、arXiv 2604.04063）、商用利用も可能。研究実装のため自前でのセットアップ前提だが、少人数・小規模でも動く4D空間づくりを試せる土台になる。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "MITライセンス。研究実装、商用利用可。CVPR 2026採択"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/yangzf-1023/4C4D"
+      },
+      {
+        "kind": "project",
+        "url": "https://junshengzhou.github.io/4C4D/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2604.04063"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/4c4d.jpg",
+    "relatedWorks": [
+      {
+        "title": "RiGS",
+        "description": "1本のモノクロ動画から動く4Dガウシアンを復元する研究",
+        "url": "https://github.com/ladvu/RiGS"
+      },
+      {
+        "title": "Gaussian SplatKing",
+        "description": "少台数撮影の入力データ作りに使えるiOSスプラット撮影アプリ",
+        "url": "https://apps.apple.com/us/app/gaussian-splatking/id6759175085"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "pixarmesh",
+    "title": "PixARMesh",
+    "org": "UC San Diego MLPC",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-06",
+    "year": "2026",
+    "summary": "1枚の室内写真から、部屋全体の配置と編集可能な3Dメッシュを一括生成する自己回帰フレームワーク。",
+    "point": "すごいのは、1枚の室内写真から、部屋全体の家具の配置と“編集しやすい3Dメッシュ”を、AIが一気に予測してくれること。従来のAIによる3D化は、点群やSDFといった中間表現を経るため、出てきたデータが編集しづらかったり、部屋全体の整合が取れなかったりした。PixARMeshは文章を書くように形を1つずつ順番に生成する方式（自己回帰）で、最初からメッシュそのものを出力する。だからBlenderなどの3Dソフトでそのまま手直しできる。広告・体験づくりでは、参考写真1枚からイメージに近い3D空間の下地を素早く起こし、CG合成やバーチャル空間、ゲーム風の体験づくりのたたき台にできる。ゼロからモデリングする手間を省き、企画・プレビズの初速を上げられるのが魅力だ。",
+    "detail": "仕組みは、AIが1枚のRGB画像を見て、そこに写る物体の位置（レイアウト）と形（メッシュ）を、文章を綴るように1要素ずつ順番に予測していく“自己回帰”方式。点群やSDFといった中間データを挟まず、最初から扱いやすいメッシュを直接出すのが最大の特徴で、シーン全体を1回の推論でまとめて生成する。出力が“アーティストが触れる”前提のメッシュなので、そのままDCCツールで編集できる。\n\nこれまでの単一画像からの3D化は、スプラットやNeRF、点群など編集に不向きな形式が多く、部屋全体のような複数物体の整合を保つのも苦手だった。メッシュ・ネイティブで、かつシーン単位で一貫して生成できる点がPixARMeshの新しさだ。\n\n使うにはPython環境とGPUが必要。コードはGitHubで、学習済みの重みもHugging Face（zx1239856/PixARMesh-EdgeRunner）で公開されている。ライセンスはCC-BY-SA-4.0で、利用は可能だが二次配布時に同一ライセンス継承（シェアアライク）と表示が必要な点に注意。CVPR 2026採択（arXiv 2603.05888）。",
+    "license": {
+      "spdx": "CC-BY-SA-4.0",
+      "commercial": "conditional",
+      "note": "CC-BY-SA-4.0。商用可だが表示＋同一ライセンス継承（シェアアライク）が必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/mlpc-ucsd/PixARMesh"
+      },
+      {
+        "kind": "project",
+        "url": "https://mlpc-ucsd.github.io/PixARMesh/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2603.05888"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/zx1239856/PixARMesh-EdgeRunner"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/pixarmesh.jpg",
+    "relatedWorks": [
+      {
+        "title": "Modly",
+        "description": "写真から3DメッシュをローカルGPUだけで生成するデスクトップOSS",
+        "url": "https://github.com/lightningpixel/modly"
+      },
+      {
+        "title": "4C4D",
+        "description": "少数カメラから動く4Dシーンを再構成する同時期のCVPR 2026研究",
+        "url": "https://junshengzhou.github.io/4C4D/"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "textop",
+    "title": "TextOp",
+    "org": "TeleAI（中国電信AI研究院）× 上海交通大学",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "AI/Agents"
+    ],
+    "date": "2026-02",
+    "year": "2026",
+    "summary": "テキストで指示すると、その場でヒューマノイドロボットが全身モーションを生成・実行。踊る・楽器演奏・武術まで、動作中の指示変更にもリアルタイムに追従する。",
+    "point": "「歩いて」「踊って」「空手の型を」と文章で打ち込むと、その場で人型ロボットが全身を動かして応える——しかも動いている最中に指示を差し替えても、なめらかに次の動きへ移る。従来のテキスト→モーションは事前に計算した映像を作るだけで、実機をリアルタイムに動かすのは難しかったが、TextOpは「振り付けを考える頭脳」と「体を制御する運動神経」を二段構えにして、その場の対話でロボットを踊らせる。広告・体験づくりでは、来場者がその場で言葉をかけるとロボットが即興でダンスや武術を返すインタラクティブな展示、イベントのMCと掛け合う人型パフォーマー、ブランドキャラクターを実体化したステージ演出などが、事前に振り付けを固めずに作れる。生身の人間には難しい反復動作や危険動作も、安全に見せられる。",
+    "detail": "仕組みは二層構造だ。上の層は「モーション拡散モデル」で、入力された文章から数百ミリ秒先までの動きの下書きを次々と生成し続ける。下の層は「モーション追従ポリシー」で、その下書きを実際のロボットの関節角度に翻訳し、物理的に破綻なく動かす。二つが常時連携するため、指示を打ち替えても止まらずに動きが繋がる。いわば「振付師が耳打ちし続け、ダンサーがリアルタイムで踊る」関係だ。\n\n従来のテキスト→モーション研究は、CG上のキャラクターを動かすところまで（＝映像）が多く、実機で、しかもリアルタイムに指示変更しながら踊らせるのは、生成が追いつかずバランスも崩れるため難しかった。TextOpは短い区間を連続生成する自己回帰方式と汎用の追従制御を組み合わせ、その壁を越えた。\n\n使うにはUnitree G1クラスのヒューマノイドと、Isaac／MuJoCoなどの物理シミュレータ環境が必要。学習済みモデルとデプロイ用コード（MITライセンス・商用可）が公開されており、実機がなくてもシミュレータ上で挙動を試せる。動かすにはロボティクスと機械学習の実装スキルが要る。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "コード・学習済みモデルともMIT。商用利用可"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/TeleHuman/TextOp"
+      },
+      {
+        "kind": "project",
+        "url": "https://text-op.github.io/"
+      },
+      {
+        "kind": "video",
+        "url": "https://youtu.be/nKxE7ff1FwY"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2602.07439"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/textop.jpg",
+    "relatedWorks": [
+      {
+        "title": "PBHC / KungfuBot",
+        "description": "物理ベースで高難度の全身スキルをヒューマノイドに学習させる先行研究",
+        "url": "https://github.com/TeleHuman/PBHC"
+      },
+      {
+        "title": "GMR (General Motion Retargeting)",
+        "description": "人のモーションをロボット骨格へ移植する汎用リターゲティング",
+        "url": "https://github.com/YanjieZe/GMR"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "sonic",
+    "title": "SONIC（GR00T Whole-Body Control）",
+    "org": "NVIDIA（GEAR / NVlabs）",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "AI/Agents"
+    ],
+    "date": "2026-04",
+    "year": "2026",
+    "summary": "歩行・走行・忍び足・格闘・音楽同期ダンスまで、人型ロボットの全身動作を一体で担う『動きの基盤モデル』。テキスト・音楽・VR/動画・ゲームパッドで操作でき、ブラウザ体験デモも公開。",
+    "point": "一体のAIで、人型ロボットに歩く・走る・忍び足・ボクシング・膝立ち・そして音楽に合わせたダンスまで、あらゆる全身動作をさせられる「動きの基盤モデル」。テキスト指示・音楽・VRや動画によるなりきり操作・ゲームパッドと、入力の仕方も自由だ。しかもブラウザ上で動く体験デモが公開され、ロボットが物理法則に従って動く様子をその場で試せる。従来は動作ごとに専用の制御プログラムを作り込む必要があったが、SONICは膨大な動きを一つのモデルに詰め込んだ。広告・体験づくりでは、音楽に同期して踊る人型ロボットのライブ演出、来場者の動きをVRで乗り移らせて操るテレプレゼンス展示、ブランドの世界観に沿った振り付けをロボットに躍らせるショーケースなどに応用できる。開発元がNVIDIAという安心感も導入検討の後押しになる。",
+    "detail": "中核は「ホールボディ・コントロール（全身制御）」と呼ぶ仕組みで、目標となる動き（キネマティックな動作データ）を与えると、それを実機のバランスを保ちながら忠実になぞる追従ポリシーが働く。この目標の動きは、テキストから作る、音楽に合わせて振り付ける、VRや動画で人がなりきって指示する、など複数のやり方で与えられる。一つの「運動神経」が多彩な入力を受け止める設計だ。\n\n従来のヒューマノイド制御は「歩行用」「格闘用」と用途ごとにモデルを分けるのが普通で、新しい動きを足すたびに作り直しが要った。SONICは大量の動作を一つの基盤モデルに学習させ、忍び足や負傷歩行、ダンス、物を扱う動作までを横断的にカバーした点が新しい。\n\nコードはApache-2.0で公開、学習済み重みはNVIDIA Open Model License（商用は条件付き）。動かすにはNVIDIA GPUとIsaac系の学習・シミュレーション環境が必要だが、挙動を見るだけならブラウザデモで手軽に試せる。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "コードはApache-2.0（商用可）、学習済み重みはNVIDIA Open Model License（商用は条件付き）"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/NVlabs/GR00T-WholeBodyControl"
+      },
+      {
+        "kind": "project",
+        "url": "https://nvlabs.github.io/GEAR-SONIC/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2511.07820"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/sonic.jpg",
+    "relatedWorks": [
+      {
+        "title": "Kimodo",
+        "description": "テキストや軌道で制御できる人体モーション生成モデル。SONICへ動きを供給",
+        "url": "https://github.com/nv-tlabs/kimodo"
+      },
+      {
+        "title": "Isaac GR00T N1.7",
+        "description": "NVIDIAのオープンなヒューマノイド向けVLA基盤モデル（Apache-2.0）",
+        "url": "https://github.com/NVIDIA/Isaac-GR00T"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "scail-2",
+    "title": "SCAIL-2",
+    "org": "Z.ai（智譜AI / Zhipu AI）",
+    "type": "Tool",
+    "domains": [
+      "Motion/Body",
+      "CreatorTools",
+      "GenVideo"
+    ],
+    "date": "2026-06",
+    "year": "2026",
+    "summary": "動画に写った人物の動きを、骨格抽出の下ごしらえなしに別キャラクターへそっくり乗り移らせる。ダンスも宙返りも、人物置き換えや動物への変換も1モデルで実行。",
+    "point": "動画に写った人物の動きを、まったく別のキャラクターにそっくり乗り移らせる技術。しかも骨格や関節位置をいったん抽出する下ごしらえが要らず、「お手本の動画」と「動かしたいキャラの画像」を渡すだけで、ダンスも宙返りも早着替えのように別キャラで再現する。人間を動物やデフォルメキャラに置き換えることもできる。従来のこの種の技術は、まず姿勢を推定して骨格に変換する工程が必要で、そこでのズレが破綻の原因になっていた。SCAIL-2はその中間工程を丸ごと省いた。広告・体験づくりでは、社内で撮った素人のダンス動画をブランドキャラクターの動きに変換する、実写のタレント映像をアニメ調キャラに置き換える、群衆シーンを一括で別キャラに差し替える、といった演出が、モーションキャプチャ設備なしで作れる。",
+    "detail": "仕組みはシンプルだ。「動きの見本になる動画（駆動動画）」と「動かしたい対象の画像や動画（参照）」の二つを一つのモデルに入れると、参照キャラが見本どおりに動く映像が一気に出力される。単体キャラのアニメ化、別人物への置き換え、複数キャラが登場する場面、学習していない動物・非標準体型への応用まで、これ一つでこなす。\n\nこれまでの「動画で動画を動かす」手法は、まず人物の姿勢を骨格データに変換し、それを別キャラに当てはめる二段構えが主流だった。だが姿勢推定を挟むぶん、細かな動きや珍しいポーズでズレや崩れが起きやすい。SCAIL-2は姿勢という中間表現を経由せず、見本動画から直接ターゲットを動かすため、宙返りのような激しい動きや、骨格の取りにくい動物でも破綻しにくい。\n\n使うにはコード（Apache-2.0・商用可）と学習済み重みをダウンロードし、フォーマット変換のうえGPUで実行する。Python環境が前提で、すでにコミュニティが実写→アニメ変換や群舞置き換えなどの作例を多数公開している。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "GitHubはApache-2.0、HFカードはMIT表記。いずれも寛容で商用可"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/zai-org/SCAIL-2"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/zai-org/SCAIL-2"
+      },
+      {
+        "kind": "project",
+        "url": "https://teal024.github.io/SCAIL/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2606.10804"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/scail-2.jpg",
+    "relatedWorks": [
+      {
+        "title": "SCAIL v1",
+        "description": "同チームの前世代（CVPR 2026 Findings）。本手法の土台",
+        "url": "https://github.com/zai-org/SCAIL"
+      },
+      {
+        "title": "Wan2.2-Animate",
+        "description": "参照キャラを動かす代表的なオープン動画アニメーションモデル",
+        "url": "https://huggingface.co/Wan-AI/Wan2.2-Animate-14B"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "bernini",
+    "title": "Bernini",
+    "org": "ByteDance（Seed / ByteDance Research）",
+    "type": "Research",
+    "domains": [
+      "GenVideo",
+      "AI/Agents",
+      "CreatorTools"
+    ],
+    "date": "2026-06",
+    "year": "2026",
+    "summary": "自然な言葉の指示で画像も動画も生成・編集できる統合モデル。指示を読み解く『演出担当』AIと映像を描く『作画担当』AIが分業し、触らない領域を保ったまま編集する。",
+    "point": "「この動画の服だけ変えて」「この登場人物を動画にして」といった自然な言葉の指示で、画像も動画も生成・編集できる統合モデル。裏側では、指示を読み解いて手順を組み立てる“演出担当”のAIと、実際に映像を描く“作画担当”のAIが分業する。文章から画像・動画を作るのはもちろん、既存動画の一部だけを編集したり、参考動画のスタイルや衣装を移したり、特定の被写体を主役にした動画を作ったりと、6種類の作業を一つの枠組みでこなす。従来は編集すると関係ない部分まで作り変わってしまいがちだったが、Berniniは触らない領域を保ったまま直せる。広告・体験づくりでは、撮り直しなしで動画内の商品や衣装を差し替える、1本の素材から多数のバリエーションを量産する、参考映像の質感を自社素材に移すといった編集作業を、言葉の指示だけで回せる。",
+    "detail": "仕組みの肝は「計画してから描く」二段構えだ。まずマルチモーダル大規模言語モデル（画像や動画も理解できるAI）が指示の意味を汲み取り、どこをどう変えるかの手順に分解する。次に拡散モデル（DiTレンダラー）がその計画どおりに映像を生成する。人間の制作でいえば、ディレクターが指示書を書き、アニメーターが手を動かす関係に近い。\n\n従来の生成モデルは編集を頼むと、指定していない背景や人物の顔まで意図せず変わってしまうことが多かった。Berniniは計画段階で「触る場所／触らない場所」を切り分けるため、編集していない領域や被写体の同一性を保ちやすい。人手で評価する編集品質のランキングでも上位に位置づけられている。\n\n土台にはオープンな動画生成モデルWan2.1／2.2（最大14B規模）を使う。コードとモデル重みはApache-2.0で公開され、商用利用も可能。軽量な1.3B版のレンダラーも用意され、比較的手頃なGPUでも試せる。実行にはPython環境とGPUが必要。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "コード・重みともApache-2.0で商用可。軽量1.3B版レンダラーあり"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/bytedance/Bernini"
+      },
+      {
+        "kind": "project",
+        "url": "https://bernini-ai.github.io/"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/ByteDance/Bernini-Diffusers"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2605.22344"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/bernini.jpg",
+    "relatedWorks": [
+      {
+        "title": "Wan 2.2",
+        "description": "Berniniの土台となるオープンなMoE動画生成基盤モデル",
+        "url": "https://github.com/Wan-Video/Wan2.2"
+      },
+      {
+        "title": "VACE",
+        "description": "生成と編集を一体化したオールインワン動画作成モデル",
+        "url": "https://github.com/ali-vilab/VACE"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "firered-openstoryline",
+    "title": "FireRed-OpenStoryline",
+    "org": "FireRedTeam（小紅書 / Xiaohongshu 研究チーム）",
+    "type": "Tool",
+    "domains": [
+      "AI/Agents",
+      "CreatorTools",
+      "GenVideo"
+    ],
+    "date": "2026-02",
+    "year": "2026",
+    "summary": "話しかけると編集ディレクターのように段取りを組み、素材選び・カット・つなぎまで自動化する動画編集エージェント。人が途中で介入できる対話的な共同編集と、ブランド固有スタイルの再利用が特徴。",
+    "point": "「こんな動画を作って」と話しかけると、AIが編集ディレクターのように段取りを組み、素材の選択・カット・つなぎ・トランジションまで自動で動画を編集してくれるエージェント。一発で全部を吐き出す“ガチャ”型ではなく、人が途中で口を挟んで直しながら仕上げる、対話的な共同編集ができるのが特徴だ。ブランドごとの“スタイルスキル”を作り置きすれば、毎回同じトーンの仕上がりを再現できる。中身はMCP（ツール連携の標準規格）で編集機能を部品化しており、Claude Codeなどからも呼び出せる。広告・体験づくりでは、大量の素材から狙いに合う場面を選んで動画を量産する、SNS向けショート動画をブランドの世界観を保ったまま自動編集する、担当者が言葉で指示しながら詰めていく制作ワークフローに組み込む、といった使い方ができる。",
+    "detail": "構造は四つの部品でできている。指示を受け取り意図を読み解く「エージェントクライアント（LLM/VLM）」、文脈や依存関係を管理する「ストーリーライン・ミドルウェア」、実際の編集操作を最小単位の道具として提供する「MCPサーバー」、そして状態を覚えておく「エージェントメモリ」だ。指示は具体的な道具の呼び出しに翻訳され、記憶を頼りに何度でも修正を重ねられる。\n\n従来の自動編集ツールは、入力を入れると一発で結果が出るブラックボックスが多く、細かな直しや意図の反映が難しかった。OpenStorylineは編集の各工程を透明な“道具”に分け、人が途中で介入できる点と、ブランド固有のスタイルを再利用できる点が新しい。\n\nコードはApache-2.0で公開され、Docker・CLI・Web UIから使える。LLM/VLMのAPIキーが要り、AIトランジションなど一部機能は外部の有料生成動画APIを呼ぶ。オンラインの体験デモ（Hugging Face Space）も公開されており、まず触って試せる。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "Apache-2.0で商用可。AIトランジション等は外部の有料生成動画APIを利用"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/FireRedTeam/FireRed-OpenStoryline"
+      },
+      {
+        "kind": "project",
+        "url": "https://fireredteam.github.io/demos/firered_openstoryline/"
+      },
+      {
+        "kind": "product",
+        "url": "https://fireredteam-firered-openstoryline.hf.space/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/firered-openstoryline.jpg",
+    "relatedWorks": [
+      {
+        "title": "CutClaw",
+        "description": "長尺素材を音楽同期のショート動画に自動編集するエージェント研究",
+        "url": "https://github.com/GVCLab/CutClaw"
+      },
+      {
+        "title": "FilmAgent",
+        "description": "複数エージェントで映像制作を分担する先行研究",
+        "url": "https://arxiv.org/abs/2501.12909"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "comovi",
+    "title": "CoMoVi",
+    "org": "HKUST（香港科技大学 IGL）",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "GenVideo"
+    ],
+    "date": "2026-04",
+    "year": "2026",
+    "summary": "文章から『3Dの人の動き』と『写実的な映像』を一つの生成ループの中で同時に作る。3Dが構造の正しさを、映像が見た目の自然さを互いに与え合って品質を底上げする。",
+    "point": "文章から「3Dの人の動き」と「写実的な映像」を同時に、一つの生成ループの中で作り出す技術。ふつうは先に動きのデータを作り、それを別工程で映像化するが、CoMoViは両者を互いに参照させながら並行生成する。3Dの動きが映像に骨格の正しさを与え、映像側が見た目の自然さを与える——二人三脚で品質を底上げする発想だ。出力は編集や再ライティングに使える3Dモーションと、そのまま見せられる動画の両方。広告・体験づくりでは、テキストから欲しい動きのモーションデータを起こしてCGキャラに流用する、絵コンテ代わりに動きつきのラフ映像を素早く作る、実写風の人物アクション素材を撮影なしで生成する、といった用途に使える。3Dデータが同時に手に入るので、後工程でのカメラ変更やCG合成にも展開しやすい。",
+    "detail": "仕組みは二股の拡散モデルだ。二つの動画生成モデルを並べ、片方が3Dの人体モーションを、もう片方が映像を担当し、両者が特徴を相互にやり取りしながら（3Dと2Dのあいだで注意を向け合いながら）同時に生成を進める。3D側が「体はこう動くはず」という構造の裏付けを与え、事前学習済みの映像モデルが「見た目はこうあるべき」という一般常識を与える。\n\n従来は「テキスト→モーション」と「テキスト→動画」が別々の研究で、動きは正確でも映像が不自然、あるいは映像は綺麗でも3D構造が取り出せない、というトレードオフがあった。CoMoViは両方を一体で生成することで、動きの正確さと映像の自然さを両立させ、しかも編集に使える3Dデータも同時に得られる点が新しい。\n\n土台にはオープンな動画生成モデルWan2.2（5B規模）を使う。コードと重みはApache-2.0で公開され（重みはダウンロードスクリプト経由）、商用利用も可能。学習には複数GPUが必要だが、生成（推論）はCUDA対応GPUとPython環境があれば動く。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "コード・重みともApache-2.0で商用可（重みはダウンロードスクリプト経由）"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/IGL-HKUST/CoMoVi"
+      },
+      {
+        "kind": "project",
+        "url": "https://igl-hkust.github.io/CoMoVi/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2601.10632"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/comovi.jpg",
+    "relatedWorks": [
+      {
+        "title": "Wan 2.2",
+        "description": "CoMoViが土台に使うオープンな動画生成基盤モデル",
+        "url": "https://github.com/Wan-Video/Wan2.2"
+      },
+      {
+        "title": "HumanML3D",
+        "description": "テキスト付き3D人体モーションの代表的データセット",
+        "url": "https://github.com/EricGuo5513/HumanML3D"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "nasovoce",
+    "title": "NasoVoce",
+    "org": "東京大学 暦本研究室（Rekimoto Lab）",
+    "type": "Prototype",
+    "domains": [
+      "HCI/MediaArt",
+      "AI/Agents",
+      "Audio/Music"
+    ],
+    "date": "2026-04",
+    "year": "2026",
+    "summary": "スマートグラスの鼻当て部分にマイクと振動センサを仕込み、ほとんど声を出さない“ささやき”からでもクリアに音声を認識する、常時使える発話インターフェース（CHI 2026）。",
+    "point": "すごいのは、周囲にほとんど聞こえない小さなささやき声を、騒がしい場所でもクリアに拾える点だ。メガネの鼻当てにマイクと、皮膚や骨の微振動を捉えるセンサを仕込み、「空気を伝わる音」と「体を伝わる振動」の二つを合わせることで、雑音に強く、かつ自然な声質の認識を両立させた。声を張らなくていいので、電車や会議中、人前でもこっそりAIアシスタントに話しかけられる。広告・体験づくりでは、来場者が周囲に気づかれずに音声で操作できる展示、ささやくだけで反応するデジタルサイネージや音声ガイド、静かな空間（美術館・図書館的な演出）でも成立する対話型インスタレーションなど、「声を出しにくい場面でも音声UIが使える」という新しい前提の企画に道を開く。騒がしい屋外イベントや店頭のように、これまで音声UIが機能しにくかった場所でも成立し得るのも大きな魅力だ。",
+    "detail": "仕組みはこうだ。私たちがささやくと、口から出る空気の音はごく小さい一方、その振動は顔の骨や皮膚を伝わって鼻の付け根あたりまで届く。NasoVoceはメガネの鼻パッドに小型マイクと振動センサを置き、この二つを同時に記録する。マイクは音の細かなニュアンスに強いが雑音も拾う。振動センサは雑音に強いが音がこもる。両者をAIで組み合わせることで、弱点を打ち消し合い、ほぼ無音のささやきからでも聞き取れる音声を復元する。\n\n従来の“無声発話”研究は、喉に電極を貼ったり（筋電）、超音波で舌を撮影したりと大がかりな装置が必要で、日常的に着け続けるのは難しかった。NasoVoceは、多くの人がすでに掛けているメガネの鼻当てという“いつもそこにある場所”をセンサ位置に選んだのが新しい。口に近く振動を拾いやすいこの位置のおかげで、特別な装着物を増やさずに常時発話入力が成立する。\n\n現時点では東大 暦本研の研究プロトタイプで、コードや製品は公開されていない（CHI 2026採択、論文とデモ映像は公開）。すぐに導入できる段階ではないが、スマートグラス連携の“ささやきUI”という方向性を確かめる実証実験や、研究室との共同企画の相談先として有力だ。",
+    "license": {
+      "spdx": null,
+      "commercial": "none",
+      "note": "研究プロトタイプ。コード未公開（CHI 2026採択、論文とデモ映像は公開）"
+    },
+    "links": [
+      {
+        "kind": "project",
+        "url": "https://lab.rekimoto.org/projects/nasovoce-a-nose-mounted-low-audibility-speech-interface-for-always-available-speech-interaction/"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=2fas_hrlRrE"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2603.10324"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/nasovoce.jpg",
+    "relatedWorks": [
+      {
+        "title": "SottoVoce（東大 暦本研）",
+        "description": "超音波で舌の動きを撮り、声を出さずに発話を認識する無声発話研究",
+        "url": "https://lab.rekimoto.org/projects/sottovoce/"
+      },
+      {
+        "title": "AlterEgo（MIT Media Lab）",
+        "description": "顔の筋電を読み取り、声に出さない“内なる発話”でデバイスと対話する装着デバイス",
+        "url": "https://www.media.mit.edu/projects/alterego/overview/"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "event-topology-based-visual-vibrometer",
+    "title": "Event Topology-based Visual Vibrometer",
+    "org": "筑波大学 Digital Nature Group（落合陽一研究室）",
+    "type": "Prototype",
+    "domains": [
+      "HCI/MediaArt",
+      "Audio/Music",
+      "Spatial/3D"
+    ],
+    "date": "2026-06",
+    "year": "2026",
+    "summary": "高速の「イベントカメラ」の生データから、物体の微細な振動（＝音）を光源なしで復元する計測手法。映像から複数の音を同時に“見て”取り出せる（Applied Physics Letters掲載）。",
+    "point": "すごいのは、マイクを使わずにカメラの映像だけで“音”を取り出せる点だ。1画素ごとに明るさの変化した瞬間だけを超高速で記録する「イベントカメラ」で対象を撮り、そのデータを数学的に解析して、物の表面に起きているごく小さな揺れ＝振動の大きさと周波数を割り出す。特別な照明もレーザーも要らず、しかも画面内の複数の振動源をまとめて分離できる。広告・体験づくりでは、遠くのスピーカーや楽器、看板の振動を非接触で可視化するインスタレーション、“物の音を目で見る”体験展示、無音の映像から音を推定して演出に使うといった、視覚と聴覚を横断する表現の素材になる。マイクを置けない場所や、複数の音源が入り混じる環境でも“見える化”できるため、演出だけでなく空間のセンシング基盤としても面白い。監視や点検といった実務用途にも応用が利く。",
+    "detail": "普通のカメラは全画面を一定間隔で撮るが、イベントカメラは各画素が「明るさが変わった瞬間」だけを、マイクロ秒級の細かさで報告する仕組みだ。物が振動すると表面の見え方が細かく明滅するため、その明滅のパターンを追えば振動を読み取れる。本手法は、この膨大なイベントの点群に“トポロジカルデータ解析”という、形のつながり方を捉える数学を当て、揺れの周期を安定して抽出する。\n\n振動から音を復元する研究は、MITの「Visual Microphone」など高速の通常カメラで撮る方式が知られていたが、大量の光と明るい照明、膨大なデータ処理が必要だった。イベントカメラは変化した部分だけを記録するのでデータが軽く、暗所でも動き、複数の振動源を同時に分けられる。従来の映像振動計測を精度・実用性の両面で上回るとされる。\n\n落合研（Digital Nature Group）の研究成果で、査読付き学術誌 Applied Physics Letters に掲載され、プロジェクトページとデモ映像が公開されている（コードは未公開）。導入にはイベントカメラ（数十万円台〜）と解析知識が要るが、非接触の音・振動可視化という切り口で共同研究や展示制作の相談先になり得る。",
+    "license": {
+      "spdx": null,
+      "commercial": "research-only",
+      "note": "査読付き論文（Applied Physics Letters）とデモ映像は公開。コード未公開"
+    },
+    "links": [
+      {
+        "kind": "project",
+        "url": "https://digitalnature.slis.tsukuba.ac.jp/2026/06/event-topology-based-visual-vibrometer-2/"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=0J_3My6nTV4"
+      },
+      {
+        "kind": "paper",
+        "url": "https://doi.org/10.1063/5.0311647"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/event-topology-based-visual-vibrometer.jpg",
+    "relatedWorks": [
+      {
+        "title": "The Visual Microphone（MIT）",
+        "description": "高速カメラで撮った物の微振動から、部屋の外の音声まで復元した先駆研究",
+        "url": "https://people.csail.mit.edu/mrub/VisualMic/"
+      },
+      {
+        "title": "イベントカメラ（Event camera）",
+        "description": "各画素が明るさ変化の瞬間だけを高速記録する次世代センサ",
+        "url": "https://en.wikipedia.org/wiki/Event_camera"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "morphdrops",
+    "title": "MorphDrops",
+    "org": "東京大学 筧康明研究室（xlab）",
+    "type": "Prototype",
+    "domains": [
+      "HCI/MediaArt",
+      "CreatorTools"
+    ],
+    "date": "2026-04",
+    "year": "2026",
+    "summary": "紙に印刷した導電インクの模様に電気を流し、その上に置いた水滴の形を自在に変えるディスプレイ。一枚の紙で複数の“形が動く”パターンを見せられる（CHI 2026 Interactive Demo）。",
+    "point": "すごいのは、ただの紙と水滴という身近な素材で、電気仕掛けの“動く液体ディスプレイ”を作ってしまった点だ。紙に導電インクで電極の模様を印刷し、そこへ電気を流すと水滴のなじみやすさ（濡れやすさ）が変わり、水滴が伸びたり縮んだり形を変える。電極の模様は自由に描けるので、一枚の紙の上で複数の“変形パターン”を同時に表現できる。広告・体験づくりでは、パッケージや紙のPOP、招待状やポスターそのものが“ぬるっと動く”仕掛け、水を使ったサイネージやアート展示、印刷でカスタム形状を作れる低コストなキネティック表現など、紙メディアに命を吹き込む演出に使える。電気で動くのに電池や大がかりな機械は見えず、“ただの紙が生きているように動く”という意外性そのものが人の足を止める。素材が安価なので試作から本番までの敷居も低い。",
+    "detail": "仕組みの鍵は「エレクトロウェッティング」という現象だ。水滴の下の面に電圧をかけると、水滴がその面になじむ度合い（濡れ性）が変わり、盛り上がったり平たく広がったりする。MorphDropsは、この電極を専用の高密度パネルではなく、紙に導電インクで“印刷”する。どの電極に電気を流すかを切り替えることで、載せた水滴の形をコントロールし、複数の水滴を別々に動かせる。\n\n従来のエレクトロウェッティング表示は、細かい電極を敷き詰めた硬いガラス基板が必要で、形も固定・高コストだった。MorphDropsは電極を紙に印刷するだけなので薄くて安く、しかもデザイナーが電極の形を自由に描ける。これにより“作り手が形状を設計できる、動く紙”という新しい素材が生まれた。\n\n東大 筧研（xlab）の研究で、CHI 2026のInteractive Demoとして採択され、プロジェクトページとデモ映像が公開されている（研究プロトタイプ、コード非公開）。導電インク印刷と電圧制御の知識が要るが、紙×インタラクションの表現を探る展示制作や共同研究の相談先として魅力的だ。",
+    "license": {
+      "spdx": null,
+      "commercial": "research-only",
+      "note": "CHI 2026 Interactive Demo。研究プロトタイプ、コード非公開"
+    },
+    "links": [
+      {
+        "kind": "project",
+        "url": "https://xlab.iii.u-tokyo.ac.jp/projects/morphdrops/"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=WWyurBoGHGQ"
+      },
+      {
+        "kind": "paper",
+        "url": "https://doi.org/10.1145/3772363.3799145"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/morphdrops.jpg",
+    "relatedWorks": [
+      {
+        "title": "エレクトロウェッティング（Electrowetting）",
+        "description": "電圧で液体の濡れ性を変える基礎現象。電子ペーパーや液体レンズにも使われる",
+        "url": "https://en.wikipedia.org/wiki/Electrowetting"
+      },
+      {
+        "title": "筧康明研究室 xlab プロジェクト一覧",
+        "description": "素材と情報を融合させるインタラクティブ・マテリアル研究の数々",
+        "url": "https://xlab.iii.u-tokyo.ac.jp/projects/"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "hapticlens",
+    "title": "HapticLens",
+    "org": "アリゾナ州立大学（Hasti Seifi 研究グループ）",
+    "type": "Tool",
+    "domains": [
+      "HCI/MediaArt",
+      "CreatorTools"
+    ],
+    "date": "2026-04",
+    "year": "2026",
+    "summary": "動画の好きな部分を選ぶと、その映像の細かな動きから振動（触覚）を自動生成してくれるオーサリングツール。たった1個の振動子で映像に触感を付けられる（CHI 2026、コードMIT公開）。",
+    "point": "すごいのは、専用のセンサ収録なしに、手元の“ふつうの動画”から触覚（振動）を作り出せる点だ。画面の中で振動を感じさせたい範囲をマウスで囲うと、そこにある細かな動き（例えば水面の揺れ、エンジンの震え、走る足音）をAIが解析し、たった1個の振動子で再生できる触覚信号に変換する。デザイナーが対話的に強弱を調整できるのもポイントだ。広告・体験づくりでは、映像広告やゲーム、VR/体験ブースのコンテンツに“触れる感覚”を後付けで足す、スマホやコントローラの振動演出を映像に同期させる、触覚付きサイネージを作るといった、視覚だけだった映像体験に触感の層を重ねる演出に直結する。特別なハードを一から用意せず、いまある映像資産に触覚を足せるので、既存キャンペーンの体験リッチ化にも取り入れやすい。触覚は記憶に残りやすく、ブランド体験の差別化にもつながる。",
+    "detail": "仕組みは、映像に映る“微細な動き”を触覚の素にする、というものだ。人が範囲を選ぶと、二つのコンピュータビジョン手法が、その部分だけの小さな揺れや振動を抽出し、時間的な強弱のパターンに変換する。これを1個の振動アクチュエータに送れば、映像に合わせて手に振動が伝わる。GUIで一本ずつ手作業もできるし、たくさんの動画を一括処理するバッチモードもある。\n\n従来、映像に触覚を付けるには専用センサで振動を実測したり、複数の振動子を並べた装置が必要で、手間もコストも大きかった。HapticLensは、撮影済みの制約のない実写映像からでも、たった1個の振動子で触感を作れるのが新しい。22人の被験者による評価で、デザイナーが直感的にコントロールできることも確認されている。\n\nコードはMITライセンスでGitHubに公開されており、商用利用も可能だ。動かすにはPython 3.11・CUDA対応GPU・ffmpegが必要で、Questコントローラを触覚の再生に使うオプションもある。触覚演出を内製したいチームがすぐ試せる、数少ない“実際に使えるツール”だ。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "MITライセンス。動作にPython 3.11 + CUDA対応GPU + ffmpeg が必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/HapticLens-Interactive/HapticLens"
+      },
+      {
+        "kind": "paper",
+        "url": "https://researchr.org/publication/JohnS26"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/hapticlens.jpg",
+    "relatedWorks": [
+      {
+        "title": "TECHTILE toolkit（南澤・筧ら）",
+        "description": "身のまわりの振動を録って再生できる、触覚を扱う日本発のオープンな道具立て",
+        "url": "http://techtile.org/"
+      },
+      {
+        "title": "Ultraleap（ミッドエア・ハプティクス）",
+        "description": "超音波で空中に触感を作る、触覚提示技術の代表例",
+        "url": "https://www.ultraleap.com/"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "ace-step-1-5",
+    "title": "ACE-Step 1.5",
+    "org": "ACE Studio / StepFun（ace-step）",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools",
+      "AI/Agents"
+    ],
+    "date": "2026-05",
+    "year": "2026",
+    "summary": "歌詞とジャンル指定から、ボーカル入りの楽曲を丸ごと生成するオープンソースの音楽AI。自分のPCで動き、A100なら1曲を数秒で作れる（MITライセンス、GitHubスター1.1万超）。",
+    "point": "すごいのは、SunoやUdioのような“文章から曲を作るAI”を、クラウドに頼らず自分のパソコンの中で動かせる点だ。歌詞とジャンルやムードのタグを入れると、伴奏もボーカルもそろった1曲が出てくる。新しいXLシリーズは40億パラメータの高音質モデルを備えつつ非常に高速で、高性能GPU（A100）なら1曲2秒未満、一般的なゲーミングGPU（RTX 3090）でも10秒ほどで生成できる。広告・体験づくりでは、CM・動画・イベント用のBGMやジングルを内製する、企画に合わせて大量のバリエーションを試作する、インスタレーションでその場に応じた音楽をリアルタイム生成する、といった用途に使える。オープンソースなので社内システムへの組み込みも自由だ。歌手や作曲家の手配を待たずに“方向性を音で見せる”試作ができるので、企画の合意形成を早める効果も大きい。",
+    "detail": "ACE-Stepは、画像生成AIの“拡散モデル”に近い技術を音楽に応用した基盤モデルだ。歌詞と、ジャンル・楽器・雰囲気などのタグを与えると、ノイズから少しずつ音を整えていくように楽曲全体を組み立てる。XLシリーズでは仕上げ部分に40億パラメータの大型モデルを足して音質を高めつつ、標準・高品質・高速（turbo）など目的別に選べる。\n\n従来、この水準の音楽生成は Suno などクラウド型の有料サービスが中心で、生成物の権利や商用可否、外部への音源送信のリスクが常につきまとった。ACE-Stepは重みもコードも公開され、ローカルで完結する。Mac・AMD・Intel・CUDAと幅広い環境で動き、速度も実用的だ。GitHubスター1.1万超という支持が、OSS音楽モデルの中での存在感を物語る。\n\n入手はGitHubから。リポジトリはMITライセンスで商用利用も可能だが、個々のモデル重みのライセンスは配布ページで要確認。動かすにはGPU搭載PCとPython環境、多少の技術知識が要る。まずはローカルでBGM量産を試したい制作チームや、自社ツールに音楽生成を組み込みたい開発者に向く。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "リポジトリはMIT。個々のモデル重みのライセンスは配布ページで要確認"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/ace-step/ACE-Step-1.5"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/ace-step-1-5.jpg",
+    "relatedWorks": [
+      {
+        "title": "YuE",
+        "description": "歌詞から歌もの楽曲を生成するオープンソースの音楽基盤モデル",
+        "url": "https://github.com/multimodal-art-projection/YuE"
+      },
+      {
+        "title": "Suno",
+        "description": "文章から曲を作るクラウド型音楽生成サービスの代表格（商用SaaS）",
+        "url": "https://suno.com/"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "obsidian-neural",
+    "title": "OBSIDIAN Neural",
+    "org": "InnerMost47（Anthony Charretier・個人開発）",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools",
+      "HCI/MediaArt"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "AIがその場でループ音源を生成する、ライブ演奏向けの無料・オープンソース楽器（VST3/AU対応）。8トラックのサンプラーとして、MIDIやAbleton Linkと同期して即興演奏できる。",
+    "point": "すごいのは、AI音楽生成を“完成した曲を書き出す道具”ではなく、人と一緒にその場で鳴らす“楽器”に仕立てた点だ。8つのトラックそれぞれでニューラルモデルが10〜30秒ほどのループを生成し、MIDIで叩いて呼び出したり、BPMやAbleton Linkでテンポを合わせたりしながらライブで重ねていける。開発者いわく“作業はあなたがする、AIはジャム相手”という思想だ。広告・体験づくりでは、DJ/VJやインスタレーションでその場の空気に合わせて音を生成し続ける演出、来場者の操作に音楽がリアルタイムで反応する体験、ライブイベントでのAI共演といった、“止まらず変化し続ける音楽”を必要とする現場に向く。生成が完璧でなくても“人が選び、演奏する”前提なので、ライブ感や偶然性を武器にした演出と相性がいい。",
+    "detail": "OBSIDIAN Neuralは、単体アプリとしても、DAWのプラグイン（VST3/AU）としても動く8トラックのサンプラーだ。各トラックでAIモデルが短いループを生成し、それをMIDIキーやパッドで演奏する。テンポはBPM指定やAbleton Linkで他の機材と同期でき、生成したループを差し替えながらリアルタイムに曲を構築していく。\n\n多くの音楽生成AIは、プロンプトを入れて数十秒待ち“完成品”を書き出す使い方が中心で、演奏中に即興で操るのには向かなかった。OBSIDIANは生成された音を演奏の素材として扱い、ライブの流れの中で鳴らすことに振り切っている。分散GPUで生成を担う実験的な仕組みも別リポジトリで用意され、AES AIMLA 2025でも発表された。\n\n無料・オープンソース（AGPL-3.0）で、GitHubと公式サイトから入手できる。2026年7月時点も活発に更新が続いている。AGPLはネットワーク越しに使わせる場合にソース開示義務が生じる点に注意。生成には対応モデルとGPU環境が要るが、AI音楽を“ライブで演奏する”方向を試したいクリエイターに刺さる。",
+    "license": {
+      "spdx": "AGPL-3.0",
+      "commercial": "conditional",
+      "note": "無料・OSS。AGPL-3.0のためネットワーク利用時はソース開示義務。生成には対応モデルとGPU環境が必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/innermost47/ai-dj"
+      },
+      {
+        "kind": "product",
+        "url": "https://obsidian-neural.com/"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=Y7JmwJnjDtA"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/obsidian-neural.jpg",
+    "relatedWorks": [
+      {
+        "title": "ACE-Step 1.5",
+        "description": "こちらは“完成曲を書き出す”オープンソース音楽AI。OBSIDIANは対照的に演奏用",
+        "url": "https://github.com/ace-step/ACE-Step-1.5"
+      },
+      {
+        "title": "Suno",
+        "description": "文章から曲を生成するクラウド型サービス。オフライン生成の代表例",
+        "url": "https://suno.com/"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "ltx-2",
+    "title": "LTX-2",
+    "org": "Lightricks",
+    "type": "Research",
+    "domains": [
+      "GenVideo"
+    ],
+    "date": "2026-01",
+    "year": "2026",
+    "summary": "Lightricksが2026年1月にオープンソース化した、音声と映像を同時生成できる初の公開基盤モデル。ネイティブ4K・50fps・最長20秒、重みから学習コードまで全公開。",
+    "point": "これまでオープンソースの動画生成AIは「映像だけ」を作るもので、声や環境音は別ツールで後付けするしかなかった。LTX-2は口の動きと声、足音や環境音まで同期した映像を一度に生成する初の公開モデルで、しかも4K・50fpsにネイティブ対応。SoraやVeoといった大手のクローズドモデルに近い体験を、自社のPCやサーバーで動かせる。広告・体験づくりの観点では、手元のマシンで回せるためブランドの機密素材を外部サーバーに預けずに映像案を量産できるのが大きい。LoRA学習コードも同梱されており、自社商品や特定キャラクターの見た目を覚え込ませた「ブランド専用動画モデル」を作る、店頭サイネージ用に大量のバリエーション動画を生成する、といった使い方が現実的になった。",
+    "detail": "仕組みはDiT（Diffusion Transformer）方式で、映像と音声を別々に作って後から合わせるのではなく、ひとつのモデルが同じタイムライン上で音と絵を同時に描いていく。例えるなら、絵コンテ担当と音効担当が別々に働くのではなく、一人の監督が音と映像を同時に演出するイメージだ。ドリーやジブといったカメラワークを指定するLoRA、ポーズやモーション軌跡で動きを制御するLoRAも公式提供され、「プロンプト任せ」ではない演出コントロールができる。\n従来の公開モデル（Wan、HunyuanVideoなど）は無音の映像のみで、4K化もアップスケーラー頼みだった。音声同期と4Kをネイティブで扱う公開モデルはLTX-2が初で、「クローズドモデルとの品質差」を一気に詰めた2026年上半期の象徴的リリースといえる。\n使うには、コードはGitHub、重みはHugging Faceから無料入手できる。22Bパラメータの大型モデルのためハイエンドGPU（VRAM 32GB級以上推奨）が必要だが、ComfyUI経由や公式APIでも利用可能。年商1,000万ドル未満なら商用無償で、それ以上の企業は商用ライセンス契約となる。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "LTX-2 Community License（2026-01-05）。年商1,000万ドル未満の企業は商用利用無償、超える場合は商用ライセンス契約が必要。重み・推論・LoRA学習コードまで全公開"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Lightricks/LTX-2"
+      },
+      {
+        "kind": "post",
+        "url": "https://ltx.io/newsroom/ltx-2-is-now-open-source-full-model-weights-released"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/Lightricks/LTX-2.3"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2601.03233"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/ltx-2.jpg",
+    "relatedWorks": [
+      {
+        "title": "Wan 2.2",
+        "description": "Alibabaのオープンソース動画生成モデル。MoE構造でT2V/I2V/編集を統合",
+        "url": "https://github.com/Wan-Video/Wan2.2"
+      },
+      {
+        "title": "Open-Sora",
+        "description": "GitHubで最多スターを集めるオープンソース動画生成プロジェクト",
+        "url": "https://github.com/hpcaitech/Open-Sora"
+      },
+      {
+        "title": "Mochi 1",
+        "description": "Genmoによる10Bパラメータのオープンソース動画生成モデル",
+        "url": "https://github.com/genmoai/mochi"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "openmontage",
+    "title": "OpenMontage",
+    "org": "Calesthio AI Labs",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools",
+      "AI/Agents"
+    ],
+    "date": "2026-03",
+    "year": "2026",
+    "summary": "Claude Code等のAIコーディングアシスタントを「映像制作スタジオ」に変えるエージェント型動画制作システム。リサーチ→脚本→素材生成→編集→完パケまで自動化。公開3ヶ月で3万スター超。",
+    "point": "「60秒のPixar風アニメを1.33ドルで制作」「OpenAIのAPIキー1本で商品CMを0.69ドルで」といったデモが話題を呼び、公開3ヶ月で3万スターを超えGitHubトレンド1位を獲得した。すごいのは、AI生成の静止画を並べるだけでなく、フリー素材アーカイブから実写クリップを検索・取得してタイムラインに編集する「本物の動画編集」までエージェントが行う点だ。広告・体験づくりでは、参考にしたいYouTube動画やTikTokのURLを貼ると、構成・テンポ・フックの型を分析して「何を残し何を変えるか」「いくらかかるか」を提示してから制作に入るため、SNS動画の量産、商品PR動画のABテスト用バリエーション制作、企画提案段階のビデオコンテ生成などにそのまま使える。",
+    "detail": "実体は12のパイプライン・52のツール・500以上のエージェントスキルの集合体で、Claude CodeやCursor、Copilotといったコーディングエージェントが読み込んで使う「指示書＋道具箱」だ。人間は日本語で「こういう動画が欲しい」と話すだけで、エージェントがリサーチ、脚本、シーン設計、素材生成、編集、Remotion（Web技術で映像を合成するエンジン）での最終合成まで進める。素材生成はVeoやKling、FLUX、gpt-image-1など好みのAPIに差し替え可能。\n従来のAI動画ツールは「1本のクリップを生成する」ことに集中しており、企画から完成品までの工程全体を面倒みるオープンソースは存在しなかった。全デモでコスト内訳（1本0.02〜1.33ドル）が公開されている透明性も新しく、「AI動画は高い・ブラックボックス」という常識を崩している。\n必要なのはPython 3.10+、FFmpeg、Node.js 18+と、使いたい生成AIのAPIキー（OpenAIキー1本からでも制作可能）。ソフト自体は無料だが、AGPLv3のため改変版をサービスとして提供する場合はソース公開義務がある点だけ注意。",
+    "license": {
+      "spdx": "AGPL-3.0",
+      "commercial": "conditional",
+      "note": "社内利用・成果物の商用利用は自由。改変してサービスとして提供する場合はソース公開義務（AGPLコピーレフト）"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/calesthio/OpenMontage"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/@OpenMontage"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/openmontage.jpg",
+    "relatedWorks": [
+      {
+        "title": "ViMax",
+        "description": "HKUDSによる監督・脚本・プロデューサー統合型のエージェント動画生成",
+        "url": "https://github.com/HKUDS/ViMax"
+      },
+      {
+        "title": "VideoSOS",
+        "description": "ブラウザ完結・100+モデル対応のオープンソースAI動画エディタ",
+        "url": "https://github.com/timoncool/videosos"
+      },
+      {
+        "title": "Remotion",
+        "description": "Reactで動画をプログラム合成するフレームワーク。OpenMontageの合成基盤",
+        "url": "https://github.com/remotion-dev/remotion"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "hyperframes",
+    "title": "HyperFrames",
+    "org": "HeyGen",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "AI/Agents"
+    ],
+    "date": "2026-03",
+    "year": "2026",
+    "summary": "AIアバターのHeyGenが公開した「HTMLを書けば動画になる」オープンソースフレームワーク。AIエージェントが動画制作できるよう設計され、用途別の20スキルを同梱。3.2万スター。",
+    "point": "Webページを作る言語であるHTML/CSSで動画を記述すると、フレーム単位で確定的な（何度レンダリングしても同じ結果になる）MP4が書き出せる。AIコーディングエージェントはHTMLを書くのが得意なので、「新商品の10秒イントロ動画を作って」と頼むだけで、エージェントが企画・デザイン・アニメーション・BGM・レンダリングまで完走できる。公開3ヶ月で3.2万スターと、エージェント時代の動画基盤として一気に定着した。広告・体験づくりでは、商品ページのURLを渡してローンチ動画を自動生成する、データ可視化やチャートレース動画を毎週自動更新する、キャンペーンごとに数百本のパーソナライズ動画をコードで量産する、といった「動画のテンプレート運用」が動画編集ソフトなしで可能になる。",
+    "detail": "仕組みは、各フレームの時刻を指定してヘッドレスブラウザでHTMLを描画し、静止画を連結してMP4にするというもの。パラパラ漫画の1コマ1コマをWebページとして正確に描く、と考えるとわかりやすい。GSAP・Lottie・Three.jsなど既存のWebアニメーション資産がそのまま流用でき、TTSナレーション・BGM・字幕・背景除去などのメディア処理も一式内蔵。「/product-launch-video」「/music-to-video（ビート同期）」「/pr-to-video」など用途別の20スキルが同梱され、npx skills add一発でClaude CodeやCursorに教え込める。\n同系の先行技術Remotionは動画をReactで書くためフロントエンド開発の知識が前提だったが、HyperFramesは素のHTMLで書けるためAIとの相性が良く、人間による確認・修正も容易。「エージェントが読み書きしやすい動画フォーマット」を最初から狙って設計されたのが今までとの違いだ。\n必要なものはNode.js 22+とFFmpegだけで、完全無料（Apache 2.0、商用可）。ローカルCLIで完結し、大量レンダリングはAWS Lambdaに投げることもできる。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "Apache 2.0で商用利用可。npmパッケージとして配布、AWS Lambdaクラウドレンダリング対応"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/heygen-com/hyperframes"
+      },
+      {
+        "kind": "project",
+        "url": "https://www.hyperframes.dev/"
+      },
+      {
+        "kind": "post",
+        "url": "https://hyperframes.heygen.com/introduction"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/hyperframes.jpg",
+    "relatedWorks": [
+      {
+        "title": "Remotion",
+        "description": "Reactベースのプログラマブル動画作成の先行フレームワーク",
+        "url": "https://github.com/remotion-dev/remotion"
+      },
+      {
+        "title": "Motion Canvas",
+        "description": "TypeScriptでアニメーションを記述するオープンソースツール",
+        "url": "https://github.com/motion-canvas/motion-canvas"
+      },
+      {
+        "title": "video-use",
+        "description": "HyperFramesをオーバーレイ生成に活用するエージェント動画編集ツール",
+        "url": "https://github.com/browser-use/video-use"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "video-use",
+    "title": "Video Use",
+    "org": "Browser Use",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "AI/Agents"
+    ],
+    "date": "2026-04",
+    "year": "2026",
+    "summary": "ブラウザ操作AIで知られるbrowser-useチームによる「コーディングエージェントで動画編集」ツール。素材フォルダを渡してチャットで指示すると、フィラー除去・カラグレ・字幕入りのfinal.mp4が返る。",
+    "point": "Claude Codeに「この撮って出し素材をテンポよく編集して」と頼むだけで、「えー」「あの」といったフィラー（つなぎ言葉）やNGテイク間の間延びを単語単位のタイムスタンプで正確にカットし、すべてのカット点に30msのオーディオフェード、自動カラーグレーディング、字幕焼き込みまで済ませてくれる。面白いのは、LLMが映像を「見ない」こと。文字起こしと音声イベントのデータだけを読んで編集判断するという発想の転換で、軽く速く動く。広告・体験づくりでは、インタビュー動画・ウェビナー・社内プレゼン・ハウツー動画など「しゃべり中心」コンテンツの一次編集を数分で終わらせ、人間は演出の最終調整に集中できる。SNS向け切り抜き動画の量産ラインにも組み込みやすい。",
+    "detail": "仕組みは2層構造。まずElevenLabs Scribeという文字起こしAIで、単語レベルのタイムスタンプ・話者分離・音声イベント（笑い、無音など）を抽出する。LLMはこの「動画の楽譜」のようなテキストを読み、どこを残しどこを切るかを編集リストとして出力し、FFmpegが実際のカットを実行する。テロップやアニメーション演出はHyperFrames・Remotion・Manimを呼び出して重ねられる。\n従来の自動編集ツールはプリセット（テンプレート）前提で、「トーク動画用」「Vlog用」といった型にはめる方式だった。Video Useは自然言語で「もっとテンポよく」「ブランドカラーの字幕で」と会話しながら追い込めるうえ、トーク・モンタージュ・旅行・チュートリアルとジャンルを問わない。エージェントに「編集の意図」を伝えられるようになったからこそ成立した設計だ。\n必要なものは、Claude CodeやCodexなどシェルを実行できるエージェント、Python（uv）、FFmpeg、そしてElevenLabsのAPIキー（文字起こし用・従量課金）。本体はMITライセンスで無料、公開3ヶ月で1.3万スターと急成長中。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "本体はMITで無償。文字起こしにElevenLabs Scribe APIキー（従量課金）が必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/browser-use/video-use"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/video-use.jpg",
+    "relatedWorks": [
+      {
+        "title": "browser-use",
+        "description": "同チームの代表作。AIエージェントにブラウザ操作をさせる10万スターOSS",
+        "url": "https://github.com/browser-use/browser-use"
+      },
+      {
+        "title": "FunClip",
+        "description": "Alibabaの文字起こしベース動画切り抜きツール。テキスト起点編集の先行例",
+        "url": "https://github.com/modelscope/FunClip"
+      },
+      {
+        "title": "OpenMontage",
+        "description": "同じくコーディングエージェントを動画制作に使うシステム。制作寄り",
+        "url": "https://github.com/calesthio/OpenMontage"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "stablegen-v0-3",
+    "title": "StableGen v0.3",
+    "org": "sakalond（個人開発・OSS）",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "Spatial/3D"
+    ],
+    "date": "2026-06",
+    "year": "2026",
+    "summary": "Blender内で生成AIテクスチャリングと3Dアセット生成を完結させるオープンソースアドオン。2026年のv0.3系でTRELLIS.2による画像→3Dメッシュ生成とPBRマテリアル出力に対応。",
+    "point": "3DCG制作でもっとも時間を食う作業のひとつ「テクスチャ描き（モデル表面の質感付け）」を、Blenderから一歩も出ずにAIに任せられる。複数のカメラから見た画像のつじつまを合わせながらSDXLやFLUX.1で投影テクスチャを生成するため、キャラクターや小道具に360度どこから見ても破綻のない質感が付く。さらに2026年3月〜6月のアップデートで、1枚の画像やテキストから3Dメッシュそのものを生成（TRELLIS.2）し、そのままテクスチャ付けまで一気通貫でできるようになった。広告・体験づくりでは、商品写真1枚からARフィルター用の3Dモデルを起こす、イベントのCGパースに背景小物を即席で量産する、ゲーム風プロモ映像のアセットを内製するなど、従来外注していた「ちょい足し3D制作」を1人で回せるようになる。",
+    "detail": "仕組みは、生成AIのノードエディタであるComfyUIをバックエンドに使い、Blenderのビューポートから各カメラアングルの深度情報などを送って、ControlNetで整合性を保った画像を複数視点から生成しモデル表面に投影するというもの。壁画を描く職人が足場を移動しながら全体の絵柄を合わせていくように、AIが視点を変えながら1つのモデルに一貫した「絵」を貼っていくイメージだ。v0.3.0（2026年3月）で3Dアセット生成・PBRマテリアル（金属感や粗さといった物理ベースの質感）・シーン単位のキュー処理が加わり、v0.3.1（6月）で最新の3D生成モデルTRELLIS.2への対応とマルチカラー3Dプリント用出力まで拡張された。\n生成AIで3Dモデルを作るサービスはWeb完結型が多く、生成→ダウンロード→Blenderに取り込んで調整、という往復が必要だった。StableGenはDCCツールの中で生成→修正→再生成のループが閉じるのが決定的な違いだ。\n必要なものは、Blender 4.4/5.1以降と、SDXLやFLUXを動かせるComfyUI環境（VRAM 12GB以上のGPU推奨、クラウドGPUでも可）。アドオン自体はGPL-3.0で無償、生成物は商用利用できる。",
+    "license": {
+      "spdx": "GPL-3.0",
+      "commercial": "ok",
+      "note": "GPL-3.0で無償。生成物の商用利用可。バックエンドにComfyUI環境（ローカルまたはリモートGPU）が必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/sakalond/StableGen"
+      },
+      {
+        "kind": "post",
+        "url": "https://github.com/sakalond/StableGen/releases"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/stablegen-v0-3.jpg",
+    "relatedWorks": [
+      {
+        "title": "TRELLIS",
+        "description": "Microsoftの画像→3D生成モデル。StableGenの3D生成の基盤",
+        "url": "https://github.com/microsoft/TRELLIS"
+      },
+      {
+        "title": "ComfyUI-BlenderAI-node",
+        "description": "BlenderからComfyUIを操作する先行アドオン",
+        "url": "https://github.com/AIGODLIKE/ComfyUI-BlenderAI-node"
+      },
+      {
+        "title": "Dream Textures",
+        "description": "Blender向け生成AIテクスチャリングアドオンの先行例",
+        "url": "https://github.com/carson-katri/dream-textures"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
+    "id": "videoagent",
+    "title": "VideoAgent",
+    "org": "HKUDS（香港大学 Data Intelligence Lab）",
+    "type": "Research",
+    "domains": [
+      "GenVideo",
+      "CreatorTools",
+      "AI/Agents"
+    ],
+    "date": "2026-06",
+    "year": "2026",
+    "summary": "香港大学HKUDSによる、動画の「理解・編集・リメイク」を1つの対話型エージェントに統合したオープンソースフレームワーク。論文・コードを2026年6月に公開。",
+    "point": "「この2時間の講演動画を3分のダイジェストに」「この素材で曲に合わせたビート同期編集を」といった指示を自然言語で受け取り、動画の内容理解（何がどこで起きているか）→計画→ツール実行までをエージェントが自律的にこなす。要約・Q&A・切り抜き・解説動画・ミーム動画・MV風リメイクまで守備範囲が広く、研究コードながらYouTubeの公式デモで実際の編集結果を確認できる。広告・体験づくりの観点では、長尺のイベント記録やインタビューからSNS用ハイライトを自動抽出する、過去のCM・キャンペーン素材アーカイブをAIに「理解」させて新企画向けに再構成する、といった「映像資産の再活用」を自動化する道筋をつける技術で、アーカイブを大量に抱える広告主・制作会社ほど恩恵が大きい。",
+    "detail": "仕組みは、動画をフレーム・音声・字幕のマルチモーダル情報として解析したうえで、LLMが「ユーザーの意図分析→必要なツールの選択→実行計画」を立て、カット検出・音楽同期・字幕生成・素材生成などの下位ツールを順に呼び出すエージェント構造。会社組織に例えると、1人のディレクターが理解班・編集班・演出班に指示を出して1本の動画に仕上げていくイメージだ。\n従来、動画理解（Video QA）と動画編集は別々の研究分野で、FunClipのような編集特化ツールは内容理解が浅く、理解特化モデルは編集ができなかった。VideoAgentは両者を1つのエージェントループに統合し、「内容を理解したうえで編集判断する」点が新しい。ビート同期編集やストーリーテリング動画など、既存OSSツールとの機能比較表でも守備範囲の広さを示している。\n使うにはGitHubからMITライセンスで入手し、Python環境とOpenAI等のLLM APIキーを用意する。GPUがあるとローカルでの動画解析が高速になる。研究段階のため仕上がりは素材や指示に依存するが、公式デモ動画で品質を確認してから導入判断できる。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "コードはMIT。動作にはLLM API（OpenAI等）のキーが別途必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/HKUDS/VideoAgent"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2606.23327"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=JZkXO1NG2Ok"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/videoagent.jpg",
+    "relatedWorks": [
+      {
+        "title": "ViMax",
+        "description": "同じHKUDSによるエージェント型動画「生成」フレームワーク。本作は理解・編集側",
+        "url": "https://github.com/HKUDS/ViMax"
+      },
+      {
+        "title": "NarratoAI",
+        "description": "AIによる動画解説・自動編集ツール。ナレーション特化の先行例",
+        "url": "https://github.com/linyqh/NarratoAI"
+      },
+      {
+        "title": "FunClip",
+        "description": "Alibabaの文字起こしベース動画切り抜きOSS。編集特化の比較対象",
+        "url": "https://github.com/modelscope/FunClip"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
     "id": "any4d",
     "title": "Any4D",
     "org": "Carnegie Mellon University (AirLab)",
@@ -10,7 +1223,7 @@
     "date": "2026-06",
     "year": "2026",
     "summary": "RGB動画に加えRGB-D・IMU・レーダーなど任意のセンサ入力から、実寸スケールの動く3D世界（メトリック4D）を1回の推論で復元するフィードフォワードモデル。",
-    "point": "従来の4D再構成は長い最適化計算が必要だったが、Any4Dは動画を入れると即座に「実寸スケールの動く3D空間」が出てくる。センサを柔軟に足せるので precision も上げられる。広告・体験では、ロケハン映像から実寸の3D空間を即座に起こしてCG合成やAR演出の土台にする、イベント会場のスキャンから空間演出をプレビズする、といった空間系ワークフローの高速化に直結する。",
+    "point": "動く被写体を含んだ世界を、実際の寸法（メートル単位）付きの“動く3Dデータ”として復元する技術です。すごいのは、動画を1回入れるだけで結果が出る『フィードフォワード型』であること。従来は時間のかかる調整計算が必要でしたが、Any4Dは誤差を従来の2〜3分の1に抑えつつ、処理を約15倍速くこなすと報告されています。しかも普通のRGB動画に加えて、深度カメラ・IMU（スマホにも入る動きセンサー）・レーダーなど手元にあるセンサーを自由に足せて、足すほど精度が上がります。広告や体験づくりでは、ロケハンで撮った映像から実寸大の3D空間を即座に起こしてCG合成やAR演出の下地にしたり、イベント会場をスキャンして空間演出を事前プレビュー（プレビズ）したりと、空間系の制作フローを一気に短縮できます。",
     "license": {
       "spdx": "Apache-2.0",
       "commercial": "ok",
@@ -54,7 +1267,8 @@
     ],
     "sources": [
       "X Bookmarks"
-    ]
+    ],
+    "detail": "Any4Dは、動画の1コマごとに『各ピクセルがどれだけ動いたか（動き）』と『どんな奥行きか（形）』を同時に予測します。内部では世界を2つの部品に分けて捉えるのが特徴で、ひとつはカメラから見た手前の情報（各点までの距離＝深度と、カメラのレンズ特性）、もうひとつは世界全体を基準にした情報（カメラの位置や、シーン内の物の流れ）。この組み合わせで、カメラ自身の動きと被写体の動きを切り分けながら、実寸スケールの“動く立体地図”を作ります。\n\nこれまでの4D（3D＋時間）復元は、シーンごとに長い最適化計算を回して辻褄を合わせるのが一般的で、結果が出るまで待たされました。またRGB映像だけでは『実際の大きさ』が定まらず、スケールが曖昧になりがちでした。Any4Dは1回の推論で答えを出すうえ、深度カメラやIMU、レーダーといった追加センサーの情報を柔軟に取り込めるので、実寸の確からしさと精度を両立できます。論文では誤差を2〜3分の1に、速度を約15倍にと報告されています。\n\n開発元はカーネギーメロン大学（AirLabなど）。コードはGitHubでApache-2.0ライセンス（商用利用可）で公開され、HuggingFace上に試せるデモもあります。実行にはPythonとGPU環境が必要で、追加センサーを使う場合はその入力データも要ります。現時点では研究成果として公開された段階のため、制作に使うなら自社のパイプラインに組み込む前提の検証から始めるのが現実的です。"
   },
   {
     "id": "multi-view-foundation-models",
@@ -67,7 +1281,7 @@
     "date": "2025-12",
     "year": "2025",
     "summary": "DINO・SAM・CLIPなどの2D基盤モデルに「マルチビュー空間アダプタ」を挿入し、明示的な3D再構成なしで視点間一貫の特徴を出せるようアップグレードする汎用フレームワーク。",
-    "point": "画像AIの定番モデルは「同じ物体でも撮る角度が変わると認識がブレる」弱点があったが、軽いアダプタを差し込むだけで、どの角度から見ても一貫した理解を持つ3D対応モデルに変身させる。広告・体験では、商品を1クリック指定すると全アングル映像で自動追従セグメントして演出を乗せる、空間スキャンした店舗内でのオブジェクト認識AR、多視点撮影素材の自動マスク生成などの下地技術になり得る。",
+    "point": "DINOやSAM、CLIPといった画像AIの“定番エンジン”は、とても賢い一方で『同じ物でも見る角度が変わると認識がブレる』弱点がありました。この研究は、そうした既存モデルに“マルチビュー空間アダプタ”という小さな追加部品を差し込むだけで、どの角度から見ても一貫した理解を持つ3D対応モデルに作り替えます。しかも本格的な3D再構成をわざわざ行わずに、視点をまたいだ特徴のつじつまを合わせられるのがポイント。広告や体験づくりでは、商品を1回指定すれば全アングルの映像で自動追従して切り抜き（セグメント）できる演出、店舗を空間スキャンした中でのオブジェクト認識AR、多視点で撮った素材の自動マスク生成など、“どの角度でもズレない画像認識”を土台にした企画の下地技術になり得ます。",
     "license": {
       "spdx": "MIT",
       "commercial": "conditional",
@@ -106,7 +1320,8 @@
     ],
     "sources": [
       "X Bookmarks"
-    ]
+    ],
+    "detail": "たとえるなら、優秀だけれど“一枚の写真しか見ていない”鑑定士に、複数アングルの写真を見比べて『これは全部同じ物だ』と判断できる眼を後付けするようなものです。具体的には、DINOv2・DINOv3・CLIP・SAMといった既存の画像基盤モデルに、視点間の幾何学的な関係を学ぶ軽量なアダプタを挿入します。すると、ある3D上の同じ点を別々のカメラから見たときに、モデルが返す特徴（数値表現）が食い違わず一致するようになります。\n\n従来、複数視点で一貫した認識を得るには、いったんきちんと3D形状を復元してからそこに情報を貼り付ける、という手間のかかる回り道が主流でした（FiT3DやFeature 3DGSなどの先行研究）。この手法は明示的な3D再構成を挟まず、既存モデルに小さなアダプタを足すだけで多視点の一貫性を得られるのが新しい点です。ベースモデルを丸ごと作り直さないので、導入のコストも軽く済みます。\n\n開発はテルアビブ大学（Leo Segreら）。実装一式がGitHubでMITライセンスとして公開され、学習済みモデルも入手できます。ただし土台にするDINO・SAM・CLIPなど各モデルには、それぞれ固有のライセンスがあり、用途によってはそちらの条件に従う必要があります。実行にはPythonとGPU環境、多視点の画像・スキャンデータが必要で、現状は研究実装のため、製品化には自社での検証・組み込みが前提になります。"
   },
   {
     "id": "artifixer",
@@ -120,7 +1335,7 @@
     "date": "2026-06",
     "year": "2026",
     "summary": "壊れた・ぼやけた3D再構成（Gaussian Splatting等）のレンダリングを、Wan2.1ベースの自己回帰ビデオ拡散モデルで綺麗に修復し、撮影していないアングルまで生成補完するNVIDIAの研究。SIGGRAPH 2026採択。",
-    "point": "スマホで雑に撮った3Dスキャンは、撮り漏らした角度がグチャグチャに崩れるのが常識だった。ArtiFixerは動画生成AIの「それっぽく描き足す力」を使って、崩れた部分を修復し、存在しないカメラアングルまで作り出す。従来手法より70倍速く、画質指標でも約3dB上回る。広告や体験づくりでは、ロケ地や商品を数分スキャンするだけで自由にカメラを飛ばせる高品質3D空間が作れるため、CMのバーチャルロケハン、店舗のデジタルツイン、実在の街を舞台にしたWeb体験などの制作コストを大きく下げられる可能性がある。",
+    "point": "スマホで手早く撮った3Dスキャン（ガウシアン・スプラッティングなど）は、撮り漏らした角度がグチャッと崩れてしまうのが常識でした。ArtiFixerは、動画生成AIが持つ“それらしく描き足す力”を使って、この崩れた部分をきれいに修復し、さらに実際には撮っていないカメラアングルの映像まで作り出します。画質の指標（PSNR）では、これまでの最高性能の手法を1〜3dB上回ると報告されています。広告や体験づくりでは、ロケ地や商品を数分スキャンするだけで自由にカメラを動かせる高品質な3D空間が作れるため、CMのバーチャルロケハン、店舗のデジタルツイン、実在の街を舞台にしたWeb体験などの制作コストを大きく下げられる可能性があります。NVIDIAらによるSIGGRAPH 2026採択の研究です。",
     "license": {
       "spdx": "Apache-2.0",
       "commercial": "research-only",
@@ -163,7 +1378,8 @@
     ],
     "sources": [
       "X Bookmarks"
-    ]
+    ],
+    "detail": "ArtiFixerは2段構えで動きます。まず、たくさんの映像で鍛えた高品質な動画生成モデル（前後の文脈を両方見て破綻なく描く“双方向モデル”）を用意し、崩れたスキャン映像を『本来こう見えるはず』と描き直させます。次にそのモデルを、時間を追って一気に描く“自己回帰モデル”に蒸留（軽量化・高速化）し、1回の処理で数百コマぶんの映像をまとめて生成できるようにします。これにより、雑なスキャンの穴を埋めながら、新しい視点の連続映像を破綻なく作り出せます。\n\n3Dガウシアン・スプラッティングなどは、しっかり撮れた範囲では非常に高品質ですが、撮影が薄い場所やまったく映っていない場所の再現が苦手でした。従来はこの穴を埋めるために別のマルチビュー生成（GoogleのCAT3Dなど）を使いましたが、品質や一貫性に限界がありました。ArtiFixerは動画生成AIの表現力で欠損を補い、画質指標で従来最高手法を1〜3dB上回ります。1回の推論で長い連続フレームを出せるため、視点をなめらかに動かす映像づくりに向いています。\n\n開発はNVIDIA Spatial Intelligence Labを中心に、ETH Zurich・コーネル大学・トロント大学らの共同。コードはGitHubで公開（Apache-2.0）ですが、HuggingFaceで配布されるモデルの重みはNVIDIAの非商用ライセンスで、研究開発の範囲に限られます。実行にはPythonと相応のGPU、修復元となる3Dスキャンデータが必要です。現時点では商用利用不可のため、実務では技術検証や表現探索の段階での活用が現実的です。"
   },
   {
     "id": "lingbot-map",
@@ -176,7 +1392,7 @@
     "date": "2026-04",
     "year": "2026",
     "summary": "LiDAR不要・単眼カメラ映像だけで、シーンの3D形状をストリーミング（約20FPS）でリアルタイム再構成するフィードフォワード3D基盤モデル。1万フレーム超の長尺でもドリフト補正しながら動作する。",
-    "point": "普通、部屋や街を3D化するには高価なLiDARか、撮影後の長い計算処理が必要だった。LingBot-Mapは普通のカメラ1台の映像を流し込むだけで、その場でリアルタイムに3D空間が立ち上がっていく。しかも1万フレーム超の長回しでもズレを自動補正し続けるのが画期的。GitHubスター9千超と注目度も高い。広告・体験づくりでは、来場者がスマホで会場を歩くだけでその空間の3Dモデルが即座に生成されるインスタレーションや、ロケ現場を歩くだけで完成するバーチャル店舗ツアー、ロボット・ドローン演出の空間認識基盤などに使えそうだ。",
+    "point": "普段、部屋や街並みをそっくり3Dデータに起こすには、レーザーで距離を測る高価なLiDARセンサーを積んだ機材か、撮影が終わってから何時間もかかる重い計算処理が必要でした。LingBot-Mapがすごいのは、ごく普通のカメラ1台で撮った映像を流し込むだけで、その場でリアルタイムに（約20コマ/秒で）3D空間が立ち上がっていくこと。しかも1万コマを超える長回しでも、進むうちに少しずつ生じる位置ズレ（ドリフト）を自動で補正し続けます。GitHubスターは9千超と世界の開発者からの注目度も高い技術です。広告や体験づくりでは、来場者がスマホ片手に会場を歩くだけでその空間の3Dモデルが即座にできあがるインスタレーションや、ロケ地を歩くだけで完成するバーチャル店舗ツアー、会場を認識して動くロボット・ドローン演出の“目”として活用できそうです。",
     "license": {
       "spdx": "Apache-2.0",
       "commercial": "ok",
@@ -215,7 +1431,8 @@
     ],
     "sources": [
       "X Bookmarks"
-    ]
+    ],
+    "detail": "仕組みはこうです。カメラ映像を1コマずつAIに送ると、モデルがそのつど『これはさっき見た壁の続きだ』と過去の記憶（トラジェクトリメモリ）と照らし合わせながら、点の集まりとして3D形状を描き足していきます。中核にあるのは“Geometric Context Transformer”という仕組みで、カメラの位置合わせ・立体の奥行き手がかり・長時間ぶんのズレ補正を、ひとつの流れの中でまとめて処理します。解像度518×378の映像なら約20FPSで動き、リアルタイム用途で1万コマ超、オフラインなら最大2万5千コマまで扱えます。\n\n従来のこの手の3D化は、①LiDARのような専用センサーを積むか、②撮り終えた大量の写真をあとからまとめて突き合わせる“重い最適化計算”に頼るのが常識でした。どちらも機材か時間のコストが大きく、その場で結果を見ることはできません。LingBot-Mapは一度きりの推論で答えを出す『フィードフォワード型』なので、映像を入れた端から結果が返ります。長く撮るほど誤差が積み上がってズレていく弱点も、過去の記憶を使った補正で抑え込んでいます。\n\n使うには、モデルがHuggingFaceとModelScopeで公開されており、コードはGitHub上でApache-2.0ライセンス（商用利用可）で入手できます。開発元はAnt Group系のロボティクス企業Robbyant。動かすにはPythonとGPUの実行環境が必要で、そのまま製品に組み込むというより、体験装置やロボット演出の空間認識エンジンとして自社システムに組み込む使い方が現実的です。"
   },
   {
     "id": "cyanpuppets-1b-parameter-ai-motion-capture",
@@ -229,7 +1446,7 @@
     "date": "2026-06",
     "year": "2026",
     "summary": "10億パラメータのAIモデルをローカル実行し、1080pカメラ1台または動画アップロードから全身33点＋顔140点＋指を含む208キーポイントをリアルタイム抽出するマーカーレスモーションキャプチャ。UE/Unity/Blenderに対応。",
-    "point": "従来は専用スーツや複数カメラが必要だったモーションキャプチャを、カメラ1台＋ゲーミングPC級のGPU（VRAM 8GB）だけでリアルタイムに実現する。体・指・表情まで208点を遅延0.1秒で拾い、FBX書き出しやMetaHuman・VRMへのリターゲットまで一気通貫。広告・体験づくりでは、イベント来場者の動きをその場でブランドキャラクターに憑依させるライブ演出、店頭サイネージでの「あなたがアバターになる」体験、低コストなVTuber型キャンペーンなどが1台のカメラで組める。※「スマホ1台で」は入力映像の話で、処理にはVRAM 8GBのPCが必要。",
+    "point": "これまで全身のモーションキャプチャといえば、反射マーカー付きの専用スーツや何台ものカメラが必要でした。CyanPuppetsは、10億パラメータのAIモデルを手元のPCで動かし、1080pのウェブカメラ1台（または動画のアップロード）だけで全身の動きをリアルタイムに捕まえます。拾えるのは体33点＋顔140点＋指（片手21点）など計208点で、遅延は0.1秒以下。しかもゲーミングPC級のGPU（VRAM 8GB）で動きます。取り込んだ動きはFBX書き出しやMetaHuman・VRMなどへの流用もでき、UE・Unity・Blenderに対応。広告や体験づくりでは、イベント来場者の動きをその場でブランドキャラクターに“憑依”させるライブ演出、店頭サイネージでの『あなたがアバターになる』体験、低コストなVTuber型キャンペーンなどが、カメラ1台で組めます。",
     "license": {
       "spdx": null,
       "commercial": "conditional",
@@ -260,7 +1477,8 @@
     ],
     "sources": [
       "X Bookmarks"
-    ]
+    ],
+    "detail": "カメラに映った人の映像を、AIモデルが1コマごとに解析し、体・顔・指の合わせて208カ所の“キーポイント（関節や特徴点）”の位置をリアルタイムに割り出します。マーカー（体に貼る目印）を一切使わない“マーカーレス”方式なので、着替えもキャリブレーションも不要で、カメラの前に立てばそのまま動きが拾えます。処理は0.1秒以下の遅延、30〜50FPSで動作し、手足の位置誤差は平均3cm未満と報告されています。\n\n本格的なモーキャプは、マーカースーツ・赤外線カメラ・専用スタジオという“三点セット”が前提で、導入に数百万円規模かかることも珍しくありませんでした。CyanPuppetsは、その一式をAIとカメラ1台に置き換え、しかも指や表情まで同時に取れるのが差です。処理をクラウドではなくローカル（手元のPC）で回すため、映像を外に出さずに済み、遅延も小さく抑えられます。\n\n無料のBlender/UE/Unity向けプラグインが公開されており、1080pウェブカメラ＋VRAM 8GBのGPUを積んだPCがあれば単眼（カメラ1台）でのリアルタイム取り込みが可能です。より高精度・業務用途には有償ラインがあり、ウェブカメラ版が月額$50（年額$599）、デュアル4Kカメラ同梱のエンタープライズ版が$1,499などがあります。クローズドソースの商用製品のため、キャンペーンで使う際は利用規約とライセンス範囲の確認が必要です。"
   },
   {
     "id": "spherope",
@@ -274,7 +1492,7 @@
     "date": "2026-06",
     "year": "2026",
     "summary": "学習済みDiffusion Transformer（FLUX、LTX-2.3等）の位置エンコーディングに球面幾何の事前知識を注入し、追加学習ゼロで継ぎ目のない360°パノラマ画像・動画を生成するzero-shotフレームワーク。",
-    "point": "普通の画像生成AIでVR用の360°パノラマを作ると、左右の端がつながらなかったり天頂・足元が歪んだりする。SpheRoPEは、モデルを再学習する代わりに「画像内の位置の数え方」を球面仕様に差し替えるだけで、既存の最新モデルからそのまま歪みのない全天球画像・動画を出せるのが賢い。プロンプト一発で「その世界に入れる」360°素材が作れるため、VRゴーグルやドーム型会場でのブランド世界体験、WebのパノラマビューアーでのSNSキャンペーンなど、空間まるごとの広告表現を低コストで量産できる可能性がある。",
+    "point": "ふつうの画像生成AIで360°パノラマ（上下左右すべてを覆う全天球画像）を作ると、左右の端の絵がつながらなかったり、天頂や足元が引き伸ばされて歪んだりする。SpheRoPEが賢いのは、モデルを作り直すのではなく、AIが画像内の位置を把握するための「番地の振り方」（位置エンコーディング）を平面用から球面用に差し替えるだけで、この問題を解決してしまう点だ。追加学習は一切不要（zero-shot）で、FLUXやLTX-Video 2.3といった既存の最新モデルがそのまま、継ぎ目のない360°パノラマ画像・動画を出せるようになる。つまり最新モデルの画質と表現力を丸ごと引き継いだ全天球生成が、プロンプト一発で手に入る。広告・体験づくりでは、VRゴーグルやドーム型会場で「その世界に入れる」ブランド空間、Webのパノラマビューアーを使ったSNSキャンペーンなど、空間まるごとの広告表現を低コストで量産できる可能性がある。現状は非商用ライセンスのため、まずは研究・検証やプロトタイプでの活用からになる。",
     "license": {
       "spdx": "CC-BY-NC-4.0",
       "commercial": "research-only",
@@ -313,7 +1531,8 @@
     ],
     "sources": [
       "X Bookmarks"
-    ]
+    ],
+    "detail": "画像生成AI（Diffusion Transformer）は、画像の各部分が「どこにあるか」をRoPEと呼ばれる位置情報の仕組みで管理している。360°パノラマは、地球を世界地図に展開するのと同じ方法（正距円筒図法）で1枚の長方形に引き伸ばして扱うが、平面用の位置情報のままでは「左端と右端は実は同じ場所」「上端の1行はすべて天頂の1点」という球の性質をAIが知らない。SpheRoPEは位置情報の一部を球面上の3D座標として振り直し、左右がループ状につながり、極では1点に収束するように設計し直す。さらにSemantic Distortion CFGという誘導技術の拡張で、パノラマ特有の遠近の歪み方も生成時に反映させる。\n従来の360°生成は、パノラマ画像を集めてモデルを再学習する（パノラマデータは希少で高コスト）か、生成のたびに何段階も最適化処理を回す（遅い）かの二択だった。SpheRoPEは学習も最適化も不要で既存モデルに後付けできるため、ベースモデルが進化すればパノラマの品質も自動的に上がる構造になっている。\nコードはGitHubで公開されており、FLUX.1／FLUX.2（画像）とLTX-Video 2.3（動画）に対応。動かすには高性能GPUを含む生成AIの実行環境とPythonの知識が必要だ。注意点はライセンスで、リポジトリはCC BY-NC 4.0（非商用限定）、加えてベースモデル各自のライセンス条件も別途適用される。商用案件への直接投入は現状ハードルがあり、まずは検証・プロトタイプ向きの技術である。"
   },
   {
     "id": "akasaki-c1-loop-motion-tool",
@@ -327,7 +1546,7 @@
     "date": "2026-07",
     "year": "2026",
     "summary": "モーションキャプチャの任意区間から、開始・終了のポーズと速度まで一致するC1連続のループアニメーション（in→loop→out）を自動生成する個人開発ツール。差分をinertializationで上乗せする方式。",
-    "point": "ゲームやCGでキャラの動きを繰り返すと、ループのつなぎ目で一瞬「カクッ」と不自然になるのが定番の悩み。このツールはモーキャプデータのループ始点と終点で、ポーズだけでなく速度まで滑らかにつながるよう差分を計算して自動補正するので、手作業のブレンド調整なしで違和感ゼロの無限ループが作れる。研究論文ではなく現場のTAが作った実用装置なのが良く、展示サイネージで踊り続けるキャラ、Webサイトの背景で自然に動き続ける3Dマスコットなど、「ずっと見ていられる」ループ演出の量産に直結する技術。",
+    "point": "ゲームや展示映像でキャラクターの動きを繰り返し再生すると、ループのつなぎ目で一瞬「カクッ」と不自然になるのは、この分野の定番の悩みだ。原因は、始まりと終わりでポーズを合わせても「動きの速さ」までは合っていないこと。このツールはモーションキャプチャデータの好きな区間を選ぶと、始点と終点でポーズだけでなく速度まで一致する（C1連続と呼ばれる、位置も速さも途切れない状態の）ループを自動生成する。入り（in）→ループ→抜け（out）まで一続きで作れるため、手作業のブレンド調整なしに違和感のない無限ループが手に入る。研究論文ではなく、現場のテクニカルアーティストが実務の困りごとから作った実用プロトタイプである点も好ましい。広告・体験づくりでは、展示サイネージで踊り続けるキャラクター、Webサイトの背景で自然に動き続ける3Dマスコット、ループ再生前提のSNS動画など、「ずっと見ていられる」演出の量産に直結する技術だ。",
     "license": {
       "spdx": null,
       "commercial": "none",
@@ -358,7 +1577,8 @@
     ],
     "sources": [
       "X Bookmarks"
-    ]
+    ],
+    "detail": "仕組みの核はinertialization（イナーシャライゼーション）というアニメーション補間技術だ。ループの始点と終点でポーズと速度の「ズレ（差分）」を計算し、その差分を慣性を保ったまま時間をかけてゼロへ減衰させ、元のモーションに上乗せする。急ブレーキではなく徐々に減速する電車のように、ズレを一気にではなく滑らかに吸収するイメージだ。ポーズ（位置）と速度の両方がつながる状態を数学ではC1連続と呼び、ポーズだけ合わせたときに起きる「一瞬止まって見える」現象を防げる。\ninertialization自体はゲーム「Gears of War」で採用され、GDC 2018で発表されたアニメーション切り替えの定番手法。ただ従来の用途は「歩き→走り」のような遷移で、ループ作りとなると始点と終点がたまたま近い区間を探すか、アーティストが手作業でブレンドを調整するのが普通だった。確立された遷移技術をループ生成（in→loop→out）に振り向け、モーキャプの任意区間から自動生成できるツールに落とし込んだ点が実務的な発明といえる。\n入手面では、現状は作者・あかさき氏がXで動画を公開した未配布のプロトタイプで、ダウンロードや購入はできない。ただし同氏はUnity Humanoid向けのinertialization実装「MuscleInertialization」をMITライセンス（商用利用も可能なオープンソース）でGitHubに公開しており、原理の理解や自前実装の出発点として参照できる。"
   },
   {
     "id": "editanything",
@@ -372,7 +1592,7 @@
     "date": "2026-06",
     "year": "2026",
     "summary": "動画生成モデルLTX-2.3をプロンプト指示型の動画編集モデルに変えるLoRA。背景/被写体の除去、モーション転写、要素の置き換え等をテキスト指示で実行できる。重み・ComfyUIワークフロー付きでHugging Face公開。",
-    "point": "「この動画から人物だけ消して」「この動きを別キャラに移して」といった編集は、本来ロトスコープやVFXの専門作業。EditAnythingは巨大な動画生成モデルに小さな追加学習パーツ（LoRA）を載せるだけで、既存動画をプロンプトで編集できるようにしてしまう。OSSでワークフローごと公開されているのが強みで、撮影済みCM素材の背景差し替えバリエーション量産、UGC動画を使ったモーション転写ミーム企画など、「撮り直さずに作り変える」映像制作パイプラインを自前で組める。",
+    "point": "「この動画から背景だけ消して」「この人物を別のキャラに置き換えて」といった編集は、本来ロトスコープ（映像を1コマずつ手作業で切り抜く工程）やVFXの専門作業で、時間も費用もかかる。EditAnythingは、動画生成モデルLTX-2.3にLoRA（巨大なAIモデルに後付けする小さな追加学習パーツ）を載せるだけで、手持ちの動画をテキスト指示で編集できるようにしてしまう。公開されているのは3種類で、要素の追加・削除・置き換え・スタイル変更をプロンプトだけで行うタイプ、最初の1フレームを差し替えるだけで元動画の動きを新しい絵に引き継がせるモーション転写タイプ、参照画像の人物やキャラの見た目を保って動画に入れ込むタイプがある。モデルの重みもComfyUIワークフローも丸ごとHugging Faceで公開されているのが強みで、撮影済みCM素材の背景差し替えバリエーション量産、UGC動画の動きを自社キャラに移すミーム企画など、「撮り直さずに作り変える」映像制作パイプラインを自前で組める。",
     "license": {
       "spdx": "Apache-2.0",
       "commercial": "conditional",
@@ -403,7 +1623,8 @@
     ],
     "sources": [
       "X Bookmarks"
-    ]
+    ],
+    "detail": "LoRAとは、モデル全体を作り直す代わりに薄い「補正レンズ」を後付けするような学習方法だ。EditAnythingは、220億パラメータの動画生成モデルLTX-2.3に「編集前と編集後」のペアデータを見せて、編集のやり方だけを覚えさせている。v0.1は静止画約3万枚で事前学習してから動画で微調整したモーション転写用で、最初のフレームを外部ツールで編集すれば元動画の動きがその絵に乗る。v1.1はバランスを取った動画ペアで学習したマルチタスク型で、テキストだけで追加・削除・置換・スタイル変更ができる。Ref V2Vは約1,600のペア動画で学習し、参照画像から人物やキャラの見た目を強く保ったまま動画へ転移する。\n従来、この種のプロンプト指示型の動画編集はRunway Alephなど商用のクローズドなサービスが中心で、中身に触れるオープンソースの選択肢は限られていた。重みとワークフローがすべて公開されているため、自社サーバーで動かす、独自データで追加学習するといった拡張が可能になる。\n使うにはComfyUI環境とLTX-2.3本体の重みが必要。v0.1とv1.1は標準のLoRA読み込みノードで動くが、Ref V2Vは専用のローダーとカスタムノードが必須になる。LoRA自体はApache 2.0（商用可）だが、ベースモデルLTX-2.3のライセンス条件が別途適用される。作者は「研究実験であり本番品質ではない」と明記しており、速い動きや場面転換では破綻しやすく、指示への忠実さが設定値（CFG）に大きく左右される点は織り込んでおきたい。"
   },
   {
     "id": "aurora-film-lab-v1-0",
@@ -416,7 +1637,7 @@
     "date": "2026-06",
     "year": "2026",
     "summary": "55種のフィルムでカラーチャートを実際に撮影・計測した実測データから選抜した12種のルックを混合し、独自のフィルム調カラーを作れるDaVinci Resolve用グレーディングツール。Randomize機能で1,440通りの組み合わせを探索できる。",
-    "point": "映像の「フィルムっぽい色」は通常、既製LUTを当てるだけで、みんな同じ色になりがち。AURORA Film Labは作者が55本のフィルムを実際に撮影して色を科学的に計測し、その実測データ12種を絵の具のように混ぜて「自分だけのフィルム」を作れるのが新しい。ワンクリックで数千通りの色をガチャ的に試せるRandomize機能も探索的で楽しい。ブランドムービーやMVで競合と被らない独自のシグネチャールックを開発したり、キャンペーン全体のトーンを一貫させる色設計の起点として、映像制作の現場でそのまま使える。",
+    "point": "映像を「フィルムっぽい色」にする定番手段は既製のLUT（ワンタッチで色を変換するプリセット）だが、同じLUTを当てれば誰の映像も同じ色になってしまう。AURORA Film Labが独特なのは出発点で、作者のD.Daniel氏は55種類のフィルムで実際にカラーチャート（色見本）を撮影・計測し、その実測データから色の方向性が異なる12種のルックを選抜した。ユーザーはこの12種を絵の具のように混ぜ合わせることで、実在フィルムの手触りを持ちながら世界のどこにもない「自分だけのフィルム」を作れる。ワンクリックで1,440通りの組み合わせをガチャ的に試せるRandomize機能、気に入った色を保存するFavorites／History、複数クリップへ一括適用するLightboxなど、探索から実運用までの機能も揃っている。広告・映像制作では、競合と被らないブランドムービーやMVのシグネチャールック開発、キャンペーン全体の色トーンを一貫させる色設計の起点として、現場でそのまま使えるタイプのツールだ。",
     "license": {
       "spdx": null,
       "commercial": "paid",
@@ -447,7 +1668,8 @@
     ],
     "sources": [
       "X Bookmarks"
-    ]
+    ],
+    "detail": "フィルムエミュレーション（フィルム風の色再現）の多くは「それらしく見える」ように目分量で作られるが、AURORAは実測ベースだ。55種のフィルムでカラーチャートを撮影・現像し、基準値と突き合わせて各フィルムが色をどう変化させるかを計測。そこから選抜した12ルックを、DaVinci Resolve上で混合比率を変えながら重ねられるようにした。配布形式はLUTファイルではなくPowerGrade（Resolveのノード構成＝色処理の設計図をそのまま渡す形式）なので、中身を開いて自分の素材に合わせて調整できるのも実務的だ。\n既製LUTとの違いは「固定された1枚の変換」か「混ぜられる素材」かにある。LUTは適用の強さを変えるくらいしか調整の余地がなく、世の中に似た色があふれる原因になっていた。実測データという根拠を持つ素材を掛け合わせる方式なら、既存フィルムの再現ではなく創作として独自の色を設計でき、Randomizeで偶然の発見を拾えることがルック開発の初速を上げる。\n必要なものはDaVinci Resolve。無償版でも利用できるが、無償版ではショートカットキー経由での適用になるという制約がある。価格は買い切り$119〜149で生涯アップデート付き、商用利用可と明記されている。カラーグレーディングの深い知識がなくても「混ぜて選ぶ」ところから始められるが、Resolveのノード操作の基本は前提になる。"
   },
   {
     "id": "viggle-pinoc-seedance-workflow",
@@ -461,7 +1683,7 @@
     "date": "2026-06",
     "year": "2026",
     "summary": "Viggleの無料ツールPINOC（動画→モーキャプ抽出＋画像1枚からGaussian Splattingキャラ生成、FBX/GLB/BVH出力）で3Dプリビズを作り、Seedanceで最終映像化するワークフロー。手付けキーフレームゼロでチェイスシーンを構築。",
-    "point": "激しいアクション映像をAIで作ろうとすると、プロンプトだけではカメラとキャラの動きが制御できず崩壊しがち。このワークフローは、スーツ不要のAIモーキャプ（PINOC）で実写動画から動きを抜き、写真1枚から作った3Dキャラに載せてビューポートで構図を固め、それを下絵にSeedanceで映像化する。「動きの演出は3Dで正確に、絵作りはAIで豪華に」という分業で、キーフレームを1枚も打たずにチェイスシーンが完成する。スタント撮影なしのアクションCM、タレントの動きだけ借りたキャラクターPVなど、低予算で演出精度の高いAI映像が作れる。",
+    "point": "カーチェイスや格闘のような激しいアクションをAI動画で作ろうとすると、プロンプト（文章の指示）だけではカメラとキャラクターの動きを制御しきれず、絵が崩壊しがちだった。このワークフローの答えは分業だ。まずViggleの無料ツールPINOC（スーツもセンサーも不要のAIモーションキャプチャ）で、人が動く実写動画から骨格の動きデータを抽出する。次に、写真1枚からGaussian Splatting（写真をもとに点の集まりで立体を再現する技術）で起こした3Dキャラクターにその動きを載せ、3D画面上でカメラと構図を正確に固める。そしてその映像を下絵に、動画生成AIのSeedanceで質感やライティングを映画品質に仕上げる。「動きの演出は3Dで正確に、絵づくりはAIで豪華に」という役割分担により、キーフレーム（動きを1コマずつ手で打ち込む作業）を1枚も打たずにチェイスシーンが完成する。スタント撮影なしのアクションCM、タレントの動きだけを借りたキャラクターPVなど、低予算でも演出精度の高いAI映像に道を開くワークフローだ。",
     "license": {
       "spdx": null,
       "commercial": "conditional",
@@ -492,7 +1714,8 @@
     ],
     "sources": [
       "X Bookmarks"
-    ]
+    ],
+    "detail": "前半を担うPINOCはViggleが提供するブラウザベースの無料ツールで、人が動いている動画をアップロードするだけで骨格アニメーション（モーションキャプチャデータ）を抽出できる。さらにキャラクターの画像を1枚渡すと、Gaussian Splattingで3Dモデルとして再構成し、抽出した動きをその場のビューポートで再生して確認できる。出力はFBX／GLB／BVHという標準形式で、しかもMixamo互換の65ボーン骨格に統一されているため、BlenderやUnity、Unreal Engineへリターゲット（骨の対応付け直し）作業なしにそのまま持ち込める。後半は、この3Dシーンで固めたカメラと動きの映像を下絵として、Seedanceに最終的な絵づくりを任せる流れだ。\n従来、モーションキャプチャは専用スーツや複数カメラ、専用スタジオが必要な高価な工程で、一方のAI動画生成は「動きの正確な制御」が最大の弱点だった。プリビズ（本番前に作る仮映像）をそのまま生成AIの制御信号として使うこの構成は、両者の弱点を互いに打ち消す組み合わせになっている。\n必要なものは少ない。PINOCはサインインするだけで使え、現時点では無料と公式が明記している。仕上げに使うSeedanceはByteDance系の有料サービス／APIで、商用利用の可否は提供元の規約に依存する。BlenderなどでシーンやカメラをきちんとJ組める3Dの基礎知識があると、演出の精度をさらに追い込める。"
   },
   {
     "id": "ue58-metahuman-markerless-mocap",
@@ -506,7 +1729,7 @@
     "date": "2026-06",
     "year": "2026",
     "summary": "UE 5.8のMetaHuman Animatorに追加されたWebカメラ1台のマーカーレス全身Mocapを検証し、有料マーカーレスMocapを超える品質と報告。プレビズのモーションブラーがAI再レンダリング（Seedance 2.0）後の動画にも継承されるという発見を共有。",
-    "point": "これまで数十万円のスーツや複数カメラが必要だったモーションキャプチャが、UE 5.8ではWebカメラ1台・無料でできるようになった。この投稿が面白いのは単なる機能紹介ではなく、「UEのプレビズで付けたモーションブラーがAI動画生成後も引き継がれる」という実践的発見まで検証していること。ゲームエンジンで丁寧にカメラ設定した映像をAIでシネマ級に仕上げるパイプラインが個人レベルで成立する。広告制作では、俳優なしのバーチャルタレントCM、絵コンテ代わりの高品質プレビズ、SNS向け縦型シネマティック動画の量産などに直結するワークフロー。",
+    "point": "これまで全身のモーションキャプチャには、マーカー付きの専用スーツや複数の専用カメラ、専用スタジオが必要だった。Unreal Engine 5.8のMetaHuman Animatorは、これを「Webカメラ1台・追加費用なし」まで引き下げた。人体の3D復元技術を持つMeshcapade社の技術が統合され、普通のカメラで撮った1本の映像から顔と身体の演技をキャプチャできる（現状はExperimental＝実験的機能）。個人クリエイターのKakuDrop氏はこれを検証し、有料のマーカーレスMocapサービスを超える品質だったと報告。さらに「UEのプレビズで設定したモーションブラー（動きの残像表現）が、Seedance 2.0でAI再レンダリングした後の動画にも引き継がれる」という実践的な発見まで共有している。ゲームエンジンで丁寧にカメラを設計した映像をAIでシネマ級に仕上げる流れが、個人の機材で成立し始めたということだ。広告制作なら、俳優を拘束しないバーチャルタレントのCM、絵コンテ代わりの高品質プレビズ、SNS向け縦型シネマティック動画の量産に直結する。",
     "license": {
       "spdx": null,
       "commercial": "conditional",
@@ -541,7 +1764,8 @@
     ],
     "sources": [
       "X Bookmarks"
-    ]
+    ],
+    "detail": "MetaHumanはUnreal Engine（Epic Gamesの無料ゲームエンジン）で使える高精細デジタルヒューマンで、MetaHuman Animatorは人間の演技をそのキャラクターに移すための仕組みだ。5.8で全身に対応し、Webカメラで撮影した単一の映像から、AIが映像内の人のシルエットや関節の位置を読み取って3Dの骨格の動きを復元する。影絵を見て本人の動きを言い当てるような処理で、人体の形と動きの統計モデルを持つMeshcapadeの技術がこれを支えている。処理はクラウドではなくローカルのPC上で実行される。\n従来の光学式モーションキャプチャは、反射マーカー付きスーツと多数の専用カメラが前提で導入コストが高かった。近年はスマホ映像で済むマーカーレスAIモーキャプ（Move AIなど）が登場したが、これらは有料サービスだ。それが今回、ゲームエンジンの無料標準機能圏に入ったことが大きい。検証者の「有料サービス超え」という品質評価は個人の検証結果として差し引いて見る必要があるが、試すコストがほぼゼロになったこと自体が変化といえる。\n必要なものはWindows PC、Unreal Engine 5.8、Fab（Epicのマーケットプレイス）で配布される無料のマーカーレスMocapプラグイン、そしてWebカメラ1台。Experimental機能のため今後仕様が変わる可能性はある。UE／MetaHumanはEpicのEULAのもとで商用利用可（大規模な収益時はロイヤリティが発生）。AI再レンダリングまで行う場合は、Seedance等の動画生成サービスを別途使うことになる。"
   },
   {
     "id": "splice-mcp-claude-beatmaking",
@@ -555,7 +1779,7 @@
     "date": "2026-06",
     "year": "2026",
     "summary": "Spliceが公式提供するMCPサーバーをClaude Coworkに接続し、自然言語の指示だけでDJプレミア風ヒップホップトラックを組めるか検証したYouTube動画付きポスト。",
-    "point": "「90年代NYヒップホップっぽい埃っぽいドラムを探して」と日本語で頼むだけで、AIが世界最大級のサンプル素材サービスSpliceから音源を検索・選定し、トラックの土台まで組んでくれる——そんな未来をDJが実際に検証した企画。ポイントは音楽生成AI（Suno等）と違い、人間のアーティストが作った実在のサンプルを組み合わせる点で、権利がクリアかつ「自分で作った感」が残ること。広告制作では、ブランドの世界観を言葉で伝えるだけでCM音楽のデモを高速に量産したり、来場者の言葉からその場でオリジナルビートを作るインタラクティブ体験などに応用できそうだ。",
+    "point": "「90年代ニューヨークの、埃っぽい質感のドラムを探して」と言葉で頼むだけで、AIが世界最大級の音楽サンプル素材サービスSpliceから音源を検索・選定し、トラックの土台まで組み上げる——それを実在のDJ（DJ TAKI-SHIT氏）がDJプレミア風ヒップホップ制作で実際に検証した企画だ。中核はSpliceが公式提供するMCPサーバー（MCPはAIアシスタントから外部サービスを操作するための共通規格）で、これを接続するとClaudeが会話の中からSpliceのカタログを直接検索できるようになる。重要なのはSunoのような「完成曲を丸ごと生成するAI」との違いで、ここで扱うのは人間のアーティストが作った実在のサンプル。ダウンロードした音源はロイヤリティフリーで商用利用でき、権利がクリアなうえ「自分で選んで組んだ」という制作の手応えも残る。広告制作では、ブランドの世界観を言葉で伝えてCM音楽のデモを高速に量産する、イベント来場者の言葉からその場でオリジナルビートを組むインタラクティブ体験など、音楽制作の入り口を広げる応用が考えられる。",
     "license": {
       "spdx": null,
       "commercial": "paid",
@@ -594,7 +1818,8 @@
     ],
     "sources": [
       "X Bookmarks"
-    ]
+    ],
+    "detail": "MCP（Model Context Protocol）は、AIアシスタントに外部サービスの「操作パネル」を渡すための共通規格だ。SpliceのMCPサーバーをClaudeに接続すると、「ブーンバップ向けの汚れたドラムブレイク」のような曖昧な依頼をClaudeが検索条件に翻訳し、Spliceの膨大なサンプルカタログから候補を取得する。複数の検索を並列で走らせてドラムキット一式を一気に揃えたり、選んだ音をStacks（サンプルを重ねて楽曲の土台を作るSpliceの機能）にまとめたりするところまで、会話の中で完結する。検証動画では、こうして集めた素材でDJプレミア風トラックの土台がどこまで組めるかを試している。\n従来のサンプル探しは、人が検索語を変えながら1つずつ試聴していく時間のかかる作業だった。一方で完成曲を生成するAI（Suno等）は速いが、権利面の不安と「自分で作った感」の喪失がつきまとう。実在素材×AIによる検索・選定という組み合わせは、その中間を突く現実的な落とし所といえる。\n必要なものはSpliceアカウント。MCPサーバーは現在ベータ版で、アカウントがあれば誰でも利用できる。対応ツール（Claudeなど、HTTPベースのMCPに対応したAIツール）にサーバーURLを追加してログインするだけで、開発スキルは不要だ。検索とスタック構築は無料だが、音源のダウンロードには有料サブスクリプションとクレジットが必要。ダウンロードした音源はロイヤリティフリーで商用利用できるという、Spliceの通常条件がそのまま適用される。"
   },
   {
     "id": "comfyui-cinematic-annotate-video",
@@ -608,7 +1833,7 @@
     "date": "2026-06",
     "year": "2026",
     "summary": "画像の上に線や注釈を描くだけでキャラの移動経路やカメラワークを指定でき、統合されたLLMがその描き込みをSeedance 2.0用のモーションプロンプトへ自動翻訳して動画を生成するComfyUIワークフロー。",
-    "point": "AI動画生成の最大のストレスは「右奥へゆっくりドリーしながら…」と動きを言葉で説明しきれないこと。このワークフローは絵コンテに矢印を描く感覚で、画像に直接線を引けば、LLMがそれを読み取って動画AIへの指示文に変換してくれる。「言葉で演出する」から「描いて演出する」への転換だ。広告制作では、商品カットに矢印を1本引くだけでカメラが回り込むシネマティック動画が作れるため、絵コンテからそのままビデオコンテを起こす、SNS動画のカメラワークをディレクターが直接描いて指示する、といった使い方ができる。",
+    "point": "AI動画生成の大きなストレスは、「右奥へゆっくりドリー（カメラを台車ごと近づける動き）しながら…」といったカメラ演出を言葉で説明しきれないことだった。このComfyUI（無料公開されているAI画像・動画生成の組み立てツール）向けワークフローは、カメラの動きを「画像の上に描かれた線や注釈」という目に見える形式で扱う。公開テンプレートでは、画像を1枚入れるとGemini（Googleの画像を理解できるAI）がシーンを解析してカメラパスの注釈を自動で描き込み、続いて別のGeminiノードがその描き込みをSeedance 2.0用のモーションプロンプト（カメラの経路・タイミング・緩急まで記述する指示文）に翻訳し、元画像の見た目を保ったまま短いシネマティック動画を生成する。動きの設計図が、絵コンテの矢印と同じ「見て確認できる」形で工程の途中に挟まるのが本質的に新しい。広告制作では、商品カット1枚からカメラが回り込むシネマティック動画を起こす、絵コンテからそのままビデオコンテを作るといった使い方が見込める。",
     "license": {
       "spdx": null,
       "commercial": "conditional",
@@ -643,7 +1868,8 @@
     ],
     "sources": [
       "X Bookmarks"
-    ]
+    ],
+    "detail": "処理は3段階のリレーだ。まず入力画像をGeminiの画像ノードが解析し、被写体や空間の構造を踏まえたカメラパスのマークアップ（線や記号による注釈）を画像の上に自動生成する。次に別のGeminiノードがその注釈画像を読み取り、Seedance 2.0が理解できるモーション指示——カメラの経路、タイミング、動きの緩急（イージング）まで記述した文章——へ整形する。最後にByteDance系の参照ノードが、元画像の見た目を保持しながら動画を合成する。ポイントは、AIが考えたカメラの動きが「注釈の描かれた画像」という人間にも読める中間形式でいったん可視化されること。絵コンテの矢印と同じ言語なので、生成前に演出の意図を目で確認できる。\nテキストだけでカメラを制御しようとすると解釈のブレが大きい。ドラッグ軌跡で動きを指定する研究（DragNUWA）や、画像上に軌跡パスを描くワークフロー（Wan ATI）といった先行例はあったが、このワークフローは注釈の生成と指示文への翻訳の両方をLLMに任せ、それを高品質な動画モデルSeedance 2.0につないだ構成が新しい。\nComfyUI本体は無料のオープンソースで、ワークフロー自体もテンプレートとして無料公開されている。ただしGeminiとSeedance 2.0はいずれもAPI経由の外部モデルのため、有効なAPIキー（利用は有料）が必要になる。ページにはローカルのモデルプロバイダへの切り替えも可能と記載されており、ブラウザ上のComfy Cloudでも試せる。商用利用の可否は各API提供元の規約に依存する。"
   },
   {
     "id": "rerun-booster-robotics-k1",
@@ -658,7 +1884,7 @@
     "date": "2026-06",
     "year": "2026",
     "summary": "OSSの時系列マルチモーダル可視化ツールRerunで、ヒューマノイドK1がサッカーボールを蹴る動作のセンサ・3D状態をリアルタイムにロギング・可視化したデモ。",
-    "point": "ロボットの関節角度・カメラ映像・3D姿勢といったバラバラなデータを、数行のコードで時間同期された3Dビューアに流し込める。ゲームのリプレイ画面のようにロボットの「頭の中」を巻き戻して見られる。広告・体験の文脈では、ロボットやドローンを使ったイベント演出の裏側可視化、センサ連動インスタレーションのデバッグ兼「見せる制作過程」コンテンツ、データビジュアライゼーション自体を魅せる展示などに使える。",
+    "point": "Rerunは、ロボットやセンサーが吐き出すバラバラな種類のデータ――関節の角度、カメラ映像、3Dの姿勢、時系列の数値など――を、たった数行のコードで“時間を揃えた3Dビューア”に流し込んで可視化できるオープンソースの道具です。今回のデモでは、ヒューマノイドロボット『Booster K1』がサッカーボールを蹴る一連の動きを、Rerunでロギングして見せています。ゲームのリプレイのようにロボットの“頭の中”を巻き戻して眺められるのが魅力。広告や体験づくりでは、ロボットやドローンを使ったイベント演出の裏側を可視化して見せたり、センサー連動インスタレーションのデバッグ兼“制作過程そのものを魅せる”コンテンツにしたり、データビジュアライゼーション自体を展示の主役にしたりできます。",
     "license": {
       "spdx": "MIT OR Apache-2.0",
       "commercial": "ok",
@@ -693,7 +1919,8 @@
     ],
     "sources": [
       "X Bookmarks"
-    ]
+    ],
+    "detail": "Rerunの仕組みはシンプルで、プログラムの好きな場所から『この時刻に、カメラはこの画像、関節はこの角度、体の位置はここ』というデータを次々と“ログ”として送るだけ。Rerunはそれらをすべて共通の時間軸に沿って並べ、3D空間・グラフ・画像を1つの画面で同期再生します。C++・Python・Rustに対応し、pip install rerun-sdk ですぐ導入できます。Booster K1のデモは、この仕組みでロボットのセンサー状態と3D姿勢をリアルタイムに記録・再生した一例です。\n\nこれまでロボットやセンサーの挙動を確認するには、数値ログとにらめっこしたり、種類ごとに別々のツールを使い分けたりする必要があり、『どの瞬間に何が起きたか』を横断的に見るのは手間でした。Rerunは異なる種類のデータを最初から時間で結びつけて扱うため、映像と数値と3Dを一括で巻き戻し確認できます。HuggingFaceのLeRobotやNVIDIA、Meta Reality Labsのプロジェクトなど、名だたる現場で採用されている実績もあります。\n\nRerun本体はMITとApache-2.0のデュアルライセンスで公開されるオープンソース（GitHubスター1万1千超）で、商用利用も可能です。無料のSDKを入れればすぐ使え、大規模なデータ管理が必要な場合は有償の『Rerun Hub』も用意されています。Booster K1のようなロボットを実際に用意しなくても、既存のセンサーやモーションデータを流し込むだけで“見せる可視化”は作れます。演出の中核ソフトというより、制作・展示のための可視化レイヤーとして組み合わせるのが向いています。"
   },
   {
     "id": "levifab",
@@ -706,7 +1933,7 @@
     "date": "2017-07",
     "year": "2017",
     "summary": "液体窒素で冷却した超伝導体のピン止め効果を使い、磁石を埋め込んだ3Dプリント物体を空中に安定浮遊・操作するHCI研究（SIGGRAPH 2017）。約10分間の浮遊中にインタラクションも可能。",
-    "point": "映画のような「物が宙に浮く」演出を、プロジェクション等のごまかしなしに物理現象（超伝導の磁束ピン止め）で実現している。しかも浮かせる物体は3Dプリントで自由にデザインでき、動かして操作までできる。広告・体験づくりでは、商品を本当に宙に浮かせるショーウィンドウや店頭什器、ローンチイベントでの「重力からの解放」演出、メディアアート展示など、実物が浮くこと自体が絵になる体験に直結する。",
+    "point": "映画で見るような『物がふわりと宙に浮く』演出を、プロジェクションや吊り糸のごまかしなしに、本物の物理現象で実現した研究です。超伝導体を液体窒素でキンキンに冷やすと、磁石を近づけたときにその位置でピタッと固定される“ピン止め効果（磁束ピンニング）”が起こります。LeviFabは、磁石を仕込んで3Dプリントした好きな形の物体を、この効果で空中に安定して浮かべ、しかも手で動かして操作までできるようにしました。浮遊は約10分間続き、その間インタラクションも可能です。広告や体験づくりでは、商品を本当に宙に浮かせるショーウィンドウや店頭什器、ローンチイベントでの“重力からの解放”を体感させる演出、メディアアート展示など、“実物が浮くこと自体が絵になる”体験に直結します。",
     "license": {
       "spdx": null,
       "commercial": "none",
@@ -745,7 +1972,8 @@
     ],
     "sources": [
       "X Bookmarks"
-    ]
+    ],
+    "detail": "仕組みの主役は超伝導という現象です。特定の物質を液体窒素（マイナス196℃）まで冷やすと電気抵抗がゼロになり、同時に近くの磁石の“磁力線”を自分の中に取り込んで、その相対位置をロックする性質（磁束ピンニング）を持ちます。この“ロック”のおかげで、ただ反発して不安定に飛んでいくのではなく、斜めでも横向きでも決めた位置にピタリと留まって浮きます。LeviFabは浮かせたい物体を3Dプリントし、中に小さな磁石を埋め込むことで、形もデザインも自由な“浮くオブジェクト”を作れるようにしました。\n\n宙に浮かせる技術には、音波で押し上げる方法や電磁石で吊るす方法もありますが、前者は小さく軽い物しか扱えず、後者は絶えず電力で位置を制御し続ける必要があります。超伝導のピン止めは、いったん冷やして位置を決めれば電力制御なしで安定して浮き続け、手で動かしても新しい位置で留まるのが強みです。研究では、この現象をエンタメ・HCI用途に“見せる”ものとして作り直した点が新しいとされています。\n\nこれは2017年のACM SIGGRAPHで発表されたハードウェア研究（筑波大学デジタルネイチャー研究室・落合陽一氏ら、東京大学やPixie Dust Technologiesも参加）で、公開されたソフトやコードはありません。実演には超伝導体と液体窒素、磁石入りの造形物、冷却を保つ仕組みが必要で、浮遊が持つのはおよそ10分間という制約もあります。実装するなら、この物理を扱えるパートナーと組んで“体験装置”として作り込む前提になります。"
   },
   {
     "id": "ceb-sam-3d-body-v4",
@@ -759,7 +1987,7 @@
     "date": "2026-06",
     "year": "2026",
     "summary": "MetaのSAM 3D BodyをBlenderから直接使えるようにした個人開発アドオンのv4。動画フッテージから3D人体ポーズを推定し、Blender上のアニメーションデータ（モーキャプ）として読み込める。",
-    "point": "Metaの最新3D人体推定モデル「SAM 3D Body」を、研究者向けコードのままではなくBlenderのボタン操作で使えるようにした点がすごい。普通の動画を放り込むだけで俳優のいらないモーションキャプチャが完成し、スタジオも専用スーツも不要。v4では複数のモデル（Fast版・CPP版）を切り替える新ツールが追加された。広告・体験づくりでは、TikTokダンスや店頭で撮ったお客さんの動きをそのままキャラクターアニメに変換するCGM施策や、低予算でのキャラクターMV・バーチャルタレント制作のパイプラインに組み込める。",
+    "point": "MetaがつくったAI『SAM 3D Body』は、1枚の写真から人物の全身の立体形状とポーズを起こせる最新モデルです。このCEBアドオンがすごいのは、それを研究者向けコードのままにせず、Blender（無料で定番の3D制作ソフト）のボタン操作でそのまま使えるようにしたこと。普通の動画を放り込むだけで、俳優も専用スーツもモーキャプ用スタジオもいらずに、キャラクターを動かすためのアニメーションデータ（モーションキャプチャ）が作れます。今回のv4では、処理の重さや使う環境に応じて複数のモデルを切り替えられる新ツールが加わりました。広告や体験づくりでは、TikTokのダンスや店頭でお客さんが撮った動きをそのままキャラクターに移し替えるCGM（ユーザー参加型）施策や、低予算でのキャラクターMV・バーチャルタレント制作のパイプラインに組み込めます。",
     "license": {
       "spdx": null,
       "commercial": "paid",
@@ -794,6 +2022,7 @@
     ],
     "sources": [
       "X Bookmarks"
-    ]
+    ],
+    "detail": "土台となるMetaの『SAM 3D Body』は、1枚の画像から全身の3Dメッシュ（立体の人型）を推定するモデルです。このアドオンは、動画を1コマずつこのモデルにかけて各フレームの姿勢を推定し、それをBlender上の骨（ボーン）アニメーションとしてつなげることで、動画の中の人の動きを3Dキャラクターの動きに変換します。つまり“画像1枚のポーズ推定”を動画に連続適用して、モーションキャプチャに仕立てているわけです。\n\n従来のモーションキャプチャは、反射マーカー付きスーツと複数の赤外線カメラを備えた専用スタジオが必要で、コストも準備も大がかりでした。近年はAIで動画から動きを推定する手法が増えましたが、多くは研究者向けのコードで、3D制作の現場にそのまま持ち込むにはエンジニアの手が要りました。このアドオンは、最新のSAM 3D BodyをBlenderのUIに橋渡しし、非エンジニアでも“動画→3Dアニメ”を試せるようにした点が実用上の違いです。\n\nアドオン本体は作者Carlos Barreto氏（CEB Studios）のPatreon経由で配布される有料ツールです。土台のMeta SAM 3D Body自体は独自の『SAMライセンス』で、公開チェックポイントにはDINOv3-H+（8.4億パラメータ）やViT-H（6.3億パラメータ）などがあります。動かすにはBlenderと、モデル推論に耐えるGPU環境が必要です。商用で使う場合は、アドオンの規約に加え、基盤モデルのSAMライセンスの条件も確認する必要があります。"
   }
 ]

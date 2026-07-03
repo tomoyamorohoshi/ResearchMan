@@ -134,6 +134,7 @@ async function main() {
       year: String(r.date).slice(0, 4),
       summary: r.summaryJa,
       point: r.pointJa,
+      ...(r.detailJa ? { detail: r.detailJa } : {}),
       license: {
         spdx: r.license?.spdx ?? null,
         commercial: r.license?.commercial ?? "none",
