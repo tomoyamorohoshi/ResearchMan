@@ -7,6 +7,10 @@
  *   - 文脈×技術: 「この文脈にこの技術を掛けたらこんな課題を解決できるかも」
  *   - 転用:     「本来の使い方でない使い方をしたらこんなことに役立つかも」
  *
+ * 各種には参照した事例・技術の「高校生でもわかる平易な解説」とRMページURLを付記する
+ * （種の技術名だけでは中身が伝わらないため。2026-07-03 ユーザー要望）。
+ * 参照idは cases.json / tech.json と機械照合し、実在しないidのURLは出さない（誤リンク防止）。
+ *
  * 毎日ランダムサンプリングした事例・技術を素材にし、直近の種の履歴
  * （~/.researchman-idea-history.json）を渡して重複を避ける。
  * 出力: /tmp/researchman-idea-seeds.txt（notify-line.mjs --text-file が送る本文）
@@ -17,8 +21,9 @@
 import fs from "fs/promises";
 import os from "os";
 import path from "path";
-import { execFileSync, spawnSync } from "child_process";
+import { spawnSync } from "child_process";
 import { fileURLToPath } from "url";
+import { resolveClaudeBin } from "./lib/claude-cli.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CASES_PATH = path.join(__dirname, "../data/cases.json");
@@ -35,21 +40,7 @@ const HISTORY_KEEP = 60; // 履歴に保持する種の数
 const HISTORY_IN_PROMPT = 20; // プロンプトに渡す「最近の種」の数
 const MODEL = "sonnet";
 const TIMEOUT_MS = 420000;
-
-function resolveClaudeBin() {
-  const CLAUDE_PATHS = ["/Users/tm/.local/bin/claude", "/usr/local/bin/claude", "/opt/homebrew/bin/claude"];
-  try {
-    return execFileSync("which", ["claude"], { encoding: "utf-8" }).trim();
-  } catch {
-    for (const p of CLAUDE_PATHS) {
-      try {
-        execFileSync(p, ["--version"], { encoding: "utf-8" });
-        return p;
-      } catch {}
-    }
-  }
-  return "claude";
-}
+const SITE = "https://research-man.vercel.app";
 
 function sample(arr, n) {
   const a = [...arr];
@@ -58,6 +49,11 @@ function sample(arr, n) {
     [a[i], a[j]] = [a[j], a[i]];
   }
   return a.slice(0, n);
+}
+
+// 参照id復元用のタイトル正規化（日本語も残す。記号・空白のみ除去）
+function normTitle(s) {
+  return (s || "").toLowerCase().replace(/[\s　（）()【】\[\]、。・,.:：/|]/g, "");
 }
 
 function buildPrompt({ caseLines, techLines, recentSeeds }) {
@@ -69,10 +65,10 @@ function buildPrompt({ caseLines, techLines, recentSeeds }) {
 - 文脈×技術: 「（事例が扱った文脈・課題）にこの技術を掛けたら、こんな課題を解決できるかも」
 - 転用: 「この技術を本来の使い方ではない使い方をしたら、こんなことに役立つかも」
 
-# 素材A: 過去の事例（企画性・文脈の source）
+# 素材A: 過去の事例（企画性・文脈の source）。各行の先頭 [id] は参照用
 ${caseLines}
 
-# 素材B: 技術（Technology タブより）
+# 素材B: 技術（Technology タブより）。各行の先頭 [id] は参照用
 ${techLines}
 
 # ルール
@@ -81,10 +77,12 @@ ${techLines}
 - 同じ技術は最大2回まで。素材の名前（技術名・事例名）を種の文中に含める
 - 意外な掛け合わせ・飛距離を優先。ありきたりな「AIで効率化」的な種は不可
 - 最近出した種と似たものは避ける: ${recentSeeds || "（履歴なし）"}
+- 各種で参照した事例・技術を refs に列挙する。id は上の素材の [id] を**そのまま正確に**転記する（創作・改変禁止）
+- refs の desc は、その事例/技術が「何なのか」を高校生でもわかる平易な言葉で正確かつ端的に説明する1文（40〜70字）。素材に書かれた内容だけを根拠にし、無い情報を足さない
 
 # 出力
 JSON配列のみ（前置き・後書きなし）:
-[{"pattern": "技術×技術|文脈×技術|転用", "seed": "..."}]`;
+[{"pattern": "技術×技術|文脈×技術|転用", "seed": "...", "refs": [{"type": "case", "id": "...", "desc": "..."}, {"type": "tech", "id": "...", "desc": "..."}]}]`;
 }
 
 async function main() {
@@ -92,11 +90,19 @@ async function main() {
   const cases = JSON.parse(await fs.readFile(CASES_PATH, "utf-8"));
   const tech = JSON.parse(await fs.readFile(TECH_PATH, "utf-8"));
 
-  const caseLines = sample(cases, CASE_SAMPLE)
-    .map((c) => `- ${c.title}（${c.client || "?"}）: ${(c.summary || "").slice(0, 80)}`)
+  // 参照解決用のインデックス（id直引き＋正規化タイトルからの復元）
+  const caseById = new Map(cases.map((c) => [c.id, c]));
+  const techById = new Map(tech.map((t) => [t.id, t]));
+  const caseByTitle = new Map(cases.map((c) => [normTitle(c.title), c]));
+  const techByTitle = new Map(tech.map((t) => [normTitle(t.title), t]));
+
+  const sampledCases = sample(cases, CASE_SAMPLE);
+  const sampledTech = sample(tech, TECH_SAMPLE);
+  const caseLines = sampledCases
+    .map((c) => `- [${c.id}] ${c.title}（${c.client || "?"}）: ${(c.summary || "").slice(0, 90)}`)
     .join("\n");
-  const techLines = sample(tech, TECH_SAMPLE)
-    .map((t) => `- ${t.title}［${t.type}/${(t.domains || []).join(",")}］: ${(t.summary || "").slice(0, 90)}`)
+  const techLines = sampledTech
+    .map((t) => `- [${t.id}] ${t.title}［${t.type}/${(t.domains || []).join(",")}］: ${(t.summary || "").slice(0, 100)}`)
     .join("\n");
 
   let history = [];
@@ -134,17 +140,51 @@ async function main() {
   }
   seeds = seeds.slice(0, SEED_COUNT);
 
+  // 参照を実データに解決（id直引き→タイトル復元。解決できなければURLを出さない）
+  function resolveRef(ref) {
+    const type = ref.type === "tech" ? "tech" : "case";
+    const byId = type === "tech" ? techById : caseById;
+    const byTitle = type === "tech" ? techByTitle : caseByTitle;
+    let entry = byId.get(ref.id);
+    if (!entry) entry = byTitle.get(normTitle(ref.id)) || byTitle.get(normTitle(ref.name));
+    if (!entry) return null;
+    const route = type === "tech" ? "technology" : "cases";
+    // desc はモデル生成を優先し、無ければ実データの要約にフォールバック
+    const desc = (ref.desc || "").trim() || (entry.summary || "").slice(0, 70);
+    return { type, id: entry.id, name: entry.title, desc, url: `${SITE}/${route}/${entry.id}` };
+  }
+
+  let refResolved = 0;
+  let refDropped = 0;
+  const shownRefs = new Set(); // 同一refの解説重複を避ける（2回目以降は名前+URLのみ）
   const d = new Date();
   const lines = [`💡 アイデアの種 ${d.getMonth() + 1}/${d.getDate()}（Case Study × Technology）`, ""];
+
   seeds.forEach((s, i) => {
     lines.push(`${i + 1}.【${s.pattern}】${s.seed}`);
     lines.push("");
+    for (const ref of s.refs || []) {
+      const r = resolveRef(ref);
+      if (!r) {
+        refDropped++;
+        continue;
+      }
+      refResolved++;
+      if (shownRefs.has(r.id)) {
+        lines.push(`${r.name}：${r.url}`);
+      } else {
+        shownRefs.add(r.id);
+        lines.push(`${r.name}：${r.desc}`);
+        lines.push(r.url);
+      }
+    }
+    lines.push("");
   });
-  lines.push("https://research-man.vercel.app/technology");
-  const text = lines.join("\n");
+  lines.push(`${SITE}/technology`);
+  const text = lines.join("\n").replace(/\n{3,}/g, "\n\n");
 
   await fs.writeFile(OUT_PATH, text);
-  console.log(`✅ ${seeds.length}個生成 → ${OUT_PATH}（${text.length}字）`);
+  console.log(`✅ ${seeds.length}個生成 → ${OUT_PATH}（${text.length}字 / ref解決${refResolved}・欠落${refDropped}）`);
   console.log(text);
 
   if (!DRY_RUN) {

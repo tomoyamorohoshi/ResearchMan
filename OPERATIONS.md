@@ -77,8 +77,12 @@ launchd `com.researchman.ideaseeds` が毎朝10時、Case Study（企画性）×
 掛け合わせで「アイデアの種」10個をLINE配信する。
 - `scripts/generate-idea-seeds.mjs`: 事例14件+技術12件を毎日ランダムサンプリングし、
   Claude CLI（sonnet）が「技術×技術 / 文脈×技術 / 転用」の3パターン混合で生成
+- **各種に参照事例・技術の平易な解説（高校生でもわかる1文）とRMページURLを付記**（2026-07-03）。
+  参照idは cases.json/tech.json と機械照合し、実在しないidのURLは出さない（誤リンク防止）。
+  同一refが複数の種に出たら2回目以降はURL行のみ（解説の重複回避）
 - 重複回避: 直近60個の種を `~/.researchman-idea-history.json` に保持しプロンプトで回避
-- 配信: `notify-line.mjs --text-file /tmp/researchman-idea-seeds.txt`（本文そのまま送信モード）
+- 配信: `notify-line.mjs --text-file /tmp/researchman-idea-seeds.txt`（本文そのまま送信モード）。
+  ref付きで本文が長くなるため、4,800字超は空行境界で最大5メッセージに自動分割して送信
 - 状態: `.last-idea-seeds-run.txt`、ログ: `~/Library/Logs/researchman-ideas.log`。
   収集2本と同じ排他ロックで直列化されるため、配信は収集完了後になる。生成エラー時は
   「❌ IdeaSeeds: 収集がエラー終了」を通知して翌朝再挑戦

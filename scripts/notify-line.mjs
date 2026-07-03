@@ -135,15 +135,45 @@ function buildText(summary, head) {
   return lines.join("\n");
 }
 
+// LINE の1メッセージは5,000字上限・1リクエストで最大5メッセージ。
+// ref付きアイデアの種は数千字になりうるため、空行（種の境界）で分割する。
+const LINE_MSG_LIMIT = 4800;
+const LINE_MAX_MESSAGES = 5;
+
+function splitForLine(text) {
+  if (text.length <= LINE_MSG_LIMIT) return [text];
+  // 空行区切りブロック（見出し＋各種）を、上限内で貪欲に結合する
+  const blocks = text.split(/\n\n+/);
+  const messages = [];
+  let cur = "";
+  for (const b of blocks) {
+    const piece = cur ? `${cur}\n\n${b}` : b;
+    if (piece.length > LINE_MSG_LIMIT && cur) {
+      messages.push(cur);
+      cur = b;
+    } else {
+      cur = piece;
+    }
+  }
+  if (cur) messages.push(cur);
+  // 最大5メッセージに収める（超過分は末尾メッセージへ結合。上限超過は稀）
+  if (messages.length > LINE_MAX_MESSAGES) {
+    const head = messages.slice(0, LINE_MAX_MESSAGES - 1);
+    const tail = messages.slice(LINE_MAX_MESSAGES - 1).join("\n\n").slice(0, LINE_MSG_LIMIT);
+    return [...head, tail];
+  }
+  return messages;
+}
+
 function sendMessage(cfg, text) {
   // to があれば push（特定userId宛）、無ければ broadcast（全友だち宛）
   const url = cfg.to ? PUSH_URL : BROADCAST_URL;
+  const texts = splitForLine(text);
   return new Promise((resolve) => {
     let settled = false;
     const settle = (v) => { if (settled) return; settled = true; resolve(v); };
-    const payload = cfg.to
-      ? { to: cfg.to, messages: [{ type: "text", text }] }
-      : { messages: [{ type: "text", text }] };
+    const messages = texts.map((t) => ({ type: "text", text: t }));
+    const payload = cfg.to ? { to: cfg.to, messages } : { messages };
     const body = JSON.stringify(payload);
     const req = https.request(
       url,
@@ -193,8 +223,9 @@ async function main() {
   }
 
   if (DRY_RUN) {
-    log("--dry-run（送信しません）");
-    console.log("--- LINE message ---\n" + text);
+    const parts = splitForLine(text);
+    log(`--dry-run（送信しません）本文${text.length}字 → ${parts.length}メッセージに分割`);
+    parts.forEach((p, i) => console.log(`--- LINE message ${i + 1}/${parts.length}（${p.length}字）---\n${p}`));
     return;
   }
 
