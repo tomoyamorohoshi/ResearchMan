@@ -32,6 +32,7 @@ import { isUrlAlive, fetchYouTubeInfo, videoMatchesCase } from "./verify-video.m
 import { resolveClaudeBin, runClaudeJson } from "./lib/claude-cli.mjs";
 import { localDayIndex } from "./lib/day-index.mjs";
 import { logRejection } from "./lib/rejection-log.mjs";
+import { buildExistingTitlesText } from "./lib/existing-titles.mjs";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -305,8 +306,11 @@ async function main() {
   const existingCases = JSON.parse(await fs.readFile(CASES_PATH, "utf-8"));
   const existingIds = new Set(existingCases.map((c) => c.id));
   const existingTitleKeys = new Set(existingCases.map((c) => normTitle(c.title)));
-  // 全既存タイトルを渡す（以前は直近30件のみ→モデルが既出の有名事例を再提案し全滅していた）
-  const existingTitles = existingCases.map((c) => c.title).join(" / ");
+  // プロンプトには全既存タイトルを渡すのが基本（直近30件のみだと既出の有名事例を再提案し全滅していた）。
+  // 600件超になったらプロンプト肥大化を避けてサンプリングに切替える（buildExistingTitlesText参照）。
+  // 重複の最終防波堤は上記の existingIds/existingTitleKeys（全件・常時）でありここでは削らない。
+  const { text: existingTitles, mode: existingTitlesMode } = buildExistingTitlesText(existingCases);
+  if (existingTitlesMode !== "full") console.log(`既存タイトル提示モード: ${existingTitlesMode}`);
 
   const lastRunDate = await getLastRunDate();
   const daysSince = Math.round((Date.now() - lastRunDate) / (1000 * 60 * 60 * 24));

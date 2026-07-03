@@ -99,6 +99,7 @@ launchd `com.researchman.ideaseeds` が毎朝10時、Case Study（企画性）×
 | `npm run self-heal` | サムネイル健全性チェック＋修復（`--dry-run` 可） |
 | `npm run audit:integrity` | 全事例の機械検証（サムネ/videoId/リンク/テキスト）。`--out report.json` 可 |
 | `npm run verify:deploy` | HEAD が本番に反映されたか確認（最大360秒） |
+| `cat logs/rejections-YYYY-MM.jsonl` | 却下候補ログ（2026-07-04新設・gitignored）。収集パイプラインが採用しなかった候補の理由を月次蓄積。`jq -s 'group_by(.reason)\|map({reason:.[0].reason,n:length})' logs/rejections-2026-07.jsonl` で理由別集計。link-dead/thumbnail-unavailableが急増したら収集元の劣化を疑う |
 | `npm run audit:cannes` / `audit:cannes:strict` | Cannes網羅監査。`:strict`はレベル不一致・余分事例のWARNもexit 1にする |
 | `npm run audit:tech` | Technology（tech.json）のフィールド/語彙/サムネイル整合検査 |
 
@@ -133,9 +134,16 @@ const settle = (v) => { if (settled) return; settled = true; resolve(v); };
 ### その他の教訓
 
 - **dry-run がスケジュールを消費しない**こと（`saveLastRunDate` は `!DRY_RUN` ガード必須）
-- 発見プロンプトには**全既存タイトル**を渡す（直近30件だけ渡すと既出の有名事例を再提案し全滅する）
+- 発見プロンプトには**全既存タイトル**を渡す（直近30件だけ渡すと既出の有名事例を再提案し全滅する）。
+  600件超では「直近400＋ランダム200」にサンプリングして肥大化を防ぐ（`scripts/lib/existing-titles.mjs`。
+  2026-07-04追加。ただし機械照合=existingIds/existingTitleKeysは常に全件で行い重複はここでは削らない）
 - 「ytimg が 200」だけではサムネ検証にならない。**必ず oEmbed でタイトルを取り事例と照合**（`verify-video.mjs` を共用）
 - macOS に `timeout` コマンドは無い（GNU coreutils）。シェルで使わない
+- **`main()` をトップレベルで即実行するスクリプト（auto-research-cc.mjs等）を `import()` しない**こと。
+  中の関数を単体テストしたくて `import("./auto-research-cc.mjs")` すると、そのままClaude CLI発見
+  フェーズが本番同様に起動してしまう（`--dry-run` はargv判定なのでimportには効かない）。
+  2026-07-04に実際に発生（幸いcases.json書き込み前に停止でき実害なし）。単体テストしたい関数は
+  `scripts/lib/` に切り出し、そちらだけをimportする
 
 ## 5. audit-integrity の結果の読み方（誤検知に注意）
 
