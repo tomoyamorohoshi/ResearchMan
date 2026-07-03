@@ -1,0 +1,10 @@
+#!/bin/sh
+# 監査ゲート：Cannes 2026網羅・サムネイル健全性・Technology整合に問題があればpushを中止。
+# このファイルはリポジトリの原本。実際に効くのは .git/hooks/pre-push（git管理外）なので、
+# 変更したら必ず反映すること: cp scripts/hooks/pre-push .git/hooks/pre-push
+echo "[pre-push] Running Cannes 2026 coverage audit..."
+node scripts/audit-cannes.mjs || { echo "[pre-push] 監査失敗：抜け漏れがあります。push を中止しました。"; exit 1; }
+echo "[pre-push] Running thumbnail health audit..."
+node scripts/audit-thumbnails.mjs || { echo "[pre-push] サムネ監査失敗：プレースホルダ/重複があります。push を中止しました。"; exit 1; }
+echo "[pre-push] Running Technology integrity audit..."
+node scripts/audit-tech.mjs || { echo "[pre-push] Technology監査失敗：フィールド/語彙/サムネイルに問題があります。push を中止しました。"; exit 1; }

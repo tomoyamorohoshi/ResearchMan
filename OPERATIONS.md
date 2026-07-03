@@ -91,11 +91,16 @@ launchd `com.researchman.ideaseeds` が毎朝10時、Case Study（企画性）×
 
 | コマンド | 用途 |
 |---|---|
-| `npm run auto-research:cc:dry` | 収集のフルテスト。cases.json 更新なし・スケジュール消費なし・サムネイル自動掃除 |
+| `npm run auto-research:cc:dry` / `auto-research:tech:dry` | 収集のフルテスト。データ更新なし・スケジュール消費なし・サムネイル自動掃除 |
+| `npm run ideas:dry` | アイデアの種のフルテスト。履歴・状態を消費しない |
 | `npm run self-heal` | サムネイル健全性チェック＋修復（`--dry-run` 可） |
-| `node scripts/audit-integrity.mjs` | 全事例の機械検証（サムネ/videoId/リンク/テキスト）。`--out report.json` 可 |
-| `node scripts/verify-deploy.mjs` | HEAD が本番に反映されたか確認（最大360秒） |
-| `npm run audit:cannes` / `audit:thumbnails` | **pre-push hook で自動実行**。失敗すると push が中止される |
+| `npm run audit:integrity` | 全事例の機械検証（サムネ/videoId/リンク/テキスト）。`--out report.json` 可 |
+| `npm run verify:deploy` | HEAD が本番に反映されたか確認（最大360秒） |
+| `npm run audit:cannes` / `audit:cannes:strict` | Cannes網羅監査。`:strict`はレベル不一致・余分事例のWARNもexit 1にする |
+| `npm run audit:tech` | Technology（tech.json）のフィールド/語彙/サムネイル整合検査 |
+| `npm run audit:cannes` / `audit:thumbnails` / `audit:tech` | **pre-push hook で自動実行**（既定モード）。失敗すると push が中止される。
+  hook原本は `scripts/hooks/pre-push`（git管理下）。実際に効くのは `.git/hooks/pre-push`（git管理外）なので、
+  hookを変更したら必ず `cp scripts/hooks/pre-push .git/hooks/pre-push` で反映すること |
 
 ## 4. 過去に踏んだ重大バグと再発防止ルール
 
