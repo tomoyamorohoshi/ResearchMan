@@ -7,6 +7,19 @@ export function generateStaticParams() {
   return techItems.map((t) => ({ slug: t.id }));
 }
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const t = getTechById(slug);
+  if (!t) return { title: "Not Found — ResearchMan" };
+  const title = `${t.title} — ResearchMan Technology`;
+  return {
+    title,
+    description: t.summary,
+    openGraph: { title, description: t.summary, images: [t.thumbnail], type: "article" },
+    twitter: { card: "summary_large_image", title, description: t.summary, images: [t.thumbnail] },
+  };
+}
+
 export default async function TechPage({
   params,
 }: {

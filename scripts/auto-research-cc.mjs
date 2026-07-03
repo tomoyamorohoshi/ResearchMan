@@ -24,11 +24,13 @@
  *   node scripts/auto-research-cc.mjs --dry-run
  */
 
-import { execFileSync, spawnSync } from "child_process";
+import { spawnSync } from "child_process";
 import fs from "fs/promises";
 import path from "path";
 import { saveThumbnail, saveThumbnailFromPage } from "./save-thumbnail.mjs";
 import { isUrlAlive, fetchYouTubeInfo, videoMatchesCase } from "./verify-video.mjs";
+import { resolveClaudeBin, runClaudeJson } from "./lib/claude-cli.mjs";
+import { localDayIndex } from "./lib/day-index.mjs";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -98,48 +100,7 @@ async function saveLastRunDate() {
 
 // ── Claude CLI ───────────────────────────────────────────────
 
-function resolveClaudeBin() {
-  const CLAUDE_PATHS = ["/Users/tm/.local/bin/claude", "/usr/local/bin/claude", "/opt/homebrew/bin/claude"];
-  try {
-    return execFileSync("which", ["claude"], { encoding: "utf-8" }).trim();
-  } catch {
-    for (const p of CLAUDE_PATHS) {
-      try {
-        execFileSync(p, ["--version"], { encoding: "utf-8" });
-        return p;
-      } catch {}
-    }
-  }
-  return "claude";
-}
-
-// Claude CLI を1回呼び、出力から最初のJSONブロックを抽出して返す
-function runClaudeJson(claudeBin, prompt, { timeout, marker }) {
-  const result = spawnSync(
-    claudeBin,
-    ["--print", "--model", MODEL, "--allowedTools=WebSearch", "--dangerously-skip-permissions", prompt],
-    { encoding: "utf-8", timeout, maxBuffer: 1024 * 1024 * 20, stdio: ["ignore", "pipe", "pipe"] }
-  );
-  if (result.error) throw new Error(`Claude CLI エラー: ${result.error.message}`);
-  if (result.status !== 0) {
-    // CLIはエラーをstdout側に出すことがある（usage limit等）ため両方を報告する
-    const detail = [result.stderr, result.stdout].filter(Boolean).join(" | ").slice(0, 400);
-    throw new Error(`Claude CLI 終了コード ${result.status}: ${detail}`);
-  }
-  const output = result.stdout || "";
-  const re = new RegExp(`\\{[\\s\\S]*${marker}[\\s\\S]*\\}`);
-  const m = output.match(re);
-  if (!m) {
-    console.error(`JSONが見つかりません（marker=${marker}）。出力先頭400字:\n${output.slice(0, 400)}`);
-    return null;
-  }
-  try {
-    return JSON.parse(m[0]);
-  } catch (e) {
-    console.error("JSON解析エラー:", e.message);
-    return null;
-  }
-}
+// Claude CLI 呼び出しは scripts/lib/claude-cli.mjs に共通化（resolveClaudeBin/runClaudeJson）
 
 // ── Phase A: 発見（軽量リスト） ──────────────────────────────
 
@@ -172,9 +133,8 @@ function buildDiscoveryPrompt({ lastRunDate, existingTitles, seenThisRun, round 
   const lastRun = lastRunDate.toLocaleDateString("ja-JP", { year: "numeric", month: "long", day: "numeric" });
   const daysDiff = Math.max(1, Math.round((now - lastRunDate) / (1000 * 60 * 60 * 24)));
 
-  // 日単位でスタート位置を回すことで、目標に早く達した日でもテーマの偏りが蓄積しない
-  const dayIndex = Math.floor(now.getTime() / (1000 * 60 * 60 * 24));
-  const focus = ROUND_FOCI[(dayIndex + round - 1) % ROUND_FOCI.length];
+  // 日単位でスタート位置を回すことで、目標に早く達した日でもテーマの偏りが蓄積しない（JST暦日基準）
+  const focus = ROUND_FOCI[(localDayIndex(now) + round - 1) % ROUND_FOCI.length];
 
   const retryNote =
     round > 1
@@ -370,7 +330,7 @@ async function main() {
       const parsed = runClaudeJson(
         claudeBin,
         buildDiscoveryPrompt({ lastRunDate, existingTitles, seenThisRun, round }),
-        { timeout: DISCOVER_TIMEOUT_MS, marker: '"found"' }
+        { timeout: DISCOVER_TIMEOUT_MS, marker: '"found"', model: MODEL, allowedTools: "WebSearch" }
       );
       found = parsed?.found || [];
     } catch (e) {
@@ -419,6 +379,8 @@ async function main() {
         const art = runClaudeJson(claudeBin, buildArticlePrompt(cand, vocab), {
           timeout: ARTICLE_TIMEOUT_MS,
           marker: '"overview"',
+          model: MODEL,
+          allowedTools: "WebSearch",
         });
         if (!art || !(art.summary || "").trim() || (art.overview || "").length < 50) {
           console.log("✗ 生成失敗/説明不足 → 却下");

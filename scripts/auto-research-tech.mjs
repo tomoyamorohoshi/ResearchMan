@@ -14,12 +14,13 @@
 import fs from "fs/promises";
 import path from "path";
 import os from "os";
-import { execFileSync, spawnSync } from "child_process";
+import { spawnSync } from "child_process";
 import { fileURLToPath } from "url";
+import { resolveClaudeBin, runClaudeJsonArray } from "./lib/claude-cli.mjs";
+import { localDayIndex } from "./lib/day-index.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const TECH_PATH = path.join(__dirname, "../data/tech.json");
-const VOCAB_PATH = path.join(__dirname, "../data/tech-tag-vocabulary.json");
 const LAST_RUN_PATH = path.join(__dirname, "../.last-tech-research-run.txt");
 const DRY_RUN = process.argv.includes("--dry-run");
 
@@ -58,46 +59,7 @@ const LANES = [
   },
 ];
 
-function resolveClaudeBin() {
-  const CLAUDE_PATHS = ["/Users/tm/.local/bin/claude", "/usr/local/bin/claude", "/opt/homebrew/bin/claude"];
-  try {
-    return execFileSync("which", ["claude"], { encoding: "utf-8" }).trim();
-  } catch {
-    for (const p of CLAUDE_PATHS) {
-      try {
-        execFileSync(p, ["--version"], { encoding: "utf-8" });
-        return p;
-      } catch {}
-    }
-  }
-  return "claude";
-}
-
-// Claude CLI を1回呼び、出力から最初のJSON配列を抽出して返す
-function runClaudeJsonArray(claudeBin, prompt, { timeout }) {
-  const result = spawnSync(
-    claudeBin,
-    ["--print", "--model", MODEL, "--allowedTools=WebSearch,WebFetch", "--dangerously-skip-permissions", prompt],
-    { encoding: "utf-8", timeout, maxBuffer: 1024 * 1024 * 20, stdio: ["ignore", "pipe", "pipe"] }
-  );
-  if (result.error) throw new Error(`Claude CLI エラー: ${result.error.message}`);
-  if (result.status !== 0) {
-    const detail = [result.stderr, result.stdout].filter(Boolean).join(" | ").slice(0, 400);
-    throw new Error(`Claude CLI 終了コード ${result.status}: ${detail}`);
-  }
-  const output = result.stdout || "";
-  const m = output.match(/\[[\s\S]*"techName"[\s\S]*\]/);
-  if (!m) {
-    console.error(`候補JSONが見つかりません。出力先頭400字:\n${output.slice(0, 400)}`);
-    return [];
-  }
-  try {
-    return JSON.parse(m[0]);
-  } catch (e) {
-    console.error("JSON解析エラー:", e.message);
-    return [];
-  }
-}
+// Claude CLI 呼び出しは scripts/lib/claude-cli.mjs に共通化（resolveClaudeBin/runClaudeJsonArray）
 
 function buildPrompt({ lane, existingTitles, seenThisRun }) {
   return `ResearchManサイト「Technology」タブの日次リサーチ。担当レーン: ${lane.label}
@@ -150,9 +112,8 @@ async function main() {
   const existingTitles = [...tech.map((t) => t.title), ...KNOWN_EXCLUDED].join(" / ");
   console.log(`既存: ${tech.length}件`);
 
-  // 日替わりレーン（年間通算日でローテーション）
-  const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
-  const lane = LANES[dayOfYear % LANES.length];
+  // 日替わりレーン（JST暦日でローテーション。4レーンを順に巡回）
+  const lane = LANES[localDayIndex() % LANES.length];
   console.log(`本日のレーン: ${lane.label}\n`);
 
   const claudeBin = resolveClaudeBin();
@@ -168,6 +129,9 @@ async function main() {
     try {
       found = runClaudeJsonArray(claudeBin, buildPrompt({ lane, existingTitles, seenThisRun }), {
         timeout: DISCOVER_TIMEOUT_MS,
+        marker: "techName",
+        model: MODEL,
+        allowedTools: "WebSearch,WebFetch",
       });
     } catch (e) {
       console.error(`発見フェーズ失敗: ${e.message}`);

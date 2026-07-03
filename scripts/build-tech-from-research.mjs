@@ -26,7 +26,7 @@ const THUMB_DIR = path.join(__dirname, "../public/thumbnails/tech");
 const DRY_RUN = process.argv.includes("--dry-run");
 const inputFiles = process.argv.slice(2).filter((a) => !a.startsWith("--"));
 
-const MIN_THUMB_BYTES = 5000; // これ未満はプレースホルダ疑いとして不採用（Case Studyと同基準）
+// サムネイルの下限バイト数チェックは tech-thumbs.mjs の MIN_THUMB_BYTES / fetchThumbBuf 側で実施
 
 function toId(name) {
   return name

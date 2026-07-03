@@ -13,6 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  // 各ページの相対og:image（/thumbnails/...）を絶対URLへ解決するための基点
+  metadataBase: new URL("https://research-man.vercel.app"),
   title: "ResearchMan — Creative Case Archive",
   description: "Cannes Lions / D&AD / Clio / ACC — 世界と国内のクリエイティブ事例アーカイブ",
   icons: {

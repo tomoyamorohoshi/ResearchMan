@@ -43,7 +43,7 @@ for (const c of cases) {
   if (BAD_HASHES[h]) { console.log(`✗ PLACEHOLDER: ${c.id} = ${BAD_HASHES[h]}`); fail++; }
   (hashToIds[h] = hashToIds[h] || []).push(c.id);
 }
-for (const [h, ids] of Object.entries(hashToIds)) {
+for (const ids of Object.values(hashToIds)) {
   if (ids.length < 2) continue;
   const key = ids.slice().sort().join("|");
   if (ALLOWED_DUP_GROUPS.includes(key)) continue; // 正規バリアント

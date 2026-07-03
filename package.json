@@ -13,7 +13,15 @@
     "check-links": "node scripts/check-links.mjs",
     "auto-research:cc": "node scripts/auto-research-cc.mjs",
     "auto-research:cc:dry": "node scripts/auto-research-cc.mjs --dry-run",
-    "self-heal": "node scripts/self-heal-thumbnails.mjs"
+    "auto-research:tech": "node scripts/auto-research-tech.mjs",
+    "auto-research:tech:dry": "node scripts/auto-research-tech.mjs --dry-run",
+    "ideas": "node scripts/generate-idea-seeds.mjs",
+    "ideas:dry": "node scripts/generate-idea-seeds.mjs --dry-run",
+    "self-heal": "node scripts/self-heal-thumbnails.mjs",
+    "audit:integrity": "node scripts/audit-integrity.mjs",
+    "verify:deploy": "node scripts/verify-deploy.mjs",
+    "refresh:tech-thumbs": "node scripts/refresh-tech-thumbnails.mjs",
+    "notify:line:dry": "node scripts/notify-line.mjs --dry-run"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.105.0",

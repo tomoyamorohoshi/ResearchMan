@@ -174,7 +174,6 @@ async function fromPage(url) {
 // Claude CLIで公式動画のYouTube IDを検索
 function claudeFindVideoId(c) {
   if (!CLAUDE_BIN) return null;
-  const q = `"${c.title}" ${c.client || ""} ${c.agency || ""} Cannes Lions 2026 case film`;
   const prompt = `Search YouTube and the web for the OFFICIAL case film or campaign video for this Cannes Lions 2026 winning advertising campaign:
 Title: ${c.title}
 Brand: ${c.client}

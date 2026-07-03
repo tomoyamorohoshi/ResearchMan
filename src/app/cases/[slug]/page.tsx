@@ -9,6 +9,19 @@ export function generateStaticParams() {
   return cases.map((c) => ({ slug: c.id }));
 }
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const c = getCaseById(slug);
+  if (!c) return { title: "Not Found — ResearchMan" };
+  const title = `${c.title} — ResearchMan`;
+  return {
+    title,
+    description: c.summary,
+    openGraph: { title, description: c.summary, images: [c.thumbnail], type: "article" },
+    twitter: { card: "summary_large_image", title, description: c.summary, images: [c.thumbnail] },
+  };
+}
+
 export default async function CasePage({
   params,
 }: {
