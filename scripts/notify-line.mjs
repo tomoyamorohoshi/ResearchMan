@@ -70,7 +70,9 @@ function loadConfig() {
 }
 
 // サマリーが古い（=今回の実行が書いたものでない）場合は0件として扱う。
-// 収集スクリプトがクラッシュした回に、前回の追加分を「新規」として再通知する事故を防ぐ
+// 収集スクリプトがクラッシュした回に、前回の追加分を「新規」として再通知する事故を防ぐ。
+// verify-deploy.mjsのLAST_ADD_MAX_AGE_MS(2h)より緩いのは意図的: notify-lineは
+// git競合ロック待ち・毎正時キャッチアップ実行による遅延分を許容する必要があるため
 const SUMMARY_MAX_AGE_MS = 6 * 60 * 60 * 1000;
 
 function loadSummary() {

@@ -27,7 +27,10 @@ const SITE = "https://research-man.vercel.app";
 const MAX_TRIES = 45;      // 45回 × ~8秒 ≒ 6分（SSG 450ページ超のVercelビルドは3分を超えることがある）
 const INTERVAL_MS = 8000;
 const LAST_ADD_PATH = "/tmp/researchman-last-add.json";
-const LAST_ADD_MAX_AGE_MS = 2 * 60 * 60 * 1000; // 古いサマリーで誤検証しない
+// 古いサマリーで誤検証しない。verify-deployはpush直後の同一パイプライン実行内で
+// 即座に読むため2hで十分短い（notify-line.mjsのSUMMARY_MAX_AGE_MS=6hより厳しいのは意図的。
+// notify-line側はロック待ち・キャッチアップ実行での遅延を許容する必要があるため）
+const LAST_ADD_MAX_AGE_MS = 2 * 60 * 60 * 1000;
 
 const thumbs = process.argv.slice(2).filter((a) => a.startsWith("/thumbnails/"));
 
