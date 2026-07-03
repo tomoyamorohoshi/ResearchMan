@@ -5,7 +5,7 @@
  * 検出はレポートのみ。tech.jsonの書き換えは行わない（人がレビューして
  * apply-tech-rewrites.mjs で個別適用する）。
  *
- * 使い方: node scripts/factcheck-tech.mjs [--n 10] [--out report.json]
+ * 使い方: node scripts/factcheck-tech.mjs [--n 10] [--out report.json] [--exclude id1,id2,...]
  */
 import fs from "fs/promises";
 import path from "path";
@@ -20,6 +20,8 @@ const nIdx = process.argv.indexOf("--n");
 const SAMPLE_SIZE = nIdx >= 0 ? parseInt(process.argv[nIdx + 1], 10) : 10;
 const outIdx = process.argv.indexOf("--out");
 const OUT_PATH = outIdx >= 0 ? process.argv[outIdx + 1] : null;
+const excludeIdx = process.argv.indexOf("--exclude");
+const EXCLUDE_IDS = new Set(excludeIdx >= 0 ? process.argv[excludeIdx + 1].split(",") : []);
 
 function pickPrimaryLink(links) {
   return (links || []).find((l) => ["github", "project", "product", "paper"].includes(l.kind)) || links?.[0];
@@ -54,7 +56,7 @@ detail: ${t.detail}
 
 async function main() {
   const tech = JSON.parse(await fs.readFile(TECH_PATH, "utf-8"));
-  const pool = [...tech];
+  const pool = tech.filter((t) => !EXCLUDE_IDS.has(t.id));
   const sample = [];
   for (let i = 0; i < SAMPLE_SIZE && pool.length; i++) {
     const idx = Math.floor(Math.random() * pool.length);
