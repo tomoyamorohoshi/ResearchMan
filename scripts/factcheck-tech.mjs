@@ -86,6 +86,10 @@ async function main() {
       } else {
         console.log("✓ 誤りなし");
       }
+      // 長時間実行タスクなので、途中でkillされても結果を失わないよう都度追記保存する
+      if (OUT_PATH && found.length) {
+        await fs.appendFile(OUT_PATH + ".partial.jsonl", found.map((f) => JSON.stringify(f)).join("\n") + "\n");
+      }
     } catch (e) {
       console.log(`✗ 検証失敗: ${e.message}`);
     }
@@ -97,6 +101,9 @@ async function main() {
   if (OUT_PATH) {
     await fs.writeFile(OUT_PATH, JSON.stringify(issues, null, 2));
     console.log(`\nレポート: ${OUT_PATH}`);
+    try {
+      await fs.unlink(OUT_PATH + ".partial.jsonl");
+    } catch {}
   }
 
   if (issues.length >= 2) {
