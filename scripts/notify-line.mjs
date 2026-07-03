@@ -27,7 +27,16 @@ import { execSync } from "child_process";
 
 const DRY_RUN = process.argv.includes("--dry-run");
 const CONFIG_PATH = path.join(os.homedir(), ".researchman-line.json");
-const LAST_ADD_PATH = "/tmp/researchman-last-add.json";
+// Technology日次収集からも流用できるよう、サマリーの場所・リンク経路・ラベルを引数で差し替え可能。
+// 無引数なら従来どおりCase Study用（後方互換）。
+//   例: node scripts/notify-line.mjs --summary /tmp/researchman-tech-last-add.json --route technology --label Technology
+const argOf = (name, fallback) => {
+  const i = process.argv.indexOf(name);
+  return i >= 0 && process.argv[i + 1] ? process.argv[i + 1] : fallback;
+};
+const LAST_ADD_PATH = argOf("--summary", "/tmp/researchman-last-add.json");
+const ROUTE = argOf("--route", "cases");
+const LABEL = argOf("--label", "");
 const SITE = "https://research-man.vercel.app";
 const PUSH_URL = "https://api.line.me/v2/bot/message/push";
 const BROADCAST_URL = "https://api.line.me/v2/bot/message/broadcast";
@@ -74,18 +83,18 @@ function gitHead() {
 function buildText(summary, head) {
   const n = summary.count || 0;
   const lines = [];
-  lines.push(`🔍 ResearchMan: ${n}件追加・本番反映OK`);
+  lines.push(`🔍 ResearchMan${LABEL ? ` ${LABEL}` : ""}: ${n}件追加・本番反映OK`);
   lines.push("");
   if (n > 0) {
     for (const c of summary.cases) {
       lines.push(`・${c.title}（${c.year}）`);
-      lines.push(`  ${SITE}/cases/${c.id}`);
+      lines.push(`  ${SITE}/${ROUTE}/${c.id}`);
     }
   } else {
     lines.push("（追加事例の詳細情報なし）");
   }
   lines.push("");
-  lines.push(`${SITE}/  (commit ${head})`);
+  lines.push(`${SITE}/${ROUTE === "cases" ? "" : ROUTE}  (commit ${head})`);
   return lines.join("\n");
 }
 

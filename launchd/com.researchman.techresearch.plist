@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.researchman.techresearch</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/zsh</string>
+    <string>-c</string>
+    <string>
+      export PATH="$HOME/.local/bin:/usr/local/bin:/opt/homebrew/bin:$PATH";
+      cd /Users/tm/Projects/Claude/ResearchMan;
+      LOG=$HOME/Library/Logs/researchman-tech.log;
+      node scripts/run-if-due.mjs --state .last-tech-research-run.txt --hours 23 &gt;&gt; $LOG 2&gt;&amp;1 || exit 0;
+      # Case Study側(autoresearch)と同時発火した際のgit競合を防ぐ排他ロック（最大30分待ち）
+      LOCK=/tmp/researchman-git.lock; waited=0;
+      while ! mkdir $LOCK 2&gt;/dev/null; do sleep 30; waited=$((waited+30)); [ $waited -ge 1800 ] &amp;&amp; { echo "ロック取得タイムアウト: $(date)" &gt;&gt; $LOG; exit 0; }; done;
+      trap "rmdir $LOCK 2&gt;/dev/null" EXIT;
+      echo "===== Tech run start: $(date) =====" &gt;&gt; $LOG;
+      node scripts/auto-research-tech.mjs &gt;&gt; $LOG 2&gt;&amp;1;
+      git add data/tech.json public/thumbnails/tech/ &gt;&gt; $LOG 2&gt;&amp;1;
+      if git diff --cached --quiet; then
+        echo "変更なし（新規技術なし）: $(date)" &gt;&gt; $LOG;
+      else
+        git commit -m "Tech radar: $(date '+%Y-%m-%d')" &gt;&gt; $LOG 2&gt;&amp;1;
+        if git push &gt;&gt; $LOG 2&gt;&amp;1; then
+          if node scripts/verify-deploy.mjs &gt;&gt; $LOG 2&gt;&amp;1 &amp;&amp; node scripts/verify-tech-pages.mjs &gt;&gt; $LOG 2&gt;&amp;1; then
+            echo "反映まで確認OK: $(date)" &gt;&gt; $LOG;
+            node scripts/notify-line.mjs --summary /tmp/researchman-tech-last-add.json --route technology --label Technology &gt;&gt; $LOG 2&gt;&amp;1;
+          else
+            echo "push成功だが反映未確認（時間切れ）: $(date)" &gt;&gt; $LOG;
+          fi;
+        else
+          echo "push失敗（pre-push監査で中止の可能性）。コミットはローカル残存。要手動対応: $(date)" &gt;&gt; $LOG;
+        fi;
+      fi;
+      echo "Tech completed: $(date)" &gt;&gt; $LOG
+    </string>
+  </array>
+
+  <!-- 毎時起動して run-if-due.mjs が「前回から23時間経過」を判定する（1日1回）。
+       スリープ/シャットダウンで実行時刻を逃しても、復帰後1時間以内に必ず走る。
+       Case Study側(autoresearch)との同時発火は /tmp/researchman-git.lock の排他で保護 -->
+  <key>StartInterval</key>
+  <integer>3600</integer>
+
+  <key>RunAtLoad</key>
+  <false/>
+
+  <key>KeepAlive</key>
+  <false/>
+
+  <key>StandardOutPath</key>
+  <string>/Users/tm/Library/Logs/researchman-tech.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/tm/Library/Logs/researchman-tech-error.log</string>
+</dict>
+</plist>

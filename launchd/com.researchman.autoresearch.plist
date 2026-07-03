@@ -14,6 +14,10 @@
       cd /Users/tm/Projects/Claude/ResearchMan;
       LOG=$HOME/Library/Logs/researchman-auto.log;
       node scripts/run-if-due.mjs &gt;&gt; $LOG 2&gt;&amp;1 || exit 0;
+      # Technology側(techresearch)と同時発火した際のgit競合を防ぐ排他ロック（最大30分待ち）
+      LOCK=/tmp/researchman-git.lock; waited=0;
+      while ! mkdir $LOCK 2&gt;/dev/null; do sleep 30; waited=$((waited+30)); [ $waited -ge 1800 ] &amp;&amp; { echo "ロック取得タイムアウト: $(date)" &gt;&gt; $LOG; exit 0; }; done;
+      trap "rmdir $LOCK 2&gt;/dev/null" EXIT;
       echo "===== Run start: $(date) =====" &gt;&gt; $LOG;
       node scripts/auto-research-cc.mjs &gt;&gt; $LOG 2&gt;&amp;1;
       node scripts/self-heal-thumbnails.mjs &gt;&gt; $LOG 2&gt;&amp;1;

@@ -151,10 +151,29 @@ async function main() {
   console.log(`\n追加: ${added.length}件 / 失敗: ${failed.length}件`);
   failed.forEach((f) => console.log(`  ✗ ${f.id}: ${f.reason}`));
 
-  if (DRY_RUN) { console.log("(dry-run: tech.json未更新)"); return; }
+  if (DRY_RUN) {
+    // dry-runで保存したサムネイルは掃除（登録なしの孤立ファイルを残さない）
+    for (const a of added) {
+      try { await fs.unlink(path.join(THUMB_DIR, `${a.id}.jpg`)); } catch {}
+    }
+    console.log("(dry-run: tech.json未更新・サムネイル掃除済み)");
+    return;
+  }
   const updated = [...added, ...existing];
   await fs.writeFile(TECH_PATH, JSON.stringify(updated, null, 2));
   console.log(`✅ data/tech.json → 合計${updated.length}件`);
+
+  // 日次パイプラインの通知用サマリー。0件でも必ず上書きする（stale再通知防止・Case Studyの教訓）
+  try {
+    await fs.writeFile(
+      "/tmp/researchman-tech-last-add.json",
+      JSON.stringify(
+        { count: added.length, cases: added.map((a) => ({ id: a.id, title: a.title, year: a.year })) },
+        null,
+        2
+      )
+    );
+  } catch {}
 }
 
 main().then(() => process.exit(0)).catch((e) => { console.error("❌", e); process.exit(1); });

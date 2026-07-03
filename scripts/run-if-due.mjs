@@ -14,10 +14,19 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const LAST_RUN_PATH = path.join(__dirname, "../.last-research-run.txt");
 
-// 毎時チェックの取りこぼしで周期が後ろにずれ続けないよう、72hより少し手前で発火させる
-const DUE_HOURS = 71;
+// 引数で状態ファイルと周期を差し替え可能（Technology日次収集が23hゲートで共用）。
+// 無引数なら従来どおりCase Study用の72hゲート（後方互換）。
+//   例: node scripts/run-if-due.mjs --state .last-tech-research-run.txt --hours 23
+const args = process.argv.slice(2);
+const argOf = (name, fallback) => {
+  const i = args.indexOf(name);
+  return i >= 0 && args[i + 1] ? args[i + 1] : fallback;
+};
+const LAST_RUN_PATH = path.join(__dirname, "..", argOf("--state", ".last-research-run.txt"));
+
+// 毎時チェックの取りこぼしで周期が後ろにずれ続けないよう、公称周期より少し手前で発火させる
+const DUE_HOURS = Number(argOf("--hours", "71"));
 
 try {
   const raw = await fs.readFile(LAST_RUN_PATH, "utf-8");
