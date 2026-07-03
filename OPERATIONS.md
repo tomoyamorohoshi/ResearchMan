@@ -139,6 +139,12 @@ const settle = (v) => { if (settled) return; settled = true; resolve(v); };
   `olympics.com` は bot ブロックで常に false になる既知の誤検知
 - 精度を上げたい場合は並列度を下げる or リトライを足す（未対応の改善余地）
 
+### sources欠落について（2026-07-04確認）
+
+cases.json 454件中164件が `sources` なし。**これは仕様**（初期アーカイブのレガシーデータ）。
+Cannes 2026分290件はsourcesすべて付与済みで欠落ゼロ（機械的な補完対象は無い）。
+詳細は `src/lib/researchSources.ts` のコメント参照。
+
 ## 6. トラブルシューティング・ランブック
 
 ### 自動実行が走っていない
