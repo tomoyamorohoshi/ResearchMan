@@ -16,6 +16,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { fetchKeyVisual } from "./tech-thumbs.mjs";
 import { isUrlAlive } from "./verify-video.mjs";
+import { logRejection } from "./lib/rejection-log.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const TECH_PATH = path.join(__dirname, "../data/tech.json");
@@ -105,17 +106,28 @@ async function main() {
     if (caseTitleKeys.has(normTitle(title))) {
       console.log("  ✗ Case Studyと重複 → 除外");
       failed.push({ id, reason: "Case Study重複" });
+      if (!DRY_RUN) await logRejection({ pipeline: "tech", title, reason: "case-study-duplicate" });
       continue;
     }
-    if (!validTypes.has(r.type)) { failed.push({ id, reason: `不正type: ${r.type}` }); continue; }
+    if (!validTypes.has(r.type)) {
+      failed.push({ id, reason: `不正type: ${r.type}` });
+      if (!DRY_RUN) await logRejection({ pipeline: "tech", title, reason: "invalid-type", detail: r.type });
+      continue;
+    }
 
     // 一次ソースの機械再検証（github/project/product の先頭1本は必達）
     const primary = r.links.find((l) => ["github", "project", "product"].includes(l.kind));
-    if (!primary) { failed.push({ id, reason: "一次ソースなし" }); console.log("  ✗ 一次ソースなし"); continue; }
+    if (!primary) {
+      failed.push({ id, reason: "一次ソースなし" });
+      console.log("  ✗ 一次ソースなし");
+      if (!DRY_RUN) await logRejection({ pipeline: "tech", title, reason: "no-primary-source" });
+      continue;
+    }
     const alive = await isUrlAlive(primary.url);
     if (!alive) {
       console.log(`  ✗ 一次ソース到達不可: ${primary.url}`);
       failed.push({ id, reason: `一次ソース死: ${primary.url}` });
+      if (!DRY_RUN) await logRejection({ pipeline: "tech", title, reason: "primary-source-dead", link: primary.url });
       continue;
     }
     console.log(`  一次ソースOK: ${primary.url}`);
@@ -125,6 +137,7 @@ async function main() {
     if (!thumb) {
       console.log(`  ✗ サムネイル取得不可: ${r.thumbnailSource}`);
       failed.push({ id, reason: `サムネ取得不可: ${r.thumbnailSource}` });
+      if (!DRY_RUN) await logRejection({ pipeline: "tech", title, reason: "thumbnail-unavailable", detail: r.thumbnailSource || "", link: primary.url });
       continue;
     }
     console.log(`  サムネイルOK: ${thumb}`);

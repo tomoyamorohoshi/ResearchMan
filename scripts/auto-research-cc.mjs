@@ -31,6 +31,7 @@ import { saveThumbnail, saveThumbnailFromPage } from "./save-thumbnail.mjs";
 import { isUrlAlive, fetchYouTubeInfo, videoMatchesCase } from "./verify-video.mjs";
 import { resolveClaudeBin, runClaudeJson } from "./lib/claude-cli.mjs";
 import { localDayIndex } from "./lib/day-index.mjs";
+import { logRejection } from "./lib/rejection-log.mjs";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -358,6 +359,9 @@ async function main() {
         if (!cand.link || !(await isUrlAlive(cand.link))) {
           console.log(`却下（リンク到達不可）: ${cand.title} → ${cand.link || "(なし)"}`);
           stats.rejected++;
+          if (!DRY_RUN) {
+            await logRejection({ pipeline: "cc", title: cand.title, reason: "link-dead", link: cand.link || "" });
+          }
           continue;
         }
 
@@ -367,6 +371,9 @@ async function main() {
         if (!thumb) {
           console.log(`却下（検証済みサムネイル取得不可）: ${cand.title}`);
           stats.rejected++;
+          if (!DRY_RUN) {
+            await logRejection({ pipeline: "cc", title: cand.title, reason: "thumbnail-unverified", link: cand.link || "" });
+          }
           const orphan = path.join(__dirname, `../public/thumbnails/${id}.jpg`);
           try {
             await fs.unlink(orphan);
@@ -385,6 +392,9 @@ async function main() {
         if (!art || !(art.summary || "").trim() || (art.overview || "").length < 50) {
           console.log("✗ 生成失敗/説明不足 → 却下");
           stats.rejected++;
+          if (!DRY_RUN) {
+            await logRejection({ pipeline: "cc", title: cand.title, reason: "article-generation-failed", link: cand.link || "" });
+          }
           const orphan = path.join(__dirname, `../public/thumbnails/${id}.jpg`);
           try {
             await fs.unlink(orphan);
@@ -429,6 +439,9 @@ async function main() {
       } catch (err) {
         console.log(`  ⚠ スキップ（処理失敗: ${err.message}）: ${cand.title}`);
         stats.rejected++;
+        if (!DRY_RUN) {
+          await logRejection({ pipeline: "cc", title: cand.title, reason: "exception", detail: err.message, link: cand.link || "" });
+        }
         const orphan = path.join(__dirname, `../public/thumbnails/${id}.jpg`);
         try {
           await fs.unlink(orphan);

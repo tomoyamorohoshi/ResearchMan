@@ -76,6 +76,10 @@ function buildPrompt({ lane, existingTitles, seenThisRun }) {
 
 重複禁止（既掲載・除外済み）: ${existingTitles}${seenThisRun.length ? ` / 今回既出: ${seenThisRun.join(", ")}` : ""}
 
+執筆前の必須手順: summaryJa/pointJa/detailJa を書く前に、一次ソース（GitHub README・プロジェクトページ・
+論文）を **WebFetch で実際に開いて読む**こと。検索結果のスニペットだけで書くことは禁止。
+リンク先が読めなかった（アクセス不能・内容が薄すぎる）技術は候補から外す。
+
 文体ルール（重要）:
 - 技術者でなくてもわかるように。専門用語には言い換えか身近な例えを添える。端的すぎるより丁寧に
 - pointJa: 「何がすごいか」→「広告・体験づくりで何が作れそうか」の順で1段落350〜500字
