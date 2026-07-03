@@ -53,10 +53,13 @@ launchd (10〜23時の毎正時 + ログイン時)
 
 | パス | 役割 | 注意 |
 |---|---|---|
-| `.last-research-run.txt` / `.last-tech-research-run.txt`（リポジトリ直下・gitignored） | 前回実行時刻。毎朝10時ゲートの判定材料 | 消すと次の正時に即実行される（手動トリガとして使える） |
-| `/tmp/researchman-last-add.json` | 直近実行の追加事例サマリー。通知の本文ソース | 0件の回も必ず上書きされる（stale 再通知防止。2026-07-03 修正） |
-| `~/Library/Logs/researchman-auto.log` | パイプライン全ログ | 期限前スキップ（exit 3）はログを出さない仕様。**0バイトでも異常ではない** |
-| `~/Library/Logs/researchman-auto-error.log` | launchd の stderr | 通常は空 |
+| `.last-research-run.txt` / `.last-tech-research-run.txt` / `.last-idea-seeds-run.txt`（リポジトリ直下・gitignored） | 前回実行時刻。毎朝10時ゲートの判定材料 | 消すと次の正時に即実行される（手動トリガとして使える） |
+| `/tmp/researchman-last-add.json` / `/tmp/researchman-tech-last-add.json` | 直近実行の追加事例サマリー。通知の本文ソース | 0件の回も必ず上書きされる（stale 再通知防止。2026-07-03 修正） |
+| `/tmp/researchman-idea-seeds.txt` | 生成済みアイデアの種の本文。notify-lineが送信 | 毎回上書き。実行後すぐ配信されるため長期保持しない |
+| `/tmp/researchman-tech-candidates-*.json` | tech日次収集の候補（検証前・検証で脱落した分の調査用） | 14日超で自動削除（2026-07-04追加）。os.tmpdir()ではなく`/tmp`直書き（macOSの`$TMPDIR`≠`/tmp`問題を回避） |
+| `~/.researchman-idea-history.json`（ホーム直下・リポジトリ外） | 直近60個の種の履歴（重複回避用プロンプト材料） | バックアップ対象外で消えても実害は直近の重複回避が効かなくなるだけ（自然回復）。移設はしない |
+| `~/Library/Logs/researchman-auto.log` / `-tech.log` / `-ideas.log` | パイプライン全ログ | 期限前スキップ（exit 3）はログを出さない仕様。**0バイトでも異常ではない**。5MB超で`.log.1`へ自動ローテ（2026-07-04追加） |
+| `~/Library/Logs/researchman-auto-error.log` 等 | launchd の stderr | 通常は空 |
 
 ### 通知設定（ホーム直下・リポジトリに置かない）
 
@@ -149,6 +152,26 @@ const settle = (v) => { if (settled) return; settled = true; resolve(v); };
 cases.json 454件中164件が `sources` なし。**これは仕様**（初期アーカイブのレガシーデータ）。
 Cannes 2026分290件はsourcesすべて付与済みで欠落ゼロ（機械的な補完対象は無い）。
 詳細は `src/lib/researchSources.ts` のコメント参照。
+
+### cannes2026-winners.json（参照リスト）の更新手順（2026-07-04追記）
+
+`data/cannes2026-winners.json` は 2026-06-29 時点で6体の並列監査エージェントが
+lovethework公式DB＋トレード各誌から構築した**静的スナップショット**。以後の受賞発表
+（大会後半・追加公表分等）は自動反映されない。
+
+- `scripts/build-cannes-reference.mjs` は**再実行可能な更新スクリプトではない**。
+  過去の特定ワークフロー実行のトランスクリプトファイルID（6件）がハードコードされた
+  「一度きり生成」スクリプトで、再実行しても同じ古いトランスクリプトを読み直すだけ。
+- **完全な再生成**をするには、同等の6体並列監査（lovethework公式DB＋トレード各誌を
+  役割分担して収集→カテゴリ別に受賞作・レベル・ブランド・エージェンシーを構造化JSON化）を
+  ワークフローとして再実行し、出力トランスクリプトのIDで `build-cannes-reference.mjs` の
+  `FILES` 配列を書き換えて実行する必要がある（重い作業。大幅な期分ずれや大会終了後の
+  確定版取り込み時のみ推奨）。
+- **数件程度の追加・修正**（新着受賞・見落とし）は、P2-2で実施した手順が現実的:
+  1. WebSearch/WebFetchで一次情報（Cannes公式・Campaign/LBB等トレード誌）を確認
+  2. `data/cannes2026-winners.json` の `winners` 配列に直接エントリを追加/修正し、
+     `count` を実配列長に、`_note` に追記日と根拠を追記
+  3. `npm run audit:cannes` と `npm run audit:cannes:strict` で整合確認
 
 ## 6. トラブルシューティング・ランブック
 

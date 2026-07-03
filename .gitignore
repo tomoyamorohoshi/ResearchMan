@@ -44,3 +44,8 @@ next-env.d.ts
 # 企画仕込みシート・プレゼンデッキ（クライアント情報を含みうるためローカルのみ）
 /ideation/
 /decks/
+
+# デジクリラジオNotionエクスポート（2.2GB・画像2000枚超。共有用の静的コピーで
+# 今後更新なし。Notion MCP(collection://ab26481a-d452-82a9-978d-076e0f108758)で
+# 直接参照可能なためリポジトリには含めない。ファイルシステム上は docs/research/ 配下に保持）
+/docs/research/ExportBlock-*/
