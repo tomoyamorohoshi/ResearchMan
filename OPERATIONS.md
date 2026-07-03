@@ -20,8 +20,9 @@ Case Study と並ぶ第2のTOP（`/technology`）。AI/HCI/CG/先端メディア
 - サムネイル: `public/thumbnails/tech/`（既存のサムネイル監査の対象外）
 - 取り込み: ユーザーのXブックマーク（`data/inbox/x-bookmarks-*.txt`）→ 調査 →
   `scripts/build-tech-from-research.mjs`（一次ソース死活・Case Study重複・サムネ下限を機械検証）
-- **日次自動収集（Step 1）: 2026-07-03稼働開始**。launchd `com.researchman.techresearch`（毎朝10時）
-  （毎時起動+23hゲート、状態: `.last-tech-research-run.txt`、ログ: `~/Library/Logs/researchman-tech.log`）
+- **日次自動収集（Step 1）: 2026-07-03稼働開始**。launchd `com.researchman.techresearch`
+  （**毎朝10時**・10〜23時の毎正時にキャッチアップ判定、状態: `.last-tech-research-run.txt`、
+  ログ: `~/Library/Logs/researchman-tech.log`）
   - 流れ: `auto-research-tech.mjs`（Tier1ソースを4レーン日替わり巡回・日次3件上限）
     → `build-tech-from-research.mjs`（機械検証）→ commit/push → `verify-deploy.mjs`
     → `verify-tech-pages.mjs`（新規 /technology/{id} が200になるまでポーリング）→ LINE通知
@@ -31,17 +32,20 @@ Case Study と並ぶ第2のTOP（`/technology`）。AI/HCI/CG/先端メディア
 ## 2. 自動収集パイプライン（無人運用の本体）
 
 ```
-launchd (毎時起動 + ログイン時)
-  └─ run-if-due.mjs           … 前回実行から71時間経過していなければ exit 3 で即終了
+launchd (10〜23時の毎正時 + ログイン時)
+  └─ run-if-due.mjs --daily-at 10 … 本日10時経過かつ本日分未実行なら exit 0（=1日1回）
        └─ auto-research-cc.mjs … Claude CLI で新事例を発見→検証→記事化（最大3ラウンド）
             └─ self-heal-thumbnails.mjs … 全サムネイルの健全性チェック・自動修復
-                 └─ git commit & push    … data/cases.json と public/thumbnails/ のみ
+                 └─ git commit & push    … data/cases.json と public/thumbnails/（tech除く）
                       └─ verify-deploy.mjs … 本番反映を最大360秒ポーリングで確認
-                           └─ send-mail.mjs / notify-line.mjs … 反映確認後にのみ通知
+                           └─ send-mail.mjs / notify-line.mjs … 結果種別つきで毎回通知
 ```
 
 - plist: `launchd/com.researchman.autoresearch.plist`（リポジトリ版が原本。インストール先は `~/Library/LaunchAgents/`。**両方を常に一致させる**。反映は `launchctl unload` → `load`）
-- 毎時起動 + 71h ゲート方式なのは、launchd の `StartCalendarInterval` がスリープ中の実行時刻を取りこぼすため。PC が落ちていても復帰後1時間以内に必ず実行される
+- **両パイプラインとも毎朝10時実行**（2026-07-03に72h/23h周期から変更）。カレンダー起動を
+  10〜23時の毎正時に張り、`--daily-at`ゲートが1日1回を保証。10時にPCが落ちていても
+  同日中の次の正時でキャッチアップ。収集エラー時は`--mark`で本日分を消化扱いにし連打を防ぐ
+- 通知は全終端経路で送る: 成功/0件/反映未確認(unverified)/push失敗(pushfail)/収集エラー(error)
 - 収集の内部モデルは **sonnet 固定**（`auto-research-cc.mjs` の `MODEL`。上位モデルは遅くてタイムアウトしやすい）
 - 品質ゲート: リンク死活 → 検証済みサムネイル取得（oEmbed タイトル照合）→ 記事生成、の順に通過したものだけ採用。どこかで落ちたら孤立サムネイルも掃除して却下
 
@@ -49,7 +53,7 @@ launchd (毎時起動 + ログイン時)
 
 | パス | 役割 | 注意 |
 |---|---|---|
-| `.last-research-run.txt`（リポジトリ直下・gitignored） | 前回実行時刻。71h ゲートの判定材料 | 消すと次の毎時起動で即実行される（手動トリガとして使える） |
+| `.last-research-run.txt` / `.last-tech-research-run.txt`（リポジトリ直下・gitignored） | 前回実行時刻。毎朝10時ゲートの判定材料 | 消すと次の正時に即実行される（手動トリガとして使える） |
 | `/tmp/researchman-last-add.json` | 直近実行の追加事例サマリー。通知の本文ソース | 0件の回も必ず上書きされる（stale 再通知防止。2026-07-03 修正） |
 | `~/Library/Logs/researchman-auto.log` | パイプライン全ログ | 期限前スキップ（exit 3）はログを出さない仕様。**0バイトでも異常ではない** |
 | `~/Library/Logs/researchman-auto-error.log` | launchd の stderr | 通常は空 |
