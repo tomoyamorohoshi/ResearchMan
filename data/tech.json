@@ -1,5 +1,60 @@
 [
   {
+    "id": "dreamx-world-1-0",
+    "title": "DreamX-World 1.0",
+    "org": "AMAP-ML (Alibaba AutoNavi)",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "GenVideo"
+    ],
+    "date": "2026-06",
+    "year": "2026",
+    "summary": "テキスト指示だけで、視点を動かしても矛盾なく繋がり続ける「歩き回れる3D世界」の映像を生成できるAIモデル。",
+    "point": "DreamX-Worldは、文章の指示だけで「歩き回れる3D世界」の映像を生成し続けられるAIモデル。従来の動画生成AIは数秒で背景や物の位置がブレたり作り変わったりしてしまう弱点があったが、本モデルは「これまで見た場所の記憶」を保持する仕組み(world memory)を備え、カメラを動かしても同じ建物や道が同じ場所にあり続ける、一貫性のある空間として生成し続けられる。さらにカメラの向きや動きも数値で自由に指定できる(6自由度カメラ制御)。広告・体験づくりの観点では、実写ロケを組まずに「未知の街を歩く」「異世界を探検する」といった没入型プロモーション映像を作れるほか、ゲームやCM撮影のプリビズ、バーチャルショールームの下絵づくりなど、企画の初期段階で世界観を素早く映像化する用途に使える可能性がある。",
+    "detail": "テキストで「未来都市の路地裏」のように空間を指示すると、AIがその場所を映像として生成する仕組み。一般的な動画生成AIの多くは数秒ごとに背景がリセットされたように変化してしまうが、DreamX-Worldは一度生成した場所の形状や配置を記憶し続け、カメラが同じ場所に戻ってきたときにも矛盾なく同じ景色を描き直せる。いわば「頭の中に地図を持ちながら映像を生成している」状態に近い。\n\n一般的な動画生成AIは単発のクリップ生成が主で、視点を大きく動かすと世界が破綻しやすかった。DreamX-Worldは複数回の生成をまたいで空間の一貫性を保てる点、およびカメラ位置・向きを細かく数値制御できる点が従来との違い。\n\n使うには、50億パラメータのモデル本体をHugging FaceまたはGitHubから無償で入手(コードはApache-2.0、重みはMITで商用利用可)。実行にはNVIDIA GPU(相応のVRAM)とPython/PyTorch環境が必要で、現状は1回あたり最大7.5秒程度の映像を生成する仕様。",
+    "license": {
+      "spdx": "Apache-2.0 (code) / MIT (weights)",
+      "commercial": "ok",
+      "note": "GitHub(コード)とHugging Face(重み)双方で無償公開、商用利用可"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/AMAP-ML/DreamX-World"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2606.16993"
+      },
+      {
+        "kind": "project",
+        "url": "https://amap-ml.github.io/DreamX_World"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/dreamx-world-1-0.jpg",
+    "relatedWorks": [
+      {
+        "title": "World Labs Marble",
+        "description": "テキストや画像から探索可能な3D世界を生成する商用サービス",
+        "url": "https://www.worldlabs.ai/"
+      },
+      {
+        "title": "Google Genie 3 (Project Genie)",
+        "description": "リアルタイムに世界を生成・探索できるGoogleの世界モデル",
+        "url": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/project-genie/"
+      },
+      {
+        "title": "HunyuanWorld-1.0",
+        "description": "テキスト/画像から没入可能な3D世界を生成するTencentのOSSモデル",
+        "url": "https://github.com/Tencent-Hunyuan/HunyuanWorld-1.0"
+      }
+    ],
+    "sources": [
+      "X Bookmarks"
+    ]
+  },
+  {
     "id": "hy-world-1-5-worldplay",
     "title": "HY-World 1.5 / WorldPlay",
     "org": "Tencent Hunyuan",
