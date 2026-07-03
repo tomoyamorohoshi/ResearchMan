@@ -37,6 +37,12 @@ const argOf = (name, fallback) => {
 const LAST_ADD_PATH = argOf("--summary", "/tmp/researchman-last-add.json");
 const ROUTE = argOf("--route", "cases");
 const LABEL = argOf("--label", "");
+// 実行結果の種別。パイプラインの全終端経路で正確な文面を送るため
+//   ok         … 追加あり反映確認済み / 追加0件（既定）
+//   unverified … push済みだが反映確認が時間切れ（数分後に反映される見込み）
+//   pushfail   … pre-push監査等でpush失敗（要手動対応）
+//   error      … 収集スクリプトがエラー終了（ログ確認要）
+const RESULT = argOf("--result", "ok");
 const SITE = "https://research-man.vercel.app";
 const PUSH_URL = "https://api.line.me/v2/bot/message/push";
 const BROADCAST_URL = "https://api.line.me/v2/bot/message/broadcast";
@@ -91,9 +97,28 @@ function gitHead() {
 
 function buildText(summary, head) {
   const n = summary.count || 0;
+  const name = `ResearchMan${LABEL ? ` ${LABEL}` : ""}`;
   const lines = [];
-  if (n > 0) {
-    lines.push(`🔍 ResearchMan${LABEL ? ` ${LABEL}` : ""}: ${n}件追加・本番反映OK`);
+
+  if (RESULT === "error") {
+    lines.push(`❌ ${name}: 収集がエラー終了`);
+    lines.push("");
+    lines.push("本日分はスキップし、明日10時に再実行します。");
+    lines.push("ログ: ~/Library/Logs/researchman-*.log");
+  } else if (RESULT === "pushfail") {
+    lines.push(`⚠️ ${name}: 収集${n > 0 ? `${n}件` : ""}完了したがpush失敗`);
+    lines.push("");
+    lines.push("pre-push監査で中止の可能性。コミットはローカル残存、要手動対応。");
+  } else if (RESULT === "unverified") {
+    lines.push(`⚠️ ${name}: ${n}件追加・push済み（反映確認は時間切れ）`);
+    lines.push("");
+    for (const c of summary.cases) {
+      lines.push(`・${c.title}（${c.year}）`);
+      lines.push(`  ${SITE}/${ROUTE}/${c.id}`);
+    }
+    lines.push("数分後に反映される見込み。");
+  } else if (n > 0) {
+    lines.push(`🔍 ${name}: ${n}件追加・本番反映OK`);
     lines.push("");
     for (const c of summary.cases) {
       lines.push(`・${c.title}（${c.year}）`);
@@ -101,7 +126,7 @@ function buildText(summary, head) {
     }
   } else {
     // 0件の回はデプロイが走っていないため「反映OK」とは言わない
-    lines.push(`🔍 ResearchMan${LABEL ? ` ${LABEL}` : ""}: 本日の新規追加なし`);
+    lines.push(`🔍 ${name}: 本日の新規追加なし`);
     lines.push("");
     lines.push("（収集は正常実行。クライテリア適合の新着がありませんでした）");
   }

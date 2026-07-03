@@ -13,16 +13,22 @@
       export PATH="$HOME/.local/bin:/usr/local/bin:/opt/homebrew/bin:$PATH";
       cd /Users/tm/Projects/Claude/ResearchMan;
       LOG=$HOME/Library/Logs/researchman-auto.log;
-      node scripts/run-if-due.mjs &gt;&gt; $LOG 2&gt;&amp;1 || exit 0;
+      node scripts/run-if-due.mjs --daily-at 10 &gt;&gt; $LOG 2&gt;&amp;1 || exit 0;
       # Technology側(techresearch)と同時発火した際のgit競合を防ぐ排他ロック（最大30分待ち）
       LOCK=/tmp/researchman-git.lock; waited=0;
       while ! mkdir $LOCK 2&gt;/dev/null; do sleep 30; waited=$((waited+30)); [ $waited -ge 1800 ] &amp;&amp; { echo "ロック取得タイムアウト: $(date)" &gt;&gt; $LOG; exit 0; }; done;
       trap "rmdir $LOCK 2&gt;/dev/null" EXIT;
       echo "===== Run start: $(date) =====" &gt;&gt; $LOG;
-      node scripts/auto-research-cc.mjs &gt;&gt; $LOG 2&gt;&amp;1;
-      node scripts/self-heal-thumbnails.mjs &gt;&gt; $LOG 2&gt;&amp;1;
-      git add data/cases.json public/thumbnails/ &gt;&gt; $LOG 2&gt;&amp;1;
-      if git diff --quiet HEAD; then
+      if ! node scripts/auto-research-cc.mjs &gt;&gt; $LOG 2&gt;&amp;1; then
+        echo "収集エラー終了: $(date)" &gt;&gt; $LOG;
+        node scripts/run-if-due.mjs --mark &gt;&gt; $LOG 2&gt;&amp;1;
+        node scripts/notify-line.mjs --result error &gt;&gt; $LOG 2&gt;&amp;1;
+        exit 0;
+      fi;
+      node scripts/self-heal-thumbnails.mjs &gt;&gt; $LOG 2&gt;&amp;1 || echo "self-heal失敗（続行）: $(date)" &gt;&gt; $LOG;
+      # tech配下はTechnologyパイプラインの管轄なので除外（クラッシュ残骸の混入防止）
+      git add -- data/cases.json public/thumbnails ":(exclude)public/thumbnails/tech" &gt;&gt; $LOG 2&gt;&amp;1;
+      if git diff --cached --quiet; then
         echo "変更なし（新規事例なし）: $(date)" &gt;&gt; $LOG;
         node scripts/notify-line.mjs &gt;&gt; $LOG 2&gt;&amp;1;
       else
@@ -34,29 +40,44 @@
             node scripts/notify-line.mjs &gt;&gt; $LOG 2&gt;&amp;1;
           else
             echo "push成功だが反映未確認（時間切れ）: $(date)" &gt;&gt; $LOG;
+            node scripts/notify-line.mjs --result unverified &gt;&gt; $LOG 2&gt;&amp;1;
           fi;
         else
           echo "push失敗（pre-push監査で中止の可能性）。コミットはローカル残存。要手動対応: $(date)" &gt;&gt; $LOG;
+          node scripts/notify-line.mjs --result pushfail &gt;&gt; $LOG 2&gt;&amp;1;
         fi;
       fi;
       echo "Completed: $(date)" &gt;&gt; $LOG
     </string>
   </array>
 
-  <!-- 毎時起動して run-if-due.mjs が「前回から72時間経過」を判定する。
-       スリープ/シャットダウンで実行時刻を逃しても、復帰後1時間以内に必ず走る。 -->
-  <key>StartInterval</key>
-  <integer>3600</integer>
+  <!-- 毎朝10時に実行。10時にスリープ/電源OFFでも、以降23時まで毎正時に起動して
+       run-if-due.mjs --daily-at 10 が「本日分未実行ならキャッチアップ」する。
+       RunAtLoad=true はログイン/再起動直後のキャッチアップ用（ゲートが二重実行を防ぐ） -->
+  <key>StartCalendarInterval</key>
+  <array>
+    <dict><key>Hour</key><integer>10</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>11</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>12</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>13</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>14</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>15</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>16</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>17</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>18</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>19</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>20</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>21</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>22</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>23</integer><key>Minute</key><integer>0</integer></dict>
+  </array>
 
-  <!-- ログイン/再起動直後にも判定を走らせる（復旧時の即時キャッチアップ） -->
   <key>RunAtLoad</key>
   <true/>
 
-  <!-- クラッシュ時に再起動しない -->
   <key>KeepAlive</key>
   <false/>
 
-  <!-- ログ（/tmpは再起動で消えるためLibrary/Logsに置く） -->
   <key>StandardOutPath</key>
   <string>/Users/tm/Library/Logs/researchman-auto.log</string>
   <key>StandardErrorPath</key>
