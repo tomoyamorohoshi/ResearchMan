@@ -63,9 +63,18 @@ function loadConfig() {
   }
 }
 
+// サマリーが古い（=今回の実行が書いたものでない）場合は0件として扱う。
+// 収集スクリプトがクラッシュした回に、前回の追加分を「新規」として再通知する事故を防ぐ
+const SUMMARY_MAX_AGE_MS = 6 * 60 * 60 * 1000;
+
 function loadSummary() {
   try {
     if (fs.existsSync(LAST_ADD_PATH)) {
+      const st = fs.statSync(LAST_ADD_PATH);
+      if (Date.now() - st.mtimeMs > SUMMARY_MAX_AGE_MS) {
+        log(`サマリーが古い（${LAST_ADD_PATH}）→ 0件として通知`);
+        return { count: 0, cases: [] };
+      }
       return JSON.parse(fs.readFileSync(LAST_ADD_PATH, "utf8"));
     }
   } catch {}
@@ -83,15 +92,18 @@ function gitHead() {
 function buildText(summary, head) {
   const n = summary.count || 0;
   const lines = [];
-  lines.push(`🔍 ResearchMan${LABEL ? ` ${LABEL}` : ""}: ${n}件追加・本番反映OK`);
-  lines.push("");
   if (n > 0) {
+    lines.push(`🔍 ResearchMan${LABEL ? ` ${LABEL}` : ""}: ${n}件追加・本番反映OK`);
+    lines.push("");
     for (const c of summary.cases) {
       lines.push(`・${c.title}（${c.year}）`);
       lines.push(`  ${SITE}/${ROUTE}/${c.id}`);
     }
   } else {
-    lines.push("（追加事例の詳細情報なし）");
+    // 0件の回はデプロイが走っていないため「反映OK」とは言わない
+    lines.push(`🔍 ResearchMan${LABEL ? ` ${LABEL}` : ""}: 本日の新規追加なし`);
+    lines.push("");
+    lines.push("（収集は正常実行。クライテリア適合の新着がありませんでした）");
   }
   lines.push("");
   lines.push(`${SITE}/${ROUTE === "cases" ? "" : ROUTE}  (commit ${head})`);

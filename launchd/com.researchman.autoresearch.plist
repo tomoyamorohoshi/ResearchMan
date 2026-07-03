@@ -24,6 +24,7 @@
       git add data/cases.json public/thumbnails/ &gt;&gt; $LOG 2&gt;&amp;1;
       if git diff --quiet HEAD; then
         echo "変更なし（新規事例なし）: $(date)" &gt;&gt; $LOG;
+        node scripts/notify-line.mjs &gt;&gt; $LOG 2&gt;&amp;1;
       else
         git commit -m "Auto research: $(date '+%Y-%m-%d')" &gt;&gt; $LOG 2&gt;&amp;1;
         if git push &gt;&gt; $LOG 2&gt;&amp;1; then

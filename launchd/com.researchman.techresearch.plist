@@ -23,6 +23,7 @@
       git add data/tech.json public/thumbnails/tech/ &gt;&gt; $LOG 2&gt;&amp;1;
       if git diff --cached --quiet; then
         echo "変更なし（新規技術なし）: $(date)" &gt;&gt; $LOG;
+        node scripts/notify-line.mjs --summary /tmp/researchman-tech-last-add.json --route technology --label Technology &gt;&gt; $LOG 2&gt;&amp;1;
       else
         git commit -m "Tech radar: $(date '+%Y-%m-%d')" &gt;&gt; $LOG 2&gt;&amp;1;
         if git push &gt;&gt; $LOG 2&gt;&amp;1; then
