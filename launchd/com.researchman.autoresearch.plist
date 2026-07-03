@@ -13,10 +13,18 @@
       export PATH="$HOME/.local/bin:/usr/local/bin:/opt/homebrew/bin:$PATH";
       cd /Users/tm/Projects/Claude/ResearchMan;
       LOG=$HOME/Library/Logs/researchman-auto.log;
+      [ -f $LOG ] &amp;&amp; [ $(stat -f%z $LOG) -gt 5242880 ] &amp;&amp; mv $LOG $LOG.1;
       node scripts/run-if-due.mjs --daily-at 10 &gt;&gt; $LOG 2&gt;&amp;1 || exit 0;
-      # Technology側(techresearch)と同時発火した際のgit競合を防ぐ排他ロック（最大30分待ち）
+      # Technology側(techresearch)と同時発火した際のgit競合を防ぐ排他ロック（最大30分待ち）。
+      # ロックが90分超残存していたらkill -9等の残骸とみなし奪取する（3ジョブ合計でも90分あれば完走する）
       LOCK=/tmp/researchman-git.lock; waited=0;
-      while ! mkdir $LOCK 2&gt;/dev/null; do sleep 30; waited=$((waited+30)); [ $waited -ge 1800 ] &amp;&amp; { echo "ロック取得タイムアウト: $(date)" &gt;&gt; $LOG; exit 0; }; done;
+      while ! mkdir $LOCK 2&gt;/dev/null; do
+        if [ -d $LOCK ] &amp;&amp; [ $(( $(date +%s) - $(stat -f %m $LOCK) )) -gt 5400 ]; then
+          echo "staleロック奪取: $(date)" &gt;&gt; $LOG; rmdir $LOCK 2&gt;/dev/null; continue;
+        fi;
+        sleep 30; waited=$((waited+30));
+        [ $waited -ge 1800 ] &amp;&amp; { echo "ロック取得タイムアウト: $(date)" &gt;&gt; $LOG; exit 0; };
+      done;
       trap "rmdir $LOCK 2&gt;/dev/null" EXIT;
       echo "===== Run start: $(date) =====" &gt;&gt; $LOG;
       if ! node scripts/auto-research-cc.mjs &gt;&gt; $LOG 2&gt;&amp;1; then

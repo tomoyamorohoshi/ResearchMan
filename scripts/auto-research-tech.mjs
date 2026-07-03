@@ -13,7 +13,6 @@
  */
 import fs from "fs/promises";
 import path from "path";
-import os from "os";
 import { spawnSync } from "child_process";
 import { fileURLToPath } from "url";
 import { resolveClaudeBin, runClaudeJsonArray } from "./lib/claude-cli.mjs";
@@ -165,11 +164,32 @@ async function main() {
   }
 
   // 検証・追加は実績のある build-tech-from-research.mjs に委譲。
-  // 候補ファイルは削除せず残す（検証で脱落した候補の調査・手動再取り込みに使う）
+  // 候補ファイルは削除せず残す（検証で脱落した候補の調査・手動再取り込みに使う）。
+  // 他の一時ファイル（researchman-last-add.json等）と同じく /tmp 直下に固定する
+  // （os.tmpdir()はmacOSでは/var/folders/.../Tを指し/tmpと別ディレクトリになるため、
+  //  「手動で/tmpを見て調査する」という目的に反する。過去にこの不一致で発見しづらいバグだった）
+  const TMP_DIR = "/tmp";
   const day = new Date().toISOString().slice(0, 10);
-  const tmpFile = path.join(os.tmpdir(), `researchman-tech-candidates-${day}.json`);
+  const tmpFile = path.join(TMP_DIR, `researchman-tech-candidates-${day}.json`);
   await fs.writeFile(tmpFile, JSON.stringify(candidates, null, 2));
   console.log(`\n候補${candidates.length}件を機械検証へ → ${tmpFile}`);
+
+  // 14日より古い候補ファイルは掃除する（無限に溜まるのを防ぐ）。
+  // dry-run時は状態を変えないルールに合わせてスキップ
+  if (!DRY_RUN) {
+    try {
+      const CANDIDATE_MAX_AGE_MS = 14 * 24 * 60 * 60 * 1000;
+      for (const f of await fs.readdir(TMP_DIR)) {
+        if (!f.startsWith("researchman-tech-candidates-")) continue;
+        const fp = path.join(TMP_DIR, f);
+        const st = await fs.stat(fp);
+        if (Date.now() - st.mtimeMs > CANDIDATE_MAX_AGE_MS) {
+          await fs.unlink(fp);
+          console.log(`古い候補ファイルを削除: ${f}`);
+        }
+      }
+    } catch {}
+  }
 
   const buildArgs = [path.join(__dirname, "build-tech-from-research.mjs"), tmpFile, "--source", "Tech Radar"];
   if (DRY_RUN) buildArgs.push("--dry-run");
