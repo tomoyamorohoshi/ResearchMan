@@ -24,7 +24,12 @@ const VOCAB_PATH = path.join(__dirname, "../data/tech-tag-vocabulary.json");
 const THUMB_DIR = path.join(__dirname, "../public/thumbnails/tech");
 
 const DRY_RUN = process.argv.includes("--dry-run");
-const inputFiles = process.argv.slice(2).filter((a) => !a.startsWith("--"));
+// --source <label>: 出所（X Bookmarks / Batch Research / Tech Radar）。フラグ・値を除いた残りが入力ファイル
+const srcIdx = process.argv.indexOf("--source");
+const SOURCE_FLAG = srcIdx >= 0 ? process.argv[srcIdx + 1] : null;
+const inputFiles = process.argv
+  .slice(2)
+  .filter((a, i, arr) => !a.startsWith("--") && arr[i - 1] !== "--source");
 
 // サムネイルの下限バイト数チェックは tech-thumbs.mjs の MIN_THUMB_BYTES / fetchThumbBuf 側で実施
 
@@ -82,6 +87,13 @@ async function main() {
   }
   console.log(`採用候補: ${candidates.length}件\n`);
 
+  // 出所（sources）の指定を強制する（"X Bookmarks"固定ハードコードで全件同一になる事故を防ぐ）。
+  // 各候補が r.sources を持つか、--source フラグのどちらかが必要
+  if (!SOURCE_FLAG && candidates.some((r) => !r.sources)) {
+    console.error("出所が未指定です。--source <X Bookmarks|Batch Research|Tech Radar> を渡すか、各候補に sources を含めてください");
+    process.exit(1);
+  }
+
   const added = [];
   const failed = [];
   for (const r of candidates) {
@@ -136,7 +148,7 @@ async function main() {
       links: r.links.map(({ kind, url }) => ({ kind, url })),
       thumbnail: thumb,
       relatedWorks: r.relatedWorks || [],
-      sources: ["X Bookmarks"],
+      sources: r.sources || [SOURCE_FLAG],
     });
     existingIds.add(id);
   }

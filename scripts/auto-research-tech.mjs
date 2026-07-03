@@ -171,7 +171,7 @@ async function main() {
   await fs.writeFile(tmpFile, JSON.stringify(candidates, null, 2));
   console.log(`\n候補${candidates.length}件を機械検証へ → ${tmpFile}`);
 
-  const buildArgs = [path.join(__dirname, "build-tech-from-research.mjs"), tmpFile];
+  const buildArgs = [path.join(__dirname, "build-tech-from-research.mjs"), tmpFile, "--source", "Tech Radar"];
   if (DRY_RUN) buildArgs.push("--dry-run");
   const build = spawnSync("node", buildArgs, { encoding: "utf-8", stdio: "inherit", timeout: 600000 });
   if (build.status !== 0) {
