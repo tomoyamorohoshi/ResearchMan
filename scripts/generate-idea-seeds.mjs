@@ -111,32 +111,42 @@ async function main() {
   } catch {}
   const recentSeeds = history.slice(-HISTORY_IN_PROMPT).map((s) => s.slice(0, 40)).join(" / ");
 
+  // 1回のCLI呼び出し→JSON抽出・解析まで。失敗はthrow（呼び出し側でリトライ）
+  function generateOnce(claudeBin, prompt) {
+    const result = spawnSync(
+      claudeBin,
+      ["--print", "--model", MODEL, "--dangerously-skip-permissions", prompt],
+      { encoding: "utf-8", timeout: TIMEOUT_MS, maxBuffer: 1024 * 1024 * 10, stdio: ["ignore", "pipe", "pipe"] }
+    );
+    if (result.error || result.status !== 0) {
+      const detail = [result.error?.message, result.stderr, result.stdout].filter(Boolean).join(" | ").slice(0, 300);
+      throw new Error(`CLI失敗: ${detail}`);
+    }
+    const m = (result.stdout || "").match(/\[[\s\S]*"seed"[\s\S]*\]/);
+    if (!m) throw new Error(`種のJSONが見つかりません。出力先頭300字: ${(result.stdout || "").slice(0, 300)}`);
+    const parsed = JSON.parse(m[0]).filter((s) => s?.seed); // 不正JSONはここでthrow
+    if (parsed.length < 5) throw new Error(`種が少なすぎます（${parsed.length}個）`);
+    return parsed;
+  }
+
+  // モデルが不正なJSON（文字列内の引用符エスケープ漏れ等）を返すことがあり、
+  // 1回きりだと配信が丸ごと落ちる（2026-07-04朝に実際に発生）。最大3回まで再生成する。
+  // 生成はtech.json全体からのサンプリングであり当日の新規収集件数には依存しない＝
+  // 収集0件の日でも必ず配信される設計
+  const MAX_ATTEMPTS = 3;
   const claudeBin = resolveClaudeBin();
-  const result = spawnSync(
-    claudeBin,
-    ["--print", "--model", MODEL, "--dangerously-skip-permissions", buildPrompt({ caseLines, techLines, recentSeeds })],
-    { encoding: "utf-8", timeout: TIMEOUT_MS, maxBuffer: 1024 * 1024 * 10, stdio: ["ignore", "pipe", "pipe"] }
-  );
-  if (result.error || result.status !== 0) {
-    const detail = [result.error?.message, result.stderr, result.stdout].filter(Boolean).join(" | ").slice(0, 300);
-    console.error(`生成失敗: ${detail}`);
-    process.exit(1);
-  }
-  const m = (result.stdout || "").match(/\[[\s\S]*"seed"[\s\S]*\]/);
-  if (!m) {
-    console.error(`種のJSONが見つかりません。出力先頭300字:\n${(result.stdout || "").slice(0, 300)}`);
-    process.exit(1);
-  }
-  let seeds;
-  try {
-    seeds = JSON.parse(m[0]).filter((s) => s?.seed);
-  } catch (e) {
-    console.error(`JSON解析エラー: ${e.message}`);
-    process.exit(1);
-  }
-  if (seeds.length < 5) {
-    console.error(`種が少なすぎます（${seeds.length}個）→ エラー扱い`);
-    process.exit(1);
+  let seeds = null;
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    try {
+      seeds = generateOnce(claudeBin, buildPrompt({ caseLines, techLines, recentSeeds }));
+      break;
+    } catch (e) {
+      console.error(`生成試行 ${attempt}/${MAX_ATTEMPTS} 失敗: ${e.message}`);
+      if (attempt === MAX_ATTEMPTS) {
+        console.error("全試行失敗 → エラー終了");
+        process.exit(1);
+      }
+    }
   }
   seeds = seeds.slice(0, SEED_COUNT);
 
