@@ -1,5 +1,237 @@
 [
   {
+    "id": "gemini-omni-flash-ai-2026",
+    "title": "Gemini Omni Flash（動画生成AIモデル）",
+    "summary": "Google DeepMindが対話形式で動画を生成・編集できるAI「Gemini Omni Flash」を公開、動画制作を一発生成から会話へと変えた。",
+    "client": "Google",
+    "agency": "",
+    "categories": [
+      "AIクリエイティブ",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.moguravr.com/gemini-omni-flash-gemini-api/",
+    "thumbnail": "/thumbnails/gemini-omni-flash-ai-2026.jpg",
+    "videoId": "",
+    "overview": "Google DeepMindが2026年5月のGoogle I/Oで発表した動画生成・編集AI「Gemini Omni Flash」。テキスト・画像・音声・動画を自在に組み合わせて入力でき、出力は動画。text_to_video・image_to_video・reference_to_video・editの4タスクに対応し、自然言語による対話形式で動画を段階的に編集できる点が特徴。6月30日にGemini APIとGoogle AI Studioで開発者向け公開プレビューが始まった。",
+    "background": "Googleは画像生成AI「Nano Banana」シリーズや動画生成AI「Veo」を展開してきたが、Gemini Omni Flashはこれらの発想を統合し、対話を重ねながら動画を作り込む新しいワークフローを提示する狙いがある。I/O 2026での発表から約1カ月後の6月30日、同時発表の低コスト画像生成AI「Nano Banana 2 Lite」とともにAPI経由で開発者に開放され、生成AIによる動画制作の裾野拡大を狙った。",
+    "execution": "Gemini Omni Flashはtext_to_video・image_to_video・reference_to_video・editの4タスクをAPIパラメータで指定でき、一度生成した動画に対して「衣装を変える」「背景を変える」といった自然言語指示で再編集できる。物理法則や地理・文化・言語などGeminiの知識に基づいた映像を生成し、720pで3〜10秒の動画を1秒あたり0.10ドルで出力。Nano Banana 2 Liteで生成した画像を参照素材として渡し動画化するワークフローも提供される。",
+    "evaluationImpact": "価格はVeo 3.1 Fastと同水準に抑えつつ、対話的な編集機能により動画制作を『一発生成』から『会話しながら作り込む』体験へ転換した点が評価されている。生成物にはSynthID電子透かしとC2PA Content Credentialsを付与し出所を明示。YouTube Shorts RemixやGoogle Flowなど消費者向け機能にも順次展開され、開発者向けAPI公開と合わせGoogleの生成メディア戦略の中核と位置づけられている。",
+    "relatedWorks": [
+      {
+        "title": "Nano Banana 2 Lite",
+        "description": "Gemini Omni Flashと同時にAPI公開された低コスト・高速な画像生成AI。生成画像をOmni Flashの参照素材として渡し動画化するワークフローで連携する。",
+        "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni-flash-nano-banana-2-lite/"
+      },
+      {
+        "title": "Gemini Omni Flash Model Card",
+        "description": "Google DeepMind公式のGemini Omni Flashモデルカード。入力の柔軟性や安全性設計を解説。",
+        "url": "https://deepmind.google/models/model-cards/gemini-omni-flash/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/App",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "brain2qwerty-v2-ai-2026",
+    "title": "Brain2Qwerty v2（非侵襲脳波解読AI）",
+    "summary": "Metaが非侵襲MEG計測のみで文章をリアルタイム復元するAI「Brain2Qwerty v2」を発表、単語正解率61%（最高78%）を実現した。",
+    "client": "Meta",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.moguravr.com/meta-brain2qwerty-v2/",
+    "thumbnail": "/thumbnails/brain2qwerty-v2-ai-2026.jpg",
+    "videoId": "",
+    "overview": "Metaが2026年6月29日に発表した非侵襲的脳波解読AI「Brain2Qwerty v2」。手術不要のMEG（脳磁図）計測のみから、文単位で文章をリアルタイムに復元するパイプライン。9名の被験者から収集した約22,000文のデータを用い、生の脳信号を直接処理する深層学習と、ニューラルデータでファインチューニングした大規模言語モデルを組み合わせ、単語正解率61%（最高78%）を達成した。",
+    "background": "従来の非侵襲的脳波解読は単語正解率8%程度にとどまり、実用的なコミュニケーション支援には侵襲的な手術による脳インプラントが必要とされてきた。脳損傷などでコミュニケーションが困難な人々を、手術リスクなしで支援する手段の確立が課題だった。前身のBrain2Qwerty v1はキー入力ごとの正確なタイミング情報が必須で、リアルタイム動作ができない制約を抱えていた。",
+    "execution": "Metaは共同研究先のBasque Center on Cognition, Brain and Language（BCBL）と連携し、9名の参加者が各10時間MEG装置を装着してタイピングする実験で約22,000文のデータを収集。手作業のパイプラインに頼らず、生の脳信号から直接復号するエンドツーエンド深層学習を採用し、大規模言語モデルを脳データでファインチューニングして文脈情報を活用することで、連続的な脳活動ストリームから直接文章を生成できるようにした。",
+    "evaluationImpact": "単語正解率61%（最高78%）は従来の非侵襲手法（8%）から大幅な向上であり、これまで侵襲的な手術を伴うBCIでしか得られなかった精度域に接近した。Metaは学習コードを公開し、BCBLもデータセットを公開。500万ドル規模の「Digital Brain Project」を通じ、脳データの基盤モデル構築を推進する動きとしても注目される。",
+    "relatedWorks": [
+      {
+        "title": "Brain2Qwerty v1",
+        "description": "2025年に発表された前身モデル。MEG計測によるキー入力単位の脳活動からの復号を行うが、正確なキー押下タイミング情報が必要でリアルタイム動作はできなかった。研究論文は2026年6月29日にNature Neuroscience誌に掲載。",
+        "url": "https://facebookresearch.github.io/brain2qwerty/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/Device",
+      "Form/Product",
+      "Theme/Health"
+    ]
+  },
+  {
+    "id": "ave-mujica-xr-2026",
+    "title": "バンドリ！Ave Mujica XR体験（秋葉原）",
+    "summary": "「Ave Mujica」の作品世界をVRヘッドセットで自由回遊し、声優の録り下ろし音声とキャラ撮影機能で追体験できる期間限定XRイベント。",
+    "client": "BanG Dream! Ave Mujica",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.moguravr.com/ave-mujica-xr-akihabara-event/",
+    "thumbnail": "/thumbnails/ave-mujica-xr-2026.jpg",
+    "videoId": "",
+    "overview": "TVアニメ「BanG Dream! Ave Mujica」の世界観をVR空間で体験できるイベント「Ave Mujica -pupa ludere-」。秋葉原オノデンビル5F「エンタス」にて2026年7月18日から8月30日まで期間限定開催。VRヘッドセットを装着し、作中の代表的なシーンを自由に巡る約30分間の没入体験を提供する。",
+    "background": "Ave MujicaはBanG Dream!から生まれたダークな世界観を特徴とする5人組ガールズバンドユニット。ABALとサンジゲンは過去にもブシロードIP「MyGO!!!!!」でXRライブを実現しており、今回はその技術・体制をAve Mujicaの世界観再現に応用した企画製作となっている。",
+    "execution": "企画製作をサンジゲン・株式会社COF、XR制作をABALとサンジゲンが担当し、タブリエ・マーケティング株式会社が主催・運営。VR空間内のカメラ機能でキャラクターとの記念撮影が可能なほか、声優5名（佐々木李子・渡瀬結月・岡田夢以・米澤茜・高尾奏音）による録り下ろし音声を使用。チケットは7月6日18時から販売開始、平日1,500円・土日祝2,000円。",
+    "evaluationImpact": "作品の「体験」を単なる映像視聴ではなくVR空間での自由回遊型コンテンツとして提供する点が特徴。録り下ろし音声とVR内撮影機能によりファンの記念性・没入感を高める設計であり、アニメIPとXR技術を組み合わせたロケーション型体験ビジネスの一事例となる。",
+    "relatedWorks": [
+      {
+        "title": "MyGO!!!!! XRライブ（ABAL×サンジゲン、アニメ・スタいしかわ）",
+        "description": "2024年8月に石川県金沢市で開催。ABALのXR技術「Scape」とサンジゲンのアニメーション制作技術、ブシロードのMyGO!!!!!IPを組み合わせ、VRゴーグルでキャラクターのポエトリーリーディングを目の前で鑑賞できるコンテンツを提供。今回のAve Mujica XRと同じ制作体制による先行事例。",
+        "url": "https://prtimes.jp/main/html/rd/p/000000018.000053239.html"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/XR",
+      "Form/Event",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "ai-vtuber-ai-2026",
+    "title": "AI広報VTuber「AI代羽ウカ」始動",
+    "summary": "PANDORAがAI広報VTuber「代羽ウカ」始動、企業広報業務自体をAIキャラが担う新形態を実践",
+    "client": "PANDORA",
+    "agency": "",
+    "categories": [
+      "AIクリエイティブ",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.moguravr.com/pandora-ai-vtuber-daibane-uka/",
+    "thumbnail": "/thumbnails/ai-vtuber-ai-2026.jpg",
+    "videoId": "",
+    "overview": "株式会社PANDORAは2026年7月2日、AI駆動型の広報VTuberキャラクター「AI代羽ウカ」の配信をYouTubeチャンネル「@pndr-ai」で開始した。同社のVTuber育成プロジェクト「人類羽化計画」に登場するキャラクター「代羽ウカ」をベースに、AI技術で24時間稼働する広報キャラクターとして展開。制作補助にとどまらず、企業広報そのものをAIキャラクターが担う点が特徴である。",
+    "background": "PANDORAは「人類羽化計画」というVTuber育成プロジェクトを展開しており、代羽ウカはそのキャラクターの一つである。テキスト中心の従来型企業広報に代わり、キャラクターを通じた継続的な接点づくりとファンとの関係構築を目指し、AI技術提供企業の株式会社TIGEREYEが持つマルチモーダルAIフレームワークをクラウドで活用してAI広報VTuberを実現した。",
+    "execution": "AI代羽ウカはYouTubeチャンネル「@pndr-ai」で24時間稼働し、PANDORAの各種プロジェクト紹介、VTuberオーディションや配信者募集の告知、イベント情報、所属クリエイターの活動・グッズ・コラボ情報などを発信する。コンセプトは「人間の心を知りたくて、アイドルの形を借りたAI」とされ、キャラクター性を保ちながら企業広報機能を担う設計となっている。",
+    "evaluationImpact": "広報担当者の代替ではなく、AIキャラクターが広報業務そのものを担う点で、AI VTuberの活用範囲をコンテンツ制作補助から企業機能の実行へと広げた事例といえる。24時間稼働という特性により、人手を介さない継続的な情報発信とファンとの接点創出を両立させる新しい広報モデルを提示している。",
+    "relatedWorks": [
+      {
+        "title": "人類羽化計画: Project YOHANE 一般オーディション",
+        "description": "PANDORAが運営するVTuber育成プロジェクト。AI代羽ウカのベースキャラクター「代羽ウカ」が生まれた母体企画。",
+        "url": "https://www.moguravr.com/pandora-project-yohane-audition/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/SNS",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "memomind-one-2026",
+    "title": "MemoMind One（ディスプレイ搭載スマートグラス）",
+    "summary": "XGIMI新ブランドMemoMindがカメラ非搭載の表示型スマートグラスをKickstarterで発表し50万ドル超を調達",
+    "client": "MemoMind（XGIMI）",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://roadtovr.com/memomind-one-smart-glasses-kickstarter-release/",
+    "thumbnail": "/thumbnails/memomind-one-2026.jpg",
+    "videoId": "",
+    "overview": "MemoMindはプロジェクターメーカーXGIMIが立ち上げた新AIハードウェアブランド。第一弾「MemoMind One」はカメラを搭載せず、デュアルグリーンマイクロLEDディスプレイ（2,000ニット）、マイク、オープンイヤースピーカーを備えるスマートグラス。リアルタイム翻訳や通知表示、ナビゲーションなどAI機能を持ち、2026年7月にKickstarterで先行予約開始、標準版399ドルから8月出荷予定。",
+    "background": "XGIMIはプロジェクター事業で知られる中国メーカー。2026年1月のCESでMemoMindブランドを初披露し、7月にKickstarterキャンペーンを開始した。Meta Ray-BanやEven Realities G2などカメラ搭載スマートグラスがプライバシー面で批判を受ける中、あえてカメラを非搭載にして「常時録画への違和感」を回避し、差別化を図る狙いがある。",
+    "execution": "重量約45〜46.6gと一般的な眼鏡に近い軽さを実現し、β-チタン・マグネシウムアルミ・アセテートなど8種のフレームスタイルを用意。標準版399ドル（処方箋レンズ付き499ドル）、Kickstarter終了後は599〜749ドルに値上げ予定。26言語以上のリアルタイム翻訳、テレプロンプター表示、Harman製スピーカーによるオープンイヤー音声、OpenAI・Azure・Qwenを使い分けるハイブリッドAIを搭載する。",
+    "evaluationImpact": "目標額約1万ドルに対し約58.6万ドルを集め、ディスプレイ型スマートグラスへの市場需要の高さを裏付けた。一方でカメラ非搭載を「プライバシー配慮」と訴求しつつ、常時稼働するマイクによる周囲の会話録音は米国12州の双方同意（オールパーティコンセント）法に抵触しうるとの指摘があり、XGIMIが州ごとの利用指針を示していない点が課題として浮上している。",
+    "relatedWorks": [
+      {
+        "title": "Even Realities G2",
+        "description": "同じくカメラ非搭載の表示型スマートグラス。599ドル〜と高価格帯だがスピーカー非搭載で、独自LLM「Even AI」を採用する競合製品",
+        "url": "https://fieldguides.co/g/memomind-one-vs-even-g2-smart-glasses"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Tech/AI",
+      "Form/Product"
+    ]
+  },
+  {
+    "id": "the-sunset-of-mars-vr-2026",
+    "title": "THE SUNSET OF MARS（VR火星旅行体験）",
+    "summary": "VR宇宙旅行アトラクション「THE SUNSET OF MARS」がお台場発で西日本初上陸、志摩スペイン村で火星探査体験を期間限定開催。",
+    "client": "志摩スペイン村",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.moguravr.com/shima-spain-village-sunset-of-mars/",
+    "thumbnail": "/thumbnails/the-sunset-of-mars-vr-2026.jpg",
+    "videoId": "",
+    "overview": "志摩スペイン村（三重県）で2026年7月4日～11月1日、VR宇宙旅行アトラクション「THE SUNSET OF MARS」を期間限定開催。エンバシーホールにてVRゴーグルを装着し、ロケット発射から火星探査までを約30分で体験。ローバー走行や火星基地見学、火星人との遭遇を経て、クライマックスに青い火星のサンセットを鑑賞する。西日本初上陸で、制作は株式会社ABAL。料金2,200円（別途入園パスポート必要）。",
+    "background": "本アトラクションは2026年4月25日～6月28日、お台場フジテレビ球体展望室「はちたま」で電通・フジテレビとの戦略的提携のもと初開催されたVR宇宙旅行イベント。東京科学大学協力の火星探査特別展示ギャラリーやフジテレビ限定のガチャピン・ムック出演などで話題を呼んだ。その後、西日本エリアで初となる展開先として志摩スペイン村が選ばれ、期間限定で巡回開催される。",
+    "execution": "VRゴーグル装着による没入体験で、火星の鉱物由来のオリジナルキャラクター5体が登場。ロケット発射演出から火星着陸、ローバー乗車、火星基地見学、火星人遭遇、青いサンセット鑑賞まで一連のストーリーを約30分で構成。体験中はバーチャル空間内で記念撮影ができ、撮影データはスマートフォンにダウンロードしてSNS投稿も可能。7歳未満・身長110cm未満は体験不可などの安全基準を設定。",
+    "evaluationImpact": "お台場発の話題コンテンツを地方テーマパークへ巡回させる展開により、東京圏限定だった体験を全国区に拡大。「西日本初上陸」という訴求で地域集客を狙う設計になっている。撮影・SNS投稿機能を組み込むことで来園者による拡散も促す仕組みを備え、VR技術による期間限定コンテンツの巡回展開モデルとなっている。",
+    "relatedWorks": [
+      {
+        "title": "THE SUNSET OF MARS（お台場・フジテレビ球体展望室「はちたま」開催）",
+        "description": "電通・フジテレビとの戦略的提携で2026年4月25日〜6月28日に東京・お台場で先行開催されたオリジナル版。東京科学大学協力の火星探査特別展示ギャラリーやフジテレビ限定キャラクター（宇宙服姿のガチャピン・ムック）が登場した。",
+        "url": "https://www.screens-lab.jp/article/31114"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/XR",
+      "Form/Event",
+      "Theme/Entertainment"
+    ]
+  },
+  {
     "id": "novartis-relax-your-tight-end",
     "title": "Relax Your Tight End",
     "summary": "前立腺がん検診の誤解を笑いで打ち破った、スーパーボウル発のファーマ広告革命。",
