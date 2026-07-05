@@ -123,9 +123,12 @@ async function main() {
   console.log(`本日のレーン: ${lane.label}\n`);
 
   // X radar（捨て垢経由のX検索）を発見素材として追加する。非致命的:
-  // スクリプト自体の失敗・不在は警告ログのみで収集本体には影響させない
+  // スクリプト自体の失敗・不在は警告ログのみで収集本体には影響させない。
+  // タイムアウトは子(fetch-x-radar.mjs)の最悪実行時間(TOTAL_BUDGET_MS=300s+最後のクエリの
+  // PER_QUERY_TIMEOUT_MS=60s≈360s)より十分長くする。短いと親がタイムアウトでSIGTERMを送っても
+  // 同期ブロック中のtwscrapeが孤児プロセス化して残る（2026-07-05修正）
   const xRadarArgs = [path.join(__dirname, "fetch-x-radar.mjs"), ...(DRY_RUN ? ["--dry-run"] : [])];
-  const xRadarResult = spawnSync("node", xRadarArgs, { stdio: "inherit", timeout: 330000 });
+  const xRadarResult = spawnSync("node", xRadarArgs, { stdio: "inherit", timeout: 420000 });
   if (xRadarResult.error || xRadarResult.status !== 0) {
     console.log(`X radar呼び出しで問題発生（続行）: ${xRadarResult.error?.message || `status=${xRadarResult.status}`}`);
   }

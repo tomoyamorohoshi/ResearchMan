@@ -30,6 +30,8 @@ const MAX_ITEMS = 20;
 const TEXT_MAX_CHARS = 200;
 const LOOKBACK_HOURS = 48;
 const FILE_MAX_AGE_MS = 14 * 24 * 60 * 60 * 1000;
+// 1ツイートあたりのリンク件数上限（実測で47本のケースあり。素材Cの肥大防止）
+const LINKS_MAX_PER_ITEM = 10;
 
 function resolveTwscrapeBin() {
   try {
@@ -136,16 +138,25 @@ async function main() {
     rawItems.push(...r.items);
   }
 
-  // 重複除去（tweet id基準）→ 非x.comの外部リンクを持つもののみ → likeCount降順 → 上位N件
+  // 重複除去（tweet id基準）→ 非x.comの外部リンクを持つもののみ → likeCount降順 → 上位N件。
+  // リンク単位でtry/catchする: 不正なURL文字列でnew URLがthrowすると、link単位でなく
+  // 全体（rawItemsループ）が落ちて当日のitemsが0件になる事故があった（2026-07-05修正）
   const seen = new Set();
   const filtered = [];
   for (const t of rawItems) {
     const id = t.id_str || t.id;
     if (!id || seen.has(id)) continue;
     seen.add(id);
-    const links = (t.links || [])
-      .filter((l) => l?.url && !/(^|\.)x\.com|(^|\.)twitter\.com/.test(new URL(l.url).hostname || ""))
-      .map((l) => l.url);
+    const links = [];
+    for (const l of t.links || []) {
+      if (!l?.url) continue;
+      try {
+        const hostname = new URL(l.url).hostname;
+        if (!/(^|\.)x\.com|(^|\.)twitter\.com/.test(hostname)) links.push(l.url);
+      } catch {
+        // parse不能なURLはスキップ（このツイート・実行全体は継続する）
+      }
+    }
     if (!links.length) continue;
     filtered.push({
       text: stripControlChars(t.rawContent).slice(0, TEXT_MAX_CHARS),
@@ -153,7 +164,7 @@ async function main() {
       author: t.user?.username || "",
       date: t.date,
       likeCount: t.likeCount || 0,
-      links: [...new Set(links)],
+      links: [...new Set(links)].slice(0, LINKS_MAX_PER_ITEM),
     });
   }
   filtered.sort((a, b) => b.likeCount - a.likeCount);

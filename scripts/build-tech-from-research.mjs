@@ -104,8 +104,18 @@ async function main() {
 
     if (existingIds.has(id)) { console.log("  スキップ: 既存"); continue; }
     // プロンプトで「元URLを書け・r.jina.ai/t.coは出力禁止」と指示しているが、
-    // モデルが誤ってプロキシ経由URLをそのまま書く事故を機械的にも防ぐ（多層防御）
-    const proxyLink = (r.links || []).find((l) => /r\.jina\.ai|t\.co/.test(l.url || ""));
+    // モデルが誤ってプロキシ経由URLをそのまま書く事故を機械的にも防ぐ（多層防御）。
+    // ホスト名の完全一致で判定する（部分一致だと reddit.com・producthunt.com・target.com等
+    // "t"+".co..."を含む正規ドメインを誤ってrejectする事故があった。2026-07-05修正）
+    const isProxyUrl = (u) => {
+      try {
+        const h = new URL(u).hostname;
+        return h === "t.co" || h === "r.jina.ai";
+      } catch {
+        return false; // parse不能URLはここではrejectしない（一次ソース死活検査が拾う）
+      }
+    };
+    const proxyLink = (r.links || []).find((l) => isProxyUrl(l.url || ""));
     if (proxyLink) {
       console.log(`  ✗ プロキシ経由URLが混入: ${proxyLink.url}`);
       failed.push({ id, reason: `プロキシURL混入: ${proxyLink.url}` });
