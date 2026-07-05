@@ -18,7 +18,7 @@ const VERIFIED_VIDEOS_PATH = path.join(__dirname, "../data/verified-videos.json"
 const UA =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/124.0.0.0 Safari/537.36";
 
-export function httpGet(url, { maxBytes = 30000, redirects = 4 } = {}) {
+export function httpGet(url, { maxBytes = 30000, redirects = 4, timeoutMs = 10000 } = {}) {
   return new Promise((resolve) => {
     if (!url || !/^https?:\/\//.test(url)) return resolve(null);
     const mod = url.startsWith("https") ? https : http;
@@ -38,7 +38,7 @@ export function httpGet(url, { maxBytes = 30000, redirects = 4 } = {}) {
         if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location && redirects > 0) {
           res.resume();
           const next = new URL(res.headers.location, url).toString();
-          settle(httpGet(next, { maxBytes, redirects: redirects - 1 }));
+          settle(httpGet(next, { maxBytes, redirects: redirects - 1, timeoutMs }));
           req.destroy();
           return;
         }
@@ -56,18 +56,38 @@ export function httpGet(url, { maxBytes = 30000, redirects = 4 } = {}) {
       }
     );
     req.on("error", () => settle(null));
-    req.setTimeout(10000, () => {
+    req.setTimeout(timeoutMs, () => {
       settle(null);
       req.destroy();
     });
   });
 }
 
+// Jina Reader経由でページを取得する（bot対策で直接アクセスできないサイトの救済用）。
+// Jinaはターゲットが404等でもHTTP 200+本文を返すが、本文に必ず
+// "Warning: Target URL returned error NNN" を含む（実測確認済み）ため、
+// 死活判定はステータスだけでなくこの警告行の有無で行う（jinaSaysAlive参照）。
+// コールドフェッチ(JSレンダリング)は10秒を超えることがあるため timeoutMs を長めに取る。
+export function fetchViaJina(url) {
+  return httpGet("https://r.jina.ai/" + url, { maxBytes: 4000, timeoutMs: 30000 });
+}
+
+export function jinaSaysAlive(res) {
+  return !!(
+    res &&
+    res.status === 200 &&
+    res.body.length >= 300 &&
+    !/Warning: Target URL returned error (404|410|5\d\d)/.test(res.body)
+  );
+}
+
 // link の実在確認。404/410/5xx/ネットワーク死のみ「死」と判定。
 // 401/403 はbotブロックの可能性が高い（ページ自体は存在）ので生存扱い。
+// 直接アクセスが完全に到達不能（!res）だった場合のみ、Jina Reader経由で救済を試みる
+// （404/410/5xxは直接判定を信頼し、Jinaは使わない＝誤って死んだリンクを生かさない）。
 export async function isUrlAlive(url) {
   const res = await httpGet(url, { maxBytes: 2000 });
-  if (!res) return false;
+  if (!res) return jinaSaysAlive(await fetchViaJina(url));
   if (res.status === 404 || res.status === 410) return false;
   if (res.status >= 500) return false;
   return true;

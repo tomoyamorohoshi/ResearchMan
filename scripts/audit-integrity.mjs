@@ -15,7 +15,7 @@ import fs from "fs/promises";
 import crypto from "crypto";
 import path from "path";
 import { fileURLToPath } from "url";
-import { httpGet, videoMatchScore, isHumanVerifiedVideo } from "./verify-video.mjs";
+import { httpGet, videoMatchScore, isHumanVerifiedVideo, fetchViaJina, jinaSaysAlive } from "./verify-video.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CASES_PATH = path.join(__dirname, "../data/cases.json");
@@ -117,10 +117,15 @@ issues.push(...videoResults.filter(Boolean));
 console.log(`[3] videoId検査 完了（${withVideo.length}件）`);
 
 // ── 4. link死活 ──────────────────────────────────────────────
+// 直接到達不能な場合のみ、bot対策サイトの誤検知を減らすためJina Reader経由で再確認する
+// （404/410/5xxは直接判定を信頼しJinaは使わない）
 const linkResults = await pooled(cases, async (c) => {
   if (!c.link) return { id: c.id, kind: "link", detail: "link未設定" };
   const res = await httpGet(c.link, { maxBytes: 2000 });
-  if (!res) return { id: c.id, kind: "link-dead", detail: `到達不能: ${c.link.slice(0, 80)}` };
+  if (!res) {
+    if (jinaSaysAlive(await fetchViaJina(c.link))) return null;
+    return { id: c.id, kind: "link-dead", detail: `到達不能（Jina救済も失敗）: ${c.link.slice(0, 80)}` };
+  }
   if (res.status === 404 || res.status === 410)
     return { id: c.id, kind: "link-dead", detail: `${res.status}: ${c.link.slice(0, 80)}` };
   if (res.status >= 500)

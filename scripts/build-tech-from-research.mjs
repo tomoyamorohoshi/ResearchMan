@@ -103,6 +103,15 @@ async function main() {
     console.log(`── ${title} (${id})`);
 
     if (existingIds.has(id)) { console.log("  スキップ: 既存"); continue; }
+    // プロンプトで「元URLを書け・r.jina.ai/t.coは出力禁止」と指示しているが、
+    // モデルが誤ってプロキシ経由URLをそのまま書く事故を機械的にも防ぐ（多層防御）
+    const proxyLink = (r.links || []).find((l) => /r\.jina\.ai|t\.co/.test(l.url || ""));
+    if (proxyLink) {
+      console.log(`  ✗ プロキシ経由URLが混入: ${proxyLink.url}`);
+      failed.push({ id, reason: `プロキシURL混入: ${proxyLink.url}` });
+      if (!DRY_RUN) await logRejection({ pipeline: "tech", title, reason: "proxy-url-in-links", link: proxyLink.url });
+      continue;
+    }
     if (caseTitleKeys.has(normTitle(title))) {
       console.log("  ✗ Case Studyと重複 → 除外");
       failed.push({ id, reason: "Case Study重複" });

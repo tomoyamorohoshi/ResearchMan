@@ -78,7 +78,9 @@ function buildPrompt({ lane, existingTitles, seenThisRun }) {
 
 執筆前の必須手順: summaryJa/pointJa/detailJa を書く前に、一次ソース（GitHub README・プロジェクトページ・
 論文）を **WebFetch で実際に開いて読む**こと。検索結果のスニペットだけで書くことは禁止。
-リンク先が読めなかった（アクセス不能・内容が薄すぎる）技術は候補から外す。
+リンク先がWebFetchで読めない場合は https://r.jina.ai/<元URL> 経由で読んでよい。ただし出力JSONの
+url には必ず**元URL**を書くこと（r.jina.ai・t.co を含むURLは出力禁止）。
+それでも読めなかった（アクセス不能・内容が薄すぎる）技術は候補から外す。
 
 文体ルール（重要）:
 - 技術者でなくてもわかるように。専門用語には言い換えか身近な例えを添える。端的すぎるより丁寧に

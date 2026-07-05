@@ -147,6 +147,25 @@ const settle = (v) => { if (settled) return; settled = true; resolve(v); };
   2026-07-04に実際に発生（幸いcases.json書き込み前に停止でき実害なし）。単体テストしたい関数は
   `scripts/lib/` に切り出し、そちらだけをimportする
 
+### Jina Readerフォールバック（2026-07-05追加）
+
+`verify-video.mjs` の `isUrlAlive` / `audit-integrity.mjs` のlink死活検査、および
+`factcheck-tech.mjs` / `auto-research-tech.mjs` のプロンプトに、bot対策サイト
+（olympics.com等）による誤検知・検証不能を減らすフォールバックを追加した。
+
+- **発火条件**: 直接アクセスが**完全に到達不能**（`!res`）だった場合のみ。404/410/5xxは
+  直接判定を信頼しJinaは使わない（Jinaはターゲットのエラーページも200+本文で返すため、
+  誤って死んだリンクを生かさないようにするための制約）
+- **判定式**: `https://r.jina.ai/<URL>` の応答が `status===200 && body>=300字 && "Warning: Target
+  URL returned error 404/410/5xx" を含まない` こと（`jinaSaysAlive()`）。実測: DNS解決不能は
+  Jinaが400を返す（誤救済しない）／404ページはJinaが200を返すがWarning行で検出可能
+- **無料・無キー**: 20リクエスト/分制限。フォールバック専用（1日数回）なので実用上問題なし
+- **多層防御**: モデルが `r.jina.ai`/`t.co` のURLをそのまま候補linksに書いてしまう事故に備え、
+  `build-tech-from-research.mjs` が機械的にrejectする（プロンプト指示だけに頼らない）
+- **入れていない箇所**: `httpGet`内部（oEmbed JSONがmarkdown化されて壊れる）、サムネイル取得系
+  （`save-thumbnail.mjs`/`tech-thumbs.mjs`。Jinaは画像バイナリを返せない）、`auto-research-cc.mjs`
+  （`allowedTools: "WebSearch"`のみでWebFetch権限が無く、指示を入れても実効性が無いため）
+
 ## 5. audit-integrity の結果の読み方（誤検知に注意）
 
 2026-07-03 のフル実行: 455件中 問題23件（videoId-mismatch 19 / link-dead 2 / thumbnail-dup 1）。
