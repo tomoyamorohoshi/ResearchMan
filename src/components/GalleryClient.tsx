@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import type { Case } from "@/lib/cases";
 import CaseCard from "./CaseCard";
 import { useFavorites } from "@/hooks/useFavorites";
@@ -8,6 +9,17 @@ import { compareByAward } from "@/lib/awardLevel";
 import { compareByAwardForCollection, type OrgKey } from "@/lib/awards";
 import { tabSources, getSourceKind } from "@/lib/researchSources";
 import { TAG_AXES, tagAxis, tagLabel } from "@/lib/tags";
+import { useViewMode } from "./ViewModeContext";
+
+// 3d-force-graph/threeはwindow依存のためssr:false必須。トグルON時にのみチャンク取得される
+const Graph3DView = dynamic(() => import("./Graph3DView"), {
+  ssr: false,
+  loading: () => (
+    <div className="text-center py-32 text-[10px] tracking-[0.3em] uppercase text-gray-400">
+      Loading 3D view…
+    </div>
+  ),
+});
 
 type Props = {
   cases: Case[];
@@ -31,6 +43,7 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
   const { favorites, toggle, mounted } = useFavorites();
+  const { mode } = useViewMode();
 
   // タブ（リサーチオーダー／Radar）— データに1件以上あるものだけ件数付きで表示
   const tabs = tabSources
@@ -194,25 +207,31 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
         )}
       </div>
 
-      {/* ── グリッド ── */}
-      <div className="max-w-[1600px] mx-auto">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-px bg-gray-300">
-          {sorted.map((c) => (
-            <CaseCard
-              key={c.id}
-              c={c}
-              isFavorite={mounted && favorites.has(c.id)}
-              onToggleFavorite={toggle}
-              awardContext={awardContext}
-            />
-          ))}
-        </div>
-      </div>
+      {mode === "grid" ? (
+        <>
+          {/* ── グリッド ── */}
+          <div className="max-w-[1600px] mx-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-px bg-gray-300">
+              {sorted.map((c) => (
+                <CaseCard
+                  key={c.id}
+                  c={c}
+                  isFavorite={mounted && favorites.has(c.id)}
+                  onToggleFavorite={toggle}
+                  awardContext={awardContext}
+                />
+              ))}
+            </div>
+          </div>
 
-      {sorted.length === 0 && (
-        <div className="text-center py-32 text-[10px] tracking-[0.3em] uppercase text-gray-400">
-          {showFavoritesOnly ? "No saved items yet" : "No results found"}
-        </div>
+          {sorted.length === 0 && (
+            <div className="text-center py-32 text-[10px] tracking-[0.3em] uppercase text-gray-400">
+              {showFavoritesOnly ? "No saved items yet" : "No results found"}
+            </div>
+          )}
+        </>
+      ) : (
+        <Graph3DView cases={sorted} />
       )}
     </>
   );
