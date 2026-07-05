@@ -214,25 +214,56 @@ cases.json 454件中164件が `sources` なし。**これは仕様**（初期ア
 Cannes 2026分290件はsourcesすべて付与済みで欠落ゼロ（機械的な補完対象は無い）。
 詳細は `src/lib/researchSources.ts` のコメント参照。
 
-### cannes2026-winners.json（参照リスト）の更新手順（2026-07-04追記）
+### アワードデータの鉄則（2026-07-05・Cannes 2026レベル誤り13件の教訓）
 
-`data/cannes2026-winners.json` は 2026-06-29 時点で6体の並列監査エージェントが
-lovethework公式DB＋トレード各誌から構築した**静的スナップショット**。以後の受賞発表
-（大会後半・追加公表分等）は自動反映されない。
+Digital Craft部門ページで公式と異なる受賞レベルが表示される問題を全部門調査したところ、
+表示バグ（部門ページが全体最高賞を表示していた。C1で修正済み）に加え、cases.json自体の
+レベル誤りが5件、参照リスト側の欠落が十数件見つかった。共通原因は**受賞レベルの根拠が
+トレード記事（伝聞・要約）止まりで、公式の受賞者一覧まで遡っていなかった**こと。
 
-- `scripts/build-cannes-reference.mjs` は**再実行可能な更新スクリプトではない**。
-  過去の特定ワークフロー実行のトランスクリプトファイルID（6件）がハードコードされた
-  「一度きり生成」スクリプトで、再実行しても同じ古いトランスクリプトを読み直すだけ。
-- **完全な再生成**をするには、同等の6体並列監査（lovethework公式DB＋トレード各誌を
-  役割分担して収集→カテゴリ別に受賞作・レベル・ブランド・エージェンシーを構造化JSON化）を
-  ワークフローとして再実行し、出力トランスクリプトのIDで `build-cannes-reference.mjs` の
-  `FILES` 配列を書き換えて実行する必要がある（重い作業。大幅な期分ずれや大会終了後の
-  確定版取り込み時のみ推奨）。
-- **数件程度の追加・修正**（新着受賞・見落とし）は、P2-2で実施した手順が現実的:
-  1. WebSearch/WebFetchで一次情報（Cannes公式・Campaign/LBB等トレード誌）を確認
-  2. `data/cannes2026-winners.json` の `winners` 配列に直接エントリを追加/修正し、
-     `count` を実配列長に、`_note` に追記日と根拠を追記
-  3. `npm run audit:cannes` と `npm run audit:cannes:strict` で整合確認
+- 受賞事実（アワード名・部門・レベル・年）は**公式の受賞者一覧または公式プレスリリースでのみ確定**する。
+  トレード記事（Campaign/LBB/adobo等）は発見のきっかけとして使ってよいが、レベルの根拠にしない
+- 1作品が同一部門で複数レベル受賞しうる前提で扱う（小分類違いのGold+Silver等は珍しくない）。
+  参照リストを構築する際、category+titleで重複除去するとこの複数受賞が構造的に消える
+  （旧v1の欠落の主因）。除去せず個別レベルを保持する
+- 新アワードの一括収集時は「参照リスト構築→cases.json執筆→award-verifierで一次照合」の
+  順を守り、参照リストには**部門ごとのsourceUrl**を必ず残す（後から検証しやすくするため）
+- 部門ページのバッジ・ソートは`getAwardLevelForCollection`（`src/lib/awards.ts`）が
+  「その部門でのレベル」を自動計算する。通常ギャラリー（トップページ）は従来どおり
+  全体最高賞を表示する仕様（意図的な差異であり統一しない）
+- `.claude/agents/award-verifier` が受賞事実の一次照合の標準フロー。新アワード一括収集時や
+  既存データの疑義確認時はこのエージェントに委任する（WebSearch/WebFetchで
+  lovethework等の公式DBを確認し、確認済み/未検証/誤りの3値で返す設計）
+
+### cannes2026-winners-v2.json（参照リスト・2026-07-05刷新）の更新手順
+
+`data/cannes2026-winners-v2.json` が現行の参照リスト（`audit-cannes.mjs`が参照）。
+award-verifierエージェント5体がlovethework.com公式を並列照合して構築した15部門
+（`VERIFIED_CATEGORIES`。Digital Craft, Creative B2B, Creative Business Transformation,
+Design, Entertainment, Entertainment for Gaming/Sport, Film, Film Craft,
+Grand Prix for Good, Industry Craft, Pharma, Outdoor, Health & Wellness, Audio & Radio）と、
+残り16部門（旧v1由来・未検証のまま引き継ぎ、`sourceUrl`に「旧v1由来・未検証」と明記）の
+混成データ。**公式照合済み15部門はレベル不一致がFAIL**（pre-pushをブロックする）。
+未検証16部門はWARNのまま（`--strict`でのみFAIL）。
+
+- 各winnerの`sourceUrl`が公式URL（`https://www.lovethework.com/...`）か
+  「旧v1由来・未検証」かで、そのエントリーの検証状況が分かる
+- Film・Film Craft・OutdoorはBronze区分がlovethework側のJS遅延レンダリング（無限スクロール）
+  のため静的取得できず一部/全部欠落している（既知の制約。`余分な部門セグメント`WARNの
+  大半はこれが原因）。完全なBronzeリストが必要な場合はブラウザ自動化（Playwright等）での
+  再取得が必要（未対応）
+- 公式照合で受賞確認済みだがcases.json未収録と判明した作品は`pendingNewCases`に分離
+  保持している（次回の通常収集フローでの追加候補。監査対象外）
+- 旧`cannes2026-winners.json`（v1）は当面残す。`scripts/build-cannes-reference.mjs`は
+  過去の特定ワークフロー実行のトランスクリプトIDがハードコードされた「一度きり生成」
+  スクリプトで再実行不可（v1の生成来歴の記録として残置）
+- 未検証16部門を含む**完全な再照合**をする場合は、award-verifierエージェントを部門ごとに
+  並列委任し（今回の5グループ分割と同じ要領）、結果をv2の`winners`にマージする
+- **数件程度の追加・修正**は以下の手順:
+  1. award-verifierエージェント（またはWebSearch/WebFetch）でlovethework公式を確認
+  2. `data/cannes2026-winners-v2.json`の`winners`配列に直接エントリを追加/修正し、
+     `sourceUrl`に確認したURLを記録
+  3. `npm run audit:cannes`で整合確認（公式照合済み部門はFAILしないこと）
 
 ## 6. トラブルシューティング・ランブック
 
