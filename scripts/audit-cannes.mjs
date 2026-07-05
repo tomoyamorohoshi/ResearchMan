@@ -1,16 +1,22 @@
 /**
  * 決定論的 Cannes 2026 網羅監査。
- * data/cannes2026-winners.json（正解リスト）の各受賞について、cases.json に
+ * data/cannes2026-winners-v2.json（正解リスト）の各受賞について、cases.json に
  * 「その作品が・その部門で」登録されているか（award文字列に当該部門が含まれるか）を確認する。
  * 抜けがあれば一覧表示して exit 1。LLMに依存しない単一ソースの真実チェック。
  *
- * 追加チェック（2026-07-04・レポートのみ・pre-pushはブロックしない）:
+ * v2は2026-07-05にaward-verifierエージェント5体がlovethework.com公式で並列照合した
+ * 15部門（VERIFIED_CATEGORIES参照）と、残り16部門（旧v1由来・6監査エージェントの
+ * トランスクリプトから抽出・未公式照合）を統合したもの。各winnerのsourceUrlで
+ * 出所を区別できる（公式URL or "(旧v1由来・未検証...)"の注記）。
+ *
+ * 追加チェック（レポートのみ・pre-pushはブロックしない）:
  *   - レベル一致検証: 部門は一致しているのにGrand Prix/Gold/Silver/Bronze等のレベルが
- *     参照リストと食い違うセグメントをWARN
+ *     参照リストと食い違うセグメントをWARN。ただし**公式照合済み15部門はFAIL**に昇格する
+ *     （2026-07-05。v2のこの部分はレベルが公式確定のため、旧v1のような不完全さの言い訳が効かない）
  *   - 余分事例検出: cases.json側にあるが参照リストに対応winnerが無い部門×レベルの
  *     組み合わせをWARN（参照リストの欠落 or cases.json側の誤りの可能性）
- *   これらは参照リストが不完全（Silver/Bronzeの完全名簿非公開等）な場合に誤検知しうるため
- *   既定はレポートのみ。 --strict を付けるとWARNもexit 1にする。
+ *   未検証16部門についてはこれらは引き続きWARNのみ（参照リストが不完全な可能性を残す）。
+ *   --strict を付けると全部門のWARNもexit 1にする。
  *
  * 使い方: node scripts/audit-cannes.mjs [--strict] [--out /path/to/report.json]
  *         （npm run audit:cannes）
@@ -23,7 +29,15 @@ const STRICT = process.argv.includes("--strict");
 const outIdx = process.argv.indexOf("--out");
 const OUT_PATH = outIdx >= 0 ? process.argv[outIdx + 1] : null;
 
-const ref = JSON.parse(fs.readFileSync(path.join(__dirname, "../data/cannes2026-winners.json"), "utf8")).winners;
+// award-verifierエージェント5体がlovethework.com公式で並列照合済みの部門（2026-07-05）。
+// この部門群のレベル不一致はWARNではなくFAILにする（v2のレベルは公式確定のため）
+const VERIFIED_CATEGORIES = new Set([
+  "Digital Craft", "Creative B2B", "Creative Business Transformation", "Design", "Entertainment",
+  "Entertainment for Gaming", "Entertainment for Sport", "Film", "Film Craft", "Grand Prix for Good",
+  "Industry Craft", "Pharma", "Outdoor", "Health & Wellness", "Audio & Radio",
+]);
+
+const ref = JSON.parse(fs.readFileSync(path.join(__dirname, "../data/cannes2026-winners-v2.json"), "utf8")).winners;
 const cases = JSON.parse(fs.readFileSync(path.join(__dirname, "../data/cases.json"), "utf8"));
 const cn = cases.filter((c) => (c.award || "").includes("Cannes Lions 2026"));
 
@@ -89,7 +103,8 @@ function awardSegments(award) {
 // セグメントからレベル（Grand Prix/Gold/Silver/Bronze/Titanium等）を抽出
 function extractLevel(segment) {
   const s = segment.toLowerCase();
-  if (/grand prix for good/.test(s)) return "Grand Prix for Good";
+  // "Grand Prix for Good"は部門名（category）であり、レベルとしては単純に"Grand Prix"
+  // （v2データのGrand Prix for Good部門は level="Grand Prix" として登録されている）
   if (/grand prix/.test(s)) return "Grand Prix";
   if (/titanium/.test(s)) return "Titanium";
   if (/\bgold\b/.test(s)) return "Gold";
@@ -106,9 +121,11 @@ function segmentCategory(segment) {
 }
 
 const missing = [];
-const levelMismatches = [];
 // caseId -> 参照リスト上でこのcaseにマッチした部門のSet（余分事例検出に使う）
 const caseRefCategories = new Map();
+// id|category -> 参照側の全レベルの集合（同一作品が同一部門で複数レベル受賞している場合に対応。
+// 例: 小分類違いでGold+Silver両方受賞。RM記載はそのうちどれか1つと一致すればOKとする）
+const refLevelsByCase = new Map();
 
 for (const w of ref) {
   const matches = findAllRM(w);
@@ -120,15 +137,26 @@ for (const w of ref) {
     if (!caseRefCategories.has(m.id)) caseRefCategories.set(m.id, new Set());
     caseRefCategories.get(m.id).add(w.category);
 
-    // 同一部門に複数レベル受賞（例: Oreo CowsのBE&A Gold+Silver）がありうるため、
-    // 該当部門の全セグメントを見て、そのうち1つでもw.levelと一致すればOKとする
-    const matchingSegs = awardSegments(m.award).filter((s) => awardHasCategory(s, w.category));
-    if (matchingSegs.length) {
-      const foundLevels = matchingSegs.map(extractLevel).filter(Boolean);
-      if (foundLevels.length && !foundLevels.includes(w.level)) {
-        levelMismatches.push({ id: m.id, category: w.category, refLevel: w.level, foundLevels: foundLevels.join("/"), segments: matchingSegs.join(" | ") });
-      }
-    }
+    const key = `${m.id}|${w.category}`;
+    if (!refLevelsByCase.has(key)) refLevelsByCase.set(key, new Set());
+    refLevelsByCase.get(key).add(w.level);
+  }
+}
+
+// レベル不一致判定: 同一id+categoryについて、RM記載の全レベルと参照側の全レベルの集合が
+// 1つでも交差すればOK（同一部門内の複数レベル受賞を「片方だけ書けば良い」として許容する）
+const levelMismatches = [];
+for (const [key, refLevels] of refLevelsByCase) {
+  const [id, category] = key.split("|");
+  const m = cn.find((c) => c.id === id);
+  if (!m) continue;
+  const matchingSegs = awardSegments(m.award).filter((s) => awardHasCategory(s, category));
+  if (!matchingSegs.length) continue;
+  const foundLevels = matchingSegs.map(extractLevel).filter(Boolean);
+  if (!foundLevels.length) continue;
+  const hasIntersection = foundLevels.some((l) => refLevels.has(l));
+  if (!hasIntersection) {
+    levelMismatches.push({ id, category, refLevel: [...refLevels].join("/"), foundLevels: foundLevels.join("/"), segments: matchingSegs.join(" | ") });
   }
 }
 
@@ -162,16 +190,24 @@ if (missing.length === 0) {
   }
 }
 
-if (levelMismatches.length) {
-  console.log(`\n⚠ WARN — レベル不一致 ${levelMismatches.length} 件（参照リストと部門は一致するがレベルが食い違う）:`);
-  levelMismatches.forEach((m) => console.log(`   - ${m.id} [${m.category}]: 参照=${m.refLevel} / RM記載=${m.foundLevels}`));
+// 公式照合済み15部門のレベル不一致はFAIL、未検証16部門はWARNのまま
+const verifiedMismatches = levelMismatches.filter((m) => VERIFIED_CATEGORIES.has(m.category));
+const unverifiedMismatches = levelMismatches.filter((m) => !VERIFIED_CATEGORIES.has(m.category));
+
+if (verifiedMismatches.length) {
+  console.log(`\n✗ FAIL — 公式照合済み部門のレベル不一致 ${verifiedMismatches.length} 件（v2は公式確定のため誤りとして扱う）:`);
+  verifiedMismatches.forEach((m) => console.log(`   - ${m.id} [${m.category}]: 公式=${m.refLevel} / RM記載=${m.foundLevels}`));
+}
+if (unverifiedMismatches.length) {
+  console.log(`\n⚠ WARN — 未検証部門のレベル不一致 ${unverifiedMismatches.length} 件（参照リストが旧v1由来・未公式照合のため確定ではない）:`);
+  unverifiedMismatches.forEach((m) => console.log(`   - ${m.id} [${m.category}]: 参照=${m.refLevel} / RM記載=${m.foundLevels}`));
 }
 if (extraSegments.length) {
   console.log(`\n⚠ WARN — 余分な部門セグメント ${extraSegments.length} 件（参照リストに対応winnerが無い。参照リストの欠落かRM側の誤りの可能性）:`);
   extraSegments.forEach((e) => console.log(`   - ${e.id}: "${e.segment}"`));
 }
 
-const hardFail = missing.length > 0;
-const softFail = STRICT && (levelMismatches.length > 0 || extraSegments.length > 0);
+const hardFail = missing.length > 0 || verifiedMismatches.length > 0;
+const softFail = STRICT && (unverifiedMismatches.length > 0 || extraSegments.length > 0);
 if (hardFail || softFail) process.exit(1);
 process.exit(0);

@@ -1,0 +1,3943 @@
+{
+  "_note": "Cannes Lions 2026 受賞者リストv2。award-verifierエージェント5体がlovethework.com公式（各部門のGrand Prix〜Bronze全リスト）を並列照合して構築（2026-07-05）。旧cannes2026-winners.json（6監査エージェントのトランスクリプトからの一度きり生成・トレード記事由来）と異なり、公式一次ソースのURLを部門ごとに保持する。Shortlistは収載しない（ユーザー決定）。同一タイトルの同一部門複数受賞（例: Project GenieがDigital CraftでGrand PrixとBronze両方）は除去せず個別エントリーとして保持する。 今回award-verifierで検証したのは15部門（Digital Craft, Creative B2B, Creative Business Transformation, Design, Entertainment, Entertainment for Gaming, Entertainment for Sport, Film, Film Craft, Grand Prix for Good, Industry Craft, Pharma, Outdoor, Health & Wellness, Audio & Radio）のみ。残り16部門は旧v1（6監査エージェントのトランスクリプトから抽出・未公式照合）のデータをそのまま引き継いでいる（sourceUrlに明記）。 pendingNewCasesは公式照合で受賞確認済みだがcases.jsonに未収録の作品（5件）。新規事例の追加は本v2構築のスコープ外（データ正確性修正が目的）のため、次回の通常収集フローでの追加候補として分離保持している。missing検出の対象外。",
+  "generatedFrom": "5 award-verifier agents (parallel, lovethework.com official)",
+  "generatedAt": "2026-07-05",
+  "sourceNote": "Film・Film Craft・OutdoorはBronze区分がJS遅延レンダリングのため一部/全部取得不能（各エントリーのcoverage参照）。それ以外は各部門ページのGrand Prix〜Bronze全件を確認済み。",
+  "winners": [
+    {
+      "category": "Digital Craft",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "Project Genie",
+      "brand": "Google",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/digital-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Digital Craft",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Language of Bedwetting",
+      "brand": "Autism Society",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/digital-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Digital Craft",
+      "subcategory": "Innovative Use of Technology",
+      "level": "Gold",
+      "title": "SOS POS",
+      "brand": "BCP",
+      "agency": "Circus Grey",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/digital-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Digital Craft",
+      "subcategory": "Digital Illustration & Image Design",
+      "level": "Silver",
+      "title": "Amazonia",
+      "brand": "Embratur and RAI",
+      "agency": "FutureBrand Sao Paulo",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/digital-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Digital Craft",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "A Critter Carol",
+      "brand": "Apple",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/digital-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Digital Craft",
+      "subcategory": "Innovative Use of Technology",
+      "level": "Silver",
+      "title": "The Birdwatcher",
+      "brand": "Spoor",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/digital-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Digital Craft",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "No Frame Missed",
+      "brand": "Apple",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/digital-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Digital Craft",
+      "subcategory": "UX & Journey Design",
+      "level": "Bronze",
+      "title": "Project Genie",
+      "brand": "Google",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/digital-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Digital Craft",
+      "subcategory": "Real-Time Contextual Content",
+      "level": "Bronze",
+      "title": "Code Her",
+      "brand": "Boticario",
+      "agency": "AlmapBBDO",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/digital-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Digital Craft",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Run Back the Miracle",
+      "brand": "Michelob Ultra",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/digital-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Digital Craft",
+      "subcategory": "Curation of Data",
+      "level": "Bronze",
+      "title": "The Birdwatcher",
+      "brand": "Spoor",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/digital-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Creative B2B",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "The Faroe Islands Space Program",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/creative-b2b?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Creative B2B",
+      "subcategory": "Brand Experience",
+      "level": "Gold",
+      "title": "Soil Stay",
+      "brand": "Tra Mongkut Fertilizer",
+      "agency": "VML",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/creative-b2b?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Creative B2B",
+      "subcategory": "Targeting & Engagement",
+      "level": "Gold",
+      "title": "Tocayos",
+      "brand": "Heineken",
+      "agency": "LePub",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/creative-b2b?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Creative B2B",
+      "subcategory": "Targeting & Engagement",
+      "level": "Silver",
+      "title": "The Trojan Fax",
+      "brand": "IUCN French Committee x Fujifilm Print",
+      "agency": "BETC",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/creative-b2b?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Creative B2B",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Reverse Media Schedule",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/creative-b2b?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Creative B2B",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Keep Thinking",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/creative-b2b?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Creative B2B",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Vaseline Originals",
+      "brand": "Vaseline",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/creative-b2b?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Creative B2B",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Dark Mode Ads",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/creative-b2b?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Creative B2B",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "The Pub That Refused to Die",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/creative-b2b?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Creative B2B",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "T-Rex Leather",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/creative-b2b?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Creative B2B",
+      "subcategory": "Market Disruption",
+      "level": "Bronze",
+      "title": "¡Hola!",
+      "brand": "Colas Iceland",
+      "agency": "Colas Iceland",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/creative-b2b?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Creative Business Transformation",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "The Wedding Rice",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/creative-business-transformation?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Creative Business Transformation",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Protect the Peanut",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/creative-business-transformation?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Creative Business Transformation",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Code for the Protection and Inclusion of Black Consumers",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/creative-business-transformation?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Creative Business Transformation",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Vaseline Verified",
+      "brand": "Vaseline",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/creative-business-transformation?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Creative Business Transformation",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Vaseline Verified",
+      "brand": "Vaseline",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/creative-business-transformation?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Creative Business Transformation",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Tocayos",
+      "brand": "Heineken",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/creative-business-transformation?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Creative Business Transformation",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "IKEA Preowned/Second-Hand Marketplace",
+      "brand": "IKEA",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/creative-business-transformation?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Design",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "Apple TV Rebrand",
+      "brand": "Apple",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/design?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Design",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "The Volvo Cars Safety Standard",
+      "brand": "Volvo",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/design?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Design",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Supernova Adaptive",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/design?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Design",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Dancebook Brasil",
+      "brand": "Bradesco",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/design?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Design",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "NPR: For Your Right to Be Curious",
+      "brand": "NPR",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/design?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Design",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Tigris – Condensed Identity",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/design?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Design",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Amazonia",
+      "brand": "Embratur and RAI",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/design?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Design",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Dear Difference",
+      "brand": "Nikka Whisky",
+      "agency": "Dentsu Inc.",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/design?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Design",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Tilt Accessible Beauty - Product Design",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/design?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Design",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Craftman.Ships",
+      "brand": "SHIPS",
+      "agency": "Hakuhodo Gravity",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/design?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Design",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Zip Code Exam",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/design?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Design",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Tilt Accessible Beauty - Inclusive Design",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/design?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Design",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Dressed for Wimbledon",
+      "brand": "Stella Artois",
+      "agency": "GUT Amsterdam",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/design?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Design",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "The Grit & the Glitter",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/design?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Design",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Din – The Magazine in All Formats",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/design?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Design",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "The Birdwatcher",
+      "brand": "Spoor",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/design?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Design",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Rail Clock",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/design?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Design",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "The Periodic Fable",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/design?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Design",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Little Breaks",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/design?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Design",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Vision Pulse: Sight Beyond Seeing",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/design?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Design",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Stranger Things in Search",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/design?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Design",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Lime Guides",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/design?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Design",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "The Thousand Sponsors of Muni",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/design?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "Original Forever",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Who's Waiting for You?",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "The Tiger",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Original Forever",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Everybody Coinbase",
+      "brand": "Coinbase",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Big Man, Shot on iPhone",
+      "brand": "Apple",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Change My Mind",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Tiffany & Co. x Netflix's Frankenstein",
+      "brand": "Tiffany & Co.",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "The Grey Swan",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "The Philipstown Wirecar Grand Prix",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Hawkstone - Hard to Make Easy to Drink",
+      "brand": "Hawkstone",
+      "agency": "Smith & Jones Films",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Goodbye RX-7: Saying Farewell to a Dear Friend",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Sosegá",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "The Wizard of Oz at Sphere",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "The Most Epic Watch Party Group",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Played by Humans",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "A Minecraft Movie Meal",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "The Triangle Theory",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Pocket-Sized Halftime Show",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "For Papa!",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "The Pub That Refused to Die",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Gaming",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "Copycats Welcome",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-gaming?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Gaming",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Pocket-Sized Halftime Show",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-gaming?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Gaming",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "The Club Is Yours",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-gaming?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Gaming",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Gaming Flute",
+      "brand": "Skittles (Mars)",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-gaming?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Gaming",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Silent Cleaning",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-gaming?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Gaming",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "R2R←",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-gaming?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Gaming",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Delivered by Tetris",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-gaming?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Gaming",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Cracked Royale",
+      "brand": "Clash Royale (Supercell)",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-gaming?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "The Thousand Sponsors of Muni",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-sport?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Lucky Fan Index",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-sport?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Resize the Price",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-sport?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "CeraVe - The New Face of Legs",
+      "brand": "CeraVe",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-sport?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "AXA – Nothing Stops Women's Rugby",
+      "brand": "AXA",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-sport?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "A Mother's Commentary",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-sport?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "The Switch Hit by Mikkeller",
+      "brand": "Mikkeller",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-sport?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Kyle F*cking Connor",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-sport?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "CeraVe - The New Face of Legs",
+      "brand": "CeraVe",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-sport?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Supernova Adaptive",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-sport?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Curfew Hostels",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-sport?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Fragmental Medal",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-sport?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Jell-Ometer",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-sport?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Missing Managers",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-sport?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Dirt Is Glory",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-sport?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "The Triangle Theory",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-sport?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Two-Way Deal",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-sport?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Game on Ball",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-sport?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Fair Play",
+      "brand": "Ministerio Publico do Distrito Federal",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-sport?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Discount Chants",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-sport?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Entertainment for Sport",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Marseille C'est Nous",
+      "brand": "Puma x Olympique de Marseille",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/entertainment-lions-for-sport?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "No Project Without Drama",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "I Think of You Dying",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Apple Music x Bad Bunny Halftime Show - Shot on iPhone",
+      "brand": "Apple",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Based on a True Story",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Bullet Machine",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Your Way Out",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "A Critter Carol",
+      "brand": "Apple",
+      "agency": "TBWA\\Media Arts Lab",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "L'Ultimo Uomo Reale (The Last Real Man)",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Drop In",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Your Way Out",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Unfading Love",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Tableau",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "I Think of You Dying",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Beat Cancer Off",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "For Papa!",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "I'm Not Remarkable",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film Craft",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "Your Way Out",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film Craft",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Shape of Dreams",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film Craft",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "I'm Not Remarkable",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film Craft",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Your Way Out",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film Craft",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "No Project Without Drama",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film Craft",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Bullet Machine",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film Craft",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Helicopter",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film Craft",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "No Project Without Drama",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film Craft",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "For Papa!",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film Craft",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Unavailable",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film Craft",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Dress Yourself",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film Craft",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "The Gucci Lido Campaign",
+      "brand": "Gucci",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film Craft",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Shape of Dreams",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film Craft",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Beat Cancer Off",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film Craft",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "A Critter Carol",
+      "brand": "Apple",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film Craft",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Your Way Out",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film Craft",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "AXA – Nothing Stops Women's Rugby",
+      "brand": "AXA",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film Craft",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "The Ring: The Legacy Continues",
+      "brand": "The Ring Magazine",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film Craft",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Helicopter",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film Craft",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Bullet Machine",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Grand Prix for Good",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "600K Network",
+      "brand": "Comando Con Venezuela",
+      "agency": "Rainbow Lobster",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/grand-prix-for-good?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Grand Prix for Good",
+      "subcategory": "Health",
+      "level": "Grand Prix",
+      "title": "Vehicle of Hope",
+      "brand": "Caritas",
+      "agency": "Differ",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/lions-health-grand-prix-for-good?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Industry Craft",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "Tiny Coffee Shops",
+      "brand": "De'Longhi",
+      "agency": "LOLA",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/industry-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Industry Craft",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Try Oslo",
+      "brand": "IKEA",
+      "agency": "TRY",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/industry-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Industry Craft",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Dear Difference",
+      "brand": "Nikka Whisky",
+      "agency": "Dentsu Inc.",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/industry-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Industry Craft",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Dear Difference",
+      "brand": "Nikka Whisky",
+      "agency": "Dentsu Inc.",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/industry-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Industry Craft",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Amazonia",
+      "brand": "Embratur and RAI",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/industry-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Industry Craft",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Sunburnt Car",
+      "brand": "MyCar",
+      "agency": "TBWA\\Sydney",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/industry-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Industry Craft",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Amazônia Alive - Book",
+      "brand": "Vale SA",
+      "agency": "Artplan",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/industry-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Industry Craft",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Terms and Conditions of Being a Girl",
+      "brand": "Ville de Paris",
+      "agency": "BETC",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/industry-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Industry Craft",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Craftman.Ships",
+      "brand": "SHIPS",
+      "agency": "Hakuhodo Gravity",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/industry-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Industry Craft",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Racing/Club/Vamos",
+      "brand": "Coca-Cola",
+      "agency": "Grey",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/industry-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Industry Craft",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Moving Landscapes Snow/Forest/Dehesa",
+      "brand": "BMW",
+      "agency": "Serviceplan Spain",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/industry-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Industry Craft",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Suffering",
+      "brand": "Musee de la Grande Guerre",
+      "agency": "BBDO Paris",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/industry-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Industry Craft",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Dancebook Brasil",
+      "brand": "Bradesco",
+      "agency": "Lovely",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/industry-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Industry Craft",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Glowing Relief",
+      "brand": "Alivia Health",
+      "agency": "De La Cruz Ogilvy",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/industry-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Industry Craft",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Dear Difference",
+      "brand": "Nikka Whisky",
+      "agency": "Dentsu Inc.",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/industry-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Industry Craft",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Fascinating",
+      "brand": "Shenzhen Tourism Bureau",
+      "agency": "The Nine",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/industry-craft?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Pharma",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "Relax Your Tight End",
+      "brand": "Novartis",
+      "agency": "Fallon",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/pharma?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Pharma",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Viagra Blue Brands",
+      "brand": "Viatris",
+      "agency": "Ogilvy",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/pharma?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Pharma",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Relax Your Tight End",
+      "brand": "Novartis",
+      "agency": "Fallon",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/pharma?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Pharma",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Viagra Blue Brands",
+      "brand": "Viatris",
+      "agency": "Ogilvy",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/pharma?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Pharma",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "The Safe Pack",
+      "brand": "TuPharma 365",
+      "agency": "VML",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/pharma?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Pharma",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Animal Attraction",
+      "brand": "Gilead Sciences Canada",
+      "agency": "The Local Collective",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/pharma?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Pharma",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Sawaal Uthao",
+      "brand": "Tata 1MG",
+      "agency": "Humour Me",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/pharma?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Outdoor",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "Field Barcode",
+      "brand": "Mercado Livre",
+      "agency": "GUT",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/outdoor?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Outdoor",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Field Barcode",
+      "brand": "Mercado Livre",
+      "agency": "GUT",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/outdoor?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Outdoor",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Coincidence?",
+      "brand": "Heinz Ketchup",
+      "agency": "Rethink",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/outdoor?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Outdoor",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Camera Rolls",
+      "brand": "McDonald's",
+      "agency": "Leo",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/outdoor?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Outdoor",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Tiny Coffee Shops",
+      "brand": "De'Longhi",
+      "agency": "Lola",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/outdoor?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Outdoor",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Let's End Fast Tech",
+      "brand": "Back Market",
+      "agency": "Marcel",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/outdoor?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Outdoor",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Sunburnt Car",
+      "brand": "MyCar",
+      "agency": "TBWA\\Sydney",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/outdoor?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Outdoor",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "The Last Coke in the Desert",
+      "brand": "Coca-Cola",
+      "agency": "VML",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/outdoor?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Outdoor",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Could Have Been a Heineken",
+      "brand": "Heineken",
+      "agency": "LePub",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/outdoor?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Outdoor",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Could Have Been a Heineken",
+      "brand": "Heineken",
+      "agency": "LePub",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/outdoor?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Outdoor",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "London/Marrakesh/Bahamas",
+      "brand": "British Airways",
+      "agency": "Uncommon",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/outdoor?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Outdoor",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Blizzard as Usual 1/2/3",
+      "brand": "Tim Hortons",
+      "agency": "GUT",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/outdoor?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Outdoor",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Discount Chants",
+      "brand": "Mercado Libre",
+      "agency": "GUT",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/outdoor?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Outdoor",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Let It Fly",
+      "brand": "Saudia",
+      "agency": "Publicis KSA",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/outdoor?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Outdoor",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "KitKat Security Detail",
+      "brand": "KitKat",
+      "agency": "Courage",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/outdoor?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Outdoor",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Dark Mode Ads",
+      "brand": "Plenitude",
+      "agency": "LePub",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/outdoor?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Outdoor",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Showroom on Ice",
+      "brand": "Loods 5",
+      "agency": "Ogilvy",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/outdoor?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Outdoor",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "The Periodic Fable",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/outdoor?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Outdoor",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "2036",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/outdoor?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Outdoor",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Back to Kai Tak",
+      "brand": "Cathay",
+      "agency": "Leo HK",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/outdoor?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "The Periodic Fable",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "The Periodic Fable",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Art's Missing Period",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Vehicle of Hope",
+      "brand": "Caritas",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Supernova Adaptive",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Beat Cancer Off",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Own Your Flow",
+      "brand": "Kotex",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "The Paid Relief, Na Conta da Dor",
+      "brand": "Opella (Dorflex)",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Magnif-Eye",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Duobell",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Indianis Dentris",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Infinite Saree",
+      "brand": "Red Dot Foundation",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "2036",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "The Undropped Kit",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Fair Play",
+      "brand": "Ministerio Publico do Distrito Federal",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Donate to Play",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "The 58 Year Old Rookie",
+      "brand": "Opella (Aspercreme)",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Vaseline and the Real Nigerian Prince",
+      "brand": "Vaseline",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Art's Missing Period",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Hearapy",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "No Frame Missed",
+      "brand": "Apple",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "CeraVe - The New Face of Legs",
+      "brand": "CeraVe",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Colorfood",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Escape Vehicle",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Beat Cancer Off",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Unloved",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "The Swedish Prescription",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Pedigree Caramelo",
+      "brand": "Pedigree (Mars Petcare)",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Protest March of the Penguins",
+      "brand": "Penguins International",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Audio & Radio",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "Coquí Alarmed",
+      "brand": "Hyundai",
+      "agency": "BBDO Puerto Rico",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/audio-radio?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Audio & Radio",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Sleep Talk Reviews",
+      "brand": "IKEA",
+      "agency": "Rethink",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/audio-radio?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Audio & Radio",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Searching for Birds on Wires",
+      "brand": "Abradee",
+      "agency": "Africa Creative",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/audio-radio?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Audio & Radio",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "A Mother's Commentary",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/audio-radio?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Audio & Radio",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "The Unofficial Official Sound of F1",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/audio-radio?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Audio & Radio",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Could Have Been a Heineken",
+      "brand": "Heineken",
+      "agency": "LePub",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/audio-radio?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Audio & Radio",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Doorbell Ads",
+      "brand": "Mercado Libre",
+      "agency": "Gut",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/audio-radio?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Audio & Radio",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "The Yangzhou Qiao Bei Musical Suite",
+      "brand": "Yangzhou Municipal Bureau",
+      "agency": "TBWA\\China",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/audio-radio?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Audio & Radio",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Played by Humans",
+      "brand": "Jazz Is Dead",
+      "agency": "TBWA\\Chiat\\Day",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/audio-radio?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Audio & Radio",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Healing Era",
+      "brand": "Hansa Pilsener",
+      "agency": "Joe Public",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/audio-radio?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Audio & Radio",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "The Hustle",
+      "brand": "Hansa Pilsener",
+      "agency": "Joe Public",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/audio-radio?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Audio & Radio",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Delulu Is the Solulu",
+      "brand": "Hansa Pilsener",
+      "agency": "Joe Public",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/audio-radio?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Audio & Radio",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Beat Cancer Off",
+      "brand": "Fuck Cancer",
+      "agency": "VML",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/audio-radio?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Audio & Radio",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Ads in My Phone Call",
+      "brand": "Skinny",
+      "agency": "Colenso BBDO",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/audio-radio?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Audio & Radio",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Duobell",
+      "brand": "Skoda",
+      "agency": "Abbott Mead Vickers BBDO",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/audio-radio?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Audio & Radio",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Voice of Food",
+      "brand": "Ajinomoto Co.",
+      "agency": "Dentsu Inc.",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/audio-radio?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Audio & Radio",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Bedtime Donations",
+      "brand": "Royal Society for Blind Children",
+      "agency": "Innocean Berlin",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/audio-radio?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Build Your Own Super Bowl Commercial",
+      "brand": "Uber Eats",
+      "agency": "Special",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Cif Clean My Name",
+      "brand": "Cif",
+      "agency": "Droga5 (Accenture Song)",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Could Have Been a Heineken",
+      "brand": "Heineken",
+      "agency": "LePub",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Dove R/eal Reviews",
+      "brand": "Dove",
+      "agency": "David",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "Expedition Impossible",
+      "brand": "Columbia Sportswear",
+      "agency": "adam&eve\\TBWA, London",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Expensive Sh*t",
+      "brand": "Huggies",
+      "agency": "McCann New York",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Gaming Flute",
+      "brand": "Skittles",
+      "agency": "TBWA\\Chiat\\Day, Chicago",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Haven",
+      "brand": "Suncorp Insurance",
+      "agency": "Leo Australia",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Heinz Dipper",
+      "brand": "Heinz Ketchup",
+      "agency": "Rethink",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Kyle F*cking Connor",
+      "brand": "KFC",
+      "agency": "Courage",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Lucky Fan Index",
+      "brand": "Wisła Kraków FC",
+      "agency": "VML Warsaw",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "No Frame Missed",
+      "brand": "Apple",
+      "agency": "TBWA\\Media Arts Lab",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Oreo Cows",
+      "brand": "Oreo",
+      "agency": "VML (New York / Mexico City)",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Santa María Pueblo Hotel",
+      "brand": "Senatur",
+      "agency": "Oniria\\TBWA",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "SOS POS",
+      "brand": "BCP",
+      "agency": "Circus Grey",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "The Last Coke in the Desert",
+      "brand": "Coca-Cola",
+      "agency": "VML (NY / São Paulo / Mexico City)",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "The Thousand Sponsors of Muni",
+      "brand": "Club Deportivo Municipal",
+      "agency": "McCann Lima",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Welcome Back, Paisano",
+      "brand": "Tecate",
+      "agency": "LePub",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "You Must Love Coke",
+      "brand": "Coca-Cola",
+      "agency": "Grey New York / Grey Argentina / VML",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Brand",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "AB InBev: Creativity at Scale",
+      "brand": "AB InBev",
+      "agency": "AB InBev (in-house) — Creative Marketer of the Year 2026",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Commerce",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "A Drugstore in Your Pesebre",
+      "brand": "Farmacias Económicas",
+      "agency": "Be Flamingo",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Commerce",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "An Agent 'Como a Gente'",
+      "brand": "Magazine Luiza",
+      "agency": "Ogilvy",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Commerce",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Cancer Prevention Discounts",
+      "brand": "Broadfork Produce",
+      "agency": "Tank Worldwide",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Commerce",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Cif Clean My Name",
+      "brand": "Cif",
+      "agency": "Droga5 (Accenture Song)",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Commerce",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Copycats Welcome",
+      "brand": "Clash Royale",
+      "agency": "David",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Commerce",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "Lucky Fan Index",
+      "brand": "Wisła Kraków FC",
+      "agency": "VML Warsaw",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Commerce",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Mandatory Vacation Packages",
+      "brand": "Cámara Colombiana de Comercio Electrónico",
+      "agency": "NAME",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Commerce",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Oreo Cows",
+      "brand": "Oreo",
+      "agency": "VML",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Commerce",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Resize the Price",
+      "brand": "Aguila",
+      "agency": "David",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Commerce",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "The Golden Zone",
+      "brand": "McDonald's",
+      "agency": "TBWA\\Colombia",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Commerce",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "The Password Heist",
+      "brand": "Leroy Merlin",
+      "agency": "BETC",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Commerce",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Vaseline Originals",
+      "brand": "Vaseline",
+      "agency": "Ogilvy Singapore",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Data",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "600K Network",
+      "brand": "Comando con Venezuela",
+      "agency": "Rainbow Lobster",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Data",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "DuoBell",
+      "brand": "Škoda",
+      "agency": "AMV BBDO",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Data",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Fantasy Herd",
+      "brand": "Meadow Fresh",
+      "agency": "McCann New Zealand",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Data",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Forests Without Names",
+      "brand": "Hyundai",
+      "agency": "BBDO New York",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Data",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Haven",
+      "brand": "Suncorp Insurance",
+      "agency": "Leo Australia",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Data",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Here to Stay",
+      "brand": "Mastercard",
+      "agency": "McCann Poland",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Data",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Lucky Fan Index",
+      "brand": "Wisła Kraków FC",
+      "agency": "VML",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Data",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Nigrum Corpus",
+      "brand": "Idomed & Instituto Yduqs",
+      "agency": "Artplan",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Data",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "SOS POS",
+      "brand": "BCP (Banco de Crédito del Perú)",
+      "agency": "Circus Grey Lima",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Data",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "The Philipstown WireCar",
+      "brand": "The Philipstown WireCar Foundation",
+      "agency": "Accenture Song South Africa",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Data",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Unwatched Goals",
+      "brand": "Brahma",
+      "agency": "Africa Creative",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Effectiveness",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Football Is for Food",
+      "brand": "Uber Eats",
+      "agency": "Special",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Effectiveness",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "IKEA Hidden Tags",
+      "brand": "IKEA",
+      "agency": "Uzina Lisbon",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Effectiveness",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "My Japan Railway",
+      "brand": "JR Group",
+      "agency": "Dentsu Inc. Tokyo",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Effectiveness",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Pedigree Caramelo",
+      "brand": "Pedigree (Mars)",
+      "agency": "AlmapBBDO São Paulo",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Effectiveness",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "The Final Copy of Ilon Specht",
+      "brand": "L'Oréal Paris",
+      "agency": "McCann Paris",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Effectiveness",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "Three Words",
+      "brand": "AXA France",
+      "agency": "Publicis Conseil Paris",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Effectiveness",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Vaseline Verified",
+      "brand": "Vaseline",
+      "agency": "Ogilvy Singapore",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Strategy",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "#UnCensorYourHealth",
+      "brand": "Ladywell",
+      "agency": "Saatchi & Saatchi",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Strategy",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "A Time and a Place",
+      "brand": "Claude (Anthropic)",
+      "agency": "Mother",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Strategy",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Delivered by Tetris",
+      "brand": "La Poste",
+      "agency": "BETC",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Strategy",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Dove R/eal Reviews",
+      "brand": "Dove",
+      "agency": "DAVID London/Madrid",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Strategy",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Explore Your Story",
+      "brand": "Coach",
+      "agency": "Forsman & Bodenfors",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Strategy",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Long Lasting Passport",
+      "brand": "Darty",
+      "agency": "Publicis Conseil",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Strategy",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Made to Share",
+      "brand": "Cadbury",
+      "agency": "VCCP",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Strategy",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "No Frame Missed",
+      "brand": "Apple",
+      "agency": "TBWA\\Media Arts Lab",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Strategy",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Paid Sick Leave for Cows",
+      "brand": "Too Good",
+      "agency": "The Partnership Agency",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Strategy",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Preserved Promos",
+      "brand": "Ziploc",
+      "agency": "VML",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Strategy",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Recipe for Change",
+      "brand": "Puck",
+      "agency": "FP7 McCann Dubai",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Strategy",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "The Faroe Islands Space Program",
+      "brand": "SKF",
+      "agency": "NORD Stockholm",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Strategy",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "The Period Uniform",
+      "brand": "Somos Martina",
+      "agency": "Serviceplan",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Strategy",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "The Pub that Refused to Die",
+      "brand": "Heineken",
+      "agency": "LePub Milan / Publicis Dublin",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Strategy",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "The Swedish Prescription",
+      "brand": "Visit Sweden",
+      "agency": "Prime Weber Shandwick",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Strategy",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Tocayos",
+      "brand": "Heineken",
+      "agency": "LePub Milan",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Strategy",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "U Up?",
+      "brand": "IKEA",
+      "agency": "Rethink Toronto",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Strategy",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Vaseline Verified",
+      "brand": "Vaseline",
+      "agency": "Ogilvy Singapore",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Creative Strategy",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Zip Code Exam",
+      "brand": "Equality Health Foundation",
+      "agency": "Area 23",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Direct",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Build Your Own Super Bowl Commercial",
+      "brand": "Uber Eats",
+      "agency": "Special Los Angeles",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Direct",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Could Have Been a Heineken",
+      "brand": "Heineken",
+      "agency": "LePub Milan & São Paulo",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Direct",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Everybody Coinbase",
+      "brand": "Coinbase",
+      "agency": "Isle of Any",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Direct",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Expedition Impossible",
+      "brand": "Columbia Sportswear",
+      "agency": "adam&eveTBWA London",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Direct",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Haven",
+      "brand": "Suncorp Insurance",
+      "agency": "Leo Sydney (Hogarth/OMD)",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Direct",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Let It Fly",
+      "brand": "Saudia Airlines",
+      "agency": "Publicis KSA / Saatchi & Saatchi ME",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Direct",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Lime Guides",
+      "brand": "Corona",
+      "agency": "Grey New York",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Direct",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Oreo Cows",
+      "brand": "Oreo",
+      "agency": "VML New York & Mexico City",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Direct",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "The Heinz Dipper",
+      "brand": "Heinz Ketchup",
+      "agency": "Rethink Toronto",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Direct",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "The Periodic Fable",
+      "brand": "The Ordinary",
+      "agency": "Uncommon Creative Studio",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Direct",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "Uva Uva Bombón",
+      "brand": "UVA App",
+      "agency": "de la Cruz Ogilvy San Juan",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Direct",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Vaseline Originals",
+      "brand": "Vaseline",
+      "agency": "Ogilvy Singapore",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Entertainment for Music",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "867-5309",
+      "brand": "The Cancer Support Community",
+      "agency": "Klick Health",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Entertainment for Music",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "AXA x Sonita: The Lone Voice",
+      "brand": "AXA",
+      "agency": "Publicis Conseil",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Entertainment for Music",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Bad Bunny Halftime Show Campaign",
+      "brand": "Apple",
+      "agency": "Apple (in-house)",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Entertainment for Music",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Beat Cancer Off",
+      "brand": "Fuck Cancer",
+      "agency": "VML",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Entertainment for Music",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "I Think of You Dying",
+      "brand": "Life360",
+      "agency": "Alto",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Entertainment for Music",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "I'm Not Remarkable",
+      "brand": "Apple",
+      "agency": "Apple (in-house)",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Entertainment for Music",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Juan Gabriel – The Ballad of Alberto",
+      "brand": "Netflix",
+      "agency": "Netflix (in-house)",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Entertainment for Music",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Luther",
+      "brand": "Kendrick Lamar",
+      "agency": "Fela",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Entertainment for Music",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "Original Forever",
+      "brand": "adidas (x Oasis)",
+      "agency": "Johannes Leonardo, New York / adidas, London",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Entertainment for Music",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Played by Humans",
+      "brand": "Jazz Is Dead",
+      "agency": "TBWA\\Chiat\\Day",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Entertainment for Music",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Pocket-sized Halftime Show",
+      "brand": "Clash Royale",
+      "agency": "Uncommon Creative Studio, Stockholm",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Entertainment for Music",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "Rosalía Ft. Björk, Yves Tumor – Berghain",
+      "brand": "Rosalía",
+      "agency": "CANADA, Barcelona (dir. Nicolás Méndez)",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Entertainment for Music",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Uva Uva Bombón",
+      "brand": "Uva App",
+      "agency": "De La Cruz Ogilvy",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Glass: The Lion for Change",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "Nigrum Corpus",
+      "brand": "IDOMED & Instituto Yduqs",
+      "agency": "Artplan, São Paulo",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Glass: The Lion for Change",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Recipe for Change",
+      "brand": "Puck",
+      "agency": "FP7 McCann, Dubai",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Glass: The Lion for Change",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "The Māori Roll Call",
+      "brand": "Whānau Ora",
+      "agency": "Motion Sickness, Auckland",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Glass: The Lion for Change",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "The Unburied Casket",
+      "brand": "Women for Change",
+      "agency": "Edelman SA, Johannesburg",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Glass: The Lion for Change",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Welcome Back, Paisano",
+      "brand": "Tecate",
+      "agency": "LePub, Mexico City",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Innovation",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Radio Time Machine",
+      "brand": "Nichii Gakkan",
+      "agency": "TBWA\\Hakuhodo Tokyo",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Innovation",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "SOS POS",
+      "brand": "BCP (Banco de Crédito del Perú)",
+      "agency": "Circus Grey Lima",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Innovation",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "Supernova Adaptive",
+      "brand": "adidas",
+      "agency": "TBWA\\Canada Toronto",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Innovation",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "T-Rex Leather",
+      "brand": "Lab-Grown Leather (BSF Enterprise)",
+      "agency": "VML Paris",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Innovation",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Utrecht Energized",
+      "brand": "Renault",
+      "agency": "Publicis Amsterdam",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Luxury",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Born in Roma Rendez-Vous Ivory Collection",
+      "brand": "Valentino Beauty",
+      "agency": "Maison BETC",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Luxury",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Code for the Protection and Inclusion of Black Consumers",
+      "brand": "L'Oréal Luxe",
+      "agency": "Beta Collective, São Paulo",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Luxury",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Owners Reunions",
+      "brand": "Porsche",
+      "agency": "The Community",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Luxury",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Tiffany & Co. x Netflix's Frankenstein",
+      "brand": "Tiffany & Co.",
+      "agency": "Tiffany & Co. / Netflix Brand Creative Studio (partners CREATEOLOGY; prod. Blinkink)",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Luxury",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "Warmer Together",
+      "brand": "Moncler",
+      "agency": "WeSayHi, Sliema (photographer Platon)",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Media",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "A.I. Irresponsibly",
+      "brand": "Brewlander",
+      "agency": "BLKJ Havas",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Media",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "Build Your Own Super Bowl (Commercial)",
+      "brand": "Uber Eats",
+      "agency": "Special",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Media",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "CeraVe – The New Face of Legs",
+      "brand": "CeraVe",
+      "agency": "Beauty Co-Lab / L'Oréal",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Media",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Cheetos Thing-ertips",
+      "brand": "Cheetos",
+      "agency": "Goodby Silverstein & Partners",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Media",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Could Have Been a Heineken",
+      "brand": "Heineken",
+      "agency": "LePub",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Media",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Dark Mode Ads",
+      "brand": "Plenitude",
+      "agency": "LePub",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Media",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Defining Help",
+      "brand": "Kids Help Phone",
+      "agency": "Epitaph Group & McCann Canada",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Media",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Expensive Sh*t",
+      "brand": "Huggies",
+      "agency": "McCann New York / New Zealand",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Media",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Firecatchers",
+      "brand": "Sapeurs Pompiers de France",
+      "agency": "Havas Play",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Media",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "IKEA Preowned",
+      "brand": "IKEA",
+      "agency": "McCann Spain",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Media",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Laws Under Attack",
+      "brand": "ICRC",
+      "agency": "TBWA\\RAAD",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Media",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Prime Time 0.7",
+      "brand": "Frecuencia Latina",
+      "agency": "Fahrenheit DDB",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Media",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Recipe for Change",
+      "brand": "Puck",
+      "agency": "FP7 McCann",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Media",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "ScoreCoupons",
+      "brand": "Mercado Libre",
+      "agency": "GUT",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Media",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Serving Singles",
+      "brand": "Knorr",
+      "agency": "Frank",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Media",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Spots for Shops",
+      "brand": "Parkin",
+      "agency": "FP7 McCann",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Media",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "The KitKat Heist",
+      "brand": "KitKat",
+      "agency": "VML (with Burson London)",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Media",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "The Life-Saving Receipt",
+      "brand": "Chorogusan for Children",
+      "agency": "Dminusone Seoul",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Media",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "The Most Epic Watch Party Group",
+      "brand": "Lay's",
+      "agency": "Slap Global",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Media",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "TikTok Currency",
+      "brand": "Verkkokauppa.com",
+      "agency": "Bob the Robot",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Media",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Untaught History Edition",
+      "brand": "Annahar",
+      "agency": "Impact BBDO",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Media",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Vaseline and the Real Nigerian Prince",
+      "brand": "Vaseline",
+      "agency": "Leo Singapore",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "PR",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "600K Network",
+      "brand": "Comando Con Venezuela",
+      "agency": "Rainbow Lobster",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "PR",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "A Mother's Commentary",
+      "brand": "Reporters Without Borders",
+      "agency": "The Good Company",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "PR",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "CeraVe - The New Face of Legs",
+      "brand": "CeraVe",
+      "agency": "L'Oréal (in-house)",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "PR",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Expedition Impossible",
+      "brand": "Columbia Sportswear",
+      "agency": "adam&eve\\TBWA",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "PR",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Kyle F*cking Connor",
+      "brand": "KFC",
+      "agency": "Courage",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "PR",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "One More Question",
+      "brand": "LALCEC",
+      "agency": "Grey Argentina",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "PR",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Sleep Talk Reviews",
+      "brand": "IKEA",
+      "agency": "Rethink",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "PR",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "T-Rex Leather",
+      "brand": "Lab-Grown Leather",
+      "agency": "VML",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "PR",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "The Bite",
+      "brand": "Burger King",
+      "agency": "Mojo Supermarket",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "PR",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "The Kidney Pass",
+      "brand": "Way Out West",
+      "agency": "Nord",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "PR",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "The KitKat Heist",
+      "brand": "KitKat",
+      "agency": "Burson, London (VML-credited family)",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "PR",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "The Relationship Aid",
+      "brand": "Specsavers",
+      "agency": "Golin / Ketchum",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "PR",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "The Swedish Prescription",
+      "brand": "Visit Sweden",
+      "agency": "Prime Weber Shandwick",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "PR",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "The Thousand Sponsors of Muni",
+      "brand": "Club Deportivo Municipal",
+      "agency": "McCann Lima",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "PR",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Tocayos",
+      "brand": "Heineken",
+      "agency": "LePub",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "PR",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Uncovering Racism",
+      "brand": "Sport Club Corinthians Paulista",
+      "agency": "AlmapBBDO",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "PR",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Vaseline Originals",
+      "brand": "Vaseline",
+      "agency": "Ogilvy Singapore",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "PR",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Welcome Back, Paisano",
+      "brand": "Tecate",
+      "agency": "LePub",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Print & Publishing",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "30Under30",
+      "brand": "Change the Ref",
+      "agency": "Founders Miami",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Print & Publishing",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Georgia / Missouri / Pennsylvania",
+      "brand": "Change the Ref",
+      "agency": "Alma Miami",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Print & Publishing",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Iconic Home (Original/French Vanilla/Midnight)",
+      "brand": "Dunkin' At Home",
+      "agency": "BBH New York",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Print & Publishing",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Is That A Pinntorp?",
+      "brand": "IKEA Alsulaiman",
+      "agency": "Memac Ogilvy Dubai",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Print & Publishing",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "It Starts Outside",
+      "brand": "Dirt Is Good / Persil",
+      "agency": "FRANK London / Unilever",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Print & Publishing",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Let's End Fast Tech",
+      "brand": "Back Market",
+      "agency": "Marcel Paris",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Print & Publishing",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "Look Familiar?",
+      "brand": "Heinz Ketchup",
+      "agency": "Rethink Toronto",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Print & Publishing",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Los Campeones / Lo de Facu / La Guitarrita",
+      "brand": "Amstel",
+      "agency": "INGO Stockholm / Ogilvy Amsterdam",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Print & Publishing",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "No Blue, No Green",
+      "brand": "SOS Oceano",
+      "agency": "Droga5 (Accenture Song) São Paulo",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Print & Publishing",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Silent Edition",
+      "brand": "Jeep",
+      "agency": "Publicis Canada Toronto",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Print & Publishing",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "The Trojan Fax",
+      "brand": "IUCN French Committee x Fujifilm",
+      "agency": "BETC Paris",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Print & Publishing",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Uncovering Racism",
+      "brand": "SC Corinthians Paulista",
+      "agency": "AlmapBBDO São Paulo",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Print & Publishing",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Wherever Life Goes",
+      "brand": "IKEA",
+      "agency": "NoA Akestam Holst Stockholm",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Social & Creator",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "CeraVe - The New Face of Legs",
+      "brand": "CeraVe",
+      "agency": "L'Oréal (in-house)",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Social & Creator",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Chicken Screams for Coke",
+      "brand": "Coca-Cola",
+      "agency": "VML, New York",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Social & Creator",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Code Her",
+      "brand": "Boticario",
+      "agency": "AlmapBBDO",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Social & Creator",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Copycats Welcome",
+      "brand": "Clash Royale",
+      "agency": "David",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Social & Creator",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "Could Have Been a Heineken",
+      "brand": "Heineken",
+      "agency": "LePub Milan & LePub São Paulo",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Social & Creator",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Donate to Play",
+      "brand": "Grupo Pulsa",
+      "agency": "Publicis Brasil",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Social & Creator",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Dove R/eal Reviews",
+      "brand": "Dove",
+      "agency": "David (London & Madrid)",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Social & Creator",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Everyone Wants a Piece",
+      "brand": "Lego",
+      "agency": "Wieden+Kennedy Amsterdam / Our Lego Agency",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Social & Creator",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Expedition Impossible",
+      "brand": "Columbia Sportswear",
+      "agency": "adam&eve\\TBWA",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Social & Creator",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Expensive Sh*t",
+      "brand": "Huggies",
+      "agency": "McCann New York",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Social & Creator",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Mntana Ka Gogo",
+      "brand": "Vaseline",
+      "agency": "VML South Africa",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Social & Creator",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Olympic Rings Pasta",
+      "brand": "International Olympic Committee",
+      "agency": "IOC (in-house)",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Social & Creator",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "OM BDR",
+      "brand": "KFC",
+      "agency": "TBWA\\RAAD",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Social & Creator",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Played by Humans",
+      "brand": "Jazz Is Dead",
+      "agency": "TBWA\\Chiat\\Day",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Social & Creator",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Pope Yes",
+      "brand": "Popeyes Louisiana Kitchen",
+      "agency": "Gut Miami",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Social & Creator",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Socializing Billboards",
+      "brand": "Heineken",
+      "agency": "LePub São Paulo",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Social & Creator",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "The Choice",
+      "brand": "Pepsi",
+      "agency": "PepsiCo (in-house)",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Social & Creator",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "The Dr Pepper Jingle",
+      "brand": "Dr Pepper",
+      "agency": "Deutsch",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Social & Creator",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "The Feathered Lamb",
+      "brand": "Visa France",
+      "agency": "Marcel",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Social & Creator",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "The KitKat Heist",
+      "brand": "KitKat",
+      "agency": "VML",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Social & Creator",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Uberlândia E.C.",
+      "brand": "Uber",
+      "agency": "Wieden+Kennedy São Paulo",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Social & Creator",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Uva Uva Bombón",
+      "brand": "Uva App",
+      "agency": "De La Cruz Ogilvy",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Social & Creator",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Vaseline and the Real Nigerian Prince",
+      "brand": "Vaseline",
+      "agency": "Leo, Singapore",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Social & Creator",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Vaseline Originals",
+      "brand": "Vaseline",
+      "agency": "Ogilvy Singapore",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Social & Creator",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "You've Been Warned",
+      "brand": "Netflix",
+      "agency": "Wieden+Kennedy",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Sustainable Development Goals",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Bedtime Donations",
+      "brand": "Royal Society for Blind Children",
+      "agency": "",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Sustainable Development Goals",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Fertilizer 2.5",
+      "brand": "Thai Health Promotion Foundation",
+      "agency": "",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Sustainable Development Goals",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "It's Time to Stop!",
+      "brand": "Bingo Group",
+      "agency": "",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Sustainable Development Goals",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "Paid Sick Leave for Cows",
+      "brand": "Too Good",
+      "agency": "The Partnership Agency, Nairobi",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Sustainable Development Goals",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Santa Maria Pueblo Hotel",
+      "brand": "Senatur",
+      "agency": "",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Sustainable Development Goals",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "The Healing Stage",
+      "brand": "Armed Forces of Ukraine",
+      "agency": "",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Sustainable Development Goals",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "The Māori Roll Call",
+      "brand": "Whānau Ora",
+      "agency": "Motion Sickness, Auckland",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Sustainable Development Goals",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "The Period Uniform",
+      "brand": "Somos Martina",
+      "agency": "Serviceplan, Munich",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Sustainable Development Goals",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Three Words",
+      "brand": "AXA France",
+      "agency": "",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Titanium",
+      "subcategory": "",
+      "level": "Titanium",
+      "title": "600K Network",
+      "brand": "Comando Con Venezuela",
+      "agency": "Rainbow Lobster, Mexico City & Comando Con Venezuela, Caracas",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Titanium",
+      "subcategory": "",
+      "level": "Titanium",
+      "title": "Expedition Impossible",
+      "brand": "Columbia Sportswear",
+      "agency": "adam&eveDDB / adam&eve\\TBWA London",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Titanium",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "Haven",
+      "brand": "Suncorp Insurance",
+      "agency": "Leo Australia (Melbourne)",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Titanium",
+      "subcategory": "",
+      "level": "Titanium",
+      "title": "Oreo Cows",
+      "brand": "Oreo",
+      "agency": "VML New York & Mexico City",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Titanium",
+      "subcategory": "",
+      "level": "Titanium",
+      "title": "The Legacy of Virginia Giuffre",
+      "brand": "—",
+      "agency": "Dini von Muffling Communications",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "Oreo Cows",
+      "brand": "Oreo",
+      "agency": "VML (New York / Mexico City)",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Brand Experience & Activation",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Welcome Back, Paisano",
+      "brand": "Tecate",
+      "agency": "LePub",
+      "sourceUrl": "(旧v1由来・未検証。6監査エージェントのトランスクリプトから抽出。award-verifierでの公式照合はまだ実施していない)"
+    },
+    {
+      "category": "Film",
+      "subcategory": "",
+      "level": "Gold",
+      "title": "Try Oslo",
+      "brand": "IKEA",
+      "agency": "TRY",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Film",
+      "subcategory": "",
+      "level": "Grand Prix",
+      "title": "Claude: Can I Get a Six Pack Quickly? / How Can I Communicate Better With My Mom?",
+      "brand": "Claude (Anthropic)",
+      "agency": "Mother, London",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film?tag=publication+dates@@year@@2026"
+    }
+  ],
+  "pendingNewCases": [
+    {
+      "category": "Film",
+      "subcategory": "",
+      "level": "Silver",
+      "title": "After Shit Happened Service",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/film?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "The Shooting",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    },
+    {
+      "category": "Health & Wellness",
+      "subcategory": "",
+      "level": "Bronze",
+      "title": "Renu vs the City",
+      "brand": "",
+      "agency": "",
+      "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/health-wellness?tag=publication+dates@@year@@2026"
+    }
+  ]
+}
