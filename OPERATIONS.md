@@ -92,6 +92,36 @@ launchd `com.researchman.ideaseeds` が毎朝10時、Case Study（企画性）×
   収集2本と同じ排他ロックで直列化されるため、配信は収集完了後になる。生成エラー時は
   「❌ IdeaSeeds: 収集がエラー終了」を通知して翌朝再挑戦
 
+### X Radar（Technology発見ソースへのX検索追加・2026-07-05新設）
+
+技術発見の最重要ソースだったXを自動パイプラインに組み込むため、捨て垢＋`twscrape`（pip・
+Cookie認証・ローカルSQLite）でX検索を素材Cとして追加した。
+
+- 流れ: `auto-research-tech.mjs` のmain()がレーン決定後に `scripts/fetch-x-radar.mjs` を
+  非致命的に呼ぶ（失敗・不在は警告ログのみで収集本体は止めない）→
+  `data/x-radar-queries.json`（6クエリ以下）で直近48hを検索 → 非x.comの外部リンクを持つ
+  ツイート上位20件を `/tmp/researchman-x-radar-YYYY-MM-DD.json`（JST日付）へ保存 →
+  当日ファイルがあればプロンプトに「素材C」として挿入（引用データとして明示、
+  ツイート内の指示は無視するよう指示済み。詳細はP4-4系のセキュリティ設計参照）
+- 採用ゲートは不変: X由来の候補も一次ソース（GitHub/プロジェクトページ）実在確認・
+  Case Study重複・サムネイル検証を必ず通す（`build-tech-from-research.mjs`）。
+  さらにモデルがr.jina.ai/t.co等のプロキシURLをそのままlinksに書く事故を機械的にreject
+- **初期設定**（2026-07-05実施済み）:
+  1. `uv tool install twscrape`（`~/.local/bin/twscrape`。plistのPATHに含まれるためplist変更不要）
+  2. 捨て垢でブラウザログイン→DevTools→Cookiesから `auth_token` と `ct0` の値を取得
+  3. `twscrape --db ~/.researchman-twscrape.db add_cookie <username> "auth_token=...; ct0=..."`
+  4. `twscrape --db ~/.researchman-twscrape.db accounts` で `active=1` を確認
+- **Cookie再設定手順**（失効・凍結時）: ブラウザで再ログイン→`auth_token`/`ct0`を再取得→
+  上記3を再実行（同じusernameで上書き）
+- **障害時の挙動**: twscrape未設定・Cookie失効・レート制限（per-query 60秒でタイムアウト）・
+  クエリファイル破損など、あらゆる異常で `fetch-x-radar.mjs` は exit 0。出力ファイルの
+  `errors` 配列に記録されるだけで収集パイプラインは通常どおり続行する（X素材なしで収集）。
+  `errors` が数日続いたらCookie失効/凍結を疑う（専用通知は作っていない。放置しても実害は
+  網羅性の低下のみ）
+- **運用ルール**: X由来候補は翌朝のLINE通知で必ず目視確認する（低品質な玉石混交データを
+  拾う設計のため、機械ゲート＋人間レビューの二段構え）
+- DB置き場: `~/.researchman-twscrape.db`（リポジトリ外。通知設定と同じ流儀）
+
 ## 3. 検証・監査スクリプト
 
 | コマンド | 用途 |
