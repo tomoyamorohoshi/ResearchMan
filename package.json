@@ -10,6 +10,7 @@
     "audit:cannes": "node scripts/audit-cannes.mjs",
     "audit:cannes:strict": "node scripts/audit-cannes.mjs --strict",
     "audit:thumbnails": "node scripts/audit-thumbnails.mjs",
+    "thumbs:graph": "node scripts/generate-graph-thumbs.mjs",
     "audit:tech": "node scripts/audit-tech.mjs",
     "fetch-thumbnails": "node scripts/fetch-thumbnails.mjs",
     "check-links": "node scripts/check-links.mjs",
@@ -27,18 +28,22 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.105.0",
+    "3d-force-graph": "^1.80.0",
     "next": "16.2.9",
     "nodemailer": "^9.0.3",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "three": "^0.185.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/three": "^0.185.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
