@@ -1,4 +1,5 @@
 import { cases, Case } from './cases';
+import { getAwardLevel, type AwardLevel } from './awardLevel';
 
 export const AWARD_ORGS = [
   { key: 'cannes', label: 'Cannes Lions', abbr: 'CANNES LIONS' },
@@ -105,6 +106,46 @@ function parseCollectionsAll(
 
 function toSlug(year: string, category: string): string {
   return `${year}-${category.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`;
+}
+
+// 特定org+year+categoryの部門に属するセグメントのみを対象に受賞レベルを判定する。
+// getAwardLevel(c.award) は award文字列全体（他部門も含む）の最高賞を返すため、
+// 部門ページ（awards/[org]/[slug]）にそのまま使うと他部門の受賞レベルが混ざって
+// 表示されてしまう（例: Digital Craft Bronzeの事例がBE&A Silverも持っていると
+// 部門ページでSILVERと誤表示される）。2026-07-05修正。
+// parseCollectionsAllと同じセグメント分解・org帰属判定ロジックを再利用する。
+export function getAwardLevelForCollection(
+  awardStr: string,
+  orgKey: OrgKey,
+  caseYear: string,
+  year: string,
+  category: string,
+): AwardLevel | null {
+  let best: AwardLevel | null = null;
+  for (const seg of (awardStr || '').split('/')) {
+    if (!seg.trim()) continue;
+    if (!segmentBelongsToOrg(seg, orgKey)) continue;
+    const parsed = parseCollection(seg, caseYear, orgKey);
+    if (parsed.year !== year || parsed.category !== category) continue;
+    const level = getAwardLevel(seg);
+    if (level && (!best || level.rank < best.rank)) best = level;
+  }
+  return best;
+}
+
+// getAwardLevelForCollection を使った部門ページ用のソート比較（GP→Gold→Silver→Bronze。
+// 同ランクは年の降順）。awardLevel.ts の compareByAward の部門版
+export function compareByAwardForCollection(
+  a: Case,
+  b: Case,
+  orgKey: OrgKey,
+  year: string,
+  category: string,
+): number {
+  const ra = getAwardLevelForCollection(a.award, orgKey, a.year, year, category)?.rank ?? 9;
+  const rb = getAwardLevelForCollection(b.award, orgKey, b.year, year, category)?.rank ?? 9;
+  if (ra !== rb) return ra - rb;
+  return Number(b.year) - Number(a.year);
 }
 
 export type AwardCollection = {

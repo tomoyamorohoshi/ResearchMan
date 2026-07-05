@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Case } from "@/lib/cases";
 import { getAwardLevel } from "@/lib/awardLevel";
-import { getCaseAwardRefs } from "@/lib/awards";
+import { getCaseAwardRefs, getAwardLevelForCollection, type OrgKey } from "@/lib/awards";
 import { isRadarCase } from "@/lib/researchSources";
 import { tagLabel } from "@/lib/tags";
 
@@ -12,10 +12,15 @@ type Props = {
   c: Case;
   isFavorite: boolean;
   onToggleFavorite: (id: string) => void;
+  // 指定時、バッジは「award文字列全体の最高賞」ではなくこの部門でのレベルを表示する
+  // （部門ページ用。通常ギャラリーでは未指定＝従来どおり全体最高賞を表示）
+  awardContext?: { org: OrgKey; year: string; category: string };
 };
 
-export default function CaseCard({ c, isFavorite, onToggleFavorite }: Props) {
-  const level = getAwardLevel(c.award);
+export default function CaseCard({ c, isFavorite, onToggleFavorite, awardContext }: Props) {
+  const level = awardContext
+    ? getAwardLevelForCollection(c.award, awardContext.org, c.year, awardContext.year, awardContext.category)
+    : getAwardLevel(c.award);
   const awardCount = getCaseAwardRefs(c).length;
   const isRadar = isRadarCase(c);
   return (

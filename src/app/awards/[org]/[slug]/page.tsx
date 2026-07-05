@@ -72,6 +72,7 @@ export default async function CollectionPage({
         years={years}
         regions={regions}
         defaultSort="award"
+        awardContext={{ org: org as OrgKey, year: col.year, category: col.category }}
       />
     </div>
   );

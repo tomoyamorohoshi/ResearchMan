@@ -5,6 +5,7 @@ import type { Case } from "@/lib/cases";
 import CaseCard from "./CaseCard";
 import { useFavorites } from "@/hooks/useFavorites";
 import { compareByAward } from "@/lib/awardLevel";
+import { compareByAwardForCollection, type OrgKey } from "@/lib/awards";
 import { tabSources, getSourceKind } from "@/lib/researchSources";
 import { TAG_AXES, tagAxis, tagLabel } from "@/lib/tags";
 
@@ -16,11 +17,13 @@ type Props = {
   sources?: string[];
   tags?: string[];
   defaultSort?: SortOrder;
+  // 指定時、award系ソート・バッジは「その部門でのレベル」を使う（部門ページ用）
+  awardContext?: { org: OrgKey; year: string; category: string };
 };
 
 type SortOrder = "added" | "year" | "award";
 
-export default function GalleryClient({ cases, categories, years, regions, sources = [], tags = [], defaultSort = "added" }: Props) {
+export default function GalleryClient({ cases, categories, years, regions, sources = [], tags = [], defaultSort = "added", awardContext }: Props) {
   const [filters, setFilters] = useState({ category: "", year: "", region: "", source: "", tag: "" });
   const [tab, setTab] = useState("");
   const [query, setQuery] = useState("");
@@ -65,7 +68,11 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
     sort === "year"
       ? [...filtered].sort((a, b) => parseInt(b.year) - parseInt(a.year))
       : sort === "award"
-        ? [...filtered].sort(compareByAward)
+        ? [...filtered].sort(
+            awardContext
+              ? (a, b) => compareByAwardForCollection(a, b, awardContext.org, awardContext.year, awardContext.category)
+              : compareByAward,
+          )
         : filtered;
 
   const favoriteCount = mounted ? favorites.size : 0;
@@ -196,6 +203,7 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
               c={c}
               isFavorite={mounted && favorites.has(c.id)}
               onToggleFavorite={toggle}
+              awardContext={awardContext}
             />
           ))}
         </div>
