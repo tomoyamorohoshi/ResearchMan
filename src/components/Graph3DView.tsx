@@ -2,16 +2,23 @@
 
 // TOPページ3Dノードグラフ本体。3d-force-graph(ESM, window依存)を使うため、
 // 呼び出し元(GalleryClient)で必ず next/dynamic + ssr:false 経由でロードすること。
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import ForceGraph3D, { type ForceGraph3DInstance } from "3d-force-graph";
+import type * as THREE from "three";
 import type { Case } from "@/lib/cases";
-import { buildGraphData, linkDistance, linkStrength } from "@/lib/graph";
+import { buildGraphData, linkDistance, linkStrength, type GraphNode } from "@/lib/graph";
+import { createCardSprite, setSpriteHover } from "@/lib/graphSprites";
+import CaseModal from "./CaseModal";
+
+// 3d-force-graph(three-forcegraph)がnodeThreeObjectの戻り値に自動で束縛するプロパティ
+type NodeWithSprite = GraphNode & { __threeObj?: THREE.Sprite };
 
 type Props = { cases: Case[] };
 
 export default function Graph3DView({ cases }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const graphRef = useRef<ForceGraph3DInstance | null>(null);
+  const [selected, setSelected] = useState<Case | null>(null);
 
   const unsupported = useMemo(() => {
     if (typeof document === "undefined") return false;
@@ -30,12 +37,28 @@ export default function Graph3DView({ cases }: Props) {
     graph
       .backgroundColor("#eeece7")
       .showNavInfo(false)
-      .nodeLabel(() => "") // デフォルトHTMLツールチップ抑止（Phase4のカードスプライトが常時表示するため）
+      .nodeLabel(() => "") // デフォルトHTMLツールチップ抑止（カードスプライトが常時表示するため）
       .linkColor(() => "#111111")
       .linkOpacity(0.12)
       .warmupTicks(reduceMotion ? 200 : 40)
-      .onNodeHover((n) => {
+      // ノードドラッグは無効化（タグ類似度レイアウトを手動で崩させない）。
+      // 副次効果として、three.js DragControlsがドラッグ閾値未満の素早いクリックで
+      // dragstartを経ずにdragendだけ発火し、未設定の内部位置参照を読んでクラッシュする
+      // 既知の挙動（3d-force-graph 1.80.0）も回避できる
+      .enableNodeDrag(false)
+      // 呼び出しごとに必ず新規のSpriteを生成する（graphSprites.ts参照）。
+      // 3d-force-graphはノードがデータから消えるたびにこの戻り値を自動disposeするため、
+      // 同一インスタンスをキャッシュして使い回すと再出現時に二重disposeでクラッシュする
+      .nodeThreeObject((n) => createCardSprite((n as unknown as GraphNode).c))
+      .onNodeClick((n) => {
+        setSelected((n as unknown as GraphNode).c);
+      })
+      .onNodeHover((n, prev) => {
         if (containerRef.current) containerRef.current.style.cursor = n ? "pointer" : "";
+        const prevSprite = (prev as NodeWithSprite | null)?.__threeObj;
+        if (prevSprite) setSpriteHover(prevSprite, false);
+        const sprite = (n as NodeWithSprite | null)?.__threeObj;
+        if (sprite) setSpriteHover(sprite, true);
       });
     if (reduceMotion) graph.cooldownTicks(0);
     graph.d3Force("charge")?.strength(-120);
@@ -49,7 +72,7 @@ export default function Graph3DView({ cases }: Props) {
 
     return () => {
       resizeObserver.disconnect();
-      graph._destructor();
+      graph._destructor(); // 内部でノードごとのSprite/Material/Textureも解放される
       graphRef.current = null;
     };
   }, [unsupported]);
@@ -89,6 +112,7 @@ export default function Graph3DView({ cases }: Props) {
           No results found
         </div>
       )}
+      <CaseModal c={selected} onClose={() => setSelected(null)} />
     </div>
   );
 }
