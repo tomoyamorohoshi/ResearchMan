@@ -24,6 +24,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { resolveClaudeBin, runClaudeJsonArray } from "./lib/claude-cli.mjs";
 import { matchRefsInText } from "./lib/match-refs-in-text.mjs";
+import { readIdeasJsonSafe, writeJsonAtomic } from "./lib/ideas-io.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CASES_PATH = path.join(__dirname, "../data/cases.json");
@@ -94,10 +95,9 @@ async function main() {
     ...tech.map((t) => ({ type: "tech", id: t.id, title: t.title, summary: t.summary })),
   ];
 
-  let ideas = [];
-  try {
-    ideas = JSON.parse(await fs.readFile(IDEAS_JSON_PATH, "utf-8"));
-  } catch {}
+  // 破損時はthrowで中止（catchで握り潰して[]から書き直すと既存データを全損する。
+  // ideas-io.mjs参照。ファイル無し=初回は[]で正常）
+  const ideas = await readIdeasJsonSafe(IDEAS_JSON_PATH);
   const existingSeeds = new Set(ideas.map((idea) => idea.seed));
 
   const toProcess = history.map((seed, i) => ({ seed, n: i + 1 })).filter(({ seed }) => !existingSeeds.has(seed));
@@ -144,7 +144,7 @@ async function main() {
   });
 
   const merged = [...archiveEntries, ...ideas];
-  await fs.writeFile(IDEAS_JSON_PATH, JSON.stringify(merged, null, 2) + "\n");
+  await writeJsonAtomic(IDEAS_JSON_PATH, merged); // 原子書き込み（ideas-io.mjs参照）
 
   console.log(
     `✅ バックフィル完了: ${archiveEntries.length}件処理・全件title付き・` +

@@ -26,6 +26,7 @@ import { fileURLToPath } from "url";
 import { resolveClaudeBin } from "./lib/claude-cli.mjs";
 import { normTitle } from "./lib/norm-title.mjs";
 import { jstDateString } from "./lib/jst-date.mjs";
+import { readIdeasJsonSafe, writeJsonAtomic } from "./lib/ideas-io.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CASES_PATH = path.join(__dirname, "../data/cases.json");
@@ -42,6 +43,15 @@ const FIXTURE_SEEDS_PATH = (() => {
   const i = process.argv.indexOf("--fixture-seeds");
   return i >= 0 ? process.argv[i + 1] : null;
 })();
+// fixtureモードのサンドボックス強制: 書き込み先3種すべてを環境変数で隔離していない限り
+// 起動を拒否する（誤って本番の data/ideas.json・履歴・last-run を汚染する事故の防止。
+// adversarialレビュー指摘。実際に一度、引数の書式ミスで本番経路に入りかけた実績がある）
+if (FIXTURE_SEEDS_PATH && !(process.env.IDEAS_JSON_PATH && process.env.HISTORY_PATH && process.env.LAST_RUN_PATH)) {
+  console.error(
+    "--fixture-seeds はテスト専用です。IDEAS_JSON_PATH / HISTORY_PATH / LAST_RUN_PATH の3環境変数で書き込み先を必ず隔離してください",
+  );
+  process.exit(1);
+}
 
 const SEED_COUNT = 10;
 const CASE_SAMPLE = 14;
@@ -210,39 +220,64 @@ async function main() {
   console.log(text);
 
   if (!DRY_RUN) {
-    // data/ideas.json へ追記（サイトの Ideas タブ用。既存エントリとseedが完全一致するものはスキップ＝再実行安全）
-    let ideas = [];
+    // data/ideas.json へ追記（サイトの Ideas タブ用。既存エントリとseedが完全一致するものはスキップ＝再実行安全）。
+    // 破損時は追記だけをスキップして続行する: LINE配信（本務）を巻き込まない。
+    // サイト更新はその日止まるが、翌日以降の実行や手修復で自然回復する
+    let ideas = null;
     try {
-      ideas = JSON.parse(await fs.readFile(IDEAS_JSON_PATH, "utf-8"));
-    } catch {}
-    const existingSeeds = new Set(ideas.map((idea) => idea.seed));
-    const ideaDate = jstDateString();
-    let seq = ideas.filter((idea) => idea.date === ideaDate).length;
-    let ideasAdded = 0;
-    let ideasSkipped = 0;
-    for (const s of seeds) {
-      if (existingSeeds.has(s.seed)) {
-        ideasSkipped++;
-        continue;
-      }
-      seq++;
-      const refs = (s.refs || [])
-        .map(resolveRef)
-        .filter(Boolean)
-        .map((r) => ({ type: r.type, id: r.id, title: r.name, desc: r.desc }));
-      ideas.push({
-        id: `${ideaDate}-${seq}`,
-        date: ideaDate,
-        title: (s.title || "").trim(),
-        pattern: s.pattern || null,
-        seed: s.seed,
-        refs,
-      });
-      existingSeeds.add(s.seed);
-      ideasAdded++;
+      ideas = await readIdeasJsonSafe(IDEAS_JSON_PATH);
+    } catch (e) {
+      console.error(
+        `⚠ ideas.json が読めません（破損の疑い）。全損を避けるため本日のサイト掲載追記をスキップします: ${e.message}`,
+      );
     }
-    await fs.writeFile(IDEAS_JSON_PATH, JSON.stringify(ideas, null, 2) + "\n");
-    console.log(`📝 ideas.json: +${ideasAdded}件追記・${ideasSkipped}件重複スキップ（計${ideas.length}件）`);
+    if (ideas) {
+      const existingSeeds = new Set(ideas.map((idea) => idea.seed));
+      const ideaDate = jstDateString();
+      // 採番は「当日件数」でなく「当日の最大連番+1」: 手動削除や部分復旧で欠番があると
+      // 件数基準は既存idと衝突する（adversarialレビューで実証）
+      let seq = ideas.reduce((mx, idea) => {
+        if (idea.date !== ideaDate) return mx;
+        const m = /-(\d+)$/.exec(idea.id ?? "");
+        return m ? Math.max(mx, Number(m[1])) : mx;
+      }, 0);
+      let ideasAdded = 0;
+      let ideasSkipped = 0;
+      let ideasNoTitle = 0;
+      for (const s of seeds) {
+        if (existingSeeds.has(s.seed)) {
+          ideasSkipped++;
+          continue;
+        }
+        const title = (s.title || "").trim();
+        if (!title) {
+          // タイトル無しの種はサイトに載せない（LINE配信には含まれる）。
+          // 品質ゲートを通過したものだけ掲載する既存パイプラインの思想に合わせる
+          ideasNoTitle++;
+          console.warn(`⚠ title欠落のためサイト掲載をスキップ: ${s.seed.slice(0, 40)}…`);
+          continue;
+        }
+        seq++;
+        const refs = (s.refs || [])
+          .map(resolveRef)
+          .filter(Boolean)
+          .map((r) => ({ type: r.type, id: r.id, title: r.name, desc: r.desc }));
+        ideas.push({
+          id: `${ideaDate}-${seq}`,
+          date: ideaDate,
+          title,
+          pattern: s.pattern || null,
+          seed: s.seed,
+          refs,
+        });
+        existingSeeds.add(s.seed);
+        ideasAdded++;
+      }
+      await writeJsonAtomic(IDEAS_JSON_PATH, ideas);
+      console.log(
+        `📝 ideas.json: +${ideasAdded}件追記・${ideasSkipped}件重複スキップ・${ideasNoTitle}件title欠落スキップ（計${ideas.length}件）`,
+      );
+    }
 
     history = [...history, ...seeds.map((s) => s.seed)].slice(-HISTORY_KEEP);
     await fs.writeFile(HISTORY_PATH, JSON.stringify(history, null, 2));

@@ -93,7 +93,8 @@ export default function IdeaCard({ idea }: { idea: Idea }) {
               >
                 {ref.type === "tech" ? "Tech" : "Case"}
               </span>
-              <span className="text-[10px] font-bold flex-1 truncate">{ref.title}</span>
+              {/* min-w-0: flex子の既定min-width:autoだとflex-1でも縮まずtruncateが効かない */}
+              <span className="text-[10px] font-bold flex-1 min-w-0 truncate">{ref.title}</span>
               <span
                 className={`shrink-0 transition-transform group-hover:translate-x-0.5 ${v.muted}`}
                 aria-hidden="true"
