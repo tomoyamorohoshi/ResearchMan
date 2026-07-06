@@ -11,7 +11,10 @@ export type GraphDomainAdapter<T> = {
   minClusterSize: number; // クラスタ見出しの最小所属数
   thumbSources(item: T): string[]; // [縮小版URL, フル解像度URL, ...] 優先順
   cardIdAttr: string; // グリッドカードのid属性名 ("data-case-id" / "data-tech-id")
-  detailHref(item: T): string; // 詳細ページURL
+  // 詳細ページURLのプレフィックス ("/cases/" / "/technology/")。
+  // rect採取時、cardIdAttr欠落カードからのidフォールバック抽出に使う
+  // （captureImageRectsのhrefPrefix。一般化前のextractCaseIdが持っていた防御の踏襲）
+  detailHrefPrefix: string;
 };
 
 // createNodeObject/warmThumbnailCache等(graphSprites.ts)が扱う汎用ノード仕様。

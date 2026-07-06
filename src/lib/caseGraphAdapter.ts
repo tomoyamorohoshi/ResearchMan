@@ -21,5 +21,5 @@ export const caseGraphAdapter: GraphDomainAdapter<Case> = {
   minClusterSize: 5,
   thumbSources: (c) => [`/thumbnails-graph/${c.id}.jpg`, c.thumbnail],
   cardIdAttr: "data-case-id",
-  detailHref: (c) => `/cases/${c.id}`,
+  detailHrefPrefix: "/cases/",
 };

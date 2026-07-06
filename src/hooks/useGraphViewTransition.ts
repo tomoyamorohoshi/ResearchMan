@@ -151,7 +151,7 @@ export function useGraphViewTransition<T>({
           if (cancelled) return;
 
           // rect採取は収縮完了後（行の高さが確定してから）。画面外カードも含む全件
-          const rects = captureImageRects(gridEl, adapter.cardIdAttr);
+          const rects = captureImageRects(gridEl, adapter.cardIdAttr, adapter.detailHrefPrefix);
           rectsRef.current = rects;
 
           // ビューポート内カードを優先ロードし、最大THUMB_WAIT_MSだけ待つ（裏で進行）
@@ -294,7 +294,7 @@ export function useGraphViewTransition<T>({
           // 3. グリッドの実rectを測定する前に、可視カードのテキスト部を即座に畳んでおく
           // （canvasがまだ手前を覆っているため見えない。平面ポーズの画素一致に必要）
           collapseTextSectionsInstant(gridEl);
-          const rects = captureImageRects(gridEl, adapter.cardIdAttr);
+          const rects = captureImageRects(gridEl, adapter.cardIdAttr, adapter.detailHrefPrefix);
 
           // 4. モーフ: スプライトを現在位置→平面ポーズ、カメラを現在→正準ポーズへ同時トゥイーン
           await new Promise<void>((resolve) => api.morphToPlanePose(rects, resolve));

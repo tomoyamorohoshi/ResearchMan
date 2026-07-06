@@ -10,13 +10,14 @@ type Ctx = {
   // ON/OFF切替トランジション中はtrue。トグルの多重操作ガードに使う
   busy: boolean;
   setBusy: (b: boolean) => void;
-  // 3D MAPトグルが有効なページか（Provider在り=true）。trueの時だけGalleryClientは
-  // マウント後のアイドル時間にサムネイルの事前ウォームを開始する（2-1参照。/awards・
-  // /technology等Provider不在ページで無駄な帯域を使わないためのゲート）
+  // 3D MAPトグルが有効なページか（Provider在り=true）。trueの時だけ各ギャラリーは
+  // マウント後のアイドル時間にサムネイルの事前ウォームを開始する
+  // （Provider在りページ: /（Case）・/technology（Tech）。/awards等Provider不在ページで
+  // 無駄な帯域を使わないためのゲート）
   enabled: boolean;
 };
 
-// デフォルトgrid・busy=false・enabled=false: Provider不在ページ（/awards, /technology）
+// デフォルトgrid・busy=false・enabled=false: Provider不在ページ（/awards/*等）
 // では常にグリッド＝現状不変・事前ウォームも行わない
 const ViewModeCtx = createContext<Ctx>({
   mode: "grid",
