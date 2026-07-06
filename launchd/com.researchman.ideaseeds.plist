@@ -29,6 +29,20 @@
       echo "===== Idea seeds start: $(date) =====" &gt;&gt; $LOG;
       if node scripts/generate-idea-seeds.mjs &gt;&gt; $LOG 2&gt;&amp;1; then
         node scripts/notify-line.mjs --text-file /tmp/researchman-idea-seeds.txt &gt;&gt; $LOG 2&gt;&amp;1;
+        # data/ideas.json（サイトのIdeasタブ用に生成スクリプトが追記済み）をcommit/push。
+        # LINE配信は既に完了しているためpush失敗は配信を巻き込まない（pushfail通知のみ・次回リトライに任せる）
+        git add data/ideas.json &gt;&gt; $LOG 2&gt;&amp;1;
+        if git diff --cached --quiet; then
+          echo "ideas.json変更なし（追記対象なし）: $(date)" &gt;&gt; $LOG;
+        else
+          git commit -m "Idea seeds: $(date '+%Y-%m-%d')" &gt;&gt; $LOG 2&gt;&amp;1;
+          if git push &gt;&gt; $LOG 2&gt;&amp;1; then
+            echo "ideas.json push成功: $(date)" &gt;&gt; $LOG;
+          else
+            echo "push失敗（pre-push監査で中止の可能性）。コミットはローカル残存。要手動対応: $(date)" &gt;&gt; $LOG;
+            node scripts/notify-line.mjs --result pushfail --label IdeaSeeds &gt;&gt; $LOG 2&gt;&amp;1;
+          fi;
+        fi;
       else
         echo "生成エラー終了: $(date)" &gt;&gt; $LOG;
         node scripts/run-if-due.mjs --state .last-idea-seeds-run.txt --mark &gt;&gt; $LOG 2&gt;&amp;1;

@@ -2,10 +2,11 @@ import Link from "next/link";
 
 // TOP直下の大分類タブ（Case Study / Technology）。
 // ページ間リンクにすることで各TOPのデータは分離されたまま（ペイロード肥大防止）。
-export default function TopTabs({ active }: { active: "cases" | "tech" }) {
+export default function TopTabs({ active }: { active: "cases" | "tech" | "ideas" }) {
   const tabs = [
     { key: "cases", href: "/", label: "Case Study" },
     { key: "tech", href: "/technology", label: "Technology" },
+    { key: "ideas", href: "/ideas", label: "Ideas" },
   ] as const;
   return (
     <nav

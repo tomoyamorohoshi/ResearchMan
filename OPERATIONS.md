@@ -91,6 +91,11 @@ launchd `com.researchman.ideaseeds` が毎朝10時、Case Study（企画性）×
 - 状態: `.last-idea-seeds-run.txt`、ログ: `~/Library/Logs/researchman-ideas.log`。
   収集2本と同じ排他ロックで直列化されるため、配信は収集完了後になる。生成エラー時は
   「❌ IdeaSeeds: 収集がエラー終了」を通知して翌朝再挑戦
+- **サイト掲載（Ideasタブ・2026-07-07新設）**: 各種にタイトル（seedから自動命名・サイト専用、
+  LINE文面には出ない）を付けて `data/ideas.json` へ自動追記→push→`/ideas` に自動掲載される
+  （収集2本と同方式。LINEとサイトの内容は常に一致）。既存seedと完全一致するものはスキップ
+  するため再実行しても重複しない。push失敗時はLINE配信を巻き込まず「⚠️ IdeaSeeds: push失敗」
+  を通知し次回リトライに任せる（コミットはローカル残存）
 
 ### X Radar（Technology発見ソースへのX検索追加・2026-07-05新設）
 

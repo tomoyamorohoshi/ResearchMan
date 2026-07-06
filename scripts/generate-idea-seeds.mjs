@@ -24,14 +24,24 @@ import path from "path";
 import { spawnSync } from "child_process";
 import { fileURLToPath } from "url";
 import { resolveClaudeBin } from "./lib/claude-cli.mjs";
+import { normTitle } from "./lib/norm-title.mjs";
+import { jstDateString } from "./lib/jst-date.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CASES_PATH = path.join(__dirname, "../data/cases.json");
 const TECH_PATH = path.join(__dirname, "../data/tech.json");
-const LAST_RUN_PATH = path.join(__dirname, "../.last-idea-seeds-run.txt");
-const HISTORY_PATH = path.join(os.homedir(), ".researchman-idea-history.json");
+// 3つとも環境変数で差し替え可能（generate→ideas.json追記の単体検証用。本番では未設定＝既定値のまま）
+const LAST_RUN_PATH = process.env.LAST_RUN_PATH || path.join(__dirname, "../.last-idea-seeds-run.txt");
+const HISTORY_PATH = process.env.HISTORY_PATH || path.join(os.homedir(), ".researchman-idea-history.json");
+const IDEAS_JSON_PATH = process.env.IDEAS_JSON_PATH || path.join(__dirname, "../data/ideas.json");
 const OUT_PATH = "/tmp/researchman-idea-seeds.txt";
 const DRY_RUN = process.argv.includes("--dry-run");
+// テスト専用: 指定するとClaude CLIを呼ばずこのJSONファイル（[{pattern,seed,title,refs}]）をseedsとして使う。
+// 本物のLINE配信・Claude CLI呼び出しを発生させずに「追記・重複スキップ・id採番」を検証するためのフック
+const FIXTURE_SEEDS_PATH = (() => {
+  const i = process.argv.indexOf("--fixture-seeds");
+  return i >= 0 ? process.argv[i + 1] : null;
+})();
 
 const SEED_COUNT = 10;
 const CASE_SAMPLE = 14;
@@ -49,11 +59,6 @@ function sample(arr, n) {
     [a[i], a[j]] = [a[j], a[i]];
   }
   return a.slice(0, n);
-}
-
-// 参照id復元用のタイトル正規化（日本語も残す。記号・空白のみ除去）
-function normTitle(s) {
-  return (s || "").toLowerCase().replace(/[\s　（）()【】\[\]、。・,.:：/|]/g, "");
 }
 
 function buildPrompt({ caseLines, techLines, recentSeeds }) {
@@ -79,10 +84,11 @@ ${techLines}
 - 最近出した種と似たものは避ける: ${recentSeeds || "（履歴なし）"}
 - 各種で参照した事例・技術を refs に列挙する。id は上の素材の [id] を**そのまま正確に**転記する（創作・改変禁止）
 - refs の desc は、その事例/技術が「何なのか」を高校生でもわかる平易な言葉で正確かつ端的に説明する1文（40〜70字）。素材に書かれた内容だけを根拠にし、無い情報を足さない
+- title は、その種（seed）の内容から付ける短くわかりやすい見出し。10〜18字・体言止め推奨・記号や絵文字なし（サイトのアーカイブ表示用。配信文面には出ない）
 
 # 出力
 JSON配列のみ（前置き・後書きなし）:
-[{"pattern": "技術×技術|文脈×技術|転用", "seed": "...", "refs": [{"type": "case", "id": "...", "desc": "..."}, {"type": "tech", "id": "...", "desc": "..."}]}]`;
+[{"title": "...", "pattern": "技術×技術|文脈×技術|転用", "seed": "...", "refs": [{"type": "case", "id": "...", "desc": "..."}, {"type": "tech", "id": "...", "desc": "..."}]}]`;
 }
 
 async function main() {
@@ -129,22 +135,28 @@ async function main() {
     return parsed;
   }
 
-  // モデルが不正なJSON（文字列内の引用符エスケープ漏れ等）を返すことがあり、
-  // 1回きりだと配信が丸ごと落ちる（2026-07-04朝に実際に発生）。最大3回まで再生成する。
-  // 生成はtech.json全体からのサンプリングであり当日の新規収集件数には依存しない＝
-  // 収集0件の日でも必ず配信される設計
-  const MAX_ATTEMPTS = 3;
-  const claudeBin = resolveClaudeBin();
   let seeds = null;
-  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
-    try {
-      seeds = generateOnce(claudeBin, buildPrompt({ caseLines, techLines, recentSeeds }));
-      break;
-    } catch (e) {
-      console.error(`生成試行 ${attempt}/${MAX_ATTEMPTS} 失敗: ${e.message}`);
-      if (attempt === MAX_ATTEMPTS) {
-        console.error("全試行失敗 → エラー終了");
-        process.exit(1);
+  if (FIXTURE_SEEDS_PATH) {
+    // テスト専用経路: Claude CLIを呼ばずfixtureをそのままseedsとして使う
+    seeds = JSON.parse(await fs.readFile(FIXTURE_SEEDS_PATH, "utf-8"));
+    console.log(`🧪 フィクスチャモード: ${FIXTURE_SEEDS_PATH} から${seeds.length}件読込（Claude CLI呼び出しなし）`);
+  } else {
+    // モデルが不正なJSON（文字列内の引用符エスケープ漏れ等）を返すことがあり、
+    // 1回きりだと配信が丸ごと落ちる（2026-07-04朝に実際に発生）。最大3回まで再生成する。
+    // 生成はtech.json全体からのサンプリングであり当日の新規収集件数には依存しない＝
+    // 収集0件の日でも必ず配信される設計
+    const MAX_ATTEMPTS = 3;
+    const claudeBin = resolveClaudeBin();
+    for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+      try {
+        seeds = generateOnce(claudeBin, buildPrompt({ caseLines, techLines, recentSeeds }));
+        break;
+      } catch (e) {
+        console.error(`生成試行 ${attempt}/${MAX_ATTEMPTS} 失敗: ${e.message}`);
+        if (attempt === MAX_ATTEMPTS) {
+          console.error("全試行失敗 → エラー終了");
+          process.exit(1);
+        }
       }
     }
   }
@@ -198,6 +210,40 @@ async function main() {
   console.log(text);
 
   if (!DRY_RUN) {
+    // data/ideas.json へ追記（サイトの Ideas タブ用。既存エントリとseedが完全一致するものはスキップ＝再実行安全）
+    let ideas = [];
+    try {
+      ideas = JSON.parse(await fs.readFile(IDEAS_JSON_PATH, "utf-8"));
+    } catch {}
+    const existingSeeds = new Set(ideas.map((idea) => idea.seed));
+    const ideaDate = jstDateString();
+    let seq = ideas.filter((idea) => idea.date === ideaDate).length;
+    let ideasAdded = 0;
+    let ideasSkipped = 0;
+    for (const s of seeds) {
+      if (existingSeeds.has(s.seed)) {
+        ideasSkipped++;
+        continue;
+      }
+      seq++;
+      const refs = (s.refs || [])
+        .map(resolveRef)
+        .filter(Boolean)
+        .map((r) => ({ type: r.type, id: r.id, title: r.name, desc: r.desc }));
+      ideas.push({
+        id: `${ideaDate}-${seq}`,
+        date: ideaDate,
+        title: (s.title || "").trim(),
+        pattern: s.pattern || null,
+        seed: s.seed,
+        refs,
+      });
+      existingSeeds.add(s.seed);
+      ideasAdded++;
+    }
+    await fs.writeFile(IDEAS_JSON_PATH, JSON.stringify(ideas, null, 2) + "\n");
+    console.log(`📝 ideas.json: +${ideasAdded}件追記・${ideasSkipped}件重複スキップ（計${ideas.length}件）`);
+
     history = [...history, ...seeds.map((s) => s.seed)].slice(-HISTORY_KEEP);
     await fs.writeFile(HISTORY_PATH, JSON.stringify(history, null, 2));
     await fs.writeFile(LAST_RUN_PATH, new Date().toISOString());

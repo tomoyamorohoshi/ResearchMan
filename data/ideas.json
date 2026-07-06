@@ -1,0 +1,709 @@
+[
+  {
+    "id": "archive-1",
+    "date": null,
+    "title": "痛み数値化する保険サービス",
+    "pattern": null,
+    "seed": "The Paid Relief（Opella Dorflex）は痛みを報酬に変えたが、Event Topology-based Visual Vibrometerで体の微振動を音として拾えば、痛みや疲労そのものを数値化して手当てを決める保険サービスが作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "event-topology-based-visual-vibrometer",
+        "title": "Event Topology-based Visual Vibrometer",
+        "desc": "高速の「イベントカメラ」の生データから、物体の微細な振動（＝音）を光源なしで復元する計測手法。映像から複数の音を同時に“見て”取り出せる（A"
+      }
+    ]
+  },
+  {
+    "id": "archive-2",
+    "date": null,
+    "title": "ご当地通知音のブランド化",
+    "pattern": null,
+    "seed": "COQUÍ ALARMEDが施錠音を土地の生き物の声に差し替えたように、ACE-Step 1.5で地域固有の生態音から楽曲を量産すれば、都市ごとに違う「ご当地通知音」ブランディングが広げられそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ace-step-1-5",
+        "title": "ACE-Step 1.5",
+        "desc": "歌詞とジャンル指定から、ボーカル入りの楽曲を丸ごと生成するオープンソースの音楽AI。自分のPCで動き、A100なら1曲を数秒で作れる（MIT"
+      }
+    ]
+  },
+  {
+    "id": "archive-3",
+    "date": null,
+    "title": "多文化象徴の全方位展示",
+    "pattern": null,
+    "seed": "Marseille C'est Nousは7枚のユニフォームが並ぶと一つの紋章になったが、SpheRoPEで継ぎ目のない360°パノラマを生成すれば、視点を変えるたびに多文化の象徴が立ち上がる展示空間が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "puma-marseille-cest-nous",
+        "title": "Marseille C'est Nous",
+        "desc": "7つのアフリカ系移民コミュニティを表す7枚のユニフォームが、並べるとOMのエンブレムになる——マルセイユの多文化的アイデンティティをフットボ"
+      },
+      {
+        "type": "tech",
+        "id": "spherope",
+        "title": "SpheRoPE",
+        "desc": "学習済みDiffusion Transformer（FLUX、LTX-2.3等）の位置エンコーディングに球面幾何の事前知識を注入し、追加学習"
+      }
+    ]
+  },
+  {
+    "id": "archive-4",
+    "date": null,
+    "title": "スマホ映像で虚実混同体験",
+    "pattern": null,
+    "seed": "JURASSIC WORLD公式サイトは実在しない場所を本物らしく見せたが、LingBot-Mapで来場者のスマホ映像をその場で3D再構成すれば、「本当に歩いた記録」を残す虚実混同キャンペーンに使えそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "lingbot-map",
+        "title": "LingBot-Map",
+        "desc": "LiDAR不要・単眼カメラ映像だけで、シーンの3D形状をストリーミング（約20FPS）でリアルタイム再構成するフィードフォワード3D基盤モデ"
+      }
+    ]
+  },
+  {
+    "id": "archive-5",
+    "date": null,
+    "title": "高齢スターの素の仕草再現",
+    "pattern": null,
+    "seed": "Warmer Togetherはパチーノとデ・ニーロの実在の友情を扱ったが、MetaHuman Animatorのマーカーレスモーキャプで高齢スターの素の仕草を拾えば、CGくささのない「本物の温度」を広告に残せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "moncler-warmer-together",
+        "title": "Warmer Together",
+        "desc": "アル・パチーノとロバート・デ・ニーロの実在の友情で「暖かさ」を再定義したモンクレールの新ブランドプラットフォーム。"
+      }
+    ]
+  },
+  {
+    "id": "archive-6",
+    "date": null,
+    "title": "踊りが曲になる生成ツール",
+    "pattern": null,
+    "seed": "SCAIL-2で骨格抽出なしにユーザーの踊りを別キャラへ乗り移らせつつ、ACE-Step 1.5でその動きのテンポに合わせた曲をAIが即興作曲すれば、誰でも参加できるミュージックビデオ生成ツールになりそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "scail-2",
+        "title": "SCAIL-2",
+        "desc": "動画に写った人物の動きを、骨格抽出を経ないEnd-to-Endモード（姿勢駆動モードも選択可）で別キャラクターへそっくり乗り移らせる。ダンス"
+      },
+      {
+        "type": "tech",
+        "id": "ace-step-1-5",
+        "title": "ACE-Step 1.5",
+        "desc": "歌詞とジャンル指定から、ボーカル入りの楽曲を丸ごと生成するオープンソースの音楽AI。自分のPCで動き、A100なら1曲を数秒で作れる（MIT"
+      }
+    ]
+  },
+  {
+    "id": "archive-7",
+    "date": null,
+    "title": "浮遊オブジェが歌う展示",
+    "pattern": null,
+    "seed": "LeviFabで磁石入りの物体を空中に浮遊させながら、Event Topology-based Visual Vibrometerでその微振動を音として拾い出せば、「浮いているオブジェが自ら歌う」インスタレーションが作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "event-topology-based-visual-vibrometer",
+        "title": "Event Topology-based Visual Vibrometer",
+        "desc": "高速の「イベントカメラ」の生データから、物体の微細な振動（＝音）を光源なしで復元する計測手法。映像から複数の音を同時に“見て”取り出せる（A"
+      },
+      {
+        "type": "tech",
+        "id": "levifab",
+        "title": "LeviFab",
+        "desc": "液体窒素で冷却した超伝導体のピン止め効果を使い、磁石を埋め込んだ3Dプリント物体を空中に安定浮遊・操作するHCI研究（SIGGRAPH 20"
+      }
+    ]
+  },
+  {
+    "id": "archive-8",
+    "date": null,
+    "title": "ささやきで話す音声ガイド",
+    "pattern": null,
+    "seed": "常時装着でささやきを認識するNasoVoceを、声を出せない美術館や図書館の音声ガイドに転用すれば、静寂を守ったまま鑑賞者とだけ対話できる新しい鑑賞体験になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "nasovoce",
+        "title": "NasoVoce",
+        "desc": "スマートグラスの鼻当て部分にマイクと振動センサを仕込み、ほとんど声を出さない“ささやき”からでもクリアに音声を認識する、常時使える発話インタ"
+      }
+    ]
+  },
+  {
+    "id": "archive-9",
+    "date": null,
+    "title": "スマホだけの現況記録査定",
+    "pattern": null,
+    "seed": "ロボットのリアルタイム3D再構成向けLingBot-Mapを、引っ越しや事故の立会い査定に転用すれば、LiDAR不要でスマホだけの精密な現況記録が撮れるサービスになりそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "lingbot-map",
+        "title": "LingBot-Map",
+        "desc": "LiDAR不要・単眼カメラ映像だけで、シーンの3D形状をストリーミング（約20FPS）でリアルタイム再構成するフィードフォワード3D基盤モデ"
+      }
+    ]
+  },
+  {
+    "id": "archive-10",
+    "date": null,
+    "title": "ロボットが踊る駅の時報",
+    "pattern": null,
+    "seed": "Rail Clockが半世紀ぶりに国営鉄道の象徴を物理とデジタルで復活させたように、SONIC（GR00T Whole-Body Control）で人型ロボットに時報の振り付けを踊らせれば、駅の毎正時が名物になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "rail-clock-network-rail",
+        "title": "Rail Clock",
+        "desc": "英国の鉄道に半世紀ぶりに誕生した国営鉄道の象徴的時計。物理とデジタル両方で展開。"
+      },
+      {
+        "type": "tech",
+        "id": "sonic",
+        "title": "SONIC（GR00T Whole-Body Control）",
+        "desc": "歩行・走行・忍び足・格闘・跳躍・両手での物体受け渡しまで、人型ロボットの全身動作を一体で担う『動きの基盤モデル』。テキスト指示・VRなりきり"
+      }
+    ]
+  },
+  {
+    "id": "archive-11",
+    "date": null,
+    "title": "特定角度だけの隠しロゴ広告",
+    "pattern": null,
+    "seed": "敵地スタジアムで禁じられた赤を錯視で体感させたYou Must Love Cokeのように、SpheRoPEで360度パノラマ映像に特定角度からしか見えない隠しロゴを仕込む屋外広告ができそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "coca-cola-you-must-love-coke",
+        "title": "You Must Love Coke",
+        "desc": "赤が禁じられた敵地スタジアムで、錯視によりコークの赤を体感させた。"
+      },
+      {
+        "type": "tech",
+        "id": "spherope",
+        "title": "SpheRoPE",
+        "desc": "学習済みDiffusion Transformer（FLUX、LTX-2.3等）の位置エンコーディングに球面幾何の事前知識を注入し、追加学習"
+      }
+    ]
+  },
+  {
+    "id": "archive-12",
+    "date": null,
+    "title": "遠隔ファンの応援を統合",
+    "pattern": null,
+    "seed": "Marseille C'est Nousの7枚のユニフォームが一つの紋章になったように、4C4Dでたった4台のカメラから複数拠点のファンの動きを一つの4D空間に合成し、離れた街の応援を一つの姿に重ねられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "puma-marseille-cest-nous",
+        "title": "Marseille C'est Nous",
+        "desc": "7つのアフリカ系移民コミュニティを表す7枚のユニフォームが、並べるとOMのエンブレムになる——マルセイユの多文化的アイデンティティをフットボ"
+      },
+      {
+        "type": "tech",
+        "id": "4c4d",
+        "title": "4C4D",
+        "desc": "たった4台のカメラ映像から、動く3D空間（4D）を高精細に復元するCVPR 2026の研究。"
+      }
+    ]
+  },
+  {
+    "id": "archive-13",
+    "date": null,
+    "title": "歩き回れる生成ライブ会場",
+    "pattern": null,
+    "seed": "ソカロ広場に17万人を集めたJuan Gabriel - The Ballad of Albertoの熱量を、HY-World 1.5で歩き回れる生成世界として再現すれば、会場に行けなかったファンも同じ広場を歩き回れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "netflix-juan-gabriel-the-ballad-of-alberto",
+        "title": "Juan Gabriel - The Ballad of Alberto",
+        "desc": "メキシコの伝説的歌手フアン・ガブリエルの素顔に迫り、17万人をソカロ広場に集めたNetflixの文化的体験キャンペーン。"
+      }
+    ]
+  },
+  {
+    "id": "archive-14",
+    "date": null,
+    "title": "ささやき合言葉の隠し謎解き",
+    "pattern": null,
+    "seed": "USBドライブや偽装サイトで18か月続いたYear Zero ARGのように、NasoVoceでささやいた合言葉にだけ反応する隠しARGを仕掛ければ、声を出さずに参加者だけが気づく謎解きが作れそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "nasovoce",
+        "title": "NasoVoce",
+        "desc": "スマートグラスの鼻当て部分にマイクと振動センサを仕込み、ほとんど声を出さない“ささやき”からでもクリアに音声を認識する、常時使える発話インタ"
+      }
+    ]
+  },
+  {
+    "id": "archive-15",
+    "date": null,
+    "title": "未観戦ゴールの事後映像化",
+    "pattern": null,
+    "seed": "見られなかった試合のゴールをデータ化したUnwatched Goalsのように、CoMoViで実況データから3D選手の動きとリアルな映像を同時生成すれば、誰も見ていなかったゴールを事後に映像化できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "unwatched-goals",
+        "title": "Unwatched Goals",
+        "desc": "見られなかった試合のゴールをリアルタイムデータで活用したBrahmaの施策。"
+      },
+      {
+        "type": "tech",
+        "id": "comovi",
+        "title": "CoMoVi",
+        "desc": "文章から『3Dの人の動き』と『写実的な映像』を一つの生成ループの中で同時に作る。3Dが映像に構造の正しさを、事前学習済みの映像モデルが3Dの"
+      }
+    ]
+  },
+  {
+    "id": "archive-16",
+    "date": null,
+    "title": "ファンの声で作る応援歌",
+    "pattern": null,
+    "seed": "1,000人のファンをスポンサーに変えたThe Thousand Sponsors of Muniのように、OBSIDIAN Neuralでファン一人ひとりの声や拍手をループ楽曲の素材にして、みんなで作るクラブ応援歌を配信できそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "cd-municipal-thousand-sponsors-of-muni",
+        "title": "The Thousand Sponsors of Muni",
+        "desc": "経営難のペルーのサッカークラブがファン1,000人をスポンサーに変えた。"
+      },
+      {
+        "type": "tech",
+        "id": "obsidian-neural",
+        "title": "OBSIDIAN Neural",
+        "desc": "AIがその場でループ音源を生成する、ライブ演奏向けのオープンソース楽器（VST3/AU対応、プラグイン本体はAGPL-3.0でGitHubか"
+      }
+    ]
+  },
+  {
+    "id": "archive-17",
+    "date": null,
+    "title": "台本と映像の自動分業制作",
+    "pattern": null,
+    "seed": "演出担当と作画担当のAIが分業するBerniniの発想を、HTMLを書くだけで動画になるHyperFramesに組み込めば、演出AIが台本を書き作画AIが映像化する自動CM制作ラインが作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "bernini",
+        "title": "Bernini",
+        "desc": "自然な言葉の指示で画像も動画も生成・編集できる統合モデル。指示を読み解く『演出担当』AIと映像を描く『作画担当』AIが分業し、触らない領域を"
+      },
+      {
+        "type": "tech",
+        "id": "hyperframes",
+        "title": "HyperFrames",
+        "desc": "AIアバターのHeyGenが公開した「HTMLを書けば動画になる」オープンソースフレームワーク。AIエージェントが動画制作できるよう設計され"
+      }
+    ]
+  },
+  {
+    "id": "archive-18",
+    "date": null,
+    "title": "ブラウザで追体験する踊り",
+    "pattern": null,
+    "seed": "動画から3D人体ポーズを取り出すCEB SAM 3D Body v4のモーキャプデータを、Aholo Viewerのブラウザだけで開ける巨大3D空間に配置すれば、インストール不要で踊りをそのまま追体験できる展示ができそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "aholo-viewer",
+        "title": "Aholo Viewer",
+        "desc": "インストール不要のブラウザだけで、最大10億スプラット級の巨大な3D空間をなめらかに表示できるOSSレンダラ。"
+      }
+    ]
+  },
+  {
+    "id": "archive-19",
+    "date": null,
+    "title": "自動同期する演出台本ツール",
+    "pattern": null,
+    "seed": "AIエージェントの動画制作向けに作られたHyperFramesを、広告のためでなく舞台照明のキュー出しに転用すれば、HTMLを書くだけで照明・音響が自動同期する演出台本ツールになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "hyperframes",
+        "title": "HyperFrames",
+        "desc": "AIアバターのHeyGenが公開した「HTMLを書けば動画になる」オープンソースフレームワーク。AIエージェントが動画制作できるよう設計され"
+      }
+    ]
+  },
+  {
+    "id": "archive-20",
+    "date": null,
+    "title": "遠隔で同時に歩くロケハン",
+    "pattern": null,
+    "seed": "巨大な3Dスキャン空間を見せるためのAholo Viewerを、鑑賞用ではなくロケハンの下見に転用すれば、インストール不要のブラウザだけで遠隔地のスタッフと候補地を同時に歩き回れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "aholo-viewer",
+        "title": "Aholo Viewer",
+        "desc": "インストール不要のブラウザだけで、最大10億スプラット級の巨大な3D空間をなめらかに表示できるOSSレンダラ。"
+      }
+    ]
+  },
+  {
+    "id": "archive-21",
+    "date": null,
+    "title": "ファン発の即席宣伝動画",
+    "pattern": null,
+    "seed": "KFCのOM BDRはファン発の自家製スパイスを公式化したが、そのファンの工夫をComfyUIのCinematic Annotate Videoで線描き入力するだけでPR動画化すれば、投稿から商品化までの実況ムービーが即席で作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "kfc-om-bdr",
+        "title": "OM BDR",
+        "desc": "サウジで自然発生したKFC×自家製スパイスの流行を公式商品化。"
+      }
+    ]
+  },
+  {
+    "id": "archive-22",
+    "date": null,
+    "title": "二次創作で量産する海外版アニメ",
+    "pattern": null,
+    "seed": "YOASOBIの「アイドル」はアニメを入口に日本語曲を世界一に押し上げたが、OpenMontageで海外ファンの二次創作をエージェントに編集させれば、新曲ごとに現地言語版アニメMVが量産できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "openmontage",
+        "title": "OpenMontage",
+        "desc": "Claude Code等のAIコーディングアシスタントを「映像制作スタジオ」に変えるエージェント型動画制作システム。リサーチ→脚本→素材生成"
+      }
+    ]
+  },
+  {
+    "id": "archive-23",
+    "date": null,
+    "title": "生徒主導で描く共創ストーリー",
+    "pattern": null,
+    "seed": "ASICSのThe Undropped Kitは生徒と共同開発した体操服で社会課題を解いたが、FireRed-OpenStorylineで生徒自身が編集ディレクターとして開発の様子を指示すれば、共創のプロセスごと製品ストーリーになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "asics-the-undropped-kit",
+        "title": "The Undropped Kit",
+        "desc": "女子生徒2,000人以上と共同開発した体操服が、スポーツ離れという社会課題を製品設計から変えた"
+      },
+      {
+        "type": "tech",
+        "id": "firered-openstoryline",
+        "title": "FireRed-OpenStoryline",
+        "desc": "話しかけると編集ディレクターのように段取りを組み、素材選び・カット・つなぎまで自動化する動画編集エージェント。人が途中で介入できる対話的な共"
+      }
+    ]
+  },
+  {
+    "id": "archive-24",
+    "date": null,
+    "title": "沈黙を音で可視化する広告",
+    "pattern": null,
+    "seed": "LALCECのOne More Questionは沈黙で気づきを与えたが、OBSIDIAN Neuralでインタビューの沈黙をその場でループ音源に変換すれば、答えられなかった重さを音で可視化する広告ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "lalcec-one-more-question",
+        "title": "One More Question",
+        "desc": "インタビューの最後に前立腺検診を問い、沈黙を破ったメディア施策。"
+      },
+      {
+        "type": "tech",
+        "id": "obsidian-neural",
+        "title": "OBSIDIAN Neural",
+        "desc": "AIがその場でループ音源を生成する、ライブ演奏向けのオープンソース楽器（VST3/AU対応、プラグイン本体はAGPL-3.0でGitHubか"
+      }
+    ]
+  },
+  {
+    "id": "archive-25",
+    "date": null,
+    "title": "保護犬の歩き方を継ぐ分身",
+    "pattern": null,
+    "seed": "Pedigreeのカラメロは雑種犬を国民的アイコンにしたが、robot_retargeterで保護犬の歩き方をロボット犬に移植すれば、施設で歩けなくなった犬の個性を残す分身が作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "robot-retargeter",
+        "title": "robot_retargeter",
+        "desc": "人の動きを撮影したモーションキャプチャのデータを、体格や関節の数がまったく違う人型ロボットの動きに自動で変換できる、無料で使えるオープンソー"
+      }
+    ]
+  },
+  {
+    "id": "archive-26",
+    "date": null,
+    "title": "一振付で多機種シンクロダンス",
+    "pattern": null,
+    "seed": "SONICが生成する人型ロボットの格闘や跳躍の動きを、robot_retargeterで体格の違う別ロボットへそのまま移植すれば、一つの振付データで多機種ロボットが同時にシンクロダンスするショーが作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "robot-retargeter",
+        "title": "robot_retargeter",
+        "desc": "人の動きを撮影したモーションキャプチャのデータを、体格や関節の数がまったく違う人型ロボットの動きに自動で変換できる、無料で使えるオープンソー"
+      }
+    ]
+  },
+  {
+    "id": "archive-27",
+    "date": null,
+    "title": "お題から生まれる即興ライブ映像",
+    "pattern": null,
+    "seed": "CoMoViがテキストから3Dの動きと映像を同時生成するのに、その映像へOBSIDIAN Neuralがリアルタイムで伴奏をつければ、一言のお題から動きも音楽も同時に生まれる即興ライブMV装置ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comovi",
+        "title": "CoMoVi",
+        "desc": "文章から『3Dの人の動き』と『写実的な映像』を一つの生成ループの中で同時に作る。3Dが映像に構造の正しさを、事前学習済みの映像モデルが3Dの"
+      },
+      {
+        "type": "tech",
+        "id": "obsidian-neural",
+        "title": "OBSIDIAN Neural",
+        "desc": "AIがその場でループ音源を生成する、ライブ演奏向けのオープンソース楽器（VST3/AU対応、プラグイン本体はAGPL-3.0でGitHubか"
+      }
+    ]
+  },
+  {
+    "id": "archive-28",
+    "date": null,
+    "title": "外に出せない現場の証拠記録",
+    "pattern": null,
+    "seed": "Modlyは本来クリエイター向けの写真→3D変換アプリだが、クラウドに送らずローカル完結という特性を転用すれば、事故現場や保険鑑定など証拠を外に出せない場面の3D記録ツールになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "modly",
+        "title": "Modly",
+        "desc": "写真をクラウドに送らず、自分のPCのGPUだけで3Dメッシュ化できる完全ローカルの画像→3Dデスクトップアプリ。"
+      }
+    ]
+  },
+  {
+    "id": "archive-29",
+    "date": null,
+    "title": "選手データ重ねる新中継演出",
+    "pattern": null,
+    "seed": "RerunはロボットK1のセンサーをリアルタイム可視化する開発ツールだが、対象をロボットから人間の選手に転用すれば、試合中の関節角度や重心移動を実況画面に重ねる新しいスポーツ中継演出ができるかも。",
+    "refs": []
+  },
+  {
+    "id": "archive-30",
+    "date": null,
+    "title": "失われた角度を復元展示",
+    "pattern": null,
+    "seed": "ArtiFixerは壊れた3Dスキャンを修復し撮影していない角度まで補うNVIDIA技術だが、劣化した歴史的建造物のアーカイブ映像に転用すれば、失われた角度の姿を復元して見せる保存展示ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "artifixer",
+        "title": "ArtiFixer",
+        "desc": "壊れた・ぼやけた3D再構成（Gaussian Splatting等）のレンダリングを、Wan2.1ベースの自己回帰ビデオ拡散モデルで綺麗に修"
+      }
+    ]
+  },
+  {
+    "id": "archive-31",
+    "date": null,
+    "title": "みんなで作る寝る前寄付動画",
+    "pattern": null,
+    "seed": "音声だけで完結する「Bedtime Donations」の読み聞かせ体験に、音声と映像を同時生成するLTX-2を重ねたら、目の見えない子も見える子も同じ寝る前動画で寄付が生まれる仕組みになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "royal-society-blind-children-bedtime-donations",
+        "title": "Bedtime Donations",
+        "desc": "親の読み聞かせをそのまま寄付に変えた、視覚障害児のための音声ファーストな慈善キャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "ltx-2",
+        "title": "LTX-2",
+        "desc": "Lightricksが2026年1月にオープンソース化した、音声と映像を同時生成できる初の公開基盤モデル。ネイティブ4K・50fps・最長2"
+      }
+    ]
+  },
+  {
+    "id": "archive-32",
+    "date": null,
+    "title": "感覚を翻訳する通訳ロボット",
+    "pattern": null,
+    "seed": "おねしょを「伝達」と読み替える「Language of Bedwetting」のAAC記号を、テキスト指示だけで全身動作するTextOpのロボットに渡したら、言葉にならない感覚をその場で身体表現に翻訳する通訳ロボットになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "autism-bedwetting-language",
+        "title": "Language of Bedwetting",
+        "desc": "おねしょを「伝達」と捉え直す自閉症児向けのAACコミュニケーション体系"
+      },
+      {
+        "type": "tech",
+        "id": "textop",
+        "title": "TextOp",
+        "desc": "テキストで指示すると、その場でヒューマノイドロボットが全身モーションを生成・実行。踊る・楽器演奏・武術まで、動作中の指示変更にもリアルタイム"
+      }
+    ]
+  },
+  {
+    "id": "archive-33",
+    "date": null,
+    "title": "暗闇でも案内する薬棚",
+    "pattern": null,
+    "seed": "停電の多いプエルトリコで暗闇でも見分けられる「Glowing Relief」の薬ラベルに、光がなくてもセンサーだけで3D空間を復元するAny4Dを重ねたら、真っ暗な棚でもスマホが薬の位置を音声で案内してくれるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "glowing-relief-alivia-health",
+        "title": "Glowing Relief",
+        "desc": "停電が多いプエルトリコで、暗闇で光る薬のラベルにより服薬ミスを防ぐデザイン。"
+      },
+      {
+        "type": "tech",
+        "id": "any4d",
+        "title": "Any4D",
+        "desc": "RGB動画に加えRGB-D・IMU・レーダーなど任意のセンサ入力から、実寸スケールの動く3D世界（メトリック4D）を1回の推論で復元するフィ"
+      }
+    ]
+  },
+  {
+    "id": "archive-34",
+    "date": null,
+    "title": "誰にも知られぬ証拠記録アプリ",
+    "pattern": null,
+    "seed": "DV被害者の「逃げる」を描いた「Escape Vehicle」の文脈に、クラウドへ送らず端末内だけで3D化できるModlyを掛けたら、誰にも知られず証拠を記録できる駆け込みアプリが作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "toyota-escape-vehicle",
+        "title": "Escape Vehicle",
+        "desc": "フォード車で逃げるトヨタのCMという逆説が、DV被害女性への支援を訴えたギリシャ発のソーシャルフィルム。"
+      },
+      {
+        "type": "tech",
+        "id": "modly",
+        "title": "Modly",
+        "desc": "写真をクラウドに送らず、自分のPCのGPUだけで3Dメッシュ化できる完全ローカルの画像→3Dデスクトップアプリ。"
+      }
+    ]
+  },
+  {
+    "id": "archive-35",
+    "date": null,
+    "title": "住民投稿の空き屋上再生",
+    "pattern": null,
+    "seed": "衛星画像で遊休屋上を発掘した「Rooftop Revival」の発想に、iPhoneだけで高精度3D撮影できるGaussian SplatKingを重ねたら、住民自身が街の空き屋上をスキャンして再生候補を投稿できる仕組みになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "heineken-rooftop-revival",
+        "title": "Rooftop Revival",
+        "desc": "ソウルの使われていない屋上を衛星画像で発見し、都市の孤独に立ち向かうソーシャル体験拠点に再生したHeikekenの革新的OOHキャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "gaussian-splatking",
+        "title": "Gaussian SplatKing",
+        "desc": "iPhoneのデュアルレンズとLiDARで、ガウススプラッティング向けの高品質な撮影データを無料で取得できるiOSアプリ。"
+      }
+    ]
+  },
+  {
+    "id": "archive-36",
+    "date": null,
+    "title": "ロボット演技のアニメ生放送化",
+    "pattern": null,
+    "seed": "テキスト指示だけで人型ロボットが即興で踊るTextOpの動きを、骨格抽出なしで別キャラクターへ乗り移らせるSCAIL-2に通したら、生身のロボットの演技がそのままアニメキャラの生放送になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "textop",
+        "title": "TextOp",
+        "desc": "テキストで指示すると、その場でヒューマノイドロボットが全身モーションを生成・実行。踊る・楽器演奏・武術まで、動作中の指示変更にもリアルタイム"
+      },
+      {
+        "type": "tech",
+        "id": "scail-2",
+        "title": "SCAIL-2",
+        "desc": "動画に写った人物の動きを、骨格抽出を経ないEnd-to-Endモード（姿勢駆動モードも選択可）で別キャラクターへそっくり乗り移らせる。ダンス"
+      }
+    ]
+  },
+  {
+    "id": "archive-37",
+    "date": null,
+    "title": "スタジオ不要の宝石広告撮影",
+    "pattern": null,
+    "seed": "iPhoneだけで3Dスキャンできる Gaussian SplatKing の撮影データを、反射や屈折までレイトレーシングで描けるGRayに流し込んだら、スタジオなしで宝石や車の広告写真がそのまま撮れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "gray",
+        "title": "GRay",
+        "desc": "実写を3D化するGaussian Splattingを、正確な反射・屈折・影ごと「レイトレーシング」で描画できる新手法。従来のラスタライズ描"
+      },
+      {
+        "type": "tech",
+        "id": "gaussian-splatking",
+        "title": "Gaussian SplatKing",
+        "desc": "iPhoneのデュアルレンズとLiDARで、ガウススプラッティング向けの高品質な撮影データを無料で取得できるiOSアプリ。"
+      }
+    ]
+  },
+  {
+    "id": "archive-38",
+    "date": null,
+    "title": "チャット指示で作る映像音楽制作",
+    "pattern": null,
+    "seed": "素材フォルダをチャットで編集するVideo Useと、自然言語だけでビートを組めるSplice MCP×Claude Coworkを繋いだら、映像も音楽もチャット指示だけで完結するミュージックビデオ制作ラインができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "video-use",
+        "title": "Video Use",
+        "desc": "ブラウザ操作AIで知られるbrowser-useチームによる「コーディングエージェントで動画編集」ツール。素材フォルダを渡してチャットで指示"
+      }
+    ]
+  },
+  {
+    "id": "archive-39",
+    "date": null,
+    "title": "来場者動線を可視化する展示",
+    "pattern": null,
+    "seed": "ロボットや自動運転向けの4D空間復元技術Any4Dを、展示什器の中に仕込んだら、来場者の動線をリアルタイムに3D化して混雑を可視化するインスタレーションに転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "any4d",
+        "title": "Any4D",
+        "desc": "RGB動画に加えRGB-D・IMU・レーダーなど任意のセンサ入力から、実寸スケールの動く3D世界（メトリック4D）を1回の推論で復元するフィ"
+      }
+    ]
+  },
+  {
+    "id": "archive-40",
+    "date": null,
+    "title": "偶然似た形を発掘するゲーム",
+    "pattern": null,
+    "seed": "ロボットの視覚認識向けに2D基盤モデルを3D対応させるMulti-View Foundation Modelsに、街中の写真だけを読み込ませたら、看板や商品の「偶然似ている形」を世界中から自動で発掘するゲームに転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "multi-view-foundation-models",
+        "title": "Multi-View Foundation Models",
+        "desc": "DINO・SAM・CLIPなどの2D基盤モデルに「マルチビュー空間アダプタ」を挿入し、明示的な3D再構成なしで視点間一貫の特徴を出せるようア"
+      }
+    ]
+  }
+]
