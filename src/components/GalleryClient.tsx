@@ -37,6 +37,13 @@ const ON_READY_TIMEOUT_MS = 1500;
 const THUMB_WAIT_MS = 600;
 // マウント後、サムネイル事前ウォームを開始するまでのアイドル待ち（requestIdleCallback無い環境向け）
 const WARM_IDLE_FALLBACK_MS = 2000;
+// Graph3DView.tsxの `h-[calc(100vh-180px)]` と合わせる値。ON方向のhold中、canvasをfixedで
+// 固定するtopの下限として使う。スクロールしてスティッキーヘッダーが「スタック」状態
+// （タイトル分の高さを含まない、この値より小さい高さ）の時にそのままtopへ使うと、
+// canvasの高さ(100vh-180px)がビューポート下端まで届かず、下端帯の可視カードがスワップで
+// 覆われずグリッドアンマウント時に消えてしまう（レビューで指摘・実機確認）。
+// topをこの値未満にしないことで、canvas下端が必ずビューポート下端以上に届くようにする
+const GRAPH3D_HEIGHT_OFFSET_PX = 180;
 
 type Props = {
   cases: Case[];
@@ -218,8 +225,15 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
           // なるため使えない（平面ポーズの座標原点がずれ、画面外のカードが中央に来てしまう
           // バグを実機Playwrightで検出）。ヘッダーの下端（スティッキーなのでスクロール位置に
           // 関わらず常に「現在見えている内容の開始位置」を表す）を使うことで、スクロール位置が
-          // 0でなくても、スワップ前後でスプライトの画面位置が動かないようにする
-          pendingCanvasTopRef.current = headerRef.current?.getBoundingClientRect().bottom ?? 0;
+          // 0でなくても、スワップ前後でスプライトの画面位置が動かないようにする。
+          // GRAPH3D_HEIGHT_OFFSET_PX未満にはしない（下限）: スクロールでヘッダーが
+          // タイトル抜きの「スタック」高さまで縮んでいる場合、そのままだとcanvasの高さ
+          // (100vh-180px)がビューポート下端まで届かず、下端帯の可視カードがスワップで
+          // 覆われずグリッドアンマウント時に消えてしまう（レビューで指摘・実機確認）
+          pendingCanvasTopRef.current = Math.max(
+            headerRef.current?.getBoundingClientRect().bottom ?? 0,
+            GRAPH3D_HEIGHT_OFFSET_PX,
+          );
           setPhase("toGraph");
 
           const posed = await new Promise<boolean>((resolve) => {
@@ -278,6 +292,10 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
       setBusy(true);
       try {
         if (reduceMotion) {
+          // canvasを即座に隠してからグリッドを共存マウントする。隠さないと、
+          // グリッドが通常フローでマウントされる際canvas(まだ通常フロー・可視)と
+          // 縦に並んで一瞬二重表示される（レビューで指摘・実機確認）
+          if (graphWrapRef.current) graphWrapRef.current.style.visibility = "hidden";
           graphApiRef.current = null; // reduced-motionはAPI経由のモーフを使わない
           setPhase("toGrid");
           return;

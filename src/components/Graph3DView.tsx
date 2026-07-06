@@ -121,6 +121,7 @@ type PlanePhase = "idle" | "posed" | "toLayout" | "toPlane";
 type PlaneNodePose = { id: string; group: THREE.Group; pos: THREE.Vector3; scale: number };
 
 type PlaneNodeTween = {
+  id: string;
   group: THREE.Group;
   originPos: THREE.Vector3;
   targetPos: THREE.Vector3;
@@ -689,7 +690,7 @@ export default function Graph3DView({ cases, onReady }: Props) {
         // onDoneでcanvas非表示化+アンマウントのスワップを行う
         planePhaseRef.current = "posed";
         planePoseRef.current = tween.nodes.map((nt) => ({
-          id: "",
+          id: nt.id,
           group: nt.group,
           pos: nt.targetPos,
           scale: nt.toScale,
@@ -764,6 +765,7 @@ export default function Graph3DView({ cases, onReady }: Props) {
         const node = nodeById.get(p.id);
         if (!node || node.x === undefined || node.y === undefined || node.z === undefined) return;
         tweenNodes.push({
+          id: p.id,
           group: p.group,
           originPos: p.pos.clone(),
           targetPos: new THREE.Vector3(node.x, node.y, node.z),
@@ -825,6 +827,7 @@ export default function Graph3DView({ cases, onReady }: Props) {
         if (!rect) {
           // 対応するDOMカードのrectが無い場合の保険: 位置は変えずフェードアウトのみ
           tweenNodes.push({
+            id: node.id,
             group,
             originPos,
             targetPos: originPos.clone(),
@@ -838,6 +841,7 @@ export default function Graph3DView({ cases, onReady }: Props) {
         }
         const { x, y, scale } = cardRectToPlanePose(rect, canvasOrigin, canvasW, canvasH, cameraParams);
         tweenNodes.push({
+          id: node.id,
           group,
           originPos,
           targetPos: new THREE.Vector3(x, y, 0),
@@ -856,7 +860,7 @@ export default function Graph3DView({ cases, onReady }: Props) {
           setLabelOpacity(nt.group, nt.toOpacity);
         }
         planePoseRef.current = tweenNodes.map((nt) => ({
-          id: "",
+          id: nt.id,
           group: nt.group,
           pos: nt.targetPos,
           scale: nt.toScale,
