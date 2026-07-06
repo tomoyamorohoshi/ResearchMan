@@ -37,6 +37,11 @@ export type ClusterLabelHandle = {
   update(nodes: GraphNode[]): void;
   dispose(): void;
   getClusters(): ClusterInfo[];
+  // 整列モード(C)向け: 指定タグのスプライトを直接position/scaleへ反映する
+  // （updateのsums再計算を経由しない）。entry.centerも同期させるため、直後に
+  // getClusters()を呼べば常に「今どこに見えているか」を返す。整列解除後は
+  // update(nodes)を呼べば重心配置に戻り、以後は自然にそちらへ追従する
+  setTransform(tag: string, center: { x: number; y: number; z: number }, worldWidth: number): void;
 };
 
 function createLabelTexture(text: string): { texture: THREE.CanvasTexture; aspect: number } {
@@ -134,6 +139,14 @@ export function createClusterLabels(scene: THREE.Scene): ClusterLabelHandle {
     return result;
   }
 
+  function setTransform(tag: string, center: { x: number; y: number; z: number }, worldWidth: number) {
+    const entry = entries.get(tag);
+    if (!entry) return;
+    entry.sprite.position.set(center.x, center.y, center.z);
+    entry.sprite.scale.set(worldWidth, worldWidth / entry.aspect, 1);
+    entry.center = center; // getClusters()が常に現在の見た目を返すよう同期させる
+  }
+
   function dispose() {
     for (const entry of entries.values()) {
       scene.remove(entry.sprite);
@@ -143,5 +156,5 @@ export function createClusterLabels(scene: THREE.Scene): ClusterLabelHandle {
     entries.clear();
   }
 
-  return { update, dispose, getClusters };
+  return { update, dispose, getClusters, setTransform };
 }

@@ -153,6 +153,9 @@ const LABEL_FONT_LOGICAL_PX = 22;
 const LABEL_PAD_LOGICAL = 10; // 左右余白（片側）
 const LABEL_WORLD_H = 2.6;
 const LABEL_WORLD_MAX_W = 22;
+// タイトルラベルの既定の不透明度（非ホバー時）。整列モード(C)のフェード演出が
+// 復帰先として参照するためexportする
+export const LABEL_OPACITY = 0.75;
 // 高さ基準のpx/world比。幅にも同じ比を使うことでテクスチャの歪みを防ぐ
 const LABEL_PX_PER_WORLD = LABEL_LOGICAL_H / LABEL_WORLD_H;
 const LABEL_FONT = (px: number) => `bold ${px}px 'Helvetica Neue', Helvetica, Arial`;
@@ -199,7 +202,7 @@ function createLabelSprite(title: string): THREE.Sprite {
     map: texture,
     transparent: true,
     depthWrite: false,
-    opacity: 0.75,
+    opacity: LABEL_OPACITY,
   });
   const sprite = new THREE.Sprite(material);
   const worldW = Math.min(canvasLogicalW / LABEL_PX_PER_WORLD, LABEL_WORLD_MAX_W);
@@ -261,5 +264,11 @@ export function setNodeHover(group: THREE.Group, on: boolean): void {
   image.scale.set(on ? SPRITE_W * 1.15 : SPRITE_W, on ? SPRITE_H * 1.15 : SPRITE_H, 1);
   image.material.depthTest = !on;
   image.renderOrder = on ? 1 : 0;
-  label.material.opacity = on ? 1 : 0.75;
+  label.material.opacity = on ? 1 : LABEL_OPACITY;
+}
+
+/** タイトルラベルの不透明度を直接設定する。整列モード(C)のフェード演出専用 */
+export function setLabelOpacity(group: THREE.Group, opacity: number): void {
+  const { label } = getUserData(group);
+  label.material.opacity = opacity;
 }

@@ -7,8 +7,15 @@ import ForceGraph3D, { type ForceGraph3DInstance } from "3d-force-graph";
 import * as THREE from "three";
 import type { Case } from "@/lib/cases";
 import { buildGraphData, linkDistance, linkStrength, swayOffset, type GraphNode } from "@/lib/graph";
-import { createNodeObject, setNodeHover, updateLabelFacing, SPRITE_W } from "@/lib/graphSprites";
+import { createNodeObject, setNodeHover, setLabelOpacity, updateLabelFacing, SPRITE_W, LABEL_OPACITY } from "@/lib/graphSprites";
 import { createClusterLabels, type ClusterLabelHandle } from "@/lib/clusterLabels";
+import {
+  assignColumns,
+  computeGridLayout,
+  easeInOutCubic,
+  computeCameraFitDistance,
+  computeStaggerDelay,
+} from "@/lib/alignLayout";
 import CasePanel from "./CasePanel";
 
 // 3d-force-graph(three-forcegraph)がnodeThreeObjectの戻り値に自動で束縛するプロパティ
@@ -39,6 +46,46 @@ const SPACE_FLY_DISTANCE_MAX = 320;
 // graph.controls()（OrbitControls）から使うプロパティのみを型付けするキャスト先。
 // three-render-objectsの型定義がOrbitControlsを公開していないための既存パターン
 type OrbitControlsLike = { target: THREE.Vector3; autoRotate: boolean; autoRotateSpeed: number };
+
+// 整列モード(C): スペース押下がALIGN_EVERY_N_PRESSES回に一度、カテゴリ列グリッドへ整列する
+const ALIGN_EVERY_N_PRESSES = 5;
+// 1列の最大行数。超えるカテゴリは隣接サブ列へ折返す
+const ALIGN_MAX_ROWS = 20;
+// グリッドのセル間隔（世界単位）。サムネイル幅に対し僅かな余白を持たせる
+const ALIGN_CELL = SPRITE_W * 1.15;
+const ALIGN_TRANSITION_MS = 1100;
+// 整列時、列順に0〜この時間(ms)へ広がるスタガー遅延（解除時はスタガー無し＝一斉に戻す）
+const ALIGN_STAGGER_MAX_MS = 250;
+// カメラフィット時の安全マージン（全件が必ず収まるよう気持ち引く）
+const ALIGN_CAMERA_FIT_MARGIN = 1.12;
+
+// 整列モードの現在フェーズ。entering/exiting中は自前rAF(alignFrameTick)がスプライト位置を
+// 握る。aligned/idleでは静止（力学シミュレーションのnode.x/y/zには一切触れない）
+type AlignPhase = "idle" | "entering" | "aligned" | "exiting";
+
+// 整列トゥイーン1件分の状態（ノード1個 or ヘッダー1個に対応する汎用形）
+type AlignTweenTarget = { x: number; y: number; z: number };
+type NodeAlignTween = {
+  group: THREE.Group;
+  origin: THREE.Vector3;
+  target: THREE.Vector3;
+  fromOpacity: number;
+  toOpacity: number;
+  delayMs: number;
+};
+type HeaderAlignTween = {
+  tag: string;
+  origin: AlignTweenTarget & { width: number };
+  target: AlignTweenTarget & { width: number };
+  delayMs: number;
+};
+type AlignTweenState = {
+  kind: "enter" | "exit";
+  startedAt: number;
+  durationMs: number;
+  nodes: NodeAlignTween[];
+  headers: HeaderAlignTween[];
+};
 
 // 初回マウント時のみ: 最初のgraphData()投入前にこの値へ設定し、warmupを同期実行させて
 // 最初の描画フレームからレイアウトを確定させる（=onEngineStopが即発火）。
@@ -77,9 +124,16 @@ function computeScreenCoords(
   id: string,
 ): { x: number; y: number; width: number } | null {
   if (!containerEl) return null;
-  const node = nodes.find((n) => n.id === id);
-  if (!node || node.x === undefined || node.y === undefined || node.z === undefined) return null;
-  const { x, y, z } = node;
+  const node = nodes.find((n) => n.id === id) as NodeWithSprite | undefined;
+  if (!node) return null;
+  // __threeObjの実位置優先（無ければnode.x/y/z）。こうすることで整列モード中は
+  // グリッド上の見えている位置から、通常時も揺れ(sway)込みの実際の見かけ位置から
+  // 座標を採取できる（副次効果として通常時のsway分のずれも解消される）
+  const group = node.__threeObj;
+  const x = group ? group.position.x : node.x;
+  const y = group ? group.position.y : node.y;
+  const z = group ? group.position.z : node.z;
+  if (x === undefined || y === undefined || z === undefined) return null;
   const rect = containerEl.getBoundingClientRect();
   const center = graph.graph2ScreenCoords(x, y, z);
   const camera = graph.camera();
@@ -137,6 +191,43 @@ export default function Graph3DView({ cases, onReady }: Props) {
   const lastFlyTimeRef = useRef(0);
   // スペースキー接近: 直前に接近したタグ。次回選択から除外し連続で同じクラスタに飛ばないようにする
   const lastFlownTagRef = useRef<string | null>(null);
+  // 整列モード(C): スペース押下回数。フィルタ変更でもリセットしない
+  // （ALIGN_EVERY_N_PRESSES回に一度、整列モードへ入る/抜けるトリガになる）
+  const spacePressCountRef = useRef(0);
+  // 整列モードの現在フェーズ
+  const alignPhaseRef = useRef<AlignPhase>("idle");
+  // 進行中の整列/解除トゥイーンの状態（フェーズがidle/alignedの間はnull）
+  const alignTweenRef = useRef<AlignTweenState | null>(null);
+  // 整列に入る直前のクラスタ表示状態（center/worldWidth）。解除トゥイーンの復帰先として使う
+  const preAlignHeaderStateRef = useRef<Map<string, AlignTweenTarget & { width: number }> | null>(null);
+
+  // 整列モード(C)の「非整列」副作用をまとめて適用する（リンク再表示・autoRotate再開）。
+  // ノード位置・タイトルラベルの不透明度・クラスタ見出しはここでは触らない
+  // （呼び出し元の状況で扱いが異なるため。通常解除は個別にsnapし、フィルタ変更による
+  // 強制解除はエンジンの再レイアウト/既存のupdate([])に委ねる）。graphRef.current経由で
+  // 参照するため、init effect外（idsKeyエフェクト）からも呼べる
+  const restoreNonAlignSideEffects = () => {
+    const graph = graphRef.current;
+    if (!graph) return;
+    graph.linkVisibility(true);
+    const controls = graph.controls() as unknown as OrbitControlsLike;
+    controls.autoRotate = !reduceMotion && ambientStartedRef.current;
+  };
+
+  // フィルタ変更（idsKey変化）時、整列モード中なら即時解除する。トゥイーンは行わず
+  // 内部状態だけ復帰する（スプライト位置はこの直後にエンジンが再レイアウトするため触らない）。
+  // スペース押下カウンタ(spacePressCountRef)は維持する
+  const forceReleaseAlignImmediate = () => {
+    if (alignPhaseRef.current === "idle") return;
+    alignTweenRef.current = null;
+    restoreNonAlignSideEffects();
+    for (const node of currentNodesRef.current as NodeWithSprite[]) {
+      const group = node.__threeObj;
+      if (group) setLabelOpacity(group, LABEL_OPACITY);
+    }
+    alignPhaseRef.current = "idle";
+    preAlignHeaderStateRef.current = null;
+  };
 
   const unsupported = useMemo(() => {
     if (typeof document === "undefined") return false;
@@ -149,10 +240,14 @@ export default function Graph3DView({ cases, onReady }: Props) {
     if (unsupported || !containerRef.current) return;
 
     // 新しいグラフインスタンス: 初回データ投入の同期warmupフローとonReadyの
-    // 一度きり発火、アンビエントドリフトの開始状態をリセットする
+    // 一度きり発火、アンビエントドリフトの開始状態、整列モード(C)の状態をリセットする
     hasLoadedOnceRef.current = false;
     onReadyFiredRef.current = false;
     ambientStartedRef.current = false;
+    spacePressCountRef.current = 0;
+    alignPhaseRef.current = "idle";
+    alignTweenRef.current = null;
+    preAlignHeaderStateRef.current = null;
 
     const graph = new ForceGraph3D(containerRef.current, { controlType: "orbit" });
 
@@ -195,7 +290,10 @@ export default function Graph3DView({ cases, onReady }: Props) {
         const group = (node as NodeWithSprite).__threeObj;
         if (group) setNodeHover(group, false);
         if (containerRef.current) containerRef.current.style.cursor = "";
-        if (!reduceMotion) {
+        // 整列モード中(idle以外)はカメラ急旋回をしない。node.x/y/zは力学レイアウトの座標のまま
+        // （視覚上はグリッド位置）で乖離しているため、そこへ向けて飛ぶと誤った位置に着地する。
+        // preClickCameraRefにも触れない（パネルcloseの復帰先は従来どおりクリック前の位置）
+        if (!reduceMotion && alignPhaseRef.current === "idle") {
           // クリック前のカメラ位置とOrbitControlsの真の回転中心を保存
           // （未保存時のみ。パネルを開いたまま別ノードをクリックした場合、
           // 復帰先は最初のクリック前の位置を維持する）
@@ -257,11 +355,234 @@ export default function Graph3DView({ cases, onReady }: Props) {
     // world固定オフセットだと視点によってラベルが画像の裏に回りこんでしまうため、
     // カメラのright vectorを毎フレーム求めてラベルのローカル位置に反映する
     // （right vectorはフレームにつき1回だけ計算し、全ノードで使い回す）
+    // 整列モード(C): カテゴリ列グリッドへ整列するトゥイーンを開始する。
+    // クラスタが1つも無ければ何もしない（力学レイアウトのnode.x/y/zには一切触れない。
+    // C-1: 実際にスプライトを動かすのはalignFrameTick/swayTick側の役割）
+    const beginAlignEnter = () => {
+      const clusters = clusterLabelsRef.current?.getClusters() ?? [];
+      if (clusters.length === 0) return;
+      const nodes = currentNodesRef.current as NodeWithSprite[];
+      const assignInput = nodes
+        .filter((n) => n.x !== undefined && n.y !== undefined && n.z !== undefined)
+        .map((n) => ({ id: n.id, tags: n.c.tags ?? [], x: n.x as number, y: n.y as number, z: n.z as number }));
+      const assignment = assignColumns(assignInput, clusters);
+      const layout = computeGridLayout(assignInput, assignment, clusters, { cell: ALIGN_CELL, maxRows: ALIGN_MAX_ROWS });
+      if (layout.positions.size === 0) return;
+
+      // 整列直前のクラスタ表示状態を退避（解除時の復帰先。setTransformはentry.centerを
+      // 上書きするため、update()を呼ばない限りここでしか元の値を保持できない）
+      const preAlign = new Map<string, AlignTweenTarget & { width: number }>();
+      for (const c of clusters) {
+        preAlign.set(c.tag, { x: c.center.x, y: c.center.y, z: c.center.z, width: c.worldWidth });
+      }
+      preAlignHeaderStateRef.current = preAlign;
+
+      const columnIndexByTag = new Map(layout.columnOrder.map((tag, i) => [tag, i]));
+      const columnCount = layout.columnOrder.length;
+
+      const nodeTweens: NodeAlignTween[] = [];
+      for (const node of nodes) {
+        const group = node.__threeObj;
+        const target = layout.positions.get(node.id);
+        if (!group || !target) continue;
+        const tag = assignment.get(node.id);
+        const colIdx = tag ? (columnIndexByTag.get(tag) ?? 0) : 0;
+        nodeTweens.push({
+          group,
+          origin: group.position.clone(),
+          target: new THREE.Vector3(target.x, target.y, target.z),
+          fromOpacity: LABEL_OPACITY,
+          toOpacity: 0,
+          delayMs: computeStaggerDelay(colIdx, columnCount, ALIGN_STAGGER_MAX_MS),
+        });
+      }
+
+      const headerTweens: HeaderAlignTween[] = [];
+      layout.columnOrder.forEach((tag, i) => {
+        const origin = preAlign.get(tag);
+        const target = layout.headers.get(tag);
+        if (!origin || !target) return;
+        headerTweens.push({ tag, origin, target, delayMs: computeStaggerDelay(i, columnCount, ALIGN_STAGGER_MAX_MS) });
+      });
+
+      // カメラ: 全件(ヘッダー込み)が収まる距離を計算し、グリッド正面から見下ろす
+      const camera = graph.camera() as THREE.PerspectiveCamera;
+      const totalW = layout.bbox.maxX - layout.bbox.minX + ALIGN_CELL;
+      const totalH = layout.bbox.maxHeaderY - layout.bbox.minY + ALIGN_CELL;
+      const dist = computeCameraFitDistance(totalW, totalH, camera.fov, camera.aspect, ALIGN_CAMERA_FIT_MARGIN);
+      const centerY = (layout.bbox.minY + layout.bbox.maxHeaderY) / 2;
+
+      // リンク非表示・autoRotate停止は即座に。カメラは自身のトゥイーン機構で動かす
+      graph.linkVisibility(false);
+      const controls = graph.controls() as unknown as OrbitControlsLike;
+      controls.autoRotate = false;
+      graph.cameraPosition(
+        { x: 0, y: centerY, z: dist },
+        { x: 0, y: centerY, z: 0 },
+        reduceMotion ? 0 : ALIGN_TRANSITION_MS,
+      );
+
+      if (reduceMotion) {
+        for (const nt of nodeTweens) {
+          nt.group.position.copy(nt.target);
+          setLabelOpacity(nt.group, nt.toOpacity);
+        }
+        for (const ht of headerTweens) {
+          clusterLabelsRef.current?.setTransform(ht.tag, ht.target, ht.target.width);
+        }
+        alignPhaseRef.current = "aligned";
+        return;
+      }
+
+      alignTweenRef.current = {
+        kind: "enter",
+        startedAt: performance.now(),
+        durationMs: ALIGN_TRANSITION_MS,
+        nodes: nodeTweens,
+        headers: headerTweens,
+      };
+      alignPhaseRef.current = "entering";
+    };
+
+    // 整列モード(C): 力学レイアウトの座標(node.x/y/z="温存座標")へ逆トゥイーンして解除する
+    const beginAlignExit = () => {
+      const nodes = currentNodesRef.current as NodeWithSprite[];
+      const preAlign = preAlignHeaderStateRef.current;
+      const clusters = clusterLabelsRef.current?.getClusters() ?? [];
+      const currentByTag = new Map(clusters.map((c) => [c.tag, c]));
+
+      const nodeTweens: NodeAlignTween[] = [];
+      for (const node of nodes) {
+        const group = node.__threeObj;
+        if (!group || node.x === undefined || node.y === undefined || node.z === undefined) continue;
+        nodeTweens.push({
+          group,
+          origin: group.position.clone(),
+          target: new THREE.Vector3(node.x, node.y, node.z),
+          fromOpacity: 0,
+          toOpacity: LABEL_OPACITY,
+          delayMs: 0, // 解除時はスタガー無し（一斉に戻す。plan C-3は解除にスタガーを規定しない）
+        });
+      }
+
+      const headerTweens: HeaderAlignTween[] = [];
+      if (preAlign) {
+        for (const [tag, target] of preAlign) {
+          const current = currentByTag.get(tag);
+          const origin = current
+            ? { x: current.center.x, y: current.center.y, z: current.center.z, width: current.worldWidth }
+            : target; // 万一取得できなければ変化なし
+          headerTweens.push({ tag, origin, target, delayMs: 0 });
+        }
+      }
+
+      // カメラ: 位置は変えず、注視点(controls.target)だけ控えめに原点へ戻す
+      const cur = graph.cameraPosition();
+      graph.cameraPosition(cur, { x: 0, y: 0, z: 0 }, reduceMotion ? 0 : ALIGN_TRANSITION_MS);
+
+      if (reduceMotion) {
+        for (const nt of nodeTweens) {
+          nt.group.position.copy(nt.target);
+          setLabelOpacity(nt.group, nt.toOpacity);
+        }
+        for (const ht of headerTweens) {
+          clusterLabelsRef.current?.setTransform(ht.tag, ht.target, ht.target.width);
+        }
+        restoreNonAlignSideEffects();
+        clusterLabelsRef.current?.update(currentNodesRef.current);
+        alignPhaseRef.current = "idle";
+        preAlignHeaderStateRef.current = null;
+        return;
+      }
+
+      alignTweenRef.current = {
+        kind: "exit",
+        startedAt: performance.now(),
+        durationMs: ALIGN_TRANSITION_MS,
+        nodes: nodeTweens,
+        headers: headerTweens,
+      };
+      alignPhaseRef.current = "exiting";
+    };
+
+    // 整列トゥイーン完了処理。位置・不透明度・見出しをtarget値へ厳密にsnapする
+    // （浮動小数点の丸め誤差を残さない）
+    const finishAlignEnter = (tween: AlignTweenState) => {
+      for (const nt of tween.nodes) {
+        nt.group.position.copy(nt.target);
+        setLabelOpacity(nt.group, nt.toOpacity);
+      }
+      for (const ht of tween.headers) {
+        clusterLabelsRef.current?.setTransform(ht.tag, ht.target, ht.target.width);
+      }
+      alignPhaseRef.current = "aligned";
+    };
+    // 解除トゥイーン完了処理: 位置・見出しをsnapした後、リンク再表示・ラベルopacity復帰・
+    // sway/autoRotate再開をまとめて行う（plan C-3: 「完了後に」まとめて復帰する仕様）
+    const finishAlignExit = (tween: AlignTweenState) => {
+      for (const nt of tween.nodes) {
+        nt.group.position.copy(nt.target);
+        setLabelOpacity(nt.group, nt.toOpacity);
+      }
+      for (const ht of tween.headers) {
+        clusterLabelsRef.current?.setTransform(ht.tag, ht.target, ht.target.width);
+      }
+      restoreNonAlignSideEffects();
+      swayingRef.current = !reduceMotion;
+      clusterLabelsRef.current?.update(currentNodesRef.current); // 重心配置へ最終同期
+      alignPhaseRef.current = "idle";
+      preAlignHeaderStateRef.current = null;
+    };
+
+    // 進行中の整列/解除トゥイーンを1フレーム分進める。swayTickから毎フレーム呼ばれる
+    const alignFrameTick = (now: number) => {
+      const tween = alignTweenRef.current;
+      if (!tween) return;
+      let allDone = true;
+      for (const nt of tween.nodes) {
+        const elapsed = now - tween.startedAt - nt.delayMs;
+        const progress = Math.min(Math.max(elapsed / tween.durationMs, 0), 1);
+        if (progress < 1) allDone = false;
+        const eased = easeInOutCubic(progress);
+        nt.group.position.lerpVectors(nt.origin, nt.target, eased);
+        // ラベルopacity: 整列時のみ位置と同時にフェード。解除時は完了後に一括で復帰させる
+        // （小サムネイル密集時にラベルを見せない演出を、戻り際も踏襲するための意図的な非対称）
+        if (tween.kind === "enter") {
+          setLabelOpacity(nt.group, nt.fromOpacity + (nt.toOpacity - nt.fromOpacity) * eased);
+        }
+      }
+      for (const ht of tween.headers) {
+        const elapsed = now - tween.startedAt - ht.delayMs;
+        const progress = Math.min(Math.max(elapsed / tween.durationMs, 0), 1);
+        if (progress < 1) allDone = false;
+        const eased = easeInOutCubic(progress);
+        const center = {
+          x: ht.origin.x + (ht.target.x - ht.origin.x) * eased,
+          y: ht.origin.y + (ht.target.y - ht.origin.y) * eased,
+          z: ht.origin.z + (ht.target.z - ht.origin.z) * eased,
+        };
+        const width = ht.origin.width + (ht.target.width - ht.origin.width) * eased;
+        clusterLabelsRef.current?.setTransform(ht.tag, center, width);
+      }
+      if (allDone) {
+        alignTweenRef.current = null;
+        if (tween.kind === "enter") finishAlignEnter(tween);
+        else finishAlignExit(tween);
+      }
+    };
+
     let swayFrameId: number;
     const swayTick = () => {
+      const now = performance.now();
       const right = new THREE.Vector3().setFromMatrixColumn(graph.camera().matrixWorld, 0);
-      const swaying = swayingRef.current;
-      const t = swaying ? performance.now() / 1000 : 0;
+      const alignPhase = alignPhaseRef.current;
+      if (alignPhase === "entering" || alignPhase === "exiting") {
+        alignFrameTick(now);
+      }
+      // 整列モード中(idle以外)は力学シミュレーション座標での揺れを止める
+      // （整列トゥイーン、または静止したグリッド位置がスプライト位置を握るため）
+      const swaying = alignPhase === "idle" && swayingRef.current;
+      const t = swaying ? now / 1000 : 0;
       for (const node of currentNodesRef.current) {
         const group = (node as NodeWithSprite).__threeObj;
         if (!group) continue;
@@ -275,8 +596,10 @@ export default function Graph3DView({ cases, onReady }: Props) {
     };
     swayFrameId = requestAnimationFrame(swayTick);
 
-    // スペースキー: ランダムなタグクラスタへカメラ接近する。検索欄でのスペース入力を妨げず、
-    // 連打によるtween競合を避けるクールダウンを設け、直前と同じクラスタは連続選択しない
+    // スペースキー: 押下ごとにカウンタをインクリメントし、整列モード中なら解除、カウンタが
+    // ALIGN_EVERY_N_PRESSESの倍数なら整列モードへ、それ以外はランダムなタグクラスタへ
+    // カメラ接近する(B-2)。検索欄でのスペース入力を妨げず、連打によるtween競合を避ける
+    // クールダウンを設ける
     const handleSpaceKey = (e: KeyboardEvent) => {
       if (e.code !== "Space") return;
       const active = document.activeElement as HTMLElement | null;
@@ -285,9 +608,21 @@ export default function Graph3DView({ cases, onReady }: Props) {
       const now = performance.now();
       if (now - lastFlyTimeRef.current < SPACE_FLY_COOLDOWN_MS) return;
       e.preventDefault(); // ページスクロール・フォーカス中ボタンの再押下を防ぐ
+      lastFlyTimeRef.current = now;
+      spacePressCountRef.current += 1;
+
+      if (alignPhaseRef.current !== "idle") {
+        beginAlignExit(); // 整列モード中 → 解除（この押下もカウント済み。解除が最優先）
+        return;
+      }
+      if (spacePressCountRef.current % ALIGN_EVERY_N_PRESSES === 0) {
+        beginAlignEnter();
+        return;
+      }
+
+      // 通常のランダムカテゴリ接近(B-2)
       const clusters = clusterLabelsRef.current?.getClusters() ?? [];
       if (clusters.length === 0) return;
-      lastFlyTimeRef.current = now;
       // 直前に接近したタグを除外してランダム選択（1件しかなければそれを使う）
       const candidates = clusters.length > 1 ? clusters.filter((c) => c.tag !== lastFlownTagRef.current) : clusters;
       const target = candidates[Math.floor(Math.random() * candidates.length)];
@@ -323,7 +658,12 @@ export default function Graph3DView({ cases, onReady }: Props) {
       clusterLabelsRef.current = null;
       graphRef.current = null;
     };
-    // reduceMotionはuseMemo([])で初回描画時に一度だけ確定する値（不変）
+    // reduceMotionはuseMemo([])で初回描画時に一度だけ確定する値（不変）。
+    // restoreNonAlignSideEffects（beginAlignExit/finishAlignExitから参照）はコンポーネント
+    // スコープの関数で毎レンダー再生成されるが、内部で読むreduceMotionは既にdeps済みのため
+    // このeffectが実際に再実行されるタイミングで常に最新の挙動になる（exhaustive-deps警告は
+    // ルールの限界による誤検知）
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [unsupported, reduceMotion]);
 
   // データ投入・再レイアウト（フィルタ変更で再構築。ソート順の変化だけでは再構築しない）
@@ -339,6 +679,10 @@ export default function Graph3DView({ cases, onReady }: Props) {
   useEffect(() => {
     const graph = graphRef.current;
     if (!graph) return;
+    // 整列モード(C)中にフィルタが変わったら即時解除する（トゥイーンなし。スペース押下
+    // カウンタは維持）。graphData()投入前に行い、新しいレイアウトを整列状態のまま
+    // 迎えないようにする
+    forceReleaseAlignImmediate();
     swayingRef.current = false; // 再レイアウト中は力学シミュレーション側に位置を委ねる
     // 再収束が終わるまで前回位置のクラスタ名ラベルを隠す（onEngineStopのupdate()で再表示される）
     clusterLabelsRef.current?.update([]);
