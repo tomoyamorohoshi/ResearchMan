@@ -6,7 +6,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import ForceGraph3D, { type ForceGraph3DInstance } from "3d-force-graph";
 import type * as THREE from "three";
 import type { Case } from "@/lib/cases";
-import { buildGraphData, linkDistance, linkStrength, type GraphNode } from "@/lib/graph";
+import { buildGraphData, linkDistance, linkStrength, swayOffset, type GraphNode } from "@/lib/graph";
 import { createCardSprite, setSpriteHover } from "@/lib/graphSprites";
 import CaseModal from "./CaseModal";
 
@@ -19,6 +19,14 @@ export default function Graph3DView({ cases }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const graphRef = useRef<ForceGraph3DInstance | null>(null);
   const [selected, setSelected] = useState<Case | null>(null);
+  // レイアウト収束後の「ゆらゆら浮遊」制御。エンジン停止時にtrueになり、
+  // 次のgraphData()呼び出し直前にfalseへ戻す（再レイアウト中は力学シミュレーション側が
+  // 位置を握るため、揺れオフセットで上書きしない）
+  const swayingRef = useRef(false);
+  // 揺れ計算対象のノード配列。graph.graphData()の毎フレーム呼び出しを避けるため、
+  // データ投入時に自前で保持する（3d-force-graphは渡した配列の要素を直接書き換えるので
+  // 参照を保持しておけばx/y/z・__threeObjは常に最新）
+  const currentNodesRef = useRef<GraphNode[]>([]);
 
   const unsupported = useMemo(() => {
     if (typeof document === "undefined") return false;
@@ -59,8 +67,13 @@ export default function Graph3DView({ cases }: Props) {
         if (prevSprite) setSpriteHover(prevSprite, false);
         const sprite = (n as NodeWithSprite | null)?.__threeObj;
         if (sprite) setSpriteHover(sprite, true);
+      })
+      // 収束を早めて揺れ始めを速くする（約4秒相当。reduced-motionは従来どおり即停止）
+      .cooldownTicks(reduceMotion ? 0 : 240)
+      // エンジン停止＝レイアウト確定のタイミングで揺れを開始する
+      .onEngineStop(() => {
+        swayingRef.current = !reduceMotion;
       });
-    if (reduceMotion) graph.cooldownTicks(0);
     graph.d3Force("charge")?.strength(-120);
     graphRef.current = graph;
 
@@ -70,7 +83,27 @@ export default function Graph3DView({ cases }: Props) {
     });
     resizeObserver.observe(containerRef.current);
 
+    // ゆらゆら浮遊ループ。常時1本のrAFを回し、swayingRef中のみ各ノードの
+    // スプライト位置をレイアウト確定位置+決定論的オフセットへ書き換える。
+    // エンジン停止後はライブラリ側がposition更新を止めるため競合しない
+    // （three-forcegraph: engineRunning=false の間 tickFrame は位置同期をスキップする）
+    let swayFrameId: number;
+    const swayTick = () => {
+      if (swayingRef.current) {
+        const t = performance.now() / 1000;
+        for (const node of currentNodesRef.current) {
+          const sprite = (node as NodeWithSprite).__threeObj;
+          if (!sprite) continue;
+          const { dx, dy, dz } = swayOffset(node.id, t);
+          sprite.position.set((node.x ?? 0) + dx, (node.y ?? 0) + dy, (node.z ?? 0) + dz);
+        }
+      }
+      swayFrameId = requestAnimationFrame(swayTick);
+    };
+    swayFrameId = requestAnimationFrame(swayTick);
+
     return () => {
+      cancelAnimationFrame(swayFrameId);
       resizeObserver.disconnect();
       graph._destructor(); // 内部でノードごとのSprite/Material/Textureも解放される
       graphRef.current = null;
@@ -90,7 +123,10 @@ export default function Graph3DView({ cases }: Props) {
   useEffect(() => {
     const graph = graphRef.current;
     if (!graph) return;
-    graph.graphData(buildGraphData(cases));
+    swayingRef.current = false; // 再レイアウト中は力学シミュレーション側に位置を委ねる
+    const data = buildGraphData(cases);
+    currentNodesRef.current = data.nodes;
+    graph.graphData(data);
     const link = graph.d3Force("link");
     link?.distance(linkDistance).strength(linkStrength);
     // idsKeyだけに反応させる意図的な依存配列（casesは絞込のたびに新規配列になるため）

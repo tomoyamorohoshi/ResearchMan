@@ -95,3 +95,39 @@ export function linkDistance(l: { sim: number }): number {
 export function linkStrength(l: { sim: number }): number {
   return 0.2 + 0.8 * l.sim;
 }
+
+// id文字列 → 32bit非負整数（FNV-1a）。決定論的（同じidなら常に同じ値）で
+// 揺れの位相・周波数をノードごとにばらつかせるために使う（見た目の乱数風だが再現可能）
+export function hashId(id: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < id.length; i++) {
+    h ^= id.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+export type SwayParams = { phase: number; freq: number; ampSeed: number };
+
+// idから決定論的に位相・周波数係数・振幅シードを導出
+export function swayParamsForId(id: string): SwayParams {
+  const h = hashId(id);
+  const phase = ((h % 1000) / 1000) * Math.PI * 2;
+  const freq = 0.7 + (((h >>> 10) % 600) / 1000); // 0.7〜1.3倍
+  const ampSeed = ((h >>> 20) % 1000) / 1000; // 0〜1
+  return { phase, freq, ampSeed };
+}
+
+/**
+ * レイアウト確定位置からの揺れオフセット（world単位）。tは秒（performance.now()/1000等）。
+ * 振幅1.5〜2.5（カード幅16に対し控えめ）、周期5〜9秒相当。軸ごとに位相・周波数をずらし
+ * 単純な円運動にならないようにする。純粋関数（同じid・tなら常に同じ値）
+ */
+export function swayOffset(id: string, t: number): { dx: number; dy: number; dz: number } {
+  const { phase, freq, ampSeed } = swayParamsForId(id);
+  const amp = 1.5 + ampSeed * 1.0;
+  const dx = amp * Math.sin(t * freq + phase);
+  const dy = amp * Math.sin(t * freq * 0.8 + phase * 1.3 + 1.0);
+  const dz = amp * Math.sin(t * freq * 1.1 + phase * 0.7 + 2.0);
+  return { dx, dy, dz };
+}
