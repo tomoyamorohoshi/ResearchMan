@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import type { Case } from "@/lib/cases";
 import CaseCard from "./CaseCard";
@@ -10,7 +10,14 @@ import { compareByAwardForCollection, type OrgKey } from "@/lib/awards";
 import { tabSources, getSourceKind } from "@/lib/researchSources";
 import { TAG_AXES, tagAxis, tagLabel } from "@/lib/tags";
 import { useViewMode } from "./ViewModeContext";
-import { blowAwayCards, landCards } from "@/lib/viewTransition";
+import {
+  liftCards,
+  materializeCards,
+  CANVAS_CROSSFADE_DELAY_MS,
+  CANVAS_CROSSFADE_DURATION_MS,
+  type CardTarget,
+} from "@/lib/viewTransition";
+import type { GraphTransitionApi } from "./Graph3DView";
 
 // 3d-force-graph/threeはwindow依存のためssr:false必須。トグルON時にのみチャンク取得される
 const Graph3DView = dynamic(() => import("./Graph3DView"), {
@@ -21,6 +28,33 @@ const Graph3DView = dynamic(() => import("./Graph3DView"), {
     </div>
   ),
 });
+
+// onReadyが来なかった場合の打ち切り（graphは既に表示されているためlift.abort()して進める）
+const ON_READY_TIMEOUT_MS = 2500;
+// OFF方向: canvasラッパをフェードアウトしてからGraph3DViewをアンマウントするまでの時間
+const CANVAS_FADE_OUT_MS = 200;
+
+// 要素のopacityをWAAPIでアニメーションし、完了後は明示的な最終値に確定してアニメ効果を
+// 除去する（idle時にfill:forwardsの残留効果を残さない）
+function fadeElementOpacity(el: HTMLElement | null, from: number, to: number, durationMs: number): Promise<void> {
+  if (!el) return Promise.resolve();
+  if (durationMs <= 0) {
+    el.style.opacity = String(to);
+    return Promise.resolve();
+  }
+  const anim = el.animate([{ opacity: from }, { opacity: to }], {
+    duration: durationMs,
+    easing: "ease",
+    fill: "forwards",
+  });
+  return anim.finished.then(
+    () => {},
+    () => {},
+  ).then(() => {
+    el.style.opacity = String(to);
+    anim.cancel();
+  });
+}
 
 type Props = {
   cases: Case[];
@@ -51,103 +85,31 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
   const { mode, setBusy } = useViewMode();
   const [phase, setPhase] = useState<DisplayPhase>(mode === "graph" ? "graph" : "grid");
   const gridRef = useRef<HTMLDivElement>(null);
+  const graphWrapRef = useRef<HTMLDivElement | null>(null);
   const scrollYRef = useRef(0);
   const prevModeRef = useRef(mode);
   const reduceMotion = useMemo(
     () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
     [],
   );
+  // Graph3DView.onReadyで受け取ったAPI（OFF方向の遷移でノード座標を採取する際に使う）
+  const graphApiRef = useRef<GraphTransitionApi | null>(null);
+  // ON方向の遷移中のみ、onReady到着を待つPromiseのresolveを保持する
+  const onReadyWaiterRef = useRef<((api: GraphTransitionApi | null) => void) | null>(null);
+  // OFF方向: mode-effectで採取したノード座標をphase-effectへ渡す
+  // （gridRef null問題の既知バグを再発させないため2段構成を維持。詳細は下のeffect参照）
+  const originsRef = useRef<Map<string, CardTarget> | null>(null);
+  // ON方向: 通常のlift→converge演出をスキップした（reduced-motion/gridEl不在）場合、
+  // canvasラッパのマウント時点でopacityを即1にする（フェードインを行わないため）
+  const skipCanvasFadeRef = useRef(false);
 
-  // mode（ON/OFFの目標状態）の変化を検知し、吹き飛び/帰還トランジションを開始する。
-  // /awards・/technology等（ViewModeProvider不在＝modeが常にgrid固定）ではmodeが
-  // 変化しないためこのeffectは初回以降一切作動せず、グリッドの挙動に影響しない。
-  //
-  // ON方向（グリッド→3D）は、この時点でまだ実グリッドがマウントされている
-  // （phaseはまだ"grid"）ため、ここで直接gridRef.currentを読んで完結できる。
-  // OFF方向（3D→グリッド）はphaseを"toGrid"にするところまでで、実際の着地アニメーションは
-  // 下の別effect（phase依存）に委ねる。理由: setPhase後すぐrequestAnimationFrameを
-  // 1回待つだけでは、Graph3DViewのアンマウント（_destructor内の475件のSprite/Texture
-  // 解放）が重く、実グリッドDOMのコミットが単一のrAFより後にずれ込むことがあり、
-  // gridRef.currentがまだnullのままアニメーションが無言でスキップされるバグを引き起こす
-  // （実機Playwright検証で発見）。useEffect(..., [phase])はReactのコミット後にしか
-  // 走らないため、この確認が要らず確実。
-  useEffect(() => {
-    if (mode === prevModeRef.current) return;
-    prevModeRef.current = mode;
+  const handleGraphReady = (api: GraphTransitionApi) => {
+    graphApiRef.current = api;
+    onReadyWaiterRef.current?.(api);
+  };
 
-    if (mode === "graph") {
-      let cancelled = false;
-      async function run() {
-        setBusy(true);
-        // 途中で例外が出てもbusyを取り残さない（取り残すとトグルがリロードまで永久disabled）
-        try {
-          setPhase("toGraph"); // 表示はgridと同じJSX（吹き飛びはオーバーレイのクローンで表現）
-          scrollYRef.current = window.scrollY;
-          const gridEl = gridRef.current;
-          if (reduceMotion || !gridEl) {
-            setPhase("graph");
-          } else {
-            const flying = blowAwayCards(gridEl); // クローンが独立して吹き飛ぶ（Reactツリー非依存）
-            window.scrollTo({ top: 0, behavior: "instant" });
-            setPhase("graph"); // Graph3DViewをマウント開始＝裏で3D用サムネのロードが始まる
-            await flying;
-          }
-        } finally {
-          if (!cancelled) setBusy(false);
-        }
-      }
-      run();
-      return () => {
-        cancelled = true;
-      };
-    }
-    // 実グリッドDOMのコミットは下のeffectで検知する（ここではphaseを倒すだけ）
-    function startToGrid() {
-      setBusy(true);
-      setPhase("toGrid");
-    }
-    startToGrid();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mode]);
-
-  // phaseが"toGrid"になった＝実グリッドDOM（gridRef）がコミット済みの状態でのみ発火。
-  // ここで初めてスクロール復元と着地アニメーションを安全に実行できる
-  useEffect(() => {
-    if (phase !== "toGrid") return;
-    let cancelled = false;
-    async function run() {
-      // 途中で例外が出てもphase/busyを取り残さない（グリッド復帰とトグル操作性を保証）
-      try {
-        window.scrollTo({ top: scrollYRef.current, behavior: "instant" });
-        const gridEl = gridRef.current;
-        if (!reduceMotion && gridEl) {
-          await landCards(gridEl);
-        }
-      } finally {
-        if (!cancelled) {
-          setPhase("grid");
-          setBusy(false);
-        }
-      }
-    }
-    run();
-    return () => {
-      cancelled = true;
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phase]);
-
-  // タブ（リサーチオーダー／Radar）— データに1件以上あるものだけ件数付きで表示
-  const tabs = tabSources
-    .map((s) => ({
-      ...s,
-      count: cases.filter((c) => (c.sources ?? []).includes(s.tag)).length,
-    }))
-    .filter((s) => s.count > 0);
-
-  // 「#」ハッシュタグフィルターはアワード系ソースのみ（タブと役割を分ける）
-  const awardSources = sources.filter((s) => getSourceKind(s) === "award");
-
+  // filtered/sorted: OFF方向のmode-effectがノード座標採取に使うため、
+  // effectより前（宣言前アクセス回避）に計算しておく
   const filtered = cases.filter((c) => {
     if (tab && !(c.sources ?? []).includes(tab)) return false;
     if (showFavoritesOnly && !favorites.has(c.id)) return false;
@@ -179,6 +141,161 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
               : compareByAward,
           )
         : filtered;
+
+  // mode（ON/OFFの目標状態）の変化を検知し、吹き飛び/帰還トランジションを開始する。
+  // /awards・/technology等（ViewModeProvider不在＝modeが常にgrid固定）ではmodeが
+  // 変化しないためこのeffectは初回以降一切作動せず、グリッドの挙動に影響しない。
+  //
+  // ON方向（グリッド→3D）は、この時点でまだ実グリッドがマウントされている
+  // （phaseはまだ"grid"）ため、ここで直接gridRef.currentを読んで完結できる。
+  // OFF方向（3D→グリッド）はphaseを"toGrid"にするところまでで、実際の着地アニメーションは
+  // 下の別effect（phase依存）に委ねる。理由: setPhase後すぐrequestAnimationFrameを
+  // 1回待つだけでは、Graph3DViewのアンマウント（_destructor内の475件のSprite/Texture
+  // 解放）が重く、実グリッドDOMのコミットが単一のrAFより後にずれ込むことがあり、
+  // gridRef.currentがまだnullのままアニメーションが無言でスキップされるバグを引き起こす
+  // （実機Playwright検証で発見）。useEffect(..., [phase])はReactのコミット後にしか
+  // 走らないため、この確認が要らず確実。
+  useEffect(() => {
+    if (mode === prevModeRef.current) return;
+    prevModeRef.current = mode;
+
+    if (mode === "graph") {
+      let cancelled = false;
+      async function run() {
+        setBusy(true);
+        // 途中で例外が出てもbusyを取り残さない（取り残すとトグルがリロードまで永久disabled）
+        try {
+          setPhase("toGraph"); // 表示はgridと同じJSX（持ち上がりはオーバーレイのクローンで表現）
+          scrollYRef.current = window.scrollY;
+          const gridEl = gridRef.current;
+          if (reduceMotion || !gridEl) {
+            skipCanvasFadeRef.current = true; // canvasラッパは即opacity1（フェード無し）
+            setPhase("graph");
+          } else {
+            skipCanvasFadeRef.current = false;
+            const lift = liftCards(gridEl); // クローンが持ち上がってホールド（Reactツリー非依存）
+            window.scrollTo({ top: 0, behavior: "instant" });
+            setPhase("graph"); // Graph3DViewをマウント開始＝warmup同期収束＋裏で3Dサムネロード開始
+
+            const api = await new Promise<GraphTransitionApi | null>((resolve) => {
+              onReadyWaiterRef.current = resolve;
+              setTimeout(() => resolve(null), ON_READY_TIMEOUT_MS);
+            });
+            onReadyWaiterRef.current = null;
+
+            if (api) {
+              const targets = new Map<string, CardTarget>();
+              for (const id of lift.ids) {
+                const coords = api.screenCoords(id);
+                if (coords) targets.set(id, coords);
+              }
+              const fadeIn = new Promise<void>((resolve) => setTimeout(resolve, CANVAS_CROSSFADE_DELAY_MS)).then(
+                () => fadeElementOpacity(graphWrapRef.current, 0, 1, CANVAS_CROSSFADE_DURATION_MS),
+              );
+              await Promise.all([lift.convergeTo(targets), fadeIn]);
+            } else {
+              // onReadyが期限内に来なかった: graphは既に表示されているのでliftを片付けて進める
+              await lift.abort();
+              await fadeElementOpacity(graphWrapRef.current, 0, 1, CANVAS_CROSSFADE_DURATION_MS);
+            }
+          }
+        } finally {
+          if (!cancelled) setBusy(false);
+        }
+      }
+      run();
+      return () => {
+        cancelled = true;
+      };
+    }
+
+    // OFF方向（3D→グリッド）: ノード座標の採取とcanvasのフェードアウトをここで行い、
+    // 実際の着地（materializeCards）とscrollTo復元は下の別effect（phase依存）に委ねる。
+    // 理由は既存コメントのとおり（gridRef null問題の再発防止）。busyの解除もそちら任せにする
+    let cancelled = false;
+    async function startToGrid() {
+      setBusy(true);
+      try {
+        if (reduceMotion) {
+          originsRef.current = null;
+          setPhase("toGrid");
+          return;
+        }
+        // 全事例のスクリーン座標を先に採取する（どのカードが可視になるかは復元スクロール後にしか
+        // 分からないため、フィルタ後の全件を対象にする。1件あたりVector3.project 1回＝軽量）
+        const api = graphApiRef.current;
+        const origins = new Map<string, CardTarget>();
+        if (api) {
+          for (const c of sorted) {
+            const coords = api.screenCoords(c.id);
+            if (coords) origins.set(c.id, coords);
+          }
+        }
+        originsRef.current = origins;
+        await fadeElementOpacity(graphWrapRef.current, 1, 0, CANVAS_FADE_OUT_MS);
+        if (cancelled) return;
+        setPhase("toGrid");
+      } catch {
+        if (!cancelled) setPhase("toGrid"); // 失敗時もグリッドへは必ず戻す
+      }
+    }
+    startToGrid();
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mode]);
+
+  // phaseが"toGrid"になった＝実グリッドDOM（gridRef）がコミット済みの状態でのみ発火。
+  // ここで初めてスクロール復元と着地アニメーションを安全に実行できる
+  useEffect(() => {
+    if (phase !== "toGrid") return;
+    let cancelled = false;
+    async function run() {
+      // 途中で例外が出てもphase/busyを取り残さない（グリッド復帰とトグル操作性を保証）
+      try {
+        window.scrollTo({ top: scrollYRef.current, behavior: "instant" });
+        const gridEl = gridRef.current;
+        if (!reduceMotion && gridEl) {
+          await materializeCards(gridEl, originsRef.current ?? new Map());
+        }
+      } finally {
+        originsRef.current = null;
+        if (!cancelled) {
+          setPhase("grid");
+          setBusy(false);
+        }
+      }
+    }
+    run();
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase]);
+
+  // canvasラッパの初期opacityをマウント直後（ペイント前）に設定する。
+  // phaseをdepsにすることで「graphへ遷移した時」だけ発火し、GalleryClientの
+  // 無関係な再レンダー（sort/filter操作等）のたびに再実行されない
+  // （インラインのref callbackで同じことをすると、コミットのたびにReactが
+  // detach/attachし直すため毎回opacityが0にリセットされてしまう既知の罠。
+  // フェードイン完了直後にbusyがfalseへ変わりGalleryClientが再描画された瞬間、
+  // canvasが再び透明に戻ってしまうバグとして実機で発見）
+  useLayoutEffect(() => {
+    if (phase !== "graph" || !graphWrapRef.current) return;
+    graphWrapRef.current.style.opacity = skipCanvasFadeRef.current ? "1" : "0";
+  }, [phase]);
+
+  // タブ（リサーチオーダー／Radar）— データに1件以上あるものだけ件数付きで表示
+  const tabs = tabSources
+    .map((s) => ({
+      ...s,
+      count: cases.filter((c) => (c.sources ?? []).includes(s.tag)).length,
+    }))
+    .filter((s) => s.count > 0);
+
+  // 「#」ハッシュタグフィルターはアワード系ソースのみ（タブと役割を分ける）
+  const awardSources = sources.filter((s) => getSourceKind(s) === "award");
 
   const favoriteCount = mounted ? favorites.size : 0;
   const activeFilterCount = [filters.category, filters.year, filters.region, filters.source, filters.tag].filter(Boolean).length;
@@ -323,7 +440,9 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
           )}
         </>
       ) : (
-        <Graph3DView cases={sorted} />
+        <div ref={graphWrapRef}>
+          <Graph3DView cases={sorted} onReady={handleGraphReady} />
+        </div>
       )}
     </>
   );

@@ -25,6 +25,7 @@ export default function CaseCard({ c, isFavorite, onToggleFavorite, awardContext
   const isRadar = isRadarCase(c);
   return (
     <div
+      data-case-id={c.id} // 変身トランジション(viewTransition.ts)がグリッドカード→ノードの対応付けに使う
       className={`group relative flex flex-col ${
         isRadar ? "bg-[#f6efdd]" : "bg-white"
       }`}

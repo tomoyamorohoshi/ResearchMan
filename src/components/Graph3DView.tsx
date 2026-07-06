@@ -4,10 +4,10 @@
 // 呼び出し元(GalleryClient)で必ず next/dynamic + ssr:false 経由でロードすること。
 import { useEffect, useMemo, useRef, useState } from "react";
 import ForceGraph3D, { type ForceGraph3DInstance } from "3d-force-graph";
-import type * as THREE from "three";
+import * as THREE from "three";
 import type { Case } from "@/lib/cases";
 import { buildGraphData, linkDistance, linkStrength, swayOffset, type GraphNode } from "@/lib/graph";
-import { createCardSprite, setSpriteHover } from "@/lib/graphSprites";
+import { createCardSprite, setSpriteHover, SPRITE_W } from "@/lib/graphSprites";
 import CaseModal from "./CaseModal";
 
 // 3d-force-graph(three-forcegraph)がnodeThreeObjectの戻り値に自動で束縛するプロパティ
@@ -19,14 +19,57 @@ const CAMERA_FOCUS_TRANSITION_MS = 800;
 // モーダルclose時、クリック前のカメラ位置へ戻すトランジション時間
 const CAMERA_RESTORE_TRANSITION_MS = 700;
 
+// 初回マウント時のみ: 最初のgraphData()投入前にこの値へ設定し、warmupを同期実行させて
+// 最初の描画フレームからレイアウトを確定させる（=onEngineStopが即発火）。
+// 2回目以降（フィルタ変更）は従来どおりの収束アニメーションに戻す
+const INITIAL_WARMUP_TICKS = 280;
+const INITIAL_WARMUP_TICKS_REDUCED = 200;
+const RELOAD_WARMUP_TICKS = 40;
+const RELOAD_WARMUP_TICKS_REDUCED = 200;
+const RELOAD_COOLDOWN_TICKS = 240;
+
 // graph.cameraPosition()（getter）の実際の戻り値。3d-force-graphの型定義は
 // {x,y,z}のみだが、実装（three-render-objects.mjs cameraPosition）は
 // Object.assign({}, camera.position, {lookAt: getLookAt()}) を返す
 type CameraSnapshot = { x: number; y: number; z: number; lookAt: THREE.Vector3 };
 
-type Props = { cases: Case[] };
+// 事例id → ビューポート座標系でのノード中心とスクリーン上の見かけ幅(px)。存在しなければnull
+export type GraphTransitionApi = {
+  screenCoords: (id: string) => { x: number; y: number; width: number } | null;
+};
 
-export default function Graph3DView({ cases }: Props) {
+// ノード中心のビューポート座標とスクリーン上の見かけ幅を算出する。
+// graph2ScreenCoordsはcanvas左上基準のピクセル座標を返すため、containerの
+// getBoundingClientRect()offsetを加算してビューポート座標に変換する。
+// 見かけ幅はカメラのright vectorを使い、中心と(中心+right*半幅)の距離×2で求める
+// （スプライトはworld幅16=SPRITE_W。半幅8）
+function computeScreenCoords(
+  graph: ForceGraph3DInstance,
+  containerEl: HTMLElement | null,
+  nodes: GraphNode[],
+  id: string,
+): { x: number; y: number; width: number } | null {
+  if (!containerEl) return null;
+  const node = nodes.find((n) => n.id === id);
+  if (!node || node.x === undefined || node.y === undefined || node.z === undefined) return null;
+  const { x, y, z } = node;
+  const rect = containerEl.getBoundingClientRect();
+  const center = graph.graph2ScreenCoords(x, y, z);
+  const camera = graph.camera();
+  const right = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0);
+  const halfWidth = SPRITE_W / 2;
+  const edge = graph.graph2ScreenCoords(x + right.x * halfWidth, y + right.y * halfWidth, z + right.z * halfWidth);
+  const width = Math.hypot(edge.x - center.x, edge.y - center.y) * 2;
+  return { x: rect.left + center.x, y: rect.top + center.y, width };
+}
+
+type Props = {
+  cases: Case[];
+  // マウント直後のレイアウト確定時に一度だけ呼ばれる。遷移演出との連携用
+  onReady?: (api: GraphTransitionApi) => void;
+};
+
+export default function Graph3DView({ cases, onReady }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const graphRef = useRef<ForceGraph3DInstance | null>(null);
   const [selected, setSelected] = useState<Case | null>(null);
@@ -38,6 +81,16 @@ export default function Graph3DView({ cases }: Props) {
     () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
     [],
   );
+  // 常に最新のonReadyを指す（mountエフェクトの再実行なしにコールバックを更新するため）
+  const onReadyRef = useRef(onReady);
+  useEffect(() => {
+    onReadyRef.current = onReady;
+  }, [onReady]);
+  // このグラフインスタンスでonReadyを呼んだか（一度きり保証。グラフ再生成時にリセットする）
+  const onReadyFiredRef = useRef(false);
+  // このグラフインスタンスで一度でもgraphData()を投入したか
+  // （初回は同期warmupで即収束、2回目以降=フィルタ変更は従来の収束アニメーションに戻す）
+  const hasLoadedOnceRef = useRef(false);
   // レイアウト収束後の「ゆらゆら浮遊」制御。エンジン停止時にtrueになり、
   // 次のgraphData()呼び出し直前にfalseへ戻す（再レイアウト中は力学シミュレーション側が
   // 位置を握るため、揺れオフセットで上書きしない）
@@ -57,6 +110,11 @@ export default function Graph3DView({ cases }: Props) {
   useEffect(() => {
     if (unsupported || !containerRef.current) return;
 
+    // 新しいグラフインスタンス: 初回データ投入の同期warmupフローとonReadyの
+    // 一度きり発火をリセットする
+    hasLoadedOnceRef.current = false;
+    onReadyFiredRef.current = false;
+
     const graph = new ForceGraph3D(containerRef.current, { controlType: "orbit" });
     graph
       .backgroundColor("#eeece7")
@@ -64,7 +122,9 @@ export default function Graph3DView({ cases }: Props) {
       .nodeLabel(() => "") // デフォルトHTMLツールチップ抑止（カードスプライトが常時表示するため）
       .linkColor(() => "#111111")
       .linkOpacity(0.12)
-      .warmupTicks(reduceMotion ? 200 : 40)
+      // 初回のみ: warmupを同期実行させ、最初の描画フレームからレイアウトを確定させる
+      // （idsKeyエフェクトが2回目以降はRELOAD_*値に上書きする）
+      .warmupTicks(reduceMotion ? INITIAL_WARMUP_TICKS_REDUCED : INITIAL_WARMUP_TICKS)
       // ノードドラッグは無効化（タグ類似度レイアウトを手動で崩させない）。
       // 副次効果として、three.js DragControlsがドラッグ閾値未満の素早いクリックで
       // dragstartを経ずにdragendだけ発火し、未設定の内部位置参照を読んでクラッシュする
@@ -106,11 +166,18 @@ export default function Graph3DView({ cases }: Props) {
         const sprite = (n as NodeWithSprite | null)?.__threeObj;
         if (sprite) setSpriteHover(sprite, true);
       })
-      // 収束を早めて揺れ始めを速くする（約4秒相当。reduced-motionは従来どおり即停止）
-      .cooldownTicks(reduceMotion ? 0 : 240)
+      // 初回はcooldownTicks(0): 同期warmupだけでレイアウトを確定させ、以降のアニメ収束は行わない
+      // （idsKeyエフェクトが2回目以降はRELOAD_COOLDOWN_TICKSに上書きする）
+      .cooldownTicks(0)
       // エンジン停止＝レイアウト確定のタイミングで揺れを開始する
       .onEngineStop(() => {
         swayingRef.current = !reduceMotion;
+        if (!onReadyFiredRef.current) {
+          onReadyFiredRef.current = true;
+          onReadyRef.current?.({
+            screenCoords: (id) => computeScreenCoords(graph, containerRef.current, currentNodesRef.current, id),
+          });
+        }
       });
     graph.d3Force("charge")?.strength(-120);
     graphRef.current = graph;
@@ -163,11 +230,18 @@ export default function Graph3DView({ cases }: Props) {
     const graph = graphRef.current;
     if (!graph) return;
     swayingRef.current = false; // 再レイアウト中は力学シミュレーション側に位置を委ねる
+    if (hasLoadedOnceRef.current) {
+      // 2回目以降（フィルタ変更）: 初回の同期warmup設定を、従来の収束アニメーションに戻す
+      graph
+        .warmupTicks(reduceMotion ? RELOAD_WARMUP_TICKS_REDUCED : RELOAD_WARMUP_TICKS)
+        .cooldownTicks(reduceMotion ? 0 : RELOAD_COOLDOWN_TICKS);
+    }
     const data = buildGraphData(cases);
     currentNodesRef.current = data.nodes;
     graph.graphData(data);
     const link = graph.d3Force("link");
     link?.distance(linkDistance).strength(linkStrength);
+    hasLoadedOnceRef.current = true;
     // idsKeyだけに反応させる意図的な依存配列（casesは絞込のたびに新規配列になるため）
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idsKey]);
