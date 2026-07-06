@@ -1,5 +1,332 @@
 [
   {
+    "id": "dear-ai-disability-representation-campaign-2026",
+    "title": "Dear AI（disability representation campaign）",
+    "summary": "義肢装着者本人の写真・映像でAIを再教育し、生成画像の偏った障がい者表象を当事者主導で是正するデータセット構築の先駆例",
+    "client": "Ottobock",
+    "agency": "Presence Creative Studio (Berlin)",
+    "categories": [
+      "社会包摂",
+      "AIクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州",
+      "グローバル"
+    ],
+    "link": "https://www.creativereview.co.uk/ottobock-disability-representation-ai-campaign/",
+    "thumbnail": "/thumbnails/dear-ai-disability-representation-campaign-2026.jpg",
+    "videoId": "",
+    "overview": "ドイツの義肢装具メーカーOttobockが2026年、ベルリンのPresence Creative Studioと展開したキャンペーン「Dear AI」。AI画像生成モデルが義肢装着者を誤って描いたり生成を拒否したりする問題を可視化し、当事者自身の実写真・映像を集めた学習用データセット「Community Library」をMicrosoftと共同開発。ベルリン市内のOOH広告と5本の短編フィルム、SNS展開(#DearAI)を通じて発信した。",
+    "background": "生成AIの普及に伴い、画像生成モデルが義肢装着者や四肢欠損のある人々を誤って表現したり、そもそも生成を拒否したりする「消去」「ステレオタイプ化」が課題となっていた。長年障がい啓発に取り組んできたOttobockは、AIの不正確な表象を批判するだけでなく、当事者の実体験データを提供することでAIモデル自体の学習内容を改善するアプローチを選択した。",
+    "execution": "車いすフェンシング選手ベベ・ヴィオ、陸上競技選手エズラ・フレッチら義肢装着者アンバサダー5名が身支度や日常を語る短編フィルムを制作しベルリンでOOH展開。並行してMicrosoftの「Community Library Maker」上で、当事者が「良い表象とは何か」を定義し画像・映像を投稿・アノテーションし、AI生成結果を評価する三段階のプロセスで、上肢・下肢それぞれ最大400点、計800点規模のデータセットを構築した。",
+    "evaluationImpact": "技術批判に終わらず当事者参加型のデータ提供でAIモデルの学習データそのものを是正するアプローチは、AIバイアス是正の新たなモデルケースとなりうる。データセットはHuggingFaceで無償公開され、開発者・研究者が自由に活用しファインチューニングに利用できることで、Ottobock一社にとどまらない業界横断的な波及効果を狙っている。",
+    "relatedWorks": [
+      {
+        "title": "Microsoft x Be My Eyes 障がい者データ協業",
+        "description": "Microsoftが視覚障がい当事者コミュニティBe My Eyesと協業し、AIモデルの学習に資する障がい表象データを収集した先行事例(2024年発表)。Dear AIのCommunity Libraryと同様、当事者参加型でAIの障がい者表象バイアスに対処する枠組み。",
+        "url": "https://blogs.microsoft.com/on-the-issues/2024/10/17/disability-data-improving-representation-to-drive-ai-innovation/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/Data",
+      "Form/Film",
+      "Form/OOH",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "buck-the-sheep-2026",
+    "title": "Buck the Sheep キャンペーン",
+    "summary": "群れに従わない緑毛の羊「Buck」を新マスコットに、キウィバンクが銀行業界の常識に挑む統合ブランドキャンペーンを始動。",
+    "client": "Kiwibank",
+    "agency": "Special NZ, Together, DNA, TRA",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://campaignbrief.com/kiwibank-introduces-kiwis-to-buck-the-green-wooled-sheep-who-refuses-to-follow-the-flock-in-new-campaign-via-special-together-dna-and-tra/",
+    "thumbnail": "/thumbnails/buck-the-sheep-2026.jpg",
+    "videoId": "",
+    "overview": "ニュージーランドのKiwibankは、創業25周年を前にブランドプラットフォーム「Bank Kiwi」を刷新。象徴として、群れに従わない緑毛の羊「Buck」を新マスコットに起用した統合キャンペーンを展開。Auckland拠点のFathom VFXのCGIで400万本以上のデジタル羊毛を再現。Special NZ、Together、DNA、TRAというニュージーランド資本の代理店連合が制作を担った。",
+    "background": "Kiwibankは、ニュージーランドの銀行業界が「システムに都合の良い」仕組みになっており、顧客本位になっていないという課題意識を出発点とした。同行の試算では、預金者が普通預金口座の金利適用条件を満たしていないために、家計・法人全体で年間約5億ドルの利息を逃している可能性があるという。この構造的な機会損失を可視化し、既存の商品訴求型広告から脱却して感情に訴えるストーリーテリング戦略へ転換した。",
+    "execution": "「群れに従わない」性格を体現する緑毛の羊Buckを中心にキャラクター主導のキャンペーンを展開。Fathom VFXの高度なCGIで400万本超の羊毛の質感を再現し、プロダクションはScoundrel、監督はJamie Lawrenceが担当。Special NZが戦略・広報、Togetherがメディア戦略、DNAがデジタル顧客体験、TRAがインサイト調査を分担し、OOH等で生活者との接点を広げた。",
+    "evaluationImpact": "創業25周年を迎える中で、プロダクト訴求ではなく「銀行業界の常識に挑む」独自キャラクターをブランドの顔に据えた点が特徴的。ニュージーランド資本のみの代理店4社体制で制作されたことも地元クリエイティブ産業の厚みを示す事例として注目された。2026年7月3日の発表直後であり、受賞歴等の外部評価は現時点で確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/Film",
+      "Form/OOH"
+    ]
+  },
+  {
+    "id": "lilydale-2026",
+    "title": "Lilydale 新ブランドキャンペーン",
+    "summary": "農家がトラクターで農場から売り場まで走り抜ける物語で、Omnicom Oceania体制下初となる鶏肉選びの購買後押し施策",
+    "client": "Lilydale（Baiada）",
+    "agency": "Clemenger BBDO / Omnicom Oceania / Hearts & Science",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://campaignbrief.com/lilydale-turns-farmers-dedication-into-powerful-shopper-choice-moment-in-new-campaign-via-omnicom-oceania-and-clemenger-bbdo/",
+    "thumbnail": "/thumbnails/lilydale-2026.jpg",
+    "videoId": "",
+    "overview": "Lilydaleが「Nothing but Lilydale will do」を掲げ、農家の献身を店頭での選択の瞬間に結びつける統合ブランドキャンペーンを2026年7月に始動。ヒーローフィルムでは農家がトラクターに乗り、農場からスーパーの鶏肉売り場まで走り抜け、消費者の購買決定を後押しする物語を描く。フィルム、デジタル、ソーシャル、OOH、ショッパーメディアを横断して展開している。",
+    "background": "BaiadaがOmnicom Oceaniaと新たにパートナーシップを締結し、Lilydaleにとって本格的な統合キャンペーンとしては初の取り組みとなる。良い飼育がより良い鶏肉につながるという価値をどう店頭での選択に落とし込むかが課題で、Clemenger BBDOとHearts & Scienceがショッパー、コマース、データ、ソーシャルなど幅広い領域を横断して担当する新体制のもとで制作された。",
+    "execution": "Finch制作のヒーローフィルムでは、農家が消費者の迷いを察知し、トラクターで農場から国を横断してスーパーの鶏肉売り場まで乗り込むという誇張されたストーリーで品質へのこだわりを視覚化する。監督はChristopher Riggert。フィルムを核に、OOH、デジタル、ソーシャル、ショッパーメディアへ展開し、店頭での購買決定の瞬間に接点を設計した統合施策とした。",
+    "evaluationImpact": "Baiada CMOのYash Gandhiは「味と品質が重要な時、Lilydale以外にはあり得ない」とブランドの主張を明確化。Clemenger BBDOのMatt Chandlerは「最も強いブランドは購買決定をシンプルに感じさせる」と狙いを説明した。Omnicom Oceania体制下での初の統合キャンペーンとして、メディア・クリエイティブ・ショッパーインテリジェンスを統合する新パートナーシップのモデルケースとなっている。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Form/OOH",
+      "Theme/Food",
+      "Theme/Retail"
+    ]
+  },
+  {
+    "id": "don-t-treat-kids-like-adults-2026",
+    "title": "Don't Treat Kids Like Adults",
+    "summary": "小児がん患者を撮影せずAI生成ビジュアルで訴求、豪広告業界が2年目に200万ドル相当のプロボノ支援を投入",
+    "client": "Children's Cancer Foundation",
+    "agency": "Cummins & Partners",
+    "categories": [
+      "社会包摂",
+      "AIクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://campaignbrief.com/industry-backs-childrens-cancer-foundation-with-2m-in-pro-bono-support-launches-new-campaign-via-cummins-partners/",
+    "thumbnail": "/thumbnails/don-t-treat-kids-like-adults-2026.jpg",
+    "videoId": "",
+    "overview": "豪州Children's Cancer Foundationが小児がん治療の課題を訴える啓発キャンペーン「Don't Treat Kids Like Adults」の2年目版を展開。成人向けに開発された抗がん剤を子どもに転用している実態を伝え、子ども専用の温和な治療法研究への寄付を呼びかける。クリエイティブはCummins & Partnersが再びプロボノで制作し、業界全体で200万ドル相当の支援が集まった。",
+    "background": "小児がん治療の多くは成人向けに開発された薬剤を流用しており、生存者の80%が治療による長期的・生涯にわたる後遺症を抱えるとされる。Children's Cancer Foundationは2025年に本キャンペーンを立ち上げ、子ども専用の治療法開発に向けた研究資金の必要性を訴えてきた。2026年は2年目として規模を拡大し、業界からの支援を集めて再展開した。",
+    "execution": "ビジュアルは治療中の子ども本人を撮影せず、実体験や医療専門家への取材をもとにAIで生成した画像を使用し、センシティブなテーマに配慮しつつ伝えている。クリエイティブはCummins & Partnersがプロボノで制作し、メディアプランニングのStarcomがOOH・ラジオ・デジタル・テレビにわたる寄付枠を確保、The Civic PartnershipがPRを担当した。",
+    "evaluationImpact": "実在の患者を撮影対象にせず、AI生成ビジュアルでセンシティブな医療テーマを扱う手法は、生成AIの倫理的活用のケースとして注目される。豪州の広告・メディア業界が2年連続で計200万ドル相当のプロボノ支援を投じたことも、社会課題キャンペーンにおける業界横断的コラボレーションの好例といえる。",
+    "relatedWorks": [
+      {
+        "title": "Don't Treat Kids Like Adults(2025年 初回キャンペーン)",
+        "description": "同キャンペーンの前年版。Cummins & Partnersが小児がん治療の実態を伝える啓発ビジュアルを制作。",
+        "url": "https://www.bandt.com.au/dont-treat-kids-like-adults-childrens-cancer-foundation-team-up-with-cumminspartners-for-confronting-campaign/"
+      },
+      {
+        "title": "Don't treat kids like adults(キャンペーン映像)",
+        "description": "Children's Cancer Foundation公式YouTubeに掲載されたキャンペーン映像。",
+        "url": "https://www.youtube.com/watch?v=Ri8hO0mdXQo"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/OOH",
+      "Form/SNS",
+      "Theme/Health",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "off-tape-welcome-2026",
+    "title": "Off Tape: Welcome",
+    "summary": "感情を封じたレコード/カセットを売る店員となり、9台の監視カメラで来訪者の正体を見極める60〜70年代アナログホラー接客シム。",
+    "client": "Kervan Games",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://store.steampowered.com/app/4847930/Off_Tape_Welcome/",
+    "thumbnail": "/thumbnails/off-tape-welcome-2026.jpg",
+    "videoId": "",
+    "overview": "Off Tape: Welcomeは、カルト組織「The Tobacconists」が営むレコード店を舞台にしたファーストパーソン視点のホラー接客シミュレーション。プレイヤーは新人店員として、人間の感情を周波数調整でレコードやカセットに封じ込め販売する一方、9台の監視カメラで来店者を事前に観察し、人間か怪異かを見極めて対応する。プレイ時間は約5〜6時間で、選択により複数のエンディングが用意されている。",
+    "background": "1960〜70年代のアナログ機材(カセットテープ・レコード・CRTモニターなど)を意匠に取り入れたレトロオカルト美術が特徴。2025年発売の「No, I'm not a Human」が来訪者の正体を見抜くホラーゲームとして累計100万本超のヒットとなるなど、「人ならざるものを識別する」接客ホラーが潮流となっており、本作もその文脈に連なる新作としてSteamストアページが2026年7月5日に公開された。",
+    "execution": "来店者は9台の監視カメラで事前に行動を観察し、異常な体温や物音、現実の歪みといった手掛かりから通常客・敵対的な怪物・霊的存在・上位存在を判別。通常客には接客、怪物には銃で応戦、霊的存在はカメラで祓うなど対応を変える。収入に応じて設備をアップグレードでき、選択によって結末が分岐する。対応プラットフォームはPC(Steam)、日本語を含む11言語対応、発売時期は2026年11月予定。",
+    "evaluationImpact": "2025年の「No, I'm not a Human」の大ヒット(発売1週間で10万本、2026年3月時点で累計100万本超)以降、来訪者の正体を見抜くホラー接客ジャンルが注目を集めており、本作は感情を封入した記録媒体の売買という独自要素を掛け合わせた新機軸として位置づけられる。ただし本作自体は2026年7月にストアページが公開された段階で、発売(2026年11月予定)前のため評価・売上等の実績はまだ確認されていない。",
+    "relatedWorks": [
+      {
+        "title": "No, I'm not a Human",
+        "description": "怪しい来訪者の正体を見抜く不気味系ホラーの先行作品。2025年発売、2026年3月時点で全世界100万本超を売り上げ、「人ならざる訪問者を識別する」ジャンルの潮流を築いた。",
+        "url": "https://store.steampowered.com/app/3180070/No_Im_not_a_Human/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Tech/Audio",
+      "Form/App",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "vr-ai-vr-fit-trip-omni-scouter-miyabi-portal-2026",
+    "title": "地方の魅力をVR×AIで届ける、山形発の挑戦（VR Fit Trip / Omni Scouter / MIYABI PORTAL）",
+    "summary": "自宅VR観光体験と現地AI果物スキャンを連携させ、旅の前・中・後を一気通貫で支援する山形発の観光DX。",
+    "client": "合同会社ミヤビイノベーション",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000003.000186340.html",
+    "thumbnail": "/thumbnails/vr-ai-vr-fit-trip-omni-scouter-miyabi-portal-2026.jpg",
+    "videoId": "",
+    "overview": "VR Fit Trip・Omni Scouter・MIYABI PORTALの3サービスで構成される観光DXプロジェクト。自宅でVR体験→現地でAI果物スキャン→旅行記録投稿という「旅の前・中・後」を一気通貫で支援する。合同会社ミヤビイノベーションが2026年7月6日よりCAMPFIREでクラウドファンディングを開始し、天童市の観光果樹園で市場検証を予定している。",
+    "background": "山形市の合同会社ミヤビイノベーション代表・佐藤雅志氏は15年以上のシステムエンジニア経験とAI資格を持つエンジニア。VR×フィットネス×観光をテーマにnoteで発信してきた構想を2026年に法人化し、地方の魅力発信と観光DXの実現を目指して事業化した。",
+    "execution": "自宅で山形の景色を楽しみながら運動できる「VR Fit Trip」、現地でAIが果物の色づきや見た目をスコア化する「Omni Scouter」（天童市・王将果樹園で市場検証予定）、旅の記録投稿や地域送客を担う「MIYABI PORTAL」の3サービスを開発。2026年7月6日〜8月7日にCAMPFIREで目標30万円のAll-in方式クラウドファンディングを実施した。",
+    "evaluationImpact": "受賞歴などの外部評価は現時点で確認できていない。旅前・旅中・旅後を通してVRとAIを組み合わせ地方の魅力を届ける設計は、地方発スタートアップによる観光DXの新しい切り口として注目される。2026年8月〜2027年1月に山形県内で市場検証を予定しており、実証データの蓄積が今後の評価軸となる。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/XR",
+      "Form/App"
+    ]
+  },
+  {
+    "id": "case-1f4isuu-2026",
+    "title": "初音ミク スターリーパーティ",
+    "summary": "ねんどろいど版の初音ミク・鏡音リン・レンら6人が集結する完全新作パーティアクション、Switch 2/Steamで2027年発売決定",
+    "client": "初音ミク / グッドスマイルカンパニー",
+    "agency": "グッドスマイルカンパニー",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.famitsu.com/article/202607/80441",
+    "thumbnail": "/thumbnails/case-1f4isuu-2026.jpg",
+    "videoId": "",
+    "overview": "フィギュアメーカーのグッドスマイルカンパニーが2026年7月5日に発表した新作ゲーム。ねんどろいど版の初音ミク・鏡音リン・鏡音レン・巡音ルカ・MEIKO・KAITOが登場するパーティアクションで、Nintendo Switch 2とSteam向けに2027年発売予定。最大6人でのプレイに対応し、対応言語は日本語・英語・中国語(繁体字/簡体字)。発表にあわせ骨盤Pの楽曲「StargazeR」を使用したティザーPVが公開された。",
+    "background": "グッドスマイルカンパニーはフィギュアブランド「ねんどろいど」で初音ミクら人気ボーカロイドキャラクターを長年展開してきた。今作はそのねんどろいど版キャラクターをそのままゲーム内キャラクターとして起用し、フィギュアIPをゲームというメディアへ展開する取り組みとなる。開発体制やコンセプトについての詳細な公式コメントは本発表時点では公開されていない。",
+    "execution": "2026年7月5日、ティザーPVとともに発表。Nintendo Switch 2・Steam向けに2027年発売予定で、対応言語は日本語・英語・中国語(繁体字/簡体字)。ジャンルはパーティアクションで、初音ミク・鏡音リン・鏡音レン・巡音ルカ・MEIKO・KAITOのねんどろいど版キャラクターが最大6人での協力・対戦プレイに対応する。ティザーPVでは骨盤Pの新曲「StargazeR」が使用された。具体的なゲームシステムや発売日、価格は本発表時点で未公開。",
+    "evaluationImpact": "発表直後からファミ通・電撃オンライン・でんふぁみこゲーマー等の主要ゲームメディアが速報で取り上げ、ねんどろいど版キャラクターがそのままゲームに登場する点や、最大6人プレイ対応のパーティアクションという新機軸が注目された。ファミ通ではティザーPVの内容から「アクションゲーム色が強い内容になるのかもしれない」との見方も示されている。発表段階のため、受賞歴など外部評価は現時点で確認されていない。",
+    "relatedWorks": [
+      {
+        "title": "初音ミク スターリーパーティ ティザーPV",
+        "description": "発表にあわせて公開されたティザームービー。骨盤Pの楽曲「StargazeR」を使用。",
+        "url": "https://www.youtube.com/watch?v=OXlncCM2liI"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/App",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "steam-summer-sale-simulator-2026",
+    "title": "Steam Summer Sale Simulator",
+    "summary": "実際の課金なしにSteamセールの衝動買い快感を疑似体験できる偽ストアWebアプリが世界的にバイラル化した。",
+    "client": "mike wing",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://automaton-media.com/articles/newsjp/20260706-453400/",
+    "thumbnail": "/thumbnails/steam-summer-sale-simulator-2026.jpg",
+    "videoId": "",
+    "overview": "「Steam Summer Sale Simulator」は開発者mike wing氏が個人的に制作した、Steamストアを模したWebアプリ。仮想通貨100ドルからスタートし、実際のSteamストアそっくりの画面でゲームをカートに入れて購入できる。約30種の実績や「Gabeからのギフト」というケース開封演出、コミュニティマーケットも備え、購入の快感だけを無料で疑似体験できる点が特徴。",
+    "background": "mike wing氏は「Steamのセール中、際限なくゲームを買ってしまう」ことに悩んでおり、実際にお金を使わず購入の“ドーパミン”だけを得られる仕組みを作ろうと考えたのが開発の発端。2026年のSteamサマーセール開催に合わせて公開され、同様の衝動買い願望を抱えるゲーマー層から強い共感を呼んだ。",
+    "execution": "実際のSteamストアのUIをほぼ忠実に再現し、人気タイトル表示・割引バッジ・無限スクロールのおすすめ欄まで再現した。仮想資金は「Add Funds」ボタンで無制限に補充でき、購入するとライブラリに追加され、プロフィールレベルや30種の実績が解放される。ケース開封演出付きの「Gabeからのギフト」やコミュニティマーケット機能も公開後に追加された。",
+    "evaluationImpact": "開発者本人のX投稿は執筆時点で約305万インプレッション・約3万いいねを獲得し、Dexerto、Tom's Hardware、automatonなど国内外のゲームメディアが報じるバイラルヒットとなった。実消費を伴わない“疑似消費”で購買欲を満たすという逆説的なアプローチが、セール期間中の衝動買い文化への鋭いカルチャーインサイトとして評価されている。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Website",
+      "Tech/Web",
+      "Tech/Game",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "book-2026",
+    "title": "ザビャンのブレインロット学校 まちがいさがしBOOK",
+    "summary": "AI発ミーム「イタリアンブレインロット」の絵本第2弾はまちがいさがし形式、シリーズ累計5万部を突破。",
+    "client": "ザビャン",
+    "agency": "宝島社",
+    "categories": [
+      "カルチャーインサイト",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://kai-you.net/article/95847",
+    "thumbnail": "/thumbnails/book-2026.jpg",
+    "videoId": "",
+    "overview": "宝島社が2026年7月9日発売の『ザビャンのブレインロット学校 まちがいさがしBOOK』（税込1,485円）。生成AIミーム「イタリアンブレインロット」を題材にした遊べる絵本シリーズの第2弾で、200体以上のキャラクターとプロフィール図鑑ページ、特製シールを収録。第1弾『絵さがしBOOK』と合わせシリーズ累計5万部を突破した。",
+    "background": "「イタリアンブレインロット」は2025年初頭にTikTokを起点に世界的に広まった、生成AIが作った動物と物体を組み合わせたシュールなキャラクター群によるインターネットミーム。登録者40万人超のYouTubeクリエイター・ザビャンが独自解釈でキャラクター化し発信、子どもたちの間で人気に火が付いたことを背景に第1弾絵本が刊行され、3回目の重版がかかるヒットとなっていた。",
+    "execution": "第1弾のテーマ「絵さがし」に対し、第2弾は「まちがいさがし」を採用。フードコートでの職業体験、夏祭り、女子会といった課外授業的なシーンを舞台に、キャラクターの私服姿や衣装バリエーションを描写。200体超のキャラクターが登場するプロフィール図鑑ページと、人気キャラクターの特製シールを特典として付属させ、コレクション性も持たせた構成にしている。",
+    "evaluationImpact": "ネットミームという刹那的なバズを、書籍という物理メディアへ継続的に展開した事例。第1弾の3回重版に続き第2弾投入でシリーズ累計5万部を突破し、SNS発コンテンツが出版流通で持続的な商業成果に転化できることを示した。子ども層への「ブレインロット」ミーム波及という文化現象を裏付けるデータとしても言及されている。",
+    "relatedWorks": [
+      {
+        "title": "ザビャンのブレインロット学校 絵さがしBOOK",
+        "description": "同シリーズ第1弾。「絵さがし」をテーマに刊行され、3回目の重版が決定するヒットとなった。",
+        "url": "https://realsound.jp/book/2026/03/post-2326903.html"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Print",
+      "Theme/Entertainment"
+    ]
+  },
+  {
     "id": "i-m-so-happy-you-are-here-2026",
     "title": "まなざしの奇跡 ― 日本女性写真家の冒険（I'm So Happy You Are Here）",
     "summary": "アルル国際写真祭発の女性写真家展が日本上陸、参加作家を30名に拡大し写真の枠を超えた大規模展に",
