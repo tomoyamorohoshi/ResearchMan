@@ -19,7 +19,10 @@ export default function TechCard({ t, isFavorite, onToggleFavorite }: Props) {
   const commercial = COMMERCIAL_BADGE[t.license.commercial];
   const github = t.links.find((l) => l.kind === "github");
   return (
-    <div className="group relative flex flex-col bg-white">
+    <div
+      className="group relative flex flex-col bg-white"
+      data-tech-id={t.id} // 3Dノードグラフの遷移演出(viewTransition.ts)がグリッドカード→ノードの対応付けに使う
+    >
       {/* ── 上段：画像エリア ── */}
       <Link href={`/technology/${t.id}`} className="block relative aspect-square overflow-hidden">
         <Image

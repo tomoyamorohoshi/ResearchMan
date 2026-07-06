@@ -1,9 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState, type ComponentType } from "react";
+import dynamic from "next/dynamic";
 import type { TechItem, TechType } from "@/lib/tech";
 import TechCard from "./TechCard";
+import TechPanel from "./TechPanel";
 import { useFavorites } from "@/hooks/useFavorites";
+import { useGraphViewTransition } from "@/hooks/useGraphViewTransition";
+import { techGraphAdapter } from "@/lib/techGraphAdapter";
+import type { Graph3DViewProps } from "./Graph3DView";
+
+// 3d-force-graph/threeはwindow依存のためssr:false必須。トグルON時にのみチャンク取得される。
+// Graph3DViewはジェネリック関数コンポーネントのため、dynamic()の型引数はこれを直接推論
+// できない（GalleryClient.tsxと同じ理由・同じキャストパターン）
+const Graph3DView = dynamic(() => import("./Graph3DView"), {
+  ssr: false,
+  loading: () => (
+    <div className="text-center py-32 text-[10px] tracking-[0.3em] uppercase text-gray-400">
+      Loading 3D view…
+    </div>
+  ),
+}) as ComponentType<Graph3DViewProps<TechItem>>;
 
 type Props = {
   items: TechItem[];
@@ -22,6 +39,8 @@ export default function TechGalleryClient({ items, types, domains, years }: Prop
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
   const { favorites, toggle, mounted } = useFavorites();
+  const gridRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
 
   // 型タブ（Research/Prototype/Tool）— データに1件以上あるものだけ件数付きで表示
   const tabs = types
@@ -52,13 +71,21 @@ export default function TechGalleryClient({ items, types, domains, years }: Prop
       ? [...filtered].sort((a, b) => b.date.localeCompare(a.date))
       : filtered;
 
+  const { showGrid, showGraph, graphWrapRef, handleGraphReady } = useGraphViewTransition({
+    items,
+    sorted,
+    adapter: techGraphAdapter,
+    gridRef,
+    headerRef,
+  });
+
   const favoriteCount = mounted ? favorites.size : 0;
   const activeFilterCount = [filters.domain, filters.year, filters.commercial].filter(Boolean).length;
 
   return (
     <>
       {/* ── コントロールバー ── */}
-      <div className="border-b border-gray-300 bg-[#eeece7] sticky top-0 z-10">
+      <div ref={headerRef} className="border-b border-gray-300 bg-[#eeece7] sticky top-0 z-10">
         {/* 型タブ */}
         {tabs.length > 0 && (
           <div className="border-b border-gray-200">
@@ -163,23 +190,37 @@ export default function TechGalleryClient({ items, types, domains, years }: Prop
         )}
       </div>
 
-      {/* ── グリッド ── */}
-      <div className="max-w-[1600px] mx-auto">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-px bg-gray-300">
-          {sorted.map((t) => (
-            <TechCard
-              key={t.id}
-              t={t}
-              isFavorite={mounted && favorites.has(t.id)}
-              onToggleFavorite={toggle}
-            />
-          ))}
-        </div>
-      </div>
+      {showGrid && (
+        <>
+          {/* ── グリッド ── */}
+          <div className="max-w-[1600px] mx-auto">
+            <div ref={gridRef} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-px bg-gray-300">
+              {sorted.map((t) => (
+                <TechCard
+                  key={t.id}
+                  t={t}
+                  isFavorite={mounted && favorites.has(t.id)}
+                  onToggleFavorite={toggle}
+                />
+              ))}
+            </div>
+          </div>
 
-      {sorted.length === 0 && (
-        <div className="text-center py-32 text-[10px] tracking-[0.3em] uppercase text-gray-400">
-          {showFavoritesOnly ? "No saved items yet" : "No results found"}
+          {sorted.length === 0 && (
+            <div className="text-center py-32 text-[10px] tracking-[0.3em] uppercase text-gray-400">
+              {showFavoritesOnly ? "No saved items yet" : "No results found"}
+            </div>
+          )}
+        </>
+      )}
+      {showGraph && (
+        <div ref={graphWrapRef}>
+          <Graph3DView
+            items={sorted}
+            adapter={techGraphAdapter}
+            renderPanel={(t, onClose) => <TechPanel t={t} onClose={onClose} />}
+            onReady={handleGraphReady}
+          />
         </div>
       )}
     </>

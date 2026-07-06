@@ -134,7 +134,7 @@ Cookie認証・ローカルSQLite）でX検索を素材Cとして追加した。
 | `cat logs/rejections-YYYY-MM.jsonl` | 却下候補ログ（2026-07-04新設・gitignored）。収集パイプラインが採用しなかった候補の理由を月次蓄積。`jq -s 'group_by(.reason)\|map({reason:.[0].reason,n:length})' logs/rejections-2026-07.jsonl` で理由別集計。link-dead/thumbnail-unavailableが急増したら収集元の劣化を疑う |
 | `npm run audit:cannes` / `audit:cannes:strict` | Cannes網羅監査。`:strict`はレベル不一致・余分事例のWARNもexit 1にする |
 | `npm run audit:tech` | Technology（tech.json）のフィールド/語彙/サムネイル整合検査 |
-| `npm run thumbs:graph` | 事例追加・サムネ差し替え後に実行。TOPページ3Dグラフ用の縮小サムネ（`public/thumbnails-graph/`、256px・q60）を差分生成する（冪等）。未生成でも3D表示はフル解像度サムネにフォールバックするが転送量が増える |
+| `npm run thumbs:graph` | 事例・技術の追加やサムネ差し替え後に実行。TOPページ/Technologyページ3Dグラフ用の縮小サムネ（Case: `public/thumbnails-graph/`、Tech: `public/thumbnails-graph/tech/`、いずれも256px・q60）を差分生成する（冪等）。未生成でも3D表示はフル解像度サムネにフォールバックするが転送量が増える |
 
 `npm run audit:cannes` / `audit:thumbnails` / `audit:tech` は**pre-push hook で自動実行**（既定モード）。
 失敗すると push が中止される。hook原本は `scripts/hooks/pre-push`（git管理下）。実際に効くのは
