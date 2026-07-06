@@ -40,3 +40,9 @@ export const sortedIdeas: Idea[] = [...ideas].sort((a, b) => {
   if (a.date !== b.date) return b.date.localeCompare(a.date);
   return seqOf(a.id) - seqOf(b.id);
 });
+
+// カード表示用の日付ラベル（"2026-07-08" → "2026.07.08" / null → "ARCHIVE"）。
+// IdeaCard・IdeasDeckのカウンター表示で共有する
+export function dateLabelOf(idea: Idea): string {
+  return idea.date ? idea.date.replaceAll("-", ".") : "ARCHIVE";
+}

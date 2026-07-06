@@ -1,5 +1,5 @@
 import { sortedIdeas } from "@/lib/ideas";
-import IdeaCard from "@/components/IdeaCard";
+import IdeasDeck from "@/components/IdeasDeck";
 import TopTabs from "@/components/TopTabs";
 
 export const metadata = {
@@ -31,11 +31,7 @@ export default function IdeasPage() {
         <TopTabs active="ideas" />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-300 max-w-[1600px] mx-auto">
-        {sortedIdeas.map((idea) => (
-          <IdeaCard key={idea.id} idea={idea} />
-        ))}
-      </div>
+      <IdeasDeck ideas={sortedIdeas} />
     </main>
   );
 }
