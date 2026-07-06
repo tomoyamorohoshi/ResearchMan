@@ -163,6 +163,8 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
       let cancelled = false;
       async function run() {
         setBusy(true);
+        // ON遷移完了後にアンビエントドリフトを開始するためのAPI参照（下のfinally参照）
+        let api: GraphTransitionApi | null = null;
         // 途中で例外が出てもbusyを取り残さない（取り残すとトグルがリロードまで永久disabled）
         try {
           setPhase("toGraph"); // 表示はgridと同じJSX（持ち上がりはオーバーレイのクローンで表現）
@@ -177,7 +179,7 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
             window.scrollTo({ top: 0, behavior: "instant" });
             setPhase("graph"); // Graph3DViewをマウント開始＝warmup同期収束＋裏で3Dサムネロード開始
 
-            const api = await new Promise<GraphTransitionApi | null>((resolve) => {
+            api = await new Promise<GraphTransitionApi | null>((resolve) => {
               onReadyWaiterRef.current = resolve;
               setTimeout(() => resolve(null), ON_READY_TIMEOUT_MS);
             });
@@ -200,7 +202,14 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
             }
           }
         } finally {
-          if (!cancelled) setBusy(false);
+          // convergeTo完了後（およびabort/タイムアウト/reduced-motion/gridEl不在の全スキップ
+          // 経路後）にアンビエントドリフトを開始する。着地前に始めるとクローンの着地座標
+          // （onReady時点のスクリーン座標で固定）とカメラドリフトがずれてしまうため。
+          // apiがnull（onReady未達）の場合はGraph3DView側のフェイルセーフ(4秒後自動開始)に任せる
+          if (!cancelled) {
+            setBusy(false);
+            api?.beginAmbient();
+          }
         }
       }
       run();

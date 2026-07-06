@@ -28,11 +28,15 @@ const LABEL_Y_LIFT = 6; // 重心よりわずかに上へ
 // クラスタの世界幅: 所属数が多いほど大きく
 const clusterWorldWidth = (count: number): number => 28 + Math.sqrt(count) * 3;
 
-type ClusterEntry = { sprite: THREE.Sprite; aspect: number };
+type ClusterEntry = { sprite: THREE.Sprite; aspect: number; center: { x: number; y: number; z: number }; count: number };
+
+// スペースキー接近機能向け: 現在表示中（count>=MIN_CLUSTER_SIZE）のクラスタ一覧
+export type ClusterInfo = { tag: string; center: { x: number; y: number; z: number }; count: number; worldWidth: number };
 
 export type ClusterLabelHandle = {
   update(nodes: GraphNode[]): void;
   dispose(): void;
+  getClusters(): ClusterInfo[];
 };
 
 function createLabelTexture(text: string): { texture: THREE.CanvasTexture; aspect: number } {
@@ -83,7 +87,7 @@ export function createClusterLabels(scene: THREE.Scene): ClusterLabelHandle {
     const sprite = new THREE.Sprite(material);
     sprite.visible = false;
     scene.add(sprite);
-    const entry: ClusterEntry = { sprite, aspect };
+    const entry: ClusterEntry = { sprite, aspect, center: { x: 0, y: 0, z: 0 }, count: 0 };
     entries.set(tag, entry);
     return entry;
   }
@@ -111,11 +115,23 @@ export function createClusterLabels(scene: THREE.Scene): ClusterLabelHandle {
     for (const [tag, s] of sums) {
       if (s.count < MIN_CLUSTER_SIZE) continue;
       const entry = getOrCreate(tag);
-      entry.sprite.position.set(s.x / s.count, s.y / s.count + LABEL_Y_LIFT, s.z / s.count);
+      const center = { x: s.x / s.count, y: s.y / s.count + LABEL_Y_LIFT, z: s.z / s.count };
+      entry.sprite.position.set(center.x, center.y, center.z);
+      entry.center = center;
+      entry.count = s.count;
       const worldW = clusterWorldWidth(s.count);
       entry.sprite.scale.set(worldW, worldW / entry.aspect, 1);
       entry.sprite.visible = true;
     }
+  }
+
+  function getClusters(): ClusterInfo[] {
+    const result: ClusterInfo[] = [];
+    for (const [tag, entry] of entries) {
+      if (!entry.sprite.visible) continue;
+      result.push({ tag, center: { ...entry.center }, count: entry.count, worldWidth: clusterWorldWidth(entry.count) });
+    }
+    return result;
   }
 
   function dispose() {
@@ -127,5 +143,5 @@ export function createClusterLabels(scene: THREE.Scene): ClusterLabelHandle {
     entries.clear();
   }
 
-  return { update, dispose };
+  return { update, dispose, getClusters };
 }

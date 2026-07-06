@@ -20,6 +20,26 @@ const CAMERA_FOCUS_TRANSITION_MS = 800;
 // パネルclose時、クリック前のカメラ位置へ戻すトランジション時間
 const CAMERA_RESTORE_TRANSITION_MS = 700;
 
+// アンビエントカメラドリフト: OrbitControls標準のautoRotateを使う（既定2.0の約1/6＝
+// 約170秒/周の超低速。回転中心はcontrols.target＝通常は原点、ノードクリック後は選択ノード、
+// スペース接近後はそのクラスタ重心と自然に追従する）
+const AMBIENT_ROTATE_SPEED = 0.35;
+// ON遷移のonReadyが期限内に来なかった場合のフェイルセーフ: 初回onEngineStopからこの時間後、
+// まだ開始していなければ自動でドリフトを開始する
+const AMBIENT_FAILSAFE_MS = 4000;
+
+// スペースキーでランダムなタグクラスタへカメラ接近する機能の定数
+const SPACE_FLY_TRANSITION_MS = 1200;
+const SPACE_FLY_COOLDOWN_MS = 1300; // 連打によるtween競合を防ぐ
+// 接近後のカメラ距離: クラスタの世界幅に比例させ、下限・上限でclampする
+const SPACE_FLY_DISTANCE_FACTOR = 2.5;
+const SPACE_FLY_DISTANCE_MIN = 140;
+const SPACE_FLY_DISTANCE_MAX = 320;
+
+// graph.controls()（OrbitControls）から使うプロパティのみを型付けするキャスト先。
+// three-render-objectsの型定義がOrbitControlsを公開していないための既存パターン
+type OrbitControlsLike = { target: THREE.Vector3; autoRotate: boolean; autoRotateSpeed: number };
+
 // 初回マウント時のみ: 最初のgraphData()投入前にこの値へ設定し、warmupを同期実行させて
 // 最初の描画フレームからレイアウトを確定させる（=onEngineStopが即発火）。
 // 2回目以降（フィルタ変更）は従来どおりの収束アニメーションに戻す
@@ -41,6 +61,8 @@ type CameraSnapshot = { x: number; y: number; z: number; target: THREE.Vector3 }
 // 事例id → ビューポート座標系でのノード中心とスクリーン上の見かけ幅(px)。存在しなければnull
 export type GraphTransitionApi = {
   screenCoords: (id: string) => { x: number; y: number; width: number } | null;
+  // アンビエントカメラドリフトを開始する（冪等）。ON遷移の着地完了後に呼ぶ想定
+  beginAmbient: () => void;
 };
 
 // ノード中心のビューポート座標とスクリーン上の見かけ幅を算出する。
@@ -107,6 +129,14 @@ export default function Graph3DView({ cases, onReady }: Props) {
   // クラスタ名（タグ名）ラベルのハンドル。graph.scene()はライブラリ管理外のため
   // このモジュール自身がテクスチャ/スプライトの生成・破棄を担う（clusterLabels.ts参照）
   const clusterLabelsRef = useRef<ClusterLabelHandle | null>(null);
+  // アンビエントカメラドリフトを開始済みか（このグラフインスタンスで一度きり。冪等呼び出し用）
+  const ambientStartedRef = useRef(false);
+  // ドリフト開始フェイルセーフのタイマーID。unmountでclearする
+  const ambientFailsafeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // スペースキー接近: 前回接近時刻(performance.now())。クールダウン判定に使う
+  const lastFlyTimeRef = useRef(0);
+  // スペースキー接近: 直前に接近したタグ。次回選択から除外し連続で同じクラスタに飛ばないようにする
+  const lastFlownTagRef = useRef<string | null>(null);
 
   const unsupported = useMemo(() => {
     if (typeof document === "undefined") return false;
@@ -119,11 +149,25 @@ export default function Graph3DView({ cases, onReady }: Props) {
     if (unsupported || !containerRef.current) return;
 
     // 新しいグラフインスタンス: 初回データ投入の同期warmupフローとonReadyの
-    // 一度きり発火をリセットする
+    // 一度きり発火、アンビエントドリフトの開始状態をリセットする
     hasLoadedOnceRef.current = false;
     onReadyFiredRef.current = false;
+    ambientStartedRef.current = false;
 
     const graph = new ForceGraph3D(containerRef.current, { controlType: "orbit" });
+
+    // アンビエントカメラドリフトを開始する（冪等）。GalleryClientのON遷移完了後、または
+    // 下のフェイルセーフから呼ばれる。reduced-motionでは開始済みマークだけ行い
+    // autoRotateは有効化しない（ドリフト無効を維持する制約）
+    const beginAmbient = () => {
+      if (ambientStartedRef.current) return;
+      ambientStartedRef.current = true;
+      if (reduceMotion) return;
+      const controls = graph.controls() as unknown as OrbitControlsLike;
+      controls.autoRotate = true;
+      controls.autoRotateSpeed = AMBIENT_ROTATE_SPEED;
+    };
+
     graph
       .backgroundColor("#eeece7")
       .showNavInfo(false)
@@ -186,8 +230,12 @@ export default function Graph3DView({ cases, onReady }: Props) {
         clusterLabelsRef.current?.update(currentNodesRef.current);
         if (!onReadyFiredRef.current) {
           onReadyFiredRef.current = true;
+          // フェイルセーフ: GalleryClient側からbeginAmbientが呼ばれなかった場合に備え、
+          // 初回onEngineStopからAMBIENT_FAILSAFE_MS後に自動開始する（beginAmbientは冪等）
+          ambientFailsafeTimerRef.current = setTimeout(beginAmbient, AMBIENT_FAILSAFE_MS);
           onReadyRef.current?.({
             screenCoords: (id) => computeScreenCoords(graph, containerRef.current, currentNodesRef.current, id),
+            beginAmbient,
           });
         }
       });
@@ -227,9 +275,49 @@ export default function Graph3DView({ cases, onReady }: Props) {
     };
     swayFrameId = requestAnimationFrame(swayTick);
 
+    // スペースキー: ランダムなタグクラスタへカメラ接近する。検索欄でのスペース入力を妨げず、
+    // 連打によるtween競合を避けるクールダウンを設け、直前と同じクラスタは連続選択しない
+    const handleSpaceKey = (e: KeyboardEvent) => {
+      if (e.code !== "Space") return;
+      const active = document.activeElement as HTMLElement | null;
+      const tagName = active?.tagName;
+      if (tagName === "INPUT" || tagName === "TEXTAREA" || tagName === "SELECT" || active?.isContentEditable) return;
+      const now = performance.now();
+      if (now - lastFlyTimeRef.current < SPACE_FLY_COOLDOWN_MS) return;
+      e.preventDefault(); // ページスクロール・フォーカス中ボタンの再押下を防ぐ
+      const clusters = clusterLabelsRef.current?.getClusters() ?? [];
+      if (clusters.length === 0) return;
+      lastFlyTimeRef.current = now;
+      // 直前に接近したタグを除外してランダム選択（1件しかなければそれを使う）
+      const candidates = clusters.length > 1 ? clusters.filter((c) => c.tag !== lastFlownTagRef.current) : clusters;
+      const target = candidates[Math.floor(Math.random() * candidates.length)];
+      lastFlownTagRef.current = target.tag;
+
+      const controls = graph.controls() as unknown as OrbitControlsLike;
+      const { x: camX, y: camY, z: camZ } = graph.cameraPosition();
+      const dir = new THREE.Vector3(camX - controls.target.x, camY - controls.target.y, camZ - controls.target.z);
+      if (dir.lengthSq() === 0) dir.set(0, 0, 1); // 現在位置がtargetと一致する退避フォールバック
+      dir.normalize();
+      const dist = Math.min(
+        Math.max(target.worldWidth * SPACE_FLY_DISTANCE_FACTOR, SPACE_FLY_DISTANCE_MIN),
+        SPACE_FLY_DISTANCE_MAX,
+      );
+      const newPos = {
+        x: target.center.x + dir.x * dist,
+        y: target.center.y + dir.y * dist,
+        z: target.center.z + dir.z * dist,
+      };
+      // controls.targetもクラスタ重心へ移るため、以後のアンビエントドリフトはそのクラスタの
+      // 周りを周回するようになる（仕様として意図した挙動）
+      graph.cameraPosition(newPos, target.center, reduceMotion ? 0 : SPACE_FLY_TRANSITION_MS);
+    };
+    window.addEventListener("keydown", handleSpaceKey);
+
     return () => {
       cancelAnimationFrame(swayFrameId);
       resizeObserver.disconnect();
+      window.removeEventListener("keydown", handleSpaceKey);
+      if (ambientFailsafeTimerRef.current) clearTimeout(ambientFailsafeTimerRef.current);
       graph._destructor(); // 内部でノードごとのGroup配下Sprite/Material/Textureも解放される
       clusterLabelsRef.current?.dispose();
       clusterLabelsRef.current = null;
