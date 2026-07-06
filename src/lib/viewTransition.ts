@@ -88,12 +88,25 @@ export function shrinkVisibleCards(gridEl: HTMLElement): Promise<void> {
       const h = el.getBoundingClientRect().height;
       if (h <= 0) continue;
       el.style.overflow = "hidden";
+      // テキスト部はflex-1（flex-grow:1）を持つため、heightだけ0へアニメしても
+      // flex-growが使用高さを引き伸ばし直して実際には畳まれない
+      // （実機で522→506pxまでしか縮まないバグとして発見）。growを無効化する
+      el.style.flex = "0 0 auto";
+      // border-boxのためheight:0でもpaddingが使用高さの下限に残る（1カードあたり約40pxの
+      // 白帯がスワップ時に消える段差になる）。paddingも同時に0へ畳む
+      const cs = getComputedStyle(el);
       animations.push(
-        el.animate([{ height: `${h}px`, opacity: 1 }, { height: "0px", opacity: 0 }], {
-          duration: SHRINK_DURATION_MS,
-          easing: SHRINK_EASING,
-          fill: "forwards",
-        }),
+        el.animate(
+          [
+            { height: `${h}px`, paddingTop: cs.paddingTop, paddingBottom: cs.paddingBottom, opacity: 1 },
+            { height: "0px", paddingTop: "0px", paddingBottom: "0px", opacity: 0 },
+          ],
+          {
+            duration: SHRINK_DURATION_MS,
+            easing: SHRINK_EASING,
+            fill: "forwards",
+          },
+        ),
       );
     }
   }
@@ -110,7 +123,10 @@ export function collapseTextSectionsInstant(gridEl: HTMLElement): void {
   for (const card of visibleChildren(gridEl)) {
     for (const el of textSections(card)) {
       el.style.overflow = "hidden";
+      el.style.flex = "0 0 auto"; // flex-growの引き伸ばし対策（shrinkVisibleCards参照）
       el.style.height = "0px";
+      el.style.paddingTop = "0px"; // border-boxのpadding下限対策（shrinkVisibleCards参照）
+      el.style.paddingBottom = "0px";
       el.style.opacity = "0";
     }
   }
@@ -125,30 +141,51 @@ export function expandVisibleCards(gridEl: HTMLElement): Promise<void> {
   const entries: Array<{ el: HTMLElement; anim: Animation }> = [];
   for (const card of visibleChildren(gridEl)) {
     for (const el of textSections(card)) {
-      // scrollHeightはoverflow:hidden+height:0の間も本来の内容の高さを返す
-      // （clip前提のプロパティのため、明示heightの影響を受けない）
-      const h = el.scrollHeight;
-      const anim = el.animate([{ height: "0px", opacity: 0 }, { height: `${h}px`, opacity: 1 }], {
-        duration: EXPAND_DURATION_MS,
-        easing: EXPAND_EASING,
-        fill: "none",
-      });
-      // animate()のkeyframe0は同期的に適用されるため、ここでinline styleを
-      // クリアしても視覚的なジャンプは発生しない（次ペイントまでに反映される）
-      el.style.overflow = "";
+      // 自然寸法（クラス由来のheight/padding）を測るため、一旦inlineの
+      // height/paddingを外して実測する。この直後に同一タスク内でanimate()の
+      // keyframe0（畳まれた状態）が同期適用されるため、途中状態がペイントされる
+      // ことはない
       el.style.height = "";
+      el.style.paddingTop = "";
+      el.style.paddingBottom = "";
+      const h = el.getBoundingClientRect().height;
+      const cs = getComputedStyle(el);
+      const anim = el.animate(
+        [
+          { height: "0px", paddingTop: "0px", paddingBottom: "0px", opacity: 0 },
+          { height: `${h}px`, paddingTop: cs.paddingTop, paddingBottom: cs.paddingBottom, opacity: 1 },
+        ],
+        {
+          duration: EXPAND_DURATION_MS,
+          easing: EXPAND_EASING,
+          fill: "none",
+        },
+      );
+      // height/padding/opacityのinline styleはkeyframeが駆動している間に不要になる
+      // （keyframe0は同期適用済み）。fill:"none"の終了時はクラス由来の自然値＝
+      // keyframe終端と一致するためジャンプしない。
+      // flex/overflowはアニメーション中も畳み対策として必要なので完了後にクリアする
+      // （flexを先に戻すとflex-growがkeyframeのheightを引き伸ばし直す。shrink側と同根）
       el.style.opacity = "";
-      if (el.style.length === 0) el.removeAttribute("style");
       entries.push({ el, anim });
     }
   }
-  return settle(entries.map((e) => e.anim)).then(() => {
-    // fill:"none"のアニメーションが自然終了する際、ブラウザが空のstyle=""属性を
-    // 書き戻すことがある（実機Playwright検証で発見。上のremoveAttributeは
-    // アニメーション開始直後＝まだ何も終了処理されていない時点のもので無効化される）。
-    // アニメーション完了「後」に改めて空属性を除去し、アイドルDOM不変を保証する
-    for (const { el } of entries) {
-      if (el.getAttribute("style") === "") el.removeAttribute("style");
-    }
-  });
+  return settle(entries.map((e) => e.anim))
+    .then(() => {
+      // アニメーション完了後に残りのinline style（flex/overflow）をクリアする
+      for (const { el } of entries) {
+        el.style.flex = "";
+        el.style.overflow = "";
+      }
+      // fill:"none"のアニメーションが終了処理される際、ブラウザが空のstyle=""属性を
+      // 書き戻すことがあり、そのタイミングはanim.finished解決より後に来る
+      // （実機Playwrightで発見: finished直後にremoveAttributeしても20要素にstyle=""が
+      // 残った）。1フレーム待ってから空属性を除去し、アイドルDOM不変を保証する
+      return new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+    })
+    .then(() => {
+      for (const { el } of entries) {
+        if (el.getAttribute("style") === "") el.removeAttribute("style");
+      }
+    });
 }

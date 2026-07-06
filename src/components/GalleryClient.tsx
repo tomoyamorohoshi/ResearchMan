@@ -346,13 +346,20 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
           await new Promise<void>((resolve) => api.morphToPlanePose(rects, resolve));
           if (cancelled) return;
 
-          // 5. スワップ（1フレーム）: canvasをvisibility:hiddenに→同一コミットでGraph3DViewアンマウント
+          // 5. スワップ: canvasをvisibility:hiddenに（グリッドは既に真下に同じ絵で存在）
           wrapEl.style.visibility = "hidden";
-          setPhase("grid");
-          graphApiRef.current = null;
 
-          // 6. 可視カードのDOM「展開」マイクロモーション（~180ms）
-          if (!cancelled) await expandVisibleCards(gridEl);
+          // 6. 可視カードのDOM「展開」マイクロモーション（~180ms）。
+          // Graph3DViewのアンマウント（setPhase("grid")）は展開の後、このeffectの
+          // 最後の同期文として行う。setPhase("grid")はこのeffect自身の依存(phase)を
+          // 書き換える＝直後にawaitを挟むとReactがcleanupを実行してcancelled=trueになり、
+          // finallyのsetBusy(false)が二度と走らずトグルが永久disabledになる
+          // （実機Playwrightで発見した実バグ。awaitをsetPhaseより前に済ませることで
+          // finallyまで同期で到達させる。canvasは展開の間hiddenのまま残るだけで無害）
+          await expandVisibleCards(gridEl);
+          if (cancelled) return;
+          graphApiRef.current = null;
+          setPhase("grid");
         } else {
           setPhase("grid");
           graphApiRef.current = null;
