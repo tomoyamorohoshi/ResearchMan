@@ -7,7 +7,15 @@ import ForceGraph3D, { type ForceGraph3DInstance } from "3d-force-graph";
 import * as THREE from "three";
 import type { Case } from "@/lib/cases";
 import { buildGraphData, linkDistance, linkStrength, swayOffset, type GraphNode } from "@/lib/graph";
-import { createNodeObject, setNodeHover, setLabelOpacity, updateLabelFacing, SPRITE_W, LABEL_OPACITY } from "@/lib/graphSprites";
+import {
+  createNodeObject,
+  setNodeHover,
+  setLabelOpacity,
+  setImageScale,
+  updateLabelFacing,
+  SPRITE_W,
+  LABEL_OPACITY,
+} from "@/lib/graphSprites";
 import { createClusterLabels, type ClusterLabelHandle } from "@/lib/clusterLabels";
 import {
   assignColumns,
@@ -16,6 +24,7 @@ import {
   computeCameraFitDistance,
   computeStaggerDelay,
 } from "@/lib/alignLayout";
+import { defaultCameraDistance, cardRectToPlanePose, type PlaneCardRect, type CameraParams } from "@/lib/planePose";
 import CasePanel from "./CasePanel";
 
 // 3d-force-graph(three-forcegraph)がnodeThreeObjectの戻り値に自動で束縛するプロパティ
@@ -66,6 +75,13 @@ const ALIGN_STAGGER_MAX_MS = 250;
 // カメラフィット時の安全マージン（全件が必ず収まるよう気持ち引く）
 const ALIGN_CAMERA_FIT_MARGIN = 1.12;
 
+// ON/OFFワンカット遷移「グリッド平面モーフ」(計画書Part2)。整列モードと同じ
+// トゥイーン機構（easeInOutCubic・自前rAF）を平面ポーズ⇔力学レイアウト間で使う
+const PLANE_MORPH_MS = ALIGN_TRANSITION_MS; // 整列と同じ長さ(1100ms)
+// ON方向のみ、シーン中心からの距離に比例したradialスタガー(0〜この時間)。
+// OFF方向はスタガー無し（整列解除と同じく一斉に収束させる）
+const PLANE_STAGGER_MAX_MS = ALIGN_STAGGER_MAX_MS;
+
 // 整列モードの現在フェーズ。entering/exiting中は自前rAF(alignFrameTick)がスプライト位置を
 // 握る。aligned/idleでは静止（力学シミュレーションのnode.x/y/zには一切触れない）
 type AlignPhase = "idle" | "entering" | "aligned" | "exiting";
@@ -94,6 +110,36 @@ type AlignTweenState = {
   headers: HeaderAlignTween[];
 };
 
+// 平面ポーズ⇔力学レイアウトのワンカット遷移フェーズ。整列(align)とは独立した状態機械
+// （OFF遷移開始時に整列は必ずforceReleaseAlignImmediateで解除されるため同時に走らない）。
+// "posed": 平面ポーズで静止（毎フレームpin。ONのスワップ待ち／OFF完了後のアンマウント待ち）
+// "toLayout": 平面ポーズ→力学レイアウトへトゥイーン中（ON）
+// "toPlane": 現在位置→平面ポーズへトゥイーン中（OFF）
+type PlanePhase = "idle" | "posed" | "toLayout" | "toPlane";
+
+// 平面ポーズ中の各ノードのpin対象（"posed"中、swayTickが毎フレーム再適用する）
+type PlaneNodePose = { id: string; group: THREE.Group; pos: THREE.Vector3; scale: number };
+
+type PlaneNodeTween = {
+  group: THREE.Group;
+  originPos: THREE.Vector3;
+  targetPos: THREE.Vector3;
+  fromScale: number;
+  toScale: number;
+  fromOpacity: number;
+  toOpacity: number;
+  delayMs: number;
+};
+type PlaneTweenState = {
+  kind: "toLayout" | "toPlane";
+  startedAt: number;
+  durationMs: number;
+  nodes: PlaneNodeTween[];
+  // toPlane完了時（スワップ待ちのposedへ移る直前）に呼ぶ。GalleryClient側の
+  // 「canvas非表示化+アンマウント」トリガ
+  onDone?: () => void;
+};
+
 // 初回マウント時のみ: 最初のgraphData()投入前にこの値へ設定し、warmupを同期実行させて
 // 最初の描画フレームからレイアウトを確定させる（=onEngineStopが即発火）。
 // 2回目以降（フィルタ変更）は従来どおりの収束アニメーションに戻す
@@ -112,44 +158,21 @@ const RELOAD_COOLDOWN_TICKS = 240;
 // そのためlookAtではなくcontrols.targetを直接保存・復帰する
 type CameraSnapshot = { x: number; y: number; z: number; target: THREE.Vector3 };
 
-// 事例id → ビューポート座標系でのノード中心とスクリーン上の見かけ幅(px)。存在しなければnull
+// ON/OFFワンカット遷移(「グリッド平面モーフ」)向けAPI。GalleryClientがonReadyで受け取り、
+// DOMグリッドのrect（カード画像部分・viewport絶対px）を渡してスプライトのポーズ/モーフを操作する
 export type GraphTransitionApi = {
-  screenCoords: (id: string) => { x: number; y: number; width: number } | null;
   // アンビエントカメラドリフトを開始する（冪等）。ON遷移の着地完了後に呼ぶ想定
   beginAmbient: () => void;
+  // ON: 正準カメラを即時設定し、全スプライトを平面ポーズ（DOMグリッドの画像部分と画素一致）へ
+  // 配置する。ラベル非表示・リンク非表示・クラスタ見出し非表示も同時に行う（同期・即時）
+  enterPlanePose: (rects: Map<string, PlaneCardRect>) => void;
+  // ON: 平面ポーズから力学レイアウト位置へ自前トゥイーンで飛ぶ。完了後ラベル/リンク/
+  // クラスタ見出しを復帰しsway/ambientを開始する。onDoneは完了時に呼ばれる
+  morphToLayout: (onDone?: () => void) => void;
+  // OFF: 現在位置→平面ポーズ、カメラ現在→正準ポーズへ同時トゥイーンする。完了時にonDoneを呼ぶ
+  // （呼び出し元はonDoneで「canvas非表示化→アンマウント」のスワップを行う）
+  morphToPlanePose: (rects: Map<string, PlaneCardRect>, onDone: () => void) => void;
 };
-
-// ノード中心のビューポート座標とスクリーン上の見かけ幅を算出する。
-// graph2ScreenCoordsはcanvas左上基準のピクセル座標を返すため、containerの
-// getBoundingClientRect()offsetを加算してビューポート座標に変換する。
-// 見かけ幅はカメラのright vectorを使い、中心と(中心+right*半幅)の距離×2で求める
-// （スプライトはworld幅16=SPRITE_W。半幅8）
-function computeScreenCoords(
-  graph: ForceGraph3DInstance,
-  containerEl: HTMLElement | null,
-  nodes: GraphNode[],
-  id: string,
-): { x: number; y: number; width: number } | null {
-  if (!containerEl) return null;
-  const node = nodes.find((n) => n.id === id) as NodeWithSprite | undefined;
-  if (!node) return null;
-  // __threeObjの実位置優先（無ければnode.x/y/z）。こうすることで整列モード中は
-  // グリッド上の見えている位置から、通常時も揺れ(sway)込みの実際の見かけ位置から
-  // 座標を採取できる（副次効果として通常時のsway分のずれも解消される）
-  const group = node.__threeObj;
-  const x = group ? group.position.x : node.x;
-  const y = group ? group.position.y : node.y;
-  const z = group ? group.position.z : node.z;
-  if (x === undefined || y === undefined || z === undefined) return null;
-  const rect = containerEl.getBoundingClientRect();
-  const center = graph.graph2ScreenCoords(x, y, z);
-  const camera = graph.camera();
-  const right = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0);
-  const halfWidth = SPRITE_W / 2;
-  const edge = graph.graph2ScreenCoords(x + right.x * halfWidth, y + right.y * halfWidth, z + right.z * halfWidth);
-  const width = Math.hypot(edge.x - center.x, edge.y - center.y) * 2;
-  return { x: rect.left + center.x, y: rect.top + center.y, width };
-}
 
 type Props = {
   cases: Case[];
@@ -213,6 +236,14 @@ export default function Graph3DView({ cases, onReady }: Props) {
   // 整列に入る直前のクラスタ表示状態（center/worldWidth）。解除トゥイーンの復帰先として使う
   const preAlignHeaderStateRef = useRef<Map<string, AlignTweenTarget & { width: number }> | null>(null);
 
+  // ON/OFFワンカット遷移（グリッド平面モーフ）の現在フェーズ
+  const planePhaseRef = useRef<PlanePhase>("idle");
+  // "posed"中（スワップ待ち）の各Groupの固定ポーズ。swayTickが毎フレーム再適用する
+  // （alignedPoseRefと同じ防御。linkVisibility等によるエンジン一瞬再稼働を無害化する）
+  const planePoseRef = useRef<PlaneNodePose[] | null>(null);
+  // 進行中の平面モーフトゥイーンの状態（フェーズがidle/posedの間はnull）
+  const planeTweenRef = useRef<PlaneTweenState | null>(null);
+
   // 整列モード(C)の「非整列」副作用をまとめて適用する（リンク再表示・autoRotate再開）。
   // ノード位置・タイトルラベルの不透明度・クラスタ見出しはここでは触らない
   // （呼び出し元の状況で扱いが異なるため。通常解除は個別にsnapし、フィルタ変更による
@@ -274,6 +305,9 @@ export default function Graph3DView({ cases, onReady }: Props) {
     alignTweenRef.current = null;
     alignedPoseRef.current = null;
     preAlignHeaderStateRef.current = null;
+    planePhaseRef.current = "idle";
+    planePoseRef.current = null;
+    planeTweenRef.current = null;
 
     const graph = new ForceGraph3D(containerRef.current, { controlType: "orbit" });
 
@@ -319,7 +353,7 @@ export default function Graph3DView({ cases, onReady }: Props) {
         // 整列モード中(idle以外)はカメラ急旋回をしない。node.x/y/zは力学レイアウトの座標のまま
         // （視覚上はグリッド位置）で乖離しているため、そこへ向けて飛ぶと誤った位置に着地する。
         // preClickCameraRefにも触れない（パネルcloseの復帰先は従来どおりクリック前の位置）
-        if (!reduceMotion && alignPhaseRef.current === "idle") {
+        if (!reduceMotion && alignPhaseRef.current === "idle" && planePhaseRef.current === "idle") {
           // クリック前のカメラ位置とOrbitControlsの真の回転中心を保存
           // （未保存時のみ。パネルを開いたまま別ノードをクリックした場合、
           // 復帰先は最初のクリック前の位置を維持する）
@@ -350,24 +384,24 @@ export default function Graph3DView({ cases, onReady }: Props) {
       .cooldownTicks(0)
       // エンジン停止＝レイアウト確定のタイミングで揺れを開始する
       .onEngineStop(() => {
-        // 整列モード中はsway再開もヘッダーの重心再配置もしない。
-        // linkVisibility等のtriggerUpdateプロパティを切り替えると、three-forcegraphの
-        // update()末尾が無条件にengineRunning=trueへ戻し、次フレームで即停止して
-        // ここが再発火する（＝整列のためのlinkVisibility(false)自身が引き金になる）。
-        // ゲートしないと整列中にヘッダーが力学重心へ飛び戻ってしまう
-        if (alignPhaseRef.current === "idle") {
-          swayingRef.current = !reduceMotion;
-          clusterLabelsRef.current?.update(currentNodesRef.current);
-        }
+        // onReadyは先に呼ぶ（GalleryClientのonReadyハンドラはenterPlanePose()を同期的に
+        // 呼び、planePhaseRefを即座に"posed"へ進める。下のsway/見出し復帰ゲートより先に
+        // 実行することで、ON遷移の初回onEngineStopで一瞬でもsway/見出しが動き出すのを防ぐ）
         if (!onReadyFiredRef.current) {
           onReadyFiredRef.current = true;
           // フェイルセーフ: GalleryClient側からbeginAmbientが呼ばれなかった場合に備え、
           // 初回onEngineStopからAMBIENT_FAILSAFE_MS後に自動開始する（beginAmbientは冪等）
           ambientFailsafeTimerRef.current = setTimeout(beginAmbient, AMBIENT_FAILSAFE_MS);
-          onReadyRef.current?.({
-            screenCoords: (id) => computeScreenCoords(graph, containerRef.current, currentNodesRef.current, id),
-            beginAmbient,
-          });
+          onReadyRef.current?.({ beginAmbient, enterPlanePose, morphToLayout, morphToPlanePose });
+        }
+        // 整列モード・平面モーフのどちらも進行していない時だけsway再開・見出し重心再配置を行う。
+        // linkVisibility等のtriggerUpdateプロパティを切り替えると、three-forcegraphの
+        // update()末尾が無条件にengineRunning=trueへ戻し、次フレームで即停止して
+        // ここが再発火する（＝linkVisibility(false)自身が引き金になる、整列/平面モーフ共通の罠）。
+        // ゲートしないと整列中/モーフ中にヘッダーが力学重心へ飛び戻ってしまう
+        if (alignPhaseRef.current === "idle" && planePhaseRef.current === "idle") {
+          swayingRef.current = !reduceMotion;
+          clusterLabelsRef.current?.update(currentNodesRef.current);
         }
       });
     graph.d3Force("charge")?.strength(-120);
@@ -612,10 +646,268 @@ export default function Graph3DView({ cases, onReady }: Props) {
       }
     };
 
+    // ── ON/OFFワンカット遷移「グリッド平面モーフ」(計画書Part2) ──
+    // 進行中のplaneTweenを1フレーム分進める。swayTickから毎フレーム呼ばれる
+    // （alignFrameTickと同じ役割・同じ機構。位置・ラベルopacityに加え画像スケールも補間する）
+    const planeFrameTick = (now: number) => {
+      const tween = planeTweenRef.current;
+      if (!tween) return;
+      let allDone = true;
+      for (const nt of tween.nodes) {
+        const elapsed = now - tween.startedAt - nt.delayMs;
+        const progress = Math.min(Math.max(elapsed / tween.durationMs, 0), 1);
+        if (progress < 1) allDone = false;
+        const eased = easeInOutCubic(progress);
+        nt.group.position.lerpVectors(nt.originPos, nt.targetPos, eased);
+        setImageScale(nt.group, nt.fromScale + (nt.toScale - nt.fromScale) * eased);
+        setLabelOpacity(nt.group, nt.fromOpacity + (nt.toOpacity - nt.fromOpacity) * eased);
+      }
+      if (allDone) {
+        planeTweenRef.current = null;
+        finishPlaneTween(tween);
+      }
+    };
+
+    // 平面モーフ完了処理。位置・スケール・不透明度をtarget値へ厳密にsnapする
+    // （浮動小数点の丸め誤差を残さない。alignのfinish*と同じ役割）
+    const finishPlaneTween = (tween: PlaneTweenState) => {
+      for (const nt of tween.nodes) {
+        nt.group.position.copy(nt.targetPos);
+        setImageScale(nt.group, nt.toScale);
+        setLabelOpacity(nt.group, nt.toOpacity);
+      }
+      if (tween.kind === "toLayout") {
+        planePhaseRef.current = "idle";
+        planePoseRef.current = null;
+        restoreNonAlignSideEffects(); // linkVisibility(true)
+        swayingRef.current = !reduceMotion;
+        clusterLabelsRef.current?.update(currentNodesRef.current); // クラスタ見出しをここで出現させる
+        beginAmbient(); // モーフ着地後にアンビエントドリフトを開始する（冪等）
+        tween.onDone?.();
+      } else {
+        // toPlane完了: スワップ待ちで"posed"保持する。呼び出し元(GalleryClient)が
+        // onDoneでcanvas非表示化+アンマウントのスワップを行う
+        planePhaseRef.current = "posed";
+        planePoseRef.current = tween.nodes.map((nt) => ({
+          id: "",
+          group: nt.group,
+          pos: nt.targetPos,
+          scale: nt.toScale,
+        }));
+        tween.onDone?.();
+      }
+    };
+
+    // ON: 正準カメラを即時設定し、全スプライトを平面ポーズ（DOMグリッドの画像部分と画素単位で
+    // 一致する位置・スケール）へ配置する（同期・即時。トゥイーンなし）。GalleryClientはこの直後、
+    // 同一コミットでcanvasを可視化しグリッドをアンマウントする（1フレームの不可視スワップ。
+    // plan 2-2 step4-5）。onEngineStopから同期的に呼ばれる想定（下のonEngineStop参照）
+    const enterPlanePose = (rects: Map<string, PlaneCardRect>) => {
+      const containerEl = containerRef.current;
+      if (!containerEl) return;
+      const canvasOrigin = containerEl.getBoundingClientRect();
+      const canvasW = containerEl.clientWidth;
+      const canvasH = containerEl.clientHeight;
+      const n = Math.max(currentNodesRef.current.length, 1);
+      const distance = defaultCameraDistance(n);
+      const cameraParams: CameraParams = { distance, vFovDeg: (graph.camera() as THREE.PerspectiveCamera).fov };
+
+      graph.cameraPosition({ x: 0, y: 0, z: distance }, { x: 0, y: 0, z: 0 }, 0);
+      graph.linkVisibility(false);
+      const controls = graph.controls() as unknown as OrbitControlsLike;
+      controls.autoRotate = false;
+      clusterLabelsRef.current?.update([]); // クラスタ見出しを非表示に（モーフ完了時に出現させる）
+
+      const pose: PlaneNodePose[] = [];
+      for (const node of currentNodesRef.current as NodeWithSprite[]) {
+        const group = node.__threeObj;
+        if (!group) continue;
+        const rect = rects.get(node.id);
+        if (!rect) {
+          // 対応するDOMカードのrectが取れなかった場合の保険: 見せない
+          setLabelOpacity(group, 0);
+          continue;
+        }
+        const { x, y, scale } = cardRectToPlanePose(rect, canvasOrigin, canvasW, canvasH, cameraParams);
+        group.position.set(x, y, 0);
+        setImageScale(group, scale);
+        setLabelOpacity(group, 0);
+        pose.push({ id: node.id, group, pos: new THREE.Vector3(x, y, 0), scale });
+      }
+      planePoseRef.current = pose;
+      planePhaseRef.current = "posed";
+      swayingRef.current = false;
+    };
+
+    // ON: 平面ポーズ→力学レイアウトへ自前トゥイーンで飛ぶ（整列と同じ機構）。
+    // 中心（原点）からの距離に比例したradialスタガー(0〜PLANE_STAGGER_MAX_MS)。
+    // onDoneはトゥイーン完了時（beginAmbient呼び出し後）に呼ばれる
+    const morphToLayout = (onDone?: () => void) => {
+      const posed = planePoseRef.current;
+      if (!posed || posed.length === 0) {
+        // ポーズが無い(rectが1件も取れなかった等)場合の保険: トゥイーンせずidleへ復帰する
+        planePhaseRef.current = "idle";
+        planePoseRef.current = null;
+        restoreNonAlignSideEffects();
+        swayingRef.current = !reduceMotion;
+        clusterLabelsRef.current?.update(currentNodesRef.current);
+        beginAmbient();
+        onDone?.();
+        return;
+      }
+      const nodeById = new Map((currentNodesRef.current as NodeWithSprite[]).map((nd) => [nd.id, nd]));
+      const distances = posed.map((p) => Math.hypot(p.pos.x, p.pos.y));
+      const maxDist = Math.max(...distances, 1);
+
+      const tweenNodes: PlaneNodeTween[] = [];
+      posed.forEach((p, i) => {
+        const node = nodeById.get(p.id);
+        if (!node || node.x === undefined || node.y === undefined || node.z === undefined) return;
+        tweenNodes.push({
+          group: p.group,
+          originPos: p.pos.clone(),
+          targetPos: new THREE.Vector3(node.x, node.y, node.z),
+          fromScale: p.scale,
+          toScale: SPRITE_W,
+          fromOpacity: 0,
+          toOpacity: LABEL_OPACITY,
+          delayMs: (distances[i] / maxDist) * PLANE_STAGGER_MAX_MS,
+        });
+      });
+
+      planePoseRef.current = null; // 以後はトゥイーンが位置を握る
+      planeTweenRef.current = {
+        kind: "toLayout",
+        startedAt: performance.now(),
+        durationMs: PLANE_MORPH_MS,
+        nodes: tweenNodes,
+        onDone,
+      };
+      planePhaseRef.current = "toLayout";
+    };
+
+    // OFF: 現在位置→平面ポーズ、カメラ現在→正準ポーズへ同時トゥイーンする（整列と同じ機構。
+    // スタガー無し＝一斉。plan 2-3 step1-4）。完了時にonDoneを呼ぶ
+    // （呼び出し元がcanvas非表示化+アンマウントのスワップを行う）
+    const morphToPlanePose = (rects: Map<string, PlaneCardRect>, onDone: () => void) => {
+      // 整列モード中なら即時解除する（既存forceRelease。plan 2-3 step1）。
+      // パネルが開いていれば復帰tweenなしで閉じる
+      forceReleaseAlignImmediate();
+      setSelected(null);
+      preClickCameraRef.current = null;
+
+      const containerEl = containerRef.current;
+      if (!containerEl) {
+        onDone();
+        return;
+      }
+      const canvasOrigin = containerEl.getBoundingClientRect();
+      const canvasW = containerEl.clientWidth;
+      const canvasH = containerEl.clientHeight;
+      const n = Math.max(currentNodesRef.current.length, 1);
+      const distance = defaultCameraDistance(n);
+      const cameraParams: CameraParams = { distance, vFovDeg: (graph.camera() as THREE.PerspectiveCamera).fov };
+
+      graph.linkVisibility(false);
+      const controls = graph.controls() as unknown as OrbitControlsLike;
+      controls.autoRotate = false;
+      clusterLabelsRef.current?.update([]); // クラスタ見出しを即座に非表示
+
+      // カメラ: 現在位置→正準ポーズへ同時トゥイーン(整列と同じくライブラリ内蔵tween)
+      graph.cameraPosition({ x: 0, y: 0, z: distance }, { x: 0, y: 0, z: 0 }, reduceMotion ? 0 : PLANE_MORPH_MS);
+
+      const tweenNodes: PlaneNodeTween[] = [];
+      for (const node of currentNodesRef.current as NodeWithSprite[]) {
+        const group = node.__threeObj;
+        if (!group) continue;
+        const originPos = group.position.clone();
+        const rect = rects.get(node.id);
+        if (!rect) {
+          // 対応するDOMカードのrectが無い場合の保険: 位置は変えずフェードアウトのみ
+          tweenNodes.push({
+            group,
+            originPos,
+            targetPos: originPos.clone(),
+            fromScale: SPRITE_W,
+            toScale: SPRITE_W,
+            fromOpacity: LABEL_OPACITY,
+            toOpacity: 0,
+            delayMs: 0,
+          });
+          continue;
+        }
+        const { x, y, scale } = cardRectToPlanePose(rect, canvasOrigin, canvasW, canvasH, cameraParams);
+        tweenNodes.push({
+          group,
+          originPos,
+          targetPos: new THREE.Vector3(x, y, 0),
+          fromScale: SPRITE_W,
+          toScale: scale,
+          fromOpacity: LABEL_OPACITY,
+          toOpacity: 0,
+          delayMs: 0, // OFF: 一斉(align解除と同じ規則。スタガー無し)
+        });
+      }
+
+      if (reduceMotion) {
+        for (const nt of tweenNodes) {
+          nt.group.position.copy(nt.targetPos);
+          setImageScale(nt.group, nt.toScale);
+          setLabelOpacity(nt.group, nt.toOpacity);
+        }
+        planePoseRef.current = tweenNodes.map((nt) => ({
+          id: "",
+          group: nt.group,
+          pos: nt.targetPos,
+          scale: nt.toScale,
+        }));
+        planePhaseRef.current = "posed";
+        swayingRef.current = false;
+        onDone();
+        return;
+      }
+
+      swayingRef.current = false;
+      planeTweenRef.current = {
+        kind: "toPlane",
+        startedAt: performance.now(),
+        durationMs: PLANE_MORPH_MS,
+        nodes: tweenNodes,
+        onDone,
+      };
+      planePhaseRef.current = "toPlane";
+    };
+
     let swayFrameId: number;
     const swayTick = () => {
       const now = performance.now();
       const right = new THREE.Vector3().setFromMatrixColumn(graph.camera().matrixWorld, 0);
+
+      // 平面モーフ中(idle以外)は最優先で処理し、align/sway側には一切触れさせない
+      // （整列とは時間的に排他だが、同じgroup.positionを握り合う競合を避けるため早期return）
+      const planePhase = planePhaseRef.current;
+      if (planePhase !== "idle") {
+        if (planePhase === "toLayout" || planePhase === "toPlane") {
+          planeFrameTick(now);
+        } else if (planePhase === "posed") {
+          // "posed"中は毎フレーム平面ポーズへ固定し直す（alignedPoseRefと同じ防御。
+          // linkVisibility等によるライブラリの一瞬のエンジン再稼働を無害化する）
+          const pose = planePoseRef.current;
+          if (pose) {
+            for (const p of pose) {
+              p.group.position.copy(p.pos);
+              setImageScale(p.group, p.scale);
+            }
+          }
+        }
+        for (const node of currentNodesRef.current) {
+          const group = (node as NodeWithSprite).__threeObj;
+          if (group) updateLabelFacing(group, right);
+        }
+        swayFrameId = requestAnimationFrame(swayTick);
+        return;
+      }
+
       const alignPhase = alignPhaseRef.current;
       if (alignPhase === "entering" || alignPhase === "exiting") {
         alignFrameTick(now);
@@ -667,6 +959,9 @@ export default function Graph3DView({ cases, onReady }: Props) {
         return;
       // クールダウン中でもページスクロールは常に抑止する（判定より先にpreventDefault）
       e.preventDefault();
+      // ON/OFFワンカット遷移中（平面モーフ）はSpace操作を無視する。整列トゥイーンが
+      // group.positionを平面モーフと奪い合うと表示が壊れるため（両者は時間的に排他が前提）
+      if (planePhaseRef.current !== "idle") return;
       const now = performance.now();
       if (now - lastFlyTimeRef.current < SPACE_FLY_COOLDOWN_MS) return;
       lastFlyTimeRef.current = now;
