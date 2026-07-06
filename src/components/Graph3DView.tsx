@@ -28,10 +28,14 @@ const RELOAD_WARMUP_TICKS = 40;
 const RELOAD_WARMUP_TICKS_REDUCED = 200;
 const RELOAD_COOLDOWN_TICKS = 240;
 
-// graph.cameraPosition()（getter）の実際の戻り値。3d-force-graphの型定義は
-// {x,y,z}のみだが、実装（three-render-objects.mjs cameraPosition）は
-// Object.assign({}, camera.position, {lookAt: getLookAt()}) を返す
-type CameraSnapshot = { x: number; y: number; z: number; lookAt: THREE.Vector3 };
+// クリック前のカメラ状態のスナップショット。targetはOrbitControlsの
+// 真の回転中心（graph.controls().target）をcloneして保存する。
+// 注意: graph.cameraPosition()（getter）のlookAtは「カメラ前方1000の点」であり
+// 真のcontrols.targetではない（three-render-objects.mjs getLookAt参照）。
+// デフォルトのカメラ距離がちょうど1000のため未ズーム時は偶然一致するが、
+// ズーム後は復帰した回転中心が視線方向へ(1000-実距離)ずれてしまう。
+// そのためlookAtではなくcontrols.targetを直接保存・復帰する
+type CameraSnapshot = { x: number; y: number; z: number; target: THREE.Vector3 };
 
 // 事例id → ビューポート座標系でのノード中心とスクリーン上の見かけ幅(px)。存在しなければnull
 export type GraphTransitionApi = {
@@ -144,10 +148,13 @@ export default function Graph3DView({ cases, onReady }: Props) {
         if (sprite) setSpriteHover(sprite, false);
         if (containerRef.current) containerRef.current.style.cursor = "";
         if (!reduceMotion) {
-          // クリック前のカメラ位置を保存（未保存時のみ。モーダルを開いたまま別ノードを
-          // クリックした場合、復帰先は最初のクリック前の位置を維持する）
+          // クリック前のカメラ位置とOrbitControlsの真の回転中心を保存
+          // （未保存時のみ。モーダルを開いたまま別ノードをクリックした場合、
+          // 復帰先は最初のクリック前の位置を維持する）
           if (!preClickCameraRef.current) {
-            preClickCameraRef.current = graph.cameraPosition() as CameraSnapshot;
+            const { x: cx, y: cy, z: cz } = graph.cameraPosition();
+            const controls = graph.controls() as unknown as { target: THREE.Vector3 };
+            preClickCameraRef.current = { x: cx, y: cy, z: cz, target: controls.target.clone() };
           }
           const { x = 0, y = 0, z = 0 } = node;
           const dist = Math.hypot(x, y, z) || 1; // 原点付近ノードのゼロ除算ガード
@@ -254,8 +261,9 @@ export default function Graph3DView({ cases, onReady }: Props) {
     const graph = graphRef.current;
     const saved = preClickCameraRef.current;
     if (graph && saved) {
-      const { lookAt, ...pos } = saved;
-      graph.cameraPosition(pos, lookAt, reduceMotion ? 0 : CAMERA_RESTORE_TRANSITION_MS);
+      const { target, ...pos } = saved;
+      // lookAtに真のcontrols.targetを渡す＝setLookAt経由で回転中心も厳密に復帰する
+      graph.cameraPosition(pos, target, reduceMotion ? 0 : CAMERA_RESTORE_TRANSITION_MS);
     }
     preClickCameraRef.current = null;
     setSelected(null);
