@@ -9,7 +9,7 @@ import type { Case } from "@/lib/cases";
 import { buildGraphData, linkDistance, linkStrength, swayOffset, type GraphNode } from "@/lib/graph";
 import { createNodeObject, setNodeHover, updateLabelFacing, SPRITE_W } from "@/lib/graphSprites";
 import { createClusterLabels, type ClusterLabelHandle } from "@/lib/clusterLabels";
-import CaseModal from "./CaseModal";
+import CasePanel from "./CasePanel";
 
 // 3d-force-graph(three-forcegraph)がnodeThreeObjectの戻り値に自動で束縛するプロパティ
 type NodeWithSprite = GraphNode & { __threeObj?: THREE.Group };
@@ -17,7 +17,7 @@ type NodeWithSprite = GraphNode & { __threeObj?: THREE.Group };
 // クリックしたノードへのカメラ急旋回: ノード方向の延長線上、この距離だけ手前に着地する
 const CAMERA_FOCUS_DISTANCE = 90;
 const CAMERA_FOCUS_TRANSITION_MS = 800;
-// モーダルclose時、クリック前のカメラ位置へ戻すトランジション時間
+// パネルclose時、クリック前のカメラ位置へ戻すトランジション時間
 const CAMERA_RESTORE_TRANSITION_MS = 700;
 
 // 初回マウント時のみ: 最初のgraphData()投入前にこの値へ設定し、warmupを同期実行させて
@@ -78,8 +78,8 @@ export default function Graph3DView({ cases, onReady }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const graphRef = useRef<ForceGraph3DInstance | null>(null);
   const [selected, setSelected] = useState<Case | null>(null);
-  // ノードクリック直前のカメラ位置/注視点。モーダルclose時にここへ復帰する。
-  // 未保存時のみ書き込む（モーダルを開いたまま別ノードをクリックしても、
+  // ノードクリック直前のカメラ位置/注視点。パネルclose時にここへ復帰する。
+  // 未保存時のみ書き込む（パネルを開いたまま別ノードをクリックしても、
   // 復帰先は最初のクリック前の位置を維持する）
   const preClickCameraRef = useRef<CameraSnapshot | null>(null);
   const reduceMotion = useMemo(
@@ -144,16 +144,16 @@ export default function Graph3DView({ cases, onReady }: Props) {
       .nodeThreeObject((n) => createNodeObject((n as unknown as GraphNode).c))
       .onNodeClick((n) => {
         const node = n as unknown as GraphNode;
-        setSelected(node.c); // モーダルは即時表示（カメラ移動と同時に出す）
-        // ホバー状態の後始末: モーダルはcanvasを覆うため、以降このノードへの
-        // pointerleaveがraycast経由で発火せず、拡大+最前面(depthTest=false)のまま
-        // モーダルの背後に残ってしまう。クリック時点で明示的に解除する
+        setSelected(node.c); // パネルは即時表示（カメラ移動と同時に出す）
+        // ホバー状態の後始末: クリック直後にカメラが急旋回してカーソルがノードから
+        // 離れるため、pointerleaveがraycast経由で発火せず拡大+最前面(depthTest=false)の
+        // まま残ってしまう。クリック時点で明示的に解除する
         const group = (node as NodeWithSprite).__threeObj;
         if (group) setNodeHover(group, false);
         if (containerRef.current) containerRef.current.style.cursor = "";
         if (!reduceMotion) {
           // クリック前のカメラ位置とOrbitControlsの真の回転中心を保存
-          // （未保存時のみ。モーダルを開いたまま別ノードをクリックした場合、
+          // （未保存時のみ。パネルを開いたまま別ノードをクリックした場合、
           // 復帰先は最初のクリック前の位置を維持する）
           if (!preClickCameraRef.current) {
             const { x: cx, y: cy, z: cz } = graph.cameraPosition();
@@ -270,11 +270,11 @@ export default function Graph3DView({ cases, onReady }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idsKey]);
 
-  // モーダルclose: クリック前に保存したカメラ位置/注視点があれば復帰する。
+  // パネルclose: クリック前に保存したカメラ位置/注視点があれば復帰する。
   // これが無いと、graph.cameraPosition()のsetLookAt()がOrbitControlsの
   // controls.targetを恒久変更するため、閉じた後もクリックしたノードの方向に
   // 回転中心が固定されたままになる（既知バグ・plan Context参照）
-  const handleModalClose = () => {
+  const handlePanelClose = () => {
     const graph = graphRef.current;
     const saved = preClickCameraRef.current;
     if (graph && saved) {
@@ -295,13 +295,15 @@ export default function Graph3DView({ cases, onReady }: Props) {
   }
 
   return (
-    <div ref={containerRef} className="relative h-[calc(100vh-180px)] min-h-[480px]">
-      {cases.length === 0 && (
-        <div className="absolute inset-0 flex items-center justify-center text-[10px] tracking-[0.3em] uppercase text-gray-400 pointer-events-none">
-          No results found
-        </div>
-      )}
-      <CaseModal c={selected} onClose={handleModalClose} />
+    <div className="flex h-[calc(100vh-180px)] min-h-[480px]">
+      <div ref={containerRef} className="relative flex-1 min-w-0 h-full">
+        {cases.length === 0 && (
+          <div className="absolute inset-0 flex items-center justify-center text-[10px] tracking-[0.3em] uppercase text-gray-400 pointer-events-none">
+            No results found
+          </div>
+        )}
+      </div>
+      {selected && <CasePanel c={selected} onClose={handlePanelClose} />}
     </div>
   );
 }
