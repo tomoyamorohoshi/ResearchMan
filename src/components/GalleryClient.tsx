@@ -79,18 +79,22 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
       let cancelled = false;
       async function run() {
         setBusy(true);
-        setPhase("toGraph"); // 表示はgridと同じJSX（吹き飛びはオーバーレイのクローンで表現）
-        scrollYRef.current = window.scrollY;
-        const gridEl = gridRef.current;
-        if (reduceMotion || !gridEl) {
-          setPhase("graph");
-        } else {
-          const flying = blowAwayCards(gridEl); // クローンが独立して吹き飛ぶ（Reactツリー非依存）
-          window.scrollTo({ top: 0, behavior: "instant" });
-          setPhase("graph"); // Graph3DViewをマウント開始＝裏で3D用サムネのロードが始まる
-          await flying;
+        // 途中で例外が出てもbusyを取り残さない（取り残すとトグルがリロードまで永久disabled）
+        try {
+          setPhase("toGraph"); // 表示はgridと同じJSX（吹き飛びはオーバーレイのクローンで表現）
+          scrollYRef.current = window.scrollY;
+          const gridEl = gridRef.current;
+          if (reduceMotion || !gridEl) {
+            setPhase("graph");
+          } else {
+            const flying = blowAwayCards(gridEl); // クローンが独立して吹き飛ぶ（Reactツリー非依存）
+            window.scrollTo({ top: 0, behavior: "instant" });
+            setPhase("graph"); // Graph3DViewをマウント開始＝裏で3D用サムネのロードが始まる
+            await flying;
+          }
+        } finally {
+          if (!cancelled) setBusy(false);
         }
-        if (!cancelled) setBusy(false);
       }
       run();
       return () => {
@@ -112,14 +116,18 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
     if (phase !== "toGrid") return;
     let cancelled = false;
     async function run() {
-      window.scrollTo({ top: scrollYRef.current, behavior: "instant" });
-      const gridEl = gridRef.current;
-      if (!reduceMotion && gridEl) {
-        await landCards(gridEl);
-      }
-      if (!cancelled) {
-        setPhase("grid");
-        setBusy(false);
+      // 途中で例外が出てもphase/busyを取り残さない（グリッド復帰とトグル操作性を保証）
+      try {
+        window.scrollTo({ top: scrollYRef.current, behavior: "instant" });
+        const gridEl = gridRef.current;
+        if (!reduceMotion && gridEl) {
+          await landCards(gridEl);
+        }
+      } finally {
+        if (!cancelled) {
+          setPhase("grid");
+          setBusy(false);
+        }
       }
     }
     run();

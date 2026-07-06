@@ -54,6 +54,9 @@ export function blowAwayCards(gridEl: HTMLElement): Promise<void> {
 
   const overlay = document.createElement("div");
   overlay.setAttribute("data-view-transition-overlay", "blow-away");
+  // クローンには実カードのリンク・ボタンが含まれるため、演出中の約0.6秒間
+  // アクセシビリティツリーに重複露出しないよう隠す（pointer-events:noneと対）
+  overlay.setAttribute("aria-hidden", "true");
   Object.assign(overlay.style, {
     position: "fixed",
     inset: "0",
