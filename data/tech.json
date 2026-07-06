@@ -1,5 +1,115 @@
 [
   {
+    "id": "fvdb-v0-5-0",
+    "title": "fVDB v0.5.0",
+    "org": "NVIDIA",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "NVIDIAのオープンソース3D深層学習基盤「fVDB」がv0.5.0でGaussian Splattingの中核処理を強化。広大な空間を複数GPUで高速・省メモリに3Dデータ化できるようになった。",
+    "point": "fVDBは、NVIDIAが開発している「大量の3Dデータを深層学習で扱うための土台」のようなソフトウェアです。写真を扱うAIには当たり前にある「大量データを効率よく読み込み・学習する仕組み」を、点群やGaussian Splattingのような3Dデータ向けに用意したものだと考えるとわかりやすいです。最新のv0.5.0ではGaussian Splattingの中核処理が大幅に強化されました。従来は3D空間の情報を一度2D画面に投影してから計算していましたが、投影ステップを省いて3Dのまま直接レンダリングできるようになり、魚眼レンズや360度カメラのような特殊なカメラにも対応する新しい計算手法も加わりました。これにより、都市の一区画やイベント会場全体のような広大な空間を、複数GPUを使って高速かつ省メモリで3Dデータ化できます。広告・体験づくりの視点では、実店舗や展示会場、街並みをまるごと精密にスキャンして3D空間として再現し、それをVR/ARコンテンツやメタバース的な仮想イベントの土台として使う、といった大規模な空間演出が現実的になる技術です。",
+    "detail": "仕組みを一言でいうと、Gaussian Splattingは「無数の半透明な絵の具の粒(ガウシアン)」で3D空間を表現し、カメラ視点に応じて高速に描画する手法です。fVDBはこの粒の集合を、NVIDIAの大規模3Dデータ管理技術OpenVDBの上に構築し、AI開発の標準ツールPyTorchから直接扱えるようにしたライブラリです。v0.5.0では、粒を2D画面に投影してから処理する従来手順を省く新しい描画パスや、魚眼・360度カメラにも対応する「Unscented Transform」という投影計算、MCMC(マルコフ連鎖モンテカルロ)で粒の配置を自動的に整え直す機能などが加わりました。何が変わったかというと、これまでのGaussian Splattingの多くは1台のGPU・比較的狭いシーン向けでした。fVDBは複数GPUに処理を分散し、都市の一区画や工場全体のような広大かつ複雑な空間でも実用的な速度で3Dモデル化できるよう設計されています。姉妹プロジェクトのfVDB Reality Captureでは、代表的な高速化ライブラリgsplatと比べ学習スループットが50%向上、実行時間が30%短縮したと報告されています。使うにはCUDA対応のNVIDIA製GPUを積んだLinux環境と、Python/PyTorchでのプログラミング知識が必要です。完成したアプリではなく企業やチームが独自のツールを構築するための素材(Apache-2.0で商用利用も可)であるため、広告代理店が直接触るというより、エンジニアリングチームと組んで実写ロケや店舗を丸ごと3D化する大規模プロジェクトの基盤として検討する関わり方になりそうです。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "fvdb-core・fvdb-reality-captureともにApache-2.0で商用利用可"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/openvdb/fvdb-core"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/openvdb/fvdb-reality-capture"
+      },
+      {
+        "kind": "project",
+        "url": "https://developer.nvidia.com/fvdb"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/fvdb-v0-5-0.jpg",
+    "relatedWorks": [
+      {
+        "title": "gsplat (Nerfstudio)",
+        "description": "CUDAで高速化されたGaussian Splattingのオープンソースラスタライズライブラリ",
+        "url": "https://github.com/nerfstudio-project/gsplat"
+      },
+      {
+        "title": "NVIDIA Lyra 2.0",
+        "description": "動画から歩き回れる3D空間を生成するNVIDIA Researchのプロジェクト",
+        "url": "https://research.nvidia.com/labs/sil/projects/lyra2/"
+      },
+      {
+        "title": "3D Gaussian Splatting (原論文)",
+        "description": "現在主流のGaussian Splatting技術の原点となったInriaの研究",
+        "url": "https://github.com/graphdeco-inria/gaussian-splatting"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "gray",
+    "title": "GRay",
+    "org": "Inria (GraphDeco) / Université Laval",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-06",
+    "year": "2026",
+    "summary": "実写を3D化するGaussian Splattingを、正確な反射・屈折・影ごと「レイトレーシング」で描画できる新手法。従来のラスタライズ描画に迫る速さを実現した。",
+    "point": "Gaussian Splattingは、実写の写真から「無数の半透明な絵の具の粒」で3D空間を再現し、見た目そっくりな速さで描画できる技術として急速に普及しました。ただし従来の描画方式は、粒をカメラ側に押しつぶして重ね合わせる「ラスタライズ」という方法のため、鏡や水面の反射、ガラスの屈折、正確な影といった「光の物理的な振る舞い」の再現が苦手でした。それを解決する「レイトレーシング」(光線を1本ずつ飛ばして物にぶつかるかを計算する、映画のCGでもよく使われる本格派の描画技法)をGaussianに適用する試みは以前からありましたが、大幅に遅くなるのが難点でした。GRayは、光線が実際にぶつかる粒だけを賢く絞り込んで計算することで、レンダリングは約4倍、最適化(学習)は約10倍高速化し、ラスタライズに迫る速度でのレイトレーシングを実現しました。実写ロケを3Dスキャンしたシーンに、あとから照明を自在に変えたり、ガラスや水面のプロダクトを違和感なく合成したりできるようになるため、実写とCGを組み合わせた広告映像やバーチャルプロダクションの表現の幅が広がります。",
+    "detail": "仕組みをたとえるなら、ラスタライズは「無数の半透明シールを全部カメラのレンズに向かって並べて重ね合わせる」方式、レイトレーシングは「光の懐中電灯を1本ずつシーンに向けて、実際に当たった物だけを調べる」方式です。後者の方が反射・屈折・影といった光の物理法則を正確に再現できますが、シーン内のすべての粒を毎回チェックする必要があり、粒の数が増えるほど計算量が比例して増える「線形」の重さがこれまでのネックでした。GRayは、光線に実際に交差する粒だけを効率よく絞り込むアルゴリズムを開発し、粒の数が増えても計算量が緩やかにしか増えない「対数」スケールでの処理を実現しました。2024年に登場した先行手法「3D Gaussian Ray Tracing(3DGRT)」は正確な光の再現を実現した一方、通常のラスタライズ方式に比べて大幅に遅く、実用には壁がありました。GRayはこの速度差を大きく縮め、レンダリング速度で約4倍、シーンの最適化速度で約10倍という改善を報告しており、「物理的に正確な光」と「実用的な速さ」の両立に近づいた点が新しさです。利用にはOptiX 8対応のNVIDIA製GPU(24GB以上のVRAM推奨)を積んだLinux環境とCUDA 12ツールキットが必要で、GitHub上のコード(MITライセンス)をビルドして使う、エンジニア向けの研究用コードベースです。現時点でCGツールに組み込まれた完成品ではありませんが、VFXやバーチャルプロダクションの技術チームが、実写ロケをスキャンした素材にあとから自在な照明・反射効果を加える将来のワークフローの土台として注目に値します。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "本体コードはMIT。同梱のGraphDecoビューアはApache-2.0、初期化スクリプトは別途著作権表記あり"
+    },
+    "links": [
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2606.30869"
+      },
+      {
+        "kind": "project",
+        "url": "https://repo-sam.inria.fr/nerphys/gray"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/graphdeco-inria/gray"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/gray.jpg",
+    "relatedWorks": [
+      {
+        "title": "3D Gaussian Splatting (原論文)",
+        "description": "実写から3D空間を高速再現する現在主流の技術。GRayが高速化を目指す土台",
+        "url": "https://github.com/graphdeco-inria/gaussian-splatting"
+      },
+      {
+        "title": "3D Gaussian Ray Tracing (3DGRT)",
+        "description": "NVIDIAによる先行のGaussianレイトレーシング手法。GRayが速度面で大きく改善",
+        "url": "https://github.com/nv-tlabs/3dgrut"
+      },
+      {
+        "title": "Nuke 17.1 (Foundry)",
+        "description": "Gaussian Splatを合成ソフト内で読み込み・リライティングできる商用コンポジットツールの最新版",
+        "url": "https://www.foundry.com/news-and-awards/foundry-releases-nuke-17-advancing-compositing-workflows"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "robot-retargeter",
     "title": "robot_retargeter",
     "org": "個人開発者（GitHub: ccrpRepo）",
