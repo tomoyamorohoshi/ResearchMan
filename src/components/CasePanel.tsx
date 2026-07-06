@@ -15,19 +15,31 @@ type Props = { c: Case; onClose: () => void };
 export default function CasePanel({ c, onClose }: Props) {
   const panelRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  // 常に最新のonCloseを指す。effect依存にonCloseを入れると、親の再レンダーで
+  // inline関数の参照が変わるたびにeffectが再実行され、フォーカス強奪・スクロール
+  // リセットが起きる（非モーダル化で顕在化するリグレッション。下のコメント参照）
+  const onCloseRef = useRef(onClose);
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
 
-  // ケース切替時（別ノードクリック）: 閉じるボタンへフォーカスし、スクロール位置を先頭へ戻す。
-  // Escで閉じる（パネル表示中のみ。フォーカストラップはしない＝左のグラフ操作を妨げない）
+  // ケース切替時（別ノードクリック）のみ: 閉じるボタンへフォーカスし、スクロールを先頭へ。
+  // 依存は[c]だけにする。非モーダルパネルは表示中も左のグラフや検索欄を操作できるため、
+  // 無関係な親再レンダー（検索打鍵・フィルタ・busy変化等）でこのeffectが再実行されると
+  // 「検索欄に1文字打つたびフォーカスが閉じるボタンへ奪われる」壊滅的なUXになる
   useEffect(() => {
     closeButtonRef.current?.focus();
     if (panelRef.current) panelRef.current.scrollTop = 0;
+  }, [c]);
 
+  // Escで閉じる（パネル表示中のみ。フォーカストラップはしない＝左のグラフ操作を妨げない）
+  useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") onCloseRef.current();
     };
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [c, onClose]);
+  }, []);
 
   const level = getAwardLevel(c.award);
   const chips: Array<{ key: string; text: string }> = [

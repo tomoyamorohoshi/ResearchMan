@@ -295,7 +295,10 @@ export default function Graph3DView({ cases, onReady }: Props) {
   }
 
   return (
-    <div className="flex h-[calc(100vh-180px)] min-h-[480px]">
+    // relative必須: CasePanelのモバイル全面表示（absolute inset-0）のアンカー。
+    // これが無いとcontaining blockがページ原点になり、パネルがヘッダーを覆いつつ
+    // グラフ領域と縦ズレし、ページスクロールにも追従しない
+    <div className="relative flex h-[calc(100vh-180px)] min-h-[480px]">
       <div ref={containerRef} className="relative flex-1 min-w-0 h-full">
         {cases.length === 0 && (
           <div className="absolute inset-0 flex items-center justify-center text-[10px] tracking-[0.3em] uppercase text-gray-400 pointer-events-none">
