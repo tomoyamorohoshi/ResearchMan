@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import type { Case } from "@/lib/cases";
 import CaseCard from "./CaseCard";
@@ -10,6 +10,7 @@ import { compareByAwardForCollection, type OrgKey } from "@/lib/awards";
 import { tabSources, getSourceKind } from "@/lib/researchSources";
 import { TAG_AXES, tagAxis, tagLabel } from "@/lib/tags";
 import { useViewMode } from "./ViewModeContext";
+import { blowAwayCards, landCards } from "@/lib/viewTransition";
 
 // 3d-force-graph/threeはwindow依存のためssr:false必須。トグルON時にのみチャンク取得される
 const Graph3DView = dynamic(() => import("./Graph3DView"), {
@@ -35,6 +36,10 @@ type Props = {
 
 type SortOrder = "added" | "year" | "award";
 
+// "toGraph"/"toGrid" はトランジション中の一時状態（表示自体はgrid側と同じJSXを使う）。
+// mode(ViewModeContext)は「目標状態」のまま変えず、phaseだけがこの間接的な状態を持つ
+type DisplayPhase = "grid" | "toGraph" | "graph" | "toGrid";
+
 export default function GalleryClient({ cases, categories, years, regions, sources = [], tags = [], defaultSort = "added", awardContext }: Props) {
   const [filters, setFilters] = useState({ category: "", year: "", region: "", source: "", tag: "" });
   const [tab, setTab] = useState("");
@@ -43,7 +48,86 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
   const { favorites, toggle, mounted } = useFavorites();
-  const { mode } = useViewMode();
+  const { mode, setBusy } = useViewMode();
+  const [phase, setPhase] = useState<DisplayPhase>(mode === "graph" ? "graph" : "grid");
+  const gridRef = useRef<HTMLDivElement>(null);
+  const scrollYRef = useRef(0);
+  const prevModeRef = useRef(mode);
+  const reduceMotion = useMemo(
+    () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    [],
+  );
+
+  // mode（ON/OFFの目標状態）の変化を検知し、吹き飛び/帰還トランジションを開始する。
+  // /awards・/technology等（ViewModeProvider不在＝modeが常にgrid固定）ではmodeが
+  // 変化しないためこのeffectは初回以降一切作動せず、グリッドの挙動に影響しない。
+  //
+  // ON方向（グリッド→3D）は、この時点でまだ実グリッドがマウントされている
+  // （phaseはまだ"grid"）ため、ここで直接gridRef.currentを読んで完結できる。
+  // OFF方向（3D→グリッド）はphaseを"toGrid"にするところまでで、実際の着地アニメーションは
+  // 下の別effect（phase依存）に委ねる。理由: setPhase後すぐrequestAnimationFrameを
+  // 1回待つだけでは、Graph3DViewのアンマウント（_destructor内の475件のSprite/Texture
+  // 解放）が重く、実グリッドDOMのコミットが単一のrAFより後にずれ込むことがあり、
+  // gridRef.currentがまだnullのままアニメーションが無言でスキップされるバグを引き起こす
+  // （実機Playwright検証で発見）。useEffect(..., [phase])はReactのコミット後にしか
+  // 走らないため、この確認が要らず確実。
+  useEffect(() => {
+    if (mode === prevModeRef.current) return;
+    prevModeRef.current = mode;
+
+    if (mode === "graph") {
+      let cancelled = false;
+      async function run() {
+        setBusy(true);
+        setPhase("toGraph"); // 表示はgridと同じJSX（吹き飛びはオーバーレイのクローンで表現）
+        scrollYRef.current = window.scrollY;
+        const gridEl = gridRef.current;
+        if (reduceMotion || !gridEl) {
+          setPhase("graph");
+        } else {
+          const flying = blowAwayCards(gridEl); // クローンが独立して吹き飛ぶ（Reactツリー非依存）
+          window.scrollTo({ top: 0, behavior: "instant" });
+          setPhase("graph"); // Graph3DViewをマウント開始＝裏で3D用サムネのロードが始まる
+          await flying;
+        }
+        if (!cancelled) setBusy(false);
+      }
+      run();
+      return () => {
+        cancelled = true;
+      };
+    }
+    // 実グリッドDOMのコミットは下のeffectで検知する（ここではphaseを倒すだけ）
+    function startToGrid() {
+      setBusy(true);
+      setPhase("toGrid");
+    }
+    startToGrid();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mode]);
+
+  // phaseが"toGrid"になった＝実グリッドDOM（gridRef）がコミット済みの状態でのみ発火。
+  // ここで初めてスクロール復元と着地アニメーションを安全に実行できる
+  useEffect(() => {
+    if (phase !== "toGrid") return;
+    let cancelled = false;
+    async function run() {
+      window.scrollTo({ top: scrollYRef.current, behavior: "instant" });
+      const gridEl = gridRef.current;
+      if (!reduceMotion && gridEl) {
+        await landCards(gridEl);
+      }
+      if (!cancelled) {
+        setPhase("grid");
+        setBusy(false);
+      }
+    }
+    run();
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase]);
 
   // タブ（リサーチオーダー／Radar）— データに1件以上あるものだけ件数付きで表示
   const tabs = tabSources
@@ -207,11 +291,11 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
         )}
       </div>
 
-      {mode === "grid" ? (
+      {phase !== "graph" ? (
         <>
           {/* ── グリッド ── */}
           <div className="max-w-[1600px] mx-auto">
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-px bg-gray-300">
+            <div ref={gridRef} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-px bg-gray-300">
               {sorted.map((c) => (
                 <CaseCard
                   key={c.id}

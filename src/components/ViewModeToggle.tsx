@@ -4,7 +4,7 @@
 import { useViewMode } from "./ViewModeContext";
 
 export default function ViewModeToggle() {
-  const { mode, setMode } = useViewMode();
+  const { mode, setMode, busy } = useViewMode();
   const on = mode === "graph";
   return (
     <button
@@ -12,8 +12,9 @@ export default function ViewModeToggle() {
       role="switch"
       aria-checked={on}
       aria-label="3Dノードグラフ表示に切り替え"
+      disabled={busy}
       onClick={() => setMode(on ? "grid" : "graph")}
-      className={`flex items-center gap-1.5 text-[10px] tracking-[0.2em] uppercase font-bold transition-colors shrink-0 ${
+      className={`flex items-center gap-1.5 text-[10px] tracking-[0.2em] uppercase font-bold transition-colors shrink-0 disabled:opacity-50 disabled:cursor-not-allowed ${
         on ? "text-[#9c7a1f]" : "text-gray-400 hover:text-gray-900"
       }`}
     >
