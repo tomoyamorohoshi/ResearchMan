@@ -56,46 +56,59 @@ export default function IdeaCard({
   idea,
   className,
   style,
+  fill = false,
 }: {
   idea: Idea;
   // デッキ表示（IdeasDeck）から固定高さ・位置制御用のclassName/styleを注入するための口。
   // グリッド表示（従来）ではundefinedのまま＝見た目は不変
   className?: string;
   style?: React.CSSProperties;
+  // true: デッキ表示（IdeasDeck）用。固定高さいっぱいに広げ、本文ブロックが余白を吸収し
+  // フッターを下端に固定する。false（既定）: グリッド表示（reduced-motionフォールバック）用。
+  // 高さは内容ぴったりで、503c1fb以前の一次ソースのDOM/クラスに完全一致させる
+  fill?: boolean;
 }) {
   const v = VARIANT_STYLE[variantOf(idea.id)];
   const dateLabel = dateLabelOf(idea);
 
+  const body = (
+    <>
+      {/* メタ行: パターンタグ + 日付 */}
+      <div className="flex items-baseline justify-between gap-2">
+        <span className={`text-[9px] tracking-widest uppercase ${v.muted}`}>
+          {idea.pattern ? `【${idea.pattern}】` : ""}
+        </span>
+        <span className={`text-[10px] tabular-nums shrink-0 ${v.muted}`}>{dateLabel}</span>
+      </div>
+
+      <div className={`h-px my-2 ${v.rule}`} />
+
+      {/* タイトル */}
+      <h2 className="text-2xl font-black tracking-tight leading-tight">{idea.title}</h2>
+
+      {/* アイデア文（line-clamp: デッキの固定高さカードでの溢れ保険。内容量はほぼ一定のため
+          グリッド表示では実質発火しない） */}
+      <p className={`text-[11px] leading-relaxed mt-2 ${fill ? "line-clamp-6 " : ""}${v.body}`}>{idea.seed}</p>
+    </>
+  );
+
   return (
     <div
-      className={`flex flex-col h-full overflow-hidden p-4 ${v.text} ${className ?? ""}`}
+      className={`flex flex-col ${fill ? "h-full overflow-hidden " : ""}p-4 ${v.text} ${className ?? ""}`}
       style={{ backgroundColor: v.bg, ...style }}
     >
-      {/* 本文ブロック（flex-1）: デッキの固定高さカードで下の参照フッターを下端に固定するため、
-          このブロックが余白を吸収する（グリッド表示は高さが内容ぴったりのため余白は生まれず、
-          見た目は従来どおり） */}
-      <div className="flex-1 min-h-0 flex flex-col overflow-hidden">
-        {/* メタ行: パターンタグ + 日付 */}
-        <div className="flex items-baseline justify-between gap-2">
-          <span className={`text-[9px] tracking-widest uppercase ${v.muted}`}>
-            {idea.pattern ? `【${idea.pattern}】` : ""}
-          </span>
-          <span className={`text-[10px] tabular-nums shrink-0 ${v.muted}`}>{dateLabel}</span>
-        </div>
-
-        <div className={`h-px my-2 ${v.rule}`} />
-
-        {/* タイトル */}
-        <h2 className="text-2xl font-black tracking-tight leading-tight">{idea.title}</h2>
-
-        {/* アイデア文（line-clamp: デッキの固定高さカードでの溢れ保険。内容量はほぼ一定のため
-            グリッド表示では実質発火しない） */}
-        <p className={`text-[11px] leading-relaxed mt-2 line-clamp-6 ${v.body}`}>{idea.seed}</p>
-      </div>
+      {fill ? (
+        // 本文ブロック（flex-1）: デッキの固定高さカードで下の参照フッターを下端に固定するため、
+        // このブロックが余白を吸収する（グリッド表示は高さが内容ぴったりのため余白は生まれず、
+        // 見た目は従来どおり）
+        <div className="flex-1 min-h-0 flex flex-col overflow-hidden">{body}</div>
+      ) : (
+        body
+      )}
 
       {/* 参照フッター（QMStdのスペックシート風） */}
       {idea.refs.length > 0 && (
-        <div className="mt-3 flex flex-col shrink-0">
+        <div className={`mt-3 flex flex-col${fill ? " shrink-0" : ""}`}>
           {idea.refs.map((ref) => (
             <Link
               key={`${ref.type}-${ref.id}`}

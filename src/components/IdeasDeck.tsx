@@ -136,6 +136,11 @@ const CARD_POSITION_STYLE: CSSProperties = {
 export default function IdeasDeck({ ideas }: { ideas: Idea[] }) {
   const N = ideas.length;
   const trackRef = useRef<HTMLDivElement>(null);
+  // sticky ステージ（h-screen）の実高さ。進捗pの分母をwindow.innerHeightではなくDOM実寸
+  // （trackとstageのoffsetHeight差分）から導出するために参照する（修正4：モバイルでツールバーの
+  // 出し入れにより動的に変わるwindow.innerHeightと、trackHeightCssが解決するvhベースの高さの
+  // 単位系がズレて終端手前でスクロール無反応になる不具合への対処）
+  const stageRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<Map<number, HTMLDivElement>>(new Map());
   const counterRef = useRef<HTMLSpanElement>(null);
   const dateRef = useRef<HTMLSpanElement>(null);
@@ -163,62 +168,89 @@ export default function IdeasDeck({ ideas }: { ideas: Idea[] }) {
       el.style.transform = transformOf(frame);
       el.style.opacity = String(frame.opacity);
       el.style.pointerEvents = active ? "auto" : "none";
+      el.inert = !active;
       if (active) el.removeAttribute("aria-hidden");
       else el.setAttribute("aria-hidden", "true");
     }
   }, []);
 
-  const applyFrame = useCallback(() => {
+  // trackの実レイアウトから進捗pを同期算出する（scrollイベント外の文脈からも呼べるよう分離）。
+  // 分母perCardPxはtrack/stage双方のoffsetHeight差分から導出し、window.innerHeightには
+  // 依存しない（修正4）。N<=1は1枚しかなくスクロール進捗自体が無意味なため0固定でガードする
+  const measureP = useCallback((): number => {
     const track = trackRef.current;
-    if (!track || N === 0) return;
-    const viewportH = viewportHRef.current || window.innerHeight;
-    const perCardPx = (viewportH * SCROLL_PER_CARD_VH) / 100;
+    const stage = stageRef.current;
+    if (!track || !stage || N <= 1) return 0;
+    const perCardPx = (track.offsetHeight - stage.offsetHeight) / (N - 1);
+    if (perCardPx <= 0) return 0;
     const rectTop = track.getBoundingClientRect().top;
-    const maxP = Math.max(N - 1, 0);
-    const p = clamp(-rectTop / perCardPx, 0, maxP);
-    latestPRef.current = p;
+    return clamp(-rectTop / perCardPx, 0, N - 1);
+  }, [N]);
 
-    const desiredStart = clamp(Math.floor(p - RENDER_WINDOW_BEHIND), 0, N);
-    const desiredEnd = clamp(Math.ceil(p + RENDER_WINDOW_AHEAD), 0, N);
-    setWindowRange((prev) =>
-      prev.start === desiredStart && prev.end === desiredEnd ? prev : { start: desiredStart, end: desiredEnd },
-    );
+  // pを受け取り、カード姿勢・windowRange目標値・カウンター/日付/ヒントをまとめて反映する共通処理
+  // （マウント直後のuseLayoutEffectと、scroll/resize後のapplyFrameの両方から同じロジックを使う）
+  const applyFrameAt = useCallback(
+    (p: number, viewportH: number) => {
+      latestPRef.current = p;
+      const maxP = Math.max(N - 1, 0);
+      const desiredStart = clamp(Math.floor(p - RENDER_WINDOW_BEHIND), 0, N);
+      const desiredEnd = clamp(Math.ceil(p + RENDER_WINDOW_AHEAD), 0, N);
+      setWindowRange((prev) =>
+        prev.start === desiredStart && prev.end === desiredEnd ? prev : { start: desiredStart, end: desiredEnd },
+      );
 
-    writeCardStyles(p, viewportH);
+      writeCardStyles(p, viewportH);
 
-    const activeIndex = clamp(Math.round(p), 0, maxP);
-    const activeIdea = ideas[activeIndex];
-    if (counterRef.current) counterRef.current.textContent = `${pad2(activeIndex + 1)} / ${pad2(N)}`;
-    if (dateRef.current && activeIdea) dateRef.current.textContent = dateLabelOf(activeIdea);
-    if (hintRef.current) hintRef.current.style.opacity = p > HINT_DISMISS_P ? "0" : "1";
-  }, [N, ideas, writeCardStyles]);
+      const activeIndex = clamp(Math.round(p), 0, maxP);
+      const activeIdea = ideas[activeIndex];
+      if (counterRef.current) counterRef.current.textContent = `${pad2(activeIndex + 1)} / ${pad2(N)}`;
+      if (dateRef.current && activeIdea) dateRef.current.textContent = dateLabelOf(activeIdea);
+      if (hintRef.current) hintRef.current.style.opacity = p > HINT_DISMISS_P ? "0" : "1";
+    },
+    [N, ideas, writeCardStyles],
+  );
+
+  const applyFrame = useCallback(() => {
+    if (!trackRef.current || N === 0) return;
+    const viewportH = viewportHRef.current || window.innerHeight;
+    applyFrameAt(measureP(), viewportH);
+  }, [N, measureP, applyFrameAt]);
 
   // windowRangeが変わってカードが新規マウントされた直後、コミット後・ペイント前に
-  // 直近の進捗pで即座に姿勢を書き直す（新規マウントカードは静的な「p=0」初期styleのままだと、
-  // 次のscroll/resizeイベントが来るまで誤った姿勢のまま描画されてしまう罠への対処。
-  // 例: 高速な単発ジャンプでデッキ終端に着地すると、次のイベントが来ずステージが
-  // 空白のまま固まる不具合が実機検証で見つかった）
+  // 実レイアウトから同期算出したpで即座に姿勢を書き直す（新規マウントカードは静的な「p=0」
+  // 初期styleのままだと、次のscroll/resizeイベントが来るまで誤った姿勢のまま描画されてしまう
+  // 罠への対処。例: 高速な単発ジャンプでデッキ終端に着地すると、次のイベントが来ずステージが
+  // 空白のまま固まる不具合が実機検証で見つかった）。
+  // 初回マウント時もこのeffectが走るため、trackRef.current頼みだったlatestPRef初期値0を
+  // そのまま使っていた旧実装の「深いスクロール位置でリロードすると1フレーム1枚目が見える」
+  // 不具合も、ここでmeasureP()により実際のpを算出することで解消する
   useLayoutEffect(() => {
     if (reduceMotion || N === 0) return;
     const viewportH = viewportHRef.current || (typeof window !== "undefined" ? window.innerHeight : 0);
-    writeCardStyles(latestPRef.current, viewportH);
-  }, [windowRange, reduceMotion, N, writeCardStyles]);
+    applyFrameAt(measureP(), viewportH);
+  }, [windowRange, reduceMotion, N, measureP, applyFrameAt]);
 
   useEffect(() => {
     if (reduceMotion || N === 0) return;
     viewportHRef.current = window.innerHeight;
     let ticking = false;
-    const onScroll = () => {
+    let rafId = 0;
+    const scheduleApplyFrame = () => {
       if (ticking) return;
       ticking = true;
-      requestAnimationFrame(() => {
+      rafId = requestAnimationFrame(() => {
         applyFrame();
         ticking = false;
       });
     };
+    const onScroll = () => {
+      scheduleApplyFrame();
+    };
     const onResize = () => {
+      // 実寸は同期的に即座に更新（呼び出し順序に依存させない）。反映（applyFrame呼び出し）自体は
+      // resizeイベント連発を間引くためscrollと同じrAF経路に載せる
       viewportHRef.current = window.innerHeight;
-      applyFrame();
+      scheduleApplyFrame();
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onResize);
@@ -226,6 +258,7 @@ export default function IdeasDeck({ ideas }: { ideas: Idea[] }) {
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
+      cancelAnimationFrame(rafId);
     };
   }, [reduceMotion, applyFrame, N]);
 
@@ -240,6 +273,7 @@ export default function IdeasDeck({ ideas }: { ideas: Idea[] }) {
   return (
     <div ref={trackRef} style={{ height: trackHeightCss }} className="relative">
       <div
+        ref={stageRef}
         className="sticky top-0 h-screen overflow-hidden"
         style={{ perspective: 1200, perspectiveOrigin: "50% 28%", transformStyle: "preserve-3d" }}
       >
@@ -258,14 +292,14 @@ export default function IdeasDeck({ ideas }: { ideas: Idea[] }) {
               }}
               style={{
                 ...CARD_POSITION_STYLE,
-                zIndex: 1000 - i,
+                zIndex: Math.max(1, 1000 - i),
                 transform: transformOf(initialFrame),
                 opacity: initialFrame.opacity,
                 pointerEvents: initialActive ? "auto" : "none",
               }}
               aria-hidden={initialActive ? undefined : "true"}
             >
-              <IdeaCard idea={idea} className="h-full w-full" />
+              <IdeaCard idea={idea} fill className="w-full" />
             </div>
           );
         })}
