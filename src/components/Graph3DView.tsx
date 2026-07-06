@@ -16,6 +16,13 @@ type NodeWithSprite = GraphNode & { __threeObj?: THREE.Sprite };
 // クリックしたノードへのカメラ急旋回: ノード方向の延長線上、この距離だけ手前に着地する
 const CAMERA_FOCUS_DISTANCE = 90;
 const CAMERA_FOCUS_TRANSITION_MS = 800;
+// モーダルclose時、クリック前のカメラ位置へ戻すトランジション時間
+const CAMERA_RESTORE_TRANSITION_MS = 700;
+
+// graph.cameraPosition()（getter）の実際の戻り値。3d-force-graphの型定義は
+// {x,y,z}のみだが、実装（three-render-objects.mjs cameraPosition）は
+// Object.assign({}, camera.position, {lookAt: getLookAt()}) を返す
+type CameraSnapshot = { x: number; y: number; z: number; lookAt: THREE.Vector3 };
 
 type Props = { cases: Case[] };
 
@@ -23,6 +30,14 @@ export default function Graph3DView({ cases }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const graphRef = useRef<ForceGraph3DInstance | null>(null);
   const [selected, setSelected] = useState<Case | null>(null);
+  // ノードクリック直前のカメラ位置/注視点。モーダルclose時にここへ復帰する。
+  // 未保存時のみ書き込む（モーダルを開いたまま別ノードをクリックしても、
+  // 復帰先は最初のクリック前の位置を維持する）
+  const preClickCameraRef = useRef<CameraSnapshot | null>(null);
+  const reduceMotion = useMemo(
+    () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    [],
+  );
   // レイアウト収束後の「ゆらゆら浮遊」制御。エンジン停止時にtrueになり、
   // 次のgraphData()呼び出し直前にfalseへ戻す（再レイアウト中は力学シミュレーション側が
   // 位置を握るため、揺れオフセットで上書きしない）
@@ -41,9 +56,6 @@ export default function Graph3DView({ cases }: Props) {
   // 初期化（マウント時に一度だけ）
   useEffect(() => {
     if (unsupported || !containerRef.current) return;
-    const reduceMotion =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const graph = new ForceGraph3D(containerRef.current, { controlType: "orbit" });
     graph
@@ -65,7 +77,18 @@ export default function Graph3DView({ cases }: Props) {
       .onNodeClick((n) => {
         const node = n as unknown as GraphNode;
         setSelected(node.c); // モーダルは即時表示（カメラ移動と同時に出す）
+        // ホバー状態の後始末: モーダルはcanvasを覆うため、以降このノードへの
+        // pointerleaveがraycast経由で発火せず、拡大+最前面(depthTest=false)のまま
+        // モーダルの背後に残ってしまう。クリック時点で明示的に解除する
+        const sprite = (node as NodeWithSprite).__threeObj;
+        if (sprite) setSpriteHover(sprite, false);
+        if (containerRef.current) containerRef.current.style.cursor = "";
         if (!reduceMotion) {
+          // クリック前のカメラ位置を保存（未保存時のみ。モーダルを開いたまま別ノードを
+          // クリックした場合、復帰先は最初のクリック前の位置を維持する）
+          if (!preClickCameraRef.current) {
+            preClickCameraRef.current = graph.cameraPosition() as CameraSnapshot;
+          }
           const { x = 0, y = 0, z = 0 } = node;
           const dist = Math.hypot(x, y, z) || 1; // 原点付近ノードのゼロ除算ガード
           const ratio = 1 + CAMERA_FOCUS_DISTANCE / dist;
@@ -123,7 +146,8 @@ export default function Graph3DView({ cases }: Props) {
       graph._destructor(); // 内部でノードごとのSprite/Material/Textureも解放される
       graphRef.current = null;
     };
-  }, [unsupported]);
+    // reduceMotionはuseMemo([])で初回描画時に一度だけ確定する値（不変）
+  }, [unsupported, reduceMotion]);
 
   // データ投入・再レイアウト（フィルタ変更で再構築。ソート順の変化だけでは再構築しない）
   //
@@ -148,6 +172,21 @@ export default function Graph3DView({ cases }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idsKey]);
 
+  // モーダルclose: クリック前に保存したカメラ位置/注視点があれば復帰する。
+  // これが無いと、graph.cameraPosition()のsetLookAt()がOrbitControlsの
+  // controls.targetを恒久変更するため、閉じた後もクリックしたノードの方向に
+  // 回転中心が固定されたままになる（既知バグ・plan Context参照）
+  const handleModalClose = () => {
+    const graph = graphRef.current;
+    const saved = preClickCameraRef.current;
+    if (graph && saved) {
+      const { lookAt, ...pos } = saved;
+      graph.cameraPosition(pos, lookAt, reduceMotion ? 0 : CAMERA_RESTORE_TRANSITION_MS);
+    }
+    preClickCameraRef.current = null;
+    setSelected(null);
+  };
+
   if (unsupported) {
     return (
       <div className="text-center py-32 text-[10px] tracking-[0.3em] uppercase text-gray-400 px-8">
@@ -163,7 +202,7 @@ export default function Graph3DView({ cases }: Props) {
           No results found
         </div>
       )}
-      <CaseModal c={selected} onClose={() => setSelected(null)} />
+      <CaseModal c={selected} onClose={handleModalClose} />
     </div>
   );
 }
