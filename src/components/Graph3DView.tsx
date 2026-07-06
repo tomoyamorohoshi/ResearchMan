@@ -7,11 +7,12 @@ import ForceGraph3D, { type ForceGraph3DInstance } from "3d-force-graph";
 import * as THREE from "three";
 import type { Case } from "@/lib/cases";
 import { buildGraphData, linkDistance, linkStrength, swayOffset, type GraphNode } from "@/lib/graph";
-import { createCardSprite, setSpriteHover, SPRITE_W } from "@/lib/graphSprites";
+import { createNodeObject, setNodeHover, updateLabelFacing, SPRITE_W } from "@/lib/graphSprites";
+import { createClusterLabels, type ClusterLabelHandle } from "@/lib/clusterLabels";
 import CaseModal from "./CaseModal";
 
 // 3d-force-graph(three-forcegraph)がnodeThreeObjectの戻り値に自動で束縛するプロパティ
-type NodeWithSprite = GraphNode & { __threeObj?: THREE.Sprite };
+type NodeWithSprite = GraphNode & { __threeObj?: THREE.Group };
 
 // クリックしたノードへのカメラ急旋回: ノード方向の延長線上、この距離だけ手前に着地する
 const CAMERA_FOCUS_DISTANCE = 90;
@@ -103,6 +104,9 @@ export default function Graph3DView({ cases, onReady }: Props) {
   // データ投入時に自前で保持する（3d-force-graphは渡した配列の要素を直接書き換えるので
   // 参照を保持しておけばx/y/z・__threeObjは常に最新）
   const currentNodesRef = useRef<GraphNode[]>([]);
+  // クラスタ名（タグ名）ラベルのハンドル。graph.scene()はライブラリ管理外のため
+  // このモジュール自身がテクスチャ/スプライトの生成・破棄を担う（clusterLabels.ts参照）
+  const clusterLabelsRef = useRef<ClusterLabelHandle | null>(null);
 
   const unsupported = useMemo(() => {
     if (typeof document === "undefined") return false;
@@ -134,18 +138,18 @@ export default function Graph3DView({ cases, onReady }: Props) {
       // dragstartを経ずにdragendだけ発火し、未設定の内部位置参照を読んでクラッシュする
       // 既知の挙動（3d-force-graph 1.80.0）も回避できる
       .enableNodeDrag(false)
-      // 呼び出しごとに必ず新規のSpriteを生成する（graphSprites.ts参照）。
+      // 呼び出しごとに必ず新規のGroupを生成する（graphSprites.ts参照）。
       // 3d-force-graphはノードがデータから消えるたびにこの戻り値を自動disposeするため、
       // 同一インスタンスをキャッシュして使い回すと再出現時に二重disposeでクラッシュする
-      .nodeThreeObject((n) => createCardSprite((n as unknown as GraphNode).c))
+      .nodeThreeObject((n) => createNodeObject((n as unknown as GraphNode).c))
       .onNodeClick((n) => {
         const node = n as unknown as GraphNode;
         setSelected(node.c); // モーダルは即時表示（カメラ移動と同時に出す）
         // ホバー状態の後始末: モーダルはcanvasを覆うため、以降このノードへの
         // pointerleaveがraycast経由で発火せず、拡大+最前面(depthTest=false)のまま
         // モーダルの背後に残ってしまう。クリック時点で明示的に解除する
-        const sprite = (node as NodeWithSprite).__threeObj;
-        if (sprite) setSpriteHover(sprite, false);
+        const group = (node as NodeWithSprite).__threeObj;
+        if (group) setNodeHover(group, false);
         if (containerRef.current) containerRef.current.style.cursor = "";
         if (!reduceMotion) {
           // クリック前のカメラ位置とOrbitControlsの真の回転中心を保存
@@ -168,10 +172,10 @@ export default function Graph3DView({ cases, onReady }: Props) {
       })
       .onNodeHover((n, prev) => {
         if (containerRef.current) containerRef.current.style.cursor = n ? "pointer" : "";
-        const prevSprite = (prev as NodeWithSprite | null)?.__threeObj;
-        if (prevSprite) setSpriteHover(prevSprite, false);
-        const sprite = (n as NodeWithSprite | null)?.__threeObj;
-        if (sprite) setSpriteHover(sprite, true);
+        const prevGroup = (prev as NodeWithSprite | null)?.__threeObj;
+        if (prevGroup) setNodeHover(prevGroup, false);
+        const group = (n as NodeWithSprite | null)?.__threeObj;
+        if (group) setNodeHover(group, true);
       })
       // 初回はcooldownTicks(0): 同期warmupだけでレイアウトを確定させ、以降のアニメ収束は行わない
       // （idsKeyエフェクトが2回目以降はRELOAD_COOLDOWN_TICKSに上書きする）
@@ -179,6 +183,7 @@ export default function Graph3DView({ cases, onReady }: Props) {
       // エンジン停止＝レイアウト確定のタイミングで揺れを開始する
       .onEngineStop(() => {
         swayingRef.current = !reduceMotion;
+        clusterLabelsRef.current?.update(currentNodesRef.current);
         if (!onReadyFiredRef.current) {
           onReadyFiredRef.current = true;
           onReadyRef.current?.({
@@ -188,6 +193,7 @@ export default function Graph3DView({ cases, onReady }: Props) {
       });
     graph.d3Force("charge")?.strength(-120);
     graphRef.current = graph;
+    clusterLabelsRef.current = createClusterLabels(graph.scene());
 
     const resizeObserver = new ResizeObserver(() => {
       if (!containerRef.current) return;
@@ -196,19 +202,26 @@ export default function Graph3DView({ cases, onReady }: Props) {
     resizeObserver.observe(containerRef.current);
 
     // ゆらゆら浮遊ループ。常時1本のrAFを回し、swayingRef中のみ各ノードの
-    // スプライト位置をレイアウト確定位置+決定論的オフセットへ書き換える。
+    // Group位置をレイアウト確定位置+決定論的オフセットへ書き換える。
     // エンジン停止後はライブラリ側がposition更新を止めるため競合しない
-    // （three-forcegraph: engineRunning=false の間 tickFrame は位置同期をスキップする）
+    // （three-forcegraph: engineRunning=false の間 tickFrame は位置同期をスキップする）。
+    // ラベルのカメラ追従（updateLabelFacing）はswayingフラグと無関係に毎フレーム行う。
+    // world固定オフセットだと視点によってラベルが画像の裏に回りこんでしまうため、
+    // カメラのright vectorを毎フレーム求めてラベルのローカル位置に反映する
+    // （right vectorはフレームにつき1回だけ計算し、全ノードで使い回す）
     let swayFrameId: number;
     const swayTick = () => {
-      if (swayingRef.current) {
-        const t = performance.now() / 1000;
-        for (const node of currentNodesRef.current) {
-          const sprite = (node as NodeWithSprite).__threeObj;
-          if (!sprite) continue;
+      const right = new THREE.Vector3().setFromMatrixColumn(graph.camera().matrixWorld, 0);
+      const swaying = swayingRef.current;
+      const t = swaying ? performance.now() / 1000 : 0;
+      for (const node of currentNodesRef.current) {
+        const group = (node as NodeWithSprite).__threeObj;
+        if (!group) continue;
+        if (swaying) {
           const { dx, dy, dz } = swayOffset(node.id, t);
-          sprite.position.set((node.x ?? 0) + dx, (node.y ?? 0) + dy, (node.z ?? 0) + dz);
+          group.position.set((node.x ?? 0) + dx, (node.y ?? 0) + dy, (node.z ?? 0) + dz);
         }
+        updateLabelFacing(group, right);
       }
       swayFrameId = requestAnimationFrame(swayTick);
     };
@@ -217,7 +230,9 @@ export default function Graph3DView({ cases, onReady }: Props) {
     return () => {
       cancelAnimationFrame(swayFrameId);
       resizeObserver.disconnect();
-      graph._destructor(); // 内部でノードごとのSprite/Material/Textureも解放される
+      graph._destructor(); // 内部でノードごとのGroup配下Sprite/Material/Textureも解放される
+      clusterLabelsRef.current?.dispose();
+      clusterLabelsRef.current = null;
       graphRef.current = null;
     };
     // reduceMotionはuseMemo([])で初回描画時に一度だけ確定する値（不変）
@@ -237,6 +252,8 @@ export default function Graph3DView({ cases, onReady }: Props) {
     const graph = graphRef.current;
     if (!graph) return;
     swayingRef.current = false; // 再レイアウト中は力学シミュレーション側に位置を委ねる
+    // 再収束が終わるまで前回位置のクラスタ名ラベルを隠す（onEngineStopのupdate()で再表示される）
+    clusterLabelsRef.current?.update([]);
     if (hasLoadedOnceRef.current) {
       // 2回目以降（フィルタ変更）: 初回の同期warmup設定を、従来の収束アニメーションに戻す
       graph
