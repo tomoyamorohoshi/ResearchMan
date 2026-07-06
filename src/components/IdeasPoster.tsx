@@ -10,7 +10,7 @@ import IdeaShapeCard from "@/components/IdeaShapeCard";
 // （JSなしで完結。ホバーの持ち上がりはCSSの:hover + motion-safe:のみで実現）。
 //
 // Tailwindの動的クラス名はJITスキャン対象外になるため、候補は必ずリテラル文字列の配列で
-// 用意し、hashで添字を選ぶ（src/components/IdeaCard.tsxのVARIANT_STYLE踏襲パターン）。
+// 用意し、hashで添字を選ぶ。
 type SizeTier = "S" | "M" | "L";
 
 // デスクトップ(sm:以上)のcol-span候補（数値。行詰め計算にも使う）。Sは常に3、M/Lはさらに
@@ -43,16 +43,12 @@ const COL_START_CLASS_BY_NUM: Record<number, string> = {
   9: "sm:col-start-9",
   10: "sm:col-start-10",
 };
+// C3: <smでは常にフル幅1カラム（半カラムだと極小フォントで説明文・リンクが読めなくなる
+// カードが出るため、シェイプの安全領域比率で半カラムを許可する分岐は撤去した。根治のため
+// モバイルは常にMOBILE_FULLの1択にする）
 const MOBILE_FULL = "col-span-4";
-const MOBILE_HALF = "col-span-2";
 const JUSTIFY_CLASSES = ["justify-self-start", "justify-self-end"] as const;
 const Z_CLASSES = ["z-0", "z-10", "z-20", "z-30", "z-40"] as const;
-
-// モバイルで半カラム(2/4)にしてよいのは、シェイプの安全領域が幅に対して十分広い（安全領域比率
-// >=0.6）場合だけに絞る。狭いシェイプ（polygon/splat等）はモバイルでは常にフル幅にして、
-// 「Sサイズでも説明文とリンクは必ず読める」を担保するフォールバック（計画書の意図をモバイル幅の
-// 実リスク箇所に当てはめたもの。詳細はDESIGN差分メモ参照）
-const MOBILE_HALF_SAFE_AREA_FRACTION = 0.6;
 
 // カードの幅をグリッドセル幅の86〜98%にランダム化する。100%固定だとjustify-self-start/endが
 // 効かない（セル幅ぴったりだと「左右どちらに寄せるか」の余白が生まれない）ため、わずかに
@@ -62,7 +58,6 @@ const WIDTH_PCT_MAX = 95;
 
 type CardLayout = {
   desktopSpan: number;
-  mobileSpanClass: string;
   justifyClass: string;
   zClass: string;
   rotateDeg: number;
@@ -71,20 +66,18 @@ type CardLayout = {
   widthPct: number;
 };
 
-function layoutFor(idea: Idea, safeAreaFraction: number): CardLayout {
+function layoutFor(idea: Idea): CardLayout {
   const h = hashId(idea.id);
   const tier: SizeTier = h % 3 === 0 ? "S" : h % 3 === 1 ? "M" : "L";
   const spanOptions = DESKTOP_SPAN_OPTIONS[tier];
   const desktopSpan = spanOptions[Math.floor(h / 3) % spanOptions.length];
-  const canHalfWidth = safeAreaFraction >= MOBILE_HALF_SAFE_AREA_FRACTION && (h >>> 6) % 3 === 0;
-  const mobileSpanClass = canHalfWidth ? MOBILE_HALF : MOBILE_FULL;
   const justifyClass = JUSTIFY_CLASSES[(h >>> 14) % JUSTIFY_CLASSES.length];
   const zClass = Z_CLASSES[(h >>> 26) % Z_CLASSES.length];
   const rotateDeg = (((h >>> 4) % 1000) / 1000 - 0.5) * 10; // -5..5deg
   const marginTopPx = (((h >>> 18) % 1000) / 1000) * 22; // 0..22px（呼吸のある散らばり）
   const marginBottomPx = (((h >>> 22) % 1000) / 1000) * 16; // 0..16px
   const widthPct = WIDTH_PCT_MIN + (((h >>> 9) % 1000) / 1000) * (WIDTH_PCT_MAX - WIDTH_PCT_MIN);
-  return { desktopSpan, mobileSpanClass, justifyClass, zClass, rotateDeg, marginTopPx, marginBottomPx, widthPct };
+  return { desktopSpan, justifyClass, zClass, rotateDeg, marginTopPx, marginBottomPx, widthPct };
 }
 
 // CSS Gridの既定の自動配置（auto-flow: row）は各行を左詰めで敷き詰めるため、1行に収まりきらず
@@ -127,8 +120,7 @@ export default function IdeasPoster({ ideas, techDomainById }: { ideas: Idea[]; 
   const cards = ideas.map((idea) => {
     const category = categoryOf(idea, techDomainById);
     const shape = shapeForIdea(idea.id);
-    const safeAreaFraction = shape.safeArea.w / shape.viewBoxW;
-    const layout = layoutFor(idea, safeAreaFraction);
+    const layout = layoutFor(idea);
     return { idea, category, shape, layout };
   });
   const colStarts = computeColStarts(
@@ -170,7 +162,7 @@ export default function IdeasPoster({ ideas, techDomainById }: { ideas: Idea[]; 
           return (
             <div
               key={idea.id}
-              className={`${layout.mobileSpanClass} ${spanClass} ${colStartClass} ${layout.justifyClass} ${layout.zClass} relative transition-transform duration-150 ease-out [transform:rotate(var(--rotate))] motion-safe:hover:[transform:rotate(var(--rotate))_scale(1.02)] motion-safe:hover:shadow-xl motion-safe:hover:z-50`}
+              className={`${MOBILE_FULL} ${spanClass} ${colStartClass} ${layout.justifyClass} ${layout.zClass} relative pointer-events-none transition-transform duration-150 ease-out [transform:rotate(var(--rotate))] motion-safe:hover:[transform:rotate(var(--rotate))_scale(1.02)] motion-safe:hover:shadow-xl motion-safe:hover:z-50`}
               style={style}
             >
               <IdeaShapeCard idea={idea} category={category} />
