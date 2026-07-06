@@ -42,7 +42,76 @@ export const sortedIdeas: Idea[] = [...ideas].sort((a, b) => {
 });
 
 // カード表示用の日付ラベル（"2026-07-08" → "2026.07.08" / null → "ARCHIVE"）。
-// IdeaCard・IdeasDeckのカウンター表示で共有する
+// IdeaShapeCardのカードで共有する
 export function dateLabelOf(idea: Idea): string {
   return idea.date ? idea.date.replaceAll("-", ".") : "ARCHIVE";
+}
+
+// ── カテゴライズ（DESIGN: goofy-hatching-mango.md）────────────────────────
+// カテゴリ = そのアイデアが参照する最初のtech refのDomain（tech.jsonのdomains[0]）。
+// tech refが無い（case参照のみ・参照なし）アイデアは"CASE REMIX"扱い。
+// 配色はRMのベージュ紙面(#eeece7)に調和するくすみ系エディトリアル8色（設計合意の色表）
+export type CategoryKey =
+  | "SPATIAL_3D"
+  | "MOTION_BODY"
+  | "GENVIDEO"
+  | "CREATORTOOLS"
+  | "AI_AGENTS"
+  | "HCI_MEDIAART"
+  | "AUDIO_MUSIC"
+  | "CASE_REMIX";
+
+export type Category = { key: CategoryKey; label: string; fill: string; text: string };
+
+const CREAM = "#f4f0e6";
+
+// 表示順（凡例・カテゴリ列挙で使う正準順）
+const CATEGORY_ORDER: CategoryKey[] = [
+  "SPATIAL_3D",
+  "MOTION_BODY",
+  "GENVIDEO",
+  "CREATORTOOLS",
+  "AI_AGENTS",
+  "HCI_MEDIAART",
+  "AUDIO_MUSIC",
+  "CASE_REMIX",
+];
+
+const CATEGORIES: Record<CategoryKey, Category> = {
+  SPATIAL_3D: { key: "SPATIAL_3D", label: "SPATIAL/3D", fill: "#c2704e", text: CREAM },
+  MOTION_BODY: { key: "MOTION_BODY", label: "MOTION/BODY", fill: "#7d93b2", text: CREAM },
+  GENVIDEO: { key: "GENVIDEO", label: "GENVIDEO", fill: "#8d6a92", text: CREAM },
+  CREATORTOOLS: { key: "CREATORTOOLS", label: "CREATORTOOLS", fill: "#b08d2d", text: CREAM },
+  AI_AGENTS: { key: "AI_AGENTS", label: "AI/AGENTS", fill: "#1f1f1f", text: CREAM },
+  HCI_MEDIAART: { key: "HCI_MEDIAART", label: "HCI/MEDIAART", fill: "#8a9b77", text: CREAM },
+  AUDIO_MUSIC: { key: "AUDIO_MUSIC", label: "AUDIO/MUSIC", fill: "#c4838f", text: CREAM },
+  CASE_REMIX: { key: "CASE_REMIX", label: "CASE REMIX", fill: "#a89f90", text: "#1f1f1f" },
+};
+
+// tech.jsonのdomains[0]表記（TECHNOLOGY_SPEC.mdのDomain語彙）→ カテゴリキー
+const DOMAIN_TO_CATEGORY: Record<string, CategoryKey> = {
+  "Spatial/3D": "SPATIAL_3D",
+  "Motion/Body": "MOTION_BODY",
+  GenVideo: "GENVIDEO",
+  CreatorTools: "CREATORTOOLS",
+  "AI/Agents": "AI_AGENTS",
+  "HCI/MediaArt": "HCI_MEDIAART",
+  "Audio/Music": "AUDIO_MUSIC",
+};
+
+// アイデアのカテゴリを導出する。techDomainByIdはtech.json由来のid→domains[0]マップ
+// （ページ側=サーバーで src/lib/tech.ts の techItems から構築して渡す）
+export function categoryOf(idea: Idea, techDomainById: Map<string, string>): Category {
+  const techRef = idea.refs.find((r) => r.type === "tech");
+  if (!techRef) return CATEGORIES.CASE_REMIX;
+  const domain0 = techDomainById.get(techRef.id);
+  const key = domain0 ? DOMAIN_TO_CATEGORY[domain0] : undefined;
+  return key ? CATEGORIES[key] : CATEGORIES.CASE_REMIX;
+}
+
+// 凡例用: 実際に存在するカテゴリだけを正準順で返す
+export function existingCategories(ideas: Idea[], techDomainById: Map<string, string>): Category[] {
+  const seen = new Set<CategoryKey>();
+  for (const idea of ideas) seen.add(categoryOf(idea, techDomainById).key);
+  return CATEGORY_ORDER.filter((k) => seen.has(k)).map((k) => CATEGORIES[k]);
 }

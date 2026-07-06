@@ -1,6 +1,10 @@
 import { sortedIdeas } from "@/lib/ideas";
-import IdeasDeck from "@/components/IdeasDeck";
+import { techItems } from "@/lib/tech";
+import IdeasPoster from "@/components/IdeasPoster";
 import TopTabs from "@/components/TopTabs";
+
+// アイデア→カテゴリ導出用のtech.json id→domains[0]マップ（サーバー側で1度だけ構築）
+const techDomainById = new Map(techItems.map((t) => [t.id, t.domains[0]]));
 
 export const metadata = {
   title: "Ideas | ResearchMan",
@@ -10,7 +14,10 @@ export const metadata = {
 
 export default function IdeasPage() {
   return (
-    <main className="min-h-screen">
+    // overflow-x-hidden: ポスターのカードはhover/rotateでわずかに軸交差矩形が視覚上の境界から
+    // はみ出すことがある（回転した矩形は見た目上の外接矩形が広がるため）。デザインはそのままに
+    // 水平スクロールバーの発生だけを防ぐ安全策
+    <main className="min-h-screen overflow-x-hidden">
       {/* ヘッダー（TOP/Technologyと同じ構成） */}
       <header className="border-b border-gray-300 px-4 py-4 max-w-[1600px] mx-auto flex items-end justify-between gap-4">
         <div>
@@ -31,7 +38,7 @@ export default function IdeasPage() {
         <TopTabs active="ideas" />
       </div>
 
-      <IdeasDeck ideas={sortedIdeas} />
+      <IdeasPoster ideas={sortedIdeas} techDomainById={techDomainById} />
     </main>
   );
 }
