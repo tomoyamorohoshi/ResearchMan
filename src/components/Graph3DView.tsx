@@ -1,12 +1,15 @@
 "use client";
 
-// TOPページ3Dノードグラフ本体。3d-force-graph(ESM, window依存)を使うため、
-// 呼び出し元(GalleryClient)で必ず next/dynamic + ssr:false 経由でロードすること。
-import { useEffect, useMemo, useRef, useState } from "react";
+// 3Dノードグラフ本体（ドメイン非依存）。3d-force-graph(ESM, window依存)を使うため、
+// 呼び出し元(GalleryClient/TechGalleryClient)で必ず next/dynamic + ssr:false 経由でロードすること。
+// どのアイテム型T（Case/TechItem等）でも、対応するGraphDomainAdapter<T>を渡せば動く
+// （src/lib/graphDomain.ts参照）。
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import ForceGraph3D, { type ForceGraph3DInstance } from "3d-force-graph";
 import * as THREE from "three";
-import type { Case } from "@/lib/cases";
 import { buildGraphData, linkDistance, linkStrength, swayOffset, type GraphNode } from "@/lib/graph";
+import type { GraphDomainAdapter } from "@/lib/graphDomain";
+import { toNodeSpec } from "@/lib/graphDomain";
 import {
   createNodeObject,
   setNodeHover,
@@ -25,10 +28,9 @@ import {
   computeStaggerDelay,
 } from "@/lib/alignLayout";
 import { defaultCameraDistance, cardRectToPlanePose, type PlaneCardRect, type CameraParams } from "@/lib/planePose";
-import CasePanel from "./CasePanel";
 
 // 3d-force-graph(three-forcegraph)がnodeThreeObjectの戻り値に自動で束縛するプロパティ
-type NodeWithSprite = GraphNode & { __threeObj?: THREE.Group };
+type NodeWithSprite<T> = GraphNode<T> & { __threeObj?: THREE.Group };
 
 // クリックしたノードへのカメラ急旋回: ノード方向の延長線上、この距離だけ手前に着地する
 const CAMERA_FOCUS_DISTANCE = 90;
@@ -159,8 +161,9 @@ const RELOAD_COOLDOWN_TICKS = 240;
 // そのためlookAtではなくcontrols.targetを直接保存・復帰する
 type CameraSnapshot = { x: number; y: number; z: number; target: THREE.Vector3 };
 
-// ON/OFFワンカット遷移(「グリッド平面モーフ」)向けAPI。GalleryClientがonReadyで受け取り、
-// DOMグリッドのrect（カード画像部分・viewport絶対px）を渡してスプライトのポーズ/モーフを操作する
+// ON/OFFワンカット遷移(「グリッド平面モーフ」)向けAPI。呼び出し元(useGraphViewTransition)が
+// onReadyで受け取り、DOMグリッドのrect（カード画像部分・viewport絶対px）を渡して
+// スプライトのポーズ/モーフを操作する
 export type GraphTransitionApi = {
   // アンビエントカメラドリフトを開始する（冪等）。ON遷移の着地完了後に呼ぶ想定
   beginAmbient: () => void;
@@ -175,16 +178,22 @@ export type GraphTransitionApi = {
   morphToPlanePose: (rects: Map<string, PlaneCardRect>, onDone: () => void) => void;
 };
 
-type Props = {
-  cases: Case[];
+// next/dynamic経由でロードする呼び出し元(GalleryClient/TechGalleryClient)は、
+// dynamic()の型引数がジェネリック関数コンポーネントを直接推論できないため、
+// このエクスポート型を使って `as React.ComponentType<Graph3DViewProps<T>>` にキャストする
+export type Graph3DViewProps<T> = {
+  items: T[];
+  adapter: GraphDomainAdapter<T>;
+  // ノードクリック時の右側詳細パネル。閉じるボタン/Escはonから呼ぶこと
+  renderPanel: (item: T, onClose: () => void) => ReactNode;
   // マウント直後のレイアウト確定時に一度だけ呼ばれる。遷移演出との連携用
   onReady?: (api: GraphTransitionApi) => void;
 };
 
-export default function Graph3DView({ cases, onReady }: Props) {
+export default function Graph3DView<T>({ items, adapter, renderPanel, onReady }: Graph3DViewProps<T>) {
   const containerRef = useRef<HTMLDivElement>(null);
   const graphRef = useRef<ForceGraph3DInstance | null>(null);
-  const [selected, setSelected] = useState<Case | null>(null);
+  const [selected, setSelected] = useState<T | null>(null);
   // ノードクリック直前のカメラ位置/注視点。パネルclose時にここへ復帰する。
   // 未保存時のみ書き込む（パネルを開いたまま別ノードをクリックしても、
   // 復帰先は最初のクリック前の位置を維持する）
@@ -210,10 +219,10 @@ export default function Graph3DView({ cases, onReady }: Props) {
   // 揺れ計算対象のノード配列。graph.graphData()の毎フレーム呼び出しを避けるため、
   // データ投入時に自前で保持する（3d-force-graphは渡した配列の要素を直接書き換えるので
   // 参照を保持しておけばx/y/z・__threeObjは常に最新）
-  const currentNodesRef = useRef<GraphNode[]>([]);
-  // クラスタ名（タグ名）ラベルのハンドル。graph.scene()はライブラリ管理外のため
+  const currentNodesRef = useRef<GraphNode<T>[]>([]);
+  // クラスタ名（グルーピングキー）ラベルのハンドル。graph.scene()はライブラリ管理外のため
   // このモジュール自身がテクスチャ/スプライトの生成・破棄を担う（clusterLabels.ts参照）
-  const clusterLabelsRef = useRef<ClusterLabelHandle | null>(null);
+  const clusterLabelsRef = useRef<ClusterLabelHandle<T> | null>(null);
   // アンビエントカメラドリフトを開始済みか（このグラフインスタンスで一度きり。冪等呼び出し用）
   const ambientStartedRef = useRef(false);
   // ドリフト開始フェイルセーフのタイマーID。unmountでclearする
@@ -266,7 +275,7 @@ export default function Graph3DView({ cases, onReady }: Props) {
     alignTweenRef.current = null;
     alignedPoseRef.current = null;
     restoreNonAlignSideEffects();
-    for (const node of currentNodesRef.current as NodeWithSprite[]) {
+    for (const node of currentNodesRef.current as NodeWithSprite<T>[]) {
       const group = node.__threeObj;
       if (group) setLabelOpacity(group, LABEL_OPACITY);
     }
@@ -341,14 +350,14 @@ export default function Graph3DView({ cases, onReady }: Props) {
       // 呼び出しごとに必ず新規のGroupを生成する（graphSprites.ts参照）。
       // 3d-force-graphはノードがデータから消えるたびにこの戻り値を自動disposeするため、
       // 同一インスタンスをキャッシュして使い回すと再出現時に二重disposeでクラッシュする
-      .nodeThreeObject((n) => createNodeObject((n as unknown as GraphNode).c))
+      .nodeThreeObject((n) => createNodeObject(toNodeSpec(adapter, (n as unknown as GraphNode<T>).item)))
       .onNodeClick((n) => {
-        const node = n as unknown as GraphNode;
-        setSelected(node.c); // パネルは即時表示（カメラ移動と同時に出す）
+        const node = n as unknown as GraphNode<T>;
+        setSelected(node.item); // パネルは即時表示（カメラ移動と同時に出す）
         // ホバー状態の後始末: クリック直後にカメラが急旋回してカーソルがノードから
         // 離れるため、pointerleaveがraycast経由で発火せず拡大+最前面(depthTest=false)の
         // まま残ってしまう。クリック時点で明示的に解除する
-        const group = (node as NodeWithSprite).__threeObj;
+        const group = (node as NodeWithSprite<T>).__threeObj;
         if (group) setNodeHover(group, false);
         if (containerRef.current) containerRef.current.style.cursor = "";
         // 整列モード中(idle以外)はカメラ急旋回をしない。node.x/y/zは力学レイアウトの座標のまま
@@ -375,9 +384,9 @@ export default function Graph3DView({ cases, onReady }: Props) {
       })
       .onNodeHover((n, prev) => {
         if (containerRef.current) containerRef.current.style.cursor = n ? "pointer" : "";
-        const prevGroup = (prev as NodeWithSprite | null)?.__threeObj;
+        const prevGroup = (prev as NodeWithSprite<T> | null)?.__threeObj;
         if (prevGroup) setNodeHover(prevGroup, false);
-        const group = (n as NodeWithSprite | null)?.__threeObj;
+        const group = (n as NodeWithSprite<T> | null)?.__threeObj;
         if (group) setNodeHover(group, true);
       })
       // 初回はcooldownTicks(0): 同期warmupだけでレイアウトを確定させ、以降のアニメ収束は行わない
@@ -407,7 +416,7 @@ export default function Graph3DView({ cases, onReady }: Props) {
       });
     graph.d3Force("charge")?.strength(-120);
     graphRef.current = graph;
-    clusterLabelsRef.current = createClusterLabels(graph.scene());
+    clusterLabelsRef.current = createClusterLabels(graph.scene(), adapter);
 
     const resizeObserver = new ResizeObserver(() => {
       if (!containerRef.current) return;
@@ -429,10 +438,10 @@ export default function Graph3DView({ cases, onReady }: Props) {
     const beginAlignEnter = () => {
       const clusters = clusterLabelsRef.current?.getClusters() ?? [];
       if (clusters.length === 0) return;
-      const nodes = currentNodesRef.current as NodeWithSprite[];
+      const nodes = currentNodesRef.current as NodeWithSprite<T>[];
       const assignInput = nodes
         .filter((n) => n.x !== undefined && n.y !== undefined && n.z !== undefined)
-        .map((n) => ({ id: n.id, tags: n.c.tags ?? [], x: n.x as number, y: n.y as number, z: n.z as number }));
+        .map((n) => ({ id: n.id, keys: adapter.groupKeys(n.item), x: n.x as number, y: n.y as number, z: n.z as number }));
       const assignment = assignColumns(assignInput, clusters);
       const layout = computeGridLayout(assignInput, assignment, clusters, {
         cell: ALIGN_CELL,
@@ -519,7 +528,7 @@ export default function Graph3DView({ cases, onReady }: Props) {
 
     // 整列モード(C): 力学レイアウトの座標(node.x/y/z="温存座標")へ逆トゥイーンして解除する
     const beginAlignExit = () => {
-      const nodes = currentNodesRef.current as NodeWithSprite[];
+      const nodes = currentNodesRef.current as NodeWithSprite<T>[];
       const preAlign = preAlignHeaderStateRef.current;
       const clusters = clusterLabelsRef.current?.getClusters() ?? [];
       const currentByTag = new Map(clusters.map((c) => [c.tag, c]));
@@ -720,7 +729,7 @@ export default function Graph3DView({ cases, onReady }: Props) {
       clusterLabelsRef.current?.update([]); // クラスタ見出しを非表示に（モーフ完了時に出現させる）
 
       const pose: PlaneNodePose[] = [];
-      for (const node of currentNodesRef.current as NodeWithSprite[]) {
+      for (const node of currentNodesRef.current as NodeWithSprite<T>[]) {
         const group = node.__threeObj;
         if (!group) continue;
         const rect = rects.get(node.id);
@@ -756,7 +765,7 @@ export default function Graph3DView({ cases, onReady }: Props) {
         onDone?.();
         return;
       }
-      const nodeById = new Map((currentNodesRef.current as NodeWithSprite[]).map((nd) => [nd.id, nd]));
+      const nodeById = new Map((currentNodesRef.current as NodeWithSprite<T>[]).map((nd) => [nd.id, nd]));
       const distances = posed.map((p) => Math.hypot(p.pos.x, p.pos.y));
       const maxDist = Math.max(...distances, 1);
 
@@ -819,7 +828,7 @@ export default function Graph3DView({ cases, onReady }: Props) {
       graph.cameraPosition({ x: 0, y: 0, z: distance }, { x: 0, y: 0, z: 0 }, reduceMotion ? 0 : PLANE_MORPH_MS);
 
       const tweenNodes: PlaneNodeTween[] = [];
-      for (const node of currentNodesRef.current as NodeWithSprite[]) {
+      for (const node of currentNodesRef.current as NodeWithSprite<T>[]) {
         const group = node.__threeObj;
         if (!group) continue;
         const originPos = group.position.clone();
@@ -905,7 +914,7 @@ export default function Graph3DView({ cases, onReady }: Props) {
           }
         }
         for (const node of currentNodesRef.current) {
-          const group = (node as NodeWithSprite).__threeObj;
+          const group = (node as NodeWithSprite<T>).__threeObj;
           if (group) updateLabelFacing(group, right);
         }
         swayFrameId = requestAnimationFrame(swayTick);
@@ -930,7 +939,7 @@ export default function Graph3DView({ cases, onReady }: Props) {
       const swaying = alignPhase === "idle" && swayingRef.current;
       const t = swaying ? now / 1000 : 0;
       for (const node of currentNodesRef.current) {
-        const group = (node as NodeWithSprite).__threeObj;
+        const group = (node as NodeWithSprite<T>).__threeObj;
         if (!group) continue;
         if (swaying) {
           const { dx, dy, dz } = swayOffset(node.id, t);
@@ -1035,7 +1044,10 @@ export default function Graph3DView({ cases, onReady }: Props) {
   // にしてしまい、次のtickFrameで state.layout.tick() が undefined 参照で
   // クラッシュする（3d-force-graph 1.80.0 / three-forcegraph の実装依存の競合）。
   // graphData() 呼び出しだけで再加熱は完結するため、明示呼び出しはしない。
-  const idsKey = useMemo(() => cases.map((c) => c.id).sort().join("|"), [cases]);
+  // itemsだけに反応させる意図的な依存配列（adapterはCase/Tech双方とも呼び出し元の
+  // モジュールスコープ定数で参照が変わらないため、依存に含めても含めなくても実質不変）
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const idsKey = useMemo(() => items.map((item) => adapter.id(item)).sort().join("|"), [items]);
   useEffect(() => {
     const graph = graphRef.current;
     if (!graph) return;
@@ -1052,13 +1064,13 @@ export default function Graph3DView({ cases, onReady }: Props) {
         .warmupTicks(reduceMotion ? RELOAD_WARMUP_TICKS_REDUCED : RELOAD_WARMUP_TICKS)
         .cooldownTicks(reduceMotion ? 0 : RELOAD_COOLDOWN_TICKS);
     }
-    const data = buildGraphData(cases);
+    const data = buildGraphData(items, { getId: adapter.id, getKeys: adapter.groupKeys, keyWeight: adapter.keyWeight });
     currentNodesRef.current = data.nodes;
     graph.graphData(data);
     const link = graph.d3Force("link");
     link?.distance(linkDistance).strength(linkStrength);
     hasLoadedOnceRef.current = true;
-    // idsKeyだけに反応させる意図的な依存配列（casesは絞込のたびに新規配列になるため）
+    // idsKeyだけに反応させる意図的な依存配列（itemsは絞込のたびに新規配列になるため）
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idsKey]);
 
@@ -1087,18 +1099,36 @@ export default function Graph3DView({ cases, onReady }: Props) {
   }
 
   return (
-    // relative必須: CasePanelのモバイル全面表示（absolute inset-0）のアンカー。
+    // relative必須: 詳細パネル(renderPanel)のモバイル全面表示（absolute inset-0）のアンカー。
     // これが無いとcontaining blockがページ原点になり、パネルがヘッダーを覆いつつ
     // グラフ領域と縦ズレし、ページスクロールにも追従しない
     <div className="relative flex h-[calc(100vh-180px)] min-h-[480px]">
       <div ref={containerRef} className="relative flex-1 min-w-0 h-full">
-        {cases.length === 0 && (
+        {items.length === 0 && (
           <div className="absolute inset-0 flex items-center justify-center text-[10px] tracking-[0.3em] uppercase text-gray-400 pointer-events-none">
             No results found
           </div>
         )}
       </div>
-      {selected && <CasePanel c={selected} onClose={handlePanelClose} />}
+      {selected && <PanelRenderer item={selected} onClose={handlePanelClose} renderPanel={renderPanel} />}
     </div>
   );
+}
+
+// renderPanel(親から渡された関数)をGraph3DView自身のレンダー本体で直接呼び出すと、
+// 「refを読む関数（handlePanelClose）を関数呼び出しへ渡している」という静的解析が
+// 誤検出する（react-hooks/refs。JSX要素の属性値として渡す分には問題ない）。
+// 実際にはonCloseはJSXへ橋渡しされるだけで安全だが、越境した関数呼び出しは解析できない
+// ため、別スコープの薄いコンポーネントを介して呼ぶ。DOM出力は一切増えない
+// （このコンポーネント自体は要素を生成せずrenderPanelの戻り値をそのまま返す）。
+function PanelRenderer<T>({
+  item,
+  onClose,
+  renderPanel,
+}: {
+  item: T;
+  onClose: () => void;
+  renderPanel: (item: T, onClose: () => void) => ReactNode;
+}) {
+  return <>{renderPanel(item, onClose)}</>;
 }

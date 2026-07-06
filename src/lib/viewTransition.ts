@@ -1,5 +1,6 @@
-// TOPページ 3Dモード切替時のトランジション演出（DOM操作のみ・Reactに依存しない）。
-// GalleryClient（"use client"）からのみ呼ばれる想定。
+// 3Dモード切替時のトランジション演出（DOM操作のみ・Reactに依存しない）。ドメイン非依存
+// （カードのid属性名・詳細ページのhrefプレフィックスを呼び出し側が渡す）。
+// GalleryClient/TechGalleryClient（"use client"）からのみ呼ばれる想定。
 //
 // v3:「グリッド平面モーフ」方式（計画書Part2参照）。DOMグリッドと3D星雲を同じスプライト群の
 // 2つのポーズとして扱い、画素一致の1フレームスワップ＋整列モードと同じ自前トゥイーンで
@@ -28,20 +29,22 @@ function visibleChildren(container: HTMLElement): HTMLElement[] {
   });
 }
 
-// カード要素から事例idを取り出す。data-case-id属性を優先し、
-// 無ければ子のLink href="/cases/{id}" から抽出する
-function extractCaseId(el: HTMLElement): string | null {
-  const attr = el.getAttribute("data-case-id");
+// カード要素からアイテムidを取り出す。idAttr属性を優先し、無ければ子の
+// Link href="{hrefPrefix}{id}" から抽出する（hrefPrefix省略時はこのフォールバックをしない）
+function extractCardId(el: HTMLElement, idAttr: string, hrefPrefix?: string): string | null {
+  const attr = el.getAttribute(idAttr);
   if (attr) return attr;
-  const link = el.querySelector<HTMLAnchorElement>('a[href^="/cases/"]');
+  if (!hrefPrefix) return null;
+  const link = el.querySelector<HTMLAnchorElement>(`a[href^="${hrefPrefix}"]`);
   const href = link?.getAttribute("href");
-  const match = href?.match(/^\/cases\/([^/?#]+)/);
+  const escapedPrefix = hrefPrefix.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const match = href?.match(new RegExp(`^${escapedPrefix}([^/?#]+)`));
   return match ? match[1] : null;
 }
 
 // カードの「テキスト部」要素（画像部分・お気に入りボタン以外の直接の子）。
-// CaseCard.tsxの構造（画像Link → テキストLink → 年/受賞バッジdiv → お気に入りボタン）に
-// 依存せず、属性/タグ名で判定する（マークアップ順序が変わっても壊れにくい）
+// CaseCard.tsx/TechCard.tsxの構造（画像Link → テキストLink → 年/バッジ行 → お気に入り
+// ボタン）に依存せず、属性/タグ名で判定する（マークアップ順序が変わっても壊れにくい）
 function textSections(card: HTMLElement): HTMLElement[] {
   return Array.from(card.children).filter(
     (el): el is HTMLElement => el instanceof HTMLElement && !el.classList.contains("aspect-square") && el.tagName !== "BUTTON",
@@ -59,12 +62,14 @@ async function settle(animations: Animation[]): Promise<void> {
  * グリッド全カード（画面外も含む）の画像部分（aspect-square）のrectをidごとに採取する。
  * 平面ポーズ計算（Graph3DView側）の入力になる。画面外カードも採取するのは、
  * 平面がビューポート外へ延長され、そこからスプライトが飛んでくる/飛んでいくため。
+ * idAttr: カード要素のid属性名（"data-case-id" / "data-tech-id"）。hrefPrefixは
+ * 属性欠落時のフォールバック抽出に使う詳細ページのURLプレフィックス（省略可）。
  */
-export function captureImageRects(gridEl: HTMLElement): Map<string, PlaneCardRect> {
+export function captureImageRects(gridEl: HTMLElement, idAttr: string, hrefPrefix?: string): Map<string, PlaneCardRect> {
   const result = new Map<string, PlaneCardRect>();
   for (const card of Array.from(gridEl.children)) {
     if (!(card instanceof HTMLElement)) continue;
-    const id = extractCaseId(card);
+    const id = extractCardId(card, idAttr, hrefPrefix);
     if (!id) continue;
     const img = card.querySelector<HTMLElement>(".aspect-square");
     if (!img) continue;

@@ -1,10 +1,11 @@
 // 整列モード（スペース5の倍数回目: カテゴリ列グリッド整列）の純粋なレイアウト計算。
 // three.js/DOM非依存（Node直実行でスモークテスト可能に保つ。src/lib/graph.tsと同じ方針）。
+// ドメイン非依存（keysは呼び出し側がGraphDomainAdapter.groupKeysで算出して渡す）。
 // Graph3DView.tsxからのみ呼ばれる想定。力学シミュレーション(node.x/y/z)には一切触れず、
 // 「グリッド上の目標座標」を計算するだけ。実際にスプライトをそこへトゥイーンするのは
 // Graph3DView側の自前rAFの役割（計画C-1参照）。
 
-export type ColumnAssignInput = { id: string; tags: string[]; x: number; y: number; z: number };
+export type ColumnAssignInput = { id: string; keys: string[]; x: number; y: number; z: number };
 // aspect: 見出しラベルテクスチャの幅/高さ比。整列モードの見出しは高さを固定するため、
 // 幅はタグごとにこの比率から算出する（見出し「サイズ」統一＝高さ統一。テキスト長が
 // 違えば幅は自然に変わるが、文字の大きさ自体は全タグで揃って見える）
@@ -17,8 +18,8 @@ function dist3(a: Point3, b: Point3): number {
 }
 
 /**
- * 各ノードを「所属列（タグ）」へ割り当てる。自分のtagsのうちクラスタ重心が現在位置に
- * 最も近いタグを選ぶ（移動距離が最小＝モーフが有機的）。所属タグが無い/どれもクラスタ
+ * 各ノードを「所属列（キー）」へ割り当てる。自分のkeysのうちクラスタ重心が現在位置に
+ * 最も近いキーを選ぶ（移動距離が最小＝モーフが有機的）。所属キーが無い/どれもクラスタ
  * 未満の場合は、最も近いクラスタへフォールバックする。クラスタが1つも無ければ空を返す。
  */
 export function assignColumns(nodes: ColumnAssignInput[], clusters: ClusterInput[]): Map<string, string> {
@@ -29,7 +30,7 @@ export function assignColumns(nodes: ColumnAssignInput[], clusters: ClusterInput
   for (const node of nodes) {
     let bestTag: string | null = null;
     let bestDist = Infinity;
-    for (const tag of node.tags) {
+    for (const tag of node.keys) {
       const cluster = clusterByTag.get(tag);
       if (!cluster) continue;
       const d = dist3(node, cluster.center);
