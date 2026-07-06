@@ -37,7 +37,9 @@ const AMBIENT_FAILSAFE_MS = 4000;
 
 // スペースキーでランダムなタグクラスタへカメラ接近する機能の定数
 const SPACE_FLY_TRANSITION_MS = 1200;
-const SPACE_FLY_COOLDOWN_MS = 1300; // 連打によるtween競合を防ぐ
+// 連打によるtween競合を防ぐ。整列enterの最大総時間（ALIGN_TRANSITION_MS + 最大スタガー
+// = 1100+250ms）より長くし、クールダウン明けの押下が必ずenter完了後になるようにする
+const SPACE_FLY_COOLDOWN_MS = 1500;
 // 接近後のカメラ距離: クラスタの世界幅に比例させ、下限・上限でclampする
 const SPACE_FLY_DISTANCE_FACTOR = 2.5;
 const SPACE_FLY_DISTANCE_MIN = 140;
@@ -198,6 +200,11 @@ export default function Graph3DView({ cases, onReady }: Props) {
   const alignPhaseRef = useRef<AlignPhase>("idle");
   // 進行中の整列/解除トゥイーンの状態（フェーズがidle/alignedの間はnull）
   const alignTweenRef = useRef<AlignTweenState | null>(null);
+  // 整列完了後（aligned中）の各Groupの固定位置。swayTickが毎フレーム再適用する。
+  // ライブラリが内部的にエンジンを一瞬再稼働させた場合（linkVisibility切替等）、
+  // layoutTickが全Group位置を力学座標へ同期し直すが、毎フレームのpinで即座に
+  // グリッド位置へ戻すことで、どんな再稼働経路に対しても整列表示を守る
+  const alignedPoseRef = useRef<Array<{ group: THREE.Group; target: THREE.Vector3 }> | null>(null);
   // 整列に入る直前のクラスタ表示状態（center/worldWidth）。解除トゥイーンの復帰先として使う
   const preAlignHeaderStateRef = useRef<Map<string, AlignTweenTarget & { width: number }> | null>(null);
 
@@ -220,10 +227,23 @@ export default function Graph3DView({ cases, onReady }: Props) {
   const forceReleaseAlignImmediate = () => {
     if (alignPhaseRef.current === "idle") return;
     alignTweenRef.current = null;
+    alignedPoseRef.current = null;
     restoreNonAlignSideEffects();
     for (const node of currentNodesRef.current as NodeWithSprite[]) {
       const group = node.__threeObj;
       if (group) setLabelOpacity(group, LABEL_OPACITY);
+    }
+    // カメラをグリッドフィット位置から既定の全景へ戻す（整列中に張られた
+    // 進行中のカメラtweenも、後から追加したこのtweenが毎フレーム後勝ちで上書きする）。
+    // 距離はライブラリ既定の自動フレーミング（cbrt(n)×170）に合わせる
+    const graph = graphRef.current;
+    if (graph) {
+      const n = Math.max(currentNodesRef.current.length, 1);
+      graph.cameraPosition(
+        { x: 0, y: 0, z: Math.cbrt(n) * 170 },
+        { x: 0, y: 0, z: 0 },
+        reduceMotion ? 0 : 600,
+      );
     }
     alignPhaseRef.current = "idle";
     preAlignHeaderStateRef.current = null;
@@ -247,6 +267,7 @@ export default function Graph3DView({ cases, onReady }: Props) {
     spacePressCountRef.current = 0;
     alignPhaseRef.current = "idle";
     alignTweenRef.current = null;
+    alignedPoseRef.current = null;
     preAlignHeaderStateRef.current = null;
 
     const graph = new ForceGraph3D(containerRef.current, { controlType: "orbit" });
@@ -324,8 +345,15 @@ export default function Graph3DView({ cases, onReady }: Props) {
       .cooldownTicks(0)
       // エンジン停止＝レイアウト確定のタイミングで揺れを開始する
       .onEngineStop(() => {
-        swayingRef.current = !reduceMotion;
-        clusterLabelsRef.current?.update(currentNodesRef.current);
+        // 整列モード中はsway再開もヘッダーの重心再配置もしない。
+        // linkVisibility等のtriggerUpdateプロパティを切り替えると、three-forcegraphの
+        // update()末尾が無条件にengineRunning=trueへ戻し、次フレームで即停止して
+        // ここが再発火する（＝整列のためのlinkVisibility(false)自身が引き金になる）。
+        // ゲートしないと整列中にヘッダーが力学重心へ飛び戻ってしまう
+        if (alignPhaseRef.current === "idle") {
+          swayingRef.current = !reduceMotion;
+          clusterLabelsRef.current?.update(currentNodesRef.current);
+        }
         if (!onReadyFiredRef.current) {
           onReadyFiredRef.current = true;
           // フェイルセーフ: GalleryClient側からbeginAmbientが呼ばれなかった場合に備え、
@@ -430,6 +458,7 @@ export default function Graph3DView({ cases, onReady }: Props) {
         for (const ht of headerTweens) {
           clusterLabelsRef.current?.setTransform(ht.tag, ht.target, ht.target.width);
         }
+        alignedPoseRef.current = nodeTweens.map((nt) => ({ group: nt.group, target: nt.target }));
         alignPhaseRef.current = "aligned";
         return;
       }
@@ -488,6 +517,7 @@ export default function Graph3DView({ cases, onReady }: Props) {
         for (const ht of headerTweens) {
           clusterLabelsRef.current?.setTransform(ht.tag, ht.target, ht.target.width);
         }
+        alignedPoseRef.current = null;
         restoreNonAlignSideEffects();
         clusterLabelsRef.current?.update(currentNodesRef.current);
         alignPhaseRef.current = "idle";
@@ -495,6 +525,7 @@ export default function Graph3DView({ cases, onReady }: Props) {
         return;
       }
 
+      alignedPoseRef.current = null; // 以後は解除トゥイーンが位置を握る
       alignTweenRef.current = {
         kind: "exit",
         startedAt: performance.now(),
@@ -515,6 +546,7 @@ export default function Graph3DView({ cases, onReady }: Props) {
       for (const ht of tween.headers) {
         clusterLabelsRef.current?.setTransform(ht.tag, ht.target, ht.target.width);
       }
+      alignedPoseRef.current = tween.nodes.map((nt) => ({ group: nt.group, target: nt.target }));
       alignPhaseRef.current = "aligned";
     };
     // 解除トゥイーン完了処理: 位置・見出しをsnapした後、リンク再表示・ラベルopacity復帰・
@@ -578,6 +610,15 @@ export default function Graph3DView({ cases, onReady }: Props) {
       const alignPhase = alignPhaseRef.current;
       if (alignPhase === "entering" || alignPhase === "exiting") {
         alignFrameTick(now);
+      } else if (alignPhase === "aligned") {
+        // aligned中は毎フレームグリッド位置へ固定し直す（alignedPoseRefのコメント参照。
+        // ライブラリの一時的なエンジン再稼働がGroup位置を力学座標へ同期し直しても、
+        // このpinが同一フレーム内で上書きして整列表示を守る。reduced-motionの
+        // 即時整列もこの機構が支える）
+        const pose = alignedPoseRef.current;
+        if (pose) {
+          for (const p of pose) p.group.position.copy(p.target);
+        }
       }
       // 整列モード中(idle以外)は力学シミュレーション座標での揺れを止める
       // （整列トゥイーン、または静止したグリッド位置がスプライト位置を握るため）
@@ -604,10 +645,21 @@ export default function Graph3DView({ cases, onReady }: Props) {
       if (e.code !== "Space") return;
       const active = document.activeElement as HTMLElement | null;
       const tagName = active?.tagName;
-      if (tagName === "INPUT" || tagName === "TEXTAREA" || tagName === "SELECT" || active?.isContentEditable) return;
+      // 入力欄に加えBUTTON/Aも除外: パネルの閉じるボタン等にフォーカスがある時の
+      // Spaceはネイティブのボタン活性化（＝閉じる）に譲る
+      if (
+        tagName === "INPUT" ||
+        tagName === "TEXTAREA" ||
+        tagName === "SELECT" ||
+        tagName === "BUTTON" ||
+        tagName === "A" ||
+        active?.isContentEditable
+      )
+        return;
+      // クールダウン中でもページスクロールは常に抑止する（判定より先にpreventDefault）
+      e.preventDefault();
       const now = performance.now();
       if (now - lastFlyTimeRef.current < SPACE_FLY_COOLDOWN_MS) return;
-      e.preventDefault(); // ページスクロール・フォーカス中ボタンの再押下を防ぐ
       lastFlyTimeRef.current = now;
       spacePressCountRef.current += 1;
 
