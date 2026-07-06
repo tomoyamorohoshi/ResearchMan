@@ -31,7 +31,9 @@ const clusterWorldWidth = (count: number): number => 28 + Math.sqrt(count) * 3;
 type ClusterEntry = { sprite: THREE.Sprite; aspect: number; center: { x: number; y: number; z: number }; count: number };
 
 // スペースキー接近機能向け: 現在表示中（count>=MIN_CLUSTER_SIZE）のクラスタ一覧
-export type ClusterInfo = { tag: string; center: { x: number; y: number; z: number }; count: number; worldWidth: number };
+// aspect: ラベルテクスチャの幅/高さ比（テキスト長で変わる）。整列モードの見出しサイズ
+// 統一（高さ固定・幅=高さ×aspect）で使う
+export type ClusterInfo = { tag: string; center: { x: number; y: number; z: number }; count: number; worldWidth: number; aspect: number };
 
 export type ClusterLabelHandle = {
   update(nodes: GraphNode[]): void;
@@ -134,7 +136,13 @@ export function createClusterLabels(scene: THREE.Scene): ClusterLabelHandle {
     const result: ClusterInfo[] = [];
     for (const [tag, entry] of entries) {
       if (!entry.sprite.visible) continue;
-      result.push({ tag, center: { ...entry.center }, count: entry.count, worldWidth: clusterWorldWidth(entry.count) });
+      result.push({
+        tag,
+        center: { ...entry.center },
+        count: entry.count,
+        worldWidth: clusterWorldWidth(entry.count),
+        aspect: entry.aspect,
+      });
     }
     return result;
   }

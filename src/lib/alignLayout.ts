@@ -5,7 +5,10 @@
 // Graph3DView側の自前rAFの役割（計画C-1参照）。
 
 export type ColumnAssignInput = { id: string; tags: string[]; x: number; y: number; z: number };
-export type ClusterInput = { tag: string; center: { x: number; y: number; z: number }; count: number; worldWidth: number };
+// aspect: 見出しラベルテクスチャの幅/高さ比。整列モードの見出しは高さを固定するため、
+// 幅はタグごとにこの比率から算出する（見出し「サイズ」統一＝高さ統一。テキスト長が
+// 違えば幅は自然に変わるが、文字の大きさ自体は全タグで揃って見える）
+export type ClusterInput = { tag: string; center: { x: number; y: number; z: number }; count: number; worldWidth: number; aspect: number };
 
 type Point3 = { x: number; y: number; z: number };
 
@@ -50,7 +53,9 @@ export function assignColumns(nodes: ColumnAssignInput[], clusters: ClusterInput
   return result;
 }
 
-export type GridLayoutOptions = { cell: number; maxRows: number };
+// headerWorldH: 整列モードの見出し「高さ」（世界単位・全タグ共通固定値）。
+// 幅はタグごとに headerWorldH * cluster.aspect で決まる（見出しサイズ統一＝高さ統一）
+export type GridLayoutOptions = { cell: number; maxRows: number; headerWorldH: number };
 export type NodeGridPosition = { x: number; y: number; z: number };
 export type HeaderGridPosition = { x: number; y: number; z: number; width: number };
 export type GridBBox = { minX: number; maxX: number; minY: number; maxY: number; maxHeaderY: number };
@@ -75,7 +80,7 @@ export function computeGridLayout(
   clusters: ClusterInput[],
   opts: GridLayoutOptions,
 ): GridLayoutResult {
-  const { cell, maxRows } = opts;
+  const { cell, maxRows, headerWorldH } = opts;
   const orderedClusters = [...clusters].sort((a, b) => a.center.x - b.center.x);
   const columnOrder = orderedClusters.map((c) => c.tag);
 
@@ -138,7 +143,9 @@ export function computeGridLayout(
     const minX = Math.min(...xs);
     const maxX = Math.max(...xs);
     const centerX = (minX + maxX) / 2;
-    const width = maxX - minX + cell; // ブロック幅（サブ列全体にまたがる）
+    // 見出しは高さを全タグ共通固定にし、幅はテキスト長に応じたaspectから算出する
+    // （列ブロック幅にも所属数にも比例させない。ユーザー要望＝見た目のフォントサイズ統一）
+    const width = headerWorldH * cluster.aspect;
     headers.set(cluster.tag, { x: centerX, y: topY + headerGap, z: 0, width });
   }
 
@@ -160,6 +167,13 @@ export function computeGridLayout(
   }
   let maxHeaderY = maxY;
   for (const h of headers.values()) maxHeaderY = Math.max(maxHeaderY, h.y);
+  // 見出し幅が固定値になったことで、狭い列（少数所属カテゴリ）では見出しが列幅より
+  // 左右に張り出すことがある。カメラフィットの幅計算がこの張り出しを見落とさないよう、
+  // bboxのX範囲にも見出しの左右端を反映する
+  for (const h of headers.values()) {
+    minX = Math.min(minX, h.x - h.width / 2);
+    maxX = Math.max(maxX, h.x + h.width / 2);
+  }
 
   return { positions, headers, bbox: { minX, maxX, minY, maxY, maxHeaderY }, columnOrder };
 }

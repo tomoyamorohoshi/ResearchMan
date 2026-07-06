@@ -55,6 +55,11 @@ const ALIGN_EVERY_N_PRESSES = 5;
 const ALIGN_MAX_ROWS = 20;
 // グリッドのセル間隔（世界単位）。サムネイル幅に対し僅かな余白を持たせる
 const ALIGN_CELL = SPRITE_W * 1.15;
+// 整列モードのカテゴリ見出しの高さ（世界単位・全タグ共通固定値）。幅は
+// ALIGN_HEADER_WORLD_H * cluster.aspect でタグごとに決まる（テキスト長に応じて幅は
+// 変わるが、文字の大きさ＝高さは全タグで揃う。列ブロック幅にも所属数にも比例させない。
+// ユーザー要望。値は目視調整済み）
+const ALIGN_HEADER_WORLD_H = 6.5;
 const ALIGN_TRANSITION_MS = 1100;
 // 整列時、列順に0〜この時間(ms)へ広がるスタガー遅延（解除時はスタガー無し＝一斉に戻す）
 const ALIGN_STAGGER_MAX_MS = 250;
@@ -394,7 +399,11 @@ export default function Graph3DView({ cases, onReady }: Props) {
         .filter((n) => n.x !== undefined && n.y !== undefined && n.z !== undefined)
         .map((n) => ({ id: n.id, tags: n.c.tags ?? [], x: n.x as number, y: n.y as number, z: n.z as number }));
       const assignment = assignColumns(assignInput, clusters);
-      const layout = computeGridLayout(assignInput, assignment, clusters, { cell: ALIGN_CELL, maxRows: ALIGN_MAX_ROWS });
+      const layout = computeGridLayout(assignInput, assignment, clusters, {
+        cell: ALIGN_CELL,
+        maxRows: ALIGN_MAX_ROWS,
+        headerWorldH: ALIGN_HEADER_WORLD_H,
+      });
       if (layout.positions.size === 0) return;
 
       // 整列直前のクラスタ表示状態を退避（解除時の復帰先。setTransformはentry.centerを
