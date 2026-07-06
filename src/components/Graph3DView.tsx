@@ -13,6 +13,10 @@ import CaseModal from "./CaseModal";
 // 3d-force-graph(three-forcegraph)がnodeThreeObjectの戻り値に自動で束縛するプロパティ
 type NodeWithSprite = GraphNode & { __threeObj?: THREE.Sprite };
 
+// クリックしたノードへのカメラ急旋回: ノード方向の延長線上、この距離だけ手前に着地する
+const CAMERA_FOCUS_DISTANCE = 90;
+const CAMERA_FOCUS_TRANSITION_MS = 800;
+
 type Props = { cases: Case[] };
 
 export default function Graph3DView({ cases }: Props) {
@@ -59,7 +63,18 @@ export default function Graph3DView({ cases }: Props) {
       // 同一インスタンスをキャッシュして使い回すと再出現時に二重disposeでクラッシュする
       .nodeThreeObject((n) => createCardSprite((n as unknown as GraphNode).c))
       .onNodeClick((n) => {
-        setSelected((n as unknown as GraphNode).c);
+        const node = n as unknown as GraphNode;
+        setSelected(node.c); // モーダルは即時表示（カメラ移動と同時に出す）
+        if (!reduceMotion) {
+          const { x = 0, y = 0, z = 0 } = node;
+          const dist = Math.hypot(x, y, z) || 1; // 原点付近ノードのゼロ除算ガード
+          const ratio = 1 + CAMERA_FOCUS_DISTANCE / dist;
+          graph.cameraPosition(
+            { x: x * ratio, y: y * ratio, z: z * ratio },
+            { x, y, z }, // クリック時点の座標を渡す（揺れで動く現在値ではなくスナップショット）
+            CAMERA_FOCUS_TRANSITION_MS,
+          );
+        }
       })
       .onNodeHover((n, prev) => {
         if (containerRef.current) containerRef.current.style.cursor = n ? "pointer" : "";
