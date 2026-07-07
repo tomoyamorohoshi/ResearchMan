@@ -81,6 +81,13 @@ export type IdeaShape = {
   dateFontSize: number; // 日付のフォントサイズ(px, viewBox座標系。曲率探索と同時に確定済み)
   titleFontSize: number; // タイトルのフォントサイズ(px, viewBox座標系)
   safeArea: { x: number; y: number; w: number; h: number }; // foreignObject安全領域
+  // 輪郭の実bbox外側の空白（viewBox座標系、上/右/下/左）。密サンプル済みの輪郭点(outlinePolygon)
+  // から算出する決定論値。矩形の外箱(0..viewBoxW, 0..viewBoxH)いっぱいにシェイプが描かれるとは
+  // 限らない（例: buildBlobは中心から不揃いに広がる有機形状で、外箱の四隅近くには余白が残る）ため、
+  // カード同士を外箱基準で詰めても実際のシルエット間には大きな空白が残ってしまう。IdeasPoster側は
+  // このインセットの実ピクセル換算ぶんをネガティブマージンで相殺し、シルエット基準の近接配置にする
+  // （ユーザーフィードバック修正バッチ: 「接するか接しないか」の間隔にする）
+  outlineInset: { top: number; right: number; bottom: number; left: number };
   // 数学的保証フォールバック(曲率制約を無視して全周長で確定するティア)が発動したかどうか。
   // 実運用の40件+妥当な合成ロングタイトルでは発動しない想定の診断用フィールド
   // (IdeaShapeCardは使わない。スモークテストが「切り詰めゼロ」の証明範囲を切り分けるために使う)
@@ -684,8 +691,37 @@ export function estimateTextWidthEm(text: string): number {
   return width;
 }
 
+// E: foreignObject内の説明文・参照リンクタイトルの行数ベース切り詰め（ユーザーフィードバック
+// 修正バッチ）。estimateTextWidthEmと同じ簡易ヒューリスティックで先頭から文字幅を積算し、
+// budget(em)を超える手前で切って省略記号を付す。
+// SVG foreignObject内にネストした-webkit-line-clampは、実測(Playwright)で「クランプ指定行数を
+// 超えて描画される／明示heightを与えても無視される」という信頼できない挙動を示した(行の途中で
+// グリフが半分だけ見える・罫線がテキストと重なる、というユーザー報告の不具合の原因)。
+// 行数(=どこまで表示するか)の計算自体はJS側で行い、実際にDOMへ渡す文字列そのものをここで
+// 確定させることで、CSSのクランプ機構に依存しないようにする
+export function truncateToEmBudget(text: string, maxEm: number): string {
+  const chars = Array.from(text);
+  let width = 0;
+  for (let i = 0; i < chars.length; i++) {
+    const code = chars[i].codePointAt(0) ?? 0;
+    const charEm = code > 0x2e7f ? 1.0 : 0.6;
+    if (width + charEm > maxEm) {
+      return `${chars.slice(0, i).join("").trimEnd()}…`;
+    }
+    width += charEm;
+  }
+  return text;
+}
+
 // <text letterSpacing>と幅見積もりの両方で共有する単一の真実源（日付ラベルのuppercase表示に使う）
 export const DATE_LETTER_SPACING_EM = 0.14;
+// H: タイトル文字間の追加スペーシング（ユーザーフィードバック修正バッチ）。曲率がきつい区間では
+// textPathが弧長ベースでグリフを配置するため隣接グリフの見た目上の間隔が詰まりやすい
+// （凹凸に沿って回転した矩形グリフ同士がタイトな曲率で内側の角を接近させる）。字間を少し
+// 空けることで詰まりの見た目を緩和する。日付ほど大きくしない(0.14だとfont-weight:900の
+// タイトルには間延びして見える)ため小さめの値にする。DATE同様、幅見積もり側にも同じ値を
+// 反映して「切り詰めゼロ」の保証を崩さない
+export const TITLE_LETTER_SPACING_EM = 0.02;
 
 // 曲率半径がフォントサイズの何倍以上あれば「低曲率＝グリフ衝突が起きない緩さ」とみなすか
 export const CURVATURE_RADIUS_MULT = 2.5;
@@ -709,6 +745,86 @@ const ABSOLUTE_MIN_FONT_SIZE = 0.6;
 
 const INSET_BASE_RATIO = 0.07;
 const INSET_GAIN_RATIO = 0.14; // 曲率が閾値ぎりぎり(=平均曲率係数1.0)のとき、最大でBASE+GAINまで増やす
+
+// I: グリフの外周はみ出し防止のためのインセット下限（ユーザーフィードバック修正バッチ）。
+// 上記のINSET_BASE_RATIO/INSET_GAIN_RATIOは「低曲率区間でのグリフ同士の詰まり」対策として
+// 曲率だけを見て決めており、フォントサイズに対する絶対的な余白は考慮していなかった。
+// 低曲率（＝直線に近い）区間ではinsetRatioがBASE(0.07)付近まで下がるが、直線区間でも
+// textPathのグリフはベースラインから外側(輪郭の外周方向)へキャップハイト分せり出すため、
+// 局所半径が小さい（＝輪郭が細い/丸まっている）形状ではその分だけ真の輪郭外へ食み出し、
+// 白背景に対してグリフの一部が欠けて見える（ユーザーがスクショで指摘した不具合の実測原因:
+// notchedCircleの直線的な右辺で発生）。
+// 「中心からの距離に比例するインセット」という単純化は、凹み(切り欠き)を持つ複雑形状では
+// 実際の輪郭までの最短距離とずれる（実測で不十分だった）ため、insetAndOrient後の点列から
+// outlinePolygonまでの最短距離を実際に測り、フォントサイズに対して不足する場合は段階的に
+// インセットを増やして再測定する（曲率ベースのinsetRatioを初期値とし、弧長要件を割り込まない
+// 範囲でのみ増やす。字間の詰まり対策はTITLE_LETTER_SPACING_EMで別途補う）
+// 実測(Playwrightでの拡大スクショ)では、全角(CJK)グリフはほぼ正方形の字面を持ち、曲線に沿って
+// 回転した状態での外周方向の実効的な張り出しはcap-height基準の0.82では不足していた
+// （字面のアセント+回転による対角成分を考慮し、より大きい値に補正）
+const GLYPH_OUTWARD_EM_RATIO = 0.88;
+const MAX_TEXT_INSET_RATIO = 0.45; // 極端な安全網（中心近くまで縮めすぎないための上限）
+const GLYPH_CONTAINMENT_MAX_ITER = 6;
+const GLYPH_CONTAINMENT_INSET_STEP = 0.03;
+
+function distanceToSegment(p: Point, a: Point, b: Point): number {
+  const dx = b.x - a.x;
+  const dy = b.y - a.y;
+  const lenSq = dx * dx + dy * dy;
+  const t = lenSq > 0 ? clamp(((p.x - a.x) * dx + (p.y - a.y) * dy) / lenSq, 0, 1) : 0;
+  return Math.hypot(p.x - (a.x + t * dx), p.y - (a.y + t * dy));
+}
+
+function minDistanceToPolygonBoundary(p: Point, polygon: readonly Point[]): number {
+  let minDist = Infinity;
+  const n = polygon.length;
+  for (let i = 0; i < n; i++) {
+    const d = distanceToSegment(p, polygon[i], polygon[(i + 1) % n]);
+    if (d < minDist) minDist = d;
+  }
+  return minDist;
+}
+
+function minClearanceToOutline(points: readonly Point[], outlinePolygon: readonly Point[]): number {
+  let minC = Infinity;
+  for (const p of points) {
+    const d = minDistanceToPolygonBoundary(p, outlinePolygon);
+    if (d < minC) minC = d;
+  }
+  return minC;
+}
+
+// initialInsetRatioを起点に、グリフの外周張り出し(GLYPH_OUTWARD_EM_RATIO×fontSize)ぶんの
+// クリアランスがoutlinePolygonまで確保できるまでインセットを段階的に増やす。ただし弧長が
+// minAcceptableLength(=必要弧長)を下回ってしまう場合はそこで打ち切り、切り詰めゼロの保証
+// (A)を優先する（グリフの張り出しをわずかに残す方が、テキストの切り詰めより許容できる）
+function refineInsetForGlyphClearance(
+  basePoints: readonly Point[],
+  cx: number,
+  cy: number,
+  initialInsetRatio: number,
+  outlinePolygon: readonly Point[],
+  fontSize: number,
+  applyMonotonicTrim: boolean,
+  minAcceptableLength: number,
+): { points: Point[]; length: number } {
+  let insetRatio = initialInsetRatio;
+  let points = insetAndOrient(basePoints, cx, cy, insetRatio, outlinePolygon, applyMonotonicTrim);
+  let length = polylineLength(points);
+  const requiredClearance = GLYPH_OUTWARD_EM_RATIO * fontSize;
+  for (let iter = 0; iter < GLYPH_CONTAINMENT_MAX_ITER && insetRatio < MAX_TEXT_INSET_RATIO; iter++) {
+    if (minClearanceToOutline(points, outlinePolygon) >= requiredClearance) break;
+    const nextInsetRatio = Math.min(MAX_TEXT_INSET_RATIO, insetRatio + GLYPH_CONTAINMENT_INSET_STEP);
+    if (nextInsetRatio === insetRatio) break;
+    const nextPoints = insetAndOrient(basePoints, cx, cy, nextInsetRatio, outlinePolygon, applyMonotonicTrim);
+    const nextLength = polylineLength(nextPoints);
+    if (nextLength < minAcceptableLength) break; // これ以上増やすと必要弧長を割り込む
+    insetRatio = nextInsetRatio;
+    points = nextPoints;
+    length = nextLength;
+  }
+  return { points, length };
+}
 
 const OUTLINE_SAMPLES_PER_CURVE = 24; // 曲率解析・弧選定に使う密サンプリング解像度
 const SAFE_AREA_SAMPLES_PER_CURVE = 8; // safeArea探索専用の粗いサンプリング（性能優先）
@@ -953,9 +1069,26 @@ function selectArcForFontSizes(
       const minRadius = CURVATURE_RADIUS_MULT * fontSize;
       const run = findLongestRun(pm, minRadius, allowed);
       if (!run) continue;
-      const insetRatio = INSET_BASE_RATIO + INSET_GAIN_RATIO * computeAvgCurvatureFactor(pm, run, fontSize);
-      const finalPoints = insetAndOrient(extractRunPoints(pm, run), cx, cy, insetRatio, outlinePolygon, true);
-      const finalLength = polylineLength(finalPoints);
+      // I: 曲率ベースのinsetRatio(グリフ同士の詰まり対策)をまず適用し、弧長・avoid距離の要件を
+      // 満たす有力候補についてのみ、グリフの外周はみ出しがないかを実測(refineInsetForGlyphClearance)
+      // して必要ならインセットを段階的に増やす（全候補で毎回実測すると計算コストが大きいため）
+      const curvatureInsetRatio = INSET_BASE_RATIO + INSET_GAIN_RATIO * computeAvgCurvatureFactor(pm, run, fontSize);
+      const runPoints = extractRunPoints(pm, run);
+      const baseFinalPoints = insetAndOrient(runPoints, cx, cy, curvatureInsetRatio, outlinePolygon, true);
+      const baseFinalLength = polylineLength(baseFinalPoints);
+      if (baseFinalLength < requiredLen || !clearsAvoidPoints(baseFinalPoints, avoidPoints, minClearance)) continue;
+      const refined = refineInsetForGlyphClearance(
+        runPoints,
+        cx,
+        cy,
+        curvatureInsetRatio,
+        outlinePolygon,
+        fontSize,
+        true,
+        requiredLen,
+      );
+      const finalPoints = refined.points;
+      const finalLength = refined.length;
       if (finalLength >= requiredLen && clearsAvoidPoints(finalPoints, avoidPoints, minClearance)) {
         return {
           points: finalPoints,
@@ -983,7 +1116,22 @@ function selectArcForFontSizes(
     ABSOLUTE_MIN_FONT_SIZE,
     Math.min(floorFontSize, postInsetLoopLen / (charWidthEm * ARC_LENGTH_MARGIN)),
   );
-  const finalPoints = insetAndOrient(loopPoints, cx, cy, FALLBACK_INSET_RATIO, outlinePolygon, false);
+  // I: フォールバック(輪郭を周回して続く区間)にも曲率・グリフはみ出し下限を適用する（DESIGN差分
+  // 参照。フォールバックはallowed()の除外区間を飛び越えるため単調性トリムはfalseのまま）。
+  // ここでの必要最小弧長は「guaranteedFontSizeちょうどで全文が収まる弧長」＝現在のpostInsetLoopLen
+  // 自体（guaranteedFontSizeはこの関係から逆算した値のため）
+  const minAcceptableFallbackLength = guaranteedFontSize * charWidthEm * ARC_LENGTH_MARGIN;
+  const refinedFallback = refineInsetForGlyphClearance(
+    loopPoints,
+    cx,
+    cy,
+    FALLBACK_INSET_RATIO,
+    outlinePolygon,
+    guaranteedFontSize,
+    false,
+    minAcceptableFallbackLength,
+  );
+  const finalPoints = refinedFallback.points;
   return {
     points: finalPoints,
     length: polylineLength(finalPoints),
@@ -1285,7 +1433,9 @@ export function shapeForIdea(ideaId: string, title: string, dateLabel: string): 
     if (dateFit.startPhys < 0) return true;
     return !circularWithinRange(pm.n, dateFit.startPhys, dateFit.endPhys, i, bufferCount);
   };
-  const titleCharWidthEm = estimateTextWidthEm(title);
+  // H: 字間(TITLE_LETTER_SPACING_EM)ぶんを幅見積もりにも反映し、切り詰めゼロの保証を崩さない
+  // （DATE_LETTER_SPACING_EMと同じ考え方）
+  const titleCharWidthEm = estimateTextWidthEm(title) + title.length * TITLE_LETTER_SPACING_EM;
   const titleStartHint = nearestIndexToAngleDeg(pm, built.cx, built.cy, 90);
   const titleFit = selectArcForFontSizes(
     pm,
@@ -1303,6 +1453,21 @@ export function shapeForIdea(ideaId: string, title: string, dateLabel: string): 
 
   const safeArea = computeSafeArea(built, dateFit, titleFit, dateCharWidthEm, titleCharWidthEm);
 
+  // outlinePolygon(実際に描画される輪郭の密サンプル点列。上で曲率解析等に使ったものと同一)から
+  // 実bboxを求め、外箱(0..viewBoxW, 0..viewBoxH)との差分をインセットとする
+  const outlineXs = outlinePolygon.map((p) => p.x);
+  const outlineYs = outlinePolygon.map((p) => p.y);
+  const outlineMinX = Math.min(...outlineXs);
+  const outlineMaxX = Math.max(...outlineXs);
+  const outlineMinY = Math.min(...outlineYs);
+  const outlineMaxY = Math.max(...outlineYs);
+  const outlineInset = {
+    top: Math.max(0, outlineMinY),
+    right: Math.max(0, built.viewBoxW - outlineMaxX),
+    bottom: Math.max(0, built.viewBoxH - outlineMaxY),
+    left: Math.max(0, outlineMinX),
+  };
+
   return {
     kind,
     viewBoxW: built.viewBoxW,
@@ -1316,6 +1481,7 @@ export function shapeForIdea(ideaId: string, title: string, dateLabel: string): 
     dateFontSize: dateFit.fontSize,
     titleFontSize: titleFit.fontSize,
     safeArea,
+    outlineInset,
     titleUsedFallback: titleFit.usedFallback,
     dateUsedFallback: dateFit.usedFallback,
   };

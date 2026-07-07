@@ -277,6 +277,33 @@ for (const { id, title, date, synthetic } of testCases) {
   const maxY = Math.max(...outlineDense.map((p) => p.y));
   assert(sa.x >= minX - 1.5 && sa.x + sa.w <= maxX + 1.5, `${id}: safeAreaのx方向が輪郭bbox内 (kind=${shape1.kind})`);
   assert(sa.y >= minY - 1.5 && sa.y + sa.h <= maxY + 1.5, `${id}: safeAreaのy方向が輪郭bbox内 (kind=${shape1.kind})`);
+
+  // D(シルエット基準パッキング): outlineInsetが「外箱(0..viewBoxW,0..viewBoxH)と輪郭の実bboxとの
+  // 差分」を正しく表していること。このテストのdensePointsFromPath(10分割)とideaShapes.ts内部の
+  // densePointsFromOutlinePath(24分割)はサンプリング密度が異なる独立実装のため、真の極値との
+  // 差はサンプル間隔ぶんの微小誤差(許容1.5viewBox単位。他のbboxアサートと同じ許容値)に収める
+  const oi = shape1.outlineInset;
+  assert(
+    Number.isFinite(oi.top) && Number.isFinite(oi.right) && Number.isFinite(oi.bottom) && Number.isFinite(oi.left),
+    `${id}: outlineInsetが有限値 (kind=${shape1.kind})`,
+  );
+  assert(oi.top >= 0 && oi.right >= 0 && oi.bottom >= 0 && oi.left >= 0, `${id}: outlineInsetが非負 (kind=${shape1.kind})`);
+  assert(
+    Math.abs(oi.top - minY) <= 1.5,
+    `${id}: outlineInset.topが実測bboxと一致 (kind=${shape1.kind}, 実測=${oi.top.toFixed(2)}, bbox=${minY.toFixed(2)})`,
+  );
+  assert(
+    Math.abs(oi.left - minX) <= 1.5,
+    `${id}: outlineInset.leftが実測bboxと一致 (kind=${shape1.kind}, 実測=${oi.left.toFixed(2)}, bbox=${minX.toFixed(2)})`,
+  );
+  assert(
+    Math.abs(oi.right - (shape1.viewBoxW - maxX)) <= 1.5,
+    `${id}: outlineInset.rightが実測bboxと一致 (kind=${shape1.kind}, 実測=${oi.right.toFixed(2)}, bbox右=${(shape1.viewBoxW - maxX).toFixed(2)})`,
+  );
+  assert(
+    Math.abs(oi.bottom - (shape1.viewBoxH - maxY)) <= 1.5,
+    `${id}: outlineInset.bottomが実測bboxと一致 (kind=${shape1.kind}, 実測=${oi.bottom.toFixed(2)}, bbox下=${(shape1.viewBoxH - maxY).toFixed(2)})`,
+  );
   // safeAreaのサイズ下限: 重なりゼロを最優先するため(輪郭が狭い形状ではidealサイズより
   // 段階的に縮む設計。DESIGN差分参照)、本実装の最終フォールバック下限(幅20%・高さ8%)に揃える
   assert(sa.w >= shape1.viewBoxW * 0.2 - 1e-6, `${id}: safeArea幅が下限以上 (kind=${shape1.kind}, 実測=${sa.w.toFixed(1)})`);
