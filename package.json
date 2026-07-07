@@ -20,6 +20,8 @@
     "auto-research:tech:dry": "node scripts/auto-research-tech.mjs --dry-run",
     "ideas": "node scripts/generate-idea-seeds.mjs",
     "ideas:dry": "node scripts/generate-idea-seeds.mjs --dry-run",
+    "tuneup": "node scripts/biweekly-tuneup.mjs",
+    "tuneup:dry": "node scripts/biweekly-tuneup.mjs --dry-run",
     "self-heal": "node scripts/self-heal-thumbnails.mjs",
     "audit:integrity": "node scripts/audit-integrity.mjs",
     "verify:deploy": "node scripts/verify-deploy.mjs",
