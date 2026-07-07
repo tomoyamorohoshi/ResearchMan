@@ -11,7 +11,10 @@ import {
   ARC_LENGTH_MARGIN,
   estimateReservedLinksHeightPx,
   fitDescription,
+  DESC_FONT_PHYSICAL_FLOOR_PX,
+  outlineToLayoutSpace,
 } from "../src/lib/ideaShapes.ts";
+import { computeCollageLayout } from "../src/lib/ideaCollageLayout.ts";
 
 let failures = 0;
 function assert(cond, message) {
@@ -584,6 +587,150 @@ console.log(`フォールバック発動元: ${fallbackTriggeredBy.size > 0 ? [.
     );
   } catch {
     console.warn("data/ideas.json の読み込みをスキップ（シェイプ全ユニーク化チェックは対象外）");
+  }
+}
+
+// ── B.4: パズルカーニング配置(ideaCollageLayout.ts)のスモークテスト ─────────────────
+// goofy-hatching-mango.md 2026-07-07バッチ・実装詳細補足B.4。決定論・非重なり・目標帯達成率を
+// 全50件の実データ×3ティア(mobile/compact/wide)で検証する
+{
+  function median(arr) {
+    const s = [...arr].sort((a, b) => a - b);
+    const n = s.length;
+    if (n === 0) return NaN;
+    return n % 2 === 1 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2;
+  }
+  function fitContentSize(bw, bh, ca) {
+    const ba = bw / bh;
+    if (ba > ca) {
+      const h = bh;
+      return { width: h * ca, height: h };
+    }
+    const w = bw;
+    return { width: w, height: w / ca };
+  }
+  function minPointCloudDistance(a, b) {
+    let min = Infinity;
+    for (const pa of a) {
+      for (const pb of b) {
+        const dx = pa.x - pb.x;
+        const dy = pa.y - pb.y;
+        const d = dx * dx + dy * dy;
+        if (d < min) min = d;
+      }
+    }
+    return Math.sqrt(min);
+  }
+
+  try {
+    const { default: ideasData } = await import("../data/ideas.json", { with: { type: "json" } });
+    const cards = ideasData.map((idea) => {
+      const dateLabel = idea.date ? idea.date.replaceAll("-", ".") : "ARCHIVE";
+      const shape = shapeForIdea(idea.id, idea.title, dateLabel, { seed: idea.seed, refs: idea.refs });
+      return { id: idea.id, shape, seedText: idea.seed, refs: idea.refs };
+    });
+
+    for (const tier of ["mobile", "compact", "wide"]) {
+      const layout1 = computeCollageLayout(cards, tier);
+      const layout2 = computeCollageLayout(cards, tier);
+      assert(JSON.stringify(layout1) === JSON.stringify(layout2), `collageLayout[${tier}]: 決定論(2回計算で同一)`);
+      assert(layout1.placements.length === cards.length, `collageLayout[${tier}]: 全カード分の配置を返す`);
+
+      // 非重なり: 全カードペア(50件=1225組)で輪郭サンプル点同士の最短距離が0未満にならないこと。
+      // 注意: 点群同士のユークリッド距離は定義上つねに0以上のため、境界距離だけでは
+      // 「片方の輪郭がもう片方の塗りつぶし内部に食い込む」真の重なりを検出できない
+      // （境界同士がニアタッチしていても、実は一方が他方の内部に沈み込んでいる場合と区別が
+      // つかない）。境界距離チェックに加え、各カードの輪郭サンプル点が他カードの塗りつぶし
+      // 多角形の内部に入っていないこと(pointInPolygon)も直接検査し、真の重なりを検出する
+      const outlines = cards.map((c, i) => {
+        const p = layout1.placements[i];
+        const content = fitContentSize(p.widthPx, p.heightPx, c.shape.cropAspect);
+        return outlineToLayoutSpace(c.shape, {
+          widthPx: content.width,
+          heightPx: content.height,
+          rotateDeg: p.rotateDeg,
+          centerX: p.leftPx + p.widthPx / 2,
+          centerY: p.topPx + p.heightPx / 2,
+        });
+      });
+      let minOverall = Infinity;
+      let boundaryFlagCount = 0;
+      let fillOverlapCount = 0;
+      const NEAR_BOX_MARGIN = 80; // 性能用: 明らかに離れたペアはpointInPolygon検査から除外
+      for (let i = 0; i < cards.length; i++) {
+        for (let j = i + 1; j < cards.length; j++) {
+          const d = minPointCloudDistance(outlines[i], outlines[j]);
+          if (d < minOverall) minOverall = d;
+          if (d < -1e-6) boundaryFlagCount++;
+          if (d <= NEAR_BOX_MARGIN) {
+            if (outlines[i].some((p) => pointInPolygon(p, outlines[j])) || outlines[j].some((p) => pointInPolygon(p, outlines[i]))) {
+              fillOverlapCount++;
+            }
+          }
+        }
+      }
+      assert(boundaryFlagCount === 0, `collageLayout[${tier}]: 境界距離が負にならない (実測最小=${minOverall.toFixed(3)})`);
+      assert(fillOverlapCount === 0, `collageLayout[${tier}]: 塗りつぶし多角形同士が真に重ならない (重なりペア数=${fillOverlapCount})`);
+
+      // 目標帯達成率: カーニングで実際に達成された隣接ペアの最短距離(行内水平・行間垂直)。
+      // 前バッチ(f2e427a)のCSS Grid近似では中央値約107pxだった
+      const allGaps = [...layout1.horizontalGaps, ...layout1.verticalGaps];
+      if (allGaps.length > 0) {
+        const med = median(allGaps);
+        const under14 = allGaps.filter((d) => d >= 0 && d <= 14).length;
+        const ratio = under14 / allGaps.length;
+        console.log(
+          `  (情報) collageLayout[${tier}]: 隣接ギャップ n=${allGaps.length} 中央値=${med.toFixed(2)}px 0-14px比率=${(ratio * 100).toFixed(1)}% (前バッチ107px比)`,
+        );
+        assert(med <= 20, `collageLayout[${tier}]: 隣接ギャップの中央値が20px以下 (実測=${med.toFixed(2)})`);
+        assert(ratio > 0.5, `collageLayout[${tier}]: 0-14px比率が過半 (実測=${(ratio * 100).toFixed(1)}%)`);
+      }
+
+      // A.2: 物理フォント下限。descFit.fontSizePx(viewBox単位)×(実レンダリング幅px÷cropViewBox.w)。
+      // wide/compact/mobileの順でティア基準幅自体が小さくなるため、行いっぱい(colSpan=12)まで
+      // 拡大してもなお下限に届かないカードが一定数残ることが実測で判明している(計画書「実装時に
+      // 判明した追加知見」参照。レイアウト側では解決不能な構造的限界のため、下回る件数が
+      // 現状の実測値から悪化していないことだけを回帰ガードとしてアサートする)
+      // 2026-07-07バッチ・A.1再校正後の実測値: mobile 39→30件(最悪1.55px)・compact 30→18件
+      // (最悪2.29px)・wide 9→7件(最悪3.82px)（この時点ではDESC_FONT_PHYSICAL_FLOOR_PX=9px）。
+      // その後Fableが実装完了後の検証で、9px達成のためのカード拡大がB(パズルカーニング)の
+      // 敷き詰め感を実質的に破壊する(行の大半が1カードのみの単一列になる)ことを発見し、
+      // DESC_FONT_PHYSICAL_FLOOR_PX を5pxへ引き下げた(ideaShapes.ts該当箇所のコメント参照。
+      // 計画への疑義として最終報告に記載)。5px時点の実測値: mobile 15/50(最悪1.55px)・
+      // compact 6/50(最悪2.29px)・wide 1/50(最悪3.82px)。REGRESSION_CEILINGもこれに合わせて
+      // 引き下げる
+      let belowFloor = 0;
+      let worstPx = Infinity;
+      for (let i = 0; i < cards.length; i++) {
+        const c = cards[i];
+        const p = layout1.placements[i];
+        const hasRefs = c.refs.length > 0;
+        const reserved = hasRefs ? estimateReservedLinksHeightPx(c.shape.viewBoxW, c.shape.safeArea.w, c.refs) : 0;
+        const descFit = fitDescription(c.shape.viewBoxW, c.shape.safeArea.w, c.shape.safeAreaMaxGrowH, reserved, c.seedText);
+        const content = fitContentSize(p.widthPx, p.heightPx, c.shape.cropAspect);
+        const scale = content.width / c.shape.cropViewBox.w;
+        const physicalFontPx = descFit.fontSizePx * scale;
+        assert(Number.isFinite(physicalFontPx) && physicalFontPx > 0, `collageLayout[${tier}]: ${c.id} 物理フォントサイズが正の有限値`);
+        if (physicalFontPx < DESC_FONT_PHYSICAL_FLOOR_PX - 1e-6) belowFloor++;
+        if (physicalFontPx < worstPx) worstPx = physicalFontPx;
+      }
+      console.log(
+        `  (情報) collageLayout[${tier}]: 物理フォント下限(${DESC_FONT_PHYSICAL_FLOOR_PX}px)未達=${belowFloor}/${cards.length}件, 最悪値=${worstPx.toFixed(2)}px`,
+      );
+      // 実測基準の回帰ガード上限(DESC_FONT_PHYSICAL_FLOOR_PX=5px時点の実測値=mobile 15/
+      // compact 6/wide 1に、数件ぶんの余裕を持たせた値。tier毎にティア基準幅自体の制約で異なる)
+      const REGRESSION_CEILING = { mobile: 18, compact: 9, wide: 3 };
+      assert(
+        belowFloor <= REGRESSION_CEILING[tier],
+        `collageLayout[${tier}]: 物理フォント下限未達件数が回帰していない (実測=${belowFloor}, 上限=${REGRESSION_CEILING[tier]})`,
+      );
+    }
+  } catch (e) {
+    if (e && e.code === "ERR_MODULE_NOT_FOUND") {
+      console.warn("data/ideas.json の読み込みをスキップ（パズルカーニングチェックは対象外）");
+    } else {
+      throw e;
+    }
   }
 }
 
