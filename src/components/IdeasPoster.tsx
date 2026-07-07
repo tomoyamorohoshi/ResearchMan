@@ -67,52 +67,47 @@ type CardLayout = {
   widthPct: number;
 };
 
-// D: 外箱基準をやめ「シルエット基準」の近接パッキングにする（ユーザーフィードバック修正バッチ）。
-// shape.outlineInset(輪郭の実bboxが外箱=viewBoxの四辺からどれだけ引っ込んでいるか)の実ピクセル
-// 換算ぶんをネガティブマージンで相殺し、外箱ではなく実際のシルエット同士がニアタッチする間隔にする。
-//
-// マージンのパーセンテージ値はCSS仕様上「containing blockの幅」(=グリッドエリア幅。margin-top/
-// bottomも含め、垂直方向のパーセンテージも常に幅基準というCSSの伝統的挙動)を基準に解決される。
-// カード自身の幅はwidthPct(このグリッドエリア幅に対する割合)で決まり、SVGはviewBoxとCSS
-// aspect-ratioを一致させているため常に等倍(uniform)スケールで描画される(ファイル冒頭コメント
-// 参照。歪み回避のための既存設計)。したがって「viewBox単位のインセット」×「等倍スケール」で
-// 求まる実ピクセル値を、そのままareaWidth比のパーセンテージへ変換するには widthPct を掛けるだけ
-// でよい(= insetUnits/viewBoxW × widthPct)。上下左右どの辺でも同じ式が成り立つ
-// (垂直方向のインセットも、常に等倍スケールなのでviewBoxWを分母に使ってよい)。
-//
-// 実装上の判断（計画への疑義）: 当初はマージンのみで相殺する設計だったが、CSS Gridは列トラック
-// 幅が固定(grid-cols-N)で、marginは対応するjustify-self(start/end)側のみが実際に位置へ効く
-// (逆側は無効)ことが実測で判明した。左右の一方だけをマージンで動かしても、固定幅ボックスの
-// もう一方の辺は連動して同じ距離だけ動くため、反対側のインセットはむしろ相殺されない
-// （実測: 有効側だけの相殺では隣接シルエット間が50〜180px级のまま残り、目標の0〜12pxに
-// 遠く届かなかった）。そこで、box自体をgrowScaleForで算出した倍率ぶんだけ拡大したうえで
-// (aspect-ratioは維持=歪みなし。widthPctの既存ジッター機構の延長)、アンカー側のみ
-// マージンで追加補正する。この2つを組み合わせると、拡大していないボックスの元の外周位置に
-// シルエットの両端がちょうど届く計算になる(数式的に導出・確認済み)。マージン/translateのみ
-// では目標の近接度に届かないという実測結果を報告に明記する。
-// 実測(Playwrightスクショ)で1.4は特に細いviewBox(tallOval等)のカードを他カードに対して
-// 著しく肥大化させ、ページ左右にはみ出す/周囲に不自然な空白を作る視覚的破綻を起こした。
-// S/M/Lの意図したサイズ階層を壊さない範囲に抑えるため、大幅に低い上限に変更する
-// （相殺しきれない残差はネガティブマージンとCSS gapの縮小に委ねる）
-const GROW_SCALE_MAX = 1.18;
+// F: 「箱≒シルエット」化（goofy-hatching-mango.md 2026-07-07第4バッチ。本命の根本解決）。
+// 前バッチ(9488fcf)はCSS Gridのjustify-self側マージンしか実際には効かない制約の下で、
+// box自体をgrowScaleFor倍だけ拡大＋ネガティブマージンで相殺する迂回策を採っていたが、
+// デスクトップ横方向の実測中央値が120pxに留まり「接するか接しないか」の目標に届かなかった
+// （実測分析: 拡大率をGROW_SCALE_MAX以上にすると細いviewBox形状が破綻するため上限があり、
+// 相殺しきれない残差が残っていた）。
+// 根本解決として、SVGのviewBoxをshape.cropViewBox(輪郭の実bbox±小マージン)にクロップし、
+// カードのaspect-ratioもshape.cropAspectに合わせることで、ボックス自体をシルエットの形に
+// ほぼ一致させた（IdeaShapeCard.tsx参照）。box≈シルエットなので、この先は素直なCSS gap
+// (下記grid gap-x-1〜2/gap-y-1〜2 = 4〜8px)がそのままシルエット間の近接距離になり、
+// growScale/ネガティブマージンによる相殺ロジックは不要になったため撤去した。
+// F: col-spanをcropAspectで補正する（goofy-hatching-mango.md 2026-07-07第4バッチ・実測で
+// 発覚した回帰の修正）。cropAspect(輪郭の実bbox比)は元のshape.aspect(0.64〜1.25の狭い範囲で
+// 設計値)と異なり、実際に描かれた輪郭のジッタ次第で0.49〜1.34まで広く分布する。col-spanは
+// tier(S/M/L)のみで決まりcropAspectを考慮しないため、狭い(cropAspect小)シェイプに広いcol-span
+// が割り当たると「幅は広いが高さがviewBoxH方向に何倍にも伸びる」極端に縦長のカードになり、
+// CSS Grid(grid-auto-rows: auto)は同じ行の全カードの行高をその最大高さに合わせるため、
+// 同じ行の他カードが本来の位置から数百px単位で引き離される回帰を実測で発見した(near-touch
+// 中央値が115px前後のまま改善しなかった原因)。col-span ∝ cropAspect(高さ一定を保つ線形関係。
+// 冪0.85で補正を緩め、tierによるサイズの意図的なバリエーションもある程度残す)で補正する。
+// CARD_ASPECT_CLAMP_MIN/MAXはcol-spanが下限(3)に貼り付いてもなお極端に縦長/横長になる
+// シェイプ(実測: tallOvalでcropAspect0.49、col-span最小の3でも高さ790px級になり、上の
+// col-span補正だけでは吸収しきれなかった)向けに、実際にCSS aspect-ratioへ渡す値そのものにも
+// 同じ範囲でクランプをかける（下記style参照）。SVG側は元のcropViewBox比のままなので
+// preserveAspectRatio(既定xMidYMid meet)がわずかな余白を生むが、行全体が数百px引き離される
+// 実害の方が大きいため、この少数の外れ値ケースでは「箱≒シルエット」の厳密さより優先する
+const CARD_ASPECT_CLAMP_MIN = 0.55;
+const CARD_ASPECT_CLAMP_MAX = 1.7;
 
-function growScaleFor(shape: { viewBoxW: number; viewBoxH: number; outlineInset: { top: number; right: number; bottom: number; left: number } }): number {
-  const bboxW = shape.viewBoxW - shape.outlineInset.left - shape.outlineInset.right;
-  const bboxH = shape.viewBoxH - shape.outlineInset.top - shape.outlineInset.bottom;
-  const gsX = bboxW > 0 ? shape.viewBoxW / bboxW : 1;
-  const gsY = bboxH > 0 ? shape.viewBoxH / bboxH : 1;
-  return Math.min(GROW_SCALE_MAX, Math.max(gsX, gsY, 1));
+function spanForAspect(baseSpan: number, cropAspect: number): number {
+  const clampedAspect = Math.min(CARD_ASPECT_CLAMP_MAX, Math.max(CARD_ASPECT_CLAMP_MIN, cropAspect));
+  const factor = clampedAspect ** 0.85;
+  const adjusted = Math.round(baseSpan * factor);
+  return Math.min(6, Math.max(3, adjusted));
 }
 
-function insetMarginPercent(insetUnits: number, viewBoxW: number, widthPct: number): number {
-  return (insetUnits / viewBoxW) * widthPct;
-}
-
-function layoutFor(idea: Idea): CardLayout {
+function layoutFor(idea: Idea, cropAspect: number): CardLayout {
   const h = hashId(idea.id);
   const tier: SizeTier = h % 3 === 0 ? "S" : h % 3 === 1 ? "M" : "L";
   const spanOptions = DESKTOP_SPAN_OPTIONS[tier];
-  const desktopSpan = spanOptions[Math.floor(h / 3) % spanOptions.length];
+  const desktopSpan = spanForAspect(spanOptions[Math.floor(h / 3) % spanOptions.length], cropAspect);
   const justifyClass = JUSTIFY_CLASSES[(h >>> 14) % JUSTIFY_CLASSES.length];
   const zClass = Z_CLASSES[(h >>> 26) % Z_CLASSES.length];
   // C: 密パッキング（GOOD SUMMER級）。回転は±5度→±3度に抑え（密度が上がると大回転は
@@ -164,8 +159,11 @@ export default function IdeasPoster({ ideas, techDomainById }: { ideas: Idea[]; 
 
   const cards = ideas.map((idea) => {
     const category = categoryOf(idea, techDomainById);
-    const shape = shapeForIdea(idea.id, idea.title, dateLabelOf(idea));
-    const layout = layoutFor(idea);
+    // G: IdeaShapeCardと同じcontent引数を渡す(shapeForIdeaは純関数なので、両呼び出し元で
+    // 同じ引数を渡さないとcropAspect/safeAreaが食い違い、レイアウトのaspect-ratioと実際の
+    // 描画がズレてしまう。goofy-hatching-mango.md 2026-07-07第4バッチ)
+    const shape = shapeForIdea(idea.id, idea.title, dateLabelOf(idea), { seed: idea.seed, refs: idea.refs });
+    const layout = layoutFor(idea, shape.cropAspect);
     return { idea, category, shape, layout };
   });
   const colStarts = computeColStarts(
@@ -192,27 +190,20 @@ export default function IdeasPoster({ ideas, techDomainById }: { ideas: Idea[]; 
         ))}
       </div>
 
-      {/* C: 密パッキング（GOOD SUMMER級。gap 4〜10px級・ニアタッチ〜軽い重なり） */}
+      {/* F: 箱≒シルエット化のうえで素直なgap 4〜8px（gap-x/y-1=4px, sm:gap-x/y-2=8px）。
+          box自体がシルエットの実bboxにクロップ済みのため、このgapがそのままシルエット間の
+          近接距離になる（ニアタッチ〜軽い重なり。widthPct 92〜104%の既存ジッターと組み合わさる） */}
       <div className="grid grid-cols-4 sm:grid-cols-12 gap-x-1 sm:gap-x-2 gap-y-1 sm:gap-y-2 items-start">
         {cards.map(({ idea, category, shape, layout }, i) => {
-          // D: シルエット基準の近接パッキング。box自体をgrowScale倍だけ拡大(aspect-ratio維持=
-          // 歪みなし)したうえで、各辺のインセットをネガティブマージンに変換する
-          // （insetMarginPercent参照。growScaleFor/GROW_SCALE_MAXのコメントに導出根拠）。
-          // 上下の既存ジッター(marginTopPx/marginBottomPx)は「呼吸感」を保つためそのまま残し、
-          // インセット相殺ぶんをcalc()で追加で差し引く
-          const growScale = growScaleFor(shape);
-          const effectiveWidthPct = layout.widthPct * growScale;
-          const insetTopPct = insetMarginPercent(shape.outlineInset.top, shape.viewBoxW, effectiveWidthPct);
-          const insetRightPct = insetMarginPercent(shape.outlineInset.right, shape.viewBoxW, effectiveWidthPct);
-          const insetBottomPct = insetMarginPercent(shape.outlineInset.bottom, shape.viewBoxW, effectiveWidthPct);
-          const insetLeftPct = insetMarginPercent(shape.outlineInset.left, shape.viewBoxW, effectiveWidthPct);
+          // F: box≈シルエットなので、growScale/ネガティブマージンによる相殺は不要。
+          // aspect-ratioはクロップ後のbbox比(shape.cropAspect)を使う（歪みなし）。
+          // 極端なcropAspect(spanForAspectのコメント参照)はCARD_ASPECT_CLAMP_MIN/MAXでクランプし、
+          // 行全体を数百px引き離す破綻を防ぐ（少数の外れ値でわずかな余白が生じるが許容する）
           const style = {
-            aspectRatio: shape.aspect,
-            width: `${effectiveWidthPct}%`,
-            marginTop: `calc(${layout.marginTopPx}px - ${insetTopPct}%)`,
-            marginBottom: `calc(${layout.marginBottomPx}px - ${insetBottomPct}%)`,
-            marginLeft: `-${insetLeftPct}%`,
-            marginRight: `-${insetRightPct}%`,
+            aspectRatio: Math.min(CARD_ASPECT_CLAMP_MAX, Math.max(CARD_ASPECT_CLAMP_MIN, shape.cropAspect)),
+            width: `${layout.widthPct}%`,
+            marginTop: `${layout.marginTopPx}px`,
+            marginBottom: `${layout.marginBottomPx}px`,
             "--rotate": `${layout.rotateDeg.toFixed(2)}deg`,
           } as CSSProperties;
           const spanClass = SPAN_CLASS_BY_NUM[layout.desktopSpan];

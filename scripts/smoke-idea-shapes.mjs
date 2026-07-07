@@ -9,6 +9,8 @@ import {
   estimateTextWidthEm,
   DATE_LETTER_SPACING_EM,
   ARC_LENGTH_MARGIN,
+  estimateReservedLinksHeightPx,
+  fitDescription,
 } from "../src/lib/ideaShapes.ts";
 
 let failures = 0;
@@ -281,7 +283,11 @@ for (const { id, title, date, synthetic } of testCases) {
   // D(シルエット基準パッキング): outlineInsetが「外箱(0..viewBoxW,0..viewBoxH)と輪郭の実bboxとの
   // 差分」を正しく表していること。このテストのdensePointsFromPath(10分割)とideaShapes.ts内部の
   // densePointsFromOutlinePath(24分割)はサンプリング密度が異なる独立実装のため、真の極値との
-  // 差はサンプル間隔ぶんの微小誤差(許容1.5viewBox単位。他のbboxアサートと同じ許容値)に収める
+  // 差はサンプル間隔ぶんの微小誤差(許容1.5viewBox単位。他のbboxアサートと同じ許容値)に収める。
+  // outlineInsetは実装(ideaShapes.ts)でMath.max(0, ...)により非負にクランプされる値なので、
+  // 輪郭が外箱(0..viewBoxW, 0..viewBoxH)の外側にはみ出すシェイプ(E: シェイプ全ユニーク化バッチで
+  // arch/blobのパラメータレンジを拡大した結果、輪郭の一部が稀に外箱外に出ることがある)では
+  // 真のbbox距離(負値になりうる)ではなくMath.max(0, 真の距離)と比較する
   const oi = shape1.outlineInset;
   assert(
     Number.isFinite(oi.top) && Number.isFinite(oi.right) && Number.isFinite(oi.bottom) && Number.isFinite(oi.left),
@@ -289,19 +295,19 @@ for (const { id, title, date, synthetic } of testCases) {
   );
   assert(oi.top >= 0 && oi.right >= 0 && oi.bottom >= 0 && oi.left >= 0, `${id}: outlineInsetが非負 (kind=${shape1.kind})`);
   assert(
-    Math.abs(oi.top - minY) <= 1.5,
+    Math.abs(oi.top - Math.max(0, minY)) <= 1.5,
     `${id}: outlineInset.topが実測bboxと一致 (kind=${shape1.kind}, 実測=${oi.top.toFixed(2)}, bbox=${minY.toFixed(2)})`,
   );
   assert(
-    Math.abs(oi.left - minX) <= 1.5,
+    Math.abs(oi.left - Math.max(0, minX)) <= 1.5,
     `${id}: outlineInset.leftが実測bboxと一致 (kind=${shape1.kind}, 実測=${oi.left.toFixed(2)}, bbox=${minX.toFixed(2)})`,
   );
   assert(
-    Math.abs(oi.right - (shape1.viewBoxW - maxX)) <= 1.5,
+    Math.abs(oi.right - Math.max(0, shape1.viewBoxW - maxX)) <= 1.5,
     `${id}: outlineInset.rightが実測bboxと一致 (kind=${shape1.kind}, 実測=${oi.right.toFixed(2)}, bbox右=${(shape1.viewBoxW - maxX).toFixed(2)})`,
   );
   assert(
-    Math.abs(oi.bottom - (shape1.viewBoxH - maxY)) <= 1.5,
+    Math.abs(oi.bottom - Math.max(0, shape1.viewBoxH - maxY)) <= 1.5,
     `${id}: outlineInset.bottomが実測bboxと一致 (kind=${shape1.kind}, 実測=${oi.bottom.toFixed(2)}, bbox下=${(shape1.viewBoxH - maxY).toFixed(2)})`,
   );
   // safeAreaのサイズ下限: 重なりゼロを最優先するため(輪郭が狭い形状ではidealサイズより
@@ -323,6 +329,13 @@ for (const { id, title, date, synthetic } of testCases) {
     const dy = Math.max(r.y - p.y, 0, p.y - (r.y + r.h));
     return Math.hypot(dx, dy);
   }
+  // goofy-hatching-mango.md 検証B(archive-10): 単純にcumLen[i]でpts自体をフィルタすると、
+  // 輪郭の長い直線区間(roundedPolygonPathの"L"コマンドは始点・終点の2点しか持たず、
+  // densePointsFromOutlinePathでも中間点が補間されない)でlo/hiがその2点の間に落ちた場合、
+  // 実際にグリフが描画される範囲の終端が丸ごと欠落する(実測: archive-10のlNotch T字で
+  // 直線の腕の63%地点までグリフが実際には描画されているのに、フィルタ後の点列はその手前の
+  // 疎な点で打ち切られていた)。lo/hiの位置を隣接2点間で線形補間して必ず含めることで、
+  // 疎な区間でも実際の描画範囲の終端を正しく表す
   function extractCenteredSpan(pts, spanLength) {
     if (pts.length < 2) return pts;
     const cumLen = [0];
@@ -332,7 +345,24 @@ for (const { id, title, date, synthetic } of testCases) {
     const mid = total / 2;
     const lo = mid - half;
     const hi = mid + half;
-    const out = pts.filter((_, i) => cumLen[i] >= lo && cumLen[i] <= hi);
+    const interpAt = (target) => {
+      for (let i = 1; i < cumLen.length; i++) {
+        if (cumLen[i] >= target) {
+          const segStart = cumLen[i - 1];
+          const segEnd = cumLen[i];
+          const t = segEnd > segStart ? (target - segStart) / (segEnd - segStart) : 0;
+          const a = pts[i - 1];
+          const b = pts[i];
+          return { x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t };
+        }
+      }
+      return pts[pts.length - 1];
+    };
+    const out = [interpAt(lo)];
+    for (let i = 0; i < pts.length; i++) {
+      if (cumLen[i] > lo && cumLen[i] < hi) out.push(pts[i]);
+    }
+    out.push(interpAt(hi));
     return out.length >= 2 ? out : pts;
   }
   const SAFE_AREA_CLEARANCE_MULT = 0.5; // 本実装のSAFE_AREA_MARGIN_MULT(1.3)よりゆるい下限
@@ -403,6 +433,159 @@ assert(
   `数学的保証フォールバックの発動率が異常に高い(実測=${((fallbackCount / totalCount) * 100).toFixed(1)}%, 上限=${(FALLBACK_RATE_REGRESSION_THRESHOLD * 100).toFixed(0)}%) — シェイプ生成側の退行の可能性`,
 );
 console.log(`フォールバック発動元: ${fallbackTriggeredBy.size > 0 ? [...fallbackTriggeredBy].join(", ") : "なし"}`);
+
+// ── F: クロップviewBoxの妥当性（goofy-hatching-mango.md 2026-07-07第4バッチ・検証1） ──────
+// cropViewBoxが「輪郭の実bbox±小マージン」と一致し、タイトル/日付弧・safeAreaがすべて
+// クロップ内に包含されていることを確認する（クロップ後、SVG外にはみ出す＝隣接カードに
+// 視覚的に食い込む回帰を防ぐ）
+{
+  let cropChecked = 0;
+  for (const { id, title, date } of testCases) {
+    const shape = shapeForIdea(id, title, date);
+    const outlineDense = densePointsFromPath(shape.outlinePath, 10);
+    const minX = Math.min(...outlineDense.map((p) => p.x));
+    const maxX = Math.max(...outlineDense.map((p) => p.x));
+    const minY = Math.min(...outlineDense.map((p) => p.y));
+    const maxY = Math.max(...outlineDense.map((p) => p.y));
+    const cb = shape.cropViewBox;
+    const TOL = 1.5; // 他のbboxアサートと同じサンプリング誤差許容
+    assert(cb.w > 0 && cb.h > 0, `${id}: cropViewBoxが正のサイズ (kind=${shape.kind})`);
+    assert(cb.x <= minX + TOL, `${id}: cropViewBox.xが輪郭bboxの左端以下 (kind=${shape.kind})`);
+    assert(cb.x + cb.w >= maxX - TOL, `${id}: cropViewBox右端が輪郭bboxの右端以上 (kind=${shape.kind})`);
+    assert(cb.y <= minY + TOL, `${id}: cropViewBox.yが輪郭bboxの上端以下 (kind=${shape.kind})`);
+    assert(cb.y + cb.h >= maxY - TOL, `${id}: cropViewBox下端が輪郭bboxの下端以上 (kind=${shape.kind})`);
+    // タイトル/日付弧・safeAreaはcropViewBox内に包含される(輪郭ポリゴンの内側にあるため
+    // 数学的に自動満足するはずだが、回帰検知のため直接確認する)
+    const titlePts = pointsFromLinePath(shape.titleArcPath);
+    const datePts = pointsFromLinePath(shape.dateArcPath);
+    function assertInsideCrop(pts, label) {
+      for (const p of pts) {
+        assert(
+          p.x >= cb.x - TOL && p.x <= cb.x + cb.w + TOL && p.y >= cb.y - TOL && p.y <= cb.y + cb.h + TOL,
+          `${label}: 点(${p.x.toFixed(2)},${p.y.toFixed(2)})がcropViewBox内`,
+        );
+      }
+    }
+    assertInsideCrop(titlePts, `${id}: titleArcPath`);
+    assertInsideCrop(datePts, `${id}: dateArcPath`);
+    const sa = shape.safeArea;
+    assert(
+      sa.x >= cb.x - TOL && sa.x + sa.w <= cb.x + cb.w + TOL && sa.y >= cb.y - TOL && sa.y + sa.h <= cb.y + cb.h + TOL,
+      `${id}: safeAreaがcropViewBox内`,
+    );
+    cropChecked++;
+  }
+  console.log(`cropViewBox妥当性チェック: ${cropChecked}件`);
+}
+
+// ── G: 説明文の全文表示ガード（goofy-hatching-mango.md 2026-07-07第4バッチ・実装中の追加要件）
+// 全50件の実データで、fitDescription経由の説明文フォント/行数見積りが有限かつ正であることを
+// 確認する（NaN・0除算等の回帰検知）。fits=falseの件数も参考情報として出す
+// （IdeaShapeCard.tsx側でforeignObjectを拡張して全文表示するため、fits=falseは即バグでは
+// ないが、割合が急増した場合はcontentMinの事前見積りが効いていない退行の兆候）
+{
+  let descChecked = 0;
+  let notFitCount = 0;
+  try {
+    const { default: ideasData } = await import("../data/ideas.json", { with: { type: "json" } });
+    for (const idea of ideasData) {
+      const dateLabel = idea.date ? idea.date.replaceAll("-", ".") : "ARCHIVE";
+      const shape = shapeForIdea(idea.id, idea.title, dateLabel, { seed: idea.seed, refs: idea.refs });
+      const hasRefs = idea.refs.length > 0;
+      const reserved = hasRefs ? estimateReservedLinksHeightPx(shape.viewBoxW, shape.safeArea.w, idea.refs) : 0;
+      const fit = fitDescription(shape.viewBoxW, shape.safeArea.w, shape.safeArea.h, reserved, idea.seed);
+      assert(Number.isFinite(fit.fontSizePx) && fit.fontSizePx > 0, `${idea.id}: 説明文フォントサイズが正の有限値`);
+      assert(Number.isInteger(fit.lines) && fit.lines >= 1, `${idea.id}: 説明文の行数が1以上の整数`);
+      if (!fit.fits) notFitCount++;
+      descChecked++;
+    }
+    console.log(
+      `説明文フィットチェック: ${descChecked}件 (DESC_FONT_FLOOR_RATIOでも数式上収まらずforeignObject拡張に委ねたケース: ${notFitCount}件)`,
+    );
+  } catch {
+    console.warn("data/ideas.json の読み込みをスキップ（説明文フィットチェックは対象外）");
+  }
+}
+
+// ── E: シェイプの全ユニーク化（goofy-hatching-mango.md 2026-07-07第4バッチ・実装中の追加要件）
+// 全50件の輪郭を中心・平均半径で正規化した角度→半径プロファイルに変換し、同一種同士の
+// ペア距離(正規化RMS差)の最小値がしきい値以上であることを確認する（見分けがつかない
+// ほど酷似したペアの再発を防ぐ回帰ガード）
+{
+  function radiusProfile(pts, K = 72) {
+    const cx = pts.reduce((s, p) => s + p.x, 0) / pts.length;
+    const cy = pts.reduce((s, p) => s + p.y, 0) / pts.length;
+    const withAngle = pts
+      .map((p) => ({ a: Math.atan2(p.y - cy, p.x - cx), r: Math.hypot(p.x - cx, p.y - cy) }))
+      .sort((a, b) => a.a - b.a);
+    const profile = new Array(K);
+    for (let k = 0; k < K; k++) {
+      const targetA = -Math.PI + (k / K) * 2 * Math.PI;
+      let lo = -1;
+      for (let i = 0; i < withAngle.length; i++) {
+        if (withAngle[i].a <= targetA) lo = i;
+        else break;
+      }
+      if (lo === -1) lo = withAngle.length - 1;
+      const hi = (lo + 1) % withAngle.length;
+      const aLo = withAngle[lo].a;
+      const aHi = withAngle[hi].a;
+      let span = aHi - aLo;
+      if (span <= 0) span += 2 * Math.PI;
+      const t = span > 0 ? (((targetA - aLo + 2 * Math.PI) % (2 * Math.PI)) / span) : 0;
+      profile[k] = withAngle[lo].r + t * (withAngle[hi].r - withAngle[lo].r);
+    }
+    const mean = profile.reduce((s, r) => s + r, 0) / profile.length;
+    return profile.map((r) => r / mean);
+  }
+  function profileDist(p1, p2) {
+    let sum = 0;
+    for (let i = 0; i < p1.length; i++) sum += (p1[i] - p2[i]) ** 2;
+    return Math.sqrt(sum / p1.length);
+  }
+  // シェイプ全ユニーク化(goofy-hatching-mango.md実装フィードバックで追加)のパラメータレンジ
+  // 拡大前は最小0.0287(arch)まで近接していたペアが実測で見つかった。拡大後は0.0429まで改善
+  // (2026-07-07時点)。この改善を下回る退行を検知するしきい値として設定する
+  const UNIQUENESS_MIN_DIST_THRESHOLD = 0.035;
+  try {
+    const { default: ideasData } = await import("../data/ideas.json", { with: { type: "json" } });
+    const shapes = ideasData.map((idea) => {
+      const dateLabel = idea.date ? idea.date.replaceAll("-", ".") : "ARCHIVE";
+      const shape = shapeForIdea(idea.id, idea.title, dateLabel, { seed: idea.seed, refs: idea.refs });
+      const pts = densePointsFromPath(shape.outlinePath, 16);
+      return { id: idea.id, kind: shape.kind, profile: radiusProfile(pts) };
+    });
+    const byKind = new Map();
+    for (const s of shapes) {
+      if (!byKind.has(s.kind)) byKind.set(s.kind, []);
+      byKind.get(s.kind).push(s);
+    }
+    let globalMin = Infinity;
+    let worstPair = null;
+    let pairCount = 0;
+    for (const [kind, list] of byKind) {
+      for (let i = 0; i < list.length; i++) {
+        for (let j = i + 1; j < list.length; j++) {
+          const d = profileDist(list[i].profile, list[j].profile);
+          pairCount++;
+          if (d < globalMin) {
+            globalMin = d;
+            worstPair = { kind, a: list[i].id, b: list[j].id, d };
+          }
+        }
+      }
+    }
+    console.log(
+      `シェイプ全ユニーク化チェック: 同一種ペア${pairCount}組中、最小距離=${globalMin.toFixed(4)} (${worstPair ? `${worstPair.kind}: ${worstPair.a} vs ${worstPair.b}` : "N/A"})`,
+    );
+    assert(
+      globalMin >= UNIQUENESS_MIN_DIST_THRESHOLD,
+      `シェイプの同一種ペアが全て閾値以上に区別可能 (実測最小=${globalMin.toFixed(4)}, 閾値=${UNIQUENESS_MIN_DIST_THRESHOLD})`,
+    );
+  } catch {
+    console.warn("data/ideas.json の読み込みをスキップ（シェイプ全ユニーク化チェックは対象外）");
+  }
+}
 
 console.log(
   `smoke-idea-shapes: ${testCases.length}件 × 検証完了。出現シェイプ種: ${[...kindsSeen].join(", ")} / 複雑形比率=${(complexRatio * 100).toFixed(1)}%`,

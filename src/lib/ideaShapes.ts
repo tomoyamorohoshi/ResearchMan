@@ -81,13 +81,30 @@ export type IdeaShape = {
   dateFontSize: number; // 日付のフォントサイズ(px, viewBox座標系。曲率探索と同時に確定済み)
   titleFontSize: number; // タイトルのフォントサイズ(px, viewBox座標系)
   safeArea: { x: number; y: number; w: number; h: number }; // foreignObject安全領域
+  // G: safeAreaを中心基準で上下に拡張してよい安全な上限の高さ（goofy-hatching-mango.md
+  // 2026-07-07第4バッチ）。説明文の全文表示のためforeignObjectを拡張する際、この値を
+  // 超えて拡張するとtitle/date弧との重なりや輪郭外へのはみ出しが起こりうる。growHeightSafely
+  // (computeSafeArea内)がsafeAreaと同じ包含・クリアランス判定を使って安全に算出する
+  safeAreaMaxGrowH: number;
   // 輪郭の実bbox外側の空白（viewBox座標系、上/右/下/左）。密サンプル済みの輪郭点(outlinePolygon)
   // から算出する決定論値。矩形の外箱(0..viewBoxW, 0..viewBoxH)いっぱいにシェイプが描かれるとは
-  // 限らない（例: buildBlobは中心から不揃いに広がる有機形状で、外箱の四隅近くには余白が残る）ため、
-  // カード同士を外箱基準で詰めても実際のシルエット間には大きな空白が残ってしまう。IdeasPoster側は
-  // このインセットの実ピクセル換算ぶんをネガティブマージンで相殺し、シルエット基準の近接配置にする
-  // （ユーザーフィードバック修正バッチ: 「接するか接しないか」の間隔にする）
+  // 限らない（例: buildBlobは中心から不揃いに広がる有機形状で、外箱の四隅近くには余白が残る）。
+  // goofy-hatching-mango.md 2026-07-07第3バッチまでは、この差分をIdeasPoster側のネガティブ
+  // マージン+box拡大(growScale)で相殺していたが、CSS Gridはjustify-self側のマージンしか
+  // 実際には効かないため近接度が不十分だった(実測: 中央値120px)。第4バッチでcropViewBox
+  // （下記）に置き換え、box自体をこのインセット分だけクロップして「箱≒シルエット」にする
+  // 根本解決に変更した。outlineInset自体は後方互換のフィールドとしてそのまま残す
+  // （cropViewBoxの導出元・スモークテストの検証対象として引き続き使用）
   outlineInset: { top: number; right: number; bottom: number; left: number };
+  // F: 輪郭の実bboxにクロップしたviewBox（goofy-hatching-mango.md 2026-07-07第4バッチ）。
+  // outlineInsetから導出し、数%のstrokeマージン(CROP_MARGIN_RATIO)のみ残す。IdeaShapeCardの
+  // <svg viewBox>にそのまま渡すことで「箱≒シルエット」にする。outlinePath/textPath/
+  // foreignObjectの座標はすべて元のviewBox(0..viewBoxW, 0..viewBoxH)座標系のまま変更しない
+  // （viewBox属性は同じ座標系の「見える窓」を変えるだけなので無変換で成立する）。
+  // IdeasPoster側はこのcropAspectをCSS aspect-ratioに使うことで、素直なCSS gapがそのまま
+  // シルエット間の近接距離になる
+  cropViewBox: { x: number; y: number; w: number; h: number };
+  cropAspect: number; // cropViewBox.w / cropViewBox.h。カード外枠のCSS aspect-ratioに使う
   // 数学的保証フォールバック(曲率制約を無視して全周長で確定するティア)が発動したかどうか。
   // 実運用の40件+妥当な合成ロングタイトルでは発動しない想定の診断用フィールド
   // (IdeaShapeCardは使わない。スモークテストが「切り詰めゼロ」の証明範囲を切り分けるために使う)
@@ -383,15 +400,20 @@ type ShapeBuildResult = {
 };
 
 // 1: 不揃い楕円（ブロブ）
+// E: パラメータレンジを拡大（goofy-hatching-mango.md 2026-07-07第4バッチ・シェイプ全ユニーク化。
+// 実測(全50件の輪郭を正規化した角度→半径プロファイルの突き合わせ)で同種同士の近接ペアが
+// 見つかった(blob: archive-39 vs 2026-07-07-5 差分0.0754)。曲率制約の詳細な調整コメントが無い
+// 単純形状(blob/arch/tallOval/notchedCircle)は元のレンジが狭すぎたため、視覚的な区別が
+// 明確になるようレンジを広げる（rx/ryは元の6単位幅→14単位幅、harmonics ampも拡大）
 function buildBlob(rng: () => number): ShapeBuildResult {
   const cx = 50;
   const cy = 50;
-  const rx = randRange(rng, 38, 44);
-  const ry = randRange(rng, 36, 42);
+  const rx = randRange(rng, 34, 48);
+  const ry = randRange(rng, 32, 46);
   const harmonics = makeHarmonics(rng, [
-    { freqMin: 2, freqMax: 3, ampMin: 0.06, ampMax: 0.11 },
-    { freqMin: 3, freqMax: 5, ampMin: 0.05, ampMax: 0.09 },
-    { freqMin: 5, freqMax: 7, ampMin: 0.02, ampMax: 0.05 },
+    { freqMin: 2, freqMax: 3, ampMin: 0.05, ampMax: 0.14 },
+    { freqMin: 3, freqMax: 5, ampMin: 0.04, ampMax: 0.11 },
+    { freqMin: 5, freqMax: 7, ampMin: 0.02, ampMax: 0.06 },
   ]);
   const radiusAt = (angle: number) => ellipseR(angle, rx, ry) * (1 + clamp(harmonicJitter(angle, harmonics), -0.3, 0.32));
   const pointAt = (angle: number): Point => {
@@ -449,14 +471,17 @@ function buildWaveRect(rng: () => number): ShapeBuildResult {
 }
 
 // 4: アーチ（上半円+胴）
+// E: パラメータレンジを拡大（シェイプ全ユニーク化バッチ。archは実測で最も近接したペア
+// (archive-4 vs archive-27 差分0.0287)が出た種で、元のレンジ(cy/domeR/bodyBottomOffsetとも
+// 4単位幅)が最も狭かった。3〜4倍のレンジ幅に広げ、視覚的な区別を明確にする）
 function buildArch(rng: () => number): ShapeBuildResult {
   const viewBoxW = 92;
   const viewBoxH = 100;
   const cx = viewBoxW / 2;
-  const cy = randRange(rng, 38, 42);
-  const domeR = randRange(rng, 34, 38);
-  const bodyBottomOffset = randRange(rng, 42, 46);
-  const harmonics = makeHarmonics(rng, [{ freqMin: 2, freqMax: 3, ampMin: 0.04, ampMax: 0.07 }]);
+  const cy = randRange(rng, 33, 47);
+  const domeR = randRange(rng, 29, 43);
+  const bodyBottomOffset = randRange(rng, 36, 52);
+  const harmonics = makeHarmonics(rng, [{ freqMin: 2, freqMax: 3, ampMin: 0.03, ampMax: 0.11 }]);
   const radiusAt = (angleRaw: number) => {
     let angle = angleRaw;
     while (angle > Math.PI) angle -= TAU;
@@ -478,16 +503,18 @@ function buildArch(rng: () => number): ShapeBuildResult {
 }
 
 // 5: 縦長オーバル
+// E: パラメータレンジを拡大（シェイプ全ユニーク化バッチ。実測でtallOval同士の近接ペアが複数
+// 見つかった: archive-12 vs archive-36 差分0.0494等）。rx/ryとも元の4単位幅→12単位幅に広げる
 function buildTallOval(rng: () => number): ShapeBuildResult {
   const viewBoxW = 64;
   const viewBoxH = 100;
   const cx = viewBoxW / 2;
   const cy = 50;
-  const rx = randRange(rng, 20, 24);
-  const ry = randRange(rng, 42, 46);
+  const rx = randRange(rng, 16, 28);
+  const ry = randRange(rng, 37, 46);
   const harmonics = makeHarmonics(rng, [
-    { freqMin: 2, freqMax: 3, ampMin: 0.05, ampMax: 0.08 },
-    { freqMin: 3, freqMax: 4, ampMin: 0.03, ampMax: 0.05 },
+    { freqMin: 2, freqMax: 3, ampMin: 0.04, ampMax: 0.11 },
+    { freqMin: 3, freqMax: 4, ampMin: 0.02, ampMax: 0.07 },
   ]);
   const radiusAt = (angle: number) => ellipseR(angle, rx, ry) * (1 + clamp(harmonicJitter(angle, harmonics), -0.22, 0.22));
   const pointAt = (angle: number): Point => {
@@ -539,9 +566,12 @@ function buildMultiLobe(rng: () => number): ShapeBuildResult {
   // fineHarmonics(エッジ荒れ用)は曲率＝振幅×周波数²で効くため、周波数7〜9ではampが小さくても
   // メインローブより曲率への寄与が大きくなり得る(splatで実測した同種の問題。DESIGN差分参照)。
   // 周波数・振幅とも抑えることでbestSmoothRunの実測平均が68→91まで改善する
+  // E: lobeAmpのレンジをわずかに拡大（シェイプ全ユニーク化バッチ。実測でmultiLobe同士の近接
+  // ペアが見つかった: archive-13 vs archive-37 差分0.0546等）。曲率制約(上のコメント参照)を
+  // 崩さないよう、既存レンジの外側にわずかに広げるだけの控えめな変更に留める
   const lobes = pick(rng, [2, 3] as const);
   const rBase = randRange(rng, 30, 36);
-  const lobeAmp = randRange(rng, 0.12, 0.2);
+  const lobeAmp = randRange(rng, 0.1, 0.22);
   const lobePhase = randRange(rng, 0, TAU);
   const fineHarmonics = makeHarmonics(rng, [{ freqMin: 6, freqMax: 8, ampMin: 0.008, ampMax: 0.015 }]);
   const radiusAt = (angle: number) =>
@@ -629,20 +659,24 @@ function buildLNotch(rng: () => number): ShapeBuildResult {
 }
 
 // 9: 大きな切り欠きのある円形（複雑形。B: 1〜2箇所の深い凹み）
+// E: 切り欠きの幅・深さのレンジを拡大（シェイプ全ユニーク化バッチ。実測でnotchedCircle同士の
+// 近接ペアが見つかった: 2026-07-07-1 vs 2026-07-07-9 差分0.0382）。firstCenterは元々全周
+// ランダムだが、切り欠きの幅・深さ自体のレンジが狭いと偶然近い角度になったペアが酷似して
+// 見えるため、rBase・halfWidth・depthのレンジを広げて個体差を強める
 function buildNotchedCircle(rng: () => number): ShapeBuildResult {
   const cx = 50;
   const cy = 50;
-  const rBase = randRange(rng, 36, 41);
+  const rBase = randRange(rng, 33, 44);
   const notchCount = pick(rng, [1, 1, 2] as const);
   const firstCenter = randRange(rng, 0, TAU);
   const notches: { center: number; halfWidth: number; depth: number }[] = [
-    { center: firstCenter, halfWidth: deg2rad(randRange(rng, 38, 58)), depth: randRange(rng, 0.38, 0.56) },
+    { center: firstCenter, halfWidth: deg2rad(randRange(rng, 30, 66)), depth: randRange(rng, 0.32, 0.62) },
   ];
   if (notchCount === 2) {
     notches.push({
       center: firstCenter + Math.PI + randRange(rng, -0.4, 0.4),
-      halfWidth: deg2rad(randRange(rng, 26, 40)),
-      depth: randRange(rng, 0.28, 0.42),
+      halfWidth: deg2rad(randRange(rng, 20, 46)),
+      depth: randRange(rng, 0.22, 0.46),
     });
   }
   const fineHarmonics = makeHarmonics(rng, [{ freqMin: 6, freqMax: 8, ampMin: 0.015, ampMax: 0.03 }]);
@@ -745,6 +779,13 @@ const ABSOLUTE_MIN_FONT_SIZE = 0.6;
 
 const INSET_BASE_RATIO = 0.07;
 const INSET_GAIN_RATIO = 0.14; // 曲率が閾値ぎりぎり(=平均曲率係数1.0)のとき、最大でBASE+GAINまで増やす
+
+// F: cropViewBoxの輪郭bboxに残す余白比率（クロップ後のbbox幅/高さに対する比率、片側あたり）。
+// 0にすると輪郭の最外周サンプル点がviewBoxの端に厳密に一致し、密サンプル近似誤差(凸曲線の弦は
+// 真の曲線よりわずかに内側になるため、サンプル密度が有限な以上わずかな取りこぼしが起こりうる)
+// ぶんの安全マージンが無くなる。「数%のstrokeマージンのみ残す」という設計意図どおり、
+// ごく小さい値に留める（大きくすると箱がシルエットから離れ、本バッチの目的=ニアタッチが崩れる）
+const CROP_MARGIN_RATIO = 0.03;
 
 // I: グリフの外周はみ出し防止のためのインセット下限（ユーザーフィードバック修正バッチ）。
 // 上記のINSET_BASE_RATIO/INSET_GAIN_RATIOは「低曲率区間でのグリフ同士の詰まり」対策として
@@ -1172,6 +1213,17 @@ function circularIndexDistance(n: number, a: number, b: number): number {
 // 弧全体をsafeAreaのavoid点群として使うと「実際にグリフが無い場所」まで避けようとして
 // 過度に安全側になる一方、切り出さずに単純に間引くと逆に密な部分を見逃す(実測: archive-29で
 // タイトルの実描画範囲がsafeAreaと重なるのに、弧全体で見た最短距離では検出できなかった)
+//
+// goofy-hatching-mango.md 検証B(archive-10「Rail Clock」T字形): points自体をcumLen[i]で
+// フィルタするだけだと、輪郭の長い直線区間(roundedPolygonPathの角と角の間の"L"コマンドは
+// 始点・終点の2点しか持たず、densePointsFromOutlinePathも直線区間の中間点を補間しない)で
+// lo/hiがその疎な2点の間に落ちた場合、実際にグリフが描画される範囲の終端がまるごと
+// 手前で打ち切られてしまう(実測: archive-10のlNotch T字で、ステム(縦の腕)の直線区間が
+// cumLen上で18viewBox単位以上の間隔しか点を持たず、hi=48.63がその区間の63%地点に
+// あたるにもかかわらず、フィルタは手前の点(36.64)で打ち切っていた。結果、safeArea探索が
+// タイトルの実際の描画範囲を過小評価し、説明文と視覚的に重なるバグになっていた)。
+// lo/hiの位置を隣接2点間で線形補間して必ず含めることで、疎な直線区間でも実際の描画範囲の
+// 終端を正しく表す（resampleAlongPolylineと同じ補間の考え方をlo/hiの2点にだけ適用する）
 function extractCenteredSpan(points: readonly Point[], spanLength: number): Point[] {
   if (points.length < 2) return points as Point[];
   const cumLen: number[] = [0];
@@ -1183,10 +1235,24 @@ function extractCenteredSpan(points: readonly Point[], spanLength: number): Poin
   const mid = total / 2;
   const lo = mid - half;
   const hi = mid + half;
-  const out: Point[] = [];
+  const interpAt = (target: number): Point => {
+    for (let i = 1; i < cumLen.length; i++) {
+      if (cumLen[i] >= target) {
+        const segStart = cumLen[i - 1];
+        const segEnd = cumLen[i];
+        const t = segEnd > segStart ? (target - segStart) / (segEnd - segStart) : 0;
+        const a = points[i - 1];
+        const b = points[i];
+        return { x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t };
+      }
+    }
+    return points[points.length - 1];
+  };
+  const out: Point[] = [interpAt(lo)];
   for (let i = 0; i < points.length; i++) {
-    if (cumLen[i] >= lo && cumLen[i] <= hi) out.push(points[i]);
+    if (cumLen[i] > lo && cumLen[i] < hi) out.push(points[i]);
   }
+  out.push(interpAt(hi));
   return out.length >= 2 ? out : (points as Point[]);
 }
 
@@ -1324,13 +1390,180 @@ function findMaxInscribedRect(
 const SAFE_AREA_HEIGHT_STEPDOWN_RATIOS: readonly number[] = [0.2, 0.17, 0.14, 0.11, 0.08];
 const SAFE_AREA_WIDTH_STEPDOWN_RATIOS: readonly number[] = [0.3, 0.25, 0.2];
 
+// ── G: 説明文の全文表示（クランプ全廃・コンテンツに合わせたサイズ決定）────────────────
+// goofy-hatching-mango.md 2026-07-07第4バッチ（実装中のフィードバックで追加）。旧実装は
+// DESC_FONT_RATIO固定+truncateToEmBudgetで説明文(idea.seed)を「…」で切り詰めていたが、
+// 「本文は必ず全文表示する」という要件に変更された。方針は「文章をボックスに合わせて切る」から
+// 「ボックス（フォントサイズ・必要ならsafeAreaの目標サイズ）をコンテンツに合わせる」へ反転する。
+// IdeaShapeCard.tsxが担っていたreservedHeightPx(罫線+参照リンク)計算・説明文フォント縮小探索の
+// 定数と計算式をここに集約し、(1) shapeForIdea内でsafeArea探索の目標サイズを決める「事前見積り」
+// (2) IdeaShapeCard.tsx側で実際のsafeAreaに対して行う「本番のフィット探索」の両方から
+// 同じ関数を呼べるようにする（値のズレによる不整合を防ぐ）
+export const DESC_FONT_MAX_RATIO = 0.031; // 説明文フォントの開始値（旧DESC_FONT_RATIOと同値）
+// 説明文フォントの下限比率。floor/max比をタイトル(0.03/0.076≈0.39)・日付(0.02/0.036≈0.56)と
+// 近い水準に置き、可読性の下限を保つ（実測で0.003程度まで縮めれば数式上は必ず収まることを
+// 確認したが、実際に描画すると1px未満の判読不能なサイズになり「全文表示」の趣旨に反する。
+// floorで収まらない場合はfitDescription呼び出し側(IdeaShapeCard.tsx)がforeignObject自体を
+// 必要なぶんだけ拡張して対応する＝可読性を優先し、極端なケースでのみ軽微なはみ出しを許容する）
+export const DESC_FONT_FLOOR_RATIO = 0.014;
+const DESC_FONT_SHRINK_STEP = 0.94; // 1段階あたりの縮小率
+// G: 罫線・参照リンクの保守的な予約高さ(reservedHeightPx)がsafeArea.hの大部分〜全部を占めて
+// しまう輪郭が狭い形状(実測: lNotchの細い腕等16件でreservedHeightPxがsafeArea.hを上回った)
+// では、説明文に割り当てられる高さが数式上0になる。これは予約側の安全係数(RULE_HEIGHT_
+// SAFETY_MULT等)が実測の最大値にさらに余裕を持たせた意図的に保守的な値であり(実際のブラウザ
+// 描画は数式の見積りより小さい実測: measure-real-desc2.mjs参照)、実際には説明文の入る余地が
+// 残っていることが多い。説明文が0行になる(=全廃したはずの「見えない」状態)を避けるため、
+// safeArea.hに対する最小割合を「説明文に必ず残す余白」として下限保証する
+export const MIN_DESC_AVAILABLE_RATIO = 0.15;
+export const DESC_LINE_HEIGHT_MULT = 1.375; // Tailwindのleading-snug相当
+// 1行あたりの文字幅予算(estimateTextWidthEm)は単語境界での折返しロス(英単語が丸ごと次行に
+// 送られる等)を考慮しないため、安全側に少し削って見積もる(=必要行数を少し多めに見積もる)
+export const LINE_BUDGET_SAFETY_RATIO = 0.92;
+export const LINK_FONT_RATIO = 0.028; // 参照リンクのタイトル
+export const LINK_LABEL_FONT_RATIO = 0.022; // 参照リンクのCASE/TECHラベル
+export const CONTENT_GAP_RATIO = 0.014; // 説明文/罫線/リンク間の縦ギャップ（viewBoxW比）
+export const LINK_ROW_LINE_HEIGHT_MULT = 1.3;
+export const LINK_ROW_PADDING_Y_EM = 0.2; // 参照リンク行のpy-[0.2em]（上下）
+export const LINK_LABEL_TRACKING_EM = 0.18; // ラベル(CASE/TECH)のtracking-[0.18em]
+export const LINK_ROW_GAP_EM = 0.5; // ラベル-タイトル間のgap-[0.5em]
+export const LINK_TITLE_MAX_LINES = 2; // 参照リンクのタイトルは最大2行の折返しで全文表示する
+// 罫線・参照リンク行の実測値は単純計算より系統的に大きい(実測: 罫線は理論値の最大約3.3倍・
+// リンク行1行あたり最大約2.35倍)ため、実測の最大値に余裕を持たせた安全係数で乗せる
+export const RULE_HEIGHT_SAFETY_MULT = 6;
+export const LINK_ROW_HEIGHT_SAFETY_MULT = 1.6;
+export const MIN_DESC_LINES = 1; // 説明文の下限行数（0行にはしない）
+
+export type ContentRef = { type: "case" | "tech"; title: string };
+
+function refTitleLinesFor(refTitle: string, labelText: string, safeAreaW: number, linkFontSizePx: number, linkLabelFontSizePx: number): number {
+  const labelWidthPx = (estimateTextWidthEm(labelText) + labelText.length * LINK_LABEL_TRACKING_EM) * linkLabelFontSizePx;
+  const availableTitlePx = Math.max(1, safeAreaW - labelWidthPx - LINK_ROW_GAP_EM * linkFontSizePx);
+  const availableTitleEm = availableTitlePx / linkFontSizePx;
+  return Math.min(LINK_TITLE_MAX_LINES, Math.max(1, Math.ceil(estimateTextWidthEm(refTitle) / availableTitleEm)));
+}
+
+// 罫線+参照リンク一覧が必要とする高さ(px=viewBox単位)。説明文フォント探索・shapeForIdea内の
+// 事前見積りの両方から共通で呼ぶ（IdeaShapeCard.tsxの旧reservedHeightPx計算と同じ式）
+export function estimateReservedLinksHeightPx(viewBoxW: number, safeAreaW: number, refs: readonly ContentRef[]): number {
+  if (refs.length === 0) return 0;
+  const linkFontSizePx = viewBoxW * LINK_FONT_RATIO;
+  const linkLabelFontSizePx = viewBoxW * LINK_LABEL_FONT_RATIO;
+  const gapPx = viewBoxW * CONTENT_GAP_RATIO;
+  const linkRowHeightPxFor = (lines: number) =>
+    linkFontSizePx * (LINK_ROW_LINE_HEIGHT_MULT * lines + LINK_ROW_PADDING_Y_EM * 2) * LINK_ROW_HEIGHT_SAFETY_MULT;
+  const linesSum = refs.reduce((sum, ref) => {
+    const labelText = ref.type === "tech" ? "Tech" : "Case";
+    return sum + linkRowHeightPxFor(refTitleLinesFor(ref.title, labelText, safeAreaW, linkFontSizePx, linkLabelFontSizePx));
+  }, 0);
+  return RULE_HEIGHT_SAFETY_MULT + linesSum + 2 * gapPx;
+}
+
+// 指定フォント比率(ratio)で説明文全文を折り返した場合に必要な行数・高さ(px=viewBox単位)を返す。
+// 切り詰めは行わない前提の見積り（LINE_BUDGET_SAFETY_RATIOで折返しロスぶんの安全マージンを取る）
+export function requiredDescHeightPx(viewBoxW: number, safeAreaW: number, seedText: string, ratio: number): number {
+  const fontSizePx = viewBoxW * ratio;
+  const charsPerLine = Math.max(1, (safeAreaW / fontSizePx) * LINE_BUDGET_SAFETY_RATIO);
+  const lines = Math.max(MIN_DESC_LINES, Math.ceil(estimateTextWidthEm(seedText) / charsPerLine));
+  return lines * fontSizePx * DESC_LINE_HEIGHT_MULT;
+}
+
+export type DescFit = { fontSizePx: number; lines: number; requiredHeightPx: number; availableForDescPx: number; fits: boolean };
+
+// DESC_FONT_FLOOR_RATIOでも収まらない場合の「緊急下限」。IdeaShapeCard.tsxがforeignObjectを
+// shape.safeAreaMaxGrowH(title/date弧との重なり・輪郭外はみ出しを検査済みの安全な上限)まで
+// 拡張してもなお全文の必要高さに届かない場合、DESC_FONT_FLOOR_RATIO(可読性を保つ下限)を
+// さらに下回ってでも安全な上限の内側に収める。実装上の判断（計画への疑義）: 当初は安全上限を
+// 超えて無条件にforeignObjectを拡張していたが、実測(Playwrightスクショ目視)でsafeArea自体が
+// 極端にタイトな形状(archive-5のnotchedCircle)でtitle弧に食い込むバグを発見したため、
+// 「安全な範囲内に収める」を「可読性」より優先する設計に変更した
+const DESC_FONT_EMERGENCY_FLOOR_RATIO = 0.0025;
+
+// DESC_FONT_MAX_RATIOから縮小探索し、説明文全文が収まる最大のフォントサイズを選ぶ（タイトル/
+// 日付弧のフォント探索と同じ「大きい方から縮めて最初に収まったものを採用」という考え方）。
+// 利用可能高さは(safeArea.h - reservedHeightPx)を基本とするが、MIN_DESC_AVAILABLE_RATIOにより
+// safeArea.hの最小割合を必ず説明文用に確保する（reservedHeightPxの安全係数が保守的すぎて
+// 数式上0になるケースの対策。上のコメント参照）。DESC_FONT_FLOOR_RATIO(可読性を保つ下限)でも
+// 収まらない場合は、DESC_FONT_EMERGENCY_FLOOR_RATIOまでさらに縮小探索を続け、それでも
+// 収まらない場合にのみ切り詰めない方を優先しfloor比率のまま返す(fits=false)
+export function fitDescription(
+  viewBoxW: number,
+  safeAreaW: number,
+  safeAreaH: number,
+  reservedHeightPx: number,
+  seedText: string,
+): DescFit {
+  const availableForDescPx = Math.max(safeAreaH - reservedHeightPx, safeAreaH * MIN_DESC_AVAILABLE_RATIO);
+  const evaluate = (ratio: number): DescFit => {
+    const fontSizePx = viewBoxW * ratio;
+    const charsPerLine = Math.max(1, (safeAreaW / fontSizePx) * LINE_BUDGET_SAFETY_RATIO);
+    const lines = Math.max(MIN_DESC_LINES, Math.ceil(estimateTextWidthEm(seedText) / charsPerLine));
+    const requiredHeightPx = lines * fontSizePx * DESC_LINE_HEIGHT_MULT;
+    return { fontSizePx, lines, requiredHeightPx, availableForDescPx, fits: requiredHeightPx <= availableForDescPx };
+  };
+  const ratios: number[] = [];
+  for (let r = DESC_FONT_MAX_RATIO; r > DESC_FONT_FLOOR_RATIO; r *= DESC_FONT_SHRINK_STEP) ratios.push(r);
+  ratios.push(DESC_FONT_FLOOR_RATIO);
+  let best: DescFit = evaluate(DESC_FONT_FLOOR_RATIO);
+  for (const ratio of ratios) {
+    best = evaluate(ratio);
+    if (best.fits) return best;
+  }
+  // 可読性を保つ下限(DESC_FONT_FLOOR_RATIO)でも収まらない場合のみ、緊急下限まで縮小探索を
+  // 継続する（実データ50件では発動する想定。archive-5等、safeAreaMaxGrowHが小さい形状）
+  for (let r = DESC_FONT_FLOOR_RATIO * DESC_FONT_SHRINK_STEP; r > DESC_FONT_EMERGENCY_FLOOR_RATIO; r *= DESC_FONT_SHRINK_STEP) {
+    best = evaluate(r);
+    if (best.fits) return best;
+  }
+  best = evaluate(DESC_FONT_EMERGENCY_FLOOR_RATIO);
+  // ここに到達するのは緊急下限でも収まらなかった場合(実データ50件では発生しない想定)。
+  // best(=緊急下限での見積り)をfits=falseのまま返す。呼び出し側はこれでも切り詰めずに
+  // 全文を描画する(要件: 説明文の「…」切り詰めは全廃)
+  return best;
+}
+
+// G: 説明文の全文表示のためforeignObjectを拡張する際の安全な上限を求める（goofy-hatching-
+// mango.md 2026-07-07第4バッチ・実装フィードバックで発覚した回帰の修正）。当初は
+// IdeaShapeCard.tsx側でsafeArea中心から上下均等に無条件で拡張していたが、これはtitle/date弧
+// との重なりを検査しないため、safeArea自体がタイトな形状(archive-5のnotchedCircle等、中心
+// 近くの安全な矩形が本来12.9viewBox単位ほどしかない)で、拡張後の矩形が実際にtitle弧の描画
+// 範囲に食い込み、説明文と重なって読めなくなるバグを実測(スクリーンショット目視)で発見した。
+// computeSafeAreaが確定させたrectを起点に、同じcoarsePolygon(輪郭内包含)・avoidGroups
+// (title/date弧からのクリアランス)の判定を再利用しながら高さだけを中心基準で慎重に
+// 拡張し、安全に拡張できる上限の高さを返す。IdeaShapeCard.tsx側はこの上限を超えて
+// 拡張しない（超えてもなお全文が収まらない場合は、フォントをさらに縮める側で吸収する）
+const SAFE_AREA_GROW_STEP_RATIO = 0.01; // 1回の拡張刻み(viewBoxH比)。小さい刻みで安全側に判定
+const SAFE_AREA_GROW_MAX_ITER = 60;
+
+function growHeightSafely(
+  rect: Rect,
+  coarsePolygon: readonly Point[],
+  avoidGroups: readonly { points: readonly Point[]; margin: number }[],
+  viewBoxH: number,
+): number {
+  const stepH = viewBoxH * SAFE_AREA_GROW_STEP_RATIO;
+  const cy = rect.y + rect.h / 2;
+  let h = rect.h;
+  for (let iter = 0; iter < SAFE_AREA_GROW_MAX_ITER; iter++) {
+    const nextH = h + stepH;
+    const candidate: Rect = { x: rect.x, y: cy - nextH / 2, w: rect.w, h: nextH };
+    const samples = rectSamplePoints(candidate);
+    if (!samples.every((p) => pointInPolygon(p, coarsePolygon))) break;
+    if (!avoidGroups.every((g) => rectClearsPoints(candidate, g.points, g.margin))) break;
+    h = nextH;
+  }
+  return h;
+}
+
+export type SafeAreaResult = { rect: Rect; maxGrowH: number };
+
 function computeSafeArea(
   built: ShapeBuildResult,
   dateArc: ArcFitResult,
   titleArc: ArcFitResult,
   dateCharWidthEm: number,
   titleCharWidthEm: number,
-): Rect {
+  contentMin?: { w: number; h: number },
+): SafeAreaResult {
   const coarsePolygon = densePointsFromOutlinePath(built.outlinePath, SAFE_AREA_SAMPLES_PER_CURVE);
   const xs = coarsePolygon.map((p) => p.x);
   const ys = coarsePolygon.map((p) => p.y);
@@ -1354,12 +1587,27 @@ function computeSafeArea(
     { points: datePts, margin: dateArc.fontSize * SAFE_AREA_MARGIN_MULT },
   ];
 
+  // G: 説明文の全文表示を優先するコンテンツ駆動サイズを最優先候補として試す
+  // （goofy-hatching-mango.md 2026-07-07第4バッチ）。既存のSAFE_AREA_*_STEPDOWN_RATIOSの
+  // 上限(幅30%・高さ20%)を上回るサイズが必要な場合でも、findMaxInscribedRectは面積最大化の
+  // 探索なので幾何的に可能ならその要求を満たす（より満たせない場合は下のstepdownループへ
+  // フォールバックし、既存の挙動を維持する＝この形状で幾何的制約が強い場合の後方互換）
+  const finalize = (rect: Rect): SafeAreaResult => ({
+    rect,
+    maxGrowH: growHeightSafely(rect, coarsePolygon, avoidGroups, built.viewBoxH),
+  });
+
+  if (contentMin) {
+    const rect = findMaxInscribedRect(coarsePolygon, bounds, avoidGroups, contentMin.w, contentMin.h);
+    if (rect) return finalize(rect);
+  }
+
   for (const hRatio of SAFE_AREA_HEIGHT_STEPDOWN_RATIOS) {
     for (const wRatio of SAFE_AREA_WIDTH_STEPDOWN_RATIOS) {
       const minW = built.viewBoxW * wRatio;
       const minH = built.viewBoxH * hRatio;
       const rect = findMaxInscribedRect(coarsePolygon, bounds, avoidGroups, minW, minH);
-      if (rect) return rect;
+      if (rect) return finalize(rect);
     }
   }
 
@@ -1392,12 +1640,22 @@ function computeSafeArea(
       }
     }
   }
-  return { x: bestCx - w / 2, y: bestCy - h / 2, w, h };
+  return finalize({ x: bestCx - w / 2, y: bestCy - h / 2, w, h });
 }
 
 // idea.id・title・dateLabelから決定論的にシェイプ1枚を組み立てる（Math.random不使用）。
 // A: タイトル/日付の弧・フォントサイズは輪郭全周からの曲率ベース選定で確定し、切り詰めはしない
-export function shapeForIdea(ideaId: string, title: string, dateLabel: string): IdeaShape {
+// G: content省略時は既存の(幾何のみで決める)stepdown挙動のまま。content指定時は、説明文が
+// DESC_FONT_FLOOR_RATIOで全文収まるだけの高さをsafeArea探索の最優先候補にする（実際に
+// 達成されるsafeArea.wはこの見積りに使った仮定幅(SAFE_AREA_WIDTH_STEPDOWN_RATIOSの最大=30%)
+// と異なりうるが、findMaxInscribedRectは面積最大化探索のため広い側にずれるぶんには問題なく、
+// IdeaShapeCard.tsx側が実際のsafeAreaに対して最終フィット探索を行うため多少のズレは吸収される）
+export function shapeForIdea(
+  ideaId: string,
+  title: string,
+  dateLabel: string,
+  content?: { seed: string; refs: readonly ContentRef[] },
+): IdeaShape {
   const h = hashId(ideaId);
   const kind = WEIGHTED_KIND_TABLE[h % WEIGHTED_KIND_TABLE.length];
   const rng = mulberry32(h);
@@ -1451,7 +1709,16 @@ export function shapeForIdea(ideaId: string, title: string, dateLabel: string): 
     dateFit.fontSize * MIN_ARC_EUCLIDEAN_CLEARANCE_MULT,
   );
 
-  const safeArea = computeSafeArea(built, dateFit, titleFit, dateCharWidthEm, titleCharWidthEm);
+  let contentMin: { w: number; h: number } | undefined;
+  if (content) {
+    const assumedWidth = built.viewBoxW * SAFE_AREA_WIDTH_STEPDOWN_RATIOS[0];
+    const reserved = estimateReservedLinksHeightPx(built.viewBoxW, assumedWidth, content.refs);
+    const descAtFloor = requiredDescHeightPx(built.viewBoxW, assumedWidth, content.seed, DESC_FONT_FLOOR_RATIO);
+    contentMin = { w: assumedWidth, h: reserved + descAtFloor };
+  }
+  const safeAreaResult = computeSafeArea(built, dateFit, titleFit, dateCharWidthEm, titleCharWidthEm, contentMin);
+  const safeArea = safeAreaResult.rect;
+  const safeAreaMaxGrowH = safeAreaResult.maxGrowH;
 
   // outlinePolygon(実際に描画される輪郭の密サンプル点列。上で曲率解析等に使ったものと同一)から
   // 実bboxを求め、外箱(0..viewBoxW, 0..viewBoxH)との差分をインセットとする
@@ -1468,6 +1735,21 @@ export function shapeForIdea(ideaId: string, title: string, dateLabel: string): 
     left: Math.max(0, outlineMinX),
   };
 
+  // F: outlineInsetから輪郭bbox±小マージンのcropViewBoxを導出する。タイトル/日付弧・safeAreaは
+  // (shrinkUntilContained・findMaxInscribedRectの包含判定により)常に輪郭ポリゴンの内側にあり、
+  // 輪郭ポリゴンのbboxは outlineMinX..outlineMaxX / outlineMinY..outlineMaxY そのものなので、
+  // マージンを足すcropViewBoxに対しても自動的に内包される
+  const bboxW = Math.max(1e-6, outlineMaxX - outlineMinX);
+  const bboxH = Math.max(1e-6, outlineMaxY - outlineMinY);
+  const marginX = bboxW * CROP_MARGIN_RATIO;
+  const marginY = bboxH * CROP_MARGIN_RATIO;
+  const cropViewBox = {
+    x: outlineMinX - marginX,
+    y: outlineMinY - marginY,
+    w: bboxW + marginX * 2,
+    h: bboxH + marginY * 2,
+  };
+
   return {
     kind,
     viewBoxW: built.viewBoxW,
@@ -1481,7 +1763,10 @@ export function shapeForIdea(ideaId: string, title: string, dateLabel: string): 
     dateFontSize: dateFit.fontSize,
     titleFontSize: titleFit.fontSize,
     safeArea,
+    safeAreaMaxGrowH,
     outlineInset,
+    cropViewBox,
+    cropAspect: cropViewBox.w / cropViewBox.h,
     titleUsedFallback: titleFit.usedFallback,
     dateUsedFallback: dateFit.usedFallback,
   };

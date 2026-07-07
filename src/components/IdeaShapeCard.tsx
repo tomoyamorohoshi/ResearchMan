@@ -1,8 +1,18 @@
 import type { CSSProperties, HTMLAttributes } from "react";
 import Link from "next/link";
 import {
+  CONTENT_GAP_RATIO,
   DATE_LETTER_SPACING_EM,
+  DESC_LINE_HEIGHT_MULT,
+  estimateReservedLinksHeightPx,
   estimateTextWidthEm,
+  fitDescription,
+  LINE_BUDGET_SAFETY_RATIO,
+  LINK_FONT_RATIO,
+  LINK_LABEL_FONT_RATIO,
+  LINK_LABEL_TRACKING_EM,
+  LINK_ROW_GAP_EM,
+  LINK_TITLE_MAX_LINES,
   shapeForIdea,
   TITLE_LETTER_SPACING_EM,
   truncateToEmBudget,
@@ -13,49 +23,18 @@ import { dateLabelOf, type Category, type Idea } from "@/lib/ideas";
 // 輪郭沿いに投稿日・タイトルを実テキスト(textPath)で流し、内部のforeignObjectに
 // 説明文→罫線→参照リンクを収める。サーバーコンポーネント（JS不要・SEO/a11y向けの実テキスト）。
 //
-// A: タイトル/日付の弧・フォントサイズはshapeForIdea(idea.id, idea.title, dateLabel)が
+// A: タイトル/日付の弧・フォントサイズはshapeForIdea(idea.id, idea.title, dateLabel, content)が
 // 輪郭全周からの曲率ベース選定で確定済み（切り詰めは行わない。DESIGN差分参照）。
 // このコンポーネントは算出済みの値をそのまま描画するだけで、フォントフィッティングや
 // 省略記号の計算は一切行わない。
-const DESC_FONT_RATIO = 0.031; // 説明文
-const LINK_FONT_RATIO = 0.028; // 参照リンクのタイトル
-const LINK_LABEL_FONT_RATIO = 0.022; // 参照リンクのCASE/TECHラベル
-const CONTENT_GAP_RATIO = 0.014; // 説明文/罫線/リンク間の縦ギャップ（viewBoxW比）
-
-// E: 説明文クランプの整数行化（ユーザーフィードバック修正バッチ）。safeArea.hは輪郭形状ごとに
-// 大きく変わる(輪郭が狭い形状では最小8%まで縮む)のに対し、旧実装は行数を固定3行にしていたため、
-// 罫線・参照リンクぶんの高さを差し引いた「本当に描画できる行数」を超えることがあった。overflow-
-// hiddenの外枠が中途半端な高さで裁ち落とすと、行の途中でグリフが上下半分に切れたり、罫線が
-// 直前の行の文字と重なって見える(スクショで実測)。foreignObject内はCSS pxがviewBox単位と等価
-// （x/y/width/heightをviewBox座標系で指定しているため）なので、利用可能高さから整数行数を
-// 逆算できる。
 //
-// 実装上の判断（計画への疑義）: 当初は-webkit-line-clamp(inline style)で行数を制御する設計
-// だったが、実測(Playwright)でSVG foreignObject内にネストした-webkit-line-clampは
-// 「指定した行数を超えて描画される」「親に明示heightを与えても無視される」という信頼できない
-// 挙動を示した(まさにユーザー報告の「行の途中でグリフが半分だけ見える／罫線が文字に重なる」
-// バグの原因)。この環境では-webkit-line-clampに頼れないと判断し、行数計算(整数行)自体は維持
-// しつつ、実際にDOMへ渡す文字列をtruncateToEmBudget(ideaShapes.ts)でJS側に確定させる方式に
-// 変更した。参照リンクのタイトルも同じ理由で同じ関数を使う（下記）
-const DESC_LINE_HEIGHT_MULT = 1.375; // Tailwindのleading-snug相当（実際の描画にもそのまま使う値）
-// 1行あたりの文字幅予算(estimateTextWidthEm)は単語境界での折返しロス(英単語が丸ごと次行に
-// 送られる等)を考慮しないため、安全側に少し削って見積もる
-const LINE_BUDGET_SAFETY_RATIO = 0.92;
-const LINK_ROW_LINE_HEIGHT_MULT = 1.3; // 参照リンク1行の推定行高係数（フォントサイズ比。py-[0.2em]の
-// 上下パディングは別途LINK_ROW_PADDING_Y_EMで加算する）
-const LINK_ROW_PADDING_Y_EM = 0.2; // 参照リンク行のpy-[0.2em]（上下）
-const LINK_LABEL_TRACKING_EM = 0.18; // ラベル(CASE/TECH)のtracking-[0.18em]（1文字ごとの追加字間）
-const LINK_ROW_GAP_EM = 0.5; // ラベル-タイトル間のgap-[0.5em]
-// G: 参照リンクのタイトルは「…」切り詰め(truncate=1行+ellipsis)をやめ、最大2行の折返しで
-// 全文表示する（ユーザーフィードバック修正バッチ）
-const LINK_TITLE_MAX_LINES = 2;
-// 罫線・参照リンク行の実測値は、単純計算(行高+padding)より系統的に大きい(実測: 罫線は理論値の
-// 最大約3.3倍・リンク行1行あたり最大約2.35倍。line-height:normalの既定値やレンダリングの丸め
-// など複数要因が重なり正確な理論値の特定が困難だったため、実測の最大値に余裕を持たせた安全係数
-// で乗せる方針にした)
-const RULE_HEIGHT_SAFETY_MULT = 6; // 罫線のh-px(1px)に掛ける安全係数
-const LINK_ROW_HEIGHT_SAFETY_MULT = 1.6; // 参照リンク1行の推定行高に掛ける安全係数
-const MIN_DESC_LINES = 1; // 罫線・リンクぶんを差し引いてなお不足する極端なケースの下限（0行にはしない）
+// G: 説明文(idea.seed)の「…」クランプは全廃した（goofy-hatching-mango.md 2026-07-07第4バッチ。
+// 実装中のフィードバックで追加）。旧実装はDESC_FONT_RATIO固定+truncateToEmBudgetで説明文を
+// 切り詰めていたが、「本文は必ず全文表示する」という要件に変更されたため、固定フォントサイズに
+// 文章を合わせて切るのではなく、コンテンツ量に応じてフォントサイズ(と、必要ならshapeForIdea側の
+// safeAreaの目標サイズ)を決める方式に反転した。フォント比率・行高・安全係数などの定数は
+// ideaShapes.ts側(shapeForIdea内の事前見積りと同じ式)からインポートし、値のズレによる
+// 不整合を防ぐ（旧: このファイルにDESC_FONT_RATIO等を個別に定義していた）
 
 // foreignObject直下のdivにはxmlns指定が必要（SVG2仕様）だが、React.HTMLAttributesの型には
 // xmlnsが存在しないためHTMLAttributes型にキャストして渡す
@@ -63,25 +42,26 @@ const xhtmlNsProps = { xmlns: "http://www.w3.org/1999/xhtml" } as unknown as HTM
 
 export default function IdeaShapeCard({ idea, category }: { idea: Idea; category: Category }) {
   const dateLabel = dateLabelOf(idea);
-  const shape = shapeForIdea(idea.id, idea.title, dateLabel);
+  // G: idea.seed(説明文)・refsをshapeForIdeaに渡し、safeArea探索が説明文全文＋参照リンクに
+  // 必要な高さを最優先で確保しようとするようにする（ideaShapes.tsのcomputeSafeArea参照）
+  const shape = shapeForIdea(idea.id, idea.title, dateLabel, { seed: idea.seed, refs: idea.refs });
   const dateArcId = `idea-date-arc-${idea.id}`;
   const titleArcId = `idea-title-arc-${idea.id}`;
   const ruleColor = category.text === "#1f1f1f" ? "rgba(31,31,31,0.32)" : "rgba(244,240,230,0.4)";
   const w = shape.viewBoxW;
 
-  // E/G: 罫線＋参照リンク領域の高さを必ず確保したうえで、残りの高さに収まる整数行数を説明文に
-  // 使う（foreignObject内はCSS px = viewBox単位。DESIGN差分参照）。参照リンクのタイトルは
-  // truncate(1行+…)をやめ最大LINK_TITLE_MAX_LINES行の折返しで全文表示するため、行数は
-  // タイトル文字幅に応じて1〜2行で変動する。その実測行数ぶんを罫線・リンク領域の高さ予約に
-  // 反映してから、残りを説明文の行数に充てる
+  // E/G: 罫線＋参照リンク領域の高さを必ず確保したうえで、残りの高さに説明文全文が収まる
+  // 最大のフォントサイズを選ぶ（foreignObject内はCSS px = viewBox単位。DESIGN差分参照）。
+  // 参照リンクのタイトルはtruncate(1行+…)をやめ最大LINK_TITLE_MAX_LINES行の折返しで全文表示
+  // するため、行数はタイトル文字幅に応じて1〜2行で変動する。その実測行数ぶんを罫線・リンク
+  // 領域の高さ予約に反映してから、残りを説明文のフォントサイズ探索に充てる
   const hasRefs = idea.refs.length > 0;
-  const descFontSizePx = w * DESC_FONT_RATIO;
   const linkFontSizePx = w * LINK_FONT_RATIO;
   const linkLabelFontSizePx = w * LINK_LABEL_FONT_RATIO;
-  const gapPx = w * CONTENT_GAP_RATIO;
 
   // 各refのタイトルをLINK_TITLE_MAX_LINES行に収まる文字数へ切り詰め、実際に必要な行数を見積もる
-  // （ラベル(CASE/TECH)+gap分を差し引いた残り幅がタイトルの折返し幅）
+  // （ラベル(CASE/TECH)+gap分を差し引いた残り幅がタイトルの折返し幅）。参照リンクのタイトル
+  // 切り詰め(truncateToEmBudget)自体は本バッチのスコープ外（前バッチで完了済みの2行折返しを維持）
   const refInfos = idea.refs.map((ref) => {
     const labelText = ref.type === "tech" ? "Tech" : "Case";
     const labelWidthPx = (estimateTextWidthEm(labelText) + labelText.length * LINK_LABEL_TRACKING_EM) * linkLabelFontSizePx;
@@ -96,32 +76,62 @@ export default function IdeaShapeCard({ idea, category }: { idea: Idea; category
     return { ref, labelText, truncatedTitle, lines };
   });
 
-  const linkRowHeightPxFor = (lines: number) =>
-    linkFontSizePx * (LINK_ROW_LINE_HEIGHT_MULT * lines + LINK_ROW_PADDING_Y_EM * 2) * LINK_ROW_HEIGHT_SAFETY_MULT;
-  const ruleHeightPx = RULE_HEIGHT_SAFETY_MULT; // RULE_HEIGHT_UNITS(1px)×安全係数
-  const reservedHeightPx = hasRefs
-    ? ruleHeightPx + refInfos.reduce((sum, r) => sum + linkRowHeightPxFor(r.lines), 0) + 2 * gapPx // p<->rule, rule<->linksの2ギャップ
-    : 0;
-  const descLineHeightPx = descFontSizePx * DESC_LINE_HEIGHT_MULT;
-  const availableForDescPx = Math.max(0, shape.safeArea.h - reservedHeightPx);
-  const maxDescLines = Math.max(MIN_DESC_LINES, Math.floor(availableForDescPx / descLineHeightPx));
+  // ideaShapes.tsの事前見積り(shapeForIdea内)と同じ式で罫線＋リンクの予約高さを求める
+  // （二重実装によるズレを避けるため共有関数を使う）
+  const reservedHeightPx = hasRefs ? estimateReservedLinksHeightPx(w, shape.safeArea.w, idea.refs) : 0;
 
-  // 説明文もリンクタイトルと同じ理由でtruncateToEmBudgetによりJS側で文字列を確定する
-  const descAvailableEmPerLine = shape.safeArea.w / descFontSizePx;
-  const descBudgetEm = descAvailableEmPerLine * maxDescLines * LINE_BUDGET_SAFETY_RATIO;
-  const descText = truncateToEmBudget(idea.seed, descBudgetEm);
+  // G: 説明文は「…」で切り詰めず、DESC_FONT_MAX_RATIOから縮小探索して全文が収まる最大の
+  // フォントサイズを採用する（fitDescription内でMIN_DESC_AVAILABLE_RATIOによる下限保証も
+  // 適用済み）。DESC_FONT_FLOOR_RATIOでも収まらない場合(fits=false)でも、切り詰めない方を
+  // 優先してfloor比率のまま全文を描画する（要件: クランプ全廃が最優先）。
+  // safeArea.hではなくshape.safeAreaMaxGrowH(title/date弧との重なり・輪郭外はみ出しを検査
+  // 済みの安全な拡張上限)を高さ予算として渡すことで、拡張の余地があるシェイプではより
+  // 大きく読みやすいフォントを選べるようにする（下記のforeignObject拡張と一貫させる）
+  const descFit = fitDescription(w, shape.safeArea.w, shape.safeAreaMaxGrowH, reservedHeightPx, idea.seed);
+  const descText = idea.seed;
 
-  // ラッパーの明示height+overflow-hiddenは、文字幅見積もりの誤差(半角/全角の簡易推定・単語境界
-  // での折返し等)による万一のわずかなはみ出しに対する安全網。-webkit-line-clampには頼らない
-  // （通常のブロックレイアウトなのでheightの解決に上記のような信頼性問題は生じない。実測確認済み）
-  const descWrapperStyle: CSSProperties = { height: `${maxDescLines * descLineHeightPx}px` };
-  const descStyle: CSSProperties = { fontSize: `${descFontSizePx}px`, lineHeight: DESC_LINE_HEIGHT_MULT };
+  // ラッパーの明示heightは、実際に必要な高さ(descFit.requiredHeightPx)にそのまま合わせる
+  // （旧実装のようにavailableForDescPxで頭打ちにはしない＝クランプ全廃）。overflow-hiddenは
+  // 万一の見積り誤差(半角/全角の簡易推定・単語境界での折返し等)に対する最終安全網として残す
+  const descWrapperStyle: CSSProperties = { height: `${descFit.requiredHeightPx}px` };
+  const descStyle: CSSProperties = {
+    fontSize: `${descFit.fontSizePx}px`,
+    lineHeight: DESC_LINE_HEIGHT_MULT,
+    overflowWrap: "break-word",
+    wordBreak: "break-word",
+  };
   const linkStyle: CSSProperties = { fontSize: `${linkFontSizePx}px` };
   const linkLabelStyle: CSSProperties = { fontSize: `${linkLabelFontSizePx}px`, opacity: 0.75 };
 
+  // G: DESC_FONT_FLOOR_RATIO(可読性を保つ下限)でも説明文＋罫線＋リンクの合計がsafeArea.hに
+  // 収まらない場合、foreignObject自体をsafeArea中心から上下均等に必要なぶんだけ拡張する。
+  // 実装上の判断（計画への疑義）: 当初はtitle/date弧の位置を考慮せず無条件に拡張していたが、
+  // 実測(Playwrightスクショの目視確認)でsafeArea自体が非常にタイトな形状(archive-5の
+  // notchedCircle: 中心近くの安全な矩形が12.9viewBox単位ほどしかない)において、拡張後の
+  // 矩形がtitle弧の描画範囲に食い込み、説明文と重なって読めなくなるバグを発見した。
+  // shape.safeAreaMaxGrowH(computeSafeAreaが同じ包含・クリアランス判定で算出した安全な拡張
+  // 上限)を超えないようMath.minでキャップすることで、この重なりを防ぐ。安全な上限まででも
+  // なお全文の必要高さに届かない極端なケース(実運用データでは未発生)は、そのぶん軽微な
+  // はみ出しを許容する（フォントをさらに縮めて読めなくするより、この方が実害が小さい判断）
+  const totalContentHeightPx = descFit.requiredHeightPx + reservedHeightPx;
+  const foHeight = Math.min(shape.safeAreaMaxGrowH, Math.max(shape.safeArea.h, totalContentHeightPx));
+  const foY = shape.safeArea.y - (foHeight - shape.safeArea.h) / 2;
+  // G: 罫線＋参照リンクの予約高さ(reservedHeightPx)自体が安全な拡張上限を超える極端なケース
+  // （実測: archive-5のnotchedCircle。safeAreaMaxGrowHが12.9viewBox単位しかなく、reservedHeightPx
+  // だけで22.2に達する）では、totalContentHeightPx > foHeightとなり、justify-centerのまま
+  // だと超過分が上下均等に切り詰められ、最重要である説明文の先頭が丸ごと見えなくなる回帰が
+  // あった（実測・目視確認）。この場合のみ上詰め(justify-start)に切り替え、切り詰めが
+  // 発生するとしても常に末尾(参照リンクの下端)側に限定し、説明文は必ず先頭から表示されるようにする
+  const contentOverflowsBox = totalContentHeightPx > foHeight + 1e-6;
+  const contentJustifyClass = contentOverflowsBox ? "justify-start" : "justify-center";
+
   return (
     <svg
-      viewBox={`0 0 ${shape.viewBoxW} ${shape.viewBoxH}`}
+      // F: viewBoxを輪郭の実bbox±小マージンにクロップする（goofy-hatching-mango.md
+      // 2026-07-07第4バッチ）。「箱≒シルエット」にすることで、IdeasPoster側の素直なCSS gapが
+      // そのままシルエット間の近接距離になる。outlinePath/textPath/foreignObjectはすべて元の
+      // (0..viewBoxW, 0..viewBoxH)座標系のままなので、viewBox属性を変えるだけで無変換で成立する
+      viewBox={`${shape.cropViewBox.x} ${shape.cropViewBox.y} ${shape.cropViewBox.w} ${shape.cropViewBox.h}`}
       // F: ホバー時の影はラッパー(透明な矩形)のbox-shadowではなく、この要素へのfilter:
       // drop-shadow(...)にする。drop-shadowはアルファチャンネル(=シェイプの輪郭)に沿って
       // 落ちるため、box-shadowで起きていた「矩形の下敷きが見える」問題が起きない
@@ -166,17 +176,17 @@ export default function IdeaShapeCard({ idea, category }: { idea: Idea; category
         </textPath>
       </text>
 
-      <foreignObject x={shape.safeArea.x} y={shape.safeArea.y} width={shape.safeArea.w} height={shape.safeArea.h}>
+      <foreignObject x={shape.safeArea.x} y={foY} width={shape.safeArea.w} height={foHeight}>
         <div
           // foreignObject直下はXHTML名前空間の明示が必要（SVG2仕様）。xmlnsはReact.HTMLAttributesの
           // 型に無いためxhtmlNsPropsでキャストして渡す
           {...xhtmlNsProps}
           style={{ color: category.text, gap: `${w * CONTENT_GAP_RATIO}px` }}
-          className="h-full flex flex-col justify-center overflow-hidden pointer-events-auto"
+          className={`h-full flex flex-col ${contentJustifyClass} overflow-hidden pointer-events-auto`}
         >
           {/* shrink-0: このflexコンテナは既定でflex-shrink:1のため、内容全体がreservedHeightPxの
-              見積もり誤差等でoverflowした場合にブラウザが子を圧縮しうる。圧縮されると整数行の
-              境界を無視して中途半端な高さに切り詰められる恐れがあるため、3ブロック
+              見積もり誤差等でoverflowした場合にブラウザが子を圧縮しうる。圧縮されると行の
+              途中で中途半端な高さに切り詰められる恐れがあるため、3ブロック
               (説明文ラッパー/罫線/リンク一覧)とも圧縮自体を禁止する。
               min-h-0: flex子要素は既定でmin-height:autoとなり、これは中身のcontent-basedな
               最小サイズとして解決されるため、明示heightを指定してもそれより小さくはならない
