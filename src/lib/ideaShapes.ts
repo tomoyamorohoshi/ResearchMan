@@ -1,18 +1,72 @@
 // /ideas ポスターUIの不定形シェイプ生成（DESIGN: goofy-hatching-mango.md）。
-// 6種の生成器×hashId(idea.id)由来のシードで、決定論的に「同じ形でも1枚ごとに微妙に違う輪郭」を作る。
+// 6→9種の生成器×hashId(idea.id)由来のシードで、決定論的に「同じ形でも1枚ごとに微妙に違う輪郭」を作る。
 // Math.randomは使わない（mulberry32による純関数PRNGのみ）。同じidなら常に同じ結果 = リロードで変わらない。
 //
 // 座標系について: 各シェイプは自分の自然な縦横比に合ったviewBox（例: tallOvalは幅が狭い）を持つ。
 // 全シェイプを共通の正方形viewBoxに詰めてCSS側でpreserveAspectRatio="none"により引き伸ばすと、
 // SVG<text>のグリフまでX/Y非一様にスケールされ字が歪む。これを避けるため、カード外枠のCSS aspect-ratio
 // をshape.aspect（=viewBoxW/viewBoxH）に一致させ、SVG側はデフォルトのxMidYMid meet（等倍scale）で
-// 歪みなく収める設計にした（計画書ではviewBox 0 0 100 100固定を想定していたが、テキスト歪み回避のため
-// シェイプごとのviewBoxに変更。計画書側にも反映済み）。
+// 歪みなく収める設計にした。
+//
+// ============================================================================
+// DESIGN差分（ユーザーフィードバック対応。goofy-hatching-mango.md 2026-07-07バッチ）:
+// A: タイトルの「…」切り詰めを全廃。輪郭全周から低曲率の長い区間を選定して全文を辺沿いに流す
+//    （縦走・斜め走可）。数学的保証（周長≥必要弧長）フォールバックあり。
+// B: シェイプをBosmans級の複雑さへ（多葉・凹みのあるパズル的ブロブ/丸みのあるL・T字/
+//    大きな切り欠きのある円形を過半に）。safeAreaは密サンプルベースの最大内接矩形探索。
+// C/D: 密パッキング・ビビッド配色はIdeasPoster.tsx/ideas.ts側で対応（本ファイルは対象外）。
+//
+// 前回(5ac4e40)までの「浅い底辺弧限定＋省略記号」実装は全廃した。制約は「低曲率・滑らかな
+// 連続性（ヘアピン・急な総回転なし）」のみとし、区間の向きは自由（縦・斜め可。Bosmans準拠）。
+// ============================================================================
 import { hashId } from "./graph";
 
-export type ShapeKind = "blob" | "polygon" | "waveRect" | "arch" | "tallOval" | "splat";
+export type ShapeKind =
+  | "blob"
+  | "polygon"
+  | "waveRect"
+  | "arch"
+  | "tallOval"
+  | "splat"
+  | "multiLobe"
+  | "lNotch"
+  | "notchedCircle";
 
-export const SHAPE_KINDS: readonly ShapeKind[] = ["blob", "polygon", "waveRect", "arch", "tallOval", "splat"];
+export const SHAPE_KINDS: readonly ShapeKind[] = [
+  "blob",
+  "polygon",
+  "waveRect",
+  "arch",
+  "tallOval",
+  "splat",
+  "multiLobe",
+  "lNotch",
+  "notchedCircle",
+];
+
+// B: 複雑形（多葉・凹み・切り欠きのある形状）とみなす種。出現比率の重み付けと
+// スモークテストの「過半が複雑形」アサートに使う
+const COMPLEX_KINDS: ReadonlySet<ShapeKind> = new Set<ShapeKind>(["splat", "multiLobe", "lNotch", "notchedCircle"]);
+export function isComplexShapeKind(kind: ShapeKind): boolean {
+  return COMPLEX_KINDS.has(kind);
+}
+
+// 出現比率の重み。複雑形(4種)を単純形(5種)より高い重みにして「過半」を保証する
+// (複雑形weight=3×4種=12 / 単純形weight=1×5種=5 → 複雑形出現率=12/17≈70.6%)
+const KIND_WEIGHT: Record<ShapeKind, number> = {
+  blob: 1,
+  polygon: 1,
+  waveRect: 1,
+  arch: 1,
+  tallOval: 1,
+  splat: 3,
+  multiLobe: 3,
+  lNotch: 3,
+  notchedCircle: 3,
+};
+const WEIGHTED_KIND_TABLE: readonly ShapeKind[] = SHAPE_KINDS.flatMap((k) =>
+  Array<ShapeKind>(KIND_WEIGHT[k]).fill(k),
+);
 
 export type IdeaShape = {
   kind: ShapeKind;
@@ -20,11 +74,18 @@ export type IdeaShape = {
   viewBoxH: number;
   aspect: number; // viewBoxW / viewBoxH。カード外枠のCSS aspect-ratioに使う
   outlinePath: string; // 閉じたパス（fill用）
-  dateArcPath: string; // 開いたパス（上部・textPath用。左→右に読める向き）
-  titleArcPath: string; // 開いたパス（下部・textPath用。左→右に読める向き）
-  dateArcLength: number; // dateArcPathの実長の近似（折れ線和）。日付ラベルに応じた可変フォントサイズの算出に使う
-  titleArcLength: number; // titleArcPathの実長の近似（折れ線和）。タイトル文字数に応じた可変フォントサイズの算出に使う
-  safeArea: { x: number; y: number; w: number; h: number }; // foreignObject安全領域（このシェイプの座標系）
+  dateArcPath: string; // 開いたパス（textPath用）
+  titleArcPath: string; // 開いたパス（textPath用）
+  dateArcLength: number; // dateArcPathの実長
+  titleArcLength: number; // titleArcPathの実長
+  dateFontSize: number; // 日付のフォントサイズ(px, viewBox座標系。曲率探索と同時に確定済み)
+  titleFontSize: number; // タイトルのフォントサイズ(px, viewBox座標系)
+  safeArea: { x: number; y: number; w: number; h: number }; // foreignObject安全領域
+  // 数学的保証フォールバック(曲率制約を無視して全周長で確定するティア)が発動したかどうか。
+  // 実運用の40件+妥当な合成ロングタイトルでは発動しない想定の診断用フィールド
+  // (IdeaShapeCardは使わない。スモークテストが「切り詰めゼロ」の証明範囲を切り分けるために使う)
+  titleUsedFallback: boolean;
+  dateUsedFallback: boolean;
 };
 
 const TAU = Math.PI * 2;
@@ -35,6 +96,10 @@ function clamp(v: number, min: number, max: number): number {
 
 function deg2rad(d: number): number {
   return (d * Math.PI) / 180;
+}
+
+function rad2deg(r: number): number {
+  return (r * 180) / Math.PI;
 }
 
 // mulberry32: 32bit seedからの決定論的PRNG（Math.random禁止の代替）
@@ -59,8 +124,14 @@ function pick<T>(rng: () => number, options: readonly T[]): T {
 
 type Point = { x: number; y: number };
 
+// 小数4桁: title/dateArcPathは密サンプル点(隣接間隔が最短で0.1〜0.2viewBox単位程度になりうる)を
+// 直接つないだ折れ線であり、2桁(0.01刻み)では間隔の狭い区間で量子化誤差が接線角に対して
+// 無視できない比率になり、実際には滑らかな区間でも「総回転」が数百度に見かけ上膨らむ現象を
+// 実測で確認した(archive-40のnotchedCircle等)。4桁にすることでこの量子化ノイズを実質排除する
+// （画面表示上の見た目は2桁でも4桁でも区別できない。スモークテストの接線角検証の前提を満たす
+// ための精度であって、視覚的な理由ではない）
 function fmt(n: number): string {
-  return Number.isFinite(n) ? n.toFixed(2) : "0";
+  return Number.isFinite(n) ? n.toFixed(4) : "0";
 }
 
 // 楕円の極座標半径（角度ごとにrx/ryをブレンド）
@@ -98,7 +169,7 @@ function harmonicJitter(angle: number, harmonics: readonly Harmonic[]): number {
   return j;
 }
 
-// Catmull-Rom→Bezier変換の1区間分の制御点計算（閉パス・開パス・浅弧判定の密サンプルで共有）
+// Catmull-Rom→Bezier変換の1区間分の制御点計算
 function catmullRomSegmentControls(p0: Point, p1: Point, p2: Point, p3: Point): { c1: Point; c2: Point } {
   return {
     c1: { x: p1.x + (p2.x - p0.x) / 6, y: p1.y + (p2.y - p0.y) / 6 },
@@ -123,23 +194,6 @@ function catmullRomClosedPath(points: readonly Point[]): string {
   return d.join(" ");
 }
 
-// 開いた点列 → Catmull-Rom→Bezierのスムーズな開パス（textPath用の弧。端は複製してクランプ）
-function catmullRomOpenPath(points: readonly Point[]): string {
-  const n = points.length;
-  if (n < 2) return "";
-  if (n === 2) return `M ${fmt(points[0].x)} ${fmt(points[0].y)} L ${fmt(points[1].x)} ${fmt(points[1].y)}`;
-  const d: string[] = [`M ${fmt(points[0].x)} ${fmt(points[0].y)}`];
-  for (let i = 0; i < n - 1; i++) {
-    const p0 = i === 0 ? points[0] : points[i - 1];
-    const p1 = points[i];
-    const p2 = points[i + 1];
-    const p3 = i + 2 < n ? points[i + 2] : points[n - 1];
-    const { c1, c2 } = catmullRomSegmentControls(p0, p1, p2, p3);
-    d.push(`C ${fmt(c1.x)} ${fmt(c1.y)} ${fmt(c2.x)} ${fmt(c2.y)} ${fmt(p2.x)} ${fmt(p2.y)}`);
-  }
-  return d.join(" ");
-}
-
 function cubicBezierPoint(p0: Point, c1: Point, c2: Point, p1: Point, t: number): Point {
   const mt = 1 - t;
   return {
@@ -148,194 +202,26 @@ function cubicBezierPoint(p0: Point, c1: Point, c2: Point, p1: Point, t: number)
   };
 }
 
-// catmullRomOpenPathが実際に描画する曲線に沿って密にサンプルした点列を返す（浅い弧の判定専用）。
-// 生の制御点(=points)の直線近似だけで浅さを判定すると、Catmull-Rom平滑化がセグメント間で
-// 外側へ張り出す分を見落とし、レンダリング後の実接線角が判定時より大きくなってしまうため、
-// 判定は必ずこの実曲線サンプルに対して行う（catmullRomOpenPathと同じ制御点計算を共有）
-function denseCurvePoints(points: readonly Point[], samplesPerSegment: number): Point[] {
-  const n = points.length;
-  if (n < 3) return [...points];
-  const dense: Point[] = [points[0]];
-  for (let i = 0; i < n - 1; i++) {
-    const p0 = i === 0 ? points[0] : points[i - 1];
-    const p1 = points[i];
-    const p2 = points[i + 1];
-    const p3 = i + 2 < n ? points[i + 2] : points[n - 1];
-    const { c1, c2 } = catmullRomSegmentControls(p0, p1, p2, p3);
-    for (let s = 1; s <= samplesPerSegment; s++) dense.push(cubicBezierPoint(p1, c1, c2, p2, s / samplesPerSegment));
-  }
-  return dense;
+function quadraticBezierPoint(p0: Point, c: Point, p1: Point, t: number): Point {
+  const mt = 1 - t;
+  return { x: mt * mt * p0.x + 2 * mt * t * c.x + t * t * p1.x, y: mt * mt * p0.y + 2 * mt * t * c.y + t * t * p1.y };
 }
 
-// 点列の折れ線長（Catmull-Romで滑らかにした実パスの実長の近似値。誤差は実測で+1〜+5%程度と
-// 安全側=長め寄りに出るため、可変フォントサイズ側で余裕率を掛けて相殺する）
+// 点列の折れ線長
 function polylineLength(points: readonly Point[]): number {
   let len = 0;
   for (let i = 1; i < points.length; i++) len += Math.hypot(points[i].x - points[i - 1].x, points[i].y - points[i - 1].y);
   return len;
 }
 
-// 開いた点列 → 直線でつないだ開パス（多角形系の"角ばった"textPath用）
+// 開いた点列 → 直線でつないだ開パス。titleArcPath/dateArcPathは常にこの形式（密サンプル
+// 点列を直接つなぐため、区間長あたりの折れが十分小さければCatmull-Romで再平滑化せずとも
+// 視覚上滑らかに見える。密度はOUTLINE_SAMPLES_PER_CURVE参照）
 function straightOpenPath(points: readonly Point[]): string {
   if (points.length === 0) return "";
   const d = [`M ${fmt(points[0].x)} ${fmt(points[0].y)}`];
   for (let i = 1; i < points.length; i++) d.push(`L ${fmt(points[i].x)} ${fmt(points[i].y)}`);
   return d.join(" ");
-}
-
-// タイトル弧・日付弧の「浅い弧」制約（DESIGN差分: goofy-hatching-mango.md 修正バッチ）。
-// 輪郭の側面をそのまま辿ると（特にtallOval等の縦長シェイプで）接線角が急峻になり、textPath上の
-// CJKグリフが接線回転で互いに衝突・重なって判読不能になる（Fable視覚検分で複数カード実測）。
-// centerDeg（輪郭の極。90°=下極=タイトル用、-90°=上極=日付用）を軸にした左右対称の弧半幅を
-// 二分探索で縮め、実際に描画される区間の接線角が全てTANGENT_TARGET_DEG以内・x座標が単調増加になる
-// 最大の弧を採用する。輪郭に沿わせてinsetRatio分だけ中心へ縮小する方式自体は維持するため
-// （=常に輪郭の内側に収まる）、形状ごとに手動チューニングせずとも全シェイプ・全シードで機械的に
-// 安全な浅弧が求まる（縦長シェイプで側面区間を含めたくなければ、単に弧半幅が自動的に狭まる）。
-// 要求仕様の上限は接線角±25度以内。探索の内部目標はCatmull-Rom平滑化後のオーバーシュートに
-// 備えて上限より小さくとる。ただしisShallowの判定自体が既に「生の制御点」ではなくdenseCurvePoints
-// (実際に描画される曲線を密サンプルした点列)に対して行われるため、残る誤差はサンプル間隔の分だけに
-// 縮小されている。そのため安全マージンは小さめでよく、弧の実長を稼ぐため23度まで許容する
-// （TANGENT_LIMIT_DEG=25度に対し2度の余白。全340件のスモークテストで実測25度以内を確認済み）
-const TANGENT_TARGET_DEG = 23;
-const MIN_SWEEP_DEG = 3; // これ未満には絞らない（実質点になるのを避ける下限）
-
-function insetPointAt(
-  pointAt: (angle: number) => Point,
-  cx: number,
-  cy: number,
-  insetRatio: number,
-  angleDeg: number,
-): Point {
-  const p = pointAt(deg2rad(angleDeg));
-  return { x: cx + (p.x - cx) * (1 - insetRatio), y: cy + (p.y - cy) * (1 - insetRatio) };
-}
-
-const CENTER_SEARCH_RANGE_DEG = 30;
-const CENTER_SEARCH_STEP_DEG = 2;
-
-// centerDeg±sweepDegの範囲をnSamples点サンプルする。angleDirection=1は角度増加が左→右
-// （上極=日付用）、angleDirection=-1は角度減少が左→右（下極=タイトル用）
-function sampleShallowCandidate(
-  pointAt: (angle: number) => Point,
-  cx: number,
-  cy: number,
-  insetRatio: number,
-  centerDeg: number,
-  sweepDeg: number,
-  nSamples: number,
-  angleDirection: 1 | -1,
-): Point[] {
-  const from = centerDeg - angleDirection * sweepDeg;
-  const to = centerDeg + angleDirection * sweepDeg;
-  const pts: Point[] = [];
-  for (let i = 0; i < nSamples; i++) {
-    const t = nSamples === 1 ? 0 : i / (nSamples - 1);
-    pts.push(insetPointAt(pointAt, cx, cy, insetRatio, from + (to - from) * t));
-  }
-  return pts;
-}
-
-// 弧が「浅い」(接線角がTANGENT_TARGET_DEG以内・x座標が単調増加=方向反転なし)かどうかを判定
-function isShallow(points: readonly Point[]): boolean {
-  for (let i = 1; i < points.length; i++) {
-    const dx = points[i].x - points[i - 1].x;
-    if (dx <= 0) return false;
-    const dy = points[i].y - points[i - 1].y;
-    const angleDeg = (Math.abs(Math.atan2(dy, dx)) * 180) / Math.PI;
-    if (angleDeg > TANGENT_TARGET_DEG) return false;
-  }
-  return true;
-}
-
-const SHALLOW_CHECK_SAMPLES_PER_SEGMENT = 6;
-
-// centerDegを固定し、浅い弧の条件を満たす最大の弧半幅を二分探索で求める。MIN_SWEEP_DEGですら
-// 条件を満たせない場合はnull（=このcenterDegは使えない）を返す
-function fitSweepAtCenter(
-  pointAt: (angle: number) => Point,
-  cx: number,
-  cy: number,
-  insetRatio: number,
-  centerDeg: number,
-  maxSweepDeg: number,
-  nSamples: number,
-  angleDirection: 1 | -1,
-  arcSmooth: boolean,
-): Point[] | null {
-  const candidateAt = (sweepDeg: number) =>
-    sampleShallowCandidate(pointAt, cx, cy, insetRatio, centerDeg, sweepDeg, nSamples, angleDirection);
-  const isCandidateShallow = (sweepDeg: number) => {
-    const raw = candidateAt(sweepDeg);
-    return isShallow(arcSmooth ? denseCurvePoints(raw, SHALLOW_CHECK_SAMPLES_PER_SEGMENT) : raw);
-  };
-  let lo = MIN_SWEEP_DEG;
-  let hi = maxSweepDeg;
-  if (!isCandidateShallow(lo)) return null;
-  if (isCandidateShallow(hi)) return candidateAt(hi);
-  for (let iter = 0; iter < 20; iter++) {
-    const mid = (lo + hi) / 2;
-    if (isCandidateShallow(mid)) lo = mid;
-    else hi = mid;
-  }
-  return candidateAt(lo);
-}
-
-// 弧の実長がこの比率(viewBoxW比)未満だと、タイトル/日付を最小フォント+省略記号まで切り詰めても
-// 実質「…」だけしか残らず読めない（実測: archive-40のblobでtitleArcLength=6.37/viewBoxW=100=6.4%
-// まで狭まり、切り詰めた結果が"…"単独になるバグを確認）。センター探索で「最初に条件を満たした
-// センター」を即採用すると、こうした極端に短い弧を掴んだまま止まってしまうため、この比率を
-// 下回る間はより長い弧を探して探索を続ける。あくまで探索を続けるかどうかの目標値であり、
-// tallOval等の縦長シェイプでは浅い弧の制約と両立できず届かないこともある（その場合でも
-// 範囲内で見つかった最長の候補にフォールバックするため、探索自体が失敗することはない。
-// scripts/smoke-idea-shapes.mjsの実測ベースの下限=8%は下回っていないことを確認済み）
-const MIN_USABLE_ARC_RATIO = 0.2;
-
-// nominalCenterDeg(輪郭の極。90°=下極=タイトル用、-90°=上極=日付用)を軸に、浅い弧の条件を
-// 満たす最大の弧半幅を二分探索で求めてサンプル点を返す。harmonicジッターの影響で極そのものが
-// 局所的にキンク（多角形の頂点や急な位相のジッター）に近く、MIN_SWEEP_DEGですら条件を
-// 満たせないことがある（Fable視覚検分後の実装で実測。2点微分近似で最平坦点を推定する方式は
-// キンクの直前だけを見て誤検出することが判明したため不採用）。そこでnominalCenterDegから
-// ±CENTER_SEARCH_RANGE_DEGの範囲をCENTER_SEARCH_STEP_DEG刻みで実際に検証しながら走査する。
-// nominalCenterDegに近い側から順に試し、実長がMIN_USABLE_ARC_RATIO以上ある最初の候補を採用する
-// （=極からなるべく動かさない）。範囲内のどのcenterDegも閾値に届かない場合は、範囲内で見つかった
-// 最長の候補にフォールバックする（浅さの条件を満たしつつ、極端に短い「実質読めない弧」を
-// 避けるための保険）。
-// arcSmooth=trueの場合、判定は生の制御点ではなくdenseCurvePoints(実際にcatmullRomOpenPathが
-// 描画する曲線の密サンプル)に対して行う(生の制御点の直線近似だけで判定すると、Catmull-Rom
-// 平滑化後のオーバーシュートを見落として実際には25度を超える弧を採用してしまうため)
-function fitShallowArc(
-  pointAt: (angle: number) => Point,
-  cx: number,
-  cy: number,
-  insetRatio: number,
-  nominalCenterDeg: number,
-  maxSweepDeg: number,
-  nSamples: number,
-  angleDirection: 1 | -1,
-  arcSmooth: boolean,
-): Point[] {
-  const minUsableLength = MIN_USABLE_ARC_RATIO * cx * 2; // cx*2 ≈ viewBoxW（cxは各シェイプでviewBoxW/2）
-  let bestResult: Point[] | null = null;
-  let bestLength = -Infinity;
-  for (let off = 0; off <= CENTER_SEARCH_RANGE_DEG; off += CENTER_SEARCH_STEP_DEG) {
-    const signs = off === 0 ? [1] : [1, -1];
-    for (const sign of signs) {
-      const centerDeg = nominalCenterDeg + sign * off;
-      const result = fitSweepAtCenter(pointAt, cx, cy, insetRatio, centerDeg, maxSweepDeg, nSamples, angleDirection, arcSmooth);
-      if (!result) continue;
-      const length = polylineLength(result);
-      if (length >= minUsableLength) return result; // 極に近い側から見て十分な長さの最初の候補を採用
-      if (length > bestLength) {
-        bestLength = length;
-        bestResult = result;
-      }
-    }
-  }
-  if (bestResult) return bestResult;
-  // 保険: ±CENTER_SEARCH_RANGE_DEG以内のどのcenterDegでも条件を満たせない場合
-  // （実運用のharmonics振幅上限では発生しない想定）。これ以上探索を広げる代わりに
-  // nominalCenterDeg・最小幅でそのまま返す
-  return sampleShallowCandidate(pointAt, cx, cy, insetRatio, nominalCenterDeg, MIN_SWEEP_DEG, nSamples, angleDirection);
 }
 
 // 角丸多角形の輪郭パス（頂点をわずかにカットしてQ二次曲線で丸める）
@@ -361,318 +247,52 @@ function roundedPolygonPath(vertices: readonly Point[], cornerRatio: number): st
   return d.join(" ");
 }
 
-type ShapeBuildResult = {
-  viewBoxW: number;
-  viewBoxH: number;
-  outlinePath: string;
-  pointAt: (angle: number) => Point; // 輪郭上の実点（jitter・剪断込み。textPathの弧サンプルにも使う）
-  cx: number;
-  cy: number;
-  dateSpanDeg: [number, number];
-  titleSpanDeg: [number, number];
-  insetRatio: number;
-  arcSmooth: boolean; // true: Catmull-Romで滑らかに / false: 直線でつなぐ
-  safeArea: { x: number; y: number; w: number; h: number };
-};
-
-// 1: 不揃い楕円（ブロブ）
-function buildBlob(rng: () => number): ShapeBuildResult {
-  const cx = 50;
-  const cy = 50;
-  const rx = randRange(rng, 38, 44);
-  const ry = randRange(rng, 36, 42);
-  const harmonics = makeHarmonics(rng, [
-    { freqMin: 2, freqMax: 3, ampMin: 0.06, ampMax: 0.11 },
-    { freqMin: 3, freqMax: 5, ampMin: 0.05, ampMax: 0.09 },
-    { freqMin: 5, freqMax: 7, ampMin: 0.02, ampMax: 0.05 },
-  ]);
-  const radiusAt = (angle: number) => ellipseR(angle, rx, ry) * (1 + clamp(harmonicJitter(angle, harmonics), -0.3, 0.32));
-  const pointAt = (angle: number): Point => {
-    const r = radiusAt(angle);
-    return { x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle) };
-  };
-  const nOutline = 18;
-  const points: Point[] = [];
-  for (let i = 0; i < nOutline; i++) points.push(pointAt((i / nOutline) * TAU - Math.PI / 2));
-  return {
-    viewBoxW: 100,
-    viewBoxH: 100,
-    outlinePath: catmullRomClosedPath(points),
-    pointAt,
-    cx,
-    cy,
-    dateSpanDeg: [-160, -20],
-    titleSpanDeg: [160, 20],
-    insetRatio: 0.11,
-    arcSmooth: true,
-    safeArea: { x: 20, y: 41, w: 60, h: 25 },
-  };
+function rotatePoint(p: Point, cx: number, cy: number, angleRad: number): Point {
+  const dx = p.x - cx;
+  const dy = p.y - cy;
+  const c = Math.cos(angleRad);
+  const s = Math.sin(angleRad);
+  return { x: cx + dx * c - dy * s, y: cy + dx * s + dy * c };
 }
 
-// 2: 不揃い角丸多角形（7〜9角）
-function buildPolygon(rng: () => number): ShapeBuildResult {
-  const cx = 50;
-  const cy = 50;
-  const n = pick(rng, [7, 8, 9] as const);
-  const rBase = randRange(rng, 37, 42);
-  const vertexAngles: number[] = [];
-  const vertexRadii: number[] = [];
-  const sector = TAU / n;
-  for (let i = 0; i < n; i++) {
-    vertexAngles.push(-Math.PI / 2 + i * sector + randRange(rng, -0.18, 0.18) * sector);
-    vertexRadii.push(rBase * (1 + randRange(rng, -0.16, 0.16)));
+function normalizeAngle(a: number): number {
+  let x = a;
+  while (x <= -Math.PI) x += TAU;
+  while (x > Math.PI) x -= TAU;
+  return x;
+}
+function angleDiff(a: number, b: number): number {
+  return normalizeAngle(a - b);
+}
+
+// 連続する2点がepsilon未満しか離れていない場合、後の点を除去する。丸め角(cornerRatio)が
+// 大きく・元の辺が短いケースで、固定サンプル数(samplesPerCurve)のQ曲線が極小の物理弧長に
+// 密集し、ほぼ同一点が連続することがある(実測: lNotchのT字の細い腕で発生)。
+// これを放置すると隣接2点の距離がほぼ0になり、その区間の接線角(atan2(0,0)=0)が本来の
+// 進行方向と無関係な値になって、曲率・総回転の計算に見かけ上の急激な向き反転を生む
+function dedupClosePoints(points: readonly Point[]): Point[] {
+  const EPS = 1e-6;
+  const out: Point[] = [];
+  for (const p of points) {
+    const last = out[out.length - 1];
+    if (!last || Math.hypot(p.x - last.x, p.y - last.y) > EPS) out.push(p);
   }
-  const vertices: Point[] = vertexAngles.map((a, i) => ({
-    x: cx + vertexRadii[i] * Math.cos(a),
-    y: cy + vertexRadii[i] * Math.sin(a),
-  }));
-  // 弧サンプル用: 頂点(angle,radius)ペアを角度昇順に並べ、区間線形補間する連続半径関数
-  const sortedByAngle = vertexAngles
-    .map((a, i) => ({ a, r: vertexRadii[i] }))
-    .sort((p, q) => p.a - q.a);
-  const radiusAt = (angleIn: number): number => {
-    let angle = angleIn;
-    while (angle <= sortedByAngle[0].a - TAU) angle += TAU;
-    const m = sortedByAngle.length;
-    for (let i = 0; i < m; i++) {
-      const cur = sortedByAngle[i];
-      const next = sortedByAngle[(i + 1) % m];
-      const curA = cur.a;
-      const nextA = next.a > curA ? next.a : next.a + TAU;
-      let a = angle;
-      while (a < curA) a += TAU;
-      while (a - TAU >= curA) a -= TAU;
-      if (a >= curA && a <= nextA) {
-        const t = (a - curA) / (nextA - curA);
-        return cur.r + (next.r - cur.r) * t;
-      }
-    }
-    return sortedByAngle[0].r;
-  };
-  const pointAt = (angle: number): Point => {
-    const r = radiusAt(angle);
-    return { x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle) };
-  };
-  return {
-    viewBoxW: 100,
-    viewBoxH: 100,
-    outlinePath: roundedPolygonPath(vertices, 0.16),
-    pointAt,
-    cx,
-    cy,
-    dateSpanDeg: [-160, -20],
-    titleSpanDeg: [160, 20],
-    insetRatio: 0.12,
-    arcSmooth: false,
-    safeArea: { x: 27, y: 40, w: 46, h: 25 },
-  };
-}
-
-// 3: 台形がかった矩形（角にうねり）
-function buildWaveRect(rng: () => number): ShapeBuildResult {
-  const viewBoxW = 125;
-  const viewBoxH = 100;
-  const cx = viewBoxW / 2;
-  const cy = 50;
-  const hw = randRange(rng, 45, 50);
-  const hh = randRange(rng, 37, 41);
-  const k = randRange(rng, 2.8, 3.6);
-  const shear = randRange(rng, -7, 7);
-  const harmonics = makeHarmonics(rng, [
-    { freqMin: 2, freqMax: 3, ampMin: 0.03, ampMax: 0.06 },
-    { freqMin: 4, freqMax: 5, ampMin: 0.02, ampMax: 0.04 },
-  ]);
-  const radiusAt = (angle: number) =>
-    superRectR(angle, hw, hh, k) * (1 + clamp(harmonicJitter(angle, harmonics), -0.12, 0.12));
-  // 剪断（台形化）込みの実点。radiusAtだけではx方向のshearが反映されないため、
-  // 弧サンプル・輪郭生成の両方でこのpointAtを唯一の真実源として使う
-  const pointAt = (angle: number): Point => {
-    const r = radiusAt(angle);
-    const py = cy + r * Math.sin(angle);
-    const px = cx + r * Math.cos(angle) + shear * ((py - cy) / hh);
-    return { x: px, y: py };
-  };
-  const nOutline = 28;
-  const points: Point[] = [];
-  for (let i = 0; i < nOutline; i++) points.push(pointAt((i / nOutline) * TAU - Math.PI / 2));
-  return {
-    viewBoxW,
-    viewBoxH,
-    outlinePath: catmullRomClosedPath(points),
-    pointAt,
-    cx,
-    cy,
-    dateSpanDeg: [-158, -22],
-    titleSpanDeg: [158, 22],
-    insetRatio: 0.1,
-    arcSmooth: true,
-    safeArea: { x: 22, y: 35, w: 81, h: 33 },
-  };
-}
-
-// 4: アーチ（上半円+胴）。上半分=真円のドーム、下半分=矩形の胴（極座標での矩形交差式）
-function buildArch(rng: () => number): ShapeBuildResult {
-  const viewBoxW = 92;
-  const viewBoxH = 100;
-  const cx = viewBoxW / 2;
-  const cy = randRange(rng, 38, 42);
-  const domeR = randRange(rng, 34, 38);
-  const bodyBottomOffset = randRange(rng, 42, 46);
-  const harmonics = makeHarmonics(rng, [{ freqMin: 2, freqMax: 3, ampMin: 0.04, ampMax: 0.07 }]);
-  const radiusAt = (angleRaw: number) => {
-    // (-π, π]に正規化してから上半分/下半分を判定する。未正規化のままだと出力サンプルが一周
-    // (0..2π)全体に及ぶ際に180°超をそのまま「下半分」と誤判定し、sinが負になってrが負転する
-    // （輪郭が原点の反対側へ跳ねる)バグがあったため必須の正規化
-    let angle = angleRaw;
-    while (angle > Math.PI) angle -= TAU;
-    while (angle <= -Math.PI) angle += TAU;
-    const base =
-      angle <= 0
-        ? domeR
-        : Math.min(domeR / Math.max(Math.abs(Math.cos(angle)), 1e-6), bodyBottomOffset / Math.max(Math.sin(angle), 1e-6));
-    return base * (1 + clamp(harmonicJitter(angle, harmonics), -0.12, 0.12));
-  };
-  const pointAt = (angle: number): Point => {
-    const r = radiusAt(angle);
-    return { x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle) };
-  };
-  const nOutline = 22;
-  const points: Point[] = [];
-  for (let i = 0; i < nOutline; i++) points.push(pointAt((i / nOutline) * TAU - Math.PI / 2));
-  return {
-    viewBoxW,
-    viewBoxH,
-    outlinePath: catmullRomClosedPath(points),
-    pointAt,
-    cx,
-    cy,
-    dateSpanDeg: [-172, -8],
-    // radiusAtは側面(domeR/cosθ)と底面(bodyBottomOffset/sinθ)の2式を角度で切り替えており、
-    // 切替点(domeR・bodyBottomOffsetの実際の乱数範囲でおよそ48〜54°)を跨ぐとxが単調増加でなくなり
-    // 弧が"フック"して文字が絡む。底面のみに収まる[56,124]の内側に留める
-    titleSpanDeg: [124, 56],
-    insetRatio: 0.11,
-    arcSmooth: true,
-    // hは32（A3のタイトル側マージン予約で削られた後も、説明文3行+罫線+参照リンクが
-    // 収まるだけの余裕を残すため、当初の30から実測ベースで+2。詳細はshapeForIdea側の
-    // TITLE_ARC_SAFE_MARGIN_MULTのコメント参照）
-    safeArea: { x: 13, y: cy + domeR * 0.15, w: viewBoxW - 26, h: 32 },
-  };
-}
-
-// 5: 縦長オーバル
-function buildTallOval(rng: () => number): ShapeBuildResult {
-  const viewBoxW = 64;
-  const viewBoxH = 100;
-  const cx = viewBoxW / 2;
-  const cy = 50;
-  const rx = randRange(rng, 20, 24);
-  const ry = randRange(rng, 42, 46);
-  const harmonics = makeHarmonics(rng, [
-    { freqMin: 2, freqMax: 3, ampMin: 0.05, ampMax: 0.08 },
-    { freqMin: 3, freqMax: 4, ampMin: 0.03, ampMax: 0.05 },
-  ]);
-  const radiusAt = (angle: number) => ellipseR(angle, rx, ry) * (1 + clamp(harmonicJitter(angle, harmonics), -0.22, 0.22));
-  const pointAt = (angle: number): Point => {
-    const r = radiusAt(angle);
-    return { x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle) };
-  };
-  const nOutline = 18;
-  const points: Point[] = [];
-  for (let i = 0; i < nOutline; i++) points.push(pointAt((i / nOutline) * TAU - Math.PI / 2));
-  return {
-    viewBoxW,
-    viewBoxH,
-    outlinePath: catmullRomClosedPath(points),
-    pointAt,
-    cx,
-    cy,
-    dateSpanDeg: [-150, -30],
-    titleSpanDeg: [150, 30],
-    insetRatio: 0.11,
-    arcSmooth: true,
-    safeArea: { x: 12, y: 42, w: 40, h: 20 },
-  };
-}
-
-// 6: ぐにゃっとした花形・スプラット
-function buildSplat(rng: () => number): ShapeBuildResult {
-  const cx = 50;
-  const cy = 50;
-  const rBase = randRange(rng, 34, 38);
-  const lobeHarmonics = makeHarmonics(rng, [
-    { freqMin: 5, freqMax: 6, ampMin: 0.2, ampMax: 0.3 },
-    { freqMin: 9, freqMax: 11, ampMin: 0.05, ampMax: 0.09 },
-  ]);
-  // textの弧は輪郭のロブ形状を追わず、ほぼ真円（jitterなし）にして可読性を確保する
-  // （輪郭本体はフル暴れのスプラット形状のまま。弧まで暴れさせると文字が乱れて読めなくなるため）
-  const outlineRadiusAt = (angle: number) => rBase * (1 + clamp(harmonicJitter(angle, lobeHarmonics), -0.42, 0.55));
-  const outlinePointAt = (angle: number): Point => {
-    const r = outlineRadiusAt(angle);
-    return { x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle) };
-  };
-  // textの弧は輪郭本体(rBase*ロブjitter)を追わずrBaseの真円でサンプルする（読みやすさ優先。輪郭はフル暴れのまま）
-  const arcPointAt = (angle: number): Point => ({ x: cx + rBase * Math.cos(angle), y: cy + rBase * Math.sin(angle) });
-  const nOutline = 36;
-  const points: Point[] = [];
-  for (let i = 0; i < nOutline; i++) points.push(outlinePointAt((i / nOutline) * TAU - Math.PI / 2));
-  return {
-    viewBoxW: 100,
-    viewBoxH: 100,
-    outlinePath: catmullRomClosedPath(points),
-    pointAt: arcPointAt,
-    cx,
-    cy,
-    dateSpanDeg: [-160, -20],
-    titleSpanDeg: [160, 20],
-    insetRatio: 0.13,
-    arcSmooth: true,
-    // hは28（A3のタイトル側マージン予約で削られた後も、説明文3行+罫線+参照リンクが
-    // 収まるだけの余裕を残すため、当初の26から実測ベースで+2）
-    safeArea: { x: 24, y: 40, w: 52, h: 28 },
-  };
-}
-
-const BUILDERS: Record<ShapeKind, (rng: () => number) => ShapeBuildResult> = {
-  blob: buildBlob,
-  polygon: buildPolygon,
-  waveRect: buildWaveRect,
-  arch: buildArch,
-  tallOval: buildTallOval,
-  splat: buildSplat,
-};
-
-// 下辺タイトルのフォントサイズ比率（viewBoxW比）。IdeaShapeCard.tsxの実際の描画フォントサイズと
-// 共有する単一の真実源（safeAreaのタイトル側マージン予約(A3)にも同じ値を使い、二重定義によるズレを防ぐ）
-export const TITLE_FONT_RATIO = 0.076;
-// タイトル弧とsafeAreaの垂直分離に予約するマージン（タイトルのフォント高み相当+行間の余裕分）
-const TITLE_ARC_SAFE_MARGIN_MULT = 1.0;
-
-// 極中心の角度スイープ(fitShallowArc)だけでは、tallOval等の縦長シェイプで実長が極端に短く
-// なるケースが残る（adversarialレビューで実測: tallOvalのtitleArcLengthは中央値で
-// viewBoxWの約13%に留まり、13文字前後の実タイトルが2〜3文字+省略記号まで切り詰められてしまう。
-// 輪郭の極=下極/上極は同時に曲率が最大の点でもあるため、極を中心にどれだけ角度探索しても
-// その近傍の急な曲率からは逃れられないことが原因）。
-// そこで極中心の角度サンプルとは別に、水平帯の実測幅（輪郭とy=一定線の交点）を使った
-// Cartesian座標系での「弦(chord)」候補も生成し、実長がより長い方を採用する。
-// 弦候補はx=cx+t*halfWidth（t:-1..1）で単調増加を構造的に保証し、接線角も弦の半幅とsagittaの
-// 比から解析的に上限を設定できるため、縦長シェイプでも「底部を横断する幅広い浅弧」を無理なく作れる
-const CHORD_Y_SEARCH_STEPS = 12;
-
-function quadraticBezierPoint(p0: Point, c: Point, p1: Point, t: number): Point {
-  const mt = 1 - t;
-  return { x: mt * mt * p0.x + 2 * mt * t * c.x + t * t * p1.x, y: mt * mt * p0.y + 2 * mt * t * c.y + t * t * p1.y };
+  // 閉パスの最終カーブセグメントの終点は、そのセグメントの定義上つねに始点(pts[0])と厳密に
+  // 一致する（"M pts[0] ... 最後のC/QはZで閉じるためpts[0]へ戻る"）。この末尾の重複点を
+  // 除かないと、findLongestRunが輪郭の"継ぎ目"をまたぐ区間を選んだ際に長さ0の区間が混入し、
+  // atan2(0,0)由来の見かけ上の急な向き反転(実測179.8度)を生む
+  while (out.length > 1 && Math.hypot(out[out.length - 1].x - out[0].x, out[out.length - 1].y - out[0].y) <= EPS) {
+    out.pop();
+  }
+  return out;
 }
 
 // outlinePath(M/L/C/Q/Zのみで構成される。本ファイルの全ジェネレータがこの組み合わせしか
-// 出力しない)を実際に描画される曲線に沿って密にサンプルした閉多角形にする。
-// chord探索の輪郭近似には、pointAt(角度→半径の関数)由来の値ではなく必ずこれを使う:
-// polygonシェイプのpointAtは頂点間を「半径の角度線形補間」で近似するが、実際のoutlinePath
-// (roundedPolygonPath)は頂点間を直線で結ぶため、この2つは頂点以外の角度でズレる
-// （半径の線形補間は2頂点を結ぶ真の弦(直線)より外側に張り出す）。このズレを踏まえずに
-// pointAtベースの多角形でchordの幅を測ると、実際の塗り形状より広く見積もってしまい、
-// タイトル文字が輪郭の外へはみ出す実バグを起こす（Fable視覚検分で実測）
-function densePointsFromOutlinePath(d: string, samplesPerCurve = 24): Point[] {
+// 出力しない)を実際に描画される曲線に沿って密にサンプルした閉多角形にする。以後の曲率解析・
+// 包含判定・safeArea探索は、すべてこの「実際に描画される点列」だけを唯一の真実源として行う
+// （個別ビルダーのpointAt由来の近似は使わない。ビルダーごとの近似誤差が輪郭外はみ出しの
+// 原因になっていた過去のバグ(Fable視覚検分で実測)を構造的に防ぐ）
+function densePointsFromOutlinePath(d: string, samplesPerCurve: number): Point[] {
   const tokens = d.match(/[MLCQZ]|-?\d+\.?\d*/g) ?? [];
   const pts: Point[] = [];
   let cur: Point = { x: 0, y: 0 };
@@ -697,94 +317,10 @@ function densePointsFromOutlinePath(d: string, samplesPerCurve = 24): Point[] {
       cur = end;
       i += 7;
     } else {
-      // "Z"や未知のトークンはスキップ（閉パスの終端。chordWidthAtY側で(i+1)%nによる
-      // 折り返しで暗黙的に閉じるため、Z自体の処理は不要）
-      i += 1;
+      i += 1; // "Z"や未知トークンはスキップ（閉パスの終端。呼び出し側が(i+1)%nで暗黙的に閉じる）
     }
   }
-  return pts;
-}
-
-// 水平線y=Yと閉多角形の交点のうち、cxを内側に挟む最も近い左右のペアを返す（両側に交点が
-// 無ければ=その高さでは輪郭の外＝null）
-function chordWidthAtY(polygon: readonly Point[], y: number, cx: number): { left: number; right: number } | null {
-  const n = polygon.length;
-  let left = -Infinity;
-  let right = Infinity;
-  for (let i = 0; i < n; i++) {
-    const p1 = polygon[i];
-    const p2 = polygon[(i + 1) % n];
-    if ((p1.y <= y && p2.y > y) || (p2.y <= y && p1.y > y)) {
-      const t = (y - p1.y) / (p2.y - p1.y);
-      const x = p1.x + t * (p2.x - p1.x);
-      if (x <= cx) left = Math.max(left, x);
-      else right = Math.min(right, x);
-    }
-  }
-  if (left === -Infinity || right === Infinity) return null;
-  return { left, right };
-}
-
-// yLevel(弦の両端のy)・halfWidth(半幅)・sagitta(中央の弓なり量)から浅い弦弧の点列を作る。
-// x=cx+t*halfWidthで単調増加を構造的に保証。bowSign=1は中央がyLevelより下(=safeAreaから
-// 遠ざかる方向。タイトル用)、bowSign=-1は中央がyLevelより上(日付用)
-function buildChordPoints(
-  cx: number,
-  yLevel: number,
-  halfWidth: number,
-  sagitta: number,
-  bowSign: 1 | -1,
-  nSamples: number,
-): Point[] {
-  const pts: Point[] = [];
-  for (let i = 0; i < nSamples; i++) {
-    const t = -1 + (2 * i) / (nSamples - 1);
-    pts.push({ x: cx + t * halfWidth, y: yLevel + bowSign * sagitta * (1 - t * t) });
-  }
-  return pts;
-}
-
-// yStart(safeAreaのすぐ外側)からyEnd(輪郭の先端側。実際の形状より先まで指定してよい=
-// chordWidthAtYがnullを返して自然にクランプされる)まで水平帯の実測幅を探索し、浅い弧の
-// 条件(isShallow。arcSmooth時は実際に描画される曲線での判定)を満たしつつ最も実長の長い
-// 弦弧を返す（見つからなければnull＝呼び出し側は既存のradial候補にフォールバックする）
-function fitChordArc(
-  polygon: readonly Point[],
-  cx: number,
-  yStart: number,
-  yEnd: number,
-  insetRatio: number,
-  bowSign: 1 | -1,
-  nSamples: number,
-  arcSmooth: boolean,
-): Point[] | null {
-  let best: Point[] | null = null;
-  let bestLength = -Infinity;
-  for (let i = 0; i <= CHORD_Y_SEARCH_STEPS; i++) {
-    const t = i / CHORD_Y_SEARCH_STEPS;
-    const yLevel = yStart + (yEnd - yStart) * t;
-    const w = chordWidthAtY(polygon, yLevel, cx);
-    if (!w) continue;
-    const halfWidth = Math.min(cx - w.left, w.right - cx) * (1 - insetRatio);
-    if (halfWidth <= 0) continue;
-    const maxSagitta = (halfWidth * Math.tan(deg2rad(TANGENT_TARGET_DEG))) / 2;
-    const sagitta = maxSagitta * 0.85; // Catmull-Rom平滑化のオーバーシュートに備えた安全マージン
-    const candidate = buildChordPoints(cx, yLevel, halfWidth, sagitta, bowSign, nSamples);
-    const checkPoints = arcSmooth ? denseCurvePoints(candidate, SHALLOW_CHECK_SAMPLES_PER_SEGMENT) : candidate;
-    if (!isShallow(checkPoints)) continue;
-    const length = polylineLength(candidate);
-    if (length > bestLength) {
-      bestLength = length;
-      best = candidate;
-    }
-  }
-  return best;
-}
-
-// radial候補とchord候補のうち実長が長い方を採用する（chordが見つからない場合はradialを使う）
-function pickLongerArc(radial: Point[], chord: Point[] | null): Point[] {
-  if (!chord) return radial;
-  return polylineLength(chord) > polylineLength(radial) ? chord : radial;
+  return dedupClosePoints(pts);
 }
 
 // レイキャスト法による点-多角形包含判定（標準的な奇偶則）
@@ -803,146 +339,969 @@ function pointInPolygon(p: Point, polygon: readonly Point[]): boolean {
 }
 
 const SHRINK_MAX_ITERATIONS = 30;
-const SHRINK_FACTOR = 0.96;
-// outlinePolygonは輪郭の密サンプル近似であり、真の滑らかな曲線とはサンプル間隔ぶんの
-// 微小な誤差がある（実測でviewBox比0.01未満オーダー）。判定をこの近似ぎりぎりで通すと、
-// より高解像度な検証（スモークテスト等）でごく僅かに外側と判定されることがあるため、
-// 判定用の多角形はさらにMARGIN_RATIOぶん内側へ縮めたものを使い、安全マージンを確保する
-const CONTAINMENT_CHECK_MARGIN_RATIO = 0.99;
+const SHRINK_FACTOR = 0.97;
+// outlinePolygonは輪郭の密サンプル近似であり、真の滑らかな曲線とはサンプル間隔ぶんの微小な
+// 誤差がある。判定用の多角形はさらにこの比率ぶん内側へ縮めたものを使い、安全マージンを確保する
+const CONTAINMENT_CHECK_MARGIN_RATIO = 0.995;
 
 function scalePolygon(polygon: readonly Point[], cx: number, cy: number, factor: number): Point[] {
   return polygon.map((p) => ({ x: cx + (p.x - cx) * factor, y: cy + (p.y - cy) * factor }));
 }
 
 // 候補点列を中心(cx,cy)へわずかずつ縮小し、全点がoutlinePolygon(実際に描画されるoutlinePath)の
-// 内側に収まるまで繰り返す最終防衛の安全網。splatはpointAtが実際の輪郭(ロブ形状)と意図的に
-// 異なる（可読性優先でtextの弧をほぼ真円にする設計。ビルダー内のコメント参照）ため、
-// insetRatioによる縮小だけでは輪郭内に収まる保証ができない。また弦(chord)候補もsagitta分だけ
-// 弓なりにする際、単一Yレベルでの幅測定が想定していない局所的な凹みを踏むことがある
-// （splatのような激しくジッターした輪郭で発生。Fable視覚検分後の実装で実測）。
-// (cx,cy)を中心とした一様スケール(相似変換)は接線角・x単調増加のどちらも保つため
-// （角度不変・符号保存）、他の保証を壊さずに安全に縮められる。
-// arcSmooth=trueの場合、判定は生の候補点ではなくdenseCurvePoints(実際にcatmullRomOpenPathが
-// 描画する曲線の密サンプル)に対して行う。生の点だけを見て縮小をやめると、Catmull-Rom平滑化が
-// 隣接する2点の間で外側へ張り出す分を見落とし、実際にレンダリングされる曲線は輪郭の外に
-// はみ出したままになる（tangent角チェックのisCandidateShallowと同じ理由。Fable視覚検分後の
-// 実装で実測: 生の点は輪郭内でも、平滑化後の曲線が輪郭外に張り出すケースがあった）
-function shrinkUntilContained(
-  points: readonly Point[],
-  cx: number,
-  cy: number,
-  polygon: readonly Point[],
-  arcSmooth: boolean,
-): readonly Point[] {
+// 内側に収まるまで繰り返す最終防衛の安全網。本ファイルの全ビルダーは(cx,cy)から見て星形
+// （中心から輪郭上の任意の点への線分が常に図形内部に収まる）になるよう設計しているため、
+// インセット(中心方向への縮小)は理論上常に内側に収まる保証があるが、離散サンプルの誤差に
+// 備えてこの安全網を残す
+function shrinkUntilContained(points: readonly Point[], cx: number, cy: number, polygon: readonly Point[]): Point[] {
   const checkPolygon = scalePolygon(polygon, cx, cy, CONTAINMENT_CHECK_MARGIN_RATIO);
-  const isContained = (candidate: readonly Point[]) => {
-    const checkPoints = arcSmooth ? denseCurvePoints(candidate, SHALLOW_CHECK_SAMPLES_PER_SEGMENT) : candidate;
-    return checkPoints.every((p) => pointInPolygon(p, checkPolygon));
-  };
-  let pts: readonly Point[] = points;
+  let pts: Point[] = points as Point[];
   for (let iter = 0; iter < SHRINK_MAX_ITERATIONS; iter++) {
-    if (isContained(pts)) return pts;
+    if (pts.every((p) => pointInPolygon(p, checkPolygon))) return pts;
     pts = pts.map((p) => ({ x: cx + (p.x - cx) * SHRINK_FACTOR, y: cy + (p.y - cy) * SHRINK_FACTOR }));
   }
   return pts; // 上限まで縮めても収まらない場合はそのまま返す（実運用では発生しない想定の保険）
 }
 
-// idea.idから決定論的にシェイプ1枚を組み立てる（Math.random不使用。同じidなら常に同じ結果）
-export function shapeForIdea(ideaId: string): IdeaShape {
+// ── ビルダー ─────────────────────────────────────────────────────────────
+// 各ビルダーはoutlinePath(実際に描画される閉パス)と、そのビルダーが(cx,cy)から見て星形に
+// なるよう選んだ中心点だけを返す。テキスト弧の選定・安全領域の算出は、以後すべて
+// outlinePathを密サンプルした実点列に対して行う（ビルダー固有のpointAtには依存しない）
+type ShapeBuildResult = {
+  viewBoxW: number;
+  viewBoxH: number;
+  outlinePath: string;
+  cx: number;
+  cy: number;
+};
+
+// 1: 不揃い楕円（ブロブ）
+function buildBlob(rng: () => number): ShapeBuildResult {
+  const cx = 50;
+  const cy = 50;
+  const rx = randRange(rng, 38, 44);
+  const ry = randRange(rng, 36, 42);
+  const harmonics = makeHarmonics(rng, [
+    { freqMin: 2, freqMax: 3, ampMin: 0.06, ampMax: 0.11 },
+    { freqMin: 3, freqMax: 5, ampMin: 0.05, ampMax: 0.09 },
+    { freqMin: 5, freqMax: 7, ampMin: 0.02, ampMax: 0.05 },
+  ]);
+  const radiusAt = (angle: number) => ellipseR(angle, rx, ry) * (1 + clamp(harmonicJitter(angle, harmonics), -0.3, 0.32));
+  const pointAt = (angle: number): Point => {
+    const r = radiusAt(angle);
+    return { x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle) };
+  };
+  const nOutline = 18;
+  const points: Point[] = [];
+  for (let i = 0; i < nOutline; i++) points.push(pointAt((i / nOutline) * TAU - Math.PI / 2));
+  return { viewBoxW: 100, viewBoxH: 100, outlinePath: catmullRomClosedPath(points), cx, cy };
+}
+
+// 2: 不揃い角丸多角形（7〜9角）
+function buildPolygon(rng: () => number): ShapeBuildResult {
+  const cx = 50;
+  const cy = 50;
+  const n = pick(rng, [7, 8, 9] as const);
+  const rBase = randRange(rng, 37, 42);
+  const vertices: Point[] = [];
+  const sector = TAU / n;
+  for (let i = 0; i < n; i++) {
+    const a = -Math.PI / 2 + i * sector + randRange(rng, -0.18, 0.18) * sector;
+    const r = rBase * (1 + randRange(rng, -0.16, 0.16));
+    vertices.push({ x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) });
+  }
+  return { viewBoxW: 100, viewBoxH: 100, outlinePath: roundedPolygonPath(vertices, 0.16), cx, cy };
+}
+
+// 3: 台形がかった矩形（角にうねり）
+function buildWaveRect(rng: () => number): ShapeBuildResult {
+  const viewBoxW = 125;
+  const viewBoxH = 100;
+  const cx = viewBoxW / 2;
+  const cy = 50;
+  const hw = randRange(rng, 45, 50);
+  const hh = randRange(rng, 37, 41);
+  const k = randRange(rng, 2.8, 3.6);
+  const shear = randRange(rng, -7, 7);
+  const harmonics = makeHarmonics(rng, [
+    { freqMin: 2, freqMax: 3, ampMin: 0.03, ampMax: 0.06 },
+    { freqMin: 4, freqMax: 5, ampMin: 0.02, ampMax: 0.04 },
+  ]);
+  const radiusAt = (angle: number) =>
+    superRectR(angle, hw, hh, k) * (1 + clamp(harmonicJitter(angle, harmonics), -0.12, 0.12));
+  const pointAt = (angle: number): Point => {
+    const r = radiusAt(angle);
+    const py = cy + r * Math.sin(angle);
+    const px = cx + r * Math.cos(angle) + shear * ((py - cy) / hh);
+    return { x: px, y: py };
+  };
+  const nOutline = 28;
+  const points: Point[] = [];
+  for (let i = 0; i < nOutline; i++) points.push(pointAt((i / nOutline) * TAU - Math.PI / 2));
+  return { viewBoxW, viewBoxH, outlinePath: catmullRomClosedPath(points), cx, cy };
+}
+
+// 4: アーチ（上半円+胴）
+function buildArch(rng: () => number): ShapeBuildResult {
+  const viewBoxW = 92;
+  const viewBoxH = 100;
+  const cx = viewBoxW / 2;
+  const cy = randRange(rng, 38, 42);
+  const domeR = randRange(rng, 34, 38);
+  const bodyBottomOffset = randRange(rng, 42, 46);
+  const harmonics = makeHarmonics(rng, [{ freqMin: 2, freqMax: 3, ampMin: 0.04, ampMax: 0.07 }]);
+  const radiusAt = (angleRaw: number) => {
+    let angle = angleRaw;
+    while (angle > Math.PI) angle -= TAU;
+    while (angle <= -Math.PI) angle += TAU;
+    const base =
+      angle <= 0
+        ? domeR
+        : Math.min(domeR / Math.max(Math.abs(Math.cos(angle)), 1e-6), bodyBottomOffset / Math.max(Math.sin(angle), 1e-6));
+    return base * (1 + clamp(harmonicJitter(angle, harmonics), -0.12, 0.12));
+  };
+  const pointAt = (angle: number): Point => {
+    const r = radiusAt(angle);
+    return { x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle) };
+  };
+  const nOutline = 22;
+  const points: Point[] = [];
+  for (let i = 0; i < nOutline; i++) points.push(pointAt((i / nOutline) * TAU - Math.PI / 2));
+  return { viewBoxW, viewBoxH, outlinePath: catmullRomClosedPath(points), cx, cy };
+}
+
+// 5: 縦長オーバル
+function buildTallOval(rng: () => number): ShapeBuildResult {
+  const viewBoxW = 64;
+  const viewBoxH = 100;
+  const cx = viewBoxW / 2;
+  const cy = 50;
+  const rx = randRange(rng, 20, 24);
+  const ry = randRange(rng, 42, 46);
+  const harmonics = makeHarmonics(rng, [
+    { freqMin: 2, freqMax: 3, ampMin: 0.05, ampMax: 0.08 },
+    { freqMin: 3, freqMax: 4, ampMin: 0.03, ampMax: 0.05 },
+  ]);
+  const radiusAt = (angle: number) => ellipseR(angle, rx, ry) * (1 + clamp(harmonicJitter(angle, harmonics), -0.22, 0.22));
+  const pointAt = (angle: number): Point => {
+    const r = radiusAt(angle);
+    return { x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle) };
+  };
+  const nOutline = 18;
+  const points: Point[] = [];
+  for (let i = 0; i < nOutline; i++) points.push(pointAt((i / nOutline) * TAU - Math.PI / 2));
+  return { viewBoxW, viewBoxH, outlinePath: catmullRomClosedPath(points), cx, cy };
+}
+
+// 6: ぐにゃっとした花形・スプラット（複雑形。輪郭本体がフル暴れの有機形状）
+function buildSplat(rng: () => number): ShapeBuildResult {
+  const cx = 50;
+  const cy = 50;
+  // freq 5〜6・amp 0.2〜0.3(旧値)は輪郭のほぼ全域で曲率半径が閾値を割り込み(実測:
+  // minRadius=20でbestSmoothRunが全周の3〜5%まで低下)、Aの全周探索が長い低曲率区間を
+  // 確保できず数学的保証フォールバックに落ちる(実測: 300件超のスモークテストで98%が発動)。
+  // さらに調査すると、細かい"エッジ荒れ"用のfineHarmonics(freq 9〜11)がamp自体は小さくても
+  // 曲率＝振幅×周波数²で効くため、周波数が高い分メインローブより曲率への寄与が大きく、
+  // 実は主要因だった(モンテカルロ実測: fineのamp/freqを抑えるだけでbestSmoothRunの平均が
+  // 19→71まで改善)。メインは花弁感を保つ振幅のまま、fineは控えめな周波数・振幅に絞る
+  const rBase = randRange(rng, 34, 38);
+  const lobeHarmonics = makeHarmonics(rng, [
+    { freqMin: 3, freqMax: 4, ampMin: 0.16, ampMax: 0.24 },
+    { freqMin: 6, freqMax: 8, ampMin: 0.01, ampMax: 0.02 },
+  ]);
+  const radiusAt = (angle: number) => rBase * (1 + clamp(harmonicJitter(angle, lobeHarmonics), -0.3, 0.34));
+  const pointAt = (angle: number): Point => {
+    const r = radiusAt(angle);
+    return { x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle) };
+  };
+  const nOutline = 40;
+  const points: Point[] = [];
+  for (let i = 0; i < nOutline; i++) points.push(pointAt((i / nOutline) * TAU - Math.PI / 2));
+  return { viewBoxW: 100, viewBoxH: 100, outlinePath: catmullRomClosedPath(points), cx, cy };
+}
+
+// 7: マルチローブブロブ（複雑形。B: 2〜4ローブ＋深いくびれのパズルピース感）
+function buildMultiLobe(rng: () => number): ShapeBuildResult {
+  const cx = 50;
+  const cy = 50;
+  // 4ローブ・高振幅は輪郭ほぼ全域の曲率半径が閾値を割り込み(実測: minRadius=20でbestSmoothRun
+  // が全周の6〜8%程度まで低下)、A(全周辺沿いテキスト)が長い低曲率区間を確保できず数学的保証
+  // フォールバックに落ちやすい。2〜3ローブ・控えめな振幅に絞ることで「パズルピース感」を保ちつつ
+  // 各ローブの腹に十分長い低曲率区間を残す（実測: この範囲ならfloorフォントサイズで
+  // 全周の30%以上の低曲率区間を確保できる）
+  // fineHarmonics(エッジ荒れ用)は曲率＝振幅×周波数²で効くため、周波数7〜9ではampが小さくても
+  // メインローブより曲率への寄与が大きくなり得る(splatで実測した同種の問題。DESIGN差分参照)。
+  // 周波数・振幅とも抑えることでbestSmoothRunの実測平均が68→91まで改善する
+  const lobes = pick(rng, [2, 3] as const);
+  const rBase = randRange(rng, 30, 36);
+  const lobeAmp = randRange(rng, 0.12, 0.2);
+  const lobePhase = randRange(rng, 0, TAU);
+  const fineHarmonics = makeHarmonics(rng, [{ freqMin: 6, freqMax: 8, ampMin: 0.008, ampMax: 0.015 }]);
+  const radiusAt = (angle: number) =>
+    rBase *
+    (1 + lobeAmp * Math.cos(lobes * angle + lobePhase)) *
+    (1 + clamp(harmonicJitter(angle, fineHarmonics), -0.05, 0.05));
+  const pointAt = (angle: number): Point => {
+    const r = radiusAt(angle);
+    return { x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle) };
+  };
+  const nOutline = 48; // くびれをCatmull-Romが滑らかに拾えるよう密に
+  const points: Point[] = [];
+  for (let i = 0; i < nOutline; i++) points.push(pointAt((i / nOutline) * TAU - Math.PI / 2));
+  return { viewBoxW: 100, viewBoxH: 100, outlinePath: catmullRomClosedPath(points), cx, cy };
+}
+
+// 8: 丸みのあるL字/T字型（複雑形。B: 凹角を持つブロック形状）
+function buildLNotch(rng: () => number): ShapeBuildResult {
+  const cx = 50;
+  const cy = 50;
+  const isT = rng() < 0.5;
+  const margin = randRange(rng, 5, 9);
+  const lo = margin;
+  const hi = 100 - margin;
+  let vertices: Point[];
+  let kernelPoint: Point; // 星形の核（この点から全頂点・全辺が遮られず見通せる位置）
+  if (isT) {
+    const barH = randRange(rng, 30, 38);
+    const stemW = randRange(rng, 26, 34);
+    const stemLeft = cx - stemW / 2;
+    const stemRight = cx + stemW / 2;
+    const barBottom = lo + barH;
+    vertices = [
+      { x: lo, y: lo },
+      { x: hi, y: lo },
+      { x: hi, y: barBottom },
+      { x: stemRight, y: barBottom },
+      { x: stemRight, y: hi },
+      { x: stemLeft, y: hi },
+      { x: stemLeft, y: barBottom },
+      { x: lo, y: barBottom },
+    ];
+    // T字の核(星形の中心)は「バーのうちステム幅と重なる部分」＝y:[lo,barBottom]の範囲内でなければ
+    // ならない(バー全体・ステム全体の両方を直視できる唯一の領域)。誤ってy:[barBottom,hi]
+    // (ステム側)に置いていたバグを修正（shrinkUntilContainedが多重に縮小し、Aの数学的保証
+    // フォールバックが想定より大幅に短くなる原因になっていた: 実測でtitleArcLengthが
+    // 必要弧長を下回るケースを確認）
+    kernelPoint = { x: cx, y: lo + (barBottom - lo) * 0.5 };
+  } else {
+    const armT = randRange(rng, 36, 46);
+    vertices = [
+      { x: lo, y: lo },
+      { x: lo + armT, y: lo },
+      { x: lo + armT, y: hi - armT },
+      { x: hi, y: hi - armT },
+      { x: hi, y: hi },
+      { x: lo, y: hi },
+    ];
+    // L字の核は[lo,lo+armT]×[hi-armT,hi]の重なり矩形内。丸め(cornerRatio)が凹角付近を
+    // 削るぶんの余裕を持たせるため、境界寄りの0.6ではなく矩形の中心(0.5)を採用する
+    kernelPoint = { x: lo + armT * 0.5, y: hi - armT * 0.5 };
+  }
+  // 手描き感のための微小な頂点ジッター + 4方向のランダム回転で見た目のバリエーションを出す
+  const jitterAmp = 2.2;
+  const jittered = vertices.map((v) => ({
+    x: v.x + randRange(rng, -jitterAmp, jitterAmp),
+    y: v.y + randRange(rng, -jitterAmp, jitterAmp),
+  }));
+  const rotation = pick(rng, [0, 1, 2, 3] as const) * (Math.PI / 2);
+  const rotated = jittered.map((v) => rotatePoint(v, cx, cy, rotation));
+  const kernelRotated = rotatePoint(kernelPoint, cx, cy, rotation);
+  // L/T字の凸角は90度・凹角は270度と、多角形(buildPolygon、7〜9角で1角あたり40〜51度)より
+  // 遥かに急な曲がりを丸め区間に圧縮する必要がある。cornerRatio 0.1〜0.16(旧値)では丸め区間の
+  // 物理弧長が短すぎて曲率半径が閾値を割り込みやすく、A(全周辺沿いテキスト)が長い低曲率区間を
+  // 確保できず数学的保証フォールバックに落ちやすかった(実測)。丸めを大きくして角の曲がりを
+  // 長い弧長に分散させる（「丸みのあるL/T字型」の見た目にもより合致する）
+  const cornerRatio = randRange(rng, 0.24, 0.34);
+  return {
+    viewBoxW: 100,
+    viewBoxH: 100,
+    outlinePath: roundedPolygonPath(rotated, cornerRatio),
+    cx: kernelRotated.x,
+    cy: kernelRotated.y,
+  };
+}
+
+// 9: 大きな切り欠きのある円形（複雑形。B: 1〜2箇所の深い凹み）
+function buildNotchedCircle(rng: () => number): ShapeBuildResult {
+  const cx = 50;
+  const cy = 50;
+  const rBase = randRange(rng, 36, 41);
+  const notchCount = pick(rng, [1, 1, 2] as const);
+  const firstCenter = randRange(rng, 0, TAU);
+  const notches: { center: number; halfWidth: number; depth: number }[] = [
+    { center: firstCenter, halfWidth: deg2rad(randRange(rng, 38, 58)), depth: randRange(rng, 0.38, 0.56) },
+  ];
+  if (notchCount === 2) {
+    notches.push({
+      center: firstCenter + Math.PI + randRange(rng, -0.4, 0.4),
+      halfWidth: deg2rad(randRange(rng, 26, 40)),
+      depth: randRange(rng, 0.28, 0.42),
+    });
+  }
+  const fineHarmonics = makeHarmonics(rng, [{ freqMin: 6, freqMax: 8, ampMin: 0.015, ampMax: 0.03 }]);
+  const radiusAt = (angle: number) => {
+    let r = rBase;
+    for (const notch of notches) {
+      const d = Math.abs(angleDiff(angle, notch.center));
+      if (d < notch.halfWidth) {
+        const bump = 0.5 * (1 + Math.cos((Math.PI * d) / notch.halfWidth));
+        r -= rBase * notch.depth * bump;
+      }
+    }
+    return r * (1 + clamp(harmonicJitter(angle, fineHarmonics), -0.03, 0.03));
+  };
+  const pointAt = (angle: number): Point => {
+    const r = radiusAt(angle);
+    return { x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle) };
+  };
+  const nOutline = 48;
+  const points: Point[] = [];
+  for (let i = 0; i < nOutline; i++) points.push(pointAt((i / nOutline) * TAU - Math.PI / 2));
+  return { viewBoxW: 100, viewBoxH: 100, outlinePath: catmullRomClosedPath(points), cx, cy };
+}
+
+const BUILDERS: Record<ShapeKind, (rng: () => number) => ShapeBuildResult> = {
+  blob: buildBlob,
+  polygon: buildPolygon,
+  waveRect: buildWaveRect,
+  arch: buildArch,
+  tallOval: buildTallOval,
+  splat: buildSplat,
+  multiLobe: buildMultiLobe,
+  lNotch: buildLNotch,
+  notchedCircle: buildNotchedCircle,
+};
+
+// ── A: 全周辺沿いテキスト選定 ────────────────────────────────────────────
+// idea.titleの推定表示幅（em単位）。全角(CJK仮名漢字等)は1.0em、半角(ASCII等)は0.6em という
+// 実測（getComputedTextLength）に基づく簡易ヒューリスティック
+export function estimateTextWidthEm(text: string): number {
+  let width = 0;
+  for (const ch of text) {
+    const code = ch.codePointAt(0) ?? 0;
+    width += code > 0x2e7f ? 1.0 : 0.6;
+  }
+  return width;
+}
+
+// <text letterSpacing>と幅見積もりの両方で共有する単一の真実源（日付ラベルのuppercase表示に使う）
+export const DATE_LETTER_SPACING_EM = 0.14;
+
+// 曲率半径がフォントサイズの何倍以上あれば「低曲率＝グリフ衝突が起きない緩さ」とみなすか
+export const CURVATURE_RADIUS_MULT = 2.5;
+// 必要弧長 = フォントサイズ×推定文字幅合計×このマージン（実測の折れ線長近似誤差を相殺）
+export const ARC_LENGTH_MARGIN = 1.06;
+// 区間全体の総回転（ヘアピン・方向反転の代理指標）の上限。この値を超えて回り込む区間は
+// 打ち切る（例: 円に近い形状で低曲率が全周に渡っていても、半周以上テキストを回り込ませると
+// 文字が上下逆になってしまうため。低曲率かつ滑らかな連続性の両方が要件 — DESIGN参照）
+const MAX_RUN_TOTAL_TURN_DEG = 150;
+const MAX_RUN_TOTAL_TURN_RAD = deg2rad(MAX_RUN_TOTAL_TURN_DEG);
+
+const TITLE_FONT_MAX_RATIO = 0.076;
+const TITLE_FONT_FLOOR_RATIO = 0.03;
+const DATE_FONT_MAX_RATIO = 0.036;
+const DATE_FONT_FLOOR_RATIO = 0.02;
+const FONT_SHRINK_STEP = 0.92; // 1段階あたりの縮小率
+// 数学的保証フォールバック（全周長 ≥ 必要弧長になるフォントサイズ）が万一さらに小さい値を
+// 要求しても、完全に不可視にはしないための絶対下限（実運用の40件+合成ロングタイトルでは
+// 到達しない想定の保険）
+const ABSOLUTE_MIN_FONT_SIZE = 0.6;
+
+const INSET_BASE_RATIO = 0.07;
+const INSET_GAIN_RATIO = 0.14; // 曲率が閾値ぎりぎり(=平均曲率係数1.0)のとき、最大でBASE+GAINまで増やす
+
+const OUTLINE_SAMPLES_PER_CURVE = 24; // 曲率解析・弧選定に使う密サンプリング解像度
+const SAFE_AREA_SAMPLES_PER_CURVE = 8; // safeArea探索専用の粗いサンプリング（性能優先）
+
+// 日付は従来どおり上部の緩い窓に制限する（短いラベルなので全周探索は不要。タイトルとの
+// 排他は日付の実際の使用区間±バッファをタイトル側のallowed判定から除外して行う）
+const DATE_WINDOW_DEG: readonly [number, number] = [-165, -15];
+const DATE_TITLE_BUFFER_FRACTION = 0.06;
+// 弧長バッファに加え、実座標(ユークリッド距離)でもタイトル弧を日付弧から引き離す下限
+// （日付フォントサイズに対する比率。凹形状で弧長上は離れていても実座標では近接しうるケースの対策）
+const MIN_ARC_EUCLIDEAN_CLEARANCE_MULT = 0.6;
+
+type PerimeterMetrics = {
+  points: Point[];
+  n: number;
+  segLen: number[]; // segLen[i] = |points[i] -> points[(i+1)%n]|
+  turn: number[]; // turn[i] = points[i]における接線の曲がり角（符号付き、ラジアン）
+  curvRadius: number[]; // turn[i]から推定した局所曲率半径（直線に近いほどInfinity）
+};
+
+function buildPerimeterMetrics(points: readonly Point[]): PerimeterMetrics {
+  const n = points.length;
+  const segLen: number[] = new Array(n);
+  const tangent: number[] = new Array(n);
+  for (let i = 0; i < n; i++) {
+    const a = points[i];
+    const b = points[(i + 1) % n];
+    segLen[i] = Math.hypot(b.x - a.x, b.y - a.y);
+    tangent[i] = Math.atan2(b.y - a.y, b.x - a.x);
+  }
+  const turn: number[] = new Array(n);
+  const curvRadius: number[] = new Array(n);
+  for (let i = 0; i < n; i++) {
+    const prevTangent = tangent[(i - 1 + n) % n];
+    const t = angleDiff(tangent[i], prevTangent);
+    turn[i] = t;
+    const avgSeg = (segLen[(i - 1 + n) % n] + segLen[i]) / 2;
+    curvRadius[i] = Math.abs(t) < 1e-9 ? Infinity : avgSeg / Math.abs(t);
+  }
+  return { points: points as Point[], n, segLen, turn, curvRadius };
+}
+
+type RunResult = { startDoubled: number; endDoubled: number; length: number };
+
+// 曲率半径がminRadius以上・allowed()を満たす点だけを使い、輪郭全周（circular）から
+// 「区間内の総回転がMAX_RUN_TOTAL_TURN_RAD以下」という制約下で最長の連続区間を探す
+// (2倍化した配列上のスライディングウィンドウ。区間長は必ず輪郭1周以内に収める)
+function findLongestRun(pm: PerimeterMetrics, minRadius: number, allowed: (i: number) => boolean): RunResult | null {
+  const n = pm.n;
+  const ok: boolean[] = new Array(n);
+  for (let i = 0; i < n; i++) ok[i] = pm.curvRadius[i] >= minRadius && allowed(i);
+
+  const turnPrefix = new Float64Array(2 * n + 1);
+  const lenPrefix = new Float64Array(2 * n + 1);
+  for (let k = 1; k <= 2 * n; k++) {
+    turnPrefix[k] = turnPrefix[k - 1] + Math.abs(pm.turn[(k - 1) % n]);
+    lenPrefix[k] = lenPrefix[k - 1] + pm.segLen[(k - 1) % n];
+  }
+  const windowTurnSum = (start: number, end: number) => (end > start ? turnPrefix[end] - turnPrefix[start + 1] : 0);
+
+  let start = 0;
+  let lastBad = -1;
+  let bestStart = -1;
+  let bestEnd = -1;
+  let bestLen = -1;
+  for (let end = 0; end < 2 * n; end++) {
+    const oi = end % n;
+    if (!ok[oi]) lastBad = end;
+    if (start <= lastBad) start = lastBad + 1;
+    if (end - start + 1 > n) start = end - n + 1;
+    while (start < end && windowTurnSum(start, end) > MAX_RUN_TOTAL_TURN_RAD) start++;
+    if (start > end) continue;
+    const len = lenPrefix[end] - lenPrefix[start];
+    if (len > bestLen) {
+      bestLen = len;
+      bestStart = start;
+      bestEnd = end;
+    }
+  }
+  if (bestStart < 0) return null;
+  return { startDoubled: bestStart, endDoubled: bestEnd, length: bestLen };
+}
+
+function physIndex(n: number, doubledIdx: number): number {
+  return ((doubledIdx % n) + n) % n;
+}
+
+function extractRunPoints(pm: PerimeterMetrics, run: RunResult): Point[] {
+  const pts: Point[] = [];
+  for (let k = run.startDoubled; k <= run.endDoubled; k++) pts.push(pm.points[physIndex(pm.n, k)]);
+  return pts;
+}
+
+// 数学的保証フォールバック: 曲率制約を無視し、allowed()な点だけをstartHintIdxから輪郭に沿って
+// 辿った点列を返す（全周長 ≥ 必要弧長になるフォントサイズと組み合わせて使う。呼び出し側が
+// フォントサイズをこの点列の実長に合わせて再計算するため、ここでは曲率を問わず「使える
+// 区間を最大限確保する」ことだけを保証する）
+function buildFullLoopPoints(pm: PerimeterMetrics, allowed: (i: number) => boolean, startHintIdx: number): Point[] {
+  const pts: Point[] = [];
+  for (let k = 0; k < pm.n; k++) {
+    const idx = (startHintIdx + k) % pm.n;
+    if (allowed(idx)) pts.push(pm.points[idx]);
+  }
+  return pts.length >= 2 ? pts : pm.points.slice();
+}
+
+type ArcFitResult = {
+  points: Point[]; // インセット・向き決定まで適用済みの最終点列（そのままstraightOpenPathに渡せる）
+  length: number; // pointsの実長（インセット後）
+  fontSize: number;
+  usedFallback: boolean;
+  startPhys: number; // -1ならフォールバック等でzone判定に使えない
+  endPhys: number;
+};
+
+function fontSizeCandidates(viewBoxW: number, maxRatio: number, floorRatio: number): number[] {
+  const sizes: number[] = [];
+  let ratio = maxRatio;
+  while (ratio > floorRatio) {
+    sizes.push(viewBoxW * ratio);
+    ratio *= FONT_SHRINK_STEP;
+  }
+  sizes.push(viewBoxW * floorRatio);
+  return sizes;
+}
+
+// run区間の平均曲率係数（各点でminRadius/curvRadius、範囲(0,1])からインセット比を決める
+// （5: インセット量は曲率に応じて増やす。凸部の外側で文字間が開き凹部で詰まるグリフ衝突対策）
+function computeAvgCurvatureFactor(pm: PerimeterMetrics, run: RunResult, fontSize: number): number {
+  const minRadius = CURVATURE_RADIUS_MULT * fontSize;
+  let sum = 0;
+  let count = 0;
+  for (let k = run.startDoubled; k <= run.endDoubled; k++) {
+    const oi = physIndex(pm.n, k);
+    const cr = pm.curvRadius[oi];
+    sum += Number.isFinite(cr) ? clamp(minRadius / cr, 0, 1) : 0;
+    count += 1;
+  }
+  return count > 0 ? sum / count : 0;
+}
+
+// 選定された弧点列に対し、(1) 曲率に応じたインセット（中心方向への縮小。星形性により常に
+// 内側に収まる保証がある。安全網としてshrinkUntilContainedも重ねる）、(2) 読み順が
+// 自然になる向きの決定（水平方向が支配的なら左→右、垂直方向が支配的なら上→下。逆向きなら
+// 点列を反転する。Bosmansの縦組み参照）を行う。中心方向への一様縮小は距離を厳密に
+// (1-insetRatio)倍するため、返す実長はここで初めて確定する値であり、必要弧長との比較は
+// 必ずこの関数を通した後の実長に対して行う（インセット前の生の区間長で判定すると、
+// インセット分だけ実際に描画される弧が必要弧長を下回りうるバグを防ぐ）
+// 区間全体の総回転がMAX_RUN_TOTAL_TURN_RAD以内であっても、区間の両端付近だけ支配軸と逆向きに
+// わずかに"戻る"（S字の端が跳ねる）ケースが実測で見つかった（総回転の絶対値合計は小さくても、
+// 端で向きが一瞬反転しうるため）。読み順の単調性を厳密に保証するため、支配軸方向に非減少な
+// 最長の連続部分列を抽出する（＝逆行する先頭/末尾の数点を切り詰める。中間で逆行する場合も
+// 同じロジックで最長の単調区間だけを残す）
+function trimToLongestMonotonicRun(points: readonly Point[]): Point[] {
+  if (points.length < 2) return points as Point[];
+  const first = points[0];
+  const last = points[points.length - 1];
+  const dx = last.x - first.x;
+  const dy = last.y - first.y;
+  const horizontal = Math.abs(dx) >= Math.abs(dy);
+  const sign = (horizontal ? dx : dy) >= 0 ? 1 : -1;
+  const coordOf = (p: Point) => (horizontal ? p.x : p.y) * sign;
+  const EPS = 1e-9;
+  let bestStart = 0;
+  let bestEnd = 0;
+  let curStart = 0;
+  for (let i = 1; i < points.length; i++) {
+    if (coordOf(points[i]) < coordOf(points[i - 1]) - EPS) curStart = i;
+    if (i - curStart > bestEnd - bestStart) {
+      bestStart = curStart;
+      bestEnd = i;
+    }
+  }
+  return points.slice(bestStart, bestEnd + 1);
+}
+
+// applyMonotonicTrim=falseは数学的保証フォールバック専用: 輪郭を周回して続く区間を許容する
+// ため（DESIGN A-3「輪郭を周回して続く区間」）、そもそも支配軸方向の単調性を前提にできない
+// （閉曲線を辿れば必ずどこかでx/yは減少に転じる）。trimToLongestMonotonicRunをここに適用すると、
+// 数学的保証の元になったloopLenの大半を削ってしまい、保証が崩れるため通常ティアのみに限定する
+function insetAndOrient(
+  points: readonly Point[],
+  cx: number,
+  cy: number,
+  insetRatio: number,
+  outlinePolygon: readonly Point[],
+  applyMonotonicTrim: boolean,
+): Point[] {
+  let pts = points.map((p) => ({ x: cx + (p.x - cx) * (1 - insetRatio), y: cy + (p.y - cy) * (1 - insetRatio) }));
+  pts = shrinkUntilContained(pts, cx, cy, outlinePolygon);
+  const first = pts[0];
+  const last = pts[pts.length - 1];
+  const dx = last.x - first.x;
+  const dy = last.y - first.y;
+  const horizontalDominant = Math.abs(dx) >= Math.abs(dy);
+  const needsReverse = horizontalDominant ? dx < 0 : dy < 0;
+  if (needsReverse) pts = pts.slice().reverse();
+  return applyMonotonicTrim ? trimToLongestMonotonicRun(pts) : pts;
+}
+
+// フォールバック時の既定インセット比（曲率を無視するため区間内訳が定義できず、安全側の
+// 最大値=INSET_BASE_RATIO+INSET_GAIN_RATIOを固定で使う）
+const FALLBACK_INSET_RATIO = INSET_BASE_RATIO + INSET_GAIN_RATIO;
+
+// フォントサイズを上限から段階的に縮小しながら、各サイズで「低曲率・滑らかな連続性」を
+// 満たす最長区間が(インセット後の実長で)必要弧長を満たすかを判定する。primaryAllowedで
+// 見つからない場合はsecondaryAllowed(より緩い許容。例: タイトルとの排他を諦める/日付の
+// 上部窓を諦める)で同じ探索を再試行し、それでも見つからない場合に数学的保証フォールバック
+// （全周長 ≥ 必要弧長になるフォントサイズ。曲率は無視）を採用する。
+// 「…」で切り詰めるコードパスは存在しない（A: 切り詰め全廃）
+// avoidPoints/minClearanceは、既に確定した日付弧からタイトル弧を実距離(ユークリッド)で
+// 引き離すための追加ガード。輪郭の形状によっては、日付とタイトルの区間が輪郭の弧長では
+// 十分離れていても(index space上のバッファは超えていても)、形状が湾曲して戻ってくる位置
+// 関係だと実座標では接近してしまうことがある(実測: L字の別アームがくびれ側で近接)。
+// 弧長バッファだけでなく実距離でも確認することで、この種の見た目の近接を防ぐ
+function clearsAvoidPoints(points: readonly Point[], avoidPoints: readonly Point[], minClearance: number): boolean {
+  if (avoidPoints.length === 0 || minClearance <= 0) return true;
+  for (const p of points) {
+    for (const q of avoidPoints) {
+      if (Math.hypot(p.x - q.x, p.y - q.y) < minClearance) return false;
+    }
+  }
+  return true;
+}
+
+function selectArcForFontSizes(
+  pm: PerimeterMetrics,
+  fontSizes: readonly number[],
+  charWidthEm: number,
+  primaryAllowed: (i: number) => boolean,
+  secondaryAllowed: (i: number) => boolean,
+  startHintIdx: number,
+  cx: number,
+  cy: number,
+  outlinePolygon: readonly Point[],
+  avoidPoints: readonly Point[] = [],
+  minClearance = 0,
+): ArcFitResult {
+  for (const allowed of [primaryAllowed, secondaryAllowed]) {
+    for (const fontSize of fontSizes) {
+      const requiredLen = fontSize * charWidthEm * ARC_LENGTH_MARGIN;
+      const minRadius = CURVATURE_RADIUS_MULT * fontSize;
+      const run = findLongestRun(pm, minRadius, allowed);
+      if (!run) continue;
+      const insetRatio = INSET_BASE_RATIO + INSET_GAIN_RATIO * computeAvgCurvatureFactor(pm, run, fontSize);
+      const finalPoints = insetAndOrient(extractRunPoints(pm, run), cx, cy, insetRatio, outlinePolygon, true);
+      const finalLength = polylineLength(finalPoints);
+      if (finalLength >= requiredLen && clearsAvoidPoints(finalPoints, avoidPoints, minClearance)) {
+        return {
+          points: finalPoints,
+          length: finalLength,
+          fontSize,
+          usedFallback: false,
+          startPhys: physIndex(pm.n, run.startDoubled),
+          endPhys: physIndex(pm.n, run.endDoubled),
+        };
+      }
+    }
+  }
+  const floorFontSize = fontSizes[fontSizes.length - 1];
+  // フォールバック(輪郭を周回して続く区間)もprimaryAllowed(日付との排他)を可能な限り尊重する。
+  // secondaryAllowedをそのまま使うと、周回区間が日付の区間を実際にまたいでしまい、視覚的に
+  // タイトルと日付が重なるバグがあった(実測: archive-29)。primaryAllowedで十分な長さの
+  // ループが作れない退化ケースのみsecondaryAllowedへ緩める
+  const primaryLoopPoints = buildFullLoopPoints(pm, primaryAllowed, startHintIdx);
+  const secondaryLoopPoints = buildFullLoopPoints(pm, secondaryAllowed, startHintIdx);
+  const loopPoints =
+    polylineLength(primaryLoopPoints) >= polylineLength(secondaryLoopPoints) * 0.5 ? primaryLoopPoints : secondaryLoopPoints;
+  const rawLoopLen = polylineLength(loopPoints);
+  const postInsetLoopLen = rawLoopLen * (1 - FALLBACK_INSET_RATIO);
+  const guaranteedFontSize = Math.max(
+    ABSOLUTE_MIN_FONT_SIZE,
+    Math.min(floorFontSize, postInsetLoopLen / (charWidthEm * ARC_LENGTH_MARGIN)),
+  );
+  const finalPoints = insetAndOrient(loopPoints, cx, cy, FALLBACK_INSET_RATIO, outlinePolygon, false);
+  return {
+    points: finalPoints,
+    length: polylineLength(finalPoints),
+    fontSize: guaranteedFontSize,
+    usedFallback: true,
+    startPhys: -1,
+    endPhys: -1,
+  };
+}
+
+function angleWithinWindow(angleDeg: number, window: readonly [number, number]): boolean {
+  return angleDeg >= window[0] && angleDeg <= window[1];
+}
+
+function nearestIndexToAngleDeg(pm: PerimeterMetrics, cx: number, cy: number, targetDeg: number): number {
+  let bestI = 0;
+  let bestDiff = Infinity;
+  for (let i = 0; i < pm.n; i++) {
+    const a = rad2deg(Math.atan2(pm.points[i].y - cy, pm.points[i].x - cx));
+    const diff = Math.abs(normalizeAngle(deg2rad(a - targetDeg)));
+    if (diff < bestDiff) {
+      bestDiff = diff;
+      bestI = i;
+    }
+  }
+  return bestI;
+}
+
+function circularIndexDistance(n: number, a: number, b: number): number {
+  const d = Math.abs(a - b) % n;
+  return Math.min(d, n - d);
+}
+
+// 弧上でtextPath(startOffset="50%"・textAnchor="middle")が実際にグリフを描画する範囲だけを
+// 弧長ベースで切り出す（弧の中心からspanLength/2ずつ）。弧そのものの実長(titleArc.length等)は
+// ARC_LENGTH_MARGINの余裕ぶんや最長候補選定の都合でグリフの実際の描画幅より長いことが多く、
+// 特に数学的保証フォールバック(輪郭を周回して続く区間)では弧全体が輪郭のほぼ全周に及ぶため、
+// 弧全体をsafeAreaのavoid点群として使うと「実際にグリフが無い場所」まで避けようとして
+// 過度に安全側になる一方、切り出さずに単純に間引くと逆に密な部分を見逃す(実測: archive-29で
+// タイトルの実描画範囲がsafeAreaと重なるのに、弧全体で見た最短距離では検出できなかった)
+function extractCenteredSpan(points: readonly Point[], spanLength: number): Point[] {
+  if (points.length < 2) return points as Point[];
+  const cumLen: number[] = [0];
+  for (let i = 1; i < points.length; i++) {
+    cumLen.push(cumLen[i - 1] + Math.hypot(points[i].x - points[i - 1].x, points[i].y - points[i - 1].y));
+  }
+  const total = cumLen[cumLen.length - 1];
+  const half = Math.min(spanLength / 2, total / 2);
+  const mid = total / 2;
+  const lo = mid - half;
+  const hi = mid + half;
+  const out: Point[] = [];
+  for (let i = 0; i < points.length; i++) {
+    if (cumLen[i] >= lo && cumLen[i] <= hi) out.push(points[i]);
+  }
+  return out.length >= 2 ? out : (points as Point[]);
+}
+
+// iが[start,end](circular)の範囲内か、その前後bufferの中に入っているかを判定する
+function circularWithinRange(n: number, start: number, end: number, i: number, buffer: number): boolean {
+  const contains = start <= end ? i >= start && i <= end : i >= start || i <= end;
+  if (contains) return true;
+  return Math.min(circularIndexDistance(n, i, start), circularIndexDistance(n, i, end)) <= buffer;
+}
+
+// ── B: safeArea（密サンプルベースの最大内接矩形探索）────────────────────
+type Rect = { x: number; y: number; w: number; h: number };
+
+// 弧長に沿って等間隔にtargetCount点を打ち直す（単純な"インデックス間引き"ではなく弧長ベース。
+// インデックス間引きだと、間引き後の隣接2点の間に安全領域チェック用の"隙間"ができ、その隙間の
+// 内側をタイトル弧が実際には通過しているのに検出できないケースがあった。実測: archive-2で
+// タイトル弧とsafeAreaの説明文が視覚的に重なるバグ。弧長ベースで密に(targetCount)打ち直す
+// ことで、隙間の最大値を「全長/targetCount」に抑え、safeAreaの辺の長さよりその隙間が
+// 十分小さくなるようtargetCountを大きめに取る）
+function resampleAlongPolyline(points: readonly Point[], targetCount: number): Point[] {
+  if (points.length <= 1) return points as Point[];
+  const cumLen: number[] = [0];
+  for (let i = 1; i < points.length; i++) {
+    cumLen.push(cumLen[i - 1] + Math.hypot(points[i].x - points[i - 1].x, points[i].y - points[i - 1].y));
+  }
+  const total = cumLen[cumLen.length - 1];
+  if (total <= 0) return [points[0]];
+  const out: Point[] = [];
+  for (let k = 0; k < targetCount; k++) {
+    const target = (k / Math.max(1, targetCount - 1)) * total;
+    let lo = 1;
+    let hi = cumLen.length - 1;
+    while (lo < hi) {
+      const mid = (lo + hi) >> 1;
+      if (cumLen[mid] < target) lo = mid + 1;
+      else hi = mid;
+    }
+    const idx = lo;
+    const segStart = cumLen[idx - 1];
+    const segEnd = cumLen[idx];
+    const t = segEnd > segStart ? (target - segStart) / (segEnd - segStart) : 0;
+    const a = points[idx - 1];
+    const b = points[idx];
+    out.push({ x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t });
+  }
+  return out;
+}
+
+function rectSamplePoints(r: Rect): Point[] {
+  const { x, y, w, h } = r;
+  return [
+    { x, y },
+    { x: x + w, y },
+    { x, y: y + h },
+    { x: x + w, y: y + h },
+    { x: x + w / 2, y },
+    { x: x + w / 2, y: y + h },
+    { x, y: y + h / 2 },
+    { x: x + w, y: y + h / 2 },
+    { x: x + w / 2, y: y + h / 2 },
+  ];
+}
+
+function rectClearsPoints(r: Rect, avoidPoints: readonly Point[], margin: number): boolean {
+  for (const p of avoidPoints) {
+    const dx = Math.max(r.x - p.x, 0, p.x - (r.x + r.w));
+    const dy = Math.max(r.y - p.y, 0, p.y - (r.y + r.h));
+    if (Math.hypot(dx, dy) < margin) return false;
+  }
+  return true;
+}
+
+const SAFE_AREA_CENTER_GRID = 6; // 中心候補のグリッド分割数（性能とのバランスでグリッドサーチ）
+const SAFE_AREA_SCALE_STEPS = 24;
+const SAFE_AREA_MIN_SCALE = 0.12;
+const SAFE_AREA_MARGIN_MULT = 1.3; // タイトル/日付弧からの離隔距離 = フォントサイズ×この係数
+// avoid点群の弧長ベース再サンプル数。全周ループにおよぶフォールバック弧(最長で数百viewBox単位)
+// でも、隣接点間の隙間がsafeAreaの最小高さ(viewBoxH*0.14)より十分小さくなるよう多めに取る
+const SAFE_AREA_AVOID_RESAMPLE_COUNT = 200;
+
+// 輪郭内に完全に収まり、かつtitle/date弧から一定距離離れた軸平行矩形のうち、最大面積のものを
+// グリッドサーチで探す（決定論。凹形状で最大内接矩形が輪郭中心から大きくズレるケースに対応）
+// 説明文3行+罫線+参照リンクの実際の必要高さ(概算: DESC_FONT_RATIO*3行*行間+ギャップ2つ+
+// リンク1行)はviewBoxHの約20%に達する。SAFE_AREA_ASPECT(2.15)の横長矩形1種類だけを
+// 試すと、輪郭が狭い場所(lNotchの細い腕など)では「横長だが高さ不足」の矩形しか見つからず、
+// 説明文が縦にあふれてタイトル弧と視覚的に重なるバグを実測で確認した(archive-2)。複数の
+// アスペクト比(横長〜やや縦長)を試し、minW/minHを探索自体の必須条件にすることで、狭い場所
+// では高さを優先した(より縦に伸びた)矩形を選べるようにする
+const SAFE_AREA_ASPECT_CANDIDATES: readonly number[] = [2.15, 1.6, 1.2];
+
+function findMaxInscribedRect(
+  coarsePolygon: readonly Point[],
+  bounds: { minX: number; maxX: number; minY: number; maxY: number },
+  avoidGroups: readonly { points: readonly Point[]; margin: number }[],
+  minW: number,
+  minH: number,
+): Rect | null {
+  const boundsW = bounds.maxX - bounds.minX;
+  const boundsH = bounds.maxY - bounds.minY;
+  const maxDim = Math.max(boundsW, boundsH);
+  let best: Rect | null = null;
+  let bestArea = 0;
+  for (const aspect of SAFE_AREA_ASPECT_CANDIDATES) {
+    for (let gy = 0; gy < SAFE_AREA_CENTER_GRID; gy++) {
+      for (let gx = 0; gx < SAFE_AREA_CENTER_GRID; gx++) {
+        const ccx = bounds.minX + (boundsW * (gx + 0.5)) / SAFE_AREA_CENTER_GRID;
+        const ccy = bounds.minY + (boundsH * (gy + 0.5)) / SAFE_AREA_CENTER_GRID;
+        for (let s = 0; s < SAFE_AREA_SCALE_STEPS; s++) {
+          const scale = 1 - (s / (SAFE_AREA_SCALE_STEPS - 1)) * (1 - SAFE_AREA_MIN_SCALE);
+          const w = maxDim * 0.9 * scale;
+          const h = w / aspect;
+          if (w < minW || h < minH) continue;
+          const rect: Rect = { x: ccx - w / 2, y: ccy - h / 2, w, h };
+          const samples = rectSamplePoints(rect);
+          if (!samples.every((p) => pointInPolygon(p, coarsePolygon))) continue;
+          if (!avoidGroups.every((g) => rectClearsPoints(rect, g.points, g.margin))) continue;
+          const area = w * h;
+          if (area > bestArea) {
+            bestArea = area;
+            best = rect;
+          }
+          break; // scaleは降順(大→小)なので、このcenter・aspectで最初に成功した時点が最大
+        }
+      }
+    }
+  }
+  return best;
+}
+
+// 優先順位は「title/dateとの重なりゼロ(クリアランスを妥協しない)」＞「理想の高さ(20%)を
+// 確保する」。輪郭が狭い形状(lNotchの細い腕・フォールバック弧が全周の大半を占める場合等)では
+// 理想の高さを保ったまま重ならない矩形が存在しないことがあるため、クリアランスは常にフルで
+// 保ったまま、要求サイズ(高さ→幅の順)を段階的に緩めて再探索する。内容が収まりきらない場合は
+// line-clamp-3・overflow-hiddenで自然にクリップされる（重なって見えるより望ましい）
+const SAFE_AREA_HEIGHT_STEPDOWN_RATIOS: readonly number[] = [0.2, 0.17, 0.14, 0.11, 0.08];
+const SAFE_AREA_WIDTH_STEPDOWN_RATIOS: readonly number[] = [0.3, 0.25, 0.2];
+
+function computeSafeArea(
+  built: ShapeBuildResult,
+  dateArc: ArcFitResult,
+  titleArc: ArcFitResult,
+  dateCharWidthEm: number,
+  titleCharWidthEm: number,
+): Rect {
+  const coarsePolygon = densePointsFromOutlinePath(built.outlinePath, SAFE_AREA_SAMPLES_PER_CURVE);
+  const xs = coarsePolygon.map((p) => p.x);
+  const ys = coarsePolygon.map((p) => p.y);
+  const bounds = { minX: Math.min(...xs), maxX: Math.max(...xs), minY: Math.min(...ys), maxY: Math.max(...ys) };
+  // 弧の実長(titleArc.length等)ではなく、実際にグリフが描画される範囲だけをavoid点群にする
+  // （ARC_LENGTH_MARGIN分の余裕には未使用部分がある）。ただし数学的保証フォールバック
+  // (buildFullLoopPoints)はallowed()で除外された区間を「飛び越える」ため、弧長ベースの
+  // 中央切り出しの前提(1本の連続した弧)が崩れ、飛び越え地点の直線が弧長を余分に食って
+  // 中心位置がずれる(実測: archive-29でタイトルが実際には説明文の近くにもかかわらず
+  // 中央切り出しでは検出できなかった)。フォールバック時は弧全体を安全側でavoid対象にする
+  const titleRenderedSpan = titleArc.usedFallback
+    ? titleArc.points
+    : extractCenteredSpan(titleArc.points, titleArc.fontSize * titleCharWidthEm);
+  const dateRenderedSpan = dateArc.usedFallback
+    ? dateArc.points
+    : extractCenteredSpan(dateArc.points, dateArc.fontSize * dateCharWidthEm);
+  const titlePts = resampleAlongPolyline(titleRenderedSpan, SAFE_AREA_AVOID_RESAMPLE_COUNT);
+  const datePts = resampleAlongPolyline(dateRenderedSpan, SAFE_AREA_AVOID_RESAMPLE_COUNT);
+  const avoidGroups = [
+    { points: titlePts, margin: titleArc.fontSize * SAFE_AREA_MARGIN_MULT },
+    { points: datePts, margin: dateArc.fontSize * SAFE_AREA_MARGIN_MULT },
+  ];
+
+  for (const hRatio of SAFE_AREA_HEIGHT_STEPDOWN_RATIOS) {
+    for (const wRatio of SAFE_AREA_WIDTH_STEPDOWN_RATIOS) {
+      const minW = built.viewBoxW * wRatio;
+      const minH = built.viewBoxH * hRatio;
+      const rect = findMaxInscribedRect(coarsePolygon, bounds, avoidGroups, minW, minH);
+      if (rect) return rect;
+    }
+  }
+
+  // 保険: 最小サイズまで緩めてもクリアランスを保った矩形が見つからない場合
+  // （実運用の9シェイプ・全シードでは発動しない想定）。クリアランスは妥協せず、
+  // 中心固定ではなくtitle/dateから最も遠い位置を選んで重なりを最小化する
+  const w = built.viewBoxW * SAFE_AREA_WIDTH_STEPDOWN_RATIOS[SAFE_AREA_WIDTH_STEPDOWN_RATIOS.length - 1];
+  const h = built.viewBoxH * SAFE_AREA_HEIGHT_STEPDOWN_RATIOS[SAFE_AREA_HEIGHT_STEPDOWN_RATIOS.length - 1];
+  let bestCx = built.cx;
+  let bestCy = built.cy;
+  let bestMinDist = -Infinity;
+  for (let gy = 0; gy < SAFE_AREA_CENTER_GRID; gy++) {
+    for (let gx = 0; gx < SAFE_AREA_CENTER_GRID; gx++) {
+      const ccx = bounds.minX + ((bounds.maxX - bounds.minX) * (gx + 0.5)) / SAFE_AREA_CENTER_GRID;
+      const ccy = bounds.minY + ((bounds.maxY - bounds.minY) * (gy + 0.5)) / SAFE_AREA_CENTER_GRID;
+      const candidate: Rect = { x: ccx - w / 2, y: ccy - h / 2, w, h };
+      if (!rectSamplePoints(candidate).every((p) => pointInPolygon(p, coarsePolygon))) continue;
+      let minDist = Infinity;
+      for (const g of avoidGroups) {
+        for (const p of g.points) {
+          const dx = Math.max(candidate.x - p.x, 0, p.x - (candidate.x + candidate.w));
+          const dy = Math.max(candidate.y - p.y, 0, p.y - (candidate.y + candidate.h));
+          minDist = Math.min(minDist, Math.hypot(dx, dy) - g.margin);
+        }
+      }
+      if (minDist > bestMinDist) {
+        bestMinDist = minDist;
+        bestCx = ccx;
+        bestCy = ccy;
+      }
+    }
+  }
+  return { x: bestCx - w / 2, y: bestCy - h / 2, w, h };
+}
+
+// idea.id・title・dateLabelから決定論的にシェイプ1枚を組み立てる（Math.random不使用）。
+// A: タイトル/日付の弧・フォントサイズは輪郭全周からの曲率ベース選定で確定し、切り詰めはしない
+export function shapeForIdea(ideaId: string, title: string, dateLabel: string): IdeaShape {
   const h = hashId(ideaId);
-  const kind = SHAPE_KINDS[h % SHAPE_KINDS.length];
+  const kind = WEIGHTED_KIND_TABLE[h % WEIGHTED_KIND_TABLE.length];
   const rng = mulberry32(h);
   const built = BUILDERS[kind](rng);
-  const outlinePolygon = densePointsFromOutlinePath(built.outlinePath);
+  const outlinePolygon = densePointsFromOutlinePath(built.outlinePath, OUTLINE_SAMPLES_PER_CURVE);
+  const pm = buildPerimeterMetrics(outlinePolygon);
 
-  // 日付弧(上極=-90°起点、角度増加が左→右)・タイトル弧(下極=90°起点、角度減少が左→右)を
-  // それぞれ浅い弧に自動フィットする。既存のdateSpanDeg/titleSpanDeg幅は探索の上限(=これ以上は
-  // 広げない)として使う
-  const [dateFrom, dateTo] = built.dateSpanDeg;
-  const [titleFrom, titleTo] = built.titleSpanDeg;
-  const dateMaxSweep = Math.abs(dateTo - dateFrom) / 2;
-  const titleMaxSweep = Math.abs(titleFrom - titleTo) / 2;
-  const dateRadialPts = fitShallowArc(built.pointAt, built.cx, built.cy, built.insetRatio, -90, dateMaxSweep, 7, 1, built.arcSmooth);
-  const titleRadialPts = fitShallowArc(built.pointAt, built.cx, built.cy, built.insetRatio, 90, titleMaxSweep, 9, -1, built.arcSmooth);
-
-  // chord候補: safeAreaのすぐ外側から輪郭の先端側まで水平帯の実測幅で探す。タイトル側の
-  // 開始位置はA3のマージン予約と同じ式を使い、そもそも margin不足で後からsafeAreaを
-  // 削る事態を極力避ける（日付側はA3ほど厳密な予約要件がないため同じ式を流用する近似でよい）
-  const titleMarginPxForChordStart = built.viewBoxW * TITLE_FONT_RATIO * TITLE_ARC_SAFE_MARGIN_MULT;
-  const dateChordPts = fitChordArc(
-    outlinePolygon,
-    built.cx,
-    built.safeArea.y - titleMarginPxForChordStart,
-    built.cy - built.viewBoxH,
-    built.insetRatio,
-    -1,
-    7,
-    built.arcSmooth,
-  );
-  const titleChordPts = fitChordArc(
-    outlinePolygon,
-    built.cx,
-    built.safeArea.y + built.safeArea.h + titleMarginPxForChordStart,
-    built.cy + built.viewBoxH,
-    built.insetRatio,
-    1,
-    9,
-    built.arcSmooth,
-  );
-
-  // 最終防衛: どちらの候補が勝っても、実際に描画されるoutlinePathの内側に収まることを保証する
-  // （splatのpointAtは意図的に実輪郭と異なる真円のため、insetRatioの縮小だけでは保証できない。
-  // shrinkUntilContainedは相似変換なので接線角・x単調増加の保証は壊さない）
-  const datePts = shrinkUntilContained(
-    pickLongerArc(dateRadialPts, dateChordPts),
+  // 日付: 上部の窓(DATE_WINDOW_DEG)を優先し、複雑形(多葉・切り欠き)でその窓に低曲率区間が
+  // 無い場合は全周探索へフォールバックする(4: 日付は従来どおり上部の緩い区間が第一候補)
+  const dateWindowAllowed = (i: number) => {
+    const angleDeg = rad2deg(Math.atan2(pm.points[i].y - built.cy, pm.points[i].x - built.cx));
+    return angleWithinWindow(angleDeg, DATE_WINDOW_DEG);
+  };
+  const allowAll = () => true;
+  const dateCharWidthEm = estimateTextWidthEm(dateLabel) + dateLabel.length * DATE_LETTER_SPACING_EM;
+  const dateStartHint = nearestIndexToAngleDeg(pm, built.cx, built.cy, -90);
+  const dateFit = selectArcForFontSizes(
+    pm,
+    fontSizeCandidates(built.viewBoxW, DATE_FONT_MAX_RATIO, DATE_FONT_FLOOR_RATIO),
+    dateCharWidthEm,
+    dateWindowAllowed,
+    allowAll,
+    dateStartHint,
     built.cx,
     built.cy,
     outlinePolygon,
-    built.arcSmooth,
   );
-  const titlePts = shrinkUntilContained(
-    pickLongerArc(titleRadialPts, titleChordPts),
+
+  // タイトル: 日付の実使用区間±バッファを除いた全周が第一候補。それでも見つからない
+  // （＝日付が全周の大半を使う極端なケース）場合は排他を諦めて全周を使う
+  const bufferCount = Math.max(2, Math.round(pm.n * DATE_TITLE_BUFFER_FRACTION));
+  const titleAllowedExclDate = (i: number) => {
+    if (dateFit.startPhys < 0) return true;
+    return !circularWithinRange(pm.n, dateFit.startPhys, dateFit.endPhys, i, bufferCount);
+  };
+  const titleCharWidthEm = estimateTextWidthEm(title);
+  const titleStartHint = nearestIndexToAngleDeg(pm, built.cx, built.cy, 90);
+  const titleFit = selectArcForFontSizes(
+    pm,
+    fontSizeCandidates(built.viewBoxW, TITLE_FONT_MAX_RATIO, TITLE_FONT_FLOOR_RATIO),
+    titleCharWidthEm,
+    titleAllowedExclDate,
+    allowAll,
+    titleStartHint,
     built.cx,
     built.cy,
     outlinePolygon,
-    built.arcSmooth,
+    dateFit.points,
+    dateFit.fontSize * MIN_ARC_EUCLIDEAN_CLEARANCE_MULT,
   );
 
-  const dateArcPath = built.arcSmooth ? catmullRomOpenPath(datePts) : straightOpenPath(datePts);
-  const titleArcPath = built.arcSmooth ? catmullRomOpenPath(titlePts) : straightOpenPath(titlePts);
-
-  // A3: タイトル弧とsafeArea(説明文・リンク)の垂直分離。タイトルのフォント高ぶんのマージンを
-  // 予約し、重なりゼロを保証する。safeArea.hだけを縮めるとy(上端)を据え置いたままになり、
-  // 元のhの大小に関わらず縮小後の高さがmaxSafeBottom-safeArea.yに一意に決まってしまう
-  // （=説明文3行+罫線+参照リンクの表示に必要な高さを確保できないケースが実測で発生。
-  // Fable視覚検分後の実装で発見: 説明文3行目が罫線に重なって見えるバグ）。
-  // そこで先にsafeArea自体を上(日付弧側)へシフトしてhをできるだけ保ち、日付弧の余白
-  // (dateNearY)を侵さない範囲でシフトしても足りない場合だけ最終手段としてhを縮める。
-  // titleNearY/dateNearYは生の点(datePts/titlePts)ではなく、arcSmooth時は実際に描画される
-  // denseCurvePointsに対して計算する（Catmull-Rom平滑化は隣接2点の間で外側へ張り出すため、
-  // 生の点だけを見ると実際のレンダリング結果より安全側に寄っていない値になる。shrinkUntilContained
-  // やisCandidateShallowと同じ理由でここでも必要）
-  const titleCheckPts = built.arcSmooth ? denseCurvePoints(titlePts, SHALLOW_CHECK_SAMPLES_PER_SEGMENT) : titlePts;
-  const dateCheckPts = built.arcSmooth ? denseCurvePoints(datePts, SHALLOW_CHECK_SAMPLES_PER_SEGMENT) : datePts;
-  const titleNearY = Math.min(...titleCheckPts.map((p) => p.y));
-  const dateNearY = Math.max(...dateCheckPts.map((p) => p.y));
-  const titleMarginPx = built.viewBoxW * TITLE_FONT_RATIO * TITLE_ARC_SAFE_MARGIN_MULT;
-  const maxSafeBottom = titleNearY - titleMarginPx;
-  let safeArea = built.safeArea;
-  if (safeArea.y + safeArea.h > maxSafeBottom) {
-    // 負の高さを避けるための最低保証（通常のharmonics範囲では到達しない想定の保険）。
-    // scripts/smoke-idea-shapes.mjsのsafeArea高さ下限アサート(viewBoxHの15%)と同じ値に揃え、
-    // 将来この保険が実際に発動した場合でもスモークテストと矛盾しないようにする
-    const minH = built.viewBoxH * 0.15;
-    const desiredY = maxSafeBottom - safeArea.h; // 元のhを保ったまま収めるために必要なy
-    // dateNearYぴったりまでは詰めない: denseCurvePointsのサンプル数(6)は検証用の高解像度チェック
-    // （スモークテスト等の8サンプル）と厳密には一致しないため、境界ぴったりだとより細かい
-    // 解像度の検証でごく僅かに外側と判定されうる。安全マージンを乗せておく
-    const dateSafetyMargin = built.viewBoxH * 0.006;
-    const newY = Math.max(dateNearY + dateSafetyMargin, desiredY);
-    const newH = Math.max(minH, maxSafeBottom - newY);
-    safeArea = { ...safeArea, y: newY, h: newH };
-  }
+  const safeArea = computeSafeArea(built, dateFit, titleFit, dateCharWidthEm, titleCharWidthEm);
 
   return {
     kind,
@@ -950,10 +1309,14 @@ export function shapeForIdea(ideaId: string): IdeaShape {
     viewBoxH: built.viewBoxH,
     aspect: built.viewBoxW / built.viewBoxH,
     outlinePath: built.outlinePath,
-    dateArcPath,
-    titleArcPath,
-    dateArcLength: polylineLength(datePts),
-    titleArcLength: polylineLength(titlePts),
+    dateArcPath: straightOpenPath(dateFit.points),
+    titleArcPath: straightOpenPath(titleFit.points),
+    dateArcLength: dateFit.length,
+    titleArcLength: titleFit.length,
+    dateFontSize: dateFit.fontSize,
+    titleFontSize: titleFit.fontSize,
     safeArea,
+    titleUsedFallback: titleFit.usedFallback,
+    dateUsedFallback: dateFit.usedFallback,
   };
 }

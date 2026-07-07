@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import { hashId } from "@/lib/graph";
 import { shapeForIdea } from "@/lib/ideaShapes";
-import { categoryOf, existingCategories, type Idea } from "@/lib/ideas";
+import { categoryOf, dateLabelOf, existingCategories, type Idea } from "@/lib/ideas";
 import IdeaShapeCard from "@/components/IdeaShapeCard";
 
 // /ideas ポスターレイアウト（DESIGN: goofy-hatching-mango.md）。
@@ -50,11 +50,12 @@ const MOBILE_FULL = "col-span-4";
 const JUSTIFY_CLASSES = ["justify-self-start", "justify-self-end"] as const;
 const Z_CLASSES = ["z-0", "z-10", "z-20", "z-30", "z-40"] as const;
 
-// カードの幅をグリッドセル幅の86〜98%にランダム化する。100%固定だとjustify-self-start/endが
-// 効かない（セル幅ぴったりだと「左右どちらに寄せるか」の余白が生まれない）ため、わずかに
-// セルより狭くして初めて左右の揺らぎが視認できる
-const WIDTH_PCT_MIN = 86;
-const WIDTH_PCT_MAX = 95;
+// C: カードの幅をグリッドセル幅の92〜104%にランダム化する（GOOD SUMMERポスター級の密度。
+// 100%を超える値も許容し、小さくしたgap（下記grid gap-x-1〜2/gap-y-1〜2）と組み合わせて
+// 隣接カードがニアタッチ〜わずかに重なる密度を作る。重なり時のクリックはpointer-events
+// 形状追従で既に安全（IdeaShapeCard参照）
+const WIDTH_PCT_MIN = 92;
+const WIDTH_PCT_MAX = 104;
 
 type CardLayout = {
   desktopSpan: number;
@@ -73,9 +74,12 @@ function layoutFor(idea: Idea): CardLayout {
   const desktopSpan = spanOptions[Math.floor(h / 3) % spanOptions.length];
   const justifyClass = JUSTIFY_CLASSES[(h >>> 14) % JUSTIFY_CLASSES.length];
   const zClass = Z_CLASSES[(h >>> 26) % Z_CLASSES.length];
-  const rotateDeg = (((h >>> 4) % 1000) / 1000 - 0.5) * 10; // -5..5deg
-  const marginTopPx = (((h >>> 18) % 1000) / 1000) * 22; // 0..22px（呼吸のある散らばり）
-  const marginBottomPx = (((h >>> 22) % 1000) / 1000) * 16; // 0..16px
+  // C: 密パッキング（GOOD SUMMER級）。回転は±5度→±3度に抑え（密度が上がると大回転は
+  // 衝突感が出る）、縦マージンは正負を織り交ぜてニアタッチ〜わずかな重なりを作る
+  // （バウンディングボックスの空白部分が重なるのは歓迎＝形と形の噛み合い）
+  const rotateDeg = (((h >>> 4) % 1000) / 1000 - 0.5) * 6; // -3..3deg
+  const marginTopPx = (((h >>> 18) % 1000) / 1000) * 14 - 8; // -8..6px
+  const marginBottomPx = (((h >>> 22) % 1000) / 1000) * 10 - 6; // -6..4px
   const widthPct = WIDTH_PCT_MIN + (((h >>> 9) % 1000) / 1000) * (WIDTH_PCT_MAX - WIDTH_PCT_MIN);
   return { desktopSpan, justifyClass, zClass, rotateDeg, marginTopPx, marginBottomPx, widthPct };
 }
@@ -119,7 +123,7 @@ export default function IdeasPoster({ ideas, techDomainById }: { ideas: Idea[]; 
 
   const cards = ideas.map((idea) => {
     const category = categoryOf(idea, techDomainById);
-    const shape = shapeForIdea(idea.id);
+    const shape = shapeForIdea(idea.id, idea.title, dateLabelOf(idea));
     const layout = layoutFor(idea);
     return { idea, category, shape, layout };
   });
@@ -147,7 +151,8 @@ export default function IdeasPoster({ ideas, techDomainById }: { ideas: Idea[]; 
         ))}
       </div>
 
-      <div className="grid grid-cols-4 sm:grid-cols-12 gap-x-3 sm:gap-x-5 gap-y-10 sm:gap-y-10 items-start">
+      {/* C: 密パッキング（GOOD SUMMER級。gap 4〜10px級・ニアタッチ〜軽い重なり） */}
+      <div className="grid grid-cols-4 sm:grid-cols-12 gap-x-1 sm:gap-x-2 gap-y-1 sm:gap-y-2 items-start">
         {cards.map(({ idea, category, shape, layout }, i) => {
           const style = {
             aspectRatio: shape.aspect,

@@ -64,6 +64,7 @@ export type CategoryKey =
 export type Category = { key: CategoryKey; label: string; fill: string; text: string };
 
 const CREAM = "#f4f0e6";
+const INK = "#1f1f1f";
 
 // 表示順（凡例・カテゴリ列挙で使う正準順）
 const CATEGORY_ORDER: CategoryKey[] = [
@@ -77,15 +78,18 @@ const CATEGORY_ORDER: CategoryKey[] = [
   "CASE_REMIX",
 ];
 
+// 配色: ビビッド原色系（GOOD SUMMER/FUN IS STILL LOADINGポスター参考。DESIGN差分:
+// goofy-hatching-mango.md ユーザーフィードバックDによるくすみ系からの刷新）。
+// yellow/pinkは文字がINKになる（ink on yellow=9.81:1・ink on pink=8.27:1でAA適合実測済み）。
 const CATEGORIES: Record<CategoryKey, Category> = {
-  SPATIAL_3D: { key: "SPATIAL_3D", label: "SPATIAL/3D", fill: "#c2704e", text: CREAM },
-  MOTION_BODY: { key: "MOTION_BODY", label: "MOTION/BODY", fill: "#7d93b2", text: CREAM },
-  GENVIDEO: { key: "GENVIDEO", label: "GENVIDEO", fill: "#8d6a92", text: CREAM },
-  CREATORTOOLS: { key: "CREATORTOOLS", label: "CREATORTOOLS", fill: "#b08d2d", text: CREAM },
-  AI_AGENTS: { key: "AI_AGENTS", label: "AI/AGENTS", fill: "#1f1f1f", text: CREAM },
-  HCI_MEDIAART: { key: "HCI_MEDIAART", label: "HCI/MEDIAART", fill: "#8a9b77", text: CREAM },
-  AUDIO_MUSIC: { key: "AUDIO_MUSIC", label: "AUDIO/MUSIC", fill: "#c4838f", text: CREAM },
-  CASE_REMIX: { key: "CASE_REMIX", label: "CASE REMIX", fill: "#a89f90", text: "#1f1f1f" },
+  SPATIAL_3D: { key: "SPATIAL_3D", label: "SPATIAL/3D", fill: "#2456d4", text: CREAM },
+  MOTION_BODY: { key: "MOTION_BODY", label: "MOTION/BODY", fill: "#df2a1b", text: CREAM },
+  GENVIDEO: { key: "GENVIDEO", label: "GENVIDEO", fill: "#8a4bc9", text: CREAM },
+  CREATORTOOLS: { key: "CREATORTOOLS", label: "CREATORTOOLS", fill: "#f2c200", text: INK },
+  AI_AGENTS: { key: "AI_AGENTS", label: "AI/AGENTS", fill: "#0e7d3d", text: CREAM },
+  HCI_MEDIAART: { key: "HCI_MEDIAART", label: "HCI/MEDIAART", fill: "#e8651a", text: CREAM },
+  AUDIO_MUSIC: { key: "AUDIO_MUSIC", label: "AUDIO/MUSIC", fill: "#f0a1bd", text: INK },
+  CASE_REMIX: { key: "CASE_REMIX", label: "CASE REMIX", fill: INK, text: CREAM },
 };
 
 // tech.jsonのdomains[0]表記（TECHNOLOGY_SPEC.mdのDomain語彙）→ カテゴリキー
