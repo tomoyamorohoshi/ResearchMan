@@ -1,5 +1,55 @@
 [
   {
+    "id": "comfyui-ttp-toolset-smart-tile-2-0",
+    "title": "ComfyUI TTP Toolset – Smart Tile 2.0",
+    "org": "TTPlanetPig（個人開発者）",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "画像の「どこが顔で、どこが背景か」をAIに認識させてから必要な場所にだけ細かいタイルを敷いて高解像度化・部分編集できるComfyUI拡張機能。2026年7月に大型アップデートし「Smart Tile 2.0」として生まれ変わった。",
+    "point": "従来の画像高解像度化(アップスケール)は、画像を碁盤の目のように均等なマス目(タイル)に切り分け、一枚ずつAIで描き直す方式が主流だった。しかしこの方式では、顔や手など「崩れやすく目立つ部分」も、何も描かれていない背景と同じ大きさのマスで処理されてしまい、無駄が多かったり肝心の顔だけ破綻したりしていた。Smart Tile 2.0は、まずAI(QwenVLやSAMという画像認識モデル)に「ここが顔」「ここが手」と認識させ、その部分にだけ密なタイルを、背景には粗いタイルを自動で割り当てる。さらにComfyUIの画面上でタイルの境目や重み(どのくらい強くAIに描き直させるか)を手作業で微調整できるビジュアルエディタも備える。広告制作で言えば、商品パッケージのロゴだけシャープに残したまま背景をぼかして高解像度化する、モデルの顔だけ破綻なく超解像したい、といった「部分ごとに描き分けたい」レタッチ・高解像度化作業を、ノーコードに近い形で組めるようになる。",
+    "detail": "仕組みとしては、画像をAIで拡大・修正する際、画像全体を一度に処理すると精度が落ちるため、タイルに切って一枚ずつ生成し、あとで貼り合わせる「タイル分割」という手法が広く使われている。Smart Tile 2.0は、このタイルの切り方を固定の格子ではなく、画像認識AIが検出した物体(顔・目・手・文字など)の周囲に可変サイズで自動配置する「セマンティック優先度」方式に変えた。物体検出にはQwenVL3という画像理解AI、あるいはMeta社のSAM(Segment Anything Model)3.1を利用できる。\n\n従来の均等格子方式は継ぎ目が目立ちやすく、重要な部分に十分な情報量を割けなかった。Smart Tile 2.0はタイルごとに個別のプロンプト(指示文)や重みを設定でき、マスクで処理範囲を絞る「マスク対応アセンブリ」、途中経過を保存せず最終結果だけ書き出す「最終保存のみモード」など、実制作でのファイル容量・作業時間を抑える工夫も入っている。\n\n使うにはComfyUI本体(無料・OSS)に加え、このリポジトリをcustom_nodesフォルダへ導入するだけでよい。物体検出機能を使う場合はQwenVL3かSAM3.1のモデルファイルを別途用意する必要があり、高解像度画像を扱うためNVIDIA製GPU(VRAM 8GB以上目安)を推奨。ライセンスはMITのため、商用の広告・制作案件でも無償で利用・改変してよい。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "MITライセンスで公開。商用の制作案件でも無償で利用・改変可能"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/TTPlanetPig/Comfyui_TTP_Toolset"
+      },
+      {
+        "kind": "post",
+        "url": "https://x.com/ttplanet/status/2073791795356479894"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/comfyui-ttp-toolset-smart-tile-2-0.jpg",
+    "relatedWorks": [
+      {
+        "title": "Ultimate SD Upscale",
+        "description": "ComfyUI/Automatic1111で広く使われる従来の固定グリッド式タイルアップスケールノード",
+        "url": "https://github.com/Coyote-A/ultimate-upscale-for-automatic1111"
+      },
+      {
+        "title": "Segment Anything Model (SAM)",
+        "description": "Smart Tile 2.0が物体認識に利用できる基盤モデルの一つ",
+        "url": "https://github.com/facebookresearch/segment-anything"
+      },
+      {
+        "title": "Magnific AI",
+        "description": "顔・質感を保ちながら高解像度化する商用SaaS型アップスケーラー",
+        "url": "https://magnific.ai"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "fvdb-v0-5-0",
     "title": "fVDB v0.5.0",
     "org": "NVIDIA",
