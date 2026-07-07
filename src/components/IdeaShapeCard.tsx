@@ -6,6 +6,7 @@ import {
   DESC_FONT_MAX_RATIO,
   DESC_LINE_HEIGHT_MULT,
   estimateTextWidthEm,
+  FO_BLEED_PHYSICAL_PX,
   LINE_BUDGET_SAFETY_RATIO,
   LINK_LABEL_TRACKING_EM,
   LINK_ROW_GAP_EM,
@@ -33,8 +34,20 @@ import { dateLabelOf, type Category, type Idea } from "@/lib/ideas";
 const xhtmlNsProps = { xmlns: "http://www.w3.org/1999/xhtml" } as unknown as HTMLAttributes<HTMLDivElement>;
 
 // H: shapeはIdeasPoster.tsx側でsolveFixedSizeShapeを1回だけ呼んで確定させたものを受け取る。
-// 呼び出しを1箇所に集約しているため、本コンポーネント内でシェイプ関連の再計算は行わない
-export default function IdeaShapeCard({ idea, category, shape }: { idea: Idea; category: Category; shape: IdeaShape }) {
+// 呼び出しを1箇所に集約しているため、本コンポーネント内でシェイプ関連の再計算は行わない。
+// scaleも同じ呼び出しの戻り値(物理px/viewBox単位)で、グリフ欠け対策のブリード余白(下記)を
+// 物理px基準からviewBox単位へ変換するために使う
+export default function IdeaShapeCard({
+  idea,
+  category,
+  shape,
+  scale,
+}: {
+  idea: Idea;
+  category: Category;
+  shape: IdeaShape;
+  scale: number;
+}) {
   const dateLabel = dateLabelOf(idea);
   const dateArcId = `idea-date-arc-${idea.id}`;
   const titleArcId = `idea-title-arc-${idea.id}`;
@@ -96,6 +109,21 @@ export default function IdeaShapeCard({ idea, category, shape }: { idea: Idea; c
   const contentOverflowsBox = totalContentHeightPx > foHeight + 1e-6;
   const contentJustifyClass = contentOverflowsBox ? "justify-start" : "justify-center";
 
+  // H: グリフ欠け対策バッチ(2026-07-07)。フォントの左サイドベアリングにより、グリフの実インクは
+  // emボックスの左端よりわずかに外側にはみ出して描画されることがあり、viewBox局所座標系の
+  // 極小フォントサイズをSVGスケールで拡大するこの設計では、そのはみ出し分もスケールされて
+  // foreignObject境界で物理的に切り取られてしまう(ideaShapes.tsのFO_BLEED_PHYSICAL_PXコメント
+  // 参照)。foreignObjectを物理pxで一定量だけ外側に広げ、内側divに同量のpaddingを足すことで
+  // 「箱は広がるが内容領域(=safeArea.w/h)は変わらない」ブリード余白を作り、インクの逃げ場を
+  // 確保する。paddingは内側divのbox-sizing:border-box(Tailwind preflight既定)により、外側の
+  // 拡張分をちょうど相殺する(=descWrapperStyle/折返し幅など既存の計量には一切影響しない)。
+  // scaleは物理px/viewBox単位なので、物理pxの目標値をscaleで割ってviewBox単位に変換する
+  const bleedVB = FO_BLEED_PHYSICAL_PX / scale;
+  const foXBleed = shape.safeArea.x - bleedVB;
+  const foYBleed = foY - bleedVB;
+  const foWidthBleed = shape.safeArea.w + bleedVB * 2;
+  const foHeightBleed = foHeight + bleedVB * 2;
+
   return (
     <svg
       // F: viewBoxを輪郭の実bbox±小マージンにクロップする。「箱≒シルエット」にすることで、
@@ -146,21 +174,39 @@ export default function IdeaShapeCard({ idea, category, shape }: { idea: Idea; c
         </textPath>
       </text>
 
-      <foreignObject x={shape.safeArea.x} y={foY} width={shape.safeArea.w} height={foHeight}>
+      <foreignObject x={foXBleed} y={foYBleed} width={foWidthBleed} height={foHeightBleed}>
         <div
           // foreignObject直下はXHTML名前空間の明示が必要（SVG2仕様）。xmlnsはReact.HTMLAttributesの
           // 型に無いためxhtmlNsPropsでキャストして渡す
           {...xhtmlNsProps}
-          style={{ color: category.text, gap: `${gapPx}px` }}
+          // paddingでforeignObject側のブリード拡張分(bleedVB)をちょうど打ち消す(コメント参照)。
+          // これにより内側のコンテンツ領域はブリード無しの場合と完全に同じ幅・高さになる
+          style={{ color: category.text, gap: `${gapPx}px`, padding: `${bleedVB}px` }}
           className={`h-full flex flex-col ${contentJustifyClass} overflow-hidden pointer-events-auto`}
         >
           {/* shrink-0/min-h-0の理由は前バッチと同じ(flexの自動圧縮・自動最小サイズを無効化し、
-              明示heightを実効させる) */}
-          <div className="shrink-0 min-h-0 overflow-hidden" style={descWrapperStyle}>
+              明示heightを実効させる)。
+              H: グリフ欠け対策バッチ(2026-07-07)追補・再修正。当初`overflow-x-visible
+              overflow-y-hidden`を試みたが効果がなかった(実測で確認)。原因はCSS Overflow
+              Moduleの仕様(https://www.w3.org/TR/css-overflow-3/#overflow-properties):
+              overflow-x/overflow-yの一方が`visible`・他方が`visible`以外(hidden/scroll/auto)の
+              場合、ブラウザは`visible`側を暗黙的に`auto`へ格上げする(=結局クリップ/スクロール
+              対象のままになり、`visible`本来の「はみ出しを許す」効果を得られない)。Playwrightで
+              `getComputedStyle`実測してoverflowX="auto"に格上げされていることを確認した。
+              代わりに`clip-path`(inset())で非対称クリップを実現する: 下端(見積り誤差を吸収する
+              意図的な安全装置)だけをdiv自身の下端で切り、上下左右のうち上・左・右は
+              大きな負のインセットで実質無制限にすることでグリフ左サイドベアリングのインクが
+              outer div側のブリード領域まで自由に描画されるようにする */}
+          <div
+            className="shrink-0 min-h-0"
+            style={{ ...descWrapperStyle, clipPath: "inset(-9999px -9999px 0px -9999px)" }}
+          >
             <p style={descStyle}>{descText}</p>
           </div>
           {idea.refs.length > 0 && <div className="h-px shrink-0" style={{ backgroundColor: ruleColor }} />}
-          <div className="flex flex-col shrink-0 min-h-0 overflow-hidden">
+          {/* H: 上のdescWrapper同様、overflow-x-visible+overflow-y-hiddenの組はCSS仕様上
+              overflow-xがautoへ格上げされ効果がないため、clip-pathで下端のみクリップする */}
+          <div className="flex flex-col shrink-0 min-h-0" style={{ clipPath: "inset(-9999px -9999px 0px -9999px)" }}>
             {refInfos.map(({ ref, labelText, truncatedTitle }) => (
               <Link
                 key={`${ref.type}-${ref.id}`}

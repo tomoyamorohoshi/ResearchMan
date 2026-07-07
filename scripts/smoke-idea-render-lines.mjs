@@ -16,6 +16,7 @@
 // 環境変数 IDEAS_SMOKE_URL でURLを上書き可能（既定: http://localhost:3111/ideas）。
 import { chromium } from "playwright";
 import { FIXED_BODY_FONT_PX } from "../src/lib/ideaCollageLayout.ts";
+import { FO_BLEED_PHYSICAL_PX } from "../src/lib/ideaShapes.ts";
 import ideasData from "../data/ideas.json" with { type: "json" };
 
 const URL = process.env.IDEAS_SMOKE_URL || "http://localhost:3111/ideas";
@@ -26,6 +27,13 @@ const LINE_OVERLAP_EPS = 0.05;
 const BOUND_EPS = 0.3;
 // 固定サイズ全数一致チェックの許容誤差(px)。要求仕様どおり±0.1px
 const FONT_SIZE_EPS = 0.1;
+// グリフ欠け対策(左端インククリアランス)検査: emボックス左端がforeignObject左端から
+// FO_BLEED_PHYSICAL_PXの何割以上離れていればインクの逃げ場として十分とみなすか。
+// 実測の丸め誤差込みで90%を採用（要求仕様どおり）
+const BLEED_CLEARANCE_MIN_RATIO = 0.9;
+const BLEED_CLEARANCE_MIN_PX = FO_BLEED_PHYSICAL_PX * BLEED_CLEARANCE_MIN_RATIO;
+// 上記クリアランス判定自体の許容誤差(px)。サブピクセル丸め分の余裕（他の*_EPSと同オーダー）
+const BLEED_CLEARANCE_EPS = 0.05;
 
 let failures = 0;
 function assert(cond, message) {
@@ -81,11 +89,11 @@ async function main() {
     console.log(`  (情報) viewport幅${width}px: 可視カード数=${dup.totalVisibleLabels}, 重複=${dup.dupLabels.length}件`);
   }
 
-  // ── 検証2: 各ティアで全50カードの行間隔・水平はみ出し・固定サイズ実測一致 ──────────
+  // ── 検証2: 各ティアで全50カードの行間隔・水平/下端はみ出し・固定サイズ実測一致 ──────
   for (const [tier, width] of Object.entries(TIER_VIEWPORTS)) {
     await page.setViewportSize({ width, height: 1400 });
     const report = await page.evaluate(
-      ({ LINE_OVERLAP_EPS, BOUND_EPS }) => {
+      ({ LINE_OVERLAP_EPS, BOUND_EPS, BLEED_CLEARANCE_MIN_PX, BLEED_CLEARANCE_EPS }) => {
         function isVisible(el) {
           const r = el.getBoundingClientRect();
           return r.width > 0 && r.height > 0;
@@ -124,10 +132,27 @@ async function main() {
               if (foRect) {
                 if (r.left < foRect.left - BOUND_EPS) issues.push(`${tag}: line${i} 左端はみ出し(${(foRect.left - r.left).toFixed(2)}px)`);
                 if (r.right > foRect.right + BOUND_EPS) issues.push(`${tag}: line${i} 右端はみ出し(${(r.right - foRect.right).toFixed(2)}px)`);
+                // グリフ欠け対策検査: emボックス左端とforeignObject左端の間に、左サイド
+                // ベアリングのインクはみ出しが逃げ切れるだけのクリアランス(ブリード余白の
+                // 90%以上)があるか。実インクは直接測れないため、emボックス基準の間接検証とする
+                const leftClearance = r.left - foRect.left;
+                if (leftClearance < BLEED_CLEARANCE_MIN_PX - BLEED_CLEARANCE_EPS) {
+                  issues.push(`${tag}: line${i} 左端クリアランス不足(${leftClearance.toFixed(2)}px, 目標${BLEED_CLEARANCE_MIN_PX.toFixed(2)}px以上)`);
+                }
               }
               if (i > 0) {
                 const gap = r.top - rects[i - 1].bottom;
                 if (gap < -LINE_OVERLAP_EPS) issues.push(`${tag}: line${i - 1}-${i} 重なり(${gap.toFixed(2)}px)`);
+              }
+            }
+            // 下端クリップ検査: 説明文<p>/参照リンクタイトルの最終行がforeignObject下端を
+            // はみ出すと、親のoverflow-hidden(descWrapperStyle固定高・外側flexコンテナ)に
+            // よってグリフが見えなくなる。水平はみ出し・行間重なりの検査だけでは検出できない
+            // クラスの不具合のため、最終行のbottomをforRectのbottomと突き合わせる
+            if (foRect && rects.length > 0) {
+              const lastBottom = rects[rects.length - 1].bottom;
+              if (lastBottom > foRect.bottom + BOUND_EPS) {
+                issues.push(`${tag}: 最終行下端はみ出し(${(lastBottom - foRect.bottom).toFixed(2)}px)`);
               }
             }
             return rects.length;
@@ -145,6 +170,12 @@ async function main() {
               const lr = labelSpan.getBoundingClientRect();
               if (lr.left < foRect.left - BOUND_EPS) issues.push(`link${li}ラベル: 左端はみ出し(${(foRect.left - lr.left).toFixed(2)}px)`);
               if (lr.right > foRect.right + BOUND_EPS) issues.push(`link${li}ラベル: 右端はみ出し(${(lr.right - foRect.right).toFixed(2)}px)`);
+              const labelLeftClearance = lr.left - foRect.left;
+              if (labelLeftClearance < BLEED_CLEARANCE_MIN_PX - BLEED_CLEARANCE_EPS) {
+                issues.push(
+                  `link${li}ラベル: 左端クリアランス不足(${labelLeftClearance.toFixed(2)}px, 目標${BLEED_CLEARANCE_MIN_PX.toFixed(2)}px以上)`,
+                );
+              }
             }
             checkLines(titleSpan, `link${li}タイトル`);
           });
@@ -174,7 +205,7 @@ async function main() {
         }
         return entries;
       },
-      { LINE_OVERLAP_EPS, BOUND_EPS },
+      { LINE_OVERLAP_EPS, BOUND_EPS, BLEED_CLEARANCE_MIN_PX, BLEED_CLEARANCE_EPS },
     );
 
     assert(report.length === ideasData.length, `[${tier}] 可視カード数が全${ideasData.length}件と一致 (実測=${report.length})`);
@@ -195,7 +226,7 @@ async function main() {
         );
       }
     }
-    assert(issueCount === 0, `[${tier}] 行の重なり・水平はみ出しが0件 (実測=${issueCount}件)`);
+    assert(issueCount === 0, `[${tier}] 行の重なり・水平/下端はみ出しが0件 (実測=${issueCount}件)`);
     assert(fontMismatch === 0, `[${tier}] DOM実測の本文フォントサイズが全カードでサイズBと一致 (不一致=${fontMismatch}件)`);
     console.log(
       `  (情報) [${tier}] 検査対象=${report.length}件, 行重なり/はみ出し=${issueCount}件, フォント不一致=${fontMismatch}件`,

@@ -97,6 +97,9 @@ export default function IdeasPoster({ ideas, techDomainById }: { ideas: Idea[]; 
           return { id: idea.id, shape, scale };
         });
         const shapeById = new Map(cards.map((c) => [c.id, c.shape]));
+        // H: グリフ欠け対策バッチ(2026-07-07)。IdeaShapeCardがforeignObjectのブリード余白を
+        // 物理px基準からviewBox単位へ変換するのにscaleを使うため、shapeとあわせて渡す
+        const scaleById = new Map(cards.map((c) => [c.id, c.scale]));
         const layout = computeCollageLayout(cards, tier);
         const refWidthPx = TIER_REF_WIDTH_PX[tier];
         const containerHeightPx = Math.max(1, layout.containerHeightPx);
@@ -131,7 +134,12 @@ export default function IdeasPoster({ ideas, techDomainById }: { ideas: Idea[]; 
                   className="group absolute pointer-events-none z-0 transition-transform duration-150 ease-out [transform:rotate(var(--rotate))] motion-safe:hover:[transform:rotate(var(--rotate))_scale(1.02)] motion-safe:hover:z-50"
                   style={style}
                 >
-                  <IdeaShapeCard idea={idea} category={category} shape={shapeById.get(idea.id)!} />
+                  <IdeaShapeCard
+                    idea={idea}
+                    category={category}
+                    shape={shapeById.get(idea.id)!}
+                    scale={scaleById.get(idea.id)!}
+                  />
                 </div>
               );
             })}
