@@ -46,6 +46,40 @@ function assert(cond, message) {
   assert(JSON.stringify(result) === "[1,2,3]", "newObjが配列ならそのまま返す");
 }
 
+// ── _descriptionはoldの元の位置（先頭）に復元される。末尾に追加され直すと
+//    JSON.stringifyでのキー順が変わり、実運用のgit diffが「全体書き換え」に
+//    見えてしまう（2026-07-08 実機テストで実際に発生したバグの再発防止） ──
+{
+  const oldObj = {
+    _description: "root desc",
+    tech: { _description: "tech desc", lanes: [{ label: "L1", sources: "S1" }] },
+  };
+  const newObj = {
+    tech: { lanes: [{ label: "L1-changed", sources: "S1-changed" }] },
+  };
+  const result = reinjectDescriptions(oldObj, newObj);
+  assert(
+    JSON.stringify(Object.keys(result)) === JSON.stringify(["_description", "tech"]),
+    `ルートのキー順は旧オブジェクトの並びを保つ（_descriptionが先頭） (got ${JSON.stringify(Object.keys(result))})`
+  );
+  assert(
+    JSON.stringify(Object.keys(result.tech)) === JSON.stringify(["_description", "lanes"]),
+    `ネストしたオブジェクトのキー順も保たれる (got ${JSON.stringify(Object.keys(result.tech))})`
+  );
+}
+
+// ── newObjにしか無い新規キーは末尾に追加される（順序はnewObjの並び） ──
+{
+  const oldObj = { _description: "d", a: 1 };
+  const newObj = { a: 2, b: 3 };
+  const result = reinjectDescriptions(oldObj, newObj);
+  assert(
+    JSON.stringify(Object.keys(result)) === JSON.stringify(["_description", "a", "b"]),
+    `新規キーはold由来のキーの後に追加される (got ${JSON.stringify(Object.keys(result))})`
+  );
+  assert(result.a === 2 && result.b === 3, "値そのものはnewObj優先で保持される");
+}
+
 if (failures > 0) {
   console.error(`\n${failures} 件失敗`);
   process.exit(1);

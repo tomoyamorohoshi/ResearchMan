@@ -40,6 +40,7 @@ import {
   checkIdeaTuningChange,
 } from "./lib/tuneup-guardrails.mjs";
 import { reinjectDescriptions } from "./lib/reinject-descriptions.mjs";
+import { applyCandidateWithVerification } from "./lib/tuneup-apply.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
@@ -65,6 +66,23 @@ const ANALYSIS_TIMEOUT_MS = 600000;
 const SUBPIPELINE_TIMEOUT_MS = 2700000;
 
 const TOUCHED_PATHS = [RESEARCH_TUNING_PATH, IDEA_TUNING_PATH, XRADAR_QUERIES_PATH, RESEARCH_PLAN_PATH];
+
+// 外部シグナル（TaskStop/kill等）で中断された場合の保険。--dry-runは「作業ツリーを汚さない」が
+// 契約なので、候補ファイル書き込み後に中断されても復元を試みる（2026-07-08、検証中に
+// TaskStopで中断した際、書き込み済みの候補設定がgit checkoutされずに残った実機事象の再発防止。
+// 通常の完走パスの保証は scripts/lib/tuneup-apply.mjs 側で行う。これはあくまで外部中断に対する
+// 保険であり、git checkout はコミット済み状態への復元なので何度呼んでも副作用は無い）
+if (DRY_RUN) {
+  const emergencyRevert = (signal) => {
+    console.error(`\n⚠ ${signal}で中断されました。--dry-runのため作業ツリーを念のため復元します`);
+    try {
+      spawnSync("git", ["checkout", "--", ...TOUCHED_PATHS], { cwd: ROOT });
+    } catch {}
+    process.exit(1);
+  };
+  process.on("SIGINT", () => emergencyRevert("SIGINT"));
+  process.on("SIGTERM", () => emergencyRevert("SIGTERM"));
+}
 
 function log(msg) {
   console.log(msg);
@@ -364,21 +382,31 @@ async function main() {
   );
 
   // ── 5. 改訂案を書き込み、dry-run全通しで検証 ──
+  // write→verify→revert判断は scripts/lib/tuneup-apply.mjs に一本化している
+  // （検証失敗・例外いずれでも必ずrevertし、dry-run時は成功時も必ずrevertすることを
+  // 単一の実装で保証する。個別分岐に revert 呼び出しを散らすと考慮漏れの温床になるため）
   const nextResearchTuning = reinjectDescriptions(oldResearchTuning, pass1.researchTuning);
   const nextIdeaTuning = reinjectDescriptions(oldIdeaTuning, pass2.ideaTuning);
-  await writeJsonFile(RESEARCH_TUNING_PATH, nextResearchTuning);
-  await writeJsonFile(IDEA_TUNING_PATH, nextIdeaTuning);
-  await writeJsonFile(XRADAR_QUERIES_PATH, pass1.xRadarQueries);
-  await fs.writeFile(RESEARCH_PLAN_PATH, pass1.researchPlanMarkdown.trimEnd() + "\n");
 
-  for (const npmScript of ["ideas:dry", "auto-research:tech:dry", "auto-research:cc:dry"]) {
-    if (!runDrySubpipeline(npmScript)) {
-      log(`dry-run検証(${npmScript})が失敗 → 全戻し`);
-      gitCheckoutRevert(TOUCHED_PATHS);
-      await writeReport(buildReport([`❌ dry-run検証（${npmScript}）が失敗したため、変更を破棄しました。`]));
-      process.exitCode = 1;
-      return;
-    }
+  const applyResult = await applyCandidateWithVerification({
+    writeFiles: async () => {
+      await writeJsonFile(RESEARCH_TUNING_PATH, nextResearchTuning);
+      await writeJsonFile(IDEA_TUNING_PATH, nextIdeaTuning);
+      await writeJsonFile(XRADAR_QUERIES_PATH, pass1.xRadarQueries);
+      await fs.writeFile(RESEARCH_PLAN_PATH, pass1.researchPlanMarkdown.trimEnd() + "\n");
+    },
+    verifySteps: ["ideas:dry", "auto-research:tech:dry", "auto-research:cc:dry"].map(
+      (npmScript) => () => runDrySubpipeline(npmScript)
+    ),
+    revert: async () => gitCheckoutRevert(TOUCHED_PATHS),
+    dryRun: DRY_RUN,
+  });
+
+  if (!applyResult.ok) {
+    log(`dry-run全通し検証が失敗しました（${applyResult.reason}）→ 全戻し済み`);
+    await writeReport(buildReport([`❌ dry-run検証に失敗したため、変更を破棄しました（${applyResult.reason}）。`]));
+    process.exitCode = 1;
+    return;
   }
   log("dry-run全通し PASS");
 
@@ -391,9 +419,8 @@ async function main() {
   ];
 
   if (DRY_RUN) {
-    log("✅ --dry-run: 全ガードレール・dry-run検証を通過。設定ファイルは元に戻します（コミットしません）");
+    log("✅ --dry-run: 全ガードレール・dry-run検証を通過。設定ファイルは元に戻しました（コミットしません）");
     await writeReport(buildReport(["✅ --dry-run 全経路PASS（コミットはしていません）", "", ...changeSummaryLines]));
-    gitCheckoutRevert(TOUCHED_PATHS);
     return;
   }
 
