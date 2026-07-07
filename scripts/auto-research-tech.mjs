@@ -21,6 +21,7 @@ import { jstDateString } from "./lib/jst-date.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const TECH_PATH = path.join(__dirname, "../data/tech.json");
+const TUNING_PATH = path.join(__dirname, "../data/research-tuning.json");
 const LAST_RUN_PATH = path.join(__dirname, "../.last-tech-research-run.txt");
 const DRY_RUN = process.argv.includes("--dry-run");
 
@@ -35,29 +36,9 @@ const KNOWN_EXCLUDED = [
   "LUNA", "Lift4D", "One4D", "OneCanvas", "Surflo", "Gemma", "Huawei 3Dロック画面",
 ];
 
-// ── 日替わりレーン（TECHNOLOGY_SPEC.md §2 Tier 1） ──────────────
-const LANES = [
-  {
-    label: "Spatial/3D（3D/4D再構成・Gaussian Splatting・World Model・空間AI）",
-    sources:
-      "radiancefields.com / Hugging Face Daily Papers / arXiv cs.CV・cs.GR(コード公開済み) / NVIDIA・Meta AIのプロジェクトページ / GitHub Trendingの3D系",
-  },
-  {
-    label: "GenVideo・CreatorTools（生成AI映像・動画編集AI・ComfyUI/Blender/UE/DaVinci拡張）",
-    sources:
-      "ComfyUI公式ブログ・comfy.org/workflows / Hugging Faceの動画系モデル・LoRA / 80.lv / GitHub Trending / Blender Extensions・UE Fabの注目アドオン",
-  },
-  {
-    label: "HCI/MediaArt・Audio/Music・日本語圏（インタラクション研究・触覚・AI音楽。日本の研究室を厚めに）",
-    sources:
-      "shiropen.com(Seamless) / 落合研(Digital Nature Group)・暦本研・筧研など日本のHCI研究室 / SIGGRAPH・CHI・UISTの新着 / AI音楽ツール / 日本の個人開発者のGitHub",
-  },
-  {
-    label: "Motion/Body・AI/Agents・企業研究ラボ（mocap・キャラアニメ・基盤モデルのクリエイティブ応用・ロボティクス×表現）",
-    sources:
-      "Meta AI・Google DeepMind・NVIDIA Research・Microsoft Researchの新着(コード公開済み) / Hugging Faceのモーション系 / GitHub Trendingのエージェント系",
-  },
-];
+// 日替わりレーン（TECHNOLOGY_SPEC.md §2 Tier 1）は data/research-tuning.json の
+// tech.lanes から読み込む（2026-07-08 バッチ2aでハードコードから外部化。既定値は完全一致）。
+// 隔週チューンアップ（scripts/biweekly-tuneup.mjs）がお気に入り分析に基づき更新する。
 
 // Claude CLI 呼び出しは scripts/lib/claude-cli.mjs に共通化（resolveClaudeBin/runClaudeJsonArray）
 
@@ -115,10 +96,12 @@ async function main() {
   if (DRY_RUN) console.log("   ⚠ DRY RUN（tech.jsonは更新しません）");
 
   const tech = JSON.parse(await fs.readFile(TECH_PATH, "utf-8"));
+  const tuning = JSON.parse(await fs.readFile(TUNING_PATH, "utf-8"));
+  const LANES = tuning.tech.lanes;
   const existingTitles = [...tech.map((t) => t.title), ...KNOWN_EXCLUDED].join(" / ");
   console.log(`既存: ${tech.length}件`);
 
-  // 日替わりレーン（JST暦日でローテーション。4レーンを順に巡回）
+  // 日替わりレーン（JST暦日でローテーション。レーン数ぶんを順に巡回）
   const lane = LANES[localDayIndex() % LANES.length];
   console.log(`本日のレーン: ${lane.label}\n`);
 

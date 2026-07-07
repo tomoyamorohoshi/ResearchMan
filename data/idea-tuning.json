@@ -1,0 +1,28 @@
+{
+  "_description": "generate-idea-seeds.mjs のチューニング可能パラメータ。既定値は2026-07-08時点のハードコード（SEED_COUNT/CASE_SAMPLE/TECH_SAMPLE/パターン混合比/プロンプト文言）と完全一致させてある。隔週チューンアップ（scripts/biweekly-tuneup.mjs）がideas.jsonの機械指標とお気に入り分布に基づき更新する",
+  "seedCount": 10,
+  "caseSample": 14,
+  "techSample": 12,
+  "patternMix": {
+    "_description": "各パターンの最低出現数はこの比率×seedCountを四捨五入した値。4つの比率の合計は常に1（freeは比率制約のない残り枠）",
+    "contextXTech": 0.4,
+    "techXTech": 0.2,
+    "repurpose": 0.2,
+    "free": 0.2
+  },
+  "samplingWeights": {
+    "_description": "cases/techのサンプリング時の選択確率倍率。キーは cases.json の tags 文字列 / tech.json の domains 文字列。未指定キーは既定1.0。全キー1.0（=空オブジェクト）のときは従来の一様ランダムサンプリングと完全に同一のコード経路を通る",
+    "caseTags": {},
+    "techDomains": {}
+  },
+  "promptText": {
+    "_description": "buildPrompt() が組み立てる文面のうち、チューンアップが調整しうる可変文節",
+    "roleIntro": "あなたは広告会社のクリエイティブディレクターの壁打ち相手。以下の素材から「アイデアの種」を{seedCount}個生成して。",
+    "patternDefinitions": {
+      "techXTech": "技術Aと技術Bを組み合わせたら、こんな表現ができるかも",
+      "contextXTech": "（事例が扱った文脈・課題）にこの技術を掛けたら、こんな課題を解決できるかも",
+      "repurpose": "この技術を本来の使い方ではない使い方をしたら、こんなことに役立つかも"
+    },
+    "styleNotes": "意外な掛け合わせ・飛距離を優先。ありきたりな「AIで効率化」的な種は不可"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "_description": "auto-research-tech.mjs / auto-research-cc.mjs の発見レーン・探索角度のチューニング可能パラメータ。既定値は2026-07-08時点のハードコード（LANES / ROUND_FOCI）と完全一致させてある。隔週チューンアップ（scripts/biweekly-tuneup.mjs）がお気に入り分析に基づき更新する。x-radarの検索クエリはこのファイルではなく data/x-radar-queries.json を参照する（変更なし）",
+  "tech": {
+    "_description": "auto-research-tech.mjs の日替わりレーン（TECHNOLOGY_SPEC.md §2 Tier 1）。localDayIndex()でレーン数に対して剰余ローテーションする",
+    "lanes": [
+      {
+        "label": "Spatial/3D（3D/4D再構成・Gaussian Splatting・World Model・空間AI）",
+        "sources": "radiancefields.com / Hugging Face Daily Papers / arXiv cs.CV・cs.GR(コード公開済み) / NVIDIA・Meta AIのプロジェクトページ / GitHub Trendingの3D系"
+      },
+      {
+        "label": "GenVideo・CreatorTools（生成AI映像・動画編集AI・ComfyUI/Blender/UE/DaVinci拡張）",
+        "sources": "ComfyUI公式ブログ・comfy.org/workflows / Hugging Faceの動画系モデル・LoRA / 80.lv / GitHub Trending / Blender Extensions・UE Fabの注目アドオン"
+      },
+      {
+        "label": "HCI/MediaArt・Audio/Music・日本語圏（インタラクション研究・触覚・AI音楽。日本の研究室を厚めに）",
+        "sources": "shiropen.com(Seamless) / 落合研(Digital Nature Group)・暦本研・筧研など日本のHCI研究室 / SIGGRAPH・CHI・UISTの新着 / AI音楽ツール / 日本の個人開発者のGitHub"
+      },
+      {
+        "label": "Motion/Body・AI/Agents・企業研究ラボ（mocap・キャラアニメ・基盤モデルのクリエイティブ応用・ロボティクス×表現）",
+        "sources": "Meta AI・Google DeepMind・NVIDIA Research・Microsoft Researchの新着(コード公開済み) / Hugging Faceのモーション系 / GitHub Trendingのエージェント系"
+      }
+    ]
+  },
+  "cc": {
+    "_description": "auto-research-cc.mjs の発見プロンプトのラウンド別探索角度（ROUND_FOCI）。localDayIndex()+roundでレーン数に対して剰余ローテーションする",
+    "roundFoci": [
+      {
+        "label": "海外の広告・クリエイティブキャンペーン + AI×クリエイティブ（最重要）",
+        "sources": "lbbonline.com / contagious.com / adweek.com / campaignbrief.com / musebycl.io / adsoftheworld.com / itsnicethat.com / creativereview.co.uk / 広告賞(Cannes/D&AD/One Show/Clio)の直近発表",
+        "diversity": "広告賞ネタは全体の半分以下。生成AI活用事例を最低1件含める。"
+      },
+      {
+        "label": "テック・プロダクト・XR・ゲーム・音楽×テクノロジー（広告キャンペーン以外を中心に）",
+        "sources": "theverge.com / techcrunch.com / wired.com / creativeapplications.net / moguravr.com / roadtovr.com / uploadvr.com / automaton-media.com / cdm.link / pitchfork.com / dezeen.com / designboom.com / SXSW・Ars Electronica・CES等の発表",
+        "diversity": "広告キャンペーンは最大2件。新ツール/プロダクト/ライブ演出/映像手法/インスタレーションを優先。"
+      },
+      {
+        "label": "日本国内の事例 + 展示・アート・Webインタラクティブ",
+        "sources": "gigazine.net / itmedia.co.jp / advertimes.com / campaign-jp.com / prtimes.jp / markezine.jp / 音楽ナタリー(natalie.mu) / 美術手帖(bijutsutecho.com) / X(Twitter)でバイラル中の国内クリエイティブ",
+        "diversity": "最低4件は日本国内の事例。展示・Webサイト・SNS発カルチャーも対象。"
+      }
+    ]
+  }
+}

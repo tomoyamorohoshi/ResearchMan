@@ -27,10 +27,12 @@ import { resolveClaudeBin } from "./lib/claude-cli.mjs";
 import { normTitle } from "./lib/norm-title.mjs";
 import { jstDateString } from "./lib/jst-date.mjs";
 import { readIdeasJsonSafe, writeJsonAtomic } from "./lib/ideas-io.mjs";
+import { computeItemWeight, weightedSample } from "./lib/weighted-sample.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CASES_PATH = path.join(__dirname, "../data/cases.json");
 const TECH_PATH = path.join(__dirname, "../data/tech.json");
+const TUNING_PATH = path.join(__dirname, "../data/idea-tuning.json");
 // 3つとも環境変数で差し替え可能（generate→ideas.json追記の単体検証用。本番では未設定＝既定値のまま）
 const LAST_RUN_PATH = process.env.LAST_RUN_PATH || path.join(__dirname, "../.last-idea-seeds-run.txt");
 const HISTORY_PATH = process.env.HISTORY_PATH || path.join(os.homedir(), ".researchman-idea-history.json");
@@ -53,32 +55,37 @@ if (FIXTURE_SEEDS_PATH && !(process.env.IDEAS_JSON_PATH && process.env.HISTORY_P
   process.exit(1);
 }
 
-const SEED_COUNT = 10;
-const CASE_SAMPLE = 14;
-const TECH_SAMPLE = 12;
+// SEED_COUNT/CASE_SAMPLE/TECH_SAMPLE/パターン混合比/サンプリング重み/プロンプト可変文節は
+// data/idea-tuning.json から読み込む（2026-07-08 バッチ2aでハードコードから外部化。既定値は完全一致）。
+// 隔週チューンアップ（scripts/biweekly-tuneup.mjs）がideas.jsonの機械指標とお気に入り分布に
+// 基づき更新する。
 const HISTORY_KEEP = 60; // 履歴に保持する種の数
 const HISTORY_IN_PROMPT = 20; // プロンプトに渡す「最近の種」の数
 const MODEL = "sonnet";
 const TIMEOUT_MS = 420000;
 const SITE = "https://research-man.vercel.app";
 
-function sample(arr, n) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a.slice(0, n);
+// 重み配列がすべて1.0のときは weightedSample() 内部で従来のFisher-Yatesシャッフルと
+// 完全に同一のコード経路を通る（scripts/lib/weighted-sample.mjs 参照）。
+function sample(arr, n, weights = null) {
+  return weightedSample(arr, n, weights);
 }
 
-function buildPrompt({ caseLines, techLines, recentSeeds }) {
-  return `あなたは広告会社のクリエイティブディレクターの壁打ち相手。以下の素材から「アイデアの種」を${SEED_COUNT}個生成して。
+function buildPrompt({ caseLines, techLines, recentSeeds, tuning }) {
+  const { seedCount, patternMix, promptText } = tuning;
+  const minContextXTech = Math.round(patternMix.contextXTech * seedCount);
+  const minTechXTech = Math.round(patternMix.techXTech * seedCount);
+  const minRepurpose = Math.round(patternMix.repurpose * seedCount);
+  const roleIntro = promptText.roleIntro.replace("{seedCount}", String(seedCount));
+  const { techXTech, contextXTech, repurpose } = promptText.patternDefinitions;
+
+  return `${roleIntro}
 
 # アイデアの種とは
 完成した企画でなくてよい。発想のきっかけになる一文。次の3パターンを混ぜる:
-- 技術×技術: 「技術Aと技術Bを組み合わせたら、こんな表現ができるかも」
-- 文脈×技術: 「（事例が扱った文脈・課題）にこの技術を掛けたら、こんな課題を解決できるかも」
-- 転用: 「この技術を本来の使い方ではない使い方をしたら、こんなことに役立つかも」
+- 技術×技術: 「${techXTech}」
+- 文脈×技術: 「${contextXTech}」
+- 転用: 「${repurpose}」
 
 # 素材A: 過去の事例（企画性・文脈の source）。各行の先頭 [id] は参照用
 ${caseLines}
@@ -88,9 +95,9 @@ ${techLines}
 
 # ルール
 - 各種は日本語1〜2文・80〜140字。「〜かも」「〜できそう」の仮説トーンでよい
-- ${SEED_COUNT}個のうち、文脈×技術（素材A×B）を最低4個、技術×技術を最低2個、転用を最低2個
+- ${seedCount}個のうち、文脈×技術（素材A×B）を最低${minContextXTech}個、技術×技術を最低${minTechXTech}個、転用を最低${minRepurpose}個
 - 同じ技術は最大2回まで。素材の名前（技術名・事例名）を種の文中に含める
-- 意外な掛け合わせ・飛距離を優先。ありきたりな「AIで効率化」的な種は不可
+- ${promptText.styleNotes}
 - 最近出した種と似たものは避ける: ${recentSeeds || "（履歴なし）"}
 - 各種で参照した事例・技術を refs に列挙する。id は上の素材の [id] を**そのまま正確に**転記する（創作・改変禁止）
 - refs の desc は、その事例/技術が「何なのか」を高校生でもわかる平易な言葉で正確かつ端的に説明する1文（40〜70字）。素材に書かれた内容だけを根拠にし、無い情報を足さない
@@ -105,6 +112,8 @@ async function main() {
   console.log(`アイデアの種 生成開始 ${new Date().toLocaleString("ja-JP")}`);
   const cases = JSON.parse(await fs.readFile(CASES_PATH, "utf-8"));
   const tech = JSON.parse(await fs.readFile(TECH_PATH, "utf-8"));
+  const tuning = JSON.parse(await fs.readFile(TUNING_PATH, "utf-8"));
+  const { seedCount: SEED_COUNT, caseSample: CASE_SAMPLE, techSample: TECH_SAMPLE } = tuning;
 
   // 参照解決用のインデックス（id直引き＋正規化タイトルからの復元）
   const caseById = new Map(cases.map((c) => [c.id, c]));
@@ -112,8 +121,13 @@ async function main() {
   const caseByTitle = new Map(cases.map((c) => [normTitle(c.title), c]));
   const techByTitle = new Map(tech.map((t) => [normTitle(t.title), t]));
 
-  const sampledCases = sample(cases, CASE_SAMPLE);
-  const sampledTech = sample(tech, TECH_SAMPLE);
+  // サンプリング重み（既定は空マップ=全キー1.0。この場合 sample() は従来のFisher-Yates
+  // シャッフルと完全同一のコード経路を通る＝挙動不変。お気に入り分析で隔週チューンアップが
+  // data/idea-tuning.json の samplingWeights を更新すると選択確率に反映される）
+  const caseWeights = cases.map((c) => computeItemWeight(c.tags, tuning.samplingWeights.caseTags));
+  const techWeights = tech.map((t) => computeItemWeight(t.domains, tuning.samplingWeights.techDomains));
+  const sampledCases = sample(cases, CASE_SAMPLE, caseWeights);
+  const sampledTech = sample(tech, TECH_SAMPLE, techWeights);
   const caseLines = sampledCases
     .map((c) => `- [${c.id}] ${c.title}（${c.client || "?"}）: ${(c.summary || "").slice(0, 90)}`)
     .join("\n");
@@ -159,7 +173,7 @@ async function main() {
     const claudeBin = resolveClaudeBin();
     for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
       try {
-        seeds = generateOnce(claudeBin, buildPrompt({ caseLines, techLines, recentSeeds }));
+        seeds = generateOnce(claudeBin, buildPrompt({ caseLines, techLines, recentSeeds, tuning }));
         break;
       } catch (e) {
         console.error(`生成試行 ${attempt}/${MAX_ATTEMPTS} 失敗: ${e.message}`);

@@ -38,6 +38,7 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CASES_PATH = path.join(__dirname, "../data/cases.json");
 const VOCAB_PATH = path.join(__dirname, "../data/tag-vocabulary.json");
+const TUNING_PATH = path.join(__dirname, "../data/research-tuning.json");
 const DRY_RUN = process.argv.includes("--dry-run");
 const LAST_RUN_PATH = path.join(__dirname, "../.last-research-run.txt");
 const LAST_ADD_PATH = "/tmp/researchman-last-add.json"; // 反映後の通知メール用サマリー
@@ -108,35 +109,17 @@ async function saveLastRunDate() {
 
 // ラウンドごとに探索テーマを絞る（1回の呼び出しを軽くしてETIMEDOUTを防ぐ）。
 // 実行日でローテーションし、目標到達で後半ラウンドが走らなくても長期的に全テーマを巡回する。
-const ROUND_FOCI = [
-  {
-    label: "海外の広告・クリエイティブキャンペーン + AI×クリエイティブ（最重要）",
-    sources:
-      "lbbonline.com / contagious.com / adweek.com / campaignbrief.com / musebycl.io / adsoftheworld.com / itsnicethat.com / creativereview.co.uk / 広告賞(Cannes/D&AD/One Show/Clio)の直近発表",
-    diversity: "広告賞ネタは全体の半分以下。生成AI活用事例を最低1件含める。",
-  },
-  {
-    label: "テック・プロダクト・XR・ゲーム・音楽×テクノロジー（広告キャンペーン以外を中心に）",
-    sources:
-      "theverge.com / techcrunch.com / wired.com / creativeapplications.net / moguravr.com / roadtovr.com / uploadvr.com / automaton-media.com / cdm.link / pitchfork.com / dezeen.com / designboom.com / SXSW・Ars Electronica・CES等の発表",
-    diversity: "広告キャンペーンは最大2件。新ツール/プロダクト/ライブ演出/映像手法/インスタレーションを優先。",
-  },
-  {
-    label: "日本国内の事例 + 展示・アート・Webインタラクティブ",
-    sources:
-      "gigazine.net / itmedia.co.jp / advertimes.com / campaign-jp.com / prtimes.jp / markezine.jp / 音楽ナタリー(natalie.mu) / 美術手帖(bijutsutecho.com) / X(Twitter)でバイラル中の国内クリエイティブ",
-    diversity: "最低4件は日本国内の事例。展示・Webサイト・SNS発カルチャーも対象。",
-  },
-];
+// data/research-tuning.json の cc.roundFoci から読み込む（2026-07-08 バッチ2aでハードコードから
+// 外部化。既定値は完全一致）。隔週チューンアップがお気に入り分析に基づき更新する。
 
-function buildDiscoveryPrompt({ lastRunDate, existingTitles, seenThisRun, round }) {
+function buildDiscoveryPrompt({ lastRunDate, existingTitles, seenThisRun, round, roundFoci }) {
   const now = new Date();
   const today = now.toLocaleDateString("ja-JP", { year: "numeric", month: "long", day: "numeric" });
   const lastRun = lastRunDate.toLocaleDateString("ja-JP", { year: "numeric", month: "long", day: "numeric" });
   const daysDiff = Math.max(1, Math.round((now - lastRunDate) / (1000 * 60 * 60 * 24)));
 
   // 日単位でスタート位置を回すことで、目標に早く達した日でもテーマの偏りが蓄積しない（JST暦日基準）
-  const focus = ROUND_FOCI[(localDayIndex(now) + round - 1) % ROUND_FOCI.length];
+  const focus = roundFoci[(localDayIndex(now) + round - 1) % roundFoci.length];
 
   const retryNote =
     round > 1
@@ -306,6 +289,8 @@ async function main() {
 
   const vocab = JSON.parse(await fs.readFile(VOCAB_PATH, "utf-8"));
   const validTags = new Set([...vocab.Tech, ...vocab.Form, ...vocab.Theme]);
+  const tuning = JSON.parse(await fs.readFile(TUNING_PATH, "utf-8"));
+  const roundFoci = tuning.cc.roundFoci;
 
   const existingCases = JSON.parse(await fs.readFile(CASES_PATH, "utf-8"));
   const existingIds = new Set(existingCases.map((c) => c.id));
@@ -338,7 +323,7 @@ async function main() {
     try {
       const parsed = runClaudeJson(
         claudeBin,
-        buildDiscoveryPrompt({ lastRunDate, existingTitles, seenThisRun, round }),
+        buildDiscoveryPrompt({ lastRunDate, existingTitles, seenThisRun, round, roundFoci }),
         { timeout: DISCOVER_TIMEOUT_MS, marker: '"found"', model: MODEL, allowedTools: "WebSearch" }
       );
       found = parsed?.found || [];
