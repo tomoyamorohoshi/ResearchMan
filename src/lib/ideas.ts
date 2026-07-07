@@ -83,11 +83,13 @@ const CATEGORY_ORDER: CategoryKey[] = [
 // yellow/pinkは文字がINKになる（ink on yellow=9.81:1・ink on pink=8.27:1でAA適合実測済み）。
 const CATEGORIES: Record<CategoryKey, Category> = {
   SPATIAL_3D: { key: "SPATIAL_3D", label: "SPATIAL/3D", fill: "#2456d4", text: CREAM },
-  MOTION_BODY: { key: "MOTION_BODY", label: "MOTION/BODY", fill: "#df2a1b", text: CREAM },
+  // #c92018: cream文字で約5.0:1（AA適合）。元の#df2a1bは4.11:1で通常文字AA(4.5)未達だった
+  MOTION_BODY: { key: "MOTION_BODY", label: "MOTION/BODY", fill: "#c92018", text: CREAM },
   GENVIDEO: { key: "GENVIDEO", label: "GENVIDEO", fill: "#8a4bc9", text: CREAM },
   CREATORTOOLS: { key: "CREATORTOOLS", label: "CREATORTOOLS", fill: "#f2c200", text: INK },
   AI_AGENTS: { key: "AI_AGENTS", label: "AI/AGENTS", fill: "#0e7d3d", text: CREAM },
-  HCI_MEDIAART: { key: "HCI_MEDIAART", label: "HCI/MEDIAART", fill: "#e8651a", text: CREAM },
+  // orange×creamは2.93:1で大文字AA(3:1)も未達だったため文字を墨に（約5.0:1）
+  HCI_MEDIAART: { key: "HCI_MEDIAART", label: "HCI/MEDIAART", fill: "#e8651a", text: INK },
   AUDIO_MUSIC: { key: "AUDIO_MUSIC", label: "AUDIO/MUSIC", fill: "#f0a1bd", text: INK },
   CASE_REMIX: { key: "CASE_REMIX", label: "CASE REMIX", fill: INK, text: CREAM },
 };
