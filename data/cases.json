@@ -1,5 +1,344 @@
 [
   {
+    "id": "even-realities-2026",
+    "title": "Even Realities スマートグラス ユニコーン到達",
+    "summary": "カメラ非搭載・プライバシー重視の透明ディスプレイ型スマートグラスで深圳発新興企業が評価額10億ドルのユニコーンに到達",
+    "client": "Even Realities",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "空間体験"
+    ],
+    "award": "CES Innovation Awards 2026（Even Realities G2 Display Smart Glasses and R1 Companion Ring、CES公式サイトで確認）",
+    "year": "2026",
+    "regions": [
+      "アジア",
+      "グローバル"
+    ],
+    "link": "https://techcrunch.com/2026/07/06/smart-glasses-maker-even-realities-hits-1b-valuation-with-150m-funding-led-by-meituan-tencent/",
+    "thumbnail": "/thumbnails/even-realities-2026.jpg",
+    "videoId": "",
+    "overview": "深圳発のスマートグラス企業Even Realitiesが2026年7月、美団(Meituan)・騰訊(Tencent)主導のpre-Series Bラウンドで1億5,000万ドルを調達し、評価額10億ドルのユニコーン企業となった。同社はカメラを搭載しない透明ディスプレイ型スマートグラス「G1」「G2」を展開し、プライバシー配慮を差別化軸に急成長。2023年設立、CEOは元Apple出身のWill Wang。",
+    "background": "AR/スマートグラス市場ではMeta Ray-Ban Displayなどカメラ搭載型が主流だが、学校・病院・企業オフィスなど盗撮懸念からカメラ搭載ウェアラブルの持込を制限する場所が増えている。Even Realitiesはこの規制・社会的抵抗感に着目し、あえてカメラを排除したテキスト情報表示特化の設計を選択。2024年発売の「G1」は同カテゴリー初の企業として1万台以上を販売した。",
+    "execution": "最新機種「Even G2」は3Dフローティングディスプレイを搭載し、フレームのタッチセンサーや指輪型デバイス「R1」、専用アプリで操作。カメラ・外部スピーカーを排除し、リアルタイム翻訳や会話支援「Conversate」、テレプロンプター機能等を提供。2026年7月には美団・騰訊主導の1億5,000万ドルのpre-Series Bを実施して評価額10億ドルに到達し、従業員も30〜40名から300〜400名規模へ拡大した。",
+    "evaluationImpact": "G2はCES Innovation Awards 2026を受賞するなど技術・デザイン面でも評価され、カメラ非搭載という制約を逆手に取ったプライバシー訴求が企業幹部層を含む富裕層ユーザー(平均注文額約1,000ドル)の支持を獲得。スマートグラス市場でカメラ搭載が既定路線だった中、非搭載アプローチでもユニコーンに到達し得ることを示し、業界の設計思想に一石を投じた。",
+    "relatedWorks": [
+      {
+        "title": "Meta Ray-Ban Display",
+        "description": "12MPカメラとEMGリストバンド操作を搭載する主流派スマートグラス。カメラ搭載を前提とする設計思想は、Even Realitiesのカメラ非搭載アプローチと対照的な位置づけにある。",
+        "url": "https://www.meta.com/ai-glasses/meta-ray-ban-display/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Tech/XR",
+      "Form/Product",
+      "Tech/AI"
+    ]
+  },
+  {
+    "id": "echoes-2026",
+    "title": "ECHOES",
+    "summary": "個人開発者びご氏がドット絵・音楽・シナリオを単独制作、無料配信の終末アンドロイド少女ADVをSteamで初披露",
+    "client": "びご（個人開発者）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://store.steampowered.com/app/4875860/ECHOES/",
+    "thumbnail": "/thumbnails/echoes-2026.jpg",
+    "videoId": "",
+    "overview": "個人開発者「びご」氏が手掛ける短編アドベンチャーゲーム。終末世界の廃墟で目覚めた主人公が、言語機能の壊れたアンドロイド少女と出会い、少女が発する未知の文字（日本語のカナ1文字に対応）を解読しながら交流する5日間を描く。プレイ時間は30分〜1時間程度で、エンディングは3種類用意されている。2026年内にSteamで無料配信予定。",
+    "background": "びご氏は過去に盤面反転の落ち物パズル『ウラトリクス』やカジュアルゲーム『SWIMMY*』をブラウザ向けに公開してきた個人開発者だが、物語性を主軸にした作品制作は本作が初めて。ドット絵・音楽・シナリオのすべてを一人で手掛け、静かなポストアポカリプス世界観を作り上げた点が特徴。2026年7月4日にSteamストアページが公開され、ウィッシュリスト登録が可能になった。",
+    "execution": "壊れた言語でしか意思疎通できないアンドロイド少女との交流を、文字と音を解読するシンプルなパズル要素を通じて描く設計。1文字が日本語のカナ1文字に対応する暗号解読の仕組みにより、プレイヤー自身が少女の言葉を少しずつ理解していく体験を作っている。薄暗い廃墟や謎めいた絵本といったビジュアル・シナリオ要素を個人制作の範囲で統合し、3種類のマルチエンディングで結末に幅を持たせた。",
+    "evaluationImpact": "個人開発者が絵・音楽・脚本のすべてを単独で担当し、無料配信という形で短編ADVを世に問う事例。過去のパズル/カジュアルゲーム開発から物語重視の作品へと表現の幅を広げた点が、Game*SparkやAUTOMATONといったゲームメディアに取り上げられる契機となった。受賞歴等は本稿時点で確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/App",
+      "Theme/Entertainment",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "shinronin-2026",
+    "title": "ShinRonin（無料化）",
+    "summary": "Audio Damageが2003年発売のカルト的名機『Ronin』を最新OS完全対応で復刻し、無料配布として蘇らせた",
+    "client": "Audio Damage",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://cdm.link/audio-damage-shinronin-now-free-is-a-throwback-to-2003-plug-in-design/",
+    "thumbnail": "/thumbnails/shinronin-2026.jpg",
+    "videoId": "",
+    "overview": "Audio Damageが2003年発売の初期プラグイン『Ronin』を、CLAP/VST3/AU/AAX/LV2対応の最新版『ShinRonin』としてゼロから再構築し、完全無料・DRMなしで配布開始した。",
+    "background": "Roninは2003年発売のAudio Damage初期作品で、2本のディレイラインとモーフィングフィルター、パッチ可能な信号/変調マトリクスによる独特のフィードバック音・自己発振音でカルト的人気を築いていた。",
+    "execution": "20年を経てAudio Damageは同じ設計思想を保ちながらDSPとUIを最新OS向けに全面刷新。Windows/macOS/Linuxで CLAP・VST3・AU・AAX・LV2に対応し、iPad版(AUv3)も予告のうえ無料公開した。",
+    "evaluationImpact": "CDM、Synth Anatomy、KVR Audioなど音楽制作メディアが揃って報道し反響を呼んだ。老舗プラグインメーカーが自社の伝説的機材を無料で復刻・保存する動きとして音楽制作コミュニティで注目された。",
+    "relatedWorks": [
+      {
+        "title": "Evil Otto（Audio Damage 無料レガシープラグイン）",
+        "description": "ShinRoninと同様にAudio Damageが無料公開している旧作プラグインの一つ",
+        "url": "https://www.audiodamage.com/pages/free-and-legacy"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Form/Product",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "hot-dogs-horseshoes-hand-grenades-1-0-2026",
+    "title": "Hot Dogs, Horseshoes & Hand Grenades 1.0リリース",
+    "summary": "VRシューター『H3VR』が10年の早期アクセスを経て1.0到達、Take&Hold刷新とWorkshop対応を追加",
+    "client": "H3VR",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://roadtovr.com/vr-shooter-hot-dogs-horseshoes-hand-grenades-1-0-release/",
+    "thumbnail": "/thumbnails/hot-dogs-horseshoes-hand-grenades-1-0-2026.jpg",
+    "videoId": "",
+    "overview": "H3VRは開発スタジオRust Ltd（代表Anton Hand）が2016年4月にSteamで早期アクセス公開したVRシューター。2026年7月4日、120回目のアップデートで正式版1.0に到達した。Take & Holdモードの大規模刷新やSteam Workshopの初期対応、数百種の精密武器モデルなど、10年間積み重ねた要素を集大成する内容となっている。",
+    "background": "PC VR黎明期の2016年に登場して以来、開発者Anton Hand自身が「Absurdly Late Access」と称するほど長期の早期アクセス期間を経てきた。120回のアップデートを重ねながらコミュニティと共に武器・モード・環境を拡張し続け、正式版移行のタイミングを見極めていた。",
+    "execution": "1.0では看板モード「Take & Hold」を新モード・チャレンジ・キャラクター・装備込みで大幅オーバーホールし、初のSteam Workshop対応で武器・環境のMOD文化を公式に開放。数百点の精密モデリングされた武器や複数の新環境・ゲームモードを同時投入し、10年分の蓄積を一つの完成形にまとめた。",
+    "evaluationImpact": "早期アクセスのまま10年運営を続けた稀有な事例として、VRゲーム業界における長期コミットメント型開発のモデルケースとなった。開発陣は本作を「一つの章の終わり」と位置づけ、次作『H3VR2』（Quest 3/3S・PC VR対応予定）へ主軸を移す転換点としても注目される。",
+    "relatedWorks": [
+      {
+        "title": "H3VR2",
+        "description": "H3VRの続編。Quest 3、Quest 3S、PC VRヘッドセット対応の抽出型シューターとして2026年内リリース予定。",
+        "url": "https://roadtovr.com/h3vr-2-quest-steam-release-date-trailer/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/XR",
+      "Tech/Game",
+      "Form/Product",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "certainly-tokyo-2026",
+    "title": "CERTAINLY TOKYO",
+    "summary": "香港のSerakai Studioが自社ギャラリー発の企画展を国際巡回、表参道Pathで日港中韓比9組が「不確かさ」を考察",
+    "client": "Serakai Studio",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://bijutsutecho.com/magazine/news/report/32753",
+    "thumbnail": "/thumbnails/certainly-tokyo-2026.jpg",
+    "videoId": "",
+    "overview": "香港拠点のカルチャーラボ「Serakai Studio」が、2026年3月に香港Wong Chuk Hangの新拠点GOLDで開催した企画展「CERTAINLY」を、同年7月に東京・表参道のPathへ展開した国際巡回展。「不確かさ」をテーマにLa Monte Youngの1960年作品に着想を得て、香港・マカオ・日本・韓国・フィリピンなど9組のアーティストが参加。大竹伸朗やサンティアゴ・シエラらの作品を通じ、逸脱や偶然性が生む創造性を提示する。",
+    "background": "M+やTai Kwunでキュレーターを務めたTobias Bergerが共同創設者を務めるSerakai Studioは、香港の文化シンクタンク発の実験的ギャラリー。2026年3月、香港の旗艦拠点GOLDの開設記念展「CERTAINLY」を開催した後、同一テーマを携え東京へ進出。Path表参道を会場に、香港発のキュレーション思想をアジア他都市へ展開する動きの一環として企画された。",
+    "execution": "「単純な指示を実行しても逸脱が生じ、その逸脱こそが創造の契機となる」というLa Monte Young『Composition 1960 #10』の思想を軸に構成。大竹伸朗の1978〜82年のコラージュ・立体作品、サンティアゴ・シエラの映像作品、白雙全の月光を用いた写真作品など、香港・日本・フィリピンなど9組の多様な手法を通じ、制御と自由、計画と即興の境界を探る展示とした。",
+    "evaluationImpact": "香港の新興カルチャーラボが、自らのキュレーション哲学を掲げた展覧会をアジアの複数都市へ巡回させた点が新しい。不動産デベロッパー系の文化施設が単発イベントに終わらず、都市を横断する持続的プログラムとして機能し始めていることを示す事例であり、香港とアジア各都市のアートシーンを接続する動きとして注目される。",
+    "relatedWorks": [
+      {
+        "title": "CERTAINLY (Hong Kong, GOLD)",
+        "description": "Serakai Studioが香港Wong Chuk Hangの新拠点GOLDで2026年3月20日〜5月3日に開催した、同一テーマ・同キュレーターによる香港版のこけら落とし展",
+        "url": "https://zolimacitymag.com/events/certainly-group-exhibition-gold-serakai-studio/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Form/Installation",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "shibuya-upper-west-project-2026",
+    "title": "渋谷松濤ウォールギャラリー",
+    "summary": "東急百貨店本店跡地の工事仮囲いを、川内倫子が撮り下ろした新作写真で彩る文化発信メディアへと転換した点が新しい",
+    "client": "東急・Shibuya Upper West Project",
+    "agency": "",
+    "categories": [
+      "OOH革新",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://bijutsutecho.com/magazine/news/headline/32754",
+    "thumbnail": "/thumbnails/shibuya-upper-west-project-2026.jpg",
+    "videoId": "",
+    "overview": "「渋谷松濤ウォールギャラリー」は、Shibuya Upper West Project（東急百貨店本店跡地）の新築工事仮囲いを展示空間に転換したプロジェクト。東急・L Catterton Real Estate・東急百貨店が推進し、渋谷区、Bunkamura、渋谷区立松濤美術館と連携。テーマは「時間の流れ、積み重ね」で、2026年7月1日から2027年9月30日まで開催予定。",
+    "background": "同地はかつて東急百貨店本店があった場所で、現在はホテルや商業施設、Bunkamuraザ・ミュージアムの拡大移転などを含む複合開発「Shibuya Upper West Project」として再開発が進行中。長期化する工事期間中、通常は無機質な仮囲いをそのままにせず、周辺の記憶と都市更新を重ね合わせる文化発信の場として活用する狙いがある。",
+    "execution": "第1弾アーティストに写真家・川内倫子を起用。本プロジェクトのために周辺地域を新たに撮り下ろし、夕暮れ時の淡い光のなかに浮かび上がる街並みや人々の営みを捉えた作品を、仮囲いの南面・東面に展示。プロジェクトビジュアルはMir、Snøhetta、日建設計が手がけている。",
+    "evaluationImpact": "工事仮囲いという通常は都市景観上のマイナス要素になりがちな空間を、著名写真家の作品を通じた文化発信メディアへと転換した点が特徴。第1弾終了後も継続的な展開が予定されており、隣接するBunkamuraの展覧会「まなざしの奇跡 日本女性写真家の冒険」との連動も計画されている。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Form/Exhibition",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "ambient-kyoto-async-immersion-2026",
+    "title": "AMBIENT KYOTO 東京展《async - immersion》",
+    "summary": "坂本龍一+高谷史郎《async-immersion》、京都で話題の26.4m没入体験を麻布台ヒルズギャラリーで東京初展示",
+    "client": "坂本龍一＋高谷史郎／AMBIENT KYOTO",
+    "agency": "",
+    "categories": [
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://bijutsutecho.com/magazine/news/exhibition/32750",
+    "thumbnail": "/thumbnails/ambient-kyoto-async-immersion-2026.jpg",
+    "videoId": "",
+    "overview": "坂本龍一×高谷史郎（ダムタイプ）による没入型インスタレーション《async - immersion》の東京展。坂本の2017年アルバム『async』を基に、高谷の映像とZAKの立体音響で構成される「設置音楽」作品。2023年『AMBIENT KYOTO』（京都）で発表され好評を博した横幅26.4mの巨大スクリーン展示を、麻布台ヒルズギャラリー仕様に再構築して2026年8月28日〜10月25日に東京初開催する。",
+    "background": "坂本龍一の逝去後に発表された本作は、2017年アルバム『async』を起点に「音を空間に立体的に設置する」という坂本の構想を、高谷史郎の映像とZAKの音響設計で実体化したもの。初出の『AMBIENT KYOTO 2023』（京都新聞ビル地下、旧印刷工場）では35本のスピーカーと巨大スクリーンによる体験が大盛況となり会期延長。以来、同規模での再現は本展が初となる。",
+    "execution": "会場は麻布台ヒルズギャラリー。横幅26.4mの巨大スクリーンを用いた単独展示とし、高谷史郎による坂本の音源と「呼応しながらも完全には同期しない」映像を投影。音響はZAKが担当し、京都展の立体音響設計を新会場の空間特性に合わせて再構築した。チケットは2026年8月上旬発売予定、会期は8月28日〜10月25日。",
+    "evaluationImpact": "京都新聞ビル地下という特異な空間で始まった本作が、都心の商業複合施設・麻布台ヒルズという全く異なる空間条件下で再構築される点が注目される。坂本龍一の遺した「設置音楽」の思想を、会場ごとに異なる音響・映像体験として更新し続けることで、没後もアーティストのビジョンを継承・拡張する試みとして文化的意義を持つ。",
+    "relatedWorks": [
+      {
+        "title": "AMBIENT KYOTO 2023（京都展）",
+        "description": "2023年に京都新聞ビル地下（旧印刷工場）で開催された《async - immersion》初出展。35本のスピーカーによる立体音響と巨大スクリーンで話題を呼び、大盛況につき会期延長された。",
+        "url": "https://hometheater.phileweb.com/2023/12/28/ambient_kyoto_2023/"
+      },
+      {
+        "title": "async - immersion 2023（アルバム / Dolby Atmos）",
+        "description": "京都展会場の音響をZAKが再録・リミックスした音源作品。2024年2月に配信開始、Dolby Atmos対応。",
+        "url": "https://music.apple.com/jp/album/async-immersion-2023/1726579152"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Exhibition",
+      "Theme/Art",
+      "Theme/Music",
+      "Tech/Audio"
+    ]
+  },
+  {
+    "id": "homme-pliss-issey-miyake-tate-open-studio-2-2026",
+    "title": "HOMME PLISSÉ ISSEY MIYAKE × Tate「OPEN STUDIO」第2回",
+    "summary": "テート・モダンの収蔵作品に着想を得た一夜限りの服作りプレゼンテーションで、ファッションと美術館の新たな接点を開く。",
+    "client": "ISSEY MIYAKE",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://bijutsutecho.com/magazine/news/headline/32741",
+    "thumbnail": "/thumbnails/homme-pliss-issey-miyake-tate-open-studio-2-2026.jpg",
+    "videoId": "",
+    "overview": "HOMME PLISSÉ ISSEY MIYAKEが2026年9月16日、ロンドンのテート・モダンで「OPEN STUDIO」第2回を開催する。テートの収蔵作品に着想を得た特別プレゼンテーションで、デザインチームが土地や文化との対話を通じて服づくりを発表・発展させる同企画の第2弾。第1回は2025年6月にフィレンツェのヴィラ・メディチェア・デッラ・ペトライアで開催された。",
+    "background": "「OPEN STUDIO」はアーティストのオープンスタジオという慣習に着想を得た取り組みで、デザインチームが世界各地を訪れ、その土地の文化を学びながら服づくりのプロセスを発表・発展させる。第1回はイタリア・フィレンツェのメディチ家ゆかりの邸宅で開催され、プレゼンテーションとエキシビションの両形式で創作の背景を伝えた。第2回はロンドンを舞台に、美術館という新たな文脈での展開となる。",
+    "execution": "第2回は2026年9月16日、ロンドンのテート・モダンで実施。テートが所蔵する約7万点の近現代美術コレクションの中からアーティスト作品に着想を得て、デザインチームが服づくりを発表する特別プレゼンテーションを行う。ファッションブランドと美術館が協働し、収蔵作品というインスピレーション源を軸にした一夜限りの企画として構成される。",
+    "evaluationImpact": "シーズンごとのコレクション発表という従来の枠組みを超え、美術館の収蔵作品を起点にファッションを再解釈する試みである点が特徴。テート・モダンという世界的美術館との協働は、ハイファッションと現代美術の接点を広げる事例として注目される。ただし開催は2026年9月予定であり、実施後の反響・評価は現時点では確認できない。",
+    "relatedWorks": [
+      {
+        "title": "OPEN STUDIO 第1回（フィレンツェ）",
+        "description": "2025年6月、イタリア・フィレンツェのヴィラ・メディチェア・デッラ・ペトライアで開催された同企画の第1弾。プレゼンテーションとエキシビション形式で創作背景を伝えた。",
+        "url": "https://www.axismag.jp/posts/2025/08/671037.html"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Event",
+      "Form/Exhibition",
+      "Theme/Fashion",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "asics-2026",
+    "title": "AIによるシューズ設計・シミュレーション技術",
+    "summary": "ASICSとRebuilderAIが共同開発、2DスケッチをAIが3D CADデータに変換し設計・検証工程を短縮する技術をVivaTech 2026で発表",
+    "client": "ASICS",
+    "agency": "RebuilderAI",
+    "categories": [
+      "AIクリエイティブ",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://monoist.itmedia.co.jp/mn/articles/2607/06/news012.html",
+    "thumbnail": "/thumbnails/asics-2026.jpg",
+    "videoId": "",
+    "overview": "ASICSとAI企業RebuilderAIは、デザイナーの2Dスケッチから3D CADデータを自動生成しCAE/FEA解析まで行うAI設計・製造シミュレーション技術を共同開発。2026年6月18日、フランス・パリで開催のVivaTech 2026にて発表され、設計コンセプトから3Dデータ生成、シミュレーション完了までのプロセスを実演した。",
+    "background": "靴の設計は従来デザイナーのスケッチから3Dモデル化、材料・構造解析まで多くの工程と時間を要していた。ASICSは韓国発AIスタートアップRebuilderAIの3D CAD自動生成技術に着目し、子会社ASICS Venturesを通じて出資を決定。両社はCESで初めて接触し、今回の協業に至った。",
+    "execution": "RebuilderAIのAI設計ツール「VRING:ON」を用い、デザイナーのスケッチと創造意図を保持したままAIが正確な3Dデータへ変換する仕組みを構築。ASICSスポーツ科学研究所(ISS)が人間工学データとノウハウを提供し、AI生成デザインの評価・検証の基準として機能した。VivaTech 2026会場でプロトタイプと開発プロセスを展示。",
+    "evaluationImpact": "デザインから検証までの時間を大幅に短縮できる点をASICS Venturesが高く評価し出資を決定。この投資はASICSにとって初の韓国企業への直接投資案件となった。フットウェア業界におけるAI活用の設計・製造プロセス変革を示す事例として注目される。",
+    "relatedWorks": [
+      {
+        "title": "RebuilderAI「VRING:ON」CES 2026 Innovation Award",
+        "description": "ASICS協業と同じAI基盤技術「VRING:ON」がCES 2026 Innovation AwardsのFashionTech部門・AI部門を受賞(プラットフォーム単体への表彰で、ASICS案件固有の受賞ではない)",
+        "url": "https://www.ces.tech/ces-innovation-awards/2026/vringon-from-sketch-to-factory-in-one-flow/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/3D",
+      "Form/Event",
+      "Theme/Sports"
+    ]
+  },
+  {
     "id": "dear-ai-disability-representation-campaign-2026",
     "title": "Dear AI（disability representation campaign）",
     "summary": "義肢装着者本人の写真・映像でAIを再教育し、生成画像の偏った障がい者表象を当事者主導で是正するデータセット構築の先駆例",
