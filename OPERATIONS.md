@@ -29,6 +29,57 @@ Case Study と並ぶ第2のTOP（`/technology`）。AI/HCI/CG/先端メディア
   - Case Study側と同時発火してもgit競合しないよう `/tmp/researchman-git.lock` で排他
   - 通知サマリー: `/tmp/researchman-tech-last-add.json`（0件でも上書き=stale防止）
 
+### お気に入りサーバ同期（2026-07-08新設・実装計画バッチ1）
+
+Case Study / Technology の★お気に入りを Vercel Blob（private）に同期し、PC/スマホ間で共有する。
+将来の隔週チューンアップ（お気に入り分析→リサーチ計画ブラッシュアップ、バッチ2予定）が
+参照するデータ基盤としても使う。
+
+- API: `src/app/api/favorites/route.ts`
+  - `POST /api/favorites`（認証なし・破壊不能なマージのみ。全消去APIは無い）: body
+    `{ items: { [id]: { fav: boolean, ts: number } } }` を検証（id形式=cases.json/tech.jsonの
+    実例パターン`^[a-z0-9]+(-[a-z0-9]+)*$`・件数上限2000・型）後、サーバ側の既存itemsと
+    per-id LWW（Last-Write-Wins。tsが新しい方を採用）でマージしてBlobへ書き戻し、
+    マージ結果の全量を返す
+  - `GET /api/favorites`（`Authorization: Bearer <FAVORITES_SYNC_TOKEN>` 必須。分析ジョブ専用）:
+    フルitemsを返す
+  - **Blob未設定（`BLOB_READ_WRITE_TOKEN`欠落）時は常に503**。クライアント
+    (`src/hooks/useFavorites.ts`)はこれを黙ってlocalStorageのみで動作継続するシグナルとして扱う
+    （env未設定でもサイトは現状と同一挙動で壊れない）
+  - 検証（400）は Blob設定確認（503）より**先に**行う設計。これによりBLOB_READ_WRITE_TOKEN
+    未設定のローカル環境でも検証ロジック（400系）をcurlで確認できる
+- データモデル: `data/`配下ではなくBlob上の1ファイル（固定pathname `favorites/favorites.json`）。
+  `{ version: 1, items: { [id]: { fav: boolean, ts: number } } }`。解除も`fav:false`と新しい`ts`を
+  持つエントリとして残す（tombstone方式）。**自動的な古いエントリの削除・全消去APIは無い**
+- クライアント側(`useFavorites.ts`): 旧形式(`string[]`)を`fav:true`・
+  `ts:読み込み時刻`として自動マイグレーション。toggle時に楽観更新＋1.5秒デバウンスでPOSTし、
+  レスポンス（サーバ側マージ済みの全量items）を再度LWWマージしてlocalStorageへ反映する
+  （＝実質的な双方向同期）。**マウント時にGETはしない**（tokenをクライアントに置かないため）。
+  オフライン・503・エラー時は例外を握りつぶしlocalStorageのみで継続する
+- **既知の制約**: マウント時にGETしないため、ある端末で初めて開いた時点では他端末の
+  お気に入りはまだ反映されない。何かひとつでもtoggleすると、そのPOSTレスポンスで
+  全量マージ結果が反映され追いつく
+
+**初回セットアップ（ユーザー作業・未実施の間はlocalStorageのみで動作）**:
+1. [Vercelダッシュボード](https://vercel.com/dashboard) → 本プロジェクト → Storage →
+   Create Database → **Blob** → 作成（例: `research-man-favorites`）→ プロジェクトへConnect
+   （Connectすると `BLOB_READ_WRITE_TOKEN` が自動でenvに追加される）
+2. Settings → Environment Variables → `FAVORITES_SYNC_TOKEN` を追加（値は任意のランダム文字列。
+   例: `openssl rand -hex 32` で生成）。Production/Preview両方に設定推奨
+3. 環境変数追加はデプロイ済みビルドに自動反映されないため、**再デプロイ**する
+   （空コミットpushでも、Vercelダッシュボードの Redeploy でも可）
+4. 動作確認:
+   - サイトで★をトグル → ブラウザDevToolsのNetworkタブで `POST /api/favorites` が
+     200を返す（503のままならenv未反映。再デプロイ漏れを疑う）
+   - `curl -H "Authorization: Bearer <FAVORITES_SYNC_TOKEN>" https://research-man.vercel.app/api/favorites`
+     でフルitemsのJSONが返ることを確認（401なら`FAVORITES_SYNC_TOKEN`不一致、503なら
+     `FAVORITES_SYNC_TOKEN`または`BLOB_READ_WRITE_TOKEN`のいずれかが未設定）
+- 検証スクリプト: `scripts/smoke-favorites-merge.mjs`（マージ/検証ロジックの単体検証・
+  Blob不要）・`scripts/smoke-favorites-api.mjs`（`next dev`起動中に実行。400/503/401等の
+  検証。実Blobでの200成功パスはローカルでは検証できないため上記4の手動確認に委ねる）・
+  `scripts/smoke-favorites-ui.mjs`（Playwright。★トグル・Savedフィルタ・リロード永続・
+  旧形式マイグレーション・サーバ応答マージのUI回帰。`PORT=3111`で`next dev`起動中に実行）
+
 ## 2. 自動収集パイプライン（無人運用の本体）
 
 ```
