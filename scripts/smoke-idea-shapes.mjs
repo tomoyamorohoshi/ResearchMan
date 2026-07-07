@@ -4,16 +4,21 @@
 // 実行: npx tsx scripts/smoke-idea-shapes.mjs
 import {
   shapeForIdea,
+  solveFixedSizeShape,
   SHAPE_KINDS,
   isComplexShapeKind,
   estimateTextWidthEm,
   DATE_LETTER_SPACING_EM,
   ARC_LENGTH_MARGIN,
-  estimateReservedLinksHeightPx,
-  fitDescription,
   outlineToLayoutSpace,
 } from "../src/lib/ideaShapes.ts";
-import { computeCollageLayout, assignShapeKinds, DESC_FONT_PHYSICAL_FLOOR_PX } from "../src/lib/ideaCollageLayout.ts";
+import {
+  computeCollageLayout,
+  assignShapeKinds,
+  FIXED_TITLE_FONT_PX,
+  FIXED_BODY_FONT_PX,
+  TIER_REF_WIDTH_PX,
+} from "../src/lib/ideaCollageLayout.ts";
 
 let failures = 0;
 function assert(cond, message) {
@@ -195,12 +200,16 @@ for (const { label, title } of syntheticTitles) {
   }
 }
 
-// A.5/A.6: assignShapeKindsを1回呼び、実データ50件のshapeをコンテンツ量に応じて確定させる
-// (goofy-hatching-mango.md 2026-07-07バッチ・可読性の根治)。以後の3ブロックはこの
-// ideaShapesByIdを使い回す(3箇所バラバラにshapeForIdeaを呼ばない)。
-// assignShapeKindsのフォールバック(3-d、全9種×浅い変種でも3ティアいずれかで下限未達)発動時の
-// console.warnを一時的にフックしてカウントする(受け入れ条件は0件。実測結果は最終報告に記載)
-const ideaShapesById = new Map();
+// H: 固定2サイズタイポグラフィ＋内容適応カードサイズ（goofy-hatching-mango.md 2026-07-07
+// バッチ・改訂計画）。assignShapeKindsを1回呼び(kind/generousの決定はティア非依存)、
+// 各ティアごとにsolveFixedSizeShapeでshape+scaleを解く(ティアごとに固定フォントpx・行幅
+// 予算が異なるため)。以後のブロックはideaShapesByTierを使い回す(3箇所バラバラに解かない)。
+// outline/kindはティア非依存(同じhashId由来のrng)なので、シェイプ全ユニーク化チェック等の
+// tier非依存な検証は代表ティア(wide)のshapeを使う。
+// assignShapeKindsのフォールバック(全9種×浅い変種でも3ティアいずれかで行幅予算に収まらない)
+// 発動時のconsole.warnを一時的にフックしてカウントする(受け入れ条件は0件。実測結果は最終報告に記載)
+const TIERS_FOR_SMOKE = ["mobile", "compact", "wide"];
+const ideaShapesByTier = { mobile: new Map(), compact: new Map(), wide: new Map() };
 const assignFallbackWarnings = [];
 if (ideasData) {
   const contentInputs = ideasData.map((idea) => ({
@@ -217,19 +226,42 @@ if (ideasData) {
   };
   const assignments = assignShapeKinds(contentInputs);
   console.warn = originalWarn;
-  for (const c of contentInputs) {
-    const assignment = assignments.get(c.id);
-    const shape = shapeForIdea(
-      c.id,
-      c.title,
-      c.dateLabel,
-      { seed: c.seed, refs: c.refs },
-      assignment && { forceKind: assignment.kind, generous: assignment.generous },
-    );
-    ideaShapesById.set(c.id, shape);
-  }
   console.log(
-    `assignShapeKinds: フォールバック(3-d、全9種×浅い変種でも3ティアいずれかで下限未達)発動件数=${assignFallbackWarnings.length}/${ideasData.length}件`,
+    `assignShapeKinds: フォールバック(全9種×浅い変種でも3ティアいずれかで行幅予算に収まらない)発動件数=${assignFallbackWarnings.length}/${ideasData.length}件`,
+  );
+
+  for (const tier of TIERS_FOR_SMOKE) {
+    for (const c of contentInputs) {
+      const assignment = assignments.get(c.id);
+      const { shape, scale } = solveFixedSizeShape(
+        c.id,
+        c.title,
+        c.dateLabel,
+        { seed: c.seed, refs: c.refs },
+        FIXED_TITLE_FONT_PX[tier],
+        FIXED_BODY_FONT_PX[tier],
+        assignment && { forceKind: assignment.kind, generous: assignment.generous },
+      );
+      ideaShapesByTier[tier].set(c.id, { shape, scale });
+    }
+  }
+
+  // adversarial-reviewer指摘(前バッチで導入・改訂計画でも維持): 410件集計(下のcomplexRatio)は
+  // hashのみのデフォルト分布であり、assignShapeKindsによる再割り当ての影響を受けない。実際に
+  // /ideasで描画される実データ50件(wideティアのkindで代表)について複雑形比率を別途計測・
+  // アサートする(過半必須。data/ideas.jsonは日次で件数が増える運用のため、この実描画ベースの
+  // ガードが無いと将来のデータ追加で複雑形が過半を割っても検知できなかった)
+  let assignedComplexCount = 0;
+  for (const idea of ideasData) {
+    if (isComplexShapeKind(ideaShapesByTier.wide.get(idea.id).shape.kind)) assignedComplexCount++;
+  }
+  const assignedComplexRatio = assignedComplexCount / ideasData.length;
+  console.log(
+    `assignShapeKinds後の実描画複雑形比率: ${assignedComplexCount}/${ideasData.length} = ${(assignedComplexRatio * 100).toFixed(1)}%`,
+  );
+  assert(
+    assignedComplexRatio > 0.5,
+    `assignShapeKinds後の実描画複雑形比率が過半 (実測=${(assignedComplexRatio * 100).toFixed(1)}%)`,
   );
 }
 
@@ -522,28 +554,22 @@ console.log(`フォールバック発動元: ${fallbackTriggeredBy.size > 0 ? [.
   console.log(`cropViewBox妥当性チェック: ${cropChecked}件`);
 }
 
-// ── G: 説明文の全文表示ガード（goofy-hatching-mango.md 2026-07-07第4バッチ・実装中の追加要件）
-// 全50件の実データで、fitDescription経由の説明文フォント/行数見積りが有限かつ正であることを
-// 確認する（NaN・0除算等の回帰検知）。fits=falseの件数も参考情報として出す
-// （IdeaShapeCard.tsx側でforeignObjectを拡張して全文表示するため、fits=falseは即バグでは
-// ないが、割合が急増した場合はcontentMinの事前見積りが効いていない退行の兆候）
+// ── G: 説明文の全文表示ガード（goofy-hatching-mango.md 2026-07-07バッチ・改訂計画）
+// 全50件の実データ×3ティアで、solveFixedSizeShapeが事前計算した説明文フォント/行数/必要高さが
+// 有限かつ正であることを確認する（NaN・0除算等の回帰検知）
 {
   let descChecked = 0;
-  let notFitCount = 0;
   if (ideasData) {
-    for (const idea of ideasData) {
-      const shape = ideaShapesById.get(idea.id);
-      const hasRefs = idea.refs.length > 0;
-      const reserved = hasRefs ? estimateReservedLinksHeightPx(shape.viewBoxW, shape.safeArea.w, idea.refs) : 0;
-      const fit = fitDescription(shape.viewBoxW, shape.safeArea.w, shape.safeArea.h, reserved, idea.seed);
-      assert(Number.isFinite(fit.fontSizePx) && fit.fontSizePx > 0, `${idea.id}: 説明文フォントサイズが正の有限値`);
-      assert(Number.isInteger(fit.lines) && fit.lines >= 1, `${idea.id}: 説明文の行数が1以上の整数`);
-      if (!fit.fits) notFitCount++;
-      descChecked++;
+    for (const tier of TIERS_FOR_SMOKE) {
+      for (const idea of ideasData) {
+        const { shape } = ideaShapesByTier[tier].get(idea.id);
+        assert(Number.isFinite(shape.dateFontSize) && shape.dateFontSize > 0, `[${tier}] ${idea.id}: 説明文フォントサイズ(サイズB)が正の有限値`);
+        assert(Number.isInteger(shape.descLines) && shape.descLines >= 1, `[${tier}] ${idea.id}: 説明文の行数が1以上の整数`);
+        assert(Number.isFinite(shape.descRequiredHeightPx) && shape.descRequiredHeightPx > 0, `[${tier}] ${idea.id}: 説明文の必要高さが正の有限値`);
+        descChecked++;
+      }
     }
-    console.log(
-      `説明文フィットチェック: ${descChecked}件 (DESC_FONT_FLOOR_RATIOでも数式上収まらずforeignObject拡張に委ねたケース: ${notFitCount}件)`,
-    );
+    console.log(`説明文フィットチェック: ${descChecked}件(3ティア込み)`);
   } else {
     console.warn("data/ideas.json の読み込みをスキップ（説明文フィットチェックは対象外）");
   }
@@ -590,8 +616,9 @@ console.log(`フォールバック発動元: ${fallbackTriggeredBy.size > 0 ? [.
   // (2026-07-07時点)。この改善を下回る退行を検知するしきい値として設定する
   const UNIQUENESS_MIN_DIST_THRESHOLD = 0.035;
   if (ideasData) {
+    // 輪郭(outlinePath)はティア非依存(同じhashId由来のrng・kind)なので代表としてwideを使う
     const shapes = ideasData.map((idea) => {
-      const shape = ideaShapesById.get(idea.id);
+      const { shape } = ideaShapesByTier.wide.get(idea.id);
       const pts = densePointsFromPath(shape.outlinePath, 16);
       return { id: idea.id, kind: shape.kind, profile: radiusProfile(pts) };
     });
@@ -628,23 +655,14 @@ console.log(`フォールバック発動元: ${fallbackTriggeredBy.size > 0 ? [.
 }
 
 // ── B.4: パズルカーニング配置(ideaCollageLayout.ts)のスモークテスト ─────────────────
-// goofy-hatching-mango.md 2026-07-07バッチ・実装詳細補足B.4。決定論・非重なり・目標帯達成率を
-// 全50件の実データ×3ティア(mobile/compact/wide)で検証する
+// goofy-hatching-mango.md 2026-07-07バッチ・改訂計画。決定論・非重なり・密着帯達成率・
+// 固定2サイズの厳密一致を全50件の実データ×3ティア(mobile/compact/wide)で検証する
 {
   function median(arr) {
     const s = [...arr].sort((a, b) => a - b);
     const n = s.length;
     if (n === 0) return NaN;
     return n % 2 === 1 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2;
-  }
-  function fitContentSize(bw, bh, ca) {
-    const ba = bw / bh;
-    if (ba > ca) {
-      const h = bh;
-      return { width: h * ca, height: h };
-    }
-    const w = bw;
-    return { width: w, height: w / ca };
   }
   function minPointCloudDistance(a, b) {
     let min = Infinity;
@@ -660,18 +678,45 @@ console.log(`フォールバック発動元: ${fallbackTriggeredBy.size > 0 ? [.
   }
 
   if (ideasData) {
-    const cards = ideasData.map((idea) => ({
-      id: idea.id,
-      shape: ideaShapesById.get(idea.id),
-      seedText: idea.seed,
-      refs: idea.refs,
-    }));
+    for (const tier of TIERS_FOR_SMOKE) {
+      const cards = ideasData.map((idea) => {
+        const { shape, scale } = ideaShapesByTier[tier].get(idea.id);
+        return { id: idea.id, shape, scale };
+      });
 
-    for (const tier of ["mobile", "compact", "wide"]) {
       const layout1 = computeCollageLayout(cards, tier);
       const layout2 = computeCollageLayout(cards, tier);
       assert(JSON.stringify(layout1) === JSON.stringify(layout2), `collageLayout[${tier}]: 決定論(2回計算で同一)`);
       assert(layout1.placements.length === cards.length, `collageLayout[${tier}]: 全カード分の配置を返す`);
+
+      // H: 固定2サイズの全数一致（受け入れ条件1）。物理タイトルフォント==サイズA・
+      // 物理本文/日付/リンクフォント==サイズB(許容誤差±0.1px)を全50件で確認する
+      const titleTargetPx = FIXED_TITLE_FONT_PX[tier];
+      const bodyTargetPx = FIXED_BODY_FONT_PX[tier];
+      let titleMismatch = 0;
+      let bodyMismatch = 0;
+      for (const c of cards) {
+        const physTitle = c.shape.titleFontSize * c.scale;
+        const physBody = c.shape.dateFontSize * c.scale;
+        if (Math.abs(physTitle - titleTargetPx) > 0.1) {
+          titleMismatch++;
+          console.error(`FAIL: [${tier}] ${c.id}: タイトル実測フォントがサイズAと不一致 (実測=${physTitle.toFixed(3)}, 目標=${titleTargetPx})`);
+        }
+        if (Math.abs(physBody - bodyTargetPx) > 0.1) {
+          bodyMismatch++;
+          console.error(`FAIL: [${tier}] ${c.id}: 本文/日付実測フォントがサイズBと不一致 (実測=${physBody.toFixed(3)}, 目標=${bodyTargetPx})`);
+        }
+      }
+      failures += titleMismatch + bodyMismatch;
+      console.log(
+        `  (情報) collageLayout[${tier}]: 固定サイズ一致チェック タイトル不一致=${titleMismatch}/${cards.length}件 本文不一致=${bodyMismatch}/${cards.length}件`,
+      );
+
+      // 行幅予算(TIER_REF_WIDTH_PX)を超えるカードが無いこと(assignShapeKindsのfeasibility
+      // 判定と実際の描画がズレていないことの回帰確認)
+      const budgetPx = TIER_REF_WIDTH_PX[tier];
+      const overBudget = layout1.placements.filter((p) => p.leftPx + p.widthPx > budgetPx + 1).length;
+      assert(overBudget === 0, `collageLayout[${tier}]: 行幅予算(${budgetPx}px)を超えるカードがない (実測=${overBudget}件)`);
 
       // 非重なり: 全カードペア(50件=1225組)で輪郭サンプル点同士の最短距離が0未満にならないこと。
       // 注意: 点群同士のユークリッド距離は定義上つねに0以上のため、境界距離だけでは
@@ -681,10 +726,9 @@ console.log(`フォールバック発動元: ${fallbackTriggeredBy.size > 0 ? [.
       // 多角形の内部に入っていないこと(pointInPolygon)も直接検査し、真の重なりを検出する
       const outlines = cards.map((c, i) => {
         const p = layout1.placements[i];
-        const content = fitContentSize(p.widthPx, p.heightPx, c.shape.cropAspect);
         return outlineToLayoutSpace(c.shape, {
-          widthPx: content.width,
-          heightPx: content.height,
+          widthPx: p.widthPx,
+          heightPx: p.heightPx,
           rotateDeg: p.rotateDeg,
           centerX: p.leftPx + p.widthPx / 2,
           centerY: p.topPx + p.heightPx / 2,
@@ -709,49 +753,21 @@ console.log(`フォールバック発動元: ${fallbackTriggeredBy.size > 0 ? [.
       assert(boundaryFlagCount === 0, `collageLayout[${tier}]: 境界距離が負にならない (実測最小=${minOverall.toFixed(3)})`);
       assert(fillOverlapCount === 0, `collageLayout[${tier}]: 塗りつぶし多角形同士が真に重ならない (重なりペア数=${fillOverlapCount})`);
 
-      // 目標帯達成率: カーニングで実際に達成された隣接ペアの最短距離(行内水平・行間垂直)。
-      // 前バッチ(f2e427a)のCSS Grid近似では中央値約107pxだった
+      // C: パズル密着（受け入れ条件3。goofy-hatching-mango.md 2026-07-07バッチ・改訂計画）。
+      // 目標帯を旧2〜8px(中央値≤20px・0-14px比率>50%)から0.5〜3px(中央値≤3px・全ペア0〜6px帯)へ
+      // 引き締めた「接するか接しないか」の密着パッキングを検証する
       const allGaps = [...layout1.horizontalGaps, ...layout1.verticalGaps];
       if (allGaps.length > 0) {
         const med = median(allGaps);
-        const under14 = allGaps.filter((d) => d >= 0 && d <= 14).length;
-        const ratio = under14 / allGaps.length;
+        const under6 = allGaps.filter((d) => d >= 0 && d <= 6).length;
+        const ratio = under6 / allGaps.length;
+        const maxGap = Math.max(...allGaps);
         console.log(
-          `  (情報) collageLayout[${tier}]: 隣接ギャップ n=${allGaps.length} 中央値=${med.toFixed(2)}px 0-14px比率=${(ratio * 100).toFixed(1)}% (前バッチ107px比)`,
+          `  (情報) collageLayout[${tier}]: 隣接ギャップ n=${allGaps.length} 中央値=${med.toFixed(2)}px 0-6px比率=${(ratio * 100).toFixed(1)}% 最大=${maxGap.toFixed(2)}px`,
         );
-        assert(med <= 20, `collageLayout[${tier}]: 隣接ギャップの中央値が20px以下 (実測=${med.toFixed(2)})`);
-        assert(ratio > 0.5, `collageLayout[${tier}]: 0-14px比率が過半 (実測=${(ratio * 100).toFixed(1)}%)`);
+        assert(med <= 3, `collageLayout[${tier}]: 隣接ギャップの中央値が3px以下 (実測=${med.toFixed(2)})`);
+        assert(allGaps.every((d) => d >= 0 && d <= 6), `collageLayout[${tier}]: 全ペアが0〜6px帯に収まる (実測最大=${maxGap.toFixed(2)})`);
       }
-
-      // A.4: 物理フォント下限（ティアごと。goofy-hatching-mango.md 2026-07-07バッチ・
-      // コンテンツ量に応じたシェイプ割り当てで根治）。descFit.fontSizePx(viewBox単位)×
-      // (実レンダリング幅px÷cropViewBox.w)。前バッチ(d40b611)まではhashのみのシェイプ選択で
-      // 全ティア共通floor=5pxでもmobile 15/50・compact 6/50・wide 1/50が未達だった
-      // （当初目標9pxはさらに未達が多く、達成のためのカード拡大がパズルカーニングの
-      // 敷き詰め感を破壊するため妥協されていた）。本バッチのassignShapeKindsが、hashデフォルト
-      // シェイプで下限に届かないカードだけを「下限を満たせるシェイプ種(必要なら複雑形の浅い
-      // 変種)」に選び直すことで、実効下限をwide/compact=8px・mobile=7pxへ引き上げてもなお
-      // 全50件×3ティアで下限未達ゼロを達成することが受け入れ条件（下記assert(belowFloor===0)）
-      let belowFloor = 0;
-      let worstPx = Infinity;
-      const floorPx = DESC_FONT_PHYSICAL_FLOOR_PX[tier];
-      for (let i = 0; i < cards.length; i++) {
-        const c = cards[i];
-        const p = layout1.placements[i];
-        const hasRefs = c.refs.length > 0;
-        const reserved = hasRefs ? estimateReservedLinksHeightPx(c.shape.viewBoxW, c.shape.safeArea.w, c.refs) : 0;
-        const descFit = fitDescription(c.shape.viewBoxW, c.shape.safeArea.w, c.shape.safeAreaMaxGrowH, reserved, c.seedText);
-        const content = fitContentSize(p.widthPx, p.heightPx, c.shape.cropAspect);
-        const scale = content.width / c.shape.cropViewBox.w;
-        const physicalFontPx = descFit.fontSizePx * scale;
-        assert(Number.isFinite(physicalFontPx) && physicalFontPx > 0, `collageLayout[${tier}]: ${c.id} 物理フォントサイズが正の有限値`);
-        if (physicalFontPx < floorPx - 1e-6) belowFloor++;
-        if (physicalFontPx < worstPx) worstPx = physicalFontPx;
-      }
-      console.log(
-        `  (情報) collageLayout[${tier}]: 物理フォント下限(${floorPx}px)未達=${belowFloor}/${cards.length}件, 最悪値=${worstPx.toFixed(2)}px`,
-      );
-      assert(belowFloor === 0, `collageLayout[${tier}]: 物理フォント下限未達がゼロ (実測=${belowFloor}, 下限=${floorPx}px)`);
     }
   } else {
     console.warn("data/ideas.json の読み込みをスキップ（パズルカーニングチェックは対象外）");

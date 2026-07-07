@@ -118,6 +118,17 @@ export type IdeaShape = {
   // リサンプルしたもの。ideaCollageLayout.tsがoutlineToLayoutSpaceでレイアウト座標(実際の
   // カード配置後の物理px)に変換し、隣接シルエット間の最短距離を測ってカーニングする
   outlineSamplePoints: readonly Point[];
+  // H: 固定2サイズタイポグラフィ(goofy-hatching-mango.md 2026-07-07バッチ・改訂計画)。
+  // solveFixedSizeShapeのみが設定する(旧shapeForIdeaではundefinedのまま)。titleFontSize/
+  // dateFontSizeは既存フィールドをそのまま「サイズA・サイズB」として再利用する(dateFontSizeが
+  // 説明文・参照リンクの本文フォントとも一致する＝同じviewbox単位値)。以下は説明文・参照
+  // リンクの事前計算結果を保持し、IdeaShapeCard.tsx側での再計算(旧shrink-to-fit探索)を
+  // 不要にする
+  descLines?: number;
+  descRequiredHeightPx?: number; // viewbox単位。説明文本文の必要高さ(dateFontSize基準)
+  reservedLinksHeightPx?: number; // viewbox単位。罫線+参照リンク一覧の必要高さ
+  refLineCounts?: readonly number[]; // refsと同じ順序。各参照リンクタイトルの折返し行数
+  linkLabelFontSize?: number; // viewbox単位。CASE/TECHラベルの小さめフォント
 };
 
 const TAU = Math.PI * 2;
@@ -1528,29 +1539,51 @@ function refTitleLinesFor(refTitle: string, labelText: string, safeAreaW: number
   return Math.max(1, Math.ceil(estimatedLines));
 }
 
+export type ReservedLinksDetail = { lineCounts: number[]; heightPx: number };
+
+// H: 固定2サイズタイポグラフィ(goofy-hatching-mango.md 2026-07-07バッチ・改訂計画)。
+// solveFixedSizeShapeが「サイズB相当のviewbox単位フォント」を明示的なfontOverrideとして渡せる
+// よう拡張した(省略時は旧来どおりviewBoxW*RATIO。既存呼び出し元(IdeaShapeCard.tsx等)は無変更)。
+// 併せて各refの折返し行数(lineCounts)も返す（IdeaShapeCard.tsx側の再計算を避けるため）
+export function estimateReservedLinksDetail(
+  viewBoxW: number,
+  safeAreaW: number,
+  refs: readonly ContentRef[],
+  fontOverride?: { linkFontSizePx: number; linkLabelFontSizePx: number; gapPx: number },
+): ReservedLinksDetail {
+  if (refs.length === 0) return { lineCounts: [], heightPx: 0 };
+  const linkFontSizePx = fontOverride?.linkFontSizePx ?? viewBoxW * LINK_FONT_RATIO;
+  const linkLabelFontSizePx = fontOverride?.linkLabelFontSizePx ?? viewBoxW * LINK_LABEL_FONT_RATIO;
+  const gapPx = fontOverride?.gapPx ?? viewBoxW * CONTENT_GAP_RATIO;
+  const linkRowHeightPxFor = (lines: number) =>
+    linkFontSizePx * (LINK_ROW_LINE_HEIGHT_MULT * lines + LINK_ROW_PADDING_Y_EM * 2) * LINK_ROW_HEIGHT_SAFETY_MULT;
+  const lineCounts = refs.map((ref) => {
+    const labelText = ref.type === "tech" ? "Tech" : "Case";
+    return refTitleLinesFor(ref.title, labelText, safeAreaW, linkFontSizePx, linkLabelFontSizePx);
+  });
+  const linesSum = lineCounts.reduce((sum, lines) => sum + linkRowHeightPxFor(lines), 0);
+  return { lineCounts, heightPx: RULE_HEIGHT_SAFETY_MULT + linesSum + 2 * gapPx };
+}
+
 // 罫線+参照リンク一覧が必要とする高さ(px=viewBox単位)。説明文フォント探索・shapeForIdea内の
 // 事前見積りの両方から共通で呼ぶ（IdeaShapeCard.tsxの旧reservedHeightPx計算と同じ式）
 export function estimateReservedLinksHeightPx(viewBoxW: number, safeAreaW: number, refs: readonly ContentRef[]): number {
-  if (refs.length === 0) return 0;
-  const linkFontSizePx = viewBoxW * LINK_FONT_RATIO;
-  const linkLabelFontSizePx = viewBoxW * LINK_LABEL_FONT_RATIO;
-  const gapPx = viewBoxW * CONTENT_GAP_RATIO;
-  const linkRowHeightPxFor = (lines: number) =>
-    linkFontSizePx * (LINK_ROW_LINE_HEIGHT_MULT * lines + LINK_ROW_PADDING_Y_EM * 2) * LINK_ROW_HEIGHT_SAFETY_MULT;
-  const linesSum = refs.reduce((sum, ref) => {
-    const labelText = ref.type === "tech" ? "Tech" : "Case";
-    return sum + linkRowHeightPxFor(refTitleLinesFor(ref.title, labelText, safeAreaW, linkFontSizePx, linkLabelFontSizePx));
-  }, 0);
-  return RULE_HEIGHT_SAFETY_MULT + linesSum + 2 * gapPx;
+  return estimateReservedLinksDetail(viewBoxW, safeAreaW, refs).heightPx;
 }
+
+export type DescLinesAndHeight = { lines: number; heightPx: number };
 
 // 指定フォント比率(ratio)で説明文全文を折り返した場合に必要な行数・高さ(px=viewBox単位)を返す。
 // 切り詰めは行わない前提の見積り（LINE_BUDGET_SAFETY_RATIOで折返しロスぶんの安全マージンを取る）
-export function requiredDescHeightPx(viewBoxW: number, safeAreaW: number, seedText: string, ratio: number): number {
+export function requiredDescLinesAndHeightPx(viewBoxW: number, safeAreaW: number, seedText: string, ratio: number): DescLinesAndHeight {
   const fontSizePx = viewBoxW * ratio;
   const charsPerLine = Math.max(1, (safeAreaW / fontSizePx) * LINE_BUDGET_SAFETY_RATIO);
   const lines = Math.max(MIN_DESC_LINES, Math.ceil(estimateTextWidthEm(seedText) / charsPerLine));
-  return lines * fontSizePx * DESC_LINE_HEIGHT_MULT;
+  return { lines, heightPx: lines * fontSizePx * DESC_LINE_HEIGHT_MULT };
+}
+
+export function requiredDescHeightPx(viewBoxW: number, safeAreaW: number, seedText: string, ratio: number): number {
+  return requiredDescLinesAndHeightPx(viewBoxW, safeAreaW, seedText, ratio).heightPx;
 }
 
 export type DescFit = { fontSizePx: number; lines: number; requiredHeightPx: number; availableForDescPx: number; fits: boolean };
@@ -1867,6 +1900,275 @@ export function shapeForIdea(
     dateUsedFallback: dateFit.usedFallback,
     outlineSamplePoints,
   };
+}
+
+// ── H: 固定2サイズタイポグラフィ＋内容適応カードサイズ（goofy-hatching-mango.md 2026-07-07
+// バッチ・改訂計画。旧「フォント下限＋コンテンツ量割り当て」計画を置換）─────────────────────
+// 設計の反転: 旧shapeForIdeaは「viewBox内で収まる最大フォント比率」をshrink-to-fit探索し、
+// カードの物理サイズ(ideaCollageLayout.tsのcolSpan)は別途決まっていた(フォントは下限のみ
+// 保証)。新方式は「フォントは全カード共通の固定物理px(タイトル=titleFontPx、日付/本文/
+// リンク=bodyFontPx)」を先に固定し、「この固定フォントで全文が収まるシェイプのレンダリング
+// スケールS(viewbox単位→物理pxの変換係数)」を各カードごとに解く。
+//
+// 数学的な仕組み: viewBoxWは形状生成時に決まる固定値(shapeのkind依存、~64〜125)で、物理
+// フォントサイズ=(viewbox単位のフォントサイズ)×S。日付/本文/リンクタイトルはすべて
+// bodyFontPxで統一するため、bodyVB(=日付/本文/リンクのviewbox単位フォントサイズ、共通の
+// 1つの値)とSの関係はS=bodyFontPx/bodyVBで一意に決まる。タイトルはtitleVB=bodyVB×
+// (titleFontPx/bodyFontPx)とbodyVBに比例させることで、同じSで物理titleFontPxに自動的に
+// 厳密一致する(誤差は浮動小数点のみ。追加の逆算調整は不要)。
+//
+// bodyVBが小さいほど(=Sが大きい・カードが物理的に大きいほど)、safeArea内によりコンテンツが
+// 収まりやすくなる(絶対的なviewbox幾何は固定なので、フォントをviewbox単位で相対的に小さく
+// すればするほど同じ幾何内により多くの文字が入る)。よってbodyVBを「収まる範囲でできるだけ
+// 大きく(＝カードをできるだけ小さく)」二分探索し、説明文＋参照リンク＋罫線がsafeAreaに全文
+// 収まり、かつタイトル・日付が固定フォントサイズちょうどで弧に収まる(数学的保証フォール
+// バックが発動してもフォントサイズ自体は縮小されない)最小のSを求める。
+// 各試行がfindMaxInscribedRectの密なグリッドサーチ(3アスペクト×6×6グリッド×24スケール
+// 段階=2592回のrect評価)を伴うため非常に重く、assignShapeKindsが複数のkind候補についてこの
+// 探索を3ティア分繰り返し呼ぶ(最大13候補×3ティア=39回のsolveFixedSizeShape)ため合計コストが
+// 嵩む(実測: 反復数18では50件で数分規模)。二分探索の収束精度は「カードをどれだけ理論上の
+// 最小サイズに近づけられるか」にのみ影響し、固定フォントサイズの厳密一致(受け入れ条件)には
+// 影響しない(titleVB=bodyVB×A/Bの比例関係で常に厳密一致するため)。実用上カードが理論最小
+// よりわずかに大きくなる程度の精度低下と引き換えに、反復数を大きく減らして体感速度を優先する
+const FIXED_SIZE_SEARCH_ITERATIONS = 6;
+// 二分探索の初期範囲(viewBoxWに対する比率)。上限(小さいカード側)は「かなり窮屈な最小限の
+// カード」、下限(大きいカード側)は「実務上あり得ないほど大きいカード」に相当する比率で、
+// 実データで下限側は常にfeasibleになる想定(feasibleでなければ最終手段としてそのまま使う)
+const FIXED_SIZE_RATIO_HI = 0.09;
+const FIXED_SIZE_RATIO_LO = 0.0004;
+// 数学的保証フォールバックの下限クランプにより、目標フォントサイズよりわずかでも縮小したら
+// 不合格とみなす許容誤差(浮動小数点誤差の吸収のみが目的)
+const FIXED_SIZE_FEASIBILITY_EPS = 1e-4;
+
+type FixedSizeTrial = {
+  dateFit: ArcFitResult;
+  titleFit: ArcFitResult;
+  safeArea: Rect;
+  safeAreaMaxGrowH: number;
+  descLines: number;
+  descRequiredHeightPx: number;
+  reservedLinksHeightPx: number;
+  refLineCounts: number[];
+  linkLabelFontSize: number;
+  fits: boolean;
+};
+
+// 候補bodyVB(=titleVBもbodyVBに比例して決まる)1点について、日付・タイトルの弧選定と
+// safeArea配置・説明文/参照リンクの必要高さを実際に計算し、固定フォントサイズちょうどで
+// 全文が収まるかどうかを判定する。shapeForIdeaの本体ロジックと同じ関数群を、font-size-
+// candidateを単一値([bodyVB]・[titleVB])にして呼ぶ点だけが異なる
+function evaluateFixedSizeTrial(
+  built: ShapeBuildResult,
+  outlinePolygon: readonly Point[],
+  pm: PerimeterMetrics,
+  title: string,
+  dateLabel: string,
+  seed: string,
+  refs: readonly ContentRef[],
+  bodyVB: number,
+  titleVB: number,
+): FixedSizeTrial {
+  const dateWindowAllowed = (i: number) => {
+    const angleDeg = rad2deg(Math.atan2(pm.points[i].y - built.cy, pm.points[i].x - built.cx));
+    return angleWithinWindow(angleDeg, DATE_WINDOW_DEG);
+  };
+  const allowAll = () => true;
+  const dateCharWidthEm = estimateTextWidthEm(dateLabel) + dateLabel.length * DATE_LETTER_SPACING_EM;
+  const dateStartHint = nearestIndexToAngleDeg(pm, built.cx, built.cy, -90);
+  const dateFit = selectArcForFontSizes(
+    pm,
+    [bodyVB],
+    dateCharWidthEm,
+    dateWindowAllowed,
+    allowAll,
+    dateStartHint,
+    built.cx,
+    built.cy,
+    outlinePolygon,
+  );
+
+  const bufferCount = Math.max(2, Math.round(pm.n * DATE_TITLE_BUFFER_FRACTION));
+  const titleAllowedExclDate = (i: number) => {
+    if (dateFit.startPhys < 0) return true;
+    return !circularWithinRange(pm.n, dateFit.startPhys, dateFit.endPhys, i, bufferCount);
+  };
+  const titleCharWidthEm = estimateTextWidthEm(title) + title.length * TITLE_LETTER_SPACING_EM;
+  const titleStartHint = nearestIndexToAngleDeg(pm, built.cx, built.cy, 90);
+  const titleFit = selectArcForFontSizes(
+    pm,
+    [titleVB],
+    titleCharWidthEm,
+    titleAllowedExclDate,
+    allowAll,
+    titleStartHint,
+    built.cx,
+    built.cy,
+    outlinePolygon,
+    dateFit.points,
+    dateFit.fontSize * MIN_ARC_EUCLIDEAN_CLEARANCE_MULT,
+  );
+
+  // リンクのタイトル文字はbodyVBと同じ(=サイズB)。CASE/TECHラベルは旧LINK_LABEL_FONT_RATIO/
+  // LINK_FONT_RATIOの比率を保ったまま、viewBoxW基準からbodyVB基準へ変換する(旧モデルとの
+  // 相対的な見た目の比率を維持するため)。罫線・コンテンツ間ギャップも同様にbodyVBへ
+  // 比例させる(旧CONTENT_GAP_RATIO/DESC_FONT_MAX_RATIOの比率を維持)
+  const linkLabelFontSize = bodyVB * (LINK_LABEL_FONT_RATIO / LINK_FONT_RATIO);
+  const gapPx = bodyVB * (CONTENT_GAP_RATIO / DESC_FONT_MAX_RATIO);
+  const fontOverride = { linkFontSizePx: bodyVB, linkLabelFontSizePx: linkLabelFontSize, gapPx };
+
+  const assumedWidth = built.viewBoxW * SAFE_AREA_WIDTH_STEPDOWN_RATIOS[0];
+  const reservedAssumed = estimateReservedLinksDetail(built.viewBoxW, assumedWidth, refs, fontOverride).heightPx;
+  const descRatio = bodyVB / built.viewBoxW;
+  const descAtAssumed = requiredDescLinesAndHeightPx(built.viewBoxW, assumedWidth, seed, descRatio).heightPx;
+  const contentMin = { w: assumedWidth, h: reservedAssumed + descAtAssumed };
+
+  const safeAreaResult = computeSafeArea(built, dateFit, titleFit, dateCharWidthEm, titleCharWidthEm, contentMin);
+  const safeArea = safeAreaResult.rect;
+
+  // 実際に確定したsafeArea.w(assumedWidthと異なりうる)で必要高さを再計算する
+  const reservedDetail = estimateReservedLinksDetail(built.viewBoxW, safeArea.w, refs, fontOverride);
+  const descDetail = requiredDescLinesAndHeightPx(built.viewBoxW, safeArea.w, seed, descRatio);
+  const totalRequired = reservedDetail.heightPx + descDetail.heightPx;
+
+  // fits判定: (1) 説明文+参照リンク+罫線がsafeArea(拡張上限まで)に収まる (2) 日付・タイトルが
+  // 数学的保証フォールバックの下限クランプ(guaranteedFontSize)で縮小されず、狙った固定
+  // フォントサイズちょうどを達成している(フォールバック自体=usedFallback=trueは許容。
+  // フォントサイズが目標未満に縮む場合のみ不合格)
+  const contentFits = totalRequired <= safeAreaResult.maxGrowH + 1e-6;
+  const dateSizeOk = dateFit.fontSize >= bodyVB - FIXED_SIZE_FEASIBILITY_EPS;
+  const titleSizeOk = titleFit.fontSize >= titleVB - FIXED_SIZE_FEASIBILITY_EPS;
+
+  return {
+    dateFit,
+    titleFit,
+    safeArea,
+    safeAreaMaxGrowH: safeAreaResult.maxGrowH,
+    descLines: descDetail.lines,
+    descRequiredHeightPx: descDetail.heightPx,
+    reservedLinksHeightPx: reservedDetail.heightPx,
+    refLineCounts: reservedDetail.lineCounts,
+    linkLabelFontSize,
+    fits: contentFits && dateSizeOk && titleSizeOk,
+  };
+}
+
+export type FixedSizeShapeResult = { shape: IdeaShape; scale: number };
+
+// idea.id・title・dateLabel・content(説明文+参照リンク)・固定物理フォントサイズ(titleFontPx/
+// bodyFontPx、ティアごとの値をideaCollageLayout.tsから渡す)から、その固定フォントで全文が
+// 収まる最小のカードスケールS(物理px/viewbox単位)を解き、決定論的にシェイプ1枚を組み立てる。
+// shapeForIdea同様Math.random不使用(mulberry32由来のジッタのみ)。rngはhashId由来のまま
+// 変えないため、kind/variantが変わっても同じidなら同じ乱数列＝ジッタの一意性は維持される
+export function solveFixedSizeShape(
+  ideaId: string,
+  title: string,
+  dateLabel: string,
+  content: { seed: string; refs: readonly ContentRef[] },
+  titleFontPx: number,
+  bodyFontPx: number,
+  opts?: { forceKind?: ShapeKind; generous?: boolean },
+): FixedSizeShapeResult {
+  const h = hashId(ideaId);
+  const kind = opts?.forceKind ?? WEIGHTED_KIND_TABLE[h % WEIGHTED_KIND_TABLE.length];
+  const rng = mulberry32(h);
+  const built = BUILDERS[kind](rng, opts?.generous ?? false);
+  const outlinePolygon = densePointsFromOutlinePath(built.outlinePath, OUTLINE_SAMPLES_PER_CURVE);
+  const pm = buildPerimeterMetrics(outlinePolygon);
+  const outlineSamplePoints = resampleAlongPolyline([...outlinePolygon, outlinePolygon[0]], OUTLINE_SAMPLE_POINTS_COUNT);
+
+  const titleToBodyRatio = titleFontPx / bodyFontPx;
+  const trialAt = (bodyVB: number) =>
+    evaluateFixedSizeTrial(built, outlinePolygon, pm, title, dateLabel, content.seed, content.refs, bodyVB, bodyVB * titleToBodyRatio);
+
+  const hiVB = built.viewBoxW * FIXED_SIZE_RATIO_HI;
+  const loVB = built.viewBoxW * FIXED_SIZE_RATIO_LO;
+  const loTrial = trialAt(loVB);
+  let bestVB = loVB;
+  let bestTrial = loTrial;
+  // loTrial.fitsがfalseになるのは実運用では発生しない想定(あり得ないほど大きいカードでも
+  // 収まらない場合の保険)。その場合はloVBをそのまま最終手段として使う(呼び出し側の
+  // assignShapeKindsが別途フォールバック検知・警告を行う)
+  if (loTrial.fits) {
+    const hiTrial = trialAt(hiVB);
+    if (hiTrial.fits) {
+      // 最小のカード候補(hiVB)でも収まる＝非常に短い内容。カードを不必要に大きくしない
+      bestVB = hiVB;
+      bestTrial = hiTrial;
+    } else {
+      // 二分探索: [loVB(feasible), hiVB(infeasible)]の間でfeasibleな最大のbodyVB
+      // (=最小のカード)を探す
+      let lo = loVB;
+      let hi = hiVB;
+      for (let i = 0; i < FIXED_SIZE_SEARCH_ITERATIONS; i++) {
+        const mid = (lo + hi) / 2;
+        const trial = trialAt(mid);
+        if (trial.fits) {
+          lo = mid;
+          bestVB = mid;
+          bestTrial = trial;
+        } else {
+          hi = mid;
+        }
+      }
+    }
+  }
+
+  const bodyVB = bestVB;
+  const { dateFit, titleFit, safeArea, safeAreaMaxGrowH, descLines, descRequiredHeightPx, reservedLinksHeightPx, refLineCounts, linkLabelFontSize } =
+    bestTrial;
+
+  const outlineXs = outlinePolygon.map((p) => p.x);
+  const outlineYs = outlinePolygon.map((p) => p.y);
+  const outlineMinX = Math.min(...outlineXs);
+  const outlineMaxX = Math.max(...outlineXs);
+  const outlineMinY = Math.min(...outlineYs);
+  const outlineMaxY = Math.max(...outlineYs);
+  const outlineInset = {
+    top: Math.max(0, outlineMinY),
+    right: Math.max(0, built.viewBoxW - outlineMaxX),
+    bottom: Math.max(0, built.viewBoxH - outlineMaxY),
+    left: Math.max(0, outlineMinX),
+  };
+  const bboxW = Math.max(1e-6, outlineMaxX - outlineMinX);
+  const bboxH = Math.max(1e-6, outlineMaxY - outlineMinY);
+  const marginX = bboxW * CROP_MARGIN_RATIO;
+  const marginY = bboxH * CROP_MARGIN_RATIO;
+  const cropViewBox = {
+    x: outlineMinX - marginX,
+    y: outlineMinY - marginY,
+    w: bboxW + marginX * 2,
+    h: bboxH + marginY * 2,
+  };
+
+  const shape: IdeaShape = {
+    kind,
+    viewBoxW: built.viewBoxW,
+    viewBoxH: built.viewBoxH,
+    aspect: built.viewBoxW / built.viewBoxH,
+    outlinePath: built.outlinePath,
+    dateArcPath: straightOpenPath(dateFit.points),
+    titleArcPath: straightOpenPath(titleFit.points),
+    dateArcLength: dateFit.length,
+    titleArcLength: titleFit.length,
+    dateFontSize: dateFit.fontSize,
+    titleFontSize: titleFit.fontSize,
+    safeArea,
+    safeAreaMaxGrowH,
+    outlineInset,
+    cropViewBox,
+    cropAspect: cropViewBox.w / cropViewBox.h,
+    titleUsedFallback: titleFit.usedFallback,
+    dateUsedFallback: dateFit.usedFallback,
+    outlineSamplePoints,
+    descLines,
+    descRequiredHeightPx,
+    reservedLinksHeightPx,
+    refLineCounts,
+    linkLabelFontSize,
+  };
+
+  const scale = bodyFontPx / bodyVB;
+  return { shape, scale };
 }
 
 // B: パズルカーニング配置用の座標変換（goofy-hatching-mango.md 2026-07-07バッチ・実装詳細補足
