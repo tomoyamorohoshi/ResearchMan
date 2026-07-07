@@ -1479,7 +1479,24 @@ const DESC_FONT_SHRINK_STEP = 0.94; // 1段階あたりの縮小率
 // 残っていることが多い。説明文が0行になる(=全廃したはずの「見えない」状態)を避けるため、
 // safeArea.hに対する最小割合を「説明文に必ず残す余白」として下限保証する
 export const MIN_DESC_AVAILABLE_RATIO = 0.15;
-export const DESC_LINE_HEIGHT_MULT = 1.375; // Tailwindのleading-snug相当
+// goofy-hatching-mango.md 実装バッチ・行重なり/グリフ欠け調査バッチ(2026-07-07)で再校正。
+// 旧値1.375(Tailwindのleading-snug相当)は、本文フォントがforeignObject内でSVGのviewBox
+// スケール変換前の極小サイズ(実測1.28〜3.4px程度のviewBox局所単位)で指定されることに起因する
+// ブラウザのテキストラスタライズ特性を考慮していなかった。Playwright実測(next start相当の
+// next dev + カードラッパーの--rotateを0degへ上書きしてAABB水増し[ideaShapes.ts本コメント
+// 下部・LINK_ROW_HEIGHT_SAFETY_MULTの校正経緯参照]を除去した上でRange#getClientRects()を
+// 全50件×3ティア×説明文全行+参照リンクタイトル全行に適用)の結果、特定のviewBox局所フォント
+// サイズ(実測でbodyVB≈2.70〜2.84付近。より小さい値・より大きい値では発生しない、内容
+// (テキスト)にもカード回転にも依存しない、要素固有の非単調な現象)で、行の実描画高さが
+// 1.375倍指定に対し最大1.4816倍(archive-29、mobileティア)まで膨らむことを確認した。これは
+// 特定の極小フォントサイズにおけるブラウザ側のグリフメトリクス丸め/ラスタライズ挙動に起因する
+// 実測済みの環境特性であり(テキスト内容・カード位置・回転角度いずれを入れ替えても再現箇所が
+// 変わらないことをA/Bテストで確認済み)、対症療法ではなく実測最大値への安全余裕として値を
+// 引き上げる(LINK_ROW_HEIGHT_SAFETY_MULT等既存の校正と同じ方針)。実測最大比1.4816に対し
+// 安全余裕1.15倍程度(1.4816×1.15≈1.704)を確保する1.7を採用した(smoke-idea-shapes.mjs・
+// scripts/smoke-idea-render-lines.mjsの全50件×3ティアでPlaywright実測ベースの行重なり
+// ゼロ・グリフ欠けゼロを確認済み)
+export const DESC_LINE_HEIGHT_MULT = 1.7;
 // 1行あたりの文字幅予算(estimateTextWidthEm)は単語境界での折返しロス(英単語が丸ごと次行に
 // 送られる等)を考慮しないため、安全側に少し削って見積もる(=必要行数を少し多めに見積もる)
 export const LINE_BUDGET_SAFETY_RATIO = 0.92;

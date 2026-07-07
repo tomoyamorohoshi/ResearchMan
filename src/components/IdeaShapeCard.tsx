@@ -77,7 +77,12 @@ export default function IdeaShapeCard({ idea, category, shape }: { idea: Idea; c
     overflowWrap: "break-word",
     wordBreak: "break-word",
   };
-  const linkStyle: CSSProperties = { fontSize: `${bodyFontSizePx}px` };
+  // H: 行重なり調査バッチ(2026-07-07)で、参照リンクタイトル(2行折返しあり)がlineHeight未指定
+  // ゆえ継承値(Tailwind preflightのhtml{line-height:1.5})に頼っていたことを発見した。
+  // DESC_LINE_HEIGHT_MULT校正の根拠(ideaShapes.ts参照)は本文と同じviewBox局所フォントサイズの
+  // ラスタライズ特性に基づくため、継承任せの1.5(実測必要比1.4816に対し安全余裕1.3%しかない
+  // 薄氷の値)ではなく、本文と同じ校正済み倍率を明示指定する
+  const linkStyle: CSSProperties = { fontSize: `${bodyFontSizePx}px`, lineHeight: DESC_LINE_HEIGHT_MULT };
   const linkLabelStyle: CSSProperties = { fontSize: `${linkLabelFontSizePx}px`, opacity: 0.75 };
 
   // H: solveFixedSizeShapeはsafeArea自体をdescRequiredHeightPx+reservedHeightPxがsafeAreaMaxGrowH
