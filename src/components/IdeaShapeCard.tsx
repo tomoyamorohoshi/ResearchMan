@@ -13,9 +13,9 @@ import {
   LINK_LABEL_TRACKING_EM,
   LINK_ROW_GAP_EM,
   LINK_TITLE_MAX_LINES,
-  shapeForIdea,
   TITLE_LETTER_SPACING_EM,
   truncateToEmBudget,
+  type IdeaShape,
 } from "@/lib/ideaShapes";
 import { dateLabelOf, type Category, type Idea } from "@/lib/ideas";
 
@@ -40,11 +40,13 @@ import { dateLabelOf, type Category, type Idea } from "@/lib/ideas";
 // xmlnsが存在しないためHTMLAttributes型にキャストして渡す
 const xhtmlNsProps = { xmlns: "http://www.w3.org/1999/xhtml" } as unknown as HTMLAttributes<HTMLDivElement>;
 
-export default function IdeaShapeCard({ idea, category }: { idea: Idea; category: Category }) {
+// A.6: shapeはIdeasPoster.tsx側でassignShapeKindsの結果を使いshapeForIdeaを1回だけ呼んで
+// 確定させたものを受け取る（goofy-hatching-mango.md 2026-07-07バッチ・コンテンツ量に応じた
+// シェイプ割り当て）。以前は本コンポーネントとIdeasPoster.tsxの両方でshapeForIdeaを個別に
+// 呼んでいたため「同じ引数を渡さないとcropAspect/safeAreaが食い違う」という注意点があったが、
+// 呼び出しを1箇所に集約したことでこの注意点自体が構造的に解消された
+export default function IdeaShapeCard({ idea, category, shape }: { idea: Idea; category: Category; shape: IdeaShape }) {
   const dateLabel = dateLabelOf(idea);
-  // G: idea.seed(説明文)・refsをshapeForIdeaに渡し、safeArea探索が説明文全文＋参照リンクに
-  // 必要な高さを最優先で確保しようとするようにする（ideaShapes.tsのcomputeSafeArea参照）
-  const shape = shapeForIdea(idea.id, idea.title, dateLabel, { seed: idea.seed, refs: idea.refs });
   const dateArcId = `idea-date-arc-${idea.id}`;
   const titleArcId = `idea-title-arc-${idea.id}`;
   const ruleColor = category.text === "#1f1f1f" ? "rgba(31,31,31,0.32)" : "rgba(244,240,230,0.4)";

@@ -1,6 +1,13 @@
 import type { CSSProperties } from "react";
 import { shapeForIdea } from "@/lib/ideaShapes";
-import { computeCollageLayout, TIER_REF_WIDTH_PX, type CollageCardInput, type CollageTier } from "@/lib/ideaCollageLayout";
+import {
+  assignShapeKinds,
+  computeCollageLayout,
+  TIER_REF_WIDTH_PX,
+  type CollageCardInput,
+  type CollageTier,
+  type IdeaContentInput,
+} from "@/lib/ideaCollageLayout";
 import { categoryOf, dateLabelOf, existingCategories, type Idea } from "@/lib/ideas";
 import IdeaShapeCard from "@/components/IdeaShapeCard";
 
@@ -30,11 +37,34 @@ const TIER_VISIBILITY_CLASS: Record<CollageTier, string> = {
 export default function IdeasPoster({ ideas, techDomainById }: { ideas: Idea[]; techDomainById: Map<string, string> }) {
   const legend = existingCategories(ideas, techDomainById);
 
-  // G: IdeaShapeCardと同じcontent引数を渡す(shapeForIdeaは純関数なので、両呼び出し元で
-  // 同じ引数を渡さないとcropAspect/safeAreaが食い違う。旧IdeasPoster.tsxから継続の注意点)
+  // A.5/A.6: コンテンツ量に応じたシェイプ割り当て（goofy-hatching-mango.md 2026-07-07バッチ・
+  // 可読性の根治）。assignShapeKindsを1回呼び、得たMapのkind/generousでshapeForIdeaを
+  // 1回だけ呼んでshapeを確定させる（IdeaShapeCardは受け取ったshapeをそのまま使い、
+  // 内部で再度shapeForIdeaを呼ばない＝呼び出しを1箇所に集約）
+  const contentInputs: IdeaContentInput[] = ideas.map((idea) => ({
+    id: idea.id,
+    title: idea.title,
+    dateLabel: dateLabelOf(idea),
+    seed: idea.seed,
+    refs: idea.refs,
+  }));
+  const assignments = assignShapeKinds(contentInputs);
+  const shapeById = new Map(
+    ideas.map((idea) => {
+      const assignment = assignments.get(idea.id);
+      const shape = shapeForIdea(
+        idea.id,
+        idea.title,
+        dateLabelOf(idea),
+        { seed: idea.seed, refs: idea.refs },
+        assignment && { forceKind: assignment.kind, generous: assignment.generous },
+      );
+      return [idea.id, shape] as const;
+    }),
+  );
   const cards: CollageCardInput[] = ideas.map((idea) => ({
     id: idea.id,
-    shape: shapeForIdea(idea.id, idea.title, dateLabelOf(idea), { seed: idea.seed, refs: idea.refs }),
+    shape: shapeById.get(idea.id)!,
     seedText: idea.seed,
     refs: idea.refs,
   }));
@@ -92,7 +122,7 @@ export default function IdeasPoster({ ideas, techDomainById }: { ideas: Idea[]; 
                   className="group absolute pointer-events-none z-0 transition-transform duration-150 ease-out [transform:rotate(var(--rotate))] motion-safe:hover:[transform:rotate(var(--rotate))_scale(1.02)] motion-safe:hover:z-50"
                   style={style}
                 >
-                  <IdeaShapeCard idea={idea} category={category} />
+                  <IdeaShapeCard idea={idea} category={category} shape={shapeById.get(idea.id)!} />
                 </div>
               );
             })}

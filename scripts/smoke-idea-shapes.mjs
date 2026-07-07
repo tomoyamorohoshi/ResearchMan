@@ -11,10 +11,9 @@ import {
   ARC_LENGTH_MARGIN,
   estimateReservedLinksHeightPx,
   fitDescription,
-  DESC_FONT_PHYSICAL_FLOOR_PX,
   outlineToLayoutSpace,
 } from "../src/lib/ideaShapes.ts";
-import { computeCollageLayout } from "../src/lib/ideaCollageLayout.ts";
+import { computeCollageLayout, assignShapeKinds, DESC_FONT_PHYSICAL_FLOOR_PX } from "../src/lib/ideaCollageLayout.ts";
 
 let failures = 0;
 function assert(cond, message) {
@@ -170,9 +169,13 @@ const testCases = [];
 for (let i = 0; i < 300; i++) {
   testCases.push({ id: `smoke-test-idea-${i}`, title: `テスト用アイデアタイトル${i}号`, date: "2026.07.03" });
 }
-// 実データのidも混ぜる（実運用の40タイトル全件で切り詰めゼロを機械確認する本題）
+// 実データのidも混ぜる（実運用の50タイトル全件で切り詰めゼロを機械確認する本題）
+// A.6: ideasDataはここで1回だけ読み込み、以後の3ブロック(説明文フィットチェック・シェイプ
+// 全ユニーク化チェック・B.4パズルカーニングチェック)でも使い回す(goofy-hatching-mango.md
+// 2026-07-07バッチ・コンテンツ量に応じたシェイプ割り当て)
+let ideasData = null;
 try {
-  const { default: ideasData } = await import("../data/ideas.json", { with: { type: "json" } });
+  ({ default: ideasData } = await import("../data/ideas.json", { with: { type: "json" } }));
   for (const idea of ideasData) {
     const dateLabel = idea.date ? idea.date.replaceAll("-", ".") : "ARCHIVE";
     testCases.push({ id: idea.id, title: idea.title, date: dateLabel });
@@ -190,6 +193,44 @@ for (const { label, title } of syntheticTitles) {
   for (let i = 0; i < 20; i++) {
     testCases.push({ id: `synthetic-${label}-${i}`, title, date: "2026.07.03", synthetic: label });
   }
+}
+
+// A.5/A.6: assignShapeKindsを1回呼び、実データ50件のshapeをコンテンツ量に応じて確定させる
+// (goofy-hatching-mango.md 2026-07-07バッチ・可読性の根治)。以後の3ブロックはこの
+// ideaShapesByIdを使い回す(3箇所バラバラにshapeForIdeaを呼ばない)。
+// assignShapeKindsのフォールバック(3-d、全9種×浅い変種でも3ティアいずれかで下限未達)発動時の
+// console.warnを一時的にフックしてカウントする(受け入れ条件は0件。実測結果は最終報告に記載)
+const ideaShapesById = new Map();
+const assignFallbackWarnings = [];
+if (ideasData) {
+  const contentInputs = ideasData.map((idea) => ({
+    id: idea.id,
+    title: idea.title,
+    dateLabel: idea.date ? idea.date.replaceAll("-", ".") : "ARCHIVE",
+    seed: idea.seed,
+    refs: idea.refs,
+  }));
+  const originalWarn = console.warn;
+  console.warn = (msg) => {
+    assignFallbackWarnings.push(msg);
+    originalWarn(msg);
+  };
+  const assignments = assignShapeKinds(contentInputs);
+  console.warn = originalWarn;
+  for (const c of contentInputs) {
+    const assignment = assignments.get(c.id);
+    const shape = shapeForIdea(
+      c.id,
+      c.title,
+      c.dateLabel,
+      { seed: c.seed, refs: c.refs },
+      assignment && { forceKind: assignment.kind, generous: assignment.generous },
+    );
+    ideaShapesById.set(c.id, shape);
+  }
+  console.log(
+    `assignShapeKinds: フォールバック(3-d、全9種×浅い変種でも3ティアいずれかで下限未達)発動件数=${assignFallbackWarnings.length}/${ideasData.length}件`,
+  );
 }
 
 const kindsSeen = new Set();
@@ -489,11 +530,9 @@ console.log(`フォールバック発動元: ${fallbackTriggeredBy.size > 0 ? [.
 {
   let descChecked = 0;
   let notFitCount = 0;
-  try {
-    const { default: ideasData } = await import("../data/ideas.json", { with: { type: "json" } });
+  if (ideasData) {
     for (const idea of ideasData) {
-      const dateLabel = idea.date ? idea.date.replaceAll("-", ".") : "ARCHIVE";
-      const shape = shapeForIdea(idea.id, idea.title, dateLabel, { seed: idea.seed, refs: idea.refs });
+      const shape = ideaShapesById.get(idea.id);
       const hasRefs = idea.refs.length > 0;
       const reserved = hasRefs ? estimateReservedLinksHeightPx(shape.viewBoxW, shape.safeArea.w, idea.refs) : 0;
       const fit = fitDescription(shape.viewBoxW, shape.safeArea.w, shape.safeArea.h, reserved, idea.seed);
@@ -505,7 +544,7 @@ console.log(`フォールバック発動元: ${fallbackTriggeredBy.size > 0 ? [.
     console.log(
       `説明文フィットチェック: ${descChecked}件 (DESC_FONT_FLOOR_RATIOでも数式上収まらずforeignObject拡張に委ねたケース: ${notFitCount}件)`,
     );
-  } catch {
+  } else {
     console.warn("data/ideas.json の読み込みをスキップ（説明文フィットチェックは対象外）");
   }
 }
@@ -550,11 +589,9 @@ console.log(`フォールバック発動元: ${fallbackTriggeredBy.size > 0 ? [.
   // 拡大前は最小0.0287(arch)まで近接していたペアが実測で見つかった。拡大後は0.0429まで改善
   // (2026-07-07時点)。この改善を下回る退行を検知するしきい値として設定する
   const UNIQUENESS_MIN_DIST_THRESHOLD = 0.035;
-  try {
-    const { default: ideasData } = await import("../data/ideas.json", { with: { type: "json" } });
+  if (ideasData) {
     const shapes = ideasData.map((idea) => {
-      const dateLabel = idea.date ? idea.date.replaceAll("-", ".") : "ARCHIVE";
-      const shape = shapeForIdea(idea.id, idea.title, dateLabel, { seed: idea.seed, refs: idea.refs });
+      const shape = ideaShapesById.get(idea.id);
       const pts = densePointsFromPath(shape.outlinePath, 16);
       return { id: idea.id, kind: shape.kind, profile: radiusProfile(pts) };
     });
@@ -585,7 +622,7 @@ console.log(`フォールバック発動元: ${fallbackTriggeredBy.size > 0 ? [.
       globalMin >= UNIQUENESS_MIN_DIST_THRESHOLD,
       `シェイプの同一種ペアが全て閾値以上に区別可能 (実測最小=${globalMin.toFixed(4)}, 閾値=${UNIQUENESS_MIN_DIST_THRESHOLD})`,
     );
-  } catch {
+  } else {
     console.warn("data/ideas.json の読み込みをスキップ（シェイプ全ユニーク化チェックは対象外）");
   }
 }
@@ -622,13 +659,13 @@ console.log(`フォールバック発動元: ${fallbackTriggeredBy.size > 0 ? [.
     return Math.sqrt(min);
   }
 
-  try {
-    const { default: ideasData } = await import("../data/ideas.json", { with: { type: "json" } });
-    const cards = ideasData.map((idea) => {
-      const dateLabel = idea.date ? idea.date.replaceAll("-", ".") : "ARCHIVE";
-      const shape = shapeForIdea(idea.id, idea.title, dateLabel, { seed: idea.seed, refs: idea.refs });
-      return { id: idea.id, shape, seedText: idea.seed, refs: idea.refs };
-    });
+  if (ideasData) {
+    const cards = ideasData.map((idea) => ({
+      id: idea.id,
+      shape: ideaShapesById.get(idea.id),
+      seedText: idea.seed,
+      refs: idea.refs,
+    }));
 
     for (const tier of ["mobile", "compact", "wide"]) {
       const layout1 = computeCollageLayout(cards, tier);
@@ -686,21 +723,18 @@ console.log(`フォールバック発動元: ${fallbackTriggeredBy.size > 0 ? [.
         assert(ratio > 0.5, `collageLayout[${tier}]: 0-14px比率が過半 (実測=${(ratio * 100).toFixed(1)}%)`);
       }
 
-      // A.2: 物理フォント下限。descFit.fontSizePx(viewBox単位)×(実レンダリング幅px÷cropViewBox.w)。
-      // wide/compact/mobileの順でティア基準幅自体が小さくなるため、行いっぱい(colSpan=12)まで
-      // 拡大してもなお下限に届かないカードが一定数残ることが実測で判明している(計画書「実装時に
-      // 判明した追加知見」参照。レイアウト側では解決不能な構造的限界のため、下回る件数が
-      // 現状の実測値から悪化していないことだけを回帰ガードとしてアサートする)
-      // 2026-07-07バッチ・A.1再校正後の実測値: mobile 39→30件(最悪1.55px)・compact 30→18件
-      // (最悪2.29px)・wide 9→7件(最悪3.82px)（この時点ではDESC_FONT_PHYSICAL_FLOOR_PX=9px）。
-      // その後Fableが実装完了後の検証で、9px達成のためのカード拡大がB(パズルカーニング)の
-      // 敷き詰め感を実質的に破壊する(行の大半が1カードのみの単一列になる)ことを発見し、
-      // DESC_FONT_PHYSICAL_FLOOR_PX を5pxへ引き下げた(ideaShapes.ts該当箇所のコメント参照。
-      // 計画への疑義として最終報告に記載)。5px時点の実測値: mobile 15/50(最悪1.55px)・
-      // compact 6/50(最悪2.29px)・wide 1/50(最悪3.82px)。REGRESSION_CEILINGもこれに合わせて
-      // 引き下げる
+      // A.4: 物理フォント下限（ティアごと。goofy-hatching-mango.md 2026-07-07バッチ・
+      // コンテンツ量に応じたシェイプ割り当てで根治）。descFit.fontSizePx(viewBox単位)×
+      // (実レンダリング幅px÷cropViewBox.w)。前バッチ(d40b611)まではhashのみのシェイプ選択で
+      // 全ティア共通floor=5pxでもmobile 15/50・compact 6/50・wide 1/50が未達だった
+      // （当初目標9pxはさらに未達が多く、達成のためのカード拡大がパズルカーニングの
+      // 敷き詰め感を破壊するため妥協されていた）。本バッチのassignShapeKindsが、hashデフォルト
+      // シェイプで下限に届かないカードだけを「下限を満たせるシェイプ種(必要なら複雑形の浅い
+      // 変種)」に選び直すことで、実効下限をwide/compact=8px・mobile=7pxへ引き上げてもなお
+      // 全50件×3ティアで下限未達ゼロを達成することが受け入れ条件（下記assert(belowFloor===0)）
       let belowFloor = 0;
       let worstPx = Infinity;
+      const floorPx = DESC_FONT_PHYSICAL_FLOOR_PX[tier];
       for (let i = 0; i < cards.length; i++) {
         const c = cards[i];
         const p = layout1.placements[i];
@@ -711,26 +745,16 @@ console.log(`フォールバック発動元: ${fallbackTriggeredBy.size > 0 ? [.
         const scale = content.width / c.shape.cropViewBox.w;
         const physicalFontPx = descFit.fontSizePx * scale;
         assert(Number.isFinite(physicalFontPx) && physicalFontPx > 0, `collageLayout[${tier}]: ${c.id} 物理フォントサイズが正の有限値`);
-        if (physicalFontPx < DESC_FONT_PHYSICAL_FLOOR_PX - 1e-6) belowFloor++;
+        if (physicalFontPx < floorPx - 1e-6) belowFloor++;
         if (physicalFontPx < worstPx) worstPx = physicalFontPx;
       }
       console.log(
-        `  (情報) collageLayout[${tier}]: 物理フォント下限(${DESC_FONT_PHYSICAL_FLOOR_PX}px)未達=${belowFloor}/${cards.length}件, 最悪値=${worstPx.toFixed(2)}px`,
+        `  (情報) collageLayout[${tier}]: 物理フォント下限(${floorPx}px)未達=${belowFloor}/${cards.length}件, 最悪値=${worstPx.toFixed(2)}px`,
       );
-      // 実測基準の回帰ガード上限(DESC_FONT_PHYSICAL_FLOOR_PX=5px時点の実測値=mobile 15/
-      // compact 6/wide 1に、数件ぶんの余裕を持たせた値。tier毎にティア基準幅自体の制約で異なる)
-      const REGRESSION_CEILING = { mobile: 18, compact: 9, wide: 3 };
-      assert(
-        belowFloor <= REGRESSION_CEILING[tier],
-        `collageLayout[${tier}]: 物理フォント下限未達件数が回帰していない (実測=${belowFloor}, 上限=${REGRESSION_CEILING[tier]})`,
-      );
+      assert(belowFloor === 0, `collageLayout[${tier}]: 物理フォント下限未達がゼロ (実測=${belowFloor}, 下限=${floorPx}px)`);
     }
-  } catch (e) {
-    if (e && e.code === "ERR_MODULE_NOT_FOUND") {
-      console.warn("data/ideas.json の読み込みをスキップ（パズルカーニングチェックは対象外）");
-    } else {
-      throw e;
-    }
+  } else {
+    console.warn("data/ideas.json の読み込みをスキップ（パズルカーニングチェックは対象外）");
   }
 }
 

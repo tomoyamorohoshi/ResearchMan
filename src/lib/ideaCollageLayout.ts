@@ -11,13 +11,17 @@
 // 純関数・決定論（Math.random不使用。hashId(id)由来のジッタのみ）。
 import { hashId } from "./graph";
 import {
-  DESC_FONT_PHYSICAL_FLOOR_PX,
   estimateReservedLinksHeightPx,
   fitDescription,
+  isComplexShapeKind,
+  KIND_WEIGHT,
   outlineToLayoutSpace,
+  SHAPE_KINDS,
+  shapeForIdea,
   type ContentRef,
   type IdeaShape,
   type Point,
+  type ShapeKind,
 } from "./ideaShapes";
 
 export type CollageTier = "mobile" | "compact" | "wide";
@@ -25,10 +29,32 @@ export type CollageTier = "mobile" | "compact" | "wide";
 // 実装詳細補足B.1: 各ティアの基準幅(px)。CSSのレスポンシブdisplayクラスで切替え、
 // コンテナは`width:100%; aspect-ratio: 基準幅/計算済み合計高さ`によりこの基準幅1回の
 // サーバー計算のみで任意の実viewport幅へ比率保存のままフルイドスケールする
+// B.2: mobileはIdeasPoster.tsxのコンテナが`px-4`(16px×2=32px)を差し引く必要がある
+// (compact/wideは`sm:px-8`=32px×2=64pxを既に差し引き済み=576=640-64・960=1024-64だったが、
+// mobileの390はこの差し引きが漏れていた設計不整合。goofy-hatching-mango.md 2026-07-07バッチで
+// 390-2×16=358に修正)
 export const TIER_REF_WIDTH_PX: Record<CollageTier, number> = {
-  mobile: 390,
+  mobile: 358,
   compact: 576,
   wide: 960,
+};
+
+// A.4: 説明文の実表示サイズ（物理px、viewBox非依存）のティアごとの下限。goofy-hatching-mango.md
+// 2026-07-07バッチ（コンテンツ量に応じたシェイプ割り当て）。旧ideaShapes.tsのDESC_FONT_
+// PHYSICAL_FLOOR_PX（全ティア共通5px）をここへ移設し、ティアごとの値に変えた。
+//
+// 経緯: 当初計画の目安は9pxだったが、前バッチ(d40b611)の実測でhashのみに基づくシェイプ選択
+// では9px達成のためのカード拡大がパズルカーニングの敷き詰め感を実質的に破壊すること
+// (行の大半が1カードのみの単一列になる)が判明し、5pxへ妥協した（ideaShapes.tsの旧コメント
+// 参照）。本バッチはこの妥協を根治する: assignShapeKinds（下記）がコンテンツ量（説明文の
+// 長さ・参照リンク数）に応じてsafeArea比率の大きいシェイプ種を優先的に割り当てることで、
+// カードを過度に拡大しなくても下限に届くようにした。これにより実効値を
+// wide/compact=8px・mobile=7pxへ引き上げ、全50カード×3ティアで下限未達ゼロを達成する
+// （受け入れ条件。scripts/smoke-idea-shapes.mjsのbelowFloor===0アサート参照）
+export const DESC_FONT_PHYSICAL_FLOOR_PX: Record<CollageTier, number> = {
+  mobile: 7,
+  compact: 8,
+  wide: 8,
 };
 
 export type CollageCardInput = {
@@ -110,24 +136,32 @@ function fitContentSize(boxWidthPx: number, boxHeightPx: number, contentAspect: 
   return { width, height: width / contentAspect };
 }
 
-// A.2: 物理フォント下限保証。descFit.fontSizePx(viewBox単位)は物理レンダリングサイズと
-// 無関係(純粋にshape/seed/refsだけで決まる)なため、ボックス幅を大きくすれば実画面上の
-// フォントサイズは線形に比例して大きくなる。よって反復探索は不要で、必要なスケール倍率を
-// 閉じた式で解ける: requiredScale = floorPx / physicalFontPx
-function ensurePhysicalFontFloor(card: CollageCardInput, tierRefWidthPx: number, baseColSpan: number): number {
+// A.3: physicalFontPxFor純関数として切り出す(goofy-hatching-mango.md 2026-07-07バッチ・
+// コンテンツ量に応じたシェイプ割り当て)。ensurePhysicalFontFloorとassignShapeKindsの
+// feasibility判定の両方から同じ式を呼ぶことで、二重実装によるズレを防ぐ
+function physicalFontPxFor(card: CollageCardInput, tierRefWidthPx: number, colSpan: number): number {
   const { shape, seedText, refs } = card;
   const hasRefs = refs.length > 0;
   const reserved = hasRefs ? estimateReservedLinksHeightPx(shape.viewBoxW, shape.safeArea.w, refs) : 0;
   const descFit = fitDescription(shape.viewBoxW, shape.safeArea.w, shape.safeAreaMaxGrowH, reserved, seedText);
-
-  const naturalWidthPx = (baseColSpan / TOTAL_COLS) * tierRefWidthPx;
+  const naturalWidthPx = (colSpan / TOTAL_COLS) * tierRefWidthPx;
   const boxAspect = clampBoxAspect(shape.cropAspect);
   const naturalHeightPx = naturalWidthPx / boxAspect;
   const content = fitContentSize(naturalWidthPx, naturalHeightPx, shape.cropAspect);
   const scale = content.width / shape.cropViewBox.w;
-  const physicalFontPx = descFit.fontSizePx * scale;
-  if (physicalFontPx >= DESC_FONT_PHYSICAL_FLOOR_PX || physicalFontPx <= 0) return baseColSpan;
-  const requiredScale = DESC_FONT_PHYSICAL_FLOOR_PX / physicalFontPx;
+  return descFit.fontSizePx * scale;
+}
+
+// A.2/A.4: 物理フォント下限保証。descFit.fontSizePx(viewBox単位)は物理レンダリングサイズと
+// 無関係(純粋にshape/seed/refsだけで決まる)なため、ボックス幅を大きくすれば実画面上の
+// フォントサイズは線形に比例して大きくなる。よって反復探索は不要で、必要なスケール倍率を
+// 閉じた式で解ける: requiredScale = floorPx / physicalFontPx
+// A.4: floorはティアごとの値(DESC_FONT_PHYSICAL_FLOOR_PX[tier])を使う
+function ensurePhysicalFontFloor(card: CollageCardInput, tierRefWidthPx: number, baseColSpan: number, tier: CollageTier): number {
+  const physicalFontPx = physicalFontPxFor(card, tierRefWidthPx, baseColSpan);
+  const floor = DESC_FONT_PHYSICAL_FLOOR_PX[tier];
+  if (physicalFontPx >= floor || physicalFontPx <= 0) return baseColSpan;
+  const requiredScale = floor / physicalFontPx;
   return baseColSpan * requiredScale;
 }
 
@@ -137,10 +171,106 @@ function ensurePhysicalFontFloor(card: CollageCardInput, tierRefWidthPx: number,
 // レイアウトの意味を成さないため。実データではこの上限に到達しない想定）
 const ABSOLUTE_MAX_COL_SPAN = TOTAL_COLS;
 
-function resolveNaturalColSpan(card: CollageCardInput, tierRefWidthPx: number): number {
+function resolveNaturalColSpan(card: CollageCardInput, tierRefWidthPx: number, tier: CollageTier): number {
   const base = baseNaturalColSpan(card.id, card.shape.cropAspect);
-  const floorAdjusted = ensurePhysicalFontFloor(card, tierRefWidthPx, base);
+  const floorAdjusted = ensurePhysicalFontFloor(card, tierRefWidthPx, base, tier);
   return Math.min(ABSOLUTE_MAX_COL_SPAN, floorAdjusted);
+}
+
+// ── A.5: コンテンツ量に応じたシェイプ割り当て ────────────────────────────────
+// goofy-hatching-mango.md 2026-07-07バッチ（可読性の根治）。従来はshapeForIdeaがhashId(id)だけで
+// シェイプ種を決めていたため、safeAreaの狭い形(lNotch/splat等)に長文が割り当たると、カードを
+// 行幅いっぱいに拡大しても物理フォント下限に届かないケースが残っていた(前バッチの妥協:
+// DESC_FONT_PHYSICAL_FLOOR_PXを5pxへ引き下げ)。本関数は各ideaについて、
+// (1) hashベースのデフォルト種で3ティアとも下限を満たせるならそのまま採用（短文カードは
+//     従来どおりhashで自由に選ぶ＝複雑形が自然と短文側に集まる）、
+// (2) 満たせない場合のみ、9種(＋複雑形4種は浅い変種も)を全探索し、3ティアとも下限を満たせる
+//     候補の集合からKIND_WEIGHTの重みでhash順に1つ選ぶ（満たせる種が複数あれば複雑形も選択肢に
+//     残る＝全体の複雑さ低下を最小化）、
+// (3) それでも候補が0件の場合のみ、3ティアの「達成px/下限px」の最小値(マージン比)を最大化する
+//     (kind,generous)を選ぶフォールバック（この分岐が発動した場合はconsole.warnで通知する。
+//     実データ50件で発動しないことが受け入れ条件）
+// という優先順位で決定論的に(kind, generous)を決める。ジッタシードはshapeForIdea内部で
+// hashId(id)から導出されるため、種が変わっても全図形ユニーク性・決定論は自動的に維持される
+export type IdeaContentInput = {
+  id: string;
+  title: string;
+  dateLabel: string;
+  seed: string;
+  refs: readonly ContentRef[];
+};
+
+export type ShapeAssignment = { kind: ShapeKind; generous: boolean };
+
+// feasibility判定・フォールバックのマージン比計算はどちらも「3ティアとも行幅いっぱい
+// (colSpan=ABSOLUTE_MAX_COL_SPAN)まで拡大した場合の物理フォントpx」を評価する。実際のレイアウトが
+// この列幅まで拡大するとは限らないが、「この種を選べば理論上下限に届き得るか」を判定する
+// feasibility探索としてはこれが正しい評価点になる(実際のcolSpan決定はresolveNaturalColSpanが
+// 別途行う)
+const ASSIGN_FEASIBILITY_EPS = 1e-6;
+const ASSIGN_TIERS: readonly CollageTier[] = ["mobile", "compact", "wide"];
+
+function probeTierFontPx(shape: IdeaShape, seedText: string, refs: readonly ContentRef[]): { tier: CollageTier; px: number; floor: number }[] {
+  return ASSIGN_TIERS.map((tier) => {
+    const card: CollageCardInput = { id: "assign-probe", shape, seedText, refs };
+    const px = physicalFontPxFor(card, TIER_REF_WIDTH_PX[tier], ABSOLUTE_MAX_COL_SPAN);
+    return { tier, px, floor: DESC_FONT_PHYSICAL_FLOOR_PX[tier] };
+  });
+}
+
+function isFeasibleAtFullWidth(probes: readonly { px: number; floor: number }[]): boolean {
+  return probes.every((p) => p.px >= p.floor - ASSIGN_FEASIBILITY_EPS);
+}
+
+function marginRatio(probes: readonly { px: number; floor: number }[]): number {
+  return Math.min(...probes.map((p) => p.px / p.floor));
+}
+
+export function assignShapeKinds(ideas: readonly IdeaContentInput[]): Map<string, ShapeAssignment> {
+  const result = new Map<string, ShapeAssignment>();
+  for (const idea of ideas) {
+    const content = { seed: idea.seed, refs: idea.refs };
+
+    const defaultShape = shapeForIdea(idea.id, idea.title, idea.dateLabel, content);
+    if (isFeasibleAtFullWidth(probeTierFontPx(defaultShape, idea.seed, idea.refs))) {
+      result.set(idea.id, { kind: defaultShape.kind, generous: false });
+      continue;
+    }
+
+    // 満たせない場合のみ、9種(複雑形は通常/浅い変種の両方)を全探索する
+    type Evaluated = { kind: ShapeKind; generous: boolean; feasible: boolean; margin: number };
+    const evaluated: Evaluated[] = [];
+    for (const kind of SHAPE_KINDS) {
+      const shape = shapeForIdea(idea.id, idea.title, idea.dateLabel, content, { forceKind: kind });
+      const probes = probeTierFontPx(shape, idea.seed, idea.refs);
+      evaluated.push({ kind, generous: false, feasible: isFeasibleAtFullWidth(probes), margin: marginRatio(probes) });
+      if (isComplexShapeKind(kind)) {
+        const gShape = shapeForIdea(idea.id, idea.title, idea.dateLabel, content, { forceKind: kind, generous: true });
+        const gProbes = probeTierFontPx(gShape, idea.seed, idea.refs);
+        evaluated.push({ kind, generous: true, feasible: isFeasibleAtFullWidth(gProbes), margin: marginRatio(gProbes) });
+      }
+    }
+
+    const feasibleCandidates = evaluated.filter((e) => e.feasible);
+    if (feasibleCandidates.length > 0) {
+      // KIND_WEIGHTと同じ考え方で重み展開したリストからhashId(id)で決定論的に1つ選ぶ
+      const weighted = feasibleCandidates.flatMap((c) => Array<Evaluated>(KIND_WEIGHT[c.kind]).fill(c));
+      const picked = weighted[hashId(idea.id) % weighted.length];
+      result.set(idea.id, { kind: picked.kind, generous: picked.generous });
+      continue;
+    }
+
+    // フォールバック: 9種×variant全探索でも3ティアいずれかで下限未達だった場合のみ、
+    // マージン比(達成px/下限pxの3ティア最小値)を最大化する組み合わせを選ぶ
+    let best = evaluated[0];
+    for (const e of evaluated) if (e.margin > best.margin) best = e;
+    console.warn(
+      `assignShapeKinds: ${idea.id} は全9種×浅い変種でも3ティアいずれかの物理フォント下限に届かない。` +
+        `最もマージン比の高い組み合わせへフォールバック (kind=${best.kind}, generous=${best.generous}, マージン比=${best.margin.toFixed(3)})`,
+    );
+    result.set(idea.id, { kind: best.kind, generous: best.generous });
+  }
+  return result;
 }
 
 // ── カーニング探索（B.3: 粗探索→二分探索の2段階 + 非重なり防御チェック） ──────────────
@@ -256,8 +386,8 @@ type PreparedCard = {
   gapV: number; // 直前行との垂直目標ギャップ(2〜8px。行の代表として先頭カードの値を使う)
 };
 
-function prepareCard(input: CollageCardInput, tierRefWidthPx: number): PreparedCard {
-  const colSpan = resolveNaturalColSpan(input, tierRefWidthPx);
+function prepareCard(input: CollageCardInput, tierRefWidthPx: number, tier: CollageTier): PreparedCard {
+  const colSpan = resolveNaturalColSpan(input, tierRefWidthPx, tier);
   const boxWidthPx = (colSpan / TOTAL_COLS) * tierRefWidthPx;
   const boxAspect = clampBoxAspect(input.shape.cropAspect);
   const boxHeightPx = boxWidthPx / boxAspect;
@@ -370,7 +500,7 @@ function kernRowVertically(
 // compact/wideティア: 行詰め+水平・垂直カーニングの両方
 function computeGridTierLayout(cards: readonly CollageCardInput[], tier: "compact" | "wide"): CollageLayoutResult {
   const tierRefWidthPx = TIER_REF_WIDTH_PX[tier];
-  const prepared = cards.map((c) => prepareCard(c, tierRefWidthPx));
+  const prepared = cards.map((c) => prepareCard(c, tierRefWidthPx, tier));
   const rows = packRows(prepared);
 
   const placementById = new Map<string, CardPlacement>();
@@ -428,7 +558,7 @@ function computeMobileTierLayout(cards: readonly CollageCardInput[]): CollageLay
   for (const input of cards) {
     // mobileは常にフル幅(colSpan=12固定。既存MOBILE_FULLと同じ思想)。物理下限はフル幅到達後の
     // 値をそのまま使う(これ以上ボックスを広げる余地がないため。実データでは未発動想定)
-    const prepared = prepareCard(input, tierRefWidthPx);
+    const prepared = prepareCard(input, tierRefWidthPx, "mobile");
     const boxWidthPx = tierRefWidthPx;
     const boxAspect = clampBoxAspect(input.shape.cropAspect);
     const boxHeightPx = boxWidthPx / boxAspect;
