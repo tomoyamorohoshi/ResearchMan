@@ -1,5 +1,338 @@
 [
   {
+    "id": "ternlight-ai-2026",
+    "title": "ternlight（軽量AI埋め込みライブラリ）",
+    "summary": "AIモデルを1.58bit三値量子化で5〜7MBまで圧縮、WebAssemblyでサーバー不要のブラウザ内埋め込み検索を実現するOSSライブラリ",
+    "client": "",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://gigazine.net/news/20260707-ternlight-webassembly-embeddings/",
+    "thumbnail": "/thumbnails/ternlight-ai-2026.jpg",
+    "videoId": "",
+    "overview": "ternlightは個人開発者Wen Shu Tang氏が公開したOSSライブラリ。all-MiniLM-L6-v2から蒸留したセンテンスエンコーダーを1.58bit三値量子化し、Rustで書いた推論エンジンをWebAssembly(SIMD)にコンパイル。@ternlight/base(7MB・約5ms/embedding)と@ternlight/mini(5MB・約2.5ms/embedding)の2種を提供し、Node、ブラウザ、Cloudflare Workers、Vercel Edge、Deno、Bunで動作する。",
+    "background": "従来、ブラウザ内でセマンティック検索を行うには埋め込み生成をサーバーAPI経由で行う必要があり、100〜300ミリ秒のAPI往復遅延や利用コスト、オフライン非対応が課題だった。ternlightはこの制約を解消するため、モデルサイズを極限まで圧縮する三値量子化と、ネイティブに近い速度を出すRust+WASM SIMD実装を組み合わせ、サーバーなしでのオンデバイス推論を可能にした。",
+    "execution": "開発者はall-MiniLM-L6-v2を量子化認識訓練(QAT)で蒸留し、重みを{-1,0,+1}の三値、埋め込みテーブルをint4に圧縮。推論エンジンはゼロからRustで実装しWASM SIMDにコンパイルすることでネイティブに近い速度を確保した。MITライセンスのnpmパッケージ(@ternlight/base、@ternlight/mini)として公開し、React公式ドキュメントの意味検索デモサイトも用意して実用性を提示している。",
+    "evaluationImpact": "5〜7MBという軽量さでサーバー不要のセマンティック検索を実現した点が、Hacker Newsや複数の技術メディアで取り上げられ話題化。プライバシー配慮が必要な文書検索やAPI課金を避けたいスタートアップなど、静的サイト・エッジ環境でのAI活用のハードルを下げる事例として注目されている。ただし公式アワードでの受賞は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "ternlight demo (React docs semantic search)",
+        "description": "React公式ドキュメントを対象にternlightのブラウザ内セマンティック検索を体験できる公式デモサイト",
+        "url": "https://ternlight-demo.vercel.app/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/Web",
+      "Form/Website",
+      "Form/Product"
+    ]
+  },
+  {
+    "id": "live-fast-die-old-breathtaking-roads-2026",
+    "title": "Live Fast, Die Old（Breathtaking Roadsキャンペーン最新作）",
+    "summary": "スコットランドの道路自体が語り手となりバイカーに呼びかける、8年続くBreathtaking Roadsシリーズ最新作。マンガ調ポスターを展開。",
+    "client": "Scottish Government / Road Safety Scotland",
+    "agency": "Leith",
+    "categories": [
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/live-fast-die-old",
+    "thumbnail": "/thumbnails/live-fast-die-old-breathtaking-roads-2026.jpg",
+    "videoId": "",
+    "overview": "Scottish GovernmentとLeithによる、2026年7月公開の新作道路安全キャンペーン。スコットランドの道路自体が語り手となりバイカーに直接呼びかける映像を中心に、マンガ調ビジュアルのポスターをバイカーの人気スポットに展開。VODとソーシャルでも配信し、スコットランド在住のバイク所有者約77,000人、特に45〜65歳層に向けて安全運転を促す。",
+    "background": "8年続く「Breathtaking Roads」シリーズの最新作。スコットランドのバイク死傷事故の半数以上が制限速度60マイルの地方A道路で発生し、記録されている死亡事故は全て非市街地の道路で起きている。バイク所有者の主力層である45〜65歳に高い死傷リスクが集中している現状を踏まえ、美しい風景に潜む危険への意識喚起を狙う。",
+    "execution": "映像では道路自体を語り手に見立て、ライダーへ集中と備えを呼びかける構成をとる。ポスターにはマンガ調の解釈表現を採用し、バイカーが集まる場所に掲出。展開チャネルはVODとソーシャルを中心に、ターゲットを絞った配信を実施。Leithのチームが制作を担当し、バイカーコミュニティ「Live Fast Die Old」のブランド世界観を継承している。",
+    "evaluationImpact": "公式のアワード受賞情報は確認できなかった。一方でキャンペーンが育ててきたFacebookコミュニティ「Live Fast Die Old」は27,000人以上のフォロワーを抱え、バイカー同士がルートや経験、アドバイスを共有する場として定着。単発の広告ではなく8年間継続するプラットフォームとしてターゲットコミュニティに根付いている点が特徴。",
+    "relatedWorks": [
+      {
+        "title": "Live Fast Die Old Motorcycle Safety Campaign（前作）",
+        "description": "同じくScottish GovernmentとLeithによるBreathtaking Roadsシリーズの過去作。バイカーの体験共有やルート提案を軸にした映像・PR展開を実施。",
+        "url": "https://sgmarketing-newsroom.prgloo.com/news/live-fast-die-old-motorcycle-safety-campaign"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Form/OOH",
+      "Theme/Mobility",
+      "Theme/Health"
+    ]
+  },
+  {
+    "id": "lego-fifa-world-cup-trophy-reveal-at-rockefeller-plaza-2026",
+    "title": "LEGO FIFA World Cup Trophy Reveal at Rockefeller Plaza",
+    "summary": "高さ8.47m・136万3402ピースで史上最大のFIFAワールドカップトロフィーをLEGOが再現、NYロックフェラープラザで一般公開。",
+    "client": "LEGO / FIFA",
+    "agency": "不明",
+    "categories": [
+      "空間体験",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://lbbonline.com/news/Cafu-LEGO-FIFA-World-Cup-Trophy",
+    "thumbnail": "/thumbnails/lego-fifa-world-cup-trophy-reveal-at-rockefeller-plaza-2026.jpg",
+    "videoId": "m7U6GmhHCNI",
+    "overview": "LEGO GroupとFIFAは、高さ8.47m・1,363,402ピースからなる史上最大のFIFAワールドカップトロフィーのレゴ再現モデルを製作。2026年7月6日、ニューヨークのロックフェラープラザで元ブラジル代表Cafuが除幕し、7月19日まで一般公開。LEGO Fan Zone開業と合わせたファン向け体験の目玉となっている。",
+    "background": "2026年FIFAワールドカップ北中米大会に向け、LEGOとFIFAはパートナーシップの一環としてファン参加型の記念インスタレーションを企画。チェコ・クラドノのモデル製作拠点で8ヶ月・7000時間超をかけて製作し、内部に約3.5トンの鋼鉄フレームを組み込んで巨大構造を実現。16パーツに分解し大西洋を渡って現地で再構築された。",
+    "execution": "59名のデザイナー・エンジニア・モデルビルダー・技術者からなるチームが製作を担当。完成したトロフィーはロックフェラープラザに設置され、元ブラジル代表Cafuが最後の1ピースを設置して除幕した。会場では来場者参加型のサッカーテーマのブロックウォール制作や、5番街LEGOストアでのオリジナルミニフィグ制作など、Fan Zone体験も同時展開された。",
+    "evaluationImpact": "FIFAワールドカップ2026の開幕を前に、ブランド認知とファンエンゲージメントを高める大型OOH的インスタレーションとして機能。136万ピース超・史上最大というスケールの分かりやすさがニュース性を生み、Wallpaper*やEuronewsなど専門・一般メディアで幅広く報道された。公式な受賞歴は現時点で確認されていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Theme/Sports",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "moonhack-2026",
+    "title": "MoonHack（ムーンハック）",
+    "summary": "歌声がハッキング技術となる新感覚リズムアクションADV「MoonHack」、ASTRA第1弾として正式始動",
+    "client": "ASTRA（Astro Production内の新規インディーゲームブランド）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://automaton-media.com/articles/newsjp/20260707-453624/",
+    "thumbnail": "/thumbnails/moonhack-2026.jpg",
+    "videoId": "",
+    "overview": "Astro Production傘下の新設インディーブランドASTRAが手がける第1弾タイトル。2125年、AIが労働・感情・恋愛までも最適化し尽くしたディストピア社会を舞台に、旧式AIの少女たちが歌声でハッキングし世界のルールを書き換えていくエモーショナル・サイバーノワールADV。3Dリズムアクションと物語パートが融合する構成で、2026年7月7日に正式発表、2027年にPC(Steam)向けにリリース予定。",
+    "background": "Astro Productionは2026年、没入感の高いストーリー・音楽・アクションを融合した体験を届けるインディーブランド「ASTRA」を新設し、MoonHackをその第1弾タイトルと位置づけた。シナリオに『コープスパーティー』原作者・祁答院慎、キャラクターデザインにNoyu、音楽にウキヨネを起用するなど、ホラー・ビジュアルノベル・音楽領域で実績のあるクリエイター陣を結集して開発された。",
+    "execution": "歌唱楽曲とシンクロする3Dリズムアクションパートと、キャラクターの心情を描く物語パートを往還する構成を採用。プレイヤーは月読カグヤ(声優:有世華望)ら旧式AIの少女たちを操作し、\"歌う\"行為そのものが管理社会のシステムをハックする力に転化する。正式発表と同時に公式サイトで複数キャラクターとキービジュアルを公開し、2027年のSteam発売を予告した。",
+    "evaluationImpact": "「音楽=ハッキング」という設定でリズムゲームとナラティブADVを違和感なく接続した点が新規性。AIによる管理社会というテーマを、少女たちの反抗と歌唱表現に落とし込みディストピアSFにエモーショナルな体験価値を付与した。英語・日本語・繁体字・簡体字に対応し、当初からグローバル展開を視野に入れている点も、新興インディーブランドの一作としては野心的。",
+    "relatedWorks": [
+      {
+        "title": "コープスパーティー",
+        "description": "シナリオ担当・祁答院慎の代表作であるホラーアドベンチャーゲームシリーズ",
+        "url": "https://corpse.jp/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Tech/AI",
+      "Form/App",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "enigmo-vr-2026",
+    "title": "Enigmo（VR版）",
+    "summary": "2003年発売の名作モバイルパズル「Enigmo」をFortell GamesがVR向けに空間化、PC VR版が2026年7月7日リリース",
+    "client": "Fortell Games",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.uploadvr.com/new-vr-games-releases-july-2026-meta-quest-pc-vr-playstation-vr2-more-2/",
+    "thumbnail": "/thumbnails/enigmo-vr-2026.jpg",
+    "videoId": "fUhBvdorg7I",
+    "overview": "Fortell Gamesが手がける空間パズルゲーム「Enigmo」。プレイヤーは部屋の空間内にパズルピースを配置し、水・プラズマ・レーザーを操って最終的な容器へと導く。Samsung Galaxy XR向けの先行独占タイトルとして展開後、2026年7月7日にPC VR（Steam）版がリリースされ、Meta Quest版も同年冬に発売予定。",
+    "background": "元となる「Enigmo」は2003年にPangea SoftwareがMac/iPhone向けに開発した物理パズルゲームで、長年App Storeで支持されてきた古典的タイトル。Fortell Gamesはこの2Dパズルの核となるメカニクスを継承しつつ、空間コンピューティング/VR時代に合わせて3次元的に再設計し、新たな体験として蘇らせた。",
+    "execution": "VR版では新たに重力レンズ「Gravetoids」、プラズマ粒子、レーザービーム、テレポーター、重力反転装置といったメカニクスを追加し、9種類のパズルピースを部屋の空間全体に配置してレーザー・プラズマ・水を目的地へ導く。ハンドトラッキングとコントローラーの両方に対応し、50のベースレベルと2つの追加パックを収録する。",
+    "evaluationImpact": "老舗モバイルIPをVR/空間コンピューティング向けに作り直す事例として、Samsung Galaxy XRの先行独占タイトルからPC VR・Meta Questへと展開するマルチプラットフォーム戦略を示す。懐かしいモバイルパズルの資産を新しいハードウェア世代の訴求力に転用する手法として、XR市場における既存IP活用の一例となっている。",
+    "relatedWorks": [
+      {
+        "title": "Holotanks",
+        "description": "Fortell Gamesが開発したMeta Quest向けルームスケール・ミックスドリアリティ対戦アドベンチャー。プレイヤーの部屋の家具配置を反映して戦場を生成する。",
+        "url": "https://fortell.games/games/holotanks"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/XR",
+      "Tech/Game",
+      "Form/App",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "xreal-xbx-01-2026",
+    "title": "XREAL xbx 01+",
+    "summary": "62gの新ブランド「xbx」第1弾ARグラスは3Dプリント自作フレーム対応、4万円台で147インチ相当の大画面を実現",
+    "client": "XREAL（新サブブランド「xbx」)",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.moguravr.com/xrearl-xbx-01-review/",
+    "thumbnail": "/thumbnails/xreal-xbx-01-2026.jpg",
+    "videoId": "",
+    "overview": "XREALが若年層・入門層向けに立ち上げた新サブブランド「xbx」の第1弾ARグラス「xbx a01+」。本体62g(フレーム込み)という軽量設計に、Dual-Layer Micro OLEDディスプレイ(1920×1080、3Dモード3840×1080)、最大輝度1600nit、視野角50度を搭載。4m先に147インチ相当の大画面表示が可能で、価格は43,980円(日本)、米国では299ドルで2026年7月発売。",
+    "background": "XREALは主力の「One」シリーズに続き、より安価な「1S」を投入した後、さらに若年層・カジュアル層を狙う戦略でサブブランドxbxを2026年5月に発表。ARグラス市場の裾野拡大と価格競争が進む中、軽量・低価格・カスタマイズ性を軸に新規ユーザー層の獲得を狙った位置づけの製品。",
+    "execution": "フロントフレームが着脱式になっており、XREALが3DデータをOBJ形式で公開。ユーザーが3Dプリンターで自分だけのフレームを自作・カスタマイズできる仕組みを用意した。ディスプレイはHDR10対応に加えAIによるSDR→HDR変換機能を搭載し、iPhone/Mac/Steam Deck/ROG Allyなど幅広いデバイスとDisplayPort Alt Mode経由で接続できる。",
+    "evaluationImpact": "62gという最軽量クラスの重量と4万円台という価格設定、そして3Dプリント自作フレームというカスタマイズ性の提案は、ARグラスを「特別なガジェット」から「気軽に使えるアクセサリー」へ転換する試みとして評価されている。ハードウェアのオープン化(3Dデータ公開)という手法自体も、AR/VR業界において先進的な事例。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/XR",
+      "Tech/Device",
+      "Tech/3D",
+      "Form/Product"
+    ]
+  },
+  {
+    "id": "sirius-2026",
+    "title": "統合レンダリングシステム「Sirius」",
+    "summary": "SGE各社が個別開発していたUnityシェーダー/レンダリング基盤を統合し、天候・昼夜遷移も一元制御する社内基盤",
+    "client": "サイバーエージェント ゲーム・エンタテインメント事業本部（SGE コアテク）",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://automaton-media.com/articles/interviewsjp/sge-20260707-453648/",
+    "thumbnail": "/thumbnails/sirius-2026.jpg",
+    "videoId": "",
+    "overview": "「Sirius」はサイバーエージェント ゲーム・エンタメ事業本部（SGE）コア技術本部が開発中の統合型レンダリングシステム。各子会社が個別に構築していたUnity向けシェーダーやレンダリングパイプラインを一本化し、昼夜サイクルや天候変化（晴れ・雨・曇り）、ボリューメトリッククラウドなどの空表現、植物の風揺らぎ表現を統一的に制御できる社内基盤として開発が進められている。",
+    "background": "SGE傘下には10以上のゲーム開発子会社があり、これまで各社が個別にグラフィックス開発を行ってきたため、類似のアニメ調表現やシェーダー実装が重複する非効率が生じていた。この課題認識から約4年前より横断的な共通レンダリング基盤づくりが始まり、2024年のCADCでも「統合スタイライズドレンダリングシステム」として発表されるなど段階的に整備が進められてきた。",
+    "execution": "SGEコア技術本部グラフィックチーム（清原隆行氏・岡本穏氏・畳悠樹氏ら）が開発を主導。Houdini Engine for Unityを活用しプロシージャル生成アセットをUnity上で扱いやすくし、テクニカルアーティストの負荷を軽減。昼夜遷移・天候変化・ボリューメトリッククラウド・植物の風揺らぎ・VAT対応などを実装、水面表現は現在開発中である。",
+    "evaluationImpact": "記事公開時点（2026年7月）で開発中の複数プロダクトへの採用が始まっているが、リリース済みタイトル名は未公表。10以上の開発子会社を横断する共通基盤として、大規模運営型タイトルの長期開発における品質と効率の両立を狙う取り組みであり、社内エンジニア組織のあり方としても注目される。",
+    "relatedWorks": [
+      {
+        "title": "統合スタイライズドレンダリングシステム（CADC 2024セッション）",
+        "description": "Siriusの前身とみられる、SGE子会社横断の共通レンダリング基盤に関する2024年の発表セッション",
+        "url": "https://cadc.cyberagent.co.jp/2024/sessions/sge-stylize-system/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Tech/3D",
+      "Form/Product",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "ableton-learn-2026",
+    "title": "Ableton Learn",
+    "summary": "Ableton、Move/Noteと同じエンジンで動く対話型レッスンと内蔵Playgroundを備えた初心者向け学習プラットフォームLearnを静かに公開",
+    "client": "Ableton",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://cdm.link/ableton-learn/",
+    "thumbnail": "/thumbnails/ableton-learn-2026.jpg",
+    "videoId": "",
+    "overview": "Abletonは2026年7月7日、初心者向け音楽制作学習プラットフォーム「Ableton Learn」を静かに公開した。ハードウェアMoveやアプリNoteと同じエンジンによる対話型レッスンと、ブラウザ内で動く簡易版Live「Playground」を搭載。現時点では「Building Blocks」やビート入門などのプレビュー的レッスンを提供し、モバイルファースト設計でデスクトップ・モバイル両対応となっている。",
+    "background": "Live本体は多機能ゆえに学習コストが高く、音楽制作の完全な初心者や子どもには参入障壁があった。AbletonはハードウェアMoveやアプリNoteで培ったシンプルな対話型UIエンジンを既に持っており、これを教育領域に転用することで、動画講座任せにならないインタラクティブな入門体験を作る狙いがあると見られる。",
+    "execution": "レッスンは動画埋め込みに頼らず、Liveのクリップビューやオーディオを簡略化したインタラクティブ要素として構成。ブラウザ内「Playground」ではLiveの超簡易版スケッチパッドを操作でき、その場で音を作って遊べる。デスクトップ・モバイル双方でシームレスに動くミニマルなデザインにより、初心者が情報過多で混乱しないよう配慮されている。",
+    "evaluationImpact": "2026年7月時点ではソフトローンチ段階で、大々的な発表やアワード等の実績はまだ確認されていない。既存ユーザー向けの機能追加ではなく、音楽制作未経験層の新規獲得を狙う教育コンテンツ戦略として、DTM・音楽教育業界のメディアから静かに注目され始めている。",
+    "relatedWorks": [
+      {
+        "title": "Ableton Move",
+        "description": "Learnと同じ対話型エンジンを搭載するAbletonのポータブル音楽制作ハードウェア。",
+        "url": "https://www.ableton.com/en/move/"
+      },
+      {
+        "title": "Ableton Note",
+        "description": "Learnのエンジンの源流となった、Abletonのシンプルなモバイル向け音楽制作アプリ。",
+        "url": "https://www.ableton.com/en/note/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Tech/Web",
+      "Form/Website",
+      "Theme/Music",
+      "Theme/Education"
+    ]
+  },
+  {
+    "id": "memory-rites-eprom-minimal-audio-currents-2026",
+    "title": "Memory Rites（EPROM × Minimal Audio Currents）",
+    "summary": "実験派プロデューサーEPROM監修の60プリセットを、Current非所有者向け単体プレイヤーとしても提供",
+    "client": "Minimal Audio × EPROM",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://cdm.link/eprom-memory-rites/",
+    "thumbnail": "/thumbnails/memory-rites-eprom-minimal-audio-currents-2026.jpg",
+    "videoId": "",
+    "overview": "Minimal Audioのグラニュラー・ウェーブテーブルシンセ「Current」向けに、米ポートランド出身の実験ベース系プロデューサーEPROMが監修したサウンド拡張パック「Memory Rites」。ベース25、リード14、パッド9、キー6、SFX6の全60プリセットを収録し、2026年6月23日に発売された。",
+    "background": "Minimal Audioは2026年、アーティストを制作プロセスの前面に押し出す方針を掲げ、その第一弾コラボレーターとして「生々しい感情表現と機械的テクスチャの交差点」を追求するEPROMを起用。Oberheimのメモリーチップに由来するその名の通り、約20年にわたり電子音楽シーンの最前線で音響設計を追求してきた実績が評価された。",
+    "execution": "60プリセットはEPROM自身がパッチデザインを手掛け、各音色にはEPROMがマッピングしたカスタムマクロ4基、モジュレーションホイールやピッチベンドの割り当ても内蔵。同時にCurrent本体を持たないユーザーでも使える単体アプリ「Current Expansion Player」を新設し、VST2/VST3/AU/AAX形式でmacOS・Windowsに対応した。",
+    "evaluationImpact": "既存Current保有者向け単体プリセット拡張が19ドル、非所有者向けExpansion Playerが29ドルという価格設定により、シンセ本体を持たない層にもアーティスト監修サウンドを開放。トレード媒体からは『実験的アルバムとパッチデザインのマスタークラスを得るような体験』と評され、プラグインメーカーのアーティストコラボモデルの新形態として注目された。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Form/Product",
+      "Theme/Music"
+    ]
+  },
+  {
     "id": "even-realities-2026",
     "title": "Even Realities スマートグラス ユニコーン到達",
     "summary": "カメラ非搭載・プライバシー重視の透明ディスプレイ型スマートグラスで深圳発新興企業が評価額10億ドルのユニコーンに到達",
