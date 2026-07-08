@@ -903,5 +903,203 @@
         "desc": "テキスト指示だけで、視点を動かしても矛盾なく繋がり続ける歩き回れる3D世界の映像を生成できるAIモデル"
       }
     ]
+  },
+  {
+    "id": "2026-07-08-1",
+    "date": "2026-07-08",
+    "title": "覆面歌手のモーキャプ化",
+    "pattern": "文脈×技術",
+    "seed": "「ウタ」のように素顔を隠す匿名アーティストの実演をCEB SAM 3D Body v4で3Dモーキャプ化し、アニメキャラ本人の動きとして没入型ライブに反映できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ado-uta-one-piece",
+        "title": "Ado「ウタ（Uta）」ONE PIECE FILM: RED",
+        "desc": "素顔を隠す匿名歌手がONE PIECEの人気キャラ「ウタ」として世界デビューした前例なき融合プロジェクト。"
+      },
+      {
+        "type": "tech",
+        "id": "ceb-sam-3d-body-v4",
+        "title": "CEB SAM 3D Body v4 (Blender addon)",
+        "desc": "動画に写った人物の動きをBlender上で3Dモーションキャプチャデータに変換できるアドオン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-08-2",
+    "date": "2026-07-08",
+    "title": "消えゆく国土をAI世界に",
+    "pattern": "文脈×技術",
+    "seed": "海面上昇で消えゆくツバルのように失われゆく土地や街並みも、DreamX-World 1.0を使えばテキスト指示だけで「歩き回れる3D世界」として恒久的に残せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "tuvalu-first-digital-nation",
+        "title": "THE FIRST DIGITAL NATION",
+        "desc": "海面上昇で消える島国ツバルが国家ごとメタバースへ移転し、文化や法的地位をデジタル空間に保存する試み。"
+      },
+      {
+        "type": "tech",
+        "id": "dreamx-world-1-0",
+        "title": "DreamX-World 1.0",
+        "desc": "テキスト指示だけで視点を動かしても矛盾なく繋がる、歩き回れる3D世界の映像を生成できるAIモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-08-3",
+    "date": "2026-07-08",
+    "title": "声なき声をAIが歌う",
+    "pattern": "文脈×技術",
+    "seed": "AXAとSonitaが声を上げられない女性の「声」を集めたように、ACE-Step 1.5で当事者の言葉を歌詞化しボーカル入り楽曲として即座に届ける代弁ソングが作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "axa-axa-x-sonita-the-lone-voice",
+        "title": "AXA x Sonita: The Lone Voice",
+        "desc": "沈黙を強いられたアフガン女性のためにラッパーSonitaが世界中の声を集めた音楽キャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "ace-step-1-5",
+        "title": "ACE-Step 1.5",
+        "desc": "歌詞とジャンルを指定するだけでボーカル入りの楽曲を丸ごと生成できるオープンソースの音楽AI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-08-4",
+    "date": "2026-07-08",
+    "title": "ブラウザの終わらない店舗",
+    "pattern": "文脈×技術",
+    "seed": "BalenciagaのAFTERWORLDがゲームでショーを代替したように、Aholo Viewerで実店舗を丸ごと3Dスキャンし、インストール不要のブラウザだけで歩き回れる「終わらないショールーム」を作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "balenciaga-afterworld-game",
+        "title": "AFTERWORLD: THE AGE OF TOMORROW（Balenciaga）",
+        "desc": "ブラウザで起動するUE4製ゲームがファッションショーの代替となり、ゲーム内で実際の服を購入できた企画。"
+      },
+      {
+        "type": "tech",
+        "id": "aholo-viewer",
+        "title": "Aholo Viewer",
+        "desc": "インストール不要のブラウザだけで最大10億スプラット級の巨大な3D空間を表示できるOSSレンダラ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-08-5",
+    "date": "2026-07-08",
+    "title": "線描きだけで編む動画編集",
+    "pattern": "技術×技術",
+    "seed": "チャット指示だけで映像を編集するVideo Useに、線を描くだけでカメラワークを自動翻訳するComfyUIの「Cinematic Annotate Video」を組み込めば、絵コンテを描くだけで完パケまで作れる編集エージェントになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "video-use",
+        "title": "Video Use",
+        "desc": "素材フォルダを渡しチャットで指示するだけでフィラー除去やカラグレ、字幕入りの完成動画を作るAIツール。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-cinematic-annotate-video",
+        "title": "ComfyUI「Cinematic Annotate Video」ワークフロー",
+        "desc": "画像に線を描くだけでLLMがカメラワークを読み取り、動画生成用のモーション指示に自動翻訳するワークフロー。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-08-6",
+    "date": "2026-07-08",
+    "title": "実寸空間で乗り移る動き",
+    "pattern": "技術×技術",
+    "seed": "Any4Dで実寸スケールの動く3D世界を1回の推論で復元し、その空間の中でSCAIL-2が実演者の動きを骨格抽出なしで別キャラに乗り移らせれば、実寸ロケごとバーチャルライブに変換できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "any4d",
+        "title": "Any4D",
+        "desc": "RGB動画やIMU・レーダーなど任意のセンサ入力から実寸スケールの動く3D世界を1回の推論で復元するモデル。"
+      },
+      {
+        "type": "tech",
+        "id": "scail-2",
+        "title": "SCAIL-2",
+        "desc": "動画の人物の動きを骨格抽出なしで別キャラクターに乗り移らせる、ダンスや宙返りにも対応するモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-08-7",
+    "date": "2026-07-08",
+    "title": "振動で聴くまなざし",
+    "pattern": "転用",
+    "seed": "Event Topology-based Visual Vibrometerは本来、映像から物体の微細な振動＝音を光源なしで復元する計測技術だが、監視カメラ越しに窓ガラスの振動を読み、室内の異変や叫び声をマイクなしで察知する見守りに転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "event-topology-based-visual-vibrometer",
+        "title": "Event Topology-based Visual Vibrometer",
+        "desc": "高速なイベントカメラの映像から物体の微細な振動、つまり音を光源なしで復元できる計測手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-08-8",
+    "date": "2026-07-08",
+    "title": "チャットで整える音の一貫性",
+    "pattern": "転用",
+    "seed": "自然言語の指示だけでビートを組めるSplice MCP ServerとClaude Cowork連携を、楽曲制作ではなく複数の広告動画バージョン間でBGMのトーンや音圧を揃えるチェック作業に転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "splice-mcp-claude-beatmaking",
+        "title": "Splice MCP Server × Claude Cowork によるAIビートメイク検証",
+        "desc": "SpliceのMCPサーバーをClaudeに接続し、自然言語の指示だけでヒップホップトラックを組めるか検証した事例。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-08-9",
+    "date": "2026-07-08",
+    "title": "年間まとめを丸ごと再編集",
+    "pattern": "文脈×技術",
+    "seed": "Spotify Wrappedのようなパーソナライズ集計に、テキスト指示で被写体や背景を差し替えられるEditAnythingを組み合わせれば、ユーザーごとの年間まとめ動画を自動で書き換えて量産できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "spotify-wrapped",
+        "title": "SPOTIFY WRAPPED",
+        "desc": "「今年最も聴いた音楽」を毎年12月に届け、UGCとパーソナライゼーションで拡散した世界最大級の自発的広告企画。"
+      },
+      {
+        "type": "tech",
+        "id": "editanything",
+        "title": "EditAnything (LTX-2.3 Video Edit LoRA)",
+        "desc": "動画生成モデルをプロンプト指示型の編集モデルに変えるLoRA。背景や被写体の除去・置き換えをテキストで実行できる。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-08-10",
+    "date": "2026-07-08",
+    "title": "多視点からモーキャプ抽出",
+    "pattern": "技術×技術",
+    "seed": "ロボット視覚向けにDINOやCLIPへ視点間一貫性を持たせるMulti-View Foundation Modelsの特徴量を、CEB SAM 3D Body v4のBlenderモーキャプ抽出と組み合わせれば、複数アングル動画から破綻のない3Dキャラの動きを直接抽出できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "multi-view-foundation-models",
+        "title": "Multi-View Foundation Models",
+        "desc": "2D基盤モデルにマルチビュー空間アダプタを挿入し、明示的な3D再構成なしで視点間一貫の特徴を出す枠組み。"
+      },
+      {
+        "type": "tech",
+        "id": "ceb-sam-3d-body-v4",
+        "title": "CEB SAM 3D Body v4 (Blender addon)",
+        "desc": "動画に写った人物の動きをBlender上で3Dモーションキャプチャデータに変換できるアドオン。"
+      }
+    ]
   }
 ]
