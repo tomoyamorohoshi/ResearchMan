@@ -3,9 +3,17 @@
  *
  * /thumbnails/*.jpg への直接アクセスは200でも、サイトが実際に使う経路（/_next/image
  * 経由のVercel画像変換等）が壊れているケースを見逃す（実際に402クォータ枯渇で全滅した
- * 実例あり）。本番ページのHTMLを取得し<img>のsrc属性を抽出、その実URL
- * （/_next/image?url=... 形式ならデコードして実体URLに解決する）に対してHTTP 200 かつ
+ * 実例あり）。本番ページのHTMLを取得し<img>のsrc属性を抽出、その**文字列そのまま**
+ * （デコード・書き換え一切なし）をoriginに対して解決したURLにHTTP GETし、200かつ
  * content-typeがimage/*であることを確認する。
+ *
+ * 重要: src が `/_next/image?url=...` 形式でも、クエリのurlパラメータをデコードして
+ * 下層の実ファイルへ潜ってはいけない（旧実装のバグ）。2026-07-08インシデント2の本質は
+ * 「/thumbnails/*.jpg直接は200でも、ブラウザが実際にリクエストする/_next/image?url=...
+ * &w=...&q=... というURLそのものが402」だった。デコードして下層を検証すると最適化
+ * プロキシをバイパスしてしまい、まさに検知すべき障害を取りこぼす（フォールスネガティブ）。
+ * ブラウザが解決するとおり、相対パスはoriginを前置するだけで、クエリ文字列を含め
+ * 一切変更しない。
  */
 import https from "https";
 import http from "http";
@@ -32,24 +40,13 @@ export function extractImgSrcs(html, limit = 40) {
   return out;
 }
 
-// /_next/image?url=... 形式ならクエリのurlをdecodeURIComponentして実体URLへ解決する。
-// /で始まる相対パスはsiteOriginを前置。絶対URLはそのまま返す（将来また配信方式が
-// 変わる可能性への防御として両対応にしてある）。
+// src文字列をデコード・書き換えせず、ブラウザが実際にリクエストするURLへ解決するだけ。
+// /で始まる相対パス（/thumbnails/... や /_next/image?url=...&w=...&q=... のクエリ文字列
+// 込みの丸ごと）はsiteOriginを前置する。絶対URL(http始まり)はそのまま返す。
+// クエリの中身を覗く・decodeURIComponentする処理は一切行わない
+// （それをやると/_next/image経由の障害を検知できなくなる。詳細はファイル冒頭コメント）。
 export function resolveActualImageUrl(src, siteOrigin) {
   if (!src) return src;
-  if (src.startsWith("/_next/image")) {
-    try {
-      const u = new URL(src, siteOrigin);
-      const inner = u.searchParams.get("url");
-      if (inner) {
-        const decoded = decodeURIComponent(inner);
-        return decoded.startsWith("http") ? decoded : new URL(decoded, siteOrigin).toString();
-      }
-    } catch {
-      // フォールスルーしてそのまま解決を試みる
-    }
-    return new URL(src, siteOrigin).toString();
-  }
   if (src.startsWith("/")) return new URL(src, siteOrigin).toString();
   return src;
 }

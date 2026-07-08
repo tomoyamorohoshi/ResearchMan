@@ -33,6 +33,7 @@ import {
 import { gitSafeCommitAndPush, gitSafeRevertAndPush } from "./lib/watchdog-git.mjs";
 import { parseJobRuns, filterRecentRuns, hasConsecutiveOutcome, countTodayRejections, readLogSafe, defaultLogPath } from "./lib/log-health.mjs";
 import { checkThumbnailsOnPage } from "./lib/thumbnail-page-check.mjs";
+import { dedupeCandidates, extractKnownTechIdsFromAuditFailLines } from "./lib/quarantine.mjs";
 import { isUrlAlive } from "./verify-video.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -43,12 +44,28 @@ const REPORT_PATH = "/tmp/researchman-watchdog-report.txt";
 const DEPLOY_BROKEN_FLAG = "/tmp/researchman-watchdog-deploy-broken.flag";
 const CASES_PATH = path.join(ROOT, "data/cases.json");
 const TECH_PATH = path.join(ROOT, "data/tech.json");
+const LAST_RUN_PATH = path.join(ROOT, ".last-watchdog-run.txt");
 const STALE_HOURS = 26;
 const QUARANTINE_MAX_PER_RUN = 5;
 const NOT_QUARANTINED_KINDS = ["videoId-mismatch", "thumbnail-dup"];
 
 function log(msg) {
   console.log(msg);
+}
+
+// ゲート(.last-watchdog-run.txt)の消費は、チェック開始"前"（実行冒頭）に行う。
+// 他の3ジョブ・tuneupは「成功時のみ末尾で書く」流儀（失敗は次の正時に自然リトライ）だが、
+// watchdogはlaunchctl kickstartや複数のgit push等、他プロセスに影響する外部副作用を
+// 多数持つため、ハングや予期しないクラッシュ（トップレベルcatchで拾えない異常終了）で
+// 最後まで到達しなくても、同じ12:30/18:30枠内で多重起動しないことを優先する。
+// トレードオフ: 冒頭で書くため、途中で失敗しても次の12:30/18:30枠まで再試行されない
+// （＝失敗時に早期リトライしたい場合は状態ファイルを手動で削除する）。
+function markLastRun() {
+  try {
+    fs.writeFileSync(LAST_RUN_PATH, new Date().toISOString());
+  } catch (e) {
+    log(`[watchdog] 状態ファイル書き込み失敗（続行）: ${e.message}`);
+  }
 }
 
 async function safeCheck(name, fn) {
@@ -545,16 +562,24 @@ async function runDeepAudit(report, priorEventCount) {
   for (const t of deadTechLinks) {
     quarantineCandidates.push({ dataset: "tech", id: t.id, reason: `tech links[0]死活確認失敗(二重確認済): ${t.links[0].url}` });
   }
-  for (const line of techAuditFailLines) {
-    const m = line.match(/^✗ [A-Z_ ]+: ([a-z0-9-]+)/i);
-    if (m) quarantineCandidates.push({ dataset: "tech", id: m[1], reason: "audit-tech.mjs FAIL（フィールド欠落/語彙違反/サムネイル欠損）" });
+  // audit-tech.mjsのFAIL行から候補idを拾う際、抽出したidが実際にtech.jsonに存在する
+  // エントリであることを確認してから候補に加える（`✗ ORPHANED THUMBNAIL FILE:
+  // public/thumbnails/tech/xxx.jpg`のような「idを名乗らない」FAIL行が誤って
+  // id="public"のような偽候補を生む事故の防止。ロジックはscripts/lib/quarantine.mjsに
+  // 切り出しfixtureで単体テスト済み＝scripts/smoke-watchdog-quarantine.mjs）
+  for (const id of extractKnownTechIdsFromAuditFailLines(techAuditFailLines, tech.map((t) => t.id))) {
+    quarantineCandidates.push({ dataset: "tech", id, reason: "audit-tech.mjs FAIL（フィールド欠落/語彙違反/サムネイル欠損）" });
   }
 
+  // 同一entryが複数の理由（例: thumbnail欠損 かつ audit-tech FAIL）で重複して候補に
+  // 入りうるため、dataset+idでユニーク化してから5件上限を適用する（重複を1件と誤って
+  // 数えないため。理由は結合して残す。ロジックはscripts/lib/quarantine.mjsに切り出し済み）
   const alreadyQuarantined = (dataset, id) => {
     const arr = dataset === "cases" ? cases : tech;
     return !!arr.find((x) => x.id === id)?.quarantined;
   };
-  const freshCandidates = quarantineCandidates.filter((c) => !alreadyQuarantined(c.dataset, c.id));
+  const uniqueCandidates = dedupeCandidates(quarantineCandidates);
+  const freshCandidates = uniqueCandidates.filter((c) => !alreadyQuarantined(c.dataset, c.id));
   const toQuarantine = freshCandidates.slice(0, QUARANTINE_MAX_PER_RUN);
   const deferred = Math.max(freshCandidates.length - toQuarantine.length, 0);
 
@@ -643,6 +668,7 @@ async function runDeepAudit(report, priorEventCount) {
 // main
 // ─────────────────────────────────────────────────────────────
 async function main() {
+  markLastRun();
   log(`\nResearchMan Watchdog ${new Date().toLocaleString("ja-JP")}${DEEP ? "（+deep）" : ""}`);
 
   const report = [];

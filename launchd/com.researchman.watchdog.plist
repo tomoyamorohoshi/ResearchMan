@@ -24,21 +24,18 @@
       if [ "$AMDUE" = "0" ] &amp;&amp; [ "$PMDUE" = "0" ]; then exit 0; fi;
       DEEP="";
       if [ "$PMDUE" = "1" ] &amp;&amp; [ "$(date +%u)" = "7" ]; then DEEP="--deep"; fi;
-      LOCK=/tmp/researchman-git.lock; waited=0;
-      while ! mkdir $LOCK 2&gt;/dev/null; do
-        if [ -d $LOCK ] &amp;&amp; [ $(( $(date +%s) - $(stat -f %m $LOCK) )) -gt 5400 ]; then
-          echo "staleロック奪取: $(date)" &gt;&gt; $LOG; rmdir $LOCK 2&gt;/dev/null; continue;
-        fi;
-        sleep 30; waited=$((waited+30));
-        [ $waited -ge 1800 ] &amp;&amp; { echo "ロック取得タイムアウト: $(date)" &gt;&gt; $LOG; exit 0; };
-      done;
-      trap "rmdir $LOCK 2&gt;/dev/null" EXIT;
       echo "===== Watchdog start ($([ "$AMDUE" = "1" ] &amp;&amp; echo AM || echo PM)$([ -n "$DEEP" ] &amp;&amp; echo " +deep")): $(date) =====" &gt;&gt; $LOG;
       node scripts/watchdog.mjs $DEEP &gt;&gt; $LOG 2&gt;&amp;1 || echo "watchdogエラー終了: $(date)" &gt;&gt; $LOG;
       echo "Watchdog completed: $(date)" &gt;&gt; $LOG
     </string>
   </array>
 
+  <!-- 毎日12:30/18:30を毎正時30分でキャッチアップ判定（.last-watchdog-run.txtを共有した
+       2段ゲート）。日曜のPM枠のみ--deepを付与。既存3ジョブと違い、このplistは
+       /tmp/researchman-git.lockを一切取得しない（watchdog.mjs内のgit操作は
+       scripts/lib/watchdog-git.mjsが必要な瞬間だけ短く取る設計。理由: watchdogが
+       launchctl kickstartで他ジョブを起こす際、ロックを握ったままだと起こした側が
+       ロックを取れず自己デッドロックする実バグを踏んだため、2026-07-08に変更） -->
   <key>StartCalendarInterval</key>
   <array>
     <dict><key>Hour</key><integer>12</integer><key>Minute</key><integer>30</integer></dict>
