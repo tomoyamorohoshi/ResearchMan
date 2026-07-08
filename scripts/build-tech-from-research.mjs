@@ -15,6 +15,7 @@ import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 import { fetchKeyVisual } from "./tech-thumbs.mjs";
+import { normalizeThumbnailBuffer } from "./lib/normalize-thumbnail.mjs";
 import { isUrlAlive } from "./verify-video.mjs";
 import { logRejection } from "./lib/rejection-log.mjs";
 
@@ -60,7 +61,8 @@ async function saveThumb(id, sourceUrl, fallbackLinks = []) {
   const found = await fetchKeyVisual(fallbackLinks, sourceUrl);
   if (!found) return null;
   if (found.src !== sourceUrl) console.log(`  （サムネ取得元: ${found.src}）`);
-  await fs.writeFile(localPath, found.buf);
+  // 直接配信(images.unoptimized)前提の正規化: 幅上限・JPEG化・メタデータ除去
+  await fs.writeFile(localPath, await normalizeThumbnailBuffer(found.buf));
   return `/thumbnails/tech/${id}.jpg`;
 }
 

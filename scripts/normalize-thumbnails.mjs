@@ -1,10 +1,18 @@
 /**
  * 既存サムネイルの一括正規化（メンテナンス用）。
  *
- * images.unoptimized（直接配信）への切替に伴い、public/thumbnails/ の既存ファイルを
- * 配信に耐える形へ揃える: 幅 > 1600px または 300KB 超のファイルを
+ * images.unoptimized（直接配信）への切替に伴い、public/thumbnails/ 配下
+ * （tech/ 等のサブディレクトリ含む）の既存ファイルを配信に耐える形へ揃える。
  * scripts/lib/normalize-thumbnail.mjs と同一規則（幅≤1600・JPEG q80・メタデータ除去）で
- * 再エンコードする。既に基準内のファイルは触らない（無駄なgit差分を作らない）。
+ * 再エンコードする。
+ *
+ * 対象判定は**収束的**であること（watchdog 日曜deepが --dry-run の対象件数を
+ * 異常検知に使うため、「正規化済みなのに毎回対象になる」ファイルがあると
+ * 毎週無意味な自己修復commitが発生する）:
+ *   - 幅 > 1600px → 対象（正規化後は必ず ≤1600 になるので再検出されない）
+ *   - サイズ > 600KB かつ 再エンコードで10%超縮む → 対象
+ *     （q80再圧縮でも縮まない高情報量画像を毎回再エンコードして世代劣化させない）
+ * 既に基準内のファイルは触らない（無駄なgit差分を作らない）。
  *
  * 使い方:
  *   node scripts/normalize-thumbnails.mjs           # 実行
@@ -18,10 +26,13 @@ import { normalizeThumbnailBuffer, THUMB_MAX_WIDTH } from "./lib/normalize-thumb
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const THUMBS_DIR = path.join(__dirname, "../public/thumbnails");
-const SIZE_THRESHOLD = 300 * 1024;
+const SIZE_THRESHOLD = 600 * 1024;
+const MIN_SHRINK_RATIO = 0.9; // これ未満に縮む場合だけサイズ超過を「対象」とする
 const DRY_RUN = process.argv.includes("--dry-run");
 
-const files = (await fs.readdir(THUMBS_DIR)).filter((f) => f.endsWith(".jpg"));
+// 対象は .jpg のみ（normalizeThumbnailBufferの出力はJPEGなので、.png等の拡張子の
+// ファイルを書き換えると拡張子と中身が不一致になる。現状 thumbnails 配下は全て .jpg）
+const files = (await fs.readdir(THUMBS_DIR, { recursive: true })).filter((f) => /\.jpe?g$/i.test(f));
 let targets = 0;
 let before = 0;
 let after = 0;
@@ -39,11 +50,16 @@ for (const f of files) {
     failed++;
     continue;
   }
-  if (st.size <= SIZE_THRESHOLD && (width === null || width <= THUMB_MAX_WIDTH)) continue;
+  const overWidth = width !== null && width > THUMB_MAX_WIDTH;
+  const overSize = st.size > SIZE_THRESHOLD;
+  if (!overWidth && !overSize) continue;
+
+  const out = await normalizeThumbnailBuffer(buf);
+  // サイズ超過のみの場合、十分縮むときだけ書き換える（収束性の担保）
+  if (!overWidth && out.length > st.size * MIN_SHRINK_RATIO) continue;
 
   targets++;
   before += st.size;
-  const out = await normalizeThumbnailBuffer(buf);
   after += out.length;
   console.log(
     `${DRY_RUN ? "[dry] " : ""}${f}: ${(st.size / 1024).toFixed(0)}KB(${width}px) → ${(out.length / 1024).toFixed(0)}KB`

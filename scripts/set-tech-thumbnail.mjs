@@ -11,6 +11,7 @@ import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 import { fetchThumbBuf } from "./tech-thumbs.mjs";
+import { normalizeThumbnailBuffer } from "./lib/normalize-thumbnail.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const TECH_PATH = path.join(__dirname, "../data/tech.json");
@@ -40,7 +41,8 @@ const m = t.thumbnail.match(/-kv(\d*)\.jpg$/);
 const ver = m ? (Number(m[1] || 1) + 1) : 2;
 const newRel = `/thumbnails/tech/${id}-kv${ver}.jpg`;
 
-await fs.writeFile(path.join(PUBLIC_DIR, newRel.replace(/^\//, "")), buf);
+// 直接配信(images.unoptimized)前提の正規化: 幅上限・JPEG化・メタデータ除去
+await fs.writeFile(path.join(PUBLIC_DIR, newRel.replace(/^\//, "")), await normalizeThumbnailBuffer(buf));
 await fs.unlink(path.join(PUBLIC_DIR, t.thumbnail.replace(/^\//, ""))).catch(() => {});
 t.thumbnail = newRel;
 await fs.writeFile(TECH_PATH, JSON.stringify(tech, null, 2));

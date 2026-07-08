@@ -14,6 +14,7 @@ import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 import { keyVisualSources, fetchThumbBuf, isGithubCard } from "./tech-thumbs.mjs";
+import { normalizeThumbnailBuffer } from "./lib/normalize-thumbnail.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const TECH_PATH = path.join(__dirname, "../data/tech.json");
@@ -55,7 +56,8 @@ for (const t of tech) {
   const newRel = `/thumbnails/tech/${t.id}-kv.jpg`;
   console.log(`✓ ${t.id}: ${found.src} → ${newRel}`);
   if (!DRY_RUN) {
-    await fs.writeFile(path.join(PUBLIC_DIR, newRel.replace(/^\//, "")), found.buf);
+    // 直接配信(images.unoptimized)前提の正規化: 幅上限・JPEG化・メタデータ除去
+    await fs.writeFile(path.join(PUBLIC_DIR, newRel.replace(/^\//, "")), await normalizeThumbnailBuffer(found.buf));
     await fs.unlink(curPath).catch(() => {});
     t.thumbnail = newRel;
   }
