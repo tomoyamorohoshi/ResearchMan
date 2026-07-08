@@ -1,23 +1,30 @@
-// /ideas ポスターの「パズルカーニング」配置（DESIGN: goofy-hatching-mango.md 2026-07-07バッチ）。
+// /ideas ポスターの「パズルカーニング」配置（DESIGN: goofy-hatching-mango.md 2026-07-07バッチ・
+// 固定2サイズタイポグラフィ＋内容適応カードサイズ＋密着パッキング改訂計画）。
 // CSS Gridの行詰め(旧IdeasPoster.tsxのcomputeColStarts)を、サーバー計算の絶対配置コラージュに
 // 置換する。輪郭サンプル点(ideaShapes.tsのoutlineToLayoutSpace)同士の最短距離を実測しながら、
-// 隣接シルエットの隙間が目標値(2〜8px、hashで揺らぎ)になるまで詰める「パズルカーニング」を行う。
+// 隣接シルエットの隙間が目標値(0.5〜3px、hashで揺らぎ)になるまで詰める「パズルカーニング」を行う。
 //
-// 3ティア構成（実装詳細補足B.1）: mobile(<640px, 基準幅390) / compact(640-1024px, 基準幅576) /
+// 3ティア構成（実装詳細補足B.1）: mobile(<640px, 基準幅358) / compact(640-1024px, 基準幅576) /
 // wide(1024px〜, 基準幅960)。mobileは1カラム縦積み+垂直カーニングのみ、compact/wideは行詰め+
-// 水平・垂直カーニングの両方を行う。各ティアはサーバーで1回だけ計算し、IdeasPoster.tsx側は
-// CSS %でフルイドスケールする（連続リサイズの動的再計算はしない。決定論・SSR整合を優先）。
+// 水平・垂直カーニングの両方を行う。各ティアはサーバーで1回だけ計算する。
+//
+// H: 固定2サイズタイポグラフィ(goofy-hatching-mango.md 2026-07-07バッチ・改訂計画)。旧方式は
+// 「カード幅は行パッキングが決め、フォントを縮めて収める(下限のみ保証)」だったが、新方式は
+// 「フォントは全カード共通の固定2サイズ(タイトル=サイズA・日付/本文/リンク=サイズB)。カード
+// (シェイプ)のスケールを内容量から解き、固定サイズで全文が収まる大きさにする」。カードの
+// 物理サイズはideaShapes.tsのsolveFixedSizeShapeが解いた値(scale)で一意に決まるため、旧来の
+// colSpan(12分率)・S/M/Lサイズ段階・物理フォント下限保証(ensurePhysicalFontFloor)の仕組みは
+// 全廃した。この結果、IdeasPoster.tsxのコンテナは「無限%拡大」をやめ、ティア基準幅を
+// max-widthとして固定サイズを維持する（詳細はIdeasPoster.tsx参照）。
 //
 // 純関数・決定論（Math.random不使用。hashId(id)由来のジッタのみ）。
 import { hashId } from "./graph";
 import {
-  estimateReservedLinksHeightPx,
-  fitDescription,
   isComplexShapeKind,
   KIND_WEIGHT,
   outlineToLayoutSpace,
   SHAPE_KINDS,
-  shapeForIdea,
+  solveFixedSizeShape,
   type ContentRef,
   type IdeaShape,
   type Point,
@@ -26,42 +33,36 @@ import {
 
 export type CollageTier = "mobile" | "compact" | "wide";
 
-// 実装詳細補足B.1: 各ティアの基準幅(px)。CSSのレスポンシブdisplayクラスで切替え、
-// コンテナは`width:100%; aspect-ratio: 基準幅/計算済み合計高さ`によりこの基準幅1回の
-// サーバー計算のみで任意の実viewport幅へ比率保存のままフルイドスケールする
+// 実装詳細補足B.1: 各ティアの基準幅(px)。CSSのレスポンシブdisplayクラスで切替える。
 // B.2: mobileはIdeasPoster.tsxのコンテナが`px-4`(16px×2=32px)を差し引く必要がある
 // (compact/wideは`sm:px-8`=32px×2=64pxを既に差し引き済み=576=640-64・960=1024-64だったが、
-// mobileの390はこの差し引きが漏れていた設計不整合。goofy-hatching-mango.md 2026-07-07バッチで
-// 390-2×16=358に修正)
+// mobileの390はこの差し引きが漏れていた設計不整合。390-2×16=358に修正済み)。
+// H: 固定2サイズ改訂計画で、この基準幅はもはや「フルイド%拡大の基準」ではなく「コンテナの
+// max-width」として使う(IdeasPoster.tsx参照。無限%拡大をやめ、この幅を超えて伸びなくする)
 export const TIER_REF_WIDTH_PX: Record<CollageTier, number> = {
   mobile: 358,
   compact: 576,
   wide: 960,
 };
 
-// A.4: 説明文の実表示サイズ（物理px、viewBox非依存）のティアごとの下限。goofy-hatching-mango.md
-// 2026-07-07バッチ（コンテンツ量に応じたシェイプ割り当て）。旧ideaShapes.tsのDESC_FONT_
-// PHYSICAL_FLOOR_PX（全ティア共通5px）をここへ移設し、ティアごとの値に変えた。
-//
-// 経緯: 当初計画の目安は9pxだったが、前バッチ(d40b611)の実測でhashのみに基づくシェイプ選択
-// では9px達成のためのカード拡大がパズルカーニングの敷き詰め感を実質的に破壊すること
-// (行の大半が1カードのみの単一列になる)が判明し、5pxへ妥協した（ideaShapes.tsの旧コメント
-// 参照）。本バッチはこの妥協を根治する: assignShapeKinds（下記）がコンテンツ量（説明文の
-// 長さ・参照リンク数）に応じてsafeArea比率の大きいシェイプ種を優先的に割り当てることで、
-// カードを過度に拡大しなくても下限に届くようにした。これにより実効値を
-// wide/compact=8px・mobile=7pxへ引き上げ、全50カード×3ティアで下限未達ゼロを達成する
-// （受け入れ条件。scripts/smoke-idea-shapes.mjsのbelowFloor===0アサート参照）
-export const DESC_FONT_PHYSICAL_FLOOR_PX: Record<CollageTier, number> = {
-  mobile: 7,
-  compact: 8,
-  wide: 8,
+// H: 固定2サイズタイポグラフィ(goofy-hatching-mango.md 2026-07-07バッチ・改訂計画)。
+// サイズA=タイトル(輪郭沿いtextPath)・サイズB=日付/本文/リンク行。全カード同一(絶対条件)。
+// 目安値は計画書のとおり: wide/compact=13px/8.5px・mobile=12px/8px（全景スクショで微調整可）
+export const FIXED_TITLE_FONT_PX: Record<CollageTier, number> = {
+  mobile: 12,
+  compact: 13,
+  wide: 13,
+};
+export const FIXED_BODY_FONT_PX: Record<CollageTier, number> = {
+  mobile: 8,
+  compact: 8.5,
+  wide: 8.5,
 };
 
 export type CollageCardInput = {
   id: string; // idea.id（hashIdジッタ・トレースに使う）
-  shape: IdeaShape; // shapeForIdea(idea.id, idea.title, dateLabel, { seed, refs }) の結果
-  seedText: string; // idea.seed（物理フォント下限判定用。IdeaShapeCardと同じ値を渡すこと）
-  refs: readonly ContentRef[]; // idea.refs（同上）
+  shape: IdeaShape; // solveFixedSizeShape(...).shape の結果
+  scale: number; // solveFixedSizeShape(...).scale（viewbox単位→物理pxの変換係数）
 };
 
 export type CardPlacement = {
@@ -75,123 +76,21 @@ export type CardPlacement = {
 
 export type CollageLayoutResult = {
   placements: readonly CardPlacement[]; // 入力cardsと同じ順序
-  containerHeightPx: number; // コンテナのaspect-ratio算出に使う合計高さ(レイアウト座標単位)
+  containerHeightPx: number; // コンテナの高さ(レイアウト座標単位)
+  containerWidthPx: number; // コンテナの幅(レイアウト座標単位。パッキングで実際に使われた最大行幅)
   // B.4: カーニングで実際に達成された隣接ペアの最短距離(検証・スモークテスト用)。
   // horizontalGaps=同一行内の隣接カード間、verticalGaps=前の行との間(先頭行を除く)
   horizontalGaps: readonly number[];
   verticalGaps: readonly number[];
 };
 
-// 既存(旧IdeasPoster.tsx)のS/M/Lサイズ段階・col-span候補をそのまま流用（12分率）。
-// CSS Gridのcol-span/col-start整数制約が無くなった（絶対配置＋CSS %）ため、丸めずに
-// 連続値のまま扱う（A.2の物理下限拡大がなめらかに効くようにするため）
-type SizeTier = "S" | "M" | "L";
-const DESKTOP_SPAN_OPTIONS: Record<SizeTier, readonly number[]> = {
-  S: [3],
-  M: [4, 5],
-  L: [5, 6],
-};
-const TOTAL_COLS = 12;
-
-// 旧IdeasPoster.tsxのCARD_ASPECT_CLAMP_MIN/MAXを踏襲。極端に縦長/横長なシェイプ
-// (実測: tallOvalでcropAspect0.49等)でもボックス自体の高さを常識的な範囲に収める
-// （SVG自体は元のcropAspectのままpreserveAspectRatio既定のmeetでわずかな余白が生じるが、
-// カーニング計算はfitContentSize経由でその実コンテンツサイズを使うため数学的整合は保たれる）
-const CARD_ASPECT_CLAMP_MIN = 0.55;
-const CARD_ASPECT_CLAMP_MAX = 1.7;
-
-function clampBoxAspect(aspect: number): number {
-  return Math.min(CARD_ASPECT_CLAMP_MAX, Math.max(CARD_ASPECT_CLAMP_MIN, aspect));
-}
-
-// ボックスの幅比率(12分率)をcropAspectで補正する（旧spanForAspectと同じ考え方。冪0.85）。
-// 整数への丸めは行わない(旧実装との差分。絶対配置化で不要になった)
-function spanForAspect(baseSpan: number, cropAspect: number): number {
-  const clamped = clampBoxAspect(cropAspect);
-  const factor = clamped ** 0.85;
-  return Math.min(6, Math.max(3, baseSpan * factor));
-}
-
-function baseNaturalColSpan(id: string, cropAspect: number): number {
-  const h = hashId(id);
-  const tier: SizeTier = h % 3 === 0 ? "S" : h % 3 === 1 ? "M" : "L";
-  const spanOptions = DESKTOP_SPAN_OPTIONS[tier];
-  const baseSpan = spanOptions[Math.floor(h / 3) % spanOptions.length];
-  return spanForAspect(baseSpan, cropAspect);
-}
-
-// SVGのpreserveAspectRatio既定(xMidYMid meet)は、ボックスのaspect-ratio(clampBoxAspect後)と
-// 実コンテンツのaspect(cropAspect生値)が食い違う少数の外れ値ケースで、コンテンツをボックス中央に
-// 収まる最大サイズへレターボックスする。カーニング計算・物理フォント下限判定は「実際に画面へ
-// 描画されるコンテンツのサイズ」を基準にする必要があるため、ボックスサイズからこの実コンテンツ
-// サイズを算出する（centerはボックス中心と一致=meetは常に中央寄せのため、centerX/centerYは
-// ボックス自身の中心をそのまま使ってよい）
-function fitContentSize(boxWidthPx: number, boxHeightPx: number, contentAspect: number): { width: number; height: number } {
-  const boxAspect = boxWidthPx / boxHeightPx;
-  if (boxAspect > contentAspect) {
-    const height = boxHeightPx;
-    return { width: height * contentAspect, height };
-  }
-  const width = boxWidthPx;
-  return { width, height: width / contentAspect };
-}
-
-// A.3: physicalFontPxFor純関数として切り出す(goofy-hatching-mango.md 2026-07-07バッチ・
-// コンテンツ量に応じたシェイプ割り当て)。ensurePhysicalFontFloorとassignShapeKindsの
-// feasibility判定の両方から同じ式を呼ぶことで、二重実装によるズレを防ぐ
-function physicalFontPxFor(card: CollageCardInput, tierRefWidthPx: number, colSpan: number): number {
-  const { shape, seedText, refs } = card;
-  const hasRefs = refs.length > 0;
-  const reserved = hasRefs ? estimateReservedLinksHeightPx(shape.viewBoxW, shape.safeArea.w, refs) : 0;
-  const descFit = fitDescription(shape.viewBoxW, shape.safeArea.w, shape.safeAreaMaxGrowH, reserved, seedText);
-  const naturalWidthPx = (colSpan / TOTAL_COLS) * tierRefWidthPx;
-  const boxAspect = clampBoxAspect(shape.cropAspect);
-  const naturalHeightPx = naturalWidthPx / boxAspect;
-  const content = fitContentSize(naturalWidthPx, naturalHeightPx, shape.cropAspect);
-  const scale = content.width / shape.cropViewBox.w;
-  return descFit.fontSizePx * scale;
-}
-
-// A.2/A.4: 物理フォント下限保証。descFit.fontSizePx(viewBox単位)は物理レンダリングサイズと
-// 無関係(純粋にshape/seed/refsだけで決まる)なため、ボックス幅を大きくすれば実画面上の
-// フォントサイズは線形に比例して大きくなる。よって反復探索は不要で、必要なスケール倍率を
-// 閉じた式で解ける: requiredScale = floorPx / physicalFontPx
-// A.4: floorはティアごとの値(DESC_FONT_PHYSICAL_FLOOR_PX[tier])を使う
-function ensurePhysicalFontFloor(card: CollageCardInput, tierRefWidthPx: number, baseColSpan: number, tier: CollageTier): number {
-  const physicalFontPx = physicalFontPxFor(card, tierRefWidthPx, baseColSpan);
-  const floor = DESC_FONT_PHYSICAL_FLOOR_PX[tier];
-  if (physicalFontPx >= floor || physicalFontPx <= 0) return baseColSpan;
-  const requiredScale = floor / physicalFontPx;
-  return baseColSpan * requiredScale;
-}
-
-// 目安上限(行幅の65〜70%程度=12分率で8前後)を超えてもなお物理下限に足りない場合は、
-// 可読性を優先しさらに拡大する（正しさ＞デザインの変化量。実装詳細補足A.2参照）。
-// 絶対上限としてはコンテナ全体の12分率(=1行いっぱい)でクランプする（それ以上は
-// レイアウトの意味を成さないため。実データではこの上限に到達しない想定）
-const ABSOLUTE_MAX_COL_SPAN = TOTAL_COLS;
-
-function resolveNaturalColSpan(card: CollageCardInput, tierRefWidthPx: number, tier: CollageTier): number {
-  const base = baseNaturalColSpan(card.id, card.shape.cropAspect);
-  const floorAdjusted = ensurePhysicalFontFloor(card, tierRefWidthPx, base, tier);
-  return Math.min(ABSOLUTE_MAX_COL_SPAN, floorAdjusted);
-}
-
-// ── A.5: コンテンツ量に応じたシェイプ割り当て ────────────────────────────────
-// goofy-hatching-mango.md 2026-07-07バッチ（可読性の根治）。従来はshapeForIdeaがhashId(id)だけで
-// シェイプ種を決めていたため、safeAreaの狭い形(lNotch/splat等)に長文が割り当たると、カードを
-// 行幅いっぱいに拡大しても物理フォント下限に届かないケースが残っていた(前バッチの妥協:
-// DESC_FONT_PHYSICAL_FLOOR_PXを5pxへ引き下げ)。本関数は各ideaについて、
-// (1) hashベースのデフォルト種で3ティアとも下限を満たせるならそのまま採用（短文カードは
-//     従来どおりhashで自由に選ぶ＝複雑形が自然と短文側に集まる）、
-// (2) 満たせない場合のみ、9種(＋複雑形4種は浅い変種も)を全探索し、3ティアとも下限を満たせる
-//     候補の集合からKIND_WEIGHTの重みでhash順に1つ選ぶ（満たせる種が複数あれば複雑形も選択肢に
-//     残る＝全体の複雑さ低下を最小化）、
-// (3) それでも候補が0件の場合のみ、3ティアの「達成px/下限px」の最小値(マージン比)を最大化する
-//     (kind,generous)を選ぶフォールバック（この分岐が発動した場合はconsole.warnで通知する。
-//     実データ50件で発動しないことが受け入れ条件）
-// という優先順位で決定論的に(kind, generous)を決める。ジッタシードはshapeForIdea内部で
-// hashId(id)から導出されるため、種が変わっても全図形ユニーク性・決定論は自動的に維持される
+// ── H: コンテンツ量に応じたシェイプ割り当て（解く向きの反転） ──────────────────────
+// goofy-hatching-mango.md 2026-07-07バッチ・改訂計画。固定2サイズモデルでは「物理フォント
+// 下限を満たせるか」という基準が意味を成さない(solveFixedSizeShapeはどんな内容量でも理論上
+// 必ず解ける。カードを十分大きくすれば良いだけなので)。代わりに「hashデフォルトのシェイプ種
+// で、カードがティア行幅(TIER_REF_WIDTH_PX)を超えずに済むか」を基準にする。超えてしまう
+// 場合のみ、safeArea比率の大きい種(複雑形の浅い変種を含む)へ優先的に選び直すことで、
+// 極端に巨大なカードを避ける(前バッチのassignShapeKindsと同じ優先順位構造を踏襲)
 export type IdeaContentInput = {
   id: string;
   title: string;
@@ -202,70 +101,90 @@ export type IdeaContentInput = {
 
 export type ShapeAssignment = { kind: ShapeKind; generous: boolean };
 
-// feasibility判定・フォールバックのマージン比計算はどちらも「3ティアとも行幅いっぱい
-// (colSpan=ABSOLUTE_MAX_COL_SPAN)まで拡大した場合の物理フォントpx」を評価する。実際のレイアウトが
-// この列幅まで拡大するとは限らないが、「この種を選べば理論上下限に届き得るか」を判定する
-// feasibility探索としてはこれが正しい評価点になる(実際のcolSpan決定はresolveNaturalColSpanが
-// 別途行う)
-const ASSIGN_FEASIBILITY_EPS = 1e-6;
 const ASSIGN_TIERS: readonly CollageTier[] = ["mobile", "compact", "wide"];
+const ASSIGN_FEASIBILITY_EPS = 1e-6;
 
-function probeTierFontPx(shape: IdeaShape, seedText: string, refs: readonly ContentRef[]): { tier: CollageTier; px: number; floor: number }[] {
-  return ASSIGN_TIERS.map((tier) => {
-    const card: CollageCardInput = { id: "assign-probe", shape, seedText, refs };
-    const px = physicalFontPxFor(card, TIER_REF_WIDTH_PX[tier], ABSOLUTE_MAX_COL_SPAN);
-    return { tier, px, floor: DESC_FONT_PHYSICAL_FLOOR_PX[tier] };
+type TierWidthProbe = { tier: CollageTier; widthPx: number; budgetPx: number };
+
+// 指定(kind,generous)でsolveFixedSizeShapeを3ティア分呼び、各ティアで必要なカード物理幅
+// (cropViewBox.w×scale)とそのティアの行幅予算(TIER_REF_WIDTH_PX)、実際に使われたシェイプ種
+// (forceKind省略時はhashベースのデフォルト選定結果。3ティアともhと(kind選定式)は同一入力
+// なので必ず同じkindになる)を返す
+function probeTierWidths(
+  idea: IdeaContentInput,
+  opts?: { forceKind?: ShapeKind; generous?: boolean },
+): { probes: TierWidthProbe[]; kind: ShapeKind } {
+  const content = { seed: idea.seed, refs: idea.refs };
+  let resolvedKind: ShapeKind = SHAPE_KINDS[0];
+  const probes = ASSIGN_TIERS.map((tier) => {
+    const { shape, scale } = solveFixedSizeShape(
+      idea.id,
+      idea.title,
+      idea.dateLabel,
+      content,
+      FIXED_TITLE_FONT_PX[tier],
+      FIXED_BODY_FONT_PX[tier],
+      opts,
+    );
+    resolvedKind = shape.kind;
+    return { tier, widthPx: shape.cropViewBox.w * scale, budgetPx: TIER_REF_WIDTH_PX[tier] };
   });
+  return { probes, kind: resolvedKind };
 }
 
-function isFeasibleAtFullWidth(probes: readonly { px: number; floor: number }[]): boolean {
-  return probes.every((p) => p.px >= p.floor - ASSIGN_FEASIBILITY_EPS);
+function isFeasibleWidths(probes: readonly TierWidthProbe[]): boolean {
+  return probes.every((p) => p.widthPx <= p.budgetPx + ASSIGN_FEASIBILITY_EPS);
 }
 
-function marginRatio(probes: readonly { px: number; floor: number }[]): number {
-  return Math.min(...probes.map((p) => p.px / p.floor));
+// マージン比: 予算に対してどれだけ余裕があるか(budget/width)。1.0が境界、値が大きいほど
+// 余裕がある。全探索でも収まらない場合のフォールバック選定に使う(最も余裕がある組み合わせを選ぶ)
+function marginRatioWidths(probes: readonly TierWidthProbe[]): number {
+  return Math.min(...probes.map((p) => p.budgetPx / p.widthPx));
+}
+
+// 再割り当て候補プール専用の重み(adversarial-reviewer指摘の反映。goofy-hatching-mango.md
+// 2026-07-07バッチ追補で導入。改訂計画でも同じ考え方を維持する)。KIND_WEIGHT(複雑形3・
+// 単純形1)をそのまま流用すると、feasibleな複雑形候補の件数が単純形より少ないカードでは
+// 重み3倍を掛けてもなお単純形に競り負けやすく、複雑形比率が過半ぎりぎりまで下がることが
+// 実測で判明した。KIND_WEIGHT自体(全体のデフォルト分布)は変えず、assignShapeKindsの
+// 候補選抜だけに使う専用の重みとして複雑形をさらに優先する
+const REASSIGN_COMPLEX_KIND_WEIGHT = 4;
+function reassignWeightFor(kind: ShapeKind): number {
+  return isComplexShapeKind(kind) ? REASSIGN_COMPLEX_KIND_WEIGHT : KIND_WEIGHT[kind];
 }
 
 export function assignShapeKinds(ideas: readonly IdeaContentInput[]): Map<string, ShapeAssignment> {
   const result = new Map<string, ShapeAssignment>();
   for (const idea of ideas) {
-    const content = { seed: idea.seed, refs: idea.refs };
-
-    const defaultShape = shapeForIdea(idea.id, idea.title, idea.dateLabel, content);
-    if (isFeasibleAtFullWidth(probeTierFontPx(defaultShape, idea.seed, idea.refs))) {
-      result.set(idea.id, { kind: defaultShape.kind, generous: false });
+    const defaultResult = probeTierWidths(idea);
+    if (isFeasibleWidths(defaultResult.probes)) {
+      result.set(idea.id, { kind: defaultResult.kind, generous: false });
       continue;
     }
 
-    // 満たせない場合のみ、9種(複雑形は通常/浅い変種の両方)を全探索する
     type Evaluated = { kind: ShapeKind; generous: boolean; feasible: boolean; margin: number };
     const evaluated: Evaluated[] = [];
     for (const kind of SHAPE_KINDS) {
-      const shape = shapeForIdea(idea.id, idea.title, idea.dateLabel, content, { forceKind: kind });
-      const probes = probeTierFontPx(shape, idea.seed, idea.refs);
-      evaluated.push({ kind, generous: false, feasible: isFeasibleAtFullWidth(probes), margin: marginRatio(probes) });
+      const { probes } = probeTierWidths(idea, { forceKind: kind });
+      evaluated.push({ kind, generous: false, feasible: isFeasibleWidths(probes), margin: marginRatioWidths(probes) });
       if (isComplexShapeKind(kind)) {
-        const gShape = shapeForIdea(idea.id, idea.title, idea.dateLabel, content, { forceKind: kind, generous: true });
-        const gProbes = probeTierFontPx(gShape, idea.seed, idea.refs);
-        evaluated.push({ kind, generous: true, feasible: isFeasibleAtFullWidth(gProbes), margin: marginRatio(gProbes) });
+        const { probes: gProbes } = probeTierWidths(idea, { forceKind: kind, generous: true });
+        evaluated.push({ kind, generous: true, feasible: isFeasibleWidths(gProbes), margin: marginRatioWidths(gProbes) });
       }
     }
 
     const feasibleCandidates = evaluated.filter((e) => e.feasible);
     if (feasibleCandidates.length > 0) {
-      // KIND_WEIGHTと同じ考え方で重み展開したリストからhashId(id)で決定論的に1つ選ぶ
-      const weighted = feasibleCandidates.flatMap((c) => Array<Evaluated>(KIND_WEIGHT[c.kind]).fill(c));
+      const weighted = feasibleCandidates.flatMap((c) => Array<Evaluated>(reassignWeightFor(c.kind)).fill(c));
       const picked = weighted[hashId(idea.id) % weighted.length];
       result.set(idea.id, { kind: picked.kind, generous: picked.generous });
       continue;
     }
 
-    // フォールバック: 9種×variant全探索でも3ティアいずれかで下限未達だった場合のみ、
-    // マージン比(達成px/下限pxの3ティア最小値)を最大化する組み合わせを選ぶ
     let best = evaluated[0];
     for (const e of evaluated) if (e.margin > best.margin) best = e;
     console.warn(
-      `assignShapeKinds: ${idea.id} は全9種×浅い変種でも3ティアいずれかの物理フォント下限に届かない。` +
+      `assignShapeKinds: ${idea.id} は全9種×浅い変種でも3ティアいずれかの行幅予算に収まらない。` +
         `最もマージン比の高い組み合わせへフォールバック (kind=${best.kind}, generous=${best.generous}, マージン比=${best.margin.toFixed(3)})`,
     );
     result.set(idea.id, { kind: best.kind, generous: best.generous });
@@ -306,11 +225,9 @@ function pointInPolygon(p: Point, polygon: readonly Point[]): boolean {
 // 非重なりの実測クリアランス。境界(輪郭サンプル点)同士の最短ユークリッド距離は定義上つねに
 // 0以上のため、それだけでは「凹形状の別の場所(切り欠き・くびれ等)で塗りつぶし同士が実際に
 // 食い込んでいる」真の重なりを検出できない(2つの凸部分が近接目標を満たしていても、
-// 別の凹部で先に食い込みが起きているケースがある。実装中の検証で実測した回帰)。
-// 一方の輪郭サンプル点がもう一方の塗りつぶし多角形の内部に入っていないかを直接判定し、
-// 入っていれば非重なり探索が「target(2〜8px)よりさらに遠ざける必要がある」と判断できるよう
-// 負のセンチネル値を返す(通常の正の距離とは値域が重ならないため、探索の目標判定
-// (distAt(v) <= target)に自然に組み込める)
+// 別の凹部で先に食い込みが起きているケースがある)。一方の輪郭サンプル点がもう一方の
+// 塗りつぶし多角形の内部に入っていないかを直接判定し、入っていれば非重なり探索が
+// 「targetよりさらに遠ざける必要がある」と判断できるよう負のセンチネル値を返す
 const OVERLAP_SENTINEL = -1;
 function clearance(a: readonly Point[], b: readonly Point[]): number {
   for (const p of a) if (pointInPolygon(p, b)) return OVERLAP_SENTINEL;
@@ -340,7 +257,6 @@ function solveKerningPosition(
     const nextV = v - stepSize;
     const nextDist = distAt(nextV);
     if (nextDist <= target) {
-      // [nextV, v] の区間で二分探索(nextV側がdist<=target、v側がdist>target寄り)
       let lo = nextV;
       let hi = prevDist > target ? v : prevV;
       for (let b = 0; b < KERNING_BINARY_ITERS; b++) {
@@ -349,15 +265,8 @@ function solveKerningPosition(
         if (midDist > target) hi = mid;
         else lo = mid;
       }
-      // 非重なり防御チェック: 凹形状では、二分探索が収束したlo(境界最短距離としてはtargetに
-      // 近い)が、別の凹部(切り欠き・くびれ等)で塗りつぶし同士が食い込んでいる
-      // (distAt()がOVERLAP_SENTINEL相当の負値を返す)ことがある。二分探索の不変条件により、
-      // hi側は常にdistAt(hi) > target(=非重なりかつtarget超過)が成立することが保証されている
-      // ため、loが重なりを示す場合はhiへフォールバックする(達成ギャップはtargetよりわずかに
-      // 大きくなるが、非重なりを優先する)
       let finalV = lo;
       if (distAt(finalV) < 0) finalV = hi;
-      // それでも万一(数値誤差等で)負になっていたら、非重なりが確認できるまでさらに遠ざける
       for (let r = 0; r < OVERLAP_RECOVERY_MAX_ITER && distAt(finalV) < 0; r++) {
         finalV += OVERLAP_RECOVERY_STEP;
       }
@@ -367,55 +276,58 @@ function solveKerningPosition(
     prevDist = nextDist;
     v = nextV;
   }
-  // 上限ステップ数まで交差が見つからない場合(通常発生しない想定の安全網): 最後に評価した
-  // 位置をそのまま返す(farValueは呼び出し側が確実に非重複な位置を渡す前提のため、
-  // これでも重なりは生じない)
   return v;
 }
 
 // ── カード配置本体 ────────────────────────────────────────────────────────
+// H: 固定2サイズ改訂計画で、ボックスサイズ(boxWidthPx/boxHeightPx)はsolveFixedSizeShapeが
+// 解いたscaleから直接決まる(scale×cropViewBox.w/h)。旧colSpan・S/M/Lサイズ段階・
+// clampBoxAspect(letterboxing対応)は全廃した: ボックス=シェイプの実寸そのものになるため、
+// letterboxingが発生する余地が無くなり、contentWidthPx/HeightPxはboxWidthPx/HeightPxと
+// 常に一致する(fitContentSizeが不要になった)
 type PreparedCard = {
   input: CollageCardInput;
-  colSpan: number;
   boxWidthPx: number;
   boxHeightPx: number;
-  contentWidthPx: number;
-  contentHeightPx: number;
   rotateDeg: number;
-  gapH: number; // 直前カードとの水平目標ギャップ(2〜8px)
-  gapV: number; // 直前行との垂直目標ギャップ(2〜8px。行の代表として先頭カードの値を使う)
+  gapH: number; // 直前カードとの水平目標ギャップ(C: 0.5〜3px)
+  gapV: number; // 直前行との垂直目標ギャップ(C: 0.5〜3px。行の代表として先頭カードの値を使う)
 };
 
-function prepareCard(input: CollageCardInput, tierRefWidthPx: number, tier: CollageTier): PreparedCard {
-  const colSpan = resolveNaturalColSpan(input, tierRefWidthPx, tier);
-  const boxWidthPx = (colSpan / TOTAL_COLS) * tierRefWidthPx;
-  const boxAspect = clampBoxAspect(input.shape.cropAspect);
-  const boxHeightPx = boxWidthPx / boxAspect;
-  const content = fitContentSize(boxWidthPx, boxHeightPx, input.shape.cropAspect);
+// C: パズル密着（goofy-hatching-mango.md 2026-07-07バッチ・改訂計画）。目標ギャップ帯を
+// 旧2〜8pxから0.5〜3pxへ狭め、シルエット間距離を「接するか接しないか」の見た目にする
+const KERNING_GAP_MIN_PX = 0.5;
+const KERNING_GAP_MAX_PX = 3;
+const KERNING_GAP_RANGE_PX = KERNING_GAP_MAX_PX - KERNING_GAP_MIN_PX;
+
+function prepareCard(input: CollageCardInput): PreparedCard {
+  const boxWidthPx = input.shape.cropViewBox.w * input.scale;
+  const boxHeightPx = input.shape.cropViewBox.h * input.scale;
   const h = hashId(input.id);
-  // 実装詳細補足B.3: 既存のhashId(id) >>> Nビットシフトの流儀通り。rotate/z-indexは
-  // 旧IdeasPoster.tsxと同じビット域を踏襲(意味的な連続性)、G_h/G_vは旧widthPct/marginで
-  // 使っていた空きビット域を再利用する
+  // 実装詳細補足B.3: 既存のhashId(id) >>> Nビットシフトの流儀通り
   const rotateDeg = (((h >>> 4) % 1000) / 1000 - 0.5) * 6; // -3..3deg（旧layoutForと同じ）
-  const gapH = 2 + (((h >>> 9) % 1000) / 1000) * 6; // 2..8px
-  const gapV = 2 + (((h >>> 18) % 1000) / 1000) * 6; // 2..8px
-  return { input, colSpan, boxWidthPx, boxHeightPx, contentWidthPx: content.width, contentHeightPx: content.height, rotateDeg, gapH, gapV };
+  const gapH = KERNING_GAP_MIN_PX + (((h >>> 9) % 1000) / 1000) * KERNING_GAP_RANGE_PX;
+  const gapV = KERNING_GAP_MIN_PX + (((h >>> 18) % 1000) / 1000) * KERNING_GAP_RANGE_PX;
+  return { input, boxWidthPx, boxHeightPx, rotateDeg, gapH, gapV };
 }
 
 type RowSlot = { card: PreparedCard; leftPx: number };
 
-function packRows(cards: readonly PreparedCard[]): RowSlot[][] {
+// B.3: 大小混在カードに対応する行パッキング。旧colSpan(12分率)の合計ではなく、実際の
+// 物理幅(boxWidthPx)の合計がrowBudgetPxを超えない範囲で貪欲に詰める(先頭カードは
+// 必ず行に入れる。1枚だけでもrowBudgetPxを超える大型カードは単独行になる)
+function packRows(cards: readonly PreparedCard[], rowBudgetPx: number): RowSlot[][] {
   const rows: RowSlot[][] = [];
   let current: PreparedCard[] = [];
   let used = 0;
   for (const c of cards) {
-    if (used + c.colSpan > TOTAL_COLS && current.length > 0) {
+    if (used + c.boxWidthPx > rowBudgetPx && current.length > 0) {
       rows.push(current.map((cc) => ({ card: cc, leftPx: 0 })));
       current = [];
       used = 0;
     }
     current.push(c);
-    used += c.colSpan;
+    used += c.boxWidthPx;
   }
   if (current.length > 0) rows.push(current.map((cc) => ({ card: cc, leftPx: 0 })));
   return rows;
@@ -425,8 +337,8 @@ function outlineAt(card: PreparedCard, leftPx: number, topPx: number): Point[] {
   const centerX = leftPx + card.boxWidthPx / 2;
   const centerY = topPx + card.boxHeightPx / 2;
   return outlineToLayoutSpace(card.input.shape, {
-    widthPx: card.contentWidthPx,
-    heightPx: card.contentHeightPx,
+    widthPx: card.boxWidthPx,
+    heightPx: card.boxHeightPx,
     rotateDeg: card.rotateDeg,
     centerX,
     centerY,
@@ -444,14 +356,10 @@ function kernRowHorizontally(row: RowSlot[], rowTopY: number, startLeftPx: numbe
   for (let i = 1; i < row.length; i++) {
     const slot = row[i];
     const prevMaxX = Math.max(...prevOutline.map((p) => p.x));
-    const farLeft = prevMaxX + slot.card.contentWidthPx * 1.2;
-    const stepSize = Math.max(0.5, (slot.card.contentWidthPx * 3) / KERNING_COARSE_STEPS);
+    const farLeft = prevMaxX + slot.card.boxWidthPx * 1.2;
+    const stepSize = Math.max(0.5, (slot.card.boxWidthPx * 3) / KERNING_COARSE_STEPS);
     const distAt = (leftPx: number) => clearance(prevOutline, outlineAt(slot.card, leftPx, rowTopY));
     slot.leftPx = solveKerningPosition(farLeft, stepSize, slot.card.gapH, distAt);
-    // 達成距離はprevOutlineを次カード自身のものへ再代入する"前"に測る（再代入後だと
-    // distAtのprevOutlineが次カード自身になり、自分自身との距離=0を記録してしまうバグを
-    // 避けるため。実装中の検証(distAt(nextV)経由の粗探索は正しいがpush時点の再測定が
-    // ずれていた)で発見した）
     achieved.push(distAt(slot.leftPx));
     prevOutline = outlineAt(slot.card, slot.leftPx, rowTopY);
   }
@@ -460,10 +368,8 @@ function kernRowHorizontally(row: RowSlot[], rowTopY: number, startLeftPx: numbe
 
 // 直前行・当該行はいずれも複数カードを含みうる。それぞれのカードの輪郭点列を1つの多角形として
 // 結合(concat)してしまうと、無関係な2カードの輪郭点が"辺"として繋がってしまいpointInPolygonが
-// 誤判定する(実装中の検証で発見: 境界最短距離だけを見るminPointCloudDistanceのみでは検出でき
-// なかった、凹形状の切り欠き・くびれ部分での真の塗りつぶし食い込みバグの原因調査で判明)。
-// カードごとの輪郭点列をグループとして保持し、2グループの全カードペアそれぞれにclearance()を
-// 適用した最小値を取ることで、この誤判定を避ける
+// 誤判定する。カードごとの輪郭点列をグループとして保持し、2グループの全カードペアそれぞれに
+// clearance()を適用した最小値を取ることで、この誤判定を避ける
 function outlinesForRow(row: readonly RowSlot[], topY: number): Point[][] {
   return row.map((slot) => outlineAt(slot.card, slot.leftPx, topY));
 }
@@ -500,20 +406,20 @@ function kernRowVertically(
 // compact/wideティア: 行詰め+水平・垂直カーニングの両方
 function computeGridTierLayout(cards: readonly CollageCardInput[], tier: "compact" | "wide"): CollageLayoutResult {
   const tierRefWidthPx = TIER_REF_WIDTH_PX[tier];
-  const prepared = cards.map((c) => prepareCard(c, tierRefWidthPx, tier));
-  const rows = packRows(prepared);
+  const prepared = cards.map((c) => prepareCard(c));
+  const rows = packRows(prepared, tierRefWidthPx);
 
   const placementById = new Map<string, CardPlacement>();
   let prevRowOutlines: Point[][] | null = null;
   let nominalTopY = 0;
   let maxBottomY = 0;
+  let maxRowWidth = 0;
   const horizontalGaps: number[] = [];
   const verticalGaps: number[] = [];
 
   for (const row of rows) {
-    const rowSpanSum = row.reduce((s, slot) => s + slot.card.colSpan, 0);
-    const slackCols = Math.max(0, TOTAL_COLS - rowSpanSum);
-    const slackPx = (slackCols / TOTAL_COLS) * tierRefWidthPx;
+    const rowWidthSum = row.reduce((s, slot) => s + slot.card.boxWidthPx, 0);
+    const slackPx = Math.max(0, tierRefWidthPx - rowWidthSum);
     const rowSeedH = hashId(row[0].card.input.id);
     const startLeftPx = slackPx > 0 ? ((rowSeedH % 1000) / 1000) * slackPx : 0;
 
@@ -526,6 +432,7 @@ function computeGridTierLayout(cards: readonly CollageCardInput[], tier: "compac
     const { topY: finalTopY, achievedGap } = kernRowVertically(row, prevRowOutlines, nominalTopY);
     if (achievedGap !== null) verticalGaps.push(achievedGap);
 
+    let rowMaxRight = 0;
     for (const slot of row) {
       placementById.set(slot.card.input.id, {
         id: slot.card.input.id,
@@ -536,57 +443,57 @@ function computeGridTierLayout(cards: readonly CollageCardInput[], tier: "compac
         rotateDeg: slot.card.rotateDeg,
       });
       maxBottomY = Math.max(maxBottomY, finalTopY + slot.card.boxHeightPx);
+      rowMaxRight = Math.max(rowMaxRight, slot.leftPx + slot.card.boxWidthPx);
     }
+    maxRowWidth = Math.max(maxRowWidth, rowMaxRight);
 
     prevRowOutlines = outlinesForRow(row, finalTopY);
     nominalTopY = maxBottomY;
   }
 
   const placements = cards.map((c) => placementById.get(c.id)!);
-  return { placements, containerHeightPx: maxBottomY, horizontalGaps, verticalGaps };
+  return { placements, containerHeightPx: maxBottomY, containerWidthPx: maxRowWidth, horizontalGaps, verticalGaps };
 }
 
-// mobileティア: 1カラム縦積み。垂直カーニングのみ(各カードを「1カードだけの行」として扱う)
+// mobileティア: 1カラム縦積み。垂直カーニングのみ(各カードを「1カードだけの行」として扱う)。
+// H: 固定2サイズ改訂計画で、旧「常にフル幅」の強制を廃止した(内容適応でカードごとに
+// 自然な幅になる)。横位置はティア基準幅内で中央寄せする
 function computeMobileTierLayout(cards: readonly CollageCardInput[]): CollageLayoutResult {
   const tierRefWidthPx = TIER_REF_WIDTH_PX.mobile;
   const placements: CardPlacement[] = [];
   let prevOutlines: Point[][] | null = null;
   let nominalTopY = 0;
   let maxBottomY = 0;
+  let maxWidth = 0;
   const verticalGaps: number[] = [];
 
   for (const input of cards) {
-    // mobileは常にフル幅(colSpan=12固定。既存MOBILE_FULLと同じ思想)。物理下限はフル幅到達後の
-    // 値をそのまま使う(これ以上ボックスを広げる余地がないため。実データでは未発動想定)
-    const prepared = prepareCard(input, tierRefWidthPx, "mobile");
-    const boxWidthPx = tierRefWidthPx;
-    const boxAspect = clampBoxAspect(input.shape.cropAspect);
-    const boxHeightPx = boxWidthPx / boxAspect;
-    const content = fitContentSize(boxWidthPx, boxHeightPx, input.shape.cropAspect);
-    const card: PreparedCard = { ...prepared, boxWidthPx, boxHeightPx, contentWidthPx: content.width, contentHeightPx: content.height };
-    const row: RowSlot[] = [{ card, leftPx: 0 }];
+    const card = prepareCard(input);
+    const leftPx = Math.max(0, (tierRefWidthPx - card.boxWidthPx) / 2);
+    const row: RowSlot[] = [{ card, leftPx }];
 
     const { topY: finalTopY, achievedGap } = kernRowVertically(row, prevOutlines, nominalTopY);
     if (achievedGap !== null) verticalGaps.push(achievedGap);
     placements.push({
       id: input.id,
-      leftPx: 0,
+      leftPx,
       topPx: finalTopY,
-      widthPx: boxWidthPx,
-      heightPx: boxHeightPx,
+      widthPx: card.boxWidthPx,
+      heightPx: card.boxHeightPx,
       rotateDeg: card.rotateDeg,
     });
-    maxBottomY = finalTopY + boxHeightPx;
-    prevOutlines = [outlineAt(card, 0, finalTopY)];
+    maxBottomY = finalTopY + card.boxHeightPx;
+    maxWidth = Math.max(maxWidth, card.boxWidthPx);
+    prevOutlines = [outlineAt(card, leftPx, finalTopY)];
     nominalTopY = maxBottomY;
   }
 
-  return { placements, containerHeightPx: maxBottomY, horizontalGaps: [], verticalGaps };
+  return { placements, containerHeightPx: maxBottomY, containerWidthPx: maxWidth, horizontalGaps: [], verticalGaps };
 }
 
 // 決定論・純関数。同じcards配列(内容が同一)を渡せば常に同じ結果を返す
 export function computeCollageLayout(cards: readonly CollageCardInput[], tier: CollageTier): CollageLayoutResult {
-  if (cards.length === 0) return { placements: [], containerHeightPx: 0, horizontalGaps: [], verticalGaps: [] };
+  if (cards.length === 0) return { placements: [], containerHeightPx: 0, containerWidthPx: 0, horizontalGaps: [], verticalGaps: [] };
   if (tier === "mobile") return computeMobileTierLayout(cards);
   return computeGridTierLayout(cards, tier);
 }
@@ -602,8 +509,8 @@ export function measurePairwiseDistances(
   const outlines = cards.map((c, i) => {
     const p = layout.placements[i];
     return outlineToLayoutSpace(c.shape, {
-      widthPx: fitContentSize(p.widthPx, p.heightPx, c.shape.cropAspect).width,
-      heightPx: fitContentSize(p.widthPx, p.heightPx, c.shape.cropAspect).height,
+      widthPx: p.widthPx,
+      heightPx: p.heightPx,
       rotateDeg: p.rotateDeg,
       centerX: p.leftPx + p.widthPx / 2,
       centerY: p.topPx + p.heightPx / 2,

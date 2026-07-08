@@ -8,3 +8,5 @@ echo "[pre-push] Running thumbnail health audit..."
 node scripts/audit-thumbnails.mjs || { echo "[pre-push] サムネ監査失敗：プレースホルダ/重複があります。push を中止しました。"; exit 1; }
 echo "[pre-push] Running Technology integrity audit..."
 node scripts/audit-tech.mjs || { echo "[pre-push] Technology監査失敗：フィールド/語彙/サムネイルに問題があります。push を中止しました。"; exit 1; }
+echo "[pre-push] Running idea-layouts freshness check..."
+node scripts/check-idea-layouts-freshness.mjs || { echo "[pre-push] idea-layouts鮮度検査失敗：push を中止しました。"; exit 1; }

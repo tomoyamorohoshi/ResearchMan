@@ -25,6 +25,7 @@ import { fileURLToPath } from "url";
 import { resolveClaudeBin, runClaudeJsonArray } from "./lib/claude-cli.mjs";
 import { matchRefsInText } from "./lib/match-refs-in-text.mjs";
 import { readIdeasJsonSafe, writeJsonAtomic } from "./lib/ideas-io.mjs";
+import { runIdeaLayoutsPrecompute } from "./lib/run-idea-layouts-precompute.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CASES_PATH = path.join(__dirname, "../data/cases.json");
@@ -145,6 +146,10 @@ async function main() {
 
   const merged = [...archiveEntries, ...ideas];
   await writeJsonAtomic(IDEAS_JSON_PATH, merged); // 原子書き込み（ideas-io.mjs参照）
+
+  // 2026-07-08改訂・事前計算方式: ideas.json書込直後は必ずidea-layouts.jsonを再計算する
+  // （pre-pushフックの鮮度検査が古いレイアウトでのpushを拒否するため）
+  runIdeaLayoutsPrecompute();
 
   console.log(
     `✅ バックフィル完了: ${archiveEntries.length}件処理・全件title付き・` +

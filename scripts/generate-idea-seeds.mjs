@@ -28,6 +28,7 @@ import { normTitle } from "./lib/norm-title.mjs";
 import { jstDateString } from "./lib/jst-date.mjs";
 import { readIdeasJsonSafe, writeJsonAtomic } from "./lib/ideas-io.mjs";
 import { computeItemWeight, weightedSample } from "./lib/weighted-sample.mjs";
+import { runIdeaLayoutsPrecompute } from "./lib/run-idea-layouts-precompute.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CASES_PATH = path.join(__dirname, "../data/cases.json");
@@ -45,12 +46,19 @@ const FIXTURE_SEEDS_PATH = (() => {
   const i = process.argv.indexOf("--fixture-seeds");
   return i >= 0 ? process.argv[i + 1] : null;
 })();
-// fixtureモードのサンドボックス強制: 書き込み先3種すべてを環境変数で隔離していない限り
+// fixtureモードのサンドボックス強制: 書き込み先4種すべてを環境変数で隔離していない限り
 // 起動を拒否する（誤って本番の data/ideas.json・履歴・last-run を汚染する事故の防止。
-// adversarialレビュー指摘。実際に一度、引数の書式ミスで本番経路に入りかけた実績がある）
-if (FIXTURE_SEEDS_PATH && !(process.env.IDEAS_JSON_PATH && process.env.HISTORY_PATH && process.env.LAST_RUN_PATH)) {
+// adversarialレビュー指摘。実際に一度、引数の書式ミスで本番経路に入りかけた実績がある）。
+// IDEA_LAYOUTS_JSON_PATH: 2026-07-08改訂・事前計算方式でrunIdeaLayoutsPrecompute()が追加された。
+// これを隔離しないと、fixtureのideas.jsonから計算したレイアウトが本番のdata/idea-layouts.json
+// を上書きしてしまう（IDEAS_JSON_PATHは隔離されていてもprecomputeの出力先は既定で本番パスのため）
+if (
+  FIXTURE_SEEDS_PATH &&
+  !(process.env.IDEAS_JSON_PATH && process.env.HISTORY_PATH && process.env.LAST_RUN_PATH && process.env.IDEA_LAYOUTS_JSON_PATH)
+) {
   console.error(
-    "--fixture-seeds はテスト専用です。IDEAS_JSON_PATH / HISTORY_PATH / LAST_RUN_PATH の3環境変数で書き込み先を必ず隔離してください",
+    "--fixture-seeds はテスト専用です。IDEAS_JSON_PATH / HISTORY_PATH / LAST_RUN_PATH / IDEA_LAYOUTS_JSON_PATH の" +
+      "4環境変数で書き込み先を必ず隔離してください",
   );
   process.exit(1);
 }
@@ -291,6 +299,9 @@ async function main() {
       console.log(
         `📝 ideas.json: +${ideasAdded}件追記・${ideasSkipped}件重複スキップ・${ideasNoTitle}件title欠落スキップ（計${ideas.length}件）`,
       );
+      // 2026-07-08改訂・事前計算方式: ideas.json書込直後は必ずidea-layouts.jsonを再計算する
+      // （pre-pushフックの鮮度検査が古いレイアウトでのpushを拒否するため）
+      runIdeaLayoutsPrecompute();
     }
 
     history = [...history, ...seeds.map((s) => s.seed)].slice(-HISTORY_KEEP);
