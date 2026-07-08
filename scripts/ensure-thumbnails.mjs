@@ -23,6 +23,7 @@ import fssync from "fs";
 import path from "path";
 import { spawnSync, execFileSync } from "child_process";
 import { fileURLToPath } from "url";
+import { normalizeThumbnailBuffer } from "./lib/normalize-thumbnail.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CASES_PATH = path.join(__dirname, "../data/cases.json");
@@ -211,7 +212,8 @@ Return ONLY the image URL on a single line. If none found, return exactly: NONE`
 // ── メイン ──────────────────────────────
 async function save(id, buf) {
   await fs.mkdir(THUMBS_DIR, { recursive: true });
-  await fs.writeFile(path.join(THUMBS_DIR, `${id}.jpg`), buf);
+  // 直接配信(images.unoptimized)前提の正規化: 幅上限・JPEG化・メタデータ除去
+  await fs.writeFile(path.join(THUMBS_DIR, `${id}.jpg`), await normalizeThumbnailBuffer(buf));
 }
 
 function hasGoodThumb(id) {

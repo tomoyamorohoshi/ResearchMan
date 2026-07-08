@@ -7,6 +7,7 @@ import http from "http";
 import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
+import { normalizeThumbnailBuffer } from "./lib/normalize-thumbnail.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const THUMBNAILS_DIR = path.join(__dirname, "../public/thumbnails");
@@ -64,7 +65,8 @@ export async function saveThumbnail(id, sourceUrl) {
   const buf = await fetchImage(sourceUrl);
   if (!buf || buf.length < 5000) return null; // 小さすぎる画像は除外
 
-  await fs.writeFile(localPath, buf);
+  // 直接配信(images.unoptimized)前提の正規化: 幅上限・JPEG化・メタデータ除去
+  await fs.writeFile(localPath, await normalizeThumbnailBuffer(buf));
   return `/thumbnails/${id}.jpg`;
 }
 
