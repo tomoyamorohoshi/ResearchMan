@@ -32,9 +32,14 @@ export type TechItem = {
   thumbnail: string;
   relatedWorks: Array<{ title: string; description: string; url: string }>;
   sources?: string[];
+  // 自己回復ウォッチドッグ(scripts/watchdog.mjs)の日曜deep監査が低確度の問題を検知した際に
+  // 立てる隔離フラグ。削除・配列からの除去はしない（quarantined:trueを手で戻せば復帰可能）
+  quarantined?: boolean;
+  quarantineReason?: string;
+  quarantineTs?: string;
 };
 
-export const techItems: TechItem[] = techData as TechItem[];
+export const techItems: TechItem[] = (techData as TechItem[]).filter((t) => !t.quarantined);
 
 export const TECH_TYPES: TechType[] = (techVocabulary as { Type: TechType[] }).Type;
 

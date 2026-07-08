@@ -667,8 +667,16 @@ console.log(`フォールバック発動元: ${fallbackTriggeredBy.size > 0 ? [.
       refs: idea.refs,
     }));
 
+    // B.4予算smoke（実装計画 researchman-ops-routine.md バッチ3・項目8）:
+    // Vercel 2コアはローカルの約4〜6倍遅い実測があり、300秒のビルドタイムアウト
+    // （2026-07-08インシデント1: /ideas改修が300秒×3回タイムアウトしビルド失敗）に対する
+    // 安全係数の逆算として「3ティア分のcomputeCollageLayout合計 < 30秒（ローカル）」を課す。
+    // 決定論チェック用の2回目呼び出し(layout2)は純粋な生成コストではないため計測に含めない。
+    let totalLayoutMs = 0;
     for (const tier of ["mobile", "compact", "wide"]) {
+      const layout1Start = Date.now();
       const layout1 = computeCollageLayout(cards, tier);
+      totalLayoutMs += Date.now() - layout1Start;
       const layout2 = computeCollageLayout(cards, tier);
       assert(JSON.stringify(layout1) === JSON.stringify(layout2), `collageLayout[${tier}]: 決定論(2回計算で同一)`);
       assert(layout1.placements.length === cards.length, `collageLayout[${tier}]: 全カード分の配置を返す`);
@@ -753,6 +761,9 @@ console.log(`フォールバック発動元: ${fallbackTriggeredBy.size > 0 ? [.
       );
       assert(belowFloor === 0, `collageLayout[${tier}]: 物理フォント下限未達がゼロ (実測=${belowFloor}, 下限=${floorPx}px)`);
     }
+
+    console.log(`  (情報) computeCollageLayout 3ティア合計実行時間(生成コストのみ・決定論チェック分は含まず): ${totalLayoutMs}ms`);
+    assert(totalLayoutMs < 30000, `computeCollageLayout 3ティア合計が30秒未満であること (実測=${totalLayoutMs}ms)`);
   } else {
     console.warn("data/ideas.json の読み込みをスキップ（パズルカーニングチェックは対象外）");
   }

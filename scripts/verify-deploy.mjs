@@ -18,8 +18,21 @@ import fs from "fs";
 import path from "path";
 import crypto from "crypto";
 import https from "https";
-import { execSync } from "child_process";
+import { execSync, spawnSync } from "child_process";
 import { fileURLToPath } from "url";
+import {
+  resolveVercelBin,
+  getLatestProductionDeployment,
+  getDeploymentCommit,
+  extractBuildErrorLines,
+} from "./lib/deploy-health.mjs";
+
+// --help は他の一切の処理・ネットワークアクセスより前に判定する（破壊なし確認の対象）
+if (process.argv.includes("--help") || process.argv.includes("-h")) {
+  console.log("使い方: node scripts/verify-deploy.mjs [--skip-pages] [thumbPath ...]");
+  console.log("  push後にVercel本番がHEADを反映したか最大約6分ポーリングで確認する。");
+  process.exit(0);
+}
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
@@ -107,8 +120,41 @@ for (let i = 1; i <= MAX_TRIES; i++) {
   if (landed && home.status === 200 && thumbsOk && pagesOk) { ok = true; console.log(`[verify-deploy] ✓ 反映確認（試行${i}回目）: push landed / home 200 / thumbs一致 / 新規ページ${newCasePaths.length}件 200`); break; }
   if (i === MAX_TRIES) {
     console.log(`[verify-deploy] ⏳ 時間切れ: landed=${landed} home=${home.status} thumbs=${thumbsOk} pages=${pagesOk}`);
+    logDeployDiagnosisIfBroken();
   } else {
     await sleep(INTERVAL_MS);
+  }
+}
+
+// 時間切れ時、実デプロイ状態がErrorなら vercel inspect --logs のエラー抜粋をログに残す
+// （2026-07-08インシデント1の再発防止: 「⏳時間切れ」だけでは原因が分からず気づかれなかった。
+// exit codeの契約・既存呼び出し元の挙動は変えない。あくまでログに詳細を残すだけ。
+// vercel CLIが使えない環境では従来どおり詳細なしの時間切れログのみ）
+function logDeployDiagnosisIfBroken() {
+  try {
+    const vercelBin = resolveVercelBin();
+    if (!vercelBin) {
+      console.log("[verify-deploy] vercel CLI利用不可 → 詳細診断はスキップ");
+      return;
+    }
+    const latest = getLatestProductionDeployment(vercelBin, "research-man");
+    if (!latest || latest.status !== "Error") return;
+    const commit = getDeploymentCommit(vercelBin, latest.url);
+    console.log(`[verify-deploy] 🚨 実デプロイ状態: Error（${latest.url}, commit=${commit || "不明"}）`);
+    // vercel inspect --logsは非TTY実行だと出力がstderr側に出る（実機検証で確認済み）ため、
+    // spawnSyncで両ストリームを結合して読む（execSyncはstdoutのみ返す仕様のため使わない）
+    const logsRun = spawnSync(vercelBin, ["inspect", latest.url, "--logs"], {
+      timeout: 30000,
+      encoding: "utf-8",
+      maxBuffer: 1024 * 1024 * 10,
+    });
+    const errorLines = extractBuildErrorLines(`${logsRun.stdout || ""}\n${logsRun.stderr || ""}`, 10);
+    if (errorLines.length) {
+      console.log("[verify-deploy] ビルドエラー抜粋:");
+      errorLines.forEach((l) => console.log(`  ${l}`));
+    }
+  } catch (e) {
+    console.log(`[verify-deploy] 診断中にエラー（無視して継続）: ${e.message}`);
   }
 }
 

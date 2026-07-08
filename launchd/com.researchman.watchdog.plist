@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.researchman.watchdog</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/zsh</string>
+    <string>-c</string>
+    <string>
+      export PATH="$HOME/.local/bin:/usr/local/bin:/opt/homebrew/bin:$PATH";
+      cd /Users/tm/Projects/Claude/ResearchMan;
+      LOG=$HOME/Library/Logs/researchman-watchdog.log;
+      [ -f $LOG ] &amp;&amp; [ $(stat -f%z $LOG) -gt 5242880 ] &amp;&amp; mv $LOG $LOG.1;
+      STATE=.last-watchdog-run.txt;
+      AMDUE=0;
+      node scripts/run-if-due.mjs --state $STATE --daily-at 12 --minute 30 &gt;&gt; $LOG 2&gt;&amp;1 &amp;&amp; AMDUE=1;
+      PMDUE=0;
+      if [ "$AMDUE" = "0" ]; then
+        node scripts/run-if-due.mjs --state $STATE --daily-at 18 --minute 30 &gt;&gt; $LOG 2&gt;&amp;1 &amp;&amp; PMDUE=1;
+      fi;
+      if [ "$AMDUE" = "0" ] &amp;&amp; [ "$PMDUE" = "0" ]; then exit 0; fi;
+      DEEP="";
+      if [ "$PMDUE" = "1" ] &amp;&amp; [ "$(date +%u)" = "7" ]; then DEEP="--deep"; fi;
+      LOCK=/tmp/researchman-git.lock; waited=0;
+      while ! mkdir $LOCK 2&gt;/dev/null; do
+        if [ -d $LOCK ] &amp;&amp; [ $(( $(date +%s) - $(stat -f %m $LOCK) )) -gt 5400 ]; then
+          echo "staleロック奪取: $(date)" &gt;&gt; $LOG; rmdir $LOCK 2&gt;/dev/null; continue;
+        fi;
+        sleep 30; waited=$((waited+30));
+        [ $waited -ge 1800 ] &amp;&amp; { echo "ロック取得タイムアウト: $(date)" &gt;&gt; $LOG; exit 0; };
+      done;
+      trap "rmdir $LOCK 2&gt;/dev/null" EXIT;
+      echo "===== Watchdog start ($([ "$AMDUE" = "1" ] &amp;&amp; echo AM || echo PM)$([ -n "$DEEP" ] &amp;&amp; echo " +deep")): $(date) =====" &gt;&gt; $LOG;
+      node scripts/watchdog.mjs $DEEP &gt;&gt; $LOG 2&gt;&amp;1 || echo "watchdogエラー終了: $(date)" &gt;&gt; $LOG;
+      echo "Watchdog completed: $(date)" &gt;&gt; $LOG
+    </string>
+  </array>
+
+  <key>StartCalendarInterval</key>
+  <array>
+    <dict><key>Hour</key><integer>12</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Hour</key><integer>13</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Hour</key><integer>14</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Hour</key><integer>15</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Hour</key><integer>16</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Hour</key><integer>17</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Hour</key><integer>18</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Hour</key><integer>19</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Hour</key><integer>20</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Hour</key><integer>21</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Hour</key><integer>22</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Hour</key><integer>23</integer><key>Minute</key><integer>30</integer></dict>
+  </array>
+
+  <key>RunAtLoad</key>
+  <true/>
+
+  <key>KeepAlive</key>
+  <false/>
+
+  <key>StandardOutPath</key>
+  <string>/Users/tm/Library/Logs/researchman-watchdog.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/tm/Library/Logs/researchman-watchdog-error.log</string>
+</dict>
+</plist>

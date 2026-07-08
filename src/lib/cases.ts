@@ -27,9 +27,14 @@ export type Case = {
   mechanism?: string;
   impact?: string;
   evaluation?: string;
+  // 自己回復ウォッチドッグ(scripts/watchdog.mjs)の日曜deep監査が低確度の問題を検知した際に
+  // 立てる隔離フラグ。削除・配列からの除去はしない（quarantined:trueを手で戻せば復帰可能）
+  quarantined?: boolean;
+  quarantineReason?: string;
+  quarantineTs?: string;
 };
 
-export const cases: Case[] = casesData as Case[];
+export const cases: Case[] = (casesData as Case[]).filter((c) => !c.quarantined);
 
 export const allCategories = Array.from(
   new Set(cases.flatMap((c) => c.categories))
