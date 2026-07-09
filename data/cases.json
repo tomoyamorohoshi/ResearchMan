@@ -1,5 +1,269 @@
 [
   {
+    "id": "omega-phenex-2026",
+    "title": "オメガフェネクス（OMEGA PHENEX）グローバル販売決定",
+    "summary": "個人開発者が8年制作の高速メカアクションがAstrolabe Gamesと契約、2027年に世界配信決定",
+    "client": "するめゲーム工房 / Astrolabe Games",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://automaton-media.com/articles/newsjp/20260708-453709/",
+    "thumbnail": "/thumbnails/omega-phenex-2026.jpg",
+    "videoId": "",
+    "overview": "個人サークル「するめゲーム工房」のするめまんじゅう氏が8年かけて開発した高速メカアクション『オメガフェネクス(OMEGA PHENEX COMMENCED PROJECT SIX)』が、2026年7月8日にAstrolabe Gamesとグローバル契約を締結。Unreal Engine 5製で、メカ「イカルス」を操り海と空を移動しながら戦う本作は、PC(Steam)向けに2027年内の世界配信が決定した。",
+    "background": "開発者は本業のCGデザイナー業のかたわら個人で本作を8年間制作。2024年4月のオープンβテストには7万人以上が参加し、Steamウィッシュリストは13万件を突破。クラウドファンディングでも目標の2倍超となる約650万円を集め、全キャラクターのプロ声優によるフルボイス化を実現するなど、個人開発ながら高い注目を集めていた。",
+    "execution": "Astrolabe Gamesは翻訳・プロモーション・コンシューマー版検証・流通支援を担当し、個人開発者では対応が難しい海外展開とコンソール対応を後押しする体制を構築。開発は引き続きするめまんじゅう氏が担当し、高速戦闘表現と独自メカデザインを維持したまま世界市場へ展開する枠組みが整った。",
+    "evaluationImpact": "個人開発インディータイトルが、オープンβ参加者数とウィッシュリスト数という定量的な実績を武器に海外パブリッシャーの目に留まり、グローバル契約に結びついた事例。SNS発信や体験版公開を通じた地道な認知拡大が、資金調達・コンソール展開・国際流通という次段階の投資を引き寄せた点で注目される。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Tech/3D",
+      "Form/Product",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "3d-meet-greet-mr-vtuber-2026",
+    "title": "ソニー「3D Meet & Greet」MR技術によるVTuberとの対面体験",
+    "summary": "MR技術でVTuberが実空間に現れ対面できる「3D Meet & Greet」、K-POP型ミート&グリートをバーチャルで実現",
+    "client": "Sony / PANDORA（VTuber: 玉波うるま）",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.moguravr.com/sony-mr-vtuber-meet-and-greet-event-report/",
+    "thumbnail": "/thumbnails/3d-meet-greet-mr-vtuber-2026.jpg",
+    "videoId": "",
+    "overview": "ソニーがMR技術で開発した「3D Meet & Greet」は、Meta Quest 3を装着した来場者の目の前に、PANDORA所属VTuber・玉波うるまや涼波ヒトデがリアルタイムで現れ、対面で会話や身振り手振りの挨拶を交わせる体験。2026年4月のSusHi Tech Tokyo 2026でブース展示され、演者はmocopiとフェイストラッキング対応HMDを装着して離れた場所から出演した。",
+    "background": "K-POPグループやアイドルのミート&グリートがビジネスモデルとして定着する中、バーチャルアーティストでも同様のサービスを実現できないかというソニー側の着想が起点。2024年12月にはSony Musicがアーティストの初ライブで「3Dミーグリ付きチケット」を試験販売し、通常チケットより優先的に売れるなど手応えを得ていたことも背景にある。",
+    "execution": "会場のスタジオ空間をデジタルツイン技術で事前スキャンし、離れた場所にいる演者の動きをmocopiとフェイストラッキング対応HMDでリアルタイム収録。来場者はMeta Quest 3を装着し、オクルージョン技術で現実の物体との前後関係を再現しながら、VTuberがドア越しに登場し歩み寄って挨拶するなど自然な距離感での対面コミュニケーションを体験した。2026年7月11日・12日にはカラオケまねきねこ渋谷本店で有料体験（1枠20分3,000円）も実施された。",
+    "evaluationImpact": "体験者からは「実在感」の高さが評価され、前年のSony Musicによる「3Dミーグリ付きチケット」実験でも通常チケットより優先的に売れ、店舗売上・満足度ともに好調だった実績がある。K-POPやアイドル文化で定着したミート&グリートをバーチャルアーティストにも拡張できる可能性を示し、VTuberグッズ・イベントビジネスの新たな収益モデルとして注目される。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/XR",
+      "Tech/3D",
+      "Form/Event",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "xpanceo-jbd-2026",
+    "title": "XPANCEO×JBD スマートコンタクトレンズ用ディスプレイ共同開発拡大",
+    "summary": "ドバイのXPANCEOと上海のJBDが、スマートコンタクトレンズ用マイクロディスプレイの量産技術確立に向け提携を拡大",
+    "client": "XPANCEO / JBD",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "中東・アフリカ",
+      "アジア"
+    ],
+    "link": "https://www.moguravr.com/xpanceo-jbd-smart-contact-lens-display-partnership/",
+    "thumbnail": "/thumbnails/xpanceo-jbd-2026.jpg",
+    "videoId": "",
+    "overview": "AR向けスマートコンタクトレンズを開発するドバイのXPANCEOと、超小型ディスプレイメーカーである上海のJBD（Jade Bird Display）が、レンズ内蔵用マイクロディスプレイの共同開発提携を拡大したと2026年7月に発表。従来は基板・光学系の開発が中心だったが、今回はディスプレイ自体の量産技術確立に焦点を移した。",
+    "background": "両社は2024年9月に提携を開始し、マイクロディスプレイを搭載した基板や近接視でもピントが合う独自光学系を共同開発してきた。プロジェクター・ホログラム方式とレンズ内直接投影方式の2案を検証し、レンズ・ディスプレイ全体の厚みを0.5mm未満、消費電力を10μW以下（AR眼鏡の100〜300分の1）に抑える成果を得ていた。今回はその延長で量産段階へ移行する。",
+    "execution": "拡大した提携では、コンタクトレンズという極小空間に収まる専用マイクロディスプレイの「スケーラビリティと製造性」に主眼を置く。レンズの厚みは人の髪程度に抑える必要があり、網膜への安全性と視認性を両立する輝度調整も引き続き技術課題として残ると報じられている。まだ開発段階であることが強調されている。",
+    "evaluationImpact": "実現すれば、コンタクトレンズ専用マイクロディスプレイとしては初の量産ラインとなる可能性がある取り組み。XPANCEOは2026年5月にも仏ITENと固体電池のプロトタイプを発表しており、ディスプレイ・電源という複数の技術課題を並行して解決する開発戦略が見える。AR/XR業界でスマートコンタクトレンズの商用化を占う動きとして注目される。",
+    "relatedWorks": [
+      {
+        "title": "XPANCEO×ITEN スマートレンズ用固体電池プロトタイプ",
+        "description": "XPANCEOが仏ITENと共同で、コンタクトレンズに内蔵可能な米粒サイズの固体セラミック微小電池のプルーフオブコンセプトを発表（2026年5月）",
+        "url": "https://www.iten.com/resources/press-releases/xpanceo-and-iten-create-proof-of-concept-for-smart-lens-with-integrated-solid-state-battery"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Tech/XR",
+      "Form/Product"
+    ]
+  },
+  {
+    "id": "ai-hy3-2026",
+    "title": "テンセント、新AIモデル「Hy3」をオープンソース公開",
+    "summary": "テンセントが総パラメータ295B・実働21BのMoEモデル「Hy3」を公開、幻覚率半減で大型モデル並み性能を実現",
+    "client": "Tencent",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.moguravr.com/tencent-hy3-open-source/",
+    "thumbnail": "/thumbnails/ai-hy3-2026.jpg",
+    "videoId": "",
+    "overview": "2026年7月6日、テンセントのHunyuanチームが新しい大規模言語モデル「Hy3」をオープンソースで公開した。総パラメータ数295B、実働21BのMixture of Experts(MoE)構造を採用し、コンテキスト長は256K。Apache 2.0ライセンスのもとGitHub、Hugging Face、ModelScope、AtomGitで公開され、商用利用にも地域制限がない。",
+    "background": "2026年4月に公開されたプレビュー版に対し、社内50チームからのフィードバックを反映して改良された正式版がHy3。大規模言語モデル開発競争が激化する中、GLM-5.1/5.2など競合モデルに対抗し、少ないパラメータ数で高性能を実現する効率重視の設計思想が背景にある。",
+    "execution": "MoE構造により推論時は一部のネットワークのみを稼働させコストを抑制。専門家評価で4点満点中2.67点を獲得しGLM-5.1(2.51点)を上回った。ハルシネーション発生率は12.5%から5.4%に、常識的誤りは25.4%から12.7%に低減。API価格は入力100万トークンあたり1元、出力4元と低価格に設定された。",
+    "evaluationImpact": "Apache 2.0ライセンスにより地域制限なく自由に商用利用・改変できる点が評価されている。テンセントのWorkBuddy、元宝、WeChatアシスタント、ゲーム「Path of Exile: Advent」など自社サービスに既に実装。OpenRouterやHermes Agent、Kilo Codeでも無償提供され、オープンLLM市場での存在感を高めている。",
+    "relatedWorks": [
+      {
+        "title": "Tencent Hunyuan公式発表",
+        "description": "Hy3公開に関するテンセント公式記事。エージェント機能強化と製品統合について解説",
+        "url": "https://www.tencent.com/en-us/articles/2202386.html"
+      },
+      {
+        "title": "VentureBeat: Hy3とGLM-5.2の性能比較",
+        "description": "Apache 2.0ライセンスのHy3が半分のサイズでGLM-5.2にコーディング以外の全領域で勝る点を分析",
+        "url": "https://venturebeat.com/technology/tencents-apache-licensed-hy3-takes-on-glm-5-2-at-half-the-size-and-wins-everywhere-except-coding"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Product"
+    ]
+  },
+  {
+    "id": "scaniverse-ai-usdz-2026",
+    "title": "Scaniverse、フィジカルAI向けUSDZ書き出し機能を追加",
+    "summary": "Scaniverseが3Dスキャンデータをロボット訓練用USDZ形式で書き出す機能を追加、sim-to-realギャップ解消へ",
+    "client": "Niantic / Scaniverse",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.moguravr.com/scaniverse-usdz-export-physical-ai/",
+    "thumbnail": "/thumbnails/scaniverse-ai-usdz-2026.jpg",
+    "videoId": "",
+    "overview": "Niantic Spatialが提供する3DスキャンアプリScaniverseに、撮影データをUSDZ形式で書き出す新機能を追加した。ガウシアン・スプラッティングによる3Dデータと自動生成した整合済みメッシュを1つのファイルにまとめ、NVIDIA Isaac SimやIsaac Labへ直接インポートできるようにし、ロボット訓練用シミュレーション環境の構築を簡易化した。",
+    "background": "ロボット等フィジカルAIの学習では、合成シミュレーション環境と実世界の差異により性能が低下する「sim-to-realギャップ」が長年の課題だった。高精度な環境データ取得には数万ドル規模のRGB-LiDAR機材が必要で、導入コストと手間が普及の障壁となっていた。",
+    "execution": "約500ドルの360度カメラで街路や屋内空間を約5分撮影し、Scaniverseウェブ版にアップロード。ガウシアン・スプラッティングで高精細な3Dデータを生成し、そこから整合済みメッシュを自動抽出、両者を1つのUSDZファイルとして書き出す。生成したUSDZはNVIDIA Isaac SimやIsaac Labにそのままインポートでき、ロボットの訓練や実配備後の方策改善に利用できる。",
+    "evaluationImpact": "従来数万ドル規模の専用機材が必要だった環境データ取得を、市販の360度カメラと数分の撮影で代替可能にし、フィジカルAI開発のコストと手間を大幅に削減した。Niantic Spatialが2026年4月に発表したVPS 2.0等の「世界モデル」戦略の延長線上にあり、実世界データをAI・ロボティクス基盤に活用する動きを加速させる事例として注目される。",
+    "relatedWorks": [
+      {
+        "title": "Niantic Spatial、ScaniverseとVPS 2.0を発表",
+        "description": "フィジカルAI・ロボティクス向けの世界モデル構築を掲げ、Scaniverseの3Dスキャン機能とVisual Positioning System 2.0を発表した2026年4月の先行アップデート。",
+        "url": "https://roboticsandautomationnews.com/2026/04/08/niantic-spatial-launches-two-new-world-models-to-support-real-world-ai-deployment/100393/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/Robotics",
+      "Tech/3D",
+      "Form/Product"
+    ]
+  },
+  {
+    "id": "people-s-press-kiosk-1980-2026",
+    "title": "People's Press Kiosk（1980年代ポーランドのキオスク経営シム）発表",
+    "summary": "1980年代共産主義ポーランドを舞台に配給・闇取引の狭間で家族を養うキオスク経営シムが発表",
+    "client": "インディー開発（詳細は記事参照）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://automaton-media.com/articles/newsjp/peoples-press-kiosk-20260708-454007/",
+    "thumbnail": "/thumbnails/people-s-press-kiosk-1980-2026.jpg",
+    "videoId": "",
+    "overview": "Orbital Knightが2026年7月8日発表したPC(Steam)向けシミュレーションゲーム。舞台は1980年代の共産主義ポーランドで、プレイヤーはトラム通り沿いの小さなキオスクを経営し、母・妻・息子の家族を養う。新聞や雑誌、タバコ、食料品、日用品を仕入れて販売する経営シムだが、配給制という時代背景を核に据えている。",
+    "background": "当時のポーランドは物資不足と貧困が深刻で、生活必需品は配給制のもとに置かれていた。ゲームはこの史実を土台に、配給券の真正性確認や闇取引の誘惑、当局の抜き打ち検査など、共産主義体制下の生活の緊張感を店番という日常的な視点から再現しようとしている。",
+    "execution": "プレイヤーは毎朝出勤して開店準備を行い、商品を棚に並べ接客と精算をこなす。配給券が偽造でないか確認し、違法な闇取引の誘いに応じるか判断を迫られる。家族の医療費など生活費のやりくりや、当局による抜き打ち検査への対応も求められ、経営シムに倫理的選択とサバイバル要素を組み込んでいる。",
+    "evaluationImpact": "スーパーやキオスクの経営という一見地味な題材に、冷戦下の統制経済と道徳的ジレンマを重ねた点が特徴。『Papers, Please』的な「日常業務を通じた抑圧体制の追体験」という潮流に連なる作品で、歴史教育的な意義とインディーゲームらしい実験性を併せ持つ。リリース時期は本記事時点で未定。",
+    "relatedWorks": [
+      {
+        "title": "Papers, Please",
+        "description": "架空の共産主義国家の入国審査官として書類確認業務を行う中で倫理的ジレンマに直面する、Lucas Pope制作の2013年インディーゲーム。日常業務を通じて抑圧体制を追体験させる手法が共通する。",
+        "url": "https://papersplea.se/"
+      },
+      {
+        "title": "Kiosk 199X",
+        "description": "1990年代の東欧風の架空国家を舞台にしたレトロなキオスク経営シム。共産圏崩壊後の混乱期を店番の視点で描く点でPeople's Press Kioskと題材が近い。",
+        "url": "https://store.steampowered.com/app/4187010/Kiosk_199X/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/App",
+      "Theme/Entertainment",
+      "Theme/Education"
+    ]
+  },
+  {
+    "id": "raindcode-2026",
+    "title": "Raindcode（檀黎斗コード）配信規制解除",
+    "summary": "スパイク・チュンソフトが「超探偵事件簿 レインコード」の実況・配信規制を7月29日から全編解禁し口コミ拡散を狙う",
+    "client": "スパイク・チュンソフト",
+    "agency": "",
+    "categories": [
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://automaton-media.com/articles/newsjp/20260708-453980/",
+    "thumbnail": "/thumbnails/raindcode-2026.jpg",
+    "videoId": "",
+    "overview": "ダンガンロンパ制作陣（シナリオ：小高和剛、デザイン：小松崎類）による推理アクション「超探偵事件簿 レインコード」について、スパイク・チュンソフトは2026年7月29日より、プレイ動画・生放送での配信可能範囲をエンディングまで全編解禁すると発表した。従来は第2章までに制限されていた。",
+    "background": "同作は2023年にNintendo Switch版が発売され、2024年にはPS5/Steam/Xbox版「プラス」も展開。ネタバレ防止の観点から配信ガイドラインでプレイ動画・生放送を第2章までに制限してきたが、発売から数年を経たタイミングで規制緩和に踏み切った。",
+    "execution": "7月29日の規制解除に合わせ、一部インフルエンサーによる先行配信も予定される。視聴者・実況者への一定の配慮は呼びかけつつ、エンディングまで自由に配信できる環境を整え、実況・生放送を通じた話題化と口コミ拡散を促す設計とした。",
+    "evaluationImpact": "発売から時間が経過したタイトルでも配信規制の緩和によって新規の実況コンテンツ創出とSNS上での再注目を狙える事例。ネタバレ管理と実況文化の両立をどう設計するかという、推理・ミステリージャンルのゲームマーケティングにおける参考事例となる。",
+    "relatedWorks": [
+      {
+        "title": "超探偵事件簿 レインコード プラス",
+        "description": "PS5/Steam/Xbox Series X|S向けに2024年7月18日発売されたパワーアップ版",
+        "url": "https://www.spike-chunsoft.co.jp/pages/raincode/plus/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/SNS",
+      "Theme/Entertainment"
+    ]
+  },
+  {
     "id": "ternlight-ai-2026",
     "title": "ternlight（軽量AI埋め込みライブラリ）",
     "summary": "AIモデルを1.58bit三値量子化で5〜7MBまで圧縮、WebAssemblyでサーバー不要のブラウザ内埋め込み検索を実現するOSSライブラリ",
