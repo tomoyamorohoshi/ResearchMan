@@ -1,11 +1,13 @@
 /**
- * 静的サンプルカード（idea タブは P0/P3待ちのダミージョブ用。research タブの
- * サンプルは P1 で実パイプライン化済みのため現在未使用 — jobs.ts::createJob 参照）。
+ * 静的サンプルカード（idea タブ用。data/ideas.json から読んだ実データをResultCard形式へ
+ * マップするヘルパー。research タブのサンプル配列は P1 でresearchが実パイプライン化された
+ * ため使われなくなり、P4 #6でデッドコードとして削除した — jobs.ts::createJob参照）。
  *
- * idea の見た目は data/ideas.json（RM本体の実エントリ・毎朝のアイデアの種
- * パイプラインが追記）から読み込む。中身は実データだが生成そのものは行わない
- * ダミー実装で、テーマ/縛り等の入力は無視して既存エントリを返すだけ（P3で
- * テーマ駆動の実生成に置き換え予定。DESIGN.md §6 idea参照）。
+ * idea の見た目は data/ideas.json（RM本体の実エントリ・毎朝のアイデアの種パイプラインが
+ * 追記）から読み込む。jobs.ts::createJob は idea も P3 で実パイプライン化済み（idea.ts経由の
+ * 生成は行わない）のため、本モジュールの mapRealIdeasToResultCards は現状どこからも実行時に
+ * 参照されていない。ただし sampleData.test.ts が data/ideas.json のスキーマ前提（pattern付き
+ * エントリが実在すること等）を検知する回帰ガードとして機能しているため、本体は残す。
  */
 import { readFileSync } from "node:fs";
 import path from "node:path";
@@ -14,73 +16,6 @@ import type { IdeaRefChip, ResultCard } from "./jobs.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const IDEAS_JSON_PATH = path.join(__dirname, "..", "..", "data", "ideas.json");
-
-const research: ResultCard[] = [
-  {
-    kind: "case",
-    id: "annahar-blank-edition",
-    url: "https://research-man.vercel.app/cases/annahar-blank-edition",
-    title: "An-Nahar「The Blank Edition」",
-    meta: "An-Nahar · レバノン · 2018",
-    chip: { label: "Cannes 2019 GP", jp: false },
-  },
-  {
-    kind: "case",
-    id: "annahar-elections-edition",
-    url: "https://research-man.vercel.app/cases/annahar-elections-edition",
-    title: "An-Nahar「The Elections Edition」",
-    meta: "An-Nahar · レバノン · 2022",
-    chip: { label: "Cannes 2022 GP", jp: false },
-  },
-  {
-    kind: "case",
-    id: "annahar-newspapers-inside-the-newspaper",
-    url: "https://research-man.vercel.app/cases/annahar-newspapers-inside-the-newspaper",
-    title: "Newspapers Inside The Newspaper",
-    meta: "An-Nahar · レバノン · 2022",
-    chip: { label: "Cannes 2023 GP", jp: false },
-  },
-  {
-    kind: "case",
-    id: "mawbima-mosquito-repellent-newspaper",
-    url: "https://research-man.vercel.app/cases/mawbima-mosquito-repellent-newspaper",
-    title: "世界初「蚊よけ新聞」Mawbima",
-    meta: "スリランカ · 2014",
-    chip: { label: "D&AD Graphite", jp: true },
-  },
-  {
-    kind: "case",
-    id: "mainichi-green-newspaper",
-    url: "https://research-man.vercel.app/cases/mainichi-green-newspaper",
-    title: "Green Newspaper（種入り新聞）",
-    meta: "毎日新聞 · 日本 · 2016",
-    chip: { label: "話題化", jp: true },
-  },
-  {
-    kind: "case",
-    id: "ajinomoto-danran-lantern",
-    url: "https://research-man.vercel.app/cases/ajinomoto-danran-lantern",
-    title: "味の素「団らんランタン」",
-    meta: "味の素 · 日本 · 2023",
-    chip: { label: "新聞広告賞2024", jp: true },
-  },
-  {
-    kind: "case",
-    id: "daiichikosho-dam-1000-meigara",
-    url: "https://research-man.vercel.app/cases/daiichikosho-dam-1000-meigara",
-    title: "第一興商「DAM 1,000銘柄」",
-    meta: "日本経済新聞 · 2024",
-    chip: { label: "新聞広告賞2024", jp: true },
-  },
-  {
-    kind: "case",
-    id: "akita-sakigake-akitaben-karuta",
-    url: "https://research-man.vercel.app/cases/akita-sakigake-akitaben-karuta",
-    title: "あきた弁企業かるた",
-    meta: "秋田魁新報 · 2024",
-    chip: { label: "新聞広告賞2025", jp: true },
-  },
-];
 
 const IDEAS_URL = "https://research-man.vercel.app/ideas";
 
@@ -127,4 +62,4 @@ function loadIdeaResultCards(): ResultCard[] {
 
 const idea: ResultCard[] = loadIdeaResultCards();
 
-export const sampleData = { research, idea };
+export const sampleData = { idea };

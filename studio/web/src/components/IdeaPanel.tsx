@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { createJob, getJob } from "../api";
+import { createJob, getJob, subscribeJobStream } from "../api";
 import { estimateRemainingMinutes } from "../eta";
 import { minDelay } from "../timing";
 import type { Job, ResultCard } from "../types";
@@ -14,7 +14,8 @@ interface Summary {
   count: number;
 }
 
-// ジョブ状況ポーリング間隔。ResearchPanelと同じ値（DESIGN.md §10 P3: 非同期ジョブ+ポーリング。SSEはP4）。
+// ジョブ状況ポーリング間隔。SSE接続に失敗/切断した場合のフォールバックとして使う
+// （ResearchPanelと同じ値。DESIGN.md §10 P4: SSE優先、切断時は既存ポーリングへフォールバック）。
 const POLL_INTERVAL_MS = 3000;
 
 export default function IdeaPanel() {
@@ -30,12 +31,35 @@ export default function IdeaPanel() {
   const [formError, setFormError] = useState<string | null>(null);
   const [jobError, setJobError] = useState("");
   const pollTimer = useRef<number | null>(null);
+  const sseCleanup = useRef<(() => void) | null>(null);
 
-  useEffect(() => {
-    return () => {
-      if (pollTimer.current !== null) window.clearTimeout(pollTimer.current);
-    };
-  }, []);
+  const stopWatching = () => {
+    if (pollTimer.current !== null) {
+      window.clearTimeout(pollTimer.current);
+      pollTimer.current = null;
+    }
+    sseCleanup.current?.();
+    sseCleanup.current = null;
+  };
+
+  useEffect(() => stopWatching, []);
+
+  /** running/error/done それぞれをUI状態へ反映する（SSE・ポーリング共通のロジック）。 */
+  const applyJob = (job: Job, themeAtStart: string): void => {
+    if (job.status === "running") {
+      setProgress(job.progress || "処理中…");
+      return;
+    }
+    if (job.status === "error") {
+      setJobError(job.error || "不明なエラーが発生しました。");
+      setStage("error");
+      return;
+    }
+    setResultCards(job.resultCards);
+    setSummary({ theme: themeAtStart, count: job.resultCards.length });
+    setWarning(job.warning);
+    setStage("results");
+  };
 
   const pollJob = (id: string, themeAtStart: string) => {
     const tick = async () => {
@@ -43,30 +67,33 @@ export default function IdeaPanel() {
       try {
         job = await getJob(id);
       } catch (err) {
-        // サーバは監査/verify中に spawnSync でイベントループが数分ブロックし、
-        // ポーリングが一時的に失敗する（P2 E2Eで実発生）。ジョブJSONが error と
-        // 言うまでは失敗＝終了とせず、注記を出して粘る（非ブロッキング化はP4）。
+        // サーバは監査/verify中に子プロセスを起動する（P4で非ブロッキング化済みだが、
+        // ネットワーク瞬断等でポーリングが一時的に失敗する可能性は残る）。ジョブJSONが
+        // error と言うまでは失敗＝終了とせず、注記を出して粘る。
         console.warn("[studio] idea job polling failed (transient?), retrying", err);
         setProgress("サーバ応答待ち（処理は継続中の可能性）…");
         pollTimer.current = window.setTimeout(tick, POLL_INTERVAL_MS);
         return;
       }
+      applyJob(job, themeAtStart);
       if (job.status === "running") {
-        setProgress(job.progress || "処理中…");
         pollTimer.current = window.setTimeout(tick, POLL_INTERVAL_MS);
-        return;
       }
-      if (job.status === "error") {
-        setJobError(job.error || "不明なエラーが発生しました。");
-        setStage("error");
-        return;
-      }
-      setResultCards(job.resultCards);
-      setSummary({ theme: themeAtStart, count: job.resultCards.length });
-      setWarning(job.warning);
-      setStage("results");
     };
     void tick();
+  };
+
+  /** SSEで進捗を購読する。接続エラー時は購読を止めて既存ポーリングへフォールバックする。 */
+  const watchJob = (id: string, themeAtStart: string): void => {
+    sseCleanup.current = subscribeJobStream(
+      id,
+      (job) => applyJob(job, themeAtStart),
+      (err) => {
+        console.warn("[studio] idea SSE stream failed, falling back to polling", err);
+        sseCleanup.current = null;
+        pollJob(id, themeAtStart);
+      },
+    );
   };
 
   const handleRun = async () => {
@@ -75,6 +102,7 @@ export default function IdeaPanel() {
       setFormError("お題を入力してください");
       return;
     }
+    stopWatching(); // 前回ジョブの購読が残っていれば止める（二重購読防止）
     setProgress("切り口を選定しています…");
     setStage("loading");
     try {
@@ -94,7 +122,7 @@ export default function IdeaPanel() {
         setStage("results");
         return;
       }
-      pollJob(job.id, theme);
+      watchJob(job.id, theme);
     } catch (err) {
       console.error("[studio] idea job failed", err);
       setFormError(

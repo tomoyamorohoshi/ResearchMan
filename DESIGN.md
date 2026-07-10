@@ -1,6 +1,6 @@
 # ResearchMan Studio — ローカル・リサーチ/アイデア共創アプリ 設計書
 
-作成: 2026-07-09 / 更新: 2026-07-10（簡素化・自動反映・参照URL・切り口駆動ideaで合意。同日追記: ideaカード書式=RM本体準拠で確定）/ 状態: **設計確定・実装中（P0完了・P1進行中）**
+作成: 2026-07-09 / 更新: 2026-07-10（簡素化・自動反映・参照URL・切り口駆動ideaで合意。同日追記: ideaカード書式=RM本体準拠で確定。さらに追記: P4完了によりP0〜P4全実装完了）/ 状態: **実装完了（P0〜P4）**
 UIモックアップ（合意済みv3）: https://claude.ai/code/artifact/8c4223c6-2b7c-46ab-a5ba-4009cf47d4d0
 （2タブ・入力→Researching→RM風カード。Research=参照URL欄あり／idea=切り口ラベル付きシェイプ。
 実装時はこのURLをWebFetchして正確なHTML/CSSを取得すること）
@@ -129,11 +129,16 @@ studio/
 - ルート `.gitignore` に `studio/workdir/` を追加。`next.config`/Vercel の対象外であることを担保。
 
 ## 10. 実装フェーズ（新セッションで・各フェーズ検証付き）
-- **P0 骨組み**: `studio/` 雛形・ローカルサーバ・2タブ×3画面UI（モックアップ移植）・ダミー結果で疎通
-- **P1 Research(Case)実行**: Agent SDKで収集→検証→反映（自動）→RMカード表示→本番URL確認
-- **P2 Research(Technology)**: tech系スクリプト起動→audit-tech→反映
-- **P3 idea**: 生成→precompute→ペアコミット→反映→シェイプカード表示
-- **P4 仕上げ**: Researching進捗のSSE・ジョブ履歴・コスト上限・エラー時LINE・失敗時ロールバック
+- **P0 骨組み**: `studio/` 雛形・ローカルサーバ・2タブ×3画面UI（モックアップ移植）・ダミー結果で疎通 — 完了
+- **P1 Research(Case)実行**: Agent SDKで収集→検証→反映（自動）→RMカード表示→本番URL確認 — 完了
+- **P2 Research(Technology)**: tech系スクリプト起動→audit-tech→反映 — 完了
+- **P3 idea**: 生成→precompute→ペアコミット→反映→シェイプカード表示 — 完了
+- **P4 仕上げ**: audit.tsの非ブロッキング化（spawnSync→async spawn）・Researching進捗のSSE
+  （`GET /api/jobs/:id/stream`・切断時はポーリングへフォールバック）・ジョブ履歴UI（一覧→
+  過去結果の再表示）・コスト上限（ジョブ単位・既定$5・`STUDIO_JOB_BUDGET_USD`）・verify厳密化
+  （新規idの本文マーカー確認まで追加ポーリング）・フェーズ所要時間の実測記録
+  （`phaseDurationsMs`、eta.ts較正用） — 完了（2026-07-10、E2E: Technology種別・実ジョブ1本で
+  SSE配信・監査中の非ブロッキング応答・履歴再表示・本番反映・LINE到達を確認）
 - 各Pで: tsc/lint・実ジョブ1本の疎通・**本番反映の目視確認**・LINE通知の到達確認。
 
 ## 11. 未決（実装前に確認したい少数）

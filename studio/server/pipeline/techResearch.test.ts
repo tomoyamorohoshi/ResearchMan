@@ -12,7 +12,7 @@
  */
 import assert from "node:assert/strict";
 import test from "node:test";
-import { buildFailPatch, buildLockUnavailablePatch, buildPushFailPatch } from "./techResearch.js";
+import { buildFailPatch, buildLockUnavailablePatch, buildPushFailPatch, terminalStatus } from "./techResearch.js";
 
 test("buildLockUnavailablePatch: エラー状態かつresultCards/commit/costを明示的に空にする", () => {
   const patch = buildLockUnavailablePatch();
@@ -46,4 +46,16 @@ test("buildPushFailPatch: commit済みのためcommitHash/resultCards/costを保
   assert.equal(patch.commit, "abcdef123456");
   assert.equal(patch.cost, 0.77);
   assert.match(patch.error ?? "", /push に失敗/);
+});
+
+// ── terminalStatus（P4 adversarial-review指摘#1の再発防止、caseResearch.test.tsと同じ理由） ──
+
+test("terminalStatus: 単独実行（ownsLock=true）は指定した終端statusをそのまま返す", () => {
+  assert.equal(terminalStatus(true, "done"), "done");
+  assert.equal(terminalStatus(true, "error"), "error");
+});
+
+test("terminalStatus: combined実行中（ownsLock=false）はdone/errorどちらもrunningに据え置く", () => {
+  assert.equal(terminalStatus(false, "done"), "running");
+  assert.equal(terminalStatus(false, "error"), "running");
 });

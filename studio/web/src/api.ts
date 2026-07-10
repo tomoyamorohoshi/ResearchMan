@@ -46,3 +46,41 @@ export async function getJob(id: string): Promise<Job> {
   }
   return res.json();
 }
+
+/**
+ * ジョブ進捗をSSE（Server-Sent Events）で購読する（DESIGN.md §10 P4）。
+ * サーバは接続直後に現在のジョブ状態を1件送り、以後 status="running" の間は更新の
+ * たびにイベントを送る。ジョブがrunningでなくなった時点でサーバ・クライアント双方が
+ * 接続を閉じる（index.ts::createApp参照）。
+ *
+ * 接続エラー時（プロキシ経由の切断・サーバ再起動等）は onError を呼ぶだけで自動再接続は
+ * しない。呼び出し側（ResearchPanel/IdeaPanel）が既存のポーリングへフォールバックする
+ * 判断はUI側に委ねる（5c8251eのリトライ耐性を持つポーリングを "SSEの正常なフォールバック
+ * 手段" として残すため）。
+ */
+export function subscribeJobStream(
+  id: string,
+  onUpdate: (job: Job) => void,
+  onError: (err: unknown) => void,
+): () => void {
+  const es = new EventSource(`/api/jobs/${id}/stream`);
+  es.onmessage = (event) => {
+    try {
+      const job = JSON.parse(event.data) as Job;
+      onUpdate(job);
+      if (job.status !== "running") {
+        // ジョブ確定後はサーバ側もストリームを閉じるが、クライアント側からも明示的に
+        // 閉じておく（EventSourceは既定でサーバ切断時に自動再接続を試みるため、それを防ぐ）。
+        es.close();
+      }
+    } catch (err) {
+      onError(err);
+    }
+  };
+  es.onerror = (event) => {
+    if (es.readyState === EventSource.CLOSED) return; // 上記の正常終了close済みなら無視
+    es.close();
+    onError(event);
+  };
+  return () => es.close();
+}

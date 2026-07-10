@@ -54,6 +54,9 @@ import { acquireTechThumbnail } from "./techThumbnail.js";
 import { isUrlAlive } from "./techExternalScripts.js";
 import { resolveLock, tryAcquireLock, type LockHandle } from "./lock.js";
 import { runAgentQuery } from "./sdkRunner.js";
+import { BudgetExceededError, assertWithinBudget, resolveJobBudgetUsd } from "./budget.js";
+import { pollStrictVerify } from "./strictVerify.js";
+import { finishJob, startPhase } from "./progressTiming.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..", "..", ".."); // studio/server/pipeline -> repo root
@@ -88,14 +91,17 @@ const TECH_COLLECTOR_DEF: LoadedAgentDefinition = {
 - クライテリアに適合しない技術（論文のみ・コード未公開・製品ニュースのみ等）は候補に含めない`,
 };
 
+// P4 #6: フェーズ切替のたびに直前フェーズの所要時間を積算し、job JSONへ記録する
+// （caseResearch.tsと同じ理由）。
 async function setProgress(jobId: string, progress: string): Promise<void> {
-  await updateJob(jobId, { progress });
+  const phaseDurationsMs = startPhase(jobId, progress);
+  await updateJob(jobId, { progress, phaseDurationsMs });
 }
 
 // notify-line.mjs は「おまけ」設計で常にexit 0のため、送信成否をログへ転記する
 // （caseResearch.tsと同じ理由・2026-07-10）。
-function notifyLine(args: string[]): void {
-  const result = runNotifyLine(ROOT, args);
+async function notifyLine(args: string[]): Promise<void> {
+  const result = await runNotifyLine(ROOT, args);
   console.log(`[studio] notify-line: ${result.stdout.trim() || result.stderr.trim() || "(no output)"}`);
 }
 
@@ -148,9 +154,16 @@ export function buildPushFailPatch(
   };
 }
 
-async function fail(jobId: string, theme: string, message: string, costUsd: number): Promise<void> {
-  await updateJob(jobId, buildFailPatch(message, costUsd));
-  notifyLine(["--result", "error", "--route", "technology", "--label", `Studio: ${theme}`]);
+// P4 adversarial-review指摘#1: caseResearch.tsと同じ理由（terminalStatusのコメント参照）。
+// combined実行中（ownsLock=false）はこのpipeline自身の終端をstatus:"running"のまま
+// 据え置き、SSEがCase/Techいずれかのフェーズ完了時点でジョブ全体の終了と誤認しないようにする。
+export function terminalStatus(ownsLock: boolean, status: "done" | "error"): "done" | "error" | "running" {
+  return ownsLock ? status : "running";
+}
+
+async function fail(jobId: string, theme: string, message: string, costUsd: number, ownsLock: boolean): Promise<void> {
+  await updateJob(jobId, { ...buildFailPatch(message, costUsd), status: terminalStatus(ownsLock, "error") });
+  await notifyLine(["--result", "error", "--route", "technology", "--label", `Studio: ${theme}`]);
 }
 
 interface RawCandidateWithName {
@@ -231,6 +244,7 @@ export async function runTechResearchPipeline(
 ): Promise<void> {
   const { theme, viewpoint, refUrl, count } = req;
   let costUsd = 0;
+  const budgetUsd = resolveJobBudgetUsd();
 
   const { lock, ownsLock } = resolveLock(externalLock, tryAcquireLock);
   if (!lock) {
@@ -268,6 +282,7 @@ export async function runTechResearchPipeline(
       existingTechTitles,
     );
     costUsd += collectCost;
+    assertWithinBudget(costUsd, budgetUsd);
 
     if (raws.length === 0) {
       throw new Error(
@@ -337,14 +352,14 @@ export async function runTechResearchPipeline(
 
     // ── 6. 品質監査 ──────────────────────────────────────────────
     await setProgress(jobId, "品質監査中（tech整合/tsc/lint/build）");
-    const audits: Array<{ name: string; run: () => { ok: boolean; stdout: string; stderr: string } }> = [
+    const audits: Array<{ name: string; run: () => Promise<{ ok: boolean; stdout: string; stderr: string }> }> = [
       { name: "audit-tech", run: () => runAuditTech(ROOT) },
       { name: "tsc --noEmit", run: () => runTypeCheck(ROOT) },
       { name: "lint", run: () => runLint(ROOT) },
       { name: "build", run: () => runBuild(ROOT) },
     ];
     for (const audit of audits) {
-      const result = audit.run();
+      const result = await audit.run();
       if (!result.ok) {
         const tail = [result.stderr.trim().slice(-3000), result.stdout.trim().slice(-1500)]
           .filter(Boolean)
@@ -356,32 +371,32 @@ export async function runTechResearchPipeline(
 
     // ── 7. commit/push ───────────────────────────────────────────
     await setProgress(jobId, "反映中（commit/push）");
-    const addResult = gitAdd(ROOT, [...trackedTouched, ...newUntracked]);
+    const addResult = await gitAdd(ROOT, [...trackedTouched, ...newUntracked]);
     if (!addResult.ok) {
       await rollbackTouchedFiles(ROOT, trackedTouched, newUntracked);
       throw new Error(`git add に失敗しました: ${addResult.stderr.slice(0, 500)}`);
     }
     const commitMsg = buildTechCommitMessage(theme, withThumbnails.length);
-    const commitResult = gitCommit(ROOT, commitMsg);
+    const commitResult = await gitCommit(ROOT, commitMsg);
     if (!commitResult.ok) {
       await rollbackTouchedFiles(ROOT, trackedTouched, newUntracked);
       throw new Error(`git commit に失敗しました: ${commitResult.stderr.slice(0, 500)}`);
     }
     committed = true;
-    commitHash = gitRevParseHead(ROOT);
+    commitHash = await gitRevParseHead(ROOT);
 
-    const pushResult = gitPush(ROOT);
+    const pushResult = await gitPush(ROOT);
     if (!pushResult.ok) {
-      notifyLine(["--result", "pushfail", "--route", "technology", "--label", `Studio: ${theme}`]);
-      await updateJob(
-        jobId,
-        buildPushFailPatch(
+      await notifyLine(["--result", "pushfail", "--route", "technology", "--label", `Studio: ${theme}`]);
+      await updateJob(jobId, {
+        ...buildPushFailPatch(
           `push に失敗しました（pre-push監査等の可能性）。コミットはローカルに残っています（commit ${commitHash?.slice(0, 8) ?? "不明"}）。手動対応が必要です。`,
           commitHash,
           resultCards,
           costUsd,
         ),
-      );
+        status: terminalStatus(ownsLock, "error"),
+      });
       return;
     }
 
@@ -398,14 +413,25 @@ export async function runTechResearchPipeline(
     // Technology日次パイプラインと同じ回避策: verify-deploy.mjsの既定ページ検証はCase Study用
     // サマリーを読むため --skip-pages で無効化し、代わりに verify-tech-pages.mjs で
     // /technology/<id> の反映を確認する（scripts/verify-tech-pages.mjs参照）。
-    const verifyDeployResult = runVerifyDeploy(ROOT, [], ["--skip-pages"]);
-    const verifyPagesResult = runVerifyTechPages(ROOT);
-    const verified = verifyDeployResult.ok && verifyPagesResult.ok;
+    const verifyDeployResult = await runVerifyDeploy(ROOT, [], ["--skip-pages"]);
+    const verifyPagesResult = await runVerifyTechPages(ROOT);
+    const baseVerified = verifyDeployResult.ok && verifyPagesResult.ok;
+
+    // P4 #5厳密化: verify-tech-pages.mjs は新規ページの200確認までしか行わない。追加確認として、
+    // 実際に新技術のタイトルが本文に現れるまでポーリングする（caseResearch.tsと同じ理由）。
+    let strictResult: { ok: boolean; failedUrls: string[] } = { ok: true, failedUrls: [] };
+    if (baseVerified) {
+      await setProgress(jobId, "新規ページの反映を厳密確認中");
+      strictResult = await pollStrictVerify(
+        finalEntries.map((t) => ({ url: `${SITE}/technology/${t.id}`, markers: [t.title] })),
+      );
+    }
+    const verified = baseVerified && strictResult.ok;
 
     if (verified) {
-      notifyLine(["--summary", LAST_TECH_ADD_PATH, "--route", "technology", "--label", `Studio: ${theme}`]);
+      await notifyLine(["--summary", LAST_TECH_ADD_PATH, "--route", "technology", "--label", `Studio: ${theme}`]);
       await updateJob(jobId, {
-        status: "done",
+        status: terminalStatus(ownsLock, "done"),
         progress: undefined,
         warning: warningMsg,
         resultCards,
@@ -414,11 +440,18 @@ export async function runTechResearchPipeline(
         cost: costUsd,
       });
     } else {
-      notifyLine(["--result", "unverified", "--summary", LAST_TECH_ADD_PATH, "--route", "technology", "--label", `Studio: ${theme}`]);
+      await notifyLine(["--result", "unverified", "--summary", LAST_TECH_ADD_PATH, "--route", "technology", "--label", `Studio: ${theme}`]);
       await updateJob(jobId, {
-        status: "done",
+        status: terminalStatus(ownsLock, "done"),
         progress: undefined,
-        warning: [warningMsg, "反映確認が時間切れでした。数分後に本番へ反映される見込みです。"].filter(Boolean).join(" / "),
+        warning: [
+          warningMsg,
+          !baseVerified
+            ? "反映確認が時間切れでした。数分後に本番へ反映される見込みです。"
+            : "新規ページは表示されましたが、内容の反映確認が時間切れでした（キャッシュ等の可能性）。数分後に再度ご確認ください。",
+        ]
+          .filter(Boolean)
+          .join(" / "),
         resultCards,
         commit: commitHash,
         deployedUrl: SITE,
@@ -430,11 +463,12 @@ export async function runTechResearchPipeline(
     await rollbackIfNotCommitted(committed, trackedTouched, newUntracked, (tracked, untracked) =>
       rollbackTouchedFiles(ROOT, tracked, untracked),
     );
-    if (committed) {
+    const isBudgetError = err instanceof BudgetExceededError;
+    if (committed && !isBudgetError) {
       console.error("[studio] tech commit後の例外（ロールバックはスキップ）:", err);
-      notifyLine(["--result", "unverified", "--route", "technology", "--label", `Studio: ${theme}`]);
+      await notifyLine(["--result", "unverified", "--route", "technology", "--label", `Studio: ${theme}`]);
       await updateJob(jobId, {
-        status: "done",
+        status: terminalStatus(ownsLock, "done"),
         progress: undefined,
         warning: `反映後の処理でエラーが発生しました（データは本番に反映済みの可能性があります。commit ${commitHash?.slice(0, 8) ?? "不明"}）: ${message}`,
         resultCards,
@@ -442,10 +476,24 @@ export async function runTechResearchPipeline(
         deployedUrl: SITE,
         cost: costUsd,
       });
+    } else if (committed && isBudgetError) {
+      // DESIGN.md §8: 予算超過はcommit後でも「停止のみ」で常にエラー扱いにする
+      // （caseResearch.tsと同じ理由。budget.ts参照）。
+      console.error("[studio] tech commit後に予算上限超過を検知（ロールバックはスキップ、停止のみ）:", err);
+      await notifyLine(["--result", "error", "--route", "technology", "--label", `Studio: ${theme}`]);
+      await updateJob(jobId, {
+        status: terminalStatus(ownsLock, "error"),
+        progress: undefined,
+        error: `${message}（データは本番に反映済みの可能性があります。commit ${commitHash?.slice(0, 8) ?? "不明"}）`,
+        resultCards,
+        commit: commitHash,
+        cost: costUsd,
+      });
     } else {
-      await fail(jobId, theme, message, costUsd);
+      await fail(jobId, theme, message, costUsd, ownsLock);
     }
   } finally {
+    await updateJob(jobId, { phaseDurationsMs: finishJob(jobId) }).catch(() => {});
     if (ownsLock) lock.release();
   }
 }

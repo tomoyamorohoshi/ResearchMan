@@ -53,6 +53,9 @@ import { extractJsonArray } from "./pure.js";
 import { tryAcquireLock } from "./lock.js";
 import { runPlainQuery } from "./sdkRunner.js";
 import { updateJob, type IdeaRefChip, type ResultCard } from "../jobs.js";
+import { BudgetExceededError, assertWithinBudget, resolveJobBudgetUsd } from "./budget.js";
+import { pollStrictVerify } from "./strictVerify.js";
+import { finishJob, startPhase } from "./progressTiming.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..", "..", ".."); // studio/server/pipeline -> repo root
@@ -64,25 +67,29 @@ const SITE = "https://research-man.vercel.app";
 const IDEAS_URL = `${SITE}/ideas`;
 const MAX_GEN_ATTEMPTS = 3;
 
+// P4 #6: フェーズ切替のたびに直前フェーズの所要時間を積算し、job JSONへ記録する
+// （caseResearch.tsと同じ理由）。
 async function setProgress(jobId: string, progress: string): Promise<void> {
-  await updateJob(jobId, { progress });
+  const phaseDurationsMs = startPhase(jobId, progress);
+  await updateJob(jobId, { progress, phaseDurationsMs });
 }
 
 // notify-line.mjs は常にexit 0（設定不備・送信失敗でも本体を止めない「おまけ」設計）のため、
 // 送信成否をログへ転記して可観測性を持たせる（caseResearch.tsと同じ理由・2026-07-10）。
-function notifyLine(args: string[]): void {
-  const result = runNotifyLine(ROOT, args);
+async function notifyLine(args: string[]): Promise<void> {
+  const result = await runNotifyLine(ROOT, args);
   console.log(`[studio] notify-line: ${result.stdout.trim() || result.stderr.trim() || "(no output)"}`);
 }
 
 async function fail(jobId: string, theme: string, message: string): Promise<void> {
   await updateJob(jobId, { status: "error", progress: undefined, error: message });
-  notifyLine(["--result", "error", "--label", `Studio: ${theme}`]);
+  await notifyLine(["--result", "error", "--label", `Studio: ${theme}`]);
 }
 
 export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaRequest): Promise<void> {
   const { theme, constraint, source, count } = req;
   let costUsd = 0;
+  const budgetUsd = resolveJobBudgetUsd();
 
   const lock = tryAcquireLock();
   if (!lock) {
@@ -143,6 +150,9 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
     } catch (err) {
       console.warn("[studio] idea keyword extraction failed, using theme as-is:", err);
     }
+    // budgetチェックは上のtry/catchの外に置く（内側のcatchは「キーワード抽出失敗」専用のため、
+    // BudgetExceededErrorを投げても飲み込まれず本来のcatchまで伝播する。caseResearch.tsと同じ理由）。
+    assertWithinBudget(costUsd, budgetUsd);
 
     // ── 4. 関連事例・技術のretrieve（具体の触発材料） ──────────────
     await setProgress(jobId, "関連事例・技術を検索中");
@@ -174,6 +184,7 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
         continue;
       }
       costUsd += genResult.costUsd;
+      assertWithinBudget(costUsd, budgetUsd);
       const arr = extractJsonArray(genResult.text);
       if (!arr) {
         genError = "生成結果のJSON解析に失敗しました";
@@ -252,7 +263,7 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
 
     // ── 8. 監査（root next build。ideas.json破損が/ideasページを壊さないことの最終確認） ──
     await setProgress(jobId, "品質監査中（build）");
-    const buildResult = runBuild(ROOT);
+    const buildResult = await runBuild(ROOT);
     if (!buildResult.ok) {
       const tail = [buildResult.stderr.trim().slice(-3000), buildResult.stdout.trim().slice(-1500)]
         .filter(Boolean)
@@ -263,24 +274,24 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
 
     // ── 9. commit/push ────────────────────────────────────────
     await setProgress(jobId, "反映中（commit/push）");
-    const addResult = gitAdd(ROOT, trackedTouched);
+    const addResult = await gitAdd(ROOT, trackedTouched);
     if (!addResult.ok) {
       await rollbackTouchedFiles(ROOT, trackedTouched, newUntracked);
       throw new Error(`git add に失敗しました: ${addResult.stderr.slice(0, 500)}`);
     }
     const commitMsg = buildIdeaCommitMessage(theme, newEntries.length);
-    const commitResult = gitCommit(ROOT, commitMsg);
+    const commitResult = await gitCommit(ROOT, commitMsg);
     if (!commitResult.ok) {
       await rollbackTouchedFiles(ROOT, trackedTouched, newUntracked);
       throw new Error(`git commit に失敗しました: ${commitResult.stderr.slice(0, 500)}`);
     }
     // commit成功。以降は何が起きてもロールバックしない。
     committed = true;
-    commitHash = gitRevParseHead(ROOT);
+    commitHash = await gitRevParseHead(ROOT);
 
-    const pushResult = gitPush(ROOT);
+    const pushResult = await gitPush(ROOT);
     if (!pushResult.ok) {
-      notifyLine(["--result", "pushfail", "--label", `Studio: ${theme}`]);
+      await notifyLine(["--result", "pushfail", "--label", `Studio: ${theme}`]);
       await updateJob(jobId, {
         status: "error",
         progress: undefined,
@@ -295,12 +306,25 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
     // --skip-pages: verify-deploy.mjsの既定は/tmp/researchman-last-add.json（Case Study用
     // サマリー）を読んで新規ページを検証するため、ideaの反映確認でそれを読むと誤検証になる
     // （Technology日次パイプラインと同じ回避策。scripts/verify-deploy.mjs参照）。
-    const verifyResult = runVerifyDeploy(ROOT, [], ["--skip-pages"]);
-    const lineText = buildIdeaLineText({ theme, entries: newEntries, verified: verifyResult.ok, commitHash, site: SITE });
-    await writeFile(LAST_IDEA_TEXT_PATH, lineText);
-    notifyLine(["--text-file", LAST_IDEA_TEXT_PATH]);
+    const verifyResult = await runVerifyDeploy(ROOT, [], ["--skip-pages"]);
 
+    // P4 #5厳密化: idea は既存verify-deployが --skip-pages のためページ検証を一切しない
+    // （landed+home 200のみ）。/ideas は1ページに全アイデアが集約されるため、新規追加分
+    // 全件のタイトルがそのページの本文に現れるまでポーリングする追加確認を行う
+    // （caseResearch.ts/techResearch.tsと同じ理由。「✓ RM に自動反映」表示が実態と
+    // 一致するようにする）。
+    let strictResult: { ok: boolean; failedUrls: string[] } = { ok: true, failedUrls: [] };
     if (verifyResult.ok) {
+      await setProgress(jobId, "新規アイデアの反映を厳密確認中");
+      strictResult = await pollStrictVerify([{ url: IDEAS_URL, markers: newEntries.map((e) => e.title) }]);
+    }
+    const verified = verifyResult.ok && strictResult.ok;
+
+    const lineText = buildIdeaLineText({ theme, entries: newEntries, verified, commitHash, site: SITE });
+    await writeFile(LAST_IDEA_TEXT_PATH, lineText);
+    await notifyLine(["--text-file", LAST_IDEA_TEXT_PATH]);
+
+    if (verified) {
       await updateJob(jobId, {
         status: "done",
         progress: undefined,
@@ -314,7 +338,14 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
       await updateJob(jobId, {
         status: "done",
         progress: undefined,
-        warning: [warningMsg, "反映確認が時間切れでした。数分後に本番へ反映される見込みです。"].filter(Boolean).join(" / "),
+        warning: [
+          warningMsg,
+          !verifyResult.ok
+            ? "反映確認が時間切れでした。数分後に本番へ反映される見込みです。"
+            : "新規アイデアの反映確認が時間切れでした（キャッシュ等の可能性）。数分後に再度ご確認ください。",
+        ]
+          .filter(Boolean)
+          .join(" / "),
         resultCards,
         commit: commitHash,
         deployedUrl: SITE,
@@ -326,9 +357,10 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
     await rollbackIfNotCommitted(committed, trackedTouched, newUntracked, (tracked, untracked) =>
       rollbackTouchedFiles(ROOT, tracked, untracked),
     );
-    if (committed) {
+    const isBudgetError = err instanceof BudgetExceededError;
+    if (committed && !isBudgetError) {
       console.error("[studio] idea commit後の例外（ロールバックはスキップ）:", err);
-      notifyLine(["--result", "unverified", "--label", `Studio: ${theme}`]);
+      await notifyLine(["--result", "unverified", "--label", `Studio: ${theme}`]);
       await updateJob(jobId, {
         status: "done",
         progress: undefined,
@@ -338,10 +370,24 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
         deployedUrl: SITE,
         cost: costUsd,
       });
+    } else if (committed && isBudgetError) {
+      // DESIGN.md §8: 予算超過はcommit後でも「停止のみ」で常にエラー扱いにする
+      // （caseResearch.tsと同じ理由。budget.ts参照）。
+      console.error("[studio] idea commit後に予算上限超過を検知（ロールバックはスキップ、停止のみ）:", err);
+      await notifyLine(["--result", "error", "--label", `Studio: ${theme}`]);
+      await updateJob(jobId, {
+        status: "error",
+        progress: undefined,
+        error: `${message}（データは本番に反映済みの可能性があります。commit ${commitHash?.slice(0, 8) ?? "不明"}）`,
+        resultCards,
+        commit: commitHash,
+        cost: costUsd,
+      });
     } else {
       await fail(jobId, theme, message);
     }
   } finally {
+    await updateJob(jobId, { phaseDurationsMs: finishJob(jobId) }).catch(() => {});
     lock.release();
   }
 }

@@ -30,6 +30,7 @@ export interface PhaseResult {
   cost: number | null;
   warning?: string;
   error?: string;
+  phaseDurationsMs?: Record<string, number>;
 }
 
 export interface MergedResult {
@@ -39,6 +40,7 @@ export interface MergedResult {
   cost: number;
   warning?: string;
   error?: string;
+  phaseDurationsMs: Record<string, number>;
 }
 
 /** Techフェーズ開始前にジョブへ適用するリセットパッチ（単体テスト対象・実運用コード共用）。
@@ -60,14 +62,22 @@ export function phaseFromJob(label: "Case" | "Tech", job: Job | null): PhaseResu
   if (!job) {
     return { label, status: "error", resultCards: [], commit: null, cost: 0, error: "ジョブ状態を読み込めませんでした" };
   }
+  // P4 adversarial-review指摘#1: SSE導入により、各パイプラインが自身の終端で書く
+  // status:"done"/"error" は、combined実行中はownsLock=falseのぶんstatus:"running"に
+  // 据え置くよう変更した（caseResearch.ts/techResearch.ts参照。理由: SSEはjob.statusの
+  // 変化を同期的に配送するため、Caseフェーズ完了時点のstatus:"done"を購読側が
+  // 「ジョブ全体の終了」と誤認し、Techフェーズの結果が届く前にストリームを閉じてしまう
+  // 回帰があった）。そのため、フェーズの成否は status ではなく error フィールドの有無で
+  // 判定する（全終端パスで「失敗時のみerrorを設定・成功時はerrorを設定しない」不変を維持）。
   return {
     label,
-    status: job.status === "error" ? "error" : "done",
+    status: job.error ? "error" : "done",
     resultCards: job.resultCards,
     commit: job.commit,
     cost: job.cost,
     warning: job.warning,
     error: job.error,
+    phaseDurationsMs: job.phaseDurationsMs,
   };
 }
 
@@ -80,6 +90,13 @@ export function phaseFromJob(label: "Case" | "Tech", job: Job | null): PhaseResu
 export function mergeCombinedPhases(casePhase: PhaseResult, techPhase: PhaseResult): MergedResult {
   const resultCards = [...casePhase.resultCards, ...techPhase.resultCards];
   const cost = (casePhase.cost ?? 0) + (techPhase.cost ?? 0);
+
+  // P4 #6: フェーズ計測(progressTiming.ts)はjobId単位でCase→Techが直列に上書きし合うため
+  // （Tech開始時にCaseの計測状態は破棄される。progressTiming.ts::finishJob参照）、最終的な
+  // job JSONへは両フェーズ分をラベル付きキーで合成して保存する（データ欠落防止）。
+  const phaseDurationsMs: Record<string, number> = {};
+  for (const [k, v] of Object.entries(casePhase.phaseDurationsMs ?? {})) phaseDurationsMs[`Case: ${k}`] = v;
+  for (const [k, v] of Object.entries(techPhase.phaseDurationsMs ?? {})) phaseDurationsMs[`Tech: ${k}`] = v;
 
   const commitParts = [
     casePhase.commit ? `Case ${casePhase.commit}` : null,
@@ -95,6 +112,7 @@ export function mergeCombinedPhases(casePhase: PhaseResult, techPhase: PhaseResu
       commit,
       cost,
       error: `Case: ${casePhase.error ?? "不明なエラー"} / Tech: ${techPhase.error ?? "不明なエラー"}`,
+      phaseDurationsMs,
     };
   }
 
@@ -120,6 +138,7 @@ export function mergeCombinedPhases(casePhase: PhaseResult, techPhase: PhaseResu
     commit,
     cost,
     warning: warnings.length ? warnings.join(" / ") : undefined,
+    phaseDurationsMs,
   };
 }
 
@@ -156,6 +175,7 @@ export async function runCombinedResearchPipeline(jobId: string, req: ValidatedR
       cost: merged.cost,
       warning: merged.warning,
       error: merged.error,
+      phaseDurationsMs: merged.phaseDurationsMs,
       deployedUrl: casePhase.status === "done" || techPhase.status === "done" ? "https://research-man.vercel.app" : null,
     });
   } finally {

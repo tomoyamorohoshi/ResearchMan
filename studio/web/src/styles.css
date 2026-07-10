@@ -173,6 +173,32 @@ img{max-width:100%}
 .idea-shape .refs-label { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 
 .foot { margin-top:20px; color:var(--faint); font-size:11px; font-family:var(--mono); letter-spacing:.02em; text-align:center; }
+.history-link { font-family:var(--mono); font-size:11px; letter-spacing:.02em; color:var(--accent); background:none;
+  border:0; padding:0; cursor:pointer; text-decoration:underline; text-underline-offset:2px; }
+.history-link:hover { color:var(--accent-ink); }
+.history-link:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+
+/* ── ジョブ履歴（DESIGN.md §7・P4） ── */
+.history-head { display:flex; align-items:center; gap:12px; padding:16px 20px; border-bottom:1px solid var(--line); flex-wrap:wrap; }
+.history-head .q { font-size:13px; color:var(--muted); }
+.history-head .q b { color:var(--ink); }
+.history-empty { margin:0; padding:40px 20px; text-align:center; font-size:13px; color:var(--faint); }
+.history-list { list-style:none; margin:0; padding:10px 14px 20px; display:flex; flex-direction:column; gap:6px; }
+.history-item { display:grid; grid-template-columns:150px 100px 1fr 64px; align-items:center; gap:12px; width:100%;
+  font-family:var(--gothic); font-size:12.5px; color:var(--ink); text-align:left; cursor:pointer;
+  background:var(--paper); border:1px solid var(--line); border-radius:9px; padding:10px 14px; transition:border-color .12s, background .12s; }
+.history-item:hover { border-color:var(--line-strong); background:var(--sunk); }
+.history-item:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+.history-item-at { font-family:var(--mono); font-size:11px; color:var(--muted); }
+.history-item-tab { font-family:var(--mono); font-size:10.5px; letter-spacing:.05em; color:var(--accent); text-transform:uppercase; }
+.history-item-theme { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-weight:600; }
+.history-item-status { justify-self:end; font-family:var(--mono); font-size:10.5px; padding:2px 9px; border-radius:20px;
+  background:var(--sunk); color:var(--muted); }
+.history-item-status.status-done { background:var(--ok-tint); color:var(--ok); }
+.history-item-status.status-error { background:var(--danger-tint); color:var(--danger); }
+.history-item-status.status-running { background:var(--accent-tint); color:var(--accent-ink); }
+@media (max-width:640px){ .history-item{ grid-template-columns:1fr 64px; grid-template-areas:"theme status" "at tab"; row-gap:4px; }
+  .history-item-theme{ grid-area:theme; } .history-item-status{ grid-area:status; } .history-item-at{ grid-area:at; } .history-item-tab{ grid-area:tab; } }
 
 @media (max-width:820px){ .grid-case{ grid-template-columns:repeat(2,1fr); } .grid-idea{ grid-template-columns:repeat(2,1fr); } }
 @media (max-width:480px){ .grid-case{ grid-template-columns:1fr 1fr; } .grid-idea{ grid-template-columns:1fr; } }

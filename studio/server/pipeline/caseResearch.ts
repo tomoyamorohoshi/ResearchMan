@@ -54,6 +54,9 @@ import {
 import { acquireThumbnail } from "./thumbnail.js";
 import { resolveLock, tryAcquireLock, type LockHandle } from "./lock.js";
 import { runAgentQuery, runPlainQuery } from "./sdkRunner.js";
+import { BudgetExceededError, assertWithinBudget, resolveJobBudgetUsd } from "./budget.js";
+import { pollStrictVerify } from "./strictVerify.js";
+import { finishJob, startPhase } from "./progressTiming.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..", "..", ".."); // studio/server/pipeline -> repo root
@@ -70,22 +73,35 @@ interface Candidate extends DedupedCandidate {
   videoId?: string;
 }
 
+// P4 #6: フェーズ切替のたびに直前フェーズの所要時間を積算し、job JSONへ記録する
+// （将来のeta.ts実測calibration用。UI表示は既存の静的マッピングのまま）。
 async function setProgress(jobId: string, progress: string): Promise<void> {
-  await updateJob(jobId, { progress });
+  const phaseDurationsMs = startPhase(jobId, progress);
+  await updateJob(jobId, { progress, phaseDurationsMs });
 }
 
 // notify-line.mjs は「おまけ」設計で常にexit 0（設定不備・送信失敗でも本体を止めない）ため
 // CommandResult.ok だけでは送信成功可否が分からない。標準出力に必ず「送信OK/送信失敗/
 // 通知スキップ」を出す実装（scripts/notify-line.mjs参照）なのでログへ転記して可観測性を持たせる
 // （2026-07-10: 実E2E検証時にこのログが無く送信成否をパイプライン外で確認する必要があった）。
-function notifyLine(args: string[]): void {
-  const result = runNotifyLine(ROOT, args);
+async function notifyLine(args: string[]): Promise<void> {
+  const result = await runNotifyLine(ROOT, args);
   console.log(`[studio] notify-line: ${result.stdout.trim() || result.stderr.trim() || "(no output)"}`);
 }
 
-async function fail(jobId: string, theme: string, message: string): Promise<void> {
-  await updateJob(jobId, { status: "error", progress: undefined, error: message });
-  notifyLine(["--result", "error", "--label", `Studio: ${theme}`]);
+// P4 adversarial-review指摘#1: combined実行中（ownsLock=false）はこのpipeline自身の終端を
+// status:"done"/"error"にせず"running"のまま据え置く。SSE(index.ts)はstatusの変化を
+// 同期的に配送するため、Caseフェーズ完了時点のstatus:"done"を購読側がジョブ全体の終了と
+// 誤認し、Techフェーズの結果が届く前にストリームを閉じてしまう回帰があった
+// （combinedResearch.ts::phaseFromJobはstatusではなくerrorフィールドの有無で成否を判定する
+// よう変更済みなので、ここでrunning据え置きにしても成否の伝達は失われない）。
+export function terminalStatus(ownsLock: boolean, status: "done" | "error"): "done" | "error" | "running" {
+  return ownsLock ? status : "running";
+}
+
+async function fail(jobId: string, theme: string, message: string, ownsLock: boolean): Promise<void> {
+  await updateJob(jobId, { status: terminalStatus(ownsLock, "error"), progress: undefined, error: message });
+  await notifyLine(["--result", "error", "--label", `Studio: ${theme}`]);
 }
 
 export interface RollbackOutcome {
@@ -126,6 +142,7 @@ export async function runCaseResearchPipeline(
 ): Promise<void> {
   const { theme, viewpoint, refUrl, count } = req;
   let costUsd = 0;
+  const budgetUsd = resolveJobBudgetUsd();
 
   const { lock, ownsLock } = resolveLock(externalLock, tryAcquireLock);
   if (!lock) {
@@ -193,6 +210,7 @@ export async function runCaseResearchPipeline(
         if (item && typeof item === "object") rawCandidates.push(item as RawCandidate);
       }
     }
+    assertWithinBudget(costUsd, budgetUsd);
 
     if (rawCandidates.length === 0) {
       throw new Error(
@@ -223,6 +241,7 @@ export async function runCaseResearchPipeline(
       throw new Error(`リンク検証エージェントの呼び出しに失敗しました: ${linkResult.error}`);
     }
     costUsd += linkResult.costUsd;
+    assertWithinBudget(costUsd, budgetUsd);
     const linkVerdicts = extractJsonArray(linkResult.text);
     if (!linkVerdicts) {
       throw new Error("リンク検証結果を解析できませんでした（Agent応答がJSON形式ではありません）");
@@ -256,6 +275,7 @@ export async function runCaseResearchPipeline(
       );
       if (awardResult.ok) {
         costUsd += awardResult.costUsd;
+        assertWithinBudget(costUsd, budgetUsd);
         const awardVerdicts = extractJsonArray(awardResult.text);
         if (awardVerdicts) {
           const awardMap = new Map<string, { verdict: string; correctedAward?: string }>();
@@ -316,6 +336,7 @@ export async function runCaseResearchPipeline(
       throw new Error(`執筆エージェントの呼び出しに失敗しました: ${writerResult.error}`);
     }
     costUsd += writerResult.costUsd;
+    assertWithinBudget(costUsd, budgetUsd);
     const writerArr = extractJsonArray(writerResult.text);
     if (!writerArr) {
       throw new Error("執筆結果を解析できませんでした（Agent応答がJSON形式ではありません）");
@@ -378,6 +399,9 @@ export async function runCaseResearchPipeline(
     } catch (err) {
       console.warn("[studio] order tag naming failed, using fallback:", err);
     }
+    // budgetチェックは上のtry/catchの外に置く（内側のcatchは「タグ命名失敗」専用のため、
+    // ここでBudgetExceededErrorを投げてもtry内catchに飲み込まれず本来のcatchまで伝播する）。
+    assertWithinBudget(costUsd, budgetUsd);
 
     // ── 7. 反映（データ書き込み） ─────────────────────────────────
     await setProgress(jobId, "反映中（データ書き込み）");
@@ -431,7 +455,7 @@ export async function runCaseResearchPipeline(
     // 監査は決定的なゲートであるべきなのでリトライは入れない
     // （ネットワーク起因の一時的失敗はlink-checker/award-verifier等Agent呼び出し側で
     // 別途扱う）。
-    const audits: Array<{ name: string; run: () => { ok: boolean; stdout: string; stderr: string } }> = [
+    const audits: Array<{ name: string; run: () => Promise<{ ok: boolean; stdout: string; stderr: string }> }> = [
       { name: "audit-thumbnails", run: () => runAuditThumbnails(ROOT) },
       { name: "audit-integrity", run: () => runAuditIntegrity(ROOT) },
       { name: "tsc --noEmit", run: () => runTypeCheck(ROOT) },
@@ -439,7 +463,7 @@ export async function runCaseResearchPipeline(
       { name: "build", run: () => runBuild(ROOT) },
     ];
     for (const audit of audits) {
-      const result = audit.run();
+      const result = await audit.run();
       if (!result.ok) {
         // stderrを優先し、実際の例外・スタックトレースが末尾のログ整形メッセージで
         // 切り捨てられないよう十分な長さを残す（2026-07-10: 1500字だと本質的なエラーが
@@ -454,27 +478,27 @@ export async function runCaseResearchPipeline(
 
     // ── 9. commit/push ───────────────────────────────────────────
     await setProgress(jobId, "反映中（commit/push）");
-    const addResult = gitAdd(ROOT, [...trackedTouched, ...newUntracked]);
+    const addResult = await gitAdd(ROOT, [...trackedTouched, ...newUntracked]);
     if (!addResult.ok) {
       await rollbackTouchedFiles(ROOT, trackedTouched, newUntracked);
       throw new Error(`git add に失敗しました: ${addResult.stderr.slice(0, 500)}`);
     }
     const commitMsg = buildCommitMessage(theme, withThumbnails.length);
-    const commitResult = gitCommit(ROOT, commitMsg);
+    const commitResult = await gitCommit(ROOT, commitMsg);
     if (!commitResult.ok) {
       await rollbackTouchedFiles(ROOT, trackedTouched, newUntracked);
       throw new Error(`git commit に失敗しました: ${commitResult.stderr.slice(0, 500)}`);
     }
     // commit成功。以降は何が起きてもロールバックしない（adversarial-reviewer指摘#2）。
     committed = true;
-    commitHash = gitRevParseHead(ROOT);
+    commitHash = await gitRevParseHead(ROOT);
 
-    const pushResult = gitPush(ROOT);
+    const pushResult = await gitPush(ROOT);
     if (!pushResult.ok) {
       // commit自体はローカルに残す（デイリーパイプラインのpushfail運用と同じ）
-      notifyLine(["--result", "pushfail", "--label", `Studio: ${theme}`]);
+      await notifyLine(["--result", "pushfail", "--label", `Studio: ${theme}`]);
       await updateJob(jobId, {
-        status: "error",
+        status: terminalStatus(ownsLock, "error"),
         progress: undefined,
         error: `push に失敗しました（pre-push監査等の可能性）。コミットはローカルに残っています（commit ${commitHash?.slice(0, 8) ?? "不明"}）。手動対応が必要です。`,
         commit: commitHash,
@@ -492,15 +516,27 @@ export async function runCaseResearchPipeline(
         2,
       ),
     );
-    const verifyResult = runVerifyDeploy(
+    const verifyResult = await runVerifyDeploy(
       ROOT,
       withThumbnails.map((c) => c.thumbnail || "").filter(Boolean),
     );
 
+    // P4 #5厳密化: verify-deploy.mjs は新規ページの200確認までしか行わない（既存呼び出しは
+    // そのまま維持）。追加確認として、実際に新事例のタイトルが本文に現れるまでポーリングする
+    // （200だけでは古いビルドのキャッシュ等を「反映済み」と誤認しうるため）。
+    let strictResult: { ok: boolean; failedUrls: string[] } = { ok: true, failedUrls: [] };
     if (verifyResult.ok) {
-      notifyLine(["--label", `Studio: ${theme}`, "--route", "cases"]);
+      await setProgress(jobId, "新規ページの反映を厳密確認中");
+      strictResult = await pollStrictVerify(
+        finalEntries.map((c) => ({ url: `${SITE}/cases/${c.id}`, markers: [c.title] })),
+      );
+    }
+    const verified = verifyResult.ok && strictResult.ok;
+
+    if (verified) {
+      await notifyLine(["--label", `Studio: ${theme}`, "--route", "cases"]);
       await updateJob(jobId, {
-        status: "done",
+        status: terminalStatus(ownsLock, "done"),
         progress: undefined,
         resultCards,
         commit: commitHash,
@@ -508,11 +544,13 @@ export async function runCaseResearchPipeline(
         cost: costUsd,
       });
     } else {
-      notifyLine(["--result", "unverified", "--label", `Studio: ${theme}`, "--route", "cases"]);
+      await notifyLine(["--result", "unverified", "--label", `Studio: ${theme}`, "--route", "cases"]);
       await updateJob(jobId, {
-        status: "done",
+        status: terminalStatus(ownsLock, "done"),
         progress: undefined,
-        warning: "反映確認が時間切れでした。数分後に本番へ反映される見込みです。",
+        warning: !verifyResult.ok
+          ? "反映確認が時間切れでした。数分後に本番へ反映される見込みです。"
+          : "新規ページは表示されましたが、内容の反映確認が時間切れでした（キャッシュ等の可能性）。数分後に再度ご確認ください。",
         resultCards,
         commit: commitHash,
         deployedUrl: SITE,
@@ -524,15 +562,16 @@ export async function runCaseResearchPipeline(
     await rollbackIfNotCommitted(committed, trackedTouched, newUntracked, (tracked, untracked) =>
       rollbackTouchedFiles(ROOT, tracked, untracked),
     );
-    if (committed) {
+    const isBudgetError = err instanceof BudgetExceededError;
+    if (committed && !isBudgetError) {
       // adversarial-reviewer指摘#2: commit（このパスに来る時点でpushも成功済み。push失敗は
       // 上のif(!pushResult.ok)で別途returnしている）後の例外は、データ自体は本番反映済みの
       // 可能性が高い。rollbackTouchedFiles を呼ばない（=commit済みファイルを勝手にrmしない）
       // のに加え、job も error ではなく done+warning にする（成功をエラー誤報しない）。
       console.error("[studio] commit後の例外（ロールバックはスキップ）:", err);
-      notifyLine(["--result", "unverified", "--label", `Studio: ${theme}`, "--route", "cases"]);
+      await notifyLine(["--result", "unverified", "--label", `Studio: ${theme}`, "--route", "cases"]);
       await updateJob(jobId, {
-        status: "done",
+        status: terminalStatus(ownsLock, "done"),
         progress: undefined,
         warning: `反映後の処理でエラーが発生しました（データは本番に反映済みの可能性があります。commit ${commitHash?.slice(0, 8) ?? "不明"}）: ${message}`,
         resultCards,
@@ -540,10 +579,24 @@ export async function runCaseResearchPipeline(
         deployedUrl: SITE,
         cost: costUsd,
       });
+    } else if (committed && isBudgetError) {
+      // DESIGN.md §8: 予算超過はcommit後でも「停止のみ」で常にエラー扱いにする
+      // （通常のcommit後例外をdone+warningにする上の分岐とは意図的に別枠。budget.ts参照）。
+      console.error("[studio] commit後に予算上限超過を検知（ロールバックはスキップ、停止のみ）:", err);
+      await notifyLine(["--result", "error", "--label", `Studio: ${theme}`, "--route", "cases"]);
+      await updateJob(jobId, {
+        status: terminalStatus(ownsLock, "error"),
+        progress: undefined,
+        error: `${message}（データは本番に反映済みの可能性があります。commit ${commitHash?.slice(0, 8) ?? "不明"}）`,
+        resultCards,
+        commit: commitHash,
+        cost: costUsd,
+      });
     } else {
-      await fail(jobId, theme, message);
+      await fail(jobId, theme, message, ownsLock);
     }
   } finally {
+    await updateJob(jobId, { phaseDurationsMs: finishJob(jobId) }).catch(() => {});
     if (ownsLock) lock.release();
   }
 }

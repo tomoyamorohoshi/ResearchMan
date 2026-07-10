@@ -8,6 +8,7 @@
  * アーキテクチャ）。
  */
 import { randomUUID } from "node:crypto";
+import { EventEmitter } from "node:events";
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -67,6 +68,8 @@ export interface Job {
   commit: string | null;
   deployedUrl: string | null;
   cost: number | null;
+  /** フェーズ名→所要ミリ秒（P4 #6: 将来のeta.ts実測calibration用。UI表示には未使用）。 */
+  phaseDurationsMs?: Record<string, number>;
   at: string;
 }
 
@@ -101,6 +104,28 @@ export async function writeJobFile(job: Job): Promise<void> {
   );
 }
 
+// ── SSE進捗のpub/sub（P4 #2） ────────────────────────────────────────
+// GET /api/jobs/:id/stream（index.ts）は updateJob() による書き込みをイベントとして
+// 購読する。ファイル監視(fs.watch)ではなく、書き込みを行う唯一の入口であるupdateJob()
+// 自身がemitする方式にすることで、取りこぼし・重複発火の心配が無いシンプルな実装にする
+// （同一プロセス内のジョブ実行とHTTPサーバが同じNodeプロセスで動くため成立する設計。
+// jobs.ts::createJob参照）。リスナー数はジョブ同時参照数に依存し得るため上限を外す。
+const jobEvents = new EventEmitter();
+jobEvents.setMaxListeners(0);
+
+function jobEventName(id: string): string {
+  return `job:${id}`;
+}
+
+/**
+ * 指定ジョブが updateJob() で更新されるたびに listener を呼ぶ。戻り値の関数を呼ぶと購読解除する。
+ */
+export function subscribeJob(id: string, listener: (job: Job) => void): () => void {
+  const eventName = jobEventName(id);
+  jobEvents.on(eventName, listener);
+  return () => jobEvents.off(eventName, listener);
+}
+
 /**
  * 実行中ジョブの一部フィールドを更新する（パイプラインがフェーズ毎に呼ぶ）。
  * ジョブが見つからない場合は何もしない（既に削除された等の異常系を静かに無視）。
@@ -113,6 +138,7 @@ export async function updateJob(
   if (!current) return null;
   const updated: Job = { ...current, ...patch };
   await writeJobFile(updated);
+  jobEvents.emit(jobEventName(id), updated);
   return updated;
 }
 

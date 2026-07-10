@@ -13,7 +13,7 @@ import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
-import { gitRestorePaths } from "./audit.js";
+import { gitRestorePaths, run } from "./audit.js";
 
 function makeTempRepo(): string {
   const dir = mkdtempSync(path.join(os.tmpdir(), "studio-audit-test-"));
@@ -31,13 +31,13 @@ function cleanup(dir: string): void {
   rmSync(dir, { recursive: true, force: true });
 }
 
-test("gitRestorePaths: addでstage済みの変更もHEADへ完全に戻す（index/working tree両方）", () => {
+test("gitRestorePaths: addでstage済みの変更もHEADへ完全に戻す（index/working tree両方）", async () => {
   const dir = makeTempRepo();
   try {
     writeFileSync(path.join(dir, "a.txt"), "modified\n");
     execFileSync("git", ["add", "a.txt"], { cwd: dir });
 
-    const result = gitRestorePaths(dir, ["a.txt"]);
+    const result = await gitRestorePaths(dir, ["a.txt"]);
     assert.equal(result.ok, true);
 
     const content = readFileSync(path.join(dir, "a.txt"), "utf-8");
@@ -50,13 +50,13 @@ test("gitRestorePaths: addでstage済みの変更もHEADへ完全に戻す（ind
   }
 });
 
-test("gitRestorePaths: add前（working treeのみの変更）でも従来どおり戻せる", () => {
+test("gitRestorePaths: add前（working treeのみの変更）でも従来どおり戻せる", async () => {
   const dir = makeTempRepo();
   try {
     writeFileSync(path.join(dir, "a.txt"), "modified-not-staged\n");
     // git add はしない
 
-    const result = gitRestorePaths(dir, ["a.txt"]);
+    const result = await gitRestorePaths(dir, ["a.txt"]);
     assert.equal(result.ok, true);
 
     const content = readFileSync(path.join(dir, "a.txt"), "utf-8");
@@ -68,12 +68,51 @@ test("gitRestorePaths: add前（working treeのみの変更）でも従来どお
   }
 });
 
-test("gitRestorePaths: 空配列はno-op（okのみ返す）", () => {
+test("gitRestorePaths: 空配列はno-op（okのみ返す）", async () => {
   const dir = makeTempRepo();
   try {
-    const result = gitRestorePaths(dir, []);
+    const result = await gitRestorePaths(dir, []);
     assert.equal(result.ok, true);
   } finally {
     cleanup(dir);
   }
+});
+
+// ── run(): 非ブロッキング化（P4 #1） ─────────────────────────────────
+// 2026-07-10までの実装は spawnSync でイベントループを丸ごとブロックしていた
+// （子プロセス完了までタイマーもI/Oも一切進まない）。async spawn化後は、子プロセス実行中も
+// イベントループが生きていること（＝他のsetInterval等が刻み続けること）を確認する。
+// 旧spawnSync実装に対してこのテストを流すと、ブロック中はタイマーが一切発火しないため
+// ticks.length はほぼ0のまま失敗する（RED確認済み）。
+test("run: 子プロセス実行中もイベントループがブロックされない（非同期spawn）", async () => {
+  const ticks: number[] = [];
+  const timer = setInterval(() => ticks.push(Date.now()), 30);
+  try {
+    const result = await run(process.execPath, ["-e", "setTimeout(() => {}, 900)"], process.cwd(), 5000);
+    assert.equal(result.ok, true);
+    assert.ok(
+      ticks.length >= 10,
+      `イベントループがブロックされていた可能性がある（900ms中のtick数=${ticks.length}）`,
+    );
+  } finally {
+    clearInterval(timer);
+  }
+});
+
+test("run: 正常終了時は ok=true・code=0 で stdout を取得できる", async () => {
+  const result = await run(process.execPath, ["-e", "process.stdout.write('hello-studio')"], process.cwd(), 5000);
+  assert.equal(result.ok, true);
+  assert.equal(result.code, 0);
+  assert.equal(result.stdout, "hello-studio");
+});
+
+test("run: 非ゼロ終了は ok=false・code に終了コードが入る", async () => {
+  const result = await run(process.execPath, ["-e", "process.exit(1)"], process.cwd(), 5000);
+  assert.equal(result.ok, false);
+  assert.equal(result.code, 1);
+});
+
+test("run: timeout超過はkillされ ok=false になる（従来のspawnSync timeoutと同じ契約）", async () => {
+  const result = await run(process.execPath, ["-e", "setTimeout(() => {}, 3000)"], process.cwd(), 300);
+  assert.equal(result.ok, false);
 });

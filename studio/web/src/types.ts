@@ -46,5 +46,7 @@ export interface Job {
   commit: string | null;
   deployedUrl: string | null;
   cost: number | null;
+  /** フェーズ名→所要ミリ秒（P4 #6: 将来のeta.ts実測calibration用。UI表示には未使用）。 */
+  phaseDurationsMs?: Record<string, number>;
   at: string;
 }
