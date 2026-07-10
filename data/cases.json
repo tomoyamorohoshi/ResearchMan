@@ -1,5 +1,77 @@
 [
   {
+    "id": "kazu-come-behind-me-so-good-official-video-by-daito-manabe-k",
+    "title": "KAZU \"Come Behind Me, So Good!\" (Official Video by Daito Manabe + Kenichiro Shimizu)",
+    "summary": "32台のカメラでダンサー9人の全身をフォトグラメトリー撮影し、レーザースキャンの地形データと合成した非AI技術駆使のミュージックビデオ",
+    "client": "KAZU（Kazu Makino, Blonde Redhead）",
+    "agency": "Rhizomatiks（真鍋大度 + PELE 清水健一郎）／振付：MIKIKO／ダンサー：ELEVENPLAY",
+    "categories": [
+      "コンテンツ革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2020",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://rhizomatiks.com/work/comebehindmesogood-video/",
+    "thumbnail": "/thumbnails/kazu-come-behind-me-so-good-official-video-by-daito-manabe-k.jpg",
+    "videoId": "",
+    "overview": "Blonde RedhedeのKazu Makino(KAZU)による楽曲「Come Behind Me, So Good!」のミュージックビデオ。Rhizomatiksの真鍋大度とPELEの清水健一郎が制作を手がけ、振付はMIKIKO、ダンサーはELEVENPLAYが担当した。実写撮影とCGの境界を溶かす映像表現を、生成AIに頼らないフォトグラメトリーとレーザースキャン技術の組み合わせで実現している。",
+    "background": "Kazu Makino（Blonde Redhead）の楽曲リリースにあわせ、Rhizomatiksが映像制作を担当。生成AIが映像制作のトレンドとして台頭する以前から確立されていたフォトグラメトリーやレーザースキャンといった撮影後処理技術を用い、実写では成立し得ない映像空間を構築する方向性で企画された。",
+    "execution": "32台のカメラによるフォトグラメトリーで、MIKIKO振付・ELEVENPLAY出演の9人のダンサーの全身を丸ごと3Dスキャン。並行してFaroのレーザースキャナーで取得した地形データと合成し、地続きにつながった夢幻的なランドスケープの中でダンサーたちが踊る映像を構築した。実写撮影単体では実現不可能な空間表現を、既存の3D計測技術の統合によって成立させている。",
+    "evaluationImpact": "生成AIではなく、フォトグラメトリーとレーザースキャンという既存の撮影後処理技術を丹念に組み合わせることで、実写とCGの境界を溶かす映像言語を生み出した点が特徴。技術トレンドの新旧によらず、既存手法の統合的な運用によって新しい映像表現に到達し得ることを示す事例として位置づけられる。",
+    "relatedWorks": [
+      {
+        "title": "Come Behind Me, So Good! (Rhizomatiks 作品ページ)",
+        "description": "Rhizomatiks公式サイトの作品解説ページ。制作クレジットと技術背景を確認できる。",
+        "url": "https://rhizomatiks.com/work/comebehindmesogood-video/"
+      }
+    ],
+    "sources": [
+      "Tech Music"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/MV",
+      "Theme/Music",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "sana-new-me-music-video-2025",
+    "title": "紗奈｜SANA「New ME」Music Video",
+    "summary": "国内ゲーム大手KLabが手がけるAI音楽レーベル第1弾AIアーティスト「紗奈｜SANA」のデビュー曲ミュージックビデオ",
+    "client": "紗奈｜SANA（KLab AI Entertainment 第1弾AIアーティスト）",
+    "agency": "KLab株式会社",
+    "categories": [
+      "AIクリエイティブ",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.youtube.com/watch?v=2tFtZuCVyKo",
+    "thumbnail": "/thumbnails/sana-new-me-music-video-2025.jpg",
+    "videoId": "2tFtZuCVyKo",
+    "overview": "KLab株式会社が立ち上げたAI音楽レーベルの第1弾AIアーティストとして発表された「紗奈｜SANA」のデビュー曲「New ME」のミュージックビデオ。楽曲・歌声・ビジュアルをすべて生成AIで制作したアーティストプロジェクトとして展開された。",
+    "background": "国内大手ゲーム会社であるKLabが、生成AI技術を活用した新しいアーティスト形態としてAI音楽レーベルを設立。その第1弾となるAIアーティスト「紗奈｜SANA」を立ち上げ、デビュー曲「New ME」を発表した。",
+    "execution": "楽曲制作・歌声・キャラクタービジュアルのすべてに生成AI技術を用いてデビュー曲「New ME」のミュージックビデオを制作し、YouTubeで公開。人間のアーティストを介さず、AIによってアーティスト像そのものを構築するプロジェクトとして展開された。",
+    "evaluationImpact": "国内大手ゲーム企業が生成AIによる音楽アーティストのプロデュースに参入した事例として注目される。楽曲・歌声・映像のすべてをAIで生成する制作体制は、AIアーティストという新しいエンターテインメント形態の実験的な試みとして位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Tech Music"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/MV",
+      "Theme/Music",
+      "Theme/Entertainment"
+    ]
+  },
+  {
     "id": "one-museum-one-ok-rock-eye-of-the-storm-2019",
     "title": "One Museum — ONE OK ROCK『Eye of the Storm』リリース記念",
     "summary": "アートワーク原画1枚を展示するためだけに表参道に3日間限定の美術館を開設した、新譜体験型プロモーション",

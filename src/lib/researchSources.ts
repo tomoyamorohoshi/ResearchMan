@@ -28,6 +28,7 @@ export const RESEARCH_SOURCES: ResearchSource[] = [
   { tag: "Launch & Reveal", kind: "order", label: "Launch & Reveal" },
   { tag: "Newspaper", kind: "order", label: "Newspaper" },
   { tag: "Promo Campaign", kind: "order", label: "Promo Campaign" },
+  { tag: "Tech Music", kind: "order", label: "Tech Music" },
   { tag: "Radar", kind: "radar", label: "Radar" },
 ];
 
