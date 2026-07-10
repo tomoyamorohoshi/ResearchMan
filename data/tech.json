@@ -1,5 +1,141 @@
 [
   {
+    "id": "wild3r",
+    "title": "Wild3R",
+    "org": "東京大学 山崎研究室",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D"
+    ],
+    "date": "2026-06",
+    "year": "2026",
+    "summary": "観光地などで不特定多数がバラバラの日時・条件で撮った“寄せ集めの写真”だけから、一度のAI推論で3D空間を復元する技術。",
+    "point": "観光地の写真を思い浮かべてください。同じ建物でも、撮影者によって時間帯・天気・人の写り込みはバラバラです。Wild3Rは、そうした統一感のない大量の写真だけから、シーンの立体構造をたった一度のAI推論で復元してしまう技術です。従来のGaussian Splatting（3D点群による高速な3D表現）は、同じ照明条件・同じカメラで撮った写真セットが前提で、少しでも条件が違う“野良写真”が混ざると再構成が崩れていました。Wild3Rは照明差や人・車などの動く障害物を自動で無視しながら、きれいな立体シーンだけを取り出します。広告・体験づくりの視点では、SNS投稿写真や過去のイベント写真アーカイブなど「バラバラに撮られた素材」からそのまま3D空間を作れる可能性が生まれます。思い出の写真を集めてブランド体験の会場を3D空間として再現したり、ユーザー投稿写真だけでポップアップ店舗のバーチャル内覧を作る、といった企画のハードルが下がります。",
+    "detail": "仕組みとしては、まず多数の入力写真をAIが読み込み、それぞれの写真の“見え方の違い”（照明・色調）を、シーンそのものの形とは別の情報として切り分けて扱います。たとえるなら、同じ舞台美術を昼公演と夜公演、雨の日と晴れの日に見た観客の証言を集めて、「舞台装置そのものの形」と「その日の照明・天候」を仕分けながら1つの立体模型を組み立てるようなイメージです。写真に写り込んだ通行人や車などの“その場限りの映り込み”も自動的に無視します。この分野の主流だったフィードフォワード型3D復元（1回のAI推論だけで完結する高速な方式）は、これまで同一条件で撮影されたきれいな写真セットでしか安定して動きませんでした。Wild3Rは研究チームが新たに用意した20万枚超・170通りの照明条件を含む学習データ（WildCity）で鍛えることで、寄せ集め写真にも対応できるようにした点が新しい。使うにはGitHub上のコードとHugging Face配布の学習済みモデルをダウンロードし、PyTorch環境（GPU推奨）で動かす必要があります。プログラミング知識が必要な研究プロトタイプの段階で、現時点でノーコードのアプリやWebサービスにはなっていません。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "src/はAnySplat(MITライセンス)を採用したコード。学習済み重みはHugging Faceで配布、プロジェクトページのテンプレートはCC BY-SA 4.0"
+    },
+    "links": [
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2606.11894"
+      },
+      {
+        "kind": "project",
+        "url": "https://furuschool.github.io/wild3r-page/"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/furuschool/wild3r"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/wild3r.jpg",
+    "relatedWorks": [
+      {
+        "title": "AnySplat",
+        "description": "任意視点からのフィードフォワード型3D Gaussian Splattingの基盤手法",
+        "url": "https://arxiv.org/abs/2505.23716"
+      },
+      {
+        "title": "WildSplatter",
+        "description": "見え方の制御を扱う類似のフィードフォワード型3DGS手法",
+        "url": "https://arxiv.org/pdf/2604.21182"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "spatialclaw",
+    "title": "SpatialClaw",
+    "org": "NVIDIA Research",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "AI/Agents"
+    ],
+    "date": "2026-06",
+    "year": "2026",
+    "summary": "画像・映像・4Dシーンについて「どこに何がどれだけ離れてあるか」を、AIが自らPythonコードを書きながら考えて答える空間推論エージェント。",
+    "point": "「このコップからテーブルの端まで何cm？」「この2つの物体、どちらが手前？」——こうした空間的な質問は、実は画像認識AIが最も苦手とする領域の一つです。SpatialClawは、AIモデル（VLM）に一発で答えさせるのではなく、AI自身にPythonのプログラムを書かせて、深度推定や物体検出などの専門ツールを呼び出しながら、人間が電卓や定規を使うように一歩ずつ計算・確認させる仕組みです。単一の画像だけでなく複数視点の写真、動画、4D（時間変化する3D）シーンまで幅広い“空間の質問”に対応し、20種類のベンチマークのうち19種類で従来手法を上回る精度を達成しました。広告・体験づくりの観点では、AR演出や空間デザインの検証を自動化する下地になります。「この会場に設置するサイネージのサイズはこの位置から見て適切か」といった空間チェックをAIエージェントに任せたり、ロケハン写真から寸法や配置の妥当性を自動レビューさせる、といった実務ツールへの応用が見込めます。",
+    "detail": "仕組みは、AIに“道具箱”を持たせるイメージです。深度推定・物体検出・セグメンテーションなど個別の画像解析ツールをPythonの関数として用意しておき、AI（VLM）はチャットで答えを出す代わりにその場でPythonコードを書いて道具を呼び出し、結果を見ながら次の一手を考える、を何ステップも繰り返します。人が電卓アプリを開いて計算しながら考えるのに近く、AIが自分の計算過程を検算できる点が特徴です。従来の空間推論エージェントは特定のベンチマークやモデルに合わせて追加学習（ファインチューニング）が必要でした。SpatialClawは追加学習なし（training-free）で、26億〜3970億パラメータの6種類の異なるAIモデルに接続するだけで精度が向上する点が新しく、特定のツール呼び出しAPIに縛られず「コードを書く」という汎用的な行動様式を採用したことが従来手法との違いです。使うにはGitHub上のコード一式（エージェント本体・20種のベンチマーク評価用ローダー・GPUツールサーバー）をクローンし、対応するVLM（API経由または自前でホストするvLLM環境）を用意する必要があります。ライセンスはNVIDIA Source Code License-NCで非商用の研究利用に限定されており、そのままでは商用サービスに組み込めない点に注意が必要です。",
+    "license": {
+      "spdx": null,
+      "commercial": "research-only",
+      "note": "NVIDIA Source Code License-NC（非商用）。一部サードパーティOSSコンポーネントを含む"
+    },
+    "links": [
+      {
+        "kind": "project",
+        "url": "https://spatialclaw.github.io/"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/NVlabs/SpatialClaw"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/spatialclaw.jpg",
+    "relatedWorks": [
+      {
+        "title": "Depth Anything 3",
+        "description": "SpatialClawが呼び出す深度推定ツールの一つ",
+        "url": "https://github.com/ByteDance-Seed/Depth-Anything-3"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "yags",
+    "title": "YaGS",
+    "org": "Yandex",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "Spatial/3D"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "Unreal Engine上でGaussian Splatting（実写風の点群3D表現）を、通常の3Dモデルと同じように“奥行きで正しく重ならせる”ことができる無料プラグイン。",
+    "point": "実空間をスキャンした実写風の“点群3D”（Gaussian Splatting）は、広告のロケハン代替やバーチャル背景として近年注目されていますが、多くのツールでは背景の一枚絵のように扱われ、手前にCGキャラクターを置いても正しい前後関係を表現できませんでした。YaGSはUnreal Engine（ゲーム・映像制作の定番3Dエンジン）向けに、この点群3DデータをCGモデルと奥行きで正しく重ね合わせられるようにするプラグインです。ぼかし（被写界深度）やモーションブラーなど、Unreal Engineの標準的な映像エフェクトともきちんと連動します。広告・体験制作の観点では、実写でロケハンした空間をそのまま点群3Dとして取り込み、その中に3Dキャラクターやプロダクトを“正しい奥行き”で合成した映像・バーチャルプロダクションが作りやすくなります。Apache 2.0ライセンスの無料プラグインとして公開されている点も、小規模チームが試すハードルを下げています。",
+    "detail": "仕組みとしては、点群3Dの各点（スプラット）がカメラからどれだけ離れているかという“奥行きデータ”を、通常の3Dモデルの奥行き情報と同じ形式でUnreal Engineに渡しています。舞台に例えると、後ろに固定された一枚の書き割り背景ではなく、実際に奥行きのあるセットとして配置し、役者（CGキャラクター）がその前後どちらにいても正しく隠れたり手前に出たりするイメージです。これまでのUnreal Engine向け点群3Dプラグインの多くは表示専用のビューアーに近く、性能面の制約も大きいものでした。YaGSはMesh Shader（最新GPUの高速描画機能）を使った高速表示に加え、範囲選択して一部を削除・色調補正する“編集”機能、同じデータを複製してもメモリを増やさない“インスタンス化”にも対応し、実制作のパイプラインに組み込みやすい設計です。使うにはUnreal Engine 5.5〜5.7（Windows、DirectX 12またはVulkan）環境と8GB以上のVRAMを積んだGPUが必要です。GitHubからプラグインフォルダをダウンロードしてプロジェクトに配置するだけで有効化できますが、本リポジトリは公開直後にアーカイブ（読み取り専用）化されており、バグ修正や機能追加が今後継続されるかは不透明です。試す場合はその点を踏まえておく必要があります。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "OSSとして公開。ただし公開直後にリポジトリがarchived（読み取り専用）化されており、今後の更新・サポートは見込みにくい"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/yandex/yags"
+      },
+      {
+        "kind": "post",
+        "url": "https://habr.com/ru/companies/yandex/articles/1052328/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/yags.jpg",
+    "relatedWorks": [
+      {
+        "title": "NanoGS",
+        "description": "UE5にNanite風の高速表示を持ち込む類似の無料プラグイン",
+        "url": "https://www.cgchannel.com/2026/03/free-plugin-nanogs-puts-nanite-style-gaussian-splatting-in-unreal-engine/"
+      },
+      {
+        "title": "Volinga Plugin Pro",
+        "description": "UE内で点群3Dをリライティングできる有償プラグイン",
+        "url": "https://www.cgchannel.com/2025/10/volinga-plugin-pro-lets-you-relight-3dgs-data-inside-unreal-engine/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "comfyui-ttp-toolset-smart-tile-2-0",
     "title": "ComfyUI TTP Toolset – Smart Tile 2.0",
     "org": "TTPlanetPig（個人開発者）",
