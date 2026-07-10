@@ -1,5 +1,136 @@
 [
   {
+    "id": "for-the-honour-feat-nix-northwest-2025",
+    "title": "For The Honour (feat. Nix Northwest)",
+    "summary": "iPhoneのLiDARスキャンを手作業でアニメ化、1人の監督がPS2風サイバーパンクCGIで作り上げたMV",
+    "client": "Jianbo",
+    "agency": "Stink（監督：Dan French）",
+    "categories": [
+      "テクノロジー×アイデア",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "海外"
+    ],
+    "link": "https://www.youtube.com/watch?v=06WYi6pCMx0",
+    "thumbnail": "/thumbnails/for-the-honour-feat-nix-northwest-2025.jpg",
+    "videoId": "06WYi6pCMx0",
+    "overview": "Jianboの楽曲「For The Honour (feat. Nix Northwest)」のミュージックビデオ。制作はStink、監督はDan French。モーションキャプチャースーツを使わず、iPhoneのLiDARセンサーで本人の身体をスキャンし、そのデータを手作業でアニメーションに変換することでPS2/GTA風のサイバーパンクCGI表現を実現した。",
+    "background": "モーションキャプチャーによるハイエンドなCGI表現が主流になる中、専用スーツやスタジオ設備に頼らないローファイなアプローチで独自の映像美を追求する狙いがあったとみられる。iPhoneというコンシューマー機器のLiDARセンサーを起点に据えた点が特徴。",
+    "execution": "監督のDan Frenchが、iPhoneのLiDARセンサーで自身の身体をスキャンして取得した点群データを、モーションキャプチャースーツを介さず手作業でアニメーションデータに変換。全カットを1人のディレクターが手作りし、PlayStation2時代のGTAを想起させる粗く質感あるサイバーパンクCGIの世界観を構築した。",
+    "evaluationImpact": "高精度なモーションキャプチャー機材に頼らず、コンシューマー向けデバイスと手作業の工程だけでレトロゲーム的な質感のCGI映像を成立させた点が特徴。個人規模の制作でも独自の映像言語を打ち出せることを示す事例。",
+    "relatedWorks": [],
+    "sources": [
+      "Motion Tech"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/MV",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "dash-2025",
+    "title": "Dash",
+    "summary": "実在アーティストがリアルタイムモーションキャプチャで操演し、Unreal Engine 5でレンダリングするバーチャルK-POPのMV",
+    "client": "PLAVE（プレイブ）",
+    "agency": "VLAST（ブラスト）",
+    "categories": [
+      "テクノロジー×アイデア",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "海外"
+    ],
+    "link": "https://www.youtube.com/watch?v=b3GoZMfHJT4",
+    "thumbnail": "/thumbnails/dash-2025.jpg",
+    "videoId": "b3GoZMfHJT4",
+    "overview": "バーチャルK-POPグループ「PLAVE（プレイブ）」の楽曲「Dash」のミュージックビデオ。制作はVLAST。実在するアーティストがリアルタイムモーションキャプチャでバーチャルアバターを操演し、その演技をUnreal Engine 5でレンダリングするパイプラインによって制作されている。",
+    "background": "バーチャルアイドル・バーチャルアーティストの活動形態が音楽市場で存在感を増す中、PLAVEは実演者の身体表現をリアルタイムでバーチャルキャラクターに反映させる制作体制を採用し、ライブ感とキャラクター性を両立させる方向性で活動を展開してきた。",
+    "execution": "実在するアーティストがモーションキャプチャースーツを着用してリアルタイムに演技し、そのデータをバーチャルアバターへ反映。Unreal Engine 5でレンダリングすることで、キャラクターとしての一貫したビジュアルを保ちながら生身のパフォーマンスのニュアンスを映像に落とし込んでいる。",
+    "evaluationImpact": "リアルタイムモーションキャプチャとゲームエンジンによるレンダリングを組み合わせることで、バーチャルアーティストでありながら生の演技のニュアンスを保持した映像表現を実現。バーチャルK-POPというジャンルの制作パイプラインを示す事例として位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Motion Tech"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Tech/Game",
+      "Form/MV",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "mono-no-aware-imai-remix-music-video-2024",
+    "title": "MONO NO AWARE「かむかもしかもにどもかも！(imai remix)」Music Video",
+    "summary": "14万字のUnicode文字からAIで類似文字を抽出し、ペンプロッターと手描きコマ撮りで文字が変形していく早口言葉MV",
+    "client": "MONO NO AWARE（リミックス: imai / group_inou）",
+    "agency": "監督: 橋本麦 / グラフィック: 鈴木哲生 / AI協力: 徳井直生",
+    "categories": [
+      "AIクリエイティブ",
+      "Craft"
+    ],
+    "award": "Tokyo TDC賞2025 グランプリ（橋本麦氏／MONO NO AWARE「かむかもしかもにどもかも！(imai remix)」ミュージック・ビデオ）／AICA 2025 AICA賞（グランプリは別作品「Cyber Subin」）",
+    "year": "2024",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.youtube.com/watch?v=IrS-QTLvxjA",
+    "thumbnail": "/thumbnails/mono-no-aware-imai-remix-music-video-2024.jpg",
+    "videoId": "IrS-QTLvxjA",
+    "overview": "MONO NO AWAREの楽曲「かむかもしかもにどもかも！」のimai（group_inou）によるリミックスに寄せたミュージックビデオ。監督は橋本麦、グラフィックは鈴木哲生、AI協力に徳井直生。早口言葉の歌詞に合わせ、文字そのものが変形していく映像表現を、AIによる文字認識とペンプロッターによる描画、手描きのコマ撮りを組み合わせて制作した。",
+    "background": "早口言葉をモチーフにした歌詞世界を、意味内容ではなく文字の形そのものの変化として視覚化する狙いから企画された。約14万字を収録したUnicodeの文字表を素材とし、CNNを用いて形や意味が似た文字同士を収集・接続する仕組みを構築することで、文字が次々と姿を変えていくアニメーションの土台を作った。",
+    "execution": "CNNで14万字のUnicode文字表から形状・意味の類似度に基づき文字の連鎖を抽出。抽出した文字列をペンプロッターで一枚ずつ描画し、それをコマ撮り撮影することでアナログな質感を保ちながら文字が変形し続ける映像に仕立てた。AI技術による素材生成と、手作業のコマ撮りアニメーションを組み合わせた制作工程が特徴。",
+    "evaluationImpact": "AIによる文字の類似性抽出と、ペンプロッター・コマ撮りというアナログな手仕事を組み合わせた点が評価され、Tokyo TDC賞2025でグランプリを受賞。AICA 2025でもAICA賞を受賞している（同年のグランプリは別作品「Cyber Subin」）。AIを効率化ではなく表現の起点として用いた事例として位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Motion Tech"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/MV",
+      "Theme/Music",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "be-first-i-want-you-back-music-video-2025",
+    "title": "BE:FIRST「I Want You Back」Music Video",
+    "summary": "キヤノンのボリュメトリックビデオ技術でメンバーを3Dデータ化し、あらゆる角度から見えるダンス映像に再構成したMV",
+    "client": "BE:FIRST（原曲: The Jackson 5）",
+    "agency": "技術協力: キヤノン（ボリュメトリックビデオ）",
+    "categories": [
+      "テクノロジー×アイデア",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.youtube.com/watch?v=3Oyy8JnYMyA",
+    "thumbnail": "/thumbnails/be-first-i-want-you-back-music-video-2025.jpg",
+    "videoId": "3Oyy8JnYMyA",
+    "overview": "BE:FIRSTのベストアルバムリード曲「I Want You Back」（原曲: The Jackson 5）のミュージックビデオ。キヤノンのボリュメトリックビデオ技術と協力し、メンバーのパフォーマンスを3Dデータとして取得。あらゆる角度から立体的に踊る姿を捉え直した映像として再構成している。",
+    "background": "ベストアルバムのリード曲という節目にあたり、既存楽曲のカバーを単なる再演にとどめず、映像表現自体をアップデートする狙いがあった。キヤノンが持つボリュメトリックビデオ技術との協業により、ダンスパフォーマンスを立体的なデータとして記録・再構成する手法が採用された。",
+    "execution": "キヤノンのボリュメトリックビデオ技術を用いてBE:FIRSTメンバーのダンスパフォーマンスを3Dデータとして撮影・取得。取得した立体データをもとに、視点を自由に動かしながらあらゆる角度からメンバーの踊る姿を捉え直した映像としてミュージックビデオを構成した。",
+    "evaluationImpact": "ボリュメトリックビデオという撮影技術をアイドル・アーティストのミュージックビデオ制作に応用した事例。固定カメラでは得られない自由な視点移動によるダンス表現を提示し、パフォーマンス映像の新しい見せ方を模索する試みとして位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Motion Tech"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/MV",
+      "Theme/Music",
+      "Theme/Entertainment"
+    ]
+  },
+  {
     "id": "kazu-come-behind-me-so-good-official-video-by-daito-manabe-k",
     "title": "KAZU \"Come Behind Me, So Good!\" (Official Video by Daito Manabe + Kenichiro Shimizu)",
     "summary": "32台のカメラでダンサー9人の全身をフォトグラメトリー撮影し、レーザースキャンの地形データと合成した非AI技術駆使のミュージックビデオ",
