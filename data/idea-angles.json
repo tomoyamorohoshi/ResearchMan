@@ -1,0 +1,270 @@
+[
+  {
+    "id": "mitate",
+    "label": "見立て変換",
+    "description": "既存の形式・データを別のモチーフの形に置き換えて意味を重ねる発想",
+    "exemplarCaseIds": [
+      "daiichikosho-dam-1000-meigara",
+      "akita-sakigake-akitaben-karuta",
+      "hokkaido-shimbun-kombu-newspaper",
+      "asahi-origami-newspaper",
+      "heinz-look-familiar",
+      "mercado-livre-field-barcode"
+    ]
+  },
+  {
+    "id": "medium-physicality",
+    "label": "媒体の物理特性活用",
+    "description": "媒体そのものの物理素材・特性に機能や意味を持たせる発想",
+    "exemplarCaseIds": [
+      "mawbima-mosquito-repellent-newspaper",
+      "mainichi-green-newspaper",
+      "ajinomoto-danran-lantern",
+      "annahar-blank-edition",
+      "glowing-relief-alivia-health"
+    ]
+  },
+  {
+    "id": "function-repurposing",
+    "label": "機能の転用",
+    "description": "既存インフラや日常の仕組みをそのまま広告・メディアに転用する発想",
+    "exemplarCaseIds": [
+      "waoo-wifi-invasion",
+      "mcdonald-s-mcdelivery-speed-camera-ads",
+      "mercado-libre-doorbell-ads",
+      "cancer-support-community-867-5309",
+      "colas-iceland-hola",
+      "skinny-ads-in-my-phone-call"
+    ]
+  },
+  {
+    "id": "subtraction-absence",
+    "label": "引き算・不在",
+    "description": "あえて何も足さず「無いこと」自体をメッセージにする発想",
+    "exemplarCaseIds": [
+      "annahar-blank-edition",
+      "squarespace-unavailable",
+      "coinbase-your-way-out",
+      "dove-real-beauty-ai-era",
+      "kitkat-little-breaks-listening-strumming-reading-daydreaming"
+    ]
+  },
+  {
+    "id": "ugc-participatory",
+    "label": "参加型UGCエンジン",
+    "description": "受け手の投稿や行動がそのままコンテンツ・キャンペーンを完成させる発想",
+    "exemplarCaseIds": [
+      "barbie-selfie-ai",
+      "straight-outta-somewhere",
+      "spotify-wrapped",
+      "als-ice-bucket-challenge",
+      "taylor-swift-1989-vault-puzzle",
+      "the-dr-pepper-jingle"
+    ]
+  },
+  {
+    "id": "data-as-material",
+    "label": "データの素材化",
+    "description": "既存データを収集・変換し創作物や体験の素材として使う発想",
+    "exemplarCaseIds": [
+      "abradee-searching-for-birds-on-wires",
+      "heineken-could-have-been-a-heineken",
+      "spotify-2018-goals-ooh",
+      "spotify-spreadbeats",
+      "spoor-the-birdwatcher",
+      "mercado-libre-discount-chants"
+    ]
+  },
+  {
+    "id": "constraint-as-weapon",
+    "label": "制約を武器に",
+    "description": "技術的・予算的制約をあえて課しそれを表現の武器に変える発想",
+    "exemplarCaseIds": [
+      "for-the-honour-feat-nix-northwest-2025",
+      "kazu-come-behind-me-so-good-official-video-by-daito-manabe-k",
+      "volvo-epic-split",
+      "honda-the-cog",
+      "burger-king-moldy-whopper"
+    ]
+  },
+  {
+    "id": "fictional-world-real",
+    "label": "虚構の実在化",
+    "description": "架空の存在・組織をWeb上に「本物」として構築し没入させる発想",
+    "exemplarCaseIds": [
+      "cloverfield-arg",
+      "prometheus-weyland-industries",
+      "jurassic-world-park-site",
+      "discover-westworld-aideden",
+      "longlegs-birthday-murders",
+      "underscores-wallsocket-arg"
+    ]
+  },
+  {
+    "id": "physical-digital-chain",
+    "label": "物理×デジタル連鎖",
+    "description": "現実の場所・物とデジタルを段階的につなぎ解錠させていく発想",
+    "exemplarCaseIds": [
+      "twenty-one-pilots-dmaorg-arg",
+      "the-cure-songs-of-lost-world",
+      "bon-iver-fable-spaces",
+      "taylor-swift-ttpd-qr-murals",
+      "decode-jayz-bing",
+      "year-zero-arg-nine-inch-nails"
+    ]
+  },
+  {
+    "id": "hidden-truth-reveal",
+    "label": "隠れた真実の発見",
+    "description": "誰も気づいていなかった一致や事実を発見し可視化する発想",
+    "exemplarCaseIds": [
+      "heinz-look-familiar",
+      "heinz-coincidence",
+      "abradee-searching-for-birds-on-wires",
+      "colas-iceland-hola",
+      "ikea-alsulaiman-is-that-a-pinntorp"
+    ]
+  },
+  {
+    "id": "stakeholder-led-design",
+    "label": "当事者主導設計",
+    "description": "当事者本人を制作・設計の主体として巻き込むデザイン発想",
+    "exemplarCaseIds": [
+      "dear-ai-disability-representation-campaign-2026",
+      "asics-the-undropped-kit",
+      "tilt-accessible-beauty-inclusive-design",
+      "tilt-accessible-beauty-product-design",
+      "vaseline-vaseline-originals",
+      "supernova-rise-3-adaptive"
+    ]
+  },
+  {
+    "id": "taboo-confrontation",
+    "label": "タブーへの正面突破",
+    "description": "社会的に隠されてきたテーマに正面から向き合い可視化する発想",
+    "exemplarCaseIds": [
+      "kotex-arts-missing-period",
+      "kotex-own-your-flow",
+      "bodyform-womb-stories",
+      "streetdoctors-fatal-questions",
+      "axa-nothing-stops-womens-rugby"
+    ]
+  },
+  {
+    "id": "hijack-competitor",
+    "label": "競合フォーマット乗っ取り",
+    "description": "競合のフォーマットや広告枠を逆手に取って自社に利用する発想",
+    "exemplarCaseIds": [
+      "back-market-lets-end-fast-tech",
+      "doordash-all-the-ads",
+      "maple-leaf-foods-look-for-the-leaf",
+      "coca-cola-you-must-love-coke",
+      "the-choice-pepsi"
+    ]
+  },
+  {
+    "id": "live-proof-stunt",
+    "label": "実演による証明",
+    "description": "主張を誇張やCGでなく現実のライブ実演で証明してみせる発想",
+    "exemplarCaseIds": [
+      "volvo-epic-split",
+      "red-bull-stratos",
+      "lego-fifa-world-cup-trophy-reveal-at-rockefeller-plaza-2026",
+      "kitkat-security-detail",
+      "honda-the-cog"
+    ]
+  },
+  {
+    "id": "archive-revival",
+    "label": "アーカイブ復元",
+    "description": "過去の記録・人物・場を最新技術で蘇らせ再体験させる発想",
+    "exemplarCaseIds": [
+      "radio-time-machine",
+      "refik-anadol-unsupervised",
+      "gorillaz-kong-studios-revival",
+      "roadrunner-bourdain-ai",
+      "johnnie-walker-errata-88",
+      "abba-voyage"
+    ]
+  },
+  {
+    "id": "anonymity-strategy",
+    "label": "匿名性の戦略化",
+    "description": "顔や正体を隠すことを弱みでなく戦略的な個性として使う発想",
+    "exemplarCaseIds": [
+      "ado-world-tour-wish",
+      "ado-uta-one-piece",
+      "lil-miquela"
+    ]
+  },
+  {
+    "id": "body-tech-augmentation",
+    "label": "身体の技術拡張",
+    "description": "センサーや脳波など技術で身体の表現・能力を拡張する発想",
+    "exemplarCaseIds": [
+      "waves-of-will",
+      "massive-attack-fantom",
+      "brain2qwerty-v2-ai-2026",
+      "dash-2025"
+    ]
+  },
+  {
+    "id": "space-takeover",
+    "label": "空間の一時ジャック",
+    "description": "既存の公共・商業空間を期間限定で別の目的に転用する発想",
+    "exemplarCaseIds": [
+      "one-museum-one-ok-rock-eye-of-the-storm-2019",
+      "shibuya-xr-art-park-ar-in-miyashita-park-2026",
+      "heineken-rooftop-revival",
+      "shibuya-upper-west-project-2026",
+      "channel-4-dirty-business"
+    ]
+  },
+  {
+    "id": "policy-system-change",
+    "label": "制度への実装",
+    "description": "キャンペーンを実際の制度・仕組みの変更にまで接続する発想",
+    "exemplarCaseIds": [
+      "annahar-elections-edition",
+      "axa-three-words",
+      "palau-pledge",
+      "knock-knock-police",
+      "the-period-uniform",
+      "too-good-paid-sick-leave-for-cows"
+    ]
+  },
+  {
+    "id": "scan-cg-craft",
+    "label": "スキャン×CGクラフト",
+    "description": "実写スキャン技術とCG生成を組み合わせ新しい映像美を作る発想",
+    "exemplarCaseIds": [
+      "for-the-honour-feat-nix-northwest-2025",
+      "be-first-i-want-you-back-music-video-2025",
+      "kazu-come-behind-me-so-good-official-video-by-daito-manabe-k",
+      "asap-ferg-green-juice"
+    ]
+  },
+  {
+    "id": "ironic-context-reversal",
+    "label": "逆説の文脈転換",
+    "description": "立場やブランドの前提をあえて逆転させ意外性を生む発想",
+    "exemplarCaseIds": [
+      "toyota-escape-vehicle",
+      "doritos-the-triangle-theory",
+      "resize-the-price-aguila",
+      "coca-cola-you-must-love-coke"
+    ]
+  },
+  {
+    "id": "game-real-world-link",
+    "label": "ゲームと現実の連動",
+    "description": "ゲーム内の要素と現実の出来事・制度を直接連動させる発想",
+    "exemplarCaseIds": [
+      "ea-sports-kiyan-prince",
+      "haaland-payback-time-2025",
+      "xbox-missing-managers",
+      "clash-of-clans-two-way-deal",
+      "ea-sports-the-club-is-yours"
+    ]
+  }
+]
