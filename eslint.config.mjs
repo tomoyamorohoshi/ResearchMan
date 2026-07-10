@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // ResearchMan Studio: 独立したローカル専用アプリ。RM本体のlint対象外。
+    "studio/**",
   ]),
 ]);
 

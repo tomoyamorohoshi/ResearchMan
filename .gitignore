@@ -52,3 +52,6 @@ next-env.d.ts
 # 今後更新なし。Notion MCP(collection://ab26481a-d452-82a9-978d-076e0f108758)で
 # 直接参照可能なためリポジトリには含めない。ファイルシステム上は docs/research/ 配下に保持）
 /docs/research/ExportBlock-*/
+
+# ResearchMan Studio（ローカル専用アプリ）のジョブ履歴・実行時生成物
+studio/workdir/

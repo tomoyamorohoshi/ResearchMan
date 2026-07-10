@@ -1,0 +1,54 @@
+/**
+ * pipeline/ideaFavorites.ts のうち、ネットワークを伴わない部分のみ検証する
+ * （fetchFavoriteIds自体はhttps呼び出しを伴うため対象外。sdkRunner.ts等と同じ方針）。
+ *
+ * 「お気に入り同期が未設定/設定不完全なら偽装せずnullを返す」ことは、ideaResearch.ts が
+ * job.warningを出す全事例フォールバックの根幹なので明示的にカバーする。
+ */
+import assert from "node:assert/strict";
+import { mkdtemp, rm, writeFile } from "node:fs/promises";
+import os from "node:os";
+import path from "node:path";
+import test from "node:test";
+import { loadFavSyncConfig } from "./ideaFavorites.js";
+
+test("loadFavSyncConfig: ファイルが無ければnull", async () => {
+  const cfg = await loadFavSyncConfig("/tmp/researchman-studio-test-nonexistent-favsync.json");
+  assert.equal(cfg, null);
+});
+
+test("loadFavSyncConfig: JSONが壊れていればnull", async () => {
+  const dir = await mkdtemp(path.join(os.tmpdir(), "researchman-favsync-test-"));
+  const p = path.join(dir, "favsync.json");
+  try {
+    await writeFile(p, "{not valid json");
+    const cfg = await loadFavSyncConfig(p);
+    assert.equal(cfg, null);
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+});
+
+test("loadFavSyncConfig: endpoint/tokenが欠けていればnull", async () => {
+  const dir = await mkdtemp(path.join(os.tmpdir(), "researchman-favsync-test-"));
+  const p = path.join(dir, "favsync.json");
+  try {
+    await writeFile(p, JSON.stringify({ endpoint: "https://example.com" })); // tokenが無い
+    const cfg = await loadFavSyncConfig(p);
+    assert.equal(cfg, null);
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+});
+
+test("loadFavSyncConfig: endpoint/token両方あれば読み込める", async () => {
+  const dir = await mkdtemp(path.join(os.tmpdir(), "researchman-favsync-test-"));
+  const p = path.join(dir, "favsync.json");
+  try {
+    await writeFile(p, JSON.stringify({ endpoint: "https://example.com/api/favorites", token: "secret" }));
+    const cfg = await loadFavSyncConfig(p);
+    assert.deepEqual(cfg, { endpoint: "https://example.com/api/favorites", token: "secret" });
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+});

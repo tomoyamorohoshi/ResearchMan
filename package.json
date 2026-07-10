@@ -28,7 +28,9 @@
     "audit:integrity": "node scripts/audit-integrity.mjs",
     "verify:deploy": "node scripts/verify-deploy.mjs",
     "refresh:tech-thumbs": "node scripts/refresh-tech-thumbnails.mjs",
-    "notify:line:dry": "node scripts/notify-line.mjs --dry-run"
+    "notify:line:dry": "node scripts/notify-line.mjs --dry-run",
+    "studio": "npm --prefix studio run dev",
+    "studio:install": "npm --prefix studio install"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.105.0",
