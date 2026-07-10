@@ -36,7 +36,7 @@ import {
 import { rollbackIfNotCommitted } from "./caseResearch.js";
 import { appendCountShortfallWarning } from "./ideaPure.js";
 import type { LoadedAgentDefinition } from "./agentLoader.js";
-import { updateJob, type ResultCard } from "../jobs.js";
+import { updateJob, type Job, type ResultCard } from "../jobs.js";
 import { extractJsonArray, normalizeTitleKey, type ValidatedResearchRequest } from "./pure.js";
 import { buildTechCollectorPrompt } from "./techPrompts.js";
 import {
@@ -52,7 +52,7 @@ import {
 } from "./techPure.js";
 import { acquireTechThumbnail } from "./techThumbnail.js";
 import { isUrlAlive } from "./techExternalScripts.js";
-import { tryAcquireLock } from "./lock.js";
+import { resolveLock, tryAcquireLock, type LockHandle } from "./lock.js";
 import { runAgentQuery } from "./sdkRunner.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -99,8 +99,57 @@ function notifyLine(args: string[]): void {
   console.log(`[studio] notify-line: ${result.stdout.trim() || result.stderr.trim() || "(no output)"}`);
 }
 
-async function fail(jobId: string, theme: string, message: string): Promise<void> {
-  await updateJob(jobId, { status: "error", progress: undefined, error: message });
+// ── 失敗パスのジョブパッチ（純粋関数・単体テスト対象） ──────────────
+// adversarial-reviewer指摘#1・#3: 「両方」でCase成功→Tech失敗のとき、失敗パスが
+// resultCards/commit/costを明示的に上書きしないと、combinedResearch.tsのリセット漏れや
+// タイミング次第でCase側の値をTechフェーズが引き継いでしまい、カード二重化・コスト誤算・
+// commit誤表記の原因になる。単独実行時も「失敗なのにcostが記録されない」欠落を埋める。
+
+/** lock取得不可（デイリージョブ実行中）で即座に終了する場合のパッチ。何も消費していない。 */
+export function buildLockUnavailablePatch(): Partial<Job> {
+  return {
+    status: "error",
+    progress: undefined,
+    error: "デイリージョブ実行中です。しばらく後に再実行してください。",
+    resultCards: [],
+    commit: null,
+    cost: 0,
+  };
+}
+
+/** commit前の失敗（fail()経路）。何もcommitされていないため resultCards/commit は空。
+ * costUsdはその時点までに実際に消費した額（収集ラウンドの一部成功分等）を明示的に記録する。 */
+export function buildFailPatch(message: string, costUsd: number): Partial<Job> {
+  return {
+    status: "error",
+    progress: undefined,
+    error: message,
+    resultCards: [],
+    commit: null,
+    cost: costUsd,
+  };
+}
+
+/** push失敗（commit済み・pushのみ失敗）。commit自体は成立しているため、
+ * 実際に書き込まれた resultCards と commitHash・消費costUsd を保持したまま報告する。 */
+export function buildPushFailPatch(
+  message: string,
+  commitHash: string | null,
+  resultCards: ResultCard[],
+  costUsd: number,
+): Partial<Job> {
+  return {
+    status: "error",
+    progress: undefined,
+    error: message,
+    resultCards,
+    commit: commitHash,
+    cost: costUsd,
+  };
+}
+
+async function fail(jobId: string, theme: string, message: string, costUsd: number): Promise<void> {
+  await updateJob(jobId, buildFailPatch(message, costUsd));
   notifyLine(["--result", "error", "--route", "technology", "--label", `Studio: ${theme}`]);
 }
 
@@ -168,17 +217,24 @@ async function runCollectionRounds(
   return { raws, costUsd };
 }
 
-export async function runTechResearchPipeline(jobId: string, req: ValidatedResearchRequest): Promise<void> {
+/**
+ * @param externalLock 呼び出し元（combinedResearch.ts）が既に取得済みのlockを渡す場合に指定する。
+ * 指定時はこの関数は自前でacquire/releaseしない（release責任は呼び出し元に残る。
+ * adversarial-reviewer指摘#2: Case→Tech間でlockを一度解放して再取得すると、その隙に
+ * デイリージョブがlockを奪える競合窓ができてしまうため）。単独実行時（未指定）は
+ * 従来どおり自前でacquire/releaseする。
+ */
+export async function runTechResearchPipeline(
+  jobId: string,
+  req: ValidatedResearchRequest,
+  externalLock?: LockHandle,
+): Promise<void> {
   const { theme, viewpoint, refUrl, count } = req;
   let costUsd = 0;
 
-  const lock = tryAcquireLock();
+  const { lock, ownsLock } = resolveLock(externalLock, tryAcquireLock);
   if (!lock) {
-    await updateJob(jobId, {
-      status: "error",
-      progress: undefined,
-      error: "デイリージョブ実行中です。しばらく後に再実行してください。",
-    });
+    await updateJob(jobId, buildLockUnavailablePatch());
     return;
   }
 
@@ -189,7 +245,9 @@ export async function runTechResearchPipeline(jobId: string, req: ValidatedResea
   let resultCards: ResultCard[] = [];
 
   try {
-    await setProgress(jobId, "既存データ読み込み中");
+    // 「既存データ」始まりだとCase Studyの共通ETAバケット(20分)と衝突するため
+    // Tech専用の文言にする（eta.ts参照。adversarial-reviewer指摘#4）。
+    await setProgress(jobId, "技術データ読み込み中");
     const existingTechFull = JSON.parse(await readFile(TECH_PATH, "utf-8")) as TechEntry[];
     const existingTechTitles = existingTechFull.map((t) => t.title);
     const existingTech = buildExistingTechIndex(existingTechFull);
@@ -315,12 +373,15 @@ export async function runTechResearchPipeline(jobId: string, req: ValidatedResea
     const pushResult = gitPush(ROOT);
     if (!pushResult.ok) {
       notifyLine(["--result", "pushfail", "--route", "technology", "--label", `Studio: ${theme}`]);
-      await updateJob(jobId, {
-        status: "error",
-        progress: undefined,
-        error: `push に失敗しました（pre-push監査等の可能性）。コミットはローカルに残っています（commit ${commitHash?.slice(0, 8) ?? "不明"}）。手動対応が必要です。`,
-        commit: commitHash,
-      });
+      await updateJob(
+        jobId,
+        buildPushFailPatch(
+          `push に失敗しました（pre-push監査等の可能性）。コミットはローカルに残っています（commit ${commitHash?.slice(0, 8) ?? "不明"}）。手動対応が必要です。`,
+          commitHash,
+          resultCards,
+          costUsd,
+        ),
+      );
       return;
     }
 
@@ -382,9 +443,9 @@ export async function runTechResearchPipeline(jobId: string, req: ValidatedResea
         cost: costUsd,
       });
     } else {
-      await fail(jobId, theme, message);
+      await fail(jobId, theme, message, costUsd);
     }
   } finally {
-    lock.release();
+    if (ownsLock) lock.release();
   }
 }

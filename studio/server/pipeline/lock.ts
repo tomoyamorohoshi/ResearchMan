@@ -49,3 +49,27 @@ export function releaseLock(lockPath: string = DEFAULT_LOCK_PATH): void {
     // 既に無い/権限エラー等は無視（次回のstale判定が最終的に救済する）
   }
 }
+
+export interface LockResolution {
+  lock: LockHandle | null;
+  /** true ならこの呼び出し元が取得した（=このスコープの終わりで自分がrelease責任を持つ）。
+   * externalLockを渡された場合はfalse（release責任は呼び出し元に残る）。 */
+  ownsLock: boolean;
+}
+
+/**
+ * 「両方」（Case→Tech直列実行）でのlock取得→解放→再取得ギャップ対策
+ * （adversarial-reviewer指摘#2: Caseがlockを解放してからTechが再取得するまでの間に
+ * デイリージョブがlockを奪うと「両方」がCaseのみ反映に degrade する）。
+ * combinedResearch.ts が1回だけ acquire() してCase/Tech両方の実行関数へ
+ * externalLock として渡すことで、個々のパイプラインは再取得も自分でのreleaseもしない
+ * （ownsLock=falseなら呼び出し元のfinallyでrelease）。単独実行時（externalLock未指定）は
+ * 従来どおり自前で取得・解放する。
+ */
+export function resolveLock(
+  externalLock: LockHandle | undefined,
+  acquire: () => LockHandle | null,
+): LockResolution {
+  if (externalLock) return { lock: externalLock, ownsLock: false };
+  return { lock: acquire(), ownsLock: true };
+}

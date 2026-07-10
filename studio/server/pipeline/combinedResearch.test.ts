@@ -7,8 +7,17 @@
  * DESIGN.md §6「両方」・タスク指示: 「途中失敗時はCaseは反映済み・Techは失敗を正確に伝える」。
  */
 import assert from "node:assert/strict";
+import { randomUUID } from "node:crypto";
+import { rm } from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import test from "node:test";
-import { mergeCombinedPhases, type PhaseResult } from "./combinedResearch.js";
+import { getJob, updateJob, writeJobFile, type Job } from "../jobs.js";
+import { buildFailPatch, buildPushFailPatch } from "./techResearch.js";
+import { mergeCombinedPhases, phaseFromJob, TECH_PHASE_RESET_PATCH, type PhaseResult } from "./combinedResearch.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const JOBS_DIR = path.join(__dirname, "..", "..", "workdir", "jobs");
 
 function phase(overrides: Partial<PhaseResult> = {}): PhaseResult {
   return {
@@ -17,6 +26,22 @@ function phase(overrides: Partial<PhaseResult> = {}): PhaseResult {
     resultCards: [],
     commit: null,
     cost: 0,
+    ...overrides,
+  };
+}
+
+/** パイプラインを起動せず、Caseフェーズ完了直後のジョブ状態を直接ファイルに用意するfixture。 */
+function makeCaseDoneJob(overrides: Partial<Job> = {}): Job {
+  return {
+    id: randomUUID(),
+    tab: "research",
+    request: { kind: "両方", theme: "テスト", refUrl: "", viewpoint: "", count: "3" },
+    status: "done",
+    resultCards: [],
+    commit: null,
+    deployedUrl: "https://research-man.vercel.app",
+    cost: null,
+    at: new Date().toISOString(),
     ...overrides,
   };
 }
@@ -95,4 +120,82 @@ test("mergeCombinedPhases: commitが片方のみならその値を残す", () =>
     phase({ label: "Tech", status: "error", error: "x", commit: null }),
   );
   assert.match(merged.commit ?? "", /aaaa1111/);
+});
+
+// ── TECH_PHASE_RESET_PATCH（adversarial-reviewer指摘#1） ─────────────────
+// Techフェーズ開始前にジョブを running へ戻すだけでなく、Caseフェーズの
+// resultCards/commit/cost/deployedUrl も明示的にクリアしないと、Tech側の失敗パスが
+// これらを上書きしなかった場合にCaseの値をそのまま引き継いでしまう（カード二重化・
+// コスト誤算・commit誤表記の直接原因）。
+
+test("TECH_PHASE_RESET_PATCH: resultCards/commit/cost/deployedUrlを明示的にクリアする", () => {
+  assert.deepEqual(TECH_PHASE_RESET_PATCH.resultCards, []);
+  assert.equal(TECH_PHASE_RESET_PATCH.commit, null);
+  assert.equal(TECH_PHASE_RESET_PATCH.cost, null);
+  assert.equal(TECH_PHASE_RESET_PATCH.deployedUrl, null);
+  assert.equal(TECH_PHASE_RESET_PATCH.status, "running");
+});
+
+// ── 結合経路テスト（adversarial-reviewer指摘#1・最重要） ─────────────────
+// mergeCombinedPhasesへの理想入力ではなく、実際に「Case完了状態のジョブを書く→
+// リセット→Tech失敗相当のupdateJob→phaseFromJobで復元」という実運用と同じ経路を
+// 通してテストする（この経路を通さないテストは今回のバグを再現できない）。
+
+test("結合経路: Case成功→Tech早期失敗でもCaseカードは二重化されず、costは合算のみ、Tech側commitは誤表記されない", async () => {
+  const jobId = randomUUID();
+  const caseCard = { kind: "case" as const, id: "case-a", url: "https://x/cases/case-a" };
+  await writeJobFile(
+    makeCaseDoneJob({ id: jobId, resultCards: [caseCard], commit: "caseHash1111", cost: 1.23 }),
+  );
+  try {
+    const casePhase = phaseFromJob("Case", await getJob(jobId));
+
+    await updateJob(jobId, TECH_PHASE_RESET_PATCH);
+    // techResearch.ts::fail() が実際に書くのと同じパッチ（buildFailPatch）を適用する
+    await updateJob(jobId, buildFailPatch("収集フェーズで候補が得られませんでした", 0.05));
+
+    const techPhase = phaseFromJob("Tech", await getJob(jobId));
+    const merged = mergeCombinedPhases(casePhase, techPhase);
+
+    assert.deepEqual(merged.resultCards, [caseCard], "Caseカードが二重化されていないこと");
+    assert.equal(merged.status, "done", "Case側はcommit済みのため全体を失敗扱いにしない");
+    assert.equal(merged.cost, 1.23 + 0.05, "コストはCase実費+Tech実費の合算のみ（Case分の二重加算をしない）");
+    assert.match(merged.commit ?? "", /caseHash1111/);
+    const caseHashOccurrences = (merged.commit ?? "").split("caseHash1111").length - 1;
+    assert.equal(caseHashOccurrences, 1, "Tech側にCaseのcommit hashが誤って乗っていないこと");
+    assert.match(merged.warning ?? "", /Tech.*収集フェーズで候補が得られませんでした/s);
+  } finally {
+    await rm(path.join(JOBS_DIR, `${jobId}.json`), { force: true });
+  }
+});
+
+test("結合経路: Case成功→Techのpush失敗でもCase/Tech両方のカードが失われず二重化もされない", async () => {
+  const jobId = randomUUID();
+  const caseCard = { kind: "case" as const, id: "case-a", url: "https://x/cases/case-a" };
+  const techCard = { kind: "tech" as const, id: "tech-b", url: "https://x/technology/tech-b" };
+  await writeJobFile(
+    makeCaseDoneJob({ id: jobId, resultCards: [caseCard], commit: "caseHash1111", cost: 1.0 }),
+  );
+  try {
+    const casePhase = phaseFromJob("Case", await getJob(jobId));
+
+    await updateJob(jobId, TECH_PHASE_RESET_PATCH);
+    // techResearch.ts のpush失敗パスが実際に書くのと同じパッチ（buildPushFailPatch）。
+    // push失敗はcommit済みなのでresultCards/commitHash/costは保持される。
+    await updateJob(
+      jobId,
+      buildPushFailPatch("push に失敗しました", "techHash2222", [techCard], 0.3),
+    );
+
+    const techPhase = phaseFromJob("Tech", await getJob(jobId));
+    const merged = mergeCombinedPhases(casePhase, techPhase);
+
+    assert.deepEqual(merged.resultCards, [caseCard, techCard], "Case/Tech両方のカードが揃う（二重化も欠落もない）");
+    assert.equal(merged.status, "done");
+    assert.equal(merged.cost, 1.0 + 0.3);
+    assert.match(merged.commit ?? "", /caseHash1111/);
+    assert.match(merged.commit ?? "", /techHash2222/);
+  } finally {
+    await rm(path.join(JOBS_DIR, `${jobId}.json`), { force: true });
+  }
 });

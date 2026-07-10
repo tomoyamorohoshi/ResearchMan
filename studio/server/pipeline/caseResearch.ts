@@ -52,7 +52,7 @@ import {
   type WriterFields,
 } from "./pure.js";
 import { acquireThumbnail } from "./thumbnail.js";
-import { tryAcquireLock } from "./lock.js";
+import { resolveLock, tryAcquireLock, type LockHandle } from "./lock.js";
 import { runAgentQuery, runPlainQuery } from "./sdkRunner.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -112,14 +112,22 @@ export async function rollbackIfNotCommitted(
   return { rolledBack: true };
 }
 
+/**
+ * @param externalLock 呼び出し元（combinedResearch.ts）が既に取得済みのlockを渡す場合に指定する。
+ * 指定時はこの関数は自前でacquire/releaseしない（release責任は呼び出し元に残る。
+ * adversarial-reviewer指摘#2: Case→Tech間でlockを一度解放して再取得すると、その隙に
+ * デイリージョブがlockを奪える競合窓ができてしまうため）。単独実行時（未指定）は
+ * 従来どおり自前でacquire/releaseする。
+ */
 export async function runCaseResearchPipeline(
   jobId: string,
   req: ValidatedResearchRequest,
+  externalLock?: LockHandle,
 ): Promise<void> {
   const { theme, viewpoint, refUrl, count } = req;
   let costUsd = 0;
 
-  const lock = tryAcquireLock();
+  const { lock, ownsLock } = resolveLock(externalLock, tryAcquireLock);
   if (!lock) {
     await updateJob(jobId, {
       status: "error",
@@ -536,6 +544,6 @@ export async function runCaseResearchPipeline(
       await fail(jobId, theme, message);
     }
   } finally {
-    lock.release();
+    if (ownsLock) lock.release();
   }
 }

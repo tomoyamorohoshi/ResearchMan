@@ -1,19 +1,25 @@
 /**
  * Research(両方) 実パイプライン（DESIGN.md §6・§10 P2）。
  *
- * Case Study パイプライン → Technology パイプラインを1ジョブ内で直列実行する
- * （進捗も直列表示。DESIGN.md: 「commitは各パイプラインの流儀のまま2つで良い」）。
- * それぞれ runCaseResearchPipeline / runTechResearchPipeline が lock取得・ロールバック・
- * commit/push・notify-line を独立に完結させる（このファイルはそれらを呼び出し、
- * 完了後に2フェーズの結果を1つのJobへマージするだけ）。
+ * lockを1回だけ取得し、Case Study パイプライン → Technology パイプラインへ同じlockを
+ * 渡して1ジョブ内で直列実行する（進捗も直列表示。DESIGN.md: 「commitは各パイプラインの
+ * 流儀のまま2つで良い」）。lockを一度解放してから再取得する設計だとCase→Tech間に
+ * デイリージョブがlockを奪える競合窓ができてしまうため、combinedResearch.ts が
+ * 単一のlockを保持したまま両フェーズへ externalLock として渡す
+ * （adversarial-reviewer指摘#2。lock.ts::resolveLock参照）。
+ * commit/push・notify-line・監査・ロールバックは各パイプラインが独立に完結させる。
+ * このファイルは lock 管理・フェーズ間のジョブリセット・完了後の2フェーズ結果マージを担う。
  *
  * 重要: 各フェーズの実行関数はジョブを自身の最終状態（done/error）で確定させるため、
- * Techフェーズ開始前に status を running へ戻す（でなければ結果ポーリング中のUIが
- * Caseフェーズ完了時点で誤って結果画面へ遷移してしまう）。
+ * Techフェーズ開始前に status を running へ戻すだけでなく、resultCards/commit/cost/
+ * deployedUrl も明示的にクリアする（TECH_PHASE_RESET_PATCH）。でなければTech側の失敗パスが
+ * これらのフィールドを上書きしなかった場合にCase側の値をそのまま引き継いでしまい、
+ * カード二重化・コスト誤算・commit誤表記の原因になる（adversarial-reviewer指摘#1）。
  */
 import { getJob, updateJob, type Job, type JobStatus, type ResultCard } from "../jobs.js";
 import { runCaseResearchPipeline } from "./caseResearch.js";
 import { runTechResearchPipeline } from "./techResearch.js";
+import { tryAcquireLock } from "./lock.js";
 import type { ValidatedResearchRequest } from "./pure.js";
 
 export interface PhaseResult {
@@ -35,7 +41,22 @@ export interface MergedResult {
   error?: string;
 }
 
-function phaseFromJob(label: "Case" | "Tech", job: Job | null): PhaseResult {
+/** Techフェーズ開始前にジョブへ適用するリセットパッチ（単体テスト対象・実運用コード共用）。
+ * status/progressをrunningへ戻すだけでなく、resultCards/commit/cost/deployedUrlも
+ * 明示的にクリアする（adversarial-reviewer指摘#1: クリアしないとCase側の値をTechフェーズが
+ * 引き継いでしまう）。 */
+export const TECH_PHASE_RESET_PATCH: Partial<Job> = {
+  status: "running",
+  progress: "技術収集を開始しています…",
+  error: undefined,
+  warning: undefined,
+  resultCards: [],
+  commit: null,
+  cost: null,
+  deployedUrl: null,
+};
+
+export function phaseFromJob(label: "Case" | "Tech", job: Job | null): PhaseResult {
   if (!job) {
     return { label, status: "error", resultCards: [], commit: null, cost: 0, error: "ジョブ状態を読み込めませんでした" };
   }
@@ -103,30 +124,41 @@ export function mergeCombinedPhases(casePhase: PhaseResult, techPhase: PhaseResu
 }
 
 export async function runCombinedResearchPipeline(jobId: string, req: ValidatedResearchRequest): Promise<void> {
-  await runCaseResearchPipeline(jobId, req);
-  const casePhase = phaseFromJob("Case", await getJob(jobId));
+  // lockはここで1回だけ取得し、Case→Tech両方へ渡す（adversarial-reviewer指摘#2:
+  // 個々のパイプラインに自前取得させると解放→再取得の間に競合窓ができるため）。
+  const lock = tryAcquireLock();
+  if (!lock) {
+    await updateJob(jobId, {
+      status: "error",
+      progress: undefined,
+      error: "デイリージョブ実行中です。しばらく後に再実行してください。",
+    });
+    return;
+  }
 
-  // Techフェーズ開始前にジョブを running へ戻す（Caseフェーズが done/error で確定させて
-  // いるため、そのままだとポーリング中のUIが結果画面へ遷移してしまう）。
-  await updateJob(jobId, {
-    status: "running",
-    progress: "技術収集を開始しています…",
-    error: undefined,
-    warning: undefined,
-  });
+  try {
+    await runCaseResearchPipeline(jobId, req, lock);
+    const casePhase = phaseFromJob("Case", await getJob(jobId));
 
-  await runTechResearchPipeline(jobId, req);
-  const techPhase = phaseFromJob("Tech", await getJob(jobId));
+    // Techフェーズ開始前にジョブを running へ戻し、Case側の結果フィールドも明示的に
+    // クリアする（TECH_PHASE_RESET_PATCH。adversarial-reviewer指摘#1）。
+    await updateJob(jobId, TECH_PHASE_RESET_PATCH);
 
-  const merged = mergeCombinedPhases(casePhase, techPhase);
-  await updateJob(jobId, {
-    status: merged.status,
-    progress: undefined,
-    resultCards: merged.resultCards,
-    commit: merged.commit,
-    cost: merged.cost,
-    warning: merged.warning,
-    error: merged.error,
-    deployedUrl: casePhase.status === "done" || techPhase.status === "done" ? "https://research-man.vercel.app" : null,
-  });
+    await runTechResearchPipeline(jobId, req, lock);
+    const techPhase = phaseFromJob("Tech", await getJob(jobId));
+
+    const merged = mergeCombinedPhases(casePhase, techPhase);
+    await updateJob(jobId, {
+      status: merged.status,
+      progress: undefined,
+      resultCards: merged.resultCards,
+      commit: merged.commit,
+      cost: merged.cost,
+      warning: merged.warning,
+      error: merged.error,
+      deployedUrl: casePhase.status === "done" || techPhase.status === "done" ? "https://research-man.vercel.app" : null,
+    });
+  } finally {
+    lock.release();
+  }
 }

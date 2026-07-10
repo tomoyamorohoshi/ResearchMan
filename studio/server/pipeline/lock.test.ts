@@ -3,7 +3,7 @@ import { mkdirSync, rmSync, utimesSync, existsSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
-import { isLockStale, releaseLock, tryAcquireLock, STALE_MS } from "./lock.js";
+import { isLockStale, releaseLock, resolveLock, tryAcquireLock, STALE_MS } from "./lock.js";
 
 function tmpLockPath(): string {
   return path.join(os.tmpdir(), `researchman-studio-lock-test-${Date.now()}-${Math.random().toString(36).slice(2)}`);
@@ -67,4 +67,36 @@ test("releaseLock: 解放後は再取得できる", () => {
 
 test("releaseLock: 存在しないパスを渡しても例外を投げない", () => {
   assert.doesNotThrow(() => releaseLock(tmpLockPath()));
+});
+
+// ── resolveLock（adversarial-reviewer指摘#2: 「両方」でCase→Tech間にlockの
+//    解放→再取得ギャップがあり、その間にデイリージョブがlockを奪える問題の再発防止） ──
+test("resolveLock: externalLockが渡されたら再取得せずownsLock=falseで返す", () => {
+  let acquireCalls = 0;
+  const external = { release: () => {} };
+  const result = resolveLock(external, () => {
+    acquireCalls++;
+    return { release: () => {} };
+  });
+  assert.equal(result.lock, external);
+  assert.equal(result.ownsLock, false);
+  assert.equal(acquireCalls, 0, "externalLockがあるときはacquire関数を呼んではいけない");
+});
+
+test("resolveLock: externalLock未指定ならacquireを呼びownsLock=trueで返す", () => {
+  let acquireCalls = 0;
+  const acquired = { release: () => {} };
+  const result = resolveLock(undefined, () => {
+    acquireCalls++;
+    return acquired;
+  });
+  assert.equal(result.lock, acquired);
+  assert.equal(result.ownsLock, true);
+  assert.equal(acquireCalls, 1);
+});
+
+test("resolveLock: externalLock未指定でacquireがnullを返したらlock=null・ownsLock=true", () => {
+  const result = resolveLock(undefined, () => null);
+  assert.equal(result.lock, null);
+  assert.equal(result.ownsLock, true);
 });
