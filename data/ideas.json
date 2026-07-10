@@ -1491,5 +1491,137 @@
         "desc": "1枚の画像やテキストから、操作にリアルタイム反応する歩き回れる映像世界を生成する技術"
       }
     ]
+  },
+  {
+    "id": "studio-2026-07-10-1",
+    "date": "2026-07-10",
+    "title": "当事者の記憶が描く空",
+    "pattern": "当事者主導設計",
+    "seed": "目が見えない人や病室から出られない人など、空を自由に見られない当事者本人にインタビューし、記憶の中の理想の空の色や雲の形を言葉で語ってもらい、それをAIで映像化してMVの空を構成するかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "dear-ai-disability-representation-campaign-2026",
+        "title": "Dear AI（disability representation campaign）",
+        "desc": "義肢を使う当事者本人の写真や映像でAIを学習し直し、正しい障がい者の姿をAIに描かせた事例。"
+      },
+      {
+        "type": "case",
+        "id": "asics-the-undropped-kit",
+        "title": "The Undropped Kit",
+        "desc": "女子生徒2000人以上と一緒に体操服を作り直し、当事者の声を製品設計に反映した事例。"
+      }
+    ]
+  },
+  {
+    "id": "studio-2026-07-10-2",
+    "date": "2026-07-10",
+    "title": "実写の空と重なる屋上",
+    "pattern": "空間の一時ジャック",
+    "seed": "使われなくなった屋上や広場を期間限定でジャックし、MVに描かれた美しい空の映像を、その時々のリアルな夕焼けや星空と同期させながら大型スクリーンに投影する“空の劇場”を作るかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "shibuya-xr-art-park-ar-in-miyashita-park-2026",
+        "title": "SHIBUYA XR ART PARK — ミリ波×AR共創実証実験 in MIYASHITA PARK",
+        "desc": "宮下公園の芝生をARのキャンバスに変え、みんなでスマホから絵を描ける都市実験。"
+      },
+      {
+        "type": "case",
+        "id": "heineken-rooftop-revival",
+        "title": "Rooftop Revival",
+        "desc": "ソウルの使われていない屋上を、孤独と向き合う交流の場として一時的に再生した事例。"
+      },
+      {
+        "type": "case",
+        "id": "one-museum-one-ok-rock-eye-of-the-storm-2019",
+        "title": "One Museum — ONE OK ROCK『Eye of the Storm』リリース記念",
+        "desc": "表参道に3日間だけの美術館を作り、新曲のアートワーク1枚のためだけに空間を使った事例。"
+      }
+    ]
+  },
+  {
+    "id": "studio-2026-07-10-3",
+    "date": "2026-07-10",
+    "title": "偽りの空が剥がれる瞬間",
+    "pattern": "逆説の文脈転換",
+    "seed": "地下鉄構内や工場など本物の空が見えない場所を舞台にし、天井のディスプレイに映る“偽の空”だけを徹底的に美しく描いた末、終盤で電源が落ちて本当の閉塞感が露わになる逆説の演出にするかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "toyota-escape-vehicle",
+        "title": "Escape Vehicle",
+        "desc": "トヨタなのにフォード車で逃げる映像を作り、DV被害者支援を訴えた逆説のCM。"
+      }
+    ]
+  },
+  {
+    "id": "studio-2026-07-10-4",
+    "date": "2026-07-10",
+    "title": "音の波形が雲になる空",
+    "pattern": "見立て変換",
+    "seed": "楽曲全体の音声波形データをそのまま雲の輪郭線として立体化し、静かなAメロでは薄雲、盛り上がるサビでは密度の濃い入道雲へと変化させ、音の強弱がそのまま空の表情になるMVを演出するかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "daiichikosho-dam-1000-meigara",
+        "title": "第一興商「DAM 1,000銘柄」",
+        "desc": "日経の株価欄の見た目をそのまま流用し、カラオケ人気曲ランキングを証券面風に掲載した企画。"
+      },
+      {
+        "type": "case",
+        "id": "hokkaido-shimbun-kombu-newspaper",
+        "title": "北海道新聞「昆布新聞」（#北海道をコブしたいプロジェクト）",
+        "desc": "本物の昆布に新聞記事を印字し、食べられる新聞として発行した見立ての企画。"
+      }
+    ]
+  },
+  {
+    "id": "studio-2026-07-10-5",
+    "date": "2026-07-10",
+    "title": "蘇る故郷の空アーカイブ",
+    "pattern": "アーカイブ復元",
+    "seed": "アーティストの故郷や思い出の場所で撮影された古い空の写真や映像アーカイブをAIで復元し、幼少期から現在まで時代ごとに移り変わる空の色や雲の質感をMVの背景として時系列に蘇らせるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "radio-time-machine",
+        "title": "RADIO TIME MACHINE",
+        "desc": "ダイヤルを回すとAIが個人の思い出の時代を再現するラジオで認知症ケアを支援した事例。"
+      },
+      {
+        "type": "case",
+        "id": "refik-anadol-unsupervised",
+        "title": "UNSUPERVISED（Refik Anadol）",
+        "desc": "美術館の膨大な作品データをAIに学習させ、美術館が見る夢のような映像を生成し続ける作品。"
+      }
+    ]
+  },
+  {
+    "id": "studio-2026-07-10-6",
+    "date": "2026-07-10",
+    "title": "雲をスキャンする幻想空間",
+    "pattern": "スキャン×CGクラフト",
+    "seed": "ドローンで実際の雲や夕焼けの空をレーザースキャンし、ダンサーのフォトグラメトリーデータと地形のように重ね合わせることで、実写の質感を保ったまま幻想的な空を舞う非AI技術のMVを作るかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "for-the-honour-feat-nix-northwest-2025",
+        "title": "For The Honour (feat. Nix Northwest)",
+        "desc": "iPhoneのLiDARスキャンを手作業でアニメ化し、1人の監督がゲーム風CGIのMVを作った事例。"
+      },
+      {
+        "type": "case",
+        "id": "be-first-i-want-you-back-music-video-2025",
+        "title": "BE:FIRST「I Want You Back」Music Video",
+        "desc": "キヤノンのボリュメトリック技術でメンバーを3Dデータ化し、あらゆる角度から見えるダンス映像を作った事例。"
+      },
+      {
+        "type": "case",
+        "id": "kazu-come-behind-me-so-good-official-video-by-daito-manabe-k",
+        "title": "KAZU \"Come Behind Me, So Good!\" (Official Video by Daito Manabe + Kenichiro Shimizu)",
+        "desc": "32台のカメラでダンサーの全身をスキャンし、地形データと合成した非AI技術のMV。"
+      }
+    ]
   }
 ]
