@@ -1,5 +1,141 @@
 [
   {
+    "id": "palmier-pro",
+    "title": "Palmier Pro",
+    "org": "Palmier, Inc.（Y Combinator S24）",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "GenVideo",
+      "AI/Agents"
+    ],
+    "date": "2026-06",
+    "year": "2026",
+    "summary": "AIエージェントが人間と同じタイムラインで動画を操作できる、Mac向けオープンソース動画編集ソフト。",
+    "point": "この技術のすごいところは、Swiftでネイティブに作られた本格的な動画編集アプリの内部に「MCP（Model Context Protocol）サーバー」という窓口を常駐させ、Claude CodeやCursorのようなAIエージェントが人間と同じプロジェクトファイルを直接編集できるようにした点です。これまでのAI動画編集は「AIが素材を書き出し、人間が別ソフトに取り込む」という一方通行でしたが、Palmier Proではエージェントと人間が同じタイムラインを見ながら共同作業できます。広告やMV制作では「このシーンのカット割りを速くして」「テロップのタイミングをビートに合わせて」と自然言語で指示するだけでエージェントがタイムラインを直接動かしてくれるため、ラフカットの高速反復や深夜の一人作業の相棒として使える可能性があります。",
+    "detail": "仕組みとしては、アプリを起動すると自動的にパソコン内でMCPサーバーが立ち上がり、クリップの追加・トリム・文字起こし取得・AI生成の実行など30種類以上の「操作の窓口」をAIエージェントに公開します。エージェントはこの窓口を呼び出すことで、人間がマウスでタイムラインを触るのと同じ粒度でプロジェクトを編集できます。\n\n従来のAI動画ツールが外部APIを叩いて素材を生成するだけだったのに対し、Palmier Proは実際のノンリニア編集アプリの内部状態を直接操作するため、生成した映像をそのままタイムラインに配置し、既存の編集履歴と地続きで扱えるのが違いです。書き出しファイルはPremiere ProやDaVinci Resolveでも開けます。\n\n使うにはmacOS 26（Tahoe）以降を搭載したApple Silicon Macが必須です。エディタ自体はログイン不要・無料でダウンロードでき、CapCutやPremiereのような通常の動画編集ソフトとしても使えます。AIによる素材生成機能を使う場合のみ、ログインと有料サブスクリプションが必要になります。",
+    "license": {
+      "spdx": "GPL-3.0",
+      "commercial": "ok",
+      "note": "エディタ本体・MCPサーバー・チャットUIはGPL-3.0で無償・商用利用可。Seedance/Kling/Nano Banana Proなど生成AI機能の実行には有料サブスクリプションが必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/palmier-io/palmier-pro"
+      },
+      {
+        "kind": "product",
+        "url": "https://palmierai.pro/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/palmier-pro.jpg",
+    "relatedWorks": [
+      {
+        "title": "Descript",
+        "description": "文字起こしベースで直感的に編集できるAI動画編集ソフト",
+        "url": "https://www.descript.com/"
+      },
+      {
+        "title": "Adobe Premiere Pro（Firefly統合）",
+        "description": "生成AIによるオブジェクト除去・拡張機能を統合した業界標準の編集ソフト",
+        "url": "https://www.adobe.com/products/premiere.html"
+      }
+    ],
+    "sources": [
+      "Batch Research"
+    ]
+  },
+  {
+    "id": "tixl",
+    "title": "TiXL（旧称 Tooll3）",
+    "org": "TiXLオープンソースコミュニティ",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "HCI/MediaArt",
+      "Audio/Music"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "音楽やMIDIに反応して映像がその場で変化する、無料のリアルタイム・モーショングラフィックス制作ツール。",
+    "point": "この技術のすごいところは、ノード（処理の箱）を線でつなぐだけでシェーダーや音声解析、パーティクル、映像フィードバックなどを組み合わせ、GPU上でリアルタイムに映像を生成・変化させられる点です。TouchDesignerやNotchのような業務用ライブ映像ツールに近い機能を、完全無料・オープンソースで使えます。MIDIコントローラーやOSC、DMX照明卓、Spout（映像共有プロトコル）にも対応しているため、既存の音楽機材やライブ照明と連携できます。MVの背景映像やライブ演奏時のVJ映像、AIで生成した素材と組み合わせて音楽のビートに合わせその場で映像を作り変えるような、事前レンダリングに縛られない演出づくりに向いています。",
+    "detail": "仕組みは「ノード」と呼ばれる処理の箱を線でつないで映像パイプラインを組み、その計算をGPUのシェーダーで毎フレームやり直す「プロシージャル（手続き型）」な作り方です。たとえば音楽の低音の音量を検出するノードをパーティクルの発生量ノードにつなげば、コードを一切書かずに「ベースが鳴るほど画面上の粒が増える」といった演出が作れます。\n\n多くのAI動画生成ツールが「1本の完成動画ファイルを書き出す」ことをゴールにするのに対し、TiXLは「ライブで変化し続ける映像そのもの」を作る点が根本的に異なります。事前レンダリングは不要で、その場での表示と同時に録画もできるほか、手動で作ったキーフレームアニメーションと自動生成を自由に混ぜられる柔軟さも特徴です。\n\n必要なのはGPU（DirectX 11以上）を積んだWindows PCのみで、無料ダウンロードしてすぐ試せます。C#やHLSLの知識があればシェーダーを自作してより高度な表現ができますが、既存の「オペレーター」（部品）を組み合わせるだけでも制作可能です。MITライセンスなので、広告やMVなど商用映像にそのまま使えます。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "MITライセンスのため無料・商用利用ともに制限なし"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/tixl3d/tixl"
+      },
+      {
+        "kind": "project",
+        "url": "https://tixl.app/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/tixl.jpg",
+    "relatedWorks": [
+      {
+        "title": "TouchDesigner",
+        "description": "ノードベースのリアルタイム映像制作の業界標準ツール（有償）",
+        "url": "https://derivative.ca/"
+      },
+      {
+        "title": "Notch",
+        "description": "ライブイベント・コンサート映像で使われるリアルタイムレンダリングツール（有償）",
+        "url": "https://www.notch.one/"
+      }
+    ],
+    "sources": [
+      "Batch Research"
+    ]
+  },
+  {
+    "id": "rotoai",
+    "title": "RotoAI",
+    "org": "sPappalard（個人開発）",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "GenVideo"
+    ],
+    "date": "2026-01",
+    "year": "2026",
+    "summary": "「赤いシャツの人」のような自然言語の指示だけで、動画から人物や物体をきれいに切り抜けるオープンソースのロトスコープ・スタジオ。",
+    "point": "この技術のすごいところは、Meta社の映像セグメンテーションAI「SAM2」と物体検出AI「Grounding DINO」を組み合わせ、日本語や英語の自然な指示文だけで動画内の対象を自動追跡・切り抜き（ロトスコープ）できる点です。従来のロトスコープはコマごとに輪郭を手作業でなぞる地道な作業でしたが、これを「言葉で指示する」だけに置き換えました。ボケ味の背景ぼかし、グリーンバック合成、ネオン発光、モノクロ＋差し色（カラーポップ）など6種類の映像エフェクトもワンクリックで適用できるため、人物だけをMVの主役として浮かび上がらせたり、背景を丸ごと差し替えたりする合成カットの制作を大幅に短縮できます。",
+    "detail": "仕組みは、まずGrounding DINOが「赤いシャツの人」のようなテキスト指示から対象物のおおまかな位置を検出し、その結果をSAM2に渡して動画全フレームにわたる高精度なマスク（切り抜き範囲）を自動生成します。長尺の動画でもメモリ不足で落ちないよう、5秒単位に分割して処理する「チャンク処理」と解像度の自動調整を備えているのが工夫点です。\n\n従来のAdobe Roto BrushやDaVinci Resolve Magic Maskは対象物を手でクリック指定する必要がありましたが、RotoAIは自然言語プロンプトだけで対象を選べる点が大きな違いです。独自YOLOモデルを使ったカスタム検出にも対応します。\n\n使うにはブラウザとGoogleアカウント（無料のGoogle Colab GPU利用のため）、Ngrokアカウントが必要です。ローカルPC側にはNode.js環境を用意してReact製のフロントエンドを起動し、Colab側のGPUとトンネル接続する2段構成。プログラミング不要で、Colabノートブックのセルを順番に実行するだけで使い始められます。",
+    "license": {
+      "spdx": "AGPL-3.0",
+      "commercial": "conditional",
+      "note": "依存モデルUltralytics YOLOがAGPL-3.0のため同ライセンス。ネットワーク経由でサービス提供する場合はソース公開義務が発生する点に注意"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/sPappalard/RotoAI"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/rotoai.jpg",
+    "relatedWorks": [
+      {
+        "title": "Cutie Roto",
+        "description": "SAM2ベースのAIロトスコープ・背景除去ツール",
+        "url": "https://github.com/Zarxrax/Cutie-Roto"
+      },
+      {
+        "title": "RotoForge-AI",
+        "description": "Blender上で動くSAM-HQベースのマスク生成アドオン",
+        "url": "https://github.com/MagnumVD/RotoForge-AI"
+      }
+    ],
+    "sources": [
+      "Batch Research"
+    ]
+  },
+  {
     "id": "wild3r",
     "title": "Wild3R",
     "org": "東京大学 山崎研究室",
