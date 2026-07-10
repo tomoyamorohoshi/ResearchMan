@@ -1,5 +1,68 @@
 [
   {
+    "id": "one-museum-one-ok-rock-eye-of-the-storm-2019",
+    "title": "One Museum — ONE OK ROCK『Eye of the Storm』リリース記念",
+    "summary": "アートワーク原画1枚を展示するためだけに表参道に3日間限定の美術館を開設した、新譜体験型プロモーション",
+    "client": "ONE OK ROCK（A-Sketch）",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2019",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000002.000023461.html",
+    "thumbnail": "/thumbnails/one-museum-one-ok-rock-eye-of-the-storm-2019.jpg",
+    "videoId": "",
+    "overview": "ONE OK ROCKの新譜『Eye of the Storm』のリリースを記念し、東京・表参道に「One Museum」と題した美術館を3日間限定で開設。展示品はアートワークの原画1枚のみという極端に絞り込んだ構成とし、来場者は新譜を聴きながら作品と対峙する鑑賞体験を通じて楽曲世界に没入できる企画とした。",
+    "background": "音楽アルバムのリリースプロモーションは店頭施策やSNS展開に偏りがちで、作品世界そのものをじっくり体感させる接点が乏しいという課題があった。アートワークという楽曲と不可分の視覚表現を主役に据え、鑑賞という行為自体を音楽体験に組み込む狙いから、期間限定の美術館という形式が選ばれた。",
+    "execution": "表参道の会場を「美術館」と銘打ち、展示物をアートワーク原画1枚のみに限定。会場内では新譜を流し、来場者は楽曲を聴きながら1枚の作品と向き合う構成とした。開催は3日間の期間限定とし、希少性と話題性を高める設計になっている。",
+    "evaluationImpact": "展示点数を極限まで削ぎ落とすことで、逆に来場体験の密度と話題性を高めた発想が特徴。物量で語るのではなく「1枚だけ」という制約を訴求点に転換し、音楽と美術鑑賞を掛け合わせた体験型プロモーションの一例として位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Promo Campaign"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Form/Event",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "king-gnu-the-greatest-unknown-2023",
+    "title": "King Gnu『THE GREATEST UNKNOWN』予約購入者向けシリアルナンバー配布企画",
+    "summary": "新アルバムのタワーレコード予約購入者にシリアルナンバーを配布し、5大ドームツアー最速先行権と連動させたリテール施策",
+    "client": "King Gnu（ソニーミュージック）",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2023",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://tower.jp/article/feature_item/2023/09/10/0703",
+    "thumbnail": "/thumbnails/king-gnu-the-greatest-unknown-2023.jpg",
+    "videoId": "",
+    "overview": "King Gnuの新アルバム『THE GREATEST UNKNOWN』の発売にあわせ、タワーレコードでの予約購入者に対しシリアルナンバーを配布。このシリアルナンバーを、同時期に発表された5大ドームツアーの最速先行チケット申込権と連動させ、アルバム購入とライブ動員を結びつけるリテール連動プロモーションを実施した。",
+    "background": "アルバムリリースとツアー発表が近接するタイミングを活かし、パッケージ購入のインセンティブを高めると同時にツアーへの動員も強化する狙いがあった。CD・レコード販売が縮小傾向にある中、単なる音源購入で終わらせず、ライブ体験へ導線を伸ばす仕掛けが求められていた背景がある。",
+    "execution": "タワーレコードで新アルバムを予約購入したファンにシリアルナンバーを付与し、そのナンバーを用いて5大ドームツアーの最速先行チケット抽選に申し込める仕組みとした。アルバム予約という一次接点を、ツアーチケットという二次接点に直接結びつけるリテール発の連動企画として展開した。",
+    "evaluationImpact": "パッケージ購入とライブ動員という別々の消費行動を、シリアルナンバーという単純な仕組みで直接連動させた点が特徴。小売店起点の施策でありながらアーティスト側の大型ツアーと連携させることで、リリースとツアーの相乗効果を狙ったプロモーション設計として評価できる。",
+    "relatedWorks": [],
+    "sources": [
+      "Promo Campaign"
+    ],
+    "tags": [
+      "Form/Event",
+      "Theme/Music",
+      "Theme/Retail"
+    ]
+  },
+  {
     "id": "rokid-ai-2026",
     "title": "Rokid スマートAIグラス 日本一般販売開始",
     "summary": "AIネイティブOS「YodaOS」搭載スマートAIグラスがMakuake歴代1位の実績を経て日本一般発売",

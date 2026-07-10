@@ -27,6 +27,7 @@ export const RESEARCH_SOURCES: ResearchSource[] = [
   { tag: "Album Sites", kind: "order", label: "Album Sites" },
   { tag: "Launch & Reveal", kind: "order", label: "Launch & Reveal" },
   { tag: "Newspaper", kind: "order", label: "Newspaper" },
+  { tag: "Promo Campaign", kind: "order", label: "Promo Campaign" },
   { tag: "Radar", kind: "radar", label: "Radar" },
 ];
 
