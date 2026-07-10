@@ -1,5 +1,107 @@
 [
   {
+    "id": "live-avatar",
+    "title": "Live Avatar",
+    "org": "Alibaba Quark / 中国科学技術大学 (USTC)",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "GenVideo",
+      "AI/Agents"
+    ],
+    "date": "2025-12",
+    "year": "2025",
+    "summary": "1枚の顔写真と音声だけから、何時間でも破綻せずしゃべり続けるリアルタイム映像アバターを生成するAI。オンライン会議用ではなく、ライブ配信・大画面演出向けの生成速度と持続性を狙って設計されている。",
+    "point": "従来のAI動画生成は「数秒の映像を時間をかけて作る」のが基本でしたが、Live Avatarは逆に「入力した音声に合わせてリアルタイムで映像を生成し続ける」ことに特化しています。140億パラメータという大型の拡散モデルを、GPUごとに処理の役割を分担させる独自の並列化技術で高速化し、複数GPUなら45FPS、1万秒（約2.8時間）を超える連続生成でも顔が崩れたり別人になったりしないよう設計されています。ライブ・ステージ演出の観点では、実在しないバーチャルMCやAIキャラクターを、事前収録なしでその場の音声・掛け合いに反応させながらLEDビジョンやホログラム風スクリーンに映し出す、といった使い方が現実味を帯びてきます。歌唱イベントの合間のMC進行や、来場できないゲストのアバター出演を長時間安定して届けたい制作に向いた技術です。",
+    "detail": "仕組みを簡単に言うと、あらかじめ大きな「双方向（前後の文脈を見て絵を整える）拡散モデル」を訓練しておき、それを「一方向・数ステップで済む軽量モデル」に蒸留（知識を圧縮して移す）し直すことでリアルタイム性を確保しています。さらに長時間再生すると顔がぶれていく問題（ドリフト）を抑える工夫が複数組み込まれており、10,000秒超の連続ストリーミングでも同一人物として破綻しにくいのが特徴です。処理はGPUごとに担当するタイムステップ（拡散の段階）を固定して非同期パイプライン化する「Timestep-forcing Pipeline Parallelism」という独自方式で高速化しています。\n\n従来の配信用バーチャルヒューマンは、事前にモーションキャプチャした動きを再生する方式が主流でしたが、本技術は音声入力だけからその場でリアルタイムに映像そのものを生成する点が異なります。台本にない即興のやり取りにも対応できる可能性がある一方、複数GPU（H800×5枚、計400GB VRAM）でのフル性能運用が前提で、単体GPUでも80GB以上、量子化を使っても48GB級のGPUが必要になるなど、現時点では個人利用よりも制作会社・配信スタジオでの導入が現実的な規模感です。コード・モデル重みはApache-2.0で商用利用も可能で、GitHubから入手できます。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "モデル・コードともにApache-2.0で公開。商用利用制限の明記なし"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Alibaba-Quark/LiveAvatar"
+      },
+      {
+        "kind": "project",
+        "url": "https://liveavatar.github.io/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2512.04677"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/live-avatar.jpg",
+    "relatedWorks": [
+      {
+        "title": "JoyAvatar",
+        "description": "同系統の無限長リアルタイムアバター生成モデル",
+        "url": "https://arxiv.org/html/2512.11423v1"
+      },
+      {
+        "title": "KlingAvatar 2.0",
+        "description": "Klingによる高品質音声駆動アバター生成技術",
+        "url": "https://arxiv.org/pdf/2512.13313"
+      }
+    ],
+    "sources": [
+      "Batch Research"
+    ]
+  },
+  {
+    "id": "fluidicswarm",
+    "title": "FluidicSwarm",
+    "org": "筑波大学 Metaverse Media Lab（Eguchi, Yoshida, Nishimura, Hiraki）",
+    "type": "Prototype",
+    "domains": [
+      "HCI/MediaArt",
+      "Motion/Body",
+      "Spatial/3D"
+    ],
+    "date": "2025-08",
+    "year": "2025",
+    "summary": "手のジェスチャーだけで、複数の小型ロボット群を「水のような一つの生き物」のように自在に操れる操作システム。握る・開くといった動作で群れの硬さや形が変わる。",
+    "point": "群ロボットを一体ずつ細かく指示するのは通常とても大変ですが、FluidicSwarmは流体シミュレーションで使われる計算手法（SPH＝粒子ベースで水の動きを再現する技術）をロボット制御に応用し、群れ全体を「一塊の液体」として直感的に動かせるようにしました。手をカメラで撮影し、手を開けば群れは柔らかくトロトロと広がり、握れば硬くまとまって動く、というように、握力の強弱がそのまま群れの粘度に変換されます。ステージ演出としては、無数の光る小型ロボットや発光体を、ダンサーの手の動きに合わせてリアルタイムに液体のように波打たせたり集合・分散させたりする新しいビジュアル表現が考えられます。ドローンショーが「決められた振付」で飛ぶのに対し、この技術は「その場の演者のジェスチャーに反応して形が変わる」即興性のある群舞演出に道を開くものです。",
+    "detail": "仕組みは、まずコンピューター上で「群ロボットの各機体＝液体の粒子」とみなし、SPH（Smoothed Particle Hydrodynamics）という流体力学のシミュレーション手法でその動きを計算します。ユーザーが手のひらの開閉やジェスチャーで「その液体がどれくらい硬い（粘度が高い）か」「どんな形をしているか」を指定すると、計算結果に従って実機のロボット群が位置を変えていきます。人が手を握ると力が入って対象が固まるという身体感覚と、群れの硬軟が連動しているため、操作を覚えなくても直感的に群れを自分の身体の延長のように動かせる点が新しいところです。\n\n従来のドローンショーや群ロボット制御が「事前にプログラムした軌道を正確になぞる」方式なのに対し、FluidicSwarmは操作者のその場の動きにリアルタイムで反応する点が大きく異なります。IROS 2024・SIGGRAPH 2025 Emerging Technologiesという査読付きの場で実機デモが行われており、映像でも群れが波打つ様子が確認できます。ただし現時点ではコード・ハードウェア設計は一般公開されておらず、研究室レベルのプロトタイプです。実際の公演で使うには、対応する小型ロボット群とジェスチャー認識用カメラ、専用制御ソフトの開発チームとの連携が必要になり、当面は研究協力や実証実験としての導入が現実的です。",
+    "license": {
+      "spdx": null,
+      "commercial": "research-only",
+      "note": "SIGGRAPH 2025 Emerging Technologiesで発表された学術プロトタイプ。コード配布は確認できず"
+    },
+    "links": [
+      {
+        "kind": "project",
+        "url": "https://mvml.slis.tsukuba.ac.jp/research/fluidicswarm/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://dl.acm.org/doi/10.1145/3721257.3734028"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=DctwpHduWlo"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/fluidicswarm.jpg",
+    "relatedWorks": [
+      {
+        "title": "Skybrush",
+        "description": "事前振付ベースのオープンソース・ドローンショー制御ソフト",
+        "url": "https://skybrush.io/"
+      },
+      {
+        "title": "CrazyDance",
+        "description": "モジュラー式のドローン振付ツール（開発停滞中）",
+        "url": "https://github.com/benkuper/CrazyDance"
+      }
+    ],
+    "sources": [
+      "Batch Research"
+    ]
+  },
+  {
     "id": "palmier-pro",
     "title": "Palmier Pro",
     "org": "Palmier, Inc.（Y Combinator S24）",
