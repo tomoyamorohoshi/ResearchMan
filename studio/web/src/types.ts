@@ -18,7 +18,7 @@ export interface IdeaRefChip {
 }
 
 export interface ResultCard {
-  kind: "case" | "idea";
+  kind: "case" | "tech" | "idea";
   id: string;
   url: string;
   title?: string;

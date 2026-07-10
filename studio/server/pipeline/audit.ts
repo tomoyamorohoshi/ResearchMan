@@ -52,6 +52,9 @@ export const runAuditThumbnails = (cwd: string): CommandResult =>
 export const runAuditIntegrity = (cwd: string): CommandResult =>
   run("node", ["scripts/audit-integrity.mjs"], cwd, 5 * 60_000);
 
+// Technology用（DESIGN.md §5: テーマ系はTechの場合 audit-tech + tsc/lint/build）
+export const runAuditTech = (cwd: string): CommandResult => run("node", ["scripts/audit-tech.mjs"], cwd, 60_000);
+
 export const runTypeCheck = (cwd: string): CommandResult => run("npx", ["tsc", "--noEmit"], cwd, 3 * 60_000);
 
 export const runLint = (cwd: string): CommandResult => run("npm", ["run", "lint"], cwd, 3 * 60_000);
@@ -111,3 +114,10 @@ export const runVerifyDeploy = (cwd: string, thumbPaths: string[], extraArgs: st
 
 export const runNotifyLine = (cwd: string, args: string[]): CommandResult =>
   run("node", ["scripts/notify-line.mjs", ...args], cwd, 30_000);
+
+// Technology日次パイプラインと同じ「/technology/<id> が実際に200を返すか」の確認
+// （verify-deploy.mjsは--skip-pages指定時にページ検証をしないため別途必要。
+// scripts/verify-tech-pages.mjs は /tmp/researchman-tech-last-add.json を読むので、
+// 呼び出し側がその要約ファイルを事前に書いておくこと）。
+export const runVerifyTechPages = (cwd: string): CommandResult =>
+  run("node", ["scripts/verify-tech-pages.mjs"], cwd, 7 * 60_000);

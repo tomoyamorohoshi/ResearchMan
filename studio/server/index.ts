@@ -2,9 +2,8 @@
  * ResearchMan Studio ローカルサーバ。
  *
  * Express + Vite(middlewareMode) で SPA を配信しつつジョブAPIを提供する。
- * research タブの Case Study は P1 で実パイプライン化済み（Claude Agent SDK。
- * jobs.ts::createJob 参照）。Technology/両方 は P2 まで 400 で弾く。idea タブは
- * P0 のダミーのまま（P3予定）。
+ * research タブは Case Study(P1)/Technology(P2)/両方(P2) すべて実パイプライン化済み
+ * （Claude Agent SDK。jobs.ts::createJob 参照）。idea タブも P3 で実パイプライン化済み。
  *
  * SSE 進捗ストリーム（GET /api/jobs/:id/stream）は P4 で実装予定。
  * 現時点では意図的に未実装（ルートも作らない。進捗はポーリングで返す）。

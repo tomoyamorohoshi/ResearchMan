@@ -70,7 +70,9 @@ export default function ResearchPanel() {
 
   const handleRun = async () => {
     setFormError(null);
-    setProgress("収集を開始しています…");
+    // ETAが誤らないよう種別ごとに文言を変える（eta.ts参照。サーバ応答が届くまでの
+    // クライアント側の楽観的初期表示。「両方」はCaseフェーズから始まるため既定のままでよい）。
+    setProgress(kind === "Technology" ? "技術収集を開始しています…" : "収集を開始しています…");
     setStage("loading");
     try {
       const [job] = await Promise.all([

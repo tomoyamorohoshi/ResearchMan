@@ -1,17 +1,20 @@
 /**
  * ジョブストア。
  *
- * research タブ（Case Study）は P1、idea タブは P3 でそれぞれ実パイプライン化済み。
- * POST /api/jobs は status="running" のジョブを即座に返し、実処理（収集/生成〜反映。
- * Claude Agent SDK）はバックグラウンドで進行して studio/workdir/jobs/<id>.json を
- * 随時更新する（DESIGN.md §10・非同期ジョブ+ポーリングのアーキテクチャ）。
+ * research タブは Case Study(P1)/Technology(P2)/両方(P2) が、idea タブは P3 が
+ * それぞれ実パイプライン化済み。POST /api/jobs は status="running" のジョブを即座に返し、
+ * 実処理（収集/生成〜反映。Claude Agent SDK）はバックグラウンドで進行して
+ * studio/workdir/jobs/<id>.json を随時更新する（DESIGN.md §10・非同期ジョブ+ポーリングの
+ * アーキテクチャ）。
  */
 import { randomUUID } from "node:crypto";
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { runCaseResearchPipeline } from "./pipeline/caseResearch.js";
+import { runCombinedResearchPipeline } from "./pipeline/combinedResearch.js";
 import { runIdeaResearchPipeline } from "./pipeline/ideaResearch.js";
+import { runTechResearchPipeline } from "./pipeline/techResearch.js";
 import { validateResearchRequest } from "./pipeline/pure.js";
 import { validateIdeaRequest } from "./pipeline/ideaPure.js";
 
@@ -36,7 +39,7 @@ export interface IdeaRefChip {
 }
 
 export interface ResultCard {
-  kind: "case" | "idea";
+  kind: "case" | "tech" | "idea";
   id: string;
   url: string;
   title?: string;
@@ -129,7 +132,9 @@ export async function createJob(
       tab,
       request,
       status: "running",
-      progress: "収集を開始しています…",
+      // ETAが誤らないよう種別ごとに文言を変える（eta.ts参照。「収集」始まりはCase Study、
+      // 「技術収集」始まりはTechnologyのフェーズ目安に対応づく）。
+      progress: validated.value.kind === "Technology" ? "技術収集を開始しています…" : "収集を開始しています…",
       resultCards: [],
       commit: null,
       deployedUrl: null,
@@ -139,9 +144,16 @@ export async function createJob(
     await writeJobFile(job);
     // バックグラウンド実行（POSTのレスポンスは待たない）。パイプライン内部で
     // 例外を捕捉してstatus="error"を書くのが基本だが、想定外の同期例外にも
-    // 備えて二重に捕捉する。
-    void runCaseResearchPipeline(job.id, validated.value).catch(async (err) => {
-      console.error("[studio] case research pipeline failed unexpectedly", err);
+    // 備えて二重に捕捉する。種別ごとにパイプラインを分岐する（DESIGN.md §10 P2:
+    // Technology/両方を追加。両方はcombinedResearch.tsがCase→Techを直列実行する）。
+    const pipeline =
+      validated.value.kind === "Case Study"
+        ? runCaseResearchPipeline
+        : validated.value.kind === "Technology"
+          ? runTechResearchPipeline
+          : runCombinedResearchPipeline;
+    void pipeline(job.id, validated.value).catch(async (err) => {
+      console.error("[studio] research pipeline failed unexpectedly", err);
       await updateJob(job.id, {
         status: "error",
         progress: undefined,

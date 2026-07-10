@@ -7,7 +7,12 @@ import { clampCount } from "../jobs.js";
 
 // ── リクエスト検証 ──────────────────────────────────────────────
 
+export type ResearchKind = "Case Study" | "Technology" | "両方";
+
+const RESEARCH_KINDS: ResearchKind[] = ["Case Study", "Technology", "両方"];
+
 export interface ValidatedResearchRequest {
+  kind: ResearchKind;
   theme: string;
   viewpoint: string;
   refUrl: string;
@@ -25,14 +30,16 @@ const RESEARCH_COUNT_DEFAULT = 5;
 const str = (v: unknown): string => (typeof v === "string" ? v.trim() : "");
 
 /**
- * Research タブのリクエストを検証する。P1はCase Studyのみ対応
- * （Technology/両方はP2予定 → 400で弾く。DESIGN.md §10 P1のスコープ外定義）。
+ * Research タブのリクエストを検証する（DESIGN.md §10 P2: Case Study/Technology/両方の
+ * 3種別すべてに対応。種別ごとのパイプライン分岐は jobs.ts::createJob が
+ * value.kind を見て行う）。
  */
 export function validateResearchRequest(request: Record<string, unknown>): ValidationResult {
-  const kind = str(request.kind);
-  if (kind !== "Case Study") {
-    return { ok: false, error: "Technology リサーチは P2 で対応予定です" };
+  const kindRaw = str(request.kind);
+  if (!RESEARCH_KINDS.includes(kindRaw as ResearchKind)) {
+    return { ok: false, error: "リサーチ種別を選択してください（Case Study / Technology / 両方）" };
   }
+  const kind = kindRaw as ResearchKind;
   const theme = str(request.theme);
   if (!theme) {
     return { ok: false, error: "テーマを入力してください" };
@@ -40,7 +47,7 @@ export function validateResearchRequest(request: Record<string, unknown>): Valid
   const viewpoint = str(request.viewpoint);
   const refUrl = str(request.refUrl);
   const count = clampCount(request.count, RESEARCH_COUNT_MIN, RESEARCH_COUNT_MAX, RESEARCH_COUNT_DEFAULT);
-  return { ok: true, value: { theme, viewpoint, refUrl, count } };
+  return { ok: true, value: { kind, theme, viewpoint, refUrl, count } };
 }
 
 // ── 収集角度 ────────────────────────────────────────────────────

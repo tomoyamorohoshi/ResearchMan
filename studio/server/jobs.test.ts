@@ -98,12 +98,21 @@ test("getJob: 正常なUUID形式のidは既存どおり取得できる（回帰
   }
 });
 
-test("createJob: research + Technology種別はValidationErrorでP2案内", async () => {
+test("createJob: research + Technology種別・テーマ空はValidationError（実パイプラインを起動しない）", async () => {
   await assert.rejects(
-    () => createJob("research", { kind: "Technology", theme: "AI" }),
+    () => createJob("research", { kind: "Technology", theme: "" }),
     (err: unknown) => {
       assert.ok(err instanceof ValidationError);
-      assert.match((err as Error).message, /P2/);
+      return true;
+    },
+  );
+});
+
+test("createJob: research + 不正なkindはValidationError", async () => {
+  await assert.rejects(
+    () => createJob("research", { kind: "Nonsense", theme: "AI" }),
+    (err: unknown) => {
+      assert.ok(err instanceof ValidationError);
       return true;
     },
   );

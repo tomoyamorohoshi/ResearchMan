@@ -29,16 +29,30 @@ test("validateResearchRequest: Case Study + テーマありは valid", () => {
   }
 });
 
-test("validateResearchRequest: Technology は400相当エラー", () => {
-  const r = validateResearchRequest({ kind: "Technology", theme: "AI" });
-  assert.equal(r.ok, false);
-  if (!r.ok) assert.match(r.error, /P2/);
+test("validateResearchRequest: Technology + テーマありは valid（P2実装済み）", () => {
+  const r = validateResearchRequest({ kind: "Technology", theme: "AI", count: "3" });
+  assert.equal(r.ok, true);
+  if (r.ok) {
+    assert.equal(r.value.kind, "Technology");
+    assert.equal(r.value.theme, "AI");
+    assert.equal(r.value.count, 3);
+  }
 });
 
-test("validateResearchRequest: 両方 も400相当エラー", () => {
+test("validateResearchRequest: 両方 + テーマありは valid（P2実装済み）", () => {
   const r = validateResearchRequest({ kind: "両方", theme: "AI" });
+  assert.equal(r.ok, true);
+  if (r.ok) assert.equal(r.value.kind, "両方");
+});
+
+test("validateResearchRequest: 不正なkindはエラー", () => {
+  const r = validateResearchRequest({ kind: "Nonsense", theme: "AI" });
   assert.equal(r.ok, false);
-  if (!r.ok) assert.match(r.error, /P2/);
+});
+
+test("validateResearchRequest: kind未指定はエラー", () => {
+  const r = validateResearchRequest({ theme: "AI" });
+  assert.equal(r.ok, false);
 });
 
 test("validateResearchRequest: テーマ空白のみはエラー", () => {
