@@ -45,9 +45,13 @@ export default function ResearchPanel() {
       try {
         job = await getJob(id);
       } catch (err) {
-        console.error("[studio] job polling failed", err);
-        setJobError("ジョブ状況の取得に失敗しました。サーバが起動しているか確認してください。");
-        setStage("error");
+        // サーバは監査/verify中に spawnSync でイベントループが数分ブロックし、
+        // ポーリングが一時的に失敗する（P2 E2Eで実発生: パイプラインは成功して
+        // いるのにUIが偽エラーを出した）。ジョブJSONが error と言うまでは
+        // 失敗＝終了とせず、注記を出して粘る（根本対応=非ブロッキング化はP4）。
+        console.warn("[studio] job polling failed (transient?), retrying", err);
+        setProgress("サーバ応答待ち（処理は継続中の可能性）…");
+        pollTimer.current = window.setTimeout(tick, POLL_INTERVAL_MS);
         return;
       }
       if (job.status === "running") {
