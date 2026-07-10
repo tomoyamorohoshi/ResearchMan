@@ -116,3 +116,33 @@ test("run: timeout超過はkillされ ok=false になる（従来のspawnSync ti
   const result = await run(process.execPath, ["-e", "setTimeout(() => {}, 3000)"], process.cwd(), 300);
   assert.equal(result.ok, false);
 });
+
+// ── run(): maxBuffer超過（独立レビュー指摘#7） ────────────────────────
+// 旧spawnSync実装はmaxBuffer超過時に子プロセスをkillしてENOBUFSエラーにし、ok:falseを
+// 返していた。async spawn化後の初期実装は超過分を黙って切り捨てるだけでok:trueのまま
+// 成功扱いにしてしまっていた（監査ログが実は途中で切れているのに成功と誤判定するリスク）。
+// 第5引数でmaxBufferBytesを注入可能にし、テストでは20MBを待たずに小さい値で再現する
+// （既存呼び出し元は省略時MAX_BUFFER=20MBのまま、挙動は変えない）。
+test("run: maxBuffer超過は子プロセスをkillしてok:falseにする（spawnSyncの旧挙動と同じ契約）", async () => {
+  const result = await run(
+    process.execPath,
+    ["-e", "process.stdout.write('x'.repeat(10000))"],
+    process.cwd(),
+    5000,
+    100, // maxBufferBytes（テスト専用の小さい上限）
+  );
+  assert.equal(result.ok, false);
+  assert.match(result.stderr, /maxBuffer/);
+});
+
+test("run: maxBuffer以内の出力は従来どおりok:trueで全文取得できる", async () => {
+  const result = await run(
+    process.execPath,
+    ["-e", "process.stdout.write('short-output')"],
+    process.cwd(),
+    5000,
+    100,
+  );
+  assert.equal(result.ok, true);
+  assert.equal(result.stdout, "short-output");
+});

@@ -130,3 +130,64 @@ test("pollStrictVerify: 複数targetのうち1つでも未達なら全体はfals
   assert.equal(result.ok, false);
   assert.deepEqual(result.failedUrls, ["https://x/cases/b"]);
 });
+
+// ── 独立レビュー指摘#5: HTMLエスケープされるマーカーへの耐性 ─────────────────
+// ReactのSSR出力は "&"/"<"/">" を含む文字列を自動でHTMLエンティティ化する（例:
+// "Tom & Jerry" → "Tom &amp; Jerry"）。body.includes(marker)を生の形のままで行うと、
+// これらの文字を含むマーカー（cases.jsonに413件実在するタイトル等）は本文に絶対に
+// 現れないため恒久的に不一致になり、毎回タイムアウトまで無駄待ちした上で誤ったwarningを
+// 出してしまう。エスケープ済み形とのOR一致で救う。
+
+test("pollStrictVerify: '&'を含むマーカーはHTMLエスケープ済み('&amp;')な本文でも一致する", async () => {
+  const targets: StrictVerifyTarget[] = [{ url: "https://x/cases/a", markers: ["Tom & Jerry"] }];
+  const fetchImpl = fakeFetch({
+    "https://x/cases/a": { status: 200, body: "<title>Tom &amp; Jerry</title>" },
+  });
+  const result = await pollStrictVerify(targets, { fetchImpl, maxTries: 1, sleepImpl: async () => {} });
+  assert.equal(result.ok, true);
+});
+
+test("pollStrictVerify: '<'/'>'を含むマーカーもエスケープ済み形('&lt;'/'&gt;')で一致する", async () => {
+  const targets: StrictVerifyTarget[] = [{ url: "https://x/cases/a", markers: ["<Reboot>"] }];
+  const fetchImpl = fakeFetch({
+    "https://x/cases/a": { status: 200, body: "<title>&lt;Reboot&gt;</title>" },
+  });
+  const result = await pollStrictVerify(targets, { fetchImpl, maxTries: 1, sleepImpl: async () => {} });
+  assert.equal(result.ok, true);
+});
+
+test("pollStrictVerify: 生の形でもエスケープ済み形でも本文に無ければ従来どおり不一致", async () => {
+  const targets: StrictVerifyTarget[] = [{ url: "https://x/cases/a", markers: ["Tom & Jerry"] }];
+  const fetchImpl = fakeFetch({
+    "https://x/cases/a": { status: 200, body: "<title>全く違うタイトル</title>" },
+  });
+  const result = await pollStrictVerify(targets, { fetchImpl, maxTries: 1, sleepImpl: async () => {} });
+  assert.equal(result.ok, false);
+});
+
+// ── 独立レビュー指摘#6: fetchのタイムアウト ────────────────────────────
+// fetchImplがハングする（応答が返らない）場合、AbortControllerによるper-request
+// タイムアウトが無いと、lockを保持したままパイプライン全体が無期限にハングしうる。
+
+test("pollStrictVerify: fetchがハングしてもrequestTimeoutMsで打ち切られ、全体がハングしない", async () => {
+  // AbortSignalに反応する「ハングするfetch」を模す（実際にネットワーク待ちする代わりに
+  // abortイベントでのみ解決する。requestTimeoutMsが機能していなければこのPromiseは
+  // 永久に解決せずテストがタイムアウトする）。
+  const hangingFetch = ((_url: string | URL, init?: RequestInit) => {
+    return new Promise((_resolve, reject) => {
+      const signal = init?.signal;
+      signal?.addEventListener("abort", () => reject(new Error("aborted")));
+    });
+  }) as unknown as typeof fetch;
+
+  const start = Date.now();
+  const result = await pollStrictVerify([{ url: "https://x/cases/a", markers: ["x"] }], {
+    fetchImpl: hangingFetch,
+    maxTries: 1,
+    sleepImpl: async () => {},
+    requestTimeoutMs: 50,
+  });
+  const elapsedMs = Date.now() - start;
+  assert.equal(result.ok, false);
+  assert.ok(elapsedMs < 2000, `requestTimeoutMsが機能していれば数十ms程度で終わるはず（実測${elapsedMs}ms）`);
+});

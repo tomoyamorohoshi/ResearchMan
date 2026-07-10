@@ -42,6 +42,8 @@ export interface Job {
   error?: string;
   /** status="done" だが反映確認が時間切れ等、注意喚起したい場合の補足。 */
   warning?: string;
+  /** status="error" の理由がコスト予算超過だった場合にtrue。 */
+  budgetExceeded?: boolean;
   resultCards: ResultCard[];
   commit: string | null;
   deployedUrl: string | null;

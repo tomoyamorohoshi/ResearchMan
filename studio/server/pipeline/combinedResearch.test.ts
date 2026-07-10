@@ -15,7 +15,13 @@ import test from "node:test";
 import { getJob, updateJob, writeJobFile, type Job } from "../jobs.js";
 import { buildFailPatch, buildPushFailPatch, terminalStatus as techTerminalStatus } from "./techResearch.js";
 import { terminalStatus as caseTerminalStatus } from "./caseResearch.js";
-import { mergeCombinedPhases, phaseFromJob, TECH_PHASE_RESET_PATCH, type PhaseResult } from "./combinedResearch.js";
+import {
+  buildBudgetHaltPatch,
+  mergeCombinedPhases,
+  phaseFromJob,
+  TECH_PHASE_RESET_PATCH,
+  type PhaseResult,
+} from "./combinedResearch.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const JOBS_DIR = path.join(__dirname, "..", "..", "workdir", "jobs");
@@ -262,6 +268,93 @@ test("結合経路: Case成功→Techのpush失敗でもCase/Tech両方のカー
     assert.equal(merged.cost, 1.0 + 0.3);
     assert.match(merged.commit ?? "", /caseHash1111/);
     assert.match(merged.commit ?? "", /techHash2222/);
+  } finally {
+    await rm(path.join(JOBS_DIR, `${jobId}.json`), { force: true });
+  }
+});
+
+// ── buildBudgetHaltPatch（独立レビュー指摘#2） ──────────────────────────
+// Caseフェーズが予算超過（BudgetExceededError由来）で停止した場合、共有予算は既に
+// 上限を超えているため、Techフェーズには新品の予算を与えず全体をerrorで確定する。
+// Caseの反映状況（committed/未committed）を事実どおり伝える。
+
+test("buildBudgetHaltPatch: Case未反映（commit無し）なら「未反映」と正確に伝える", () => {
+  const casePhase: PhaseResult = {
+    label: "Case",
+    status: "error",
+    resultCards: [],
+    commit: null,
+    cost: 4.9,
+    error: "ジョブのコストが予算上限を超過しました（$4.90 > $5.00）。安全のため処理を停止しました。",
+  };
+  const patch = buildBudgetHaltPatch(casePhase);
+  assert.equal(patch.status, "error");
+  assert.equal(patch.commit, null);
+  assert.equal(patch.cost, 4.9);
+  assert.match(patch.error ?? "", /予算超過のため停止/);
+  assert.match(patch.error ?? "", /Techフェーズは実行していません/);
+  assert.match(patch.error ?? "", /未反映/);
+  assert.doesNotMatch(patch.error ?? "", /反映済み/); // 「未反映」に「反映済み」という部分文字列を含まないことの確認
+});
+
+test("buildBudgetHaltPatch: Case反映済み（commit有り）なら「反映済み」と正確に伝える", () => {
+  const caseCard = { kind: "case" as const, id: "case-a", url: "https://x/cases/case-a" };
+  const casePhase: PhaseResult = {
+    label: "Case",
+    status: "error",
+    resultCards: [caseCard],
+    commit: "caseHash1111",
+    cost: 5.2,
+    error: "ジョブのコストが予算上限を超過しました（$5.20 > $5.00）。安全のため処理を停止しました。",
+  };
+  const patch = buildBudgetHaltPatch(casePhase);
+  assert.equal(patch.status, "error");
+  assert.equal(patch.commit, "caseHash1111");
+  assert.deepEqual(patch.resultCards, [caseCard], "反映済みのCaseカードは結果として残す");
+  assert.match(patch.error ?? "", /反映済み/);
+  assert.equal(patch.deployedUrl, "https://research-man.vercel.app", "反映済みならdeployedUrlも設定する");
+});
+
+test("buildBudgetHaltPatch: phaseDurationsMsはCaseラベル付きで引き継がれる", () => {
+  const casePhase: PhaseResult = {
+    label: "Case",
+    status: "error",
+    resultCards: [],
+    commit: null,
+    cost: 5,
+    phaseDurationsMs: { 収集中: 1000 },
+  };
+  const patch = buildBudgetHaltPatch(casePhase);
+  assert.deepEqual(patch.phaseDurationsMs, { "Case: 収集中": 1000 });
+});
+
+// ── 結合経路: Case予算超過 → Techをスキップして全体error ─────────────────
+// caseResearch.ts::fail()/committed-budget分岐が実際に書くのと同じ形（status:"running"
+// 据え置き・budgetExceeded:true・error設定）のジョブJSONから、combinedResearch.tsが
+// Techへ進まず正しく停止判定できることを確認する。
+
+test("結合経路: Case予算超過（未commit）を検知したらbudgetExceededがtrueになり、Techをスキップする判定に使える", async () => {
+  const jobId = randomUUID();
+  await writeJobFile(
+    makeCaseDoneJob({
+      id: jobId,
+      status: caseTerminalStatus(false, "error"), // caseResearch.tsのfail()と同じ書き方("running")
+      resultCards: [],
+      commit: null,
+      cost: 5.01,
+      error: "ジョブのコストが予算上限を超過しました（$5.01 > $5.00）。安全のため処理を停止しました。",
+      budgetExceeded: true,
+    }),
+  );
+  try {
+    const caseJobAfter = await getJob(jobId);
+    assert.equal(caseJobAfter?.budgetExceeded, true, "combinedResearch.tsはこのフラグでTechスキップを判定する");
+    const casePhase = phaseFromJob("Case", caseJobAfter);
+    assert.equal(casePhase.status, "error", "statusがrunning据え置きでもerrorフィールドで正しくerror判定される");
+
+    const patch = buildBudgetHaltPatch(casePhase);
+    assert.equal(patch.status, "error");
+    assert.match(patch.error ?? "", /未反映/);
   } finally {
     await rm(path.join(JOBS_DIR, `${jobId}.json`), { force: true });
   }

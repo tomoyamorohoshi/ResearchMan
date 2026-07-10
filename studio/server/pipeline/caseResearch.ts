@@ -54,7 +54,7 @@ import {
 import { acquireThumbnail } from "./thumbnail.js";
 import { resolveLock, tryAcquireLock, type LockHandle } from "./lock.js";
 import { runAgentQuery, runPlainQuery } from "./sdkRunner.js";
-import { BudgetExceededError, assertWithinBudget, resolveJobBudgetUsd } from "./budget.js";
+import { BudgetExceededError, createJobBudgetTracker, type JobBudgetTracker } from "./budget.js";
 import { pollStrictVerify } from "./strictVerify.js";
 import { finishJob, startPhase } from "./progressTiming.js";
 
@@ -99,8 +99,25 @@ export function terminalStatus(ownsLock: boolean, status: "done" | "error"): "do
   return ownsLock ? status : "running";
 }
 
-async function fail(jobId: string, theme: string, message: string, ownsLock: boolean): Promise<void> {
-  await updateJob(jobId, { status: terminalStatus(ownsLock, "error"), progress: undefined, error: message });
+// 独立レビュー指摘#4: 失敗時もそれまでの実消費コストをjob.costへ記録する（従来はcost未指定の
+// ままerror状態にしていたため、失敗ジョブのコストが常にnullになり実態を過小評価していた。
+// techResearch.ts::buildFailPatchは元々costを記録していたが、caseResearch.ts/ideaResearch.ts
+// のfail()は漏れていた）。
+async function fail(
+  jobId: string,
+  theme: string,
+  message: string,
+  costUsd: number,
+  ownsLock: boolean,
+  budgetExceeded = false,
+): Promise<void> {
+  await updateJob(jobId, {
+    status: terminalStatus(ownsLock, "error"),
+    progress: undefined,
+    error: message,
+    cost: costUsd,
+    ...(budgetExceeded ? { budgetExceeded: true } : {}),
+  });
   await notifyLine(["--result", "error", "--label", `Studio: ${theme}`]);
 }
 
@@ -134,15 +151,20 @@ export async function rollbackIfNotCommitted(
  * adversarial-reviewer指摘#2: Case→Tech間でlockを一度解放して再取得すると、その隙に
  * デイリージョブがlockを奪える競合窓ができてしまうため）。単独実行時（未指定）は
  * 従来どおり自前でacquire/releaseする。
+ * @param externalBudget 呼び出し元（combinedResearch.ts）が既に生成済みの予算トラッカーを
+ * 渡す場合に指定する（独立レビュー指摘#2: externalLockと同じ注入パターン）。指定時は
+ * Case/Techで予算を共有し、ジョブ全体で1つの上限として扱う。単独実行時（未指定）は
+ * 従来どおり自前で生成する。
  */
 export async function runCaseResearchPipeline(
   jobId: string,
   req: ValidatedResearchRequest,
   externalLock?: LockHandle,
+  externalBudget?: JobBudgetTracker,
 ): Promise<void> {
   const { theme, viewpoint, refUrl, count } = req;
   let costUsd = 0;
-  const budgetUsd = resolveJobBudgetUsd();
+  const budget = externalBudget ?? createJobBudgetTracker();
 
   const { lock, ownsLock } = resolveLock(externalLock, tryAcquireLock);
   if (!lock) {
@@ -196,11 +218,15 @@ export async function runCaseResearchPipeline(
 
     const rawCandidates: RawCandidate[] = [];
     for (const r of collectResults) {
+      // 独立レビュー指摘#3: runAgentQueryは失敗時(ok:false)もそれまでの実消費costUsdを
+      // 返すため、!r.okでcontinueする前に必ず加算・予算チェックする（従来はif内でのみ
+      // 加算しており、失敗した収集呼び出しのコストが記録から漏れていた）。
+      costUsd += r.costUsd;
+      budget.add(r.costUsd);
       if (!r.ok) {
         console.warn("[studio] case-collector call failed:", r.error);
         continue;
       }
-      costUsd += r.costUsd;
       const arr = extractJsonArray(r.text);
       if (!arr) {
         console.warn("[studio] case-collector returned unparseable JSON");
@@ -210,7 +236,6 @@ export async function runCaseResearchPipeline(
         if (item && typeof item === "object") rawCandidates.push(item as RawCandidate);
       }
     }
-    assertWithinBudget(costUsd, budgetUsd);
 
     if (rawCandidates.length === 0) {
       throw new Error(
@@ -237,11 +262,12 @@ export async function runCaseResearchPipeline(
         workingSet.map((c) => ({ id: c.id, title: c.title, link: c.link, youtubeId: c.youtubeId })),
       ),
     );
+    // 独立レビュー指摘#3: throwする前に必ずコストを加算・予算チェックする。
+    costUsd += linkResult.costUsd;
+    budget.add(linkResult.costUsd);
     if (!linkResult.ok) {
       throw new Error(`リンク検証エージェントの呼び出しに失敗しました: ${linkResult.error}`);
     }
-    costUsd += linkResult.costUsd;
-    assertWithinBudget(costUsd, budgetUsd);
     const linkVerdicts = extractJsonArray(linkResult.text);
     if (!linkVerdicts) {
       throw new Error("リンク検証結果を解析できませんでした（Agent応答がJSON形式ではありません）");
@@ -273,9 +299,11 @@ export async function runCaseResearchPipeline(
           awardClaimants.map((c) => ({ id: c.id, title: c.title, client: c.client || "", year: c.year, award: c.award || "" })),
         ),
       );
+      // 独立レビュー指摘#3: 失敗時(!ok)もコストを加算・予算チェックする（従来はok分岐の
+      // 中でのみ加算しており、失敗した受賞照合呼び出しのコストが記録から漏れていた）。
+      costUsd += awardResult.costUsd;
+      budget.add(awardResult.costUsd);
       if (awardResult.ok) {
-        costUsd += awardResult.costUsd;
-        assertWithinBudget(costUsd, budgetUsd);
         const awardVerdicts = extractJsonArray(awardResult.text);
         if (awardVerdicts) {
           const awardMap = new Map<string, { verdict: string; correctedAward?: string }>();
@@ -332,11 +360,12 @@ export async function runCaseResearchPipeline(
         tagVocabFlat,
       ),
     );
+    // 独立レビュー指摘#3: throwする前に必ずコストを加算・予算チェックする。
+    costUsd += writerResult.costUsd;
+    budget.add(writerResult.costUsd);
     if (!writerResult.ok) {
       throw new Error(`執筆エージェントの呼び出しに失敗しました: ${writerResult.error}`);
     }
-    costUsd += writerResult.costUsd;
-    assertWithinBudget(costUsd, budgetUsd);
     const writerArr = extractJsonArray(writerResult.text);
     if (!writerArr) {
       throw new Error("執筆結果を解析できませんでした（Agent応答がJSON形式ではありません）");
@@ -389,19 +418,22 @@ export async function runCaseResearchPipeline(
     // ── 6. オーダータグ決定 ───────────────────────────────────────
     await setProgress(jobId, "オーダータグ決定中");
     let orderTag = FALLBACK_ORDER_TAG;
+    let tagCostUsd = 0;
     try {
       const tagResult = await runPlainQuery(buildOrderTagPrompt(theme), "haiku");
+      // 独立レビュー指摘#3: 失敗時もコストを記録するため、ok判定の前に受け取る。
+      tagCostUsd = tagResult.costUsd;
       if (tagResult.ok) {
-        costUsd += tagResult.costUsd;
         const cleaned = tagResult.text.trim().replace(/^["'`]+|["'`]+$/g, "").split("\n")[0]?.trim();
         if (cleaned && cleaned.length <= 40) orderTag = cleaned;
       }
     } catch (err) {
       console.warn("[studio] order tag naming failed, using fallback:", err);
     }
+    costUsd += tagCostUsd;
     // budgetチェックは上のtry/catchの外に置く（内側のcatchは「タグ命名失敗」専用のため、
     // ここでBudgetExceededErrorを投げてもtry内catchに飲み込まれず本来のcatchまで伝播する）。
-    assertWithinBudget(costUsd, budgetUsd);
+    budget.add(tagCostUsd);
 
     // ── 7. 反映（データ書き込み） ─────────────────────────────────
     await setProgress(jobId, "反映中（データ書き込み）");
@@ -527,9 +559,11 @@ export async function runCaseResearchPipeline(
     let strictResult: { ok: boolean; failedUrls: string[] } = { ok: true, failedUrls: [] };
     if (verifyResult.ok) {
       await setProgress(jobId, "新規ページの反映を厳密確認中");
-      strictResult = await pollStrictVerify(
-        finalEntries.map((c) => ({ url: `${SITE}/cases/${c.id}`, markers: [c.title] })),
-      );
+      // 独立レビュー指摘#5: titleは"&"/"<"/">"を含むとReactのSSR出力ではHTMLエスケープ済み
+      // 形（&amp;等）でしか現れず、生のtitleでのbody.includes()は恒久的に外れる
+      // （cases.jsonに413件実在。毎回2分の無駄待ち＋誤warningの原因）。idは常にASCIIスラッグで
+      // ページ本文（サムネイルhref/og:image等）に確実に現れるため、より堅牢なマーカーになる。
+      strictResult = await pollStrictVerify(finalEntries.map((c) => ({ url: `${SITE}/cases/${c.id}`, markers: [c.id] })));
     }
     const verified = verifyResult.ok && strictResult.ok;
 
@@ -591,9 +625,10 @@ export async function runCaseResearchPipeline(
         resultCards,
         commit: commitHash,
         cost: costUsd,
+        budgetExceeded: true,
       });
     } else {
-      await fail(jobId, theme, message, ownsLock);
+      await fail(jobId, theme, message, costUsd, ownsLock, isBudgetError);
     }
   } finally {
     await updateJob(jobId, { phaseDurationsMs: finishJob(jobId) }).catch(() => {});

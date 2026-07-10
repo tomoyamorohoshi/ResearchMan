@@ -46,11 +46,20 @@ const MAX_BUFFER = 1024 * 1024 * 20;
 // spawn()（非同期）+ Promise化に置き換え、イベントループを塞がないようにする。
 // timeoutMs超過時はNodeのspawn timeoutオプションが自動killしてくれる（v15.14+）ため、
 // 従来のspawnSync timeout契約（ok:false・code:null相当）と同じ挙動になる。
-export function run(cmd: string, args: string[], cwd: string, timeoutMs: number): Promise<CommandResult> {
+// maxBufferBytes: 省略時は既定20MB（MAX_BUFFER）。テストで小さい値を注入し、実際に
+// 20MB書かせずに超過挙動を検証できるようにする（独立レビュー指摘#7）。
+export function run(
+  cmd: string,
+  args: string[],
+  cwd: string,
+  timeoutMs: number,
+  maxBufferBytes: number = MAX_BUFFER,
+): Promise<CommandResult> {
   return new Promise((resolve) => {
     let stdout = "";
     let stderr = "";
     let settled = false;
+    let bufferExceeded = false;
     const settle = (result: CommandResult): void => {
       if (settled) return;
       settled = true;
@@ -65,18 +74,49 @@ export function run(cmd: string, args: string[], cwd: string, timeoutMs: number)
       return;
     }
 
+    // 独立レビュー指摘#7: 旧spawnSyncはmaxBuffer超過時に子プロセスをkillしてENOBUFSエラー
+    // にし、ok:falseを返していた。超過分を黙って切り捨てて成功扱いにすると、監査ログが
+    // 実は途中で切れているのに「問題なし」と誤判定されるリスクがある。子プロセスをkillし、
+    // 従来と同じ ok:false 契約にする。
+    const killForBufferOverflow = (): void => {
+      if (bufferExceeded) return;
+      bufferExceeded = true;
+      child.kill();
+    };
+
     child.stdout?.setEncoding("utf-8");
     child.stderr?.setEncoding("utf-8");
     child.stdout?.on("data", (chunk: string) => {
-      if (stdout.length < MAX_BUFFER) stdout += chunk;
+      if (bufferExceeded) return;
+      if (stdout.length + chunk.length > maxBufferBytes) {
+        stdout += chunk.slice(0, Math.max(0, maxBufferBytes - stdout.length));
+        killForBufferOverflow();
+        return;
+      }
+      stdout += chunk;
     });
     child.stderr?.on("data", (chunk: string) => {
-      if (stderr.length < MAX_BUFFER) stderr += chunk;
+      if (bufferExceeded) return;
+      if (stderr.length + chunk.length > maxBufferBytes) {
+        stderr += chunk.slice(0, Math.max(0, maxBufferBytes - stderr.length));
+        killForBufferOverflow();
+        return;
+      }
+      stderr += chunk;
     });
     child.on("error", (err) => {
       settle({ ok: false, stdout, stderr: stderr || err.message, code: null });
     });
     child.on("close", (code) => {
+      if (bufferExceeded) {
+        settle({
+          ok: false,
+          stdout,
+          stderr: `${stderr}\n[studio] maxBuffer(${maxBufferBytes}バイト)を超過したため子プロセスをkillしました`,
+          code,
+        });
+        return;
+      }
       settle({ ok: code === 0, stdout, stderr, code });
     });
   });
@@ -160,3 +200,12 @@ export const runNotifyLine = (cwd: string, args: string[]): Promise<CommandResul
 // 呼び出し側がその要約ファイルを事前に書いておくこと）。
 export const runVerifyTechPages = (cwd: string): Promise<CommandResult> =>
   run("node", ["scripts/verify-tech-pages.mjs"], cwd, 7 * 60_000);
+
+// 独立レビュー指摘#1: scripts/lib/run-idea-layouts-precompute.mjs
+// （generate-idea-seeds.mjs/backfill-idea-seeds.mjs共用のデイリーヘルパー・無改変）は内部で
+// spawnSync を使っており、studioからそのままimportして呼ぶとイベントループを実測約7.5分
+// ブロックしていた（P4の非ブロッキング化が骨抜きになる）。デイリー側ヘルパーは変更せず、
+// studio側だけ同じコマンド（npx tsx scripts/precompute-idea-layouts.mjs）を
+// run()（非同期spawn）経由で起動する形に置き換える。
+export const runIdeaLayoutsPrecompute = (cwd: string): Promise<CommandResult> =>
+  run("npx", ["tsx", "scripts/precompute-idea-layouts.mjs"], cwd, 10 * 60_000);

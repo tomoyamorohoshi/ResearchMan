@@ -44,3 +44,32 @@ export function assertWithinBudget(costUsd: number, budgetUsd: number): void {
     throw new BudgetExceededError(costUsd, budgetUsd);
   }
 }
+
+/**
+ * ジョブ横断で共有する予算トラッカー（独立レビュー指摘#2）。
+ *
+ * Case/Techが各自 resolveJobBudgetUsd() で独立の予算チェックを行うと、「両方」実行時は
+ * 実質2倍の予算を許してしまい、かつCaseフェーズが予算超過で落ちてもTechフェーズは
+ * 新品の予算で走ってしまう（DESIGN.md §8「ジョブ単位の予算上限」の趣旨に反する）。
+ * combinedResearch.ts が1つのトラッカーを生成し、lock.ts::resolveLockのexternalLockと
+ * 同じ注入パターンでCase/Tech両方のパイプラインへ渡すことで、ジョブ全体で予算を共有する。
+ * 単独実行時（Case/Tech/idea individually）は各パイプラインが自前で生成する。
+ */
+export interface JobBudgetTracker {
+  readonly limitUsd: number;
+  spentUsd: number;
+  /** costUsdをspentUsdへ加算し、直後に予算内かを検査する（超過なら例外を投げる）。 */
+  add(amountUsd: number): void;
+}
+
+export function createJobBudgetTracker(limitUsd: number = resolveJobBudgetUsd()): JobBudgetTracker {
+  const tracker: JobBudgetTracker = {
+    limitUsd,
+    spentUsd: 0,
+    add(amountUsd: number) {
+      tracker.spentUsd += amountUsd;
+      assertWithinBudget(tracker.spentUsd, tracker.limitUsd);
+    },
+  };
+  return tracker;
+}

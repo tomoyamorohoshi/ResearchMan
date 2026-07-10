@@ -33,17 +33,44 @@ export interface PollStrictVerifyOptions {
   intervalMs?: number;
   fetchImpl?: typeof fetch;
   sleepImpl?: (ms: number) => Promise<void>;
+  /** 1リクエストあたりの上限（独立レビュー指摘#6）。既定10秒。 */
+  requestTimeoutMs?: number;
 }
 
 const DEFAULT_MAX_TRIES = 12;
 const DEFAULT_INTERVAL_MS = 10_000;
+const DEFAULT_REQUEST_TIMEOUT_MS = 10_000;
 
-async function checkTarget(target: StrictVerifyTarget, fetchImpl: typeof fetch): Promise<boolean> {
+// 独立レビュー指摘#5: ReactのSSR出力は"&"/"<"/">"を自動でHTMLエンティティ化するため
+// （例: "Tom & Jerry" → "Tom &amp; Jerry"）、これらを含むマーカー（生の形）は本文に
+// 絶対に現れず恒久的に不一致になる（cases.jsonに413件実在。毎回タイムアウトまでの
+// 無駄待ち＋誤warningの原因だった）。エスケープ済み形とのOR一致で救う。
+function htmlEscape(s: string): string {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+async function checkTarget(
+  target: StrictVerifyTarget,
+  fetchImpl: typeof fetch,
+  requestTimeoutMs: number,
+): Promise<boolean> {
   try {
-    const res = await fetchImpl(target.url, { headers: { "User-Agent": "studio-strict-verify" } });
-    if (res.status !== 200) return false;
-    const body = await res.text();
-    return target.markers.every((m) => body.includes(m));
+    // 独立レビュー指摘#6: fetchがハングすると（相手サーバの応答なし等）、verify-deployが
+    // 既にpush到達を確認済みであるにも関わらず、この追加確認だけが無期限にlockを
+    // 保持したまま止まってしまう。AbortControllerで1リクエストの上限を明示する。
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), requestTimeoutMs);
+    try {
+      const res = await fetchImpl(target.url, {
+        headers: { "User-Agent": "studio-strict-verify" },
+        signal: controller.signal,
+      });
+      if (res.status !== 200) return false;
+      const body = await res.text();
+      return target.markers.every((m) => body.includes(m) || body.includes(htmlEscape(m)));
+    } finally {
+      clearTimeout(timer);
+    }
   } catch {
     return false;
   }
@@ -63,11 +90,12 @@ export async function pollStrictVerify(
   const intervalMs = options.intervalMs ?? DEFAULT_INTERVAL_MS;
   const fetchImpl = options.fetchImpl ?? fetch;
   const sleepImpl = options.sleepImpl ?? ((ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms)));
+  const requestTimeoutMs = options.requestTimeoutMs ?? DEFAULT_REQUEST_TIMEOUT_MS;
 
   let lastFailedUrls: string[] = targets.map((t) => t.url);
   for (let attempt = 1; attempt <= maxTries; attempt++) {
     const results = await Promise.all(
-      targets.map(async (t) => ({ url: t.url, ok: await checkTarget(t, fetchImpl) })),
+      targets.map(async (t) => ({ url: t.url, ok: await checkTarget(t, fetchImpl, requestTimeoutMs) })),
     );
     const failedUrls = results.filter((r) => !r.ok).map((r) => r.url);
     if (failedUrls.length === 0) return { ok: true, failedUrls: [] };

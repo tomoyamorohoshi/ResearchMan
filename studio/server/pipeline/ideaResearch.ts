@@ -16,7 +16,6 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { jstDateString } from "../../../scripts/lib/jst-date.mjs";
 import { readIdeasJsonSafe, writeJsonAtomic } from "../../../scripts/lib/ideas-io.mjs";
-import { runIdeaLayoutsPrecompute } from "../../../scripts/lib/run-idea-layouts-precompute.mjs";
 import {
   gitAdd,
   gitCommit,
@@ -24,6 +23,7 @@ import {
   gitRevParseHead,
   rollbackTouchedFiles,
   runBuild,
+  runIdeaLayoutsPrecompute,
   runNotifyLine,
   runVerifyDeploy,
 } from "./audit.js";
@@ -53,7 +53,7 @@ import { extractJsonArray } from "./pure.js";
 import { tryAcquireLock } from "./lock.js";
 import { runPlainQuery } from "./sdkRunner.js";
 import { updateJob, type IdeaRefChip, type ResultCard } from "../jobs.js";
-import { BudgetExceededError, assertWithinBudget, resolveJobBudgetUsd } from "./budget.js";
+import { BudgetExceededError, createJobBudgetTracker } from "./budget.js";
 import { pollStrictVerify } from "./strictVerify.js";
 import { finishJob, startPhase } from "./progressTiming.js";
 
@@ -81,15 +81,30 @@ async function notifyLine(args: string[]): Promise<void> {
   console.log(`[studio] notify-line: ${result.stdout.trim() || result.stderr.trim() || "(no output)"}`);
 }
 
-async function fail(jobId: string, theme: string, message: string): Promise<void> {
-  await updateJob(jobId, { status: "error", progress: undefined, error: message });
+// 独立レビュー指摘#4: caseResearch.ts/techResearch.tsのfail()相当。失敗時もそれまでの
+// 実消費コストをjob.costへ記録する（従来はcost未指定のままerror状態にしていたため、
+// 失敗ジョブのコストが常にnullになり実態を過小評価していた）。
+async function fail(
+  jobId: string,
+  theme: string,
+  message: string,
+  costUsd: number,
+  budgetExceeded = false,
+): Promise<void> {
+  await updateJob(jobId, {
+    status: "error",
+    progress: undefined,
+    error: message,
+    cost: costUsd,
+    ...(budgetExceeded ? { budgetExceeded: true } : {}),
+  });
   await notifyLine(["--result", "error", "--label", `Studio: ${theme}`]);
 }
 
 export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaRequest): Promise<void> {
   const { theme, constraint, source, count } = req;
   let costUsd = 0;
-  const budgetUsd = resolveJobBudgetUsd();
+  const budget = createJobBudgetTracker();
 
   const lock = tryAcquireLock();
   if (!lock) {
@@ -139,10 +154,14 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
     // ── 3. 検索キーワード抽出 ────────────────────────────────────
     await setProgress(jobId, "検索キーワードを抽出中");
     let keywords: string[] = [theme];
+    let kwCostUsd = 0;
     try {
       const kwResult = await runPlainQuery(buildKeywordExtractionPrompt(theme, constraint), "haiku");
+      // 独立レビュー指摘#3: runPlainQueryは失敗時(ok:false)もそれまでの実消費costUsdを返すため、
+      // ok判定の前に必ず受け取る（従来はif(ok)の中でのみ加算しており、失敗分のコストが
+      // 記録から漏れていた）。
+      kwCostUsd = kwResult.costUsd;
       if (kwResult.ok) {
-        costUsd += kwResult.costUsd;
         const arr = extractJsonArray(kwResult.text);
         const extracted = (arr || []).filter((x): x is string => typeof x === "string" && x.trim().length > 0);
         if (extracted.length > 0) keywords = extracted.map((k) => k.trim());
@@ -150,13 +169,14 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
     } catch (err) {
       console.warn("[studio] idea keyword extraction failed, using theme as-is:", err);
     }
+    costUsd += kwCostUsd;
     // budgetチェックは上のtry/catchの外に置く（内側のcatchは「キーワード抽出失敗」専用のため、
     // BudgetExceededErrorを投げても飲み込まれず本来のcatchまで伝播する。caseResearch.tsと同じ理由）。
-    assertWithinBudget(costUsd, budgetUsd);
+    budget.add(kwCostUsd);
 
     // ── 4. 関連事例・技術のretrieve（具体の触発材料） ──────────────
     await setProgress(jobId, "関連事例・技術を検索中");
-    const caseCandidates = runSearchCases(ROOT, keywords, Math.max(8, count * 2));
+    const caseCandidates = await runSearchCases(ROOT, keywords, Math.max(8, count * 2));
     const techCandidates = scoreTechCandidates(tech, keywords, Math.max(6, count));
     const allowedRefIds = new Set<string>([
       ...caseCandidates.map((c) => c.id),
@@ -179,12 +199,14 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
     let genError = "";
     for (let attempt = 1; attempt <= MAX_GEN_ATTEMPTS; attempt++) {
       const genResult = await runPlainQuery(writerPrompt, "sonnet");
+      // 独立レビュー指摘#3: 失敗(ok:false)でcontinueする前に必ずコストを加算する
+      // （このループはtry/catchの外なので、budget.add()の例外はそのまま外側catchへ伝播する）。
+      costUsd += genResult.costUsd;
+      budget.add(genResult.costUsd);
       if (!genResult.ok) {
         genError = genResult.error || "生成呼び出しに失敗しました";
         continue;
       }
-      costUsd += genResult.costUsd;
-      assertWithinBudget(costUsd, budgetUsd);
       const arr = extractJsonArray(genResult.text);
       if (!arr) {
         genError = "生成結果のJSON解析に失敗しました";
@@ -254,10 +276,13 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
     await writeJsonAtomic(IDEAS_JSON_PATH, updatedIdeas);
     trackedTouched.push("data/ideas.json");
 
-    const precomputeOk = runIdeaLayoutsPrecompute();
-    if (!precomputeOk) {
+    const precomputeResult = await runIdeaLayoutsPrecompute(ROOT);
+    if (!precomputeResult.ok) {
       await rollbackTouchedFiles(ROOT, trackedTouched, newUntracked);
-      throw new Error("idea-layouts.json の再計算に失敗しました。反映を中止しロールバックしました。");
+      const tail = [precomputeResult.stderr.trim().slice(-2000), precomputeResult.stdout.trim().slice(-1000)]
+        .filter(Boolean)
+        .join("\n---stdout---\n");
+      throw new Error(`idea-layouts.json の再計算に失敗しました。反映を中止しロールバックしました。\n${tail}`);
     }
     trackedTouched.push("data/idea-layouts.json");
 
@@ -316,7 +341,12 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
     let strictResult: { ok: boolean; failedUrls: string[] } = { ok: true, failedUrls: [] };
     if (verifyResult.ok) {
       await setProgress(jobId, "新規アイデアの反映を厳密確認中");
-      strictResult = await pollStrictVerify([{ url: IDEAS_URL, markers: newEntries.map((e) => e.title) }]);
+      // 独立レビュー指摘#5: titleは"&"/"<"/">"を含むとReactのSSR出力ではHTMLエスケープ済み
+      // 形（&amp;等）でしか現れず、生のtitleでのbody.includes()は恒久的に外れる
+      // （cases.jsonに413件実在）。ideaのidはIdeaShapeCard（src/components/IdeaShapeCard.tsx）
+      // がSVG path要素の id="idea-date-arc-<id>" 等として必ず出力するASCIIスラッグのため、
+      // エスケープ問題が起きずより堅牢なマーカーになる。
+      strictResult = await pollStrictVerify([{ url: IDEAS_URL, markers: newEntries.map((e) => e.id) }]);
     }
     const verified = verifyResult.ok && strictResult.ok;
 
@@ -382,9 +412,10 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
         resultCards,
         commit: commitHash,
         cost: costUsd,
+        budgetExceeded: true,
       });
     } else {
-      await fail(jobId, theme, message);
+      await fail(jobId, theme, message, costUsd, isBudgetError);
     }
   } finally {
     await updateJob(jobId, { phaseDurationsMs: finishJob(jobId) }).catch(() => {});

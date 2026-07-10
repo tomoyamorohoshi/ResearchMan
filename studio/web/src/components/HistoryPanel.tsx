@@ -48,6 +48,11 @@ function ResultCardsGrid({ job }: { job: Job }) {
   if (job.status === "error") {
     return <p className="history-empty">このジョブは失敗しました{job.error ? `: ${job.error}` : ""}</p>;
   }
+  if (job.status === "running") {
+    // 独立レビュー指摘（任意項目）: running中は結果カードが未生成なのが正常なので、
+    // 「結果カードがありません。」という異常っぽい文言ではなく実行中である旨を出す。
+    return <p className="history-empty">実行中です（{job.progress || "処理中…"}）。しばらくしてから開き直してください。</p>;
+  }
   if (job.resultCards.length === 0) {
     return <p className="history-empty">結果カードがありません。</p>;
   }

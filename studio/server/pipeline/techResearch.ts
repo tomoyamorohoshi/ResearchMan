@@ -54,7 +54,7 @@ import { acquireTechThumbnail } from "./techThumbnail.js";
 import { isUrlAlive } from "./techExternalScripts.js";
 import { resolveLock, tryAcquireLock, type LockHandle } from "./lock.js";
 import { runAgentQuery } from "./sdkRunner.js";
-import { BudgetExceededError, assertWithinBudget, resolveJobBudgetUsd } from "./budget.js";
+import { BudgetExceededError, createJobBudgetTracker, type JobBudgetTracker } from "./budget.js";
 import { pollStrictVerify } from "./strictVerify.js";
 import { finishJob, startPhase } from "./progressTiming.js";
 
@@ -124,8 +124,10 @@ export function buildLockUnavailablePatch(): Partial<Job> {
 }
 
 /** commit前の失敗（fail()経路）。何もcommitされていないため resultCards/commit は空。
- * costUsdはその時点までに実際に消費した額（収集ラウンドの一部成功分等）を明示的に記録する。 */
-export function buildFailPatch(message: string, costUsd: number): Partial<Job> {
+ * costUsdはその時点までに実際に消費した額（収集ラウンドの一部成功分等）を明示的に記録する。
+ * budgetExceeded=trueなら独立レビュー指摘#2のフラグをjob JSONへ立てる
+ * （combinedResearch.tsがCase側の予算超過を検知してTechへ進まない判定に使う）。 */
+export function buildFailPatch(message: string, costUsd: number, budgetExceeded = false): Partial<Job> {
   return {
     status: "error",
     progress: undefined,
@@ -133,6 +135,7 @@ export function buildFailPatch(message: string, costUsd: number): Partial<Job> {
     resultCards: [],
     commit: null,
     cost: costUsd,
+    ...(budgetExceeded ? { budgetExceeded: true } : {}),
   };
 }
 
@@ -161,8 +164,18 @@ export function terminalStatus(ownsLock: boolean, status: "done" | "error"): "do
   return ownsLock ? status : "running";
 }
 
-async function fail(jobId: string, theme: string, message: string, costUsd: number, ownsLock: boolean): Promise<void> {
-  await updateJob(jobId, { ...buildFailPatch(message, costUsd), status: terminalStatus(ownsLock, "error") });
+async function fail(
+  jobId: string,
+  theme: string,
+  message: string,
+  costUsd: number,
+  ownsLock: boolean,
+  budgetExceeded = false,
+): Promise<void> {
+  await updateJob(jobId, {
+    ...buildFailPatch(message, costUsd, budgetExceeded),
+    status: terminalStatus(ownsLock, "error"),
+  });
   await notifyLine(["--result", "error", "--route", "technology", "--label", `Studio: ${theme}`]);
 }
 
@@ -187,6 +200,7 @@ async function runCollectionRounds(
   existingTech: ExistingTechIndex,
   existingCaseTitleKeys: Set<string>,
   existingTechTitles: string[],
+  budget: JobBudgetTracker,
 ): Promise<{ raws: RawCandidateWithName[]; costUsd: number }> {
   let costUsd = 0;
   const raws: RawCandidateWithName[] = [];
@@ -209,11 +223,15 @@ async function runCollectionRounds(
         excludeTitles: [...existingTechTitles, ...seenThisRun],
       }),
     );
+    // 独立レビュー指摘#3: 失敗時(!ok)もコストを加算・予算チェックする（従来はok分岐前の
+    // continueでコストが記録から漏れていた）。このループはtry/catchに包まれていないため、
+    // budget.add()の例外はそのまま呼び出し元（runTechResearchPipeline）のcatchへ伝播する。
+    costUsd += result.costUsd;
+    budget.add(result.costUsd);
     if (!result.ok) {
       console.warn(`[studio] tech collector round ${round} failed:`, result.error);
       continue;
     }
-    costUsd += result.costUsd;
     const arr = extractJsonArray(result.text);
     if (!arr) {
       console.warn("[studio] tech collector returned unparseable JSON");
@@ -236,15 +254,18 @@ async function runCollectionRounds(
  * adversarial-reviewer指摘#2: Case→Tech間でlockを一度解放して再取得すると、その隙に
  * デイリージョブがlockを奪える競合窓ができてしまうため）。単独実行時（未指定）は
  * 従来どおり自前でacquire/releaseする。
+ * @param externalBudget 呼び出し元（combinedResearch.ts）が既に生成済みの予算トラッカーを
+ * 渡す場合に指定する（独立レビュー指摘#2: externalLockと同じ注入パターン）。
  */
 export async function runTechResearchPipeline(
   jobId: string,
   req: ValidatedResearchRequest,
   externalLock?: LockHandle,
+  externalBudget?: JobBudgetTracker,
 ): Promise<void> {
   const { theme, viewpoint, refUrl, count } = req;
   let costUsd = 0;
-  const budgetUsd = resolveJobBudgetUsd();
+  const budget = externalBudget ?? createJobBudgetTracker();
 
   const { lock, ownsLock } = resolveLock(externalLock, tryAcquireLock);
   if (!lock) {
@@ -280,9 +301,9 @@ export async function runTechResearchPipeline(
       existingTech,
       existingCaseTitleKeys,
       existingTechTitles,
+      budget,
     );
     costUsd += collectCost;
-    assertWithinBudget(costUsd, budgetUsd);
 
     if (raws.length === 0) {
       throw new Error(
@@ -422,8 +443,10 @@ export async function runTechResearchPipeline(
     let strictResult: { ok: boolean; failedUrls: string[] } = { ok: true, failedUrls: [] };
     if (baseVerified) {
       await setProgress(jobId, "新規ページの反映を厳密確認中");
+      // 独立レビュー指摘#5: caseResearch.tsと同じ理由（idはASCIIスラッグでエスケープ問題が
+      // 起きず、ページ本文に確実に現れるためtitleより堅牢なマーカーになる）。
       strictResult = await pollStrictVerify(
-        finalEntries.map((t) => ({ url: `${SITE}/technology/${t.id}`, markers: [t.title] })),
+        finalEntries.map((t) => ({ url: `${SITE}/technology/${t.id}`, markers: [t.id] })),
       );
     }
     const verified = baseVerified && strictResult.ok;
@@ -488,9 +511,10 @@ export async function runTechResearchPipeline(
         resultCards,
         commit: commitHash,
         cost: costUsd,
+        budgetExceeded: true,
       });
     } else {
-      await fail(jobId, theme, message, costUsd, ownsLock);
+      await fail(jobId, theme, message, costUsd, ownsLock, isBudgetError);
     }
   } finally {
     await updateJob(jobId, { phaseDurationsMs: finishJob(jobId) }).catch(() => {});

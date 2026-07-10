@@ -38,6 +38,21 @@ test("buildFailPatch: コスト0でも明示的にcost:0を書く（フィール
   assert.ok("cost" in patch);
 });
 
+// ── 独立レビュー指摘#2: 予算超過フラグ ──────────────────────────────
+// combinedResearch.ts がCaseフェーズの失敗理由が予算超過だったかを判定するために使う。
+
+test("buildFailPatch: budgetExceeded省略時はフィールド自体を含めない", () => {
+  const patch = buildFailPatch("失敗", 0.1);
+  assert.equal("budgetExceeded" in patch, false);
+});
+
+test("buildFailPatch: budgetExceeded=trueならjob.budgetExceededをtrueにする", () => {
+  const patch = buildFailPatch("予算超過のため停止", 5.5, true);
+  assert.equal(patch.budgetExceeded, true);
+  assert.equal(patch.status, "error");
+  assert.equal(patch.cost, 5.5);
+});
+
 test("buildPushFailPatch: commit済みのためcommitHash/resultCards/costを保持したままerror状態にする", () => {
   const cards = [{ kind: "tech" as const, id: "a", url: "https://x/technology/a" }];
   const patch = buildPushFailPatch("push に失敗しました", "abcdef123456", cards, 0.77);

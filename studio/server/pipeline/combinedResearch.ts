@@ -16,11 +16,21 @@
  * これらのフィールドを上書きしなかった場合にCase側の値をそのまま引き継いでしまい、
  * カード二重化・コスト誤算・commit誤表記の原因になる（adversarial-reviewer指摘#1）。
  */
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { writeFile } from "node:fs/promises";
 import { getJob, updateJob, type Job, type JobStatus, type ResultCard } from "../jobs.js";
+import { runNotifyLine } from "./audit.js";
 import { runCaseResearchPipeline } from "./caseResearch.js";
 import { runTechResearchPipeline } from "./techResearch.js";
+import { createJobBudgetTracker } from "./budget.js";
 import { tryAcquireLock } from "./lock.js";
 import type { ValidatedResearchRequest } from "./pure.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const ROOT = path.join(__dirname, "..", "..", ".."); // studio/server/pipeline -> repo root
+const SITE = "https://research-man.vercel.app";
+const BUDGET_HALT_TEXT_PATH = "/tmp/researchman-studio-combined-budget-halt.txt";
 
 export interface PhaseResult {
   label: "Case" | "Tech";
@@ -57,6 +67,13 @@ export const TECH_PHASE_RESET_PATCH: Partial<Job> = {
   cost: null,
   deployedUrl: null,
 };
+
+// notify-line.mjs は常にexit 0（設定不備・送信失敗でも本体を止めない「おまけ」設計）のため、
+// 送信成否をログへ転記して可観測性を持たせる（caseResearch.tsと同じ理由）。
+async function notifyLine(args: string[]): Promise<void> {
+  const result = await runNotifyLine(ROOT, args);
+  console.log(`[studio] notify-line: ${result.stdout.trim() || result.stderr.trim() || "(no output)"}`);
+}
 
 export function phaseFromJob(label: "Case" | "Tech", job: Job | null): PhaseResult {
   if (!job) {
@@ -142,6 +159,45 @@ export function mergeCombinedPhases(casePhase: PhaseResult, techPhase: PhaseResu
   };
 }
 
+/**
+ * Caseフェーズが予算超過（BudgetExceededError由来、job.budgetExceeded===true）で停止した
+ * 場合の最終パッチ（独立レビュー指摘#2）。共有予算トラッカーが既に上限を超えているため、
+ * Techフェーズには新品の予算を与えず全体をerrorで確定する。Caseの反映状況
+ * （committed/未committed）を事実どおり伝える（純粋関数・単体テスト対象）。
+ */
+export function buildBudgetHaltPatch(casePhase: PhaseResult): Partial<Job> {
+  const caseCommitted = !!casePhase.commit;
+  const notice = `予算超過のため停止しました（Techフェーズは実行していません）。Case: ${
+    caseCommitted ? "反映済み" : "未反映"
+  }${casePhase.error ? ` / ${casePhase.error}` : ""}`;
+  const phaseDurationsMs = casePhase.phaseDurationsMs
+    ? Object.fromEntries(Object.entries(casePhase.phaseDurationsMs).map(([k, v]) => [`Case: ${k}`, v]))
+    : undefined;
+  return {
+    status: "error",
+    progress: undefined,
+    resultCards: casePhase.resultCards,
+    commit: casePhase.commit,
+    cost: casePhase.cost,
+    error: notice,
+    phaseDurationsMs,
+    deployedUrl: caseCommitted ? SITE : null,
+  };
+}
+
+/** buildBudgetHaltPatchと同じ事実（Case反映状況）をLINE本文用に整形する（純粋関数）。 */
+export function buildBudgetHaltLineText(theme: string, casePhase: PhaseResult): string {
+  const caseCommitted = !!casePhase.commit;
+  return [
+    `⚠ Studio: お題「${theme}」`,
+    "予算超過のため停止しました（Techフェーズは実行していません）。",
+    `Case: ${caseCommitted ? "反映済み" : "未反映"}`,
+    casePhase.error ? `理由: ${casePhase.error}` : "",
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
 export async function runCombinedResearchPipeline(jobId: string, req: ValidatedResearchRequest): Promise<void> {
   // lockはここで1回だけ取得し、Case→Tech両方へ渡す（adversarial-reviewer指摘#2:
   // 個々のパイプラインに自前取得させると解放→再取得の間に競合窓ができるため）。
@@ -155,15 +211,35 @@ export async function runCombinedResearchPipeline(jobId: string, req: ValidatedR
     return;
   }
 
+  // 独立レビュー指摘#2: Case/Techで予算を共有する（externalLockと同じ注入パターン）。
+  // 各自が resolveJobBudgetUsd() で独立の予算を持つと「両方」は実質2倍の予算になり、
+  // かつCaseが予算超過で落ちてもTechが新品の予算で走ってしまう（DESIGN.md §8の趣旨に反する）。
+  const budget = createJobBudgetTracker();
+
   try {
-    await runCaseResearchPipeline(jobId, req, lock);
-    const casePhase = phaseFromJob("Case", await getJob(jobId));
+    await runCaseResearchPipeline(jobId, req, lock, budget);
+    const caseJobAfter = await getJob(jobId);
+    const casePhase = phaseFromJob("Case", caseJobAfter);
+
+    if (caseJobAfter?.budgetExceeded) {
+      // Caseフェーズが予算超過で停止。共有予算は既に上限を超えているため、Techには
+      // 新品の予算を与えず全体をerrorで確定する（Tech側の失敗パス経由でも予算超過フラグを
+      // 発生させうるが、Caseの時点で既に停止しているためTech実行自体を行わない）。
+      // --result error 等の定型テンプレでは「Techをスキップした」事実が伝わらないため、
+      // --text-file で事実どおりの本文を明示的に組み立てて送る（caseResearch.ts側の
+      // fail()/committed-budget分岐が既に送る通知とは別に、combined全体の停止を伝える）。
+      const lineText = buildBudgetHaltLineText(req.theme, casePhase);
+      await writeFile(BUDGET_HALT_TEXT_PATH, lineText);
+      await notifyLine(["--text-file", BUDGET_HALT_TEXT_PATH]);
+      await updateJob(jobId, buildBudgetHaltPatch(casePhase));
+      return;
+    }
 
     // Techフェーズ開始前にジョブを running へ戻し、Case側の結果フィールドも明示的に
     // クリアする（TECH_PHASE_RESET_PATCH。adversarial-reviewer指摘#1）。
     await updateJob(jobId, TECH_PHASE_RESET_PATCH);
 
-    await runTechResearchPipeline(jobId, req, lock);
+    await runTechResearchPipeline(jobId, req, lock, budget);
     const techPhase = phaseFromJob("Tech", await getJob(jobId));
 
     const merged = mergeCombinedPhases(casePhase, techPhase);
@@ -176,7 +252,7 @@ export async function runCombinedResearchPipeline(jobId: string, req: ValidatedR
       warning: merged.warning,
       error: merged.error,
       phaseDurationsMs: merged.phaseDurationsMs,
-      deployedUrl: casePhase.status === "done" || techPhase.status === "done" ? "https://research-man.vercel.app" : null,
+      deployedUrl: casePhase.status === "done" || techPhase.status === "done" ? SITE : null,
     });
   } finally {
     lock.release();
