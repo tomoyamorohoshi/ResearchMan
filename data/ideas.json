@@ -1293,5 +1293,203 @@
         "desc": "テキスト指示だけでヒューマノイドロボットが踊りや演奏、武術まで全身動作を即座に生成する技術。"
       }
     ]
+  },
+  {
+    "id": "2026-07-10-1",
+    "date": "2026-07-10",
+    "title": "自己認識のズレを触覚化",
+    "pattern": "文脈×技術",
+    "seed": "Doveの「REAL BEAUTY SKETCHES」が暴いた自己認識と他者評価のズレを、HapticLensで振動化したら、顔の触感の違いとして身体で実感できる広告体験になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "dove-real-beauty-sketches",
+        "title": "REAL BEAUTY SKETCHES",
+        "desc": "法廷画家が自己申告と他者証言から似顔絵を描き比べ、自己認識の歪みを可視化した広告"
+      },
+      {
+        "type": "tech",
+        "id": "hapticlens",
+        "title": "HapticLens",
+        "desc": "動画の動きから振動パターンを自動生成し、映像に触感を付けられるオーサリングツール"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-10-2",
+    "date": "2026-07-10",
+    "title": "浮遊彫刻を3Dスキャン",
+    "pattern": "技術×技術",
+    "seed": "磁石入り物体を宙に浮かせるLeviFabの浮遊中に、Gaussian SplatKingでスキャンしたら、重力を感じさせない3Dアート作品がスマホひとつで量産できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "levifab",
+        "title": "LeviFab",
+        "desc": "超伝導体のピン止め効果で磁石入り3Dプリント物体を空中に浮遊・操作させるHCI研究"
+      },
+      {
+        "type": "tech",
+        "id": "gaussian-splatking",
+        "title": "Gaussian SplatKing",
+        "desc": "iPhoneのカメラとLiDARで3Dスキャン用の撮影データを無料取得できるアプリ"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-10-3",
+    "date": "2026-07-10",
+    "title": "通話そのものを編集素材化",
+    "pattern": "文脈×技術",
+    "seed": "通話中に広告を流したSkinnyの発想に、素材フォルダを渡すだけで編集してくれるVideo Useを重ねたら、通話音声そのものをAIがリアルタイムに整形・広告挿入するメディアに変えられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "skinny-ads-in-my-phone-call",
+        "title": "Ads in My Phone Call",
+        "desc": "通話中に広告を流し、電話そのものを新しい広告メディアに変えたキャンペーン"
+      },
+      {
+        "type": "tech",
+        "id": "video-use",
+        "title": "Video Use",
+        "desc": "素材とチャット指示だけでフィラー除去や字幕付けまで自動化する動画編集AIツール"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-10-4",
+    "date": "2026-07-10",
+    "title": "アダプティブ設計を仮想試着",
+    "pattern": "文脈×技術",
+    "seed": "ダウン症アスリートと共同設計したadidas「SUPERNOVA RISE 3 ADAPTIVE」の発想に、文章から3D動作と映像を同時生成するCoMoViを掛けたら、多様な身体の走り方を試作前にシミュレーションできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "supernova-rise-3-adaptive",
+        "title": "SUPERNOVA RISE 3 ADAPTIVE",
+        "desc": "ダウン症アスリートと共同開発した、世界初の本格的なアダプティブ・ランニングシューズ"
+      },
+      {
+        "type": "tech",
+        "id": "comovi",
+        "title": "CoMoVi",
+        "desc": "文章から3Dの人の動きと写実的な映像を一つの生成ループで同時に作る技術"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-10-5",
+    "date": "2026-07-10",
+    "title": "素材の輝きを事前体感",
+    "pattern": "文脈×技術",
+    "seed": "恐竜の化石タンパク質から作った「T-REX LEATHER」バッグの質感を、反射や屈折までレイトレーシングで描けるGRayで再現したら、実物制作前に素材の説得力を映像だけで審査できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "trex-leather",
+        "title": "T-REX LEATHER",
+        "desc": "ティラノサウルスの化石タンパク質から培養した革で作った、世界初のバッグ"
+      },
+      {
+        "type": "tech",
+        "id": "gray",
+        "title": "GRay",
+        "desc": "Gaussian Splattingに正確な反射・屈折・影をレイトレーシングで加える新しい描画手法"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-10-6",
+    "date": "2026-07-10",
+    "title": "競合CMを実況乗っ取り",
+    "pattern": "文脈×技術",
+    "seed": "競合のCM商品を総取りしたDoorDash「ALL THE ADS」に、対話で編集ディレクターのように段取りするFireRed-OpenStorylineを重ねたら、放送中にリアルタイムで競合広告をつなぎ替える実況ハイジャックができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "doordash-all-the-ads",
+        "title": "ALL THE ADS",
+        "desc": "スーパーボウルの全広告商品を一人にプレゼントし、競合CMを乗っ取ったキャンペーン"
+      },
+      {
+        "type": "tech",
+        "id": "firered-openstoryline",
+        "title": "FireRed-OpenStoryline",
+        "desc": "話しかけると素材選びからつなぎまで自動化してくれる、対話型の動画編集エージェント"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-10-7",
+    "date": "2026-07-10",
+    "title": "多視点編集の同時整合",
+    "pattern": "技術×技術",
+    "seed": "視点をまたいでも特徴が崩れないMulti-View Foundation Modelsと、テキスト指示だけで被写体や背景を書き換えるEditAnythingを組み合わせたら、複数カメラの映像を一括で矛盾なく編集できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "multi-view-foundation-models",
+        "title": "Multi-View Foundation Models",
+        "desc": "3D再構成なしで複数視点間の特徴の一貫性を保てるようにする2D基盤モデル拡張"
+      },
+      {
+        "type": "tech",
+        "id": "editanything",
+        "title": "EditAnything (LTX-2.3 Video Edit LoRA)",
+        "desc": "動画生成モデルをテキスト指示だけで背景除去や被写体置換ができる編集モデルに変えるツール"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-10-8",
+    "date": "2026-07-10",
+    "title": "抗議の声を音と映像に",
+    "pattern": "文脈×技術",
+    "seed": "ブラジルの制度的人種差別を告発した「BLUESMAN」の切実さに、音声と映像を同時生成するLTX-2を掛けたら、抗議のチャントと映像を即興で同期生成する社会派ドキュメンタリー表現ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "baco-exu-bluesman",
+        "title": "BLUESMAN (Baco Exu do Blues)",
+        "desc": "ブラジルの制度的人種差別を8分間の短編映画で告発し、Cannesグランプリを受賞した作品"
+      },
+      {
+        "type": "tech",
+        "id": "ltx-2",
+        "title": "LTX-2",
+        "desc": "音声と映像を同時に生成できる、初めて公開されたオープンソース基盤モデル"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-10-9",
+    "date": "2026-07-10",
+    "title": "浮遊技術を工場搬送に転用",
+    "pattern": "転用",
+    "seed": "磁石入り物体を宙に浮かせて操作するLeviFabを、アート的なHCI体験ではなく無菌・無接触が必須な工場の搬送技術として使ったら、人も治具も触れずに精密部品を移動できる新しいラインになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "levifab",
+        "title": "LeviFab",
+        "desc": "超伝導体のピン止め効果で磁石入り3Dプリント物体を空中に浮遊させ操作できるHCI研究"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-10-10",
+    "date": "2026-07-10",
+    "title": "生成世界をリハビリ空間に",
+    "pattern": "転用",
+    "seed": "1枚の画像から歩き回れる映像世界をリアルタイム生成するHY-World 1.5 / WorldPlayを、ゲーム用途ではなく歩行が難しい人の仮想リハビリ空間として使ったら、安全に自分のペースで歩行訓練できる場になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "hy-world-1-5-worldplay",
+        "title": "HY-World 1.5 / WorldPlay",
+        "desc": "1枚の画像やテキストから、操作にリアルタイム反応する歩き回れる映像世界を生成する技術"
+      }
+    ]
   }
 ]
