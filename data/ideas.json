@@ -1725,5 +1725,116 @@
         "desc": "電線に止まる鳥の並びを楽譜として読み取り、実際の交響曲に変換した音楽広告の事例。"
       }
     ]
+  },
+  {
+    "id": "studio-2026-07-10-13",
+    "date": "2026-07-10",
+    "title": "匿名予告で正体謎解き",
+    "pattern": "匿名性の戦略化",
+    "seed": "新曲のジャケットや歌詞の断片だけを匿名アカウントで小出しに公開し、誰の曲か当てさせる謎解き型の予告キャンペーンをやったら話題になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ado-world-tour-wish",
+        "title": "Ado THE FIRST WORLD TOUR「Wish」",
+        "desc": "素顔を一度も公開していない匿名シンガーAdoが、世界規模のライブツアーを成功させた前例のない事例。"
+      },
+      {
+        "type": "case",
+        "id": "lil-miquela",
+        "title": "LIL MIQUELA",
+        "desc": "実在しないCGIの人物が本物のインフルエンサーとして活動し、有名ブランドと次々コラボした事例。"
+      }
+    ]
+  },
+  {
+    "id": "studio-2026-07-10-14",
+    "date": "2026-07-10",
+    "title": "曲を聴かせない沈黙告白",
+    "pattern": "タブーへの正面突破",
+    "seed": "新曲が生まれるまでの創作の苦しみや長い沈黙期間を、曲を一切聴かせずに日記やボイスメモの断片だけで赤裸々に公開したら、ファンの共感を呼ぶかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "kotex-arts-missing-period",
+        "title": "Art's Missing Period",
+        "desc": "美術史から消されてきた月経というテーマを、アート作品で正面から可視化したキャンペーン。"
+      },
+      {
+        "type": "case",
+        "id": "bodyform-womb-stories",
+        "title": "WOMB STORIES",
+        "desc": "月経や流産など女性の体に起きるタブーな出来事を初めてリアルに描いた生理用品広告。"
+      }
+    ]
+  },
+  {
+    "id": "studio-2026-07-10-15",
+    "date": "2026-07-10",
+    "title": "原点の部屋をAI復元",
+    "pattern": "アーカイブ復元",
+    "seed": "アーティストが新曲を生み出した幼少期の部屋やスタジオをAIとVRで復元し、ファンが訪れて創作のルーツを追体験できるようにしたら、曲を聴く前から没入できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "gorillaz-kong-studios-revival",
+        "title": "KONG STUDIOS REVIVAL（Gorillaz）",
+        "desc": "バーチャルバンドの架空スタジオを17年ぶりに復活させ、新曲公開に合わせて部屋を毎月解禁した企画。"
+      },
+      {
+        "type": "case",
+        "id": "radio-time-machine",
+        "title": "RADIO TIME MACHINE",
+        "desc": "AIが個人の思い出の時代を再現するラジオで、過去の記憶を蘇らせる認知症ケアの取り組み。"
+      }
+    ]
+  },
+  {
+    "id": "studio-2026-07-10-16",
+    "date": "2026-07-10",
+    "title": "振動だけで音圧を証明",
+    "pattern": "実演による証明",
+    "seed": "新曲の音源そのものは伏せたまま、その振動エネルギーだけでガラスを割ったり物体を動かしたりするライブ実演を公開し、曲の力を体感させたら期待が高まるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "volvo-epic-split",
+        "title": "THE EPIC SPLIT",
+        "desc": "走行中の2台のトラックの間で開脚し、操縦の正確さを常識外れの実演で証明した名作広告。"
+      },
+      {
+        "type": "tech",
+        "id": "hapticlens",
+        "title": "HapticLens",
+        "desc": "映像に映る微細な動きから振動や触覚を自動で作り出せるツール。たった1個の振動子で触感を再現できる。"
+      },
+      {
+        "type": "tech",
+        "id": "event-topology-based-visual-vibrometer",
+        "title": "Event Topology-based Visual Vibrometer",
+        "desc": "高速カメラの映像だけで、物の目に見えない振動＝音を光を当てずに復元して見える化する技術。"
+      }
+    ]
+  },
+  {
+    "id": "studio-2026-07-10-17",
+    "date": "2026-07-10",
+    "title": "ゲーム内実績で新曲解禁",
+    "pattern": "ゲームと現実の連動",
+    "seed": "人気ゲームにアーティストのアバターを実装し、プレイヤーの実績達成に応じて新曲のジャケットやタイトルが段階的に解禁される仕組みを作ったら、聴く前から盛り上がるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "haaland-payback-time-2025",
+        "title": "Haaland Payback Time",
+        "desc": "実在のサッカー選手をゲームに史上初のプレイアブルキャラとして実装し、現実のOOHと連動させたキャンペーン。"
+      },
+      {
+        "type": "case",
+        "id": "xbox-missing-managers",
+        "title": "Missing Managers（Xbox）",
+        "desc": "ゲーム内の実績を現実の資格取得に変換し、女性監督不足という社会課題に挑んだキャンペーン。"
+      }
+    ]
   }
 ]
