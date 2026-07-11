@@ -26,6 +26,7 @@
 
 import { spawnSync } from "child_process";
 import fs from "fs/promises";
+import os from "os";
 import path from "path";
 import { saveThumbnail, saveThumbnailFromPage } from "./save-thumbnail.mjs";
 import { isUrlAlive, fetchYouTubeInfo, videoMatchesCase } from "./verify-video.mjs";
@@ -41,7 +42,7 @@ const VOCAB_PATH = path.join(__dirname, "../data/tag-vocabulary.json");
 const TUNING_PATH = path.join(__dirname, "../data/research-tuning.json");
 const DRY_RUN = process.argv.includes("--dry-run");
 const LAST_RUN_PATH = path.join(__dirname, "../.last-research-run.txt");
-const LAST_ADD_PATH = "/tmp/researchman-last-add.json"; // 反映後の通知メール用サマリー
+const LAST_ADD_PATH = path.join(os.tmpdir(), "researchman-last-add.json"); // 反映後の通知メール用サマリー
 
 const TARGET_NEW = 5; // 新規がこれだけたまったらラウンド終了
 const MAX_ADD = 10; // 1回の実行で追加する上限（厳選しない方針なので多め）

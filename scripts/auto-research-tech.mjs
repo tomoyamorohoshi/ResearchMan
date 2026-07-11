@@ -6,12 +6,13 @@
  *      （レーンは日替わりローテーション。1回の呼び出しを軽く保つ）
  *   2. 候補JSONを build-tech-from-research.mjs へ渡し、一次ソース死活・
  *      Case Study重複・サムネイル取得の機械検証を通過したものだけ tech.json へ追加
- *   3. 通知サマリー /tmp/researchman-tech-last-add.json は build 側が書く（0件でも上書き）
+ *   3. 通知サマリー os.tmpdir()/researchman-tech-last-add.json は build 側が書く（0件でも上書き）
  *
  * ゲート（1日1回）は launchd 側の run-if-due.mjs --state .last-tech-research-run.txt --hours 23 が担う。
  * 使い方: node scripts/auto-research-tech.mjs [--dry-run]
  */
 import fs from "fs/promises";
+import os from "os";
 import path from "path";
 import { spawnSync } from "child_process";
 import { fileURLToPath } from "url";
@@ -117,7 +118,7 @@ async function main() {
   }
   let materialC = "";
   try {
-    const xRadarPath = path.join("/tmp", `researchman-x-radar-${jstDateString()}.json`);
+    const xRadarPath = path.join(os.tmpdir(), `researchman-x-radar-${jstDateString()}.json`);
     const xRadar = JSON.parse(await fs.readFile(xRadarPath, "utf-8"));
     if (xRadar.items?.length) {
       const lines = xRadar.items.map((it) => JSON.stringify(it)).join("\n");
@@ -175,7 +176,10 @@ ${lines}`;
     if (!DRY_RUN) {
       await saveLastRunDate();
       try {
-        await fs.writeFile("/tmp/researchman-tech-last-add.json", JSON.stringify({ count: 0, cases: [] }, null, 2));
+        await fs.writeFile(
+          path.join(os.tmpdir(), "researchman-tech-last-add.json"),
+          JSON.stringify({ count: 0, cases: [] }, null, 2)
+        );
       } catch {}
     }
     return;
@@ -183,10 +187,12 @@ ${lines}`;
 
   // 検証・追加は実績のある build-tech-from-research.mjs に委譲。
   // 候補ファイルは削除せず残す（検証で脱落した候補の調査・手動再取り込みに使う）。
-  // 他の一時ファイル（researchman-last-add.json等）と同じく /tmp 直下に固定する
-  // （os.tmpdir()はmacOSでは/var/folders/.../Tを指し/tmpと別ディレクトリになるため、
-  //  「手動で/tmpを見て調査する」という目的に反する。過去にこの不一致で発見しづらいバグだった）
-  const TMP_DIR = "/tmp";
+  // 他の一時ファイル（researchman-last-add.json等）と同じく os.tmpdir() 直下に置く
+  // （Windows移植に伴い2026-07-11に/tmp固定から変更。macOSではos.tmpdir()が
+  //  /var/folders/.../Tを指すため「手動で/tmpを見る」運用とは場所がずれるが、
+  //  Windowsには/tmpが存在しないためクロスプラットフォームではos.tmpdir()一本化が必須。
+  //  調査時は `node -e "console.log(require('os').tmpdir())"` で実際のパスを確認すること）
+  const TMP_DIR = os.tmpdir();
   const day = new Date().toISOString().slice(0, 10);
   const tmpFile = path.join(TMP_DIR, `researchman-tech-candidates-${day}.json`);
   await fs.writeFile(tmpFile, JSON.stringify(candidates, null, 2));

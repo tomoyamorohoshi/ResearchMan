@@ -8,7 +8,7 @@
  * すべて spawnSync・例外を投げない設計（呼び出し側はok/reasonで結果を判定する）。
  *
  * ロックについて（敵対的レビューで検出された自己デッドロックの修正・2026-07-08）:
- * 当初はlaunchd plist側が`/tmp/researchman-git.lock`をwatchdog.mjsの実行全体にわたって
+ * 当初はlaunchd plist側が`os.tmpdir()/researchman-git.lock`をwatchdog.mjsの実行全体にわたって
  * 保持していたが、watchdog.mjs内の項目1(10時更新の死活)が`launchctl kickstart`で
  * 他ジョブ（同じロックを使う既存3ジョブ）を起こすため、watchdogがロックを握ったまま
  * 待っても kickstart されたジョブは永遠にロックを取れず、5分待って必ずタイムアウトし、
@@ -21,6 +21,7 @@
  * 通常どおりロックを取得して走れる。
  */
 import fs from "fs";
+import os from "os";
 import { spawnSync } from "child_process";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -28,7 +29,7 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_ROOT = path.join(__dirname, "..", "..");
 
-const LOCK_PATH = "/tmp/researchman-git.lock";
+const LOCK_PATH = path.join(os.tmpdir(), "researchman-git.lock");
 // 既存3ジョブ・tuneupと同じ90分staleしきい値（kill -9等の残骸奪取）
 const LOCK_STALE_MS = 5400 * 1000;
 // watchdog自身のgit操作はadd/commit/pull/pushのみで短時間に終わる想定。
@@ -45,7 +46,7 @@ function sleepSync(ms) {
   }
 }
 
-// `/tmp/researchman-git.lock` を短時間だけ取得する。staleなら奪取。
+// `os.tmpdir()/researchman-git.lock` を短時間だけ取得する。staleなら奪取。
 // 取得できなければfalse（呼び出し側はロック取得失敗として扱う）。
 function acquireLock() {
   const deadline = Date.now() + LOCK_WAIT_TIMEOUT_MS;

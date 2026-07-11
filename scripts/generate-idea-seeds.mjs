@@ -13,7 +13,7 @@
  *
  * 毎日ランダムサンプリングした事例・技術を素材にし、直近の種の履歴
  * （~/.researchman-idea-history.json）を渡して重複を避ける。
- * 出力: /tmp/researchman-idea-seeds.txt（notify-line.mjs --text-file が送る本文）
+ * 出力: os.tmpdir()/researchman-idea-seeds.txt（notify-line.mjs --text-file が送る本文）
  *
  * 使い方: node scripts/generate-idea-seeds.mjs [--dry-run]
  *   --dry-run … 本文を出力するだけ（状態ファイル・履歴を更新しない）
@@ -38,7 +38,7 @@ const TUNING_PATH = path.join(__dirname, "../data/idea-tuning.json");
 const LAST_RUN_PATH = process.env.LAST_RUN_PATH || path.join(__dirname, "../.last-idea-seeds-run.txt");
 const HISTORY_PATH = process.env.HISTORY_PATH || path.join(os.homedir(), ".researchman-idea-history.json");
 const IDEAS_JSON_PATH = process.env.IDEAS_JSON_PATH || path.join(__dirname, "../data/ideas.json");
-const OUT_PATH = "/tmp/researchman-idea-seeds.txt";
+const OUT_PATH = path.join(os.tmpdir(), "researchman-idea-seeds.txt");
 const DRY_RUN = process.argv.includes("--dry-run");
 // テスト専用: 指定するとClaude CLIを呼ばずこのJSONファイル（[{pattern,seed,title,refs}]）をseedsとして使う。
 // 本物のLINE配信・Claude CLI呼び出しを発生させずに「追記・重複スキップ・id採番」を検証するためのフック

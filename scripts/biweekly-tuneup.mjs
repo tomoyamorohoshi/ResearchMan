@@ -17,7 +17,7 @@
  *   6. 成功時: 設定ファイルを書き込んだ状態で終了（exit 0）。commit/push/verify-deploy/
  *      LINE通知は launchd plist のシェル側が担当（既存3ジョブと同じ役割分担）
  *
- * LINE報告文面は /tmp/researchman-tuneup-report.txt に書き出す
+ * LINE報告文面は os.tmpdir()/researchman-tuneup-report.txt に書き出す
  * （notify-line.mjs --text-file が送る。成功/スキップ/失敗のいずれでも必ず書く）。
  *
  * 使い方:
@@ -53,7 +53,7 @@ const XRADAR_QUERIES_PATH = path.join(ROOT, "data/x-radar-queries.json");
 const RESEARCH_PLAN_PATH = path.join(ROOT, "RESEARCH_PLAN.md");
 const FAVSYNC_CONFIG_PATH = path.join(os.homedir(), ".researchman-favsync.json");
 const LAST_RUN_PATH = path.join(ROOT, ".last-tuneup-run.txt");
-const REPORT_PATH = "/tmp/researchman-tuneup-report.txt";
+const REPORT_PATH = path.join(os.tmpdir(), "researchman-tuneup-report.txt");
 const SITE = "https://research-man.vercel.app";
 
 const DRY_RUN = process.argv.includes("--dry-run");

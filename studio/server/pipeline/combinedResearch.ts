@@ -16,6 +16,7 @@
  * これらのフィールドを上書きしなかった場合にCase側の値をそのまま引き継いでしまい、
  * カード二重化・コスト誤算・commit誤表記の原因になる（adversarial-reviewer指摘#1）。
  */
+import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { writeFile } from "node:fs/promises";
@@ -30,7 +31,7 @@ import type { ValidatedResearchRequest } from "./pure.js";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..", "..", ".."); // studio/server/pipeline -> repo root
 const SITE = "https://research-man.vercel.app";
-const BUDGET_HALT_TEXT_PATH = "/tmp/researchman-studio-combined-budget-halt.txt";
+const BUDGET_HALT_TEXT_PATH = path.join(os.tmpdir(), "researchman-studio-combined-budget-halt.txt");
 
 export interface PhaseResult {
   label: "Case" | "Tech";

@@ -19,6 +19,7 @@
  *   node scripts/watchdog.mjs --deep   # 日曜deep（収集情報の誤り監査+サムネ肥大化チェック追加）
  */
 import fs from "fs";
+import os from "os";
 import path from "path";
 import { spawnSync } from "child_process";
 import { fileURLToPath } from "url";
@@ -40,8 +41,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
 const SITE = "https://research-man.vercel.app";
 const DEEP = process.argv.includes("--deep");
-const REPORT_PATH = "/tmp/researchman-watchdog-report.txt";
-const DEPLOY_BROKEN_FLAG = "/tmp/researchman-watchdog-deploy-broken.flag";
+const REPORT_PATH = path.join(os.tmpdir(), "researchman-watchdog-report.txt");
+const DEPLOY_BROKEN_FLAG = path.join(os.tmpdir(), "researchman-watchdog-deploy-broken.flag");
 const CASES_PATH = path.join(ROOT, "data/cases.json");
 const TECH_PATH = path.join(ROOT, "data/tech.json");
 const LAST_RUN_PATH = path.join(ROOT, ".last-watchdog-run.txt");
@@ -231,7 +232,7 @@ const PIPELINE_CONFIG = {
     script: "generate-idea-seeds.mjs",
     addPaths: ["data/ideas.json"],
     commitMessage: () => `Idea seeds: ${todayStr()} (watchdog recovery)`,
-    notify: { textFile: "/tmp/researchman-idea-seeds.txt" },
+    notify: { textFile: path.join(os.tmpdir(), "researchman-idea-seeds.txt") },
   },
 };
 
@@ -312,7 +313,7 @@ function staleInfo(stateFile) {
 }
 
 function cleanupStaleGitLock(lines) {
-  const LOCK = "/tmp/researchman-git.lock";
+  const LOCK = path.join(os.tmpdir(), "researchman-git.lock");
   try {
     const st = fs.statSync(LOCK);
     const ageSec = (Date.now() - st.mtimeMs) / 1000;
@@ -358,8 +359,19 @@ async function checkDailyRunHealth(report) {
 
     cleanupStaleGitLock(lines);
 
-    const kickstart = spawnSync("launchctl", ["kickstart", "-k", `gui/${process.getuid()}/${job.launchdLabel}`], { timeout: 15000 });
-    lines.push(`launchctl kickstart -k を実行しました（${job.launchdLabel}、exit=${kickstart.status}）`);
+    if (process.platform === "win32") {
+      // Windowsではlaunchdの代わりにタスクスケジューラの該当タスクを即時起動する
+      // （scripts/windows/register-tasks.ps1 が ResearchMan-<job> 名で登録している。
+      // 起動されたrun-job.mjs側もrun-if-due.mjsでゲートするためlaunchd時代と同じ意味論。
+      // ここを分岐しないとprocess.getuid()がWindowsに存在せず例外→safeCheckが
+      // このチェック全体を無効化し、stale検知・直接復旧まで一切働かなくなる）
+      const taskName = `ResearchMan-${job.launchdLabel.split(".").pop()}`;
+      const kick = spawnSync("schtasks", ["/Run", "/TN", taskName], { timeout: 15000 });
+      lines.push(`schtasks /Run を実行しました（${taskName}、exit=${kick.status}）`);
+    } else {
+      const kickstart = spawnSync("launchctl", ["kickstart", "-k", `gui/${process.getuid()}/${job.launchdLabel}`], { timeout: 15000 });
+      lines.push(`launchctl kickstart -k を実行しました（${job.launchdLabel}、exit=${kickstart.status}）`);
+    }
 
     const recovered = await waitForStateUpdate(job.file);
     if (recovered) {
@@ -499,7 +511,7 @@ function summarizeByKind(issues) {
 
 async function runDeepAudit(report, priorEventCount) {
   log("[deep] audit-integrity / audit-tech 実行中...");
-  const integrityOutPath = "/tmp/researchman-watchdog-integrity.json";
+  const integrityOutPath = path.join(os.tmpdir(), "researchman-watchdog-integrity.json");
   let integrityIssues = [];
   try {
     spawnSync("node", ["scripts/audit-integrity.mjs", "--out", integrityOutPath], {

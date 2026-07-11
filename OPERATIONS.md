@@ -230,6 +230,24 @@ launchd (10〜23時の毎正時 + ログイン時)
 - **収集ペースは現状維持**（`TARGET_NEW=5` / `MAX_ADD=10`。2026-07-04、RM総点検時にユーザー決定。
   変更しない）
 
+### Windows移行後の運用（2026-07-11〜）
+
+運用ホストをMac（launchd）からWindows（タスクスケジューラ）へ移行した。詳細は
+`MIGRATION_PLAN.md` と `scripts/windows/README.md` を参照。要点:
+
+- 実体リポジトリ: `C:\Users\tomoy\Projects\ClaudeApps\ResearchMan`（旧Mac側はバックアップ扱い）
+- 5ジョブは `ResearchMan-<job>` 名のスケジュールタスク → `scripts/windows/run-job.mjs <job>` を起動
+  （plistのzshロジックを忠実移植。発火時刻・ゲート・エラー分岐・ログ書式は launchd 時代と同一）
+- ログ: `%USERPROFILE%\.researchman\logs\researchman-<auto|tech|ideas|tuneup|watchdog>.log`
+  （下表の `~/Library/Logs/...` に対応。5MBローテも同じ）
+- 一時ファイル: 下表の `/tmp/...` は全スクリプトが `os.tmpdir()`（Windowsでは `%TEMP%`）配下の
+  同名ファイルに変更済み（2026-07-11。書き手・読み手ペアで一貫）
+- **タスクは「ログオン中のみ」実行される（LogonType=Interactive）**。再起動後は自動サインイン
+  設定（netplwiz）で無人復帰させる。画面ロック中は実行される（ログオフとは別）
+- watchdogの自動復旧は `launchctl kickstart` の代わりに `schtasks /Run /TN ResearchMan-<job>` を使う
+- launchd plist（`launchd/`）はMac時代の原本として保持。Mac側で再開する場合のロールバック手順は
+  `Z:\Claude\ResearchMan\migration\mac-decommission.sh` 末尾の出力を参照
+
 ### 状態ファイル・ログ
 
 | パス | 役割 | 注意 |

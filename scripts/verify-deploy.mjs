@@ -8,13 +8,14 @@
  *   3. 追加サムネ（引数で渡した /thumbnails/xxx.jpg）がライブでローカルと同一ハッシュで配信されるか
  *   4. 直近追加事例の詳細ページ（/cases/<id>）が本番で 200 を返すか
  *      ※旧ビルドでもトップは200を返すため、これが「新ビルドが実際に出た」ことの証明になる。
- *        /tmp/researchman-last-add.json（auto-research-cc.mjs が実行毎に書く）から自動取得。
+ *        os.tmpdir()/researchman-last-add.json（auto-research-cc.mjs が実行毎に書く）から自動取得。
  * 最大 ~6分ポーリング。全条件満たせば exit 0、時間切れは exit 1。
  *
  * 使い方: node scripts/verify-deploy.mjs [thumbPath ...]
  *   例) node scripts/verify-deploy.mjs /thumbnails/foo.jpg /thumbnails/bar.jpg
  */
 import fs from "fs";
+import os from "os";
 import path from "path";
 import crypto from "crypto";
 import https from "https";
@@ -39,7 +40,7 @@ const ROOT = path.join(__dirname, "..");
 const SITE = "https://research-man.vercel.app";
 const MAX_TRIES = 45;      // 45回 × ~8秒 ≒ 6分（SSG 450ページ超のVercelビルドは3分を超えることがある）
 const INTERVAL_MS = 8000;
-const LAST_ADD_PATH = "/tmp/researchman-last-add.json";
+const LAST_ADD_PATH = path.join(os.tmpdir(), "researchman-last-add.json");
 // 古いサマリーで誤検証しない。verify-deployはpush直後の同一パイプライン実行内で
 // 即座に読むため2hで十分短い（notify-line.mjsのSUMMARY_MAX_AGE_MS=6hより厳しいのは意図的。
 // notify-line側はロック待ち・キャッチアップ実行での遅延を許容する必要があるため）

@@ -12,6 +12,7 @@
  * （rollbackIfNotCommittedはcaseResearch.tsのものをそのまま再利用。判定ロジックはタブに依存しない）。
  */
 import { readFile, writeFile } from "node:fs/promises";
+import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { jstDateString } from "../../../scripts/lib/jst-date.mjs";
@@ -62,7 +63,7 @@ const ROOT = path.join(__dirname, "..", "..", ".."); // studio/server/pipeline -
 const CASES_PATH = path.join(ROOT, "data", "cases.json");
 const TECH_PATH = path.join(ROOT, "data", "tech.json");
 const IDEAS_JSON_PATH = path.join(ROOT, "data", "ideas.json");
-const LAST_IDEA_TEXT_PATH = "/tmp/researchman-studio-idea-last.txt";
+const LAST_IDEA_TEXT_PATH = path.join(os.tmpdir(), "researchman-studio-idea-last.txt");
 const SITE = "https://research-man.vercel.app";
 const IDEAS_URL = `${SITE}/ideas`;
 const MAX_GEN_ATTEMPTS = 3;
@@ -328,7 +329,7 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
 
     // ── 10. verify-deploy / notify-line ──────────────────────
     await setProgress(jobId, "本番反映を確認中");
-    // --skip-pages: verify-deploy.mjsの既定は/tmp/researchman-last-add.json（Case Study用
+    // --skip-pages: verify-deploy.mjsの既定はos.tmpdir()/researchman-last-add.json（Case Study用
     // サマリー）を読んで新規ページを検証するため、ideaの反映確認でそれを読むと誤検証になる
     // （Technology日次パイプラインと同じ回避策。scripts/verify-deploy.mjs参照）。
     const verifyResult = await runVerifyDeploy(ROOT, [], ["--skip-pages"]);

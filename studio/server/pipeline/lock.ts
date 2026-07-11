@@ -1,14 +1,17 @@
 /**
- * デイリー3ジョブ（launchd）と共有する git 排他ロック（/tmp/researchman-git.lock）の
- * Studio側実装。DESIGN.md §「lock」: Studioは待機ループをせず、取得できなければ
- * 即座にジョブをerror扱いにする（デイリー側は最大30分待つが、Studioはユーザーが
- * 画面の前で待っているUIなので即時失敗の方が適切）。
- * stale判定（90分超過）はデイリーのplist（launchd/com.researchman.autoresearch.plist）の
- * 閾値5400秒と同じにして、クラッシュ後の残骸を双方が同じ基準で救済できるようにする。
+ * デイリー3ジョブ（launchd/Windowsタスクスケジューラ）と共有する git 排他ロック
+ * （os.tmpdir()/researchman-git.lock）のStudio側実装。DESIGN.md §「lock」: Studioは
+ * 待機ループをせず、取得できなければ即座にジョブをerror扱いにする（デイリー側は
+ * 最大30分待つが、Studioはユーザーが画面の前で待っているUIなので即時失敗の方が適切）。
+ * stale判定（90分超過）はデイリーのplist（launchd/com.researchman.autoresearch.plist、
+ * Windowsではscripts/windows/run-job.mjs）の閾値5400秒と同じにして、クラッシュ後の
+ * 残骸を双方が同じ基準で救済できるようにする。
  */
 import { mkdirSync, rmdirSync, statSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 
-export const DEFAULT_LOCK_PATH = "/tmp/researchman-git.lock";
+export const DEFAULT_LOCK_PATH = join(tmpdir(), "researchman-git.lock");
 export const STALE_MS = 90 * 60 * 1000;
 
 export function isLockStale(mtimeMs: number, now: number, staleMs: number = STALE_MS): boolean {

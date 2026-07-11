@@ -1,7 +1,8 @@
 /**
  * scripts/lib/log-health.mjs のスモークテスト。
  *
- * ~/Library/Logs/researchman-*.log の実ログ抜粋（このリポジトリで実際に出力される
+ * ~/Library/Logs/researchman-*.log（Windowsでは ~/.researchman/logs/researchman-*.log）の
+ * 実ログ抜粋（このリポジトリで実際に出力される
  * 開始マーカー・完了マーカー文字列）を fixture として、parseJobRuns / filterRecentRuns /
  * hasConsecutiveOutcome / countTodayRejections を検証する。ファイルI/O以外は副作用なし。
  *
@@ -112,11 +113,11 @@ check("filterRecentRuns: sinceMsより古いrunを除外する", () => {
 });
 
 check("readLogSafe: 存在しないファイルは空文字（例外を投げない）", () => {
-  assert.strictEqual(readLogSafe("/tmp/researchman-watchdog-smoke-nonexistent.log"), "");
+  assert.strictEqual(readLogSafe(path.join(os.tmpdir(), "researchman-watchdog-smoke-nonexistent.log")), "");
 });
 
 check("countTodayRejections: 存在しないディレクトリ/ファイルは0（例外を投げない）", () => {
-  assert.strictEqual(countTodayRejections("/tmp/researchman-watchdog-smoke-nonexistent-dir"), 0);
+  assert.strictEqual(countTodayRejections(path.join(os.tmpdir(), "researchman-watchdog-smoke-nonexistent-dir")), 0);
 });
 
 check("countTodayRejections: 本日分の行だけをカウントする", () => {

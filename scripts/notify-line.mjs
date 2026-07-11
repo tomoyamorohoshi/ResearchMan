@@ -10,7 +10,7 @@
  *   - LINE Developers でプロバイダー→Messaging APIチャネル作成 → チャネルアクセストークン(長期)発行
  *   - 公式アカウントを自分で友だち追加（broadcast は友だち全員に届く。自分1人ならその1人に届く）
  *
- * 追加事例は auto-research-cc.mjs が書く /tmp/researchman-last-add.json を読む。
+ * 追加事例は auto-research-cc.mjs が書く os.tmpdir()/researchman-last-add.json を読む。
  *
  * 設計方針: 通知はパイプラインの「おまけ」。設定不備や送信失敗でも
  *   本体（収集・反映）を巻き込まないよう常に exit 0（ログのみ）。
@@ -25,16 +25,18 @@ import path from "path";
 import https from "https";
 import { execSync } from "child_process";
 
+const TMP_LAST_ADD_PATH = path.join(os.tmpdir(), "researchman-last-add.json");
+
 const DRY_RUN = process.argv.includes("--dry-run");
 const CONFIG_PATH = path.join(os.homedir(), ".researchman-line.json");
 // Technology日次収集からも流用できるよう、サマリーの場所・リンク経路・ラベルを引数で差し替え可能。
 // 無引数なら従来どおりCase Study用（後方互換）。
-//   例: node scripts/notify-line.mjs --summary /tmp/researchman-tech-last-add.json --route technology --label Technology
+//   例: node scripts/notify-line.mjs --summary <os.tmpdir()>/researchman-tech-last-add.json --route technology --label Technology
 const argOf = (name, fallback) => {
   const i = process.argv.indexOf(name);
   return i >= 0 && process.argv[i + 1] ? process.argv[i + 1] : fallback;
 };
-const LAST_ADD_PATH = argOf("--summary", "/tmp/researchman-last-add.json");
+const LAST_ADD_PATH = argOf("--summary", TMP_LAST_ADD_PATH);
 const ROUTE = argOf("--route", "cases");
 const LABEL = argOf("--label", "");
 // 実行結果の種別。パイプラインの全終端経路で正確な文面を送るため
@@ -106,7 +108,7 @@ function buildText(summary, head) {
     lines.push(`❌ ${name}: 収集がエラー終了`);
     lines.push("");
     lines.push("本日分はスキップし、明日10時に再実行します。");
-    lines.push("ログ: ~/Library/Logs/researchman-*.log");
+    lines.push(`ログ: ${process.platform === "darwin" ? "~/Library/Logs/researchman-*.log" : "~/.researchman/logs/researchman-*.log"}`);
   } else if (RESULT === "pushfail") {
     lines.push(`⚠️ ${name}: 収集${n > 0 ? `${n}件` : ""}完了したがpush失敗`);
     lines.push("");

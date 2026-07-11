@@ -17,6 +17,7 @@
  * tryAcquireLock() が排他しているため発生しない）。
  */
 import { readFile, writeFile } from "node:fs/promises";
+import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import {
@@ -64,7 +65,7 @@ const TECH_PATH = path.join(ROOT, "data", "tech.json");
 const CASES_PATH = path.join(ROOT, "data", "cases.json");
 const VOCAB_PATH = path.join(ROOT, "data", "tech-tag-vocabulary.json");
 const THUMB_DIR = path.join(ROOT, "public", "thumbnails", "tech");
-const LAST_TECH_ADD_PATH = "/tmp/researchman-tech-last-add.json";
+const LAST_TECH_ADD_PATH = path.join(os.tmpdir(), "researchman-tech-last-add.json");
 const SITE = "https://research-man.vercel.app";
 const SOURCE_LABEL = "Batch Research"; // TECHNOLOGY_SPEC.md §5: 一括リサーチ由来（Studioオンデマンドもここに含める）
 const MAX_GEN_ROUNDS = 2; // scripts/auto-research-tech.mjs::MAX_ROUNDS と同じ考え方

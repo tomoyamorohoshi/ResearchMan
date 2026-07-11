@@ -186,7 +186,7 @@ export async function rollbackTouchedFiles(
 
 // ── デプロイ確認・通知（既存スクリプトをそのまま呼ぶ） ─────────────
 // extraArgs: idea パイプラインは --skip-pages を渡す（verify-deploy.mjsの既定は
-// /tmp/researchman-last-add.json＝Case Study用サマリーを読んで新規ページを検証するため、
+// os.tmpdir()/researchman-last-add.json＝Case Study用サマリーを読んで新規ページを検証するため、
 // ideaの反映確認でそれを読むと誤検証になる。Technology日次パイプラインと同じ回避策）。
 export const runVerifyDeploy = (cwd: string, thumbPaths: string[], extraArgs: string[] = []): Promise<CommandResult> =>
   run("node", ["scripts/verify-deploy.mjs", ...extraArgs, ...thumbPaths], cwd, 7 * 60_000);
@@ -196,7 +196,7 @@ export const runNotifyLine = (cwd: string, args: string[]): Promise<CommandResul
 
 // Technology日次パイプラインと同じ「/technology/<id> が実際に200を返すか」の確認
 // （verify-deploy.mjsは--skip-pages指定時にページ検証をしないため別途必要。
-// scripts/verify-tech-pages.mjs は /tmp/researchman-tech-last-add.json を読むので、
+// scripts/verify-tech-pages.mjs は os.tmpdir()/researchman-tech-last-add.json を読むので、
 // 呼び出し側がその要約ファイルを事前に書いておくこと）。
 export const runVerifyTechPages = (cwd: string): Promise<CommandResult> =>
   run("node", ["scripts/verify-tech-pages.mjs"], cwd, 7 * 60_000);

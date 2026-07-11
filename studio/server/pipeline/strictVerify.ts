@@ -2,7 +2,7 @@
  * verify の厳密化（DESIGN.md §10 P4 #5・studio側のみ、デイリースクリプト無改変）。
  *
  * 既存の scripts/verify-deploy.mjs / scripts/verify-tech-pages.mjs は
- * 「新規ページが200を返すか」までしか確認しない（cases/technologyの新規idは/tmp/*-last-add.json
+ * 「新規ページが200を返すか」までしか確認しない（cases/technologyの新規idはos.tmpdir()/*-last-add.json
  * から最大2件のみ・ideaは/ideasの新規反映確認自体が無い）。このモジュールは push 後の
  * 追加確認として、新規追加した各エントリのページが実際に「そのタイトルを含む本文」で
  * 200を返すまでポーリングする（200だけでは古いビルドのキャッシュ等を反映済みと誤認しうる

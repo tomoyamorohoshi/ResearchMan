@@ -2,7 +2,7 @@
  * X（Twitter）検索を発見ソースに加えるためのフェッチスクリプト。
  * data/x-radar-queries.json のクエリ群を twscrape（捨て垢Cookie認証・ローカルSQLite）
  * で検索し、直近48hのツイートから外部リンクを持つもの上位20件を
- * /tmp/researchman-x-radar-YYYY-MM-DD.json（JST日付）へ保存する。
+ * os.tmpdir()/researchman-x-radar-YYYY-MM-DD.json（JST日付）へ保存する。
  *
  * auto-research-tech.mjs から非致命的に呼ばれる。twscrape未設定・失敗・
  * レート制限等、**あらゆる異常でexit 0**（収集パイプライン全体を絶対に止めない）。
@@ -20,7 +20,7 @@ import { jstDateString } from "./lib/jst-date.mjs";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const QUERIES_PATH = path.join(__dirname, "../data/x-radar-queries.json");
 const DB_PATH = path.join(os.homedir(), ".researchman-twscrape.db");
-const TMP_DIR = "/tmp";
+const TMP_DIR = os.tmpdir();
 const DRY_RUN = process.argv.includes("--dry-run");
 
 const PER_QUERY_TIMEOUT_MS = 60000;

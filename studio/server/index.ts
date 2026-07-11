@@ -127,7 +127,11 @@ async function main(): Promise<void> {
   const vite = await createViteServer({
     root: path.join(STUDIO_ROOT, "web"),
     configFile: path.join(STUDIO_ROOT, "vite.config.ts"),
-    server: { middlewareMode: true },
+    // allowedHosts: localhost以外のホスト名アクセスをViteが既定で拒否するため、
+    // Tailscale(MagicDNS)のホスト名を許可する（2026-07-11 Windows移行）。
+    // アクセス到達自体はTailscale網とLANにファイアウォールで限定済みのため、
+    // サフィックス許可で十分安全（デバイス名変更にも耐える）
+    server: { middlewareMode: true, allowedHosts: [".ts.net"] },
     appType: "spa",
   });
   app.use(vite.middlewares);

@@ -6,15 +6,31 @@
  * 挙動を変えずに1箇所へ集約した。model・allowedTools・marker は呼び出し側で指定する。
  */
 import { execFileSync, spawnSync } from "child_process";
+import os from "os";
+import path from "path";
 
 const CLAUDE_PATHS = ["/Users/tm/.local/bin/claude", "/usr/local/bin/claude", "/opt/homebrew/bin/claude"];
+// Windows既知パス（`claude.exe`はmacOSと同じ ~/.local/bin/ 配下に入る運用）。
+// macOS側のCLAUDE_PATHSとは完全に別配列にし、Mac側の解決順序・挙動は一切変えない。
+const WIN_CLAUDE_PATHS = [path.join(os.homedir(), ".local", "bin", "claude.exe")];
 
-/** claude 実行バイナリを解決する（which → 既知パス → "claude"） */
+/** claude 実行バイナリを解決する（which/where → 既知パス → "claude"） */
 export function resolveClaudeBin() {
+  const isWin = process.platform === "win32";
   try {
+    // Windowsに`which`は無いため`where`を使う。`where`は複数ヒットを改行区切りで返す。
+    // npmグローバル由来のシム claude.cmd は Node 20+ の spawnSync(shell:false) で
+    // EINVAL になるため .exe のヒットだけを採用し、無ければ既知パス探索へ落とす
+    // （2026-07-11 敵対的レビュー指摘#2）
+    if (isWin) {
+      const hits = execFileSync("where", ["claude"], { encoding: "utf-8" }).trim().split(/\r?\n/).filter(Boolean);
+      const exe = hits.find((h) => h.toLowerCase().endsWith(".exe"));
+      if (exe) return exe;
+      throw new Error("whereに.exeヒットなし（既知パス探索へフォールバック）");
+    }
     return execFileSync("which", ["claude"], { encoding: "utf-8" }).trim();
   } catch {
-    for (const p of CLAUDE_PATHS) {
+    for (const p of isWin ? WIN_CLAUDE_PATHS : CLAUDE_PATHS) {
       try {
         execFileSync(p, ["--version"], { encoding: "utf-8" });
         return p;

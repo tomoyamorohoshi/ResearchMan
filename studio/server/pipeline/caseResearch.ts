@@ -11,6 +11,7 @@
  * （DESIGN.md §5）。commit前の失敗は必ず rollbackTouchedFiles() で作業ツリーを戻す。
  */
 import { readFile, writeFile } from "node:fs/promises";
+import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import {
@@ -64,7 +65,7 @@ const AGENTS_DIR = path.join(ROOT, ".claude", "agents");
 const CASES_PATH = path.join(ROOT, "data", "cases.json");
 const TAG_VOCAB_PATH = path.join(ROOT, "data", "tag-vocabulary.json");
 const RESEARCH_SOURCES_PATH = path.join(ROOT, "src", "lib", "researchSources.ts");
-const LAST_ADD_PATH = "/tmp/researchman-last-add.json";
+const LAST_ADD_PATH = path.join(os.tmpdir(), "researchman-last-add.json");
 const SITE = "https://research-man.vercel.app";
 const FALLBACK_ORDER_TAG = "Studio";
 

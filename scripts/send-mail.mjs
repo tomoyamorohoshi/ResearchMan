@@ -6,7 +6,7 @@
  *   { "user": "xxx@gmail.com", "appPassword": "abcd efgh ijkl mnop", "to": "you@example.com" }
  *   appPassword は Google アカウント → セキュリティ → アプリパスワード で発行した16桁。
  *
- * 追加事例は auto-research-cc.mjs が書く /tmp/researchman-last-add.json を読む。
+ * 追加事例は auto-research-cc.mjs が書く os.tmpdir()/researchman-last-add.json を読む。
  *
  * 設計方針: 通知はパイプラインの「おまけ」。設定不備やSMTP失敗でも
  *   本体（収集・反映）を巻き込まないよう、常に exit 0 で終える（ログのみ残す）。
@@ -23,7 +23,7 @@ import nodemailer from "nodemailer";
 
 const DRY_RUN = process.argv.includes("--dry-run");
 const CONFIG_PATH = path.join(os.homedir(), ".researchman-mail.json");
-const LAST_ADD_PATH = "/tmp/researchman-last-add.json";
+const LAST_ADD_PATH = path.join(os.tmpdir(), "researchman-last-add.json");
 const SITE = "https://research-man.vercel.app";
 
 function log(msg) {

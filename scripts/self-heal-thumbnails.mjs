@@ -15,20 +15,16 @@ import { spawnSync } from "child_process";
 import { fileURLToPath } from "url";
 import { saveThumbnail, saveThumbnailFromPage } from "./save-thumbnail.mjs";
 import { fetchYouTubeInfo, videoMatchesCase, isHumanVerifiedVideo } from "./verify-video.mjs";
+import { resolveClaudeBin } from "./lib/claude-cli.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CASES_PATH = path.join(__dirname, "../data/cases.json");
 const THUMBNAILS_DIR = path.join(__dirname, "../public/thumbnails");
 
-import { accessSync } from "fs";
-
-// クロードのバイナリパス
-const CLAUDE_BIN = (() => {
-  for (const p of ["/Users/tm/.local/bin/claude","/usr/local/bin/claude","/opt/homebrew/bin/claude"]) {
-    try { accessSync(p); return p; } catch {}
-  }
-  return "claude";
-})();
+// クロードのバイナリパス（Mac/Windows双方に対応した共通ヘルパーに委譲。
+// 以前は本ファイル固有にmacOSパスのみをハードコードしていたため、Windowsでは
+// 常に"claude"フォールバックとなり実行時にバイナリが見つからなかった）
+const CLAUDE_BIN = resolveClaudeBin();
 
 /** ローカルサムネイルが有効かチェック */
 async function checkLocalThumbnail(id) {

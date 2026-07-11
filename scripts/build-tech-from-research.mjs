@@ -12,6 +12,7 @@
  *         --dry-run で tech.json を更新せず結果のみ表示
  */
 import fs from "fs/promises";
+import os from "os";
 import path from "path";
 import { fileURLToPath } from "url";
 import { fetchKeyVisual } from "./tech-thumbs.mjs";
@@ -205,7 +206,7 @@ async function main() {
   // 日次パイプラインの通知用サマリー。0件でも必ず上書きする（stale再通知防止・Case Studyの教訓）
   try {
     await fs.writeFile(
-      "/tmp/researchman-tech-last-add.json",
+      path.join(os.tmpdir(), "researchman-tech-last-add.json"),
       JSON.stringify(
         { count: added.length, cases: added.map((a) => ({ id: a.id, title: a.title, year: a.year })) },
         null,

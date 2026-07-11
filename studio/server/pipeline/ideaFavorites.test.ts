@@ -13,7 +13,7 @@ import test from "node:test";
 import { loadFavSyncConfig } from "./ideaFavorites.js";
 
 test("loadFavSyncConfig: ファイルが無ければnull", async () => {
-  const cfg = await loadFavSyncConfig("/tmp/researchman-studio-test-nonexistent-favsync.json");
+  const cfg = await loadFavSyncConfig(path.join(os.tmpdir(), "researchman-studio-test-nonexistent-favsync.json"));
   assert.equal(cfg, null);
 });
 

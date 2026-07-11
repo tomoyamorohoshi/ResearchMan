@@ -3,15 +3,17 @@
  *
  * verify-deploy.mjs は home/サムネ/cases.json 新規ページのみ検査し、
  * Vercelビルド完了は保証しない（OPERATIONS.md「verify-deployの限界」）。
- * このスクリプトが /tmp/researchman-tech-last-add.json の追加分について
+ * このスクリプトが os.tmpdir()/researchman-tech-last-add.json の追加分について
  * /technology/{id} が 200 を返すまでポーリングする（最大360秒）。
  * 追加0件なら即 exit 0。
  */
 import fs from "fs/promises";
+import os from "os";
+import path from "path";
 import { httpGet } from "./verify-video.mjs";
 
 const SITE = "https://research-man.vercel.app";
-const SUMMARY_PATH = "/tmp/researchman-tech-last-add.json";
+const SUMMARY_PATH = path.join(os.tmpdir(), "researchman-tech-last-add.json");
 const MAX_TRIES = 24;
 const INTERVAL_MS = 15000;
 

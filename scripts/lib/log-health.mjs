@@ -1,9 +1,11 @@
 /**
  * パイプラインログの健全性解析（scripts/watchdog.mjs 用の共有ロジック）。
  *
- * ~/Library/Logs/researchman-auto.log 等は各jobの開始マーカー行（"===== Run start:" 等）で
- * 区切られている。このモジュールはログ本文を「run単位」に分割し、既知の日本語マーカー
- * 文字列（実ログから採取済み。一字一句そのまま）でoutcomeを分類する。
+ * ~/Library/Logs/researchman-auto.log（Windowsでは %USERPROFILE%\.researchman\logs\
+ * researchman-auto.log。scripts/windows/run-job.mjs が同じファイル名規則で書く）等は
+ * 各jobの開始マーカー行（"===== Run start:" 等）で区切られている。このモジュールは
+ * ログ本文を「run単位」に分割し、既知の日本語マーカー文字列（実ログから採取済み。
+ * 一字一句そのまま）でoutcomeを分類する。
  * 全関数は例外を投げない設計（ファイル無し/読めない場合は空扱い）。
  */
 import fs from "fs";
@@ -123,7 +125,7 @@ export function countTodayRejections(logsDir) {
   }
 }
 
-// ~/Library/Logs/researchman-<name>.log を安全に読む（無ければ空文字。例外を投げない）。
+// researchman-<name>.log を安全に読む（無ければ空文字。例外を投げない）。
 export function readLogSafe(logPath) {
   try {
     return fs.readFileSync(logPath, "utf-8");
@@ -132,7 +134,14 @@ export function readLogSafe(logPath) {
   }
 }
 
-// job種別 → 標準ログパスの対応（watchdog.mjsから使う）
+// job種別 → 標準ログパスの対応（watchdog.mjsから使う）。
+// macOS: ~/Library/Logs/researchman-<name>.log（launchd plistのStandardOutPathと同じ）
+// それ以外（Windows等）: ~/.researchman/logs/researchman-<name>.log
+//   （scripts/windows/run-job.mjs が同じ規則でログを書く。ジョブ名の短縮形
+//   auto/tech/ideas/tuneup/watchdog もplist時代の命名をそのまま踏襲する）
 export function defaultLogPath(name) {
-  return path.join(os.homedir(), "Library", "Logs", `researchman-${name}.log`);
+  if (process.platform === "darwin") {
+    return path.join(os.homedir(), "Library", "Logs", `researchman-${name}.log`);
+  }
+  return path.join(os.homedir(), ".researchman", "logs", `researchman-${name}.log`);
 }
