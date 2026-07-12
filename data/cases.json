@@ -1,5 +1,566 @@
 [
   {
+    "id": "the-legendary-posters-2014",
+    "title": "The Legendary Posters",
+    "summary": "Heineken「Legendary Posters」キャンペーンをTumblrベースの滑らかなトランジションで見せるポスターギャラリーサイト",
+    "client": "Heineken（Wieden+Kennedy Amsterdam キャンペーン）",
+    "agency": "Resn",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "Awwwards Site of the Day（2014年5月12日、制作:Resn／W+K Amsterdam）",
+    "year": "2014",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.awwwards.com/sites/the-legendary-posters",
+    "thumbnail": "/thumbnails/the-legendary-posters-2014.jpg",
+    "videoId": "",
+    "overview": "Heineken向けにWieden+Kennedy Amsterdamが手がけた『Legendary Posters』キャンペーンを紹介するギャラリーサイト。Tumblrを基盤に構築され、滑らかなトランジションで数々のポスタービジュアルを次々と切り替えながら見せる構成となっている。",
+    "background": "キャンペーンで制作された多数のポスタービジュアルを、単なる静止画の羅列ではなく、ブラウジング体験として魅力的に見せる場が必要とされたことから、専用のオンラインギャラリーとして本サイトが企画された。",
+    "execution": "Tumblrのプラットフォームを土台にしながら、独自のトランジション演出を加えることで、ポスターからポスターへとスクロール・クリックで滑らかに移動できる閲覧体験を実現。シンプルな操作でキャンペーンビジュアルの世界観を通覧できる構成とした。",
+    "evaluationImpact": "2014年5月12日にAwwwards Site of the Dayを受賞し、Resn／W+K Amsterdamによるキャンペーンサイトとしての完成度が評価された。ポスターの魅せ方をWeb上で拡張する試みとして、当時のギャラリーサイトの一つの型を示した。",
+    "relatedWorks": [],
+    "sources": [
+      "Posters"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Form/Website",
+      "Form/Print",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "the-hunger-games-mockingjay-part-2-interactive-poster-creato",
+    "title": "The Hunger Games: Mockingjay Part 2 – Interactive Poster Creator",
+    "summary": "Kinectとフェイストラッキングで来場者の顔に戦化粧を合成し、その場でオリジナルポスターを生成するComic-Con体験型インスタレーション",
+    "client": "Lionsgate（The Hunger Games: Mockingjay Part 2）",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "コンテンツ革新"
+    ],
+    "award": "The FWA 掲載（Case Study確認済み）",
+    "year": "2015",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://thefwa.com/cases/hunger-games-interactive-poster-creator",
+    "thumbnail": "/thumbnails/the-hunger-games-mockingjay-part-2-interactive-poster-creato.jpg",
+    "videoId": "",
+    "overview": "映画『ハンガー・ゲーム』シリーズのComic-Conブースで展開されたインタラクティブ体験。Kinectとフェイストラッキング技術により来場者の顔をスキャンし、モッキンジェイの戦化粧を合成した自分だけのキャラクターポスターをその場で生成した。",
+    "background": "劇中キャラクターのビジュアルアイデンティティである戦化粧を、ファン自身が「なりきる」形で体験できるようにすることで、単なる展示物の閲覧を超えたComic-Con来場者との接点をつくることが狙いとされた。",
+    "execution": "ブース内にKinectとカメラを設置し、来場者の顔をリアルタイムでトラッキング。モッキンジェイの戦化粧パターンを顔に合成した映像を生成し、その場でオリジナルの映画ポスター風ビジュアルとして出力する体験型インスタレーションとして構築された。",
+    "evaluationImpact": "The FWAのCase Studyとして掲載され、Kinectを用いたフェイストラッキングとポスター生成を組み合わせた体験設計が、映画プロモーションにおける参加型インスタレーションの一事例として紹介されている。",
+    "relatedWorks": [],
+    "sources": [
+      "Posters"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Installation",
+      "Form/Event",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "the-covid-art-museum-2021",
+    "title": "The Covid Art Museum",
+    "summary": "パンデミック下に生まれたアート作品を1点ずつポスターのような単一ビジュアルで見せる、世界初のコロナアートオンライン美術館",
+    "client": "The Covid Art Museum（世界初のコロナ隔離期間生まれのアート専門ミュージアム）",
+    "agency": "Synchronized Studio / Zhenya Rynzhuk",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "Awwwards Site of the Day + Developer Award（2021年5月5日）",
+    "year": "2021",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.awwwards.com/sites/the-covid-art-museum",
+    "thumbnail": "/thumbnails/the-covid-art-museum-2021.jpg",
+    "videoId": "",
+    "overview": "パンデミック下の隔離期間に生まれたアート作品だけを専門に扱う、世界初とされるオンライン美術館。1点1点をポスターのような単一ビジュアルとして大きく見せながら、限られた配色構成で次々に紹介していくアーカイブサイト。",
+    "background": "コロナ禍の外出制限下で数多くのアーティストがオンライン上に発表した作品群を、散逸させることなく一つの場所に集約し、後世に残るアーカイブとして体系立てて見せる必要性から企画された。",
+    "execution": "投稿されたアート作品をシンプルなグリッド／単一ビジュアル形式で掲載し、限定的な配色とタイポグラフィで統一。パンデミックというテーマ性を視覚的なトーンにも反映させながら、大量の作品を軽快に閲覧できる構成とした。",
+    "evaluationImpact": "2021年5月5日にAwwwards Site of the DayおよびDeveloper Awardを受賞。パンデミックという特殊な状況下で生まれた文化的アウトプットを、デジタルアーカイブという形で恒久的に残した点が評価された。",
+    "relatedWorks": [],
+    "sources": [
+      "Posters"
+    ],
+    "tags": [
+      "Form/Website",
+      "Form/Exhibition",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "another-graphic-2014",
+    "title": "Another Graphic",
+    "summary": "世界中のスタジオのポスター・エディトリアル作品を毎日1点ずつ蓄積するグラフィックデザインのキュレーション型アーカイブサイト",
+    "client": "Another Graphic（グラフィックデザイン・タイポグラフィのアーカイブ）",
+    "agency": "Studio Studio（コンセプト: Kabo Lee、デザイン: Jolien Demey, Alex Pagnoux, Aurélie Defez）",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2014",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://anothergraphic.org/",
+    "thumbnail": "/thumbnails/another-graphic-2014.jpg",
+    "videoId": "",
+    "overview": "Pentagramをはじめ世界中のデザインスタジオが手がけたポスターやエディトリアル作品を、毎日1点ずつ蓄積していくグラフィックデザイン・タイポグラフィのアーカイブサイト。グリッド表示とリスト表示を切り替えながら大量の作品を閲覧できる。",
+    "background": "世界各地のグラフィックデザイン作品がSNSやポートフォリオサイトに散在し埋もれてしまう状況に対し、日々更新されるキュレーション型のアーカイブとして一箇所に集約し、参照可能な資料として蓄積していくことが企図された。",
+    "execution": "Studio Studioがコンセプトとデザインを担当し、毎日新たな作品を追加していく運用形式を採用。グリッド／リストの表示切り替えのみのミニマルなUIとすることで、膨大なビジュアルアーカイブの視認性と検索性を両立させた。",
+    "evaluationImpact": "受賞歴はないが、日々更新されるキュレーション型アーカイブとしてデザイン業界で継続的に参照され、世界中のスタジオのポスター表現を横断的に俯瞰できる資料として機能している。",
+    "relatedWorks": [],
+    "sources": [
+      "Posters"
+    ],
+    "tags": [
+      "Form/Website",
+      "Form/Print",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "rca-records-website-2023",
+    "title": "RCA Records website",
+    "summary": "黒×オフホワイトのブルータルなグリッド上を歴代アーティストのビジュアルが流れる、RCA Recordsの実験的ブランドサイト",
+    "client": "RCA Records",
+    "agency": "Josephmark（Alex Naghavi）",
+    "categories": [
+      "コンテンツ革新",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "Awwwards Site of the Day（2023年4月4日）／ D&AD Wood Pencil（Branding部門、2023年）",
+    "year": "2023",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.awwwards.com/sites/rca-records",
+    "thumbnail": "/thumbnails/rca-records-website-2023.jpg",
+    "videoId": "",
+    "overview": "老舗レコードレーベルRCA Recordsの公式サイト。黒とオフホワイトを基調としたブルータルなグリッドレイアウトの上を、歴代アーティストのビジュアルが高速で流れ続けるギャラリーとして展開される、実験的なブランドサイト。",
+    "background": "音楽レーベルとしての歴史とアーティストラインナップの厚みを、静的なディスコグラフィー一覧ではなく、動きのあるビジュアル体験として提示するため、Josephmarkによる大胆なアートディレクションが採用された。",
+    "execution": "高コントラストな黒×オフホワイトのグリッドを基盤に、アーティストのビジュアルを高速スクロール・高速切り替えで流し込む演出を採用。ブルータリズム的なタイポグラフィと組み合わせ、レーベルの実験性を体現するデザインとした。",
+    "evaluationImpact": "2023年4月4日にAwwwards Site of the Dayを受賞したほか、D&AD Wood Pencil（Branding部門、2023年）も受賞。音楽レーベルサイトにおけるビジュアル表現の新たな型として高く評価された。",
+    "relatedWorks": [],
+    "sources": [
+      "Posters"
+    ],
+    "tags": [
+      "Form/Website",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "poster-generator-2024",
+    "title": "Poster Generator",
+    "summary": "p5.jsでテキスト入力からその場でポスタービジュアルを生成・ダウンロードできるミニマルなジェネレーティブツールサイト",
+    "client": "Nora Arnone（個人作品/ツール）",
+    "agency": "Nora Arnone",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "Awwwards Honorable Mention（2024年8月26日、作者: Nora Arnone）",
+    "year": "2024",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.awwwards.com/sites/poster-generator",
+    "thumbnail": "/thumbnails/poster-generator-2024.jpg",
+    "videoId": "",
+    "overview": "p5.jsで構築されたミニマルなマイクロサイト。テキストを入力すると、偶然性と制御を組み合わせたアルゴリズムによってその場でポスタービジュアルが生成され、ダウンロードできるツール型作品。",
+    "background": "個人のクリエイティブコーディング作品として、入力したテキストから予測不能でありながらデザインとして成立するビジュアルを自動生成する仕組みそのものを探求する目的で制作された。",
+    "execution": "p5.jsを用いてテキスト入力欄とジェネレーティブなレイアウトエンジンを構築。文字数やランダム要素に応じてタイポグラフィ・配色・構図が都度変化し、生成されたポスターはそのままダウンロード可能な仕様とした。",
+    "evaluationImpact": "2024年8月26日にAwwwards Honorable Mentionを受賞。生成的なポスターデザインをシンプルなツールとして提供する試みとして評価された。",
+    "relatedWorks": [],
+    "sources": [
+      "Posters"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Form/Website",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "pentagram-website-2017",
+    "title": "Pentagram website",
+    "summary": "世界的デザインスタジオPentagramの膨大な作品群を赤×黒×白のミニマルなグリッドで見せるポートフォリオサイト",
+    "client": "Pentagram（デザインスタジオ）",
+    "agency": "AREA 17",
+    "categories": [
+      "コンテンツ革新",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "Awwwards Site of the Day（2017年8月2日、制作:AREA 17）",
+    "year": "2017",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.awwwards.com/sites/pentagram",
+    "thumbnail": "/thumbnails/pentagram-website-2017.jpg",
+    "videoId": "",
+    "overview": "世界最大の独立系デザインスタジオPentagramの公式サイト。赤・黒・白によるミニマルな配色のグリッドポートフォリオとして、数々のポスター・アイデンティティ作品を紹介する。",
+    "background": "多分野にわたる膨大な数のプロジェクトを抱えるPentagramの作品群を、統一感を保ちながらも一つひとつの作品の強度を損なわない形で提示するサイトが必要とされ、AREA 17によるリニューアルが行われた。",
+    "execution": "赤をアクセントカラーとしたグリッドレイアウトを基盤に、各プロジェクトのポスタービジュアルを大きく見せる構成を採用。パートナー単位・プロジェクト単位での閲覧を可能にし、膨大な作品数を整理して提示した。",
+    "evaluationImpact": "2017年8月2日にAwwwards Site of the Dayを受賞。世界的デザインスタジオのポートフォリオサイトとして、グリッドとタイポグラフィによる作品提示の一つの規範を示した。",
+    "relatedWorks": [],
+    "sources": [
+      "Posters"
+    ],
+    "tags": [
+      "Form/Website",
+      "Form/Print",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "readymag-round-up-2024-2024",
+    "title": "Readymag round-up 2024",
+    "summary": "その年の優れたReadymag制作サイトをポスター風カードで並べる、電子ブルー×ピンクのビビッドな年間まとめマガジンサイト",
+    "client": "Readymag",
+    "agency": "Readymag（自社）",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "Awwwards Honorable Mention（2025年1月21日付与）",
+    "year": "2024",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.awwwards.com/sites/readymag-round-up-2024",
+    "thumbnail": "/thumbnails/readymag-round-up-2024-2024.jpg",
+    "videoId": "",
+    "overview": "Readymagが選出した、その年に制作された優れたReadymag製サイトを紹介する年間まとめサイト。電子ブルーとピンクのビビッドな配色でポスター風カードを並べるマガジン形式で構成される。",
+    "background": "自社ツールで制作された優れたサイト事例をユーザーコミュニティに向けて可視化し、ツールの表現力とクリエイターの活用事例を同時に伝える目的で毎年制作されている企画。",
+    "execution": "選出されたサイトをポスター風のカードデザインでまとめ、電子ブルー×ピンクの配色とタイポグラフィでマガジンのようなレイアウトを構成。各カードから各サイトへ遷移できる導線とした。",
+    "evaluationImpact": "2025年1月21日付でAwwwards Honorable Mentionを受賞。自社製作事例をキュレーションして見せる年間まとめ企画として、ツールブランドのショーケースの一形態を示した。",
+    "relatedWorks": [],
+    "sources": [
+      "Posters"
+    ],
+    "tags": [
+      "Form/Website",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "calarts-graphic-design-2024-2024",
+    "title": "CalArts Graphic Design 2024",
+    "summary": "CalArts Graphic Designプログラム在学生の卒業制作を360度回転ポートレートとギャラリーで見せる学生作品集サイト",
+    "client": "California Institute of the Arts（CalArts）Graphic Design プログラム",
+    "agency": "calartsgd（学生・プログラム制作）",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "Awwwards Honorable Mention（2024年7月1日）",
+    "year": "2024",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.awwwards.com/sites/calarts-graphic-design-2024",
+    "thumbnail": "/thumbnails/calarts-graphic-design-2024-2024.jpg",
+    "videoId": "",
+    "overview": "California Institute of the Arts（CalArts）Graphic Designプログラムの学生作品集サイト。在学生の卒業制作を360度回転ポートレートとギャラリーセクションで紹介する。",
+    "background": "プログラムに在籍する学生一人ひとりの制作物と人物像を、卒業年度ごとにまとめて発信する場として、青系アクセントを用いた学生主体の作品集サイトが制作された。",
+    "execution": "各学生の360度回転ポートレートを軸に、個々の卒業制作作品をギャラリーセクションで紹介する構成を採用。学生・プログラム自身の手による制作という点も特徴となっている。",
+    "evaluationImpact": "2024年7月1日にAwwwards Honorable Mentionを受賞。教育機関の学生作品集サイトとして、個人のビジュアルと作品を組み合わせて見せる手法が評価された。",
+    "relatedWorks": [],
+    "sources": [
+      "Posters"
+    ],
+    "tags": [
+      "Form/Website",
+      "Theme/Education",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "lions-good-news-2020-2020",
+    "title": "LIONS GOOD NEWS 2020",
+    "summary": "7つの花言葉をモチーフにカンヌライオンズ受賞PR事例をポスターフリップ演出で見せる、電通PRコンサルティングの体験型アーカイブ",
+    "client": "電通PRコンサルティング（カンヌライオンズPR部門10周年企画）",
+    "agency": "SHIFTBRAIN Inc.",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "Awwwards Site of the Day（2021年1月20日）／ FWA of the Day ／ CSS Design Awards Website of the Day（2021年1月19日）／ Red Dot Award: Best of the Best（Online/Website部門）",
+    "year": "2020",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.awwwards.com/sites/lions-good-news2020",
+    "thumbnail": "/thumbnails/lions-good-news-2020-2020.jpg",
+    "videoId": "",
+    "overview": "電通PRコンサルティングによるカンヌライオンズPR部門10周年企画サイト。7つの花言葉をモチーフに、歴代のカンヌライオンズ受賞PR事例を「ポスターが次々にフリップする」演出で紹介するアーカイブ。",
+    "background": "カンヌライオンズPR部門創設10周年を機に、これまでの優れたPR事例をまとめて振り返り、次の10年に向けたポジティブなメッセージを発信するアーカイブコンテンツとして企画された。",
+    "execution": "7つの花言葉をテーマ設定し、各テーマに紐づく受賞PR事例をポスター状のビジュアルとして次々にフリップさせながら見せる演出をSHIFTBRAIN Inc.が制作。体験しながら事例を辿れる構成とした。",
+    "evaluationImpact": "Awwwards Site of the Day、FWA of the Day、CSS Design Awards Website of the Day、Red Dot Award: Best of the Best（Online/Website部門）を受賞。国内発のPRアーカイブサイトとして国際的に高く評価された。",
+    "relatedWorks": [],
+    "sources": [
+      "Posters"
+    ],
+    "tags": [
+      "Form/Website",
+      "Theme/SocialGood",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "kenta-toshikura-portfolio-2021",
+    "title": "Kenta Toshikura Portfolio",
+    "summary": "WebGL/Three.jsの3D空間にポスター状のプロジェクトビジュアルを配置し無限スクロールで見せる個人ポートフォリオ",
+    "client": "Kenta Toshikura（個人）",
+    "agency": "Kenta Toshikura",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "Awwwards Site of the Day ／ The FWA掲載 ／ CSS Design Awards WOTY 2018 Finalist",
+    "year": "2021",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.awwwards.com/sites/kenta-toshikura-portfolio",
+    "thumbnail": "/thumbnails/kenta-toshikura-portfolio-2021.jpg",
+    "videoId": "",
+    "overview": "デザイナーKenta Toshikuraの個人ポートフォリオサイト。WebGL/Three.jsで構築した3D空間上に、Garden Eightなど手がけた案件のポスター状ビジュアルを配置し、無限スクロールで閲覧できる構成。",
+    "background": "自身が携わった数々のプロジェクトを、平面的なリスト表示ではなく、空間性のある3D体験として見せることで、ポートフォリオ自体をクリエイティブ表現の場とすることを企図して制作された。",
+    "execution": "WebGL/Three.jsを用いて3D空間を構築し、プロジェクトごとのポスター状ビジュアルを空間内に配置。スクロール操作に応じて空間内を無限に移動しながら作品を辿れるインタラクションを実装した。",
+    "evaluationImpact": "Awwwards Site of the Day、The FWA掲載、CSS Design Awards WOTY 2018 Finalistなど複数の賞を受賞。個人ポートフォリオにおける3D表現の先進事例として評価された。",
+    "relatedWorks": [],
+    "sources": [
+      "Posters"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/Website",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "no-music-no-life-2024",
+    "title": "NO MUSIC, NO LIFE. ポスターアーカイブ",
+    "summary": "タワーレコードが1997年から続く著名人起用ポスター約500点を年別タブとグリッドで一覧できる公式デジタルアーカイブ",
+    "client": "TOWER RECORDS（タワーレコード）",
+    "agency": "Someonesgarden",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://nomusicnolife.jp/poster/",
+    "thumbnail": "/thumbnails/no-music-no-life-2024.jpg",
+    "videoId": "",
+    "overview": "タワーレコードが1997年から展開する著名人起用ポスターキャンペーン「NO MUSIC, NO LIFE.」の公式デジタルアーカイブ。約500点のポスターを年別タブとグリッドレイアウトで一覧・閲覧できる。",
+    "background": "四半世紀以上にわたり蓄積されてきた膨大な数のキャンペーンポスターを、散逸させることなく体系立てて公開し、ブランドの歴史そのものを振り返れる場としてSomeonesgardenが制作した。",
+    "execution": "年別タブでポスターを絞り込めるほか、グリッドレイアウトで一覧表示し、各ポスターの詳細を確認できる構成とした。約500点というボリュームを軽快にブラウジングできるUIを実装している。",
+    "evaluationImpact": "受賞歴は確認されていないが、四半世紀にわたる著名人起用キャンペーンの全貌を公式に公開したアーカイブとして、音楽・広告双方の観点から参照価値の高いサイトとなっている。",
+    "relatedWorks": [],
+    "sources": [
+      "Posters"
+    ],
+    "tags": [
+      "Form/Website",
+      "Form/Print",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "sakazuki-2026",
+    "title": "sakazuki",
+    "summary": "深紅とベージュの配色でポスター的な静止画・動画を配し文化的ストーリーテリングを展開する「sakazuki」のブランドサイト",
+    "client": "sakazuki（日本の逸品と人をつなぐグローバル会員制サービス）",
+    "agency": "Shun Kudo / Yuta Aoki",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "コンテンツ革新"
+    ],
+    "award": "Awwwards Site of the Day（2026年6月14日）のみ確認。「Typography Honorable Mention」は一次ソース（Awwwardsページ）に記載なし、確認できず。",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.awwwards.com/sites/sakazuki",
+    "thumbnail": "/thumbnails/sakazuki-2026.jpg",
+    "videoId": "",
+    "overview": "日本の逸品と人をつなぐグローバル会員制サービス「sakazuki」のブランドサイト。深紅とベージュの配色で、ポスターのような静止画と動画を各セクションに配し、文化的ストーリーテリングを展開する。",
+    "background": "日本の職人による逸品や文化を海外の会員に届けるサービスとして、単なるEコマース的な見せ方ではなく、文化的な物語性を伝えるブランド体験としてサイトが構築された。",
+    "execution": "深紅とベージュを基調とした配色設計のもと、各セクションにポスター的な静止画とムービーを配置し、スクロールに応じて日本文化のストーリーを段階的に展開する構成とした。",
+    "evaluationImpact": "2026年6月14日にAwwwards Site of the Dayを受賞。日本の文化的価値をグローバル向けに翻訳して伝えるブランドサイトの手法として評価された。",
+    "relatedWorks": [],
+    "sources": [
+      "Posters"
+    ],
+    "tags": [
+      "Form/Website",
+      "Theme/Retail",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "junkbranding-v4-2026",
+    "title": "JUNKBRANDING v4",
+    "summary": "重力エフェクトを効かせたスクロールで複数のポスター状ビジュアルを次々に落とし込む、JunkBranding自社ブランディングサイト",
+    "client": "JunkBranding（自社）",
+    "agency": "JunkBranding",
+    "categories": [
+      "コンテンツ革新",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "Awwwards Nominee（2026年7月2日）",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.awwwards.com/sites/junkbranding-v4",
+    "thumbnail": "/thumbnails/junkbranding-v4-2026.jpg",
+    "videoId": "",
+    "overview": "JunkBranding自社の第4世代ブランディングサイト。セクション間に重力エフェクトを効かせたスクロール演出で、複数のポスター状ビジュアルを次々に落とし込むように見せる構成となっている。",
+    "background": "自社の制作物やクリエイティブ哲学を紹介するにあたり、単なる静的なポートフォリオではなく、スクロール自体を演出の一部として設計することで、ブランド自身の実験性を体現するサイトが企図された。",
+    "execution": "各セクション間の遷移に重力を用いたフィジックス的なアニメーションを実装し、ポスター状のビジュアルが次のセクションへ落下していくような演出でスクロール体験を構成した。",
+    "evaluationImpact": "2026年7月2日にAwwwards Nomineeを受賞。物理演算を用いたスクロール演出とポスタービジュアルの組み合わせが、自社ブランディングサイトの表現として評価された。",
+    "relatedWorks": [],
+    "sources": [
+      "Posters"
+    ],
+    "tags": [
+      "Form/Website",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "bicidea-2026",
+    "title": "BICIDEA",
+    "summary": "商品ビジュアルが画面から溢れ出すアニメーションとカラフルなギャラリーで製品群を見せる、BICIDEAのキャンペーンサイト",
+    "client": "ビックカメラ（BICIDEA オリジナルブランド）",
+    "agency": "17design.（イナデザイン） / Masayuki Daijima",
+    "categories": [
+      "コンテンツ革新",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "Awwwards Honorable Mention（2026年5月5日、制作:17design）",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.awwwards.com/sites/bicidea",
+    "thumbnail": "/thumbnails/bicidea-2026.jpg",
+    "videoId": "",
+    "overview": "ビックカメラのオリジナルブランド「BICIDEA」のキャンペーンサイト。商品ビジュアルが画面から溢れ出すようなアニメーションと、カラフルなギャラリー表示で製品群を紹介する構成となっている。",
+    "background": "オリジナルブランド商品のラインナップを、単なる商品一覧ではなく、視覚的なインパクトを伴う体験として提示することで、ブランドの個性を印象づけることが目的とされた。",
+    "execution": "商品ビジュアルが画面外に溢れ出すようなアニメーション演出を各所に採用し、カラフルなギャラリー表示で製品群を紹介。17design.が中心となりアートディレクションを担当した。",
+    "evaluationImpact": "2026年5月5日にAwwwards Honorable Mentionを受賞（制作:17design）。量販店発のオリジナルブランドサイトとして、ビジュアル表現の完成度が評価された。",
+    "relatedWorks": [],
+    "sources": [
+      "Posters"
+    ],
+    "tags": [
+      "Form/Website",
+      "Theme/Retail"
+    ]
+  },
+  {
+    "id": "ivress-spin-a-tale-2026",
+    "title": "IVRESS SPIN A TALE",
+    "summary": "黒一色を基調に複数の映像・ビジュアルをWebGLで回転させながら見せる、IVRESSのブランドストーリーテリングサイト",
+    "client": "IVRESS",
+    "agency": "Laugh Mind Co.,Ltd. / Utsubo",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "コンテンツ革新"
+    ],
+    "award": "Awwwards Site of the Day + Developer Award（2026年6月28日）",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.awwwards.com/sites/ivress-spin-a-tale",
+    "thumbnail": "/thumbnails/ivress-spin-a-tale-2026.jpg",
+    "videoId": "",
+    "overview": "ブランドIVRESSのストーリーテリングサイト「SPIN A TALE」。黒一色を基調に、複数の映像・ビジュアルセクションをWebGLで回転させながら見せる構成のブランドサイト。",
+    "background": "ブランドの世界観を単発の商品紹介にとどめず、一つの物語として体験させるため、Laugh Mind Co.,Ltd.とUtsuboにより映像とWebGL表現を組み合わせたサイトが制作された。",
+    "execution": "黒を基調としたビジュアルトーンのもと、各セクションの映像・ビジュアルをWebGLによる回転演出で切り替えながら展開。スクロールに応じてブランドストーリーが段階的に明らかになる構成とした。",
+    "evaluationImpact": "2026年6月28日にAwwwards Site of the DayおよびDeveloper Awardを受賞。WebGL表現を用いたブランドストーリーテリングサイトとして技術・表現両面で評価された。",
+    "relatedWorks": [],
+    "sources": [
+      "Posters"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/Website",
+      "Form/Film"
+    ]
+  },
+  {
+    "id": "planetooote-digital-obsession-2026",
+    "title": "PLANETOOOTE : Digital Obsession",
+    "summary": "架空の6カ国に国旗・国歌・景観を持たせ、空港風ナビゲーションで巡るtoteのブランド体験サイト「PLANETOOOTE」",
+    "client": "tote",
+    "agency": "tote",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "Awwwards Nominee（2026年7月5日）",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.awwwards.com/sites/planetooote-digital-obsession",
+    "thumbnail": "/thumbnails/planetooote-digital-obsession-2026.jpg",
+    "videoId": "",
+    "overview": "toteによる架空の6カ国を巡る体験サイト「PLANETOOOTE : Digital Obsession」。各国に国旗・国歌・景観を持たせ、ポスター的なビジュアルアイデンティティを空港風ナビゲーションで巡る構成。",
+    "background": "架空の世界観を通じてブランドの創造性を表現するにあたり、単一のビジュアルではなく、国家という単位でアイデンティティを作り込むことで、深みのある世界観を構築することが企図された。",
+    "execution": "6つの架空の国それぞれに固有の国旗・国歌・景観ビジュアルを設定し、空港の出発案内板を模したナビゲーションUIで各国のページを行き来できる構成とした。各国ページはポスター的なビジュアルアイデンティティで統一されている。",
+    "evaluationImpact": "2026年7月5日にAwwwards Nomineeを受賞。架空の世界観を国家単位で作り込んだブランド体験として、その世界観構築の完成度が評価された。",
+    "relatedWorks": [],
+    "sources": [
+      "Posters"
+    ],
+    "tags": [
+      "Form/Website",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "hiroto-sato-portfolio-2026",
+    "title": "Hiroto Sato Portfolio",
+    "summary": "ステッカー風インタラクションで多数のプロジェクトビジュアルを貼り重ねて見せる、Hiroto Satoの個人ポートフォリオ",
+    "client": "Hiroto Sato（個人）",
+    "agency": "Hiroto Sato",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "Awwwards Nominee（2026年6月17日）",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.awwwards.com/sites/hiroto-sato",
+    "thumbnail": "/thumbnails/hiroto-sato-portfolio-2026.jpg",
+    "videoId": "",
+    "overview": "デザイナー・開発者Hiroto Satoの個人ポートフォリオサイト。ステッカー風インタラクションとギャラリー表示で、手がけた多数のプロジェクトビジュアルを貼り重ねるように見せる構成となっている。",
+    "background": "自身が手がけたプロジェクト群を、単なるリスト表示ではなく、ステッカーを貼り重ねていくような遊び心のあるインタラクションとして提示することで、クリエイティブ開発者としての個性を伝えることが企図された。",
+    "execution": "各プロジェクトのビジュアルをステッカー風のUIパーツとして配置し、ドラッグやクリックなどのインタラクションで貼り重ねていくようなギャラリー体験を実装した。",
+    "evaluationImpact": "2026年6月17日にAwwwards Nomineeを受賞。個人ポートフォリオにおけるインタラクションデザインの一事例として評価された。",
+    "relatedWorks": [],
+    "sources": [
+      "Posters"
+    ],
+    "tags": [
+      "Form/Website",
+      "Theme/Art"
+    ]
+  },
+  {
     "id": "rataalada-com-the-batman-2022",
     "title": "rataalada.com（The Batman リドラー謎解きサイト）",
     "summary": "劇中エンドロール後のURLから謎解きに正解すると隠し映像へ辿り着く、リドラー視点のオウンドサイト型ARG",
