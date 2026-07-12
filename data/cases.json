@@ -10786,7 +10786,10 @@
       "Tech/Web",
       "Form/Website",
       "Theme/Entertainment"
-    ]
+    ],
+    "quarantined": true,
+    "quarantineReason": "link-dead(二重確認済): 404: https://lwlies.com/articles/cloverfield-viral-marketing-campaign/",
+    "quarantineTs": "2026-07-12T09:32:03.543Z"
   },
   {
     "id": "prometheus-weyland-industries",
