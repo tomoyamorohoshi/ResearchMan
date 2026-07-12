@@ -1,5 +1,290 @@
 [
   {
+    "id": "rataalada-com-the-batman-2022",
+    "title": "rataalada.com（The Batman リドラー謎解きサイト）",
+    "summary": "劇中エンドロール後のURLから謎解きに正解すると隠し映像へ辿り着く、リドラー視点のオウンドサイト型ARG",
+    "client": "The Batman（Warner Bros.）",
+    "agency": "Warner Bros. Pictures",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2022",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://screenrant.com/the-batman-rataalada-website-riddles-answers-reward-explained/",
+    "thumbnail": "/thumbnails/rataalada-com-the-batman-2022.jpg",
+    "videoId": "",
+    "overview": "映画『THE BATMAN』のエンドロール後に一瞬映るURL「rataalada.com」へアクセスすると、劇中の犯人リドラーからの謎かけが3問出題される仕掛け。正解するたびにZIPファイルとパスワードが段階的に解禁され、最終的にトーマス・ウェインにまつわる隠し映像へと辿り着く構成。",
+    "background": "劇中でリドラーがネット上に謎を仕込んで挑発するキャラクターとして描かれたことを踏まえ、その設定を映画本編の外にも延長し、観客自身がリドラーの謎かけに挑む体験として設計された。",
+    "execution": "エンドロール後の一瞬のカット映像内にURLを仕込み、気づいた観客だけがアクセスできる隠しサイトとして展開。3つの謎かけに正解するとZIPファイルとパスワードが順に解禁され、最後にゴッサム市の裏設定に関わる映像コンテンツが公開される多段階構成とした。",
+    "evaluationImpact": "本編の設定を忠実に踏襲したギミックが映画ファンやパズル愛好家の間で話題化し、Screen Rant等の映画メディアでも謎解きの内容や意味が詳しく解説されるなど、公開後も長く語られるオウンドサイト施策となった。",
+    "relatedWorks": [],
+    "sources": [
+      "Countdown"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Form/Website",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "the-price-of-morals-squid-game-the-challenge-2022",
+    "title": "The Price of Morals（Squid Game: The Challenge）",
+    "summary": "OOH連動の道徳観診断クイズで回答者を「モラルの傾き」データビジュアライゼーション上に段階マッピング",
+    "client": "Netflix",
+    "agency": "Your Majesty × BBH NYC",
+    "categories": [
+      "コンテンツ革新",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2022",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://yourmajesty.co/work/netflixsquid-game-the-challenge",
+    "thumbnail": "/thumbnails/the-price-of-morals-squid-game-the-challenge-2022.jpg",
+    "videoId": "",
+    "overview": "Netflix『Squid Game: The Challenge』のプロモーションとして展開された「The Price of Morals」は、OOH広告に掲載されたQRコードからアクセスするインタラクティブサイト。道徳観を問う診断クイズに回答すると、自身の「モラルの傾き」が視覚的なデータマップ上にリアルタイムで位置づけられていく仕組み。",
+    "background": "『イカゲーム』の世界観の核心にある「極限状況下での人間の道徳選択」というテーマを、リアリティ番組の宣伝としてより体感的に伝えるため、視聴者自身に問いを投げかけるインタラクティブ体験が企画された。",
+    "execution": "街中のOOH広告に配置されたQRコードからサイトへ誘導し、複数の道徳的ジレンマ設問に回答させる。回答結果は個人のスコアとしてだけでなく、他の参加者全体の回答傾向とあわせたデータビジュアライゼーションとして可視化され、自分の立ち位置を全体像の中で確認できる設計とした。",
+    "evaluationImpact": "OOHとデジタル診断コンテンツを連動させ、番組テーマを体験的に理解させる手法として、Your Majesty・BBH NYCの制作事例として紹介されている。参加型のデータビジュアライゼーションが番組の話題化に寄与した。",
+    "relatedWorks": [],
+    "sources": [
+      "Countdown"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/Website",
+      "Form/OOH"
+    ]
+  },
+  {
+    "id": "kid-a-mnesia-exhibition-2021",
+    "title": "KID A MNESIA EXHIBITION 特設サイト",
+    "summary": "【重複候補】3Dミュージアム内でアートワーク・音源を段階解禁する体験型サイト（既存id: radiohead-kid-a-mnesiaと同一事例）",
+    "client": "Radiohead / Thom Yorke",
+    "agency": "Stanley Donwood / Epic Games",
+    "categories": [
+      "空間体験",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2021",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://kida-mnesia.com/",
+    "thumbnail": "/thumbnails/kid-a-mnesia-exhibition-2021.jpg",
+    "videoId": "",
+    "overview": "Radiohead『KID A MNESIA EXHIBITION』特設サイト。3Dミュージアム内を迷路のように歩き回りながらアートワークと音源が少しずつ明かされていく体験型コンテンツ。本件は data/cases.json に既に \"radiohead-kid-a-mnesia\" として詳細登録済みのため、重複追加は不要と判断。参考としてURLのみ提示する。",
+    "background": "",
+    "execution": "",
+    "evaluationImpact": "",
+    "relatedWorks": [
+      {
+        "title": "KID A MNESIA EXHIBITION（Radiohead）",
+        "description": "本事例と同一。data/cases.json に既存登録済み（id: radiohead-kid-a-mnesia）。",
+        "url": "https://kida-mnesia.com/"
+      }
+    ],
+    "sources": [
+      "Countdown"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/Website",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "akb48-49th-2017",
+    "title": "AKB48 49thシングル 選抜総選挙 速報結果サイト",
+    "summary": "100位から1位まで開票順位を段階発表する速報サイトで、選抜総選挙のクライマックスを演出",
+    "client": "AKB48（AKS）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2017",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.akb48.co.jp/sousenkyo49th/quick_announcement",
+    "thumbnail": "/thumbnails/akb48-49th-2017.jpg",
+    "videoId": "",
+    "overview": "AKB48 49thシングル選抜総選挙の開票速報を伝えるオウンドサイト。100位から1位まで、下位から上位へと順位を段階的に発表していく伝統的なフォーマットで、視聴者・ファンの緊張感を最後まで持続させる構成とした。",
+    "background": "AKB48選抜総選挙は年に一度開催される人気投票企画で、開票結果の発表方法自体がファンの一大イベントとして定着している。速報サイトはテレビ中継と連動し、順位発表の緊張感をオンラインでも共有できるようにする狙いがあった。",
+    "execution": "サイトは下位順位から1位まで、発表されるたびにランキングを更新していく構成。テレビの生放送と連動しながら、会場外のファンもリアルタイムで結果を追える設計とし、SNSでの実況・拡散も促した。",
+    "evaluationImpact": "段階的な順位発表という手法は選抜総選挙の恒例フォーマットとして定着しており、ファンコミュニティの熱量を毎年最大化する仕組みとして継続的に活用されている。",
+    "relatedWorks": [],
+    "sources": [
+      "Countdown"
+    ],
+    "tags": [
+      "Form/Website",
+      "Form/Event",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "case-1lhhktd-2023",
+    "title": "『呪術廻戦』コミックス16巻発売記念特設サイト「渋谷事変之景」",
+    "summary": "「コミックス15巻までの内容を含む」と注記しつつキャラクタービジュアルを段階公開するネタバレ配慮型特設サイト",
+    "client": "『呪術廻戦』（芥見下々／集英社・週刊少年ジャンプ）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2023",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://promo.shonenjump.com/jujutsu/shibuya/",
+    "thumbnail": "/thumbnails/case-1lhhktd-2023.jpg",
+    "videoId": "",
+    "overview": "『呪術廻戦』コミックス16巻の発売を記念した特設サイト「渋谷事変之景」。作中屈指の激戦「渋谷事変」を題材に、キャラクタービジュアルなどのコンテンツを段階的に公開する構成としつつ、「コミックス15巻までの内容を含む」との注記でネタバレに配慮した設計とした。",
+    "background": "『呪術廻戦』はアニメ・コミックス双方で展開が進むメディアミックス作品であり、原作既読者とアニメ視聴者とで最新話の既読状況が異なる。ネタバレ範囲を明示しながら特設コンテンツを展開する必要があった。",
+    "execution": "サイト上部に「本サイトはコミックス15巻までの内容を含みます」という注記を掲示した上で、渋谷事変編に登場するキャラクターのビジュアルやコピーを順次公開。既読の巻数に応じて読者自身が閲覧を判断できる構成とした。",
+    "evaluationImpact": "ネタバレ配慮を明示しながら情報解禁を進める手法は、原作既読者・未読者が混在する人気連載作品の販促サイトにおける配慮のモデルケースとなっている。",
+    "relatedWorks": [],
+    "sources": [
+      "Countdown"
+    ],
+    "tags": [
+      "Form/Website",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "0-mappa-2021",
+    "title": "『劇場版 呪術廻戦 0』公式サイト（謎のカウントダウン）",
+    "summary": "公式サイトに突如現れた正体不明のカウントダウンがSNSで話題化し、0時に新キャスト情報を解禁",
+    "client": "『劇場版 呪術廻戦 0』（MAPPA／東映）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2021",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://jujutsukaisen-movie.jp/",
+    "thumbnail": "/thumbnails/0-mappa-2021.jpg",
+    "videoId": "",
+    "overview": "映画『劇場版 呪術廻戦 0』の公式サイトに、何の説明もないままカウントダウンタイマーが出現。用途を明かさない演出がSNS上で憶測を呼び話題化し、カウントダウンが0になった瞬間に新キャスト情報が解禁される仕掛けを実施した。",
+    "background": "続報を待つファンの期待感を最大化するため、単なる「発表予告」ではなく、正体不明のギミックとして情報を先出しし、SNS上での憶測・拡散を誘発する狙いがあった。",
+    "execution": "公式サイトのトップに突如タイマーが表示され、何のカウントダウンかは明かされないまま時間だけが刻まれる演出とした。カウントダウン終了と同時に新キャスト情報ページへ切り替わる設計とし、SNSでのリアルタイム実況を後押しした。",
+    "evaluationImpact": "情報を伏せたまま「気になる」状態を作り出す手法がSNS上で自然発生的な話題化を促し、正式発表当日のバズを最大化する仕組みとして機能した。",
+    "relatedWorks": [],
+    "sources": [
+      "Countdown"
+    ],
+    "tags": [
+      "Form/Website",
+      "Form/SNS",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "mixi-xflag-2023",
+    "title": "モンスターストライク10周年感謝キャンペーン「イイことありすぎて怖いよ」特設サイト",
+    "summary": "「10大恩返し」と称し記念コンテンツ・キャンペーンを順次公開していく10周年オウンドサイト",
+    "client": "モンスターストライク（MIXI／XFLAG）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2023",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.monster-strike.com/promotion/10th_anniversary/",
+    "thumbnail": "/thumbnails/mixi-xflag-2023.jpg",
+    "videoId": "",
+    "overview": "モンスターストライク10周年感謝キャンペーン特設サイト「イイことありすぎて怖いよ」。「10大恩返し」と銘打ち、記念コンテンツやキャンペーンを一度に出し切らず順次開催・公開していく構成の周年オウンドサイトとして展開された。",
+    "background": "長期運営タイトルの周年施策では、記念コンテンツを一斉公開すると話題が一過性で終わりやすい課題がある。感謝の企画を複数回に分けて展開することで、周年期間を通じて継続的な話題喚起を狙った。",
+    "execution": "サイトでは「10大恩返し」として10個の記念施策・キャンペーンをカウント形式で提示し、各施策の詳細は開催タイミングにあわせて順次解禁。プレイヤーは次に何が発表されるかを楽しみに継続してサイトへアクセスする設計とした。",
+    "evaluationImpact": "周年施策を一度に消化せず段階的に展開する手法により、長期にわたるユーザーの関心維持とオウンドサイトへの回遊を実現。人気タイトルの周年マーケティングにおける定番フォーマットの一例となっている。",
+    "relatedWorks": [],
+    "sources": [
+      "Countdown"
+    ],
+    "tags": [
+      "Form/Website",
+      "Form/Event",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "case-1lvagqf-2026",
+    "title": "映画『ゴジラ-0.0』ティザーカウントダウンサイト",
+    "summary": "「0453」のような不穏な数字がゼロへ向けてカウントダウンし、ファーストティザー公開まで引っ張る公式サイト",
+    "client": "映画『ゴジラ-0.0』（東宝）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://godzilla-minuszero.toho-movie.jp/",
+    "thumbnail": "/thumbnails/case-1lvagqf-2026.jpg",
+    "videoId": "",
+    "overview": "映画『ゴジラ-0.0』の公式サイトに設置されたティザーカウントダウン。「0453」のような一見意味不明な数字が徐々にゼロへ近づいていく演出で、ファーストティザー映像の公開タイミングまでユーザーの関心を引っ張る仕掛けとした。",
+    "background": "『ゴジラ』シリーズの新作は公開情報の解禁自体が大きな話題となるため、単なる公開日告知ではなく、数字の意味を憶測させる不穏な演出でファン心理を刺激する狙いがあった。",
+    "execution": "公式サイトに表示される数字がランダムにも見える減算を繰り返しながらゼロへ向かうよう設計され、ゴジラ作品らしい不穏さを数字の動きだけで演出。カウントダウンがゼロに達したタイミングでファーストティザー映像が解禁される構成とした。",
+    "evaluationImpact": "意味を明かさない数字演出によってファンの考察・拡散を誘発し、ティザー公開当日への期待値を高める手法として機能した。",
+    "relatedWorks": [],
+    "sources": [
+      "Countdown"
+    ],
+    "tags": [
+      "Form/Website",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "case-u0ttls-2026",
+    "title": "初音ミク「マジカルミライ 2026」特設サイト",
+    "summary": "メインビジュアル解禁を皮切りに、リン・レン・ルカ・MEIKO・KAITOの衣装を順次公開する年次イベント特設サイト",
+    "client": "初音ミク（クリプトン・フューチャー・メディア）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://magicalmirai.com/2026/",
+    "thumbnail": "/thumbnails/case-u0ttls-2026.jpg",
+    "videoId": "",
+    "overview": "初音ミク「マジカルミライ 2026」の特設サイト。メインビジュアルの公開を皮切りに、リン・レン・ルカ・MEIKO・KAITOそれぞれの新衣装デザインをキャラクターごとに順次公開していく年次恒例のイベント特設サイトとして展開された。",
+    "background": "「マジカルミライ」は初音ミクをはじめとするキャラクターの新衣装がファンの大きな関心事となる年次イベント。全キャラクターを一度に発表するのではなく、順番に公開することで会期までの話題を継続させる狙いがある。",
+    "execution": "サイト上でまずメインビジュアルを公開し、以降キャラクターごとに新衣装のイラストを一体ずつ順次解禁。各キャラクターのファン層に向けて公開タイミングを分散させることで、SNS上での話題化をキャラクターごとに複数回発生させる設計とした。",
+    "evaluationImpact": "キャラクター単位での段階的な情報解禁は「マジカルミライ」シリーズの定番手法として定着しており、毎年のビジュアル公開が独立した話題として機能する設計は、キャラクターIP展開における周年・年次施策の参照事例となる。",
+    "relatedWorks": [],
+    "sources": [
+      "Countdown"
+    ],
+    "tags": [
+      "Form/Website",
+      "Form/Event",
+      "Theme/Music"
+    ]
+  },
+  {
     "id": "unleash-the-wild-fi-ultra-launch-campaign-2026",
     "title": "Unleash the Wild (Fi Ultra Launch Campaign)",
     "summary": "犬をフォトリアルAI生成した世界初のCMとされる、Fi Ultra(Starlink対応ドッグトラッカー)のローンチ映像",

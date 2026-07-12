@@ -30,6 +30,7 @@ export const RESEARCH_SOURCES: ResearchSource[] = [
   { tag: "Promo Campaign", kind: "order", label: "Promo Campaign" },
   { tag: "Tech Music", kind: "order", label: "Tech Music" },
   { tag: "Motion Tech", kind: "order", label: "Motion Tech" },
+  { tag: "Countdown", kind: "order", label: "Countdown" },
   { tag: "Radar", kind: "radar", label: "Radar" },
 ];
 
