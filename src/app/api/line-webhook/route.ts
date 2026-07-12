@@ -5,7 +5,11 @@
 //
 // 署名検証はここでは行わずStudio側に委ねる（X-Line-Signatureと生ボディを
 // そのまま転送するため検証可能性は保たれる。secretをVercelに置かない）。
-// Studioに届かない場合は502を返し、LINE側のWebhook再送（有効化時）に委ねる。
+//
+// LINEへは即時200を返し、転送はafter()でレスポンス後に行う。コールドスタート時に
+// 転送を待つとLINE側タイムアウトで配信失敗扱いになるため（切替直後の実測で8回中1回）。
+// 転送失敗はVercelのログにのみ残る（LINE再送は発火しない点は許容するトレードオフ）。
+import { after } from "next/server";
 import { request as httpsRequest } from "node:https";
 
 const TARGET_URL =
@@ -15,7 +19,8 @@ const TARGET_URL =
 // Funnel入口のIPv6経路が不安定なためIPv4を強制する
 const FORCE_IPV4 = 4;
 const FORWARD_TIMEOUT_MS = 8000;
-const FORWARD_ATTEMPTS = 2;
+const FORWARD_ATTEMPTS = 3;
+const RETRY_DELAY_MS = 2000;
 
 export const dynamic = "force-dynamic";
 
@@ -52,24 +57,29 @@ function forwardOnce(rawBody: Buffer, signature: string | null): Promise<Forward
   });
 }
 
-export async function POST(request: Request) {
-  const rawBody = Buffer.from(await request.arrayBuffer());
-  const signature = request.headers.get("x-line-signature");
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
+async function forwardWithRetries(rawBody: Buffer, signature: string | null): Promise<void> {
   let lastError: unknown;
   for (let attempt = 1; attempt <= FORWARD_ATTEMPTS; attempt++) {
     try {
       const result = await forwardOnce(rawBody, signature);
-      return new Response(result.body, {
-        status: result.status,
-        headers: { "content-type": "application/json" },
-      });
+      if (result.status < 500) return;
+      lastError = new Error(`studio returned ${result.status}: ${result.body}`);
     } catch (err) {
       lastError = err;
     }
+    if (attempt < FORWARD_ATTEMPTS) await sleep(RETRY_DELAY_MS);
   }
-  console.error("[api/line-webhook] forward failed", lastError);
-  return Response.json({ error: "studio unreachable" }, { status: 502 });
+  console.error("[api/line-webhook] forward failed after retries", lastError);
+}
+
+export async function POST(request: Request) {
+  const rawBody = Buffer.from(await request.arrayBuffer());
+  const signature = request.headers.get("x-line-signature");
+
+  after(() => forwardWithRetries(rawBody, signature));
+  return Response.json({ ok: true });
 }
 
 export async function GET() {
