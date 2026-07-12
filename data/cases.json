@@ -1,5 +1,253 @@
 [
   {
+    "id": "unleash-the-wild-fi-ultra-launch-campaign-2026",
+    "title": "Unleash the Wild (Fi Ultra Launch Campaign)",
+    "summary": "犬をフォトリアルAI生成した世界初のCMとされる、Fi Ultra(Starlink対応ドッグトラッカー)のローンチ映像",
+    "client": "Fi (smart pet tech / dog tracker)",
+    "agency": "Dolsten & Co.",
+    "categories": [
+      "AIクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://lbbonline.com/news/AI-Follows-Dogs-Into-the-Wild-in-Fis-Smart-Pet-Tech-Campaign",
+    "thumbnail": "/thumbnails/unleash-the-wild-fi-ultra-launch-campaign-2026.jpg",
+    "videoId": "4V_zUxXYIos",
+    "overview": "スマートペットテック企業FiとAIファーストのクリエイティブスタジオDolsten & Coが制作した「Unleash the Wild」は、犬をモデルにした世界初のフォトリアルAI生成CMとされる。2026年7月8日公開。物理制作の制約を超え、犬たちが手つかずの自然を駆け巡る様を描き、新製品Fi Ultraのローンチを訴求する。",
+    "background": "FiはStarlink経由のT-Satellite対応で追跡可能な世界初のコンシューマー向けドッグトラッカー「Fi Ultra」を2026年7月8日に発表。独立系ブランドの予算でハイエンドな実写級映像を実現する手段として、AI-firstスタジオDolsten & Coとのパートナーシップを選択した。",
+    "execution": "何百枚もの実在の犬の画像を学習させ、動物行動学者の監修で犬種ごとの歩様・仕草の正確性を追求。真紅の砂岩渓谷、氷河が削った山稜、霧に包まれた湿地帯など北米の未踏の地を犬たちがハイキング・狩猟・牧畜さながらに駆ける様子を描写。実写らしいレンズの汚れやハンドヘルド風のカメラ揺れも加え、AI生成であることを感じさせない仕上げを狙った。",
+    "evaluationImpact": "「Emmy級のクオリティを独立系ブランドの予算で実現した」と評される一方、Creative Bloq等では「AIスロップではない」と謳う手法自体が、視聴者に生成物の“見破りゲーム”を強いているとの批判的視点も提示され、AI広告の信頼性を巡る議論の材料となった。",
+    "relatedWorks": [
+      {
+        "title": "Fi Ultra Dog Tracker (製品発表)",
+        "description": "T-Satellite/Starlink対応で全米をカバーする世界初のコンシューマー向けドッグトラッカー製品発表",
+        "url": "https://www.businesswire.com/news/home/20260708090938/en/Fi-Launches-The-Worlds-First-Consumer-Wearable-Powered-by-T-Satellite-With-Starlink---The-New-Fi-Ultra-Dog-Tracker"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Film",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "relief-on-repeat-heidi-ai-healthcare-brand-platform-2026",
+    "title": "Relief, on Repeat (Heidi AI Healthcare Brand Platform)",
+    "summary": "AI医療プラットフォームHeidiが米Big Pharma広告の様式美を逆手に取り「安堵感」を訴求するブランド刷新",
+    "client": "Heidi",
+    "agency": "Cocogun",
+    "categories": [
+      "カルチャーインサイト",
+      "AIクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル",
+      "北米"
+    ],
+    "link": "https://campaignbrief.com/leading-ai-health-platform-heidi-collaborates-with-cocogun-on-new-global-brand-campaign/",
+    "thumbnail": "/thumbnails/relief-on-repeat-heidi-ai-healthcare-brand-platform-2026.jpg",
+    "videoId": "",
+    "overview": "AI臨床事務支援ツールHeidiが、シドニー発の広告会社Cocogunと組み新グローバルブランドプラットフォーム「Relief, on Repeat」を発表。米国の大手製薬広告特有の様式を逆手に取り、臨床医が実際に得る「安堵感」をユーモラスかつ人間味あるトーンで描いた。BVOD・YouTube・OOH・ラジオ・デジタルで2026年7月7日にグローバル展開を開始した。",
+    "background": "Heidiは医療従事者の事務作業を自動化するAIケアパートナーで、試用した臨床医の98%が継続利用するという定着率の高さが強み。競争が激しい米国市場での認知獲得とブランド好感度構築を課題として、従来のヘルスケア広告に多い生真面目でクリシェ的な表現からの脱却を目指した。",
+    "execution": "スウェグと温かみを併せ持つ架空のChief Medical Officerを主役に、米Big Pharma広告特有の言い回しやトロープ（副作用の羅列的ナレーション等）を逆手に取ったユーモラスな映像を制作。監督はAlex Roberts（FINCH）、スチール撮影はCara O'Dowd（Chee Productions）が担当し、米国メディア戦略・バイイングはTRGが手がけた。",
+    "evaluationImpact": "ヘルスケア・製薬広告にありがちな過度に誠実で紋切り型の表現を皮肉ることで、AIヘルスケアブランドとしての差別化を図った事例。Fierce Pharma/Fierce Healthcareなど医療業界メディアでも取り上げられ、カテゴリーの表現規範に一石を投じる試みとして注目された。",
+    "relatedWorks": [
+      {
+        "title": "Side Effects May Include... | Relief, On Repeat | Heidi Brand Campaign",
+        "description": "キャンペーンのメイン映像。米国製薬広告特有の「副作用の羅列」トロープをパロディ化",
+        "url": "https://www.youtube.com/watch?v=VOpKNCSvWL4"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Film",
+      "Form/OOH"
+    ]
+  },
+  {
+    "id": "case-19cfizp-2026",
+    "title": "超探偵シャーロックちゃん2 ～爆炎の因習村～",
+    "summary": "発売前に事件編のみ無料公開し、真相当てをSNS投稿で競う参加型ミステリーゲームとして発表",
+    "client": "おんねんちゃんねる",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://automaton-media.com/articles/newsjp/20260711-454525/",
+    "thumbnail": "/thumbnails/case-19cfizp-2026.jpg",
+    "videoId": "",
+    "overview": "おんねんちゃんねるが手がけるミステリーADV『超探偵シャーロックちゃん2 ～爆炎の因習村～』（2027年発売予定、Steam）を発表。発売に先立ち「事件編」のみを無料公開し、プレイヤーが真相解明前に推理をSNS上で投稿・共有できる参加型企画として展開する。",
+    "background": "本作は2025年発売の『超探偵シャーロックちゃん ～掟破りのミスディレクション～』の続編。前作でも読者への挑戦状形式や無料体験版配布、賞品付き推理募集企画を実施しており、その手法を続編でも踏襲・発展させた形。",
+    "execution": "花火生産で栄えた山奥の村「灰怒村」で起きる連続殺人事件を舞台に、主人公・今井沙羅子（シャーロックちゃん）が謎に挑む。発売前に事件の大枠と容疑者情報のみを収めた「事件編」を無料配信し、真相は製品版リリースまで明かさない設計。プレイヤーはSNSで推理を投稿し、開発元による考察投稿企画では優れた推理に賞品も用意される。",
+    "evaluationImpact": "本編発売前に謎解きパートだけを切り出して無料公開し、SNS上の推理投稿を巻き込むことで、発売前の期待醸成とコミュニティ形成を同時に狙う手法。ミステリーゲームというジャンル特性を生かし、プレイヤー自身が「探偵」として発売前から作品世界に参加できる点が特徴。",
+    "relatedWorks": [
+      {
+        "title": "超探偵シャーロックちゃん ～掟破りのミスディレクション～",
+        "description": "2025年7月にSteamでリリースされた前作。読者への挑戦状形式や体験版無料配布、賞品付き推理募集企画を実施した。",
+        "url": "https://store.steampowered.com/app/3456830/_/?l=japanese"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/App",
+      "Form/SNS"
+    ]
+  },
+  {
+    "id": "cinderia-2026",
+    "title": "『Cinderia』大型アップデート",
+    "summary": "ダーク童話ローグライト『Cinderia』が人気キャラ「イスダラ」を調整、第2章マップを10種追加する大型アプデを配信",
+    "client": "NPC Entertainment / MyACG Studio",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://automaton-media.com/articles/newsjp/20260711-454516/",
+    "thumbnail": "/thumbnails/cinderia-2026.jpg",
+    "videoId": "",
+    "overview": "早期アクセス中のダークファンタジー・ローグライトアクション『Cinderia』が2026年7月7日にバージョン0.6.10を配信。人気だが操作難度の高かったキャラクター「イスダラ」のパリィ猶予拡大や無敵時間付与などの調整に加え、第2章に新マップを10種類追加し、遊びやすさとコンテンツ量を大幅に強化した。",
+    "background": "『Cinderia』は魔女に支配された世界を舞台に4人の魔女少女が戦うダークファンタジーローグライトで、2026年3月30日にSteam早期アクセス版が配信された。180種以上のスキルと130種以上の装備を組み合わせる爽快な戦闘が支持され、4月には販売本数10万本を突破。開発元は3〜5日に一度の頻度でアップデートを継続しており、今回で10回目の大型更新となった。",
+    "execution": "キャラクター「イスダラ」はクセの強さで知られていたため、パリィ成功受付時間を0.32秒から0.4秒へ拡大し、成功後に0.5秒の無敵時間を新設。新アビリティ（攻撃力上昇・敵凍結）追加やダッシュの当たり判定改善で操作性を底上げした。あわせて第2章マップを10種追加し、レジェンダリーアイテムのドロップ調整や第4章双子ボスの難度調整、メモリ使用量削減の最適化も同時実施した。",
+    "evaluationImpact": "早期アクセスながらSteamレビューは「非常に好評」を維持し、頻繁なアップデートでプレイヤーの不満点（キャラ間の難度格差）に迅速に対応する運営姿勢がコミュニティから評価されている。個別キャラの操作性を継続的にチューニングしながらコンテンツ拡張を並行する開発体制は、早期アクセス型インディーゲームの継続運営モデルの一例として参考になる。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/App",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "sea-of-time-tohoku-2026",
+    "title": "「時の海 – 東北」プロジェクト《Sea of Time – TOHOKU》公開実証実験",
+    "summary": "福島県富岡町に恒久設置予定の宮島達男作品を、竣工前に実物大で検証する公開実証実験を東京・日本橋で実施。",
+    "client": "「時の海 – 東北」プロジェクト実行委員会 / 一般財団法人福島富岡文化財団",
+    "agency": "アーティスト：宮島達男 / 建築設計：田根剛",
+    "categories": [
+      "空間体験",
+      "社会包摂"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.adfwebmagazine.jp/art/sea-of-time-tohoku-by-tatsuo-miyajima-public-demonstration-in-nihonbashi/",
+    "thumbnail": "/thumbnails/sea-of-time-tohoku-2026.jpg",
+    "videoId": "",
+    "overview": "現代美術家・宮島達男の恒久設置作品《Sea of Time – TOHOKU》の最終検証プロセスを、日本橋三井ホールにて2026年7月4・5・11・12日の4日間、一般公開した。作品は福島県富岡町に建設予定の「時の海 東北 美術館」（田根剛設計、2029年竣工予定）に恒久設置される。",
+    "background": "東日本大震災の犠牲者の鎮魂と震災の記憶の継承、未来を共につくることを願い、2015年から始動したアートプロジェクト。「時の海 – 東北」プロジェクト実行委員会と一般財団法人福島富岡文化財団が主体となり、約10年の構想を経て美術館建設と作品完成に向けた最終段階を迎えている。",
+    "execution": "3,000名の参加者が、生命の永遠性を象徴する「9から1」へカウントするLEDカウンターガジェットに、それぞれの想いを込めてタイム（秒数）を設定。3,000個のLED照光デバイスが22.5×40mの水盤に配置され、静かに波打つ東北の海を想起させる光景を創出する。公開実証実験ではLEDの光の密度と空間バランス、外光の影響、暗所での鑑賞動線・安全性を検証した。",
+    "evaluationImpact": "アート作品の恒久設置に先立ち、本番同等の規模・環境で一般来場者を入れた実証実験を行う試みは珍しく、入場料（1,800円）全額を美術館設立準備に充てる仕組みも含め、震災復興と文化施設整備を市民参加型で進めるプロセス自体が注目される。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Installation",
+      "Form/Exhibition",
+      "Theme/Art",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "matthew-mallow-somewhere-2026",
+    "title": "Matthew Mallow 個展「Somewhere」",
+    "summary": "世界各地のヴィンテージ家具とキャラクター作品を組み合わせ、\"どこか\"という心象風景を空間ごと体感させる個展",
+    "client": "NICK WHITE GALLERY",
+    "agency": "Matthew Mallow",
+    "categories": [
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://artscape.jp/exhibitions/72598/",
+    "thumbnail": "/thumbnails/matthew-mallow-somewhere-2026.jpg",
+    "videoId": "",
+    "overview": "1991年愛知県出身のアーティスト、Matthew Mallowによる個展「Somewhere」が2026年7月11日〜26日、南青山のNICK WHITE GALLERYで開催。キャンバス作品、ZINE、フィギュアなどマローの世界観を構成する多様な作品を、世界各地から集めた異なる時代のヴィンテージ家具とともに展示する小規模インスタレーション。観覧無料。",
+    "background": "マローは旅や帰郷にまつわる「心の風景」をテーマに作品を制作してきたアーティスト。本展のタイトル「Somewhere」は特定の場所を指すのではなく、\"誰かにとっての旅先であり、誰かにとっての故郷\"を象徴する概念として設定されており、鑑賞者一人ひとりが自身の「どこか」を思い起こすことを意図した企画として構想された。",
+    "execution": "ギャラリー空間に世界各地から集めた異なる時代・産地のヴィンテージ家具を配置し、その中にキャンバス作品・ZINE・フィギュアといった多様なフォーマットのマロー作品を織り込んで展示。単なる壁面展示ではなく、家具と作品が一体となった生活空間的なインスタレーションとして構成することで、絵画世界と現実の空間の境界を曖昧にしている。",
+    "evaluationImpact": "平面作品を家具というオブジェクトと組み合わせることで、キャラクター世界観を「見る」だけでなく「その場に居る」体験へと拡張した点が特徴。ホワイトキューブ的な展示から離れ、生活のディテールを持つ空間演出によって観客の記憶や個人的な情景の想起を促す手法は、小規模ギャラリー展示における空間体験デザインの一例といえる。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Form/Installation",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "open-game-fest-2026-2026",
+    "title": "OPEN GAME FEST 2026",
+    "summary": "京都で第2回開催。企業登壇・60作品超のインディー展示に加え来場者投票制「OPEN GAME AWARD」を新設したゲーム開発者向け無料フェス。",
+    "client": "OPEN GAME FEST 実行委員会 / 京都コンピュータ学院",
+    "agency": "共催：indie-us games ほか",
+    "categories": [
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://gamemakers.jp/article/2026_06_05_139014/",
+    "thumbnail": "/thumbnails/open-game-fest-2026-2026.jpg",
+    "videoId": "",
+    "overview": "2026年7月11日、京都コンピュータ学院京都駅前校で開催されたゲーム開発者・志望学生向け無料イベント。Indie-us Games主催、第2回。カンファレンスセッション5件、ハンズオン4件に加え、5・6階を使い62ブース規模のインディーゲーム・学生作品展示を実施した。",
+    "background": "2025年5月に第1回が開催され、悪天候下でも766人が来場する反響を得た。ゲーム業界志望者と企業側の相互理解不足、インディー開発者の発表機会不足という課題感から、業界人材の成長支援と開発モチベーション向上を掲げ第2回開催に至った。",
+    "execution": "エピック ゲームズ ジャパンやPhoenixxなど企業登壇者によるセッション、ゲーム開発・映像制作のハンズオン体験に加え、来場者投票で受賞作を決める新企画「OPEN GAME AWARD」を導入。会場のKCGは学生スタッフによる運営サポートも担った。",
+    "evaluationImpact": "1回目の来場実績を踏まえ、展示規模拡大と来場者参加型の表彰企画を新設した点が特徴。教育機関を会場にした産学連携型の無料イベントとして、インディー開発者と企業・学生の接点を継続的に生む場になっている。",
+    "relatedWorks": [
+      {
+        "title": "OPEN GAME FEST 2025（第1回）",
+        "description": "2025年5月17日、同じく京都コンピュータ学院京都駅前校で開催された前身イベント。悪天候にもかかわらず766人が来場した。",
+        "url": "https://indie-us-games.connpass.com/event/348319/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/Event",
+      "Form/Exhibition",
+      "Theme/Education",
+      "Theme/Entertainment"
+    ]
+  },
+  {
     "id": "for-the-honour-feat-nix-northwest-2025",
     "title": "For The Honour (feat. Nix Northwest)",
     "summary": "iPhoneのLiDARスキャンを手作業でアニメ化、1人の監督がPS2風サイバーパンクCGIで作り上げたMV",
