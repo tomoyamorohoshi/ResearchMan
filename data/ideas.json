@@ -1881,5 +1881,203 @@
         "desc": "AXAが保険の約款にたった3語を追加し、社会問題への対応を実際の制度変更として実現した事例。"
       }
     ]
+  },
+  {
+    "id": "2026-07-12-1",
+    "date": "2026-07-12",
+    "title": "当事者の声を学習データに",
+    "pattern": "文脈×技術",
+    "seed": "障がい当事者の写真でAIを再教育したDear AIの発想を、ささやきでも声を拾うNasoVoceに掛け合わせれば、発話が難しい人の「声にならない声」を直接学習データ化できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "dear-ai-disability-representation-campaign-2026",
+        "title": "Dear AI（disability representation campaign）",
+        "desc": "義肢装着者本人の写真でAIを再学習し、偏った障がい者表象を当事者主導で是正した事例。"
+      },
+      {
+        "type": "tech",
+        "id": "nasovoce",
+        "title": "NasoVoce",
+        "desc": "スマートグラスの鼻当てにマイクを仕込み、ほとんど声を出さない囁きでも認識できる発話インターフェース。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-12-2",
+    "date": "2026-07-12",
+    "title": "幸運指数をライブ可視化",
+    "pattern": "文脈×技術",
+    "seed": "自分が観に行くと勝つというジンクスを数値化したLucky Fan Indexに、Rerunのリアルタイム時系列可視化を掛け合わせれば、試合中にファンごとの「運の流れ」をライブダッシュボードで見せられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "wisla-krakow-lucky-fan-index",
+        "title": "Lucky Fan Index",
+        "desc": "ファンの「応援すると勝つ」ジンクスをAIで数値化し、一人ひとりに固有の幸運指数を付けた施策。"
+      },
+      {
+        "type": "tech",
+        "id": "rerun-booster-robotics-k1",
+        "title": "Rerun × Booster Robotics K1",
+        "desc": "時系列データを扱うOSS可視化ツールで、ロボットのセンサや3D状態をリアルタイムに表示できる。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-12-3",
+    "date": "2026-07-12",
+    "title": "旅の効能を振動で処方",
+    "pattern": "文脈×技術",
+    "seed": "医師が「処方できる国」として打ち出したThe Swedish Prescriptionの発想に、映像の動きから振動を自動生成するHapticLensを掛け合わせれば、旅先映像を見るだけで“癒やしの処方箋”を体感させられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "visit-sweden-the-swedish-prescription",
+        "title": "The Swedish Prescription",
+        "desc": "医師が旅行を処方できる国としてスウェーデンを打ち出した、世界初のウェルネス観光キャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "hapticlens",
+        "title": "HapticLens",
+        "desc": "映像の細かな動きから振動を自動生成し、1個の振動子で映像に触感を付けられるオーサリングツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-12-4",
+    "date": "2026-07-12",
+    "title": "容器がそのまま動画に",
+    "pattern": "文脈×技術",
+    "seed": "フライドポテトの箱をディッパーに変えたHEINZ Dipperのように容器を機能化する発想に、HTMLを書くだけで動画になるHyperFramesを掛け合わせれば、パッケージから開くページ自体が調理動画になる体験を作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "heinz-heinz-dipper",
+        "title": "The HEINZ Dipper",
+        "desc": "フライドポテトの箱にケチャップディッパーを内蔵し、外出先のディッピング問題を解決した包装広告。"
+      },
+      {
+        "type": "tech",
+        "id": "hyperframes",
+        "title": "HyperFrames",
+        "desc": "HTMLを書くだけで動画が作れる、AIエージェント向けのオープンソース動画制作フレームワーク。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-12-5",
+    "date": "2026-07-12",
+    "title": "世界中の感動を即編集",
+    "pattern": "文脈×技術",
+    "seed": "iPhoneで世界中のファンの感動を捉えたBad Bunny Halftime Showの発想に、リサーチから完パケまで自動化するOpenMontageを掛け合わせれば、世界中から届いた素材を当日中にドキュメンタリー化できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "apple-bad-bunny-halftime-show-campaign",
+        "title": "Bad Bunny Halftime Show Campaign",
+        "desc": "iPhoneで世界中のファンの感動を撮影した、史上最多視聴のハーフタイムショー連動キャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "openmontage",
+        "title": "OpenMontage",
+        "desc": "AIコーディングアシスタントを映像制作スタジオに変え、脚本から完パケまで自動化するエージェント型システム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-12-6",
+    "date": "2026-07-12",
+    "title": "バーチャルバンドの新顔",
+    "pattern": "文脈×技術",
+    "seed": "毎週新曲とMVを公開し続けるSONG MACHINEの連続公開フォーマットに、Webカメラ1台で高品質なモーキャプができるMetaHuman Animatorを掛け合わせれば、バーチャルバンドの新メンバーを毎週リアルタイムに登場させられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "gorillaz-song-machine",
+        "title": "SONG MACHINE（Gorillaz）",
+        "desc": "アルバム一括リリースではなく、毎週新曲とMVを公開し続けるドラマ形式の連続リリースフォーマット。"
+      },
+      {
+        "type": "tech",
+        "id": "ue58-metahuman-markerless-mocap",
+        "title": "MetaHuman Animator マーカーレスMocap（UE 5.8）× AI再レンダリング検証",
+        "desc": "Webカメラ1台だけで全身をマーカーレス撮影できる、高品質なモーションキャプチャ機能。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-12-7",
+    "date": "2026-07-12",
+    "title": "3Dアイドルの無限ループ",
+    "pattern": "技術×技術",
+    "seed": "動画と画像から3Dキャラのプリビズを作れるViggle PINOC×Seedanceワークフローに、開始と終了が一致するループアニメを自動生成するC1連続ループ生成ツールを掛け合わせれば、永遠に踊り続けるバーチャルアイドルの映像を一瞬で量産できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "viggle-pinoc-seedance-workflow",
+        "title": "Viggle PINOC × Seedance ワークフロー",
+        "desc": "動画からモーション抽出と1枚画像から3Dキャラ生成を行い、Seedanceで最終映像に仕上げる無料ツールの組み合わせ。"
+      },
+      {
+        "type": "tech",
+        "id": "akasaki-c1-loop-motion-tool",
+        "title": "C1連続 in-loop-out モーション生成ツール",
+        "desc": "モーションの一区間から、始まりと終わりが滑らかに繋がるループアニメーションを自動生成する個人開発ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-12-8",
+    "date": "2026-07-12",
+    "title": "実写ロケを歩ける世界に",
+    "pattern": "技術×技術",
+    "seed": "4台のカメラだけで高精細な4D空間を復元する4C4Dと、1枚の画像から歩き回れる映像世界を生成するHY-World 1.5を掛け合わせれば、実写ロケを丸ごとリアルタイムで散策できる仮想空間に変換できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "4c4d",
+        "title": "4C4D",
+        "desc": "たった4台のカメラ映像から、動く3D空間を高精細に復元する研究プロジェクト。"
+      },
+      {
+        "type": "tech",
+        "id": "hy-world-1-5-worldplay",
+        "title": "HY-World 1.5 / WorldPlay",
+        "desc": "1枚の画像やテキストから、操作にリアルタイムで反応する歩き回れる映像世界を生成するオープンな世界モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-12-9",
+    "date": "2026-07-12",
+    "title": "4台カメラで店内防犯",
+    "pattern": "転用",
+    "seed": "本来は映像表現やスポーツ観戦向けの4C4Dを、たった4台のカメラで店内の動きを丸ごと3D記録する防犯用途に転用すれば、死角の少ない万引き検知システムを低コストで作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "4c4d",
+        "title": "4C4D",
+        "desc": "たった4台のカメラ映像から、動く3D空間を高精細に復元する研究プロジェクト。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-12-10",
+    "date": "2026-07-12",
+    "title": "囁きで送る舞台カンペ",
+    "pattern": "転用",
+    "seed": "ハンズフリー会話向けに開発されたNasoVoceのささやき認識発話IFを、日常会話ではなく舞台演出のカンペ伝達に転用すれば、観客に気づかれず俳優へ台詞をリアルタイムでプロンプトできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "nasovoce",
+        "title": "NasoVoce",
+        "desc": "スマートグラスの鼻当てにマイクを仕込み、ほとんど声を出さない囁きでも認識できる発話インターフェース。"
+      }
+    ]
   }
 ]
