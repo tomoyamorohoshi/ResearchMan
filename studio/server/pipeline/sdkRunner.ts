@@ -77,8 +77,16 @@ export async function runAgentQuery(
 /**
  * ツールを使わせない軽量なテキスト生成呼び出し（例: オーダータグ命名）。
  * settingSources/agentsは使わず、model指定のみのプレーンなquery。
+ *
+ * opts.effort: LINE依頼の構造化解釈（line/structure.ts）のように「型がなく失敗コストが
+ * 小さい軽い解釈タスク」向けに reasoning effort を下げたい呼び出し元向け（省略時は
+ * SDKの既定effortのまま。既存呼び出し元の挙動は変えない）。
  */
-export async function runPlainQuery(prompt: string, model: string = "haiku"): Promise<AgentRunResult> {
+export async function runPlainQuery(
+  prompt: string,
+  model: string = "haiku",
+  opts: { effort?: "low" | "medium" | "high" | "xhigh" | "max" } = {},
+): Promise<AgentRunResult> {
   let text = "";
   let costUsd = 0;
   try {
@@ -88,6 +96,7 @@ export async function runPlainQuery(prompt: string, model: string = "haiku"): Pr
         settingSources: [],
         tools: [],
         model,
+        effort: opts.effort,
         permissionMode: "bypassPermissions",
         allowDangerouslySkipPermissions: true,
         maxTurns: 2,

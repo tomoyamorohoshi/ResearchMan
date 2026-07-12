@@ -32,6 +32,25 @@ npm run studio           # サーバ起動。既定で http://localhost:5178 を
   で上書き可）を超えた場合はその時点で安全に停止する（commit前ならロールバック、commit後
   は停止のみ）。エラーとしてLINE通知され、ジョブ履歴にも理由が残る。
 
+## LINEで依頼
+
+UIを開かなくても、LINEから「調べて/技術調べて/両方調べて/アイデア ＜自由文＞」を送ると、
+Claudeが解釈した内容を確認メッセージとして返し、「OK」の返信でStudio UIから実行するのと
+完全に同じ経路（`jobs.ts::createJob`）でジョブを投入する。「キャンセル」で取り消せる。
+確認は15分有効。ジョブの完了/エラー通知は既存パイプラインのLINE通知がそのまま届く
+（この機能側での追加通知は無し）。
+
+- 実装: `studio/server/line/`（`webhook.ts` がルート本体、`classify.ts`/`signature.ts`/
+  `pending.ts`/`messages.ts` は単体テスト済みの純粋ロジック、`structure.ts` がClaude呼び出し
+  による自由文の構造化、`push.ts` がLINE Messaging APIへのpush送信）。
+- ルート: `POST /api/line-webhook`（`studio/server/index.ts`。署名検証のため
+  `express.json()` より前に `express.raw()` を専用適用している）。
+- 設定: `~/.researchman-line.json` に `channelSecret`（署名検証用）・`allowedUserId`
+  （送信者制限）を追加する。`channelSecret` 未設定時はルートが503を返す。
+  `allowedUserId` 未設定時は送信者に自分のuserIdを案内する返信のみ行い、実行はしない。
+- 外部公開（Tailscale Funnelで `/line-webhook` のみ公開する手順）は
+  `scripts/windows/setup-line-funnel.md` を参照。
+
 ## 環境変数
 
 - `STUDIO_PORT` — サーバのポート番号（既定 5178）。

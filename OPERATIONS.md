@@ -208,6 +208,35 @@ launchd `com.researchman.watchdog` が毎日12:30・18:30（PCが落ちていれ
   通知なし」で正常終了するはず）・`npm run watchdog:deep`（日曜相当のフル監査。
   実行時間・ネットワーク負荷が大きいため通常は日曜の自動実行に任せ、手動実行は慎重に）
 
+### LINE連携（LINEで依頼）（2026-07-13新設）
+
+LINEから「調べて/技術調べて/両方調べて/アイデア ＜自由文＞」を送るとResearchMan Studio
+（ローカル専用アプリ・`studio/README.md`参照）がジョブを投入する機能。詳細な対話フロー・
+実装ファイル構成は`studio/README.md`「LINEで依頼」節を参照。ここでは経路とインフラ面のみ記す。
+
+- **経路**: LINE Platform → Vercel中継API（`https://research-man.vercel.app/api/line-webhook`、
+  実装は`src/app/api/line-webhook/route.ts`）→ Tailscale Funnel URL（IPv4強制）→
+  StudioのwebhookでX-Line-Signature検証。
+- **中継にした理由（2026-07-13）**: Funnel直結はLINEからの配信成功率が実測12〜37%だった
+  （公開入口のIPv6側が不安定）。Vercel中継後は8/8成功（同日実測）。
+- 中継は即時200応答＋レスポンス後（`after()`）に転送（3回再試行、`x-line-signature`と
+  生ボディをそのまま転送・署名検証自体はStudio側に委ねる）。**PCが電源オフ/スリープ中に
+  届いたメッセージは失われる**（Botが無反応のときはまずPCの稼働を確認する）。
+- **切り戻し**: LINE Developersコンソール、または
+  `PUT https://api.line.me/v2/bot/channel/webhook/endpoint`でWebhook URLを
+  Funnel直結（`https://laptop-95255niv.tail5f64f5.ts.net/line-webhook`）に戻すだけでよい
+  （Vercel中継を経由しない構成に即時復帰できる）。Funnel直結手順自体は
+  `scripts/windows/setup-line-funnel.md`を参照（中継のフォールバック/転送先として
+  常時セットアップが必要）。
+- **ジョブ予算上限**: ResearchMan-Studioタスクの環境変数`STUDIO_JOB_BUDGET_USD=12`
+  （既定$5では10件規模のCase Studyが途中停止した実測に基づく引き上げ。値は課金額ではなく
+  サブスク利用枠のAPI換算）。
+- **従量課金防止ガード**: `studio/server/index.ts`・`scripts/lib/claude-cli.mjs`・
+  `scripts/windows/run-job.mjs`の3系統がそれぞれ子プロセスに渡す環境変数から
+  `ANTHROPIC_API_KEY`/`ANTHROPIC_AUTH_TOKEN`を破棄する。`~/.claude/settings.json`に
+  `forceLoginMethod: "claudeai"`を設定し、サブスク（Claude.ai）ログイン以外での
+  課金発生を防ぐ。
+
 ## 2. 自動収集パイプライン（無人運用の本体）
 
 ```

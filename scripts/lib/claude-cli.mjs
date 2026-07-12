@@ -44,11 +44,17 @@ function runClaude(claudeBin, prompt, { timeout, model, allowedTools }) {
   const args = ["--print", "--model", model];
   if (allowedTools) args.push(`--allowedTools=${allowedTools}`);
   args.push("--dangerously-skip-permissions", prompt);
+  // 従量課金防止ガード: APIキー系の環境変数をCLIに渡さない（常にサブスクのログイン認証で動かす。
+  // ユーザー方針 2026-07-13。studio/server/index.ts / scripts/windows/run-job.mjs にも同じガードあり）
+  const env = { ...process.env };
+  delete env.ANTHROPIC_API_KEY;
+  delete env.ANTHROPIC_AUTH_TOKEN;
   const result = spawnSync(claudeBin, args, {
     encoding: "utf-8",
     timeout,
     maxBuffer: 1024 * 1024 * 20,
     stdio: ["ignore", "pipe", "pipe"],
+    env,
   });
   if (result.error) throw new Error(`Claude CLI エラー: ${result.error.message}`);
   if (result.status !== 0) {

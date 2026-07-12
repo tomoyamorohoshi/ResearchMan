@@ -139,9 +139,15 @@ function log(msg) {
 // nodeはPATHに依存せず process.execPath で呼ぶ。stdio はログへ追記
 // （plistの `>> $LOG 2>&1` に相当）。
 function runNode(relScriptPath, args = []) {
+  // 従量課金防止ガード: APIキー系の環境変数を子スクリプトに渡さない（常にサブスクの
+  // ログイン認証で動かす。ユーザー方針 2026-07-13。claude-cli.mjs / studio にも同じガードあり）
+  const env = { ...process.env };
+  delete env.ANTHROPIC_API_KEY;
+  delete env.ANTHROPIC_AUTH_TOKEN;
   return spawnSync(NODE_BIN, [path.join(ROOT, relScriptPath), ...args], {
     cwd: ROOT,
     stdio: ["ignore", logFd, logFd],
+    env,
   });
 }
 function runGit(args) {

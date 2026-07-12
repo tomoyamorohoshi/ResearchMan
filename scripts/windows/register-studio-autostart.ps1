@@ -7,10 +7,12 @@ $RepoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..\..")).Path
 $NpmCmd = Join-Path (Split-Path (Get-Command node).Source) "npm.cmd"
 
 # STUDIO_NO_OPEN: 起動のたびにブラウザが勝手に開かないようにする（サーバ常駐が目的のため）
+# STUDIO_JOB_BUDGET_USD: ジョブ予算上限。既定$5では10件規模のCase Studyが収集途中で
+# 停止することが実測で判明したため$12に引き上げ（2026-07-13。課金ではなくサブスク枠の換算額）
 # タスクスケジューラは環境変数指定を直接サポートしないため cmd /c 経由で渡す
 $action = New-ScheduledTaskAction `
     -Execute "cmd.exe" `
-    -Argument "/c set STUDIO_NO_OPEN=1&& `"$NpmCmd`" run studio" `
+    -Argument "/c set STUDIO_NO_OPEN=1&& set STUDIO_JOB_BUDGET_USD=12&& `"$NpmCmd`" run studio" `
     -WorkingDirectory $RepoRoot
 
 $trigger = New-ScheduledTaskTrigger -AtLogOn -User "$env:USERDOMAIN\$env:USERNAME"

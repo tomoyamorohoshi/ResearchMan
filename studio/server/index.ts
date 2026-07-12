@@ -21,13 +21,32 @@ import { fileURLToPath } from "node:url";
 import express from "express";
 import { createServer as createViteServer } from "vite";
 import { createJob, getJob, listJobs, subscribeJob, ValidationError, type Job } from "./jobs.js";
+import { createLineWebhookHandler } from "./line/webhook.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const STUDIO_ROOT = path.join(__dirname, "..");
 const PORT = Number(process.env.STUDIO_PORT) || 5178;
 
+// 従量課金防止ガード: APIキー系の環境変数が紛れ込んでいても必ず捨て、
+// Claude Agent SDK / CLI が常にサブスクリプションのログイン認証で動くことを保証する
+// （ユーザー方針 2026-07-13。scripts/lib/claude-cli.mjs / scripts/windows/run-job.mjs にも同じガードあり）。
+for (const key of ["ANTHROPIC_API_KEY", "ANTHROPIC_AUTH_TOKEN"]) {
+  if (process.env[key]) {
+    console.warn(`[studio] ${key} が設定されていましたが従量課金防止のため無視します`);
+    delete process.env[key];
+  }
+}
+
 export function createApp(): express.Express {
   const app = express();
+
+  // POST /api/line-webhook（LINEで依頼機能）: X-Line-Signature の検証には生のリクエスト
+  // ボディが必要なため、下の express.json() より前に、このルート専用の express.raw() を
+  // 登録する（Expressはミドルウェア/ルートを登録順に評価するため、ここでボディを
+  // Bufferとして消費すれば、後段の express.json() はこのパスに関しては素通りする）。
+  // ルート本体（署名検証・許可送信者チェック・pending・ジョブ投入）は line/webhook.ts に分離。
+  app.post("/api/line-webhook", express.raw({ type: "*/*" }), createLineWebhookHandler());
+
   app.use(express.json());
 
   // ── API ルート ──────────────────────────────────────────────────

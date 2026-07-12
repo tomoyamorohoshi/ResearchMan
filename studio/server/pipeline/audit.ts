@@ -66,9 +66,18 @@ export function run(
       resolve(result);
     };
 
+    // Windows対策: npm/npxは実体が.cmd（バッチファイル）のため、shell:false（既定）の
+    // spawnではOSがexecutable扱いできずENOENT/EINVALになる（node/gitは.exeなので問題ない。
+    // scripts/lib/claude-cli.mjsのclaude.cmd問題と同型）。npm/npxに限り shell:true にする。
+    // 安全性: shell:true時はNodeがargsを素朴に連結してシェルに渡すため、スペースや
+    // ユーザー入力を含む引数だと壊れる/インジェクションの危険があるが、npm/npx呼び出しの
+    // argsは本ファイル内で固定された識別子（"tsc","--noEmit"等）のみで可変・ユーザー入力を
+    // 含まないため安全。git（コミットメッセージ等の可変・日本語引数を扱う）には適用しない。
+    const useShell = process.platform === "win32" && (cmd === "npm" || cmd === "npx");
+
     let child;
     try {
-      child = spawn(cmd, args, { cwd, env: sanitizedEnv(), timeout: timeoutMs });
+      child = spawn(cmd, args, { cwd, env: sanitizedEnv(), timeout: timeoutMs, shell: useShell });
     } catch (err) {
       settle({ ok: false, stdout: "", stderr: err instanceof Error ? err.message : String(err), code: null });
       return;
