@@ -69,43 +69,6 @@
     ]
   },
   {
-    "id": "anomaly-control-simulator-2026",
-    "title": "Anomaly Control Simulator",
-    "summary": "SCP財団の世界観と『Papers, Please』を掛け合わせ、異常物体を調査・収容・処分する管理シムを新規スタジオが発表",
-    "client": "（開発元、詳細不明）",
-    "agency": "",
-    "categories": [
-      "コンテンツ革新"
-    ],
-    "award": "",
-    "year": "2026",
-    "regions": [
-      "グローバル"
-    ],
-    "link": "https://automaton-media.com/articles/newsjp/20260712-454554/",
-    "thumbnail": "/thumbnails/anomaly-control-simulator-2026.jpg",
-    "videoId": "",
-    "overview": "地下の秘密機関の職員として、古い時計や巨大なラバーダックなど一見普通の物体に潜む「アノマリー」を調査するシミュレーションゲーム。専用機器で温度・電磁ノイズ・放射線などを可視化して異常性を分析し、収容・処分・実験のいずれかを判断する。開発はMind Creations、PC(Steam)向けで発売時期は未定。",
-    "background": "インディースタジオMind Creationsがゲーム業界経験者によって設立され、本作が同スタジオ初のSteamリリース作品となる。SCP財団というインターネット発の創作コミュニティが持つ「危険物の収容・分析・処分」という世界観と、業務の板挟みを描く『Papers, Please』的なシステムを組み合わせるコンセプトとして2026年7月10日に発表された。",
-    "execution": "プレイヤーはビデオカメラでの映像確認や電圧印加、火炎放射、多機能ツールによる温度・電磁ノイズ・磁場・放射線の可視化など複数の調査手段でアノマリーの性質を見極める。判断を誤ると収容が破られ再収容ミッションが発生するほか、ワークスペースのアップグレードも可能。ストアページには「失敗しても替わりはいる」という職務の非情さを示す文言が掲げられている。",
-    "evaluationImpact": "『Papers, Please』的な淡々とした業務シミュレーションと、SCP財団という根強いファンを持つ創作コミュニティの世界観を掛け合わせた点が、発表時点でゲームメディアの注目を集めた。人命よりも職務遂行を優先させる皮肉めいたトーンが、管理系シムの新たな切り口として評価されている。",
-    "relatedWorks": [
-      {
-        "title": "Papers, Please",
-        "description": "入国審査官として書類の矛盾を見抜く名作インディーシム。本作が「業務の非情さ」の参照元として明言されている。",
-        "url": "https://store.steampowered.com/app/239030/Papers_Please/"
-      }
-    ],
-    "sources": [
-      "Radar"
-    ],
-    "tags": [
-      "Tech/Game",
-      "Form/App",
-      "Theme/Entertainment"
-    ]
-  },
-  {
     "id": "palworld-2026",
     "title": "Palworld 正式リリース",
     "summary": "『パルワールド』正式版1.0が7月10日リリース、Steam同時接続20万人超（その後85万人突破）を記録。",
