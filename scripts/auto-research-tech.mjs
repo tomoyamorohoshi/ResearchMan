@@ -19,6 +19,7 @@ import { fileURLToPath } from "url";
 import { resolveClaudeBin, runClaudeJsonArray } from "./lib/claude-cli.mjs";
 import { localDayIndex } from "./lib/day-index.mjs";
 import { jstDateString } from "./lib/jst-date.mjs";
+import { normLink } from "./lib/norm-link.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const TECH_PATH = path.join(__dirname, "../data/tech.json");
@@ -102,6 +103,11 @@ async function main() {
   const existingTitles = [...tech.map((t) => t.title), ...KNOWN_EXCLUDED].join(" / ");
   console.log(`既存: ${tech.length}件`);
 
+  // 同一記事URLからの重複エントリ生成防止（2026-07-13。cc側と同じ事故の再発防止）
+  const existingLinkKeys = new Set(
+    tech.flatMap((t) => (t.links || []).map((l) => normLink(l.url))).filter(Boolean)
+  );
+
   // 日替わりレーン（JST暦日でローテーション。レーン数ぶんを順に巡回）
   const lane = LANES[localDayIndex() % LANES.length];
   console.log(`本日のレーン: ${lane.label}\n`);
@@ -159,8 +165,14 @@ ${lines}`;
     console.log(`候補: ${found.length}件`);
     for (const c of found) {
       if (!c?.techName || c.verdict !== "adopt") continue;
+      const linkKeys = (c.links || []).map((l) => normLink(l.url)).filter(Boolean);
+      if (linkKeys.some((lk) => existingLinkKeys.has(lk))) {
+        console.log(`スキップ（同一記事の重複）: ${c.techName}`);
+        continue;
+      }
       seenThisRun.push(c.techName);
       candidates.push(c);
+      for (const lk of linkKeys) existingLinkKeys.add(lk);
       if (candidates.length >= MAX_ADD) break;
     }
   }
