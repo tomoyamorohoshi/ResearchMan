@@ -2079,5 +2079,203 @@
         "desc": "スマートグラスの鼻当てにマイクを仕込み、ほとんど声を出さない囁きでも認識できる発話インターフェース。"
       }
     ]
+  },
+  {
+    "id": "2026-07-13-1",
+    "date": "2026-07-13",
+    "title": "女の子らしさを触覚化",
+    "pattern": "文脈×技術",
+    "seed": "「女の子みたいに」という決めつけを覆したAlways #LIKEAGIRLの問いかけに、HapticLensで実際の躍動感を振動データ化する技術を重ね、ステレオタイプな動きとの違いを指先で体感できる展示に変えられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "always-like-a-girl",
+        "title": "#LIKEAGIRL",
+        "desc": "「女の子みたいに走る」という蔑称を覆し、思春期前の少女の自己肯定感を守ったAlwaysの社会変革キャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "hapticlens",
+        "title": "HapticLens",
+        "desc": "動画の動きから振動を自動生成し、たった1個の振動子で映像に触感を付けられるオーサリングツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-13-2",
+    "date": "2026-07-13",
+    "title": "痛みを歌に変えるAI",
+    "pattern": "文脈×技術",
+    "seed": "月経・流産・更年期を赤裸々に描いたBodyform WOMB STORIESの発想に、歌詞とジャンルだけで曲を丸ごと生成できるACE-Step 1.5を掛け、症状ごとにパーソナライズした「痛みの歌」を本人向けに作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "bodyform-womb-stories",
+        "title": "WOMB STORIES",
+        "desc": "月経・流産・子宮内膜症・閉経など女性の身体の実態を初めてリアルに描いた生理用品の広告。"
+      },
+      {
+        "type": "tech",
+        "id": "ace-step-1-5",
+        "title": "ACE-Step 1.5",
+        "desc": "歌詞とジャンルを指定するだけでボーカル入りの楽曲を丸ごと生成できるオープンソースの音楽AI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-13-3",
+    "date": "2026-07-13",
+    "title": "触れない編集で余白広告",
+    "pattern": "文脈×技術",
+    "seed": "政治の空約束への抗議として紙面を白紙で出したAn-Nahar「The Blank Edition」の発想に、指定した領域だけを変え他は触らず保つBerniniの編集原理を重ね、広告の大部分をあえて何も変えない「意図的な空白」表現に応用できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "annahar-blank-edition",
+        "title": "An-Nahar「The Blank Edition」（白紙の新聞）",
+        "desc": "レバノンの新聞が政治の空約束への抗議として朝刊8ページ全てを白紙のまま発行した逆説的な号。"
+      },
+      {
+        "type": "tech",
+        "id": "bernini",
+        "title": "Bernini",
+        "desc": "指示を読み解く演出AIと映像を描く作画AIが分業し、触らない領域を保ったまま画像・動画を編集できる統合モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-13-4",
+    "date": "2026-07-13",
+    "title": "おねしょ翻訳をロボへ",
+    "pattern": "文脈×技術",
+    "seed": "おねしょを「伝達」と捉え直したAutism Societyの言語体系を、人型ロボットの全身動作を担うSONICに応用し、言葉を持たない子どもの微細な仕草をロボットやアバターの全身ジェスチャーへ翻訳できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "autism-bedwetting-language",
+        "title": "Language of Bedwetting",
+        "desc": "おねしょを問題行動ではなく「伝達」として捉え直した自閉症児向けのコミュニケーション体系。"
+      },
+      {
+        "type": "tech",
+        "id": "sonic",
+        "title": "SONIC（GR00T Whole-Body Control）",
+        "desc": "歩行や跳躍、格闘まで人型ロボットの全身動作を一体で担う、テキストや操作で動かせる基盤モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-13-5",
+    "date": "2026-07-13",
+    "title": "花火事故を3Dで再現",
+    "pattern": "文脈×技術",
+    "seed": "花火の指負傷統計とジャッカスを掛け合わせたKFCのPSAに、動画から3D人体ポーズを推定するCEB SAM 3D Body v4を重ね、実際の事故映像を3Dアニメ化した「指を守れ」キャラクターを量産できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "keep-fireworks-from-ruining-fried-chicken-season-2026",
+        "title": "Keep Fireworks from Ruining Fried Chicken Season",
+        "desc": "花火による指負傷の統計とジャッカスのジョニー・ノックスビルを掛け合わせたKFCの啓発広告。"
+      },
+      {
+        "type": "tech",
+        "id": "ceb-sam-3d-body-v4",
+        "title": "CEB SAM 3D Body v4 (Blender addon)",
+        "desc": "動画映像から3D人体ポーズを推定し、Blenderでモーションキャプチャデータとして使えるアドオン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-13-6",
+    "date": "2026-07-13",
+    "title": "原点回帰のフィルム調",
+    "pattern": "文脈×技術",
+    "seed": "農業の産業化と回帰をアニメで描いたChipotle「BACK TO THE START」に、実写フィルムを計測して質感を再現するAURORA Film Labを重ね、アニメ画から本物のフィルム粒子へ徐々に変化する「原点回帰」の映像を作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "chipotle-back-to-start",
+        "title": "BACK TO THE START",
+        "desc": "農業産業化の悲劇と原点回帰をアニメと音楽で描いた、チポトレの持続可能な農業をテーマにした広告。"
+      },
+      {
+        "type": "tech",
+        "id": "aurora-film-lab-v1-0",
+        "title": "AURORA Film Lab v1.0",
+        "desc": "55種のフィルムを実測したデータから12種のルックを混合できる、フィルム調カラーグレーディングツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-13-7",
+    "date": "2026-07-13",
+    "title": "HTML演出を生ライブ化",
+    "pattern": "技術×技術",
+    "seed": "HTMLを書くだけで動画になるHyperFramesと、音楽に反応して映像がその場で変化するTiXLを組み合わせ、AIエージェントがコードで組んだ演出をそのまま音楽反応する生ライブVJ画面に変換できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "hyperframes",
+        "title": "HyperFrames",
+        "desc": "HTMLを書くとAIエージェントが動画を作れる、20種の用途別スキルを備えたオープンソースフレームワーク。"
+      },
+      {
+        "type": "tech",
+        "id": "tixl",
+        "title": "TiXL（旧称 Tooll3）",
+        "desc": "音楽やMIDIに反応して映像がその場で変化する、無料のリアルタイム・モーショングラフィックスツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-13-8",
+    "date": "2026-07-13",
+    "title": "実演だけ差し替え合成",
+    "pattern": "技術×技術",
+    "seed": "触らない領域を保ったまま編集できるBerniniの発想と、Webカメラ1台で全身を捉えるMetaHuman Animatorのマーカーレスモーキャプを組み合わせ、演者の動きだけ差し替え背景や小道具はそのまま残す低コストな実写風CG合成ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "bernini",
+        "title": "Bernini",
+        "desc": "指示を読み解く演出AIと映像を描く作画AIが分業し、触らない領域を保ったまま画像・動画を編集できる統合モデル。"
+      },
+      {
+        "type": "tech",
+        "id": "ue58-metahuman-markerless-mocap",
+        "title": "MetaHuman Animator マーカーレスMocap（UE 5.8）× AI再レンダリング検証",
+        "desc": "UE 5.8に追加された、Webカメラ1台だけで全身を捉えられるマーカーレス・モーションキャプチャ機能。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-13-9",
+    "date": "2026-07-13",
+    "title": "監視動画を対話で添削",
+    "pattern": "転用",
+    "seed": "動画の理解・編集・リメイクを1つの対話エージェントにまとめたVideoAgentを、広告制作ではなく工場や店舗の監視動画に転用し、「ここだけリメイクして」と話しかけるだけで危険動作を再現・改善提案する安全教育ツールにできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "videoagent",
+        "title": "VideoAgent",
+        "desc": "動画の理解・編集・リメイクを1つにまとめた、対話形式で操作できるオープンソースの動画編集エージェント。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-13-10",
+    "date": "2026-07-13",
+    "title": "接客アバター遠隔操作",
+    "pattern": "転用",
+    "seed": "人型ロボットの全身動作を担うために作られたSONICを、実機ロボットではなくゲームパッド操作のバーチャル接客アバターに転用し、無人店舗の受付キャラクターに人間らしい重心移動や仕草を持たせられるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "sonic",
+        "title": "SONIC（GR00T Whole-Body Control）",
+        "desc": "歩行や跳躍、格闘まで人型ロボットの全身動作を一体で担う、テキストや操作で動かせる基盤モデル。"
+      }
+    ]
   }
 ]
