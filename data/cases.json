@@ -1,5 +1,305 @@
 [
   {
+    "id": "agefield-high-rock-the-school-2026",
+    "title": "Agefield High: Rock the School",
+    "summary": "授業サボりが警察沙汰になるリスク付きの自由度重視オープンワールド高校生活シム、8月13日発売決定",
+    "client": "（インディー開発者、詳細不明）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://automaton-media.com/articles/newsjp/20260713-454611/",
+    "thumbnail": "/thumbnails/agefield-high-rock-the-school-2026.jpg",
+    "videoId": "",
+    "overview": "ドイツ・ハンブルク拠点のインディースタジオRefugium Gamesが手掛ける、2000年代初頭のアメリカを舞台にしたオープンワールド高校生活シム。転校生Samが残り3ヶ月の高校生活で「学校の伝説」を目指す。授業に真面目に出るか、サボってサイドミッションで金を稼ぐかを選べる自由度の高い設計だが、サボりすぎると教師や警察に見つかり補導されるリスクがある。メインミッション32種・サイドミッション15種、エンディング2種類、プレイ時間8〜10時間。2026年8月13日（日本時間）にSteamでPC版が発売、PS5/Xbox Series X|S版はPerp Gamesより年内発売予定。",
+    "background": "開発元Refugium Gamesはこれまでホラーゲームを中心に手掛けてきたスタジオで、本作でコミカルで明るい作風へと転換した。2000年代アメリカのティーン向けコメディ映画や、学園コメディゲームへのオマージュを掲げて開発されている。2025年7月の初発表以降、トレイラー公開などを重ねて改良を続け、2026年7月13日に正式な発売日を発表した。",
+    "execution": "平日は英語・数学・地理・ドイツ語・音楽などの授業への出席が必要で、各授業はカットシーンではなくミニゲーム形式で描かれる。放課後になって初めて、学校・街・田舎からなるスモールオープンワールドが自転車で自由に探索できるようになる。サボって稼いだ金でバイクや服、タトゥーを購入できる一方、サボりすぎると教師や警察に見つかり補導されるペナルティを設定。「自由に生きられるが無法ではない」という緊張感のあるゲーム性を作り出している。",
+    "evaluationImpact": "海外メディアからは『Bully』の後継作を待ち望んでいたプレイヤー層の空白（Bully Void）を埋める作品と評されている。何でも自由にできるサンドボックスではなく、サボりが発覚すれば補導されるという制約を組み込むことで、青春群像劇にゲームとしての緊張感とリスク・リワードの駆け引きを持たせた点がインディー開発の学園シムとして注目されている。",
+    "relatedWorks": [
+      {
+        "title": "Bully (Rockstar Games)",
+        "description": "不良少年が全寮制の名門校を舞台に立ち回る2006年のオープンワールド学園アクション。『Agefield High』が「後継作」として比較される原点的作品。",
+        "url": "https://www.rockstargames.com/bully"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/App",
+      "Theme/Education",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "league-of-legends-classic-2026",
+    "title": "League of Legends Classic",
+    "summary": "旧ルーンページやリバイブ等を復刻した「League Classic」をRiotが発表、7/29に投票制進化型モードとして始動。",
+    "client": "Riot Games",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://automaton-media.com/articles/newsjp/league-of-legends-20260712-454591/",
+    "thumbnail": "/thumbnails/league-of-legends-classic-2026.jpg",
+    "videoId": "",
+    "overview": "Riot Gamesは2026年6月26日のティザー発表を経て、7月11日のMSI 2026 Grand Finalsショーマッチで「League of Legends Classic」を正式公開。Season 3前後(2012〜2013年頃)を軸に旧ルーン・旧マスタリー・リバイブなど懐かしい要素を復刻したフィーチャードゲームモードで、7月29日に配信開始する。",
+    "background": "League of Legendsはリリースから10年以上を経て、ゲームシステムやチャンピオンが大きく進化した一方、初期の遊び方を懐かしむプレイヤーコミュニティの声が根強く存在していた。Riot社内の実験的チーム「Thunderdome」がこの声に応え、往年の要素を再構成した新モードの開発を発案した。",
+    "execution": "オリジナル40体を含む60体のチャンピオンを実装し、サモナースペル「リバイブ」、旧ルーンページ、旧マスタリーツリー、当時を彷彿とさせるマップ・UIを復元。特定の時代をそのまま凍結するのではなく複数時代の「greatest hits」として再構成し、著名プレイヤーによるショーマッチで発表した。",
+    "evaluationImpact": "World of Warcraft Classicのような時代凍結型ではなく、Old School RuneScapeのようにコミュニティ投票でパッチ内容を決め続ける継続運営型として設計した点が特徴。長期タイトルにおけるノスタルジー活用とライブサービス設計を両立する事例として注目される。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/App",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "anomaly-control-simulator-2026",
+    "title": "Anomaly Control Simulator",
+    "summary": "SCP財団の世界観と『Papers, Please』を掛け合わせ、異常物体を調査・収容・処分する管理シムを新規スタジオが発表",
+    "client": "（開発元、詳細不明）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://automaton-media.com/articles/newsjp/20260712-454554/",
+    "thumbnail": "/thumbnails/anomaly-control-simulator-2026.jpg",
+    "videoId": "",
+    "overview": "地下の秘密機関の職員として、古い時計や巨大なラバーダックなど一見普通の物体に潜む「アノマリー」を調査するシミュレーションゲーム。専用機器で温度・電磁ノイズ・放射線などを可視化して異常性を分析し、収容・処分・実験のいずれかを判断する。開発はMind Creations、PC(Steam)向けで発売時期は未定。",
+    "background": "インディースタジオMind Creationsがゲーム業界経験者によって設立され、本作が同スタジオ初のSteamリリース作品となる。SCP財団というインターネット発の創作コミュニティが持つ「危険物の収容・分析・処分」という世界観と、業務の板挟みを描く『Papers, Please』的なシステムを組み合わせるコンセプトとして2026年7月10日に発表された。",
+    "execution": "プレイヤーはビデオカメラでの映像確認や電圧印加、火炎放射、多機能ツールによる温度・電磁ノイズ・磁場・放射線の可視化など複数の調査手段でアノマリーの性質を見極める。判断を誤ると収容が破られ再収容ミッションが発生するほか、ワークスペースのアップグレードも可能。ストアページには「失敗しても替わりはいる」という職務の非情さを示す文言が掲げられている。",
+    "evaluationImpact": "『Papers, Please』的な淡々とした業務シミュレーションと、SCP財団という根強いファンを持つ創作コミュニティの世界観を掛け合わせた点が、発表時点でゲームメディアの注目を集めた。人命よりも職務遂行を優先させる皮肉めいたトーンが、管理系シムの新たな切り口として評価されている。",
+    "relatedWorks": [
+      {
+        "title": "Papers, Please",
+        "description": "入国審査官として書類の矛盾を見抜く名作インディーシム。本作が「業務の非情さ」の参照元として明言されている。",
+        "url": "https://store.steampowered.com/app/239030/Papers_Please/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/App",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "palworld-2026",
+    "title": "Palworld 正式リリース",
+    "summary": "『パルワールド』正式版1.0が7月10日リリース、Steam同時接続20万人超（その後85万人突破）を記録。",
+    "client": "Pocketpair",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://automaton-media.com/articles/newsjp/20260712-454554/",
+    "thumbnail": "/thumbnails/palworld-2026.jpg",
+    "videoId": "",
+    "overview": "ポケットペア開発のモンスター収集オープンワールドサバイバル『パルワールド』が、2024年1月の早期アクセス開始から約2.5年を経て、2026年7月10日に正式版『1.0』としてリリースされた。新パルや新エリア、水上拠点建築などを追加し、パッチノートは27ページに及ぶ過去最大規模のアップデートとなった。",
+    "background": "『パルワールド』は2024年1月の早期アクセス版発売時にSteam同接200万人超を記録する社会現象となり、これまでに全世界で4000万本以上を売り上げてきた。約2.5年にわたる早期アクセス期間中のアップデートを集約する形で、満を持して正式版『1.0』のリリースに至った。",
+    "execution": "正式版では新種のパルや未踏エリア、世界樹を巡る新ストーリーミッション、刷新されたバトルアクション、水上拠点建築などを追加。ローンチトレーラーやシネマティックPVを公開し、Steam・PlayStation Storeでは記念の30%オフセールを実施。パッチノートは27ページに及ぶ、過去最大級のボリュームとなった。",
+    "evaluationImpact": "リリース直後にSteam同時接続者数が20万人を突破し、その後85万人にまで急増。Steam公式チャートでは『Counter-Strike 2』などに次ぐ上位にランクインし、売上でも世界5位となるなど、早期アクセスから正式版へと着地するゲーム運営モデルの成功事例として話題を呼んだ。",
+    "relatedWorks": [
+      {
+        "title": "『Palworld / パルワールド』7月10日ついに正式リリースへ、過去最大のアプデとともに",
+        "description": "正式リリース直前の予告記事。世界樹や新パルのティザーPVを紹介",
+        "url": "https://automaton-media.com/articles/newsjp/20260606-447511/"
+      },
+      {
+        "title": "『パルワールド』正式リリースでいきなり「Steam同接20万人超」の人気爆発",
+        "description": "正式リリース直後の同時接続者数急増と新規・復帰プレイヤー流入を報じた記事",
+        "url": "https://automaton-media.com/articles/newsjp/20260710-454338/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/Event",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "big-dew-installation-ripple-reply-2026",
+    "title": "BIG DEW INSTALLATION ~Ripple-Reply~",
+    "summary": "瞑想アート照明「DEW」を展示向けに大型化し、光と水面の揺らぎで包み込む体験型インスタレーションに進化させた新作。",
+    "client": "DEW（VITRO合同会社）× TUTTI INDUSTRIES",
+    "agency": "TUTTI INDUSTRIES",
+    "categories": [
+      "空間体験",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://100banch.com/events/nanananasai2026-dewxtutti",
+    "thumbnail": "/thumbnails/big-dew-installation-ripple-reply-2026.jpg",
+    "videoId": "",
+    "overview": "渋谷「ナナナナ祭2026」のデモデー（2026年7月10日〜12日、100BANCH 3F、入場無料・定員777名）で発表された、瞑想アート照明「DEW」（VITRO合同会社）とTUTTI INDUSTRIESが共同制作した大型インスタレーション。光の雫が水面に落ち続けることで生まれる揺らぐ光を眺め、来場者がリラックスできる空間体験を提供する。",
+    "background": "DEWは高橋良爾氏が2011年に考案した線香花火のような光と水の照明作品で、2013年ミラノサローネサテリテに出展、2022年に同展の永久保存コレクションに選出された。2023年には100BANCH GARAGE Programに採択され、量産化に向けて製造・流通・コストの課題に取り組んできた。今回、ものづくりの民主化を掲げるTUTTI INDUSTRIESと組み、プロダクトの枠を超えた展示・空間演出向けの大型版開発に挑んだ。",
+    "execution": "手がけたのはTUTTI INDUSTRIES。DEWを展示・空間演出用にスケールアップし、100BANCH 3Fの会場全体を使って光の雫と揺らぐ水面を投影する没入空間を構築した。ナナナナ祭2026のデモデー期間中（7/10〜12、12:00〜20:00、最終日は18:00まで）、予約不要・入場無料で一般公開され、プロダクト単体の展示から会場規模のインスタレーションへと表現を拡張した。",
+    "evaluationImpact": "個人発のプロダクトであるDEWが、量産・流通課題への挑戦と並行して空間インスタレーションへとスケールした事例。ものづくりの民主化を掲げるTUTTI INDUSTRIESとの協業は、プロダクトデザインとスペースデザインを横断するコラボレーションのモデルケースとなる。ナナナナ祭で毎年発表を重ねてきたDEWの進化の軌跡を示す点でも意義がある。",
+    "relatedWorks": [
+      {
+        "title": "DEW in ナナナナ祭2025",
+        "description": "前年のナナナナ祭で発表されたDEWの展示。",
+        "url": "https://100banch.com/nanananasai2025-dew"
+      },
+      {
+        "title": "MU GARDEN —無心になれる庭 in ナナナナ祭2024",
+        "description": "複数のDEWを配置し無心になれる庭を表現した展示。",
+        "url": "https://100banch.com/nanananasai2024-dew"
+      },
+      {
+        "title": "DEWで瞑想しNight─ナナナナ祭2023を終えて",
+        "description": "ナナナナ祭2023でのDEW展示を振り返るレポート記事。",
+        "url": "https://100banch.com/magazine/50337/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Tech/Device",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "mosstopia-2026",
+    "title": "境界緑地 ─ 苔×公共物 ─（MOSSTOPIA）",
+    "summary": "放置された三角コーンやブロック塀など都市の公共物を苔の「宿主」に転用し、管理コスト不要の緑化インフラとして再提案した点が新しい。",
+    "client": "MOSSTOPIA",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://100banch.com/events/nanananasai2026-mosstopia",
+    "thumbnail": "/thumbnails/mosstopia-2026.jpg",
+    "videoId": "",
+    "overview": "苔を都市の「第三のみどり」と位置づけ、三角コーン・ブロック塀・灰皿・照明・パーテーションといった公共物に苔を着生させて再解釈するインスタレーション。慶應義塾大学在学の上野祥太が主宰する100BANCH発プロジェクト「MOSSTOPIA」が、2026年7月10〜12日開催の「ナナナナ祭2026 渋谷未来博」で新作プロトタイプ群を初公開した。",
+    "background": "上野祥太は慶應義塾大学環境情報学部・田中浩也研究室でXRや3Dプリンタを研究したのち、単一機能しか持たない都市の放置物に苔を着生させる「苔コーン」を考案。2026年3月には三角コーン専門の展示『△展』（表参道ROJI）にも出展し注目を集めた。単一の解決策では対応しきれない都市の温暖化課題への問題意識から、苔と公共物を組み合わせる緑化のあり方を模索してきた。",
+    "execution": "100BANCH GARAGE Program 98期の活動として、既存の苔コーンに続き苔×ブロック塀・苔×灰皿・苔×照明・苔×パーテーションの新プロトタイプを制作。「ナナナナ祭2026」会期中、100BANCH 3Fにて7月10〜12日に無料公開し、来場者が実際に苔が着生した実物を観察できる展示構成とした。同プロトタイプ群は2027年開催の国際園芸博覧会「GREEN×EXPO 2027」への出展も見据えて開発されている。",
+    "evaluationImpact": "新たな緑化設備を作るのではなく、都市に既にある不要物を苔の宿主として転用する発想に独自性がある。管理コストをかけずに都市の緑を増やせる仕組みは気候変動対応インフラとしての応用可能性を持ち、国際園芸博覧会「GREEN×EXPO 2027」への出展計画が今後の発展性を裏付けている。",
+    "relatedWorks": [
+      {
+        "title": "△展（さんかくてん）",
+        "description": "三角コーンのみをテーマにした展示。MOSSTOPIAの「苔コーン」を含む5作品を表参道ROJIで公開（2026年3月28〜29日）。",
+        "url": "https://prtimes.jp/main/html/rd/p/000000278.000034018.html"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Exhibition",
+      "Theme/Sustainability"
+    ]
+  },
+  {
+    "id": "refamily-2026",
+    "title": "空き家に眠るモノの履歴書から、空き家を未来へつなぐ！（ReFamily）",
+    "summary": "空き家の物品に眠る履歴書へ言葉を書き加える体験で、捨てるか放置かの二択を超えた循環の仕組みを提案。",
+    "client": "ReFamily",
+    "agency": "",
+    "categories": [
+      "社会包摂",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://100banch.com/events/nanananasai2026-refamily",
+    "thumbnail": "/thumbnails/refamily-2026.jpg",
+    "videoId": "",
+    "overview": "「空き家に眠るモノの履歴書から、空き家を未来へつなぐ！」は、パナソニックグループが運営する100BANCHのGARAGE Programに参加するプロジェクト「ReFamily」が、「ナナナナ祭2026」（2026年7月10日〜12日、渋谷）で発表した体験プログラム。空き家に残された物品の履歴書を来場者が読み、自分の言葉やアイデアを書き加えることで、物品に宿る記憶や暮らしの痕跡をたどり、次の使い手へつなぐ循環のきっかけを提案する。",
+    "background": "ReFamilyは、リーダー竹中弥来の祖母が住んでいた家を父親が相続し、管理・維持の負担から空き家問題に直面した実体験を出発点とするプロジェクト。空き家は「捨てるか放置するか」という限定的な選択肢しかなく、所有者の中に残る物品への想いや「心のモヤモヤ」が活用の障壁となっている現状に着目し、その想いを丁寧に整理しながら次の使い手へつなぐ仕組みづくりに取り組んでいる。",
+    "execution": "会場では空き家に眠るモノの「履歴書」を展示し、来場者がそれを読みながら「このモノはどんな時間を過ごしてきたのだろう」「どうすれば次の誰かへつなげられるだろう」という問いに向き合い、自分の言葉やアイデアを書き加えていく参加型の体験を設計。物品の背景にある記憶や暮らしの痕跡を可視化することで、所有者の想いと来場者の想像力を結びつける仕掛けとした。7月10〜12日の会期中、100BANCH 2階にて無料で実施した。",
+    "evaluationImpact": "全国で増え続ける空き家問題を、行政的な解決策ではなく「モノに宿る記憶」という情緒的な切り口から捉え直した点が特徴。廃棄と放置という二項対立を超え、物品や住居に新たな使い手・役割を見つける循環を提案することで、空き家活用の心理的障壁を下げるアプローチとして、次世代の社会課題解決型プロジェクトのモデルケースとなり得る。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Event",
+      "Form/Exhibition",
+      "Theme/Sustainability",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "koto-no-hashi-2026",
+    "title": "字幕祭〜字幕自動生成の試みとその裏側〜（Koto-no-Hashi）",
+    "summary": "AI字幕自動生成で「直訳」でなく「映画体験としての字幕」を目指し、インディー映画の海外展開の壁を崩す試み。",
+    "client": "Koto-no-Hashi",
+    "agency": "",
+    "categories": [
+      "AIクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://100banch.com/events/nanananasai2026-koto-no-hashi",
+    "thumbnail": "/thumbnails/koto-no-hashi-2026.jpg",
+    "videoId": "",
+    "overview": "「言の橋（Koto-no-Hashi）」が開発するAI字幕自動生成システムを体験できる展示イベント。2026年7月10〜12日、渋谷「100BANCH」2Fにて「ナナナナ祭2026」の一環として開催。カンヌ・ヴェネツィア・ベルリンで受賞歴のある海外未公開短編作品に日本語字幕を付けて上映するほか、来場者が持参した映像に英語字幕をその場で自動生成し、srtファイルを持ち帰れる体験ブースを設置した。",
+    "background": "独立系映画が国際映画祭に挑戦する際、字幕翻訳のコストが大きな障壁となっている実態が背景にある。プロジェクトは映像翻訳者への取材を重ね、翻訳にかかる時間・費用・品質のリアルを調査。単なる逐語訳ではなく「映画鑑賞体験としての字幕」をAIで生成することを目指し、資金力のないインディーズ制作者や海外未公開作品のローカライズ障壁を取り除く狙いで開発を進めてきた。",
+    "execution": "上映と体験を組み合わせた構成で実施。海外の映画祭受賞・選出済み未公開短編3本に日本語字幕を付けて上映し、国内作品には英語字幕を付与。さらに来場者が持ち込んだ自身の映像作品に対し、自動字幕生成システムでその場で英語字幕（.srt）を生成できるクリエイター向けブースを設け、開発中システムの精度と限界を体験を通じて可視化した。",
+    "evaluationImpact": "技術デモを一方向の展示で終わらせず、実際の映像に触れて字幕生成の裏側（誤訳・ニュアンスの壁など）まで体験させる設計により、AI翻訳への過信も過小評価も避けた対話を生んだ点が評価できる。プロデューサーは、資金が壁となってきたローカライズ問題への「起爆剤」になり得ると位置づけており、停滞するインディー映画産業の海外進出を後押しする可能性を示した。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Exhibition",
+      "Form/Event",
+      "Theme/Entertainment"
+    ]
+  },
+  {
     "id": "the-legendary-posters-2014",
     "title": "The Legendary Posters",
     "summary": "Heineken「Legendary Posters」キャンペーンをTumblrベースの滑らかなトランジションで見せるポスターギャラリーサイト",
