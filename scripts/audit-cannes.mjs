@@ -20,10 +20,15 @@
  *
  * 使い方: node scripts/audit-cannes.mjs [--strict] [--out /path/to/report.json]
  *         （npm run audit:cannes）
+ *
+ * 2026-07-14: 監査ロジック本体は scripts/audit-award.mjs（アワード非依存の汎用エンジン）に
+ * 委譲した。このファイルにはカンヌ固有の知識（VERIFIED_CATEGORIES・awardHasCategoryの
+ * switch文・extractLevel・ALIAS・STOP）のみを残す薄いラッパー。出力・exit code・
+ * pre-push hookの動作は移行前と完全に同一（docs/AWARD_RESEARCH_SOP.md 参照）。
  */
-import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { runAudit } from "./audit-award.mjs";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const STRICT = process.argv.includes("--strict");
 const outIdx = process.argv.indexOf("--out");
@@ -37,25 +42,9 @@ const VERIFIED_CATEGORIES = new Set([
   "Industry Craft", "Pharma", "Outdoor", "Health & Wellness", "Audio & Radio",
 ]);
 
-const ref = JSON.parse(fs.readFileSync(path.join(__dirname, "../data/cannes2026-winners-v2.json"), "utf8")).winners;
-const cases = JSON.parse(fs.readFileSync(path.join(__dirname, "../data/cases.json"), "utf8"));
-const cn = cases.filter((c) => (c.award || "").includes("Cannes Lions 2026"));
-
 const STOP = new Set(["the", "a", "an", "of", "and", "for", "to", "in", "on", "is", "2026", "campaign", "lions", "x", "by", "ft", "feat"]);
-const deaccent = (s) => (s || "").normalize("NFD").replace(/[̀-ͯ]/g, "");
-const norm = (s) => deaccent(s || "").toLowerCase().replace(/[（(].*?[）)]/g, " ").replace(/&/g, " and ").replace(/[^a-z0-9\s]/g, " ");
-const toks = (s) => new Set(norm(s).split(/\s+/).filter((w) => w && w.length > 1 && !STOP.has(w)));
-const jac = (a, b) => { const i = [...a].filter((x) => b.has(x)).length; const u = new Set([...a, ...b]).size; return u ? i / u : 0; };
-const flat = (s) => norm(s).replace(/\s/g, "");
 const ALIAS = { "claudecanigetasixpackquicklyhowcanicommunicatebetterwithmymom": "anthropic-claude-super-bowl", "atimeandaplace": "anthropic-claude-super-bowl", "rosaliaftbjorkyvestumorberghain": "rosalia-berghain", "thefinalcopyofilonspecht": "loreal-final-copy" };
 
-function findAllRM(rec) {
-  const f = flat(rec.title); if (ALIAS[f]) { const a = cn.find((c) => c.id === ALIAS[f]); return a ? [a] : []; }
-  const rt = toks(rec.title), rb = flat(rec.brand);
-  const m = [];
-  for (const c of cn) { const ct = toks(c.title); let s = jac(rt, ct); if (flat(c.title) === f) s = 1; else if (rb && flat(c.client) && (flat(c.client).includes(rb) || rb.includes(flat(c.client))) && jac(rt, ct) >= 0.3) s = Math.max(s, 0.8); if (s >= 0.5) m.push(c); }
-  return m;
-}
 function awardHasCategory(award, cat) {
   const a = award.toLowerCase();
   const has = (re) => re.test(a);
@@ -96,10 +85,6 @@ function awardHasCategory(award, cat) {
   }
 }
 
-// award文字列を "/" 区切りのセグメントに分解
-function awardSegments(award) {
-  return (award || "").split("/").map((s) => s.trim()).filter(Boolean);
-}
 // セグメントからレベル（Grand Prix/Gold/Silver/Bronze/Titanium等）を抽出
 function extractLevel(segment) {
   const s = segment.toLowerCase();
@@ -112,102 +97,19 @@ function extractLevel(segment) {
   if (/\bbronze\b/.test(s)) return "Bronze";
   return null;
 }
-const ALL_CATEGORIES = [...new Set(ref.map((w) => w.category))];
-function segmentCategory(segment) {
-  for (const cat of ALL_CATEGORIES) {
-    if (awardHasCategory(segment, cat)) return cat;
-  }
-  return null;
-}
 
-const missing = [];
-// caseId -> 参照リスト上でこのcaseにマッチした部門のSet（余分事例検出に使う）
-const caseRefCategories = new Map();
-// id|category -> 参照側の全レベルの集合（同一作品が同一部門で複数レベル受賞している場合に対応。
-// 例: 小分類違いでGold+Silver両方受賞。RM記載はそのうちどれか1つと一致すればOKとする）
-const refLevelsByCase = new Map();
+const result = runAudit({
+  refPath: path.join(__dirname, "../data/cannes2026-winners-v2.json"),
+  casesPath: path.join(__dirname, "../data/cases.json"),
+  awardPrefix: "Cannes Lions 2026",
+  verifiedCategories: VERIFIED_CATEGORIES,
+  awardHasCategory,
+  extractLevel,
+  alias: ALIAS,
+  stopwords: STOP,
+  strict: STRICT,
+  outPath: OUT_PATH,
+  label: "Cannes 2026",
+});
 
-for (const w of ref) {
-  const matches = findAllRM(w);
-  const covered = matches.length && matches.some((m) => awardHasCategory(m.award, w.category));
-  if (!covered) missing.push(w);
-
-  for (const m of matches) {
-    if (!awardHasCategory(m.award, w.category)) continue;
-    if (!caseRefCategories.has(m.id)) caseRefCategories.set(m.id, new Set());
-    caseRefCategories.get(m.id).add(w.category);
-
-    const key = `${m.id}|${w.category}`;
-    if (!refLevelsByCase.has(key)) refLevelsByCase.set(key, new Set());
-    refLevelsByCase.get(key).add(w.level);
-  }
-}
-
-// レベル不一致判定: 同一id+categoryについて、RM記載の全レベルと参照側の全レベルの集合が
-// 1つでも交差すればOK（同一部門内の複数レベル受賞を「片方だけ書けば良い」として許容する）
-const levelMismatches = [];
-for (const [key, refLevels] of refLevelsByCase) {
-  const [id, category] = key.split("|");
-  const m = cn.find((c) => c.id === id);
-  if (!m) continue;
-  const matchingSegs = awardSegments(m.award).filter((s) => awardHasCategory(s, category));
-  if (!matchingSegs.length) continue;
-  const foundLevels = matchingSegs.map(extractLevel).filter(Boolean);
-  if (!foundLevels.length) continue;
-  const hasIntersection = foundLevels.some((l) => refLevels.has(l));
-  if (!hasIntersection) {
-    levelMismatches.push({ id, category, refLevel: [...refLevels].join("/"), foundLevels: foundLevels.join("/"), segments: matchingSegs.join(" | ") });
-  }
-}
-
-// 余分事例検出: cases.json側の各awardセグメントが指す部門が、参照リストにこのcase用として無いもの。
-// 参照リストは2026年のみなので、award文字列中の他年（例: Cannes Lions 2025）のセグメントは対象外
-const extraSegments = [];
-for (const c of cn) {
-  const refCats = caseRefCategories.get(c.id) || new Set();
-  for (const seg of awardSegments(c.award)) {
-    if (!seg.includes("Cannes Lions 2026")) continue;
-    const cat = segmentCategory(seg);
-    if (!cat) continue; // 部門判定できないセグメントは安全側でスキップ
-    if (!refCats.has(cat)) extraSegments.push({ id: c.id, category: cat, segment: seg });
-  }
-}
-
-const byCat = {};
-missing.forEach((w) => (byCat[w.category] = byCat[w.category] || []).push(w));
-console.log(`Cannes 2026 deterministic audit — reference winners: ${ref.length}, RM 2026 cases: ${cn.length}`);
-
-const report = { missing, levelMismatches, extraSegments };
-if (OUT_PATH) fs.writeFileSync(OUT_PATH, JSON.stringify(report, null, 2));
-
-if (missing.length === 0) {
-  console.log("✓ PASS — RMは正解リストの全受賞作を部門単位で網羅しています。");
-} else {
-  console.log(`✗ FAIL — ${missing.length} 件の受賞が RM で未カバー:\n`);
-  for (const cat of Object.keys(byCat).sort()) {
-    console.log(`### ${cat} (${byCat[cat].length})`);
-    byCat[cat].forEach((w) => console.log(`   - ${w.level}: ${w.title} — ${w.brand}`));
-  }
-}
-
-// 公式照合済み15部門のレベル不一致はFAIL、未検証16部門はWARNのまま
-const verifiedMismatches = levelMismatches.filter((m) => VERIFIED_CATEGORIES.has(m.category));
-const unverifiedMismatches = levelMismatches.filter((m) => !VERIFIED_CATEGORIES.has(m.category));
-
-if (verifiedMismatches.length) {
-  console.log(`\n✗ FAIL — 公式照合済み部門のレベル不一致 ${verifiedMismatches.length} 件（v2は公式確定のため誤りとして扱う）:`);
-  verifiedMismatches.forEach((m) => console.log(`   - ${m.id} [${m.category}]: 公式=${m.refLevel} / RM記載=${m.foundLevels}`));
-}
-if (unverifiedMismatches.length) {
-  console.log(`\n⚠ WARN — 未検証部門のレベル不一致 ${unverifiedMismatches.length} 件（参照リストが旧v1由来・未公式照合のため確定ではない）:`);
-  unverifiedMismatches.forEach((m) => console.log(`   - ${m.id} [${m.category}]: 参照=${m.refLevel} / RM記載=${m.foundLevels}`));
-}
-if (extraSegments.length) {
-  console.log(`\n⚠ WARN — 余分な部門セグメント ${extraSegments.length} 件（参照リストに対応winnerが無い。参照リストの欠落かRM側の誤りの可能性）:`);
-  extraSegments.forEach((e) => console.log(`   - ${e.id}: "${e.segment}"`));
-}
-
-const hardFail = missing.length > 0 || verifiedMismatches.length > 0;
-const softFail = STRICT && (unverifiedMismatches.length > 0 || extraSegments.length > 0);
-if (hardFail || softFail) process.exit(1);
-process.exit(0);
+process.exit(result.exitCode);

@@ -503,6 +503,19 @@ Grand Prix for Good, Industry Craft, Pharma, Outdoor, Health & Wellness, Audio &
      `sourceUrl`に確認したURLを記録
   3. `npm run audit:cannes`で整合確認（公式照合済み部門はFAILしないこと）
 
+### 他アワードへの展開（2026-07-14・D&AD/One Show等の今後のリサーチ向け）
+
+上記の教訓・手順をカンヌ以外のアワードにも適用できるよう、`audit-cannes.mjs`の網羅監査
+ロジック（213行）をアワード非依存の汎用エンジン`scripts/audit-award.mjs`として切り出した
+（`runAudit()`関数＋CLI）。`audit-cannes.mjs`はカンヌ固有の知識（VERIFIED_CATEGORIES・
+部門名判定・ALIAS等）だけを保持する薄いラッパーになっており、出力・exit code・
+pre-push hookの挙動は移行前と完全に同一（回帰確認済み）。
+
+新アワードのリサーチ依頼を受けたら、まず `docs/AWARD_RESEARCH_SOP.md` を読むこと。
+公式ソース確定→参照リスト先行構築→監査スクリプト先行作成→事例執筆→監査ゲートの
+順序と、各フェーズで使うエージェント（award-verifier / case-collector / case-writer /
+link-checker / schema-checker）の役割分担をまとめてある。
+
 ## 6. トラブルシューティング・ランブック
 
 ### 自動実行が走っていない

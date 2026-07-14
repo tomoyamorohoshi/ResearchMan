@@ -9,6 +9,7 @@
     "lint": "eslint",
     "audit:cannes": "node scripts/audit-cannes.mjs",
     "audit:cannes:strict": "node scripts/audit-cannes.mjs --strict",
+    "audit:award": "node scripts/audit-award.mjs",
     "audit:thumbnails": "node scripts/audit-thumbnails.mjs",
     "thumbs:graph": "node scripts/generate-graph-thumbs.mjs",
     "audit:tech": "node scripts/audit-tech.mjs",
