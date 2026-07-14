@@ -1,5 +1,189 @@
 [
   {
+    "id": "animegen-ai-2026",
+    "title": "AnimeGen（アニメ特化動画生成AIモデル）",
+    "summary": "国内AIベンチャーAIdeaLabが経産省GENIAC支援で開発したアニメ特化動画生成AIをApache-2.0で無償・商用可能に国内初公開",
+    "client": "AIdeaLab",
+    "agency": "",
+    "categories": [
+      "AIクリエイティブ",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.itmedia.co.jp/aiplus/article/2607/13/2000000187/",
+    "thumbnail": "/thumbnails/animegen-ai-2026.jpg",
+    "videoId": "",
+    "overview": "AIdeaLabが開発したアニメ特化の動画生成AIモデル『AnimeGen』。テキストから動画を生成するText to Video、静止画を動かすImage to Video、コマ間を補完するFrame Interpolationの3機能を備え、2026年7月13日にApache-2.0ライセンスで無償・商用利用可能な形で公開された。アニメ特化動画生成AIの公開は国内企業として初とされる。",
+    "background": "経済産業省とNEDOが推進する生成AI基盤モデル開発支援事業『GENIAC』の支援を受け、AIdeaLabがアニメ制作現場でのAI活用を目指して開発した。人手不足や長時間労働といった業界課題の解決を狙い、中国Alibaba製のオープン動画生成AI『Wan 2.2 T2V A14B』をベースに、日本の著作権法に基づき収集・利用した学習データで追加学習を行った。",
+    "execution": "Wan 2.2をベースモデルとして、アニメ特有の動きやキャラクターの一貫性、色彩表現を高める追加学習を実施。Text to Video・Image to Video・Frame Interpolationの3モデルを構築し、Hugging Face上で重み一式をApache-2.0ライセンスにより無償公開、商用利用も許可した。あわせてWeb上で試せるデモも用意し、生成品質を誰でも確認できるようにした。",
+    "evaluationImpact": "オープンソースかつ商用利用可能なアニメ特化動画生成AIの国内初公開という位置づけが特徴。海外の汎用動画生成AIが主流の中、著作権処理に配慮した学習データでアニメ制作現場に特化した点が評価される。人手不足や長時間労働に悩むアニメ業界のAI活用を後押しする取り組みとして注目され、オープンウェイト公開により第三者による検証・改良も可能になっている。",
+    "relatedWorks": [
+      {
+        "title": "Wan2.2-T2V-A14B（Wan-AI / Alibaba）",
+        "description": "AnimeGenのベースとなった、Alibaba傘下Wan-AIが開発したオープンソースの動画生成AIモデル（Apache-2.0）",
+        "url": "https://huggingface.co/Wan-AI/Wan2.2-T2V-A14B"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Product",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "ish-music-video-2026",
+    "title": "好きish Music Video",
+    "summary": "AKB48『好きish』MVは伊藤百花の恋心を脳内の“作戦会議室”として可視化し、メンバーがモニター越しに見守る構成が新しい試みだ。",
+    "client": "AKB48",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://natalie.mu/music/news/676936",
+    "thumbnail": "/thumbnails/ish-music-video-2026.jpg",
+    "videoId": "IT2X9ZtjHoI",
+    "overview": "AKB48の68thシングル『好きish』のミュージックビデオが2026年7月13日21時にYouTubeでプレミア公開された。19期生・伊藤百花が2作連続でセンターを務め、監督は『恋 詰んじゃった』『まさかのConfession』に続き3作目となる池田大、振付は槙田紗子が担当。シングルは同年8月19日発売予定。",
+    "background": "伊藤百花は前作に続く連続センター起用で、グループの新体制を象徴する存在として位置づけられている。振付を手掛けた槙田紗子はAKB48とのコラボレーションが今作で初めてで、SNSで話題になりやすい振付を得意とする振付師として起用された。メインビジュアルもガーリーな衣装・世界観で統一されている。",
+    "execution": "MVは1960〜70年代風レトロなプロムパーティーのシーンで幕を開け、そこから主人公・伊藤百花の脳内にある“恋の作戦会議室”へと展開する。メンバーたちが大型モニター越しに伊藤の視点を見守りながら恋の作戦会議を繰り広げる構成で、『Heavy Rotation』を彷彿とさせる枕投げシーンも登場。振付には新たな“好きishポーズ”が組み込まれた。",
+    "evaluationImpact": "主人公の内面世界を“会議室”というメタファーでビジュアル化し、他メンバーがその視点を見守るという構造は、従来のAKB48楽曲MVの物語演出とは異なる切り口となっている。センターの伊藤百花自身も「“好きish”を通り越して“大好き”にさせたい」とコメントしており、グループ内の世代交代・新体制アピールの一環として展開されている。",
+    "relatedWorks": [
+      {
+        "title": "恋 詰んじゃった Music Video / AKB48 64th Single",
+        "description": "同じく池田大が監督を務めたAKB48の前作MV。17期生・佐藤綺星の初単独センター起用作で、日常と非日常が入り混じる世界観を描いた。",
+        "url": "https://www.youtube.com/watch?v=bWklb0mZYMw"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/MV",
+      "Theme/Music",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "arte-tokyo-2026",
+    "title": "ARTE TOKYO（東京国際文化芸術祭）",
+    "summary": "都市型文化芸術祭ARTE TOKYOが2026年秋初開催、75件のパートナープログラムと浜離宮庭園の期間限定夜間アートを発表。",
+    "client": "東京都・東京国際文化芸術祭実行委員会",
+    "agency": "齋藤精一（プロデューサー）／永山祐子（建築統括）",
+    "categories": [
+      "空間体験",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://news.yahoo.co.jp/articles/81dbd3c255f783e441cd52d88727022c4dec3e4d",
+    "thumbnail": "/thumbnails/arte-tokyo-2026.jpg",
+    "videoId": "",
+    "overview": "東京都と東京国際文化芸術祭実行委員会が主催する新設の都市型芸術祭「ARTE TOKYO」。2026年10月10日〜12月31日、臨海・日比谷丸の内・代々木渋谷の3エリアを舞台に、統括プロデューサー齋藤精一（パノラマティクス）、統括セノグラファー永山祐子のもと、大巻伸嗣、鈴木康広、目［mé］、藤本壮介、Rhizomatiksら現代美術・建築・メディアアート分野の作家が参加する。",
+    "background": "東京都は文化芸術による都市の魅力発信・国際競争力強化を目的に、官民協働の秋冬フラッグシップ芸術祭を新設。実行委員長は青柳正規。2026年7月2日、六本木アートナイトやアートウィーク東京、東京国際映画祭など75件のパートナープログラムの参画を発表し、既存の文化資産を束ねる都市回遊型フェスとして開幕準備が進む。",
+    "execution": "コアプログラムに加え、初開催と開園80周年を記念し浜離宮恩賜庭園で11月中旬〜12月下旬の約30日間、通常夜間閉園の庭園を舞台にした限定アートプロジェクトを実施。臨海・日比谷丸の内・代々木渋谷の各エリアでエキシビション、パブリックアート、ミュージック&パフォーマンスなど5ジャンルの企画を横断的に展開する構成。",
+    "evaluationImpact": "単発イベントではなく既存の75の文化プログラムを束ねる「アンブレラ型芸術祭」として設計した点、また文化財庭園の夜間開放という通常できない体験を初開催の目玉に据えた点が特徴。都市ブランディングと文化観光振興を両立する官民協働モデルとして今後の展開が注目される。",
+    "relatedWorks": [
+      {
+        "title": "ARTE TOKYO 公式サイト",
+        "description": "開催概要・参加アーティスト・プログラム詳細を発表する公式サイト",
+        "url": "https://artetokyo.jp/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Event",
+      "Form/Exhibition",
+      "Form/Installation",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "storydive-theater-wahhhp-2026",
+    "title": "Storydive Theater WAHHHP「永遠なるガウディ」",
+    "summary": "ガウディ没後100年に合わせ、財団公認VR体験で最大30人が同じ仮想空間で聖堂の石を積む常設VRシアターが新宿に開業。",
+    "client": "未来沢点株式会社（WAHHHP／サグラダ・ファミリア財団公認）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000003.000186589.html",
+    "thumbnail": "/thumbnails/storydive-theater-wahhhp-2026.jpg",
+    "videoId": "",
+    "overview": "未来沢点株式会社が2026年8月5日、新宿駅前ビル10Fに常設の没入型VRシアター「Storydive Theater WAHHHP」を開業。開業記念コンテンツ第一弾はサグラダ・ファミリア財団公認の「永遠なるガウディ」。ガウディの弟子としてアトリエを訪れ設計図を扱い、クライマックスで聖堂の石を手で積み上げる約30分・4幕構成の参加型体験を、最大30名が同一VR空間で互いの姿を確認しながら鑑賞する。",
+    "background": "2026年はガウディ没後100年、かつサグラダ・ファミリア「イエスの塔」完成という節目にあたる。財団は建築物の公開だけでなく、体験を通じてガウディの創作精神を世界に伝える手段としてVRコンテンツを公式ライセンス。日本発となる常設VRシアターという新業態の立ち上げにあわせ、東京初配給の記念作品として本作が選定された。",
+    "execution": "4幕構成・約30分の体験で、1926年当時のアトリエを学術資料をもとに3DCGで再現。参加者は設計図を手に取り、自然の造形が建築に転化する過程をたどり、サグラダ・ファミリア内部を歩いたのち、クライマックスで聖堂の石を自らの手で積み上げる。最大30名がヘッドセット越しに互いの姿を確認できる「社会的没入型」設計とし、日英中韓仏の5言語に対応した。",
+    "evaluationImpact": "展示施設や一過性イベントではなく、常設VRシアターという新業態の開業第一弾としてサグラダ・ファミリア財団の公式ライセンスを獲得した点が特徴。財団公認という信頼性と、最大30名が同一空間を共有する社会的没入設計を組み合わせ、国内のロケーション型VRエンタメに新たな型を提示した。",
+    "relatedWorks": [
+      {
+        "title": "The Wizard of Oz at Sphere",
+        "description": "既存の名作コンテンツをAI技術で大規模没入体験に再構築した事例。文化的原作の権利元との公式ライセンスに基づく点がWAHHHPと共通。",
+        "url": "https://www.sphere.com/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/XR",
+      "Form/Exhibition",
+      "Theme/Art",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "ichy-koda-peaq-2026",
+    "title": "Ichy（Škoda Peaq ローンチキャンペーン）",
+    "summary": "Škodaが5億年前の絶滅生物をブランドキャラクター化し、新EV「Peaq」の快適さを進化の物語で語るグローバルローンチ映像。",
+    "client": "Škoda",
+    "agency": "AMV BBDO / Untold Studios",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.mi-3.com.au/13-07-2026/skoda-starts-global-campaign-new-electric-vehicle-peaq",
+    "thumbnail": "/thumbnails/ichy-koda-peaq-2026.jpg",
+    "videoId": "",
+    "overview": "Škodaは新フラッグシップEV「Peaq」のグローバルローンチキャンペーン「Ichy」を展開。5億年前に海から陸へ進出した半魚半爬虫類イクチオステガをブランドキャラクターとし、その進化の旅と現代家族がPeaqの快適さを体験する姿を重ね合わせた映像を制作した。",
+    "background": "Škoda PeaqはEnyaq、Elroq、Epiqに続く7人乗りAWDの新フラッグシップEVで、航続600km超、「Modern Solid」デザイン哲学を体現するモデル。「快適さを求める本能が探求・進化を突き動かす」というインサイトを起点に、太古から現代へと続く進化の物語としてブランドの新章を打ち出すキャンペーンが企画された。",
+    "execution": "AMV BBDOが企画し、Sam Brown監督のもとRogue Filmsが映像制作、Untold Studiosがキャラクターデザインとイクチオステガのビジュアル表現を含むVFXを担当。太古の時代から現代までをタイムラプスでつなぎ、楽曲Aim & YZ「Ain't Got Time To Waste」に乗せてTV・デジタル・OOH・ソーシャルメディアで展開した。",
+    "evaluationImpact": "絶滅生物という異色のモチーフを自動車ブランドの快適性訴求に転用し、進化というスケールの大きい物語でEVローンチを差別化した点が特徴。2026年7月13日発表の新規キャンペーンであり、受賞歴は現時点で確認されていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Theme/Mobility",
+      "Theme/Entertainment"
+    ]
+  },
+  {
     "id": "agefield-high-rock-the-school-2026",
     "title": "Agefield High: Rock the School",
     "summary": "授業サボりが警察沙汰になるリスク付きの自由度重視オープンワールド高校生活シム、8月13日発売決定",
