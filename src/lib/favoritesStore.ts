@@ -1,4 +1,5 @@
-// お気に入りサーバ同期（バッチ1）のBlob I/O層。
+// お気に入り／ごみ箱サーバ同期のBlob I/O層（両者ともに同一形式のFavoritesDataを
+// pathnameだけ変えて読み書きする。データモデルの詳細はfavoritesMerge.ts参照）。
 // サーバ専用（@vercel/blobはNode.js向けSDKのため、このモジュールはroute.tsからのみ import する）。
 //
 // Vercel Blob側のAPI詳細（2026-07時点 @vercel/blob 2.5.0）:
@@ -10,8 +11,10 @@
 import { get, put } from "@vercel/blob";
 import { emptyFavoritesData, type FavoritesData } from "@/lib/favoritesMerge";
 
-// 固定pathname。favorites.json 1個のみを扱う（バッチ1の設計どおり）
+// 固定pathname。用途ごとに1個のJSONのみを扱う（バッチ1の設計どおり。ごみ箱機能追加に伴い
+// pathnameをパラメータ化し、read/write本体は共通のヘルパー関数に集約する）
 const FAVORITES_BLOB_PATHNAME = "favorites/favorites.json";
+const TRASH_BLOB_PATHNAME = "trash/trash.json";
 
 // BLOB_READ_WRITE_TOKEN 欠落時、呼び出し側はBlobに触れず503を返す
 // （ローカル/初回デプロイでenv未設定でもサイトが現状(localStorageのみ)と同一挙動で動く要件）
@@ -25,8 +28,8 @@ function isValidFavoritesData(value: unknown): value is FavoritesData {
   return v.version === 1 && Boolean(v.items) && typeof v.items === "object" && !Array.isArray(v.items);
 }
 
-export async function readFavoritesBlob(): Promise<FavoritesData> {
-  const result = await get(FAVORITES_BLOB_PATHNAME, { access: "private" });
+async function readBlobData(pathname: string): Promise<FavoritesData> {
+  const result = await get(pathname, { access: "private" });
   if (!result) return emptyFavoritesData();
   const text = await new Response(result.stream).text();
   let parsed: unknown;
@@ -40,11 +43,27 @@ export async function readFavoritesBlob(): Promise<FavoritesData> {
   return { version: 1, items: parsed.items };
 }
 
-export async function writeFavoritesBlob(data: FavoritesData): Promise<void> {
-  await put(FAVORITES_BLOB_PATHNAME, JSON.stringify(data), {
+async function writeBlobData(pathname: string, data: FavoritesData): Promise<void> {
+  await put(pathname, JSON.stringify(data), {
     access: "private",
     addRandomSuffix: false,
     allowOverwrite: true,
     contentType: "application/json",
   });
+}
+
+export function readFavoritesBlob(): Promise<FavoritesData> {
+  return readBlobData(FAVORITES_BLOB_PATHNAME);
+}
+
+export function writeFavoritesBlob(data: FavoritesData): Promise<void> {
+  return writeBlobData(FAVORITES_BLOB_PATHNAME, data);
+}
+
+export function readTrashBlob(): Promise<FavoritesData> {
+  return readBlobData(TRASH_BLOB_PATHNAME);
+}
+
+export function writeTrashBlob(data: FavoritesData): Promise<void> {
+  return writeBlobData(TRASH_BLOB_PATHNAME, data);
 }

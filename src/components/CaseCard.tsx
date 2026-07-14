@@ -15,9 +15,22 @@ type Props = {
   // 指定時、バッジは「award文字列全体の最高賞」ではなくこの部門でのレベルを表示する
   // （部門ページ用。通常ギャラリーでは未指定＝従来どおり全体最高賞を表示）
   awardContext?: { org: OrgKey; year: string; category: string };
+  // 以下3つはごみ箱機能用。すべてオプショナルにして、渡さない利用箇所（あれば）を壊さない
+  isTrashed?: boolean;
+  onToggleTrash?: (id: string) => void;
+  // ごみ箱ビュー表示中はtrue。ボタンのアイコン/ラベルが「復元」に切り替わる
+  trashMode?: boolean;
 };
 
-export default function CaseCard({ c, isFavorite, onToggleFavorite, awardContext }: Props) {
+export default function CaseCard({
+  c,
+  isFavorite,
+  onToggleFavorite,
+  awardContext,
+  isTrashed = false,
+  onToggleTrash,
+  trashMode = false,
+}: Props) {
   const level = awardContext
     ? getAwardLevelForCollection(c.award, awardContext.org, c.year, awardContext.year, awardContext.category)
     : getAwardLevel(c.award);
@@ -138,34 +151,81 @@ export default function CaseCard({ c, isFavorite, onToggleFavorite, awardContext
         </span>
       </div>
 
-      {/* お気に入りボタン（画像に重ねる） */}
-      <button
-        onClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          onToggleFavorite(c.id);
-        }}
-        aria-label={isFavorite ? "お気に入りを解除" : "お気に入りに追加"}
-        className={`absolute top-2 right-2 w-7 h-7 flex items-center justify-center transition-all duration-150
-          ${isFavorite
-            ? "text-yellow-400 opacity-100"
-            : "text-white/80 opacity-0 group-hover:opacity-100 hover:text-yellow-300"
-          }`}
-      >
-        <svg
-          viewBox="0 0 24 24"
-          fill={isFavorite ? "currentColor" : "none"}
-          stroke="currentColor"
-          strokeWidth={2}
-          className="w-4 h-4 drop-shadow"
+      {/* お気に入り・ごみ箱ボタン（画像に重ねる） */}
+      <div className="absolute top-2 right-2 flex items-center gap-1">
+        {onToggleTrash && (
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onToggleTrash(c.id);
+            }}
+            aria-label={trashMode ? "復元" : "ごみ箱に入れる"}
+            className={`w-7 h-7 flex items-center justify-center transition-all duration-150
+              ${trashMode
+                ? "text-white/80 opacity-100 hover:text-emerald-300"
+                : isTrashed
+                  ? "text-red-400 opacity-100"
+                  : "text-white/80 opacity-0 group-hover:opacity-100 hover:text-red-300"
+              }`}
+          >
+            {trashMode ? (
+              // 復元アイコン（undo矢印）
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                className="w-4 h-4 drop-shadow"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 15L4 10m0 0l5-5m-5 5h11a4 4 0 014 4v1" />
+              </svg>
+            ) : (
+              // ごみ箱アイコン
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                className="w-4 h-4 drop-shadow"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 7h12M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2m2 0l-.867 12.142A2 2 0 0115.138 21H8.862a2 2 0 01-1.995-1.858L6 7z"
+                />
+              </svg>
+            )}
+          </button>
+        )}
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            onToggleFavorite(c.id);
+          }}
+          aria-label={isFavorite ? "お気に入りを解除" : "お気に入りに追加"}
+          className={`w-7 h-7 flex items-center justify-center transition-all duration-150
+            ${isFavorite
+              ? "text-yellow-400 opacity-100"
+              : "text-white/80 opacity-0 group-hover:opacity-100 hover:text-yellow-300"
+            }`}
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.562.562 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
-          />
-        </svg>
-      </button>
+          <svg
+            viewBox="0 0 24 24"
+            fill={isFavorite ? "currentColor" : "none"}
+            stroke="currentColor"
+            strokeWidth={2}
+            className="w-4 h-4 drop-shadow"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.562.562 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
+            />
+          </svg>
+        </button>
+      </div>
     </div>
   );
 }
