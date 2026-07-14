@@ -46,15 +46,18 @@ Write-Host ""
 #   autoresearch : 毎日10:00〜23:00の毎正時（14回）
 #   techresearch : 毎日10:00〜23:00の毎正時（14回。autoresearchと同時刻だがgit排他ロックで直列化される）
 #   ideaseeds    : 毎日10:15〜23:15の毎正時15分（14回。収集2本より15分遅らせて配信）
-#   tuneup       : 毎日8:30〜23:30の毎正時30分（16回。実際に動くのは--monthly-days 1,15の対象日のみ。
-#                  ゲート判定はrun-job.mjs内部のrun-if-due.mjsが行う）
+#   tuneup       : 毎週月曜08:30の単発トリガ（2026-07-14に隔週/毎月1・15日08:30から変更。
+#                  PC停止時はタスクスケジューラのStartWhenAvailableでキャッチアップ。
+#                  run-job.mjs側にも「月曜以外はスキップ」の保険があり、run-if-due.mjsのdaily-at
+#                  ゲートで同日重複防止する。旧「毎日8:30〜23:30毎正時30分（16回）＋
+#                  --monthly-days 1,15」構成は廃止）
 #   watchdog     : 毎日12:30〜23:30の毎正時30分（12回。AM/PM 2段ゲートで実際は1日2回のみ実行）
 $JobSchedules = [ordered]@{
-    autoresearch = @{ Hours = 10..23; Minute = 0 }
-    techresearch = @{ Hours = 10..23; Minute = 0 }
-    ideaseeds    = @{ Hours = 10..23; Minute = 15 }
-    tuneup       = @{ Hours = 8..23;  Minute = 30 }
-    watchdog     = @{ Hours = 12..23; Minute = 30 }
+    autoresearch = @{ Type = "DailyHours"; Hours = 10..23; Minute = 0 }
+    techresearch = @{ Type = "DailyHours"; Hours = 10..23; Minute = 0 }
+    ideaseeds    = @{ Type = "DailyHours"; Hours = 10..23; Minute = 15 }
+    tuneup       = @{ Type = "Weekly"; DayOfWeek = "Monday"; Hour = 8; Minute = 30 }
+    watchdog     = @{ Type = "DailyHours"; Hours = 12..23; Minute = 30 }
 }
 
 $Settings = New-ScheduledTaskSettingsSet `
@@ -74,9 +77,14 @@ foreach ($job in $JobSchedules.Keys) {
     $sched = $JobSchedules[$job]
 
     $triggers = @()
-    foreach ($hour in $sched.Hours) {
-        $startTime = Get-Date -Hour $hour -Minute $sched.Minute -Second 0
-        $triggers += New-ScheduledTaskTrigger -Daily -At $startTime
+    if ($sched.Type -eq "Weekly") {
+        $startTime = Get-Date -Hour $sched.Hour -Minute $sched.Minute -Second 0
+        $triggers += New-ScheduledTaskTrigger -Weekly -DaysOfWeek $sched.DayOfWeek -At $startTime
+    } else {
+        foreach ($hour in $sched.Hours) {
+            $startTime = Get-Date -Hour $hour -Minute $sched.Minute -Second 0
+            $triggers += New-ScheduledTaskTrigger -Daily -At $startTime
+        }
     }
 
     $action = New-ScheduledTaskAction `
@@ -103,7 +111,11 @@ foreach ($job in $JobSchedules.Keys) {
     # 登録直後に必ず無効化する（Mac側launchdと同時に有効なままだと二重実行・git競合の危険がある）
     Disable-ScheduledTask -TaskName $taskName | Out-Null
 
-    Write-Host "登録完了（無効化状態）: $taskName（$($sched.Hours.Count)回/日 @ 毎時$($sched.Minute)分）"
+    if ($sched.Type -eq "Weekly") {
+        Write-Host "登録完了（無効化状態）: $taskName（毎週$($sched.DayOfWeek) $($sched.Hour):$($sched.Minute.ToString('00'))）"
+    } else {
+        Write-Host "登録完了（無効化状態）: $taskName（$($sched.Hours.Count)回/日 @ 毎時$($sched.Minute)分）"
+    }
 }
 
 Write-Host ""

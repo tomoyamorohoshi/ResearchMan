@@ -1,6 +1,13 @@
 // scripts/lib/tuneup-stats.mjs の単体検証。
 // 実行: node scripts/smoke-tuneup-stats.mjs
-import { favoriteIds, computeFavoriteStats, computeIdeaStructureStats } from "./lib/tuneup-stats.mjs";
+import {
+  favoriteIds,
+  computeFavoriteStats,
+  computeIdeaStructureStats,
+  computeTrashStats,
+  computeUserCaseStats,
+  deriveTrashEndpoint,
+} from "./lib/tuneup-stats.mjs";
 
 let failures = 0;
 function assert(cond, message) {
@@ -58,6 +65,70 @@ function assert(cond, message) {
   assert(stats.uniqueRefsUsed === 3, "ユニークref数=3(c1,t1,t2)");
   const t1 = stats.overusedRefs.find((r) => r.ref === "tech:t1");
   assert(t1 && t1.count === 3, `tech:t1が3回参照(overused)として検出 (${JSON.stringify(stats.overusedRefs)})`);
+}
+
+// ── computeTrashStats（ごみ箱＝弱化シグナル） ──
+{
+  const cases = [
+    { id: "c1", title: "Case1", tags: ["Tech/AI", "Form/Product"], categories: ["AIクリエイティブ"], sources: ["Radar"], year: "2026" },
+    { id: "c2", title: "Case2", tags: ["Tech/XR"], categories: ["体験"], sources: ["Award"], year: "2025" },
+    { id: "c3", title: "Case3", tags: ["Tech/AI"], categories: ["AIクリエイティブ"], sources: ["Order"], year: "2025" },
+  ];
+  const trashedIds = ["c2"];
+  const stats = computeTrashStats({ trashedIds, cases });
+  assert(stats.trashedCaseCount === 1, `ごみ箱事例数=1 (got ${stats.trashedCaseCount})`);
+  assert(stats.totalCaseCount === 3, "全事例数=3");
+  assert(stats.caseTagDistributionTrashed["Tech/XR"] === 1, "ごみ箱タグ分布にTech/XRが1件");
+  assert(stats.caseTagDistributionTrashed["Tech/AI"] === undefined, "ごみ箱タグ分布にTech/AIは無い(c1,c3は非trash)");
+  assert(stats.caseCategoryDistributionTrashed["体験"] === 1, "ごみ箱カテゴリ分布に体験が1件");
+  assert(stats.caseSourcesDistributionTrashed["Award"] === 1, "ごみ箱sources分布にAwardが1件");
+  assert(stats.trashedCases[0].id === "c2", "trashedCasesにc2が含まれる");
+
+  const empty = computeTrashStats({ trashedIds: [], cases });
+  assert(empty.trashedCaseCount === 0, "trashedIdsが空なら0件");
+  assert(Object.keys(empty.caseTagDistributionTrashed).length === 0, "trashedIdsが空ならタグ分布も空");
+}
+
+// ── computeUserCaseStats（ユーザー追加事例＝強化シグナル） ──
+{
+  const cases = [
+    { id: "c1", title: "Case1", tags: ["Tech/AI"], categories: ["AIクリエイティブ"], sources: ["Radar"], year: "2026" },
+    { id: "c2", title: "Case2", tags: ["Tech/XR"], categories: ["体験"], sources: ["User"], year: "2025" },
+    { id: "c3", title: "Case3", tags: ["Tech/XR", "Form/Product"], categories: ["体験"], sources: ["User", "Radar"], year: "2025" },
+  ];
+  const stats = computeUserCaseStats({ cases });
+  assert(stats.userCaseCount === 2, `ユーザー追加事例数=2 (got ${stats.userCaseCount})`);
+  assert(stats.caseTagDistributionUser["Tech/XR"] === 2, "ユーザー事例タグ分布にTech/XRが2件");
+  assert(stats.caseTagDistributionUser["Tech/AI"] === undefined, "ユーザー事例タグ分布にTech/AIは無い(c1は非User)");
+  assert(stats.caseCategoryDistributionUser["体験"] === 2, "ユーザー事例カテゴリ分布に体験が2件");
+  assert(stats.userCases.map((c) => c.id).sort().join(",") === "c2,c3", "userCasesにc2,c3が含まれる");
+
+  const none = computeUserCaseStats({ cases: [cases[0]] });
+  assert(none.userCaseCount === 0, "User事例が無ければ0件");
+}
+
+// ── deriveTrashEndpoint（favoritesエンドポイントからtrashエンドポイントを導出） ──
+{
+  const derived = deriveTrashEndpoint("https://research-man.vercel.app/api/favorites", null);
+  assert(derived === "https://research-man.vercel.app/api/trash", `favoritesエンドポイントからtrashを導出 (got ${derived})`);
+
+  const overridden = deriveTrashEndpoint("https://research-man.vercel.app/api/favorites", "https://example.com/custom-trash");
+  assert(overridden === "https://example.com/custom-trash", "trashEndpointの明示指定はそちらを優先する");
+
+  const trailingSlash = deriveTrashEndpoint("https://research-man.vercel.app/api/favorites/", null);
+  assert(trailingSlash === "https://research-man.vercel.app/api/trash/", `末尾スラッシュも保持して導出 (got ${trailingSlash})`);
+
+  // 非標準URL（/api/favoritesで終わらない）は置換が不発になり得るため、導出失敗としてnullを返すべき
+  // （favoritesのレスポンスをtrashとして誤集計してしまうバグの回帰防止）。
+  const nonStandard = deriveTrashEndpoint("https://research-man.vercel.app/api/favorites-legacy", null);
+  assert(nonStandard === null, `非標準URLは導出失敗でnullを返す (got ${nonStandard})`);
+
+  const noMatchAtAll = deriveTrashEndpoint("https://example.com/completely/different/path", null);
+  assert(noMatchAtAll === null, `/api/favoritesを含まないURLもnullを返す (got ${noMatchAtAll})`);
+
+  // 明示overrideがあれば非標準URLでも常にoverrideを優先する
+  const nonStandardOverridden = deriveTrashEndpoint("https://research-man.vercel.app/api/favorites-legacy", "https://example.com/custom-trash");
+  assert(nonStandardOverridden === "https://example.com/custom-trash", "非標準URLでもoverride指定時はそちらを優先する");
 }
 
 if (failures > 0) {

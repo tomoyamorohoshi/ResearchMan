@@ -339,16 +339,14 @@ async function runIdeaseeds() {
 }
 
 async function runTuneup() {
-  const due = runNode("scripts/run-if-due.mjs", [
-    "--state",
-    ".last-tuneup-run.txt",
-    "--daily-at",
-    "8",
-    "--minute",
-    "30",
-    "--monthly-days",
-    "1,15",
-  ]);
+  // 週次実行（2026-07-14に隔週/毎月1・15日から変更）。run-if-due.mjsに曜日指定オプションは
+  // 無い（scripts/run-if-due.mjsは編集対象外）ため、runWatchdog()のisSunday判定と同じ方針で
+  // 曜日制約はここ（JS側）で持つ。タスクスケジューラ側のトリガも毎週月曜08:30単発に変更済み
+  // （scripts/windows/register-tasks.ps1参照）だが、StartWhenAvailableによる遅延キャッチアップが
+  // 月曜以外にずれ込む可能性への保険として、ここでも月曜以外は静かにスキップする
+  // （＝月曜を逃したら次の月曜まで待つ。旧--monthly-daysと同じ「対象日以外は待つ」思想を踏襲）。
+  if (new Date().getDay() !== 1) return; // 1 = Monday
+  const due = runNode("scripts/run-if-due.mjs", ["--state", ".last-tuneup-run.txt", "--daily-at", "8", "--minute", "30"]);
   if (due.status !== 0) return;
 
   if (!(await acquireLock(45 * 60 * 1000))) {

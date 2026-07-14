@@ -1,13 +1,20 @@
 /**
- * 隔週チューンアップ（実装計画 researchman-ops-routine.md バッチ2b）。
+ * 週次チューンアップ（実装計画 researchman-ops-routine.md バッチ2b。2026-07-14に隔週→週次へ変更）。
  *
- * Case Study / Technology のお気に入り蓄積を分析し、収集レーン・探索角度・
- * アイデア生成の構造（サンプリング重み・パターン混合比）を2週間に1回ブラッシュアップする。
- * launchd `com.researchman.tuneup`（毎月1日・15日 08:30、run-if-due.mjsでゲート）から呼ばれる。
+ * ★ ファイル名 biweekly-tuneup.mjs は後方互換のため据え置きだが、実体は週次実行（毎週月曜08:30）。
+ *
+ * Case Study / Technology のお気に入り蓄積（＋ごみ箱＝弱化シグナル・ユーザー追加事例＝強化シグナル）
+ * を分析し、収集レーン・探索角度・アイデア生成の構造（サンプリング重み・パターン混合比）を
+ * 週1回ブラッシュアップする。Windowsタスクスケジューラ タスク名 ResearchMan-tuneup
+ * （毎週月曜08:30、scripts/windows/run-job.mjs経由。run-if-due.mjsで同日重複防止）から呼ばれる。
  *
  * 流れ:
  *   1. GET /api/favorites（Bearer FAVORITES_SYNC_TOKEN。設定は ~/.researchman-favsync.json）→
- *      cases.json/tech.jsonと結合してお気に入り分布を算出
+ *      cases.json/tech.jsonと結合してお気に入り分布を算出。あわせて GET /api/trash
+ *      （favoritesと同じtoken・endpointから導出）でごみ箱分布（弱化シグナル）、
+ *      cases.json の sources:["User"] からユーザー追加事例分布（強化シグナル）も算出し、
+ *      分析パス1のプロンプトに反映する（ごみ箱・favsync自体が未設定/エラーの場合は黙ってスキップし、
+ *      処理全体は落とさない）
  *   2. Claude CLI 分析パス1「リサーチ計画」: research-tuning.json / x-radar-queries.json /
  *      RESEARCH_PLAN.md の改訂案を生成
  *   3. Claude CLI 分析パス2「アイデア構造見直し」: idea-tuning.json の改訂案を生成
@@ -15,14 +22,14 @@
  *   5. dry-run全通し: 改訂案を一時的に書き込み、ideas:dry / auto-research:tech:dry /
  *      auto-research:cc:dry が正常終了するか確認。失敗なら git checkout で全戻し
  *   6. 成功時: 設定ファイルを書き込んだ状態で終了（exit 0）。commit/push/verify-deploy/
- *      LINE通知は launchd plist のシェル側が担当（既存3ジョブと同じ役割分担）
+ *      LINE通知は run-job.mjs 側が担当（既存3ジョブと同じ役割分担）
  *
  * LINE報告文面は os.tmpdir()/researchman-tuneup-report.txt に書き出す
  * （notify-line.mjs --text-file が送る。成功/スキップ/失敗のいずれでも必ず書く）。
  *
  * 使い方:
  *   node scripts/biweekly-tuneup.mjs             # 本番実行
- *   node scripts/biweekly-tuneup.mjs --dry-run   # フィクスチャお気に入りで全経路検証。
+ *   node scripts/biweekly-tuneup.mjs --dry-run   # フィクスチャお気に入り/ごみ箱で全経路検証。
  *                                                  設定ファイルは検証後に必ず元へ戻し、
  *                                                  状態ファイル(.last-tuneup-run.txt)も更新しない
  */
@@ -33,7 +40,14 @@ import https from "https";
 import { spawnSync } from "child_process";
 import { fileURLToPath } from "url";
 import { resolveClaudeBin, runClaudeJson } from "./lib/claude-cli.mjs";
-import { favoriteIds, computeFavoriteStats, computeIdeaStructureStats } from "./lib/tuneup-stats.mjs";
+import {
+  favoriteIds,
+  computeFavoriteStats,
+  computeIdeaStructureStats,
+  computeTrashStats,
+  computeUserCaseStats,
+  deriveTrashEndpoint,
+} from "./lib/tuneup-stats.mjs";
 import {
   checkResearchTuningChange,
   checkXRadarQueriesChange,
@@ -41,6 +55,7 @@ import {
 } from "./lib/tuneup-guardrails.mjs";
 import { reinjectDescriptions } from "./lib/reinject-descriptions.mjs";
 import { applyCandidateWithVerification } from "./lib/tuneup-apply.mjs";
+import { buildPass1Prompt } from "./lib/tuneup-prompts.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
@@ -61,7 +76,7 @@ const MODEL = "sonnet";
 const ANALYSIS_TIMEOUT_MS = 600000;
 // 各dry-runサブパイプラインの上限。auto-research-cc.mjsは発見(最大3ラウンド×600秒)+
 // 候補ごとのサムネ検証(ネットワーク律速)+記事生成(最大10件×300秒)を直列に行うため、
-// 実測で30分を超えることがある。月2回しか動かないジョブなので短縮する理由が無く、
+// 実測で30分を超えることがある。週1回しか動かないジョブなので短縮する理由が無く、
 // 短すぎて正当な変更をタイムアウトで誤って破棄する方が有害。余裕を持たせて45分とする
 const SUBPIPELINE_TIMEOUT_MS = 2700000;
 
@@ -155,6 +170,15 @@ function buildFixtureFavorites(cases, tech) {
   return { version: 1, items };
 }
 
+// --dry-run用フィクスチャ: お気に入りフィクスチャ(先頭5件)と重ならない6〜8件目を「ごみ箱」とみなす
+// （favsync未設定でも全経路を通すため。本物のGET /api/trashは呼ばない）
+function buildFixtureTrash(cases) {
+  const now = Date.now();
+  const items = {};
+  for (const c of cases.slice(5, 8)) items[c.id] = { fav: true, ts: now };
+  return { version: 1, items };
+}
+
 function gitCheckoutRevert(paths) {
   const r = spawnSync("git", ["checkout", "--", ...paths], { cwd: ROOT, stdio: "inherit" });
   if (r.status !== 0) {
@@ -172,51 +196,8 @@ function runDrySubpipeline(npmScript) {
   return !r.error && r.status === 0;
 }
 
-function buildPass1Prompt({ favStats, oldResearchTuning, oldXRadarQueries, oldResearchPlan }) {
-  return `ResearchMan（デジタルクリエイティブ事例・技術データベース）の隔週チューンアップ「リサーチ計画」担当。
-ユーザーがサイトでお気に入り(★)した Case Study / Technology の傾向を、全体分布と比較して、
-日次自動収集（auto-research-cc.mjs / auto-research-tech.mjs）の探索レーン・角度・X検索クエリを
-ブラッシュアップしてください。
-
-# お気に入り統計
-- お気に入り事例: ${favStats.favoriteCaseCount}件 / 全${favStats.totalCaseCount}件
-- お気に入り技術: ${favStats.favoriteTechCount}件 / 全${favStats.totalTechCount}件
-- 事例タグ分布（全体）: ${JSON.stringify(favStats.caseTagDistributionAll)}
-- 事例タグ分布（お気に入りのみ）: ${JSON.stringify(favStats.caseTagDistributionFav)}
-- 技術domain分布（全体）: ${JSON.stringify(favStats.techDomainDistributionAll)}
-- 技術domain分布（お気に入りのみ）: ${JSON.stringify(favStats.techDomainDistributionFav)}
-- お気に入り事例のsources分布: ${JSON.stringify(favStats.caseSourcesDistributionFav)}
-- お気に入り技術のtype分布: ${JSON.stringify(favStats.techTypeDistributionFav)}
-- お気に入り事例一覧（抜粋）: ${JSON.stringify(favStats.favoriteCases.slice(0, 40))}
-- お気に入り技術一覧（抜粋）: ${JSON.stringify(favStats.favoriteTech.slice(0, 40))}
-
-# 現行設定
-research-tuning.json: ${JSON.stringify(oldResearchTuning)}
-x-radar-queries.json: ${JSON.stringify(oldXRadarQueries)}
-現行RESEARCH_PLAN.md:
-${oldResearchPlan}
-
-# 厳守事項（機械検証で拒否される。逸脱すると変更全体が破棄される）
-- research-tuning.json の構造（tech.lanes / cc.roundFoci、各要素の必須キー）は変えない。
-  label/sources/diversityの**文言**のみ変更可
-- tech.lanes・cc.roundFociとも件数は3〜6件を維持
-- x-radar-queries.jsonは文字列配列のまま、件数は1〜6件を維持
-- **変更は保守的に**: tech.lanes と cc.roundFoci を合わせて2件まで、x-radarクエリは3件までしか
-  差し替えない（大半は現状維持し、お気に入りが強く示す傾向がある部分だけピンポイントで変える）
-- 有意な傾向が見えない・お気に入りが少なすぎる場合は、無理に変えず現状のJSONをそのまま返してよい
-
-# 出力
-JSON1つのみ（前置き・後書きなし）:
-{
-  "researchTuning": ${JSON.stringify({ tech: { lanes: "..." }, cc: { roundFoci: "..." } })},
-  "xRadarQueries": ["..."],
-  "researchPlanMarkdown": "# RESEARCH_PLAN.md の全文（Markdown）。現在の関心仮説・強化する源・弱める源・根拠を人間可読に書く",
-  "rationale": "LINE報告用の変更理由の要約（2〜4文、日本語）"
-}`;
-}
-
 function buildPass2Prompt({ favStats, ideaStats, oldIdeaTuning }) {
-  return `ResearchMan「アイデアの種」生成（generate-idea-seeds.mjs）の隔週チューンアップ「構造見直し」担当。
+  return `ResearchMan「アイデアの種」生成（generate-idea-seeds.mjs）の週次チューンアップ「構造見直し」担当。
 アイデア品質の直接評価はしない（★は無い）。ideas.json蓄積の機械指標とお気に入り分布から、
 サンプリング重み・パターン混合比・プロンプト文言の**構造**だけを見直してください。
 
@@ -252,11 +233,11 @@ JSON1つのみ（前置き・後書きなし）:
 }
 
 function buildReport(lines) {
-  return [`🔧 ResearchMan 隔週チューンアップ`, "", ...lines, "", `${SITE}`].join("\n");
+  return [`🔧 ResearchMan 週次チューンアップ`, "", ...lines, "", `${SITE}`].join("\n");
 }
 
 async function main() {
-  log(`\nResearchMan 隔週チューンアップ`);
+  log(`\nResearchMan 週次チューンアップ`);
   log(`   ${new Date().toLocaleString("ja-JP")}`);
   if (DRY_RUN) log("   ⚠ DRY RUN（設定ファイルは検証後に必ず元へ戻します）");
 
@@ -264,11 +245,15 @@ async function main() {
   const tech = await readJson(TECH_PATH);
   const ideas = await readJson(IDEAS_PATH);
 
-  // ── 1. favorites取得 ──
+  // ── 1. favorites取得（＋ごみ箱＝弱化シグナル） ──
   let favoritesData;
+  let trashedIds = [];
   if (DRY_RUN) {
     favoritesData = buildFixtureFavorites(cases, tech);
     log(`🧪 フィクスチャお気に入り${Object.keys(favoritesData.items).length}件を使用`);
+    const fixtureTrash = buildFixtureTrash(cases);
+    trashedIds = favoriteIds(fixtureTrash.items);
+    log(`🧪 フィクスチャごみ箱${trashedIds.length}件を使用`);
   } else {
     let favsyncConfig = null;
     try {
@@ -298,6 +283,27 @@ async function main() {
       return;
     }
     favoritesData = res.body;
+
+    // ごみ箱（弱化シグナル）取得。favoritesと同じFAVORITES_SYNC_TOKENを共用する
+    // （src/app/api/trash/route.ts参照）。endpointはfavsyncConfig.trashEndpointで明示指定できるが、
+    // 未指定ならfavoritesのendpointから /api/favorites → /api/trash を機械的に導出する
+    // （設定ファイルを増やさず追従できるため。deriveTrashEndpoint参照）。
+    // 導出不可（非標準URL等でderiveTrashEndpointがnullを返した場合）・未設定・エラー・503いずれも
+    // 黙ってスキップし、処理全体は落とさない（弱化シグナル無しで続行）。導出不可時にfavoritesの
+    // endpointをそのままGETしてしまうとfavoritesのレスポンスをtrashとして誤集計するため、
+    // その場合はHTTPリクエスト自体を行わない。
+    const trashEndpoint = deriveTrashEndpoint(favsyncConfig.endpoint, favsyncConfig.trashEndpoint);
+    if (!trashEndpoint) {
+      log("ごみ箱取得スキップ（trashEndpoint導出不可）→ 弱化シグナル無しで続行");
+    } else {
+      const trashRes = await httpGetJson(trashEndpoint, favsyncConfig.token);
+      if (trashRes.ok) {
+        trashedIds = favoriteIds(trashRes.body?.items);
+        log(`ごみ箱: ${trashedIds.length}件`);
+      } else {
+        log(`ごみ箱取得スキップ（${trashRes.error}）→ 弱化シグナル無しで続行`);
+      }
+    }
   }
 
   const favIds = favoriteIds(favoritesData?.items);
@@ -311,6 +317,8 @@ async function main() {
 
   const favStats = computeFavoriteStats({ favIds, cases, tech });
   const ideaStats = computeIdeaStructureStats(ideas);
+  const trashStats = computeTrashStats({ trashedIds, cases });
+  const userCaseStats = computeUserCaseStats({ cases });
 
   const oldResearchTuning = await readJson(RESEARCH_TUNING_PATH);
   const oldIdeaTuning = await readJson(IDEA_TUNING_PATH);
@@ -325,7 +333,7 @@ async function main() {
   try {
     pass1 = runClaudeJson(
       claudeBin,
-      buildPass1Prompt({ favStats, oldResearchTuning, oldXRadarQueries, oldResearchPlan }),
+      buildPass1Prompt({ favStats, trashStats, userCaseStats, oldResearchTuning, oldXRadarQueries, oldResearchPlan }),
       { timeout: ANALYSIS_TIMEOUT_MS, marker: '"researchTuning"', model: MODEL }
     );
   } catch (e) {
@@ -412,6 +420,7 @@ async function main() {
 
   const changeSummaryLines = [
     `お気に入り: 事例${favStats.favoriteCaseCount}件・技術${favStats.favoriteTechCount}件を分析`,
+    `ごみ箱(弱化)${trashStats.trashedCaseCount}件・ユーザー追加(強化)${userCaseStats.userCaseCount}件も分析材料に反映`,
     `変更: レーン/角度${researchCheck.laneChanges}件・Xクエリ${queriesCheck.queryChanges}件・重み${ideaCheck.weightChanges}件`,
     "",
     "【リサーチ計画】" + (pass1.rationale || "(理由の記載なし)"),
@@ -426,7 +435,7 @@ async function main() {
 
   await writeReport(buildReport(["✅ 分析・検証が完了しました。反映します。", "", ...changeSummaryLines]));
   await fs.writeFile(LAST_RUN_PATH, new Date().toISOString());
-  log("✅ 完了（commit/push/通知は launchd plist 側で実行）");
+  log("✅ 完了（commit/push/通知は run-job.mjs 側で実行）");
 }
 
 main()

@@ -10,11 +10,15 @@ macOS launchd（`launchd/com.researchman.*.plist`）5ジョブの Windows 版。
 | `autoresearch` | com.researchman.autoresearch.plist | Case Study 日次自動収集 | 毎日10:00〜23:00 毎正時 |
 | `techresearch` | com.researchman.techresearch.plist | Technology 日次自動収集 | 毎日10:00〜23:00 毎正時 |
 | `ideaseeds` | com.researchman.ideaseeds.plist | アイデアの種 生成・LINE配信 | 毎日10:15〜23:15 毎正時15分 |
-| `tuneup` | com.researchman.tuneup.plist | 隔週チューンアップ | 毎日8:30〜23:30 毎正時30分（実際に動くのは毎月1日・15日のみ） |
+| `tuneup` | com.researchman.tuneup.plist | 週次チューンアップ（2026-07-14に隔週/毎月1・15日から変更。ファイル名`biweekly-tuneup.mjs`は後方互換で維持） | 毎週月曜08:30の単発トリガ（PC停止時はStartWhenAvailableでキャッチアップ） |
 | `watchdog` | com.researchman.watchdog.plist | 自己回復ウォッチドッグ | 毎日12:30〜23:30 毎正時30分（実際に動くのは12:30枠・18:30枠の1日2回のみ。日曜18:30枠のみ`--deep`） |
 
-いずれも「毎正時に起動し、`scripts/run-if-due.mjs` のゲートが『本日分が未実行かつ実行時刻を過ぎているか』を
-判定して初めて本体が走る」設計はMac時代のまま。PCがスリープ/電源OFFでも次に起動した正時にキャッチアップされる。
+`tuneup`以外の4ジョブは「毎正時に起動し、`scripts/run-if-due.mjs` のゲートが『本日分が未実行かつ
+実行時刻を過ぎているか』を判定して初めて本体が走る」設計はMac時代のまま。PCがスリープ/電源OFFでも
+次に起動した正時にキャッチアップされる。`tuneup`のみ2026-07-14に単発の週次トリガ（毎週月曜08:30）へ
+変更し、`run-job.mjs`側で「月曜以外はスキップ」する保険を追加している（タスクスケジューラの
+`StartWhenAvailable`が月曜以外へキャッチアップした場合の保険。詳細は`scripts/windows/run-job.mjs`の
+`runTuneup()`コメント参照）。
 
 ## セットアップ手順
 

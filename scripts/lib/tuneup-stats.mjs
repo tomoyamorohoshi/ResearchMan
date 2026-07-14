@@ -45,6 +45,67 @@ export function computeFavoriteStats({ favIds, cases, tech }) {
 }
 
 /**
+ * ごみ箱（TOPの/api/trash。弱化シグナル: ユーザーが関心なしとしてごみ箱に入れた事例）の分布計算
+ * （分析パス1「リサーチ計画」の入力素材）。trashedIdsの抽出はfavoriteIds()を再利用する
+ * （/api/trashのレスポンス形状はfavoritesと同じ{items:{id:{fav,ts}}}で、fav:true=ごみ箱行きの
+ * 意味も共通のため）。
+ */
+export function computeTrashStats({ trashedIds, cases }) {
+  const trashedSet = new Set(trashedIds);
+  const trashedCases = cases.filter((c) => trashedSet.has(c.id));
+  return {
+    trashedCaseCount: trashedCases.length,
+    totalCaseCount: cases.length,
+    caseTagDistributionTrashed: tally(trashedCases, (c) => c.tags),
+    caseCategoryDistributionTrashed: tally(trashedCases, (c) => c.categories),
+    caseSourcesDistributionTrashed: tally(trashedCases, (c) => c.sources),
+    trashedCases: trashedCases.map((c) => ({
+      id: c.id,
+      title: c.title,
+      tags: c.tags || [],
+      categories: c.categories || [],
+      year: c.year,
+    })),
+  };
+}
+
+/**
+ * ユーザーがLINE経由で自ら登録した事例（cases.json内 sources:["User"]。強化シグナル: 明確な
+ * 関心の表明）の分布計算（分析パス1「リサーチ計画」の入力素材）。
+ */
+export function computeUserCaseStats({ cases }) {
+  const userCases = cases.filter((c) => (c.sources || []).includes("User"));
+  return {
+    userCaseCount: userCases.length,
+    caseTagDistributionUser: tally(userCases, (c) => c.tags),
+    caseCategoryDistributionUser: tally(userCases, (c) => c.categories),
+    userCases: userCases.map((c) => ({
+      id: c.id,
+      title: c.title,
+      tags: c.tags || [],
+      categories: c.categories || [],
+      year: c.year,
+    })),
+  };
+}
+
+/**
+ * favoritesのendpointから/api/trashのendpointを機械的に導出する（末尾が/api/favorites[/]の形を
+ * /api/trash[/]へ置換）。favsyncConfig.trashEndpointが明示されていればそちらを常に優先する
+ * （設定ファイルでの上書きを許す。既存の~/.researchman-favsync.jsonの流儀を壊さない後方互換のため）。
+ * favoritesEndpointが末尾/api/favorites[/]の形にマッチしない（非標準URL）場合は置換が不発になり
+ * favoritesEndpointの文字列がそのまま返ってしまう。これを「導出失敗」として黙って見逃すと、
+ * 呼び出し側がfavoritesのレスポンスをtrash（弱化シグナル）として誤集計する危険があるため、
+ * 置換が実際に起きなかった場合はnullを返し、導出不可を明示する。
+ */
+export function deriveTrashEndpoint(favoritesEndpoint, trashEndpointOverride) {
+  if (trashEndpointOverride) return trashEndpointOverride;
+  const source = favoritesEndpoint || "";
+  const derived = source.replace(/\/api\/favorites(\/)?$/, "/api/trash$1");
+  return derived === source ? null : derived;
+}
+
+/**
  * data/ideas.json 全蓄積の機械指標（分析パス2「アイデア構造見直し」の入力素材）。
  * パターン分布・ref再利用率（同一事例/技術が何回参照されたか）を集計する。
  */
