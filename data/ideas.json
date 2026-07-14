@@ -2277,5 +2277,203 @@
         "desc": "歩行や跳躍、格闘まで人型ロボットの全身動作を一体で担う、テキストや操作で動かせる基盤モデル。"
       }
     ]
+  },
+  {
+    "id": "2026-07-14-1",
+    "date": "2026-07-14",
+    "title": "被災後を歩ける3D保険",
+    "pattern": "文脈×技術",
+    "seed": "Havenが家ごとの災害リスクを映像で語るように、DreamX-World 1.0で「浸水後の街を歩き回れる3D世界」を生成すれば、住民は被災後の生活をVRで体感し備えられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "suncorp-haven",
+        "title": "Haven",
+        "desc": "住所を入力すると家ごとの自然災害リスクと対策をAIが映像で語る、保険会社の無料プラットフォーム"
+      },
+      {
+        "type": "tech",
+        "id": "dreamx-world-1-0",
+        "title": "DreamX-World 1.0",
+        "desc": "テキスト指示だけで、視点を動かしても矛盾なく繋がる「歩き回れる3D世界」の映像を生成できるAIモデル"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-14-2",
+    "date": "2026-07-14",
+    "title": "市民写真で海の森復元",
+    "pattern": "文脈×技術",
+    "seed": "Forests Without Namesが海中の森を命名・可視化したように、観光客がバラバラに撮った写真をWild3Rで3D復元すれば、誰も管理していない自然環境も市民の手で地図化・保全対象にできそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "forests-without-names-hyundai",
+        "title": "Forests Without Names",
+        "desc": "海中の見えない森をデータとAIで地図化・命名し、保全対象として可視化したHyundaiの施策"
+      },
+      {
+        "type": "tech",
+        "id": "wild3r",
+        "title": "Wild3R",
+        "desc": "不特定多数がバラバラの日時・条件で撮った寄せ集めの写真だけから、一度のAI推論で3D空間を復元する技術"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-14-3",
+    "date": "2026-07-14",
+    "title": "ロボット動作で省エネ基準",
+    "pattern": "文脈×技術",
+    "seed": "DP Worldが-15℃という業界標準の書き換えでCO2を削減したように、SONICの全身動作モデルで倉庫ロボットの動きを最適化すれば、物流業界の省エネ基準そのものを塗り替えられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "dp-world-move-to-minus15",
+        "title": "THE MOVE TO -15°C",
+        "desc": "冷凍温度を-18℃から-15℃にするだけで年間CO2を1,760万トン削減できる、DP Worldの業界標準改革"
+      },
+      {
+        "type": "tech",
+        "id": "sonic",
+        "title": "SONIC（GR00T Whole-Body Control）",
+        "desc": "歩行から格闘・物体受け渡しまで人型ロボットの全身動作を一体で担う『動きの基盤モデル』"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-14-4",
+    "date": "2026-07-14",
+    "title": "震える手を継ぐロボアーム",
+    "pattern": "文脈×技術",
+    "seed": "No Frame Missedがアクション機能で震える手でも撮影を可能にしたように、robot_retargeterで運動障がいのある人の動きをロボットアームに変換すれば、体の制約を超えて「撮る」「作る」を代行できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "apple-no-frame-missed",
+        "title": "No Frame Missed",
+        "desc": "パーキンソン病を持つ人々がiPhoneのアクション機能で人生の瞬間を撮り続けたドキュメンタリー短編"
+      },
+      {
+        "type": "tech",
+        "id": "robot-retargeter",
+        "title": "robot_retargeter",
+        "desc": "人のモーションキャプチャデータを、体格や関節数が違う人型ロボットの動きに自動変換する無料OSSツール"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-14-5",
+    "date": "2026-07-14",
+    "title": "水滴で伝えるプロポーズ",
+    "pattern": "文脈×技術",
+    "seed": "The Relationship Aidが補聴器を「夫婦の親密さを高める道具」に再定義したように、MorphDropsの水滴ディスプレイを結婚式の招待状にすれば、触れるたびに気持ちが形になって伝わるプロポーズ演出になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "specsavers-the-relationship-aid",
+        "title": "The Relationship Aid",
+        "desc": "補聴器を『補聴』ではなく夫婦の親密さを高めるデバイスとして再定義したSpecsaversのPR施策"
+      },
+      {
+        "type": "tech",
+        "id": "morphdrops",
+        "title": "MorphDrops",
+        "desc": "紙に印刷した導電インクの模様に電気を流し、上に置いた水滴の形を自在に変えるディスプレイ"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-14-6",
+    "date": "2026-07-14",
+    "title": "手ぶりで彫る水の生物",
+    "pattern": "技術×技術",
+    "seed": "FluidicSwarmの手のジェスチャーで群れの硬さを操る操作系と、Aholo Viewerの巨大3D空間表示を組み合わせれば、ブラウザ上で仮想の「水の生き物」を手ぶりだけで彫刻するような新しいドローイング体験ができそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "fluidicswarm",
+        "title": "FluidicSwarm",
+        "desc": "手のジェスチャーだけで複数の小型ロボット群を水のような一つの生き物のように操作できるシステム"
+      },
+      {
+        "type": "tech",
+        "id": "aholo-viewer",
+        "title": "Aholo Viewer",
+        "desc": "インストール不要のブラウザだけで最大10億スプラット級の巨大3D空間をなめらかに表示できるOSSレンダラ"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-14-7",
+    "date": "2026-07-14",
+    "title": "喋るだけでキャラ変換MV",
+    "pattern": "技術×技術",
+    "seed": "SCAIL-2で人物の動きをキャラや動物に乗り移らせつつ、FireRed-OpenStorylineに「編集ディレクター」役をさせれば、素材を渡して喋るだけでキャラ変換込みのMVが自動編集される制作フローができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "scail-2",
+        "title": "SCAIL-2",
+        "desc": "動画に写った人物の動きを骨格抽出なしのEnd-to-Endモードで別キャラクターへ乗り移らせる技術"
+      },
+      {
+        "type": "tech",
+        "id": "firered-openstoryline",
+        "title": "FireRed-OpenStoryline",
+        "desc": "話しかけると編集ディレクターのように段取りを組み、素材選びから編集まで自動化する動画編集エージェント"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-14-8",
+    "date": "2026-07-14",
+    "title": "パッケージ落下予測AI",
+    "pattern": "転用",
+    "seed": "本来はロボットの動作計画向けに開発されたMolmoMotionを転用し、1枚の商品写真から「数秒後にどう倒れるか・転がるか」を予測させれば、パッケージデザインの落下・破損シミュレーションに使えるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "molmomotion",
+        "title": "MolmoMotion",
+        "desc": "1枚の画像と自然言語の指示だけで、物体の3D上の数秒先までの動きを予測するAi2の基盤モデル"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-14-9",
+    "date": "2026-07-14",
+    "title": "視聴者参加型動画編集",
+    "pattern": "転用",
+    "seed": "本来はコーディングエージェントで動画編集する開発者向けツールVideo Useを、素材フォルダごと視聴者に渡して「あなたの言葉で編集して」と開放すれば、視聴者参加型の再編集キャンペーンに転用できそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "video-use",
+        "title": "Video Use",
+        "desc": "素材フォルダを渡してチャットで指示すると、フィラー除去やカラグレ済みの動画を自動生成する編集ツール"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-14-10",
+    "date": "2026-07-14",
+    "title": "3D変形バトン企画",
+    "pattern": "文脈×技術",
+    "seed": "ICE BUCKET CHALLENGEが「行動を撮って次を指名する」連鎖で1億ドルを集めたように、Modlyで自分の顔を3Dメッシュ化して次の人に「変形バトン」を渡すローカル完結の3Dバイラル企画ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "als-ice-bucket-challenge",
+        "title": "ICE BUCKET CHALLENGE",
+        "desc": "氷水を頭からかぶり次の人を指名する形で自然発生し、ALS協会に1億ドルを集めたバイラル現象"
+      },
+      {
+        "type": "tech",
+        "id": "modly",
+        "title": "Modly",
+        "desc": "写真をクラウドに送らず、自分のPCのGPUだけで3Dメッシュ化できる完全ローカルのデスクトップアプリ"
+      }
+    ]
   }
 ]
