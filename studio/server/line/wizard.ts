@@ -33,6 +33,7 @@ import { validateResearchRequest, type ValidatedResearchRequest } from "../pipel
 import type { Tab } from "../jobs.js";
 import {
   classifyRequestText,
+  extractAddCaseRequest,
   isAffirmativeText,
   isNegativeText,
   matchMenuSelection,
@@ -58,7 +59,8 @@ import { expiryFrom, type LinePending, type WizardState } from "./pending.js";
 export type WizardStepOutcome =
   | { kind: "reply"; pending: LinePending | null; reply: string }
   | { kind: "execute"; tab: Tab; request: Record<string, unknown> }
-  | { kind: "needsStructure"; requestKind: LineRequestKind; freeText: string };
+  | { kind: "needsStructure"; requestKind: LineRequestKind; freeText: string }
+  | { kind: "addCase"; url: string; context: string };
 
 // ── pending構築ヘルパー ──────────────────────────────────────────
 
@@ -209,6 +211,13 @@ function stepIdle(text: string, userId: string, now: Date): WizardStepOutcome {
   const classified = classifyRequestText(text);
   if (classified) {
     return { kind: "needsStructure", requestKind: classified.kind, freeText: classified.rest };
+  }
+  // 事例追加（LINEでURLを送ると事例が追加される機能）: 既存キーワードに一致しない
+  // URL入りテキストのみ対象。確認ステップを挟まず即ジョブ投入するため、pendingは作らない
+  // （wizard状態機械の外側で webhook.ts が直接 createJob する）。
+  const addCase = extractAddCaseRequest(text);
+  if (addCase) {
+    return { kind: "addCase", url: addCase.url, context: addCase.context };
   }
   return { kind: "reply", pending: freshPending(userId, "menu", now), reply: buildMenuText() };
 }

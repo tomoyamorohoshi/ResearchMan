@@ -53,8 +53,8 @@ export function createApp(): express.Express {
   app.post("/api/jobs", async (req, res) => {
     try {
       const { tab, request } = req.body ?? {};
-      if (tab !== "research" && tab !== "idea") {
-        res.status(400).json({ error: 'tab must be "research" or "idea"' });
+      if (tab !== "research" && tab !== "idea" && tab !== "add-case") {
+        res.status(400).json({ error: 'tab must be "research", "idea", or "add-case"' });
         return;
       }
       const job = await createJob(tab, request ?? {});

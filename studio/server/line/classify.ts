@@ -91,3 +91,39 @@ const NEGATIVE_TEXTS = new Set(["n", "no", "いいえ", "ちがう", "直す"]);
 export function isNegativeText(text: string): boolean {
   return NEGATIVE_TEXTS.has(text.trim().toLowerCase());
 }
+
+// ── 事例追加（LINEでURLを送ると事例が cases.json に追加される機能） ─────────
+
+export interface AddCaseTextRequest {
+  /** 対象URL（複数含まれていた場合は最初の1件）。 */
+  url: string;
+  /** URL以外の残りテキスト（視点・メモとしてパイプラインに渡す補足コンテキスト）。 */
+  context: string;
+}
+
+const ADD_CASE_URL_RE = /https?:\/\/\S+/;
+
+// JSの`\s`は全角スペース（　）にはマッチするが、全角句読点・全角括弧・CJK文字には
+// マッチしないため、URLマッチ（\S+）がこれらを巻き込んでしまう（指摘4）。この正規表現で
+// マッチ文字列中の最初の該当位置を検出し、そこでURLを切り詰める。
+const FULLWIDTH_OR_CJK_RE = /[　-〿぀-ゟ゠-ヿ一-鿿＀-￯]/;
+
+/**
+ * 既存キーワード（「調べて」等）に一致しないテキストからURLを抽出し、事例追加依頼として
+ * 解釈する（wizard.ts::stepIdle が既存キーワード判定の後段で呼ぶ。呼び出し順で優先度を
+ * 担保するため、この関数自体はキーワードの有無を考慮しない）。
+ */
+export function extractAddCaseRequest(text: string): AddCaseTextRequest | null {
+  const trimmed = text.trim();
+  const m = trimmed.match(ADD_CASE_URL_RE);
+  if (!m || m.index === undefined) return null;
+  const rawMatch = m[0];
+  const cutIdx = rawMatch.search(FULLWIDTH_OR_CJK_RE);
+  const url = cutIdx === -1 ? rawMatch : rawMatch.slice(0, cutIdx);
+  // 切り詰めた残り（全角記号・CJK文字以降）は情報を失わずcontext側に含める。
+  const trailing = cutIdx === -1 ? "" : rawMatch.slice(cutIdx);
+  const context = (trimmed.slice(0, m.index) + " " + trailing + " " + trimmed.slice(m.index + rawMatch.length))
+    .replace(/\s+/g, " ")
+    .trim();
+  return { url, context };
+}

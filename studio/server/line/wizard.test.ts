@@ -62,6 +62,35 @@ test("idle: それ以外の任意テキストはmenu状態へ", () => {
   assert.match(r.reply, /何をしますか/);
 });
 
+// ── idle: 事例追加（LINEでURLを送ると事例が追加される機能） ──────────────
+
+test("idle: 既存キーワードに一致しないURL入りテキストはaddCase outcomeになる", () => {
+  const outcome = stepWizard(null, "https://example.com/article/123", NOW, USER);
+  assert.equal(outcome.kind, "addCase");
+  if (outcome.kind === "addCase") {
+    assert.equal(outcome.url, "https://example.com/article/123");
+    assert.equal(outcome.context, "");
+  }
+});
+
+test("idle: URL+補足テキストはcontextとしてaddCase outcomeに渡される", () => {
+  const outcome = stepWizard(null, "これ見て https://example.com/article/123 音楽視点で", NOW, USER);
+  assert.equal(outcome.kind, "addCase");
+  if (outcome.kind === "addCase") {
+    assert.equal(outcome.url, "https://example.com/article/123");
+    assert.equal(outcome.context, "これ見て 音楽視点で");
+  }
+});
+
+test("idle: 「調べて」等の既存キーワードはURLを含んでいてもaddCaseでなくneedsStructureになる（既存キーワード優先）", () => {
+  const outcome = stepWizard(null, "調べて https://example.com/ref を参考に", NOW, USER);
+  assert.equal(outcome.kind, "needsStructure");
+  if (outcome.kind === "needsStructure") {
+    assert.equal(outcome.requestKind, "Case Study");
+    assert.equal(outcome.freeText, "https://example.com/ref を参考に");
+  }
+});
+
 // ── menu ──────────────────────────────────────────────────────────
 
 const menuPending: LinePending = { userId: USER, state: "menu", expiresAt: "2026-07-12T00:30:00.000Z" };

@@ -32,6 +32,9 @@ export const RESEARCH_SOURCES: ResearchSource[] = [
   { tag: "Motion Tech", kind: "order", label: "Motion Tech" },
   { tag: "Countdown", kind: "order", label: "Countdown" },
   { tag: "Posters", kind: "order", label: "Posters" },
+  // LINEでURLを送ると事例が追加される機能（studio/server/pipeline/addCase.ts）専用。
+  // ユーザーがLINE経由で直接追加した事例の目印（今後の週次チューンアップの入力になる）。
+  { tag: "User", kind: "order", label: "User" },
   { tag: "Radar", kind: "radar", label: "Radar" },
 ];
 

@@ -109,3 +109,23 @@ export function buildJobCreateFailedText(reason: string): string {
 export function buildStructureFailedText(reason: string): string {
   return `依頼の解釈に失敗しました: ${reason}\n\nもう一度、具体的なテーマを添えて送ってください。`;
 }
+
+// ── 事例追加（LINEでURLを送ると事例が cases.json に追加される機能） ─────────
+// 確認ステップなしで即ジョブ投入するため、受付・完了(成功/失敗)の3文言のみ。
+
+export function buildAddCaseAcceptedText(): string {
+  return "受け付けました（完了時にまた通知します）";
+}
+
+export function buildAddCaseSuccessText(title: string, url: string): string {
+  return `事例を追加しました: ${title}\n${url}`;
+}
+
+export function buildAddCaseFailedText(reason: string): string {
+  return `事例の追加に失敗しました: ${reason}`;
+}
+
+/** 重複検知時の案内文（指摘3: 失敗ではなく案内のため、buildAddCaseFailedTextで二重ラップしない）。 */
+export function buildAddCaseDuplicateText(title: string): string {
+  return `既に登録済み: ${title}`;
+}

@@ -1,6 +1,10 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
+  buildAddCaseAcceptedText,
+  buildAddCaseDuplicateText,
+  buildAddCaseFailedText,
+  buildAddCaseSuccessText,
   buildEditFieldPromptText,
   buildFinalConfirmText,
   buildMenuText,
@@ -62,4 +66,27 @@ test("buildEditFieldPromptText: ideaには観点の選択肢が無い", () => {
 
 test("buildUnconfiguredAllowedUserText: userIdを含む", () => {
   assert.match(buildUnconfiguredAllowedUserText("U12345"), /U12345/);
+});
+
+// ── 事例追加（LINEでURLを送ると事例が追加される機能） ────────────────────
+
+test("buildAddCaseAcceptedText: 受け付け・完了時通知の案内を含む", () => {
+  assert.match(buildAddCaseAcceptedText(), /受け付け/);
+});
+
+test("buildAddCaseSuccessText: 追加事例のタイトルとサイトURLを含む", () => {
+  const text = buildAddCaseSuccessText("面白い事例", "https://research-man.vercel.app/cases/example-2026");
+  assert.match(text, /面白い事例/);
+  assert.match(text, /https:\/\/research-man\.vercel\.app\/cases\/example-2026/);
+});
+
+test("buildAddCaseFailedText: 失敗理由を含む", () => {
+  const text = buildAddCaseFailedText("既に登録済み: 面白い事例");
+  assert.match(text, /既に登録済み: 面白い事例/);
+});
+
+test("buildAddCaseDuplicateText: 「事例の追加に失敗しました」でラップせず、タイトルをそのまま含む", () => {
+  const text = buildAddCaseDuplicateText("面白い事例");
+  assert.doesNotMatch(text, /事例の追加に失敗しました/);
+  assert.match(text, /既に登録済み: 面白い事例/);
 });

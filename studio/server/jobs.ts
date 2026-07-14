@@ -12,6 +12,8 @@ import { EventEmitter } from "node:events";
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { runAddCasePipeline } from "./pipeline/addCase.js";
+import { validateAddCaseRequest } from "./pipeline/addCasePure.js";
 import { runCaseResearchPipeline } from "./pipeline/caseResearch.js";
 import { runCombinedResearchPipeline } from "./pipeline/combinedResearch.js";
 import { runIdeaResearchPipeline } from "./pipeline/ideaResearch.js";
@@ -27,7 +29,7 @@ const JOBS_DIR = path.join(__dirname, "..", "workdir", "jobs");
 const UUID_RE =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
-export type Tab = "research" | "idea";
+export type Tab = "research" | "idea" | "add-case";
 
 export interface CaseChip {
   label: string;
@@ -74,6 +76,12 @@ export interface Job {
   cost: number | null;
   /** フェーズ名→所要ミリ秒（P4 #6: 将来のeta.ts実測calibration用。UI表示には未使用）。 */
   phaseDurationsMs?: Record<string, number>;
+  /** tab="add-case" かつ dryRun:true の場合のみ設定。cases.json書き込み・commit前の
+   * 生成エントリと検証結果（addCase.ts参照。テスト・E2E検証用）。 */
+  addCasePreview?: {
+    entry: Record<string, unknown>;
+    verification: Record<string, unknown>;
+  };
   at: string;
 }
 
@@ -184,6 +192,38 @@ export async function createJob(
           : runCombinedResearchPipeline;
     void pipeline(job.id, validated.value).catch(async (err) => {
       console.error("[studio] research pipeline failed unexpectedly", err);
+      await updateJob(job.id, {
+        status: "error",
+        progress: undefined,
+        error: err instanceof Error ? err.message : String(err),
+      }).catch(() => {});
+    });
+    return job;
+  }
+
+  // add-case: LINEでURLを送ると事例が cases.json に追加される機能。
+  // LINE入口（line/webhook.ts）とAPI入口（POST /api/jobs。Claude Codeからの一括処理用）
+  // どちらもこの分岐を通る（lineUserIdの有無でLINE通知の要否をaddCase.ts側が判定する）。
+  if (tab === "add-case") {
+    const validatedAddCase = validateAddCaseRequest(request);
+    if (!validatedAddCase.ok) {
+      throw new ValidationError(validatedAddCase.error);
+    }
+    const job: Job = {
+      id: randomUUID(),
+      tab,
+      request,
+      status: "running",
+      progress: "URL取得・事例情報抽出中",
+      resultCards: [],
+      commit: null,
+      deployedUrl: null,
+      cost: null,
+      at: new Date().toISOString(),
+    };
+    await writeJobFile(job);
+    void runAddCasePipeline(job.id, validatedAddCase.value).catch(async (err) => {
+      console.error("[studio] add-case pipeline failed unexpectedly", err);
       await updateJob(job.id, {
         status: "error",
         progress: undefined,

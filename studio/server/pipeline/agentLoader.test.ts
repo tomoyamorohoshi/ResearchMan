@@ -33,6 +33,13 @@ test("loadAgentDefinition: case-writer.mdはBash無し", () => {
   assert.ok(!def.tools.includes("Bash"));
 });
 
+test("loadAgentDefinition: case-adder.mdを解釈できる（LINEでURLを送ると事例が追加される機能）", () => {
+  const def = loadAgentDefinition(AGENTS_DIR, "case-adder");
+  assert.deepEqual(def.tools, ["WebFetch", "WebSearch", "Read"]);
+  assert.equal(def.model, "sonnet");
+  assert.match(def.prompt, /1件のURLから事例情報を抽出する専門エージェント/);
+});
+
 test("loadAgentDefinitionFromFile: frontmatterが無いファイルは例外", () => {
   assert.throws(() => loadAgentDefinitionFromFile(path.join(__dirname, "pure.ts")));
 });

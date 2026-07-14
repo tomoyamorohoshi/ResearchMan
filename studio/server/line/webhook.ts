@@ -25,6 +25,7 @@ import { createJob, ValidationError, type Tab } from "../jobs.js";
 import { isCancelText, type LineRequestKind } from "./classify.js";
 import { loadLineConfig, type LineConfig } from "./config.js";
 import {
+  buildAddCaseAcceptedText,
   buildCancelledText,
   buildExecStartedText,
   buildExpiredAndMenuText,
@@ -132,6 +133,22 @@ async function handleEvent(event: unknown, config: LineConfig, deps: LineWebhook
     const next = pendingFromStructured(userId, structured.tab, structured.value, now);
     await deps.savePending(next);
     await deps.sendPush(token, userId, renderFinalConfirm(next));
+    return;
+  }
+
+  if (outcome.kind === "addCase") {
+    // 事例追加（URL投稿）は確認ステップなしで即ジョブ投入する（item1）。pendingは
+    // そもそも作っていない（wizard.ts::stepIdle参照）ので保存操作は不要。
+    // lineUserId をリクエストに含めることで、パイプライン（addCase.ts）が完了/失敗時に
+    // このuserId宛へ結果をpushする（API入口=Claude Code一括処理はlineUserIdが無いため
+    // LINE通知はスキップされる）。
+    try {
+      await deps.createJob("add-case", { url: outcome.url, context: outcome.context, lineUserId: userId });
+      await deps.sendPush(token, userId, buildAddCaseAcceptedText());
+    } catch (err) {
+      const reason = err instanceof ValidationError || err instanceof Error ? err.message : String(err);
+      await deps.sendPush(token, userId, buildJobCreateFailedText(reason));
+    }
     return;
   }
 
