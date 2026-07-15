@@ -2673,5 +2673,203 @@
         "desc": "実写を3D化するGaussian Splattingを、正確な反射・屈折・影ごとレイトレーシングで描く手法。"
       }
     ]
+  },
+  {
+    "id": "studio-2026-07-15-1",
+    "date": "2026-07-15",
+    "title": "脳波で蘇る着用の記憶",
+    "pattern": "身体の技術拡張",
+    "seed": "古着を着た瞬間、脳波センサーが着用者の反応を読み取り、AIがその服が生きた時代の音や光景をMR映像として立ち上げる体験装置を作るかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "waves-of-will",
+        "title": "WAVES OF WILL",
+        "desc": "NTTがALS患者の脳波だけでMRアバターを操作させ、10年ぶりにステージで踊らせた実験的パフォーマンス。"
+      },
+      {
+        "type": "case",
+        "id": "massive-attack-fantom",
+        "title": "FANTOM（Massive Attack）",
+        "desc": "スマホのセンサーが位置や心拍を読み取り、聞くたびに違う編曲になる音楽体験を作った事例。"
+      }
+    ]
+  },
+  {
+    "id": "studio-2026-07-15-2",
+    "date": "2026-07-15",
+    "title": "AIが判定できない空白",
+    "pattern": "引き算・不在",
+    "seed": "ビンテージ品の鑑定書のうちAIが再現・判定できなかった箇所だけをあえて空白のまま印刷し、その余白こそが本物である証だと逆説的に見せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "annahar-blank-edition",
+        "title": "An-Nahar「The Blank Edition」（白紙の新聞）",
+        "desc": "レバノンの新聞が政治への抗議として朝刊8ページを白紙のまま発行し、空白自体をメッセージにした事例。"
+      }
+    ]
+  },
+  {
+    "id": "studio-2026-07-15-3",
+    "date": "2026-07-15",
+    "title": "架空ブランドの百年史",
+    "pattern": "虚構の実在化",
+    "seed": "実在しない1920年代創業のアパレルブランドを設定し、AIで当時風の広告写真やカタログ、著名人の愛用エピソードを大量生成して本物の歴史アーカイブサイトを構築するかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "prometheus-weyland-industries",
+        "title": "WEYLAND INDUSTRIES（Prometheus ARG）",
+        "desc": "映画公開前に架空企業のCEO講演や採用情報までWeb上に本物として作り込んだ事例。"
+      },
+      {
+        "type": "case",
+        "id": "cloverfield-arg",
+        "title": "CLOVERFIELD ARG（1-18-08.com）",
+        "desc": "架空の飲料サイトなど企業エコシステムをWebに広げ、映画の神話を現実のように見せた事例。"
+      }
+    ]
+  },
+  {
+    "id": "studio-2026-07-15-4",
+    "date": "2026-07-15",
+    "title": "トレンド予測を逆手に",
+    "pattern": "競合フォーマット乗っ取り",
+    "seed": "ファストファッションが使う「AIトレンド予測」広告のフォーマットをそのまま乗っ取り、AIが導き出す答えを来年の流行ではなく二度と再生産されない一点物のビンテージにすり替えるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "back-market-lets-end-fast-tech",
+        "title": "Let's End Fast Tech",
+        "desc": "Appleの広告フォーマットを乗っ取り、スマホの世代交代が招く環境破壊を伝えた事例。"
+      }
+    ]
+  },
+  {
+    "id": "studio-2026-07-15-5",
+    "date": "2026-07-15",
+    "title": "職人の勘を継承するAI",
+    "pattern": "当事者主導設計",
+    "seed": "40年選手のビンテージ時計修復職人の手技と判断基準をAIに学習させ、職人本人が監修者として関わることで機械の判断ではなく人の勘を未来へ継承する修復AIを開発するかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "dear-ai-disability-representation-campaign-2026",
+        "title": "Dear AI（disability representation campaign）",
+        "desc": "義肢を使う本人の写真でAIを再教育し、当事者主導で偏った表象を正した事例。"
+      },
+      {
+        "type": "case",
+        "id": "asics-the-undropped-kit",
+        "title": "The Undropped Kit",
+        "desc": "女子生徒本人たちと共同開発した体操服がスポーツ離れという課題を製品設計から変えた事例。"
+      }
+    ]
+  },
+  {
+    "id": "studio-2026-07-15-6",
+    "date": "2026-07-15",
+    "title": "蚤の市を巡る解錠体験",
+    "pattern": "物理×デジタル連鎖",
+    "seed": "全国のビンテージショップを実際に巡り店内のタグをスキャンするたびAIが一つずつ品物の来歴を解き明かしていく、現地に行かないと完結しないアーカイブ探訪キャンペーンを作るかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "twenty-one-pilots-dmaorg-arg",
+        "title": "DMAORG.INFO ARG（Twenty One Pilots）",
+        "desc": "現実の都市に出現するビルボードをスキャンすると限定コンテンツが解禁される物理連動体験。"
+      },
+      {
+        "type": "case",
+        "id": "bon-iver-fable-spaces",
+        "title": "fABLE sPACEs（Bon Iver）",
+        "desc": "世界100カ所の実在の場所に行かないと聴けない、GPS連動の音楽解禁体験。"
+      }
+    ]
+  },
+  {
+    "id": "studio-2026-07-15-7",
+    "date": "2026-07-15",
+    "title": "幻のコレクション復元",
+    "pattern": "アーカイブ復元",
+    "seed": "廃業したビンテージ服飾ブランドの断片写真とパターン紙だけをAIに学習させ、二度と見られなかった幻のコレクションショーの映像として蘇らせるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "radio-time-machine",
+        "title": "RADIO TIME MACHINE",
+        "desc": "AIがダイヤル操作で個人の記憶の時代を再現し認知症ケアに使われたラジオの事例。"
+      },
+      {
+        "type": "case",
+        "id": "gorillaz-kong-studios-revival",
+        "title": "KONG STUDIOS REVIVAL（Gorillaz）",
+        "desc": "17年ぶりに架空スタジオをWeb上に復活させ、新作公開に合わせ部屋を毎月解禁した事例。"
+      }
+    ]
+  },
+  {
+    "id": "studio-2026-07-15-8",
+    "date": "2026-07-15",
+    "title": "来歴のタブーを可視化",
+    "pattern": "タブーへの正面突破",
+    "seed": "ビンテージ品の多くが持つ略奪や盗難という語られざる来歴を、AIが古文書や取引記録を解析して可視化し、美しさの裏にある負の歴史に正面から向き合う展示を作るかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "kotex-arts-missing-period",
+        "title": "Art's Missing Period",
+        "desc": "美術史から消された月経というタブーを正面から取り戻したキャンペーン事例。"
+      },
+      {
+        "type": "case",
+        "id": "bodyform-womb-stories",
+        "title": "WOMB STORIES",
+        "desc": "生理や流産など女性の身体のタブーを初めてリアルに描いた広告事例。"
+      }
+    ]
+  },
+  {
+    "id": "studio-2026-07-15-9",
+    "date": "2026-07-15",
+    "title": "鑑定士とAIの公開対決",
+    "pattern": "実演による証明",
+    "seed": "世界的鑑定士とAI鑑定システムを同じビンテージ品で同時にライブ鑑定させ、判定の速さと精度を公開の場で競わせることで真贋の説得力を証明するかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "volvo-epic-split",
+        "title": "THE EPIC SPLIT",
+        "desc": "走行中の2台のトラック間で開脚を実演し操舵精度を証明したライブCMの事例。"
+      },
+      {
+        "type": "case",
+        "id": "red-bull-stratos",
+        "title": "RED BULL STRATOS",
+        "desc": "成層圏からの落下を実演することでブランドの主張を地球規模で証明した事例。"
+      }
+    ]
+  },
+  {
+    "id": "studio-2026-07-15-10",
+    "date": "2026-07-15",
+    "title": "最新AIが憧れる手仕事",
+    "pattern": "逆説の文脈転換",
+    "seed": "最先端AI企業が自ら「私たちのAIが最も欲しがっているのはAI以前の手仕事だ」と宣言し、エンジニアたちがビンテージ職人に弟子入りする逆説的な企業広告を作るかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "toyota-escape-vehicle",
+        "title": "Escape Vehicle",
+        "desc": "競合ブランドの車で逃げるという逆説的な設定でDV支援を訴えたトヨタのCM事例。"
+      },
+      {
+        "type": "case",
+        "id": "doritos-the-triangle-theory",
+        "title": "The Triangle Theory",
+        "desc": "有名人のヘアカットを自社製品の陰謀に仕立てた逆説的なモキュメンタリー事例。"
+      }
+    ]
   }
 ]
