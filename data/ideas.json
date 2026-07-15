@@ -2871,5 +2871,209 @@
         "desc": "有名人のヘアカットを自社製品の陰謀に仕立てた逆説的なモキュメンタリー事例。"
       }
     ]
+  },
+  {
+    "id": "studio-2026-07-15-11",
+    "date": "2026-07-15",
+    "title": "光害都市に隠れた星座",
+    "pattern": "隠れた真実の発見",
+    "seed": "AIが世界中の都市の衛星夜景データを解析すると、光の並び方が実は人類が忘れた星座の形とぴったり一致していた——その発見を広告として可視化し、光害の罪を問いかけるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "heinz-look-familiar",
+        "title": "Look Familiar?",
+        "desc": "世界中のフライドポテト箱の形が、実はハインツのロゴと同じだったと気づき、広告にした事例。"
+      },
+      {
+        "type": "case",
+        "id": "abradee-searching-for-birds-on-wires",
+        "title": "Searching for Birds on Wires",
+        "desc": "電線に止まる鳥の写真をAIが楽譜に変換し、交響曲に仕立てたブラジルの電力広告の事例。"
+      }
+    ]
+  },
+  {
+    "id": "studio-2026-07-15-12",
+    "date": "2026-07-15",
+    "title": "視覚障害者と聴く星空",
+    "pattern": "当事者主導設計",
+    "seed": "視覚に障害を持つ天文ファン本人がAIエンジニアと組んで、天体データを音に変換する仕組みを一緒に設計し、見えない人自身が主役になって星座を聴く体験を届けるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "dear-ai-disability-representation-campaign-2026",
+        "title": "Dear AI（disability representation campaign）",
+        "desc": "義肢を使う本人の写真でAIを学習させ直し、偏った画像表現を当事者主導で正した事例。"
+      },
+      {
+        "type": "case",
+        "id": "wavio-see-sound",
+        "title": "SEE SOUND",
+        "desc": "家の中の音をAIが聞き分けて通知し、聴覚障害者に音を見える形で伝える装置の事例。"
+      }
+    ]
+  },
+  {
+    "id": "studio-2026-07-15-13",
+    "date": "2026-07-15",
+    "title": "AIで蘇る失われた夜空",
+    "pattern": "アーカイブ復元",
+    "seed": "世界中に眠るガリレオや江戸時代の天体観測記録をAIが解析し、当時実際に見えていた夜空をプラネタリウムでそのまま再現し体験させるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "radio-time-machine",
+        "title": "RADIO TIME MACHINE",
+        "desc": "AIが個人ごとの思い出の黄金時代を再現するラジオを作り、認知症ケアに役立てた事例。"
+      },
+      {
+        "type": "case",
+        "id": "refik-anadol-unsupervised",
+        "title": "UNSUPERVISED（Refik Anadol）",
+        "desc": "美術館の200年分の作品データをAIに学習させ、美術館が見る夢のような映像を作り続けた事例。"
+      }
+    ]
+  },
+  {
+    "id": "studio-2026-07-15-14",
+    "date": "2026-07-15",
+    "title": "星座で解錠する巡礼体験",
+    "pattern": "物理×デジタル連鎖",
+    "seed": "特定の星座が実際に頭上へ昇る瞬間・場所でしかAIコンテンツが解錠されない、世界中を巡らせる天体連動型のデジタル宝探しを仕掛けるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "bon-iver-fable-spaces",
+        "title": "fABLE sPACEs（Bon Iver）",
+        "desc": "世界100カ所の現地に実際に行かないと聴けない曲を作った、GPS連動型の音楽体験の事例。"
+      },
+      {
+        "type": "case",
+        "id": "twenty-one-pilots-dmaorg-arg",
+        "title": "DMAORG.INFO ARG（Twenty One Pilots）",
+        "desc": "曲に埋め込まれた座標が街のビルボードに導き、スキャンで限定曲が聴ける仕掛けの事例。"
+      }
+    ]
+  },
+  {
+    "id": "studio-2026-07-15-15",
+    "date": "2026-07-15",
+    "title": "光害企業の自己告白消灯",
+    "pattern": "逆説の文脈転換",
+    "seed": "星空を奪ってきた照明メーカー自身が、AIで光害前の本来の夜空を復元して見せ、自社製品の罪を告白しながら一斉消灯を呼びかける逆説広告を打つかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "toyota-escape-vehicle",
+        "title": "Escape Vehicle",
+        "desc": "トヨタがあえてフォード車で逃げる映像を作り、DV被害者支援を訴えた逆説広告の事例。"
+      },
+      {
+        "type": "case",
+        "id": "doritos-the-triangle-theory",
+        "title": "The Triangle Theory",
+        "desc": "有名選手の髪型をドリトスの陰謀に仕立てた、ユーモラスなモキュメンタリー広告の事例。"
+      }
+    ]
+  },
+  {
+    "id": "studio-2026-07-15-16",
+    "date": "2026-07-15",
+    "title": "星占いを乗っ取る天体AI",
+    "pattern": "競合フォーマット乗っ取り",
+    "seed": "疑似科学の占星術アプリと同じ画面フォーマットを天文台が乗っ取り、実際の天体観測データをAIが解析した「本物の運勢」を配信し占い市場を塗り替えるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "back-market-lets-end-fast-tech",
+        "title": "Let's End Fast Tech",
+        "desc": "Appleの広告フォーマットを乗っ取り、スマホの世代交代がもたらす環境破壊を訴えた事例。"
+      },
+      {
+        "type": "case",
+        "id": "maple-leaf-foods-look-for-the-leaf",
+        "title": "Maple Leaf Foods: Look for the Leaf",
+        "desc": "自社が競合他社の商品を広告するという逆転の発想で国産品購入運動を後押しした事例。"
+      }
+    ]
+  },
+  {
+    "id": "studio-2026-07-15-17",
+    "date": "2026-07-15",
+    "title": "重力波を肌で感じる装置",
+    "pattern": "身体の技術拡張",
+    "seed": "重力波の観測データをAIが解析し、視覚に頼らず触覚パルスや脳波刺激へ変換することで、体そのもので宇宙の鼓動を感じられる装置を開発するかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "waves-of-will",
+        "title": "WAVES OF WILL",
+        "desc": "ALS患者が脳波だけでアバターを操作し、10年ぶりに舞台で踊ったという実演の事例。"
+      }
+    ]
+  },
+  {
+    "id": "studio-2026-07-15-18",
+    "date": "2026-07-15",
+    "title": "AI皆既日食ライブ的中",
+    "pattern": "実演による証明",
+    "seed": "AIが天体データから皆既日食の影が落ちる正確な1メートル四方の座標をライブで予測し、その場に巨大スクリーンを設置して的中の瞬間を世界中に生中継するかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "volvo-epic-split",
+        "title": "THE EPIC SPLIT",
+        "desc": "走行中の2台のトラックの間で開脚するという過激な実演でトラックの精度を証明した事例。"
+      },
+      {
+        "type": "case",
+        "id": "red-bull-stratos",
+        "title": "RED BULL STRATOS",
+        "desc": "成層圏から音速を超えて自由落下する様子を実際にライブ配信で見せた歴史的な実演の事例。"
+      }
+    ]
+  },
+  {
+    "id": "studio-2026-07-15-19",
+    "date": "2026-07-15",
+    "title": "都市の一角が一夜の天文台",
+    "pattern": "空間の一時ジャック",
+    "seed": "AIがその日の天候・光害データから最も星が綺麗に見える都市の一角を割り出し、期間限定でその場所を巨大プラネタリウム空間に変えてしまうかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "one-museum-one-ok-rock-eye-of-the-storm-2019",
+        "title": "One Museum — ONE OK ROCK『Eye of the Storm』リリース記念",
+        "desc": "アートワーク1枚のためだけに3日間限定の美術館を開いた、期間限定空間活用の事例。"
+      },
+      {
+        "type": "case",
+        "id": "heineken-rooftop-revival",
+        "title": "Rooftop Revival",
+        "desc": "使われていない都市の屋上を衛星画像で見つけ出し、孤独対策の交流拠点に変えた事例。"
+      }
+    ]
+  },
+  {
+    "id": "studio-2026-07-15-20",
+    "date": "2026-07-15",
+    "title": "スマホだけの天体観測AI",
+    "pattern": "制約を武器に",
+    "seed": "望遠鏡もLiDARも使わず、スマホの標準カメラで撮った1枚の夜空写真だけをAIが解析して、そこに写る星座と天体名を言い当てるアプリを作るかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "for-the-honour-feat-nix-northwest-2025",
+        "title": "For The Honour (feat. Nix Northwest)",
+        "desc": "スマホのLiDARセンサーだけで撮った映像を手作業でアニメ化した、低予算制作の事例。"
+      },
+      {
+        "type": "case",
+        "id": "kazu-come-behind-me-so-good-official-video-by-daito-manabe-k",
+        "title": "KAZU \"Come Behind Me, So Good!\" (Official Video by Daito Manabe + Kenichiro Shimizu)",
+        "desc": "32台のカメラだけでダンサーを撮影し、AIに頼らず作り上げたミュージックビデオの事例。"
+      }
+    ]
   }
 ]
