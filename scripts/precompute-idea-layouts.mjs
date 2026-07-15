@@ -19,7 +19,6 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { computeIdeaLayoutsInputHash, IDEA_LAYOUTS_ALGO_VERSION } from "./lib/idea-layouts-hash.mjs";
-import { writeJsonAtomic } from "./lib/ideas-io.mjs";
 import { solveFixedSizeShape } from "../src/lib/ideaShapes.ts";
 import {
   assignShapeKinds,
@@ -33,6 +32,61 @@ const IDEAS_JSON_PATH = process.env.IDEAS_JSON_PATH || path.join(__dirname, "../
 const OUT_PATH = process.env.IDEA_LAYOUTS_JSON_PATH || path.join(__dirname, "../data/idea-layouts.json");
 
 const TIERS = ["mobile", "compact", "wide"];
+
+// ── rename-with-retryの堅牢化 ─────────────────────────────────────────────
+// 背景(2026-07-15障害): 本スクリプトはtmpファイルに書いてからfs.renameで本体へ原子的に
+// 置き換えるが、rename瞬間にgit pre-push監査(scripts/check-idea-layouts-freshness.mjs等)や
+// Windows側のAVスキャン・検索インデクサが data/idea-layouts.json を一瞬開いていると、
+// Windowsではrenameが対象ファイルのハンドル解放待ちでEPERM(まれにEBUSY/EACCES)を返し
+// 失敗する。単発renameだと呼び出し元のideaジョブ全体がロールバックしてしまうため、
+// 指数バックオフでリトライする。fs実装・sleep実装を注入可能にし、実FSでの再現が不安定な
+// EPERMをモックで検証できるようにする(scripts/smoke-precompute-rename-retry.mjs)。
+const RENAME_RETRYABLE_CODES = new Set(["EPERM", "EBUSY", "EACCES"]);
+const RENAME_RETRY_DELAYS_MS = [200, 400, 800, 1600, 3200]; // 指数バックオフ・最大5回リトライ
+
+function isRetryableRenameError(err) {
+  return Boolean(err) && RENAME_RETRYABLE_CODES.has(err.code);
+}
+
+function defaultSleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+/**
+ * fs.rename を EPERM/EBUSY/EACCES 時のみ指数バックオフでリトライする純関数。
+ * renameFn/sleepFnを注入可能にすることで、実FSの競合(タイミング依存で不安定)を再現せず
+ * 「N回失敗→成功」「全回失敗」をモックで決定的にテストできる。
+ * 最終的に全リトライを使い切って失敗した場合は最後のエラーをそのままthrowする
+ * （tmpファイルの後始末は行わない＝従来のwriteJsonAtomicと同じ挙動を維持）。
+ */
+export async function renameWithRetry(
+  tmpPath,
+  destPath,
+  { renameFn = fs.rename, delaysMs = RENAME_RETRY_DELAYS_MS, sleepFn = defaultSleep } = {},
+) {
+  let attempt = 0;
+  for (;;) {
+    try {
+      await renameFn(tmpPath, destPath);
+      return;
+    } catch (err) {
+      if (!isRetryableRenameError(err) || attempt >= delaysMs.length) throw err;
+      await sleepFn(delaysMs[attempt]);
+      attempt += 1;
+    }
+  }
+}
+
+/**
+ * data/idea-layouts.json への原子書き込み。同一ディレクトリのtmpファイルに書いてから
+ * renameWithRetryで本体へ置き換える(scripts/lib/ideas-io.mjsのwriteJsonAtomicと同じ
+ * tmp命名規則・書き込み手順。renameだけWindowsでの一時的な競合に強くしたもの)。
+ */
+export async function writeIdeaLayoutsAtomic(filePath, data, { writeFileFn = fs.writeFile, ...retryOptions } = {}) {
+  const tmpPath = path.join(path.dirname(filePath), `.${path.basename(filePath)}.tmp-${process.pid}`);
+  await writeFileFn(tmpPath, JSON.stringify(data, null, 2) + "\n");
+  await renameWithRetry(tmpPath, filePath, retryOptions);
+}
 
 async function main() {
   const startedAt = Date.now();
@@ -87,7 +141,7 @@ async function main() {
     generatedAt: new Date().toISOString(),
     tiers,
   };
-  await writeJsonAtomic(OUT_PATH, output);
+  await writeIdeaLayoutsAtomic(OUT_PATH, output);
 
   const elapsedMs = Date.now() - startedAt;
   console.log(
@@ -107,7 +161,12 @@ async function main() {
   }
 }
 
-main().catch((e) => {
-  console.error("❌ エラー:", e.message);
-  process.exit(1);
-});
+// CLIブロック: このファイルが直接実行された場合のみ動く(audit-award.mjsと同じ規約)。
+// これにより、smoke-precompute-rename-retry.mjsがrenameWithRetry/writeIdeaLayoutsAtomicだけを
+// importして単体検証する際に、18分かかるmain()本体を誤って走らせずに済む。
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  main().catch((e) => {
+    console.error("❌ エラー:", e.message);
+    process.exit(1);
+  });
+}
