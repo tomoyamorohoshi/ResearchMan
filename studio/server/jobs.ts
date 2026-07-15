@@ -363,6 +363,25 @@ export async function listRunningPriorityJobs(excludeId: string): Promise<Job[]>
   return jobs.filter((j) => isPriorityRunningJob(j, excludeId));
 }
 
+/**
+ * 進捗照会（LINE「進捗」「状況」。line/webhook.ts参照）向け: status="running"または"paused"の
+ * 全ジョブを返す（tab不問。listJobs()は既にat降順ソート済みのため、そのまま新しい順で返る）。
+ */
+export async function listActiveJobs(): Promise<Job[]> {
+  const jobs = await listJobs();
+  return jobs.filter((j) => j.status === "running" || j.status === "paused");
+}
+
+/**
+ * 進捗照会向け: 実行中/一時停止中のジョブが無いときに案内する「直近の完了ジョブ」1件
+ * （status="done"または"error"のうち最新）。無ければnull。
+ */
+export async function findLatestFinishedJob(): Promise<Job | null> {
+  const jobs = await listJobs();
+  const found = jobs.find((j) => j.status === "done" || j.status === "error");
+  return found ?? null;
+}
+
 export interface ResumableAwardsJob {
   id: string;
 }

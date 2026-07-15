@@ -7,6 +7,7 @@ import {
   isCancelText,
   isNegativeText,
   isOkText,
+  isProgressText,
   isResumeText,
   matchMenuSelection,
 } from "./classify.js";
@@ -71,6 +72,27 @@ test("isResumeText: 「再開」を受理する", () => {
 test("isResumeText: 無関係な文字列は拒否する", () => {
   assert.equal(isResumeText("再開します"), false);
   assert.equal(isResumeText(""), false);
+});
+
+// ── isProgressText（LINE「進捗」「状況」による進捗照会。要件A） ──────────────
+
+test("isProgressText: 「進捗」「状況」に完全一致（前後空白は許容）する", () => {
+  assert.equal(isProgressText("進捗"), true);
+  assert.equal(isProgressText(" 進捗 "), true);
+  assert.equal(isProgressText("状況"), true);
+  assert.equal(isProgressText(" 状況 "), true);
+});
+
+test("isProgressText: 「進捗を教えて」「状況どう?」のような前方一致の自然文も拾う", () => {
+  assert.equal(isProgressText("進捗を教えて"), true);
+  assert.equal(isProgressText("状況どう?"), true);
+  assert.equal(isProgressText("進捗どうですか"), true);
+});
+
+test("isProgressText: 無関係な文字列・空文字・既存キーワードは拒否する", () => {
+  for (const t of ["こんにちは", "", "調べて 生成AI", "アイデア 音楽フェス", "技術調べて 新技術", "1", "アワード"]) {
+    assert.equal(isProgressText(t), false, `expected false for ${t}`);
+  }
 });
 
 test("matchMenuSelection: 番号（半角・全角・丸数字）を判定する", () => {

@@ -64,6 +64,24 @@ export function isResumeText(text: string): boolean {
   return RESUME_TEXTS.has(text.trim());
 }
 
+const PROGRESS_PREFIXES = ["進捗", "状況"];
+
+/**
+ * 進捗照会（LINEで「進捗」「状況」）の判定。全状態で有効な予約語として
+ * webhook.ts が isCancelText/isResumeText と同じ場所（stepWizardより前）で判定する
+ * （ウィザード進行中でも割り込んで答えられる。pendingは一切変更しない）。
+ *
+ * 完全一致（前後空白のみ許容）に加え、「進捗を教えて」「状況どう?」のような自然文も
+ * 前方一致で拾う。誤爆（ウィザードの自由入力がたまたま「進捗」始まりになる等）より
+ * 「進捗を尋ねているのに応答しない」方が実害が大きいため、前方一致を許容する判断
+ * （isCancelText/isResumeTextの完全一致方針よりも緩めた明示的な例外）。
+ */
+export function isProgressText(text: string): boolean {
+  const trimmed = text.trim();
+  if (!trimmed) return false;
+  return PROGRESS_PREFIXES.some((p) => trimmed.startsWith(p));
+}
+
 // ── ウィザード用: メニュー選択・y/n判定（対話ウィザード拡張） ──────────────
 
 /** 全角数字を半角へ正規化する（メニュー番号・件数入力の表記ゆれ吸収）。 */

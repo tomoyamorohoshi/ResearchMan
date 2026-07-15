@@ -21,9 +21,18 @@
  * reply tokenではなくpushで返信する設計判断は push.ts 冒頭のコメント参照。
  */
 import type express from "express";
-import { createJob, findResumableAwardsJob, ValidationError, type ResumableAwardsJob, type Tab } from "../jobs.js";
+import {
+  createJob,
+  findLatestFinishedJob,
+  findResumableAwardsJob,
+  listActiveJobs,
+  ValidationError,
+  type Job,
+  type ResumableAwardsJob,
+  type Tab,
+} from "../jobs.js";
 import { resumeAwardJob } from "../pipeline/awardResearch.js";
-import { isCancelText, isResumeText, type LineRequestKind } from "./classify.js";
+import { isCancelText, isProgressText, isResumeText, type LineRequestKind } from "./classify.js";
 import { loadLineConfig, type LineConfig } from "./config.js";
 import {
   buildAddCaseAcceptedText,
@@ -35,6 +44,7 @@ import {
   buildExpiredAndMenuText,
   buildJobCreateFailedText,
   buildNoPendingText,
+  buildProgressStatusText,
   buildStructureFailedText,
   buildUnconfiguredAllowedUserText,
 } from "./messages.js";
@@ -57,6 +67,10 @@ export interface LineWebhookDeps {
   findResumableAwardsJob: () => Promise<ResumableAwardsJob | null>;
   /** 見つかったジョブをcheckpointから再開する（新しい予算枠で続行。awardResearch.ts参照）。 */
   resumeAwardsJob: (jobId: string) => Promise<void>;
+  /** 「進捗」「状況」キーワード向け: status="running"/"paused"の全ジョブ。 */
+  listActiveJobs: () => Promise<Job[]>;
+  /** 「進捗」「状況」キーワード向け: 実行中/一時停止中ジョブが無いときに案内する直近の完了ジョブ1件。 */
+  findLatestFinishedJob: () => Promise<Job | null>;
   now: () => Date;
 }
 
@@ -70,6 +84,8 @@ const defaultDeps: LineWebhookDeps = {
   structureAward: structureAwardViaClaude,
   findResumableAwardsJob,
   resumeAwardsJob: resumeAwardJob,
+  listActiveJobs,
+  findLatestFinishedJob,
   now: () => new Date(),
 };
 
@@ -137,6 +153,16 @@ async function handleEvent(event: unknown, config: LineConfig, deps: LineWebhook
     } else {
       await deps.sendPush(token, userId, buildNoPendingText());
     }
+    return;
+  }
+
+  // 「進捗」「状況」（進捗の対話的照会）: 「再開」「キャンセル」と同じく全状態で有効な
+  // 予約語として扱う。ウィザード進行中でも割り込んで答えられるよう、stepWizardより前に
+  // 判定し、pendingは一切読み書きしない（照会してもウィザードの進行状態は壊れない）。
+  if (isProgressText(text)) {
+    const active = await deps.listActiveJobs();
+    const latestFinished = active.length > 0 ? null : await deps.findLatestFinishedJob();
+    await deps.sendPush(token, userId, buildProgressStatusText(active, latestFinished, now));
     return;
   }
 

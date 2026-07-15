@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import type { Job } from "../jobs.js";
 import {
   buildAddCaseAcceptedText,
   buildAddCaseDuplicateAsCaseText,
@@ -14,11 +15,28 @@ import {
   buildAwardResumeNotFoundText,
   buildEditFieldPromptText,
   buildFinalConfirmText,
+  buildJobKindLabel,
   buildMenuText,
+  buildProgressStatusText,
   buildRefsConfirmText,
   buildRefsQuestionText,
   buildUnconfiguredAllowedUserText,
 } from "./messages.js";
+
+function makeJob(overrides: Partial<Job> = {}): Job {
+  return {
+    id: "job-1",
+    tab: "research",
+    request: {},
+    status: "running",
+    resultCards: [],
+    commit: null,
+    deployedUrl: null,
+    cost: null,
+    at: "2026-07-14T00:00:00.000Z",
+    ...overrides,
+  };
+}
 
 test("buildFinalConfirmText: research(Case Study) の内容とy/n・件数変更案内を含む", () => {
   const text = buildFinalConfirmText("research", {
@@ -153,4 +171,80 @@ test("buildAwardAcceptedText: 受付文言", () => {
 test("buildAwardResumeNotFoundText/buildAwardResumeAcceptedText: 再開系の案内文", () => {
   assert.match(buildAwardResumeNotFoundText(), /再開できるAWARDS/);
   assert.match(buildAwardResumeAcceptedText(), /再開/);
+});
+
+// ── 進捗照会（LINE「進捗」「状況」。要件A） ─────────────────────────────
+
+test("buildJobKindLabel: research(kind別)/add-case/awards/ideaの日本語ラベル", () => {
+  assert.equal(buildJobKindLabel(makeJob({ tab: "research", request: { kind: "Case Study" } })), "事例調査");
+  assert.equal(buildJobKindLabel(makeJob({ tab: "research", request: { kind: "Technology" } })), "技術調査");
+  assert.equal(buildJobKindLabel(makeJob({ tab: "add-case", request: {} })), "事例・技術追加");
+  assert.equal(buildJobKindLabel(makeJob({ tab: "awards", request: {} })), "AWARDS");
+  assert.equal(buildJobKindLabel(makeJob({ tab: "idea", request: {} })), "アイデア出し");
+});
+
+test("buildProgressStatusText: 実行中1件（種別・フェーズ・経過時間を含む）", () => {
+  const now = new Date("2026-07-14T00:12:00.000Z");
+  const job = makeJob({
+    tab: "research",
+    request: { kind: "Case Study" },
+    status: "running",
+    progress: "収集を開始しています…",
+    at: "2026-07-14T00:00:00.000Z",
+  });
+  const text = buildProgressStatusText([job], null, now);
+  assert.match(text, /事例調査/);
+  assert.match(text, /収集を開始しています…/);
+  assert.match(text, /12分経過/);
+  assert.doesNotMatch(text, /実行中のジョブはありません/);
+});
+
+test("buildProgressStatusText: progressPercentがあれば「◯%」を含む", () => {
+  const now = new Date("2026-07-14T00:23:00.000Z");
+  const job = makeJob({
+    tab: "awards",
+    request: {},
+    status: "running",
+    progress: "参照リスト構築中（1/3）",
+    progressPercent: 42.3,
+    at: "2026-07-14T00:00:00.000Z",
+  });
+  const text = buildProgressStatusText([job], null, now);
+  assert.match(text, /AWARDS/);
+  assert.match(text, /42%/);
+  assert.match(text, /23分経過/);
+});
+
+test("buildProgressStatusText: paused理由（priority-job/budget/restart）をそれぞれ案内する", () => {
+  const now = new Date("2026-07-14T00:10:00.000Z");
+  const base = { tab: "awards" as const, request: {}, status: "paused" as const, progress: "P2実行中", at: "2026-07-14T00:00:00.000Z" };
+  assert.match(buildProgressStatusText([makeJob({ ...base, pausedReason: "priority-job" })], null, now), /優先ジョブ待ち/);
+  assert.match(buildProgressStatusText([makeJob({ ...base, pausedReason: "budget" })], null, now), /予算上限.*再開/);
+  assert.match(buildProgressStatusText([makeJob({ ...base, pausedReason: "restart" })], null, now), /再起動復帰待ち/);
+});
+
+test("buildProgressStatusText: 実行中/一時停止中が複数あればそれぞれの情報を含む", () => {
+  const now = new Date("2026-07-14T00:10:00.000Z");
+  const techJob = makeJob({ tab: "research", request: { kind: "Technology" }, progress: "技術収集中", at: "2026-07-14T00:00:00.000Z" });
+  const ideaJob = makeJob({ tab: "idea", request: {}, progress: "切り口選定中", at: "2026-07-14T00:05:00.000Z" });
+  const text = buildProgressStatusText([techJob, ideaJob], null, now);
+  assert.match(text, /技術調査/);
+  assert.match(text, /技術収集中/);
+  assert.match(text, /アイデア出し/);
+  assert.match(text, /切り口選定中/);
+});
+
+test("buildProgressStatusText: 実行中0件・直近の完了ジョブがあれば「実行中のジョブはありません」+その情報", () => {
+  const now = new Date("2026-07-14T00:35:00.000Z");
+  const done = makeJob({ tab: "add-case", request: {}, status: "done", at: "2026-07-14T00:00:00.000Z" });
+  const text = buildProgressStatusText([], done, now);
+  assert.match(text, /実行中のジョブはありません/);
+  assert.match(text, /事例・技術追加/);
+  assert.match(text, /done/);
+  assert.match(text, /35分前/);
+});
+
+test("buildProgressStatusText: 実行中0件・直近の完了ジョブが無ければジョブなしのみ", () => {
+  const text = buildProgressStatusText([], null, new Date("2026-07-14T00:00:00.000Z"));
+  assert.equal(text, "実行中のジョブはありません");
 });

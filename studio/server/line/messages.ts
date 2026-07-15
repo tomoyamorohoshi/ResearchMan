@@ -4,7 +4,7 @@
  */
 import type { ValidatedIdeaRequest } from "../pipeline/ideaPure.js";
 import type { ValidatedResearchRequest } from "../pipeline/pure.js";
-import type { Tab } from "../jobs.js";
+import type { Job, PausedReason, Tab } from "../jobs.js";
 import type { LineRequestKind } from "./classify.js";
 
 /** 最終確認（final_confirm）の内容表示＋y/n・件数変更の案内。 */
@@ -184,4 +184,67 @@ export function buildAwardResumeAcceptedText(): string {
  */
 export function buildAddCaseDuplicateAsCaseText(title: string): string {
   return `既に登録済み（Case Studyとして）: ${title}`;
+}
+
+// ── 進捗照会（LINE「進捗」「状況」。要件A: 実行中/一時停止中ジョブの対話的照会） ──────
+
+/** research以外のtabの日本語ラベル。research(kind別)はresearchKindLabelで別途判定する。 */
+const TAB_LABELS: Partial<Record<Tab, string>> = {
+  "add-case": "事例・技術追加",
+  awards: "AWARDS",
+  idea: "アイデア出し",
+};
+
+function researchKindLabel(request: Record<string, unknown>): string {
+  const kind = typeof request.kind === "string" ? request.kind : "";
+  if (kind === "Technology") return "技術調査";
+  if (kind === "両方") return "事例・技術調査"; // LINEからは到達不能だがAPI経由の可能性に備える
+  return "事例調査"; // "Case Study"、または不明時の既定
+}
+
+/** ジョブ種別の日本語ラベル（進捗照会向け）。 */
+export function buildJobKindLabel(job: Pick<Job, "tab" | "request">): string {
+  if (job.tab === "research") return researchKindLabel(job.request);
+  return TAB_LABELS[job.tab] ?? job.tab;
+}
+
+const PAUSED_REASON_LABELS: Record<PausedReason, string> = {
+  "priority-job": "優先ジョブ待ち",
+  budget: "予算上限・「再開」で続行",
+  restart: "再起動復帰待ち",
+};
+
+/** job.at（ISO文字列）からnowまでの経過分（負値にはならない）。 */
+function elapsedMinutes(atIso: string, now: Date): number {
+  const at = new Date(atIso).getTime();
+  return Math.max(0, Math.floor((now.getTime() - at) / 60000));
+}
+
+/** 実行中/一時停止中ジョブ1件分の状態行を組み立てる。 */
+function buildJobStatusLine(job: Job, now: Date): string {
+  const label = buildJobKindLabel(job);
+  const segments: string[] = [job.progress ?? "進行中"];
+  if (typeof job.progressPercent === "number") segments.push(`${Math.round(job.progressPercent)}%`);
+  segments.push(`${elapsedMinutes(job.at, now)}分経過`);
+  if (job.status === "paused" && job.pausedReason) {
+    segments.push(`一時停止中: ${PAUSED_REASON_LABELS[job.pausedReason]}`);
+  }
+  return `【${label}】${segments.join(" / ")}`;
+}
+
+/**
+ * LINE「進捗」「状況」への返信文言。実行中/一時停止中ジョブがあればそれぞれの状態を、
+ * 無ければ「実行中のジョブはありません」+直近の完了ジョブ1件（あれば）を組み立てる
+ * （line/webhook.ts::handleEvent が isProgressText 判定直後に呼ぶ）。
+ */
+export function buildProgressStatusText(active: Job[], latestFinished: Job | null, now: Date): string {
+  if (active.length === 0) {
+    const lines = ["実行中のジョブはありません"];
+    if (latestFinished) {
+      const label = buildJobKindLabel(latestFinished);
+      lines.push(`直近の完了: 【${label}】${latestFinished.status}（${elapsedMinutes(latestFinished.at, now)}分前）`);
+    }
+    return lines.join("\n");
+  }
+  return active.map((j) => buildJobStatusLine(j, now)).join("\n\n");
 }
