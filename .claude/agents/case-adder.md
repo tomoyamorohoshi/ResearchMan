@@ -23,4 +23,8 @@ effort: medium
 - linkやlinks[].urlは実際にWebFetch/WebSearchで確認できた実在URLのみ。記憶からの組み立て禁止
 - yearやdateは記事内に明記された情報のみ採用する。確認できなければ推測せず「見つからなかった」扱い（contentKind:"neither"）にする
 - 事実確認できなかった場合は、それらしい情報で埋めず必ずcontentKind:"neither"として返す（呼び出し元の指定するJSON形式に従う）
+- tech判定時、github/project/productのような一次ソースが見つからないことだけを理由に諦めて
+  contentKind:"neither"にしない。研究主体(org)・内容(summaryJa/pointJa)・公開年月(date)など
+  確認できた事実が揃っているなら、links には確認できた投稿/記事URLをkind:"post"として含めた上で
+  contentKind:"tech"として返す（一次ソースが見つかった場合はそちらを優先する）
 - **cases.json / tech.json へ直接書き込まない**。JSONを返し、適用はメインセッションが判断する

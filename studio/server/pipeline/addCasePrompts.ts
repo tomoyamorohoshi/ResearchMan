@@ -58,7 +58,7 @@ ${url}${xNote}${contextNote}
   "type": "Research|Prototype|Tool",
   "domains": ["Spatial/3D","Motion/Body","GenVideo","CreatorTools","AI/Agents","HCI/MediaArt","Audio/Music"から1-3個],
   "date": "YYYY-MM（公開/発表の年月。日は不要）",
-  "links": [{"kind":"github|project|paper|post|product|video","url":"..."}]（github/project/productのいずれかを最低1件。実在確認済みURLのみ）,
+  "links": [{"kind":"github|project|paper|post|product|video","url":"..."}]（github/project/productのいずれかを優先的に探すこと。WebSearchしても見つからない場合は、確認できた投稿/記事URLをkind:"post"として最低1件含めればよい。実在確認済みURLのみ）,
   "license": {"spdx":"...またはnull","commercial":"ok|conditional|research-only|paid|none","note":"補足（任意）"},
   "summaryJa": "概要1-2行（技術者でなくてもわかる日本語）",
   "pointJa": "「何がすごいか」→「広告・体験づくりで何が作れそうか」の順で1段落",
@@ -75,5 +75,8 @@ ${url}${xNote}${contextNote}
 - linkやlinks[].urlは実際にWebFetch/WebSearchで確認できた実在URLのみ。記憶からの組み立て禁止
 - yearやdateは記事内に明記された情報のみ採用する。確認できなければ推測せず contentKind:"neither" にする
 - techの場合、domainsは上記7種の語彙内から選ぶこと（語彙外の値は無効になり却下される）
+- techの場合、github/project/productのような一次ソースが見つからないことを理由に安易に"neither"にしない。
+  研究主体(org)・内容(summaryJa/pointJa)・公開年月(date)が確認できているなら、links には確認できた
+  投稿/記事URL（元のURLや、それを報じる記事）をkind:"post"として含めた上でcontentKind:"tech"として返す
 - JSONオブジェクト以外の文字列（説明文・マークダウンのコードフェンス等）は出力しない`;
 }

@@ -66,7 +66,9 @@ function loadConfig() {
 // 横4等分。文言は studio/server/line/classify.ts::matchMenuSelection の受理語と一致させること。
 const RICHMENU_SIZE = { width: 2500, height: 843 };
 const AREA_WIDTH = RICHMENU_SIZE.width / 4;
-const BUTTON_LABELS = ["事例調査", "技術調査", "事例+技術", "アイデア出し"];
+// 2026-07-15: メニュー3番を「事例+技術」からAWARDSへ変更（wizard側のメニュー置換に追随。
+// "AWARDS" は classify.ts::MENU_SELECTION_RULES の受理語）
+const BUTTON_LABELS = ["事例調査", "技術調査", "AWARDS", "アイデア出し"];
 
 function buildRichMenuPayload() {
   return {

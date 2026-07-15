@@ -58,3 +58,17 @@ test("buildCaseAdderPrompt: isXLinkの補足指示にGitHubの言及がある（
   const withX = buildCaseAdderPrompt({ url: "https://x.com/user/status/1", context: "", isXLink: true });
   assert.match(withX, /GitHub/);
 });
+
+// ── 一次ソース欠如時の縮退（実際に起きた失敗: Xポストのソフトロボット研究紹介動画が
+//    一次ソース(github/project/product)無しとして扱われ、techと判定されたのに
+//    「事例の追加に失敗しました」で終わっていた） ──────────────────────────
+
+test("buildCaseAdderPrompt: 一次ソースが見つからなくてもneitherにせずtechで返してよい旨を指示する", () => {
+  const p = buildCaseAdderPrompt({ url: "https://example.com/article", context: "", isXLink: false });
+  assert.match(p, /一次ソースが見つからないことを理由に.*neither.*にしない/);
+});
+
+test("buildCaseAdderPrompt: 一次ソースが無い場合、確認できた投稿\/記事URLをkind:\"post\"として含める旨を指示する", () => {
+  const p = buildCaseAdderPrompt({ url: "https://example.com/article", context: "", isXLink: false });
+  assert.match(p, /kind:"post"/);
+});

@@ -121,16 +121,28 @@ export function buildAddCaseAcceptedText(): string {
  * 追加成功のLINE通知文言。kindでCase/Technologyの区別を明記する（要件3: どちらに追加されたか
  * 判別できるようにする）。techは反映先がTechnologyタブであることも案内する（case/tech共通の
  * cases.json/tech.jsonという実装詳細ではなく、ユーザーが見る場所で案内する）。
+ * note指定時（要件2: 一次ソース未発見のままpostリンクで縮退登録した場合）は末尾に注記行を足す。
  */
-export function buildAddCaseSuccessText(kind: "case" | "tech", title: string, url: string): string {
+export function buildAddCaseSuccessText(kind: "case" | "tech", title: string, url: string, note?: string): string {
   const kindLabel = kind === "tech" ? "Technology" : "Case";
   const lines = [`${kindLabel} として追加しました: ${title}`, url];
   if (kind === "tech") lines.push("サイトのTechnologyタブで見られます。");
+  if (note) lines.push(note);
   return lines.join("\n");
 }
 
 export function buildAddCaseFailedText(reason: string): string {
   return `事例の追加に失敗しました: ${reason}`;
+}
+
+/**
+ * tech分岐（contentKind:"tech"）確定後の失敗文言（要件3）。
+ * 実測: Xポストがtechと判定された後、一次ソース欠如等で失敗した際も一律
+ * buildAddCaseFailedTextの「事例の追加に失敗しました」が表示され、ユーザーが混乱していた。
+ * contentKindがtechと判明した以降の失敗はこちらを使う。
+ */
+export function buildAddTechFailedText(reason: string): string {
+  return `技術の追加に失敗しました: ${reason}`;
 }
 
 /** 重複検知時の案内文（指摘3: 失敗ではなく案内のため、buildAddCaseFailedTextで二重ラップしない）。 */

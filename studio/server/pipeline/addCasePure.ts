@@ -5,7 +5,20 @@
  */
 import { normLink } from "../../../scripts/lib/norm-link.mjs";
 import { filterTagsByVocabulary, normalizeTitleKey, type CaseEntry, type TagVocabulary, type WriterFields } from "./pure.js";
-import { toTechId, type RawTechCandidate } from "./techPure.js";
+import {
+  filterValidDomains,
+  findPrimaryLink,
+  isProxyUrl,
+  isValidDateFormat,
+  toTechId,
+  type ExistingTechIndex,
+  type RawTechCandidate,
+  type RelatedWork,
+  type TechLicense,
+  type TechLink,
+  type TechVocab,
+  type ValidatedTechCandidate,
+} from "./techPure.js";
 
 // ── リクエスト検証 ──────────────────────────────────────────────
 
@@ -159,6 +172,148 @@ export function parseExtractedTechCandidate(obj: Record<string, unknown>): RawTe
     relatedWorks: obj.relatedWorks,
     thumbnailSource: obj.thumbnailSource,
     verdict: "adopt",
+  };
+}
+
+// ── tech候補の検証（一次ソース欠如を許容するadd-case専用フォールバック） ────────
+
+export interface TechCandidateFallbackResult {
+  ok: true;
+  value: ValidatedTechCandidate;
+  /** falseなら一次ソース（github/project/product）が見つからず、送信URLをpostリンクとして採用した。 */
+  primarySourceFound: boolean;
+}
+
+export interface TechCandidateFallbackFailure {
+  ok: false;
+  reason: string;
+}
+
+/**
+ * tech候補（contentKind:"tech"）の検証（add-case専用）。
+ *
+ * 実際に起きた失敗: Xポスト（ソフトロボット研究紹介動画）を送信した際、case-adder Agentが
+ * Web検索しても一次ソース（github/project/product）を見つけられず、
+ * techPure.validateAndDedupeTechCandidates の「一次ソースが無ければ却下」に引っかかって
+ * 「事例の追加に失敗しました」で終わっていた。日次バッチ収集（techResearch.ts）は複数候補から
+ * 質の高いものだけを間引く前提のため一次ソース必須のままでよいが、add-case はユーザーが
+ * 明示的に指定した単一URLが起点のため、一次ソースが見つからない場合でも失敗にはせず、
+ * 送信されたURL（fallbackUrl）を kind:"post" のリンクとして採用してエントリを成立させる
+ * （techPure.ts・techResearch.tsは日次バッチ側の共有ロジックのため無改変とし、この縮退は
+ * addCasePure.ts側にのみ持つ）。
+ *
+ * 一次ソース欠如以外の検証項目（verdict/techName・id重複/タイトル重複/Case Study重複/
+ * type語彙/domains語彙/date形式/org・summary・point必須/プロキシURL除外）は
+ * techPure.validateAndDedupeTechCandidates と同じ基準で却下する（品質バーは変えない）。
+ */
+export function validateTechCandidateAllowingFallbackSource(
+  raw: RawTechCandidate,
+  vocab: TechVocab,
+  existingTech: ExistingTechIndex,
+  existingCaseTitleKeys: Set<string>,
+  fallbackUrl: string,
+): TechCandidateFallbackResult | TechCandidateFallbackFailure {
+  const techName = typeof raw.techName === "string" && raw.techName.trim() ? raw.techName.trim() : "";
+  const id = toTechId(techName);
+
+  if (raw.verdict !== "adopt" && raw.verdict !== "adopt-adjusted") {
+    return { ok: false, reason: `verdictがadoptではありません: ${String(raw.verdict)}` };
+  }
+  if (!techName || !id) {
+    return { ok: false, reason: "techNameが不正です" };
+  }
+  const titleKey = normalizeTitleKey(techName);
+
+  if (existingTech.ids.has(id)) {
+    return { ok: false, reason: "既存tech.jsonまたは今回内でidが重複" };
+  }
+  if (existingTech.titleKeys.has(titleKey)) {
+    return { ok: false, reason: "既存tech.jsonまたは今回内でタイトルが重複" };
+  }
+  if (existingCaseTitleKeys.has(titleKey)) {
+    return { ok: false, reason: "Case Studyとタイトルが重複" };
+  }
+
+  const type = typeof raw.type === "string" ? raw.type : "";
+  if (!vocab.Type.includes(type)) {
+    return { ok: false, reason: `不正type: ${type}` };
+  }
+
+  const domains = filterValidDomains(raw.domains, vocab);
+  if (domains.length === 0) {
+    return { ok: false, reason: "有効なdomainがありません" };
+  }
+
+  if (!isValidDateFormat(raw.date)) {
+    return { ok: false, reason: `不正なdate形式: ${String(raw.date)}` };
+  }
+
+  const org = typeof raw.org === "string" && raw.org.trim() ? raw.org.trim() : "";
+  const summary = typeof raw.summaryJa === "string" && raw.summaryJa.trim() ? raw.summaryJa.trim() : "";
+  const point = typeof raw.pointJa === "string" && raw.pointJa.trim() ? raw.pointJa.trim() : "";
+  if (!org || !summary || !point) {
+    return { ok: false, reason: "org/summary/pointのいずれかが空です" };
+  }
+  const detail = typeof raw.detailJa === "string" && raw.detailJa.trim() ? raw.detailJa.trim() : undefined;
+
+  const linksRaw = Array.isArray(raw.links) ? raw.links : [];
+  let links: TechLink[] = linksRaw
+    .filter((l): l is { kind: unknown; url: unknown } => !!l && typeof l === "object")
+    .map((l) => ({ kind: String((l as { kind: unknown }).kind ?? ""), url: String((l as { url: unknown }).url ?? "") }))
+    .filter((l) => l.kind && l.url);
+
+  const proxyLink = links.find((l) => isProxyUrl(l.url));
+  if (proxyLink) {
+    return { ok: false, reason: `プロキシURLが混入: ${proxyLink.url}` };
+  }
+
+  const primarySourceFound = !!findPrimaryLink(links);
+  if (!primarySourceFound && !links.some((l) => l.url === fallbackUrl)) {
+    // 要件1: 一次ソースが見つからない場合の縮退。TechLink["kind"]の語彙（src/lib/tech.ts）に
+    // "article"は無く、既存tech.jsonでもXポストの単独リンクは"post"を使っているため、
+    // 記事URLも含めてここでは"post"に統一する。
+    links = [...links, { kind: "post", url: fallbackUrl }];
+  }
+
+  const licenseRaw = raw.license && typeof raw.license === "object" ? (raw.license as Record<string, unknown>) : {};
+  const license: TechLicense = {
+    spdx: typeof licenseRaw.spdx === "string" ? licenseRaw.spdx : null,
+    commercial: typeof licenseRaw.commercial === "string" ? licenseRaw.commercial : "none",
+    ...(typeof licenseRaw.note === "string" && licenseRaw.note.trim() ? { note: licenseRaw.note.trim() } : {}),
+  };
+
+  const relatedWorksRaw = Array.isArray(raw.relatedWorks) ? raw.relatedWorks : [];
+  const relatedWorks: RelatedWork[] = relatedWorksRaw
+    .filter((r): r is Record<string, unknown> => !!r && typeof r === "object")
+    .map((r) => ({
+      title: typeof r.title === "string" ? r.title : "",
+      description: typeof r.description === "string" ? r.description : "",
+      url: typeof r.url === "string" ? r.url : "",
+    }));
+
+  const thumbnailFallback = findPrimaryLink(links)?.url ?? fallbackUrl;
+  const thumbnailSource =
+    typeof raw.thumbnailSource === "string" && raw.thumbnailSource.trim() ? raw.thumbnailSource.trim() : thumbnailFallback;
+
+  return {
+    ok: true,
+    primarySourceFound,
+    value: {
+      id,
+      title: techName,
+      org,
+      type,
+      domains,
+      date: raw.date as string,
+      year: (raw.date as string).slice(0, 4),
+      summary,
+      point,
+      ...(detail ? { detail } : {}),
+      license,
+      links,
+      thumbnailSource,
+      relatedWorks,
+    },
   };
 }
 

@@ -6,6 +6,7 @@ import {
   buildAddCaseDuplicateText,
   buildAddCaseFailedText,
   buildAddCaseSuccessText,
+  buildAddTechFailedText,
   buildAwardAcceptedText,
   buildAwardCategoriesQuestionText,
   buildAwardNameQuestionText,
@@ -95,9 +96,35 @@ test("buildAddCaseSuccessText: kind='tech'は「Technology として追加しま
   assert.match(text, /Technologyタブ/);
 });
 
+test("buildAddCaseSuccessText: noteを渡すと末尾に注記行が追加される（要件2: 一次ソース未発見での縮退登録の明示）", () => {
+  const text = buildAddCaseSuccessText(
+    "tech",
+    "面白い技術",
+    "https://research-man.vercel.app/technology/example-2026",
+    "※一次ソース未発見のため投稿リンクで登録",
+  );
+  assert.match(text, /※一次ソース未発見のため投稿リンクで登録/);
+});
+
+test("buildAddCaseSuccessText: noteを省略すれば注記行は付かない", () => {
+  const text = buildAddCaseSuccessText("case", "面白い事例", "https://research-man.vercel.app/cases/example-2026");
+  assert.doesNotMatch(text, /※/);
+});
+
 test("buildAddCaseFailedText: 失敗理由を含む", () => {
   const text = buildAddCaseFailedText("既に登録済み: 面白い事例");
   assert.match(text, /既に登録済み: 面白い事例/);
+});
+
+// ── buildAddTechFailedText（要件3: tech判定後の失敗は「技術の追加に失敗しました」） ────────
+// 実測: Xポストがtechと判定された後、一次ソース欠如で失敗した際に「事例の追加に失敗しました」と
+// 表示されユーザーが混乱していた。kind確定後は専用の文言を使う。
+
+test("buildAddTechFailedText: 「技術の追加に失敗しました」+理由", () => {
+  const text = buildAddTechFailedText("技術情報の検証に失敗しました: 有効なdomainがありません");
+  assert.match(text, /^技術の追加に失敗しました: /);
+  assert.match(text, /有効なdomainがありません/);
+  assert.doesNotMatch(text, /事例の追加に失敗しました/);
 });
 
 test("buildAddCaseDuplicateText: 「事例の追加に失敗しました」でラップせず、タイトルをそのまま含む", () => {

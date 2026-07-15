@@ -69,6 +69,7 @@ import {
   parseContentKind,
   parseExtractedCandidate,
   parseExtractedTechCandidate,
+  validateTechCandidateAllowingFallbackSource,
   type ValidatedAddCaseRequest,
 } from "./addCasePure.js";
 import { extractJsonArray, normalizeTitleKey, toCaseId } from "./pure.js";
@@ -96,6 +97,7 @@ import {
   buildAddCaseDuplicateText,
   buildAddCaseFailedText,
   buildAddCaseSuccessText,
+  buildAddTechFailedText,
 } from "../line/messages.js";
 import { rollbackIfNotCommitted, terminalStatus } from "./caseResearch.js";
 
@@ -131,14 +133,31 @@ async function notifyLineIfPossible(lineUserId: string, text: string): Promise<v
   await pushLineMessage(config.channelAccessToken, lineUserId, text);
 }
 
-async function fail(jobId: string, lineUserId: string, message: string, costUsd: number, ownsLock: boolean): Promise<void> {
+/**
+ * kind未確定（URL取得直後・contentKind:"neither"等）はcase/tech区別ができないため、
+ * 従来どおりbuildAddCaseFailedText（汎用文言）にフォールバックする。kindが"tech"と
+ * 確定した後の失敗は、要件3（実測: tech判定後の失敗でも「事例の追加に失敗しました」と
+ * 表示されユーザーが混乱していた）に沿ってbuildAddTechFailedTextを使う。
+ */
+function buildFailedTextForKind(kind: "case" | "tech" | undefined, message: string): string {
+  return kind === "tech" ? buildAddTechFailedText(message) : buildAddCaseFailedText(message);
+}
+
+async function fail(
+  jobId: string,
+  lineUserId: string,
+  message: string,
+  costUsd: number,
+  ownsLock: boolean,
+  kind?: "case" | "tech",
+): Promise<void> {
   await updateJob(jobId, {
     status: terminalStatus(ownsLock, "error"),
     progress: undefined,
     error: message,
     cost: costUsd,
   });
-  await notifyLineIfPossible(lineUserId, buildAddCaseFailedText(message));
+  await notifyLineIfPossible(lineUserId, buildFailedTextForKind(kind, message));
 }
 
 export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseRequest): Promise<void> {
@@ -159,6 +178,8 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
   const newUntracked: string[] = [];
   let committed = false;
   let commitHash: string | null = null;
+  // contentKind確定後の失敗文言の出し分け用（要件3）。case/tech分岐に入った時点で設定する。
+  let determinedKind: "case" | "tech" | undefined;
   // "public/thumbnails/<id>.jpg"（case）または "public/thumbnails/tech/<id>.jpg"（tech）。
   // ROOT基準の相対パス。dryRun時の掃除・commit前ロールバックの両方で使う。
   let thumbnailRelPath = "";
@@ -203,6 +224,7 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
     }
 
     if (contentKind === "case") {
+      determinedKind = "case";
       const candidate = parseExtractedCandidate(obj);
       if (!isUsableCandidate(candidate)) {
         throw new Error(candidate.reason || "指定されたURLから事例情報を確認できませんでした");
@@ -479,6 +501,7 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
       // （caseResearch.tsのunverified通知文言と同じ考え方。要件3: 成功時は種別+タイトル+サイトURL）。
       await notifyLineIfPossible(lineUserId, buildAddCaseSuccessText("case", entry.title, caseUrl));
     } else {
+      determinedKind = "tech";
       // contentKind === "tech"（要件2: Technology(tech.json)への振り分け）。
       // 以降はtechResearch.ts（Research(Technology)一括収集パイプライン）と同じ品質
       // ガードレール（validateAndDedupeTechCandidates/runAuditTech/isUrlAlive等）を
@@ -500,6 +523,10 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
         existingTechIndex,
         existingCaseTitleKeys,
       );
+      let validatedRaw: ValidatedTechCandidate;
+      // falseなら一次ソース（github/project/product）が見つからず、送信されたURLをpostリンクとして
+      // 採用した（要件1: 実際に起きた失敗の修正。一次ソースが見つかった場合の優先動作は現状維持）。
+      let primarySourceFound: boolean;
       if (rejected.length > 0) {
         const rejection = rejected[0];
         // 指摘3と同じ考え方: 重複は失敗ではなく案内のため専用文言でその場で終端処理する。
@@ -528,9 +555,32 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
           await notifyLineIfPossible(lineUserId, message);
           return;
         }
-        throw new Error(`技術情報の検証に失敗しました: ${rejection.reason}`);
+        if (rejection.reason === "一次ソース（github/project/product）がありません") {
+          // 要件1: 実際に起きた失敗（Xポストのソフトロボット研究紹介動画がエージェントの
+          // Web検索でも一次ソースを見つけられず失敗していた）。techPure.tsは日次バッチ側の
+          // 共有ロジックのため無改変とし、add-case専用の縮退（fallbackUrl=送信されたURLを
+          // kind:"post"のリンクとして採用）をaddCasePure.tsの専用関数で行う。この却下理由に
+          // 到達した時点で一次ソース以外の検証は全てvalidateAndDedupeTechCandidatesを通過済みのため、
+          // この再検証は理論上失敗しないはずだが、呼び出し順変更等への防御として結果を確認する。
+          const fallback = validateTechCandidateAllowingFallbackSource(
+            rawTechCandidate,
+            techVocab,
+            existingTechIndex,
+            existingCaseTitleKeys,
+            url,
+          );
+          if (!fallback.ok) {
+            throw new Error(`技術情報の検証に失敗しました: ${fallback.reason}`);
+          }
+          validatedRaw = fallback.value;
+          primarySourceFound = fallback.primarySourceFound;
+        } else {
+          throw new Error(`技術情報の検証に失敗しました: ${rejection.reason}`);
+        }
+      } else {
+        validatedRaw = accepted[0];
+        primarySourceFound = true;
       }
-      const validatedRaw = accepted[0];
       // 要件5: caseのensureUniqueCaseIdと同じ「idスラッグの偶然衝突」対策をtech側にも適用する
       // （別技術が同じスラッグに丸められて詳細ページ/サムネイルを上書きする事故の防止）。
       // validateAndDedupeTechCandidatesは既存idとの衝突を既に「重複」として上のブロックで
@@ -539,17 +589,19 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
       const validated: ValidatedTechCandidate = { ...validatedRaw, id: techId };
 
       // ── 3. 一次ソース死活検証（case側のlink-checker Agentと異なり、techResearch.tsと
-      //    同じ単純なisUrlAlive判定。titleMatchの概念はtechには無い） ──────────────
+      //    同じ単純なisUrlAlive判定。titleMatchの概念はtechには無い）。
+      //    一次ソースが見つからず縮退登録した場合（primarySourceFound=false）は、代わりに
+      //    採用した送信URL自体の生存確認に切り替える（要件1: 死リンクまで通してしまわない） ──
       await setProgress(jobId, "一次ソース検証中（リンク）");
       const primary = findPrimaryLink(validated.links);
-      if (!primary) {
-        // 理論上validateAndDedupeTechCandidatesで既に弾かれているはずだが、戻り値の型上
-        // undefinedを許すため呼び出し側でも防御する。
-        throw new Error("一次ソース（github/project/product）が見つかりませんでした");
-      }
-      const alive = await isUrlAlive(primary.url);
+      const linkToCheck = primary?.url ?? url;
+      const alive = await isUrlAlive(linkToCheck);
       if (!alive) {
-        throw new Error("一次ソースの死活確認に失敗しました（死リンクと判定）");
+        throw new Error(
+          primary
+            ? "一次ソースの死活確認に失敗しました（死リンクと判定）"
+            : "送信されたURLの死活確認に失敗しました（死リンクと判定）",
+        );
       }
 
       // ── 4. サムネイル（実画像必須。ダミー禁止 — 要件4はcase/tech共通） ────────────
@@ -571,7 +623,15 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
           cost: costUsd,
           addCasePreview: {
             entry: techEntry as unknown as Record<string, unknown>,
-            verification: { kind: "tech", duplicate: false, linkAlive: true, thumbnailAcquired: true },
+            verification: {
+              kind: "tech",
+              duplicate: false,
+              linkAlive: true,
+              thumbnailAcquired: true,
+              // 要件2: 一次ソース未発見のままpostリンクで縮退登録したことをdryRunプレビューでも
+              // 判別できるようにする。
+              primarySourceFound,
+            },
           },
         });
         return;
@@ -640,7 +700,7 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
           commit: commitHash,
           cost: costUsd,
         });
-        await notifyLineIfPossible(lineUserId, buildAddCaseFailedText(message));
+        await notifyLineIfPossible(lineUserId, buildAddTechFailedText(message));
         return;
       }
 
@@ -684,7 +744,10 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
           cost: costUsd,
         });
       }
-      await notifyLineIfPossible(lineUserId, buildAddCaseSuccessText("tech", techEntry.title, techUrl));
+      // 要件2: 一次ソース未発見のままpostリンク（送信URL）で縮退登録した場合、その旨をLINE成功
+      // 文言に明記する（ユーザーが「本当に一次ソース確認済みなのか」誤解しないように）。
+      const successNote = primarySourceFound ? undefined : "※一次ソース未発見のため投稿リンクで登録";
+      await notifyLineIfPossible(lineUserId, buildAddCaseSuccessText("tech", techEntry.title, techUrl, successNote));
     }
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
@@ -702,7 +765,7 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
         deployedUrl: SITE,
         cost: costUsd,
       });
-      await notifyLineIfPossible(lineUserId, buildAddCaseFailedText(warning));
+      await notifyLineIfPossible(lineUserId, buildFailedTextForKind(determinedKind, warning));
     } else if (committed && isBudgetError) {
       const msg = `${message}（データは本番に反映済みの可能性があります。commit ${commitHash?.slice(0, 8) ?? "不明"}）`;
       await updateJob(jobId, {
@@ -713,9 +776,9 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
         cost: costUsd,
         budgetExceeded: true,
       });
-      await notifyLineIfPossible(lineUserId, buildAddCaseFailedText(msg));
+      await notifyLineIfPossible(lineUserId, buildFailedTextForKind(determinedKind, msg));
     } else {
-      await fail(jobId, lineUserId, message, costUsd, ownsLock);
+      await fail(jobId, lineUserId, message, costUsd, ownsLock, determinedKind);
     }
   } finally {
     await updateJob(jobId, { phaseDurationsMs: finishJob(jobId) }).catch(() => {});
