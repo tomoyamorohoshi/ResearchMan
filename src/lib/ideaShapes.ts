@@ -871,23 +871,23 @@ function distanceToSegment(p: Point, a: Point, b: Point): number {
   return Math.hypot(p.x - (a.x + t * dx), p.y - (a.y + t * dy));
 }
 
-function minDistanceToPolygonBoundary(p: Point, polygon: readonly Point[]): number {
-  let minDist = Infinity;
-  const n = polygon.length;
-  for (let i = 0; i < n; i++) {
-    const d = distanceToSegment(p, polygon[i], polygon[(i + 1) % n]);
-    if (d < minDist) minDist = d;
-  }
-  return minDist;
-}
-
-function minClearanceToOutline(points: readonly Point[], outlinePolygon: readonly Point[]): number {
-  let minC = Infinity;
+// 性能退行対応(2026-07-15): 呼び出し元(refineInsetForGlyphClearance)は「輪郭までの最短距離が
+// requiredClearance以上か」という真偽判定にしか使わない。旧実装(minClearanceToOutline)は
+// 全points×全outlinePolygon辺の厳密な最小値を毎回計算しており、密サンプル形状(1000点超)では
+// O(points×polygon辺数)が数百万回に達し、solveFixedSizeShape1回あたりの支配的コストになって
+// いた(実測: precompute-idea-layouts.mjsの140件実行で予算10分超過の主因)。しきい値未満の
+// 点・辺が1つでも見つかった時点で「最小値はしきい値未満」と確定できる(min <= その値)ため、
+// 残りの走査を打ち切ってよい。既存呼び出し(`minClearanceToOutline(...) >= requiredClearance`)
+// と数学的に同値の判定を返す(早期終了以外の挙動差はない)
+function outlineClearanceMeetsThreshold(points: readonly Point[], outlinePolygon: readonly Point[], threshold: number): boolean {
+  const n = outlinePolygon.length;
   for (const p of points) {
-    const d = minDistanceToPolygonBoundary(p, outlinePolygon);
-    if (d < minC) minC = d;
+    for (let i = 0; i < n; i++) {
+      const d = distanceToSegment(p, outlinePolygon[i], outlinePolygon[(i + 1) % n]);
+      if (d < threshold) return false;
+    }
   }
-  return minC;
+  return true;
 }
 
 // initialInsetRatioを起点に、グリフの外周張り出し(GLYPH_OUTWARD_EM_RATIO×fontSize)ぶんの
@@ -909,7 +909,7 @@ function refineInsetForGlyphClearance(
   let length = polylineLength(points);
   const requiredClearance = GLYPH_OUTWARD_EM_RATIO * fontSize;
   for (let iter = 0; iter < GLYPH_CONTAINMENT_MAX_ITER && insetRatio < MAX_TEXT_INSET_RATIO; iter++) {
-    if (minClearanceToOutline(points, outlinePolygon) >= requiredClearance) break;
+    if (outlineClearanceMeetsThreshold(points, outlinePolygon, requiredClearance)) break;
     const nextInsetRatio = Math.min(MAX_TEXT_INSET_RATIO, insetRatio + GLYPH_CONTAINMENT_INSET_STEP);
     if (nextInsetRatio === insetRatio) break;
     const nextPoints = insetAndOrient(basePoints, cx, cy, nextInsetRatio, outlinePolygon, applyMonotonicTrim);
@@ -1423,7 +1423,14 @@ function findMaxInscribedRect(
           const scale = 1 - (s / (SAFE_AREA_SCALE_STEPS - 1)) * (1 - SAFE_AREA_MIN_SCALE);
           const w = maxDim * 0.9 * scale;
           const h = w / aspect;
-          if (w < minW || h < minH) continue;
+          // 性能退行対応(2026-07-15): sはこのループ内でscale(延いてはw・h)を単調減少させる
+          // 唯一の変数なので、あるsでw<minWまたはh<minHが成立したら、それ以降の(より大きい)s
+          // でも同じ不等式が必ず成立し続ける(w・hはさらに縮むだけ)。以前は`continue`で残りの
+          // 全stepを無駄に評価しており、SAFE_AREA_SCALE_STEPS(24)分の走査(1回ごとに
+          // pointInPolygon等のO(輪郭点数)判定を伴いうる)を丸ごと浪費していた。この時点で
+          // このgx,gy,aspectの組ではこれ以上小さいサイズを試しても成功しないため、
+          // scaleループ自体を打ち切ってよい(結果は不変。無駄な反復を省くだけ)
+          if (w < minW || h < minH) break;
           const rect: Rect = { x: ccx - w / 2, y: ccy - h / 2, w, h };
           const samples = rectSamplePoints(rect);
           if (!samples.every((p) => pointInPolygon(p, coarsePolygon))) continue;
@@ -2082,6 +2089,17 @@ function evaluateFixedSizeTrial(
 
 export type FixedSizeShapeResult = { shape: IdeaShape; scale: number };
 
+// 性能退行対応(2026-07-15): assignShapeKinds(ideaCollageLayout.ts)がkind探索中に呼ぶ
+// probeTierWidthsと、precompute-idea-layouts.mjsのtierループが、同一(idea, tier,
+// forceKind, generous)の組み合わせに対して本関数を独立に2回(以上)呼んでおり、1回あたり
+// 数百ms級の計算(computeSafeArea/refineInsetForGlyphClearance)を完全に無駄打ちしていた。
+// 本関数は決定論的な純関数(同じ入力なら常に同じ出力)であるため、入力をそのままキーにした
+// メモ化は安全に結果を再利用できる。本関数はprecomputeスクリプト・スモークテストなど
+// 単発実行のプロセスからしか呼ばれない(IdeasPoster.tsx/IdeaShapeCard.tsxはビルド後の
+// 事前計算結果を描画するだけで本関数を呼ばない。上のコメント欄参照)ため、プロセス生存期間中
+// キャッシュが際限なく肥大化する心配はない
+const solveFixedSizeShapeCache = new Map<string, FixedSizeShapeResult>();
+
 // idea.id・title・dateLabel・content(説明文+参照リンク)・固定物理フォントサイズ(titleFontPx/
 // bodyFontPx、ティアごとの値をideaCollageLayout.tsから渡す)から、その固定フォントで全文が
 // 収まる最小のカードスケールS(物理px/viewbox単位)を解き、決定論的にシェイプ1枚を組み立てる。
@@ -2096,6 +2114,20 @@ export function solveFixedSizeShape(
   bodyFontPx: number,
   opts?: { forceKind?: ShapeKind; generous?: boolean },
 ): FixedSizeShapeResult {
+  const cacheKey = JSON.stringify([
+    ideaId,
+    title,
+    dateLabel,
+    content.seed,
+    content.refs,
+    titleFontPx,
+    bodyFontPx,
+    opts?.forceKind ?? null,
+    opts?.generous ?? false,
+  ]);
+  const cached = solveFixedSizeShapeCache.get(cacheKey);
+  if (cached) return cached;
+
   const h = hashId(ideaId);
   const kind = opts?.forceKind ?? WEIGHTED_KIND_TABLE[h % WEIGHTED_KIND_TABLE.length];
   const rng = mulberry32(h);
@@ -2196,7 +2228,9 @@ export function solveFixedSizeShape(
   };
 
   const scale = bodyFontPx / bodyVB;
-  return { shape, scale };
+  const result: FixedSizeShapeResult = { shape, scale };
+  solveFixedSizeShapeCache.set(cacheKey, result);
+  return result;
 }
 
 // B: パズルカーニング配置用の座標変換（goofy-hatching-mango.md 2026-07-07バッチ・実装詳細補足
