@@ -1,5 +1,157 @@
 [
   {
+    "id": "lingbot-video",
+    "title": "LingBot-Video",
+    "org": "Robbyant",
+    "type": "Research",
+    "domains": [
+      "GenVideo",
+      "AI/Agents"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "ロボットなど「体を持つAI」が動きを学ぶための教材としても使える、大規模な動画生成AIモデル。見た目の美しさだけでなく物理的な正しさを重視して作られている。",
+    "point": "LingBot-Videoは、きれいな映像を作るだけでなく、ロボットなど体を持ったAI（身体性AI）が動きを学習するための教材としても使える動画生成AIです。専門家ごとに得意分野を分担する「MoE（混合専門家）」という仕組みにより、通常のモデルより高速に、かつ重力・衝突・慣性といった物理法則に沿った自然な動きを再現できるのが特徴です。独自ベンチマークでは同規模の他モデルを上回るスコアを記録しています。広告制作の観点では、実写では狙いにくいカメラワークや、水しぶき・布の揺れ・崩壊する建物といった複雑な物理現象を思い通りに生成する用途に応用でき、CGでは作り込みに時間がかかるカットの下地作りや、ロボット・自動運転向け学習用シミュレーション映像の生成にも展開できそうです。",
+    "detail": "仕組みとしては、動画生成の主流である拡散モデル（DiT）をベースに「MoE（Mixture of Experts）」という設計を採用しています。1つの巨大な脳がすべてを処理するのではなく、歩く・跳ねる・物が壊れるといった動きの種類ごとに得意な専門家パートを切り替えて計算する仕組みで、料理でたとえるなら「何でも作る万能シェフ」より「得意料理ごとの専門シェフ集団」の方が速くて質が高い、というイメージです。学習には一般的なネット動画に加え、7万時間分の「ロボットが実際に体を動かした映像」を組み合わせており、これが物理的なリアルさにつながっています。\n\n従来の動画生成AIは「見た目のもっともらしさ」を重視しがちでしたが、LingBot-Videoは「物理的に正しいか」を重視して学習・評価されている点が大きな違いです。テキストや画像から動画を作る通常の使い方に加え、ロボット学習用の教師データとしても使える二面性がユニークです。\n\n使うにはPython 3.10以上とPyTorch、複数GPU（FSDP対応）が推奨される本格的な計算環境が必要で、個人が手元のPCで気軽に試すハードルはやや高めです。ただしコード・モデル重みともに無償公開されており、クラウドGPUを借りれば動かせるため、映像制作会社がまとまった素材を生成する用途であれば現実的な選択肢です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "コード・モデル本体はApache 2.0で商用利用可。プロンプトリライター部分はQwenベースのため、その部分のみ別途Qwenのライセンス条件が適用される場合がある"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Robbyant/lingbot-video"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2607.07675"
+      },
+      {
+        "kind": "project",
+        "url": "https://technology.robbyant.com/lingbot-video"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/lingbot-video.jpg",
+    "relatedWorks": [
+      {
+        "title": "HunyuanVideo",
+        "description": "Tencentが公開する大規模オープン動画生成モデル",
+        "url": "https://github.com/Tencent/HunyuanVideo"
+      },
+      {
+        "title": "Wan2.2",
+        "description": "AlibabaがMoE構成で公開する動画生成モデル",
+        "url": "https://github.com/Wan-Video/Wan2.2"
+      },
+      {
+        "title": "UniRig",
+        "description": "SIGGRAPH 2025発の自動リギングモデル。身体性AI・3D生成の関連研究",
+        "url": "https://github.com/VAST-AI-Research/UniRig"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "frontstage",
+    "title": "Frontstage",
+    "org": "x777（個人開発者）",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "GenVideo"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "ブラウザとWindowsで動く無料・オープンソースの「AIネイティブ」動画編集ソフト。本格的なタイムライン編集の中に、AIによる映像生成とチャット型の自動編集エージェントが組み込まれている。",
+    "point": "Frontstageは、Premiere ProやDaVinci Resolveのような本格的なタイムライン編集（マルチトラック・キーフレーム・カラーグレーディング）を無料で使えるだけでなく、その中にAIによる映像・画像・音声生成や、チャットで指示すると「カット割り・テロップ・色調整」などを自動でやってくれるAIエージェント機能を統合したツールです。文字起こし・字幕もオンデバイスのWhisperでキー不要・無料でこなせます。広告制作の視点では、ラフカットやSNS向けショート動画の量産、生成AI素材とテロップ・BGMを一気通貫で組み立てる用途に向いています。ソースコードが公開されているため、自社の生成AIパイプラインとMCP経由で連携させ、社内向けの半自動編集ツールに改造することもできそうです。",
+    "detail": "Frontstageはブラウザで動くWebアプリと、Windows用インストーラー版の両方が用意された動画編集ソフトです。編集画面自体は一般的なNLE（Premiere ProやDaVinci Resolveのように時間軸に沿って映像を並べる編集ソフト）と同じ操作感ですが、そこに「Agent」と呼ばれるAIが組み込まれており、チャットで「このカットをテンポよく編集して」のように指示すると、40種類以上の編集ツールを実際に操作してタイムラインを組んでくれます。\n\n従来のAI動画編集ツールの多くはクラウド上で完結し、素材や生成物がサービス側のサーバーに預けられる形式でしたが、Frontstageは「Your keys, your data」を掲げ、AI生成に使うAPIキーもデータもすべて自分のPCに保存する設計です。生成AI機能自体はfal.ai経由で外部の画像・動画・音声モデルを呼び出す形で、Frontstage自体が生成モデルを持っているわけではなく、あくまで「AIを使いこなす編集ソフト」という立ち位置です。\n\n使うにはブラウザ版ならインストール不要ですぐ試せますが、ソースからビルドする場合はNode.js 18以上とpnpmが必要です。AI生成機能を使うにはfal.aiなど外部サービスのAPIキー契約が別途必要です。",
+    "license": {
+      "spdx": "GPL-3.0",
+      "commercial": "conditional",
+      "note": "GPL-3.0で無償利用可。改変版を配布する場合はソース公開義務が生じる点に留意"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/x777/frontstage"
+      },
+      {
+        "kind": "product",
+        "url": "https://frontstage.studio"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/frontstage.jpg",
+    "relatedWorks": [
+      {
+        "title": "DaVinci Resolve",
+        "description": "プロ向け無料動画編集ソフトの代表格。カラーグレーディングに強み",
+        "url": "https://www.blackmagicdesign.com/products/davinciresolve"
+      },
+      {
+        "title": "CapCut",
+        "description": "AI字幕・自動編集機能で人気のショート動画編集アプリ",
+        "url": "https://www.capcut.com/"
+      },
+      {
+        "title": "OpenMontage",
+        "description": "AIコーディングエージェントを動画制作スタジオ化するオープンソースプロジェクト",
+        "url": "https://github.com/calesthio/OpenMontage"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "comfyui-ocio",
+    "title": "ComfyUI-OCIO",
+    "org": "Slava Sexton（AI VFX NEWS）",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "映画・VFX業界標準の色空間管理システム「OpenColorIO」を、ComfyUIの中でNuke並みの精度で使えるようにするカラーマネジメント拡張ノード集。",
+    "point": "ComfyUI-OCIOは、映画のポストプロダクションで標準的に使われている色管理の仕組み「OpenColorIO（OCIO）」を、ComfyUIのワークフローにそのまま持ち込むための拡張ノード集です。ARRIやSonyのカメラ独自のログ色空間からACES（業界標準の共通色空間）への変換、LUT適用、ASC CDLによるカラーグレーディングなどを、色のズレがほぼゼロという高精度で行えるのが特徴です。生成AI動画は色がプレビューと実際の書き出しで微妙にズレることが多い問題がありましたが、これを解消し、実写素材と生成AI素材を同じ色基準で合成できるようになります。広告映像制作では、生成AIで作ったカットと実写ロケ素材を違和感なく混在させたり、最終的にDaVinci ResolveやNukeに正しい色のまま渡す用途に直結します。",
+    "detail": "OpenColorIO（OCIO）とは、カメラやモニター、映写機など機器ごとに違う「色の見え方」を、業界共通のものさし（色空間）に変換して管理する仕組みで、Pixarが開発しハリウッドの実写・アニメ制作で標準的に使われています。ComfyUI-OCIOは、この仕組みをComfyUIのノードとして実装したもので、コンポジットソフトNukeのカラーノードと同じ考え方の「Read/Write」「ColorSpace変換」「Log変換（ARRI LogCやSony S-Logなど）」「LUT適用」「CDLグレーディング」を、ComfyUI上のワークフローに直接組み込めます。\n\n従来、ComfyUIで動画を生成すると色空間の扱いが曖昧で、出力をそのままDaVinci ResolveなどのプロNLEに持っていくと色味が微妙にズレる問題がありました。ComfyUI-OCIOは色変換の誤差を数値で検証し、HDRの高輝度・低輝度の値を切り捨てずに保持する設計のため、プロのVFXパイプラインでもそのまま使える精度を担保しています。\n\n使うにはComfyUIに加え、動画コーデック処理用のffmpegと、EXR画像を扱うための環境変数設定が必要です。ACES 2.0のカラー設定が標準搭載されているため、業界標準の色管理知識がなくても比較的扱いやすく、EXRやProResなどプロ向けフォーマットの読み書きにも対応しています。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "MITライセンスで商用利用制限なし"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/SlavaSexton/ComfyUI-OCIO"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/comfyui-ocio.jpg",
+    "relatedWorks": [
+      {
+        "title": "OpenColorIO",
+        "description": "Pixar発、映画業界標準のオープンソース色管理システム",
+        "url": "https://opencolorio.org/"
+      },
+      {
+        "title": "Nuke",
+        "description": "VFX業界標準のコンポジットソフト。同様のカラーノード群を持つ",
+        "url": "https://www.foundry.com/products/nuke-family/nuke"
+      },
+      {
+        "title": "ACES",
+        "description": "映画・放送業界共通の色空間規格",
+        "url": "https://acescentral.com/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "grail",
     "title": "GRAIL",
     "org": "NVIDIA / UCLA",
