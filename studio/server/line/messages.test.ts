@@ -6,6 +6,11 @@ import {
   buildAddCaseDuplicateText,
   buildAddCaseFailedText,
   buildAddCaseSuccessText,
+  buildAwardAcceptedText,
+  buildAwardCategoriesQuestionText,
+  buildAwardNameQuestionText,
+  buildAwardResumeAcceptedText,
+  buildAwardResumeNotFoundText,
   buildEditFieldPromptText,
   buildFinalConfirmText,
   buildMenuText,
@@ -44,11 +49,12 @@ test("buildFinalConfirmText: idea の内容を含む", () => {
   assert.match(text, /件数: 6件/);
 });
 
-test("buildMenuText: 4択と番号案内・キャンセル案内を含む", () => {
+test("buildMenuText: 4択と番号案内・キャンセル案内を含む（3番はAWARDS）", () => {
   const text = buildMenuText();
   assert.match(text, /事例調査/);
   assert.match(text, /技術調査/);
-  assert.match(text, /事例\+技術/);
+  assert.match(text, /AWARDS/);
+  assert.doesNotMatch(text, /事例\+技術/);
   assert.match(text, /アイデア出し/);
   assert.match(text, /キャンセル/);
 });
@@ -104,4 +110,20 @@ test("buildAddCaseDuplicateAsCaseText: 修正2 — Case Studyとして既に登�
   const text = buildAddCaseDuplicateAsCaseText("面白い事例");
   assert.doesNotMatch(text, /事例の追加に失敗しました/);
   assert.match(text, /既に登録済み（Case Studyとして）: 面白い事例/);
+});
+
+// ── AWARDS ──────────────────────────────────────────────────────
+
+test("buildAwardNameQuestionText/buildAwardCategoriesQuestionText: Q1/Q2の例示を含む", () => {
+  assert.match(buildAwardNameQuestionText(), /アワード名/);
+  assert.match(buildAwardCategoriesQuestionText(), /部門/);
+});
+
+test("buildAwardAcceptedText: 受付文言", () => {
+  assert.match(buildAwardAcceptedText(), /受け付けました/);
+});
+
+test("buildAwardResumeNotFoundText/buildAwardResumeAcceptedText: 再開系の案内文", () => {
+  assert.match(buildAwardResumeNotFoundText(), /再開できるAWARDS/);
+  assert.match(buildAwardResumeAcceptedText(), /再開/);
 });

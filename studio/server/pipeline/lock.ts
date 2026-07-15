@@ -53,6 +53,41 @@ export function releaseLock(lockPath: string = DEFAULT_LOCK_PATH): void {
   }
 }
 
+export interface AcquireLockWithWaitOptions {
+  maxWaitMs?: number;
+  intervalMs?: number;
+  sleepImpl?: (ms: number) => Promise<void>;
+}
+
+const DEFAULT_MAX_WAIT_MS = 30 * 60 * 1000;
+const DEFAULT_POLL_INTERVAL_MS = 20_000;
+
+/**
+ * アワードリサーチ(P5)専用: デイリー/他Studioジョブと同じ researchman-git.lock を、
+ * 即時失敗ではなく一定間隔でポーリングしながら最大 maxWaitMs 待って取得する
+ * （caseResearch.ts等の既存パイプラインは「Studioはユーザーが待っているUIなので即時失敗」
+ * という前提だが、アワードは低優先バックグラウンドジョブのため、他ジョブの完了を
+ * 待てばよい。待機自体はP1〜P4では一切行わず、P5でロックが必要になった時点でのみ
+ * この関数を使う — awardResearch.ts参照）。maxWaitMs超過でもロックを取得できなければ
+ * null（呼び出し側でエラー扱いにする）。
+ */
+export async function acquireLockWithWait(
+  lockPath: string = DEFAULT_LOCK_PATH,
+  options: AcquireLockWithWaitOptions = {},
+): Promise<LockHandle | null> {
+  const maxWaitMs = options.maxWaitMs ?? DEFAULT_MAX_WAIT_MS;
+  const intervalMs = options.intervalMs ?? DEFAULT_POLL_INTERVAL_MS;
+  const sleep = options.sleepImpl ?? ((ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms)));
+
+  const deadline = Date.now() + maxWaitMs;
+  for (;;) {
+    const handle = tryAcquireLock(lockPath);
+    if (handle) return handle;
+    if (Date.now() >= deadline) return null;
+    await sleep(intervalMs);
+  }
+}
+
 export interface LockResolution {
   lock: LockHandle | null;
   /** true ならこの呼び出し元が取得した（=このスコープの終わりで自分がrelease責任を持つ）。

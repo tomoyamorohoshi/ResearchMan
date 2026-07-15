@@ -21,11 +21,15 @@
  * reply tokenではなくpushで返信する設計判断は push.ts 冒頭のコメント参照。
  */
 import type express from "express";
-import { createJob, ValidationError, type Tab } from "../jobs.js";
-import { isCancelText, type LineRequestKind } from "./classify.js";
+import { createJob, findResumableAwardsJob, ValidationError, type ResumableAwardsJob, type Tab } from "../jobs.js";
+import { resumeAwardJob } from "../pipeline/awardResearch.js";
+import { isCancelText, isResumeText, type LineRequestKind } from "./classify.js";
 import { loadLineConfig, type LineConfig } from "./config.js";
 import {
   buildAddCaseAcceptedText,
+  buildAwardAcceptedText,
+  buildAwardResumeAcceptedText,
+  buildAwardResumeNotFoundText,
   buildCancelledText,
   buildExecStartedText,
   buildExpiredAndMenuText,
@@ -37,7 +41,7 @@ import {
 import { isPendingExpired, loadPending, savePending, type LinePending } from "./pending.js";
 import { pushLineMessage } from "./push.js";
 import { verifyLineSignature } from "./signature.js";
-import { structureViaClaude, type StructureResult } from "./structure.js";
+import { structureAwardViaClaude, structureViaClaude, type AwardStructureResult, type StructureResult } from "./structure.js";
 import { buildMenuPending, pendingFromStructured, renderFinalConfirm, stepWizard } from "./wizard.js";
 
 export interface LineWebhookDeps {
@@ -47,6 +51,12 @@ export interface LineWebhookDeps {
   loadPending: () => Promise<LinePending | null>;
   savePending: (p: LinePending | null) => Promise<void>;
   structure: (kind: LineRequestKind, freeText: string) => Promise<StructureResult>;
+  /** AWARDS専用（Q1/Q2の2問から構造化する。structureとは異なる形の入力・出力）。 */
+  structureAward: (q1: string, q2: string) => Promise<AwardStructureResult>;
+  /** 「再開」キーワード（要件A.3・D.3）: 予算超過で一時停止中のAWARDSジョブを探す。無ければnull。 */
+  findResumableAwardsJob: () => Promise<ResumableAwardsJob | null>;
+  /** 見つかったジョブをcheckpointから再開する（新しい予算枠で続行。awardResearch.ts参照）。 */
+  resumeAwardsJob: (jobId: string) => Promise<void>;
   now: () => Date;
 }
 
@@ -57,6 +67,9 @@ const defaultDeps: LineWebhookDeps = {
   loadPending,
   savePending,
   structure: structureViaClaude,
+  structureAward: structureAwardViaClaude,
+  findResumableAwardsJob,
+  resumeAwardsJob: resumeAwardJob,
   now: () => new Date(),
 };
 
@@ -99,6 +112,22 @@ async function handleEvent(event: unknown, config: LineConfig, deps: LineWebhook
 
   const now = deps.now();
 
+  // 「再開」（要件A.3・D.3）: 予算超過で一時停止中のAWARDSジョブをユーザーの意思で再開する
+  // 全状態で有効な予約語。pending（研究/アイデア/AWARDS Q1・Q2の対話状態）とは無関係のため、
+  // キャンセルと同じくstepWizardより前に判定する。
+  if (isResumeText(text)) {
+    const job = await deps.findResumableAwardsJob();
+    if (!job) {
+      await deps.sendPush(token, userId, buildAwardResumeNotFoundText());
+      return;
+    }
+    await deps.sendPush(token, userId, buildAwardResumeAcceptedText());
+    deps.resumeAwardsJob(job.id).catch((err) => {
+      console.error("[studio][line] AWARDSジョブの再開に失敗しました", err);
+    });
+    return;
+  }
+
   // キャンセルは全状態で有効（item9）。stepWizardより前に判定する。
   if (isCancelText(text)) {
     const pending = await deps.loadPending();
@@ -133,6 +162,25 @@ async function handleEvent(event: unknown, config: LineConfig, deps: LineWebhook
     const next = pendingFromStructured(userId, structured.tab, structured.value, now);
     await deps.savePending(next);
     await deps.sendPush(token, userId, renderFinalConfirm(next));
+    return;
+  }
+
+  if (outcome.kind === "needsAwardStructure") {
+    // research/ideaのショートカット経路（needsStructure）と異なりfinal_confirmを挟まないため、
+    // pendingはここで即クリアする（"execute"分岐と同じタイミング）。
+    await deps.savePending(null);
+    const structured = await deps.structureAward(outcome.q1, outcome.q2);
+    if (!structured.ok) {
+      await deps.sendPush(token, userId, buildStructureFailedText(structured.error));
+      return;
+    }
+    try {
+      await deps.createJob("awards", { ...structured.value, lineUserId: userId });
+      await deps.sendPush(token, userId, buildAwardAcceptedText());
+    } catch (err) {
+      const reason = err instanceof ValidationError || err instanceof Error ? err.message : String(err);
+      await deps.sendPush(token, userId, buildJobCreateFailedText(reason));
+    }
     return;
   }
 

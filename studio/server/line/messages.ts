@@ -35,7 +35,7 @@ export function buildMenuText(): string {
     "何をしますか?",
     "1️⃣ 事例調査",
     "2️⃣ 技術調査",
-    "3️⃣ 事例+技術",
+    "3️⃣ AWARDS",
     "4️⃣ アイデア出し",
     "",
     "番号で返信してください。やめるときは「キャンセル」と返信してください。",
@@ -136,6 +136,33 @@ export function buildAddCaseFailedText(reason: string): string {
 /** 重複検知時の案内文（指摘3: 失敗ではなく案内のため、buildAddCaseFailedTextで二重ラップしない）。 */
 export function buildAddCaseDuplicateText(title: string): string {
   return `既に登録済み: ${title}`;
+}
+
+// ── AWARDS（要件A: LINE入口・低優先・一時停止/再開） ────────────────────────
+// research/ideaと異なりfinal_confirmを挟まず、Q1/Q2の2問だけで受付・即実行する
+// （事例追加と同じ「確認ステップなし」の考え方）。
+
+export function buildAwardNameQuestionText(): string {
+  return "アワード名は?（例: D&AD 2026）";
+}
+
+export function buildAwardCategoriesQuestionText(): string {
+  return "部門は?（例: 全部門(ブロンズ以上)）";
+}
+
+/** 受付時の返信。事例/技術リサーチが実行中の場合は低優先で一時停止しうることも案内する。 */
+export function buildAwardAcceptedText(): string {
+  return "受け付けました（進捗・完了はまた通知します。事例/技術リサーチの実行中は一時停止することがあります）";
+}
+
+/** 「再開」キーワードで再開できるAWARDSジョブ（予算超過で一時停止中）が無い場合。 */
+export function buildAwardResumeNotFoundText(): string {
+  return "再開できるAWARDSの依頼はありません。";
+}
+
+/** 「再開」キーワードで予算超過中のAWARDSジョブの再開を受け付けた直後の返信。 */
+export function buildAwardResumeAcceptedText(): string {
+  return "AWARDSを再開します（新しい予算枠で続行します）。";
 }
 
 /**

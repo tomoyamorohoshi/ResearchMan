@@ -7,6 +7,7 @@ import {
   isCancelText,
   isNegativeText,
   isOkText,
+  isResumeText,
   matchMenuSelection,
 } from "./classify.js";
 
@@ -20,9 +21,8 @@ test("classifyRequestText: 「技術調べて」→ Technology（「調べて」
   assert.deepEqual(r, { kind: "Technology", rest: "空間ディスプレイの新技術" });
 });
 
-test("classifyRequestText: 「両方調べて」→ 両方（「調べて」「技術調べて」誤判定しない）", () => {
-  const r = classifyRequestText("両方調べて AR広告 5件くらい");
-  assert.deepEqual(r, { kind: "両方", rest: "AR広告 5件くらい" });
+test("classifyRequestText: 「両方調べて」はAWARDS追加に伴いLINEから廃止済み（もう反応しない）", () => {
+  assert.equal(classifyRequestText("両方調べて AR広告 5件くらい"), null);
 });
 
 test("classifyRequestText: 「アイデア」→ idea", () => {
@@ -63,12 +63,22 @@ test("isCancelText: 無関係な文字列は拒否する", () => {
   assert.equal(isCancelText(""), false);
 });
 
+test("isResumeText: 「再開」を受理する", () => {
+  assert.equal(isResumeText("再開"), true);
+  assert.equal(isResumeText(" 再開 "), true);
+});
+
+test("isResumeText: 無関係な文字列は拒否する", () => {
+  assert.equal(isResumeText("再開します"), false);
+  assert.equal(isResumeText(""), false);
+});
+
 test("matchMenuSelection: 番号（半角・全角・丸数字）を判定する", () => {
   assert.equal(matchMenuSelection("1"), "Case Study");
   assert.equal(matchMenuSelection("１"), "Case Study");
   assert.equal(matchMenuSelection("①"), "Case Study");
   assert.equal(matchMenuSelection("2"), "Technology");
-  assert.equal(matchMenuSelection("3"), "両方");
+  assert.equal(matchMenuSelection("3"), "awards");
   assert.equal(matchMenuSelection("4"), "idea");
 });
 
@@ -76,10 +86,15 @@ test("matchMenuSelection: リッチメニューのボタン文言・寛容な語
   assert.equal(matchMenuSelection("事例調査"), "Case Study");
   assert.equal(matchMenuSelection("事例"), "Case Study");
   assert.equal(matchMenuSelection("技術調査"), "Technology");
-  assert.equal(matchMenuSelection("事例+技術"), "両方");
-  assert.equal(matchMenuSelection("両方"), "両方");
+  assert.equal(matchMenuSelection("AWARDS"), "awards");
+  assert.equal(matchMenuSelection("アワード"), "awards");
   assert.equal(matchMenuSelection("アイデア出し"), "idea");
   assert.equal(matchMenuSelection("アイデア"), "idea");
+});
+
+test("matchMenuSelection: 「事例+技術」「両方」はAWARDS追加により廃止済み（もう一致しない）", () => {
+  assert.equal(matchMenuSelection("事例+技術"), null);
+  assert.equal(matchMenuSelection("両方"), null);
 });
 
 test("matchMenuSelection: 前後空白は許容し、部分一致・無関係な文字列は拒否する", () => {

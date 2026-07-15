@@ -9,11 +9,11 @@
  */
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
-import { gitRestorePaths, run } from "./audit.js";
+import { gitRestorePaths, rollbackTouchedFiles, run } from "./audit.js";
 
 function makeTempRepo(): string {
   const dir = mkdtempSync(path.join(os.tmpdir(), "studio-audit-test-"));
@@ -73,6 +73,48 @@ test("gitRestorePaths: 空配列はno-op（okのみ返す）", async () => {
   try {
     const result = await gitRestorePaths(dir, []);
     assert.equal(result.ok, true);
+  } finally {
+    cleanup(dir);
+  }
+});
+
+// ── rollbackTouchedFiles: 指摘2【重大】新規winners.jsonがあるとrollbackが丸ごと失敗 ──
+// `git restore --source=HEAD` はHEADに存在しない新規ファイルがpathspecに混ざると
+// 「pathspec did not match」でコマンド全体が失敗し、HEADに存在する他のtracked pathspec
+// （cases.json等）まで巻き添えで戻らない（このファイル冒頭のBash検証で再現済みの実挙動）。
+// awardResearch.tsのP5は「初回アワード実行時に新規生成されるwinners.json」を
+// 既存trackedファイルと同じ配列（trackedTouched）に入れて渡すため、この組み合わせで
+// 発生する。rollbackTouchedFilesはHEAD追跡有無を自分で判定し、tracked分はrestore・
+// 新規分はrmで戻すことで、両方が確実に元に戻ることを保証する。
+test("rollbackTouchedFiles: HEADに無い新規ファイルが混ざっていてもtracked分は正しくrestoreされ、新規分はrmで消える", async () => {
+  const dir = makeTempRepo();
+  try {
+    // 既存追跡ファイル(a.txt)を変更
+    writeFileSync(path.join(dir, "a.txt"), "modified\n");
+    // HEADに存在しない新規ファイル（初回winners.json生成を模す）。呼び出し側が
+    // 誤って「tracked」扱いの配列に入れてしまうケースを再現する。
+    writeFileSync(path.join(dir, "new-winners.json"), '{"winners":[]}\n');
+
+    await rollbackTouchedFiles(dir, ["a.txt", "new-winners.json"], []);
+
+    const content = readFileSync(path.join(dir, "a.txt"), "utf-8");
+    assert.equal(
+      content,
+      "original\n",
+      "tracked分(a.txt)がHEADへ戻っていない（新規ファイル混在によるpathspecエラーで全体失敗した旧バグ）",
+    );
+    assert.equal(existsSync(path.join(dir, "new-winners.json")), false, "HEADに無い新規ファイルが削除されていない");
+  } finally {
+    cleanup(dir);
+  }
+});
+
+test("rollbackTouchedFiles: newUntrackedPathsで渡したファイルも従来どおりrmで消える", async () => {
+  const dir = makeTempRepo();
+  try {
+    writeFileSync(path.join(dir, "thumb.jpg"), "binary-ish\n");
+    await rollbackTouchedFiles(dir, [], ["thumb.jpg"]);
+    assert.equal(existsSync(path.join(dir, "thumb.jpg")), false);
   } finally {
     cleanup(dir);
   }

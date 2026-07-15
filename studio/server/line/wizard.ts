@@ -27,6 +27,10 @@
  *   キャンセルは全状態で有効（webhook.ts側でstepWizardより前に判定。isCancelText参照）。
  *   期限切れの検知もwebhook.ts側（isPendingExpired）。この関数は「有効なpendingかnull」を
  *   前提に呼ばれる。
+ *
+ *   AWARDS専用ルート（kind==="awards"。final_confirmを挟まない別ルート）:
+ *   idle/menu ──(3/AWARDS/アワード)──► await_award_name ──(任意テキスト)──►
+ *   await_award_categories ──(任意テキスト)──► [needsAwardStructure: Claude構造化→即createJob]
  */
 import { validateIdeaRequest, type ValidatedIdeaRequest } from "../pipeline/ideaPure.js";
 import { validateResearchRequest, type ValidatedResearchRequest } from "../pipeline/pure.js";
@@ -41,6 +45,8 @@ import {
   type LineRequestKind,
 } from "./classify.js";
 import {
+  buildAwardCategoriesQuestionText,
+  buildAwardNameQuestionText,
   buildCountEditInvalidText,
   buildCountEditPromptText,
   buildEditFieldPromptText,
@@ -60,7 +66,10 @@ export type WizardStepOutcome =
   | { kind: "reply"; pending: LinePending | null; reply: string }
   | { kind: "execute"; tab: Tab; request: Record<string, unknown> }
   | { kind: "needsStructure"; requestKind: LineRequestKind; freeText: string }
-  | { kind: "addCase"; url: string; context: string };
+  | { kind: "addCase"; url: string; context: string }
+  // AWARDS専用（要件A.2）: Q1/Q2の2問を集めたら、webhook.ts が structureAwardViaClaude を
+  // 呼んでcreateJobまで直行する（final_confirmを挟まない）。
+  | { kind: "needsAwardStructure"; q1: string; q2: string };
 
 // ── pending構築ヘルパー ──────────────────────────────────────────
 
@@ -203,10 +212,17 @@ function applyFieldEdit(pending: LinePending, edit: FieldEditCommand): Partial<L
 
 // ── 各状態のハンドラ ─────────────────────────────────────────────
 
+/** kind選択直後に遷移すべき状態と、その最初の質問文（awardsだけresearch/ideaと別ルート）。 */
+function firstStepFor(kind: LineRequestKind): { state: WizardState; reply: string } {
+  if (kind === "awards") return { state: "await_award_name", reply: buildAwardNameQuestionText() };
+  return { state: "await_theme", reply: buildThemeQuestionText() };
+}
+
 function stepIdle(text: string, userId: string, now: Date): WizardStepOutcome {
   const kindSel = matchMenuSelection(text);
   if (kindSel) {
-    return { kind: "reply", pending: freshPending(userId, "await_theme", now, { kind: kindSel }), reply: buildThemeQuestionText() };
+    const { state, reply } = firstStepFor(kindSel);
+    return { kind: "reply", pending: freshPending(userId, state, now, { kind: kindSel }), reply };
   }
   const classified = classifyRequestText(text);
   if (classified) {
@@ -227,7 +243,8 @@ function stepMenu(pending: LinePending, text: string, now: Date): WizardStepOutc
   if (!kindSel) {
     return { kind: "reply", pending: withState(pending, {}, now), reply: buildMenuText() };
   }
-  return { kind: "reply", pending: withState(pending, { state: "await_theme", kind: kindSel }, now), reply: buildThemeQuestionText() };
+  const { state, reply } = firstStepFor(kindSel);
+  return { kind: "reply", pending: withState(pending, { state, kind: kindSel }, now), reply };
 }
 
 function stepAwaitTheme(pending: LinePending, text: string, now: Date): WizardStepOutcome {
@@ -353,6 +370,28 @@ function stepAwaitCountEdit(pending: LinePending, text: string, now: Date): Wiza
   return { kind: "reply", pending: next, reply: renderFinalConfirm(next) };
 }
 
+// ── AWARDS専用（要件A.2: Q1「アワード名は?」→Q2「部門は?」→受付・即実行） ─────
+
+function stepAwaitAwardName(pending: LinePending, text: string, now: Date): WizardStepOutcome {
+  const awardNameRaw = text.trim();
+  if (!awardNameRaw) {
+    return { kind: "reply", pending: withState(pending, {}, now), reply: buildAwardNameQuestionText() };
+  }
+  return {
+    kind: "reply",
+    pending: withState(pending, { state: "await_award_categories", awardNameRaw }, now),
+    reply: buildAwardCategoriesQuestionText(),
+  };
+}
+
+function stepAwaitAwardCategories(pending: LinePending, text: string): WizardStepOutcome {
+  const categoriesRaw = text.trim();
+  // final_confirmを挟まないため、ここで即座にneedsAwardStructureへ進む（webhook.ts側が
+  // pendingをクリアしてstructureAwardViaClaude→createJobまで直行する）。空文字でも
+  // 「全部門」相当としてClaude構造化に委ねる（parseCategoriesTextの既定値と同じ考え方）。
+  return { kind: "needsAwardStructure", q1: pending.awardNameRaw ?? "", q2: categoriesRaw };
+}
+
 // ── エントリポイント ─────────────────────────────────────────────
 
 /**
@@ -382,5 +421,9 @@ export function stepWizard(pending: LinePending | null, text: string, now: Date,
       return stepSelectEditField(pending, text, now);
     case "await_count_edit":
       return stepAwaitCountEdit(pending, text, now);
+    case "await_award_name":
+      return stepAwaitAwardName(pending, text, now);
+    case "await_award_categories":
+      return stepAwaitAwardCategories(pending, text);
   }
 }

@@ -22,6 +22,7 @@ import express from "express";
 import { createServer as createViteServer } from "vite";
 import { createJob, getJob, listJobs, subscribeJob, ValidationError, type Job } from "./jobs.js";
 import { createLineWebhookHandler } from "./line/webhook.js";
+import { recoverAwardJobsOnStartup } from "./pipeline/awardResearch.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const STUDIO_ROOT = path.join(__dirname, "..");
@@ -53,8 +54,8 @@ export function createApp(): express.Express {
   app.post("/api/jobs", async (req, res) => {
     try {
       const { tab, request } = req.body ?? {};
-      if (tab !== "research" && tab !== "idea" && tab !== "add-case") {
-        res.status(400).json({ error: 'tab must be "research", "idea", or "add-case"' });
+      if (tab !== "research" && tab !== "idea" && tab !== "add-case" && tab !== "awards") {
+        res.status(400).json({ error: 'tab must be "research", "idea", "add-case", or "awards"' });
         return;
       }
       const job = await createJob(tab, request ?? {});
@@ -122,14 +123,18 @@ export function createApp(): express.Express {
     // 必ずlistenerが拾う）、その後もう一度現在状態を読み直してから初期スナップショットとして
     // 送る（購読登録前に発生した更新は、この再読み込みが最新のファイル内容を拾うことで
     // カバーされる。subscribeJob〜再readの間に同期処理の隙間は無い＝Node単一スレッド）。
+    // "paused"（アワードリサーチジョブの低優先一時停止。要件D）もrunningと同様に
+    // ストリームを維持する。done/errorになって初めて閉じる。
+    const isTerminal = (status: Job["status"]): boolean => status !== "running" && status !== "paused";
+
     const unsubscribe = subscribeJob(job.id, (updated) => {
       send(updated);
-      if (updated.status !== "running") endStream();
+      if (isTerminal(updated.status)) endStream();
     });
 
     const current = (await getJob(job.id)) ?? job;
     send(current);
-    if (current.status !== "running") {
+    if (isTerminal(current.status)) {
       endStream();
     }
 
@@ -141,6 +146,13 @@ export function createApp(): express.Express {
 
 async function main(): Promise<void> {
   const app = createApp();
+
+  // AWARDSジョブの起動時復帰（要件D.4）: プロセス死で孤児化したrunningジョブをpausedへ落として
+  // 自動再開し、pausedReasonが"priority-job"/"restart"のものも自動再開する。"budget"は
+  // ユーザーの「再開」待ちのまま何もしない。fire-and-forget（サーバ起動をブロックしない）。
+  recoverAwardJobsOnStartup().catch((err) => {
+    console.error("[studio][awards] startup recovery failed", err);
+  });
 
   // ── Vite dev middleware（SPA） ─────────────────────────────────────
   const vite = await createViteServer({

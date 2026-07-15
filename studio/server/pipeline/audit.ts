@@ -142,6 +142,11 @@ export const runAuditIntegrity = (cwd: string): Promise<CommandResult> =>
 // Technology用（DESIGN.md §5: テーマ系はTechの場合 audit-tech + tsc/lint/build）
 export const runAuditTech = (cwd: string): Promise<CommandResult> => run("node", ["scripts/audit-tech.mjs"], cwd, 60_000);
 
+// アワード用（AWARD_RESEARCH_SOP.mdフェーズ5: 参照リスト網羅監査。refPath/awardPrefixは
+// awardResearch.tsがP3で組み立てたJSONファイルとアワード名+年の文字列を渡す）。
+export const runAuditAward = (cwd: string, refPath: string, awardPrefix: string): Promise<CommandResult> =>
+  run("npm", ["run", "audit:award", "--", "--ref", refPath, "--award-prefix", awardPrefix], cwd, 60_000);
+
 export const runTypeCheck = (cwd: string): Promise<CommandResult> => run("npx", ["tsc", "--noEmit"], cwd, 3 * 60_000);
 
 export const runLint = (cwd: string): Promise<CommandResult> => run("npm", ["run", "lint"], cwd, 3 * 60_000);
@@ -171,9 +176,24 @@ export async function gitRevParseHead(cwd: string): Promise<string | null> {
   return r.ok ? r.stdout.trim() : null;
 }
 
+// 指摘2【重大】再発防止: `git restore --source=HEAD` はHEADに存在しないパスが
+// pathspecに混ざると「pathspec did not match」でコマンド全体が失敗し、HEADに存在する
+// 他のtracked pathspec（cases.json等）まで巻き添えで戻らない（検証済みの実挙動）。
+// 呼び出し側（awardResearch.ts）は「初回アワード実行で新規生成されるwinners.json」を
+// 既存trackedファイルと同じ配列に入れて渡すため、区別せず信用するとこの組み合わせで
+// 発生する。呼び出し側の分類を信用せず、ここでHEAD追跡有無を実際にgitへ問い合わせて
+// 再分類する。
+async function isTrackedAtHead(cwd: string, relPath: string): Promise<boolean> {
+  const result = await run("git", ["cat-file", "-e", `HEAD:${relPath}`], cwd, 10_000);
+  return result.ok;
+}
+
 /**
- * commit前に失敗した場合の後始末。既存追跡ファイル（cases.json等）は git restore で
- * 直前の状態に戻し、今回新規生成したファイル（サムネイル等）は削除する。
+ * commit前に失敗した場合の後始末。
+ * - trackedPaths のうち実際にHEADへ追跡済みのものは git restore で直前の状態に戻す。
+ * - trackedPaths のうちHEADに存在しない（今回新規生成された）ものは newUntrackedPaths と
+ *   同様に削除する（指摘2【重大】: 呼び出し側の「tracked」判定がずれていても安全に戻す）。
+ * - 今回新規生成したファイル（サムネイル等）は削除する。
  * DESIGN.md §5: 「失敗時は commit 前に停止・作業ツリーを戻し」。
  */
 export async function rollbackTouchedFiles(
@@ -181,9 +201,26 @@ export async function rollbackTouchedFiles(
   trackedPaths: string[],
   newUntrackedPaths: string[],
 ): Promise<void> {
-  await gitRestorePaths(cwd, trackedPaths);
+  const headTracked: string[] = [];
+  const notAtHead: string[] = [];
+  for (const p of trackedPaths) {
+    // eslint-disable-next-line no-await-in-loop -- パス数は数件程度のためシーケンシャルで十分
+    if (await isTrackedAtHead(cwd, p)) {
+      headTracked.push(p);
+    } else {
+      notAtHead.push(p);
+    }
+  }
+
+  const restoreResult = await gitRestorePaths(cwd, headTracked);
+  if (!restoreResult.ok) {
+    console.error(
+      `[studio] rollbackTouchedFiles: git restore に失敗しました（対象: ${headTracked.join(", ") || "(なし)"}）: ${restoreResult.stderr.slice(0, 500)}`,
+    );
+  }
+
   await Promise.all(
-    newUntrackedPaths.map(async (p) => {
+    [...notAtHead, ...newUntrackedPaths].map(async (p) => {
       try {
         await rm(path.join(cwd, p), { force: true });
       } catch {

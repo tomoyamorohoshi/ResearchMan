@@ -3,7 +3,7 @@ import { mkdirSync, rmSync, utimesSync, existsSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
-import { isLockStale, releaseLock, resolveLock, tryAcquireLock, STALE_MS } from "./lock.js";
+import { acquireLockWithWait, isLockStale, releaseLock, resolveLock, tryAcquireLock, STALE_MS } from "./lock.js";
 
 function tmpLockPath(): string {
   return path.join(os.tmpdir(), `researchman-studio-lock-test-${Date.now()}-${Math.random().toString(36).slice(2)}`);
@@ -99,4 +99,63 @@ test("resolveLock: externalLock未指定でacquireがnullを返したらlock=nul
   const result = resolveLock(undefined, () => null);
   assert.equal(result.lock, null);
   assert.equal(result.ownsLock, true);
+});
+
+// ── acquireLockWithWait（P5: 低優先ジョブは即時失敗ではなくポーリング待機する） ──
+
+test("acquireLockWithWait: 空いていれば即座に取得できる（待機ゼロ回）", async () => {
+  const p = tmpLockPath();
+  try {
+    let sleepCalls = 0;
+    const handle = await acquireLockWithWait(p, { sleepImpl: async () => { sleepCalls++; } });
+    assert.ok(handle);
+    assert.equal(sleepCalls, 0);
+  } finally {
+    rmSync(p, { recursive: true, force: true });
+  }
+});
+
+test("acquireLockWithWait: 取得済みでも解放されればポーリングで取得できる", async () => {
+  const p = tmpLockPath();
+  mkdirSync(p);
+  let sleepCalls = 0;
+  const promise = acquireLockWithWait(p, {
+    maxWaitMs: 100_000,
+    sleepImpl: async () => {
+      sleepCalls++;
+      if (sleepCalls === 2) rmSync(p, { recursive: true, force: true });
+    },
+  });
+  const handle = await promise;
+  try {
+    assert.ok(handle);
+    assert.equal(sleepCalls, 2);
+  } finally {
+    if (handle) handle.release();
+    rmSync(p, { recursive: true, force: true });
+  }
+});
+
+test("acquireLockWithWait: maxWaitMsを超えたらnullを返す（取得できないまま）", async () => {
+  const p = tmpLockPath();
+  mkdirSync(p);
+  try {
+    let now = 0;
+    const originalNow = Date.now;
+    Date.now = () => now;
+    try {
+      const handle = await acquireLockWithWait(p, {
+        maxWaitMs: 50,
+        intervalMs: 10,
+        sleepImpl: async () => {
+          now += 20;
+        },
+      });
+      assert.equal(handle, null);
+    } finally {
+      Date.now = originalNow;
+    }
+  } finally {
+    rmSync(p, { recursive: true, force: true });
+  }
 });

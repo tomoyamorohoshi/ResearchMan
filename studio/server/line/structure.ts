@@ -15,6 +15,7 @@
  *   pending保存時点とOK実行時点で解釈がぶれる心配もない）。
  */
 import { assertWithinBudget } from "../pipeline/budget.js";
+import { validateAwardRequest, type ValidatedAwardRequest } from "../pipeline/awardPure.js";
 import { validateIdeaRequest, type ValidatedIdeaRequest } from "../pipeline/ideaPure.js";
 import { validateResearchRequest, type ValidatedResearchRequest } from "../pipeline/pure.js";
 import { runPlainQuery } from "../pipeline/sdkRunner.js";
@@ -117,6 +118,60 @@ export function parseStructuredResponse(kind: LineRequestKind, text: string): St
   const validated = validateResearchRequest(request);
   if (!validated.ok) return { ok: false, error: validated.error };
   return { ok: true, tab: "research", value: validated.value };
+}
+
+// ── AWARDS（Q1: アワード名は? / Q2: 部門は?）の構造化 ───────────────────
+// research/ideaと異なりfinal_confirmを挟まないため、pure.ts/ideaPure.tsのような既存の
+// フォーム入力からの検証入口ではなく、この2問のみで完結する専用の構造化を行う。
+// 正規化・語彙チェック自体はawardPure.ts::validateAwardRequestに一本化する
+// （LINE入口・API入口・structure.ts経由のいずれでも同じ検証ロジックに乗せるため）。
+
+export type AwardStructureResult =
+  | { ok: true; value: ValidatedAwardRequest }
+  | { ok: false; error: string };
+
+function buildAwardStructurePrompt(q1: string, q2: string): string {
+  return `次の2つのLINE回答から、アワードリサーチ依頼のパラメータを抽出してください。
+
+Q1「アワード名は?」への回答: ${q1}
+Q2「部門は?」への回答: ${q2}
+
+抽出する項目:
+- awardName: アワード名（年を除いた名称。例: "D&AD 2026" なら "D&AD"）
+- year: 開催年（4桁の文字列。例: "2026"）。Q1に無ければ空文字
+- categories: 部門指定。「全部門」等なら文字列 "all"、個別指定なら部門名の配列
+- minLevel: レベル下限。"Grand Prix"|"Titanium"|"Gold"|"Silver"|"Bronze"|"Shortlist" のいずれか
+  （「ブロンズ以上」→"Bronze"、「全レベル」→"Shortlist"、指定が無ければ"Bronze"）
+
+出力はJSONオブジェクトのみ（前置き・後書き・コードブロック記法なし）:
+{"awardName": "...", "year": "...", "categories": "all またはこの配列", "minLevel": "..."}`;
+}
+
+/** Claude応答テキスト → AwardStructureResult（純粋。ネットワークに触れない部分だけを切り出してテストする）。 */
+export function parseAwardStructuredResponse(text: string): AwardStructureResult {
+  const obj = extractJsonObject(text);
+  if (!obj) return { ok: false, error: "解釈結果の読み取りに失敗しました（Claude応答がJSONではありませんでした）" };
+  const request: Record<string, unknown> = {
+    awardName: normalizeStr(obj.awardName),
+    year: normalizeStr(obj.year),
+    categories: obj.categories,
+    minLevel: normalizeStr(obj.minLevel),
+  };
+  const validated = validateAwardRequest(request);
+  if (!validated.ok) return { ok: false, error: validated.error };
+  return { ok: true, value: validated.value };
+}
+
+export async function structureAwardViaClaude(q1: string, q2: string): Promise<AwardStructureResult> {
+  const prompt = buildAwardStructurePrompt(q1, q2);
+  try {
+    const result = await withTimeout(runPlainQuery(prompt, STRUCTURE_MODEL, { effort: STRUCTURE_EFFORT }), STRUCTURE_TIMEOUT_MS);
+    if (!result.ok) return { ok: false, error: result.error ?? "解釈に失敗しました" };
+    assertWithinBudget(result.costUsd, STRUCTURE_BUDGET_USD);
+    return parseAwardStructuredResponse(result.text);
+  } catch (err) {
+    return { ok: false, error: err instanceof Error ? err.message : String(err) };
+  }
 }
 
 // ── タイムアウト ────────────────────────────────────────────────

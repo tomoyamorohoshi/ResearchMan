@@ -14,6 +14,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { runAddCasePipeline } from "./pipeline/addCase.js";
 import { validateAddCaseRequest } from "./pipeline/addCasePure.js";
+import { isPriorityRunningJob, validateAwardRequest } from "./pipeline/awardPure.js";
+import { runAwardResearchPipeline } from "./pipeline/awardResearch.js";
 import { runCaseResearchPipeline } from "./pipeline/caseResearch.js";
 import { runCombinedResearchPipeline } from "./pipeline/combinedResearch.js";
 import { runIdeaResearchPipeline } from "./pipeline/ideaResearch.js";
@@ -29,7 +31,7 @@ const JOBS_DIR = path.join(__dirname, "..", "workdir", "jobs");
 const UUID_RE =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
-export type Tab = "research" | "idea" | "add-case";
+export type Tab = "research" | "idea" | "add-case" | "awards";
 
 export interface CaseChip {
   label: string;
@@ -53,7 +55,17 @@ export interface ResultCard {
   refs?: IdeaRefChip[];
 }
 
-export type JobStatus = "running" | "done" | "error";
+// "paused" はアワードリサーチジョブ専用（低優先実行中の一時停止。pausedReason参照）。
+// research/idea/add-caseは従来通り running/done/error のみを使う。
+export type JobStatus = "running" | "done" | "error" | "paused";
+
+/**
+ * status="paused" の理由（awardResearch.ts参照）。
+ * - "priority-job": research/add-caseジョブの実行中のため低優先で一時停止（自動再開）
+ * - "restart": サーバ再起動でプロセスが死に孤児化したrunningジョブを復帰させた（自動再開）
+ * - "budget": ジョブ単位のコスト予算上限に達した（LINEで「再開」と送るまで待機）
+ */
+export type PausedReason = "priority-job" | "restart" | "budget";
 
 export interface Job {
   id: string;
@@ -70,6 +82,12 @@ export interface Job {
    * combinedResearch.ts が「Caseフェーズが予算超過で停止したらTechへ進まない」の判定に使う
    * （独立レビュー指摘#2）。 */
   budgetExceeded?: boolean;
+  /** status="paused" の理由（tab="awards"のみ使用）。 */
+  pausedReason?: PausedReason;
+  /** ジョブ全体の進捗%（0〜100。tab="awards"のみ使用。awardPure.ts::computePhaseProgress参照）。 */
+  progressPercent?: number;
+  /** tab="awards"の再開可能性の唯一の情報源（awardPure.ts::AwardCheckpoint。自己完結）。 */
+  checkpoint?: unknown;
   resultCards: ResultCard[];
   commit: string | null;
   deployedUrl: string | null;
@@ -81,6 +99,12 @@ export interface Job {
   addCasePreview?: {
     entry: Record<string, unknown>;
     verification: Record<string, unknown>;
+  };
+  /** tab="awards" かつ dryRun:true の場合のみ設定。P1+P2(最大1部門)までの実行結果
+   * （公式ソースURL・収集winners。書き込み・git・LINEは行わない。awardResearch.ts参照）。 */
+  awardPreview?: {
+    officialSourceUrl: string;
+    winners: Array<Record<string, unknown>>;
   };
   at: string;
 }
@@ -233,6 +257,39 @@ export async function createJob(
     return job;
   }
 
+  // awards: アワードリサーチジョブ（LINE入口・低優先・一時停止/再開。docs/AWARD_RESEARCH_SOP.md）。
+  // research/add-caseに対して常に低優先（P1〜P4の間はgitロックを一切保持せず、部門/事例単位の
+  // 境界でresearch/add-caseのrunningジョブを検知したら一時停止する。listRunningPriorityJobs参照）。
+  if (tab === "awards") {
+    const validatedAward = validateAwardRequest(request);
+    if (!validatedAward.ok) {
+      throw new ValidationError(validatedAward.error);
+    }
+    const job: Job = {
+      id: randomUUID(),
+      tab,
+      request,
+      status: "running",
+      progress: "公式ソース確定中",
+      progressPercent: 0,
+      resultCards: [],
+      commit: null,
+      deployedUrl: null,
+      cost: null,
+      at: new Date().toISOString(),
+    };
+    await writeJobFile(job);
+    void runAwardResearchPipeline(job.id, validatedAward.value).catch(async (err) => {
+      console.error("[studio] award research pipeline failed unexpectedly", err);
+      await updateJob(job.id, {
+        status: "error",
+        progress: undefined,
+        error: err instanceof Error ? err.message : String(err),
+      }).catch(() => {});
+    });
+    return job;
+  }
+
   // idea: テーマ駆動アイディエーション実パイプライン（DESIGN.md §10 P3）
   const validatedIdea = validateIdeaRequest(request);
   if (!validatedIdea.ok) {
@@ -292,4 +349,31 @@ export async function getJob(id: string): Promise<Job | null> {
   } catch {
     return null;
   }
+}
+
+/**
+ * 「低優先実行」の判定に使う: workdir/jobs を走査し、excludeId以外で status="running" かつ
+ * tab が "research"|"add-case" のジョブを返す（awardResearch.ts::waitWhilePriorityJobsRunning
+ * がP2の部門単位・P4の事例単位の境界ごとに呼ぶ）。判定自体の純粋ロジックは
+ * pipeline/awardPure.ts::isPriorityRunningJob に切り出してあり、ここではlistJobs()の
+ * I/O結果をそのフィルタに通すだけの薄いラッパー。
+ */
+export async function listRunningPriorityJobs(excludeId: string): Promise<Job[]> {
+  const jobs = await listJobs();
+  return jobs.filter((j) => isPriorityRunningJob(j, excludeId));
+}
+
+export interface ResumableAwardsJob {
+  id: string;
+}
+
+/**
+ * LINEの「再開」キーワード（要件A.3・D.3）向け: 予算超過(pausedReason="budget")で
+ * 一時停止中のAWARDSジョブのうち最新の1件を返す（無ければnull）。listJobs()は既に
+ * at（作成時刻）降順でソート済みのため、最初に見つかったものが最新。
+ */
+export async function findResumableAwardsJob(): Promise<ResumableAwardsJob | null> {
+  const jobs = await listJobs();
+  const found = jobs.find((j) => j.tab === "awards" && j.status === "paused" && j.pausedReason === "budget");
+  return found ? { id: found.id } : null;
 }

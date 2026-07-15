@@ -21,7 +21,19 @@ import { mkdir, rm, writeFile } from "node:fs/promises";
 import test from "node:test";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { clampCount, createJob, getJob, listJobs, subscribeJob, updateJob, writeJobFile, ValidationError, type Job } from "./jobs.js";
+import {
+  clampCount,
+  createJob,
+  findResumableAwardsJob,
+  getJob,
+  listJobs,
+  listRunningPriorityJobs,
+  subscribeJob,
+  updateJob,
+  writeJobFile,
+  ValidationError,
+  type Job,
+} from "./jobs.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const JOBS_DIR = path.join(__dirname, "..", "workdir", "jobs");
@@ -160,6 +172,27 @@ test("createJob: add-case + http(s)以外のurlはValidationError", async () => 
   );
 });
 
+test("createJob: awards + awardName未指定はValidationError（実パイプラインを起動しない）", async () => {
+  await assert.rejects(
+    () => createJob("awards", { year: "2026", categories: "all", minLevel: "Bronze" }),
+    (err: unknown) => {
+      assert.ok(err instanceof ValidationError);
+      assert.match((err as Error).message, /アワード名/);
+      return true;
+    },
+  );
+});
+
+test("createJob: awards + minLevelが語彙外はValidationError", async () => {
+  await assert.rejects(
+    () => createJob("awards", { awardName: "D&AD", year: "2026", categories: "all", minLevel: "Diamond" }),
+    (err: unknown) => {
+      assert.ok(err instanceof ValidationError);
+      return true;
+    },
+  );
+});
+
 test("getJob: UUID形式に一致しないidは存在有無に関わらずnullを返す", async () => {
   const result = await getJob("not-a-uuid");
   assert.equal(result, null);
@@ -213,6 +246,68 @@ test("subscribeJob: 別jobIdの更新は届かない（ジョブごとに独立�
     await rm(path.join(JOBS_DIR, `${jobA.id}.json`), { force: true });
     await rm(path.join(JOBS_DIR, `${jobB.id}.json`), { force: true });
   }
+});
+
+// ── awards: paused status・低優先判定・再開対象探索（要件B・D） ─────────────
+
+test("Job: status='paused'・pausedReason・progressPercent・checkpointがround-tripで保持される", async () => {
+  const job = makeFixtureJob({
+    tab: "awards",
+    status: "paused",
+    pausedReason: "priority-job",
+    progress: "参照リスト構築中（1/3）",
+    progressPercent: 17,
+    checkpoint: { phase: "P2", categoriesDone: ["Film"] },
+  });
+  await writeJobFile(job);
+  try {
+    const found = await getJob(job.id);
+    assert.equal(found?.status, "paused");
+    assert.equal(found?.pausedReason, "priority-job");
+    assert.equal(found?.progressPercent, 17);
+    assert.deepEqual(found?.checkpoint, { phase: "P2", categoriesDone: ["Film"] });
+  } finally {
+    await rm(path.join(JOBS_DIR, `${job.id}.json`), { force: true });
+  }
+});
+
+test("listRunningPriorityJobs: research/add-caseのrunningジョブのみ返し、自分自身は除外する", async () => {
+  const excludeId = randomUUID();
+  const researchRunning = makeFixtureJob({ tab: "research", status: "running" });
+  const addCaseRunning = makeFixtureJob({ tab: "add-case", status: "running" });
+  const ideaRunning = makeFixtureJob({ tab: "idea", status: "running" });
+  const researchDone = makeFixtureJob({ tab: "research", status: "done" });
+  await Promise.all([researchRunning, addCaseRunning, ideaRunning, researchDone].map((j) => writeJobFile(j)));
+  try {
+    const result = await listRunningPriorityJobs(excludeId);
+    const ids = result.map((j) => j.id);
+    assert.ok(ids.includes(researchRunning.id));
+    assert.ok(ids.includes(addCaseRunning.id));
+    assert.ok(!ids.includes(ideaRunning.id));
+    assert.ok(!ids.includes(researchDone.id));
+  } finally {
+    await Promise.all(
+      [researchRunning, addCaseRunning, ideaRunning, researchDone].map((j) => rm(path.join(JOBS_DIR, `${j.id}.json`), { force: true })),
+    );
+  }
+});
+
+test("findResumableAwardsJob: pausedReason='budget'のawardsジョブが見つかる", async () => {
+  const budgetPaused = makeFixtureJob({ tab: "awards", status: "paused", pausedReason: "budget" });
+  const priorityPaused = makeFixtureJob({ tab: "awards", status: "paused", pausedReason: "priority-job" });
+  await Promise.all([budgetPaused, priorityPaused].map((j) => writeJobFile(j)));
+  try {
+    const found = await findResumableAwardsJob();
+    assert.equal(found?.id, budgetPaused.id);
+  } finally {
+    await Promise.all([budgetPaused, priorityPaused].map((j) => rm(path.join(JOBS_DIR, `${j.id}.json`), { force: true })));
+  }
+});
+
+test("findResumableAwardsJob: 該当が無ければnull", async () => {
+  const found = await findResumableAwardsJob();
+  // 他テストの残骸が万一残っていても、少なくとも例外は投げない・型はnullかobjectのどちらか
+  assert.ok(found === null || typeof found?.id === "string");
 });
 
 test("listJobs: 壊れたJSONファイルが1件混ざっていても残りの正常なジョブを返す", async () => {

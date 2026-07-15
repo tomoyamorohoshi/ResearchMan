@@ -36,7 +36,11 @@ export type WizardState =
   // 「どこを直しますか?」→対応するawait_*へ遷移、を実現するための中間ステップ
   // （「件数」は独立したawait_countが仕様に存在しないため、この2状態で完結させる）。
   | "select_edit_field"
-  | "await_count_edit";
+  | "await_count_edit"
+  // AWARDS専用（要件A.2）: research/ideaと違いfinal_confirmを挟まず、Q1/Q2の2問だけで
+  // 受付・即実行する（confirm_*系のステップが無い）。
+  | "await_award_name"
+  | "await_award_categories";
 
 export interface LinePending {
   userId: string;
@@ -50,6 +54,8 @@ export interface LinePending {
   refs?: string;
   /** 「件数 <n>」等で明示指定された場合のみセット。未指定はpure.ts/ideaPure.tsの既定値に従う。 */
   count?: number;
+  /** AWARDS Q1「アワード名は?」への回答（自由文のまま保持し、Q2回答後にまとめて構造化する）。 */
+  awardNameRaw?: string;
   /** ISO8601。この時刻を過ぎたら期限切れとして扱う。各応答のたびに+30分へ更新する。 */
   expiresAt: string;
 }

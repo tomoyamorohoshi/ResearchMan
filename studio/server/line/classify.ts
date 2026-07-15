@@ -2,11 +2,15 @@
  * LINEメッセージ本文の先頭キーワードによる種別判定・OK/キャンセル判定（純粋関数のみ）。
  * DESIGN.md相当の「LINEで依頼」機能の書式:
  *   「調べて …」→ Research(Case Study) / 「技術調べて …」→ Research(Technology) /
- *   「両方調べて …」→ Research(両方) / 「アイデア …」→ idea
+ *   「アイデア …」→ idea
+ *
+ * 「両方調べて」ショートカット（kind:"両方"）はAWARDS追加に伴いLINEから廃止した
+ * （メニュー3番をAWARDSに置き換えたため。pure.ts側のkind:"両方"・combinedResearch.ts自体は
+ * API互換のため無改変で残す＝LINEから到達不能になるだけ）。
  */
 import type { ResearchKind } from "../pipeline/pure.js";
 
-export type LineRequestKind = ResearchKind | "idea";
+export type LineRequestKind = ResearchKind | "idea" | "awards";
 
 export interface ClassifiedRequest {
   kind: LineRequestKind;
@@ -14,11 +18,10 @@ export interface ClassifiedRequest {
   rest: string;
 }
 
-// 「両方調べて」「技術調べて」は「調べて」を部分文字列として含まないため、判定順序自体は
-// 本来どの順でもstartsWith一致する（「調べて」は先頭ではなく末尾に来るため）。ただし将来
-// キーワードが増えても事故らないよう、より具体的な語を先に置く方針を維持する。
+// 「技術調べて」は「調べて」を部分文字列として含まないため、判定順序自体は本来どの順でも
+// startsWith一致する（「調べて」は先頭ではなく末尾に来るため）。ただし将来キーワードが
+// 増えても事故らないよう、より具体的な語を先に置く方針を維持する。
 const KEYWORD_RULES: Array<{ prefix: string; kind: LineRequestKind }> = [
-  { prefix: "両方調べて", kind: "両方" },
   { prefix: "技術調べて", kind: "Technology" },
   { prefix: "調べて", kind: "Case Study" },
   { prefix: "アイデア", kind: "idea" },
@@ -50,6 +53,17 @@ export function isCancelText(text: string): boolean {
   return CANCEL_TEXTS.has(text.trim());
 }
 
+const RESUME_TEXTS = new Set(["再開"]);
+
+/**
+ * 「再開」に完全一致するか。isCancelTextと同じく全状態で有効な予約語として扱う
+ * （webhook.ts側でstepWizardより前に判定し、予算超過で一時停止中のAWARDSジョブを
+ * 再開する。要件A.3・D.3）。
+ */
+export function isResumeText(text: string): boolean {
+  return RESUME_TEXTS.has(text.trim());
+}
+
 // ── ウィザード用: メニュー選択・y/n判定（対話ウィザード拡張） ──────────────
 
 /** 全角数字を半角へ正規化する（メニュー番号・件数入力の表記ゆれ吸収）。 */
@@ -60,7 +74,10 @@ export function normalizeDigits(text: string): string {
 const MENU_SELECTION_RULES: Array<{ kind: LineRequestKind; words: string[] }> = [
   { kind: "Case Study", words: ["1", "①", "事例調査", "事例"] },
   { kind: "Technology", words: ["2", "②", "技術調査", "技術"] },
-  { kind: "両方", words: ["3", "③", "事例+技術", "事例＋技術", "両方"] },
+  // メニュー3番は「事例+技術」からAWARDSに置換（要件A.1）。キーワード「アワード」単独でも
+  // ここに一致させることで、要件A.3「キーワード『アワード』でも質問1から開始」を
+  // 追加の分岐無しで満たす（wizard.ts::stepIdle は matchMenuSelection を最初に判定するため）。
+  { kind: "awards", words: ["3", "③", "AWARDS", "アワード"] },
   { kind: "idea", words: ["4", "④", "アイデア出し", "アイデア"] },
 ];
 
