@@ -117,8 +117,16 @@ export function buildAddCaseAcceptedText(): string {
   return "受け付けました（完了時にまた通知します）";
 }
 
-export function buildAddCaseSuccessText(title: string, url: string): string {
-  return `事例を追加しました: ${title}\n${url}`;
+/**
+ * 追加成功のLINE通知文言。kindでCase/Technologyの区別を明記する（要件3: どちらに追加されたか
+ * 判別できるようにする）。techは反映先がTechnologyタブであることも案内する（case/tech共通の
+ * cases.json/tech.jsonという実装詳細ではなく、ユーザーが見る場所で案内する）。
+ */
+export function buildAddCaseSuccessText(kind: "case" | "tech", title: string, url: string): string {
+  const kindLabel = kind === "tech" ? "Technology" : "Case";
+  const lines = [`${kindLabel} として追加しました: ${title}`, url];
+  if (kind === "tech") lines.push("サイトのTechnologyタブで見られます。");
+  return lines.join("\n");
 }
 
 export function buildAddCaseFailedText(reason: string): string {
@@ -128,4 +136,13 @@ export function buildAddCaseFailedText(reason: string): string {
 /** 重複検知時の案内文（指摘3: 失敗ではなく案内のため、buildAddCaseFailedTextで二重ラップしない）。 */
 export function buildAddCaseDuplicateText(title: string): string {
   return `既に登録済み: ${title}`;
+}
+
+/**
+ * tech候補がCase Study（cases.json）と同一タイトルで却下された場合の専用案内文
+ * （レビュー指摘2: 単なる「既に登録済み」だとどちら側に既存登録があるか分からないため、
+ * 既存登録の種別を明示する）。
+ */
+export function buildAddCaseDuplicateAsCaseText(title: string): string {
+  return `既に登録済み（Case Studyとして）: ${title}`;
 }

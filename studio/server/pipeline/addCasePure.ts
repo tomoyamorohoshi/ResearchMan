@@ -5,6 +5,7 @@
  */
 import { normLink } from "../../../scripts/lib/norm-link.mjs";
 import { filterTagsByVocabulary, normalizeTitleKey, type CaseEntry, type TagVocabulary, type WriterFields } from "./pure.js";
+import { toTechId, type RawTechCandidate } from "./techPure.js";
 
 // ── リクエスト検証 ──────────────────────────────────────────────
 
@@ -75,6 +76,17 @@ export function extractJsonObject(text: string): Record<string, unknown> | null 
 
 // ── case-adder Agent応答の解釈 ──────────────────────────────────
 
+export type AddCaseContentKind = "case" | "tech" | "neither";
+
+/**
+ * case-adder Agent応答の contentKind を解釈する（要件1: case/tech/neitherの自動振り分け）。
+ * "case"/"tech" 以外（未指定・想定外の値）はすべて "neither" 扱いにする。isUsableCandidate と
+ * 同じfail-closed方針で、判定不能な応答を見切り発車で "case" 等に倒さない。
+ */
+export function parseContentKind(obj: Record<string, unknown>): AddCaseContentKind {
+  return obj.contentKind === "case" || obj.contentKind === "tech" ? obj.contentKind : "neither";
+}
+
 export interface ExtractedCandidate {
   found: boolean;
   reason?: string;
@@ -124,6 +136,70 @@ export function normalizeYear(year: string | number): string | null {
   return m ? m[0] : null;
 }
 
+// ── case-adder Agent応答（contentKind:"tech"時）の解釈 ──────────────
+
+/**
+ * case-adder Agentの応答（contentKind:"tech"時）を techPure.RawTechCandidate 形式へ変換する。
+ * verdictは常に"adopt"を強制する（add-caseは単一URL指定のため、techResearch.tsのような
+ * 複数候補からの採否選別は存在しない。抽出できた1件を常に検証対象として扱い、書式・重複・
+ * 語彙チェックはすべて validateAndDedupeTechCandidates（techPure.ts）に委ねる — 要件2）。
+ */
+export function parseExtractedTechCandidate(obj: Record<string, unknown>): RawTechCandidate {
+  return {
+    techName: obj.techName,
+    org: obj.org,
+    type: obj.type,
+    domains: obj.domains,
+    date: obj.date,
+    links: obj.links,
+    license: obj.license,
+    summaryJa: obj.summaryJa,
+    pointJa: obj.pointJa,
+    detailJa: obj.detailJa,
+    relatedWorks: obj.relatedWorks,
+    thumbnailSource: obj.thumbnailSource,
+    verdict: "adopt",
+  };
+}
+
+/**
+ * tech重複時のLINE案内文言（buildAddCaseDuplicateText）に使う「既存側のタイトル」を探す。
+ * validateAndDedupeTechCandidatesの却下理由には新規候補側のid/techNameしか含まれず、既存
+ * tech.json側の表示名は分からないため、findDuplicateCase（Case Study側）と同じ
+ * 「利用者には既存エントリのタイトルを見せる」体験に合わせるための専用ルックアップ。
+ * 見つからなければnull（呼び出し側で候補自身のtechNameへフォールバックすること）。
+ */
+export function findExistingTechTitle(
+  candidateTechName: string,
+  existingTech: Array<{ id: string; title: string }>,
+): string | null {
+  const id = toTechId(candidateTechName);
+  const titleKey = normalizeTitleKey(candidateTechName);
+  for (const t of existingTech) {
+    if (t.id === id || normalizeTitleKey(t.title) === titleKey) return t.title;
+  }
+  return null;
+}
+
+/**
+ * tech候補が「Case Studyとタイトルが重複」で却下された場合の既存側タイトル探索
+ * （レビュー指摘: この却下理由はcases.json側との衝突のため、findExistingTechTitle
+ * （tech.json専用）で探しても当然見つからず、案内が候補自身の名前へフォールバックして
+ * 不正確になっていた）。tech.json用のtoTechId相当のid突き合わせはせず、cases.json側の
+ * id体系（toCaseId、client/year込み）とは無関係なタイトル一致のみで探す。
+ * 見つからなければnull（呼び出し側で候補自身のtechNameへフォールバックすること）。
+ */
+export function findExistingCaseTitleForTech(
+  candidateTechName: string,
+  existingCases: Array<{ id: string; title: string }>,
+): string | null {
+  const titleKey = normalizeTitleKey(candidateTechName);
+  for (const c of existingCases) {
+    if (normalizeTitleKey(c.title) === titleKey) return c.title;
+  }
+  return null;
+}
+
 // ── 重複判定 ────────────────────────────────────────────────────
 
 export interface DuplicateMatch {
@@ -152,24 +228,41 @@ export function findDuplicateCase(
 
 // ── id一意化（衝突回避の連番サフィックス） ────────────────────────
 
-/** cases.json の id 上限文字数。toCaseId（pure.ts）の `.slice(0, 60)` と同じ上限を踏襲する。 */
-const CASE_ID_MAX_LENGTH = 60;
+/** cases.json/tech.json の id 上限文字数。toCaseId・toTechId（techPure.ts）双方の
+ * `.slice(0, 60)` と同じ上限を踏襲する。 */
+const ID_MAX_LENGTH = 60;
 
 /**
- * toCaseId の結果が既存id集合と衝突する場合に `-2`, `-3`... の連番で一意化する
- * （日本語タイトルはslug化で大半の文字が落ち、似たタイトルのid衝突→サムネイル上書き/
- * 詳細ページ衝突を招くための対策）。60字上限を超える場合はbase側を切り詰めて収める。
+ * baseId が既存id集合と衝突する場合に `-2`, `-3`... の連番で一意化する（日本語タイトルは
+ * slug化で大半の文字が落ち、似たタイトルのid衝突→サムネイル上書き/詳細ページ衝突を招く
+ * ための対策）。60字上限を超える場合はbase側を切り詰めて収める。
+ * ensureUniqueCaseId・ensureUniqueTechId（要件5: 同じid衝突ガード方針をtech側にも適用）の
+ * 共通実装。
  */
-export function ensureUniqueCaseId(baseId: string, existingIds: Set<string>): string {
+function ensureUniqueId(baseId: string, existingIds: Set<string>): string {
   if (!existingIds.has(baseId)) return baseId;
   for (let n = 2; ; n++) {
     const suffix = `-${n}`;
     const candidate =
-      baseId.length + suffix.length <= CASE_ID_MAX_LENGTH
+      baseId.length + suffix.length <= ID_MAX_LENGTH
         ? `${baseId}${suffix}`
-        : `${baseId.slice(0, CASE_ID_MAX_LENGTH - suffix.length).replace(/-+$/, "")}${suffix}`;
+        : `${baseId.slice(0, ID_MAX_LENGTH - suffix.length).replace(/-+$/, "")}${suffix}`;
     if (!existingIds.has(candidate)) return candidate;
   }
+}
+
+export function ensureUniqueCaseId(baseId: string, existingIds: Set<string>): string {
+  return ensureUniqueId(baseId, existingIds);
+}
+
+/**
+ * tech.json版のensureUniqueCaseId（要件5）。validateAndDedupeTechCandidates（techPure.ts）は
+ * 既存idとの衝突を「重複」として却下するため、通常はこの関数に到達する時点でidは既に
+ * 非衝突のはずだが、case側と同じ防御方針を明示的に適用しておく（将来の呼び出し順変更等に
+ * 対する保険）。
+ */
+export function ensureUniqueTechId(baseId: string, existingIds: Set<string>): string {
+  return ensureUniqueId(baseId, existingIds);
 }
 
 // ── case-writer Agent応答 → WriterFields ────────────────────────
@@ -242,4 +335,14 @@ export function buildAddCaseEntry(params: {
 
 export function buildAddCaseCommitMessage(title: string): string {
   return `Studio(LINE) 事例追加: ${title}`;
+}
+
+/**
+ * add-case（tech振り分け時）専用のcommitメッセージ。techPure.buildTechCommitMessageは
+ * Research(Technology)の日次バッチ収集と同一文言「Studio research: <title> 1件追加
+ * (Technology)」になり、LINE経由の単発追加とgit履歴上で区別できない（レビュー指摘）。
+ * buildAddCaseCommitMessage（case側）に倣い、tech側にも専用文言を用意する。
+ */
+export function buildAddTechCommitMessage(title: string): string {
+  return `Studio(LINE) 技術追加: ${title}`;
 }
