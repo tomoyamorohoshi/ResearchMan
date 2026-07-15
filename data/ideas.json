@@ -2475,5 +2475,203 @@
         "desc": "写真をクラウドに送らず、自分のPCのGPUだけで3Dメッシュ化できる完全ローカルのデスクトップアプリ"
       }
     ]
+  },
+  {
+    "id": "2026-07-15-1",
+    "date": "2026-07-15",
+    "title": "休息を宿すパッケージ",
+    "pattern": "文脈×技術",
+    "seed": "Little Breaksがロゴの曲線に休息の小さな世界を描いたように、追加学習なしで360度パノラマを作れるSpheRoPEを使えば、パッケージの模様全体を開くたびに続く休憩の宇宙に変えられるかも",
+    "refs": [
+      {
+        "type": "case",
+        "id": "little-breaks-kitkat",
+        "title": "Little Breaks",
+        "desc": "KitKatのロゴの曲線の中に、休息の小さな世界を描き込んだプリント/デザイン作品。"
+      },
+      {
+        "type": "tech",
+        "id": "spherope",
+        "title": "SpheRoPE",
+        "desc": "学習済み動画生成モデルに球面幾何の知識を注入し、追加学習なしで継ぎ目のない360度パノラマを生成する手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-15-2",
+    "date": "2026-07-15",
+    "title": "実在の街に憑依するAI",
+    "pattern": "文脈×技術",
+    "seed": "DISCOVER WESTWORLD/AEDENがAIホストに人間との違いを問わせたように、実寸スケールの4D世界を1回の推論で復元するAny4Dで実在の街を丸ごと舞台化すれば、AIが本当にそこにいるかのような哲学体験が作れるかも",
+    "refs": [
+      {
+        "type": "case",
+        "id": "discover-westworld-aideden",
+        "title": "DISCOVER WESTWORLD / AEDEN（HBO）",
+        "desc": "架空テーマパークWestworldの本物の予約サイトとして機能し、AIコンシェルジュAedenが哲学的な問いを投げかける体験。"
+      },
+      {
+        "type": "tech",
+        "id": "any4d",
+        "title": "Any4D",
+        "desc": "RGB動画や各種センサ入力から、実寸スケールの動く3D世界を1回の推論で復元するモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-15-3",
+    "date": "2026-07-15",
+    "title": "即興デュエット生成術",
+    "pattern": "文脈×技術",
+    "seed": "Serving Singlesが料理をマッチングの口実にしたように、歌詞とジャンルから曲を丸ごと生成するACE-Step 1.5でその場の会話から即興の二人だけの曲を作れば、料理の次に音楽が出会いのきっかけになるかも",
+    "refs": [
+      {
+        "type": "case",
+        "id": "knorr-serving-singles",
+        "title": "Serving Singles",
+        "desc": "料理とモダンな出会いを結びつけ、デートアプリ疲れの世代に料理を提案したキャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "ace-step-1-5",
+        "title": "ACE-Step 1.5",
+        "desc": "歌詞とジャンル指定から、ボーカル入りの楽曲を丸ごと生成できるオープンソースの音楽AI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-15-4",
+    "date": "2026-07-15",
+    "title": "捨てられた素材の復権",
+    "pattern": "文脈×技術",
+    "seed": "The Wedding Riceが規格外で捨てられる割れ米を結婚式用に再定義したように、顔や背景を認識して精密に高解像度化するSmart Tile 2.0で使えないと諦めた低解像度アーカイブを部分的に蘇らせ、素材ゴミを新しい資源に変えられるかも",
+    "refs": [
+      {
+        "type": "case",
+        "id": "wikifarmer-the-wedding-rice",
+        "title": "The Wedding Rice",
+        "desc": "EU規制で食用不可となり廃棄されていた割れ米を、結婚式で撒く専用米として商品化した取り組み。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-ttp-toolset-smart-tile-2-0",
+        "title": "ComfyUI TTP Toolset – Smart Tile 2.0",
+        "desc": "顔や背景を認識し、必要な場所だけ細かく高解像度化・部分編集できるComfyUI拡張機能。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-15-5",
+    "date": "2026-07-15",
+    "title": "辺境の祭りを4D保存",
+    "pattern": "文脈×技術",
+    "seed": "The Philipstown WireCar Grand Prixが辺境の針金レースを世界規模のドキュメンタリーに昇華させたように、たった4台のカメラで動く3D空間を復元する4C4Dで各地の無名の祭りを低予算のまま4Dアーカイブすれば、消えゆく伝統がデジタル文化財になるかも",
+    "refs": [
+      {
+        "type": "case",
+        "id": "philipstown-wirecar-foundation-wirecar-grand-prix",
+        "title": "The Philipstown WireCar Grand Prix",
+        "desc": "南アフリカの辺境の町の針金レースの伝統を、世界規模のブランデッドドキュメンタリーに昇華させた作品。"
+      },
+      {
+        "type": "tech",
+        "id": "4c4d",
+        "title": "4C4D",
+        "desc": "たった4台のカメラ映像から、動く3D空間を高精細に復元するCVPR 2026の研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-15-6",
+    "date": "2026-07-15",
+    "title": "曲と振付の自動量産機",
+    "pattern": "技術×技術",
+    "seed": "動画の人物の動きを別キャラや動物へ丸ごと乗り移らせるSCAIL-2と、歌詞とジャンルから曲を丸ごと生成するACE-Step 1.5を掛け合わせれば、AIが曲と振り付けを同時に量産する無限ミュージックビデオ生成器が作れるかも",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "scail-2",
+        "title": "SCAIL-2",
+        "desc": "動画の人物の動きを、骨格抽出なしで別キャラクターや動物へそっくり乗り移らせるモデル。"
+      },
+      {
+        "type": "tech",
+        "id": "ace-step-1-5",
+        "title": "ACE-Step 1.5",
+        "desc": "歌詞とジャンル指定から、ボーカル入りの楽曲を丸ごと生成できるオープンソースの音楽AI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-15-7",
+    "date": "2026-07-15",
+    "title": "実写に馴染むCG舞台美術",
+    "pattern": "技術×技術",
+    "seed": "実写をGaussian Splatting化しつつ反射や屈折までレイトレーシングで描けるGRayと、その点群3DをUnreal Engine上で通常の3Dモデルと正しく重ならせるYaGSを組み合わせれば、実写ロケの中にCGを違和感なく差し込める舞台美術が作れるかも",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "gray",
+        "title": "GRay",
+        "desc": "実写を3D化するGaussian Splattingを、正確な反射・屈折・影ごとレイトレーシングで描く手法。"
+      },
+      {
+        "type": "tech",
+        "id": "yags",
+        "title": "YaGS",
+        "desc": "Unreal Engine上でGaussian Splattingを、通常の3Dモデルと正しく奥行きで重ならせる無料プラグイン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-15-8",
+    "date": "2026-07-15",
+    "title": "高解像度化を防犯に転用",
+    "pattern": "転用",
+    "seed": "顔や背景を認識して精密に高解像度化するSmart Tile 2.0は本来クリエイター向けの画像編集ツールだが、劣化した監視カメラ映像のディテール復元に転用すれば、防犯や目撃証言を扱う社会派キャンペーンの説得力を底上げできるかも",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-ttp-toolset-smart-tile-2-0",
+        "title": "ComfyUI TTP Toolset – Smart Tile 2.0",
+        "desc": "顔や背景を認識し、必要な場所だけ細かく高解像度化・部分編集できるComfyUI拡張機能。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-15-9",
+    "date": "2026-07-15",
+    "title": "動画AIで空間演出も完パケ",
+    "pattern": "転用",
+    "seed": "リサーチから脚本・素材生成・編集・完パケまで動画制作を自動化するOpenMontageを、動画の代わりに展示会や店舗の空間演出に転用すれば、AIが動線設計から什器配置まで空間ごと完パケできるかも",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "openmontage",
+        "title": "OpenMontage",
+        "desc": "AIコーディングアシスタントを映像制作スタジオに変え、リサーチから完パケまで自動化するエージェント型システム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-15-10",
+    "date": "2026-07-15",
+    "title": "歩ける音楽としての実景",
+    "pattern": "文脈×技術",
+    "seed": "KID A MNESIA EXHIBITIONが目的もゴールもない歩く音楽体験を3Dミュージアムに閉じ込めたように、反射や屈折までレイトレできるGRayで実在の建築をGaussian Splatting化すれば、既存の場所そのものを歩ける音楽に変えられるかも",
+    "refs": [
+      {
+        "type": "case",
+        "id": "radiohead-kid-a-mnesia",
+        "title": "KID A MNESIA EXHIBITION（Radiohead）",
+        "desc": "アルバムの世界観をUnreal Engine製3Dミュージアムにし、無料配布した目的のない歩く音楽体験。"
+      },
+      {
+        "type": "tech",
+        "id": "gray",
+        "title": "GRay",
+        "desc": "実写を3D化するGaussian Splattingを、正確な反射・屈折・影ごとレイトレーシングで描く手法。"
+      }
+    ]
   }
 ]
