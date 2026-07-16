@@ -1,5 +1,288 @@
 [
   {
+    "id": "golf-vr-open-at-royal-birkdale-2026",
+    "title": "GOLF+ VR Open at Royal Birkdale",
+    "summary": "VRゴルフGOLF+がR&Aと提携、全英オープン開催コースを実況再現しVIP招待を懸けた公式トーナメントを開催",
+    "client": "GOLF+ (VR Sports Labs) / The R&A",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://roadtovr.com/golf-plus-open-tournament-prize-st-andrews/",
+    "thumbnail": "/thumbnails/golf-vr-open-at-royal-birkdale-2026.jpg",
+    "videoId": "",
+    "overview": "VRゴルフアプリ「GOLF+」が、ゴルフ統括団体The R&Aと提携し公式VRトーナメント「VR Open」を開催。実際のOpen選手権開催コースであるRoyal Birkdaleを忠実に再現し、プロと同じコースをMeta Quest上でプレイできる。",
+    "background": "GOLF+は2022年よりPGA Tourの公式VRゲームとして展開されており、Rory McIlroyやTom Bradyら著名アスリートも投資家に名を連ねる。伝統ある競技団体The R&AがVR版を公式に認める形で提携したことが、VRスポーツの正当性を示す大きな出来事とされる。",
+    "execution": "2026年7月16日から22日まで、現実の第154回Open選手権と同時期にRoyal Birkdaleを再現したコースで開催。グランドスタンドや観客エリア、大会ブランディングまで再現し、ラウンドを完了した参加者全員が優勝抽選対象となる。現地会場でもGOLF+デモ体験を実施。",
+    "evaluationImpact": "優勝者には2027年セントアンドルーズ開催の第155回Open選手権へのVIP招待（2名分、チケット・ホスピタリティ付き）が贈られる。伝統的スポーツの統括団体が公式にVR体験を認定した初のケースとして、VRスポーツの正当性を象徴する事例。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/XR",
+      "Tech/Game",
+      "Form/Event",
+      "Theme/Sports"
+    ]
+  },
+  {
+    "id": "fixer-undercover-steam-steamvr-2026",
+    "title": "Fixer Undercover (Steam/SteamVR版)",
+    "summary": "刑務所に潜入し実物の工具でパズルを解くVR脱出ゲームがSteam版でVR/フラットスクリーン両対応に",
+    "client": "Creativity AR",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.uploadvr.com/fixer-undercover-wrenches-its-way-onto-steam-in-july-with-vr-flatscreen-support/",
+    "thumbnail": "/thumbnails/fixer-undercover-steam-steamvr-2026.jpg",
+    "videoId": "Zz-YjPYYbq4",
+    "overview": "Creativity AR開発のVR脱出パズルゲーム「Fixer Undercover」が2026年7月16日、SteamおよびSteamVRに登場。腐敗した刑務所に修理工として潜入し、手持ちの工具を駆使して謎を解いていくMacGyver風のスパイパズルアドベンチャー。",
+    "background": "2026年2月にMeta Questで先行リリースされ、5段階中4.8という高評価を獲得。VRならではの手を使ったインタラクションと創意工夫を促す謎解きが好評だったことを受け、PC市場への展開としてSteam版の開発が進められた。",
+    "execution": "Steam版はVRモードとフラットスクリーン（非VR）モードの両方に対応するハイブリッド仕様とし、Steam上でどちらの体験版も試遊可能にした。動的シャドウや高解像度テクスチャ、ポストプロセス処理を追加し、刑務所内の没入感を高めたほか、物理エンジンの更新でオブジェクト操作をより滑らかにした。",
+    "evaluationImpact": "VR専用機だけでなくフラットスクリーンユーザーも取り込むことで、ヘッドセットを持たない層にもリーチを広げた点が特徴。VR体験の核である手を使った謎解きの面白さを、デバイスの垣根を越えて届けようとする試みとして注目される。",
+    "relatedWorks": [
+      {
+        "title": "Fixer Undercover VR (Steam)",
+        "description": "Steamストアページ。VR版・フラットスクリーン版のデモを配信",
+        "url": "https://store.steampowered.com/app/3102370/Fixer_Undercover_VR/"
+      },
+      {
+        "title": "Fixer Undercover Review: This Escape Room Puzzler Nails It",
+        "description": "UploadVRによるMeta Quest版のレビュー記事",
+        "url": "https://www.uploadvr.com/fixer-undercover-review-this-escape-room-puzzler-nails-it/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/XR",
+      "Tech/Game",
+      "Form/App"
+    ]
+  },
+  {
+    "id": "reelful-2026",
+    "title": "Reelful",
+    "summary": "写真1枚から動画クリップを生成し音声クローンで自動編集、TikTok風動画を作るiOSアプリが登場",
+    "client": "Reelful (Kate Deyneka)",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新",
+      "AIクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://techcrunch.com/2026/07/15/reelfuls-ai-turns-your-camera-roll-into-short-form-videos-for-social-media/",
+    "thumbnail": "/thumbnails/reelful-2026.jpg",
+    "videoId": "",
+    "overview": "Reelfulは、ユーザーのカメラロール内の写真・動画とプロンプト、30秒の音声サンプルから、AIが脚本・ナレーション・字幕・音楽を自動生成し、TikTokやInstagram Reels風の短編動画に仕上げるiOSアプリ。静止画も動画クリップに変換できる点が特徴。",
+    "background": "元Snapchatの機械学習エンジニアで動画・画像モデル開発に携わったKate Deynekaが創業。SNS向けコンテンツを継続的に作りたい起業家やビジネスオーナーをターゲットに、複雑な動画編集ソフトを使わず短時間で発信できるツールを目指した。",
+    "execution": "ユーザーはストーリーのプロンプトを入力し、30秒の音声サンプルで声をクローン、カメラロールから素材を選ぶだけ。アプリが動画の構成・脚本・AIナレーション・字幕・音楽・効果音を自動生成し、完成後もチャットで音源変更や脚本修正など再編集が可能。全生成動画にはウォーターマークが付く。",
+    "evaluationImpact": "a16zのSpeedrunプログラムに参加中で、動画編集の専門知識がなくても数分でSNS向け短編動画を作れる点が評価されている。移動中にアップロードするだけで帰宅時に動画が完成するという手軽さが訴求ポイント。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/App",
+      "Form/SNS"
+    ]
+  },
+  {
+    "id": "inkling-thinking-machines-lab-2026",
+    "title": "Inkling(Thinking Machines Lab初の公開モデル)",
+    "summary": "Thinking Machines Labが初のオープンウェイトAI「Inkling」を発表、テキスト・画像・音声・動画を単一モデルでネイティブに処理",
+    "client": "Thinking Machines Lab",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "AIクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://techcrunch.com/2026/07/15/thinking-machines-amps-up-its-bet-against-one-size-fits-all-ai-with-its-first-open-model-inkling/",
+    "thumbnail": "/thumbnails/inkling-thinking-machines-lab-2026.jpg",
+    "videoId": "",
+    "overview": "元OpenAI CTOのMira Muratiが率いるThinking Machines Labが2026年7月15日、初のオープンウェイトモデル「Inkling」を発表。975億パラメータの混合専門家（MoE）モデルで、稼働時は約410億パラメータのみを使用。45兆トークンのテキスト・画像・音声・動画データで学習し、4つのモダリティをネイティブに推論できる。",
+    "background": "OpenAI、Anthropic、Googleなど大手が一律のクローズドモデルを提供する中、Thinking Machines Labは「組織が自ら適応できるAIが最終的に画一的モデルを凌駕する」という思想を掲げて創業。約18か月のステルス開発を経て初の自社モデルをオープンウェイトで公開し、既存の巨大クローズドモデル路線に対抗する戦略を明確化した。",
+    "execution": "Inklingはゼロから事前学習された975B（アクティブ41B）パラメータのMoEモデルで、最大1Mトークンのコンテキストに対応。プレビュー版として276B（アクティブ12B）のInkling-Smallも同時公開。全重みはHugging Faceで配布され、NVFP4チェックポイントも提供。自社の微調整プラットフォーム「Tinker」での活用を前提とした「出発点」として設計されている。",
+    "evaluationImpact": "自社発表によれば、コーディング性能で同水準の結果をNVIDIA Nemotron 3 Ultraの3分の1のトークン数で達成したとする。最強単体モデルではないと自認しつつ、企業が自社ニーズに合わせて微調整できるオープンウェイト戦略を打ち出し、クローズドモデル一辺倒の業界構造への対抗軸を示した点が注目されている。",
+    "relatedWorks": [
+      {
+        "title": "Inkling - Thinking Machines Lab公式ページ",
+        "description": "Inklingのモデル詳細ページ",
+        "url": "https://thinkingmachines.ai/inkling/"
+      },
+      {
+        "title": "Introducing Inkling: Our open-weights model",
+        "description": "Thinking Machines Labによる公式発表記事",
+        "url": "https://thinkingmachines.ai/news/introducing-inkling/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/Data",
+      "Form/Product"
+    ]
+  },
+  {
+    "id": "ice-ice-baby-no-liquid-death-can-t-help-you-fly-2026",
+    "title": "Ice Ice Baby? No — Liquid Death Can't Help You Fly",
+    "summary": "Red Bull「翼をさずける」を皮肉り、屋根から落下する明らかな偽物スタント映像で誇大広告文化を自虐的に笑いに転換した事例",
+    "client": "Liquid Death",
+    "agency": "in-house (Andy Pearson, VP of Creative)",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://musebyclios.com/advertising/liquid-death-sparkling-energy-drink-cant-help-you-fly/",
+    "thumbnail": "/thumbnails/ice-ice-baby-no-liquid-death-can-t-help-you-fly-2026.jpg",
+    "videoId": "",
+    "overview": "Liquid Deathが2026年に展開したSparkling Energyのキャンペーン。Red Bullの「翼をさずける」を意識し、屋根から人が落下する30秒スポットを制作。実際にはスタントを用いた明らかなフェイク映像で、低カフェイン・ノーシュガーの同商品が「飛ぶ力」などない代わりに、DoorDashギフトカードでチキンウイングを買える楽しさを提供するとユーモラスに訴求した。",
+    "background": "Liquid Deathは既存の水・エナジードリンク業界の誇大な効能訴求文化を皮肉る自虐的マーケティングを一貫して展開してきたブランド。今回はエナジードリンク業界の定番である「エナジーが翼を授ける」的な誇張表現に対し、VP of CreativeのAndy Pearson率いる社内クリエイティブチームが、自社の低カフェイン・ノーシュガーという控えめな訴求と真逆の誇大広告をパロディした企画を制作した。",
+    "execution": "30秒フィルムでは、人物が屋根から飛び降り落下する場面を、実際のスタント女優によるフルボディキャストを使い2時間以上かけて撮影。あえて「明らかな偽物」に見える演出でコミカルさを強調した。合わせてSparkling Energy購入者を対象にDoorDashギフトカードが当たるコンテストを展開し、チキンウイングなど食品購入に使える実利的な特典で笑いと実益を両立させた。",
+    "evaluationImpact": "エナジードリンク業界の誇張表現をメタ的に茶化しつつ、自社商品の効能限界を正直に開示するセルフツッコミ型ユーモアで話題化。業界最大手Red Bullのタグラインを直接パロディする大胆さと、実際は「チキンウイングが買える」という等身大の価値提案への転換が、Liquid Death特有のアンチ広告的ブランド哲学を体現した事例として業界メディアに取り上げられた。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Form/Stunt",
+      "Theme/Food",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "koda-transforms-tour-de-france-penis-graffiti-to-promote-wom",
+    "title": "Škoda Transforms Tour de France Penis Graffiti to Promote Women's Cycling",
+    "summary": "男子ツール・ド・フランス沿道の卑猥な落書きを消さずステンシルで女子レースPRアートに変換した逆転発想のOOH施策",
+    "client": "Škoda",
+    "agency": "AMV BBDO",
+    "categories": [
+      "OOH革新",
+      "社会包摂"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://musebyclios.com/sports/skoda-transforms-tour-de-france-penis-graffiti-to-promote-womens-cycling/",
+    "thumbnail": "/thumbnails/koda-transforms-tour-de-france-penis-graffiti-to-promote-wom.jpg",
+    "videoId": "",
+    "overview": "Škodaは主催者ASOが例年『イレイサーマン』に消させてきた男子ツール・ド・フランス沿道の卑猥な落書きに着目。消去する代わりに、女性イラストレーターが設計した専用ステンシルで落書きを女子ツール・ド・フランス・フェム(Tour de France Femmes avec Zwift)を告知するアート作品へ変換した。各作品に公式ハッシュタグ#WatchTheFemmesを添え、男子レースの巨大な露出を女子レースの認知向上に転用した。",
+    "background": "ツール・ド・フランス沿道には毎年数百点ものわいせつな落書きが描かれ、ASOは放送前に『イレイサーマン』と呼ばれる専属スタッフを配置し塗りつぶしてきた。一方、男子レースは世界で約35〜40億人に視聴されるのに対し、女子ツール・ド・フランス・フェムの視聴者数は約2300万人にとどまり、注目度の格差が長年の課題だった。この『落書き問題』と『ジェンダー格差』を同時に解決する着想からキャンペーンが生まれた。",
+    "execution": "フランスのイラストレーターCéline Dormeauとロンドン拠点のErin Anikerが落書きを活かすデザインシステムを開発し、専用ステンシルを制作。落書きが集中する山岳ステージで、イレイサーマンがこのステンシルを使い落書きをレースを応援するビジュアルへ転換した。Global Street Artが現地でのアーティスト活動を、PhDがメディアプランニングを担当し、作品には公式ハッシュタグ#WatchTheFemmesを配した。",
+    "evaluationImpact": "『落書きを消す』から『落書きを生かす』への発想転換により、男子レースが持つ数十億人規模のグローバル露出を、視聴者数で大きく水をあけられている女子ツール・ド・フランス・フェムの認知拡大に直接転用した点が評価される。下品な素材をユーモラスかつポジティブなメッセージへ昇華させたことで各国メディアに幅広く取り上げられ、女子スポーツへの構造的な注目格差そのものを可視化する話題化にも成功した。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Form/Stunt",
+      "Theme/Sports",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "xr-one-2026",
+    "title": "XR ONE",
+    "summary": "Extreme Reachが、広告制作から配信までの全工程をAIで一元管理する新プラットフォーム「XR ONE」を発表。",
+    "client": "Extreme Reach",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "AIクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://shots.net/news/view/shots-parent-company-launches-xr-one",
+    "thumbnail": "/thumbnails/xr-one-2026.jpg",
+    "videoId": "",
+    "overview": "XR ONEは、広告制作・配信大手Extreme Reach(XR)が発表したAI搭載の広告運用プラットフォーム。予算・承認管理の「XR Costs」、クリエイティブ資産管理の「XR Assets」、出演者や作品の権利管理「XR Rights」、TVからデジタルまでの配信を担う「XR Delivery」の4アプリで構成され、広告運用の全工程を単一の場所で一元管理できる。",
+    "background": "メディアの断片化、AI活用の広がり、パーソナライズ広告需要の増加を背景に、マーケターの70%が同等以下のリソースで前年以上のコンテンツ制作を求められ、98%が社内ボトルネックを遅延原因に挙げるという業界調査がある。shotsの親会社であるXRは、こうした課題に対応するため事業を広告運用プラットフォームへと転換した。",
+    "execution": "XR ONEはAIをあらゆる工程に組み込み、チャネルごとの最適な広告フォーマット提案、ベンダー別の制作コスト削減余地の発見、ロケーションやキャスティングなどクリエイティブ選択が予算・成果に与える影響の予測を行う。CEOのJohn Batterは「広告運用はもはやバックオフィス業務ではなく、現代広告の基盤だ」と述べている。",
+    "evaluationImpact": "制作費・権利・配信管理が分断されがちだった広告運用業務を単一プラットフォームに統合した点が特徴で、ブランドと代理店に対し制作物のコストや活用状況、キャンペーン成果に関するこれまでにない可視性をもたらすとされる。2026年7月発表直後のニュースであり、受賞等の第三者評価は現時点で確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/Data",
+      "Form/App"
+    ]
+  },
+  {
+    "id": "the-hundred-season-six-launch-campaign-2026",
+    "title": "The Hundred Season Six Launch Campaign",
+    "summary": "英クリケットリーグ「The Hundred」第6シーズンを、リアリティ番組風の告白シーンで新シーズンを演出",
+    "client": "The Hundred (England and Wales Cricket Board)",
+    "agency": "Elvis/London（監督: Will Innes Smith / Armoury）",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://shots.net/news/view/the-hundred-launches-new-season",
+    "thumbnail": "/thumbnails/the-hundred-season-six-launch-campaign-2026.jpg",
+    "videoId": "",
+    "overview": "England and Wales Cricket Board（ECB）が展開する英国クリケットリーグ「The Hundred」第6シーズンのローンチキャンペーン。Elvis/London制作、Armoury所属の監督Will Innes Smithが手がけ、30秒のテレビCM（15秒・6秒版も展開）を中核に据えている。",
+    "background": "前シーズンはチケット販売で過去最高の実績を記録。この勢いを受け、スタジアム観戦とテレビ視聴の両面でこれまで以上の観客獲得を目指し、家族層や女性視聴者などクリケットに馴染みの薄い層への訴求を狙って新キャンペーンを企画した。",
+    "execution": "選手たちが「The Hundred Diary Room」に登場し、リアリティ番組さながらの告白的なセリフを語る演出が中核。男女8チームの著名選手が出演し、ナレーションはリアリティTVスター Dani Dyer が担当。既に視聴者の関心を掴んでいるテレビ番組の物語手法を借用し、クリケットのドラマ性を新しい言語で再構成した。",
+    "evaluationImpact": "スポーツ中継そのものを「見逃せないドラマ番組」として再定義するリフレーミングが特徴。既存のスポーツファン以外の家族・女性視聴者層への裾野拡大を狙う戦略性が評価点であり、リアリティ番組の文法をスポーツプロモーションに応用した点が新しい。",
+    "relatedWorks": [
+      {
+        "title": "The England and Wales Cricket Board's The Hundred brings the drama this summer",
+        "description": "adobo Magazineによるキャンペーン紹介記事",
+        "url": "https://www.adobomagazine.com/campaign-spotlight/the-england-and-wales-cricket-boards-the-hundred-brings-the-drama-this-summer/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Theme/Sports",
+      "Theme/Entertainment"
+    ]
+  },
+  {
     "id": "thanks-world-we-ll-take-it-from-here-2026",
     "title": "Thanks World, We'll Take It From Here",
     "summary": "MLSがW杯人気を追い風にベッカム・メッシら起用、リーグ史上最大のブランドキャンペーンを展開",
