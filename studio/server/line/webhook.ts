@@ -45,6 +45,7 @@ import {
   buildJobCreateFailedText,
   buildNoPendingText,
   buildProgressStatusText,
+  buildQueuedAcceptedText,
   buildStructureFailedText,
   buildUnconfiguredAllowedUserText,
 } from "./messages.js";
@@ -57,7 +58,7 @@ import { buildMenuPending, pendingFromStructured, renderFinalConfirm, stepWizard
 export interface LineWebhookDeps {
   getConfig: () => LineConfig | null;
   sendPush: (channelAccessToken: string, userId: string, text: string) => Promise<void>;
-  createJob: (tab: Tab, request: Record<string, unknown>) => Promise<unknown>;
+  createJob: (tab: Tab, request: Record<string, unknown>) => Promise<Job>;
   loadPending: () => Promise<LinePending | null>;
   savePending: (p: LinePending | null) => Promise<void>;
   structure: (kind: LineRequestKind, freeText: string) => Promise<StructureResult>;
@@ -217,8 +218,8 @@ async function handleEvent(event: unknown, config: LineConfig, deps: LineWebhook
     // このuserId宛へ結果をpushする（API入口=Claude Code一括処理はlineUserIdが無いため
     // LINE通知はスキップされる）。
     try {
-      await deps.createJob("add-case", { url: outcome.url, context: outcome.context, lineUserId: userId });
-      await deps.sendPush(token, userId, buildAddCaseAcceptedText());
+      const job = await deps.createJob("add-case", { url: outcome.url, context: outcome.context, lineUserId: userId });
+      await deps.sendPush(token, userId, job.status === "queued" ? buildQueuedAcceptedText() : buildAddCaseAcceptedText());
     } catch (err) {
       const reason = err instanceof ValidationError || err instanceof Error ? err.message : String(err);
       await deps.sendPush(token, userId, buildJobCreateFailedText(reason));
@@ -229,8 +230,8 @@ async function handleEvent(event: unknown, config: LineConfig, deps: LineWebhook
   if (outcome.kind === "execute") {
     await deps.savePending(null);
     try {
-      await deps.createJob(outcome.tab, outcome.request);
-      await deps.sendPush(token, userId, buildExecStartedText());
+      const job = await deps.createJob(outcome.tab, outcome.request);
+      await deps.sendPush(token, userId, job.status === "queued" ? buildQueuedAcceptedText() : buildExecStartedText());
     } catch (err) {
       const reason = err instanceof ValidationError || err instanceof Error ? err.message : String(err);
       await deps.sendPush(token, userId, buildJobCreateFailedText(reason));

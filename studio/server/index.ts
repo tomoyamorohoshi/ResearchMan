@@ -23,6 +23,7 @@ import { createServer as createViteServer } from "vite";
 import { createJob, getJob, listJobs, subscribeJob, ValidationError, type Job } from "./jobs.js";
 import { createLineWebhookHandler } from "./line/webhook.js";
 import { recoverAwardJobsOnStartup } from "./pipeline/awardResearch.js";
+import { recoverQueueOnStartup, startQueueWorker } from "./pipeline/jobQueue.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const STUDIO_ROOT = path.join(__dirname, "..");
@@ -124,8 +125,10 @@ export function createApp(): express.Express {
     // 送る（購読登録前に発生した更新は、この再読み込みが最新のファイル内容を拾うことで
     // カバーされる。subscribeJob〜再readの間に同期処理の隙間は無い＝Node単一スレッド）。
     // "paused"（アワードリサーチジョブの低優先一時停止。要件D）もrunningと同様に
-    // ストリームを維持する。done/errorになって初めて閉じる。
-    const isTerminal = (status: Job["status"]): boolean => status !== "running" && status !== "paused";
+    // ストリームを維持する。"queued"（デイリーgitロック待ち。pipeline/jobQueue.ts参照）も
+    // 同様に維持する。done/errorになって初めて閉じる。
+    const isTerminal = (status: Job["status"]): boolean =>
+      status !== "running" && status !== "paused" && status !== "queued";
 
     const unsubscribe = subscribeJob(job.id, (updated) => {
       send(updated);
@@ -153,6 +156,11 @@ async function main(): Promise<void> {
   recoverAwardJobsOnStartup().catch((err) => {
     console.error("[studio][awards] startup recovery failed", err);
   });
+
+  // ジョブキューの起動時復元（デイリーgitロック待ちのqueuedジョブの再登録・孤児runningの
+  // error化）と、常駐ワーカー（15秒間隔でlock空きを見てディスパッチ）の起動。
+  await recoverQueueOnStartup();
+  startQueueWorker();
 
   // ── Vite dev middleware（SPA） ─────────────────────────────────────
   const vite = await createViteServer({

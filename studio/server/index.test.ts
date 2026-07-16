@@ -243,6 +243,56 @@ test("GET /api/jobs/:id/stream: 既にpaused状態のジョブに接続しても
   }
 });
 
+// ── queued: デイリーgitロック待ちの間はSSEストリームを維持する（pipeline/jobQueue.ts参照） ──
+
+test("GET /api/jobs/:id/stream: status=queuedになってもストリームを閉じない（running同様に維持する）", async () => {
+  const job = makeFixtureJob({ tab: "add-case", progress: "URL取得・事例情報抽出中" });
+  await writeJobFile(job);
+  try {
+    await withServer(async (baseUrl) => {
+      const res = await fetch(`${baseUrl}/api/jobs/${job.id}/stream`);
+      const reader = res.body!.getReader();
+      const buffer = { text: "" };
+      await readNextEvent(reader, buffer); // 初期スナップショット
+
+      await updateJob(job.id, { status: "queued", progress: "順番待ちです（先行ジョブの完了待ち）" });
+      const queued = await readNextEvent(reader, buffer);
+      assert.equal(queued.status, "queued", "queuedになってもストリームは閉じないはず");
+
+      // queuedから再びrunningへ戻ってもまだ閉じない（ワーカーがディスパッチした想定）
+      await updateJob(job.id, { status: "running", progress: "URL取得・事例情報抽出中" });
+      const resumed = await readNextEvent(reader, buffer);
+      assert.equal(resumed.status, "running");
+
+      // 最終的にdoneになったら閉じる
+      await updateJob(job.id, { status: "done", progress: undefined, resultCards: [] });
+      const final = await readNextEvent(reader, buffer);
+      assert.equal(final.status, "done");
+      const { done } = await reader.read();
+      assert.equal(done, true);
+    });
+  } finally {
+    await rm(path.join(JOBS_DIR, `${job.id}.json`), { force: true });
+  }
+});
+
+test("GET /api/jobs/:id/stream: 既にqueued状態のジョブに接続しても、その時点ではストリームを閉じない", async () => {
+  const job = makeFixtureJob({ tab: "add-case", status: "queued", progress: "順番待ちです（先行ジョブの完了待ち）" });
+  await writeJobFile(job);
+  try {
+    await withServer(async (baseUrl) => {
+      const res = await fetch(`${baseUrl}/api/jobs/${job.id}/stream`);
+      const reader = res.body!.getReader();
+      const buffer = { text: "" };
+      const first = await readNextEvent(reader, buffer);
+      assert.equal(first.status, "queued");
+      reader.cancel();
+    });
+  } finally {
+    await rm(path.join(JOBS_DIR, `${job.id}.json`), { force: true });
+  }
+});
+
 test("GET /api/jobs/:id/stream: 既にdone状態のジョブに接続すると初期スナップショット後すぐ終了する", async () => {
   const job = makeFixtureJob({ status: "done", progress: undefined, resultCards: [] });
   await writeJobFile(job);

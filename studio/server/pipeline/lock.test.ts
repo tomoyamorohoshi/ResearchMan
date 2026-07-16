@@ -3,7 +3,7 @@ import { mkdirSync, rmSync, utimesSync, existsSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
-import { acquireLockWithWait, isLockStale, releaseLock, resolveLock, tryAcquireLock, STALE_MS } from "./lock.js";
+import { acquireLockWithWait, isLockHeld, isLockStale, releaseLock, resolveLock, tryAcquireLock, STALE_MS } from "./lock.js";
 
 function tmpLockPath(): string {
   return path.join(os.tmpdir(), `researchman-studio-lock-test-${Date.now()}-${Math.random().toString(36).slice(2)}`);
@@ -67,6 +67,42 @@ test("releaseLock: 解放後は再取得できる", () => {
 
 test("releaseLock: 存在しないパスを渡しても例外を投げない", () => {
   assert.doesNotThrow(() => releaseLock(tmpLockPath()));
+});
+
+// ── isLockHeld（pipeline/jobQueue.ts のワーカーが使う読み取り専用peek） ─────────
+
+test("isLockHeld: ロックが存在しなければfalse", () => {
+  const p = tmpLockPath();
+  assert.equal(isLockHeld(p), false);
+});
+
+test("isLockHeld: ロックが存在し新しければtrue", () => {
+  const p = tmpLockPath();
+  mkdirSync(p);
+  try {
+    assert.equal(isLockHeld(p), true);
+  } finally {
+    rmSync(p, { recursive: true, force: true });
+  }
+});
+
+test("isLockHeld: ロックが存在してもstale（閾値超過）ならfalse", () => {
+  const p = tmpLockPath();
+  mkdirSync(p);
+  const staleTime = new Date(Date.now() - STALE_MS - 60_000);
+  utimesSync(p, staleTime, staleTime);
+  try {
+    assert.equal(isLockHeld(p), false);
+  } finally {
+    rmSync(p, { recursive: true, force: true });
+  }
+});
+
+test("isLockHeld: mkdir/rmdirなどの副作用を一切起こさない（peek後も存在有無が変わらない）", () => {
+  const p = tmpLockPath();
+  // 存在しない状態でpeekしても作られない
+  isLockHeld(p);
+  assert.equal(existsSync(p), false);
 });
 
 // ── resolveLock（adversarial-reviewer指摘#2: 「両方」でCase→Tech間にlockの

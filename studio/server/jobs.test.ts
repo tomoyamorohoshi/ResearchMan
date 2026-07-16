@@ -18,6 +18,7 @@
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import { mkdir, rm, writeFile } from "node:fs/promises";
+import { mkdirSync, rmSync } from "node:fs";
 import test from "node:test";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -36,6 +37,8 @@ import {
   ValidationError,
   type Job,
 } from "./jobs.js";
+import { DEFAULT_LOCK_PATH } from "./pipeline/lock.js";
+import { queueSnapshot } from "./pipeline/jobQueue.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const JOBS_DIR = path.join(__dirname, "..", "workdir", "jobs");
@@ -314,23 +317,50 @@ test("findResumableAwardsJob: 該当が無ければnull", async () => {
 
 // ── 進捗照会（LINE「進捗」「状況」向け。line/webhook.ts参照） ──────────────────
 
-test("listActiveJobs: running/pausedのみ返し、done/errorは含まない", async () => {
+test("listActiveJobs: running/paused/queuedのみ返し、done/errorは含まない", async () => {
   const running = makeFixtureJob({ status: "running" });
   const paused = makeFixtureJob({ tab: "awards", status: "paused", pausedReason: "budget" });
+  const queued = makeFixtureJob({ status: "queued" });
   const done = makeFixtureJob({ status: "done" });
   const errored = makeFixtureJob({ status: "error" });
-  await Promise.all([running, paused, done, errored].map((j) => writeJobFile(j)));
+  await Promise.all([running, paused, queued, done, errored].map((j) => writeJobFile(j)));
   try {
     const result = await listActiveJobs();
     const ids = result.map((j) => j.id);
     assert.ok(ids.includes(running.id));
     assert.ok(ids.includes(paused.id));
+    assert.ok(ids.includes(queued.id));
     assert.ok(!ids.includes(done.id));
     assert.ok(!ids.includes(errored.id));
   } finally {
-    await Promise.all([running, paused, done, errored].map((j) => rm(path.join(JOBS_DIR, `${j.id}.json`), { force: true })));
+    await Promise.all(
+      [running, paused, queued, done, errored].map((j) => rm(path.join(JOBS_DIR, `${j.id}.json`), { force: true })),
+    );
   }
 });
+
+// ── ジョブキュー（queued）: デイリーgitロックが埋まっている間、research/add-case/ideaは
+//    実行せずキューへ積む（pipeline/jobQueue.ts参照）。実際にlockディレクトリを手動占有して
+//    createJobを呼ぶことで確認する（isLockHeldはDEFAULT_LOCK_PATHを読み取り専用peekするだけ
+//    なので、ここでのmkdir/rmdirはtryAcquireLockと同じ操作で安全）。 ───────────────────
+
+test("createJob: デイリーロックが埋まっていればstatus='queued'で返し、キューに積むだけでパイプラインは起動しない", async () => {
+  mkdirSync(DEFAULT_LOCK_PATH);
+  let job: Job | undefined;
+  try {
+    job = await createJob("add-case", { url: "https://example.com/queued-lock-test", context: "", dryRun: true });
+    assert.equal(job.status, "queued");
+    assert.match(job.progress ?? "", /順番待ち/);
+    assert.ok(queueSnapshot().includes(job.id), "enqueueJobでキューに積まれているはず");
+  } finally {
+    rmSync(DEFAULT_LOCK_PATH, { recursive: true, force: true });
+    if (job) await rm(path.join(JOBS_DIR, `${job.id}.json`), { force: true });
+  }
+});
+// 注: 「ロックが空いていればstatus='running'で従来どおり動く」経路は、有効なリクエストだと
+// 実際にaddCase.tsの本パイプライン（Claude Agent SDK/git/ネットワーク）をバックグラウンド起動
+// してしまうため、jobs.test.tsの既存方針（実パイプラインを起動しない）に反する。この経路の
+// 確認はSPEC記載のE2E手順（実サーバ起動+ダミーlock解除後の挙動確認）で行う。
 
 test("findLatestFinishedJob: done/errorのうち最新(at降順)の1件を返す", async () => {
   // 他テスト（並行実行される別ファイル含む）が現在時刻近辺のat値でdone/errorジョブを

@@ -117,6 +117,11 @@ export function buildAddCaseAcceptedText(): string {
   return "受け付けました（完了時にまた通知します）";
 }
 
+/** キューに入った場合のLINE受付文言（add-case・research/ideaのexecute両方で使う共通文言）。 */
+export function buildQueuedAcceptedText(): string {
+  return "受け付けました（先行ジョブの完了待ちで順番待ちに入りました）";
+}
+
 /**
  * 追加成功のLINE通知文言。kindでCase/Technologyの区別を明記する（要件3: どちらに追加されたか
  * 判別できるようにする）。techは反映先がTechnologyタブであることも案内する（case/tech共通の
@@ -220,9 +225,13 @@ function elapsedMinutes(atIso: string, now: Date): number {
   return Math.max(0, Math.floor((now.getTime() - at) / 60000));
 }
 
-/** 実行中/一時停止中ジョブ1件分の状態行を組み立てる。 */
-function buildJobStatusLine(job: Job, now: Date): string {
+/** 実行中/一時停止中/順番待ち中ジョブ1件分の状態行を組み立てる。
+ * queuedRankは status="queued" のときだけ意味を持つ（1始まりの順位。渡されなければ「?」表示）。 */
+function buildJobStatusLine(job: Job, now: Date, queuedRank?: number): string {
   const label = buildJobKindLabel(job);
+  if (job.status === "queued") {
+    return `【${label}】順番待ち（${queuedRank ?? "?"}番目） / ${elapsedMinutes(job.at, now)}分経過`;
+  }
   const segments: string[] = [job.progress ?? "進行中"];
   if (typeof job.progressPercent === "number") segments.push(`${Math.round(job.progressPercent)}%`);
   segments.push(`${elapsedMinutes(job.at, now)}分経過`);
@@ -233,9 +242,11 @@ function buildJobStatusLine(job: Job, now: Date): string {
 }
 
 /**
- * LINE「進捗」「状況」への返信文言。実行中/一時停止中ジョブがあればそれぞれの状態を、
+ * LINE「進捗」「状況」への返信文言。実行中/一時停止中/順番待ち中ジョブがあればそれぞれの状態を、
  * 無ければ「実行中のジョブはありません」+直近の完了ジョブ1件（あれば）を組み立てる
  * （line/webhook.ts::handleEvent が isProgressText 判定直後に呼ぶ）。
+ * queued同士の順位は、渡されたactive配列内のqueuedジョブだけをat昇順に並べた1始まりの順位
+ * （listActiveJobsが既にrunning/paused/queuedすべてを返すため、追加のI/Oは不要）。
  */
 export function buildProgressStatusText(active: Job[], latestFinished: Job | null, now: Date): string {
   if (active.length === 0) {
@@ -246,5 +257,7 @@ export function buildProgressStatusText(active: Job[], latestFinished: Job | nul
     }
     return lines.join("\n");
   }
-  return active.map((j) => buildJobStatusLine(j, now)).join("\n\n");
+  const queuedByAtAsc = active.filter((j) => j.status === "queued").sort((a, b) => (a.at < b.at ? -1 : 1));
+  const rankOf = new Map(queuedByAtAsc.map((j, i) => [j.id, i + 1]));
+  return active.map((j) => buildJobStatusLine(j, now, rankOf.get(j.id))).join("\n\n");
 }

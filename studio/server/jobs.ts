@@ -19,6 +19,8 @@ import { runAwardResearchPipeline } from "./pipeline/awardResearch.js";
 import { runCaseResearchPipeline } from "./pipeline/caseResearch.js";
 import { runCombinedResearchPipeline } from "./pipeline/combinedResearch.js";
 import { runIdeaResearchPipeline } from "./pipeline/ideaResearch.js";
+import { enqueueJob } from "./pipeline/jobQueue.js";
+import { isLockHeld } from "./pipeline/lock.js";
 import { runTechResearchPipeline } from "./pipeline/techResearch.js";
 import { validateResearchRequest } from "./pipeline/pure.js";
 import { validateIdeaRequest } from "./pipeline/ideaPure.js";
@@ -56,8 +58,10 @@ export interface ResultCard {
 }
 
 // "paused" はアワードリサーチジョブ専用（低優先実行中の一時停止。pausedReason参照）。
-// research/idea/add-caseは従来通り running/done/error のみを使う。
-export type JobStatus = "running" | "done" | "error" | "paused";
+// "queued" はデイリーgitロック（researchman-git.lock）が埋まっている間、research/idea/
+// add-caseジョブが順番待ちする状態（pipeline/jobQueue.ts参照）。awardsは対象外（元々
+// lockを保持しないため）。
+export type JobStatus = "running" | "done" | "error" | "paused" | "queued";
 
 /**
  * status="paused" の理由（awardResearch.ts参照）。
@@ -187,83 +191,114 @@ export async function updateJob(
   return updated;
 }
 
-export async function createJob(
-  tab: Tab,
-  request: Record<string, unknown>,
-): Promise<Job> {
-  await ensureJobsDir();
+export interface PreparedPipelineRun {
+  initialProgress: string;
+  execute: (jobId: string) => Promise<void>;
+}
 
+/**
+ * research/add-case/idea の3タブぶんの「バリデーション→実行すべきパイプライン関数の解決」を
+ * 一箇所にまとめたもの。createJob()の直接実行パス（gitロックが空いている場合）と、
+ * pipeline/jobQueue.ts のキュー投入後のディスパッチパス（ワーカーがlock空きを検知した後）の
+ * 両方から呼ぶ（重複回避）。バリデーション失敗はValidationErrorをthrowする（既存のエラー
+ * メッセージ・挙動を完全に維持する）。
+ */
+export function preparePipelineRun(
+  tab: "research" | "idea" | "add-case",
+  request: Record<string, unknown>,
+): PreparedPipelineRun {
   if (tab === "research") {
     const validated = validateResearchRequest(request);
     if (!validated.ok) {
       throw new ValidationError(validated.error);
     }
-    const job: Job = {
-      id: randomUUID(),
-      tab,
-      request,
-      status: "running",
-      // ETAが誤らないよう種別ごとに文言を変える（eta.ts参照。「収集」始まりはCase Study、
-      // 「技術収集」始まりはTechnologyのフェーズ目安に対応づく）。
-      progress: validated.value.kind === "Technology" ? "技術収集を開始しています…" : "収集を開始しています…",
-      resultCards: [],
-      commit: null,
-      deployedUrl: null,
-      cost: null,
-      at: new Date().toISOString(),
-    };
-    await writeJobFile(job);
-    // バックグラウンド実行（POSTのレスポンスは待たない）。パイプライン内部で
-    // 例外を捕捉してstatus="error"を書くのが基本だが、想定外の同期例外にも
-    // 備えて二重に捕捉する。種別ごとにパイプラインを分岐する（DESIGN.md §10 P2:
-    // Technology/両方を追加。両方はcombinedResearch.tsがCase→Techを直列実行する）。
+    // ETAが誤らないよう種別ごとに文言を変える（eta.ts参照。「収集」始まりはCase Study、
+    // 「技術収集」始まりはTechnologyのフェーズ目安に対応づく）。
+    const initialProgress = validated.value.kind === "Technology" ? "技術収集を開始しています…" : "収集を開始しています…";
+    // 種別ごとにパイプラインを分岐する（DESIGN.md §10 P2: Technology/両方を追加。
+    // 両方はcombinedResearch.tsがCase→Techを直列実行する）。
     const pipeline =
       validated.value.kind === "Case Study"
         ? runCaseResearchPipeline
         : validated.value.kind === "Technology"
           ? runTechResearchPipeline
           : runCombinedResearchPipeline;
-    void pipeline(job.id, validated.value).catch(async (err) => {
-      console.error("[studio] research pipeline failed unexpectedly", err);
-      await updateJob(job.id, {
-        status: "error",
-        progress: undefined,
-        error: err instanceof Error ? err.message : String(err),
-      }).catch(() => {});
-    });
-    return job;
+    return {
+      initialProgress,
+      execute: (jobId: string) => pipeline(jobId, validated.value),
+    };
   }
 
-  // add-case: LINEでURLを送ると事例が cases.json に追加される機能。
-  // LINE入口（line/webhook.ts）とAPI入口（POST /api/jobs。Claude Codeからの一括処理用）
-  // どちらもこの分岐を通る（lineUserIdの有無でLINE通知の要否をaddCase.ts側が判定する）。
   if (tab === "add-case") {
     const validatedAddCase = validateAddCaseRequest(request);
     if (!validatedAddCase.ok) {
       throw new ValidationError(validatedAddCase.error);
     }
-    const job: Job = {
-      id: randomUUID(),
+    return {
+      initialProgress: "URL取得・事例情報抽出中",
+      execute: (jobId: string) => runAddCasePipeline(jobId, validatedAddCase.value),
+    };
+  }
+
+  // idea: テーマ駆動アイディエーション実パイプライン（DESIGN.md §10 P3）
+  const validatedIdea = validateIdeaRequest(request);
+  if (!validatedIdea.ok) {
+    throw new ValidationError(validatedIdea.error);
+  }
+  return {
+    initialProgress: "切り口を選定しています…",
+    execute: (jobId: string) => runIdeaResearchPipeline(jobId, validatedIdea.value),
+  };
+}
+
+export async function createJob(
+  tab: Tab,
+  request: Record<string, unknown>,
+): Promise<Job> {
+  await ensureJobsDir();
+
+  if (tab === "research" || tab === "add-case" || tab === "idea") {
+    const prepared = preparePipelineRun(tab, request); // throws ValidationError（従来通り）
+    const id = randomUUID();
+    const baseJob: Job = {
+      id,
       tab,
       request,
       status: "running",
-      progress: "URL取得・事例情報抽出中",
+      progress: prepared.initialProgress,
       resultCards: [],
       commit: null,
       deployedUrl: null,
       cost: null,
       at: new Date().toISOString(),
     };
-    await writeJobFile(job);
-    void runAddCasePipeline(job.id, validatedAddCase.value).catch(async (err) => {
-      console.error("[studio] add-case pipeline failed unexpectedly", err);
-      await updateJob(job.id, {
+
+    // デイリーgitロックが埋まっている間は実行せずキューに積む（pipeline/jobQueue.tsの
+    // 常駐ワーカーが15秒間隔でlockの空きを見て順にディスパッチする）。isLockHeldは
+    // 読み取り専用peekのため、ここから実際のtryAcquireLockまでの間に極小のレース窓は
+    // 残るが、その場合はパイプライン側が通常どおり「デイリージョブ実行中です」で
+    // error終了するだけで安全（DESIGN.md参照。ワーカーがlockを事前取得して渡すことは
+    // 絶対にしない設計方針）。
+    if (isLockHeld()) {
+      const queuedJob: Job = { ...baseJob, status: "queued", progress: "順番待ちです（先行ジョブの完了待ち）" };
+      await writeJobFile(queuedJob);
+      enqueueJob(queuedJob.id);
+      return queuedJob;
+    }
+
+    await writeJobFile(baseJob);
+    // バックグラウンド実行（POSTのレスポンスは待たない）。パイプライン内部で
+    // 例外を捕捉してstatus="error"を書くのが基本だが、想定外の同期例外にも
+    // 備えて二重に捕捉する。
+    void prepared.execute(id).catch(async (err) => {
+      console.error(`[studio] ${tab} pipeline failed unexpectedly`, err);
+      await updateJob(id, {
         status: "error",
         progress: undefined,
         error: err instanceof Error ? err.message : String(err),
       }).catch(() => {});
     });
-    return job;
+    return baseJob;
   }
 
   // awards: アワードリサーチジョブ（LINE入口・低優先・一時停止/再開。docs/AWARD_RESEARCH_SOP.md）。
@@ -299,33 +334,8 @@ export async function createJob(
     return job;
   }
 
-  // idea: テーマ駆動アイディエーション実パイプライン（DESIGN.md §10 P3）
-  const validatedIdea = validateIdeaRequest(request);
-  if (!validatedIdea.ok) {
-    throw new ValidationError(validatedIdea.error);
-  }
-  const job: Job = {
-    id: randomUUID(),
-    tab,
-    request,
-    status: "running",
-    progress: "切り口を選定しています…",
-    resultCards: [],
-    commit: null,
-    deployedUrl: null,
-    cost: null,
-    at: new Date().toISOString(),
-  };
-  await writeJobFile(job);
-  void runIdeaResearchPipeline(job.id, validatedIdea.value).catch(async (err) => {
-    console.error("[studio] idea research pipeline failed unexpectedly", err);
-    await updateJob(job.id, {
-      status: "error",
-      progress: undefined,
-      error: err instanceof Error ? err.message : String(err),
-    }).catch(() => {});
-  });
-  return job;
+  // tab は Tab型で網羅済み（research/idea/add-case/awards）のため、ここには到達しない。
+  throw new ValidationError(`unsupported tab: ${tab}`);
 }
 
 export async function listJobs(): Promise<Job[]> {
@@ -373,12 +383,12 @@ export async function listRunningPriorityJobs(excludeId: string): Promise<Job[]>
 }
 
 /**
- * 進捗照会（LINE「進捗」「状況」。line/webhook.ts参照）向け: status="running"または"paused"の
+ * 進捗照会（LINE「進捗」「状況」。line/webhook.ts参照）向け: status="running"/"paused"/"queued"の
  * 全ジョブを返す（tab不問。listJobs()は既にat降順ソート済みのため、そのまま新しい順で返る）。
  */
 export async function listActiveJobs(): Promise<Job[]> {
   const jobs = await listJobs();
-  return jobs.filter((j) => j.status === "running" || j.status === "paused");
+  return jobs.filter((j) => j.status === "running" || j.status === "paused" || j.status === "queued");
 }
 
 /**

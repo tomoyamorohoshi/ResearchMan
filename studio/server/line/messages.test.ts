@@ -18,6 +18,7 @@ import {
   buildJobKindLabel,
   buildMenuText,
   buildProgressStatusText,
+  buildQueuedAcceptedText,
   buildRefsConfirmText,
   buildRefsQuestionText,
   buildUnconfiguredAllowedUserText,
@@ -99,6 +100,14 @@ test("buildUnconfiguredAllowedUserText: userIdを含む", () => {
 
 test("buildAddCaseAcceptedText: 受け付け・完了時通知の案内を含む", () => {
   assert.match(buildAddCaseAcceptedText(), /受け付け/);
+});
+
+// ── buildQueuedAcceptedText（ジョブキュー: デイリーgitロック待ちで順番待ちに入った場合の受付文言） ──
+
+test("buildQueuedAcceptedText: 受け付け・順番待ちである旨を含む", () => {
+  const text = buildQueuedAcceptedText();
+  assert.match(text, /受け付け/);
+  assert.match(text, /順番待ち/);
 });
 
 test("buildAddCaseSuccessText: kind='case'は「Case として追加しました」+タイトル+URL", () => {
@@ -248,4 +257,41 @@ test("buildProgressStatusText: 実行中0件・直近の完了ジョブがあれ
 test("buildProgressStatusText: 実行中0件・直近の完了ジョブが無ければジョブなしのみ", () => {
   const text = buildProgressStatusText([], null, new Date("2026-07-14T00:00:00.000Z"));
   assert.equal(text, "実行中のジョブはありません");
+});
+
+// ── queued（ジョブキュー: デイリーgitロック待ちの順番待ち表示） ────────────────────
+
+test("buildProgressStatusText: queued1件は「順番待ち（1番目）」と経過時間を含む", () => {
+  const now = new Date("2026-07-14T00:10:00.000Z");
+  const job = makeJob({
+    tab: "add-case",
+    request: {},
+    status: "queued",
+    at: "2026-07-14T00:00:00.000Z",
+  });
+  const text = buildProgressStatusText([job], null, now);
+  assert.match(text, /事例・技術追加/);
+  assert.match(text, /順番待ち（1番目）/);
+  assert.match(text, /10分経過/);
+});
+
+test("buildProgressStatusText: queuedが複数あればat昇順で1番目・2番目と順位付けする", () => {
+  const now = new Date("2026-07-14T00:10:00.000Z");
+  const first = makeJob({ id: "job-first", tab: "research", request: { kind: "Case Study" }, status: "queued", at: "2026-07-14T00:00:00.000Z" });
+  const second = makeJob({ id: "job-second", tab: "idea", request: {}, status: "queued", at: "2026-07-14T00:05:00.000Z" });
+  // 渡す配列の順序を意図的に逆にしても、at昇順で順位が振られることを確認する
+  const text = buildProgressStatusText([second, first], null, now);
+  const firstLine = text.split("\n\n").find((l) => l.includes("事例調査"));
+  const secondLine = text.split("\n\n").find((l) => l.includes("アイデア出し"));
+  assert.match(firstLine ?? "", /順番待ち（1番目）/);
+  assert.match(secondLine ?? "", /順番待ち（2番目）/);
+});
+
+test("buildProgressStatusText: running中とqueued中が混在してもそれぞれ正しく表示する", () => {
+  const now = new Date("2026-07-14T00:10:00.000Z");
+  const runningJob = makeJob({ tab: "research", request: { kind: "Technology" }, status: "running", progress: "技術収集中", at: "2026-07-14T00:00:00.000Z" });
+  const queuedJob = makeJob({ tab: "add-case", request: {}, status: "queued", at: "2026-07-14T00:05:00.000Z" });
+  const text = buildProgressStatusText([runningJob, queuedJob], null, now);
+  assert.match(text, /技術収集中/);
+  assert.match(text, /順番待ち（1番目）/);
 });

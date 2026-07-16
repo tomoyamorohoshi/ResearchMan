@@ -45,6 +45,23 @@ export function tryAcquireLock(lockPath: string = DEFAULT_LOCK_PATH): LockHandle
   return null;
 }
 
+/**
+ * ジョブキューのワーカー（pipeline/jobQueue.ts）向け: lockを取得せず、現在埋まっていそうかだけを
+ * 読み取り専用で確認する（副作用なし。mkdir/rmdirは一切しない）。ワーカーはこれで「空いていそう」
+ * と判断した場合のみ、通常どおりパイプライン関数（自前でtryAcquireLockする）を呼び出す。
+ * peekしてから実際のacquireまでの間に他プロセスが割り込む極小のレース窓は残るが、その場合は
+ * パイプライン側が通常の「デイリージョブ実行中です」でerror終了するだけで安全（DESIGN.md参照）。
+ */
+export function isLockHeld(lockPath: string = DEFAULT_LOCK_PATH): boolean {
+  let stat;
+  try {
+    stat = statSync(lockPath);
+  } catch {
+    return false; // 存在しない = 空き
+  }
+  return !isLockStale(stat.mtimeMs, Date.now());
+}
+
 export function releaseLock(lockPath: string = DEFAULT_LOCK_PATH): void {
   try {
     rmdirSync(lockPath);
