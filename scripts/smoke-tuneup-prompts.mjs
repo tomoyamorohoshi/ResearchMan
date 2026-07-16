@@ -1,11 +1,11 @@
 // scripts/lib/tuneup-prompts.mjs の単体検証（TDD: 実装前にこのテストを書き、失敗を確認してから実装した）。
 // biweekly-tuneup.mjsのmain()は即時実行スクリプトのため単体テストできない
-// （OPERATIONS.md「main()を即実行するスクリプトをimportしない」参照）。分析パス1のプロンプト組み立て
-// （ごみ箱=弱化シグナル・ユーザー追加事例=強化シグナルが正しく文字列に含まれるか、
-// ユーザー追加事例0件時にセクションが省略されるか）を、実ファイルI/O・実Claude CLI呼び出しなしに
-// 純関数として検証する。
+// （OPERATIONS.md「main()を即実行するスクリプトをimportしない」参照）。分析パス1・パス2の
+// プロンプト組み立て（ごみ箱=弱化シグナル・ユーザー追加事例=強化シグナル・アイデア評価シグナルが
+// 正しく文字列に含まれるか、0件時にセクションが省略されるか）を、実ファイルI/O・実Claude CLI
+// 呼び出しなしに純関数として検証する。
 // 実行: node scripts/smoke-tuneup-prompts.mjs
-import { buildPass1Prompt } from "./lib/tuneup-prompts.mjs";
+import { buildPass1Prompt, buildPass2Prompt } from "./lib/tuneup-prompts.mjs";
 
 let failures = 0;
 function assert(cond, message) {
@@ -91,6 +91,77 @@ const oldResearchPlan = "# 現行プラン";
   const prompt = buildPass1Prompt({ favStats, trashStats, userCaseStats, oldResearchTuning, oldXRadarQueries, oldResearchPlan });
   assert(prompt.includes('"researchTuning"'), "出力フォーマットにresearchTuningキーの指示が含まれる");
   assert(prompt.includes('"rationale"'), "出力フォーマットにrationaleキーの指示が含まれる");
+}
+
+// ── buildPass2Prompt: アイデア評価シグナル(いいね/ゴミ箱)の反映 ──
+const ideaStats = { totalIdeas: 10, patternCounts: { "転用": 3 }, uniqueRefsUsed: 5, overusedRefs: [] };
+const oldIdeaTuning = {
+  seedCount: 10,
+  caseSample: 14,
+  techSample: 12,
+  patternMix: { contextXTech: 0.4, techXTech: 0.2, repurpose: 0.2, free: 0.2 },
+  samplingWeights: { caseTags: {}, techDomains: {} },
+  promptText: { roleIntro: "intro", patternDefinitions: { techXTech: "a", contextXTech: "b", repurpose: "c" }, styleNotes: "notes" },
+};
+
+// ── いいね/ゴミ箱が0件のときはアイデア評価シグナルのセクションを省略する ──
+{
+  const ideaFeedbackStats = {
+    likedIdeaCount: 0,
+    trashedIdeaCount: 0,
+    patternLikeCounts: {},
+    patternTrashCounts: {},
+    refTagLikeCounts: {},
+    refTagTrashCounts: {},
+    scoredIdeaCount: 0,
+    scoreCorrelations: null,
+  };
+  const prompt = buildPass2Prompt({ favStats, ideaStats, ideaFeedbackStats, oldIdeaTuning });
+  assert(!prompt.includes("アイデア評価シグナル"), "いいね/ゴミ箱が0件のとき、アイデア評価シグナルのセクション見出しが含まれない");
+}
+
+// ── いいね/ゴミ箱が1件以上あるときはセクションが含まれる ──
+{
+  const ideaFeedbackStats = {
+    likedIdeaCount: 3,
+    trashedIdeaCount: 1,
+    patternLikeCounts: { "転用": 2 },
+    patternTrashCounts: { "文脈×技術": 1 },
+    refTagLikeCounts: { "Tech/AI": 2 },
+    refTagTrashCounts: { "Tech/XR": 1 },
+    scoredIdeaCount: 0,
+    scoreCorrelations: null,
+  };
+  const prompt = buildPass2Prompt({ favStats, ideaStats, ideaFeedbackStats, oldIdeaTuning });
+  assert(prompt.includes("アイデア評価シグナル"), "いいね/ゴミ箱が1件以上あればセクション見出しが含まれる");
+  assert(prompt.includes('"転用":2'), "パターン別いいね分布がプロンプトに含まれる");
+  assert(prompt.includes('"Tech/AI":2'), "参照先タグのいいね分布がプロンプトに含まれる");
+}
+
+// ── scoreCorrelationsがある場合はプロンプトに含まれる ──
+{
+  const ideaFeedbackStats = {
+    likedIdeaCount: 3,
+    trashedIdeaCount: 1,
+    patternLikeCounts: {},
+    patternTrashCounts: {},
+    refTagLikeCounts: {},
+    refTagTrashCounts: {},
+    scoredIdeaCount: 5,
+    scoreCorrelations: { discovery: { withLiked: 0.8, withTrashed: -0.6 }, surprise: { withLiked: null, withTrashed: null }, conviction: { withLiked: 0.1, withTrashed: -0.1 } },
+  };
+  const prompt = buildPass2Prompt({ favStats, ideaStats, ideaFeedbackStats, oldIdeaTuning });
+  assert(prompt.includes("相関"), "scoreCorrelationsがあれば相関という語がプロンプトに含まれる");
+  assert(prompt.includes("0.8"), "discoveryとの相関係数の値がプロンプトに含まれる");
+}
+
+// ── buildPass2Prompt: 出力フォーマット(ideaTuning/rationale)は既存のまま壊れていない ──
+{
+  const ideaFeedbackStats = { likedIdeaCount: 0, trashedIdeaCount: 0, patternLikeCounts: {}, patternTrashCounts: {}, refTagLikeCounts: {}, refTagTrashCounts: {}, scoredIdeaCount: 0, scoreCorrelations: null };
+  const prompt = buildPass2Prompt({ favStats, ideaStats, ideaFeedbackStats, oldIdeaTuning });
+  assert(prompt.includes('"ideaTuning"'), "出力フォーマットにideaTuningキーの指示が含まれる");
+  assert(prompt.includes('"rationale"'), "出力フォーマットにrationaleキーの指示が含まれる");
+  assert(prompt.includes("seedCount"), "厳守事項にseedCountの言及が含まれる(既存挙動が壊れていない)");
 }
 
 if (failures > 0) {

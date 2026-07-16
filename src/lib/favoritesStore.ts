@@ -15,6 +15,10 @@ import { emptyFavoritesData, type FavoritesData } from "@/lib/favoritesMerge";
 // pathnameをパラメータ化し、read/write本体は共通のヘルパー関数に集約する）
 const FAVORITES_BLOB_PATHNAME = "favorites/favorites.json";
 const TRASH_BLOB_PATHNAME = "trash/trash.json";
+// /ideas ページの「いいね」「ゴミ箱」機能用（favorites/trashとは別idの集合。
+// data/ideas.json本体は変更しない＝ゴミ箱は復元可能なアーカイブとして残る）
+const IDEA_LIKES_BLOB_PATHNAME = "idea-likes/idea-likes.json";
+const IDEA_TRASH_BLOB_PATHNAME = "idea-trash/idea-trash.json";
 
 // BLOB_READ_WRITE_TOKEN 欠落時、呼び出し側はBlobに触れず503を返す
 // （ローカル/初回デプロイでenv未設定でもサイトが現状(localStorageのみ)と同一挙動で動く要件）
@@ -66,4 +70,20 @@ export function readTrashBlob(): Promise<FavoritesData> {
 
 export function writeTrashBlob(data: FavoritesData): Promise<void> {
   return writeBlobData(TRASH_BLOB_PATHNAME, data);
+}
+
+export function readIdeaLikesBlob(): Promise<FavoritesData> {
+  return readBlobData(IDEA_LIKES_BLOB_PATHNAME);
+}
+
+export function writeIdeaLikesBlob(data: FavoritesData): Promise<void> {
+  return writeBlobData(IDEA_LIKES_BLOB_PATHNAME, data);
+}
+
+export function readIdeaTrashBlob(): Promise<FavoritesData> {
+  return readBlobData(IDEA_TRASH_BLOB_PATHNAME);
+}
+
+export function writeIdeaTrashBlob(data: FavoritesData): Promise<void> {
+  return writeBlobData(IDEA_TRASH_BLOB_PATHNAME, data);
 }

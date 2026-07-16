@@ -37,7 +37,7 @@ import {
 import { rollbackIfNotCommitted } from "./caseResearch.js";
 import { loadIdeaAngles } from "./ideaAngles.js";
 import { runSearchCases } from "./ideaExternalScripts.js";
-import { fetchFavoriteIds, loadFavSyncConfig } from "./ideaFavorites.js";
+import { fetchFavoriteIds, fetchIdeaLikeIds, fetchIdeaTrashIds, loadFavSyncConfig } from "./ideaFavorites.js";
 import {
   buildIdeaChewPrompt,
   buildIdeaCritiquePrompt,
@@ -65,6 +65,7 @@ import {
   scoreTechCandidates,
   selectAngles,
   sumCritiqueScore,
+  tallyIdeaSignalsByAngle,
   type CaseRecord,
   type ChewedAngle,
   type IdeaCritique,
@@ -223,22 +224,50 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
     const techById = new Map(tech.map((t) => [t.id, t]));
 
     // ── 1. お気に入り解決（DESIGN.md §6・タスク指示: 取得不能なら偽装せず全事例フォールバック） ──
+    // お気に入り・アイデア評価(いいね/ゴミ箱)はいずれも同じ~/.researchman-favsync.jsonから
+    // endpoint/tokenを導出するため、設定読み込みは1回だけ行い両方で共有する。
+    const favSyncCfg = await loadFavSyncConfig();
     let favoriteCaseIds: Set<string> | null = null;
     if (source === "お気に入り中心") {
       await setProgress(jobId, "お気に入りを確認中");
       try {
-        const cfg = await loadFavSyncConfig();
-        if (!cfg) throw new Error("お気に入り同期の設定がありません");
-        favoriteCaseIds = await fetchFavoriteIds(cfg);
+        if (!favSyncCfg) throw new Error("お気に入り同期の設定がありません");
+        favoriteCaseIds = await fetchFavoriteIds(favSyncCfg);
       } catch (err) {
         console.warn("[studio] favorites unavailable, falling back to all cases:", err);
         warningMsg = "お気に入りデータ未接続のため全事例から生成しました";
       }
     }
 
+    // ── 1b. アイデア評価（いいね/ゴミ箱）解決（要件1・2: 全モード共通の切り口重み付け。
+    // 未設定・503・取得失敗時は空として黙ってスキップする＝選定は従来と同一動作になる。
+    // これはお気に入り未接続時のフォールバック[1.]と異なりwarningを出さない最重要要件のため、
+    // 各fetchを個別にcatchし、失敗しても他方や上のお気に入り解決に影響させない） ──
+    let ideaLikeIds = new Set<string>();
+    let ideaTrashIds = new Set<string>();
+    if (favSyncCfg) {
+      const [likes, trash] = await Promise.all([
+        fetchIdeaLikeIds(favSyncCfg).catch((err) => {
+          console.warn("[studio] idea-likes unavailable, weighting skipped:", err);
+          return new Set<string>();
+        }),
+        fetchIdeaTrashIds(favSyncCfg).catch((err) => {
+          console.warn("[studio] idea-trash unavailable, weighting skipped:", err);
+          return new Set<string>();
+        }),
+      ]);
+      ideaLikeIds = likes;
+      ideaTrashIds = trash;
+    }
+    // 要件3: デバッグ可能性のため、実際に重みへ反映した件数を1行ログに残す
+    // （未接続時は0件/0件のまま出力され、フォールバックしたことが分かる）。
+    console.log(`[studio] 評価シグナル適用: いいね${ideaLikeIds.size}件/ゴミ箱${ideaTrashIds.size}件が重みに反映`);
+
     // ── 2. 切り口選定 ──────────────────────────────────────────
     await setProgress(jobId, "切り口を選定中");
-    const selectedAngles = selectAngles(angles, count, favoriteCaseIds);
+    const allAngleLabels = new Set(angles.map((a) => a.label));
+    const ideaSignals = tallyIdeaSignalsByAngle(existingIdeas, ideaLikeIds, ideaTrashIds, allAngleLabels);
+    const selectedAngles = selectAngles(angles, count, favoriteCaseIds, ideaSignals);
     const allowedLabels = new Set(selectedAngles.map((a) => a.label));
 
     // ── 3. 検索キーワード抽出 ────────────────────────────────────

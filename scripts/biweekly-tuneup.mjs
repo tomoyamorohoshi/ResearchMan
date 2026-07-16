@@ -3,17 +3,26 @@
  *
  * ★ ファイル名 biweekly-tuneup.mjs は後方互換のため据え置きだが、実体は週次実行（毎週月曜08:30）。
  *
- * Case Study / Technology のお気に入り蓄積（＋ごみ箱＝弱化シグナル・ユーザー追加事例＝強化シグナル）
- * を分析し、収集レーン・探索角度・アイデア生成の構造（サンプリング重み・パターン混合比）を
- * 週1回ブラッシュアップする。Windowsタスクスケジューラ タスク名 ResearchMan-tuneup
+ * Case Study / Technology のお気に入り蓄積（＋ごみ箱＝弱化シグナル・ユーザー追加事例＝強化シグナル・
+ * アイデアいいね/ゴミ箱＝アイデア評価シグナル）を分析し、収集レーン・探索角度・アイデア生成の構造
+ * （サンプリング重み・パターン混合比）を週1回ブラッシュアップする。あわせて切り口語彙
+ * （data/idea-angles.json）もcases.json蓄積が+50件増えるたびに自動リフレッシュする。
+ * Windowsタスクスケジューラ タスク名 ResearchMan-tuneup
  * （毎週月曜08:30、scripts/windows/run-job.mjs経由。run-if-due.mjsで同日重複防止）から呼ばれる。
  *
  * 流れ:
+ *   0. 切り口語彙リフレッシュ（2026-07-16新設）: cases.json件数が前回生成時
+ *      （data/idea-angles-meta.json）から+50件以上増えていれば、
+ *      studio/server/pipeline/generateIdeaAnglesCli.tsを子プロセス実行して再生成し、
+ *      機械ガードレール（件数15〜25・実在id・旧語彙との入れ替わり率≤80%）を通ったときだけ反映する
+ *      （scripts/lib/tuneup-angles.mjs）。favorites同期の要否とは独立に毎回判定する
  *   1. GET /api/favorites（Bearer FAVORITES_SYNC_TOKEN。設定は ~/.researchman-favsync.json）→
  *      cases.json/tech.jsonと結合してお気に入り分布を算出。あわせて GET /api/trash
  *      （favoritesと同じtoken・endpointから導出）でごみ箱分布（弱化シグナル）、
- *      cases.json の sources:["User"] からユーザー追加事例分布（強化シグナル）も算出し、
- *      分析パス1のプロンプトに反映する（ごみ箱・favsync自体が未設定/エラーの場合は黙ってスキップし、
+ *      cases.json の sources:["User"] からユーザー追加事例分布（強化シグナル）、
+ *      GET /api/idea-likes・GET /api/idea-trash（2026-07-16新設）でアイデア評価シグナル
+ *      （パターン別・参照先タグ別のいいね/ゴミ箱分布とscoresとの相関）も算出し、
+ *      分析パス1・パス2のプロンプトに反映する（各endpointが未設定/エラーの場合は黙ってスキップし、
  *      処理全体は落とさない）
  *   2. Claude CLI 分析パス1「リサーチ計画」: research-tuning.json / x-radar-queries.json /
  *      RESEARCH_PLAN.md の改訂案を生成
@@ -22,10 +31,13 @@
  *   5. dry-run全通し: 改訂案を一時的に書き込み、ideas:dry / auto-research:tech:dry /
  *      auto-research:cc:dry が正常終了するか確認。失敗なら git checkout で全戻し
  *   6. 成功時: 設定ファイルを書き込んだ状態で終了（exit 0）。commit/push/verify-deploy/
- *      LINE通知は run-job.mjs 側が担当（既存3ジョブと同じ役割分担）
+ *      LINE通知は run-job.mjs 側が担当（既存3ジョブと同じ役割分担）。切り口語彙を更新した場合は
+ *      data/idea-angles.json・data/idea-angles-meta.jsonを自らgit addしておき、
+ *      run-job.mjs側のgit add→commitに相乗りさせる（run-job.mjsは編集対象外のため）
  *
  * LINE報告文面は os.tmpdir()/researchman-tuneup-report.txt に書き出す
- * （notify-line.mjs --text-file が送る。成功/スキップ/失敗のいずれでも必ず書く）。
+ * （notify-line.mjs --text-file が送る。成功/スキップ/失敗のいずれでも必ず書く。
+ * 切り口語彙を更新した場合はその差分も末尾に追記する）。
  *
  * 使い方:
  *   node scripts/biweekly-tuneup.mjs             # 本番実行
@@ -46,7 +58,10 @@ import {
   computeIdeaStructureStats,
   computeTrashStats,
   computeUserCaseStats,
+  computeIdeaFeedbackStats,
   deriveTrashEndpoint,
+  deriveIdeaLikesEndpoint,
+  deriveIdeaTrashEndpoint,
 } from "./lib/tuneup-stats.mjs";
 import {
   checkResearchTuningChange,
@@ -55,7 +70,15 @@ import {
 } from "./lib/tuneup-guardrails.mjs";
 import { reinjectDescriptions } from "./lib/reinject-descriptions.mjs";
 import { applyCandidateWithVerification } from "./lib/tuneup-apply.mjs";
-import { buildPass1Prompt } from "./lib/tuneup-prompts.mjs";
+import { buildPass1Prompt, buildPass2Prompt } from "./lib/tuneup-prompts.mjs";
+import {
+  shouldRefreshAngles,
+  checkAnglesGuardrail,
+  diffAngleLabels,
+  readAnglesMeta,
+  writeAnglesMeta,
+  runGenerateIdeaAnglesCli,
+} from "./lib/tuneup-angles.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
@@ -65,6 +88,8 @@ const IDEAS_PATH = path.join(ROOT, "data/ideas.json");
 const RESEARCH_TUNING_PATH = path.join(ROOT, "data/research-tuning.json");
 const IDEA_TUNING_PATH = path.join(ROOT, "data/idea-tuning.json");
 const XRADAR_QUERIES_PATH = path.join(ROOT, "data/x-radar-queries.json");
+const IDEA_ANGLES_PATH = path.join(ROOT, "data/idea-angles.json");
+const IDEA_ANGLES_META_PATH = path.join(ROOT, "data/idea-angles-meta.json");
 const RESEARCH_PLAN_PATH = path.join(ROOT, "RESEARCH_PLAN.md");
 const FAVSYNC_CONFIG_PATH = path.join(os.homedir(), ".researchman-favsync.json");
 const LAST_RUN_PATH = path.join(ROOT, ".last-tuneup-run.txt");
@@ -179,11 +204,127 @@ function buildFixtureTrash(cases) {
   return { version: 1, items };
 }
 
+// --dry-run用フィクスチャ: ideas.jsonの先頭5件を「いいね」とみなす（favsync未設定でも
+// 全経路を通すため。本物のGET /api/idea-likesは呼ばない）
+function buildFixtureIdeaLikes(ideas) {
+  const now = Date.now();
+  const items = {};
+  for (const i of ideas.slice(0, 5)) items[i.id] = { fav: true, ts: now };
+  return { version: 1, items };
+}
+
+// --dry-run用フィクスチャ: いいねフィクスチャ(先頭5件)と重ならない6〜8件目を「ゴミ箱」とみなす
+// （favsync未設定でも全経路を通すため。本物のGET /api/idea-trashは呼ばない）
+function buildFixtureIdeaTrash(ideas) {
+  const now = Date.now();
+  const items = {};
+  for (const i of ideas.slice(5, 8)) items[i.id] = { fav: true, ts: now };
+  return { version: 1, items };
+}
+
 function gitCheckoutRevert(paths) {
   const r = spawnSync("git", ["checkout", "--", ...paths], { cwd: ROOT, stdio: "inherit" });
   if (r.status !== 0) {
     console.error("⚠ git checkout による復元に失敗しました。手動確認が必要です:", paths.join(", "));
   }
+}
+
+// 切り口語彙リフレッシュ成功時、data/idea-angles.json・data/idea-angles-meta.jsonをステージする。
+// run-job.mjs（編集対象外）は既存4パス(research-tuning.json等)だけをgit addしてcommitするため、
+// ここで先にステージしておけば、run-job.mjs側のgit add→commitに自動的に相乗りする
+// （run-job.mjsを変更せずに済む。commit対象ファイル一覧をrun-job.mjsとここの2箇所に
+// 分散させたくないための意図的な設計。詳細はOPERATIONS.md参照）。
+function gitAdd(paths) {
+  const r = spawnSync("git", ["add", ...paths], { cwd: ROOT, stdio: "inherit" });
+  if (r.status !== 0) {
+    console.error("⚠ git add に失敗しました。手動確認が必要です:", paths.join(", "));
+  }
+}
+
+/**
+ * 切り口語彙（data/idea-angles.json）の自動リフレッシュ（要件2）。
+ * cases.json件数が前回語彙生成時（data/idea-angles-meta.json）から+50件以上増えていれば、
+ * studio/server/pipeline/generateIdeaAnglesCli.tsを子プロセス実行して再生成し、
+ * 機械ガードレール（件数15〜25・実在id・入れ替わり率≤80%）を通ったときだけ反映する。
+ * 失敗時は旧語彙を維持し警告を返す。--dry-run時はコスト（Claude呼び出し）を避けるため
+ * 呼び出し元でこの関数自体を呼ばない。
+ * @returns {Promise<string[]>} LINE報告に追加する行（何もしなければ空配列）
+ */
+// metaPath/anglesPath/gitAddFnはテスト用の注入ポイント（既定値は本番と同じ実パス/実gitAdd。
+// スモークテストが実リポジトリのファイル・実gitコマンドに触れずに検証できるようにするため。
+// smoke-tuneup-angles.mjsから直接importして検証する）。
+export async function maybeRefreshIdeaAngles({
+  cases,
+  metaPath = IDEA_ANGLES_META_PATH,
+  anglesPath = IDEA_ANGLES_PATH,
+  gitAddFn = gitAdd,
+}) {
+  const meta = await readAnglesMeta(metaPath);
+  const caseCount = cases.length;
+
+  if (!meta) {
+    // 初回導入時: いきなり再生成はせず、まずベースラインだけ記録する
+    // （導入直後の初回チューンアップで無条件に高コストなClaude呼び出しが走らないようにするため）。
+    await writeAnglesMeta(metaPath, { caseCount, generatedAt: new Date().toISOString() });
+    // ベースライン記録のみのパスでも、metaファイル自体は必ずgit addしておく
+    // （そうしないと次に語彙リフレッシュが実際に発生するまでdata/idea-angles-meta.jsonが
+    // 永久にgit untrackedのまま残ってしまうバグの修正）。
+    gitAddFn([metaPath]);
+    log(`切り口語彙メタ未設定 → ベースラインを記録(cases=${caseCount}件)。再生成はスキップ`);
+    return [];
+  }
+
+  if (!shouldRefreshAngles(caseCount, meta)) {
+    log(`切り口語彙リフレッシュ条件未達（前回${meta.caseCount}件→現在${caseCount}件。+50件未満）→ スキップ`);
+    return [];
+  }
+
+  log(`切り口語彙リフレッシュ条件達成（前回${meta.caseCount}件→現在${caseCount}件）→ 再生成を実行`);
+
+  let oldAngles;
+  try {
+    oldAngles = JSON.parse(await fs.readFile(anglesPath, "utf-8"));
+  } catch (e) {
+    log(`⚠ 既存の切り口語彙の読み込みに失敗しました（${e.message}）→ 今回はリフレッシュをスキップ`);
+    return ["⚠ 切り口語彙リフレッシュをスキップしました（既存ファイルの読み込みエラー）。"];
+  }
+
+  const cliOk = runGenerateIdeaAnglesCli({ rootDir: ROOT });
+  if (!cliOk) {
+    log("⚠ 切り口語彙の再生成CLIが失敗しました → 旧語彙を維持");
+    gitCheckoutRevert([anglesPath]);
+    return ["⚠ 切り口語彙の再生成に失敗したため、旧語彙を維持しました。"];
+  }
+
+  let newAngles;
+  try {
+    newAngles = JSON.parse(await fs.readFile(anglesPath, "utf-8"));
+  } catch (e) {
+    log(`⚠ 再生成後の切り口語彙の読み込みに失敗しました（${e.message}）→ 旧語彙を維持`);
+    gitCheckoutRevert([anglesPath]);
+    return ["⚠ 切り口語彙の再生成結果が読み込めなかったため、旧語彙を維持しました。"];
+  }
+
+  const validCaseIds = new Set(cases.map((c) => c.id));
+  const guardrail = checkAnglesGuardrail({ oldAngles, newAngles, validCaseIds });
+  if (!guardrail.ok) {
+    log(`⚠ 切り口語彙ガードレール違反 → 旧語彙を維持:\n  ${guardrail.errors.join("\n  ")}`);
+    gitCheckoutRevert([anglesPath]);
+    return [
+      "⚠ 切り口語彙の再生成がガードレールに違反したため、旧語彙を維持しました。",
+      ...guardrail.errors.map((e) => `・${e}`),
+    ];
+  }
+
+  await writeAnglesMeta(metaPath, { caseCount, generatedAt: new Date().toISOString() });
+  gitAddFn([anglesPath, metaPath]);
+  const diff = diffAngleLabels(oldAngles, newAngles);
+  log(`✅ 切り口語彙を更新: ${oldAngles.length}→${newAngles.length}語彙`);
+  return [
+    `🔤 切り口語彙を更新: ${oldAngles.length}→${newAngles.length}語彙`,
+    `新規: ${diff.added.length ? diff.added.join("、") : "なし"}`,
+    `削除: ${diff.removed.length ? diff.removed.join("、") : "なし"}`,
+  ];
 }
 
 function runDrySubpipeline(npmScript) {
@@ -194,42 +335,6 @@ function runDrySubpipeline(npmScript) {
     timeout: SUBPIPELINE_TIMEOUT_MS,
   });
   return !r.error && r.status === 0;
-}
-
-function buildPass2Prompt({ favStats, ideaStats, oldIdeaTuning }) {
-  return `ResearchMan「アイデアの種」生成（generate-idea-seeds.mjs）の週次チューンアップ「構造見直し」担当。
-アイデア品質の直接評価はしない（★は無い）。ideas.json蓄積の機械指標とお気に入り分布から、
-サンプリング重み・パターン混合比・プロンプト文言の**構造**だけを見直してください。
-
-# ideas.json 機械指標
-- 総アイデア数: ${ideaStats.totalIdeas}
-- パターン分布: ${JSON.stringify(ideaStats.patternCounts)}
-- ユニーク参照数: ${ideaStats.uniqueRefsUsed}
-- 使い回され気味の参照（3回以上）: ${JSON.stringify(ideaStats.overusedRefs)}
-
-# お気に入り分布（Case/Techの関心シグナル）
-- 事例タグ分布（お気に入り）: ${JSON.stringify(favStats.caseTagDistributionFav)}
-- 技術domain分布（お気に入り）: ${JSON.stringify(favStats.techDomainDistributionFav)}
-
-# 現行設定 (idea-tuning.json)
-${JSON.stringify(oldIdeaTuning)}
-
-# 厳守事項（機械検証で拒否される。逸脱すると変更全体が破棄される）
-- キー構造は変えない。seedCount/caseSample/techSample は正の整数のまま
-- patternMix の contextXTech/techXTech/repurpose/free は合計が必ず1になるようにする
-- samplingWeights.caseTags / samplingWeights.techDomains の各値は0.25〜4.0の範囲に収める
-  （キーは cases.json の tags 文字列 / tech.json の domains 文字列。過度な傾倒を避けるため
-  基本は1.0付近に留め、明確な偏りがある場合だけ調整する）
-- 変更する重み項目は合計10項目まで（大半のキーは1.0のままでよい）
-- promptText.patternDefinitions/roleIntro/styleNotes は文言の調整のみ（空にしない）
-- 有意な傾向が見えない場合は無理に変えず現状のJSONをそのまま返してよい
-
-# 出力
-JSON1つのみ（前置き・後書きなし）:
-{
-  "ideaTuning": ${JSON.stringify(oldIdeaTuning)},
-  "rationale": "LINE報告用の変更理由の要約（2〜4文、日本語）"
-}`;
 }
 
 function buildReport(lines) {
@@ -245,40 +350,53 @@ async function main() {
   const tech = await readJson(TECH_PATH);
   const ideas = await readJson(IDEAS_PATH);
 
-  // ── 1. favorites取得（＋ごみ箱＝弱化シグナル） ──
+  // ── 0. 切り口語彙の自動リフレッシュ（要件2）。favorites同期の要否とは独立に判定するため、
+  //    favorites取得より前に行う（favorites未設定でスキップされるパスでもリフレッシュ自体は動く）。
+  //    コストの大きいClaude呼び出しを伴うため、--dry-runでは呼ばない（他の検証と違い
+  //    フィクスチャで済ませず本物のCLIを叩くことになってしまうため。tuneup:dryの目的である
+  //    「設定ファイル改訂フローの安価な検証」から外れる）。
+  const angleRefreshLines = DRY_RUN ? [] : await maybeRefreshIdeaAngles({ cases });
+  const report = (lines) =>
+    writeReport(buildReport(angleRefreshLines.length ? [...lines, "", ...angleRefreshLines] : lines));
+
+  // ── 1. favorites取得（＋ごみ箱＝弱化シグナル＋アイデアいいね/ゴミ箱＝アイデア評価シグナル） ──
   let favoritesData;
   let trashedIds = [];
+  let likedIdeaIds = [];
+  let trashedIdeaIds = [];
   if (DRY_RUN) {
     favoritesData = buildFixtureFavorites(cases, tech);
     log(`🧪 フィクスチャお気に入り${Object.keys(favoritesData.items).length}件を使用`);
     const fixtureTrash = buildFixtureTrash(cases);
     trashedIds = favoriteIds(fixtureTrash.items);
     log(`🧪 フィクスチャごみ箱${trashedIds.length}件を使用`);
+    likedIdeaIds = favoriteIds(buildFixtureIdeaLikes(ideas).items);
+    log(`🧪 フィクスチャいいねアイデア${likedIdeaIds.length}件を使用`);
+    trashedIdeaIds = favoriteIds(buildFixtureIdeaTrash(ideas).items);
+    log(`🧪 フィクスチャゴミ箱アイデア${trashedIdeaIds.length}件を使用`);
   } else {
     let favsyncConfig = null;
     try {
       favsyncConfig = JSON.parse(await fs.readFile(FAVSYNC_CONFIG_PATH, "utf-8"));
     } catch {
       log(`同期未設定（${FAVSYNC_CONFIG_PATH} が無い）→ 今回はスキップ`);
-      await writeReport(
-        buildReport([
-          "お気に入りサーバ同期が未設定のため、今回の分析をスキップしました。",
-          `${FAVSYNC_CONFIG_PATH} に { "endpoint": "...", "token": "..." } を設定してください。`,
-        ])
-      );
+      await report([
+        "お気に入りサーバ同期が未設定のため、今回の分析をスキップしました。",
+        `${FAVSYNC_CONFIG_PATH} に { "endpoint": "...", "token": "..." } を設定してください。`,
+      ]);
       await fs.writeFile(LAST_RUN_PATH, new Date().toISOString());
       return;
     }
     if (!favsyncConfig?.endpoint || !favsyncConfig?.token) {
       log("同期設定が不完全（endpoint/token欠落）→ 今回はスキップ");
-      await writeReport(buildReport([`${FAVSYNC_CONFIG_PATH} の設定が不完全です（endpoint/tokenを確認してください）。`]));
+      await report([`${FAVSYNC_CONFIG_PATH} の設定が不完全です（endpoint/tokenを確認してください）。`]);
       await fs.writeFile(LAST_RUN_PATH, new Date().toISOString());
       return;
     }
     const res = await httpGetJson(favsyncConfig.endpoint, favsyncConfig.token);
     if (!res.ok) {
       log(`favorites取得失敗: ${res.error}`);
-      await writeReport(buildReport([`❌ お気に入りの取得に失敗しました（${res.error}）。ログを確認してください。`]));
+      await report([`❌ お気に入りの取得に失敗しました（${res.error}）。ログを確認してください。`]);
       process.exitCode = 1;
       return;
     }
@@ -304,13 +422,44 @@ async function main() {
         log(`ごみ箱取得スキップ（${trashRes.error}）→ 弱化シグナル無しで続行`);
       }
     }
+
+    // アイデアいいね/ゴミ箱（アイデア評価シグナル）取得。favoritesと同じFAVORITES_SYNC_TOKENを
+    // 共用する想定（GET /api/idea-likes・GET /api/idea-trash。別エージェント実装中のAPI契約）。
+    // endpointはfavsyncConfig.ideaLikesEndpoint/ideaTrashEndpointで明示指定できるが、未指定なら
+    // favoritesのendpointから機械的に導出する（deriveTrashEndpointと同じ流儀。
+    // deriveIdeaLikesEndpoint/deriveIdeaTrashEndpoint参照）。導出不可・未設定・エラー・503いずれも
+    // 黙ってスキップし、処理全体は落とさない（ごみ箱と同じ縮退方針）。
+    const ideaLikesEndpoint = deriveIdeaLikesEndpoint(favsyncConfig.endpoint, favsyncConfig.ideaLikesEndpoint);
+    if (!ideaLikesEndpoint) {
+      log("いいねアイデア取得スキップ（ideaLikesEndpoint導出不可）→ アイデア評価シグナル無しで続行");
+    } else {
+      const likesRes = await httpGetJson(ideaLikesEndpoint, favsyncConfig.token);
+      if (likesRes.ok) {
+        likedIdeaIds = favoriteIds(likesRes.body?.items);
+        log(`いいねアイデア: ${likedIdeaIds.length}件`);
+      } else {
+        log(`いいねアイデア取得スキップ（${likesRes.error}）→ アイデア評価シグナル無しで続行`);
+      }
+    }
+    const ideaTrashEndpoint = deriveIdeaTrashEndpoint(favsyncConfig.endpoint, favsyncConfig.ideaTrashEndpoint);
+    if (!ideaTrashEndpoint) {
+      log("ゴミ箱アイデア取得スキップ（ideaTrashEndpoint導出不可）→ アイデア評価シグナル無しで続行");
+    } else {
+      const ideaTrashRes = await httpGetJson(ideaTrashEndpoint, favsyncConfig.token);
+      if (ideaTrashRes.ok) {
+        trashedIdeaIds = favoriteIds(ideaTrashRes.body?.items);
+        log(`ゴミ箱アイデア: ${trashedIdeaIds.length}件`);
+      } else {
+        log(`ゴミ箱アイデア取得スキップ（${ideaTrashRes.error}）→ アイデア評価シグナル無しで続行`);
+      }
+    }
   }
 
   const favIds = favoriteIds(favoritesData?.items);
   log(`お気に入り: ${favIds.length}件`);
   if (!favIds.length) {
     log("お気に入りが0件 → 分析材料なし。今回はスキップ");
-    await writeReport(buildReport(["お気に入りがまだ0件のため、今回の分析をスキップしました。"]));
+    await report(["お気に入りがまだ0件のため、今回の分析をスキップしました。"]);
     if (!DRY_RUN) await fs.writeFile(LAST_RUN_PATH, new Date().toISOString());
     return;
   }
@@ -319,6 +468,7 @@ async function main() {
   const ideaStats = computeIdeaStructureStats(ideas);
   const trashStats = computeTrashStats({ trashedIds, cases });
   const userCaseStats = computeUserCaseStats({ cases });
+  const ideaFeedbackStats = computeIdeaFeedbackStats({ likedIds: likedIdeaIds, trashedIds: trashedIdeaIds, ideas, cases, tech });
 
   const oldResearchTuning = await readJson(RESEARCH_TUNING_PATH);
   const oldIdeaTuning = await readJson(IDEA_TUNING_PATH);
@@ -338,13 +488,13 @@ async function main() {
     );
   } catch (e) {
     log(`分析パス1失敗: ${e.message}`);
-    await writeReport(buildReport([`❌ 分析パス1（リサーチ計画）が失敗しました: ${e.message}`]));
+    await report([`❌ 分析パス1（リサーチ計画）が失敗しました: ${e.message}`]);
     process.exitCode = 1;
     return;
   }
   if (!pass1?.researchTuning || !pass1?.xRadarQueries || !pass1?.researchPlanMarkdown) {
     log("分析パス1の出力が不完全です");
-    await writeReport(buildReport(["❌ 分析パス1（リサーチ計画）の出力が不完全でした。"]));
+    await report(["❌ 分析パス1（リサーチ計画）の出力が不完全でした。"]);
     process.exitCode = 1;
     return;
   }
@@ -353,20 +503,20 @@ async function main() {
   log("── 分析パス2: アイデア構造見直し ──");
   let pass2;
   try {
-    pass2 = runClaudeJson(claudeBin, buildPass2Prompt({ favStats, ideaStats, oldIdeaTuning }), {
+    pass2 = runClaudeJson(claudeBin, buildPass2Prompt({ favStats, ideaStats, ideaFeedbackStats, oldIdeaTuning }), {
       timeout: ANALYSIS_TIMEOUT_MS,
       marker: '"ideaTuning"',
       model: MODEL,
     });
   } catch (e) {
     log(`分析パス2失敗: ${e.message}`);
-    await writeReport(buildReport([`❌ 分析パス2（アイデア構造見直し）が失敗しました: ${e.message}`]));
+    await report([`❌ 分析パス2（アイデア構造見直し）が失敗しました: ${e.message}`]);
     process.exitCode = 1;
     return;
   }
   if (!pass2?.ideaTuning) {
     log("分析パス2の出力が不完全です");
-    await writeReport(buildReport(["❌ 分析パス2（アイデア構造見直し）の出力が不完全でした。"]));
+    await report(["❌ 分析パス2（アイデア構造見直し）の出力が不完全でした。"]);
     process.exitCode = 1;
     return;
   }
@@ -379,9 +529,7 @@ async function main() {
   const guardrailErrors = [...researchCheck.errors, ...queriesCheck.errors, ...ideaCheck.errors];
   if (guardrailErrors.length) {
     log(`ガードレール違反:\n  ${guardrailErrors.join("\n  ")}`);
-    await writeReport(
-      buildReport(["❌ 分析結果がガードレールに違反したため、変更を破棄しました。", "", ...guardrailErrors.map((e) => `・${e}`)])
-    );
+    await report(["❌ 分析結果がガードレールに違反したため、変更を破棄しました。", "", ...guardrailErrors.map((e) => `・${e}`)]);
     process.exitCode = 1;
     return;
   }
@@ -412,7 +560,7 @@ async function main() {
 
   if (!applyResult.ok) {
     log(`dry-run全通し検証が失敗しました（${applyResult.reason}）→ 全戻し済み`);
-    await writeReport(buildReport([`❌ dry-run検証に失敗したため、変更を破棄しました（${applyResult.reason}）。`]));
+    await report([`❌ dry-run検証に失敗したため、変更を破棄しました（${applyResult.reason}）。`]);
     process.exitCode = 1;
     return;
   }
@@ -421,6 +569,7 @@ async function main() {
   const changeSummaryLines = [
     `お気に入り: 事例${favStats.favoriteCaseCount}件・技術${favStats.favoriteTechCount}件を分析`,
     `ごみ箱(弱化)${trashStats.trashedCaseCount}件・ユーザー追加(強化)${userCaseStats.userCaseCount}件も分析材料に反映`,
+    `アイデア評価: いいね${ideaFeedbackStats.likedIdeaCount}件・ゴミ箱${ideaFeedbackStats.trashedIdeaCount}件も分析材料に反映`,
     `変更: レーン/角度${researchCheck.laneChanges}件・Xクエリ${queriesCheck.queryChanges}件・重み${ideaCheck.weightChanges}件`,
     "",
     "【リサーチ計画】" + (pass1.rationale || "(理由の記載なし)"),
@@ -429,18 +578,25 @@ async function main() {
 
   if (DRY_RUN) {
     log("✅ --dry-run: 全ガードレール・dry-run検証を通過。設定ファイルは元に戻しました（コミットしません）");
-    await writeReport(buildReport(["✅ --dry-run 全経路PASS（コミットはしていません）", "", ...changeSummaryLines]));
+    await report(["✅ --dry-run 全経路PASS（コミットはしていません）", "", ...changeSummaryLines]);
     return;
   }
 
-  await writeReport(buildReport(["✅ 分析・検証が完了しました。反映します。", "", ...changeSummaryLines]));
+  await report(["✅ 分析・検証が完了しました。反映します。", "", ...changeSummaryLines]);
   await fs.writeFile(LAST_RUN_PATH, new Date().toISOString());
   log("✅ 完了（commit/push/通知は run-job.mjs 側で実行）");
 }
 
-main()
-  .then(() => process.exit(process.exitCode ?? 0))
-  .catch((e) => {
-    console.error("\n❌ エラー:", e.message);
-    process.exit(1);
-  });
+// smoke-tuneup-angles.mjsからmaybeRefreshIdeaAnglesをimportして検証できるよう、
+// スクリプトとして直接実行された場合のみmain()を起動する（importだけではmain()が
+// 走らないようにするガード。run-job.mjs経由の本番実行(spawnSync(NODE_BIN, [絶対パス, ...]))・
+// `node scripts/biweekly-tuneup.mjs`実行時の挙動は変えない）。
+const isMainModule = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+if (isMainModule) {
+  main()
+    .then(() => process.exit(process.exitCode ?? 0))
+    .catch((e) => {
+      console.error("\n❌ エラー:", e.message);
+      process.exit(1);
+    });
+}

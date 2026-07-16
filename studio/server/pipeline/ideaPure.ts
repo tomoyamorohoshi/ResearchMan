@@ -103,10 +103,85 @@ export function scoreTechCandidates(tech: TechRecord[], keywords: string[], limi
 
 // ── 切り口（angle）選定 ────────────────────────────────────────────
 
+/** お気に入り体現事例1件につき重み+3（既存: 「お気に入り中心」時のみ有効）。 */
+const FAVORITE_EXEMPLAR_WEIGHT = 3;
+// いいね1件につき重み+2（要件: 全モードで有効）。お気に入り事例の重み(+3/件)より弱いシグナル
+// として控えめに加点する（いいねは「アイデア」単位、お気に入りは「事例」単位で意味が異なるため）。
+const IDEA_LIKE_WEIGHT = 2;
+// ゴミ箱1件ごとに重みを半減させる減衰率。
+const IDEA_TRASH_DECAY_BASE = 0.5;
+// 何度ゴミ箱に入れられても重みが0近くまで潰れて二度と選ばれなくなる（多様性喪失）のを防ぐため、
+// 減衰倍率の下限を0.2倍に固定する。
+const IDEA_TRASH_MIN_MULTIPLIER = 0.2;
+
+/** 切り口(pattern=label)ごとの いいね/ゴミ箱 件数。 */
+export interface IdeaSignalCounts {
+  likes: number;
+  trash: number;
+}
+
+/**
+ * 既存アイデア（ideas.json）から、切り口(pattern)ごとの いいね/ゴミ箱 件数を集計する。
+ * pattern が allowedLabels（A系統の切り口ライブラリのlabel集合）に一致しないエントリ
+ * （B系統の種のpattern名等）は無視する。id/pattern欠落・いいね/ゴミ箱いずれでもない
+ * アイデアも同様に無視する（結果Mapに載せない＝selectAngles側で「該当なし」と同じ扱いになる）。
+ */
+export function tallyIdeaSignalsByAngle(
+  existingIdeas: Array<{ id?: string; pattern?: string }>,
+  ideaLikeIds: ReadonlySet<string>,
+  ideaTrashIds: ReadonlySet<string>,
+  allowedLabels: ReadonlySet<string>,
+): Map<string, IdeaSignalCounts> {
+  const result = new Map<string, IdeaSignalCounts>();
+  for (const idea of existingIdeas) {
+    const pattern = idea.pattern;
+    const id = idea.id;
+    if (!pattern || !id || !allowedLabels.has(pattern)) continue;
+    const liked = ideaLikeIds.has(id);
+    const trashed = ideaTrashIds.has(id);
+    if (!liked && !trashed) continue;
+    const current = result.get(pattern) ?? { likes: 0, trash: 0 };
+    if (liked) current.likes += 1;
+    if (trashed) current.trash += 1;
+    result.set(pattern, current);
+  }
+  return result;
+}
+
+/**
+ * 切り口ごとの選定重みを計算する（純関数。selectAnglesの重み部分のみを切り出し、
+ * 決定的な値として単体テストできるようにする）。
+ * 基準重みはfavoriteCaseIds指定時のみ「1+お気に入り体現事例数×3」、それ以外は1
+ * （既存のDESIGN.md §6ロジックを維持）。ここに、ideaSignalsにある切り口については
+ * 「+いいね数×IDEA_LIKE_WEIGHT」を加算した後、「×IDEA_TRASH_DECAY_BASE^ゴミ箱数
+ * （下限IDEA_TRASH_MIN_MULTIPLIER）」を乗じる。ideaSignalsに該当エントリが無い切り口は
+ * 基準重みのまま変化しない（縮退時・未取得時は従来と完全に同一の重みになる）。
+ */
+export function computeAngleWeights(
+  angles: IdeaAngle[],
+  favoriteCaseIds: Set<string> | null,
+  ideaSignals: Map<string, IdeaSignalCounts>,
+): number[] {
+  return angles.map((a) => {
+    let weight = favoriteCaseIds
+      ? 1 + a.exemplarCaseIds.filter((id) => favoriteCaseIds.has(id)).length * FAVORITE_EXEMPLAR_WEIGHT
+      : 1;
+    const signal = ideaSignals.get(a.label);
+    if (signal) {
+      weight += signal.likes * IDEA_LIKE_WEIGHT;
+      weight *= Math.max(IDEA_TRASH_MIN_MULTIPLIER, IDEA_TRASH_DECAY_BASE ** signal.trash);
+    }
+    return weight;
+  });
+}
+
 /**
  * ライブラリからcount個の切り口を選ぶ。お気に入り事例と重なるexemplarCaseIdsが多い切り口ほど
  * 選ばれやすくする（DESIGN.md §6: 「お気に入りで重み付け」）。favoriteCaseIdsがnull
- * （お気に入り未接続・全事例から）の場合は一様ランダム（従来のFisher-Yatesと同一経路）。
+ * （お気に入り未接続・全事例から）の場合は基準重み1（一様）。これに加え、ideaSignals
+ * （アイデアの いいね/ゴミ箱 評価による切り口別の重み補正。computeAngleWeights参照）を
+ * 全モード共通で適用する。ideaSignalsを省略・空Mapで渡した場合は従来と完全に同一の重みになる
+ * （アイデア評価が未接続/取得失敗のときのフォールバック。呼び出し側ideaResearch.ts参照）。
  * count が語彙数を超える場合は不足分を先頭から繰り返して埋める（語彙は15〜25想定・countは最大10
  * のため通常は発生しない防御的分岐）。
  */
@@ -114,14 +189,10 @@ export function selectAngles(
   angles: IdeaAngle[],
   count: number,
   favoriteCaseIds: Set<string> | null,
+  ideaSignals: Map<string, IdeaSignalCounts> = new Map(),
 ): IdeaAngle[] {
   if (angles.length === 0) return [];
-  const weights = favoriteCaseIds
-    ? angles.map((a) => {
-        const hits = a.exemplarCaseIds.filter((id) => favoriteCaseIds.has(id)).length;
-        return 1 + hits * 3;
-      })
-    : angles.map(() => 1);
+  const weights = computeAngleWeights(angles, favoriteCaseIds, ideaSignals);
   const picked = weightedSample(angles, Math.min(count, angles.length), weights);
   if (picked.length >= count) return picked.slice(0, count);
   const filled = [...picked];

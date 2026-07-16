@@ -10,7 +10,7 @@ import { mkdtemp, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
-import { loadFavSyncConfig } from "./ideaFavorites.js";
+import { deriveIdeaSignalEndpoint, loadFavSyncConfig } from "./ideaFavorites.js";
 
 test("loadFavSyncConfig: ファイルが無ければnull", async () => {
   const cfg = await loadFavSyncConfig(path.join(os.tmpdir(), "researchman-studio-test-nonexistent-favsync.json"));
@@ -51,4 +51,28 @@ test("loadFavSyncConfig: endpoint/token両方あれば読み込める", async ()
   } finally {
     await rm(dir, { recursive: true, force: true });
   }
+});
+
+// ── deriveIdeaSignalEndpoint（/api/idea-likes・/api/idea-trash のURL導出） ────
+// scripts/lib/tuneup-stats.mjs の deriveTrashEndpoint と同じ考え方: 末尾が
+// /api/favorites[/]の形にマッチしない場合は導出失敗としてnullを返す（誤ったURLを叩いて
+// 別種のレスポンスを取り違える事故の防止。scripts/は改変禁止のためロジックはここに複製する）。
+test("deriveIdeaSignalEndpoint: /api/favorites → /api/idea-likes", () => {
+  const url = deriveIdeaSignalEndpoint("https://example.com/api/favorites", "idea-likes");
+  assert.equal(url, "https://example.com/api/idea-likes");
+});
+
+test("deriveIdeaSignalEndpoint: /api/favorites → /api/idea-trash", () => {
+  const url = deriveIdeaSignalEndpoint("https://example.com/api/favorites", "idea-trash");
+  assert.equal(url, "https://example.com/api/idea-trash");
+});
+
+test("deriveIdeaSignalEndpoint: 末尾スラッシュも許容する", () => {
+  const url = deriveIdeaSignalEndpoint("https://example.com/api/favorites/", "idea-likes");
+  assert.equal(url, "https://example.com/api/idea-likes/");
+});
+
+test("deriveIdeaSignalEndpoint: /api/favoritesで終わらない非標準URLはnull（導出失敗を明示）", () => {
+  const url = deriveIdeaSignalEndpoint("https://example.com/api/somethingelse", "idea-likes");
+  assert.equal(url, null);
 });

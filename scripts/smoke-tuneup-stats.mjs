@@ -6,7 +6,10 @@ import {
   computeIdeaStructureStats,
   computeTrashStats,
   computeUserCaseStats,
+  computeIdeaFeedbackStats,
   deriveTrashEndpoint,
+  deriveIdeaLikesEndpoint,
+  deriveIdeaTrashEndpoint,
 } from "./lib/tuneup-stats.mjs";
 
 let failures = 0;
@@ -129,6 +132,126 @@ function assert(cond, message) {
   // 明示overrideがあれば非標準URLでも常にoverrideを優先する
   const nonStandardOverridden = deriveTrashEndpoint("https://research-man.vercel.app/api/favorites-legacy", "https://example.com/custom-trash");
   assert(nonStandardOverridden === "https://example.com/custom-trash", "非標準URLでもoverride指定時はそちらを優先する");
+}
+
+// ── computeIdeaFeedbackStats（アイデア評価シグナル: いいね=強化・ゴミ箱=弱化） ──
+{
+  const cases = [
+    { id: "c1", tags: ["Tech/AI", "Form/Product"] },
+    { id: "c2", tags: ["Tech/XR"] },
+  ];
+  const tech = [{ id: "t1", domains: ["CreatorTools"] }];
+  const ideas = [
+    { id: "i1", pattern: "文脈×技術", refs: [{ type: "case", id: "c1" }, { type: "tech", id: "t1" }] },
+    { id: "i2", pattern: "文脈×技術", refs: [{ type: "case", id: "c2" }] },
+    { id: "i3", pattern: "転用", refs: [{ type: "case", id: "c1" }] },
+    { id: "i4", pattern: "転用", refs: [] },
+  ];
+
+  // 基本のパターン/参照先タグ分布
+  {
+    const stats = computeIdeaFeedbackStats({ likedIds: ["i1", "i3"], trashedIds: ["i2"], ideas, cases, tech });
+    assert(stats.likedIdeaCount === 2, `いいね数=2 (got ${stats.likedIdeaCount})`);
+    assert(stats.trashedIdeaCount === 1, `ゴミ箱数=1 (got ${stats.trashedIdeaCount})`);
+    assert(stats.patternLikeCounts["文脈×技術"] === 1, "いいねパターン分布に文脈×技術が1件(i1)");
+    assert(stats.patternLikeCounts["転用"] === 1, "いいねパターン分布に転用が1件(i3)");
+    assert(stats.patternTrashCounts["文脈×技術"] === 1, "ゴミ箱パターン分布に文脈×技術が1件(i2)");
+    // i1・i3ともc1を参照しているため、Tech/AIは2回加算される(i1経由+i3経由)
+    assert(stats.refTagLikeCounts["Tech/AI"] === 2, `いいね参照先タグ分布にTech/AIが2件(i1,i3→c1経由) (got ${stats.refTagLikeCounts["Tech/AI"]})`);
+    assert(stats.refTagLikeCounts["CreatorTools"] === 1, "いいね参照先domain分布にCreatorToolsが1件(i1→t1経由)");
+    assert(stats.refTagTrashCounts["Tech/XR"] === 1, "ゴミ箱参照先タグ分布にTech/XRが1件(i2→c2経由)");
+    assert(stats.scoredIdeaCount === 0, "scoresを持つideaが無ければscoredIdeaCount=0");
+    assert(stats.scoreCorrelations === null, "scoresが無ければscoreCorrelationsはnull");
+  }
+
+  // scoresがある場合の相関（いいねしたideaほどdiscoveryが高い→正の相関になるはず）
+  {
+    const scoredIdeas = [
+      { id: "s1", pattern: "転用", refs: [], scores: { discovery: 9, surprise: 5, conviction: 5 } },
+      { id: "s2", pattern: "転用", refs: [], scores: { discovery: 8, surprise: 5, conviction: 5 } },
+      { id: "s3", pattern: "転用", refs: [], scores: { discovery: 2, surprise: 5, conviction: 5 } },
+      { id: "s4", pattern: "転用", refs: [], scores: { discovery: 1, surprise: 5, conviction: 5 } },
+    ];
+    const stats = computeIdeaFeedbackStats({ likedIds: ["s1", "s2"], trashedIds: ["s3", "s4"], ideas: scoredIdeas, cases: [], tech: [] });
+    assert(stats.scoredIdeaCount === 4, `scoredIdeaCount=4 (got ${stats.scoredIdeaCount})`);
+    assert(stats.scoreCorrelations !== null, "scoresが2件以上あれば相関を計算する");
+    assert(
+      stats.scoreCorrelations.discovery.withLiked > 0.9,
+      `いいね済みほどdiscoveryが高いので強い正の相関になる (got ${stats.scoreCorrelations.discovery.withLiked})`
+    );
+    assert(
+      stats.scoreCorrelations.discovery.withTrashed < -0.9,
+      `ゴミ箱ほどdiscoveryが低いので強い負の相関になる (got ${stats.scoreCorrelations.discovery.withTrashed})`
+    );
+    // surprise/convictionは全件同値(分散0)なので相関は判定不能(null)
+    assert(stats.scoreCorrelations.surprise.withLiked === null, "分散0の次元は相関null(NaN回避)");
+  }
+
+  // scoresが1件しか無い場合は相関計算をしない(nullのまま)
+  {
+    const oneScored = [{ id: "o1", pattern: null, refs: [], scores: { discovery: 5, surprise: 5, conviction: 5 } }];
+    const stats = computeIdeaFeedbackStats({ likedIds: [], trashedIds: [], ideas: oneScored, cases: [], tech: [] });
+    assert(stats.scoreCorrelations === null, "scoresが1件のみなら相関はnull(データ不足)");
+  }
+
+  // scores[dim]に非数値(undefined等)が混じっても、その次元の相関がNaNに汚染されない(修正2の回帰防止)。
+  // 有効な(数値の)ペアが3件残るので、それらだけで相関が計算されるはず(NaNでもnullでもない)。
+  {
+    const mixedIdeas = [
+      { id: "n1", pattern: null, refs: [], scores: { discovery: 9, surprise: 5, conviction: 5 } },
+      { id: "n2", pattern: null, refs: [], scores: { discovery: 8, surprise: 5, conviction: 5 } },
+      { id: "n3", pattern: null, refs: [], scores: { discovery: 2, surprise: 5, conviction: 5 } },
+      { id: "n4", pattern: null, refs: [], scores: { discovery: undefined, surprise: 5, conviction: 5 } }, // 非数値混入
+    ];
+    const stats = computeIdeaFeedbackStats({ likedIds: ["n1", "n2"], trashedIds: ["n3"], ideas: mixedIdeas, cases: [], tech: [] });
+    assert(stats.scoredIdeaCount === 4, `scores持ちideaは4件(値の有効性は問わない) (got ${stats.scoredIdeaCount})`);
+    assert(
+      !Number.isNaN(stats.scoreCorrelations.discovery.withLiked),
+      `discoveryに非数値混入のideaがあっても相関はNaNにならない (got ${stats.scoreCorrelations.discovery.withLiked})`
+    );
+    assert(
+      stats.scoreCorrelations.discovery.withLiked !== null,
+      "有効ペアが3件(n1,n2,n3)残るので相関はnullにならず計算される"
+    );
+  }
+
+  // 非数値混入の結果、有効ペアが2件未満に減った場合はnull(データ不足)のまま(既存のn<2判定を変えない)
+  {
+    const mostlyInvalid = [
+      { id: "p1", pattern: null, refs: [], scores: { discovery: 9, surprise: 5, conviction: 5 } },
+      { id: "p2", pattern: null, refs: [], scores: { discovery: "N/A", surprise: 5, conviction: 5 } },
+      { id: "p3", pattern: null, refs: [], scores: { discovery: undefined, surprise: 5, conviction: 5 } },
+    ];
+    const stats = computeIdeaFeedbackStats({ likedIds: ["p1"], trashedIds: [], ideas: mostlyInvalid, cases: [], tech: [] });
+    assert(
+      stats.scoreCorrelations.discovery.withLiked === null,
+      `discoveryの有効ペアが1件(p1)のみのため相関はnull (got ${stats.scoreCorrelations.discovery.withLiked})`
+    );
+  }
+
+  // 空入力でも例外を投げない
+  {
+    const stats = computeIdeaFeedbackStats({ likedIds: [], trashedIds: [], ideas: [], cases: [], tech: [] });
+    assert(stats.likedIdeaCount === 0 && stats.trashedIdeaCount === 0, "空入力でも0件で例外を投げない");
+  }
+}
+
+// ── deriveIdeaLikesEndpoint / deriveIdeaTrashEndpoint（favoritesエンドポイントからの導出） ──
+{
+  const likes = deriveIdeaLikesEndpoint("https://research-man.vercel.app/api/favorites", null);
+  assert(likes === "https://research-man.vercel.app/api/idea-likes", `favoritesからidea-likesを導出 (got ${likes})`);
+
+  const trash = deriveIdeaTrashEndpoint("https://research-man.vercel.app/api/favorites", null);
+  assert(trash === "https://research-man.vercel.app/api/idea-trash", `favoritesからidea-trashを導出 (got ${trash})`);
+
+  const likesOverride = deriveIdeaLikesEndpoint("https://research-man.vercel.app/api/favorites", "https://example.com/custom-likes");
+  assert(likesOverride === "https://example.com/custom-likes", "idea-likesの明示指定はそちらを優先する");
+
+  const nonStandard = deriveIdeaLikesEndpoint("https://research-man.vercel.app/api/favorites-legacy", null);
+  assert(nonStandard === null, "非標準URLは導出失敗でnullを返す(idea-likes)");
+
+  const nonStandardTrash = deriveIdeaTrashEndpoint("https://research-man.vercel.app/api/favorites-legacy", null);
+  assert(nonStandardTrash === null, "非標準URLは導出失敗でnullを返す(idea-trash)");
 }
 
 if (failures > 0) {

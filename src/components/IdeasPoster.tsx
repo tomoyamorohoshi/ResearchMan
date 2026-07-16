@@ -1,8 +1,13 @@
-import type { CSSProperties } from "react";
+"use client";
+
+import { useMemo, useState, type CSSProperties } from "react";
 import { TIER_REF_WIDTH_PX, type CollageTier } from "@/lib/ideaCollageLayout";
 import { tierLayout } from "@/lib/ideaLayouts";
 import { categoryOf, existingCategories, type Idea } from "@/lib/ideas";
 import IdeaShapeCard from "@/components/IdeaShapeCard";
+import IdeaCardControls from "@/components/IdeaCardControls";
+import { useIdeaLikes } from "@/hooks/useIdeaLikes";
+import { useIdeaTrash } from "@/hooks/useIdeaTrash";
 
 // /ideas ポスターレイアウト（DESIGN: goofy-hatching-mango.md 2026-07-08改訂・事前計算方式）。
 // 旧CSS Grid行詰め(computeColStarts)+widthPct/marginジッタによる近似的な「ニアタッチ」を、
@@ -39,28 +44,65 @@ const TIER_VISIBILITY_CLASS: Record<CollageTier, string> = {
   wide: "hidden lg:block",
 };
 
-export default function IdeasPoster({ ideas, techDomainById }: { ideas: Idea[]; techDomainById: Map<string, string> }) {
+export default function IdeasPoster({
+  ideas,
+  techDomainEntries,
+}: {
+  ideas: Idea[];
+  // Server Component(page.tsx)からClient Componentへ渡すため、Mapではなくシリアライズ
+  // 可能なタプル配列で受け取り、ここでMapへ復元する（[id, domains[0]][]）
+  techDomainEntries: [string, string][];
+}) {
+  const techDomainById = useMemo(() => new Map(techDomainEntries), [techDomainEntries]);
   const legend = existingCategories(ideas, techDomainById);
   const ideaById = new Map(ideas.map((idea) => [idea.id, idea]));
   const categoryByIdeaId = new Map(ideas.map((idea) => [idea.id, categoryOf(idea, techDomainById)]));
 
+  // いいね・ゴミ箱（/ideas 機能追加）。同期機構はcases/tech側と同じcreateSyncedIdSet
+  // ファクトリだが、localStorageキー・APIエンドポイントは独立している（互いに影響しない）
+  const { likes, toggle: toggleLike, mounted: likesMounted } = useIdeaLikes();
+  const { trashed, toggle: toggleTrash, mounted: trashMounted } = useIdeaTrash();
+  const [showTrashOnly, setShowTrashOnly] = useState(false);
+  // 件数表示: hydration前(mounted=false)は0を表示し、ローカルの実際の件数が瞬間的に
+  // 誤表示されるのを防ぐ(GalleryClient.tsxのtrashCountと同じパターン)
+  const trashCount = trashMounted ? trashed.size : 0;
+
   return (
     <div className="max-w-[1600px] mx-auto px-4 sm:px-8 pt-6 pb-16 sm:pt-8 sm:pb-24">
-      {/* カテゴリ凡例: 実在するカテゴリのみ、色チップ+ラベルの1行 */}
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 mb-8 sm:mb-14">
-        {legend.map((cat) => (
-          <span
-            key={cat.key}
-            className="flex items-center gap-1.5 text-[9px] tracking-widest uppercase text-gray-400"
-          >
+      {/* カテゴリ凡例: 実在するカテゴリのみ、色チップ+ラベルの1行。ゴミ箱ビュー切替は
+          GalleryClient.tsxのTrashボタンと同じ見た目・ラベル規約(Trash n)にする */}
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1.5 mb-8 sm:mb-14">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5">
+          {legend.map((cat) => (
             <span
-              className="inline-block w-2 h-2 rounded-full shrink-0"
-              style={{ backgroundColor: cat.fill }}
-              aria-hidden="true"
+              key={cat.key}
+              className="flex items-center gap-1.5 text-[9px] tracking-widest uppercase text-gray-400"
+            >
+              <span
+                className="inline-block w-2 h-2 rounded-full shrink-0"
+                style={{ backgroundColor: cat.fill }}
+                aria-hidden="true"
+              />
+              {cat.label}
+            </span>
+          ))}
+        </div>
+        <button
+          type="button"
+          onClick={() => setShowTrashOnly((v) => !v)}
+          className={`flex items-center gap-1 text-[10px] tracking-[0.2em] uppercase font-bold transition-colors ${
+            showTrashOnly ? "text-red-500" : "text-gray-400 hover:text-gray-900"
+          }`}
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} className="w-3 h-3" aria-hidden="true">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6 7h12M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2m2 0l-.867 12.142A2 2 0 0115.138 21H8.862a2 2 0 01-1.995-1.858L6 7z"
             />
-            {cat.label}
-          </span>
-        ))}
+          </svg>
+          Trash{trashCount > 0 ? ` ${trashCount}` : ""}
+        </button>
       </div>
 
       {TIERS.map((tier) => {
@@ -72,7 +114,13 @@ export default function IdeasPoster({ ideas, techDomainById }: { ideas: Idea[]; 
         // レイアウトを補うのではなく描画からスキップする（計画の明示禁止事項:
         // 「黙って古いレイアウトを出す方が有害」）。鮮度自体の担保はpre-pushフック
         // (scripts/check-idea-layouts-freshness.mjs)が本務として行う
-        const renderableIds = ideas.map((idea) => idea.id).filter((id) => layout.cards[id]);
+        // ゴミ箱行きのideaは通常表示から除外し、ゴミ箱ビュー中はゴミ箱行きのみ表示する
+        // (GalleryClient.tsxのfilteredと同じ分岐)。レイアウトはprecomputed(絶対配置)のため、
+        // 対象を配列から除いても残りのカードの位置はそのまま=詰め直しは発生しない(要件どおり)
+        const renderableIds = ideas
+          .map((idea) => idea.id)
+          .filter((id) => layout.cards[id])
+          .filter((id) => (showTrashOnly ? trashed.has(id) : !trashed.has(id)));
         return (
           <div
             key={tier}
@@ -98,6 +146,7 @@ export default function IdeasPoster({ ideas, techDomainById }: { ideas: Idea[]; 
               return (
                 <div
                   key={id}
+                  data-idea-id={id} // いいね/ゴミ箱のスモークテスト・将来のDOM連携用の識別子
                   // group: 子のSVGへ影(drop-shadow)をgroup-hover:で伝える（矩形box-shadowの
                   // 「下敷き」を避けるため、影自体はIdeaShapeCard側のsvg要素に付与する）。
                   // パズルカーニングは非重なり(距離≥0)を保証するため静止時のz-index分散は不要
@@ -107,12 +156,25 @@ export default function IdeasPoster({ ideas, techDomainById }: { ideas: Idea[]; 
                   style={style}
                 >
                   <IdeaShapeCard idea={idea} category={category} shape={card.shape} scale={card.scale} />
+                  <IdeaCardControls
+                    liked={likesMounted && likes.has(id)}
+                    onToggleLike={() => toggleLike(id)}
+                    trashed={trashMounted && trashed.has(id)}
+                    trashMode={showTrashOnly}
+                    onToggleTrash={() => toggleTrash(id)}
+                  />
                 </div>
               );
             })}
           </div>
         );
       })}
+
+      {showTrashOnly && trashCount === 0 && (
+        <div className="text-center py-32 text-[10px] tracking-[0.3em] uppercase text-gray-400">
+          Trash is empty
+        </div>
+      )}
     </div>
   );
 }

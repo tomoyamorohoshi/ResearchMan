@@ -3,8 +3,11 @@ import { techItems } from "@/lib/tech";
 import IdeasPoster from "@/components/IdeasPoster";
 import TopTabs from "@/components/TopTabs";
 
-// アイデア→カテゴリ導出用のtech.json id→domains[0]マップ（サーバー側で1度だけ構築）
-const techDomainById = new Map(techItems.map((t) => [t.id, t.domains[0]]));
+// アイデア→カテゴリ導出用のtech.json id→domains[0]対応表。
+// IdeasPosterはいいね/ゴミ箱機能(hooks)を持つためClient Componentになった。
+// Server ComponentからClient Componentへは、MapではなくシリアライズOKなタプル配列で渡す
+// （IdeasPoster.tsx側でMapへ復元する）
+const techDomainEntries: [string, string][] = techItems.map((t) => [t.id, t.domains[0]]);
 
 export const metadata = {
   title: "Ideas | ResearchMan",
@@ -38,7 +41,7 @@ export default function IdeasPage() {
         <TopTabs active="ideas" />
       </div>
 
-      <IdeasPoster ideas={sortedIdeas} techDomainById={techDomainById} />
+      <IdeasPoster ideas={sortedIdeas} techDomainEntries={techDomainEntries} />
     </main>
   );
 }
