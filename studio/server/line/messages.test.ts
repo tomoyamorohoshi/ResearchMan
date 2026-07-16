@@ -61,6 +61,7 @@ test("buildFinalConfirmText: idea の内容を含む", () => {
     constraint: "予算少なめ",
     source: "全事例から",
     count: 6,
+    dryRun: false,
   });
   assert.match(text, /【アイデア】/);
   assert.match(text, /お題: 音楽フェス/);

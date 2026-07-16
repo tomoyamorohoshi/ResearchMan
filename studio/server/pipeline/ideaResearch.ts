@@ -2,10 +2,16 @@
  * idea(テーマ駆動アイディエーション) 実パイプライン（DESIGN.md §6・§10 P3）。
  *
  * 切り口選定(data/idea-angles.json) → 検索キーワード抽出 → 関連Case/Techのretrieve
- * （search-cases.mjs＋tech.jsonスコアリング） → 生成(Agent SDK 1パス) → 機械検証
- * （スキーマ/seed書式/pattern語彙/refs実在/重複除外） → 反映(ideas.json+idea-layouts.json
- * ペアコミット) → 監査(root build) → commit/push → verify-deploy(--skip-pages) →
- * notify-line、を caseResearch.ts と同じ品質ガードレール・git運用・ロールバック方式で実行する。
+ * （search-cases.mjs＋tech.jsonスコアリング） → 咀嚼(部分アイデアの書き出し。ヤング『アイデア
+ * のつくり方』②相当) → 生成(Agent SDK 1パス) → 機械検証（スキーマ/seed書式/pattern語彙/
+ * refs実在/重複除外） → 採点→改稿→再検証（ヤング⑤相当。質の批評→育成。改稿は既存の機械検証を
+ * 必ず再通過させる） → 反映(ideas.json+idea-layouts.jsonペアコミット) → 監査(root build) →
+ * commit/push → verify-deploy(--skip-pages) → notify-line、を caseResearch.ts と同じ品質
+ * ガードレール・git運用・ロールバック方式で実行する。咀嚼・採点/改稿はいずれもenhancer
+ * （呼び出し失敗時は安全側にフォールバックし、必須ゲートにはしない）。
+ *
+ * dryRun:true の場合は機械検証・採点/改稿までを実行し、反映(書き込み)以降を一切行わずに
+ * job.ideaPreviewへ記録して終了する（addCase.ts/awardResearch.tsと同じdryRunパターン）。
  *
  * 人の承認は無い（完全自動、DESIGN.md §5）。commit前の失敗は必ずrollbackTouchedFiles()で
  * 作業ツリーを戻す。committed=true以降は一切ロールバックしない
@@ -32,21 +38,39 @@ import { rollbackIfNotCommitted } from "./caseResearch.js";
 import { loadIdeaAngles } from "./ideaAngles.js";
 import { runSearchCases } from "./ideaExternalScripts.js";
 import { fetchFavoriteIds, loadFavSyncConfig } from "./ideaFavorites.js";
-import { buildIdeaWriterPrompt, buildKeywordExtractionPrompt, type AngleWithExemplars } from "./ideaPrompts.js";
+import {
+  buildIdeaChewPrompt,
+  buildIdeaCritiquePrompt,
+  buildIdeaRevisePrompt,
+  buildIdeaWriterPrompt,
+  buildKeywordExtractionPrompt,
+  type AngleWithExemplars,
+  type IdeaCritiqueTarget,
+  type IdeaReviseTarget,
+} from "./ideaPrompts.js";
 import {
   appendCountShortfallWarning,
   buildIdeaCommitMessage,
   buildIdeaLineText,
   endsWithKamo,
+  IDEA_CRITIQUE_DISCARD_THRESHOLD,
+  IDEA_CRITIQUE_REVISE_THRESHOLD,
   isAllowedPattern,
   isDuplicateIdea,
   nextStudioIdeaSeq,
+  parseChewResult,
+  parseCritiqueResult,
+  parseReviseResult,
   resolveIdeaRef,
   scoreTechCandidates,
   selectAngles,
+  sumCritiqueScore,
   type CaseRecord,
+  type ChewedAngle,
+  type IdeaCritique,
   type IdeaEntry,
   type RawIdeaCandidate,
+  type ReviseCandidate,
   type TechRecord,
   type ValidatedIdeaRequest,
 } from "./ideaPure.js";
@@ -102,8 +126,73 @@ async function fail(
   await notifyLine(["--result", "error", "--label", `Studio: ${theme}`]);
 }
 
+/**
+ * 批評フェーズ（ヤング⑤相当）のLLM呼び出し1回分を実行する。初回採点・改稿後の再採点の
+ * 両方から共有して使う。呼び出し失敗・JSON解析失敗はenhancer方針（タスク指示の咀嚼と
+ * 同じ思想）で「無採点のまま元の案を通す」ため、例外は投げず空Mapを返す
+ * （costUsdは呼び出し元がcostUsd/budget.add()へ必ず加算する）。
+ */
+async function runCritiqueCall(
+  entries: IdeaCritiqueTarget[],
+): Promise<{ critiques: Map<string, IdeaCritique>; costUsd: number }> {
+  let costUsd = 0;
+  const critiques = new Map<string, IdeaCritique>();
+  try {
+    const result = await runPlainQuery(buildIdeaCritiquePrompt(entries), "sonnet");
+    costUsd = result.costUsd;
+    if (result.ok) {
+      const parsed = parseCritiqueResult(result.text);
+      if (parsed) {
+        for (const c of parsed) critiques.set(c.id, c);
+      } else {
+        console.warn("[studio] idea critique: JSON解析に失敗。無採点のまま元の案を通します");
+      }
+    } else {
+      console.warn("[studio] idea critique failed, passing through unscored:", result.error);
+    }
+  } catch (err) {
+    console.warn("[studio] idea critique unexpected error, passing through unscored:", err);
+  }
+  return { critiques, costUsd };
+}
+
+/**
+ * 改稿対象をまとめて1回のLLM呼び出しで改稿する。呼び出し失敗・JSON解析失敗は空Mapを返す
+ * （呼び出し元は「改稿できなかった＝破棄」として扱う。要判断リスト参照）。
+ */
+async function runReviseCall(
+  items: IdeaReviseTarget[],
+  theme: string,
+  constraint: string,
+  caseCandidates: CaseRecord[],
+  techCandidates: TechRecord[],
+): Promise<{ revised: Map<string, ReviseCandidate>; costUsd: number }> {
+  let costUsd = 0;
+  const revised = new Map<string, ReviseCandidate>();
+  try {
+    const result = await runPlainQuery(
+      buildIdeaRevisePrompt({ theme, constraint, items, caseCandidates, techCandidates }),
+      "sonnet",
+    );
+    costUsd = result.costUsd;
+    if (result.ok) {
+      const parsed = parseReviseResult(result.text);
+      if (parsed) {
+        for (const c of parsed) revised.set(c.id, c);
+      } else {
+        console.warn("[studio] idea revise: JSON解析に失敗。改稿できなかった案として扱います");
+      }
+    } else {
+      console.warn("[studio] idea revise failed:", result.error);
+    }
+  } catch (err) {
+    console.warn("[studio] idea revise unexpected error:", err);
+  }
+  return { revised, costUsd };
+}
+
 export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaRequest): Promise<void> {
-  const { theme, constraint, source, count } = req;
+  const { theme, constraint, source, count, dryRun } = req;
   let costUsd = 0;
   const budget = createJobBudgetTracker();
 
@@ -184,9 +273,6 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
       ...techCandidates.map((t) => t.id),
       ...selectedAngles.flatMap((a) => a.exemplarCaseIds),
     ]);
-
-    // ── 5. 生成（Agent SDK 1パス・最大3回リトライ） ──────────────
-    await setProgress(jobId, "アイデア生成中");
     const angleInputs: AngleWithExemplars[] = selectedAngles.map((angle) => ({
       angle,
       exemplars: angle.exemplarCaseIds
@@ -194,7 +280,39 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
         .filter((c): c is CaseRecord => !!c)
         .slice(0, 3),
     }));
-    const writerPrompt = buildIdeaWriterPrompt({ theme, constraint, angles: angleInputs, caseCandidates, techCandidates });
+
+    // ── 5. 咀嚼（ヤング②相当。生成前に素材を要素分解し部分アイデアを書き出す） ──────
+    // enhancerでありゲートではない: 呼び出し失敗・JSON解析失敗は空配列にフォールバックし、
+    // 従来通り直接生成へ進む（タスク指示）。costUsdはok判定に関わらず必ず加算する
+    // （独立レビュー指摘#3のパターンをここでも踏襲）。
+    await setProgress(jobId, "素材を咀嚼中");
+    let chewedAngles: ChewedAngle[] = [];
+    let chewCostUsd = 0;
+    try {
+      const chewResult = await runPlainQuery(
+        buildIdeaChewPrompt({ theme, constraint, angles: angleInputs, caseCandidates, techCandidates }),
+        "sonnet",
+      );
+      chewCostUsd = chewResult.costUsd;
+      if (chewResult.ok) {
+        const parsed = parseChewResult(chewResult.text);
+        if (parsed) {
+          chewedAngles = parsed;
+        } else {
+          console.warn("[studio] idea chew: JSON解析に失敗。空配列にフォールバックします");
+        }
+      } else {
+        console.warn("[studio] idea chew failed, falling back to empty:", chewResult.error);
+      }
+    } catch (err) {
+      console.warn("[studio] idea chew unexpected error, falling back to empty:", err);
+    }
+    costUsd += chewCostUsd;
+    budget.add(chewCostUsd);
+
+    // ── 6. 生成（Agent SDK 1パス・最大3回リトライ） ──────────────
+    await setProgress(jobId, "アイデア生成中");
+    const writerPrompt = buildIdeaWriterPrompt({ theme, constraint, angles: angleInputs, caseCandidates, techCandidates, chewedAngles });
 
     let rawIdeas: unknown[] | null = null;
     let genError = "";
@@ -220,13 +338,15 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
       throw new Error(`アイデア生成に${MAX_GEN_ATTEMPTS}回失敗しました: ${genError}`);
     }
 
-    // ── 6. 機械検証・エントリ組み立て ────────────────────────────
+    // ── 7. 機械検証・エントリ組み立て ────────────────────────────
     await setProgress(jobId, "生成結果を検証中");
     const dateStr = jstDateString();
     let seq = nextStudioIdeaSeq(existingIdeas, dateStr);
-    const newEntries: IdeaEntry[] = [];
+    const candidateEntries: IdeaEntry[] = [];
     // 重複判定は既存ideas.json + 今回すでに採用した分の両方に対して行う（今回内の自己重複も除外）
     const workingExisting: Array<{ title?: string; seed?: string }> = [...existingIdeas];
+    // 要件3: rationale欠落は生成を捨てる理由にせず、warning扱いで空文字を保存する。
+    let rationaleMissingCount = 0;
 
     for (const raw of rawIdeas) {
       if (!raw || typeof raw !== "object") continue;
@@ -242,6 +362,8 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
       const refs = refsRaw
         .map((r) => resolveIdeaRef(r, allowedRefIds, caseById, techById))
         .filter((r): r is NonNullable<typeof r> => !!r);
+      const rationale = typeof rec.rationale === "string" ? rec.rationale.trim() : "";
+      if (!rationale) rationaleMissingCount++;
 
       seq++;
       const entry: IdeaEntry = {
@@ -251,13 +373,149 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
         pattern: rec.pattern as string,
         seed,
         refs,
+        rationale,
+        // 採点フェーズ（次段）で上書きされる暫定値。採点呼び出し自体が失敗した場合は
+        // enhancer方針によりゼロのまま無採点で通す。
+        scores: { discovery: 0, surprise: 0, conviction: 0 },
       };
-      newEntries.push(entry);
+      candidateEntries.push(entry);
       workingExisting.push(entry);
     }
 
-    if (newEntries.length === 0) {
+    if (candidateEntries.length === 0) {
       throw new Error("検証を通過したアイデアが1件もありませんでした（形式不正または既存との重複）");
+    }
+    if (rationaleMissingCount > 0) {
+      const rationaleWarning = `${rationaleMissingCount}件でrationale（言語化）が欠落していました`;
+      warningMsg = warningMsg ? `${warningMsg} / ${rationaleWarning}` : rationaleWarning;
+    }
+
+    // ── 8. 採点→改稿→再検証（ヤング⑤相当。質の批評→育成） ──────────────
+    await setProgress(jobId, "批評・改稿中");
+    const critiqueTargetOf = (e: IdeaEntry): IdeaCritiqueTarget => ({
+      id: e.id,
+      title: e.title,
+      pattern: e.pattern,
+      seed: e.seed,
+      rationale: e.rationale,
+    });
+
+    const initialCritique = await runCritiqueCall(candidateEntries.map(critiqueTargetOf));
+    costUsd += initialCritique.costUsd;
+    budget.add(initialCritique.costUsd);
+
+    const kept: IdeaEntry[] = [];
+    const toRevise: IdeaEntry[] = [];
+    for (const entry of candidateEntries) {
+      const c = initialCritique.critiques.get(entry.id);
+      if (!c) {
+        // 採点呼び出し失敗、またはこの案だけ結果が欠落 → enhancer方針により無採点のまま通す
+        kept.push(entry);
+        continue;
+      }
+      entry.scores = { discovery: c.discovery, surprise: c.surprise, conviction: c.conviction };
+      if (sumCritiqueScore(c) < IDEA_CRITIQUE_REVISE_THRESHOLD) {
+        toRevise.push(entry);
+      } else {
+        kept.push(entry);
+      }
+    }
+
+    let finalEntries: IdeaEntry[] = [...kept];
+    // dryRun向けの批評・改稿の記録（要件5・ideaPreview.critique）。
+    const critiqueRecord: Record<string, unknown> = {
+      initial: [...initialCritique.critiques.values()],
+      revisedIds: [] as string[],
+      discardedIds: [] as string[],
+      rescored: [] as IdeaCritique[],
+    };
+
+    if (toRevise.length > 0) {
+      const reviseItems: IdeaReviseTarget[] = toRevise.map((e) => ({
+        id: e.id,
+        pattern: e.pattern,
+        title: e.title,
+        seed: e.seed,
+        rationale: e.rationale,
+        note: initialCritique.critiques.get(e.id)?.note ?? "",
+      }));
+      const reviseResult = await runReviseCall(reviseItems, theme, constraint, caseCandidates, techCandidates);
+      costUsd += reviseResult.costUsd;
+      budget.add(reviseResult.costUsd);
+
+      const revisedByEntryId = new Map<string, IdeaEntry>();
+      for (const original of toRevise) {
+        const candidate = reviseResult.revised.get(original.id);
+        if (!candidate) {
+          // 改稿呼び出し失敗、またはこの案だけ結果が欠落 → 改稿できなかったので破棄
+          // （要判断: 明記なきフォールバックを安全側=破棄とした）
+          (critiqueRecord.discardedIds as string[]).push(original.id);
+          console.warn(`[studio] idea revise: ${original.id} の改稿結果が得られませんでした。破棄します`);
+          continue;
+        }
+        const seed = candidate.seed.trim();
+        // 改稿後も既存の機械検証を必ず再通過させる（要件2）。pattern は改稿プロンプト側で
+        // 変更させていないため常にtrueになるはずだが、防御的にそのまま検証する。
+        if (!seed || !endsWithKamo(seed) || !isAllowedPattern(original.pattern, allowedLabels)) {
+          (critiqueRecord.discardedIds as string[]).push(original.id);
+          console.warn(`[studio] idea revise: ${original.id} の改稿結果が機械検証を通過しませんでした。破棄します`);
+          continue;
+        }
+        const refsRaw = Array.isArray(candidate.refs) ? candidate.refs : [];
+        const refs = refsRaw
+          .map((r) => resolveIdeaRef(r, allowedRefIds, caseById, techById))
+          .filter((r): r is NonNullable<typeof r> => !!r);
+        const title = candidate.title.trim() || original.title;
+        const dupCheckList = [
+          ...existingIdeas,
+          ...finalEntries,
+          ...toRevise.filter((t) => t.id !== original.id),
+        ];
+        if (isDuplicateIdea({ title, seed }, dupCheckList)) {
+          (critiqueRecord.discardedIds as string[]).push(original.id);
+          console.warn(`[studio] idea revise: ${original.id} の改稿結果が既存/他案と重複しました。破棄します`);
+          continue;
+        }
+        revisedByEntryId.set(original.id, {
+          ...original,
+          title,
+          seed,
+          rationale: candidate.rationale.trim() || original.rationale,
+          refs,
+        });
+      }
+
+      if (revisedByEntryId.size > 0) {
+        const rescoreCritique = await runCritiqueCall([...revisedByEntryId.values()].map(critiqueTargetOf));
+        costUsd += rescoreCritique.costUsd;
+        budget.add(rescoreCritique.costUsd);
+
+        for (const [id, revisedEntry] of revisedByEntryId) {
+          const c = rescoreCritique.critiques.get(id);
+          if (!c) {
+            // 再採点呼び出し失敗、またはこの案だけ結果が欠落 → enhancer方針により
+            // 改稿前のスコアのまま通す（改稿自体は既に機械検証を再通過済み）
+            finalEntries.push(revisedEntry);
+            (critiqueRecord.revisedIds as string[]).push(id);
+            continue;
+          }
+          const sum = sumCritiqueScore(c);
+          if (sum < IDEA_CRITIQUE_DISCARD_THRESHOLD) {
+            (critiqueRecord.discardedIds as string[]).push(id);
+            console.warn(`[studio] idea revise: ${id} は改稿後も採点${sum}点で破棄しました`);
+            continue;
+          }
+          revisedEntry.scores = { discovery: c.discovery, surprise: c.surprise, conviction: c.conviction };
+          finalEntries.push(revisedEntry);
+          (critiqueRecord.revisedIds as string[]).push(id);
+          (critiqueRecord.rescored as IdeaCritique[]).push(c);
+        }
+      }
+    }
+
+    const newEntries = finalEntries;
+    if (newEntries.length === 0) {
+      throw new Error("採点・改稿を経て採用可能なアイデアが1件もありませんでした");
     }
     warningMsg = appendCountShortfallWarning(newEntries.length, count, warningMsg);
 
@@ -271,7 +529,23 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
       refs: e.refs.map((r): IdeaRefChip => ({ type: r.type, label: r.title })),
     }));
 
-    // ── 7. 反映（ideas.json + idea-layouts.json ペア） ──────────
+    // ── 9. dryRun: ここで打ち切りE2E検証用にideaPreviewへ記録する（要件5。
+    //    addCase.tsのdryRunと同じ配置パターン＝反映(書き込み)より前で終了する） ──────
+    if (dryRun) {
+      await updateJob(jobId, {
+        status: "done",
+        progress: undefined,
+        cost: costUsd,
+        ideaPreview: {
+          entries: newEntries as unknown as Array<Record<string, unknown>>,
+          chewedAngles: chewedAngles as unknown as Array<Record<string, unknown>>,
+          critique: critiqueRecord,
+        },
+      });
+      return;
+    }
+
+    // ── 10. 反映（ideas.json + idea-layouts.json ペア） ──────────
     await setProgress(jobId, "反映中（データ書き込み）");
     const updatedIdeas = [...existingIdeas, ...newEntries];
     await writeJsonAtomic(IDEAS_JSON_PATH, updatedIdeas);
@@ -287,7 +561,7 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
     }
     trackedTouched.push("data/idea-layouts.json");
 
-    // ── 8. 監査（root next build。ideas.json破損が/ideasページを壊さないことの最終確認） ──
+    // ── 11. 監査（root next build。ideas.json破損が/ideasページを壊さないことの最終確認） ──
     await setProgress(jobId, "品質監査中（build）");
     const buildResult = await runBuild(ROOT);
     if (!buildResult.ok) {
@@ -298,7 +572,7 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
       throw new Error(`品質監査(build)に失敗しました。反映を中止しロールバックしました。\n${tail}`);
     }
 
-    // ── 9. commit/push ────────────────────────────────────────
+    // ── 12. commit/push ────────────────────────────────────────
     await setProgress(jobId, "反映中（commit/push）");
     const addResult = await gitAdd(ROOT, trackedTouched);
     if (!addResult.ok) {
@@ -327,7 +601,7 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
       return;
     }
 
-    // ── 10. verify-deploy / notify-line ──────────────────────
+    // ── 13. verify-deploy / notify-line ──────────────────────
     await setProgress(jobId, "本番反映を確認中");
     // --skip-pages: verify-deploy.mjsの既定はos.tmpdir()/researchman-last-add.json（Case Study用
     // サマリー）を読んで新規ページを検証するため、ideaの反映確認でそれを読むと誤検証になる

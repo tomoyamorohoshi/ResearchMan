@@ -314,7 +314,7 @@ test("final_confirm: y → execute（idea）", () => {
   assert.equal(outcome.kind, "execute");
   if (outcome.kind === "execute") {
     assert.equal(outcome.tab, "idea");
-    assert.deepEqual(outcome.request, { theme: "音楽フェス", constraint: "予算少なめ", source: "全事例から", count: 6 });
+    assert.deepEqual(outcome.request, { theme: "音楽フェス", constraint: "予算少なめ", source: "全事例から", count: 6, dryRun: false });
   }
 });
 
@@ -499,7 +499,7 @@ test("pendingFromStructured + renderFinalConfirm: research構造化結果をfina
 });
 
 test("pendingFromStructured + renderFinalConfirm: idea構造化結果をfinal_confirm表示に変換できる", () => {
-  const p = pendingFromStructured(USER, "idea", { theme: "音楽フェス", constraint: "予算少なめ", source: "全事例から", count: 6 }, NOW);
+  const p = pendingFromStructured(USER, "idea", { theme: "音楽フェス", constraint: "予算少なめ", source: "全事例から", count: 6, dryRun: false }, NOW);
   assert.equal(p.state, "final_confirm");
   assert.equal(p.kind, "idea");
   assert.equal(p.refs, "予算少なめ");

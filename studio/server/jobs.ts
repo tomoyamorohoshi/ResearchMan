@@ -106,6 +106,15 @@ export interface Job {
     officialSourceUrl: string;
     winners: Array<Record<string, unknown>>;
   };
+  /** tab="idea" かつ dryRun:true の場合のみ設定。機械検証・咀嚼・採点/改稿まで完了した
+   * 生成結果一式（ideas.json書き込み・commit前。ideaResearch.ts参照。E2E検証用）。
+   * entries には scores/rationale/refs を含む最終確定エントリ、chewedAngles には咀嚼の
+   * 部分アイデア、critique には採点・改稿の記録（初回採点・改稿/破棄id）を入れる。 */
+  ideaPreview?: {
+    entries: Array<Record<string, unknown>>;
+    chewedAngles: Array<Record<string, unknown>>;
+    critique: Record<string, unknown>;
+  };
   at: string;
 }
 
