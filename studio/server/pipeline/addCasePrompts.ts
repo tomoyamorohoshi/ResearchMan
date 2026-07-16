@@ -7,23 +7,76 @@
  * （Domain/Type。data/tech-tag-vocabulary.json）はtechPrompts.ts::buildTechCollectorPromptと
  * 同じ「ハードコードで列挙する」流儀に合わせる（実際の値検証はaddCasePure.ts経由で
  * techPure.ts::filterValidDomains等が担う。ここでの列挙はAgentの出力精度を上げるためのもの）。
+ *
+ * tweetMedia（要件1b）: X投稿URLは本文取得が困難なことがあるため、addCase.ts側で
+ * xMedia.ts::fetchTweetMedia により機械的に本文・メディア（画像/動画サムネのローカルファイル）を
+ * 先取りできた場合、ここでその情報をAgentへ埋め込み、既存のxNote（WebFetch/WebSearchでの
+ * 本文再取得指示）を「機械取得済みの本文を信頼してよい」旨の指示に差し替える。
+ * 取得できなかった場合（tweetMedia未指定）は既存のxNoteロジックを一切変更しない。
  */
+export interface TweetMediaPromptInput {
+  /** 機械取得済みの投稿本文。 */
+  text: string;
+  /** 投稿者名（例 "氏名 (@screen_name)"）。 */
+  author: string;
+  /** 投稿日時（ISO文字列等、取得元の生の値）。 */
+  createdAt: string;
+  /** ダウンロード済み画像/動画サムネのローカル絶対パス一覧（Readツールで開ける）。空配列なら画像/動画なし。 */
+  mediaPaths: string[];
+}
+
 export interface CaseAdderPromptInput {
   url: string;
   /** URL以外のユーザーからの補足テキスト（視点・メモ）。空文字なら省略。 */
   context: string;
   /** x.com/twitter.comのURLか。trueなら本文取得困難＋一次ソース検索フォールバックの
-   * 指示を追加する（DESIGN要件6）。 */
+   * 指示を追加する（DESIGN要件6）。tweetMedia指定時はこのフラグに関わらずtweetMedia側の
+   * 指示が優先される。 */
   isXLink: boolean;
+  /** xMedia.ts::fetchTweetMediaで機械取得済みのX投稿本文・メディア（要件1b）。
+   * 未指定/nullなら既存のxNoteロジックを変更しない。 */
+  tweetMedia?: TweetMediaPromptInput | null;
 }
 
-export function buildCaseAdderPrompt({ url, context, isXLink }: CaseAdderPromptInput): string {
+/**
+ * tweetMedia指定時のxNote差し替え文言（要件1b）。機械取得済み本文を信頼してよい旨、
+ * 画像がある場合はReadツールで実際に見て具体的に記述する旨、確定情報は必ずWeb検索で
+ * 裏取りする旨、特定不能時の理由文言（要件3）を指示する。
+ */
+function buildTweetMediaNote(tweetMedia: TweetMediaPromptInput): string {
+  const lines = [
+    "\n\n## 注意: このURLはX(旧Twitter)の投稿です（本文・メディアは機械取得済み）",
+    "以下の投稿本文は機械的に取得済みのため、そのまま信頼してよい内容です（WebFetchでの本文再取得は不要）。",
+    `投稿者: ${tweetMedia.author}`,
+    `投稿日時: ${tweetMedia.createdAt}`,
+    `本文:\n${tweetMedia.text}`,
+  ];
+  if (tweetMedia.mediaPaths.length > 0) {
+    lines.push(
+      "この投稿には画像/動画が添付されています。以下のファイルパスをReadツールで実際に見て、" +
+        "写っているもの・ブランド・プロダクト・演出を具体的に記述した上で、本文と合わせて事例/技術を特定してください。",
+    );
+    for (const p of tweetMedia.mediaPaths) {
+      lines.push(`- ${p}`);
+    }
+  }
+  lines.push(
+    "受賞事実・企業名等の確定情報は、画像から読み取った内容や本文の自己申告だけで断定せず、必ずWeb検索で裏取りしてください。" +
+      "それでも内容を特定できない場合は contentKind:\"neither\" とし、reasonに「画像・動画の解析でも内容を特定できなかった」" +
+      "という趣旨の具体的理由を書いてください。",
+  );
+  return lines.join("\n");
+}
+
+export function buildCaseAdderPrompt({ url, context, isXLink, tweetMedia }: CaseAdderPromptInput): string {
   const contextNote = context ? `\n\n## ユーザーからの補足（視点・メモ）\n${context}` : "";
-  const xNote = isXLink
-    ? "\n\n## 注意: このURLはX(旧Twitter)の投稿です\n投稿本文の取得を試みてください。内容が薄い/取得できない場合は、投稿内容や" +
-      "タイトル・キーワードでWebSearchし、同じ内容を報じる一次ソース（公式サイト・GitHub・プレスリリース・報道記事）を探して" +
-      "代わりに使ってください。"
-    : "";
+  const xNote = tweetMedia
+    ? buildTweetMediaNote(tweetMedia)
+    : isXLink
+      ? "\n\n## 注意: このURLはX(旧Twitter)の投稿です\n投稿本文の取得を試みてください。内容が薄い/取得できない場合は、投稿内容や" +
+        "タイトル・キーワードでWebSearchし、同じ内容を報じる一次ソース（公式サイト・GitHub・プレスリリース・報道記事）を探して" +
+        "代わりに使ってください。"
+      : "";
   return `LINEで送られた以下のURLの内容を判定し、情報を抽出してください。
 
 ## URL

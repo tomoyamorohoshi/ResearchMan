@@ -28,6 +28,18 @@
  *   スキップし、生成エントリと検証結果だけをjob.addCasePreviewへ記録する
  *   （auto-research-cc.mjs --dry-run と同じ「サムネイルは実際に取得を検証するが最後に
  *   掃除する」慣例に合わせる）
+ *
+ * X投稿の機械取得（要件1）: isXLink(url)がtrueの場合、case-adder呼び出し前にxMedia.ts経由で
+ * 本文・メディアの機械取得を試みる（syndication→fxtwitterの多重化）。取得できればダウンロード
+ * 済みメディアのローカルパスとともにbuildCaseAdderPromptへtweetMediaとして渡し、取得できなければ
+ * tweetMediaを渡さず完全に従来どおりのフロー（case-adder自身のWebFetch/WebSearch）にフォール
+ * バックする。ダウンロード先の一時ディレクトリ(xMediaTempDir)は、ジョブの成功・失敗・dryRunの
+ * どの終了経路でもfinallyで確実に掃除する。
+ *
+ * 自動お気に入り（要件2）: case/tech問わず、push成功→verify-deploy後の成功通知の直前に
+ * POST /api/favoritesで追加エントリを自動的にお気に入り登録する（dryRunは既に途中でreturn
+ * するため対象外）。登録の成否に関わらずジョブ自体は成功のまま完了させる（autoFavorite.ts::
+ * postFavoriteは例外を投げない）。
  */
 import { readFile, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
@@ -51,7 +63,9 @@ import {
 import { loadAgentDefinition } from "./agentLoader.js";
 import { updateJob, type ResultCard } from "../jobs.js";
 import { buildAwardVerifierPrompt, buildCaseWriterPrompt, buildLinkCheckerPrompt } from "./prompts.js";
-import { buildCaseAdderPrompt } from "./addCasePrompts.js";
+import { buildCaseAdderPrompt, type TweetMediaPromptInput } from "./addCasePrompts.js";
+import { postFavorite } from "./autoFavorite.js";
+import { buildXMediaTempDir, cleanupXMediaDir, downloadTweetMedia, fetchTweetMedia } from "./xMedia.js";
 import {
   buildAddCaseCommitMessage,
   buildAddCaseEntry,
@@ -183,6 +197,9 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
   // "public/thumbnails/<id>.jpg"（case）または "public/thumbnails/tech/<id>.jpg"（tech）。
   // ROOT基準の相対パス。dryRun時の掃除・commit前ロールバックの両方で使う。
   let thumbnailRelPath = "";
+  // X投稿メディアのダウンロード先一時ディレクトリ（作成したときだけ設定する）。
+  // ジョブの成功・失敗・dryRunのどの終了経路でもfinallyで確実に掃除する（要件1d）。
+  let xMediaTempDir: string | null = null;
 
   try {
     await setProgress(jobId, "既存データ読み込み中");
@@ -199,12 +216,37 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
 
     // ── 1. URL取得・内容抽出（case-adder。contentKindでcase/tech/neitherを判定） ──
     await setProgress(jobId, "URL取得・内容抽出中");
+    const urlIsXLink = isXLink(url);
+
+    // X投稿の機械取得（要件1）。取得できなければtweetMediaInputはnullのまま
+    // ＝完全に従来どおりのフロー（case-adder自身のWebFetch/WebSearch）にフォールバックする。
+    // 取得処理自体（ネットワークI/O）で予期しない例外が起きても、機能追加が本体パイプラインの
+    // 失敗要因にならないようここで握りつぶす。
+    let tweetMediaInput: TweetMediaPromptInput | null = null;
+    if (urlIsXLink) {
+      try {
+        const media = await fetchTweetMedia(url);
+        if (media) {
+          const hasMedia = media.photoUrls.length > 0 || media.videoThumbnailUrls.length > 0;
+          let mediaPaths: string[] = [];
+          if (hasMedia) {
+            const dir = buildXMediaTempDir(jobId);
+            xMediaTempDir = dir; // ここでdownloadTweetMedia内にディレクトリが作成される
+            mediaPaths = await downloadTweetMedia(dir, media.photoUrls, media.videoThumbnailUrls);
+          }
+          tweetMediaInput = { text: media.text, author: media.author, createdAt: media.createdAt, mediaPaths };
+        }
+      } catch (e) {
+        console.warn("[studio][add-case] X投稿の機械取得に失敗しました（従来フローにフォールバック）:", e);
+      }
+    }
+
     const adderDef = loadAgentDefinition(AGENTS_DIR, "case-adder");
     const adderResult = await runAgentQuery(
       ROOT,
       "case-adder",
       adderDef,
-      buildCaseAdderPrompt({ url, context, isXLink: isXLink(url) }),
+      buildCaseAdderPrompt({ url, context, isXLink: urlIsXLink, tweetMedia: tweetMediaInput }),
     );
     costUsd += adderResult.costUsd;
     budget.add(adderResult.costUsd);
@@ -497,9 +539,14 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
           cost: costUsd,
         });
       }
+      // ── 11. 自動お気に入り（要件2） ────────────────────────────────
+      // 登録の成否に関わらずジョブは成功のまま完了させる（postFavoriteは例外を投げない）。
+      const favoriteResult = await postFavorite(SITE, entry.id);
+      const favoriteNote = favoriteResult === "ok" ? "♥お気に入りに登録" : undefined;
+
       // 反映確認が時間切れでも実際にはpush済み（=本番へ向かっている）ため、成功として通知する
       // （caseResearch.tsのunverified通知文言と同じ考え方。要件3: 成功時は種別+タイトル+サイトURL）。
-      await notifyLineIfPossible(lineUserId, buildAddCaseSuccessText("case", entry.title, caseUrl));
+      await notifyLineIfPossible(lineUserId, buildAddCaseSuccessText("case", entry.title, caseUrl, favoriteNote));
     } else {
       determinedKind = "tech";
       // contentKind === "tech"（要件2: Technology(tech.json)への振り分け）。
@@ -744,10 +791,17 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
           cost: costUsd,
         });
       }
+      // ── 9. 自動お気に入り（要件2） ─────────────────────────────────
+      // 登録の成否に関わらずジョブは成功のまま完了させる（postFavoriteは例外を投げない）。
+      const techFavoriteResult = await postFavorite(SITE, techEntry.id);
+      const techFavoriteNote = techFavoriteResult === "ok" ? "♥お気に入りに登録" : undefined;
+
       // 要件2: 一次ソース未発見のままpostリンク（送信URL）で縮退登録した場合、その旨をLINE成功
       // 文言に明記する（ユーザーが「本当に一次ソース確認済みなのか」誤解しないように）。
+      // 自動お気に入りのnoteと両方存在する場合は改行で連結して1つの文字列にまとめる。
       const successNote = primarySourceFound ? undefined : "※一次ソース未発見のため投稿リンクで登録";
-      await notifyLineIfPossible(lineUserId, buildAddCaseSuccessText("tech", techEntry.title, techUrl, successNote));
+      const combinedNote = [successNote, techFavoriteNote].filter((s): s is string => !!s).join("\n") || undefined;
+      await notifyLineIfPossible(lineUserId, buildAddCaseSuccessText("tech", techEntry.title, techUrl, combinedNote));
     }
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
@@ -782,6 +836,7 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
     }
   } finally {
     await updateJob(jobId, { phaseDurationsMs: finishJob(jobId) }).catch(() => {});
+    if (xMediaTempDir) await cleanupXMediaDir(xMediaTempDir).catch(() => {});
     if (ownsLock) lock.release();
   }
 }
