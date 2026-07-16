@@ -18,6 +18,12 @@ export const MAX_ITEMS = 2000;
 // cases.json/tech.jsonのid実例（toId()由来）は英小文字・数字・ハイフン区切りのみ
 export const FAVORITE_ID_PATTERN = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 
+// tsに許容する未来方向のクロックスキュー。正当なクライアントはDate.now()を送るため
+// スキューは数秒〜分オーダーで十分。この上限が無いと、無認証POST(所与の設計)で
+// ts:1e308のような巨大値を送りつけて特定idを恒久的に固定でき、LWWマージ(84行目)により
+// 所有者が実epoch-msで操作しても二度と上書きできず復旧不能になる（本バグの根本原因）
+export const MAX_TS_SKEW_MS = 5 * 60 * 1000; // 5分
+
 export type FavoriteEntry = { fav: boolean; ts: number };
 export type FavoritesItems = Record<string, FavoriteEntry>;
 export type FavoritesData = { version: 1; items: FavoritesItems };
@@ -63,7 +69,12 @@ export function validateIncomingItems(body: unknown): ValidationResult {
     if (typeof fav !== "boolean") {
       return { ok: false, error: `invalid fav for id: ${id}` };
     }
-    if (typeof ts !== "number" || !Number.isFinite(ts) || ts < 0) {
+    if (
+      typeof ts !== "number" ||
+      !Number.isFinite(ts) ||
+      ts < 0 ||
+      ts > Date.now() + MAX_TS_SKEW_MS
+    ) {
       return { ok: false, error: `invalid ts for id: ${id}` };
     }
     result[id] = { fav, ts };

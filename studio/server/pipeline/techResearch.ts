@@ -20,6 +20,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { writeJsonAtomic } from "../../../scripts/lib/ideas-io.mjs";
 import {
   gitAdd,
   gitCommit,
@@ -360,7 +361,7 @@ export async function runTechResearchPipeline(
       buildTechEntry(candidate, thumbnail, SOURCE_LABEL),
     );
     const updatedTech = [...finalEntries, ...existingTechFull];
-    await writeFile(TECH_PATH, JSON.stringify(updatedTech, null, 2));
+    await writeJsonAtomic(TECH_PATH, updatedTech);
     trackedTouched.push("data/tech.json");
 
     resultCards = finalEntries.map((t) => ({

@@ -10,7 +10,7 @@
  */
 import assert from "node:assert/strict";
 import test from "node:test";
-import { rollbackIfNotCommitted, terminalStatus } from "./caseResearch.js";
+import { buildPushFailPatch, rollbackIfNotCommitted, terminalStatus } from "./caseResearch.js";
 
 test("rollbackIfNotCommitted: committed=trueならrollbackを一切呼ばない", async () => {
   let called = false;
@@ -59,4 +59,21 @@ test("terminalStatus: 単独実行（ownsLock=true）は指定した終端status
 test("terminalStatus: combined実行中（ownsLock=false）はdone/errorどちらもrunningに据え置く", () => {
   assert.equal(terminalStatus(false, "done"), "running");
   assert.equal(terminalStatus(false, "error"), "running");
+});
+
+// ── buildPushFailPatch（H-4再発防止: push失敗時のジョブ更新にcostが乗ること） ─────────
+// techResearch.ts/addCase.tsのpush失敗パッチは実行時までの消費costUsdを記録するが、
+// caseResearch.tsだけこのcostが欠落しており、失敗ジョブのコスト集計が抜け落ちていた。
+
+test("buildPushFailPatch: costUsdをcostフィールドとして含める", () => {
+  const patch = buildPushFailPatch("push に失敗しました", "abc123", 1.23);
+  assert.equal(patch.cost, 1.23);
+});
+
+test("buildPushFailPatch: message/commitHashもそのまま反映する", () => {
+  const patch = buildPushFailPatch("push に失敗しました", "abc123", 1.23);
+  assert.equal(patch.status, "error");
+  assert.equal(patch.error, "push に失敗しました");
+  assert.equal(patch.commit, "abc123");
+  assert.equal(patch.progress, undefined);
 });

@@ -9,9 +9,10 @@
  */
 import { randomUUID } from "node:crypto";
 import { EventEmitter } from "node:events";
-import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { writeJsonAtomic } from "../../scripts/lib/ideas-io.mjs";
 import { runAddCasePipeline } from "./pipeline/addCase.js";
 import { validateAddCaseRequest } from "./pipeline/addCasePure.js";
 import { isPriorityRunningJob, validateAwardRequest } from "./pipeline/awardPure.js";
@@ -146,11 +147,10 @@ export function clampCount(
 
 export async function writeJobFile(job: Job): Promise<void> {
   await ensureJobsDir();
-  await writeFile(
-    path.join(JOBS_DIR, `${job.id}.json`),
-    JSON.stringify(job, null, 2),
-    "utf-8",
-  );
+  // ジョブJSONはawardsのcheckpoint保管先で高頻度に全量書き換えられる。writeJsonAtomic
+  // （temp書き込み→rename。scripts/lib/ideas-io.mjs参照。ideaResearch.ts:580と同じヘルパー）
+  // で書き込み中クラッシュによる途中切断（以後JSON.parse全滅）を防ぐ（件1・データ整合）。
+  await writeJsonAtomic(path.join(JOBS_DIR, `${job.id}.json`), job);
 }
 
 // ── SSE進捗のpub/sub（P4 #2） ────────────────────────────────────────

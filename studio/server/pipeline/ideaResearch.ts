@@ -78,7 +78,7 @@ import {
 import { extractJsonArray } from "./pure.js";
 import { tryAcquireLock } from "./lock.js";
 import { runPlainQuery } from "./sdkRunner.js";
-import { updateJob, type IdeaRefChip, type ResultCard } from "../jobs.js";
+import { updateJob, type IdeaRefChip, type Job, type ResultCard } from "../jobs.js";
 import { BudgetExceededError, createJobBudgetTracker } from "./budget.js";
 import { pollStrictVerify } from "./strictVerify.js";
 import { finishJob, startPhase } from "./progressTiming.js";
@@ -125,6 +125,20 @@ async function fail(
     ...(budgetExceeded ? { budgetExceeded: true } : {}),
   });
   await notifyLine(["--result", "error", "--label", `Studio: ${theme}`]);
+}
+
+// H-4再発防止: push失敗（commit済み・pushのみ失敗）はcaseResearch.ts::buildPushFailPatch/
+// techResearch.ts/addCase.tsのpush失敗パッチと同じく、実行時までの消費costUsdをjob.costへ
+// 記録する（従来はcommit/error/progress/statusのみでcostが漏れており、失敗ジョブのコスト集計が
+// 欠落していた）。純粋関数として抽出し、パイプライン本体を動かさず単体テストできるようにする。
+export function buildPushFailPatch(message: string, commitHash: string | null, costUsd: number): Partial<Job> {
+  return {
+    status: "error",
+    progress: undefined,
+    error: message,
+    commit: commitHash,
+    cost: costUsd,
+  };
 }
 
 /**
@@ -621,12 +635,11 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
     const pushResult = await gitPush(ROOT);
     if (!pushResult.ok) {
       await notifyLine(["--result", "pushfail", "--label", `Studio: ${theme}`]);
-      await updateJob(jobId, {
-        status: "error",
-        progress: undefined,
-        error: `push に失敗しました（pre-push監査等の可能性）。コミットはローカルに残っています（commit ${commitHash?.slice(0, 8) ?? "不明"}）。手動対応が必要です。`,
-        commit: commitHash,
-      });
+      await updateJob(jobId, buildPushFailPatch(
+        `push に失敗しました（pre-push監査等の可能性）。コミットはローカルに残っています（commit ${commitHash?.slice(0, 8) ?? "不明"}）。手動対応が必要です。`,
+        commitHash,
+        costUsd,
+      ));
       return;
     }
 

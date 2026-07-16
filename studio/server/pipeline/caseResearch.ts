@@ -14,6 +14,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { writeJsonAtomic } from "../../../scripts/lib/ideas-io.mjs";
 import {
   gitAdd,
   gitCommit,
@@ -29,7 +30,7 @@ import {
   runVerifyDeploy,
 } from "./audit.js";
 import { loadAgentDefinition } from "./agentLoader.js";
-import { updateJob, type ResultCard } from "../jobs.js";
+import { updateJob, type Job, type ResultCard } from "../jobs.js";
 import {
   buildAwardVerifierPrompt,
   buildCaseWriterPrompt,
@@ -120,6 +121,20 @@ async function fail(
     ...(budgetExceeded ? { budgetExceeded: true } : {}),
   });
   await notifyLine(["--result", "error", "--label", `Studio: ${theme}`]);
+}
+
+// H-4再発防止: push失敗（commit済み・pushのみ失敗）はtechResearch.ts::buildPushFailPatch/
+// addCase.tsのpush失敗パッチと同じく、実行時までの消費costUsdをjob.costへ記録する
+// （従来はcommit/error/progress/statusのみでcostが漏れており、失敗ジョブのコスト集計が
+// 欠落していた）。純粋関数として抽出し、パイプライン本体を動かさず単体テストできるようにする。
+export function buildPushFailPatch(message: string, commitHash: string | null, costUsd: number): Partial<Job> {
+  return {
+    status: "error",
+    progress: undefined,
+    error: message,
+    commit: commitHash,
+    cost: costUsd,
+  };
 }
 
 export interface RollbackOutcome {
@@ -461,7 +476,7 @@ export async function runCaseResearchPipeline(
       }),
     );
     const updatedCases = [...finalEntries, ...existingCases];
-    await writeFile(CASES_PATH, JSON.stringify(updatedCases, null, 2));
+    await writeJsonAtomic(CASES_PATH, updatedCases);
     trackedTouched.push("data/cases.json");
 
     if (upserted.changed) {
@@ -531,10 +546,12 @@ export async function runCaseResearchPipeline(
       // commit自体はローカルに残す（デイリーパイプラインのpushfail運用と同じ）
       await notifyLine(["--result", "pushfail", "--label", `Studio: ${theme}`]);
       await updateJob(jobId, {
+        ...buildPushFailPatch(
+          `push に失敗しました（pre-push監査等の可能性）。コミットはローカルに残っています（commit ${commitHash?.slice(0, 8) ?? "不明"}）。手動対応が必要です。`,
+          commitHash,
+          costUsd,
+        ),
         status: terminalStatus(ownsLock, "error"),
-        progress: undefined,
-        error: `push に失敗しました（pre-push監査等の可能性）。コミットはローカルに残っています（commit ${commitHash?.slice(0, 8) ?? "不明"}）。手動対応が必要です。`,
-        commit: commitHash,
       });
       return;
     }

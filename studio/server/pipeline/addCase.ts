@@ -45,6 +45,7 @@ import { readFile, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { writeJsonAtomic } from "../../../scripts/lib/ideas-io.mjs";
 import {
   gitAdd,
   gitCommit,
@@ -444,7 +445,7 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
       await setProgress(jobId, "反映中（データ書き込み）");
       newUntracked.push(thumbnailRelPath);
       const updatedCases = [entry, ...existingCases];
-      await writeFile(CASES_PATH, JSON.stringify(updatedCases, null, 2));
+      await writeJsonAtomic(CASES_PATH, updatedCases);
       trackedTouched.push("data/cases.json");
 
       const resultCards: ResultCard[] = [
@@ -688,7 +689,7 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
       await setProgress(jobId, "反映中（データ書き込み）");
       newUntracked.push(thumbnailRelPath);
       const updatedTech = [techEntry, ...existingTechFull];
-      await writeFile(TECH_PATH, JSON.stringify(updatedTech, null, 2));
+      await writeJsonAtomic(TECH_PATH, updatedTech);
       trackedTouched.push("data/tech.json");
 
       const techResultCards: ResultCard[] = [

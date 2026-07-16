@@ -4,6 +4,7 @@
  * ここに集約する（DESIGN.md §6・auto-research-cc.mjsのtoId/normTitle等を移植・TS化）。
  */
 import { clampCount } from "../jobs.js";
+import { normLink } from "../../../scripts/lib/norm-link.mjs";
 
 // ── リクエスト検証 ──────────────────────────────────────────────
 
@@ -105,7 +106,10 @@ export interface ExistingCaseIndex {
   links: Set<string>;
 }
 
-const normalizeLink = (link: string | undefined | null): string => (link || "").replace(/\/+$/, "");
+// H-5再発防止: 従来はここに末尾スラッシュ除去のみの弱いnormalizeLinkを独自定義していたが、
+// scripts/lib/norm-link.mjs（host小文字化・fragment除去も行う）と挙動が違い、同一サーバ内
+// （addCasePure.tsは既にnorm-link.mjsを使用）で重複判定が食い違っていた（大文字host・
+// fragment付きの候補が既存事例とすり抜けて二重掲載される事故）。normLinkに統一する。
 
 export function buildExistingCaseIndex(
   cases: Array<{ id: string; title: string; link?: string }>,
@@ -113,7 +117,7 @@ export function buildExistingCaseIndex(
   return {
     ids: new Set(cases.map((c) => c.id)),
     titleKeys: new Set(cases.map((c) => normalizeTitleKey(c.title))),
-    links: new Set(cases.map((c) => normalizeLink(c.link)).filter(Boolean)),
+    links: new Set(cases.map((c) => normLink(c.link ?? "")).filter(Boolean)),
   };
 }
 
@@ -151,14 +155,14 @@ export function dedupeCandidates(
     if (!c?.title?.trim() || !c?.year || !c?.link?.trim()) continue;
     const id = toCaseId(c.title, c.year, c.client);
     const titleKey = normalizeTitleKey(c.title);
-    const linkKey = normalizeLink(c.link);
+    const linkKey = normLink(c.link);
 
-    if (existing.ids.has(id) || existing.titleKeys.has(titleKey) || existing.links.has(linkKey)) continue;
-    if (seenIds.has(id) || seenTitleKeys.has(titleKey) || seenLinks.has(linkKey)) continue;
+    if (existing.ids.has(id) || existing.titleKeys.has(titleKey) || (linkKey && existing.links.has(linkKey))) continue;
+    if (seenIds.has(id) || seenTitleKeys.has(titleKey) || (linkKey && seenLinks.has(linkKey))) continue;
 
     seenIds.add(id);
     seenTitleKeys.add(titleKey);
-    seenLinks.add(linkKey);
+    if (linkKey) seenLinks.add(linkKey);
     kept.push({ ...c, id });
   }
   return kept;
