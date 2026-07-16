@@ -20,10 +20,17 @@ const TRASH_BLOB_PATHNAME = "trash/trash.json";
 const IDEA_LIKES_BLOB_PATHNAME = "idea-likes/idea-likes.json";
 const IDEA_TRASH_BLOB_PATHNAME = "idea-trash/idea-trash.json";
 
-// BLOB_READ_WRITE_TOKEN 欠落時、呼び出し側はBlobに触れず503を返す
+// Blob未設定時、呼び出し側はBlobに触れず503を返す
 // （ローカル/初回デプロイでenv未設定でもサイトが現状(localStorageのみ)と同一挙動で動く要件）
+//
+// 認証は2方式のどちらでも可:
+//   1. 従来のread-writeトークン（BLOB_READ_WRITE_TOKEN）
+//   2. Vercel OIDC（Fluid Compute実行時に VERCEL_OIDC_TOKEN が自動注入され、BLOB_STORE_ID で
+//      対象ストアを特定する）。@vercel/blob 2.5.0 は put/get 時にトークン未指定でも
+//      「OIDCトークンが利用可能かつ BLOB_STORE_ID がセットされていれば」自動でOIDC経路を使う。
+// OIDCでストアを接続した場合 BLOB_READ_WRITE_TOKEN は注入されないため、BLOB_STORE_ID の有無も見る。
 export function isBlobConfigured(): boolean {
-  return Boolean(process.env.BLOB_READ_WRITE_TOKEN);
+  return Boolean(process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOB_STORE_ID);
 }
 
 function isValidFavoritesData(value: unknown): value is FavoritesData {
