@@ -3075,5 +3075,209 @@
         "desc": "32台のカメラだけでダンサーを撮影し、AIに頼らず作り上げたミュージックビデオの事例。"
       }
     ]
+  },
+  {
+    "id": "2026-07-16-1",
+    "date": "2026-07-16",
+    "title": "凶器が宙に浮く恐怖彫刻",
+    "pattern": "文脈×技術",
+    "seed": "StreetDoctorsの実物大彫刻による刺傷体験に、磁石入り物体を空中浮遊・操作させるLeviFabを掛け合わせたら、凶器そのものが宙に浮いて追ってくるような生々しい恐怖演出ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "streetdoctors-fatal-questions",
+        "title": "Fatal Questions",
+        "desc": "刺しても安全な場所はないと、実物大の彫刻を使って若者に刺傷による死亡の真実を突きつけた屋外体験施策"
+      },
+      {
+        "type": "tech",
+        "id": "levifab",
+        "title": "LeviFab",
+        "desc": "液体窒素で冷却した超伝導体のピン止め効果を使い、磁石入り物体を空中に安定浮遊させ操作できるHCI研究"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-16-2",
+    "date": "2026-07-16",
+    "title": "死後も紡がれる即興演奏",
+    "pattern": "文脈×技術",
+    "seed": "坂本龍一没後も彼の音が生き続けた「音を視る 時を聴く」展のように、音声と映像を同時生成するLTX-2を使えば、本人不在のまま新しい即興演奏を無限に生み出し続ける追悼体験が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ryuichi-sakamoto-exhibition",
+        "title": "坂本龍一｜音を視る 時を聴く",
+        "desc": "坂本龍一が自ら構想を残した遺作的展覧会。高谷史郎ら演出家との協働で死後も彼の音楽が生き続けることを実証した"
+      },
+      {
+        "type": "tech",
+        "id": "ltx-2",
+        "title": "LTX-2",
+        "desc": "音声と映像を同時生成できる初のオープンソース公開基盤モデルで、最長20秒・4K高画質の映像を作れる"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-16-3",
+    "date": "2026-07-16",
+    "title": "水滴が踊る紙面ダンス",
+    "pattern": "技術×技術",
+    "seed": "人物の動きを別キャラに乗り移らせるSCAIL-2の動きデータを、水滴の形を自在に変えるMorphDropsに流し込んだら、紙の上で人がダンスする姿を水滴だけで再現するインスタレーションができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "scail-2",
+        "title": "SCAIL-2",
+        "desc": "動画に写った人物の動きを骨格抽出なしで別キャラクターへ乗り移らせ、ダンスや宙返り、動物への変換までこなす1モデル"
+      },
+      {
+        "type": "tech",
+        "id": "morphdrops",
+        "title": "MorphDrops",
+        "desc": "紙に印刷した導電インクに電気を流し、その上の水滴の形を自在に変えられるディスプレイで複数パターンを表現できる"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-16-4",
+    "date": "2026-07-16",
+    "title": "実写とCGの正しい共演",
+    "pattern": "技術×技術",
+    "seed": "iPhoneでガウススプラッティング用の撮影データを取れるGaussian SplatKingと、それをUE上の3Dモデルと奥行きごと正しく重ねるYaGSを組み合わせたら、実写空間にCGキャラが自然に立つMVが撮れそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "gaussian-splatking",
+        "title": "Gaussian SplatKing",
+        "desc": "iPhoneのデュアルレンズとLiDARでガウススプラッティング向けの高品質な撮影データを無料で取得できるアプリ"
+      },
+      {
+        "type": "tech",
+        "id": "yags",
+        "title": "YaGS",
+        "desc": "実写風の点群3D表現ガウススプラッティングを、通常の3Dモデルと同じ奥行きで正しく重ならせる無料のUEプラグイン"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-16-5",
+    "date": "2026-07-16",
+    "title": "起きていない事件の予告",
+    "pattern": "転用",
+    "seed": "壊れた3D再構成の映像を綺麗に修復するために作られたNVIDIAのArtiFixerを、あえて「まだ撮っていない未来のアングル」の先回り生成に転用したら、事件が起きる前の現場を見せる予告広告ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "artifixer",
+        "title": "ArtiFixer",
+        "desc": "壊れた3D再構成の映像をWan2.1ベースの拡散モデルで修復し、撮影していないアングルまで生成補完するNVIDIAの研究"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-16-6",
+    "date": "2026-07-16",
+    "title": "購入者限定の3D受取証",
+    "pattern": "文脈×技術",
+    "seed": "ボットも転売ヤーもいないTELFAR BAG SECURITY PROGRAMの仕組みに、写真だけでローカルGPUから3Dメッシュ化できるModlyを組み合わせ、購入者本人の顔や持ち物から本人限定の3D受取証を作る施策ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "telfar-bag-security-program",
+        "title": "TELFAR BAG SECURITY PROGRAM",
+        "desc": "24時間無制限のオープン受注にすることで、ボットや転売ヤーを排除し本当に欲しいファンだけが定価で購入できる仕組みを作った"
+      },
+      {
+        "type": "tech",
+        "id": "modly",
+        "title": "Modly",
+        "desc": "撮った写真をクラウドに送らず、自分のPCのGPUだけで3Dメッシュ化できる完全ローカルの画像から3D変換デスクトップアプリ"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-16-7",
+    "date": "2026-07-16",
+    "title": "映画品質で見る土壌診断",
+    "pattern": "転用",
+    "seed": "映画・VFX業界の色空間管理をComfyUI上で再現するComfyUI-OCIOを、映像制作以外の土壌データ可視化に転用したら、Soil Stayのような土壌データを正確な色味で農家に見せる診断ビジュアルが作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-ocio",
+        "title": "ComfyUI-OCIO",
+        "desc": "映画・VFX業界標準の色空間管理システムOpenColorIOを、ComfyUIの中でNuke並みの精度で使えるようにする拡張ノード集"
+      },
+      {
+        "type": "case",
+        "id": "tra-mongkut-soil-stay",
+        "title": "Soil Stay",
+        "desc": "土壌データを介して農家同士をつなぐ、タイで初めて行われたB2Bのファームステイ・プログラム"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-16-8",
+    "date": "2026-07-16",
+    "title": "経年感を纏う偽アーカイブ",
+    "pattern": "文脈×技術",
+    "seed": "架空企業を映画公開2年前からWeb上に実在させたWEYLAND INDUSTRIESのようなARGに、実測データからフィルム調カラーを作るAURORA Film Labを使えば、昔から存在したかのような社内アーカイブ映像に本物の経年感を与えられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "prometheus-weyland-industries",
+        "title": "WEYLAND INDUSTRIES（Prometheus ARG）",
+        "desc": "映画公開の2年前から架空のハイテク企業をWeb上に実在させ、CEOのTED講演や採用情報まで本物として構築したARG"
+      },
+      {
+        "type": "tech",
+        "id": "aurora-film-lab-v1-0",
+        "title": "AURORA Film Lab v1.0",
+        "desc": "55種のフィルムで撮影した1,440枚の写真の実測データから選抜した12種のルックを混合できるDaVinci Resolve用グレーディングツール"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-16-9",
+    "date": "2026-07-16",
+    "title": "体の異常信号を可視化",
+    "pattern": "文脈×技術",
+    "seed": "発作の兆候を可視化するSee a Seizureの啓発に、ロボットのセンサや3D状態をリアルタイムに可視化するRerun × Booster Robotics K1の技術を使えば、体の異常信号を親や教師にその場で見せる早期発見装置が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "jazz-pharmaceuticals-see-a-seizure",
+        "title": "See a Seizure",
+        "desc": "見過ごされがちな発作の兆候を可視化し、早期の診断や対応につなげることを目指した啓発施策"
+      },
+      {
+        "type": "tech",
+        "id": "rerun-booster-robotics-k1",
+        "title": "Rerun × Booster Robotics K1",
+        "desc": "OSSの時系列マルチモーダル可視化ツールRerunで、ヒューマノイドロボットのセンサや3D状態の変化をリアルタイムにロギング・可視化するデモ"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-16-10",
+    "date": "2026-07-16",
+    "title": "ご当地模様の量産祭り",
+    "pattern": "転用",
+    "seed": "Blender内で生成AIテクスチャや3Dアセットを作るStableGenを、本来の用途を離れご当地文化の祝祭化に転用し、Oreo Cowsのように地域の模様や食文化パターンを動物の3Dモデルに纏わせる祭りコンテンツを量産できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "stablegen-v0-3",
+        "title": "StableGen v0.3",
+        "desc": "Blender内で生成AIによるテクスチャリングと3Dアセット生成を完結させられるオープンソースのアドオン"
+      },
+      {
+        "type": "case",
+        "id": "oreo-cows",
+        "title": "Oreo Cows",
+        "desc": "オレオ柄の牛を起点にして、メキシコで浸して食べる文化を祝祭のように盛り上げた施策"
+      }
+    ]
   }
 ]
