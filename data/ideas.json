@@ -3279,5 +3279,215 @@
         "desc": "オレオ柄の牛を起点にして、メキシコで浸して食べる文化を祝祭のように盛り上げた施策"
       }
     ]
+  },
+  {
+    "id": "2026-07-17-1",
+    "date": "2026-07-17",
+    "title": "ARGの都市を仮想散策",
+    "pattern": "文脈×技術",
+    "seed": "Twenty One PilotsのDMAORG.INFO ARGが座標でファンを都市へ誘導したように、HY-World 1.5/WorldPlayで各都市の写真を1枚の仮想世界に変換すれば、現地に行けないファンも歩き回って謎を探索できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "twenty-one-pilots-dmaorg-arg",
+        "title": "DMAORG.INFO ARG（Twenty One Pilots）",
+        "desc": "SpotifyのCanvas映像の座標でファンを現実の都市へ誘導し限定プレイリストを解禁するARG企画。"
+      },
+      {
+        "type": "tech",
+        "id": "hy-world-1-5-worldplay",
+        "title": "HY-World 1.5 / WorldPlay",
+        "desc": "1枚の画像やテキストから、操作に24fpsでリアルタイム反応する歩き回れる映像世界を生成する世界モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-17-2",
+    "date": "2026-07-17",
+    "title": "煙の位置座標自動通報",
+    "pattern": "文脈×技術",
+    "seed": "Firecatchersがゲーマーに森林の煙を発見させたように、SpatialClawの空間推論を組み合わせれば、発見した煙の画像から距離や方角を自動計算し消防へ正確な座標を即時通報できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "sapeurs-pompiers-firecatchers",
+        "title": "Firecatchers",
+        "desc": "Twitchの待機視聴者を森林火災の監視員に変え、煙をゲーマーが最初に発見する仕組み。"
+      },
+      {
+        "type": "tech",
+        "id": "spatialclaw",
+        "title": "SpatialClaw",
+        "desc": "画像や映像から「どこに何がどれだけ離れてあるか」をAIが自らコードを書いて推論するエージェント。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-17-3",
+    "date": "2026-07-17",
+    "title": "ささやき通報インターフェース",
+    "pattern": "文脈×技術",
+    "seed": "Fair Playがヘイトスピーチを誰でも通報できるようにしたように、NasoVoceのささやき認識を使えば、声を出せないDVや職場被害者でもスマートグラスへのささやきだけで証拠を通報できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "misterio-publico-df-fair-play",
+        "title": "Fair Play",
+        "desc": "AIが人種差別的ヘイトスピーチを検出し、誰でも簡単に当局へ通報できるデジタル検察官プラットフォーム。"
+      },
+      {
+        "type": "tech",
+        "id": "nasovoce",
+        "title": "NasoVoce",
+        "desc": "スマートグラスの鼻当てにマイクと振動センサを仕込み、ほぼ無声のささやきでもクリアに認識する発話インターフェース。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-17-4",
+    "date": "2026-07-17",
+    "title": "停電下の触感服薬確認",
+    "pattern": "文脈×技術",
+    "seed": "Glowing Reliefが停電下で光る薬ラベルを作ったように、HapticLensの映像から振動を生成する技術を使えば、光すら届かない暗闇で薬パッケージの触感パターンから薬を識別できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "glowing-relief-alivia-health",
+        "title": "Glowing Relief",
+        "desc": "停電が多いプエルトリコで、暗闇でも光る薬のラベルによって服薬ミスを防ぐデザインの工夫。"
+      },
+      {
+        "type": "tech",
+        "id": "hapticlens",
+        "title": "HapticLens",
+        "desc": "動画の動きから振動（触覚）を自動生成し、たった1個の振動子で映像に触感を付けられるツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-17-5",
+    "date": "2026-07-17",
+    "title": "パパ限定のパーソナルCM",
+    "pattern": "文脈×技術",
+    "seed": "Instacartの「For Papa!」がスパイク・ジョーンズ監督で父への愛を描いたように、RotoAIの自然言語ロトスコープで「お父さん」だけを切り抜けば、家族ごとにパーソナライズした動画を量産できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "instacart-for-papa",
+        "title": "For Papa!",
+        "desc": "スパイク・ジョーンズ監督がスーパーボウルで贈る、父への愛を描いたレトロ・ミュージカル広告。"
+      },
+      {
+        "type": "tech",
+        "id": "rotoai",
+        "title": "RotoAI",
+        "desc": "「赤いシャツの人」のような自然言語の指示だけで動画から人物や物体を切り抜けるロトスコープ・スタジオ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-17-6",
+    "date": "2026-07-17",
+    "title": "言葉で覚える全身動作",
+    "pattern": "技術×技術",
+    "seed": "TextOpのテキスト指示でヒューマノイドが即興モーションを生成する仕組みを、GRAILの全身動作データ合成パイプラインに流し込めば、言葉で作った動きがそのままUnitree G1の新しい持ちネタとして蓄積されるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "textop",
+        "title": "TextOp",
+        "desc": "テキストで指示するとヒューマノイドロボットが全身モーションをその場で生成・実行する研究。"
+      },
+      {
+        "type": "tech",
+        "id": "grail",
+        "title": "GRAIL",
+        "desc": "3Dアセットと動画生成AIから人型ロボット向け全身動作データを自動合成し、実機Unitree G1に転移するパイプライン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-17-7",
+    "date": "2026-07-17",
+    "title": "仮想群れを実機へ転写",
+    "pattern": "技術×技術",
+    "seed": "FluidicSwarmが手のジェスチャーで小型ロボット群を水のように操れるように、HY-World 1.5/WorldPlayで生成した仮想世界の群れの動きを実機ロボット群に転写すれば、仮想と現実で同じ操作が通じる展示ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "fluidicswarm",
+        "title": "FluidicSwarm",
+        "desc": "手のジェスチャーだけで複数の小型ロボット群を水のような一つの生き物のように操作できるシステム。"
+      },
+      {
+        "type": "tech",
+        "id": "hy-world-1-5-worldplay",
+        "title": "HY-World 1.5 / WorldPlay",
+        "desc": "1枚の画像やテキストから、操作に24fpsでリアルタイム反応する歩き回れる映像世界を生成する世界モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-17-8",
+    "date": "2026-07-17",
+    "title": "スーツケース隙間診断",
+    "pattern": "転用",
+    "seed": "画像や映像の空間推論用に作られたSpatialClawを本来と違う使い方で、Saudia AirlinesのLet It Flyのようなスーツケース企画に転用すれば、荷物を撮るだけであと何cm3積めるかをAIが計算してくれるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "spatialclaw",
+        "title": "SpatialClaw",
+        "desc": "画像や映像から「どこに何がどれだけ離れてあるか」をAIが自らコードを書いて推論するエージェント。"
+      },
+      {
+        "type": "case",
+        "id": "saudia-airlines-let-it-fly",
+        "title": "Let It Fly",
+        "desc": "サウジアラビアの文化をスーツケースに乗せて世界へ届け、手荷物許容量が報酬になる旅のしかけ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-17-9",
+    "date": "2026-07-17",
+    "title": "週刊エピソード自動編集",
+    "pattern": "転用",
+    "seed": "人がタイムラインを操作する動画編集ソフトとして作られたPalmier Proを本来の用途を超えて使い、Song Machineのような週刊連続公開フォーマットに転用すれば、AIエージェントが毎週の新曲と次回予告まで自動編集してしまうかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "palmier-pro",
+        "title": "Palmier Pro",
+        "desc": "AIエージェントが人間と同じタイムラインで動画を操作できる、Mac向けオープンソース動画編集ソフト。"
+      },
+      {
+        "type": "case",
+        "id": "gorillaz-song-machine",
+        "title": "SONG MACHINE（Gorillaz）",
+        "desc": "アルバムを一括公開せず、毎週新しい楽曲とMVをドラマのエピソードのように連続公開するフォーマット。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-17-10",
+    "date": "2026-07-17",
+    "title": "奇声から生まれる動画",
+    "pattern": "文脈×技術",
+    "seed": "Chicken Screams for Cokeがゴム製チキンの鳴き声で無料コークを当てたように、FireRed-OpenStorylineのブランドスタイル再利用機能を使えば、ユーザーの奇声素材からブランドらしいショート動画を自動編集する参加型企画ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "coca-cola-chicken-screams-for-coke",
+        "title": "Chicken Screams for Coke",
+        "desc": "ゴム製チキンの鳴き声を認識し、当たれば無料のコカ・コーラがもらえる参加型施策。"
+      },
+      {
+        "type": "tech",
+        "id": "firered-openstoryline",
+        "title": "FireRed-OpenStoryline",
+        "desc": "話しかけると素材選びからカットまで自動化し、ブランド固有スタイルを再利用できる対話型動画編集エージェント。"
+      }
+    ]
   }
 ]
