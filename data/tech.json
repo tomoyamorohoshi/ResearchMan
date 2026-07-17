@@ -1,5 +1,46 @@
 [
   {
+    "id": "decoy-font",
+    "title": "Decoy Font",
+    "org": "Mixfont（Eric Lu）",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "HCI/MediaArt"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "人間には正しく読めるのに、AI（OCR/画像認識モデル）には別の単語に誤読されてしまう文字を作れるフォント「Decoy Font」。",
+    "point": "ハイブリッド画像（遠近で見え方が変わる合成画像）の技術をタイポグラフィに応用し、同じ文字スペースに『高周波の細い輪郭線＝人間が読む本物の文字』と『低周波のぼかし塊＝AIが誤読する偽の文字』を重ねて表示する点がユニーク。実際に添付画像でも人間には『SORRY ROBOT』と読めるようデザインされている。広告コピーや店舗限定クーポン、ファン向け隠しメッセージなどを『人には見えるがAIスクレイピングやOCRには別の内容に見える』形で仕込むクリエイティブ表現や、AI学習・自動読み取りを避けたいテキスト演出への応用が考えられる。",
+    "detail": "従来のZXX（2013年、人間より先にOCRを混乱させることを狙ったフォント）やGhost Font（動画のモーションを使い、静止フレームでは読めなくする手法）と系譜は近いが、Decoy Fontは静止画1枚の中で空間周波数を分離するアプローチが特徴。前景の細いアウトライン文字と、背景の低解像度・ぼかしのかかった別の文字を重ね合わせることで、人間の目は近距離で細部（前景）を、AIの画像認識は全体のマス（背景）を拾いやすいという知覚特性の違いを利用している。\n\nTTF形式でダウンロード可能で、個人・商用・クライアントワークいずれにも無料で利用できるとされる。GitHubリポジトリは確認できず、公式サイト（mixfont.com）からのダウンロードのみ。",
+    "license": {
+      "spdx": null,
+      "commercial": "ok",
+      "note": "個人・商用・クライアント案件で無料利用可能と明記。文字形はDejaVu Sans Monoから派生。"
+    },
+    "links": [
+      {
+        "kind": "project",
+        "url": "https://www.mixfont.com/experiments/decoy-font"
+      },
+      {
+        "kind": "post",
+        "url": "https://x.com/gigazine/status/2078038824534290810"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/decoy-font.jpg",
+    "relatedWorks": [
+      {
+        "title": "Ghost Font",
+        "description": "動画のモーションで人間にだけメッセージを表示し、静止フレームのAI解析では読めなくする同開発元の関連フォント",
+        "url": "https://www.mixfont.com/ghost-font"
+      }
+    ],
+    "sources": [
+      "User"
+    ]
+  },
+  {
     "id": "ardy",
     "title": "ARDY",
     "org": "NVIDIA (ETH Zürich共同研究)",
