@@ -1,5 +1,102 @@
 [
   {
+    "id": "ardy",
+    "title": "ARDY",
+    "org": "NVIDIA (ETH Zürich共同研究)",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "CreatorTools"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "NVIDIAとETH Zürichが開発した、テキストの指示だけでリアルタイムに人体の3Dモーションを生成し続けられるAIモデル。1コマの生成がわずか約33ミリ秒で、動かしながら指示を変えられる。",
+    "point": "従来のAIモーション生成は、動きをまとめて計算してから確認する「オフライン」方式が主流で、狙い通りの動きになっているか確認するには毎回数秒〜数十秒待つ必要がありました。ARDYは、コマ撮りのようにモーションを1コマずつその場で作り続ける「自己回帰」方式を採用し、1コマあたり約33ミリ秒というゲーム並みの速さで動きを生成します。しかもテキストで「歩く→急に走り出す」のような指示を出したり、目的地や姿勢を指定したりしながら、生成中でも自由に方向転換させられるのが特徴です。広告やライブ体験の現場では、モーションキャプチャの役者を呼ばずにその場でナレーションに合わせてバーチャルキャラクターを操作するデモや、来場者の操作でリアルタイムに反応するアバター展示・体験型インスタレーションが作りやすくなります。",
+    "detail": "ARDYは、キャラクターの体幹の移動経路（ルートモーション）を明示的な数値で扱い、手足の細かい動きは圧縮された「潜在表現」というコンパクトなデータで扱うハイブリッドな設計です。そのうえで、直前までの動きの履歴を見ながら次の1コマを予測する2段階の変換器（Transformer）が、拡散モデルという仕組みでノイズから滑らかな動きを描き出します。絵コンテを1枚ずつその場で描き足しながら、全体の移動方向と体の細かい動きを同時に整合させていくイメージです。\n\n同じNVIDIAが手がけた前身モデルKimodoは精度は高いものの動きを作るのに時間がかかりオフライン専用でした。逆に既存のリアルタイム系手法は、テキストでの細かい指示や目的地までの正確な誘導が苦手でした。ARDYは両者のいいとこ取りをし、精度を保ったまま軽量な拡散計算（最大4ステップ）に絞ることで対話的な速度を実現しています。\n\nコードはApache-2.0でGitHub公開済み、学習済みモデル重みはHugging Faceから入手でき（商用利用可）、動作にはLinux環境とNVIDIA GPU（RTX 4090で動作確認、目安VRAM14GB前後）が必要です。Webブラウザ上のデモ画面からキーボードでテキスト入力や移動方向を指定しながら試せますが、環境構築には技術者のスキルが必要です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "コード本体はApache-2.0。学習済みモデル重みはNVIDIA Open Model License（商用利用を明示的に許可）で別途配布。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/nv-tlabs/ardy"
+      },
+      {
+        "kind": "project",
+        "url": "https://research.nvidia.com/labs/sil/projects/ardy/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2607.08741"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/ardy.jpg",
+    "relatedWorks": [
+      {
+        "title": "Kimodo",
+        "description": "同じNVIDIA発の高精度オフライン人体モーション生成モデル",
+        "url": "https://research.nvidia.com/labs/sil/projects/kimodo/"
+      },
+      {
+        "title": "MotionBricks",
+        "description": "NVIDIAのゲーム・ロボット向け大規模リアルタイムモーション生成フレームワーク",
+        "url": "https://nvlabs.github.io/motionbricks/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "posecap",
+    "title": "PoseCap",
+    "org": "Corridor Digital",
+    "type": "Tool",
+    "domains": [
+      "Motion/Body",
+      "CreatorTools"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "映像制作集団Corridor Digitalと共同開発された、Webカメラ1台だけでBlenderにリアルタイムでモーションキャプチャを流し込める無料オープンソースツール。",
+    "point": "従来、役者の動きをそのままCGキャラクターに反映させるモーションキャプチャは、体に多数のマーカーを貼ったスーツや専用スタジオ、高価な機材が必要で、個人や小規模チームには手が届きにくいものでした。PoseCapは、手持ちのノートPCのWebカメラ1台を映すだけで、AIが全身のポーズをリアルタイムに推定し、3D制作の定番ソフトBlenderのキャラクターへそのまま流し込みます。人気クリエイター集団Corridor Digitalの実制作チームが実際に使いながら開発しているのが特徴で、ダンスや逆立ちのような激しい動きにも追従できることが確認されています。広告制作の現場では、絵コンテ段階でのキャラクターの当たり付けや簡易プレビュー動画の作成、小規模チームでのバーチャルキャラクター演出の試作などに使え、本格的なモーションキャプチャスタジオを借りる前に「即興で動きを試す」用途に向いています。",
+    "detail": "PoseCapは、Webカメラの映像とMediaPipeという画像認識ライブラリを使って人物の骨格を検出し、それをSMPL-Xという研究分野で広く使われている人体3Dモデル形式のポーズ情報に変換します。変換されたポーズ情報は、ローカルのネットワーク通信（ソケット通信）を通じてBlender内の専用パネルにリアルタイムで送られ、キャラクターがその場で動き出す仕組みです。\n\n従来の高精度なモーションキャプチャは、体に貼るマーカーや複数台の専用カメラ、専用スタジオが必要でした。PoseCapは精度こそスタジオ品質には及ばないものの、Webカメラ1台とゲーミングPC程度のGPUがあればその場ですぐに試せる手軽さが最大の違いです。専用GPUがなくてもCPUのみで動く「MediaPipe Lite」モードも用意されています。\n\n現時点ではWindows 10/11、Blender 4.2 LTS以降が必須で、NVIDIA GPU（RTX 3080で動作確認済み）があれば高精度なフルモードが使えます。ツール本体はGPL-3.0・Apache-2.0のオープンソースで無料ですが、内部で使うSMPL-X人体モデルは研究用ライセンスのため、商用制作で使う場合は権利元Meshcapadeから別途ライセンスを取得する必要がある点に注意が必要です。まだ「早期プレビュー版」段階のため、今後の安定性向上が見込まれます。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "PoseCap本体はGPL-3.0（Blender拡張）/Apache-2.0（ライブラリ）のデュアルライセンスで無料。内部で使うSMPL-X人体モデルはMax Planck Institute研究用ライセンスのため、商用制作にはMeshcapadeから別途商用ライセンス取得が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/CorridorTech/PoseCap"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/posecap.jpg",
+    "relatedWorks": [
+      {
+        "title": "FreeMoCap",
+        "description": "無料オープンソースの全身マーカーレスモーションキャプチャソフト",
+        "url": "https://freemocap.org/"
+      },
+      {
+        "title": "EasyMocap",
+        "description": "RGB映像から人物の動きを推定するオープンソースツールボックス",
+        "url": "https://github.com/zju3dv/EasyMocap"
+      },
+      {
+        "title": "MAMMA",
+        "description": "CVPR 2026発表の高精度マーカーレス複数人モーションキャプチャ研究（研究用途限定）",
+        "url": "https://github.com/cuevhv/mamma"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "emomime",
     "title": "EmoMime",
     "org": "東京大学 先端科学技術研究センター 稲見研究室（Information Somatics Lab, RCAST, The University of Tokyo）",
