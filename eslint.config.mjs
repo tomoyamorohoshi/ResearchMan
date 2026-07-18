@@ -19,7 +19,7 @@ const eslintConfig = defineConfig([
   // @anthropic-ai/sdk やAI Gateway系(ai)のimportがこの配下に紛れ込むと、
   // MCPツール呼び出しごとにAPI従量課金が発生しうるため機械的に禁止する。
   {
-    files: ["src/app/api/mcp/**"],
+    files: ["src/app/api/mcp/**", "src/lib/mcp-auth*"],
     rules: {
       "no-restricted-imports": [
         "error",

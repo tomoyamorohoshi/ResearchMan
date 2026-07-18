@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
     unoptimized: true,
     remotePatterns: [{ protocol: "https", hostname: "**" }],
   },
+  // MCP(docs/MCP_IDEATION_DESIGN.md §8): data/cases.json が /api/mcp のFunctionバンドルに
+  // 同梱されることを保証する保険。Output File Tracing が読み取りを検出できない場合の対策。
+  outputFileTracingIncludes: {
+    "/api/mcp": ["./data/cases.json"],
+  },
 };
 
 export default nextConfig;

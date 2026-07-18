@@ -1,16 +1,18 @@
-// MCPサーバ本体（段階(a): 最小の動く土台。認証なし）。
+// MCPサーバ本体（段階(b): OAuth 2.1 + PKCE(S256) で認証ラップ）。
 // 設計: docs/MCP_IDEATION_DESIGN.md §4・§8
 //
 // 重要（絶対制約）: このルート（および import されるモジュール）は絶対にLLMを呼ばない。
 // 検索・整形はすべてローカルの data/cases.json に対する非LLMのデータ操作のみ。
 // @anthropic-ai/sdk や ai(AI Gateway) 系のimportは eslint.config.mjs の
 // no-restricted-imports で機械的に禁止している（従量課金の物理遮断）。
-import { createMcpHandler } from "mcp-handler";
+import { createMcpHandler, withMcpAuth } from "mcp-handler";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { z } from "zod";
 import { searchCases } from "../../../../scripts/lib/case-search.mjs";
 import type { CaseRecord } from "../../../../scripts/lib/case-search.mjs";
+import { verifyTokenString } from "@/lib/mcp-auth";
+import type { AuthInfo } from "@modelcontextprotocol/sdk/server/auth/types.js";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -118,4 +120,48 @@ const handler = createMcpHandler(
   { basePath: "/api" }
 );
 
-export { handler as GET, handler as POST, handler as DELETE };
+// Bearerトークンを検証しAuthInfoを返す。トークンが無い/不正/exp切れなら undefined を返し、
+// withMcpAuth 側の { required: true } が401(WWW-Authenticate: resource_metadata付き)にする。
+// このコールバック自体は node:crypto のみを使うmcp-auth.tsの検証関数を呼ぶだけで、
+// 外部ネットワーク発信は一切行わない。
+function verifyToken(
+  _req: Request,
+  bearerToken?: string
+): AuthInfo | undefined {
+  if (!bearerToken) return undefined;
+  const secret = process.env.MCP_TOKEN_SECRET;
+  if (!secret) return undefined;
+
+  const result = verifyTokenString(bearerToken, secret, "access");
+  if (!result.ok) return undefined;
+
+  return {
+    token: bearerToken,
+    clientId: result.payload.client_id,
+    scopes: [],
+    expiresAt: result.payload.exp,
+  };
+}
+
+const authedHandler = withMcpAuth(handler, verifyToken, {
+  required: true,
+  resourceMetadataPath: "/.well-known/oauth-protected-resource",
+});
+
+// env未設定時は500で落とさず503を返す(docs/MCP_IDEATION_DESIGN.md §8の運用要件)。
+// withMcpAuth 内で verifyToken が投げた例外は常に401に丸められてしまうため、
+// この保護は withMcpAuth の外側(=このルート自身)でかける。
+async function mcpRoute(req: Request): Promise<Response> {
+  if (!process.env.MCP_TOKEN_SECRET) {
+    return new Response(
+      JSON.stringify({
+        error: "temporarily_unavailable",
+        error_description: "server is not configured",
+      }),
+      { status: 503, headers: { "Content-Type": "application/json" } }
+    );
+  }
+  return authedHandler(req);
+}
+
+export { mcpRoute as GET, mcpRoute as POST, mcpRoute as DELETE };
