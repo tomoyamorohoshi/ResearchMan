@@ -55,3 +55,6 @@ next-env.d.ts
 
 # ResearchMan Studio（ローカル専用アプリ）のジョブ履歴・実行時生成物
 studio/workdir/
+
+.vercel
+.env*

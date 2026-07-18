@@ -17,10 +17,14 @@
 //   --limit <n>          件数上限（デフォルト 12）
 //   --format <list|md|json>  デフォルト list
 //   --all                キーワードをANDで評価
+//
+// 検索ロジック本体（スコアリング・フィルタ）は scripts/lib/case-search.mjs に共有化されている
+// （src/app/api/mcp/route.ts の MCP ツール search_cases とロジックを共用するため）。
 
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { searchCases } from './lib/case-search.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -45,55 +49,7 @@ for (let i = 0; i < args.length; i++) {
 const raw = JSON.parse(readFileSync(join(ROOT, 'data', 'cases.json'), 'utf8'));
 const cases = Array.isArray(raw) ? raw : raw.cases;
 
-// フィールド重み: タイトル・タグの一致を本文一致より優先する
-const WEIGHTS = [
-  ['title', 5],
-  ['tags', 4], ['categories', 4],
-  ['summary', 3],
-  ['client', 2], ['agency', 2], ['award', 2],
-  ['overview', 1], ['background', 1], ['execution', 1], ['evaluationImpact', 1],
-];
-
-const norm = (v) => (Array.isArray(v) ? v.join(' ') : String(v ?? '')).toLowerCase();
-
-function scoreCase(c, kws) {
-  let total = 0;
-  const hits = new Set();
-  for (const kw of kws) {
-    let kwScore = 0;
-    for (const [field, w] of WEIGHTS) {
-      if (norm(c[field]).includes(kw)) kwScore += w;
-    }
-    if (kwScore > 0) hits.add(kw);
-    total += kwScore;
-  }
-  if (requireAll && hits.size < kws.length) return 0;
-  return hits.size > 0 ? total : 0;
-}
-
-function inYearRange(c) {
-  if (!yearRange) return true;
-  const y = parseInt(c.year, 10);
-  if (Number.isNaN(y)) return false;
-  const m = yearRange.match(/^(\d{4})(?:-(\d{4}))?$/);
-  if (!m) return true;
-  const from = parseInt(m[1], 10), to = m[2] ? parseInt(m[2], 10) : from;
-  return y >= from && y <= to;
-}
-
-const kws = keywords.map((k) => k.toLowerCase());
-
-let results = cases
-  .filter((c) => tags.every((t) => norm(c.tags).includes(t.toLowerCase()) || norm(c.categories).includes(t.toLowerCase())))
-  .filter(inYearRange)
-  .filter((c) => !region || norm(c.regions).includes(region.toLowerCase()))
-  .filter((c) => !source || norm(c.sources).includes(source.toLowerCase()))
-  .map((c) => ({ c, score: kws.length ? scoreCase(c, kws) : 1 }))
-  .filter((r) => r.score > 0)
-  .sort((a, b) => b.score - a.score || (parseInt(b.c.year, 10) || 0) - (parseInt(a.c.year, 10) || 0));
-
-const total = results.length;
-results = results.slice(0, limit);
+const { total, results } = searchCases(cases, { keywords, tags, yearRange, region, source, limit, requireAll });
 
 if (format === 'json') {
   console.log(JSON.stringify(results.map(({ c, score }) => ({ score, id: c.id, title: c.title, year: c.year, client: c.client, award: c.award, summary: c.summary, link: c.link, tags: c.tags, categories: c.categories })), null, 2));
