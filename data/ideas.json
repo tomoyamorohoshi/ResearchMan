@@ -3489,5 +3489,203 @@
         "desc": "話しかけると素材選びからカットまで自動化し、ブランド固有スタイルを再利用できる対話型動画編集エージェント。"
       }
     ]
+  },
+  {
+    "id": "2026-07-18-1",
+    "date": "2026-07-18",
+    "title": "自宅リスクの3D可視化",
+    "pattern": "文脈×技術",
+    "seed": "自宅ごとの災害リスクを映像で語る保険会社のHavenに、1枚の室内写真から3Dメッシュを作るPixARMeshを掛け合わせれば、自分の部屋がそのまま浸水や倒壊のシミュレーション空間になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "suncorp-haven",
+        "title": "Haven",
+        "desc": "住所を入力するとAIが家ごとの災害リスクと対策を映像で語る保険会社の無料プラットフォーム"
+      },
+      {
+        "type": "tech",
+        "id": "pixarmesh",
+        "title": "PixARMesh",
+        "desc": "1枚の室内写真から部屋全体の配置と編集可能な3Dメッシュを一括生成する自己回帰フレームワーク"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-18-2",
+    "date": "2026-07-18",
+    "title": "未クレジットの声を復元",
+    "pattern": "文脈×技術",
+    "seed": "50年間クレジットされなかったコピーライターの功績を認めたTHE FINAL COPYのように、当時の映像資料にEvent Topology-based Visual Vibrometerを使えば、記録されなかった本人の肉声を振動から復元できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "loreal-final-copy",
+        "title": "THE FINAL COPY OF ILON SPECHT",
+        "desc": "「Because I'm Worth It」を書いた23歳の女性コピーライターの名を50年ぶりに認めたフィルム"
+      },
+      {
+        "type": "tech",
+        "id": "event-topology-based-visual-vibrometer",
+        "title": "Event Topology-based Visual Vibrometer",
+        "desc": "高速イベントカメラの生データから物体の微細な振動＝音を光源なしで復元する計測手法"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-18-3",
+    "date": "2026-07-18",
+    "title": "汚水拡散をARで警告",
+    "pattern": "文脈×技術",
+    "seed": "実物大の汚水噴水で下水汚染を訴えたChannel 4のDirty Businessのように、街の写真1枚からMolmoMotionで水の動きを予測しARで重ねれば、氾濫の危険をその場で体感させられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "channel-4-dirty-business",
+        "title": "Dirty Business – The Fountain of Filth",
+        "desc": "英国の下水汚染を問題提起するため公共空間に実物大の汚水噴水を設置したアウトドア施策"
+      },
+      {
+        "type": "tech",
+        "id": "molmomotion",
+        "title": "MolmoMotion",
+        "desc": "1枚の画像と言葉の指示だけで物体の3D上の動きを数秒先まで予測するAi2の基盤モデル"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-18-4",
+    "date": "2026-07-18",
+    "title": "配達ロボの食品運搬学習",
+    "pattern": "文脈×技術",
+    "seed": "外出先でのディッピング問題をパッケージで解決したHeinzのThe HEINZ Dipperのように、物理的正しさを重視するLingBot-Videoの動画データを使えば、配送ロボットに食品を崩さず運ぶ動作を学習させられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "heinz-heinz-dipper",
+        "title": "The HEINZ Dipper",
+        "desc": "フライドポテト箱をケチャップ内蔵ディッパーに再設計し外出先の課題を解決した包装広告"
+      },
+      {
+        "type": "tech",
+        "id": "lingbot-video",
+        "title": "LingBot-Video",
+        "desc": "体を持つAIが動きを学ぶ教材にもなる、物理的な正しさを重視した大規模動画生成AIモデル"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-18-5",
+    "date": "2026-07-18",
+    "title": "台本から即興編集へ進化",
+    "pattern": "技術×技術",
+    "seed": "リサーチから編集まで自動化するOpenMontageのパイプラインに、対話しながら段取りを組むFireRed-OpenStorylineを組み込めば、完パケ直前まで人が口出しできる半自動の映像スタジオになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "openmontage",
+        "title": "OpenMontage",
+        "desc": "AIコーディングアシスタントを映像制作スタジオに変え、リサーチから完パケまで自動化するシステム"
+      },
+      {
+        "type": "tech",
+        "id": "firered-openstoryline",
+        "title": "FireRed-OpenStoryline",
+        "desc": "話しかけると編集ディレクターのように段取りを組み、素材選びから編集まで担う対話型エージェント"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-18-6",
+    "date": "2026-07-18",
+    "title": "台詞からキャラが踊る",
+    "pattern": "技術×技術",
+    "seed": "文章から3Dの人の動きと映像を同時に作るCoMoViの出力を、骨格抽出なしで別人物へ乗り移らせるSCAIL-2に渡せば、脚本のテキストだけでブランドキャラが自然に踊る広告映像を生成できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comovi",
+        "title": "CoMoVi",
+        "desc": "文章から3Dの人の動きと写実的な映像を一つの生成ループの中で同時に作り、互いに精度を高め合う仕組み"
+      },
+      {
+        "type": "tech",
+        "id": "scail-2",
+        "title": "SCAIL-2",
+        "desc": "動画の人物の動きを骨格抽出なしで別キャラクターへそっくり乗り移らせるEnd-to-Endモデル"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-18-7",
+    "date": "2026-07-18",
+    "title": "HTML一枚で月報動画化",
+    "pattern": "転用",
+    "seed": "AIエージェント向けに「HTMLを書けば動画になる」よう作られたHyperFramesを、社内向け月次レポート作成に転用すれば、担当者がHTMLで数字を書くだけでナレーション付き動画レポートが自動生成されるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "hyperframes",
+        "title": "HyperFrames",
+        "desc": "HTMLを書けば動画になる、AIエージェントの動画制作向けオープンソースフレームワーク"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-18-8",
+    "date": "2026-07-18",
+    "title": "什器を3D再構成せず追跡",
+    "pattern": "転用",
+    "seed": "3D再構成なしで視点間の一貫性を持たせるMulti-View Foundation Modelsを、本来の空間理解用途から外して転用すれば、複数カメラの店舗什器映像から同一商品を再構成せずに追跡する棚卸しツールになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "multi-view-foundation-models",
+        "title": "Multi-View Foundation Models",
+        "desc": "2D基盤モデルに視点間一貫の特徴を持たせるアダプタを挿入する、明示的3D再構成不要の汎用フレームワーク"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-18-9",
+    "date": "2026-07-18",
+    "title": "通話音声で広告即編集",
+    "pattern": "文脈×技術",
+    "seed": "通話中に広告を流し電話を新メディアに変えたSkinnyのAds in My Phone Callのように、人と同じタイムライン上で動画を操作できるPalmier Proのエージェントに通話音声を読ませれば、会話内容に応じた広告動画をその場で編集して届けられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "skinny-ads-in-my-phone-call",
+        "title": "Ads in My Phone Call",
+        "desc": "通話中に広告を流すという発想で、電話そのものを新たなメディアに変えたキャンペーン"
+      },
+      {
+        "type": "tech",
+        "id": "palmier-pro",
+        "title": "Palmier Pro",
+        "desc": "AIエージェントが人間と同じタイムラインで動画を操作できるMac向けオープンソース動画編集ソフト"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-18-10",
+    "date": "2026-07-18",
+    "title": "祈りの気配を音で可視化",
+    "pattern": "文脈×技術",
+    "seed": "仏画・吉祥画を軸にした福田美術館の「幸せになりたい！」展のように、Event Topology-based Visual Vibrometerで展示室の微細な振動を拾えば、来場者の声にならない祈りの気配を光を使わず音として可視化できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-1i1qr82-2026",
+        "title": "幸せになりたい！ー祈りの絵画ー",
+        "desc": "福田美術館が仏画・吉祥画を軸に据えた同館初の企画展。鏑木清方作品など17点を初公開"
+      },
+      {
+        "type": "tech",
+        "id": "event-topology-based-visual-vibrometer",
+        "title": "Event Topology-based Visual Vibrometer",
+        "desc": "高速イベントカメラの生データから物体の微細な振動＝音を光源なしで復元する計測手法"
+      }
+    ]
   }
 ]
