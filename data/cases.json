@@ -1,5 +1,285 @@
 [
   {
+    "id": "the-most-beautiful-goal-never-seen-2026",
+    "title": "The Most Beautiful Goal Never Seen",
+    "summary": "映像が存在しないペレ伝説の1959年ゴールを、Veo 3とGemini Omniで史料・証言から映像再構築",
+    "client": "Google DeepMind × Pelé Brand (NR Sports)",
+    "agency": "The Youth / Feast / Special Guest X",
+    "categories": [
+      "AIクリエイティブ",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/the-most-beautiful-goal-never-seen",
+    "thumbnail": "/thumbnails/the-most-beautiful-goal-never-seen-2026.jpg",
+    "videoId": "",
+    "overview": "Google DeepMindとペレブランド（NR Sports）が、1959年にペレが自ら「最も美しいゴール」と語りながら映像記録が存在しない伝説のゴールを、AI技術で映像として再構築した短編ドキュメンタリー。ペレ美術館（サントス）にて展示された。",
+    "background": "1959年8月2日、ペレは3連続の「ソンブレロ」で相手選手とGKをかわす伝説のゴールを決めたが、当時カメラは回っておらず映像は存在しなかった。この「見ることのできない伝説」を令和のAI技術で蘇らせる試みとして企画された。",
+    "execution": "歴史家Anita Lucchesiのチームが設計図や家族アルバムなど約2000件の史料と3600点超の歴史的画像を収集し、目撃者や地域住民への取材とスタジアム模型による検証を実施。現役トップ選手のパフォーマンスから3D動作データを抽出しVeo 3を駆動する「Performance Control」により、動作再現と歴史的アーカイブを融合させ映像を生成した。",
+    "evaluationImpact": "映像記録のない歴史的瞬間を、遺族・歴史家・目撃証言と生成AIの精緻な組み合わせで「補完」する新しいアプローチを提示。単なるAI映像生成にとどまらず、史実検証プロセスを可視化した点でAIと文化保存の関係性における一つの実践例となった。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Film",
+      "Theme/Sports",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "encounter-the-next-electric-intelligence-2026",
+    "title": "Encounter the Next Electric Intelligence",
+    "summary": "UFO着陸風の演出で謎の物体を登場させ、正体が新型リーフの「知性」だったと明かす欧州発ローンチキャンペーン。",
+    "client": "Nissan AMIEO（新型LEAF）",
+    "agency": "TBWA\\NissanUnited",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/encounter-the-next-electric-intelligence",
+    "thumbnail": "/thumbnails/encounter-the-next-electric-intelligence-2026.jpg",
+    "videoId": "",
+    "overview": "TBWA\\NissanUnitedが手がけた新型Nissan LEAF（Nissan AMIEO）のローンチキャンペーン。閑静な住宅街に謎の物体が出現し、街の関心を集めた末にその正体が新型LEAFであると明かされるヒーロー映像を軸に展開。622kmの航続距離やGoogle統合などの新技術を「知性」というテーマで訴求した。",
+    "background": "Nissanは第3世代となる新型LEAFのグローバルローンチにあたり、単なるスペック訴求ではなく「未知の知性との遭遇」というSFテイストのストーリーテリングを採用。EVならではの先進技術を、人々の好奇心を喚起する演出で印象づける狙いがあったとみられる。",
+    "execution": "監督Dorian & Daniel、制作会社Wandaによるヒーロー映像で、住宅街にUFOのような物体が着陸したかのような演出から始まり、それが新型LEAFであると明かす構成。展開はヒーロー映像に加え、車両の主要技術をエキスパートが解説する「Smart Stories」シリーズをYouTubeやMeta等のソーシャルメディアで多面的に展開した。",
+    "evaluationImpact": "自動車広告にありがちなスペック訴求ではなく、ミステリー的な演出とプラットフォーム横断のコンテンツ設計（ヒーロー映像＋専門家解説シリーズ）を組み合わせた点が特徴。フランスを含む欧州・多国籍展開で、ブランドの技術訴求とエンターテインメント性を両立させた事例といえる。",
+    "relatedWorks": [
+      {
+        "title": "All-New Nissan LEAF | 1 - Encounter the next electric intelligence",
+        "description": "キャンペーンのヒーロー映像（YouTube）",
+        "url": "https://www.youtube.com/watch?v=Cryg6fFYuf8"
+      },
+      {
+        "title": "All-new Nissan LEAF - Smart Stories",
+        "description": "車両の技術を専門家が解説するコンテンツシリーズのプレイリスト",
+        "url": "https://www.youtube.com/playlist?list=PLNBGWYBJysv_um-W58ATcKOLwkTISOHPR"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Film",
+      "Form/SNS",
+      "Theme/Mobility"
+    ]
+  },
+  {
+    "id": "summer-jobs-2026",
+    "title": "Summer Jobs",
+    "summary": "Facebook Marketplaceでの取引が現実の仕事や経験につながる姿を90秒フィルムで描いた",
+    "client": "Meta（Facebook Marketplace）",
+    "agency": "Droga5",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/summer-jobs",
+    "thumbnail": "/thumbnails/summer-jobs-2026.jpg",
+    "videoId": "",
+    "overview": "MetaがDroga5と制作した「Summer Jobs」は、女性グレイシーがFacebook Marketplaceで見つけた理想のピックアップトラックを手に入れるため、同プラットフォーム経由の様々な仕事に挑戦する姿を描く90秒フィルム。監督はSmuggler所属のMark Molloy。",
+    "background": "Facebook Marketplaceは2026年に10周年を迎え、Metaはこの節目に合わせてキャンペーンを展開。オンラインのやり取りがオフラインでの意味ある経験や地域コミュニティとのつながりを生むことを訴求する狙いがあった。",
+    "execution": "ヒーロー映像はMark Molloy監督による90秒フィルム、短編スポットはRory Woodが担当。楽曲にDestroy Boysの「Escape」を起用し、若者の焦燥感と挑戦意欲を表現。World Cup関連メディアやNetflix、YouTube、Instagram、TikTok等マルチプラットフォームで展開された。",
+    "evaluationImpact": "「Joyride」「Garage Band」「Book Club」など複数のスポットとあわせ、Facebookの機能が画面の外での実体験や仕事の機会創出につながることを具体的なストーリーで提示し、プラットフォームの実用的価値を印象づけた。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Theme/Mobility"
+    ]
+  },
+  {
+    "id": "the-most-valuable-gadget-in-the-world-2026",
+    "title": "The Most Valuable Gadget in the World",
+    "summary": "謎の高級ガジェットをOOHでティザーし、正体が2500万バーツの住宅だったと明かす不動産キャンペーン",
+    "client": "Pruksa（不動産デベロッパー）",
+    "agency": "Wolf BKK",
+    "categories": [
+      "OOH革新",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/the-most-valuable-gadget-in-the-world",
+    "thumbnail": "/thumbnails/the-most-valuable-gadget-in-the-world-2026.jpg",
+    "videoId": "",
+    "overview": "タイの不動産デベロッパーPruksaが、正体不明の高級ガジェットを謎めいたビルボードやデジタルスクリーン、SNS、オンライン映像でティザー展開。最終的にそのガジェットの正体が2500万バーツの高級住宅だったと明かすOOHキャンペーン。",
+    "background": "タイでは最新テクノロジーへの消費者の執着が強く、次々と登場する新ガジェットに注目が集まる一方、不動産という高額商材の価値が相対的に見過ごされがちという状況があった。",
+    "execution": "Wolf BKKは新製品を思わせる謎のガジェットとして住宅を演出。街中のビルボードやデジタルスクリーン、SNS、オンライン映像で先端AIシステムを匂わせる機能を次々ティザーし、最後にその正体が住宅であることを明かした。",
+    "evaluationImpact": "ガジェットへの執着を逆手に取り、住宅そのものが生活を向上させる最大の革新であるという視点を提示。不動産の物件発表を「価値とは何か」という社会的な会話へと転換させた点が評価される。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Form/Film",
+      "Tech/AI",
+      "Form/Event"
+    ]
+  },
+  {
+    "id": "case-9d4uuy-2026",
+    "title": "笹本晃 個展",
+    "summary": "ニューヨーク在住の笹本晃、国立国際美術館で即興パフォーマンスと彫刻的インスタレーションを融合させた大規模個展を開幕",
+    "client": "笹本晃",
+    "agency": "",
+    "categories": [
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.museum.toyota.aichi.jp/topics/2026exhibition/",
+    "thumbnail": "/thumbnails/case-9d4uuy-2026.jpg",
+    "videoId": "",
+    "overview": "特別展「笹本晃 ラボラトリー」が2026年7月19日から11月3日まで国立国際美術館（大阪）で開催。糸や管、日用品、音、言葉など多様な要素で空間を組み立て、作家自身がその中に入り込み語りや動作を交えるパフォーマンスを行う、約20年の活動を紹介するミッドキャリア個展。2025年の東京都現代美術館展を再構成し、当館コレクション作品を加えた内容となっている。",
+    "background": "笹本晃は1980年神奈川県生まれ、ニューヨーク在住のアーティストで、彫刻・パフォーマンス・インスタレーションを横断的に扱う実践で知られる。ヴェネチア・ビエンナーレ（2022）や愛知トリエンナーレ（2022）にも参加し、2023年にはカルダー賞を受賞するなど国際的評価を得てきた。本展は東京都現代美術館（企画：岡村恵子）での開催を経て巡回する、彼女にとって国内美術館では最大規模となる個展。",
+    "execution": "作品は完成形をあらかじめ提示せず、時間とともに変化し続ける「出来事」として展開する点が特徴。会期中には東京展では上演しなかった《E_O》《Yield Point［降伏点］》《Wrong Happy Hour［誤りハッピーアワー］》《Secrets of My Mother's Child［母の娘の事実］》の4作を含むパフォーマンスを序盤・終盤に実施し、静的な展示物とライブの身体表現を組み合わせる構成を取る。企画は国立国際美術館の植松由佳学芸課長。",
+    "evaluationImpact": "美術館という制度空間の中でパフォーマンス（一過性の出来事）をどう「展示」するかという難題に対する実践例として、美術メディアで開幕レポートが組まれるなど注目を集めている。個人的な習慣から気象・生態系観察へと関心を広げてきた作家の軌跡を辿れる点、コレクション再構成により東京展と異なる体験を提供する点が評価されている。",
+    "relatedWorks": [
+      {
+        "title": "笹本晃 ラボラトリー（東京都現代美術館）",
+        "description": "2025年8月23日〜11月24日に東京都現代美術館で開催された本展の原型となる個展。企画は岡村恵子。",
+        "url": "https://www.mot-art-museum.jp/exhibitions/Aki_Sasamoto/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Form/Installation",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "the-dive-2026",
+    "title": "ドラゴンクエスト the DIVE -まだ見ぬ冒険の舞台へ-",
+    "summary": "ドラクエ40周年展にMeta Quest3×モーションシート連動のVRライドを導入、キラーパンサー搭乗の没入戦闘体験を実現",
+    "client": "スクウェア・エニックス（ドラゴンクエスト40周年）",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://game.watch.impress.co.jp/docs/news/2125117.html",
+    "thumbnail": "/thumbnails/the-dive-2026.jpg",
+    "videoId": "",
+    "overview": "東急プラザ原宿「ハラカド」で2026年7月17日〜9月6日開催のドラゴンクエスト40周年記念展「the DIVE」の目玉体験。Meta Quest3とモーションシートを組み合わせた没入型VRアトラクション「ドラゴンクエストVR RIDE」で、来場者はキラーパンサーに乗って広大なフィールドを疾走し、モンスターとの遭遇やバトルを体感する。フェイストラッキングを使う「ラーの鏡」など体験型展示も併設。",
+    "background": "40周年を迎えたドラゴンクエストシリーズの記念イベントとして、原画・資料の静的展示に留まらずゲーム世界を身体で体感できる没入型アトラクションを企画。主催はスクウェア・エニックスと東北新社。プレイヤー視点でしか味わえなかった冒険をVRで追体験できる形式にすることで、ファン参加型の記念展として設計された。",
+    "execution": "会場4階MAZEにVR RIDEを設置し、Meta Quest3ヘッドセットとモーションシートを連動させキラーパンサー疾走時の揺れや衝撃を再現。12歳以下は保護者同伴必須、9歳以下はVRなしシート体験、3歳以下は利用不可と年齢別に安全設計した。2階では鳥山明氏の原画や開発経緯資料も展示し、VR体験と資料展示を組み合わせた構成とした。",
+    "evaluationImpact": "ゲームIPの記念展にVRライドを組み込み、静的展示中心だった従来のファンイベントを体験型に転換した点が特徴。Meta Quest3とモーションシートの組み合わせにより個人所有のVR機材では再現できない体感を提供し、40周年の節目にふさわしい没入体験として来場者の記憶に残る仕掛けとなった。大阪展開も2027年春に予定されている。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/XR",
+      "Tech/Device",
+      "Form/Exhibition",
+      "Form/Event",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "case-477dlp-2026",
+    "title": "浮世絵スーパークリエイター 歌川国芳展",
+    "summary": "歌川国芳の代表作約200点の原画展示に、3DCGとプロジェクションマッピングによる没入体験ゾーンを併設した二層構成の企画展。",
+    "client": "京都市京セラ美術館",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://kyotocity-kyocera.museum/en/exhibition/20260718-20260923",
+    "thumbnail": "/thumbnails/case-477dlp-2026.jpg",
+    "videoId": "",
+    "overview": "京都市京セラ美術館で2026年7月18日から9月23日まで開催の「浮世絵スーパークリエイター 歌川国芳展」。江戸後期の浮世絵師・歌川国芳（1797-1861）の武者絵・美人画・風景画など代表作を6ジャンルに分け約200点で紹介する。会場内には3DCGとプロジェクションマッピングを用いた没入体験ゾーン「KUNIYOSHI IMMERSIVE ART」も併設される。",
+    "background": "歌川国芳は水滸伝を題材にした武者絵や愛猫家として知られる猫の擬人化作品、風刺の効いたユーモラスな表現で人気を博した江戸後期の異才の絵師。近年、国内外で浮世絵の再評価が進む中、原画展示に加え体感型デジタルアートを組み合わせる手法が「動き出す浮世絵展」シリーズとして東京・大阪・名古屋等で展開されており、京都でも同様の没入型コンテンツが導入された。",
+    "execution": "本館北回廊1階を会場に、「相馬の古内裏」など国芳の代表作を6つのジャンルに分けて約200点展示。あわせて50点以上の国芳作品を素材に3DCGアニメーションとプロジェクションマッピングで再構成した立体的な映像空間「KUNIYOSHI IMMERSIVE ART」を併設し、静的な原画鑑賞と没入型デジタル体験を一体で提供する構成とした。",
+    "evaluationImpact": "原画中心の学術的な浮世絵展に、同時期に東京・大阪・名古屋でも展開される没入型デジタルアート「動き出す浮世絵展」シリーズの手法を組み合わせた点が特徴。伝統的な美術館展示と体感型デジタルコンテンツを併存させることで、若年層や観光客層への訴求力を高める試みとして注目される。",
+    "relatedWorks": [
+      {
+        "title": "動き出す浮世絵展 Ukiyoe Immersive Art Exhibition（東京・大阪・名古屋）",
+        "description": "歌川国芳の浮世絵を3DCG・プロジェクションマッピングで再構成した同系統の没入体験展。全国複数都市で展開。",
+        "url": "https://www.ukiyoeimmersiveart.com/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Projection",
+      "Tech/3D",
+      "Form/Exhibition",
+      "Form/Installation",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "case-1i1qr82-2026",
+    "title": "幸せになりたい！ー祈りの絵画ー",
+    "summary": "福田美術館が「仏画」「吉祥画」を軸に据えた同館初の企画展。鏑木清方作品など17点を初公開",
+    "client": "福田美術館",
+    "agency": "",
+    "categories": [
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://fukuda-art-museum.jp/exhibition/202604134657",
+    "thumbnail": "/thumbnails/case-1i1qr82-2026.jpg",
+    "videoId": "",
+    "overview": "京都・嵯峨嵐山の福田美術館が2026年7月18日～9月6日、「祈り」をテーマにした企画展「幸せになりたい！ー祈りの絵画ー」を開催。仏画・吉祥画・東山魁夷作品の3章構成で計59点を展示し、うち17点は初公開となる。",
+    "background": "福田美術館は仏画と吉祥画を中心に据えた企画展を同館として初めて実施。人々が古来絵画に込めてきた「祈り」の多様な表現を、近代日本画から東山魁夷まで通覧する構成を企画した。",
+    "execution": "第1章「仏画の世界」では横山大観・菱田春草・入江波光らの仏や天女を描いた作品、第2章「吉祥画の世界」では七福神・松竹梅など縁起物を描いた吉祥画（鏑木清方《十二ヶ月貼交屏風》を初公開）、第3章「東山魁夷の世界」では魁夷自身の文章と共に風景画を紹介する3章構成とした。",
+    "evaluationImpact": "菱田春草《白衣観音》や土田麦僊《観音之図》など初公開17点を含む計59点を通じ、仏画・吉祥画という同館未着手のジャンルに焦点を当てた点が特徴で、地域の観光・文化発信にも寄与する企画となっている。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Theme/Art"
+    ]
+  },
+  {
     "id": "tofrom-yaesu-tower-art-2026",
     "title": "TOFROM YAESU TOWER ART：人魚の街",
     "summary": "岩井俊二書き下ろしストーリーを軸に8組の作家が参加する、東京駅前新複合施設の常設パブリックアートプロジェクト",
