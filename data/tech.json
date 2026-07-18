@@ -1,5 +1,170 @@
 [
   {
+    "id": "marble-x-nuke",
+    "title": "Marble x Nuke",
+    "org": "Patrick Crucke（個人開発、World Labs非公式連携）",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "テキストや画像から生成した3D世界を、そのまま映像業界定番の合成ソフト「Nuke」の3D空間に読み込める無料プラグイン。",
+    "point": "「Marble x Nuke」は、AIが3D空間を丸ごと生成するWorld Labsの「Marble」というサービスと、映像業界の定番コンポジットソフト「Nuke」を橋渡しする無料の拡張機能です。「霧に包まれた廃墟の教会」のように文章で書くだけで、AIがその情景をぐるっと歩き回れる3D空間として生成し、それを無数の半透明な“光の粒”の集合（Gaussian Splatting）としてNukeの3Dビューアに自動で読み込んでくれます。今までなら3Dスキャンやロケ撮影に何時間もかけて用意していた背景美術やセット拡張が、テキスト一行と数分の生成待ちだけで手元に届くイメージです。広告映像なら、実際のロケハンをしなくても「こんな空間感で撮りたい」というラフの背景を一瞬で作って合成の当たりを取ったり、CGアーティストがいなくてもディレクターが直接“世界観のたたき台”を量産して企画会議に持ち込む、といった使い方が考えられます。",
+    "detail": "仕組みとしては、Nukeのツールバーから「Marble T2W（テキストから世界を生成）」「Marble I2W（画像から生成、最大4枚のアングルに対応）」といったノードを置き、World LabsのAPIキーを入力するだけです。生成が終わると点群データ（PLY形式）が自動でダウンロードされ、Nukeの3Dビューア用ノード「GeoImport」に自動接続されて、そのまま3D空間として見たり動かしたりできます。解像度も「フル/50万点/10万点」から選べ、重い作品はプレビュー用に軽くする、といった調整も可能です。\n\n従来は、AIで3D空間を作れても、それをNukeのようなVFXソフトに持ち込むにはファイル形式の変換や手作業のインポート設定が必要でした。このツールはその橋渡しの手間をまるごと自動化し、Nukeの画面から一歩も出ずに「発想→3D空間→合成」まで完結させられる点が新しいところです。\n\n使うにはNuke 17以降（無料のNon-Commercial版でも動作）と、World Labsのプラットフォーム（platform.worldlabs.ai）で取得できるAPIキーが必要です。プラグイン自体はGitHubから無料でダウンロードして所定のフォルダに置くだけで、プログラミングの知識は不要。ただし3D世界の生成にはWorld Labs側の利用料や商用プランが別途かかる場合があるため、実案件で使う際は料金体系の確認が必要です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "プラグイン本体はMITライセンスで無償公開。ただし生成されるGaussian Splatワールドの商用利用にはWorld Labs Marbleの有料プランへの加入が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/NXStorm/Marble-x-Nuke"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/marble-x-nuke-loads-world-labs-marble-splats-straight-into-nuke-s-3d-viewport"
+      },
+      {
+        "kind": "product",
+        "url": "https://www.worldlabs.ai/labs"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/marble-x-nuke.jpg",
+    "relatedWorks": [
+      {
+        "title": "Marble（World Labs）",
+        "description": "テキストや画像から探索可能な3D世界を生成するAIモデル本体",
+        "url": "https://www.worldlabs.ai/blog/marble-world-model"
+      },
+      {
+        "title": "Houdini 22 ネイティブGaussian Splattingパイプライン",
+        "description": "3DCGソフトHoudiniにGaussian Splatのリギング・リライティング機能が標準搭載",
+        "url": "https://radiancefields.com/houdini-22-ships-making-native-gaussian-splats-generally-available"
+      },
+      {
+        "title": "SplatRenderer Plugin for Unreal Engine",
+        "description": "Gaussian SplatをUnreal Engineでレンダリングするプラグイン",
+        "url": "https://radiancefields.com/splatrenderer-plugin-for-unreal-engine"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "spatialography",
+    "title": "Spatialography",
+    "org": "VoxelKei（個人クリエイター）",
+    "type": "Prototype",
+    "domains": [
+      "Spatial/3D",
+      "HCI/MediaArt"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "実在する公園や滝をGaussian Splattingで記録し、VR空間の中を歩いて鑑賞できる“作品”に仕立てたVRChatワールド。ヴェネチア国際映画祭のVR部門に選出。",
+    "point": "「Spatialography」は、日本のクリエイターVoxelKei氏が実在する公園や滝などの風景をGaussian Splatting（多数の写真から、空間そのものを無数の半透明な“光の粒”の集合として立体的に記録する技術）で撮影し、VRChat上で“鑑賞できる作品”として作り続けているワールドです。ただの3Dスキャンの展示ではなく、光る水しぶきが風になびいたり、ガラス玉の中に別の風景が閉じ込められていたりと、写真や絵画とは違う“空間そのものの表現”を模索しているのがポイントです。この試みが2026年、世界最高峰のヴェネチア国際映画祭のVR部門「Venice Immersive」の“Best of Worlds”に選出され、実写でも3DCGでもない“記録された実空間をそのまま歩ける作品”が映画祭という舞台で正式に評価されました。広告・体験設計の視点では、実際のロケ地や店舗、イベント会場をこの手法でまるごと記録し、来場できなかった人にも“その場の空気ごと”歩いて体験してもらう、という使い方のヒントになります。",
+    "detail": "仕組みとしては、実際の場所をスマートフォンやカメラで多数のアングルから撮影し、その写真群からAIが空間を無数の色つき半透明の点（Gaussian Splat）として再構成します。そのままではデータが重すぎてVRChatでは動かないため、VoxelKei氏は変換・間引き・分割・簡略化（LOD生成）を行う独自の変換パイプライン「Spatialograph Maker」を自作し、実用的な速度で歩き回れるところまで作り込んでいます。\n\n通常のフォトグラメトリ（写真から立体モデルを起こす技術）によるVRツアーは、写真をポリゴンに貼り付けたような“のっぺりした”見た目になりがちです。一方Gaussian Splattingの光の粒による表現は、水面の反射やぼやけた輪郭といった写真的な“揺らぎ”を残したまま自由に歩き回れるのが特徴で、VoxelKei氏はこれを単なる技術デモではなく「空間の写真表現」という新しい表現ジャンルとして位置づけています。この独自性が、今回映画祭という一般的な技術デモとは異なる文脈で評価された理由です。\n\n鑑賞するだけなら無料のVRChatアプリ（PC・VRヘッドセットのほか、機材なしのデスクトップモードでも可）があれば誰でも訪問できます。同様の制作を行うには、多視点の撮影機材（スマホでも可）とGaussian Splattingの学習環境に加え、VRChat向けに最適化する専用の変換ノウハウが必要になります。",
+    "license": {
+      "spdx": null,
+      "commercial": "none",
+      "note": "VRChat内で誰でも無料で訪問・体験できる作品。販売等の商用ライセンスの概念はなし。"
+    },
+    "links": [
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/voxelkei-s-spatialography-selected-for-venice-immersive-2026-best-of-worlds"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=TbXsV1MzkXA"
+      },
+      {
+        "kind": "product",
+        "url": "https://vrchat.com/home/world/wrld_0ab57861-abb2-4802-8783-4ae089ea268b"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/spatialography.jpg",
+    "relatedWorks": [
+      {
+        "title": "Spatialography — AIxR Creative Awards グランプリ受賞",
+        "description": "同作が2026年初めにAIxR Creative Awardsでグランプリを受賞した際の記事",
+        "url": "https://radiancefields.com/spatialography-wins-grand-prize-at-the-aixr-creative-awards"
+      },
+      {
+        "title": "Spatialograph Maker",
+        "description": "VoxelKei氏が開発中の、Gaussian SplatデータをVRChat向けに変換する専用ツール",
+        "url": "https://www.docswell.com/s/3DGSmeetup/58W4RX-2026-02-20-163944"
+      },
+      {
+        "title": "OpenQuestCapture",
+        "description": "Meta Quest 3で環境データをキャプチャしGaussian Splatting素材を作るオープンソースツール",
+        "url": "https://github.com/samuelm2/OpenQuestCapture"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "alayaworld",
+    "title": "AlayaWorld",
+    "org": "ALAYA Lab (Shanda AI)",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "GenVideo",
+      "AI/Agents"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "1枚の画像とカメラの動き、テキスト指示だけから、1分以上遊び続けられる「動く映像世界」をリアルタイム生成し続けるオープンソースの世界モデル。",
+    "point": "AlayaWorldは、1枚の静止画とカメラの動かし方、テキストでの指示を渡すだけで、まるでゲームのようにその場で操作しながら探索できる「動く映像世界」をAIがその場で生成し続ける技術です。動画生成AIは近年数秒〜数十秒の映像は作れるようになりましたが、それを見ているだけでなく「自分でカメラを動かして進む」「魔法を唱えると花火や召喚獣が現れる」といった双方向のやりとりをしながら1分以上崩れずに世界が続く点が新しい。しかも同じ舞台を『写実的』『油絵風』『サイバーパンク』『ドット絵』など7種類の画風に切り替えて生成できるため、広告やブランド体験のプロトタイプで世界観違いの複数パターンを一瞬で見せる、という使い方も考えられます。ライブイベントの背景映像やインタラクティブ展示の叩き台、ゲームのコンセプトアート的な『動く絵コンテ』としての活用も期待できます。",
+    "detail": "仕組みとしては、動画生成AIの土台であるLTX-2.3という映像生成モデルをベースに、「3Dキャッシュ」と呼ばれる簡易的な3次元の記憶領域を組み込んでいます。カメラを動かすとその3Dキャッシュを参照して同じ場所に戻ったときに景色が破綻しないようにし、同時に直前までの映像履歴を圧縮した「記憶」も保持することで、長時間再生しても世界のつじつまが崩れにくい設計になっています。\n\nこれまでの映像生成AIは、決められたプロンプト通りに数秒の映像を一度作って終わり、というものが大半でした。AlayaWorldは映像を1秒ずつのかたまり(チャンク)で生成し続け、その途中でジョイスティック操作のようにカメラ方向を変えたり、魔法や天候変化といった新しい指示を割り込ませたりできる点が異なります。60秒以上遊んでも世界の一貫性が保たれることを確認しており、いわば「ゲームエンジンを使わずに映像AIだけでゲームらしい体験を作る」試みです。\n\n使うにはCUDA対応GPU(複数GPUなら長時間再生も高速)とPyTorch環境が必要で、学習済みモデル重みはHugging Faceから無料でダウンロードできます。ただしライセンスは「LTX-2 Community License」に準拠しており、現状は研究・学術目的や非商用の検証利用に限られ、実際の広告制作で使う場合はLightricks社への商用ライセンス確認が必要です。",
+    "license": {
+      "spdx": null,
+      "commercial": "research-only",
+      "note": "LTX-2 Community License Agreement準拠。学術・非商用のみで、商用利用はベースモデル提供元Lightricks社との別途契約が必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/AlayaLab/AlayaWorld"
+      },
+      {
+        "kind": "project",
+        "url": "https://alaya-lab.github.io/AlayaWorld/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2607.06291"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=n0jIEg7taTI"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/alayaworld.jpg",
+    "relatedWorks": [
+      {
+        "title": "Genie 3",
+        "description": "Google DeepMindによる単独プレイヤー向け世界モデルの代表例",
+        "url": "https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models/"
+      },
+      {
+        "title": "HunyuanWorld 1.0",
+        "description": "テキストや画像から探索可能な3D世界を生成するTencentの先行研究",
+        "url": "https://github.com/Tencent-Hunyuan/HunyuanWorld-1.0"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "decoy-font",
     "title": "Decoy Font",
     "org": "Mixfont（Eric Lu）",
