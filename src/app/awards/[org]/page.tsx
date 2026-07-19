@@ -6,6 +6,8 @@ export function generateStaticParams() {
   return AWARD_ORGS.map(o => ({ org: o.key }));
 }
 
+export const dynamicParams = false;
+
 export async function generateMetadata({ params }: { params: Promise<{ org: string }> }) {
   const { org } = await params;
   const orgDef = getOrgByKey(org);
