@@ -6,9 +6,13 @@
 // /ideasのSSGが300秒×3回タイムアウトし、9デプロイ連続失敗・本番21時間凍結を起こして
 // revert済み(68fd009)。再投入にあたり、重い計算(solveFixedSizeShape等)はビルド時から完全に
 // 追い出し、scripts/precompute-idea-layouts.mjsがdata/ideas.json更新のたびに事前計算した結果を
-// data/idea-layouts.json へ書き出す方式にした。本ファイルはその事前計算結果を読むだけの
-// 薄いアクセサで、重計算を一切呼ばない（IdeasPoster.tsx/IdeaShapeCard.tsxはこの結果を
-// 描画するだけ）。
+// data/idea-layouts.json へ書き出す方式にした。
+//
+// ISR Reads削減対応（2026-07-19）: data/idea-layouts.json(14.5MB)の即時importをこのモジュールから
+// 撤去した。IdeasPoster.tsx（Client Component）が値として本ファイルをimportしていたため、
+// 巨大JSONがまるごとクライアントバンドル/RSCペイロードに引きずり込まれ、/ideasのISR Reads
+// 消費が肥大化していた。本ファイルは純粋にtierLayoutの読み出しロジック（型定義含む）だけを
+// 提供し、実データ(IdeaLayoutsFile)は呼び出し側がpublic/data/idea-layouts.jsonをfetchして渡す。
 //
 // 鮮度の機械保証はpre-pushフック(scripts/check-idea-layouts-freshness.mjs)が担う
 // （data/idea-layouts.jsonの入力ハッシュ==現data/ideas.jsonでなければpushを拒否する）。
@@ -16,7 +20,6 @@
 // 本ファイル自体にビルド時フォールバック処理は持たせない。
 import type { IdeaShape } from "./ideaShapes";
 import type { CardPlacement, CollageTier } from "./ideaCollageLayout";
-import rawLayouts from "../../data/idea-layouts.json";
 
 export type IdeaLayoutCard = {
   shape: IdeaShape;
@@ -37,11 +40,6 @@ export type IdeaLayoutsFile = {
   tiers: Record<CollageTier, IdeaLayoutTier>;
 };
 
-// JSON importはTypeScriptの構造的型チェック対象外（as constで得られるリテラル型とずれるため）
-// unknown経由でキャストする。実データの形はprecompute-idea-layouts.mjs側の書き出しと
-// 1:1で一致させている
-export const ideaLayouts: IdeaLayoutsFile = rawLayouts as unknown as IdeaLayoutsFile;
-
-export function tierLayout(tier: CollageTier): IdeaLayoutTier {
-  return ideaLayouts.tiers[tier];
+export function tierLayout(layoutsFile: IdeaLayoutsFile, tier: CollageTier): IdeaLayoutTier {
+  return layoutsFile.tiers[tier];
 }

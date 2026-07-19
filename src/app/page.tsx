@@ -1,4 +1,3 @@
-import { cases, allCategories, allYears, allRegions, allSources, allTags } from "@/lib/cases";
 import GalleryClient from "@/components/GalleryClient";
 import TopTabs from "@/components/TopTabs";
 import { ViewModeProvider } from "@/components/ViewModeContext";
@@ -48,14 +47,7 @@ export default function Home() {
           <TopTabs active="cases" />
         </div>
 
-        <GalleryClient
-          cases={cases}
-          categories={allCategories}
-          years={allYears}
-          regions={allRegions}
-          sources={allSources}
-          tags={allTags}
-        />
+        <GalleryClient />
       </ViewModeProvider>
     </main>
   );

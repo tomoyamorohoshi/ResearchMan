@@ -1,9 +1,9 @@
 "use client";
 
-import { useMemo, useState, type CSSProperties } from "react";
+import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import { TIER_REF_WIDTH_PX, type CollageTier } from "@/lib/ideaCollageLayout";
-import { tierLayout } from "@/lib/ideaLayouts";
-import { categoryOf, existingCategories, type Idea } from "@/lib/ideas";
+import { tierLayout, type IdeaLayoutsFile } from "@/lib/ideaLayouts";
+import { categoryOf, existingCategories, sortIdeas, type Idea } from "@/lib/ideaCategory";
 import IdeaShapeCard from "@/components/IdeaShapeCard";
 import IdeaCardControls from "@/components/IdeaCardControls";
 import { useIdeaLikes } from "@/hooks/useIdeaLikes";
@@ -45,18 +45,48 @@ const TIER_VISIBILITY_CLASS: Record<CollageTier, string> = {
 };
 
 export default function IdeasPoster({
-  ideas,
   techDomainEntries,
 }: {
-  ideas: Idea[];
   // Server Component(page.tsx)からClient Componentへ渡すため、Mapではなくシリアライズ
   // 可能なタプル配列で受け取り、ここでMapへ復元する（[id, domains[0]][]）
   techDomainEntries: [string, string][];
 }) {
   const techDomainById = useMemo(() => new Map(techDomainEntries), [techDomainEntries]);
-  const legend = existingCategories(ideas, techDomainById);
-  const ideaById = new Map(ideas.map((idea) => [idea.id, idea]));
-  const categoryByIdeaId = new Map(ideas.map((idea) => [idea.id, categoryOf(idea, techDomainById)]));
+
+  // ISR Reads削減対応（2026-07-19）: ideas/idea-layoutsはpropsで受け取らず、マウント後に
+  // public/data/配下の静的アセットをfetchする（scripts/prepare-public-data.mjsがビルド時に
+  // data/ideas.json・data/idea-layouts.jsonをそのままコピーして書き出す）。ページHTML/RSC
+  // ペイロードに巨大JSONを埋め込まないための変更で、見た目・挙動は変えない
+  const [ideas, setIdeas] = useState<Idea[] | null>(null);
+  const [layoutsFile, setLayoutsFile] = useState<IdeaLayoutsFile | null>(null);
+  // fetch失敗（404・ネットワーク断・JSON破損等）時に「読み込み中」のまま固まらないよう、
+  // エラー状態を別途持ち、簡易エラー表示へ遷移させる（レビュー指摘対応）
+  const [fetchFailed, setFetchFailed] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/data/ideas.json")
+      .then((res) => res.json())
+      .then((data: Idea[]) => {
+        if (!cancelled) setIdeas(sortIdeas(data));
+      })
+      .catch((err) => {
+        console.error("Failed to load /data/ideas.json", err);
+        if (!cancelled) setFetchFailed(true);
+      });
+    fetch("/data/idea-layouts.json")
+      .then((res) => res.json())
+      .then((data: IdeaLayoutsFile) => {
+        if (!cancelled) setLayoutsFile(data);
+      })
+      .catch((err) => {
+        console.error("Failed to load /data/idea-layouts.json", err);
+        if (!cancelled) setFetchFailed(true);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   // いいね・ゴミ箱（/ideas 機能追加）。同期機構はcases/tech側と同じcreateSyncedIdSet
   // ファクトリだが、localStorageキー・APIエンドポイントは独立している（互いに影響しない）
@@ -66,6 +96,23 @@ export default function IdeasPoster({
   // 件数表示: hydration前(mounted=false)は0を表示し、ローカルの実際の件数が瞬間的に
   // 誤表示されるのを防ぐ(GalleryClient.tsxのtrashCountと同じパターン)
   const trashCount = trashMounted ? trashed.size : 0;
+
+  // fetch完了前/失敗時は、既存の「Trash is empty」等と同じ視覚言語の簡素な表示にする
+  // （レイアウトシフトを最小にしつつ、この早期returnより前に全フックを呼び終えているため
+  // フックの呼び出し順序・回数は変わらない）
+  if (fetchFailed || !ideas || !layoutsFile) {
+    return (
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-8 pt-6 pb-16 sm:pt-8 sm:pb-24">
+        <div className="text-center py-32 text-[10px] tracking-[0.3em] uppercase text-gray-400">
+          {fetchFailed ? "Failed to load" : "Loading…"}
+        </div>
+      </div>
+    );
+  }
+
+  const legend = existingCategories(ideas, techDomainById);
+  const ideaById = new Map(ideas.map((idea) => [idea.id, idea]));
+  const categoryByIdeaId = new Map(ideas.map((idea) => [idea.id, categoryOf(idea, techDomainById)]));
 
   return (
     <div className="max-w-[1600px] mx-auto px-4 sm:px-8 pt-6 pb-16 sm:pt-8 sm:pb-24">
@@ -106,7 +153,7 @@ export default function IdeasPoster({
       </div>
 
       {TIERS.map((tier) => {
-        const layout = tierLayout(tier);
+        const layout = tierLayout(layoutsFile, tier);
         const refWidthPx = TIER_REF_WIDTH_PX[tier];
         const containerHeightPx = Math.max(1, layout.containerHeightPx);
         // 事前計算(data/idea-layouts.json)にエントリが無いidea(=precompute未実行のまま

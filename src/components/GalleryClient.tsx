@@ -1,8 +1,9 @@
 "use client";
 
-import { useRef, useState, type ComponentType } from "react";
+import { useEffect, useMemo, useRef, useState, type ComponentType } from "react";
 import dynamic from "next/dynamic";
 import type { Case } from "@/lib/cases";
+import { deriveCaseFacets } from "@/lib/caseFacets";
 import CaseCard from "./CaseCard";
 import CasePanel from "./CasePanel";
 import { useFavorites } from "@/hooks/useFavorites";
@@ -29,10 +30,14 @@ const Graph3DView = dynamic(() => import("./Graph3DView"), {
 }) as ComponentType<Graph3DViewProps<Case>>;
 
 type Props = {
-  cases: Case[];
-  categories: string[];
-  years: string[];
-  regions: string[];
+  // awardsページ（/awards/[org]/[slug]）はサーバー計算済みpropsを明示的に渡す（従来通り）。
+  // propsが渡されない場合（TOPページ=/）のみ、mount後にpublic/data/cases.jsonを自己fetchする
+  // （ISR Reads削減対応 2026-07-19。data/cases.json(2MB)をページHTML/RSCペイロードへ
+  // 埋め込まないための変更で、見た目・機能は変えない）
+  cases?: Case[];
+  categories?: string[];
+  years?: string[];
+  regions?: string[];
   sources?: string[];
   tags?: string[];
   defaultSort?: SortOrder;
@@ -41,6 +46,11 @@ type Props = {
 };
 
 type SortOrder = "added" | "year" | "award";
+
+// effectiveCasesのフォールバック値。毎回`[]`リテラルを使うと参照が render のたびに変わり、
+// それに依存するuseMemo(derivedFacets)が意図せず再計算され続ける（react-hooks/exhaustive-deps
+// 警告の原因でもあった）。モジュールスコープの単一参照にして安定させる
+const EMPTY_CASES: Case[] = [];
 
 export default function GalleryClient({ cases, categories, years, regions, sources = [], tags = [], defaultSort = "added", awardContext }: Props) {
   const [filters, setFilters] = useState({ category: "", year: "", region: "", source: "", tag: "" });
@@ -55,9 +65,55 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
   const gridRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
 
+  // 自己fetchモード（casesがpropsで渡されなかった場合のみ）。awardsページはcasesを常に渡すため
+  // このfetchは一切発火しない
+  const isSelfFetchMode = cases === undefined;
+  const [fetchedCases, setFetchedCases] = useState<Case[] | null>(null);
+  // fetch失敗（404・ネットワーク断・JSON破損等）時に「読み込み中」のまま固まらないよう、
+  // エラー状態を別途持ち、簡易エラー表示へ遷移させる（レビュー指摘対応）
+  const [fetchFailed, setFetchFailed] = useState(false);
+  useEffect(() => {
+    if (!isSelfFetchMode) return;
+    let cancelled = false;
+    fetch("/data/cases.json")
+      .then((res) => res.json())
+      .then((data: Case[]) => {
+        if (!cancelled) setFetchedCases(data);
+      })
+      .catch((err) => {
+        console.error("Failed to load /data/cases.json", err);
+        if (!cancelled) setFetchFailed(true);
+      });
+    return () => {
+      cancelled = true;
+    };
+    // isSelfFetchModeはprops由来で初回レンダー以降変化しない前提（casesの有無は呼び出し元
+    // ページによって固定される）ため、depsに含めない
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const effectiveCases = cases ?? fetchedCases ?? EMPTY_CASES;
+  const stillLoading = isSelfFetchMode && fetchedCases === null && !fetchFailed;
+  const hasFetchError = isSelfFetchMode && fetchFailed;
+
+  // facet（categories/years/regions/sources/tags）: propsで渡されていれば従来通りそれを使う
+  // （awardsページの挙動保持）。渡されていない＝自己fetchモードでは、caseFacets.tsの関数で
+  // effectiveCasesから導出する。フィルタ操作のたびに605件相当の再計算が走らないようuseMemoで
+  // メモ化する（レビュー指摘対応。フックの呼び出し順序・回数は条件分岐させないため、
+  // isSelfFetchModeの分岐はuseMemoの中に閉じる）
+  const derivedFacets = useMemo(
+    () => (isSelfFetchMode ? deriveCaseFacets(effectiveCases) : null),
+    [isSelfFetchMode, effectiveCases],
+  );
+  const effectiveCategories = derivedFacets ? derivedFacets.categories : (categories ?? []);
+  const effectiveYears = derivedFacets ? derivedFacets.years : (years ?? []);
+  const effectiveRegions = derivedFacets ? derivedFacets.regions : (regions ?? []);
+  const effectiveSources = derivedFacets ? derivedFacets.sources : sources;
+  const effectiveTags = derivedFacets ? derivedFacets.tags : tags;
+
   // filtered/sorted: 3D遷移フック(useGraphViewTransition)がrect採取・優先ロード対象の
   // 算出に使うため、フック呼び出しより前に計算しておく
-  const filtered = cases.filter((c) => {
+  const filtered = effectiveCases.filter((c) => {
     // ごみ箱ビュー時はtrashedのみ表示、通常時はtrashedを除外（TOP一覧・3Dグラフから隠す。
     // data/cases.json本体は変更しない＝復元可能なアーカイブとして残る）
     if (showTrashOnly) {
@@ -97,7 +153,7 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
         : filtered;
 
   const { showGrid, showGraph, graphWrapRef, handleGraphReady } = useGraphViewTransition({
-    items: cases,
+    items: effectiveCases,
     sorted,
     adapter: caseGraphAdapter,
     gridRef,
@@ -108,12 +164,12 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
   const tabs = tabSources
     .map((s) => ({
       ...s,
-      count: cases.filter((c) => !trashed.has(c.id) && (c.sources ?? []).includes(s.tag)).length,
+      count: effectiveCases.filter((c) => !trashed.has(c.id) && (c.sources ?? []).includes(s.tag)).length,
     }))
     .filter((s) => s.count > 0);
 
   // 「#」ハッシュタグフィルターはアワード系ソースのみ（タブと役割を分ける）
-  const awardSources = sources.filter((s) => getSourceKind(s) === "award");
+  const awardSources = effectiveSources.filter((s) => getSourceKind(s) === "award");
 
   // favorites は tech と localStorage を共有しているため、cases に絞らず
   // 集合全体から trashed 分だけ差し引く（従来の「case+tech合算」表示を維持）
@@ -236,11 +292,11 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
         {/* 展開フィルターパネル */}
         {showFilters && (
           <div className="border-t border-gray-200 max-w-[1600px] mx-auto px-4 py-3 flex flex-wrap gap-x-8 gap-y-2">
-            <FilterGroup label="Category" options={categories} value={filters.category}
+            <FilterGroup label="Category" options={effectiveCategories} value={filters.category}
               onSelect={(v) => setFilters((p) => ({ ...p, category: p.category === v ? "" : v }))} />
-            <FilterGroup label="Year" options={years} value={filters.year}
+            <FilterGroup label="Year" options={effectiveYears} value={filters.year}
               onSelect={(v) => setFilters((p) => ({ ...p, year: p.year === v ? "" : v }))} />
-            <FilterGroup label="Region" options={regions} value={filters.region}
+            <FilterGroup label="Region" options={effectiveRegions} value={filters.region}
               onSelect={(v) => setFilters((p) => ({ ...p, region: p.region === v ? "" : v }))} />
             {awardSources.length > 0 && (
               <FilterGroup label="Source" options={awardSources} value={filters.source} prefix="#"
@@ -248,7 +304,7 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
             )}
             {/* ハッシュタグ（Tech/Form/Theme の3軸。表示は #キーワードのみ、値はフルパス） */}
             {TAG_AXES.map((axis) => {
-              const axisTags = tags.filter((t) => tagAxis(t) === axis);
+              const axisTags = effectiveTags.filter((t) => tagAxis(t) === axis);
               if (axisTags.length === 0) return null;
               return (
                 <FilterGroup key={axis} label={axis} options={axisTags} value={filters.tag}
@@ -290,7 +346,15 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
 
           {sorted.length === 0 && (
             <div className="text-center py-32 text-[10px] tracking-[0.3em] uppercase text-gray-400">
-              {showTrashOnly ? "Trash is empty" : showFavoritesOnly ? "No saved items yet" : "No results found"}
+              {hasFetchError
+                ? "Failed to load"
+                : stillLoading
+                ? "Loading…"
+                : showTrashOnly
+                  ? "Trash is empty"
+                  : showFavoritesOnly
+                    ? "No saved items yet"
+                    : "No results found"}
             </div>
           )}
         </>

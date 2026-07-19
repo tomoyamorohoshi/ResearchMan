@@ -55,3 +55,7 @@ next-env.d.ts
 
 # ResearchMan Studio（ローカル専用アプリ）のジョブ履歴・実行時生成物
 studio/workdir/
+
+# ビルド生成物（scripts/prepare-public-data.mjsがprebuildで書き出す静的アセット。
+# data/*.jsonのコピーのためリポジトリにはコミットしない）
+/public/data/

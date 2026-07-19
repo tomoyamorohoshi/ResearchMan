@@ -15,7 +15,7 @@ import {
   truncateToEmBudget,
   type IdeaShape,
 } from "@/lib/ideaShapes";
-import { dateLabelOf, type Category, type Idea } from "@/lib/ideas";
+import { dateLabelOf, type Category, type Idea } from "@/lib/ideaCategory";
 
 // /ideas ポスターUIの1枚 = 1つの不定形SVGシェイプ（DESIGN: goofy-hatching-mango.md）。
 // 輪郭沿いに投稿日・タイトルを実テキスト(textPath)で流し、内部のforeignObjectに

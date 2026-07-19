@@ -1,4 +1,3 @@
-import { sortedIdeas } from "@/lib/ideas";
 import { techItems } from "@/lib/tech";
 import IdeasPoster from "@/components/IdeasPoster";
 import TopTabs from "@/components/TopTabs";
@@ -41,7 +40,7 @@ export default function IdeasPage() {
         <TopTabs active="ideas" />
       </div>
 
-      <IdeasPoster ideas={sortedIdeas} techDomainEntries={techDomainEntries} />
+      <IdeasPoster techDomainEntries={techDomainEntries} />
     </main>
   );
 }
