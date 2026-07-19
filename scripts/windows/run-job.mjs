@@ -32,6 +32,7 @@ import os from "os";
 import path from "path";
 import { spawnSync, execFileSync } from "child_process";
 import { fileURLToPath } from "url";
+import { isMainBranch, parseCurrentBranch } from "../lib/branch-guard.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..", ".."); // scripts/windows -> repo root
@@ -415,8 +416,38 @@ async function runWatchdog() {
 }
 
 // ── main ────────────────────────────────────────────────────
+// ブランチガード: 作業ツリーがmain以外なら収集処理を一切実行せず即座に失敗させる。
+// 2026-07-19、作業ツリーが別ブランチ（mcp-oauth-spike）のまま放置され、日次収集がmain以外に
+// コミットされる事故が実際に起きたための再発防止（ジョブ冒頭での検査で即座に失敗させる方針。
+// 事故時の状態を単純にするため、途中まで実行してから中断する設計にはしない）。
+function assertOnMainBranchOrExit() {
+  let raw;
+  try {
+    raw = execFileSync(GIT_BIN, ["rev-parse", "--abbrev-ref", "HEAD"], { cwd: ROOT, encoding: "utf-8" });
+  } catch (e) {
+    const msg = `❌ ブランチ判定に失敗しました（git rev-parse エラー）: ${e.message}`;
+    log(msg);
+    console.error(msg);
+    try {
+      fs.closeSync(logFd);
+    } catch {}
+    process.exit(1);
+  }
+  const branch = parseCurrentBranch(raw);
+  if (!isMainBranch(branch)) {
+    const msg = `❌ 作業ツリーがmainブランチではありません（現在: ${branch || "(不明)"}）。収集処理を中止します。`;
+    log(msg);
+    console.error(msg);
+    try {
+      fs.closeSync(logFd);
+    } catch {}
+    process.exit(1);
+  }
+}
+
 async function main() {
   try {
+    assertOnMainBranchOrExit();
     switch (JOB) {
       case "autoresearch":
         await runAutoresearch();

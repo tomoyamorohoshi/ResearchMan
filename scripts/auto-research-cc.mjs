@@ -35,7 +35,7 @@ import { localDayIndex } from "./lib/day-index.mjs";
 import { logRejection } from "./lib/rejection-log.mjs";
 import { buildExistingTitlesText } from "./lib/existing-titles.mjs";
 import { normLink } from "./lib/norm-link.mjs";
-import { fileURLToPath } from "url";
+import { fileURLToPath, pathToFileURL } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CASES_PATH = path.join(__dirname, "../data/cases.json");
@@ -61,7 +61,7 @@ function shortHash(s) {
   return (h >>> 0).toString(36);
 }
 
-function toId(title, year, client = "") {
+export function toId(title, year, client = "") {
   const slugOf = (s) =>
     (s || "")
       .toLowerCase()
@@ -77,7 +77,7 @@ function toId(title, year, client = "") {
 }
 
 // タイトル正規化（id違いの重複を検出するため）。記号・空白・年を除去して比較する。
-function normTitle(t) {
+export function normTitle(t) {
   return (t || "")
     .toLowerCase()
     .normalize("NFKD")
@@ -168,7 +168,7 @@ ${existingTitles}
 
 // ── Phase B: 記事化（検証済み候補のみ・1件ずつ） ──────────────
 
-function buildArticlePrompt(cand, vocab) {
+export function buildArticlePrompt(cand, vocab) {
   const allTags = [...vocab.Tech, ...vocab.Form, ...vocab.Theme].join(" / ");
   return `以下のデジタルクリエイティブ事例について、WebSearchで事実確認しながら日本語のデータベース記事を書いてください。
 
@@ -230,8 +230,13 @@ If nothing found, return: NOT_FOUND`,
   return match[1];
 }
 
-// 検証を通った場合のみ {thumbnail, videoId} を返す。ダミー画像は絶対に使わない。
-async function acquireVerifiedThumbnail(id, cand, claudeBin) {
+// 検証を通った場合は {thumbnail, videoId} を、全ステップ失敗の場合は
+// { error: "各ステップの却下理由を短く連結した1行" } を返す。ダミー画像は絶対に使わない。
+// reasonの連結により、logs/rejections-*.jsonl の thumbnail-unverified が「なぜ」落ちたか
+// 1行で診断できるようにする（従来はStep1〜3のどれで落ちたか記録が残らなかった）。
+export async function acquireVerifiedThumbnail(id, cand, claudeBin) {
+  const reasons = [];
+
   // Step 1: 発見時の YouTube ID → oEmbed 実在＋タイトル照合
   if (cand.youtube_id) {
     process.stdout.write(`  [1] YouTube ID検証: ${cand.youtube_id} ... `);
@@ -245,8 +250,10 @@ async function acquireVerifiedThumbnail(id, cand, claudeBin) {
         return { thumbnail: local, videoId: cand.youtube_id };
       }
       console.log("✗ 画像保存失敗");
+      reasons.push("yt-id:image-save-failed");
     } else {
       console.log(info ? `✗ タイトル不一致（${info.title.slice(0, 40)}）` : "✗ 動画が存在しない");
+      reasons.push(info ? `yt-id:title-mismatch(${info.title.slice(0, 30)})` : "yt-id:not-found");
     }
   }
 
@@ -259,6 +266,9 @@ async function acquireVerifiedThumbnail(id, cand, claudeBin) {
       return { thumbnail: local, videoId: "" };
     }
     console.log("✗");
+    reasons.push("og-image:not-found-or-too-small");
+  } else {
+    reasons.push("og-image:no-link");
   }
 
   // Step 3: Claude CLI で YouTube 検索 → 必ず oEmbed 照合
@@ -274,14 +284,18 @@ async function acquireVerifiedThumbnail(id, cand, claudeBin) {
         console.log(`✓ (${foundId})`);
         return { thumbnail: local, videoId: foundId };
       }
+      reasons.push("yt-search:image-save-failed");
+    } else {
+      console.log("✗ 照合不一致");
+      reasons.push("yt-search:mismatch");
     }
-    console.log("✗ 照合不一致");
   } else {
     console.log("✗ 見つからず");
+    reasons.push("yt-search:not-found");
   }
 
   // ダミー画像へのフォールバックはしない（誤サムネ・無関係画像の根絶）
-  return null;
+  return { error: reasons.join("; ") };
 }
 
 async function main() {
@@ -376,11 +390,12 @@ async function main() {
         // ── 検証済みサムネイル取得（取れなければ記事化前に却下）──
         console.log(`検証中: ${cand.title}`);
         const thumb = await acquireVerifiedThumbnail(id, cand, claudeBin);
-        if (!thumb) {
-          console.log(`却下（検証済みサムネイル取得不可）: ${cand.title}`);
+        if (!thumb || thumb.error) {
+          const detail = thumb?.error || "unknown";
+          console.log(`却下（検証済みサムネイル取得不可）: ${cand.title} [${detail}]`);
           stats.rejected++;
           if (!DRY_RUN) {
-            await logRejection({ pipeline: "cc", title: cand.title, reason: "thumbnail-unverified", link: cand.link || "" });
+            await logRejection({ pipeline: "cc", title: cand.title, reason: "thumbnail-unverified", detail, link: cand.link || "" });
           }
           const orphan = path.join(__dirname, `../public/thumbnails/${id}.jpg`);
           try {
@@ -518,9 +533,16 @@ async function main() {
   return toAdd.length;
 }
 
-main()
-  .then(() => process.exit(0))
-  .catch((e) => {
-    console.error("\n❌ エラー:", e.message);
-    process.exit(1);
-  });
+// このファイルを他スクリプト（scripts/backfill-rejections.mjs等）からimportして
+// toId/normTitle/buildArticlePrompt/acquireVerifiedThumbnailだけを再利用したい場合に、
+// import した瞬間にmain()（本番収集・cases.json書き換え）が走ってしまわないためのガード。
+// `node scripts/auto-research-cc.mjs` として直接起動された場合のみ実行する
+// （process.argv[1]をfile URLに変換して比較。Windowsのパス区切り・エンコーディング差異を吸収する）。
+if (import.meta.url === pathToFileURL(process.argv[1] || "").href) {
+  main()
+    .then(() => process.exit(0))
+    .catch((e) => {
+      console.error("\n❌ エラー:", e.message);
+      process.exit(1);
+    });
+}
