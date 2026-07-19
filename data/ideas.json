@@ -3687,5 +3687,203 @@
         "desc": "高速イベントカメラの生データから物体の微細な振動＝音を光源なしで復元する計測手法"
       }
     ]
+  },
+  {
+    "id": "2026-07-19-1",
+    "date": "2026-07-19",
+    "title": "AIを欺く暴露広告術",
+    "pattern": "文脈×技術",
+    "seed": "DoveのEVOLUTIONが暴いた「作られた美」に、人間には読めるがAIには誤読されるDecoy Fontを重ねたら、AIの自動加工検出をすり抜けつつ人間だけに真実を伝える広告表現ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "dove-evolution",
+        "title": "EVOLUTION",
+        "desc": "普通の女性が広告用モデルへと変貌する加工の実態を美容業界自ら暴いた草分け的な広告作品"
+      },
+      {
+        "type": "tech",
+        "id": "decoy-font",
+        "title": "Decoy Font",
+        "desc": "人間には正しく読めるのに、AIの画像認識には別の単語として誤読されてしまう特殊なフォント"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-19-2",
+    "date": "2026-07-19",
+    "title": "語り継ぐ証言アバター",
+    "pattern": "文脈×技術",
+    "seed": "Suffering展が肖像の傷で心の傷を可視化したように、1枚の顔写真と音声で語り続けるLive Avatarを使えば、戦争体験者が不在でも証言を語り続ける常設展示ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "suffering-musee-grande-guerre",
+        "title": "Suffering",
+        "desc": "戦争が兵士の心に残した目に見えない傷を、肖像に刻んだ傷として可視化したクラフト作品"
+      },
+      {
+        "type": "tech",
+        "id": "live-avatar",
+        "title": "Live Avatar",
+        "desc": "1枚の顔写真と音声だけで何時間もしゃべり続けられるリアルタイム映像アバター生成AI"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-19-3",
+    "date": "2026-07-19",
+    "title": "動く海中の森を精緻化",
+    "pattern": "文脈×技術",
+    "seed": "Forests Without Namesが海中の見えない森をデータで可視化したように、任意センサ入力から実寸3D世界を1回で復元するAny4Dを使えば、より精緻な「動く海中の森」の保全マップが作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "forests-without-names-hyundai",
+        "title": "Forests Without Names",
+        "desc": "海中に広がる見えない森をデータとAIを使って地図化し、保全対象として可視化した施策"
+      },
+      {
+        "type": "tech",
+        "id": "any4d",
+        "title": "Any4D",
+        "desc": "RGB動画に加え任意のセンサ入力から、実寸スケールで動く3D世界を1回の推論で復元するモデル"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-19-4",
+    "date": "2026-07-19",
+    "title": "自室に語りかけるAI",
+    "pattern": "文脈×技術",
+    "seed": "ALONE WITH ME AIが視聴データで名前を呼びかけたように、1枚の室内写真から編集可能な3DメッシュをつくるPixARMeshで自室を再現し、その空間にAIが入り込んで語りかける没入体験ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "weeknd-alone-with-me-ai",
+        "title": "ALONE WITH ME AI体験（The Weeknd × Spotify）",
+        "desc": "視聴データを使いThe WeekndのAIが名前を呼び語りかけるパーソナライズ体験"
+      },
+      {
+        "type": "tech",
+        "id": "pixarmesh",
+        "title": "PixARMesh",
+        "desc": "1枚の室内写真から部屋全体の配置と編集可能な3Dメッシュを生成するフレームワーク"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-19-5",
+    "date": "2026-07-19",
+    "title": "途切れないループダンス",
+    "pattern": "技術×技術",
+    "seed": "Webカメラ1台でBlenderにモーキャプを流し込むPoseCapの即興ダンスを、開始と終了のポーズが一致するループを自動生成するC1連続ツールに通したら、途切れないライブ演出用ループ映像が作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "posecap",
+        "title": "PoseCap",
+        "desc": "Webカメラ1台でBlenderにリアルタイムモーションキャプチャを流し込める無料ツール"
+      },
+      {
+        "type": "tech",
+        "id": "akasaki-c1-loop-motion-tool",
+        "title": "C1連続 in-loop-out モーション生成ツール",
+        "desc": "モーションキャプチャの一部区間から、開始と終了のポーズが一致するループアニメを自動生成する個人開発ツール"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-19-6",
+    "date": "2026-07-19",
+    "title": "実写×CG自動編集術",
+    "pattern": "技術×技術",
+    "seed": "Gaussian Splattingを3Dモデルと正しく重ねるYaGSの空間素材を、AIが自動編集するFrontstageに読み込ませたら、実写×CG合成のカット編集をチャット指示だけで組み上げられるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "yags",
+        "title": "YaGS",
+        "desc": "Unreal Engine上でGaussian Splattingを3Dモデルと正しく重ねられる無料プラグイン"
+      },
+      {
+        "type": "tech",
+        "id": "frontstage",
+        "title": "Frontstage",
+        "desc": "AIによる映像生成とチャット型の自動編集エージェントが組み込まれた、無料でオープンソースの動画編集ソフト"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-19-7",
+    "date": "2026-07-19",
+    "title": "空間推論で混雑を計測",
+    "pattern": "転用",
+    "seed": "物体間の距離をAIが自ら考えて答える空間推論エージェントSpatialClawを、写真判定ではなくライブ会場の観客同士の間隔測定に転用したら、混雑度を測る新しいファングッズになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "spatialclaw",
+        "title": "SpatialClaw",
+        "desc": "画像や映像に写る物体同士がどれだけ離れているかを、AIが自らコードを書きながら考えて答える空間推論エージェント"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-19-8",
+    "date": "2026-07-19",
+    "title": "生きた店員サイネージ",
+    "pattern": "転用",
+    "seed": "ライブ配信や大画面演出向けに作られた持続型アバターLive Avatarを、来店客への接客用サイネージに転用したら、スタッフ不在でも1枚の写真から生きた店員が常時対応する売り場になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "live-avatar",
+        "title": "Live Avatar",
+        "desc": "ライブ配信や大画面演出向けに、何時間でも破綻せずしゃべり続けられるよう設計されたリアルタイム映像アバター生成AI"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-19-9",
+    "date": "2026-07-19",
+    "title": "無限に踊るロボット映像",
+    "pattern": "文脈×技術",
+    "seed": "SPOT'S ON ITでロボット犬Spotが楽曲に合わせ完璧に踊ったように、音声と映像を同時生成できるLTX-2を使えば、実機を動かさず新曲のたびにロボットが最初から踊っている映像を無限に作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "bts-spot-boston-dynamics",
+        "title": "SPOT'S ON IT（BTS × Boston Dynamics）",
+        "desc": "4足歩行ロボットSpotが楽曲に合わせて踊る姿を映したロボット工学と音楽の融合映像"
+      },
+      {
+        "type": "tech",
+        "id": "ltx-2",
+        "title": "LTX-2",
+        "desc": "音声と映像を同時生成できる初のオープンソース基盤モデル。ネイティブ4K・最長20秒"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-19-10",
+    "date": "2026-07-19",
+    "title": "二重チェック検品表示",
+    "pattern": "技術×技術",
+    "seed": "演出担当と作画担当のAIが分業して映像を生成編集するBerniniの指示画面に、人間には読めAIには誤読されるDecoy Fontを重ねたら、意図しない編集を防ぐ検品用の二重チェック表示ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "bernini",
+        "title": "Bernini",
+        "desc": "自然な言葉の指示を読み解く演出担当AIと、実際に映像を描く作画担当AIが分業する統合生成モデル"
+      },
+      {
+        "type": "tech",
+        "id": "decoy-font",
+        "title": "Decoy Font",
+        "desc": "人間には正しく読めるのに、AIの画像認識には別の単語として誤読されてしまう特殊なフォント"
+      }
+    ]
   }
 ]
