@@ -3885,5 +3885,191 @@
         "desc": "人間には正しく読めるのに、AIの画像認識には別の単語として誤読されてしまう特殊なフォント"
       }
     ]
+  },
+  {
+    "id": "2026-07-20-1",
+    "date": "2026-07-20",
+    "title": "愛車の別れを振動体験に",
+    "pattern": "文脈×技術",
+    "seed": "Mazdaの『Goodbye RX-7』のような25年の愛車との別れを描く実話ドキュメンタリーに、HapticLensで別れの瞬間のエンジン振動や手の震えを触覚化したら、映像の切なさがもっと深く伝わるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "mazda-goodbye-rx7-saying-farewell-to-a-dear-friend",
+        "title": "Goodbye RX-7: Saying Farewell to a Dear Friend",
+        "desc": "80歳の女性とRX-7との25年間の絆を描き、車と人間の絆を世界に問う実話ドキュメンタリー広告。"
+      },
+      {
+        "type": "tech",
+        "id": "hapticlens",
+        "title": "HapticLens",
+        "desc": "映像の動きから振動を自動生成し、1個の振動子で触感を付けられるオーサリングツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-20-2",
+    "date": "2026-07-20",
+    "title": "映像民主化に物理法則を",
+    "pattern": "文脈×技術",
+    "seed": "OpenAIのSORAが投げかけた『映像制作の民主化』という問いに、物理的正しさを重視するLingBot-Videoを掛け合わせたら、AIが作る映像は絵ではなく物理法則に忠実な使えるシミュレーションになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "openai-sora",
+        "title": "SORA（OpenAI）",
+        "desc": "テキストから最大60秒の高品質動画を生成し、映画産業に根本的な問いを投げたAI。"
+      },
+      {
+        "type": "tech",
+        "id": "lingbot-video",
+        "title": "LingBot-Video",
+        "desc": "見た目の美しさより物理的正しさを重視した、embodied AI学習用の大規模動画生成モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-20-3",
+    "date": "2026-07-20",
+    "title": "レシピを音楽に変える発想",
+    "pattern": "文脈×技術",
+    "seed": "Voice of Foodが視覚に頼らないレシピ体験を音で設計したように、ACE-Step 1.5で調理工程をボーカル入りの『調理ソング』に変換すれば、レシピ自体が聴いて覚える音楽になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ajinomoto-voice-of-food",
+        "title": "Voice of Food",
+        "desc": "視覚に依存したレシピを音で再設計した音声アクセシビリティ・キャンペーン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-20-4",
+    "date": "2026-07-20",
+    "title": "写真からの仮想帰郷体験",
+    "pattern": "文脈×技術",
+    "seed": "The Healing Stageが戦時下の心の傷の回復を支えたように、故郷の部屋の1枚の写真をPixARMeshで編集可能な3Dに再現できたら、兵士が帰れない場所に仮想的に帰る癒しの体験になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "armed-forces-ukraine-the-healing-stage",
+        "title": "The Healing Stage",
+        "desc": "戦時下にある兵士の心の傷の回復を支える、ウクライナ軍によるケアの取り組み。"
+      },
+      {
+        "type": "tech",
+        "id": "pixarmesh",
+        "title": "PixARMesh",
+        "desc": "1枚の室内写真から部屋全体の配置と編集可能な3Dメッシュを生成する自己回帰フレームワーク。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-20-5",
+    "date": "2026-07-20",
+    "title": "集合体験を3Dでロギング",
+    "pattern": "文脈×技術",
+    "seed": "VIISUALIIZERがリスナーの光点を地球規模でリアルタイム表示したように、Rerun×Booster Robotics K1の時系列可視化技術を使えば、ライブ会場の観客の熱狂データを3D空間でリアルタイムに見せられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "bon-iver-viisualiizer",
+        "title": "VIISUALIIZER（Bon Iver × Spotify）",
+        "desc": "アルバムを聴くファンの光点を地球上にリアルタイム表示する集合リスニング体験。"
+      },
+      {
+        "type": "tech",
+        "id": "rerun-booster-robotics-k1",
+        "title": "Rerun × Booster Robotics K1",
+        "desc": "ヒューマノイドK1のセンサ・3D状態をリアルタイムにロギング・可視化するOSSツールのデモ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-20-6",
+    "date": "2026-07-20",
+    "title": "スタジアム熱狂の360度化",
+    "pattern": "文脈×技術",
+    "seed": "W杯人気を追い風にしたMLSの『Thanks World』のようなキャンペーンに、追加学習なしで360°映像を生成できるSpheRoPEを掛けたら、スタジアムの熱狂をどこからでも360度で追体験できるコンテンツになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "thanks-world-we-ll-take-it-from-here-2026",
+        "title": "Thanks World, We'll Take It From Here",
+        "desc": "W杯人気を追い風にベッカムやメッシを起用した、MLS史上最大のブランドキャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "spherope",
+        "title": "SpheRoPE",
+        "desc": "学習済みDiffusion Transformerに球面幾何を注入し、追加学習ゼロで360°パノラマを生成する技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-20-7",
+    "date": "2026-07-20",
+    "title": "サーバー不要の歩ける検索",
+    "pattern": "技術×技術",
+    "seed": "ternlightの軽量AIがブラウザだけで検索を動かせるなら、Marble x Nukeが生成する3D世界の中身をその場で会話検索できる、サーバー不要の『歩ける検索エンジン』ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "marble-x-nuke",
+        "title": "Marble x Nuke",
+        "desc": "テキストや画像から生成した3D世界を、合成ソフトNukeにそのまま読み込める無料プラグイン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-20-8",
+    "date": "2026-07-20",
+    "title": "描き込みでロボット演出",
+    "pattern": "技術×技術",
+    "seed": "ComfyUIの『Cinematic Annotate Video』が描き込みでカメラワークを指示する仕組みと、robot_retargeterの体格変換技術を組み合わせたら、線を描くだけで体格の違うロボットに同じ演出の動きを再現させられるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-cinematic-annotate-video",
+        "title": "ComfyUI「Cinematic Annotate Video」ワークフロー",
+        "desc": "画像への描き込みをLLMがモーションプロンプトに翻訳し動画生成するComfyUIワークフロー。"
+      },
+      {
+        "type": "tech",
+        "id": "robot-retargeter",
+        "title": "robot_retargeter",
+        "desc": "人のモーキャプデータを、体格や関節数が違う人型ロボットの動きに変換する無料OSSツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-20-9",
+    "date": "2026-07-20",
+    "title": "浮遊ギミックの什器転用",
+    "pattern": "転用",
+    "seed": "本来は磁石入り3Dプリント物体を宙に浮かせるHCI研究ギミックだったLeviFabを、値札もスタンドも要らない『浮く商品ディスプレイ』に転用したら、店頭什器そのものが要らなくなるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "levifab",
+        "title": "LeviFab",
+        "desc": "液体窒素冷却の超伝導体で、磁石入り3Dプリント物体を空中浮遊・操作するHCI研究(SIGGRAPH 2017)。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-20-10",
+    "date": "2026-07-20",
+    "title": "iPhoneで現場を3D記録",
+    "pattern": "転用",
+    "seed": "本来はクリエイター向けの3D空間キャプチャ用だったGaussian SplatKingを、事故や事件現場の記録に転用したら、iPhone1台で誰でも証拠になりうる3D記録を残せる市民ジャーナリズムの道具になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "gaussian-splatking",
+        "title": "Gaussian SplatKing",
+        "desc": "iPhoneのデュアルレンズとLiDARでGaussian Splatting用データを無料取得できるiOSアプリ。"
+      }
+    ]
   }
 ]
