@@ -292,6 +292,54 @@ launchd `com.researchman.watchdog` が毎日12:30・18:30（PCが落ちていれ
   通知なし」で正常終了するはず）・`npm run watchdog:deep`（日曜相当のフル監査。
   実行時間・ネットワーク負荷が大きいため通常は日曜の自動実行に任せ、手動実行は慎重に）
 
+### Studio死活監視と自動復旧（studio-keeper）（2026-07-21新設）
+
+2026-07-17〜21、Studioサーバ（LINEボットの実体、`npm run studio`＝tsx watch）が無言で
+死んでいてもログオン時起動タスク（`ResearchMan-Studio`、AtLogOnトリガーのみ）は再起動されず、
+既存watchdog（1日2回）にもStudio死活監視が無いためLINEボットが無応答のまま丸1日以上
+気づかれなかった実インシデントの再発防止策。
+
+- **周期監視**: `ResearchMan-studiokeeper` タスクが `scripts/windows/studio-keeper.mjs` を
+  **15分毎**に実行する。`GET http://127.0.0.1:5178/api/jobs`（timeout 5秒）で死活判定し、
+  生存なら何もせず静かに終了する。
+- **死亡時の自己回復**: (1) `netstat -ano` を解析しport 5178をLISTENしている**そのPIDだけ**
+  `taskkill /PID <pid> /F`（`taskkill /IM node.exe` は本番ジョブを巻き込む事故の実績があるため
+  絶対に使わない）→ (2) `schtasks /run /tn ResearchMan-Studio` で再起動 → (3) 最大90秒
+  ポーリングして `/api/jobs` 200を確認 → (4) `logs/incidents.json`（gitignored・配列）に
+  `{at, kind:"studio-down", recovered, detail}` を追記 → (5) LINE通知（復旧成否いずれも送信）。
+- **ログ**: `logs/studio.log`（Studio本体の標準出力・標準エラー。
+  `register-studio-autostart.ps1` がタスクのcmd引数で `>> logs\studio.log 2>&1` リダイレクト。
+  次回死んだときの死因調査用）・`logs/studio-keeper.log`（keeper自身の実行ログ）。
+  いずれも10MB超で`.old`へ1世代のみローテート（`studio.log`はkeeper起動時に、
+  純粋ロジックは`scripts/lib/studio-keeper-core.mjs::shouldRotate`）。
+- **事故後の段階的検証（+1/+3/+7日）**: `logs/incidents.json` の最新インシデント日から
+  +1日・+3日・+7日にあたる日だけ、`scripts/watchdog.mjs`（1日2回実行の通常枠）が
+  「深い検証」を行い、**成功でも失敗でも必ずLINE通知する**（事故後の検証は「動いている」
+  報告自体が目的のため、watchdogの通常の静粛性ポリシーの例外）。判定は
+  `scripts/lib/verify-schedule.mjs::dueVerification`。検証内容（`scripts/lib/studio-verify.mjs`）:
+  (a) `GET http://127.0.0.1:5178/api/jobs` が200、(b) `POST <Funnel URL>/line-webhook`
+  （空JSON）が401（署名検査到達の証拠）、(c) `ResearchMan-Studio`・`ResearchMan-studiokeeper`
+  タスクが存在し無効化されていない。(c)は`schtasks`のテキスト出力ではなくPowerShellの
+  `Get-ScheduledTask` の `.State` を使う（**実機で判明した罠**: 日本語ロケールWindowsで
+  `spawnSync("schtasks", ...)` の出力をNodeがUTF-8として強制デコードすると項目名が
+  文字化けし、実際は有効なタスクでも「無効」と誤判定する。`Get-ScheduledTask`の
+  State enum文字列はロケールに依存しない）。
+- **登録・登録解除**:
+  ```powershell
+  powershell -ExecutionPolicy Bypass -File scripts\windows\register-studio-autostart.ps1
+  powershell -ExecutionPolicy Bypass -File scripts\windows\register-studio-keeper.ps1
+  ```
+  いずれも登録直後から有効（`register-tasks.ps1`系5ジョブと異なり移行期の無効化は無い。
+  Studio死活監視は常時稼働させておく必要があるため）。既存タスクがあれば削除して
+  再登録する（再登録自体は稼働中のStudioプロセスを殺さない。念のため再登録後は
+  port 5178 で生存確認すること）。
+- 検証: `node --test scripts/lib/studio-keeper-core.test.mjs`（PID抽出の厳密一致・
+  インシデント追記・ログローテ判定・JST ISO文字列組み立て、fixtureのみ）・
+  `node --test scripts/lib/verify-schedule.test.mjs`（+1/+3/+7日判定、fixtureのみ）・
+  `node --test scripts/lib/studio-verify.test.mjs`（3チェックの判定ロジック、fixtureのみ・
+  実HTTP/実CLI呼び出しなし）・`node scripts/windows/studio-keeper.mjs`（実行。Studioが
+  生存していれば無出力でexit 0）。
+
 ### LINE連携（LINEで依頼）（2026-07-13新設）
 
 LINEから「調べて/技術調べて/両方調べて/アイデア ＜自由文＞」を送るとResearchMan Studio

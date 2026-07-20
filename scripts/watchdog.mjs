@@ -36,6 +36,9 @@ import { parseJobRuns, filterRecentRuns, hasConsecutiveOutcome, countTodayReject
 import { checkThumbnailsOnPage } from "./lib/thumbnail-page-check.mjs";
 import { dedupeCandidates, extractKnownTechIdsFromAuditFailLines } from "./lib/quarantine.mjs";
 import { isUrlAlive } from "./verify-video.mjs";
+import { dueVerification, readIncidentsSafe } from "./lib/verify-schedule.mjs";
+import { jstDateString } from "./lib/jst-date.mjs";
+import { runDeepVerification } from "./lib/studio-verify.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
@@ -49,6 +52,10 @@ const LAST_RUN_PATH = path.join(ROOT, ".last-watchdog-run.txt");
 const STALE_HOURS = 26;
 const QUARANTINE_MAX_PER_RUN = 5;
 const NOT_QUARANTINED_KINDS = ["videoId-mismatch", "thumbnail-dup"];
+const INCIDENTS_PATH = path.join(ROOT, "logs", "incidents.json");
+const STUDIO_JOBS_URL = "http://127.0.0.1:5178/api/jobs";
+const STUDIO_WEBHOOK_URL = "https://laptop-95255niv.tail5f64f5.ts.net/line-webhook";
+const STUDIO_TASK_NAMES = ["ResearchMan-Studio", "ResearchMan-studiokeeper"];
 
 function log(msg) {
   console.log(msg);
@@ -677,6 +684,28 @@ async function runDeepAudit(report, priorEventCount) {
 }
 
 // ─────────────────────────────────────────────────────────────
+// 5. Studio死活の事故後段階的検証（+1/+3/+7日のみ・studio-keeper.mjsが記録した
+//    logs/incidents.jsonが起点）
+// ─────────────────────────────────────────────────────────────
+// 2026-07-17〜21のStudio無言死インシデントの再発防止策（studio-keeper.mjs、15分毎の
+// 死活監視・自動復旧）が実際に機能し続けているかを、事故から+1/+3/+7日後にだけ深く確認する。
+// この検証は「動いている」という報告自体が目的のため、他チェックと異なり結果によらず
+// 必ずreportへpushする（=main()側でreport.lengthが0でなくなり必ずLINE通知される）。
+async function checkStudioVerifySchedule(report) {
+  const incidents = readIncidentsSafe(INCIDENTS_PATH);
+  const today = jstDateString();
+  if (!dueVerification(incidents, today)) return;
+
+  log("[studio-verify] 検証対象日 → Studio死活の段階的検証を実行します");
+  const result = await runDeepVerification({
+    jobsUrl: STUDIO_JOBS_URL,
+    webhookUrl: STUDIO_WEBHOOK_URL,
+    taskNames: STUDIO_TASK_NAMES,
+  });
+  report.push(result.reportText);
+}
+
+// ─────────────────────────────────────────────────────────────
 // main
 // ─────────────────────────────────────────────────────────────
 async function main() {
@@ -688,6 +717,7 @@ async function main() {
   await safeCheck("daily-run-health", () => checkDailyRunHealth(report));
   await safeCheck("thumbnails", () => checkThumbnails(report));
   await safeCheck("collection-health", () => checkCollectionHealth(report));
+  await safeCheck("studio-verify-schedule", () => checkStudioVerifySchedule(report));
 
   let reportText = null;
   if (report.length) {
