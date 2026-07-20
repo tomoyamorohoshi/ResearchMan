@@ -43,9 +43,11 @@ import {
   buildCaseEntry,
   buildCommitMessage,
   buildExistingCaseIndex,
+  chunkArray,
   dedupeCandidates,
   extractJsonArray,
   filterTagsByVocabulary,
+  mergeParsedChunks,
   upsertOrderTagLine,
   type CaseEntry,
   type DedupedCandidate,
@@ -53,6 +55,7 @@ import {
   type ValidatedResearchRequest,
   type WriterFields,
 } from "./pure.js";
+import { dumpAgentDebug } from "./debugDump.js";
 import { acquireThumbnail } from "./thumbnail.js";
 import { resolveLock, tryAcquireLock, type LockHandle } from "./lock.js";
 import { runAgentQuery, runPlainQuery } from "./sdkRunner.js";
@@ -67,8 +70,13 @@ const CASES_PATH = path.join(ROOT, "data", "cases.json");
 const TAG_VOCAB_PATH = path.join(ROOT, "data", "tag-vocabulary.json");
 const RESEARCH_SOURCES_PATH = path.join(ROOT, "src", "lib", "researchSources.ts");
 const LAST_ADD_PATH = path.join(os.tmpdir(), "researchman-last-add.json");
+const WORKDIR = path.join(ROOT, "studio", "workdir");
 const SITE = "https://research-man.vercel.app";
 const FALLBACK_ORDER_TAG = "Studio";
+// job 66218d63の死因対策: survivors全件を1回の長文JSON配列出力に頼ると、応答の途中切れ・
+// 崩れで1件も反映されずジョブ全損する。4件ずつに分割してcase-writerを逐次呼び出し、
+// 1チャンクの失敗が他チャンクの成功分を巻き込まないようにする（部分成功設計）。
+const WRITER_CHUNK_SIZE = 4;
 
 interface Candidate extends DedupedCandidate {
   thumbnail?: string;
@@ -286,7 +294,10 @@ export async function runCaseResearchPipeline(
     }
     const linkVerdicts = extractJsonArray(linkResult.text);
     if (!linkVerdicts) {
-      throw new Error("リンク検証結果を解析できませんでした（Agent応答がJSON形式ではありません）");
+      const dumpPath = await dumpAgentDebug(WORKDIR, jobId, "link-verify", linkResult.text);
+      throw new Error(
+        `リンク検証結果を解析できませんでした（Agent応答がJSON形式ではありません。生出力(${linkResult.text.length}字)を ${dumpPath} に保存しました）`,
+      );
     }
     const linkMap = new Map<string, { alive: boolean; titleMatch: boolean | "na" }>();
     for (const v of linkVerdicts) {
@@ -354,38 +365,80 @@ export async function runCaseResearchPipeline(
       throw new Error("リンク検証を通過した事例がありませんでした（すべて死リンクまたは内容不一致と判定）");
     }
 
-    // ── 4. 執筆（case-writer） ───────────────────────────────────
+    // ── 4. 執筆（case-writer。チャンク化 — job 66218d63の死因対策） ────────────
+    // survivors全件を1回の長文JSON配列出力に頼ると、応答の途中切れ・崩れで1件も反映されず
+    // ジョブ全損する（実際に起きた事故）。WRITER_CHUNK_SIZE件ずつに分割して逐次呼び出し
+    // （並列にしない）、チャンク単位でパースする。失敗したチャンクはデバッグダンプ+警告して
+    // そのチャンクだけ捨て、他チャンクの成功分で継続する（部分成功設計）。
     await setProgress(jobId, "執筆中");
     const caseWriterDef = loadAgentDefinition(AGENTS_DIR, "case-writer");
     const tagVocabFlat = [...tagVocab.Tech, ...tagVocab.Form, ...tagVocab.Theme];
-    const writerResult = await runAgentQuery(
-      ROOT,
-      "case-writer",
-      caseWriterDef,
-      buildCaseWriterPrompt(
-        survivors.map((c) => ({
-          id: c.id,
-          title: c.title,
-          client: c.client || "",
-          agency: c.agency || "",
-          year: c.year,
-          link: c.link,
-          award: c.award || "",
-          summary: c.summary || "",
-        })),
-        tagVocabFlat,
-      ),
-    );
-    // 独立レビュー指摘#3: throwする前に必ずコストを加算・予算チェックする。
-    costUsd += writerResult.costUsd;
-    budget.add(writerResult.costUsd);
-    if (!writerResult.ok) {
-      throw new Error(`執筆エージェントの呼び出しに失敗しました: ${writerResult.error}`);
+    const writerChunks = chunkArray(survivors, WRITER_CHUNK_SIZE);
+    const parsedChunks: (unknown[] | null)[] = [];
+    const failedChunkDumps: string[] = [];
+    let anyChunkParsed = false;
+    for (const [chunkIndex, chunk] of writerChunks.entries()) {
+      const writerResult = await runAgentQuery(
+        ROOT,
+        "case-writer",
+        caseWriterDef,
+        buildCaseWriterPrompt(
+          chunk.map((c) => ({
+            id: c.id,
+            title: c.title,
+            client: c.client || "",
+            agency: c.agency || "",
+            year: c.year,
+            link: c.link,
+            award: c.award || "",
+            summary: c.summary || "",
+          })),
+          tagVocabFlat,
+        ),
+      );
+      // 独立レビュー指摘#3と同じ方針: throw/continueする前に必ずコストを加算する。
+      costUsd += writerResult.costUsd;
+      // 予算超過はここで打ち切り、それまでに成功したチャンクを使って続行する
+      // （ジョブ全体を即座に停止する通常のbudget.add呼び出しとは意図的に異なる扱い）。
+      let budgetExceeded = false;
+      try {
+        budget.add(writerResult.costUsd);
+      } catch (err) {
+        if (!(err instanceof BudgetExceededError)) throw err;
+        budgetExceeded = true;
+      }
+
+      if (!writerResult.ok) {
+        console.warn(`[studio] case-writer call failed (chunk ${chunkIndex}):`, writerResult.error);
+        parsedChunks.push(null);
+      } else {
+        const arr = extractJsonArray(writerResult.text);
+        if (!arr) {
+          const dumpPath = await dumpAgentDebug(WORKDIR, jobId, `writer-chunk-${chunkIndex}`, writerResult.text);
+          failedChunkDumps.push(dumpPath);
+          console.warn(
+            `[studio] case-writer chunk ${chunkIndex} returned unparseable JSON（${writerResult.text.length}字）— dumped to ${dumpPath}`,
+          );
+          parsedChunks.push(null);
+        } else {
+          anyChunkParsed = true;
+          parsedChunks.push(arr);
+        }
+      }
+
+      if (budgetExceeded) {
+        console.warn(
+          `[studio] 執筆フェーズで予算上限に到達しました（チャンク${chunkIndex + 1}/${writerChunks.length}まで実行）。ここまでの成功分で続行します`,
+        );
+        break;
+      }
     }
-    const writerArr = extractJsonArray(writerResult.text);
-    if (!writerArr) {
-      throw new Error("執筆結果を解析できませんでした（Agent応答がJSON形式ではありません）");
+    if (!anyChunkParsed) {
+      throw new Error(
+        `執筆結果を解析できませんでした（Agent応答がJSON形式ではありません）。生出力ダンプ: ${failedChunkDumps.join(", ") || "(なし)"}`,
+      );
     }
+    const writerArr = mergeParsedChunks(parsedChunks);
     const writerMap = new Map<string, WriterFields>();
     for (const item of writerArr) {
       if (!item || typeof item !== "object" || !("id" in item)) continue;

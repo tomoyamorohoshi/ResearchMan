@@ -88,6 +88,7 @@ import {
   type ValidatedAddCaseRequest,
 } from "./addCasePure.js";
 import { extractJsonArray, normalizeTitleKey, toCaseId } from "./pure.js";
+import { dumpAgentDebug } from "./debugDump.js";
 import { acquireThumbnail } from "./thumbnail.js";
 import {
   buildExistingTechIndex,
@@ -127,6 +128,7 @@ const TECH_THUMB_DIR = path.join(ROOT, "public", "thumbnails", "tech");
 // verify-tech-pages.mjs（scripts/側・無改変）はこの固定パスの要約ファイルを読む。
 // techResearch.ts（Research(Technology)一括収集パイプライン）と同じ契約を共有する。
 const LAST_TECH_ADD_PATH = path.join(os.tmpdir(), "researchman-tech-last-add.json");
+const WORKDIR = path.join(ROOT, "studio", "workdir");
 const SITE = "https://research-man.vercel.app";
 
 async function setProgress(jobId: string, progress: string): Promise<void> {
@@ -256,7 +258,10 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
     }
     const obj = extractJsonObject(adderResult.text);
     if (!obj) {
-      throw new Error("抽出結果を解析できませんでした（Agent応答がJSON形式ではありません）");
+      const dumpPath = await dumpAgentDebug(WORKDIR, jobId, "extract", adderResult.text);
+      throw new Error(
+        `抽出結果を解析できませんでした（Agent応答がJSON形式ではありません。生出力(${adderResult.text.length}字)を ${dumpPath} に保存しました）`,
+      );
     }
     const contentKind = parseContentKind(obj);
     if (contentKind === "neither") {
@@ -311,7 +316,10 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
       }
       const linkVerdicts = extractJsonArray(linkResult.text);
       if (!linkVerdicts) {
-        throw new Error("リンク検証結果を解析できませんでした（Agent応答がJSON形式ではありません）");
+        const dumpPath = await dumpAgentDebug(WORKDIR, jobId, "link-verify", linkResult.text);
+        throw new Error(
+          `リンク検証結果を解析できませんでした（Agent応答がJSON形式ではありません。生出力(${linkResult.text.length}字)を ${dumpPath} に保存しました）`,
+        );
       }
       const verdict = linkVerdicts[0] as { alive?: boolean; titleMatch?: boolean | "na" } | undefined;
       if (!verdict || verdict.alive !== true || verdict.titleMatch === false) {

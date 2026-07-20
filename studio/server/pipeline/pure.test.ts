@@ -10,9 +10,11 @@ import {
   buildCaseEntry,
   buildCommitMessage,
   buildExistingCaseIndex,
+  chunkArray,
   dedupeCandidates,
   extractJsonArray,
   filterTagsByVocabulary,
+  mergeParsedChunks,
   normalizeTitleKey,
   toCaseId,
   upsertOrderTagLine,
@@ -251,6 +253,55 @@ test("extractJsonArray: JSONが無ければnull", () => {
 
 test("extractJsonArray: 壊れたJSONはnull", () => {
   assert.equal(extractJsonArray("[{title: broken}]"), null);
+});
+
+// ── extractJsonArray: 途中切れJSONの機械修復（job 66218d63の死因対策） ─────────
+// execution フェーズの長文JSON配列出力が途中で切れると、従来は「最初の[〜最後の]」の
+// 1回試行のみで失敗しnullになっていた。末尾の壊れた要素を切り落として`]`で閉じる修復を
+// 後方から数回試みることで、少なくとも先頭側の完結した要素は部分復旧できるようにする。
+
+test("extractJsonArray: 途中で切れた配列は末尾の壊れた要素を切り落として復旧できる", () => {
+  const text = '前置きの説明文です。\n[{"id":"a","title":"A"},{"id":"b","title":"B"},{"id":"c","tit';
+  const arr = extractJsonArray(text);
+  assert.deepEqual(arr, [
+    { id: "a", title: "A" },
+    { id: "b", title: "B" },
+  ]);
+});
+
+test("extractJsonArray: オブジェクトのみ（配列が無い）はnull", () => {
+  assert.equal(extractJsonArray('{"id":"a","title":"A"}'), null);
+});
+
+test("extractJsonArray: 復旧不能なほど壊れたJSONはnull", () => {
+  assert.equal(extractJsonArray('[{"id": broken not json at all'), null);
+});
+
+// ── chunkArray（執筆フェーズのチャンク化） ────────────────────────────────
+test("chunkArray: size件ずつに分割する", () => {
+  assert.deepEqual(chunkArray([1, 2, 3, 4, 5], 2), [[1, 2], [3, 4], [5]]);
+});
+
+test("chunkArray: 空配列は空配列を返す", () => {
+  assert.deepEqual(chunkArray([], 3), []);
+});
+
+test("chunkArray: 要素数がsize以下なら1チャンクのみ", () => {
+  assert.deepEqual(chunkArray([1, 2], 4), [[1, 2]]);
+});
+
+test("chunkArray: size<=0は例外", () => {
+  assert.throws(() => chunkArray([1, 2], 0));
+});
+
+// ── mergeParsedChunks（部分成功設計: 失敗チャンク(null)は読み飛ばす） ─────────
+test("mergeParsedChunks: 成功チャンクを結合し失敗チャンク(null)は読み飛ばす", () => {
+  const merged = mergeParsedChunks([[{ id: "a" }], null, [{ id: "b" }, { id: "c" }]]);
+  assert.deepEqual(merged, [{ id: "a" }, { id: "b" }, { id: "c" }]);
+});
+
+test("mergeParsedChunks: 全チャンク失敗なら空配列", () => {
+  assert.deepEqual(mergeParsedChunks([null, null]), []);
 });
 
 // ── filterTagsByVocabulary ────────────────────────────────────────

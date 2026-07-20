@@ -170,17 +170,70 @@ export function dedupeCandidates(
 
 // ── Agent応答のJSON抽出 ────────────────────────────────────────
 
-/** テキスト中の最初の `[` 〜 最後の `]` をJSON配列としてパースする（説明文混入を許容）。 */
-export function extractJsonArray(text: string): unknown[] | null {
-  const start = text.indexOf("[");
-  const end = text.lastIndexOf("]");
-  if (start === -1 || end === -1 || end < start) return null;
+function tryParseArray(s: string): unknown[] | null {
   try {
-    const parsed = JSON.parse(text.slice(start, end + 1));
+    const parsed = JSON.parse(s);
     return Array.isArray(parsed) ? parsed : null;
   } catch {
     return null;
   }
+}
+
+// job 66218d63の死因対策: 応答が途中で切れると従来の「最初の[〜最後の]」1回試行では
+// 復旧不能だった。末尾の壊れた要素を切り落として`]`で閉じる修復を後方から数回試みる
+// （試行回数の上限。無限ループ防止と「浅い壊れ方」のみ復旧対象にする意図の両方を兼ねる）。
+const MAX_REPAIR_ATTEMPTS = 5;
+
+/**
+ * テキスト中の最初の `[` 〜 最後の `]` をJSON配列としてパースする（説明文混入を許容）。
+ * 直接パースに失敗した場合、末尾の壊れた要素を切り落として配列を閉じる機械的な修復を
+ * 後方から数回試行する（Agent呼び出しを追加しない。LLM再試行はしない）。
+ */
+export function extractJsonArray(text: string): unknown[] | null {
+  const start = text.indexOf("[");
+  if (start === -1) return null;
+
+  const end = text.lastIndexOf("]");
+  if (end !== -1 && end >= start) {
+    const direct = tryParseArray(text.slice(start, end + 1));
+    if (direct) return direct;
+  }
+
+  // 修復試行: 直近の完結した要素境界（`}`）まで切り落として`]`を補う。
+  let searchEnd = text.length - 1;
+  for (let attempt = 0; attempt < MAX_REPAIR_ATTEMPTS; attempt++) {
+    const braceIdx = text.lastIndexOf("}", searchEnd);
+    if (braceIdx === -1 || braceIdx <= start) return null;
+    const repaired = tryParseArray(`${text.slice(start, braceIdx + 1)}]`);
+    if (repaired) return repaired;
+    searchEnd = braceIdx - 1;
+  }
+  return null;
+}
+
+// ── 執筆フェーズのチャンク化（caseResearch.ts §4: survivorsを分割してcase-writerを
+//    逐次呼び出す。1件のパース失敗がジョブ全体を巻き込まないようにする「部分成功設計」） ──
+
+/** 配列を size 件ずつに分割する（sizeは1以上）。 */
+export function chunkArray<T>(items: T[], size: number): T[][] {
+  if (size <= 0) throw new Error("chunk size must be a positive integer");
+  const chunks: T[][] = [];
+  for (let i = 0; i < items.length; i += size) {
+    chunks.push(items.slice(i, i + size));
+  }
+  return chunks;
+}
+
+/**
+ * 複数チャンクのextractJsonArray結果（失敗チャンクはnull）を1つの配列に結合する。
+ * 失敗チャンクは黙って読み飛ばす（「全チャンク失敗」の判定は呼び出し側が別途行う）。
+ */
+export function mergeParsedChunks(chunks: (unknown[] | null)[]): unknown[] {
+  const merged: unknown[] = [];
+  for (const c of chunks) {
+    if (c) merged.push(...c);
+  }
+  return merged;
 }
 
 // ── タグ語彙フィルタ ────────────────────────────────────────────

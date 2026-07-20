@@ -237,8 +237,15 @@ export async function rollbackTouchedFiles(
 export const runVerifyDeploy = (cwd: string, thumbPaths: string[], extraArgs: string[] = []): Promise<CommandResult> =>
   run("node", ["scripts/verify-deploy.mjs", ...extraArgs, ...thumbPaths], cwd, 7 * 60_000);
 
+// --context studio: notify-line.mjsのエラー通知は既定で日次ジョブ（run-job.mjs経由）専用の
+// 「本日分はスキップし、明日10時に再実行します」を出す。Studio(LINE単発)ジョブにこの文言を
+// 送ると「明日」の自動再実行が実在しないため嘘の案内になる（実際に起きた事故）。この関数は
+// 全Studioパイプライン（caseResearch/techResearch/ideaResearch/combinedResearch）が
+// notify-line.mjsを呼ぶ唯一の経路のため、ここで一元的に付与する
+// （scripts/lib/notify-line-text.mjs::buildErrorBodyLines参照。--text-fileモード等
+// error以外の呼び出しでは無視される安全なフラグ）。
 export const runNotifyLine = (cwd: string, args: string[]): Promise<CommandResult> =>
-  run("node", ["scripts/notify-line.mjs", ...args], cwd, 30_000);
+  run("node", ["scripts/notify-line.mjs", "--context", "studio", ...args], cwd, 30_000);
 
 // Technology日次パイプラインと同じ「/technology/<id> が実際に200を返すか」の確認
 // （verify-deploy.mjsは--skip-pages指定時にページ検証をしないため別途必要。

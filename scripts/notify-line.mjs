@@ -24,6 +24,7 @@ import os from "os";
 import path from "path";
 import https from "https";
 import { execSync } from "child_process";
+import { buildErrorBodyLines } from "./lib/notify-line-text.mjs";
 
 const TMP_LAST_ADD_PATH = path.join(os.tmpdir(), "researchman-last-add.json");
 
@@ -32,6 +33,9 @@ const CONFIG_PATH = path.join(os.homedir(), ".researchman-line.json");
 // Technology日次収集からも流用できるよう、サマリーの場所・リンク経路・ラベルを引数で差し替え可能。
 // 無引数なら従来どおりCase Study用（後方互換）。
 //   例: node scripts/notify-line.mjs --summary <os.tmpdir()>/researchman-tech-last-add.json --route technology --label Technology
+// --context daily|studio: エラー通知(--result error)の再実行案内文言の出し分け（既定daily）。
+// studio/server/pipeline/audit.ts::runNotifyLine がStudio(LINE)発ジョブでは常に
+// --context studio を付与する。日次ジョブ（run-job.mjs等）は無指定のまま＝挙動不変。
 const argOf = (name, fallback) => {
   const i = process.argv.indexOf(name);
   return i >= 0 && process.argv[i + 1] ? process.argv[i + 1] : fallback;
@@ -45,6 +49,12 @@ const LABEL = argOf("--label", "");
 //   pushfail   … pre-push監査等でpush失敗（要手動対応）
 //   error      … 収集スクリプトがエラー終了（ログ確認要）
 const RESULT = argOf("--result", "ok");
+// 呼び出し元コンテキスト。"daily"（既定・run-job.mjs経由の毎朝の自動実行）と
+// "studio"（Studio(LINE)発のオンデマンドジョブ。studio/server/pipeline/audit.ts::
+// runNotifyLineが常に付与する）でエラー通知の再実行案内文言を出し分ける
+// （lib/notify-line-text.mjs::buildErrorBodyLines参照。日次ジョブ側の呼び出し元は
+// 無指定のままで従来どおりの挙動を維持する）。
+const CONTEXT = argOf("--context", "daily");
 const SITE = "https://research-man.vercel.app";
 const PUSH_URL = "https://api.line.me/v2/bot/message/push";
 const BROADCAST_URL = "https://api.line.me/v2/bot/message/broadcast";
@@ -107,8 +117,7 @@ function buildText(summary, head) {
   if (RESULT === "error") {
     lines.push(`❌ ${name}: 収集がエラー終了`);
     lines.push("");
-    lines.push("本日分はスキップし、明日10時に再実行します。");
-    lines.push(`ログ: ${process.platform === "darwin" ? "~/Library/Logs/researchman-*.log" : "~/.researchman/logs/researchman-*.log"}`);
+    lines.push(...buildErrorBodyLines(CONTEXT));
   } else if (RESULT === "pushfail") {
     lines.push(`⚠️ ${name}: 収集${n > 0 ? `${n}件` : ""}完了したがpush失敗`);
     lines.push("");
