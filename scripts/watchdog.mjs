@@ -36,7 +36,7 @@ import { parseJobRuns, filterRecentRuns, hasConsecutiveOutcome, countTodayReject
 import { checkThumbnailsOnPage } from "./lib/thumbnail-page-check.mjs";
 import { dedupeCandidates, extractKnownTechIdsFromAuditFailLines } from "./lib/quarantine.mjs";
 import { isUrlAlive } from "./verify-video.mjs";
-import { dueVerification, readIncidentsSafe } from "./lib/verify-schedule.mjs";
+import { dueVerification, readIncidentsSafe, shouldRunToday, readVerifyStateSafe, writeVerifyState } from "./lib/verify-schedule.mjs";
 import { jstDateString } from "./lib/jst-date.mjs";
 import { runDeepVerification } from "./lib/studio-verify.mjs";
 
@@ -53,6 +53,7 @@ const STALE_HOURS = 26;
 const QUARANTINE_MAX_PER_RUN = 5;
 const NOT_QUARANTINED_KINDS = ["videoId-mismatch", "thumbnail-dup"];
 const INCIDENTS_PATH = path.join(ROOT, "logs", "incidents.json");
+const VERIFY_STATE_PATH = path.join(ROOT, "logs", "verify-state.json");
 const STUDIO_JOBS_URL = "http://127.0.0.1:5178/api/jobs";
 const STUDIO_WEBHOOK_URL = "https://laptop-95255niv.tail5f64f5.ts.net/line-webhook";
 const STUDIO_TASK_NAMES = ["ResearchMan-Studio", "ResearchMan-studiokeeper"];
@@ -696,6 +697,14 @@ async function checkStudioVerifySchedule(report) {
   const today = jstDateString();
   if (!dueVerification(incidents, today)) return;
 
+  // watchdogは12:30/18:30の1日2回実行されるため、due日でも同日2回目はスキップする
+  // （通知の重複防止。logs/verify-state.jsonに前回実行日を記録）。
+  const state = readVerifyStateSafe(VERIFY_STATE_PATH);
+  if (!shouldRunToday(state.lastVerifiedYmd, today)) {
+    log("[studio-verify] 本日は実行済み → スキップ");
+    return;
+  }
+
   log("[studio-verify] 検証対象日 → Studio死活の段階的検証を実行します");
   const result = await runDeepVerification({
     jobsUrl: STUDIO_JOBS_URL,
@@ -703,6 +712,7 @@ async function checkStudioVerifySchedule(report) {
     taskNames: STUDIO_TASK_NAMES,
   });
   report.push(result.reportText);
+  writeVerifyState(VERIFY_STATE_PATH, today);
 }
 
 // ─────────────────────────────────────────────────────────────

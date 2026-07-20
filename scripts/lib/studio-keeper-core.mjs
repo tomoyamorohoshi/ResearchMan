@@ -7,7 +7,10 @@
  *
  * ここには外部コマンド実行・ネットワーク呼び出しを含まない純関数だけを置く
  * （node:testで単体テストできるようにするため。branch-guard.mjs / quarantine.mjs と同じ方針）。
+ * ただし writeJsonAtomicSync のみ例外（下記コメント参照）。
  */
+import fs from "fs";
+import path from "path";
 
 // netstat -ano の生出力から、指定ポートをLISTENしているPIDを重複なく返す。
 // 例: "  TCP    0.0.0.0:5178           0.0.0.0:0              LISTENING       105884"
@@ -48,4 +51,35 @@ export function toJstIsoString(d = new Date()) {
   const JST_OFFSET_MS = 9 * 60 * 60 * 1000;
   const shifted = new Date(d.getTime() + JST_OFFSET_MS);
   return shifted.toISOString().replace(/\.\d{3}Z$/, "+09:00");
+}
+
+// checkAlive（注入された死活確認の非同期関数、引数なし）を最大retries回試し、
+// 1回でも成功したら即trueを返す（残りの試行はしない）。全て失敗したらfalse。
+// sleep（注入された非同期の待機関数）は各失敗の直後に呼ぶが、最後の試行の後は呼ばない
+// （復旧シーケンスへ進む/exitする直前に無駄な待機をしないため）。
+// ジョブ実行中の一過性負荷での1回の失敗だけで誤killする事故を防ぐためのリトライ
+// （checkAlive/sleepを注入するのは実時間を待たずにnode:testで検証できるようにするため）。
+export async function retryCheckAlive(checkAlive, sleep, retries, intervalMs) {
+  for (let attempt = 0; attempt < retries; attempt++) {
+    if (await checkAlive()) return true;
+    if (attempt < retries - 1) await sleep(intervalMs);
+  }
+  return false;
+}
+
+// logs/incidents.json に書き込むファイル内容（JSON文字列＋改行）を組み立てる純関数。
+export function buildIncidentsFileContent(incidents) {
+  return `${JSON.stringify(incidents, null, 2)}\n`;
+}
+
+// 同一ディレクトリの一時ファイルに書いてからrenameするアトミック書き込み（同期版）。
+// scripts/lib/ideas-io.mjs の writeJsonAtomic（fs/promises版）と同じ命名パターン・同じ方式。
+// studio-keeper.mjs 側の既存コードが同期API（fs.writeFileSync等）に揃っているため非同期化しない。
+// 本来この関数は外部I/Oを行うため「純関数だけを置く」というファイル冒頭の方針からは外れるが、
+// node:testから直接I/Oを検証する（一時ディレクトリでrename方式であることを確認する）ために
+// ここに置く（詳細は実装時の報告を参照）。
+export function writeJsonAtomicSync(filePath, content) {
+  const tmpPath = path.join(path.dirname(filePath), `.${path.basename(filePath)}.tmp-${process.pid}`);
+  fs.writeFileSync(tmpPath, content);
+  fs.renameSync(tmpPath, filePath);
 }

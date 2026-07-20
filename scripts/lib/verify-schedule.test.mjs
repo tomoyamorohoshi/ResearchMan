@@ -2,7 +2,10 @@
 // 実行: node --test scripts/lib/verify-schedule.test.mjs
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { latestIncident, dueVerification } from "./verify-schedule.mjs";
+import fs from "fs";
+import os from "os";
+import path from "path";
+import { latestIncident, dueVerification, shouldRunToday, readVerifyStateSafe, writeVerifyState } from "./verify-schedule.mjs";
 
 const INCIDENTS = [
   { at: "2026-07-01T00:00:00+09:00", kind: "studio-down", recovered: true, detail: "old" },
@@ -45,4 +48,32 @@ test("dueVerification: インシデントが無ければfalse", () => {
 
 test("dueVerification: at が不正な日付文字列ならfalse（例外を投げない）", () => {
   assert.equal(dueVerification([{ at: "not-a-date", kind: "studio-down" }], "2026-07-22"), false);
+});
+
+test("shouldRunToday: lastVerifiedYmdが今日と同じならfalse（同日2回目の通知を防止）", () => {
+  assert.equal(shouldRunToday("2026-07-22", "2026-07-22"), false);
+});
+
+test("shouldRunToday: lastVerifiedYmdが今日と異なればtrue", () => {
+  assert.equal(shouldRunToday("2026-07-21", "2026-07-22"), true);
+});
+
+test("shouldRunToday: lastVerifiedYmdがnull/undefined（未実行）ならtrue", () => {
+  assert.equal(shouldRunToday(null, "2026-07-22"), true);
+  assert.equal(shouldRunToday(undefined, "2026-07-22"), true);
+});
+
+test("readVerifyStateSafe: ファイルが無ければ空オブジェクト（例外を投げない）", () => {
+  const missingPath = path.join(os.tmpdir(), `researchman-verify-state-missing-${Date.now()}.json`);
+  assert.deepEqual(readVerifyStateSafe(missingPath), {});
+});
+
+test("writeVerifyState → readVerifyStateSafe: 書き込んだlastVerifiedYmdを読み戻せる", () => {
+  const tmpPath = path.join(os.tmpdir(), `researchman-verify-state-${Date.now()}.json`);
+  try {
+    assert.equal(writeVerifyState(tmpPath, "2026-07-22"), true);
+    assert.deepEqual(readVerifyStateSafe(tmpPath), { lastVerifiedYmd: "2026-07-22" });
+  } finally {
+    fs.rmSync(tmpPath, { force: true });
+  }
 });

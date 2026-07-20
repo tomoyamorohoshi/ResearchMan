@@ -60,3 +60,34 @@ export function readIncidentsSafe(incidentsPath) {
     return [];
   }
 }
+
+// watchdogは1日2回（12:30/18:30）実行されるため、dueVerification()がtrueのdue日でも
+// 段階検証の通知は1日1回に抑える必要がある。lastVerifiedYmd（logs/verify-state.jsonの
+// 前回実行日）がtodayYmdと同じならスキップ、それ以外（未実行 or 別日）は実行する。
+export function shouldRunToday(lastVerifiedYmd, todayYmd) {
+  if (!lastVerifiedYmd) return true;
+  return lastVerifiedYmd !== todayYmd;
+}
+
+// logs/verify-state.json を安全に読む（無ければ null。例外を投げない。readIncidentsSafeと
+// 同じ方針）。
+export function readVerifyStateSafe(statePath) {
+  try {
+    const raw = fs.readFileSync(statePath, "utf-8");
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+
+// logs/verify-state.json に最終実行日を書き込む（例外を投げない。呼び出し側は書き込み
+// 失敗を致命的エラーとして扱わない＝他のwatchdog状態ファイル書き込みと同じ方針）。
+export function writeVerifyState(statePath, lastVerifiedYmd) {
+  try {
+    fs.writeFileSync(statePath, JSON.stringify({ lastVerifiedYmd }, null, 2));
+    return true;
+  } catch {
+    return false;
+  }
+}

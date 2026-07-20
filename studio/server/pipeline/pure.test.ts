@@ -13,6 +13,7 @@ import {
   chunkArray,
   dedupeCandidates,
   extractJsonArray,
+  extractJsonArrayDetailed,
   filterTagsByVocabulary,
   mergeParsedChunks,
   normalizeTitleKey,
@@ -275,6 +276,46 @@ test("extractJsonArray: オブジェクトのみ（配列が無い）はnull", (
 
 test("extractJsonArray: 復旧不能なほど壊れたJSONはnull", () => {
   assert.equal(extractJsonArray('[{"id": broken not json at all'), null);
+});
+
+// ── extractJsonArrayDetailed（レビュー指摘A: 修復経路の可観測化） ─────────
+// 呼び出し側が「直接パース成功」と「修復フォールバックで要素を切り落として復旧」を
+// 区別できるよう、repairedフラグを返す。extractJsonArray自体の戻り値・挙動は変えない。
+
+test("extractJsonArrayDetailed: 正常なJSON配列は repaired:false で全件返る", () => {
+  const text = '[{"id":"a","title":"A"},{"id":"b","title":"B"}]';
+  const result = extractJsonArrayDetailed(text);
+  assert.deepEqual(result, {
+    arr: [
+      { id: "a", title: "A" },
+      { id: "b", title: "B" },
+    ],
+    repaired: false,
+  });
+});
+
+test("extractJsonArrayDetailed: 末尾が壊れていて修復フォールバックで復旧した場合は repaired:true", () => {
+  const text = '前置きの説明文です。\n[{"id":"a","title":"A"},{"id":"b","title":"B"},{"id":"c","tit';
+  const result = extractJsonArrayDetailed(text);
+  assert.equal(result.repaired, true);
+  assert.deepEqual(result.arr, [
+    { id: "a", title: "A" },
+    { id: "b", title: "B" },
+  ]);
+});
+
+test("extractJsonArrayDetailed: 復旧不能なほど壊れたJSONは arr:null, repaired:false", () => {
+  const result = extractJsonArrayDetailed('[{"id": broken not json at all');
+  assert.deepEqual(result, { arr: null, repaired: false });
+});
+
+test("extractJsonArrayDetailed: JSONが無ければ arr:null, repaired:false", () => {
+  assert.deepEqual(extractJsonArrayDetailed("該当なしでした"), { arr: null, repaired: false });
+});
+
+test("extractJsonArray: extractJsonArrayDetailedのarrをそのまま返す薄いラッパーである（互換性維持）", () => {
+  const text = '前置きの説明文です。\n[{"id":"a","title":"A"},{"id":"b","title":"B"},{"id":"c","tit';
+  assert.deepEqual(extractJsonArray(text), extractJsonArrayDetailed(text).arr);
 });
 
 // ── chunkArray（執筆フェーズのチャンク化） ────────────────────────────────

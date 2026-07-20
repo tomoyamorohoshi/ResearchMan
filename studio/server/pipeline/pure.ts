@@ -188,27 +188,36 @@ const MAX_REPAIR_ATTEMPTS = 5;
  * テキスト中の最初の `[` 〜 最後の `]` をJSON配列としてパースする（説明文混入を許容）。
  * 直接パースに失敗した場合、末尾の壊れた要素を切り落として配列を閉じる機械的な修復を
  * 後方から数回試行する（Agent呼び出しを追加しない。LLM再試行はしない）。
+ *
+ * レビュー指摘A（修復経路の可観測化）: 修復フォールバックで要素を切り落として復旧した場合、
+ * 呼び出し側がそれを検知できず「何件か静かに失われた」ことに気付けなかった。repaired
+ * フラグで直接パース成功（false）と修復フォールバック経由の復旧（true）を区別できるようにする。
  */
-export function extractJsonArray(text: string): unknown[] | null {
+export function extractJsonArrayDetailed(text: string): { arr: unknown[] | null; repaired: boolean } {
   const start = text.indexOf("[");
-  if (start === -1) return null;
+  if (start === -1) return { arr: null, repaired: false };
 
   const end = text.lastIndexOf("]");
   if (end !== -1 && end >= start) {
     const direct = tryParseArray(text.slice(start, end + 1));
-    if (direct) return direct;
+    if (direct) return { arr: direct, repaired: false };
   }
 
   // 修復試行: 直近の完結した要素境界（`}`）まで切り落として`]`を補う。
   let searchEnd = text.length - 1;
   for (let attempt = 0; attempt < MAX_REPAIR_ATTEMPTS; attempt++) {
     const braceIdx = text.lastIndexOf("}", searchEnd);
-    if (braceIdx === -1 || braceIdx <= start) return null;
+    if (braceIdx === -1 || braceIdx <= start) return { arr: null, repaired: false };
     const repaired = tryParseArray(`${text.slice(start, braceIdx + 1)}]`);
-    if (repaired) return repaired;
+    if (repaired) return { arr: repaired, repaired: true };
     searchEnd = braceIdx - 1;
   }
-  return null;
+  return { arr: null, repaired: false };
+}
+
+/** extractJsonArrayDetailed の薄いラッパー（既存呼び出し箇所の互換性維持。挙動は従来どおり）。 */
+export function extractJsonArray(text: string): unknown[] | null {
+  return extractJsonArrayDetailed(text).arr;
 }
 
 // ── 執筆フェーズのチャンク化（caseResearch.ts §4: survivorsを分割してcase-writerを

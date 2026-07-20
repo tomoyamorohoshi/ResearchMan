@@ -9,8 +9,10 @@
  * （ResearchMan-Studio、AtLogOnトリガーのみ）は再起動されず、既存watchdog（scripts/watchdog.mjs、
  * 1日2回）にはStudio死活監視が無いためLINEボットが無応答のまま気づかれなかった。
  *
- * 死活判定: GET http://127.0.0.1:5178/api/jobs（timeout 5秒）。200なら生存として何も出力せず
- * exit 0。死亡時は (1) port 5178 をLISTENしているPIDだけをtaskkillしてハング状態を解消
+ * 死活判定: GET http://127.0.0.1:5178/api/jobs（timeout 5秒）を最大3回・10秒間隔で試し、
+ * 1回でも200が返れば生存として何も出力せずexit 0（ジョブ実行中の一過性負荷での1回の
+ * 失敗だけで誤killしないため）。3回とも失敗した場合のみ (1) port 5178 をLISTENしている
+ * PIDだけをtaskkillしてハング状態を解消
  * （`taskkill /IM node.exe` は本番ジョブ巻き込み事故の実績があるため絶対に使わない）→
  * (2) `schtasks /run /tn ResearchMan-Studio` で再起動 → (3) 最大90秒ポーリングして復旧確認 →
  * (4) logs/incidents.json へ記録 → (5) LINEへ通知、の順で自己回復を試みる。
@@ -26,7 +28,15 @@ import path from "path";
 import http from "http";
 import { spawnSync } from "child_process";
 import { fileURLToPath } from "url";
-import { parseListeningPids, appendIncident, shouldRotate, toJstIsoString } from "../lib/studio-keeper-core.mjs";
+import {
+  parseListeningPids,
+  appendIncident,
+  shouldRotate,
+  toJstIsoString,
+  retryCheckAlive,
+  buildIncidentsFileContent,
+  writeJsonAtomicSync,
+} from "../lib/studio-keeper-core.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..", "..");
@@ -38,6 +48,8 @@ const LOG_PATH = path.join(ROOT, "logs", "studio.log");
 const LOG_ROTATE_LIMIT_BYTES = 10 * 1024 * 1024; // 10MB
 const INCIDENTS_PATH = path.join(ROOT, "logs", "incidents.json");
 const FETCH_TIMEOUT_MS = 5000;
+const CHECK_ALIVE_RETRY_COUNT = 3;
+const CHECK_ALIVE_RETRY_INTERVAL_MS = 10 * 1000;
 const RECOVERY_POLL_TIMEOUT_MS = 90 * 1000;
 const RECOVERY_POLL_INTERVAL_MS = 5000;
 
@@ -117,7 +129,7 @@ function readIncidents() {
 
 function writeIncidents(incidents) {
   fs.mkdirSync(path.dirname(INCIDENTS_PATH), { recursive: true });
-  fs.writeFileSync(INCIDENTS_PATH, `${JSON.stringify(incidents, null, 2)}\n`);
+  writeJsonAtomicSync(INCIDENTS_PATH, buildIncidentsFileContent(incidents));
 }
 
 function notifyLine(text) {
@@ -142,7 +154,15 @@ function hhmm(d) {
 async function main() {
   rotateStudioLogIfNeeded();
 
-  if (await checkAlive(FETCH_TIMEOUT_MS)) {
+  // ジョブ実行中の一過性負荷で1回だけcheckAliveが失敗しても即killしないよう、
+  // 3回・10秒間隔で試して全滅した場合のみ復旧シーケンスへ進む。
+  const alive = await retryCheckAlive(
+    () => checkAlive(FETCH_TIMEOUT_MS),
+    (ms) => new Promise((resolve) => setTimeout(resolve, ms)),
+    CHECK_ALIVE_RETRY_COUNT,
+    CHECK_ALIVE_RETRY_INTERVAL_MS,
+  );
+  if (alive) {
     process.exit(0); // 生存 → 静かに終了
   }
 

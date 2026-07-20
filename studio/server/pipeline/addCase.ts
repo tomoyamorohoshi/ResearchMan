@@ -260,7 +260,7 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
     if (!obj) {
       const dumpPath = await dumpAgentDebug(WORKDIR, jobId, "extract", adderResult.text);
       throw new Error(
-        `抽出結果を解析できませんでした（Agent応答がJSON形式ではありません。生出力(${adderResult.text.length}字)を ${dumpPath} に保存しました）`,
+        `抽出結果を解析できませんでした（Agent応答がJSON形式ではありません。生出力(${adderResult.text.length}字)を ${dumpPath ?? "(保存失敗)"} に保存しました）`,
       );
     }
     const contentKind = parseContentKind(obj);
@@ -318,7 +318,7 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
       if (!linkVerdicts) {
         const dumpPath = await dumpAgentDebug(WORKDIR, jobId, "link-verify", linkResult.text);
         throw new Error(
-          `リンク検証結果を解析できませんでした（Agent応答がJSON形式ではありません。生出力(${linkResult.text.length}字)を ${dumpPath} に保存しました）`,
+          `リンク検証結果を解析できませんでした（Agent応答がJSON形式ではありません。生出力(${linkResult.text.length}字)を ${dumpPath ?? "(保存失敗)"} に保存しました）`,
         );
       }
       const verdict = linkVerdicts[0] as { alive?: boolean; titleMatch?: boolean | "na" } | undefined;

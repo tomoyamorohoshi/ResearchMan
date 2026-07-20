@@ -46,6 +46,7 @@ import {
   chunkArray,
   dedupeCandidates,
   extractJsonArray,
+  extractJsonArrayDetailed,
   filterTagsByVocabulary,
   mergeParsedChunks,
   upsertOrderTagLine,
@@ -143,6 +144,22 @@ export function buildPushFailPatch(message: string, commitHash: string | null, c
     commit: commitHash,
     cost: costUsd,
   };
+}
+
+// レビュー指摘A（extractJsonArray修復経路の可観測化）: 修復フォールバック経由で復旧した
+// （repaired:true）、またはチャンクの入力件数に対し復旧できた件数が不足している場合、
+// 静かにデータが失われていることを検知して警告文言を返す（呼び出し側がconsole.warn+
+// dumpAgentDebugする判断材料。両方満たさない＝完全成功ならnull＝警告不要）。
+// 純粋関数として抽出し、パイプライン本体（Agent SDK呼び出し）を動かさず単体テストできるようにする
+// （buildPushFailPatchと同じ方針）。
+export function buildChunkRepairWarning(
+  chunkIndex: number,
+  inputCount: number,
+  recoveredCount: number,
+  repaired: boolean,
+): string | null {
+  if (!repaired && recoveredCount >= inputCount) return null;
+  return `[studio] case-writer chunk ${chunkIndex} は修復/一部欠落で復旧しました（入力${inputCount}件 → 復旧${recoveredCount}件, repaired=${repaired}）`;
 }
 
 export interface RollbackOutcome {
@@ -296,7 +313,7 @@ export async function runCaseResearchPipeline(
     if (!linkVerdicts) {
       const dumpPath = await dumpAgentDebug(WORKDIR, jobId, "link-verify", linkResult.text);
       throw new Error(
-        `リンク検証結果を解析できませんでした（Agent応答がJSON形式ではありません。生出力(${linkResult.text.length}字)を ${dumpPath} に保存しました）`,
+        `リンク検証結果を解析できませんでした（Agent応答がJSON形式ではありません。生出力(${linkResult.text.length}字)を ${dumpPath ?? "(保存失敗)"} に保存しました）`,
       );
     }
     const linkMap = new Map<string, { alive: boolean; titleMatch: boolean | "na" }>();
@@ -398,8 +415,10 @@ export async function runCaseResearchPipeline(
       );
       // 独立レビュー指摘#3と同じ方針: throw/continueする前に必ずコストを加算する。
       costUsd += writerResult.costUsd;
-      // 予算超過はここで打ち切り、それまでに成功したチャンクを使って続行する
-      // （ジョブ全体を即座に停止する通常のbudget.add呼び出しとは意図的に異なる扱い）。
+      // レビュー指摘B: 予算超過はここで打ち切るが、「続行する」わけではない
+      // （後続フェーズ（例: tagCostUsd加算時のbudget.add呼び出し）で予算超過が再検知され
+      // BudgetExceededErrorがthrowされ、ジョブはerror終了する。DESIGN.md §8「予算上限
+      // （超過で停止・LINE通知）」どおりの安全設計であり、常にエラー扱いになる）。
       let budgetExceeded = false;
       try {
         budget.add(writerResult.costUsd);
@@ -412,23 +431,38 @@ export async function runCaseResearchPipeline(
         console.warn(`[studio] case-writer call failed (chunk ${chunkIndex}):`, writerResult.error);
         parsedChunks.push(null);
       } else {
-        const arr = extractJsonArray(writerResult.text);
+        const { arr, repaired } = extractJsonArrayDetailed(writerResult.text);
         if (!arr) {
           const dumpPath = await dumpAgentDebug(WORKDIR, jobId, `writer-chunk-${chunkIndex}`, writerResult.text);
-          failedChunkDumps.push(dumpPath);
+          failedChunkDumps.push(dumpPath ?? "(保存失敗)");
           console.warn(
-            `[studio] case-writer chunk ${chunkIndex} returned unparseable JSON（${writerResult.text.length}字）— dumped to ${dumpPath}`,
+            `[studio] case-writer chunk ${chunkIndex} returned unparseable JSON（${writerResult.text.length}字）— dumped to ${dumpPath ?? "(保存失敗)"}`,
           );
           parsedChunks.push(null);
         } else {
           anyChunkParsed = true;
           parsedChunks.push(arr);
+          // レビュー指摘A: 修復フォールバック経由の復旧、または件数不足（静かなデータ欠落）を
+          // 検知した場合は警告を出す。成功分は破棄せず採用してループを継続する（部分成功設計）。
+          const repairWarning = buildChunkRepairWarning(chunkIndex, chunk.length, arr.length, repaired);
+          if (repairWarning) {
+            const dumpPath = await dumpAgentDebug(
+              WORKDIR,
+              jobId,
+              `writer-chunk-${chunkIndex}-repaired`,
+              writerResult.text,
+            );
+            console.warn(`${repairWarning} — dumped to ${dumpPath ?? "(保存失敗)"}`);
+          }
         }
       }
 
       if (budgetExceeded) {
+        // レビュー指摘B: 「続行して成功する」わけではない。ここでチャンクループを打ち切るのみで、
+        // 後続フェーズの予算チェックで再度BudgetExceededErrorがthrowされジョブはerror終了する
+        // （DESIGN.md §8の安全設計どおり）。
         console.warn(
-          `[studio] 執筆フェーズで予算上限に到達しました（チャンク${chunkIndex + 1}/${writerChunks.length}まで実行）。ここまでの成功分で続行します`,
+          `[studio] 執筆フェーズで予算上限に到達しました（チャンク${chunkIndex + 1}/${writerChunks.length}まで実行）。チャンクループを打ち切ります（後続フェーズの予算チェックでジョブはerror終了します）`,
         );
         break;
       }

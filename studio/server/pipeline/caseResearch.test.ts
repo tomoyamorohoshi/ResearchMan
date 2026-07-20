@@ -10,7 +10,7 @@
  */
 import assert from "node:assert/strict";
 import test from "node:test";
-import { buildPushFailPatch, rollbackIfNotCommitted, terminalStatus } from "./caseResearch.js";
+import { buildChunkRepairWarning, buildPushFailPatch, rollbackIfNotCommitted, terminalStatus } from "./caseResearch.js";
 
 test("rollbackIfNotCommitted: committed=trueならrollbackを一切呼ばない", async () => {
   let called = false;
@@ -76,4 +76,24 @@ test("buildPushFailPatch: message/commitHashもそのまま反映する", () => 
   assert.equal(patch.error, "push に失敗しました");
   assert.equal(patch.commit, "abc123");
   assert.equal(patch.progress, undefined);
+});
+
+// ── buildChunkRepairWarning（レビュー指摘A: extractJsonArray修復経路の可観測化） ─────
+// extractJsonArrayDetailedのrepairedフラグ、またはチャンク入力件数に対する復旧件数の
+// 不足を検知した場合に警告文言を返す（呼び出し側でconsole.warn+dumpAgentDebugする判断材料）。
+// nullが返る場合は警告不要（=完全に成功したチャンク）。
+
+test("buildChunkRepairWarning: repaired:trueなら警告文言を返す", () => {
+  const warning = buildChunkRepairWarning(0, 4, 2, true);
+  assert.notEqual(warning, null);
+  assert.match(warning as string, /chunk 0/);
+});
+
+test("buildChunkRepairWarning: repaired:falseでも入力件数>復旧件数なら警告文言を返す", () => {
+  const warning = buildChunkRepairWarning(1, 4, 3, false);
+  assert.notEqual(warning, null);
+});
+
+test("buildChunkRepairWarning: repaired:falseかつ入力件数と復旧件数が一致するならnull（警告不要）", () => {
+  assert.equal(buildChunkRepairWarning(2, 4, 4, false), null);
 });

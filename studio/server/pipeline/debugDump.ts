@@ -8,6 +8,11 @@
  *
  * studio/workdir/ は .gitignore 済み（ローカル専用の実行時生成物）のため、ここで書き出す
  * ファイルもリポジトリに混入しない。
+ *
+ * レビュー指摘C: ダンプはあくまで補助的なデバッグ情報のため、この関数自体（mkdir/writeFile）
+ * が例外を投げるとパース失敗時の部分成功設計（一部のチャンク/ケースが失敗しても他は成功
+ * させる設計）を巻き込んで全滅させてしまう。内部で例外を捕捉しconsole.warnするだけに留め、
+ * 保存に失敗した場合はundefinedを返す（throwしない）。
  */
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
@@ -17,12 +22,22 @@ import path from "node:path";
  * @param jobId ジョブID。
  * @param label 失敗箇所を示す短いラベル（例: "writer-chunk-0", "link-verify"）。
  * @param text 保存するAgent生出力テキスト。
- * @returns 保存先の絶対パス。
+ * @returns 保存先の絶対パス。保存に失敗した場合はundefined（throwしない）。
  */
-export async function dumpAgentDebug(workdir: string, jobId: string, label: string, text: string): Promise<string> {
+export async function dumpAgentDebug(
+  workdir: string,
+  jobId: string,
+  label: string,
+  text: string,
+): Promise<string | undefined> {
   const dir = path.join(workdir, "debug");
-  await mkdir(dir, { recursive: true });
-  const filePath = path.join(dir, `${jobId}-${label}.txt`);
-  await writeFile(filePath, text, "utf-8");
-  return filePath;
+  try {
+    await mkdir(dir, { recursive: true });
+    const filePath = path.join(dir, `${jobId}-${label}.txt`);
+    await writeFile(filePath, text, "utf-8");
+    return filePath;
+  } catch (err) {
+    console.warn(`[studio] dumpAgentDebug failed to save debug dump (jobId=${jobId}, label=${label}):`, err);
+    return undefined;
+  }
 }
