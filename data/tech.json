@@ -1,5 +1,56 @@
 [
   {
+    "id": "telekinetic-drive",
+    "title": "Telekinetic Drive",
+    "org": "東京大学 先端科学技術研究センター 稲見昌彦研究室（Information Somatics Lab）",
+    "type": "Prototype",
+    "domains": [
+      "HCI/MediaArt",
+      "Motion/Body",
+      "AI/Agents"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "顔に現れるごくわずかな無意識の動きをカメラで読み取り、装着物なしでロボットを「念力」のように操作できるインターフェース。東京大学発、SIGGRAPH 2026・Augmented Humans 2026で発表。",
+    "point": "私たちは何かを「動かしたい」と思っただけで、実は顔や体にごくわずかな動き（数ミリ以下）が無意識に出ていることがある。Telekinetic Driveは、この本人も気づかないほどの微動をカメラで捉え、機械学習で「どちらに動かしたいか」という意図に変換して、ロボットアームを操作する技術だ。脳波計や視線計測、筋電センサーといった特別な装置を身につける必要はなく、普通のカメラの前に座るだけでよい。体験した人には、まるで念力でものを動かしているかのような感覚が生まれるという。広告・体験づくりの観点では、来場者が「考えるだけ」でオブジェが動く体験型ブースや、身体に装着物をつけられない人でも操作できる展示什器、SF的な「超能力」演出をリアルに実現するインスタレーションなどへの応用が考えられる。",
+    "detail": "Telekinetic Driveは、ユーザーが「ロボットをこちらに動かしたい」と考えたときに無意識に生じる顔の筋肉のわずかな動き（マイクロモーション）を、通常のカメラ映像から検出する。あらかじめ集めた「意図した方向」と「そのときの微動パターン」のペアを機械学習（線形回帰モデル）に学習させることで、新しい微動パターンからユーザーが望む移動方向を推定し、ロボットアームの動きに変換する。\n\nこれまでのハンズフリー操作の研究の多くは、脳波（BCI）や視線トラッキング、筋電位センサーなど、専用の装置を体に装着する必要があった。Telekinetic Driveはカメラ映像だけで完結するため装着の手間や違和感がなく、「操作しているという自覚すらない」状態で機器を動かせる点が新しい。開発チームは2025年に日本語論文「念力UI」としてWISSで発表した研究を発展させ、2026年7月のSIGGRAPH（ロサンゼルス）とAugmented Humans 2026で「Telekinetic Drive」「Telekinetic UI」として国際発表した。\n\n現状は研究プロトタイプで、ソースコードや製品としての配布はされていない。再現するには顔の特徴点を検出できるカメラと画像解析・機械学習の環境、そして被験者ごとに意図と微動パターンを対応づける学習（キャリブレーション）が必要になる。広告・展示用途で使うには、研究チームとの共同開発や技術協力の相談が現実的な入口になりそうだ。",
+    "license": {
+      "spdx": null,
+      "commercial": "research-only",
+      "note": "学術研究プロトタイプ。ソースコードや製品としての配布はされていない"
+    },
+    "links": [
+      {
+        "kind": "project",
+        "url": "https://star.rcast.u-tokyo.ac.jp/en/telekinetic_drive/"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=Q5GJHEqrG58"
+      },
+      {
+        "kind": "post",
+        "url": "https://www.wiss.org/WISS2025Proceedings/data/demo/3-C18.pdf"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/telekinetic-drive.jpg",
+    "relatedWorks": [
+      {
+        "title": "念力UI（WISS 2025）",
+        "description": "同チームによる日本語論文。顔の微動から意図を推定するインタフェース設計の初出",
+        "url": "https://www.wiss.org/WISS2025Proceedings/data/demo/3-C18.pdf"
+      },
+      {
+        "title": "Telekinetic UI (Augmented Humans 2026)",
+        "description": "カーソル操作版としての国際学会発表。プログラム上で確認可能",
+        "url": "https://augmented-humans.org/program/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "marble-x-nuke",
     "title": "Marble x Nuke",
     "org": "Patrick Crucke（個人開発、World Labs非公式連携）",
