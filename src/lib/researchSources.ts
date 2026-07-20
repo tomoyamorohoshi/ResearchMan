@@ -35,6 +35,7 @@ export const RESEARCH_SOURCES: ResearchSource[] = [
   // LINEでURLを送ると事例が追加される機能（studio/server/pipeline/addCase.ts）専用。
   // ユーザーがLINE経由で直接追加した事例の目印（今後の週次チューンアップの入力になる）。
   { tag: "User", kind: "order", label: "User" },
+  { tag: "Floating", kind: "order", label: "Floating" },
   { tag: "Radar", kind: "radar", label: "Radar" },
 ];
 
