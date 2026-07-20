@@ -1,5 +1,183 @@
 [
   {
+    "id": "case-wawfxw-2026",
+    "title": "笹本晃 ラボラトリー",
+    "summary": "笹本晃の個展を完成形でなく試行錯誤の過程そのものとして提示し、会場ごとに新作パフォーマンスへ再構成する巡回展",
+    "client": "笹本晃",
+    "agency": "国立国際美術館",
+    "categories": [
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000001194.000047048.html",
+    "thumbnail": "/thumbnails/case-wawfxw-2026.jpg",
+    "videoId": "",
+    "overview": "国立国際美術館で2026年7月19日から11月3日まで開催される特別展。彫刻的思考と身体表現を融合させる笹本晃の個展で、インスタレーション・パフォーマンス・映像・写真・ダイアグラムを通じ、実験室のような試行錯誤のプロセス自体を観客と共有する構成となっている。",
+    "background": "2025年に東京都現代美術館で開催された同展を基盤とし、国立国際美術館の収蔵作品を加えて会場構成を再編。作品を固定的な完成形ではなく時間とともに変化し続ける「出来事」として捉える笹本の一貫した制作姿勢を反映した巡回展として企画された。",
+    "execution": "地下3階展示室を舞台に、《E_O》《Yield Point》《Wrong Happy Hour》《Secrets of My Mother's Child》の4作品によるパフォーマンスを会期中複数回実施。糸・管・日用品・音・言葉を組み合わせた空間構成に、国立国際美術館の空間特性に応じた新演出を加えている。",
+    "evaluationImpact": "完成された作品を「見る」展示ではなく、鑑賞者が空間を歩き音や気配を感じながら思考のプロセスに巻き込まれる体験型の美術展として企画され、訪れるたびに異なる出会いが生まれる点が特徴として紹介されている。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Form/Installation",
+      "Form/Event",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "mon-koutaro-ooyama-musuhi-2026",
+    "title": "新作インスタレーション展（藤倉麻子・油野愛子・Mon Koutaro Ooyama・MuSuHi）",
+    "summary": "京都のアートホテルが階段型ギャラリーで4組の作家の新作を客室常設展示化した「⧖」展",
+    "client": "BnA Alter Museum",
+    "agency": "",
+    "categories": [
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000031.000063793.html",
+    "thumbnail": "/thumbnails/mon-koutaro-ooyama-musuhi-2026.jpg",
+    "videoId": "",
+    "overview": "京都・四条河原町のアートホテル「BnA Alter Museum」が、藤倉麻子、油野愛子、Mon Koutaro Ooyama、MuSuHi（三嶋章義＋高岡春満）の4組による新作インスタレーションを発表。館内の階段型ギャラリー（垂直ギャラリー）SCGを含む各客室に作品を常設し、2026年7月17日から公開。7月20日にはオープニングパーティーとギャラリーツアーを実施した。",
+    "background": "BnA Alter Museumは全31室の客室すべてがアーティストによる作品で構成される「泊まれるアート」を掲げるホテルで、館内には高さ約30mの垂直ギャラリーを備える。今回は「⧖」（砂時計の記号）をテーマに、水平でも垂直でもない「斜めの思考」を体現する新作を4組の作家に委嘱した。",
+    "execution": "藤倉麻子は3DCGを用いた都市インフラや水を想起させる造形、油野愛子は金属・樹脂で内在する不安定さを引き出す表現、Mon Koutaro Ooyamaは瞑想的な絵画で深層心理に迫る作品、MuSuHiは麻を用いて自然物の二進パターンと生命の連続性を可視化する作品を、それぞれ複数の客室に展開した。宿泊客は無料、一般来館者は1,000円（ドリンク付）で鑑賞でき、7月20日にはアーティスト在廊のギャラリーツアーとフィンガーフード提供を行うオープニングパーティーを開催した。",
+    "evaluationImpact": "客室というプライベート空間を作品展示の場として恒常的に機能させる同ホテル独自のモデルを継続・更新するもので、宿泊体験と現代美術鑑賞を融合させる試みとして、開業7年目のリニューアルの一環に位置づけられる。",
+    "relatedWorks": [
+      {
+        "title": "BnA Alter Museum アートルーム リニューアル",
+        "description": "同ホテルが2026年に実施した客室リニューアルの関連発表",
+        "url": "https://columbia-hotel.jp/news/2026/04/01/2330/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Exhibition",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "kiq-icoma-ai-2026",
+    "title": "KiQ × ICOMA フィジカルAI共同プロジェクト",
+    "summary": "元芸者アーティストの身体知「所作」をAIとロボティクスに実装し、暮らしの体験を再設計する日本発の共同プロジェクト",
+    "client": "KiQ / ICOMA",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000025.000107116.html",
+    "thumbnail": "/thumbnails/kiq-icoma-ai-2026.jpg",
+    "videoId": "",
+    "overview": "デザインファームKiQとプロダクトデザイン企業ICOMAが「体験をデザインする」思想のもと共同プロジェクトを始動。日本文化の身体知「所作」を起点に、AI・ロボティクスで人とモノ、人とテクノロジーの関係を再設計する。第一弾として四足ロボット「AUN dog」、盆栽ロボットアーム「BONSAI arm」、モビリティ特別モデル「tatamo! SHOSA Edition」の3作品を発表。",
+    "background": "KiQ代表・菊地あかねは元芸者で、2025年大阪・関西万博シグネチャーパビリオン「いのちの未来」でアンドロイドやロボットの所作デザインを担当した経験を持つ。今回はICOMA、さらにaibo開発経験者が参画する京都橘大学とも連携し、日本文化の身体性をテクノロジー実装へ橋渡しする取り組みとして始動した。",
+    "execution": "表参道「tHE GALLERY OMOTESANDO」で菊地あかね初個展「いのちの所作」を2026年7月18日〜26日に開催（入場無料）。京都橘大学と共同開発した四足ロボット2体による「AUN dog」（阿吽・狛犬をモチーフ）、盆栽の所作を再解釈した「BONSAI arm」、ICOMAの折りたたみモビリティ特別モデル「tatamo! SHOSA Edition」を展示。7月19日にはギャラリートークも開催。",
+    "evaluationImpact": "「モノをつくる」ではなく「体験をデザインする」という思想を掲げ、オフィスや公共空間のインテリア・モビリティに身体知を実装し、日常でのマルチモーダル基盤モデル構築を推進する狙いを持つ点が特徴的。元芸者という異色の経歴を持つクリエイターが、伝統的な身体所作をAI・ロボティクス実装へ翻訳する試みとして注目される。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/Robotics",
+      "Form/Exhibition",
+      "Form/Event",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "kiq-2026",
+    "title": "京都橘大学 × KiQ 人とロボット共生プロジェクト",
+    "summary": "京都橘大学とKiQが「阿吽」の思想を四足ロボットで再解釈した「AUN dog」を共同開発、身体性を探究",
+    "client": "KiQ / 京都橘大学",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000026.000107116.html",
+    "thumbnail": "/thumbnails/kiq-2026.jpg",
+    "videoId": "",
+    "overview": "京都橘大学とKiQは、人とロボットが共生する未来社会に向けた共同研究を始動。日本文化の「阿吽」「狛犬」の思想を現代ロボティクスで再解釈した四足ロボット「AUN dog」を開発し、東京のギャラリーで初公開した。",
+    "background": "所作デザイナー菊地あかね率いるKiQは、大阪・関西万博のシグネチャーパビリオンでも所作デザインを手がけた実績を持つ。ロボティクス学科の倉田宜典教授（元ソニーaibo開発者）らと組み、人とロボットの新たな身体的関係を探る共同研究を開始した。",
+    "execution": "二体の四足ロボットが互いの存在や環境、人との距離を感知し、呼吸を共有するかのような振る舞いを実現。概念共創にはICOMAも参画した。菊地あかねの個展「いのちの所作」の会場tHE GALLERY OMOTESANDOで2026年7月18〜26日に初公開し、19日にはギャラリートークを開催した。",
+    "evaluationImpact": "所作デザイン、ロボティクス研究、モビリティデザインという異分野の共創により、機能性を超えた「存在としてのロボット」という新たな視点を提示。AI時代における人間らしさを問う対話の場としても機能した。",
+    "relatedWorks": [
+      {
+        "title": "京都橘大学とKiQ、四足ロボット「AUN dog」を共同開発",
+        "description": "ロボスタによる詳細記事",
+        "url": "https://robotstart.info/article/2026/07/17/382165.html"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Form/Exhibition",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "by-the-beat-merori-2026",
+    "title": "BY THE BEAT『MERORI』ショート尺先行配信",
+    "summary": "VTuberユニットBY THE BEATが新曲『MERORI』の正式配信前にショート尺音源をTikTok/Reels/YouTubeで先行解禁したSNS先行型音楽プロモーション。",
+    "client": "NIJISANJI EN（ANYCOLOR）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000001567.000030865.html",
+    "thumbnail": "/thumbnails/by-the-beat-merori-2026.jpg",
+    "videoId": "",
+    "overview": "NIJISANJI EN所属のVTuberユニットBY THE BEATが、2ndデジタルシングル『MERORI』（英語版2026年7月31日・日本語版8月5日配信）の正式リリースに先立ち、2026年7月19日よりTikTok・Instagram Reels・YouTubeでショート尺音源を先行配信。SNS上での話題化とファン参加喚起を狙った音楽プロモーション施策。",
+    "background": "BY THE BEATは2027年のメジャーデビューを目指すNIJISANJI EN発のバーチャルアイドルユニット。4月には「夏のナイトプールで言ってほしいセリフ」を募るSNS参加型キャンペーンを実施し国内外から多数の応募を集めるなど、ファンとの共創を重視したプロモーションを継続。今回のショート尺先行配信も、正式配信前にSNS上での認知拡大を図る施策として実施された。",
+    "execution": "2026年7月19日よりTikTok・Instagram Reels・YouTubeでショート尺音源を段階的に公開。楽曲は「夏のナイトプール」をテーマに、「メロい」というキャッチーなフレーズを軸としたラテン調のダンスチューン。作詞作曲はMUTEKI DEAD SNAKE、振付はゲッツが担当し、正式配信日を待たずにSNS上でのダンス・リップシンク投稿など二次的な参加行動を誘発する構成とした。",
+    "evaluationImpact": "楽曲のサビやフックとなるフレーズを正式配信前にSNSへ先出しすることで、TikTok発のバイラル需要を先取りする手法。VTuberという版権IPと音楽リリースを組み合わせ、正式配信日に向けて期待値とファン参加を段階的に積み上げるプロモーション設計であり、SNS時代の音楽マーケティングの一事例といえる。",
+    "relatedWorks": [
+      {
+        "title": "BY THE BEAT『Double Vision』",
+        "description": "BY THE BEATが2026年3月29日に配信・MV公開した既発オリジナル楽曲",
+        "url": "https://www.anycolor.co.jp/en/news/kd3rehdnp"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/SNS",
+      "Form/MV",
+      "Theme/Music",
+      "Theme/Entertainment"
+    ]
+  },
+  {
     "id": "gap-hailey-bieber-90s-2026",
     "title": "Gap × Hailey Bieber '90sデニムカプセルコレクション",
     "summary": "Gapがヘイリー・ビーバーと組み90年代ヴィンテージデニムを再解釈した限定カプセル「Hailey Jean」を発売、発売直後に即完売した",
