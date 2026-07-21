@@ -1,5 +1,209 @@
 [
   {
+    "id": "godless-dawn-2026",
+    "title": "Godless Dawn",
+    "summary": "トルコ人ソロ開発者がUE5で手掛けるダークファンタジー・ソウルライクARPG、2027年Q1にSteam配信予定",
+    "client": "Hawk Studio Entertainment",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://automaton-media.com/articles/newsjp/20260720-455797/",
+    "thumbnail": "/thumbnails/godless-dawn-2026.jpg",
+    "videoId": "",
+    "overview": "『Godless Dawn』はトルコ出身のソロ開発者Celal Sahin氏率いるHawk Studio Entertainmentが開発するUE5製ダークファンタジー・アクションRPG。神々が沈黙し人類が自らの罪に押しつぶされる世界を舞台に、剣や槍、魔法を駆使する一手一手の重みを重視したソウルライク戦闘が特徴。2027年第1四半期にPC（Steam）向けにリリース予定で、日本語を含む16言語に対応する。",
+    "background": "UE5の普及により、ソロ・小規模開発者でも大作級のビジュアル表現が可能になりつつある。Godless Dawnもその潮流の一例で、個人開発者が単独でダークファンタジー世界の広大なマップやボス戦を作り込んでいる。フロムソフトウェア作品などに影響を受けたソウルライクジャンルはSteamで根強い人気を持ち、世界的にインディー作品の発表が増加している中での本作の発表となった。",
+    "execution": "開発はHawk Studio Entertainment名義のもと、Celal Sahin氏がほぼ単独で進行。中世ヨーロッパ風の古城から中国寺院を思わせる舞台まで多様なロケーションを描き、剣・槍・刀といった近接武器や炎・雷の魔法を組み合わせ、クラス変更が可能な戦闘システムを構築した。Steamストアページでは複数のゲームプレイ映像を公開し、ウィッシュリスト登録を呼びかけている。",
+    "evaluationImpact": "個人開発者がUE5を用いて大手スタジオに匹敵するダークファンタジー世界を構築した点が、国内外のゲームメディアで話題となった。Automatonなど日本のゲームメディアでも取り上げられ、ソロ開発によるAAA級ビジュアル表現の可能性を示す事例として注目されている。2027年Q1のリリースに向け、今後の反響が注目される。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Tech/3D",
+      "Theme/Entertainment",
+      "Form/Product"
+    ]
+  },
+  {
+    "id": "magic-leap-ar-2026",
+    "title": "Magic Leap、AR眼鏡自社開発から撤退しウェーブガイド供給企業へ転換",
+    "summary": "Magic Leapが自社AR眼鏡開発を撤退し、193名削減の上でウェーブガイド供給企業へ転換",
+    "client": "Magic Leap",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://roadtovr.com/magic-leap-lay-off-2026-waveguide-pivot/",
+    "thumbnail": "/thumbnails/magic-leap-ar-2026.jpg",
+    "videoId": "",
+    "overview": "Magic Leapは自社製ARグラスの開発から撤退し、業界向けにARグラスの光学部品であるウェーブガイド（導波路）とディスプレイ技術を供給する企業へと事業モデルを転換した。2026年10月1日付で約193名を削減する。",
+    "background": "同社は2024年頃から自社ヘッドセット販売の縮小や営業・マーケティング部門の人員削減を進めており、直販モデルの継続が困難になっていた。ウェーブガイド光学や表示技術など基盤技術こそが同社の強みであるとの判断から、コンポーネント供給への転換が模索されてきた。",
+    "execution": "ソフトウェア・ハードウェア・UX/デザイン・プロダクト管理・製造エンジニアリング・品質管理など幅広い職種で約193名を削減。自社を「必須ARエコシステムパートナー、ウェーブガイド供給業者、デバイス統合の専門家」と再定義し、他社ハードウェアメーカー向けの部品・技術ライセンス供給に事業を集約する方針を2026年7月に発表した。",
+    "evaluationImpact": "自社完結型のARデバイス開発競争から撤退し、部品・技術サプライヤーへ転じる動きは、AR業界において垂直統合モデルの限界と、光学部品専業化という新たな生存戦略の可能性を示す事例として注目されている。",
+    "relatedWorks": [
+      {
+        "title": "Magic Leap Lays Off Sales & Marketing Amid Report of \"last ditch\" Pivot to License AR Optics (2024)",
+        "description": "2024年時点で既に営業・マーケティング部門の人員削減とAR光学技術のライセンス供給への転換が報じられていた",
+        "url": "https://roadtovr.com/magic-leap-layoff-2024-optics-pivot/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/XR",
+      "Tech/Device",
+      "Form/Product"
+    ]
+  },
+  {
+    "id": "john-carmack-doom-quake-vr-100-2026",
+    "title": "John Carmack氏、DOOM/Quake公式VR移植支援に私財100万ドル拠出を表明",
+    "summary": "元Oculus CTOのJohn Carmack氏、id Software大量解雇を受けDOOM/Quake公式VR移植に私財100万ドル拠出を表明",
+    "client": "John Carmack / id Software",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.moguravr.com/vr-ar-mr-weekly-2026-7-21/",
+    "thumbnail": "/thumbnails/john-carmack-doom-quake-vr-100-2026.jpg",
+    "videoId": "",
+    "overview": "元Oculus CTOでid Software共同創業者のJohn Carmack氏が、DOOMやQuakeなど自社の代表作を公式VR版として商業化するため、私財100万ドルを拠出すると表明した。",
+    "background": "Microsoft傘下のid Softwareで136人規模とされる大規模レイオフが実施されたことを受け、Carmack氏が「Microsoftは良い管理者になるだろう」という過去の発言が「うまく年を取っていない」と自省しつつ表明した動きである。",
+    "execution": "非公式VR移植modチームTeam Beefが手がけてきたDOOM、Quake、Return to Castle Wolfenstein等のレガシーオープンソースゲームを、公式ストアで販売可能な形に商業化できるよう資金を保証する。ただしゲーム資産の著作権はMicrosoftが保有しており、同社の承認が必要となる。",
+    "evaluationImpact": "ゲーム業界の著名開発者が自ら私財を投じてファンコミュニティ主導のVR移植を後押しする異例の動きとして注目を集め、大手企業のIP管理と草の根クリエイティビティの関係性に一石を投じている。",
+    "relatedWorks": [
+      {
+        "title": "WRATH: Aeon of Ruin VR",
+        "description": "Team Beefが手がけた非公式VRモッド作品",
+        "url": "https://roadtovr.com/john-carmack-1m-guarantee-id-software-vr-games/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/XR",
+      "Tech/Game",
+      "Form/Product"
+    ]
+  },
+  {
+    "id": "project-indigo-ai-2026",
+    "title": "Project Indigo AI写真批評機能",
+    "summary": "Adobe実験カメラアプリ「Project Indigo」がAIプレイグラウンドを追加、写真の構図や光を批評し撮り直し提案まで行う",
+    "client": "Adobe",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://techcrunch.com/2026/07/20/adobe-camera-apps-new-feature-will-critique-your-photos-using-ai/",
+    "thumbnail": "/thumbnails/project-indigo-ai-2026.jpg",
+    "videoId": "",
+    "overview": "Adobeの実験的iOSカメラアプリ「Project Indigo」に、LLMを使った「AIプレイグラウンド」機能が追加された。撮影した写真をフレーミング・照明・色彩・感情的インパクトの観点でプロ視点から批評し、撮り直しの際の露出やフレーミング調整も提案する。",
+    "background": "Project Indigoは写真愛好家向けの計算写真術に強みを持つ実験的カメラアプリとしてAdobeが展開してきた。生成AIの台頭を受け、撮影支援や編集提案にLLMを組み込むことで、単なる撮影ツールから「写真の先生」的な体験への拡張を試みている。",
+    "execution": "AIプレイグラウンドは一部ユーザーに限定的に無料で公開された。写真批評機能に加え、背景の人物・ゴミ・電線・車両などを検出して除去する高度なオブジェクト除去、被写界深度の生成、水彩画やペン画調へのスタイル転換などの機能を搭載。裏側の生成AIにはGoogleの「Nano Banana」を採用しつつ、将来的にAdobe Firefly等への切り替えも検討中という。",
+    "evaluationImpact": "カメラアプリが撮影行為そのものを支援するだけでなく、AIによる作品評価やアドバイスを提供する方向に踏み出した事例として注目される。無料テストが成功すれば有料化も視野に入れており、写真編集ツールへの生成AI組み込みの商業化モデルとしても関心を集めている。",
+    "relatedWorks": [
+      {
+        "title": "An AI playground for the Project Indigo camera app（Adobe Research）",
+        "description": "Adobe Researchによる公式解説記事。AIプレイグラウンド機能の詳細を紹介。",
+        "url": "https://research.adobe.com/articles/playground/playground.html"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/App"
+    ]
+  },
+  {
+    "id": "steam-2026",
+    "title": "雀魂 -じゃんたま- Steam版",
+    "summary": "萌え系麻雀ゲーム『雀魂』が予告なく国内版Steam配信を開始、7年越しに既存アカウントのデータ引き継ぎにも対応した",
+    "client": "Yostar / Catfood Studio",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://automaton-media.com/articles/newsjp/20260720-455813/",
+    "thumbnail": "/thumbnails/steam-2026.jpg",
+    "videoId": "",
+    "overview": "中国Catfood Studio開発・Yostar運営の対戦型麻雀ゲーム『雀魂 -じゃんたま-』が2026年7月20日、事前告知なく国内版Steamストアで配信を開始した。ブラウザ版やスマホアプリ版と同じログイン方法でアカウントデータをそのまま引き継げる仕様となっている。",
+    "background": "『雀魂』はブラウザ版・iOS/Android版で登録者数1500万人を突破する人気を持つ萌え系麻雀ゲームだが、国内向けSteam版のリリースは長年見送られてきた。2026年5月に日本語版Steamストアページが公開されたものの配信日は「発表予定」のまま据え置かれていた。",
+    "execution": "7月20日、事前予告のないまま突如としてSteam版の配信を開始。既存プレイヤーはこれまでと同じログイン方法を利用することでデータをそのままSteam版に引き継げる設計とし、乗り換えの障壁を最小化した。ただしDMM版アカウントのデータは引き継ぎ対象外。",
+    "evaluationImpact": "国内版のSteamリリースは今回が初めてで、実に7年越しの対応となった点が話題に。長期運用タイトルにおいて、既存資産（アカウントデータ・課金履歴）を損なわずにプラットフォームを拡張する移植アプローチとして注目された。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/App"
+    ]
+  },
+  {
+    "id": "case-10cz2xk-2026",
+    "title": "パールインブルー",
+    "summary": "毎月新ヒロインが登場する「月刊ラブコメ」コンセプトの基本無料美少女RPG「パールインブルー」をネットマーブルが発表",
+    "client": "ネットマーブル",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://automaton-media.com/articles/newsjp/20260720-455788/",
+    "thumbnail": "/thumbnails/case-10cz2xk-2026.jpg",
+    "videoId": "",
+    "overview": "ネットマーブルの新拠点Netmarble N2が手掛けるスマートフォン向け美少女系RPG。「月刊ラブコメ」をコンセプトに、毎月新たなヒロインと物語が追加される基本無料タイトルとしてティザーサイトと公式Xが公開された。",
+    "background": "ソーシャルゲーム市場では継続的な新規コンテンツ投入が定着率の鍵となる中、雑誌の連載更新のような感覚で毎月新ヒロインが加わる仕組みにより、恋愛RPGにおける「終わらない連載」体験の提供を狙った。",
+    "execution": "人間の欲望が具現化した力「真珠」を操る「騎士」の世界観のもと、プレイヤーは力を開花できない少女「殻っぽ」のマネージャーとなり成長を見守る。キービジュアルは水面を境に日常と戦闘の二面性を表現し、iOS/Android向けに基本無料・アプリ内課金ありで配信予定。",
+    "evaluationImpact": "配信前段階での発表であり、受賞歴や実績データは未確認。毎月ヒロインを追加する運営モデルが継続課金型美少女RPG市場でどのように機能するか今後の展開が注目される。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/App",
+      "Theme/Entertainment"
+    ]
+  },
+  {
     "id": "waterlicht-2015",
     "title": "WATERLICHT（水位を可視化する光の波）",
     "summary": "海面上昇後の未来を光の波として観客の頭上に描き出す、気候変動可視化のライトインスタレーション",
