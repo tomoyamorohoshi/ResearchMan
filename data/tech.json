@@ -1,5 +1,64 @@
 [
   {
+    "id": "gpc",
+    "title": "GPC (Generative Pretraining for Transferable Motor Control)",
+    "org": "NVIDIA / Simon Fraser University",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "Spatial/3D"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "大量のモーションキャプチャーデータで一つのAIコントローラーを事前学習し、GPTが次の単語を予測するのと同じ要領で『次の瞬間の体の動き』を予測し続けることで、物理シミュレーション上のキャラクターやロボットを自然に動かすNVIDIAの研究フレームワーク。",
+    "point": "GPCは、大量のモーションキャプチャーデータをいったん『動きの単語(トークン)』に変換し、文章生成AI(GPT)が次の単語を予測するのと同じ仕組みで『次の一瞬の体の動き』を予測し続けることで、物理シミュレーション上のキャラクターを自然に動かす技術です。従来のモーション生成AIは決められたモーションを再生・切り替えするだけのものが多かったのに対し、GPCは一つのAIモデルが歩く・走る・転んで起き上がる・押されてよろめくといった膨大な種類の動きを地続きでこなせ、しかも未知の新しいタスク(特定の目的地まで歩く、特定の物を運ぶなど)にもごく軽い追加学習で適応できます。広告や体験づくりの視点では、CGキャラクターやデジタルヒューマンに『台本通りの動き』ではなく、その場の状況に応じて自然に反応する演技をさせられる可能性があり、インタラクティブな展示やゲーム的体験、あるいはロボットを使ったリアルイベント演出のための汎用『動きの脳』として今後の展開が期待できる技術です。",
+    "detail": "仕組みを分かりやすく言うと、まずキャラクターの膨大な動きのデータベース(数百時間分)を、音声認識などでも使われる『離散化』という手法で短い『動きの単語』の集合(コードブック)に圧縮します。次に、その単語列を学習した大規模な自己回帰トランスフォーマー(ChatGPTと同じ仕組みのモデル)が、直前の動きの続きとして『次にどの動きの単語が来るか』を予測し、それを物理エンジン内のキャラクターの実際の関節の力に変換して動かします。論文では、学習済みの膨大な動きのクリップを99.98%の精度で再現できるほか、押されてよろめいたり転んで起き上がったりといった、明示的に教えていない『とっさの反応』まで自然に現れたと報告されています。\n\n従来のモーション生成AI(単発のテキストから動きを作るモデルなど)は、あらかじめ用意された動きを組み合わせたり、タスクごとに専用のAIを訓練し直したりする必要がありました。GPCは『一つの土台モデルを大量データで先に鍛えておき、新しい仕事はそこに軽い追加学習を載せるだけで対応する』という、大規模言語モデルと同じ『事前学習+微調整』の考え方をキャラクターの体の動きに応用した点が新しく、NVIDIAはこれを『動きの基盤モデル』への第一歩と位置付けています。\n\n現状はNVIDIAのシミュレーション研究基盤『ProtoMotions』上で動く研究コード(Apache-2.0)としてGitHubで公開されており、Python・PyTorchによる物理シミュレーション環境(Isaac Lab等)とGPUが必要なため、ノーコードで今すぐ広告制作に使える段階ではありません。ただしゲームエンジンやロボット向けの動作生成基盤として、NVIDIAの他プロジェクト(GR00T、MotionBricks等)との接続が今後進む見込みで、映像・体験制作会社が将来のキャラクターAIやロボット演出のR&Dパートナーとして注視すべき技術です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "学習・実行基盤のProtoMotionsはApache-2.0で商用利用も明記。事前学習済みGPCモデル重み自体の再配布条件は個別確認が望ましい。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/NVlabs/ProtoMotions"
+      },
+      {
+        "kind": "project",
+        "url": "https://yi-shi94.github.io/gpc-page/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2606.29148"
+      },
+      {
+        "kind": "video",
+        "url": "https://youtu.be/r7m8w00vadI"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/gpc.jpg",
+    "relatedWorks": [
+      {
+        "title": "MaskedMimic",
+        "description": "部分的な動作指示やテキストから物理シミュレーションキャラクターを統一制御するNVIDIAの先行研究",
+        "url": "https://research.nvidia.com/labs/par/maskedmimic/"
+      },
+      {
+        "title": "ASE (Adversarial Skill Embeddings)",
+        "description": "大規模モーションデータから再利用可能なスキル表現を学習する、GPCの源流にあたるNVIDIAの研究",
+        "url": "https://github.com/nv-tlabs/ASE"
+      },
+      {
+        "title": "MotionBricks",
+        "description": "同じくNVIDIA発、350,000種のモーションをリアルタイム生成しゲーム・ロボットに接続する関連プロジェクト",
+        "url": "https://nvlabs.github.io/motionbricks"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "telekinetic-drive",
     "title": "Telekinetic Drive",
     "org": "東京大学 先端科学技術研究センター 稲見昌彦研究室（Information Somatics Lab）",
