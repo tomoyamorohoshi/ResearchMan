@@ -4071,5 +4071,203 @@
         "desc": "iPhoneのデュアルレンズとLiDARでGaussian Splatting用データを無料取得できるiOSアプリ。"
       }
     ]
+  },
+  {
+    "id": "2026-07-21-1",
+    "date": "2026-07-21",
+    "title": "新聞の重さを振動で伝える",
+    "pattern": "文脈×技術",
+    "seed": "Newspapers Inside The Newspaperが検閲で消えた新聞を紙面に蘇らせたように、HapticLensで当時の紙面の重さを振動に変換すれば、報道弾圧の圧迫感を指先で追体験できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "annahar-newspapers-inside-the-newspaper",
+        "title": "An-Nahar「Newspapers Inside The Newspaper」（新聞の中の廃刊新聞）",
+        "desc": "紙面を読み進めると政治的圧力で廃刊に追い込まれた過去のレバノン各紙のデザインへ変化し、報道弾圧の歴史を物語る新聞企画"
+      },
+      {
+        "type": "tech",
+        "id": "hapticlens",
+        "title": "HapticLens",
+        "desc": "動画の好きな部分から細かな動きを振動に変換し、1個の振動子で映像に触感を付けられるオーサリングツール"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-21-2",
+    "date": "2026-07-21",
+    "title": "加害の手だけを切り抜く",
+    "pattern": "文脈×技術",
+    "seed": "BLUESMANが8分間の短編で制度的人種差別を告発したように、RotoAIで映像に映る加害の手だけを自然言語指示で切り抜けば、構造的な差別の輪郭を可視化する告発映像が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "baco-exu-bluesman",
+        "title": "BLUESMAN (Baco Exu do Blues)",
+        "desc": "ブラジルの制度的人種差別を8分間の短編映画で告発し、Childish Gambinoと同年にCannesグランプリを受賞した作品"
+      },
+      {
+        "type": "tech",
+        "id": "rotoai",
+        "title": "RotoAI",
+        "desc": "「赤いシャツの人」のような自然言語の指示だけで、動画から人物や物体を切り抜けるオープンソースのロトスコープツール"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-21-3",
+    "date": "2026-07-21",
+    "title": "退場の瞬間を無限ループに",
+    "pattern": "文脈×技術",
+    "seed": "Sent Offがロイ・キーンの退場劇11回を静止画の油絵で描いたように、C1連続ループ生成ツールでその退場の瞬間を無限にループするアニメーションにすれば、怒りが延々と繰り返される肖像になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "sent-off-2026",
+        "title": "Sent Off",
+        "desc": "元マンチェスターU MFロイ・キーンの退場劇11回を油パステルで描いたことでの初個展"
+      },
+      {
+        "type": "tech",
+        "id": "akasaki-c1-loop-motion-tool",
+        "title": "C1連続 in-loop-out モーション生成ツール",
+        "desc": "モーキャプの一部区間から、開始と終了のポーズ・速度が一致するループアニメーションを自動生成する個人開発ツール"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-21-4",
+    "date": "2026-07-21",
+    "title": "焦らし編集を自動量産",
+    "pattern": "文脈×技術",
+    "seed": "The Most Valuable Gadget in the Worldが謎のガジェットで正体を焦らしたように、Palmier ProのAIエージェントに焦らし編集を自動生成させれば、住宅以外の商材でも安く同じ驚きを量産できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "the-most-valuable-gadget-in-the-world-2026",
+        "title": "The Most Valuable Gadget in the World",
+        "desc": "謎の高級ガジェットをOOHでティザーし、正体が2500万バーツの住宅だったと明かす不動産キャンペーン"
+      },
+      {
+        "type": "tech",
+        "id": "palmier-pro",
+        "title": "Palmier Pro",
+        "desc": "AIエージェントが人間と同じタイムラインで動画を操作できる、Mac向けオープンソース動画編集ソフト"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-21-5",
+    "date": "2026-07-21",
+    "title": "音と映像を同一ループに",
+    "pattern": "技術×技術",
+    "seed": "OBSIDIAN Neuralがその場でループ音源を生成するように、C1連続ループ生成ツールで映像側も同時にループさせれば、音と映像が寸分違わず同期し続けるライブ演出ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "obsidian-neural",
+        "title": "OBSIDIAN Neural",
+        "desc": "AIがその場でループ音源を生成する、ライブ演奏向けのオープンソース楽器プラグイン"
+      },
+      {
+        "type": "tech",
+        "id": "akasaki-c1-loop-motion-tool",
+        "title": "C1連続 in-loop-out モーション生成ツール",
+        "desc": "モーキャプの一部区間から、開始と終了のポーズ・速度が一致するループアニメーションを自動生成する個人開発ツール"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-21-6",
+    "date": "2026-07-21",
+    "title": "できあがる過程を見せる",
+    "pattern": "技術×技術",
+    "seed": "Viggle PINOCが動画から3Dキャラを生成するように、その過程をRerunでセンサーや姿勢データごとリアルタイム可視化すれば、モーキャプが完成していく様子自体を見せる作品になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "viggle-pinoc-seedance-workflow",
+        "title": "Viggle PINOC × Seedance ワークフロー",
+        "desc": "動画からモーキャプを抽出し画像1枚で3Dキャラクターを生成、Seedanceで最終映像化するワークフロー"
+      },
+      {
+        "type": "tech",
+        "id": "rerun-booster-robotics-k1",
+        "title": "Rerun × Booster Robotics K1",
+        "desc": "ヒューマノイドK1がボールを蹴る動作のセンサーや3D状態をリアルタイムにロギング・可視化するOSSツールのデモ"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-21-7",
+    "date": "2026-07-21",
+    "title": "編集エージェントを企画会議に",
+    "pattern": "転用",
+    "seed": "FireRed-OpenStorylineは本来AIが動画編集の段取りを組むツールだけど、取材ログや議事録を投げて構成案だけを組ませる転用をすれば、映像制作前の企画会議そのものを代替できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "firered-openstoryline",
+        "title": "FireRed-OpenStoryline",
+        "desc": "話しかけると編集ディレクターのように段取りを組み、素材選び・カット・つなぎまで自動化する対話的な動画編集エージェント"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-21-8",
+    "date": "2026-07-21",
+    "title": "ロボット監視を舞台裏中継に",
+    "pattern": "転用",
+    "seed": "Rerunは本来ヒューマノイドK1のセンサーデータを可視化するために作られたけど、舞台裏のダンサーの動きをそのまま流し込めば、公演のバックステージを観客にライブ中継する装置に転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "rerun-booster-robotics-k1",
+        "title": "Rerun × Booster Robotics K1",
+        "desc": "ヒューマノイドK1がボールを蹴る動作のセンサーや3D状態をリアルタイムにロギング・可視化するOSSツールのデモ"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-21-9",
+    "date": "2026-07-21",
+    "title": "年輪の重みを振動で客席へ",
+    "pattern": "文脈×技術",
+    "seed": "The Grey Swanが定年退職したダンサーの再起を舞台で証明したように、HapticLensでその年輪を重ねた動きの重みを振動に変換すれば、観客が客席で身体の変化を触覚的に追体験できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "nycoplus-the-grey-swan",
+        "title": "The Grey Swan",
+        "desc": "定年退職したバレエダンサーたちがコンサートホールで再び舞台に立ち、年齢を超えた身体の可能性を証明したブランデッドエンタテインメント"
+      },
+      {
+        "type": "tech",
+        "id": "hapticlens",
+        "title": "HapticLens",
+        "desc": "動画の好きな部分から細かな動きを振動に変換し、1個の振動子で映像に触感を付けられるオーサリングツール"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-21-10",
+    "date": "2026-07-21",
+    "title": "名機の音をAIが無限変奏",
+    "pattern": "文脈×技術",
+    "seed": "ShinRoninが伝説機を無料復刻して誰でも使えるようにしたように、OBSIDIAN Neuralと組み合わせれば、名機のサウンド素材をAIがその場で無限に変奏し続けるライブ楽器が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "shinronin-2026",
+        "title": "ShinRonin（無料化）",
+        "desc": "2003年発売のカルト的名機シンセ『Ronin』を最新OS完全対応で復刻し、無料配布として蘇らせた施策"
+      },
+      {
+        "type": "tech",
+        "id": "obsidian-neural",
+        "title": "OBSIDIAN Neural",
+        "desc": "AIがその場でループ音源を生成する、ライブ演奏向けのオープンソース楽器プラグイン"
+      }
+    ]
   }
 ]
