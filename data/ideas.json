@@ -4269,5 +4269,203 @@
         "desc": "AIがその場でループ音源を生成する、ライブ演奏向けのオープンソース楽器プラグイン"
       }
     ]
+  },
+  {
+    "id": "2026-07-22-1",
+    "date": "2026-07-22",
+    "title": "匿名共鳴ダンス配信広告",
+    "pattern": "文脈×技術",
+    "seed": "WE WILL BECOME BETTERが遠隔地の2人を同じ動きで共鳴させたように、SCAIL-2で顔と骨格を隠しキャラクターへそっくり乗り移らせれば、身元を明かせない国でも安全に連帯のダンスを世界配信できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "lgbt-network-we-will-become-better",
+        "title": "WE WILL BECOME BETTER (LGBT Network Russia × Sansara)",
+        "desc": "ロシアの同性愛宣伝禁止法下で、離れた2人が同じ動きを共鳴させ連帯を可視化した反ホモフォビアMV。"
+      },
+      {
+        "type": "tech",
+        "id": "scail-2",
+        "title": "SCAIL-2",
+        "desc": "骨格抽出を経ずに人物の動きを別キャラクターへそっくり乗り移らせる動画AI技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-22-2",
+    "date": "2026-07-22",
+    "title": "観客のスマホ写真で3D記録",
+    "pattern": "文脈×技術",
+    "seed": "The Philipstown WireCar Grand Prixのような辺境の祭りを、Wild3Rで来場者バラバラのスマホ写真から一発で3D復元すれば、消えゆく地域の伝統をそのまま歩き回れる記録として残せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "philipstown-wirecar-foundation-wirecar-grand-prix",
+        "title": "The Philipstown WireCar Grand Prix",
+        "desc": "南アフリカの辺境の町の針金レース文化を世界的なブランデッドドキュメンタリーにした事例。"
+      },
+      {
+        "type": "tech",
+        "id": "wild3r",
+        "title": "Wild3R",
+        "desc": "不特定多数がバラバラに撮った寄せ集め写真だけから一度のAI推論で3D空間を復元する技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-22-3",
+    "date": "2026-07-22",
+    "title": "常設ARに彫像を出す",
+    "pattern": "文脈×技術",
+    "seed": "FEARLESS GIRLが雄牛の前に立ちふさがったように、YaGSでGaussian Splattingの像を実写の奥行きに正しく重ねてAR表示すれば、世界中どの街角にも本物みたいな抗議彫像を出現させられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "fearless-girl",
+        "title": "FEARLESS GIRL",
+        "desc": "ウォール街の雄牛像の前に少女像を置き、ジェンダー格差に静かに抗議したState Streetの施策。"
+      },
+      {
+        "type": "tech",
+        "id": "yags",
+        "title": "YaGS",
+        "desc": "Gaussian Splattingの実写風3DをUnreal Engine上で通常3Dと正しく奥行き重ねできる無料プラグイン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-22-4",
+    "date": "2026-07-22",
+    "title": "発作の動きを体感で学ぶ教材",
+    "pattern": "文脈×技術",
+    "seed": "See a Seizureが見過ごされがちな発作の兆候を可視化したように、物理的正しさを重視するLingBot-Videoで実際の発作の動きを忠実に再現すれば、家族が一目で異変に気づける教材映像を作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "jazz-pharmaceuticals-see-a-seizure",
+        "title": "See a Seizure",
+        "desc": "見過ごされがちな発作の兆候を可視化し、早期診断を促したJazz Pharmaceuticalsの啓発施策。"
+      },
+      {
+        "type": "tech",
+        "id": "lingbot-video",
+        "title": "LingBot-Video",
+        "desc": "見た目の美しさより物理的な正しさを重視して作られた、体を持つAIも学べる大規模動画生成モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-22-5",
+    "date": "2026-07-22",
+    "title": "合言葉で部屋がAR化",
+    "pattern": "文脈×技術",
+    "seed": "TENETがマイクに「Tenet」と話すと未公開映像が解禁されたように、LingBot-Mapで単眼カメラだけ自分の部屋をリアルタイム3D化し、合言葉を唱えた瞬間に隠された手がかりが部屋そのものに浮かび上がる体験を作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "tenet-voice-activation",
+        "title": "TENET tenetfilm.com 音声起動体験",
+        "desc": "マイクに合言葉を話すと未公開映像が解禁される、映画のテーマをUIに体現したTENETの体験サイト。"
+      },
+      {
+        "type": "tech",
+        "id": "lingbot-map",
+        "title": "LingBot-Map",
+        "desc": "LiDAR不要・単眼カメラだけでシーンの3D形状を約20FPSでリアルタイム復元する基盤モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-22-6",
+    "date": "2026-07-22",
+    "title": "AIが映像と音を同時演奏",
+    "pattern": "技術×技術",
+    "seed": "AIエージェントがHTMLを書くだけで動画を作るHyperFramesと、その場でループ音源を生み出すOBSIDIAN Neuralを組み合わせれば、映像とライブ演奏がリアルタイムに呼応するAI発ミュージックビデオが作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "hyperframes",
+        "title": "HyperFrames",
+        "desc": "HTMLを書くとAIエージェントが動画制作できる、HeyGen発のオープンソースフレームワーク。"
+      },
+      {
+        "type": "tech",
+        "id": "obsidian-neural",
+        "title": "OBSIDIAN Neural",
+        "desc": "AIがその場でループ音源を生成する、ライブ演奏向けのオープンソース楽器。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-22-7",
+    "date": "2026-07-22",
+    "title": "台本から動くロボ広告",
+    "pattern": "技術×技術",
+    "seed": "文章から3Dの動きと映像を同時生成するCoMoViで振付を作り、そのままGRAILで人型ロボットUnitree G1に転移させれば、脚本を書くだけで実機ロボットが演じる広告パフォーマンスが作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comovi",
+        "title": "CoMoVi",
+        "desc": "文章から3Dの人の動きと写実的な映像を一つの生成ループで同時に作る技術。"
+      },
+      {
+        "type": "tech",
+        "id": "grail",
+        "title": "GRAIL",
+        "desc": "3Dアセットと動画生成AIから全身動作データを合成し人型ロボット実機に転移させるNVIDIA/UCLAの研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-22-8",
+    "date": "2026-07-22",
+    "title": "顔背景認識で地域差替",
+    "pattern": "転用",
+    "seed": "本来は高解像度化用だったComfyUI TTP Toolset Smart Tile 2.0の「顔と背景を見分ける」認識だけを使えば、看板やパッケージの背景部分だけを国ごとに自動で差し替えるローカライズ広告の量産に転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-ttp-toolset-smart-tile-2-0",
+        "title": "ComfyUI TTP Toolset – Smart Tile 2.0",
+        "desc": "顔と背景をAIに認識させてから必要な場所だけ高解像度化・部分編集できるComfyUI拡張機能。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-22-9",
+    "date": "2026-07-22",
+    "title": "反射で見抜く偽物検査",
+    "pattern": "転用",
+    "seed": "本来はGaussian Splattingをレイトレーシングで美しく描画するためのGRayを逆手に取れば、反射や屈折が物理的に不自然な合成写真を検出する、広告素材の捏造チェックツールに転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "gray",
+        "title": "GRay",
+        "desc": "実写を3D化するGaussian Splattingを正確な反射・屈折・影までレイトレーシングで描画する新手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-22-10",
+    "date": "2026-07-22",
+    "title": "AI即興編集でライブ再構成",
+    "pattern": "文脈×技術",
+    "seed": "LOUIS VUITTONのファレル発表会でJay-Zがポン・ヌフ橋上で演出したように、AIが人間と同じ操作感でタイムラインを扱えるPalmier Proを使えば、ランウェイの生映像をショー中にAIが即興でリカットし配信できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "louis-vuitton-pharrell-ss2024",
+        "title": "LOUIS VUITTON Men's SS2024 by Pharrell Williams",
+        "desc": "ファレル・ウィリアムスがルイ・ヴィトンのメンズ初コレクションを発表し、Jay-Zがパリの橋上で演出した歴史的ショー。"
+      },
+      {
+        "type": "tech",
+        "id": "palmier-pro",
+        "title": "Palmier Pro",
+        "desc": "AIエージェントが人間と同じタイムラインで動画を操作できる、Mac向けオープンソース動画編集ソフト。"
+      }
+    ]
   }
 ]
