@@ -1,5 +1,172 @@
 [
   {
+    "id": "vrchat-gaussian-splatting-v4",
+    "title": "VRChat Gaussian Splatting v4",
+    "org": "Mykhailo Moroz（個人開発者）",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools",
+      "HCI/MediaArt"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "ソーシャルVRプラットフォームVRChatのワールド内で、Gaussian Splattingをリアルタイム描画できるOSSツール。v4で「LODピラミッド」を追加し、1億スプラット規模の大規模シーンでも動作するようになった。",
+    "point": "何がすごいかというと、通常は専用ビューアやゲームエンジンでしか再生できないGaussian Splatting（無数の半透明な点の集合で作る写真的な3D表現）を、多人数が同時にアバターで訪れるソーシャルVRアプリVRChatの中だけで動かしてしまった点です。VRChatは処理が軽いスクリプト言語（Udon）しか使えない制約の多い環境ですが、その中に独自の並べ替え・描画の仕組みを実装しています。v4では「LODピラミッド」という、遠くのものは粗く・近くのものは精細に描く段階的詳細度の仕組みが加わり、1億個規模の点群でも処理が破綻しなくなりました。広告・体験づくりの観点では、実写ロケや商品を3Dスキャンしたデータを、専用アプリ開発なしでそのまま多人数参加型のVRイベント空間に持ち込み、来場者が自由に歩き回って鑑賞できる展示・PR空間を作れる可能性があります。",
+    "detail": "仕組みとしては、Gaussian Splattingは無数の半透明な「ふわふわした点（ガウシアン）」の集合で3D空間を表現する技術で、写真や動画から生成した実写風のシーンを、CGモデルを作らず直接描画できます。本ツールはこの点群をUnityのシェーダーとVRChatのUdonだけで並べ替え・描画しており、カメラから見た奥行き順に点を並べ替える「基数ソート」というアルゴリズムを、VRChatが許す軽い処理の範囲内で動かしています。\n従来、Gaussian SplattingはUnreal EngineやWebGLビューアなど専用の再生環境でしか見られず、複数人が同時に訪れて回るという使い方は難しいものでした。本ツールは既存の多人数ソーシャルVRプラットフォームにそのまま組み込めるため、追加インストール不要でスマホ・PC・VRヘッドセットから来場者がそのまま3Dスキャン空間を体験できます。\n使うには、VRChat向けワールドを作れる無料のUnity環境と、対象をGaussian Splattingデータ化するための3Dスキャン・撮影・学習処理（別途PCと専用ソフトが必要）が必要です。GitHubからインポーターとシェーダーをUnityプロジェクトに導入し、.plyファイルを取り込むだけで動作します。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "レンダラー本体はMITのOSS。VRChat内で公開・体験する場合はVRChat自体の利用規約が別途適用される"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/MichaelMoroz/VRChatGaussianSplatting"
+      },
+      {
+        "kind": "post",
+        "url": "https://x.com/Michael_Moroz_/status/1944595635031679242"
+      },
+      {
+        "kind": "product",
+        "url": "https://vrchat.com/home/launch?worldId=wrld_01df1297-a9de-4d53-9da1-213c29a3012a"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/vrchat-gaussian-splatting-v4.jpg",
+    "relatedWorks": [
+      {
+        "title": "SplatCapture 3.0.0",
+        "description": "Unreal Engine内でGaussian Splatting学習用の撮影データを自動キャプチャする無料プラグイン",
+        "url": "https://github.com/KazLinDev/SplatCapture/releases/tag/v3.0.0"
+      },
+      {
+        "title": "Houdini 22 ネイティブGaussian Splats",
+        "description": "DCCツールHoudiniに正式搭載された3DGS学習・レンダリングパイプライン",
+        "url": "https://www.sidefx.com/products/whats-new-in-h22/gaussian-splats/"
+      },
+      {
+        "title": "Marble x Nuke",
+        "description": "World Labs MarbleのスプラットをNukeの3Dビューポートに直接読み込む無料ツールセット",
+        "url": "https://radiancefields.com/marble-x-nuke-loads-world-labs-marble-splats-straight-into-nuke-s-3d-viewport"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "masked-visual-actions-for-unified-world-modeling",
+    "title": "Masked Visual Actions for Unified World Modeling (MVA)",
+    "org": "Stanford University / University of Maryland, College Park / Harvard University",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "AI/Agents",
+      "Motion/Body"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "1つのモデルで「ロボットの動きを与えると未来の映像をシミュレート」「物体の動きを与えると必要なロボット動作を生成」の両方をこなす、動画の一部を隠して復元させるだけの学習方法で作られた統一世界モデル。",
+    "point": "何がすごいかというと、ロボット向けの「未来予測モデル（世界モデル）」と「動作生成モデル」は通常別々に作るものですが、本研究は動画の一部分だけを隠して、その先の展開をモデルに予測・復元させるという単純な学習タスク1つだけで、同じモデルから両方の能力を引き出せることを示しました。しかも学習データは実データとシミュレーションデータを合わせてわずか15時間程度と少なく、学習時に見ていない形状のロボットアームにも対応できる汎化性を持っています。広告・体験制作の文脈では、実写に近い映像を生成できる動画生成AIをベースにしているため、「この物体をこう動かしたい」という指示からもっともらしい動作映像を作る用途、たとえばプロダクトのモーション企画のプレビズや、ロボットアームを使ったインスタレーションの事前シミュレーションへの転用が考えられます。",
+    "detail": "仕組みとしては、動画生成AI（Wan系のモデルをベースにしたDiffSynth-Studio）を土台に、動画の一部分を隠して(マスクして)その先の展開を予測・復元させるという単純な学習タスクだけで訓練します。ロボットの動きを見せて「この後シーンがどうなるか」を予測させれば環境シミュレーション（フォワードモデル）になり、逆に対象物側の目標の動きだけを見せて「ロボットはどう動けばこうなるか」を予測させれば動作生成（インバースモデル）になる、という発想です。\n従来は未来予測用のシミュレータとロボットの動作計画用のモデルを別のアーキテクチャ・別データで作ることが多かったのに対し、本研究は同じ重みの1モデルを「何を隠すか」という条件の切り替えだけで両方の役割に使い回せる点が新しく、タオルやぬいぐるみを使った実世界タスクや公開データセットDROIDでの検証で有効性を確認しています。\n使うには、GitHubで公開された学習・推論コードと、Hugging Face Hub上のモデル重みを組み合わせ、ベースとなるDiffSynth-Studio（Apache-2.0）をクローンして依存関係を整えれば推論スクリプトが動きます。動画生成モデル相当のGPU（VRAM）が必要で、広告制作で使うには映像生成AI活用の知見と、ロボットまたは対象物の実写素材の準備が求められます。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "学習・推論コードはDiffSynth-Studio由来のApache-2.0。ベースの動画生成モデル自体のライセンスが別途適用される可能性あり"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/HadiZayer/masked-visual-actions"
+      },
+      {
+        "kind": "project",
+        "url": "https://masked-visual-actions.github.io"
+      },
+      {
+        "kind": "paper",
+        "url": "https://huggingface.co/papers/2607.19343"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/masked-visual-actions-for-unified-world-modeling.jpg",
+    "relatedWorks": [
+      {
+        "title": "WorldStereo",
+        "description": "映像生成とカメラ誘導による3Dシーン再構成を橋渡しする世界モデル",
+        "url": "https://github.com/FuchengSu/WorldStereo"
+      },
+      {
+        "title": "D4RT",
+        "description": "CVPR 2026ベストペーパーの動的4Dシーン再構成手法（重み未公開）",
+        "url": "https://voxel51.com/blog/d4rt-cvpr-2026-best-paper-4d-reconstruction"
+      },
+      {
+        "title": "3D-Generalist",
+        "description": "VLMを自己改善ファインチューニングでシミュレーション対応3D環境生成に活用するNVIDIA研究",
+        "url": "https://research.nvidia.com/publication/2026-03_3d-generalist-vision-language-action-models-crafting-3d-worlds"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "comfyui-native-gaussian-splat-nodes",
+    "title": "ComfyUI Native Gaussian Splat Nodes（GAUSSIAN型 / v0.23.0）",
+    "org": "Comfy-Org",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "画像・動画生成のノードエディタComfyUIに、3D Gaussian Splatを扱うネイティブなデータ型「GAUSSIAN」と、読み込み・変換・レンダリング・メッシュ化のノード群が外部依存なしで標準搭載された。",
+    "point": "何がすごいかというと、Stable Diffusion系の画像・動画生成で世界的に使われているノードエディタComfyUIに、追加プラグイン無しで3D Gaussian Splat（無数の半透明な点群で作る3D表現）を直接扱える機能が公式に組み込まれた点です。画像を1枚投げ込むだけで3Dアセットを生成する「TripoSplat」のようなワークフローもテンプレートとして用意されており、生成AIのパイプラインの中に3D生成・プレビュー・メッシュ書き出しをそのまま組み込めます。広告・体験制作の観点では、すでにComfyUIで画像・動画生成のワークフローを組んでいる制作チームが、追加ツールを覚え直すことなく同じ画面内で「商品画像→3Dアセット化→AR/WebGL用メッシュ書き出し」まで一気通貫でできるようになり、3D専門知識がなくても簡易な3D素材のプロトタイピングが可能になります。",
+    "detail": "仕組みとしては、新設されたGAUSSIAN型は画像用のIMAGE型や潜在変数用のLATENT型と同じ扱いでノード間を流通するデータ型で、各点の位置・大きさ・向き・不透明度・色情報をまとめて保持します。専用のレンダリングノードが視点に応じた透視投影で描画し、プレビュー用の3Dビューアもワークフロー画面内に組み込まれています。\n従来ComfyUIで3D Gaussian Splatを扱うには、外部依存が多く不安定な非公式カスタムノード（ComfyUI-3DPack等）を個別に導入する必要がありましたが、本アップデートで外部依存なしの公式ノードとして統合され、.ply/.ksplat/.spz形式の読み書きやメッシュへの変換までが標準機能になりました。\n使うには、ComfyUIをv0.23.0以降に更新するだけで追加インストールは不要です。TripoSplatなどのテンプレートワークフローを選び、画像をアップロードして実行すれば3D生成が試せます。本格利用にはローカルまたはクラウドのGPU環境が必要です。",
+    "license": {
+      "spdx": "GPL-3.0",
+      "commercial": "ok",
+      "note": "ComfyUI本体はGPL-3.0のOSS。custom_nodes/内へ直接組み込む拡張はGPL-3.0の継承が必要だが、外部から呼び出すだけの利用は制限を受けない"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Comfy-Org/ComfyUI/pull/14190"
+      },
+      {
+        "kind": "post",
+        "url": "https://blog.comfy.org/p/bringing-native-support-for-3d-gaussian"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/comfyui-adds-native-gaussian-splat-manipulation-nodes-for-rendering-meshing-and-transformation"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/comfyui-native-gaussian-splat-nodes.jpg",
+    "relatedWorks": [
+      {
+        "title": "TripoSplat",
+        "description": "Tripo社によるOSSの画像→Gaussian Splat生成モデル。ComfyUIの公式テンプレートとして提供",
+        "url": "https://docs.comfy.org/tutorials/3d/triposplat"
+      },
+      {
+        "title": "Comfy3D",
+        "description": "ComfyUI向けの非公式3D生成・処理カスタムノード集",
+        "url": "https://radiancefields.com/comfy3d-for-comfyui"
+      },
+      {
+        "title": "comfyui-GaussianViewer",
+        "description": "PLY形式のGaussian Splatをインタラクティブにプレビューできるカスタムノード",
+        "url": "https://github.com/HallettVisual/comfyui-GaussianViewer"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "gpc",
     "title": "GPC (Generative Pretraining for Transferable Motor Control)",
     "org": "NVIDIA / Simon Fraser University",
