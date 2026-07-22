@@ -312,7 +312,7 @@ async function runIdeaseeds() {
     log(`===== Idea seeds start: ${unixDateString()} =====`);
     const gen = runNode("scripts/generate-idea-seeds.mjs");
     if (gen.status === 0) {
-      runNode("scripts/notify-line.mjs", ["--text-file", path.join(os.tmpdir(), "researchman-idea-seeds.txt"), "--priority", "routine"]);
+      runNode("scripts/notify-line.mjs", ["--text-file", path.join(os.tmpdir(), "researchman-idea-seeds.txt")]);
       // data/ideas.json と data/idea-layouts.json は必ずペアでcommit/push
       // （片方だけだとpre-push鮮度検査に拒否される。launchd/com.researchman.ideaseeds.plist参照）
       runGit(["add", "data/ideas.json", "data/idea-layouts.json"]);
