@@ -37,6 +37,7 @@ export const RESEARCH_SOURCES: ResearchSource[] = [
   { tag: "User", kind: "order", label: "User" },
   { tag: "Floating", kind: "order", label: "Floating" },
   { tag: "Ambient Reveals", kind: "order", label: "Ambient Reveals" },
+  { tag: "Perspective Shift", kind: "order", label: "Perspective Shift" },
   { tag: "Radar", kind: "radar", label: "Radar" },
 ];
 

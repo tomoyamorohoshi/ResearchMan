@@ -1,5 +1,395 @@
 [
   {
+    "id": "the-burnable-billboard-2025",
+    "title": "The Burnable Billboard",
+    "summary": "リアルタイムの紫外線量データと連動し、健康な肌が赤み・日焼け・水ぶくれへと変化していくデジタル屋外広告。",
+    "client": "British Skin Foundation",
+    "agency": "Wonderhood Studios",
+    "categories": [
+      "OOH革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.famouscampaigns.com/2025/06/burnable-billboards-reveal-risks-of-sun-exposure-in-real-time/",
+    "thumbnail": "/thumbnails/the-burnable-billboard-2025.jpg",
+    "videoId": "",
+    "overview": "British Skin Foundationのために制作された「The Burnable Billboard」は、健康な肌を映すデジタル屋外広告が、設置場所のリアルタイムUV指数データに応じて赤み・日焼け・水ぶくれへと段階的に変化していく施策。日中の紫外線量が高まるほど肌のダメージ表現が悪化し、歩行者に紫外線被曝の危険性を「今この瞬間」の体感として伝える。",
+    "background": "皮膚がんの主要因である紫外線被曝は、多くの人にとって「見えないリスク」として軽視されがちで、日焼け止めの塗り直しなど予防行動の徹底が課題となっていた。British Skin Foundationは、統計や警告文による啓発では届きにくいこの危機感を、視覚的かつリアルタイムに可視化する必要があるという課題意識からWonderhood Studiosと本施策を企画した。",
+    "execution": "屋外広告面にリアルタイムのUV指数データを連携させ、広告内の肌の画像を紫外線量に応じて動的に変化させるシステムを構築。UV指数が低い時間帯は健康な肌のままだが、指数が上昇するにつれて赤み、日焼け、水ぶくれへと段階的に悪化していく。通行人はその日・その時間の実際の紫外線状況を、自分の肌に置き換えて体感することになる。",
+    "evaluationImpact": "データドリブンなOOHとして、天候や環境データを広告表現に直結させる手法の一例として業界メディアで紹介された。日焼け止めの塗り直しや紫外線対策の重要性を、抽象的な警告ではなく「今日のリスク」として提示した点が評価されている。",
+    "relatedWorks": [
+      {
+        "title": "Nokia「#NokiaGloveLove」(2014年)",
+        "description": "気温データに応じてコピーが変化する温度感応ビルボード。環境データをリアルタイムに屋外広告表現へ連動させる発想が共通する。",
+        "url": "https://www.thedrum.com/news/2014/01/25/nokias-heat-sensitive-billboard-changes-temperature"
+      }
+    ],
+    "sources": [
+      "Perspective Shift"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/OOH",
+      "Theme/Health"
+    ]
+  },
+  {
+    "id": "zerooh-noise-a-real-time-decibel-sensing-billboard-2025",
+    "title": "Zerooh Noise: a real-time decibel-sensing billboard",
+    "summary": "幹線道路にリアルタイム騒音センサーを搭載し、都市の喧騒を可視化してEVの静粛性を対比させたデジタル看板。",
+    "client": "Geely (EX2 / Geely Orvel)",
+    "agency": "Prósper Comunicação",
+    "categories": [
+      "OOH革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/zerooh-noise-a-real-time-decibel-sensing-billboard",
+    "thumbnail": "/thumbnails/zerooh-noise-a-real-time-decibel-sensing-billboard-2025.jpg",
+    "videoId": "",
+    "overview": "Geely（EX2 / Geely Orvel）のために制作された「Zerooh Noise」は、ブラジルの幹線道路脇に設置されたデコベル（騒音）センサー搭載のデジタル看板。周辺の交通騒音をリアルタイムに計測・可視化し、都市の喧騒とEVの静粛性を対比させることで電動モビリティの価値を体感させる施策。",
+    "background": "都市部の幹線道路はエンジン音やクラクションなど慢性的な騒音にさらされており、住民はその喧騒を日常として受け流してしまいがちだった。Geelyは自社EVの静粛性という機能的ベネフィットを、スペックの数値ではなく、周囲の騒音との対比という体感可能な形で伝える方法をPrósper Comunicaçãoとともに模索した。",
+    "execution": "交通量の多い幹線道路沿いにデシベルセンサーを搭載したデジタル屋外広告を設置し、周辺の騒音レベルをリアルタイムに計測。計測された騒音値を看板上に可視化し、それと対比する形でGeely車の静粛性を訴求するメッセージを表示する構成とした。センサーデータに基づく動的な表示により、通行者は「今この場所の喧騒」を基準にEVの静けさを実感できる。",
+    "evaluationImpact": "リアルタイムセンサーデータを活用したOOH表現として、Ads of the Worldなど業界メディアで紹介された。騒音という日常的で見過ごされがちな環境要素を可視化し、製品の機能訴求に転換した発想が評価されている。",
+    "relatedWorks": [
+      {
+        "title": "Nokia「#NokiaGloveLove」(2014年)",
+        "description": "気温データに応じて屋外広告のコピーが変化する施策。環境センサーデータを製品訴求に接続する構造が共通する。",
+        "url": "https://www.thedrum.com/news/2014/01/25/nokias-heat-sensitive-billboard-changes-temperature"
+      }
+    ],
+    "sources": [
+      "Perspective Shift"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Tech/Device",
+      "Form/OOH",
+      "Theme/Mobility",
+      "Theme/Sustainability"
+    ]
+  },
+  {
+    "id": "coraz-n-give-your-heart-2018",
+    "title": "Corazón – Give Your Heart",
+    "summary": "スマホで自分の心拍を測ると、タイムズスクエアの看板上で女優がその鼓動に合わせて目覚める、臓器提供啓発の心拍トリガー施策。",
+    "client": "Montefiore Health System",
+    "agency": "JohnXHannes NY",
+    "categories": [
+      "OOH革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "Cannes Lions 2018 Health & Wellness Lions Grand Prix（Health Services & Facilities カテゴリ）",
+    "year": "2018",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://marcommnews.com/johnxhannes-ny-wins-cannes-lions-grand-prix-for-corazon-give-your-heart/",
+    "thumbnail": "/thumbnails/coraz-n-give-your-heart-2018.jpg",
+    "videoId": "U7Qa5Vs-6NI",
+    "overview": "Montefiore Health Systemの「Corazón – Give Your Heart」は、専用アプリでスマートフォンを胸に当てて自分の心拍を計測すると、タイムズスクエアのデジタル看板上に映る女優がその心拍データに合わせて「目覚める」演出が展開される臓器提供啓発施策。自分の鼓動が他者の命を動かす感覚を体感させる。",
+    "background": "臓器提供の意思表示登録者数は依然として不足しており、多くの人にとって臓器提供は自分ごと化しづらいテーマだった。Montefiore Health Systemは、統計や訴求文による啓発ではなく、自分自身の身体感覚（心拍）を媒介に「自分の心臓が誰かを生かすかもしれない」という感覚を直接体験させるアプローチをJohnXHannes NYとともに企画した。",
+    "execution": "専用アプリを通じてユーザーがスマートフォンを胸に当てると、内蔵センサーで心拍を計測。計測された心拍データがタイムズスクエアのデジタル看板にリアルタイムで送信され、看板に映る心臓移植を待つ女優のビジュアルが、そのユーザー自身の心拍リズムに合わせて反応し「目覚める」という演出が展開される仕組みを構築した。",
+    "evaluationImpact": "Cannes Lions 2018 Health & Wellness Lions Grand Prix（Health Services & Facilitiesカテゴリ）受賞。自分の身体データを媒介に他者の命への想像力を喚起する手法が高く評価され、ヘルスケア領域におけるパーソナルデータ活用型OOHの代表事例として引用される。",
+    "relatedWorks": [
+      {
+        "title": "Zerooh Noise（Geely, 2025年）",
+        "description": "リアルタイムセンサーデータをOOH表現に直結させる構造が共通する事例。テーマは環境音と身体データという違いがある。",
+        "url": "https://www.adsoftheworld.com/campaigns/zerooh-noise-a-real-time-decibel-sensing-billboard"
+      }
+    ],
+    "sources": [
+      "Perspective Shift"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Tech/Data",
+      "Form/OOH",
+      "Form/App",
+      "Theme/Health"
+    ]
+  },
+  {
+    "id": "only-for-children-2013",
+    "title": "Only for Children（子供にしか見えない児童虐待防止広告）",
+    "summary": "レンチキュラー印刷で大人には普通の広告だが、身長132cm以下の子どもの視点からだけ虐待防止メッセージが見える屋外広告",
+    "client": "ANAR Foundation（Aid to Children and Adolescents at Risk）",
+    "agency": "Grey Group Spain",
+    "categories": [
+      "OOH革新"
+    ],
+    "award": "",
+    "year": "2013",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.odditycentral.com/news/anti-abuse-billboard-contains-message-visible-only-by-children.html",
+    "thumbnail": "/thumbnails/only-for-children-2013.jpg",
+    "videoId": "",
+    "overview": "ANAR Foundation（スペインの児童虐待防止団体）がGrey Group Spainと制作した屋外広告「Only for Children」。レンチキュラー印刷技術を用い、大人の目線の高さから見ると普通の子どもの笑顔の広告に見えるが、身長132cm以下の子ども特有の低い視点から見上げると、傷ついた表情の顔と相談窓口の電話番号が浮かび上がる仕掛けとした。",
+    "background": "児童虐待は加害者が身近な大人であるケースが多く、被害を受けた子ども自身が助けを求める方法や相談先を知らないまま孤立しがちだった。周囲の大人には気づかれず、子ども本人にだけメッセージを届ける必要があった。",
+    "execution": "見る角度によって異なる画像が浮かび上がるレンチキュラーレンズ印刷の広告版を制作。大人の平均的な目線からは普通の子どもの顔に見えるが、身長132cm以下の子どもの低い視点から見上げると傷ついた表情の顔とANAR Foundationの相談ダイヤルが表示される仕組みとし、バス停などに設置した。",
+    "evaluationImpact": "「大人には見えず子どもにだけ届く広告」という視点の非対称性を逆手に取った着想が話題を呼び、児童虐待防止という社会課題に対する屋外広告の新しいアプローチとして国内外のメディアで紹介された。",
+    "relatedWorks": [
+      {
+        "title": "Anti-abuse billboard contains message visible only by children",
+        "description": "Oddity Centralによる報道記事",
+        "url": "https://www.odditycentral.com/news/anti-abuse-billboard-contains-message-visible-only-by-children.html"
+      }
+    ],
+    "sources": [
+      "Perspective Shift"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Form/Print",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "night-signals-2026",
+    "title": "Night Signals",
+    "summary": "再帰性反射素材の看板が日中は白紙、夜間ヘッドライトを浴びた瞬間だけ交通標識として発光し無灯照明道路の安全性を高める",
+    "client": "Chevrolet",
+    "agency": "Ogilvy República Dominicana",
+    "categories": [
+      "OOH革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.ogilvy.com/work/night-signals",
+    "thumbnail": "/thumbnails/night-signals-2026.jpg",
+    "videoId": "",
+    "overview": "ChevroletがOgilvy República Dominicanaと展開した屋外広告「Night Signals」。再帰性反射素材を用いた看板で、日中は白紙のパネルにしか見えないが、夜間に通行車両のヘッドライトが当たった瞬間だけ光を反射して交通標識として発光し、視認性が確保される仕組みを構築した。",
+    "background": "街灯や道路照明が整備されていない道路が多い地域では夜間の交通事故リスクが高く、視認性の低い道路標識が安全上の課題となっていた。Chevroletは自動車ブランドとして道路安全そのものに寄与する施策を模索していた。",
+    "execution": "再帰性反射材を用いた特殊な素材で看板を制作し、日中は白紙の板のように見えるが、夜間に通行車両のヘッドライトの光を浴びた瞬間だけ文字や図形が浮かび上がる仕組みとした。無灯照明の道路沿いに設置し、車のヘッドライトそのものを標識の光源として利用した。",
+    "evaluationImpact": "電力を使わず車のヘッドライトそのものを光源に変える発想により、インフラの整っていない道路でも低コストで視認性を高められる点が特徴で、自動車ブランドが交通安全インフラの一部を担う事例として紹介された。",
+    "relatedWorks": [
+      {
+        "title": "Night Signals | Ogilvy",
+        "description": "Ogilvyによる制作事例紹介ページ",
+        "url": "https://www.ogilvy.com/work/night-signals"
+      }
+    ],
+    "sources": [
+      "Perspective Shift"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/OOH",
+      "Theme/Mobility"
+    ]
+  },
+  {
+    "id": "clouded-billboard-gambling-clouded-everything-i-did-2024",
+    "title": "Clouded Billboard（Gambling clouded everything I did）",
+    "summary": "内蔵の霧発生装置がタイマーで作動し看板メッセージを煙が覆っていく、ギャンブル依存の視界の曇りを体感させるOOH",
+    "client": "GambleAware",
+    "agency": "Lucky Generals",
+    "categories": [
+      "OOH革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://sketchevents.co.uk/project/gambleaware-clouded-billboard/",
+    "thumbnail": "/thumbnails/clouded-billboard-gambling-clouded-everything-i-did-2024.jpg",
+    "videoId": "",
+    "overview": "英国のギャンブル問題啓発団体GambleAwareがLucky Generalsと制作した屋外広告「Clouded Billboard」。看板に内蔵した霧発生装置がタイマーで作動し、「Gambling clouded everything I did」というメッセージを時間の経過とともに霧が覆い隠していく仕掛けとした。",
+    "background": "ギャンブル依存症は本人の判断力や生活全般を徐々に蝕んでいくが、その進行は本人にも周囲にも気づかれにくい。GambleAwareは静的なメッセージ広告では伝えきれない、依存が「じわじわと生活を曇らせていく」感覚を体感的に伝える表現を求めていた。",
+    "execution": "屋外看板の内部に霧発生装置を組み込み、タイマー制御で稼働させた。設置直後は視認できていたメッセージが、時間の経過とともに立ち込める霧によって徐々に覆い隠されていく様子を通行人がその場で目撃できる仕掛けとし、ギャンブル依存が生活を覆っていく過程を物理的な視界の曇りとして表現した。",
+    "evaluationImpact": "メッセージが時間とともに見えなくなっていくという通常の広告とは逆の演出により、依存症の進行を体感的に伝えた点が特徴で、ギャンブル関連の啓発広告表現として紹介された。",
+    "relatedWorks": [
+      {
+        "title": "GambleAware: Clouded Billboard",
+        "description": "Sketch Eventsによる制作事例紹介ページ",
+        "url": "https://sketchevents.co.uk/project/gambleaware-clouded-billboard/"
+      }
+    ],
+    "sources": [
+      "Perspective Shift"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/OOH",
+      "Theme/SocialGood",
+      "Theme/Health"
+    ]
+  },
+  {
+    "id": "breathable-billboard-2020",
+    "title": "Breathable Billboard",
+    "summary": "大気汚染データと連動し、看板の『肺』の絵柄が空気の状態に応じて花のように色づいたり萎れたりするロンドンの屋外広告",
+    "client": "Global Action Plan",
+    "agency": "Wonderhood Studios",
+    "categories": [
+      "OOH革新"
+    ],
+    "award": "",
+    "year": "2020",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.globalactionplan.org.uk/news/charity-launchesbreathable-billboardto-mark-new-campaign-to-build-back-cleaner-air",
+    "thumbnail": "/thumbnails/breathable-billboard-2020.jpg",
+    "videoId": "",
+    "overview": "英国の環境チャリティGlobal Action Planが、Wonderhood Studiosと展開した屋外広告『Breathable Billboard』。看板に描いた人間の肺のイラストを設置エリアのリアルタイム大気汚染指数と連動させ、空気の状態に応じて絵柄の見え方が変化する仕組みを採用した。",
+    "background": "ロンドンは大気汚染が深刻な社会課題となっており、数値やグラフによる啓発では実感が伴いにくいという課題があった。よりクリーンな空気を取り戻すことを訴えるキャンペーンの一環として、目に見えない汚染を身体感覚に近い『肺』の変化で直感的に伝える手法が選ばれた。",
+    "execution": "看板に描いた肺のイラストを大気汚染指数データとリアルタイムに連動させ、空気が清浄な状態では花のように色鮮やかに咲き、汚染が進むにつれて萎れて茶色く変色していく表現とした。通行人がその場の空気の状態を看板の見た目から直感的に把握できる仕組みとした。",
+    "evaluationImpact": "不可視の大気汚染データを、呼吸器官である『肺』の視覚的な変化に置き換えたことで、生活者が自分ごととして捉えやすい環境啓発表現となった。クリーンな空気の回復を訴えるキャンペーンの象徴的な施策として紹介された。",
+    "relatedWorks": [],
+    "sources": [
+      "Perspective Shift"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/OOH",
+      "Theme/Sustainability",
+      "Theme/Health"
+    ]
+  },
+  {
+    "id": "ikea-pregnancy-test-ad-2018",
+    "title": "IKEA Pregnancy Test Ad（尿をかけると割引が現れる雑誌広告）",
+    "summary": "雑誌広告に印刷された妊娠検査紙に尿をかけると陽性反応でベビーベッドの割引クーポンが浮かび上がるIKEAの仕掛け広告",
+    "client": "IKEA（スウェーデン）",
+    "agency": "Åkestam Holst / Mercene Labs",
+    "categories": [
+      "メディア発明"
+    ],
+    "award": "",
+    "year": "2018",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adweek.com/creativity/ikea-wants-you-to-pee-on-this-ad-if-youre-pregnant-it-will-give-you-a-discount-on-a-crib/",
+    "thumbnail": "/thumbnails/ikea-pregnancy-test-ad-2018.jpg",
+    "videoId": "",
+    "overview": "スウェーデンのIKEAがÅkestam Holst、Mercene Labsと制作した雑誌広告。育児雑誌『Mama』の誌面下部に妊娠検査紙と同様の反応紙を印刷し、妊娠している読者が尿をかけると陽性反応としてベビーベッドの割引クーポンが浮かび上がる仕掛けを組み込んだ。",
+    "background": "出産準備期の家族に向けたベビー用品の訴求を、より個人的でパーソナルな体験として届けたいという狙いがあった。妊娠検査というプライベートな行為そのものを広告の起点とすることで、対象読者だけに反応する広告表現を目指した。",
+    "execution": "育児雑誌の広告面下部に、市販の妊娠検査薬と同様の化学反応紙を印刷。妊娠している読者がそこに尿をかけると化学反応が起き、ベビーベッド『SUNDVIK』の割引クーポンコードが紙面上に浮かび上がる仕組みとした。妊娠していない場合は反応せず、対象者のみに機能する広告とした。",
+    "evaluationImpact": "印刷広告に化学反応の仕組みを組み込み、対象読者だけに反応するパーソナライズドな紙面広告を実現した点が話題となり、Adweekなど海外の広告メディアで大きく取り上げられた。",
+    "relatedWorks": [],
+    "sources": [
+      "Perspective Shift"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/Retail"
+    ]
+  },
+  {
+    "id": "melting-icon-2022",
+    "title": "Melting Icon",
+    "summary": "英国史上最高気温を記録した猛暑日に合わせ、アイスが溶け崩れる姿をそのまま撮影した屋外広告",
+    "client": "Magnum",
+    "agency": "LOLA MullenLowe",
+    "categories": [
+      "OOH革新",
+      "コンテンツ革新"
+    ],
+    "award": "D&AD 2023 Wood Pencil（Press & Outdoor／Photography／Art Direction の3部門）",
+    "year": "2022",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.dandad.org/work/d-ad-awards-archive/melting-icon",
+    "thumbnail": "/thumbnails/melting-icon-2022.jpg",
+    "videoId": "",
+    "overview": "Magnumが英国の観測史上最高気温を記録した猛暑日に合わせて展開した屋外広告「Melting Icon」。アイコニックなMagnumバーが灼熱の中で溶け崩れていく瞬間をそのまま写真に収め、ポスター・屋外広告として展開した。LOLA MullenLoweが制作を担当し、D&AD 2023でPress & Outdoor、Photography、Art Directionの3部門でWood Pencilを受賞した。",
+    "background": "英国では観測史上最高気温を更新する猛暑日が発生し、暑さそのものが社会的な話題となった。Magnumはこの気象イベントに便乗し、通常であれば商品の欠点となる「アイスが溶ける」現象を、逆にブランドアイコンの新たな表情として提示する着想を求めていた。",
+    "execution": "灼熱の環境下で実際に溶け崩れていくMagnumバーをそのままフォトグラフィで捉え、加工に頼らずアイコンの崩れゆく造形美をアートディレクションで際立たせた。ポスター・屋外広告として街中に展開し、猛暑という時事性の高いタイミングでの露出を狙った。",
+    "evaluationImpact": "気象イベントとブランドアイコンを直接結びつけた説得力あるビジュアル表現として評価され、D&AD 2023でPress & Outdoor、Photography、Art Directionの3部門でWood Pencilを受賞した。",
+    "relatedWorks": [],
+    "sources": [
+      "Perspective Shift"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Form/Print",
+      "Theme/Food"
+    ]
+  },
+  {
+    "id": "smog-free-billboard-2019",
+    "title": "Smog Free Billboard（スモッグ分解ビルボード）",
+    "summary": "太陽光を受けた光触媒コーティングがスモッグを分解、木30本分に相当する空気浄化を続けるメキシコの看板",
+    "client": "UDEM（モンテレー大学）× Studio Roosegaarde",
+    "agency": "Studio Roosegaarde",
+    "categories": [
+      "テクノロジー×アイデア",
+      "社会包摂"
+    ],
+    "award": "",
+    "year": "2019",
+    "regions": [
+      "中南米"
+    ],
+    "link": "https://www.goodnewsnetwork.org/mexican-billboard-purifies-air-by-eating-smog/",
+    "thumbnail": "/thumbnails/smog-free-billboard-2019.jpg",
+    "videoId": "",
+    "overview": "メキシコ・モンテレー大学(UDEM)とStudio Roosegaardeが共同開発した「Smog Free Billboard」。屋外広告の表面に光触媒コーティングを施し、太陽光が当たるとスモッグ中の汚染物質を分解、周辺の空気を浄化し続ける仕組みを持つ看板として設置された。",
+    "background": "モンテレーは大気汚染が深刻な都市の一つであり、広告という都市インフラを単なる情報発信の場から環境改善に寄与するメディアへ転換する狙いがあった。Studio Roosegaardeが手がける一連のSmog Freeプロジェクトの一環として実施された。",
+    "execution": "看板表面に光触媒コーティングを施し、太陽光を受けると化学反応でスモッグ中の汚染物質を分解する仕組みを採用。特別な電源や動力を必要とせず、設置するだけで周辺の空気浄化に寄与し続ける屋外広告として機能させた。",
+    "evaluationImpact": "一枚の看板が木30本分に相当する空気浄化効果を持つとされ、広告メディアそのものが環境問題解決の手段になり得ることを示した事例として海外メディアで紹介された。",
+    "relatedWorks": [],
+    "sources": [
+      "Perspective Shift"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/OOH",
+      "Theme/Sustainability"
+    ]
+  },
+  {
+    "id": "for-every-slice-of-sun-2024",
+    "title": "For Every Slice of Sun（日食を利用したコロナのビジュアル）",
+    "summary": "環状日食で欠けた太陽をコロナのライムスライスに見立てて撮影した、天体現象連動の屋外ビジュアル",
+    "client": "Corona",
+    "agency": "DAVID Miami（Ogilvy）",
+    "categories": [
+      "OOH革新",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.ogilvy.com/work/corona-eclipse",
+    "thumbnail": "/thumbnails/for-every-slice-of-sun-2024.jpg",
+    "videoId": "",
+    "overview": "Coronaがビールにライムを添えて飲む習慣を象徴的なブランド資産として持つ中、DAVID Miami(Ogilvy)と展開した「For Every Slice of Sun」。2024年の環状日食で月に隠されリング状に欠けた太陽の姿を撮影し、コロナのライムスライスに見立てた屋外広告として展開した。",
+    "background": "限られた時間・場所でしか観測できない日食という天体現象は社会的関心が非常に高いタイミングに発生する。Coronaはこの一過性のイベントを、ブランドを象徴するライムのビジュアルと結びつける機会として着目した。",
+    "execution": "日食が観測されるタイミングに合わせて欠けていく太陽を撮影し、その形状をコロナのライムスライスに見立てたビジュアルを制作。屋外広告として展開し、天体現象という一過性の出来事とブランドイメージを直接結びつけた。",
+    "evaluationImpact": "話題性の高い自然現象にリアルタイムで便乗し、ブランドの象徴的モチーフと重ね合わせることで強い視覚的インパクトを生んだ事例として紹介されている。",
+    "relatedWorks": [],
+    "sources": [
+      "Perspective Shift"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Form/Print",
+      "Theme/Food"
+    ]
+  },
+  {
     "id": "rain-activated-bumbershoot-2014",
     "title": "Rain Activated (Bumbershoot)",
     "summary": "雨に濡れると防水塗料で隠されたメッセージが浮かび上がるシアトルの屋外広告で、雨をフェスの魅力に変えた",
