@@ -36,6 +36,7 @@ export const RESEARCH_SOURCES: ResearchSource[] = [
   // ユーザーがLINE経由で直接追加した事例の目印（今後の週次チューンアップの入力になる）。
   { tag: "User", kind: "order", label: "User" },
   { tag: "Floating", kind: "order", label: "Floating" },
+  { tag: "Ambient Reveals", kind: "order", label: "Ambient Reveals" },
   { tag: "Radar", kind: "radar", label: "Radar" },
 ];
 

@@ -1,5 +1,333 @@
 [
   {
+    "id": "rain-activated-bumbershoot-2014",
+    "title": "Rain Activated (Bumbershoot)",
+    "summary": "雨に濡れると防水塗料で隠されたメッセージが浮かび上がるシアトルの屋外広告で、雨をフェスの魅力に変えた",
+    "client": "Bumbershoot Music & Arts Festival",
+    "agency": "Publicis Seattle",
+    "categories": [
+      "OOH革新"
+    ],
+    "award": "",
+    "year": "2014",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/rain-activated",
+    "thumbnail": "/thumbnails/rain-activated-bumbershoot-2014.jpg",
+    "videoId": "",
+    "overview": "シアトル拠点のPublicis Seattleが手がけた音楽フェス「Bumbershoot」のための屋外広告。ポスター面に防水塗料であらかじめメッセージやイラストを描き込み、晴天時は無地に見えるが、雨に濡れた瞬間だけ隠れていた文字やビジュアルが浮かび上がる仕掛けとした。",
+    "background": "シアトルは年間を通じて雨の日が多い都市として知られ、屋外プロモーションにとって雨はネガティブな要素になりがちだった。「Bumbershoot（雨傘）」というフェス名にも通じるシアトルらしい弱みを、逆に広告の仕掛けとして活用する発想が企画の出発点となった。",
+    "execution": "ビルボードやポスターの一部に防水塗料でメッセージ・グラフィックを描き、雨に濡れると色が変化して文字やビジュアルが浮かび上がる特殊印刷技術を採用。晴天時はシンプルな告知面に見えるが、雨天時にだけ隠れたクリエイティブが現れることで、天候そのものを広告のトリガーとして機能させた。",
+    "evaluationImpact": "天候という制御不能な環境要因を広告表現のスイッチに変えた事例として、雨の多い都市特性をネガティブからポジティブな体験へ転換した点が特徴。以降広がる雨連動型OOH表現の先行事例のひとつとして各種クリエイティブメディアで紹介されている。",
+    "relatedWorks": [],
+    "sources": [
+      "Ambient Reveals"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Theme/Music",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "the-sea-is-the-sky-2019",
+    "title": "The Sea Is The Sky",
+    "summary": "雨が降り出した瞬間だけデジタル看板に海の生物が泳ぎ出し、雨と海のつながりから海洋保護を訴求",
+    "client": "We Are Ocean",
+    "agency": "Glimpse / DOOH.com",
+    "categories": [
+      "OOH革新"
+    ],
+    "award": "",
+    "year": "2019",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://billboardinsider.com/rain-triggers-images-in-uk-billboard-campaign/",
+    "thumbnail": "/thumbnails/the-sea-is-the-sky-2019.jpg",
+    "videoId": "",
+    "overview": "英国の海洋保護団体We Are Oceanが展開したデジタルOOHキャンペーン「The Sea Is The Sky」。天候データと連動したデジタル屋外広告で、雨が降り始めた瞬間だけ看板の空にタコやクジラなど海の生物が泳ぎ出す映像に切り替わる仕掛けを英国内のデジタル看板で実施した。",
+    "background": "雨水は最終的に川を通じて海へ流れ着くという水循環に着目し、「空から降る雨」と「海」を視覚的に結びつけることで、日常の天候を通じて海洋汚染・海洋保護への当事者意識を喚起する狙いがあった。DOOH.comの天候データ連動配信技術とGlimpseのクリエイティブが組み合わされた。",
+    "execution": "英国内のデジタル屋外広告ネットワークにリアルタイム天候データを連携させ、雨の検知をトリガーに看板のクリエイティブを自動で切り替え。雨天時のみ空を泳ぐタコやクジラなど海洋生物のアニメーションが表示され、晴天時とは異なるビジュアルで通行人の目を引いた。",
+    "evaluationImpact": "気象データ連動という技術的仕掛けを環境メッセージの説得力強化に直結させた点が特徴で、業界メディアでも雨連動OOHの応用事例として取り上げられた。天候トリガー型広告が単なる話題作りでなく啓発テーマと結びつく可能性を示した。",
+    "relatedWorks": [],
+    "sources": [
+      "Ambient Reveals"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/OOH",
+      "Theme/Sustainability"
+    ]
+  },
+  {
+    "id": "magic-of-flying-lookup-2013",
+    "title": "Magic of Flying (#LookUp)",
+    "summary": "実際のBA便が上空を通過すると看板の少年が指差し便名と出発地を表示、リアルタイム連動OOHの先駆け",
+    "client": "British Airways",
+    "agency": "OgilvyOne",
+    "categories": [
+      "OOH革新"
+    ],
+    "award": "",
+    "year": "2013",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.thedrum.com/news/worlds-best-ooh-ads-ever-10-ba-rediscovers-wonder-in-the-skies",
+    "thumbnail": "/thumbnails/magic-of-flying-lookup-2013.jpg",
+    "videoId": "26MAojVlPgc",
+    "overview": "英国航空(British Airways)がOgilvyOneと制作したデジタル屋外広告「Magic of Flying（#LookUp）」。ロンドンに設置した大型デジタルサイネージに実際のBA便のフライトデータをリアルタイム連携させ、実機が上空を通過する瞬間だけ看板上の少年が空を指差し、その便の便名と出発地を表示する仕組みを実現した。",
+    "background": "航空券のパーソナル化が難しい業界特性の中で、実飛行データという「今まさに起きている事実」を広告に取り込むことで生活者の驚きと関心を引く狙いがあった。BAはこの施策を通じて空の旅そのものへの憧れ・驚きを再喚起することを目指した。",
+    "execution": "屋外広告に設置したカメラとBAのフライト追跡システムを連携させ、実際の便が看板上空を通過するタイミングを検知。通過の瞬間だけ看板内の少年キャラクターが指差しポーズに切り替わり、通過した便のフライト番号と出発地をリアルタイム表示するデジタルOOHとして展開した。",
+    "evaluationImpact": "実世界のリアルタイムデータを広告表現に直結させた先駆的な事例として国内外の広告賞・業界メディアで繰り返し紹介され、「世界最高のOOH」の一つに挙げられるなど、データ連動型屋外広告の代表事例としてその後の類似施策に影響を与えた。",
+    "relatedWorks": [],
+    "sources": [
+      "Ambient Reveals"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/OOH",
+      "Theme/Mobility"
+    ]
+  },
+  {
+    "id": "ore-ida-rain-activated-billboard-2024",
+    "title": "Ore-Ida Rain Activated Billboard",
+    "summary": "晴天時は通常コピーだが雨に濡れると特殊塗料の追加メッセージが浮かぶシアトルの壁面広告",
+    "client": "Ore-Ida",
+    "agency": "",
+    "categories": [
+      "OOH革新"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.youtube.com/watch?v=jn0T-iJ26dg",
+    "thumbnail": "/thumbnails/ore-ida-rain-activated-billboard-2024.jpg",
+    "videoId": "jn0T-iJ26dg",
+    "overview": "冷凍ポテト・じゃがいも加工食品ブランドOre-Idaがシアトルの壁面に展開した屋外広告。晴天時は通常のコピーのみが見えるが、雨に濡れると防水塗料で隠されていた追加メッセージが浮かび上がる仕掛けを採用し、雨の多いシアトルの気候特性を活かしたクリエイティブとした。",
+    "background": "シアトルは雨の多い都市として知られ、屋外広告にとって天候はコントロールできない要素とされてきた。Ore-Idaはこの土地特性を逆手に取り、雨天時にだけ別のメッセージが現れる仕掛けを通じて、通常のOOHでは得られない発見性のある体験を狙った。",
+    "execution": "壁面広告のベースコピーの上に防水性の特殊塗料でメッセージを重ね描きし、雨に濡れた部分だけ塗料が変化して隠れていた文言やビジュアルが浮かび上がる仕組みを採用。晴天時と雨天時で異なる見え方をする一枚の広告として、シアトルの街中に設置された。",
+    "evaluationImpact": "雨連動型の隠しメッセージOOHという表現手法を食品ブランドの屋外広告に応用した事例。天候をコンテンツの一部として組み込むことで、通行人に繰り返し見る価値のある広告体験を提供し、SNS・動画共有を通じた話題化を狙った施策として位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Ambient Reveals"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Theme/Food"
+    ]
+  },
+  {
+    "id": "volvo-lightning-powered-billboard-purepower-2017",
+    "title": "Volvo Lightning-Powered Billboard #PurePower",
+    "summary": "避雷針を仕込んだ看板が本物の落雷を受けると発光する、雷雨シーズン限定の世界初OOH施策",
+    "client": "Volvo Cars Thailand",
+    "agency": "GREYnJ United Thailand",
+    "categories": [
+      "OOH革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2017",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/lightning-powered-billboard-purepower",
+    "thumbnail": "/thumbnails/volvo-lightning-powered-billboard-purepower-2017.jpg",
+    "videoId": "OMJYINQpXDE",
+    "overview": "タイの雷雨シーズンに合わせ、避雷針とセンサーを仕込んだ巨大看板を設置。実際の落雷を受けると看板が発光し、Volvoの#PurePowerメッセージが浮かび上がる仕組みを構築した、自然現象そのものを広告メディア化した世界初の施策。",
+    "background": "タイは雨季に激しい雷雨が多発する地域であり、Volvo Carsは自動車の強さや安全性を訴求するにあたり、単なる商品訴求ではなく自然の脅威そのものを表現手段として取り込む着想を求めていた。",
+    "execution": "屋外看板に避雷針と落雷検知センサーを組み込み、実際に雷が着弾すると発生する電流をトリガーにLED等が点灯する仕組みを開発。雷雨シーズンに合わせて設置し、本物の落雷が発生するたびに看板が発光してブランドメッセージが浮かび上がる体験を実現した。",
+    "evaluationImpact": "「本物の雷で光る看板」という前例のない仕組みが海外のクリエイティブメディアで取り上げられ、自然エネルギーをそのまま広告表現に転換した先駆的なOOH施策として紹介された。",
+    "relatedWorks": [],
+    "sources": [
+      "Ambient Reveals"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/OOH",
+      "Theme/Mobility"
+    ]
+  },
+  {
+    "id": "disco2unt-billboard-2019",
+    "title": "DisCO2unt Billboard",
+    "summary": "街の大気汚染センサーと連動し、汚染度が上がるほどEV「ZOE」の表示価格が下がる看板施策",
+    "client": "Renault (ZOE)",
+    "agency": "Publicis Romania",
+    "categories": [
+      "OOH革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2019",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.famouscampaigns.com/2019/06/this-realtime-billboard-reacts-to-air-pollution/",
+    "thumbnail": "/thumbnails/disco2unt-billboard-2019.jpg",
+    "videoId": "",
+    "overview": "ルーマニアの都市部に設置されたリアルタイム大気汚染センサーとデジタル看板を連動させ、汚染度が高くなるほど電気自動車ZOEの表示価格が自動的に下がる仕組みを構築。汚染と購買メリットを直結させた施策。",
+    "background": "ルーマニアでは都市部の大気汚染が深刻な社会課題となっており、Renaultは排出ガスを出さないZOEの環境価値を訴求するにあたり、生活者が体感として理解できる形で汚染と製品メリットを結びつける必要があった。",
+    "execution": "街のリアルタイム大気汚染センサーが計測するデータをデジタル看板のシステムに連携させ、汚染レベルの上昇に応じてZOEの表示価格が自動的に下がる仕組みを開発。「DisCO2unt」というCO2と値引きを掛け合わせた造語を軸にメッセージを構成した。",
+    "evaluationImpact": "大気汚染という社会課題をリアルタイムデータで可視化し、価格という生活者に直結する形で訴求した点が特徴で、環境訴求型のリアルタイムDOOH事例として海外メディアでも紹介された。",
+    "relatedWorks": [],
+    "sources": [
+      "Ambient Reveals"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/OOH",
+      "Theme/Sustainability"
+    ]
+  },
+  {
+    "id": "traffic-busters-2017",
+    "title": "Traffic Busters",
+    "summary": "道路のリアルタイム交通データと連動し、渋滞状況に応じてメッセージが自動で切り替わるMcDonald's看板",
+    "client": "McDonald's",
+    "agency": "Leo Burnett / Grand Visual",
+    "categories": [
+      "OOH革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2017",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://grandvisual.com/work/mcdonalds-traffic-busters/",
+    "thumbnail": "/thumbnails/traffic-busters-2017.jpg",
+    "videoId": "",
+    "overview": "対象道路のリアルタイム交通速度データと連動するデジタル看板施策。車の流れがスムーズな時は商品ビジュアルを、渋滞が発生した時はドライバーの心情に寄り添う共感型コピーに自動で切り替わる仕組みを構築した。",
+    "background": "McDonald'sは通勤・移動中のドライバーとの接点であるOOHを、一律の商品訴求だけでなく、その瞬間のドライバーの心理状態に寄り添うメディアとして活用することを狙い、渋滞という日常的なストレスをブランド接点に転換しようとした。",
+    "execution": "交通情報データと看板のクリエイティブ配信システムを連携させ、対象区間のリアルタイム走行速度を取得。速度が一定以上でスムーズな時は商品訴求のクリエイティブを、速度が落ち渋滞が発生した時は共感を誘うメッセージへと自動的に切り替える仕組みを構築した。",
+    "evaluationImpact": "交通データという生活インフラの情報を広告表現に組み込み、ドライバーの心理状況にリアルタイムで寄り添う設計が特徴で、データ連動型DOOHの先行事例として紹介された。",
+    "relatedWorks": [],
+    "sources": [
+      "Ambient Reveals"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/OOH",
+      "Theme/Food"
+    ]
+  },
+  {
+    "id": "danactive-traffic-speed-billboard-2016",
+    "title": "DanActive Traffic-Speed Billboard",
+    "summary": "実際の渋滞速度データを4段階で受信し、混雑度に応じてメッセージが切り替わるDanActiveの看板施策",
+    "client": "Dannon (DanActive)",
+    "agency": "Y&R Montreal / Carat",
+    "categories": [
+      "OOH革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2016",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://inrix.com/blog/ooh-speeds/",
+    "thumbnail": "/thumbnails/danactive-traffic-speed-billboard-2016.jpg",
+    "videoId": "",
+    "overview": "モントリオールの実際の道路渋滞速度データをリアルタイムで受信し、4段階の混雑度に応じてメッセージ内容が自動で切り替わるデジタル看板施策。乳酸菌飲料DanActiveの「免疫ケア」訴求を渋滞ストレスという生活実感と結びつけた。",
+    "background": "免疫サポートを訴求するDanActiveにとって、通勤ドライバーが日常的にストレスを感じる渋滞という状況は、免疫ケアメッセージを実感を持って届けられる接点になると考えられた。",
+    "execution": "道路交通データプロバイダーと連携し、看板設置区間の実際の走行速度をリアルタイムで取得。混雑度合いを4段階に分類し、渋滞が悪化するほどドライバーのストレスに寄り添う内容へとメッセージが自動で切り替わる仕組みを構築した。",
+    "evaluationImpact": "交通データとOOHを連動させた早期のリアルタイムDOOH事例として、渋滞ストレスという生活実感を製品訴求へ転換した設計が特徴とされる。",
+    "relatedWorks": [],
+    "sources": [
+      "Ambient Reveals"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/OOH",
+      "Theme/Health"
+    ]
+  },
+  {
+    "id": "benadryl-pollen-counts-2014",
+    "title": "Benadryl Pollen Counts",
+    "summary": "Benadrylが地域別の実測花粉飛散データとデジタル看板を連動、花粉が多い日は表示が自動で警告に切り替わる仕組みを構築",
+    "client": "Benadryl (Johnson & Johnson)",
+    "agency": "Grand Visual",
+    "categories": [
+      "OOH革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2014",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://grandvisual.com/work/benadryl-pollen-counts/",
+    "thumbnail": "/thumbnails/benadryl-pollen-counts-2014.jpg",
+    "videoId": "",
+    "overview": "Grand Visual制作、花粉症薬ブランドBenadryl(Johnson & Johnson)によるデジタル屋外広告キャンペーン。地域ごとの実際の花粉飛散データとデジタルサイネージを連動させ、花粉が多い日には看板表示が自動的に警告メッセージへ切り替わる仕組みを構築した。",
+    "background": "花粉症薬市場では季節性と地域差が購買行動に直結するため、需要が高まるタイミングと場所に合わせて訴求できる広告手法が求められていた。従来の看板広告は掲出内容が固定的で、花粉飛散量という変動する自然データとの連動には対応できていなかった点が課題だった。",
+    "execution": "地域別の花粉飛散量データをリアルタイムで取得し、デジタル屋外広告(DOOH)の配信システムと連動させた。花粉が多く飛散する日には看板の表示内容が自動的に警告メッセージへ切り替わり、生活者に花粉症対策とBenadrylの服用を促す仕組みとした。",
+    "evaluationImpact": "気象・環境データと広告表示をリアルタイム連動させるデータドリブンDOOHの先駆的事例として位置づけられる。花粉飛散という生活者の実感に即したタイミングで広告接触を発生させる手法は、その後のリアルタイムデータ連動型OOH施策の参照例として紹介されている。",
+    "relatedWorks": [
+      {
+        "title": "Benadryl Pollen Counts | Grand Visual",
+        "description": "Grand Visualによる制作事例紹介ページ",
+        "url": "https://grandvisual.com/work/benadryl-pollen-counts/"
+      }
+    ],
+    "sources": [
+      "Ambient Reveals"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/OOH",
+      "Theme/Health"
+    ]
+  },
+  {
+    "id": "tryvann-snowing-billboard-2009",
+    "title": "Tryvann Snowing Billboard",
+    "summary": "ノルウェーのスキー場Tryvannが実際の降雪をSMSで検知し、看板内部のファンと人工雪を連動させて雪を降らせる仕掛けを実施",
+    "client": "Tryvann Vinterpark",
+    "agency": "",
+    "categories": [
+      "OOH革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2009",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.engadget.com/2009-03-25-norwegian-ski-ad-shows-snow-conditions-via-sms.html",
+    "thumbnail": "/thumbnails/tryvann-snowing-billboard-2009.jpg",
+    "videoId": "",
+    "overview": "ノルウェーのスキー場Tryvann Vinterparkによる、実際の降雪をSMS通知で検知し看板内部の人工降雪装置と連動させたデジタルOOH施策。ゲレンデで雪が降り始めると自動的に看板からも雪が降る仕組みで、リアルタイムの気象状況を体験型の広告表現に変換した。",
+    "background": "スキー場は積雪状況によって来場者数が大きく左右されるため、「今まさに雪が降っている」という鮮度の高い情報をいかに生活者に伝えるかが課題だった。従来の看板広告では静的な訴求にとどまり、実際のゲレンデコンディションをリアルタイムに反映することができていなかった。",
+    "execution": "ゲレンデの降雪をSMSで検知する仕組みを構築し、看板内部に設置したファンと人工雪装置と連動させた。実際に雪が降り始めると看板からも雪が舞い始める演出とし、通行人がその場でスキー場の降雪状況を体感できるようにした。",
+    "evaluationImpact": "気象データと連動したリアルタイムOOHの初期事例の一つとして、Engadgetなど海外メディアでも紹介された。看板そのものに実際の気象現象を再現させる発想は、その後のデータドリブン型・体験型OOH表現の先例として位置づけられる。",
+    "relatedWorks": [
+      {
+        "title": "Norwegian ski ad shows snow conditions via SMS",
+        "description": "Engadgetによる報道記事",
+        "url": "https://www.engadget.com/2009-03-25-norwegian-ski-ad-shows-snow-conditions-via-sms.html"
+      }
+    ],
+    "sources": [
+      "Ambient Reveals"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Tech/Device",
+      "Form/OOH",
+      "Theme/Sports"
+    ]
+  },
+  {
     "id": "bookshop-simulator-2026",
     "title": "書店経営シム『Bookshop Simulator』正式リリース(マルチプレイ実装)",
     "summary": "書店経営シム『Bookshop Simulator』が最大4人協力プレイに対応して正式リリース、自由度の高い店舗デザインが好評",
