@@ -18,18 +18,28 @@
  * 使い方:
  *   node scripts/notify-line.mjs            # 実送信
  *   node scripts/notify-line.mjs --dry-run  # 送信せず本文をプリント
+ *
+ * --priority <critical|routine>（既定 critical）: LINE無料枠（200通/月）超過対策
+ *   （2026-07-18、OPERATIONS.md参照）。routineは実送信せずlogs/notify-queue.jsonlに
+ *   1行追記するだけに変わる（notify-digest.mjsが23:45に1本へまとめて送る）。
+ *   criticalは既存の送信ロジックのまま変更しない（quotaガードも呼ばない＝
+ *   criticalはquotaに関わらず必ず送信を試みる仕様のため）。
  */
 import fs from "fs";
 import os from "os";
 import path from "path";
-import https from "https";
 import { execSync } from "child_process";
+import { fileURLToPath } from "url";
 import { buildErrorBodyLines } from "./lib/notify-line-text.mjs";
+import { loadLineConfig } from "./lib/notify-line-config.mjs";
+import { splitForLine, sendLineMessages } from "./lib/notify-line-send.mjs";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const ROOT = path.join(__dirname, ".."); // scripts -> repo root
 const TMP_LAST_ADD_PATH = path.join(os.tmpdir(), "researchman-last-add.json");
+const QUEUE_PATH = path.join(ROOT, "logs", "notify-queue.jsonl");
 
 const DRY_RUN = process.argv.includes("--dry-run");
-const CONFIG_PATH = path.join(os.homedir(), ".researchman-line.json");
 // Technology日次収集からも流用できるよう、サマリーの場所・リンク経路・ラベルを引数で差し替え可能。
 // 無引数なら従来どおりCase Study用（後方互換）。
 //   例: node scripts/notify-line.mjs --summary <os.tmpdir()>/researchman-tech-last-add.json --route technology --label Technology
@@ -55,30 +65,36 @@ const RESULT = argOf("--result", "ok");
 // （lib/notify-line-text.mjs::buildErrorBodyLines参照。日次ジョブ側の呼び出し元は
 // 無指定のままで従来どおりの挙動を維持する）。
 const CONTEXT = argOf("--context", "daily");
+// LINE無料枠（200通/月）超過対策（2026-07-18）。critical（既定・全既存呼び出し）は
+// 送信ロジックを一切変えない。routineは実送信せずlogs/notify-queue.jsonlに積み、
+// notify-digest.mjsが23:45にまとめて送る（OPERATIONS.md参照）。
+const PRIORITY = argOf("--priority", "critical");
+if (!["critical", "routine"].includes(PRIORITY)) {
+  console.error(`--priority の値が不正: ${PRIORITY}（critical|routine のいずれかを指定）`);
+  process.exit(2);
+}
 const SITE = "https://research-man.vercel.app";
-const PUSH_URL = "https://api.line.me/v2/bot/message/push";
-const BROADCAST_URL = "https://api.line.me/v2/bot/message/broadcast";
 
 function log(msg) {
   console.log(`[notify-line] ${msg}`);
 }
 
 function loadConfig() {
-  if (!fs.existsSync(CONFIG_PATH)) {
-    log(`設定ファイルなし（${CONFIG_PATH}）→ 通知スキップ`);
-    return null;
-  }
-  try {
-    const cfg = JSON.parse(fs.readFileSync(CONFIG_PATH, "utf8"));
-    if (!cfg.channelAccessToken) {
-      log("設定に channelAccessToken が不足 → 通知スキップ");
-      return null;
-    }
-    return cfg;
-  } catch (e) {
-    log(`設定読込失敗（${e.message}）→ 通知スキップ`);
-    return null;
-  }
+  return loadLineConfig(log);
+}
+
+// --route から --label 省略時のラベルを簡易マッピングで補完する（queue追記用）。
+const ROUTE_LABEL_FALLBACK = { cases: "Auto research", technology: "Tech radar" };
+function queueLabel() {
+  if (LABEL) return LABEL;
+  return ROUTE_LABEL_FALLBACK[ROUTE] || "ResearchMan";
+}
+
+function appendToQueue(text) {
+  fs.mkdirSync(path.dirname(QUEUE_PATH), { recursive: true });
+  const line = `${JSON.stringify({ at: new Date().toISOString(), label: queueLabel(), text })}\n`;
+  fs.appendFileSync(QUEUE_PATH, line, { flag: "a" });
+  log(`priority=routine → ${QUEUE_PATH} に追記（実送信はnotify-digest.mjsに委譲）`);
 }
 
 // サマリーが古い（=今回の実行が書いたものでない）場合は0件として扱う。
@@ -148,73 +164,6 @@ function buildText(summary, head) {
   return lines.join("\n");
 }
 
-// LINE の1メッセージは5,000字上限・1リクエストで最大5メッセージ。
-// ref付きアイデアの種は数千字になりうるため、空行（種の境界）で分割する。
-const LINE_MSG_LIMIT = 4800;
-const LINE_MAX_MESSAGES = 5;
-
-function splitForLine(text) {
-  if (text.length <= LINE_MSG_LIMIT) return [text];
-  // 空行区切りブロック（見出し＋各種）を、上限内で貪欲に結合する
-  const blocks = text.split(/\n\n+/);
-  const messages = [];
-  let cur = "";
-  for (const b of blocks) {
-    const piece = cur ? `${cur}\n\n${b}` : b;
-    if (piece.length > LINE_MSG_LIMIT && cur) {
-      messages.push(cur);
-      cur = b;
-    } else {
-      cur = piece;
-    }
-  }
-  if (cur) messages.push(cur);
-  // 最大5メッセージに収める（超過分は末尾メッセージへ結合。上限超過は稀）
-  if (messages.length > LINE_MAX_MESSAGES) {
-    const head = messages.slice(0, LINE_MAX_MESSAGES - 1);
-    const tail = messages.slice(LINE_MAX_MESSAGES - 1).join("\n\n").slice(0, LINE_MSG_LIMIT);
-    return [...head, tail];
-  }
-  return messages;
-}
-
-function sendMessage(cfg, text) {
-  // to があれば push（特定userId宛）、無ければ broadcast（全友だち宛）
-  const url = cfg.to ? PUSH_URL : BROADCAST_URL;
-  const texts = splitForLine(text);
-  return new Promise((resolve) => {
-    let settled = false;
-    const settle = (v) => { if (settled) return; settled = true; resolve(v); };
-    const messages = texts.map((t) => ({ type: "text", text: t }));
-    const payload = cfg.to ? { to: cfg.to, messages } : { messages };
-    const body = JSON.stringify(payload);
-    const req = https.request(
-      url,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Content-Length": Buffer.byteLength(body),
-          Authorization: `Bearer ${cfg.channelAccessToken}`,
-        },
-      },
-      (res) => {
-        const chunks = [];
-        const finish = () => settle({ status: res.statusCode, body: Buffer.concat(chunks).toString() });
-        res.on("data", (d) => chunks.push(d));
-        res.on("end", finish);
-        // 本文受信中に接続が切れてもPromiseを必ず解決する（未解決awaitでプロセスが静かに死ぬのを防ぐ）
-        res.on("close", finish);
-        res.on("error", finish);
-      }
-    );
-    req.on("error", (e) => settle({ status: 0, body: e.message }));
-    req.setTimeout(15000, () => { settle({ status: 0, body: "timeout" }); req.destroy(); });
-    req.write(body);
-    req.end();
-  });
-}
-
 async function main() {
   // --text-file <path>: サマリー整形を使わず、ファイルの中身をそのまま本文として送る
   // （アイデアの種の配信など、収集結果以外の定期メッセージに使う）
@@ -242,11 +191,19 @@ async function main() {
     return;
   }
 
+  if (PRIORITY === "routine") {
+    // LINE APIに一切アクセスせずqueueへ積むだけ（quotaガードはここでは呼ばない。
+    // notify-digest.mjsが送信時にshouldSkipForQuotaで判断する）。
+    appendToQueue(text);
+    return;
+  }
+
+  // priority=critical（既定）: 既存の送信ロジックのまま変更しない。quotaに関わらず必ず送信を試みる。
   const cfg = loadConfig();
   if (!cfg) return; // 未設定なら静かにスキップ
 
   const mode = cfg.to ? `push(userId=${cfg.to})` : "broadcast(全友だち)";
-  const r = await sendMessage(cfg, text);
+  const r = await sendLineMessages(cfg, text);
   if (r.status === 200) {
     log(`送信OK → ${mode}`);
   } else {

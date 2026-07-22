@@ -438,6 +438,54 @@ launchd (10〜23時の毎正時 + ログイン時)
 「本日の新規追加なし（収集は正常実行）」を送る。無音=障害か0件か区別できない問題の解消。
 サマリーが6時間より古い場合は0件として扱う（収集クラッシュ時に旧事例を再通知しない鮮度ガード）。
 
+### 通知の2クラス化とダイジェスト送信（LINE無料枠対策・2026-07-18〜）
+
+LINE公式アカウント無料枠（200通/月）を使い切り送信失敗する事故があったため、通知を
+`--priority critical|routine`（`notify-line.mjs`、既定`critical`）の2クラスに分けた。
+
+- **critical**（既定・従来どおり毎回即時送信。quotaに関わらず必ず送信を試みる）:
+  収集/生成のエラー・push失敗（`pushfail`）・反映確認タイムアウト（`unverified`）など
+  「要対応・要確認」系の通知。
+- **routine**（実送信せず `logs/notify-queue.jsonl` に1行JSON `{at,label,text}` を追記するだけ）:
+  「成功・変更なし」等の定常サマリー。実送信は行わず、後述のダイジェストにまとめて送る。
+
+`scripts/windows/run-job.mjs` での分類（実装した最終版。ズレなし）:
+
+| ジョブ | 呼び出し | priority |
+|---|---|---|
+| autoresearch | 収集エラー / unverified / pushfail | critical（変更なし） |
+| autoresearch | 変更なし(0件) / 成功・反映OK | **routine** |
+| techresearch | 収集エラー / unverified / pushfail | critical（変更なし） |
+| techresearch | 変更なし(0件) / 成功・反映OK | **routine** |
+| ideaseeds | 生成成功（種の配信） | **routine** |
+| ideaseeds | push失敗 / 生成エラー | critical（変更なし） |
+| tuneup | 変更なし / push後(成功) | **routine** |
+| tuneup | push失敗 / チューンアップ自体エラー | critical（変更なし） |
+
+`scripts/watchdog.mjs` / `scripts/windows/studio-keeper.mjs` /
+`studio/server/pipeline/audit.ts`（Studio(LINE)発ジョブ）は全呼び出しcritical（変更なし）。
+
+**ダイジェスト送信**（`scripts/notify-digest.mjs`、Windowsタスクスケジューラ
+`ResearchMan-digest` が毎日**23:45**に実行。登録: `scripts/windows/register-digest-task.ps1`）:
+- `logs/notify-queue.jsonl`（全件・当日分に限らない）を読み、1本のダイジェスト本文
+  （見出し「📋 本日のRM活動 (N件)」＋各entry1行、当日でないentryは`[MM/DD]`を明記して
+  持ち越しと分かるようにする）にまとめて送る
+- 送信対象は**当日分に絞らない**（前日以前の残留queue項目を握り潰して消してしまうバグを
+  避けるため）。送信成功時のみqueueをクリアし、送信中に新規追記された分は
+  tmp→renameのアトミック置換で保持したまま残す
+- 送信失敗（quota超過含む）時はqueueに一切触れず、次回（翌日23:45）に持ち越す
+- ログ: `logs/digest.log`
+
+**クォータガード**（`scripts/lib/notify-quota-guard.mjs`）: LINEの
+`GET /v2/bot/message/quota/consumption` で当月使用量`totalUsage`を取得し、
+routine（digest送信）は`totalUsage>=195`（200通中195通到達）でこの回の送信をスキップする
+（queueは残し、次回以降に再挑戦）。criticalはquotaに関わらず常に送信を試みる
+（`notify-line.mjs`のcritical経路はこのガードを呼ばない）。
+
+**月間見積もり**: digest最大31通/月 + Studio(LINE)発オンデマンドジョブ約20通/月 +
+エラー系（critical: 収集エラー・push失敗・unverified等）約10通/月 ≈ 60通/月で、
+既存の200通/月枠に十分収まる。
+
 ### アイデアの種（毎朝10時の第3ジョブ・2026-07-03新設）
 
 launchd `com.researchman.ideaseeds` が毎朝10時、Case Study（企画性）× Technology（技術）の

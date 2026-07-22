@@ -220,7 +220,7 @@ async function runAutoresearch() {
     runGit(["add", "--", "data/cases.json", "public/thumbnails", ":(exclude)public/thumbnails/tech"]);
     if (gitDiffCachedIsEmpty()) {
       log(`変更なし（新規事例なし）: ${unixDateString()}`);
-      runNode("scripts/notify-line.mjs");
+      runNode("scripts/notify-line.mjs", ["--priority", "routine"]);
     } else {
       runGit(["commit", "-m", `Auto research: ${todayYmd()}`]);
       const push = runGit(["push"]);
@@ -229,7 +229,7 @@ async function runAutoresearch() {
         if (verify.status === 0) {
           log(`反映まで確認OK: ${unixDateString()}`);
           runNode("scripts/send-mail.mjs");
-          runNode("scripts/notify-line.mjs");
+          runNode("scripts/notify-line.mjs", ["--priority", "routine"]);
         } else {
           log(`push成功だが反映未確認（時間切れ）: ${unixDateString()}`);
           runNode("scripts/notify-line.mjs", ["--result", "unverified"]);
@@ -273,7 +273,7 @@ async function runTechresearch() {
     runGit(["add", "data/tech.json", "public/thumbnails/tech/"]);
     if (gitDiffCachedIsEmpty()) {
       log(`変更なし（新規技術なし）: ${unixDateString()}`);
-      runNode("scripts/notify-line.mjs", summaryArgs);
+      runNode("scripts/notify-line.mjs", [...summaryArgs, "--priority", "routine"]);
     } else {
       runGit(["commit", "-m", `Tech radar: ${todayYmd()}`]);
       const push = runGit(["push"]);
@@ -284,7 +284,7 @@ async function runTechresearch() {
         const verifyTechPages = verifyDeploy.status === 0 ? runNode("scripts/verify-tech-pages.mjs") : verifyDeploy;
         if (verifyDeploy.status === 0 && verifyTechPages.status === 0) {
           log(`反映まで確認OK: ${unixDateString()}`);
-          runNode("scripts/notify-line.mjs", summaryArgs);
+          runNode("scripts/notify-line.mjs", [...summaryArgs, "--priority", "routine"]);
         } else {
           log(`push成功だが反映未確認（時間切れ）: ${unixDateString()}`);
           runNode("scripts/notify-line.mjs", ["--result", "unverified", ...summaryArgs]);
@@ -312,7 +312,7 @@ async function runIdeaseeds() {
     log(`===== Idea seeds start: ${unixDateString()} =====`);
     const gen = runNode("scripts/generate-idea-seeds.mjs");
     if (gen.status === 0) {
-      runNode("scripts/notify-line.mjs", ["--text-file", path.join(os.tmpdir(), "researchman-idea-seeds.txt")]);
+      runNode("scripts/notify-line.mjs", ["--text-file", path.join(os.tmpdir(), "researchman-idea-seeds.txt"), "--priority", "routine"]);
       // data/ideas.json と data/idea-layouts.json は必ずペアでcommit/push
       // （片方だけだとpre-push鮮度検査に拒否される。launchd/com.researchman.ideaseeds.plist参照）
       runGit(["add", "data/ideas.json", "data/idea-layouts.json"]);
@@ -365,7 +365,7 @@ async function runTuneup() {
       runGit(["add", "data/research-tuning.json", "data/idea-tuning.json", "data/x-radar-queries.json", "RESEARCH_PLAN.md"]);
       if (gitDiffCachedIsEmpty()) {
         log(`変更なし（分析結果は現状維持 or スキップ）: ${unixDateString()}`);
-        runNode("scripts/notify-line.mjs", reportArgs);
+        runNode("scripts/notify-line.mjs", [...reportArgs, "--priority", "routine"]);
       } else {
         runGit(["commit", "-m", `chore: biweekly research tuning ${todayYmd()}`]);
         const push = runGit(["push"]);
@@ -373,7 +373,7 @@ async function runTuneup() {
           const verify = runNode("scripts/verify-deploy.mjs", ["--skip-pages"]);
           if (verify.status === 0) log(`反映まで確認OK: ${unixDateString()}`);
           else log(`push成功だが反映未確認（時間切れ）: ${unixDateString()}`);
-          runNode("scripts/notify-line.mjs", reportArgs);
+          runNode("scripts/notify-line.mjs", [...reportArgs, "--priority", "routine"]);
         } else {
           log(`push失敗（pre-push監査で中止の可能性）。コミットはローカル残存。要手動対応: ${unixDateString()}`);
           runNode("scripts/notify-line.mjs", reportArgs);
