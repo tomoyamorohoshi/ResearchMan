@@ -4467,5 +4467,203 @@
         "desc": "AIエージェントが人間と同じタイムラインで動画を操作できる、Mac向けオープンソース動画編集ソフト。"
       }
     ]
+  },
+  {
+    "id": "2026-07-23-1",
+    "date": "2026-07-23",
+    "title": "方言かるたの動画量産化",
+    "pattern": "文脈×技術",
+    "seed": "秋田魁新報「帰ってきたアキタベン」のように紙面の方言かるたを、HyperFramesでAIエージェントがHTMLを書くだけで動画にできれば、45社分の方言解説動画を印刷物のまま量産できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "akita-sakigake-akitaben-karuta",
+        "title": "秋田魁新報「帰ってきたアキタベン ― あきた弁企業かるた」",
+        "desc": "記事下広告欄を絵札・読み札に見立てた方言かるた連載企画。切り取って実際に遊べ、後に製品化された。"
+      },
+      {
+        "type": "tech",
+        "id": "hyperframes",
+        "title": "HyperFrames",
+        "desc": "HTMLを書くだけで動画になるAIエージェント向けオープンソース動画制作フレームワーク。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-23-2",
+    "date": "2026-07-23",
+    "title": "帰郷ルートを3D記録",
+    "pattern": "文脈×技術",
+    "seed": "Tecateの「Welcome Back, Paisano」のような帰還者支援なら、LiDAR不要でスマホ映像だけからリアルタイムに3D再構成できるLingBot-Mapで、帰還者本人の「帰り道」を丸ごと立体記録して見せられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "welcome-back-paisano",
+        "title": "Welcome Back, Paisano",
+        "desc": "米国から帰還したメキシコ人を雇用・起業で支援する就労プラットフォーム。"
+      },
+      {
+        "type": "tech",
+        "id": "lingbot-map",
+        "title": "LingBot-Map",
+        "desc": "LiDAR不要・単眼カメラ映像だけでシーンの3D形状をリアルタイム再構成する基盤モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-23-3",
+    "date": "2026-07-23",
+    "title": "無音映像に隠れた生活音",
+    "pattern": "文脈×技術",
+    "seed": "Life360の「I Think of You (Dying)」が親の不安を描いたように、光源なしで映像の微振動から音を復元するEvent Topology-based Visual Vibrometerを使えば、無音の見守りカメラ映像から生活音を可視化して安心材料にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "life360-i-think-of-you-dying",
+        "title": "I Think of You (Dying)",
+        "desc": "親の不安をダークユーモアのミュージカルにした家族安全アプリのブランデッドソング。"
+      },
+      {
+        "type": "tech",
+        "id": "event-topology-based-visual-vibrometer",
+        "title": "Event Topology-based Visual Vibrometer",
+        "desc": "高速カメラの映像から物体の微振動＝音を光源なしで復元する計測手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-23-4",
+    "date": "2026-07-23",
+    "title": "サバイバー証言の量産発信",
+    "pattern": "文脈×技術",
+    "seed": "バージニア・ジュフリーの遺志を伝えたPR施策のように証言・資料映像を届ける活動は、リサーチから編集まで自動化するOpenMontageを使えば、団体ごとに証言映像を短期間で量産し発信し続けられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "giuffre-legacy",
+        "title": "The Legacy of Virginia Giuffre",
+        "desc": "性的人身売買サバイバー、バージニア・ジュフリーの遺志を伝えたPR施策。"
+      },
+      {
+        "type": "tech",
+        "id": "openmontage",
+        "title": "OpenMontage",
+        "desc": "AIコーディングアシスタントをリサーチから完パケまで自動化する動画制作システム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-23-5",
+    "date": "2026-07-23",
+    "title": "安全思想をロボで実演",
+    "pattern": "文脈×技術",
+    "seed": "The Volvo Cars Safety Standardがボルボの安全思想をブランドに昇華したように、動画生成AIから人型ロボットの全身動作を自動合成するGRAILを使えば、安全システムの効果をロボットの実演動作として繰り返し体感させられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "volvo-the-volvo-cars-safety-standard",
+        "title": "The Volvo Cars Safety Standard",
+        "desc": "ボルボの安全への信念をブランドデザインシステムへ昇華した刷新。"
+      },
+      {
+        "type": "tech",
+        "id": "grail",
+        "title": "GRAIL",
+        "desc": "動画生成AIから人型ロボットの全身動作データを自動合成し実機に転移させる研究パイプライン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-23-6",
+    "date": "2026-07-23",
+    "title": "アーティストの無限振付",
+    "pattern": "文脈×技術",
+    "seed": "Fortnite「Rift Tour」featuring Ariana Grandeがキャラクターとして存在するアーティストを実現したように、動きと映像を相互変換できる統一世界モデルMVAを使えば、実演データから無限に新しい振付・映像をアバターに演じさせ続けられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ariana-grande-rift-tour",
+        "title": "Fortnite「Rift Tour」featuring Ariana Grande",
+        "desc": "フォートナイトの世界がArianaの宇宙に変容した5日間のインゲームコンサート。"
+      },
+      {
+        "type": "tech",
+        "id": "masked-visual-actions-for-unified-world-modeling",
+        "title": "Masked Visual Actions for Unified World Modeling (MVA)",
+        "desc": "動きと映像を相互に変換できる、1つのモデルで学習された統一世界モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-23-7",
+    "date": "2026-07-23",
+    "title": "スマホ撮影と高精細描画の分業",
+    "pattern": "技術×技術",
+    "seed": "iPhoneで手軽に高品質撮影データを取れるGaussian SplatKingと、その3Dデータを反射・屈折・影までレイトレーシングで美しく描くGRayを組み合わせれば、スマホ撮影だけで映画品質の空間映像が作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "gaussian-splatking",
+        "title": "Gaussian SplatKing",
+        "desc": "iPhoneのデュアルレンズとLiDARで高品質な3D撮影データを無料取得できるアプリ。"
+      },
+      {
+        "type": "tech",
+        "id": "gray",
+        "title": "GRay",
+        "desc": "実写を3D化するGaussian Splattingを反射・屈折・影ごとレイトレーシングで描画する新手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-23-8",
+    "date": "2026-07-23",
+    "title": "編集と作曲を同時自動化",
+    "pattern": "技術×技術",
+    "seed": "チャットで映像編集できるAIネイティブエディタFrontstageと、自然言語の指示だけでトラックを組めるSplice MCP × Claude Coworkのビートメイクを繋げれば、映像の編集指示と音楽制作を一つの対話で同時進行できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "frontstage",
+        "title": "Frontstage",
+        "desc": "ブラウザ・Windowsで動く無料オープンソースのAIネイティブ動画編集ソフト。"
+      },
+      {
+        "type": "tech",
+        "id": "splice-mcp-claude-beatmaking",
+        "title": "Splice MCP Server × Claude Cowork によるAIビートメイク検証",
+        "desc": "SpliceのMCPサーバーをClaudeに繋ぎ自然言語だけでビートメイクできるか検証した事例。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-23-9",
+    "date": "2026-07-23",
+    "title": "顔検出転用で流出防止",
+    "pattern": "転用",
+    "seed": "画像の顔と背景をAIに認識させ高解像度化するComfyUI TTP Toolset Smart Tile 2.0を、本来の画質改善ではなく先行資料の顔だけを自動でぼかす検閲フィルターとして転用すれば、発表前のキャラクタービジュアル漏えい対策に使えるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-ttp-toolset-smart-tile-2-0",
+        "title": "ComfyUI TTP Toolset – Smart Tile 2.0",
+        "desc": "顔と背景をAIに認識させ必要な場所だけ高解像度化するComfyUI拡張機能。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-23-10",
+    "date": "2026-07-23",
+    "title": "巨大3Dデータで会場演出",
+    "pattern": "転用",
+    "seed": "広大な空間を複数GPUで高速3Dデータ化する研究基盤fVDB v0.5.0を、研究用途ではなくライブ会場そのものをリアルタイムに丸ごと3Dスキャンする用途に転用すれば、公演中に会場全体を舞台美術として即興生成できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "fvdb-v0-5-0",
+        "title": "fVDB v0.5.0",
+        "desc": "NVIDIAのオープンソース3D深層学習基盤。Gaussian Splattingを複数GPUで高速処理できる。"
+      }
+    ]
   }
 ]
