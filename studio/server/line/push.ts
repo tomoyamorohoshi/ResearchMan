@@ -2,12 +2,11 @@
  * LINE Messaging API への push送信（scripts/notify-line.mjs の https直叩き実装を踏襲。
  * SDK追加はしない）。
  *
- * 設計判断: reply API は使わない。reply tokenは発行から短時間（LINE仕様上おおむね数十秒）で
- * 失効する単発トークンだが、このwebhookは署名検証後すぐ200を返し、依頼の解釈
- * （Claude呼び出し、最大60秒）やジョブ作成は非同期で行う（webhook.ts参照）。
- * 非同期処理の間にreply tokenが失効する恐れがあるため、確認メッセージ・実行開始通知・
- * エラー通知のすべてを push（channelAccessToken + userId）に統一する。OK/キャンセルの
- * ような即時応答できる操作も、経路をpushに揃えることで分岐を増やさない。
+ * 設計判断（2026-07-24改訂）: webhookイベントへの即時応答（ウィザードの質問・確認・
+ * 実行開始通知・エラー通知等）は reply.ts::replyOrPushLineMessage が reply API を優先し
+ * （無料枠を消費しない）、reply失効時のみここへフォールバックする。この push.ts が直接
+ * 呼ばれるのは、（1）reply失敗時のフォールバック、（2）ジョブ完了/エラーの事後通知
+ * （数分〜数十分後にreplyTokenがもう使えない。addCase.ts・awardResearch.ts等）の2用途。
  */
 import https from "node:https";
 

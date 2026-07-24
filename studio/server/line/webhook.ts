@@ -18,7 +18,12 @@
  * 含む）は常に200を返す。LINEはwebhookが2xx以外を返すと再送してくることがあり、
  * 業務エラーで200以外を返すと再送の嵐になる（タスク指示どおり）。
  *
- * reply tokenではなくpushで返信する設計判断は push.ts 冒頭のコメント参照。
+ * 応答経路（2026-07-24改訂）: ユーザーへの即時応答（ウィザードの質問・確認・実行開始・
+ * バリデーションエラー等）は reply API 優先（無料枠を消費しない。reply.ts参照）。
+ * replyTokenは受信イベントから取り出し、Claude構造化（最大60秒）を挟んでも同じ値を使う
+ * （数秒〜数十秒ならreplyTokenは通常有効。失効していればreply.ts側でpushへ自動フォールバック
+ * するため、ここでは分岐を増やさず deps.respond を呼ぶだけでよい）。ジョブ完了/エラーの
+ * 事後通知（数分〜数十分後）はreplyTokenが使えないため、引き続きpush（notify-line.mjs等）。
  */
 import type express from "express";
 import {
@@ -50,14 +55,15 @@ import {
   buildUnconfiguredAllowedUserText,
 } from "./messages.js";
 import { isPendingExpired, loadPending, savePending, type LinePending } from "./pending.js";
-import { pushLineMessage } from "./push.js";
+import { replyOrPushLineMessage } from "./reply.js";
 import { verifyLineSignature } from "./signature.js";
 import { structureAwardViaClaude, structureViaClaude, type AwardStructureResult, type StructureResult } from "./structure.js";
 import { buildMenuPending, pendingFromStructured, renderFinalConfirm, stepWizard } from "./wizard.js";
 
 export interface LineWebhookDeps {
   getConfig: () => LineConfig | null;
-  sendPush: (channelAccessToken: string, userId: string, text: string) => Promise<void>;
+  /** 即時応答の送信。reply優先・失敗時push フォールバック（reply.ts参照）。 */
+  respond: (channelAccessToken: string, replyToken: string | undefined, userId: string, text: string) => Promise<void>;
   createJob: (tab: Tab, request: Record<string, unknown>) => Promise<Job>;
   loadPending: () => Promise<LinePending | null>;
   savePending: (p: LinePending | null) => Promise<void>;
@@ -77,7 +83,7 @@ export interface LineWebhookDeps {
 
 const defaultDeps: LineWebhookDeps = {
   getConfig: loadLineConfig,
-  sendPush: pushLineMessage,
+  respond: replyOrPushLineMessage,
   createJob,
   loadPending,
   savePending,
@@ -114,11 +120,14 @@ async function handleEvent(event: unknown, config: LineConfig, deps: LineWebhook
   const source = e.source as Record<string, unknown> | undefined;
   const userId = typeof source?.userId === "string" ? source.userId : "";
   if (!userId) return;
+  // 即時応答（このイベントへの返信）に使う。受信直後の値を使い回す（Claude構造化等の
+  // 非同期処理を挟んでも同じ値のまま。失効時のフォールバックは deps.respond 内部で行う）。
+  const replyToken = typeof e.replyToken === "string" ? e.replyToken : undefined;
 
   const token = config.channelAccessToken ?? "";
 
   if (!config.allowedUserId) {
-    await deps.sendPush(token, userId, buildUnconfiguredAllowedUserText(userId));
+    await deps.respond(token, replyToken, userId, buildUnconfiguredAllowedUserText(userId));
     return;
   }
   if (userId !== config.allowedUserId) {
@@ -135,10 +144,10 @@ async function handleEvent(event: unknown, config: LineConfig, deps: LineWebhook
   if (isResumeText(text)) {
     const job = await deps.findResumableAwardsJob();
     if (!job) {
-      await deps.sendPush(token, userId, buildAwardResumeNotFoundText());
+      await deps.respond(token, replyToken, userId, buildAwardResumeNotFoundText());
       return;
     }
-    await deps.sendPush(token, userId, buildAwardResumeAcceptedText());
+    await deps.respond(token, replyToken, userId, buildAwardResumeAcceptedText());
     deps.resumeAwardsJob(job.id).catch((err) => {
       console.error("[studio][line] AWARDSジョブの再開に失敗しました", err);
     });
@@ -150,9 +159,9 @@ async function handleEvent(event: unknown, config: LineConfig, deps: LineWebhook
     const pending = await deps.loadPending();
     if (pending && pending.userId === userId && !isPendingExpired(pending, now)) {
       await deps.savePending(null);
-      await deps.sendPush(token, userId, buildCancelledText());
+      await deps.respond(token, replyToken, userId, buildCancelledText());
     } else {
-      await deps.sendPush(token, userId, buildNoPendingText());
+      await deps.respond(token, replyToken, userId, buildNoPendingText());
     }
     return;
   }
@@ -163,7 +172,7 @@ async function handleEvent(event: unknown, config: LineConfig, deps: LineWebhook
   if (isProgressText(text)) {
     const active = await deps.listActiveJobs();
     const latestFinished = active.length > 0 ? null : await deps.findLatestFinishedJob();
-    await deps.sendPush(token, userId, buildProgressStatusText(active, latestFinished, now));
+    await deps.respond(token, replyToken, userId, buildProgressStatusText(active, latestFinished, now));
     return;
   }
 
@@ -174,7 +183,7 @@ async function handleEvent(event: unknown, config: LineConfig, deps: LineWebhook
   // メニューへ差し戻す（item10）。
   if (storedForUser && isPendingExpired(storedForUser, now)) {
     await deps.savePending(buildMenuPending(userId, now));
-    await deps.sendPush(token, userId, buildExpiredAndMenuText());
+    await deps.respond(token, replyToken, userId, buildExpiredAndMenuText());
     return;
   }
 
@@ -183,12 +192,12 @@ async function handleEvent(event: unknown, config: LineConfig, deps: LineWebhook
   if (outcome.kind === "needsStructure") {
     const structured = await deps.structure(outcome.requestKind, outcome.freeText);
     if (!structured.ok) {
-      await deps.sendPush(token, userId, buildStructureFailedText(structured.error));
+      await deps.respond(token, replyToken, userId, buildStructureFailedText(structured.error));
       return;
     }
     const next = pendingFromStructured(userId, structured.tab, structured.value, now);
     await deps.savePending(next);
-    await deps.sendPush(token, userId, renderFinalConfirm(next));
+    await deps.respond(token, replyToken, userId, renderFinalConfirm(next));
     return;
   }
 
@@ -198,15 +207,15 @@ async function handleEvent(event: unknown, config: LineConfig, deps: LineWebhook
     await deps.savePending(null);
     const structured = await deps.structureAward(outcome.q1, outcome.q2);
     if (!structured.ok) {
-      await deps.sendPush(token, userId, buildStructureFailedText(structured.error));
+      await deps.respond(token, replyToken, userId, buildStructureFailedText(structured.error));
       return;
     }
     try {
       await deps.createJob("awards", { ...structured.value, lineUserId: userId });
-      await deps.sendPush(token, userId, buildAwardAcceptedText());
+      await deps.respond(token, replyToken, userId, buildAwardAcceptedText());
     } catch (err) {
       const reason = err instanceof ValidationError || err instanceof Error ? err.message : String(err);
-      await deps.sendPush(token, userId, buildJobCreateFailedText(reason));
+      await deps.respond(token, replyToken, userId, buildJobCreateFailedText(reason));
     }
     return;
   }
@@ -219,10 +228,10 @@ async function handleEvent(event: unknown, config: LineConfig, deps: LineWebhook
     // LINE通知はスキップされる）。
     try {
       const job = await deps.createJob("add-case", { url: outcome.url, context: outcome.context, lineUserId: userId });
-      await deps.sendPush(token, userId, job.status === "queued" ? buildQueuedAcceptedText() : buildAddCaseAcceptedText());
+      await deps.respond(token, replyToken, userId, job.status === "queued" ? buildQueuedAcceptedText() : buildAddCaseAcceptedText());
     } catch (err) {
       const reason = err instanceof ValidationError || err instanceof Error ? err.message : String(err);
-      await deps.sendPush(token, userId, buildJobCreateFailedText(reason));
+      await deps.respond(token, replyToken, userId, buildJobCreateFailedText(reason));
     }
     return;
   }
@@ -231,16 +240,16 @@ async function handleEvent(event: unknown, config: LineConfig, deps: LineWebhook
     await deps.savePending(null);
     try {
       const job = await deps.createJob(outcome.tab, outcome.request);
-      await deps.sendPush(token, userId, job.status === "queued" ? buildQueuedAcceptedText() : buildExecStartedText());
+      await deps.respond(token, replyToken, userId, job.status === "queued" ? buildQueuedAcceptedText() : buildExecStartedText());
     } catch (err) {
       const reason = err instanceof ValidationError || err instanceof Error ? err.message : String(err);
-      await deps.sendPush(token, userId, buildJobCreateFailedText(reason));
+      await deps.respond(token, replyToken, userId, buildJobCreateFailedText(reason));
     }
     return;
   }
 
   await deps.savePending(outcome.pending);
-  await deps.sendPush(token, userId, outcome.reply);
+  await deps.respond(token, replyToken, userId, outcome.reply);
 }
 
 export function createLineWebhookHandler(overrides: Partial<LineWebhookDeps> = {}): express.RequestHandler {

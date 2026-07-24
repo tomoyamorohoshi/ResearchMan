@@ -1,12 +1,13 @@
 /**
  * POST /api/line-webhook の統合テスト。index.test.ts と同じ流儀（実HTTPサーバをephemeral
- * ポートで起動しfetchで叩く）。config/push/pending/createJob/structureはすべて
+ * ポートで起動しfetchで叩く）。config/respond(reply/push)/pending/createJob/structureはすべて
  * createLineWebhookHandler の依存性注入（overrides）でフェイクに差し替え、実ファイル書き込みや
  * 実LINE API・実Claude呼び出しを一切行わない。
  *
- * 状態遷移の単体網羅は wizard.test.ts が担う。ここでは
- * 「webhook層の配線（署名検証・許可送信者判定・stepWizardの出力に応じたcreateJob/structure呼び出し）」
- * の確認に絞る。
+ * 状態遷移の単体網羅は wizard.test.ts が担う。reply優先・pushフォールバックの分岐そのものの
+ * 単体網羅は reply.test.ts が担う。ここでは
+ * 「webhook層の配線（署名検証・許可送信者判定・replyTokenの受け渡し・
+ * stepWizardの出力に応じたcreateJob/structure呼び出し）」の確認に絞る。
  */
 import assert from "node:assert/strict";
 import crypto from "node:crypto";
@@ -26,7 +27,7 @@ function sign(body: Buffer): string {
 }
 
 interface Fakes {
-  pushes: Array<{ token: string; userId: string; text: string }>;
+  pushes: Array<{ token: string; replyToken: string | undefined; userId: string; text: string }>;
   createJobCalls: Array<{ tab: string; request: Record<string, unknown> }>;
   pendingStore: LinePending | null;
   createJobImpl?: (tab: string, request: Record<string, unknown>) => Promise<Job>;
@@ -55,8 +56,8 @@ function fakeCreatedJob(overrides: Partial<Job> = {}): Job {
 function buildDeps(config: LineConfig | null, fakes: Fakes, extra: Partial<LineWebhookDeps> = {}): Partial<LineWebhookDeps> {
   return {
     getConfig: () => config,
-    sendPush: async (token, userId, text) => {
-      fakes.pushes.push({ token, userId, text });
+    respond: async (token, replyToken, userId, text) => {
+      fakes.pushes.push({ token, replyToken, userId, text });
     },
     createJob: async (tab, request) => {
       fakes.createJobCalls.push({ tab, request });
@@ -95,8 +96,14 @@ function eventBody(events: unknown[]): Buffer {
   return Buffer.from(JSON.stringify({ destination: "xxx", events }), "utf-8");
 }
 
-function textEvent(text: string, userId = USER_ID): Record<string, unknown> {
-  return { type: "message", message: { type: "text", text }, source: { type: "user", userId } };
+const REPLY_TOKEN = "replyTok-1";
+
+// replyToken に null を渡すとイベントに replyToken キー自体を持たせない（未指定の
+// デフォルトはundefinedと衝突するため、意図的な省略はnullで表す）。
+function textEvent(text: string, userId = USER_ID, replyToken: string | null = REPLY_TOKEN): Record<string, unknown> {
+  const event: Record<string, unknown> = { type: "message", message: { type: "text", text }, source: { type: "user", userId } };
+  if (replyToken !== null) event.replyToken = replyToken;
+  return event;
 }
 
 async function post(baseUrl: string, body: Buffer, opts: { withSignature?: boolean } = { withSignature: true }): Promise<Response> {
@@ -179,6 +186,30 @@ test("text以外のメッセージ種別・message以外のイベントは無視
     );
     await new Promise((r) => setTimeout(r, 100));
     assert.equal(fakes.pushes.length, 0);
+  });
+});
+
+// ── reply優先応答（2026-07-24: reply/pushフォールバックの実際の分岐単体は reply.test.ts が
+// 担う。ここではwebhook層がイベントのreplyTokenを正しくdeps.respondへ受け渡すことだけを確認） ──
+
+test("即時応答はイベントのreplyTokenを添えてrespondを呼ぶ", async () => {
+  const fakes: Fakes = { pushes: [], createJobCalls: [], pendingStore: null };
+  const config: LineConfig = { channelSecret: SECRET, channelAccessToken: "tok", allowedUserId: USER_ID };
+  await withApp(buildDeps(config, fakes), async (baseUrl) => {
+    await post(baseUrl, eventBody([textEvent("こんにちは", USER_ID, "custom-reply-tok")]));
+    await waitFor(() => fakes.pushes.length > 0);
+    assert.equal(fakes.pushes[0].replyToken, "custom-reply-tok");
+  });
+});
+
+test("イベントにreplyTokenが無くても応答は動く（replyToken=undefinedでrespondを呼ぶ）", async () => {
+  const fakes: Fakes = { pushes: [], createJobCalls: [], pendingStore: null };
+  const config: LineConfig = { channelSecret: SECRET, channelAccessToken: "tok", allowedUserId: USER_ID };
+  await withApp(buildDeps(config, fakes), async (baseUrl) => {
+    await post(baseUrl, eventBody([textEvent("こんにちは", USER_ID, null)]));
+    await waitFor(() => fakes.pushes.length > 0);
+    assert.equal(fakes.pushes[0].replyToken, undefined);
+    assert.match(fakes.pushes[0].text, /何をしますか/);
   });
 });
 
