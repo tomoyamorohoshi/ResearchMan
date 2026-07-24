@@ -4665,5 +4665,209 @@
         "desc": "NVIDIAのオープンソース3D深層学習基盤。Gaussian Splattingを複数GPUで高速処理できる。"
       }
     ]
+  },
+  {
+    "id": "2026-07-24-1",
+    "date": "2026-07-24",
+    "title": "無音映像から音を復元",
+    "pattern": "文脈×技術",
+    "seed": "エキマトペが駅の音をオノマトペで可視化したように、Event Topology-based Visual Vibrometerなら防犯カメラ映像だけで振動から音を復元し、無音の監視映像に自動で字幕をつけられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ekimatope",
+        "title": "エキマトペ",
+        "desc": "JR東日本の駅で音声情報をオノマトペと手話に変換し、聴覚障害者へ音の情報を伝える実証実験。"
+      },
+      {
+        "type": "tech",
+        "id": "event-topology-based-visual-vibrometer",
+        "title": "Event Topology-based Visual Vibrometer",
+        "desc": "高速イベントカメラの映像から物体の微細な振動を読み取り、光源も音源もなしで音を復元する計測手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-24-2",
+    "date": "2026-07-24",
+    "title": "ささやき花粉レポート",
+    "pattern": "文脈×技術",
+    "seed": "Benadryl Pollen Countsが花粉データを看板の警告に変えたように、NasoVoceのささやき認識メガネを使えば、声を出しづらい花粉症の人でも小声で症状を報告でき、リアルタイムの地域花粉マップが更新できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "benadryl-pollen-counts-2014",
+        "title": "Benadryl Pollen Counts",
+        "desc": "地域の実測花粉飛散データとデジタル看板を連動させ、花粉が多い日は表示が自動で警告に切り替わる仕組み。"
+      },
+      {
+        "type": "tech",
+        "id": "nasovoce",
+        "title": "NasoVoce",
+        "desc": "スマートグラスの鼻当てにマイクと振動センサを仕込み、ささやき声でもクリアに認識する常時使える発話インターフェース。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-24-3",
+    "date": "2026-07-24",
+    "title": "宝探しの3D現場復元",
+    "pattern": "文脈×技術",
+    "seed": "The KitKat Heistのような公開宝探しに、Any4Dの実寸スケール3D復元技術を掛け合わせれば、参加者のスマホ映像から現場を3D再構築し、みんなで手がかりを探す拡張現実の捜査ゲームになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "kitkat-the-kitkat-heist",
+        "title": "The KitKat Heist",
+        "desc": "輸送中に約12トンのキットカットが盗まれた実話を、誰もが参加できる公開の宝探しへ転換したリアルタイムPR。"
+      },
+      {
+        "type": "tech",
+        "id": "any4d",
+        "title": "Any4D",
+        "desc": "RGB動画や各種センサ入力から、実寸スケールで動く3D世界を1回の推論で復元するモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-24-4",
+    "date": "2026-07-24",
+    "title": "無意識運転安全ブランド",
+    "pattern": "文脈×技術",
+    "seed": "Volvo Cars Safety Standardが安全思想をブランドに昇華したように、Telekinetic Driveの無意識の顔の動きを読むセンサーを車内に仕込めば、居眠りや注意散漫の兆候を検知する『無意識の安全運転支援』ブランドになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "volvo-the-volvo-cars-safety-standard",
+        "title": "The Volvo Cars Safety Standard",
+        "desc": "ボルボの安全への信念をブランドのデザインシステムへ昇華した刷新。"
+      },
+      {
+        "type": "tech",
+        "id": "telekinetic-drive",
+        "title": "Telekinetic Drive",
+        "desc": "顔に現れるごくわずかな無意識の動きをカメラで読み取り、装着物なしで機器を操作できるインターフェース。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-24-5",
+    "date": "2026-07-24",
+    "title": "変身ダンスのライブ可視化",
+    "pattern": "技術×技術",
+    "seed": "SCAIL-2で人物の動きを別キャラクターに転写しつつ、Rerun×Booster Robotics K1のリアルタイム可視化を重ねれば、変換されていく骨格や3D状態そのものがライブ配信のエンタメになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "scail-2",
+        "title": "SCAIL-2",
+        "desc": "動画に写った人物の動きを骨格抽出なしで別キャラクターへ乗り移らせるEnd-to-Endの動き転写モデル。"
+      },
+      {
+        "type": "tech",
+        "id": "rerun-booster-robotics-k1",
+        "title": "Rerun × Booster Robotics K1",
+        "desc": "OSSの時系列可視化ツールRerunで、ロボットのセンサ・3D状態をリアルタイムにロギング・可視化するデモ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-24-6",
+    "date": "2026-07-24",
+    "title": "即興ロボットダンス生成",
+    "pattern": "技術×技術",
+    "seed": "GPCの『次の体の動きを予測し続ける』モーションAIと、GRAILの動画生成から全身動作を自動合成し実機ロボットへ転移させるパイプラインを組み合わせれば、台本なしの即興ロボットダンスを量産できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "gpc",
+        "title": "GPC (Generative Pretraining for Transferable Motor Control)",
+        "desc": "大量のモーションキャプチャーデータで事前学習し、次の瞬間の体の動きを予測し続けるAIコントローラー。"
+      },
+      {
+        "type": "tech",
+        "id": "grail",
+        "title": "GRAIL",
+        "desc": "3Dアセットと動画生成AIから人型ロボットの全身動作データを自動合成し、実機に転移させる研究パイプライン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-24-7",
+    "date": "2026-07-24",
+    "title": "ショールームを永久保存",
+    "pattern": "転用",
+    "seed": "本来はVRChat内の大規模ワールド描画用だったVRChat Gaussian Splatting v4を転用すれば、Showroom on Iceのような期間限定の体験型ショールームを1億スプラット規模でまるごとVRに永久保存できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "vrchat-gaussian-splatting-v4",
+        "title": "VRChat Gaussian Splatting v4",
+        "desc": "VRChatのワールド内でGaussian Splattingをリアルタイム描画できるOSSツール。1億スプラット規模のシーンに対応。"
+      },
+      {
+        "type": "case",
+        "id": "loods-5-showroom-on-ice",
+        "title": "Showroom on Ice",
+        "desc": "オランダの『椅子で氷上練習』の伝統を丸ごとショールームに変えた体験型リテール・アクティベーション。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-24-8",
+    "date": "2026-07-24",
+    "title": "無声ささやき手術指示",
+    "pattern": "転用",
+    "seed": "本来はスマートグラス用の常時装着発話インターフェースだったNasoVoceのささやき認識を、手術中に声を出せない医療スタッフの無声指示システムに転用すれば、清潔野を保ったまま器具追加などを伝えられるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "nasovoce",
+        "title": "NasoVoce",
+        "desc": "スマートグラスの鼻当てにマイクと振動センサを仕込み、ほとんど声を出さないささやきでも認識できる発話インターフェース。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-24-9",
+    "date": "2026-07-24",
+    "title": "個展を3Dで持ち帰る",
+    "pattern": "文脈×技術",
+    "seed": "Matthew Mallowの個展『Somewhere』が心象風景を空間で体感させたように、Any4Dで来場者のスマホ映像から実寸3D空間を復元すれば、観客ごとに異なる『どこか』をパーソナライズしたVR個展として持ち帰れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "matthew-mallow-somewhere-2026",
+        "title": "Matthew Mallow 個展「Somewhere」",
+        "desc": "世界各地のヴィンテージ家具とキャラクター作品を組み合わせ、『どこか』という心象風景を空間ごと体感させる個展。"
+      },
+      {
+        "type": "tech",
+        "id": "any4d",
+        "title": "Any4D",
+        "desc": "RGB動画や各種センサ入力から、実寸スケールで動く3D世界を1回の推論で復元するモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-24-10",
+    "date": "2026-07-24",
+    "title": "素人動画を編集AIで仕上げ",
+    "pattern": "文脈×技術",
+    "seed": "SHOT ON iPHONEが一般ユーザーの写真で屋外広告を埋めたように、FireRed-OpenStorylineの対話型編集エージェントを使えば、素人が撮った断片動画も自動でディレクター品質に仕上がり誰でも映像作家になれる広告展開ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "apple-shot-on-iphone",
+        "title": "SHOT ON iPHONE",
+        "desc": "プロカメラマンでなく一般ユーザーの写真で世界中の屋外広告を埋めた、Appleのグローバルキャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "firered-openstoryline",
+        "title": "FireRed-OpenStoryline",
+        "desc": "話しかけると編集ディレクターのように段取りを組み、素材選びからつなぎまで自動化する対話型動画編集エージェント。"
+      }
+    ]
   }
 ]
