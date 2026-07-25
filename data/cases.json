@@ -1,5 +1,186 @@
 [
   {
+    "id": "2-nintendo-switch-2-edition-m-o-m-o-2026",
+    "title": "『ゼノブレイド2 Nintendo Switch 2 Edition』新ブレイド「M.O.M.O.」参戦発表",
+    "summary": "『ゼノブレイド2 Switch 2 Edition』に『ゼノサーガ』のM.O.M.O.が参戦、ブレイド直接操作の新クエストも追加",
+    "client": "Nintendo / MONOLITHSOFT",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://automaton-media.com/articles/newsjp/20260724-456430/",
+    "thumbnail": "/thumbnails/2-nintendo-switch-2-edition-m-o-m-o-2026.jpg",
+    "videoId": "",
+    "overview": "任天堂は2026年7月24日、『ゼノブレイド2 Nintendo Switch 2 Edition』の新情報を発表。『ゼノサーガ』シリーズのM.O.M.Oが新ブレイドとして参戦するほか、最大6体のブレイドを直接操作できる新クエスト「傭兵団アクション」、ホムラ・ヒカリの新衣装、60fps・4K対応などが盛り込まれた。",
+    "background": "『ゼノブレイド2』はNintendo Switch向けRPGとして人気を博した作品で、今作はSwitch 2向けにグラフィックや操作性を強化したアップグレード版。シリーズを手がけるMONOLITHSOFTは過去にも『ゼノサーガ』キャラクターのクロスオーバー参戦を行っており、今回のM.O.M.Oは3体目のクロスオーバーキャラクターとなる。",
+    "execution": "M.O.M.Oは光属性と闇属性の2形態を切り替えられる回復ロールのブレイドとして実装。あわせて既存の放置型クエスト「傭兵団」を拡張し、選択した6体のブレイドを実際に操作して戦闘する新モードを追加した。60fps対応、TVモード4K・携帯モードフルHD化など技術面の強化も同時発表された。",
+    "evaluationImpact": "旧作の人気キャラクターを新規ハードの強化移植に組み込むことで既存ファンの購買動機を高めつつ、直接操作可能な新戦闘モードで遊びの幅を広げた点が特徴。Switch 2向けアップグレード版のラインナップ拡充施策として、任天堂のリバイバル戦略の一例として報じられている。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/Product"
+    ]
+  },
+  {
+    "id": "staffer-retro-2026",
+    "title": "Staffer Retro: 超能力推理クエスト",
+    "summary": "推理ADV新作『Staffer Retro』がSwitch/Steam同時発売初日で1万本突破、前作の勢い継続",
+    "client": "不明（インディー開発・Switch/Steam版）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://automaton-media.com/articles/newsjp/20260724-456594/",
+    "thumbnail": "/thumbnails/staffer-retro-2026.jpg",
+    "videoId": "",
+    "overview": "韓国Team Tetrapod開発・GamePia配信の推理アドベンチャー『Staffer Retro: 超能力推理クエスト』が2026年7月23日にNintendo SwitchとPC(Steam)で同時発売。超能力に関わる過去の事件を、主人公ヴェリータが資料と証言から解き明かすシリーズ4作目で、発売初日で売上1万本を突破した。",
+    "background": "前作『Staffer Case:超能力推理アドベンチャー』（2023年4月発売）はSteamで10万本を売り上げ、レビュー3924件中94%が好評の「非常に好評」を獲得する人気シリーズとなっていた。その勢いを受け、シリーズ初のPC/Switch同時発売となる最新作『Staffer Retro』が投入された。",
+    "execution": "本作は「レトロ」システムにより一度確定した結末が新たな手がかりで覆るという推理体験が特徴。30種類以上の文書と100以上の手がかりを集め、6エピソード・複数エンディングを構成し、プレイ時間は約30時間。日本語ボイスも実装しファン層の期待に応えた。",
+    "evaluationImpact": "インディー推理ADVというニッチジャンルながら、シリーズの高評価を土台に発売1日で1万本という好スタートを切った点が業界内で注目された。国内メディア（AUTOMATON、ファミ通、4Gamer）が相次いで報じ、シリーズのブランド力の高さを裏付けた。",
+    "relatedWorks": [
+      {
+        "title": "Staffer Case:超能力推理アドベンチャー",
+        "description": "2023年4月発売の前作。Steamで10万本を売り上げ「非常に好評」を獲得したシリーズの原点",
+        "url": "https://store.onstove.com/ja/games/1384"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/App",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "bluesky-ai-attie-quests-2026",
+    "title": "Bluesky AIアシスタント「Attie」に検索機能「Quests」追加",
+    "summary": "BlueskyのAIアシスタントAttieに、SNS横断でトレンドや影響力アカウントを調査できる新機能「Quests」を追加",
+    "client": "Bluesky",
+    "agency": "",
+    "categories": [
+      "AIクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://techcrunch.com/2026/07/24/blueskys-ai-assistant-attie-expands-into-an-open-social-research-tool/",
+    "thumbnail": "/thumbnails/bluesky-ai-attie-quests-2026.jpg",
+    "videoId": "",
+    "overview": "Blueskyは2026年7月、AIアシスタントAttieに新機能「Quests」を追加したと発表。ユーザーが開放的な質問を投げかけることで、Bluesky本体だけでなくAT Protocol上の関連アプリ全体を横断し、トレンドトピックの調査や特定分野・地域で影響力のあるアカウントの特定、パーソナライズされた日次ブリーフィングの生成などができるオープンなソーシャルリサーチツールへと拡張された。まずクローズドβとしてウェイトリスト登録者から順次公開される。",
+    "background": "Attieは2026年3月、プログラミング不要でカスタムフィードやアルゴリズムを設計できるAIアシスタントとして先行リリースされた(Claudeベース)。Blueskyはユーザー数の伸びが4000万から約4560万へ鈍化する中、マネタイズと機能拡張の両立を模索しており、最高革新責任者Jay Graberは「AT Protocolを使いこなす学習コストを下げたい」と方針を語っている。Questsはその拡張の第一弾。",
+    "execution": "QuestsはAttieのチャットインターフェースから開放的な質問を投げかける形で利用する。Bluesky単体のデータだけでなく、AT Protocol上で連携する他アプリ群「the Atmosphere」全体を横断的に検索・要約する設計とし、トレンド把握や影響力アカウントの特定、日次ブリーフィング生成を一つの対話体験にまとめた。2026年7月24日発表、数週間かけてクローズドβをウェイトリストから招待していく段階公開方式を採る。",
+    "evaluationImpact": "分散型プロトコルであるAT Protocol上のオープンなデータを、単一アプリの壁を越えてAIが横断調査できる仕組みを提示した点が評価点。中央集権的アルゴリズムに依存しないSNS体験を掲げるBlueskyの思想を、検索・リサーチ領域にまで拡張した事例であり、成長鈍化下でのAI機能によるエンゲージメント強化・差別化戦略としても注目される。",
+    "relatedWorks": [
+      {
+        "title": "Attie(フィード構築AIアシスタント)",
+        "description": "Blueskyが2026年3月にリリースした、プログラミング不要でカスタムフィード・アルゴリズムを設計できるAIアシスタント。Questsの前身機能。",
+        "url": "https://techcrunch.com/2026/03/28/bluesky-leans-into-ai-with-attie-an-app-for-building-custom-feeds/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/Data",
+      "Form/App",
+      "Form/SNS"
+    ]
+  },
+  {
+    "id": "midjourney-co-star-2026",
+    "title": "Midjourney、占星術アプリ「Co-Star」を買収",
+    "summary": "画像生成AI大手MidjourneyがMAU430万人の占星術アプリCo-Starを買収、AIの人間理解を軸に消費者向けアプリ事業へ本格参入",
+    "client": "Midjourney",
+    "agency": "",
+    "categories": [
+      "AIクリエイティブ",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://techcrunch.com/2026/07/24/midjourney-acquired-the-astrology-app-co-star/",
+    "thumbnail": "/thumbnails/midjourney-co-star-2026.jpg",
+    "videoId": "",
+    "overview": "画像生成AIで知られるMidjourneyが、占星術アプリCo-Star（MAU約430万人）を買収した。買収額は非公開。Co-StarのCEOバヌ・ギュラー氏はMidjourneyの最高デザイン責任者(CDO)に就任し、全社のデザイン・プロダクト・フロントエンドを統括する。Co-Star社の従業員約20人も全員Midjourneyへ移籍する。",
+    "background": "Midjourney創業者デビッド・ホルツ氏はギュラー氏と約5年来の親交があり、「人がどう思考し意思決定するか」について対話を重ねてきた。両者は「テクノロジーは人間性を映し出す道具になり得る」という理念を共有しており、これが今回の買収の土台となった。Midjourneyは2026年6月にも医療分野の全身超音波スキャナー事業に参入しており、画像生成ツール企業からの多角化が加速している。",
+    "execution": "Co-Starアプリ自体はギュラー氏の完全な裁量下で独立運営が継続される。一方で同氏は今後、Midjourney傘下でより大きなリソースとチームを得て新プロジェクトに取り組む。具体的には、占星術に特化した新しい画像生成ツールの開発が計画されており、これはMidjourneyにとって初めての消費者向けアプリケーション展開となる。",
+    "evaluationImpact": "Co-Starは米国若年層の35%に浸透し、AI生成コンテンツと人間スタッフが共同で執筆する占星術アプリとして支持を集めてきた。画像生成の枠を超え、パーソナライズされた人生体験領域へ触手を伸ばすMidjourneyの動きは、AI大手による消費者向けサービス多角化の象徴例といえる。ただしGen Z層のAIへの好感度が低下傾向にある中、既存ユーザーからの反発も指摘されている。",
+    "relatedWorks": [
+      {
+        "title": "Midjourney、全身超音波スキャナー事業に参入（Midjourney Medical）",
+        "description": "画像生成AI企業Midjourneyが2026年6月、医療分野に参入し全身超音波スキャナーを発表。画像生成以外の事業領域への多角化という共通の文脈を持つ。",
+        "url": "https://www.bloomberg.com/news/articles/2026-06-18/ai-startup-midjourney-pivots-to-health-with-ultrasound-machine"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/App",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "kuro-kasetto-tiny-sound-machines-2026",
+    "title": "Kuro Kasetto「Tiny Sound Machines」ソレノイド音響作品",
+    "summary": "メキシコの音楽家がソレノイド駆動シロフォンをNorns/Pure Dataで自動演奏する生成音響作品を制作",
+    "client": "Kuro Kasetto",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "中南米"
+    ],
+    "link": "https://cdm.link/tiny-sound-world-of-kuro-kasetto/",
+    "thumbnail": "/thumbnails/kuro-kasetto-tiny-sound-machines-2026.jpg",
+    "videoId": "",
+    "overview": "メキシコを拠点とする音楽家Kuro Kasettoが、5基のソレノイドでシロフォンを機械的に叩く自動演奏装置を制作。MIDI信号はNorns Shield上のBloomスクリプトが生成し、Chase Bliss MOOD MKIIペダルでリアルタイム処理して繊細で常に変化するアンビエント音響を生み出す。",
+    "background": "Kuro Kasettoは「ちいさな音を作って楽しむ人」を自称し、生成的でミニマルな音響実験を続けてきたアーティスト。ハードウェアとソフトウェアを組み合わせた自動演奏楽器づくりを通じ、偶然性と反復から生まれる音の質感を追求している点が背景にある。",
+    "execution": "Arduinoで制御する5個のソレノイドがシロフォンの音板を打つ物理演奏装置を構築し、演奏パターンはNorns Shield上のBloomというジェネラティブ・ミュージックスクリプトがMIDIで生成。出力はChase Bliss MOOD MKIIペダルを通してテクスチャーを加え、さらにソレノイド駆動のカリンバ作品やPure Dataによるライブパッチ音響作品も並行して制作している。",
+    "evaluationImpact": "電子音楽メディアCDMが「小さな音の世界」として特集し、アナログな物理楽器とオープンソースのジェネラティブ音楽ツール（Norns、Pure Data）を組み合わせる手法が、DIY/メイカー系の音楽制作コミュニティで新しい表現の一例として注目された。",
+    "relatedWorks": [
+      {
+        "title": "Robo-Xylophone - Ambient (Norns Shield BLOOM / Chase Bliss MOOD MKII)",
+        "description": "Kuro Kasettoによるソレノイド駆動シロフォン作品を紹介したMatrixsynthの記事",
+        "url": "https://www.matrixsynth.com/2026/04/robo-xylophone-ambient-norns-shield.html"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Tech/Audio",
+      "Form/Installation",
+      "Theme/Music"
+    ]
+  },
+  {
     "id": "this-story-is-unavailable-2026",
     "title": "This Story Is Unavailable",
     "summary": "Instagramの「ストーリー期限切れ」画面をそのまま紙面に転写し、写真アルバムの永続性を対比で訴求",
