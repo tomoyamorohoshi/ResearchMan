@@ -1,5 +1,42 @@
 [
   {
+    "id": "giant-triple-mushroom-2024",
+    "title": "Giant Triple Mushroom",
+    "summary": "アーティストのカルステン・ヘラーが、パリのヴァンドーム広場に3種のキノコの断面を融合させた高さ約3mのハイブリッド彫刻を設置。",
+    "client": "Carsten Höller",
+    "agency": "Gagosian（Art Basel Parisパブリックプログラム）",
+    "categories": [
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.designboom.com/art/giant-triple-mushroom-carsten-holler-paris-place-vendome-09-27-2024/",
+    "thumbnail": "/thumbnails/giant-triple-mushroom-2024.jpg",
+    "videoId": "",
+    "overview": "アーティストのカルステン・ヘラーが、パリのヴァンドーム広場に高さ約3mの巨大彫刻「Giant Triple Mushroom」を設置。3種類の異なるキノコの断面形状を融合させたハイブリッドな姿の彫刻で、ギャラリーGagosianの企画によりArt Basel Parisのパブリックプログラムの一環として2024年に展示された。",
+    "background": "カルステン・ヘラーは長年キノコをはじめとする菌類・幻覚性生物をモチーフに作品を制作してきたアーティスト。Art Basel Parisの開催に合わせ、Gagosianはパリの象徴的な広場であるヴァンドーム広場を舞台にパブリックプログラムを企画し、美術館やギャラリー空間の外で市民が日常的にアート作品と遭遇する機会を創出しようとした。",
+    "execution": "3種の異なるキノコの断面形状をひとつの彫刻へと融合させ、高さ約3mのハイブリッドなオブジェとして造形。歴史的建造物とラグジュアリーブランド店舗が並ぶ観光名所であるヴァンドーム広場の中心に据えることで、既存の都市景観と非日常的なスケールの生物モチーフを対比させ、通行人が偶然作品に出会う体験を設計した。",
+    "evaluationImpact": "Art Basel Parisの会期に合わせてdesignboomなど複数のデザイン・アートメディアが取り上げ、パリ市内の象徴的な公共空間を舞台にした大型パブリックアートの事例として紹介された。美術館の外で無料かつ偶発的に鑑賞できるパブリックプログラムの形として、アートフェアと都市空間を結びつける手法の一例となった。",
+    "relatedWorks": [
+      {
+        "title": "Mushrooms: The Art, Design and Future of Fungi",
+        "description": "カルステン・ヘラーも参加した、ロンドンSomerset Houseでのキノコをテーマにした展覧会",
+        "url": "https://www.smithsonianmag.com/smart-news/get-taste-mushroom-art-new-fungus-forward-exhibition-180973863/"
+      }
+    ],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Theme/Art"
+    ]
+  },
+  {
     "id": "mushrooms-the-art-design-and-future-of-fungi-2020",
     "title": "Mushrooms: The Art, Design and Future of Fungi",
     "summary": "ロンドンのSomerset Houseでキノコをテーマに40名以上の作家を集めた展覧会。会場タイポグラフィはPentagramがキノコの形状からAIで生成した。",
