@@ -67,6 +67,7 @@ import { buildAwardVerifierPrompt, buildCaseWriterPrompt, buildLinkCheckerPrompt
 import { buildCaseAdderPrompt, type TweetMediaPromptInput } from "./addCasePrompts.js";
 import { postFavorite } from "./autoFavorite.js";
 import { buildXMediaTempDir, cleanupXMediaDir, downloadTweetMedia, fetchTweetMedia } from "./xMedia.js";
+import { fetchPageWithFallback } from "./pageFetch.js";
 import {
   buildAddCaseCommitMessage,
   buildAddCaseEntry,
@@ -244,12 +245,33 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
       }
     }
 
+    // ページ本文の事前取得（bot対策サイト向けcurlフォールバック救済。実測: dezeen.com等は
+    // Node/undici系のfetchに403やCloudflareチャレンジを返すが、curl.exeなら200が取れる —
+    // pageFetch.ts参照）。X投稿はtweetMedia側で機械取得済みのため対象外。取得できなければ
+    // prefetchedPageInputはnullのまま従来どおりcase-adder自身のWebFetchにフォールバックする
+    // （取得処理自体の例外もここで握りつぶし、本体パイプラインの失敗要因にしない）。
+    let prefetchedPageInput: { text: string } | null = null;
+    if (!urlIsXLink) {
+      try {
+        const prefetched = await fetchPageWithFallback(url);
+        if (prefetched) prefetchedPageInput = { text: prefetched.text };
+      } catch (e) {
+        console.warn("[studio][add-case] ページ本文の事前取得に失敗しました（従来フローにフォールバック）:", e);
+      }
+    }
+
     const adderDef = loadAgentDefinition(AGENTS_DIR, "case-adder");
     const adderResult = await runAgentQuery(
       ROOT,
       "case-adder",
       adderDef,
-      buildCaseAdderPrompt({ url, context, isXLink: urlIsXLink, tweetMedia: tweetMediaInput }),
+      buildCaseAdderPrompt({
+        url,
+        context,
+        isXLink: urlIsXLink,
+        tweetMedia: tweetMediaInput,
+        prefetchedPage: prefetchedPageInput,
+      }),
     );
     costUsd += adderResult.costUsd;
     budget.add(adderResult.costUsd);
@@ -302,12 +324,30 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
 
       // ── 3. 検証（link-checker） ──────────────────────────────────
       await setProgress(jobId, "一次ソース検証中（リンク）");
+      // candidate.linkの本文も同じくbot対策サイト向けに事前取得を試みる（pageFetch.ts）。
+      // link-checker Agent自身のWebFetchが失敗しても、事前取得済みの本文があればそれだけで
+      // 判定できるようプロンプトへ埋め込む（取得できなければ従来どおりAgent自身のWebFetch任せ）。
+      let linkPrefetchedText: string | undefined;
+      try {
+        const linkPrefetched = await fetchPageWithFallback(candidate.link);
+        if (linkPrefetched) linkPrefetchedText = linkPrefetched.text;
+      } catch (e) {
+        console.warn("[studio][add-case] リンク本文の事前取得に失敗しました（従来フローにフォールバック）:", e);
+      }
       const linkCheckerDef = loadAgentDefinition(AGENTS_DIR, "link-checker");
       const linkResult = await runAgentQuery(
         ROOT,
         "link-checker",
         linkCheckerDef,
-        buildLinkCheckerPrompt([{ id, title: candidate.title, link: candidate.link, youtubeId: candidate.youtubeId }]),
+        buildLinkCheckerPrompt([
+          {
+            id,
+            title: candidate.title,
+            link: candidate.link,
+            youtubeId: candidate.youtubeId,
+            prefetchedText: linkPrefetchedText,
+          },
+        ]),
       );
       costUsd += linkResult.costUsd;
       budget.add(linkResult.costUsd);
@@ -321,9 +361,13 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
           `リンク検証結果を解析できませんでした（Agent応答がJSON形式ではありません。生出力(${linkResult.text.length}字)を ${dumpPath ?? "(保存失敗)"} に保存しました）`,
         );
       }
-      const verdict = linkVerdicts[0] as { alive?: boolean; titleMatch?: boolean | "na" } | undefined;
+      const verdict = linkVerdicts[0] as { alive?: boolean; titleMatch?: boolean | "na"; note?: string } | undefined;
       if (!verdict || verdict.alive !== true || verdict.titleMatch === false) {
-        throw new Error("リンク検証を通過しませんでした（死リンクまたは内容不一致と判定）");
+        // link-checker Agentの判定理由（note）を診断のためエラーメッセージに含める
+        // （従来は"死リンクまたは内容不一致"としか出ず、bot対策サイト誤判定等の実態調査が
+        // できなかった）。
+        const noteSuffix = verdict?.note ? `（判定理由: ${verdict.note}）` : "";
+        throw new Error(`リンク検証を通過しませんでした（死リンクまたは内容不一致と判定）${noteSuffix}`);
       }
 
       // ── 4. 受賞検証（自己申告がある場合のみ。award-verifier） ───────

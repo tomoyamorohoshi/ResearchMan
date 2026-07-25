@@ -49,12 +49,23 @@ export interface LinkCheckCandidate {
   title: string;
   link: string;
   youtubeId?: string;
+  /** pageFetch.ts::fetchPageWithFallbackで事前取得済みの本文（bot対策サイト向け救済）。
+   * 未指定ならAgent自身のWebFetchでの取得指示のまま変更しない。 */
+  prefetchedText?: string;
 }
 
 export function buildLinkCheckerPrompt(candidates: LinkCheckCandidate[]): string {
+  const hasPrefetched = candidates.some((c) => !!c.prefetchedText);
   const items = candidates
-    .map((c) => `- id=${c.id} title="${c.title}" url=${c.link}${c.youtubeId ? ` youtubeId=${c.youtubeId}` : ""}`)
+    .map((c) => {
+      const base = `- id=${c.id} title="${c.title}" url=${c.link}${c.youtubeId ? ` youtubeId=${c.youtubeId}` : ""}`;
+      if (!c.prefetchedText) return base;
+      return `${base}\n  この候補は本文を事前取得済みです（Cloudflare等でWebFetchが失敗する場合があるため）。以下の本文を信頼してよい:\n  ${c.prefetchedText}`;
+    })
     .join("\n");
+  const prefetchNote = hasPrefetched
+    ? "\n- 事前取得済みの本文が提示されている候補は、WebFetchが失敗してもその本文だけで判定してよい（本文が実在し事例と関係する内容ならaliveをtrueにする）"
+    : "";
   return `以下の候補それぞれについて機械検証してください。
 
 ${items}
@@ -65,7 +76,7 @@ ${items}
 ]
 
 - alive: URLが実在し、事例と関係する内容ならtrue
-- titleMatch: youtubeIdがある場合のみ、oEmbedタイトルが事例と一致すればtrue。youtubeIdが無い項目は true を返してよい
+- titleMatch: youtubeIdがある場合のみ、oEmbedタイトルが事例と一致すればtrue。youtubeIdが無い項目は true を返してよい${prefetchNote}
 - 判定に迷ったらfalse側に倒すこと`;
 }
 

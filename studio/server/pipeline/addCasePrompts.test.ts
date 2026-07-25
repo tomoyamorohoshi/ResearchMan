@@ -158,3 +158,45 @@ test("buildCaseAdderPrompt: tweetMedia指定時、特定不能ならneitherで�
   assert.match(p, /画像.*動画の解析でも.*特定できなかった/);
   assert.match(p, /neither/);
 });
+
+// ── prefetchedPage（bot対策サイト向け: 事前取得済み本文をAgentへ渡す。tweetMediaと同じ
+//    「取得できていれば注入、できていなければ従来どおりWebFetch任せ」パターン） ──────
+
+test("buildCaseAdderPrompt: prefetchedPage未指定なら従来どおりWebFetchでURLの内容を判定する指示のまま（本文注入なし）", () => {
+  const p = buildCaseAdderPrompt({ url: "https://example.com/article", context: "", isXLink: false });
+  assert.doesNotMatch(p, /事前取得済み/);
+});
+
+test("buildCaseAdderPrompt: prefetchedPage指定時は事前取得済みの本文をそのまま含める", () => {
+  const p = buildCaseAdderPrompt({
+    url: "https://www.dezeen.com/2016/04/15/example/",
+    context: "",
+    isXLink: false,
+    prefetchedPage: { text: "Oi unveils a responsive sound-reactive logo by Wolff Olins" },
+  });
+  assert.match(p, /Oi unveils a responsive sound-reactive logo by Wolff Olins/);
+  assert.match(p, /事前取得済み/);
+});
+
+test("buildCaseAdderPrompt: prefetchedPage指定時も信頼してよい旨とWeb検索裏取りの必要性を指示する", () => {
+  const p = buildCaseAdderPrompt({
+    url: "https://example.com/article",
+    context: "",
+    isXLink: false,
+    prefetchedPage: { text: "本文サンプル" },
+  });
+  assert.match(p, /信頼してよい/);
+  assert.match(p, /Web検索/);
+});
+
+test("buildCaseAdderPrompt: isXLinkがtrueでtweetMedia指定時はprefetchedPageより優先される（X投稿の専用注入のみ）", () => {
+  const p = buildCaseAdderPrompt({
+    url: "https://x.com/user/status/1",
+    context: "",
+    isXLink: true,
+    tweetMedia: { text: "ツイート本文", author: "author", createdAt: "2026-07-14T00:00:00.000Z", mediaPaths: [] },
+    prefetchedPage: { text: "無視されるべき本文" },
+  });
+  assert.match(p, /ツイート本文/);
+  assert.doesNotMatch(p, /無視されるべき本文/);
+});

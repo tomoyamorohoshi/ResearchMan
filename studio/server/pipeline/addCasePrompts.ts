@@ -13,6 +13,14 @@
  * 先取りできた場合、ここでその情報をAgentへ埋め込み、既存のxNote（WebFetch/WebSearchでの
  * 本文再取得指示）を「機械取得済みの本文を信頼してよい」旨の指示に差し替える。
  * 取得できなかった場合（tweetMedia未指定）は既存のxNoteロジックを一切変更しない。
+ *
+ * prefetchedPage（bot対策サイト向けcurlフォールバック救済）: dezeen.com等、Node/undici系の
+ * fetchにだけ403やCloudflareチャレンジを返すサイトがあり、case-adder Agent自身のWebFetchが
+ * 同様に失敗しうる。addCase.ts側でpageFetch.ts::fetchPageWithFallback（Node直接取得→失敗時
+ * curlサブプロセス救済）により事前取得できた場合、tweetMediaと同じ「取得できていれば注入、
+ * できていなければ従来どおりWebFetch任せ」パターンでAgentへ本文を渡す。tweetMediaが指定されて
+ * いる場合はそちらを優先し、prefetchedPageは無視する（X投稿専用の注入ロジックと二重に本文を
+ * 埋め込まない）。
  */
 export interface TweetMediaPromptInput {
   /** 機械取得済みの投稿本文。 */
@@ -36,6 +44,9 @@ export interface CaseAdderPromptInput {
   /** xMedia.ts::fetchTweetMediaで機械取得済みのX投稿本文・メディア（要件1b）。
    * 未指定/nullなら既存のxNoteロジックを変更しない。 */
   tweetMedia?: TweetMediaPromptInput | null;
+  /** pageFetch.ts::fetchPageWithFallbackで事前取得済みのページ本文（bot対策サイト向け救済）。
+   * tweetMediaが指定されている場合は無視する。未指定/nullなら注入しない（Agent自身のWebFetch任せ）。 */
+  prefetchedPage?: { text: string } | null;
 }
 
 /**
@@ -68,7 +79,22 @@ function buildTweetMediaNote(tweetMedia: TweetMediaPromptInput): string {
   return lines.join("\n");
 }
 
-export function buildCaseAdderPrompt({ url, context, isXLink, tweetMedia }: CaseAdderPromptInput): string {
+/**
+ * 事前取得済みページ本文の注入文言（bot対策サイト救済。要件1相当のcurlフォールバック）。
+ * 機械取得済みの本文はそのまま信頼してよいが、受賞・企業名等の確定情報はWeb検索での裏取りを
+ * 促す（tweetMediaNoteと同じ「機械取得を鵜呑みにしない」方針）。
+ */
+function buildPrefetchedPageNote(prefetchedPage: { text: string }): string {
+  return (
+    "\n\n## 注意: このURLの本文は事前取得済みです\n" +
+    "以下はこのURLから機械的に事前取得済みの本文です。WebFetchでの再取得が失敗する場合があるため、" +
+    "この本文をそのまま信頼してよい内容として使ってください（それでも不足があればWebFetch/WebSearchで補ってよい）。\n" +
+    `本文:\n${prefetchedPage.text}\n\n` +
+    "受賞事実・企業名等の確定情報は、この本文の自己申告だけで断定せず、必ずWeb検索で裏取りしてください。"
+  );
+}
+
+export function buildCaseAdderPrompt({ url, context, isXLink, tweetMedia, prefetchedPage }: CaseAdderPromptInput): string {
   const contextNote = context ? `\n\n## ユーザーからの補足（視点・メモ）\n${context}` : "";
   const xNote = tweetMedia
     ? buildTweetMediaNote(tweetMedia)
@@ -76,7 +102,9 @@ export function buildCaseAdderPrompt({ url, context, isXLink, tweetMedia }: Case
       ? "\n\n## 注意: このURLはX(旧Twitter)の投稿です\n投稿本文の取得を試みてください。内容が薄い/取得できない場合は、投稿内容や" +
         "タイトル・キーワードでWebSearchし、同じ内容を報じる一次ソース（公式サイト・GitHub・プレスリリース・報道記事）を探して" +
         "代わりに使ってください。"
-      : "";
+      : prefetchedPage
+        ? buildPrefetchedPageNote(prefetchedPage)
+        : "";
   return `LINEで送られた以下のURLの内容を判定し、情報を抽出してください。
 
 ## URL
