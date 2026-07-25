@@ -1,5 +1,43 @@
 [
   {
+    "id": "evolving-the-google-identity-2015",
+    "title": "Evolving the Google Identity",
+    "summary": "新書体Product Sansによるロゴタイプに加え、聞く・考える・答えるなど状態に応じて動きを変える4色の「ドット」を導入し、ロゴを固定マークからシステムへと再定義したGoogleのアイデンティティ刷新。",
+    "client": "Google",
+    "agency": "Google Creative Lab / Material Design team",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2015",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://design.google/library/evolving-google-identity",
+    "thumbnail": "/thumbnails/evolving-the-google-identity-2015.jpg",
+    "videoId": "",
+    "overview": "2015年にGoogleが発表したブランドアイデンティティの刷新。従来のセリフ体ロゴを、幾何学的な新書体Product Sansによるロゴタイプに置き換えると同時に、4色のシンプルな「ドット」を新たなシンボルとして導入した。Google Creative LabとMaterial Designチームが、スマートフォンからスマートウォッチ、音声デバイスまで多様な画面・非画面環境で機能するアイデンティティとして設計した。",
+    "background": "Googleのプロダクトはブラウザ、モバイルアプリ、ウェアラブル、音声アシスタントなど、画面サイズも入力方式も大きく異なる多様な環境に広がっていた。従来の固定的なロゴタイプだけでは、音声のみで応答する環境や小さなアイコン表示など、あらゆる接点で一貫した「Googleらしさ」を伝えきれないという課題があり、ロゴを単なるマークではなくシステムとして再設計する必要が生じていた。",
+    "execution": "文字要素については、幾何学的でモダンな新書体Product Sansを開発し、ロゴタイプを刷新。加えて、Googleのブランドカラーである4色を用いたシンプルな「ドット」を新たなシンボル要素として導入し、ユーザーが話しかけた際に「聞いている」「考えている」「答えている」といった状態に応じてドットが異なる動きを見せる仕組みを設計した。これにより、画面上のロゴタイプと、音声アシスタントなど非画面環境での動的なドット表現を、一つのアイデンティティシステムとして統合した。",
+    "evaluationImpact": "固定的なロゴマークではなく、状態に応じて動きを変える抽象的な図形をアイデンティティの核に据えた点が特徴で、以降広がる音声インターフェースやマルチデバイス環境を見据えたブランド設計の考え方を示した事例として位置づけられる。ロゴを「マーク」から「システム」として捉え直す発想は、後続の企業アイデンティティ刷新の議論でもしばしば参照されている。",
+    "relatedWorks": [
+      {
+        "title": "MIT Media Lab Identity",
+        "description": "アルゴリズムから多数のバリエーションを生成する生成的アイデンティティの代表事例",
+        "url": "https://eroonkang.com/feature/mit-media-lab-identity"
+      }
+    ],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Website",
+      "Form/Print",
+      "Theme/Art"
+    ]
+  },
+  {
     "id": "ocad-university-identity-2011",
     "title": "OCAD University Identity",
     "summary": "白黒の「ウィンドウ」フレームに毎年の卒業制作を差し込み続ける、成長し続けるルールベースの生成的アイデンティティ。",
