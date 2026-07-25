@@ -1,5 +1,42 @@
 [
   {
+    "id": "centersquare-a-brand-identity-shaped-by-the-power-of-data-20",
+    "title": "Centersquare: A Brand Identity Shaped by the Power of Data",
+    "summary": "米データセンター最大手Centersquareのために、JKRがリアルタイムの運用データをロゴのパターンへ変換するツールを開発し、鮮やかな色彩と可変ワードマークでブランドを刷新した事例。",
+    "client": "Centersquare",
+    "agency": "Jones Knowles Ritchie (JKR) with Variable.io",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.creativereview.co.uk/jkr-centersquare-identity/",
+    "thumbnail": "/thumbnails/centersquare-a-brand-identity-shaped-by-the-power-of-data-20.jpg",
+    "videoId": "",
+    "overview": "2024年、JKRがVariable.ioと組んで手がけた米データセンター最大手Centersquareのブランドアイデンティティ。データセンターの稼働状況などリアルタイムの運用データをロゴ中央のパターンへ変換するカスタムツールを核に、可変ワードマークと鮮やかな色彩で構成された。",
+    "background": "データセンター業界のブランドは無機質で冷たい技術系ビジュアルに寄りがちで、差別化が難しい領域だった。JKRは、Centersquareが持つ膨大な運用データという企業固有の資産をそのままビジュアルの素材として扱うことで、業界の常識にとらわれないアイデンティティを構築するという課題に取り組んだ。",
+    "execution": "JKRはVariable.ioとの協働で、データセンターのリアルタイム運用データを入力としてロゴ中央のパターンを自動生成するカスタムツールを開発。生成されたパターンは可変のワードマークと組み合わされ、鮮やかな色彩のもとで常に変化し得るビジュアルアイデンティティとして展開された。",
+    "evaluationImpact": "自社の運用データそのものをブランドの視覚表現に転換する手法は、無機質になりがちなデータセンター業界のブランディングに新しい表現の方向性を示す事例としてCreative Reviewで紹介された。",
+    "relatedWorks": [
+      {
+        "title": "JKR's Centersquare identity",
+        "description": "JKRによるCentersquareのデータドリブンなブランドアイデンティティを紹介するCreative Reviewの記事",
+        "url": "https://www.creativereview.co.uk/jkr-centersquare-identity/"
+      }
+    ],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/Print",
+      "Form/Website"
+    ]
+  },
+  {
     "id": "the-growing-pavilion-2019",
     "title": "The Growing Pavilion",
     "summary": "キノコの菌糸体パネルと木材フレームで作られたバイオベース素材のポップアップ・パビリオン。2019年Dutch Design Weekの会場中心に設置された。",
