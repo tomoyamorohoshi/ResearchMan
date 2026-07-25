@@ -1,5 +1,38 @@
 [
   {
+    "id": "orquestra-sinf-nica-do-estado-de-s-o-paulo-osesp-identity-20",
+    "title": "Orquestra Sinfônica do Estado de São Paulo (OSESP) identity",
+    "summary": "サンパウロ交響楽団のリブランディングで、演奏音声を解析して抽象グラフィックを生成する自社製ツール「Instrument」を核にしたサウンド駆動型アイデンティティ。",
+    "client": "Orquestra Sinfônica do Estado de São Paulo (OSESP / São Paulo Symphony Orchestra)",
+    "agency": "Polar",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.commarts.com/exhibit/sao-paulo-symphony-orchestra-identity",
+    "thumbnail": "/thumbnails/orquestra-sinf-nica-do-estado-de-s-o-paulo-osesp-identity-20.jpg",
+    "videoId": "",
+    "overview": "デザインスタジオPolarが2024年に手がけたブラジル・サンパウロ交響楽団（OSESP）のリブランディング。ロゴマークを楽譜上の音符のように可変配置できるアイデンティティシステムを構築し、さらに自社開発のジェネレーティブツール「Instrument」でライブ演奏の音声データを解析、楕円形の抽象グラフィックを無限に生成する音駆動のビジュアル表現を組み込んだ。",
+    "background": "オーケストラのビジュアルアイデンティティは、演目やホールの写真に依存した静的な表現になりがちで、音楽そのものが持つ生成的・即興的な性格を視覚言語に反映できていないという課題があった。OSESPは自団の演奏活動の多様性と生命力を伝えるブランド刷新をPolarに依頼し、音楽という時間芸術をどう恒久的なアイデンティティに翻訳するかが制作の出発点となった。",
+    "execution": "ロゴタイプを固定形ではなく音符のように紙面・画面上で自由に再配置できるシステムとして設計し、あらゆる演目・媒体に応じて可変するアイデンティティを構築。あわせてPolarは自社製ジェネレーティブツール「Instrument」を開発し、実際のライブ演奏音声を解析してそのダイナミクスを楕円形の抽象グラフィックへと変換、演奏ごとに一意のビジュアルを無限生成する仕組みをアイデンティティに統合した。",
+    "evaluationImpact": "音声データをリアルタイムに解析してビジュアルへ変換する自社製ジェネレーティブツールを核に据えた点で、オーケストラという伝統的な文化機関のリブランディングにテクノロジー駆動の生成的表現を導入した事例としてCommunication Artsに掲載・紹介されている。",
+    "relatedWorks": [],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Tech/AI",
+      "Form/Event",
+      "Theme/Music",
+      "Theme/Art"
+    ]
+  },
+  {
     "id": "in-the-eyes-of-the-animal-2015",
     "title": "In the Eyes of the Animal",
     "summary": "Marshmallow Laser Feastが、LiDARスキャンとドローン空撮を用いて森を蚊やトンボ、フクロウなど動物の知覚世界から体験させるVR/XRインスタレーション。",
