@@ -1,5 +1,36 @@
 [
   {
+    "id": "stack-overflow-rebrand-a-legacy-recoded-2025",
+    "title": "Stack Overflow Rebrand: A legacy recoded",
+    "summary": "AI時代における信頼できる人間の知識源としてStack Overflowを再定義したリブランドで、Claudeで構築したカスタムジェネレーティブツールがオンブランドなアセット生成を支えた。",
+    "client": "Stack Overflow",
+    "agency": "Koto",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://koto.com/projects/stack-overflow",
+    "thumbnail": "/thumbnails/stack-overflow-rebrand-a-legacy-recoded-2025.jpg",
+    "videoId": "",
+    "overview": "開発者向けQ&AプラットフォームStack Overflowのリブランディング。Kotoが手がけ、AIが生成する情報が氾濫する時代における「信頼できる人間の知識源」としてブランドを再定義し、その実装にあたってはAnthropicのClaudeを用いたカスタムジェネレーティブツールを構築、構成・モーション・色を調整しながらオンブランドなアセットを大量生成できる仕組みを整えた。",
+    "background": "生成AIの普及により誰でも即座に回答らしきものを得られるようになった一方で、Stack Overflowは長年蓄積されてきたコミュニティの検証済みの知見という独自の価値を持っていた。Kotoはこの「人間による検証された知識」という強みを、AI時代においてあらためて際立たせるブランドへの刷新を求められた。",
+    "execution": "Kotoはブランドの核となるビジュアル言語を定義したうえで、その運用を支えるツールとしてClaudeを活用したカスタムジェネレーティブシステムを構築。構成・モーション・色といったパラメータを調整しながらブランドガイドラインに沿ったアセットを継続的に生成できるようにし、大規模な展開でも一貫性を保てる仕組みとした。",
+    "evaluationImpact": "生成AIをブランドの前提を揺るがす脅威としてではなく、リブランドの制作プロセス自体に組み込んだ点が特徴で、AI時代のブランドアイデンティティ運用の一例としてKotoのポートフォリオで紹介されている。",
+    "relatedWorks": [],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Website",
+      "Theme/Education"
+    ]
+  },
+  {
     "id": "the-norwegian-academy-of-music-brand-identity-2013",
     "title": "The Norwegian Academy of Music Brand Identity",
     "summary": "ノルウェー音楽アカデミーのため、周囲の音をリアルタイムに波形グラフィックへ変換し続ける生成的ロゴシステム。",
