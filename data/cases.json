@@ -1,5 +1,42 @@
 [
   {
+    "id": "mullenlowe-global-rebrand-2023",
+    "title": "MullenLowe Global Rebrand",
+    "summary": "広告代理店MullenLoweが自社シンボルのタコを非対称な生成的フォルムへ刷新し、4,000人超の社員が専用アプリで自分だけのタコを生成できるようにしたリブランディング。",
+    "client": "MullenLowe",
+    "agency": "MullenLowe (in-house / MullenLowe U.S., led by João Paz)",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "D&AD Awards 2024 Yellow Pencil（Branding部門・Typography部門・Graphic Design部門の3部門でYellow Pencil受賞）",
+    "year": "2023",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.itsnicethat.com/news/mullenlowe-rebrand-graphic-design-070623",
+    "thumbnail": "/thumbnails/mullenlowe-global-rebrand-2023.jpg",
+    "videoId": "",
+    "overview": "広告代理店MullenLoweが2023年に実施したグローバルリブランディング。長らくシンボルとして使われてきたタコを、左右対称の固定されたロゴから、個体ごとに異なる非対称な生成的フォルムへと刷新し、世界中のオフィスに属する社員一人ひとりが自分専用のタコを持てる仕組みへと発展させた。",
+    "background": "MullenLoweは創業以来タコをシンボルに用いてきたが、従来のロゴは左右対称で画一的な形にとどまり、多様な人材やアイデアを擁するグローバルネットワークとしての企業の性格を十分に表現できていなかった。João Pazが率いるチームは、タコという既存資産を活かしながら、組織の多様性と個々の創造性を体現できるアイデンティティへ刷新する課題に取り組んだ。",
+    "execution": "デザインチームは、タコの脚の配置や吸盤の並びを対称的な図形からランダム性を持つ生成的なパラメータへと置き換え、無数のバリエーションを生み出せるビジュアルシステムを構築。さらに専用アプリを開発し、世界4,000人超の社員が自分だけの一体しかいないタコのマークを生成し、名刺やSNSなどで個人のアイデンティティとして使えるようにした。",
+    "evaluationImpact": "固定的な企業シンボルを社員一人ひとりが所有・生成できるパーソナルなマークへと転換した発想が高く評価され、D&AD Awards 2024でBranding・Typography・Graphic Designの3部門でYellow Pencilを受賞した。",
+    "relatedWorks": [
+      {
+        "title": "MullenLowe's rebrand replaces its recognisable symmetrical octopus with a jumble of generative-based mascots",
+        "description": "MullenLoweのリブランディングとタコの生成的リデザインを紹介するIt's Nice Thatの記事",
+        "url": "https://www.itsnicethat.com/news/mullenlowe-rebrand-graphic-design-070623"
+      }
+    ],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/App",
+      "Form/Print"
+    ]
+  },
+  {
     "id": "cytora-brand-identity-2018",
     "title": "Cytora Brand Identity",
     "summary": "保険テック企業Cytoraのリスク評価アルゴリズムを、常に形を変えるブロック状ビジュアルとして可視化したPentagramによるブランドアイデンティティ。",
