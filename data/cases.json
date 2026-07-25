@@ -1,5 +1,42 @@
 [
   {
+    "id": "patreon-reimagined-patreon-2023",
+    "title": "Patreon Reimagined（Patreonリブランディング）",
+    "summary": "PatreonがWolff Olins・3DアーティストDavid McLeod・タイプファウンドリDinamoと組み、形の定まらない流動的な3Dロゴと可変ワードマークで刷新したリブランディング。",
+    "client": "Patreon",
+    "agency": "Wolff Olins（David McLeod, Active Theory, Dinamoと協働）",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2023",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.itsnicethat.com/news/patreon-rebrand-graphic-design-121023",
+    "thumbnail": "/thumbnails/patreon-reimagined-patreon-2023.jpg",
+    "videoId": "",
+    "overview": "クリエイター支援プラットフォームPatreonが2023年に発表したブランド刷新。ブランディング会社Wolff Olins、3DアーティストDavid McLeod、タイプファウンドリDinamoが協働し、固定的な形を持たない流動的な3D形状のロゴと、状況に応じて姿を変える可変ワードマークを核とした新しいビジュアルアイデンティティを構築した。",
+    "background": "Patreonはクリエイターが多様な形で創作活動を行い、ファンとの関係を築くプラットフォームであり、従来の固定的なロゴでは創作者ごとの多様性やコンテンツの流動性を十分に表現できていなかった。Wolff Olinsは、単一の静的なシンボルではなく、常に形を変え続けるビジュアル言語によって、創作の多様性と可変性そのものをブランドの核に据える課題に取り組んだ。",
+    "execution": "3DアーティストDavid McLeodが手がけた、決まった輪郭を持たない流動的な3D形状をロゴの核に据え、タイプファウンドリDinamoが開発した可変フォントによるワードマークと組み合わせた。形状もタイポグラフィも固定されず、使用文脈に応じて姿を変え続けるシステムとして構築され、Active Theoryが加わりデジタル上での表現を制作した。",
+    "evaluationImpact": "静的なロゴマークという常識を離れ、常に形を変える3Dビジュアルと可変ワードマークでブランドを構成した手法が、クリエイターエコノミーの多様性を体現するリブランディング事例としてIt's Nice Thatで紹介された。",
+    "relatedWorks": [
+      {
+        "title": "Patreon unveils its rebrand featuring a nomadic identity",
+        "description": "PatreonのリブランディングとWolff Olins・David McLeod・Dinamoによる制作背景を紹介するIt's Nice Thatの記事",
+        "url": "https://www.itsnicethat.com/news/patreon-rebrand-graphic-design-121023"
+      }
+    ],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/Print",
+      "Theme/Art"
+    ]
+  },
+  {
     "id": "mullenlowe-global-rebrand-2023",
     "title": "MullenLowe Global Rebrand",
     "summary": "広告代理店MullenLoweが自社シンボルのタコを非対称な生成的フォルムへ刷新し、4,000人超の社員が専用アプリで自分だけのタコを生成できるようにしたリブランディング。",
