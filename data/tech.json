@@ -1,5 +1,44 @@
 [
   {
+    "id": "biologic",
+    "title": "bioLogic",
+    "org": "MIT Media Lab Tangible Media Group（Royal College of Art、New Balance、MIT化学工学科と共同）",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "HCI/MediaArt"
+    ],
+    "date": "2015-04",
+    "year": "2015",
+    "summary": "納豆菌（Bacillus subtilis natto）の湿度に応じた伸縮運動を利用し、生きた微生物をナノアクチュエーターとして生地に印刷、汗や体温に反応して開閉する「セカンドスキン」型スポーツウェアを作った研究プロジェクト。",
+    "point": "モーターや電子部品を一切使わず、生きた細胞そのものを『湿度センサー兼アクチュエーター』として使い、汗の量に応じて生地のフラップが自動で開閉するという点が革新的。従来のスマートテキスタイルが電子回路や形状記憶合金に依存していたのに対し、bioLogicは生物学的な材料そのものの応答性を利用しており、電源不要で軽量・生分解性のインタラクティブ素材を実現している。広告・体験づくりの視点では、汗や湿度、呼気など『人の生理反応』に呼応してリアルタイムに色や形が変わる衣装・インスタレーション素材として使え、ランニングイベントやスポーツブランドの体験施策、あるいは『生きている』ことを演出するアート/PRインスタレーションのコンセプト源として応用できそう。",
+    "detail": "納豆菌は湿度が上がると細胞が膨張し、乾燥すると収縮するという性質を持つ。研究チームはこの生きた細胞をマイクロメートル単位の解像度でバイオプリンティングし、生地の上に『しわ』状のパターンとして定着させることで、湿度変化に応じて生地自体が反り返る（フラップが開く）形状変化インターフェースを作った。New Balanceと共同で、汗をかく体の熱ゾーン周辺にこのパターンを配置したスポーツウェア『Second Skin』を試作し、発汗時にフラップが開いて汗の蒸発・冷却を促す仕組みを実証している。\n\n従来のスマートテキスタイルは形状記憶合金や電子アクチュエーター、外部電源を必要とすることが多いが、bioLogicは生きた微生物そのものの吸放湿性を利用するため、電源・電子回路が不要で、繰り返し湿潤・乾燥のサイクルに応じて可逆的に動作する点が特徴。CHI 2015でBest Talk AwardおよびBest Paper Honorable Mentionを受賞している。\n\n実用化には微生物の培養・バイオプリンティング設備や生地への定着技術など専門的なバイオファブリケーション環境が必要で、研究室レベルのプロトタイプの域を出ていない点には留意が必要。",
+    "license": {
+      "spdx": null,
+      "commercial": "research-only",
+      "note": "MITの学術研究プロジェクトで、ソフトウェアやデータの一般公開ライセンスは確認できず。商用利用にはNew Balance等との個別提携が前提。"
+    },
+    "links": [
+      {
+        "kind": "project",
+        "url": "https://tangible.media.mit.edu/project/biologic/"
+      },
+      {
+        "kind": "post",
+        "url": "https://www.creativeapplications.net/project/biologic-living-nanoactuators-yield-interfaces-that-are-grown-not-manufactured/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://dblp.uni-trier.de/rec/conf/chi/YaoOCSWWI15.html"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/biologic.jpg",
+    "relatedWorks": [],
+    "sources": [
+      "User"
+    ]
+  },
+  {
     "id": "fungal-computer",
     "title": "Fungal Computer（菌糸体メムリスタ／きのこコンピューティング）",
     "org": "Unconventional Computing Laboratory, University of the West of England Bristol（Andrew Adamatzky教授）",
