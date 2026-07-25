@@ -4869,5 +4869,203 @@
         "desc": "話しかけると編集ディレクターのように段取りを組み、素材選びからつなぎまで自動化する対話型動画編集エージェント。"
       }
     ]
+  },
+  {
+    "id": "2026-07-25-1",
+    "date": "2026-07-25",
+    "title": "夜だけ動き出す発光看板",
+    "pattern": "文脈×技術",
+    "seed": "Night Signalsのように夜間だけ発光する看板の仕組みと、音や声に反応して全身が動くEchoAvatarを組み合わせたら、ヘッドライトが当たった瞬間だけ踊り出す立体広告ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "night-signals-2026",
+        "title": "Night Signals",
+        "desc": "再帰性反射素材の看板が夜間ヘッドライトを浴びた瞬間だけ交通標識として発光し、無灯照明道路の安全性を高める仕組み。"
+      },
+      {
+        "type": "tech",
+        "id": "echoavatar",
+        "title": "EchoAvatar",
+        "desc": "話し声や音楽をリアルタイムに聞き取りながら、全身が自然に動く3Dアバターをその場で生成する研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-25-2",
+    "date": "2026-07-25",
+    "title": "合言葉で動き出すロボット",
+    "pattern": "文脈×技術",
+    "seed": "TENETの音声起動体験のように合言葉を話しかけると、TextOpが全身モーションを生成してヒューマノイドロボットが目の前で動き出す——そんな体験型プロモーションが作れそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "tenet-voice-activation",
+        "title": "TENET tenetfilm.com 音声起動体験",
+        "desc": "マイクに『Tenet』と話しかけると映画の未公開映像が解禁されるWebサイトの音声起動体験。"
+      },
+      {
+        "type": "tech",
+        "id": "textop",
+        "title": "TextOp",
+        "desc": "テキスト指示でヒューマノイドロボットが全身モーションを生成・実行し、動作中の指示変更にも追従する技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-25-3",
+    "date": "2026-07-25",
+    "title": "宙に浮かべる反射什器",
+    "pattern": "技術×技術",
+    "seed": "実写を反射・屈折ごと正確に描けるGRayで3D化した商品を、LeviFabの超伝導浮遊技術で宙に浮かせて展示したら、触れないのに触りたくなる什器になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "gray",
+        "title": "GRay",
+        "desc": "実写を3D化するGaussian Splattingを、反射・屈折・影ごと正確にレイトレーシング描画できる新手法。"
+      },
+      {
+        "type": "tech",
+        "id": "levifab",
+        "title": "LeviFab",
+        "desc": "液体窒素で冷却した超伝導体の効果で、磁石を埋め込んだ3Dプリント物体を空中に浮遊・操作できるHCI研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-25-4",
+    "date": "2026-07-25",
+    "title": "自分の動きを別映像化",
+    "pattern": "技術×技術",
+    "seed": "CYANPUPPETSでウェブカメラから自分の動きを208キーポイントでキャプチャし、その骨格をCoMoViに渡してテキストで別キャラの映像に変換する、参加型MVが作れそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "cyanpuppets-1b-parameter-ai-motion-capture",
+        "title": "CYANPUPPETS 1B-parameter AI Motion Capture",
+        "desc": "10億パラメータのAIをローカル実行し、ウェブカメラ映像から全身208キーポイントを抽出するモーションキャプチャ技術。"
+      },
+      {
+        "type": "tech",
+        "id": "comovi",
+        "title": "CoMoVi",
+        "desc": "文章から『3Dの人の動き』と『写実的な映像』を一つの生成ループの中で同時に作る研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-25-5",
+    "date": "2026-07-25",
+    "title": "秘匿3D撮影で流出防止",
+    "pattern": "転用",
+    "seed": "本来はクラウドを使わずローカルGPUだけで3Dメッシュ化するModlyを、未発表新製品の社外流出を防ぐ機密撮影・検品フローに転用したら、リーク対策になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "modly",
+        "title": "Modly",
+        "desc": "写真をクラウドに送らず、自分のPCのGPUだけで3Dメッシュ化できる完全ローカルの画像→3D変換アプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-25-6",
+    "date": "2026-07-25",
+    "title": "防犯カメラの動線3D化",
+    "pattern": "転用",
+    "seed": "本来はロボットの自己位置把握向けであるLingBot-Mapの単眼リアルタイム3D再構成を、家庭用防犯カメラに転用すれば、侵入者の動線をその場で3D可視化できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "lingbot-map",
+        "title": "LingBot-Map",
+        "desc": "LiDAR不要・単眼カメラ映像だけでシーンの3D形状を約20FPSでリアルタイム再構成する基盤モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-25-7",
+    "date": "2026-07-25",
+    "title": "生徒の動きで服を設計",
+    "pattern": "文脈×技術",
+    "seed": "The Undropped Kitが女子生徒2,000人と体操服を共同開発したように、CYANPUPPETSで生徒の動きをマーカーレス計測しデザインに反映すれば、もっと動きやすい服が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "asics-the-undropped-kit",
+        "title": "The Undropped Kit",
+        "desc": "女子生徒2,000人以上と共同開発した体操服が、スポーツ離れという社会課題を製品設計から変えた事例。"
+      },
+      {
+        "type": "tech",
+        "id": "cyanpuppets-1b-parameter-ai-motion-capture",
+        "title": "CYANPUPPETS 1B-parameter AI Motion Capture",
+        "desc": "10億パラメータのAIをローカル実行し、ウェブカメラ映像から全身208キーポイントを抽出するモーションキャプチャ技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-25-8",
+    "date": "2026-07-25",
+    "title": "静止パレードを映像化",
+    "pattern": "文脈×技術",
+    "seed": "It's Time to Stop!の全店30分停止を、AlayaWorldで1枚の写真から遊べる映像世界として再現すれば、来店できない人もオンラインで抗議に参加できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "bingo-group-its-time-to-stop",
+        "title": "It's Time to Stop!",
+        "desc": "全店を30分停止し、女性への暴力に反対する署名を集めたBingo Groupの社会施策。"
+      },
+      {
+        "type": "tech",
+        "id": "alayaworld",
+        "title": "AlayaWorld",
+        "desc": "1枚の画像とカメラの動き、テキスト指示から1分以上遊べる『動く映像世界』をリアルタイム生成するモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-25-9",
+    "date": "2026-07-25",
+    "title": "隠れた形の一致を3D化",
+    "pattern": "文脈×技術",
+    "seed": "Look Familiar?がフライドポテト箱とロゴの隠れた一致を暴いたように、4C4Dでたった4台のカメラから街中に隠れた形の一致を3D復元して見せる広告ができそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "heinz-look-familiar",
+        "title": "Look Familiar?",
+        "desc": "世界中のフライドポテト箱がハインツのロゴと同じ形だという事実を33カ国で展開したOOHキャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "4c4d",
+        "title": "4C4D",
+        "desc": "たった4台のカメラ映像から、動く3D空間(4D)を高精細に復元するCVPR 2026の研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-25-10",
+    "date": "2026-07-25",
+    "title": "ビートと育つ3D舞台",
+    "pattern": "技術×技術",
+    "seed": "Splice MCPで自然言語指示によりビートを組み上げながら、同時にDreamX-Worldでその曲の世界観をテキストから歩き回れる3D空間として生成すれば、曲と一緒に舞台美術が育つMVが作れそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "splice-mcp-claude-beatmaking",
+        "title": "Splice MCP Server × Claude Cowork によるAIビートメイク検証",
+        "desc": "Spliceの公式MCPサーバーをClaudeに接続し、自然言語の指示だけでヒップホップトラックを組めるか検証した事例。"
+      },
+      {
+        "type": "tech",
+        "id": "dreamx-world-1-0",
+        "title": "DreamX-World 1.0",
+        "desc": "テキスト指示だけで、視点を動かしても矛盾なく繋がり続ける『歩き回れる3D世界』の映像を生成できるAIモデル。"
+      }
+    ]
   }
 ]
