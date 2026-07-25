@@ -1,5 +1,43 @@
 [
   {
+    "id": "ocad-university-identity-2011",
+    "title": "OCAD University Identity",
+    "summary": "白黒の「ウィンドウ」フレームに毎年の卒業制作を差し込み続ける、成長し続けるルールベースの生成的アイデンティティ。",
+    "client": "OCAD University",
+    "agency": "Bruce Mau Design",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2011",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://identitydesigned.com/ocad-university/",
+    "thumbnail": "/thumbnails/ocad-university-identity-2011.jpg",
+    "videoId": "",
+    "overview": "カナダ・トロントの美術大学OCAD Universityのために、Bruce Mau Designが制作したブランドアイデンティティ。固定の図像やシンボルを持たず、白黒の「ウィンドウ」と呼ばれる矩形フレームを基本フォーマットとして、その中に学生や卒業生の作品画像を差し込むことでロゴが構成される仕組みを採用した。",
+    "background": "OCAD Universityは美術・デザイン教育を核とする大学であり、在学生・卒業生が生み出す作品そのものが大学の価値を体現していた。単一の固定シンボルでは多様な創作活動や年々更新される学生の成果を表現しきれないという課題があり、大学のアイデンティティを「作品を見せる器」として設計する発想が求められた。",
+    "execution": "白黒のシンプルな矩形フレーム＝「ウィンドウ」をアイデンティティの基本ルールとして定義し、その内側に学生や卒業生の作品画像を差し込む構造とした。フレーム自体は固定のグラフィックルールとして機能し続ける一方、中身は年ごとの卒業制作や在学生の作品に応じて更新され、大学のアイデンティティが年々アップデートされ続ける生成的なシステムとして運用された。",
+    "evaluationImpact": "固定シンボルに頼らず、フレームというルールと差し替え可能な作品というコンテンツの組み合わせでアイデンティティを構成した点が特徴。学生の創作物を主役に据えることで大学のクリエイティブな価値を継続的に発信できる仕組みとして、ルールベースの生成的アイデンティティ事例として参照されている。",
+    "relatedWorks": [
+      {
+        "title": "MIT Media Lab Identity",
+        "description": "アルゴリズムから多数のバリエーションを生成する生成的アイデンティティの代表事例",
+        "url": "https://eroonkang.com/feature/mit-media-lab-identity"
+      }
+    ],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Form/Print",
+      "Form/Website",
+      "Theme/Education",
+      "Theme/Art"
+    ]
+  },
+  {
     "id": "visit-nordkyn-where-nature-rules-2010",
     "title": "Visit Nordkyn: Where Nature Rules",
     "summary": "ノルウェー気象研究所のリアルタイム気象データと連動し、5分ごとに色と形が自動更新する雪の結晶ロゴを軸にした、天候連動型の生成的観光ブランドアイデンティティ。",
