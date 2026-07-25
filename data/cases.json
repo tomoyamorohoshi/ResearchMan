@@ -1,5 +1,43 @@
 [
   {
+    "id": "forskningsr-det-rebrand-generative-identity-system-2023",
+    "title": "Forskningsrådet Rebrand (Generative Identity System)",
+    "summary": "ノルウェー研究会議のリブランディングで、ANTIがDubins曲線でグリッド上の点を結ぶロゴジェネレーターを開発し、無数のバリエーションで38のサブブランドを一つの美学に束ねた事例。",
+    "client": "Forskningsrådet（ノルウェー研究会議）",
+    "agency": "ANTI",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "D&AD 2023 Graphite Pencil（Branding部門）、Red Dot 2023 Grand Prix（Brand Identity Redesign）",
+    "year": "2023",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.underconsideration.com/brandnew/archives/new_logo_and_identity_for_forskningsradet_by_anti.php",
+    "thumbnail": "/thumbnails/forskningsr-det-rebrand-generative-identity-system-2023.jpg",
+    "videoId": "",
+    "overview": "2023年、ノルウェー研究会議（Forskningsrådet）のリブランディングとしてANTIが手がけたアイデンティティシステム。Dubins曲線によりグリッド上のランダムな点を結んでロゴを自動生成するジェネレーターを核とし、傘下38のサブブランドを単一のビジュアル言語のもとに統合した。",
+    "background": "ノルウェー研究会議は多岐にわたる38の研究分野・プログラムを傘下に抱え、それぞれが独自のロゴやビジュアルを持つことで組織全体としての一体感が失われていた。ANTIは、個々の多様性を尊重しながらも全体を貫く一貫したブランド言語を確立するという課題に取り組んだ。",
+    "execution": "ANTIはDubins曲線のアルゴリズムを用い、グリッド上に配置されたランダムな点を結んでロゴマークを生成する仕組みを開発。この生成システムにより理論上無数のロゴバリエーションを作り出し、38あるサブブランドそれぞれに固有の形を与えつつ、共通のルールと美学のもとで一つの組織であることを視覚的に示した。",
+    "evaluationImpact": "固定された単一のロゴではなく生成的なシステムそのものをアイデンティティの核に据えた手法は、複数の下位ブランドを抱える組織のブランディング課題への解として評価され、D&AD 2023 Graphite Pencil（Branding部門）およびRed Dot 2023 Grand Prix（Brand Identity Redesign）を受賞した。",
+    "relatedWorks": [
+      {
+        "title": "Forskningsrådet Rebrand coverage",
+        "description": "ANTIによるノルウェー研究会議のリブランディングを紹介するBrand New（UnderConsideration）の記事",
+        "url": "https://www.underconsideration.com/brandnew/archives/new_logo_and_identity_for_forskningsradet_by_anti.php"
+      }
+    ],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Print",
+      "Form/Event",
+      "Theme/Education"
+    ]
+  },
+  {
     "id": "san-francisco-symphony-dynamic-typography-2021",
     "title": "San Francisco Symphony Dynamic Typography",
     "summary": "指揮者エサ=ペッカ・サロネンの就任を機に、CollinsがDinamoと組んでサンフランシスコ交響楽団のため音や動きに反応して形を変えるバリアブルフォントを核にブランドを刷新した事例。",
