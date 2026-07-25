@@ -1,5 +1,36 @@
 [
   {
+    "id": "san-francisco-symphony-dynamic-typography-2021",
+    "title": "San Francisco Symphony Dynamic Typography",
+    "summary": "指揮者エサ=ペッカ・サロネンの就任を機に、CollinsがDinamoと組んでサンフランシスコ交響楽団のため音や動きに反応して形を変えるバリアブルフォントを核にブランドを刷新した事例。",
+    "client": "San Francisco Symphony",
+    "agency": "Collins（タイプフェイス開発：Dinamo）",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2021",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://bpando.org/2022/09/21/branding-san-francisco-symphony/",
+    "thumbnail": "/thumbnails/san-francisco-symphony-dynamic-typography-2021.jpg",
+    "videoId": "",
+    "overview": "2021年、新音楽監督エサ=ペッカ・サロネンの就任に合わせてサンフランシスコ交響楽団が発表したブランドアイデンティティ刷新。CollinsがタイプファウンドリDinamoと協働し、音や動きに応じて字形が変化するバリアブルフォントを開発、ロゴタイプからビジュアル全般の核に据えた。",
+    "background": "サンフランシスコ交響楽団は新音楽監督エサ=ペッカ・サロネンの就任を機に、伝統的なオーケストラのイメージにとどまらない、生きた音楽体験そのものを表現するアイデンティティへの刷新を求めていた。Collinsはこの課題に対し、静的なロゴタイプではなく音楽の躍動を形として反映できる可変的な書体という発想でアプローチした。",
+    "execution": "CollinsはDinamoと共同で、音の強弱やリズムなどの入力に応じてウェイトや字形が連続的に変化するバリアブルフォントを開発。このダイナミックなタイポグラフィをロゴタイプや各種ビジュアル表現の基盤として、演奏やコンテンツの内容に応じて表情を変えるブランドシステムを構築した。",
+    "evaluationImpact": "音や動きに反応して姿を変える書体をブランドの中核に据えた手法は、伝統的なクラシック音楽団体のアイデンティティ表現に新たな可能性を示した事例として、bp&oなどデザインメディアで紹介された。",
+    "relatedWorks": [],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Form/Print",
+      "Theme/Music"
+    ]
+  },
+  {
     "id": "mtv-music-television-logo-1981",
     "title": "MTVロゴ（Music Television logo）",
     "summary": "1981年にManhattan DesignがMTVのために制作した、固定色を持たず質感や柄を自在に変え続けることを前提に設計されたロゴ。",
