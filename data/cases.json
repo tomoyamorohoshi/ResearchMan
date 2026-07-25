@@ -1,5 +1,43 @@
 [
   {
+    "id": "philharmonie-luxembourg-identity-2023",
+    "title": "Philharmonie Luxembourg Identity",
+    "summary": "コンサートホールの柱をモチーフにしたロゴが、演奏中の音楽の波形にリアルタイムで反応して振動・屈折するPhilharmonie Luxembourgのジェネレーティブアイデンティティ。",
+    "client": "Philharmonie Luxembourg",
+    "agency": "NB Studio（クリエイティブコーダー: Patrik Hübner）",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2023",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://bpando.org/2023/11/14/music-branding-philharmonie-luxembourg-nb-studio/",
+    "thumbnail": "/thumbnails/philharmonie-luxembourg-identity-2023.jpg",
+    "videoId": "",
+    "overview": "NB Studioが2023年に手がけたPhilharmonie Luxembourgのブランドアイデンティティ。同館の建築を特徴づける柱の連なりをロゴのモチーフとし、演奏中の音楽の波形データにあわせてロゴが振動・屈折するジェネレーティブなビジュアルシステムとして構築された。",
+    "background": "コンサートホールのアイデンティティは、建築の外観をロゴ化するにとどまり、そこで実際に生まれる音楽体験そのものとは切り離されがちだった。NB Studioは、Philharmonie Luxembourgの象徴である柱をモチーフとしつつ、館内で鳴る音楽と連動して形を変えるロゴを構築することで、建築と音楽の両方を一つのアイデンティティに統合する課題に取り組んだ。",
+    "execution": "クリエイティブコーダーPatrik Hübnerが、JavaScript・WebGL・Vue.jsを用いて音楽の波形データをリアルタイムに解析し、柱を模したロゴの形状へ反映させる仕組みを開発。演奏される楽曲ごとに波形が変わることで、ロゴが振動・屈折しながら異なる見え方を生むジェネレーティブなアイデンティティシステムとして展開された。",
+    "evaluationImpact": "建築のモチーフと演奏中の音楽データを直結させ、静的なロゴを常に変化する生成的なビジュアルへ転換した手法が、音楽ブランディングにおける表現の一例としてbp&oで紹介された。",
+    "relatedWorks": [
+      {
+        "title": "Music branding: Philharmonie Luxembourg by NB Studio",
+        "description": "NB StudioによるPhilharmonie Luxembourgのジェネレーティブアイデンティティを紹介するbp&oの記事",
+        "url": "https://bpando.org/2023/11/14/music-branding-philharmonie-luxembourg-nb-studio/"
+      }
+    ],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Tech/Web",
+      "Form/Website",
+      "Theme/Music"
+    ]
+  },
+  {
     "id": "forest-carbon-in-tune-with-nature-2025",
     "title": "Forest Carbon: In Tune with Nature",
     "summary": "絶滅危惧種の鳴き声などの森林音をChladni図形へと変換し、生物多様性を可視化する生成的アイデンティティでForest Carbonをリブランディングした事例。",
