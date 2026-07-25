@@ -1,5 +1,38 @@
 [
   {
+    "id": "in-the-eyes-of-the-animal-2015",
+    "title": "In the Eyes of the Animal",
+    "summary": "Marshmallow Laser Feastが、LiDARスキャンとドローン空撮を用いて森を蚊やトンボ、フクロウなど動物の知覚世界から体験させるVR/XRインスタレーション。",
+    "client": "Abandon Normal Devices / Forestry Commission England",
+    "agency": "Marshmallow Laser Feast",
+    "categories": [
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2015",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://marshmallowlaserfeast.com/project/in-the-eyes-of-the-animal/",
+    "thumbnail": "/thumbnails/in-the-eyes-of-the-animal-2015.jpg",
+    "videoId": "",
+    "overview": "クリエイティブスタジオMarshmallow Laser Feastが2015年に発表したVR/XRインスタレーション。実在するイギリスの森をLiDARスキャンとドローン空撮によってデータ化し、蚊、トンボ、フクロウという3種の動物が知覚する世界（Umwelt）を疑似体験させる。人間の視覚とは異なる感覚モデルで森を歩くことを可能にした作品。",
+    "background": "森という身近な自然環境も、そこに生きる動物たちがどのように知覚しているかは人間の視点からは想像しにくい。Abandon Normal DevicesとForestry Commission Englandは、テクノロジーによって自然への新しい向き合い方を提示するプロジェクトとしてMarshmallow Laser Feastに制作を依頼し、森のフィールドワークとデータ収集を伴う制作が進められた。",
+    "execution": "実際の森をLiDARスキャンとドローンによる空撮で立体的にデータ化し、点群やボリュメトリックな映像表現へと変換。その空間データをもとに、蚊の熱感知、トンボの複眼による広角視野、フクロウの暗視能力といった各動物固有の感覚特性をVR/XR体験としてシミュレートし、鑑賞者が装着したヘッドセットを通じて森を巡る一人称視点の体験を構築した。",
+    "evaluationImpact": "自然科学的な知見であるUmwelt（生物ごとの主観的知覚世界）という概念を、最新のスキャニング技術とVR表現によって一般の観客が体感できる形に翻訳した事例として位置づけられる。人間中心の視覚から離れた自然体験のあり方を提示し、テクノロジーを介した環境理解・自然への感受性を広げるインスタレーションとして紹介されている。",
+    "relatedWorks": [],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/XR",
+      "Tech/3D",
+      "Form/Installation",
+      "Theme/Art",
+      "Theme/Sustainability"
+    ]
+  },
+  {
     "id": "antibiotic-resistance-quilt-2017",
     "title": "Antibiotic Resistance Quilt",
     "summary": "アーティストのアンナ・デュミトリウが、実在するMRSAや多剤耐性菌を布地に培養・染色し、目に見えない薬剤耐性の脅威を刺繍キルトとして可視化したバイオアート作品。",
