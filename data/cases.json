@@ -1,5 +1,38 @@
 [
   {
+    "id": "the-norwegian-academy-of-music-brand-identity-2013",
+    "title": "The Norwegian Academy of Music Brand Identity",
+    "summary": "ノルウェー音楽アカデミーのため、周囲の音をリアルタイムに波形グラフィックへ変換し続ける生成的ロゴシステム。",
+    "client": "Norwegian Academy of Music",
+    "agency": "Neue",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2013",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://neue.no/work/the-norwegian-academy-of-music/",
+    "thumbnail": "/thumbnails/the-norwegian-academy-of-music-brand-identity-2013.jpg",
+    "videoId": "",
+    "overview": "デザインスタジオNeueが2013年に手がけたノルウェー音楽アカデミー（Norwegian Academy of Music）のブランドアイデンティティ。校内の練習音やカフェテリアの会話、拍手といった環境音をマイクで拾い、水平線の上下に配置された波形グラフィックとしてリアルタイムに描画する「endless visual pulse」というコンセプトのもと、常に変化し続ける生成的なロゴシステムを構築した。",
+    "background": "音楽教育機関である同アカデミーは、日々校内で生まれる演奏や会話といった音そのものが活動の本質であるにもかかわらず、従来の静的なロゴでは組織の生きた活動性を表現できないという課題を抱えていた。Neueは音楽学校という場に絶えず存在する「音」を直接アイデンティティの素材とする発想から制作に着手した。",
+    "execution": "校内のさまざまな場所で拾われる練習音、カフェテリアの会話、拍手などの音声をマイクで収集し、その音量や周波数の変化を水平線を軸に上下対称に振れる波形グラフィックへと変換。この波形をロゴマークの可変要素とし、収集した音に応じてリアルタイムに描画され続ける「endless visual pulse」として、途切れることのない生成的なビジュアルシステムに仕立てた。",
+    "evaluationImpact": "組織内で常時発生する音そのものをアイデンティティの生成源に据えた点で、静的なロゴマークに依存しないサウンド駆動型のブランドシステムの一例としてNeueのポートフォリオを通じて紹介されている。",
+    "relatedWorks": [],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Tech/Data",
+      "Form/Installation",
+      "Theme/Music",
+      "Theme/Education"
+    ]
+  },
+  {
     "id": "cohere-brand-identity-by-pentagram-2023",
     "title": "Cohere Brand Identity by Pentagram",
     "summary": "AI言語モデル企業Cohereのため、Pentagramがボロノイ図を生成的コアに据えて構築したブランドアイデンティティ",
