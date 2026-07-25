@@ -1,5 +1,42 @@
 [
   {
+    "id": "whitney-museum-graphic-identity-responsive-w-2013",
+    "title": "Whitney Museum Graphic Identity (Responsive W)",
+    "summary": "アムステルダムのExperimental Jetsetが手がけた、ジグザグの『W』が周囲のコンテンツ量に応じて伸縮するホイットニー美術館のレスポンシブなグラフィックアイデンティティ。",
+    "client": "Whitney Museum of American Art",
+    "agency": "Experimental Jetset",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2013",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.dezeen.com/2013/05/21/whitney-graphic-identity-by-experimental-jetset/",
+    "thumbnail": "/thumbnails/whitney-museum-graphic-identity-responsive-w-2013.jpg",
+    "videoId": "",
+    "overview": "2013年、アムステルダムのデザインスタジオExperimental Jetsetがホイットニー美術館のために手がけたグラフィックアイデンティティ。ジグザグ状の線で描かれた『W』の一文字を基本形とし、掲載される媒体やコンテンツの量に応じてその形状が伸縮するレスポンシブなロゴとして設計されている。",
+    "background": "新館オープンを控えていたホイットニー美術館は、印刷物からデジタルまで多様な媒体・レイアウトで展開されるアイデンティティを必要としていた。Experimental Jetsetは、固定された一つの形を持つロゴではなく、掲載環境に合わせて姿を変えられる可変的なマークという発想でこの課題に応えた。",
+    "execution": "Experimental Jetsetはジグザグの折れ線から成る『W』の文字を基本モチーフとし、周囲に配置されるテキストや画像の分量に応じてジグザグの数や幅が伸縮する仕組みを構築した。この一つのルールに基づく可変ロゴを、印刷物からウェブサイトまで館のあらゆるビジュアル表現に一貫して適用した。",
+    "evaluationImpact": "コンテンツの量という外部条件に応じて形を変えるロゴという発想は、美術館という多様な媒体展開を必要とする組織のアイデンティティ設計の一例としてDezeenなどデザインメディアで紹介された。",
+    "relatedWorks": [
+      {
+        "title": "Whitney graphic identity by Experimental Jetset",
+        "description": "Experimental Jetsetによるホイットニー美術館のレスポンシブなグラフィックアイデンティティを紹介するDezeenの記事",
+        "url": "https://www.dezeen.com/2013/05/21/whitney-graphic-identity-by-experimental-jetset/"
+      }
+    ],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Form/Print",
+      "Form/Website",
+      "Theme/Art"
+    ]
+  },
+  {
     "id": "forskningsr-det-rebrand-generative-identity-system-2023",
     "title": "Forskningsrådet Rebrand (Generative Identity System)",
     "summary": "ノルウェー研究会議のリブランディングで、ANTIがDubins曲線でグリッド上の点を結ぶロゴジェネレーターを開発し、無数のバリエーションで38のサブブランドを一つの美学に束ねた事例。",
