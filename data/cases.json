@@ -1,5 +1,37 @@
 [
   {
+    "id": "mushrooms-the-art-design-and-future-of-fungi-2020",
+    "title": "Mushrooms: The Art, Design and Future of Fungi",
+    "summary": "ロンドンのSomerset Houseでキノコをテーマに40名以上の作家を集めた展覧会。会場タイポグラフィはPentagramがキノコの形状からAIで生成した。",
+    "client": "Somerset House（キュレーション：Francesca Gavin）",
+    "agency": "Pentagram（会場デザイン・タイポグラフィ）",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2020",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.smithsonianmag.com/smart-news/get-taste-mushroom-art-new-fungus-forward-exhibition-180973863/",
+    "thumbnail": "/thumbnails/mushrooms-the-art-design-and-future-of-fungi-2020.jpg",
+    "videoId": "",
+    "overview": "ロンドンのSomerset Houseで開催された、キノコをテーマに40名以上のアーティスト・デザイナー・音楽家の作品を集めた展覧会。村上隆、Carsten Höller、Cy Twombly、John Cage、Beatrix Potterらの作品が出展され、キュレーションはFrancesca Gavinが担当。会場デザインとタイポグラフィはPentagramが手がけ、AIでキノコの形状から生成した独自のフォントを展示空間全体に展開した。",
+    "background": "菌類は古くから芸術・文学・音楽など幅広い分野で創作の源泉となってきたが、その多様な文化的広がりを横断的に紹介する展覧会は少なかった。Francesca Gavinは菌類が持つアート・デザイン・科学・サステナビリティにまたがる可能性に着目し、歴史的作品から現代アートまでを一堂に集める企画としてSomerset Houseで本展を構成した。",
+    "execution": "会場デザインを担当したPentagramは、キノコの形状データをAIに学習させて生成した専用タイポグラフィを開発し、サイン計画や展示グラフィックに展開した。村上隆、Carsten Höller、Cy Twombly、John Cage、Beatrix Potterなど分野の異なる作家の作品を、菌類という共通テーマのもとで一つの展示空間にまとめ上げた。",
+    "evaluationImpact": "アート・デザイン・音楽・科学を横断しながら「菌類」という一つのモチーフで束ねる構成が話題となり、Smithsonian Magazineなど複数メディアで紹介された。会場タイポグラフィにAI生成を取り入れた点は、展覧会デザインにおける生成的手法の応用例として注目された。",
+    "relatedWorks": [],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Exhibition",
+      "Form/Print",
+      "Theme/Art"
+    ]
+  },
+  {
     "id": "edp-energias-de-portugal-2022",
     "title": "EDP (Energias de Portugal) ブランドアイデンティティ",
     "summary": "回転する面上の点の軌跡から渦巻きロゴを自動生成し、再生可能エネルギーへの変革を象徴したEDPの新ブランドアイデンティティ。",
