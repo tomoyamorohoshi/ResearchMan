@@ -1,5 +1,161 @@
 [
   {
+    "id": "echoavatar",
+    "title": "EchoAvatar",
+    "org": "Zhejiang University (State Key Lab of CAD&CG)",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "AI/Agents",
+      "GenVideo"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "話し声や音楽をリアルタイムに聞き取りながら、全身が自然に動く3Dアバターをその場で生成する研究。会話にもダンスにも同じ仕組みで対応する。",
+    "point": "このシステムのすごいところは、音声を最後まで聞いてから動きを作るのではなく、話している最中の音の流れをそのままリアルタイムで拾って、遅れなくキャラクターの体を動かせる点です。しかも同じ仕組みで、日常会話のような自然なジェスチャーと、音楽に合わせたダンスの両方を作れます。さらにChatGPTのような音声AIアシスタントと直接つないで、「うなずいて」「もっと元気に踊って」のような指示をリアルタイムに反映させることもできます。この技術があれば、配信やライブイベントでAIキャラクターが視聴者とその場で会話しながら自然に身振り手振りを返す接客・MC体験や、店頭・展示会に置くしゃべって踊るデジタルサイネージのキャラクター、音声アシスタント連動のバーチャルタレントのようなものが、遅延なく作れるようになりそうです。",
+    "detail": "仕組みとしては、マイクから入ってくる音声を細切れの断片として少しずつAIに渡し、その都度「次の一瞬の体の動き」を予測して足していく方式を取っています。人間が話を聞きながら相槌を打つように、AIも音の到着を待たずに動き続けられるのがポイントです。学習の際には、動きが音にきちんと連動するよう強化学習で仕上げの調整をしており、不自然な間延びや棒立ちを防いでいます。\n\n従来のアバター生成AIの多くは、あらかじめ用意された音声ファイル全体を解析してから動きを書き出す「オフライン処理」でした。そのためライブ配信や対話中のキャラクターには使いにくいという弱点がありました。EchoAvatarは配信中にリアルタイムで動きを出し続けられる点、さらに会話用とダンス用でモデルを分けなくてよい点が従来との大きな違いです。\n\n使うには、3Dキャラクターを動かすための骨格データと、ある程度の計算能力を持つGPUを積んだPC、Unityなどのゲームエンジンでの表示環境が必要です。研究段階のコードとして無償公開されていますが、ライセンス表記がないため、実案件に使う前には開発元への利用条件確認とプロ向けの検証を挟むのが安全です。",
+    "license": {
+      "spdx": null,
+      "commercial": "research-only",
+      "note": "リポジトリにライセンス表記なし。学術研究コードとして公開されており、商用利用条件は開発元への確認が必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/RobinWitch/EchoAvatar"
+      },
+      {
+        "kind": "project",
+        "url": "https://robinwitch.github.io/EchoAvatar-Page/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2605.28272"
+      },
+      {
+        "kind": "video",
+        "url": "https://youtu.be/GydR3H6YwBQ"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/echoavatar.jpg",
+    "relatedWorks": [
+      {
+        "title": "HunyuanVideo-Avatar",
+        "description": "音声から感情豊かなアバター動画を生成するTencentのモデル",
+        "url": "https://huggingface.co/tencent/HunyuanVideo-Avatar"
+      },
+      {
+        "title": "Kimodo",
+        "description": "テキストと骨格制約から人間・ロボットの動きを生成するNVIDIAの拡散モデル",
+        "url": "https://research.nvidia.com/labs/sil/projects/kimodo/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "mace-dance",
+    "title": "MACE-Dance",
+    "org": "AMap (Alibaba) / Renmin University of China",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "GenVideo"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "1枚の人物写真と1曲の音楽を渡すだけで、その人がリズムに合わせて踊る高品質なダンス動画を自動生成する技術。",
+    "point": "すごいのは、「振り付け(体の動き)」と「見た目の質感(映像としての仕上がり)」を別々の専門AIに分業させている点です。まず「モーション担当AI」が音楽のリズムやジャンルを解析して3Dの骨格アニメーションを作り、それを受け取った「映像担当AI」が指定した人物写真の顔や服装を崩さずに動画へ変換します。この二段構えのおかげで、動きが不自然にガクガクしたり、途中で顔や服が変わってしまったりする従来モデルの弱点を大きく減らしています。広告の世界では、タレントを長時間拘束して撮影しなくても、1枚の商品モデル写真とBGMだけでダンス動画バリエーションを量産できたり、SNSキャンペーン用に「好きな曲で踊るオリジナルアバター」をユーザー参加型で作らせる企画にも応用できそうです。",
+    "detail": "仕組みは二段階のリレーです。1段目の「Motion Expert」が音楽データから人体の関節位置(SMPLという3D人体モデル形式)の時系列を予測し、リズムに合った振り付けを作ります。2段目の「Appearance Expert」はその骨格の動きを設計図として使い、渡された1枚の人物画像の見た目(髪型・服・体型)を保ったまま、コマごとの映像を生成します。役割を分けたことで、単一のAIに全部を任せる従来方式より、長い動画でも人物の同一性やダンスジャンルの多様性を保ちやすくなっています。\n\n学習には約70,000本・116時間分のダンス動画データセットが使われており、20種類以上のダンスジャンルに対応します。開発には中国人民大学(Renmin University)のほか、地図アプリ大手アリババ傘下AMapの研究チームが関わっています。\n\n使うにはある程度のVRAMを積んだGPU環境とPythonの実行環境が必要で、モデルの重み自体はHugging Face経由で申請の上ダウンロードする形です。コードはGitHubで公開されていますが、ライセンス表記が明記されていないため、商用での本番投入前には開発元への利用条件の確認をおすすめします。",
+    "license": {
+      "spdx": null,
+      "commercial": "research-only",
+      "note": "リポジトリにライセンス表記なし。モデル重みはHugging Face経由の申請制で、商用利用条件は要確認"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/AMAP-ML/MACE-Dance"
+      },
+      {
+        "kind": "project",
+        "url": "https://sun-happy-ykx.github.io/MACE-Dance/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2512.18181"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/mace-dance.jpg",
+    "relatedWorks": [
+      {
+        "title": "LongCat-Video-Avatar",
+        "description": "音声駆動でキャラクターアニメーションを生成するMeituanのモデル",
+        "url": "https://huggingface.co/meituan-longcat/LongCat-Video-Avatar"
+      },
+      {
+        "title": "EchoAvatar",
+        "description": "音声ストリームからリアルタイムに全身アバターの動きを生成する研究",
+        "url": "https://robinwitch.github.io/EchoAvatar-Page/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "ovrtx-ovphysx",
+    "title": "ovrtx / ovphysx (NVIDIA Agent Toolkit — Omniverse Libraries)",
+    "org": "NVIDIA",
+    "type": "Tool",
+    "domains": [
+      "AI/Agents",
+      "CreatorTools",
+      "Spatial/3D"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "NVIDIAが公開した、AIエージェントが3Dシーンをカメラ・センサー視点でシミュレーションしたり、Blenderなど既存の制作ツールの中で物理挙動を自動検証したりできるようにするSDK群。",
+    "point": "これまでロボットや自動運転向けのシミュレーション環境は専用のOmniverseアプリの中でしか作れませんでしたが、ovrtx/ovphysxはそれを「後付けの部品」として自分のアプリやBlenderのような制作ツールに組み込めるようにした点が新しいです。カメラ・LiDAR・レーダーからどう見えるかをリアルなレンダリングで生成する「ovrtx」と、衝突や重さ・摩擦といった物理挙動をGPUで高速計算する「ovphysx」を組み合わせることで、AIエージェントに「このシーンは物理的に破綻していないか」「センサーからはどう見えるか」を自動チェックさせられます。広告・映像制作の観点では、CGアセットが物理的に自然に置かれているかをAIが自動で見張る品質チェック係にしたり、実写合成前に監視カメラ風・車載カメラ風といったセンサー視点のプレビュー映像を一瞬で作る用途に応用できそうです。",
+    "detail": "仕組みとしては、ovrtxが3D空間の記述フォーマット「OpenUSD」で作られたシーンを読み込み、カメラやLiDARといった「センサーの目線」でどう見えるかを物理的に正確なレンダリングとして書き出します。ovphysxはそこに重力・衝突・摩擦などの物理法則を適用し、「置いた物が転がり落ちないか」「ぶつかった物がどう跳ね返るか」といった検証をGPUで高速に行います。これらはNVIDIAが用意した完成品アプリではなく、C/PythonのSDK(部品)として提供されているため、開発者がBlenderのアドオンや自社ツールに組み込んで使う設計です。実際にBlender向けの組み込みサンプル「SimReady Blender」がSIGGRAPH 2026で公開され、画面を離れずにAIエージェントがセンサーシミュレーションや物理検証、アセットの妥当性チェックを行えることが実演されています。\n\n従来のOmniverse関連ツールは、NVIDIAの専用アプリをインストールして使うのが前提でしたが、今回のライブラリ群は「既存のアプリに部品として足す」形に変わったのが大きな違いです。使うにはNVIDIA製のRTX世代GPUと対応ドライバが必須で、ライセンスはNVIDIA独自の使用許諾(プロプライエタリ)のため、オープンソースではなく無償で使える「NVIDIA製ソフトウェア」という位置づけです。商用利用時の条件は個別に確認が必要です。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "NVIDIA独自のソフトウェアライセンス(プロプライエタリ)。RTX GPU必須。無償だがOSSではなく商用時の条件は個別確認"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/NVIDIA-Omniverse/ovrtx"
+      },
+      {
+        "kind": "post",
+        "url": "https://developer.nvidia.com/blog/integrate-nvidia-omniverse-rtx-sensor-simulation-into-existing-apps"
+      },
+      {
+        "kind": "product",
+        "url": "https://nvidianews.nvidia.com/news/nvidia-agent-toolkit-expands-with-new-omniverse-libraries-putting-ai-agents-to-work-building-simulation-ready-worlds"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/ovrtx-ovphysx.jpg",
+    "relatedWorks": [
+      {
+        "title": "NVIDIA NemoClaw",
+        "description": "AIエージェントを安全なサンドボックス内で動かすためのオープンソース基盤",
+        "url": "https://github.com/NVIDIA/NemoClaw"
+      },
+      {
+        "title": "NVIDIA Isaac GR00T",
+        "description": "ロボット向けの基盤モデル・ホールボディ制御フレームワーク",
+        "url": "https://developer.nvidia.com/isaac/gr00t"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "vrchat-gaussian-splatting-v4",
     "title": "VRChat Gaussian Splatting v4",
     "org": "Mykhailo Moroz（個人開発者）",
