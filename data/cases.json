@@ -1,5 +1,36 @@
 [
   {
+    "id": "oi-responsive-logo-2016",
+    "title": "Oi Responsive Logo",
+    "summary": "ブラジルの通信会社Oiのため、Wolff Olinsがマイク入力の音量・音程に応じてリアルタイムに形と色が変化するロゴを開発した事例。",
+    "client": "Oi",
+    "agency": "Wolff Olins",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2016",
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.dezeen.com/2016/04/15/wolff-olins-logo-telecoms-company-oi-morphs-in-response-to-sounds/",
+    "thumbnail": "/thumbnails/oi-responsive-logo-2016.jpg",
+    "videoId": "",
+    "overview": "ブラジルの通信会社Oiのブランドアイデンティティ刷新。Wolff Olinsがベルリンのデザインスタジオonformativeと共同で、マイクから入力される音の音量や音程の変化にリアルタイムに反応し、形や色が絶えず変化し続けるレスポンシブなロゴシステムを開発した。",
+    "background": "通信会社であるOiは、人々の会話やコミュニケーションを支える事業の本質を、静的なシンボルではなく生きたビジュアルとして表現するアイデンティティを求めていた。Wolff Olinsはこの課題に対し、音そのものをロゴの生成源とする発想でリブランドに着手した。",
+    "execution": "Wolff Olinsはonformativeとともに、マイク入力から音量と音程をリアルタイムに解析するシステムを構築し、その値に応じてロゴの形状と色彩が連続的に変化するアルゴリズムを開発。会話や音楽といった周囲の音に反応して姿を変えるロゴとして、デジタル上のアプリケーションに実装した。",
+    "evaluationImpact": "音声入力に反応して常に変化し続けるロゴという手法は、静的なロゴマークの枠を超えたレスポンシブ・アイデンティティの先駆的な事例としてデザインメディアDezeenで取り上げられた。",
+    "relatedWorks": [],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Tech/Data",
+      "Form/Installation"
+    ]
+  },
+  {
     "id": "reimagining-our-global-brand-with-generative-ai-orb-foundry",
     "title": "Reimagining Our Global Brand with Generative AI (Orb Foundry)",
     "summary": "Deloitte Digitalが自社ブランド刷新のため、Adobe Fireflyのカスタム生成モデル「Orb Foundry」で世界30市場のチームが独自の3D『Orb』アセットを90秒未満で生成できる仕組みを構築した事例。",
