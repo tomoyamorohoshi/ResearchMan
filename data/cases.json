@@ -1,5 +1,42 @@
 [
   {
+    "id": "the-growing-pavilion-2019",
+    "title": "The Growing Pavilion",
+    "summary": "キノコの菌糸体パネルと木材フレームで作られたバイオベース素材のポップアップ・パビリオン。2019年Dutch Design Weekの会場中心に設置された。",
+    "client": "",
+    "agency": "Biobased Creations（Pascal Leboucq / Erik Klarenbeekのstudio Krown Design）",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "S+T+ARTS Prize 2021 Honorary Mention（Innovation in Technology, Industry and Society stimulated by the Arts）; Dezeen Awards 2020 Highly Commended（Small Building of the Year）",
+    "year": "2019",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.dezeen.com/2019/10/29/growing-pavilion-mycelium-dutch-design-week/",
+    "thumbnail": "/thumbnails/the-growing-pavilion-2019.jpg",
+    "videoId": "",
+    "overview": "The Growing Pavilionは、Biobased Creations（Pascal LeboucqとErik Klarenbeekのスタジオ Krown Designら）が2019年に手がけたポップアップ・パビリオン。キノコの菌糸体を成形したパネルを木材のフレームに組み合わせ、化石燃料由来の建材に頼らないバイオベース素材の建築表現として制作された。",
+    "background": "建築や展示空間の構造物の多くは石油由来の素材や輸送・廃棄の環境負荷が大きい建材に依存している。Biobased Creationsは、菌糸体という生分解可能で栽培によって生産できる素材を用いることで、建築物の設計・製造プロセスそのものをより持続可能な形に置き換えられるかを探る実践として本作を企画した。",
+    "execution": "菌糸体を型に入れて成形・培養したパネルを外壁や屋根の構成要素とし、木材フレームと組み合わせてドーム状のパビリオンを構築した。2019年のDutch Design Weekではイベント会場の中心的な建造物として設置され、来場者が実際に内部に入りバイオベース建材の質感や空間性を体験できる形で公開された。",
+    "evaluationImpact": "菌糸体という生物由来の素材を建築規模の構造物に応用した先進的な試みとして、S+T+ARTS Prize 2021でHonorary Mentionを、Dezeen Awards 2020ではSmall Building of the YearでHighly Commendedを受賞し、サステナブル素材建築の可能性を示す事例としてデザインメディアで紹介された。",
+    "relatedWorks": [
+      {
+        "title": "The Growing Pavilion is made from mycelium and timber",
+        "description": "The Growing PavilionのバイオベースなDutch Design Week出展作品を紹介するDezeenの記事",
+        "url": "https://www.dezeen.com/2019/10/29/growing-pavilion-mycelium-dutch-design-week/"
+      }
+    ],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Theme/Sustainability"
+    ]
+  },
+  {
     "id": "whitney-museum-graphic-identity-responsive-w-2013",
     "title": "Whitney Museum Graphic Identity (Responsive W)",
     "summary": "アムステルダムのExperimental Jetsetが手がけた、ジグザグの『W』が周囲のコンテンツ量に応じて伸縮するホイットニー美術館のレスポンシブなグラフィックアイデンティティ。",
