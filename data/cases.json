@@ -1,5 +1,43 @@
 [
   {
+    "id": "edp-energias-de-portugal-2022",
+    "title": "EDP (Energias de Portugal) ブランドアイデンティティ",
+    "summary": "回転する面上の点の軌跡から渦巻きロゴを自動生成し、再生可能エネルギーへの変革を象徴したEDPの新ブランドアイデンティティ。",
+    "client": "EDP (Energias de Portugal)",
+    "agency": "Pentagram (Marina Willer)",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2022",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.pentagram.com/work/edp",
+    "thumbnail": "/thumbnails/edp-energias-de-portugal-2022.jpg",
+    "videoId": "",
+    "overview": "ポルトガルのエネルギー企業EDP（Energias de Portugal）のために、Pentagramのパートナー Marina Willer が手がけたブランドアイデンティティ刷新。回転する面の上を点が動くことで描かれる軌跡から渦巻き状のロゴマークを生成するアルゴリズミックな仕組みを核とし、化石燃料から再生可能エネルギーへと転換を進める企業の姿勢をビジュアル化した。",
+    "background": "EDPは水力・風力・太陽光など再生可能エネルギー事業への転換を経営の中心に据えており、企業アイデンティティにもその変化と持続的な運動性を反映させる必要があった。従来の固定的なロゴでは、エネルギーが絶えず生成・循環し続けるという事業の本質や、変革し続ける企業姿勢を十分に表現できないという課題があった。",
+    "execution": "回転する円盤状の面の上に点を配置し、その点が描く軌跡を渦巻き状の形へと変換するアルゴリズムを用いてロゴマークを構築。この仕組みにより、静止した一つの記号としてではなく、運動・回転・エネルギーの生成プロセスそのものを内包する形としてロゴを設計し、ブランド全体の視覚言語やアプリケーション展開に一貫して用いた。",
+    "evaluationImpact": "アルゴリズムによる形の生成プロセスを企業のサステナビリティへの転換という経営メッセージと直結させた点が特徴で、静的なシンボルではなく運動と生成のロジックそのものをブランドの核に据えるアプローチとして、エネルギー企業のリブランディング事例の中で参照されている。",
+    "relatedWorks": [
+      {
+        "title": "MIT Media Lab Identity",
+        "description": "アルゴリズムから多数のバリエーションを生成する生成的アイデンティティの代表事例",
+        "url": "https://eroonkang.com/feature/mit-media-lab-identity"
+      }
+    ],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Print",
+      "Form/Website",
+      "Theme/Sustainability"
+    ]
+  },
+  {
     "id": "evolving-the-google-identity-2015",
     "title": "Evolving the Google Identity",
     "summary": "新書体Product Sansによるロゴタイプに加え、聞く・考える・答えるなど状態に応じて動きを変える4色の「ドット」を導入し、ロゴを固定マークからシステムへと再定義したGoogleのアイデンティティ刷新。",
