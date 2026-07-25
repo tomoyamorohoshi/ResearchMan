@@ -1,5 +1,43 @@
 [
   {
+    "id": "cytora-brand-identity-2018",
+    "title": "Cytora Brand Identity",
+    "summary": "保険テック企業Cytoraのリスク評価アルゴリズムを、常に形を変えるブロック状ビジュアルとして可視化したPentagramによるブランドアイデンティティ。",
+    "client": "Cytora",
+    "agency": "Pentagram（Jody Hudson-Powell, Luke Powell）",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "2018 London Design Awards Silver Winner",
+    "year": "2018",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.pentagram.com/work/cytora",
+    "thumbnail": "/thumbnails/cytora-brand-identity-2018.jpg",
+    "videoId": "",
+    "overview": "Pentagramが2018年に手がけた保険テック企業Cytoraのブランドアイデンティティ。同社のリスク評価アルゴリズムが持つ複雑さと流動性を、常に組み替わるブロック状のビジュアルシステムとして表現し、静的なロゴにとどまらないブランド表現を構築した。",
+    "background": "Cytoraは保険業界向けにリスク評価をアルゴリズムで自動化するテック企業であり、その事業の本質はデータの解析・再構成というプロセスそのものにあった。Pentagramは、こうした目に見えないアルゴリズムの働きを、固定的なロゴマークではなく変化し続けるビジュアルとして可視化する課題に取り組んだ。",
+    "execution": "Jody Hudson-PowellとLuke Powellが率いるチームは、リスク評価のプロセスを個々のブロックが組み合わさり形を変えていくグラフィックシステムに落とし込んだ。ブロックの配置や構成が変化し続けることで、アルゴリズムが常にデータを処理し続けているというCytoraの事業特性そのものをブランドの視覚言語として表現した。",
+    "evaluationImpact": "アルゴリズムという不可視のプロセスをブロック状のジェネレーティブなビジュアルへ翻訳した手法が評価され、2018 London Design AwardsでSilver Winnerを受賞した。",
+    "relatedWorks": [
+      {
+        "title": "Cytora",
+        "description": "PentagramによるCytoraのブランドアイデンティティを紹介する公式ワークページ",
+        "url": "https://www.pentagram.com/work/cytora"
+      }
+    ],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/Data",
+      "Form/Print",
+      "Form/Website"
+    ]
+  },
+  {
     "id": "philharmonie-luxembourg-identity-2023",
     "title": "Philharmonie Luxembourg Identity",
     "summary": "コンサートホールの柱をモチーフにしたロゴが、演奏中の音楽の波形にリアルタイムで反応して振動・屈折するPhilharmonie Luxembourgのジェネレーティブアイデンティティ。",
