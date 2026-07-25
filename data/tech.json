@@ -1,5 +1,54 @@
 [
   {
+    "id": "fungal-computer",
+    "title": "Fungal Computer（菌糸体メムリスタ／きのこコンピューティング）",
+    "org": "Unconventional Computing Laboratory, University of the West of England Bristol（Andrew Adamatzky教授）",
+    "type": "Research",
+    "domains": [
+      "HCI/MediaArt"
+    ],
+    "date": "2018-12",
+    "year": "2018",
+    "summary": "菌糸体（キノコの根状組織）に電極を刺して神経細胞のようなスパイク電位を記録・刺激し、論理ゲートやメモリ（メムリスタ）として使う「菌類コンピュータ」の研究。2018年の論文『Towards fungal computer』を起点に、UWE BristolのUnconventional Computing Labが継続研究している。",
+    "point": "生きた菌糸体そのものが電気信号を記憶・伝達する回路素子（メムリスタ）や光・圧力センサーとして機能することを示した点が画期的で、シリコンに依存しない自己成長・自己修復する生体コンピューティング基盤の可能性を開いた。広告・体験づくりの観点では、素材そのものが「反応し記憶する生き物」であることを生かし、湿度や光・接触に反応して変化するバイオアートインスタレーションや、菌類を使ったサステナブル素材と組み合わせたセンサー体験型展示のコンセプトに応用できそう。",
+    "detail": "従来のコンピュータがシリコン半導体で電気信号を処理するのに対し、この研究では生きたキノコ（オイスターマッシュルーム、シイタケなど）の菌糸体ネットワークに微小電極を差し込み、電気活動（スパイク）を記録・刺激する。2点間を繰り返し刺激すると伝導性が変化し記憶として保持される「メムリスタ」的性質が確認されており、0/1のスパイクパターンを使った論理ゲートの実装や、光・温度・化学物質への反応をセンサーとして利用する提案もされている。\n\n実用化には至っておらず、あくまで大学研究室（UWE Bristol）における基礎研究・プロトタイプの段階。乾燥保存しても一定の周波数帯（〜5.85kHz）で機能を保持するといった知見も報告されており、将来的にはマイセリウム複合材（菌糸体ベースの建材・パッケージ素材）に計算・センシング回路を組み込む方向性が構想されている。",
+    "license": {
+      "spdx": null,
+      "commercial": "research-only",
+      "note": "学術研究段階のプロトタイプで、商用ライセンスの設定はなし"
+    },
+    "links": [
+      {
+        "kind": "paper",
+        "url": "https://royalsocietypublishing.org/doi/10.1098/rsfs.2018.0029"
+      },
+      {
+        "kind": "project",
+        "url": "https://uncomp.uwe.ac.uk/"
+      },
+      {
+        "kind": "post",
+        "url": "https://www.popsci.com/technology/unconventional-computing-lab-mushroom/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/fungal-computer.jpg",
+    "relatedWorks": [
+      {
+        "title": "Mem-fractive Properties of Mushrooms",
+        "description": "オイスターマッシュルームがメムリスタ的性質を持つことを実証した論文",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34624868/"
+      },
+      {
+        "title": "Sustainable memristors from shiitake mycelium for high-frequency bioelectronics",
+        "description": "シイタケ菌糸体から作る高周波対応メムリスタに関する論文（PLOS One）",
+        "url": "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0328965"
+      }
+    ],
+    "sources": [
+      "User"
+    ]
+  },
+  {
     "id": "physarum-polycephalumによる東京鉄道網再現実験",
     "title": "Physarum polycephalum（真正粘菌）による東京鉄道網再現実験",
     "org": "北海道大学（中垣俊之・手老篤史ら、英ウエストイングランド大学らと共同）",
