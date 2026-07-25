@@ -1,5 +1,43 @@
 [
   {
+    "id": "forest-carbon-in-tune-with-nature-2025",
+    "title": "Forest Carbon: In Tune with Nature",
+    "summary": "絶滅危惧種の鳴き声などの森林音をChladni図形へと変換し、生物多様性を可視化する生成的アイデンティティでForest Carbonをリブランディングした事例。",
+    "client": "Forest Carbon",
+    "agency": "Design Bridge and Partners Singapore",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "Fast Company Innovation by Design 2025 Winner（Asia-Pacific region category／アジア太平洋地域部門）",
+    "year": "2025",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://bpando.org/2025/10/16/forest-carbon-environmental-branding-by-design-bridge-singapore/",
+    "thumbnail": "/thumbnails/forest-carbon-in-tune-with-nature-2025.jpg",
+    "videoId": "",
+    "overview": "Design Bridge and Partners Singaporeが2025年に手がけた生態系再生企業Forest Carbonのリブランディング。絶滅危惧種の鳴き声をはじめとする森林の音を、周波数の共振パターンであるChladni図形へと変換し、生物多様性そのものをビジュアルアイデンティティの核に据えた生成的なデザインシステムとして展開された。",
+    "background": "森林保全や炭素クレジットを扱う企業のブランディングは、木々や葉のモチーフなど静的な自然表現にとどまりがちで、森が本来持つ動的で複雑な生態系のありようを十分に伝えられていなかった。Design Bridgeは、Forest Carbonが保護対象とする森林そのものが発する音という一次情報を素材とすることで、企業の活動と自然現象を直接結びつけるアイデンティティを構築する課題に取り組んだ。",
+    "execution": "森林に生息する絶滅危惧種の鳴き声を含む自然音を採取し、その周波数を砂や粒子の共振によって幾何学模様が現れるChladni図形の生成原理に応用。音源ごとに異なるパターンが立ち現れる仕組みを用いて、ロゴやビジュアル素材が生物種や生息環境に応じて変化する生成的なアイデンティティシステムとしてまとめ上げた。",
+    "evaluationImpact": "自然の音という不可視の情報を視覚パターンへと翻訳し、生物多様性の豊かさをブランド表現そのものに落とし込んだ点が評価され、Fast Company Innovation by Design 2025でAsia-Pacific region categoryのWinnerを受賞。環境・サステナビリティ領域のブランディングにおける新たな表現手法の一例として紹介されている。",
+    "relatedWorks": [
+      {
+        "title": "Forest Carbon environmental branding by Design Bridge Singapore",
+        "description": "Design BridgeによるForest Carbonの生成的アイデンティティを紹介するbp&oの記事",
+        "url": "https://bpando.org/2025/10/16/forest-carbon-environmental-branding-by-design-bridge-singapore/"
+      }
+    ],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Tech/Data",
+      "Form/Print",
+      "Theme/Sustainability"
+    ]
+  },
+  {
     "id": "centersquare-a-brand-identity-shaped-by-the-power-of-data-20",
     "title": "Centersquare: A Brand Identity Shaped by the Power of Data",
     "summary": "米データセンター最大手Centersquareのために、JKRがリアルタイムの運用データをロゴのパターンへ変換するツールを開発し、鮮やかな色彩と可変ワードマークでブランドを刷新した事例。",
