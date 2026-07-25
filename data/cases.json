@@ -1,5 +1,42 @@
 [
   {
+    "id": "visit-nordkyn-where-nature-rules-2010",
+    "title": "Visit Nordkyn: Where Nature Rules",
+    "summary": "ノルウェー気象研究所のリアルタイム気象データと連動し、5分ごとに色と形が自動更新する雪の結晶ロゴを軸にした、天候連動型の生成的観光ブランドアイデンティティ。",
+    "client": "Visit Nordkyn（ノルウェー・ノールキュン半島の観光局）",
+    "agency": "Neue Design Studio",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "D&AD Awards 2011 Wood Pencil（Branding部門）",
+    "year": "2010",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://neue.no/work/visit-nordkyn/",
+    "thumbnail": "/thumbnails/visit-nordkyn-where-nature-rules-2010.jpg",
+    "videoId": "",
+    "overview": "ノルウェー最北端に位置するノールキュン半島の観光局Visit Nordkynのために制作されたブランドアイデンティティ。固定的なロゴマークではなく、現地の気象条件をリアルタイムに反映して形と色が変化し続ける雪の結晶モチーフを核とし、Neue Design Studioが「自然が支配する土地」というブランドの本質をシステムそのものに落とし込んだ。",
+    "background": "ノールキュン半島は強風や厳しい寒さなど過酷な自然環境で知られる観光地であり、Visit Nordkynは「Where Nature Rules（自然が支配する）」というコンセプトを掲げていた。この土地の魅力と厳しさを静的なロゴデザインで表現するのではなく、実際の自然現象そのものをアイデンティティの生成源にするという発想が求められた。",
+    "execution": "ノルウェー気象研究所が提供するノールキュン地域のリアルタイム気象データ（気温・風向など）を取得し、そのデータに応じて雪の結晶をモチーフにしたロゴの形と色が5分ごとに自動更新される仕組みを構築。ウェブサイトや各種媒体上のロゴは常に「今この瞬間」の現地の天候を反映した一点物として表示され、固定された企業ロゴという概念そのものを問い直すシステムとして設計された。",
+    "evaluationImpact": "気象データという外部の生きた情報源をブランドアイデンティティの生成エンジンとして用いた点が高く評価され、D&AD Awards 2011のBranding部門でWood Pencilを受賞した。単一の静的マークに依存しない「データ駆動型・生成的ブランディング」の先駆的事例として、後続のジェネラティブアイデンティティ事例と並んで参照されている。",
+    "relatedWorks": [
+      {
+        "title": "MIT Media Lab Identity",
+        "description": "アルゴリズムから多数のバリエーションを生成する生成的アイデンティティの代表事例",
+        "url": "https://eroonkang.com/feature/mit-media-lab-identity"
+      }
+    ],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/Website",
+      "Theme/Sustainability"
+    ]
+  },
+  {
     "id": "mit-media-lab-identity-2010",
     "title": "MIT Media Lab Identity",
     "summary": "MIT Media Lab設立25周年を機に、7x7グリッドのアルゴリズムから約4万通りのロゴを生成し、メンバー全員が自分だけの個人ロゴを持てるようにした生成的アイデンティティシステム。",
