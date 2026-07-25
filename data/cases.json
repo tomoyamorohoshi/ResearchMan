@@ -1,5 +1,37 @@
 [
   {
+    "id": "antibiotic-resistance-quilt-2017",
+    "title": "Antibiotic Resistance Quilt",
+    "summary": "アーティストのアンナ・デュミトリウが、実在するMRSAや多剤耐性菌を布地に培養・染色し、目に見えない薬剤耐性の脅威を刺繍キルトとして可視化したバイオアート作品。",
+    "client": "Anna Dumitriu",
+    "agency": "",
+    "categories": [
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2017",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://annadumitriu.co.uk/portfolio/antibiotic-resistance-quilt/",
+    "thumbnail": "/thumbnails/antibiotic-resistance-quilt-2017.jpg",
+    "videoId": "",
+    "overview": "アーティストのアンナ・デュミトリウが2017年に制作したバイオアート作品。MRSAやKlebsiella pneumoniaeなど実在する薬剤耐性菌を布地上で培養し、その染色パターンを刺繍によってキルトとして仕上げた。目に見えない微生物学的脅威である抗生物質耐性を、手仕事のテキスタイルという身近な工芸の形式に落とし込んだ点が特徴。",
+    "background": "抗生物質耐性菌の拡大は公衆衛生上の重大な課題とされる一方、その脅威は肉眼では見えず一般には実感されにくい。アンナ・デュミトリウは微生物学と協働しながら科学的事象を素材そのものに取り込んで作品化するバイオアートを継続的に手がけており、本作でも研究機関との協働を通じて実際の菌株を用いた制作を行った。",
+    "execution": "実際に採取・培養されたMRSAや多剤耐性のKlebsiella pneumoniaeなどの菌を布地上で育て、その増殖の痕跡を染色として定着させた。染み出した模様をもとに手作業で刺繍を施し、伝統的なキルト工芸の技法と微生物学的プロセスを組み合わせることで、耐性菌という不可視の脅威を触知可能なオブジェクトへと変換した。",
+    "evaluationImpact": "微生物学とテキスタイル工芸を融合させる制作手法は、科学的な公衆衛生課題を一般の人々が視覚的・感覚的に理解できる形へと翻訳する試みとして位置づけられる。研究機関との協働に基づくバイオアートの一例として、作家自身のポートフォリオを通じて紹介されている。",
+    "relatedWorks": [],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Theme/Art",
+      "Theme/Health",
+      "Theme/SocialGood"
+    ]
+  },
+  {
     "id": "giant-triple-mushroom-2024",
     "title": "Giant Triple Mushroom",
     "summary": "アーティストのカルステン・ヘラーが、パリのヴァンドーム広場に3種のキノコの断面を融合させた高さ約3mのハイブリッド彫刻を設置。",
