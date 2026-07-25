@@ -1,5 +1,43 @@
 [
   {
+    "id": "mit-media-lab-identity-2010",
+    "title": "MIT Media Lab Identity",
+    "summary": "MIT Media Lab設立25周年を機に、7x7グリッドのアルゴリズムから約4万通りのロゴを生成し、メンバー全員が自分だけの個人ロゴを持てるようにした生成的アイデンティティシステム。",
+    "client": "MIT Media Lab",
+    "agency": "E Roon Kang / Richard The（プログラミング: Willy Sengewald、協力: TheGreenEyl）",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2010",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://eroonkang.com/feature/mit-media-lab-identity",
+    "thumbnail": "/thumbnails/mit-media-lab-identity-2010.jpg",
+    "videoId": "",
+    "overview": "MIT Media Labの設立25周年を記念して制作された生成的アイデンティティシステム。単一の固定ロゴではなく、7x7グリッドを基にしたアルゴリズムが約4万通りのバリエーションを生成し、ラボに所属する研究者やスタッフ一人ひとりが自分専用のロゴを持てる仕組みとした。E Roon KangとRichard Theが中心となり設計した。",
+    "background": "MIT Media Labは学際的で多様な研究者が集まる組織であり、単一の固定的なロゴマークではその多様性を表現しきれないという課題意識があった。25周年という節目のタイミングで、組織のアイデンティティ自体を「個」の集合体として再定義する必要が生じ、固定デザインではなくルールとアルゴリズムでアイデンティティを生成する発想へと至った。",
+    "execution": "7x7のグリッドを基本構造とし、アルゴリズムによってパターンを組み合わせることで約4万通りのロゴバリエーションを生成できるシステムを構築。プログラミングはWilly Sengewald、TheGreenEylが協力し、ラボに所属する各メンバーは自分専用の個人ロゴを取得できるようにした。組織全体のロゴであると同時に、個人を表すロゴでもあるという二重構造を実現した。",
+    "evaluationImpact": "固定的なロゴマークに依存しない「生成されるアイデンティティ」という発想は、当時のブランディング/デザイン領域でルールベース生成デザインの代表事例として広く参照された。なお本システムはその後、Pentagramのマイケル・ビエルートによる恒久的なアイデンティティに置き換えられている。",
+    "relatedWorks": [
+      {
+        "title": "MIT Media Lab Identity by Pentagram (Michael Bierut)",
+        "description": "E Roon Kang / Richard Theによる生成的アイデンティティの後継として制作された、Pentagramのマイケル・ビエルートによる恒久版アイデンティティ",
+        "url": ""
+      }
+    ],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/Print",
+      "Form/Website",
+      "Theme/Education"
+    ]
+  },
+  {
     "id": "2-nintendo-switch-2-edition-m-o-m-o-2026",
     "title": "『ゼノブレイド2 Nintendo Switch 2 Edition』新ブレイド「M.O.M.O.」参戦発表",
     "summary": "『ゼノブレイド2 Switch 2 Edition』に『ゼノサーガ』のM.O.M.O.が参戦、ブレイド直接操作の新クエストも追加",
