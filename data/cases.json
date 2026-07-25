@@ -1,5 +1,36 @@
 [
   {
+    "id": "cohere-brand-identity-by-pentagram-2023",
+    "title": "Cohere Brand Identity by Pentagram",
+    "summary": "AI言語モデル企業Cohereのため、Pentagramがボロノイ図を生成的コアに据えて構築したブランドアイデンティティ",
+    "client": "Cohere",
+    "agency": "Pentagram London (Jody Hudson-Powell, Luke Powell)",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2023",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://bpando.org/2023/06/29/ai-branding-cohere-pentagram/",
+    "thumbnail": "/thumbnails/cohere-brand-identity-by-pentagram-2023.jpg",
+    "videoId": "",
+    "overview": "AI言語モデル企業Cohereのブランドアイデンティティ。Pentagram London（Jody Hudson-Powell、Luke Powell）が手がけ、数学的な空間分割アルゴリズムであるボロノイ図を生成的コアに据え、ロゴやビジュアル言語を構築した。",
+    "background": "テキスト理解・生成のAIモデルを開発するCohereは、技術の複雑さと拡張性を体現するアイデンティティを必要としていた。Pentagramはその可能性の広がりを表現する手法として、点群から空間を分割するボロノイ図に着目した。",
+    "execution": "ボロノイ図のアルゴリズムを用いて無限に広がるセル構造を生成し、これをロゴマークやパターン、各種アプリケーションに展開。セルの分割は入力に応じて動的に変化する仕組みとし、AIの生成的な性質を視覚言語そのものに落とし込んだ。",
+    "evaluationImpact": "数学的アルゴリズムをブランドの生成的コアに据えた手法は、AI企業のアイデンティティデザインの一例としてデザインメディアで取り上げられた。",
+    "relatedWorks": [],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Print",
+      "Theme/Art"
+    ]
+  },
+  {
     "id": "orquestra-sinf-nica-do-estado-de-s-o-paulo-osesp-identity-20",
     "title": "Orquestra Sinfônica do Estado de São Paulo (OSESP) identity",
     "summary": "サンパウロ交響楽団のリブランディングで、演奏音声を解析して抽象グラフィックを生成する自社製ツール「Instrument」を核にしたサウンド駆動型アイデンティティ。",
