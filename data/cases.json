@@ -1,5 +1,36 @@
 [
   {
+    "id": "reimagining-our-global-brand-with-generative-ai-orb-foundry",
+    "title": "Reimagining Our Global Brand with Generative AI (Orb Foundry)",
+    "summary": "Deloitte Digitalが自社ブランド刷新のため、Adobe Fireflyのカスタム生成モデル「Orb Foundry」で世界30市場のチームが独自の3D『Orb』アセットを90秒未満で生成できる仕組みを構築した事例。",
+    "client": "Deloitte Digital",
+    "agency": "Deloitte Digital（自社制作、Adobe Fireflyを活用）",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.deloittedigital.com/us/en/insights/perspective/genai-rebrand.html",
+    "thumbnail": "/thumbnails/reimagining-our-global-brand-with-generative-ai-orb-foundry.jpg",
+    "videoId": "",
+    "overview": "Deloitte Digitalが自社のグローバルブランド刷新にあたり、Adobe Fireflyのカスタム生成モデルをベースにした社内ツール「Orb Foundry」を開発した事例。ブランドの象徴である3D『Orb』アイデンティティ資産を、世界30の国際市場のチームがそれぞれの用途に合わせて独自に生成できる仕組みを構築した。",
+    "background": "グローバルに展開する組織のブランドアイデンティティは、各市場・各チームが個別にビジュアル資産を制作すると一貫性の担保に時間とコストがかかるという課題を抱えがちである。Deloitte Digitalは自社ブランド刷新にあたり、中央のデザインチームがすべてのアセット制作を担うのではなく、各市場のチームが自律的かつ迅速にオンブランドな資産を生み出せる体制を求めた。",
+    "execution": "Deloitte DigitalはAdobe Fireflyのカスタム生成モデルをもとに、ブランドの核となる3D『Orb』の形状・質感・カラーパレットといったガイドラインを学習させた社内ツール「Orb Foundry」を構築。これにより世界30の国際市場のチームが、ブランドガイドラインに準拠した独自のOrbバリエーションを90秒未満で生成できるワークフローを整備した。",
+    "evaluationImpact": "生成AIを外部発注や制作フローの短縮という枠にとどめず、グローバル組織のブランド運用ガバナンスそのものに組み込んだ点が特徴で、大規模組織における生成AI活用のケーススタディとしてDeloitte Digital自身のインサイト記事で紹介されている。",
+    "relatedWorks": [],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/3D",
+      "Form/Product"
+    ]
+  },
+  {
     "id": "stack-overflow-rebrand-a-legacy-recoded-2025",
     "title": "Stack Overflow Rebrand: A legacy recoded",
     "summary": "AI時代における信頼できる人間の知識源としてStack Overflowを再定義したリブランドで、Claudeで構築したカスタムジェネレーティブツールがオンブランドなアセット生成を支えた。",
