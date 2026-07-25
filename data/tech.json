@@ -1,5 +1,50 @@
 [
   {
+    "id": "physarum-polycephalumによる東京鉄道網再現実験",
+    "title": "Physarum polycephalum（真正粘菌）による東京鉄道網再現実験",
+    "org": "北海道大学（中垣俊之・手老篤史ら、英ウエストイングランド大学らと共同）",
+    "type": "Research",
+    "domains": [
+      "HCI/MediaArt"
+    ],
+    "date": "2010-01",
+    "year": "2010",
+    "summary": "脳を持たない単細胞生物・真正粘菌(Physarum polycephalum)を、東京を中心に周辺36都市の位置に見立ててオートミールを配置した培地の上で育てたところ、実際の東京圏鉄道網とよく似た効率的なネットワークを自律的に形成した研究。2010年にScience誌に掲載された。",
+    "point": "計算機や設計図なしに、単細胞生物が「効率性・コスト・障害耐性」のトレードオフを人間のインフラ技術者が数十年かけて最適化した鉄道網とほぼ同等のバランスで自己組織化してしまった点が衝撃で、\"知能なきネットワーク最適化\"の代表例として科学とアートの両分野で繰り返し引用される古典的事例になっている。広告・体験づくりの視点では、実際に粘菌を培養してブランドロゴや都市地図・商品ネットワークを「生き物に設計させる」ライブ展示や、そのタイムラプス映像をキービジュアルにしたキャンペーン、あるいは同じ原理（拡散→強化→枝刈り）をアルゴリズム化したジェネラティブアート・データビジュアライゼーションの演出に応用できる。",
+    "detail": "実験では、東京の位置に粘菌を置き、周辺36都市の位置にオートフレークを配置。粘菌は最初は培地全面に広がる複雑で非効率な網目を作るが、時間とともに不要な経路を枝刈りし、主要な食料源同士を結ぶ単純で効率的な管ネットワークへと収束していく。この最終形が、実際の東京圏鉄道網（JR・私鉄含む）のトポロジーと驚くほど類似していた。\n\n研究チームはこの挙動を数理モデル化し、Science誌に「Rules for Biologically Inspired Adaptive Network Design」として発表。従来のインフラ設計は人間がコスト・効率・耐障害性を計算して最適化するトップダウン型だが、粘菌は中央司令塔なしに局所的な管の太さの増減ルールだけでボトムアップにほぼ同等の性能を持つネットワークを作り出す点が新しい。\n\n研究には特殊な機材は不要で、シャーレ・寒天培地・オートミール・粘菌株（培養用に入手可能）があれば追試可能なため、その後もアートインスタレーションや教育展示、都市計画のシミュレーション研究など幅広い分野で引用・再現されている。",
+    "license": {
+      "spdx": null,
+      "commercial": "research-only",
+      "note": "Science誌掲載論文（購読制限あり）。実験手法自体の商用転用は特に制約はないが、成果物は学術論文として発表されたもの"
+    },
+    "links": [
+      {
+        "kind": "paper",
+        "url": "https://www.science.org/doi/10.1126/science.1177894"
+      },
+      {
+        "kind": "post",
+        "url": "https://www.discovermagazine.com/brainless-slime-mold-builds-a-replica-tokyo-subway-51"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/physarum-polycephalumによる東京鉄道網再現実験.jpg",
+    "relatedWorks": [
+      {
+        "title": "Amoeba-Inspired Network Design",
+        "description": "同研究チームによる続報。関東地方の道路網を対象に粘菌ネットワークとの比較を行った2010年のScience論文",
+        "url": "https://www.science.org/doi/10.1126/science.1185570"
+      },
+      {
+        "title": "The World's Colonisation and Trade Routes Formation as Imitated by Slime Mould",
+        "description": "粘菌に世界の主要都市の食料源配置を与え、歴史的な交易路・植民地化ルートとの類似性を検証した発展研究",
+        "url": "https://arxiv.org/pdf/1209.3958"
+      }
+    ],
+    "sources": [
+      "User"
+    ]
+  },
+  {
     "id": "echoavatar",
     "title": "EchoAvatar",
     "org": "Zhejiang University (State Key Lab of CAD&CG)",
