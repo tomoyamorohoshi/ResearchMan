@@ -1,5 +1,172 @@
 [
   {
+    "id": "gaussian-point-splatting",
+    "title": "Gaussian Point Splatting",
+    "org": "TU Delft (Joris Rijsdijk, Christoph Peters, Michael Weinmann, Ricardo Marroquim)",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "1億個を超える大量のGaussian Splat（点群ベースの3D表現）を、並べ替え処理なしでリアルタイム描画できる新しいレンダリング手法。SIGGRAPH 2026で発表。",
+    "point": "Gaussian Splattingは実写を点の集まりとして3D化する技術として急速に普及していますが、点の数が増えるほど「奥から手前の順に並べ替えて描く」処理が重くなり、都市規模や大聖堂規模の巨大なスキャンデータをスムーズに動かすのが難しいという壁がありました。この技術は、その並べ替えを丸ごと省略し、代わりに各点を1ピクセル分の不透明な点として確率的にランダムに散らして描く、という発想の転換で解決しています。結果として、4億2500万個という桁違いの点数のシーンを一般的なゲーミングPC（RTX 4070 Ti SUPER）でも滑らかに操作できることが実演されています。広告・体験制作の観点では、ドローン撮影した実際の街並みや建築物をまるごと3Dスキャンし、ブラウザやVR機器上で誰でも自由に歩き回れる大規模な没入型コンテンツを作る際の土台技術として期待できます。",
+    "detail": "従来のGaussian Splattingは、カメラに近い点から遠い点まで正しい前後関係で半透明に重ね合わせるため、描画のたびに全ての点を並べ替える必要がありました。この処理はGPUにとって重く、点数が数千万を超えるあたりから動作がカクつく原因になっていました。Gaussian Point Splattingは、各Gaussian（点というより「もやっとした光の玉」のようなもの）から複数の細かい不透明な点をランダムにサンプリングし、それをGPUの「64ビットアトミック演算」という仕組みで一気にフレームバッファへ書き込むことで、並べ替えを一切行わずに正しい奥行き感を再現します。\n\n従来手法との違いは、LOD（詳細度を距離に応じて切り替える仕組み）や複雑なデータ構造を使わずに、GPU内の何百万もの計算スレッドへ均等に作業を割り振れる点です。これにより、これまで専用のサーバーやクラウドGPUでしか扱えなかった規模のシーンが、市販のゲーミングPC上でインタラクティブに動かせるようになりました。\n\n利用にはCUDA対応のNVIDIA GPUと、C++/CUDAのビルド環境（CMake）が必要で、現時点ではプログラマー向けのオープンソース実装です。実際の制作現場で使うにはUnityやUnreal Engineなどの外部エンジンへの組み込み作業が必要になりますが、コードはBSD 3-Clauseライセンスで商用利用も可能です。",
+    "license": {
+      "spdx": "BSD-3-Clause",
+      "commercial": "ok",
+      "note": "コード本体はBSD 3-Clauseで商用利用可。CUDA実装のビルドが必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/JorisAR/gaussian-point-splatting"
+      },
+      {
+        "kind": "project",
+        "url": "https://jorisar.nl/gaussian_point_splatting/"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=vxQAPPEu_UA"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/gaussian-point-splatting.jpg",
+    "relatedWorks": [
+      {
+        "title": "Faster-GS",
+        "description": "CVPR 2026で発表された、学習速度と省メモリ性を高めた3D Gaussian Splattingの実装",
+        "url": "https://github.com/nerficg-project/faster-gaussian-splatting"
+      },
+      {
+        "title": "FastGS",
+        "description": "3D Gaussian Splattingの学習を100秒まで高速化するCVPR 2026ハイライト論文",
+        "url": "https://github.com/fastgs/FastGS"
+      },
+      {
+        "title": "3D Gaussian Splatting (原論文)",
+        "description": "リアルタイム新規視点合成を実写点群ベースで実現した基盤技術",
+        "url": "https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "anigen",
+    "title": "AniGen",
+    "org": "VAST / The University of Hong Kong / 清華大学 ほか",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "Motion/Body",
+      "CreatorTools"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "1枚の画像から、動かせる骨格（ボーン）とスキン（皮膚の伸縮）まで含んだ「アニメーション可能な3Dキャラクター」を自動生成する技術。SIGGRAPH 2026発表、Real-Time Live!のベストインショー実演のベースにもなった。",
+    "point": "これまでのAIによる画像から3D生成は「見た目の形（メッシュ）」を作るところまでが主流で、そのキャラクターを歩かせたり踊らせたりするには、別途人間がボーン（骨格）を仕込み、皮膚がどの骨につられて動くかを設定する「リギング」という地道な作業が必要でした。AniGenは、形・骨格・皮膚の動きの3つを一つの仕組みでまとめて生成することで、1枚のイラストや写真から数秒〜数十秒で「そのまま動かせるキャラクター」を作り出します。実際にSIGGRAPH 2026のステージでは、観客がスマホから送った画像がその場でリグ付き3Dキャラクターになり、共有シーンの中で一斉に動き出すデモが披露され、その場のライブ性と即興性が高く評価されました。広告制作では、キャラクターグッズやマスコットの一枚絵から、すぐに動くプロモーション映像やARフィルター、ゲーム風コンテンツを作るまでの時間を大幅に縮められる可能性があります。",
+    "detail": "AniGenの核となるアイデアは「S³ Fields（Shape・Skeleton・Skin）」という統一表現です。3D形状、骨格の位置、そして皮膚がどの骨にどれくらい引っ張られるか（スキニングウェイト）を、バラバラに作るのではなく、同じ空間の中で矛盾なく同時に予測します。関節の境目であいまいになりがちな骨の割り当てを扱う工夫や、複雑な関節（指など）と単純な関節（胴体など）を両方きれいに扱う仕組みも組み込まれています。\n\n従来の主流だったパイプラインは「まず3Dモデルを生成→次に別のAIや人力で骨を入れる→さらに皮膚の動きを調整する」という多段階の作業でしたが、AniGenはこれを一体化することで、動物・人型キャラクター・機械的なオブジェクトまで幅広く、一貫した仕上がりのリグ付き3Dアセットを出力できます。\n\n入手方法としては、GitHubにコード・学習済みモデル（Hugging Face配布）・Gradioの体験デモが公開されており、動作にはある程度のGPU（VRAM）が必要です。コード自体はMITライセンスで商用利用も可能ですが、学習用の一部拡張機能は研究利用限定のライセンスが混在しているため、社内制作パイプラインへ組み込む際はその部分を除いて推論のみで使う、または別実装に差し替える判断が必要です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "コード本体はMITで商用利用可能だが、学習用の拡張モジュール(CUBVH、NVIDIA instant-ngp由来)は研究利用限定。推論のみなら実質的に問題になりにくいが要確認。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/VAST-AI-Research/AniGen"
+      },
+      {
+        "kind": "project",
+        "url": "https://yihua7.github.io/AniGen_web/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2604.08746"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/anigen.jpg",
+    "relatedWorks": [
+      {
+        "title": "UniRig",
+        "description": "VAST/Tripoによる、多様なキャラクター・物体に対応する自動リギング技術",
+        "url": "https://github.com/VAST-AI-Research/UniRig"
+      },
+      {
+        "title": "Rigel3D",
+        "description": "リグを意識した潜在表現でアニメーション可能な3D資産生成を行う関連研究",
+        "url": "https://arxiv.org/pdf/2605.13129"
+      },
+      {
+        "title": "Tripo Studio",
+        "description": "VASTが提供する画像から3Dモデル・リギングまでを行う商用クリエイターツール",
+        "url": "https://www.tripo3d.ai/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "abot-world-abot-3dworld",
+    "title": "ABot-World / ABot-3DWorld",
+    "org": "Alibaba Amap (アリババ傘下・高徳地図) / amap-cvlab",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "1枚の画像やテキストから、実際に歩き回ったり操作したりできる「探索可能な3D世界」をその場で生成し続けるAI。デスクトップGPU1枚でリアルタイム動作し、屋内・街路・都市上空まで幅広いシーンに対応する。",
+    "point": "「world model（世界モデル）」と呼ばれるこの技術は、映像を作って終わりではなく、こちらの操作（前に進む・振り返る・別の方向を見るなど）に応じて次の景色をその場で生成し続ける点が特徴です。今回のバージョンは、一度作ったシーンが破綻せずに何時間でも探索を続けられる工夫（LongForcingという学習手法）と、生成した映像を裏側できれいな3D点群・Gaussian Splattingデータに変換する仕組みを両立させ、映像として「見る」だけでなく3Dデータとして「持ち帰れる」ところまで実現しています。広告・体験制作の観点では、1枚のロケーション写真や商品画像から、来場者がその場で歩き回れるバーチャル会場やブランド世界を素早く試作できる可能性があり、ロケハンやCGモデリングにかかる時間とコストを大きく圧縮できるかもしれません。",
+    "detail": "仕組みとしては、まず入力された画像や文章を「パノラマ画像＋空間点群」という軽量な中間表現に変換します。次に、あらかじめ計画したカメラの動き（このあたりを見て、次はこっちに進む、など）に沿って、その中間表現を手がかりにパノラマ動画をAIが生成し続けます。最後に、生成された動画を解析して、写真のようにリアルな3D Gaussian Splattingの世界（実際に別angleから見返せる3Dデータ）へと変換します。\n\n従来の「1枚の画像から3D空間を作る」技術の多くは、生成できる範囲が数秒〜数十秒の短い動画や、決まった範囲のシーンに限られていましたが、ABot-3DWorldは室内・街路・都市の上空まで一つの仕組みで扱える汎用性と、破綻なく延々と探索を続けられる持続性を両立させている点が新しさです。\n\n利用のハードルは二段階あります。ブラウザからすぐ試したい場合は「ABot World Studio」というWebサービス（abot-world.amap.com）が公開されており、特別な機材なしで作品ギャラリーの閲覧や生成を試せます。一方、自分のPC環境で動かす場合はコードと学習済みモデルがGitHub/Hugging Faceで無料公開されているものの、快適に動かすにはNVIDIA RTX 5090クラスの高性能GPU（VRAM 19GB程度）が推奨されており、個人が本格的に使うにはそれなりの投資が必要です。ライセンスはApache 2.0で、商用利用も認められています。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "コード・公開モデル(ABot-World-0-5B-LF)ともApache 2.0。自前で動かすにはRTX 5090クラスのGPUを推奨。オンライン版(ABot World Studio)ならブラウザから利用可能。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/amap-cvlab/ABot-World"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2607.11673"
+      },
+      {
+        "kind": "product",
+        "url": "https://abot-world.amap.com/plaza"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/abot-world-abot-3dworld.jpg",
+    "relatedWorks": [
+      {
+        "title": "HunyuanWorld-1.0",
+        "description": "Tencentによる、テキストや画像から探索可能な3D世界を生成するオープンソースモデル",
+        "url": "https://github.com/Tencent-Hunyuan/HunyuanWorld-1.0"
+      },
+      {
+        "title": "NVIDIA Lyra 2.0",
+        "description": "1枚の画像から歩き回れる3D世界を生成するNVIDIAの生成world model",
+        "url": "https://github.com/nv-tlabs/lyra"
+      },
+      {
+        "title": "WorldGen",
+        "description": "数秒でどんな3DシーンでもGaussian Splattingとして生成するオープンソースツール",
+        "url": "https://github.com/ZiYang-xie/WorldGen"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "biologic",
     "title": "bioLogic",
     "org": "MIT Media Lab Tangible Media Group（Royal College of Art、New Balance、MIT化学工学科と共同）",
