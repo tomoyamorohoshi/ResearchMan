@@ -5067,5 +5067,197 @@
         "desc": "テキスト指示だけで、視点を動かしても矛盾なく繋がり続ける『歩き回れる3D世界』の映像を生成できるAIモデル。"
       }
     ]
+  },
+  {
+    "id": "2026-07-26-1",
+    "date": "2026-07-26",
+    "title": "生理を触感で伝える広告",
+    "pattern": "文脈×技術",
+    "seed": "Bodyform「WOMB STORIES」が描いた生理痛や子宮内膜症の痛みを、HapticLensで動画の揺れから振動に変換すれば、痛みそのものを他者が指先で追体験できる広告になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "bodyform-womb-stories",
+        "title": "WOMB STORIES",
+        "desc": "月経・流産・子宮内膜症・閉経など女性の身体に起きることを初めてリアルに描いた生理用品の広告。"
+      },
+      {
+        "type": "tech",
+        "id": "hapticlens",
+        "title": "HapticLens",
+        "desc": "動画の細かい動きから振動を自動生成し、映像に触覚を付けられるオーサリングツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-26-2",
+    "date": "2026-07-26",
+    "title": "成層圏落下を歩いて追体験",
+    "pattern": "文脈×技術",
+    "seed": "Red Bull Stratosの高度39,000mからの落下を、Any4Dで実寸スケールの4D空間として復元すれば、当時のジャンプを自分の足で歩いて追体験できる展示になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "red-bull-stratos",
+        "title": "RED BULL STRATOS",
+        "desc": "Felix Baumgartnerが高度39,000mから音速を超えて落下したRed Bullの歴史的ライブ体験企画。"
+      },
+      {
+        "type": "tech",
+        "id": "any4d",
+        "title": "Any4D",
+        "desc": "動画やセンサー入力から実寸スケールで動く3D世界を1回の推論で復元するモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-26-3",
+    "date": "2026-07-26",
+    "title": "カメラロールを視点超え照合",
+    "pattern": "文脈×技術",
+    "seed": "McDonald'sのCamera Rollsが証明した「夜の終わりはマクド」を、Multi-View Foundation Modelsで別々のユーザーの写真の視点を横断照合すれば、同じ夜同じ店にいた者同士を発見できるファン企画に発展するかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "mcdonald-s-camera-rolls",
+        "title": "Camera Rolls",
+        "desc": "本物のユーザーのカメラロール写真で「夜の終わりはマクドナルド」を証明した屋外広告。"
+      },
+      {
+        "type": "tech",
+        "id": "multi-view-foundation-models",
+        "title": "Multi-View Foundation Models",
+        "desc": "2D基盤モデルに視点間の一貫性を持たせ、3D再構成なしで複数視点をつなげるフレームワーク。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-26-4",
+    "date": "2026-07-26",
+    "title": "三太郎モーションをロボへ",
+    "pattern": "文脈×技術",
+    "seed": "au「三太郎」が菜々緒・川栄李奈を有村架純と初共演させたように、robot_retargeterで歴代キャラの名シーンのモーションを体格の違う新キャストやロボットに転写すれば、世代を超えた共演を無限に再現できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "au-cm-2026",
+        "title": "「三太郎」キャスト現代で初共演 au新CM「有村架純のつながる放送局」篇",
+        "desc": "au三太郎シリーズの菜々緒・川栄李奈が新設定のCMで有村架純と初共演した企画。"
+      },
+      {
+        "type": "tech",
+        "id": "robot-retargeter",
+        "title": "robot_retargeter",
+        "desc": "人のモーションキャプチャデータを体格の違う人型ロボットの動きに自動変換する無料ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-26-5",
+    "date": "2026-07-26",
+    "title": "渋滞の音を看板が聴く",
+    "pattern": "文脈×技術",
+    "seed": "McDonald'sのTraffic Bustersが渋滞データで看板を切り替えたように、Event Topology-based Visual Vibrometerでマイクなしにクラクションや騒音を映像から見て復元すれば、音センサーいらずで音に反応する看板が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "traffic-busters-2017",
+        "title": "Traffic Busters",
+        "desc": "道路のリアルタイム交通データと連動しメッセージが自動で切り替わるMcDonald'sの看板。"
+      },
+      {
+        "type": "tech",
+        "id": "event-topology-based-visual-vibrometer",
+        "title": "Event Topology-based Visual Vibrometer",
+        "desc": "イベントカメラの映像から物体の微細な振動＝音を光源やマイクなしで復元する計測手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-26-6",
+    "date": "2026-07-26",
+    "title": "AI生成映像を映画色に",
+    "pattern": "技術×技術",
+    "seed": "LTX-2が生成した音声付き4K映像を、映画・VFX標準のOpenColorIOをComfyUI内で再現するComfyUI-OCIOでグレーディングすれば、生成映像がそのまま劇場公開レベルの色調に仕上がるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ltx-2",
+        "title": "LTX-2",
+        "desc": "音声と映像を同時生成できる、4K・50fps・最長20秒のオープンソース基盤モデル。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-ocio",
+        "title": "ComfyUI-OCIO",
+        "desc": "映画・VFX業界標準の色空間管理OpenColorIOをComfyUI内で使えるようにする拡張ノード集。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-26-7",
+    "date": "2026-07-26",
+    "title": "巨大3D空間を自動編集",
+    "pattern": "技術×技術",
+    "seed": "Aholo Viewerがブラウザだけで表示する10億スプラット級の3D空間を、映像制作を自動化するOpenMontageに探索させれば、AIが自分でカメラワークを決めて完パケの巡覧動画を作ってくれるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "aholo-viewer",
+        "title": "Aholo Viewer",
+        "desc": "インストール不要のブラウザで巨大な3Dガウシアンスプラット空間をなめらかに表示できるOSSレンダラ。"
+      },
+      {
+        "type": "tech",
+        "id": "openmontage",
+        "title": "OpenMontage",
+        "desc": "AIコーディングアシスタントを映像制作スタジオに変え、脚本から編集まで自動化するエージェントシステム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-26-8",
+    "date": "2026-07-26",
+    "title": "スプラットを商品棚に転用",
+    "pattern": "転用",
+    "seed": "本来は映像・VFX向け3DデータをComfyUI内で扱うためのComfyUI Native Gaussian Splat Nodesを、実店舗の棚をスキャンしたデータの加工に転用すれば、ノーコードで商品陳列のバーチャルショールームを量産できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-native-gaussian-splat-nodes",
+        "title": "ComfyUI Native Gaussian Splat Nodes（GAUSSIAN型 / v0.23.0）",
+        "desc": "ComfyUIに3D Gaussian Splatを扱うネイティブ型とノード群を外部依存なしで追加するツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-26-9",
+    "date": "2026-07-26",
+    "title": "生成世界で事故を再現",
+    "pattern": "転用",
+    "seed": "本来はゲームのように遊べる映像世界を作るAlayaWorldを、事件現場の写真1枚から関係者が動き回れる検証空間の生成に転用すれば、報道や裁判の状況説明がインタラクティブになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "alayaworld",
+        "title": "AlayaWorld",
+        "desc": "1枚の画像とカメラの動き・テキスト指示から遊べる映像世界をリアルタイム生成し続ける世界モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-26-10",
+    "date": "2026-07-26",
+    "title": "自然言語で企業音を作曲",
+    "pattern": "転用",
+    "seed": "本来はヒップホップのビートメイク検証だったSplice MCP × Claudeの自然言語作曲を、企業の通知音や保留音のブランドサウンド制作に転用すれば、非エンジニアでも喋るだけで独自のブランド音を量産できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "splice-mcp-claude-beatmaking",
+        "title": "Splice MCP Server × Claude Cowork によるAIビートメイク検証",
+        "desc": "Spliceの公式MCPサーバーをClaudeに接続し、自然言語の指示だけで曲を組めるか検証した事例。"
+      }
+    ]
   }
 ]
