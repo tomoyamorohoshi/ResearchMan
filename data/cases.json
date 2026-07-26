@@ -1,5 +1,216 @@
 [
   {
+    "id": "rek-tokyo-2026-2026",
+    "title": "REK TOKYO 2026",
+    "summary": "米国発ロボット格闘技団体REKが日本初上陸、VR操縦の実機ヒューマノイドが秋葉原で殴り合う",
+    "client": "REK（米国発ロボット格闘技団体）/ ロボスタディオン",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000002.000171259.html",
+    "thumbnail": "/thumbnails/rek-tokyo-2026-2026.jpg",
+    "videoId": "",
+    "overview": "米国発ロボット格闘技団体REKが日本初上陸し、2026年7月25日にベルサール秋葉原で「REK TOKYO 2026」を開催。パイロットがVRヘッドセットで実機ヒューマノイドを操縦し、一辺1.2mの正八角形ケージでフルコンタクト対戦を行った。",
+    "background": "REKは「get REKt」に由来する米国発の団体で、パイロットが実機ヒューマノイドを操るロボット格闘興行として、ニューヨークやサンフランシスコなど米国各都市で実績を重ねてきた。今回、ロボスタディオン・goi Incとの共催で日本初開催が実現した。",
+    "execution": "昼の部は無料のロボット展示会・企業デモ・エンジニア採用マッチングを実施し、夜の部は有料のメインバトルとして正八角形ケージ内で実機ヒューマノイド同士が対戦。パイロットはVRで自身の身体動作を機体に転送し、事前学習済みモーションポリシーがバランス維持等を補助するハイブリッド制御を採用した。",
+    "evaluationImpact": "実機ロボットの物理的な格闘とVR観戦を組み合わせた新形式の興行として、秋葉原という「ロボットの街」で開催された点が話題を呼んだ。格闘動作のログが将来的にフィジカルAIの学習素材となり得るという議論も専門メディアで提起されている。",
+    "relatedWorks": [
+      {
+        "title": "REK TOKYO 2026 公式サイト",
+        "description": "ロボスタディオンによる公式イベント特設ページ",
+        "url": "https://robostadion.com/rek-tokyo/"
+      },
+      {
+        "title": "REK TOKYO 2026—VR操縦ヒューマノイドの殴り合いは、フィジカルAIの学習素材になり得るか",
+        "description": "VR操縦システムとフィジカルAIとの関連を考察したInnovatopiaの記事",
+        "url": "https://innovatopia.jp/robot/robot-news/113221/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Tech/XR",
+      "Form/Event",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "vketreal-2026-summer-2026",
+    "title": "VketReal 2026 Summer",
+    "summary": "VR/メタバースイベントVketがXR技術でリアル会場と融合、MRスマスロやロボット格闘まで実装",
+    "client": "HIKKY",
+    "agency": "",
+    "categories": [
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000505.000034617.html",
+    "thumbnail": "/thumbnails/vketreal-2026-summer-2026.jpg",
+    "videoId": "",
+    "overview": "HIKKY主催のVketReal 2026 Summerは2026年7月25-26日にベルサール秋葉原（住友不動産秋葉原ビル）で開催。バーチャルとリアルを融合した体験型イベントで、企業ブースやオリジナルコンテンツ、初開催のVketRealオンラインを実施した。",
+    "background": "Vket（バーチャルマーケット）は世界最大級のメタバースイベントとして130万人超が来場する実績を持ち、その姉妹イベントとしてVketRealは2023年から年2回、リアル会場でのXR体験提供を続けている。",
+    "execution": "Apple Vision Proを使った「MRスマスロ ハナビ」、Web経由でアバター画像を出力する新システム「Myアバターチェキウォール」、米国発ヒューマノイドロボット格闘イベント「REK TOKYO」の日本初上陸、VRChat上に特設会場を設けたパラリアルクリエイターオンライン展示即売会など多彩な企画を展開した。",
+    "evaluationImpact": "リアル会場とVRChat内のバーチャル会場を中継・連携させる仕組みや、待機列を削減するWebアップロード型体験など、来場のハードルを下げつつXR技術の実用アプリケーションを一般消費者向けに提示した点が特徴的である。",
+    "relatedWorks": [
+      {
+        "title": "REK TOKYO",
+        "description": "米国発ヒューマノイドロボット・ファイティング団体の日本初上陸イベント。VketReal 2026 Summer内で7月25日開催",
+        "url": "https://prtimes.jp/main/html/rd/p/000000505.000034617.html"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/XR",
+      "Form/Event",
+      "Form/Exhibition"
+    ]
+  },
+  {
+    "id": "jagda-2026-graphic-design-now-2026",
+    "title": "JAGDAデザイン会議2026「Graphic Design Now」",
+    "summary": "JAGDAが「Graphic Design Now」を掲げ、20名のデザイナーが2日間かけて社会とデザインの関係を議論する会議",
+    "client": "日本グラフィックデザイン協会（JAGDA）",
+    "agency": "",
+    "categories": [
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.advertimes.com/20260714/article550432/",
+    "thumbnail": "/thumbnails/jagda-2026-graphic-design-now-2026.jpg",
+    "videoId": "",
+    "overview": "日本グラフィックデザイン協会（JAGDA）主催の「JAGDAデザイン会議2026 Graphic Design Now」が7月25・26日、東京ミッドタウン・デザインハブで開催。グラフィックデザイナー約20名が登壇し、社会とデザインの関わりを2日間議論するカンファレンス。",
+    "background": "デザインの対象領域が社会のあらゆる分野へ拡張する中、将来のグラフィックデザインが社会とどう向き合うべきかを問う必要性からJAGDAが企画。デザイナーの職業倫理や専門性を社会に示すことを目的としている。",
+    "execution": "アクセシビリティ、公共とデザイン、アジアのデザイン、テクノロジー、デザイン倫理、グラフィックデザインの拡張性、空間デザイン、社会的メッセージ、UI/UXなど全10セッションを設定。会場参加（定員80名）とZoomウェビナー配信（定員500名）を併用し、幅広い層の参加を可能にした。",
+    "evaluationImpact": "業界団体自らがデザインの社会的役割や倫理を主題化し、複数世代・分野のデザイナー約20名を巻き込んで公開議論する場を設けた点が特徴。グラフィックデザインの拡張性を業界横断で可視化する試みとして注目される。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Event",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "beefeater-0-0-jamiroquai-virtual-insanity-2026",
+    "title": "Beefeater 0.0 × Jamiroquai「Virtual Insanity」リメイク",
+    "summary": "Jonathan Glazer監督の名作MV『Virtual Insanity』をCG/AI不使用・9室の実物セットでJay Kay本人が30周年リメイク",
+    "client": "Beefeater 0.0（ノンアルコールジン、Pernod Ricard）",
+    "agency": "Lucky Generals（制作: Magna Studios、監督: Julien & Quentin）",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://lbbonline.com/news/Beefeater-Jamiroquai-Virtual-Insanity-Lucky-Generals",
+    "thumbnail": "/thumbnails/beefeater-0-0-jamiroquai-virtual-insanity-2026.jpg",
+    "videoId": "",
+    "overview": "ノンアルコールジンBeefeater 0.0とLucky Generalsが、Jamiroquaiの1996年の名作MV「Virtual Insanity」を30周年を機にリメイク。フロントマンJay Kay本人が出演し、CGやAIを一切使わず実物セットで再現した。",
+    "background": "「Virtual Insanity」はJonathan Glazer監督による90年代を代表する名作MVで、動く床（当時は壁）が話題を呼んだ。30周年を迎え、Beefeater 0.0はJay Kayが当時「手を伸ばしていた先」にあったものとしてノンアルコールジンを提示する企画を考案した。",
+    "execution": "Lucky Generalsが企画し、Magna StudiosがJulien & Quentin監督のもとで制作。CGやAIに頼らず、9つの実物セットを組み、床が動く仕掛けとイン・カメラの振付・美術で撮影した。Jay Kay自身が振付にも関わった。「Get More With 0.0」プラットフォームの一環。",
+    "evaluationImpact": "飲酒と非飲酒を使い分ける「ゼブラストライピング」トレンドを捉え、ノンアルコールを『我慢』ではなく『体験の拡張』として描いた点が評価されている。CG/AI不使用でカルト的名作を再現した技術力も話題となった。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/MV",
+      "Form/Film",
+      "Theme/Music",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "honda-power-of-dreams-2026",
+    "title": "Honda「Power of Dreams」バルーンクラウド・キャンペーン",
+    "summary": "Pablo LondonのHonda欧州初案件。人間の夢を白い可塑物質として視覚化しエンジニアリング工程で車へ変貌させるパン欧州キャンペーン",
+    "client": "Honda（欧州）",
+    "agency": "Pablo London",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://lbbonline.com/news/Work-of-the-Week-240726",
+    "thumbnail": "/thumbnails/honda-power-of-dreams-2026.jpg",
+    "videoId": "",
+    "overview": "Honda欧州が2025年9月に起用した新代理店Pablo Londonによる初のキャンペーン。「Your Dreams Engineered」と題し、人間の夢を白い可塑的な物質として表現、それがHondaのエンジニアリング工程を通じて押され、引かれ、成形され、最終的に現行のHonda車として結実する過程をTVC・OOH・ソーシャルでパン欧州展開した。",
+    "background": "Pablo LondonはHondaの広告アカウントを2025年9月に受託し、本作がその最初の成果物となる。Hondaブランドの根幹にある「顧客中心のエンジニアリング哲学」を新たな世代に伝え直すことを狙いとし、従来の製品訴求型広告から離れ、抽象的なビジュアルメタファーでブランド哲学そのものを描く方針が取られた。",
+    "execution": "監督はRyan Chun（Magna Studios制作、撮影監督Chuck Owens）。VFXはBlack Kite StudiosがJonathan Boxのクリエイティブディレクションのもと20名超のチームで、変幻自在な白い物質が形作られる「ブロブ」世界を構築。編集はShift Editing、サウンドは750mph、カラーはRichard FearonとTom Mangham。TVCを軸にOOHとソーシャルで各Hondaモデルの個性を展開した。",
+    "evaluationImpact": "業界メディアDecision Marketingは「10/10」と高評価し、Hondaが長年培ってきた個性的な広告表現の系譜を継承しつつ更新した仕事と評した。プロダクトの機能訴求ではなく「夢が形になる過程」という抽象的で人間味のあるビジュアル言語を新代理店の初弾で確立した点が業界内で注目された。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/Film",
+      "Form/OOH",
+      "Theme/Mobility"
+    ]
+  },
+  {
+    "id": "dollar-shave-club-danglers-ai-2026",
+    "title": "Dollar Shave Club「Danglers」AI生成広告",
+    "summary": "睾丸型オーナメント「Danglers」を人間の役者なしでコミカルに描く、ほぼ全編生成AI制作の15秒広告",
+    "client": "Dollar Shave Club",
+    "agency": "社内クリエイティブチーム",
+    "categories": [
+      "AIクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.mediapost.com/publications/article/416579/dollar-shave-club-ramps-up-its-ai-powered-advertis.html",
+    "thumbnail": "/thumbnails/dollar-shave-club-danglers-ai-2026.jpg",
+    "videoId": "",
+    "overview": "Dollar Shave Clubが2026年7月、男性用デオドラント「Ball Spray」のためにほぼ全編を生成AIで制作した15秒広告「Danglers」を公開。トラックナッツ(truck nuts、車に吊るす睾丸型オーナメント)を男性器の代わりに使い、誇張したコミカルなシナリオで人間の役者を起用せずセンシティブなテーマをユーモラスに表現した。",
+    "background": "Dollar Shave ClubはChief Brand and Innovation OfficerのLaura Higgins主導で、AI活用を制作の中核に据える方針を推進。同年7月1日には「250 Years. No BS. Still Free」という完全社内制作のAI生成広告を公開しており、「Danglers」はその流れを汲むBall Spray向け新作として数日後に発表された。",
+    "execution": "初期段階では外部制作会社Too Short For Modelingが関与したが、HiggsFieldやClaudeなどのAIツールを用いて社内クリエイティブチームが主体的に制作。同キャンペーンには携帯サイズのボトルをジムやフィットネスの生活ハックとして描く別動画「Size Matters」も含まれる。",
+    "evaluationImpact": "人間の役者を使わずにセンシティブな下ネタユーモアを誇張表現で成立させた点、そしてAI活用により制作スピードとコストを圧縮しつつブランドマネージャーが戦略に集中できる体制を示した点が業界内で注目された。",
+    "relatedWorks": [
+      {
+        "title": "250 Years. No BS. Still Free",
+        "description": "Dollar Shave Clubが2026年7月1日に公開した完全社内制作のAI生成広告",
+        "url": "https://www.marketingdive.com/news/how-dollar-shave-club-uses-generative-ai-to-unlock-advertising-creativity/825016/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Film",
+      "Theme/Health"
+    ]
+  },
+  {
     "id": "patreon-reimagined-patreon-2023",
     "title": "Patreon Reimagined（Patreonリブランディング）",
     "summary": "PatreonがWolff Olins・3DアーティストDavid McLeod・タイプファウンドリDinamoと組み、形の定まらない流動的な3Dロゴと可変ワードマークで刷新したリブランディング。",
