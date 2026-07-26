@@ -9,6 +9,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { execFile } from "child_process";
 import { promisify } from "util";
+import sharp from "sharp";
 import { normalizeThumbnailBuffer } from "./lib/normalize-thumbnail.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -59,6 +60,15 @@ async function curlFetchBuffer(url) {
   }
 }
 
+// テスト用に差し替え可能なネットワーク依存（本番は既定の実装をそのまま使う）。
+// ESM名前付きエクスポートは外部から再代入できないため、テストで差し替えたい境界の
+// 関数だけをこのオブジェクト経由で呼び出す（2026-07-27 adversarial-review対応）。
+export const _deps = {
+  fetchImage,
+  fetchOgImagePage,
+  curlFetchText,
+};
+
 /**
  * ステータス/本文からCloudflare等のチャレンジページかどうかを判定する。
  * 403やその他の異常ステータス、または本文に "Just a moment" / cf-chl 等の
@@ -80,6 +90,68 @@ export function extractOgImage(html) {
   // og:image URLはHTMLエスケープされていることがある（&amp; → &）
   const img = m?.[1]?.replace(/&amp;/g, "&");
   return img && img.startsWith("http") ? img : null;
+}
+
+// ── <img>タグ フォールバック抽出（og:image/twitter:image不在サイト対策） ──
+// Prix Ars Electronica（archive.aec.at）等、ogメタタグを一切持たないページが実在する。
+// ページ本文の<img>タグから候補を抽出し、誤サムネ根絶の除外フィルタを通した上位数件を
+// 既存のダウンロード保存経路（saveThumbnail）で順に試す（2026-07-27）。
+const IMG_TAG_RE = /<img\b[^>]*>/gi;
+const IMG_SRC_ATTR_RE = /\bsrc\s*=\s*["']([^"']+)["']/i;
+const IMG_CLASS_ATTR_RE = /\bclass\s*=\s*["']([^"']+)["']/i;
+// トラッキングピクセル/装飾用画像とみなして除外するsrcパターン
+const IMG_EXCLUDE_SRC_RE = /logo|icon|sprite|pixel|spacer|avatar|emoji/i;
+// width="1" / height="1"（1x1トラッカー）を除外。data-width="1" 等の別属性への
+// 誤マッチを避けるため、属性名の直前が空白/タグ先頭であることを要求する
+// （\bだと "data-width" の "width" にも一致してしまう。2026-07-27 review指摘E対応）
+const IMG_TRACKER_DIM_RE = /(?:^|\s)(?:width|height)\s*=\s*["']?0*1["']?(?:px)?(?=[\s/>]|$)/i;
+// classに"media"/"main"を含むかの単純な部分一致（単語境界だと post-media__img /
+// mainContent 等の実サイトで多用されるクラス名に一致しないため。2026-07-27 review指摘D対応）
+const IMG_PRIORITY_CLASS_RE = /media|main/i;
+const IMG_FALLBACK_MAX_CANDIDATES = 5;
+
+/**
+ * HTML本文の<img>タグから、フォールバックサムネイル候補の絶対URLを抽出する。
+ * 誤サムネ根絶のため .svg / data:URI / logo・icon・sprite・pixel・spacer・avatar・emoji
+ * を含むもの / 1x1トラッカーを除外し、class に media/main を含むものを優先する。
+ * 除外フィルタ通過後の出現順（class一致は先頭に寄せる）で上位5件まで返す。
+ */
+export function extractImgFallbackCandidates(html, pageUrl, limit = IMG_FALLBACK_MAX_CANDIDATES) {
+  const body = html || "";
+  const tags = body.match(IMG_TAG_RE) || [];
+  const prioritized = [];
+  const rest = [];
+  const seen = new Set();
+
+  for (const tag of tags) {
+    if (IMG_TRACKER_DIM_RE.test(tag)) continue;
+
+    const srcMatch = tag.match(IMG_SRC_ATTR_RE);
+    if (!srcMatch) continue;
+    const src = srcMatch[1].replace(/&amp;/g, "&").trim();
+    if (!src || src.startsWith("data:")) continue;
+    if (/\.svg(?:[?#]|$)/i.test(src)) continue;
+    if (IMG_EXCLUDE_SRC_RE.test(src)) continue;
+
+    let absolute;
+    try {
+      absolute = new URL(src, pageUrl).toString();
+    } catch {
+      continue;
+    }
+    if (!absolute.startsWith("http")) continue;
+    if (seen.has(absolute)) continue;
+    seen.add(absolute);
+
+    const classMatch = tag.match(IMG_CLASS_ATTR_RE);
+    if (classMatch && IMG_PRIORITY_CLASS_RE.test(classMatch[1])) {
+      prioritized.push(absolute);
+    } else {
+      rest.push(absolute);
+    }
+  }
+
+  return [...prioritized, ...rest].slice(0, limit);
 }
 
 /** URLから画像をダウンロードしてバッファで返す（Node直接取得のみ。redirects追跡込み）。 */
@@ -131,10 +203,30 @@ export async function fetchImage(url, redirects = 4) {
 }
 
 /**
+ * バッファが実際にデコード可能な画像かどうかを検証する（sharpでメタデータ取得を試みる）。
+ * normalizeThumbnailBuffer はデコード失敗時に元のバッファをそのまま返す（＝失敗を外部から
+ * 判別できない）ため、採用可否の判定にはこの専用チェックを使う
+ * （2026-07-27 review指摘A: 404 HTML等がそのまま.jpgとして保存される問題への対応）。
+ */
+async function isDecodableImage(buf) {
+  try {
+    const meta = await sharp(buf).metadata();
+    return Boolean(meta && meta.format);
+  } catch {
+    return false;
+  }
+}
+
+/**
  * 指定URLの画像をダウンロードして /public/thumbnails/{id}.jpg に保存
+ * @param {number} [minBytes=5000] 最小許容バイト数（imgタグフォールバック候補では
+ *   誤検出（アイコン等の小画像）を弾くためより高い閾値を指定できる）
+ * @param {boolean} [requireDecodable=false] trueの場合、バッファが実際にデコード可能な
+ *   画像であることを検証してから保存する（imgタグフォールバック候補向け。og:image経路は
+ *   従来通りfalseのまま＝挙動を変えない）
  * @returns ローカルパス "/thumbnails/{id}.jpg" or null
  */
-export async function saveThumbnail(id, sourceUrl) {
+export async function saveThumbnail(id, sourceUrl, minBytes = 5000, requireDecodable = false) {
   if (!sourceUrl || sourceUrl.includes("picsum")) return null;
 
   await fs.mkdir(THUMBNAILS_DIR, { recursive: true });
@@ -146,24 +238,53 @@ export async function saveThumbnail(id, sourceUrl) {
     return `/thumbnails/${id}.jpg`; // 既存ファイルをそのまま使用
   } catch {}
 
-  const buf = await fetchImage(sourceUrl);
-  if (!buf || buf.length < 5000) return null; // 小さすぎる画像は除外
+  const buf = await _deps.fetchImage(sourceUrl);
+  if (!buf || buf.length < minBytes) return null; // 小さすぎる画像は除外
+  if (requireDecodable && !(await isDecodableImage(buf))) return null; // デコード不能（404 HTML等）は除外
 
   // 直接配信(images.unoptimized)前提の正規化: 幅上限・JPEG化・メタデータ除去
   await fs.writeFile(localPath, await normalizeThumbnailBuffer(buf));
   return `/thumbnails/${id}.jpg`;
 }
 
+// imgタグフォールバック候補の最小許容バイト数（10KB未満は装飾用の小画像とみなし不採用）
+const IMG_FALLBACK_MIN_BYTES = 10 * 1024;
+
 /**
- * og:image を記事URLから取得してローカル保存
+ * og:image を記事URLから取得してローカル保存。
+ * og:image/twitter:imageが無い、またはそのURLでの保存に失敗した場合は
+ * ページ本文の<img>タグから候補を抽出するフォールバックを試みる
+ * （archive.aec.at等、ogメタタグを一切持たないサイト対策。2026-07-27）。
+ * ページHTMLの取得は1回のみ（fetchPageHtmlAndOgImage）で、og:image判定とimgタグ
+ * フォールバック抽出の両方に同じHTMLを再利用する（review指摘C: 重複フェッチ解消）。
  */
 export async function saveThumbnailFromPage(id, pageUrl) {
   if (!pageUrl || !pageUrl.startsWith("http")) return null;
 
-  const ogImage = await fetchOgImage(pageUrl);
-  if (!ogImage) return null;
+  const { html, ogImage } = await fetchPageHtmlAndOgImage(pageUrl);
+  if (ogImage) {
+    const saved = await saveThumbnail(id, ogImage);
+    if (saved) return saved;
+  }
 
-  return saveThumbnail(id, ogImage);
+  return saveThumbnailFromImgFallback(id, pageUrl, html);
+}
+
+/** ページ本文（既取得のHTML）の<img>タグ候補を上位から順に試し、最初に保存成功したものを採用する。 */
+async function saveThumbnailFromImgFallback(id, pageUrl, html) {
+  if (!html) return null;
+
+  const candidates = extractImgFallbackCandidates(html, pageUrl);
+  for (const url of candidates) {
+    // requireDecodable=true: デコード不能なバッファ（404 HTML等）は不採用にして次候補へ
+    const saved = await saveThumbnail(id, url, IMG_FALLBACK_MIN_BYTES, true);
+    if (saved) {
+      console.log(`[img-fallback] OK ${url}`);
+      return saved;
+    }
+    console.log(`[img-fallback] NG ${url}`);
+  }
+  return null;
 }
 
 /** 記事ページをNode直接取得し、{ status, html } を返す（redirects追跡込み）。取得不能ならnull。 */
@@ -201,34 +322,44 @@ function fetchOgImagePage(url, redirects = 3) {
 }
 
 /**
- * og:image のURLを記事ページから取得する（シグネチャ不変）。
+ * ページHTMLの取得 + og:image抽出をまとめて行う内部ヘルパー。
  * Node直接取得が失敗・非200・チャレンジ検知（403やCloudflareの"Just a moment..."等）の
  * 場合はcurlサブプロセスで再取得する（従来はステータスを無視してHTML解析していたため、
  * チャレンジページを素通しして og:image 無しと誤判定していた問題を修正）。
+ * Node直接経路は60KBでストリーミングを打ち切るため、og:imageタグがそれより後方にある
+ * 正規のページ（adweek.com実測: 約145KB地点）を「チャレンジではないがog:imageが無い」と
+ * 誤判定してしまう。curlは打ち切りなしで全文取得するため、この場合も再取得を試みる方が
+ * 実態に即している（2026-07-19 curlフォールバック実証で判明）。
+ * 取得したHTML本文も返すことで、呼び出し元（imgタグフォールバック）が再フェッチせず
+ * 同じHTMLから候補抽出できる（review指摘C）。副次効果として、curl全文取得はここで
+ * og:image無しと判定した場合に必ず行われるため、imgタグフォールバックの候補抽出も
+ * 60KB打ち切りの影響を受けない（review指摘B）。
  */
-export async function fetchOgImage(url, redirects = 3) {
-  const page = await fetchOgImagePage(url, redirects);
+async function fetchPageHtmlAndOgImage(url, redirects = 3) {
+  const page = await _deps.fetchOgImagePage(url, redirects);
   if (page && !isChallengeResponse(page.status, page.html)) {
     const img = extractOgImage(page.html);
-    if (img) return img;
+    if (img) return { html: page.html, ogImage: img };
   }
 
-  // Node直接取得が失敗・非200・チャレンジ検知、または200だがog:imageが見つからなかった
-  // 場合はcurlでフォールバックする。Node直接経路は60KBでストリーミングを打ち切るため、
-  // og:imageタグがそれより後方にある正規のページ（adweek.com実測: 約145KB地点）を
-  // 「チャレンジではないがog:imageが無い」と誤判定してしまう。curlは打ち切りなしで
-  // 全文取得するため、この場合も再取得を試みる方が実態に即している
-  // （2026-07-19 curlフォールバック実証で判明）。
-  const html = await curlFetchText(url);
+  const html = await _deps.curlFetchText(url);
   if (!html) {
     console.log(`[curl-fallback] og:image NG(curl取得失敗) ${url}`);
-    return null;
+    return { html: page?.html || null, ogImage: null };
   }
   const img = extractOgImage(html);
   if (img) {
     console.log(`[curl-fallback] og:image OK ${url}`);
-    return img;
+    return { html, ogImage: img };
   }
   console.log(`[curl-fallback] og:image NG(og:image無し) ${url}`);
-  return null;
+  return { html, ogImage: null };
+}
+
+/**
+ * og:image のURLを記事ページから取得する（シグネチャ不変。tech-thumbs.mjs等が利用）。
+ */
+export async function fetchOgImage(url, redirects = 3) {
+  const { ogImage } = await fetchPageHtmlAndOgImage(url, redirects);
+  return ogImage;
 }
