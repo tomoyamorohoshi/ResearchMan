@@ -26760,7 +26760,10 @@
       "Form/Product",
       "Theme/Sports",
       "Theme/Food"
-    ]
+    ],
+    "quarantined": true,
+    "quarantineReason": "link-dead(二重確認済): 到達不能（Jina救済も失敗）: https://www.olympics.com/ioc/news/olympic-rings-pasta-for-milano-cortina-2026-ho",
+    "quarantineTs": "2026-07-26T09:32:29.904Z"
   },
   {
     "id": "the-feathered-lamb",
