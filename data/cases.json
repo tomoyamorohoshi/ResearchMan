@@ -1,5 +1,245 @@
 [
   {
+    "id": "enigma-robotics-2026",
+    "title": "Enigma Robotics ステルス解禁 ― 音量調整のようにロボットを直感操作するインターフェース技術",
+    "summary": "ロボット操作を音量調整並みに直感化するAI基盤とインターフェースを開発するEnigmaが7100万ドルのシード調達でステルス解禁",
+    "client": "Enigma",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://techcrunch.com/2026/07/27/enigma-raises-70m-to-make-controlling-a-robot-as-easy-as-adjusting-the-volume/",
+    "thumbnail": "/thumbnails/enigma-robotics-2026.jpg",
+    "videoId": "",
+    "overview": "イスラエル発のロボティクス企業Enigmaが、ロボット操作を「車の音量つまみを調整するのと同じくらい直感的」にすることを目指す新しいヒューマン・ロボット・インターフェース技術を開発し、7100万ドルのシード資金調達とともにステルスを解禁した。",
+    "background": "創業者のJonathan JacobiとGal Nivはイスラエルの精鋭サイバー部隊Unit 8200出身で、ロボット業界がモデル性能競争に偏重する中、人間とロボットの「対話方法」自体が未解決の課題だと考え、1年足らず前にEnigmaを設立した。",
+    "execution": "イスラエルとカリフォルニアの拠点に100台以上の独自ロボットアームを配置し、公開実験プラットフォームrobots.onlineで世界中の人々がテキスト・音声・映像デモ・タップ操作などを通じてロボットに絵画や剣戟、化学実験をさせながら最適な操作インターフェースを検証している。",
+    "evaluationImpact": "Index VenturesとRibbit Capital主導、OpenAIやAnthropicなど大手AI企業出身者も参加する資金調達により、モデル・抽象化層・インターフェースの3層でロボティクスの実用化を進め、ヘルスケアやロジスティクス、エンターテインメント領域での実装に向けたパートナーシップも進行中である。",
+    "relatedWorks": [
+      {
+        "title": "robots.online",
+        "description": "Enigmaが公開した、誰でもリアルタイムでAI搭載ロボットと対話できる実験プラットフォーム",
+        "url": "https://www.robots.online"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Tech/AI",
+      "Form/Product"
+    ]
+  },
+  {
+    "id": "mon-takanawa-2026",
+    "title": "いのちの未来＋（MoN Takanawa 巡回展）",
+    "summary": "大阪・関西万博の話題パビリオンをアンドロイド技術で拡張し、東京・高輪で新シナリオ付き巡回展として復活",
+    "client": "MoN Takanawa: The Museum of Narratives（監修: 石黒浩）",
+    "agency": "",
+    "categories": [
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://bijutsutecho.com/magazine/news/report/32836",
+    "thumbnail": "/thumbnails/mon-takanawa-2026.jpg",
+    "videoId": "",
+    "overview": "2025年大阪・関西万博のシグネチャーパビリオン「いのちの未来」を、東京・高輪ゲートウェイシティの新施設MoN Takanawaへ巡回・アップデートした展示。石黒浩氏監修のもと、アンドロイド技術で「いのちとは何か」を問いかける。",
+    "background": "万博で高い評価を得た「いのちの未来」を、2026年3月開館のMoN Takanawa: The Museum of Narrativesの開館記念プログラムとして東京に招致。会期は2026年7月25日〜9月25日。",
+    "execution": "土偶・能面・文楽人形からアンドロイドへと続く、人間が「いのち」を見出してきた歴史を展示するZONE1に加え、来館者が選択と向き合う新シナリオやアンドロイドとの対話体験を新たに追加し、万博時からアップデートした構成とした。",
+    "evaluationImpact": "万博会期終了後も体験機会を失わせず常設的な文化施設へ発展的に巡回させた事例で、パビリオン型展示の恒久展開という新たなモデルを提示している。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Tech/AI",
+      "Form/Exhibition"
+    ]
+  },
+  {
+    "id": "spider-man-brand-new-day-personalised-fan-experience-2026",
+    "title": "Spider-Man: Brand New Day Personalised Fan Experience",
+    "summary": "Spotifyの3年分の音楽視聴履歴を分析し、映画のテーマ「変化」に重ねてファン個別のプレイリスト体験を生成",
+    "client": "Sony Pictures Canada / Spotify",
+    "agency": "UM Canada",
+    "categories": [
+      "データクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://lbbonline.com/news/Sony-Pictures-Canada-Spotify-Personalised-Fan-Experience-Spider-Man-Brand-New-Day",
+    "thumbnail": "/thumbnails/spider-man-brand-new-day-personalised-fan-experience-2026.jpg",
+    "videoId": "",
+    "overview": "Sony Pictures CanadaとUM Canadaが、映画『Spider-Man: Brand New Day』の公開に合わせてSpotify上でパーソナライズ体験を展開。米国・カナダのユーザーの過去3年間の音楽視聴履歴データを基に、リスニング傾向の変化を可視化し、映画テーマ「変化と新たな始まり」と結びつけた。",
+    "background": "『Spider-Man: Brand New Day』（2026年7月31日公開）は主人公の変化と再出発を描く作品。この物語テーマをファンの実データと結びつけることで、単なる告知広告ではなくパーソナルな共感体験として映画を届けることが狙いとされた。",
+    "execution": "Spotify内にユーザーの過去3年間の音楽リスニング傾向を分析し、他のSpider-Manファンコミュニティの傾向と比較できる機能を実装。ユーザー個別の音楽的変化を反映したカスタムプレイリスト「Brand New Playlist」を生成できる。加えてスマートフォンを逆さに傾けるとSpider-Manが逆さ吊りポーズに切り替わり、過去と現在のデータが入れ替わる演出も組み込まれた。",
+    "evaluationImpact": "音楽ストリーミングの個人データを活用し、映画のテーマ性をユーザー自身の体験として翻訳した点が特徴。単なるプレイリスト提供にとどまらず、行動データと物語テーマを接続した点でエンタメマーケティングにおけるデータ活用の一事例となっている。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Tech/Device",
+      "Form/App",
+      "Theme/Music",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "deviate-pure-2026",
+    "title": "Deviate Pure",
+    "summary": "東南アジア3カ国で展開、カーボンプレート非搭載の新作ランニングシューズを映像とOOHで訴求したPuma「Deviate Pure」",
+    "client": "Puma",
+    "agency": "Compound Collective",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/puma-deviate-pure",
+    "thumbnail": "/thumbnails/deviate-pure-2026.jpg",
+    "videoId": "",
+    "overview": "Pumaがマレーシア・シンガポール・タイで展開した「Deviate Pure」キャンペーン。クリエイティブエージェンシーCompound Collectiveが制作し、デジタル・フィルム・OOH屋外広告を組み合わせたマルチメディア展開で、新作ランニングシューズ「Deviate Pure NITRO」の魅力を訴求した。",
+    "background": "PumaはDeviateシリーズにカーボンプレートを搭載しない軽量モデル「Deviate Pure NITRO」を新たに投入。東南アジア地域では2024年前後から一般ランナーに寄り添うローカル施策を強化しており、本キャンペーンもその流れの中でシンガポール・マレーシア・タイの市場向けに企画された。",
+    "execution": "クリエイティブディレクターIan Jeon、ディレクターGun Sooのもと、フィルム撮影とスタイリング・音楽制作を伴う本格的なプロダクションを実施。撮影されたビジュアルをデジタル広告とOOH屋外広告に展開し、都市部の生活者に向けてシューズの軽さ・機能性を印象付ける表現に仕上げた。",
+    "evaluationImpact": "ファッション・スポーツ両業界の文脈を横断するビジュアル表現でAds of the Worldにも掲載され注目を集めた。地域特化のプロダクションチームを起用しつつ、フィルムとOOHを連動させたクロスメディア展開により、東南アジア市場でのブランド訴求力強化に寄与した事例といえる。",
+    "relatedWorks": [
+      {
+        "title": "PUMA Deviate Pure: Purely Fast (Thailand)",
+        "description": "タイで開催されたDeviate Pure NITRO発売イベント。ランニングコミュニティ向けの体験型プロモーション。",
+        "url": "https://snkrtoday.com/puma-deviate-pure-purely-fast-thailand/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Form/OOH",
+      "Theme/Sports"
+    ]
+  },
+  {
+    "id": "discover-the-daisy-chain-fields-collection-from-olivia-rodri",
+    "title": "Discover the Daisy Chain Fields Collection from Olivia Rodrigo",
+    "summary": "Olivia Rodrigoの音楽フェス記念、女性経営Etsy店舗10店とハンドメイド限定コレクションを協業展開",
+    "client": "Etsy",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/discover-the-daisy-chain-fields-collection-from-olivia-rodrigo",
+    "thumbnail": "/thumbnails/discover-the-daisy-chain-fields-collection-from-olivia-rodri.jpg",
+    "videoId": "",
+    "overview": "Etsyがミュージシャン Olivia Rodrigo の初開催フェス「Daisy Chain Fields」に合わせ、女性経営の10のEtsy店舗と協業したハンドメイド限定コレクションを展開。刺繍パッチやフラワークラウン、ビーズジュエリーなど多彩なアイテムをEtsy上で限定販売した。",
+    "background": "ファンがアーティストやクリエイター、コミュニティとより個人的な形でつながりたいと望む時代背景の中、Etsyはフェスの観客を単なる消費者ではなく創造的なコミュニティの参加者として体験させることを狙った企画を打ち出した。",
+    "execution": "刺繍パッチ、プレスフラワーのしおり、ビーズジュエリー、フラワークラウン、トランプなど、女性オーナー10店舗のハンドメイド商品をEtsy上で限定販売。8月開催のフェス会場では「Etsy Creative Village」を設け、来場者がメーカーと直接交流しハンズオン体験できる場も用意した。",
+    "evaluationImpact": "ファン参加型のマーチャンダイジングをEC単体で終わらせず、フェス会場での対面体験まで接続した点が特徴。フェスの収益はDaisy Chain Fields Fundを通じ女性支援団体へ寄付されるなど、社会的意義も併せ持つ企画として注目を集めた。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Form/Event",
+      "Theme/Music",
+      "Theme/Retail"
+    ]
+  },
+  {
+    "id": "meanwhile-on-ebay-live-2026",
+    "title": "Meanwhile on eBay Live",
+    "summary": "eBayのライブショッピング機能を軸に、受動的なスクロール消費に対抗する熱狂のリアルタイム売買体験を描いたグローバルキャンペーン",
+    "client": "eBay",
+    "agency": "JOAN Creative",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/meawhile-on-ebay-live",
+    "thumbnail": "/thumbnails/meanwhile-on-ebay-live-2026.jpg",
+    "videoId": "",
+    "overview": "eBayとJOAN Creativeが手がけた「Meanwhile on eBay Live」は、eBayのライブショッピング機能をPRするグローバルキャンペーン。ファッションやコレクタブルなど専門ジャンルの出品者・インフルエンサーが登場するフィルムを中心に、OOH・TV・デジタル・SNSに展開された。",
+    "background": "受動的なスクロールや無目的なオンラインショッピングが蔓延する中、eBayは自社のライブ配信機能上で実際に起きている「出品者が知識を共有し、買い手がリアルタイムで交流する」熱量ある光景に着目。この“本物の興奮”を可視化することをキャンペーンの出発点とした。",
+    "execution": "英国では各カテゴリーに精通したインフルエンサー、米国では実際のeBay Live出品者を起用し、他では見られない「信頼できる人物と在庫の裏側にある本物のつながり」を描くフィルムを制作。5本の映像アセットを軸にOOH・TV・デジタル・SNSへ横断展開し、2026年6月8日に英米で同時始動した。",
+    "evaluationImpact": "競争が激化するEコマース市場で、ライブコマースを差別化要因として打ち出したeBayの大型プッシュ施策。Ads of the World編集部の注目作品コレクションに選出される一方、出品者側からはマーケティング費用の使途を巡る反発の声も報じられた。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Form/OOH",
+      "Theme/Retail"
+    ]
+  },
+  {
+    "id": "at-least-my-feet-don-t-hurt-outbreak-2026",
+    "title": "At Least My Feet Don't Hurt (\"Outbreak\")",
+    "summary": "ゾンビ黙示録の生存者一家を主人公に、整形靴の「地味」なイメージをコミカルに覆した60秒動画広告",
+    "client": "KURU Footwear",
+    "agency": "Little Big Engine",
+    "categories": [
+      "コンテンツ革新",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/zombie-apocalypse-used-to-promote-orthopedic-shoe-brand",
+    "thumbnail": "/thumbnails/at-least-my-feet-don-t-hurt-outbreak-2026.jpg",
+    "videoId": "",
+    "overview": "米ソルトレイクシティの整形靴ブランドKURU Footwearが、Little Big Engineと制作したキャンペーン「At Least My Feet Don't Hurt」。中心となる60秒動画「Outbreak」では、ゾンビ黙示録を生き延びた夫婦が、絶滅したゾンビから調達したKURUの靴で足の痛みから解放された喜びを語る。30秒・15秒版も制作され、テレビ・オンライン・SNSで展開された。",
+    "background": "整形靴カテゴリーは長年「退屈で時代遅れ」というイメージを持たれており、KURU Footwareはこの固定観念を打破する必要があった。年齢や機能性重視のイメージから脱却し、スタイリッシュで面白いブランドとして再定義することを狙った。",
+    "execution": "ゾンビ黙示録の世界観を舞台に、40代夫婦とチェーンにつながれたゾンビの息子が登場するコミカルな設定を採用。父親が「足の痛みがない」ことの喜びをユーモラスに語る構成で、シリアスになりがちな整形靴カテゴリーに笑いを持ち込んだ。60秒・30秒・15秒の複数尺を制作し、テレビ・オンライン・SNSでマルチチャネル展開した。",
+    "evaluationImpact": "退屈になりがちな機能訴求型カテゴリーで、ホラーコメディという意外性のあるフォーマットを用いて話題化に成功。Ads of the WorldやMuse by Clioなど広告業界メディアに取り上げられ、独立系エージェンシーの小規模ブランド案件としても注目を集めた。",
+    "relatedWorks": [
+      {
+        "title": "KURU Footwear: THE KURU GURU",
+        "description": "同ブランドが展開する別キャンペーン。皮肉屋のスポークスパーソン「KURU GURU」を通じて足の痛み解消のメッセージをコミカルに伝える",
+        "url": "https://www.adsoftheworld.com/campaigns/the-kuru-guru-cbe8a389-80ce-4c87-a9ad-ca0f5dcd7124"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Form/SNS",
+      "Theme/Health",
+      "Theme/Entertainment"
+    ]
+  },
+  {
     "id": "rek-tokyo-2026-2026",
     "title": "REK TOKYO 2026",
     "summary": "米国発ロボット格闘技団体REKが日本初上陸、VR操縦の実機ヒューマノイドが秋葉原で殴り合う",
