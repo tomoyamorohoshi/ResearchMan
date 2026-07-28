@@ -14,6 +14,8 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // ResearchMan Studio: 独立したローカル専用アプリ。RM本体のlint対象外。
     "studio/**",
+    // エージェント用 git worktree の複製が lint 対象に入り LINE ジョブの品質監査を落とすため。
+    ".claude/**",
   ]),
 ]);
 
