@@ -1,5 +1,58 @@
 [
   {
+    "id": "cuddle-fish",
+    "title": "Cuddle-Fish（Floating Companion）",
+    "org": "慶應義塾大学（MITメディアラボと共同）",
+    "type": "Research",
+    "domains": [
+      "HCI/MediaArt",
+      "Motion/Body"
+    ],
+    "date": "2026-06",
+    "year": "2026",
+    "summary": "ヘリウムガスと柔らかい羽ばたきヒレで浮遊移動するソフトロボット。プロペラを使わず静音・軽量・接触しても安全な設計で、人について歩いたりリマインダーを伝えたり、勉強のお供になったりする。慶應義塾大学とMITメディアラボの研究チームがACM DIS 2026（2026年6月、シンガポール開催）で発表した。",
+    "point": "何がすごいか→プロペラなど硬い駆動部を一切使わず、ヘリウムの浮力と柔らかいヒレの羽ばたきだけで室内を静かに移動できる点。ユーザー実験では、参加者が指示なしに抱きしめたり撫でたりする行動が観察されるほど「安全に触れられる」存在感を実現した。広告・体験づくりでは→店舗やイベント会場で来場者にふわふわ寄り添い案内するマスコットロボット、空間を漂う生き物のようなインスタレーション演出、子供向け・ヘルスケア領域向けの癒し系コンパニオンプロダクトのプロトタイピングなどに応用できそう。",
+    "detail": "機体はアルミ蒸着ナイロンフィルム製の気球（全長約1m×幅0.45m×高さ0.33m）にヘリウムを充填して浮力を確保し、左右の柔らかいヒレを0.3〜1.5Hzで羽ばたかせて前進、左右の羽ばたきに差をつけることでヨー旋回も行う仕組み。前身の「Cuddle-Fish」（ACM Augmented Humans 2025で発表）で基礎技術を検証したのち、DIS 2026の「Floating Companion」論文では専門家パネルの知見をもとに約10の設計軸（動き方・コミュニケーション方法・見た目・自律性の度合いなど）からなる「ソフト浮遊ロボットのデザイン空間」を整理し、人を追従する、リマインドを伝える、勉強のお供になる、一緒に踊るといった日常のユースケースを提示した。\n\n実運用にはヘリウムの定期補充や気密性維持などの気球特有のメンテナンスが必要で、現時点では研究プロトタイプの段階にとどまる。",
+    "license": {
+      "spdx": null,
+      "commercial": "research-only",
+      "note": "研究プロトタイプであり、製品化・商用ライセンスの情報は公開されていない"
+    },
+    "links": [
+      {
+        "kind": "paper",
+        "url": "https://dl.acm.org/doi/10.1145/3800645.3813051"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/pdf/2504.01293"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=6qrZC1kF7Kc"
+      },
+      {
+        "kind": "post",
+        "url": "https://x.com/clankrmedia/status/2076593164744376707"
+      },
+      {
+        "kind": "post",
+        "url": "https://x.com/clankrmedia/status/2076593164744376707?s=46&t=rnvmMdiPT06JMvo-M3bC0A"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/cuddle-fish.jpg",
+    "relatedWorks": [
+      {
+        "title": "Cuddle-Fish: Exploring a Soft Floating Robot with Flapping Wings for Physical Interactions",
+        "description": "同研究チームによる前身プロトタイプの論文（ACM Augmented Humans 2025）",
+        "url": "https://dl.acm.org/doi/10.1145/3745900.3746080"
+      }
+    ],
+    "sources": [
+      "User"
+    ]
+  },
+  {
     "id": "reviv",
     "title": "ReViV (Reconstructing the Viewer and the View in 4D from Monocular Egocentric Video)",
     "org": "ETH Zürich, Delft University of Technology, Microsoft",
