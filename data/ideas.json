@@ -5259,5 +5259,407 @@
         "desc": "Spliceの公式MCPサーバーをClaudeに接続し、自然言語の指示だけで曲を組めるか検証した事例。"
       }
     ]
+  },
+  {
+    "id": "2026-07-27-1",
+    "date": "2026-07-27",
+    "title": "広告まで菌が作るビール",
+    "pattern": "文脈×技術",
+    "seed": "Hawkstoneが製造工程そのものをエンタメにしたように、Fungal Computerの菌糸体を醸造所に住まわせ、菌の電位スパイクでその日の広告コピーやラベルを決める『広告まで菌が作るビール』ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "hawkstone-hard-to-make-easy-to-drink",
+        "title": "Hawkstone - Hard to Make Easy to Drink",
+        "desc": "英国のビールブランドが、製造工程そのものを楽しめるブランデッドコンテンツにして受賞した事例"
+      },
+      {
+        "type": "tech",
+        "id": "fungal-computer",
+        "title": "Fungal Computer（菌糸体メムリスタ／きのこコンピューティング）",
+        "desc": "キノコの根のような菌糸体に電極を刺し、その電気信号を論理回路やメモリとして使う研究"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-27-2",
+    "date": "2026-07-27",
+    "title": "公開前映画の下見サイト",
+    "pattern": "文脈×技術",
+    "seed": "JURASSIC WORLDが架空の予約サイトを公開2年前から運営したように、Aholo Viewerでブラウザから歩ける巨大3D空間として映画の舞台を公開すれば、公開前から『現地を下見できる』旅行サイト型プロモができそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "jurassic-world-park-site",
+        "title": "JURASSIC WORLD 公式サイト（テーマパーク体裁）",
+        "desc": "映画公開2年前から、実在するテーマパークの予約サイトのように運営された架空の旅行サイト"
+      },
+      {
+        "type": "tech",
+        "id": "aholo-viewer",
+        "title": "Aholo Viewer",
+        "desc": "インストール不要のブラウザだけで、10億スプラット級の巨大3D空間をなめらかに表示できるOSSレンダラ"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-27-3",
+    "date": "2026-07-27",
+    "title": "行けない場所のVR避難",
+    "pattern": "文脈×技術",
+    "seed": "Curfew Hostelsが外出禁止下でも観戦文化を守ったように、立入制限や災害で行けなくなった場所をSpatialographyのように歩けるVR作品として記録すれば、失われかけた土地の記憶を文化ごと『避難』させられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "tiger-beer-curfew-hostels",
+        "title": "Curfew Hostels",
+        "desc": "外出禁止令下のミャンマーで、ホステルに泊まってサッカー観戦する文化を守った体験企画"
+      },
+      {
+        "type": "tech",
+        "id": "spatialography",
+        "title": "Spatialography",
+        "desc": "実在の公園や滝をGaussian Splattingで記録し、VR空間の中を歩いて鑑賞できる作品にしたVRChatワールド"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-27-4",
+    "date": "2026-07-27",
+    "title": "ファン発流行の即公式ソング",
+    "pattern": "文脈×技術",
+    "seed": "OM BDRがファン発の食べ方を公式化したように、ファンの投稿文をそのまま歌詞にしてACE-Step 1.5で楽曲化すれば、流行が生まれた瞬間に地域ごとの『公式ソング』を出して祝うブランドができそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "kfc-om-bdr",
+        "title": "OM BDR",
+        "desc": "サウジのファンの間で自然発生したKFC×自家製スパイスの食べ方を、公式商品化した事例"
+      },
+      {
+        "type": "tech",
+        "id": "ace-step-1-5",
+        "title": "ACE-Step 1.5",
+        "desc": "歌詞とジャンルを指定するとボーカル入りの楽曲を丸ごと作れる、自分のPCで動くオープンソースの音楽AI"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-27-5",
+    "date": "2026-07-27",
+    "title": "日ごとに鮮明になる解禁",
+    "pattern": "文脈×技術",
+    "seed": "マジカルミライの衣装順次公開の焦らしに、Smart Tile 2.0の『必要な場所だけ高解像度化』を使えば、1枚のメインビジュアルが日ごとに部分ずつ鮮明になっていくカウントダウン型の解禁演出ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-u0ttls-2026",
+        "title": "初音ミク「マジカルミライ 2026」特設サイト",
+        "desc": "初音ミクの年次イベント特設サイトで、メインビジュアルや各キャラクターの衣装を順次公開していく仕組み"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-ttp-toolset-smart-tile-2-0",
+        "title": "ComfyUI TTP Toolset – Smart Tile 2.0",
+        "desc": "画像のどこが顔かをAIに認識させ、必要な場所にだけタイルを敷いて高解像度化・部分編集できる拡張機能"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-27-6",
+    "date": "2026-07-27",
+    "title": "無音の合言葉ギミック",
+    "pattern": "文脈×技術",
+    "seed": "感電が羊のモールス信号でファンを巻き込んだように、NasoVoceのささやき認識を使えば、声を出せないライブ会場や深夜の街で、ファンだけが交わせる『無音の合言葉』参加ギミックが作れそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "yonezu-kanden-stray-sheep",
+        "title": "米津玄師「感電」YouTubeチャンネルハック",
+        "desc": "500万人登録のYouTubeチャンネルを404表示にし、羊の絵文字のモールス信号でファンを巻き込んだMV公開企画"
+      },
+      {
+        "type": "tech",
+        "id": "nasovoce",
+        "title": "NasoVoce",
+        "desc": "スマートグラスの鼻当てにセンサを仕込み、ほぼ声を出さないささやきでも認識できる発話インターフェース"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-27-7",
+    "date": "2026-07-27",
+    "title": "自由視点ロボットライブ",
+    "pattern": "技術×技術",
+    "seed": "TextOpでヒューマノイドに観客のリクエストを即興で踊らせ、その様子を4C4Dの4台カメラで動く3Dとして復元配信すれば、観客が視点を自由に選べる『自由視点ロボットライブ』が最小機材で成立するかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "textop",
+        "title": "TextOp",
+        "desc": "テキストで指示すると、ヒューマノイドロボットがその場で踊りや演奏など全身の動きを生成し実行する研究"
+      },
+      {
+        "type": "tech",
+        "id": "4c4d",
+        "title": "4C4D",
+        "desc": "たった4台のカメラの映像だけから、動いている空間を高精細な3D（4D）として復元する研究"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-27-8",
+    "date": "2026-07-27",
+    "title": "触れるMVの量産ライン",
+    "pattern": "技術×技術",
+    "seed": "ACE-Step 1.5で作った楽曲にFrontstageでAI映像を付け、HapticLensで映像の動きを振動に変換すれば、聴く・観る・触るが揃った『触れるMV』を一晩で量産する制作ラインが組めるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ace-step-1-5",
+        "title": "ACE-Step 1.5",
+        "desc": "歌詞とジャンルを指定するとボーカル入りの楽曲を丸ごと作れる、自分のPCで動くオープンソースの音楽AI"
+      },
+      {
+        "type": "tech",
+        "id": "frontstage",
+        "title": "Frontstage",
+        "desc": "AIによる映像生成とチャット型の自動編集エージェントを組み込んだ、無料オープンソースの動画編集ソフト"
+      },
+      {
+        "type": "tech",
+        "id": "hapticlens",
+        "title": "HapticLens",
+        "desc": "動画の好きな部分を選ぶと、その映像の細かな動きから振動を自動生成して触感を付けられるツール"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-27-9",
+    "date": "2026-07-27",
+    "title": "完成後の街角を先に合成",
+    "pattern": "転用",
+    "seed": "本来は映像制作の合成用であるMarble x Nukeを建築や店舗開発のプレゼンに転用し、テキストから起こした改装案の3D世界を現地の実写映像に合成すれば、工事前に『完成後の街角』を住民に見せて合意形成できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "marble-x-nuke",
+        "title": "Marble x Nuke",
+        "desc": "テキストや画像から生成した3D世界を、映像合成ソフトNukeの3D空間にそのまま読み込める無料プラグイン"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-27-10",
+    "date": "2026-07-27",
+    "title": "手触りで選ぶ通販売り場",
+    "pattern": "転用",
+    "seed": "本来は映像作品に触感を付けるHapticLensをECの商品動画に転用すれば、ニットの伸びや炭酸の泡の映像から振動を自動生成し、スマホ越しに『手触りで選ぶ』通販売り場が作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "hapticlens",
+        "title": "HapticLens",
+        "desc": "動画の好きな部分を選ぶと、その映像の細かな動きから振動を自動生成して触感を付けられるツール"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-28-1",
+    "date": "2026-07-28",
+    "title": "高齢モデルの永続広告",
+    "pattern": "文脈×技術",
+    "seed": "71歳フォロワーゼロのモデルを起用したMEET MARINA PRIETOのエイジズム批判を、Live Avatarで拡張——顔写真と音声だけで何時間も喋り続けるライブアバター広告にすれば、高齢層の声を止めずに発信し続けられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "jcdecaux-marina-prieto",
+        "title": "MEET MARINA PRIETO",
+        "desc": "71歳フォロワーゼロのモデルを屋外広告で起用し、エイジズムに反論したJCDecauxの広告キャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "live-avatar",
+        "title": "Live Avatar",
+        "desc": "1枚の顔写真と音声だけから、何時間でも破綻せず喋り続けるリアルタイム映像アバターを生成するAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-28-2",
+    "date": "2026-07-28",
+    "title": "薬剤耐性菌の動きを可視化",
+    "pattern": "文脈×技術",
+    "seed": "目に見えない薬剤耐性菌を刺繍で可視化したAntibiotic Resistance Quiltの発想を、物体の3D軌跡を予測するMolmoMotionに掛け合わせたら、感染拡大の次の動きを映像で予感させる啓発表現ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "antibiotic-resistance-quilt-2017",
+        "title": "Antibiotic Resistance Quilt",
+        "desc": "実在するMRSAなど薬剤耐性菌を布に培養・染色し、刺繍キルトとして可視化したバイオアート作品。"
+      },
+      {
+        "type": "tech",
+        "id": "molmomotion",
+        "title": "MolmoMotion",
+        "desc": "1枚の画像と自然言語指示だけで、物体の3D上の動きの軌跡を予測するAi2の基盤モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-28-3",
+    "date": "2026-07-28",
+    "title": "天候で変わる没入世界",
+    "pattern": "文脈×技術",
+    "seed": "雨に濡れると隠れたメッセージが浮かぶRain Activatedの発想を、歩き回れる3D世界を生成するDreamX-World 1.0に応用したら、天候によって道が変わる没入型ブランド空間が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "rain-activated-bumbershoot-2014",
+        "title": "Rain Activated (Bumbershoot)",
+        "desc": "雨に濡れると防水塗料で隠されたメッセージが浮かぶ、シアトルの野外フェスの屋外広告。"
+      },
+      {
+        "type": "tech",
+        "id": "dreamx-world-1-0",
+        "title": "DreamX-World 1.0",
+        "desc": "テキスト指示だけで、視点を動かしても矛盾なくつながる歩き回れる3D世界の映像を生成するAIモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-28-4",
+    "date": "2026-07-28",
+    "title": "身体拡張する高齢ダンサー",
+    "pattern": "文脈×技術",
+    "seed": "定年後のダンサーが年齢を超えた身体性を見せたThe Grey Swanに、表情やしぐさを増幅するウェアラブルアームEmoMimeを重ねたら、老いてなお広がり続ける身体表現の舞台が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "nycoplus-the-grey-swan",
+        "title": "The Grey Swan",
+        "desc": "定年退職したバレエダンサーが再び舞台に立ち、年齢を超えた身体表現を見せたブランデッドエンタテインメント。"
+      },
+      {
+        "type": "tech",
+        "id": "emomime",
+        "title": "EmoMime",
+        "desc": "顔のすぐ近くでも安全に動かせる、人間の手のかたちをしたウェアラブル型ロボットアーム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-28-5",
+    "date": "2026-07-28",
+    "title": "市民証拠映像の自動編集",
+    "pattern": "文脈×技術",
+    "seed": "60万人が投票記録を暗号化保全した600K Networkの市民監視精神を、素材フォルダを渡すだけで編集するVideo Useに応用——市民が撮った証拠映像を誰でも一瞬で検証可能な形にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "comando-600k-network",
+        "title": "600K Network",
+        "desc": "60万人超のボランティアが投票記録を暗号化して保全した、ベネズエラの市民ネットワーク。"
+      },
+      {
+        "type": "tech",
+        "id": "video-use",
+        "title": "Video Use",
+        "desc": "素材フォルダを渡しチャットで指示すると、編集済み動画を書き出すコーディングエージェント動画編集ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-28-6",
+    "date": "2026-07-28",
+    "title": "手描き演出から完パケまで",
+    "pattern": "技術×技術",
+    "seed": "線を描くだけでモーションを指定できるComfyUI「Cinematic Annotate Video」の映像を、HTMLを書けば動画になるHyperFramesのAIエージェントに渡したら、手描きの演出指示だけで完パケCMまで自動化できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-cinematic-annotate-video",
+        "title": "ComfyUI「Cinematic Annotate Video」ワークフロー",
+        "desc": "画像に線を描くだけでカメラワークを指定でき、LLMが動画生成用モーションプロンプトに翻訳するComfyUIワークフロー。"
+      },
+      {
+        "type": "tech",
+        "id": "hyperframes",
+        "title": "HyperFrames",
+        "desc": "HTMLを書けば動画になる、AIエージェントが動画制作できるよう設計されたHeyGenのオープンソースフレームワーク。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-28-7",
+    "date": "2026-07-28",
+    "title": "実写3D化からCM自動編集",
+    "pattern": "技術×技術",
+    "seed": "実写のGaussian Splattingを3Dモデルと正しく重ねられるYaGSで撮影素材を3D化し、映像制作を自動化するOpenMontageに渡したら、ロケなしで奥行きのあるCMを完パケまで作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "yags",
+        "title": "YaGS",
+        "desc": "Unreal Engine上でGaussian Splattingを通常の3Dモデルと正しく重ならせられる無料プラグイン。"
+      },
+      {
+        "type": "tech",
+        "id": "openmontage",
+        "title": "OpenMontage",
+        "desc": "AIコーディングアシスタントを映像制作スタジオに変える、企画から編集まで自動化するエージェント型システム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-28-8",
+    "date": "2026-07-28",
+    "title": "予感を宿す静止画広告",
+    "pattern": "転用",
+    "seed": "本来はロボットの動作計画向けであるMolmoMotionを転用し、静止画の商品カットに数秒先の動きの軌跡だけをうっすら重ねたら、写真なのに次の一瞬を予感させるパッケージビジュアルが作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "molmomotion",
+        "title": "MolmoMotion",
+        "desc": "1枚の画像と自然言語指示だけで、物体の3D上の動きの軌跡を予測するAi2の基盤モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-28-9",
+    "date": "2026-07-28",
+    "title": "消えた街の追悼空間",
+    "pattern": "転用",
+    "seed": "本来はゲームのように歩ける3D世界を作るDreamX-World 1.0を転用し、解体前の建物や失われた街並みを歩けるアーカイブとして再現したら、都市の記憶を弔う追悼インスタレーションになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "dreamx-world-1-0",
+        "title": "DreamX-World 1.0",
+        "desc": "テキスト指示だけで、視点を動かしても矛盾なくつながる歩き回れる3D世界の映像を生成するAIモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-28-10",
+    "date": "2026-07-28",
+    "title": "音で歪む実写の自室",
+    "pattern": "文脈×技術",
+    "seed": "HomePodの音楽再生で部屋が変容したWELCOME HOMEの発想を、実写空間をGaussian Splatとして扱えるComfyUI Native Gaussian Splat Nodesに応用——音に反応して自室そのものが歪み変容する体験広告が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "apple-welcome-home",
+        "title": "WELCOME HOME (Apple HomePod ft. FKA twigs)",
+        "desc": "HomePodで音楽を再生するとアパートが物理的に変容する、Apple HomePodの4分間映像詩。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-native-gaussian-splat-nodes",
+        "title": "ComfyUI Native Gaussian Splat Nodes（GAUSSIAN型 / v0.23.0）",
+        "desc": "ComfyUIに3D Gaussian Splatを扱うネイティブなデータ型とノード群を追加するツール。"
+      }
+    ]
   }
 ]
