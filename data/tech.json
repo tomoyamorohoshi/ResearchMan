@@ -1,5 +1,68 @@
 [
   {
+    "id": "dissectible-anatomy",
+    "title": "Dissectible Anatomy",
+    "org": "Purdue University (Tim McGraw, Jack Myers)",
+    "type": "Research",
+    "domains": [
+      "HCI/MediaArt",
+      "Spatial/3D"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "実在する人体の輪切りデータから作った3Dモデルを、GPU上でリアルタイムに自由に切ったり裂いたりできる仮想解剖シミュレーション。SIGGRAPH 2026 Real-Time Live!観客賞を受賞。",
+    "point": "実在する人体の輪切りCT画像（Visible Human Projectという公的な死体スキャンデータ）から作った3Dモデルを、まるで粘土のようにGPU上でリアルタイムに切ったり裂いたりくり抜いたりできる技術です。これまでのバーチャル解剖ソフトは、あらかじめ決まった断面を眺めるだけのものが中心でしたが、この研究は好きな場所に好きな方向から力を加えて壊せる自由度の高さが新しく、SIGGRAPH 2026のReal-Time Live!では審査員だけでなく来場者の投票による観客賞を獲得しました。広告・体験づくりの視点で見ると、商品や機械の内部構造を来場者が自分の手で切り開いて中身を覗ける体験型展示、ゲームやVRでの『壊す・分解する』インタラクション、医療機器メーカーの製品説明ツールなど、実写データをそのまま壊せる汎用シミュレーション基盤として幅広く応用できそうです。",
+    "detail": "仕組みとしては、まず人体を輪切りにした断面写真の束（死体を提供・スキャンした公的データ）を積み重ねて3Dの立体データに変換し、それを細かい『ブロック(ボクセル)』の集合として捉え直します。粘土の塊をレゴブロックの集まりとして扱うイメージです。ブロック同士を『壊れる接着剤』でつなぎ、力が加わるとその接着剤が実際の組織のように裂けたりちぎれたりする物理計算(XPBDというシミュレーション手法)を、GPUの並列計算で毎秒何十回も回すことでリアルタイムの手応えを実現しています。\n\n従来のCG映像での破壊表現は事前に計算して映像化する『撮って出し』が主流で、ゲームの破壊表現も見た目重視の簡易なものが大半でした。この研究は医療教育での利用を見据え、実在の人体データが持つ解剖学的な正確さを保ったまま、切る・裂く・くり抜くという操作にその場で応答する点が従来と異なります。\n\n使うにはNVIDIA製GPUとOpenGL 4.6対応環境、C++でのビルド作業が必要で、素材となる人体データは米国国立医学図書館が無償公開しているVisible Human Projectから入手できます。コード自体はGitHubで公開されていますが明示のライセンス表記がないため、商用利用には権利関係の確認が必要です。",
+    "license": {
+      "spdx": null,
+      "commercial": "research-only",
+      "note": "GitHubリポジトリにLICENSEファイルが明記されておらず既定でAll Rights Reserved扱い。研究・教育目的の参照に留めるのが安全"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/temcgraw/dissectible_anatomy"
+      },
+      {
+        "kind": "project",
+        "url": "https://web.ics.purdue.edu/~tmcgraw/dissectible_anatomy/index.html"
+      },
+      {
+        "kind": "paper",
+        "url": "https://dl.acm.org/doi/10.1145/3820013"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=VWfFFb9ETsI"
+      },
+      {
+        "kind": "post",
+        "url": "https://blog.siggraph.org/2026/07/watch-it-work-real-time-live-2026-brings-emerging-technology-to-the-stage-in-la.html/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/dissectible-anatomy.jpg",
+    "relatedWorks": [
+      {
+        "title": "Mesh Mortal Kombat: Real-time voxelized soft-body destruction",
+        "description": "同じ著者(McGraw)による前作。ボクセル化したメッシュをGram-Schmidt制約でリアルタイム破壊する技術で、SIGGRAPH 2024 Real-Time Live!でBest in Show受賞",
+        "url": "https://dl.acm.org/doi/fullHtml/10.1145/3641520.3665307"
+      },
+      {
+        "title": "Anatomage Table",
+        "description": "実在の人体データを使う商用のバーチャル解剖テーブル。断面表示が中心で自由な切断・破壊操作はできない",
+        "url": "https://anatomage.com/table/"
+      },
+      {
+        "title": "Visible Human Project",
+        "description": "本研究が素材に使う米国国立医学図書館の公的な人体断面データセット",
+        "url": "https://www.nlm.nih.gov/research/visible/visible_gallery.html"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "cuddle-fish",
     "title": "Cuddle-Fish（Floating Companion）",
     "org": "慶應義塾大学（MITメディアラボと共同）",
