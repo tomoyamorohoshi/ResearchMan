@@ -1,5 +1,173 @@
 [
   {
+    "id": "blendcap",
+    "title": "BlendCap",
+    "org": "Arcomade",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "Motion/Body"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "1本のビデオを撮るだけで、Blenderの中で体・手・顔を同時にモーションキャプチャできるアドオン「BlendCap」。マーカーもスーツもモーションキャプチャスタジオも不要です。",
+    "point": "これまでモーションキャプチャは、専用スーツやセンサー、専門スタジオが必要で、個人や小規模チームには高いハードルでした。BlendCapは、スマホやウェブカメラで撮った1本の動画をBlenderに読み込むだけで、体全体・指の細かい動き・表情までを一括で解析し、キャラクターのリグ（骨組み）にそのまま流し込んでくれます。RigifyやAuto-Rig Pro、Mixamoなど主要なリグ形式にプリセット対応しているため、リターゲット作業も数クリックで完了します。処理は全てローカルのPC内で完結し、映像を外部サーバーに送らないため、公開前の広告素材やクライアントワークでも安心して使えるのも実務的なポイントです。広告のプリビズやキャラクターアニメーションの下地作り、SNS用の小規模な演出動画など、「予算的にモーションキャプチャは無理」と諦めていた場面で、企画の初期段階から生きた動きを試せるようになります。",
+    "detail": "仕組みとしては、動画に映る人物の体・手指・顔・空間内の位置(ワールド空間の移動)をAIが解析し、その動きをBlender内の3Dキャラクターの骨(ボーン)に自動で割り当てます。従来のマーカー式モーションキャプチャが「体に反射マーカーを貼り、専用カメラ群で囲まれたスタジオで撮影する」という大掛かりな準備を要したのに対し、BlendCapは手持ちカメラで撮った動画さえあれば、Blenderのアドオンとしてその場でキャプチャから仕上げまで完結します。\n\n従来の類似ツールとの違いは、クラウド処理が前提だったサービス（Move.aiやRokoko Videoなど）に対し、BlendCapはローカルPCの処理能力(NVIDIA GPU推奨)だけで完結する点です。これにより映像を外部に送らずに済み、未公開の広告素材や守秘義務のある案件でも扱いやすくなっています。また、キャプチャ後の姿勢をFKからIK(足や手を狙った位置に固定して動かす制御方式)に変換するツールも内蔵しており、キャプチャした動きの微調整がしやすい設計です。\n\n使うために必要なものは、Blender 4.2以降の環境と、目安としてVRAM 6GB以上のNVIDIA製GPU(RTX20シリーズやGTX16シリーズ以上を推奨)、そしてセットアップ用に約11GB・空き容量32GB程度のディスク容量です。価格は買い切りで、個人利用向けのプランとスタジオ向け(複数ユーザー)のプランが用意されています。",
+    "license": {
+      "spdx": null,
+      "commercial": "paid",
+      "note": "買い切り制のBlender有償アドオン（サブスクリプションなし）。処理はローカル完結でクラウドに映像をアップロードしないため、NDA案件でも利用可と明記"
+    },
+    "links": [
+      {
+        "kind": "product",
+        "url": "https://superhivemarket.com/products/blendcap"
+      },
+      {
+        "kind": "post",
+        "url": "https://80.lv/articles/full-body-hand-facial-motion-capture-from-any-video-in-blender"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=FyFarx7RjT8"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/blendcap.jpg",
+    "relatedWorks": [
+      {
+        "title": "Move.ai",
+        "description": "特許技術のAIで動画から高精度モーションを抽出するクラウド型サービス",
+        "url": "https://move.ai"
+      },
+      {
+        "title": "Rokoko Video",
+        "description": "Webカメラ映像からAIでモーションキャプチャする無料〜サブスク型ツール",
+        "url": "https://www.rokoko.com/products/video"
+      },
+      {
+        "title": "DeepMotion",
+        "description": "動画からのAIモーションキャプチャとCascadeurなど他ツールとの連携で知られるサービス",
+        "url": "https://www.deepmotion.com"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "motionbricks",
+    "title": "MotionBricks",
+    "org": "NVIDIA Research（GR00T Whole-Body Control）",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "Spatial/3D"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "1つのAIモデルだけで、ゲーム内キャラクターと実在の二足歩行ロボット(Unitree G1)の両方をリアルタイムに動かせるNVIDIAの新しいモーション生成システム。SIGGRAPH 2026で発表。",
+    "point": "MotionBricksは、AIに『チャットで一往復ずつ指示する』のではなく、35万種類以上の動作データを学習した1つのモデルだけで、ゲームや3DCG内のキャラクターと、Unitree G1という実在する二足歩行ロボットの両方を同時に動かせる技術です。従来のゲームや映像制作では、歩く・走る・物をつかむといった動作ごとに専用のアニメーションデータと制御プログラムを大量に用意し、職人的につなぎ合わせる必要がありました。MotionBricksはそうした個別アニメーションを事前に貼り合わせるのではなく、行きたい場所や持ちたい物を指定するだけで、AIがその場で自然な動きを1秒間に1万5000コマという圧倒的な速度で生成します。広告や体験づくりの現場では、CM撮影のための実写ロボットパフォーマンスや、来場者の指示にリアルタイムで反応するインタラクティブ展示のキャラクター、ゲームエンジン内でのバーチャルヒューマン演出など、『動きそのものを台本なしにその場で作る』表現が現実的なコストで実現できる可能性があります。",
+    "detail": "MotionBricksの核は、モーションキャプチャデータを大量に学習した「潜在生成モデル」です。人間の動きを圧縮した数値表現(潜在空間)の中で次にどんな姿勢を取るべきかを予測し続けることで、歩く・走る・跳ぶ・物を運ぶといった一連の動作を途切れなく生成します。振付師が頭の中でイメージした動きをその場で身体化していくように、目的地や持ちたい物という『お題』だけを与えれば、AIが自然な動作の流れを即興で作り出すイメージです。\n\n従来のキャラクターアニメーションは、あらかじめ用意した数千種類のモーションクリップを『ステートマシン』と呼ばれる分岐ロジックでつなぎ替える方式が主流でした。新しい動きを増やすたびにつなぎ目の不自然さを手作業で調整する必要があり、ゲームとロボットで動きを共有することもできませんでした。MotionBricksは1つのモデルが画面内のキャラクターと物理的なロボットの両方を動かせる点が特徴で、仮想と現実の演出を同じ『振付データ』で扱えます。\n\n現時点でGitHub上に公開されているのはプレビュー版で、Unitree G1を操作するデモスクリプトと、合成データを使った学習パイプラインが含まれます。実データを使った本番用の完全な学習パイプラインは今後の追加が予告されています。コード自体はApache-2.0で無償利用できますが、学習済みモデルの重みはNVIDIA独自ライセンス下にあり、商用利用時は条件確認が必要です。試すにはNVIDIA GPU環境と、ロボット実機(Unitree G1など)または3DCG/ゲームエンジン環境が必要です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "コード本体はApache-2.0で無償利用可。ただし学習済みモデルの重みはNVIDIA Open Model License（独自条件あり）で配布されており、商用利用時は別途ライセンス条件の確認が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/NVlabs/GR00T-WholeBodyControl/tree/main/motionbricks"
+      },
+      {
+        "kind": "project",
+        "url": "https://nvlabs.github.io/motionbricks"
+      },
+      {
+        "kind": "post",
+        "url": "https://blogs.nvidia.com/blog/siggraph-news-2026/"
+      },
+      {
+        "kind": "video",
+        "url": "https://blogs.nvidia.com/wp-content/uploads/2026/07/MotionBricks.mp4"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/motionbricks.jpg",
+    "relatedWorks": [
+      {
+        "title": "Kimodo",
+        "description": "NVIDIA Researchによる、光学式モーションキャプチャ700時間分を学習した表現力の高いキネマティック運動拡散モデル",
+        "url": "https://research.nvidia.com/labs/sil/projects/kimodo/"
+      },
+      {
+        "title": "GPC (Generative Pretraining for Transferable Motor Control)",
+        "description": "大規模モーションデータから転移可能な運動スキルを事前学習するNVIDIAの関連フレームワーク",
+        "url": "https://research.nvidia.com/labs/gear/projects/"
+      },
+      {
+        "title": "SONIC (GR00T Whole-Body Control)",
+        "description": "同じGR00T Whole-Body Controlプロジェクト内の全身制御モデル",
+        "url": "https://github.com/NVlabs/GR00T-WholeBodyControl"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "jarvishub",
+    "title": "JarvisHub",
+    "org": "香港中文大学(CUHK) MMLab・Tencent Hunyuan 共同研究チーム",
+    "type": "Research",
+    "domains": [
+      "AI/Agents",
+      "CreatorTools"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "チャットへの逐次的な指示ではなく、編集可能な「キャンバス」を作業台としてAIエージェントに与え、画像・動画・コード・スライドなど複数の成果物をまたぐ長時間の創作作業を任せられるオープンソースの創作エージェント基盤。",
+    "point": "JarvisHubは、AIに『チャットで一往復ずつ指示する』のではなく、絵を描くキャンバスのような編集可能な作業台を渡し、そこで長時間かけて企画・生成・修正・整理までをまとめて任せられる仕組みです。普通のAIチャットは会話が進むたびに前の文脈や試作品を見失いがちですが、JarvisHubはキャンバス自体を『AIの記憶』として使い、下書き・別案・修正履歴・人からのフィードバックをすべて画面上のカードとして保持し続けます。これにより、物語の執筆からWebサイトの試作、プレゼン資料作成まで、複数の素材をまたいで進む創作プロジェクトを、人がいつでも横から手を入れながらAIと一緒に進められます。広告制作でいえば、コピー案・ビジュアル案・構成案を並行して育てながらAIに叩き台を量産させ、気に入った案だけを人が拾い上げていくような『AIとの共同制作ボード』として使える可能性があります。",
+    "detail": "JarvisHubは、画面上の『キャンバス』を単なる表示領域ではなく、AIエージェントの外部メモリ・作業空間・共有プロジェクト状態として扱います。生成された画像や文章、コード、スライドといった成果物はすべて『型付きのカード(ノード)』としてキャンバス上に配置され、どの案がどの案から派生したか、どこが修正されたかという依存関係や版の履歴がリンクとして可視化されます。模造紙に付箋を貼りながらブレストを進めるホワイトボード会議を、AIエージェント自身が付箋を書き足したり並べ替えたりしながら主導するイメージです。\n\nこれまでのAI創作ツールは、チャット形式で一問一答を繰り返すか、あらかじめ決まったノードだけをつなぐビジュアルツールが中心で、AIが試行錯誤した過程や複数の代替案を人が後から追いにくいという弱点がありました。JarvisHubは代わりに、物語動画・Webアプリ開発・プレゼン資料という3種類の長時間創作タスクで、AIが計画→生成→修正→整理を自律的に繰り返しながら、人がいつでもキャンバス上の途中経過を見て介入できる設計を採用しています。\n\n利用にはNode.js・pnpm・Docker・Python 3.10以上の環境が必要で、run.shスクリプト一つでPostgreSQLやRedisを含む一式が立ち上がります。コードはApache-2.0ライセンスで商用利用も可能ですが、2026年7月に公開されたばかりの研究実装であり、プロダクション導入というよりAI創作エージェントの実験・検証用途に向いています。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "2026年7月公開の研究実装。開発チーム自身がインターフェース・データ構造は今後変更されうると明記。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/LYL1015/JarvisHub"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2607.23588"
+      },
+      {
+        "kind": "project",
+        "url": "https://www.jarvishub.site/"
+      },
+      {
+        "kind": "video",
+        "url": "https://youtu.be/rHUQ5YgjGLw"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/jarvishub.jpg",
+    "relatedWorks": [
+      {
+        "title": "JARVIS-1",
+        "description": "記憶を持つマルチモーダル言語モデルによるオープンワールド型マルチタスクエージェントの先行研究",
+        "url": "https://craftjarvis-jarvis1.github.io/"
+      },
+      {
+        "title": "Meta-Harness",
+        "description": "モデルハーネス自体を最適化する関連研究",
+        "url": "https://arxiv.org/abs/2603.28052"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "dissectible-anatomy",
     "title": "Dissectible Anatomy",
     "org": "Purdue University (Tim McGraw, Jack Myers)",
