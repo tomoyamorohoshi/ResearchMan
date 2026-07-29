@@ -5661,5 +5661,203 @@
         "desc": "ComfyUIに3D Gaussian Splatを扱うネイティブなデータ型とノード群を追加するツール。"
       }
     ]
+  },
+  {
+    "id": "2026-07-29-1",
+    "date": "2026-07-29",
+    "title": "見逃しゴールを3D復元",
+    "pattern": "文脈×技術",
+    "seed": "Brahmaの「Unwatched Goals」が見逃された試合のゴールをデータで拾い上げたように、ファンがバラバラに撮った写真だけから一度のAI推論で3D空間を復元するWild3Rを使えば、誰も見ていなかった瞬間を立体空間ごと蘇らせられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "unwatched-goals",
+        "title": "Unwatched Goals",
+        "desc": "見られなかった試合のゴールをリアルタイムデータで可視化・活用したBrahmaの施策。"
+      },
+      {
+        "type": "tech",
+        "id": "wild3r",
+        "title": "Wild3R",
+        "desc": "不特定多数が別々に撮った寄せ集め写真だけから、一度のAI推論で3D空間を復元する技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-29-2",
+    "date": "2026-07-29",
+    "title": "一人称視点で展示を持ち帰る",
+    "pattern": "文脈×技術",
+    "seed": "石黒浩監修「いのちの未来＋」のようなアンドロイド展示を、来場者の一人称視点動画だけで全身・視線・周囲空間を4D復元するReViVで記録すれば、体験そのものを持ち帰れる巡回展になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "mon-takanawa-2026",
+        "title": "いのちの未来＋（MoN Takanawa 巡回展）",
+        "desc": "大阪・関西万博のアンドロイド展示を新シナリオ付きで東京・高輪に巡回復活させた展覧会。"
+      },
+      {
+        "type": "tech",
+        "id": "reviv",
+        "title": "ReViV (Reconstructing the Viewer and the View in 4D from Monocular Egocentric Video)",
+        "desc": "一人称視点の動画1本から装着者の動きと周囲空間を同時に4D復元する技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-29-3",
+    "date": "2026-07-29",
+    "title": "動く紙ポスターでガジェット謎かけ",
+    "pattern": "文脈×技術",
+    "seed": "Pruksaの「The Most Valuable Gadget in the World」のような正体不明ガジェットのOOHティザーに、水滴の形を電気信号で変えるMorphDropsを使えば、紙のポスターなのに“謎の物体”が動いて見えるティザーになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "the-most-valuable-gadget-in-the-world-2026",
+        "title": "The Most Valuable Gadget in the World",
+        "desc": "謎の高級ガジェットをOOHでティザーし、正体が2500万バーツの住宅だったと明かす不動産キャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "morphdrops",
+        "title": "MorphDrops",
+        "desc": "紙に印刷した導電インクに電気を流し、水滴の形を自在に変えられるディスプレイ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-29-4",
+    "date": "2026-07-29",
+    "title": "盗む体験をロボットが再現",
+    "pattern": "文脈×技術",
+    "seed": "麻布台ヒルズの「盗む」体験型展示ギガマート展にREBOOを景品として組み込んだように、ロボットの動きと映像を相互生成するMVAを使えば、来場者が商品を“盗む”瞬間をロボットアームが再現する什器が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "reboo-2026",
+        "title": "嗅ぐ深呼吸「REBOO」が体験型展示「ギガマート展」に参加",
+        "desc": "「盗む」体験型コンビニ展に香りアイテムREBOOを持ち帰り成功景品として組み込んだ事例。"
+      },
+      {
+        "type": "tech",
+        "id": "masked-visual-actions-for-unified-world-modeling",
+        "title": "Masked Visual Actions for Unified World Modeling (MVA)",
+        "desc": "ロボットの動きと映像を相互に生成・変換できる統一世界モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-29-5",
+    "date": "2026-07-29",
+    "title": "誰かの記憶を歩き回るVR",
+    "pattern": "技術×技術",
+    "seed": "一人称視点動画から装着者と周囲空間を4D復元するReViVで撮った日常の記憶を、1億スプラット規模を描けるVRChat Gaussian Splatting v4に流し込めば、誰かの記憶そのものを歩き回れるソーシャルVR空間にできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "reviv",
+        "title": "ReViV (Reconstructing the Viewer and the View in 4D from Monocular Egocentric Video)",
+        "desc": "一人称視点の動画1本から装着者の動きと周囲空間を同時に4D復元する技術。"
+      },
+      {
+        "type": "tech",
+        "id": "vrchat-gaussian-splatting-v4",
+        "title": "VRChat Gaussian Splatting v4",
+        "desc": "ソーシャルVR内で1億スプラット規模の大規模3D空間をリアルタイム描画できるツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-29-6",
+    "date": "2026-07-29",
+    "title": "ささやきで映像を演出する",
+    "pattern": "技術×技術",
+    "seed": "ほとんど声を出さない“ささやき”を拾うNasoVoceで指示を出せば、文章から3D動作と映像を同時生成するCoMoViが人前で恥ずかしがらず動く、公共の場でも使える映像ディレクション体験になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "nasovoce",
+        "title": "NasoVoce",
+        "desc": "スマートグラスの鼻当てでほぼ無音の“ささやき”を拾って認識する発話インターフェース。"
+      },
+      {
+        "type": "tech",
+        "id": "comovi",
+        "title": "CoMoVi",
+        "desc": "文章から3Dの人の動きと写実的な映像を一つの生成ループで同時に作る技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-29-7",
+    "date": "2026-07-29",
+    "title": "映画の色管理を化粧品広告へ",
+    "pattern": "転用",
+    "seed": "本来は映画・VFX業界の色空間を管理するComfyUI-OCIOを転用すれば、肌色を国や照明環境が違っても同じトーンで統一する、グローバル化粧品キャンペーン向けカラー管理ツールになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-ocio",
+        "title": "ComfyUI-OCIO",
+        "desc": "映画・VFX標準の色空間管理システムOpenColorIOをComfyUI内で高精度に使えるようにする拡張。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-29-8",
+    "date": "2026-07-29",
+    "title": "ロトスコープ技術で不良品検品",
+    "pattern": "転用",
+    "seed": "「赤いシャツの人」のような自然言語の指示だけで動画から物体を切り抜けるRotoAIを転用すれば、工場の検品映像から不良品だけを言葉で切り出す、広告制作を離れた品質管理ツールに化けるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "rotoai",
+        "title": "RotoAI",
+        "desc": "自然言語の指示だけで動画から人物や物体をきれいに切り抜けるロトスコープ・ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-29-9",
+    "date": "2026-07-29",
+    "title": "シュールな一発ネタを量産する",
+    "pattern": "文脈×技術",
+    "seed": "紙幣計数機を主役にしたブラックコメディ「Don't Look Up」のような脚本巧者な短編を、指示を演出担当と作画担当に分業するBerniniに投げれば、シュールな一発ネタ広告を量産できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "steadfast-dont-look-up",
+        "title": "Don't Look Up",
+        "desc": "紙幣計数機を題材にしたブラックコメディの脚本巧者な短編広告。"
+      },
+      {
+        "type": "tech",
+        "id": "bernini",
+        "title": "Bernini",
+        "desc": "指示を読み解く『演出担当』と映像を描く『作画担当』が分業する統合画像・動画生成モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-29-10",
+    "date": "2026-07-29",
+    "title": "議論を巨大ポスターで体感する",
+    "pattern": "文脈×技術",
+    "seed": "JAGDAデザイン会議「Graphic Design Now」で議論される社会派グラフィックを、顔と背景を認識して部分ごとに高解像度化できるComfyUI TTP Smart Tile 2.0で巨大展示用に破綻なく拡大すれば、会議の議論を実物の大判ポスターで体感させられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "jagda-2026-graphic-design-now-2026",
+        "title": "JAGDAデザイン会議2026「Graphic Design Now」",
+        "desc": "JAGDAが「Graphic Design Now」を掲げ、デザイナーが社会とデザインの関係を議論する会議。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-ttp-toolset-smart-tile-2-0",
+        "title": "ComfyUI TTP Toolset – Smart Tile 2.0",
+        "desc": "顔と背景をAIに認識させ必要な場所だけ高解像度化・部分編集できるComfyUI拡張機能。"
+      }
+    ]
   }
 ]
