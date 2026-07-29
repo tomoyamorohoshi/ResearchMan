@@ -1,5 +1,397 @@
 [
   {
+    "id": "charge-go-2026",
+    "title": "ドローンライトダンス「Charge & Go!」桑名水郷花火大会で初公開",
+    "summary": "ドローン500機のライトダンス「Charge & Go!」を桑名水郷花火大会で初披露、同期アプリも同時始動",
+    "client": "AGEHARIDe株式会社 / 桑名市",
+    "agency": "AGEHARIDe株式会社",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000022.000165841.html",
+    "thumbnail": "/thumbnails/charge-go-2026.jpg",
+    "videoId": "",
+    "overview": "2026年7月25日、三重県桑名市の桑名水郷花火大会にて、AGEHARIDe株式会社によるドローンライトダンス「Charge & Go!」が三重県初上演された。500機のドローンが音楽と光を融合させ約11分間演出し、フィナーレでは「9・8・7(くわな)」の文字が夜空に描かれた。",
+    "background": "AGEHARIDeは作詞家・音楽プロデューサー・映像監督・ゲームクリエイター・ドローンパイロットら専門家集団が結成した企業で、桑名市とは2026年7月1日付で連携協定を締結し地域振興を目的に本イベントを実現した。",
+    "execution": "従来300機規模だった「LIGHTDANCe」シリーズを500機にバージョンアップし花火大会に導入。広大な会場でも観客が音楽・アナウンスとドローンの光をズレなく体感できるよう、専用アプリ「LIGHTDANCe Sync」を新規開発・同時リリースした。",
+    "evaluationImpact": "約11万人が来場した地域最大級の花火大会にドローンショーを組み込み、伝統的な花火と最新技術を融合。地方自治体と連携した地域振興モデルとして、同社の他都市展開への波及も期待される取り組みとなった。",
+    "relatedWorks": [
+      {
+        "title": "LIGHTDANCe Charge & Go!（300機バージョン）presented by AGEHARIDe",
+        "description": "2025年12月にウォーターズ竹芝で実施された300機版のドローンショー。今回の500機版の前身にあたる。",
+        "url": "https://waters-takeshiba.jp/news/event/20251212120000/"
+      },
+      {
+        "title": "TOTTEI KOBE１周年記念ドローンショー「LIGHTDANCe」",
+        "description": "神戸の商業施設1周年記念で実施されたAGEHARIDeのドローンショーで、7,000人が来場した。",
+        "url": "https://drone-journal.impress.co.jp/docs/news/1188441.html"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Form/Event",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "reboo-2026",
+    "title": "嗅ぐ深呼吸「REBOO」が体験型展示「ギガマート展」に参加",
+    "summary": "「盗む」体験型コンビニ展にリフレッシュアイテムREBOOを持ち帰り成功景品として組み込み、香りブランドを新規カルチャー層と接続した事例",
+    "client": "BREATHER株式会社 × ギガマート展（麻布台ヒルズギャラリー）",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000059.000073545.html",
+    "thumbnail": "/thumbnails/reboo-2026.jpg",
+    "videoId": "",
+    "overview": "BREATHER株式会社の「嗅ぐ深呼吸」アイテムREBOOが、麻布台ヒルズギャラリーで開催の体験型展示「ギガマート展」とコラボ。架空コンビニを舞台に来場者が60秒以内に監視カメラをかいくぐり商品を“盗る”ゲーム型エリアに、約4万個のお菓子や約4千本の飲料とともにREBOOがラインナップされ、成功者は実際に持ち帰ることができる。",
+    "background": "「盗-TOH-」チーム（TaiTan、玉置周啓ら）が手がける新体験型コンビニ展示「ギガマート展」は2026年7月18日〜8月16日、麻布台ヒルズギャラリーで開催。REBOOは2026年4月発売の“嗅ぐ深呼吸”アイテムで、発売3か月で累計販売1万本を突破するなど話題を集めていた。実店舗を持たないブランドが、若年層の集客力あるカルチャーイベントへの露出を求めコラボが実現した。",
+    "execution": "特設「盗エリア」は「搬入口」「従業員控室」「商品倉庫」の3エリアで構成。来場者はいずれかを選び、60秒以内に監視カメラに認識されないよう商品を持ち出すミッションに挑戦する。成功するとお菓子・飲料・古着などとともにラインナップされたREBOOを実際に持ち帰れる仕組みで、ゲームクリアの成功報酬として製品を組み込んだ設計になっている。",
+    "evaluationImpact": "購入ではなく「ゲームクリアの報酬」として製品を手渡す設計は、通常の店頭サンプリングにはない没入感と物語性を生み、若年層への自然な製品接触を実現した。話題性の高い既存展示フォーマットに乗ることで、単独プロモーションでは届きにくい層へのリーチを図った点が特徴。受賞歴は現時点で確認できず。",
+    "relatedWorks": [
+      {
+        "title": "盗-TOH- Energized by Red Bull",
+        "description": "音を立てなければ全商品が“盗める”体験型コンビニ。TaiTan・玉置周啓らが企画・監修した「ギガマート展」の前身プロジェクト。",
+        "url": "https://www.wwdjapan.com/articles/2065870"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Form/Installation",
+      "Theme/Retail",
+      "Theme/Health"
+    ]
+  },
+  {
+    "id": "case-ceqt2h-2026",
+    "title": "さかなクンと一緒にサメの魅力を再発見（『素材市場』コラボ動画）",
+    "summary": "お菓子ブランド公式YouTubeで、さかなクンが気仙沼のサメの魅力をクイズ形式で伝えるコラボ動画を公開。",
+    "client": "おやつカンパニー",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000733.000021119.html",
+    "thumbnail": "/thumbnails/case-ceqt2h-2026.jpg",
+    "videoId": "",
+    "overview": "おやつカンパニーは2026年7月28日、菓子ブランド「素材市場」のアンバサダーであるさかなクンと気仙沼の関係者が出演するYouTubeコラボ動画「さかなクンと一緒にサメの魅力を再発見」を公式チャンネル「さかなクンちゃんねる」で公開した。シャークミュージアムや気仙沼港、サメ料理関係者らが出題するクイズにさかなクンが挑戦する形式で、サメの魅力を紹介する内容。",
+    "background": "気仙沼は日本有数のサメ水揚げ地だが、サメは食材としての認知度が全国的に低い。同社は低利用魚の活用と地域漁業支援を目的に、気仙沼のモウカザメを使った「素材市場サメのスナック」を2026年7月に発売しており、これはサメを手軽なおやつにしたいというアンバサダー・さかなクンの発案から生まれた企画の一環。",
+    "execution": "商品発売に続く形で、さかなクンが気仙沼の水産関係者からサメにまつわるクイズを出題される体験型の動画を制作。シャークミュージアムや気仙沼港、サメ料理の専門家など複数の立場からサメの身・軟骨・皮の活用法や魅力を多角的に紹介し、さかなクンちゃんねるという既存の人気コンテンツ枠を使って発信した。",
+    "evaluationImpact": "商品PRにとどまらず、低利用魚の有効活用という水産資源のサステナビリティ課題を、著名なさかなクンの人気コンテンツ形式に乗せてわかりやすく伝えた点が特徴。地域漁業の活性化と消費者の食育・サステナビリティ意識の喚起を、購買行動につながるお菓子という身近な入口から両立させる取り組みといえる。",
+    "relatedWorks": [
+      {
+        "title": "フカヒレだけじゃない！気仙沼のサメの「身」を使った『素材市場サメのスナック』で地域漁業の活性化を応援",
+        "description": "本動画の題材となった商品「素材市場サメのスナック（から揚げ味）」の発売を発表したプレスリリース（2026年7月）",
+        "url": "https://prtimes.jp/main/html/rd/p/000000716.000021119.html"
+      },
+      {
+        "title": "さかなクンが超難問に挑戦!“さかなクンならスナック菓子になっても魚の味が分かる説”",
+        "description": "同じ「素材市場」×さかなクンちゃんねるのコラボ動画シリーズの過去作（2024年8月公開）",
+        "url": "https://prtimes.jp/main/html/rd/p/000000500.000021119.html"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Theme/Food",
+      "Theme/SocialGood",
+      "Theme/Sustainability"
+    ]
+  },
+  {
+    "id": "too-smart-to-pay-dumb-exposin-fools-2026",
+    "title": "Too Smart To Pay Dumb (Exposin Fools)",
+    "summary": "コメディアンKatt Williams起用、従来キャリアの不透明契約を痛快批判しTextNowの明朗な料金体系を訴求",
+    "client": "TextNow",
+    "agency": "Burrell Communications",
+    "categories": [
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/too-smart-to-pay-dumb",
+    "thumbnail": "/thumbnails/too-smart-to-pay-dumb-exposin-fools-2026.jpg",
+    "videoId": "",
+    "overview": "TextNowが2026年7月28日に発表した、同社史上最大規模の初のブランドキャンペーン「Way Too Smart To Pay Dumb」。コメディアン兼俳優Katt Williamsを起用し、従来型通信キャリアの長期契約・隠れ費用・ロックイン型プランを痛快に批判、契約不要で低価格なTextNowのサービスを訴求した。",
+    "background": "米国の消費者は従来キャリアの複雑な契約体系・隠れコストに不満を抱えている。TextNowはアプリベースの低価格/無料ワイヤレスサービスとして、そうした業界慣習に真っ向から対抗するブランドの立場を確立する必要があった。",
+    "execution": "Burrell Communicationsが企画を主導し、ヒーロー映像「Exposin Fools」はBurrell Studiosが社内制作、Cam Busbyが監督。故Nipsey Hussleの楽曲「U See Us」を使用し、オーナーシップと自己決定というテーマをTextNowの「賢く選べ」というメッセージに重ねた。Currency Advisory Group（戦略）、Mass Appeal（カルチャー連携）、DKC（広報戦略）が協業。",
+    "evaluationImpact": "TextNowにとって最も野心的な初の全国規模ブランド施策と位置付けられ、黒人コミュニティへの訴求力を持つBurrell Communicationsとの協業により、文化的な共感を伴う形で通信業界の料金慣行に一石を投じた点が注目される。",
+    "relatedWorks": [
+      {
+        "title": "Katt Williams Fronts TextNow's First Major Brand Campaign, and the Target is Your Phone Bill",
+        "description": "TextNow公式プレスリリース（GlobeNewswire配信）",
+        "url": "https://www.textnow.com/press/katt-williams-textnow"
+      },
+      {
+        "title": "Katt Williams Exposes Fools in TextNow's First Major Brand Campaign",
+        "description": "LBBOnlineによるキャンペーン紹介記事",
+        "url": "https://lbbonline.com/news/katt-williams-textnow-campaign"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "game-face-2026",
+    "title": "Game Face",
+    "summary": "コーヒー缶にラテン4カ国アーティスト監修の顔面タトゥーキットを同梱、ワールドカップ商戦でファンの自己表現を後押し",
+    "client": "Café Bustelo",
+    "agency": "BBH USA / PSOne",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/game-face",
+    "thumbnail": "/thumbnails/game-face-2026.jpg",
+    "videoId": "",
+    "overview": "Café Bustelo は2026年6月、限定版コーヒー缶「Game Face」を100万缶以上展開。アルゼンチン・ブラジル・コロンビア・メキシコをテーマに現地アーティストが手掛けたデザインを缶と連動する顔面タトゥーキットに施し、ワールドカップシーズンのラテン系スポーツファンの応援スタイルを刷新した。",
+    "background": "Café Bustelo はラテン系コミュニティに根強い人気を持つコーヒーブランド。ワールドカップを控え、ファンが試合当日に見せる情熱的なフェイスペイント文化に着目し、ブランドと地元アーティストの文化的表現を結びつける施策を企画した。",
+    "execution": "BBH USA のクリエイティブディレクションのもと、Brand New School（BNS）と PSOne が制作を担当。各国出身アーティスト（メキシコ:Raul Urias、ブラジル:Mel Cerri、アルゼンチン:Josefina Schargorodsky、コロンビア:Tami Hadid）が缶デザインとタトゥーデザインを両方手掛け、30秒フィルムでは4人がタトゥーを施しコーヒーを飲む様子とタグライン「Your colors / your cup」を訴求した。",
+    "evaluationImpact": "単なるパッケージ企画に留まらず、現地アーティストの起用によって文化的信頼性を担保し、店頭の限定コーヒー缶をファンの自己表現ツールへと拡張した点が評価点。ワールドカップという文化的モーメントとブランドの遺産（中南米各国とのつながり）を結びつけ、PRメディア（PR Newswire、Marketing Dive等）でも広く報じられた。",
+    "relatedWorks": [
+      {
+        "title": "Café Bustelo Game Face 公式サイト",
+        "description": "キャンペーンの詳細と対象国、タトゥーデザインを紹介する公式ページ",
+        "url": "https://www.cafebustelo.com/gameface"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Form/Film",
+      "Theme/Sports",
+      "Theme/Food",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "fancy-a-knockabout-2026",
+    "title": "Fancy a Knockabout?",
+    "summary": "サッカー用語「knockabout」をテニスに転用し、著名夫婦の庭遊び動画で参加の心理的ハードルを下げた点が新しい",
+    "client": "LTA (Lawn Tennis Association)",
+    "agency": "BMB",
+    "categories": [
+      "カルチャーインサイト",
+      "社会包摂"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/fancy-a-knockabout",
+    "thumbnail": "/thumbnails/fancy-a-knockabout-2026.jpg",
+    "videoId": "",
+    "overview": "英国テニス統括団体LTAが2026年7月に展開した、家族向けテニス参加促進キャンペーン。タレント夫婦Stacey SolomonとJoe Swashが自宅の庭で即興のコートやラケット代わりの道具を使い、気軽に遊ぶ様子をフィルムで描く。制作はBMB。",
+    "background": "テニスは敷居が高いスポーツと見なされがちで、LTAは年齢・背景・能力を問わず誰もが参加できる身近な活動として再定義したいという課題を抱えていた。サッカー文化に根付く「knockabout(ちょっとした一蹴り)」という言葉をテニス版として提示することで、堅苦しさを解消する狙いがあった。",
+    "execution": "BMBのクリエイティブディレクターDavid Beattieは「気軽で自発的、誰にでも開かれたテニス版knockaboutを作りたかった」とコメント。フィルム・ソーシャル・OOH・ラジオ・インフルエンサーPRを組み合わせた全国統合キャンペーンとして展開し、庭でラケットの代用品を使い家族で遊ぶ様子を描いた。",
+    "evaluationImpact": "「knockabout」というサッカー発祥の口語をテニスに転用する切り口は、スポーツ横断的な文化的共感を狙ったアイデアとして評価しうる。著名な実在の家族を起用し、専用施設や本格用具がなくても始められる姿を見せることで、参加障壁の低さを説得力を持って伝えている。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Theme/Sports",
+      "Form/Film",
+      "Form/OOH",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "some-traditions-are-worth-passing-down-2026",
+    "title": "Some Traditions Are Worth Passing Down",
+    "summary": "新居祝いの父娘の記憶を軸に、Big Green Eggを男性中心の調理器具から世代継承の家宝へ再定義した米キャンペーン。",
+    "client": "Big Green Egg",
+    "agency": "Tombras",
+    "categories": [
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/some-traditions-are-worth-passing-down",
+    "thumbnail": "/thumbnails/some-traditions-are-worth-passing-down-2026.jpg",
+    "videoId": "",
+    "overview": "米Big Green EggとエージェンシーのTombrasが手がけたブランドキャンペーン。メイン映像「The Surprise」は、新居に引っ越す娘が父から贈られたBig Green Eggを開封し、幼少期に父と焚き火料理を楽しんだ記憶がよみがえる物語。「Some traditions are worth passing down（受け継ぐ価値のある伝統がある）」というメッセージで締めくくられる。",
+    "background": "TombrasはBig Green Eggのビジネスを2025年12月に獲得し、本作が同社にとって初の公式クリエイティブ。既存の主要顧客層である熱心なファン「EGGheads」を維持しつつ、25〜44歳の女性層へブランドを広げる狙いがあり、グリルを購入・贈与する存在として女性を位置づける戦略転換となっている。",
+    "execution": "メイン映像に加え15秒・6秒のソーシャルカットダウンを制作し、CTV・デジタル・プリント媒体で展開。ブランドの既存プラットフォーム「Life Tastes Better Outside」を土台に、グリルを単なる調理器具ではなく世代を超えて受け継がれる“家宝”として描写し、屋外料理を感情的で多世代的な体験として再構築した。",
+    "evaluationImpact": "50年以上の歴史を持つブランドが、コアファン層を手放さずに新規顧客層(女性25〜44歳)を取り込む拡張戦略のケースとして注目される。屋外グリル文化における「誰のためのカテゴリーか」という前提を問い直し、女性を伝統の担い手として描く点が新しい切り口となっている。2026年7月20日の週にローンチされたばかりで、受賞歴は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Cook over fire, they will come (Big Green Egg / Humanaut)",
+        "description": "同じくBig Green Eggの過去キャンペーン。制作会社Humanautが2025年5月に発表した、焚き火料理が人々を結びつけるというインサイトを軸にしたブランド初の大規模キャンペーン。",
+        "url": "https://roastbrief.us/humanaut-brings-the-fire-in-new-work-for-iconic-grill-big-green-egg/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Form/SNS",
+      "Theme/Food"
+    ]
+  },
+  {
+    "id": "never-stop-dreaming-2026",
+    "title": "Never Stop Dreaming",
+    "summary": "元サッカー選手デル・ピエロがGranTurismoで無人のNYを駆ける、AI駆動でわずか10日制作の映像広告",
+    "client": "Maserati",
+    "agency": "Migrante Content（AI制作: Studio AI Sal Gorda）",
+    "categories": [
+      "AIクリエイティブ",
+      "ブランドエクスペリエンス",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州",
+      "グローバル"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/never-stop-dreaming-17a5d229-f91c-4b62-a4f5-d60ceb81acdb",
+    "thumbnail": "/thumbnails/never-stop-dreaming-2026.jpg",
+    "videoId": "",
+    "overview": "マセラティが新型GranTurismoを主役に、伝説的イタリア人フットボーラーのアレッサンドロ・デル・ピエロを起用した映像作品。無人のニューヨークを走り抜けニュージャージーのスタジアムへ向かう姿を、台詞やスポーツ映像なしで描き、運転とネットゥーノエンジン音だけで物語を紡いだ。",
+    "background": "マセラティはラインナップ刷新と共に世界市場での存在感回復を目指しており、本作はイタリアのものづくりへの誇りと、過去の栄光を土台に新たな野心へ挑む姿勢を重ねて表現した。公開はFIFAワールドカップ2026決勝戦当日に合わせられ、サッカーへの情熱とブランドの再起を結びつけるタイミング設計がなされた。",
+    "execution": "制作はミグランテ・コンテント（CCO: レオ・リカーニ、ECD: ソル・リカーニ、クリエイティブディレクター: ヴァレーリオ・レ・モリ、監督: レオナルド・リカーニ）が担当し、AI制作にStudio AI Sal Gordaが関わった。国際チームによるAI駆動型制作を活用することで、マセラティらしいイタリアンエレガンスを保ちながらわずか10日間で完成させ、ワールドカップ決勝という短い納期に間に合わせた。",
+    "evaluationImpact": "受賞歴は公式ソースで確認できなかった。ただしAds of the World（Clio Network）に掲載され、Stellantis公式メディアや複数の業界メディア（media-marketing.com等）でAI主導の短納期制作事例として報じられている。",
+    "relatedWorks": [
+      {
+        "title": "Maserati's new film showcases Italian excellence in New York (Stellantis公式プレスリリース)",
+        "description": "マセラティ公式による本キャンペーンの発表記事",
+        "url": "https://www.media.stellantis.com/em-en/maserati/press/maserati-s-new-film-showcases-italian-excellence-in-new-york"
+      },
+      {
+        "title": "Agency Migrante completed a film for Maserati with Del Piero in ten days",
+        "description": "ミグランテによる10日間制作の経緯を報じた業界メディア記事",
+        "url": "https://www.media-marketing.com/en/news/agency-migrante-completed-a-film-for-maserati-with-del-piero-in-ten-days/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Film",
+      "Theme/Sports",
+      "Theme/Mobility"
+    ]
+  },
+  {
+    "id": "artificial-emotions-2026",
+    "title": "Artificial Emotions",
+    "summary": "AI生成人物の作り笑いとうつ病の感情鈍麻を重ね、EU AI法施行直前に公開したドイツの啓発フィルム",
+    "client": "German Depression Aid Foundation（Deutsche Depressionshilfe）",
+    "agency": "Grabarz & Partner",
+    "categories": [
+      "社会包摂"
+    ],
+    "award": "New York Festivals × LTX Studio「LTX Competition」ゴールド（Gold Tower受賞、コンペ提出時タイトルは「Almost Human」）",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://lbbonline.com/news/The-German-Depression-Aid-Foundation-AI-Artificial-Emotions",
+    "thumbnail": "/thumbnails/artificial-emotions-2026.jpg",
+    "videoId": "",
+    "overview": "Grabarz & PartnerがDeutsche Depressionshilfe（ドイツうつ病支援・自殺予防財団）と制作した、ほぼ全編AI生成のフィルム。笑ったり泣いたりする人々の映像が終盤で、その多くがAI生成の実在しない人物だったと明かされる構成で、うつ病特有の「感情の麻痺」を表現する。",
+    "background": "うつ病の症状は「悲しみ」だけでなく、笑う・泣く・愛するといった行為をしても何も感じられなくなる「感情の鈍麻」があるが、一般には知られていない。財団はGrabarz & Partnerと継続的に協働し啓発キャンペーンを展開してきた。",
+    "execution": "AIで生成した人物たちが日常的な感情表現を演じる映像を見せ、終盤で複数人がAI生成の非実在人物だと明かす。唯一実在するのは元プロバスケ選手エノシュで、自身のうつ病経験を語る。公開日はEU AI法の生成AIコンテンツ表示義務が発効する2026年8月2日の直前の週（7月27日）に設定された。",
+    "evaluationImpact": "AI生成コンテンツの透明性規制が始まる直前というタイミングでAI利用自体をテーマの一部に組み込んだ点が評価され、New York Festivals×LTX Studioの「LTX Competition」でゴールド（Gold Tower）を受賞した。うつ病の不可視の症状を可視化する社会的意義とAI表現の批評性を両立させた事例。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Film",
+      "Theme/Health",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "tennessee-tourism-realseal-campaign-2026",
+    "title": "Tennessee Tourism \"RealSeal\" Campaign",
+    "summary": "AIが5%しか見破れない時代に、テネシー州観光局が自社写真の実写証明にメタデータ認証を導入した業界初の施策",
+    "client": "Tennessee Department of Tourist Development",
+    "agency": "",
+    "categories": [
+      "カルチャーインサイト",
+      "データクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/tennessee-tourism-realseal-campaign-0e7bc0d2-f9a9-4bec-9435-a134a91df94e",
+    "thumbnail": "/thumbnails/tennessee-tourism-realseal-campaign-2026.jpg",
+    "videoId": "",
+    "overview": "テネシー州観光開発局とVMLが2026年6月に発表した「Real Seal」は、公式マーケティング写真がすべて実写であることを証明する業界初の認証プログラム。写真にContent Credentialsと位置情報（緯度経度）を含む安全なメタデータを付与し、撮影者・日時・場所を旅行者が確認できるようにした。",
+    "background": "Talker Researchが米国人旅行者2,000人を対象に行った調査で、AI生成画像と実写を並べても正しく識別できたのはわずか5%だった。70%が旅行先選びで写真・動画を重視し、74%は写真なしでは予約しないと回答。71%が現地が広告写真と違うと感じ、その79%がAI関与を疑うなど、生成AI氾濫による観光写真への不信が課題として浮上していた。",
+    "execution": "「Yeah, It's Real」を掲げ、公式マーケティング写真にContent Credentialsと緯度経度を含むメタデータを付与し認証マークとして表示。既存の実景を活かす最小限のレタッチは許容しつつ、要素の追加・削除・改変を伴うAI生成は一切禁止する方針を明文化し、全チャネルに横断適用した。",
+    "evaluationImpact": "調査では70%の旅行者が写真の真正性を証明する観光地をより信頼すると回答しており、AI全盛への逆張りとして「本物であること」自体を差別化要素に転換した点が新しい。生成AIによる観光地イメージの毀損という業界共通の課題に対し、行政観光局が技術的な検証手段で応答した早期事例として注目される。",
+    "relatedWorks": [
+      {
+        "title": "Tennessee, VML Champion 'Real' Travel Photography",
+        "description": "MediaPostによるRealSealキャンペーンの解説記事",
+        "url": "https://www.mediapost.com/publications/article/416728/tennessee-vml-champion-real-travel-photography.html"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/Data",
+      "Form/Website"
+    ]
+  },
+  {
     "id": "enigma-robotics-2026",
     "title": "Enigma Robotics ステルス解禁 ― 音量調整のようにロボットを直感操作するインターフェース技術",
     "summary": "ロボット操作を音量調整並みに直感化するAI基盤とインターフェースを開発するEnigmaが7100万ドルのシード調達でステルス解禁",
