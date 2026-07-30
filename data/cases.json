@@ -1,5 +1,361 @@
 [
   {
+    "id": "the-national-military-monument-2026",
+    "title": "The National Military Monument",
+    "summary": "リンカーン記念堂前に250年・4100万人分の軍人名を検索できる巨大デジタル記念碑を設置",
+    "client": "USAA",
+    "agency": "Razorfish",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://lbbonline.com/news/usaa-razorfish-national-military-monument-america-250",
+    "thumbnail": "/thumbnails/the-national-military-monument-2026.jpg",
+    "videoId": "",
+    "overview": "USAAがRazorfishと制作した「The National Military Monument」は、米建国250周年記念(America250)の一環として、リンカーン記念堂とリフレクティングプールの間に設置された大型デジタル記念碑。独立戦争以降250年にわたる4100万人以上の軍人の名前を掲示・検索できる。",
+    "background": "USAAによれば、これまで米国の歴史全体を通じた軍人サービスの統一記録は存在しなかった。America250の一環として、すべての世代の軍人への感謝を表す国家的な取り組みとして企画された。",
+    "execution": "両面デザインの巨大な旗型スクリーンが古典的な記念碑デザインとデジタル技術を融合し、名前を照らし出す仕組み。来場者はインタラクティブなキオスクや専用サイトで家族・友人など軍人の名前を検索でき、未登録の名前を追加申請することも可能。2026年7月28日から一般公開。",
+    "evaluationImpact": "軍・公的記録を横断的に集約し、個人が自分の家族の軍歴を検索・確認できる体験として、記念碑とデータベース、デジタル技術を組み合わせた新しい追悼表現を提示した。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/Installation",
+      "Form/OOH",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "specsavers-frames-to-help-close-the-eye-care-gap-2026",
+    "title": "Specsavers: Frames To Help Close The Eye Care Gap",
+    "summary": "先住民アーティストの絵画をフレームに刻み、収益を眼科医療格差の解消に寄付する限定コレクション",
+    "client": "Specsavers",
+    "agency": "TBWA\\Melbourne",
+    "categories": [
+      "社会包摂",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://lbbonline.com/news/specsavers-tbwa-garuwa-atipalku-intjalki",
+    "thumbnail": "/thumbnails/specsavers-frames-to-help-close-the-eye-care-gap-2026.jpg",
+    "videoId": "",
+    "overview": "Specsaversが先住民アーティストAtipalku Intjalkiと協業し、彼女の作品「Tjukurpa Mulayangu」をあしらった限定フレームを発売。The Fred Hollows Foundationとの提携15周年・10回目のアーティストコラボレーションとして、オーストラリアのAPY Landsを拠点に展開する取り組み。",
+    "background": "オーストラリア先住民コミュニティでは予防可能な視力喪失が依然課題であり、Specsaversは15年にわたりFred Hollows Foundationの先住民アイケア事業を支援してきた。WHOがオーストラリアのトラコーマ排除を宣言した節目の時期に、パートナーシップ発祥の地APY Landsへ回帰する形で本コレクションが企画された。",
+    "execution": "Ernabella Artsで50年以上活動するアーティストAtipalku Intjalkiの絵画「Tjukurpa Mulayangu」（父の土地の水場や水蛇の物語を描く）をフレームデザインに採用。1本199豪ドルで販売し、うち25豪ドルを財団へ寄付。20,000本の販売で50万豪ドルの寄付達成を目指す仕組みを構築した。",
+    "evaluationImpact": "2025年には24,000人以上の視力スクリーニング、330件超の手術、3,600件の糖尿病網膜症治療支援につながった実績があり、商品購入という消費行動を先住民コミュニティの眼科医療アクセス改善に直結させる継続的な社会貢献モデルとして評価できる。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Theme/Health",
+      "Theme/SocialGood",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "gethookd-ai-ad-generator-2026",
+    "title": "GetHookd AI Ad Generator",
+    "summary": "65万件超のMeta広告データを競合分析し、AIでスクリプト・画像広告のバリエーション量産まで一体化した生成AI広告制作ツール",
+    "client": "GetHookd",
+    "agency": "",
+    "categories": [
+      "AIクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.usatoday.com/press-release/story/38582/gethookd-launches-ai-ad-generator-for-creative-production-at-scale/",
+    "thumbnail": "/thumbnails/gethookd-ai-ad-generator-2026.jpg",
+    "videoId": "",
+    "overview": "GetHookdは65万件超のMeta広告データベースを使った競合分析機能に、AIによる広告スクリプト生成と画像広告のバリエーション制作を統合したクリエイティブ制作プラットフォーム。2026年のアップデートで、競合の勝ちパターンをリサーチし、そのままAIでスクリプトや画像広告を量産・改変できる一気通貫のワークフローを実現した。",
+    "background": "Meta広告運用者はクリエイティブの摩耗が早く、勝ちパターンを持つ競合広告の調査と新規クリエイティブ制作を別々のツールで行う非効率を抱えていた。Meta社の2025年レポートでは広告成果の7〜8割はクリエイティブ品質が左右するとされ、GetHookdは競合調査と生成AIによる量産を単一プラットフォームに統合することでこの課題への対応を打ち出した。",
+    "execution": "競合広告を検索・保存する機能で市場でスケールしている広告を特定し、そのフック構造や訴求パターンを起点に、商品情報・ターゲット層・トーンを入力するだけでAIが複数のスクリプト案を数秒で生成する。既存広告をアップロードして色・フォーマット・スタイルの異なるバリエーションを作るクローン機能も備え、リサーチから制作までを同一ワークフロー内で完結させる設計。",
+    "evaluationImpact": "広告リサーチと生成AIによる量産を1つのプラットフォームに統合した点が特徴で、ソロプレナーから代理店まで規模の異なるユーザー向けにプラン展開している。なお本発表は自社発のプレスリリース配信網（MarketersMedia経由で複数媒体に類似内容が繰り返し配信）によるもので、第三者メディアの独立した評価や受賞歴は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "GetHookd Launches AI Meta Ad Discovery Tool As Moat Ad Search Alternative",
+        "description": "同社が2026年5月に発表した、Moat Ad Searchの代替となるMeta広告発見AIツールの関連リリース。",
+        "url": "https://markets.financialcontent.com/stocks/article/marketersmedia-2026-5-13-gethookd-launches-ai-meta-ad-discovery-tool-as-moat-ad-search-alternative"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/Data",
+      "Form/App",
+      "Theme/Retail"
+    ]
+  },
+  {
+    "id": "virtual-fujiq-2026",
+    "title": "Virtual FUJIQ",
+    "summary": "絶叫の声量で加速する世界初のVRコースターをVRChatに常設、富士急ハイランドを24時間無料体験可能に",
+    "client": "富士急ハイランド（富士急行）",
+    "agency": "HIKKY",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.moguravr.com/fujikyu-virtual-fujiq-public-release-vrchat/",
+    "thumbnail": "/thumbnails/virtual-fujiq-2026.jpg",
+    "videoId": "",
+    "overview": "富士急行とHIKKYが共同開発したVRChatワールド「Virtual FUJIQ」が2026年7月27日に一般公開。バーチャルマーケット2026 Summerで初出展し好評だった「超FUJIYAMA！」「スゴクナガシマスカ」の2アトラクションを、VR機器・PCから24時間無料で常時体験できる恒久コンテンツとして提供する。",
+    "background": "富士急行の創立100周年を記念した「XR年間プロジェクト」の一環。バーチャルマーケット2026 Summer（7月11〜26日）に出展したVR空間が話題を呼び、期間限定で終わらせず恒久公開する形へ発展した。",
+    "execution": "「超FUJIYAMA！」は声を出すほど加速する仕組みの世界初のVRコースター、「スゴクナガシマスカ」は富士急ハイランドの豆知識を学べる二択クイズ型ウォーターアトラクション。あわせてファンコミュニティ「FUJIQ VIRTUAL PLAZA」を立ち上げ、Discordでの交流や意見交換を通じてコンテンツ改善に反映する運営体制を敷いた。",
+    "evaluationImpact": "コミュニティは募集開始から約2週間で参加者1万人を突破し、ファンの声を反映したアップデートやバーチャルマーケット2026 Winterへの出展企画にも参画予定。リアル遊園地のアトラクションIPをイベント限定で終わらせず常設バーチャル施設化した事例として注目される。",
+    "relatedWorks": [
+      {
+        "title": "バーチャルマーケット2026 Summer",
+        "description": "「Virtual FUJIQ」の原型となったアトラクションが初出展されたHIKKY主催のVRイベント",
+        "url": "https://www.moguravr.com/fujikyu-virtual-fujiq-public-release-vrchat/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/XR",
+      "Form/Event",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "case-ggu2uy-2026",
+    "title": "転生ゲーム カルマxクロス",
+    "summary": "堀井雄二×『ブルーロック』金城宗幸が贈る、4人対戦で友情を破壊するSwitch向けすごろくゲームが8月6日発売。",
+    "client": "アルテピアッツァ",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://automaton-media.com/articles/newsjp/20260730-457289/",
+    "thumbnail": "/thumbnails/case-ggu2uy-2026.jpg",
+    "videoId": "",
+    "overview": "『ドラゴンクエスト』生みの親・堀井雄二氏が監修、『ブルーロック』原作者・金城宗幸氏が企画原案を務めるNintendo Switch向けボードゲーム。株式会社Anyが企画・プロデュースし、アルテピアッツァ株式会社が企画開発・発売を担当。2026年8月6日発売、価格3,980円（税込）。",
+    "background": "2025年4月にプロジェクトが始動し、ドラクエとブルーロックという異色の大御所クリエイター2人が初共演。「転生」をテーマに、輪廻界を舞台にした完全新作ゲームとして企画され、2026年7月29日に商品名・発売日を含む正式発表が行われた。",
+    "execution": "最大4人が参加し全22ターンで対戦する“友情破壊”すごろく。8面ダイスで進行し、ゲーム内通貨「カルマ」を集めて「たましいの器」を購入、最下位を回避しないと転生できない仕組み。「呪いのズタ袋」マスでの妨害要素や、5ターンごとに挿入される信頼と裏切りの駆け引き「リンネちゃんゲーム」など、対人関係を揺さぶる仕掛けを多数搭載する。",
+    "evaluationImpact": "ゲーム原作の枠を超え、国民的RPGの生みの親と人気漫画原作者という異色タッグが“友情を壊す”パーティーゲームという逆説的なコンセプトで話題化。アニメやグッズ、TikTokコンテンツ展開も見据えたクロスメディア企画としても注目される。",
+    "relatedWorks": [
+      {
+        "title": "『転生ゲーム』プロジェクト始動発表",
+        "description": "堀井雄二氏と金城宗幸氏の初共演プロジェクトとして2025年4月に発表された始動リリース",
+        "url": "https://prtimes.jp/main/html/rd/p/000000002.000157995.html"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/Event",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "deafman-tools-2026",
+    "title": "DeafMan Tools",
+    "summary": "個人開発者Clem(DeafMan)がAbleton Live用の配色エディタと60種超のテーマ集を無償公開",
+    "client": "Clem (DeafMan)",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://cdm.link/deafman-transforms-ableton-live-colors-themes/",
+    "thumbnail": "/thumbnails/deafman-tools-2026.jpg",
+    "videoId": "",
+    "overview": "音楽制作ソフトAbleton Liveのビジュアルをカスタマイズできるツール「DeafMan Tools (DMT)」と、SGIワークステーション風など60種以上のカラーテーマ集を、開発者Clem(DeafMan)がGumroad経由で公開した。",
+    "background": "DeafManは以前からAbleton Live向けの1990年代SGIワークステーション風レトロテーマを制作・公開してきたクリエイター。ユーザーからの要望を受け、テーマ切り替えやカラー編集をGUIで完結できる専用エディタツールの開発に至った。",
+    "execution": "DMTはCmd+~で起動するカラーピッカーやテーマの即時切り替え機能を備え、Google Fontsやカスタムフォントの適用、Max for Liveデバイスによるトラック自動カラー化にも対応。macOS 14以上で動作し、Windows対応も予定されている。",
+    "evaluationImpact": "音楽制作ツールの機能面ではなく「見た目」に特化したニッチな周辺ツールでありながら、音楽制作コミュニティ向けメディアCDMで複数回取り上げられるなど反響を得ており、DAWのUIパーソナライズという新しい需要を可視化した。",
+    "relatedWorks": [
+      {
+        "title": "These retro and SGI-inspired Ableton Live themes will make you smile",
+        "description": "DeafManの旧作テーマ群を紹介するCDM記事",
+        "url": "https://cdm.link/deafman-retro-themes-ableton-live-update/"
+      },
+      {
+        "title": "Remake Live 12 with retro refinement",
+        "description": "Live 12向けテーマ・フォントのアップデートを紹介するCDM記事",
+        "url": "https://cdm.link/makeover-live-12-themes/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Product",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "somnium-space-v3-1-6-2026",
+    "title": "Somnium Space v3.1.6",
+    "summary": "ソーシャルVR「Somnium Space」がv3.1.6で非公開インスタンス等を追加、5年ぶりのSteam復帰へ布石",
+    "client": "Somnium Space",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://roadtovr.com/somnium-space-mainstream-push-steam-release/",
+    "thumbnail": "/thumbnails/somnium-space-v3-1-6-2026.jpg",
+    "videoId": "",
+    "overview": "VRChat競合のソーシャルVRプラットフォーム「Somnium Space」が過去最大級のアップデートv3.1.6を配信。フレンド限定・有料・PIN保護など多段階のプライベートインスタンス機能を追加し、限定コンサートや教室、有料イベントの開催が可能になった。",
+    "background": "Somnium Spaceは2021年、暗号資産関連要素を理由にValveのSteamから削除されていた。以降5年以上を経て、より主流のVRユーザー層を取り込むための機能強化を進め、Steam復帰に向けた布石として今回のアップデートを実施した。",
+    "execution": "v3.1.6では非公開インスタンスに加え、サーバーサイドスクリプティングを導入しローカルインストール不要でクリエイターが開発できる環境を整備。フレンド機能・チャット・モデレーション・音声の信頼性など基盤システムも再設計した。",
+    "evaluationImpact": "Steam Deck、Steam Frame、Apple Vision Pro対応や18歳以上認証の実装も予定され、VRChatに匹敵する機能拡充とプラットフォームの主流化を狙う動きとして注目される。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/XR",
+      "Tech/Game",
+      "Form/App"
+    ]
+  },
+  {
+    "id": "fwahbl-jacket-2026",
+    "title": "FWAHBL Jacket",
+    "summary": "化学防護服素材のトレンチコートを限定10着で発売、コミックや映画風トレーラー・ゲームで架空世界観を構築",
+    "client": "Vollebak",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.designboom.com/technology/vollebak-yellow-trench-coat-protective-rubber-fwahbl-jacket/",
+    "thumbnail": "/thumbnails/fwahbl-jacket-2026.jpg",
+    "videoId": "",
+    "overview": "ロンドン発の実験的アパレルブランドVollebakが、化学防護服と同じ素材で作った黄色のトレンチコート「FWAHBL」を限定10着で発売。1847年創業の英国メーカーFothergillが開発した両面コーティング塩化ポリクロロプレン製の生地を使用している。",
+    "background": "Vollebakは金属や木材など常識外の素材で服を作ることで知られる実験的ブランド。FWAHBL（For When All Hell Breaks Loose＝すべてが崩壊するとき）は、終末的な世界観をコンセプトに据えた新プロジェクトとして企画された。",
+    "execution": "製品はビデオゲームのパッケージを模した化学防護素材の外箱に収められ、限定版コミックブックが同梱される。8ビットから現代的なグラフィックへと進化する映画風トレーラーを公開し、プレイ可能なゲームも開発中と発表するなど、単なる衣服販売を超えたメディア展開を行っている。",
+    "evaluationImpact": "衣服単体ではなくコミック・映像・ゲームを組み合わせた架空世界観の構築によって、限定10着という極小ロットの製品を国際的な話題として拡散させた点が評価される。",
+    "relatedWorks": [
+      {
+        "title": "Vollebak Full Metal Jacket",
+        "description": "銅や銀などの金属素材を使ったVollebakの実験的ジャケットシリーズ",
+        "url": "https://vollebak.com/en-us/products/full-metal-jacket-silver-edition"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Theme/Fashion",
+      "Form/Film"
+    ]
+  },
+  {
+    "id": "series-2-serious-zone-2026",
+    "title": "ケツバトラー Series 2アップデート「Serious Zone」",
+    "summary": "『ケツバトラー』大型アプデ「シリーズ2」で新システム「シリアスゾーン」と初のDLCキャラ「キデン」を追加",
+    "client": "面白法人カヤック / コロコロコミック",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://automaton-media.com/articles/newsjp/20260729-457214/",
+    "thumbnail": "/thumbnails/series-2-serious-zone-2026.jpg",
+    "videoId": "",
+    "overview": "面白法人カヤック開発のNintendo Switch向け対ケツアクションゲーム『ケツバトラー』が、シリーズ史上最大とうたう大型アップデート「シリーズ2」を2026年7月30日に配信。新システム「シリアスゾーン」や初のDLCキャラクター「キデン」、新ステージ4種を追加した。",
+    "background": "『ケツバトラー』はJoy-Conをズボン後部に装着し、お尻を振って画面内キャラクターを戦わせる独特な対戦アクション。週刊コロコロコミックで漫画版も連載中で、DLCキャラ「キデン」は漫画新章「新世紀編」の新主人公として設定されるなどメディアミックス展開を強化していた。",
+    "execution": "積極的な攻撃で発動する新システム「シリアスゾーン」導入により全ケツ奥義がシリアス奥義へ強化され、逆転要素を追加。税込300円のDLCキャラ「キデン」は本作初のカウンタースキル「臀抗」を装備し雷能力を持つ。新ステージ4種やビジュアル刷新、ラウンド数拡張も同時実施し、本編は8月25日まで税込250円のセール中。",
+    "evaluationImpact": "Joy-Conの体感操作という独自性を武器に、漫画連載との世界観連動やDLC展開でコンテンツを継続的に拡張。ファミ通・インサイド・Game*Spark・AppBankなど複数のゲームメディアで取り上げられ、海外メディアAUTOMATON WESTでも紹介されるなど国内外で話題化した。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/App",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "pangram-4-2026",
+    "title": "Pangram 4",
+    "summary": "AI検出のPangramが新モデル「Pangram4」と画像検出を発表、900万ドルをMenlo主導で調達",
+    "client": "Pangram",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://techcrunch.com/2026/07/29/as-ai-content-floods-the-internet-pangram-raises-9m-to-detect-it/",
+    "thumbnail": "/thumbnails/pangram-4-2026.jpg",
+    "videoId": "",
+    "overview": "AI生成コンテンツ検出のスタートアップPangramが、最新テキスト検出モデル「Pangram4」と画像検出モデル「Pangram Image」のリサーチプレビューを発表。同時にMenlo Venturesを主導投資家とする900万ドルの資金調達も公表した。",
+    "background": "ChatGPT登場以降、インターネット上にAI生成の低品質コンテンツ（AIスロップ）や偽情報が氾濫。スタンフォード出身のMax SperoとBradley Emiが約2年前にPangramを創業し、AI検出技術で対抗してきた。",
+    "execution": "Pangram4は数千万の人間執筆文書を学習した大規模モデルで、各文書に対しAIが書いた「合成ミラー」を生成しスタイル差を学習する独自手法を採用。AI支援文章・人間とAIの混合文章の検出精度を高め、AI文章を人間らしく書き換える「ヒューマナイザー」への耐性も強化した。画像検出モデルPangram Imageも新たにリサーチプレビュー公開。",
+    "evaluationImpact": "内部ベンチマークでテキスト検出精度99%超、誤検知率0.0041%（約2万4000文書に1回）を主張。今回の調達で累計調達額は約1300万ドルに達し、AI検出市場での競争力強化を狙う。",
+    "relatedWorks": [
+      {
+        "title": "Pangram Closes $4 Million in Seed Funding for AI Detection Technology",
+        "description": "2025年6月に実施されたPangramのシード資金調達（270万ドル）に関する報道",
+        "url": "https://markets.financialcontent.com/stocks/article/bizwire-2025-6-24-pangram-closes-4-million-in-seed-funding-for-ai-detection-technology"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/Data",
+      "Form/App"
+    ]
+  },
+  {
     "id": "charge-go-2026",
     "title": "ドローンライトダンス「Charge & Go!」桑名水郷花火大会で初公開",
     "summary": "ドローン500機のライトダンス「Charge & Go!」を桑名水郷花火大会で初披露、同期アプリも同時始動",
