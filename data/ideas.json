@@ -5859,5 +5859,203 @@
         "desc": "顔と背景をAIに認識させ必要な場所だけ高解像度化・部分編集できるComfyUI拡張機能。"
       }
     ]
+  },
+  {
+    "id": "2026-07-30-1",
+    "date": "2026-07-30",
+    "title": "静寂を可視化する迂回路",
+    "pattern": "文脈×技術",
+    "seed": "Zerooh Noiseが都市の騒音を可視化したように、Physarum polycephalumの粘菌に騒音データを与えて育てれば、最も静かな迂回路だけが浮かび上がる看板広告ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "zerooh-noise-a-real-time-decibel-sensing-billboard-2025",
+        "title": "Zerooh Noise: a real-time decibel-sensing billboard",
+        "desc": "幹線道路の騒音をリアルタイム計測し、EVの静かさと対比して見せるデジタル看板広告。"
+      },
+      {
+        "type": "tech",
+        "id": "physarum-polycephalumによる東京鉄道網再現実験",
+        "title": "Physarum polycephalum（真正粘菌）による東京鉄道網再現実験",
+        "desc": "脳のない単細胞生物の粘菌を東京圏の都市配置で培養し、実際の鉄道網に似た経路を作った実験。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-30-2",
+    "date": "2026-07-30",
+    "title": "寝言が動くアバター化",
+    "pattern": "文脈×技術",
+    "seed": "IKEAのSleep Talk Reviewsのように眠りながら語る本音を、EchoAvatarでリアルタイムに全身アバター化すれば、声だけでなく表情や動きごと商品レビューになる映像広告ができそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ikea-sleep-talk-reviews",
+        "title": "Sleep Talk Reviews",
+        "desc": "IKEAのマットレスで眠る人の寝言を録音し、最もリアルな商品レビューとして使った音声広告。"
+      },
+      {
+        "type": "tech",
+        "id": "echoavatar",
+        "title": "EchoAvatar",
+        "desc": "話し声や音楽を聞き取りながら全身が自然に動く3Dアバターをリアルタイムに生成する技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-30-3",
+    "date": "2026-07-30",
+    "title": "引退後も動き続ける追悼公演",
+    "pattern": "文脈×技術",
+    "seed": "坂本龍一の遺作展が死後も彼の音を生かし続けたように、GPCで選手やダンサーの動きの癖を学習させれば、本人が不在でもその人らしい次の一歩を生成し続ける追悼公演ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ryuichi-sakamoto-exhibition",
+        "title": "坂本龍一｜音を視る 時を聴く",
+        "desc": "坂本龍一が自ら構想し、死後もコラボレーターたちが実現させた遺作的な音と映像の展覧会。"
+      },
+      {
+        "type": "tech",
+        "id": "gpc",
+        "title": "GPC (Generative Pretraining for Transferable Motor Control)",
+        "desc": "大量のモーションキャプチャーで学習し、次の瞬間の体の動きを予測し続けるAIモーション制御技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-30-4",
+    "date": "2026-07-30",
+    "title": "問いから開く3D世界",
+    "pattern": "文脈×技術",
+    "seed": "NPRが社名の三文字を問いの形に変えたように、読者の疑問文をDreamX-World 1.0に渡せば、その問いの答えを歩いて探せる3D世界が生成されるニュース体験ができそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "npr-for-your-right-to-be-curious",
+        "title": "NPR: For Your Right To Be Curious",
+        "desc": "NPRの社名を疑問形に見立て、知る権利を掲げてブランドを刷新したキャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "dreamx-world-1-0",
+        "title": "DreamX-World 1.0",
+        "desc": "テキスト指示だけで、視点を動かしても矛盾なく繋がる歩き回れる3D世界の映像を生成するAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-30-5",
+    "date": "2026-07-30",
+    "title": "潮力発電と月光の反射描写",
+    "pattern": "文脈×技術",
+    "seed": "フェロー諸島が月の引力で島を動かしたSKFの計画のように、GRayで月明かりが海面に落とす反射や屈折までレイトレーシングで描けば、潮力発電の見えないエネルギーの流れを実写のような映像で見せられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "faroe-islands-space-program",
+        "title": "THE FAROE ISLANDS SPACE PROGRAM",
+        "desc": "月の引力で動く潮力タービンを海底に設置し、月のエネルギーで島を動かすSKFのプロジェクト。"
+      },
+      {
+        "type": "tech",
+        "id": "gray",
+        "title": "GRay",
+        "desc": "実写を3D化するGaussian Splattingを、正確な反射・屈折・影までレイトレーシングで描く新手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-30-6",
+    "date": "2026-07-30",
+    "title": "巨大点群を編集する作業台",
+    "pattern": "技術×技術",
+    "seed": "JarvisHubの編集可能な「キャンバス」の上に、1億点超を扱えるGaussian Point Splattingの実写3D空間をそのまま置けば、街全体を切り貼りしながら映像を作る新しい作業台になりそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "jarvishub",
+        "title": "JarvisHub",
+        "desc": "編集可能なキャンバスをAIエージェントに与え、画像・動画など複数の成果物を作らせる創作ツール。"
+      },
+      {
+        "type": "tech",
+        "id": "gaussian-point-splatting",
+        "title": "Gaussian Point Splatting",
+        "desc": "1億個超のGaussian Splatを並べ替えなしでリアルタイム描画できる新しいレンダリング手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-30-7",
+    "date": "2026-07-30",
+    "title": "音まで作曲する編集AI",
+    "pattern": "技術×技術",
+    "seed": "段取りを組んで編集するFireRed-OpenStorylineと、音声と映像を同時生成できるLTX-2を組み合わせれば、カットを決めるたびに専用のBGMまでその場で作曲する編集エージェントになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "firered-openstoryline",
+        "title": "FireRed-OpenStoryline",
+        "desc": "話しかけると段取りを組み、素材選びからカットまで自動化する対話的な動画編集AIエージェント。"
+      },
+      {
+        "type": "tech",
+        "id": "ltx-2",
+        "title": "LTX-2",
+        "desc": "音声と映像を同時生成できる、初のオープンソース公開基盤モデル。4K・50fps・最長20秒に対応。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-30-8",
+    "date": "2026-07-30",
+    "title": "商品を解剖して見せる広告",
+    "pattern": "転用",
+    "seed": "本来は人体を切り開くDissectible Anatomyを転用し、家電やスニーカーの内部構造をGPU上でリアルタイムに切り裂いて見せれば、「分解して魅せる」商品広告の新フォーマットになりそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "dissectible-anatomy",
+        "title": "Dissectible Anatomy",
+        "desc": "人体の3DモデルをGPU上でリアルタイムに切ったり裂いたりできる仮想解剖シミュレーション。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-30-9",
+    "date": "2026-07-30",
+    "title": "粘菌が設計する物流網",
+    "pattern": "転用",
+    "seed": "東京の鉄道網を再現したPhysarum polycephalumを転用し、店舗や倉庫の位置にオートミールを置いて育てれば、人間の計画より効率的な「生き物が設計した」物流ルートを提案できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "physarum-polycephalumによる東京鉄道網再現実験",
+        "title": "Physarum polycephalum（真正粘菌）による東京鉄道網再現実験",
+        "desc": "脳のない単細胞生物の粘菌を東京圏の都市配置で培養し、実際の鉄道網に似た経路を作った実験。"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-30-10",
+    "date": "2026-07-30",
+    "title": "献血をアバターで可視化",
+    "pattern": "文脈×技術",
+    "seed": "有給休暇を「プレイデー」に変えたGrupo PulsaのDonate to Playのように、献血中の心拍や声をEchoAvatarでアバターに反映させれば、献血者自身がキャラのように動く「生体連動」の献血イベントができそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "grupo-pulsa-donate-to-play",
+        "title": "Donate to Play",
+        "desc": "献血をゲーム発売日に合わせ、労働法の有給休暇を「プレイデー」に変えたブラジル発の発明。"
+      },
+      {
+        "type": "tech",
+        "id": "echoavatar",
+        "title": "EchoAvatar",
+        "desc": "話し声や音楽を聞き取りながら全身が自然に動く3Dアバターをリアルタイムに生成する技術。"
+      }
+    ]
   }
 ]
