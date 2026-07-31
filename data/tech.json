@@ -1,5 +1,135 @@
 [
   {
+    "id": "comfyui-sonder-editor",
+    "title": "ComfyUI-Sonder-Editor",
+    "org": "SonderSaid（個人開発）",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "ComfyUIの中に「動画編集ソフトのタイムライン」を丸ごと組み込んだ拡張機能。生成AIでの長尺・連続動画づくりを、ノードをいじらずに編集画面から行えるようにする。",
+    "point": "これまでComfyUIで長い動画を作ろうとすると、シーンの切り替わりや参照画像の管理をノードグラフの中で手作業に近い形でやる必要があり、映像編集の感覚とは程遠いものでした。Sonder Editorは、Premiere ProやDaVinci Resolveのような「タイムラインに映像素材を並べて編集する」操作性をComfyUIの中にそのまま持ち込み、シーンごとの尺・解像度・フレームレート設定、キーフレームとして使う参照画像の管理、生成ジョブのバッチ予約（レンダーキュー）までを一つの画面で完結させます。広告や企画の現場で言えば、AI動画生成を「ノードいじりが得意な技術者の作業」から「編集者が普段の感覚で扱えるツール」に近づけるものです。複数カットで構成されるストーリー仕立てのAI映像や、キャラクターの一貫性を保ったまま尺を伸ばしていくような制作に向いています。",
+    "detail": "仕組みとしては、ComfyUIのノードグラフの「外側」にタイムラインUIを重ね、シーン（尺・解像度・fps）、素材（画像・音声・参照フレーム）、プロンプト（2レーン分、テンプレートと履歴つき）をタイムライン上のクリップとして配置します。編集で「このカットからこのカットまで生成したい」という範囲を選ぶと、その範囲だけを裏側でComfyUIのワークフローとして実行し、結果をまたタイムラインに戻す、という往復ができる点が特徴です。\n\n従来のComfyUIでの動画生成は、1本の動画＝1つのノードグラフという発想に近く、途中のカットだけをやり直したり、素材を差し替えたりする作業がやりづらいものでした。本ツールは複数のシーンやテイク（同じカットの複数バージョン）をプロジェクトとして横断的に管理でき、色管理を保ったままの書き出しにも対応しています。\n\n使うにはComfyUI本体（比較的新しいバージョン）に加え、Python 3.10以降とffmpeg（動画・音声の読み書き用）が必要です。GPUや生成モデル自体はComfyUI側の環境をそのまま使うため追加コストはかからず、ComfyUI Managerからのインストールにも対応しています。GPL-3.0のオープンソースで無償公開されています。",
+    "license": {
+      "spdx": "GPL-3.0",
+      "commercial": "conditional",
+      "note": "利用自体は無償・商用可。ただし改変版を配布する場合はGPLに従いソース公開が必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/SonderSaid/ComfyUI-Sonder-Editor"
+      },
+      {
+        "kind": "video",
+        "url": "https://youtu.be/lixgY2G80xE"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/comfyui-sonder-editor.jpg",
+    "relatedWorks": [
+      {
+        "title": "ComfyUI-VideoHelperSuite",
+        "description": "動画の読み込み・連結・音声合成などを行うComfyUI定番拡張だが、タイムライン編集UIは持たない",
+        "url": "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite"
+      },
+      {
+        "title": "Runway",
+        "description": "クラウド型のAI動画生成・編集サービス。タイムライン型UIを持つがクローズドで自前のノード編集はできない",
+        "url": "https://runwayml.com"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "comfyui-kms",
+    "title": "ComfyUI-KMS（Multi-Choice KSampler）",
+    "org": "Peter Neill（ShootTheSound.com）",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "GenVideo"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "画像・動画生成の「どのシード（乱数の種）が良い構図になるか」を、フル生成せずに安いプレビューだけで確認し、選んだ1つだけを最後まで仕上げるComfyUIの拡張ノード。",
+    "point": "AI画像・映像生成では、同じプロンプトでもシード値によって構図やポーズが大きく変わるため、良い1枚を探すために何パターンも最後まで生成して見比べる、という無駄な待ち時間が発生しがちです。ComfyUI-KMSは、生成の最初の数ステップだけを複数のシードで同時に走らせて安いサムネイルを並べて見せ、気に入った候補をクリック（またはキーボードの数字キー）で選ぶと、その続きだけを最後まで仕上げます。宝くじを何枚も最後まで開封するのではなく、まず表面だけ見せてもらって当たりを選ぶイメージです。広告ビジュアルやSNS動画のサムネイル探しのように「良い構図を素早く大量に見比べたい」制作フローの時間短縮に直結します。",
+    "detail": "技術的には、ComfyUI標準のサンプラーが使う「スプリットシグマ（段階的にノイズを除去する数値の刻み）」の仕組みを利用し、プレビュー段階で止めた続きから再開しても、最初から最後まで通しで生成した場合とビット単位で同じ結果になるように設計されています。つまり「安く覗き見して、当たりだけ本番を回す」だけで画質の劣化や結果のブレが起きません。\n\n従来はA1111やComfyUI標準機能で複数シードを比較する場合、全部を最後まで生成してから見比べる（＝時間もGPU代もかかる）か、プレビューを諦めて勘で1つ選ぶしかありませんでした。本ツールはその中間を実現し、蒸留モデル（数ステップで構図が決まるタイプ）では1〜2ステップ、SDXLなど従来型の多ステップモデルでは全体の2〜3割のステップ数でプレビューが可能です。\n\n使うにはComfyUIの`custom_nodes`フォルダにgit cloneするだけで、追加のPythonライブラリのインストールは不要です。既存の画像・動画生成モデルとそのままの環境で組み合わせて使えます。MITライセンスで無償公開されています。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "商用利用制限なし"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/shootthesound/ComfyUI-KMS"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/comfyui-kms.jpg",
+    "relatedWorks": [
+      {
+        "title": "AUTOMATIC1111 / Forge の X/Y/Z Plot",
+        "description": "複数シードをグリッド表示して比較する定番機能だが、全パターンをフル生成する必要がある",
+        "url": "https://github.com/AUTOMATIC1111/stable-diffusion-webui"
+      },
+      {
+        "title": "ComfyUI 標準 KSampler",
+        "description": "1回の実行で1シードのみを生成する基本ノード。比較には複数回の完全実行が必要",
+        "url": "https://docs.comfy.org/built-in-nodes/sampling/ksampler"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "maskvidexperiments",
+    "title": "MaskVidExperiments",
+    "org": "drozbay（個人開発）",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "動く被写体だけをマスクで切り出して高解像度で加工し、元の映像にジッター（ガクガクした揺れ）や継ぎ目なしで貼り戻すComfyUI向け動画マスク処理ツール。",
+    "point": "AI動画編集で「人物だけ差し替えたい」「特定の被写体だけ高画質化したい」という処理をすると、フレームごとに切り抜き位置が微妙にズレて、貼り戻した映像がガクガク揺れて見えることがよくあります。これは動画生成モデルには『意図しないカメラ揺れ』として誤って学習・強調されてしまう厄介な問題です。MaskVidExperimentsは、フレーム単位ではなく動画全体を見て「本当に動いた区間だけ」切り抜き枠を動かすことで、この揺れをなくします。広告映像でのAI人物差し替えや部分的な高画質リマスター、看板・服のロゴ差し替えのような、被写体を保ったまま一部だけAIで加工したい制作に実用的な効果があります。",
+    "detail": "仕組みとしては、マスクのノイズや一時的な遮蔽（他の物が前を横切る等）、被写体のわずかな身じろぎを無視し、「まとまった動き」だけを検出して切り抜き枠を動かす、バッチ単位（動画全体を見た上で決める方式）の判定を採用しています。切り抜き方は3種類選べ、被写体の移動範囲全体を1つの枠で固定してしまう「Combined」、枠のサイズは変えず最小限だけ動かす「Tracked」、被写体の位置とサイズの両方に追従してズームする「Zoomed」があります。\n\n従来はフレームごとに機械的に被写体を追いかけて切り抜くため、マスクの検出誤差がそのまま画面の揺れになって現れていました。本ツールは動画全体の動きの傾向を先に見てから枠取りを決めるため、遮蔽・オフスクリーンからの再登場・急なカット変わりといった難しい場面でも安定します。付属のGIFサンプルでこれらの状況での挙動が確認できます。\n\n使うにはComfyUIの`custom_nodes`フォルダに追加するだけで、ComfyUI本体以外の追加依存ライブラリは不要です。既存の動画生成・inpaintingワークフローに5種類のノード（マスク整形、被写体切り抜き、潜在空間でのマスク変換、フェザー付き貼り戻し等）を組み込む形で使います。GPL-3.0で無償公開されています。",
+    "license": {
+      "spdx": "GPL-3.0",
+      "commercial": "conditional",
+      "note": "利用・商用生成物には制限なし。改変版の配布はGPLに従いソース公開が必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/drozbay/MaskVidExperiments"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/maskvidexperiments.jpg",
+    "relatedWorks": [
+      {
+        "title": "Mocha Pro",
+        "description": "プロVFX向けのプラナートラッキング・ロトスコープツール。高精度だが有償かつ専用ソフトでの手作業トラッキングが前提",
+        "url": "https://borisfx.com/products/mocha-pro/"
+      },
+      {
+        "title": "ComfyUI標準のマスク・inpaintingノード",
+        "description": "フレーム単位でマスク処理するため、動く被写体では切り抜き位置のズレによる揺れが起きやすい",
+        "url": "https://docs.comfy.org/built-in-nodes/mask/mask-to-image"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "4dgs",
     "title": "4DGS",
     "org": "Avala AI",
