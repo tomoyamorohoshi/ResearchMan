@@ -6057,5 +6057,203 @@
         "desc": "話し声や音楽を聞き取りながら全身が自然に動く3Dアバターをリアルタイムに生成する技術。"
       }
     ]
+  },
+  {
+    "id": "2026-07-31-1",
+    "date": "2026-07-31",
+    "title": "感情連動パーソナルMV",
+    "pattern": "文脈×技術",
+    "seed": "THE WILDERNESS DOWNTOWNは住所入力で自分の故郷とMVを同期させたけど、Telekinetic Driveの無意識の表情読み取りを掛けたら、見る人の心の動きに合わせて映像そのものが変わる『感情同期MV』ができるかも",
+    "refs": [
+      {
+        "type": "case",
+        "id": "the-wilderness-downtown",
+        "title": "THE WILDERNESS DOWNTOWN（Arcade Fire × Google）",
+        "desc": "住所を入力すると自分の育った場所でGoogleマップと同期したMVが流れる体験"
+      },
+      {
+        "type": "tech",
+        "id": "telekinetic-drive",
+        "title": "Telekinetic Drive",
+        "desc": "顔のわずかな無意識の動きをカメラで読み取り装着物なしでロボットを操作するインターフェース"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-31-2",
+    "date": "2026-07-31",
+    "title": "自分の体で歩き回る展示",
+    "pattern": "文脈×技術",
+    "seed": "KID A MNESIA EXHIBITIONの3Dミュージアムを段階解禁する体験に、PoseCapのWebカメラ1台リアルタイムモーキャプを足したら、来場者自身の動きがアバターになって展示空間を歩き回れる体験になるかも",
+    "refs": [
+      {
+        "type": "case",
+        "id": "kid-a-mnesia-exhibition-2021",
+        "title": "KID A MNESIA EXHIBITION 特設サイト",
+        "desc": "3Dミュージアムの中でアートワークや音源を段階的に解禁していく体験サイト"
+      },
+      {
+        "type": "tech",
+        "id": "posecap",
+        "title": "PoseCap",
+        "desc": "Webカメラ1台だけでBlenderにリアルタイムでモーションキャプチャを送れる無料OSSツール"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-31-3",
+    "date": "2026-07-31",
+    "title": "停電下の投薬支援ロボ",
+    "pattern": "文脈×技術",
+    "seed": "停電の多いプエルトリコの服薬ミスを光るラベルで防いだGlowing Reliefに、FluidicSwarmの手のジェスチャーで動く小型ロボット群を掛けたら、暗闇でも手を振るだけで薬を届けてくれる仕組みができるかも",
+    "refs": [
+      {
+        "type": "case",
+        "id": "glowing-relief-alivia-health",
+        "title": "Glowing Relief",
+        "desc": "停電が多いプエルトリコで暗闇で光る薬のラベルにより服薬ミスを防ぐデザイン"
+      },
+      {
+        "type": "tech",
+        "id": "fluidicswarm",
+        "title": "FluidicSwarm",
+        "desc": "手のジェスチャーだけで複数の小型ロボット群を水のような一体として操れる操作システム"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-31-4",
+    "date": "2026-07-31",
+    "title": "偶然ロゴ発見エージェント",
+    "pattern": "文脈×技術",
+    "seed": "フライドポテトの箱がロゴに見える偶然を証明したHeinzのCoincidence?のように、SpatialClawの空間推論AIで街中の看板や建物の形を自動探索したら、新しい『偶然』OOHを次々発掘できるかも",
+    "refs": [
+      {
+        "type": "case",
+        "id": "heinz-coincidence",
+        "title": "Coincidence?",
+        "desc": "世界中のポテト箱がハインツのロゴに見える偶然をOOH広告で証明した施策"
+      },
+      {
+        "type": "tech",
+        "id": "spatialclaw",
+        "title": "SpatialClaw",
+        "desc": "画像や映像から物体同士の距離や配置をAIが自ら考えて答える空間推論エージェント"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-31-5",
+    "date": "2026-07-31",
+    "title": "決め技の無限ループ動画",
+    "pattern": "文脈×技術",
+    "seed": "選手のニックネームKFCを逆手に取ったKyle F*cking Connorのファン文化戦略に、C1連続in-loop-outモーション生成ツールを掛けたら、決めプレーを継ぎ目なく無限ループさせるファン向け動画を量産できるかも",
+    "refs": [
+      {
+        "type": "case",
+        "id": "kfc-kyle-fking-connor",
+        "title": "Kyle F*cking Connor",
+        "desc": "スター選手のニックネームKFCを逆手に取りファン文化をブランド化したキャンペーン"
+      },
+      {
+        "type": "tech",
+        "id": "akasaki-c1-loop-motion-tool",
+        "title": "C1連続 in-loop-out モーション生成ツール",
+        "desc": "モーキャプの一部区間から継ぎ目のないループアニメーションを自動生成する個人開発ツール"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-31-6",
+    "date": "2026-07-31",
+    "title": "絵コンテ即動画ティザー",
+    "pattern": "文脈×技術",
+    "seed": "Netflix『ウェンズデー』と組み街中にチーズの混乱を起こしたCheetos Thing-ertipsの絵コンテを、線を描くだけでカメラワークを指定できるComfyUIのCinematic Annotate Videoに置き換えたら、爆速でSNSティザーを量産できるかも",
+    "refs": [
+      {
+        "type": "case",
+        "id": "cheetos-thing-ertips",
+        "title": "Cheetos Thing-ertips",
+        "desc": "Netflix『ウェンズデー』と組み街中にチーズの混乱を起こしたメディア施策"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-cinematic-annotate-video",
+        "title": "ComfyUI「Cinematic Annotate Video」ワークフロー",
+        "desc": "画像に線を描くだけでカメラワークをLLMが動画生成用の指示に自動翻訳するComfyUIワークフロー"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-31-7",
+    "date": "2026-07-31",
+    "title": "色再現つき未来予測映像",
+    "pattern": "技術×技術",
+    "seed": "映画・VFX品質の色空間を管理するComfyUI-OCIOと、ロボットの動きから未来映像をシミュレートするMasked Visual Actionsを組み合わせたら、色の再現性を保ったまま『これから起きる動き』を撮影したような映像が作れるかも",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-ocio",
+        "title": "ComfyUI-OCIO",
+        "desc": "映画・VFX業界標準の色空間管理システムOpenColorIOをComfyUIで使えるようにする拡張ノード"
+      },
+      {
+        "type": "tech",
+        "id": "masked-visual-actions-for-unified-world-modeling",
+        "title": "Masked Visual Actions for Unified World Modeling (MVA)",
+        "desc": "動画を一部隠して復元する学習で動きと映像を相互変換できる統一世界モデル"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-31-8",
+    "date": "2026-07-31",
+    "title": "ブラウザで巨大3D展示",
+    "pattern": "技術×技術",
+    "seed": "fVDB v0.5.0で複数GPUを使い高速に作った広大なGaussian Splatting空間を、インストール不要で10億スプラット級を表示できるAholo Viewerで開けるようにしたら、ブラウザだけで巡れる巨大な3D展示ができるかも",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "fvdb-v0-5-0",
+        "title": "fVDB v0.5.0",
+        "desc": "Gaussian Splatting処理を複数GPUで高速・省メモリに行えるNVIDIAの3D深層学習基盤"
+      },
+      {
+        "type": "tech",
+        "id": "aholo-viewer",
+        "title": "Aholo Viewer",
+        "desc": "インストール不要のブラウザだけで最大10億スプラット級の3D空間を表示できるOSSレンダラ"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-31-9",
+    "date": "2026-07-31",
+    "title": "宙に浮く商品ディスプレイ",
+    "pattern": "転用",
+    "seed": "本来は超伝導体で磁石入り物体を空中浮遊させる研究用HCIのLeviFabを転用すれば、店頭で商品パッケージが宙に浮いてゆっくり回転する、触れずに眺める新しいディスプレイ什器になるかも",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "levifab",
+        "title": "LeviFab",
+        "desc": "超伝導体のピン止め効果で磁石入りの3Dプリント物体を空中に浮遊・操作できるHCI研究"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-31-10",
+    "date": "2026-07-31",
+    "title": "監視映像で什器を検証",
+    "pattern": "転用",
+    "seed": "本来は映像からモーキャプデータを起こしBlenderのアニメーションに使うCEB SAM 3D Body v4を転用すれば、店内カメラの映像だけで来店客の姿勢や動線を推定し、什器の使いやすさを検証するツールになるかも",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ceb-sam-3d-body-v4",
+        "title": "CEB SAM 3D Body v4 (Blender addon)",
+        "desc": "動画から3D人体ポーズを推定しBlenderのモーキャプデータとして読み込めるアドオン"
+      }
+    ]
   }
 ]
