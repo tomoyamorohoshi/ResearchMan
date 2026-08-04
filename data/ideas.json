@@ -6255,5 +6255,203 @@
         "desc": "動画から3D人体ポーズを推定しBlenderのモーキャプデータとして読み込めるアドオン"
       }
     ]
+  },
+  {
+    "id": "2026-08-04-1",
+    "date": "2026-08-04",
+    "title": "振動で聴くミュージックビデオ",
+    "pattern": "文脈×技術",
+    "seed": "Specsaversが『空耳バージョン』で「聴こえていない」ことを逆手に取ったように、HapticLensで音楽PVの動きを振動に変換すれば、難聴者が体でビートを感じるミュージックビデオ広告ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "specsavers-misheard-version",
+        "title": "THE MISHEARD VERSION（Specsavers × Rick Astley）",
+        "desc": "聴力検査を避けるイギリス人のため、Rick Astleyに代表曲を空耳バージョンで再録させた難聴啓発キャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "hapticlens",
+        "title": "HapticLens",
+        "desc": "動画の好きな部分の細かな動きから、1個の振動子で触感を自動生成できる映像用オーサリングツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-04-2",
+    "date": "2026-08-04",
+    "title": "無名功労者を切り出す広告",
+    "pattern": "文脈×技術",
+    "seed": "L'OréalがTHE FINAL COPYで50年間クレジットされなかったコピーライターの名を認めたように、RotoAIで過去の名作CM映像から無名スタッフだけを自然言語指定で切り出せば、功績を可視化するアーカイブ広告ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "loreal-final-copy",
+        "title": "THE FINAL COPY OF ILON SPECHT",
+        "desc": "「Because I'm Worth It」を書いた23歳コピーライターの名前が50年間クレジットされなかった不正義を認めたフィルム。"
+      },
+      {
+        "type": "tech",
+        "id": "rotoai",
+        "title": "RotoAI",
+        "desc": "「赤いシャツの人」のような自然言語の指示だけで動画から人物や物体を切り抜けるオープンソースのロトスコープツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-04-3",
+    "date": "2026-08-04",
+    "title": "写真一枚から歩ける観光地",
+    "pattern": "文脈×技術",
+    "seed": "深圳観光局のFascinatingが緻密なフォトグラフィで都市の魅力を描いたように、PixARMeshで旅行者が撮った一枚の街角写真を編集可能な3D空間に変換すれば、自分だけの深圳を歩き回れる観光体験ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "fascinating-shenzhen-tourism",
+        "title": "Fascinating",
+        "desc": "深圳の都市の魅力を緻密なフォトグラフィのクラフトで描いた観光ビジュアルキャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "pixarmesh",
+        "title": "PixARMesh",
+        "desc": "1枚の室内写真から部屋全体の配置と編集可能な3Dメッシュを一括生成する自己回帰フレームワーク。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-04-4",
+    "date": "2026-08-04",
+    "title": "自宅だけで3D化する中古市場",
+    "pattern": "文脈×技術",
+    "seed": "IKEA Preownedが手数料無料で家具の循環を後押ししたように、Modlyでクラウドに送らずPCだけで中古家具を3Dモデル化できれば、写真を他人に見られる不安なく気軽に出品できる中古マーケットができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ikea-preowned",
+        "title": "IKEA Preowned",
+        "desc": "IKEAが自社の中古家具売買を手数料無料で推進し、循環性100%を目指す取り組み。"
+      },
+      {
+        "type": "tech",
+        "id": "modly",
+        "title": "Modly",
+        "desc": "写真をクラウドに送らず、自分のPCのGPUだけで3Dメッシュ化できる完全ローカルのデスクトップアプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-04-5",
+    "date": "2026-08-04",
+    "title": "手の技術でマッチする採用",
+    "pattern": "文脈×技術",
+    "seed": "MastercardのHere to Stayが移民のスキルとキャリアをデータでマッチングしたように、CEB SAM 3D Bodyで職人志望者の作業動画から動きの特徴を3D抽出すれば、資格や言葉に頼らず手の技術で仕事とマッチングする採用基盤ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "here-to-stay-mastercard-poland",
+        "title": "Here to Stay",
+        "desc": "移民や求職者が自分のスキルに合うキャリアを見つけられるようにするMastercardのデータ基盤プラットフォーム。"
+      },
+      {
+        "type": "tech",
+        "id": "ceb-sam-3d-body-v4",
+        "title": "CEB SAM 3D Body v4 (Blender addon)",
+        "desc": "動画映像から3D人体ポーズを推定し、Blender上のモーションキャプチャデータとして読み込めるアドオン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-04-6",
+    "date": "2026-08-04",
+    "title": "手でつかむ実写点群展示",
+    "pattern": "技術×技術",
+    "seed": "1億点超をリアルタイム描画できるGaussian Point Splattingに、FluidicSwarmの手のジェスチャー操作を組み合わせれば、実写で撮った街や自然を手で握る・広げるだけで粘土のように変形させられる展示ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "gaussian-point-splatting",
+        "title": "Gaussian Point Splatting",
+        "desc": "1億個を超えるGaussian Splatを並べ替え処理なしでリアルタイム描画できる新しいレンダリング手法。"
+      },
+      {
+        "type": "tech",
+        "id": "fluidicswarm",
+        "title": "FluidicSwarm",
+        "desc": "手のジェスチャーだけで複数の小型ロボット群を水のような一つの生き物のように操れる操作システム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-04-7",
+    "date": "2026-08-04",
+    "title": "即興音源を振動で感じるライブ",
+    "pattern": "技術×技術",
+    "seed": "OBSIDIAN Neuralがその場でAIループ音源を生成するように、その生成音をHapticLensで即座に振動へ変換すれば、演奏される一音一音を椅子や手すりの振動で体感できるライブ体験ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "obsidian-neural",
+        "title": "OBSIDIAN Neural",
+        "desc": "AIがその場でループ音源を生成する、ライブ演奏向けのオープンソース楽器。8トラックのサンプラーとして使える。"
+      },
+      {
+        "type": "tech",
+        "id": "hapticlens",
+        "title": "HapticLens",
+        "desc": "動画の好きな部分の細かな動きから、1個の振動子で触感を自動生成できる映像用オーサリングツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-04-8",
+    "date": "2026-08-04",
+    "title": "消えた街を歩いて弔う記念碑",
+    "pattern": "転用",
+    "seed": "Spatialographyは本来、公園や滝をGaussian Splattingで記録しVRChatで歩いて鑑賞する作品にする技術だけど、これを転用すれば、再開発で消える商店街や被災した街並みを歩いて弔えるデジタル記念碑にできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "spatialography",
+        "title": "Spatialography",
+        "desc": "実在する公園や滝をGaussian Splattingで記録し、VR空間の中を歩いて鑑賞できる作品に仕立てたVRChatワールド。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-04-9",
+    "date": "2026-08-04",
+    "title": "実写とCGを馴染ませる低予算CM",
+    "pattern": "転用",
+    "seed": "YaGSは本来、Unreal Engine上でGaussian Splattingと3Dモデルの奥行きを正しく重ねるための無料プラグインだけど、これを転用すれば、実写ロケ映像とCG商品の影も奥行きも完全に馴染ませた低予算CMが量産できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "yags",
+        "title": "YaGS",
+        "desc": "Unreal Engine上でGaussian Splattingを通常の3Dモデルと正しく奥行きで重ねられる無料プラグイン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-04-10",
+    "date": "2026-08-04",
+    "title": "加工の実態を暴く美容広告",
+    "pattern": "文脈×技術",
+    "seed": "The OrdinaryがThe Periodic Fableで業界の嘘の元素を周期表で暴いたように、MaskVidExperimentsで美容系動画の肌だけを切り出し加工前後を継ぎ目なく比較表示すれば、加工の実態を暴く啓発広告ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "the-ordinary-the-periodic-fable",
+        "title": "The Periodic Fable",
+        "desc": "化粧品業界が使う嘘の元素49個を周期表に並べ、スキンケアマーケティングの欺瞞を暴いた屋外キャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "maskvidexperiments",
+        "title": "MaskVidExperiments",
+        "desc": "動く被写体だけをマスクで切り出し高解像度で加工し、元の映像に継ぎ目なく貼り戻すComfyUI向け動画ツール。"
+      }
+    ]
   }
 ]
