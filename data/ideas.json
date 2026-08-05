@@ -6453,5 +6453,203 @@
         "desc": "動く被写体だけをマスクで切り出し高解像度で加工し、元の映像に継ぎ目なく貼り戻すComfyUI向け動画ツール。"
       }
     ]
+  },
+  {
+    "id": "2026-08-05-1",
+    "date": "2026-08-05",
+    "title": "モーキャプで別人体験",
+    "pattern": "文脈×技術",
+    "seed": "CAPCOMIXのVR-X体験に、UE 5.8のMetaHuman Animatorのマーカーレスモーキャプを組み合わせたら、来場者自身の動きをそのままリアルタイムで鬼武者やスト2のキャラに憑依させる体験ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "capcomix-2026",
+        "title": "CAPCOMIX みなとみらい店",
+        "desc": "カプコンの体験型施設CAPCOMIXがVR-Xで鬼武者・バイオ・スト2のVR新作を体験できる東日本初出店施設。"
+      },
+      {
+        "type": "tech",
+        "id": "ue58-metahuman-markerless-mocap",
+        "title": "MetaHuman Animator マーカーレスMocap（UE 5.8）× AI再レンダリング検証",
+        "desc": "UE 5.8のMetaHuman Animatorに追加された、Webカメラ1台だけで全身を撮れるマーカーレスモーキャプ機能。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-05-2",
+    "date": "2026-08-05",
+    "title": "ささやきで雑誌と対話",
+    "pattern": "文脈×技術",
+    "seed": "もしもし、ブルータス。の電話ボックス対話に、ささやき声でも認識できるNasoVoceを使えば、電車内や公共の場でも声を出さずにBRUTUSの記憶とひそひそ対話できる読書体験になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "moshimoshi-brutus",
+        "title": "もしもし、ブルータス。",
+        "desc": "BRUTUS誌45年分の記事をGeminiに学習させ、電話ボックスでBRUTUS自身と対話できる体験。"
+      },
+      {
+        "type": "tech",
+        "id": "nasovoce",
+        "title": "NasoVoce",
+        "desc": "スマートグラスの鼻当てにマイクと振動センサを仕込み、ささやき声でもクリアに認識する常時発話インターフェース。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-05-3",
+    "date": "2026-08-05",
+    "title": "人間だけに見える広告",
+    "pattern": "文脈×技術",
+    "seed": "TD Fractional Window Shoppingのロゴ断片化発想に、人間には読めてAIには誤読させられるDecoy Fontを掛けたら、通行人にはメッセージ、スクレイピングAIには無意味な文字列を見せる広告表現ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "td-bank-fractional-window-shopping",
+        "title": "TD Fractional Window Shopping",
+        "desc": "TD Bankが店頭ロゴを断片として見せ、分数投資の概念を体現したアンビエントなOOH広告。"
+      },
+      {
+        "type": "tech",
+        "id": "decoy-font",
+        "title": "Decoy Font",
+        "desc": "人間には正しく読めるのに、AIのOCRや画像認識には別の単語に誤読させられる特殊フォント。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-05-4",
+    "date": "2026-08-05",
+    "title": "空飛ぶ共創パートナー",
+    "pattern": "文脈×技術",
+    "seed": "SHIBUYA XR ART PARKのAR共同描画実験に、プロペラなしで静かに浮遊するCuddle-Fishを添わせたら、子どもが空中の相棒と一緒に絵を描いているような都市アート体験になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "shibuya-xr-art-park-ar-in-miyashita-park-2026",
+        "title": "SHIBUYA XR ART PARK — ミリ波×AR共創実証実験 in MIYASHITA PARK",
+        "desc": "宮下公園の芝生アーチをARキャンバス化し、5Gミリ波でスマホへ低遅延の共同描画を配信する都市実証実験。"
+      },
+      {
+        "type": "tech",
+        "id": "cuddle-fish",
+        "title": "Cuddle-Fish（Floating Companion）",
+        "desc": "ヘリウムと羽ばたきヒレでプロペラなしに静かに浮遊移動する、人について歩くソフトロボット。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-05-5",
+    "date": "2026-08-05",
+    "title": "VRゴルフのスイング解剖",
+    "pattern": "文脈×技術",
+    "seed": "GOLF+ VR Openの全英オープンコース再現に、人体をリアルタイムに切り裂けるDissectible Anatomyの技術を掛けたら、自分のスイング中の筋肉や関節の動きを解剖視点で見返せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "golf-vr-open-at-royal-birkdale-2026",
+        "title": "GOLF+ VR Open at Royal Birkdale",
+        "desc": "VRゴルフGOLF+が全英オープン開催コースを実況再現し、VIP招待を懸けた公式トーナメントを開催。"
+      },
+      {
+        "type": "tech",
+        "id": "dissectible-anatomy",
+        "title": "Dissectible Anatomy",
+        "desc": "実在する人体の輪切りデータをGPU上でリアルタイムに切ったり裂いたりできる仮想解剖シミュレーション。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-05-6",
+    "date": "2026-08-05",
+    "title": "生成世界に住人を実装",
+    "pattern": "技術×技術",
+    "seed": "1枚の画像から映像世界を生成し続けるAlayaWorldと、1枚の画像からアニメ可能な3Dキャラを作るAniGenを組み合わせたら、住人まで自動生成される遊べる世界がスマホ1枚から立ち上がるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "alayaworld",
+        "title": "AlayaWorld",
+        "desc": "1枚の画像とカメラの動き・テキスト指示から、遊び続けられる動く映像世界をリアルタイム生成し続ける世界モデル。"
+      },
+      {
+        "type": "tech",
+        "id": "anigen",
+        "title": "AniGen",
+        "desc": "1枚の画像から、動かせる骨格とスキンまで含んだアニメーション可能な3Dキャラクターを自動生成する技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-05-7",
+    "date": "2026-08-05",
+    "title": "iPhoneで物理検証",
+    "pattern": "技術×技術",
+    "seed": "iPhoneでガウススプラッティング撮影ができるGaussian SplatKingのデータを、NVIDIAのovrtx/ovphysxに流し込んだら、スマホで撮った実空間の中でAIエージェントに物理挙動を自動検証させられるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "gaussian-splatking",
+        "title": "Gaussian SplatKing",
+        "desc": "iPhoneのデュアルレンズとLiDARで、ガウススプラッティング用の高品質撮影データを無料で取得できるアプリ。"
+      },
+      {
+        "type": "tech",
+        "id": "ovrtx-ovphysx",
+        "title": "ovrtx / ovphysx (NVIDIA Agent Toolkit — Omniverse Libraries)",
+        "desc": "AIエージェントが3Dシーンをカメラ視点でシミュレーションしたり、物理挙動を自動検証できるNVIDIAのSDK群。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-05-8",
+    "date": "2026-08-05",
+    "title": "解剖ビューアを転用する",
+    "pattern": "転用",
+    "seed": "本来は人体を切り裂くDissectible Anatomyを、機械や建築物の分解ビューアに転用したら、製品の内部構造をその場でリアルタイムに切り開いて見せる教育展示に使えるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "dissectible-anatomy",
+        "title": "Dissectible Anatomy",
+        "desc": "実在する人体の輪切りデータをGPU上でリアルタイムに切ったり裂いたりできる仮想解剖シミュレーション。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-05-9",
+    "date": "2026-08-05",
+    "title": "現場で即興AI映像編集",
+    "pattern": "転用",
+    "seed": "本来は生成AI動画をComfyUI内でタイムライン編集するComfyUI-Sonder-Editorを、ライブイベントのVJ卓に転用したら、ノードを触らずその場でAI生成映像を即興編集できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-sonder-editor",
+        "title": "ComfyUI-Sonder-Editor",
+        "desc": "ComfyUIの中に動画編集ソフトのタイムラインを組み込み、ノードいじらず長尺動画を編集できる拡張機能。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-05-10",
+    "date": "2026-08-05",
+    "title": "生成され続けるMV世界",
+    "pattern": "文脈×技術",
+    "seed": "WILL OF THE PEOPLEのディストピア3D世界にストリーミング接続する発想に、動く映像世界を生成し続けるAlayaWorldを掛けたら、アルバムを聴くたびに違う3D世界が生成される終わりのないMVになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "muse-will-of-people-3d",
+        "title": "WILL OF THE PEOPLE インタラクティブ3Dサイト（Muse）",
+        "desc": "ブラウザで開くディストピアな3D世界を、音楽ストリーミングに接続しBGMを流しながら探索できる没入サイト。"
+      },
+      {
+        "type": "tech",
+        "id": "alayaworld",
+        "title": "AlayaWorld",
+        "desc": "1枚の画像とカメラの動き・テキスト指示から、遊び続けられる動く映像世界をリアルタイム生成し続ける世界モデル。"
+      }
+    ]
   }
 ]
