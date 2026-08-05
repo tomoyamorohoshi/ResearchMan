@@ -1,5 +1,229 @@
 [
   {
+    "id": "heineken-0-0-second-serve-tickets-2026",
+    "title": "Heineken 0.0: Second Serve Tickets",
+    "summary": "セレナ・ウィリアムズの過去のUS Open使用済みチケットを再活性化し、ファンをUS Open観戦招待に繋げた施策",
+    "client": "Heineken 0.0",
+    "agency": "Dolsten & Co. / LePub New York / Sonic Union",
+    "categories": [
+      "カルチャーインサイト",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/second-serve-tickets",
+    "thumbnail": "/thumbnails/heineken-0-0-second-serve-tickets-2026.jpg",
+    "videoId": "",
+    "overview": "Heineken 0.0はテニス選手セレーナ・ウィリアムズと組み、過去のUS Openチケット半券とその思い出を投稿したファンを抽選で2026年US Openのヘイネケンスイート席へ招待するキャンペーンを実施。ウィリアムズの6度の優勝デザインを模した限定缶も会場限定で販売した。",
+    "background": "Heineken 0.0は「Fans Have More Friends」というブランドプラットフォームを掲げ、ファン同士の共有された情熱から新たな繋がりを生むことをテーマにしている。ウィリアムズはHeineken 0.0のアンバサダーであり、その熱心なファン層とブランド体験を結びつける狙いがあった。",
+    "execution": "ファンは自身が所有する過去のセレーナ出場US Openの使用済みチケット写真と個人的な思い出をheineken.com/secondservetickets に投稿。選出された応募者はアーサー・アッシュ・スタジアム内の限定Heinekenスイートに招待される。会場では優勝年デザインの限定缶も販売され、体験と物販を連動させた。",
+    "evaluationImpact": "使われなくなった古いチケット半券という個人の記憶の断片を、新たな観戦体験への「再入場券」として再定義した点がユニーク。ノンアルコールビールブランドがスター選手のレガシーとファンの個人的思い出を軸に、購買を介さない参加型のブランド体験を作った事例。",
+    "relatedWorks": [
+      {
+        "title": "HEINEKEN® 0.0 BRINGS SERENA WILLIAMS' OLD US OPEN TICKETS BACK INTO PLAY (PR Newswire)",
+        "description": "キャンペーンの公式プレスリリース。応募方法や賞品、限定缶の詳細を説明",
+        "url": "https://www.prnewswire.com/news-releases/heineken-0-0-brings-serena-williams-old-us-open-tickets-back-into-play-302840738.html"
+      },
+      {
+        "title": "Heineken 0.0 Brings Serena Williams' Old US Open Tickets Back into Play (LBBOnline)",
+        "description": "業界メディアによるキャンペーン紹介記事",
+        "url": "https://lbbonline.com/news/Heineken-00-Brings-Serena-Williams-Old-US-Open-Tickets-Back-into-Play"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Event",
+      "Theme/Sports",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "beast-of-reincarnation-2026",
+    "title": "Beast of Reincarnation（ビースト・オブ・リンカネーション）",
+    "summary": "ゲームフリーク完全新作、剣戟アクションとコマンドRPGを融合させた「一人と一匹」の和風終末アドベンチャー",
+    "client": "ゲームフリーク",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://automaton-media.com/articles/newsjp/20260804-458261/",
+    "thumbnail": "/thumbnails/beast-of-reincarnation-2026.jpg",
+    "videoId": "",
+    "overview": "ゲームフリークが開発した完全新作アクションRPG。西暦4026年、世界崩壊後の和風世界を舞台に、少女エマと相棒の狼クゥが「輪廻の獣」討伐を目指す旅を描く。2026年8月4日にPS5、Xbox Series X|S、PC（Steam）向けに発売された。",
+    "background": "『ポケットモンスター』シリーズで知られるゲームフリークが、既存IPに依存しない完全新作として開発。ディレクターは「ぬくもりの中にある寂しさ」をテーマに、一人と一匹の絆を軸にした物語体験を目指したとインタビューで語っている。",
+    "execution": "戦闘は主人公エマのリアルタイムアクション操作と、相棒クゥのコマンド選択による「開花技」を組み合わせた独自システム。エマが敵の攻撃をパリィするとゲージが溜まり、それを消費してクゥの技を発動する仕組みで、アクションと戦略性を両立させている。",
+    "evaluationImpact": "発売直後からSteamで最大同時接続数約1万3千人を記録するなど話題を集めた。Metacriticスコアは73点、PlayStation Storeユーザー評価は星4.64と好意的な反応が多く、既存ジャンルの枠を超えた新規IPとして注目されている。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/Product",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "halion-sonic-play-2026",
+    "title": "HALion Sonic Play",
+    "summary": "Steinbergが2000種以上の音色を収録したワークステーション音源をiOS/Android向けに投入、AUv3でモバイルDAW統合を実現。",
+    "client": "Steinberg",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://synthanatomy.com/2026/08/steinberg-halion-sonic-play-workstation-instrument-with-2000-sounds-for-ios.html",
+    "thumbnail": "/thumbnails/halion-sonic-play-2026.jpg",
+    "videoId": "",
+    "overview": "Steinbergが2026年8月4日、iOS/iPadOS/Android向けに新ワークステーション型音源アプリ「HALion Sonic Play」をリリース。キーボード、シンセ、ギター、オーケストラ楽器、ドラムなど2000種以上の高品質サウンドを収録し、スタンドアロンアプリおよびAUv3プラグインとして動作するモバイル音楽制作ツールとして提供された。",
+    "background": "モバイルでの音楽制作需要の高まりを受け、Steinbergはデスクトップ版HALion Sonicが持つフルワークステーション機能をモバイルに展開する狙いで開発。従来Cubasis向けアプリ内課金だった「HALion Sonic Selection」を置き換える形で提供され、外出先でのアイデア創作から本格的なトラック制作までを一台でカバーすることを目指した。",
+    "execution": "iOS/iPadOSでは単体アプリとして、AndroidではCubasisのアプリ内購入として提供。2000以上の音色に加え、フィルター、クイックADSRエンベロープ、内蔵アルペジエーターなどのクイックコントロールを搭載し、数秒でサウンドを調整可能。AUv3対応によりCubasisをはじめとする対応モバイルDAWにインストゥルメントとして組み込める。導入価格は25%オフの14.99ドル(2026年8月24日まで)。",
+    "evaluationImpact": "デスクトップ級の音色ライブラリとワークステーション機能をモバイル単体アプリで実現し、AUv3経由でモバイルDAWエコシステムに直接統合できる点が特徴。既存のHALion Sonic Selectionを置き換えることでSteinbergのモバイル製品ラインを整理し、iOS/Android両プラットフォームでの音楽制作の裾野拡大に寄与する。",
+    "relatedWorks": [
+      {
+        "title": "HALion Sonic Selection",
+        "description": "HALion Sonic PlayのリリースによりCubasis向けアプリ内課金としての提供が終了した従来製品。",
+        "url": "https://helpcenter.steinberg.de/hc/en-us/articles/35150006046738-HALion-Sonic-Play-replaces-HALion-Sonic-Selection"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Form/App",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "pigments-play-2026",
+    "title": "Pigments Play",
+    "summary": "Arturiaが看板シンセPigmentsの無料版「Pigments Play」を8月5日公開、6種のシンセシス方式をMac/Winで誰でも体験可能に。",
+    "client": "Arturia",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://synthanatomy.com/2026/08/arturia-pigments-play-the-free-player-version-of-the-multi-engine-synth.html",
+    "thumbnail": "/thumbnails/pigments-play-2026.jpg",
+    "videoId": "",
+    "overview": "Pigmentsはフラッグシップのソフトシンセ。その無料プレイヤー版「Pigments Play」が2026年8月5日に公開された。VST/VST3/AU/AAX/スタンドアロンでMacとWindowsに対応し、バーチャルアナログ・サンプル・ウェーブテーブル・グラニュラー・モーダル・ハーモニックの6種のシンセシスエンジンを搭載。プロのサウンドデザイナーが厳選した100種のプリセットを、ブライトネス・ティンバー・タイム・ムーブメントの4マクロコントロールで直感的に変形できる。",
+    "background": "上位機Pigmentsは高機能な分、操作の複雑さがシンセ初心者の参入障壁となっていた。Arturiaはプリセットベースの直感操作に絞ったPlay版を無料投入することで、まず音を触ってもらい製品の魅力を体感させ、上位版への関心喚起や新規ユーザー層の拡大を狙ったとみられる。近年、DAW・プラグインメーカー各社が無料プレイヤー版で裾野拡大を図る流れとも軌を一にする動きである。",
+    "execution": "Pigments Playはオシレーター・フィルター・エンベロープ・エフェクトのUIを簡略化し、シーケンサーやフルモジュレーションエンジンなど上級者向け機能は省いた。代わりに4つのマクロノブで音の明るさ・音色・時間変化・動きを一括操作でき、100種のプリセットはポップ・R&B・ガレージ・ハウス・ドラムンベース・トラップ・アンビエントなど現代的な音楽ジャンルを網羅する構成とした。",
+    "evaluationImpact": "無料プレイヤー版の投入は「まず触ってもらう」ハードルの低さが購買導線として機能する好例。プリセット主導のシンプルなUIは初心者やライトユーザーの獲得に直結し、上位版Pigmentsへのアップセル導線としても機能する。ソフトシンセ市場における無料ゲートウェイ戦略の一事例として位置付けられる。",
+    "relatedWorks": [
+      {
+        "title": "Arturia Pigments（上位版）",
+        "description": "Pigments Playの元となるArturiaのフラッグシップ・ソフトシンセ。6種のシンセシスエンジンとフルモジュレーション機能を搭載する有料版。",
+        "url": "https://www.arturia.com/products/software-instruments/pigments/overview"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Form/App",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "vulcan-mk2-2026",
+    "title": "Vulcan MK2",
+    "summary": "アナログ8ボイスとデジタル2基×8ボイスを37HPユーロラック筐体に統合、最大24ボイスを実現した第2世代ポリシンセ",
+    "client": "Hampshire Electronics",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://synthanatomy.com/2026/08/hampshire-electronics-vulcan-mk2-a-24-voice-analog-and-digital-polysynth-in-a-module.html",
+    "thumbnail": "/thumbnails/vulcan-mk2-2026.jpg",
+    "videoId": "",
+    "overview": "英Hampshire Electronicsが2026年8月4日に発表したユーロラック向けポリフォニックシンセサイザー。100%アナログ信号経路の8ボイスエンジンと、FM・ウェーブテーブル・ノイズ・モーダル・Karplus-Strong物理モデリングに対応する独立したデジタルエンジン2基（各8ボイス）を組み合わせ、最大24ボイスを37HPのモジュールに収めた。価格は679ユーロ（英国では679ポンド）、発売は2026年8月末予定。",
+    "background": "初代Vulcanは2022年末に8ボイスアナログポリシンセとして登場し、2025年12月にも紹介記事が出るなど注目を集めていた。ただし旧モデルは56HPとサイズが大きく、アナログのみの構成だった。MK2はアナログの音の質感を保ちながらデジタル音源を統合し、省スペース化と音色の拡張を同時に実現する方向で再設計された。",
+    "execution": "アナログエンジンはオシレータ構成を1〜8個/ボイスで可変にでき、8音ポリ〜モノフォニックの厚みのある音まで1台でカバー。デジタルエンジンは2基独立で、FM（6オペレータ）・ウェーブテーブル・チューンドノイズ・モーダル合成・物理モデリングの5方式に対応し、OLED画面でパラメータを視覚的に確認しながらプリセットの保存・呼び出しができる。MIDIと8系統の独立CV/Gate入力で外部システムとも統合可能。オプションのステレオエフェクト拡張カードも用意される。",
+    "evaluationImpact": "アナログとデジタルを別々の完全なシンセエンジンとして並存させ、単一の37HPモジュールに収めた点がユーロラック市場では珍しい設計。従来機比でサイズを縮小しつつボイス数と音色バリエーションを大幅に拡張しており、コンパクトなモジュラーシステムでポリフォニックかつマルチティンバーなサウンドデザインを可能にする提案として、シンセ愛好家コミュニティで注目されている。",
+    "relatedWorks": [
+      {
+        "title": "Hampshire Electronics Vulcan（初代）",
+        "description": "2022年発表の8ボイスアナログポリシンセ、56HPユーロラックモジュール。MK2の前身機。",
+        "url": "https://hampshireelectronics.co.uk/products/vulcan-eurorack-polysynth"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Tech/Device",
+      "Form/Product",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "lifeforms-sv-2-2026",
+    "title": "Lifeforms SV-2",
+    "summary": "Pittsburgh Modularが生産終了品SV-1の後継となるセミモジュラーアナログシンセ「Lifeforms SV-2」をティザー公開、8月11日正式発表へ。",
+    "client": "Pittsburgh Modular",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://synthanatomy.com/2026/08/pittsburgh-modular-lifeforms-sv-2-semi-modular-synthesizer.html",
+    "thumbnail": "/thumbnails/lifeforms-sv-2-2026.jpg",
+    "videoId": "",
+    "overview": "米Pittsburgh Modularが2026年8月3〜4日、新製品「Lifeforms SV-2」のティザー動画を公開。創業者Richard Nicolは「複雑な音色やローファイノイズに最適」なセミモジュラーアナログシンセと説明。詳細仕様・価格・発売日は8月11日の正式発表を待つ段階で、現時点では未公開。",
+    "background": "同社のLifeforms SV-1はユーロラック規格で完結したシンセボイスを提供する製品として知られていたが、現在は生産終了。SV-2はこのLifeformsシリーズの系譜を継ぐ新モデルとして位置づけられている。",
+    "execution": "ティザー動画のサウンドトラックは、SV-2実機の音をAbleton Liveへマルチトラック録音し、EQとコンプレッションで仕上げて制作。仕様や価格を伏せたまま音とビジュアルの一部のみを先行公開し、正式発表前の期待感を醸成する手法をとった。",
+    "evaluationImpact": "具体的スペックが未公開の段階でSynthtopia・MATRIXSYNTHなどシンセ専門メディアが即座に取り上げ、モジュラーシンセコミュニティ内で発売前から話題化に成功している。",
+    "relatedWorks": [
+      {
+        "title": "Pittsburgh Modular Lifeforms SV-1",
+        "description": "SV-2の前身にあたる、生産終了済みのユーロラック規格シンセボイス。",
+        "url": "https://pittsburghmodular.com/lifeforms-sv-1"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Tech/Device",
+      "Form/Product",
+      "Theme/Music"
+    ]
+  },
+  {
     "id": "case-1ji7uqm-2026",
     "title": "記憶汚染展",
     "summary": "マンデラエフェクトやAIハルシネーションを軸に「記憶と現実のあやふやさ」を体験させる、株式会社闇による渋谷の体験型展覧会。",
