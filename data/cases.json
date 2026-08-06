@@ -1,5 +1,222 @@
 [
   {
+    "id": "cadan-artsticker-2026",
+    "title": "秋山珠里・服部憲明 二人展「光の後始末〈ep.3〉」",
+    "summary": "蜜蝋のエンカウスティックと工業用レーザー加工という異素材技法が『潜在イメージの表出』で共鳴する、CADAN×ArtSticker共同企画第3弾の二人展。",
+    "client": "秋山珠里、服部憲明（CADAN × ArtSticker企画）",
+    "agency": "株式会社The Chain Museum",
+    "categories": [
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000408.000038948.html",
+    "thumbnail": "/thumbnails/cadan-artsticker-2026.jpg",
+    "videoId": "",
+    "overview": "麻布台ヒルズ「Gallery 舞台裏」にて、秋山珠里と服部憲明による二人展「光の後始末〈ep.3〉」が2026年8月5日〜30日に開催。ArtSticker（運営：The Chain Museum）とCADAN、Sprout Curationが共催するリレー形式企画「CADAN舞台裏」の第3弾。観覧無料、初日にはレセプションも実施された。",
+    "background": "ArtStickerとCADAN（一般社団法人日本現代美術商協会）は、麻布台から日本・アジアのアーティストを世界へ発信することを目的に「CADAN舞台裏」を始動。第1弾は西村有未「滲出液とかさぶた」、第2弾は垣本泰美「Star Boy -洪水の夜-」で、CADAN加盟ギャラリーが順にGallery 舞台裏で展示を行うリレー形式の共同企画として続いている。",
+    "execution": "秋山珠里は高温で溶かした蜜蝋に絵具を混ぜて層状に塗布し、固まった表面を熱鏝で削り剥がすエンカウスティック技法を用いる。服部憲明はスプレーペイントを施したアルミ板を工業用レーザー加工機で焼き削り、下層のイメージを出現させる「インダストリアル・ペインティング」を制作。手法は異なるが、共に潜在的なイメージを表出させることで絵画を成立させる作家として並置された。",
+    "evaluationImpact": "「光の後始末」という展覧会タイトルは、後始末の行為主体が光・作家・鑑賞者のいずれとも定めない曖昧さを持たせ、素材・ツールの違いを超えて『表出』という共通原理を可視化する試み。CADAN×ArtStickerのリレー企画は、日本現代美術の商業ギャラリー横断のプラットフォームとして、麻布台ヒルズという都市拠点からアジア・海外へのアーティスト発信基盤を継続的に構築している点が特徴。",
+    "relatedWorks": [
+      {
+        "title": "西村有未個展「滲出液とかさぶた」（CADAN舞台裏 ep.1）",
+        "description": "CADAN×ArtSticker共同企画の第1弾。Gallery 舞台裏で開催。",
+        "url": "https://cadan.org/cadanbutaiura01/"
+      },
+      {
+        "title": "垣本泰美個展「Star Boy -洪水の夜-」（CADAN舞台裏 ep.2）",
+        "description": "CADAN×ArtSticker共同企画の第2弾。和歌山の水害の記憶をテーマにした写真作品を展示。",
+        "url": "https://cadan.org/cadanbutaiura02/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Theme/Art",
+      "Tech/Device",
+      "Form/Event"
+    ]
+  },
+  {
+    "id": "case-1ajhui9-2026",
+    "title": "鼓童×初音ミク「響演」～和楽器スペシャルライブ～",
+    "summary": "初音ミク楽曲を和太鼓・箏・三味線のみで再構築、電子音を排し鼓童の生演奏で表現する新機軸ライブ",
+    "client": "太鼓芸能集団 鼓童 × 初音ミク（クリプトン・フューチャー・メディア）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000687.000052709.html",
+    "thumbnail": "/thumbnails/case-1ajhui9-2026.jpg",
+    "videoId": "",
+    "overview": "太鼓芸能集団・鼓童と初音ミクによる新ライブ「響演」が2026年11月20日・21日にNHKホールで開催。2017年・2018年・2023年のコラボとは異なり、和太鼓・箏・三味線など和楽器のみでボカロ楽曲を再構築する初の試み。",
+    "background": "過去3回のライブはエレキギターやドラムを交えた編成だったが、今回は鼓童の身体性と生演奏を主役に据えるため、電子的な音を排し和楽器編成のみで挑む新チャレンジとして企画された。",
+    "execution": "和太鼓・箏（菊武粧子）・三味線（藤井黎元）の生演奏で初音ミクら楽曲のメロディ・リズム・世界観を和楽器の音色で再構成。初音ミクらバーチャルシンガーはステージ登場せず一部楽曲の歌唱のみで参加する構成。主催はNHK・NHKプロモーション、協力はクリプトン・フューチャー・メディア等。",
+    "evaluationImpact": "ボーカロイド文化と日本の伝統芸能を電子音抜きで融合させる試みとして、バーチャル発の楽曲と生の和楽器演奏の新たな共存形態を提示。両ファン層の接点拡大や伝統芸能の新規層開拓につながる事例として注目される。",
+    "relatedWorks": [
+      {
+        "title": "初音ミク×鼓童 スペシャルライブ（2017・2018・2023）",
+        "description": "エレキギターやドラムを交えた従来の鼓童×初音ミクコラボライブシリーズ",
+        "url": "https://www.kodo.or.jp/tag/miku"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Form/Event",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "case-1kp0qcp-2026",
+    "title": "東京ミッドタウン八重洲「八重洲夜市」フリーライブ",
+    "summary": "東京駅前の商業施設で、シティポップからハウスまで29組が出演する10日間の無料野外ライブを開催",
+    "client": "東京ミッドタウンマネジメント株式会社",
+    "agency": "",
+    "categories": [
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000054.000122315.html",
+    "thumbnail": "/thumbnails/case-1kp0qcp-2026.jpg",
+    "videoId": "",
+    "overview": "東京ミッドタウン八重洲が2026年8月28日〜9月6日に開催する都市型納涼祭「八重洲夜市」の一環として、フリーライブ「八重洲音宴」の全出演アーティストとタイムテーブルを発表。大沢伸一、小西康陽、ZEN-LA-ROCKら29組が出演する。",
+    "background": "東京駅前という都心の商業エリアで、夏の終わりを彩る納涼祭として企画された「八重洲夜市」。飲食や縁日と並び、音楽体験を核とした滞在価値の高いイベントとして無料ライブ「八重洲音宴」が設けられた。",
+    "execution": "10日間の会期中、週末は生演奏、平日はDJによるサウンドを提供し曜日ごとに異なる体験を設計。シティポップ、ディスコ、ハウス、ヒップホップなど多彩なジャンルを横断する第一弾・追加アーティストを段階的に発表し話題を喚起した。",
+    "evaluationImpact": "商業施設が単なる物販・飲食にとどまらず、著名アーティストによる無料ライブという音楽コンテンツを核に据えることで、都心再開発エリアへの回遊性と滞在時間の向上を狙う事例といえる。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Event",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "made-for-college-2026",
+    "title": "Made for College",
+    "summary": "IKEAカナダが学生寮の多面性をCTV・OOH・Spotify等で描く、Carat連携の全国横断バックトゥスクール展開",
+    "client": "IKEA Canada",
+    "agency": "PIGEON",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://lbbonline.com/news/IKEA-Canada-Campaign-Celebrates-the-Many-Lives-of-a-College-Room",
+    "thumbnail": "/thumbnails/made-for-college-2026.jpg",
+    "videoId": "",
+    "overview": "PIGEONが手がけたIKEAカナダの新学期キャンペーン「Made for College」。学生の部屋が勉強部屋・ゲーム部屋・食堂・仮眠室など複数の役割を担う様子を描き、限られたスペースを使いこなすための手頃な家具・雑貨を訴求する。",
+    "background": "大学進学は、小さな一室があらゆる生活機能を担う人生初の経験のひとつという生活者インサイトに着想。深夜の勉強、新たな自立、昼寝、ゲーム三昧など、学業だけにとどまらない大学生活の多面性を捉え、IKEAが空間づくりを後押しする立ち位置を打ち出した。",
+    "execution": "全国規模でコネクテッドTV、オンライン動画、屋外広告、ディスプレイ、ソーシャル、Spotifyオーディオ、店頭まで横断展開。Spotify広告では、学生が寝落ちする間にアナウンサーがIKEAの遮光ブラインドの手頃さを小声で語るなど、生活シーンに寄り添ったユーモラスな表現を採用。メディアはCaratが担当。PIGEONとIKEAカナダ、Humber Polytechnicの広告コピーライティング・アートディレクション課程との連携も4年目を迎えた。",
+    "evaluationImpact": "単なる家具訴求にとどまらず、学生の等身大の生活シーンを媒体特性ごとに描き分けた統合キャンペーンとして展開。教育機関との産学連携を継続的に組み込む姿勢も特徴で、ブランドと次世代クリエイターの関係構築にもつながる取り組みとなっている。",
+    "relatedWorks": [
+      {
+        "title": "IKEA – Back to school campaign 2023 (Influenced by You)",
+        "description": "PIGEONが手がけた前年のIKEAカナダ新学期キャンペーン。実在の学生を起用し、自己表現をテーマにした",
+        "url": "https://www.pigeonbrands.com/work/ikea-back-to-school-campaign-2023/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Form/Film",
+      "Form/OOH",
+      "Theme/Education"
+    ]
+  },
+  {
+    "id": "up-to-date-2026",
+    "title": "Up to Date",
+    "summary": "コメディアン2人の内なる声を対比させ、黒人女性の恋愛シーンでPrEPを自然に語るHIV予防啓発",
+    "client": "Gilead",
+    "agency": "Majority",
+    "categories": [
+      "社会包摂",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/nicole-byer-and-devon-walker-make-hiv-prevention-sexy-up-to-date-campaign",
+    "thumbnail": "/thumbnails/up-to-date-2026.jpg",
+    "videoId": "",
+    "overview": "Gileadが黒人女性向けHIV予防プラットフォーム「Care For The Culture」の一環として展開する啓発キャンペーン。コメディアンのNicole ByerとDevon Walkerを起用し、恋愛・親密な関係の中でPrEP（曝露前予防）を自然に語る短編フィルムを制作した。",
+    "background": "黒人女性はHIV新規感染において人種・性別間で不釣り合いに高い割合を占める一方、PrEPなど予防医療への認知・アクセスは低い。Gileadは臨床的・堅苦しい啓発ではなく、恋愛や自己肯定感といった日常のリアルな感情に寄り添う表現が必要と判断した。",
+    "execution": "フィルムでは、ある黒人女性が気になる相手とのデートを検討する場面を軸に、Nicole ByerとDevon Walkerが彼女の中で葛藤する「欲望」と「自己防衛」の内なる声を演じる。ユーモアを交えながらPrEPや検査について自然に会話に織り込み、YouTube・Instagram・TikTok・Peacock・Tubiなど幅広いプラットフォームで展開した。",
+    "evaluationImpact": "医療キャンペーンにありがちな説教調を避け、黒人クリエイターの声を制作プロセス全体に反映させたことで、当事者にとってリアルで共感できる啓発表現となった。検査や医師との対話、PrEPへの行動喚起につなげる狙いを持つ。",
+    "relatedWorks": [
+      {
+        "title": "Gilead「Care For The Culture」プラットフォーム",
+        "description": "黒人コミュニティ向けにHIV予防をカルチャーに根差した形で伝える、Gileadの継続的な啓発プログラム",
+        "url": "https://www.adsoftheworld.com/campaigns/nicole-byer-and-devon-walker-make-hiv-prevention-sexy-up-to-date-campaign"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Theme/Health",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "the-unliveable-listings-2026",
+    "title": "The Unliveable Listings",
+    "summary": "路上生活者の寝床を不動産物件広告風に仕立て、週25ドルの寄付で住宅危機の現実を可視化",
+    "client": "Parramatta Mission",
+    "agency": "3rdspace",
+    "categories": [
+      "社会包摂",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://lbbonline.com/news/3rdspace-parramatta-mission-flip-real-estate-ads-unliveable-listings",
+    "thumbnail": "/thumbnails/the-unliveable-listings-2026.jpg",
+    "videoId": "",
+    "overview": "オーストラリアのParramatta Missionが3rdspaceと制作したキャンペーン。西シドニー各地で実際に路上生活者が眠る場所を、通常の不動産物件広告と同じ体裁で撮影・掲載し、ホームレスの現実を可視化した。",
+    "background": "ナショナル・ホームレスウィークに合わせ、シドニーの深刻な住宅危機への関心を高める狙いで実施。3rdspaceがParramatta MissionとPCUCのアカウントを獲得した直後、ピッチ確定からわずか1週間後に緊急ブリーフとして依頼され、企画から納品まで2週間という短期間で制作された。",
+    "execution": "教会脇の物陰、高架下のコンクリートスペース、歩道橋下の草地など西シドニー各地の実際のロケーションを、通常の不動産リスティングと同じフォーマットで撮影。各「物件」には週25ドルの価格が設定され、実在する人々の持ち物も使用してリアリティを持たせた。",
+    "evaluationImpact": "見慣れた不動産広告のフォーマットを転用することで、通り過ぎてしまいがちなホームレス問題を生活者の視点で直視させる仕掛けとなった。週25ドルという具体的な寄付額の提示が、食事・衣類提供から住宅・法的支援までの継続的ケアへの行動喚起につながっている。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/SocialGood"
+    ]
+  },
+  {
     "id": "heineken-0-0-second-serve-tickets-2026",
     "title": "Heineken 0.0: Second Serve Tickets",
     "summary": "セレナ・ウィリアムズの過去のUS Open使用済みチケットを再活性化し、ファンをUS Open観戦招待に繋げた施策",
