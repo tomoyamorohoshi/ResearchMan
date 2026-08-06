@@ -6651,5 +6651,203 @@
         "desc": "1枚の画像とカメラの動き・テキスト指示から、遊び続けられる動く映像世界をリアルタイム生成し続ける世界モデル。"
       }
     ]
+  },
+  {
+    "id": "2026-08-06-1",
+    "date": "2026-08-06",
+    "title": "感情を増幅する装具の腕",
+    "pattern": "文脈×技術",
+    "seed": "パーキンソン病で表情が乏しくなる人々を描いた『No Frame Missed』に、表情を増幅するウェアラブルロボットアーム『EmoMime』を掛けたら、失われた感情表現を取り戻す装具になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "apple-no-frame-missed",
+        "title": "No Frame Missed",
+        "desc": "パーキンソン病の人々がiPhoneのアクション機能で人生の瞬間を撮り続けた感動ドキュメンタリー。"
+      },
+      {
+        "type": "tech",
+        "id": "emomime",
+        "title": "EmoMime",
+        "desc": "顔のそばでも安全に動き、表情やしぐさを増幅して伝えるウェアラブルロボットアーム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-06-2",
+    "date": "2026-08-06",
+    "title": "当事者主導の3D表象",
+    "pattern": "文脈×技術",
+    "seed": "障がい当事者の写真でAIを再教育した『Dear AI』の思想に、視点をまたいで一貫した特徴を出せる『Multi-View Foundation Models』を掛けたら、当事者の身体を正しく表現するAR/VRアバター生成に使えそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "dear-ai-disability-representation-campaign-2026",
+        "title": "Dear AI（disability representation campaign）",
+        "desc": "義肢装着者本人の写真・映像でAIを再教育し、生成画像の偏った障がい者表象を是正した取り組み。"
+      },
+      {
+        "type": "tech",
+        "id": "multi-view-foundation-models",
+        "title": "Multi-View Foundation Models",
+        "desc": "2D基盤モデルに空間アダプタを加え、3D再構成なしで視点間一貫の特徴を出す仕組み。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-06-3",
+    "date": "2026-08-06",
+    "title": "低コストな第二のアバター公演",
+    "pattern": "文脈×技術",
+    "seed": "ABBAが『ABBA VOYAGE』でデジタルアバターと生演奏を融合させたように、写真1枚からGaussian Splattingキャラを作れる『Viggle PINOC×Seedance』を使えば、無名アーティストでも自分のアバター公演を安く実現できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "abba-voyage",
+        "title": "ABBA VOYAGE",
+        "desc": "ABBA4人のデジタルアバターが本物の生演奏と共演する前例なき永続ライブ公演。"
+      },
+      {
+        "type": "tech",
+        "id": "viggle-pinoc-seedance-workflow",
+        "title": "Viggle PINOC × Seedance ワークフロー",
+        "desc": "動画からモーキャプ抽出と写真1枚からGaussian Splattingキャラを作りSeedanceで映像化する手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-06-4",
+    "date": "2026-08-06",
+    "title": "粘菌が描く環境の因果",
+    "pattern": "文脈×技術",
+    "seed": "「海なくして陸の緑なし」と訴えた『No Blue, No Green』の主張に、東京の鉄道網を再現した粘菌実験『Physarum polycephalum』を掛けたら、生き物の成長で環境破壊の連鎖を可視化する展示ができそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "sos-oceano-no-blue-no-green",
+        "title": "No Blue, No Green",
+        "desc": "海の保護を訴えるため国旗から青を剥ぎ取り、陸の緑は海があってこそだと示した環境プリント広告。"
+      },
+      {
+        "type": "tech",
+        "id": "physarum-polycephalumによる東京鉄道網再現実験",
+        "title": "Physarum polycephalum（真正粘菌）による東京鉄道網再現実験",
+        "desc": "脳を持たない単細胞の粘菌を都市の位置に見立てて育て、実際の鉄道網に似た経路を作らせた実験。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-06-5",
+    "date": "2026-08-06",
+    "title": "街に浮かぶSOSの群れ",
+    "pattern": "文脈×技術",
+    "seed": "ペルーの携帯盗難対策『SOS POS』の緊急網発想に、手のジェスチャーで小型ロボット群を操る『FluidicSwarm』を掛けたら、被害者の合図だけで街中にSOSの形が浮かび上がる防犯システムができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "sos-pos",
+        "title": "SOS POS",
+        "desc": "ペルーで多発する携帯盗難から銀行口座を守るため、街角の決済端末で作った緊急通報網。"
+      },
+      {
+        "type": "tech",
+        "id": "fluidicswarm",
+        "title": "FluidicSwarm",
+        "desc": "手のジェスチャーだけで複数の小型ロボット群を一つの生き物のように操作できるシステム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-06-6",
+    "date": "2026-08-06",
+    "title": "台本も音も同時生成",
+    "pattern": "技術×技術",
+    "seed": "自然言語だけで曲を組める『Splice MCP』のビートメイクと、演出担当と作画担当が分業する映像生成AI『Bernini』を掛け合わせたら、一つの会話でMVの音と映像を同時に作り上げられるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "splice-mcp-claude-beatmaking",
+        "title": "Splice MCP Server × Claude Cowork によるAIビートメイク検証",
+        "desc": "Spliceの公式MCPサーバーをClaudeに繋ぎ、自然言語の指示だけで曲を組めるか検証した事例。"
+      },
+      {
+        "type": "tech",
+        "id": "bernini",
+        "title": "Bernini",
+        "desc": "指示を読む「演出担当」AIと絵を描く「作画担当」AIが分業し、画像も動画も生成・編集できる統合モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-06-7",
+    "date": "2026-08-06",
+    "title": "継ぎ目のない歩ける360度",
+    "pattern": "技術×技術",
+    "seed": "追加学習ゼロで継ぎ目のない360度パノラマ映像を作る『SpheRoPE』と、1億スプラットを描けるVRChat向け『Gaussian Splatting v4』を掛けたら、AI生成のパノラマ世界をそのまま歩き回れるVRワールドに変換できそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "spherope",
+        "title": "SpheRoPE",
+        "desc": "学習済みDiffusion Transformerに球面幾何を注入し、追加学習なしで継ぎ目のない360度パノラマを生成する手法。"
+      },
+      {
+        "type": "tech",
+        "id": "vrchat-gaussian-splatting-v4",
+        "title": "VRChat Gaussian Splatting v4",
+        "desc": "VRChat内でGaussian Splattingを1億点規模までリアルタイム描画できるOSSツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-06-8",
+    "date": "2026-08-06",
+    "title": "視点をまたぐ試着体験",
+    "pattern": "転用",
+    "seed": "本来は視点間で一貫した特徴を出すための『Multi-View Foundation Models』を、3D再構成せずに服の見え方を全方向で揃えるECの試着シミュレーションに転用したら、安価な仮想フィッティングが作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "multi-view-foundation-models",
+        "title": "Multi-View Foundation Models",
+        "desc": "2D基盤モデルに空間アダプタを加え、3D再構成なしで視点間一貫の特徴を出す仕組み。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-06-9",
+    "date": "2026-08-06",
+    "title": "会話で音源を修復する術",
+    "pattern": "転用",
+    "seed": "本来は新曲のビートを組むための『Splice MCP×Claude』を、劣化した歴史的音源の欠落パートを自然言語の説明だけで再構築する音声修復ツールに転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "splice-mcp-claude-beatmaking",
+        "title": "Splice MCP Server × Claude Cowork によるAIビートメイク検証",
+        "desc": "Spliceの公式MCPサーバーをClaudeに繋ぎ、自然言語の指示だけで曲を組めるか検証した事例。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-06-10",
+    "date": "2026-08-06",
+    "title": "育つように広がる展示",
+    "pattern": "文脈×技術",
+    "seed": "きのこの形からタイポグラフィをAI生成した展覧会『Mushrooms』の発想に、1億点超をリアルタイム描画する『Gaussian Point Splatting』を掛けたら、会場全体が菌糸のように有機的に育ち広がる没入展示ができそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "mushrooms-the-art-design-and-future-of-fungi-2020",
+        "title": "Mushrooms: The Art, Design and Future of Fungi",
+        "desc": "キノコをテーマにした展覧会で、会場タイポグラフィをAIがキノコの形状から生成した。"
+      },
+      {
+        "type": "tech",
+        "id": "gaussian-point-splatting",
+        "title": "Gaussian Point Splatting",
+        "desc": "1億個超のGaussian Splatを並べ替えなしでリアルタイム描画できる新しいレンダリング手法。"
+      }
+    ]
   }
 ]
