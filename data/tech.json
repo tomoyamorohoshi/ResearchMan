@@ -1,5 +1,46 @@
 [
   {
+    "id": "mouthpad-vox",
+    "title": "MouthPad (第2世代) / VOX",
+    "org": "Augmental",
+    "type": "Tool",
+    "domains": [
+      "HCI/MediaArt",
+      "Motion/Body"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "Augmentalが開発した舌で操作するマウスピース型デバイス「MouthPad」の第2世代と、皮膚装着型の音声入力デバイス「VOX」。2026年7月22日に米国で一般販売を開始した。",
+    "point": "上あごに装着する薄いリテーナー状のデバイスが舌の圧力・動きと頭の動きを読み取り、カーソル操作・クリック・スクロール・ドラッグ・キーボードショートカット・WASD操作までBluetooth経由でハンズフリーに実現できる点がすごい。ユーザーは10.47bit/秒という、脳埋め込み型BCIに匹敵する速度でカーソル操作を達成した実績もある。広告・体験づくりの視点では、手を使わないインタラクティブ展示やアクセシビリティ訴求のブランド体験、ゲームや3Dコンテンツの新しい操作UIのデモ、VOXと組み合わせた「囁くだけで入力できる」体験型プロモーションなどに応用できそうだ。",
+    "detail": "MouthPadは歯科スキャンをもとに個々のユーザーに合わせてカスタム成形される、重さ約10gの歯科樹脂製デバイス。口蓋に接する圧力感知トラックパッドと内蔵モーションセンサーで舌ジェスチャーと頭の動きを検出し、Bluetoothでスマートフォン・タブレット・PCに接続する。2024年に早期アクセスプログラムとして提供開始され、移動に制約のある100人以上のユーザー（学生・アーティスト・ゲーマー・専門職など）が利用してきた。第2世代では舌ジェスチャーでキーボードショートカットを実行したり、トラックパッドをWASD操作にリマップしてゲームや3DモデリングでフルRなど、単なるマウス代替から汎用コントローラーへと拡張した。複数デバイスへの同時ペアリングや物理ボタンでの切り替えにも対応し、連続稼働時間は7時間以上。\n\n同時発表のVOXは、聴診器に着想を得た皮膚装着型マイクロフォンのペンダントで、空気を伝わる音と体内を伝わる音の両方を拾うことで周囲の会話や環境音を排除し、小声でも音声入力できるのが特徴。ペンダントを押すか、MouthPadとペアリングした場合は舌ジェスチャーで起動するため、常時録音される一般的な音声アシスタントとは異なる。AugmentalはMouthPadとVOXを合わせて「Skinware（身体に密着するインターフェース群）」と呼んでいる。\n\n利用にはMouthPad本体（$1,400、歯科スキャン別途）とVOX（ベータ版$200）の購入が必要で、いずれもハードウェア製品として一般販売されている。",
+    "license": {
+      "spdx": null,
+      "commercial": "paid",
+      "note": "MouthPadは$1,400（歯科スキャン別途）、VOXはベータ版$200の有償ハードウェア製品"
+    },
+    "links": [
+      {
+        "kind": "project",
+        "url": "https://www.augmental.tech/news/mouthpad-and-vox-launch"
+      },
+      {
+        "kind": "post",
+        "url": "https://www.designboom.com/technology/mouse-augmental-mouthpad-tongue-control/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/mouthpad-vox.jpg",
+    "relatedWorks": [
+      {
+        "title": "MIT Media Lab記事",
+        "description": "麻痺のある人々がコンピュータを操作できるマウスタッチパッドとして2024年に紹介",
+        "url": "https://www.media.mit.edu/articles/forget-the-mouse-augmental-s-mouthpad-lets-the-tongue-control-the-cursor/"
+      }
+    ],
+    "sources": [
+      "User"
+    ]
+  },
+  {
     "id": "runnit",
     "title": "Runnit",
     "org": "Runnit (Null Theory, Australia / 創業者 Mark Tolson)",
