@@ -1,5 +1,442 @@
 [
   {
+    "id": "martin-obenaus-for-mousey-wine-6-000-unique-generative-label",
+    "title": "Martin Obenaus for Mousey Wine – 6,000 Unique Generative Labels",
+    "summary": "畑の昆虫ホテルの構造にヒントを得たアルゴリズムで、6,000本のワインボトル全てに一点物の幾何学模様ラベルを生成。",
+    "client": "Martin Obenaus（オーストリアの自然派ワイン生産者）／Mousey Wine（ノルウェーの輸入元）",
+    "agency": "Opening Hours（オスロ）",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "European Design Awards 2024 ファイナリスト（Wine Packaging部門）",
+    "year": "2023",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://fontsinuse.com/uses/56449/martin-obenaus-labels-for-mousey-wine",
+    "thumbnail": "/thumbnails/martin-obenaus-for-mousey-wine-6-000-unique-generative-label.jpg",
+    "videoId": "",
+    "overview": "Martin Obenaus（オーストリアの自然派ワイン生産者）とノルウェーの輸入元Mousey Wineのために、オスロのデザインスタジオOpening Hoursが手掛けたジェネレーティブラベルデザイン。畑に設置された昆虫ホテルの構造にインスピレーションを得たアルゴリズムを用い、6,000本のボトルすべてに一点物の幾何学模様ラベルを自動生成した。",
+    "background": "自然派ワインは畑ごと・収穫年ごとに味わいが異なる一点物の性格を持つが、ラベルデザインは通常均一な量産物にとどまりがちだった。Opening Hoursは、生産者の畑にある昆虫ホテル（益虫を呼び込むための木組み構造物）という生態系への配慮を象徴するモチーフを起点に、ワインの個性を視覚的にも一本ごとに表現する手法を模索した。",
+    "execution": "昆虫ホテルの木組み構造の幾何学パターンを分析し、ランダムなパラメータの組み合わせで無数のバリエーションを生成できるアルゴリズムを構築。これを用いて6,000本のボトルラベルをすべて異なる幾何学模様として書き出し、印刷・貼付した。ラベル1枚1枚がボトル固有の「一点物」となる設計とした。",
+    "evaluationImpact": "European Design Awards 2024のWine Packaging部門でファイナリストに選出。自然からの構造的モチーフをアルゴリズムに落とし込み、大量生産のラベル印刷でありながら全てを一点物として仕上げた点が、ジェネレーティブデザインをパッケージングに応用する事例として評価された。",
+    "relatedWorks": [],
+    "sources": [
+      "Tactile Design"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/Print",
+      "Form/Product",
+      "Theme/Food"
+    ]
+  },
+  {
+    "id": "absolut-unique-2012",
+    "title": "Absolut Unique",
+    "summary": "38色×51パターンの組み合わせを生産ライン上でランダム制御し、400万本すべてが異なる塗装のAbsolutボトルを実現。",
+    "client": "The Absolut Company（Absolut Vodka）",
+    "agency": "Family Business（スウェーデン）",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "D&AD Awards 2013 Yellow Pencil（Packaging Design部門）",
+    "year": "2012",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://thedieline.com/blog/2012/9/4/absolut-unique.html",
+    "thumbnail": "/thumbnails/absolut-unique-2012.jpg",
+    "videoId": "",
+    "overview": "The Absolut Company（Absolut Vodka）のためにスウェーデンのFamily Businessが手掛けた限定ボトル「Absolut Unique」。38色×51パターンの組み合わせを生産ライン上でランダムに制御し、400万本のボトルすべてに異なる塗装パターンを施した、量産と一点物性を両立させるパッケージングプロジェクト。",
+    "background": "Absolut Vodkaはこれまでも限定ボトルデザインで話題を集めてきたが、量産される数百万本のボトルはどれも同一のデザインになるのが通常だった。Family Businessは、ブランドが掲げる個性の尊重というメッセージを、ボトルそのものの一本一本の違いとして体現する着想からプロジェクトを企画した。",
+    "execution": "38種類の色と51種類のパターンを用意し、ボトルの生産ライン上で塗装工程に組み込んだランダム制御システムによって、色とパターンの組み合わせを1本ごとに変化させながら印刷・成形した。結果として、生産された400万本のボトルはすべて異なる外観を持つ仕様とした。",
+    "evaluationImpact": "D&AD Awards 2013のPackaging Design部門でイエローペンシルを受賞。数百万本規模の量産ラインにおいて、一本ごとに異なるデザインを成立させる仕組みを実装した点が、マスカスタマイゼーションをパッケージングに応用した先駆的事例として評価された。",
+    "relatedWorks": [],
+    "sources": [
+      "Tactile Design"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/Product",
+      "Theme/Food"
+    ]
+  },
+  {
+    "id": "casa-da-m-sica-identity-logo-generator-2007",
+    "title": "Casa da Música Identity（Logo Generator）",
+    "summary": "レム・コールハース設計の建築形状から17面のロゴマスクを生成し、出力物ごとに異なる表情を持つロゴアイデンティティを構築。",
+    "client": "Casa da Música（ポルト、ポルトガル）",
+    "agency": "Sagmeister Inc.（Stefan Sagmeister）",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "MoMA（ニューヨーク近代美術館）永久収蔵（Architecture & Design部門）",
+    "year": "2007",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://sagmeister.com/work/casa-da-musica/",
+    "thumbnail": "/thumbnails/casa-da-m-sica-identity-logo-generator-2007.jpg",
+    "videoId": "",
+    "overview": "ポルトのコンサートホールCasa da Músicaのために、Sagmeister Inc.（Stefan Sagmeister）が手掛けたブランドアイデンティティ。建築家レム・コールハースが設計した建物の非対称な形状を17面のマスクへと展開し、参照画像から抽出した色を流し込むことでポスターや印刷物ごとに異なる表情のロゴを生成する仕組みを構築した。",
+    "background": "Casa da Músicaの建物は既存の建築類型に当てはまらない独特な多面体形状を持ち、単一の固定ロゴでは建物そのものが持つ複雑さや多様性を表現しきれないという課題があった。Sagmeister Inc.は、建築の形状そのものをロゴの母型とすることで、施設のアイデンティティと建築を直接結びつける発想を企図した。",
+    "execution": "建物の外観を17の面（マスク）に分解し、それぞれの面を単独のロゴ形状として使用可能な状態に整理。ポスターやプログラムなどの印刷物制作時には、各媒体で用いる参照画像から色を抽出してマスク内に流し込むことで、出力物ごとに異なる色柄のロゴが生成されるシステムとした。",
+    "evaluationImpact": "本作はニューヨーク近代美術館（MoMA）のArchitecture & Design部門に永久収蔵された。建築形状をロゴ生成のアルゴリズム的母型として扱い、単一のロゴマークに固定しないアイデンティティシステムを構築した点が、グラフィックデザイン史における代表的な事例として評価されている。",
+    "relatedWorks": [],
+    "sources": [
+      "Tactile Design"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/Print",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "abraxas-interactive-print-2015",
+    "title": "Abraxas: Interactive Print（黒紙×スマホライトの隠しメッセージ広告）",
+    "summary": "一見真っ黒な新聞紙面にスマホのライトを裏から当てると隠れたメッセージが浮かび上がる特殊印刷広告。",
+    "client": "SABMiller（Abraxas Ultra Premium Beer）",
+    "agency": "Wunderman Phantasia（ペルー）",
+    "categories": [
+      "メディア発明"
+    ],
+    "award": "FESPA Top 20 Printed Adverts of 2015 選出",
+    "year": "2015",
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.adweek.com/creativity/mysterious-black-print-ad-can-only-be-read-shining-light-behind-it-167014/",
+    "thumbnail": "/thumbnails/abraxas-interactive-print-2015.jpg",
+    "videoId": "",
+    "overview": "SABMillerのビールブランドAbraxas Ultra Premium Beerのために、ペルーのWunderman Phantasiaが制作した新聞広告「Abraxas: Interactive Print」。紙面全体を真っ黒に印刷しながら、スマートフォンのライトを裏側から当てることで隠されたメッセージやビジュアルが透けて浮かび上がる特殊印刷技術を用いた広告。",
+    "background": "新聞広告は情報量が多い紙面の中で読者の注意を引きにくく、埋没しやすいという課題がある。Wunderman Phantasiaは、一見すると印刷ミスのように見える真っ黒な紙面という異物感を逆手に取り、読者自身がスマートフォンを使って“謎を解く”行為を促すことで、能動的な広告体験を生み出すことを企図した。",
+    "execution": "紙面全体を黒一色で印刷しつつ、光を透過させたときのみ視認できるよう濃淡や特殊なインクの重ね方を調整した特殊印刷を採用。読者がスマートフォンのライト機能を紙の裏側からかざすと、黒一色の紙面の中からブランドメッセージやビジュアルが透過光によって浮かび上がる仕組みとした。",
+    "evaluationImpact": "FESPAが選出する「Top 20 Printed Adverts of 2015」に選出。スマートフォンという読者の日常的なデバイスを鑑賞装置として組み込み、印刷広告を一方向的な掲示物から双方向的な発見体験へと転換した点が、印刷とデジタルデバイスを掛け合わせた広告表現として評価された。",
+    "relatedWorks": [],
+    "sources": [
+      "Tactile Design"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Print",
+      "Theme/Food"
+    ]
+  },
+  {
+    "id": "nescaf-decaf-2017",
+    "title": "Nescafé Decaf – サーモクロミックインク・ポスター",
+    "summary": "熱に反応して色が変わるサーモクロミックインクを用いた店頭ポスターで、カフェイン抜き工程を疑似体験させるNescaféの施策。",
+    "client": "Nestlé（Nescafé）",
+    "agency": "DEC BBDO（スペイン）",
+    "categories": [
+      "OOH革新"
+    ],
+    "award": "",
+    "year": "2017",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://atriainnovation.com/en/projects/thermochromic-inks-for-advertising-stand/",
+    "thumbnail": "/thumbnails/nescaf-decaf-2017.jpg",
+    "videoId": "",
+    "overview": "NestléのカフェインレスコーヒーブランドNescafé Decafのために、スペインのDEC BBDOが制作した店頭ポスター広告。温度変化に反応して色が変わるサーモクロミックインクを用い、来店客が熱を加えると絵柄が変化し、コーヒーからカフェインを取り除く工程を疑似的に体感できる仕掛けとした。",
+    "background": "カフェインレスコーヒーは、通常のコーヒー豆からカフェインを除去する工程を経て作られるが、その工程は生活者にとって目に見えにくく実感を持ちにくいものだった。Nescafé Decafは、店頭という接点でこの見えない工程を可視化し、商品への理解を深めるコミュニケーションを企図した。",
+    "execution": "ポスターの印刷面にサーモクロミックインクを採用し、店頭スタンドとして展示。来店客がポスターにお湯を吹きかけると、熱に反応してインクの色が変化し、コーヒー豆からカフェインが抜けていく様子を模したビジュアルへと変わる仕組みとした。",
+    "evaluationImpact": "カフェインを取り除く工程という本来見えない情報を、温度で色が変わる特殊インクによって視覚的に体感させた点が特徴。店頭という購買接点において、説明文を読ませるのではなく素材の変化そのもので伝えるOOH表現の一例と言える。",
+    "relatedWorks": [],
+    "sources": [
+      "Tactile Design"
+    ],
+    "tags": [
+      "Form/Print",
+      "Form/OOH",
+      "Theme/Food"
+    ]
+  },
+  {
+    "id": "jeep-see-whatever-you-want-to-see-2013",
+    "title": "Jeep \"See Whatever You Want To See\"（上下反転で動物が変わるポスター）",
+    "summary": "紙面を上下逆さに裏返すとキリンがペンギン、ゾウが白鳥に変わる反転イラストで自由な視点を訴えたJeepのプリント広告。",
+    "client": "Jeep",
+    "agency": "Leo Burnett Paris",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2013",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.thedrum.com/news/2013/12/17/jeep-urges-free-perceptions-upside-down-animal-campaign-leo-burnett-paris",
+    "thumbnail": "/thumbnails/jeep-see-whatever-you-want-to-see-2013.jpg",
+    "videoId": "",
+    "overview": "JeepのためにLeo Burnett Parisが制作した反転イラスト広告「See Whatever You Want To See」。木目模様を思わせる背景の中に動物のイラストを潜ませ、紙面を上下逆さに裏返すとキリンがペンギンへ、ゾウが白鳥へと姿を変えるビジュアルトリックを用いた。",
+    "background": "Jeepは自由な発想や物事の捉え方の多様性をブランドメッセージとして訴求したいと考えていた。Leo Burnett Parisは、見る向きによって全く異なる生き物に見えるイラストレーションを通じ、『見方を変えれば世界の捉え方も変わる』という考え方を仕掛けそのもので体現することを企図した。",
+    "execution": "1枚の紙面に、上下どちらから見ても動物として成立するダブルイメージのイラストを描き込んだ。通常の向きで見るとキリンやゾウが浮かび上がり、紙面を180度回転させるとペンギンや白鳥といった別の動物に変化する。読み手が自らの手で紙面を反転させる行為を組み込んだプリント広告として展開した。",
+    "evaluationImpact": "1つの絵柄が向きによって全く異なる意味を持つという視覚的トリックを通じ、『物事の見方は一つではない』というメッセージを説明的なコピーに頼らずに伝えた点が特徴。プリント広告の1枚絵の中に仕掛けを組み込む表現手法の一例と言える。",
+    "relatedWorks": [],
+    "sources": [
+      "Tactile Design"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/Mobility",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "torn-apart-campaign-2014",
+    "title": "Torn Apart Campaign",
+    "summary": "実際の依頼人の労災ケースファイルを手で引きちぎってコラージュし、被害者の肖像を『破る』技法だけで描いた法律事務所広告。",
+    "client": "Pond Lehocky Giordano LLP（法律事務所）",
+    "agency": "D4 Creative（イラストレーター Ian Wright起用）",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2014",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.pondlehocky.com/news/torn-apart/",
+    "thumbnail": "/thumbnails/torn-apart-campaign-2014.jpg",
+    "videoId": "",
+    "overview": "労災事故の被害者を代理する法律事務所Pond Lehocky Giordano LLPのためにD4 Creativeが制作した広告シリーズ「Torn Apart Campaign」。実際の依頼人の労災ケースファイル（紙の書類）そのものを手で引きちぎり、コラージュすることで3人の依頼人の肖像を描き出した。",
+    "background": "労働災害は被害者の人生や身体を『引き裂く』出来事であるにもかかわらず、法律事務所の広告は制度的・事務的な訴求に留まりがちだった。Pond Lehocky Giordano LLPは、実際の依頼人のケースファイルという当事者性のある素材を用い、被害の実態を象徴的に伝える表現を模索した。",
+    "execution": "イラストレーターIan Wrightが実際の依頼人3人の労災ケースファイルの紙資料を手で引きちぎり、その断片を貼り合わせるコラージュ技法によって各依頼人の肖像を制作。書類の切れ端という素材が持つ『破れ』の質感を活かし、絵を描くのではなく破くことだけで人物像を表現した。",
+    "evaluationImpact": "実在の依頼人の書類を素材として用いることで、労災被害という個人的な出来事に固有の重みを持たせた点が特徴。イラストレーションの技法選択自体がメッセージ（労災は人生を引き裂く）と直結する表現として、法律事務所の広告表現における一例に位置付けられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Tactile Design"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/SocialGood",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "penguin-great-ideas-2005",
+    "title": "Penguin Great Ideas（ブックカバーシリーズ）",
+    "summary": "デックルエッジの用紙や活版風タイポグラフィなど印刷素材の質感だけで、古典的な思想書20冊を意匠化したPenguinのブックカバーシリーズ。",
+    "client": "Penguin Books",
+    "agency": "David Pearson（Penguin社内デザイナー）",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2005",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://wemadethis.co.uk/work/penguin-great-ideas/",
+    "thumbnail": "/thumbnails/penguin-great-ideas-2005.jpg",
+    "videoId": "",
+    "overview": "Penguin Booksのデザイナーであるデイヴィッド・ピアソンが手がけたブックカバーシリーズ「Penguin Great Ideas」。デックルエッジ（不揃いな紙端）の用紙や活版印刷を思わせるタイポグラフィ、箔押し加工など、印刷素材そのものの質感を用いて古典的な思想書20冊のブックカバーを意匠化した。",
+    "background": "プラトンやニーチェ、トマス・ペインなど歴史的な思想家の著作は、多くの読者にとって難解で手に取りにくい存在とされてきた。Penguin Booksは、これらの『Great Ideas（偉大な思想）』を新たな読者層に届けるため、装丁そのものの見た目と手触りによって本の中身への興味を喚起するデザインアプローチを企図した。",
+    "execution": "デイヴィッド・ピアソンが各タイトルの内容や思想家の人物像に応じて、活版印刷風のタイポグラフィレイアウトを個別に設計。用紙にはデックルエッジを採用し、表紙には箔押しなどの加工を施すことで、量産される文庫本でありながら一冊ごとに手作業的な質感を感じさせる装丁とした。イラストを用いず、文字組みと印刷加工だけで表紙全体を構成した点が特徴。",
+    "evaluationImpact": "イラストや写真に頼らず、活字の組み方と印刷・製本の質感のみでブックカバーを成立させたタイポグラフィ主導のデザインシリーズとして知られる。古典的な思想書を現代の読者に開く装丁表現の一例に位置付けられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Tactile Design"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/Art",
+      "Theme/Education"
+    ]
+  },
+  {
+    "id": "case-lrr7mt-2018",
+    "title": "日本新聞協会「＃にほんをつなげ74」",
+    "summary": "全国74紙に1文字ずつ異なる紙面広告を掲載し、SNSでつなぐと74文字のメッセージが完成する新聞広告企画。",
+    "client": "日本新聞協会（新聞広告委員会）",
+    "agency": "",
+    "categories": [
+      "メディア発明",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2018",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://dentsu-ho.com/articles/6312",
+    "thumbnail": "/thumbnails/case-lrr7mt-2018.jpg",
+    "videoId": "",
+    "overview": "日本新聞協会（新聞広告委員会）が2018年に実施した新聞広告企画「＃にほんをつなげ74」。全国74紙それぞれの紙面に1文字ずつ異なる文字を掲載し、読者がSNS上でそれらの文字画像を投稿・共有してつなぎ合わせることで、全体で74文字から成る一つのメッセージが完成する仕掛けを設けた。",
+    "background": "新聞の発行部数減少やデジタルシフトが進む中、新聞広告委員会は新聞というメディアの価値を再認識してもらう取り組みを模索していた。全国紙・地方紙合わせて74紙という新聞業界全体の規模を可視化しつつ、読者参加型のSNS展開と組み合わせることで、紙媒体とデジタルをまたいだ新しい広告体験の提示を企図した。",
+    "execution": "全国74紙のそれぞれの紙面広告に1文字ずつ異なる文字を割り当てて掲載。読者は自分が目にした紙面の文字をSNSに投稿し、他の新聞に掲載された文字と組み合わせることで、74文字からなる一つのメッセージ全体を完成させる仕組みとした。1紙単独では成立せず、複数紙とSNSの参加が揃って初めて意味が浮かび上がる構成。",
+    "evaluationImpact": "全国74紙という新聞業界の規模そのものを表現の素材とし、SNSでの読者参加によって初めてメッセージが完成する設計とした点が特徴。単独の紙面広告では完結せず、複数媒体とデジタルの連携によって成立する広告手法として、新聞広告の新しい可能性を示す事例となった。",
+    "relatedWorks": [],
+    "sources": [
+      "Tactile Design"
+    ],
+    "tags": [
+      "Form/Print",
+      "Form/SNS"
+    ]
+  },
+  {
+    "id": "morning-hints-2023",
+    "title": "大塚製薬「カロリーメイト リキッド」読売新聞広告 MORNING HINTS",
+    "summary": "紙面をめくると見えなかった朝の慌ただしい光景が現れる特殊撮影を用いた読売新聞広告。",
+    "client": "大塚製薬株式会社",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "第43回新聞広告賞2023 広告主部門・優秀賞",
+    "year": "2023",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000001.000121395.html",
+    "thumbnail": "/thumbnails/morning-hints-2023.jpg",
+    "videoId": "",
+    "overview": "大塚製薬「カロリーメイト リキッド」が2023年に読売新聞に出稿した広告「MORNING HINTS」。紙面のページをめくることで、それまで見えていなかった朝の慌ただしいドタバタ劇のビジュアルが現れる特殊撮影を用い、忙しい朝の実感とともに商品を訴求する新聞広告として制作された。",
+    "background": "忙しい朝に手軽に栄養補給できる価値を訴求するカロリーメイト リキッドにとって、朝の慌ただしさをいかに実感を伴って伝えるかが課題であった。ページをめくるという新聞読者の日常的な行為そのものを表現に組み込み、紙面の構造を活かして朝の情景を印象づけることが企図された。",
+    "execution": "読売新聞の紙面において、ページをめくる前後で異なるビジュアルが現れるよう特殊撮影を用いた表現を設計。めくる前には見えていなかった朝の壮絶なドタバタ劇の様子が、次のページをめくった瞬間に現れる構成とし、新聞というメディアの物理的なページ構造を活かした演出とした。",
+    "evaluationImpact": "第43回新聞広告賞2023の広告主部門で優秀賞を受賞。ページをめくる行為そのものを表現の一部に組み込み、特殊撮影によって朝の実感を視覚的に伝えた点が評価された。新聞広告の紙面構造を活かした表現手法の一例として位置付けられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Tactile Design"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/Food"
+    ]
+  },
+  {
+    "id": "google-gemini-2025",
+    "title": "日本郵便×Google「#Geminiで年賀状」",
+    "summary": "Geminiの画像生成AIで一人ひとり異なる年賀状デザインを自動生成し、そのまま印刷・投函できるサービス。",
+    "client": "日本郵便株式会社",
+    "agency": "Google",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://k-tai.watch.impress.co.jp/docs/news/2071364.html",
+    "thumbnail": "/thumbnails/google-gemini-2025.jpg",
+    "videoId": "",
+    "overview": "日本郵便とGoogleが2025年に展開した「#Geminiで年賀状」。GoogleのAI「Gemini」の画像生成機能を用いて、ユーザーごとに異なるオリジナルの年賀状デザインを自動生成し、そのまま印刷・投函までを完結できるサービスとして提供された。",
+    "background": "年賀状離れが進む中、日本郵便はデジタルツールを活用して年賀状作成のハードルを下げる取り組みを模索していた。Googleの生成AI「Gemini」との連携により、デザインスキルを問わず誰でも一人ひとり異なるオリジナルデザインの年賀状を手軽に作成できる仕組みの提供を企図した。",
+    "execution": "ユーザーがGeminiに希望のイメージやキーワードを入力すると、画像生成AIがそれに応じたオリジナルの年賀状デザインを生成。生成されたデザインはそのまま日本郵便のサービスを通じて印刷し、投函まで行えるフローとして構築され、一人ひとり異なる年賀状を大量生産のプロセスの中で個別化する仕組みとした。",
+    "evaluationImpact": "生成AIをデザイン制作の入口として一般消費者向けサービスに組み込み、印刷・投函という実物の郵便物発送まで一気通貫でつなげた事例。年賀状という毎年反復される定型的なコミュニケーションに、AIによる個別化を持ち込んだ取り組みとして位置付けられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Tactile Design"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Print",
+      "Form/Website"
+    ]
+  },
+  {
+    "id": "happy-holidays-ai-2023",
+    "title": "パルコ「HAPPY HOLIDAYS」生成AI広告",
+    "summary": "モデル撮影を行わず、人物・背景・音楽・ナレーションまで全て生成AIで制作した全国パルコ掲出のポスター広告。",
+    "client": "株式会社パルコ",
+    "agency": "STUDIO DOG（木之村美穂）／Ai-Editorial（Christian Guernelli）",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "第29回AMD Award '23 優秀賞（年間コンテンツ賞）",
+    "year": "2023",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000002679.000003639.html",
+    "thumbnail": "/thumbnails/happy-holidays-ai-2023.jpg",
+    "videoId": "",
+    "overview": "株式会社パルコが2023年に展開したホリデーシーズン広告「HAPPY HOLIDAYS」。STUDIO DOGの木之村美穂とAi-Editorialのクリスチャン・グエルネッリが制作を手掛け、モデル撮影を一切行わず、人物・背景ビジュアルから音楽・ナレーションに至るまで全て画像生成AI・音声生成AIを用いて制作したポスター広告として全国のパルコ店舗で掲出された。",
+    "background": "従来の広告制作ではモデルやロケーションの撮影が不可欠だったが、パルコは生成AI技術の進展を踏まえ、実写撮影に依存しない新しい広告制作プロセスを模索していた。ホリデーシーズンという季節性の強いテーマにおいて、生成AIならではの表現の可能性を打ち出すことが企図された。",
+    "execution": "人物・背景といったビジュアル要素を画像生成AIで制作し、実際のモデル撮影を行わずにポスターのビジュアルを構築。加えて音楽やナレーションについても音声生成AIを活用して制作し、映像・静止画を含むクリエイティブ全体を生成AI主体のプロセスで仕上げ、全国のパルコ店舗においてポスター広告として掲出した。",
+    "evaluationImpact": "第29回AMD Award '23にて優秀賞（年間コンテンツ賞）を受賞。撮影を伴わない広告制作プロセスを実際の店舗展開レベルで実現した事例として、生成AIが広告制作のワークフローそのものを変え得ることを示した取り組みとして評価された。",
+    "relatedWorks": [],
+    "sources": [
+      "Tactile Design"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/OOH",
+      "Form/Print",
+      "Theme/Fashion"
+    ]
+  },
+  {
+    "id": "rhizomatiks-beyond-perception-2024",
+    "title": "Rhizomatiks Beyond Perception",
+    "summary": "既存の基盤モデルに頼らず独自学習させた生成AIで、一点ごとに異なる画像・映像を生み出すライゾマティクスの展覧会プロジェクト。",
+    "client": "ライゾマティクス",
+    "agency": "Rhizomatiks",
+    "categories": [
+      "AIクリエイティブ",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://rhizomatiks.com/work/rhizomatiks-beyond-perception/",
+    "thumbnail": "/thumbnails/rhizomatiks-beyond-perception-2024.jpg",
+    "videoId": "",
+    "overview": "「Rhizomatiks Beyond Perception」は、ライゾマティクスが2024年に発表した展覧会プロジェクト。既存の基盤モデルを用いず、独自に学習させた生成AIモデルを用いて、一点ごとに異なる画像・映像作品を生成し展示する体験を提示する。",
+    "background": "生成AIの多くが既存の大規模基盤モデルに依存し、似通ったビジュアル表現に収斂しがちな状況がある中、ライゾマティクスは自ら学習データとモデルを構築し、他にない表現領域を切り拓く狙いから本プロジェクトに着手した。「知覚を超える」というタイトルには、人間の知覚や認識の枠組みそのものを問い直す意図も込められている。",
+    "execution": "独自に学習させた生成AIモデルをコアに据え、展示空間内で一点ごとに異なる画像・映像作品を生成・展示。既存のAIサービスをそのまま用いるのではなく、モデルの学習プロセス自体を作品制作の一部として設計し、二つと同じものが生まれない出力を実現した。",
+    "evaluationImpact": "基盤モデルへの依存から離れ、独自学習モデルによる一点物の生成を試みた点で、生成AIを用いた表現の選択肢を広げる事例となっている。技術力を強みとするライゾマティクスらしい、AIの仕組みそのものに踏み込んだ制作アプローチとして位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Tactile Design"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Exhibition",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "case-1nh7i0p-2024",
+    "title": "マンダム「冷肌ミスト リフレッシュミント」生成AIパッケージデザイン",
+    "summary": "生成AIで1週間に40案のパッケージデザインを自動生成し、開発期間を半分に短縮したマンダムの事例。",
+    "client": "株式会社マンダム",
+    "agency": "プラグ（Crepo パッケージデザインAI）",
+    "categories": [
+      "AIクリエイティブ",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://xtrend.nikkei.com/atcl/contents/18/00964/00007/",
+    "thumbnail": "/thumbnails/case-1nh7i0p-2024.jpg",
+    "videoId": "",
+    "overview": "マンダムが2024年に発売した「冷肌ミスト リフレッシュミント」で、プラグが開発したパッケージデザイン特化型の生成AIツール「Crepo」を活用し、デザイン検討プロセスを刷新した事例。生成AIが1週間で40案のデザイン候補を自動生成し、通常の半分の期間で開発を完了させた。",
+    "background": "化粧品・日用品業界ではパッケージデザインの検討に多くの時間とコストがかかることが課題となっていた。マンダムは新商品「冷肌ミスト リフレッシュミント」の開発にあたり、デザイン案の生成・検討プロセスを効率化する手段として、プラグが提供する生成AIツール「Crepo」の導入を決めた。",
+    "execution": "「Crepo」に商品コンセプトやブランドの方向性などの条件を入力し、生成AIがパッケージデザイン案を自動で生成。1週間で40案という数のデザインバリエーションを短期間で出力し、担当者はその中から方向性を絞り込みながらデザインを検討していく体制を構築した。これにより通常のデザイン開発プロセスに比べて期間を半分程度に短縮した。",
+    "evaluationImpact": "生成AIをパッケージデザインの実務プロセスに組み込み、開発期間の大幅な短縮を実現した具体的な活用事例として注目された。クリエイティブ領域における生成AI活用が、アイデア出しにとどまらず、実際の商品開発スピードに直結する効果を持つことを示した。",
+    "relatedWorks": [],
+    "sources": [
+      "Tactile Design"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Product",
+      "Theme/Health"
+    ]
+  },
+  {
     "id": "exposed-risks-uv-2022",
     "title": "Exposed Risks（UV反応ポスター）",
     "summary": "太陽光で変色するUV感応紙を使い、日焼け止め跡だけが白く浮かぶ屋外ポスターでメラノーマ啓発を訴求。",

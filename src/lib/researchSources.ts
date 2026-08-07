@@ -40,6 +40,7 @@ export const RESEARCH_SOURCES: ResearchSource[] = [
   { tag: "Perspective Shift", kind: "order", label: "Perspective Shift" },
   { tag: "Human Dignity", kind: "order", label: "Human Dignity" },
   { tag: "Interactive Paper", kind: "order", label: "Interactive Paper" },
+  { tag: "Tactile Design", kind: "order", label: "Tactile Design" },
   { tag: "Radar", kind: "radar", label: "Radar" },
 ];
 
