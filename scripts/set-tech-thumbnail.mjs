@@ -11,7 +11,7 @@ import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 import { fetchThumbBuf } from "./tech-thumbs.mjs";
-import { normalizeThumbnailBuffer } from "./lib/normalize-thumbnail.mjs";
+import { normalizeAndEnforceMinBytes } from "./lib/thumbnail-constraints.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const TECH_PATH = path.join(__dirname, "../data/tech.json");
@@ -36,14 +36,22 @@ if (!buf) {
   process.exit(1);
 }
 
+// 直接配信(images.unoptimized)前提の正規化: 幅上限・JPEG化・メタデータ除去。
+// 正規化後のサイズも下限バイト数で再検査し、閾値未満へ縮小した場合は不採用にする
+// （fetchThumbBuf側の検査は正規化前バッファのみ対象のため。2026-08-07障害対応）。
+const normalized = await normalizeAndEnforceMinBytes(buf);
+if (!normalized) {
+  console.error(`正規化後にサムネイルが下限バイト数未満になりました（不採用）: ${url}`);
+  process.exit(1);
+}
+
 // バージョン付きファイル名でキャッシュバスト（-kv2, -kv3, ...）
 const m = t.thumbnail.match(/-kv(\d*)\.jpg$/);
 const ver = m ? (Number(m[1] || 1) + 1) : 2;
 const newRel = `/thumbnails/tech/${id}-kv${ver}.jpg`;
 
-// 直接配信(images.unoptimized)前提の正規化: 幅上限・JPEG化・メタデータ除去
-await fs.writeFile(path.join(PUBLIC_DIR, newRel.replace(/^\//, "")), await normalizeThumbnailBuffer(buf));
+await fs.writeFile(path.join(PUBLIC_DIR, newRel.replace(/^\//, "")), normalized);
 await fs.unlink(path.join(PUBLIC_DIR, t.thumbnail.replace(/^\//, ""))).catch(() => {});
 t.thumbnail = newRel;
 await fs.writeFile(TECH_PATH, JSON.stringify(tech, null, 2));
-console.log(`✓ ${id} → ${newRel}（${buf.length} bytes）`);
+console.log(`✓ ${id} → ${newRel}（${normalized.length} bytes）`);

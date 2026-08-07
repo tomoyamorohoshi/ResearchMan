@@ -17,6 +17,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { MIN_THUMB_BYTES } from "./lib/thumbnail-constraints.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
@@ -28,7 +29,6 @@ const REQUIRED_FIELDS = [
   "id", "title", "org", "type", "domains", "date", "summary", "point",
   "license", "links", "thumbnail", "sources",
 ];
-const MIN_THUMB_BYTES = 5000;
 
 let fail = 0;
 const warn = [];

@@ -8,8 +8,11 @@
  * build-tech-from-research.mjs / refresh-tech-thumbnails.mjs / set-tech-thumbnail.mjs が共用。
  */
 import { fetchImage, fetchOgImage } from "./save-thumbnail.mjs";
+import { MIN_THUMB_BYTES } from "./lib/thumbnail-constraints.mjs";
 
-export const MIN_THUMB_BYTES = 5000;
+// audit-tech.mjs / save-thumbnail.mjs と同一の定数（lib/thumbnail-constraints.mjs）を
+// 再エクスポートする（既存の import元をこのモジュールのままにするための後方互換）。
+export { MIN_THUMB_BYTES };
 
 /** GitHub OGPカード（1200x600 PNG）かどうか */
 export function isGithubCard(buf) {

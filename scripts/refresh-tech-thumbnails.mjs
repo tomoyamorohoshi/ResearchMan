@@ -14,7 +14,7 @@ import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 import { keyVisualSources, fetchThumbBuf, isGithubCard } from "./tech-thumbs.mjs";
-import { normalizeThumbnailBuffer } from "./lib/normalize-thumbnail.mjs";
+import { normalizeAndEnforceMinBytes } from "./lib/thumbnail-constraints.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const TECH_PATH = path.join(__dirname, "../data/tech.json");
@@ -53,11 +53,20 @@ for (const t of tech) {
     continue;
   }
 
+  // 正規化後のサイズも下限バイト数で再検査し、閾値未満へ縮小した場合は不採用にする
+  // （fetchThumbBuf側の検査は正規化前バッファのみ対象のため。2026-08-07障害対応）。
+  const normalized = DRY_RUN ? null : await normalizeAndEnforceMinBytes(found.buf);
+  if (!DRY_RUN && !normalized) {
+    kept++;
+    console.log(`— ${t.id}: 正規化後に閾値未満へ縮小したため不採用（カードのまま）`);
+    continue;
+  }
+
   const newRel = `/thumbnails/tech/${t.id}-kv.jpg`;
   console.log(`✓ ${t.id}: ${found.src} → ${newRel}`);
   if (!DRY_RUN) {
     // 直接配信(images.unoptimized)前提の正規化: 幅上限・JPEG化・メタデータ除去
-    await fs.writeFile(path.join(PUBLIC_DIR, newRel.replace(/^\//, "")), await normalizeThumbnailBuffer(found.buf));
+    await fs.writeFile(path.join(PUBLIC_DIR, newRel.replace(/^\//, "")), normalized);
     await fs.unlink(curPath).catch(() => {});
     t.thumbnail = newRel;
   }

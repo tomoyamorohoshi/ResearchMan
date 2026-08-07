@@ -5,4 +5,4 @@
  */
 export { isUrlAlive } from "../../../scripts/verify-video.mjs";
 export { fetchKeyVisual } from "../../../scripts/tech-thumbs.mjs";
-export { normalizeThumbnailBuffer } from "../../../scripts/lib/normalize-thumbnail.mjs";
+export { normalizeAndEnforceMinBytes } from "../../../scripts/lib/thumbnail-constraints.mjs";

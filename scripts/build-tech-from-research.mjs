@@ -16,7 +16,7 @@ import os from "os";
 import path from "path";
 import { fileURLToPath } from "url";
 import { fetchKeyVisual } from "./tech-thumbs.mjs";
-import { normalizeThumbnailBuffer } from "./lib/normalize-thumbnail.mjs";
+import { normalizeAndEnforceMinBytes } from "./lib/thumbnail-constraints.mjs";
 import { isUrlAlive } from "./verify-video.mjs";
 import { logRejection } from "./lib/rejection-log.mjs";
 
@@ -34,7 +34,8 @@ const inputFiles = process.argv
   .slice(2)
   .filter((a, i, arr) => !a.startsWith("--") && arr[i - 1] !== "--source");
 
-// サムネイルの下限バイト数チェックは tech-thumbs.mjs の MIN_THUMB_BYTES / fetchThumbBuf 側で実施
+// サムネイルの下限バイト数チェックは tech-thumbs.mjs の MIN_THUMB_BYTES / fetchThumbBuf（正規化前）と
+// lib/thumbnail-constraints.mjs の normalizeAndEnforceMinBytes（正規化後）の両方で実施
 
 function toId(name) {
   return name
@@ -62,8 +63,12 @@ async function saveThumb(id, sourceUrl, fallbackLinks = []) {
   const found = await fetchKeyVisual(fallbackLinks, sourceUrl);
   if (!found) return null;
   if (found.src !== sourceUrl) console.log(`  （サムネ取得元: ${found.src}）`);
-  // 直接配信(images.unoptimized)前提の正規化: 幅上限・JPEG化・メタデータ除去
-  await fs.writeFile(localPath, await normalizeThumbnailBuffer(found.buf));
+  // 直接配信(images.unoptimized)前提の正規化: 幅上限・JPEG化・メタデータ除去。
+  // 正規化後のサイズも下限バイト数で再検査し、閾値未満へ縮小した場合は不採用にする
+  // （fetchKeyVisual側の検査は正規化前バッファのみ対象のため。2026-08-07障害対応）。
+  const normalized = await normalizeAndEnforceMinBytes(found.buf);
+  if (!normalized) return null;
+  await fs.writeFile(localPath, normalized);
   return `/thumbnails/tech/${id}.jpg`;
 }
 

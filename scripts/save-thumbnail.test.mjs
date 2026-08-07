@@ -14,8 +14,10 @@ import {
   isChallengeResponse,
   extractImgFallbackCandidates,
   saveThumbnailFromPage,
+  saveThumbnail,
   _deps,
 } from "./save-thumbnail.mjs";
+import { MIN_THUMB_BYTES } from "./lib/thumbnail-constraints.mjs";
 
 // ── フロー系テスト（saveThumbnailFromPage）用のヘルパー ──────────
 // _deps（ネットワーク境界の差し替え口）をモックして実ネットワークアクセスなしで検証する。
@@ -31,6 +33,15 @@ async function makeNoiseJpeg(width, height) {
   const raw = Buffer.alloc(width * height * 3);
   for (let i = 0; i < raw.length; i++) raw[i] = Math.floor(Math.random() * 256);
   return sharp(raw, { raw: { width, height, channels: 3 } }).jpeg({ quality: 100 }).toBuffer();
+}
+
+/**
+ * 単色に近い（=正規化の再エンコードで大きく縮む）JPEGバッファを生成する。
+ * maskvidexperiments.jpg実例（正規化前は閾値超・正規化後は閾値未満）の再現用。
+ */
+async function makeFlatJpeg(width, height, quality = 100) {
+  const raw = Buffer.alloc(width * height * 3, 10);
+  return sharp(raw, { raw: { width, height, channels: 3 } }).jpeg({ quality }).toBuffer();
 }
 
 /** _deps を差し替え、テスト終了後に必ず元に戻す（他テストへの汚染防止）。 */
@@ -315,4 +326,44 @@ test("saveThumbnailFromPage: [img-fallback] OK/NG ログが期待通り出力さ
     messages.some((m) => m === "[img-fallback] OK https://example.com/ok-candidate.jpg"),
     `OKログが見つからない: ${JSON.stringify(messages)}`
   );
+});
+
+// ── 保存側ゲートの回帰テスト（2026-08-07 pre-push 8日間ブロック障害の再発防止） ──
+// 正規化前（ダウンロード直後）のバッファは閾値を超えていても、正規化（幅上限リサイズ＋
+// JPEG再エンコード）後に閾値未満へ縮小することがある（実例: maskvidexperiments.jpg 4809B）。
+// saveThumbnail() は正規化後のサイズも同じ閾値で再検査し、閾値未満なら不採用（null・未書き込み）
+// にしなければならない。
+
+test("saveThumbnail: 正規化前は閾値を超えていても正規化後に閾値未満へ縮小した場合はnullを返し、ファイルを書き込まない", async (t) => {
+  // 単色に近い1200x1200のquality100 JPEGは、正規化前は閾値(5000B)を超えるが
+  // 正規化(quality80 mozjpeg再エンコード)後は閾値未満まで縮む（実測: 8703B → 4542B）。
+  const flatJpeg = await makeFlatJpeg(1200, 1200, 100);
+  assert.ok(flatJpeg.length >= MIN_THUMB_BYTES, `テスト前提: raw(${flatJpeg.length}B) >= ${MIN_THUMB_BYTES}B`);
+
+  stubDeps(t, { fetchImage: async () => flatJpeg });
+
+  const id = `test-normalize-shrink-${Date.now()}`;
+  t.after(() => fs.rm(thumbnailPath(id), { force: true }));
+
+  const result = await saveThumbnail(id, "https://example.com/flat.jpg");
+  assert.equal(result, null, "正規化後に閾値未満へ縮小した画像はnullを返すべき");
+
+  await assert.rejects(
+    fs.access(thumbnailPath(id)),
+    "正規化後に閾値未満の画像はファイルとして書き込まれてはいけない"
+  );
+});
+
+test("saveThumbnail: 正規化後も閾値以上の画像は保存されローカルパスを返す", async (t) => {
+  const validJpeg = await makeNoiseJpeg(300, 300);
+  stubDeps(t, { fetchImage: async () => validJpeg });
+
+  const id = `test-normalize-ok-${Date.now()}`;
+  t.after(() => fs.rm(thumbnailPath(id), { force: true }));
+
+  const result = await saveThumbnail(id, "https://example.com/ok.jpg");
+  assert.equal(result, `/thumbnails/${id}.jpg`);
+
+  const stat = await fs.stat(thumbnailPath(id));
+  assert.ok(stat.size >= MIN_THUMB_BYTES, `書き込まれたファイルは閾値以上であるべき: ${stat.size}B`);
 });

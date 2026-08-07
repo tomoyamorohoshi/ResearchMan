@@ -10,7 +10,7 @@ import { fileURLToPath } from "url";
 import { execFile } from "child_process";
 import { promisify } from "util";
 import sharp from "sharp";
-import { normalizeThumbnailBuffer } from "./lib/normalize-thumbnail.mjs";
+import { MIN_THUMB_BYTES, normalizeAndEnforceMinBytes } from "./lib/thumbnail-constraints.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const THUMBNAILS_DIR = path.join(__dirname, "../public/thumbnails");
@@ -219,14 +219,16 @@ async function isDecodableImage(buf) {
 
 /**
  * 指定URLの画像をダウンロードして /public/thumbnails/{id}.jpg に保存
- * @param {number} [minBytes=5000] 最小許容バイト数（imgタグフォールバック候補では
- *   誤検出（アイコン等の小画像）を弾くためより高い閾値を指定できる）
+ * @param {number} [minBytes=MIN_THUMB_BYTES] 最小許容バイト数（imgタグフォールバック候補では
+ *   誤検出（アイコン等の小画像）を弾くためより高い閾値を指定できる）。正規化前・正規化後の
+ *   両方のバッファに対して同じ閾値を適用する（2026-08-07: 正規化後のみ閾値未満へ縮小した
+ *   画像が保存されていた障害への対応。詳細は lib/thumbnail-constraints.mjs 参照）
  * @param {boolean} [requireDecodable=false] trueの場合、バッファが実際にデコード可能な
  *   画像であることを検証してから保存する（imgタグフォールバック候補向け。og:image経路は
  *   従来通りfalseのまま＝挙動を変えない）
  * @returns ローカルパス "/thumbnails/{id}.jpg" or null
  */
-export async function saveThumbnail(id, sourceUrl, minBytes = 5000, requireDecodable = false) {
+export async function saveThumbnail(id, sourceUrl, minBytes = MIN_THUMB_BYTES, requireDecodable = false) {
   if (!sourceUrl || sourceUrl.includes("picsum")) return null;
 
   await fs.mkdir(THUMBNAILS_DIR, { recursive: true });
@@ -242,8 +244,12 @@ export async function saveThumbnail(id, sourceUrl, minBytes = 5000, requireDecod
   if (!buf || buf.length < minBytes) return null; // 小さすぎる画像は除外
   if (requireDecodable && !(await isDecodableImage(buf))) return null; // デコード不能（404 HTML等）は除外
 
-  // 直接配信(images.unoptimized)前提の正規化: 幅上限・JPEG化・メタデータ除去
-  await fs.writeFile(localPath, await normalizeThumbnailBuffer(buf));
+  // 直接配信(images.unoptimized)前提の正規化: 幅上限・JPEG化・メタデータ除去。
+  // 正規化後のサイズも minBytes で再検査し、閾値未満へ縮小した場合は不採用にする
+  // （正規化前バッファの検査だけでは、再エンコードで縮んだ結果を弾けなかった）。
+  const normalized = await normalizeAndEnforceMinBytes(buf, minBytes);
+  if (!normalized) return null;
+  await fs.writeFile(localPath, normalized);
   return `/thumbnails/${id}.jpg`;
 }
 
