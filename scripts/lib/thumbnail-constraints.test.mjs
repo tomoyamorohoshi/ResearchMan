@@ -4,8 +4,18 @@
 // 閾値未満へ縮小したバッファは採用してはならない（= null を返す）ことを検証する。
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import fs from "fs/promises";
+import os from "os";
+import path from "path";
+import crypto from "crypto";
 import sharp from "sharp";
-import { MIN_THUMB_BYTES, normalizeAndEnforceMinBytes } from "./thumbnail-constraints.mjs";
+import {
+  MIN_THUMB_BYTES,
+  normalizeAndEnforceMinBytes,
+  hashThumbnailBuffer,
+  loadExistingThumbnailHashes,
+  createThumbnailDuplicateGuard,
+} from "./thumbnail-constraints.mjs";
 
 /** ノイズ画素からJPEGバッファを生成する（フラットカラーだと圧縮でサイズ予測がぶれるため）。 */
 async function makeNoiseJpeg(width, height, quality = 100) {
@@ -53,4 +63,67 @@ test("normalizeAndEnforceMinBytes: 正規化前は閾値を超えていても、
 test("normalizeAndEnforceMinBytes: bufがnull/undefinedならnullを返す", async () => {
   assert.equal(await normalizeAndEnforceMinBytes(null), null);
   assert.equal(await normalizeAndEnforceMinBytes(undefined), null);
+});
+
+// ── サムネイル重複ガード（2026-08-07 サムネイル重複ロールバック障害の再発防止） ──
+// 実際の data/cases.json / public/thumbnails/ は一切触らず、一時ディレクトリに
+// フィクスチャを作って casesJsonPath / publicDir を差し替えて検証する。
+
+/** テスト用の一時作業ディレクトリ（cases.json + public/thumbnails/）を作る。 */
+async function makeFixtureDir() {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "rm-thumb-dup-guard-"));
+  return dir;
+}
+
+test("hashThumbnailBuffer: audit-thumbnails.mjsのmd5関数と同一アルゴリズム（md5・16進数）で算出する", () => {
+  const buf = Buffer.from("thumbnail-constraints-test-fixture");
+  const expected = crypto.createHash("md5").update(buf).digest("hex");
+  assert.equal(hashThumbnailBuffer(buf), expected);
+});
+
+test("loadExistingThumbnailHashes: cases.jsonのthumbnailが/thumbnails/配下かつ実ファイルが存在する場合のみハッシュ化する", async (t) => {
+  const dir = await makeFixtureDir();
+  t.after(() => fs.rm(dir, { recursive: true, force: true }));
+
+  const publicDir = path.join(dir, "public");
+  await fs.mkdir(path.join(publicDir, "thumbnails"), { recursive: true });
+  const buf = Buffer.from("existing-thumbnail-fixture-bytes");
+  await fs.writeFile(path.join(publicDir, "thumbnails", "case-a.jpg"), buf);
+
+  const casesJsonPath = path.join(dir, "cases.json");
+  await fs.writeFile(
+    casesJsonPath,
+    JSON.stringify([
+      { id: "case-a", thumbnail: "/thumbnails/case-a.jpg" }, // 実ファイルあり → 対象
+      { id: "case-b", thumbnail: "/thumbnails/missing.jpg" }, // 実ファイル無し → スキップ
+      { id: "case-c", thumbnail: "https://external.example.com/x.jpg" }, // /thumbnails/配下でない → スキップ
+    ])
+  );
+
+  const hashes = loadExistingThumbnailHashes({ casesJsonPath, publicDir });
+  assert.deepEqual([...hashes], [hashThumbnailBuffer(buf)]);
+});
+
+test("createThumbnailDuplicateGuard: 既存ハッシュと一致するバッファをisDuplicateで検出し、rememberしたハッシュも以降検出する", async (t) => {
+  const dir = await makeFixtureDir();
+  t.after(() => fs.rm(dir, { recursive: true, force: true }));
+
+  const publicDir = path.join(dir, "public");
+  await fs.mkdir(path.join(publicDir, "thumbnails"), { recursive: true });
+  const existingBuf = Buffer.from("existing-hash-for-guard-test");
+  await fs.writeFile(path.join(publicDir, "thumbnails", "case-a.jpg"), existingBuf);
+
+  const casesJsonPath = path.join(dir, "cases.json");
+  await fs.writeFile(
+    casesJsonPath,
+    JSON.stringify([{ id: "case-a", thumbnail: "/thumbnails/case-a.jpg" }])
+  );
+
+  const guard = createThumbnailDuplicateGuard({ casesJsonPath, publicDir });
+  assert.equal(guard.isDuplicate(hashThumbnailBuffer(existingBuf)), true, "既存サムネと同一バイト列は重複と判定されるべき");
+
+  const newHash = hashThumbnailBuffer(Buffer.from("brand-new-bytes-not-seen-yet"));
+  assert.equal(guard.isDuplicate(newHash), false, "未知のハッシュは重複ではないと判定されるべき");
+  guard.remember(newHash);
+  assert.equal(guard.isDuplicate(newHash), true, "rememberしたハッシュは以降isDuplicateでtrueになるべき");
 });

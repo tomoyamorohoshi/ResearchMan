@@ -10,10 +10,34 @@ import { fileURLToPath } from "url";
 import { execFile } from "child_process";
 import { promisify } from "util";
 import sharp from "sharp";
-import { MIN_THUMB_BYTES, normalizeAndEnforceMinBytes } from "./lib/thumbnail-constraints.mjs";
+import {
+  MIN_THUMB_BYTES,
+  normalizeAndEnforceMinBytes,
+  hashThumbnailBuffer,
+  createThumbnailDuplicateGuard,
+} from "./lib/thumbnail-constraints.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const THUMBNAILS_DIR = path.join(__dirname, "../public/thumbnails");
+
+// ── サムネイル重複ガード（2026-08-07 サムネイル重複ロールバック障害の再発防止） ──
+// 同一プロセス内の複数回のsaveThumbnail呼び出しをまたいで状態を保持する
+// （同一ジョブ内の新規事例同士の重複を検出するため）。モジュールスコープで遅延初期化する。
+let _thumbnailDuplicateGuard = null;
+function getThumbnailDuplicateGuard() {
+  if (!_thumbnailDuplicateGuard) _thumbnailDuplicateGuard = createThumbnailDuplicateGuard();
+  return _thumbnailDuplicateGuard;
+}
+/**
+ * 重複ガードを明示的に再初期化する（テスト用途に限らず、Studioサーバーのような長時間
+ * 稼働プロセスがジョブ開始ごとに「そのジョブ開始時点のcases.jsonを正とするガード」へ
+ * 作り直す用途にも使える）。
+ * @param {{casesJsonPath?: string, publicDir?: string}} [options] loadExistingThumbnailHashesにそのまま渡す
+ */
+export function resetThumbnailDuplicateGuardForTest(options) {
+  _thumbnailDuplicateGuard = createThumbnailDuplicateGuard(options);
+  return _thumbnailDuplicateGuard;
+}
 
 const UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36";
 
@@ -249,7 +273,18 @@ export async function saveThumbnail(id, sourceUrl, minBytes = MIN_THUMB_BYTES, r
   // （正規化前バッファの検査だけでは、再エンコードで縮んだ結果を弾けなかった）。
   const normalized = await normalizeAndEnforceMinBytes(buf, minBytes);
   if (!normalized) return null;
+
+  // 重複ガード: 監査(audit-thumbnails.mjs)と同一基準（md5）で、既存サムネイルまたは
+  // 同一プロセス内で既に保存した別caseのサムネイルと同一バイト列なら書き込まず不採用にする。
+  const hash = hashThumbnailBuffer(normalized);
+  const guard = getThumbnailDuplicateGuard();
+  if (guard.isDuplicate(hash)) {
+    console.log(`[dup-guard] REJECT ${id} <- ${sourceUrl} (dup of existing hash)`);
+    return null;
+  }
+
   await fs.writeFile(localPath, normalized);
+  guard.remember(hash);
   return `/thumbnails/${id}.jpg`;
 }
 

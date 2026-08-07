@@ -6,6 +6,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "fs/promises";
+import os from "os";
 import path from "path";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
@@ -15,9 +16,10 @@ import {
   extractImgFallbackCandidates,
   saveThumbnailFromPage,
   saveThumbnail,
+  resetThumbnailDuplicateGuardForTest,
   _deps,
 } from "./save-thumbnail.mjs";
-import { MIN_THUMB_BYTES } from "./lib/thumbnail-constraints.mjs";
+import { MIN_THUMB_BYTES, hashThumbnailBuffer } from "./lib/thumbnail-constraints.mjs";
 
 // ── フロー系テスト（saveThumbnailFromPage）用のヘルパー ──────────
 // _deps（ネットワーク境界の差し替え口）をモックして実ネットワークアクセスなしで検証する。
@@ -366,4 +368,122 @@ test("saveThumbnail: 正規化後も閾値以上の画像は保存されロー�
 
   const stat = await fs.stat(thumbnailPath(id));
   assert.ok(stat.size >= MIN_THUMB_BYTES, `書き込まれたファイルは閾値以上であるべき: ${stat.size}B`);
+});
+
+// ── サムネイル重複ガード（2026-08-07 サムネイル重複ロールバック障害の再発防止） ──
+// 実際の data/cases.json / public/thumbnails/ は一切触らない。resetThumbnailDuplicateGuardForTest
+// で一時フィクスチャ（またはisolatedな空状態）に差し替えたうえで検証し、t.afterで必ず
+// デフォルト（実データ参照）へ戻す＝他テストへ実データ参照の状態を持ち越さない。
+
+/** テスト用の一時ディレクトリ（cases.json + public/thumbnails/）を作り、削除関数を返す。 */
+async function makeDupGuardFixtureDir(t) {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "rm-save-thumb-dup-"));
+  t.after(() => fs.rm(dir, { recursive: true, force: true }));
+  return dir;
+}
+
+test("saveThumbnail: 既存サムネイルと同一バイト列（正規化後）の画像は保存拒否される（dup-guard）", async (t) => {
+  const raw = await makeNoiseJpeg(300, 300);
+  // 実際にnormalizeAndEnforceMinBytesを通した後のバイト列を「既存サムネイル」として
+  // フィクスチャに置く（保存側は正規化後バッファのハッシュで判定するため、フィクスチャも
+  // 同じ正規化を経た同一バイト列でなければ一致しない）。
+  const { normalizeThumbnailBuffer } = await import("./lib/normalize-thumbnail.mjs");
+  const normalized = await normalizeThumbnailBuffer(raw);
+
+  const dir = await makeDupGuardFixtureDir(t);
+  const publicDir = path.join(dir, "public");
+  await fs.mkdir(path.join(publicDir, "thumbnails"), { recursive: true });
+  await fs.writeFile(path.join(publicDir, "thumbnails", "existing-case.jpg"), normalized);
+  const casesJsonPath = path.join(dir, "cases.json");
+  await fs.writeFile(
+    casesJsonPath,
+    JSON.stringify([{ id: "existing-case", thumbnail: "/thumbnails/existing-case.jpg" }])
+  );
+
+  resetThumbnailDuplicateGuardForTest({ casesJsonPath, publicDir });
+  t.after(() => resetThumbnailDuplicateGuardForTest()); // 実データ参照のデフォルトへ戻す
+
+  stubDeps(t, { fetchImage: async () => raw });
+
+  const id = `test-dup-existing-${Date.now()}`;
+  t.after(() => fs.rm(thumbnailPath(id), { force: true }));
+
+  const result = await saveThumbnail(id, "https://example.com/dup-existing.jpg");
+  assert.equal(result, null, "既存サムネイルと同一バイト列の画像はnullを返すべき");
+  await assert.rejects(fs.access(thumbnailPath(id)), "重複画像はファイルとして書き込まれてはいけない");
+});
+
+test("saveThumbnail: 同一プロセス内で1件目の保存後、2件目が同じ画像バッファを掴んだ場合は2件目が保存拒否される（dup-guard）", async (t) => {
+  const dir = await makeDupGuardFixtureDir(t);
+  const casesJsonPath = path.join(dir, "cases.json");
+  await fs.writeFile(casesJsonPath, JSON.stringify([])); // 既存サムネイルは無い状態から開始
+
+  resetThumbnailDuplicateGuardForTest({ casesJsonPath, publicDir: path.join(dir, "public") });
+  t.after(() => resetThumbnailDuplicateGuardForTest()); // 実データ参照のデフォルトへ戻す
+
+  const sharedBuf = await makeNoiseJpeg(300, 300);
+  stubDeps(t, { fetchImage: async () => sharedBuf });
+
+  const id1 = `test-dup-inprocess-1-${Date.now()}`;
+  const id2 = `test-dup-inprocess-2-${Date.now()}`;
+  t.after(() => Promise.all([fs.rm(thumbnailPath(id1), { force: true }), fs.rm(thumbnailPath(id2), { force: true })]));
+
+  const result1 = await saveThumbnail(id1, "https://example.com/shared-1.jpg");
+  assert.equal(result1, `/thumbnails/${id1}.jpg`, "1件目は保存成功するはず");
+
+  const result2 = await saveThumbnail(id2, "https://example.com/shared-2.jpg");
+  assert.equal(result2, null, "2件目は1件目と同一画像のため保存拒否されるはず");
+  await assert.rejects(fs.access(thumbnailPath(id2)), "2件目のファイルは書き込まれてはいけない");
+
+  const stat1 = await fs.stat(thumbnailPath(id1));
+  assert.ok(stat1.size > 0, "1件目のファイルは正常に存在するはず");
+});
+
+test("saveThumbnail: 重複しない画像は従来通り保存される（回帰確認・dup-guard）", async (t) => {
+  const dir = await makeDupGuardFixtureDir(t);
+  const casesJsonPath = path.join(dir, "cases.json");
+  await fs.writeFile(casesJsonPath, JSON.stringify([]));
+
+  resetThumbnailDuplicateGuardForTest({ casesJsonPath, publicDir: path.join(dir, "public") });
+  t.after(() => resetThumbnailDuplicateGuardForTest());
+
+  const bufA = await makeNoiseJpeg(300, 300);
+  const bufB = await makeNoiseJpeg(301, 301);
+  const urlToBuf = {
+    "https://example.com/unique-a.jpg": bufA,
+    "https://example.com/unique-b.jpg": bufB,
+  };
+  stubDeps(t, { fetchImage: async (url) => urlToBuf[url] || null });
+
+  const idA = `test-nodup-a-${Date.now()}`;
+  const idB = `test-nodup-b-${Date.now()}`;
+  t.after(() => Promise.all([fs.rm(thumbnailPath(idA), { force: true }), fs.rm(thumbnailPath(idB), { force: true })]));
+
+  const resultA = await saveThumbnail(idA, "https://example.com/unique-a.jpg");
+  const resultB = await saveThumbnail(idB, "https://example.com/unique-b.jpg");
+  assert.equal(resultA, `/thumbnails/${idA}.jpg`);
+  assert.equal(resultB, `/thumbnails/${idB}.jpg`);
+});
+
+test("hashThumbnailBuffer: saveThumbnailが書き込む正規化後バッファのハッシュがaudit-thumbnails.mjsと同一アルゴリズムで一致する", async (t) => {
+  const dir = await makeDupGuardFixtureDir(t);
+  const casesJsonPath = path.join(dir, "cases.json");
+  await fs.writeFile(casesJsonPath, JSON.stringify([]));
+  resetThumbnailDuplicateGuardForTest({ casesJsonPath, publicDir: path.join(dir, "public") });
+  t.after(() => resetThumbnailDuplicateGuardForTest());
+
+  const raw = await makeNoiseJpeg(300, 300);
+  stubDeps(t, { fetchImage: async () => raw });
+
+  const id = `test-hash-alg-${Date.now()}`;
+  t.after(() => fs.rm(thumbnailPath(id), { force: true }));
+
+  const result = await saveThumbnail(id, "https://example.com/hash-check.jpg");
+  assert.equal(result, `/thumbnails/${id}.jpg`);
+
+  const writtenBuf = await fs.readFile(thumbnailPath(id));
+  // audit-thumbnails.mjs の md5 関数と同一アルゴリズム: crypto.createHash("md5").update(...).digest("hex")
+  const cryptoModule = await import("crypto");
+  const expectedHash = cryptoModule.createHash("md5").update(writtenBuf).digest("hex");
+  assert.equal(hashThumbnailBuffer(writtenBuf), expectedHash);
 });

@@ -57,7 +57,7 @@ import {
   type WriterFields,
 } from "./pure.js";
 import { dumpAgentDebug } from "./debugDump.js";
-import { acquireThumbnail } from "./thumbnail.js";
+import { acquireThumbnail, resetThumbnailDuplicateGuardForJob } from "./thumbnail.js";
 import { resolveLock, tryAcquireLock, type LockHandle } from "./lock.js";
 import { runAgentQuery, runPlainQuery } from "./sdkRunner.js";
 import { BudgetExceededError, createJobBudgetTracker, type JobBudgetTracker } from "./budget.js";
@@ -499,6 +499,8 @@ export async function runCaseResearchPipeline(
 
     // ── 5. サムネイル ────────────────────────────────────────────
     await setProgress(jobId, "サムネイル取得中");
+    // このジョブ開始時点のdata/cases.jsonを正として重複ガードを作り直す（2026-08-07再発防止）
+    resetThumbnailDuplicateGuardForJob();
     const withThumbnails: Candidate[] = [];
     for (const c of written) {
       const thumb = await acquireThumbnail(c.id, {

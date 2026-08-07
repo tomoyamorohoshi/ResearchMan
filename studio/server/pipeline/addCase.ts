@@ -90,7 +90,7 @@ import {
 } from "./addCasePure.js";
 import { extractJsonArray, normalizeTitleKey, toCaseId } from "./pure.js";
 import { dumpAgentDebug } from "./debugDump.js";
-import { acquireThumbnail } from "./thumbnail.js";
+import { acquireThumbnail, resetThumbnailDuplicateGuardForJob } from "./thumbnail.js";
 import {
   buildExistingTechIndex,
   buildTechEntry,
@@ -443,6 +443,8 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
 
       // ── 6. サムネイル（実画像必須。ダミー禁止 — 要件4） ────────────
       await setProgress(jobId, "サムネイル取得中");
+      // このジョブ開始時点のdata/cases.jsonを正として重複ガードを作り直す（2026-08-07再発防止）
+      resetThumbnailDuplicateGuardForJob();
       const thumb = await acquireThumbnail(id, {
         title: candidate.title,
         client: candidate.client,

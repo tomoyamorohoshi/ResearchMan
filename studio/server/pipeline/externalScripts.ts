@@ -7,6 +7,7 @@
 export {
   saveThumbnail,
   saveThumbnailFromPage,
+  resetThumbnailDuplicateGuardForTest,
 } from "../../../scripts/save-thumbnail.mjs";
 export {
   fetchYouTubeInfo,

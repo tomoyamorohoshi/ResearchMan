@@ -8,7 +8,24 @@
  *
  * ネットワークI/Oのため自動テスト対象外（save-thumbnail.mjs/verify-video.mjs自体も無テスト）。
  */
-import { fetchYouTubeInfo, saveThumbnail, saveThumbnailFromPage, videoMatchesCase } from "./externalScripts.js";
+import {
+  fetchYouTubeInfo,
+  saveThumbnail,
+  saveThumbnailFromPage,
+  videoMatchesCase,
+  resetThumbnailDuplicateGuardForTest,
+} from "./externalScripts.js";
+
+/**
+ * サムネイル重複ガード（scripts/lib/thumbnail-constraints.mjs）をジョブ開始時点の
+ * data/cases.json を正として作り直す（2026-08-07 サムネイル重複ロールバック障害の再発防止）。
+ * Studioサーバーは1プロセス内で複数ジョブを順次処理する長時間稼働プロセスのため、
+ * ガードをジョブをまたいで使い回すと前ジョブの状態が残ってしまう。各ジョブのサムネイル
+ * 取得ループの開始前に必ず1回呼ぶこと。
+ */
+export function resetThumbnailDuplicateGuardForJob(): void {
+  resetThumbnailDuplicateGuardForTest();
+}
 
 export interface ThumbnailCandidate {
   title: string;
