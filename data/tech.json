@@ -1,5 +1,44 @@
 [
   {
+    "id": "runnit",
+    "title": "Runnit",
+    "org": "Runnit (Null Theory, Australia / 創業者 Mark Tolson)",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "AI/Agents"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "Runnitは、社内マーケティングチームやクリエイティブエージェンシー向けに開発されたAIネイティブの運用プラットフォーム。ブリーフやブランド資産、過去のプロジェクト履歴、チームのスキル情報などの組織内知識を活用し、プロジェクト計画の自動生成やリソース配分の最適化を行う。",
+    "point": "コンテンツ生成にAIを使う事例は増えているが、計画立案・リソース配分・スケジューリングといった「運用」の部分は手つかずのままだった、という課題に着目した点がユニーク。1本のクリエイティブブリーフから、組織固有のコンテキスト（クライアント、ブランド、チームの得意分野、過去実績）を踏まえた完全なプロジェクト計画とリソース案を自動生成できる「Ru」というAIアシスタントを核に据えており、広告・マーケティング制作の現場では、複数クライアント・複数ブランドを抱えるエージェンシーやインハウスチームが、見積りやアサイン調整などの定型的な運用業務を大幅に効率化し、クリエイティブそのものに時間を割けるようになる可能性がある。",
+    "detail": "Runnitはオーストラリアの技術者Mark Tolson氏が、エージェンシーやマーケティングチーム内に散在する組織知識（ブリーフ、ブランドガイドライン、過去プロジェクト、担当者のスキルセットなど）がバラバラなシステムやドキュメント、個人の経験の中に埋もれている現状に着目して開発した。単なるAIアシスタントとして独立させるのではなく、既存の運用フロー・ナレッジと接続することで、ブリーフ入力だけでプロジェクト計画・リソース配分・スケジュールを自動生成する仕組みを持つ。\n\nカスタムワークフローを構築できる「Runnit Studio」や、ダッシュボード・分析機能も備え、リーダー層からクリエイティブ・制作部門まで幅広い職種が利用対象とされている。2026年7月27日に発表され、既にオーストラリア・ニュージーランドの複数企業で導入が進んでいるという。",
+    "license": {
+      "spdx": null,
+      "commercial": "paid",
+      "note": "商用SaaS。料金プランは非公開でアーリーアクセス受付中"
+    },
+    "links": [
+      {
+        "kind": "product",
+        "url": "https://runnit.io/"
+      },
+      {
+        "kind": "post",
+        "url": "https://campaignbrief.com/ai-platform-runnit-launches-to-help-marketing-teams-turn-ai-into-operational-advantage/"
+      },
+      {
+        "kind": "post",
+        "url": "https://www.adnews.com.au/news/runnit-launches-ai-marketing-operations-platform"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/runnit.jpg",
+    "relatedWorks": [],
+    "sources": [
+      "User"
+    ]
+  },
+  {
     "id": "wan-dancer-14b",
     "title": "Wan-Dancer-14B",
     "org": "Alibaba Tongyi Lab",
