@@ -15,7 +15,9 @@
  */
 import crypto from "node:crypto";
 
-export const IDEA_LAYOUTS_ALGO_VERSION = "fixed-two-size-v1";
+// v2 (2026-08-07): モバイルレイアウトを1列縦積み→行詰めパッキングに変更、
+// フォントサイズ下限を12px/8px→14px/10pxに変更（src/lib/ideaCollageLayout.ts）。
+export const IDEA_LAYOUTS_ALGO_VERSION = "fixed-two-size-v2";
 
 export function computeIdeaLayoutsInputHash(ideasJsonRawText) {
   return crypto.createHash("sha256").update(ideasJsonRawText).update(IDEA_LAYOUTS_ALGO_VERSION).digest("hex");

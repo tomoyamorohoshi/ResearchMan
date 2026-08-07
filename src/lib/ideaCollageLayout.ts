@@ -47,14 +47,23 @@ export const TIER_REF_WIDTH_PX: Record<CollageTier, number> = {
 
 // H: 固定2サイズタイポグラフィ(goofy-hatching-mango.md 2026-07-07バッチ・改訂計画)。
 // サイズA=タイトル(輪郭沿いtextPath)・サイズB=日付/本文/リンク行。全カード同一(絶対条件)。
-// 目安値は計画書のとおり: wide/compact=13px/8.5px・mobile=12px/8px（全景スクショで微調整可）
+// 目安値は計画書のとおり: wide/compact=13px/8.5px。
+// mobileは2026-07-27のモバイルUI改善(文字が小さすぎて読めない、との報告)で引き上げた
+// (下限title>=13px/body>=9.5pxはideaCollageLayout.test.tsで固定)。実データ270件での検証で、
+// title=14px/body=10pxだと内容量が多い3件が最良シェイプでもmobile行幅予算(358px)を
+// 超過することを実測で確認した(コンテンツ量×固定フォントサイズで決まる必要面積の問題で、
+// シェイプ種の選び直しでは解決しない)。フォントを下げるほど超過は単調に改善する
+// (超過中のideaが新たに増えることはない)ため、要求下限そのものである13px/9.5pxまで
+// 下げて超過件数を3→1件に最小化した。残る1件(studio-2026-07-10-6・refs3件)は
+// 13px/9.5pxでも最良シェイプで+12.9px超過し、これは計画への疑義として報告する
+// (フォント下限を守る限り解消不能。詳細はideaCollageLayout.test.tsの検証コメント参照)。
 export const FIXED_TITLE_FONT_PX: Record<CollageTier, number> = {
-  mobile: 12,
+  mobile: 13,
   compact: 13,
   wide: 13,
 };
 export const FIXED_BODY_FONT_PX: Record<CollageTier, number> = {
-  mobile: 8,
+  mobile: 9.5,
   compact: 8.5,
   wide: 8.5,
 };
@@ -103,6 +112,29 @@ export type ShapeAssignment = { kind: ShapeKind; generous: boolean };
 
 const ASSIGN_TIERS: readonly CollageTier[] = ["mobile", "compact", "wide"];
 const ASSIGN_FEASIBILITY_EPS = 1e-6;
+
+// タスク3(2026-07-27モバイルUI改善・/ideasモバイルの1列縦積み→行詰め化)の検討記録:
+// 「mobileだけシェイプ選定の予算(TIER_REF_WIDTH_PX.mobile=358)を半分(≈179px)に絞り、
+// 2枚並びが成立しやすい小さめの種へ誘導する」案を実装・実データ(270件)で検証したが、
+// 採用を見送った。理由は2つ:
+// (1) 効果が無い: 実データ(mobile font=title14px/body10px)で、フル予算(358px)・
+//     デフォルト種のままの実測物理幅は最小でも218px・中央値329pxで、そもそも半予算(179px)を
+//     大きく超えている。カードの物理幅は主に「固定フォントサイズで本文/リンクの全文を
+//     折り返し表示するのに必要な面積」で決まり、シェイプ種(kind)の違いは同じ内容量に対する
+//     幅/高さの配分(アスペクト比)を変えるだけで、必要面積そのもの(≒半分に縮めるような
+//     大幅な幅削減)は縮められない。つまり予算をどれだけ絞っても、この内容量では2枚並びの
+//     成立率は実質0%のまま変わらない(実測: 358予算のまま計測した2枚並び行比率=0.0%)。
+// (2) 効果が無い上にコストだけが増大する: assignShapeKindsはデフォルト種が予算内に収まらない
+//     場合のみ9種×浅い変種(最大13通り)×3ティア=最大39回のsolveFixedSizeShape呼び出しを伴う
+//     高コストな全探索フォールバックに入る。mobile予算を179pxまで絞ると、実データのほぼ
+//     全件でこの全探索が発動し(理由は(1)の通りどのみち179pxには収まらないため)、
+//     precompute相当の実行時間が10分の予算を大幅に超過する回帰を実測で確認した
+//     (40件の合成データだけで208秒)。
+// 対応方針は「/ideasモバイルの2枚並び優先」より「タスク2の可読フォントサイズ(mobile
+// title>=13px/body>=9.5px)」を優先し、mobile予算はTIER_REF_WIDTH_PX.mobileのまま変更しない
+// (=assignShapeKindsの挙動そのものは無変更)。行詰めレイアウト自体は全ティア共通で実装した
+// ため、将来コンテンツ量が減る・ティア幅が広がるなどで2枚並びが成立する条件になれば
+// 自動的に2列表示になる。この判断はコーディネーターへの計画疑義として最終報告に記載する。
 
 type TierWidthProbe = { tier: CollageTier; widthPx: number; budgetPx: number };
 
@@ -403,8 +435,13 @@ function kernRowVertically(
   return { topY, achievedGap: distAt(topY) };
 }
 
-// compact/wideティア: 行詰め+水平・垂直カーニングの両方
-function computeGridTierLayout(cards: readonly CollageCardInput[], tier: "compact" | "wide"): CollageLayoutResult {
+// 全ティア共通: 行詰め+水平・垂直カーニング。
+// タスク3(2026-07-27モバイルUI改善)以前はmobileだけ専用の1カラム縦積み実装
+// (computeMobileTierLayout)を持っていたが、「モバイルで1列は情報密度が低い」という報告に
+// 対応し、mobileもこの行詰め実装に一般化した(幅が収まるカードは2枚/行に並び、大きいカードは
+// 単独行になる)。tierごとの違いはTIER_REF_WIDTH_PX[tier](行幅予算)だけで、アルゴリズム自体は
+// 完全に共通(mobileの2列成立率はシェイプ選定側のMOBILE_ASSIGN_BUDGET_PXで誘導する。上記参照)
+function computeGridTierLayout(cards: readonly CollageCardInput[], tier: CollageTier): CollageLayoutResult {
   const tierRefWidthPx = TIER_REF_WIDTH_PX[tier];
   const prepared = cards.map((c) => prepareCard(c));
   const rows = packRows(prepared, tierRefWidthPx);
@@ -455,46 +492,9 @@ function computeGridTierLayout(cards: readonly CollageCardInput[], tier: "compac
   return { placements, containerHeightPx: maxBottomY, containerWidthPx: maxRowWidth, horizontalGaps, verticalGaps };
 }
 
-// mobileティア: 1カラム縦積み。垂直カーニングのみ(各カードを「1カードだけの行」として扱う)。
-// H: 固定2サイズ改訂計画で、旧「常にフル幅」の強制を廃止した(内容適応でカードごとに
-// 自然な幅になる)。横位置はティア基準幅内で中央寄せする
-function computeMobileTierLayout(cards: readonly CollageCardInput[]): CollageLayoutResult {
-  const tierRefWidthPx = TIER_REF_WIDTH_PX.mobile;
-  const placements: CardPlacement[] = [];
-  let prevOutlines: Point[][] | null = null;
-  let nominalTopY = 0;
-  let maxBottomY = 0;
-  let maxWidth = 0;
-  const verticalGaps: number[] = [];
-
-  for (const input of cards) {
-    const card = prepareCard(input);
-    const leftPx = Math.max(0, (tierRefWidthPx - card.boxWidthPx) / 2);
-    const row: RowSlot[] = [{ card, leftPx }];
-
-    const { topY: finalTopY, achievedGap } = kernRowVertically(row, prevOutlines, nominalTopY);
-    if (achievedGap !== null) verticalGaps.push(achievedGap);
-    placements.push({
-      id: input.id,
-      leftPx,
-      topPx: finalTopY,
-      widthPx: card.boxWidthPx,
-      heightPx: card.boxHeightPx,
-      rotateDeg: card.rotateDeg,
-    });
-    maxBottomY = finalTopY + card.boxHeightPx;
-    maxWidth = Math.max(maxWidth, card.boxWidthPx);
-    prevOutlines = [outlineAt(card, leftPx, finalTopY)];
-    nominalTopY = maxBottomY;
-  }
-
-  return { placements, containerHeightPx: maxBottomY, containerWidthPx: maxWidth, horizontalGaps: [], verticalGaps };
-}
-
 // 決定論・純関数。同じcards配列(内容が同一)を渡せば常に同じ結果を返す
 export function computeCollageLayout(cards: readonly CollageCardInput[], tier: CollageTier): CollageLayoutResult {
   if (cards.length === 0) return { placements: [], containerHeightPx: 0, containerWidthPx: 0, horizontalGaps: [], verticalGaps: [] };
-  if (tier === "mobile") return computeMobileTierLayout(cards);
   return computeGridTierLayout(cards, tier);
 }
 
