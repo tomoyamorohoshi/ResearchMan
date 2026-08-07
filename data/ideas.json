@@ -6849,5 +6849,203 @@
         "desc": "1億個超のGaussian Splatを並べ替えなしでリアルタイム描画できる新しいレンダリング手法。"
       }
     ]
+  },
+  {
+    "id": "2026-08-07-1",
+    "date": "2026-08-07",
+    "title": "無意識の恐怖を可視化する",
+    "pattern": "文脈×技術",
+    "seed": "Fatal Questionsは実物大彫刻で刺傷死亡の真実を突きつけたが、Telekinetic Driveで来場者の無意識の表情を読み取れば、隠れた恐怖心そのものをその場で可視化する啓発体験になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "streetdoctors-fatal-questions",
+        "title": "Fatal Questions",
+        "desc": "実物大彫刻が刺しても安全な場所はないという刺傷死亡の真実を若者に突きつけた屋外体験"
+      },
+      {
+        "type": "tech",
+        "id": "telekinetic-drive",
+        "title": "Telekinetic Drive",
+        "desc": "顔に現れるごくわずかな無意識の動きをカメラで読み取り装着物なしでロボットを操作できるインターフェース"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-07-2",
+    "date": "2026-08-07",
+    "title": "動く肖像で語る心の傷",
+    "pattern": "文脈×技術",
+    "seed": "Suffering展は肖像に刻んだ傷跡で心の傷を可視化したが、CoMoViでテキストから3Dの動きと映像を同時生成すれば、証言の言葉だけで動く肖像として目に見えない傷を再現できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "suffering-musee-grande-guerre",
+        "title": "Suffering",
+        "desc": "戦争が兵士に残した目に見えない心の傷を、肖像に刻んだ傷跡で可視化したクラフト作品"
+      },
+      {
+        "type": "tech",
+        "id": "comovi",
+        "title": "CoMoVi",
+        "desc": "文章から3Dの人の動きと写実的な映像を一つの生成ループの中で同時に作り出すAI研究"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-07-3",
+    "date": "2026-08-07",
+    "title": "偏見をパフォーマンス数値で覆す",
+    "pattern": "文脈×技術",
+    "seed": "Channel 4のConsidering What?はパフォーマンスで偏見を覆したが、CYANPUPPETSの208キーポイントで動きを数値化すれば、その圧倒的な「すごさ」を誰もが比較できるデータとして見せられそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "channel4-paris-paralympics",
+        "title": "PARIS PARALYMPICS: CONSIDERING WHAT?",
+        "desc": "障害があるのにすごいという偏見をパラリンピアンの圧倒的パフォーマンスで覆した企画"
+      },
+      {
+        "type": "tech",
+        "id": "cyanpuppets-1b-parameter-ai-motion-capture",
+        "title": "CYANPUPPETS 1B-parameter AI Motion Capture",
+        "desc": "10億パラメータAIをローカル実行しウェブカメラや動画から全身・顔・指208キーポイントを抽出するモーキャプ"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-07-4",
+    "date": "2026-08-07",
+    "title": "自分の動きがそのまま広告に",
+    "pattern": "文脈×技術",
+    "seed": "Spotify Wrapped DOOHは個人データをOOHにリアルタイム表示したが、ReViVで通行人自身の単眼動画から全身を4D復元すれば、その場にいる本人の動きそのものが広告になる屋外体験ができそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "spotify-wrapped-dooh-2018",
+        "title": "Spotify Wrapped DOOH – Real-Time Personalized Outdoor",
+        "desc": "個人のストリーミングデータを世界5か国の主要OOH面にリアルタイム表示したパーソナライズド広告"
+      },
+      {
+        "type": "tech",
+        "id": "reviv",
+        "title": "ReViV (Reconstructing the Viewer and the View in 4D from Monocular Egocentric Video)",
+        "desc": "一人称視点の動画1本から装着者の全身動作と周囲シーンのカメラ軌跡・深度を同時に4D復元するフレームワーク"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-07-5",
+    "date": "2026-08-07",
+    "title": "巨大3D世界をブラウザ即共有",
+    "pattern": "技術×技術",
+    "seed": "Marble x Nukeでテキストから作った3D世界をNukeに読み込み、Aholo Viewerでブラウザ上に10億スプラット級のまま共有すれば、離れた関係者と同じ巨大空間を同時に歩き回れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "marble-x-nuke",
+        "title": "Marble x Nuke",
+        "desc": "テキストや画像から生成した3D世界を映像編集ソフトNukeの3D空間に読み込める無料プラグイン"
+      },
+      {
+        "type": "tech",
+        "id": "aholo-viewer",
+        "title": "Aholo Viewer",
+        "desc": "インストール不要のブラウザだけで最大10億スプラット級の巨大な3D空間をなめらかに表示できるOSSレンダラ"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-07-6",
+    "date": "2026-08-07",
+    "title": "喋らずに喋るAIアバター",
+    "pattern": "技術×技術",
+    "seed": "Telekinetic Driveで捉えた顔の無意識な動きを、LTX-2の音声・映像同時生成に流し込めば、装着物なしで「喋らずに喋る」アバターや吹き替えが作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "telekinetic-drive",
+        "title": "Telekinetic Drive",
+        "desc": "顔に現れるごくわずかな無意識の動きをカメラで読み取り装着物なしで機器を操作できるインターフェース"
+      },
+      {
+        "type": "tech",
+        "id": "ltx-2",
+        "title": "LTX-2",
+        "desc": "音声と映像を同時生成できる初のオープンソース公開基盤モデルで4K・最長20秒に対応"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-07-7",
+    "date": "2026-08-07",
+    "title": "体だけで歩く生成世界",
+    "pattern": "技術×技術",
+    "seed": "CYANPUPPETSでウェブカメラから捉えた全身208キーポイントを、DreamX-Worldが生成する歩き回れる3D世界の移動指示に使えば、VRゴーグルなしで自分の体だけで生成世界を探索できそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "cyanpuppets-1b-parameter-ai-motion-capture",
+        "title": "CYANPUPPETS 1B-parameter AI Motion Capture",
+        "desc": "ウェブカメラや動画から全身・顔・指208キーポイントを抽出するマーカーレスモーションキャプチャ"
+      },
+      {
+        "type": "tech",
+        "id": "dreamx-world-1-0",
+        "title": "DreamX-World 1.0",
+        "desc": "テキスト指示だけで視点を動かしても矛盾なく繋がり続ける歩き回れる3D世界の映像を生成できるAI"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-07-8",
+    "date": "2026-08-07",
+    "title": "にじみ検出で真贋鑑定",
+    "pattern": "転用",
+    "seed": "QuerySplatは本来、輪郭のにじみが少ない高精細な3Dガウシアンを作る研究技術だが、そのにじみの少なさを美術品の微細な欠けや色ムラ検出に転用すれば、AI真贋鑑定支援に使えるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "querysplat",
+        "title": "QuerySplat",
+        "desc": "複数枚の写真から輪郭のにじみが少ない高精細な3Dガウシアンスプラットを生成する研究"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-07-9",
+    "date": "2026-08-07",
+    "title": "重要部分だけ自動精密検品",
+    "pattern": "転用",
+    "seed": "ComfyUI TTP Toolsetのスマートタイルは本来、顔や背景を認識して必要な場所だけ高解像度化する機能だが、これを医療画像や製品検品に転用すれば「重要な部分だけ」を自動で精密チェックできそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-ttp-toolset-smart-tile-2-0",
+        "title": "ComfyUI TTP Toolset – Smart Tile 2.0",
+        "desc": "画像の顔や背景をAIに認識させ必要な場所だけ高解像度化・部分編集できるComfyUI拡張機能"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-07-10",
+    "date": "2026-08-07",
+    "title": "彫刻設置を丸ごと3Dアーカイブ化",
+    "pattern": "文脈×技術",
+    "seed": "Giant Triple Mushroomのような巨大パブリックアート設置を、fVDBの複数GPU3Dデータ化技術で広場ごと3D化すれば、撤去後も誰もが歩き回って追体験できるアーカイブになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "giant-triple-mushroom-2024",
+        "title": "Giant Triple Mushroom",
+        "desc": "パリのヴァンドーム広場に3種のキノコの断面を融合させた高さ約3mの彫刻を設置した作品"
+      },
+      {
+        "type": "tech",
+        "id": "fvdb-v0-5-0",
+        "title": "fVDB v0.5.0",
+        "desc": "NVIDIAの3D深層学習基盤がGaussian Splatting処理を強化し広大な空間を複数GPUで高速に3Dデータ化"
+      }
+    ]
   }
 ]
