@@ -26,6 +26,22 @@
 - 初出の業務は、上記の思想（準備=下位・判断=上位）に沿ってその場のモデル指定で1回やる
 - **同種の依頼が2回来たら**、`.claude/agents/` に定義を固定してこの一覧に追記する
 
+## push滞留の扱い（2026-07-31〜08-07 の8日間push全ブロック事故の再発防止）
+
+- 日次ジョブは **commit までは成功し push だけ失敗しうる**。この状態でもサイトは200を返し古い内容を配信し続けるため、外形監視では検知できない（実績: 11コミットが8日間滞留し本番未更新）
+- 「リサーチが途中で失敗した」「サイトが更新されない」と言われたら、まず `git rev-list --count origin/main..main` で滞留を確認する
+- 滞留があれば pre-push の4監査をローカル実行して原因監査を特定する（read-only・pushは不要）:
+  `node scripts/audit-cannes.mjs` / `node scripts/audit-thumbnails.mjs` / `node scripts/audit-tech.mjs` / `node scripts/check-idea-layouts-freshness.mjs`
+- **監査を緩める方向で直さない**（プレースホルダ・不整合の混入検知が本務）。原因データの方を正す
+- 検知は `scripts/watchdog.mjs` の `checkUnpushedCommits` が自動化済み（滞留日数・失敗監査名・失敗文言つきで通知、同一理由は1日1回に抑制）
+- 手動 push 前は必ずジョブのgitロック（`$TEMP/researchman-git.lock`）と実行中ジョブの有無を確認する
+
+## データ生成物の「効かない変更」に注意
+
+- `/ideas` は実行時計算ではなく `data/idea-layouts.json` の事前計算結果を描画する。`src/lib/ideaCollageLayout.ts` を変えても**再生成しなければ本番に一切反映されない**
+- 鮮度検査のハッシュは `data/ideas.json` の内容と `IDEA_LAYOUTS_ALGO_VERSION` のみを見る。**レイアウトロジックの変更は検知されない**ため、ロジックを変えたら `scripts/lib/idea-layouts-hash.mjs` の `IDEA_LAYOUTS_ALGO_VERSION` を必ず上げる（上げないと古いレイアウトのまま検査が通り続ける）
+- 再生成（`npx tsx scripts/precompute-idea-layouts.mjs`）は実測20分超。ALGO_VERSION更新→再生成→鮮度検査exit 0 までを1コミットで完結させる（中途半端な状態をコミットすると全pushがブロックされる）
+
 ## ブランチ運用（2026-07-19 誤ブランチcommit事故の再発防止）
 
 - この作業ツリーは日次ジョブ（run-job.mjs）が直接 commit/push する**運用インフラ**。checkout状態がそのままジョブの出力先になる
