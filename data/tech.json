@@ -1,5 +1,160 @@
 [
   {
+    "id": "wan-dancer-14b",
+    "title": "Wan-Dancer-14B",
+    "org": "Alibaba Tongyi Lab",
+    "type": "Research",
+    "domains": [
+      "GenVideo",
+      "Motion/Body",
+      "Audio/Music"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "1枚の人物写真と音楽ファイルから、曲の構成に合わせて1分を超えるダンス動画を720p/30fpsで生成するオープンソースモデル。",
+    "point": "AIで作る動画は、長くなるほど人物の顔や服装、背景が少しずつ崩れていき、20秒あたりが実用の限界とされてきました。Wan-Dancer-14Bは、まず曲全体を聴いて振り付けの要所（キーフレーム）を設計し、その間を後から丁寧に埋めるという2段構えでこの壁を越え、1枚の人物写真と音楽ファイルだけから、1分を超えるダンス動画を720p/30fpsで破綻なく生成します。中国古典舞踊・K-POP・ストリート・タップ・ラテンの5ジャンルに対応し、コードとモデルはApache 2.0で完全公開されています。広告・体験づくりでは、タレントやキャラクターの写真1枚からキャンペーンソング用のダンスMVを作ったり、イベント会場で来場者の写真から「踊る自分」を見せる参加型コンテンツ、K-POP風のバイラル動画の量産など、「音楽×人物×長尺」が必要な企画の土台になり得ます。",
+    "detail": "仕組みは「振付師」と「ダンサー」の分業に例えられます。まずグローバル段階（振付師）が曲を最初から最後まで解析し、サビや転調といった構成に合わせて要所のポーズを静止画（キーフレーム）として先に決めます。次にローカル段階（ダンサー）が、隣り合うキーフレームの間の動きをフレーム単位で滑らかに補間します。時間の伸縮に対応する位置埋め込み（time-mapped RoPE）により、曲のテンポに合わせた動きの速さの制御も可能です。\n\n従来の動画生成モデルは全フレームを一気に作るため、長くなるほど整合性が崩れて20秒程度が限界でした。先に全体の設計図（キーフレーム）を固定してから間を埋める方式のため、2分を超えても人物の同一性や背景が保たれるのが最大の違いです。キーフレームを差し替えれば、途中での衣装チェンジや動きの指定といった演出的な介入もできます。\n\n使うにはGitHubの推論コードと、Hugging Face / ModelScopeで公開されている14Bパラメータのモデルをダウンロードします。ライセンスはApache 2.0で商用利用可。ただし公式の検証環境はNVIDIA A800 80GB×8枚と重く、手元のPCでの実行はハードルが高いため、当面はクラウドGPUの利用が現実的です。ComfyUIがネイティブ対応を表明しており、コミュニティによる軽量化・量子化版の登場も期待できます。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "コード(GitHub)・モデル重み(Hugging Face / ModelScope)ともApache 2.0で公開。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Wan-Video/Wan-Dancer"
+      },
+      {
+        "kind": "project",
+        "url": "https://humanaigc.github.io/wan-dancer-project/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2607.09581"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/wan-dancer-14b.jpg",
+    "relatedWorks": [
+      {
+        "title": "Wan2.2",
+        "description": "同じWanファミリーのオープンソース動画生成基盤モデル（MoE構成）",
+        "url": "https://github.com/Wan-Video/Wan2.2"
+      },
+      {
+        "title": "Animate Anyone",
+        "description": "同じAlibaba HumanAIGCチームによる1枚画像からの人物アニメーション研究",
+        "url": "https://humanaigc.github.io/animate-anyone/"
+      },
+      {
+        "title": "Self-Forcing++",
+        "description": "分スケールの長尺動画生成を目指す先行研究",
+        "url": "https://github.com/justincui03/Self-Forcing-Plus-Plus"
+      }
+    ],
+    "sources": [
+      "Batch Research"
+    ]
+  },
+  {
+    "id": "ltx-2-3-clean-plate-ic-lora",
+    "title": "LTX-2.3 Clean Plate IC-LoRA",
+    "org": "Lightricks",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "動画から人物や車などの動く被写体を消し、影や反射ごと背景を自動再構築して「クリーンプレート」を作るLTX-2.3用の公式LoRA。ブラウザデモあり。",
+    "point": "映画やCMの合成現場には「クリーンプレート」という定番の下ごしらえがあります。人物や車が写っていない“無人の背景だけ”の映像で、被写体の消去や背景差し替えの土台になるものです。従来はフレームを1枚ずつ追いかける手作業のロトスコープや塗りつぶしで、数秒のカットに何時間もかかっていました。このLoRAは、元映像を参照として与え、テキストで「無人の同じシーン」を指示するだけで、人物・通行人・車両などの動く被写体を消し、その裏にあったはずの背景を影や反射まで含めてAIが丸ごと再構築します。広告制作では、ロケ素材から通行人を消して肖像権処理の手間を減らす、店舗や街の映像を無人化してブランドムービーの素材にする、人物を消した背景にCGや別テイクを合成する下地づくりなど、VFXの前工程を大幅に短縮できます。ブラウザのデモですぐ試せる点も実務向きです。",
+    "detail": "技術的には、動画生成モデルLTX-2.3（22Bパラメータ）に後付けする「IC-LoRA」という小型アダプタです。元のクリップを圧縮表現（latent）のまま参照として読み込ませ、「同じシーンの無人版」をテキストで記述して再生成させる、映像から映像への変換として学習されています。特定の合図の言葉（トリガーワード）は不要で、消したい対象（人・車・持ち物など）をプロンプトで名指しして除外できます。\n\nAfter Effectsのコンテンツに応じた塗りつぶしのような従来ツールは、フレームごとの追跡やマスク作成が前提でしたが、本手法はシーン全体を理解したうえで映像ごと作り直すため、人物が落とす影や水面の映り込みまで一括で消える点が根本的に異なります。学習自体もH100 1枚・約4時間と軽量で、Lightricksは同じ「LTX-2.3 Creative Lab」シリーズとして、消去以外にもアウトペイントや効果音生成（Foley）などのLoRA群を同時期に公開しています。\n\n利用はHugging Faceで利用規約に同意すればダウンロード無料。LTX-2 Community Licenseに基づくため、商用利用の可否条件は事前確認が必要です。ComfyUI用の公式ワークフローが提供されており、22Bベースのため高VRAMのGPUが必要ですが、まずはブラウザのHugging Face Spaceデモで手持ち動画を試せます。入力には解像度が32の倍数・フレーム数が「8の倍数+1」という制約があります。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "LTX-2 Community License（HFで規約同意の上DL無料）。商用利用は同ライセンスの条件に従う。"
+    },
+    "links": [
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/Lightricks/LTX-2.3-22b-IC-LoRA-Clean-Plate"
+      },
+      {
+        "kind": "project",
+        "url": "https://huggingface.co/spaces/hugging-apps/ltx-2-3-22b-ic-lora-clean-plate"
+      },
+      {
+        "kind": "post",
+        "url": "https://comfyui-wiki.com/en/news/2026-07-19-ltx-2-3-clean-plate-ic-lora"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/ltx-2-3-clean-plate-ic-lora.jpg",
+    "relatedWorks": [
+      {
+        "title": "LTX-2.3 Creative Lab",
+        "description": "Clean Plateを含むLightricks公式IC-LoRA群のコレクション",
+        "url": "https://huggingface.co/collections/Lightricks/ltx-23-creative-lab"
+      },
+      {
+        "title": "LTX-2.3 In-Outpainting IC-LoRA",
+        "description": "同シリーズの動画イン/アウトペイント用LoRA",
+        "url": "https://huggingface.co/Lightricks/LTX-2.3-22b-IC-LoRA-In-Outpainting"
+      }
+    ],
+    "sources": [
+      "Batch Research"
+    ]
+  },
+  {
+    "id": "self-gradient-forcing",
+    "title": "Self Gradient Forcing (SGF)",
+    "org": "清華大学 / JD Joy Future Academy",
+    "type": "Research",
+    "domains": [
+      "GenVideo"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "5秒クリップでしか学習していない動画生成モデルを、2パス方式の追加学習で最長約4分まで一貫性を保って生成できるようにする学習手法。コード・重み・学習スクリプトまで全公開。",
+    "point": "動画生成AIの多くは5秒程度の短いクリップでしか学習しておらず、それより長く生成しようとすると人物の顔や部屋のレイアウトが徐々に別物に変わってしまう「長尺の壁」がありました。Self Gradient Forcing（SGF）は、モデルが自分で生成した過去の映像（記憶）から学ぶための勾配の通り道を2パス方式の学習で復元するという発想で、5秒の学習窓のまま最長約4分（16fpsで240秒）の一貫した動画生成に成功した研究です。論文だけでなくコード・学習済みモデル・学習スクリプトまでApache 2.0で全公開されています。広告・体験づくりでは、サイネージや店頭ディスプレイ向けの長尺ループ映像、ワンカット長回し風のブランドムービー、会場で流し続ける生成映像インスタレーションなど、これまで数十秒ごとの切り貼りでしのいでいた長尺表現を1本の生成でつくれる可能性が開けます。",
+    "detail": "自己回帰型の動画生成は、直前までに自分が作った映像を「記憶」として参照しながら続きを作ります。ところが従来の学習では、この自己生成した記憶に対して誤差を遡って伝える経路（勾配）が切れており、モデルは「自分の記憶をどう使うべきか」を学べませんでした。SGFは学習を2回に分けてこれを解決します。1パス目は本番と同じ条件で勾配なしの自己回帰生成を行い、途中の状態を記録。2パス目で記録した地点だけを並列に再計算し、切れていた勾配を復元します。リハーサルを通しで録画しておき、あとで要所だけコマ送りで復習するイメージです。\n\nSelf-Forcing++などの先行手法は、生成の全過程に誤差逆伝播する膨大な計算を払うか、勾配経路そのものを諦めるかの二択でしたが、SGFは計算量を抑えたまま欠けていた学習信号を回復する点が新しく、長尺化した際の人物の同一性・レイアウト・時間的安定性が向上したと報告されています。デフォルト設定では963潜在フレーム＝16fpsで約240秒の生成に対応します。\n\nベースはオープンソースのWan2.1-T2V（1.3B/14B）で、GitHubに推論・学習コード、Hugging Faceに学習済み重みが公開されています。推論スクリプトは8GPU構成を想定していますが、1GPUでの逐次実行にもフォールバック対応。ライセンスはApache 2.0で商用利用も可能です。清華大学とJD（京東）の研究チームが2026年7月23日に公開しました。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "コード・学習済み重み（HF: JunhaoZhuang/Self_Gradient_Forcing）ともApache 2.0。ベースはWan2.1-T2V（同じくApache 2.0）。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/zhuang2002/Self_Gradient_Forcing"
+      },
+      {
+        "kind": "project",
+        "url": "https://zhuang2002.github.io/SelfGradientForcing"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2607.20368"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/self-gradient-forcing.jpg",
+    "relatedWorks": [
+      {
+        "title": "Self-Forcing++",
+        "description": "分スケール高品質動画生成を目指した先行研究（本手法の比較対象）",
+        "url": "https://github.com/justincui03/Self-Forcing-Plus-Plus"
+      },
+      {
+        "title": "Wan2.1",
+        "description": "SGFがベースにするオープンソース動画生成モデル",
+        "url": "https://github.com/Wan-Video/Wan2.1"
+      }
+    ],
+    "sources": [
+      "Batch Research"
+    ]
+  },
+  {
     "id": "infinisplat",
     "title": "InfiniSplat",
     "org": "Zhejiang University (ZJU3DV) / UDeer.ai / Shenzhen University",
