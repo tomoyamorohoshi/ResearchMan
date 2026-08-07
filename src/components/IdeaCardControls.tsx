@@ -12,6 +12,8 @@
 // 逆回転(rotate(calc(var(--rotate) * -1)))を適用し、ボタン自体は常に正立させる。
 // CaseCard.tsx（お気に入り/ごみ箱ボタンの参考実装）と同じく、非アクティブ時は
 // 親のgroup-hoverで初めて可視化する控えめな表示にする（アクティブ時は常時表示）。
+// タッチ端末はhoverが存在せずgroup-hoverが永遠に発火しないため、[@media(hover:none)]:
+// opacity-100でホバー不能デバイスでは常時表示にする（2026-07-27モバイルUI改善）。
 export default function IdeaCardControls({
   liked,
   onToggleLike,
@@ -43,7 +45,7 @@ export default function IdeaCardControls({
             ? "bg-black/40 text-white opacity-100 hover:text-emerald-300"
             : trashed
               ? "bg-black/40 text-red-300 opacity-100"
-              : "bg-black/25 text-white/80 opacity-0 group-hover:opacity-100 hover:text-red-300"
+              : "bg-black/25 text-white/80 opacity-0 [@media(hover:none)]:opacity-100 group-hover:opacity-100 hover:text-red-300"
         }`}
       >
         {trashMode ? (
@@ -73,7 +75,7 @@ export default function IdeaCardControls({
         className={`w-5 h-5 rounded-full flex items-center justify-center transition-all duration-150 ${
           liked
             ? "bg-black/40 text-pink-400 opacity-100"
-            : "bg-black/25 text-white/80 opacity-0 group-hover:opacity-100 hover:text-pink-300"
+            : "bg-black/25 text-white/80 opacity-0 [@media(hover:none)]:opacity-100 group-hover:opacity-100 hover:text-pink-300"
         }`}
       >
         <svg

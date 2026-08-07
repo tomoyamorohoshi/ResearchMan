@@ -166,7 +166,7 @@ export default function CaseCard({
                 ? "text-white/80 opacity-100 hover:text-emerald-300"
                 : isTrashed
                   ? "text-red-400 opacity-100"
-                  : "text-white/80 opacity-0 group-hover:opacity-100 hover:text-red-300"
+                  : "text-white/80 opacity-0 [@media(hover:none)]:opacity-100 group-hover:opacity-100 hover:text-red-300"
               }`}
           >
             {trashMode ? (
@@ -208,7 +208,7 @@ export default function CaseCard({
           className={`w-7 h-7 flex items-center justify-center transition-all duration-150
             ${isFavorite
               ? "text-yellow-400 opacity-100"
-              : "text-white/80 opacity-0 group-hover:opacity-100 hover:text-yellow-300"
+              : "text-white/80 opacity-0 [@media(hover:none)]:opacity-100 group-hover:opacity-100 hover:text-yellow-300"
             }`}
         >
           <svg

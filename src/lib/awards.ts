@@ -2,14 +2,20 @@ import { cases, Case } from './cases';
 import { getAwardLevel, type AwardLevel } from './awardLevel';
 
 export const AWARD_ORGS = [
-  { key: 'cannes', label: 'Cannes Lions', abbr: 'CANNES LIONS' },
-  { key: 'dad',    label: 'D&AD',         abbr: 'D&AD'         },
-  { key: 'clio',   label: 'Clio',          abbr: 'CLIO'         },
-  { key: 'acc',    label: 'ACC',           abbr: 'ACC'          },
-  { key: 'spikes', label: 'Spikes Asia',   abbr: 'SPIKES ASIA'  },
+  { key: 'cannes', label: 'Cannes Lions',    abbr: 'CANNES LIONS'    },
+  { key: 'dad',    label: 'D&AD',            abbr: 'D&AD'            },
+  { key: 'clio',   label: 'Clio',             abbr: 'CLIO'            },
+  { key: 'acc',    label: 'ACC',              abbr: 'ACC'             },
+  { key: 'spikes', label: 'Spikes Asia',      abbr: 'SPIKES ASIA'     },
+  { key: 'ars',    label: 'Ars Electronica',  abbr: 'ARS ELECTRONICA' },
 ] as const;
 
 export type OrgKey = (typeof AWARD_ORGS)[number]['key'];
+
+// 'ars'のフル名称(英語/日本語)。key='ars'単体の部分一致だと"STARTS Prize"のような
+// 無関係な文字列にも誤爆しうるため、org名チェックはフル名称で行う(下記の
+// matchesOrg/segmentBelongsToOrg 両方で使用)
+const ARS_ELECTRONICA_NAMES = ['ars electronica', 'アルスエレクトロニカ'];
 
 function matchesOrg(awardStr: string, orgKey: OrgKey): boolean {
   const s = awardStr.toLowerCase();
@@ -19,6 +25,7 @@ function matchesOrg(awardStr: string, orgKey: OrgKey): boolean {
     case 'clio':   return s.includes('clio');
     case 'acc':    return /\bacc\b/.test(s);
     case 'spikes': return s.includes('spikes');
+    case 'ars':    return ARS_ELECTRONICA_NAMES.some(name => s.includes(name));
   }
 }
 
@@ -59,11 +66,12 @@ function parseCollection(
     case 'clio':   cat = cat.replace(/clio(\s+music)?/gi, ''); break;
     case 'acc':    cat = cat.replace(/acc(\s+tokyo\s+creativity\s+awards)?/gi, ''); break;
     case 'spikes': cat = cat.replace(/spikes(\s*asia)?/gi, ''); break;
+    case 'ars':    cat = cat.replace(/ars\s+electronica/gi, '').replace(/アルスエレクトロニカ/g, ''); break;
   }
 
   // Remove award levels (keep "Titanium" which is also a category name)
   cat = cat.replace(
-    /\b(grand\s+prix|grand\s+award|grand\s+clio|gold\s+lion|silver\s+lion|bronze\s+lion|gold|silver|bronze|shortlist|finalist|merit|wood|graphite|yellow|black|pencil)\b/gi,
+    /\b(grand\s+prix|grand\s+award|grand\s+clio|gold\s+lion|silver\s+lion|bronze\s+lion|gold|silver|bronze|shortlist|finalist|merit|wood|graphite|yellow|black|pencil|honorary\s+mention|golden\s+nica|award\s+of\s+distinction)\b/gi,
     '',
   );
   cat = cat.replace(/\blions\b/gi, '');
@@ -81,7 +89,14 @@ function parseCollection(
 // これにより1作品が複数部門で受賞していれば全部門ページに出る（多重受賞の取りこぼし防止）。
 function segmentBelongsToOrg(seg: string, orgKey: OrgKey): boolean {
   const s = seg.toLowerCase();
-  const hasAnyOrg = AWARD_ORGS.some(o => o.key === 'dad' ? s.includes('d&ad') : s.includes(o.key));
+  // 'ars'はkey('ars')の素朴な部分一致だと"STARTS Prize"等に誤爆するため、
+  // フル名称(ARS_ELECTRONICA_NAMES)で判定する特別扱い。他orgの挙動(例: accの
+  // includes('acc'))は変えない
+  const hasAnyOrg = AWARD_ORGS.some(o => {
+    if (o.key === 'dad') return s.includes('d&ad');
+    if (o.key === 'ars') return ARS_ELECTRONICA_NAMES.some(name => s.includes(name));
+    return s.includes(o.key);
+  });
   // org名を明示するセグメントは当該orgのみ。org名が無いセグメント（例 "Design Lions Gold"）は親awardのorgを継承。
   return matchesOrg(seg, orgKey) || !hasAnyOrg;
 }

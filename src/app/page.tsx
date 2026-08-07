@@ -26,6 +26,7 @@ export default function Home() {
                 { href: "/awards/clio",   label: "Clio"         },
                 { href: "/awards/acc",    label: "ACC"          },
                 { href: "/awards/spikes", label: "Spikes Asia"  },
+                { href: "/awards/ars",    label: "Ars Electronica" },
               ].map((item, i, arr) => (
                 <span key={item.href} className="flex items-center gap-x-2">
                   <Link
