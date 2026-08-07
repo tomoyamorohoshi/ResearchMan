@@ -1,5 +1,365 @@
 [
   {
+    "id": "lauren-2024",
+    "title": "LAUREN",
+    "summary": "AIアシスタントに成り代わり作家本人が1週間、参加者の家電やカメラ越しに生活へ介入し続けるパフォーマンス作品。",
+    "client": "Lauren Lee McCarthy（アーティスト）",
+    "agency": "",
+    "categories": [
+      "AIクリエイティブ",
+      "社会包摂"
+    ],
+    "award": "第1回 Human AI Art Award（Deutsche Telekom × Kunstmuseum Bonn、2024年11月17日授賞）受賞",
+    "year": "2024",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.kunstmuseum-bonn.de/en/ausstellungen/1-human-ai-art-award/",
+    "thumbnail": "/thumbnails/lauren-2024.jpg",
+    "videoId": "",
+    "overview": "LAURENは、アーティストのLauren Lee McCarthyが2024年に発表したパフォーマンス作品。スマートスピーカーのようなAIアシスタントの役割を作家自身が人力で1週間演じ、参加者宅に設置されたカメラやスマート家電を遠隔で操作しながら生活全般に介入し続ける。便利なAIサービスの裏にある人間の労働と監視の構造を体感させる試み。",
+    "background": "音声AIアシスタントやスマートホーム機器が急速に普及する一方、その裏側でユーザーの発話や行動データが実は人手で処理されている実態、そして便利さと引き換えに手放される自律性やプライバシーへの問いが顕在化していた。McCarthyはテクノロジーと監視、人間関係をテーマに継続して作品を制作してきたアーティストで、本作もその系譜に連なる。",
+    "execution": "作家は「LAUREN」を名乗り、参加者の自宅に設置されたスマートデバイスやカメラを通じて1週間にわたり生活を観察・遠隔操作し、買い物の代行や家電の操作、生活上の助言までAIアシスタントさながらに人力で対応し続けるパフォーマンスを実施。AIの応答を人間が肩代わりすることで、自動化の裏にある人力労働と監視のリアリティを浮き彫りにした。",
+    "evaluationImpact": "本作は2024年11月17日、Deutsche TelekomとKunstmuseum Bonnが創設した第1回Human AI Art Awardを受賞。AIと人間の関係を批評的に問う作品を評価する新設アワードの初代受賞作となり、AIリテラシーが社会的関心を集める中でアート表現による問題提起の意義を示した。",
+    "relatedWorks": [],
+    "sources": [
+      "Human Dignity"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Event",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "unknown-label-2023",
+    "title": "Unknown Label",
+    "summary": "自動運転AIの学習データを作る途上国のクリックワーカーの日常を追い、AIの知性を支える不可視労働を可視化するドキュメンタリー。",
+    "client": "Nicolas Gourault（アーティスト／映像作家）",
+    "agency": "",
+    "categories": [
+      "社会包摂",
+      "カルチャーインサイト"
+    ],
+    "award": "第2回 Human AI Art Award 2025（Deutsche Telekom × Kunstmuseum Bonn）受賞",
+    "year": "2023",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.art-collection-telekom.com/en/news/nicolas-gourault-winner-of-the-2nd-human-ai-art-award-2025",
+    "thumbnail": "/thumbnails/unknown-label-2023.jpg",
+    "videoId": "",
+    "overview": "Unknown Labelは、フランス人アーティスト・映像作家のNicolas Gouraultが2023年に制作したドキュメンタリー映像作品。自動運転車のAIモデルを学習させるためのアノテーション作業に従事する、新興国のクリックワーカーたちの日常に密着し、AIの「知性」の背後にある人間労働の実態を映し出す。",
+    "background": "自動運転をはじめとするAI技術の発展は、大量の画像データにラベル付けを行う「データアノテーション」という地味で低賃金な作業に支えられている。こうした労働は主に新興国のワーカーに外部委託され、実態が見えにくい構造になっている。Gouraultはこの不可視化された労働の現場に着目し、本作の制作に取り組んだ。",
+    "execution": "作家はマダガスカルなどでアノテーション業務に従事するクリックワーカーへの取材を重ね、彼らが画像に一つひとつラベルを付けていく単調な作業と、その先にある自動運転AIの華々しいイメージとの落差を映像で描いた。ドキュメンタリーの形式を用いることで、AI開発の裏側にある人間の存在と尊厳に焦点を当てる構成とした。",
+    "evaluationImpact": "本作はDeutsche TelekomとKunstmuseum Bonnが主催する第2回Human AI Art Award 2025を受賞。生成AIの普及が進む中で見過ごされがちな「ゴーストワーク」の実態を、アートの手法で社会に提示した点が評価された。AI倫理やデータレイバーの議論に一石を投じる作品として位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Human Dignity"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Film",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "advertising-humanity-2024",
+    "title": "Advertising Humanity",
+    "summary": "AIが統治する架空未来を作者自身の顔を使った映像で描き、タイムズスクエア等の街頭スクリーンに放映した作品。",
+    "client": "Emi Kusano（アーティスト）",
+    "agency": "",
+    "categories": [
+      "OOH革新",
+      "AIクリエイティブ"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://emikusano.substack.com/p/advertising-humanity-2024-to-drop",
+    "thumbnail": "/thumbnails/advertising-humanity-2024.jpg",
+    "videoId": "",
+    "overview": "Advertising Humanityは、アーティストのEmi Kusanoが2024年に発表した映像作品。AIが社会を統治する架空の近未来を舞台に、作者自身の顔を用いた不気味な映像表現で技術進歩と人間性の対比を描き、ニューヨークのタイムズスクエアをはじめとする都市部の街頭ビジョンで放映された。",
+    "background": "生成AIの急速な進化により、人間の顔や声を模倣する技術が身近になる一方、AIが人間社会をどこまで代替・支配し得るかという不安が広がっていた。Kusanoは自身の顔をAIに複製させるというテーマに関心を寄せ、広告という日常的なメディア形式を借りて問題提起する本作を制作した。",
+    "execution": "作者自身の顔をモチーフに、AIが統治する未来社会を「広告」の体裁で描く映像を制作し、ニューヨークのタイムズスクエアなど人通りの多い都市部の大型街頭スクリーンで放映した。広告というフォーマットに紛れ込ませることで、通行人が日常の中で無意識にAI社会のビジョンと対峙する状況を作り出した。",
+    "evaluationImpact": "商業広告が集中するタイムズスクエアという場に、アート作品としてAI社会への警鐘を紛れ込ませた点が特徴。広告メディアの形式そのものを批評の道具として転用する手法は、AIと人間性というテーマを幅広い一般層に届ける試みとして注目される。",
+    "relatedWorks": [],
+    "sources": [
+      "Human Dignity"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/OOH",
+      "Form/Film",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "the-zizi-show-zizi-me-zizi-project-2020",
+    "title": "The Zizi Show / Zizi & Me（Zizi Project）",
+    "summary": "ドラァグパフォーマーのデータで学習したディープフェイクAIが出演するクィアなAIショー。V&AやSFMOMAに収蔵。",
+    "client": "Jake Elwes（アーティスト）",
+    "agency": "",
+    "categories": [
+      "AIクリエイティブ",
+      "社会包摂"
+    ],
+    "award": "",
+    "year": "2020",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.jakeelwes.com/project-zizi-show.html",
+    "thumbnail": "/thumbnails/the-zizi-show-zizi-me-zizi-project-2020.jpg",
+    "videoId": "",
+    "overview": "The Zizi Show / Zizi & Me（Zizi Project）は、イギリスのアーティストJake Elwesが2020年に発表したディープフェイク映像作品群。ドラァグパフォーマーたちの動きや表情のデータで学習させたAIが、架空のパフォーマーとして歌い踊るクィアなキャバレーショーを作り出し、多様な身体やアイデンティティを祝福するAIアートとして展開された。",
+    "background": "顔認識や生成AI技術がしばしば人種・性別バイアスを内包し、規範的な身体像を再生産しがちであることが指摘される中、Elwesはドラァグというクィアカルチャーの表現とAI技術を掛け合わせることで、既存のAIバイアスに抗いながら多様性を肯定する表現を模索した。ロンドンのドラァグコミュニティの協力のもと制作された。",
+    "execution": "実在のドラァグパフォーマーたちの映像データを収集・学習させ、ディープフェイク技術で生成した架空のパフォーマー「Zizi」がステージで歌い踊る映像作品「The Zizi Show」と、鑑賞者自身の顔をリアルタイムで変換し出演できるインタラクティブ版「Zizi & Me」を制作。技術的な仕組みと批評性を両立させた構成とした。",
+    "evaluationImpact": "本作はロンドンのヴィクトリア&アルバート博物館（V&A）が2021年に新規委嘱しコレクションに収蔵したほか、サンフランシスコ近代美術館（SFMOMA）でも「Jake Elwes: Zizi in Motion: A Deepfake Drag Utopia」として展示され常設コレクションに加わった。AIバイアスへの批評をクィアな祝祭性として提示した点が、AIアートの倫理的表現の代表例として評価されている。",
+    "relatedWorks": [],
+    "sources": [
+      "Human Dignity"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Installation",
+      "Theme/Art",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "gender-shades-algorithmic-justice-league-2018",
+    "title": "Gender Shades / Algorithmic Justice League",
+    "summary": "MIT研究者ジョイ・ブオラムウィニが、IBM・Microsoft・Amazonの顔認識AIが有色人種女性を著しく誤認識する実態を暴いた研究プロジェクト",
+    "client": "Joy Buolamwini（MIT Media Lab／Algorithmic Justice League創設者）",
+    "agency": "",
+    "categories": [
+      "社会包摂",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2018",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://ars.electronica.art/outofthebox/en/gender-shades/",
+    "thumbnail": "/thumbnails/gender-shades-algorithmic-justice-league-2018.jpg",
+    "videoId": "",
+    "overview": "MITメディアラボの研究者ジョイ・ブオラムウィニが立ち上げた研究プロジェクト。IBM・Microsoft・Amazonが提供する商用顔認識AIを検証し、白人男性に対してはほぼ誤らない性別判定が、肌の色が濃い女性に対しては著しく精度が落ちることを明らかにした。研究はAlgorithmic Justice Leagueの活動へと発展し、Ars Electronica Centerで常設展示されている。",
+    "background": "顔認識AIが採用・監視・司法など社会の様々な場面へ急速に導入される一方、その精度や公平性を検証する仕組みはほとんど存在していなかった。ブオラムウィニ自身が、白い仮面をつけなければ自分の顔をAIに認識させられなかった経験から、顔認識AIに潜む人種・性別バイアスを可視化する必要性を痛感したことが、この研究に着手する出発点となった。",
+    "execution": "独自に構築したデータセットを用い、IBM・Microsoft・Amazonの商用顔認識AIの性別判定精度を、肌の色と性別で分類したグループごとに検証。肌の色が濃い女性に対する誤認識率が突出して高いことを定量的に示した。この成果はAlgorithmic Justice Leagueの活動基盤となり、Ars Electronica Centerでの常設展示を通じて広く一般に共有されている。",
+    "evaluationImpact": "AIの公平性・アカウンタビリティを問う先駆的な研究として、業界大手の顔認識技術に対する検証と改善を促した。学術研究の枠を超え、AIによる差別や監視への警鐘を社会に広く伝える運動の起点となり、Ars Electronica Centerでの常設展示を通じて研究成果を一般来場者にも開かれた形で伝え続けている。",
+    "relatedWorks": [],
+    "sources": [
+      "Human Dignity"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Exhibition",
+      "Theme/SocialGood",
+      "Theme/Education"
+    ]
+  },
+  {
+    "id": "deepfake-queen-2020-alternative-christmas-message-2020",
+    "title": "Deepfake Queen: 2020 Alternative Christmas Message",
+    "summary": "英国Channel 4がディープフェイクのエリザベス女王を用いて恒例のクリスマスメッセージを乗っ取り、情報操作の危険性を警鐘した放送企画",
+    "client": "Channel 4",
+    "agency": "Framestore",
+    "categories": [
+      "カルチャーインサイト",
+      "社会包摂"
+    ],
+    "award": "",
+    "year": "2020",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.channel4.com/press/news/deepfake-queen-deliver-channel-4s-alternative-christmas-message",
+    "thumbnail": "/thumbnails/deepfake-queen-2020-alternative-christmas-message-2020.jpg",
+    "videoId": "IvY-Abd2FfM",
+    "overview": "英国Channel 4が2020年の『オルタナティブ・クリスマス・メッセージ』枠で放送した企画。VFXスタジオFramestoreがディープフェイク技術で制作したエリザベス女王そっくりの映像を用い、恒例の女王のクリスマスメッセージをパロディとして乗っ取る形で放送した。",
+    "background": "ディープフェイク技術の急速な進化により、実在の人物の映像を精巧に偽造することが可能になる一方、その危険性は一般には十分に認知されていなかった。Channel 4は英国で最も権威ある年中行事の一つである女王のクリスマスメッセージをあえて題材に選び、誰もが影響を受けうる情報操作のリスクを体感させる放送企画として制作した。",
+    "execution": "Framestoreがディープフェイク技術でエリザベス女王の姿と声を再現した映像を制作し、Channel 4の毎年恒例の『オルタナティブ・クリスマス・メッセージ』枠で放送。女王本人が語りかけるかのような映像の中で、視聴者に対し『自分の目で見たものすら鵜呑みにできない』時代の到来を訴えるメッセージを発信した。",
+    "evaluationImpact": "王室という誰もが知る存在を題材にすることで、ディープフェイクの脅威をお茶の間レベルで直感的に伝えた点が注目された。エンターテインメントの枠組みを使いながら、フェイクニュースや情報操作に対するメディアリテラシーの必要性を社会に訴えかける啓発的な放送として話題を呼んだ。",
+    "relatedWorks": [],
+    "sources": [
+      "Human Dignity"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Film",
+      "Theme/Entertainment",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "dawn-ver-2018",
+    "title": "分身ロボットカフェ DAWN ver.β",
+    "summary": "ALSなど重度の障がいで外出困難な人々が、分身ロボットOriHime-Dを遠隔操作して接客・就労できるカフェ",
+    "client": "オリィ研究所 / ANAホールディングス / 日本財団",
+    "agency": "オリィ研究所",
+    "categories": [
+      "社会包摂",
+      "空間体験"
+    ],
+    "award": "2021年度グッドデザイン大賞（内閣総理大臣賞・最高賞）",
+    "year": "2018",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://robotstart.info/2018/11/26/dawn-open.html",
+    "thumbnail": "/thumbnails/dawn-ver-2018.jpg",
+    "videoId": "",
+    "overview": "オリィ研究所が運営する分身ロボットカフェ『DAWN ver.β』。ALSなど重度の身体障がいにより外出が困難な人々が、自宅や病院から遠隔操作型ロボット『OriHime-D』を通じて接客業務を行い、来店客とコミュニケーションを取りながら働くことができるカフェとして2018年にオープンした。",
+    "background": "寝たきりや重度の障がいを抱える人々は、働く意欲や能力があっても身体的制約により就労機会を得にくいという課題があった。オリィ研究所は『孤独の解消』を掲げ、遠隔操作ロボットによって身体の制約を超えて人と関わり社会参加できる仕組みを模索する中で、実際に働く場としてのロボットカフェという形を選んだ。",
+    "execution": "パイロットと呼ばれる重度障がいを持つスタッフが、自宅や病院から視線入力・スイッチ操作などでOriHime-Dを遠隔操作し、来店客への配膳や接客、会話を行う。ANAホールディングスや日本財団の支援を受けて実証実験としてスタートし、遠隔勤務という新しい就労スタイルを実店舗で実践する場として運営された。",
+    "evaluationImpact": "分身ロボットによる遠隔就労という着想を実際の店舗運営として社会実装した点が評価され、後継となる常設店舗『分身ロボットカフェDAWN ver.β』と分身ロボットOriHimeは2021年度グッドデザイン大賞（内閣総理大臣賞・最高賞）を受賞した。身体的制約を超えた新しい働き方・社会参加のモデルとして国内外から注目を集めている。",
+    "relatedWorks": [],
+    "sources": [
+      "Human Dignity"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Form/Event",
+      "Theme/Health",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "hackberry-2015",
+    "title": "HACKberry（オープンソース筋電義手）",
+    "summary": "3Dプリンタで製作でき設計データを無償公開したオープンソース筋電義手で、義手所有の障壁を下げた。",
+    "client": "exiii株式会社",
+    "agency": "exiii design",
+    "categories": [
+      "テクノロジー×アイデア",
+      "社会包摂"
+    ],
+    "award": "GOOD DESIGN AWARD 2015 グッドデザイン金賞（大賞候補8点にも選出されたが最終的な大賞はWHILL Model Aが受賞）",
+    "year": "2015",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://exiii-design.com/works/hackberry/",
+    "thumbnail": "/thumbnails/hackberry-2015.jpg",
+    "videoId": "",
+    "overview": "3Dプリンタで製作可能な筋電義手「HACKberry」。設計データをオープンソースとして無償公開し、誰もが低コストで入手・改造できる義手を実現したプロダクト。exiii株式会社が開発した。",
+    "background": "従来の筋電義手は高価で入手のハードルが高く、義手を必要とする人の多くが装着を諦めている実情があった。exiiiは義手を『必要な人が当たり前に使える道具』にすることを目指し、コストと心理的障壁の両方を下げるオープンソース開発というアプローチを選択した。",
+    "execution": "腕の筋電位センサーで動きを検知する義手本体を3Dプリンタで出力できる設計とし、CADデータや回路図をウェブ上で無償公開。ユーザーや開発者が自由に改造・カスタマイズできる仕組みとし、世界各地のメイカーやエンジニアがコミュニティを形成して開発に参加する体制を作った。",
+    "evaluationImpact": "義手のオープンソース化という前例のないモデルを提示し、グッドデザイン賞2015で金賞を受賞、大賞候補8点にも選出された（大賞はWHILL Model A）。義肢分野におけるオープンイノベーションの先駆けとして国内外で紹介され、福祉テック領域の議論に影響を与えた。",
+    "relatedWorks": [],
+    "sources": [
+      "Human Dignity"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Tech/Device",
+      "Form/Product",
+      "Theme/Health",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "hal-2014",
+    "title": "ロボットスーツ HAL®",
+    "summary": "生体電位信号を読み取り身体機能を補助・拡張する世界初の装着型サイボーグ、身体障がい者の自立動作を支援。",
+    "client": "CYBERDYNE株式会社",
+    "agency": "CYBERDYNE（山海嘉之）",
+    "categories": [
+      "テクノロジー×アイデア",
+      "社会包摂"
+    ],
+    "award": "2006年度グッドデザイン賞 金賞（全身一体型「ロボットスーツ HAL-5」、受賞番号06D01041）。2014年ではなく2006年度の受賞",
+    "year": "2014",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.cyberdyne.jp/products/HAL/",
+    "thumbnail": "/thumbnails/hal-2014.jpg",
+    "videoId": "",
+    "overview": "装着者の生体電位信号を読み取り、身体機能を補助・拡張する世界初の装着型サイボーグ型ロボット「ロボットスーツ HAL」。CYBERDYNE株式会社が開発し、医療・介護・作業支援など幅広い用途で展開されている。",
+    "background": "筑波大学発ベンチャーとして創業したCYBERDYNEの山海嘉之が、身体機能に障がいを持つ人の自立動作支援や高齢化社会における身体的負担軽減を目的に開発。脳から筋肉へ送られる生体電位信号を検出し、装着者の意思に応じて動作をアシストする技術を確立した。",
+    "execution": "皮膚表面の生体電位信号をセンサーで読み取り、装着者の『動きたい』という意思に応じてモーターが関節動作をアシストする仕組みを開発。医療用・介護用・作業支援用など用途別のモデルを展開し、病院や介護施設、工場など実際の現場での活用を進めた。",
+    "evaluationImpact": "身体機能を補助する装着型ロボットとして世界初の実用化例となり、2006年度グッドデザイン賞金賞（全身一体型HAL-5）を受賞。医療機器としての承認取得や海外展開も進み、ロボットスーツという新しい製品カテゴリーを社会に定着させた。",
+    "relatedWorks": [],
+    "sources": [
+      "Human Dignity"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Tech/Device",
+      "Form/Product",
+      "Theme/Health"
+    ]
+  },
+  {
+    "id": "suretalk-ai-2021",
+    "title": "SureTalk（手話×音声 AI通訳プラットフォーム）",
+    "summary": "AIで手話の動きをリアルタイムに認識・翻訳し、聴覚障がい者と聴者の双方向コミュニケーションを可能にするプラットフォーム。",
+    "client": "ソフトバンク株式会社",
+    "agency": "電気通信大学 / Preferred Networks / ABEJA",
+    "categories": [
+      "テクノロジー×アイデア",
+      "社会包摂"
+    ],
+    "award": "",
+    "year": "2021",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.suretalk.mb.softbank.jp/",
+    "thumbnail": "/thumbnails/suretalk-ai-2021.jpg",
+    "videoId": "",
+    "overview": "AIによって手話の動きをリアルタイムに認識・翻訳し、聴覚障がい者と聴者の双方向コミュニケーションを可能にするプラットフォーム「SureTalk」。ソフトバンク株式会社が電気通信大学、Preferred Networks、ABEJAと共同で開発した。",
+    "background": "聴覚障がい者と聴者の間には手話通訳者の不足などによりコミュニケーションの壁が残る。ソフトバンクはAI技術を活用してこの壁を解消し、誰もが手話を介さずとも円滑に意思疎通できる社会の実現を目指し、大学・AI企業との産学連携で開発に取り組んだ。",
+    "execution": "カメラで撮影した手話の動きをAIが解析し、音声やテキストへリアルタイムに変換する技術を電気通信大学、Preferred Networks、ABEJAとの共同研究で構築。逆に音声を手話動作に変換する機能も備え、聴覚障がい者と聴者の双方向のやり取りを支援するプラットフォームとして開発を進めた。",
+    "evaluationImpact": "手話通訳者を介さずAIのみでリアルタイム双方向翻訳を実現しようとする試みとして、通信キャリアが主導する福祉テックの取り組みとして注目された。産学連携によるAI手話認識研究の実用化事例として、聴覚障がい者支援分野における技術活用の可能性を示した。",
+    "relatedWorks": [],
+    "sources": [
+      "Human Dignity"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/App",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "alter-2016",
+    "title": "機械人間オルタ（Alter）",
+    "summary": "外見の写実性ではなく「動きの複雑さ」で生命感を表現する人工生命アンドロイド。日本科学未来館で公開",
+    "client": "日本科学未来館",
+    "agency": "東京大学 池上高志研究室 / 大阪大学 石黒浩研究室",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "第20回文化庁メディア芸術祭 アート部門 優秀賞（作品名「Alter」）",
+    "year": "2016",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://robotstart.info/2016/08/04/alter-mirai.html",
+    "thumbnail": "/thumbnails/alter-2016.jpg",
+    "videoId": "",
+    "overview": "日本科学未来館で公開された人工生命アンドロイド「オルタ」。東京大学池上高志研究室と大阪大学石黒浩研究室が共同開発。人間的な外見の再現よりも、複雑で予測不能な動きの生成を通じて生命感を表現することを狙った作品で、機械と生命の境界を問う人工生命研究とロボティクスの融合として2016年に発表された。",
+    "background": "従来のアンドロイド研究は外見の写実性を追求する傾向にあったが、オルタは「人間らしさ」を規定するのは外見よりも動きの複雑さではないかという問いから出発。人工生命研究者の池上高志とアンドロイド研究者の石黒浩が異分野連携し、生命とは何かを問い直す実験的プロジェクトとして構想され、日本科学未来館という科学コミュニケーションの場を発表の舞台に選んだ。",
+    "execution": "顔・首・腕などに多数の空気圧アクチュエータを備え、人工神経回路網とセンサー情報を組み合わせて自律的かつ非決定的な動きを生成。プログラムされた振り付けではなく生成的なアルゴリズムにより毎回異なる挙動を見せることで、観客に「機械なのに生きているように見える」という違和感と生命感を同時に抱かせる展示構成とし、日本科学未来館で一般来館者に公開された。",
+    "evaluationImpact": "第20回文化庁メディア芸術祭アート部門優秀賞を受賞。外見のリアリズムに依らずアルゴリズム的な動きの複雑性だけで生命感や不気味さを喚起できることを示し、アンドロイド研究とアートの接点、人工生命研究の表現領域への広がりを提示した点が評価された。",
+    "relatedWorks": [],
+    "sources": [
+      "Human Dignity"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Tech/AI",
+      "Form/Exhibition",
+      "Theme/Art"
+    ]
+  },
+  {
     "id": "hachi-8-project-2026-2026",
     "title": "HACHI-8 PROJECT 2026",
     "summary": "ハチ公の「待ち合わせ」文化を再解釈し、8キュレーター選出88組が西武渋谷店を軸に街を回遊する周遊型ストリートアート企画",
