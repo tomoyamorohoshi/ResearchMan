@@ -1,5 +1,170 @@
 [
   {
+    "id": "infinisplat",
+    "title": "InfiniSplat",
+    "org": "Zhejiang University (ZJU3DV) / UDeer.ai / Shenzhen University",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "1枚の写真から、視点を大きく動かしても破綻しない3Dガウシアンスプラット（立体シーン）を生成する研究。ZJU3DVら開発、SIGGRAPH Asia 2026採択。",
+    "point": "従来、1枚の写真から3D空間を作る技術は、視点を少しずらすだけならきれいでも、大きく横に回り込んだり反対側から覗き込んだりすると、壁や物の裏側にひび割れのような隙間や歪みが出やすいという弱点がありました。InfiniSplatは、写真の各ピクセルに機械的に点を貼り付けるのではなく、写っている物の「表面」がどこにあるかを先に推定してから、その表面に沿って粒子（ガウシアン）を配置し直す設計にすることで、大きく視点を動かしても破綻しにくい3D空間を1枚の画像だけから作れるようになりました。屋内の合成データだけで学習したのに、街中の実写のような屋外シーンにもそのまま通用する汎化性能も確認されています。広告用の商品写真1枚から回り込んで見られる3Dビジュアルを作ったり、旅先の1枚の風景写真からVR体験用の空間を素早く試作したりといった、「写真1枚→歩き回れる3D」のワークフローを短時間・低コストで実現する土台として使えそうです。",
+    "detail": "①仕組み：3Dガウシアンスプラットは、無数の半透明な綿毛のような粒（ガウシアン）を空間に配置し、見る角度によって陰影や色が変わって見えるようにする表現方法です。従来の1枚画像からの生成手法は写真の画素の位置にそのまま粒を置くやり方が主流でしたが、これだと画面の端や隠れた部分で粒がまばらになり、視点を動かすと隙間が見えてしまいます。InfiniSplatはまず深度（奥行き）情報から物体表面の傾きや形を推定して粒を置く場所を決め直し、そのうえで色や大きさなどの詳細をAIが予測する2段階方式を取っています。\n②従来との違い：これまでの1枚画像→3D技術は視点を少しだけ動かす用途が中心でしたが、InfiniSplatは「大きく視点を動かす」ことに焦点を当てて設計されており、屋内学習データのみで屋外の実写シーンにも通用する汎化力が検証済みです。\n③使うには：GitHubでコードと学習済みモデルがApache 2.0で公開され、Gradioのブラウザデモも用意されています。NVIDIA GPU搭載PCがあれば、Pythonでの環境構築だけで自分の写真を試せ、商用利用も基本的に可能なライセンスです。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "推論コード・学習済みチェックポイントはApache 2.0で公開。学習データの内訳等は別途要確認"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/zju3dv/InfiniSplat"
+      },
+      {
+        "kind": "project",
+        "url": "https://zju3dv.github.io/InfiniSplat/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2608.02437"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/infinisplat.jpg",
+    "relatedWorks": [
+      {
+        "title": "3D Gaussian Splatting for Real-Time Radiance Field Rendering",
+        "description": "複数視点画像から3Dガウシアンスプラットを生成する基礎手法",
+        "url": "https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/"
+      },
+      {
+        "title": "LGM: Large Multi-View Gaussian Model",
+        "description": "テキストや1枚画像から高解像度3Dガウシアンを生成するフィードフォワード手法",
+        "url": "https://github.com/3DTopia/LGM"
+      },
+      {
+        "title": "Stable Virtual Camera",
+        "description": "拡散モデルで新視点画像を生成し3D空間を再構成する手法",
+        "url": "https://stable-virtual-camera.github.io/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "querysplat",
+    "title": "QuerySplat",
+    "org": "InSpatio Research（北京航空航天大学・浙江大学等）",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "複数枚の写真から、輪郭のにじみが少ない高精細な3Dガウシアンスプラットを生成する研究。InSpatio Research開発、2026年8月公開。",
+    "point": "複数の写真から立体空間を素早く作る「フィードフォワード型」の3D生成AIは、処理は速いものの生成映像がぼやけたり、見る角度によって画質にムラが出たりする弱点を抱えていました。原因は、AIが物体の「形（ジオメトリ）」と「見た目の色や質感（アピアランス）」を一緒くたに予測してしまい、互いの情報が干渉していたことにあります。QuerySplatは、形の推定と質感の推定を別々の処理経路に分けることでこの干渉を解消し、細部までくっきりした3D映像を、カメラ位置が事前に分からない写真セットからでも作れるようにしました。代表的なベンチマークでは既存手法より最大2.3dB画質が向上したと報告されています。プロダクト撮影やロケハン写真を数枚読み込むだけで、広告・EC向けに「どの角度からもクリアに見える」3Dビジュアルを短時間で試作する用途に向いています。",
+    "detail": "①仕組み：3Dガウシアンスプラットは無数の半透明な粒を空間に配置して立体を表現する手法です。QuerySplatは、「どこにどんな形の物があるか」を事前学習済みの視覚幾何モデルで推定する担当と、「その部分がどんな色・質感に見えるか」を推定する担当を分業させ、最後に両方の結果を組み合わせて粒の集合を作ります。器（形）を作る職人と盛り付け（見た目）を仕上げる職人を分けるイメージで、それぞれが専念できる分、仕上がりがきれいになります。\n②従来との違い：これまでの「クエリ型」手法は高速な反面、形と見た目の情報が混ざって画質がぼやけがちでした。QuerySplatはこの分業設計でぼやけを抑えつつ、カメラ位置が未知の写真群でも姿勢推定なしで扱える柔軟性を両立しています。\n③使うには：GitHubで推論コードと学習済みモデル（Hugging Face配布）が公開されています。QuerySplat自体はApache 2.0ですが、内部で使う画像理解モデル（VGGT-Omega・DINOv3）は研究非商用ライセンスのため、商用利用時はそちらの扱いに注意が必要です。動作にはPython・PyTorchとNVIDIA GPU環境が必要です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "QuerySplat本体はApache 2.0だが、内部で使うVGGT-Omega/DINOv3の重みがFAIR Noncommercial Research Licenseのため商用利用時は要確認"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/inspatio/querysplat"
+      },
+      {
+        "kind": "project",
+        "url": "https://inspatio.github.io/querysplat/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2608.01186"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/querysplat.jpg",
+    "relatedWorks": [
+      {
+        "title": "VGGT: Visual Geometry Grounded Transformer",
+        "description": "画像から姿勢・深度など3D情報をフィードフォワードで推定する基盤モデル",
+        "url": "https://github.com/facebookresearch/vggt"
+      },
+      {
+        "title": "3D Gaussian Splatting for Real-Time Radiance Field Rendering",
+        "description": "複数視点画像から3Dガウシアンスプラットを生成する基礎手法",
+        "url": "https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/"
+      },
+      {
+        "title": "LGM: Large Multi-View Gaussian Model",
+        "description": "テキストや1枚画像から高解像度3Dガウシアンを生成するフィードフォワード手法",
+        "url": "https://github.com/3DTopia/LGM"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "lyra-2-0",
+    "title": "Lyra 2.0",
+    "org": "NVIDIA (Spatial Intelligence Lab / Toronto AI Lab)",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "1枚の画像や短い動画から、歩き回って探索できる3D空間をまるごと自動生成するNVIDIAの技術。指定したカメラの動きに沿って映像を生成し、それを3Dガウシアンやメッシュとして書き出す。",
+    "point": "Lyra 2.0は、たった1枚の写真から「歩き回って探索できる3D空間」を丸ごと生成できるNVIDIAの技術です。これまでの映像生成AIには、カメラを動かして同じ場所に戻ると景色が変わってしまう「空間の物忘れ」や、映像が長くなるほど画質や形が崩れていく「時間経過による劣化」という弱点がありました。Lyra 2.0は、過去に生成した映像を簡易的な地図つきの記憶として持たせておき、新しいカメラ位置に近い過去シーンを呼び出しながら続きを生成することで、この2つの弱点を解決しています。最終的に出力される3Dガウシアン/メッシュはゲームエンジンなどでそのまま扱えるため、広告や体験づくりでは、ロケハンなしで商品世界観のバーチャル空間を作ったり、1枚のコンセプトアートからVRやWebで探索できる没入型キャンペーン会場の土台を作る、といった使い方が考えられます。",
+    "detail": "仕組みをたとえるなら、旅行者が写真を撮りながら街を歩き、後で「さっき見た交差点」に戻ったとき記憶を頼りに正しい景色を思い出す作業に近いです。Lyra 2.0は生成した各フレームに簡易的な3D位置情報を持たせておき、新しいカメラ位置から見える範囲に近い過去フレームを探し出して、映像生成AI(動画のDiTモデル)にヒントとして渡します。これにより「さっき見た場所に戻ったら別の景色になっていた」という食い違いを防いでいます。\n\nNVIDIAは前身の「Lyra」でも単一動画からの3Dシーン再構成に取り組んでいましたが、2.0では探索できる範囲が大幅に広がり、ユーザーが指定した経路に沿って延々と新しい空間を生成し続けられるようになりました。Fei-Fei Li氏率いるWorld Labsの「Marble」など「1枚の画像から3D世界を作る」競合サービスが増えるなか、Lyra 2.0はコードと学習済みモデルがGitHub/Hugging Faceで実際に公開されている点が特徴です。\n\n動かすにはNVIDIA H100(80GB)クラス相当のGPUが実質必須で、80フレームの映像生成に約9分(高速モード使用時は約35秒)、3D化にさらに約1分かかります。コード自体はApache-2.0ライセンスで商用利用も可能ですが、学習済みモデルの重みはNVIDIAの研究利用限定ライセンスのため、商用利用には別途ライセンス契約が必要です。個人が手元のPCで気軽に試せる段階ではなく、現状はクラウドGPUを扱える開発者・研究チーム向けの技術と言えます。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "コード本体はApache-2.0で商用利用可。ただし学習済みモデルの重みはNVIDIAの研究利用限定ライセンス下にあり、商用利用には別途NVIDIAとのライセンス契約が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/nv-tlabs/lyra"
+      },
+      {
+        "kind": "project",
+        "url": "https://nv-tlabs.github.io/Project-Lyra/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2604.13036"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/lyra-2-0.jpg",
+    "relatedWorks": [
+      {
+        "title": "Lyra (v1)",
+        "description": "単一動画からの自己蒸留により3Dシーンを再構成する前身プロジェクト",
+        "url": "https://research.nvidia.com/labs/toronto-ai/lyra/"
+      },
+      {
+        "title": "World Labs World API / Marble",
+        "description": "Fei-Fei Li氏率いるWorld Labsによる、画像から探索可能な3D世界を生成するサービス",
+        "url": "https://www.worldlabs.ai/blog/announcing-the-world-api"
+      },
+      {
+        "title": "Matrix-3D",
+        "description": "単一画像やテキストから高画質パノラマ動画経由で大規模な探索可能3DシーンをつくるOSSツール",
+        "url": "https://github.com/SkyworkAI/Matrix-3D"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "comfyui-sonder-editor",
     "title": "ComfyUI-Sonder-Editor",
     "org": "SonderSaid（個人開発）",
