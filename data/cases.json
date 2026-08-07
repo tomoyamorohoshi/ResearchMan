@@ -1,5 +1,462 @@
 [
   {
+    "id": "the-guardian-redesign-berliner-guardian-egyptian-2005",
+    "title": "The Guardian Redesign（Berliner判移行）とGuardian Egyptian書体",
+    "summary": "英ガーディアン紙のブロードシートからベルリナー判への移行に合わせ、専用書体Guardian Egyptianを新規開発し紙面デザイン全体を刷新。",
+    "client": "The Guardian",
+    "agency": "Mark Porter（編集主導）/ Paul Barnes & Christian Schwartz（書体デザイン）",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "D&AD Awards 2006 Black Pencil（Magazine & Newspaper Design部門）",
+    "year": "2005",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.dandad.org/insights/awards/guardian-redesign-case-study-insights",
+    "thumbnail": "/thumbnails/the-guardian-redesign-berliner-guardian-egyptian-2005.jpg",
+    "videoId": "",
+    "overview": "英国の高級紙The Guardianが2005年、判型をブロードシートから欧州大陸型のベルリナー判へ移行した大規模リデザイン。編集デザインディレクターMark Porterの主導のもと、タイプデザイナーのPaul BarnesとChristian Schwartzが専用書体Guardian Egyptianを新たに開発し、見出しから本文まで紙面全体を単一の書体ファミリーで統一した。",
+    "background": "新聞業界では判型変更に伴うリデザインが度々行われてきたが、既存の書体をそのまま流用するケースが一般的だった。The Guardianはベルリナー判という英国紙として異例の判型への移行を機に、紙面の設計思想そのものを見直し、判型に最適化した専用書体をゼロから作ることで新聞デザインの水準を引き上げることを目指した。",
+    "execution": "Paul BarnesとChristian Schwartzは、見出し用の極太ウェイトから本文用の細いウェイトまで極めて幅広いウェイト展開を持つスラブセリフ体Guardian Egyptianを開発。この一つの書体ファミリーを見出し・本文・キャプション・データ表示など紙面のあらゆる要素に適用し、判型変更後の紙面デザイン全体の一貫性を担保した。",
+    "evaluationImpact": "D&AD Awards 2006のMagazine & Newspaper Design部門でBlack Pencilを受賞。新聞専用に開発された書体ファミリーが紙面デザイン全体を統一する手法は、後続する新聞リデザインにも影響を与えた事例として評価されている。",
+    "relatedWorks": [],
+    "sources": [
+      "Typography"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "cooper-hewitt-identity-cooper-hewitt-typeface-2014",
+    "title": "Cooper Hewitt Identity & Cooper Hewitt Typeface",
+    "summary": "館名から派生させた専用書体を新規開発し、館内サインから寄付者表示まで館内グラフィック全体を統一したCooper Hewittのリブランディング。",
+    "client": "Cooper Hewitt, Smithsonian Design Museum",
+    "agency": "Pentagram（Eddie Opara）/ Chester Jenkins（Village）",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2014",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.pentagram.com/work/cooper-hewitt-smithsonian-design-museum-1",
+    "thumbnail": "/thumbnails/cooper-hewitt-identity-cooper-hewitt-typeface-2014.jpg",
+    "videoId": "",
+    "overview": "スミソニアン協会傘下のCooper Hewitt, Smithsonian Design Museumのリニューアルに合わせ、Pentagram（Eddie Opara）とタイプファウンドリVillage（Chester Jenkins）が手掛けたアイデンティティ刷新。館名「Cooper Hewitt」から形を派生させた専用書体Cooper Hewitt Typefaceを新規開発し、館内グラフィック全体を単一の書体で統一した。",
+    "background": "米国唯一のデザイン専門の国立博物館であるCooper Hewittは、大規模改修を機に館全体のビジュアルアイデンティティを刷新する必要に迫られていた。既存の書体を採用するのではなく、館の名称そのものから固有の造形を導き出し、デザイン博物館というポジションにふさわしい独自性の高いアイデンティティを構築することが企図された。",
+    "execution": "館名の文字形状を出発点に、Chester Jenkinsが率いるVillageと共同でCooper Hewitt Typefaceを開発。この書体を外観サイン、展示ディレクトリ、キャプション、寄付者表示、印刷物などあらゆる館内グラフィック要素に適用し、統一されたタイポグラフィ体系を構築した。開発した書体は一般にも無償公開された。",
+    "evaluationImpact": "専用に開発した書体そのものを無償公開した点が、美術館のブランディングにおける異例の取り組みとして注目された。館名から一貫して造形が導かれるアイデンティティシステムは、デザイン博物館としての一貫性と独自性を体現する事例としてPentagramのポートフォリオでも紹介されている。",
+    "relatedWorks": [],
+    "sources": [
+      "Typography"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "rijksmuseum-identity-custom-typeface-family-ij-2013",
+    "title": "Rijksmuseum Identity & Custom Typeface Family（IJ合字の復活）",
+    "summary": "オランダ語特有の二重字「IJ」の古典的活字形状を現代フォントとして復活させ、サインから出版物まで一貫させたRijksmuseumのリブランディング。",
+    "client": "Rijksmuseum",
+    "agency": "Irma Boom Office（アートディレクション）/ Bold Monday（Paul van de Laan）",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2013",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://boldmonday.com/custom/rijksmuseum/",
+    "thumbnail": "/thumbnails/rijksmuseum-identity-custom-typeface-family-ij-2013.jpg",
+    "videoId": "",
+    "overview": "アムステルダムのRijksmuseumが大規模改修を経て2013年に再開館した際に導入されたリブランディング。Irma Boom Officeがアートディレクションを担い、タイプファウンドリBold Monday（Paul van de Laan）がオランダ語特有の二重字「IJ」を短く持ち上げて表記する古典的な活字書体の形を現代のフォント技術で復活させたカスタム書体ファミリーを開発した。",
+    "background": "オランダ語の「IJ」は歴史的に独自の合字として扱われてきたが、現代のデジタルフォントの多くはこの伝統的な字形を再現しておらず、Rijksmuseumが標榜する「オランダの歴史と文化を伝える」という館の性格にそぐわない状況があった。再開館にあたり、館名・国名双方に関わるこの文字の伝統的な形をタイポグラフィで蘇らせることが企図された。",
+    "execution": "Bold MondayのPaul van de Laanは、歴史的な活字資料に見られるIJの伝統的な字形を分析し、現代のOpenTypeフォント技術で再現できるカスタム書体ファミリーとして構築。この書体を館のロゴタイプ、サイン計画、出版物、広報物に一貫して適用し、館内外のあらゆるグラフィック表現をこの専用書体で統一した。",
+    "evaluationImpact": "歴史的な活字文化の細部であるIJ合字を現代のブランディングに蘇らせた点が、伝統と現代デザインを橋渡しする取り組みとしてタイプデザイン業界から注目された。国立美術館のアイデンティティが自国の言語・活字文化そのものを表現の核に据えた事例として紹介されている。",
+    "relatedWorks": [],
+    "sources": [
+      "Typography"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "braille-neue-2017",
+    "title": "Braille Neue（点字と可視文字を融合した書体）",
+    "summary": "既存の印刷物や案内表示にそのまま重ねられる、可視文字と点字を一体化した書体。視覚障害の有無を問わず読める公共空間の文字を提案した。",
+    "client": "Kosuke Takahashi（個人プロジェクト、whatever co.）",
+    "agency": "",
+    "categories": [
+      "メディア発明",
+      "社会包摂"
+    ],
+    "award": "WIRED Audi INNOVATION AWARD 2018（Awarded Innovator・Social Activity領域、20名の受賞者の一人）",
+    "year": "2017",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.designboom.com/design/kosuke-takahashi-braille-neue-03-26-2018/",
+    "thumbnail": "/thumbnails/braille-neue-2017.jpg",
+    "videoId": "",
+    "overview": "デザイナーのKosuke Takahashi（whatever co.）が開発した、英語・日本語の可視文字の上に点字ドットを重ねて併記できる書体「Braille Neue」。既存の印刷済みサインや案内表示にそのまま上書きできる形で設計されており、視覚障害の有無にかかわらず誰もが同じ表示から情報を読み取れる公共空間の文字のあり方を提案した。",
+    "background": "公共空間のサインや案内表示の多くは可視文字のみで構成され、点字併記は別途スペースや専用の設置工程を要するため普及が限定的だった。Takahashiは、視覚障害者と晴眼者が同じ一枚の表示を共有できないかという発想から、既存の文字デザインに点字ドットを重ねて一体化する書体の開発に着手した。",
+    "execution": "英語アルファベットと日本語（ひらがな・カタカナ）それぞれの字形の上に、点字の六点点字パターンをドットとして重ね合わせるルールを設計し、可視文字としても点字としても同時に成立する書体データを制作。既存の印刷済みサインや案内表示にオーバーレイの形でそのまま適用できる汎用性を持たせた。",
+    "evaluationImpact": "WIRED Audi INNOVATION AWARDの2018年度Social Activity領域でAwarded Innovator（20名の受賞者の一人）に選出。視覚障害者向けの特別対応としてではなく、誰もが同じ表示を読めるユニバーサルな文字体系という発想が、公共空間のサインデザインにおけるインクルーシブデザインの新しいアプローチとして注目を集めた。",
+    "relatedWorks": [],
+    "sources": [
+      "Typography"
+    ],
+    "tags": [
+      "Form/Print",
+      "Form/Product",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "sans-forgetica-2018",
+    "title": "Sans Forgetica（記憶定着のための書体）",
+    "summary": "文字の一部を意図的に欠落させ読解に軽い認知的負荷をかけることで、記憶定着率を高める世界初の学習用書体。",
+    "client": "RMIT University",
+    "agency": "RMIT Behavioural Business Lab × School of Design（Stephen Banham）",
+    "categories": [
+      "メディア発明"
+    ],
+    "award": "Good Design Award 2019 Best-in-Class（Communication Design部門／Branding and Identityカテゴリー）",
+    "year": "2018",
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://www.rmit.edu.au/news/media-releases-and-expert-comments/2019/jul/sans-forgetica-award",
+    "thumbnail": "/thumbnails/sans-forgetica-2018.jpg",
+    "videoId": "",
+    "overview": "RMIT大学のBehavioural Business LabとSchool of Design（デザイナー：Stephen Banham）が共同開発した学習用書体「Sans Forgetica」。文字の一部を意図的に欠落させ、脳が読解時にわずかな認知的努力を要する状態をつくることで、通常の書体よりも情報の記憶定着率を高める効果を狙った、世界初とされる学習支援のための書体。",
+    "background": "学習における記憶定着の研究では、情報処理に適度な負荷（望ましい困難）をかけることが長期記憶への定着を促すという知見が知られていた。RMIT大学の心理学者とデザイナーによる学際チームは、この理論を印刷教材の書体そのものに応用できないかという着想から、専用書体の開発プロジェクトを立ち上げた。",
+    "execution": "文字の一部の線を欠落させ、後傾させたバックスラント（逆傾斜）の書体を設計。読み手が欠けた輪郭を脳内で補完しながら読む過程で軽い認知的負荷が生じるよう字形を調整し、教材やノートへの印刷物に適用できる実用書体として一般公開・無償配布した。",
+    "evaluationImpact": "Good Design Award 2019のCommunication Design部門Branding and IdentityカテゴリーでBest-in-Classを受賞。認知心理学の理論をタイポグラフィ設計に落とし込み、学習効果という目的関数を持つ書体を実用レベルで実装した点が、書体デザインの新しい可能性として評価された。",
+    "relatedWorks": [],
+    "sources": [
+      "Typography"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/Education"
+    ]
+  },
+  {
+    "id": "climate-crisis-2021",
+    "title": "Climate Crisis（気候危機を可視化する可変フォント）",
+    "summary": "1979年から2050年までの北極海氷データに基づき文字が徐々に溶けていく可変フォントで、気候変動を紙面広告として体感させた。",
+    "client": "Helsingin Sanomat",
+    "agency": "Helsingin Sanomat / Daniel Coull, Eino Korkala",
+    "categories": [
+      "メディア発明",
+      "社会包摂"
+    ],
+    "award": "Eurobest 2021 Grand Prix（Design部門）",
+    "year": "2021",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://design.google/library/glacial-melt-font",
+    "thumbnail": "/thumbnails/climate-crisis-2021.jpg",
+    "videoId": "",
+    "overview": "フィンランドの新聞社Helsingin Sanomatが開発した可変フォント「Climate Crisis」。1979年から2050年までの北極海氷の減少データを字形の変化に反映させ、時間経過とともに文字がやせ細り溶けていくように見えるフォントを制作し、自社の紙面広告や編集コンテンツに実装した。",
+    "background": "気候変動に関する統計データは数値やグラフとして提示されることが多いが、実感を伴いにくいという課題があった。Helsingin SanomatはDaniel CoullとEino Korkalaを中心に、北極海氷の減少という科学データそのものを、読者が日常的に接する新聞の文字という媒体に直接埋め込んで体感させる手法を模索した。",
+    "execution": "1979年から2050年（予測含む）までの北極海氷面積の推移データをもとに、年ごとの氷の減少率を文字の線幅や輪郭の欠損量に変換する可変フォントを開発。西暦を入力すると対応する年の氷結量に応じて文字が溶けたように変形する仕組みを構築し、新聞紙面の広告および編集コンテンツで運用した。",
+    "evaluationImpact": "Eurobest 2021のDesign部門でグランプリを受賞。科学データを直接タイポグラフィのパラメータに変換し、読者が文字を読む行為そのものを通じて気候危機を体感させた点が、データビジュアライゼーションと広告表現を融合させた事例として評価された。",
+    "relatedWorks": [],
+    "sources": [
+      "Typography"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/Print",
+      "Theme/Sustainability"
+    ]
+  },
+  {
+    "id": "alphabet-gallery-poster-calendar-1989",
+    "title": "Alphabet Gallery Poster Calendar（軸測投影の立体アルファベット）",
+    "summary": "軸測投影を用い、手描きの数字・アルファベットを小さな建築物のように立体化した五十嵐威暢のタイポグラフィポスター。",
+    "client": "自主制作（MoMA向けカレンダーシリーズの一環）",
+    "agency": "Takenobu Igarashi",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "1989",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.sfmoma.org/artwork/2016.339.3/",
+    "thumbnail": "/thumbnails/alphabet-gallery-poster-calendar-1989.jpg",
+    "videoId": "",
+    "overview": "Takenobu Igarashi（五十嵐威暢）がMoMA向けカレンダーシリーズの一環として制作したポスター『Alphabet Gallery Poster Calendar』。3軸の等角投影（アクソノメトリック）技法を用い、手描きの数字・アルファベットを小さな建築物のように立体化。平面のポスター印刷でありながら彫刻的な奥行きを持つタイポグラフィを実現した。",
+    "background": "1980年代、五十嵐威暢は彫刻家・デザイナーとしての活動を横断し、文字を単なる記号ではなく三次元の造形物として捉え直す表現を模索していた。MoMA向けに継続して制作していたカレンダーシリーズは、その探求を発表する定期的な場となり、本作でも文字を建築的なボリュームとして描く手法を発展させた。",
+    "execution": "アイソメトリック（等角）投影法に基づき、3軸の座標軸に沿って数字やアルファベットの各面を手描きで構築。文字ごとに陰影やパースを描き分けることで、平面印刷でありながら立体物を見上げるような奥行き感を持つビジュアルに仕上げ、ポスターとカレンダーという印刷媒体に彫刻的な質感を持ち込んだ。",
+    "evaluationImpact": "受賞歴の記録はないが、本作はサンフランシスコ近代美術館（SFMOMA）の永久収蔵作品となっている。手描きの等角投影によって文字を建築的な立体物へ変換する手法は、五十嵐の代表的なタイポグラフィ表現の一つとされる。",
+    "relatedWorks": [
+      {
+        "title": "Alphabet Gallery Poster Calendar",
+        "description": "SFMOMAによる作品ページ・収蔵情報",
+        "url": "https://www.sfmoma.org/artwork/2016.339.3/"
+      }
+    ],
+    "sources": [
+      "Typography"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "spotify-wrapped-design-2023",
+    "title": "Spotify Wrapped Design（生成的タイポグラフィによる屋外広告）",
+    "summary": "個人開発の生成ツールを発展させ、7億人分のリスニングデータを都市ごとの文字組みに変換した屋外広告キャンペーン。",
+    "client": "Spotify",
+    "agency": "Spotify In-House（生成ツール原案：Kiel Mutschelknaus）",
+    "categories": [
+      "テクノロジー×アイデア",
+      "OOH革新"
+    ],
+    "award": "D&AD Awards 2024 Wood Pencil（Graphic Design部門）",
+    "year": "2023",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.dandad.org/work/d-ad-awards-archive/wrapped-design",
+    "thumbnail": "/thumbnails/spotify-wrapped-design-2023.jpg",
+    "videoId": "",
+    "overview": "Spotifyが年次キャンペーン『Wrapped』のために制作した生成的タイポグラフィのビジュアル。個人開発者Kiel Mutschelknausが手がけたジェネレーティブテキストツールを社内で独自アルゴリズムへと発展させ、7億人分のリスニングデータを都市ごとに異なる文字組みへ変換し、世界31市場の屋外広告に展開した。",
+    "background": "Spotify Wrappedはユーザー個人のリスニング傾向を振り返るキャンペーンとして定着していたが、都市単位の集合的なリスニングデータを大規模な屋外広告として表現する際、画一的なレイアウトでは各都市の音楽的個性を伝えきれないという課題があった。Spotifyは個人開発者による生成的テキストツールに着目し、これを大規模展開向けのアルゴリズムへ発展させる取り組みを企画した。",
+    "execution": "Kiel Mutschelknausが個人開発したジェネレーティブテキストツールを起点に、Spotify社内で独自の生成アルゴリズムを構築。世界7億人分のリスニングデータを解析し、都市ごとに異なる文字の形・配置・リズムを持つタイポグラフィを自動生成した上で、31市場のビルボードに展開する屋外広告として実装した。",
+    "evaluationImpact": "D&AD Awards 2024のGraphic Design部門でWood Pencilを受賞。個人開発のツールを企業規模のデータドリブンな屋外広告表現へと発展させた点、都市ごとに異なる生成タイポグラフィを大量展開した点が、ジェネレーティブデザインの実務応用例として評価された。",
+    "relatedWorks": [
+      {
+        "title": "Wrapped Design",
+        "description": "D&AD AwardsによるSpotify Wrapped Designの受賞記録ページ",
+        "url": "https://www.dandad.org/work/d-ad-awards-archive/wrapped-design"
+      }
+    ],
+    "sources": [
+      "Typography"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/Data",
+      "Form/OOH",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "case-yygnat-2020",
+    "title": "弘前れんが倉庫美術館 VI計画",
+    "summary": "シンボルマークを持たず、館名の文字の組み方自体をアイデンティティにした弘前れんが倉庫美術館のVI計画。",
+    "client": "弘前れんが倉庫美術館",
+    "agency": "服部一成",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "東京TDC賞2021 特別賞（Mark & Logotype, Corporate Stationery, Branding部門）",
+    "year": "2020",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://tokyotypedirectorsclub.org/award/2021_special_02/",
+    "thumbnail": "/thumbnails/case-yygnat-2020.jpg",
+    "videoId": "",
+    "overview": "青森・弘前れんが倉庫美術館のために服部一成が手がけたビジュアル・アイデンティティ計画。固定的なシンボルマークを作らず、館名の文字の組み方そのものをアイデンティティの核とし、日本語・英語表記・略称までが同一の書式原理のもとで伸縮・変化する仕組みを構築した。",
+    "background": "美術館のVIは通常シンボルマークを軸に設計されるが、弘前れんが倉庫美術館は建物のれんが造りの外観や地域性を踏まえ、装飾的なマークに頼らないアイデンティティのあり方が模索された。服部一成は、館名という文字情報そのものの組版ルールをデザインすることで、展覧会ごとに異なる媒体・言語表記にも柔軟に対応できる仕組みを企図した。",
+    "execution": "シンボルマークを設けず、館名（日本語・英語・略称）の文字の大きさ・間隔・改行位置などの組み方に一貫したルールを設計。ポスターや封筒、名刺などのステーショナリーにおいても同じ書式原理を適用し、媒体やサイズが変わっても文字組みの規則を通じて館のアイデンティティが認識できるようにした。",
+    "evaluationImpact": "東京TDC賞2021のMark & Logotype、Corporate Stationery、Branding各部門で特別賞を受賞。シンボルマークに頼らず文字組みのルールそのものをアイデンティティ化した発想が、グラフィックデザインにおけるVI表現の新しいあり方として評価された。",
+    "relatedWorks": [
+      {
+        "title": "弘前れんが倉庫美術館 VI計画",
+        "description": "東京TDC賞2021 特別賞の受賞記録ページ",
+        "url": "https://tokyotypedirectorsclub.org/award/2021_special_02/"
+      }
+    ],
+    "sources": [
+      "Typography"
+    ],
+    "tags": [
+      "Form/Print",
+      "Form/Exhibition",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "case-5k5lko-2021",
+    "title": "大阪中之島美術館 VI計画（中之島フォント）",
+    "summary": "建物のガラス窓の切り欠きを「N」に見立てたロゴと専用書体「中之島フォント」で構築した大阪中之島美術館のVI計画。",
+    "client": "大阪中之島美術館",
+    "agency": "direction Q（大西隆介）",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "日本タイポグラフィ年鑑2023 グランプリ",
+    "year": "2021",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.advertimes.com/20211112/article368347/",
+    "thumbnail": "/thumbnails/case-5k5lko-2021.jpg",
+    "videoId": "",
+    "overview": "大阪中之島美術館のためにdirection Q（大西隆介）が手がけたVI計画。建物のガラス窓の切り欠き形状を「N」に見立てたロゴマークと、館の様々な媒体で長期的に使い続けられる耐久性を備えた専用書体「中之島フォント」を新規開発し、館全体のアイデンティティを構築した。",
+    "background": "新設される大阪中之島美術館では、建築の特徴的なデザインと呼応しながら、長期にわたり様々な展示・媒体で使い続けられる強固なビジュアル・アイデンティティが求められていた。direction Qは既存書体の流用ではなく、館のロゴと親和性を持つ専用書体を新規に開発することで、館名表記から案内サインまで一貫した文字表現を実現する方針を取った。",
+    "execution": "建物のガラス窓に設けられた切り欠き形状を「N」の字形としてロゴマークに転用し、そこから着想を得た専用書体「中之島フォント」を新規デザイン。ロゴタイプだけでなく本文用途にも耐えるファミリーとして書体を設計し、館名表記からサイン、印刷物まで一貫したタイポグラフィで運用できる仕組みを構築した。",
+    "evaluationImpact": "日本タイポグラフィ年鑑2023でグランプリを受賞。建築のディテールをロゴの造形原理に落とし込み、さらに専用書体の新規開発にまで発展させた点が、美術館VIにおけるタイポグラフィ設計の到達点として評価された。",
+    "relatedWorks": [
+      {
+        "title": "大阪中之島美術館のロゴマークとオリジナル書体「中之島フォント」",
+        "description": "direction Qによる大阪中之島美術館VI計画を紹介するAdverTimesの記事",
+        "url": "https://www.advertimes.com/20211112/article368347/"
+      }
+    ],
+    "sources": [
+      "Typography"
+    ],
+    "tags": [
+      "Form/Print",
+      "Form/Exhibition",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "case-nv2z9b-2015",
+    "title": "資生堂書体 立体化ウインドーディスプレー",
+    "summary": "約100年続く手書き書体「資生堂書体」の一文字を金属素材で立体造形化し、角度によって文字にも彫刻にも見える銀座のウインドーディスプレー。",
+    "client": "資生堂",
+    "agency": "澁谷克彦（資生堂 エグゼクティブクリエイティブディレクター）",
+    "categories": [
+      "OOH革新"
+    ],
+    "award": "",
+    "year": "2015",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000274.000005794.html",
+    "thumbnail": "/thumbnails/case-nv2z9b-2015.jpg",
+    "videoId": "",
+    "overview": "資生堂が銀座の店頭ウインドーで展開したディスプレー施策。約100年にわたり受け継がれてきた手書き書体「資生堂書体」のうち「超越」の文字を金属素材で立体造形化し、正面から見ると文字、角度を変えると彫刻として立ち上がる造形にした。制作は資生堂エグゼクティブクリエイティブディレクターの澁谷克彦が手掛けた。",
+    "background": "資生堂書体は約100年にわたり社内で受け継がれてきた手書き文字の伝統だが、平面上の書体・ロゴとして使われることが中心で、立体物として来街者の目に触れる機会は限られていた。銀座の店頭という象徴的な立地で、この書体の造形的な魅力そのものを空間的に体感させる表現が企図された。",
+    "execution": "資生堂書体の「超越」の一文字を金属素材で立体造形化し、銀座の店頭ウインドーに設置。正面から見ると平面の文字として読めるが、見る角度を変えると文字の輪郭が彫刻的な立体形状として浮かび上がる、視点の移動によって表情が変化するディスプレーとして構成した。",
+    "evaluationImpact": "手書き書体という資生堂の伝統資産を、平面のロゴ表現にとどめず立体造形として街頭に展開した点が特徴。書体を文字情報としてだけでなく彫刻的なビジュアル体験として再構築し、店頭ウインドーというOOH接点の表現可能性を広げた事例と言える。",
+    "relatedWorks": [],
+    "sources": [
+      "Typography"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Form/Installation",
+      "Theme/Art",
+      "Theme/Retail"
+    ]
+  },
+  {
+    "id": "case-13n70fi-2020",
+    "title": "アーティゾン美術館 サイン計画",
+    "summary": "「Slit Light」をコンセプトに細い光のラインを館内の異素材の壁面へ一貫したルールで走らせ、来館者を導くアーティゾン美術館のサイン計画。",
+    "client": "アーティゾン美術館（石橋財団）",
+    "agency": "廣村デザイン事務所（廣村正彰）",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "第54回日本サインデザイン賞 金賞",
+    "year": "2020",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.artizon.museum/news/20201016",
+    "thumbnail": "/thumbnails/case-13n70fi-2020.jpg",
+    "videoId": "",
+    "overview": "東京・京橋にリニューアル開館したアーティゾン美術館（石橋財団）のサイン計画。廣村デザイン事務所（廣村正彰）が手掛け、「Slit Light」をコンセプトに、細い光のラインと文字情報を館内の異なる素材の壁面へ一貫したルールで配置し、来館者を展示空間へと導くサインシステムを構築した。",
+    "background": "美術館のリニューアルにあたり、館内は石・木・金属など複数の異素材で構成された壁面が混在する空間となり、それぞれの壁面ごとにサインの見え方や視認性が変わってしまう課題があった。廣村デザイン事務所は、素材の違いを越えて館内全体に統一された案内体験をもたらすサインシステムの構築を企図した。",
+    "execution": "「Slit Light」というコンセプトのもと、壁面に細いスリット状の光のラインを走らせ、そのラインに沿って館名・フロア案内・展示室名などの文字情報を配置するルールを策定。石・木・金属といった異なる素材の壁面であっても同一のルールでサインを展開することで、館内全体を貫く一貫した案内体系を構築した。",
+    "evaluationImpact": "第54回日本サインデザイン賞で金賞を受賞。異素材が混在する建築空間に対し、光のラインという単一の視覚言語で統一的な案内システムを成立させた点が、美術館という文化施設におけるサイン計画の高い完成度として評価された。",
+    "relatedWorks": [],
+    "sources": [
+      "Typography"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Theme/Art",
+      "Theme/Education"
+    ]
+  },
+  {
+    "id": "toypography-2006",
+    "title": "TOYPOGRAPHY",
+    "summary": "同じパーツの組み替えで欧文とかな漢字の両方を組み立てられる、文字と積み木を融合させたコクヨの立体レタリング玩具。",
+    "client": "コクヨ",
+    "agency": "大日本タイポ組合",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2006",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://dainippon.type.org/toypography/designtide2006.html",
+    "thumbnail": "/thumbnails/toypography-2006.jpg",
+    "videoId": "",
+    "overview": "文具メーカーのコクヨのために、大日本タイポ組合が手掛けた立体レタリング玩具「TOYPOGRAPHY」。積み木のようなパーツを組み替えることで、欧文アルファベットとひらがな・漢字の両方の文字を作ることができる、文字と積み木を融合させたプロダクト。2006年のデザインタイドで発表された。",
+    "background": "アルファベットとかな漢字という文字体系の異なる2つの言語を同一の玩具で表現する試みは一般的ではなく、文字を学ぶ玩具の多くは言語ごとに別個の形状を用いるのが通例だった。大日本タイポ組合は、共通のパーツ構造から複数の文字体系を組み立てられる仕組みを模索し、文字そのものの構造的な面白さを遊びとして提示することを企図した。",
+    "execution": "同一形状のパーツを複数用意し、組み替え方によって欧文アルファベットの字形とひらがな・漢字の字形の両方を構成できるよう設計。積み木遊びの延長として文字を組み立てる体験を通じ、文字の骨格や構造そのものに触れられるプロダクトとして構成した。",
+    "evaluationImpact": "一つのパーツセットで複数の文字体系を横断的に表現できる点が特徴。文字をグラフィックとしてではなく組み立て可能な立体構造として捉え直し、タイポグラフィを遊びの対象へと転換した事例として位置付けられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Typography"
+    ],
+    "tags": [
+      "Form/Product",
+      "Theme/Education"
+    ]
+  },
+  {
+    "id": "graphic-2023",
+    "title": "企画展「もじ イメージ Graphic 展」",
+    "summary": "漢字・ひらがな・カタカナ・欧文が併存する日本語の書字体系が生むグラフィックデザインの可能性を、1990年代以降の作品群で検証した21_21 DESIGN SIGHTの企画展。",
+    "client": "21_21 DESIGN SIGHT",
+    "agency": "室賀清徳・後藤哲也・加藤賢策",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2023",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.2121designsight.jp/program/graphic/",
+    "thumbnail": "/thumbnails/graphic-2023.jpg",
+    "videoId": "",
+    "overview": "21_21 DESIGN SIGHTで開催された企画展「もじ イメージ Graphic 展」。室賀清徳・後藤哲也・加藤賢策の企画のもと、漢字・ひらがな・カタカナ・欧文という複数の文字体系が併存する日本語の書字体系が生み出すグラフィックデザインの可能性を、1990年代以降の作品群を通じて検証した。",
+    "background": "日本語は漢字・ひらがな・カタカナ・欧文という起源の異なる複数の文字体系を、一つの文章の中で混在させて使用する世界的にも特殊な書字体系を持つ。この特性が日本のグラフィックデザインにどのような表現の可能性をもたらしてきたかを、あらためて作品群を通じて検証する試みとして企画された。",
+    "execution": "1990年代以降に制作されたグラフィックデザイン作品を中心に収集・展示し、漢字・ひらがな・カタカナ・欧文が一画面の中で組み合わされることで生まれるレイアウトや視覚表現のバリエーションを検証。室賀清徳・後藤哲也・加藤賢策による企画・構成のもと、文字の複合性そのものをテーマとした展覧会として構成した。",
+    "evaluationImpact": "日本語特有の多重な書字体系を、単なる言語的特徴としてではなくグラフィックデザインの表現資源として捉え直した点が特徴。1990年代以降の作品群を横断的に検証することで、日本語という条件がデザインの創造性にどう作用してきたかを提示する展覧会として位置付けられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Typography"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Form/Print",
+      "Theme/Art"
+    ]
+  },
+  {
     "id": "martin-obenaus-for-mousey-wine-6-000-unique-generative-label",
     "title": "Martin Obenaus for Mousey Wine – 6,000 Unique Generative Labels",
     "summary": "畑の昆虫ホテルの構造にヒントを得たアルゴリズムで、6,000本のワインボトル全てに一点物の幾何学模様ラベルを生成。",
