@@ -39,6 +39,19 @@ import { isUrlAlive } from "./verify-video.mjs";
 import { dueVerification, readIncidentsSafe, shouldRunToday, readVerifyStateSafe, writeVerifyState } from "./lib/verify-schedule.mjs";
 import { jstDateString } from "./lib/jst-date.mjs";
 import { runDeepVerification } from "./lib/studio-verify.mjs";
+import {
+  AUDIT_SCRIPTS,
+  findFirstAuditFailure,
+  staleDaysSince,
+  unpushedReasonKey,
+  shouldNotifyUnpushed,
+  readUnpushedStateSafe,
+  writeUnpushedState,
+  buildUnpushedAuditPassReport,
+  buildUnpushedAuditFailReport,
+  appendIncidentSafe,
+} from "./lib/unpushed-commits.mjs";
+import { pushOnce } from "./lib/push-once.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
@@ -54,6 +67,7 @@ const QUARANTINE_MAX_PER_RUN = 5;
 const NOT_QUARANTINED_KINDS = ["videoId-mismatch", "thumbnail-dup"];
 const INCIDENTS_PATH = path.join(ROOT, "logs", "incidents.json");
 const VERIFY_STATE_PATH = path.join(ROOT, "logs", "verify-state.json");
+const UNPUSHED_STATE_PATH = path.join(ROOT, "logs", "unpushed-notify-state.json");
 const STUDIO_JOBS_URL = "http://127.0.0.1:5178/api/jobs";
 const STUDIO_WEBHOOK_URL = "https://laptop-95255niv.tail5f64f5.ts.net/line-webhook";
 const STUDIO_TASK_NAMES = ["ResearchMan-Studio", "ResearchMan-studiokeeper"];
@@ -102,9 +116,14 @@ function clearBrokenFlag() {
   } catch {}
 }
 
+// 最新のorigin/mainを見るためfetchしてからrev-parseする。fetch自体が失敗した場合
+// （ネットワーク/認証断）は、rev-parseがローカルにキャッシュされた古いorigin/main参照を
+// 見て「たまたま成功」してしまう可能性があるため、null（=検知不能）を返す。
+// 呼び出し側（checkUnpushedCommits）はfetch失敗時にorigin/main..mainの比較自体を
+// 信用できないため、監査・pushを行わず早期returnすること。
 function getLocalOriginHead() {
-  // 最新のorigin/mainを見るためfetchしてからrev-parseする（読み取り専用・非致命的）
-  git(["fetch", "origin", "main"], { timeout: 30000 });
+  const fetchRun = git(["fetch", "origin", "main"], { timeout: 30000 });
+  if (fetchRun.status !== 0) return null;
   try {
     const r = git(["rev-parse", "origin/main"]);
     return r.status === 0 ? r.stdout.trim() : null;
@@ -716,6 +735,105 @@ async function checkStudioVerifySchedule(report) {
 }
 
 // ─────────────────────────────────────────────────────────────
+// 6. 未pushコミットの滞留検知（2026-07-31〜08-08 8日間pushブロック事故の再発防止）
+// ─────────────────────────────────────────────────────────────
+// ジョブは毎回commitまでは成功するが、.git/hooks/pre-push の4監査
+// （audit-cannes / audit-thumbnails / audit-tech / check-idea-layouts-freshness）の
+// いずれかが壊れるとpushだけが延々失敗し続け、既存watchdog（サイトの200応答のみ確認）は
+// 「古い内容配信中」を正常と誤判定して気づけなかった。ここでは未pushコミットの存在
+// そのものを検知し、原因（4監査のどれが何故落ちたか）を特定する:
+//   - 4監査すべて通過 → push詰まりの可能性が高いためpushを1回だけ再試行する
+//   - いずれか失敗 → pushは試みず、logs/incidents.jsonに記録し、対処ヒント付きで通知する
+// 同一失敗理由の通知はlogs/unpushed-notify-state.jsonで1日1回に抑制する
+// （unpushedReasonKey/shouldNotifyUnpushed、理由が変わるか日付が変われば再通知可）。
+async function checkUnpushedCommits(report) {
+  // fetch自体が目的（origin/mainを最新化してからrev-listで比較するため）。
+  // fetch失敗時（null）はローカルにキャッシュされた古いorigin/main参照での比較が
+  // 信用できない（実際は未pushではないのに検知漏れ、または逆に虚偽の復旧通知に
+  // つながりうる）ため、監査・pushを行わず検知不能として早期returnする。
+  const originHead = getLocalOriginHead();
+  if (originHead === null) {
+    log("[unpushed] origin/mainのfetchに失敗 → 検知不能のため今回はスキップします");
+    return;
+  }
+
+  const countRun = git(["rev-list", "--count", "origin/main..main"]);
+  if (countRun.status !== 0) {
+    log(`[unpushed] origin/main..mainのカウント取得に失敗（続行断念）: ${(countRun.stderr || "").trim()}`);
+    return;
+  }
+  const unpushedCount = Number.parseInt(countRun.stdout.trim(), 10);
+  if (!Number.isFinite(unpushedCount) || unpushedCount <= 0) return; // 0件なら何もしない
+
+  log(`[unpushed] 未pushコミット${unpushedCount}件を検知 → 4監査を順に実行します`);
+
+  const oldestRun = git(["log", "origin/main..main", "--reverse", "--format=%cI", "-1"]);
+  const oldestCommitAt = oldestRun.status === 0 ? oldestRun.stdout.trim() : null;
+  const staleDays = staleDaysSince(oldestCommitAt);
+
+  const auditResults = [];
+  for (const script of AUDIT_SCRIPTS) {
+    const run = spawnSync("node", [`scripts/${script}`], {
+      cwd: ROOT,
+      encoding: "utf-8",
+      timeout: 10 * 60 * 1000,
+      maxBuffer: 1024 * 1024 * 10,
+    });
+    auditResults.push({
+      script,
+      status: run.status,
+      signal: run.signal ?? null,
+      error: run.error ? String(run.error.message || run.error) : null,
+      stdout: run.stdout,
+      stderr: run.stderr,
+    });
+    if (run.status !== 0) break; // pre-pushと同じく最初の失敗で以降は実行しない
+  }
+  const audit = findFirstAuditFailure(auditResults);
+
+  let pushResult = null;
+  if (audit.allPassed) {
+    log("[unpushed] 4監査すべて通過 → pushを1回だけ再試行します");
+    pushResult = pushOnce(ROOT);
+  } else {
+    log(`[unpushed] 監査失敗を検知: ${audit.failedScript}`);
+  }
+
+  const reasonKey = unpushedReasonKey({ allPassed: audit.allPassed, failedScript: audit.failedScript, pushOk: pushResult?.ok });
+  const today = jstDateString();
+  const state = readUnpushedStateSafe(UNPUSHED_STATE_PATH);
+
+  if (!shouldNotifyUnpushed(state, reasonKey, today)) {
+    log("[unpushed] 同一理由で本日通知済み → 通知スキップ（重複抑制。incidents.jsonへの記録もスキップ）");
+    return;
+  }
+
+  // incidents.jsonへの記録も通知（shouldNotifyUnpushed）と同じ重複抑制の枠組みに乗せる。
+  // 監査失敗が続く限りwatchdog起動（1日2回）ごとに1件ずつ積まれ続けるのを防ぐ。
+  if (!audit.allPassed) {
+    appendIncidentSafe(INCIDENTS_PATH, {
+      at: new Date().toISOString(),
+      kind: "unpushed-commits",
+      recovered: false,
+      detail: `未pushコミット${unpushedCount}件（最古: ${oldestCommitAt || "不明"}${staleDays != null ? `、${staleDays}日滞留` : ""}）。監査失敗: ${audit.failedScript}。抜粋: ${audit.excerpt || "(取得不可)"}。対処: node scripts/${audit.failedScript} をローカルで実行すれば再現します。`,
+    });
+  }
+
+  const text = audit.allPassed
+    ? buildUnpushedAuditPassReport({ unpushedCount, oldestCommitAt, pushResult })
+    : buildUnpushedAuditFailReport({
+        unpushedCount,
+        oldestCommitAt,
+        staleDays,
+        failedScript: audit.failedScript,
+        excerpt: audit.excerpt,
+        timeoutSuspected: audit.timeoutSuspected,
+      });
+  report.push(text);
+  writeUnpushedState(UNPUSHED_STATE_PATH, { lastReason: reasonKey, lastNotifiedYmd: today });
+}
+
+// ─────────────────────────────────────────────────────────────
 // main
 // ─────────────────────────────────────────────────────────────
 async function main() {
@@ -728,6 +846,7 @@ async function main() {
   await safeCheck("thumbnails", () => checkThumbnails(report));
   await safeCheck("collection-health", () => checkCollectionHealth(report));
   await safeCheck("studio-verify-schedule", () => checkStudioVerifySchedule(report));
+  await safeCheck("unpushed-commits", () => checkUnpushedCommits(report));
 
   let reportText = null;
   if (report.length) {
