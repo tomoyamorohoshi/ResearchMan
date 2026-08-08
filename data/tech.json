@@ -1,5 +1,156 @@
 [
   {
+    "id": "magi-2-preview",
+    "title": "MAGI-2-preview",
+    "org": "Sand.ai (SandAI-org)",
+    "type": "Research",
+    "domains": [
+      "GenVideo",
+      "Audio/Music"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "音声と映像を同じモデルで同時に生成する、Sand.aiのオープンソース大規模動画生成モデルのプレビュー版。",
+    "point": "MAGI-2-previewは、テキストや1枚の静止画から10秒間の動画を作りながら、その動画にぴったり合った音（声・効果音・環境音）まで同時に生成できるオープンソースのAIモデルです。動画と音声を別々のツールで作って後から合わせる、という従来の面倒な工程が要らなくなるのが最大の特徴です。モデル全体は1140億パラメータという巨大な規模ですが、実際の計算に使うのは一部（60億パラメータ）だけという『必要な部分だけ動かす』設計（MoE＝専門家混合方式）で、無駄な計算を省いています。広告制作の現場では、商品カットの動画と、それに合ったナレーションや環境音を一括生成し、絵コンテからラフな試作動画をスピーディーに作る、といった使い方が考えられます。まだ『プレビュー』段階の研究公開なので、すぐに製品品質というよりは、次に来る動画生成の方向性を先取りして試せる技術として押さえておく価値があります。",
+    "detail": "MAGI-2は、動画・音声・テキストをすべて同じ『トークン』という単位の列として扱い、ひとつのAIモデルの中で一緒に処理します。生成は2段階方式で、まず低い解像度でざっくりした動画と音を100ステップかけて作り（preview段階）、そのあと画質を1080pまで一気に引き上げる仕上げ処理をわずか5ステップで行います（refiner段階）。ラフスケッチを描いてから清書する、二段構えの作り方に近いイメージです。\n\nこれまでの動画生成AIの多くは、映像だけを作るモデルと音声（音楽・効果音・声）を作るモデルが別々で、あとから人力やソフトで同期を合わせる必要がありました。MAGI-2は最初から映像と音声を同じモデルの中で一緒に作るため、口の動きと声、足音と歩くタイミングなどが自然にずれにくくなります。\n\n重みとコードはApache 2.0ライセンスで無料公開されており、GitHub（SandAI-org/MAGI-2-preview）から入手できます。ただし実行にはNVIDIAの最新GPU（Hopper世代）を8枚、80GB級のVRAMを想定した本格的なサーバー環境が前提で、モデルデータだけで約307GBあります。個人のPCでは動かせず、クラウドGPUを借りるか、Sand.ai社が提供するAPI（platform.sand.ai）経由で使うのが現実的です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "重み・コードともにApache 2.0で商用利用可。中間研究リリースと明記されている"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/SandAI-org/MAGI-2-preview"
+      },
+      {
+        "kind": "post",
+        "url": "https://sand.ai/blog/magi-2-preview"
+      },
+      {
+        "kind": "project",
+        "url": "https://huggingface.co/sand-ai/MAGI-2-preview"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/magi-2-preview.jpg",
+    "relatedWorks": [
+      {
+        "title": "MAGI-1",
+        "description": "同社の前世代モデル。自己回帰方式で理論上無限長の動画生成が可能",
+        "url": "https://github.com/SandAI-org/MAGI-1"
+      },
+      {
+        "title": "MiniMax H3 (Hailuo 3.0)",
+        "description": "同時期に公開された競合のオープンウェイト音声付き動画生成モデル",
+        "url": "https://huggingface.co/MiniMaxAI/MiniMax-H3"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "comfyui-spectrum-minimax-h3",
+    "title": "ComfyUI-Spectrum-MiniMax-H3",
+    "org": "xmarre（個人開発者）",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "MiniMax H3の動画生成を、画質をほぼ落とさず約3割速くするComfyUI用の追加ノード。",
+    "point": "ComfyUI-Spectrum-MiniMax-H3は、話題の動画生成AI『MiniMax H3』をComfyUI（画像・動画生成AIを組み合わせて使う定番ツール）上で動かすとき、生成速度を約30%速くする拡張機能（ノード）です。公開からわずか数日で350以上のスター（GitHubでの『いいね』）を集めるなど、コミュニティで急速に注目されています。動画生成AIは1本作るのに数十秒〜数分かかることも多く、広告のバリエーション出しやクライアントへの試作提示ではこの『待ち時間』が地味にボトルネックになります。このツールを使えば、同じ品質のプレビューをより短時間で量産でき、A/Bテスト用の動画パターンを何本も試すような制作フローと相性が良さそうです。無料でオープンソース、ComfyUIに慣れたクリエイターならすぐに追加導入できる手軽さも魅力です。",
+    "detail": "動画生成AIは、ノイズだらけの映像を何十ステップもかけて少しずつクリアにしていく『拡散モデル』という方式で動きます。このツールは、AIの内部で起きる計算の変化パターンを数式（チェビシェフ多項式による回帰）で予測し、『この先の数ステップはだいたいこうなるはず』と見積もることで、本来必要な重い計算の一部を丸ごと省略します。天気予報が過去のデータから未来を予測するのと似た発想です。\n\n動画生成を速くする手法には、専用モデルへの学習し直しが必要なものも多くありますが、このツールはComfyUIの標準MiniMax H3ノードに追加するだけで動き、モデルの再学習は不要です。追加のPythonライブラリも要らず、導入のハードルが低いのが特徴です。ただし高速で動くものや軌跡が複雑なカットでは、細部の画質がわずかに落ちる場合があると開発者自身が注意書きしています。\n\nComfyUI本体がMiniMax H3に対応したバージョン（2026年8月3日以降のビルド）である必要があり、GitHubからリポジトリをcustom_nodesフォルダにクローンするだけで導入できます。VRAMは数GB程度の追加消費で済み、対応GPUはNVIDIAだけでなくAMD（ROCm）でも動作確認済みです。",
+    "license": {
+      "spdx": "GPL-3.0-or-later",
+      "commercial": "conditional",
+      "note": "利用自体は商用可。ツール自体を改変再配布する場合はGPL継承（ソース公開）が必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/xmarre/ComfyUI-Spectrum-MiniMax-H3"
+      },
+      {
+        "kind": "post",
+        "url": "https://comfyui-wiki.com/en/news/2026-08-03-comfyui-spectrum-minimax-h3"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/comfyui-spectrum-minimax-h3.jpg",
+    "relatedWorks": [
+      {
+        "title": "MiniMax H3 (Hailuo 3.0)",
+        "description": "このノードが高速化対象とする、ネイティブ音声付き動画生成モデル本体",
+        "url": "https://huggingface.co/MiniMaxAI/MiniMax-H3"
+      },
+      {
+        "title": "MiniMax-H3-Turbo-Lora",
+        "description": "同じ高速化ニーズにLoRA学習で応える別アプローチ",
+        "url": "https://huggingface.co/larryvrh/MiniMax-H3-Turbo-Lora"
+      },
+      {
+        "title": "TeaCache",
+        "description": "動画拡散モデル全般向けの学習不要キャッシュ高速化手法。同種の『計算省略』発想の先行研究",
+        "url": "https://github.com/ali-vilab/TeaCache"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "minimax-h3-turbo-lora",
+    "title": "MiniMax-H3-Turbo-Lora",
+    "org": "larryvrh（個人開発者・コミュニティ）",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "MiniMax H3の動画+音声生成を、通常20ステップ必要なところをわずか4ステップまで短縮する高速化用LoRA。",
+    "point": "MiniMax-H3-Turbo-Loraは、音声つき動画を生成できるAIモデル『MiniMax H3』の生成時間を、通常の約20ステップから最短4ステップへと大幅に短縮する追加学習データ（LoRA）です。処理時間はおよそ5分の1になる計算で、体感速度が大きく変わります。動画生成AIを使った広告制作では『とりあえず量産して見比べる』というラフ出し工程に一番時間がかかりがちですが、このツールを使えば同じ待ち時間でより多くのバリエーションを試せるようになります。ただし公開されたばかりの早期プレビュー版で、肌の質感がプラスチックっぽくなる、粒状のノイズが強く出るといった画質面の副作用が報告されており、開発も一時停止して改善中の段階です。『使えばすぐ実務品質』ではなく、次に来る高速化技術の芽として押さえておく位置づけの技術です。",
+    "detail": "LoRA（Low-Rank Adaptation）とは、巨大なAIモデル本体はそのままに、小さな『補正データ』を追加で読み込ませることで挙動を変える手法です。今回のLoRAは、動画と音声を生成する際の『何ステップかけて完成させるか』というスケジュールを大きく圧縮するよう学習されており、専用のサンプラー（生成手順を制御するプログラム）と組み合わせることで、映像と音声それぞれ異なるペースで進む処理を4ステップにまとめて完了させます。\n\n通常の高速化は解像度を下げたり音声を省いたりする妥協を伴うことが多いですが、このLoRAは映像・音声の同時生成という機能を保ったまま速度だけを上げる点が特徴です。ただし4ステップだと画質はやや甘くなるため、開発者は6〜8ステップ程度が現状の『きれいに見える下限』としています。\n\nファイルサイズ約744MB、Apache 2.0ライセンスで無料公開されており、Hugging Face（larryvrh/MiniMax-H3-Turbo-Lora）からダウンロードし、ComfyUI用に変換されたバージョン（Larryvrh/ComfyUI-MiniMax-H3-Turbo）をcustom_nodesに導入して使います。動作には元となるMiniMax H3本体（VRAM目安80GB、ComfyUIの低VRAMモードなら小規模GPUでも一部動作）が別途必要です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "早期プレビュー版につき画質面の不具合が報告されており、開発も一時停止して改善中"
+    },
+    "links": [
+      {
+        "kind": "project",
+        "url": "https://huggingface.co/larryvrh/MiniMax-H3-Turbo-Lora"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/Larryvrh/ComfyUI-MiniMax-H3-Turbo"
+      },
+      {
+        "kind": "post",
+        "url": "https://comfyui-wiki.com/en/news/2026-08-06-minimax-h3-turbo-lora"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/minimax-h3-turbo-lora.jpg",
+    "relatedWorks": [
+      {
+        "title": "MiniMax H3 (Hailuo 3.0)",
+        "description": "このLoRAが高速化対象とする、ネイティブ音声付き動画生成モデル本体",
+        "url": "https://huggingface.co/MiniMaxAI/MiniMax-H3"
+      },
+      {
+        "title": "ComfyUI-Spectrum-MiniMax-H3",
+        "description": "同じ高速化ニーズにキャッシュ予測で応える別アプローチ",
+        "url": "https://github.com/xmarre/ComfyUI-Spectrum-MiniMax-H3"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "mouthpad-vox",
     "title": "MouthPad (第2世代) / VOX",
     "org": "Augmental",
