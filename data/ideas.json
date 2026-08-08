@@ -7047,5 +7047,203 @@
         "desc": "NVIDIAの3D深層学習基盤がGaussian Splatting処理を強化し広大な空間を複数GPUで高速に3Dデータ化"
       }
     ]
+  },
+  {
+    "id": "2026-08-08-1",
+    "date": "2026-08-08",
+    "title": "AIだけ弾く出会い文",
+    "pattern": "文脈×技術",
+    "seed": "デートアプリ疲れの世代に料理を提案したKnorrのServing Singlesのように、プロフィール文にDecoy Fontを仕込めば、人間には自然に読めてAI審査だけ弾く「人間限定」の出会い体験を作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "knorr-serving-singles",
+        "title": "Serving Singles",
+        "desc": "料理とモダンな出会いを結びつけ、デートアプリに疲れた世代へ料理を提案するキャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "decoy-font",
+        "title": "Decoy Font",
+        "desc": "人間には正しく読めるのに、AIのOCR・画像認識モデルには別の単語と誤読されてしまうフォント。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-08-2",
+    "date": "2026-08-08",
+    "title": "実物大アートを先にVR検証",
+    "pattern": "文脈×技術",
+    "seed": "竣工前に実物大で検証したSea of Time – TOHOKUのように、恒久設置予定の公共アートをStableGen v0.3で画像から3Dメッシュ化すれば、現地に行かず何度でもバーチャル実物大プレビューを試せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "sea-of-time-tohoku-2026",
+        "title": "「時の海 – 東北」プロジェクト《Sea of Time – TOHOKU》公開実証実験",
+        "desc": "福島県富岡町に恒久設置予定の宮島達男作品を、竣工前に実物大で検証した公開実証実験。"
+      },
+      {
+        "type": "tech",
+        "id": "stablegen-v0-3",
+        "title": "StableGen v0.3",
+        "desc": "Blender内で画像から3Dメッシュ生成とPBRマテリアル出力までできるオープンソースアドオン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-08-3",
+    "date": "2026-08-08",
+    "title": "来場者がランウェイに立つ",
+    "pattern": "文脈×技術",
+    "seed": "NYFWの代わりにUE5の3Dロビーでランウェイを見せたPUMA BLACK STATIONに、写真1枚から踊る動画を作るMACE-Danceを足せば、来場者の写真を渡すだけで誰もがランウェイの主役になれるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "puma-black-station-3d",
+        "title": "PUMA BLACK STATION（Unreal Engine 5 ファッションショー）",
+        "desc": "NYFWの代わりにUnreal Engine 5製の3Dロビーを作り、新作スニーカーをランウェイ展示で見せたPUMAの企画。"
+      },
+      {
+        "type": "tech",
+        "id": "mace-dance",
+        "title": "MACE-Dance",
+        "desc": "1枚の人物写真と1曲の音楽から、その人が踊る高品質なダンス動画を自動生成する技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-08-4",
+    "date": "2026-08-08",
+    "title": "リスナーの鼓動を菌糸で発光",
+    "pattern": "文脈×技術",
+    "seed": "世界中のリスナーの光点をリアルタイム表示するBon Iver VIISUALIIZERに、神経のようなスパイク電位を刻むFungal Computerを重ねれば、聴取データを菌糸体の発光や振動で物理的に感じるインスタレーションになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "bon-iver-viisualiizer",
+        "title": "VIISUALIIZER（Bon Iver × Spotify）",
+        "desc": "アルバムを聴いているファンの光点を地球上にリアルタイム表示する、Bon IverとSpotifyの集合的リスニング体験。"
+      },
+      {
+        "type": "tech",
+        "id": "fungal-computer",
+        "title": "Fungal Computer（菌糸体メムリスタ／きのこコンピューティング）",
+        "desc": "菌糸体に電極を刺し、神経のようなスパイク電位を記録・刺激して論理ゲートやメモリとして使う菌類コンピュータ研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-08-5",
+    "date": "2026-08-08",
+    "title": "解剖シミュレーションに触感",
+    "pattern": "技術×技術",
+    "seed": "GPU上でリアルタイムに切り裂けるDissectible Anatomyの仮想解剖に、映像の動きから振動を自動生成するHapticLensを組み合わせれば、切る手応えを指先で感じる解剖学習ツールになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "dissectible-anatomy",
+        "title": "Dissectible Anatomy",
+        "desc": "実在する人体の輪切りデータから作った3Dモデルを、GPU上でリアルタイムに切ったり裂いたりできる仮想解剖シミュレーション。"
+      },
+      {
+        "type": "tech",
+        "id": "hapticlens",
+        "title": "HapticLens",
+        "desc": "動画の好きな部分を選ぶとその動きから振動を自動生成し、1個の振動子で映像に触感を付けられるツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-08-6",
+    "date": "2026-08-08",
+    "title": "舌と皮膚で演出する動画編集",
+    "pattern": "技術×技術",
+    "seed": "描き込みをLLMがモーションプロンプトに翻訳するCinematic Annotate Videoワークフローに、舌操作のMouthPadや皮膚装着型のVOXを足せば、手を使わず発話とジェスチャーだけでカメラワークを演出できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-cinematic-annotate-video",
+        "title": "ComfyUI「Cinematic Annotate Video」ワークフロー",
+        "desc": "画像への描き込みをLLMがモーションプロンプトへ自動翻訳して動画を生成するComfyUIワークフロー。"
+      },
+      {
+        "type": "tech",
+        "id": "mouthpad-vox",
+        "title": "MouthPad (第2世代) / VOX",
+        "desc": "舌で操作するマウスピース型デバイスMouthPadの第2世代と、皮膚装着型の音声入力デバイスVOX。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-08-7",
+    "date": "2026-08-08",
+    "title": "菌糸コンピュータを腐敗センサーに",
+    "pattern": "転用",
+    "seed": "本来は論理ゲートやメモリとして使うFungal Computerの菌糸体メムリスタを、湿度や腐敗で電位が変わるセンサーとして転用すれば、屋外広告や食品パッケージが「傷み具合」を自ら発信できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "fungal-computer",
+        "title": "Fungal Computer（菌糸体メムリスタ／きのこコンピューティング）",
+        "desc": "菌糸体に電極を刺し、神経のようなスパイク電位を記録・刺激して論理ゲートやメモリとして使う菌類コンピュータ研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-08-8",
+    "date": "2026-08-08",
+    "title": "AIだけが読める隠し字幕",
+    "pattern": "転用",
+    "seed": "本来はAIのOCRに誤読させて人を守るためのDecoy Fontを逆手に取り、動画字幕にAIエージェント向けの隠しメッセージを忍ばせれば、人間には見えないAI専用イースターエッグ広告を作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "decoy-font",
+        "title": "Decoy Font",
+        "desc": "人間には正しく読めるのに、AIのOCR・画像認識モデルには別の単語と誤読されてしまうフォント。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-08-9",
+    "date": "2026-08-08",
+    "title": "絶滅危惧種だけを高精細に",
+    "pattern": "文脈×技術",
+    "seed": "AIと自然を融合させたVale SAのAmazônia Alive写真集の発想に、動く被写体だけを切り出し高精細に貼り戻すMaskVidExperimentsを使えば、絶滅危惧種の動きだけを鮮明に浮かび上がらせる保全映像が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "vale-sa-amazonia-alive-book",
+        "title": "Amazônia Alive – Book",
+        "desc": "AIと自然を融合させたヴァーレ社のアマゾン生態系写真書で、印刷物のアートディレクションとして世界最高評価を得た作品。"
+      },
+      {
+        "type": "tech",
+        "id": "maskvidexperiments",
+        "title": "MaskVidExperiments",
+        "desc": "動く被写体だけをマスクで切り出して高解像度で加工し、ジッターや継ぎ目なく元の映像に貼り戻すツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-08-10",
+    "date": "2026-08-08",
+    "title": "手荷物リストが自動で動画に",
+    "pattern": "文脈×技術",
+    "seed": "手荷物許容量を旅の報酬にしたSaudia AirlinesのLet It Flyのように、旅行者が運ぶ文化アイテムのリストをHTMLで入力するだけで動画になるHyperFramesに渡せば、自動でシェア用の「私の手荷物ムービー」が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "saudia-airlines-let-it-fly",
+        "title": "Let It Fly",
+        "desc": "サウジアラビア文化をスーツケースに乗せて届け、手荷物許容量が報酬になる旅の仕掛けを作った航空会社の企画。"
+      },
+      {
+        "type": "tech",
+        "id": "hyperframes",
+        "title": "HyperFrames",
+        "desc": "HTMLを書けば動画になる、AIエージェント向けのオープンソース動画制作フレームワーク。"
+      }
+    ]
   }
 ]
