@@ -26696,7 +26696,10 @@
       "Tech/Device",
       "Form/Product",
       "Theme/Health"
-    ]
+    ],
+    "quarantined": true,
+    "quarantineReason": "link-dead(二重確認済): 404: https://www.tbwahakuhodo.co.jp/en/news/260305-rtm/",
+    "quarantineTs": "2026-08-09T09:33:04.137Z"
   },
   {
     "id": "trex-leather",
@@ -31441,7 +31444,10 @@
       "Form/Film",
       "Theme/Sports",
       "Theme/Food"
-    ]
+    ],
+    "quarantined": true,
+    "quarantineReason": "link-dead(二重確認済): 404: https://www.uber.com/us/en/uber-eats-super-bowl-commercial/",
+    "quarantineTs": "2026-08-09T09:33:04.137Z"
   },
   {
     "id": "loreal-luxe-code-protection-inclusion-black-consumers",
