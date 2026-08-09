@@ -7245,5 +7245,203 @@
         "desc": "HTMLを書けば動画になる、AIエージェント向けのオープンソース動画制作フレームワーク。"
       }
     ]
+  },
+  {
+    "id": "2026-08-09-1",
+    "date": "2026-08-09",
+    "title": "セラピー楽曲を即興生成",
+    "pattern": "文脈×技術",
+    "seed": "Saylistsが既存曲から言語療法向けの音節パターンを探したように、OBSIDIAN Neuralでその場で患者専用の音節パターンを含むループ音源を即興生成すれば、既存楽曲のカタログに縛られない言語療法プレイリストが作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "saylists-warner-music-apple",
+        "title": "Saylists",
+        "desc": "7000万曲の歌詞データを解析し、言語療法に適した音節パターンを含む曲でプレイリストを作った事例。"
+      },
+      {
+        "type": "tech",
+        "id": "obsidian-neural",
+        "title": "OBSIDIAN Neural",
+        "desc": "AIがその場でループ音源を生成する、ライブ演奏向けのオープンソース楽器。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-09-2",
+    "date": "2026-08-09",
+    "title": "ジェスチャーで操る介助ロボ",
+    "pattern": "文脈×技術",
+    "seed": "手の不自由な人向けに設計されたTilt Accessible Beautyの思想を、FluidicSwarmの「握る・開く」ジェスチャー操作に応用すれば、限られた手の動きだけで美容ツール群を自在に操れる新しい介助デバイスになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "tilt-accessible-beauty-inclusive-design",
+        "title": "Tilt Accessible Beauty – Inclusive Design",
+        "desc": "手の不自由な人のために設計されたインクルーシブなビューティーブランドのデザインシステム。"
+      },
+      {
+        "type": "tech",
+        "id": "fluidicswarm",
+        "title": "FluidicSwarm",
+        "desc": "手のジェスチャーだけで複数の小型ロボット群を水のように操れる操作システム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-09-3",
+    "date": "2026-08-09",
+    "title": "商店主が踊る自分の広告",
+    "pattern": "文脈×技術",
+    "seed": "#NotJustACadburyAdがシャー・ルク・カーンを個人商店のCMに出演させたように、MACE-Danceで店主自身の写真を音楽に合わせて踊らせれば、有名人を使わずとも各店舗オリジナルの踊るCMを量産できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "cadbury-not-just-ad",
+        "title": "#NotJustACadburyAd",
+        "desc": "キャドバリーのCM枠を地元商店に開放し、AIでシャー・ルク・カーンを個人商店のCMに出演させた施策。"
+      },
+      {
+        "type": "tech",
+        "id": "mace-dance",
+        "title": "MACE-Dance",
+        "desc": "1枚の人物写真と1曲の音楽から、その人が踊る動画を自動生成する技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-09-4",
+    "date": "2026-08-09",
+    "title": "3Dスキャンから靴を設計",
+    "pattern": "文脈×技術",
+    "seed": "SUPERNOVA RISE 3 ADAPTIVEがアスリート起点でシューズを共同設計したように、Gaussian SplatKingでアスリートの足や歩容を3Dスキャンし、そのデータから直接靴の形を設計すれば型紙に頼らないアダプティブギアが作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "supernova-rise-3-adaptive",
+        "title": "SUPERNOVA RISE 3 ADAPTIVE",
+        "desc": "ダウン症アスリートChris Nikicと共同設計した、世界初の本格的アダプティブ・ランニングシューズ。"
+      },
+      {
+        "type": "tech",
+        "id": "gaussian-splatking",
+        "title": "Gaussian SplatKing",
+        "desc": "iPhoneのデュアルレンズとLiDARで3D撮影データを無料で取得できるiOSアプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-09-5",
+    "date": "2026-08-09",
+    "title": "実在の公園を歩くロボット",
+    "pattern": "技術×技術",
+    "seed": "Spatialographyが実在の公園をGaussian Splattingで記録しVR内を歩けるようにしたように、MotionBricksで同じ公園内の実物ロボットをVRアバターと同期させれば、現実とVRを行き来する二重の散歩体験が作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "spatialography",
+        "title": "Spatialography",
+        "desc": "実在の公園や滝をGaussian Splattingで記録し、VR空間で歩いて鑑賞できる作品にしたVRChatワールド。"
+      },
+      {
+        "type": "tech",
+        "id": "motionbricks",
+        "title": "MotionBricks",
+        "desc": "1つのAIモデルでゲーム内キャラと実在の二足歩行ロボットの両方をリアルタイムに動かせるシステム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-09-6",
+    "date": "2026-08-09",
+    "title": "AIエージェントが回す量産CM",
+    "pattern": "技術×技術",
+    "seed": "Viggle PINOC×Seedanceのモーキャプ→3Dプリビズ→映像化という一連の流れを、JarvisHubの編集キャンバスにまるごと任せれば、人が逐一指示せずとも複数キャラのCMを並行生産できるパイプラインになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "viggle-pinoc-seedance-workflow",
+        "title": "Viggle PINOC × Seedance ワークフロー",
+        "desc": "動画からモーキャプを抽出し画像から3Dキャラを作ってSeedanceで映像化するワークフロー。"
+      },
+      {
+        "type": "tech",
+        "id": "jarvishub",
+        "title": "JarvisHub",
+        "desc": "編集可能なキャンバスをAIエージェントに与え、複数の成果物をまたぐ創作作業を任せられるツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-09-7",
+    "date": "2026-08-09",
+    "title": "一枚の写真で事件現場を再現",
+    "pattern": "転用",
+    "seed": "InfiniSplatは本来1枚の写真からVRコンテンツ用の破綻しない3D空間を作る研究だが、これを転用して事件現場の流出写真1枚から立体再現の調査報道コンテンツを作れば、読者が現場を歩いて検証できる報道体験になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "infinisplat",
+        "title": "InfiniSplat",
+        "desc": "1枚の写真から視点を大きく動かしても破綻しない3Dガウシアンスプラットを生成する研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-09-8",
+    "date": "2026-08-09",
+    "title": "生放送を自動編集するAI",
+    "pattern": "転用",
+    "seed": "FireRed-OpenStorylineは本来、腰を据えた動画編集を任せる対話型エージェントだが、これを転用してライブ配信中の映像を逐次流し込めば、放送の最中にハイライト版を自動で切り出し即時公開できる速報ツールになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "firered-openstoryline",
+        "title": "FireRed-OpenStoryline",
+        "desc": "話しかけると素材選び・カット・つなぎまで自動化する対話的な動画編集エージェント。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-09-9",
+    "date": "2026-08-09",
+    "title": "腐敗だけを切り抜く広告量産",
+    "pattern": "文脈×技術",
+    "seed": "MOLDY WHOPPERが34日間のカビ写真1枚で無添加を証明したように、RotoAIで大量の食品映像から「カビた部分」だけを自然言語指示で切り抜ければ、商品ライン全部で腐敗証明広告を量産できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "burger-king-moldy-whopper",
+        "title": "MOLDY WHOPPER",
+        "desc": "34日間かけてカビだらけになったバーガーの写真で、人工保存料ゼロを証明した広告。"
+      },
+      {
+        "type": "tech",
+        "id": "rotoai",
+        "title": "RotoAI",
+        "desc": "自然言語の指示だけで動画から人物や物体を切り抜けるロトスコープ・スタジオ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-09-10",
+    "date": "2026-08-09",
+    "title": "AI生成ループで踊るロボット",
+    "pattern": "技術×技術",
+    "seed": "MotionBricksで動く実物の二足歩行ロボットに、OBSIDIAN Neuralがその場で作るライブループ音楽を振り付けの入力にすれば、AI音楽とAIモーションが即興で連動する物理パフォーマンス楽器が作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "motionbricks",
+        "title": "MotionBricks",
+        "desc": "1つのAIモデルでゲーム内キャラと実在の二足歩行ロボットの両方をリアルタイムに動かせるシステム。"
+      },
+      {
+        "type": "tech",
+        "id": "obsidian-neural",
+        "title": "OBSIDIAN Neural",
+        "desc": "AIがその場でループ音源を生成する、ライブ演奏向けのオープンソース楽器。"
+      }
+    ]
   }
 ]
