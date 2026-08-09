@@ -1,5 +1,232 @@
 [
   {
+    "id": "aituber-luma-2026",
+    "title": "AITuber「LUMA」デビュー",
+    "summary": "プロeスポーツチームVARRELが独自人格を持つAITuber「LUMA」をデビューさせ選手とコラボ配信",
+    "client": "VARREL（株式会社CELLORB）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新",
+      "AIクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.moguravr.com/varrel-aituber-luma-debut/",
+    "thumbnail": "/thumbnails/aituber-luma-2026.jpg",
+    "videoId": "",
+    "overview": "株式会社CELLORBが運営するプロeスポーツチーム「VARREL」のStreamer部門に、独自の人格・知識・価値観を持ちAIで会話や配信を行いながら成長するAITuber「LUMA」が2026年8月6日にデビューした。",
+    "background": "CELLORBは「ゲームの力で、世界をつなげる」をミッションに掲げており、LUMAはこの理念を体現する新たな存在として企画された。eスポーツとマンガという二つの分野への情熱を併せ持つ設定で、両コミュニティの架け橋になることを目指す。",
+    "execution": "8月6日20時よりVARREL所属選手マゴとのデビューコラボ配信を実施。配信内では、別のVARREL所属選手ヌキの過去エピソードについて会話を交えながら解説する場面もあり、既存の人間選手とAIキャラクターが同じ配信内で自然に絡む形式をとった。",
+    "evaluationImpact": "VARRELはAITuberを「人間の代替」ではなく、プロゲーマーやクリエイターと並ぶ新しいタレント・キャラクターの形と位置づけており、eスポーツチームが独自AIタレントを自前で育成・運用する事例として注目される。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/SNS",
+      "Form/Event",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "serious-sam-shatterverse-2026",
+    "title": "Serious Sam: Shatterverse",
+    "summary": "『Dead by Daylight』開発元が「Serious Sam」を最大5人協力ローグライトFPSとして再構築し2026年8月31日発売",
+    "client": "Croteam / Behaviour Interactive",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://automaton-media.com/articles/newsjp/serious-sam-shatterverse-20260808-459274/",
+    "thumbnail": "/thumbnails/serious-sam-shatterverse-2026.jpg",
+    "videoId": "",
+    "overview": "人気FPS『Serious Sam』シリーズの新作『Serious Sam: Shatterverse』が発表された。開発は『Dead by Daylight』のBehaviour Interactive、原作Croteamの承認のもと、最大5人協力プレイのローグライトFPSとして再構築されている。パブリッシングはDevolver Digital。",
+    "background": "2026年はSerious Samシリーズ25周年の節目。当初2026年3月26日のXbox Partner Previewで発表され、その後Devolver Digitalが8月8日に発売日など詳細を公式発表した。近年人気の協力型ローグライトジャンルへシリーズを拡張する狙いがあるとみられる。",
+    "execution": "異なる世界線の「サム・ストーン」たちが集結する設定で、5種類の異なる見た目・性能のキャラクターから選択可能。自動生成ステージを進みながら敵の大群と戦い、アップグレードで強化しつつ5体のボスの撃破を目指す。PC（Steam/Microsoft Store）、PS5、Xbox Series X|Sで2026年8月31日（日本時間9月1日）配信、日本語表示にも対応。",
+    "evaluationImpact": "老舗FPSシリーズを外部スタジオが協力ローグライトという現行トレンドのジャンルへ大胆に再解釈した事例。原作元Croteamの承認を得た体制でブランドの継続性を担保しつつ、Xbox Partner Previewやパブリッシャー公式発表など複数のタイミングで段階的に情報公開しファンの期待を醸成した点が特徴。",
+    "relatedWorks": [
+      {
+        "title": "Serious Sam: Shatterverse 公式発表記事（automaton）",
+        "description": "Devolver Digitalによる正式発表と発売日・プラットフォーム情報",
+        "url": "https://automaton-media.com/articles/newsjp/serious-sam-shatterverse-20260808-459274/"
+      },
+      {
+        "title": "Dead By Daylight Devs Announce Serious Sam: Shatterverse (GameInformer)",
+        "description": "Xbox Partner Previewでの初出発表を報じる記事",
+        "url": "https://gameinformer.com/xbox-partner-preview/2026/03/26/dead-by-daylight-devs-announce-serious-sam-shatterverse-a"
+      },
+      {
+        "title": "Serious Sam: Shatterverse Launches August 31 for PS5, Xbox Series, and PC (VGChartz)",
+        "description": "発売日8月31日と対応プラットフォームを報じる記事",
+        "url": "https://www.vgchartz.com/article/468688/serious-sam-shatterverse-launches-august-31-for-ps5-xbox-series-and-pc/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/Event",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "virtual-desktop-usb-2026",
+    "title": "Virtual Desktop USB有線ストリーミング対応",
+    "summary": "Meta Quest向けPC VRアプリ「Virtual Desktop」がベータ版でUSB有線ストリーミングに対応し無線ルーター不要に",
+    "client": "Virtual Desktop",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.moguravr.com/virtual-desktop-quest-usb-wired-streaming/",
+    "thumbnail": "/thumbnails/virtual-desktop-usb-2026.jpg",
+    "videoId": "",
+    "overview": "開発者Guy Godin氏によるPC VRストリーミングアプリ「Virtual Desktop」のQuestベータ版v1.34.19が、USBケーブルを使った有線接続でのPC VRストリーミングに対応した。従来の無線接続に加え選択肢が増え、Quest OS v2.4以上で利用可能。PicoやPlay For Dream MRでも別途USB NCM設定により利用できる。",
+    "background": "Virtual Desktopはこれまで無線ストリーミングのみに対応しており、有線接続を求めるユーザーはMeta Horizon LinkやALVRなど別ソリューションに頼らざるを得なかった。SteamVRユーザーの過半数をQuestユーザーが占める中、より安定した有線接続への長年の要望に応える形で機能追加が行われた。",
+    "execution": "2026年8月、Windows版・Mac版のベータストリーマーと合わせてQuestアプリのベータ版でUSB接続機能を実装。追加のドングルやルーター機器を必要とせず、USBケーブル1本でPCとヘッドセットを直接つなぎVRストリーミングできるようにした。",
+    "evaluationImpact": "無線環境の不安定さに悩まされてきたPC VRユーザーに、低遅延で信頼性の高い有線オプションを提供した点が評価される。Quest陣営が主要な標準規格アプリとして機能拡充を続けることで、ハイエンドPC VR市場でのQuestの存在感をさらに高める動きといえる。",
+    "relatedWorks": [
+      {
+        "title": "Virtual Desktop Beta Adds Wired USB Support On Quest Headsets",
+        "description": "UploadVRによる同機能の報道記事",
+        "url": "https://www.uploadvr.com/virtual-desktop-beta-adds-wired-usb-support-on-quest-headsets/"
+      },
+      {
+        "title": "Virtual Desktop、Quest向けにUSB有線ストリーミング対応（ベータ版）",
+        "description": "MoguraVRによる日本語報道記事",
+        "url": "https://www.moguravr.com/virtual-desktop-quest-usb-wired-streaming/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/XR",
+      "Tech/Device",
+      "Form/App"
+    ]
+  },
+  {
+    "id": "case-1vvuzuy-2026",
+    "title": "近江八幡・安土サウンドトリップ",
+    "summary": "VTuber白雪みしろが音声ナビを務め、ソニーの位置連動音響アプリ「Locatone」で近江八幡・安土の史跡25カ所を巡る無料観光ガイドツアー",
+    "client": "アインズ株式会社 × 白雪みしろ",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.moguravr.com/omihachiman-azuchi-soundtrip-vtuber/",
+    "thumbnail": "/thumbnails/case-1vvuzuy-2026.jpg",
+    "videoId": "",
+    "overview": "アインズ株式会社が、ソニーの位置連動音響体験サービス「Locatone」を活用し、VTuber白雪みしろがナビゲーターを務める観光音声ガイド「近江八幡・安土サウンドトリップ」を2026年8月6日に開始。滋賀県近江八幡市・安土エリアの史跡25カ所をスマホアプリの音声案内で巡れる、無料の街歩き体験。",
+    "background": "近江八幡・安土エリアは八幡堀や日牟禮八幡宮、安土城跡などの歴史文化スポットを有するが、従来の観光ガイドでは若年層や新規層への訴求が課題であった。個人VTuberとして人気の白雪みしろを起用することで、既存ファン層を含む新たな観光客の誘致を狙った。",
+    "execution": "スマートフォンアプリ「Locatone」を使い、対象スポットに近づくと白雪みしろの音声ガイドが自動再生される仕組みを構築。25カ所のスポットを巡ると近江牛が当たる応募フォームが表示されるキャンペーンも実施し、周遊のインセンティブを設計した（キャンペーンは2026年11月30日まで）。",
+    "evaluationImpact": "VTuberという人気コンテンツと位置情報連動音響技術を組み合わせることで、歴史観光と若年層・ファン層の接点を新たに作った事例。無料かつゲーム感覚で周遊できる設計により、地域周遊の滞在時間・回遊性向上への貢献が期待される。",
+    "relatedWorks": [
+      {
+        "title": "Locatone（ロケトーン）公式サイト",
+        "description": "ソニーが提供する位置連動音響体験サービス",
+        "url": "https://www.locatone.sony.net/"
+      },
+      {
+        "title": "新感覚の「エンタメ×旅」で日本各地のまちをもっと元気にしたい vol.4",
+        "description": "ソニーによるLocatoneの取り組み紹介記事",
+        "url": "https://www.sony.jp/feature/mysony/story/locatone_2507/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Form/App",
+      "Form/Event",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "girlfailure-art-club-2026",
+    "title": "美術部カノジョ -Girlfailure Art Club-",
+    "summary": "VTuber届木ウカが企画・シナリオ・キャラデザまで自ら手がける、オタク女子4人が攻略対象の恋愛ADVをSteamで開発",
+    "client": "ARTODRIA（届木ウカ）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.moguravr.com/artodria-girlfailure-art-club-steam/",
+    "thumbnail": "/thumbnails/girlfailure-art-club-2026.jpg",
+    "videoId": "",
+    "overview": "VTuber届木ウカが率いるインディーゲームサークルARTODRIAが開発する恋愛ビジュアルノベル「美術部カノジョ -Girlfailure Art Club-」。2026年8月5日にSteamストアページとティザーPVが公開された。2027年発売予定。",
+    "background": "届木ウカは自身のVTuber活動と並行し、2010年代のオタクカルチャーを題材にした学園恋愛ADVの企画を始動。テニス部を辞め美術部に入部する主人公が、個性の強い「オタク女子」4人と交流する物語を構想した。",
+    "execution": "届木ウカが企画・開発ディレクション・シナリオ・キャラクターデザイン・スクリプトを一貫して担当し、グラフィックには田中火蛾、目代景、sasaki83、かみさんらが参加。エンディング約6種類、プレイ時間約8時間、日本語含む6言語対応でSteam展開する。",
+    "evaluationImpact": "VTuber本人が単なる広告塔ではなく企画・シナリオ・キャラデザまで担うゲーム制作体制は、VTuberのIP展開やクリエイター主導型インディーゲーム開発の新たな形として注目される。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/App",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "openai-ai-nextslide-2026",
+    "title": "OpenAI、プレゼン作成AIスタートアップNextSlideを買収",
+    "summary": "OpenAIがプロンプトからプレゼン資料を生成するAIスタートアップNextSlideを買収、ChatGPTチームに統合",
+    "client": "OpenAI / NextSlide",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://techcrunch.com/2026/08/08/openai-acquires-presentation-startup-nextslide/",
+    "thumbnail": "/thumbnails/openai-ai-nextslide-2026.jpg",
+    "videoId": "",
+    "overview": "OpenAIは、プロンプトやメモ、文書を編集可能な洗練されたプレゼンテーションに変換するAIスタートアップNextSlideを買収したことを2026年8月8日に発表した。買収自体は2026年初めに完了しており、公表は数ヶ月遅れて行われた。NextSlideのチームは全員ChatGPT開発チームに合流する。",
+    "background": "ChatGPTは対話やコード生成だけでなく職場の生産性ツールとしての機能拡張を進めており、Microsoft PowerPointのAI機能などと直接競合する形でプレゼン資料作成領域への進出を図っている。NextSlideは2025年半ばにAhmed Beshry氏が創業し、雑多なメモやリサーチ資料をAIで整形されたスライドに変換するサービスを展開していた。",
+    "execution": "NextSlideのチームメンバー全員がOpenAIに参加し、ChatGPT向けの新しいプレゼンテーション作成機能の開発にあたる。買収の金銭的条件は非公開。創業者のBeshry氏は過去にキャッシュレス決済スタートアップCaper AI（2021年にInstacartが買収）を共同創業した経歴を持つ。",
+    "evaluationImpact": "ChatGPTが単なる対話AIから、資料作成を含むマルチモーダルな職場生産性プラットフォームへと進化する動きの一つとして位置づけられる。テック系メディア各社が一斉に報じ、AI企業による人材獲得（アクハイア）型買収の一例として注目を集めた。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/App"
+    ]
+  },
+  {
     "id": "doordash-canada-not-that-dramatic-2026",
     "title": "DoorDash Canada: Not That Dramatic",
     "summary": "出前注文の一瞬の躊躇を時代劇風パロディ映画に仕立て、DashPassの実用性を対比で伝えるコメディ広告",
