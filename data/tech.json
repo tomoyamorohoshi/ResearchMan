@@ -1,5 +1,55 @@
 [
   {
+    "id": "bfaaap",
+    "title": "bFaaaP (barrier-Free assist as a Pedal)",
+    "org": "bFaaaP Project（Tomoyuki Shishido / Shishido & Associates ほか, 日本）",
+    "type": "Research",
+    "domains": [
+      "HCI/MediaArt",
+      "Audio/Music"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "頭の傾きだけでピアノのサスティンペダルを操作できる、日本発のオープンソース支援楽器システム。iPhoneの顔認識で頭の角度を読み取り、Bluetoothでペダル装置を動かす。",
+    "point": "手や足が不自由な人でも、表現力豊かなピアノ演奏ができるようになる点がすごい。iPhoneのAR顔認識機能（Face ID用のカメラ）だけで頭の傾きを読み取り、Bluetooth経由でペダルを動かす仕組みは、専用のセンサーやウェアラブル機器を新たに用意する必要がなく、手持ちのスマホ1台で完結する手軽さが特徴。2026年8月に公開された論文では、演奏者ごとに「反応し始める角度のゆとり」や「感度の強さ」を数値で細かく調整できる制御方法が新たに定式化され、2019年から実際のコンサートで使われてきた実績を学術的に裏付けた。ハードウェアの設計図・ファームウェア・アプリのソースコードがすべて無料公開されているため、誰でも複製・改良できる。広告や体験づくりの観点では、手ではなく頭や視線、表情など体の一部の動きだけで楽器や装置を操作するインタラクション表現のアイデアの元ネタになる。「手を使わない演奏体験」ブースや、バリアフリーを訴求するブランド体験イベント、頭の動きで音や映像を操るインスタレーションのプロトタイピングなどに応用できそうだ。",
+    "detail": "仕組みとしては、iPhoneやiPadに搭載されているTrueDepthカメラ（Face ID用の顔認識センサー）を使い、AR技術で頭の傾き角度をリアルタイムに検出する。角度があらかじめ決めた閾値を超えると、Bluetooth Low Energy（省電力の近距離無線通信）でペダル装置に信号を送り、モーターが実際のピアノのペダルを物理的に踏む（アコースティックピアノ向けのPro版）か、電子ピアノのペダル端子に電気信号を送る（Switch版）。2026年8月公開の論文では、「どのくらい頭を傾けたら反応するか（不感帯）」と「感度の倍率」を演奏者が意図した踏み方に定量的に一致させる調整方法が新たに提案された。\n\n従来の福祉楽器は専用の高価なセンサーや長期の訓練が必要なものが多かったが、本プロジェクトは市販のスマートフォン1台とペダルに取り付ける小型デバイスだけで完結する点が異なる。しかも設計・ソフトウェアすべてがオープンソースで無料公開されており、車椅子奏者や身体に制約のある奏者によって実際のコンサート（すずかけコンサート、MUSICASAホールなど）で継続的に使われてきた実績がある。\n\n使うために必要なものは、TrueDepthカメラ搭載のiPhoneまたはiPad、無料配布のbFaaaPアプリ、GitHubで公開されているペダル装置の3Dプリント・回路データをもとに自作するハードウェア（部品代と工作の手間が必要）、そしてピアノまたは電子ピアノ。演奏者本人にプログラミングスキルは不要だが、装置の組み立てには基本的な電子工作の知識があると良い。",
+    "license": {
+      "spdx": "Apache-2.0 (software) / CERN-OHL-W-2.0 (hardware) / CC-BY-4.0 (docs)",
+      "commercial": "conditional",
+      "note": "ソフト・ハード・ドキュメントとも寛容なオープンライセンスで商用改変も技術的には可能だが、プロジェクト自体は非商用の福祉目的で運営されている"
+    },
+    "links": [
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2608.00633"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/bfaaap/bfaaap_opensource"
+      },
+      {
+        "kind": "project",
+        "url": "https://bfaaap.com/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/bfaaap.jpg",
+    "relatedWorks": [
+      {
+        "title": "HACI: Haptic-Audio Code Interface",
+        "description": "視覚障害のあるプログラミング初学者向けに触覚・音声フィードバックでコード学習を支援するツール。障害当事者向けHCI研究の類例。",
+        "url": "https://arxiv.org/abs/2511.03733"
+      },
+      {
+        "title": "Using Tangible Interaction to Design Musicking Artifacts for Non-musicians",
+        "description": "非音楽家でも扱えるタンジブルな音楽制作インターフェースの研究。演奏の敷居を下げるHCI研究の系譜。",
+        "url": "https://arxiv.org/abs/2404.09597"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "magi-2-preview",
     "title": "MAGI-2-preview",
     "org": "Sand.ai (SandAI-org)",
