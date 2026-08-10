@@ -7443,5 +7443,203 @@
         "desc": "AIがその場でループ音源を生成する、ライブ演奏向けのオープンソース楽器。"
       }
     ]
+  },
+  {
+    "id": "2026-08-10-1",
+    "date": "2026-08-10",
+    "title": "合唱で踊るアバター",
+    "pattern": "文脈×技術",
+    "seed": "スタジアムの声を解析し商品割引に変えたDiscount Chantsに、声や音楽で全身が動くEchoAvatarを掛けたら、観客の合唱に合わせてアーティストのアバターが踊るライブ演出ができそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "mercado-libre-discount-chants",
+        "title": "Discount Chants",
+        "desc": "サッカースタジアムの応援歌を音声認識で解析し、歌詞に登場する商品を即時割引するインタラクティブDOOH施策。"
+      },
+      {
+        "type": "tech",
+        "id": "echoavatar",
+        "title": "EchoAvatar",
+        "desc": "話し声や音楽をリアルタイムに聞き取りながら、全身が自然に動く3Dアバターをその場で生成する研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-10-2",
+    "date": "2026-08-10",
+    "title": "表情だけでロボット操作",
+    "pattern": "技術×技術",
+    "seed": "顔のわずかな動きでロボットを操るTelekinetic Driveと、人型ロボットの全身動作モデルSONICを組み合わせたら、装着物なしで表情だけで歩く・跳ぶを指示できそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "telekinetic-drive",
+        "title": "Telekinetic Drive",
+        "desc": "顔に現れるごくわずかな無意識の動きをカメラで読み取り、装着物なしでロボットを操作できるインターフェース。"
+      },
+      {
+        "type": "tech",
+        "id": "sonic",
+        "title": "SONIC（GR00T Whole-Body Control）",
+        "desc": "歩行から格闘・跳躍まで人型ロボットの全身動作を一体で担う基盤モデル。ゲームパッドなどでも操作できる。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-10-3",
+    "date": "2026-08-10",
+    "title": "物理精度で商品デモ",
+    "pattern": "転用",
+    "seed": "ロボットの学習教材として物理的正しさを重視して作られたLingBot-Videoを、本来の用途を離れて広告のプロダクトデモ映像に転用すれば、CGなのに嘘のない挙動の商品体験動画が作れそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "lingbot-video",
+        "title": "LingBot-Video",
+        "desc": "ロボットが動きを学ぶ教材にもなる大規模な動画生成AIで、見た目より物理的な正しさを重視して作られている。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-10-4",
+    "date": "2026-08-10",
+    "title": "匿名分身ライブ配信",
+    "pattern": "文脈×技術",
+    "seed": "顔を見せない戦略で世界ツアーを成立させたAdoのように、顔写真と音声だけで何時間もしゃべり続けるLive Avatarを使えば、素顔非公開のまま世界同時ライブ配信ができそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ado-world-tour-wish",
+        "title": "Ado THE FIRST WORLD TOUR「Wish」",
+        "desc": "素顔を一度も公開したことのない匿名シンガーAdoが、初のワールドアリーナツアーを完走した音楽体験。"
+      },
+      {
+        "type": "tech",
+        "id": "live-avatar",
+        "title": "Live Avatar",
+        "desc": "1枚の顔写真と音声だけから、何時間でも破綻せずしゃべり続けるリアルタイム映像アバターを生成するAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-10-5",
+    "date": "2026-08-10",
+    "title": "歩行速度連動看板",
+    "pattern": "文脈×技術",
+    "seed": "渋滞速度で看板を切り替えたDanActiveの発想に、Webカメラ1台で全身モーションを拾えるMetaHuman Animatorのマーカーレスmocapを掛けたら、通行人の歩く速さに看板のキャラが合わせて動く屋外広告ができそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "danactive-traffic-speed-billboard-2016",
+        "title": "DanActive Traffic-Speed Billboard",
+        "desc": "実際の渋滞速度データを受信し、混雑度に応じてメッセージが切り替わる屋外看板施策。"
+      },
+      {
+        "type": "tech",
+        "id": "ue58-metahuman-markerless-mocap",
+        "title": "MetaHuman Animator マーカーレスMocap（UE 5.8）× AI再レンダリング検証",
+        "desc": "UE5.8のMetaHuman Animatorに追加された、Webカメラ1台だけで全身モーションを取得できるマーカーレスMocap機能。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-10-6",
+    "date": "2026-08-10",
+    "title": "即興演奏連動VJ",
+    "pattern": "技術×技術",
+    "seed": "AIがその場でループ音源を作るOBSIDIAN Neuralと、骨格抽出なしで動きを別キャラへ乗り移らせるSCAIL-2を組み合わせたら、即興演奏に合わせてキャラが踊り出すライブVJ演出ができそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "obsidian-neural",
+        "title": "OBSIDIAN Neural",
+        "desc": "AIがその場でループ音源を生成する、ライブ演奏向けのオープンソース楽器。"
+      },
+      {
+        "type": "tech",
+        "id": "scail-2",
+        "title": "SCAIL-2",
+        "desc": "動画の人物の動きを骨格抽出なしで別キャラクターへ乗り移らせ、人物置換や動物への変換もできるモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-10-7",
+    "date": "2026-08-10",
+    "title": "部分ズーム製造動画",
+    "pattern": "文脈×技術",
+    "seed": "製造工程をエンタメ化したHawkstoneの発想に、顔と背景を認識して必要な場所だけ高解像度化するSmart Tile 2.0を掛けたら、素材や機械の細部だけ自動でズーム強調する製造工程動画が作れそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "hawkstone-hard-to-make-easy-to-drink",
+        "title": "Hawkstone - Hard to Make Easy to Drink",
+        "desc": "英国のチャレンジャービールブランドが、製造工程そのものをブランデッドエンタテインメントに昇華した受賞作。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-ttp-toolset-smart-tile-2-0",
+        "title": "ComfyUI TTP Toolset – Smart Tile 2.0",
+        "desc": "画像のどこが顔でどこが背景かをAIに認識させ、必要な場所だけ細かく高解像度化するComfyUI拡張機能。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-10-8",
+    "date": "2026-08-10",
+    "title": "視聴者参加型CM編集",
+    "pattern": "転用",
+    "seed": "AIエージェントが人間と同じタイムラインで動画を操作できるPalmier Proを視聴者参加型に転用すれば、コメントに応じてAIがCMをその場で編集し直すライブ配信ができそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "palmier-pro",
+        "title": "Palmier Pro",
+        "desc": "AIエージェントが人間と同じタイムラインで動画を操作できる、Mac向けオープンソース動画編集ソフト。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-10-9",
+    "date": "2026-08-10",
+    "title": "ロボット選手コラボ",
+    "pattern": "文脈×技術",
+    "seed": "NFLルーキーとゲームが攻守両面契約を結んだTwo-Way Dealのように、人型ロボットの全身動作モデルSONICを使えば、アスリートの動きを実物のロボットが再現して出場するコラボができそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "clash-of-clans-two-way-deal",
+        "title": "Two-Way Deal",
+        "desc": "NFLルーキーとゲームが史上初の攻守両面契約を結び、スポーツとゲームの文脈を融合させた施策。"
+      },
+      {
+        "type": "tech",
+        "id": "sonic",
+        "title": "SONIC（GR00T Whole-Body Control）",
+        "desc": "歩行から格闘・跳躍まで人型ロボットの全身動作を一体で担う基盤モデル。VRやゲームパッドでも操作できる。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-10-10",
+    "date": "2026-08-10",
+    "title": "常駐アバター案内役",
+    "pattern": "文脈×技術",
+    "seed": "3Dミュージアムで作品を段階解禁するKID A MNESIA EXHIBITIONに、顔写真と音声で長時間しゃべり続けるLive Avatarを掛けたら、アーティスト本人の代わりに常駐する案内役が来場者と会話しながら展示を解禁していけそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "kid-a-mnesia-exhibition-2021",
+        "title": "KID A MNESIA EXHIBITION 特設サイト",
+        "desc": "3Dミュージアム内でアートワークや音源を段階的に解禁していく体験型の特設サイト。"
+      },
+      {
+        "type": "tech",
+        "id": "live-avatar",
+        "title": "Live Avatar",
+        "desc": "1枚の顔写真と音声だけから、何時間でも破綻せずしゃべり続けるリアルタイム映像アバターを生成するAI。"
+      }
+    ]
   }
 ]
