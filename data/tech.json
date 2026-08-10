@@ -1,5 +1,446 @@
 [
   {
+    "id": "stemgenrt",
+    "title": "StemgenRT",
+    "org": "Sweet Spot Sound System",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools",
+      "HCI/MediaArt"
+    ],
+    "date": "2025-09",
+    "year": "2025",
+    "summary": "曲を再生しながら「ボーカル」「ドラム」「ベース」「その他」の4トラックにわずか11.6ミリ秒の遅延でリアルタイム分離するオープンソースのDJ/DAW用プラグイン。",
+    "point": "音楽を聴きながらその場でボーカルやドラムだけを抜き出したり音量を変えたりできる技術です。従来のAI音源分離は曲全体を数秒〜数十秒かけて処理してから書き出す「後処理」が主流でしたが、StemgenRTは人の反応速度よりも速い11.6ミリ秒という遅延でステムを分離するため、ライブDJセットの最中に『今流れている曲のボーカルだけを空間の一点に定位させる』『ドラムだけをその場でフィルターにかける』といった演出がリアルタイムに行えます。VST3/AUプラグインとして無料配布されており、広告や体験型イベントの音響演出、インタラクティブなライブパフォーマンス、来場者の声かけに合わせて楽曲の一部を操作する仕掛けなど、『音楽の要素をその場で操る』体験づくりに直結する技術です。",
+    "detail": "仕組みとしては、音声を細かい時間の断片（フレーム）に区切りながら、AIモデルHS-TasNetが周波数分析（スペクトログラム）と波形分析の両方を組み合わせて瞬時に4つの音源を推定します。楽譜の書き起こしのように後から直すのではなく、耳で聞いた端から仕分けていくイメージです。従来のDemucsなどの高精度モデルは曲の全体を先読みする必要があり数秒〜十数秒の遅延が生じましたが、この技術は先読みなしで処理できるよう設計を工夫した点が従来との違いです。導入にはJUCEベースのVST3/AUプラグインをダウンロードしてDAWやDJソフトに読み込むだけで、サンプルレートを44.1kHzに固定する必要がある以外は特別な機材は不要です。macOSは自己署名の許可設定が必要ですが、ライセンスはMITで商用利用も可能です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "VST3/AUプラグイン本体がMITで商用利用可能"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/sweetspotsoundsystem/stemgen-rt"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/stemgenrt.jpg",
+    "relatedWorks": [
+      {
+        "title": "HS-TasNet",
+        "description": "StemgenRTが内部で使う低遅延音源分離モデルの原論文実装",
+        "url": "https://arxiv.org/abs/2402.17701"
+      },
+      {
+        "title": "zplane PEEL STEMS 2",
+        "description": "同様の狙いを持つ商用のリアルタイムステム分離プラグイン",
+        "url": "https://products.zplane.de/products/peel-stems"
+      },
+      {
+        "title": "Ultimate Vocal Remover",
+        "description": "オフライン型だが高精度な定番の音源分離アプリ",
+        "url": "https://github.com/Anjok07/ultimatevocalremovergui"
+      }
+    ],
+    "sources": [
+      "Batch Research"
+    ]
+  },
+  {
+    "id": "hs-tasnet",
+    "title": "HS-TasNet",
+    "org": "L-Acoustics（原論文）／コミュニティ実装（lucidrains ほか）",
+    "type": "Research",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools"
+    ],
+    "date": "2024-02",
+    "year": "2024",
+    "summary": "音声のスペクトログラムと波形の両方を同時に扱うハイブリッド型ニューラルネットワークで、23ミリ秒という極小フレームでボーカル・ドラム・ベース・その他をリアルタイムに分離する音源分離モデル。",
+    "point": "音楽配信の裏側でよく使われる音源分離AIの多くは、曲を丸ごと読み込んでから数秒かけて処理する『バッチ処理』型でした。HS-TasNetは、音の周波数成分を見る手法（スペクトログラム分析）と波形そのものを直接扱う手法（TasNet）を組み合わせることで、わずか23ミリ秒ぶんの音を受け取るたびに次々と分離結果を出力できるようにした研究成果です。人間がタイムラグを感じ始める境界とされる数十ミリ秒を下回る速度のため、ライブ配信中に司会者の声だけを強調する、DJプレイ中にドラムだけをリアルタイムで抜き出す、といった『聞きながら仕分ける』体験の土台になります。実際にこのモデルはStemgenRTなどのVST/AUプラグインに採用され、DJや配信者が使える実用ツールへと発展しています。",
+    "detail": "仕組みは、音をごく短い時間の窓に区切り、周波数領域の分析結果と時間領域（波形）の分析結果を1つのネットワーク内で組み合わせて推定するハイブリッド構成にあります。従来のDemucsのような高精度モデルは曲全体を先読みする必要がありましたが、HS-TasNetは過去の情報だけを使って未来を予測しない因果的な設計にすることで遅延を最小化しています。MUSDBという標準ベンチマークでSDR4.65〜5.55dBというスコアを報告しており、精度と速度のバランスを取った点が特徴です。利用にはPythonで`pip install`して事前学習済みモデルを読み込むだけで試せ、MITライセンスのため研究用途はもちろん商用プラグインへの組み込みも可能です。GPUがあれば実時間よりずっと速く動作しますが、CPUでも23ms級のフレームサイズなら実用的な速度で動作します。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "コミュニティ実装コードはMIT表記"
+    },
+    "links": [
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2402.17701"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/lucidrains/HS-TasNet"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/hs-tasnet.jpg",
+    "relatedWorks": [
+      {
+        "title": "StemgenRT",
+        "description": "HS-TasNetを組み込んだ実用VST3/AUプラグイン",
+        "url": "https://github.com/sweetspotsoundsystem/stemgen-rt"
+      },
+      {
+        "title": "Demucs",
+        "description": "先読み型の高精度音源分離モデル。低遅延を犠牲に精度を重視",
+        "url": "https://github.com/facebookresearch/demucs"
+      }
+    ],
+    "sources": [
+      "Batch Research"
+    ]
+  },
+  {
+    "id": "basic-pitch",
+    "title": "Basic Pitch",
+    "org": "Spotify (Audio Intelligence Lab)",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools"
+    ],
+    "date": "2022-06",
+    "year": "2022",
+    "summary": "音楽ファイルをアップロードするだけで、ボーカルや複数の楽器が同時に鳴っていても、ピッチベンドまで含めてMIDIファイルに変換できる、Spotify製の軽量な自動採譜AI。",
+    "point": "『耳コピ』を機械にやらせる技術です。ギターやピアノ、歌声など楽器の種類を問わず、和音が重なった状態の音源からでも、どの音が何秒に鳴っていたかを検出してMIDIファイル（音符データ）として書き出してくれます。ギターのチョーキングのような音程の滑らかな変化（ピッチベンド）まで拾える点が特長で、耳で聞いた演奏をそのまま楽譜や打ち込みデータに変換したい制作者にとって強力な下ごしらえになります。広告音楽の制作現場では、参考曲の一部をMIDI化してアレンジのたたき台にしたり、ライブ演奏を採譜してリミックス素材を作ったりする用途に使えます。モデル自体は非常に軽量でスマホやブラウザ上でも動作するため、アプリへの組み込みも現実的です。",
+    "detail": "内部では短い時間ごとの音の高さ（ピッチ）や音の始まり（オンセット）を推定する小さなニューラルネットワークが使われており、CNNベースの軽量設計のおかげでノートPCでも数秒で処理が終わります。従来の自動採譜ソフトの多くは楽器ごとに専用モデルが必要でしたが、Basic Pitchは『楽器を選ばない（instrument-agnostic）』設計により、1つのモデルで様々な音源に対応できるのが従来との違いです。利用にはPythonなら`pip install basic-pitch`で導入でき、WAV・MP3・FLACなど主要な音声形式に対応、TensorFlow・CoreML・ONNXなど複数の実行形式が用意されているため、iOSアプリやWebブラウザ上でも動かせます。ブラウザ版のデモも公式サイトで無料公開されており、専門知識がなくてもすぐに試せます。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "コード・モデルともApache-2.0"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/spotify/basic-pitch"
+      },
+      {
+        "kind": "project",
+        "url": "https://basicpitch.spotify.com/about"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/basic-pitch.jpg",
+    "relatedWorks": [
+      {
+        "title": "NeuralNote",
+        "description": "Basic Pitchのモデルを使ったDAW用リアルタイム寄りプラグイン",
+        "url": "https://github.com/DamRsn/NeuralNote"
+      },
+      {
+        "title": "basicpitch.cpp",
+        "description": "同モデルのC++/WebAssembly高速再実装",
+        "url": "https://github.com/sevagh/basicpitch.cpp"
+      }
+    ],
+    "sources": [
+      "Batch Research"
+    ]
+  },
+  {
+    "id": "basicpitch-cpp",
+    "title": "basicpitch.cpp",
+    "org": "Sevag Hanssian（個人開発）",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools"
+    ],
+    "date": "2024-05",
+    "year": "2024",
+    "summary": "SpotifyのBasic PitchモデルをC++20で再実装し、ONNX RuntimeとWebAssemblyでネイティブアプリやブラウザ上でも高速に動かせるようにした軽量版音声→MIDI変換ツール。",
+    "point": "Basic Pitch本家はPython製で、サーバーやパソコンでの利用が前提でした。basicpitch.cppは同じAIモデルをC++で書き直すことで、依存ライブラリが軽くなり、ブラウザ上で動くWebAssembly版は本家の公式デモよりも高速に動作すると報告されています。これにより、DAWのプラグインや軽量な組み込み機器、ブラウザだけで完結するWebアプリなど、Pythonの実行環境を用意できない現場でも『音声から楽譜・MIDIへの変換』機能を組み込める可能性が広がります。イベント会場でその場で演奏した音をブラウザ上で即座に採譜して見せる、といった軽量なインタラクティブ展示にも応用できます。",
+    "detail": "中身の推論モデル自体はSpotify版と同じものを使っており、精度は本家と変わりません。違うのはその周りの実行環境で、ONNXRuntimeとlibremidiというライブラリだけで動くように作り直されているため、Pythonのインストールが不要になり、配布サイズも小さくなっています。使い方はコマンドラインで`basicpitch 音声ファイル 出力先`と打つだけのCLI版のほか、ブラウザでHTML/JSファイルを配信するだけで動くWeb版も用意されています。特別な機材は不要で、開発者であればソースをクローンしてビルドするか、公開されているWebデモをそのまま利用できます。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "MITライセンス"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/sevagh/basicpitch.cpp"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/basicpitch-cpp.jpg",
+    "relatedWorks": [
+      {
+        "title": "Basic Pitch",
+        "description": "元となったSpotify製Python版モデル",
+        "url": "https://github.com/spotify/basic-pitch"
+      },
+      {
+        "title": "basic-pitch-torch",
+        "description": "PyTorch移植版の同モデル",
+        "url": "https://github.com/gudgud96/basic-pitch-torch"
+      }
+    ],
+    "sources": [
+      "Batch Research"
+    ]
+  },
+  {
+    "id": "neuralnote",
+    "title": "NeuralNote",
+    "org": "Damien Ronssin (DamRsn)",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools"
+    ],
+    "date": "2023-08",
+    "year": "2023",
+    "summary": "DAW上で演奏や録音をした音声をほぼその場でMIDIノートに変換できる無料のオーディオプラグイン。Spotify製Basic Pitchモデルを内部で利用。",
+    "point": "ギターやボーカルを弾き語りしながら、その演奏をそのままMIDIデータとして取り込みたいというクリエイターの声から生まれたプラグインです。DAW（音楽制作ソフト）にVST3やAUとして読み込むだけで、録音したトラックや再生中の音声をポリフォニック（和音含む）に解析し、ピッチベンドまで反映したMIDIノートを生成してくれます。厳密な意味でのゼロ遅延ではなく百数十ミリ秒程度の遅延がありますが、演奏しながらほぼその場でMIDI化される感覚で使えるため、鼻歌やギターのフレーズをその場でシンセ音源に差し替える、といった作業が劇的に速くなります。広告音楽制作の現場で、担当者の弾いた仮メロディをすぐに別の音色で試聴したい場合などに便利です。",
+    "detail": "仕組みとしては、Constant-Q変換という周波数分析手法で音を細かく解析したうえで、畳み込みニューラルネットワーク（CNN）が音の高さと長さを推定します。ただし公式README曰く、この解析には1秒以上先の音まで見て判断する非因果的な処理が含まれるため、真の意味でのゼロ遅延ではなく、実測で約120ミリ秒程度の遅延が発生するとされています。それでも『録音してから書き出す』という従来のオフライン処理に比べれば体感的にはほぼ即時で、DAW上でパラメータをリアルタイムに調整しながら試行錯誤できる点が従来との違いです。Windows・macOS・Linuxに対応し、GitHubのリリースページからインストーラーをダウンロードするだけで、追加の機材やクラウド契約なしに無料で使えます。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "Apache-2.0ライセンス"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/DamRsn/NeuralNote"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/neuralnote.jpg",
+    "relatedWorks": [
+      {
+        "title": "Basic Pitch",
+        "description": "内部で使用されているSpotify製の採譜モデル",
+        "url": "https://github.com/spotify/basic-pitch"
+      },
+      {
+        "title": "basicpitch.cpp",
+        "description": "同系統モデルのより低遅延なC++実装",
+        "url": "https://github.com/sevagh/basicpitch.cpp"
+      }
+    ],
+    "sources": [
+      "Batch Research"
+    ]
+  },
+  {
+    "id": "mt3",
+    "title": "MT3 (Multi-Task Multitrack Music Transcription)",
+    "org": "Google Magenta",
+    "type": "Research",
+    "domains": [
+      "Audio/Music"
+    ],
+    "date": "2022-03",
+    "year": "2022",
+    "summary": "1本の音源ファイルから、ピアノだけでなくドラムやギター、管楽器など複数の楽器パートを同時に、それぞれ別のMIDIトラックとして書き起こせるTransformerベースの自動採譜モデル。",
+    "point": "従来の自動採譜AIの多くは『ピアノ専用』『ドラム専用』のように楽器ごとに専用モデルを用意する必要がありました。MT3は自然言語処理で使われるTransformer（文章の翻訳などに使われる技術）の仕組みを応用し、音声を『楽器名つきの音符イベント列』というテキストのような系列に変換して出力することで、1つのモデルだけでバンド編成の楽曲を楽器ごとに仕分けてMIDI化できるようにした研究成果です。バンドサウンドの曲を『ドラムトラック』『ベーストラック』『ギタートラック』に自動で仕分けてDAWに取り込めるようになれば、リミックスや教材制作、AIによる自動アレンジの下準備が大きく効率化します。",
+    "detail": "仕組みは、音声をスペクトログラムに変換したうえで、それを『いつ・どの楽器の・どの高さの音が鳴ったか』を表すトークン列としてTransformerモデルに予測させるというものです。画像を見て説明文を生成するAIに近い発想で、音を『聞いて言葉にする』代わりに『聞いて演奏データにする』と考えると分かりやすいでしょう。ピアノ専用モデル（ISMIR 2021）と複数楽器対応モデル（ICLR 2022）の2種類のチェックポイントが公開されており、公式のColabノートブックを開けば手元の音声ファイルをアップロードするだけで試せます。ただし現時点では公式サポートが終了した実験的リポジトリという位置づけで、学習用コードは含まれず推論のみ利用可能です。リアルタイム処理ではなくバッチ処理での書き起こしを想定した技術です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "コードはApache-2.0だが公式メンテナンス終了の実験リポジトリ"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/magenta/mt3"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2111.03017"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/mt3.jpg",
+    "relatedWorks": [
+      {
+        "title": "Omnizart",
+        "description": "複数の採譜タスクをコマンド一つで扱えるツールキット",
+        "url": "https://github.com/Music-and-Culture-Technology-Lab/omnizart"
+      },
+      {
+        "title": "Basic Pitch",
+        "description": "軽量で単純な音符検出に特化した採譜モデル",
+        "url": "https://github.com/spotify/basic-pitch"
+      }
+    ],
+    "sources": [
+      "Batch Research"
+    ]
+  },
+  {
+    "id": "omnizart",
+    "title": "Omnizart",
+    "org": "Music and Culture Technology Lab, Academia Sinica",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools"
+    ],
+    "date": "2021-06",
+    "year": "2021",
+    "summary": "1曲の音声から、メロディ楽器の採譜だけでなくドラムのイベント検出、ボーカルメロディ、コード進行、ビート位置までまとめて書き起こせる、コマンド一つで使えるオープンソースの自動採譜ツールキット。",
+    "point": "『Omniscient Mozart（全知全能のモーツァルト）』を名乗るだけあって、音楽を構成するほぼすべての要素をひとつのツールでまかなえるのが特徴です。楽器の音符だけでなく、ドラムの打点、歌のメロディライン、コード進行、曲のビート（拍）の位置まで、それぞれ専用の解析モジュールをコマンド一つで呼び出して書き起こせます。バンド音源からコード譜を自動生成したり、ドラムパートだけを抜き出して打ち込みの参考にしたりと、楽曲分析のさまざまな場面で『まず何でも試してみる』ための万能ツールとして重宝します。pipで簡単に導入できるため、非エンジニアでもコマンドライン操作さえ覚えれば扱えます。",
+    "detail": "内部的には、採譜対象ごとに異なるディープラーニングモデル（music・drum・vocal・vocal-contour・chord・beatの6種類）が用意されており、それぞれ個別に学習済みモデルをダウンロードして使う構成になっています。1つの万能モデルではなく専門特化したモデル群を束ねている点が、精度と扱いやすさの両立につながっています。使い方は`pip install omnizart`で導入後、`omnizart download-checkpoints`で学習済みモデルを取得し、`omnizart drum transcribe 曲.wav`のようにコマンドを打つだけです。Dockerイメージも配布されており、環境構築の手間を省きたい場合に便利です。リアルタイム処理は想定されておらず、ファイル単位でのバッチ処理が基本ですが、コード進行やビート解析まで一括でこなせる網羅性は他のツールにない強みです。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "MITライセンス"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Music-and-Culture-Technology-Lab/omnizart"
+      },
+      {
+        "kind": "project",
+        "url": "https://music-and-culture-technology-lab.github.io/omnizart-doc/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/omnizart.jpg",
+    "relatedWorks": [
+      {
+        "title": "MT3",
+        "description": "同様にマルチ楽器を扱えるTransformerベースの採譜モデル",
+        "url": "https://github.com/magenta/mt3"
+      },
+      {
+        "title": "BeatNet",
+        "description": "ビート・ダウンビート検出に特化したリアルタイム版の代替",
+        "url": "https://github.com/mjhydri/BeatNet"
+      }
+    ],
+    "sources": [
+      "Batch Research"
+    ]
+  },
+  {
+    "id": "ultimate-vocal-remover",
+    "title": "Ultimate Vocal Remover (UVR)",
+    "org": "Anjok07 ほか（UVR開発チーム）",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools"
+    ],
+    "date": "2024-06",
+    "year": "2024",
+    "summary": "MDX-NetやDemucs、VRアーキテクチャなど複数の最先端AIモデルを切り替えながら使える、無料でWindows/Mac/Linux対応のボーカル・楽器分離デスクトップアプリ。",
+    "point": "音楽業界のリミックス職人やカラオケ動画制作者の間で事実上の標準ツールとして定着している音源分離ソフトです。1つのアプリの中にMDX-Net、Demucs v3/v4、VR系など性質の異なる複数のAIモデルが同梱されており、曲のジャンルや分離したいパート（ボーカル・ドラム・ベース・その他）に応じて最適なモデルを選び分けられるのが強みです。GUIでファイルをドラッグ＆ドロップするだけで使えるため、プログラミングの知識がなくても、好きな曲からアカペラ音源やインスト音源を高精度に取り出せます。広告制作の現場では、既存楽曲からボーカルを抜いたBGM素材を作る、逆に歌声だけを抽出してサンプリング素材にするといった用途に直接使えます。",
+    "detail": "各モデルは、音を周波数成分に分解したスペクトログラム上でボーカルとそれ以外を塗り分けるように学習されたニューラルネットワークで、モデルによって得意な音楽ジャンルや処理速度、対応ステム数（2〜6分割）が異なります。1つのアルゴリズムに頼るのではなく用途に応じてモデルを使い分けられる設計が、単体モデルのツールとの違いです。導入は、Python・PyTorchを同梱したインストーラーをダウンロードするだけで、Windows 10以降・macOS Big Sur以降・Linuxに対応しています。GPU（Nvidia GTX 1060 6GB以上推奨）があれば処理が大幅に高速化しますが、CPUのみでも動作可能です。リアルタイム処理ではなく、ファイルを読み込んで数十秒〜数分かけて書き出すオフライン処理が基本です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "第三者開発者はクレジット付きで利用可能"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Anjok07/ultimatevocalremovergui"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/ultimate-vocal-remover.jpg",
+    "relatedWorks": [
+      {
+        "title": "python-audio-separator",
+        "description": "UVRのモデル資産をCLI/API化した開発者向けツール",
+        "url": "https://github.com/nomadkaraoke/python-audio-separator"
+      },
+      {
+        "title": "Demucs",
+        "description": "UVRにも同梱される代表的な音源分離モデル",
+        "url": "https://github.com/facebookresearch/demucs"
+      }
+    ],
+    "sources": [
+      "Batch Research"
+    ]
+  },
+  {
+    "id": "python-audio-separator",
+    "title": "python-audio-separator (audio-separator)",
+    "org": "Nomad Karaoke",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "UVRで培われた数百種類の学習済み音源分離モデルを、CLIコマンド一発またはPythonのAPIとして呼び出せるようにした開発者向けのステム分離ツール。",
+    "point": "UVRのようなGUIアプリは便利ですが、大量の楽曲をまとめて処理したり、自作アプリに組み込んだりするには不向きです。audio-separatorはUVRで使われているのと同じモデル群（MDX-Net、VR、Demucs、MDXCなど）をコマンドラインやPythonコードから直接呼び出せるようにしたツールで、`--list_models`で対応モデル一覧を確認しながら、用途に合わせて最適なモデルを選んで自動化パイプラインに組み込めます。広告制作やイベント運営の現場で、大量の楽曲ライブラリから一括でボーカル抜きBGMを生成するバッチ処理や、自社サービスに『アップロードした曲からステムを作る』機能を組み込みたい場合に、そのまま裏側のエンジンとして採用できます。",
+    "detail": "仕組みとしてはUVRと同じAIモデル資産を使いますが、GUIを持たず、CLIとPythonライブラリ、さらにDockerイメージやAPIサーバー用のエンドポイントまで用意されている点が開発者向けです。単一のツールから複数のモデルアーキテクチャを共通のインターフェースで呼び出せるよう抽象化されている点が、モデルごとにコードを書き換える必要があった従来の使い方との違いです。導入はCPU版なら`pip install \"audio-separator[cpu]\"`、GPU版なら`[gpu]`を指定するだけで、Dockerでも`docker run`一発で試せます。継続的にRoformer系の新モデルなどが追加されており、活発に更新が続いているのも実務利用における安心材料です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "MITライセンス"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/nomadkaraoke/python-audio-separator"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/python-audio-separator.jpg",
+    "relatedWorks": [
+      {
+        "title": "Ultimate Vocal Remover",
+        "description": "同じモデル資産を使うGUI版アプリ",
+        "url": "https://github.com/Anjok07/ultimatevocalremovergui"
+      },
+      {
+        "title": "mlx-audio-separator",
+        "description": "同種の分離処理をApple Siliconに最適化した派生ツール",
+        "url": "https://github.com/ssmall256/mlx-audio-separator"
+      }
+    ],
+    "sources": [
+      "Batch Research"
+    ]
+  },
+  {
+    "id": "mlx-audio-separator",
+    "title": "mlx-audio-separator",
+    "org": "ssmall256（個人開発）",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools"
+    ],
+    "date": "2026-07",
+    "year": "2026",
+    "summary": "MacのApple Silicon専用機械学習フレームワーク「MLX」だけで動くように書き直された音源分離ツール。PyTorch不要で、既存ツールの最大2.5倍の速度でステムを書き出せる。",
+    "point": "多くのAI音源分離ツールはPyTorchという重量級のフレームワークに依存しており、MacBookのGPU性能を十分に引き出せていませんでした。mlx-audio-separatorはApple独自の機械学習フレームワークMLXでゼロから最適化されており、M4 Mac miniでの検証では従来のaudio-separatorに比べて中央値で1.8倍、モデルによっては最大2.5倍高速に処理できると報告されています。処理速度は実時間の73倍に達するとされ、10分の曲であれば十数秒で全ステムの書き出しが完了する計算になります。動画編集や広告音楽制作でMacを使うクリエイターにとって、待ち時間を大きく削減できる実用ツールです。",
+    "detail": "対応モデルはBS-RoformerやMelBand-Roformer、MDX、MDXC、VR、Demucsなど既存の主要な音源分離アーキテクチャを一通りカバーしており、モデルの重みはsafetensors形式に変換してMLX用に配布されています。PyTorchやONNX Runtimeといった外部の重い実行環境を必要としない、Appleシリコン専用に薄く速い実行系を作った点が既存ツールとの違いです。導入はmacOS 13(Ventura)以降のApple Silicon搭載Mac上でPython 3.10以上の環境を用意し、`pip install mlx-audio-separator`を実行するだけです。独自モデルを使う場合は`[convert]`オプションでチェックポイント変換機能も追加できます。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "MITライセンス"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/ssmall256/mlx-audio-separator"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/mlx-audio-separator.jpg",
+    "relatedWorks": [
+      {
+        "title": "python-audio-separator",
+        "description": "移植元となったPyTorchベースのステム分離ツール",
+        "url": "https://github.com/nomadkaraoke/python-audio-separator"
+      },
+      {
+        "title": "mlx-demucs",
+        "description": "同じくDemucsをMLXに移植した別プロジェクト",
+        "url": "https://github.com/lextoumbourou/mlx-demucs"
+      }
+    ],
+    "sources": [
+      "Batch Research"
+    ]
+  },
+  {
     "id": "amplio",
     "title": "Amplio",
     "org": "Google DeepMind",
