@@ -1,5 +1,111 @@
 [
   {
+    "id": "flexsplat",
+    "title": "FlexSplat",
+    "org": "Georgia State University / Duke University / University of Tennessee, Knoxville",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "カメラの位置・角度をあらかじめ測っておかなくても、複数枚の物体写真から一発（1回の推論）で3Dガウシアンスプラットを組み立てるフィードフォワード型の3D再構成手法。",
+    "point": "FlexSplatは、複数枚の物体写真さえあれば、カメラの位置や角度をあらかじめ測っておかなくても、その場で3Dのガウシアン点群（ガウシアンスプラット）を組み立てられる技術です。従来の同種の手法は、カメラの正確な位置情報を事前に知っている前提で3Dを組み立てていましたが、FlexSplatは画像を見ながらカメラの位置そのものも同時に推定するため、スマホでぐるっと撮った程度のラフな写真セットからでも使えます。しかも一回のニューラルネットの推論だけで完成するので、シーンごとに時間をかけて最適化計算をする必要がありません。広告や商品プロモーションの現場では、ECサイトの商品を回転できる3Dビューにしたり、イベント会場やロケ地をその場でざっくり3Dスキャンしてプレビズ（撮影前の下見・構図検討）に使ったりと、専門的な計測機材なしで「撮ってすぐ3D化」という体験づくりに向いています。",
+    "detail": "仕組みとしては、複数視点の画像をまず「幾何トランスフォーマー」と呼ばれるニューラルネットに入力し、各画像のカメラパラメータ（位置・向き・レンズ情報）と奥行きを推定します。同時に、画像解像度に紐づかない「学習可能なガウシアンクエリ」という仕掛けを使い、3D空間に配置する半透明の楕円体（ガウシアン）の数や配置を柔軟に決められるようにしています。複数視点で推定した奥行きと形状の一致度（マルチビュー一貫性）をチェックしながら統合することで、視点ごとにバラバラにならない一つの3D表現を作り出します。\n\n従来のpixelSplatやMVSplatといった代表的な手法は、画像1枚あたり決まった数のガウシアンを画素単位で割り当てる方式で、カメラの正確な位置情報（キャリブレーション）が事前に必要でした。FlexSplatはこの制約を外し、カメラ位置の推定と3D復元を同時に行う「キャリブレーション不要」設計にした点が新しく、英国の主要なコンピュータビジョン国際会議BMVC 2026（採択率28%）に採択されています。\n\n利用にはPython 3.10とCUDA対応GPU環境が必要で、公式実装がGitHubで公開されており、学習済みチェックポイントを指定すれば手持ちの画像フォルダから3D復元を試せます（`python -m src.demo --images ... --checkpoint $CKPT --export-ply`）。ライセンス表記は現時点でリポジトリに明記されておらず、研究目的のコードとして商用利用の可否は開発チームへの確認が必要です。プロジェクトページには処理の流れを示す動画や、入力画像枚数による性能向上・カメラ誤差への耐性を示すグラフが公開されています。",
+    "license": {
+      "spdx": null,
+      "commercial": "research-only",
+      "note": "リポジトリにライセンス表記が明記されていない。BMVC査読論文の学術コードのため商用利用可否は開発チームへの個別確認が必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/amir-sbg/FlexSplat"
+      },
+      {
+        "kind": "project",
+        "url": "https://amir-sbg.github.io/FlexSplat/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2608.07937"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/flexsplat.jpg",
+    "relatedWorks": [
+      {
+        "title": "pixelSplat",
+        "description": "画素ごとにガウシアンを予測する代表的なフィードフォワード3DGS手法。カメラキャリブレーションが前提で、FlexSplatが比較対象とする従来手法。",
+        "url": "https://davidcharatan.com/pixelsplat/"
+      },
+      {
+        "title": "MVSplat",
+        "description": "多視点画像から効率的にガウシアンを推定する軽量フィードフォワード手法。FlexSplatの主要な比較ベースラインの一つ。",
+        "url": "https://donydchen.github.io/mvsplat/"
+      },
+      {
+        "title": "UniqueSplat",
+        "description": "視点条件付きで各クエリ視点ごとにカスタマイズした3Dガウシアンを生成する2026年8月発表の関連研究。",
+        "url": "https://arxiv.org/abs/2608.02145"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "splatlight",
+    "title": "Splatlight",
+    "org": "Javier Herrera",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "実写を3Dスキャンしたガウシアンスプラットに、Blenderのシーンライトに反応する自己遮蔽(セルフシャドウ)を後付けできるBlenderアドオン。",
+    "point": "これまでBlenderに取り込んだガウシアンスプラット(実写の場所やモノを3Dスキャンして点群状に再現したデータ)は、撮影時の明るさがそのまま焼き付いた「置物」で、CGのライトを動かしても影一つ落ちませんでした。Splatlightはこのスキャンデータの密度(不透明度)情報から擬似的な陰影を計算し、シーン内のライトの向きに合わせて自然な自己遮蔽を生成するBlenderアドオンです。密な部分は濃い影、透けた部分は柔らかい影になるよう調整され、元の質感とフルCGライティングの間をスライダーで行き来できます。広告制作やバーチャルプロダクションでは、実在するロケーションをスプラットでスキャンして持ち帰り、Blender上で光の向きや強さを作り込みながらCGキャラクターやプロダクトを違和感なく合成する、といった使い方が現実的になります。",
+    "detail": "仕組みとしては、通常Blenderにインポートしたガウシアンスプラットは撮影時に焼き込まれた明るさのまま固定表示され、シーンのライトを動かしても反応しません。Splatlightは各ガウシアン粒子の不透明度(密度)から疑似的な陰影情報を算出し、EEVEEやCyclesのシーンライトに反応させて自己遮蔽を生成します。密度が高い部分は濃い影、まばらな部分は柔らかい影になり、開発者いわくHoudiniの陰影処理の考え方を参考にしているとのことです。\n\n従来のGaussian Splattingツールの多くは「表示」や「配置編集」が中心で、焼き込まれた光を無視するしかない制約がありました。Splatlightは光と影の相互作用を後付けすることで、実写ロケーションのスキャンとCGの光源を自然に噛み合わせられる点が新しく、Pro版ではプロキシメッシュへのリギングやウェイトペイント、4Dタイムライン再生、COLMAP/nerfstudioのカメラ読み込みも加わり、単なる閲覧を超えた制作向けワークフローに踏み込んでいます。\n\n使うにはBlender 4.2〜5.2とある程度のGPU性能が必要です。無料のLITE版でリライトと自己遮蔽、PLYの入出力までを試せ、制作用途でリギングや4D再生まで使う場合はPro版(Gumroadで$35)が必要です。配布はGumroadとSuperhive(旧Blender Market)から行われています。",
+    "license": {
+      "spdx": null,
+      "commercial": "ok",
+      "note": "LITE(無料): ビューア/リライト/PLYインポート出力/自己遮蔽まで利用可。Pro($35, Gumroad/Superhive販売): プロキシメッシュへのリギング・ウェイトペイント・4Dタイムライン再生・COLMAP/nerfstudioカメラ読込を追加。開発者はGPLベースと説明するがバージョン番号は未確認。"
+    },
+    "links": [
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/splatlight-gives-gaussian-splats-self-shadowing-under-scene-lights-in-blender"
+      },
+      {
+        "kind": "product",
+        "url": "https://3813161402759.gumroad.com/l/splatlight?a=555385955"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/splatlight.jpg",
+    "relatedWorks": [
+      {
+        "title": "3DGS Render (KIRI Engine)",
+        "description": "KIRI EngineによるBlender向けガウシアンスプラット編集・レンダリングアドオン。アニメーション対応。",
+        "url": "https://www.kiriengine.app/blender-addon/3dgs-render"
+      },
+      {
+        "title": "BlendSplat",
+        "description": "Blenderネイティブでガウシアンスプラットを扱うツールキット。表示・編集機能を提供。",
+        "url": "https://soerensc.gumroad.com/l/BlendSplat"
+      },
+      {
+        "title": "SkySplat",
+        "description": "ドローン空撮動画から3Dガウシアンスプラットを生成するBlenderアドオン。",
+        "url": "https://skysplat.org/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "stemgenrt",
     "title": "StemgenRT",
     "org": "Sweet Spot Sound System",
