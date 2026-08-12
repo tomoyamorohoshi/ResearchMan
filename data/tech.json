@@ -1,5 +1,102 @@
 [
   {
+    "id": "joyai-video-edit",
+    "title": "JoyAI-Video-Edit",
+    "org": "JD.com (JD Open Source / JoyAI Labs)",
+    "type": "Research",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "テキスト指示だけで動画をリアルタイム編集できる160億パラメータの生成AI。JD.com(京東)が開発し、コード・学習済みモデル・技術レポートを無償公開した。",
+    "point": "動画編集AIの多くは『動画全体を一度生成し直す』方式のため、数十秒〜数分の処理待ちが発生し、結果を見てから細かく直す“やり直し”がしづらいという課題がありました。JoyAI-Video-Editは、動画を先頭から順番に読み込みながら、その場でコマ単位に近い速さ(720pで秒間約30コマ)で書き換えていく方式を採用し、動画の長さを事前に決めずに、生放送のようにリアルタイムで『背景だけ変える』『服の色を変える』『スタイルを変える』といった指示を反映できます。人物や背景の同一性を保ったまま長尺でも破綻しにくい工夫もされています。広告制作の現場でクライアントとの打ち合わせ中にその場で編集案を見せて即座に修正したり、ライブ配信映像にリアルタイムでエフェクトをかけたり、SNS向け動画のバリエーション出しを高速化したりする用途に応用できそうです。",
+    "detail": "仕組みとしては、①動画の内容を理解する“目”の役割をするMLLM(マルチモーダル言語モデル)による条件エンコーダ、②動画を圧縮・復元する“動画専用の圧縮ソフト”にあたる因果的Video VAE、③実際に絵を書き換える160億パラメータの拡散トランスフォーマー(MMDiT)の3つを組み合わせています。過去のフレームだけを見て次のフレームを生成する“因果的(未来を見ない)”な設計にすることで、動画を最後まで待たずに編集結果を出力できるのが最大の工夫です。\n\n従来のAI動画編集は、双方向(未来のフレームも含めて)理解してから生成するモデルが主流で、高品質な反面、編集のたびに動画全体を作り直す必要があり実用速度には向きませんでした。JoyAI-Video-Editは、双方向モデルの知識を“先読みしない”軽量モデルに蒸留(コンパクトに教え込む)する独自手法(SA-DMD)を使うことで、画質を大きく落とさずに高速化を実現しています。\n\n使うにはNVIDIA B200クラスの業務用GPU、もしくは相応のクラウドGPU環境が前提で、個人が手元のPCですぐ試せるものではありません。ただしコード一式・学習済みモデル・技術レポートが無償公開されているほか、ブラウザから触れる公式デモ(joyai-labs.jd.com)も用意されているため、映像制作会社やツール開発者が自社サービスへの組み込みを検討する足がかりにはしやすい状態です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "コード・学習済みチェックポイント・技術レポートをApache-2.0で公開。商用利用可。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/jd-opensource/JoyAI-Video-Edit"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2608.03974"
+      },
+      {
+        "kind": "product",
+        "url": "https://joyai-labs.jd.com/v2v/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/joyai-video-edit.jpg",
+    "relatedWorks": [
+      {
+        "title": "LiveEdit",
+        "description": "因果的なチャンク単位でストリーミング動画編集を行う先行研究(ECCV 2026)",
+        "url": "https://live-edit.github.io/"
+      },
+      {
+        "title": "Kiwi-Edit",
+        "description": "指示文と参照画像の両方で動画編集を制御する汎用動画編集モデル",
+        "url": "https://huggingface.co/papers/2603.02175"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "openchatcut",
+    "title": "OpenChatCut",
+    "org": "0xsline (独立開発・OSSコミュニティ)",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "GenVideo",
+      "AI/Agents"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "会話しながら本物のマルチトラックタイムラインを編集できる、オープンソースのAI動画編集ソフト。ClaudeなどのAIエージェントが実際の編集操作を行う。",
+    "point": "多くのAI動画編集ツールは『指示を出すと編集済みの動画がひとつ出てくる』だけで、そこから細かく手直しをしようとすると結局ゼロから作り直しになりがちでした。OpenChatCutは、チャットでAIエージェントに指示を出すと、AIが実際のタイムライン(映像・音声・字幕・トランジション・エフェクトが並ぶ、動画編集ソフトでおなじみの『トラック』)を直接操作してくれる点が特徴です。編集結果は普通のプロジェクトファイルとして残るため、AIが仕上げたあとに人間が手で微調整したり、途中の操作を一つずつ取り消したりできます。ClaudeやCodexなどのAIエージェントをMCP経由で自由に繋げられる設計になっており、広告やSNS動画の量産現場で『ラフ編集はAIに任せて仕上げだけ人がやる』というワークフローを組みやすく、字幕付け・BGM選定・トランジション挿入といった定型作業の時短に直結しそうです。",
+    "detail": "仕組みは、Reactベースのタイムラインエディタと、Claude・GPTなどのAIモデルをつなぐVercel AI SDK、そして実際の書き出し(レンダリング)を担うRemotion(プログラムで動画を生成するWeb技術)を組み合わせたアプリです。AIエージェントは『クリップを配置する』『無音部分をカットする』『字幕を追加する』といった編集ソフトの操作コマンドそのものを実行するため、動画編集アプリの操作をAIに“手渡す”ようなイメージに近い挙動になります。\n\n従来の生成AI動画編集(1本の動画をまるごと生成し直すタイプ)と違い、OpenChatCutは既存の動画編集ソフトの構造(トラック・クリップ・エフェクト)をそのまま保ったままAIが操作する点が新しさです。そのため生成AI特有の“毎回微妙に違う結果になる”“思った通りに直せない”という不満が起きにくく、Premiere ProやDaVinci Resolveに慣れた編集者でも扱いやすい設計です。\n\n入手にはNode.js環境があればソースから起動でき、Windows/macOS向けのビルド済みデスクトップアプリも配布されています。無料でAGPL-3.0ライセンスのオープンソースですが、AGPLは改変版を配布・SaaS提供する場合にソースコード公開が義務付けられる“コピーレフト”ライセンスのため、自社サービスに組み込んで外部提供する際は注意が必要です。個人利用や社内制作用途であれば無償でそのまま使えます。",
+    "license": {
+      "spdx": "AGPL-3.0-or-later",
+      "commercial": "conditional",
+      "note": "AGPLのため改変版の配布・SaaS提供時はソース公開義務あり。個人・社内利用は無償でそのまま使用可。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/0xsline/OpenChatCut"
+      },
+      {
+        "kind": "product",
+        "url": "https://openchatcut.com"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/openchatcut.jpg",
+    "relatedWorks": [
+      {
+        "title": "Remotion",
+        "description": "Reactコードから動画をプログラム的にレンダリングするフレームワーク。OpenChatCutの書き出しエンジンとして採用",
+        "url": "https://www.remotion.dev/"
+      },
+      {
+        "title": "LiveEdit",
+        "description": "参考:AIによるリアルタイム動画編集の研究例(ECCV 2026)",
+        "url": "https://live-edit.github.io/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "flexsplat",
     "title": "FlexSplat",
     "org": "Georgia State University / Duke University / University of Tennessee, Knoxville",
