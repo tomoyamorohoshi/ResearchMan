@@ -7839,5 +7839,203 @@
         "desc": "Blender内で生成AIによる3Dアセット生成とテクスチャリングを完結できるオープンソースアドオン"
       }
     ]
+  },
+  {
+    "id": "2026-08-12-1",
+    "date": "2026-08-12",
+    "title": "ささやきで浮かぶ屋外広告",
+    "pattern": "文脈×技術",
+    "seed": "Bumbershootの雨で隠しメッセージが浮かぶ屋外広告のように、NasoVoceのささやきだけを拾うセンサーを仕込めば、通行人がそっとつぶやいた言葉で広告のメッセージが浮かび上がる仕掛けができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "rain-activated-bumbershoot-2014",
+        "title": "Rain Activated (Bumbershoot)",
+        "desc": "雨で濡れると防水塗料で隠されたメッセージが浮かび上がる、シアトルのフェス屋外広告"
+      },
+      {
+        "type": "tech",
+        "id": "nasovoce",
+        "title": "NasoVoce",
+        "desc": "スマートグラスの鼻当てにマイクと振動センサを仕込み、ささやき声でも認識できる発話インターフェース"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-12-2",
+    "date": "2026-08-12",
+    "title": "雷で波打つ群ロボ看板",
+    "pattern": "文脈×技術",
+    "seed": "Volvoの避雷針看板が雷を受けて光ったように、FluidicSwarmの水のように形を変える群ロボットを屋外に置けば、嵐のたびに群れがうねって天候そのものを演出するインスタレーションになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "volvo-lightning-powered-billboard-purepower-2017",
+        "title": "Volvo Lightning-Powered Billboard #PurePower",
+        "desc": "避雷針を仕込んだ看板が本物の雷を受けると光る、雷雨シーズン限定のタイの屋外広告"
+      },
+      {
+        "type": "tech",
+        "id": "fluidicswarm",
+        "title": "FluidicSwarm",
+        "desc": "手のジェスチャーだけで複数の小型ロボット群を水のような一つの生き物のように操れる操作システム"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-12-3",
+    "date": "2026-08-12",
+    "title": "一人称視点の日食広告",
+    "pattern": "文脈×技術",
+    "seed": "Coronaが日食の欠け方をライムスライスに見立てたように、ReViVで来場者のPOV動画から太陽の動きごとシーンを4D復元すれば、一人ひとり違う欠け方の商品ビジュアルを自動生成できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "for-every-slice-of-sun-2024",
+        "title": "For Every Slice of Sun（日食を利用したコロナのビジュアル）",
+        "desc": "環状日食で欠けた太陽をコロナのライムスライスに見立てて撮影した天体連動の屋外ビジュアル"
+      },
+      {
+        "type": "tech",
+        "id": "reviv",
+        "title": "ReViV (Reconstructing the Viewer and the View in 4D from Monocular Egocentric Video)",
+        "desc": "一人称視点の動画1本から装着者の全身の動きと周囲シーンの動きを同時に4D復元する技術"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-12-4",
+    "date": "2026-08-12",
+    "title": "無料お試しビートガチャ",
+    "pattern": "文脈×技術",
+    "seed": "Steam Summer Sale Simulatorのように課金なしで衝動買いを疑似体験できるなら、Splice MCPの自然言語ビートメイキングも無料お試しガチャにして、機材なしでDTMの高揚感を売る販促ツールにできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "steam-summer-sale-simulator-2026",
+        "title": "Steam Summer Sale Simulator",
+        "desc": "実際の課金なしにSteamセールの衝動買いの快感を疑似体験できる偽ストアのWebアプリ"
+      },
+      {
+        "type": "tech",
+        "id": "splice-mcp-claude-beatmaking",
+        "title": "Splice MCP Server × Claude Cowork によるAIビートメイク検証",
+        "desc": "Spliceの公式MCPサーバーをClaudeに繋ぎ、自然言語の指示だけで曲を組めるか検証したもの"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-12-5",
+    "date": "2026-08-12",
+    "title": "表情増幅で訴える住宅危機",
+    "pattern": "文脈×技術",
+    "seed": "The Unliveable Listingsが路上生活の現実を不動産広告風に見せたように、EmoMimeの表情を増幅するロボットアームを街頭に置けば、通行人の共感の表情を拡大して住宅危機への当事者意識を喚起できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "the-unliveable-listings-2026",
+        "title": "The Unliveable Listings",
+        "desc": "路上生活者の寝床を不動産物件広告風に見せ、週25ドルの寄付で住宅危機を伝える広告"
+      },
+      {
+        "type": "tech",
+        "id": "emomime",
+        "title": "EmoMime",
+        "desc": "顔のすぐそばで安全に動き、表情やしぐさを増幅して伝える人の手の形をしたウェアラブルロボットアーム"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-12-6",
+    "date": "2026-08-12",
+    "title": "音源分離とAI動画の同期",
+    "pattern": "技術×技術",
+    "seed": "HS-TasNetの23ミリ秒の超低遅延音源分離と、ComfyUI-Sonder-Editorのタイムライン編集を組み合わせたら、ライブ演奏を楽器ごとに分離しながら生成AI動画へ即座に同期させる演出ができそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "hs-tasnet",
+        "title": "HS-TasNet",
+        "desc": "音声のスペクトログラムと波形を同時に扱い、23ミリ秒という短さでボーカルなどをリアルタイム分離するモデル"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-sonder-editor",
+        "title": "ComfyUI-Sonder-Editor",
+        "desc": "ComfyUIに動画編集ソフトのタイムラインを組み込み、生成AI動画をノードなしで編集できる拡張機能"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-12-7",
+    "date": "2026-08-12",
+    "title": "CGキャラとロボの同期振付",
+    "pattern": "技術×技術",
+    "seed": "robot_retargeterが人の動きを体格の違うロボットへ変換できるように、Viggle PINOCが生成した3Dプリビズキャラの動きをそのままロボットへ変換すれば、CGキャラと実機ロボットが同じ振付を踊る広告演出ができそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "robot-retargeter",
+        "title": "robot_retargeter",
+        "desc": "人のモーションキャプチャデータを、体格や関節数が違う人型ロボットの動きに自動変換する無料ツール"
+      },
+      {
+        "type": "tech",
+        "id": "viggle-pinoc-seedance-workflow",
+        "title": "Viggle PINOC × Seedance ワークフロー",
+        "desc": "動画からモーキャプ抽出と画像1枚からの3Dキャラ生成を行い、Seedanceで最終映像化するワークフロー"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-12-8",
+    "date": "2026-08-12",
+    "title": "内緒話だけを届けるCM",
+    "pattern": "技術×技術",
+    "seed": "NasoVoceが拾ったささやき声を、Ultimate Vocal Removerの分離技術で雑踏のノイズから完全に抽出したら、本人にしか聞こえない音量で成立する内緒話CMができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "nasovoce",
+        "title": "NasoVoce",
+        "desc": "スマートグラスの鼻当てにマイクと振動センサを仕込み、ささやき声でも認識できる発話インターフェース"
+      },
+      {
+        "type": "tech",
+        "id": "ultimate-vocal-remover",
+        "title": "Ultimate Vocal Remover (UVR)",
+        "desc": "複数のAIモデルを切り替えながら使える、無料のボーカル・楽器分離デスクトップアプリ"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-12-9",
+    "date": "2026-08-12",
+    "title": "都市の環境音を採譜する",
+    "pattern": "転用",
+    "seed": "MT3は本来、演奏音源を採譜する技術だけど、工事音や雨音など街の環境音を楽器パートとして書き起こせば、都市の日常音そのものを未発表の楽曲スコアとして扱う転用ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "mt3",
+        "title": "MT3 (Multi-Task Multitrack Music Transcription)",
+        "desc": "1本の音源から、ピアノやドラムなど複数の楽器パートを別々のMIDIトラックとして書き起こす採譜モデル"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-12-10",
+    "date": "2026-08-12",
+    "title": "色を意図的に崩す広告演出",
+    "pattern": "転用",
+    "seed": "ComfyUI-OCIOは本来、生成AI映像を映画と同じ精度の色空間で管理する技術だけど、あえて色管理を崩す方向に使えば、同じ広告素材が国や時間帯ごとに違う色調へ変化して見える演出に転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-ocio",
+        "title": "ComfyUI-OCIO",
+        "desc": "映画・VFX業界標準の色空間管理システムをComfyUIの中で使えるようにするカラーマネジメント拡張"
+      }
+    ]
   }
 ]
