@@ -1,5 +1,395 @@
 [
   {
+    "id": "house-of-vans-london-2014",
+    "title": "House of Vans London（ウォータールー駅下の廃鉄道トンネル）",
+    "summary": "ロンドン・ウォータールー駅下の約150年前の廃線煉瓦トンネル群をスケートパーク兼ギャラリー兼ショップに転用した恒久型カルチャー施設。",
+    "client": "Vans",
+    "agency": "Tim Greatrex Architect",
+    "categories": [
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2014",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.architectsjournal.co.uk/archive/skatepark-opens-in-waterloos-railway-vaults",
+    "thumbnail": "/thumbnails/house-of-vans-london-2014.jpg",
+    "videoId": "",
+    "overview": "House of Vans Londonは、ロンドン・ウォータールー駅の高架下に広がる約150年前の煉瓦造り廃線トンネル群を改装した恒久型のカルチャー施設。建築設計はTim Greatrex Architectが担当し、屋内スケートパーク、ギャラリー、映画上映スペース、カフェ、ショップを一体化した複合施設としてオープンした。",
+    "background": "英ロンドンには19世紀に建設された鉄道用の煉瓦トンネルが多数残るが、多くは未活用のまま放置されていた。Vansは、単なるショップ出店ではなくスケートカルチャーの発信拠点を作るにあたり、歴史的建造物である廃線トンネルを恒久施設として再活用する道を選んだ。",
+    "execution": "Tim Greatrex Architectが手がけた設計により、ウォータールー駅下の複数のヴォールト（アーチ状トンネル空間）をそれぞれスケートパーク、ギャラリー、映画上映室、カフェ、リテールスペースへと転用。煉瓦造りの躯体をそのまま活かしながら、スケーターやアーティストが日常的に集える屋内型の複合カルチャー施設として整備した。",
+    "evaluationImpact": "ブランドショップの枠を超え、廃線インフラを恒久的なカルチャー拠点へ転換した事例として建築・都市開発メディアでも取り上げられた。ロンドンにおけるブランド発の公共的スケートカルチャー拠点の先行例として、以降の同種プロジェクトの参照点となっている。",
+    "relatedWorks": [
+      {
+        "title": "Architects' Journal「Skatepark opens in Waterloo's railway vaults」",
+        "description": "House of Vans Londonの建築転用を紹介する記事",
+        "url": "https://www.architectsjournal.co.uk/archive/skatepark-opens-in-waterloos-railway-vaults"
+      }
+    ],
+    "sources": [
+      "Pop-Up Spaces"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Theme/Sports",
+      "Theme/Retail",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "uniqlo-in-2026",
+    "title": "UNIQLO 自動販売機 in よみうりランド",
+    "summary": "ユニクロが遊園地よみうりランドに国内初の自動販売機を設置し、サングラスや晴雨兼用傘を無人販売した実験的出店。",
+    "client": "UNIQLO（ユニクロ）",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.fashionsnap.com/article/2026-07-22/uniqlo-vending-machine/",
+    "thumbnail": "/thumbnails/uniqlo-in-2026.jpg",
+    "videoId": "",
+    "overview": "ユニクロは2026年、遊園地「よみうりランド」の正面入口とプールWAI入口の2カ所に、国内初となるユニクロ自動販売機を設置。サングラスや晴雨兼用傘など、来園者が現地で必要とする商品を無人で販売する実験的な出店を行った。",
+    "background": "従来ユニクロは路面店やショッピングモール内での出店が中心だったが、遊園地という店舗のない非日常空間でも顧客との接点を持てないか模索。屋外レジャー施設利用者が日差しや急な雨で必要とする日焼け・雨具アイテムに着目し、無人販売という省スペースな形態での展開を試みた。",
+    "execution": "よみうりランドの正面入口とプールWAI入口の2カ所に自動販売機を設置し、サングラスと晴雨兼用傘を販売。店舗運営を伴わずに商品を提供できる自動販売機の特性を活かし、来園者の動線上で衝動的なニーズに応える立地・品揃えを選定した。",
+    "evaluationImpact": "アパレル大手ユニクロが国内で初めて自動販売機による販売を行った事例としてfashionsnapなどで報じられ、遊園地という意外な立地での出店がSNSや業界内で話題となった。店舗以外の新たな顧客接点の可能性を示す先行事例として位置づけられる。",
+    "relatedWorks": [
+      {
+        "title": "fashionsnap.com報道記事",
+        "description": "ユニクロの自動販売機設置を報じる記事",
+        "url": "https://www.fashionsnap.com/article/2026-07-22/uniqlo-vending-machine/"
+      }
+    ],
+    "sources": [
+      "Pop-Up Spaces"
+    ],
+    "tags": [
+      "Form/Product",
+      "Theme/Retail",
+      "Theme/Fashion"
+    ]
+  },
+  {
+    "id": "zoff-2019-sunglasses-collection-pop-up-shop-expasa-2019",
+    "title": "Zoff 2019 SUNGLASSES COLLECTION POP-UP SHOP（EXPASA談合坂）",
+    "summary": "Zoffが高速道路SA「EXPASA談合坂」に初出店し、サングラス専門のポップアップショップを期間限定展開。",
+    "client": "Zoff",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2019",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000252.000002864.html",
+    "thumbnail": "/thumbnails/zoff-2019-sunglasses-collection-pop-up-shop-expasa-2019.jpg",
+    "videoId": "",
+    "overview": "アイウェアブランドZoffは2019年、中央自動車道のサービスエリア「EXPASA談合坂」下り線に初めて出店し、「2019 SUNGLASSES COLLECTION POP-UP SHOP」を期間限定でオープン。サングラスに特化した品揃えで、ドライブ途中の利用者に向けた販売を行った。",
+    "background": "夏の行楽シーズンに車での外出機会が増える中、Zoffは従来の路面店・商業施設内出店に加え、ドライバーや同乗者が休憩で立ち寄る高速道路サービスエリアという新たな立地に着目。移動途中で紫外線対策アイテムを求める潜在需要を捉えるべく、SA内でのポップアップ出店に踏み切った。",
+    "execution": "EXPASA談合坂下り線にポップアップ型店舗を設置し、Zoffの2019年サングラスコレクションを専門的にラインアップ。旅行や帰省でSAを利用する幅広い客層に向け、期間限定でサングラスの試着・購入ができる場を提供した。",
+    "evaluationImpact": "メガネブランドが高速道路サービスエリアに出店するのは珍しく、行楽シーズンの移動導線上に販売接点を設けた点がPR TIMESなどで発表された。店舗立地の常識にとらわれない出店戦略の事例として位置づけられる。",
+    "relatedWorks": [
+      {
+        "title": "PR TIMES発表",
+        "description": "EXPASA談合坂でのポップアップショップ出店を伝えるプレスリリース",
+        "url": "https://prtimes.jp/main/html/rd/p/000000252.000002864.html"
+      }
+    ],
+    "sources": [
+      "Pop-Up Spaces"
+    ],
+    "tags": [
+      "Form/Event",
+      "Theme/Retail",
+      "Theme/Fashion"
+    ]
+  },
+  {
+    "id": "gentle-monster-veggiemon-2026",
+    "title": "GENTLE MONSTER \"Veggiemon\" ポップアップ（原宿駅前）",
+    "summary": "GENTLE MONSTERが原宿駅前に巨大トマトの野菜農場を出現させ、擬人化キャラクター『Veggiemon』でアイウェア新作を展開したポップアップ。",
+    "client": "GENTLE MONSTER",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://omoharareal.com/navi/news/detail/5632",
+    "thumbnail": "/thumbnails/gentle-monster-veggiemon-2026.jpg",
+    "videoId": "",
+    "overview": "アイウェアブランドGENTLE MONSTERは2026年、原宿駅前に新作ポップアップストアをオープン。巨大なトマトを中心とした架空の“野菜農場”を舞台に、野菜を擬人化した生命体キャラクター「Veggiemon」のオブジェで空間を埋め尽くし、非現実的な世界観の中でアイウェアを紹介した。",
+    "background": "原宿は若年層・海外観光客が集まるファッション・カルチャーの発信地であり、GENTLE MONSTERはこれまでも実験的なアートインスタレーション型のストア展開でブランド世界観を発信してきた。今回は駅前という高視認性の立地を活かし、通行人の目を引く大規模な作り込みの空間演出でアイウェア新作を打ち出した。",
+    "execution": "原宿駅前の店舗スペースに、巨大トマトを中心とした野菜農場の世界観をフルスケールで構築。野菜を擬人化した「Veggiemon」の造形物を空間全体に配置し、来店者が架空の生命体たちに囲まれながらアイウェアを体験できる没入型のポップアップとして展開した。",
+    "evaluationImpact": "原宿の観光・カルチャー情報を扱うomoharareal.com等で紹介され、SNS映えする作り込まれたビジュアルが話題化。単なる商品陳列にとどまらない世界観構築型の店舗演出として、アイウェアブランドの体験型リテール手法の一例となった。",
+    "relatedWorks": [
+      {
+        "title": "omoharareal.com掲載記事",
+        "description": "Veggiemonポップアップの詳細を紹介する記事",
+        "url": "https://omoharareal.com/navi/news/detail/5632"
+      }
+    ],
+    "sources": [
+      "Pop-Up Spaces"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Theme/Fashion",
+      "Theme/Retail"
+    ]
+  },
+  {
+    "id": "keen-2026",
+    "title": "KEEN 高尾山ベースキャンプ トレイルシューズ無料レンタルポップアップ",
+    "summary": "KEENが高尾山登山口のベースキャンプにトレイルシューズの無料レンタルポップアップを常設展開。",
+    "client": "KEEN",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.wwdjapan.com/articles/2464651",
+    "thumbnail": "/thumbnails/keen-2026.jpg",
+    "videoId": "",
+    "overview": "アウトドアブランドKEENは2026年、高尾山登山口の「マウントタカオ ベースキャンプ」に3カ月間の常設ポップアップを展開。実際の高尾山トレイルコースを使い、来訪者がトレイルランニングシューズを無料でレンタルして試走できる体験の場を提供した。",
+    "background": "トレイルランニングやハイキング人口の拡大に伴い、専用シューズを持たない初心者層が気軽に本格的なトレイル体験を試せる機会が求められていた。KEENは登山口という実際のフィールドに近い立地を選び、店頭での商品説明ではなく実際の山道での試走という形で製品価値を伝える施策を企画した。",
+    "execution": "高尾山登山口の「マウントタカオ ベースキャンプ」内に3カ月間常設のレンタルスペースを設置し、KEENのトレイルシューズを無料で貸し出し。来訪者は実際の高尾山トレイルコースを歩き、購入前に製品のフィット感やグリップ性能を現地で確かめられる仕組みとした。",
+    "evaluationImpact": "WWD JAPANで報じられたように、店舗内でのプロモーションにとどまらず実際のフィールドでの体験提供に踏み込んだ点が特徴。アウトドアブランドが製品体験の場を実際の使用シーンに近づける手法として注目される。",
+    "relatedWorks": [
+      {
+        "title": "WWD JAPAN報道記事",
+        "description": "KEENの高尾山ベースキャンプ展開を報じる記事",
+        "url": "https://www.wwdjapan.com/articles/2464651"
+      }
+    ],
+    "sources": [
+      "Pop-Up Spaces"
+    ],
+    "tags": [
+      "Form/Event",
+      "Theme/Sports",
+      "Theme/Retail"
+    ]
+  },
+  {
+    "id": "musinsa-2026",
+    "title": "ムシンサステーション（原宿でソンス駅を再現したポップアップ）",
+    "summary": "韓国ムシンサが原宿にソウル・ソンス駅の駅構内をまるごと再現し、77ブランドが集う大型ポップアップを展開",
+    "client": "MUSINSA（ムシンサ）",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.wwdjapan.com/articles/2469084",
+    "thumbnail": "/thumbnails/musinsa-2026.jpg",
+    "videoId": "",
+    "overview": "韓国最大級のファッションECプラットフォームMUSINSAが、東京・原宿のヨドバシJ6ビル内に、ソウルの実在する地下鉄駅「ソンス（聖水）駅」の構内をまるごと再現した大型ポップアップ「ムシンサステーション」を展開。会場には77ブランドが集結し、韓国発のカルチャーとファッションを日本の生活者に体験させる場となった。",
+    "background": "MUSINSAは韓国のZ世代を中心に支持を集めるファッションEC大手で、近年は国外展開を加速させている。ソウル・聖水（ソンス）洞はムシンサ自身のオフィスやショールームが集積するカルチャー発信エリアとして知られ、その象徴である駅の空間ごと日本へ持ち込むことで、ブランドの世界観を体感型で伝える狙いがあったとみられる。",
+    "execution": "会場となった原宿ヨドバシJ6ビルの内装を、案内サイン・改札・ホームなどソンス駅の構内風景さながらに作り込み、その中に77ブランドのショップやプロダクトを配置。単なる合同展示ではなく「駅」という物理空間のメタファーを通じて回遊させる構成とし、来場者が韓国カルチャーそのものを歩いて体験できるようにした。",
+    "evaluationImpact": "単一ブランドの世界観再現にとどまらず、都市のインフラである「駅」を丸ごとフィクション化して77ブランドを束ねた点が特徴的な事例。韓国発ECプラットフォームが日本市場でリアル店舗体験を通じてブランド認知とカルチャー訴求を同時に狙う、越境ポップアップの手法として注目される。",
+    "relatedWorks": [],
+    "sources": [
+      "Pop-Up Spaces"
+    ],
+    "tags": [
+      "Form/Event",
+      "Form/Installation",
+      "Theme/Retail",
+      "Theme/Fashion"
+    ]
+  },
+  {
+    "id": "j-wave-2018",
+    "title": "J-WAVE湯",
+    "summary": "ラジオ局J-WAVEが池尻大橋の実在銭湯「文化浴泉」を1週間限定でブランドジャックし、湯につかりながら放送を聴ける体験を提供",
+    "client": "J-WAVE（81.3FM）",
+    "agency": "東京銭湯（コラボ運営）",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2018",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://tokyosento.com/pr/22197/",
+    "thumbnail": "/thumbnails/j-wave-2018.jpg",
+    "videoId": "",
+    "overview": "東京のFMラジオ局J-WAVE（81.3）が、目黒区池尻大橋にある実在の銭湯「文化浴泉」とコラボレーションし、1週間限定で店舗ならぬ湯船をブランドジャックした体験型ポップアップ「J-WAVE湯」を実施。富士山のペンキ絵を望む湯船につかりながら、館内に流れるJ-WAVEの放送を聴ける、銭湯文化とラジオブランド体験を融合させた企画。",
+    "background": "銭湯の魅力を発信する「東京銭湯」プロジェクトは、実在の老舗銭湯と企業・ブランドをコラボさせる取り組みを継続的に展開している。J-WAVEはリスナーとの接点をラジオの外に広げる狙いから、日常的な生活インフラである銭湯という場を選び、放送を「聴く」体験を「浸かる」体験と重ね合わせるアプローチを取った。",
+    "execution": "池尻大橋の文化浴泉を会場に、通常営業する銭湯の空間はそのままに、館内アナウンスや装飾でJ-WAVEブランドを1週間限定でジャック。富士山のペンキ絵を眺めながら湯船で番組を聴けるようにし、銭湯という生活密着の場でラジオブランドとの接点を自然な形で生み出した。",
+    "evaluationImpact": "店舗を新設するのではなく、実在の銭湯という「場」そのものをメディア化した点が特徴的な事例。広告接触が難しくなる生活動線の中に、入浴という日常行為とラジオ体験を重ね合わせることで、ブランドとの接点を無理なく生活に溶け込ませる手法として位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Pop-Up Spaces"
+    ],
+    "tags": [
+      "Form/Event",
+      "Form/Installation",
+      "Tech/Audio",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "loewe-2019",
+    "title": "LOEWE「パウラズ・ロードトリップ」ポップアップストア（銀座ソニーパーク）",
+    "summary": "ロエベが銀座ソニーパークの吹き抜けにトレーラー1台を設置し、イビザ島を思わせる植栽で囲んだ移動式ポップアップストアを展開",
+    "client": "LOEWE",
+    "agency": "そら植物園（植栽デザイン）",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2019",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://from-sora.com/projects/%E3%83%AD%E3%82%A8%E3%83%99-%E3%80%8C%E3%83%91%E3%82%A6%E3%83%A9%E3%82%BA-%E3%83%AD%E3%83%BC%E3%83%89%E3%83%88%E3%83%AA%E3%83%83%E3%83%97%E3%80%8D%E3%83%9D%E3%83%83%E3%83%97%E3%82%A2%E3%83%83%E3%83%97/",
+    "thumbnail": "/thumbnails/loewe-2019.jpg",
+    "videoId": "",
+    "overview": "スペインのラグジュアリーブランドLOEWEが、東京・銀座ソニーパークの吹き抜け空間にトレーラー1台を店舗として持ち込んだポップアップストア「パウラズ・ロードトリップ」。周囲にはスペイン・イビザ島を思わせる植栽を配し、旅する店という世界観を都心の公共的な空間の中に出現させた。植栽デザインはそら植物園が担当。",
+    "background": "LOEWEは1970年代のクリエイティブディレクター、パウラ・ウロアが率いたコレクション「パウラズ・イビザ」にインスパイアされたコレクションを展開しており、その世界観をリテール体験としても表現することを企図。常設の商業施設を持たない実験的な公共空間である銀座ソニーパークが、期間限定のトレーラー店舗という着想と結びついた。",
+    "execution": "銀座ソニーパークの吹き抜けにトレーラー1台を配置し、店舗機能をそのまま持たせた上で、周囲をイビザ島の自然を想起させる植物で装飾。そら植物園が植栽デザインを手がけ、都市のコンクリート空間の中に地中海のリゾート地を思わせる異空間を作り出し、ブランドの世界観を体験として伝えた。",
+    "evaluationImpact": "常設店舗を持たない実験的な公共空間である銀座ソニーパークの特性を生かし、トレーラーという「移動」のメタファーとコレクションのコンセプトを重ね合わせた点が特徴。植栽という自然素材を用いて都市の中に異なる場所性を立ち上げる手法は、ラグジュアリーブランドのポップアップ表現の一事例として参照される。",
+    "relatedWorks": [],
+    "sources": [
+      "Pop-Up Spaces"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Theme/Fashion",
+      "Theme/Retail"
+    ]
+  },
+  {
+    "id": "herm-s-2016",
+    "title": "エルメス 祇園町家ポップアップストア（大丸京都店300周年記念）",
+    "summary": "エルメスが京都・祇園の伝統的な町家を改装し、木組みユニット家具で機能を集約した期間限定ブティックを展開",
+    "client": "Hermès（エルメス）",
+    "agency": "ONIKI DESIGN STUDIO（小西工一郎）",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2016",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.designboom.com/architecture/oniki-design-studio-hermes-pop-up-store-darmus-kyoto-300th-japan-12-05-2016/",
+    "thumbnail": "/thumbnails/herm-s-2016.jpg",
+    "videoId": "",
+    "overview": "フランスのラグジュアリーブランドHermès（エルメス）が、大丸京都店の開業300周年を記念し、京都・祇園花見小路に建つ伝統的な町家を改装した期間限定ブティックを展開。設計はONIKI DESIGN STUDIOの小西工一郎が担当し、木組みのユニット家具で仕切られた町家の住空間を、1つの店舗機能へと統合した。",
+    "background": "大丸京都店の300周年という節目に合わせ、エルメスは京都という土地性を象徴する伝統的な町家建築を舞台に選び、ブランドの職人性と日本の建築文化を重ね合わせる企画を実施。祇園花見小路という歴史的な街並みの中に店舗を出現させることで、ブランドと京都の文化的文脈を接続する狙いがあったとみられる。",
+    "execution": "小西工一郎率いるONIKI DESIGN STUDIOが、部屋ごとに仕切られていた町家の内部を木組みのユニット家具によって再構成し、通り抜けられる1つの店舗空間へと統合。伝統的な建具や梁組みを生かしながら、商品什器や動線を町家の構造に合わせて設計し、期間限定ブティックとして機能させた。",
+    "evaluationImpact": "既存の町家建築を大きく改変せず、木組み家具の挿入という最小限の介入で店舗機能を成立させた設計手法が評価された事例。ラグジュアリーブランドが地域の歴史的建築ストックを一時的に活用し、土地の文化的背景をブランド体験に組み込むポップアップのあり方を示した。",
+    "relatedWorks": [],
+    "sources": [
+      "Pop-Up Spaces"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Theme/Fashion",
+      "Theme/Retail"
+    ]
+  },
+  {
+    "id": "bang-olufsen-2019",
+    "title": "Bang & Olufsen 京都ポップアップストア",
+    "summary": "取り壊し予定の京都の旧衣料品店を、解体途中のような剥き出しの内装に改装したBang & Olufsenのポップアップストア。",
+    "client": "Bang & Olufsen",
+    "agency": "関祐介（Yusuke Seki）",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2019",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.designboom.com/architecture/yusuke-seki-bang-and-olufsen-pop-up-store-kyoto-12-11-2019/",
+    "thumbnail": "/thumbnails/bang-olufsen-2019.jpg",
+    "videoId": "",
+    "overview": "建築家・デザイナーの関祐介（Yusuke Seki）が手がけたBang & Olufsenの京都ポップアップストア。取り壊し予定だった旧衣料品店を舞台に、解体途中のような剥き出しの内装と白砂利を敷いた空間で、神社の結界を思わせる静謐な雰囲気を演出した。",
+    "background": "デンマークのオーディオブランドBang & Olufsenが京都で展開する一時的な店舗にあたり、建物ごと取り壊される予定だった旧衣料品店が会場に選ばれた。ブランドの世界観を装飾で表すのではなく、建築の解体・再構築のプロセス自体を空間デザインに取り込む試みとして企画された。",
+    "execution": "天井や壁の仕上げを剥がして構造をあらわにし、床一面に白砂利を敷き詰めて神社の結界のような空間を構成。解体作業で発生するコンクリート型枠材を製品ディスプレイの什器に転用し、廃材を新たな価値へ変換する手法でBang & Olufsenのプロダクトを静けさの中に配置した。",
+    "evaluationImpact": "一時的な店舗という性質を逆手に取り、取り壊し予定の建物の「終わり」をデザインの起点にした点が特徴で、designboomなど海外デザインメディアでも紹介された。廃材転用とミニマルな空間演出を組み合わせたアプローチとして参照される事例となっている。",
+    "relatedWorks": [
+      {
+        "title": "designboom記事",
+        "description": "Yusuke Seki設計によるBang & Olufsen京都ポップアップストアの紹介記事",
+        "url": "https://www.designboom.com/architecture/yusuke-seki-bang-and-olufsen-pop-up-store-kyoto-12-11-2019/"
+      }
+    ],
+    "sources": [
+      "Pop-Up Spaces"
+    ],
+    "tags": [
+      "Form/Event",
+      "Form/Installation",
+      "Theme/Retail"
+    ]
+  },
+  {
+    "id": "overview-coffee-2022",
+    "title": "Overview Coffee 移動式ポップアップコーヒートラック",
+    "summary": "国産杉の小さな木箱が側面から展開してカフェ空間になる、Overview Coffeeの移動式ポップアップコーヒートラック。",
+    "client": "Overview Coffee",
+    "agency": "Jay Nelson（デザイン）",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2022",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.designboom.com/design/tiny-pop-up-cafe-truck-shop-jay-nelson-japan-05-13-2022/",
+    "thumbnail": "/thumbnails/overview-coffee-2022.jpg",
+    "videoId": "",
+    "overview": "Overview Coffeeのために家具デザイナーJay Nelsonが手がけた移動式ポップアップコーヒートラック。国産杉を使った小さな箱型のユニットが側面に展開し、コーヒーを提供するカウンター空間へと姿を変える仕組みで、2022年に京都を皮切りに日本各地を巡回した。",
+    "background": "固定店舗を持たずに各地でコーヒー体験を届けたいというOverview Coffeeの狙いのもと、家具や小屋建築を手がけるデザイナーJay Nelsonが起用され、持ち運び可能でありながら滞在できる空間性も備えた移動販売スタンドの企画が立ち上がった。",
+    "execution": "木製の箱型ユニットの側面パネルを開くことで庇やカウンターが立ち上がり、コンパクトな収納状態から短時間でカフェ空間へと変形する構造を採用。素材には国産杉を用い、京都を起点に日本各地を巡るツアー形式でポップアップ出店を展開した。",
+    "evaluationImpact": "小さな木箱がその場で展開しカフェ空間に変わる構造上のアイデアが特徴で、designboomなど海外デザインメディアでも紹介された。固定店舗を持たない飲食ブランドの出店手法として、移動性と木材の質感を両立させた事例となっている。",
+    "relatedWorks": [
+      {
+        "title": "designboom記事",
+        "description": "Jay Nelson設計によるOverview Coffeeの移動式ポップアップコーヒートラックの紹介記事",
+        "url": "https://www.designboom.com/design/tiny-pop-up-cafe-truck-shop-jay-nelson-japan-05-13-2022/"
+      }
+    ],
+    "sources": [
+      "Pop-Up Spaces"
+    ],
+    "tags": [
+      "Form/Product",
+      "Form/Event",
+      "Theme/Food",
+      "Theme/Mobility"
+    ]
+  },
+  {
     "id": "kitbash-epic-games-artstation-sketchfab-2026",
     "title": "KitBash、Epic GamesからArtStationとSketchfabを買収",
     "summary": "3DアセットのKitBashが、Epic傘下だったArtStationとSketchfabを買収し創作エコシステムを統合",

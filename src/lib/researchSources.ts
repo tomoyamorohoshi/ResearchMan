@@ -42,6 +42,7 @@ export const RESEARCH_SOURCES: ResearchSource[] = [
   { tag: "Interactive Paper", kind: "order", label: "Interactive Paper" },
   { tag: "Tactile Design", kind: "order", label: "Tactile Design" },
   { tag: "Typography", kind: "order", label: "Typography" },
+  { tag: "Pop-Up Spaces", kind: "order", label: "Pop-Up Spaces" },
   { tag: "Radar", kind: "radar", label: "Radar" },
 ];
 
