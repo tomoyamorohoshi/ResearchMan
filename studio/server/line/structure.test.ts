@@ -15,7 +15,7 @@ test("extractJsonObject: 配列はオブジェクトとして扱わずnull", () 
   assert.equal(extractJsonObject("[1,2,3]"), null);
 });
 
-test("parseStructuredResponse: research系はkindを保持し、count未指定はpure.tsの既定値(5件)になる", () => {
+test("parseStructuredResponse: research系はkindを保持し、count未指定はpure.tsの既定値(10件)になる", () => {
   const r = parseStructuredResponse("Case Study", '{"theme": "生成AI広告", "viewpoint": null, "refUrl": null, "count": null}');
   assert.equal(r.ok, true);
   if (r.ok) {
@@ -23,7 +23,7 @@ test("parseStructuredResponse: research系はkindを保持し、count未指定�
     const v = r.value as { kind: string; theme: string; count: number };
     assert.equal(v.kind, "Case Study");
     assert.equal(v.theme, "生成AI広告");
-    assert.equal(v.count, 5, "countがnullなら既定値5件になるはず（Number(null)=0の罠を回避）");
+    assert.equal(v.count, 10, "countがnullなら既定値10件になるはず（Number(null)=0の罠を回避）");
   }
 });
 

@@ -63,10 +63,16 @@ test("validateResearchRequest: テーマ空白のみはエラー", () => {
   assert.equal(r.ok, false);
 });
 
-test("validateResearchRequest: countは1〜10にクランプされる", () => {
-  const r = validateResearchRequest({ kind: "Case Study", theme: "x", count: "999" });
+test("validateResearchRequest: countは下限1にクランプされる（上限は撤廃済み）", () => {
+  const r = validateResearchRequest({ kind: "Case Study", theme: "x", count: "0" });
   assert.equal(r.ok, true);
-  if (r.ok) assert.equal(r.value.count, 10);
+  if (r.ok) assert.equal(r.value.count, 1);
+});
+
+test("validateResearchRequest: countに上限はない（50を渡したら50のまま）", () => {
+  const r = validateResearchRequest({ kind: "Case Study", theme: "x", count: "50" });
+  assert.equal(r.ok, true);
+  if (r.ok) assert.equal(r.value.count, 50);
 });
 
 // ── buildAngles ──────────────────────────────────────────────────

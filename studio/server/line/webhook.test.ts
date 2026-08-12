@@ -242,7 +242,7 @@ test("メニュー経路: 未知のテキストでメニュー提示 → 番号�
     await post(baseUrl, eventBody([textEvent("なし")]));
     await waitFor(() => fakes.pendingStore?.state === "final_confirm");
     assert.match(fakes.pushes.at(-1)!.text, /この内容で実行しますか/);
-    assert.match(fakes.pushes.at(-1)!.text, /件数: 5件/);
+    assert.match(fakes.pushes.at(-1)!.text, /件数: 10件/);
 
     await post(baseUrl, eventBody([textEvent("y")]));
     await waitFor(() => fakes.createJobCalls.length > 0);
@@ -252,7 +252,7 @@ test("メニュー経路: 未知のテキストでメニュー提示 → 番号�
       theme: "生成AI広告",
       viewpoint: "",
       refUrl: "",
-      count: 5,
+      count: 10,
     });
     assert.match(fakes.pushes.at(-1)!.text, /実行開始/);
     assert.equal(fakes.pendingStore, null);

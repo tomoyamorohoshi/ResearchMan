@@ -266,11 +266,11 @@ const confirmRefsResearch: LinePending = {
   expiresAt: "x",
 };
 
-test("confirm_refs: y → final_confirmへ遷移し、件数は既定値5件で表示される", () => {
+test("confirm_refs: y → final_confirmへ遷移し、件数は既定値10件で表示される", () => {
   const outcome = stepWizard(confirmRefsResearch, "y", NOW, USER);
   const r = expectReply(outcome);
   assert.equal(r.pending?.state, "final_confirm");
-  assert.match(r.reply, /件数: 5件/);
+  assert.match(r.reply, /件数: 10件/);
   assert.match(r.reply, /この内容で実行しますか\? \(y\/n\)/);
 });
 
@@ -305,7 +305,7 @@ test("final_confirm: y → execute（research）。件数は既定値が入る",
   assert.equal(outcome.kind, "execute");
   if (outcome.kind === "execute") {
     assert.equal(outcome.tab, "research");
-    assert.deepEqual(outcome.request, { kind: "Case Study", theme: "生成AI広告", viewpoint: "海外中心", refUrl: "", count: 5 });
+    assert.deepEqual(outcome.request, { kind: "Case Study", theme: "生成AI広告", viewpoint: "海外中心", refUrl: "", count: 10 });
   }
 });
 

@@ -25,8 +25,9 @@ export type ValidationResult =
   | { ok: false; error: string };
 
 const RESEARCH_COUNT_MIN = 1;
-const RESEARCH_COUNT_MAX = 10;
-const RESEARCH_COUNT_DEFAULT = 5;
+// 上限を設けない＝ユーザー指示 2026-08-12（idea側のIDEA_COUNT_MAXとは無関係）
+const RESEARCH_COUNT_MAX = Number.POSITIVE_INFINITY;
+const RESEARCH_COUNT_DEFAULT = 10;
 
 const str = (v: unknown): string => (typeof v === "string" ? v.trim() : "");
 
