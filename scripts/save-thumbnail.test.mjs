@@ -330,6 +330,30 @@ test("saveThumbnailFromPage: [img-fallback] OK/NG ログが期待通り出力さ
   );
 });
 
+// ── 不正URL入力の回帰テスト（2026-08-12 Studio Case Study ジョブ "Invalid URL" 全損障害の再発防止） ──
+// candidate.link は case-collector（LLM）のJSON出力であり、well-formed URLである保証がない。
+// 従来は http.get() に不正な文字列（例: "https://" のみ）を渡すと Node が同期的に
+// TypeError [ERR_INVALID_URL] を投げ、その例外が Promise executor 内から素通りして
+// saveThumbnailFromPage()/saveThumbnail() の「失敗時はnullを返す（例外を投げない）」契約を破り、
+// サムネイル取得ループ（1候補ずつnullチェックのみでtry/catch無し）を経由してジョブ全体を
+// killしていた（job c3ab6caf: 613秒の収集+383秒の執筆を経て最終フェーズで"Invalid URL"のみで
+// 全損、スタックトレースも残らず原因特定に難航した）。
+
+test("saveThumbnailFromPage: 不正なpageUrl（'https://'のみ等、new URL()が同期的に投げる値）でも例外を投げずnullを返す", async () => {
+  const result = await saveThumbnailFromPage("test-invalid-pageurl", "https://");
+  assert.equal(result, null);
+});
+
+test("saveThumbnailFromPage: 不正なポート指定など new URL() が投げる不正URLでも例外を投げずnullを返す", async () => {
+  const result = await saveThumbnailFromPage("test-invalid-port", "https://example.com:abc/page");
+  assert.equal(result, null);
+});
+
+test("saveThumbnail: 不正なsourceUrl（'https://'のみ）でも例外を投げずnullを返す", async () => {
+  const result = await saveThumbnail("test-invalid-sourceurl", "https://");
+  assert.equal(result, null);
+});
+
 // ── 保存側ゲートの回帰テスト（2026-08-07 pre-push 8日間ブロック障害の再発防止） ──
 // 正規化前（ダウンロード直後）のバッファは閾値を超えていても、正規化（幅上限リサイズ＋
 // JPEG再エンコード）後に閾値未満へ縮小することがある（実例: maskvidexperiments.jpg 4809B）。

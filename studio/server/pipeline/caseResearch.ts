@@ -700,6 +700,11 @@ export async function runCaseResearchPipeline(
     }
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
+    // 2026-08-12: job JSONのerrorフィールドは短い message のみを保持する設計のため、
+    // スタックトレースが失われ原因特定が困難になっていた（job c3ab6caf: error="Invalid URL"
+    // のみで発生箇所を特定できず、コード読解のみで根本原因の絞り込みを要した）。
+    // job JSON・LINE通知の文言は変えず、logs/studio.log 側にのみスタックトレースを残す。
+    console.error(`[studio] case research pipeline failed (job ${jobId}):`, err instanceof Error ? err.stack : err);
     await rollbackIfNotCommitted(committed, trackedTouched, newUntracked, (tracked, untracked) =>
       rollbackTouchedFiles(ROOT, tracked, untracked),
     );

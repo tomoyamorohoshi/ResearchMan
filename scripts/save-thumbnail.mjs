@@ -185,26 +185,37 @@ function fetchImageNode(url, redirects = 4) {
     let settled = false;
     const settle = (v) => { if (settled) return; settled = true; resolve(v); };
     const mod = url.startsWith("https") ? https : http;
-    const req = mod.get(url, { headers: { "User-Agent": UA } }, (res) => {
-      // 301/302に加え303/307/308も追跡する（CDNは307/308を常用する）
-      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location && redirects > 0) {
-        res.resume();
-        const next = new URL(res.headers.location, url).toString();
-        settle(fetchImageNode(next, redirects - 1));
-        req.destroy();
-        return;
-      }
-      if (res.statusCode !== 200) { res.resume(); return settle(null); }
-      const ct = res.headers["content-type"] || "";
-      if (!ct.startsWith("image/")) { res.resume(); return settle(null); }
-      const chunks = [];
-      res.on("data", (d) => chunks.push(d));
-      res.on("end", () => settle(Buffer.concat(chunks)));
-      // 接続が途中で切れてもPromiseを必ず解決する（未解決awaitでプロセスが静かに死ぬのを防ぐ）。
-      // 画像は部分受信だと壊れたファイルになるため、end以外は必ずnullで確定する
-      res.on("close", () => settle(null));
-      res.on("error", () => settle(null));
-    });
+    // 2026-08-12: url が "https://" のみ等の不正な文字列だと mod.get() は非同期エラーではなく
+    // 同期的に TypeError [ERR_INVALID_URL] を投げる（Node内部でnew URL(url)を呼ぶため）。
+    // startsWith("http")だけでは弾けない不正値がcase-collector（LLM）のJSON出力から
+    // そのまま渡ってくることがあり、この関数の「失敗時はnullで解決する」契約を破って
+    // 呼び出し元（Studioのサムネイル取得ループ）ごとジョブを全損させた実績があるため、
+    // 他の失敗経路（req.on("error")等）と同様にnullへ正規化する。
+    let req;
+    try {
+      req = mod.get(url, { headers: { "User-Agent": UA } }, (res) => {
+        // 301/302に加え303/307/308も追跡する（CDNは307/308を常用する）
+        if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location && redirects > 0) {
+          res.resume();
+          const next = new URL(res.headers.location, url).toString();
+          settle(fetchImageNode(next, redirects - 1));
+          req.destroy();
+          return;
+        }
+        if (res.statusCode !== 200) { res.resume(); return settle(null); }
+        const ct = res.headers["content-type"] || "";
+        if (!ct.startsWith("image/")) { res.resume(); return settle(null); }
+        const chunks = [];
+        res.on("data", (d) => chunks.push(d));
+        res.on("end", () => settle(Buffer.concat(chunks)));
+        // 接続が途中で切れてもPromiseを必ず解決する（未解決awaitでプロセスが静かに死ぬのを防ぐ）。
+        // 画像は部分受信だと壊れたファイルになるため、end以外は必ずnullで確定する
+        res.on("close", () => settle(null));
+        res.on("error", () => settle(null));
+      });
+    } catch {
+      return settle(null);
+    }
     req.on("error", () => settle(null));
     req.setTimeout(10000, () => { settle(null); req.destroy(); });
   });
@@ -334,28 +345,39 @@ function fetchOgImagePage(url, redirects = 3) {
     let settled = false;
     const settle = (v) => { if (settled) return; settled = true; resolve(v); };
     const mod = url.startsWith("https") ? https : http;
-    const req = mod.get(url, { headers: { "User-Agent": UA } }, (res) => {
-      // リダイレクト追跡（従来は3xxでhtml空→og:image取れず失敗していた）
-      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location && redirects > 0) {
-        res.resume();
-        const next = new URL(res.headers.location, url).toString();
-        settle(fetchOgImagePage(next, redirects - 1));
-        req.destroy();
-        return;
-      }
-      const status = res.statusCode;
-      let html = "";
-      // 60KB超で打ち切る際は必ず「先に」finishする。
-      // req.destroy()はreqの'error'(ECONNRESET)を先に発火させるため、
-      // 後からfinishしてもPromiseはすでにnullで解決済みになる（60KB超ページで全滅していた実バグ）
-      const finish = () => settle({ status, html });
-      res.on("data", (d) => { html += d; if (html.length > OG_HTML_TRUNCATE_BYTES) { finish(); req.destroy(); } });
-      res.on("end", finish);
-      // req.destroy() 後は end が発火しない。closeでも必ず解決する
-      // （未解決awaitが残るとNodeがイベントループ枯渇で静かに終了し、呼び出し元が途中死する）
-      res.on("close", finish);
-      res.on("error", finish);
-    });
+    // 2026-08-12: url が "https://" のみ等の不正な文字列だと mod.get() は非同期エラーではなく
+    // 同期的に TypeError [ERR_INVALID_URL] を投げる（Node内部でnew URL(url)を呼ぶため）。
+    // pageUrlはcase-collector（LLM）のJSON出力からそのまま渡ってくることがあり、
+    // この関数の「取得不能ならnullで解決する」契約を破って呼び出し元
+    // （Studioのサムネイル取得ループ）ごとジョブを全損させた実績があるため、
+    // 他の失敗経路（req.on("error")等）と同様にnullへ正規化する。
+    let req;
+    try {
+      req = mod.get(url, { headers: { "User-Agent": UA } }, (res) => {
+        // リダイレクト追跡（従来は3xxでhtml空→og:image取れず失敗していた）
+        if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location && redirects > 0) {
+          res.resume();
+          const next = new URL(res.headers.location, url).toString();
+          settle(fetchOgImagePage(next, redirects - 1));
+          req.destroy();
+          return;
+        }
+        const status = res.statusCode;
+        let html = "";
+        // 60KB超で打ち切る際は必ず「先に」finishする。
+        // req.destroy()はreqの'error'(ECONNRESET)を先に発火させるため、
+        // 後からfinishしてもPromiseはすでにnullで解決済みになる（60KB超ページで全滅していた実バグ）
+        const finish = () => settle({ status, html });
+        res.on("data", (d) => { html += d; if (html.length > OG_HTML_TRUNCATE_BYTES) { finish(); req.destroy(); } });
+        res.on("end", finish);
+        // req.destroy() 後は end が発火しない。closeでも必ず解決する
+        // （未解決awaitが残るとNodeがイベントループ枯渇で静かに終了し、呼び出し元が途中死する）
+        res.on("close", finish);
+        res.on("error", finish);
+      });
+    } catch {
+      return settle(null);
+    }
     // 打ち切りdestroy時はfinish済み（settled）なのでこのresolve(null)は無効化される
     req.on("error", () => settle(null));
     req.setTimeout(8000, () => { settle(null); req.destroy(); });
