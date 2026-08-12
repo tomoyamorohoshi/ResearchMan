@@ -1,5 +1,189 @@
 [
   {
+    "id": "kitbash-epic-games-artstation-sketchfab-2026",
+    "title": "KitBash、Epic GamesからArtStationとSketchfabを買収",
+    "summary": "3DアセットのKitBashが、Epic傘下だったArtStationとSketchfabを買収し創作エコシステムを統合",
+    "client": "KitBash (KitBash3D)",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.epicgames.com/site/news/kitbash-acquires-artstation-and-sketchfab",
+    "thumbnail": "/thumbnails/kitbash-epic-games-artstation-sketchfab-2026.jpg",
+    "videoId": "",
+    "overview": "3Dアセット・教材企業のKitBash（KitBash3D・Greyscalegorilla運営）が、Epic Games傘下だったクリエイター向けポートフォリオサイトArtStationと3Dモデル共有サービスSketchfabを買収したと2026年8月10日に発表。両プラットフォームは2021年からEpic Games傘下にあった。",
+    "background": "Epic GamesはUnreal Engine 6やFortnite、開発者エコシステム、Epic Games Storeへの注力を優先する方針を強め、2021年に買収したArtStationとSketchfabを手放すこととなった。KitBashは10年以上にわたり3Dアセット・学習教材を提供してきた企業で、既存の創作支援ラインナップの拡張を図る。",
+    "execution": "KitBashはArtStation・SketchfabをKitBash3D・Greyscalegorillaと統合し、学習・制作から発表・発見・キャリア構築まで創作プロセス全体を支えるエコシステムを構築すると発表。既存のポートフォリオ、ライブラリ、サブスクリプション、料金体系は当面変更せず、時間をかけてユーザーの声を聴きながら長期計画を策定するとしている。",
+    "evaluationImpact": "Epic Games傘下で運営されてきたクリエイターコミュニティの中核プラットフォームが独立系3D企業へ移管される業界の転機として注目され、3Dアーティスト・クリエイターの間で今後の運営方針への関心が高まっている。",
+    "relatedWorks": [
+      {
+        "title": "Epic Games公式発表",
+        "description": "買収に関するEpic Games公式ニュースリリース",
+        "url": "https://www.epicgames.com/site/news/kitbash-acquires-artstation-and-sketchfab"
+      },
+      {
+        "title": "KitBash3D公式発表ページ",
+        "description": "KitBash側による買収発表とFAQ",
+        "url": "https://kitbash3d.com/pages/kitbash-acquires-sketchfab-and-artstation-kitbash3d"
+      },
+      {
+        "title": "GamesBeat報道記事",
+        "description": "買収に関する詳細な報道記事",
+        "url": "https://gamesbeat.com/kitbash-acquires-artstation-and-sketchfab-art-platforms-from-epic-games/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Tech/Web",
+      "Form/Website"
+    ]
+  },
+  {
+    "id": "vr-mod-1-0-8-vr-mod-2026",
+    "title": "『ゼルダの伝説 ブレス オブ ザ ワイルド』非公式VR MODが1.0正式版へ接近、『マリオカート8』VR MODも予告",
+    "summary": "任天堂『BotW』を無料MOD化する『BetterVR』が5年越しに1.0目前、開発者は『マリオカート8』のVR化も新たに予告。",
+    "client": "有志VR MOD開発コミュニティ",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://roadtovr.com/nintendo-zelda-botw-vr-mod-full-launch-mario-kart-teased/",
+    "thumbnail": "/thumbnails/vr-mod-1-0-8-vr-mod-2026.jpg",
+    "videoId": "",
+    "overview": "開発者Crementifが手がける『BotW-BetterVR』は、Wii Uエミュレータ「Cemu」上で『ゼルダの伝説 ブレス オブ ザ ワイルド』をOpenXR対応のフルVR体験に変換する無料MOD。6DOF・ルームスケール・手足の動作対応まで実装し、2025年12月の初トレーラー以来20回以上のアップデートを重ね、2026年7月28日時点の最新版は0.9.20。同時に『マリオカート8』のVR MODも新たに予告された。",
+    "background": "任天堂は自社IPの公式VR対応をほぼ行っておらず、Wii U/Switch世代の看板タイトルをVRで遊びたいという需要は有志のリバースエンジニアリングとエミュレータ改造によって満たされてきた。CemuというWii Uエミュレータのグラフィックパック機構を利用し、ゲームエンジン側の描画・カメラ・入力処理を解析して後付けでVR化するという、非公式かつ技術難度の高いアプローチが本プロジェクトの出発点になっている。",
+    "execution": "CrementifはBotWのゲームエンジンを数千時間かけて解析し、ステレオレンダリングとOpenXR入力を組み込むMOD『BetterVR』をGitHubで無料公開。2025年12月のトレーラー公開から20回以上のリリースを重ねて完成度を高め、正式な1.0を目前に控える。並行して『マリオカート8』のVR化トレーラーも公開し、BotW版と同水準の品質を目指すと表明したが、Wii U版とDeluxe版のどちらを対象にするか含め詳細・リリース時期は未定。",
+    "evaluationImpact": "任天堂公式が踏み込まない領域を、有志が非商用・無料でエミュレータ改造とリバースエンジニアリングによって埋めた事例で、5年がかりの継続開発というコミュニティの熱量自体が注目点。マリオカート8への展開予告は、この非公式VR化ムーブメントが単発で終わらずシリーズ化しうることを示しており、公式VR未対応タイトルに対するファン主導の技術的解決策として今後の展開が注視される。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/XR",
+      "Tech/Game",
+      "Form/Product",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "anthropic-ai-2026",
+    "title": "Anthropic、AIモデル生成テキストへの電子透かし導入を発表",
+    "summary": "Anthropicが生成テキストに不可視の電子透かしを実装、EU AI法の透明性規則に対応",
+    "client": "Anthropic",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://techcrunch.com/2026/08/11/anthropic-says-it-will-watermark-text-generated-by-its-ai-models/",
+    "thumbnail": "/thumbnails/anthropic-ai-2026.jpg",
+    "videoId": "",
+    "overview": "AnthropicはClaudeなど自社AIモデルが生成するテキストに、コピー&ペーストしても保持される不可視の電子透かしを組み込むと発表。2026年8月2日以降にリリースされたモデルから自動適用され、ファイルにはC2PA標準を用いる。",
+    "background": "2026年8月2日に発効したEU AI法の透明性コードは、AI企業に対しAI生成・編集コンテンツを他システムが識別できる形で明示することを義務付けた。これに対応する形でAnthropicが電子透かし機能を導入した。",
+    "execution": "新モデルのテキスト生成時に意味や可読性を変えずに機械可読な透かしを埋め込み、コピー・ペースト後も一部の編集を経て持続する設計。Claude、Claude Code、Claude Cowork、Claude Tagなど複数プロダクトに対応し、旧モデルへの対応も2026年12月2日のEU猶予期限前までに拡張予定。",
+    "evaluationImpact": "EU域内に限らず世界中のClaude提供先すべてに適用される点が特徴で、AI生成コンテンツによる誤情報や「AIスロップ」対策の業界動向を象徴する取り組みとして注目されている。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/Data",
+      "Form/App"
+    ]
+  },
+  {
+    "id": "kimbap-factory-steam-2026",
+    "title": "「Kimbap Factory」キンパ工場自動化シムがSteamで発表",
+    "summary": "韓国式海苔巻き「キンパ」の製造工程を、タイマーや失敗ペナルティなしで自由に自動化できるファクトリーシム。",
+    "client": "インディー開発者（詳細未公表）",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://automaton-media.com/articles/newsjp/20260811-459742/",
+    "thumbnail": "/thumbnails/kimbap-factory-steam-2026.jpg",
+    "videoId": "",
+    "overview": "フランス出身でソウル在住のソロ開発者Remi Song（開発名Gamebap）が発表した自動化工場建設シミュレーション『Kimbap Factory』。韓国料理キンパの具材加工から巻き上げまでをベルトコンベアで自動化し、顧客注文に応じて工場を拡張していく。2027年にSteamでPC向けに配信予定。",
+    "background": "キンパは韓国の定番料理で、家庭や屋台で手作業で巻かれることが多い。開発者はこの手仕事の工程を、Factorio的な自動化ゲームの文法に翻案し、コンベアや分岐・合流システムでキンパ製造ラインを再構築するアイデアを軸に本作を企画した。",
+    "execution": "Unity DOTSを用いて具材一つひとつを個別にシミュレーションし、物理的に搬送・加工される様子を可視化。数十種類のレシピや設備をアンロックしながら、コストや時間制限なしで自由に設備を導入・撤去できる、じっくり考える系の自動化ゲームとして設計されている。",
+    "evaluationImpact": "「効率化のプレッシャー」を排し、観察と実験の楽しさに焦点を当てた点が既存の工場自動化ゲームと異なる評価軸を提示。韓国食文化をテーマにしたニッチな題材選びと、無数のキンパが宙を舞う映像的インパクトがSNSや海外メディアで話題化し、発表段階から注目を集めた。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Tech/3D",
+      "Form/Product",
+      "Theme/Food"
+    ]
+  },
+  {
+    "id": "chilla-s-art-snowed-under-8-14-2026",
+    "title": "Chilla's Art、雪掘りホラー新作「Snowed Under」の8月14日リリースを発表",
+    "summary": "雪山で雪をひたすら掘り電波塔を目指す一人称心霊ホラー「雪葬」を8月14日Steam配信と発表",
+    "client": "Chilla's Art",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://automaton-media.com/articles/newsjp/20260811-459745/",
+    "thumbnail": "/thumbnails/chilla-s-art-snowed-under-8-14-2026.jpg",
+    "videoId": "",
+    "overview": "日本のインディーホラースタジオChilla's Artが新作「Snowed Under（雪葬）」を2026年8月14日にPC（Steam）で配信すると発表。雪山で雪を掘り進めながら電波塔を目指す一人称心霊サイコロジカルホラーで、推定プレイ時間は2〜4時間。",
+    "background": "Chilla's Artは「夜勤事件」「コンビニ」「コットンパニック!」などで知られる兄弟制作のホラーゲームスタジオ。2026年7月25日に本作を発表し、Steamストアページを公開。約2週間後の8月11日に配信日を告知した。",
+    "execution": "プレイヤーはシャベルで雪をひたすら掘り進み、雪の中から食料や建物の一部など「何か」が出現しながら雪山で起きた出来事が明かされていく。掘削中に見つかるスクラップでシャベルを強化し、パワー・スタミナ・アイテムスロットを拡張できる仕組み。",
+    "evaluationImpact": "「雪かき」という単調に見える行動をコアメカニクスに据えた点が話題を呼び、4Gamer・ファミ通・Game*Sparkなど複数の国内ゲームメディアが発表時・配信日決定時それぞれで報じた。インディーホラーでも独自の反復労働型ゲームプレイが注目を集める事例。",
+    "relatedWorks": [
+      {
+        "title": "夜勤事件 (Night Shift)",
+        "description": "Chilla's Artの代表作の一つで、コンビニ夜勤を舞台にした一人称ホラーゲーム",
+        "url": "https://www.4gamer.net/developer/039/D03926/"
+      },
+      {
+        "title": "Snowed Under 発表記事",
+        "description": "2026年7月25日の初報。Steamストアページ公開とゲーム概要を紹介",
+        "url": "https://automaton-media.com/articles/newsjp/snowed-under-20260725-456696/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/App",
+      "Theme/Entertainment"
+    ]
+  },
+  {
     "id": "charge-towards-change-2026",
     "title": "Charge Towards Change",
     "summary": "AI・気候変動時代に踏み出す学生世代へ、変化を脅威でなく好機と再定義する新ブランド戦略",
