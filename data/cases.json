@@ -1,5 +1,518 @@
 [
   {
+    "id": "endangered-alphabets-project-2010",
+    "title": "Endangered Alphabets Project",
+    "summary": "絶滅危機にある少数言語の文字体系で世界人権宣言第1条を彫刻・出版し、文化的尊厳の保存を訴えるTim Brookesの非営利活動。",
+    "client": "Endangered Alphabets（Tim Brookes主宰の非営利活動）",
+    "agency": "",
+    "categories": [
+      "社会包摂",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2010",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://letterformarchive.org/shop/endangered-alphabets-writing-beyond-the-borders-of-writing/",
+    "thumbnail": "/thumbnails/endangered-alphabets-project-2010.jpg",
+    "videoId": "",
+    "overview": "Tim Brookesが主宰する非営利活動『Endangered Alphabets』は、世界各地で消滅の危機に瀕している少数民族の文字体系を用いて、世界人権宣言第1条の文言を木彫や出版物として制作・発表するプロジェクト。文字そのものを芸術作品として提示することで、失われつつある言語文化への関心を喚起した。",
+    "background": "グローバル化や主要言語の普及により、世界中で多くの少数言語とその独自の文字体系が急速に失われつつあった。文字は単なる記号ではなくその民族の歴史やアイデンティティを担うものであるという認識のもと、Tim Brookesは記録と発信を兼ねた表現活動の必要性に着目した。",
+    "execution": "絶滅危機言語の書き手や研究者と協力し、それぞれの文字体系を用いて『すべての人間は生まれながらにして自由であり、尊厳と権利について平等である』という世界人権宣言第1条の一節を木材への彫刻作品として制作。作品群を展示や書籍として発表し、各文字文化の紹介と保存活動への支援を呼びかけた。",
+    "evaluationImpact": "人権という普遍的なテーマを、消えゆく少数言語の文字そのものを通じて表現した点が独自性として評価され、複数の展示や出版物を通じて長期的に活動が継続された。タイポグラフィと文化保存、人権啓発を横断する活動として国際的に紹介されている。",
+    "relatedWorks": [
+      {
+        "title": "Letterform Archive「Endangered Alphabets: Writing Beyond the Borders of Writing」",
+        "description": "Endangered Alphabetsの活動をまとめた書籍の紹介ページ",
+        "url": "https://letterformarchive.org/shop/endangered-alphabets-writing-beyond-the-borders-of-writing/"
+      }
+    ],
+    "sources": [
+      "Dignity"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/SocialGood",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "ariel-p-g-2023",
+    "title": "Ariel（P&G）アクセシブル・パッケージデザイン",
+    "summary": "視覚障害者が自分で洗剤の種類を識別・購入できるよう、触覚マーカーとNaviLensコードを組み込んだAriel（P&G）の洗濯洗剤パッケージデザイン。",
+    "client": "Procter & Gamble / Ariel",
+    "agency": "Landor & Fitch",
+    "categories": [
+      "社会包摂"
+    ],
+    "award": "",
+    "year": "2023",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.navilens.com/en/case-studies/ariel-pg-ecoclic-navilens-pods-accesibles",
+    "thumbnail": "/thumbnails/ariel-p-g-2023.jpg",
+    "videoId": "",
+    "overview": "Procter & GambleのAriel（洗濯洗剤ブランド）は、Landor & Fitchとともに視覚障害のある人が店頭・自宅で商品を自分で識別できるパッケージデザインを開発。触覚で判別できる凸状マーカーと、スマートフォンで読み取れるNaviLensの特殊コードをパッケージに組み込み、当事者が他者に頼らず商品情報を得られるようにした。",
+    "background": "視覚障害のある人にとって、日用品の識別は店頭での購入時だけでなく自宅での使用時にも課題となっていた。洗剤のような形状やパッケージが似た製品群では特に判別が難しく、当事者が自立して商品を選び使用できる手段が求められていた。",
+    "execution": "Landor & Fitchは、指先で識別できる触覚マーカーをパッケージ表面に配置するとともに、NaviLensの色分けされた特殊コードを印刷。専用アプリを介してスマートフォンのカメラで離れた距離からでも高速に読み取ることができ、製品名や使用方法などの情報を音声で得られる仕組みとした。",
+    "evaluationImpact": "受賞歴は確認されていないが、大手日用品ブランドの主力製品パッケージにアクセシビリティ機能を標準実装した事例として、FMCG領域におけるインクルーシブデザインの実践例に位置づけられる。",
+    "relatedWorks": [
+      {
+        "title": "NaviLens「Ariel P&G Ecoclic」ケーススタディ",
+        "description": "AriやPodsのアクセシブル・パッケージデザインの詳細を紹介するNaviLens公式ケーススタディ",
+        "url": "https://www.navilens.com/en/case-studies/ariel-pg-ecoclic-navilens-pods-accesibles"
+      }
+    ],
+    "sources": [
+      "Dignity"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Product",
+      "Theme/Health",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "it-s-not-happening-here-but-it-s-happening-now-2014",
+    "title": "It's Not Happening Here, But It's Happening Now",
+    "summary": "世界各地の人権侵害の実際のシーンをスイスの日常風景に合成した200点のポスターで、被害者の存在と尊厳を可視化したAmnesty Internationalのキャンペーン。",
+    "client": "Amnesty International（スイス支部）",
+    "agency": "Walker（チューリッヒ）",
+    "categories": [
+      "社会包摂"
+    ],
+    "award": "D&AD Yellow Pencil（Amnesty International Switzerland／Walker Zurich制作）に加え、Art Directors Club New York、Art Directors Club Cannes、Corbis Creativity for Social Justice Award（$20,000寄付付き）を受賞",
+    "year": "2014",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.dandad.org/insights/awards/amnesty-international-its-not-happening-here-happening-social-good",
+    "thumbnail": "/thumbnails/it-s-not-happening-here-but-it-s-happening-now-2014.jpg",
+    "videoId": "",
+    "overview": "Amnesty International スイス支部は、Walker Zurichとともに世界各地で実際に起きている人権侵害の場面を、スイスの見慣れた日常風景に合成した200点のポスターシリーズを制作。遠い国の出来事として認識されがちな人権侵害を、身近な生活空間に重ね合わせることで存在を可視化した。",
+    "background": "スイスの人々にとって、拷問や迫害、暴力といった人権侵害は『ここでは起きていない、遠い国の出来事』として心理的な距離を置かれがちだった。Amnesty Internationalは、こうした無関心や距離感そのものが被害者の存在を見えなくしていると捉え、身近な風景の中に事実を提示する必要性に着目した。",
+    "execution": "実際に起きた人権侵害の場面を、スイスの街角や公園、住宅街といった日常的な背景に合成した写真ポスターを200点制作。被害者の姿がスイスの見慣れた風景の中に唐突に現れる構成とし、屋外広告等の形式で展開することで、日常と非日常の境界を突き崩す視覚表現とした。",
+    "evaluationImpact": "身近な風景に人権侵害の現実を重ねる手法が国際的に高く評価され、D&AD Yellow PencilのほかArt Directors Club New York、Art Directors Club Cannes、Corbis Creativity for Social Justice Award（$20,000の寄付付き）を受賞。人権問題の当事者性を可視化した社会派広告表現として位置づけられる。",
+    "relatedWorks": [
+      {
+        "title": "D&AD「Amnesty International: It's Not Happening Here, But It's Happening Now」",
+        "description": "本キャンペーンの受賞内容と概要を紹介するD&AD公式ページ",
+        "url": "https://www.dandad.org/insights/awards/amnesty-international-its-not-happening-here-happening-social-good"
+      }
+    ],
+    "sources": [
+      "Dignity"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Form/Print",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "write-for-rights-pencil-poster-2021",
+    "title": "Write for Rights: Pencil Poster",
+    "summary": "一本の巨大な鉛筆をスポットライトやメガホンに見立て、不当に投獄された人々の解放と尊厳を訴えるAmnesty Internationalのポスターシリーズ。",
+    "client": "Amnesty International",
+    "agency": "Cossette",
+    "categories": [
+      "社会包摂"
+    ],
+    "award": "D&AD Awards 2021 Posters部門 Wood Pencil（Cossette Canada制作）",
+    "year": "2021",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.dandad.org/awards/professional/2021/234133/write-for-your-rights/",
+    "thumbnail": "/thumbnails/write-for-rights-pencil-poster-2021.jpg",
+    "videoId": "",
+    "overview": "Amnesty Internationalの毎年恒例の手紙運動『Write for Rights』のために、Cossetteが1本の巨大な鉛筆をモチーフにしたポスターシリーズを制作。鉛筆をスポットライトの光やメガホンの音波に見立てるイラストレーションで、不当に投獄された人々に声と尊厳を取り戻す運動の力を表現した。",
+    "background": "Write for Rightsは、良心の囚人とされる人々の釈放を求めて世界中の市民が手紙を書き送るAmnesty Internationalの年次キャンペーン。1通の手紙、1本の鉛筆という小さな行為が持つ力を、視覚的に説得力のあるビジュアルとして伝える必要があった。",
+    "execution": "Cossetteは、暗闇を照らすスポットライトの光や、遠くまで届くメガホンの音波を、いずれも1本の巨大な鉛筆の形で描くイラストレーションシリーズを制作。鉛筆というありふれた道具が正義と解放を呼びかける力を持つというメッセージを、ポスター形式で一貫して表現した。",
+    "evaluationImpact": "シンプルなビジュアルメタファーで手紙運動の意義を伝えた点が評価され、D&AD Awards 2021のPosters部門でWood Pencilを受賞。良心の囚人の解放を求める市民運動を、身近な文房具のイメージで広く訴求した事例として位置づけられる。",
+    "relatedWorks": [
+      {
+        "title": "D&AD「Write for Your Rights」",
+        "description": "本ポスターシリーズの受賞内容を紹介するD&AD公式ページ",
+        "url": "https://www.dandad.org/awards/professional/2021/234133/write-for-your-rights/"
+      }
+    ],
+    "sources": [
+      "Dignity"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "migrant-marseille-2022",
+    "title": "Migrant Marseille（書籍デザイン）",
+    "summary": "移民の都市マルセイユの記憶と生活史を編み込み、移民の尊厳と都市への貢献を可視化したブックデザイン『Migrant Marseille』。",
+    "client": "Ruby Press（出版）",
+    "agency": "Something Fantastic Art Department with Fernanda Tellez Velasco",
+    "categories": [
+      "社会包摂"
+    ],
+    "award": "「Best Book Design from all over the World」（独：Schönste Bücher aus aller Welt）2022年 Honorary Appreciation（Golden Letter・Gold Medal・Silver Medals・Bronze Medalsに次ぐ名誉賞の一つ）",
+    "year": "2022",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://ruby-press.com/best-book-design-from-all-over-the-world-migrant-marseille/",
+    "thumbnail": "/thumbnails/migrant-marseille-2022.jpg",
+    "videoId": "",
+    "overview": "Ruby Pressより刊行された『Migrant Marseille』は、フランスの港湾都市マルセイユを形作ってきた移民の記憶と生活史を編み込んだ書籍。Something Fantastic Art DepartmentがFernanda Tellez Velascoとともにブックデザインを手がけ、移民が都市に残してきた足跡を視覚的に記録した。",
+    "background": "マルセイユは歴史的に多くの移民によって形作られてきた都市でありながら、その生活史や都市への貢献は十分に記録・可視化されてこなかった。本書は、見過ごされがちな移民の日常と記憶を都市の記録として残すことを目指して企画された。",
+    "execution": "Something Fantastic Art DepartmentとFernanda Tellez Velascoは、アーカイブ資料や生活史の記録をもとに、移民の記憶が都市空間に織り込まれていく様子を伝えるブックデザインを構成。マルセイユという都市そのものを移民の生活史の集積として提示する編集・デザインを行った。",
+    "evaluationImpact": "「Best Book Design from all over the World」2022年においてHonorary Appreciationを受賞。移民という社会的テーマを、装丁・レイアウトを含む書籍デザインの力で尊厳ある記録として提示した事例として評価される。",
+    "relatedWorks": [
+      {
+        "title": "Ruby Press「Best Book Design from all over the World: Migrant Marseille」",
+        "description": "本書の受賞と制作背景を紹介するRuby Press公式ページ",
+        "url": "https://ruby-press.com/best-book-design-from-all-over-the-world-migrant-marseille/"
+      }
+    ],
+    "sources": [
+      "Dignity"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "case-9aitwt-2012",
+    "title": "ヘルプマーク",
+    "summary": "義足や内部障害、妊娠初期など外見からわからない配慮の必要を周囲に伝える東京都発のピクトグラム・シンボルマーク。",
+    "client": "東京都福祉局",
+    "agency": "JAGDA（デザイン：永井一史／柴田氏 ほか）",
+    "categories": [
+      "社会包摂"
+    ],
+    "award": "",
+    "year": "2012",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.fukushihoken.metro.tokyo.lg.jp/shougai/shougai_shisaku/helpmark.html",
+    "thumbnail": "/thumbnails/case-9aitwt-2012.jpg",
+    "videoId": "",
+    "overview": "東京都福祉局が2012年に導入した「ヘルプマーク」は、義足や人工関節、内部障害、難病、妊娠初期など外見からは分かりにくい援助・配慮を必要とする人が身につけることで、周囲にその必要性を知らせるための赤地に白十字とハートを配したピクトグラム・シンボルマーク。JAGDA所属の永井一史氏らデザイナーが制作に携わった。",
+    "background": "電車内の優先席や公共の場では、内部障害や難病、妊娠初期など見た目だけでは判断できない事情を抱える人々が、援助や配慮を求めても周囲に伝わりにくいという課題があった。東京都福祉局はこうした「見えない配慮」の必要性を可視化し、援助を求めやすくする仕組みとして、身につけて知らせるマークの開発に着手した。",
+    "execution": "JAGDA（日本グラフィックデザイナー協会）に所属する永井一史氏らが制作に携わり、赤地に白い十字とハートを組み合わせたシンプルで視認性の高いデザインを策定。ストラップ型のマークとして配布するとともに、地下鉄やバスなど公共交通機関の優先席表示にも展開し、都民への浸透を図った。",
+    "evaluationImpact": "特定の受賞歴を伴う取り組みではないが、東京都発祥のマークとして全国の自治体へ採用が広がり、公共空間におけるユニバーサルデザインの定番的なシンボルとして定着している。外見でわからない困りごとを可視化するデザインの事例として、福祉・デザイン双方の分野で参照され続けている。",
+    "relatedWorks": [
+      {
+        "title": "東京都福祉局 ヘルプマーク公式ページ",
+        "description": "ヘルプマークの趣旨と利用方法の説明",
+        "url": "https://www.fukushihoken.metro.tokyo.lg.jp/shougai/shougai_shisaku/helpmark.html"
+      }
+    ],
+    "sources": [
+      "Dignity"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/SocialGood",
+      "Theme/Health"
+    ]
+  },
+  {
+    "id": "case-168111r-2026",
+    "title": "リフレ パッケージデザインシステム刷新",
+    "summary": "大人用紙おむつブランド「リフレ」が“やさしさと尊厳”を掲げ、ユニバーサルデザインの視点でパッケージ全体の情報設計・視覚表現を刷新。",
+    "client": "株式会社リブドゥコーポレーション",
+    "agency": "",
+    "categories": [
+      "社会包摂"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000031.000096567.html",
+    "thumbnail": "/thumbnails/case-168111r-2026.jpg",
+    "videoId": "",
+    "overview": "大人用紙おむつブランド「リフレ」を展開する株式会社リブドゥコーポレーションは、ブランドが掲げる“やさしさと尊厳”という理念のもと、パッケージデザインシステムを刷新した。商品ラインナップ全体にわたる情報設計と視覚表現を見直し、購入者・使用者双方にとって手に取りやすく分かりやすいパッケージを目指した。",
+    "background": "大人用紙おむつは、加齢や病気により排泄ケアを必要とする本人だけでなく、購入・介護を担う家族にとっても扱う機会が多い商品でありながら、従来のパッケージは症状や吸収量の違いが分かりにくく、店頭で選びづらいという課題があった。リブドゥコーポレーションは、使用者の尊厳を損なわない配慮とユニバーサルデザインの視点から、パッケージ全体の見直しに取り組んだ。",
+    "execution": "商品ラインナップ全体を横断するデザインシステムとして、吸収量や使用シーンの違いを一目で判別できる情報設計、年齢や状態を問わず手に取りやすい色使い・書体を採用。ブランドの理念である“やさしさと尊厳”を視覚的に体現するトーン&マナーを確立し、パッケージ刷新を通じてブランド全体の体験価値向上を図った。",
+    "evaluationImpact": "排泄ケア用品という生活に密着した分野において、当事者と家族双方の心理的負担を軽減する視点からパッケージを再設計した点が特徴。ユニバーサルデザインの考え方を大手ブランドの主力商品群に実装した事例として、介護・福祉領域のパッケージデザインのあり方に一石を投じている。",
+    "relatedWorks": [
+      {
+        "title": "PR TIMES「リフレ」パッケージ刷新リリース",
+        "description": "パッケージデザインシステム刷新の発表",
+        "url": "https://prtimes.jp/main/html/rd/p/000000031.000096567.html"
+      }
+    ],
+    "sources": [
+      "Dignity"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/Health",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "case-1t9pmk3-2022",
+    "title": "企画展「生活のデザイン」ポスター・図録",
+    "summary": "ハンセン病療養所入所者が生み出した自助具の数々を紹介する企画展「生活のデザイン」のポスター・図録デザイン。",
+    "client": "国立ハンセン病資料館",
+    "agency": "株式会社三宅晃介デザイン事務所",
+    "categories": [
+      "社会包摂"
+    ],
+    "award": "",
+    "year": "2022",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.tokyoartbeat.com/articles/-/designoflife_report_20220620",
+    "thumbnail": "/thumbnails/case-1t9pmk3-2022.jpg",
+    "videoId": "",
+    "overview": "国立ハンセン病資料館が2022年に開催した企画展「生活のデザイン」は、ハンセン病療養所の入所者たちが後遺症で不自由になった身体で日々の生活を営むために自ら考案し使ってきた自助具の数々を紹介する展覧会。会場グラフィックおよび図録のデザインは株式会社三宅晃介デザイン事務所が手がけた。",
+    "background": "ハンセン病療養所の入所者の多くは、病気の後遺症で手足の感覚や機能に障害を抱えながら、長期にわたる隔離生活を送ってきた。展示された自助具は、既製の福祉用具に頼れない環境の中で入所者自身が生活の必要から生み出した工夫の集積であり、資料館はこれらを「生活のデザイン」という切り口で企画展として編纂した。",
+    "execution": "三宅晃介デザイン事務所は、自助具という当事者の生活史そのものを伝えるため、道具の造形や使用の痕跡が伝わるグラフィック表現でポスター・図録をデザイン。展示物一つひとつの背景にある個人の生活を丁寧に扱うトーンで構成し、福祉的な資料展示を超えたデザイン展として成立させた。",
+    "evaluationImpact": "障害当事者が自ら生み出した創意工夫を「デザイン」という視点から捉え直した企画として、デザイン・福祉双方の分野から関心を集めた。ハンセン病問題という社会的な課題を、モノと生活の視点から伝える手法として評価され、メディアでも展示内容が紹介された。",
+    "relatedWorks": [
+      {
+        "title": "Tokyo Art Beat「生活のデザイン」展レポート",
+        "description": "企画展の内容とデザインを紹介する記事",
+        "url": "https://www.tokyoartbeat.com/articles/-/designoflife_report_20220620"
+      }
+    ],
+    "sources": [
+      "Dignity"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Form/Print",
+      "Theme/Art",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "marriage-for-all-japan-2019",
+    "title": "「結婚の自由をすべての人に」ロゴ",
+    "summary": "同性婚訴訟を支援するMarriage For All Japanのロゴ・アイコンで、誰もが結婚を選べる社会を訴えるビジュアルアイデンティティ。",
+    "client": "Marriage For All Japan",
+    "agency": "",
+    "categories": [
+      "社会包摂"
+    ],
+    "award": "",
+    "year": "2019",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.marriageforall.jp/support/download/",
+    "thumbnail": "/thumbnails/marriage-for-all-japan-2019.jpg",
+    "videoId": "",
+    "overview": "「結婚の自由をすべての人に」訴訟を支援する一般社団法人Marriage For All Japanが用いるロゴ・アイコン。同性婚の実現を求める活動を象徴するビジュアルアイデンティティとして、賛同者が自由にダウンロードして使用できる形で公開されている。",
+    "background": "日本では同性カップルが法律上の結婚制度を利用できず、社会保障や相続などの面で不利益を被る状況が続いていた。2019年に全国で提起された「結婚の自由をすべての人に」訴訟を支援するため、Marriage For All Japanは活動を象徴し賛同を広げるためのロゴ・アイコンを整備した。",
+    "execution": "誰もが結婚という制度を選べる自由と尊厳を掲げるメッセージを、シンプルなロゴタイプとアイコンで表現。賛同企業や個人がSNSのプロフィールやウェブサイト、印刷物などで自由に使用できるよう、ダウンロード可能な素材として公式サイトで公開し、支援の輪を広げる仕組みとした。",
+    "evaluationImpact": "訴訟支援という社会運動のシンボルとして、企業や著名人を含む幅広い賛同者に使用され、同性婚をめぐる社会的関心を高める一助となった。当事者団体自身が発信するアイデンティティとして、社会包摂をテーマにしたロゴ活用の事例となっている。",
+    "relatedWorks": [
+      {
+        "title": "Marriage For All Japan 公式サイト（サポート素材）",
+        "description": "ロゴ・アイコン素材のダウンロードページ",
+        "url": "https://www.marriageforall.jp/support/download/"
+      }
+    ],
+    "sources": [
+      "Dignity"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "case-htmk1u-2024",
+    "title": "東京レインボープライド2024「プライドアクション展」",
+    "summary": "「意識」と「行動」の間にあるギャップを埋めるため、来場者が今日から実践できる具体的アクションを提示した東京レインボープライド2024の展示グラフィック。",
+    "client": "東京レインボープライド",
+    "agency": "電通（CD：福居亜耶／AD：石川平／D：苅田哲平、烏野亮一）",
+    "categories": [
+      "社会包摂"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.dentsu.co.jp/showcase/tokyorainbowpride.html",
+    "thumbnail": "/thumbnails/case-htmk1u-2024.jpg",
+    "videoId": "",
+    "overview": "電通は東京レインボープライド2024で開催された「プライドアクション展」の会場グラフィック一式を制作。LGBTQ+に対する社会の『意識』の高まりと、実際の『行動』との間に生じているギャップに着目し、来場者が展示を見た後にすぐ実践できる具体的なアクションを提示するグラフィックデザインを展開した。CD福居亜耶、AD石川平のもと、苅田哲平、烏野亮一がデザインを担当した。",
+    "background": "LGBTQ+への理解やアライシップへの関心は近年高まっているものの、多くの人にとって『何をすればよいか分からない』という壁が行動化を妨げている実態があった。東京レインボープライドは、単に啓発メッセージを伝えるだけでなく、来場者が展示会場を出た後の日常で実際に取れる行動へと接続する展示を必要としていた。",
+    "execution": "会場内の各パネルに、LGBTQ+当事者を取り巻く現状の解説と合わせて、日常生活の中で誰もが今日から実践できる具体的なアクション例を並置するグラフィック構成を採用。抽象的な理解の呼びかけにとどめず、行動レベルまで解像度を上げたメッセージ設計により、意識と行動の間のギャップを埋めることを狙った。",
+    "evaluationImpact": "啓発にとどまらず『行動』への接続を明確に設計した展示グラフィックとして、東京レインボープライドの会場体験の一部を担った。LGBTQ+をめぐるコミュニケーションにおいて、意識喚起から一歩進んだ行動喚起の手法を示す国内事例として位置づけられる。",
+    "relatedWorks": [
+      {
+        "title": "電通 SHOWCASE「東京レインボープライド2024」",
+        "description": "プライドアクション展のグラフィック制作を紹介する電通の作品ページ",
+        "url": "https://www.dentsu.co.jp/showcase/tokyorainbowpride.html"
+      }
+    ],
+    "sources": [
+      "Dignity"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Form/Print",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "ipc-2021",
+    "title": "東京2020パラリンピック公式アイコニックポスター",
+    "summary": "IPCが史上初めて公式に選定した東京2020パラリンピックのアイコニックポスターで、多様な身体性を象徴的なグラフィックで表現。",
+    "client": "東京オリンピック・パラリンピック競技大会組織委員会／IPC",
+    "agency": "GOO CHOKI PAR（石井伶／飯高健人／浅葉球）",
+    "categories": [
+      "社会包摂"
+    ],
+    "award": "",
+    "year": "2021",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.advertimes.com/20210623/article355479/",
+    "thumbnail": "/thumbnails/ipc-2021.jpg",
+    "videoId": "",
+    "overview": "東京2020パラリンピック競技大会に際し、IPC（国際パラリンピック委員会）が史上初めて公式に『アイコニックポスター』を選定。GOO CHOKI PAR（石井伶、飯高健人、浅葉球）が制作したポスターは、パラリンピアンの多様な身体性そのものを象徴的なグラフィックとして表現し、大会を象徴するビジュアルの一つとなった。",
+    "background": "オリンピックには大会を象徴する公式アイコニックポスターの伝統があったが、パラリンピックにはこれまで同様の公式ポスターの枠組みが存在しなかった。東京2020大会を機に、IPCはパラリンピック独自の公式アイコニックポスターを史上初めて選定することとし、大会の理念を体現するビジュアル表現が求められた。",
+    "execution": "GOO CHOKI PARは、パラアスリートの身体の多様性やダイナミズムを写実的な描写ではなく象徴的なグラフィック表現に落とし込み、パラリンピックというイベントそのものの理念を視覚化した。東京2020大会の公式アイコニックポスターとして、IPCの選定プロセスを経て発表された。",
+    "evaluationImpact": "パラリンピック史上初の公式アイコニックポスターとして、大会の国際的な認知や象徴性を高める役割を果たした。オリンピックに限られていた『アイコニックポスター』という枠組みをパラリンピックにも確立した点で、パラリンピックのビジュアルコミュニケーションにおける画期的な事例となった。",
+    "relatedWorks": [
+      {
+        "title": "Advertimes「東京2020パラリンピック公式アイコニックポスター」",
+        "description": "IPC史上初の公式アイコニックポスター選定を伝える記事",
+        "url": "https://www.advertimes.com/20210623/article355479/"
+      }
+    ],
+    "sources": [
+      "Dignity"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/Sports",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "case-1msf0fz-2024",
+    "title": "日本女子大学 よりみちオールジェンダートイレ サイン計画",
+    "summary": "男女別・バリアフリートイレと一体化したオールジェンダートイレの案内サインを整備し、トイレ選択の『選択性』を可視化した日本女子大学のサイン計画。",
+    "client": "日本女子大学",
+    "agency": "",
+    "categories": [
+      "社会包摂",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000093.000073471.html",
+    "thumbnail": "/thumbnails/case-1msf0fz-2024.jpg",
+    "videoId": "",
+    "overview": "日本女子大学は、既存の男女別トイレ・バリアフリートイレと一体化する形でオールジェンダートイレを新設し、その利用を案内するサイン・ピクトグラム計画『よりみちオールジェンダートイレ』を実施。誰がどのトイレを選んでもよいという『選択性』そのものを、サインデザインを通じて来訪者に可視化した。",
+    "background": "オールジェンダートイレの設置は増えつつあるものの、既存の男女別トイレと切り離された特別な設備として案内されることで、かえって利用者を限定的に見せてしまう課題があった。日本女子大学は、既存のトイレ動線の中にオールジェンダートイレを組み込み、誰もが自然に選択肢として認識できるサイン計画を必要としていた。",
+    "execution": "男女別トイレ・バリアフリートイレ・オールジェンダートイレを一体の案内サインとして並置し、来訪者がその場で自分に合った選択肢を選べるピクトグラム・サイン計画を設計。『よりみち』という名称のもと、目的地に向かう動線上で自然に選択できる案内体系として構築した。",
+    "evaluationImpact": "トイレという日常的な空間の案内サインを通じて、性のあり方に関する『選択性』を可視化した取り組みとして発表された。大学キャンパスという教育の場において、ジェンダーに関する配慮を特別視せず日常動線に組み込んだサインデザインの事例として位置づけられる。",
+    "relatedWorks": [
+      {
+        "title": "PR TIMES「日本女子大学 よりみちオールジェンダートイレ」",
+        "description": "サイン計画の実施を伝えるプレスリリース",
+        "url": "https://prtimes.jp/main/html/rd/p/000000093.000073471.html"
+      }
+    ],
+    "sources": [
+      "Dignity"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/Education",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "case-1evwkgv-2016",
+    "title": "UDデジタル教科書体",
+    "summary": "ロービジョンやディスレクシアの子どもにも読みやすいよう、手書きの運筆を意識して設計されたユニバーサルデザイン書体『UDデジタル教科書体』。",
+    "client": "株式会社モリサワ（旧タイプバンク）",
+    "agency": "デザイン：高田裕美",
+    "categories": [
+      "社会包摂"
+    ],
+    "award": "第12回キッズデザイン賞（2018年）審査委員長特別賞（対象：UDデジタル教科書体 和文・欧文・学習記号）／第23回佐藤敬之輔賞（NPO法人日本タイポグラフィ協会・2024年3月発表）個人部門（開発担当：高田裕美）",
+    "year": "2016",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000447.000010848.html",
+    "thumbnail": "/thumbnails/case-1evwkgv-2016.jpg",
+    "videoId": "",
+    "overview": "『UDデジタル教科書体』は、タイプデザイナー高田裕美が開発したユニバーサルデザイン書体。ロービジョン（弱視）やディスレクシア（読字障害）のある子どもたちにも読みやすいよう、手書きの運筆を意識した字形設計を特徴とし、株式会社モリサワ（旧タイプバンク）から2016年に発表された。",
+    "background": "デジタル教材やデジタル教科書の普及が進む一方、従来の教科書体やゴシック体は、ロービジョンやディスレクシアのある子どもにとって文字の判読が難しい場合があった。高田裕美は、すべての子どもが同じ教材で無理なく文字を読めるようにするため、視認性と可読性を追求した教育現場向けの書体を必要とした。",
+    "execution": "高田裕美は、手書き文字が持つ自然な運筆の流れや線の抑揚を活字のデザインに反映させ、画数の多い漢字でも視認しやすい字形を追求。文字の輪郭や太さのバランスを調整し、和文・欧文・学習記号までを一体で設計することで、教科書やデジタル教材で使用できるユニバーサルデザイン書体として完成させた。",
+    "evaluationImpact": "第12回キッズデザイン賞（2018年）で審査委員長特別賞を受賞したほか、第23回佐藤敬之輔賞（日本タイポグラフィ協会・2024年3月発表）個人部門でも開発担当の高田裕美が評価された。教育現場のデジタル化が進む中で、読みの困難を抱える子どもを含めた『誰もが読める教科書体』のスタンダードを示した事例とされる。",
+    "relatedWorks": [
+      {
+        "title": "PR TIMES「UDデジタル教科書体」佐藤敬之輔賞受賞",
+        "description": "第23回佐藤敬之輔賞個人部門受賞を伝えるプレスリリース",
+        "url": "https://prtimes.jp/main/html/rd/p/000000447.000010848.html"
+      }
+    ],
+    "sources": [
+      "Dignity"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/Education",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "issue-design-2023",
+    "title": "認知症世界の歩き方 実践編",
+    "summary": "認知症の人が見ている世界を旅行記スタイルで描き、当事者理解と尊厳ある対話を促す書籍。",
+    "client": "一般社団法人issue+design",
+    "agency": "issue+design（著：筧裕介）",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2023",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://eijipress.co.jp/products/5049",
+    "thumbnail": "/thumbnails/issue-design-2023.jpg",
+    "videoId": "",
+    "overview": "一般社団法人issue+designが制作した書籍『認知症世界の歩き方 実践編』。認知症の人が体験している知覚や感覚のズレを「旅行ガイドブック」というフォーマットに落とし込み、イラストとエディトリアルデザインによって当事者の視点を可視化した。著者は筧裕介。",
+    "background": "認知症は当事者の内的な体験が周囲から見えづらく、誤解や偏見、一方的なケアにつながりやすい。issue+designは以前の書籍で認知症の人が見ている世界を旅行記として描き反響を得ており、本作はその実践編として、理解を日常の対話や関わり方に落とし込む必要性から企画された。",
+    "execution": "認知症の人が経験しうる困りごとや感覚のズレを、旅先で出会う出来事に見立てて章立てし、イラストレーションとエディトリアルデザインによって視覚的に整理。専門用語に頼らず、誰でも直感的に理解できるガイドブックの体裁を採用し、当事者との具体的な対話や関わり方のヒントを提示する構成とした。",
+    "evaluationImpact": "認知症を「症状のリスト」としてではなく「当事者が生きている世界」として提示する編集の視点が特徴で、福祉・医療関係者だけでなく一般読者にも届く形で当事者理解を広げる書籍として位置づけられる。公式な受賞歴は現時点で確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Dignity"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/Health",
+      "Theme/SocialGood"
+    ]
+  },
+  {
     "id": "the-refugee-nation-2016",
     "title": "The Refugee Nation",
     "summary": "国も旗も持たないリオ五輪難民選手団のために、シリア人難民アーティストが旗と国歌を制作し「難民の国」としての尊厳を与えたAmnesty Internationalのキャンペーン。",
