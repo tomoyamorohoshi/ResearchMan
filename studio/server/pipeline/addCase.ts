@@ -860,6 +860,7 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
     }
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
+    console.error(`[studio] add case pipeline failed (job ${jobId}):`, err instanceof Error ? err.stack : err);
     await rollbackIfNotCommitted(committed, trackedTouched, newUntracked, (tracked, untracked) =>
       rollbackTouchedFiles(ROOT, tracked, untracked),
     );
