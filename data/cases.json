@@ -1,5 +1,380 @@
 [
   {
+    "id": "the-refugee-nation-2016",
+    "title": "The Refugee Nation",
+    "summary": "国も旗も持たないリオ五輪難民選手団のために、シリア人難民アーティストが旗と国歌を制作し「難民の国」としての尊厳を与えたAmnesty Internationalのキャンペーン。",
+    "client": "Amnesty International",
+    "agency": "Ogilvy",
+    "categories": [
+      "社会包摂"
+    ],
+    "award": "Cannes Lions 2017 Titanium & Grand Prix for Good",
+    "year": "2016",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://adage.com/creativity/work/refugee-nation/48500/",
+    "thumbnail": "/thumbnails/the-refugee-nation-2016.jpg",
+    "videoId": "",
+    "overview": "Amnesty Internationalは2016年リオデジャネイロ五輪に史上初めて出場した難民選手団のために、シリア人難民のアーティストが救命胴衣の色をモチーフにした旗をデザインし、専属の作曲家が国歌を制作。国も旗も持たない選手たちに『難民の国（The Refugee Nation）』としての象徴を与え、大会期間中に発表した。",
+    "background": "リオ五輪では史上初めて、特定の国籍を持たない難民選手団（Refugee Olympic Team）がIOC旗の下で出場することが決まっていた。しかし彼らには自国の旗や国歌がなく、他国の選手のように応援される象徴を持てない状況にあった。Amnesty Internationalは、難民という立場そのものに尊厳と可視性を与えるシンボルの必要性に着目した。",
+    "execution": "シリア難民のアーティストYara Saidが、地中海を渡る際に難民が身につける救命胴衣のオレンジ色を基調とした旗をデザイン。作曲家のMoutaz Arianとともに専属の国歌も制作し、大会期間中にリオの街中や会場周辺で発表・掲揚した。これにより難民選手団は独自の旗と国歌を持つ『難民の国』としてオリンピックに参加した。",
+    "evaluationImpact": "国という枠組みを持たない難民に、旗と国歌という国家の象徴そのものを創出して与える発想が国際的に大きな反響を呼び、カンヌライオンズ2017でTitanium LionとGrand Prix for Goodを受賞。難民問題への認知と共感を広げる社会的インパクトを持つキャンペーンとして評価された。",
+    "relatedWorks": [
+      {
+        "title": "Adage「The Refugee Nation」",
+        "description": "The Refugee Nationキャンペーンの詳細を紹介する記事",
+        "url": "https://adage.com/creativity/work/refugee-nation/48500/"
+      }
+    ],
+    "sources": [
+      "Dignity"
+    ],
+    "tags": [
+      "Form/Product",
+      "Theme/SocialGood",
+      "Theme/Sports"
+    ]
+  },
+  {
+    "id": "the-tampon-book-2019",
+    "title": "The Tampon Book",
+    "summary": "生理用品への高い税率に抗議し、ドイツで税率の低い『本』としてタンポンを販売したThe Female CompanyのPRキャンペーン。",
+    "client": "The Female Company",
+    "agency": "Scholz & Friends Berlin",
+    "categories": [
+      "社会包摂"
+    ],
+    "award": "Cannes Lions 2019 PR Lions Grand Prix",
+    "year": "2019",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adweek.com/creativity/the-tampon-book-which-protests-taxes-on-menstrual-products-wins-pr-grand-prix-at-cannes/",
+    "thumbnail": "/thumbnails/the-tampon-book-2019.jpg",
+    "videoId": "",
+    "overview": "The Female Companyは、ドイツで生理用品に贅沢品と同等の高い付加価値税（19%）が課される一方、書籍は7%という軽減税率が適用される矛盾に着目。タンポンを本のパッケージに封入し『The Tampon Book』として販売することで、税制の不公平さを可視化し議論を喚起した。",
+    "background": "ドイツでは生理用品が生活必需品でありながら贅沢品扱いの高税率区分に置かれ、一方で書籍などは軽減税率の対象となっていた。The Female Companyはこの矛盾を単なる主張ではなく、実際に購入・体験できる商品の形で提示することで、社会的議論と法改正への機運を高めようとした。",
+    "execution": "Scholz & Friends Berlinとともに、タンポンを本のカバーで包み『The Tampon Book』として正規に書籍流通ルートで販売。購入者は書籍扱いの軽減税率でタンポンを手にすることになり、パッケージ自体が税制の不合理さを訴えるメッセージとなった。売上の一部は税制改正を求める署名活動にも連動した。",
+    "evaluationImpact": "ユーモアと実利を兼ねた発想が国内外のメディアで大きく取り上げられ、ドイツ国内での生理用品への課税議論を後押し。カンヌライオンズ2019でPR Lions Grand Prixを受賞し、税制という社会制度そのものにクリエイティブで切り込んだ事例として評価された。",
+    "relatedWorks": [
+      {
+        "title": "Adweek「The Tampon Book」",
+        "description": "The Tampon BookのPR Lions Grand Prix受賞を伝える記事",
+        "url": "https://www.adweek.com/creativity/the-tampon-book-which-protests-taxes-on-menstrual-products-wins-pr-grand-prix-at-cannes/"
+      }
+    ],
+    "sources": [
+      "Dignity"
+    ],
+    "tags": [
+      "Form/Product",
+      "Theme/SocialGood",
+      "Theme/Health"
+    ]
+  },
+  {
+    "id": "thisables-2019",
+    "title": "ThisAbles",
+    "summary": "障がいのある人がIKEAの家具をスティグマなく使えるよう、無料で3Dプリントできるアタッチメントを開発したIKEA IsraelのHealth & Wellnessキャンペーン。",
+    "client": "IKEA Israel",
+    "agency": "McCann Tel Aviv",
+    "categories": [
+      "社会包摂"
+    ],
+    "award": "Cannes Lions 2019 Health & Wellness Lions Grand Prix",
+    "year": "2019",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://adage.com/article/special-report-cannes-lions/ikeas-thisables-wins-cannes-lions-grand-prix-health-and-wellness/2178341/",
+    "thumbnail": "/thumbnails/thisables-2019.jpg",
+    "videoId": "",
+    "overview": "IKEA Israelは、既製の家具が障がいのある人にとって使いにくい場合があるという課題に対し、McCann Tel Avivと共同で『ThisAbles』を開発。家具の使い勝手を改善する取り付けパーツを3Dプリントデータとして無料公開し、当事者が自宅のIKEA家具を自分に合わせて改良できる仕組みを提供した。",
+    "background": "障がいのある人にとって、既製の家具は高さやレバー操作、取っ手の形状などが合わず、日常生活の中で不便やスティグマを感じる場面が少なくなかった。しかし専用の福祉機器を購入することは費用面・入手性の面でハードルが高く、身近な家具そのものを調整できる手段が求められていた。",
+    "execution": "作業療法士など専門家の協力を得て、ソファの脚を高くするスタンドやレバーを操作しやすくするハンドル拡張パーツなど、複数のアタッチメントを開発。3Dプリントデータをオンラインで無料公開し、当事者や支援者が近隣の3Dプリントサービスで出力・自宅のIKEA家具に取り付けられるようにした。",
+    "evaluationImpact": "既存の家具ラインを変更せず、無料の後付けパーツというアプローチで障がいのある人の生活の自立と尊厳を支えた点が高く評価され、カンヌライオンズ2019でHealth & Wellness Lions Grand Prixを受賞。プロダクトデザインとアクセシビリティを結びつけた事例として国際的に注目された。",
+    "relatedWorks": [
+      {
+        "title": "Ad Age「IKEA's ThisAbles wins Cannes Lions Grand Prix for Health and Wellness」",
+        "description": "ThisAblesのカンヌライオンズGrand Prix受賞を伝える記事",
+        "url": "https://adage.com/article/special-report-cannes-lions/ikeas-thisables-wins-cannes-lions-grand-prix-health-and-wellness/2178341/"
+      }
+    ],
+    "sources": [
+      "Dignity"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/Product",
+      "Theme/Health",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "case-9ltaln-2025",
+    "title": "異彩を、放て。（ヘラルボニー ブランドプロジェクト）",
+    "summary": "知的障害のあるアーティストの原画をライセンス化し企業とのビジネス協業に繋げる、ヘラルボニーのブランドプロジェクト『異彩を、放て。』。",
+    "client": "株式会社ヘラルボニー",
+    "agency": "電通（長谷川輝波氏ほか協力）",
+    "categories": [
+      "社会包摂"
+    ],
+    "award": "Cannes Lions 2025 Glass: The Lion for Change Gold",
+    "year": "2025",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000416.000039365.html",
+    "thumbnail": "/thumbnails/case-9ltaln-2025.jpg",
+    "videoId": "",
+    "overview": "株式会社ヘラルボニーは、知的障害のあるアーティストが手がけた原画を企業のプロダクトやサービスにライセンス提供し、収益をアーティストに還元するビジネスモデル『異彩を、放て。』を展開。電通の長谷川輝波氏らの協力のもと、福祉と企業活動を接続するブランドプロジェクトとして推進してきた。",
+    "background": "障がいのある人のアートは、これまで福祉的な支援活動の一環として扱われることが多く、対価やビジネスとしての正当な評価を受けにくい構造があった。ヘラルボニーは、知的障害のあるアーティストの表現を『異彩』として積極的に価値づけ、寄付や慈善ではなく対等なビジネス取引として社会に流通させることを目指した。",
+    "execution": "知的障害のあるアーティストの原画をライセンス化し、大企業を含む多様な企業とのプロダクト・空間デザインなどの協業を継続的に展開。単発のプロジェクトにとどまらず、アート使用料が持続的にアーティストへ還元される仕組みを構築し、福祉領域とビジネス領域を横断するブランド活動として運営してきた。",
+    "evaluationImpact": "慈善ではなく正当な対価に基づくビジネスモデルとして障がいのある人の表現価値を社会に広めた点が評価され、カンヌライオンズ2025のGlass: The Lion for Change部門でGoldを受賞。福祉領域の課題解決とブランドビジネスを両立させる先進事例として位置づけられる。",
+    "relatedWorks": [
+      {
+        "title": "PR TIMES「異彩を、放て。」カンヌライオンズ受賞発表",
+        "description": "ヘラルボニーのブランドプロジェクトのカンヌライオンズGold受賞を伝えるプレスリリース",
+        "url": "https://prtimes.jp/main/html/rd/p/000000416.000039365.html"
+      }
+    ],
+    "sources": [
+      "Dignity"
+    ],
+    "tags": [
+      "Form/Product",
+      "Theme/Art",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "no-smiles-2023",
+    "title": "No Smiles（スマイルあげない）",
+    "summary": "日本マクドナルドが「スマイル0円」を刷新し、Z世代クルーが接客中も自分らしくいられる権利を訴求したキャンペーン。",
+    "client": "日本マクドナルド",
+    "agency": "TBWA\\HAKUHODO",
+    "categories": [
+      "社会包摂",
+      "カルチャーインサイト"
+    ],
+    "award": "Cannes Lions 2024 Social & Influencer Lions Gold／Cannes Lions 2025 Creative Effectiveness Lions Silver",
+    "year": "2023",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.mcdonalds.co.jp/company/news/2025/0624a/",
+    "thumbnail": "/thumbnails/no-smiles-2023.jpg",
+    "videoId": "",
+    "overview": "日本マクドナルドが長年のスローガン「スマイル0円」を刷新し、Z世代のクルーが接客中も自分らしくいられる権利を訴求したブランドキャンペーン「No Smiles（スマイルあげない）」。TBWA\\HAKUHODOが企画制作を担当した。",
+    "background": "「スマイル0円」は無料の笑顔接客を象徴するフレーズとして長く親しまれてきたが、Z世代のクルーにとっては笑顔を強制される感情労働としての負担感が指摘されていた。日本マクドナルドは、働く個人の尊厳を尊重する観点からコミュニケーションのあり方を見直すことを検討した。",
+    "execution": "「スマイルをあげない」というメッセージを軸に、クルーが接客中に無理に笑顔を作らず自分らしくいられることを訴求するキャンペーンを展開。TBWA\\HAKUHODOが企画制作を担い、Z世代の労働観・自己表現の価値観に即したブランドコミュニケーションとして打ち出した。",
+    "evaluationImpact": "カンヌライオンズ2024でSocial & Influencer Lions部門ゴールド、2025年にはCreative Effectiveness Lions部門シルバーを受賞し、国際的にも評価された。ファストフード業界における接客・感情労働の常識を問い直し、働く個人の尊厳をテーマにしたブランドキャンペーンの先行例となった。",
+    "relatedWorks": [
+      {
+        "title": "日本マクドナルド公式ニュースリリース",
+        "description": "「No Smiles」キャンペーンのカンヌライオンズ受賞を伝える発表",
+        "url": "https://www.mcdonalds.co.jp/company/news/2025/0624a/"
+      }
+    ],
+    "sources": [
+      "Dignity"
+    ],
+    "tags": [
+      "Form/Film",
+      "Theme/SocialGood",
+      "Theme/Food"
+    ]
+  },
+  {
+    "id": "the-tokyo-toilet-2020",
+    "title": "THE TOKYO TOILET",
+    "summary": "日本財団と16名の建築家が、誰もが尊厳を持って使える公共トイレを渋谷区内に実現した都市プロジェクト。",
+    "client": "日本財団",
+    "agency": "柳井康治（企画）／16名の建築家・デザイナー",
+    "categories": [
+      "空間体験",
+      "社会包摂"
+    ],
+    "award": "Cannes Lions 2022 Design Lions Silver（Nippon Foundation／THE TOKYO TOILET。カテゴリーは「Design」であることのみ確認でき、細分類「Retail Environment & Experience Design」は一次ソースで確認できず）",
+    "year": "2020",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.advertimes.com/20220624/article387874/",
+    "thumbnail": "/thumbnails/the-tokyo-toilet-2020.jpg",
+    "videoId": "",
+    "overview": "日本財団が柳井康治の企画により、著名建築家・デザイナー16名を起用し、渋谷区内の公共トイレをそれぞれ独自の設計で刷新した都市プロジェクト。障害の有無・性別・年齢を問わず誰もが尊厳を持って使える公共トイレのあり方を、多様な建築家の視点から実現した。",
+    "background": "公共トイレは「暗い・汚い・臭い・怖い」といった負のイメージが根強く、高齢者や障害者、子供連れなど多様な利用者にとって使いにくい存在であり続けてきた。日本財団は柳井康治の企画のもと、公共トイレを誰もが安心して快適に使える場へ再定義するプロジェクトを立ち上げた。",
+    "execution": "安藤忠雄、伊東豊雄、隈研吾らを含む国内外で活躍する建築家・デザイナー16名を起用し、渋谷区内の複数の公共トイレをそれぞれ独自のコンセプトで設計。多目的トイレの充実やユニバーサルデザインの導入など、多様な利用者が尊厳を持って利用できる機能・意匠を各施設に反映した。",
+    "evaluationImpact": "カンヌライオンズ2022のデザイン部門でシルバーを受賞するなど国際的にも評価され、公共インフラのデザイン刷新プロジェクトとして世界的な注目を集めた。著名建築家を起用し公共トイレという日常設備を通じて都市の包摂性を可視化した先行事例として、以降の公共空間デザインの議論に影響を与えている。",
+    "relatedWorks": [
+      {
+        "title": "AdverTimes報道記事",
+        "description": "THE TOKYO TOILETのカンヌライオンズ受賞を伝える記事",
+        "url": "https://www.advertimes.com/20220624/article387874/"
+      }
+    ],
+    "sources": [
+      "Dignity"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Theme/SocialGood",
+      "Theme/Health"
+    ]
+  },
+  {
+    "id": "case-lwlokz-2019",
+    "title": "ミライロID（デジタル障害者手帳アプリ）",
+    "summary": "紙の障害者手帳を窓口で提示する際の心理的負担をなくし、スマホ提示で尊厳を守れるデジタル障害者手帳アプリ。",
+    "client": "株式会社ミライロ",
+    "agency": "",
+    "categories": [
+      "社会包摂",
+      "テクノロジー×アイデア"
+    ],
+    "award": "2022年度グッドデザイン賞 グッドデザイン・ベスト100／グッドフォーカス賞[新ビジネスデザイン]",
+    "year": "2019",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://mirairo-id.jp/release-98/",
+    "thumbnail": "/thumbnails/case-lwlokz-2019.jpg",
+    "videoId": "",
+    "overview": "株式会社ミライロが開発したスマートフォンアプリ「ミライロID」。障害者手帳の情報をデジタル化し、窓口や交通機関でスマホ画面を提示するだけで本人確認や割引適用を完結できるようにしたサービス。",
+    "background": "障害者手帳は紙製の原本を都度提示する必要があり、公共交通機関や施設の窓口で手帳を開いて見せる行為自体に引け目や心理的負担を感じる当事者が少なくなかった。ミライロは、手帳提示という行為そのものが持つスティグマを解消し、尊厳を守りながら制度を利用できる仕組みを目指した。",
+    "execution": "障害者手帳の種別・等級などの情報をアプリ内にデジタル登録し、交通機関や店舗などの窓口でスマートフォン画面を提示するだけで本人確認・各種割引の適用を受けられる仕組みを構築。紙の手帳を出す動作を代替することで、利用者の心理的負担を軽減するサービスとして展開した。",
+    "evaluationImpact": "2022年度グッドデザイン賞でグッドデザイン・ベスト100およびグッドフォーカス賞[新ビジネスデザイン]を受賞し、社会課題解決型サービスとして評価された。障害者手帳のデジタル化を通じて、当事者が日常の様々な場面で尊厳を保ちながら制度を利用できる社会実装のモデルとなっている。",
+    "relatedWorks": [
+      {
+        "title": "ミライロID公式リリース",
+        "description": "グッドデザイン賞受賞を伝える発表",
+        "url": "https://mirairo-id.jp/release-98/"
+      }
+    ],
+    "sources": [
+      "Dignity"
+    ],
+    "tags": [
+      "Form/App",
+      "Theme/SocialGood",
+      "Theme/Health"
+    ]
+  },
+  {
+    "id": "oton-glass-2016",
+    "title": "OTON GLASS",
+    "summary": "文字が読めなくなった父のために開発された、撮影した文字を音声で読み上げるスマートグラス型デバイス。",
+    "client": "個人プロジェクト（島影圭佑／Particular Design）",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "社会包摂"
+    ],
+    "award": "James Dyson Award 2016 国内3位（ナショナルラウンド）／GUGEN 2016 優秀賞／YouFab Global Creative Awards 2016 グランプリ",
+    "year": "2016",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://soar-world.com/2017/07/26/oton-glass/",
+    "thumbnail": "/thumbnails/oton-glass-2016.jpg",
+    "videoId": "",
+    "overview": "島影圭佑（Particular Design）による個人プロジェクト「OTON GLASS」。脳梗塞の後遺症で文字が読めなくなった父のために開発された、読字困難な人の「読む」を支援するスマートグラス型デバイス。",
+    "background": "開発者の父は病気の後遺症により文字を読むことが困難になり、日常生活の中で読字という当たり前の行為に強いハードルを抱えるようになった。島影圭佑は、身近な家族の課題を出発点に、読字障害を持つ人が自身の尊厳を保ちながら情報にアクセスできる手段を模索した。",
+    "execution": "メガネ型のウェアラブルデバイスに搭載したカメラで文字を撮影し、音声で読み上げる仕組みを開発。読字困難を抱える人が周囲の助けを借りずに自分の意思で文字情報にアクセスできるよう、装着型デバイスというフォーマットで設計した。",
+    "evaluationImpact": "James Dyson Award 2016国内ラウンドで3位、GUGEN 2016で優秀賞、YouFab Global Creative Awards 2016でグランプリを受賞するなど、国内外のデザイン・発明アワードで高く評価された。個人の家族的課題から出発した開発が、読字障害という社会課題を可視化する事例として広く紹介された。",
+    "relatedWorks": [
+      {
+        "title": "soar「OTON GLASS」紹介記事",
+        "description": "開発の背景と経緯を紹介する記事",
+        "url": "https://soar-world.com/2017/07/26/oton-glass/"
+      }
+    ],
+    "sources": [
+      "Dignity"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Product",
+      "Theme/Health"
+    ]
+  },
+  {
+    "id": "cud-2004",
+    "title": "カラーユニバーサルデザイン（CUD）認証活動",
+    "summary": "色覚の多様性に配慮した「カラーユニバーサルデザイン」の認証・普及活動を行うNPO法人CUDOの取り組み。2008年度グッドデザイン賞（新領域のデザイン活動）を受賞。",
+    "client": "NPO法人カラーユニバーサルデザイン機構（CUDO）",
+    "agency": "",
+    "categories": [
+      "社会包摂"
+    ],
+    "award": "2008年度グッドデザイン賞（新領域のデザイン活動）",
+    "year": "2004",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://cudo.jp/?page_id=9877",
+    "thumbnail": "/thumbnails/cud-2004.jpg",
+    "videoId": "",
+    "overview": "NPO法人カラーユニバーサルデザイン機構（CUDO）は2004年、色覚の多様性に配慮した「カラーユニバーサルデザイン（CUD）」の普及を目的に設立された。色の見え方が異なる人々を含め、誰もが情報を正しく認識できる配色や表示物を審査・認証する仕組みを運営し、企業や自治体の製品・印刷物・サインなどにCUDマークの付与を進めている。",
+    "background": "色覚の多様性（いわゆる色覚異常・色弱）は日本人男性の約20人に1人とされるが、社会の多くの製品や情報表示は色覚多数派を前提に設計されており、当事者が地図やグラフ、標識などの色分け情報を正しく読み取れない場面が長く見過ごされてきた。CUDOは「誰もが自分の色覚に誇りを持てる社会」を掲げ、デザインの側から解決する活動として設立された。",
+    "execution": "CUDOは配色のガイドライン策定とCUDマーク認証制度を軸に活動し、企業の製品パッケージ、公共施設のサイン、教科書や印刷物など幅広い分野で色覚多様性に配慮した配色の審査・認証を実施。専門家と当事者検証を組み合わせた独自の審査プロセスを通じ、デザイン現場に色覚多様性への配慮を実装する仕組みを構築した。",
+    "evaluationImpact": "認証制度を通じた継続的な社会実装が評価され、2008年度グッドデザイン賞（新領域のデザイン活動）を受賞。単発のデザインではなく、企業・自治体を横断する認証の仕組みそのものをデザイン活動として評価した点が特徴で、以降の色覚バリアフリー施策の普及に影響を与えた。",
+    "relatedWorks": [
+      {
+        "title": "CUDO公式サイト",
+        "description": "カラーユニバーサルデザイン機構の活動紹介",
+        "url": "https://cudo.jp/?page_id=9877"
+      }
+    ],
+    "sources": [
+      "Dignity"
+    ],
+    "tags": [
+      "Form/Product",
+      "Theme/SocialGood",
+      "Theme/Health"
+    ]
+  },
+  {
+    "id": "bottom-all-2021",
+    "title": "bottom’all（車椅子ユーザーのためのラップスカート）",
+    "summary": "車椅子ユーザーが座ったまま着脱できるラップスカート「bottom'all」。パリコレ出展も果たした日本発のインクルーシブファッション。",
+    "client": "一般社団法人日本障がい者ファッション協会",
+    "agency": "",
+    "categories": [
+      "社会包摂"
+    ],
+    "award": "",
+    "year": "2021",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://fashiontechnews.zozo.com/philosophy/bottomall",
+    "thumbnail": "/thumbnails/bottom-all-2021.jpg",
+    "videoId": "",
+    "overview": "「bottom'all」は、一般社団法人日本障がい者ファッション協会が開発した車椅子ユーザー向けのラップスカート。座った姿勢のまま着脱でき、車椅子での着座姿勢を美しく見せることを意図したデザインで、パリコレクションへの出展も果たしたインクルーシブファッションの製品。",
+    "background": "車椅子ユーザーは既存の衣服の多くが立位・歩行を前提に設計されているため、着脱のしにくさや座位でのシルエットの崩れといった課題を抱え、「おしゃれを諦める」状況が起きていた。日本障がい者ファッション協会は、この課題を当事者視点から解決するプロダクトとしてbottom'allを企画した。",
+    "execution": "座ったまま前から巻きつけて着脱できるラップ構造を採用し、車椅子上での座位姿勢でも美しいシルエットになるようパターンを設計。当事者の声を反映した使いやすさとファッション性を両立させ、パリコレクションへの出展を通じて国際的な発信も行った。",
+    "evaluationImpact": "車椅子ユーザーの「着脱のしやすさ」と「おしゃれの自由」を同時に実現した点が評価され、日本発のインクルーシブファッションとしてメディアで紹介された。パリコレ出展により、福祉用品としてではなくファッションの文脈で車椅子ユーザー向け衣服を提示した先行事例となった。",
+    "relatedWorks": [
+      {
+        "title": "ZOZO Fashion Tech News",
+        "description": "bottom'allの開発経緯を紹介する記事",
+        "url": "https://fashiontechnews.zozo.com/philosophy/bottomall"
+      }
+    ],
+    "sources": [
+      "Dignity"
+    ],
+    "tags": [
+      "Form/Product",
+      "Theme/Fashion",
+      "Theme/SocialGood"
+    ]
+  },
+  {
     "id": "house-of-vans-london-2014",
     "title": "House of Vans London（ウォータールー駅下の廃鉄道トンネル）",
     "summary": "ロンドン・ウォータールー駅下の約150年前の廃線煉瓦トンネル群をスケートパーク兼ギャラリー兼ショップに転用した恒久型カルチャー施設。",

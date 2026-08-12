@@ -43,6 +43,7 @@ export const RESEARCH_SOURCES: ResearchSource[] = [
   { tag: "Tactile Design", kind: "order", label: "Tactile Design" },
   { tag: "Typography", kind: "order", label: "Typography" },
   { tag: "Pop-Up Spaces", kind: "order", label: "Pop-Up Spaces" },
+  { tag: "Dignity", kind: "order", label: "Dignity" },
   { tag: "Radar", kind: "radar", label: "Radar" },
 ];
 
