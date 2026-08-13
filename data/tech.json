@@ -1,5 +1,101 @@
 [
   {
+    "id": "resonant",
+    "title": "Resonant",
+    "org": "Calesthio",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools",
+      "AI/Agents"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "Windows上で完結するローカルAI音楽制作スタジオ。作詞からAI作曲、自分の声への変換、DAW編集・書き出しまでを1台のPCだけで行え、Claude等のAIアシスタントにも自然言語で操作させられる。",
+    "point": "Resonantのすごさは、Suno等のクラウド型AI作曲サービスと違い、作曲から歌声変換、DAWでの編集・書き出しまでの全工程をインターネット接続なしに自分のPC(Windows)だけで完結できる点です。搭載する音楽生成AI「ACE-Step 1.5」はテキストで指示するだけでボーカル入り楽曲やインスト曲を作り、ボイスチェンジAI「Seed-VC」で歌声を任意の声質に変換できます。さらに「MCP」という仕組み経由でClaudeやCursorなどのAIアシスタントに『歌詞を書いて、曲を作って、ミックスして書き出して』と頼むだけで一連の作業を代行させることもできます。広告・映像制作の現場では、著作権やライセンス費用を気にせずBGMやジングルを社内で即座に量産したり、ナレーターの声を統一したブランドボイスに変換したり、打ち合わせ中にその場で仮歌入りデモ曲を作って提案するといった使い方が考えられます。生成物の著作権は完全に利用者に帰属するため、商用案件にも使いやすい設計です。",
+    "detail": "Resonantは「Flow(制作)→Arrange(編成)→Mix(仕上げ)」という3つの画面を行き来しながら曲を作るDAW（音楽制作ソフト）です。まず内蔵の作詞スタジオで英語・日本語など6言語のコーチング支援を受けながら歌詞と構成を作り、ローカルで動く音楽生成モデル「ACE-Step 1.5」にテキストで指示を送ると、ボーカル入りまたはインストの楽曲がPC上に生成されます。気に入ったボーカルは「Seed-VC」という声質変換AIに通すことで、あらかじめ用意した自分（または許諾を得た人）の声のトーンに置き換えられ、メロディやリズムはそのまま保たれます。\n\n従来のクラウド型AI作曲サービスは処理が外部サーバーを経由するため、機密性の高い案件では使いにくく、生成回数の従量課金も発生しがちでした。Resonantはモデルも処理も自分のPC内で完結するため社外秘の企画でも使いやすく、加えて「MCP」という接続規格でClaude DesktopやCursorのようなAIチャットアシスタントに日本語で指示するだけで作詞〜生成〜ミックス〜書き出しまでを自動操作させられる点が新しく、AIエージェントに“音楽制作という体”を持たせる試みと言えます。\n\n必要なのはWindows 10/11のPCのみで、無料でインストールできます。高品質な楽曲生成や声質変換にはNVIDIA製GPU（目安6〜8GB以上のVRAM）があると快適に動作し、GPUがない場合は生成に時間がかかります。プログラミング知識は不要ですが、AIアシスタント連携機能を使うにはClaude DesktopやCursorなど対応ツールを別途用意する必要があります。",
+    "license": {
+      "spdx": "AGPL-3.0-only",
+      "commercial": "conditional",
+      "note": "ソフトウェア本体はAGPL-3.0（改変版をネットワーク配布する場合はソース公開義務あり）。生成した楽曲・歌詞・録音物の著作権は完全に利用者に帰属し、ロイヤリティ請求なしで商用利用可能。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/calesthio/Resonant"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/resonant.jpg",
+    "relatedWorks": [
+      {
+        "title": "ACE-Step 1.5",
+        "description": "Resonantが搭載するオープンソースのローカル音楽生成基盤モデル",
+        "url": "https://github.com/ace-step/ACE-Step-1.5"
+      },
+      {
+        "title": "Seed-VC",
+        "description": "数秒の音声サンプルからゼロショットで声質変換できるOSS AI。Resonantの歌声パーソナライズに採用",
+        "url": "https://github.com/Plachtaa/seed-vc"
+      },
+      {
+        "title": "Suno",
+        "description": "クラウド型AI作曲サービス。Resonantはこれに対するローカル完結の代替として設計されている",
+        "url": "https://suno.com"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "stratawright",
+    "title": "Stratawright",
+    "org": "Goldwaterfung (Kam Kiu Fung)",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools",
+      "AI/Agents"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "Claude CodeやCursorなどのAIコーディングエージェントが自然言語だけで直接操作できる、C++製の「エージェント制御前提」のDAW（音楽制作ソフト）。",
+    "point": "Stratawrightのすごさは、DAW（音楽制作ソフト）そのものをAIエージェントが“ネイティブに”操作できるよう設計し直した点です。通常のDAWはマウスでフェーダーを一つずつ動かしたりプラグインを手作業でルーティングしたりする必要がありますが、Stratawrightは「daw-cli」というAI向けの操作マニュアル（スキル）を備え、Claude CodeやCursorなどに『全トラックのボリュームバランスを取って』『128BPMでミックスして』と日本語や英語で指示するだけで、100トラック規模の作業でも数秒〜数十秒で自動処理されます。広告・映像制作の現場では、AIナレーションや効果音を大量生成したあとの音量調整・帯域の被り(周波数マスキング)チェック・ステム整理といった地味だが時間のかかる作業をAIエージェントに丸投げできるようになり、人間はミックスの最終判断や演出のアイデア出しに集中できます。将来的には企画会議でAIエージェントに『このBGM案を3パターンミックスして』と頼み、その場で聴き比べるといった使い方も現実的になります。",
+    "detail": "Stratawrightは、C++20で書かれた高性能な音声処理エンジンに、AIエージェント向けの「操作マニュアル」ファイル（skills/daw-cli/SKILL.md）を組み合わせたDAWです。ユーザーはClaude CodeなどのAIコーディングエージェントに自然言語で指示するだけで、AIがこのスキル定義を読み取り、トラック作成・ボリューム/パン調整・VST3/AUプラグインのロードとルーティング・MIDIシーケンシング・バスやAUXへのサブミックス構成・周波数マスキング検出やLUFS(音量ラウドネス)測定といったDSP解析までをコマンドライン経由で実行します。\n\n従来の「AI音楽ツール」の多くは曲そのものを生成するAIでしたが、Stratawrightは曲を作ったあとの地味な作業（レベル調整、ルーティング、品質チェック）をAIエージェントに任せる方向性が新しく、Ableton LiveをAIから操作する「AbletonMCP」のような既存の連携ツールとは異なり、DAW自体をAIエージェント操作前提でゼロから設計している点が特徴です。50以上のAIエージェント（Claude Code、Cursor、Codex、Gemini CLIなど）に対応を謳っています。\n\n使うにはC++20対応コンパイラ（Clang/GCC/MSVC）、CMake、Gitといった開発環境が必要で、ソースからビルドする形式のため現時点ではエンジニア寄りのユーザー向けです。ライセンスはCC-BY-4.0でソースは無料公開されており、`npx skills add`コマンドでAIエージェント側にスキルを追加してから使い始めます。",
+    "license": {
+      "spdx": "CC-BY-4.0",
+      "commercial": "ok",
+      "note": "クリエイティブ・コモンズ表示ライセンス。出典表示（クレジット記載）をすれば商用利用・改変も可能。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Goldwaterfung/Stratawright"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/stratawright.jpg",
+    "relatedWorks": [
+      {
+        "title": "AbletonMCP (ableton-mcp)",
+        "description": "Claude AIからAbleton Liveを直接操作できるMCPサーバー。既存DAWをAI連携させる代表例",
+        "url": "https://github.com/ahujasid/ableton-mcp"
+      },
+      {
+        "title": "Resonant",
+        "description": "同じくAIエージェント連携（MCP）を備えたローカルAI音楽制作DAW",
+        "url": "https://github.com/calesthio/Resonant"
+      },
+      {
+        "title": "ACE-Step 1.5",
+        "description": "AIコーディングエージェントと連携するローカル音楽生成モデルの一例",
+        "url": "https://github.com/ace-step/ACE-Step-1.5"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "joyai-video-edit",
     "title": "JoyAI-Video-Edit",
     "org": "JD.com (JD Open Source / JoyAI Labs)",
