@@ -8037,5 +8037,209 @@
         "desc": "映画・VFX業界標準の色空間管理システムをComfyUIの中で使えるようにするカラーマネジメント拡張"
       }
     ]
+  },
+  {
+    "id": "2026-08-13-1",
+    "date": "2026-08-13",
+    "title": "ささやきで解禁する秘密サイト",
+    "pattern": "文脈×技術",
+    "seed": "TENETの「Tenetと話しかけると未公開映像が解禁される」合言葉ギミックを、NasoVoceのほぼ声を出さない“ささやき”認識に置き換えたら、電車や映画館など声を出せない場所でも起動できる秘密サイト体験になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "tenet-voice-activation",
+        "title": "TENET tenetfilm.com 音声起動体験",
+        "desc": "マイクに「Tenet」と話しかけると未公開映像が解禁される、映画の合言葉をUIに体現したWarner Bros.のサイト施策。"
+      },
+      {
+        "type": "tech",
+        "id": "nasovoce",
+        "title": "NasoVoce",
+        "desc": "スマートグラスの鼻当てでほぼ無声の“ささやき”を認識する、常時使える発話インターフェース。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-13-2",
+    "date": "2026-08-13",
+    "title": "沈黙に潜む助けを聴く",
+    "pattern": "文脈×技術",
+    "seed": "Kids Help Phoneが5000万件の会話データから「助け」の意味を捉え直したように、相談音声にpython-audio-separatorをかけて声・沈黙・環境音を分離抽出すれば、言葉にならないSOSの気配だけを可視化する施策ができそうかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "kids-help-phone-defining-help",
+        "title": "Defining Help",
+        "desc": "5000万件の会話データを基に「助け」の意味を捉え直したKids Help Phoneの映像施策。"
+      },
+      {
+        "type": "tech",
+        "id": "python-audio-separator",
+        "title": "python-audio-separator (audio-separator)",
+        "desc": "数百種の学習済みモデルをCLIやPython APIから呼び出せる開発者向けの音源分離（ステム分離）ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-13-3",
+    "date": "2026-08-13",
+    "title": "ロボットで体操服を先回り検証",
+    "pattern": "文脈×技術",
+    "seed": "ASICSのThe Undropped Kitが女子生徒2,000人以上と体操服を共同開発したように、robot_retargeterで生徒特有の動きの癖を人型ロボットに転写して先回り着用テストすれば、量産前に「動きにくさ」を検証できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "asics-the-undropped-kit",
+        "title": "The Undropped Kit",
+        "desc": "女子生徒2,000人以上と共同開発し、スポーツ離れという課題を製品設計から変えたASICSの体操服施策。"
+      },
+      {
+        "type": "tech",
+        "id": "robot-retargeter",
+        "title": "robot_retargeter",
+        "desc": "人のモーションキャプチャデータを体格の違う人型ロボットの動きへ自動変換する無料オープンソースツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-13-4",
+    "date": "2026-08-13",
+    "title": "量産して一本選ぶループ制作",
+    "pattern": "技術×技術",
+    "seed": "MiniMax-H3-Turbo-Loraの4ステップ高速生成で大量のラフ動画を量産し、良い1本だけをC1連続in-loop-outモーション生成ツールで無限ループのシネマグラフに仕上げる、量産と厳選を分業する制作パイプラインができそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "minimax-h3-turbo-lora",
+        "title": "MiniMax-H3-Turbo-Lora",
+        "desc": "MiniMax H3の動画+音声生成を通常20ステップから4ステップまで短縮する高速化用LoRA。"
+      },
+      {
+        "type": "tech",
+        "id": "akasaki-c1-loop-motion-tool",
+        "title": "C1連続 in-loop-out モーション生成ツール",
+        "desc": "モーションの任意区間から開始・終了ポーズが一致するC1連続のループアニメを自動生成する個人開発ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-13-5",
+    "date": "2026-08-13",
+    "title": "汗で動く生きた広告面",
+    "pattern": "技術×技術",
+    "seed": "納豆菌の湿度反応で伸縮するbioLogicの生地と、電気で水滴の形を操るMorphDropsの導電インクを重ねたら、汗にも会話にも同時に反応して模様が動く“生きた広告面”になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "biologic",
+        "title": "bioLogic",
+        "desc": "納豆菌の湿度に応じた伸縮運動を利用し、汗や体温に反応して開閉するセカンドスキン型スポーツウェア。"
+      },
+      {
+        "type": "tech",
+        "id": "morphdrops",
+        "title": "MorphDrops",
+        "desc": "紙に印刷した導電インクに電気を流し、上に置いた水滴の形を自在に変えられるディスプレイ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-13-6",
+    "date": "2026-08-13",
+    "title": "閉幕後も歩ける展示アーカイブ",
+    "pattern": "転用",
+    "seed": "本来は生成AIの3DアセットをComfyUIで扱うためのGaussian Splat Nodesを、AMBIENT KYOTOのような没入型展示会場のワンショット記録に転用すれば、閉幕後もVR空間で“歩いて再訪”できるアーカイブになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-native-gaussian-splat-nodes",
+        "title": "ComfyUI Native Gaussian Splat Nodes（GAUSSIAN型 / v0.23.0）",
+        "desc": "ComfyUIに3D Gaussian Splatを扱うノード群（読込・変換・レンダリング・メッシュ化）を外部依存なしで追加する機能。"
+      },
+      {
+        "type": "case",
+        "id": "ambient-kyoto-async-immersion-2026",
+        "title": "AMBIENT KYOTO 東京展《async - immersion》",
+        "desc": "坂本龍一+高谷史郎の26.4m没入体験作品を麻布台ヒルズギャラリーで東京初展示したAMBIENT KYOTOの施策。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-13-7",
+    "date": "2026-08-13",
+    "title": "忘れられた功績者を蘇らせる",
+    "pattern": "文脈×技術",
+    "seed": "Johnnie WalkerがERRATA AT 88でボサノバの「忘れられた母」を88歳でカーネギーホールに連れ戻したように、AniGenで功績を残しながら忘れられた歴史上の人物の写真から動く3Dキャラを生成し、舞台上に呼び戻す追悼演出ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "johnnie-walker-errata-88",
+        "title": "ERRATA AT 88（Johnnie Walker × Alaíde Costa）",
+        "desc": "ボサノバの「忘れられた母」を88歳でカーネギーホールに連れ戻したJohnnie Walkerのブランド施策。"
+      },
+      {
+        "type": "tech",
+        "id": "anigen",
+        "title": "AniGen",
+        "desc": "1枚の画像から骨格とスキンまで含む「動かせる3Dキャラクター」を自動生成する技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-13-8",
+    "date": "2026-08-13",
+    "title": "ロボット動作生成をダンスに転用",
+    "pattern": "転用",
+    "seed": "本来は3Dアセットと動画生成AIから人型ロボットの全身動作データを合成し実機へ転移するGRAILのパイプラインを転用して、ロボットではなくブランドのAR着用デモ用モーションを自動合成する使い方ができそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "grail",
+        "title": "GRAIL",
+        "desc": "3Dアセットと動画生成AIから人型ロボット向けの全身動作データを自動合成し実機に転移するNVIDIA/UCLAの研究パイプライン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-13-9",
+    "date": "2026-08-13",
+    "title": "ロボットが地球の果てを歩く",
+    "pattern": "文脈×技術",
+    "seed": "Columbia SportswearのExpedition Impossibleが地球平面説信奉者を挑発したように、SONICの人型ロボット全身制御モデルをブラウザデモで“地球の果てまで歩かせ続ける”ライブ配信にすれば、信奉者への挑発コンテンツになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "columbia-expedition-impossible",
+        "title": "Expedition Impossible",
+        "desc": "地球平面説信奉者に「地球の端を撮れたら全資産を譲る」と挑発したColumbia Sportswearのブランド体験。"
+      },
+      {
+        "type": "tech",
+        "id": "sonic",
+        "title": "SONIC（GR00T Whole-Body Control）",
+        "desc": "歩行から格闘・物体受け渡しまで人型ロボットの全身動作を一体で担う動きの基盤モデル。ブラウザ体験デモもある。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-13-10",
+    "date": "2026-08-13",
+    "title": "レトロゲーム酔いを実写に移植",
+    "pattern": "文脈×技術",
+    "seed": "AWGEのHelicopterが2000年代初頭のゲームを参照した先端技術によるMVだったように、Wan-Animate-2で古いゲーム実況映像から人物の動きとカメラワークだけを抽出し、実写アーティストのMVにレトロゲームの“カメラ酔い”演出を移植できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "asap-rocky-helicopter",
+        "title": "Helicopter",
+        "desc": "2000年代初頭のゲームを参照した先端技術によるA$AP RockyのMV作品。"
+      },
+      {
+        "type": "tech",
+        "id": "wan-animate-2",
+        "title": "Wan-Animate-2",
+        "desc": "1本の動画から人物の動き・表情・カメラ視点をまるごと転写できるAlibaba発のキャラクターアニメーション生成AI。"
+      }
+    ]
   }
 ]
