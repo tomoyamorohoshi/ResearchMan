@@ -1,5 +1,530 @@
 [
   {
+    "id": "wheretosettle-gdzie-zamieszka-2022",
+    "title": "WhereToSettle（Gdzie Zamieszkać）",
+    "summary": "ウクライナ難民向けに消費データから都市ごとの居住・就労可能性を可視化したMastercardのスマートデータ・プラットフォーム",
+    "client": "Mastercard",
+    "agency": "McCann Poland",
+    "categories": [
+      "社会包摂",
+      "テクノロジー×アイデア"
+    ],
+    "award": "D&AD Awards 2024 Black Pencil（Experiential: Activation & Participation部門）、Graphite Pencil1本・Wood Pencil3本（Direct/PR/Digital Marketing/Impact各部門）",
+    "year": "2022",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.dandad.org/work/d-ad-awards-archive/where-to-settle",
+    "thumbnail": "/thumbnails/wheretosettle-gdzie-zamieszka-2022.jpg",
+    "videoId": "",
+    "overview": "ロシアによる侵攻でポーランドに避難したウクライナ難民に向け、Mastercardの匿名化された消費データを分析し、生活費・雇用機会・住宅事情などを都市別に可視化したスマートデータ・プラットフォーム「WhereToSettle（Gdzie Zamieszkać）」。難民が自分の状況に合った定住先をデータに基づいて選べるよう支援した。",
+    "background": "2022年、戦禍を逃れた数百万人のウクライナ難民がポーランド国内に流入したが、どの都市に定住すれば生活・就労が成り立つか判断できる情報が乏しかった。McCann Polandは、Mastercardが保有する匿名化された消費・経済データを活用し、難民の意思決定を支えるツールの構築に着手した。",
+    "execution": "都市ごとの物価・賃金水準・雇用状況・住宅費といった実データを解析し、ウェブ上で誰でも無料で閲覧できる形に可視化。難民は自身の家族構成や希望条件を踏まえ、生活が成り立ちやすい都市を比較検討できる。専門家の予測ではなく、実際の消費行動データに基づく点が特徴。",
+    "evaluationImpact": "実データに基づく意思決定支援という着眼点が評価され、D&AD Awards 2024でBlack Pencilを含む複数部門を受賞。金融データを人道支援に転用した事例として、企業が保有するデータ資産の社会実装のあり方を示した。",
+    "relatedWorks": [
+      {
+        "title": "Where To Settle - D&AD Awards Archive",
+        "description": "D&ADによる受賞概要ページ",
+        "url": "https://www.dandad.org/work/d-ad-awards-archive/where-to-settle"
+      }
+    ],
+    "sources": [
+      "Infographics"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/Website",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "gender-equality-creative-platform-2021",
+    "title": "Gender Equality Creative Platform",
+    "summary": "ジェンダー統計の「欠落」自体もデータとして可視化する、ゲイツ財団のためのアイデンティティ×データビジュアライゼーションシステム",
+    "client": "Bill & Melinda Gates Foundation",
+    "agency": "Pentagram（Giorgia Lupi）",
+    "categories": [
+      "カルチャーインサイト",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2021",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.pentagram.com/work/gender-equality-creative-platform/story",
+    "thumbnail": "/thumbnails/gender-equality-creative-platform-2021.jpg",
+    "videoId": "",
+    "overview": "Bill & Melinda Gates FoundationのジェンダーEquality分野のためにPentagram（Giorgia Lupi）が構築したクリエイティブプラットフォーム。「＝」と「＋」というシンプルな幾何形態を核に、統計データそのものだけでなく、世界的に不足しているジェンダーデータの「欠落」までも視覚化するアイデンティティシステム。",
+    "background": "世界の政策決定や資金配分の基盤となる統計データには、性別ごとの分解データが十分に存在しないという構造的な課題がある。財団はこの「データギャップ」問題への意識喚起と、ジェンダー平等関連の発信を統一的に行うための視覚言語を必要としていた。",
+    "execution": "等号（＝）と加号（＋）を基本モジュールとし、データの有無や粒度に応じて形状・色・密度が変化するビジュアル言語を設計。統計が存在する箇所は具体的な数値グラフとして、存在しない箇所は空白や欠落として明示的に描き、データの不在自体を発信内容の一部に組み込んだ。",
+    "evaluationImpact": "「語れるデータ」だけでなく「語れないデータの不在」を可視化する発想は、社会課題領域におけるデータビジュアライゼーションの新たな作法を提示。財団の各種レポートやキャンペーンで展開される汎用性の高いシステムとして構築された。",
+    "relatedWorks": [
+      {
+        "title": "Gender Equality Creative Platform - Pentagram",
+        "description": "Pentagramによるプロジェクト解説",
+        "url": "https://www.pentagram.com/work/gender-equality-creative-platform/story"
+      }
+    ],
+    "sources": [
+      "Infographics"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/Website",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "ibm-data-visualization-guidelines-2017",
+    "title": "IBM Data Visualization Guidelines",
+    "summary": "パンチカードなどIBMの歴史を反映した、世界1000超の製品・約1500人のデザイナーが使うデータビジュアライゼーションのデザインシステム",
+    "client": "IBM",
+    "agency": "Pentagram（Giorgia Lupi）",
+    "categories": [
+      "テクノロジー×アイデア",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2017",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.pentagram.com/work/ibm-data-visualization-guidelines",
+    "thumbnail": "/thumbnails/ibm-data-visualization-guidelines-2017.jpg",
+    "videoId": "",
+    "overview": "PentagramのGiorgia Lupiが手がけた、IBMのプロダクト群全体で使用されるデータビジュアライゼーションのデザインガイドライン。チャート・グラフの形式からカラー、レイアウトルールまでを体系化し、世界1000以上の製品、約1500人のデザイナーが参照する統一的な視覚言語を構築した。",
+    "background": "IBMは膨大な数の製品ラインを抱え、各チームが個別にデータ表現を設計する状態にあった。ブランド全体で一貫したデータの見せ方を実現するとともに、IBM自身が持つデータ処理の歴史的アイデンティティを反映したガイドラインの整備が求められていた。",
+    "execution": "パンチカードなど、IBMがコンピューティングの黎明期から蓄積してきたデータ処理の歴史的モチーフを起点に、チャートタイプごとの使用ルール、配色、タイポグラフィなどを網羅したガイドラインを策定。多様な製品・部門のデザイナーが共通言語としてすぐに実装できる形で体系化した。",
+    "evaluationImpact": "巨大組織における分散的なデザイン運用を、歴史的背景に根ざした視覚言語で束ねた点が特徴。企業のデータビジュアライゼーションを単なる情報整理ではなくブランド表現の一部として位置づけた事例として参照される。",
+    "relatedWorks": [
+      {
+        "title": "IBM Data Visualization Guidelines - Pentagram",
+        "description": "Pentagramによるプロジェクト解説",
+        "url": "https://www.pentagram.com/work/ibm-data-visualization-guidelines"
+      }
+    ],
+    "sources": [
+      "Infographics"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/Website",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "capacity-brand-identity-data-visualization-system-2021",
+    "title": "Capacity Brand Identity & Data Visualization System",
+    "summary": "チャート生成ツールを含む、ブランドと一体化したデータビジュアライゼーション・デザインシステムを構築したアート系マーケティングエージェンシーの事例",
+    "client": "Capacity（アート・カルチャー領域のマーケティングエージェンシー）",
+    "agency": "Pentagram（Giorgia Lupi）",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2021",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.pentagram.com/work/capacity",
+    "thumbnail": "/thumbnails/capacity-brand-identity-data-visualization-system-2021.jpg",
+    "videoId": "",
+    "overview": "アート・カルチャー領域向けマーケティングエージェンシーCapacityのために、PentagramのGiorgia Lupiが手がけたブランドアイデンティティとデータビジュアライゼーションシステム。ロゴやタイポグラフィと連動したチャート生成ツールを含み、ブランド表現と定量データの提示を一体化させた。",
+    "background": "Capacityはアートやカルチャー領域のクライアントに向けてマーケティングデータの分析・提案を行うエージェンシーであり、自社の提案資料やレポートで扱うデータを、ブランドの個性を保ったまま一貫して視覚化する仕組みを必要としていた。",
+    "execution": "ブランドの基本アイデンティティを構成する形状・色・タイポグラフィのルールを、そのままチャートやグラフの構成要素に転用できるデザインシステムとして設計。社内で使えるチャート生成ツールも用意し、担当者が誰でもブランドトーンを保ったデータビジュアライゼーションを作成できるようにした。",
+    "evaluationImpact": "ブランドアイデンティティとデータビジュアライゼーションを別工程として扱うのではなく、単一のデザインシステムに統合した点が特徴。データ主体の業態を持つ企業における、ブランディングとインフォグラフィックスの融合の実践例となっている。",
+    "relatedWorks": [
+      {
+        "title": "Capacity - Pentagram",
+        "description": "Pentagramによるプロジェクト解説",
+        "url": "https://www.pentagram.com/work/capacity"
+      }
+    ],
+    "sources": [
+      "Infographics"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/Website",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "battling-infectious-diseases-in-the-20th-century-the-impact",
+    "title": "Battling Infectious Diseases in the 20th Century: The Impact of Vaccines",
+    "summary": "CDCの感染症統計をヒートマップ化し、ワクチン導入前後の罹患率激減を可視化したWSJのデータジャーナリズム作品",
+    "client": "The Wall Street Journal",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "Information is Beautiful Awards 2015 Gold（Data Visualization部門、エントリー名「Vaccines and Infectious Diseases」）",
+    "year": "2015",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.informationisbeautifulawards.com/showcase/660-vaccines-and-infectious-diseases",
+    "thumbnail": "/thumbnails/battling-infectious-diseases-in-the-20th-century-the-impact.jpg",
+    "videoId": "",
+    "overview": "1928年以降にCDC（米疾病予防管理センター）が公開してきた感染症統計をもとに、はしか・百日咳・ポリオなど複数疾患の州別罹患率を年次ヒートマップとして可視化したThe Wall Street Journalのデータジャーナリズム企画。各疾患のワクチン導入年を重ねて表示し、導入前後の罹患率の変化を一目で比較できる構成としている。",
+    "background": "ワクチンの有効性を巡る議論が社会的に注目される中、WSJが公的統計データに基づいて感染症とワクチンの関係を客観的に伝える報道コンテンツとして制作。主張ではなく長期時系列データそのものを提示することで、事実に基づく理解を促す狙いがあった。",
+    "execution": "CDCが公開する疾患別・州別の罹患率データを1928年から収集し、疾患ごとに年×州のマトリクスをヒートマップで表現。色の濃淡で罹患率の高低を示し、ワクチン導入年を境に色が急激に薄くなる様子を視覚的に強調することで、導入効果を直感的に伝える構成とした。",
+    "evaluationImpact": "Information is Beautiful Awards 2015のData Visualization部門でGoldを受賞。報道機関による公衆衛生データの可視化事例として、ワクチンの効果を定量的かつ直感的に示すデータジャーナリズムの代表例として参照されている。",
+    "relatedWorks": [],
+    "sources": [
+      "Infographics"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/Website",
+      "Theme/Health"
+    ]
+  },
+  {
+    "id": "ibm-flux-2017",
+    "title": "IBM FLUX",
+    "summary": "IoTセンサーや気象データをリアルタイム取得し、32面の曲面スクリーンに生成映像として描くIBM本社の常設インスタレーション",
+    "client": "IBM（Watson IoT Headquarters）",
+    "agency": "onformative",
+    "categories": [
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2017",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://onformative.com/work/ibm-flux/",
+    "thumbnail": "/thumbnails/ibm-flux-2017.jpg",
+    "videoId": "",
+    "overview": "onformativeが手がけた「IBM FLUX」は、IBM Watson IoT本社に設置された常設のデータビジュアライゼーション・インスタレーション。IoTセンサーや気象データなどをリアルタイムに取り込み、32枚の曲面スクリーンに生成的なビジュアルとして映し出す。",
+    "background": "IBM Watson IoT本社の開設にあたり、IoTとデータ活用というブランドの中核メッセージを来訪者に体感させる空間装置として企画された。onformativeがデータビジュアライゼーションとジェネレーティブアートの専門性を活かして開発を担当した。",
+    "execution": "館内外のIoTセンサー、気象データなど複数のリアルタイムデータソースを取得し、独自の生成アルゴリズムで抽象的な映像パターンへと変換。32枚の曲面スクリーンで構成された空間全体を包み込むように投影し、データの変化がそのまま空間の表情として現れる仕組みとした。",
+    "evaluationImpact": "外部の受賞歴は確認されていないが、生きたデータをそのまま空間体験へと変換する常設インスタレーションとして、企業本社におけるデータビジュアライゼーション活用の事例に位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Infographics"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Tech/Projection",
+      "Form/Installation",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "happy-data-2020",
+    "title": "Happy Data",
+    "summary": "Pentagramのジョージア・ルーピが手描きタイポグラフィとインフォグラフィックで「希望の数字」を可視化した自主データビジュアライゼーション",
+    "client": "Pentagram（自主企画）",
+    "agency": "Pentagram（Giorgia Lupi）",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2020",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.pentagram.com/work/happy-data",
+    "thumbnail": "/thumbnails/happy-data-2020.jpg",
+    "videoId": "",
+    "overview": "Pentagramのパートナーであるジョージア・ルーピが手がけた自主企画のデータビジュアライゼーション・プロジェクト。新型コロナウイルスの感染拡大とジョージ・フロイド事件が重なった2020年の社会状況の中で、手描きのタイポグラフィとインフォグラフィックを用いて、希望や前向きな変化を示す数字を可視化した。",
+    "background": "パンデミックによる分断と、人種差別に対する抗議運動が同時進行した2020年、統計やニュースが不安や悲観を煽る情報で溢れる状況に対し、ルーピは自身のデータ視覚化の手法を用いて、それでも存在する前向きな兆しをデータとして拾い上げ、伝えることを試みた。",
+    "execution": "感染者数や死者数といった悲観的な統計ではなく、寄付・連帯・回復などポジティブな変化を示す数字を選び、ルーピ独自の手描き風タイポグラフィとドット・線を用いたインフォグラフィック表現でビジュアル化。Pentagramのサイトおよびオンライン上で作品として発表した。",
+    "evaluationImpact": "データジャーナリズムやインフォグラフィックが危機の可視化に偏りがちな中で、「希望」というテーマでデータを再編集する視点を提示した点が特徴。ジョージア・ルーピのデータヒューマニズムの実践例として、デザイン・データビジュアライゼーション分野で参照される作品となっている。",
+    "relatedWorks": [
+      {
+        "title": "Pentagram: Happy Data",
+        "description": "Pentagram公式サイトの作品ページ",
+        "url": "https://www.pentagram.com/work/happy-data"
+      }
+    ],
+    "sources": [
+      "Infographics"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/Print",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "case-betmug-2017",
+    "title": "日経ビジュアルデータ",
+    "summary": "日経記者・デザイナー・エンジニアが混成チームで手がけた、グラフや地図を操作しながら理解を深めるインタラクティブなデータジャーナリズムサイト",
+    "client": "日本経済新聞社",
+    "agency": "日本経済新聞社（記者・デザイナー・エンジニア混成チーム）",
+    "categories": [
+      "コンテンツ革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "グッドデザイン賞2017 グッドデザイン・金賞（日経ビジュアルデータ）",
+    "year": "2017",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://vdata.nikkei.com/",
+    "thumbnail": "/thumbnails/case-betmug-2017.jpg",
+    "videoId": "",
+    "overview": "日本経済新聞社が運営する「日経ビジュアルデータ」は、記者・デザイナー・エンジニアが一体となって制作するインタラクティブなデータジャーナリズムコンテンツ群。グラフ・地図・写真を主体に、読者自身が操作・比較しながら経済や社会の動きを直感的に理解できるコンテンツを継続的に発信している。",
+    "background": "経済ニュースは統計や数値情報が多く文字報道だけでは伝わりにくい面がある中、日経新聞社は紙面の枠を超えたビジュアル表現によって複雑な経済・社会データを読者に伝える手段として、記者と制作職種が横断するチーム体制でビジュアルデータ制作に取り組んだ。",
+    "execution": "取材テーマごとに記者が集めたデータをデザイナー・エンジニアがグラフや地図、インタラクティブなチャートへ落とし込み、読者がスクロールや操作を通じて自らデータの意味を発見できる構成としてWeb上で公開。継続的なシリーズとして多数のコンテンツを制作・展開した。",
+    "evaluationImpact": "報道機関における記者・デザイナー・エンジニアの職能横断型制作体制と、データを読者の理解に資する形へ翻訳する姿勢がグッドデザイン賞で評価された。日本の新聞社によるデータジャーナリズムの先行事例として位置づけられている。",
+    "relatedWorks": [
+      {
+        "title": "日経ビジュアルデータ",
+        "description": "日本経済新聞社が運営するデータビジュアライゼーションサイト",
+        "url": "https://vdata.nikkei.com/"
+      }
+    ],
+    "sources": [
+      "Infographics"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/Website",
+      "Theme/Education"
+    ]
+  },
+  {
+    "id": "case-1wsfeyh-2016",
+    "title": "朝日新聞 東日本大震災5年別刷り特集「福島第一原発 終わり見えぬ汚染水」",
+    "summary": "福島第一原発の汚染水問題を複雑な工程図とデータで解き明かした朝日新聞の東日本大震災5年別刷り特集インフォグラフィックス",
+    "client": "朝日新聞社",
+    "agency": "朝日新聞社（デザイナー：加藤啓太郎、アートディレクター：末房赤彦）",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "日本タイポグラフィ年鑑2017 インフォグラフィクス部門 最優秀賞「BEST WORK」（朝日新聞2016年3月11日付朝刊 東日本大震災5年別刷り特集「福島第一原発 終わり見えぬ汚染水」）",
+    "year": "2016",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000298.000009214.html",
+    "thumbnail": "/thumbnails/case-1wsfeyh-2016.jpg",
+    "videoId": "",
+    "overview": "朝日新聞社が2016年3月11日付朝刊で発行した東日本大震災5年の別刷り特集「福島第一原発 終わり見えぬ汚染水」。デザイナー加藤啓太郎、アートディレクター末房赤彦による制作で、福島第一原発の汚染水問題を複雑な工程図とデータを用いたインフォグラフィックスで解き明かした。",
+    "background": "震災から5年が経過してもなお続く福島第一原発の汚染水処理問題は、専門的で複雑な工程を伴い一般読者に伝わりにくい課題だった。朝日新聞社は震災5年の節目に合わせ、文字報道だけでは伝えきれない技術的な実態を可視化する特集として別刷りを企画した。",
+    "execution": "汚染水の発生から処理、貯蔵に至る一連の工程を図解化し、各段階のデータや数値を組み合わせて構成。新聞紙面という制約の中で、複雑なプラント構造と時系列の変化を一枚の別刷りで読み解けるインフォグラフィックスとしてまとめ上げた。",
+    "evaluationImpact": "報道インフォグラフィックスとして、専門性の高い技術情報を一般読者向けに翻訳した表現力が評価され、日本タイポグラフィ年鑑2017インフォグラフィクス部門で最優秀賞「BEST WORK」を受賞。震災報道における紙面ビジュアライゼーションの到達点の一つとされる。",
+    "relatedWorks": [
+      {
+        "title": "日本タイポグラフィ年鑑2017 受賞発表",
+        "description": "受賞情報を伝えるPR TIMES記事",
+        "url": "https://prtimes.jp/main/html/rd/p/000000298.000009214.html"
+      }
+    ],
+    "sources": [
+      "Infographics"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/Print",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "case-8l88um-2024",
+    "title": "核の脅威のタイムライン ―3秒から79年―",
+    "summary": "長崎新聞社が原爆炸裂後3秒から79年後までの時間経過を、余白を活かした10ページの新聞タイムライン・グラフィックで表現した平和企画。",
+    "client": "長崎新聞社",
+    "agency": "長崎新聞社（平和企画チーム）",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "東京ADC賞2025（長崎新聞「核の脅威のタイムライン ―3秒から79年―」）",
+    "year": "2024",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.advertimes.com/20240809/article470428/",
+    "thumbnail": "/thumbnails/case-8l88um-2024.jpg",
+    "videoId": "",
+    "overview": "長崎新聞社の平和企画チームが制作した新聞広告「核の脅威のタイムライン ―3秒から79年―」。原爆が炸裂した瞬間から79年後の現在までの時間の経過を、10ページにわたる紙面の余白を大胆に活かしたタイムライン・グラフィックとして表現した。",
+    "background": "被爆から79年が経過し、被爆体験の風化や継承の難しさが課題となる中、長崎新聞社は毎年の平和報道の一環として、原爆の脅威を改めて実感させる紙面表現を模索していた。数値や年表を羅列するだけでは伝わりにくい『時間の重み』そのものをどう可視化するかが企画の出発点となった。",
+    "execution": "炸裂後3秒という極めて短い時間から79年という長大な時間までを、10ページの新聞紙面をまたぐ連続したタイムラインとして構成。ページごとの余白の使い方によって時間の伸び縮みを体感させ、読者がページをめくる行為そのものが時間の経過を追体験する仕組みとした。",
+    "evaluationImpact": "紙面デザインとして東京ADC賞2025を受賞し、新聞広告における平和報道の表現手法として評価された。数値情報を単なるインフォグラフィックに終わらせず、時間感覚そのものを紙面体験としてデザインした点が、報道機関発のクリエイティブとして注目された。",
+    "relatedWorks": [],
+    "sources": [
+      "Infographics"
+    ],
+    "tags": [
+      "Form/Print",
+      "Tech/Data",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "case-1t0wc6l-2024",
+    "title": "日経電子版ビジュアルデータ",
+    "summary": "日本経済新聞社のデータビジュアライゼーション報道コンテンツ群が、日本タイポグラフィ年鑑2024でオンスクリーン部門審査委員賞を受賞。",
+    "client": "日本経済新聞社",
+    "agency": "日本経済新聞社",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "日本タイポグラフィ年鑑2024 オンスクリーン部門審査委員賞（対象作品：「関東大震災100年 再現 首都延焼46時間」「地図で見る『地震列島』日本 100年の震源データ」、2023年8月公開、2023年11月27日受賞決定）",
+    "year": "2024",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000528.000011115.html",
+    "thumbnail": "/thumbnails/case-1t0wc6l-2024.jpg",
+    "videoId": "",
+    "overview": "日本経済新聞社の日経電子版が展開するデータビジュアライゼーション報道群のうち、「関東大震災100年 再現 首都延焼46時間」と「地図で見る『地震列島』日本 100年の震源データ」の2作品が、日本タイポグラフィ年鑑2024のオンスクリーン部門で審査委員賞を受賞した。",
+    "background": "日経電子版は震災や地震データなど複雑な報道情報を、記事本文だけでなくビジュアルデータとして読者に提示する取り組みを続けてきた。関東大震災100年という節目にあたり、過去の被害データや地震観測データを直感的に理解できる形で可視化することが求められた。",
+    "execution": "「関東大震災100年 再現 首都延焼46時間」では震災当日の延焼の広がりを時系列で再現し、「地図で見る『地震列島』日本 100年の震源データ」では過去100年分の震源データを地図上に集約して表示するなど、いずれも2023年8月に公開。文字情報だけでなく地図・時間軸を用いたビジュアルデータとしてタイポグラフィと情報設計を融合させた。",
+    "evaluationImpact": "日本タイポグラフィ年鑑2024のオンスクリーン部門で審査委員賞を受賞し、オンライン報道におけるデータビジュアライゼーションとタイポグラフィの両立が評価された。新聞社発のデジタル報道コンテンツが情報デザインの専門審査でも評価される事例として位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Infographics"
+    ],
+    "tags": [
+      "Form/Website",
+      "Tech/Data",
+      "Theme/Education"
+    ]
+  },
+  {
+    "id": "case-ccohfo-2025",
+    "title": "地下鉄サリン事件 オウムの凶行、震えた首都",
+    "summary": "地下鉄サリン事件の同時多発テロの経路と被害状況を路線図と時系列データで再構成した、日経ビジュアルデータのインタラクティブ・インフォグラフィック。",
+    "client": "日本経済新聞社（日経ビジュアルデータ）",
+    "agency": "日本経済新聞社",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "SND（ニュースデザイン協会）第47回クリエーティブコンペティション インフォグラフィックス部門 優秀賞",
+    "year": "2025",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://vdata.nikkei.com/newsgraphics/subway-sarin-attack/",
+    "thumbnail": "/thumbnails/case-ccohfo-2025.jpg",
+    "videoId": "",
+    "overview": "日本経済新聞社の日経ビジュアルデータが2025年3月に公開した「地下鉄サリン事件 オウムの凶行、震えた首都」。地下鉄サリン事件で実行された同時多発テロの実行経路や被害の広がりを、東京の地下鉄路線図と時系列データを組み合わせて再構成したインタラクティブ・インフォグラフィックである。",
+    "background": "地下鉄サリン事件は発生から30年が経過し、事件の詳細な経緯や被害の全体像を若い世代に改めて伝える必要性が高まっていた。断片的な報道記録として残る事件の経路や時刻を、読者が直感的に把握できる形でどう再構成するかが制作上の課題だった。",
+    "execution": "事件当日に複数路線で同時多発的に発生したサリン散布の経路を、実際の地下鉄路線図上に時系列で重ね合わせて表示。読者が路線と時刻を追いながら事件の全体像をたどれるインタラクティブな構成とし、被害状況のデータもあわせて可視化した。",
+    "evaluationImpact": "SND第47回クリエーティブコンペティションのインフォグラフィックス部門で優秀賞を受賞。重大事件の記録をデータジャーナリズムの手法で再構成し、報道アーカイブとしての価値と読者への理解促進を両立させた事例として評価された。",
+    "relatedWorks": [
+      {
+        "title": "日経ビジュアルデータ「地下鉄サリン事件 オウムの凶行、震えた首都」",
+        "description": "本作を掲載する日本経済新聞社の特設ページ",
+        "url": "https://vdata.nikkei.com/newsgraphics/subway-sarin-attack/"
+      }
+    ],
+    "sources": [
+      "Infographics"
+    ],
+    "tags": [
+      "Form/Website",
+      "Tech/Data",
+      "Theme/Education"
+    ]
+  },
+  {
+    "id": "case-zideyj-2025",
+    "title": "ロシアに散った北朝鮮兵の遺言",
+    "summary": "ウクライナ戦線に投入された北朝鮮兵の遺留品・手記を分析し、写真とデータで構成した日経ビジュアルデータのビジュアル調査報道。",
+    "client": "日本経済新聞社（日経ビジュアルデータ）",
+    "agency": "日本経済新聞社",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "SND（ニュースデザイン協会）第47回クリエーティブコンペティション ストーリーページデザイン部門 優秀賞",
+    "year": "2025",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://vdata.nikkei.com/newsgraphics/north-korean-soldiers-in-russia/",
+    "thumbnail": "/thumbnails/case-zideyj-2025.jpg",
+    "videoId": "",
+    "overview": "日本経済新聞社の日経ビジュアルデータが2025年2月に公開した「ロシアに散った北朝鮮兵の遺言」。ロシア・ウクライナ戦線に投入された北朝鮮兵の遺留品や手記を分析し、写真とデータを組み合わせて兵士たちの実像に迫ったビジュアル調査報道である。",
+    "background": "ロシアへの北朝鮮兵の派遣は国際的に大きな関心を集めたが、現地の実態は断片的にしか報じられていなかった。日本経済新聞社は、戦場に残された遺留品や手記といった一次資料をもとに、個々の兵士の背景や心情を掘り下げる調査報道の必要性を認識していた。",
+    "execution": "戦場で回収された遺留品の写真や、兵士が残した手記の内容を丹念に分析し、個人の物語としてストーリーページ上に再構成。データと一次資料の写真を織り交ぜたページデザインにより、統計的な戦況報道では伝わりにくい兵士個人のリアリティを可視化した。",
+    "evaluationImpact": "SND第47回クリエーティブコンペティションのストーリーページデザイン部門で優秀賞を受賞。国際紛争報道において一次資料の分析とビジュアルデザインを融合させ、個人の物語として読者に届ける調査報道の手法が評価された。",
+    "relatedWorks": [
+      {
+        "title": "日経ビジュアルデータ「ロシアに散った北朝鮮兵の遺言」",
+        "description": "本作を掲載する日本経済新聞社の特設ページ",
+        "url": "https://vdata.nikkei.com/newsgraphics/north-korean-soldiers-in-russia/"
+      }
+    ],
+    "sources": [
+      "Infographics"
+    ],
+    "tags": [
+      "Form/Website",
+      "Tech/Data",
+      "Theme/Education"
+    ]
+  },
+  {
+    "id": "snd-47-3-2025",
+    "title": "朝日新聞社 SND第47回クリエーティブコンペティション受賞3作品（米中の戦力比較と主な兵器 ほか）",
+    "summary": "朝日新聞デジタルの報道グラフィックス3作品がSND第47回クリエーティブコンペティションで優秀賞を受賞、入賞13年連続",
+    "client": "朝日新聞社",
+    "agency": "朝日新聞社",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "SND（ニュースデザイン協会）第47回クリエーティブコンペティション 優秀賞3点（インフォグラフィック部門「米中の戦力比較と主な兵器」、イラスト部門「話さなければ始まらない」、イラスト部門「災害の予兆、妖怪が教えてくれる」）・入賞13年連続",
+    "year": "2025",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.bunkanews.jp/article/464072/",
+    "thumbnail": "/thumbnails/snd-47-3-2025.jpg",
+    "videoId": "",
+    "overview": "朝日新聞社が制作した報道グラフィックス3作品が、SND（Society for News Design）第47回クリエーティブコンペティションで優秀賞を受賞した。インフォグラフィック部門で「米中の戦力比較と主な兵器」、イラスト部門で「話さなければ始まらない」「災害の予兆、妖怪が教えてくれる」がそれぞれ選ばれ、朝日新聞は13年連続の入賞となった。",
+    "background": "SNDは世界のニュースメディアのデザイン・グラフィックスを対象とする国際的な業界団体で、そのクリエーティブコンペティションは報道機関のビジュアルジャーナリズムの水準を測る指標の一つとされる。朝日新聞社は毎年応募を続けており、データや図解を用いた報道表現を継続的に競争力あるものとして磨いてきた蓄積が今回の3作品受賞につながった。",
+    "execution": "「米中の戦力比較と主な兵器」は軍事力の差をデータとインフォグラフィックで可視化した作品、「話さなければ始まらない」「災害の予兆、妖怪が教えてくれる」はイラストレーションを用いた報道コンテンツで、いずれも朝日新聞デジタルの紙面・オンライン報道の一環として制作された。図解・イラストという異なる表現手法で、複雑な情報や社会的テーマを読者に伝える工夫が凝らされている。",
+    "evaluationImpact": "国際的なニュースデザインの舞台で複数部門・複数作品が同時に評価された点は、日本の新聞社によるデータジャーナリズム・イラストレーション報道の質の高さを示す。13年連続入賞という継続性も、一過性でなく組織的にビジュアル報道の力を育ててきたことの裏付けとなっている。",
+    "relatedWorks": [],
+    "sources": [
+      "Infographics"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/Print",
+      "Theme/Education"
+    ]
+  },
+  {
+    "id": "case-1r1wq89-2026",
+    "title": "北朝鮮に送られたウクライナの少年 国境越えるロシア同化政策",
+    "summary": "日経ビジュアルデータが、北朝鮮に送られたウクライナの少年を軸にロシアの同化政策の実態を地図と写真で追った調査報道コンテンツ",
+    "client": "日本経済新聞社（日経ビジュアルデータ）",
+    "agency": "日本経済新聞社",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "海外"
+    ],
+    "link": "https://vdata.nikkei.com/newsgraphics/ukrainian-children/",
+    "thumbnail": "/thumbnails/case-1r1wq89-2026.jpg",
+    "videoId": "",
+    "overview": "日本経済新聞社のビジュアルデータチームが制作した調査報道コンテンツ。ロシアに占領されたウクライナ領から北朝鮮へ送られた少年の事例を軸に、ロシアによるウクライナの子どもたちへの同化政策の実態を、地図・写真・データを組み合わせて可視化している。",
+    "background": "ロシアのウクライナ侵攻に伴い、占領地域の子どもたちがロシア国内やロシアの友好国へ移送され、ロシア文化への同化教育を受けさせられている問題が国際的に指摘されてきた。日経ビジュアルデータは、こうした国境を越えた子どもの移送・同化の実態を、個別の少年の足取りを起点に追跡調査するかたちで報じた。",
+    "execution": "ウクライナから北朝鮮へ送られた少年のケースを起点に、移送のルートや経緯を地図で示し、関連する写真・証言・データを組み合わせて構成。単発の記事ではなく、複数の情報レイヤーを重ねたニュースグラフィックス形式のウェブコンテンツとして、vdata.nikkei.comの調査報道シリーズの一つとして公開された。",
+    "evaluationImpact": "戦争下の子どもの人権という社会的に重い主題を、地図とデータによる可視化で追跡可能な事実として提示した点に調査報道としての意義がある。国境を越えた同化政策という捉えにくい問題を、個人の移動経路という具体的な軸で構造化し、読者の理解を助けるビジュアルジャーナリズムの手法が特徴。",
+    "relatedWorks": [],
+    "sources": [
+      "Infographics"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/Website",
+      "Theme/SocialGood"
+    ]
+  },
+  {
     "id": "the-chain-museum-2026",
     "title": "浅間国際フォトフェスティバル2026",
     "summary": "浅間山麓の自然を舞台に国内外の写真を屋内外展示、ArtStickerでチケット販売する屋外型フォトフェスティバル",
