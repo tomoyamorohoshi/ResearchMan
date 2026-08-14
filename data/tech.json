@@ -1,5 +1,110 @@
 [
   {
+    "id": "latentdance",
+    "title": "LatentDance",
+    "org": "Nanjing University of Science and Technology",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "GenVideo"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "1枚の参照キャラクター画像とお手本のポーズ動画から、キャラクターの見た目を保ったまま自然でダイナミックな動きのアニメーションを生成する研究モデル。",
+    "point": "これまでのキャラクターアニメーション生成AIは、激しい動きや変な角度になると顔や服の柄が崩れたり、途中で別人のように見えてしまう問題がありました。LatentDanceは「IAMM」という仕組みで、キャラクターの見た目情報を関節の動きに沿って一緒に変形させながら保持し、体をひねるなどして隠れて見えなくなった部分も周囲から自然に推測して描き直すことで、素早いダンスや激しいジェスチャーでも同一人物・同一キャラクターに見える動画を生成できます。広告制作の視点では、1枚のキャラクタービジュアル(イラストやCGモデルの静止画)とお手本の振付動画さえあれば、そのキャラクターが商品を紹介したりダンスしたりする動画をローコストで量産できる可能性があります。VTuberやブランドキャラクターを使ったSNS広告、EC商品紹介動画のバリエーション展開などへの応用が考えられます。",
+    "detail": "LatentDanceは3つの部品からなります。「IAMM(アイデンティティを意識したモーションモデリング)」はキャラクターの見た目情報を関節の軌跡に沿って一緒に変形させることで、動いても同じキャラクターだと分かるようにする仕組みです。「PLC(疑似潜在補完)」は、体をひねった時などにカメラから隠れて見えなくなった服の柄や体の部分を、周辺情報から推測して自然に埋めます。「LIP(潜在的アイデンティティ保持)」は最初のフレームの細かい特徴(顔立ちや衣装の質感)を動画全体で保ち続ける仕組みです。たとえるなら、影絵芝居で人形の絵柄を保ったまま複雑な動きをつけるようなイメージです。\n\n既存のAnimate-XやMimicMotionのような手法は、ポーズが激しく変化すると輪郭が崩れたりディテールが消えてしまいがちでしたが、LatentDanceは論文中の画質・動き自然さの指標で従来手法を上回る数値を報告しており、実写の人物・イラスト調キャラクター・素早い動きなど幅広い被写体で安定した生成ができるとしています。\n\n使うには、公開されているコードとGradio(ブラウザで動かせる簡易デモ画面)をPython環境にセットアップします。ただし14Bパラメータの大型モデルのため、単体GPUで動かす場合は約80GBのVRAM(業務用GPU相当)が必要で、一般的な家庭用PCでは動きません。学習用のコードは近日公開予定で、現状は公開済みの学習済みモデルを使った生成のみが可能です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "コード本体はApache-2.0だが、依存する基盤モデルWan2.2・DiffSynth-Studioのライセンス条件も別途遵守する必要がある"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/yyang181/LatentDance"
+      },
+      {
+        "kind": "project",
+        "url": "https://yyang181.github.io/LatentDance/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://github.com/yyang181/LatentDance/blob/main/assets/paper/LatentDance_paper.pdf"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/yyang181/LatentDance"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/latentdance.jpg",
+    "relatedWorks": [
+      {
+        "title": "Animate-X",
+        "description": "参照ポーズ動画で任意のキャラクター画像を動かす先行研究。実写以外のキャラクターにも対応。",
+        "url": "https://arxiv.org/abs/2410.10306"
+      },
+      {
+        "title": "MimicMotion",
+        "description": "信頼度を考慮したポーズガイダンスで高品質な人物動画を生成する手法。",
+        "url": "https://arxiv.org/abs/2406.19680"
+      },
+      {
+        "title": "Wan-Animate-2",
+        "description": "キャラクターアニメーションの適用範囲を広げる動画生成モデル。",
+        "url": "https://arxiv.org/abs/2608.06009"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "anymotion",
+    "title": "Anymotion",
+    "org": "Ali Usman(個人開発・OSS)",
+    "type": "Tool",
+    "domains": [
+      "AI/Agents",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "テキストで指示するだけでプロダクト紹介・SaaS解説動画のモーショングラフィックスをAIエージェントが自動生成し、1080pのMP4として書き出せるオープンソースのCLIツール。",
+    "point": "一般的なAIコーディングエージェントに「アニメーション動画を作って」と頼むと、コード自体は正しく書けても実際の見た目(要素が重なっていないか、タイミングが合っているか)は確認できず、いわば「目をつぶって作業している」状態でした。Anymotionは、指定した再生時間ごとに画面をスクリーンショットしてAIモデル自身に見せ、要素のはみ出しやエラーがないかを自動チェックしながら修正を繰り返す仕組みを持つため、AIエージェントが自分の成果物を「見ながら」作り込め、破綻の少ないアニメーションに仕上がります。広告制作の視点では、プロダクトの特徴やブランドカラーをテキストで指示するだけで、SaaS系サービスの説明動画やSNS広告用の短尺モーショングラフィックスの初稿をすぐに書き出せるため、モーションデザイナーへの発注前のラフ案作成や、量産が必要なバナー・動画バリエーション展開のたたき台として使える可能性があります。",
+    "detail": "Anymotionは、ターミナル(コマンドライン)で動く対話型のAIエージェントです。ユーザーが「20秒のSaaS分析ツール紹介動画、ダークグラス調UI、ティールのアクセントカラーで」のように自然文で指示すると、AIがHTML/CSS/JavaScriptでアニメーションのコードを書きます。ポイントは、生成したコードを必ず\"window.seek(t)\"という決まった形の関数で動かすよう設計している点です。これにより「6.5秒地点の見た目を見せて」とAI自身に確認させ、要素がはみ出していないか、重なっていないかを自動チェックしながら書き直すループが成立します。\n\n従来、AIコーディングエージェントに動画やアニメーションを作らせると、コードのつじつまは合っていても実際の見た目がズレていることに気づけない「見えない状態での作業」になりがちでした。Anymotionはブラウザでのスクリーンショット確認を仕組みに最初から組み込むことで、この問題に対応しています。似た発想のツールとしてReactベースの動画生成フレームワークRemotionのAI連携機能がありますが、Anymotionは単体のCLIエージェントとして「見て直す」ループを前提に設計されている点が特徴です。\n\n使うには、Node.js 18以上の環境があれば`npm install -g`で導入でき、動画書き出しにはFFmpegが必要です。AIモデル自体はAnthropic・OpenAI・DeepSeekなど複数のLLM API(有料)に対応しており、利用者自身のAPIキーを登録して使う「Bring Your Own Key」方式のため、ツール自体は無料でもAI利用にかかるAPI従量課金は別途発生します。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "コードはMITで商用利用可。ただし「Anymotion」の名称は商標保護されており、フォーク配布時は別名にする必要がある。生成にはAnthropic/OpenAI等のAPIキーが別途必要で、その利用料はツール外で発生する"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/anymotion-agent/anymotion"
+      },
+      {
+        "kind": "project",
+        "url": "https://anymotion.art/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/anymotion.jpg",
+    "relatedWorks": [
+      {
+        "title": "Remotion",
+        "description": "Reactでプログラム的に動画を作れるフレームワーク。AIエージェントと組み合わせるSaaSテンプレートも提供。",
+        "url": "https://www.remotion.dev/"
+      },
+      {
+        "title": "OpenMontage",
+        "description": "AIコーディングアシスタントを本格的な映像制作スタジオ化するエージェント型動画制作システム。",
+        "url": "https://github.com/calesthio/OpenMontage"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "resonant",
     "title": "Resonant",
     "org": "Calesthio",
