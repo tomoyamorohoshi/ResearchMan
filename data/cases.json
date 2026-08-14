@@ -1,5 +1,259 @@
 [
   {
+    "id": "carhartt-made-possible-highmark-stadium-campaign-2026",
+    "title": "Carhartt \"Made Possible\" (Highmark Stadium campaign)",
+    "summary": "Carharttがバッファロー・ビルズ新本拠地Highmark Stadiumの建設労働者を称える「Made Possible」キャンペーンを展開",
+    "client": "Carhartt",
+    "agency": "",
+    "categories": [
+      "カルチャーインサイト",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://lbbonline.com/news/carhartt-buffalo-bills-highmark-stadium-campaign",
+    "thumbnail": "/thumbnails/carhartt-made-possible-highmark-stadium-campaign-2026.jpg",
+    "videoId": "",
+    "overview": "Carharttがバッファロー・ビルズの新本拠地Highmark Stadium完成を記念し、建設作業員・芝生業者・溶接工ら現場の職人たちを称える「Made Possible」キャンペーンを実施。30秒の映像「Making Football Possible」を中心に展開した。",
+    "background": "Highmark Stadiumはビルズの新本拠地として建設され、多くの建設労働者や職人の手によって完成した。ワークウェアブランドのCarharttはこうした「見えない働き手」に光を当てるブランドメッセージを継続的に発信しており、本キャンペーンもその一環として企画された。",
+    "execution": "制作はStagwell傘下のUnreasonable Studiosが担当。動画は観客が歓声を上げる完成後のスタジアムから、座席設置、芝生の敷設、ゴールポストの組み立てへと時間を巻き戻す逆再生演出を採用。ビルズのレジェンドThurman Thomasが現役選手James Cook IIIをスタジアム見学に案内する映像も公開された。",
+    "evaluationImpact": "スポーツブランディングにおいて選手やファンではなく建設に携わった労働者を主役に据える視点が特徴的で、Carharttのワークウェアブランドとしての一貫したメッセージを補強した。地元紙や業界メディア（LBBOnline、MediaPost、Buffalo News等）でも取り上げられた。",
+    "relatedWorks": [
+      {
+        "title": "Carhartt x Thurman Thomas: Making The Stadium Possible",
+        "description": "30秒の中心映像「Making Football Possible」",
+        "url": "https://www.youtube.com/watch?v=LTS37FfexEE"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Theme/Sports",
+      "Form/Event"
+    ]
+  },
+  {
+    "id": "riffle-2026",
+    "title": "Riffle（ブラウザ完結のマルチプレイヤー音楽制作スタジオ）",
+    "summary": "無限キャンバスでリアルタイム共同作業できるブラウザ音楽スタジオが7000人のアーリーアクセスを経て一般公開",
+    "client": "Riffle",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://musically.com/2026/08/12/startup-riffle-launches-its-multiplayer-music-studio-web-app/",
+    "thumbnail": "/thumbnails/riffle-2026.jpg",
+    "videoId": "",
+    "overview": "Riffleは複雑なDAWとプロンプト型AI音楽生成ツールの中間に位置づけられるブラウザ完結のマルチプレイヤー音楽制作スタジオ。無限キャンバス上でリアルタイム共同作業ができ、AIコプロデューサー「sous-chef」やMPC風サンプラーを搭載する。",
+    "background": "創業者Anurag Choudharyは「ソフトウェアが単独プレイ化する前、音楽制作はマルチプレイヤーだった。最高の曲は試行錯誤と協働から生まれる」という理念を掲げる。EndlesssやBeatConnectなど過去の協働音楽制作サービスは撤退しており、この領域は難しいカテゴリーとされてきた。",
+    "execution": "3ヶ月間のアーリーアクセスで7000人のミュージシャンが参加し、フィードバックを踏まえて2026年8月に一般公開。sous-chefは音やリファレンスの探索、素材変換、キャンバス全体でのアクション実行を支援しつつ、創造的判断は人間に委ねる設計とした。基本機能はフリーミアムで無料提供。",
+    "evaluationImpact": "AI音楽生成が一方的な自動生成に偏りがちな中、人間同士のリアルタイム共同制作を軸にAIを補助役として位置づける点が特徴。過去に撤退したEndlesssやBeatConnectと同じ課題領域に挑む形で、業界内で継続的に注目を集めている。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/Web",
+      "Tech/Audio",
+      "Form/App",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "cut-piece-22-2026",
+    "title": "オノ・ヨーコ《Cut Piece》菊池宏子による22年ぶり再演",
+    "summary": "オノ・ヨーコ《カット・ピース》を菊池宏子が2004年NY初演から22年ぶりに東京で再演、観客が壇上で衣服を切る参加型作品",
+    "client": "菊池宏子（オノ・ヨーコ原作）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://bijutsutecho.com/magazine/news/exhibition/32897",
+    "thumbnail": "/thumbnails/cut-piece-22-2026.jpg",
+    "videoId": "",
+    "overview": "現代美術家・菊池宏子が、オノ・ヨーコが1964年に発表したインタラクティブ・パフォーマンス《カット・ピース》を、自身が2004年にニューヨークで初演して以来22年ぶりに再演。2026年9月12日、東京・SHIBAURA HOUSEにて開催される。",
+    "background": "菊池宏子は2004年、ニューヨークのISE文化財団による企画展「Grapefruit: Yoko Ono in 1964」でオノ・ヨーコ本人公認のもと《カット・ピース》を演者として上演した経歴を持つ。社会彫刻やフルクサスなど1960年代前衛芸術の影響を受けた活動を続けてきた同氏が、その原点作品に再び取り組む形での開催となる。",
+    "execution": "演者が舞台上に静座し、目の前に置かれたハサミを使って観客が1人ずつ壇上に上がり、演者の衣服を好きな箇所から切り取っていくという原作の形式をそのまま踏襲。定員は先着50名（18歳以上）、参加費3,000円の予約制で、SHIBAURA HOUSE 5階バードルームにて実施される。",
+    "evaluationImpact": "半世紀以上前に発表された参加型パフォーマンスの構造的鋭さ―受動性・暴力性・信頼関係を観客の手に委ねる仕掛け―を、現代の観客の前で改めて体験させる試み。ジェンダーや身体の脆弱性を巡る作品の批評性は今日的な文脈でも再解釈の余地を持つ。",
+    "relatedWorks": [
+      {
+        "title": "Cut Piece（オノ・ヨーコ、1964年）",
+        "description": "1964年に草月会館（東京）で初演されたオノ・ヨーコのオリジナル・パフォーマンス作品。以降、本人による1965年カーネギーホール公演など複数回再演されている。",
+        "url": "https://en.wikipedia.org/wiki/Cut_Piece_1964"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Event",
+      "Form/Installation",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "case-9k2mto-2026",
+    "title": "「リシンク –舘鼻則孝と手しごと– 展」",
+    "summary": "舘鼻則孝の創作活動15周年展、代表作から新作絵画まで「手しごと」の全工程と道具・染織資料を女子美で初公開。",
+    "client": "舘鼻則孝",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://bijutsutecho.com/magazine/news/exhibition/32901",
+    "thumbnail": "/thumbnails/case-9k2mto-2026.jpg",
+    "videoId": "",
+    "overview": "女子美アートミュージアム（女子美術大学相模原キャンパス）にて2026年9月10日〜10月6日開催。美術家・舘鼻則孝の創作活動15周年を記念し、女子美術大学デザイン・工芸学科工芸研究室と共同主催。『Heel-less Shoes』をはじめ彫刻・絵画・版画・インスタレーションまで15年の活動を「手しごと」の視点から一望する。入場無料。",
+    "background": "舘鼻則孝は1985年東京都生まれ、2010年東京藝術大学工芸科染織専攻卒業。花魁の高下駄から着想した『Heel-less Shoes』はレディー・ガガが着用したことで国際的に知られる。「Rethink」を創作概念に掲げ、日本の伝統文化を現代的視点から再解釈する活動を継続。2019年より女子美術大学特別招聘教授を務める。",
+    "execution": "代表作《Heel-less Shoes “Night Makers”》（2018）や《同“Atom”》（2023）に加え、19世紀から現代まで受け継がれる靴づくりの道具を公開。女子美術大学所蔵の江戸時代の染織資料「松竹梅鶴亀模様振袖」等と、そこから着想を得た新作絵画《Descending Painting “The Sun Breaking through Clouds”》を併設展示。同時期にJoshibi SPACE 1900で個展「Venus」（9/10〜9/30）も開催。",
+    "evaluationImpact": "作家と大学の工芸研究室が共同主催し、完成作品だけでなく制作工程・道具・素材研究という「手しごと」の裏側までを可視化する産学連携型のアーカイブ的展覧会。ファッション×アートを横断する舘鼻の15年の軌跡を、大学が持つ伝統染織コレクションと接続させることで、現代クリエイションと伝統工芸継承の関係を提示する試みといえる。",
+    "relatedWorks": [
+      {
+        "title": "舘鼻則孝展「Venus」",
+        "description": "同時開催の個展。Joshibi SPACE 1900にて2026年9月10日〜9月30日開催",
+        "url": "https://abc0120.net/2026/08/13/226828/"
+      },
+      {
+        "title": "NORITAKA TATEHANA RETHINK（2017）",
+        "description": "「Rethink」概念を掲げた過去の個展サイト",
+        "url": "http://rethink2017.noritakatatehana.com/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Theme/Art",
+      "Theme/Fashion"
+    ]
+  },
+  {
+    "id": "energel-2026",
+    "title": "エナージェル「左ききさんにやさしくしたいペン」プロジェクト",
+    "summary": "改札機や自販機など左利きが不便を感じる場所にピンポイントでOOH広告を掲出し、国際左利きの日に合わせて共感を狙った施策",
+    "client": "ぺんてる（アストラム／ENERGEL）",
+    "agency": "",
+    "categories": [
+      "OOH革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.advertimes.com/20260813/article553579/",
+    "thumbnail": "/thumbnails/energel-2026.jpg",
+    "videoId": "",
+    "overview": "ぺんてる(アストラム)のゲルインキボールペン「エナージェル」が、8月13日の国際左利きの日に合わせて展開した企画。世界人口の約1割を占める左利きの人々が日常で感じる不便に着目し、その不便が生じる場所そのものに広告を掲出するOOHキャンペーンと、銭湯でのサンプリング、レシートキャンペーンを組み合わせた。制作は電通。",
+    "background": "左利きの人は横書きの際に書いた文字を手でこすってインキが汚れやすく、ペン先を押すような書き方になりがちで、引っかかりやかすれが起きやすいという課題を抱える。エナージェルは速乾性と低粘度インキによってこうした書きにくさを軽減できる特性を持つが、その価値は当事者以外には気づかれにくい。この認知ギャップを埋めることが企画の出発点となった。",
+    "execution": "改札機、自動販売機、トイレなど、左利きの人が実際に「不便を感じやすい場所」を選んでOOH広告を掲出。情報を届けるだけでなく、その人が置かれた状況に合わせてメッセージを届けるというOOHならではの特性を活かした。あわせて銭湯でのサンプリングイベントや、購入者を対象にしたレシートキャンペーンも展開し、複数の接点で左利きへの理解を促した。",
+    "evaluationImpact": "電通の野田祐希氏は、OOHの強みは情報提供にとどまらず生活者の置かれた状況に合わせてメッセージを届けられる点にあると説明する。左利き人口は世界で約1割とされ普段は可視化されにくいマイノリティだが、日常動線上の具体的な場所に広告を置くことで当事者の共感を喚起し、エナージェルの機能価値を自然に伝える設計になっている。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Form/Event",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "case-7kek5s-2026",
+    "title": "ゼミ展2026 デザインの学び方を知る",
+    "summary": "国内9校のゼミ・研究室が集結、AI活用や身体表現までデザイン教育の広がりを可視化する企画展",
+    "client": "東京ミッドタウン・デザインハブ",
+    "agency": "",
+    "categories": [
+      "社会包摂",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.advertimes.com/20260814/article553276/",
+    "thumbnail": "/thumbnails/case-7kek5s-2026.jpg",
+    "videoId": "",
+    "overview": "東京ミッドタウン・デザインハブ第120回企画展「ゼミ展2026 デザインの学び方を知る」。木更津高専、京都芸術大学大学院、慶應義塾大学、芝浦工業大学、多摩美術大学大学院、日本大学、弘益大学＋千葉大学、早稲田大学大学院の8組9校が参加。2026年8月30日～9月26日、六本木のデザインハブで開催。",
+    "background": "2018年から続くゼミ展シリーズの一環で、社会が今どのようなデザイン／デザイナーを必要としているのか、これからデザインの最前線に出る学生が課題にどう向き合っているのかを紹介する目的で企画。全国の大学・専門学校のゼミ・研究室から公募で選出された8組9校が出展する。",
+    "execution": "グラフィック・空間デザインに加え、建築・都市デザイン、身体表現など多様な作品を展示。弘益大学と千葉大学による国際ワークショップ「AI x Iconotext」では、AIを発想の補助として文字・イメージ・身体感覚を結びつけ言語と文化を学ぶ学習ゲームを提案。会期中は学生による「オープンゼミ」プレゼンテーションも実施。",
+    "evaluationImpact": "デザイン教育の現場を一堂に集め、社会実装やAI活用まで含む学生の実践的な取り組みを可視化する場として、業界関係者や進学希望者にデザイン教育の最前線を伝える意義を持つ。",
+    "relatedWorks": [
+      {
+        "title": "ゼミ展2025 デザインの学び方を知る",
+        "description": "前年度の同シリーズ企画展（第114回）。武蔵野美術大学ほか各校が参加。",
+        "url": "https://www.designhub.jp/exhibitions/seminars2025"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Exhibition",
+      "Form/Event",
+      "Theme/Education"
+    ]
+  },
+  {
+    "id": "one-health-2026-2026",
+    "title": "てとて、ONE Health 芸術祭2026",
+    "summary": "人と犬が並んで芝生で映画を観る野外シネマなど、動物医療の知見から人・動物・自然のつながりを体験化する芸術祭が旭川で誕生",
+    "client": "NPO法人 手と手の森 / 合同会社GreenShapers",
+    "agency": "",
+    "categories": [
+      "社会包摂",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000002.000184499.html",
+    "thumbnail": "/thumbnails/one-health-2026-2026.jpg",
+    "videoId": "",
+    "overview": "NPO法人手と手の森と合同会社GreenShapersが主催し、2026年9月21〜23日に北海道旭川市の4会場で開催する芸術祭。人と犬が一緒に芝生で映画『ウルフウォーカー』を鑑賞する野外シネマを核に、演劇・音楽・ワークショップ・マルシェ等を通じて人・動物・自然のつながりを体験する内容。入場は無料（一部プログラムは事前申込制・有料）。",
+    "background": "約30年にわたる動物医療現場での経験から、人と動物・自然の「つながりの喪失」という社会課題を認識したことが企画の出発点。医療という臨床的アプローチだけでなく、文化・アートを通じてこの課題に向き合う試みとして、動物病院運営者と地域のクリエイティブ人材が連携し芸術祭という形式を選んだ。",
+    "execution": "あさひかわ北彩都ガーデンでの野外シネマのほか、ハルニレぽっぽ、緑の森どうぶつ病院敷地内ドッグラン、まちなかぶんか小屋の計4会場でプログラムを展開。本橋龍演出の演劇『ラバーソールズ』、B.I.G.JOEによるラップワークショップ、plaplax×あべ弘士のインスタレーション『One Health Table』、アーユルヴェーダ施術など多分野のアーティスト・専門家が参加する構成。",
+    "evaluationImpact": "動物病院という医療現場発の課題意識を、治療や啓発活動ではなく芸術祭という文化的体験に翻訳した点が特徴。人と犬が同じ空間で映画を鑑賞する野外シネマは、ペット同伴可能な文化イベントとしての新規性を持ち、地域（旭川）における人・動物・自然の関係性を捉え直す機会を提供する取り組みとして注目される。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Event",
+      "Form/Exhibition",
+      "Theme/Health",
+      "Theme/SocialGood"
+    ]
+  },
+  {
     "id": "wheretosettle-gdzie-zamieszka-2022",
     "title": "WhereToSettle（Gdzie Zamieszkać）",
     "summary": "ウクライナ難民向けに消費データから都市ごとの居住・就労可能性を可視化したMastercardのスマートデータ・プラットフォーム",
