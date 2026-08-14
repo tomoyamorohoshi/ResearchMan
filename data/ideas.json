@@ -8241,5 +8241,215 @@
         "desc": "1本の動画から人物の動き・表情・カメラ視点をまるごと転写できるAlibaba発のキャラクターアニメーション生成AI。"
       }
     ]
+  },
+  {
+    "id": "2026-08-14-1",
+    "date": "2026-08-14",
+    "title": "手話キャプチャの高精度化",
+    "pattern": "文脈×技術",
+    "seed": "エキマトペは駅の音を擬音語と手話で可視化する試みだったが、CYANPUPPETSの顔140点+指を含む208キーポイント抽出を使えば、手話の微妙な表情や指の動きまで拾い、より繊細な視覚表現に発展できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ekimatope",
+        "title": "エキマトペ",
+        "desc": "JR東日本の駅で音声情報をオノマトペと手話で可視化し、聴覚障害者に音の豊かさを伝えた実証実験。"
+      },
+      {
+        "type": "tech",
+        "id": "cyanpuppets-1b-parameter-ai-motion-capture",
+        "title": "CYANPUPPETS 1B-parameter AI Motion Capture",
+        "desc": "ウェブカメラや動画から全身・顔・指の208キーポイントをリアルタイム抽出するAIモーションキャプチャ技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-14-2",
+    "date": "2026-08-14",
+    "title": "迷子ブレスレットの立体化",
+    "pattern": "文脈×技術",
+    "seed": "NIVEAのThe Protection Adは紙広告が子ども用ブレスレットに変形し位置を追跡できたが、Aholo Viewerでいなくなった場所を丸ごと3Dスキャンして表示すれば、親が捜索エリアを立体的に把握できる仕組みに発展できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "the-protection-ad-2014",
+        "title": "The Protection Ad（腕輪になる紙広告）",
+        "desc": "雑誌広告を子ども用の紙ブレスレットに変形し、アプリと連動して位置情報を追跡できるNIVEAの紙面広告。"
+      },
+      {
+        "type": "tech",
+        "id": "aholo-viewer",
+        "title": "Aholo Viewer",
+        "desc": "ブラウザだけで最大10億スプラット級の巨大な3D空間を滑らかに表示できるOSSレンダラ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-14-3",
+    "date": "2026-08-14",
+    "title": "売ります広告の360度化",
+    "pattern": "文脈×技術",
+    "seed": "VWのSell Your Carは新聞広告を切り取ると車に貼れる「売ります」ステッカーになったが、QRからAholo Viewerで実車をスキャンした3D空間をブラウザ表示できれば、紙一枚から車を360度確認できる広告になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "sell-your-car-2010",
+        "title": "Sell Your Car",
+        "desc": "新聞の自動車広告欄を切り取ると自分の車の窓に貼れる「売ります」ステッカーになる紙面広告。"
+      },
+      {
+        "type": "tech",
+        "id": "aholo-viewer",
+        "title": "Aholo Viewer",
+        "desc": "ブラウザだけで最大10億スプラット級の巨大な3D空間を滑らかに表示できるOSSレンダラ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-14-4",
+    "date": "2026-08-14",
+    "title": "ロボットの思考を覗く観客席",
+    "pattern": "文脈×技術",
+    "seed": "VketRealはXR技術でリアル会場とロボット格闘を融合させたが、Rerun×Booster Robotics K1のようなセンサ・3D状態のリアルタイム可視化を客席に見せれば、観客がロボットの「判断」まで覗ける新観戦体験になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "vketreal-2026-summer-2026",
+        "title": "VketReal 2026 Summer",
+        "desc": "VR/メタバースイベントVketがXR技術でリアル会場と融合し、MRスマスロやロボット格闘まで実装した事例。"
+      },
+      {
+        "type": "tech",
+        "id": "rerun-booster-robotics-k1",
+        "title": "Rerun × Booster Robotics K1",
+        "desc": "OSSの時系列マルチモーダル可視化ツールRerunで、ヒューマノイドK1のセンサ・3D状態をリアルタイムに可視化したデモ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-14-5",
+    "date": "2026-08-14",
+    "title": "分身の骨格すり替え",
+    "pattern": "技術×技術",
+    "seed": "YaGSで実写を点群3DスキャンしたGaussian Splattingの分身に、CYANPUPPETSで抽出した別人の骨格モーションを転写すれば、自分そっくりの見た目で他人の動きをする「分身アバター」が作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "yags",
+        "title": "YaGS",
+        "desc": "Unreal Engine上でGaussian Splattingを通常の3Dモデルと同じように正しく重ならせられる無料プラグイン。"
+      },
+      {
+        "type": "tech",
+        "id": "cyanpuppets-1b-parameter-ai-motion-capture",
+        "title": "CYANPUPPETS 1B-parameter AI Motion Capture",
+        "desc": "ウェブカメラや動画から全身・顔・指の208キーポイントをリアルタイム抽出するAIモーションキャプチャ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-14-6",
+    "date": "2026-08-14",
+    "title": "3D空間の高速飛行動画",
+    "pattern": "技術×技術",
+    "seed": "ComfyUIのGaussian Splat NodesでスキャンしたCM会場の3D空間を、comfyui-spectrum-minimax-h3の高速動画生成ノードと組み合わせれば、カメラが空間内を自在に飛び回る映像を大量に素早く量産できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-native-gaussian-splat-nodes",
+        "title": "ComfyUI Native Gaussian Splat Nodes（GAUSSIAN型 / v0.23.0）",
+        "desc": "ComfyUIに3D Gaussian Splatを扱うネイティブなノード群を追加するツール。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-spectrum-minimax-h3",
+        "title": "ComfyUI-Spectrum-MiniMax-H3",
+        "desc": "MiniMax H3の動画生成を画質をほぼ落とさず約3割速くするComfyUI用の追加ノード。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-14-7",
+    "date": "2026-08-14",
+    "title": "呼気で変色する記念プレート",
+    "pattern": "転用",
+    "seed": "bioLogicは本来、汗や体温に反応して開閉するスポーツウェア素材だけど、Mazda Goodbye RX-7のような「人と物の絆」を伝える展示で、来場者の呼気や体温で少しずつ色や形が変わる記念プレートに転用できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "mazda-goodbye-rx7-saying-farewell-to-a-dear-friend",
+        "title": "Goodbye RX-7: Saying Farewell to a Dear Friend",
+        "desc": "80歳の女性とRX-7の25年間を描いた実話ドキュメンタリーで、車と人の絆を伝えた事例。"
+      },
+      {
+        "type": "tech",
+        "id": "biologic",
+        "title": "bioLogic",
+        "desc": "納豆菌の湿度反応による伸縮運動を利用し、汗や体温に反応して開閉する「セカンドスキン」型スポーツウェア。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-14-8",
+    "date": "2026-08-14",
+    "title": "失われた可能性のネットワーク",
+    "pattern": "転用",
+    "seed": "真正粘菌が東京の鉄道網を再現した実験は本来、効率的なネットワーク形成の研究だけど、Change the Refの30Under30のように失われた若者を追悼する企画で、「生きていたら広がったはずの人脈」を粘菌の成長で可視化する転用ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "change-the-ref-30under30",
+        "title": "30Under30",
+        "desc": "銃暴力で失われた30人の若者をForbes「30 Under 30」形式で追悼した、存在すべきでない雑誌。"
+      },
+      {
+        "type": "tech",
+        "id": "physarum-polycephalumによる東京鉄道網再現実験",
+        "title": "Physarum polycephalum（真正粘菌）による東京鉄道網再現実験",
+        "desc": "脳を持たない単細胞生物を使い、東京圏の鉄道網に似た効率的なネットワークを自然形成させた実験。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-14-9",
+    "date": "2026-08-14",
+    "title": "手の大きさループ映像",
+    "pattern": "文脈×技術",
+    "seed": "Zambreroの「Australia's Biggest Hands」は最大の手を探すサーチ企画だったが、akasaki C1連続ループモーション生成ツールで応募者の手の動きを継ぎ目のない無限ループ映像にすれば、SNSで拡散しやすい参加素材が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "australia-s-biggest-hands-2026",
+        "title": "Australia's Biggest Hands",
+        "desc": "豪州で最も大きな手を持つ人を全国から探した、新商品PRのためのサーチキャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "akasaki-c1-loop-motion-tool",
+        "title": "C1連続 in-loop-out モーション生成ツール",
+        "desc": "モーションキャプチャの一部区間から、始点と終点が完全に一致する継ぎ目のないループアニメーションを自動生成する個人開発ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-14-10",
+    "date": "2026-08-14",
+    "title": "通話に生成音声広告",
+    "pattern": "文脈×技術",
+    "seed": "Skinnyは通話中に広告を流し電話をメディア化したが、MAGI-2-previewの音声と映像を同時生成する技術を使えば、通話の会話トーンに合わせてその場で生成した音声広告を自然に差し込めるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "skinny-ads-in-my-phone-call",
+        "title": "Ads in My Phone Call",
+        "desc": "通話中に広告を流すという発想で電話そのものを新しいメディアに変えたキャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "magi-2-preview",
+        "title": "MAGI-2-preview",
+        "desc": "音声と映像を同じモデルで同時に生成する、Sand.aiのオープンソース大規模動画生成モデルのプレビュー版。"
+      }
+    ]
   }
 ]
