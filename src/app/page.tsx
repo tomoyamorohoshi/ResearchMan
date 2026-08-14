@@ -27,6 +27,7 @@ export default function Home() {
                 { href: "/awards/acc",    label: "ACC"          },
                 { href: "/awards/spikes", label: "Spikes Asia"  },
                 { href: "/awards/ars",    label: "Ars Electronica" },
+                { href: "/awards/setouchi", label: "瀬戸内国際芸術祭" },
               ].map((item, i, arr) => (
                 <span key={item.href} className="flex items-center gap-x-2">
                   <Link

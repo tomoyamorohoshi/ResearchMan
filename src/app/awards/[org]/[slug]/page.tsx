@@ -61,7 +61,8 @@ export default async function CollectionPage({
           {orgDef.label}
         </p>
         <h1 className="text-3xl font-black tracking-tight text-gray-900">
-          {col.year} — {col.category}
+          {/* 年別org（瀬戸内）は category===year のため年だけを見出しにする */}
+          {col.category === col.year ? col.year : `${col.year} — ${col.category}`}
         </h1>
         <p className="text-[10px] tracking-widest text-gray-400 mt-2 uppercase">
           {col.cases.length} cases

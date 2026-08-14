@@ -8,6 +8,7 @@ export const AWARD_ORGS = [
   { key: 'acc',    label: 'ACC',              abbr: 'ACC'             },
   { key: 'spikes', label: 'Spikes Asia',      abbr: 'SPIKES ASIA'     },
   { key: 'ars',    label: 'Ars Electronica',  abbr: 'ARS ELECTRONICA' },
+  { key: 'setouchi', label: '瀬戸内国際芸術祭', abbr: 'SETOUCHI TRIENNALE' },
 ] as const;
 
 export type OrgKey = (typeof AWARD_ORGS)[number]['key'];
@@ -16,6 +17,16 @@ export type OrgKey = (typeof AWARD_ORGS)[number]['key'];
 // 無関係な文字列にも誤爆しうるため、org名チェックはフル名称で行う(下記の
 // matchesOrg/segmentBelongsToOrg 両方で使用)
 const ARS_ELECTRONICA_NAMES = ['ars electronica', 'アルスエレクトロニカ'];
+
+// 瀬戸内国際芸術祭のフル名称。key='setouchi'は日本語のaward文字列に出現しないため、
+// matchesOrg/segmentBelongsToOrg の両方でこの名称群を使って判定する（'ars'と同じ扱い）
+const SETOUCHI_NAMES = ['瀬戸内国際芸術祭', 'setouchi triennale'];
+
+// 瀬戸内国際芸術祭はCannes等と違い「部門」が存在せず、開催年そのものがコレクション単位。
+// parseCollection でこのorgだけ category=year を返し、年別ページ（/awards/setouchi/2010）を作る。
+function isYearOnlyOrg(orgKey: OrgKey): boolean {
+  return orgKey === 'setouchi';
+}
 
 function matchesOrg(awardStr: string, orgKey: OrgKey): boolean {
   const s = awardStr.toLowerCase();
@@ -26,6 +37,7 @@ function matchesOrg(awardStr: string, orgKey: OrgKey): boolean {
     case 'acc':    return /\bacc\b/.test(s);
     case 'spikes': return s.includes('spikes');
     case 'ars':    return ARS_ELECTRONICA_NAMES.some(name => s.includes(name));
+    case 'setouchi': return SETOUCHI_NAMES.some(name => s.includes(name));
   }
 }
 
@@ -34,8 +46,12 @@ function parseCollection(
   caseYear: string,
   orgKey: OrgKey,
 ): { year: string; category: string } {
-  const yearMatch = awardStr.match(/\b(20\d{2})\b/);
+  // "瀬戸内国際芸術祭2010" のように年が名称に密着するため \b では拾えない。数字直接抽出に頼る
+  const yearMatch = awardStr.match(/\b(20\d{2})\b/) ?? awardStr.match(/(20\d{2})/);
   const year = yearMatch ? yearMatch[1] : caseYear;
+
+  // 部門を持たないorg（瀬戸内国際芸術祭）は開催年をそのままコレクションにする
+  if (isYearOnlyOrg(orgKey)) return { year, category: year };
 
   // Extract bracket hints from FULL string before any stripping
   const jpBracket = awardStr.match(/（([^）]+)）/);
@@ -95,6 +111,7 @@ function segmentBelongsToOrg(seg: string, orgKey: OrgKey): boolean {
   const hasAnyOrg = AWARD_ORGS.some(o => {
     if (o.key === 'dad') return s.includes('d&ad');
     if (o.key === 'ars') return ARS_ELECTRONICA_NAMES.some(name => s.includes(name));
+    if (o.key === 'setouchi') return SETOUCHI_NAMES.some(name => s.includes(name));
     return s.includes(o.key);
   });
   // org名を明示するセグメントは当該orgのみ。org名が無いセグメント（例 "Design Lions Gold"）は親awardのorgを継承。
@@ -120,6 +137,8 @@ function parseCollectionsAll(
 }
 
 function toSlug(year: string, category: string): string {
+  // 年別org（瀬戸内）は category===year のため "2010-2010" を避けて年だけのslugにする
+  if (category === year) return year;
   return `${year}-${category.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`;
 }
 
@@ -190,7 +209,7 @@ export function getAwardCollections(orgKey: OrgKey): AwardCollection[] {
       year,
       category,
       slug: toSlug(year, category),
-      label: `${year}_${category}`,
+      label: year === category ? year : `${year}_${category}`,
       cases: cs,
     }))
     .sort((a, b) => {

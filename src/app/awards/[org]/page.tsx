@@ -74,7 +74,8 @@ export default async function AwardOrgPage({
                     <div>
                       <p className="text-[9px] tracking-[0.25em] uppercase text-gray-400 mb-1">{year}</p>
                       <p className="text-base font-bold text-gray-900 group-hover:underline underline-offset-2 leading-snug">
-                        {col.category}
+                        {/* 年別org（瀬戸内）は category===year のため年の二重表示を避ける */}
+                        {col.category === col.year ? '作品一覧' : col.category}
                       </p>
                     </div>
                     <span className="text-[10px] tracking-widest text-gray-400 shrink-0 pt-1">
