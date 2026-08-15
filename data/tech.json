@@ -1,5 +1,60 @@
 [
   {
+    "id": "lego",
+    "title": "LEGO",
+    "org": "武漢大学 (Wuhan University) / 香港科技大学 (HKUST), USI-3DV Group",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "AI/Agents"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "3D空間を撮影した写真群から、「花瓶→花束→つぼみ→花びら」のように部分と全体の関係を自動で階層的に理解し、言葉で3D空間の物や場所を指し示せるようにする研究技術。",
+    "point": "写真から3D空間を復元する技術（Gaussian Splatting）に、「これは何か」を理解する力を組み合わせたものです。これまでのAI（SAMなど）は、写真1枚1枚の中でしか物を切り分けられず、同じ物でも見る角度によって認識がバラバラになってしまう弱点がありました。LEGOはこれを解決し、どの角度から見ても矛盾なく「テーブルの上に花瓶があり、花瓶の中に花束があり、花束はつぼみと花びらでできている」といった大小関係を3D空間全体で一貫して把握します。さらに、この関係を言葉（AIチャットの指示など）で検索できる「地図」のような形にするため、たとえば広告・体験制作の現場では「棚の一番奥にある赤い商品だけを光らせて」といった自然文の指示だけで、複雑な3D空間の特定の部分を自動で選び出し、演出や編集を加える、といった使い方の土台になり得ます。",
+    "detail": "仕組みを簡単に言うと、まず複数の写真から3D空間を点の集まり（Gaussian Splatting）として復元します。次に、SAMという「物を切り分けるAI」を使って各写真の中の物・部分を検出しますが、この検出結果は写真ごとにバラバラな粒度（テーブル全体を1つと見る写真もあれば、脚だけを1つと見る写真もある）になりがちです。LEGOはこれらを「同じ大きさかどうか」ではなく「階層のどの段（レベル）に属するか」という基準で自動的に整理し直し、どの角度から見ても矛盾のない1つの階層構造（木構造）を3D空間全体に対して作ります。さらに、CLIPという「画像と言葉を結びつけるAI」を使い、木の各部分に「これは花びら」「これは花束」といった言葉の意味を与え、加えて「テーブルの上に花瓶がある」のような物同士の位置関係も記録することで、AIチャット（LLM）が「テーブルの脚の下にあるボールを取って」のような複雑な指示から該当箇所を正確に探し出せるようにします。\n\n従来のGaussian Splattingは見た目を美しく再現することに主眼があり、「どこに何があるか」を言葉で扱うのは苦手でした。LEGOは3D空間そのものに「意味の階層」を埋め込む点が新しく、ロボットの物体操作や、ARでの物体指示、3D空間内の自然言語検索といった応用に直結します。\n\n現状は研究用コードの配布のみで、動かすにはUbuntu環境とVRAM24GB以上のNVIDIA GPU、Python/PyTorch/CUDAのセットアップが必要な玄人向けです。ライセンスは非商用研究利用限定（CC BY-NC-SA 4.0）のため、商用プロジェクトでそのまま使うことはできず、現時点では技術動向の把握や社内検証目的での利用にとどまります。",
+    "license": {
+      "spdx": "CC-BY-NC-SA-4.0",
+      "commercial": "research-only",
+      "note": "非商用研究利用のみ。内部で使うMASt3R/SAM/gsplat/OpenCLIPは各々のライセンスに従う"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/WHU-USI3DV/LEGO"
+      },
+      {
+        "kind": "project",
+        "url": "https://pz0826.github.io/LEGO-Webpage/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2608.10057"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/lego.jpg",
+    "relatedWorks": [
+      {
+        "title": "LangSplat",
+        "description": "CLIP埋め込みで3D Gaussian Splattingに言語検索を組み込んだ先行研究",
+        "url": "https://github.com/minghanqin/LangSplat"
+      },
+      {
+        "title": "SAM (Segment Anything Model)",
+        "description": "LEGOが2Dマスク検出の土台として利用するMetaの物体分割AI",
+        "url": "https://ai.meta.com/blog/sam-3d/"
+      },
+      {
+        "title": "gsplat",
+        "description": "LEGOが3D Gaussian場の学習基盤として利用するCUDA高速化ライブラリ",
+        "url": "https://github.com/nerfstudio-project/gsplat"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "latentdance",
     "title": "LatentDance",
     "org": "Nanjing University of Science and Technology",
