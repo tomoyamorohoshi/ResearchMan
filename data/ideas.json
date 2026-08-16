@@ -8643,5 +8643,203 @@
         "desc": "スペクトログラムと波形を同時に扱い23ミリ秒の極小フレームでボーカル等をリアルタイム分離する音源分離AI"
       }
     ]
+  },
+  {
+    "id": "2026-08-16-1",
+    "date": "2026-08-16",
+    "title": "検索でめぐる自伝の街",
+    "pattern": "文脈×技術",
+    "seed": "DECODED: JAY-Z with Bingは自伝を13都市の実在の場所に配置し検索と連動させたけど、Any4Dで各設置場所を即座に実寸3D復元すれば、スマホをかざすだけで街全体が本のページに変わる宝探しになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "decode-jayz-bing",
+        "title": "DECODED: JAY-Z with Bing",
+        "desc": "Jay-Zの自伝の全ページを世界13都市の実在の場所に掲示し、Bingの検索・地図機能と連動させたARGキャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "any4d",
+        "title": "Any4D",
+        "desc": "RGB動画など任意のセンサ入力から、実寸スケールの動く3D世界を1回の推論で復元するモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-16-2",
+    "date": "2026-08-16",
+    "title": "AIに読ませない歴史紙面",
+    "pattern": "文脈×技術",
+    "seed": "Untaught History Editionは教科書に載らない歴史を伝える新聞だったけど、見出しにDecoy Fontを仕込めば、人間には読めてAIの検閲・要約ボットだけをすり抜ける紙面が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "annahar-untaught-history-edition",
+        "title": "Untaught History Edition",
+        "desc": "教科書には載らないレバノン現代史をまとめて伝えた、独立記念日発行の特別版新聞。"
+      },
+      {
+        "type": "tech",
+        "id": "decoy-font",
+        "title": "Decoy Font",
+        "desc": "人間には正しく読めるのに、AIのOCRや画像認識には別の単語に誤読させられるフォント。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-16-3",
+    "date": "2026-08-16",
+    "title": "芸術祭をVRで歩く",
+    "pattern": "文脈×技術",
+    "seed": "瀬戸内国際芸術祭「海を繋ぐもの」のような離島の常設作品を、Spatialographyの手法でGaussian Splatting記録すれば、現地に行けない人も作品の中を歩いて鑑賞できる分身の芸術祭になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2010-064",
+        "title": "海を繋ぐもの",
+        "desc": "瀬戸内国際芸術祭で小豆島の肥土山・中山地区に展開された、丹治嘉彦による作品。"
+      },
+      {
+        "type": "tech",
+        "id": "spatialography",
+        "title": "Spatialography",
+        "desc": "実在する公園や滝をGaussian Splattingで記録し、VR内を歩いて鑑賞できるようにしたVRChatワールド。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-16-4",
+    "date": "2026-08-16",
+    "title": "失われた着陸を一人称で",
+    "pattern": "文脈×技術",
+    "seed": "Back to Kai TakはA350で伝説の着陸進入路を再現したけど、当時の操縦士目線の映像があればReViVで視線と機体軌跡を4D復元し、乗客が「あの日のパイロットの目」を追体験できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "cathay-back-to-kai-tak",
+        "title": "Back to Kai Tak",
+        "desc": "伝説の啓徳空港への着陸進入路をA350で再現し、香港市民の誇りを呼び起こした体験型キャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "reviv",
+        "title": "ReViV (Reconstructing the Viewer and the View in 4D from Monocular Egocentric Video)",
+        "desc": "一人称視点の動画1本から、装着者の全身動作と周囲シーンの4D構造を同時復元するフレームワーク。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-16-5",
+    "date": "2026-08-16",
+    "title": "ささやきが音楽になる",
+    "pattern": "技術×技術",
+    "seed": "NasoVoceが拾うほぼ無音の「ささやき」の声を、そのままbasicpitch.cppでMIDI変換すれば、声を出せない場所でも鼻歌ひとつで作曲できる無音の楽器になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "nasovoce",
+        "title": "NasoVoce",
+        "desc": "スマートグラスの鼻当てにマイクと振動センサを仕込み、無音に近いささやきでも認識する発話インターフェース。"
+      },
+      {
+        "type": "tech",
+        "id": "basicpitch-cpp",
+        "title": "basicpitch.cpp",
+        "desc": "SpotifyのBasic Pitchモデルを再実装し、ブラウザやアプリで高速に動く音声からMIDIへの変換ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-16-6",
+    "date": "2026-08-16",
+    "title": "動くインクの偽装文字",
+    "pattern": "技術×技術",
+    "seed": "MorphDropsの導電インクで紙の上に形を変える水滴パターンを作り、Decoy Fontの原理を重ねれば、「人には読めるがカメラには誤読される」動く暗号文字の屋外広告ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "morphdrops",
+        "title": "MorphDrops",
+        "desc": "紙に印刷した導電インクに電気を流し、上に置いた水滴の形を自在に変えられるディスプレイ。"
+      },
+      {
+        "type": "tech",
+        "id": "decoy-font",
+        "title": "Decoy Font",
+        "desc": "人間には正しく読めるのに、AIのOCRや画像認識には別の単語に誤読させられるフォント。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-16-7",
+    "date": "2026-08-16",
+    "title": "解剖される商品パッケージ",
+    "pattern": "転用",
+    "seed": "Dissectible Anatomyは本来、人体を切り開いて学ぶ医学教育向けの解剖シミュレーションだけど、商品パッケージや建築模型に転用すれば、店頭で「中身をリアルタイムに切り裂いて見せる」什器になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "dissectible-anatomy",
+        "title": "Dissectible Anatomy",
+        "desc": "人体の輪切りデータを基に、GPU上でリアルタイムに切ったり裂いたりできる仮想解剖シミュレーション。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-16-8",
+    "date": "2026-08-16",
+    "title": "沈黙アバターの証言",
+    "pattern": "文脈×技術",
+    "seed": "#StillSpeakingUpは暗殺されたジャーナリストをディープフェイクで蘇らせたけど、Live Avatarの何時間でも破綻しない生成力を使えば、大画面ライブ配信で「本人が今も語り続ける」追悼企画にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "stillspeakingup-deeptruth",
+        "title": "#StillSpeakingUp",
+        "desc": "暗殺されたジャーナリストをディープフェイクで蘇らせ、生前語れなかった真実を語らせた広告。"
+      },
+      {
+        "type": "tech",
+        "id": "live-avatar",
+        "title": "Live Avatar",
+        "desc": "1枚の顔写真と音声だけから、破綻せず何時間でもしゃべり続けられるリアルタイム映像アバターを生成するAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-16-9",
+    "date": "2026-08-16",
+    "title": "センサレス建機の透視眼",
+    "pattern": "転用",
+    "seed": "Any4Dは本来、動画やIMU入力から実寸スケールの3D世界を復元する研究用モデルだけど、工事現場の重機管理に転用すれば、既存の防犯カメラ映像だけで現場全体を「透視」できる安全管理ツールになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "any4d",
+        "title": "Any4D",
+        "desc": "RGB動画など任意のセンサ入力から、実寸スケールの動く3D世界を1回の推論で復元するモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-16-10",
+    "date": "2026-08-16",
+    "title": "気球中継を自動編集",
+    "pattern": "文脈×技術",
+    "seed": "SBプロジェクトの高校生による成層圏気球撮影に、リサーチから編集までを自動化するOpenMontageを組み合わせれば、打ち上げ当日の素材から完パケの宇宙ドキュメンタリーを数時間で自動生成できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-1bhtlmo-2025",
+        "title": "SBプロジェクト（スペースバルーンプロジェクト）",
+        "desc": "高校生が自作した気球を成層圏まで飛ばし、夜の地球や星空の撮影に挑む部活動発の宇宙開発プロジェクト。"
+      },
+      {
+        "type": "tech",
+        "id": "openmontage",
+        "title": "OpenMontage",
+        "desc": "AIコーディングアシスタントを映像制作スタジオに変え、リサーチから完パケまで自動化するエージェント。"
+      }
+    ]
   }
 ]
