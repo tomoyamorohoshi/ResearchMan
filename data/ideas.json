@@ -8841,5 +8841,203 @@
         "desc": "AIコーディングアシスタントを映像制作スタジオに変え、リサーチから完パケまで自動化するエージェント。"
       }
     ]
+  },
+  {
+    "id": "2026-08-17-1",
+    "date": "2026-08-17",
+    "title": "モーキャプ憑依アトラクション",
+    "pattern": "文脈×技術",
+    "seed": "ドラクエ40周年展the DIVEのVRライド×モーションシートに、PoseCapのWebカメラ1台リアルタイムモーキャプを足したら、来場者自身の動きがそのままモンスターに憑依する対戦型アトラクションになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "the-dive-2026",
+        "title": "ドラゴンクエスト the DIVE -まだ見ぬ冒険の舞台へ-",
+        "desc": "ドラクエ40周年展のVRライド。Meta Quest3とモーションシート連動でキラーパンサー搭乗の没入戦闘を体験できる。"
+      },
+      {
+        "type": "tech",
+        "id": "posecap",
+        "title": "PoseCap",
+        "desc": "Webカメラ1台だけでBlenderにリアルタイムでモーションキャプチャを流し込める無料オープンソースツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-17-2",
+    "date": "2026-08-17",
+    "title": "無音WiFiささやき広告",
+    "pattern": "文脈×技術",
+    "seed": "WAOOのWiFi名広告のように「見えない場所に潜む」発想を、NasoVoceのほぼ無音のささやき認識と掛けたら、電車内で声を出さずに操作できる新しい屋外広告インタラクションができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "waoo-wifi-invasion",
+        "title": "WiFi Invasion",
+        "desc": "WiFi名をそのまま広告看板に変えた、デンマークWAOOの目に見えない屋外広告施策。"
+      },
+      {
+        "type": "tech",
+        "id": "nasovoce",
+        "title": "NasoVoce",
+        "desc": "スマートグラス鼻当てのマイクと振動センサで、ほぼ無音のささやきでも認識できる常時使える発話インターフェース。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-17-3",
+    "date": "2026-08-17",
+    "title": "常時追跡自動値引き棚",
+    "pattern": "文脈×技術",
+    "seed": "Broadfork Produceの予防データを割引率に変換する発想と、Amplioの落ちても続きから再開できるエージェント基盤を組み合わせ、健康データを常時追跡し価格が毎日自動更新され続ける売り場ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "cancer-prevention-discounts-broadfork",
+        "title": "Cancer Prevention Discounts",
+        "desc": "がん予防の科学データを食料品の割引率に変換し、健康的な選択を後押ししたBroadfork Produceの施策。"
+      },
+      {
+        "type": "tech",
+        "id": "amplio",
+        "title": "Amplio",
+        "desc": "Google DeepMindの、長時間動くAIエージェントが落ちても続きから必ず再開できる軽量な実行基盤。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-17-4",
+    "date": "2026-08-17",
+    "title": "実寸4D海中アーカイブ",
+    "pattern": "文脈×技術",
+    "seed": "Hyundaiの「名もなき海中林」可視化に、Any4Dの実寸スケール4D復元を重ねたら、海藻が育ち枯れていく様子を実寸のまま時間軸ごと辿れるデジタル保全アーカイブになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "forests-without-names-hyundai",
+        "title": "Forests Without Names",
+        "desc": "Hyundaiが海中の「見えない森」をデータとAIで地図化・命名し、保全対象として可視化した施策。"
+      },
+      {
+        "type": "tech",
+        "id": "any4d",
+        "title": "Any4D",
+        "desc": "RGB動画やRGB-D・IMU・レーダー等の入力から、実寸スケールの動く3D世界を1回の推論で復元するモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-17-5",
+    "date": "2026-08-17",
+    "title": "体格連動する屋外広告",
+    "pattern": "文脈×技術",
+    "seed": "ANARの「子どもの視点からしか見えない」広告発想に、CEB SAM 3D Body v4の動画からの3D人体ポーズ推定を組み合わせたら、見る人の身長や姿勢に応じてメッセージが変わる屋外広告ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "only-for-children-2013",
+        "title": "Only for Children（子供にしか見えない児童虐待防止広告）",
+        "desc": "レンチキュラー印刷で、身長132cm以下の子どもの視点からだけ虐待防止メッセージが見える屋外広告。"
+      },
+      {
+        "type": "tech",
+        "id": "ceb-sam-3d-body-v4",
+        "title": "CEB SAM 3D Body v4 (Blender addon)",
+        "desc": "MetaのSAM 3D BodyをBlenderで使えるアドオン。動画から3D人体ポーズを推定しモーキャプデータとして読み込める。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-17-6",
+    "date": "2026-08-17",
+    "title": "途切れないアニュアル映像",
+    "pattern": "文脈×技術",
+    "seed": "Readymagの年間まとめをポスター風カードで並べる発想に、Self Gradient Forcingの長尺一貫動画生成を重ねたら、1年分の活動が途切れず4分間流れ続ける「動くアニュアルレポート」ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "readymag-round-up-2024-2024",
+        "title": "Readymag round-up 2024",
+        "desc": "その年の優れたReadymag制作サイトをポスター風カードで並べた、電子ブルー×ピンクの年間まとめサイト。"
+      },
+      {
+        "type": "tech",
+        "id": "self-gradient-forcing",
+        "title": "Self Gradient Forcing (SGF)",
+        "desc": "5秒しか学習していない動画生成モデルを、2パスの追加学習で最長約4分まで一貫性を保って生成できるようにする手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-17-7",
+    "date": "2026-08-17",
+    "title": "踊りが自動作曲するライブ",
+    "pattern": "技術×技術",
+    "seed": "StratawrightのAIエージェント制御DAWと、CEB SAM 3D Body v4の動画からの3Dポーズ推定を組み合わせ、踊りの動きをAIがその場で読み取り曲を自動作編曲するライブパフォーマンスができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "stratawright",
+        "title": "Stratawright",
+        "desc": "Claude CodeやCursorなどのAIエージェントが自然言語だけで直接操作できる、エージェント制御前提のDAW。"
+      },
+      {
+        "type": "tech",
+        "id": "ceb-sam-3d-body-v4",
+        "title": "CEB SAM 3D Body v4 (Blender addon)",
+        "desc": "MetaのSAM 3D BodyをBlenderで使えるアドオン。動画から3D人体ポーズを推定しモーキャプデータとして読み込める。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-17-8",
+    "date": "2026-08-17",
+    "title": "粘菌の動きをループアニメ化",
+    "pattern": "技術×技術",
+    "seed": "東京の鉄道網を粘菌が再現した実験の伸び縮みの動きに、C1連続in-loop-outモーション生成ツールを重ねたら、粘菌の成長そのものを継ぎ目なくループするアニメーションとして書き出せるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "physarum-polycephalumによる東京鉄道網再現実験",
+        "title": "Physarum polycephalum（真正粘菌）による東京鉄道網再現実験",
+        "desc": "脳を持たない単細胞生物・真正粘菌を東京圏36都市に見立てて培養したら、実際の鉄道網に似た形が現れた実験。"
+      },
+      {
+        "type": "tech",
+        "id": "akasaki-c1-loop-motion-tool",
+        "title": "C1連続 in-loop-out モーション生成ツール",
+        "desc": "モーションキャプチャの一部区間から、開始と終了のポーズ・速度が一致するループアニメーションを自動生成するツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-17-9",
+    "date": "2026-08-17",
+    "title": "演出分業型陳列プランナー",
+    "pattern": "転用",
+    "seed": "本来は映像を生成編集するBerniniの「演出担当AI×作画担当AI」の分業構造を店舗の陳列プランニングに転用したら、担当者の指示だけで既存レイアウトを壊さず部分修正し続ける什器デザインツールになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "bernini",
+        "title": "Bernini",
+        "desc": "自然言語の指示で画像・動画を生成編集する統合モデル。演出AIと作画AIが分業し不要な部分は変えずに編集する。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-17-10",
+    "date": "2026-08-17",
+    "title": "環境音の五線譜化",
+    "pattern": "転用",
+    "seed": "本来は演奏音声をMIDIに変換するNeuralNoteを音楽以外に転用したら、工場や工事現場の稼働音をリアルタイムに「音符化」し、稼働状況を五線譜のように可視化する監視ダッシュボードができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "neuralnote",
+        "title": "NeuralNote",
+        "desc": "DAW上の演奏・録音音声をほぼその場でMIDIノートに変換できる無料オーディオプラグイン。"
+      }
+    ]
   }
 ]
