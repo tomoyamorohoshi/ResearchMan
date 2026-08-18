@@ -9039,5 +9039,203 @@
         "desc": "DAW上の演奏・録音音声をほぼその場でMIDIノートに変換できる無料オーディオプラグイン。"
       }
     ]
+  },
+  {
+    "id": "2026-08-18-1",
+    "date": "2026-08-18",
+    "title": "子どもにだけ届く声のメッセージ",
+    "pattern": "文脈×技術",
+    "seed": "ANARの「Only for Children」は身長132cm以下の子どもにしか見えないレンチキュラー広告。NasoVoceのささやき認識と掛け合わせれば、子どもにだけ聞こえる声で虐待防止メッセージを届けられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "only-for-children-2013",
+        "title": "Only for Children（子供にしか見えない児童虐待防止広告）",
+        "desc": "レンチキュラー印刷で身長132cm以下の子どもの視点からだけ見える虐待防止の屋外広告"
+      },
+      {
+        "type": "tech",
+        "id": "nasovoce",
+        "title": "NasoVoce",
+        "desc": "スマートグラスの鼻当てでほぼ無声のささやきもクリアに認識する常時発話インターフェース"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-18-2",
+    "date": "2026-08-18",
+    "title": "事件を実況するアバター",
+    "pattern": "文脈×技術",
+    "seed": "輸送中の盗難事件を公開宝探しPRに変えたKitKatの発想に、顔写真1枚から破綻せず喋り続けるLive Avatarを掛けたら、実在の事件をキャラクターがリアルタイムで実況し続ける参加型PRができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "kitkat-the-kitkat-heist",
+        "title": "The KitKat Heist",
+        "desc": "輸送中に盗まれた約12トンのキットカットを公開宝探しへ転換したリアルタイムPR施策"
+      },
+      {
+        "type": "tech",
+        "id": "live-avatar",
+        "title": "Live Avatar",
+        "desc": "1枚の顔写真と音声だけから何時間でも破綻せず喋り続けるリアルタイム映像アバターAI"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-18-3",
+    "date": "2026-08-18",
+    "title": "遺留品を3D復元する報道",
+    "pattern": "文脈×技術",
+    "seed": "北朝鮮兵の遺留品・手記を写真とデータで構成した日経ビジュアルデータの調査報道に、複数写真から高精細3Dを生成するQuerySplatを掛けたら、遺品を空間ごと復元し証言と重ねる報道ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-zideyj-2025",
+        "title": "ロシアに散った北朝鮮兵の遺言",
+        "desc": "ウクライナ戦線の北朝鮮兵の遺留品・手記を写真とデータで構成した日経の調査報道"
+      },
+      {
+        "type": "tech",
+        "id": "querysplat",
+        "title": "QuerySplat",
+        "desc": "複数枚の写真から輪郭のにじみが少ない高精細な3Dガウシアンスプラットを生成する研究"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-18-4",
+    "date": "2026-08-18",
+    "title": "声だけで検閲回避する相談",
+    "pattern": "文脈×技術",
+    "seed": "アルゴリズム検閲を文字スクランブラーで回避する#UnCensorYourHealthの発想に、ほぼ無声のささやきでも拾えるNasoVoceを掛けたら、声を出さず検閲もされない健康相談チャネルができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "uncensoryourhealth",
+        "title": "#UnCensorYourHealth",
+        "desc": "アルゴリズム検閲を回避する文字スクランブラーで女性の健康情報を発信する施策"
+      },
+      {
+        "type": "tech",
+        "id": "nasovoce",
+        "title": "NasoVoce",
+        "desc": "スマートグラスの鼻当てでほぼ無声のささやきもクリアに認識する常時発話インターフェース"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-18-5",
+    "date": "2026-08-18",
+    "title": "落書きOOHを反射で魅せる",
+    "pattern": "文脈×技術",
+    "seed": "Tour de Franceの卑猥な落書きを女性支援アートに塗り替えたŠkodaの逆転OOHに、反射や屈折までレイトレーシングで描くGRayを掛けたら、街のペイントを光ごと没入体験にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "koda-transforms-tour-de-france-penis-graffiti-to-promote-wom",
+        "title": "Škoda Transforms Tour de France Penis Graffiti to Promote Women's Cycling",
+        "desc": "Tour de France沿道の卑猥な落書きを消さず女子レースPRアートに変えたOOH施策"
+      },
+      {
+        "type": "tech",
+        "id": "gray",
+        "title": "GRay",
+        "desc": "Gaussian Splattingを反射・屈折・影ごとレイトレーシングで描画する新手法"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-18-6",
+    "date": "2026-08-18",
+    "title": "限定ジャケットの分身映像",
+    "pattern": "文脈×技術",
+    "seed": "化学防護服素材のコートを10着限定で世界観構築したVollebakのFWAHBL Jacketに、画像1枚から3Dキャラを生成するViggle PINOC×Seedanceを掛けたら、購入者ごとの専用トレーラー映像を自動生成できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "fwahbl-jacket-2026",
+        "title": "FWAHBL Jacket",
+        "desc": "化学防護服素材のトレンチコートを10着限定発売しコミック風世界観を構築したプロジェクト"
+      },
+      {
+        "type": "tech",
+        "id": "viggle-pinoc-seedance-workflow",
+        "title": "Viggle PINOC × Seedance ワークフロー",
+        "desc": "画像1枚から3Dキャラを生成するPINOCで3Dプリビズを作りSeedanceで映像化するワークフロー"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-18-7",
+    "date": "2026-08-18",
+    "title": "作曲から映像まで一気通貫自動化",
+    "pattern": "技術×技術",
+    "seed": "自然言語だけでAIエージェントが操作するDAW「Stratawright」で作った曲を、音楽に反応して映像が変わる「TiXL」に流し込めば、作曲から演出映像までAIが一気通貫で仕上げるVJシステムができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "stratawright",
+        "title": "Stratawright",
+        "desc": "Claude Code等のAIエージェントが自然言語で直接操作できるC++製のDAW（音楽制作ソフト）"
+      },
+      {
+        "type": "tech",
+        "id": "tixl",
+        "title": "TiXL（旧称 Tooll3）",
+        "desc": "音楽やMIDIに反応して映像がその場で変化する無料のリアルタイム映像制作ツール"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-18-8",
+    "date": "2026-08-18",
+    "title": "4視点動画をチャット編集",
+    "pattern": "技術×技術",
+    "seed": "たった4台のカメラで動く3D空間を復元する「4C4D」の素材を、チャット型AIエージェントが編集する「Frontstage」に読み込ませたら、自由視点動画を会話だけでカット編集できるツールができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "4c4d",
+        "title": "4C4D",
+        "desc": "たった4台のカメラ映像から動く3D空間（4D）を高精細に復元するCVPR2026の研究"
+      },
+      {
+        "type": "tech",
+        "id": "frontstage",
+        "title": "Frontstage",
+        "desc": "ブラウザとWindowsで動く無料のAIネイティブ動画編集ソフト、チャット型自動編集エージェント内蔵"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-18-9",
+    "date": "2026-08-18",
+    "title": "AIっぽさを測る校閲ツール",
+    "pattern": "転用",
+    "seed": "本来AI生成コンテンツを検出するために作られたPangram4を逆手に取り、広告コピーの「AIっぽすぎるフレーズ」を数値であぶり出す校閲ツールとして転用できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "pangram-4-2026",
+        "title": "Pangram 4",
+        "desc": "AI検出のPangramが新モデルPangram4と画像検出機能を発表、900万ドルを調達"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-18-10",
+    "date": "2026-08-18",
+    "title": "声を消した後の音で作曲",
+    "pattern": "転用",
+    "seed": "本来ボーカルを抽出するためのUltimate Vocal Removerを逆に使い、声を消した後に残る環境音・雑踏だけを集めて都市のアンビエント音源を作る素材ツールに転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ultimate-vocal-remover",
+        "title": "Ultimate Vocal Remover (UVR)",
+        "desc": "複数の最先端AIモデルを切り替えて使える無料のボーカル・楽器分離デスクトップアプリ"
+      }
+    ]
   }
 ]
