@@ -1,5 +1,130 @@
 [
   {
+    "id": "tokisaka-2026",
+    "title": "限界ライバー しめきり1週前",
+    "summary": "VTuberの締切地獄をデッキ構築ローグライトに翻案、個人開発者が業務の内幕を風刺したSteamページを公開",
+    "client": "Tokisaka",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://automaton-media.com/articles/newsjp/20260817-460531/",
+    "thumbnail": "/thumbnails/tokisaka-2026.jpg",
+    "videoId": "",
+    "overview": "個人開発者「ときさか」による、締切直前のVTuber業務を題材にしたデッキ構築ローグライト育成シミュレーション。企画書提出やメール対応、配信投稿などのタスクをカードとして予定表に配置し、地獄の1週間を乗り切ることを目指す。3人のVTuberキャラクターと5種類のチャレンジを収録し、2026年8月15日にSteamストアページが公開された。",
+    "background": "VTuberは配信活動の裏で企画・台本・編集・企業対応など多岐にわたる業務を締切に追われながらこなしている。本作はこうした「表に出ない労働の実態」を、プレイヤー自身が資源とスケジュールをやりくりするゲームメカニクスに落とし込むことで、業界のリアルを体験可能な形に翻訳した点が着想の核となっている。",
+    "execution": "開発・原画・シナリオ・作曲までを個人開発者ときさかが一人で手がけた。バイブス・タフネス・センス・フィネスの4パラメータを軸に、日々の予定表へタスクカードを配置していくデッキ構築要素のあるローグライト設計とし、法人からの要求とリスナーの期待の板挟みという「限界」を、ターン制の戦略性として表現している。",
+    "evaluationImpact": "発表直後からSNSで話題化し、締切直前のタスク消化という誰もが共感しやすい体験をVTuber業務というニッチな題材と結びつけた着眼点が評価されている。個人開発ながら企画・絵・シナリオ・作曲を一貫制作した完成度と、業界あるあるを風刺したコンセプトの求心力が拡散の主因となっている。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/App",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "waronwhatshidden-2026",
+    "title": "#WarOnWhatsHidden",
+    "summary": "インドの洗剤ブランドBecoが競合Surf ExcelやVimの成分を名指しし無毒性を訴求する挑発的比較広告",
+    "client": "Beco",
+    "agency": "Colloquial",
+    "categories": [
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.adobomagazine.com/campaign-spotlight/beco-launches-waronwhatshidden-campaign-with-colloquial/",
+    "thumbnail": "/thumbnails/waronwhatshidden-2026.jpg",
+    "videoId": "",
+    "overview": "インドの家庭用洗剤ブランドBecoが、Colloquialと制作した#WarOnWhatsHiddenキャンペーン。競合ブランドSurf ExcelやVim Liquidに含まれる化学成分を名指しし、自社製品の無毒性を訴求する比較広告2本を展開した。",
+    "background": "洗浄製品市場では成分表示があまり注視されず、大手ブランドの広告費に消費者の選択が左右されがちという課題意識をBecoは持っていた。透明性の欠如に対する問題提起として本キャンペーンが企画された。",
+    "execution": "2本の映像でBecoの洗濯洗剤・食器用洗剤と、Surf Excel・Vim Liquidを直接比較。Linear Alkylbenzene Sulfonate（LAS）やBenzisothiazolinone（BIT）といった成分名を挙げ、皮膚・眼への刺激リスクを指摘しながらブランド切り替えを呼びかけた。",
+    "evaluationImpact": "大手ブランドを名指しする挑発的な比較広告として業界内外で話題化し、成分表示への関心喚起に寄与した一方、比較広告が招きうる規制・法的リスクも指摘されている。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Theme/Health",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "sounds-like-freedom-the-future-of-home-cinema-2026",
+    "title": "Sounds Like Freedom / The Future of Home Cinema（独立記念日プリント広告）",
+    "summary": "JBLがインド独立記念日に合わせ、製品を白・緑・オレンジの国旗カラーで彩る2部構成プリント広告でイヤホンとサウンドバーを訴求",
+    "client": "JBL (HARMAN)",
+    "agency": "Havas Creative India",
+    "categories": [
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.adobomagazine.com/campaign-spotlight/jbl-havas-creative-india-turn-independence-day-into-a-celebration-of-sound/",
+    "thumbnail": "/thumbnails/sounds-like-freedom-the-future-of-home-cinema-2026.jpg",
+    "videoId": "",
+    "overview": "JBL(HARMAN)がインド独立記念日週間に合わせて展開した2部構成のプリントキャンペーン。「Sounds Like Freedom」は新製品JBL Live 780NCヘッドホンとLive Beam 4イヤホンを、「The Future of Home Cinema」はサウンドバーJBL Bar 1300MK2を、独立記念日を象徴する白・緑・オレンジの製品ビジュアルとともに紹介する新聞広告。制作はHavas Creative India、メディアプランニングはHavas Media and Arena Indiaが担当した。",
+    "background": "インドでは毎年8月の独立記念日週間に合わせ、多くのブランドが愛国色を用いた広告を展開する慣習がある。JBLは「個人的なリスニングの自由」と「自宅でシネマ体験を楽しむ自由」という2つのテーマを軸に、パーソナルオーディオとホームシアター両カテゴリーの新製品を訴求する必要があった。HARMAN Indiaの消費者オーディオ責任者Shekhar Datta氏らが企画に関わった。",
+    "execution": "「Sounds Like Freedom」ではJBL Live 780NCとLive Beam 4を白・緑・オレンジの新色で撮影し、True Adaptive Noise Cancelling 2.0やAuracast、JBL Spatial Soundなど最新機能を訴求。「The Future of Home Cinema」ではJBL Bar 1300MK2を軸に、Dolby AtmosやDTS:X対応のワイヤレスなホームシネマ体験を「Effortlessly Precise. Elegantly Wireless」というコピーで表現し、全国紙のプリント媒体を中心に展開した。",
+    "evaluationImpact": "デジタル偏重が進むオーディオ市場において、あえてプリント媒体を起点に選んだメディア戦略と、独立記念日という国民的な文化的瞬間に個人の聴く自由と映画体験の自由を重ね合わせた点が特徴。ただし現時点で公式アワードでの受賞情報は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Print",
+      "Tech/Audio",
+      "Theme/Music",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "a-giant-leap-for-popcorn-reinventing-the-popcorn-experience",
+    "title": "A Giant Leap for Popcorn（Reinventing the Popcorn Experience）",
+    "summary": "PopCornersの三角形という形状そのものを主役に、原始人から宇宙飛行士まで時代を旅するヒーローフィルムで新カテゴリーを訴求。",
+    "client": "PopCorners（PepsiCo）",
+    "agency": "ZURDA Mexico",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "中南米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/reinventing-the-popcorn-experience",
+    "thumbnail": "/thumbnails/a-giant-leap-for-popcorn-reinventing-the-popcorn-experience.jpg",
+    "videoId": "",
+    "overview": "PepsiCoのスナックブランドPopCornersがメキシコで展開したキャンペーン。特徴的な三角形の形状を軸に、洞窟人からエジプト人、スーパーヒーロー、宇宙飛行士までが登場するヒーローフィルムを制作し、ポップコーンという既存カテゴリーの常識に挑戦した。",
+    "background": "ポップコーン市場は形状や体験が固定化されており、PopCornersはその中で独自の三角形パッケージを持つ製品として差別化を図る必要があった。「三角形の製品には四角いキャンペーンは合わない」という発想のもと、形状の変化が体験の変化にもつながるというコンセプトを打ち出した。",
+    "execution": "ZURDA Méxicoが制作を担当し、監督Miguel MurcianoとプロダクションWeMonstersが手がけたヒーローフィルムでは、三角形という形状を異なる時代・世界観に配置。洞窟人、エジプト人、スーパーヒーロー、宇宙飛行士が次々登場し、ポップコーンの概念的な進化をコミカルに描写した。",
+    "evaluationImpact": "既成概念にとらわれないビジュアルストーリーテリングにより、単なる商品形状の紹介を超えて新しい食感・風味体験を提案するブランド訴求として業界メディアでも取り上げられた。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Theme/Food"
+    ]
+  },
+  {
     "id": "tcg-card-shop-simulator-switch-ps5-2026",
     "title": "TCG Card Shop Simulator 正式リリース決定（Switch/PS5同時発売）",
     "summary": "「圧倒的に好評」のカードショップ経営シムが9月15日に正式リリース、Switch/PS5に対応しトレカ対戦機能を追加",
