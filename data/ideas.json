@@ -9237,5 +9237,203 @@
         "desc": "複数の最先端AIモデルを切り替えて使える無料のボーカル・楽器分離デスクトップアプリ"
       }
     ]
+  },
+  {
+    "id": "2026-08-19-1",
+    "date": "2026-08-19",
+    "title": "女性コーチのAIアバター化",
+    "pattern": "文脈×技術",
+    "seed": "Missing Managersがゲーム内実績を実際のUEFA資格取得に変換した発想に、1枚の画像から動ける3Dキャラを自動生成するAniGenを掛けたら、女性コーチ候補の写真一枚から指導デモ用アバターを作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "xbox-missing-managers",
+        "title": "Missing Managers（Xbox）",
+        "desc": "Football Manager 26のゲーム内実績を、実際のUEFA指導者資格取得に変換したXboxのキャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "anigen",
+        "title": "AniGen",
+        "desc": "1枚の画像から、動かせる骨格とスキンを含む「アニメーション可能な3Dキャラクター」を自動生成する技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-19-2",
+    "date": "2026-08-19",
+    "title": "非言語表現をロボットの動きへ",
+    "pattern": "文脈×技術",
+    "seed": "おねしょを「伝達」と捉え直すLanguage of Bedwettingの発想に、テキスト指示で人型ロボットが全身動作を生成するTextOpを掛けたら、非言語の自閉症児の意思表現をロボットの動きで代弁できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "autism-bedwetting-language",
+        "title": "Language of Bedwetting",
+        "desc": "おねしょを子どもからの「伝達」と捉え直す、自閉症児向けのAAC(拡大代替コミュニケーション)体系。"
+      },
+      {
+        "type": "tech",
+        "id": "textop",
+        "title": "TextOp",
+        "desc": "テキストで指示するとヒューマノイドロボットが全身モーションをその場で生成・実行する技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-19-3",
+    "date": "2026-08-19",
+    "title": "野菜投入で売り場が発色",
+    "pattern": "文脈×技術",
+    "seed": "子どもの食卓に色を取り戻すAuchanのColorfoodに、音楽やMIDIに反応して映像がその場で変化するTiXLを掛けたら、野菜をカートに入れるたびに売り場の映像が発色していく仕掛けができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "auchan-colorfood",
+        "title": "Colorfood",
+        "desc": "フランスの大手スーパーが仕掛けた、遊びと音楽で子どもの食卓に色を取り戻す肥満予防キャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "tixl",
+        "title": "TiXL（旧称 Tooll3）",
+        "desc": "音楽やMIDIに反応して映像がその場で変化する、無料のリアルタイム・モーショングラフィックス制作ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-19-4",
+    "date": "2026-08-19",
+    "title": "揺らぐ不確実性の浮遊彫刻",
+    "pattern": "文脈×技術",
+    "seed": "「不確かさ」を国際巡回するCERTAINLY TOKYOに、磁石入り物体を空中に安定浮遊させるLeviFabを掛けたら、来場者の触れ方次第で揺らぎ続ける「不確実」な浮遊彫刻を展示できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "certainly-tokyo-2026",
+        "title": "CERTAINLY TOKYO",
+        "desc": "香港のギャラリー発の企画展が国際巡回し、日港中韓比9組が「不確かさ」を考察する展覧会。"
+      },
+      {
+        "type": "tech",
+        "id": "levifab",
+        "title": "LeviFab",
+        "desc": "液体窒素で冷やした超伝導体の力で、磁石入り3Dプリント物体を空中に浮かせて操作するHCI研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-19-5",
+    "date": "2026-08-19",
+    "title": "退役IBM機の3D修復アーカイブ",
+    "pattern": "文脈×技術",
+    "seed": "パンチカードなどIBMの歴史を反映したIBM Data Visualization Guidelinesに、壊れた3D再構成を修復し撮っていない角度まで補完するArtiFixerを掛けたら、退役したIBM機の資料から3Dアーカイブツアーを作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ibm-data-visualization-guidelines-2017",
+        "title": "IBM Data Visualization Guidelines",
+        "desc": "パンチカードなどIBMの歴史を反映し、1000超の製品・約1500人が使うデータ可視化のデザインシステム。"
+      },
+      {
+        "type": "tech",
+        "id": "artifixer",
+        "title": "ArtiFixer",
+        "desc": "壊れたりぼやけた3D再構成を、ビデオ拡散モデルで修復し撮っていない角度まで補完するNVIDIAの研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-19-6",
+    "date": "2026-08-19",
+    "title": "手振りで歩く生成3D空間",
+    "pattern": "技術×技術",
+    "seed": "1枚の画像から歩き回れる3D空間を生成するLyra 2.0に、手のジェスチャーだけでロボット群を操るFluidicSwarmの操作系を掛けたら、握る・開くの手振りだけで生成3D空間を探索できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "lyra-2-0",
+        "title": "Lyra 2.0",
+        "desc": "1枚の画像や動画から、歩き回って探索できる3D空間を自動生成するNVIDIAの技術。"
+      },
+      {
+        "type": "tech",
+        "id": "fluidicswarm",
+        "title": "FluidicSwarm",
+        "desc": "手のジェスチャーだけで、複数の小型ロボット群を水のような一つの生き物のように操れる操作システム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-19-7",
+    "date": "2026-08-19",
+    "title": "菌糸体の電位をDJ楽器に",
+    "pattern": "技術×技術",
+    "seed": "神経細胞のようなスパイク電位を記録するFungal Computerの出力を、11.6ms遅延でリアルタイム分離するStemgenRTの技術で音のトラックとして扱えば、菌糸体が生む揺らぎをDJセットの生きた楽器にできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "fungal-computer",
+        "title": "Fungal Computer（菌糸体メムリスタ／きのこコンピューティング）",
+        "desc": "菌糸体に電極を刺し神経細胞のようなスパイク電位を記録・刺激して、論理ゲートやメモリとして使う研究。"
+      },
+      {
+        "type": "tech",
+        "id": "stemgenrt",
+        "title": "StemgenRT",
+        "desc": "曲を再生しながらボーカルやドラムなど4トラックを、わずか11.6ミリ秒の遅延でリアルタイム分離するツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-19-8",
+    "date": "2026-08-19",
+    "title": "フィルム質感を真正性の証明に",
+    "pattern": "転用",
+    "seed": "本来は映像用のフィルム調カラーを作るAURORA Film Labの実測フィルムルックデータを逆転用し、EC商品写真に「本物のフィルムで撮った質感」を後付けできる真正性の証明ツールにできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "aurora-film-lab-v1-0",
+        "title": "AURORA Film Lab v1.0",
+        "desc": "55種のフィルムの実測データから選抜した12種のルックを混合できる、DaVinci Resolve用グレーディングツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-19-9",
+    "date": "2026-08-19",
+    "title": "リハビリ手本ロボット",
+    "pattern": "転用",
+    "seed": "本来はダンスや演奏動作を生成するTextOpを転用し、テキストで指示した動きをロボットが手本として見せる、リハビリ現場向けの個別化理学療法ツールにできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "textop",
+        "title": "TextOp",
+        "desc": "テキストで指示するとヒューマノイドロボットが全身モーションをその場で生成・実行する技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-19-10",
+    "date": "2026-08-19",
+    "title": "崩壊世界を歩いて本物探し",
+    "pattern": "文脈×技術",
+    "seed": "崩壊するAI世界で「本物」を探すL'Ultimo Uomo Realeの企画に、1枚の画像から歩き回れる3D空間を生成するLyra 2.0を掛けたら、ユーザー自身が生成された崩壊世界を探索して本物のアイテムを見つける体験にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "lultimo-uomo-reale-therealreal",
+        "title": "L'Ultimo Uomo Reale (The Last Real Man)",
+        "desc": "崩壊していくAIの世界で「本物」を探すキャラクターが登場し、唯一本物だったのは革のバッグという企画。"
+      },
+      {
+        "type": "tech",
+        "id": "lyra-2-0",
+        "title": "Lyra 2.0",
+        "desc": "1枚の画像や動画から、歩き回って探索できる3D空間を自動生成するNVIDIAの技術。"
+      }
+    ]
   }
 ]
