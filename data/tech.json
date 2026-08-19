@@ -1,5 +1,147 @@
 [
   {
+    "id": "onesplat",
+    "title": "Onesplat",
+    "org": "TACTYC Studio",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "1枚の画像から数秒でGaussian Splat（半透明の粒の集合で立体を表す3D表現）を生成し、そのままHoudini内で使えるプラグイン。",
+    "point": "写真1枚を放り込むだけで、被写体の背景を自動で消しつつ立体的な「Gaussian Splat」という点群データを作ってくれるHoudini用ツール。これまでGaussian Splatを作るには専用アプリでの変換やクラウドサービスへのアップロードが必要だったが、Onesplatは処理をすべて自分のPC内（NVIDIA GPU）で完結させ、RTX4090なら10秒程度で完成する。広告制作では、商品写真や人物写真からその場で立体オブジェクトを生成し、Houdini上でカメラを回り込ませたりライティングを変えたりする映像表現に使える。ロケハンできない場所のイメージ画像を素材に、簡易的な3D背景やモックアップを短時間で作る用途にも向く。",
+    "detail": "仕組み：Gaussian Splattingは、無数の半透明の「小さな楕円」を空間に配置して物体や風景を再現する技術で、写真のような質感をリアルタイムで描画できる。Onesplatは1枚の画像から深度や形状を推定するAIモデルを使い、その場でこの楕円の集合（スプラット）を組み立てる。RTX4090で65,536個のスプラットを11.1秒、26万個でも11.5秒と、枚数が増えても速度がほぼ変わらない。\n\n従来との違い：通常のGaussian Splattingは同じ被写体を多数の角度から撮影した写真群（数十〜数百枚）が必要だが、Onesplatは1枚の写真だけで完結する点が大きな違い。精度は多視点撮影に劣るが、「とりあえず立体感のある素材が欲しい」というプリビズ・検討段階の用途には十分。\n\n導入に必要なもの：Houdini 21以降、NVIDIA GPU（VRAM 6GB以上）、Windows PC、Python 3.10〜3.12の環境。Gumroadで買い切り購入し、初回起動時にAIモデル本体（約10GB）をダウンロードする。",
+    "license": {
+      "spdx": null,
+      "commercial": "paid",
+      "note": "Gumroadで買い切り販売。1.x系のアップデートは無料、返金不可"
+    },
+    "links": [
+      {
+        "kind": "product",
+        "url": "https://tactyc.gumroad.com/l/onesplat"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/tactyc-ships-onesplat-generating-gaussian-splats-from-a-single-image-inside-houdini"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/onesplat.jpg",
+    "relatedWorks": [
+      {
+        "title": "SAM 3D Objects (Meta)",
+        "description": "1枚の写真から3Dオブジェクトを再構成するMetaのオープンソースモデル",
+        "url": "https://ai.meta.com/blog/sam-3d/"
+      },
+      {
+        "title": "LGM (Large Gaussian Model)",
+        "description": "少数〜単一画像から高速にGaussian Splatを生成する研究プロジェクト",
+        "url": "https://github.com/3DTopia/LGM"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "gaussiansplatting-jl-v2-0-0",
+    "title": "GaussianSplatting.jl v2.0.0",
+    "org": "JuliaNeuralGraphics",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "Julia言語だけで書かれたGaussian Splatting（3D点群レンダリング）の実装ライブラリ。MCMCによる高精度な点群制御と、空をきれいに分離する「Sky Dome」機能を追加。",
+    "point": "Gaussian Splattingを丸ごとJulia言語で実装したオープンソースのライブラリ・アプリ。通常このジャンルの実装はPython+CUDAで書かれることが多いが、これはNVIDIA・AMD・Mac（Metal）のGPUを1つのコードで動かせるのが特徴。v2.0では「MCMC」という統計的な手法を使い、点群（スプラット）の数を狙った通りにコントロールしながら学習できるようになったほか、空だけを別レイヤーとして扱う「Sky Dome」機能で、屋外シーンでよくある空がチラチラ揺らぐノイズを抑えられる。実写ロケ地を3DGS化して背景素材にする際、空の破綻が減り仕上がりが安定する点、手元のどのGPUでも試せる点が実務的なメリットになる。",
+    "detail": "仕組み：Gaussian Splattingは無数の半透明の楕円体を空間に置き、その集合として3D空間を表現する技術。学習過程で楕円を増減させる「densification」が品質を左右するが、従来手法は勾配任せで数が暴走しやすかった。v2.0が採用したMCMC（マルコフ連鎖モンテカルロ）densificationは、あらかじめ決めた点群数の枠内で配置を統計的に更新する手法で、初期化が多少雑でも安定した結果になりやすい。\n\n従来との違い：屋外シーンでは空が単色で奥行き情報が乏しく、Gaussian Splattingでは空にノイズ状の点が浮遊しがちだった。Sky Domeは空だけを大きな球（または半球）状の専用レイヤーとして別処理し、手前の被写体と合成することでこの問題を解消する。加えて深度マップとの整合や法線の整合も追加され、幾何精度が上がった。\n\n使うには：GitHubからJuliaパッケージとして無料入手可能。Julia言語の実行環境とCUDA/AMDGPU/Metalいずれかの対応GPUが必要で、非エンジニアがそのまま使うにはハードルがある。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "OSSで商用利用可"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/JuliaNeuralGraphics/GaussianSplatting.jl"
+      },
+      {
+        "kind": "post",
+        "url": "https://pxl-th.github.io/blog/better-gs-julia/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/gaussiansplatting-jl-v2-0-0.jpg",
+    "relatedWorks": [
+      {
+        "title": "3D Gaussian Splatting (原論文実装)",
+        "description": "Python/CUDAによるオリジナルのGaussian Splatting実装",
+        "url": "https://github.com/graphdeco-inria/gaussian-splatting"
+      },
+      {
+        "title": "3DGS-MCMC",
+        "description": "densificationにMCMCを導入した元となる研究",
+        "url": "https://ubc-vision.github.io/3dgs-mcmc/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "360-gaussian-pro",
+    "title": "360 Gaussian Pro",
+    "org": "Laskos (Laskos Virtuals)",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "360度カメラの映像から自動でGaussian Splat（立体点群）を生成する有償デスクトップアプリ。COLMAPを独自に組み直し、Meta製の最新セグメンテーションAI「SAM3」による自動マスキングを搭載。",
+    "point": "Insta360やDJI Osmo 360などの360度カメラで撮った映像を放り込むだけで、位置合わせから学習まで自動でGaussian Splat化してくれるWindows向けアプリの有償版。無料版で使われていた位置合わせ手法（SphereSfM）を、開発者自らCOLMAPという定番の写真測量エンジンをベースに一から組み直したものに置き換え、精度と安定性を上げた。さらにMetaの最新セグメンテーションAI「SAM3」を組み込み、通行人や自分撮り棒などを自動でマスクして除去できる。広告制作では、ロケ地を360度カメラでぐるっと撮るだけで、後からバーチャルカメラで自由に画角を作り直せる立体背景素材が手に入る。ロケハンの代替や、複数カットの背景を1回の撮影で使い回す用途に向く。",
+    "detail": "仕組み：360度カメラの映像は魚眼状に歪んだ全天球画像の連続。これを普通のGaussian Splatting手法にかけるには、まず各フレームがどの位置・角度で撮られたかを逆算する「Structure from Motion（SfM）」という処理が必要になる。360 Gaussian ProはこのSfM部分にCOLMAP（GLOMAPによるグローバルな位置合わせ、ループ検出、GPUでのバンドル調整を含む独自ビルド）を採用し、無料版より大きく複雑なロケーションでも位置合わせが破綻しにくい。\n\n従来との違い：一般的な360→3DGS変換ツールは、動く人や機材（自分撮り棒）がそのままノイズとして点群に残りやすい。Pro版はSAM3ベースの自動マスキングで魚眼レンズ用プリセットやカスタムマスク、手動ペイントにも対応し、こうした不要物を学習前に除去できる。\n\n導入に必要なもの：NVIDIA RTX 20シリーズ以降（VRAM 12GB推奨）のWindows PCが必須（AMD/Intel非対応）。料金は1週間€20、1年€89、永久ライセンス€149（サインイン不要の無料お試しあり）。撮影機材としてInsta360 X4/X5/X6かDJI Osmo 360が必要。",
+    "license": {
+      "spdx": null,
+      "commercial": "paid",
+      "note": "€20(1週間)/€89(1年)/€149(永久)。同開発元の無料版「360 Gaussian」も別途存在"
+    },
+    "links": [
+      {
+        "kind": "product",
+        "url": "https://360gaussianpro.com"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/laskos-releases-360-gaussian-pro-with-a-rebuilt-colmap"
+      },
+      {
+        "kind": "video",
+        "url": "https://youtu.be/Gc-g1scGPWE"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/360-gaussian-pro.jpg",
+    "relatedWorks": [
+      {
+        "title": "360 Gaussian（無料版）",
+        "description": "同開発元による360度→3DGS変換の無料版アプリ",
+        "url": "https://laskosvirtuals.gumroad.com/l/360gaussian"
+      },
+      {
+        "title": "Segment Anything 3 (SAM3)",
+        "description": "Pro版のマスキング機能が採用するMetaの物体セグメンテーションAI",
+        "url": "https://ai.meta.com/sam3/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "lego",
     "title": "LEGO",
     "org": "武漢大学 (Wuhan University) / 香港科技大学 (HKUST), USI-3DV Group",
