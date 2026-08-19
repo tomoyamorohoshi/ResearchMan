@@ -1,5 +1,183 @@
 [
   {
+    "id": "rain-tree-9-2026",
+    "title": "雨の日の星空",
+    "summary": "秋元康プロデュースのアイドルが藝大生9人と合同展を開催し、初挑戦の油絵をオークションで大学に寄付",
+    "client": "Rain Tree（橋本真希）× 東京藝術大学 学生9名",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新",
+      "社会包摂"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.daily.co.jp/gossip/2026/08/17/0020714626.shtml",
+    "thumbnail": "/thumbnails/rain-tree-9-2026.jpg",
+    "videoId": "",
+    "overview": "アイドルグループRain Treeの橋本真希と東京藝術大学の学生9人による合同展「雨の日の星空」が8月18日、南青山のGallery Blue 3143で開幕。橋本は油絵未経験ながら制作した作品を初公開した。",
+    "background": "橋本は美術検定4級を取得するなど美術への関心を深め、藝大生との協働プロジェクトとして自ら油絵制作に挑戦。グループ楽曲「台風の夜」を聴きながら構想を練り、花をモチーフにした作品を仕上げた。",
+    "execution": "出品作はF30号（91cm×72.2cm）のブルーを基調とした大作で、「舞っていく感じ」と「新しい自分への変化」を表現。完成作は東京藝術大生9人の作品とともに展示され、橋本作品はオークションに出品し、落札額から手数料等を除いた額を東京藝術大学へ寄付する。",
+    "evaluationImpact": "現役アイドルが専門教育を受けた学生と対等に作品を並べ、収益を大学に還元する仕組みは、アイドルの表現活動と美術教育支援を結びつけた珍しい試みとして注目された。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Theme/Art",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "the-phoney-club-redefines-ai-made-worlds-2026",
+    "title": "The Phoney Club Redefines AI-Made Worlds",
+    "summary": "実在モデルのライセンス済みAI複製とハイブリッド写真に「顔は加工しない」独自倫理指針を組み合わせ、本物らしさを外部から担保する広告制作モデル",
+    "client": "The Phoney Club",
+    "agency": "The Phoney Club（自社）",
+    "categories": [
+      "AIクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.itsnicethat.com/articles/the-phoney-club-graphic-design-discover-180826",
+    "thumbnail": "/thumbnails/the-phoney-club-redefines-ai-made-worlds-2026.jpg",
+    "videoId": "",
+    "overview": "ロッテルダムのスタジオThe Phoney Club（2013年設立、Anne LintとSanne de Wildによる）は、実在モデルのライセンス取得済みAI複製「AIツイン」と、実写とAI生成を組み合わせた「The Phoney Edit」というサービスを軸に、美容・スキンケアブランド向けのビジュアル制作を行っている。",
+    "background": "美容・スキンケア業界では撮影・ロケーション・キャスティングのコストが高く、AI生成画像の普及で「本物らしさ」への懸念も広がっていた。同スタジオはAIの活用自体を否定せず、加工・改変をしないという明確な倫理指針を設けることで信頼性を担保する立場を選んだ。",
+    "execution": "Ajen Botanical Body Careでは実在モデルSoesja Leugsのライセンス済みAIツインを制作し、顔の皺・影・傷跡も一切加工しない方針でフィクショナルな世界に配置。Maiwe SkincareやCÎME、NONA Handbagsでは「The Phoney Edit」により、1度構築したブランド世界観をもとに毎月新しいAI生成ビジュアルを1枚120ユーロ〜で量産する。",
+    "evaluationImpact": "It's Nice Thatは同スタジオを「AI制作の世界のルールを塗り替える」存在として紹介し、AI活用における真正性の担保を美学ではなく倫理の問題として捉える姿勢が業界内の議論を喚起した。撮影費・ロケ費・キャスティング費を要さず一貫したブランド世界観を毎月更新できる点が、美容業界における新しい制作モデルとして注目されている。",
+    "relatedWorks": [
+      {
+        "title": "Ajen Botanical Body Care キャンペーン",
+        "description": "モデルSoesja LeugsのライセンスAIツインを用いた、加工なしの製品ビジュアル制作",
+        "url": "https://thephoneyclub.com/the-phoney-edit"
+      },
+      {
+        "title": "CÎME ビジュアルアイデンティティ",
+        "description": "The Phoney Clubが手がけた、柔らかさを軸としたブランドのビジュアル言語構築",
+        "url": "https://the-brandidentity.com/project/how-the-phoney-club-gave-c%C3%AEme-a-visual-language-rooted-in-softness"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Print",
+      "Theme/Fashion"
+    ]
+  },
+  {
+    "id": "we-want-your-pee-2026",
+    "title": "We Want Your Pee",
+    "summary": "AIデータセンターの大量の水消費を風刺し、元NFL選手が尿の寄付を呼びかけるミュージカル仕立てのPSA",
+    "client": "Liquid Death × Garage Beer",
+    "agency": "Liquid Death（自社）",
+    "categories": [
+      "カルチャーインサイト",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://musebyclios.com/music/liquid-death-and-garage-beer-made-a-pee-musical-so-youre-in-for-a-treat/",
+    "thumbnail": "/thumbnails/we-want-your-pee-2026.jpg",
+    "videoId": "r9OhekhlZ9Y",
+    "overview": "Liquid DeathとGarage Beer(Jason Kelce・Travis Kelce共同経営)が2026年8月に発表したPSA風ミュージカル動画。AIデータセンターが1日最大500万ガロンの水を消費する問題を取り上げ、元NFL選手Jason Kelceが自宅トイレで尿を瓶に集める場面から始まり、Liquid Deathのマスコット等と共に「尿をコンピューターにかけて人類を救おう」と歌う。実際の尿収集が目的ではなく、風刺としての注意喚起を狙った企画。",
+    "background": "全米に4000以上あるデータセンターは1施設あたり1日最大500万ガロンの水を冷却に消費するとされ、AIブームに伴う電力・水資源の逼迫が社会問題化している。Liquid DeathのVP of Creative Andy Pearsonが発案し、悪ふざけ的なマーケティングに社会的メッセージを込める同社の手法を踏襲。Garage BeerのCEO Andy Sauerは、両ブランドが共有する「肩の力を抜いた製品哲学」を強調している。",
+    "execution": "監督はWill Carsola、制作はLiquid Death内製チームDeath Machine。フィラデルフィアの公園で撮影し、Kelceが自宅トイレで尿を集める場面から始まり、屋外でLiquid Deathのマスコット「Murder Man」やジャグロ、ドローン、着ぐるみキャラクターらと共に「We want your pee」を歌う。グッズ「Data Center Coolant Collector」を限定販売し、9月17〜20日にはシンシナティで実際のイベントも予定されている。",
+    "evaluationImpact": "公式サイトには「実際に尿を送らないでください」と明記され、あくまで風刺としての話題喚起が狙い。Liquid Death流の悪趣味ユーモアとNFLスターの起用を組み合わせ、AIインフラの環境負荷という硬派な社会課題を大衆的な話題に転換した点が特徴。公開直後からAdweek、Marketing Dive、Billboard等米主要メディアが幅広く報じ、話題化に成功している。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Theme/Sustainability",
+      "Form/Film",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "retail-rejuvenation-2026",
+    "title": "Retail Rejuvenation",
+    "summary": "実在客6名を偽ウェルネスリトリートで「回復」させる動画と、失敗買い物品の店頭トレードインを接続した点が新しい。",
+    "client": "JCPenney",
+    "agency": "Mischief @ No Fixed Address",
+    "categories": [
+      "カルチャーインサイト",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.adweek.com/creativity/jcpenney-takes-aim-at-off-price-retail-with-a-satirical-wellness-retreat/",
+    "thumbnail": "/thumbnails/retail-rejuvenation-2026.jpg",
+    "videoId": "",
+    "overview": "JCPenneyが独立系エージェンシーMischief @ No Fixed Addressと制作した「Retail Rejuvenation」キャンペーン。オフプライス小売で「お得」を求めるあまり尊厳を犠牲にする買い物客を風刺し、実在の買い物客6名を集めた偽ウェルネスリトリートで「買い物の後悔」から癒す体験型施策を展開した。",
+    "background": "破産後の再建中のJCPenneyは2025年にMischiefを起用し「Yes, JCPenney」ブランドプラットフォームを開始。TJ Maxxなどオフプライス小売の「掘り出し物」文化が定着する一方、シミやサイズ違いなど粗悪品を掴む消費者心理的負担に着目し、秋商戦に向け「本当のお得さ」を再定義する狙いがあった。",
+    "execution": "実在のオフプライス買い物客6名を「Retail Rejuvenation Retreat」に招集し、マントラ・トラストフォール・原始的な叫びなど本格的なウェルネスリトリート形式で「買い物の後悔」から回復させる4分間のロングフォーム動画(YouTube/Meta配信、15秒の短編版も展開)を制作。あわせて8月28〜30日、店舗で「retail regret」の品を持参すると50ドル購入で15ドル割引となるトレードインプログラムを実施し、回収品はGood360を通じ寄付した。",
+    "evaluationImpact": "最高顧客・マーケティング責任者Marisa Thalbergは、消費者心理を「楽しく異なる方法で伝える」施策と説明。風刺的な動画表現と実店舗でのトレードイン・寄付という実行動を接続し、ブランドメッセージを生活者の行動変容に落とし込んだ点が特徴。2026年8月発表の新規キャンペーンで、確認できる受賞歴は現時点でない。",
+    "relatedWorks": [
+      {
+        "title": "JCPenney × Ashley Graham「Omitted」フェイク映画予告編キャンペーン",
+        "description": "同じくMischiefが制作した「Yes, JCPenney」ブランドプラットフォームの一環。Ashley Grahamとの体型包摂コレクションを、存在しないスリラー映画の予告編という体裁で全国の映画館で公開した。",
+        "url": "https://www.adweek.com/creativity/ashley-grahams-fake-thriller-is-actually-a-jcpenney-fashion-launch/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Form/Event",
+      "Theme/Retail"
+    ]
+  },
+  {
+    "id": "let-s-all-play-2026",
+    "title": "Let's All Play",
+    "summary": "コメディアンがトラクターでポルトガル各地を巡り即席ピッチを作り、地名『オヴァー』をVARに掛けて締める動画施策",
+    "client": "Liga Portugal × Betclic",
+    "agency": "Dentsu Creative Portugal",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://musebyclios.com/eurovisions/betclic-rides-a-tractor-across-portugal-all-for-the-love-of-soccer/",
+    "thumbnail": "/thumbnails/let-s-all-play-2026.jpg",
+    "videoId": "fQR59uR6qMA",
+    "overview": "Betclic×Liga Portugalによる2026/27シーズン施策。コメディアンLuana do Bemがトラクターでポルトガル各地を巡り、行く先々に即席のサッカーピッチを作っていく様子を描いたフィルム。旅の終着点は地名がVAR(ビデオアシスタントレフェリー)と音が似ている都市オヴァーで、サッカーの判定用語との語呂合わせでオチをつける構成になっている。",
+    "background": "BetclicはLiga Portugalのメインスポンサーとして3シーズン連続で契約を継続しており、本キャンペーンはその一環。スローガン『In the Name of Football, Let's All Play』のもと、サッカーを愛する国民を巻き込むブランド体験を演出する狙いがあると考えられる。制作はDentsu Creative Portugalが担当し、2026年8月に公開された。",
+    "execution": "サッカー好きとして知られるポルトガルの人気コメディアンLuana do Bemが出演し、トラクターに乗って国内各地を移動しながら、その場でサッカーピッチを敷いていくユーモラスな構成のフィルムを制作。旅の最終地点である都市『オヴァー(Ovar)』の名前がサッカー用語『VAR』と音が酷似している点を活かし、地名を使った語呂オチで締めくくる。",
+    "evaluationImpact": "高額な演出やテクノロジーに頼らず、地名の語呂合わせという言葉遊びとローカルなユーモアだけでブランドと国民的スポーツへの愛着を結びつけた点が特徴。Muse by Clios等の海外クリエイティブメディアでも取り上げられ、スポーツスポンサーシップにおけるコンテンツ発想の一事例として注目されている。なお公式な受賞情報は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Form/Event",
+      "Theme/Sports",
+      "Theme/Entertainment"
+    ]
+  },
+  {
     "id": "tokisaka-2026",
     "title": "限界ライバー しめきり1週前",
     "summary": "VTuberの締切地獄をデッキ構築ローグライトに翻案、個人開発者が業務の内幕を風刺したSteamページを公開",
