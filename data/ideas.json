@@ -9435,5 +9435,209 @@
         "desc": "1枚の画像や動画から、歩き回って探索できる3D空間を自動生成するNVIDIAの技術。"
       }
     ]
+  },
+  {
+    "id": "2026-08-20-1",
+    "date": "2026-08-20",
+    "title": "浸水シミュレーション保険",
+    "pattern": "文脈×技術",
+    "seed": "住所を入力すると家ごとの災害リスクを語るHavenの発想に、AlayaWorldの1枚の画像から動く映像世界をリアルタイム生成する技術を掛けたら、『もし浸水したら』を目の前で動かして見せられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "suncorp-haven",
+        "title": "Haven",
+        "desc": "住所を入力すると家ごとの自然災害リスクと対策を映像で語る保険会社の無料プラットフォーム。"
+      },
+      {
+        "type": "tech",
+        "id": "alayaworld",
+        "title": "AlayaWorld",
+        "desc": "1枚の画像とカメラの動きから、動く映像世界をリアルタイムに生成し続けるオープンソースの世界モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-20-2",
+    "date": "2026-08-20",
+    "title": "故人の部屋を歩く追悼体験",
+    "pattern": "文脈×技術",
+    "seed": "暗殺されたジャーナリストをディープフェイクで蘇らせた#StillSpeakingUpの発想に、Aholo Viewerのブラウザだけで巨大な3D空間を表示できる技術を掛けたら、遺族が故人の生前の部屋を歩いて回れる追悼体験を作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "stillspeakingup-deeptruth",
+        "title": "#StillSpeakingUp",
+        "desc": "暗殺されたジャーナリストをディープフェイクで蘇らせ、生前言えなかった真実を語らせた報道の自由の広告。"
+      },
+      {
+        "type": "tech",
+        "id": "aholo-viewer",
+        "title": "Aholo Viewer",
+        "desc": "インストール不要のブラウザで最大10億スプラット級の3D空間を表示できるオープンソースのレンダラ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-20-3",
+    "date": "2026-08-20",
+    "title": "実写空間にロボット動作合成",
+    "pattern": "技術×技術",
+    "seed": "Unreal上でGaussian Splattingを3Dモデルと正しい奥行きで重ねられるYaGSと、人のモーキャプをロボットの動きに変換するrobot_retargeterを組み合わせたら、実写スキャンした空間の中でロボットの動きを違和感なく合成できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "yags",
+        "title": "YaGS",
+        "desc": "Unreal Engine上でガウシアンスプラットを通常の3Dモデルと正しい奥行きで重ねられる無料プラグイン。"
+      },
+      {
+        "type": "tech",
+        "id": "robot-retargeter",
+        "title": "robot_retargeter",
+        "desc": "人のモーションキャプチャデータを体格の違う人型ロボットの動きに自動変換する無料のオープンソースツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-20-4",
+    "date": "2026-08-20",
+    "title": "即興顔動画ライブ演出",
+    "pattern": "転用",
+    "seed": "本来は動画+音声生成を4ステップまで高速化するMiniMax-H3-Turbo-Loraを転用して、ライブ会場で観客の顔写真から数秒後に似顔絵動画が流れる即興演出装置を作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "minimax-h3-turbo-lora",
+        "title": "MiniMax-H3-Turbo-Lora",
+        "desc": "動画+音声生成を通常20ステップ必要なところをわずか4ステップまで短縮する高速化用LoRA。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-20-5",
+    "date": "2026-08-20",
+    "title": "テキスト生成選手で映像連結",
+    "pattern": "文脈×技術",
+    "seed": "世界中のスポーツ映像を完璧なスプリットスクリーンで繋いだNikeのYOU CAN'T STOP USに、文章から3Dの人の動きと映像を同時生成するCoMoViを掛けたら、実在しないアスリートの動きをテキストだけで生成し実写と違和感なく繋げられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "nike-you-cant-stop-us",
+        "title": "YOU CAN'T STOP US",
+        "desc": "世界中のスポーツ映像を完璧なスプリットスクリーンで繋いだ、コロナ禍のスポーツ停止に対するNikeの広告。"
+      },
+      {
+        "type": "tech",
+        "id": "comovi",
+        "title": "CoMoVi",
+        "desc": "文章から3Dの人の動きと写実的な映像を同じ生成ループの中で同時に作る研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-20-6",
+    "date": "2026-08-20",
+    "title": "影で稼働感を出す発電展示",
+    "pattern": "転用",
+    "seed": "本来はBlenderのシーンライトに反応するセルフシャドウをガウシアンスプラットに後付けするSplatlightを転用して、風雷讃甚のような『あったかもしれない発電技術』の展示を、影の変化だけで本当に稼働しているように見せられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2025-st03",
+        "title": "風雷讃甚",
+        "desc": "平賀源内の多才さから発電・復元をキーワードに、あったかもしれない技術を探るインスタレーション。"
+      },
+      {
+        "type": "tech",
+        "id": "splatlight",
+        "title": "Splatlight",
+        "desc": "実写を3Dスキャンしたガウシアンスプラットに、Blenderのシーンライトに反応する影を後付けできるアドオン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-20-7",
+    "date": "2026-08-20",
+    "title": "世代を重ねるモーキャプ映像詩",
+    "pattern": "文脈×技術",
+    "seed": "世代を超えたブラック・ラブを讃えたKendrick Lamarの『luther』に、1本のビデオで体・手・顔を同時モーキャプできるBlendCapを掛けたら、祖父母と孫が同じ動きを重ねて一つの身体になる映像詩を撮れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "kendrick-lamar-luther",
+        "title": "luther",
+        "desc": "ブラック・ラブを世代を超えて讃えた、Kendrick Lamarの圧倒的な映像詩。"
+      },
+      {
+        "type": "tech",
+        "id": "blendcap",
+        "title": "BlendCap",
+        "desc": "1本のビデオを撮るだけで体・手・顔を同時にモーションキャプチャできるBlenderアドオン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-20-8",
+    "date": "2026-08-20",
+    "title": "複数視点でキャラ動き転写",
+    "pattern": "技術×技術",
+    "seed": "2D基盤モデルに空間アダプタを挿入し3D再構成なしで視点間一貫の特徴を出すMulti-View Foundation Modelsと、骨格抽出なしで動画の人物の動きを別キャラへ乗り移らせるSCAIL-2を組み合わせたら、複数カメラのライブ映像でも破綻なくキャラクターへ動きを移せるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "multi-view-foundation-models",
+        "title": "Multi-View Foundation Models",
+        "desc": "2D基盤モデルにマルチビュー空間アダプタを挿入し、3D再構成なしで視点間一貫の特徴を出す汎用フレームワーク。"
+      },
+      {
+        "type": "tech",
+        "id": "scail-2",
+        "title": "SCAIL-2",
+        "desc": "動画の人物の動きを骨格抽出を経ずに別キャラクターへそっくり乗り移らせるEnd-to-Endモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-20-9",
+    "date": "2026-08-20",
+    "title": "ボロノイ柄を映像に後乗せ",
+    "pattern": "文脈×技術",
+    "seed": "ボロノイ図を生成的コアに据えて構築したCohereのブランドIDに、LTX-2.3をプロンプト指示型の動画編集モデルに変えるEditAnythingを掛けたら、ボロノイ状のブランドパターンを既存の広告映像へテキスト指示だけで後から焼き込めるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "cohere-brand-identity-by-pentagram-2023",
+        "title": "Cohere Brand Identity by Pentagram",
+        "desc": "AI言語モデル企業Cohereのため、Pentagramがボロノイ図を生成的コアに据えて構築したブランドアイデンティティ。"
+      },
+      {
+        "type": "tech",
+        "id": "editanything",
+        "title": "EditAnything (LTX-2.3 Video Edit LoRA)",
+        "desc": "動画生成モデルLTX-2.3をプロンプト指示型の動画編集モデルに変え、背景除去や要素置換をテキストで実行できるLoRA。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-20-10",
+    "date": "2026-08-20",
+    "title": "生年月日から星座3D空間",
+    "pattern": "文脈×技術",
+    "seed": "画像生成AI大手Midjourneyが占星術アプリCo-Starを買収しAIの人間理解を軸に消費者アプリへ参入したのに、ComfyUI Native Gaussian Splat Nodesで3D空間をノードだけで組み立てられる技術を掛けたら、生年月日から生成した『あなただけの星座空間』を3Dで持ち歩けるサービスを作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "midjourney-co-star-2026",
+        "title": "Midjourney、占星術アプリ「Co-Star」を買収",
+        "desc": "画像生成AI大手MidjourneyがMAU430万人の占星術アプリCo-Starを買収し消費者向けアプリ事業へ参入。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-native-gaussian-splat-nodes",
+        "title": "ComfyUI Native Gaussian Splat Nodes（GAUSSIAN型 / v0.23.0）",
+        "desc": "ノードエディタComfyUIに3D Gaussian Splatを扱うデータ型と読み込み・変換・レンダリングのノード群を追加するツール。"
+      }
+    ]
   }
 ]
