@@ -1,5 +1,141 @@
 [
   {
+    "id": "openvideo",
+    "title": "OpenVideo",
+    "org": "open-video-ai（OSSコミュニティ）",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools",
+      "AI/Agents"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "ローカルAIチャットツール「Ollama」と同じ操作感で、自分のPCのGPU上に動画生成AI「MiniMax H3」を一行コマンドでインストールして動かせるオープンソースのCLIツール。",
+    "point": "Ollamaは「PC上でChatGPTのような文章AIを簡単に動かせるツール」として知られていますが、OpenVideoはその動画版です。`open-video pull h3`（モデルのダウンロード）→`open-video run \"プロンプト\"`（生成）というたった2つのコマンドだけで、高性能な動画生成AI「MiniMax H3」を自分のGPU上で動かせます。クラウドサービスへの課金や、生成のたびに秒単位で料金が発生する不安がなく、社外秘の素材やまだ発表前の企画のビジュアル化を、外部にデータを送らず社内・自宅の環境だけで完結できるのが最大の利点です。さらにClaudeやCursorのようなAIコーディングアシスタントから直接呼び出せる「エージェントスキル」も同梱されており、将来的には人手を介さず企画からラフ動画までをAIエージェントに任せる、といった使い方の土台になり得ます。広告制作の初期段階で「とりあえず動く絵で見せたい」というラフ動画量産や、社内検証用のプロトタイプ制作に向いています。",
+    "detail": "仕組みは大きく2段構えです。①インストーラーがOSごとの環境構築（Pythonパッケージ、モデル実行エンジンのComfyUI一式）を自動でセットアップし、②`pull`コマンドで動画生成AIモデル本体（MiniMax H3、容量は約54GB）をダウンロードします。生成時には内蔵の「品質採点AI（vision judge）」が出力動画を自動評価し、点数が低い場合は自動で再生成する仕組みも用意されています。\n\n従来、こうしたローカル動画生成環境の構築はComfyUIのノード（部品）を手作業でつなぐ必要があり、環境構築だけで数時間かかることも珍しくありませんでした。OpenVideoはそのセットアップを1コマンドに圧縮した点が新しく、Ollamaが文章AIの世界で果たした「誰でも使えるようにする」役割を動画AIで狙っています。\n\n利用にはNVIDIA製GPU（推奨VRAM 22GB以上、9〜12GBでも軽量版で動作）と約60GBの空きディスク容量が必要です。現バージョン(v0.0.1)は単発クリップの生成のみに対応し、複数カットをつなげて一本の映像に仕上げる「ディレクター機能」は開発ロードマップ段階（未実装）である点には注意してください。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "CLI本体のコードはApache-2.0で商用利用も自由。ただし内部で使う動画生成AIモデル「MiniMax H3」の重みは別ライセンス（MiniMax H3 Community License）で、年商2000万ドルを超える商用利用や、EU・英国・韓国・米国での商用利用には別途許諾が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/open-video-ai/open-video"
+      },
+      {
+        "kind": "project",
+        "url": "https://open-video.ai"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/openvideo.jpg",
+    "relatedWorks": [
+      {
+        "title": "Ollama",
+        "description": "ローカルLLMを1コマンドで導入・実行できるツール。本プロジェクトが設計思想の手本にしている",
+        "url": "https://ollama.com"
+      },
+      {
+        "title": "MiniMax H3",
+        "description": "本ツールが利用する動画生成AI本体（音声同期生成にも対応）",
+        "url": "https://huggingface.co/MiniMaxAI/MiniMax-H3"
+      },
+      {
+        "title": "ComfyUI",
+        "description": "OpenVideoが内部の実行エンジンとして利用するノードベースの生成AIツール",
+        "url": "https://github.com/comfyanonymous/ComfyUI"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "comfyui-h3-facerefine",
+    "title": "ComfyUI-H3-FaceRefine",
+    "org": "Carasibana（個人開発者）",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "動画生成AIが苦手とする「画面の中で小さく映る顔」だけを検出・拡大して描き直し、元の映像に自然に貼り戻すComfyUI用の拡張ツール。",
+    "point": "AI動画生成では、人物が画面全体に大きく映る「顔アップ」は綺麗に生成できても、引きの画（人物が画面の一部にしか映らないカット）では顔が崩れたり、のっぺりした表情になりがちという弱点があります。ComfyUI-H3-FaceRefineはこの弱点をピンポイントで解決するツールです。動画の各フレームから顔だけを自動検出して切り出し、AIが得意なサイズまで拡大して顔だけを描き直させ、その結果を色味や境界をなじませながら元の映像にはめ込み直します。写真の顔だけをレタッチして合成する作業を、動画の全フレームに対して自動でやってくれるイメージです。広告や企業VPで「引きの画で人物が歩いてくるカット」「複数人が並ぶ集合カット」など、これまでAI動画では顔が破綻しやすく使いづらかった構図を実用レベルに引き上げられる可能性があり、演出の幅が広がります。",
+    "detail": "仕組みは4段階のパイプラインです。①顔検出AI（YOLOv8ベース）で各フレームの顔位置を追跡（フレーム間で検出が途切れても軌道を補間）、②顔だけを一定の余白比率で切り出し、AIが得意な512〜768px程度のサイズに拡大、③その拡大画像を動画生成AI「MiniMax H3」に再度読み込ませて（口の動きの音声同期にも対応した状態で）描き直し、④結果を色味を合わせつつ境界をぼかしながら元のフレーム位置に正確に貼り戻します。位置情報は小数点まで保持されるため、貼り戻し時のズレやガタつきが起きにくい設計です。\n\n従来は「顔が崩れたカットは生成し直すか、後工程で人力レタッチする」しかありませんでしたが、本ツールは崩れた顔だけを自動で選択的に高品質化できる点が新しく、動画全体を作り直すコストを避けられます。\n\n利用にはComfyUI環境に加え、顔検出用のYOLOv8モデルファイルと、ultralytics・scipy・insightfaceといったPythンパッケージの追加インストールが必要です。処理コストは「拡大サイズ×フレーム数」に比例して増えるため、長尺のクリップを大きな解像度で処理するとVRAM不足になりやすい点は運用上の注意点です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "ツール本体（ComfyUIノード）のコードはMITで商用利用も自由。ただし処理対象となる動画生成AI「MiniMax H3」の出力自体は別途MiniMax H3 Community Licenseの制約（地域・売上規模による条件）を受ける。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Carasibana/ComfyUI-H3-FaceRefine"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/comfyui-h3-facerefine.jpg",
+    "relatedWorks": [
+      {
+        "title": "MiniMax H3",
+        "description": "本ツールが顔の描き直しに利用する動画生成AI本体",
+        "url": "https://huggingface.co/MiniMaxAI/MiniMax-H3"
+      },
+      {
+        "title": "ComfyUI-Impact-Pack",
+        "description": "顔などの部分検出・マスク生成でComfyUIコミュニティが広く使う関連拡張",
+        "url": "https://github.com/ltdrdata/ComfyUI-Impact-Pack"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "minimax-h3-realism-people-lora",
+    "title": "MiniMax H3 Realism People LoRA",
+    "org": "fal",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "動画生成AI「MiniMax H3」に後から追加で読み込ませるだけで、人物の顔や肌の質感をぐっと写実的に近づける追加学習データ（LoRA）。",
+    "point": "AI生成動画に映る人物は、顔のアップになるとどこか作り物っぽい肌の質感になったり、表情が不自然になったりしがちです。このLoRAは、実写映像176クリップだけを厳選して追加学習させることで、そうした「AIっぽさ」を軽減し、アップになっても崩れにくい顔、化粧品広告のような自然な肌の質感、微妙な表情の動き、映画のような光の当たり方を再現できるようにする追加パーツです。ベースとなる動画生成AI本体は変えずに、このLoRAファイル（125MBの軽量な追加データ）を読み込ませるだけで効果が出るため、導入のハードルが低いのが特徴です。人物を主役にした広告ビジュアルや、ブランドムービーの中で「AI生成だと気づかれたくないカット」を作る際に、written通りの写実感を安定して出しやすくなります。",
+    "detail": "LoRA（Low-Rank Adaptation）とは、巨大なAIモデル本体を作り直すのではなく、狙った特徴だけをピンポイントで強化する「後付けの補正データ」の技術です。今回のLoRAは実写映像176クリップのみを使って、比較的軽い学習（ランク32・1500ステップ）で作られており、大規模な追加学習をしなくても効果が出せる設計になっています。使い方は、ComfyUIの「Load LoRA」ノードにこのファイルを読み込ませ、プロンプトの中に呪文（トリガーワード）「r34l1sm」を含めるだけです。効果の強さは0（無効）〜1.0（最大）の間で調整でき、0.6〜0.8程度に弱めると、より自然な効き方になるとされています。\n\n従来のAI動画は、全身が映る引きの画は自然でも、顔のアップになった途端に不自然さが目立つという課題がありましたが、このLoRAは人物・顔の質感に特化して追加学習することで、その弱点をピンポイントで補います。\n\n入手・利用には無料でHugging Faceからファイルをダウンロードするだけでよく、追加費用は発生しません。ただしベースの動画生成AI「MiniMax H3」自体は前述の通り商用利用に地域・売上規模の制限があるライセンスのため、実案件での利用前にはこの点の確認が必要です。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "MiniMax H3 Community Licenseに準拠。商用利用は可能だが、年商2000万ドル超の場合は別途許諾が必要、かつ商用利用が認められる地域はEU・英国・韓国・米国を除く地域に限定される。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://huggingface.co/fal/MiniMax-H3-Realism-People-LoRA"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/minimax-h3-realism-people-lora.jpg",
+    "relatedWorks": [
+      {
+        "title": "MiniMax H3",
+        "description": "本LoRAが対象とするベースの動画生成AI",
+        "url": "https://huggingface.co/MiniMaxAI/MiniMax-H3"
+      },
+      {
+        "title": "MiniMax H3 Realism LoRA",
+        "description": "本LoRAの前身にあたる、人物に特化する前の汎用リアリズムLoRA",
+        "url": "https://huggingface.co/fal"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "onesplat",
     "title": "Onesplat",
     "org": "TACTYC Studio",
