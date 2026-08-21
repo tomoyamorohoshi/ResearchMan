@@ -9639,5 +9639,203 @@
         "desc": "ノードエディタComfyUIに3D Gaussian Splatを扱うデータ型と読み込み・変換・レンダリングのノード群を追加するツール。"
       }
     ]
+  },
+  {
+    "id": "2026-08-21-1",
+    "date": "2026-08-21",
+    "title": "壁越しに聴こえる虐待音",
+    "pattern": "文脈×技術",
+    "seed": "Only for Childrenは身長で見える人を限定したが、Visual Vibrometerは光源なしで振動から音を復元できる。壁越しの怒声や悲鳴を可視化し、近隣の通報を後押しする啓発ツールにできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "only-for-children-2013",
+        "title": "Only for Children（子供にしか見えない児童虐待防止広告）",
+        "desc": "身長132cm以下の子どもの視点からしか虐待防止メッセージが見えないレンチキュラー印刷の屋外広告"
+      },
+      {
+        "type": "tech",
+        "id": "event-topology-based-visual-vibrometer",
+        "title": "Event Topology-based Visual Vibrometer",
+        "desc": "高速イベントカメラで物体の微細な振動を光源なしで捉え、音として復元する計測技術"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-21-2",
+    "date": "2026-08-21",
+    "title": "圧力で消された声の再生",
+    "pattern": "文脈×技術",
+    "seed": "An-Naharは紙面が読み進むほど過去の廃刊新聞に変化したが、StemgenRTは声とドラム等を11.6ミリ秒で分離できる。ニュース音声から「圧力で消された声」だけを抽出して聞かせる報道広告に転用できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "annahar-newspapers-inside-the-newspaper",
+        "title": "An-Nahar「Newspapers Inside The Newspaper」（新聞の中の廃刊新聞）",
+        "desc": "紙面のレイアウトが徐々に過去の廃刊新聞へ変化し、報道弾圧の歴史を伝えるレバノンの新聞広告"
+      },
+      {
+        "type": "tech",
+        "id": "stemgenrt",
+        "title": "StemgenRT",
+        "desc": "曲のボーカル・ドラム等4トラックを11.6ミリ秒の遅延でリアルタイム分離するDJ/DAW用プラグイン"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-21-3",
+    "date": "2026-08-21",
+    "title": "表情つき3Dテレポート",
+    "pattern": "技術×技術",
+    "seed": "360 Gaussian ProがSAM3で自動マスキングしながら空間を点群化する技術と、EmoMimeの表情を増幅するウェアラブルアームを組み合わせたら、遠隔の3D空間に自分の表情つきで「憑依」して歩き回れる臨場体験ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "360-gaussian-pro",
+        "title": "360 Gaussian Pro",
+        "desc": "360度カメラ映像からSAM3の自動マスキングで3D点群Gaussian Splatを生成する有償アプリ"
+      },
+      {
+        "type": "tech",
+        "id": "emomime",
+        "title": "EmoMime",
+        "desc": "顔のそばでも安全に動き、表情やしぐさを増幅して伝えるウェアラブルロボットアーム"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-21-4",
+    "date": "2026-08-21",
+    "title": "言葉で操る効果音DAW",
+    "pattern": "転用",
+    "seed": "本来はAIエージェントが自然言語だけで音楽DAWを操作するStratawrightを、広告制作の効果音やジングル指示に転用すれば、コピーライターが言葉だけで音のトーンを微調整する新しい制作フローになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "stratawright",
+        "title": "Stratawright",
+        "desc": "Claude CodeなどAIエージェントが自然言語だけで直接操作できるC++製のDAW"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-21-5",
+    "date": "2026-08-21",
+    "title": "モーション量産機の転用",
+    "pattern": "転用",
+    "seed": "本来はSaaS解説動画向けのモーショングラフィックスを自動生成するAnymotionを、選挙ポスターや街頭ビジョンの多言語差し替えに転用すれば、テキスト指示だけで一晩に何百パターンも量産できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "anymotion",
+        "title": "Anymotion",
+        "desc": "テキスト指示だけでプロダクト紹介動画のモーショングラフィックスを自動生成するCLIツール"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-21-6",
+    "date": "2026-08-21",
+    "title": "街を指さす謎解きARG",
+    "pattern": "文脈×技術",
+    "seed": "The Cureの黒い郵便物→UV→Web→WhatsAppと7段階でつないだARGに、LEGOの「言葉で3D空間の物を指し示せる」技術を掛けたら、街を歩きながら物に話しかけると次のヒントが解錠される謎解きができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "the-cure-songs-of-lost-world",
+        "title": "SONGS OF A LOST WORLD WhatsApp ARG（The Cure）",
+        "desc": "黒い郵便物からUV照射・Web・WhatsAppへと7段階で展開したThe Cureのアルバム解禁ARG"
+      },
+      {
+        "type": "tech",
+        "id": "lego",
+        "title": "LEGO",
+        "desc": "写真群から3D空間の部分と全体の関係を階層的に理解し、言葉で物や場所を指し示せる研究技術"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-21-7",
+    "date": "2026-08-21",
+    "title": "空文字にサウンドトラック",
+    "pattern": "文脈×技術",
+    "seed": "POCARI SWEATは飛行機雲で空に文字を描いたが、Obsidian Neuralはその場でAIがループ音源を生成するライブ楽器。編隊飛行の動きをリアルタイムで音楽に変換し、空の広告に音をつけられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "pocari-sweat-2005",
+        "title": "POCARI SWEAT スカイメッセージ（スカイタイピング広告）",
+        "desc": "軽飛行機5機の飛行機雲で全長4.5kmの文字を空に描いたスカイタイピング広告"
+      },
+      {
+        "type": "tech",
+        "id": "obsidian-neural",
+        "title": "OBSIDIAN Neural",
+        "desc": "AIがその場でループ音源を生成するライブ演奏向けのオープンソース楽器"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-21-8",
+    "date": "2026-08-21",
+    "title": "実写商品のテキスト演出",
+    "pattern": "技術×技術",
+    "seed": "QuerySplatが複数写真から高精細な3Dガウシアンスプラットを作る技術と、Anymotionのテキスト指示でモーション生成する技術を組み合わせたら、実写商品を3D化した直後に言葉だけで「回転」「弾む」演出を指示できる制作ツールになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "querysplat",
+        "title": "QuerySplat",
+        "desc": "複数写真から輪郭のにじみが少ない高精細な3Dガウシアンスプラットを生成する研究"
+      },
+      {
+        "type": "tech",
+        "id": "anymotion",
+        "title": "Anymotion",
+        "desc": "テキスト指示だけでプロダクト紹介動画のモーショングラフィックスを自動生成するCLIツール"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-21-9",
+    "date": "2026-08-21",
+    "title": "消えた車が見せる町の未来",
+    "pattern": "文脈×技術",
+    "seed": "Parkinは駐車スペースを店舗還元のメディアに変えたが、LTX-2.3 Clean Plateは動画から動く被写体を消して背景を再構築する技術。防犯カメラ映像から車を消し「歩ける町」を見せる再開発プロモーションに使えるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "parkin-spots-for-shops",
+        "title": "Spots for Shops",
+        "desc": "ドバイの駐車料金を地域店舗での買い物で還元し、駐車スペースをメディア化した施策"
+      },
+      {
+        "type": "tech",
+        "id": "ltx-2-3-clean-plate-ic-lora",
+        "title": "LTX-2.3 Clean Plate IC-LoRA",
+        "desc": "動画から動く被写体を消し、影や反射ごと背景を自動再構築するクリーンプレート生成LoRA"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-21-10",
+    "date": "2026-08-21",
+    "title": "視点で変わる鏡面広告",
+    "pattern": "文脈×技術",
+    "seed": "Jeepは紙面を反転させると動物が変わるポスターだったが、GRayはGaussian Splattingを正確な反射・屈折・影ごとレイトレーシングで描画できる。視点を変えると鏡面の中に別の生き物が映り込む屋外広告オブジェができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "jeep-see-whatever-you-want-to-see-2013",
+        "title": "Jeep \"See Whatever You Want To See\"（上下反転で動物が変わるポスター）",
+        "desc": "紙面を上下反転するとキリンがペンギンに変わるなど、動物が変化するJeepのプリント広告"
+      },
+      {
+        "type": "tech",
+        "id": "gray",
+        "title": "GRay",
+        "desc": "Gaussian Splattingを正確な反射・屈折・影ごとレイトレーシングで描画する新手法"
+      }
+    ]
   }
 ]
