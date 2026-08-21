@@ -1,5 +1,176 @@
 [
   {
+    "id": "game-science-2026",
+    "title": "『黒神話：鍾馗』15分ゲームプレイ映像初公開",
+    "summary": "『黒神話：悟空』開発元Game Scienceが新作『黒神話：鍾馗』の15分ゲームプレイ映像を初公開、続報として突如バイラル拡散",
+    "client": "Game Science",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://automaton-media.com/articles/newsjp/20260820-461394/",
+    "thumbnail": "/thumbnails/game-science-2026.jpg",
+    "videoId": "",
+    "overview": "中国Game Scienceが2026年8月20日、開発中タイトル『黒神話：鍾馗』の約15分に及ぶゲームプレイ映像を公開。同社は大ヒット作『黒神話：悟空』の開発元で、本作は鬼退治の伝承神「鍾馗」を題材とする新作アクションRPG。剣戟アクションやボス戦、仲間との共闘などが初めて披露された。",
+    "background": "『黒神話：鍾馗』は2025年8月20日のgamescom 2025で発表されており、今回は約1年ぶりとなる続報。前作『黒神話：悟空』が「西遊記」の孫悟空を題材にしたのに対し、本作は中国民間伝承における鬼退治の神「鍾馗」を主人公に据える点が特徴。",
+    "execution": "公開映像では、白衣姿の主人公が剣に炎や雷をまとわせる技を駆使し、パリィや回避、フィニッシュムーブを交えた戦闘を披露。ボス戦では怪物を召喚して共闘する場面もあり、終盤には釣りや楽器演奏、猛獣に乗る移動シーンも収録。Unreal Engine 5とフォトグラメトリーによる映像美も特徴。映像は開発途中のビルドで製品版と異なる可能性がある旨が明記されている。",
+    "evaluationImpact": "前作『黒神話：悟空』の世界的ヒットを受け、続報が乏しかった新作の長尺プレイ映像が突如公開されたことでゲームメディア・SNS上で速報的に拡散した。発売日は依然未定だが、戦闘システムやグラフィックスの進化度が高く評価され、次回作への期待感を再燃させた。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Tech/3D",
+      "Form/Film",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "vivion-games-pc-2026",
+    "title": "viviON GAMES（PCゲームをスマホでプレイできる買い切り型クラウドゲームサービス）",
+    "summary": "PCゲームをスマホのブラウザから買い切り課金ですぐ遊べるクラウドゲームサービスが8月26日始動",
+    "client": "viviON（DLsite親会社）",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://automaton-media.com/articles/newsjp/20260820-461426/",
+    "thumbnail": "/thumbnails/vivion-games-pc-2026.jpg",
+    "videoId": "",
+    "overview": "viviONが手掛けるクラウドゲームサービス「viviON GAMES」。独自のクラウドゲームエンジン「OOParts Engine」により、PCゲームを専用サーバー上で動作させ、スマートフォンのブラウザからダウンロード不要ですぐにプレイできる。サブスクリプションではなく、タイトルごとの買い切り課金を採用している点が特徴。2026年8月26日にサービスを開始する。",
+    "background": "国内の「元PCゲーマー」は推計1170万人（20〜50代の20.2%）にのぼり、就職・結婚・出産などライフステージの変化でPCゲームから離れたユーザーが多いとされる。viviONはこの離脱によって失われた市場規模を年間約1000億円と試算し、スマホから手軽に再びPCゲームに触れられる環境を整えることでこの層の呼び戻しを狙う。",
+    "execution": "子会社エイシスが取得したクラウドゲームエンジン「OOParts Engine」を活用し、開発側の移植作業なしにPCゲームを専用サーバーで稼働させ、スマホのブラウザ経由で起動できる仕組みを構築。2026年5月のBitSummit PUNCHでは「夜廻三」「制服カノジョ」「シロナガス島への帰還」の体験デモを出展し、ローンチタイトルには「水族館は踊らない」などを予定している。",
+    "evaluationImpact": "既存のクラウドゲーミングは月額サブスクリプションが主流だが、viviON GAMESはタイトル単位の買い切り課金を採用し、DLsiteが強みとする同人・インディーゲーム層との親和性を高めた点が新しい。ライトユーザー化した元PCゲーマー層の掘り起こしという明確な課題設定と解決策の結びつきが特徴。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Tech/Web",
+      "Form/Website",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "the-2nd-2026",
+    "title": "『空の軌跡 the 2nd』体験版配信開始",
+    "summary": "日本ファルコム『空の軌跡 the 2nd』体験版が配信開始、第1章まで丸ごと遊べセーブは製品版へ引き継ぎ可能",
+    "client": "日本ファルコム",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://automaton-media.com/articles/newsjp/20260820-461259/",
+    "thumbnail": "/thumbnails/the-2nd-2026.jpg",
+    "videoId": "",
+    "overview": "日本ファルコムは2026年8月20日、Nintendo Switch 2/Switch/PS5/PC（Steam）向けに『空の軌跡 the 2nd』の体験版を配信開始した。ゲーム冒頭から第1章までをサブイベント・クエストも含めて丸ごとプレイ可能。体験版のセーブデータは9月17日発売の製品版に引き継げる。",
+    "background": "『空の軌跡 the 2nd』は「軌跡」シリーズ完全フルリメイクの第2弾で、2025年発売の『the 1st』の続編にあたる。発売前に長編RPGの導入部を無料で体験させ、購買判断材料を提供する狙いで体験版が展開された。",
+    "execution": "体験版は序盤を丸ごと収録する大容量設計とし、購入前に世界観・戦闘システムを十分に確認できるようにした。加えて『the 1st』のクリアデータを持つユーザーには連動特典「クラシックスタイル SC」を用意し、既存ファンの継続プレイを後押しする設計になっている。",
+    "evaluationImpact": "体験の質を維持したまま「序盤丸ごと無料公開」という思い切ったボリュームの体験版と、セーブ引き継ぎ・前作連動特典を組み合わせることで、新規層の心理的ハードルを下げつつ既存ファンのロイヤルティも同時に高める設計が特徴。長編RPGにおける体験版活用の一事例といえる。",
+    "relatedWorks": [
+      {
+        "title": "空の軌跡 the 1st",
+        "description": "『空の軌跡 the 2nd』の前作にあたる、軌跡シリーズ完全フルリメイクの第1弾。2025年9月19日にNintendo Switch/PS5/Steamで発売。",
+        "url": "https://www.falcom.co.jp/games-data/sora1st"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/App",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "tiangong-omni-omni-2026",
+    "title": "Tiangong Omni（天工Omni）ヒューマノイドロボット初披露",
+    "summary": "北京人形機器人創新中心が家庭用軽量ロボ「天工Omni」を世界机器人大会で初披露、梅花桩・階段・印刷を実演",
+    "client": "北京人形機器人創新中心（Beijing Humanoid Robot Innovation Center）",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://news.cgtn.com/news/2026-08-20/Robots-move-closer-to-real-world-partners-at-World-Robot-Conference-1PL5LLAu6XK/p.html",
+    "thumbnail": "/thumbnails/tiangong-omni-omni-2026.jpg",
+    "videoId": "",
+    "overview": "2026年8月19日開幕の世界机器人大会（北京・亦庄）で、北京人形機器人創新中心が身長1.35m・体重39kgの軽量人形ロボット「天工Omni」を初披露。梅の花杭木（梅花桩）登り、階段の昇降、匍匐前進、書類印刷などの実演を通じ、全身の運動制御と環境適応能力を示した。",
+    "background": "同社CEOの熊友軍氏は「具身智能（エンボディドAI）はまだ初期段階で未解決課題が多い」と述べ、産業向けの標準プラットフォームを提供することで他社の二次開発を促す狙いを説明。松延動力や加速進化など同業他社との直接競争は避け、業界共有基盤としての立ち位置を志向している。",
+    "execution": "天工Omniは関節制御・センサーデータ・運動制御APIを開放する「グローバル初のHumanoid Native開放プラットフォーム」と位置づけられ、研究開発・実機デプロイ検証・保守訓練・競技用途など幅広い二次開発を想定。同日、統合エンボディドAIモデル「Pelican-Unify」も同時発表された。",
+    "evaluationImpact": "家庭内の家事支援、高齢者・子どもの見守り、家庭内セキュリティなど将来の生活シーンへの応用を見据えたコンセプト提示であり、狭小空間作業や緊急救援用途も想定。同創新中心は2025年に人形ロボット初のハーフマラソン優勝（天工Ultra）を果たしており、天工Omniは同社のロボット群を家庭向けに拡張する位置づけとなる。",
+    "relatedWorks": [
+      {
+        "title": "天工Ultra（Tiangong Ultra）ハーフマラソン優勝",
+        "description": "2025年4月、北京亦庄で開催された世界初の人形ロボット・ハーフマラソンで同創新中心の「天工Ultra」が2時間40分42秒で優勝。天工シリーズの先行プロダクト。",
+        "url": "https://technode.com/2025/04/21/beijing-hosts-worlds-first-half-marathon-for-humanoid-robots-tiangong-ultra-wins-in-two-hours-40-minutes/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Tech/AI",
+      "Form/Event",
+      "Form/Exhibition"
+    ]
+  },
+  {
+    "id": "vtuber20-pop-up-shop-2026",
+    "title": "「自認シマエナガ」× VTuber20名 コラボPOP UP SHOP",
+    "summary": "1つのキャラクターIPに20名のVTuberが日替わりで“お店番”として集結し、来場者参加型の投票で新デザインを競うポップアップ企画。",
+    "client": "自認シマエナガ / VTuber20名",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://news.livedoor.com/pr_topics/detail/32072167/",
+    "thumbnail": "/thumbnails/vtuber20-pop-up-shop-2026.jpg",
+    "videoId": "",
+    "overview": "キャラクター「自認シマエナガ」と人気VTuber20名がコラボしたPOP UP SHOPが、2026年8月21日〜30日にHMV&BOOKS SHIBUYA 6Fで開催。会期中は日替わりでコラボVTuberが店頭モニターに登場し来場者と対話、最終日にはVTuber20名が集結するリアルイベントを実施した。",
+    "background": "「自認シマエナガ」は群れのシマエナガに紛れ込むが実は違う、という設定のキャラクターで、YouTube・Instagram・X・TikTok等のSNSを中心に活動。企画は「自認シマエナガ仲良し計画」の一環として、株式会社ClaN Entertainmentが発表した。",
+    "execution": "会期を通じ、20名のVTuberが日替わりで店頭モニターに“お店番”として登場し、来場者とリアルタイムで交流する仕組みを構築。最終日8月30日には出演VTuber全員が集結するイベントを開催し、各VTuberがオリジナルの「自認シマエナガ」デザインを発表、来場者が投票でジャッジする参加型企画とし、サイングッズ抽選会も実施した。",
+    "evaluationImpact": "1キャラクターIPに対し20組ものVTuberを同時起用し、日替わり登場と来場者投票型の最終イベントを組み合わせることで、単なる物販ポップアップに留まらない継続来場動機とファン参加性を作り出した点が特徴。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Event",
+      "Form/Exhibition",
+      "Theme/Entertainment"
+    ]
+  },
+  {
     "id": "pash-hard-body-double-2026",
     "title": "Pash Hard / Body Double",
     "summary": "AFL人気タレントとNRL人気タレントの「代役」がビールCMに出演、コード戦争をライブ討論企画に発展させた統合キャンペーン",
