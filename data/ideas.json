@@ -9837,5 +9837,203 @@
         "desc": "Gaussian Splattingを正確な反射・屈折・影ごとレイトレーシングで描画する新手法"
       }
     ]
+  },
+  {
+    "id": "2026-08-22-1",
+    "date": "2026-08-22",
+    "title": "阿吽ロボットの身体拡張",
+    "pattern": "文脈×技術",
+    "seed": "京都橘大学とKiQが「阿吽」の身体性を探究したAUN dogの発想を、顔のそばで安全に動くウェアラブルアームEmoMimeに応用すれば、人と人の「阿吽の呼吸」を増幅する装着デバイスになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "kiq-2026",
+        "title": "京都橘大学 × KiQ 人とロボット共生プロジェクト",
+        "desc": "京都橘大学とKiQが「阿吽」の思想を四足ロボットで再解釈したAUN dogを共同開発した身体性探究プロジェクト"
+      },
+      {
+        "type": "tech",
+        "id": "emomime",
+        "title": "EmoMime",
+        "desc": "顔のすぐそばでも安全に動く人間の手の形をしたウェアラブルロボットアームで、表情やしぐさを増幅して伝える身体拡張デバイス"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-22-2",
+    "date": "2026-08-22",
+    "title": "埋もれた功労者の立体化",
+    "pattern": "文脈×技術",
+    "seed": "50年間クレジットされなかった書き手の名をL'Oréalが認めたTHE FINAL COPY OF ILON SPECHTのように、埋もれた功労者の写真1枚をOnesplatで3D化し、慰霊や展示の場に立体像として蘇らせられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "loreal-final-copy",
+        "title": "THE FINAL COPY OF ILON SPECHT",
+        "desc": "「Because I'm Worth It」を書いた女性コピーライターが50年間クレジットされなかった不正義を認めたフィルム"
+      },
+      {
+        "type": "tech",
+        "id": "onesplat",
+        "title": "Onesplat",
+        "desc": "1枚の画像から数秒でGaussian Splatを生成し、そのままHoudini内で使えるプラグイン"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-22-3",
+    "date": "2026-08-22",
+    "title": "未知の作品を点群保存",
+    "pattern": "文脈×技術",
+    "seed": "内容を事前公表しない「未知の作品2019」の黒く染めた隔絶空間を、点群を3Dモデルと正しい奥行きで重ねるYaGSで撮影すれば、鑑賞後も痕跡だけを空間ごとアーカイブできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2019-og09",
+        "title": "未知の作品2019",
+        "desc": "空き家とその庭を真っ黒に染め、内容を事前公表せず隔絶空間として発表された瀬戸内国際芸術祭の作品"
+      },
+      {
+        "type": "tech",
+        "id": "yags",
+        "title": "YaGS",
+        "desc": "Unreal Engine上でGaussian Splattingを通常の3Dモデルと奥行きで正しく重ならせる無料プラグイン"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-22-4",
+    "date": "2026-08-22",
+    "title": "逆説の代車置換キャンペーン",
+    "pattern": "文脈×技術",
+    "seed": "フォード車で逃げるトヨタという逆説でDV被害を訴えたEscape Vehicleのように、EditAnythingで証言映像の車種だけをテキスト指示で別ブランドに置き換え、匿名性を保ちながら逆説の訴求力を作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "toyota-escape-vehicle",
+        "title": "Escape Vehicle",
+        "desc": "フォード車で逃げるトヨタという逆説の構図で、DV被害女性への支援を訴えたギリシャ発のソーシャルフィルム"
+      },
+      {
+        "type": "tech",
+        "id": "editanything",
+        "title": "EditAnything (LTX-2.3 Video Edit LoRA)",
+        "desc": "動画生成モデルLTX-2.3を指示型の動画編集モデルに変えるLoRA。背景・被写体の除去やモーション転写などをテキスト指示で行える"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-22-5",
+    "date": "2026-08-22",
+    "title": "全自動3D映像パイプライン",
+    "pattern": "技術×技術",
+    "seed": "Blender内でTRELLIS.2から3Dメッシュとテクスチャを一括生成するStableGenと、AIエージェントがタイムラインを操作するPalmier Proを繋げば、素材投入から編集まで人手いらずの3D映像パイプラインができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "stablegen-v0-3",
+        "title": "StableGen v0.3",
+        "desc": "Blender内で生成AIテクスチャリングと3Dアセット生成を完結させるOSSアドオン。TRELLIS.2で画像から3Dメッシュを作れる"
+      },
+      {
+        "type": "tech",
+        "id": "palmier-pro",
+        "title": "Palmier Pro",
+        "desc": "AIエージェントが人間と同じタイムラインで動画を操作できる、Mac向けオープンソース動画編集ソフト"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-22-6",
+    "date": "2026-08-22",
+    "title": "絶版アーティスト復活映像",
+    "pattern": "技術×技術",
+    "seed": "曲からボーカルだけを抜き出すUltimate Vocal Removerで単独音声にした歌声を、写真1枚から200FPSでしゃべる顔を作るLeapTalkに読ませたら、絶版音源のアーティストが再び語り出す映像ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ultimate-vocal-remover",
+        "title": "Ultimate Vocal Remover (UVR)",
+        "desc": "MDX-NetやDemucs等複数のAIモデルを切り替えて使える、無料でWin/Mac/Linux対応のボーカル・楽器分離アプリ"
+      },
+      {
+        "type": "tech",
+        "id": "leaptalk",
+        "title": "LeapTalk",
+        "desc": "写真1枚と音声だけで、1計算ステップ・最大200FPSで途切れないしゃべる顔を生成できる高速トーキングヘッド技術"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-22-7",
+    "date": "2026-08-22",
+    "title": "顔だけ差し替え可変広告",
+    "pattern": "転用",
+    "seed": "本来は画像の顔と背景を認識して高解像度化するSmart Tile 2.0を逆手に取り、屋外広告の巨大ビジュアルで「顔部分だけ」を後から差し替え可能にする可変ポスター制作に転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-ttp-toolset-smart-tile-2-0",
+        "title": "ComfyUI TTP Toolset – Smart Tile 2.0",
+        "desc": "画像の顔と背景を認識してから必要な場所だけ細かいタイルを敷き高解像度化・部分編集できるComfyUI拡張機能"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-22-8",
+    "date": "2026-08-22",
+    "title": "方言を歌う声のメモリアル",
+    "pattern": "転用",
+    "seed": "本来は作詞から声変換まで一人で完結するローカル音楽スタジオResonantを、消えゆく方言や高齢話者の声を録り孫の声で歌わせる家族向けメモリアル制作に転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "resonant",
+        "title": "Resonant",
+        "desc": "作詞からAI作曲、自分の声への変換、DAW編集・書き出しまで1台のPCで完結するローカルAI音楽制作スタジオ"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-22-9",
+    "date": "2026-08-22",
+    "title": "一続きの成長キャンペーン",
+    "pattern": "文脈×技術",
+    "seed": "陸上未経験の子どもから世界大会挑戦者までを一続きの物語で繋いだASBのように、AniGenで一般人の写真から動く3Dアバターを作り、同じキャラで「一歩目」から「世界」までの成長を描くキャンペーンができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "here-for-first-steps-to-world-bests-2026",
+        "title": "Here for First Steps to World Bests",
+        "desc": "陸上未経験の子どもから世界大会挑戦者までを一つの物語で繋いだ、NZ発ASBの新スポンサーシップ映像"
+      },
+      {
+        "type": "tech",
+        "id": "anigen",
+        "title": "AniGen",
+        "desc": "1枚の画像から、動かせる骨格とスキンまで含む「アニメーション可能な3Dキャラ」を自動生成する技術"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-22-10",
+    "date": "2026-08-22",
+    "title": "議論の場を3Dアーカイブ",
+    "pattern": "文脈×技術",
+    "seed": "20名のデザイナーが2日議論するJAGDA「Graphic Design Now」の会場を、Onesplatで1枚撮影するだけで3D化すれば、議論の場そのものをオンライン展示として残せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "jagda-2026-graphic-design-now-2026",
+        "title": "JAGDAデザイン会議2026「Graphic Design Now」",
+        "desc": "JAGDAが「Graphic Design Now」を掲げ、20名のデザイナーが2日間社会とデザインの関係を議論する会議"
+      },
+      {
+        "type": "tech",
+        "id": "onesplat",
+        "title": "Onesplat",
+        "desc": "1枚の画像から数秒でGaussian Splatを生成し、そのままHoudini内で使えるプラグイン"
+      }
+    ]
   }
 ]
