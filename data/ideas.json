@@ -10035,5 +10035,203 @@
         "desc": "1枚の画像から数秒でGaussian Splatを生成し、そのままHoudini内で使えるプラグイン"
       }
     ]
+  },
+  {
+    "id": "2026-08-23-1",
+    "date": "2026-08-23",
+    "title": "無言SOSカード",
+    "pattern": "文脈×技術",
+    "seed": "KNOCK KNOCKは韓国警察が112番へかけ任意のキーを押すだけで無言のSOSを送れる仕組みだった。MorphDropsの導電インクと水滴で図形が変わるディスプレイを使えば、触れるだけで形が変わる紙のカードが、誰にも気づかれず助けを求める新しいSOSサインになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "knock-knock-police",
+        "title": "KNOCK KNOCK",
+        "desc": "112番に電話し任意のキーを押すだけで、加害者に気づかれず助けを呼べる韓国警察の緊急通報システム。"
+      },
+      {
+        "type": "tech",
+        "id": "morphdrops",
+        "title": "MorphDrops",
+        "desc": "紙に印刷した導電インクの模様に電気を流し、上に置いた水滴の形を自在に変えられるディスプレイ技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-23-2",
+    "date": "2026-08-23",
+    "title": "遺品の3D復元報道",
+    "pattern": "文脈×技術",
+    "seed": "日本経済新聞社の「ロシアに散った北朝鮮兵の遺言」は、遺留品と手記を写真とデータで構成した調査報道だった。Wild3Rを使えば、現地でバラバラに撮られた遺品の写真だけから一度に3D空間を復元し、遺留品の中を歩いて見られる調査報道に発展させられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-zideyj-2025",
+        "title": "ロシアに散った北朝鮮兵の遺言",
+        "desc": "ウクライナ戦線の北朝鮮兵の遺留品・手記を写真とデータで分析した日経ビジュアルデータの調査報道。"
+      },
+      {
+        "type": "tech",
+        "id": "wild3r",
+        "title": "Wild3R",
+        "desc": "観光地などで別々に撮られたバラバラの写真だけから、一度のAI推論で3D空間を復元する技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-23-3",
+    "date": "2026-08-23",
+    "title": "溶けない冷蔵庫の4D広告",
+    "pattern": "文脈×技術",
+    "seed": "Aguila LightのIcedentityは冷蔵庫を守ることを「溶けない報酬」に変えた行動変容キャンペーンだった。4DGSで冷蔵庫の中身が変わっていく様子を空間オーディオごと1本のファイルに閉じ込めれば、店主が好きな瞬間から再生できる立体広告になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "aguila-light-icedentity",
+        "title": "Icedentity",
+        "desc": "コロンビアの酒屋3万店の冷蔵庫を、溶けない報酬で守り続けたAguila Lightの行動変容キャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "4dgs",
+        "title": "4DGS",
+        "desc": "動く3Dガウシアンスプラット映像と空間オーディオを1本のファイルにまとめ、途中再生もできる新形式。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-23-4",
+    "date": "2026-08-23",
+    "title": "時代を歩き回るライブ",
+    "pattern": "文脈×技術",
+    "seed": "Taylor Swift: The Eras Tourは配給会社なしで17年分の音楽キャリアを劇場公開した史上最大の興行だった。ForgeWMのゲームパッドで操作できる映像世界モデルを使えば、ファンが自分の操作で好きな「時代」のステージを歩き回れる体験に変えられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "taylor-swift-eras-tour",
+        "title": "TAYLOR SWIFT: THE ERAS TOUR",
+        "desc": "17年分の音楽キャリアを「時代」として再編し、配給会社なしで劇場公開した史上最大級の音楽興行。"
+      },
+      {
+        "type": "tech",
+        "id": "forgewm",
+        "title": "ForgeWM",
+        "desc": "キーボードやゲームパッドの操作にリアルタイムで反応し、次の映像をAIが生成し続ける操作可能な動画世界モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-23-5",
+    "date": "2026-08-23",
+    "title": "街に出現する戦場3D世界",
+    "pattern": "文脈×技術",
+    "seed": "UNICEF Finlandはウクライナの防空アラートを1300km離れたヘルシンキの街頭サイネージに届けた。DreamX-Worldのテキストから歩き回れる3D世界を生成する技術を使えば、遠く離れた紛争地の風景そのものを街中に出現させ、距離の実感を消せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "unicef-finland-ukraine-air-raid-alerts-ebs-helsinki",
+        "title": "Ukraine Air Raid Alerts – EBS Helsinki",
+        "desc": "ウクライナの防空アラートをリアルタイムでヘルシンキの屋外サイネージに表示した緊急放送キャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "dreamx-world-1-0",
+        "title": "DreamX-World 1.0",
+        "desc": "テキスト指示だけで、視点を動かしても矛盾なく繋がり続ける歩き回れる3D世界の映像を生成するAIモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-23-6",
+    "date": "2026-08-23",
+    "title": "実写モーションの生成世界",
+    "pattern": "技術×技術",
+    "seed": "CEB SAM 3D Body v4で動画から抽出した人のモーションキャプチャを、HY-World 1.5 / WorldPlayが生成する歩き回れる映像世界に読み込ませれば、実写から取り出した誰かの動きを、生成世界の中で操作できるキャラクターに変えられるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ceb-sam-3d-body-v4",
+        "title": "CEB SAM 3D Body v4 (Blender addon)",
+        "desc": "動画から3D人体ポーズを推定し、Blender上のモーションキャプチャデータとして読み込めるアドオン。"
+      },
+      {
+        "type": "tech",
+        "id": "hy-world-1-5-worldplay",
+        "title": "HY-World 1.5 / WorldPlay",
+        "desc": "1枚の画像やテキストから、操作に24fpsでリアルタイム反応する歩き回れる映像世界を生成する世界モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-23-7",
+    "date": "2026-08-23",
+    "title": "テキストから生まれる反射ダンス",
+    "pattern": "技術×技術",
+    "seed": "CoMoViが文章から生成する3Dの動きと映像を、GRayのレイトレーシングでレンダリングすれば、テキスト一行から生まれたダンサーが、ガラスや水面に正確な反射・屈折を落としながら踊る映像が作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comovi",
+        "title": "CoMoVi",
+        "desc": "文章から3Dの人の動きと写実的な映像を、一つの生成ループの中で同時に作る技術。"
+      },
+      {
+        "type": "tech",
+        "id": "gray",
+        "title": "GRay",
+        "desc": "実写を3D化するGaussian Splattingを、正確な反射・屈折・影ごとレイトレーシングで描画する新手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-23-8",
+    "date": "2026-08-23",
+    "title": "環境音の転用ライブラリ",
+    "pattern": "転用",
+    "seed": "本来は曲からボーカルと楽器を分離するUltimate Vocal Removerを、街の雑踏や歓声の録音に転用すれば、その場の環境音だけを抜き出し、全く別の広告や動画に「その場にいる感覚」を後付けできる音素材ライブラリが作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ultimate-vocal-remover",
+        "title": "Ultimate Vocal Remover (UVR)",
+        "desc": "複数のAIモデルを切り替えながら使える、無料でボーカルや楽器を分離できるデスクトップアプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-23-9",
+    "date": "2026-08-23",
+    "title": "空だけ差し替える屋外広告",
+    "pattern": "転用",
+    "seed": "GaussianSplatting.jlのSky Dome機能は本来、3D化した街並みから空を綺麗に切り離すための機能。これを逆手に取れば、実写を3D化した街並みの空だけを晴れや夕焼けに自由に差し替える、天気連動の屋外広告演出に転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "gaussiansplatting-jl-v2-0-0",
+        "title": "GaussianSplatting.jl v2.0.0",
+        "desc": "Julia言語で書かれたGaussian Splatting実装ライブラリ。MCMCの点群制御と空を分離するSky Dome機能を持つ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-23-10",
+    "date": "2026-08-23",
+    "title": "通話に重なる音楽広告",
+    "pattern": "文脈×技術",
+    "seed": "SkinnyのAds in My Phone Callは通話中に広告を流し、電話そのものを新しいメディアに変えた。mlx-audio-separatorの高速な音源分離を使えば、通話音声の声だけをクリアに保ちながら、その隙間に音楽広告をリアルタイムで違和感なく重ねられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "skinny-ads-in-my-phone-call",
+        "title": "Ads in My Phone Call",
+        "desc": "通話中に広告を流すという発想で、電話そのものを新しいメディアに変えたSkinnyのキャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "mlx-audio-separator",
+        "title": "mlx-audio-separator",
+        "desc": "Apple Silicon専用のMLXだけで動く音源分離ツール。PyTorch不要で従来より最大2.5倍速くステムを書き出せる。"
+      }
+    ]
   }
 ]
