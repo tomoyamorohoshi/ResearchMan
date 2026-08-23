@@ -1,5 +1,185 @@
 [
   {
+    "id": "cosmic-true-heart-2026",
+    "title": "Cosmic True Heart",
+    "summary": "七夕伝説の銀河による分離を現代の通信断絶に置き換え、全編AI生成映像で10086次元を旅する中国発ブランデッドフィルム",
+    "client": "China Mobile（中国移动 10086）",
+    "agency": "F5 Shanghai",
+    "categories": [
+      "AIクリエイティブ",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/cosmic-true-heart",
+    "thumbnail": "/thumbnails/cosmic-true-heart-2026.jpg",
+    "videoId": "",
+    "overview": "China Mobileのカスタマーサービス「10086」が、七夕祭に合わせて全編AI生成の短編映像「Cosmic True Heart」を発表。地下鉄で出会った男女がすれ違い、通信障害で連絡を絶たれた青年が古代・西部劇・原始の森・未来的異世界を巡る旅の末、10086の力で再びつながるまでを描く。",
+    "background": "七夕は天の川に隔てられた恋人たちが年に一度だけ再会する神話に由来する。制作会社F5 Shanghaiは、多くの七夕キャンペーンが甘いロマンスのみを描く中、現代の「距離」は宇宙的なものではなく、着信不通や不安定な電波といった日常的な断絶であるという視点から本作を企画した。",
+    "execution": "AIツールにより地下鉄の日常風景から古代、西部劇の街、原始の森、未来の異星まで多様なビジュアルスタイルを生成し、10086の次元を旅する構成にした。青年が女性との連絡を失った後、次元を超える旅を経て「10086番目の次元」で再びつながる物語を、映像全編をAI生成で構築して表現した。",
+    "evaluationImpact": "通信会社のサービス価値（7×24時間対応）を、AI生成映像というフォーマット自体でナラティブの核に組み込んだ点が特徴。F5ShanghaiのCCO Adams Fan氏は「つながりは技術的なものだけではなく、一つ一つの信号が実在の人・感情・出会いを表す」と述べ、制作背景を語っている。",
+    "relatedWorks": [
+      {
+        "title": "China Mobile x Cosmic True Heart（本編動画）",
+        "description": "Vimeoに掲載された本キャンペーンの映像本編",
+        "url": "https://vimeo.com/1219744418"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Film",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "not-a-passenger-2026",
+    "title": "NOT A PASSENGER",
+    "summary": "グラミー受賞バンドWet Legのボーカルを主演に迎え、アルゴリズム依存からの脱却をZ世代に訴える映像×リアルイベント統合キャンペーン",
+    "client": "Deutsche Telekom",
+    "agency": "INGO",
+    "categories": [
+      "カルチャーインサイト",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/not-a-passenger",
+    "thumbnail": "/thumbnails/not-a-passenger-2026.jpg",
+    "videoId": "",
+    "overview": "Deutsche Telekomがオーストリア・ポーランドなど欧州8カ国のZ世代に向けて展開する統合キャンペーン「NOT A PASSENGER」。グラミー賞受賞バンドWet Legのボーカル、Rhian Teasdaleを主演に起用した60秒のマニフェスト映像を軸に、SNS・OOH・ベルリンでのリアルイベントを組み合わせ、2026年8月20日に始動した。",
+    "background": "アルゴリズムや他者の期待に流されやすいZ世代に対し、Deutsche Telekomは「デジタル時代における自己決定的な生き方」を促すことをブランドの立ち位置とした。自己主張の強い音楽性で知られるWet Legは、この「自分で運転席に座る」というメッセージを体現する存在として起用された。",
+    "execution": "監督Charlie Engmanによる映像で、Teasdaleがインフルエンサー的な圧力やアドバイスをかわしながら車を走らせる姿を描き、The Cardigans「My Favourite Game」(1998)のカーチェイス的MVをオマージュした演出を採用。Wet Legは同曲をカバーし劇中で使用。ベルリンでは8月22日から「NOT A PASSENGER」の車を使ったチケット探しの実体験企画を実施し、8月26日には旧ガレージ工房でWet Legをヘッドライナーに迎えたTelekom Electronic Beatsのライブイベントを開催した。",
+    "evaluationImpact": "音楽カルチャーへの深い理解に基づき、90年代の象徴的MVを引用しつつ現代のアルゴリズム疲れというZ世代インサイトに翻訳した点が評価点。映像単体で終わらせず、リアルな街なか企画とライブイベントに接続することで、メッセージを体験として完結させている。",
+    "relatedWorks": [
+      {
+        "title": "The Cardigans - My Favourite Game (Official Music Video, 1998)",
+        "description": "Jonas Åkerlund監督による、車の暴走運転を描いた問題作MV。今回のTeasdale主演映像が演出面でオマージュした元ネタ。",
+        "url": "https://www.youtube.com/watch?v=3bc1z1Fpneg"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Form/Event",
+      "Form/OOH",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "something-better-always-comes-along-2026",
+    "title": "Something Better Always Comes Along",
+    "summary": "カフェでの恋人との別れ話にデバイスの陳腐化を重ね、コント仕立てでサブスクの合理性を説くRaylo初のテレビCM",
+    "client": "Raylo",
+    "agency": "Stink Studios",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/something-better-always-comes-along-0b2f1c1e-0701-49cc-8499-8dd91eafa9f7",
+    "thumbnail": "/thumbnails/something-better-always-comes-along-2026.jpg",
+    "videoId": "",
+    "overview": "英国のガジェットサブスクサービスRayloが、Stink Studiosと制作した数年ぶりのテレビブランドキャンペーン。「Something Better Always Comes Along」というタグラインのもと、テック機器のアップグレードを恋愛の破局になぞらえたコメディ調のCMを展開し、Channel 4やYouTubeなどで放映された。",
+    "background": "Rayloは競争入札の末にStink Studiosを起用し、本作が同社にとって数年来初となるテレビ主体のブランドキャンペーンとなった。従来のスペック訴求中心のテック広告とは異なる切り口で、古い端末に固執せず新しい機器へ乗り換える自由というサブスクリプションモデルの価値を伝えることを狙った。",
+    "execution": "監督Giordano Maestrelliのもと、カフェで交際相手Harryに別れを告げるSarahのシーンを中心に構成。「時代遅れ」「物忘れが激しい」「昔ほど長持ちしない」といった、本来デバイスに向けられる不満を人間の恋人評として語らせるユーモラスな演出で、視聴者の関心を引きつける。Channel 4、同局パートナー枠、VOD、YouTubeで展開された。",
+    "evaluationImpact": "スペックや性能を直接訴求する従来型のテック広告と一線を画し、身近な恋愛の破局という誰もが共感できる比喩を用いることで、サブスクリプションという分かりにくい価値提案を感情的に理解しやすい形に翻訳した点が評価しうる。Rayloにとってはブランド認知を広げる転換点となる施策。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Tech/Device",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "every-penny-counts-2026",
+    "title": "Every Penny Counts",
+    "summary": "米ペニー廃止を好機に、バズり中のボーイバンドの投稿が1件40ドルの寄付に変わる10日間SNSキャンペーン",
+    "client": "charity: water × Boy Throb",
+    "agency": "",
+    "categories": [
+      "カルチャーインサイト",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://lbbonline.com/work/177204",
+    "thumbnail": "/thumbnails/every-penny-counts-2026.jpg",
+    "videoId": "",
+    "overview": "charity: waterとバイラルボーイバンドBoy Throbが2026年8月14〜23日の10日間実施したキャンペーン。米国で流通終了が進む1セント硬貨(ペニー)の写真をInstagramやFacebookで@charitywater宛に投稿すると、1投稿につき民間ドナーが40ドル(上限5万ドル)を寄付する仕組みで、清潔な水へのアクセス支援に充てられる。",
+    "background": "米国では2025年11月に最後の流通用ペニーが鋳造され、硬貨としての役割を終えつつあった。Boy Throbはメンバーのダルシャン・マグダムのO-1Bビザ取得をファンベース「The Throb Mob」が後押しした実績を持つ急上昇中のボーイバンドで、その動員力を今度は水危機支援に転用する狙いがあった。",
+    "execution": "制作会社Fire Kite(ECD:Alex Goulart)とGear Sevenが企画・制作を担当し、監督Justin Ciprianiがナッシュビルで撮影。楽曲「I Still Remember」(作詞Maria Christensen)に乗せ、Boy Throbがペニーに描かれたリンカーンを模したシルクハットと付け髭姿で踊るミュージックビデオを起点に、SNS投稿を寄付導線化した。",
+    "evaluationImpact": "資金調達額そのものより、通貨制度の変化という時事ニュースを寄付の動機付けに転換した着眼点と、ファンダムの拡散力を非営利活動に接続した設計が評価点。ファンの参加型投稿が可視化された寄付行動に直結する構造は、Z世代・ミレニアル世代への訴求策として言及されている。現時点で公式アワードでの受賞は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/SNS",
+      "Form/MV",
+      "Theme/SocialGood",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "karaoke-h-m-b-ng-gloss-alley-karaoke-2026",
+    "title": "Karaoke Hẻm Bóng（Gloss Alley Karaoke）",
+    "summary": "ベトナム語「bóng」の多義語（影・電球・艶・クィア俗語）を歌詞連動で光る演出に変換し、俗語を一つのブランド連想へ収斂させた",
+    "client": "Sunsilk",
+    "agency": "The Friday",
+    "categories": [
+      "コンテンツ革新",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/karaoke-h-m-bong-gloss-alley-karaoke",
+    "thumbnail": "/thumbnails/karaoke-h-m-b-ng-gloss-alley-karaoke-2026.jpg",
+    "videoId": "",
+    "overview": "Sunsilkベトナムが展開する世界観「Silktopia」の第2弾。近所のカラオケイベントを舞台に、ベトナムの人気曲を「bóng」という単語を含む歌詞でメドレー化。誰かが「bóng」を歌うたびにSunsilkボトルへと変わり、路地全体が艶やかに輝き出す映像施策。制作はホーチミンの独立系エージェンシーThe Friday。2026年8月公開。",
+    "background": "「bóng」はベトナム語で影・電球・艶・俗語で「公然のクィア」など多義的な単語で、日常会話に頻出する。Sunsilkは「Mượt như Sunsilk（Sunsilkのように艶やか）」という国民的定着タグラインを持ち、4月公開の「Silktopia」で艶を人生哲学として拡張済み。その世界観の続編として、多義語という言語文化そのものをフックに選んだ。",
+    "execution": "近所のカラオケ大会を舞台にしたフィルムを制作し、「bóng」が歌詞に登場するベトナム歌謡曲をメドレーでつなげた。「bóng」が歌われるたびに映像上でSunsilkボトルへと変形し、路地全体が艶のあるビジュアルへと切り替わる仕掛け。SNS上ではSilktopia世界観の「第2話」として展開され、Threadsでの投稿を誘発する参加型の見せ方をとった。",
+    "evaluationImpact": "公開後にThreadsで12,000件超の投稿を誘発し、Facebookは24時間で約100万回再生、YouTubeは300万回再生を記録した（campaignbriefasia調べ）。多義的で俗語性の強い単語をタブー視せず取り込みつつ、最終的な連想先を「艶髪」というブランド価値に一本化した点が評価される。受賞歴は現時点で公式ソース未確認。",
+    "relatedWorks": [
+      {
+        "title": "Sunsilk: Silktopia",
+        "description": "「Mượt như Sunsilk」を人生哲学に拡張した世界観フィルム。歌手Phùng Khánh Linhが艶をテーマにしたシュールな世界を旅する。同シリーズの第1弾で、本作の世界観のベース。",
+        "url": "https://www.adsoftheworld.com/campaigns/smooth-as-sunsilk-silktopia"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Event",
+      "Form/Film",
+      "Theme/Music",
+      "Theme/Entertainment"
+    ]
+  },
+  {
     "id": "find-my-tokyo-cm-_-2026",
     "title": "東京メトロ「Find my Tokyo.」新CM『赤坂_ツウな人生のはじまり』篇",
     "summary": "有村架純が赤坂の「通な大人の過ごし方」を体験する新CMで、あいみょん新曲「恋はまぼろし」を初起用し街の隠れた魅力を発信",
