@@ -1,5 +1,142 @@
 [
   {
+    "id": "splat-js",
+    "title": "Splat.js",
+    "org": "Arrival.Space (Stratum1 GmbH)",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "写真をアップロードもクラウドも使わず、ブラウザのタブだけでGaussian Splatting（立体を無数の光の粒の集合として表現する技術）に変換できるツール。",
+    "point": "スマホやPCのブラウザに20〜200枚の重なり合った写真を読み込むだけで、被写体や空間の立体データ（Gaussian Splat）をその場で作れる。写真から3D位置を推定する「Structure from Motion」という工程と、光の粒を最適化していくトレーニング工程の両方を、サーバーに一切送らずブラウザの中だけで完結させているのが最大の特徴。似た機能を持つ既存ツールの多くは、専用ソフトのインストールやクラウドGPU、アカウント登録が必要だったが、Splat.jsはURLを開くだけで、iPhoneでも動く。広告制作の現場では、ロケハンや商品撮影の写真をその場でぐるっと回せる3Dプレビューに変換し、クライアント確認用のリンクをすぐ共有したり、SNS用の視点移動動画の元データとして使ったりできる。無料・商用利用可のMITライセンスなので、費用面のハードルもない。",
+    "detail": "仕組みとしては、まずカメラの位置と向きを写真同士の特徴点マッチングから推定する「Structure from Motion（SfM）」をブラウザ内で実行し、そのあとGPUを使う描画API「WebGPU」を使って、無数の半透明な楕円形の光の粒（Gaussianと呼ばれる）の位置・色・向きを少しずつ調整しながら元の写真に近い見え方になるまで学習させる。作者らの検証では、251枚の写真を使った標準的なテストシーンで、開発元3DGSの論文の元手法より高い画質指標（PSNR 25.61dB、元論文25.18dB）を、ブラウザというより非力な環境かつ少ない粒数で達成したとしている。\n\n従来のGaussian Splatting制作は、COLMAPのようなカメラ位置推定ソフトのインストールや、学習用の高性能GPU・クラウド環境が前提だったが、Splat.jsはこの一連の作業をブラウザだけに閉じ込め、写真も端末外に一切送らない設計にした点が新しい。\n\n使うにはWebGPUに対応したブラウザ（Chrome・Edge・Firefox・Safari。iPhone/iPadも含む）があればよく、追加のソフトや環境構築は不要。出力は標準的な.ply形式のため、他のGaussian Splattingビューアーやゲームエンジンのプラグインにそのまま読み込める。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "MIT License（Stratum1 GmbH）。商用利用も無条件で可"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/arrival-space/splat.js"
+      },
+      {
+        "kind": "product",
+        "url": "https://arrival.space/splat-js/index.html"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/splat-js.jpg",
+    "relatedWorks": [
+      {
+        "title": "3D Gaussian Splatting for Real-Time Radiance Field Rendering",
+        "description": "Gaussian Splattingの基礎手法を提案した原論文とリファレンス実装",
+        "url": "https://github.com/graphdeco-inria/gaussian-splatting"
+      },
+      {
+        "title": "PointCloudSnapPro (Maya向けGaussian Splatsプラグイン)",
+        "description": "同時期にMaya 2026へGaussian Splat読み込みを追加した3DCG制作ツール向けの動き",
+        "url": "https://radiancefields.com/pointcloudsnappro-adds-gaussian-splats-to-maya-2026"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "forgewm",
+    "title": "ForgeWM",
+    "org": "asdfo123（著者: Xinye Liほか、所属機関は論文上に明記なし）",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "GenVideo"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "キーボードやゲームパッドの操作にリアルタイムで反応し、次に見える映像をAIが直接生成し続ける『操作可能な動画世界モデル』。コード・学習済みモデル・論文すべて公開済み。",
+    "point": "キーボードやゲームパッドの操作に合わせて、AIが『次の瞬間に見えるはずの映像』をリアルタイムで生成し続ける技術です。たとえるなら、3Dモデルを作ってレンダリングするゲームエンジンの代わりに、AIが次の一瞬の映像を絵筆で描き続けることでゲームのような体験を作る、という発想です。従来この方式は生成に時間がかかり実用速度が出せませんでしたが、ForgeWMは4段階の学習を経て1ステップで映像を生成する高速版を実現し、GPU1基で毎秒72コマのリアルタイム再生を達成しました。広告や体験型コンテンツにおいて、3Dモデルを一切作らずに『操作できる映像世界』——来場者の動きに反応して変化する没入型インスタレーションや、ブランド世界を歩き回れるインタラクティブ映像体験——を作る際の技術的な下敷きとして参考になります。研究段階のプロトタイプですが、コード・学習済みモデル・論文がすべて公開されており実際に動かして検証できます。",
+    "detail": "仕組みとしては、Matrix-Game 2という既存の画像→動画AIモデルをベースに、①静止画から動画を作る学習の応用、②プレイヤーの操作（矢印キーやゲームパッドの入力）に応じて次の1コマを予測する学習、③複数の未来を同時に想定して一貫性を高める学習、④計算を1〜4回の予測だけで済ませる高速化、という4段階の訓練を順に行います。将棋で言えば、何手も深く読む代わりに『次の一手』だけを瞬時に精度よく判断できるよう鍛え直すイメージです。\n\n従来のゲームエンジンは3Dモデル・テクスチャ・物理演算を作り込んでからレンダリングしますが、ForgeWMはその制作工程を経ず、AIが直接『次に見えるはずの映像』を生成します。ベースにしたMatrix-Game 2は水中シーンなどで映像が破綻しやすい弱点がありましたが、ForgeWMは高速化してもこの空間的な一貫性を保てる点を強みとしています。\n\n試すにはHugging Face上で配布されている学習済みモデルとPythonの推論コードが必要です。推論のみならGPU1基（H20相当の高性能GPU）で動きますが、フル学習には8基規模のGPUクラスタが要る本格的な研究プロジェクトのため、個人が学習から再現するのは非現実的です。公開済みモデルを動かして挙動を確認する使い方が現実的です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "NOTICEファイルに派生元コンポーネントの記載あり。Apache-2.0のため商用利用は基本的に可能。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/asdfo123/ForgeWM"
+      },
+      {
+        "kind": "project",
+        "url": "https://asdfo123.github.io/ForgeWM/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2608.14022"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/forgewm.jpg",
+    "relatedWorks": [
+      {
+        "title": "Matrix-Game 2",
+        "description": "ForgeWMのベースとなった画像→動画変換AIモデル（MITライセンス）",
+        "url": "https://matrix-game-v2.github.io/"
+      },
+      {
+        "title": "GameFactory",
+        "description": "ForgeWMの学習データセットの由来元となった研究",
+        "url": "https://github.com/KwaiVGI/GameFactory"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "localmesh",
+    "title": "LocalMesh",
+    "org": "不明（開発者名の明記なし。Tripo AIのTripoSplatモデルを内部利用）",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "写真1枚から3Dガウシアンスプラットとテクスチャ付き3Dメッシュを自動生成するWindows向けローカルアプリ。クラウド不要でGPU上で完結する。",
+    "point": "写真をたった1枚アップロードするだけで、被写体を立体的な3Dモデルとして自動生成できるソフトです。しかも処理はすべて自分のPCのGPU上で完結し、写真データを外部のクラウドサーバーに送信する必要がありません。内部ではTripo AIの最新AIモデルが、画像認識AIと画像生成AIを組み合わせて、写真から『色と透明度を持つ小さな点の集合（3Dガウシアンスプラット）』をまず作り、それを一般的な3Dソフトやゲームエンジンでそのまま使える『面のあるモデル（メッシュ）』に変換します。広告・イベント演出の現場では、商品写真や会場の記念撮影から即席で立体グッズやARコンテンツ用の3D素材を作ったり、限られた時間・予算でプロトタイプの3Dアセットを量産したりする用途に使えます。専門知識がなくてもインストールしてすぐ使える完成品として提供されている点が実務向きです。",
+    "detail": "処理は3段階です。①Tripo AIの『TripoSplat』というAIモデルが、写真の内容を理解する認識AI（DINOv3）と画像を生成するAI（FLUX.2）を組み合わせ、わずか30ステップの計算で26万個以上の『ガウシアン』——色と半透明さを持つ小さな粒——を3D空間にばら撒くように配置します。②その粒の塊を仮想的に60台のカメラで取り囲んで撮影し直し、得られた奥行き情報を768×768×768の立体格子データにまとめることで、点の集合から『面』を持つ3D形状を復元します。③最後に穴を埋め、ポリゴン数を最適化し、表面に色（テクスチャ）を焼き付けて、ゲームエンジンで使えるOBJ/GLB形式で書き出します。\n\nこれまで写真から3Dモデルを作るには、月額・従量課金のクラウド生成AIサービスを使うか、Pythonの専門環境を自力で構築する必要がありました。LocalMeshは『CUDA ToolkitもVisual StudioもPythonも管理者権限も不要』とうたい、インストールしてすぐ使える完成品として提供される点が新しく、非エンジニアでも扱いやすくなっています。\n\n必要なのはWindows 10/11とVRAM8GB以上のNVIDIA製GPU（GeForce RTXシリーズなど）です。処理時間は上位機種のRTX 5090で約60秒、比較的手頃なRTX 4060でも約2分。買い切り価格39ドルで、購入前に7日間の無料トライアルが利用できます。",
+    "license": {
+      "spdx": null,
+      "commercial": "paid",
+      "note": "7日間無料トライアル後、1マシンあたり39ドルの買い切りライセンス。開発元の明記は公開情報になし。"
+    },
+    "links": [
+      {
+        "kind": "product",
+        "url": "https://local-mesh.com/"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/localmesh-opens-its-beta-turning-one-photo-into-a-gaussian-splat-and-a-textured-mesh-on-a-local-gpu"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/localmesh.jpg",
+    "relatedWorks": [
+      {
+        "title": "TripoSplat / Tripo AI",
+        "description": "LocalMeshが内部で使用する、画像からガウシアンスプラットを生成するAIモデル",
+        "url": "https://local-mesh.com/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "streamtalk",
     "title": "StreamTalk",
     "org": "東京大学 / Alibaba Tongyi Lab / 南洋理工大学 / 中国人民大学（国際共同研究）",
