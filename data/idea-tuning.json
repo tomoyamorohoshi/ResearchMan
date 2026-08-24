@@ -2,17 +2,26 @@
   "_description": "generate-idea-seeds.mjs のチューニング可能パラメータ。既定値は2026-07-08時点のハードコード（SEED_COUNT/CASE_SAMPLE/TECH_SAMPLE/パターン混合比/プロンプト文言）と完全一致させてある。隔週チューンアップ（scripts/biweekly-tuneup.mjs）がideas.jsonの機械指標とお気に入り分布に基づき更新する",
   "seedCount": 10,
   "caseSample": 14,
-  "techSample": 12,
+  "techSample": 14,
   "patternMix": {
     "_description": "各パターンの最低出現数はこの比率×seedCountを四捨五入した値。4つの比率の合計は常に1（freeは比率制約のない残り枠）",
-    "contextXTech": 0.4,
+    "contextXTech": 0.35,
     "techXTech": 0.2,
     "repurpose": 0.2,
-    "free": 0.2
+    "free": 0.25
   },
   "samplingWeights": {
     "_description": "cases/techのサンプリング時の選択確率倍率。キーは cases.json の tags 文字列 / tech.json の domains 文字列。未指定キーは既定1.0。全キー1.0（=空オブジェクト）のときは従来の一様ランダムサンプリングと完全に同一のコード経路を通る",
-    "caseTags": {},
+    "caseTags": {
+      "Theme/Art": 1.4,
+      "Theme/Sustainability": 1.3,
+      "Form/Stunt": 1.3,
+      "Form/Print": 1.3,
+      "Form/Website": 1.3,
+      "Tech/Data": 1.3,
+      "Form/Film": 1.2,
+      "Form/Installation": 1.2
+    },
     "techDomains": {}
   },
   "promptText": {

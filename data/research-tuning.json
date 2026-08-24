@@ -27,12 +27,12 @@
       {
         "label": "海外の広告・クリエイティブキャンペーン + AI×クリエイティブ（最重要）",
         "sources": "lbbonline.com / contagious.com / adweek.com / campaignbrief.com / musebycl.io / adsoftheworld.com / itsnicethat.com / creativereview.co.uk / 広告賞(Cannes/D&AD/One Show/Clio)の直近発表",
-        "diversity": "広告賞ネタは全体の半分以下。生成AI活用事例を最低1件含める。"
+        "diversity": "広告賞ネタは全体の半分以下。生成AI活用事例を最低1件含める。データ/音声駆動の生成的ブランドID・タイポグラフィ、サステナビリティ/ソーシャルグッド訴求のスタント・OOHはお気に入り実績が高いため優先的に拾う。"
       },
       {
         "label": "テック・プロダクト・XR・ゲーム・音楽×テクノロジー（広告キャンペーン以外を中心に）",
-        "sources": "theverge.com / techcrunch.com / wired.com / creativeapplications.net / moguravr.com / roadtovr.com / uploadvr.com / automaton-media.com / cdm.link / pitchfork.com / dezeen.com / designboom.com / SXSW・Ars Electronica・CES等の発表",
-        "diversity": "広告キャンペーンは最大2件。新ツール/プロダクト/ライブ演出/映像手法/インスタレーションを優先。"
+        "sources": "theverge.com / techcrunch.com / wired.com / creativeapplications.net / awwwards.com / pentagram.com / dezeen.com / designboom.com / moguravr.com / roadtovr.com / uploadvr.com / automaton-media.com / cdm.link / pitchfork.com / SXSW・Ars Electronica・CES等の発表",
+        "diversity": "広告キャンペーンは最大2件。ゲーム/XR/VR関連は最大1件に絞る（ごみ箱率が全タグ中トップ2＝関心が低いシグナル。特にゲーム新作リリース情報・VRイベント告知は避ける）。新ツール/プロダクト/ライブ演出/映像手法/インスタレーション/データ・音声駆動のブランドID・タイポグラフィ/Web・インタラクティブデザインを優先。"
       },
       {
         "label": "日本国内の事例 + 展示・アート・Webインタラクティブ",
