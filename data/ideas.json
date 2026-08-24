@@ -10233,5 +10233,203 @@
         "desc": "Apple Silicon専用のMLXだけで動く音源分離ツール。PyTorch不要で従来より最大2.5倍速くステムを書き出せる。"
       }
     ]
+  },
+  {
+    "id": "2026-08-24-1",
+    "date": "2026-08-24",
+    "title": "見える美と見えない美",
+    "pattern": "文脈×技術",
+    "seed": "自己認識と他者評価のズレを可視化したDoveのREAL BEAUTY SKETCHESに、人間には正しく読めるがAIには誤読されるDecoy Fontを掛けたら、『人間の目には美しいのにAIには認識されない美』を突きつける広告ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "dove-real-beauty-sketches",
+        "title": "REAL BEAUTY SKETCHES",
+        "desc": "FBI認定の似顔絵捜査官が本人の自己描写と他者描写を比較し自己認識の歪みを示した広告"
+      },
+      {
+        "type": "tech",
+        "id": "decoy-font",
+        "title": "Decoy Font",
+        "desc": "人間には正しく読めるがAI（OCR・画像認識）には別の単語に誤読される特殊フォント"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-24-2",
+    "date": "2026-08-24",
+    "title": "森が語るセンサー網",
+    "pattern": "文脈×技術",
+    "seed": "見えない海中の森をAIで地図化し保全対象にしたForests Without Namesの発想に、菌糸体で信号処理するFungal Computerを掛けたら、森自体が電位を発して自らの保全を訴える『語る森』ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "forests-without-names-hyundai",
+        "title": "Forests Without Names",
+        "desc": "海中の見えない森をデータとAIで地図化・命名し保全対象として可視化した施策"
+      },
+      {
+        "type": "tech",
+        "id": "fungal-computer",
+        "title": "Fungal Computer（菌糸体メムリスタ／きのこコンピューティング）",
+        "desc": "菌糸体に電極を刺しスパイク電位を論理ゲートやメモリとして使うきのこコンピュータ研究"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-24-3",
+    "date": "2026-08-24",
+    "title": "消えゆく国を歩ける化",
+    "pattern": "文脈×技術",
+    "seed": "海面上昇で消える国家をまるごとメタバースへ移すTHE FIRST DIGITAL NATIONの発想に、1枚の画像から歩き回れる映像世界を生成するHY-World 1.5を掛けたら、失われる前の風景写真を歩いて巡れる遺産にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "tuvalu-first-digital-nation",
+        "title": "THE FIRST DIGITAL NATION",
+        "desc": "海面上昇で消えゆくツバルを国ごとメタバースに移し国家・文化・法的地位を保存するプロジェクト"
+      },
+      {
+        "type": "tech",
+        "id": "hy-world-1-5-worldplay",
+        "title": "HY-World 1.5 / WorldPlay",
+        "desc": "1枚の画像やテキストから操作に24fpsでリアルタイム反応する歩ける映像世界を生成する世界モデル"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-24-4",
+    "date": "2026-08-24",
+    "title": "回遊体験の自動編集",
+    "pattern": "文脈×技術",
+    "seed": "VRで作品世界を自由回遊し撮影までできるAve Mujica XR体験の素材を、AIエージェントが人間と同じ操作感で編集するPalmier Proに渡したら、来場者ごとに専用ダイジェスト動画をその場で作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ave-mujica-xr-2026",
+        "title": "バンドリ！Ave Mujica XR体験（秋葉原）",
+        "desc": "作品世界をVRで自由回遊し声優音声とキャラ撮影機能で追体験できる期間限定XRイベント"
+      },
+      {
+        "type": "tech",
+        "id": "palmier-pro",
+        "title": "Palmier Pro",
+        "desc": "AIエージェントが人間と同じタイムラインで動画を操作できるMac向けオープンソース動画編集ソフト"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-24-5",
+    "date": "2026-08-24",
+    "title": "稼働データが奏でる曲",
+    "pattern": "文脈×技術",
+    "seed": "リアルタイム稼働データをロゴ模様に変えたCentersquareの発想を、作詞作曲まで1台で完結するローカルAI音楽スタジオResonantに掛けたら、サーバーの稼働状況がそのまま企業テーマ曲になる『データが作曲するブランド』ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "centersquare-a-brand-identity-shaped-by-the-power-of-data-20",
+        "title": "Centersquare: A Brand Identity Shaped by the Power of Data",
+        "desc": "データセンターのリアルタイム運用データをロゴのパターンへ変換しブランドを刷新した施策"
+      },
+      {
+        "type": "tech",
+        "id": "resonant",
+        "title": "Resonant",
+        "desc": "作詞からAI作曲・声変換・DAW編集まで1台のPCだけで完結するローカルAI音楽制作スタジオ"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-24-6",
+    "date": "2026-08-24",
+    "title": "表情で操る空間編集",
+    "pattern": "技術×技術",
+    "seed": "顔のわずかな無意識の動きでロボットを操るTelekinetic Driveと、空間内の距離関係をAIが自らコードを書いて把握するSpatialClawを組み合わせたら、視線と表情だけで展示物の配置をその場で組み替える演出ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "telekinetic-drive",
+        "title": "Telekinetic Drive",
+        "desc": "顔に現れるごくわずかな無意識の動きを読み取り装着物なしでロボットを操作できるインターフェース"
+      },
+      {
+        "type": "tech",
+        "id": "spatialclaw",
+        "title": "SpatialClaw",
+        "desc": "画像・映像・4Dシーンの空間関係をAIが自らPythonコードを書きながら考えて答える空間推論エージェント"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-24-7",
+    "date": "2026-08-24",
+    "title": "写真の中を歩き操る",
+    "pattern": "技術×技術",
+    "seed": "1枚の画像から歩き回れる映像世界を生むHY-World 1.5/WorldPlayと、人の動きを異なる身体のロボットに変換するrobot_retargeterを掛けたら、写真の中の人物の動きで異形キャラを操るライブ演出ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "hy-world-1-5-worldplay",
+        "title": "HY-World 1.5 / WorldPlay",
+        "desc": "1枚の画像やテキストから操作に24fpsでリアルタイム反応する歩ける映像世界を生成する世界モデル"
+      },
+      {
+        "type": "tech",
+        "id": "robot-retargeter",
+        "title": "robot_retargeter",
+        "desc": "体格や関節数が違う人型ロボットへ人のモーションキャプチャを自動変換できる無料オープンソースツール"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-24-8",
+    "date": "2026-08-24",
+    "title": "パート別に切替るMV",
+    "pattern": "技術×技術",
+    "seed": "指示を読み解く『演出』と描く『作画』が分業するBerniniのように、mlx-audio-separatorで曲をパートごとに高速分離し、鳴っているパートに合わせて映像が切り替わるMVを自動生成できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "bernini",
+        "title": "Bernini",
+        "desc": "指示を読み解く演出AIと映像を描く作画AIが分業し自然な言葉で画像・動画を生成編集する統合モデル"
+      },
+      {
+        "type": "tech",
+        "id": "mlx-audio-separator",
+        "title": "mlx-audio-separator",
+        "desc": "Apple Silicon専用MLXだけで動き既存ツールの最大2.5倍速く音源をステム分離できるツール"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-24-9",
+    "date": "2026-08-24",
+    "title": "環境音を楽譜化する",
+    "pattern": "転用",
+    "seed": "本来は楽器ごとの演奏を複数トラックのMIDIに書き起こす採譜モデルMT3を、街の雑踏や工場の環境音に使ったら、日常の音風景を『誰も書いたことのない楽譜』として可視化するアート作品に転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "mt3",
+        "title": "MT3 (Multi-Task Multitrack Music Transcription)",
+        "desc": "1本の音源から複数の楽器パートを同時に別々のMIDIトラックとして書き起こす自動採譜モデル"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-24-10",
+    "date": "2026-08-24",
+    "title": "歩くと生成される展示",
+    "pattern": "転用",
+    "seed": "本来はゲーム操作に反応して次の映像を生成し続ける動画世界モデルForgeWMを、来場者の歩行センサーに繋いだら、歩くたびにAIがその場で先の景色を描き足していく『歩くと生成される美術館』に転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "forgewm",
+        "title": "ForgeWM",
+        "desc": "キーボードやゲームパッド操作にリアルタイムで反応し次の映像をAIが生成し続ける操作可能な動画世界モデル"
+      }
+    ]
   }
 ]
