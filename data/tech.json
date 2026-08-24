@@ -1,5 +1,166 @@
 [
   {
+    "id": "qwen-video-edit",
+    "title": "Qwen-Video-Edit",
+    "org": "Yunpeng Bai, Yossi Gandelsman, Michaël Gharbi, Qixing Huang (UT Austin / Adobe Research)",
+    "type": "Research",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "動画を指示文だけで編集できるAI。画像編集モデルを流用し、動画のコマを1枚の巨大画像のように並べ替えることで実現した。",
+    "point": "通常、動画編集AIを作るには動画データだけで大量に学習させる必要があるが、この技術は既存の「画像編集AI」(Qwen-Image-Edit)をほぼそのまま流用する点が独自。動画の各コマ(フレーム)を写真アルバムのようにタイル状に並べて1枚の巨大な画像に見立て、画像編集モデルにそのまま渡す。小さな変換パーツを挟むだけで、動画特有の圧縮データと画像編集モデルの間を橋渡しする。広告制作では「この俳優の服を赤に変えて」「背景をロボット工場に差し替えて」といった指示文だけで、撮影済み映像の一部をピンポイントで書き換えられる。ロケ再撮影や高額なVFX作業をせずに、素材の使い回し幅を大きく広げられる可能性がある。",
+    "detail": "動画は連続する静止画（フレーム）の集まりだが、この技術はそれらのフレームをタイルのように並べて1枚の巨大な仮想画像として扱う。画像編集AIはもともと「1枚の画像の一部だけを指示通り書き換える」訓練を受けているため、動画フレームを並べたタイル画像に対しても同じ要領で編集できてしまう、という発見が出発点になっている。動画データと画像データの間には「VAE」と呼ばれる圧縮変換の仕組みの違いがあるが、そこを小さな変換レイヤー2つで橋渡しすることで、大掛かりな再学習なしに動画編集を実現している。\n\n従来の動画編集AIの多くは動画データだけを使ってゼロから（または大規模動画モデルをベースに）学習させる必要があり、開発コストが高かった。この手法は画像編集モデルの能力を「借用」することで学習データ・計算コストを抑えつつ、長尺動画や縦型（ポートレート）動画にも対応する。仕上げにWan 2.2による数ステップの追加処理を挟み、時間方向のちらつきを抑える工夫も入っている。\n\nコードとモデル重みはGitHub・Hugging Face・ModelScopeで公開されており、実行にはCUDA対応のNVIDIA GPUとPython 3.10〜3.12環境が必要。ファインチューン済みモデルは1つ約40GBあり、まとまったVRAM・ストレージを要する。2026年8月20日の更新でComfyUI連携と480P/720Pのチェックポイントが追加され、通常のComfyUI環境からも扱いやすくなった。研究コードのため商用利用は同梱ライブラリのライセンス確認が必要。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "リポジトリ自体には明示ライセンスがなく、同梱コードはDiffSynth-StudioとDittoの上流ライセンスに従う。商用利用可否は個別確認が必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/yunpeng1998/Qwen-Video-Edit"
+      },
+      {
+        "kind": "project",
+        "url": "https://yunpeng1998.github.io/Qwen-Video-Edit-Page/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2608.14790"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/qwen-video-edit.jpg",
+    "relatedWorks": [
+      {
+        "title": "Qwen-Image-Edit",
+        "description": "本技術がベースにした指示ベース画像編集モデル",
+        "url": "https://github.com/QwenLM/Qwen-Image-Edit"
+      },
+      {
+        "title": "Ditto-1M",
+        "description": "ファインチューンに使われた動画編集トリプレットデータセット",
+        "url": "https://github.com/EzioBy/Ditto"
+      },
+      {
+        "title": "Wan 2.1/2.2",
+        "description": "動画VAEおよび時間方向強化に使われるバックボーン",
+        "url": "https://github.com/Wan-Video/Wan2.2"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "comfy-mcp",
+    "title": "Comfy MCP",
+    "org": "Comfy-Org",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "AI/Agents"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "Claude CodeやCursorなどのAIエージェントから、自分のPC上のComfyUIを直接操作できる公式ツール。",
+    "point": "通常ComfyUIは画面上でノードをドラッグ＆ドロップして組み立てる必要があるが、この公式MCPサーバーを入れると、Claude CodeやCursorのようなAIアシスタントに「こういう画像や動画を作って」と自然言語で頼むだけで、手元のComfyUIが自動的にワークフローを組んで実行してくれるようになる。ジョブの進捗確認・キャンセル、手元にどんなノードやモデルが入っているかの把握、VRAM残量の確認までAIに一括で任せられる。広告・映像制作の現場では、担当者がAIに「参考画像に寄せたバリエーションを10案作って」と頼めば、ComfyUIの操作に習熟していなくても量産や試作のたたき台をAIエージェント経由で回せるようになる可能性がある。手元のGPUを使うため、クラウド生成AIのような従量課金を避けやすい点も実務上のメリット。",
+    "detail": "中身はComfyUIの公式CLIツール「comfy-cli」をAIエージェント向けに“翻訳”するMCP(Model Context Protocol)サーバー。エージェントが送ってきた「こんな画像・動画がほしい」という指示を、実際に動くComfyUIのワークフロー（ノードの組み合わせ）に変換し、実行状況を監視して結果を返す、という一連の流れを橋渡しする。\n\nこれまでComfyUIをAIエージェントから叩く非公式ツールは複数存在したが、本家Comfy-Orgが自ら提供する公式実装という点が大きい。手元のハードウェアを自動検知し、VRAMが足りない場合はクラウド上のFlux・Ideogram・Klingなど有料モデルへ切り替える提案をしたり、Tailscale経由でLAN内の別GPUマシンを操作したりと、実制作の運用を意識した機能が揃う。\n\n導入にはPython 3.10以上、comfy-cli（v1.14.0以上）、動作中のComfyUI環境が必要。`pip install comfy-mcp \"comfy-cli>=1.14.0\"`でインストールし、Claude Code/Claude Desktop/CursorのMCP設定に接続情報を追記するだけで使える。ライセンスはAGPL-3.0（改変・派生物も公開が条件）または商用ライセンスの二本立て。",
+    "license": {
+      "spdx": "AGPL-3.0-or-later OR Commercial",
+      "commercial": "conditional",
+      "note": "AGPL-3.0での利用は無償だが派生物も同ライセンスで公開必須。非公開の商用利用には別途商用ライセンス契約が必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Comfy-Org/comfy-mcp"
+      },
+      {
+        "kind": "product",
+        "url": "https://pypi.org/project/comfy-mcp/"
+      },
+      {
+        "kind": "post",
+        "url": "https://comfyui-wiki.com/en/news/2026-08-11-comfy-mcp-local-server"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/comfy-mcp.jpg",
+    "relatedWorks": [
+      {
+        "title": "comfy-cli",
+        "description": "本サーバーが内部で呼び出すComfyUI公式CLI",
+        "url": "https://github.com/Comfy-Org/comfy-cli"
+      },
+      {
+        "title": "Comfy Cloud MCP",
+        "description": "OAuthで使えるクラウド版の公式MCPサーバー",
+        "url": "https://github.com/Comfy-Org/comfy-cloud-mcp"
+      },
+      {
+        "title": "comfyui-mcp (shawnrushefsky)",
+        "description": "同種の機能を持つ非公式コミュニティ実装",
+        "url": "https://github.com/shawnrushefsky/comfyui-mcp"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "minimax-h3-director",
+    "title": "MiniMax H3 Director",
+    "org": "seesee75（原型: WhatDreamsCost、対象モデル: MiniMax / Comfy-Org）",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "GenVideo"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "ComfyUI上で動画生成AI「MiniMax H3」を、動画編集ソフトのようなタイムライン画面で演出できるツール。",
+    "point": "通常、動画生成AIに複数カットの映像を作らせるには、カットごとに長い呪文のようなプロンプト（指示文）をテキストで書く必要がある。このツールは、その作業を映像編集ソフトのようなタイムライン画面上で行えるようにする。トラックに画像・動画・音声をドラッグして並べ、カットの長さをつまんで調整し、各カットに短いメモを書くだけで、AIモデルが理解できる正式な指示文が自動生成される。生成中も映像がリアルタイムでプレビューされ、気に入らないカットだけを前後のつながりを保ったまま撮り直す「リテイク」機能も備える。広告のショートムービーやミュージックビデオのように「カット割りが命」の映像を作る際、絵コンテを組む感覚のままAI動画生成まで一気通貫で作業できるようになる。",
+    "detail": "内部的には、タイムライン上に置かれた画像・動画・音声クリップと、そこに付けたメモ（プロンプト）を解析し、MiniMax H3という動画生成AIが読める「構造化プロンプト」（時間区切りやキャラクター定義などを含む定型テキスト）へ自動変換している。MiniMax H3は音声と映像をセットで生成できるモデルのため、話者ごとの台詞タグ付けや、9つまでの「キャラクター/背景/画風」の使い回し設定にも対応する。\n\nこれまでMiniMax H3をComfyUIで使うには、カットごとの指示をすべてテキストで手打ちする必要があり、長尺・複数カットの映像では管理が煩雑だった。本ツールは類似の先行ツール「LTX Director」のタイムラインUIをMiniMax H3向けに移植したもので、映像編集の感覚のままプロンプト設計ができる点が新しい。全カットを串刺しで一気に自己注意処理する仕様上、カットごとに個別マスクをかける方式が使えないため、あえて絵コンテ形式のプロンプトへ寄せている点が設計上の工夫。\n\n導入にはComfyUI 0.30.0以上・Python 3.10以上・16GB以上のVRAM・約60GBのディスク空き容量が必要（MiniMax H3本体・テキストエンコーダ・VAE一式を含む）。ComfyUI Managerから「MiniMax H3 Director」で検索するか、custom_nodesフォルダへgit cloneして導入する。ライセンスはGPL-3.0で、改変・再配布時は公開が条件。",
+    "license": {
+      "spdx": "GPL-3.0",
+      "commercial": "conditional",
+      "note": "GPL-3.0のためフォーク・改変版も公開が条件。ツール自体の利用は無償"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/seesee75-commits/ComfyUI-MiniMaxH3-Director"
+      },
+      {
+        "kind": "post",
+        "url": "https://comfyui-wiki.com/en/news/2026-08-18-minimax-h3-director"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/minimax-h3-director.jpg",
+    "relatedWorks": [
+      {
+        "title": "LTX Director (WhatDreamsCost)",
+        "description": "本ツールの元になったタイムライン型プロンプトエディタ",
+        "url": "https://github.com/WhatDreamsCost/LTX-Director"
+      },
+      {
+        "title": "MiniMax H3 (Comfy-Org)",
+        "description": "本ツールが操作する動画生成AI本体",
+        "url": "https://huggingface.co/Comfy-Org/MiniMax-H3"
+      },
+      {
+        "title": "ComfyUI-MiniMaxDirector (imbutus)",
+        "description": "同じくLTX Directorに着想を得た独立系の類似ツール",
+        "url": "https://github.com/imbutus/ComfyUI-MiniMaxDirector"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "splat-js",
     "title": "Splat.js",
     "org": "Arrival.Space (Stratum1 GmbH)",
