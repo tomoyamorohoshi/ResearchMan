@@ -1,5 +1,232 @@
 [
   {
+    "id": "kononenko-architectural-bureau-2026",
+    "title": "Kononenko Architectural Bureau",
+    "summary": "建築事務所のコーポレートサイトが白黒ミニマルと繊細なホバー演出でAwwwards日間大賞とDeveloper Awardを受賞",
+    "client": "Kononenko Architectural Bureau",
+    "agency": "Reksa Andhika / Artem Shcherban",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "Awwwards Site of the Day（2026年8月23日、総合スコア7.27/10）／Awwwards Developer Award（7.59/10）",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.awwwards.com/sites/kononenko-architectural-bureau",
+    "thumbnail": "/thumbnails/kononenko-architectural-bureau-2026.jpg",
+    "videoId": "",
+    "overview": "2011年創業のモスクワの建築設計事務所KONONENKO PRO（Kononenko Architectural Bureau）のコーポレートサイト。白と黒のみで構成された徹底したミニマルデザインに、大胆なタイポグラフィと没入感のあるインタラクションを組み合わせている。デザインはArtem Shcherban、開発はReksa Andhikaが担当した。",
+    "background": "Kononenko Architectural Bureauは住宅・商業建築から都市計画、インテリア、ランドスケープまで手がける総合設計事務所。ブランドの持つ「明快さ・スケール感・人間中心の体験」という設計思想を、デジタル上のコーポレートサイトでも体現することが求められた案件と見られる。",
+    "execution": "白黒2色に絞った配色と大胆なタイポグラフィを基調に、ブループリント風のドローイングホバー、インク状のホバーエフェクト、Aboutページの円形アニメーションなど繊細なマイクロインタラクションを実装。ワークギャラリー、Aboutセクション、チーム紹介、受賞歴表示、コンタクトフォーム、独自の404ページまで一貫したトーンで構成されている。",
+    "evaluationImpact": "Awwwardsで2026年8月23日のSite of the Day（総合7.27/10）と、開発面を評価するDeveloper Award（7.59/10）を受賞。Design 7.34・Usability 7.14・Creativity 7.2・Content 7.48という内訳から、単なる美麗な静止デザインに留まらずインタラクション設計の完成度が評価されたことが読み取れる。B2B・専門サービス領域のコーポレートサイトでも、ミニマリズムと演出の掛け合わせで受賞級の体験を作れることを示した事例。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Website",
+      "Tech/Web",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "tiangong-ultra-100m-2026",
+    "title": "Tiangong Ultra、100m走でウサイン・ボルトの世界記録を突破",
+    "summary": "北京の人型ロボット競技大会でTiangong Ultraが100mを9.39秒、ウサイン・ボルトの人類記録9.58秒を上回った",
+    "client": "Beijing Humanoid Robot Innovation Center",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.engadget.com/2242295/humanoid-robots-have-beaten-usain-bolts-100-meter-dash-record/",
+    "thumbnail": "/thumbnails/tiangong-ultra-100m-2026.jpg",
+    "videoId": "",
+    "overview": "2026年8月、北京で開催された第2回「世界人形機器人運動会」の100m走予選で、北京人形機器人創新中心が開発したヒューマノイドロボット「Tiangong Ultra」が9.39秒を記録。ウサイン・ボルトが2009年に樹立した人類の世界記録9.58秒を上回った。同レースではHonor製ロボット「Lightning」も9.47秒でボルト記録を上回った。",
+    "background": "同大会は前年の第1回大会に続く開催で、前回大会の100m優勝タイムは21.50秒だった。1年間でタイムを12秒以上短縮し、二足歩行ロボットの走行性能が急速に進化していることを示す結果となった。中国は人型ロボット開発を国家的な重点分野と位置づけ、複数メーカーが技術力を競う場として同大会を活用している。",
+    "execution": "予選レースでTiangong Ultraは序盤Lightningに後れを取ったものの、終盤で逆転し9.39秒でゴール。ゴール後は衝撃吸収用のパッドに衝突し体勢を崩した。Lightningも転倒し、担架で運ばれる場面があった。大会では100m以外に400m走（Tiangong Ultraが38.15秒で人類記録43.03秒を上回り優勝）、走り高跳び、サッカー、卓球、ボクシングなど40種目以上が実施された。",
+    "evaluationImpact": "人型ロボットが公式な陸上競技記録ではないものの、単純計測で人類最速記録を上回ったことは大きな話題となり、Engadget・Al Jazeera・SCMPなど世界の主要メディアが報道した。一方でゴール直後の転倒・衝突が象徴するように、制御性や安全性では人間の運動能力に及ばない側面も浮き彫りになり、記録の意義と限界の両方が議論を呼んだ。",
+    "relatedWorks": [
+      {
+        "title": "Honor Lightning 100m走 9.47秒",
+        "description": "同レースでTiangong Ultraに次ぐタイムでボルト記録を上回った、スマートフォンメーカーHonor製のヒューマノイドロボット",
+        "url": "https://www.engadget.com/2242295/humanoid-robots-have-beaten-usain-bolts-100-meter-dash-record/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Form/Event",
+      "Theme/Sports"
+    ]
+  },
+  {
+    "id": "the-saga-of-rex-2026",
+    "title": "The Saga of Rex（初トレーラー公開）",
+    "summary": "アニメーターMichel Gagnéが14年間ほぼ独力で手描き制作した長編『The Saga of Rex』の初トレーラーを公開",
+    "client": "Michel Gagné",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.creativebloq.com/art/animation/a-single-artist-spent-14-years-making-this-hand-drawn-animated-movie-and-every-frame-of-the-trailer-looks-stunning",
+    "thumbnail": "/thumbnails/the-saga-of-rex-2026.jpg",
+    "videoId": "clVY3TacXWA",
+    "overview": "ベテランアニメーターMichel Gagnéが14年かけほぼ一人で手描き制作してきた60分の長編アニメ『The Saga of Rex』の初トレーラーを2026年8月21日に公開した。制作協力者は動画中割担当の友人Seung Kim氏のみで、緻密な手描き映像の密度が話題となっている。",
+    "background": "Rexというキツネのキャラクターは1998年のGagné自費出版本が初出で、その後コミックアンソロジー『Flight』に掲載、2010年にImage Comicsからグラフィックノベルとして刊行された。2012年のKickstarterでの資金調達を経て、Gagnéは商業的制約を排した「自分の魂にある映画」を作るべく単独でのアニメ化制作を開始した。",
+    "execution": "Gagné氏は監督・脚本・美術・アニメーション制作のほぼ全工程を一人で担当し、14年にわたり手描きで長編アニメーションを完成させた。物語は、エイリアンに誘拐された小さなキツネが謎の存在Avenと絆を結ぶ内容。現在は最終音響作業が進行中で、2026年末の完成を目指している。",
+    "evaluationImpact": "スタジオ制作が主流のアニメ業界において、一人のアーティストが商業的妥協なしに長編を作り上げたことと、その圧倒的な手描き密度がトレーラー公開直後から話題化した。映画祭上映・一般公開は2027年に予定されており、パーソナルプロジェクトとしてのアニメーション制作の可能性を示す事例として注目されている。",
+    "relatedWorks": [
+      {
+        "title": "The Saga of Rex（グラフィックノベル原作）",
+        "description": "Michel Gagnéによる原作コミック。1998年の自費出版本を起点に『Flight』アンソロジー掲載を経て、2010年にImage Comicsから単行本刊行された。",
+        "url": "https://www.gagneint.com/Final%20site/books/Rex_saga/Rex_saga_main.htm"
+      },
+      {
+        "title": "The Saga of Rex: The Animated Film Project（2012年Kickstarter）",
+        "description": "本作アニメ化の制作資金を募った2012年のKickstarterキャンペーン。ここでの資金調達を経てGagnéの単独制作が本格化した。",
+        "url": "https://www.kickstarter.com/projects/michelgagne/the-saga-of-rex-the-animated-film-project"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Theme/Entertainment",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "meta-xr-operator-2026",
+    "title": "Meta XR Operator",
+    "summary": "MCP対応AIエージェントがMeta XR Simulator上でVR/MRアプリを操作・検証できる新開発者ツールMeta XR Operator",
+    "client": "Meta",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.moguravr.com/vr-ar-mr-weekly-2026-8-24/",
+    "thumbnail": "/thumbnails/meta-xr-operator-2026.jpg",
+    "videoId": "",
+    "overview": "Metaが2026年8月18日に公開した開発者向けツール。Meta XR SDK v205の実験的コンポーネントとして提供され、Claude Code・Gemini・Codex・OpenCodeなどMCP対応のAIコーディングエージェントが、Meta XR Simulator上で稼働中のVR/MRアプリの画面を見て、コントローラー操作やヘッド位置の設定まで行いながら動作検証できるようにする。",
+    "background": "VR/MR開発ではビルドしたアプリの動作確認に物理ヘッドセットでの手動操作が必要で、AIコーディングエージェントを使った自動テスト・検証の仕組みが整っていなかった。AIエージェントがコード編集からアプリのビルド・検証まで一気通貫で担う開発フローが広がる中、XR分野でもその「作る→試す→確かめる」ループを閉じる手段が求められていた。",
+    "execution": "アプリとOpenXRランタイムの間に位置する構成をとり、XRの状態情報や入力制御をMCP経由で外部のAIエージェントに受け渡す。エージェントはスクリーンショット取得、壁や床などの空間情報の読み取り、Unityシーン階層の確認、コントローラー入力やヘッドポーズの設定を行える。画面データはエージェントが要求した時のみ取得しフレームレートへの影響を抑え、アプリ側のコード変更も不要とした。",
+    "evaluationImpact": "AIエージェントがコード生成だけでなくVR/MRアプリの実機さながらの動作確認まで担えるようにした点が新しい。物理ヘッドセットなしでAIによる自動検証が可能になり、XR開発におけるAIエージェント統合の先行事例として業界内で話題になった。ただし現時点では実験的コンポーネントであり、本番アプリでの利用は推奨されていない。",
+    "relatedWorks": [
+      {
+        "title": "Meta XR Unity MCP Extension",
+        "description": "Unity上でXR開発を支援するMeta公式のMCP拡張機能",
+        "url": "https://developers.meta.com/horizon/documentation/unity/unity-mcp-extension/"
+      },
+      {
+        "title": "MetaのWebXR開発ツール「IWSDK」のAIエージェント対応",
+        "description": "Meta公式のWebXRフレームワークがClaude Code・Codex等と連携し開発を自動化する更新",
+        "url": "https://www.moguravr.com/meta-iwsdk-ai-update/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/XR",
+      "Form/Product"
+    ]
+  },
+  {
+    "id": "niu-lai-2026",
+    "title": "牛来（Niu Lai）",
+    "summary": "制作費200ドルの母子手作りCGアニメが酷評から一転、興行収入が投資額の約2万倍に達した中国発バイラル現象",
+    "client": "Xin Yumeng / Sun Lifang",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://kotaku.com/viral-chinese-cow-cartoon-becomes-one-of-the-most-profitable-movies-ever-made-2000727246",
+    "thumbnail": "/thumbnails/niu-lai-2026.jpg",
+    "videoId": "",
+    "overview": "中国の母子二人組・信雨萌（母）と孫麗芳（息子）が約5年かけ中古機材だけで制作した3DCGアニメ映画。2026年8月5日に245館で公開されたが、稚拙な作画やぎこちない動きが酷評を招き、公開初期は数日でチケット販売わずか300枚程度、興行収入7169元にとどまった。",
+    "background": "低品質な3DCG、不自然な動き、素人じみた声優演技が「あまりに酷い」とSNSで嘲笑の的になった。制作費はわずか200ドル（誕生日ディナー1回分程度）で、新しい機材が買えず中古ハードウェアを使わざるを得なかった台所事情も明かされ、失敗作として扱われていた。",
+    "execution": "劇場スタッフが手描きの宣伝ポスターを作成したことがきっかけでSNS上に拡散。「酷すぎて逆に面白い」というミーム的な盛り上がりが起き、海賊版ブートレッグも出回るほどの話題化に発展。上映館数も一時4館まで減った後、再び359スケジュールまで急増し、公開1週間で約400万ドル（最終的には4517万元）を売り上げた。",
+    "evaluationImpact": "投資額の約2万倍という前代未聞のリターン率を記録し、「低予算・低品質でもバイラル次第で興行的成功は起こり得る」という事例として国際メディアでも報じられた。グッズ化やコスプレなど二次的な文化現象も誘発し、「悪趣味の魅力（so-bad-it's-good）」が本物の熱狂を生むマーケティング事例として注目された。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Tech/3D",
+      "Form/SNS",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "dark-castle-beyond-dark-castle-pc-40-2026",
+    "title": "Dark Castle & Beyond Dark Castle PC版（40周年記念リリース）",
+    "summary": "Mac名作『Dark Castle』40周年、原作者Pierce自らSteamで初のPC正式移植を実現",
+    "client": "Mark Stephen Pierce",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://store.steampowered.com/app/4706290/Dark_Castle/",
+    "thumbnail": "/thumbnails/dark-castle-beyond-dark-castle-pc-40-2026.jpg",
+    "videoId": "",
+    "overview": "1986年にSilicon Beach SoftwareがMacintosh向けに発売した precision-platformer『Dark Castle』と1987年の続編『Beyond Dark Castle』が、発売40周年を機にSteamで正式PC版として2026年8月18日にリリースされた。原作の1ビットグラフィック、オリジナル音源、アニメーションを忠実に再現し、パブリッシャーはLudit、開発協力はIndigo Matrix。",
+    "background": "『Dark Castle』は当時のMacの性能限界に挑む革新作で、アーティストMark Stephen Pierceの緻密なアニメーションとJonathan Gayの技術的工夫（非公式な「ページフリッピング」技法）でハード制約を回避し実現した。40年間PC版は存在せず、非公式エミュレータでのプレイに限られていたが、原作者自身が移植を主導する形で正式版が誕生した。",
+    "execution": "Pierce氏が設立したLudit HoldingsがIndigo Matrixと組み、共同制作者Jonathan Gay・Eric Zocherの原作を忠実に移植。プレイヤーはDuncanを操作し、Dark Castleでは塔への侵入、続編Beyond Dark Castleでは5つの魔法の宝珠集めに挑む。両作はバンドル販売され、Windows/macOS/Linuxに対応、Mac App Store版は8月11日に先行配信された。",
+    "evaluationImpact": "80年代Macゲーム文化を象徴する作品が、非公式移植ではなく原作者公認・自ら手掛けた形でPC市場に初めて正式到達した点が特筆される。海賊版やエミュレータ頼みだった保存状況に対し、権利者主導のクリーンな再配布モデルを示し、レトロゲーム保存とプラットフォーム越境の好例となっている。",
+    "relatedWorks": [
+      {
+        "title": "Beyond Dark Castle",
+        "description": "1987年発売の続編。Dark Castleと同時に40周年PC移植版がSteamでリリースされた",
+        "url": "https://store.steampowered.com/app/4706300/Beyond_Dark_Castle/"
+      },
+      {
+        "title": "Return to Dark Castle",
+        "description": "シリーズの後続作。同時期にSteamで配信された関連タイトル",
+        "url": "https://store.steampowered.com/app/4054940/Return_to_Dark_Castle/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/Product",
+      "Theme/Entertainment"
+    ]
+  },
+  {
     "id": "cosmic-true-heart-2026",
     "title": "Cosmic True Heart",
     "summary": "七夕伝説の銀河による分離を現代の通信断絶に置き換え、全編AI生成映像で10086次元を旅する中国発ブランデッドフィルム",
