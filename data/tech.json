@@ -1,5 +1,55 @@
 [
   {
+    "id": "minimax-music-3",
+    "title": "MiniMax Music 3 (MiniMax-Music3)",
+    "org": "MiniMax",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "歌詞と音楽的な指示文から、ボーカル入りの完成された楽曲を最大5分間、構成が破綻せずに一気に生成できるオープンウェイトの音楽生成AI。",
+    "point": "歌詞と「明るいポップ、BPM120、女性ボーカル」のような音楽的な指示文を入力するだけで、Aメロ→サビ→ブリッジといった曲の構成がきちんと繋がった、最大5分間のボーカル入り楽曲を一括生成できるモデルです。これまでのAI作曲ツールの多くは数十秒〜1分程度の断片しか安定して作れませんでしたが、Music 3は長尺でも歌詞と演奏がずれずに展開します。重み（モデル本体）が公開されておりComfyUIにもネイティブ対応しているため、動画広告のBGM候補やCM尺の仮歌入りデモを、外部の有料生成サービスに頼らず自社の制作環境でまとめて量産する、といった使い方が現実的になります。歌詞さえ用意できれば、企画の初期段階で「こんな曲調・こんな歌詞なら」というラフなデモソングを高速に何パターンも作って比較検討する、といった広告制作のスピードアップにも向いています。",
+    "detail": "仕組みとしては、曲全体の構成（イントロ→Aメロ→サビなど）を考える「グローバルLLM」（80億パラメータ）と、1音1音の細かい音の質感を担当する「ローカルLLM」（6億パラメータ）を役割分担させ、さらにFlow MatchingとFlow-VAEという音声合成技術で32kHz・16bitのステレオ音声に変換する3段構成になっています。長い曲を作ろうとすると尻すぼみになったり展開が破綻したりしがちな従来モデルに対し、全体を俯瞰する係と細部を描く係を分けることで5分間通して破綻しにくい構成を実現しています。\n\nSunoやACE-Stepなど従来の多くのAI作曲ツールは30秒〜2分程度の生成が主戦場でしたが、Music 3は歌詞・ジャンル・BPM・感情・ボーカルの性別や声質・楽器編成まで細かく指定した上でフル尺の楽曲を作れる点が新しく、Apache 2.0ライセンスの音声コーデック(DAC)やStable Audioなど複数のOSS音声技術を土台に構築されています。\n\n使うにはCUDA対応GPUが2枚必要な本格運用（SGLang-Omniサーバー）と、ComfyUIやDiffusers経由で手元のPCから試す方法があります。無償の独自コミュニティライセンスで商用利用も可能ですが、前述の帰属表示義務と大企業向けの許諾条件がある点は導入前に確認が必要です。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "独自のMiniMax-Music3 Community License。商用利用可だが生成物を使う製品UIに「MiniMax-Music3」の表示義務あり。年間売上2000万ドル超の企業は別途MiniMaxへの書面許諾が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/MiniMax-AI/MiniMax-Music3"
+      },
+      {
+        "kind": "project",
+        "url": "https://minimax-ai.github.io/music3-demo/"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/MiniMaxAI/MiniMax-Music3"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/minimax-music-3.jpg",
+    "relatedWorks": [
+      {
+        "title": "ACE-Step 1.5",
+        "description": "個人向けGPUでも動く高速オープン音楽生成モデル（既掲載・比較対象）",
+        "url": "https://github.com/ace-step/ACE-Step"
+      },
+      {
+        "title": "Suno v5",
+        "description": "商用音楽生成AIサービスの代表格。長尺・高品質だがクローズドでAPI課金前提",
+        "url": "https://suno.com"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "qwen-video-edit",
     "title": "Qwen-Video-Edit",
     "org": "Yunpeng Bai, Yossi Gandelsman, Michaël Gharbi, Qixing Huang (UT Austin / Adobe Research)",
