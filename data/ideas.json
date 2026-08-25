@@ -10431,5 +10431,203 @@
         "desc": "キーボードやゲームパッド操作にリアルタイムで反応し次の映像をAIが生成し続ける操作可能な動画世界モデル"
       }
     ]
+  },
+  {
+    "id": "2026-08-25-1",
+    "date": "2026-08-25",
+    "title": "ささやきで残す証言録",
+    "pattern": "文脈×技術",
+    "seed": "StillSpeakingUpが暗殺記者の声をディープフェイクで蘇らせたように、弾圧下の記者がNasoVoceのささやき認識で声を出さず証言を残せる仕組みができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "stillspeakingup-deeptruth",
+        "title": "#StillSpeakingUp",
+        "desc": "暗殺されたジャーナリストをディープフェイクで蘇らせ、報道の自由を訴えるため生前語れなかった真実を語らせた広告。"
+      },
+      {
+        "type": "tech",
+        "id": "nasovoce",
+        "title": "NasoVoce",
+        "desc": "スマートグラスの鼻当てにマイクと振動センサを仕込み、ささやき声でもクリアに認識する常時装着型の発話インターフェース。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-25-2",
+    "date": "2026-08-25",
+    "title": "依存を映す曇る生成世界",
+    "pattern": "文脈×技術",
+    "seed": "Clouded Billboardが霧で依存の視界の曇りを体感させたように、AlayaWorldの生成する映像世界をデータに応じ徐々に曇らせれば、依存の進行を本人に見せられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "clouded-billboard-gambling-clouded-everything-i-did-2024",
+        "title": "Clouded Billboard（Gambling clouded everything I did）",
+        "desc": "内蔵の霧発生装置が看板メッセージを覆っていき、ギャンブル依存による視界の曇りを体感させるOOH広告。"
+      },
+      {
+        "type": "tech",
+        "id": "alayaworld",
+        "title": "AlayaWorld",
+        "desc": "1枚の画像とカメラ動き・テキストから、遊び続けられる動く映像世界をリアルタイム生成するオープンソースの世界モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-25-3",
+    "date": "2026-08-25",
+    "title": "発見の瞬間を3D保存",
+    "pattern": "文脈×技術",
+    "seed": "Curious Mattersが素材を削る・炙る・光にかざし再発見させたように、Splat.jsでその場をGaussian Splatting化すれば、発見の瞬間をブラウザだけで3D保存し持ち帰れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "curious-matters-2026",
+        "title": "Curious Matters（キュリアス・マター）― 材料を再発見するデザイン",
+        "desc": "三菱ケミカルの素材を削る・炙る・光にかざすなど感覚的手法で再発見させるミラノ発の展示。"
+      },
+      {
+        "type": "tech",
+        "id": "splat-js",
+        "title": "Splat.js",
+        "desc": "写真をアップロードするだけで、ブラウザのタブ内だけでGaussian Splattingに変換できるツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-25-4",
+    "date": "2026-08-25",
+    "title": "竹ドームに宿る祈りの軌跡",
+    "pattern": "文脈×技術",
+    "seed": "瀬戸内芸術祭「ゼロ」が竹4000本で地球への回帰を願ったように、来場者の祈りの所作をHTD-Refineでスマホ動画から3D復元し、ドーム内に光の軌跡として永続表示できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2022-sd44",
+        "title": "ゼロ",
+        "desc": "約4000本の竹で編んだドーム状の作品。過度な破壊のなかった地球の姿への回帰を願う。"
+      },
+      {
+        "type": "tech",
+        "id": "htd-refine",
+        "title": "HTD-Refine",
+        "desc": "スマホ1台で撮った動画から、専用機材なしで自然な人体の3Dモーションを復元するAI技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-25-5",
+    "date": "2026-08-25",
+    "title": "願いごとを音楽の種に",
+    "pattern": "文脈×技術",
+    "seed": "夢のたねプロジェクトが願いを書いた種を夜空に放ち見知らぬ誰かに拾わせたように、拾い主の声をOmnizartで自動採譜し、音楽の種として次の誰かに渡せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-7a6jh4-2005",
+        "title": "夢のたねプロジェクト",
+        "desc": "願いごとを書きLEDを仕込んだ種形の紙を熱気球で夜空に放ち、見知らぬ誰かに拾わせる参加型ライトアート。"
+      },
+      {
+        "type": "tech",
+        "id": "omnizart",
+        "title": "Omnizart",
+        "desc": "1曲の音声からメロディ・ドラム・ボーカル・コード進行までまとめて書き起こせる自動採譜ツールキット。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-25-6",
+    "date": "2026-08-25",
+    "title": "生成世界に憑依する体",
+    "pattern": "技術×技術",
+    "seed": "DreamX-World 1.0が生成する歩き回れる3D世界に、CYANPUPPETSがウェブカメラだけで抽出した自分の208キーポイントの動きを憑依させれば、生成世界を自分の体で探検できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "dreamx-world-1-0",
+        "title": "DreamX-World 1.0",
+        "desc": "テキスト指示だけで、視点を動かしても矛盾なく繋がる歩き回れる3D世界の映像を生成できるAIモデル。"
+      },
+      {
+        "type": "tech",
+        "id": "cyanpuppets-1b-parameter-ai-motion-capture",
+        "title": "CYANPUPPETS 1B-parameter AI Motion Capture",
+        "desc": "ローカル実行のAIモデルがウェブカメラ2台や動画から全身・顔・指を含む208キーポイントを抽出するマーカーレスモーキャプ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-25-7",
+    "date": "2026-08-25",
+    "title": "静止空間に宿る動く住人",
+    "pattern": "技術×技術",
+    "seed": "Gaussian SplatKingでiPhoneから空間を撮り、映る人の動きをC1連続in-loop-outツールで途切れないループに変換すれば、静止した3D空間に永遠に動き続ける住人を宿せるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "gaussian-splatking",
+        "title": "Gaussian SplatKing",
+        "desc": "iPhoneのデュアルレンズとLiDARで、ガウススプラッティング向けの高品質な撮影データを無料取得できるアプリ。"
+      },
+      {
+        "type": "tech",
+        "id": "akasaki-c1-loop-motion-tool",
+        "title": "C1連続 in-loop-out モーション生成ツール",
+        "desc": "モーキャプの任意区間から、始点と終点のポーズ・速度が一致するC1連続のループアニメを自動生成する個人開発ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-25-8",
+    "date": "2026-08-25",
+    "title": "音付きで見る予知映像",
+    "pattern": "技術×技術",
+    "seed": "MolmoMotionが1枚の画像から物体の数秒先の動きを予測できるなら、その軌跡をLTX-2に渡し音声と映像を同時生成させれば、未来の一瞬を音付きの予知映像として作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "molmomotion",
+        "title": "MolmoMotion",
+        "desc": "1枚の画像と自然言語の指示だけで、物体の数秒先までの3D上の動きを予測するAi2の基盤モデル。"
+      },
+      {
+        "type": "tech",
+        "id": "ltx-2",
+        "title": "LTX-2",
+        "desc": "音声と映像を同時生成できる、Lightricksがオープンソース化した初の公開基盤モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-25-9",
+    "date": "2026-08-25",
+    "title": "声を出さない現場IF",
+    "pattern": "転用",
+    "seed": "本来は発話困難な人向けのAugmental VOX（皮膚装着型音声入力）を、騒音だらけの工場や水中作業のインカム代わりに転用すれば、声を出さず機械へ指示を送れる現場IFになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "mouthpad-vox",
+        "title": "MouthPad (第2世代) / VOX",
+        "desc": "Augmentalが開発した舌操作マウスピースMouthPadと皮膚装着型の音声入力デバイスVOX。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-25-10",
+    "date": "2026-08-25",
+    "title": "目撃写真から現場再現",
+    "pattern": "転用",
+    "seed": "本来は映像制作のプリビズ用であるViggle PINOC×Seedanceワークフローを、事故現場の目撃写真1枚から再現映像を作る報道・保険調査ツールに転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "viggle-pinoc-seedance-workflow",
+        "title": "Viggle PINOC × Seedance ワークフロー",
+        "desc": "写真からモーキャプ抽出とキャラ生成を行うPINOCで3Dプリビズを作り、Seedanceで最終映像化するワークフロー。"
+      }
+    ]
   }
 ]
