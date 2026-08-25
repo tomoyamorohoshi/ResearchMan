@@ -1,5 +1,36 @@
 [
   {
+    "id": "saku-feat-2026",
+    "title": "ピュアー / 初音ミク MV",
+    "summary": "初音ミクのフィギュアを大量に3Dプリント出力し、街中で撮影して制作したボカロ曲「ピュアー」のMV",
+    "client": "Saku（feat. 初音ミク）",
+    "agency": "崎村宙央（監督）",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://x.com/soraosakimura/status/2090821027647602917",
+    "thumbnail": "/thumbnails/saku-feat-2026.jpg",
+    "videoId": "",
+    "overview": "監督・崎村宙央によるボカロ曲「ピュアー」（Saku feat. 初音ミク）のミュージックビデオ。初音ミクのフィギュアを3Dプリンターで大量に出力し、街中の様々な場所に配置して撮影するという手法で制作された。ボカコレ2026夏参加作品。",
+    "background": "ボーカロイド楽曲のMV表現として、既存のCGアニメーションやモーショングラフィックスとは異なるアプローチが模索される中、実在するフィギュアと現実の街並みを組み合わせる手法が企画された。",
+    "execution": "初音ミクのフィギュアを3Dプリンターで大量に出力し、街中の様々なロケーションに配置して撮影。実写の街並みの中に大量のミクのフィギュアが存在するというビジュアルを積み重ねてMVを構成した。ボカコレ2026夏に合わせて公開された。",
+    "evaluationImpact": "3Dプリント出力と実写撮影を組み合わせた制作手法が、SNS上で監督本人の投稿を通じて紹介され話題となった。ボカロMV表現における新しい映像制作アプローチの一例として注目された。",
+    "relatedWorks": [],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/MV",
+      "Theme/Music"
+    ]
+  },
+  {
     "id": "adathon-ai-ad-creation-contest-2026",
     "title": "Adathon — AI Ad Creation Contest",
     "summary": "Higgsfield AIとAdweekが提携、賞金換算8.5万ドルでAI広告制作を競う月間コンテスト「Adathon」を開催",
