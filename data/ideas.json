@@ -10629,5 +10629,203 @@
         "desc": "写真からモーキャプ抽出とキャラ生成を行うPINOCで3Dプリビズを作り、Seedanceで最終映像化するワークフロー。"
       }
     ]
+  },
+  {
+    "id": "2026-08-26-1",
+    "date": "2026-08-26",
+    "title": "汚染警鐘の3D体験版",
+    "pattern": "文脈×技術",
+    "seed": "Channel4の下水汚染啓発「Dirty Business」の警鐘を、ABot-3DWorldで『対策しなければ数年後こうなる』街を歩き回れる3D世界として生成したら、当事者意識をもっと強く体感させられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "channel-4-dirty-business",
+        "title": "Dirty Business – The Fountain of Filth",
+        "desc": "英国の下水汚染問題を訴えるため実物大の汚水噴水をロンドンの公共空間に設置した挑発的な広告。"
+      },
+      {
+        "type": "tech",
+        "id": "abot-world-abot-3dworld",
+        "title": "ABot-World / ABot-3DWorld",
+        "desc": "1枚の画像やテキストから歩き回れる探索可能な3D世界をリアルタイムに生成し続けるAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-26-2",
+    "date": "2026-08-26",
+    "title": "孤独に寄り添う浮遊機",
+    "pattern": "文脈×技術",
+    "seed": "Heinekenが都市の孤独に立ち向かう社交拠点として屋上を再生した「Rooftop Revival」に、静音で人について歩けるCuddle-Fishを配置したら、孤立した人にそっと寄り添う存在になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "heineken-rooftop-revival",
+        "title": "Rooftop Revival",
+        "desc": "ソウルの空き屋上を衛星画像で見つけ、都市の孤独と闘う社交体験拠点に再生したHeinekenの施策。"
+      },
+      {
+        "type": "tech",
+        "id": "cuddle-fish",
+        "title": "Cuddle-Fish（Floating Companion）",
+        "desc": "ヘリウムと羽ばたきヒレで浮遊移動し人について歩く静音・安全なソフトロボット。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-26-3",
+    "date": "2026-08-26",
+    "title": "ヘイトを映すアバター",
+    "pattern": "文脈×技術",
+    "seed": "Ministerio Publico DFの「Fair Play」がAIでヘイトスピーチを検出するように、EchoAvatarで発言のトーンをその場で全身アバターの動きに可視化したら、書き手自身に嫌悪の姿を突きつけ抑止できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "misterio-publico-df-fair-play",
+        "title": "Fair Play",
+        "desc": "AIが人種差別的ヘイトスピーチを検出し誰でも当局へ通報できる世界初のデジタル検察官プラットフォーム。"
+      },
+      {
+        "type": "tech",
+        "id": "echoavatar",
+        "title": "EchoAvatar",
+        "desc": "話し声や音楽を聞き取りながら全身が自然に動く3Dアバターをリアルタイム生成する研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-26-4",
+    "date": "2026-08-26",
+    "title": "化粧を導くロボット手",
+    "pattern": "文脈×技術",
+    "seed": "関節炎の人向けエルゴノミクス化粧品「Tilt」の思想を、テキスト指示で全身動作するロボット基盤モデルSONICに応用したら、手が震える人の化粧を優しく介助するロボットアームができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "tilt-accessible-beauty-product-design",
+        "title": "Tilt Accessible Beauty – Product Design",
+        "desc": "関節炎や慢性疼痛を持つ人が自分でメイクできる業界初のエルゴノミクス化粧品デザイン。"
+      },
+      {
+        "type": "tech",
+        "id": "sonic",
+        "title": "SONIC（GR00T Whole-Body Control）",
+        "desc": "歩行から物の受け渡しまで人型ロボットの全身動作を担う、テキストや操作で指示できる基盤モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-26-5",
+    "date": "2026-08-26",
+    "title": "弾く絵が即興で踊り出す",
+    "pattern": "技術×技術",
+    "seed": "AniGenで1枚の絵から骨格付きの動く3Dキャラを作り、NeuralNoteでその場の演奏をMIDI化して動きに接続したら、楽器を弾くだけで自分の描いたキャラが即興で踊り出すライブ表現ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "anigen",
+        "title": "AniGen",
+        "desc": "1枚の画像から骨格とスキンを持つ動かせる3Dキャラクターを自動生成する技術。"
+      },
+      {
+        "type": "tech",
+        "id": "neuralnote",
+        "title": "NeuralNote",
+        "desc": "DAW上の演奏や録音の音声をほぼリアルタイムにMIDIノートへ変換する無料プラグイン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-26-6",
+    "date": "2026-08-26",
+    "title": "影ごと切り抜く合成術",
+    "pattern": "技術×技術",
+    "seed": "RotoAIで「赤いシャツの人」のように言葉だけで動画から人物を切り抜き、Splatlightでその人物をシーンの光に合わせた自己遮蔽陰影付きで合成したら、実写と3D背景がその場で馴染む撮影手法になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "rotoai",
+        "title": "RotoAI",
+        "desc": "自然言語の指示だけで動画から人物や物体をきれいに切り抜けるオープンソースのロトスコープ・スタジオ。"
+      },
+      {
+        "type": "tech",
+        "id": "splatlight",
+        "title": "Splatlight",
+        "desc": "実写を3Dスキャンしたガウシアンスプラットにシーンの光に応じた自己遮蔽陰影を後付けできるアドオン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-26-7",
+    "date": "2026-08-26",
+    "title": "逆転発想のノイズ除去",
+    "pattern": "転用",
+    "seed": "DJ用にリアルタイムで曲をボーカル・ドラム等4トラックに分離するStemgenRTを逆手に取り、生活音から工事音や雑踏だけを11.6ミリ秒遅延で抜き取る会話用ノイズ除去に転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "stemgenrt",
+        "title": "StemgenRT",
+        "desc": "再生中の曲をボーカル・ドラム・ベース・その他の4トラックに11.6ミリ秒遅延でリアルタイム分離するプラグイン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-26-8",
+    "date": "2026-08-26",
+    "title": "動きを可視化する目線",
+    "pattern": "転用",
+    "seed": "ロボットのセンサや3D姿勢をリアルタイム可視化するRerun×Booster Robotics K1のデモを、ロボット以外のダンサーやアスリートの身体データ収録に転用すれば、動きのクセを時系列で丸ごと解析できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "rerun-booster-robotics-k1",
+        "title": "Rerun × Booster Robotics K1",
+        "desc": "OSSの可視化ツールRerunでヒューマノイドK1のセンサや3D状態をリアルタイムにロギング・可視化したデモ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-26-9",
+    "date": "2026-08-26",
+    "title": "島の彫刻を持ち帰る術",
+    "pattern": "文脈×技術",
+    "seed": "瀬戸内国際芸術祭の「愛のボラード」のような各島の野外彫刻を、Onesplatで1枚の写真から数秒でGaussian Splat化したら、島を巡らずとも彫刻を立体のまま持ち帰れるデジタルアーカイブになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2016-109",
+        "title": "愛のボラード",
+        "desc": "係船柱を主題にした清水久和の彫刻で、小豆島・坂手港に設置されている。"
+      },
+      {
+        "type": "tech",
+        "id": "onesplat",
+        "title": "Onesplat",
+        "desc": "1枚の画像から数秒でGaussian Splatという半透明の粒による3D表現を生成できるプラグイン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-26-10",
+    "date": "2026-08-26",
+    "title": "手描きが彼氏を変える",
+    "pattern": "文脈×技術",
+    "seed": "Old Spiceの「THE MAN YOUR MAN COULD SMELL LIKE」のような口コミ狙いのCMに、Cinematic Annotate Videoの手描き指示をモーションプロンプトへ翻訳する仕組みを応用し、理想の彼氏像を描くと動画が生成される参加型キャンペーンにできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "old-spice-the-man",
+        "title": "THE MAN YOUR MAN COULD SMELL LIKE",
+        "desc": "彼氏がOld Spiceを使えば自分みたいな匂いになるかもと語りかけた口コミ爆発CM。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-cinematic-annotate-video",
+        "title": "ComfyUI「Cinematic Annotate Video」ワークフロー",
+        "desc": "画像への描き込みをLLMが動画生成用のモーションプロンプトへ自動翻訳するComfyUIワークフロー。"
+      }
+    ]
   }
 ]
