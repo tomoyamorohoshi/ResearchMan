@@ -1,5 +1,156 @@
 [
   {
+    "id": "adapt",
+    "title": "AdaPT",
+    "org": "Noitom Robotics（上海AIラボ・Dobot Robotics・上海交通大学と共同）",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "HCI/MediaArt"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "モーションキャプチャ機器メーカーNoitomのロボティクス部門が、ヒューマノイドロボットにフェデラー・ナダル・ジョコビッチ風のテニスサーブ／ラリーを『その選手らしいフォームのまま』打たせる技術を、コードと論文付きで無償公開。",
+    "point": "すごいのは、ロボットに『正解の関節角度』を丸暗記させるのではなく、放送映像やモーションキャプチャから読み取った一流選手のフォームの『クセ』を保ったまま、実機（Unitree G1・Dobot Atom）でサーブやラリーを打たせている点です。動作の速さやタイミングが多少ずれても、選手らしい『間』や体の使い方を崩さずに調整し直す仕組み（Adaptive Motion Tracking）を持っています。広告・体験づくりの観点では、実写選手のフォームをロボットや3Dキャラクターに『その人らしさごと』移植する技術として応用でき、スポーツブランドの店頭ロボット演出や、有名選手風モーションを使ったスポーツゲーム・CM向けアニメーションの下敷きとしても使える可能性があります。",
+    "detail": "仕組みをたとえると、ダンスの振り付けを『足の位置を1フレームずつ丸暗記する』のではなく『このダンサーはここで“溜め”を作る人だ』という個性ごと覚えて、多少テンポがズレても個性を保ったまま踊り直せる、というイメージです。AdaPTは2段階の学習を組んでおり、まず様々な速度のモーションキャプチャデータで『速度が変わってもフォームを保つ』動きの基礎（モーション基盤モデル）を作り、その上で放送映像だけから抽出したナダルやジョコビッチらの『スタイル』を追加学習させています。\n\n従来のロボット動作生成は、目標の関節角度列を精密になぞる『モーション追従』が主流で、実行タイミングが少しでもズレると破綻しやすいという弱点がありました。AdaPTは実行速度が変わっても『その人らしいフォーム』を保ったまま追従し直せる点、かつモーションキャプチャ設備がない『放送映像だけ』からでも個性を学習できる点が新しく、実機ロボット（Unitree G1・全身サイズのDobot Atom）での屋外テニスサーブという、これまで難しかった実世界デモまで到達しています。\n\n使うには、Unitree G1などの実機ロボットまたはMuJoCo/Isaac系のシミュレータ、NVIDIA GPU、Pythonの強化学習環境が必要で、コード自体は`uv`で環境構築できます。広告・映像制作の現場でロボット実機を使うのはハードルが高いですが、同じ『個性を保った動き生成』の考え方は3Dキャラクターアニメーションにも転用可能で、公開されたモーション基盤モデルの学習手法自体が参考になります。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "コードはApache-2.0で商用利用可。学習に使う『HiPHI』モーションデータは別ライセンスで、一部は許諾が必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/noitom-robotics/AdaPT"
+      },
+      {
+        "kind": "project",
+        "url": "https://humanoidtennis.github.io/AdaPT"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2608.20087"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/adapt.jpg",
+    "relatedWorks": [
+      {
+        "title": "MotionBricks（NVIDIA）",
+        "description": "35万クリップ規模の実写モーションを1つの基盤モデルに集約し、ロボット制御まで統一するアプローチ（既掲載・除外済み技術）",
+        "url": "https://research.nvidia.com/labs/par/motionbricks/"
+      },
+      {
+        "title": "Newton物理エンジン（NVIDIA・Google DeepMind・Disney Research）",
+        "description": "表現力あるロボット動作のためのオープンソース物理シミュレータ",
+        "url": "https://developer.nvidia.com/blog/announcing-newton-an-open-source-physics-engine-for-robotics-simulation/"
+      },
+      {
+        "title": "GR00T N1（NVIDIA）",
+        "description": "ヒューマノイドロボット向けの汎用基盤モデル",
+        "url": "https://nvidianews.nvidia.com/news/nvidia-isaac-gr00t-n1-open-humanoid-robot-foundation-model-simulation-frameworks"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "mocara-for-unreal-engine",
+    "title": "Mocara for Unreal Engine",
+    "org": "Conalh（個人開発・NVIDIA Kimodoモデルを利用）",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "Motion/Body",
+      "AI/Agents"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "「キャラクターが3歩進んで振り返り、体をひねって走り出す」といった文章を打ち込むだけで、Unreal Engine 5.8の中に直接キャラクターアニメーションを生成できるエディタ拡張プラグイン。",
+    "point": "すごいのは、AIモーション生成を外部ツールで作って書き出す『二度手間』をなくし、Unreal Engineのエディタ内で『文章入力→アニメーション生成→UE5マネキンやMetaHumanへの適用』までを一直線につないだ点です。生成結果はエディタ内の専用画面（Animation Lab）でボーンごとに手直しでき、同じ設定で1〜4パターンの候補も作れます。広告・体験づくりの観点では、ゲームエンジンで作るリアルタイムCM映像やバーチャル空間の演出において、『動きの絵コンテ』をラフに素早く量産し、微調整だけ人間が行うという制作フローが現実的になります。",
+    "detail": "仕組みは、まず入力した文章をMetaの言語モデル（Llama 3）が『意味のベクトル』に変換し、それをNVIDIAのモーション生成AI「Kimodo」に渡して骨格アニメーションを作らせる、という2段構えです。生成はUnreal本体ではなくWindows上のWSL2（Linux環境）でNVIDIA GPUを使って動く裏方サーバーが担当し、Unreal側とはネットワーク経由でやり取りします。生成されたモーションはBVH形式などで返され、UE5のリターゲティング機能でキャラクターの骨格に自動で合わせ込まれます。\n\n従来、AIでモーションを作る場合は研究用のPythonスクリプトを個別に動かし、その結果ファイルを手作業でゲームエンジンに読み込む必要がありましたが、本ツールはその橋渡しをエディタのボタン操作にまで落とし込んだ点が新しく、さらに生成のたびに『どの設定で作ったか』を記録するトレーサビリティ機能も備えています。\n\n使うには、Windows PC＋WSL2＋NVIDIA GPU（CUDA対応）というやや専門的な環境構築に加え、Hugging FaceでKimodoとLlama 3モデルへのアクセス許可を得る必要があり、現状は個人開発のベータ版（v0.2.0）でパッケージ済みゲームでの実行には未対応、顔のアニメーションもまだ非対応です。プロダクション導入というよりは、プリビズ（絵コンテ代わりの仮アニメーション）用途での試用が現実的です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "プラグイン本体はApache-2.0で商用可。内部で使うNVIDIA Kimodoモデル本体とMetaのLlama 3は別ライセンスで、それぞれの利用規約に従う必要あり"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Conalh/Mocara-Unreal"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/mocara-for-unreal-engine.jpg",
+    "relatedWorks": [
+      {
+        "title": "NVIDIA Kimodo",
+        "description": "700時間分のモーションキャプチャで学習した、本ツールが内部で使うテキスト駆動モーション生成AI本体",
+        "url": "https://research.nvidia.com/labs/sil/projects/kimodo/"
+      },
+      {
+        "title": "kimodo-houdini-bridge",
+        "description": "同じKimodoをHoudini向けに橋渡しする個人開発ツール（VFXパイプライン向け）",
+        "url": "https://github.com/chordee/kimodo-houdini-bridge"
+      },
+      {
+        "title": "MotionGen（Blender向けAIモーションキャプチャアドオン）",
+        "description": "動画からアニメーションを生成するローカル完結型のBlenderアドオン",
+        "url": "https://cginterest.com/2026/07/09/%E5%AE%8C%E5%85%A8%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%81%A7%E5%8B%95%E7%94%BB%E3%81%8B%E3%82%89%E3%82%A2%E3%83%8B%E3%83%A1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E7%94%9F%E6%88%90%EF%BC%81bl/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "motionmind",
+    "title": "MotionMind",
+    "org": "Rohit Acharya（個人開発）",
+    "type": "Tool",
+    "domains": [
+      "Motion/Body",
+      "AI/Agents",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "ダンス動画を1本渡すだけで、3Dアバターがその動きを再現し、AIが振り付けの意味を理解してステップごとに分解し、さらに音声で動き方を教えてくれるコーチにまでなる一気通貫パイプライン。",
+    "point": "すごいのは、単に『動画から3Dモーションを抽出する』だけでなく、抽出した動きをAI（LLM）が『これは腰を落とすステップ』『これは腕を回す動き』のように意味づけして教えられる形に分解し、さらにリアルタイム音声AIが実際に『こう動いて』と声で指導してくれるところまで一体化している点です。広告・体験づくりの観点では、インフルエンサーやダンサーの動画から即座にVRアバター向けの振り付け教材やSNS向けのダンスチャレンジ企画を作ったり、ブランドキャラクターに実写の『振り』を移植する用途に使えます。",
+    "detail": "仕組みは3段階です。①まず動画から人物の骨格と体型のパラメータ（SMPLという業界標準フォーマット）を、モーションキャプチャ機材なしでAIが推定して抽出します。②それをVRM形式の3Dアバターの骨格に、関節が不自然な角度にならないよう安全チェックしながら移し替えます（リターゲティング）。③最後に、その動きの意味をAI（LLM）が分析して『体のどの部位を』『どんなスタイルで』動かしているかを言葉で理解し、練習しやすい手順に分解、Googleのリアルタイム音声AI「Gemini Live」が実際に声でコーチしてくれます。\n\n従来のモーションキャプチャ→3Dアバター変換ツールは『動きを再現する』ところで完結するものが大半でしたが、本ツールはそこにAIによる『動きの言語化・指導』という一段上のレイヤーを載せている点が新しく、動画からリアルタイム音声レッスンまでを個人が無料枠のGoogle Colab（クラウドの計算環境）だけで完結できる設計になっている点も特徴です。\n\n使うには、動画データからのSMPL抽出に無料のGoogle Colab（T4 GPU）を使い、その後はPython環境（ローカルPC）で処理を続けます。特別な機材は不要ですが、Pythonの実行環境構築にはある程度の技術知識が必要で、音声コーチ機能を使うにはGoogleのAPIキー（無料枠あり、超過分は従量課金）が必要です。現状は個人開発のプロトタイプ段階で、商用の制作パイプラインに組み込むにはまだ手直しが必要です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "コード本体はMIT。学習・参照データのAIST++（Google, CC BY 4.0）や同梱VRoidサンプルアバターは別ライセンス"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/rohitacharyams/MotionMind"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/motionmind.jpg",
+    "relatedWorks": [
+      {
+        "title": "AIST++ Dance Database（Google）",
+        "description": "本ツールのデモで使われている、実際のダンス動作を収録した公開データセット",
+        "url": "https://google.github.io/aistplusplus_dataset/"
+      },
+      {
+        "title": "VIREA",
+        "description": "14種のモーション生成AIを統合し、VRMアバター向けのテキスト→モーション生成を1本化するツール（開発中・要検証）",
+        "url": "https://github.com/Moonweave-AI/virea"
+      },
+      {
+        "title": "CozyClay",
+        "description": "ブラウザ上でシーンを仮組みし、AI動画生成モデルに引き渡すプリビズツール",
+        "url": "https://cozyclay.org"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "minimax-music-3",
     "title": "MiniMax Music 3 (MiniMax-Music3)",
     "org": "MiniMax",
