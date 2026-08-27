@@ -1,5 +1,107 @@
 [
   {
+    "id": "pcd-splatter",
+    "title": "PCD Splatter (Point Cloud Density Splatter)",
+    "org": "Punto de Ancla Studio",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "レーザースキャンの点群データを、AI学習の工程を一切挟まずにその場でガウシアンスプラットに変換するBlenderアドオン。",
+    "point": "レーザースキャナーで撮った建物や工場、遺跡などの点群データ（無数の点の集まり）を、AIの学習処理を一切挟まずにその場でガウシアンスプラット（ふわっとした光の粒の集合で立体を表現する技術）に変換してくれるBlenderの追加機能です。通常のガウシアンスプラットは大量の写真から何十分もかけてAIに学習させて作りますが、これは点群の密度（点の混み具合）をそのまま粒の大きさに置き換えるだけなので一瞬で完成します。広告制作の現場では、工場見学ムービーや歴史的建造物のプロモーションなど、レーザースキャン測量データが既にある案件で威力を発揮します。学習待ちなしでその日のうちに歩き回れる3D空間の素材ができるので、展示会の空間演出やVR体験コンテンツの下敷きとして、企画の初期段階からすぐに触って検証できるようになります。",
+    "detail": "点群データとは、レーザースキャナーが対象物に無数の光を当てて跳ね返ってきた位置を記録した点の集合です。PCD Splatterは各点の周囲にある近傍点との距離を計算し（k近傍法という手法）、点が密集している場所は小さく、まばらな場所は大きく、というように粒（スプラット）のサイズを自動調整します。さらに測量分野の国際規格E57ファイルを追加ソフト無しでBlenderが直接読み込めるよう、読み込み機能をPythonだけで独自実装しているのも特徴です。\n\n一般的なガウシアンスプラットは大量の写真をCOLMAPなどのソフトでカメラ位置ごと解析し、AIに数十分〜数時間かけて学習させて生成します。PCD Splatterは学習の工程自体が無く、既にあるレーザースキャン点群を変換するだけなので、E57やPLYなどの測量データを再利用してその場でBlender上のEeveeやCyclesレンダラーでプレビュー・レンダリングできます。\n\n価格は70ドルで、BlenderのアドオンストアSuperhiveから購入します。ソースコードはGPL-3.0ライセンスで同梱されているため改変も可能です。対応はBlender 4.2〜5.1（Windows/macOS/Linux）。レーザースキャナー自体が無くても、既存の点群データ（E57/PLY/PTS/XYZ等）があれば利用できます。",
+    "license": {
+      "spdx": "GPL-3.0",
+      "commercial": "paid",
+      "note": "$70。ソースコードはGPL-3.0で同梱。Blender拡張機能ストアSuperhiveで配布"
+    },
+    "links": [
+      {
+        "kind": "product",
+        "url": "https://superhivemarket.com/products/point-cloud-density-splatter"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/pcd-splatter-turns-e57-laser-scans-into-gaussian-splats-inside-blender"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/pcd-splatter.jpg",
+    "relatedWorks": [
+      {
+        "title": "Point Cloud Merger for Blender",
+        "description": "複数のCOLMAP点群をBlender上で位置合わせして統合するアドオン",
+        "url": "https://toppinappi.gumroad.com/l/PCM"
+      },
+      {
+        "title": "KIRI Engine Gaussian Splatting Blender Add-on",
+        "description": "スマホスキャンからガウシアンスプラットを生成する無料Blenderアドオン",
+        "url": "https://radiancefields.com/kiri-engine-gaussian-splatting-blender-add-on"
+      },
+      {
+        "title": "LichtFeld Studio",
+        "description": "オープンソースのガウシアンスプラット学習・ビューアーツール",
+        "url": "https://radiancefields.com/platforms/lichtfeld-studio"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "point-cloud-merger-for-blender",
+    "title": "Point Cloud Merger for Blender (PCM)",
+    "org": "Olli Huttunen（ToppiNappi）",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "地上撮影・ドローン空撮など別々に作った複数のCOLMAP点群データを、Blender上でクリックするだけで位置合わせして1つに統合できるアドオン。",
+    "point": "ガウシアンスプラット（写真から作る立体的な光の粒表現）を作るとき、地上から撮った写真だけでは建物の屋根や広い敷地全体をきれいに捉えきれないことがよくあります。このツールは、地上カメラで撮った点群とドローンで空撮した点群など、別々に作った複数の3D点群データをBlenderの画面上で重なる点同士をクリックして指定するだけで、位置・向き・大きさを自動計算してぴったり重ね合わせてくれます。工事現場の記録や建築物のプロモーション映像制作で、地上撮影と空撮を組み合わせた敷地全体を歩き回れる3D空間を作りたいときに、これまで専門知識が必要だった位置合わせ作業をボタン数回で済ませられます。結果を再びCOLMAP形式で書き出せるので、そのまま既存のガウシアンスプラット学習ツールに渡して高精細な3D空間コンテンツの制作に進められます。",
+    "detail": "COLMAPというソフトで写真から生成した点群データは、それぞれ独自の座標系・縮尺で作られるため、複数の点群を単純に並べても位置がずれてしまいます。Point Cloud Mergerは、重なり合う範囲にある同じ場所を示す点同士をユーザーが目視でクリックして対応づけると、そこから回転・拡大縮小・平行移動を数学的に逆算する相似変換という計算で自動的に位置を合わせます。\n\nこれまで複数の点群を統合するには専門的な測量ソフトや手作業のスクリプトが必要でしたが、本ツールはBlenderの3Dビューポート上で視覚的に点を選ぶだけで完結します。書き出し時にはBlenderとガウシアンスプラット学習ソフトとの座標軸の違いも自動変換してくれるため、そのまま学習パイプラインに投入できます。\n\n価格は約30ドルで、開発者Olli Huttunen氏のGumroadストアで販売。Blender 4.2以上が必要で、ファイルサイズは51KBと軽量です。17分のチュートリアル動画も付属します。",
+    "license": {
+      "spdx": null,
+      "commercial": "paid",
+      "note": "Royalty-free、約30ドル。Gumroadで個人開発者が直接販売"
+    },
+    "links": [
+      {
+        "kind": "product",
+        "url": "https://toppinappi.gumroad.com/l/PCM"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/olli-huttunen-releases-point-cloud-merger-for-blender"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/point-cloud-merger-for-blender.jpg",
+    "relatedWorks": [
+      {
+        "title": "PCD Splatter",
+        "description": "レーザースキャン点群を学習無しでガウシアンスプラットに変換するBlenderアドオン",
+        "url": "https://superhivemarket.com/products/point-cloud-density-splatter"
+      },
+      {
+        "title": "COLMAP",
+        "description": "写真から3D点群とカメラ位置を復元するオープンソースのStructure from Motionソフト",
+        "url": "https://colmap.github.io/"
+      },
+      {
+        "title": "LichtFeld Studio",
+        "description": "オープンソースのガウシアンスプラット学習・ビューアーツール",
+        "url": "https://radiancefields.com/platforms/lichtfeld-studio"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "adapt",
     "title": "AdaPT",
     "org": "Noitom Robotics（上海AIラボ・Dobot Robotics・上海交通大学と共同）",
