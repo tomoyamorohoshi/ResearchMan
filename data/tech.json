@@ -1,5 +1,56 @@
 [
   {
+    "id": "audio-cpp",
+    "title": "audio.cpp",
+    "org": "0xShug0（OSSコミュニティプロジェクト）",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "音声・音楽まわりのAIモデル60種類以上を、Pythonなしで手元のパソコン上で軽快に動かせるオープンソースの推論エンジン。",
+    "point": "audio.cppは、音声合成や音楽生成、音声認識、ボーカル分離といった音声まわりのAIモデルを、Pythonの複雑な環境構築なしにパソコン上で直接動かせるようにするオープンソースのソフトです。文章生成AIを手元のパソコン単体で動かすための有名なオープンソースソフト「llama.cpp」の、音声・音楽版にあたる立ち位置のプロジェクトだとイメージすると分かりやすいでしょう。62種類・85以上のAIモデルに対応し、ブラウザ上で操作できる管理画面も新たに搭載されたため、エンジニアでなくてもテキスト読み上げや音楽生成、音声分離を手元で試せます。広告制作の現場では、外部のクラウドAPIに音声データを送らずに社内PCだけでナレーション試作や効果音生成、BGM分離ができるため、未公開の機密素材を扱う案件でも安心して使える点が魅力です。",
+    "detail": "仕組みとしては、AI用の高速計算ライブラリ「ggml」（画像生成ソフトを手元のMacで動かす仕組みとしても使われている技術）の上に、音声・音楽向けの60種類以上のAIモデルをまとめて動かせるよう土台を作っています。前述の通り、文章生成AIのllama.cppに対する音声版という立ち位置のプロジェクトです。\n\nこれまで音声・音楽系のAIモデルを試すには、モデルごとに異なるPython環境やライブラリを個別にインストールする必要があり、専門知識がないと挫折しやすいものでした。audio.cppはPythonを一切使わず、ビルド済みの実行ファイルとブラウザ画面だけで完結させている点が従来と大きく異なります。2026年8月13日公開のv0.6では対応モデルが5種類追加され、ブラウザ管理画面が新たに搭載されました。\n\n使うにはある程度のPCスペック（NVIDIA/AMD/Apple Siliconいずれかのグラフィック機能があれば高速、無くてもCPUのみで動作可能）と、ソフトを自分でビルドするかHomebrew等でインストールする軽い技術知識が必要です。ソフト自体もモデルも無料で、Apache License 2.0のもと商用利用も可能です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "Apache License 2.0。商用利用可"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/0xShug0/audio.cpp"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/audio-cpp/audio.cpp-gguf"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/audio-cpp.jpg",
+    "relatedWorks": [
+      {
+        "title": "llama.cpp",
+        "description": "文章生成AIをローカルPCで軽量実行する元祖的OSSプロジェクト",
+        "url": "https://github.com/ggml-org/llama.cpp"
+      },
+      {
+        "title": "whisper.cpp",
+        "description": "音声認識モデルWhisperのC++ローカル実行版",
+        "url": "https://github.com/ggml-org/whisper.cpp"
+      },
+      {
+        "title": "ACE-Step 1.5",
+        "description": "audio.cppが対応するローカル音楽生成モデルの一つ（既掲載）",
+        "url": "https://github.com/ace-step/ACE-Step-1.5"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "minimax-h3-latent-upscaler",
     "title": "Minimax H3 Latent Upscaler",
     "org": "LBH-123-AI(コミュニティ開発)",
