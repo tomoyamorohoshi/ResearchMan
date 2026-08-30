@@ -1,5 +1,61 @@
 [
   {
+    "id": "mmlve",
+    "title": "MMLVE (Thinking on Shots)",
+    "org": "Nankai University (VCIP) / Tencent Smart Creation Platform",
+    "type": "Research",
+    "domains": [
+      "AI/Agents",
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "複数カットからなる長尺動画を、人物の同一性・背景・カメラワークを保ったまま自然言語の指示だけで一括編集できるAIエージェント。",
+    "point": "動画編集AIの多くは短い1カットの映像しか安定して編集できませんでしたが、MMLVEは数十秒〜数分の『複数カットからなる長尺動画』を丸ごと編集できるのが最大の特徴です。たとえば『主人公の服を赤に変えて』と指示するだけで、シーンが切り替わっても同じ人物・同じ服色を保ったまま、背景やカメラの動きは変えずに全カットへ反映してくれます。裏側ではAIが自分の編集結果を見直し、失敗した部分を自動で直す『自己添削』の仕組みも備えています。広告制作の現場では、複数カットで構成されたCMやSNS動画の『商品の色だけ差し替えたい』『出演者の服装だけシーズンごとに変えたい』といった量産型のバリエーション制作を、撮り直しなしで自動化できる可能性があります。ローンチ動画の多言語・多地域向けリメイクや、A/Bテスト用のクリエイティブ大量生成にも応用できそうです。",
+    "detail": "MMLVEは、LLM（文章理解AI）とVLM（画像・映像理解AI）を組み合わせた複数のAIエージェントが役割分担して動く仕組みです。まずAIがカットの切れ目を検出し、指示文を『誰の・何を・どう変えるか』に分解します。次に映像内の対象人物を追跡し、最も写りの良い場面を6枚選んで『お手本の顔・服』の基準画像を作成、これを全カットの編集で参照することで見た目のブレを防ぎます。編集後はAI自身が結果を採点し、失敗箇所には『こうしないで』という否定的な指示を、成功箇所には『もっとこう』という肯定的な指示を自動で追加してやり直します。\n\n既存の動画編集AI（Kling、Seedance等）は基本的に1カットずつの編集に強く、長尺の複数カット動画に使うと『さっきの服の色に戻ってしまう』『途中から別人になる』といった破綻が起きがちでした。論文内の比較では、こうした非公開の商用AIよりも一貫性の面で上回ったと報告されています。\n\n現状はGitHub上でコードと評価用データセット（MMLVE-Bench）が公開されたばかりの研究段階のツールです。動かすにはOpenAI（またはGoogle Gemini等の互換API）のAPIキーに加え、実際の映像編集にはByteDance系のBytePlus ModelArkという有償クラウドAPIの契約が必要で、無料で完結するツールではありません。既存の映像生成AIを『指揮する頭脳部分』をMITライセンスで公開した形で、ffmpegによる動画処理も必要になるため、現時点では研究者・エンジニア向けの構成です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "コード自体はMITだが、実編集にはOpenAI/Gemini系APIとByteDance系BytePlus ModelArkの有償API契約が別途必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Wucy0519/MMLVE"
+      },
+      {
+        "kind": "project",
+        "url": "https://wucy0519.github.io/MMLVE/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2608.26809"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/mmlve.jpg",
+    "relatedWorks": [
+      {
+        "title": "PersonaLive",
+        "description": "ライブ配信向けにポートレート写真をリアルタイムでアニメ化するストリーミング特化モデル",
+        "url": "https://github.com/GVCLab/PersonaLive"
+      },
+      {
+        "title": "Wan-Animate-2",
+        "description": "駆動動画の動きを参照画像のキャラクターに転写する動画駆動キャラクターアニメーション基盤モデル",
+        "url": "https://comfyui-wiki.com/en/news/2026-08-07-wan-animate-2"
+      },
+      {
+        "title": "VideoGen-of-Thought",
+        "description": "複数カットにまたがる動画生成を協調的に計画するフレームワーク",
+        "url": "https://arxiv.org/abs/2412.02259"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "audio-cpp",
     "title": "audio.cpp",
     "org": "0xShug0（OSSコミュニティプロジェクト）",
