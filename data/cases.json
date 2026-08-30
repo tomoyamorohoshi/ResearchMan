@@ -1,5 +1,77 @@
 [
   {
+    "id": "decathlon-yestalgia-2026",
+    "title": "Decathlon Yestalgia",
+    "summary": "Decathlon50周年を機に、アーティストDalkhafineの挿絵世界で70〜90年代スポーツウェアを再解釈しショッパブルに見せた点が新しい",
+    "client": "Decathlon",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "コンテンツ革新"
+    ],
+    "award": "Awwwards Site of the Day（2026年8月28日、総合スコア7.33/10）",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.awwwards.com/sites/decathlon-yestalgia",
+    "thumbnail": "/thumbnails/decathlon-yestalgia-2026.jpg",
+    "videoId": "",
+    "overview": "Decathlonが展開する「Yestalgia」は、1970〜90年代のスポーツウェアの意匠を再解釈したカプセルコレクションのキャンペーンサイト。フランス系カナダ人アーティストDalkhafineとのコラボレーションにより、Memphisデザイン調の配色とイラストで彩られた世界観を構築し、トラックスーツやクアッドローラースケート、新作スニーカーOG2Kなどをショッパブルなルックブック形式で紹介している。",
+    "background": "2026年にDecathlon Sportswearブランド生誕50周年を迎えるにあたり、過去のアーカイブと現在を接続する企画として立ち上げられた。1990年代のヴェニスビーチのカウンターカルチャーからインスピレーションを得て、ノスタルジーをテーマに当時のスポーツウェアコードを現代の感性で蘇らせることを狙った。",
+    "execution": "サイトはHTML5・GSAPによるスクロールアニメーションと、黒とピンクを基調としたミニマルな2色パレットで構成。Dalkhafineが手掛けるカラフルで表情豊かなキャラクターイラストが随所に配置され、商品ごとのルックブックページから直接購入できる導線を設計。制作はindex、Jonathan Da Costa、Quentin Hocdéが担当した。",
+    "evaluationImpact": "2026年8月28日にAwwwards Site of the Day（総合スコア7.33/10）を受賞。ミニマルな配色とアーティストコラボのイラストを組み合わせることで、Eコマースサイトでありながらブランドの世界観を物語として伝える手法が高く評価された。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Website",
+      "Theme/Fashion",
+      "Theme/Sports",
+      "Theme/Retail"
+    ]
+  },
+  {
+    "id": "paste-present-future-2026",
+    "title": "Paste Present Future",
+    "summary": "Big Issue創刊35周年、35名のアーティストの抗議アートを販売員の立ち位置にペイストアップ展示する社会貢献型OOH。",
+    "client": "The Big Issue",
+    "agency": "Grow Up (in collaboration with Uncle)",
+    "categories": [
+      "OOH革新",
+      "社会包摂"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.creativereview.co.uk/big-issue-paste-present-future-protest-art-exhibition/",
+    "thumbnail": "/thumbnails/paste-present-future-2026.jpg",
+    "videoId": "",
+    "overview": "Big Issueは1991年創刊のロンドン発ストリートペーパーで、路上での雑誌販売を通じてホームレス・生活困窮者の自立を支援する媒体。創刊35周年を記念し、Grow Up(Uncleと協働制作)が手がける「Paste Present Future」は、Anthony Burrill、Jeremy Deller、D*Faceら35名のアーティストが「あなたのBig Issueは何か」という問いに応えた抗議アート/ストリートアートを、ロンドン各地のBig Issue販売員の立ち位置にペイストアップ形式で展示する取り組み。2026年8月29日から公開開始。",
+    "background": "Big Issueは創刊から35年、路上を拠点に生活困窮者の自立支援を続けてきた媒体。周年を単なる記念広告にせず、媒体の原点である「ストリート」に立ち返り、社会に問いを投げかける表現の場として使うことを企図した。プロテストアート/ストリートアートという視覚言語を、雑誌が生まれた路上そのものに回帰させることで、ブランドの存在意義と社会的メッセージを重ね合わせる狙いがある。",
+    "execution": "Anthony Burrill、Jamie Reid、Jeremy Deller、Stanley Donwood、D*Face、Sarah Maple、Cold War Steve、Modern Toss、Led By Donkeysら35名のアーティストが「What's your big issue?」という問いに新作・既存作で応答。作品はロンドン各地のBig Issue販売員の立ち位置にペイストアップ展示され、ショーディッチのSclater Streetに中心的なクラスターを設置。9月3日からはHackneyのLaundry Studiosでも、Grow Upが手作りした広告パネルに街頭展示を再現する展覧会を開催した。",
+    "evaluationImpact": "広告媒体そのものを「路上のギャラリー」に転換し、35周年という節目をブランド訴求でなく社会的メッセージの拡張に使った点が特徴。作品はBig Issueのオンラインショップでも販売され、売上の25%が英国内の貧困支援に充てられるなど、アート・啓発・資金循環を一体化した設計。著名アーティストの参加が可視性と話題性を担保しつつ、販売員という当事者の存在をアートで可視化する社会包摂型のOOH表現として評価しうる。",
+    "relatedWorks": [
+      {
+        "title": "The Big Issue vendor beacon OOH campaign",
+        "description": "Big Issueが2022年に実施した、ビーコン技術で販売員個人をパーソナライズ訴求したデジタルOOH施策。",
+        "url": "https://www.thedrum.com/news/2022/03/17/the-big-issue-uses-beacon-tech-spotlight-vendors-ooh-ads"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Form/Exhibition",
+      "Theme/Art",
+      "Theme/SocialGood"
+    ]
+  },
+  {
     "id": "fuelled-by-silence-2026",
     "title": "Fuelled by Silence",
     "summary": "聴覚障がいの若手レーサーの無音の運転体験をAI映像で宇宙空間として可視化し、障がいを競争優位として提示",
