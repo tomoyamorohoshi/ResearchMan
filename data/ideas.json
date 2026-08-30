@@ -11421,5 +11421,203 @@
         "desc": "RGB動画に加えセンサ入力から実寸スケールの動く3D世界を1回の推論で復元するフィードフォワードモデル"
       }
     ]
+  },
+  {
+    "id": "2026-08-30-1",
+    "date": "2026-08-30",
+    "title": "素麺記憶をモーションに",
+    "pattern": "文脈×技術",
+    "seed": "塩田千春「線の記憶」が赤い糸で紡いだ豊島の生活記憶を、CoMoViでテキストから3Dモーションと映像を同時生成する技術に置き換えれば、糸を結ぶ手の所作そのものを新作アニメーションとして蘇らせられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2025-te23",
+        "title": "線の記憶",
+        "desc": "豊島の素麺製造機を赤い糸で編み込み、島の生活の記憶を紡いだ塩田千春の新作インスタレーション"
+      },
+      {
+        "type": "tech",
+        "id": "comovi",
+        "title": "CoMoVi",
+        "desc": "文章から3Dの人の動きと写実的な映像を一つの生成ループで同時に作る研究"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-30-2",
+    "date": "2026-08-30",
+    "title": "母の視点を補完",
+    "pattern": "文脈×技術",
+    "seed": "THANK YOU, MOMが光を当てた「母の視点」を、ArtiFixerで撮っていないアングルまで生成補完する技術に重ねれば、粗い家庭映像から選手を見守った母の目線を新たに蘇らせられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "pg-thank-you-mom",
+        "title": "THANK YOU, MOM",
+        "desc": "オリンピアンを育てた母たちを主役に据えたP&Gのロンドン五輪キャンペーン"
+      },
+      {
+        "type": "tech",
+        "id": "artifixer",
+        "title": "ArtiFixer",
+        "desc": "壊れた3D再構成を動画拡散モデルで修復し、撮影していないアングルまで生成補完するNVIDIAの研究"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-30-3",
+    "date": "2026-08-30",
+    "title": "名選手フォームを再演",
+    "pattern": "文脈×技術",
+    "seed": "Racing, Club, Vamosが描いたアルゼンチンのサッカー熱狂を、AdaPTで名選手らしいフォームのままロボットに再現させる技術と組めば、伝説のプレーをスタジアム前のOOHでロボットが再演する体験になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "racing-club-vamos-coca-cola",
+        "title": "Racing, Club, Vamos",
+        "desc": "アルゼンチンの熱狂的サッカー文化をボトルとOOHで表現したコカ・コーラの施策"
+      },
+      {
+        "type": "tech",
+        "id": "adapt",
+        "title": "AdaPT",
+        "desc": "ヒューマノイドロボットに名選手らしいフォームでテニスを打たせるロボティクス技術"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-30-4",
+    "date": "2026-08-30",
+    "title": "終わらないAI広告",
+    "pattern": "文脈×技術",
+    "seed": "Danglersのように役者なしでAI生成した広告を、JoyAI-Video-Editのテキスト指示リアルタイム編集と組み合わせれば、視聴者のコメントに応じて内容が更新され続ける「終わらない広告」になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "dollar-shave-club-danglers-ai-2026",
+        "title": "Dollar Shave Club「Danglers」AI生成広告",
+        "desc": "人間の役者を使わずほぼ全編AI生成で作ったDollar Shave Clubの15秒コミカル広告"
+      },
+      {
+        "type": "tech",
+        "id": "joyai-video-edit",
+        "title": "JoyAI-Video-Edit",
+        "desc": "テキスト指示だけで動画をリアルタイム編集できるJD.com開発の160億パラメータ生成AI"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-30-5",
+    "date": "2026-08-30",
+    "title": "自作ARで巨大3D空間",
+    "pattern": "文脈×技術",
+    "seed": "3Dプリント自作フレーム対応のXREAL xbx 01+に、インストール不要で10億スプラット級の3D空間を表示できるAholo Viewerを繋げば、安価な自作ARグラスだけで超巨大な仮想空間を持ち歩けるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "xreal-xbx-01-2026",
+        "title": "XREAL xbx 01+",
+        "desc": "3Dプリント自作フレームに対応した新ブランドxbx第1弾の軽量ARグラス"
+      },
+      {
+        "type": "tech",
+        "id": "aholo-viewer",
+        "title": "Aholo Viewer",
+        "desc": "ブラウザだけで10億スプラット級の巨大3D空間を滑らかに表示できるOSSレンダラー"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-30-6",
+    "date": "2026-08-30",
+    "title": "壊れた3Dを不確かさに",
+    "pattern": "文脈×技術",
+    "seed": "CERTAINLY TOKYOが問う「不確かさ」を、壊れた3D再構成をあえて完全には直さずArtiFixerで部分的にだけ修復する技術に重ねれば、確かさと曖昧さの境界そのものを見せる展示作品になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "certainly-tokyo-2026",
+        "title": "CERTAINLY TOKYO",
+        "desc": "香港のギャラリーが自社発の企画展を国際巡回させ「不確かさ」を考察する展覧会"
+      },
+      {
+        "type": "tech",
+        "id": "artifixer",
+        "title": "ArtiFixer",
+        "desc": "壊れた3D再構成を動画拡散モデルで修復し、撮影していないアングルまで生成補完するNVIDIAの研究"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-30-7",
+    "date": "2026-08-30",
+    "title": "写真からVR世界へ即変換",
+    "pattern": "技術×技術",
+    "seed": "Onesplatで1枚の写真から数秒でGaussian Splatを作り、そのままVRChat Gaussian Splatting v4の1億スプラット級ワールドに配置すれば、誰でも自分の日常風景をソーシャルVR空間に変えられるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "onesplat",
+        "title": "Onesplat",
+        "desc": "1枚の画像から数秒で3Dのガウシアンスプラットを生成できるHoudini用プラグイン"
+      },
+      {
+        "type": "tech",
+        "id": "vrchat-gaussian-splatting-v4",
+        "title": "VRChat Gaussian Splatting v4",
+        "desc": "VRChatのワールド内でGaussian Splattingをリアルタイム描画できるOSSツール"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-30-8",
+    "date": "2026-08-30",
+    "title": "鼻歌からAI楽曲へ",
+    "pattern": "技術×技術",
+    "seed": "basicpitch.cppでブラウザ上の鼻歌を即座にMIDI化し、そのままResonantでAI作曲・自分の声への変換までつなげれば、思いついたメロディがその場で一曲の楽曲になる制作フローができそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "basicpitch-cpp",
+        "title": "basicpitch.cpp",
+        "desc": "Spotifyの音声→MIDI変換モデルをC++で再実装しブラウザでも動く軽量ツール"
+      },
+      {
+        "type": "tech",
+        "id": "resonant",
+        "title": "Resonant",
+        "desc": "作詞作曲から自分の声への変換まで1台のPCで完結するローカルAI音楽制作スタジオ"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-30-9",
+    "date": "2026-08-30",
+    "title": "ささやきを展示の声に",
+    "pattern": "転用",
+    "seed": "発話インターフェース用のNasoVoceを、本来の音声操作ではなく静かな美術館でほとんど声を出さず解説を呼び出せる鑑賞ガイドに転用すれば、静寂を壊さない新しい鑑賞体験になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "nasovoce",
+        "title": "NasoVoce",
+        "desc": "スマートグラスの鼻当てでささやき声からでもクリアに音声を認識する常時使える発話インターフェース"
+      }
+    ]
+  },
+  {
+    "id": "2026-08-30-10",
+    "date": "2026-08-30",
+    "title": "選手フォームを彫刻に",
+    "pattern": "転用",
+    "seed": "テニス選手らしいフォームを再現するロボット技術AdaPTを、スポーツ実況ではなく伝説の振付家の動きの癖を再現する動くアート彫刻に転用すれば、失われた身体表現を美術館で蘇らせられるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "adapt",
+        "title": "AdaPT",
+        "desc": "ヒューマノイドロボットに名選手らしいフォームでテニスを打たせるロボティクス技術"
+      }
+    ]
   }
 ]
