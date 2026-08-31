@@ -1,5 +1,152 @@
 [
   {
+    "id": "luma-gl-splats",
+    "title": "@luma.gl/splats (luma.gl 9.4.0 beta)",
+    "org": "vis.gl / OpenJS Foundation (旧Uber発OSS)",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "ブラウザで動くGaussian Splatting（3D点群による写実的3D表現）を、他の重いライブラリに依存せずGPU上で直接描画できる新モジュール。",
+    "point": "3D空間をカメラで撮って点の集合（スプラット）として写実的に再現するGaussian Splattingを、Webブラウザ上でヌルヌル動かすための専用エンジンです。これまでWeb上でスプラットを表示するには重い外部ライブラリの組み合わせが必要でしたが、このモジュールは単体でWebGPU/WebGL2両対応のGPU直接描画・メモリ管理・視点に応じた見え方の切り替えまで面倒を見てくれます。広告・ブランド体験でよくある「実店舗や商品をスキャンしてWebサイトでぐるぐる回して見せる」演出を、専用アプリなしでブラウザだけで軽快に作れるようになる土台技術です。特設サイトや3DのARプレビューページを作る制作会社にとって、実装コストを大きく下げる部品になります。",
+    "detail": "Gaussian Splattingは、レーザースキャンや複数枚の写真から空間を無数の半透明な「点（ガウス分布）」の集まりとして再構成する技術で、写真のようにリアルな3D空間を軽い処理で表示できるのが特徴です。ただしWeb上で滑らかに表示するには、大量の点を視点に応じて並べ替えたりGPUメモリの使用量を抑えたりする専門的な最適化が必要で、これまでは既存の3Dライブラリの寄せ集めで対応していました。\n\n今回のluma.gl（Uber発の3D描画ライブラリ群vis.glの一部）が公開した`@luma.gl/splats`モジュールは、この描画処理を単体パッケージとして切り出したもので、WebGPUとWebGL2の両方に対応し、GPU上でのソート（並べ替え）やメモリ管理、大規模データを段階的に読み込む仕組みまで内蔵しています。\n\n利用には特別な機材は不要で、npmで`@luma.gl/splats`をインストールし、既存のGaussian Splattingデータ（.plyや.spzなどの点群ファイル）を読み込むだけで使えます。現状はベータ版のため実運用には検証が必要ですが、MITライセンスの無料OSSで、Webエンジニアがいれば商用サイトにもすぐ組み込めます。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "OSSライブラリ。npmで9.4.0-beta系として配布中（本稼働版9.3.6とは別系統）"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/visgl/luma.gl"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/luma.gl-9.4.0-beta-adds-a-gpu-gaussian-splat-renderer"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/luma-gl-splats.jpg",
+    "relatedWorks": [
+      {
+        "title": "Spark (World Labs)",
+        "description": "Three.js向けのGaussian Splattingレンダラー。既にWeb展開で広く使われている競合的な選択肢",
+        "url": "https://sparkjs.dev/"
+      },
+      {
+        "title": "SuperSplat (PlayCanvas)",
+        "description": "ブラウザで動く無料OSSのGaussian Splat編集・最適化・公開ツール",
+        "url": "https://github.com/playcanvas/supersplat"
+      },
+      {
+        "title": "GaussianSplats3D",
+        "description": "Three.jsベースの初期からあるGaussian Splatting実装",
+        "url": "https://github.com/mkkellogg/GaussianSplats3D"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "gaussian-splat-cleanup-hda",
+    "title": "Gaussian Splat Cleanup HDA",
+    "org": "Nodeconnector",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "3Dソフト大手Houdini向けに、Gaussian Splattingデータのゴミ（重複点・ノイズ・浮遊物）を自動で掃除してくれる無料ツール。",
+    "point": "現実の空間や商品をスキャンして作ったGaussian Splatting（点の集合による3D表現）データは、そのままだと余計な点のゴミ・チカチカしたノイズ・宙に浮いた誤検出の破片が混ざっていて、そのまま映像制作に使うと見た目が荒れてしまいます。このツールは映像・VFX業界の標準ソフトHoudiniの中で動く「掃除機」のような部品（HDA）で、重複点の削除・透明度ノイズの除去・浮遊物検出・穴埋め・色ムラの補正など8種類の掃除機能をモジュール式に適用できます。実写ロケ地や商品をスキャンして広告映像・バーチャル背景に使う際の下ごしらえ作業を大幅に楽にしてくれるので、3Dスキャンを使った広告制作のクオリティと制作スピードを底上げする実務ツールです。",
+    "detail": "Gaussian Splattingは点群（無数の小さな点の集まり）で空間を再現する技術ですが、スキャン精度の限界から「本来ない場所に浮いている点（フローター）」「色や不透明度が異常な点」「同じ場所に重なった重複点」などのノイズが必ず発生します。これを手作業で消す作業は非常に手間がかかるため、映像制作の現場ではボトルネックになりがちでした。\n\nこのツールは、Houdini（映画・CM・ゲームのVFXで広く使われる3D統合ソフト）の中で使えるノードとして提供され、重複点除去・不透明度フィルタ・面積フィルタ・2種類の浮遊物検出・色相フィルタ・球面調和関数（点ごとの陰影情報）を保ったままの穴埋め・回転異常検出という8つの独立した掃除モジュールを備えます。どのモジュールが何点処理したかを示す統計パネルも付いており、掃除の効き具合を確認しながら調整できます。\n\n導入にはHoudini 22以降のIndie版（年間数万円程度）またはCommercial版のライセンスが必要で、ツール自体はGumroadで「支払い任意（0円から）」で配布されています。Houdiniを使っている制作会社であれば追加コストほぼゼロで導入でき、Gaussian Splattingを使った実写ロケ地の3D化やプロダクトスキャンの前処理として即戦力になります。",
+    "license": {
+      "spdx": null,
+      "commercial": "ok",
+      "note": "Houdini Limited Commercial license（.hdalc）。Pay-what-you-want（0円〜）でIndie/Commercial版Houdiniで利用可、Apprentice版は不可"
+    },
+    "links": [
+      {
+        "kind": "product",
+        "url": "https://nodeconnector.gumroad.com/l/mrdwo"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/nodeconnector-releases-a-free-gaussian-splat-cleanup-hda-for-houdini-22"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/gaussian-splat-cleanup-hda.jpg",
+    "relatedWorks": [
+      {
+        "title": "SuperSplat (PlayCanvas)",
+        "description": "ブラウザ完結のGaussian Splat編集・クリーンアップツール",
+        "url": "https://github.com/playcanvas/supersplat"
+      },
+      {
+        "title": "Postshot V.6",
+        "description": "Gaussian Splatting生成・編集を行うデスクトップアプリ",
+        "url": "https://radiancefields.com/postshot-v-6-released"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "insta360-x6-spatial-capture",
+    "title": "Insta360 X6 Spatial Capture",
+    "org": "Insta360（バックエンド処理：Remy Innovation Technology／KIRI Engine開発元）",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "360度カメラで撮るだけで、その場をグルグル歩き回れる3D空間（Gaussian Splat）に自動変換してくれる新機能。",
+    "point": "360度カメラのInsta360 X6に搭載された新機能で、その場で360度動画や写真を撮るだけで、クラウド上で自動的に「歩き回れる3D空間」に変換してくれます。専門知識も専用ソフトも不要で、撮った直後にスマホアプリの中でその空間の中を移動しながら見られるほか、期限付きのWebリンクとして人に共有したり、パソコン上でWASDキー（ゲームの移動操作）で歩き回ることもできます。これまでGaussian Splattingで空間を3D化するには専門オペレーターや複雑な撮影・処理工程が必要でしたが、この機能は「カメラで撮るだけ」まで簡略化した点が新しく、店舗・展示会場・ロケ地をそのまま3D体験コンテンツ化する広告・PR施策のハードルを大きく下げます。",
+    "detail": "Gaussian Splattingは、多数の写真や動画から空間を点の集合として再構成し、写真のようにリアルな3D空間をどの角度からでも見られるようにする技術です。従来はプロ用カメラでの多数カット撮影や、専用ソフトでの処理知識が必要でしたが、Insta360 X6は8K・120MP相当のセンサーを積んだ360度カメラ1台で撮影した映像をそのままInsta360のクラウドサービス（開発はKIRI Engineと同じ会社が担当）に送信し、自動で3Dモデルに変換して返す仕組みを備えました。\n\n従来のプロ向けワークフローとの違いは「撮影から3D化までが専門知識なしで完結する」点です。ユーザーは通常の360度撮影と同じ操作をするだけで、あとはアプリ内の「有効化」ボタンを押せばクラウド側が処理を行います。結果はアプリ内でジャイロ・ジョイスティック操作による探索、共有用Webリンク、パソコンでのWASD移動閲覧という複数の形で受け取れます。\n\n利用にはInsta360 X6本体（$699.99）とInsta360アカウント、インターネット接続が必要です。クラウド処理には月間の利用量上限が設定される予定で、上限や消費ルールは変更される可能性があると利用規約に明記されています。展示会場やショールーム、ロケ地を手軽に3D体験コンテンツ化したい広告・PR用途に向いた、機材コストと専門知識のハードルを下げるツールです。",
+    "license": {
+      "spdx": null,
+      "commercial": "paid",
+      "note": "カメラ本体$699.99＋クラウド処理（月間クォータ制、価格未公開）"
+    },
+    "links": [
+      {
+        "kind": "product",
+        "url": "https://www.insta360.com/product/insta360-x6"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/insta360-brings-gaussian-splatting-to-the-x6-with-spatial-capture"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=6IRREUvV0VQ"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/insta360-x6-spatial-capture.jpg",
+    "relatedWorks": [
+      {
+        "title": "KIRI Engine",
+        "description": "スマホでのフォトグラメトリ・LiDARスキャン・Gaussian Splatting生成アプリ（同じ開発チームのバックエンド）",
+        "url": "https://www.kiriengine.app/"
+      },
+      {
+        "title": "Luma AI",
+        "description": "Web/モバイルでのGaussian Splatting撮影・共有プラットフォームの先行事例",
+        "url": "https://lumalabs.ai/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "mmlve",
     "title": "MMLVE (Thinking on Shots)",
     "org": "Nankai University (VCIP) / Tencent Smart Creation Platform",
