@@ -1,5 +1,78 @@
 [
   {
+    "id": "aardvark-book-club-2026",
+    "title": "Aardvark Book Club",
+    "summary": "書籍ECサイトを3DとGSAPの演出で再構築し、ページ閲覧自体を本の開封体験に変えた",
+    "client": "Aardvark Book Club",
+    "agency": "FUTURE THREE®",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "Awwwards Site of the Day（2026-08-30）",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://aardvarkbookclub.com",
+    "thumbnail": "/thumbnails/aardvark-book-club-2026.jpg",
+    "videoId": "",
+    "overview": "月額制ブックサブスクリプション「Aardvark Book Club」のWebサイトを、FUTURE THREE®がエディトリアル型ECとして全面リニューアル。カスタム3Dとページ遷移演出により、閲覧体験そのものを本を開封する瞬間のように設計した。2026年制作。",
+    "background": "「BookTok」に代表されるSNS発の読書ブームを背景に、書籍ECサイトにも単なる商品陳列を超えた編集的・没入的な体験設計が求められるようになった。Aardvark Book Clubは既存サイトの刷新にあたり、実店舗や実際の本の開封感を再現する方向でデジタル体験を再定義した。",
+    "execution": "GSAPとBARBA.jsによるページトランジション、カスタム3Dオブジェクトを組み合わせ、Webflowをベースに構築。ページ遷移のたびに本を手に取り開くような演出を挿入し、書籍紹介をエディトリアルコンテンツとして見せる設計とした。デザインはEduard Bodak、Dylan Brouwerが担当。",
+    "evaluationImpact": "Awwwards Site of the Day（2026年8月30日、スコア7.2/10）を受賞。ECサイトにおいても「購買前の体験価値」を演出の力で高められることを示し、書籍という物理的な体験を伴う商材とデジタル演出の相性の良さを実証した事例として評価できる。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/Website"
+    ]
+  },
+  {
+    "id": "ikea-billboard-campaign-every-home-concept-2026",
+    "title": "IKEA Billboard Campaign (\"every home\" concept)",
+    "summary": "看板の裏側にSAMLA収納ボックスを仕込み、片付けても再び散らかる家庭のリアルな『あるある』を可視化した屋外広告",
+    "client": "IKEA",
+    "agency": "",
+    "categories": [
+      "OOH革新",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.creativebloq.com/design/advertising/ikeas-latest-surprising-billboard-ads-work-because-they-reveal-a-common-truth-about-every-home",
+    "thumbnail": "/thumbnails/ikea-billboard-campaign-every-home-concept-2026.jpg",
+    "videoId": "",
+    "overview": "IKEAスウェーデンが展開した「Tidy Billboards」。表側は通常の家具広告に見えるが、裏側にはSAMLA収納ボックスが積まれ、おもちゃ・衣類・レコード・子どもの落書きなど日常の散らかった物が詰め込まれている。整った暮らしの裏にある本当の姿をユーモラスに描いた。",
+    "background": "IKEAの調査で、スウェーデンの83%が家の中に片付けが苦手な場所を1つ以上抱えていることが判明。クローゼット、ガレージ・屋根裏、キッチンカウンターが上位を占めた。この生活実感に基づき、代理店Åkestam Holst NoAが企画した。",
+    "execution": "看板の正面は一般的なIKEA家具広告だが、裏に回るとSAMLA収納ボックスに雑多な私物が詰め込まれた様子が見える二面構造。散らかりは消えたのではなく「容器に隔離されただけ」というメッセージを物理的な仕掛けで表現し、スウェーデン主要都市に2026年8月後半から掲出、SNS・デジタル施策で補完した。",
+    "evaluationImpact": "『片付けても結局また散らかる』という誰もが共感する生活実感を、収納アイテムそのものを使った視覚的仕掛けで表現した点が評価されている。Creative Bloq等のクリエイティブ専門メディアが取り上げ話題化したが、2026年8月末公開のため受賞歴は現時点で確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "IKEA – Pure Satisfaction Billboard",
+        "description": "IKEAの過去の屋外広告シリーズ。日常の小さな満足感を一枚の看板ビジュアルで表現した事例",
+        "url": "https://www.creativebloq.com/design/advertising/ikeas-new-ad-is-pure-satisfaction-in-a-billboard"
+      },
+      {
+        "title": "IKEA – We Me",
+        "description": "家庭内での自分らしさと一体感をテーマにしたIKEAのブランドキャンペーン",
+        "url": "https://www.adsoftheworld.com/campaigns/we-me"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Form/Installation",
+      "Theme/Retail"
+    ]
+  },
+  {
     "id": "decathlon-yestalgia-2026",
     "title": "Decathlon Yestalgia",
     "summary": "Decathlon50周年を機に、アーティストDalkhafineの挿絵世界で70〜90年代スポーツウェアを再解釈しショッパブルに見せた点が新しい",
