@@ -1,5 +1,147 @@
 [
   {
+    "id": "hr-endless-sampler",
+    "title": "HR Endless Sampler (ComfyUI-HR-Endless-Sampler)",
+    "org": "hradec（個人開発者）",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "ComfyUIで、AI動画を「何分でも」自然に破綻なく作り続けられるようにする新しいサンプラー。長尺化のたびに人物や背景がズレる問題を、AIに台本を書かせ続けることで解決する。",
+    "point": "生成AIで動画を作るとき、一度に生成できる長さには限界があり(数秒〜十数秒)、長尺化には生成を何度もつなぎ合わせる必要があった。だがつなぎ目で服の色や背景が変わったり、動きが不自然にジャンプしたりする問題が付きまとっていた。HR Endless Samplerはこの「つなぎ目」の破綻を防ぐため、Googleの軽量言語AI「Gemma」を裏方に使う。生成前にGemmaが台本全体を読み込み、各カット(チャンク)ごとの短い指示文を自動で書き分け、さらに直前カットの最後のコマを見てから次のカットの指示を微調整する。いわば「AIディレクター」が現場の連続性をチェックしながら台本を書き換え続けるイメージだ。これにより、CMやミュージックビデオ相当の長尺映像をAIに一気通貫で作らせる道が開ける。VRAM消費も抑えられており、個人のゲーミングPC(16GB級GPU)で1080p・20秒超の映像を生成できた実績がある。",
+    "detail": "通常のComfyUIのサンプラー(SamplerCustomAdvanced)を置き換えるカスタムノードとして動作する。長い動画を一度に生成する代わりに短い区間(チャンク)に分割して順番に生成し、前のチャンクの最後の潜在表現(latent)を次の初期状態として引き継ぐ「latent continuation」という手法を使う。各チャンクの生成直前には、Gemma 4 12B(軽量な言語モデル)がプロンプト全体とこれまでの流れを踏まえて、そのチャンク専用の短い指示文を書き直す。\n\n従来のワークフローでは、長尺動画は「動画A完成→最後のフレームを次のi2vの開始画像にする→また生成」という力技のつなぎ合わせが主流で、キャラクターの服装や照明が少しずつズレていく「ドリフト」が起きやすかった。HR Endless Samplerはこのつなぎ目の管理をAIに一任することで、手作業とドリフトの両方を減らす狙いを持つ。現状は動画生成モデル「MiniMax H3」専用だが、開発者はLTX 2.5への対応も計画している。\n\n使うにはComfyUIとGemma 4 12B QAT(量子化モデル)をローカルで動かせるNVIDIA GPU(CUDA 12.5、実績ではVRAM 16GB程度)が必要。ツール自体は無料・Apache-2.0だが、MiniMax H3モデルのライセンス条件は別途確認が要る。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "ツール本体はApache-2.0で商用利用可。ただし内部で使うMiniMax H3モデル自体は別途MiniMax H3 Community Licenseに従う必要がある"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/hradec/ComfyUI-HR-Endless-Sampler"
+      },
+      {
+        "kind": "video",
+        "url": "https://github.com/user-attachments/assets/5da194ea-4d29-4fd3-9b1c-edd537b88431"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/hr-endless-sampler.jpg",
+    "relatedWorks": [
+      {
+        "title": "MiniMax-H3-RAVEN-Streaming-LoRA",
+        "description": "同じ「長尺・連続動画生成」の課題を、逐次ストリーミング生成という別方式で解く研究プロジェクト",
+        "url": "https://github.com/mvp-ai-lab/RAVEN"
+      },
+      {
+        "title": "Gemma",
+        "description": "本ツールが内部でチャンクごとの台本書き換えに使うGoogleの軽量オープンLLM",
+        "url": "https://ai.google.dev/gemma"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "raven-streaming-lora-for-minimax-h3",
+    "title": "RAVEN Streaming LoRA for MiniMax-H3 (MiniMax-H3-RAVEN-Streaming-LoRA)",
+    "org": "Imperial College London（mvp-ai-lab）",
+    "type": "Research",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "動画生成AIを「作ってから見せる」から「見せながら作る」へ変える研究。動画全体を一括計算するのではなく、直前の映像を見ながら次の一区切りをリアルタイムに生成し続ける「ストリーミング型」動画生成を実現した。",
+    "point": "これまでのAI動画生成(MiniMax H3やWanなど)は、指示を出してから数十秒〜数分待って初めて完成した動画が出てくる「バッチ処理」型だった。RAVEN(Real-time Autoregressive Video Extrapolation)は英インペリアル・カレッジ・ロンドンの研究チームが開発した手法で、動画を最初から最後まで一括計算するのではなく、直前に生成した数コマを踏まえて次の数コマを逐次予測・生成する「自己回帰」方式を採る。これにより、生成しながら同時に映像を確認・修正できる「その場で演出を変えられる」ワークフローが視野に入る。将来的には生成AIでのライブ配信、ユーザーの入力に反応してリアルタイムに映像が変化する体験、撮影現場でのプレビズ(仮組み映像)の即時生成など、広告・体験制作での新しい使い方が期待できる。動画品質を測るベンチマークVBenchでも上位にランクインしており、速度だけでなく画質面でも実用に近づきつつある技術。",
+    "detail": "通常の動画生成AIは「拡散モデル」という、ノイズだらけの画像を何十回も少しずつクリアにしていく仕組みで動画全体を一気に作る。RAVENは「一貫性モデル」というノイズ除去をごく少ない回数(4回程度)で終えられる高速な仕組みをベースに、強化学習の一種GRPOで「直前の映像との自然なつながり」を学習させている。これにより次の一区切りの映像を待ち時間なく連続して吐き出し続けられる。\n\n通常の動画生成が「1本のフィルムを現像してから見る」ようなものだとすれば、RAVENは「ライブカメラの映像をリアルタイムで加工しながら流し続ける」体験に近い。2026年8月19〜20日には人気の動画生成モデルMiniMax H3向けの学習コードと、ComfyUIで使えるノード一式が追加公開され、実際に手元の環境でこのストリーミング生成を試せるようになった。ただし現時点では「4-NFEプレビュー版」と明記され、開発チーム自身も「まだ学習が不十分でテクスチャの精細さに欠ける」と注意書きしている段階。\n\n動作にはLinuxとNVIDIA Hopper世代(H100など業務用)のGPUが前提で、個人PCでは事実上動かせない研究実装。ライセンスもCC BY-NC 4.0(非営利限定)かつMiniMax H3向け重みには別途コミュニティライセンスが必要なため、現状は研究・検証目的にとどまる。商用の広告制作にすぐ使える段階ではないが、「待ち時間のない動画生成」という方向性を示す先行事例として押さえておく価値がある。",
+    "license": {
+      "spdx": "CC-BY-NC-4.0",
+      "commercial": "research-only",
+      "note": "ベースはCC BY-NC 4.0(非営利限定)。MiniMax H3向けの重みには別途MiniMax H3 Community Licenseも必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/mvp-ai-lab/RAVEN"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2605.15190"
+      },
+      {
+        "kind": "video",
+        "url": "https://github.com/user-attachments/assets/96047839-e7cb-4416-a82b-4acb59f8bab3"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/raven-streaming-lora-for-minimax-h3.jpg",
+    "relatedWorks": [
+      {
+        "title": "HR Endless Sampler",
+        "description": "同じ「長尺・連続動画生成」の課題を、LLMによるチャンク分割という別方式で解くComfyUIツール",
+        "url": "https://github.com/hradec/ComfyUI-HR-Endless-Sampler"
+      },
+      {
+        "title": "VBench",
+        "description": "RAVENの画質・一貫性を評価するのに使われた動画生成モデル向け標準ベンチマーク",
+        "url": "https://vchitect.github.io/VBench-project/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "fizgig-v5",
+    "title": "Fizgig v5",
+    "org": "shootthesound (Peter Neill)",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "一般的なゲーミングPC程度のGPU(16GB〜)だけで、動画生成AI「MiniMax H3」や画像生成AI「Krea 2」などのモデル本体そのものを丸ごと学習し直せる、無料のオープンソース学習ツール。",
+    "point": "これまで「自分の作品のタッチやキャラクターをAIに覚えさせる」場合、LoRA(モデルに後付けする小さな補助ファイル)を作るのが一般的でした。LoRAは軽くて手軽な半面、元のモデルの表現力そのものまでは書き換えられないという上限がありました。Fizgig v5は、業務用GPUクラスタが必要だった「モデル本体の再学習(フルファインチューニング)」を、16GBクラスの一般向けGPU一枚で行えるようにした点が大きな進化です。容量制限に縛られないため、より複雑な癖や質感まで再現できます。広告制作の現場では、ブランド専属キャラクターの表情や演技の幅を大きく広げたり、特定ブランドの色味・質感・照明の癖をAIに深く刷り込んで一貫したシリーズ動画を量産する、といった使い方が考えられます。学習結果は軽量なLoRAとしても書き出せるため、社内配布や複数プロジェクトへの使い回しもしやすい点が実務上の利点です。",
+    "detail": "仕組みとしては、動画生成AIの内部にある「層(ブロック)」を一部ずつ入れ替えながら学習する「ローテーション方式」を採用しています。GPUメモリに全ての層を同時に載せる必要がないため、通常はサーバー用GPU(80GB超)が必要な330億パラメータ級のMiniMax H3でも、16GBのゲーミングGPUで学習が回るという仕組みです。\n\n従来のLoRA学習が「元のモデルに小さな付箋を貼る」イメージだとすれば、フルファインチューニングは「教科書の内容そのものを書き換える」ようなもの。表現の幅が広がる一方、書き換えすぎて元の能力を壊してしまう「過学習」のリスクも高まります。Fizgigはブロックごとの学習具合を可視化する「プロファイラー」や、学習途中のバージョンを一括比較できる「LoRA Royale」といった検証ツール、壊れた学習結果を再学習なしで直す「Repair Studio」も備えており、失敗をリカバリーしながら試行錯誤できる設計です。\n\n導入にはWindows(NVIDIA GPU推奨、AMD Radeonも対応)またはLinux環境と、16GB以上のVRAM、システムメモリ32GB、ディスク50GB程度の空き容量が必要です。インストーラー(.bat/.sh)を実行するだけで環境構築でき、ソフト自体は無料です。ただし学習対象となるMiniMax H3やKrea 2本体のモデルには、開発元が定める別途の利用規約(年商条件やクレジット表記義務など)が適用される点に注意してください。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "Fizgig本体はApache-2.0で商用利用可。ただし学習対象のMiniMax H3・Krea 2・Flux 2 Kleinのモデル重み自体は各開発元(MiniMax社・Comfy-Org・BFL)が定める別ライセンスに従う。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/shootthesound/Fizgig"
+      },
+      {
+        "kind": "post",
+        "url": "https://github.com/shootthesound/Fizgig/releases/tag/v5.0.0"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/fizgig-v5.jpg",
+    "relatedWorks": [
+      {
+        "title": "ComfyUI-MiniMax-H3-PDD-Acc",
+        "description": "Alibaba PAIの8ステップ高速化LoRAをComfyUIで使うための互換ノード",
+        "url": "https://github.com/Jalen-Brunson/ComfyUI-MiniMax-H3-PDD-Acc"
+      },
+      {
+        "title": "MiniMax H3 (base model)",
+        "description": "Fizgigがフルファインチューニング対応した330億パラメータの動画生成AI本体",
+        "url": "https://huggingface.co/MiniMaxAI/MiniMax-H3"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "luma-gl-splats",
     "title": "@luma.gl/splats (luma.gl 9.4.0 beta)",
     "org": "vis.gl / OpenJS Foundation (旧Uber発OSS)",
