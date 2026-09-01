@@ -11817,5 +11817,203 @@
         "desc": "UE5.8に追加されたWebカメラ1台のマーカーレス全身モーションキャプチャ機能、有料製品を超える品質と報告。"
       }
     ]
+  },
+  {
+    "id": "2026-09-01-1",
+    "date": "2026-09-01",
+    "title": "AI生成ゴッサムARG",
+    "pattern": "文脈×技術",
+    "seed": "WHY SO SERIOUS?は15ヶ月75サイトで作り込んだARGだったけど、AlayaWorldなら1枚の画像から動く映像世界をリアルタイム生成できる。参加者ごとに違うゴッサムシティを自動生成する次世代ARGが作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "why-so-serious-dark-knight",
+        "title": "WHY SO SERIOUS?（The Dark Knight ARG）",
+        "desc": "ゴッサムシティを模した75サイト・15ヶ月・1000万人参加の代替現実ゲーム(ARG)。"
+      },
+      {
+        "type": "tech",
+        "id": "alayaworld",
+        "title": "AlayaWorld",
+        "desc": "1枚の画像とカメラ・テキスト指示だけから動く映像世界をリアルタイム生成し続けるオープンソースの世界モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-01-2",
+    "date": "2026-09-01",
+    "title": "遺された音の無限即興",
+    "pattern": "文脈×技術",
+    "seed": "坂本龍一｜音を視る 時を聴くは死後も彼の音が生き続ける展覧会だった。OBSIDIAN Neuralのようにその場でループ音源を生成し続けるAI楽器を使えば、坂本の音源から即興が終わらず生まれ続ける展示にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ryuichi-sakamoto-exhibition",
+        "title": "坂本龍一｜音を視る 時を聴く",
+        "desc": "坂本龍一が遺作として構想した展覧会。死後も彼の音が生き続けることをコラボレーションで示した。"
+      },
+      {
+        "type": "tech",
+        "id": "obsidian-neural",
+        "title": "OBSIDIAN Neural",
+        "desc": "AIがその場でループ音源を生成するライブ演奏向けのオープンソース楽器(VST3/AU対応)。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-01-3",
+    "date": "2026-09-01",
+    "title": "4D復元されるオーナー史",
+    "pattern": "文脈×技術",
+    "seed": "Porscheの Owners Reunionsは車台番号から歴代オーナーの物語を辿った。4DAnyoneならスマホ動画だけで人物を4D復元できるので、歴代オーナーの証言映像を車の周りに立体的に重ねて見せられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "owners-reunions-porsche",
+        "title": "Owners Reunions",
+        "desc": "車台番号から歴代オーナーを辿り、一台ごとの物語を再構築したPorscheの施策。"
+      },
+      {
+        "type": "tech",
+        "id": "4danyone",
+        "title": "4DAnyone",
+        "desc": "スマホ1台の動画から人物を時間変化する3Dデータ(4D)として復元し、好きな角度から見返せる技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-01-4",
+    "date": "2026-09-01",
+    "title": "菌糸体が変わる展示ラベル",
+    "pattern": "文脈×技術",
+    "seed": "Mushrooms展はキノコの形状からAIでタイポグラフィを生成した。Fungal Computerは菌糸体そのものを論理ゲートとして使う研究なので、本物のキノコに来場者が触れると展示ラベルの文字が変化する仕掛けにできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "mushrooms-the-art-design-and-future-of-fungi-2020",
+        "title": "Mushrooms: The Art, Design and Future of Fungi",
+        "desc": "ロンドンのSomerset Houseでキノコをテーマにした展覧会。会場タイポグラフィはPentagramがAIで生成した。"
+      },
+      {
+        "type": "tech",
+        "id": "fungal-computer",
+        "title": "Fungal Computer（菌糸体メムリスタ／きのこコンピューティング）",
+        "desc": "菌糸体に電極を刺しスパイク電位を記録・刺激し、論理ゲートやメモリとして使うきのこコンピュータの研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-01-5",
+    "date": "2026-09-01",
+    "title": "実写ロケハン即3D化",
+    "pattern": "技術×技術",
+    "seed": "Gaussian SplatKingでiPhoneから撮った高品質な3D撮影データを、Marble x Nukeでそのまま映像業界定番ソフトNukeの3D空間に読み込めば、実写ロケハンをその日のうちに合成用3D世界に変換できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "gaussian-splatking",
+        "title": "Gaussian SplatKing",
+        "desc": "iPhoneのデュアルレンズとLiDARでガウススプラッティング向け撮影データを無料取得できるiOSアプリ。"
+      },
+      {
+        "type": "tech",
+        "id": "marble-x-nuke",
+        "title": "Marble x Nuke",
+        "desc": "テキストや画像から生成した3D世界を映像業界定番ソフトNukeの3D空間に読み込める無料プラグイン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-01-6",
+    "date": "2026-09-01",
+    "title": "線描き振付ダンス生成",
+    "pattern": "技術×技術",
+    "seed": "Cinematic Annotate Videoで描いた線をカメラワーク指示に自動翻訳できるなら、その動線をWan-Dancer-14Bの振付指示として流用して、写真1枚と音楽から絵コンテ通りに踊るダンス動画を作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-cinematic-annotate-video",
+        "title": "ComfyUI「Cinematic Annotate Video」ワークフロー",
+        "desc": "画像に描いた線や注釈をLLMが動作・カメラワークの指示に自動翻訳し動画生成するComfyUIワークフロー。"
+      },
+      {
+        "type": "tech",
+        "id": "wan-dancer-14b",
+        "title": "Wan-Dancer-14B",
+        "desc": "1枚の人物写真と音楽から曲の構成に合わせて1分超のダンス動画を720p/30fpsで生成するモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-01-7",
+    "date": "2026-09-01",
+    "title": "浮遊するパッケージ発表",
+    "pattern": "転用",
+    "seed": "LeviFabは超伝導体で磁石入り物体を空中浮遊させるHCI研究だけど、展示什器ではなく新商品パッケージそのものを浮かせる発表演出に転用すれば、開封前から「浮く商品」として記憶に残せるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "levifab",
+        "title": "LeviFab",
+        "desc": "液体窒素で冷却した超伝導体のピン止め効果で磁石入り物体を空中に浮遊・操作するHCI研究(SIGGRAPH2017)。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-01-8",
+    "date": "2026-09-01",
+    "title": "物理検証を建築へ転用",
+    "pattern": "転用",
+    "seed": "ovrtx/ovphysxはAIエージェントが3Dシーンの物理挙動を自動検証するSDKだけど、映像制作ではなく実際の建築模型や什器の耐荷重・転倒リスクを事前シミュレーションする安全検査ツールに転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ovrtx-ovphysx",
+        "title": "ovrtx / ovphysx (NVIDIA Agent Toolkit — Omniverse Libraries)",
+        "desc": "AIエージェントが3Dシーンをカメラ・センサー視点でシミュレーションし物理挙動を自動検証できるSDK群。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-01-9",
+    "date": "2026-09-01",
+    "title": "無言息遣いSOS端末",
+    "pattern": "文脈×技術",
+    "seed": "KNOCK KNOCKは110番で任意のキーを押すだけで無言SOSを送れる仕組みだった。audio.cppならPCなしでも軽快に音声AIをローカル動作させられるので、声を出さず息遣いだけでSOSを検知するオフライン通報端末が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "knock-knock-police",
+        "title": "KNOCK KNOCK",
+        "desc": "被害者が無言で110番へかけ任意のキーを押すだけでSOSを送れる韓国警察の緊急通報システム。"
+      },
+      {
+        "type": "tech",
+        "id": "audio-cpp",
+        "title": "audio.cpp",
+        "desc": "音声・音楽まわりのAIモデル60種類以上をPythonなしで手元PC上で軽快に動かせる推論エンジン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-01-10",
+    "date": "2026-09-01",
+    "title": "歩けるポスター3D展",
+    "pattern": "文脈×技術",
+    "seed": "Another Graphicは世界中のポスターを毎日1点蓄積するアーカイブサイトだった。Aholo Viewerならブラウザだけで10億スプラット級の3D空間を表示できるので、蓄積されたポスターを歩き回れる巨大な3Dギャラリーにできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "another-graphic-2014",
+        "title": "Another Graphic",
+        "desc": "世界中のスタジオのポスター・エディトリアル作品を毎日1点ずつ蓄積するグラフィックデザインのアーカイブサイト。"
+      },
+      {
+        "type": "tech",
+        "id": "aholo-viewer",
+        "title": "Aholo Viewer",
+        "desc": "インストール不要のブラウザだけで最大10億スプラット級の3D空間をなめらかに表示できるOSSレンダラ。"
+      }
+    ]
   }
 ]
