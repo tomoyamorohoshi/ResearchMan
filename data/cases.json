@@ -1,5 +1,190 @@
 [
   {
+    "id": "era-residence-2026",
+    "title": "ERA Residence",
+    "summary": "未着工の高級住宅ブランドと没入型サイトを同時制作、パララックスと動画で建築の素材感を伝えAwwwards Site of the Day受賞",
+    "client": "ERA Residence（マルベーリャの地中海リゾート型レジデンス）",
+    "agency": "The First The Last",
+    "categories": [
+      "空間体験",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "Awwwards Site of the Day（2026年8月31日）",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.awwwards.com/sites/era-residence",
+    "thumbnail": "/thumbnails/era-residence-2026.jpg",
+    "videoId": "",
+    "overview": "ERA Residenceはスペイン・コスタデルソルの「ニューゴールデンマイル」（マルベーリャ〜エステポーナ間）に建設される25邸の高級ブティックレジデンス。The First The Lastが手がけたウェブサイトは横スクロールとパララックス、動画演出で未完成の建築と地中海的な素材感・光を体感させる構成となっている。",
+    "background": "ERAはブランドも建物も存在しない状態で市場に出る必要があり、レンダリング画像だけでは国際的な富裕層バイヤーを説得できないという課題を抱えていた。制作陣はダウンロード資料的な訴求では競争力がないと判断し、ブランド構築とウェブサイト制作を切り離さず同時進行させる方針を採った。",
+    "execution": "ブーゲンビリアを象徴的モチーフに据え、石・海・光を機能的なカラーコードとして落とし込んだビジュアルシステムを構築。WebflowとGSAPを用いた横スクロールとパララックスで建築のシークエンスを体験させ、日/夜のテーマ切り替えやプリローダー、ギャラリーなど細部まで一貫した世界観で仕上げた。",
+    "evaluationImpact": "Awwwards Site of the Dayを受賞し、総合スコア7.61（デザイン7.81・クリエイティビティ7.73）とDEV AWARD7.31を獲得。竣工前の不動産という「実体のない商品」を、ブランドとサイトの同時設計によって説得力ある体験に変換した点が評価軸となっている。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Website",
+      "Tech/Web"
+    ]
+  },
+  {
+    "id": "ep-2350-fx-mic-2026",
+    "title": "EP-2350 FX-MIC",
+    "summary": "録音機能を持たず内蔵FXと4サンプルスロットのみでボーカル演奏を完結させる新カテゴリのハンドヘルドマイク。",
+    "client": "Teenage Engineering",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.producthunt.com/products/teenage-engineering",
+    "thumbnail": "/thumbnails/ep-2350-fx-mic-2026.jpg",
+    "videoId": "GDG1n24c9A4",
+    "overview": "EP-2350 FX-MICは、teenage engineeringが2026年8月に発表した手のひらサイズの単体パフォーマンス用マイクである。エコー、スプリングリバーブ付きエコー、ピクシー、ロボットの4種の内蔵エフェクトと4つのサンプルスロットを搭載し、単3電池2本またはUSB-Cバスパワーで駆動する。価格は58ドルと手頃で、EP-40やEP-133など他のEPシリーズ機器やミキサー、オーディオインターフェースとも接続できる。",
+    "background": "teenage engineeringはEP-133 K.O. IIやEP-1320 Medievalなどポケットサイズのサンプラー・シンセ「EPシリーズ」を展開してきた。ボーカルをその場でサンプリング・エフェクト処理して楽曲に組み込みたいというライブパフォーマーや弾き語りクリエイターのニーズに応え、マイク単体でFXとサンプル再生を完結させる新カテゴリ製品として開発された。",
+    "execution": "本体はK.O. IIやK.O.サイドキックと意匠を揃えたデザインで、エコー・スプリングリバーブ付きエコー・ピクシー・ロボットの4つのボイスエフェクトを内蔵し、パラメータ調整用レバーで音を変化させられる。4つのサンプルスロットはUSB-C経由で自分の音源を取り込め、JSONファイルでエフェクトプリセットも自作可能。3.5mmライン出力ケーブルでK.O. IIに直結でき、EP-40・EP-1320等の他機種にも接続できる。",
+    "evaluationImpact": "録音機能を持たずマイク単体でFX処理とサンプルトリガーを完結させる設計により、ボーカルエフェクトとサンプル再生を一体化した演奏体験を58ドルという低価格帯で実現した点が新しい。K.O. IIを中心に広がるEPシリーズのポケットスタジオ的世界観を、ボーカルパフォーマンスの領域まで拡張した製品として位置づけられる。",
+    "relatedWorks": [
+      {
+        "title": "EP-133 K.O. II",
+        "description": "FX-MICが接続対象とするteenage engineeringのポケットサイズサンプラー本体",
+        "url": "https://teenage.engineering/products/ep-133"
+      },
+      {
+        "title": "K.O. II & FX-MIC バンドル",
+        "description": "EP-133 K.O. IIとEP-2350 FX-MICのセット販売ページ",
+        "url": "https://teenage.engineering/store/ep-2350-ep-133"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Tech/Device",
+      "Form/Product"
+    ]
+  },
+  {
+    "id": "rbbtoday-252702-html-2026",
+    "title": "日向坂46 18thシングル「イチャイチャ虫」ミュージックビデオ公開",
+    "summary": "巨大な赤いハートを日常空間で運ぶ映像と白空間ダンスを対比させ、ハートの傷で愛の重さと痛みを可視化したMV",
+    "client": "日向坂46",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.rbbtoday.com/article/2026/09/01/252702.html",
+    "thumbnail": "/thumbnails/rbbtoday-252702-html-2026.jpg",
+    "videoId": "",
+    "overview": "日向坂46の18thシングル「イチャイチャ虫」ミュージックビデオ。2026年8月30日発売シングルの表題曲MVとして同年9月1日に公開・先行配信された。監督は松岡芳佳。四期生・正源司陽子が表題曲センターとして6作ぶりに起用され、好きな人に愛を注ぐ主人公を演じている。",
+    "background": "正源司陽子の表題曲センターは、11thシングル「君はハニーデュー」、12thシングル「絶対的第六感」（Wセンター）以来6作ぶり。監督の松岡芳佳は16thシングル「クリフハンガー」に続き同グループのMVを手がけるのは2度目。「重すぎる愛」というテーマをどう映像化するかが企画の起点となった。",
+    "execution": "巨大な赤いハートを駅のホームやカフェ、部屋、ボクシングジムなど日常空間の中で運ぶ映像と、青い曲線が入った白空間でのダンスシーンを対比構成。物語の進行とともにハートに傷やひびが増えていく演出で、恋愛の喜びと、人を想うがゆえの葛藤・痛みを同時に描いている。",
+    "evaluationImpact": "「重すぎる愛」という抽象的な感情を、運搬・損傷するハートという具体的オブジェクトに置き換えて可視化した点が特徴。日常空間と抽象的な白空間を往復する構成により、愛情表現の裏にある苦しさまで包括的に描き、既存のアイドルMVの恋愛表現に新しい語り口を加えた。",
+    "relatedWorks": [
+      {
+        "title": "日向坂46『クリフハンガー』MUSIC VIDEO",
+        "description": "同じく松岡芳佳が監督を務めた日向坂46・16thシングルのMV。",
+        "url": "https://www.youtube.com/watch?v=1QDWU8leVQw"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/MV",
+      "Theme/Music",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "marph-pr-2026",
+    "title": "MARPH（アート特化型PRプラットフォーム）正式ローンチ",
+    "summary": "アート特化型PRプラットフォームMARPHが正式ローンチ、発信者同士のフォロー機能を新たに搭載し情報流通基盤化",
+    "client": "株式会社PR TIMES",
+    "agency": "",
+    "categories": [
+      "メディア発明",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000001696.000000112.html",
+    "thumbnail": "/thumbnails/marph-pr-2026.jpg",
+    "videoId": "",
+    "overview": "MARPHは株式会社PR TIMESが運営するアート特化型オンラインPRプラットフォーム。2022年6月にベータ版を公開し、約200組のアーティストと約30のギャラリーが参加、150件超のプレスリリース配信実績を積んだ上で2026年9月1日に正式ローンチした。プレスリリース作成・配信、活動記録、フォロー機能を柱に情報発信を支援する。",
+    "background": "個人アーティストや小規模ギャラリーは広報予算・人員が限られ、展覧会や新作情報がメディアや新たなファンに届きにくいという課題があった。PR TIMESはこの課題に対応するため2022年6月にMARPHのベータ版を公開し、Nerholら30組超のアーティストや15のギャラリーと実証を重ねたうえで、2026年9月1日に正式版へ移行した。",
+    "execution": "専用テンプレートにより広報未経験でもプレスリリースを作成・配信できる機能に加え、登録した展覧会・作品情報がオリジナルページとして蓄積されポートフォリオ化する活動記録機能、正式ローンチで新たに追加された発信者同士のフォロー機能を搭載。配信時は約300の配信先に加え、内容との親和性を踏まえた約100件のメディアへ個別アプローチも行う。料金は登録・発信者ページ利用が無料、配信は1回5万円。",
+    "evaluationImpact": "広報リソースに乏しいアーティストや小規模ギャラリーでも、テンプレートと個別メディアアプローチにより情報発信のハードルを下げた点が特徴。活動記録の蓄積によるポートフォリオ化とフォロー機能の追加により、アート業界内の情報流通・発見性を高める基盤としての役割が期待される。",
+    "relatedWorks": [
+      {
+        "title": "MARPHがプレスリリース配信前後のフォローを実施するプランをスタート",
+        "description": "MARPHが提供するアート業界向け「一歩踏み込んだメディアコミュニケーション」支援プラン。配信前後のフォロー体制を追加した関連発表。",
+        "url": "https://prtimes.jp/main/html/rd/p/000001474.000000112.html"
+      },
+      {
+        "title": "PR TIMES、アート特化型オンラインPRプラットフォーム「MARPH」開始（β版ローンチ）",
+        "description": "2022年6月29日のMARPHベータ版提供開始時の発表。Nerholら30組超のアーティストと15のギャラリーが第1弾として参加した。",
+        "url": "https://ascii.jp/elem/000/004/097/4097101"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Form/Website",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "ky-to-youme-triennale-2026",
+    "title": "Kyōto YouMe Triennale 参加作家発表",
+    "summary": "京都で国際的な工芸国際展が初開催、5か国20組の参加作家を発表し3年ごとの継続イベントとして始動",
+    "client": "一般社団法人DESIGN KYOTO",
+    "agency": "",
+    "categories": [
+      "カルチャーインサイト",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000003.000107542.html",
+    "thumbnail": "/thumbnails/ky-to-youme-triennale-2026.jpg",
+    "videoId": "",
+    "overview": "一般社団法人DESIGN KYOTOが主催する国際展「Kyōto YouMe Triennale」（MANIFESTO Edition／第0回）が2026年10月9日〜18日、東本願寺渉成園など京都各所で開催。日・英・伊・印・カタール・UAE・アフガニスタンなど5か国から20組の作家が参加し、アート・デザイン・クラフトを人間の根源的な活動として捉え直す試み。",
+    "background": "「YouMe」は英語のyou&meと日本語の「ゆめ」を掛け合わせた名称。工芸の伝統と現代性、あるいは「伝統対革新」といった二項対立を超え、創作に費やされた時間・人間関係・受け継がれた知識・手仕事の固有性といった「つくる」ことの人間的価値に光を当てることを目的に企画された。3年ごとの継続開催を予定する。",
+    "execution": "展示は国・テーマ別に5弾構成。日本の新世代工芸作家10組による『Adaptive Radiation』、イタリア4名の『Le Mani Pensano』、カタール・UAEの『Design As Memory』、英国のハリー・ピアースによる血を用いたインスタレーション、アフガニスタン産ラピスラズリを追う『Project Blue』など、多様な文化圏の実践者を紹介する構成。",
+    "evaluationImpact": "京都という工芸都市を舞台に、国際的な作家・キュレーター・公的機関・教育機関・企業が一堂に会する新たな国際プラットフォームの立ち上げを示す発表。単発イベントでなく3年周期の継続開催を明言しており、京都発の国際工芸ネットワーク形成の第一歩として位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Form/Event",
+      "Theme/Art"
+    ]
+  },
+  {
     "id": "it-happens-here-betmgm-legends-lounge-campaign-2026",
     "title": "It Happens Here (BetMGM Legends Lounge campaign)",
     "summary": "インディーエージェンシーCAPEがBetMGM AOR就任第一弾として、Jon Hamm主演で架空の社交場「Legends Lounge」を実物セット化しNFLシーズン向けに展開",
