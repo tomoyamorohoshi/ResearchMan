@@ -12015,5 +12015,197 @@
         "desc": "インストール不要のブラウザだけで最大10億スプラット級の3D空間をなめらかに表示できるOSSレンダラ。"
       }
     ]
+  },
+  {
+    "id": "2026-09-02-1",
+    "date": "2026-09-02",
+    "title": "工事現場を覗く3D仮囲い",
+    "pattern": "文脈×技術",
+    "seed": "東急「渋谷松濤ウォールギャラリー」のように仮囲いを文化メディア化する発想に、ブラウザだけで10億スプラット級の3D空間を表示できるAholo Viewerを掛けたら、工事の裏側をリアルタイムで覗ける「透明な壁」ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "shibuya-upper-west-project-2026",
+        "title": "渋谷松濤ウォールギャラリー",
+        "desc": "東急百貨店本店跡地の工事の仮囲いを、川内倫子の撮り下ろし写真で彩る文化発信メディアに変えた事例。"
+      },
+      {
+        "type": "tech",
+        "id": "aholo-viewer",
+        "title": "Aholo Viewer",
+        "desc": "ブラウザだけで最大10億スプラット級の巨大3D空間をなめらかに表示できるOSSの3D描画ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-02-2",
+    "date": "2026-09-02",
+    "title": "痛みを可視化する皮膚デバイス",
+    "pattern": "文脈×技術",
+    "seed": "Opella DorflexのThe Paid Reliefが自営業者の「痛みによる損失」を報酬に変えたように、皮膚に貼る音声入力デバイスVOXで体の微弱な緊張や声にならない不調を拾えたら、我慢している痛みを可視化し早期ケアにつなげられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "opella-dorflex-the-paid-relief-na-conta-da-dor",
+        "title": "The Paid Relief (Na Conta da Dor)",
+        "desc": "自営業者の『痛みによる損失』を報酬に変え、鎮痛剤ブランドが休息を買い取ったブラジルのキャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "mouthpad-vox",
+        "title": "MouthPad (第2世代) / VOX",
+        "desc": "舌で操作するマウスピース型と皮膚に貼る音声入力型、2種類のハンズフリー操作デバイス。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-02-3",
+    "date": "2026-09-02",
+    "title": "育つ新聞の未来先取り中継",
+    "pattern": "文脈×技術",
+    "seed": "毎日新聞のGreen Newspaperは読後に土へ植えると花が育つ新聞だったが、1枚の画像とテキストから動く映像世界を生成し続けるAlayaWorldを使えば、芽が出る前の紙面上に「育った後の未来の庭」を先取りして見せられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "mainichi-green-newspaper",
+        "title": "Green Newspaper（種入り新聞）",
+        "desc": "生分解する紙と植物性インクに種を漉き込み、読後に土へ植えると花やハーブが育つ新聞。"
+      },
+      {
+        "type": "tech",
+        "id": "alayaworld",
+        "title": "AlayaWorld",
+        "desc": "1枚の画像とカメラ指示だけから、1分以上遊べる動く映像世界を生成し続けるAIの世界モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-02-4",
+    "date": "2026-09-02",
+    "title": "遺留品から立体復元する戦場",
+    "pattern": "文脈×技術",
+    "seed": "日経ビジュアルデータの「ロシアに散った北朝鮮兵の遺言」が遺留品・手記から戦場を構成報道したように、広大な空間を複数GPUで高速3Dデータ化するfVDB v0.5.0を使えば、断片的な遺留品の位置情報から戦場全体を立体復元する調査報道ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-zideyj-2025",
+        "title": "ロシアに散った北朝鮮兵の遺言",
+        "desc": "ウクライナ戦線の北朝鮮兵の遺留品・手記を分析し、写真とデータで構成した日経のビジュアル調査報道。"
+      },
+      {
+        "type": "tech",
+        "id": "fvdb-v0-5-0",
+        "title": "fVDB v0.5.0",
+        "desc": "NVIDIAのオープンソース3D深層学習基盤。複数GPUで広大な空間を高速・省メモリに3Dデータ化する。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-02-5",
+    "date": "2026-09-02",
+    "title": "身体一つで操るVR彫刻",
+    "pattern": "技術×技術",
+    "seed": "VRChat内でGaussian Splattingの巨大3Dシーンをリアルタイム描画するVRChat Gaussian Splatting v4と、舌で操作するMouthPadを組み合わせたら、手が使えない人でも仮想空間の彫刻作品を身体一つで作れる創作ツールになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "vrchat-gaussian-splatting-v4",
+        "title": "VRChat Gaussian Splatting v4",
+        "desc": "VRChat内でGaussian Splattingをリアルタイム描画できるOSSツール。1億スプラット規模に対応。"
+      },
+      {
+        "type": "tech",
+        "id": "mouthpad-vox",
+        "title": "MouthPad (第2世代) / VOX",
+        "desc": "舌で操作するマウスピース型と皮膚に貼る音声入力型、2種類のハンズフリー操作デバイス。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-02-6",
+    "date": "2026-09-02",
+    "title": "AIエージェントの演出分業",
+    "pattern": "技術×技術",
+    "seed": "Claude CodeからComfyUIを直接操作できるComfy MCPと、HTMLを書くだけで動画になるHyperFramesを組み合わせたら、AIエージェント同士が「台本担当」と「撮影担当」に分業して映像を自動制作する演出チームが作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfy-mcp",
+        "title": "Comfy MCP",
+        "desc": "Claude CodeなどのAIエージェントから自分のPC上のComfyUIを直接操作できる公式ツール。"
+      },
+      {
+        "type": "tech",
+        "id": "hyperframes",
+        "title": "HyperFrames",
+        "desc": "HTMLを書くだけで動画になる、AIエージェント向けのオープンソース動画制作フレームワーク。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-02-7",
+    "date": "2026-09-02",
+    "title": "光を後世に残す保存記録",
+    "pattern": "転用",
+    "seed": "実写の3Dスキャンに後から光と影を足せるBlenderアドオンSplatlightを、映像演出ではなく文化財の保存記録に転用したら、失われた建造物のガウシアンスプラットに当時の陽の当たり方を再現し「その日の光」ごと後世に残せるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "splatlight",
+        "title": "Splatlight",
+        "desc": "実写を3Dスキャンしたガウシアンスプラットに、光源に反応する影を後付けできるBlenderアドオン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-02-8",
+    "date": "2026-09-02",
+    "title": "安いプレビューで棚を選ぶ",
+    "pattern": "転用",
+    "seed": "画像生成で「良い構図のシードだけ安く選んでから仕上げる」ComfyUI-KMSの発想を、映像作りではなく店舗什器の配置検討に転用したら、大量の陳列パターンを簡易プレビューだけで比較し、良い1案だけを本番CGで仕上げるフローが作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-kms",
+        "title": "ComfyUI-KMS（Multi-Choice KSampler）",
+        "desc": "生成前に安いプレビューだけで良い構図のシードを選び、1つだけ仕上げるComfyUIの拡張機能。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-02-9",
+    "date": "2026-09-02",
+    "title": "編集AIで劣化を演出する",
+    "pattern": "転用",
+    "seed": "人間と同じタイムラインでAIエージェントが動画を操作できる編集ソフトPalmier Proを、通常の「仕上げ」ではなく逆に「経年劣化」を自動シミュレートする用途に転用したら、時間が経つほど本当に色褪せていくように見える広告動画が作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "palmier-pro",
+        "title": "Palmier Pro",
+        "desc": "AIエージェントが人間と同じタイムラインで操作できる、Mac向けオープンソース動画編集ソフト。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-02-10",
+    "date": "2026-09-02",
+    "title": "投票結果を歩いて追体験",
+    "pattern": "文脈×技術",
+    "seed": "来場者投票制のOPEN GAME AWARDを新設したOPEN GAME FEST 2026のような展示イベントに、360度カメラ映像から自動でGaussian Splatを生成する360 Gaussian Proを掛けたら、来場できなかった人も会場を歩いて投票結果を追体験できるアーカイブが作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "open-game-fest-2026-2026",
+        "title": "OPEN GAME FEST 2026",
+        "desc": "京都で開催のインディーゲーム開発者向け無料フェス。来場者投票制のアワードを新設。"
+      },
+      {
+        "type": "tech",
+        "id": "360-gaussian-pro",
+        "title": "360 Gaussian Pro",
+        "desc": "360度カメラ映像から自動でGaussian Splatを生成する有償デスクトップアプリ。"
+      }
+    ]
   }
 ]
