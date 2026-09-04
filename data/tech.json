@@ -1,5 +1,150 @@
 [
   {
+    "id": "atgs",
+    "title": "ATGS（Anchored Temporal Gaussian Splatting）",
+    "org": "北京大学 / 鹏城実験室（Pengcheng Laboratory）",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "長時間・複雑な動きの多視点映像を破綻なく3Dガウシアン群として再構成する新手法。バスケットボールの試合や長尺の会議シーンなど、これまで難しかった長尺ボリュメトリック映像の高品質な自由視点再生を可能にする。",
+    "point": "複数カメラで撮影した映像を3D空間の点の集まり（ガウシアンスプラッティング）として再構成し、好きな角度から見返せるようにする技術がある。ただし従来手法は数秒程度の短い映像でしか綺麗に動かず、選手が走り回るような長時間・激しい動きの映像では点がちぎれたりノイズが出たりして破綻しやすかった。ATGSは、時間ごとに「アンカー」と呼ぶ目印を先に配置し、そのアンカー周辺だけで点の動きを計算する仕組みに変えることで、1400フレーム（数十秒）に及ぶバスケットボールの試合シーンでも安定して再現できるようにした。広告・体験づくりの観点では、スポーツのハイライトやライブパフォーマンスを「好きな角度から見られる映像コンテンツ」として長尺のまま提供できる可能性がある。試合終了後にファンが好きな選手視点でプレーを見返せる体験や、長尺のダンスパフォーマンスを360度どこからでも鑑賞できるアーカイブなどが考えられる。",
+    "detail": "通常のガウシアンスプラッティングは、空間に無数の半透明な「点(ガウシアン)」をばらまいて物体や人物の形と色を表現する。動画の場合、この点ひとつひとつが時間とともにどう動くかを直接追跡しようとすると、長時間・複雑な動きでは追跡がずれて破綻してしまう。ATGSは、まず映像のキーフレームから「アンカー」という代表点を少数配置し、各時刻でどのアンカーが有効かを切り替える「時間ウィンドウ」方式を導入。個々の点の動きをアンカー周辺の局所的な計算に閉じ込めることで、遠く離れた時間・空間への影響の広がりを防ぎ、安定性を保っている。\n\nLocalDyGSや4DGaussianなど既存の動的ガウシアンスプラッティング手法は、数秒程度の短いクリップでは高品質だが、数十秒以上・激しい動きのシーンでは品質が大きく落ちる傾向があった。ATGSは同条件下でこれらの手法を上回る画質を維持しつつ、1400フレーム規模の長尺シーンに対応する。\n\nマルチカメラ（デモでは11〜140台規模）で撮影した映像とカメラキャリブレーションデータが必要で、学習・レンダリングにはNVIDIA GPU（CUDA環境）が求められる。コードはPythonで公開されており、tiny-cuda-nnとgsplatライブラリに依存する。個人利用は可能だが、リポジトリにライセンス表記がなく商用利用時は著者への確認が望ましい。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "リポジトリにライセンス表記なし（プロジェクトページの図表等はCC BY-SA 4.0）。商用利用は著者への確認を推奨"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/WuJH2001/ATGS"
+      },
+      {
+        "kind": "project",
+        "url": "https://wujh2001.github.io/ATGS/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://dl.acm.org/doi/10.1145/3811306"
+      },
+      {
+        "kind": "video",
+        "url": "https://wujh2001.github.io/ATGS/static/videos/demo.mp4"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/atgs.jpg",
+    "relatedWorks": [
+      {
+        "title": "4DGaussian",
+        "description": "動的シーン向けガウシアンスプラッティングの代表的な先行手法、ATGSの比較対象",
+        "url": "https://github.com/hustvl/4DGaussians"
+      },
+      {
+        "title": "3DGStream",
+        "description": "ストリーミング型の動的3DGS手法、長尺化で品質が落ちる比較対象として言及",
+        "url": "https://sjojok.top/3dgstream/"
+      },
+      {
+        "title": "gsplat",
+        "description": "ATGSが依存するNerfstudio製の高速ガウシアンスプラッティング実装ライブラリ",
+        "url": "https://github.com/nerfstudio-project/gsplat"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "vcar",
+    "title": "VCAR",
+    "org": "暨南大学（Jinan University）",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "すでに完成した3Dガウシアンスプラッティングのシーンから、追加学習なしで狙ったオブジェクトだけを切り出せるセグメンテーション手法。境界のにじみを抑えた高精度な抜き出しが可能。",
+    "point": "3Dガウシアンスプラッティングで撮影した空間から「この椅子だけ」「この人物だけ」のように特定の物体を選んで切り出したい場面は多いが、従来手法はシーンごとに追加学習が必要で時間がかかるうえ、切り出した物体の輪郭がぼやけてしまう問題があった。VCARは学習不要（Training-Free）で、まず複数視点からの見え方の一致度で対象をざっくり特定し、次に球状に仮想カメラを追加配置して細部を絞り込み、さらに点の向き（軸）を考慮して輪郭のはみ出しを補正する、という2段階の工夫でこの課題を解決した。Gradioベースの対話型ツールも同梱されており、マウスでクリックするだけで対象物を選択・抽出できる。広告・体験制作の現場では、3Dスキャンした空間から特定の商品や人物だけを抜き出してAR合成に使ったり、被写体と背景を分離してバーチャル空間の演出に活用したりする用途が考えられる。",
+    "detail": "3Dガウシアンスプラッティングは無数の半透明な点で空間を表現するため、「ある点がどの物体に属するか」を後から判定するのは簡単ではない。VCARはまず、複数の視点それぞれで対象がどれだけはっきり写っているか（View Completeness=見え方の完全性）を投票形式で集計し、大まかな対象領域を特定する。次に対象を球状に取り囲む位置に仮想カメラを追加配置し（Spherical Spiral Sampling）、死角を減らしながら再投票して精度を上げる。最後に、点の向き（共分散の軸）を分析し、輪郭からはみ出しがちな点を軸ごとに縮小補正する「Axis-aware Boundary Refinement」で輪郭のにじみを抑える。\n\n既存手法の多くは、シーンごとに意味特徴を点に埋め込む追加学習（特徴蒸留）を行うため計算コストが高く、境界もぼやけやすかった。VCARは学習を一切行わずに後処理だけで同等以上の精度を達成する点が特徴。\n\nPython 3.12・CUDA 11.8・PyTorch 2.7.0の環境と、対象となる学習済み3DGSシーンが必要。SAM3（Metaの物体分割AI）との連携APIも用意されており、テキストや画像で指定した物体を自動抽出することもできる。コードはMITライセンスで商用利用も可能。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/DDKK0526/VCAR"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2608.30870"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/vcar.jpg",
+    "relatedWorks": [
+      {
+        "title": "SAM3",
+        "description": "VCARが連携APIを用意しているMeta製の物体分割基盤モデル",
+        "url": "https://github.com/facebookresearch/sam3"
+      },
+      {
+        "title": "Gaussian Grouping",
+        "description": "特徴蒸留による学習ベースの3DGSセグメンテーション、VCARが課題として挙げる先行手法系統",
+        "url": "https://github.com/lkeab/gaussian-grouping"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "splat2mesh",
+    "title": "Splat2Mesh",
+    "org": "株式会社Arcana製作所（Arcana Mfg.）",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "3Dガウシアンスプラッティングのデータ(PLY)を、Blenderやゲームエンジンでそのまま使えるポリゴンメッシュ(OBJ/GLB)に変換するWindows向けの無料デスクトップツール。",
+    "point": "3Dガウシアンスプラッティングは写真から驚くほどリアルな3D空間を作れる技術だが、その正体は「無数の半透明な点の集まり」であり、Blenderで編集したり3Dプリントしたり、一般的なゲームエンジンで軽快に表示したりするには不向きだった。Splat2Meshは、このガウシアンスプラッティングのデータ(.plyファイル)を、面(ポリゴン)でできた通常の3Dモデル形式(OBJ/GLB)に変換してくれるWindows向けの無料ツール。読み込み→パラメータ調整→書き出しの3ステップで、専門的な3D復元の知識がなくても変換できる。広告・体験制作の現場では、スマホやドローンで撮影した実在の空間や商品をガウシアンスプラッティングで手早く3D化したあと、Splat2Meshでメッシュ化してBlenderで装飾を加えたり、3Dプリントしてノベルティを作ったり、既存のゲームエンジンのプロジェクトに軽い3Dモデルとして組み込んだりする、といった使い方が考えられる。",
+    "detail": "ガウシアンスプラッティングのデータには「面」の情報がなく、点の位置・色・透明度・向き・大きさの情報だけで空間を表現している。Splat2Meshはこの点群から表面を推定し直し、ポリゴン(三角形の面)を張り直すことでメッシュを生成する。この変換は点群から形状を「作り直す」処理のため細部の情報は多少失われる(不可逆)が、代わりに一般的な3Dソフトで扱える軽量なモデルになる。\n\nこれまでガウシアンスプラッティングをメッシュ化するには、Pythonスクリプトを自分で組んだり研究用コードを扱ったりする技術的なハードルがあった。Splat2Meshはこれをボタン操作だけで完結する専用アプリにまとめ、Windows上で誰でも使えるようにした点が新しい。\n\nWindows 11搭載のPCと、ガウシアンスプラッティングで生成した.plyファイルが必要(サンプルデータも配布されている)。個人利用・非商用利用は無料でダウンロードでき、商用利用の場合はArcana製作所への問い合わせとライセンス契約が必要。3Dプリントや、Blender等での編集、ゲーム・シミュレーション用アセット制作を主な用途として想定している。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "個人・非商用利用は無料。商用利用は要問い合わせ・別途ライセンス契約"
+    },
+    "links": [
+      {
+        "kind": "product",
+        "url": "https://arcana-mfg.com/en/splat2mesh/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/splat2mesh.jpg",
+    "relatedWorks": [
+      {
+        "title": "Splat To Mesh (Hugging Face Space)",
+        "description": "研究者dylanebert氏によるブラウザ完結のガウシアン→メッシュ変換デモ",
+        "url": "https://huggingface.co/spaces/dylanebert/splat-to-mesh"
+      },
+      {
+        "title": "3DGS-to-PC",
+        "description": "3Dガウシアンスプラッティングを点群・メッシュに変換する研究コード",
+        "url": "https://arxiv.org/pdf/2501.07478"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "hr-endless-sampler",
     "title": "HR Endless Sampler (ComfyUI-HR-Endless-Sampler)",
     "org": "hradec（個人開発者）",
