@@ -12405,5 +12405,203 @@
         "desc": "Unreal Engine上でGaussian Splattingを通常の3Dモデルと正しい奥行きで重ねられる無料プラグイン。"
       }
     ]
+  },
+  {
+    "id": "2026-09-04-1",
+    "date": "2026-09-04",
+    "title": "脳波でつかむ思考の距離感",
+    "pattern": "文脈×技術",
+    "seed": "Brain2Qwerty v2が脳波から復元した言葉を、SpatialClawで「どれくらい離れた記憶か」を空間として推論させたら、思考そのものの距離感を可視化する展示ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "brain2qwerty-v2-ai-2026",
+        "title": "Brain2Qwerty v2（非侵襲脳波解読AI）",
+        "desc": "非侵襲の脳波計測(MEG)のみで文章をリアルタイム復元するMetaのAI。単語正解率は最大78%。"
+      },
+      {
+        "type": "tech",
+        "id": "spatialclaw",
+        "title": "SpatialClaw",
+        "desc": "画像や4Dシーンの物体同士の距離を、AIが自らコードを書きながら考えて答える空間推論エージェント。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-04-2",
+    "date": "2026-09-04",
+    "title": "当事者アバターの接客術",
+    "pattern": "文脈×技術",
+    "seed": "Dear AIのように当事者本人の写真で再教育したモデルの顔を、LeapTalkでリアルタイムに動かせば、当事者本人そっくりのアバターが窓口対応する案内係になれるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "dear-ai-disability-representation-campaign-2026",
+        "title": "Dear AI（disability representation campaign）",
+        "desc": "義肢装着者本人の写真・映像でAIを再教育し、偏った障がい者表象を当事者主導で是正する取り組み。"
+      },
+      {
+        "type": "tech",
+        "id": "leaptalk",
+        "title": "LeapTalk",
+        "desc": "写真1枚と音声だけで、最大200FPSのリアルタイムしゃべるアバター映像を作れる高速な技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-04-3",
+    "date": "2026-09-04",
+    "title": "生活音が誘いのタイミング",
+    "pattern": "文脈×技術",
+    "seed": "Could Have Been a Heinekenのボイスメモに宿る生活音を、MT3で複数楽器トラックに採譜したら、その人の生活リズムから「誘うベストタイミング」を提案できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "heineken-could-have-been-a-heineken",
+        "title": "Could Have Been a Heineken",
+        "desc": "1日150時間分のボイスメモをビールの誘いに変換し、WhatsAppを逆用して人間関係を取り戻した施策。"
+      },
+      {
+        "type": "tech",
+        "id": "mt3",
+        "title": "MT3 (Multi-Task Multitrack Music Transcription)",
+        "desc": "1本の音源からピアノやドラムなど複数の楽器パートを別々のMIDIトラックに自動採譜するモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-04-4",
+    "date": "2026-09-04",
+    "title": "自分専用の戦術解説動画",
+    "pattern": "文脈×技術",
+    "seed": "THE EVERYDAY TACTICIANのように戦術分析官として採用されたファンが、OpenVideoで自分のPCに動画生成AIを持てば、個人が自分専用の戦術解説動画を量産できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "xbox-everyday-tactician",
+        "title": "THE EVERYDAY TACTICIAN",
+        "desc": "FIFAプレイヤーをプロサッカーの実際の戦術分析官として採用し、ゲームキャリアの価値を証明した施策。"
+      },
+      {
+        "type": "tech",
+        "id": "openvideo",
+        "title": "OpenVideo",
+        "desc": "Ollamaのように一行コマンドで、自分のPCのGPUに動画生成AI MiniMax H3を導入できるCLIツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-04-5",
+    "date": "2026-09-04",
+    "title": "液体のように追従する群ロボット",
+    "pattern": "技術×技術",
+    "seed": "PoseCapがWebカメラ越しに拾った人の身振りに、FluidicSwarmのロボット群が水のような一つの生き物として追従したら、身体の動きだけで操るダンスパフォーマンスになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "posecap",
+        "title": "PoseCap",
+        "desc": "Webカメラ1台だけでBlenderにリアルタイムでモーションキャプチャを流し込める無料オープンソースツール。"
+      },
+      {
+        "type": "tech",
+        "id": "fluidicswarm",
+        "title": "FluidicSwarm",
+        "desc": "手のジェスチャーだけで複数の小型ロボット群を水のような一つの生き物として自在に操れる操作システム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-04-6",
+    "date": "2026-09-04",
+    "title": "4D空間から360度記録映像",
+    "pattern": "技術×技術",
+    "seed": "Any4Dが1回の推論で復元した実寸スケールの4D世界を、SpheRoPEで継ぎ目のない360度パノラマ動画に変換したら、あとから視点を自由に選べる記録映像が作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "any4d",
+        "title": "Any4D",
+        "desc": "RGB動画や各種センサ入力から、実寸スケールの動く3D世界を1回の推論で復元するモデル。"
+      },
+      {
+        "type": "tech",
+        "id": "spherope",
+        "title": "SpheRoPE",
+        "desc": "追加学習ゼロで、既存のDiffusion Transformerから継ぎ目のない360度パノラマ画像・動画を生成する技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-04-7",
+    "date": "2026-09-04",
+    "title": "企画使い回し監査ツール",
+    "pattern": "転用",
+    "seed": "社内ブリーフ・ブランド資産を管理するAIネイティブ運用プラットフォームRunnitを逆に使い、クライアントの過去提案書を全部読み込ませたら、「同じ企画を何回出しているか」を可視化する企画監査ツールに転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "runnit",
+        "title": "Runnit",
+        "desc": "ブリーフやブランド資産、過去プロジェクト履歴を扱う、社内マーケ・エージェンシー向けAI運用プラットフォーム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-04-8",
+    "date": "2026-09-04",
+    "title": "フィルムルックを印刷色検証に",
+    "pattern": "転用",
+    "seed": "実測データから独自のフィルム調カラーを作るAURORA Film Labを、映像でなくパッケージや印刷物の色再現チェックに転用したら、紙の上でも「その時代の質感」を保証できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "aurora-film-lab-v1-0",
+        "title": "AURORA Film Lab v1.0",
+        "desc": "55種のフィルムを実測した1,440枚のデータから、独自のフィルム調カラーを作れるグレーディングツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-04-9",
+    "date": "2026-09-04",
+    "title": "来場者を3Dスキャンで参加化",
+    "pattern": "文脈×技術",
+    "seed": "瀬戸内国際芸術祭のウェルカムボード作品「フラワー」に、来場者がLocalMeshで自分を3Dスキャンした姿を合成したら、案内板そのものが来場者と一緒に増殖する作品になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2010-076",
+        "title": "フラワー",
+        "desc": "瀬戸内国際芸術祭で港周辺に設置された、地図と絵画・オブジェを組み合わせた観光案内板の作品。"
+      },
+      {
+        "type": "tech",
+        "id": "localmesh",
+        "title": "LocalMesh",
+        "desc": "写真1枚から3Dガウシアンスプラットとテクスチャ付き3Dメッシュをクラウド不要で自動生成するアプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-04-10",
+    "date": "2026-09-04",
+    "title": "対戦ごとに変わる裏切りモーション",
+    "pattern": "文脈×技術",
+    "seed": "『転生ゲーム カルマxクロス』の「振り返って友情を壊す」演出を、Mocara for Unreal Engineで文章から即興生成したら、対戦のたびに違う裏切りモーションが自動で生まれるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-ggu2uy-2026",
+        "title": "転生ゲーム カルマxクロス",
+        "desc": "堀井雄二×『ブルーロック』金城宗幸による、4人対戦で友情を破壊するSwitch向けすごろくゲーム。"
+      },
+      {
+        "type": "tech",
+        "id": "mocara-for-unreal-engine",
+        "title": "Mocara for Unreal Engine",
+        "desc": "文章を打ち込むだけでUnreal Engine 5.8内にキャラクターアニメーションを直接生成できるプラグイン。"
+      }
+    ]
   }
 ]
