@@ -1,5 +1,180 @@
 [
   {
+    "id": "an-impossible-life-2026",
+    "title": "An Impossible Life",
+    "summary": "撮影不可能な海亀の「失われた数十年」を生成AIで再構築し科学監修のもと可視化した保全ドキュメンタリー短編",
+    "client": "Sea Turtle Foundation",
+    "agency": "VANDAL",
+    "categories": [
+      "AIクリエイティブ",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://lbbonline.com/work/137037",
+    "thumbnail": "/thumbnails/an-impossible-life-2026.jpg",
+    "videoId": "",
+    "overview": "Sea Turtle Foundationとシドニーの創造性スタジオVANDALが制作した保全ドキュメンタリー短編。孵化直後から外洋で成体になるまでの、従来の撮影手法では記録できない海亀の「失われた年月」を生成AIで映像として再構築した。Sea Turtle Foundationの科学諮問チームが行動・環境・種間相互作用を監修し、科学的正確性を保った作品。",
+    "background": "海亀は孵化直後から沿岸を離れ外洋で数十年を過ごすため、この期間の生態はほとんど記録されていない。この空白を可視化し人為的脅威への関心を高める目的で、VANDALのクリエイティブディレクターChris Scottが脚本・監督を務め、Sea Turtle Foundationと共同で本作を制作した。",
+    "execution": "Chris Scottは生成AIを演出目的ではなく、生態を科学的に精査する枠組みの中で使用した。Sea Turtle Foundationの科学諮問チームと連携し、シーンごとの行動・生息環境・種間相互作用が現在の科学的知見と整合するかを検証しながら、実写では不可能な海亀の一生を映像として構築した。",
+    "evaluationImpact": "動物への干渉や生態系への影響を伴わずに、実写では不可能な生態の一生を可視化した点が評価される。生成AIを演出のためでなく科学的検証プロセスに組み込んだ活用法は、保全コミュニケーションにおけるAI活用の実践例として位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Film",
+      "Theme/Sustainability"
+    ]
+  },
+  {
+    "id": "ai-for-growth-dentsu-2026",
+    "title": "AI for Growth（Dentsuマニフェストフィルム）",
+    "summary": "電通クリエイティブが10以上の市場のチームを束ね、フォトリアルを避けた幻想的表現で生成AIの想像力の限界を探ったマニフェストフィルム。",
+    "client": "Dentsu",
+    "agency": "Dentsu Creative",
+    "categories": [
+      "AIクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://lbbonline.com/news/dentsu-ai-for-growth-artificial-intelligence-filmmaking",
+    "thumbnail": "/thumbnails/ai-for-growth-dentsu-2026.jpg",
+    "videoId": "",
+    "overview": "Dentsu Creativeが制作した「AI for Growth」は、AIを効率化のツールではなく想像力の拡張装置として位置づけるマニフェストフィルム。世界10以上の市場のチームがそれぞれの文化的視点を持ち寄り、扉をモチーフに「多くの人が歩む一つの旅」を描いた。",
+    "background": "Dentsuは生成AIをタスクの自動化や制作時間の短縮の手段としてではなく、これまで作れなかったものを作るための創造的な起爆剤として位置づける独自のAI哲学「AI for Growth」を掲げており、その理念を体現する象徴的な映像作品としてこのフィルムが企画された。",
+    "execution": "Dentsu CreativeのOctavio Maron、James Niklasson、Matt Crossらが率い、米国・ドイツ・日本を含む10以上の市場のチームがそれぞれ独自のビジュアル言語で映像パートを制作。フォトリアリズムをあえて避け、幻想的な表現で各パートを一つの映像へと違和感なく繋ぎ合わせる編集が大きな挑戦だった。",
+    "evaluationImpact": "各地域の文化的なAI観の違いをそのまま多様な映像表現として統合した点が特徴で、生成AIを「効率化ツール」から「創造の拡張装置」へと再定義する広告業界のマニフェストとして業界メディアLBBOnlineで紹介された。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Film"
+    ]
+  },
+  {
+    "id": "stone-island-fall-winter-2026-campaign-2026",
+    "title": "Stone Island Fall/Winter 2026 Campaign",
+    "summary": "音楽・映画・建築・美術の異色7組を起用し、質問への回答で人物性を語らせるStone IslandのFW26広告",
+    "client": "Stone Island",
+    "agency": "",
+    "categories": [
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://pausemag.co.uk/2026/09/stone-island-unveils-fall-2026-campaign/",
+    "thumbnail": "/thumbnails/stone-island-fall-winter-2026-campaign-2026.jpg",
+    "videoId": "",
+    "overview": "Stone IslandはFW2026キャンペーン「Community as a Form of Research」で、Skepta、fakemink、Stephen Graham、3House、Samir Bantal、Monika Sprüth、Jia Zhang-Keら音楽・映画・建築・美術の多分野人物を起用した。",
+    "background": "同ブランドが継続する「Community as a Form of Research」というプラットフォームの最新章として展開され、ファッションだけでなく音楽・映画・建築・現代美術の周縁にいる人物像を通じてブランドの姿勢を語らせる狙いがある。",
+    "execution": "Max Pearmainのスタイリングのもと、白背景でシンプルに撮影された各人物が、Hans Ulrich Obrist監修の質問に回答する構成。fakeminkは樹脂加工のガーメントダイジャケット、Skeptaはオリーブグリーンのナイロンパーカーなど新作コレクションのアイテムを着用した。",
+    "evaluationImpact": "服そのものより「着る人の思想・言葉」を前面に出す編集構成により、ストリートウェアブランドの広告が単なる商品訴求を超えたカルチャー発信の場になっている点が特徴的。",
+    "relatedWorks": [
+      {
+        "title": "Stone Island Autumn/Winter '026-'027 Collection - fakemink",
+        "description": "Stone Island公式サイトのfakemink起用キャンペーンページ",
+        "url": "https://www.stoneisland.com/en-us/autumn-winter-26-27-collection-fakemink.html"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/Fashion",
+      "Theme/Art",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "hershey-s-pinky-up-katseye-2026",
+    "title": "Hershey's Pinky Up × KATSEYE",
+    "summary": "KATSEYEの決めポーズ「Pinky Up」を新商品Creme Barと結び付け、地下鉄を舞台にしたダンスCMで個性表現に転換",
+    "client": "Hershey's / KATSEYE",
+    "agency": "MARTIN",
+    "categories": [
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/pinky-up",
+    "thumbnail": "/thumbnails/hershey-s-pinky-up-katseye-2026.jpg",
+    "videoId": "",
+    "overview": "Hershey'sが新商品「Creme Bars」（Salted Caramel／Affogato）の発売に合わせ、グローバルガールグループKATSEYEと組んだキャンペーン。彼女たちの代名詞的ジェスチャー「Pinky Up」をチョコレート体験と結び付け、走行中の地下鉄車内を舞台にした60秒CMを中心に展開する。",
+    "background": "Z世代を中心に「日常のちょっとした贅沢（indulgence）」への関心が高まる中、Hershey'sは若年層への訴求とブランドの新鮮さを狙い、人気急上昇中のガールグループKATSEYEを起用。KATSEYE自身も「日常の小さな瞬間に喜びを見つける」という価値観がブランドと自然に重なると語っている。",
+    "execution": "The Martin Agencyが制作。地下鉄車内でメンバーがチョコレートバーを一口食べると、楽曲「Pinky Up」が流れ出しダンスが始まり、周囲の一般人も巻き込んで踊り出す構成のCMを軸に、ストリーミング動画・デジタル・全国TV・ストリーミング音声・SNS、さらにブルックリンとロサンゼルスの壁画（ミューラル）まで含む統合キャンペーンとして展開している。",
+    "evaluationImpact": "「チョコレートバーを選ぶ行為を自己表現に変える」というコンセプトを、既存の企業CMではなくアーティストの実際のシグネチャーカルチャー（ジェスチャーと楽曲）に接続した点が特徴。伝統ブランドがZ世代の“ちょっとした贅沢”という価値観に寄り添う事例として業界メディアでも取り上げられている。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Form/OOH",
+      "Theme/Music",
+      "Theme/Food",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "paul-kalkbrenner-official-website-2026",
+    "title": "Paul Kalkbrenner Official Website",
+    "summary": "テクノアーティストPaul Kalkbrenner公式サイトが黒白2色の余白デザインで音楽体験をミニマルに再構築",
+    "client": "Paul Kalkbrenner",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "Awwwards Site of the Day（2026年9月2日、総合スコア7.47/10）",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.awwwards.com/sites/paul-kalkbrenner",
+    "thumbnail": "/thumbnails/paul-kalkbrenner-official-website-2026.jpg",
+    "videoId": "",
+    "overview": "ドイツのテクノ/エレクトロニカアーティストPaul Kalkbrennerの公式ブランディング兼ウェブサイト。音楽、ツアー日程、パーソナルな経歴を、黒と白の2色パレットによるシンプルで魅力的なデジタル体験として紹介する構成になっている。",
+    "background": "アーティスト本人の音楽性や経歴を伝えるオフィシャルサイトとして、装飾を削ぎ落としたクリーンなデザインでファンとのコミュニケーション接点を刷新する狙いがあったとみられる。制作はクリエイティブスタジオHOLOGRAPHIKとデザイナー/Webflow開発者Ilja van Eckが手がけた。",
+    "execution": "Webflow・After Effects・Figmaを用いて構築され、大きな背景画像やフラットデザイン、ポートフォリオ・ギャラリー的なセクション、アニメーションを取り入れたインタラクティブな導線で、音楽・ツアー情報・経歴を一体的に見せている。",
+    "evaluationImpact": "2026年9月2日にAwwwards Site of the Dayを受賞し、総合スコア7.47/10を獲得。ミニマルな2色設計とモーションの組み合わせが評価され、アーティスト公式サイトのデザイン水準を示す事例として注目された。",
+    "relatedWorks": [
+      {
+        "title": "Ilja van Eck - Awwwards profile",
+        "description": "本作を手がけたデザイナー/Webflow開発者のAwwwardsプロフィール",
+        "url": "https://www.awwwards.com/ilja-van-eck/"
+      },
+      {
+        "title": "Holographik official site",
+        "description": "共同制作クレジットのクリエイティブスタジオHOLOGRAPHIKの公式サイト",
+        "url": "https://holographik.co/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Form/Website",
+      "Theme/Music"
+    ]
+  },
+  {
     "id": "the-spellbound-boom-boom-satellites-brand-new-drive-the-firs",
     "title": "THE SPELLBOUND × BOOM BOOM SATELLITES「Brand New Drive」THE FIRST TAKE",
     "summary": "BOOM BOOM SATELLITES約10年ぶりの新曲をTHE FIRST TAKEで一発撮り披露、亡き川島道行への追悼と再始動を音楽で示した",
