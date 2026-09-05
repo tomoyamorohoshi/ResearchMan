@@ -1,5 +1,259 @@
 [
   {
+    "id": "koo-jeong-a-2026",
+    "title": "Koo Jeong A 個展",
+    "summary": "蓄光スケートパークや香り・磁力を使い、美術館全体を回遊ルートなき「宇宙」に変えた韓国最大規模の個展",
+    "client": "Leeum Museum of Art",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.designboom.com/art/exhibition-radar-september-2026/",
+    "thumbnail": "/thumbnails/koo-jeong-a-2026.jpg",
+    "videoId": "",
+    "overview": "Leeum Museum of Artで開催された「Koo Jeong A: OUSSSMOS」は、韓国出身アーティストKoo Jeong Aの国内最大規模の個展。1990年代から新作までの約35点を、展示室だけでなくロビーや伝統美術ギャラリー、外部の石垣まで美術館全体に散在させ、固定された中心も動線も持たない有機的な空間を作り出した。会期は2026年9月5日から12月27日まで。",
+    "background": "作家名は1990年代半ばに造語した「OUSSS」に由来し、単一の意味に固定されない性質を持つ。Koo Jeong Aは1967年ソウル生まれで1991年からヨーロッパを拠点に活動し、砂糖やアスピリンなど日常素材を用いた作品で知られる。2024年のヴェネチア・ビエンナーレ韓国館では香りをテーマにした「Odorama Cities」を出展し、国際的評価を確立していた。",
+    "execution": "代表作には8メートルのステンレス鋼彫刻「Mobiousss」（近くでは迷路、上階からは無限大記号に見える）、昼間光を吸収し暗闇で青く発光する蓄光スケートパーク「Gravitta」、57本の鉛筆の芯をバランスで立てた「Untitled」などがある。展覧会には固定ルートを設けず、香り・磁力・光といった目に見えない力の変化を通じて空間認識を変容させる構成とした。",
+    "evaluationImpact": "美術館建築の隅々まで作品を浸透させることで「展示室で作品を見る」という前提そのものを問い直した点が注目される。30年以上にわたり素材や規模を変えながらも「見落とされがちなものを見つめ直させる」という一貫した姿勢を、韓国国内最大規模の回顧展として体系的に示した。",
+    "relatedWorks": [
+      {
+        "title": "Odorama Cities（ヴェネチア・ビエンナーレ2024 韓国館）",
+        "description": "朝鮮半島の人々の記憶に由来する香りで空間を満たしたインスタレーション",
+        "url": "https://www.koreaherald.com/article/10857554"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Form/Installation",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "trevor-noah-official-website-relaunch-2026",
+    "title": "Trevor Noah Official Website Relaunch",
+    "summary": "トレバー・ノア公式サイトが「断片的思考が形になる過程」をWebGLコラージュで表現し全面刷新、Awwwards Site of the Day受賞",
+    "client": "Trevor Noah",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "コンテンツ革新"
+    ],
+    "award": "Awwwards Site of the Day（2026年9月3日、スコア7.45/10）",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.awwwards.com/sites/trevor-noah",
+    "thumbnail": "/thumbnails/trevor-noah-official-website-relaunch-2026.jpg",
+    "videoId": "",
+    "overview": "コメディアン/ジャーナリストのトレバー・ノアの公式サイトが全面リニューアルし、スタンドアップ、ポッドキャスト、著作、ワールドツアーを一つのインタラクティブ体験に統合した。制作はグローバルスタジオOFF+BRAND。Awwwards Site of the Dayを受賞している。",
+    "background": "多様な肩書き(スタンドアップ、The Daily Showホスト、著者)を持つトレバー・ノア個人を、煩雑にならず一貫性を持って表現することが課題だった。既存の個人サイトでは活動の幅広さを一つの体験として見せきれていなかった。",
+    "execution": "「彼の思考プロセスの視覚化」をコンセプトに、ポラロイド風の2Dコラージュ素材へ微細なWebGL/3Dインタラクションを付与し、断片的な観察が一つの考えへとつながっていく様を表現。WebflowをベースにRive・モーションを組み合わせ、2ヶ月弱で制作した。",
+    "evaluationImpact": "Awwwards Site of the Dayをスコア7.45/10で獲得し、デザイン・ユーザビリティ・クリエイティビティ・コンテンツの各評価項目で高評価を得た。パーソナルブランドサイトにおけるWebGL活用とコンテンツ設計の一事例として注目されている。",
+    "relatedWorks": [
+      {
+        "title": "OFF+BRAND. Studio Works",
+        "description": "Trevor Noahサイトを手がけたスコットランド発のクリエイティブ/テクノロジースタジオのポートフォリオ。WebGL・ブランディング・Web制作を横断する作風が確認できる。",
+        "url": "https://www.itsoffbrand.com/our-work/trevor-noah"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Website",
+      "Tech/3D",
+      "Tech/Web",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "illoca-ai-2026",
+    "title": "Illoca — AI駆動型建築デザインエンジン ウェブサイト",
+    "summary": "建築家向けAI設計エンジンのブランド・サイトが、意図理解型の3D生成というプロダクト独自性を体現しAwwwards Site of the Dayを受賞",
+    "client": "Illoca",
+    "agency": "Unseen Studio",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "Awwwards Site of the Day（2026年9月4日、7.44/10）、Developer Award（7.55/10）",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.awwwards.com/sites/illoca",
+    "thumbnail": "/thumbnails/illoca-ai-2026.jpg",
+    "videoId": "",
+    "overview": "IllocaはAIネイティブな建築設計エンジンで、初期アイデアから編集可能な2D/3D図面までを橋渡しするプロフェッショナル向けツール。そのブランドサイトをUnseen Studioが制作し、Awwwards Site of the Dayを獲得した。",
+    "background": "生成AIツールの多くは静的な画像しか作れず、建築実務で使えるパラメトリックな設計データを出力できないという課題があった。Illocaは建築的な意図を理解し、設計品質の2D/3D成果物を生成することを目指すプロダクトとして開発された。",
+    "execution": "Unseen StudioはIllocaのブランドアイデンティティとマーケティングサイトをゼロから構築。Tracing Paperと呼ばれる直感的なキャンバスUIを軸に、スケッチ・マークアップ・ピン留めなど実際のデザインスタジオの作業フローを再現する体験をサイト上で表現した。",
+    "evaluationImpact": "3D・スクロール表現・マイクロインタラクションを駆使した高品質なサイト設計が評価され、Awwwards Site of the Day（スコア7.44/10）とDeveloper Awardを受賞。建築×AIというニッチな専門領域向けプロダクトの訴求力を示す事例として注目される。",
+    "relatedWorks": [
+      {
+        "title": "Illoca 公式サイト",
+        "description": "AIネイティブな建築設計エンジンのプロダクトサイト本体",
+        "url": "https://illoca.com/"
+      },
+      {
+        "title": "Illoca - Awwwards掲載ページ",
+        "description": "Awwwards公式のSite of the Day掲載ページ",
+        "url": "https://www.awwwards.com/sites/illoca"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/3D",
+      "Form/Website"
+    ]
+  },
+  {
+    "id": "abc0120-226546-2026",
+    "title": "谷原菜摘子 個展「晩餐」",
+    "summary": "黒・赤ベルベットに油彩やグリッター等を重ね、豪華な晩餐の背後に崩壊の予兆を描く谷原菜摘子の新作個展",
+    "client": "谷原菜摘子",
+    "agency": "Gallery 舞台裏（麻布台ヒルズ ガーデンプラザA）",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://abc0120.net/2026/08/10/226546/",
+    "thumbnail": "/thumbnails/abc0120-226546-2026.jpg",
+    "videoId": "",
+    "overview": "谷原菜摘子が「晩餐」をテーマに描き下ろした新作絵画展。麻布台ヒルズ ガーデンプラザA地下1階のGallery舞台裏にて2026年9月4日から10月11日まで開催、入場無料。",
+    "background": "谷原は黒や赤のベルベットを支持体に、油彩・アクリル・グリッター・スパンコール・金属粉などを用いる独自の技法で知られる画家。本展では豪勢な食卓の情景を通じ、現代社会への問いを絵画として表現する。",
+    "execution": "画面には豪華な晩餐に興じる人々の姿を描きつつ、その背後に不均衡や戦禍、無関心、崩壊の予兆をにじませる構成。9月4日にレセプション、9月13日・10月4日には作家本人同席の特別コースも実施予定。",
+    "evaluationImpact": "華やかさの裏に潜む社会的不均衡や倫理的無関心をテーマにした作品群は、鑑賞者に傍観者としての自らの立場を問いかける。麻布台ヒルズという都市的な高級商業空間での展示自体が主題と呼応する。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "prtimes-000000698-000083761-html-2026",
+    "title": "小林楓太 個展",
+    "summary": "街の雑踏で録音した会話を布に刺繍しインスタレーション化、音を触れる形へ変換した個展",
+    "client": "小林楓太",
+    "agency": "The Thousand Kyoto",
+    "categories": [
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000698.000083761.html",
+    "thumbnail": "/thumbnails/prtimes-000000698-000083761-html-2026.jpg",
+    "videoId": "",
+    "overview": "アーティスト小林楓太氏の個展「なんか いや もう 俺 あの 私 ちょっと」が2026年9月4日〜10月4日、THE THOUSAND KYOTO1階アートギャラリーで開催。京阪ホテルズ＆リゾーツ主催、京都市立芸術大学共催、入場無料。",
+    "background": "小林氏は2001年長野生まれ、東京都立大学建築学科卒業後、京都市立芸術大学大学院デザイン科プロダクトデザイン専攻を修了。街の雑踏の一点に30分間立ち続け、行き交う人々の断片的な会話を記録するフィールドワークを約400地点で重ねてきた。",
+    "execution": "録音・書き起こした街の声や音を、透け感のある布に刺繍で表現し、空間に漂うインスタレーションとして展示。代表作シリーズ「ホワイトノットノイズ」の手法を京都駅前のホテルギャラリーで展開し、9月6日にはギャラリートークも実施。",
+    "evaluationImpact": "耳で消えていく都市の音・会話を、刺繍という物質的・視覚的な形に定着させる点が独自性。ホテルという公共性の高い空間で無料公開することで、通りすがりの人々にも都市の「聞こえない声」への気づきを促す試み。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Form/Exhibition",
+      "Form/Installation",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "moa-2026",
+    "title": "「生誕150年 吉田博展」",
+    "summary": "米国で発見された吉田博の水彩大作《街道と馬》を熱海MOA美術館で世界初公開する生誕150年記念展",
+    "client": "MOA美術館",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://bijutsutecho.com/magazine/news/exhibition/32751",
+    "thumbnail": "/thumbnails/moa-2026.jpg",
+    "videoId": "",
+    "overview": "静岡県熱海市のMOA美術館で2026年9月4日〜10月20日に開催される「生誕150年 吉田博展」。水彩・油彩・木版画など多彩な技法で自然を描いた画家・吉田博の画業を3部構成で紹介する。",
+    "background": "吉田博（1876-1950）は福岡県久留米市出身。23歳で渡米し、デトロイト美術館などで水彩画を発表して成功を収めた後、油彩・木版画へと表現を広げ、世界的な自然風景を数多く描いた画家として知られる。",
+    "execution": "近年米国で発見された未公開の水彩大作《街道と馬》（1908年頃）を初公開するほか、「グランドキャニオン」など代表的木版画・油彩画を展示。縦3.5m×横21mのL字壁面に高精細デジタル画像を投影し、紙や絵の具の質感を大画面で鑑賞できる仕掛けも用意した。",
+    "evaluationImpact": "新発見作品の世界初公開という美術館ならではのニュース性に加え、デジタル投影による質感の拡大提示など、伝統的な絵画展にテクノロジーを組み合わせた鑑賞体験を提示している点が注目される。",
+    "relatedWorks": [
+      {
+        "title": "生誕150年 吉田博展（MOA美術館 公式）",
+        "description": "会期・出品作品などの公式情報",
+        "url": "https://www.moaart.or.jp/event/150th_anniversary_yoshidahiroshi/"
+      },
+      {
+        "title": "MOA美術館で「生誕150年 吉田博展」が9月に開催。水彩画の大作《街道と馬》が初公開へ（美術手帖）",
+        "description": "展覧会の概要と初公開作品の紹介記事",
+        "url": "https://bijutsutecho.com/magazine/news/exhibition/32751"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Tech/Projection",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "cmyk-walls-to-prints-2026",
+    "title": "CMYK展 ―WALLS TO PRINTS―",
+    "summary": "壁画をシルクスクリーン等のエディションプリントに再構築し、ストリートアートを日常空間に持ち込む展示",
+    "client": "JAPAN WALLS参加アーティスト",
+    "agency": "calif art gallery",
+    "categories": [
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000001008.000018225.html",
+    "thumbnail": "/thumbnails/cmyk-walls-to-prints-2026.jpg",
+    "videoId": "",
+    "overview": "JAPAN WALLS参加のストリートアーティスト13組による壁画作品を、シルクスクリーンやジークレープリントとして再構築したエディションプリント展。2026年9月19日〜28日、東京・中目黒のcalif art galleryにて開催。",
+    "background": "壁画は現地でしか鑑賞できず、スケールや場所性に依存した一過性の表現である。JAPAN WALLSと連携し、この壁画表現を持ち帰り可能なプリント作品として再構築することで、より多くの人がストリートアートを日常生活に取り入れられるようにすることを企図した。",
+    "execution": "BOXER JUNTARO、Fuse、Gravityfree、KAC、LUISE ONO、前田豆コ、MIZPAM、Simo、Shun Nakao、WHOLE9、Yeka Haskiら13組の壁画作品をシルクスクリーン・ジークレー技法でエディションプリント化。印刷はZigame Printingが協力し、株式会社ビーズインターナショナルが主催、JAPAN WALLSが共催してcalif art galleryで展示・販売した。",
+    "evaluationImpact": "都市の壁面という一過性・場所限定の表現をプリントという所有可能な形式へ翻訳する試みで、ストリートアートの収集・生活導入のハードルを下げる企画。壁画祭とギャラリー流通を接続するモデルとして、他の壁画イベントにも応用しうる。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Form/Print",
+      "Theme/Art"
+    ]
+  },
+  {
     "id": "an-impossible-life-2026",
     "title": "An Impossible Life",
     "summary": "撮影不可能な海亀の「失われた数十年」を生成AIで再構築し科学監修のもと可視化した保全ドキュメンタリー短編",
