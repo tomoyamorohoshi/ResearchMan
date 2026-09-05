@@ -12603,5 +12603,203 @@
         "desc": "文章を打ち込むだけでUnreal Engine 5.8内にキャラクターアニメーションを直接生成できるプラグイン。"
       }
     ]
+  },
+  {
+    "id": "2026-09-05-1",
+    "date": "2026-09-05",
+    "title": "荷物パズル可視化ショー",
+    "pattern": "文脈×技術",
+    "seed": "DELIVERED BY TETRISのテトリス的荷物最適化ロジックを、ロボットの動きをリアルタイム3D可視化できるRerunと組み合わせたら、倉庫の積み込み作業がその場で観客に見えるパズルショー型OOHになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "la-poste-delivered-by-tetris",
+        "title": "DELIVERED BY TETRIS",
+        "desc": "テトリスのロジックでトラック積載を最適化しCO2排出を削減したフランス郵便局の広告施策。"
+      },
+      {
+        "type": "tech",
+        "id": "rerun-booster-robotics-k1",
+        "title": "Rerun × Booster Robotics K1",
+        "desc": "ロボットの動きやセンサデータをリアルタイムに3D可視化できるオープンソースツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-05-2",
+    "date": "2026-09-05",
+    "title": "沈みゆく都市の3D投影劇",
+    "pattern": "文脈×技術",
+    "seed": "WATERLICHTが光の波で描いた海面上昇後の未来を、広大な3D空間を高速処理できるfVDBで実在の都市データに重ねたら、自分の街が沈む瞬間をピンポイントで体感できる気候変動インスタレーションになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "waterlicht-2015",
+        "title": "WATERLICHT（水位を可視化する光の波）",
+        "desc": "海面上昇後の未来を光の波として頭上に描き出す気候変動可視化のライトインスタレーション。"
+      },
+      {
+        "type": "tech",
+        "id": "fvdb-v0-5-0",
+        "title": "fVDB v0.5.0",
+        "desc": "広大な3D空間を複数GPUで高速・省メモリに処理できるNVIDIAのオープンソース基盤。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-05-3",
+    "date": "2026-09-05",
+    "title": "都市音から鳥だけの交響曲",
+    "pattern": "文脈×技術",
+    "seed": "電線の鳥を楽譜に変換したAbradeeのSearching for Birds on Wiresに、音源分離AIのUltimate Vocal Removerを掛けたら、都市の生活音から鳥の声だけを抜き出し新しい「街の交響曲」を作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "abradee-searching-for-birds-on-wires",
+        "title": "Searching for Birds on Wires",
+        "desc": "電線に止まる鳥の写真を楽譜に変換し電力インフラを交響曲として表現した音楽広告。"
+      },
+      {
+        "type": "tech",
+        "id": "ultimate-vocal-remover",
+        "title": "Ultimate Vocal Remover (UVR)",
+        "desc": "複数の最先端AIモデルを切り替え音楽からボーカルや楽器を分離できる無料デスクトップアプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-05-4",
+    "date": "2026-09-05",
+    "title": "誓いの浜辺を歩くVR体験",
+    "pattern": "文脈×技術",
+    "seed": "パスポートに自然保護の誓いを刻むPALAU PLEDGEに、1枚の写真から破綻なく3D空間を作れるInfiniSplatを掛けたら、誓約時に撮った1枚がそのままパラオの海を歩き回れるVR記念碑になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "palau-pledge",
+        "title": "PALAU PLEDGE",
+        "desc": "入国時にパスポートへ自然保護の誓約スタンプを義務付けた世界初の観光施策。"
+      },
+      {
+        "type": "tech",
+        "id": "infinisplat",
+        "title": "InfiniSplat",
+        "desc": "1枚の写真から視点を大きく動かしても破綻しない3D空間を生成する研究技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-05-5",
+    "date": "2026-09-05",
+    "title": "崩壊晩餐に座り込むVR",
+    "pattern": "文脈×技術",
+    "seed": "黒と赤のベルベットに崩壊の予兆を描く谷原菜摘子「晩餐」を、反射や屈折まで正確に描けるGRayで3D化したら、絵の中の食卓に鑑賞者自身が座り崩れていく瞬間を体験できるVR展示になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "abc0120-226546-2026",
+        "title": "谷原菜摘子 個展「晩餐」",
+        "desc": "黒赤ベルベットに油彩・グリッター等を重ね晩餐の背後にある崩壊を描いた谷原菜摘子の個展。"
+      },
+      {
+        "type": "tech",
+        "id": "gray",
+        "title": "GRay",
+        "desc": "3D化した実写を正確な反射・屈折・影ごとレイトレーシングで高速描画できる新手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-05-6",
+    "date": "2026-09-05",
+    "title": "対話で動く3D映像編集室",
+    "pattern": "技術×技術",
+    "seed": "3D空間データを扱えるComfyUI Native Gaussian Splat Nodesと、動画の理解・編集・リメイクを1つにまとめたVideoAgentを組み合わせたら、実写から3D空間を自動生成しつつ会話だけでカメラワークを変えられる編集エージェントができそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-native-gaussian-splat-nodes",
+        "title": "ComfyUI Native Gaussian Splat Nodes（GAUSSIAN型 / v0.23.0）",
+        "desc": "ComfyUI上で3D空間データ(Gaussian Splat)を外部依存なしで扱えるノード群。"
+      },
+      {
+        "type": "tech",
+        "id": "videoagent",
+        "title": "VideoAgent",
+        "desc": "動画の理解・編集・リメイクを1つの対話型エージェントに統合したオープンソースの枠組み。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-05-7",
+    "date": "2026-09-05",
+    "title": "映り込みまで本物の映像美",
+    "pattern": "技術×技術",
+    "seed": "実写を3D化しレイトレーシングで反射・屈折・影まで正確に描けるGRayと、音声と映像を同時生成できるLTX-2を掛けたら、鏡面や水面の映り込みまで本物そっくりな「音付き3D実写」広告映像が作れそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "gray",
+        "title": "GRay",
+        "desc": "3D化した実写をラスタライズ並みの速さでレイトレーシング描画できる新手法。"
+      },
+      {
+        "type": "tech",
+        "id": "ltx-2",
+        "title": "LTX-2",
+        "desc": "音声と映像を同時に生成できる、初のオープンソース公開の映像生成基盤モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-05-8",
+    "date": "2026-09-05",
+    "title": "演出案と編集を分業するAI",
+    "pattern": "技術×技術",
+    "seed": "AIネイティブな動画編集ソフトのFrontstageと、会話しながらAIエージェントが実際にタイムライン編集を行うOpenChatCutを組み合わせたら、「演出案を出す担当」と「手を動かす担当」のAIが分業する編集室ができそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "frontstage",
+        "title": "Frontstage",
+        "desc": "AIによる映像生成と自動編集エージェントを組み込んだ、無料でブラウザ対応の動画編集ソフト。"
+      },
+      {
+        "type": "tech",
+        "id": "openchatcut",
+        "title": "OpenChatCut",
+        "desc": "会話しながらAIエージェントが実際にマルチトラック編集を行えるオープンソースの動画編集ソフト。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-05-9",
+    "date": "2026-09-05",
+    "title": "事故再現のタイムライン演出",
+    "pattern": "転用",
+    "seed": "動画生成AIをタイムラインで演出できるMiniMax H3 Directorを、広告映像づくりではなく事故現場の再現シミュレーションに転用したら、目撃証言をつなぎ合わせて「何が起きたか」を編集感覚で組み立て直せるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "minimax-h3-director",
+        "title": "MiniMax H3 Director",
+        "desc": "動画生成AI MiniMax H3を、動画編集ソフトのようなタイムライン画面で演出できるツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-05-10",
+    "date": "2026-09-05",
+    "title": "観客参加型リアルタイム映像",
+    "pattern": "転用",
+    "seed": "MiniMax H3の生成をほぼ画質を落とさず約3割速くするComfyUI-Spectrum-MiniMax-H3を、映像制作の効率化ではなくライブ会場の観客参加型映像に転用したら、その場の観客の動きを取り込んだ映像がほぼ遅延なく流せるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-spectrum-minimax-h3",
+        "title": "ComfyUI-Spectrum-MiniMax-H3",
+        "desc": "MiniMax H3の動画生成を画質をほぼ落とさず約3割速くするComfyUI用の追加ノード。"
+      }
+    ]
   }
 ]
