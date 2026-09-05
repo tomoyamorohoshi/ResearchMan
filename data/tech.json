@@ -1,5 +1,165 @@
 [
   {
+    "id": "video-delta-net",
+    "title": "Video Delta Net (VDN-H3)",
+    "org": "UC Berkeley / Impossible, Inc.（Haocheng Xi ほか）",
+    "type": "Research",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "動画生成AI「MiniMax H3」の計算を高速化する新しい注意機構。8割以上を占めていた計算コストを線形に置き換え、14秒・768pの動画をGPU8枚で11秒、再生時間より速く生成できるようにした。",
+    "point": "動画生成AIは「今のコマ」を作るために「これまでの全部のコマ」を見比べる計算（注意機構）をしており、動画が長くなるほど計算量が二乗で膨れ上がるのが弱点だった。VDN（Video Delta Net）は、直前の数コマだけは今まで通り精密に見比べ、それより前の古い情報は「要約した記憶」として一定コストで参照する仕組みに置き換えることで、この二乗コストを線形コストに変えた。結果としてMiniMax H3の生成速度を最大90倍近くまで押し上げ、14秒の動画を再生時間（14秒）より短い11秒で生成できることを示した。広告制作の現場では「動画1本の初稿を数十分〜数時間待つ」のが当たり前だったが、この技術が実装に組み込まれれば、長尺のプレビジュアライズや複数パターンのラフ動画出し分けをその場で試しながら演出を詰める、という使い方が現実的になっていく。",
+    "detail": "仕組み：動画生成AIの内部では、各コマ（フレーム）を作るときに「他の全コマとの関係」を計算する注意機構が使われる。長い会議の議事録を書くとき、直前の発言は一言一句正確にメモしつつ1時間前の話は要点だけ覚えておけば十分なのと同じ発想で、VDNは近いコマ同士だけ従来通りの精密な計算（ソフトマックス注意）を行い、遠く離れたコマとの関係は「線形注意」という一定コストで済む簡略計算に置き換える。\n\n従来との違い：通常の動画AIは動画が2倍長くなると計算量が4倍に増えるため、長尺・高解像度の生成は非常に重かった。VDNは長さに比例するだけの計算量で済むため、既存のMiniMax H3の重みに小さなアダプタ（LoRA）を足すだけで、画質をほぼ落とさずに大幅な高速化を実現している。\n\n使うには：コードと重みはGitHubとHugging Faceで無料公開されており（Apache-2.0）、ComfyUI用ノードも有志によって公開済み。ただし公表値はNVIDIA B200のような業務用高性能GPUを複数枚使う前提で、個人PCで同じ速度を出すのは難しい。ベースのMiniMax H3自体の重みには専用ライセンスがあるため、商用利用前に条件確認が必要。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "推論コード自体はApache-2.0で商用利用可。ただしベースにするMiniMax H3の重みは「MiniMax H3 Community License」に従い、一部地域で利用不可などの制限があるため要確認。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/OpenVDN/vdn-minimax-h3"
+      },
+      {
+        "kind": "project",
+        "url": "https://openvdn.github.io/"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/Saganaki22/ComfyUI-VDN-H3"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/OpenVDN/vdn-minimax-h3"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/video-delta-net.jpg",
+    "relatedWorks": [
+      {
+        "title": "MiniMax H3",
+        "description": "VDNが高速化の対象とするベースの動画生成モデル本体",
+        "url": "https://huggingface.co/MiniMaxAI/MiniMax-H3"
+      },
+      {
+        "title": "LTX-2.5",
+        "description": "映像と音声を1パスで同時生成できる、別系統のオープンウェイト動画モデル",
+        "url": "https://huggingface.co/Lightricks/LTX-2.5"
+      },
+      {
+        "title": "ComfyUI-VDN-H3",
+        "description": "VDNをComfyUIのノードとして使えるようにした非公式移植版",
+        "url": "https://github.com/Saganaki22/ComfyUI-VDN-H3"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "dreamx-creator-1-0",
+    "title": "DreamX-Creator 1.0",
+    "org": "AMAP-ML（アリババ系研究チーム）",
+    "type": "Research",
+    "domains": [
+      "GenVideo",
+      "Audio/Music",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "1枚の最初のコマとテキストだけから、映像と音声を“同時に”生成できる7Bの軽量モデル。仕上げ用の5Bモデルと組み合わせて2K画質まで引き上げられる。",
+    "point": "従来の動画生成AIの多くは「まず映像だけ作って、あとから効果音やBGMを別のAIで貼り付ける」という2段階の作り方をしていたため、映像の動きと音が微妙にズレたり、口の動きと声が合わなかったりすることがあった。DreamX-Creatorは、映像と音声を1つのモデルの中で同時に生成し、専用の橋渡し役の仕組み（Gated Cross-Modal Attention）で両者をすり合わせながら作るため、動きと音がはじめから噛み合った映像を作れる。さらに仕上げ専用の5Bモデルを追加することで、荒い下書きを高精細な2K画質まで引き上げる。広告制作では、商品カットの環境音や足音、BGMのタイミングをAIが最初から映像に合わせて作ってくれるため、効果音を後付けで細かく調整する手間を減らせる可能性がある。",
+    "detail": "仕組み：一般的な動画生成AIは映像用と音声用のAIが別々に動いていて、後工程で人間が音ズレを直す必要があった。DreamX-Creatorは、映像と音声それぞれの専用の処理経路を用意しつつ、ネットワークの後半でお互いの情報をやり取りする「ゲート付きの注意機構」を挟むことで、映像は音に、音は映像に合わせて調整し合いながら生成する。人が動画にアテレコをするとき、映像を見ながら声のタイミングを合わせるのに近いイメージ。\n\n従来との違い：映像・音声を別々のAIで作る方式は表現の自由度は高いが、AI同士のズレを人手で修正する必要があった。DreamX-Creatorは最初から1つのモデルで同期させて作るため、その手戻りが少ない。加えて、7Bという比較的軽いモデルサイズで2Kの高解像度出力までカバーする設計になっている点も特徴。\n\n使うには：コードと学習済み重みはGitHubとHugging Faceで無料公開（Apache-2.0）されており、README上は単一GPUでの実行を想定している。ただし2K仕上げ用モデルまで動かすにはそれなりのGPUメモリが必要で、日本語を含む音声・字幕の質は今後の検証が必要。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "コード・重みともにApache-2.0表記（Hugging Face掲載情報に基づく）"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/AMAP-ML/DreamX-Creator"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2608.31106"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/GD-ML/DreamX-Creator"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/dreamx-creator-1-0.jpg",
+    "relatedWorks": [
+      {
+        "title": "LTX-2.5",
+        "description": "テキスト・画像・映像から同期した映像と音声を生成する、別系統のオープンウェイト動画モデル",
+        "url": "https://huggingface.co/Lightricks/LTX-2.5"
+      },
+      {
+        "title": "MiniMax H3",
+        "description": "音声つき動画生成を扱う競合系統の大規模オープンモデル",
+        "url": "https://huggingface.co/MiniMaxAI/MiniMax-H3"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "voicestudio",
+    "title": "VoiceStudio",
+    "org": "debpalash（個人開発／OSSコミュニティ）",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "Audio/Music"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "ElevenLabsのような有料音声AIサービスの機能を、完全ローカル・無料で使えるOSSツール。声のクローン作成・動画の多言語吹き替え・文字起こしなどを1つのアプリでまとめて行える。",
+    "point": "動画の吹き替えや音声クローンを作れるAIサービスは便利だが、多くはクラウド上で従量課金・音声データを外部送信する仕組みになっている。VoiceStudioは、声のクローン作成、多言語への動画吹き替え、話者ごとのタイミング合わせ、文字起こし、オーディオブック生成といった機能を手元のPC上だけで完結させるオープンソースアプリで、646言語に対応する。音声データが基本的に外部に送信されないため、社外秘の素材や個人の声を扱う案件でも試しやすい。生成した音声には合成音声だと判別できる電子透かし（AudioSeal）が標準で入るため、AI生成物であることを開示しやすい設計にもなっている。広告・映像制作では、海外向けに多言語吹き替え版を素早く試作したり、ナレーターの声質を保ったまま言い回しだけ調整したりする用途に使えそうで、GitHubで1.8万スターを集めるなど注目度も高い。",
+    "detail": "仕組み：VoiceStudioは自前でAIモデルを新規開発しているのではなく、音声認識（WhisperX）や多言語音声合成（OmniVoiceなど）といった既存のオープンな音声AIモデルを、誰でも使えるデスクトップアプリの形にまとめたソフト。動画を読み込むと、話者ごとにセリフを書き起こし、翻訳したうえで元の話者の声質を保ったまま新しい言語のセリフを読み上げ、元映像の尺にタイミングを合わせる、という一連の作業を1つの画面で行える。\n\n従来との違い：同種の機能は海外の有料クラウドサービスが先行していたが、VoiceStudioはコードも実行環境もすべて公開されており、Windows/Mac/Linuxの手元マシンだけで動く。字幕の行単位編集や再タイミングなど、実務の吹き替え編集に必要な細かい調整機能も直近のv0.5.1（2026年8月28日）で追加された。\n\n使うには：公式サイトからワンコマンドでインストールでき、GPUがなくても動作するが、実用的な速度で使うにはNVIDIAのGPUかApple Siliconを推奨。アプリ自体はAGPL-3.0で無料だが、既定の音声合成モデルはCC-BY-NC（非商用）ライセンスのため、案件で使う音声の商用利用可否は別途確認が必要。",
+    "license": {
+      "spdx": "AGPL-3.0",
+      "commercial": "conditional",
+      "note": "アプリ本体はAGPL-3.0。ただし既定の音声合成モデルOmniVoiceはCC-BY-NC（非商用）のため、生成音声を商用利用する場合は個別にモデルのライセンス確認が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/debpalash/VoiceStudio"
+      },
+      {
+        "kind": "project",
+        "url": "https://voicestudio.sh/"
+      },
+      {
+        "kind": "post",
+        "url": "https://github.com/debpalash/VoiceStudio/releases/tag/v0.5.1"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/voicestudio.jpg",
+    "relatedWorks": [
+      {
+        "title": "dub-studio",
+        "description": "Windows向けの無料ローカル動画吹き替えアプリ（声のクローン・翻訳・字幕）",
+        "url": "https://github.com/timoncool/dub-studio"
+      },
+      {
+        "title": "Voice-Clone-Studio",
+        "description": "Qwen3-TTS等を使ったGradioベースの音声クローン・音声デザインUI",
+        "url": "https://github.com/FranckyB/Voice-Clone-Studio"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "atgs",
     "title": "ATGS（Anchored Temporal Gaussian Splatting）",
     "org": "北京大学 / 鹏城実験室（Pengcheng Laboratory）",
