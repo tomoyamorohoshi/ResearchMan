@@ -12801,5 +12801,203 @@
         "desc": "MiniMax H3の動画生成を画質をほぼ落とさず約3割速くするComfyUI用の追加ノード。"
       }
     ]
+  },
+  {
+    "id": "2026-09-06-1",
+    "date": "2026-09-06",
+    "title": "生きたXRミュージアム",
+    "pattern": "文脈×技術",
+    "seed": "寄せ集めの写真から一度の推論で3D復元するWild3Rを使えば、ガウディのXRミュージアムのように、サグラダ・ファミリアの今の建設現場を来場者の写真だけで常に最新の姿に復元し続けられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-1qyowif-2026",
+        "title": "歩ける世界遺産ミュージアム『ガウディ ー サグラダ・ファミリアの秘密』",
+        "desc": "フリーロームXRでガウディの創造過程を歩いて体験できる常設XRミュージアム。"
+      },
+      {
+        "type": "tech",
+        "id": "wild3r",
+        "title": "Wild3R",
+        "desc": "不特定多数が別々に撮った寄せ集めの写真だけから一度のAI推論で3D空間を復元する技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-06-2",
+    "date": "2026-09-06",
+    "title": "首で操る騒音体感",
+    "pattern": "文脈×技術",
+    "seed": "頭の傾きだけでピアノペダルを操作するbFaaaPの技術を、都市の騒音を可視化するZerooh Noiseのような看板に応用すれば、首を傾けるだけで周囲の騒音を体感操作できる展示になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "zerooh-noise-a-real-time-decibel-sensing-billboard-2025",
+        "title": "Zerooh Noise: a real-time decibel-sensing billboard",
+        "desc": "幹線道路の騒音をリアルタイム計測し、EVの静粛性と対比させて可視化するデジタル看板。"
+      },
+      {
+        "type": "tech",
+        "id": "bfaaap",
+        "title": "bFaaaP (barrier-Free assist as a Pedal)",
+        "desc": "頭の傾きだけでピアノのサスティンペダルを操作できる日本発のオープンソース支援楽器システム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-06-3",
+    "date": "2026-09-06",
+    "title": "感情増幅ロボット",
+    "pattern": "技術×技術",
+    "seed": "人型ロボットの全身動作を担うSONICと、表情やしぐさを増幅するウェアラブル腕EmoMimeを組み合わせたら、感情表現が全身の動きにまで広がる新しい身体コミュニケーションロボットができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "sonic",
+        "title": "SONIC（GR00T Whole-Body Control）",
+        "desc": "歩行や格闘、物の受け渡しまで人型ロボットの全身動作を担う動きの基盤モデル。"
+      },
+      {
+        "type": "tech",
+        "id": "emomime",
+        "title": "EmoMime",
+        "desc": "顔のそばで安全に動き、表情やしぐさを増幅して伝えるウェアラブルロボットアーム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-06-4",
+    "date": "2026-09-06",
+    "title": "AI即興リミックス楽器",
+    "pattern": "技術×技術",
+    "seed": "曲を11.6msで4トラックに分離するStemgenRTと、その場でループ生成するOBSIDIAN Neuralを組み合わせれば、ボーカルだけ残しAIが伴奏を即興で作り変えるライブリミックス楽器ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "stemgenrt",
+        "title": "StemgenRT",
+        "desc": "曲を再生しながら4トラックに11.6ミリ秒の遅延でリアルタイム分離するDJ/DAW用プラグイン。"
+      },
+      {
+        "type": "tech",
+        "id": "obsidian-neural",
+        "title": "OBSIDIAN Neural",
+        "desc": "AIがその場でループ音源を生成するライブ演奏向けのオープンソース楽器。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-06-5",
+    "date": "2026-09-06",
+    "title": "AIラフ案高速選別",
+    "pattern": "転用",
+    "seed": "安いプレビューだけで良い構図のシードを選ぶComfyUI-KMSの発想を画像生成以外に転用すれば、AIが大量に出す広告コピー案や絵コンテラフを本生成前に一気にスクリーニングする道具になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-kms",
+        "title": "ComfyUI-KMS（Multi-Choice KSampler）",
+        "desc": "フル生成せず安いプレビューだけで良い構図のシードを見極め、選んだ1つだけ仕上げるComfyUI拡張。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-06-6",
+    "date": "2026-09-06",
+    "title": "名選手フォーム追悼展示",
+    "pattern": "転用",
+    "seed": "選手らしいフォームのままテニスを打たせるAdaPTの技術を転用すれば、引退した名選手や亡くなったアスリートの『らしい動き』をヒューマノイドロボットに再現させる追悼・殿堂展示ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "adapt",
+        "title": "AdaPT",
+        "desc": "ヒューマノイドロボットに有名テニス選手らしいフォームのままサーブやラリーを打たせる技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-06-7",
+    "date": "2026-09-06",
+    "title": "濁った海の3D保全記録",
+    "pattern": "文脈×技術",
+    "seed": "海中の見えない森を地図化するForests Without Namesのような保全活動に、Gaussian Splat Cleanup HDAのノイズ除去技術を掛けたら、濁った海の粗いスキャンでもクリーンな3D保全記録が残せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "forests-without-names-hyundai",
+        "title": "Forests Without Names",
+        "desc": "海中の見えない森をデータとAIで地図化・命名し、保全対象として可視化した施策。"
+      },
+      {
+        "type": "tech",
+        "id": "gaussian-splat-cleanup-hda",
+        "title": "Gaussian Splat Cleanup HDA",
+        "desc": "Gaussian Splattingデータの重複点やノイズ、浮遊物を自動で掃除する無料ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-06-8",
+    "date": "2026-09-06",
+    "title": "デジタル汚名清算サービス",
+    "pattern": "文脈×技術",
+    "seed": "信用情報をキレイにするCif Clean My Nameの発想を動画編集AIのVideo Useに転用すれば、ネットに残る過去の炎上・失敗動画を自動編集し、個人のデジタルな汚名を清算するサービスになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "cif-clean-my-name",
+        "title": "Cif Clean My Name",
+        "desc": "信用情報機関と組み、名前をキレイにしたい消費者の債務返済を支援したキャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "video-use",
+        "title": "Video Use",
+        "desc": "素材フォルダを渡しチャットで指示すると、フィラー除去や字幕入り動画を自動編集するツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-06-9",
+    "date": "2026-09-06",
+    "title": "線引き絵コンテプリビズ",
+    "pattern": "技術×技術",
+    "seed": "動画からGaussian Splattingキャラを作るViggle PINOCと、線を描くだけでカメラワークを指定できるComfyUI「Cinematic Annotate Video」を組み合わせれば、線を引くだけで3Dプリビズが動き出す絵コンテツールになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "viggle-pinoc-seedance-workflow",
+        "title": "Viggle PINOC × Seedance ワークフロー",
+        "desc": "動画からモーキャプ抽出と画像1枚からのGaussian Splattingキャラ生成ができる無料ツール。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-cinematic-annotate-video",
+        "title": "ComfyUI「Cinematic Annotate Video」ワークフロー",
+        "desc": "画像に線を描くだけでカメラワークを指定でき、LLMが動画生成用モーションプロンプトに翻訳するワークフロー。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-06-10",
+    "date": "2026-09-06",
+    "title": "AI生成連続音楽番組",
+    "pattern": "文脈×技術",
+    "seed": "毎週新曲を公開し続けるGorillazのSONG MACHINEに、作詞から声変換まで1台で完結するローカルAI音楽スタジオResonantを掛け合わせたら、ファンの反応でAIが毎週その場で新曲を作る生成型音楽番組になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "gorillaz-song-machine",
+        "title": "SONG MACHINE（Gorillaz）",
+        "desc": "一括リリースせず、毎週新曲とMVを公開し続ける連続公開フォーマット。"
+      },
+      {
+        "type": "tech",
+        "id": "resonant",
+        "title": "Resonant",
+        "desc": "作詞・作曲・声変換・DAW編集までをPC1台で完結できるローカルAI音楽制作スタジオ。"
+      }
+    ]
   }
 ]
