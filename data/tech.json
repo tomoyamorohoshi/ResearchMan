@@ -1,5 +1,107 @@
 [
   {
+    "id": "stemdeck",
+    "title": "StemDeck",
+    "org": "stemdeckapp",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "1つの音楽ファイルをボーカル・ドラム・ベース・ピアノ・ギターなど最大6パートに自動分離できる、アカウント登録不要・完全ローカル動作の無料アプリ。",
+    "point": "音源から声や楽器だけを抜き出す「音源分離」技術自体は、Meta社が無料公開しているAIモデル「Demucs」を使っており目新しくはない。StemDeckのすごさは、その技術を誰でも使える形に磨き上げた点にある。アカウント登録・ファイルのアップロード・月額課金が一切不要で、パソコンの中だけで処理が完結するため、権利や個人情報が気になる音源も安心して扱える。しかも結果はDAW(音楽制作ソフト)のような画面で波形を見ながらミュート・ソロ・音量調整・ループ再生ができ、パートごとに書き出しもできる。広告制作や体験づくりの現場では、既存曲からボーカルだけ抜いてBGMの下敷きにする、街の環境音から特定の音だけを取り出して効果音素材にする、といった「試しに音をバラして組み替えてみる」検証を、外部サービスに頼らずその場で何度でも高速に繰り返せるようになる。",
+    "detail": "仕組みとしては、音声ファイルを読み込むとDemucsという深層学習モデルが「この周波数の並びは人の声らしい」「これはドラムの音らしい」といったパターンを学習済みの知識をもとに、1つの音の塊を6種類のパート(ボーカル・ドラム・ベース・ピアノ・ギター・その他)に切り分ける。StemDeckはこの処理をPython製のサーバーが担い、そこにブラウザ風の操作画面(FastAPI+Webフロントエンド)と、Windows/Mac用のデスクトップアプリ(Tauri)をかぶせている。\n\n従来はこの手の分離処理はMoisesやLALAL.AIのようなクラウドサービスにファイルをアップロードして課金する形が主流だった。StemDeckは同じ技術水準の処理を、ネットに音声データを一切送らず自分のパソコンの中だけで行える点が違う。初回起動時にDemucsのモデルデータ(数百MB)を1度だけダウンロードすれば、以降はオフラインでも使える。\n\n使うにはPython 3.12以上とFFmpegが動く環境が必要だが、Mac/Windows向けにはインストーラー入りの配布パッケージが用意されているため、開発知識がなくてもダウンロードして起動するだけで使える。処理速度を上げたい場合はNVIDIA製GPU(CUDA対応)かApple Siliconがあると速く、無くてもCPUだけで動作する。GitHub上で344件のコミットが積み重ねられ実装が完了しており、スター数も3600件を超えている。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "本体はApache-2.0。内部で使う音源分離モデルDemucs(MIT)とFFmpeg(GPLビルドを別実行ファイルとして呼び出し)は同梱のTHIRD_PARTY_NOTICES.txtで区別されている。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/stemdeckapp/stemdeck"
+      },
+      {
+        "kind": "product",
+        "url": "https://stemdeck.app"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/stemdeck.jpg",
+    "relatedWorks": [
+      {
+        "title": "Demucs (Meta AI)",
+        "description": "StemDeckが内部で使う、音源分離の基盤となるオープンソースAIモデル",
+        "url": "https://github.com/facebookresearch/demucs"
+      },
+      {
+        "title": "Ultimate Vocal Remover (UVR)",
+        "description": "同じくローカル動作の無料音源分離ツールとして先行する定番ソフト",
+        "url": "https://github.com/Anjok07/ultimatevocalremovergui"
+      },
+      {
+        "title": "Moises / LALAL.AI",
+        "description": "アップロード課金制のクラウド型音源分離サービス。StemDeckが「代替」と位置づける商用勢",
+        "url": "https://moises.ai/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "jas-i-khorlo",
+    "title": "JAS-I Khorlo",
+    "org": "JASI (Aaron Jasinski)",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "ガラスの円筒の周りに最大8本の弦を円形に配置し、リング状の「ばち」が回転しながら弦を弾いて音を出す、無料の物理モデリングシンセサイザー。",
+    "point": "「物理モデリングシンセ」自体は、太鼓や弦をコンピュータの中で数式的に再現して鳴らす既存のジャンルだが、Khorloのすごさはそこに「回転」という仕掛けを組み合わせた点。ガラスの筒を囲むように張られた最大8本の弦(音色や高さを自由に設定できる)の周りを、最大8個のリング状の「ばち」がそれぞれ違う速さでぐるぐる回り続け、弦とすれ違うたびに自動で弾いていく。つまり鍵盤を押さなくても、複数の回転が重なり合うことで、単調な繰り返しにならない複雑なリズム(ポリリズム)が勝手に生まれ続ける。広告のBGMや展示・インスタレーションの環境音を作る場面で、演奏スキルがなくても「ずっと聴いていて飽きない、有機的に変化し続ける音」を用意でき、回転速度をいじるだけでリズムの表情を大きく変えられるのが強み。",
+    "detail": "仕組みは、遊園地の回転遊具をイメージするとわかりやすい。中心にガラスの筒があり、その周りに弦や鐘のような「共鳴体(レゾネーター)」が最大8本、円状に配置されている。さらにその周りを「インパルスリング」と呼ばれる輪が高さを変えながら回転し、共鳴体とぶつかった瞬間にそれを弾く(ギターの弦を弾くのと同じ原理)。リングの高さ位置によって弾く場所が変わるため、同じ弦でも鳴る音色が変化する。8本の弦と8個のリングの回転速度をずらすことで、人が演奏しなくても複雑に絡み合うリズムパターンが自動生成される。\n\n従来のシンセは鍵盤を押した瞬間の音を作ることに主眼があるが、Khorloは「時間の中で音がどう移り変わっていくか」そのものを自動生成する点が異なる。フィルターやコーラス・ディレイなど10種類のエフェクトも内蔵しており、生成された音をその場で音楽的に整えられる。\n\n使うにはVST3/Audio Unit/CLAPに対応したDAW(音楽制作ソフト)が必要で、Windows・Mac・Linuxのいずれでも動作する。ソフト自体は無料で、アカウント登録や有効化の手続きは一切不要。ただし現時点ではベータ版(v0.9.0)であり、正式版での仕様変更や商用利用条件の明文化が今後の課題として残る。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "無料配布(オープンベータ)だが商用利用可否の明記は公式サイト上に見当たらないため要問い合わせ。"
+    },
+    "links": [
+      {
+        "kind": "product",
+        "url": "https://jas-i.com/"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=eXYTe0LGi2M"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/jas-i-khorlo.jpg",
+    "relatedWorks": [
+      {
+        "title": "GrainCharlie",
+        "description": "同時期に公開された無料のグラニュラーシンセ。粒状の音片を操作する別方式の実験的音源生成ツール",
+        "url": "https://ukdf.gumroad.com/l/GrainCharlie"
+      },
+      {
+        "title": "Chromaphone (Applied Acoustics Systems)",
+        "description": "打楽器・弦の物理モデリングで定評のある商用シンセ。Khorloが挑む「物理モデリング+自動演奏機構」という発想の対比先",
+        "url": "https://www.applied-acoustics.com/chromaphone-3/"
+      },
+      {
+        "title": "YuE",
+        "description": "歌詞から曲を丸ごと生成するOSS基盤モデル。同じAudio/MusicドメインでもAI生成寄りのアプローチという対比",
+        "url": "https://github.com/multimodal-art-projection/YuE"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "video-delta-net",
     "title": "Video Delta Net (VDN-H3)",
     "org": "UC Berkeley / Impossible, Inc.（Haocheng Xi ほか）",
