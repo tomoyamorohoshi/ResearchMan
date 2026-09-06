@@ -13088,7 +13088,10 @@
       "Form/Installation",
       "Form/Exhibition",
       "Theme/Art"
-    ]
+    ],
+    "quarantined": true,
+    "quarantineReason": "link-dead(二重確認済): 404: https://www.town.nyuzen.toyama.jp/gyosei/bijutsukan/nakajima.html",
+    "quarantineTs": "2026-09-06T09:33:10.061Z"
   },
   {
     "id": "the-burnable-billboard-2025",
