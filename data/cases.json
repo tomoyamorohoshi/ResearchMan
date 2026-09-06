@@ -1,5 +1,184 @@
 [
   {
+    "id": "prtimes-000000017-000069219-html-2026",
+    "title": "宇宙兄弟展「完結：」〜ふたつの軌跡〜",
+    "summary": "連載18年で完結した「宇宙兄弟」の直筆原稿・生原画・立体造作でふたりの軌跡を追体験する記念展。",
+    "client": "宇宙兄弟（小山宙哉）",
+    "agency": "株式会社ジムノペティ",
+    "categories": [
+      "コンテンツ革新",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000017.000069219.html",
+    "thumbnail": "/thumbnails/prtimes-000000017-000069219-html-2026.jpg",
+    "videoId": "",
+    "overview": "株式会社ジムノペティが東京ソラマチ5階スペース634にて、2026年9月5日〜10月4日開催した「宇宙兄弟展『完結：』〜ふたつの軌跡〜」。連載18年で完結した漫画『宇宙兄弟』を記念し、六太と日々人ふたりの歩みを辿る展覧会。",
+    "background": "2026年7月、連載開始から18年を経て『宇宙兄弟』が完結。すれ違いながらも重なり合って進んできた六太と日々人ふたりの物語を、ファンが体感できる形で振り返る場として本展が企画された。",
+    "execution": "会場には貴重な直筆原稿や名シーンの生原画、ふたりの歩みを象徴する立体造作、月面への名場面を追体験できる展示エリアを設置。入場料は1,969円で、会場限定の記念グッズ（ミニポーチ、缶入りトートバッグ等）も多数販売された。",
+    "evaluationImpact": "18年間続いた人気連載の完結を記念した展覧会として、原画や立体造作による没入的な体験を通じ、長年のファンに物語の集大成を振り返る機会を提供した点が特徴。",
+    "relatedWorks": [
+      {
+        "title": "Space Travelium TeNQ 宇宙兄弟展 2026",
+        "description": "東京ドームシティのSpace Travelium TeNQで開催された同時期の宇宙兄弟関連展示",
+        "url": "https://www.tokyo-dome.co.jp/tenq/event/exhibition-stt-5.html"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Theme/Entertainment",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "neo-2026",
+    "title": "NEO平成レトロ展＜名古屋＞",
+    "summary": "平成レトロブームを300点超の実物で追体験させる巡回展、名古屋PARCOで開幕",
+    "client": "テレビ愛知",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000001002.000014948.html",
+    "thumbnail": "/thumbnails/neo-2026.jpg",
+    "videoId": "",
+    "overview": "テレビ愛知が主催する「NEO平成レトロ展＜名古屋＞」が2026年9月5日〜10月4日、名古屋PARCO南館10階EVENTSPACEで開催。ガラケーやCD、雑誌など平成時代のアイテム300点以上を9つの体験コンテンツで展示し、来場者が当時の記憶を追体験できる展覧会。",
+    "background": "平成レトロ研究家・山下メロ氏監修のもと、TBSテレビ主催で2025年夏に渋谷の西武百貨店で開催され3万人超を動員した企画が全国を巡回。神戸・大丸松坂屋を経て名古屋会場ではテレビ愛知が主催し、地元アイドルグループBOYS AND MENとのコラボ展示を加えて開催。",
+    "execution": "年表や通信端末の変遷、音楽・ゲーム・ファッションなど9つのコーナーで実物のガラケーやカラオケ機器に触れられる体験型構成に加え、大型プロフィール帳への記入撮影ができる「平成プロフスタジオ」や、名古屋オリジナルとしてBOYS AND MENメンバー5人の私物グッズ展示を実施。",
+    "evaluationImpact": "昭和100年・平成回顧ムードの中、単なる懐古展示に留めず実際に触れて撮影できる参加型設計にすることで、平成世代のノスタルジー消費とSNS拡散を両立させる巡回型文化イベントのモデルケースとなっている。",
+    "relatedWorks": [
+      {
+        "title": "NEO平成レトロ展（東京・渋谷 西武）",
+        "description": "2025年夏にTBSテレビ主催で開催され3万人超を動員した本展の東京会場",
+        "url": "https://prtimes.jp/main/html/rd/p/000000034.000018827.html"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Form/Event",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "maker-faire-tokyo-2026-2026",
+    "title": "Maker Faire Tokyo 2026",
+    "summary": "3Dプリント・AI・ロボティクスなど280組が集結、有明GYM-EXで開催されたDIYテクノロジーの祭典",
+    "client": "オライリー・ジャパン／有明GYM-EX",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000007605.000005875.html",
+    "thumbnail": "/thumbnails/maker-faire-tokyo-2026-2026.jpg",
+    "videoId": "",
+    "overview": "2026年9月5〜6日に有明GYM-EXで開催された「Maker Faire Tokyo 2026」。約280組の出展者（うち学生メイカー約60組）が参加し、エレクトロニクス、ロボティクス、AI、3Dプリント、STEAM教育など多岐にわたる自作テクノロジー作品を展示した。",
+    "background": "Maker Faireは米Make Community LLCが展開する世界規模のDIY展示イベント。日本版は長らくオライリー・ジャパンが運営してきたが、2025年1月にライセンス契約終了に伴い運営が終了し、株式会社インプレスが事業を承継。2026年大会もインプレス主催で開催された。",
+    "execution": "AIで咀嚼習慣を促す「破壊系食育AIプロダクト」や、Raspberry Piとカメラで衣類をAI判別する「今日なに着た？」、3Dプリンター製ラジコンの組換え体験「TOYBOX RC」など、AI・デジタルファブリケーションを活用した個人・団体の作品が多数出展。ハンダづけ体験やプログラミング教室など参加型ワークショップも併催された。",
+    "evaluationImpact": "企業発ではなく個人・学生・小規模チームによる自作テクノロジーが一堂に会する点が特徴で、AI活用の生活提案から支援ロボット、モビリティまで裾野の広さを示した。280組規模の出展は日本のメイカームーブメントの継続的な広がりを裏付ける。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/3D",
+      "Tech/Robotics",
+      "Form/Event",
+      "Theme/Education"
+    ]
+  },
+  {
+    "id": "chickensanity-2026",
+    "title": "Chickensanity",
+    "summary": "毎晩同じ鶏肉料理が続く家庭をホラー/スリラー風に描き、シーフードへの乗り換えを促す挑発的な食品広告",
+    "client": "Aquamar",
+    "agency": "ONE23WEST",
+    "categories": [
+      "カルチャーインサイト",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/chickensanity",
+    "thumbnail": "/thumbnails/chickensanity-2026.jpg",
+    "videoId": "",
+    "overview": "米国人の鶏肉偏重の食生活を心理スリラー仕立ての映像で描き、Aquamarのシーフード商品への乗り換えを促すキャンペーン。「Give Chicken the Bird」のOOHも展開し、2026年9月に米国でONE23WEST制作により公開された。",
+    "background": "米国人は同じ鶏肉料理を週に何度も繰り返し食べる一方、シーフードへの関心はあっても利便性と習慣が障壁になっていた。Aquamarは2026年のブランドリフレッシュ「Big Fish Energy」に合わせ、商品の美しさを見せるだけでは習慣を崩せないと判断し、消費者の思考自体を揺さぶる表現を選んだ。",
+    "execution": "毎晩同じ鶏肉ディナーの無限ループに閉じ込められた家族をホラー/スリラーの手法で描写。過激すぎるロングバージョンは夜7時前の放送に不向きと判断され、編集版も別途制作された。屋外広告では「Give Chicken the Bird」のメッセージをファストフード店の近くに掲出し、映像とOOHを組み合わせた統合キャンペーンとして展開した。",
+    "evaluationImpact": "企業発表によれば売上目標を25%上回り、既存の関連商品にも52%の売上押し上げ効果(ハロー効果)をもたらした。日常食材の広告に恐怖映画の文法を持ち込み、退屈な習慣を「恐怖」として再定義した点が業界メディアでも取り上げられた。",
+    "relatedWorks": [
+      {
+        "title": "Aquamar Casual Seafood(水中ビジュアルキャンペーン)",
+        "description": "同じくONE23WESTがAquamarのために制作した、海中で食事を楽しむ人々を描いた先行キャンペーン。実写のイン・カメラ撮影でシーフードの親しみやすさを表現した。",
+        "url": "https://rgd.ca/articles/one23west-creates-campaign-with-underwater-visuals-for-aquamar-to-make-seafood-approachable"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Form/OOH",
+      "Theme/Food"
+    ]
+  },
+  {
+    "id": "breakfast-yourself-to-victory-2026",
+    "title": "Breakfast Yourself to Victory",
+    "summary": "Arlaが新マスターブランド「Feed Life™」を掲げ、英国の朝食習慣回復を訴える統合キャンペーンを開始",
+    "client": "Arla（Feed Life™マスターブランド）",
+    "agency": "Droga5 London",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/breakfast-yourself-to-victory",
+    "thumbnail": "/thumbnails/breakfast-yourself-to-victory-2026.jpg",
+    "videoId": "",
+    "overview": "Arla Foods UKが乳製品ポートフォリオ全体を束ねる長期ブランドプラットフォーム「Feed Life™」を発表。第一弾統合キャンペーン「Breakfast Yourself to Victory」をDroga5 Londonが制作し、英国の忙しい朝に朝食習慣を取り戻すことを訴求する。",
+    "background": "Arlaはこれまでマスターブランドの認知向上に注力してきたが、消費者の朝食習慣が崩れつつある中、ポートフォリオ全体との感情的・文化的な関連性構築へ戦略をシフト。バランスの取れた食生活における乳製品の役割を再提示する狙いがある。",
+    "execution": "Droga5 Londonが制作を担当し、テレビ・デジタル・ソーシャル・インフルエンサー・体験型・屋外広告を横断する統合キャンペーンを展開。ユーモアと英国的な文化的インサイトを取り入れた表現で朝食の重要性を訴求している。",
+    "evaluationImpact": "単一商品訴求から脱し、マスターブランド全体の関連性構築を狙う長期戦略の第一弾として位置づけられ、今後は農業・食料安全保障・サステナビリティ施策への展開も予告されている点が注目される。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Form/OOH",
+      "Theme/Food",
+      "Theme/Health"
+    ]
+  },
+  {
     "id": "koo-jeong-a-2026",
     "title": "Koo Jeong A 個展",
     "summary": "蓄光スケートパークや香り・磁力を使い、美術館全体を回遊ルートなき「宇宙」に変えた韓国最大規模の個展",
