@@ -12999,5 +12999,203 @@
         "desc": "作詞・作曲・声変換・DAW編集までをPC1台で完結できるローカルAI音楽制作スタジオ。"
       }
     ]
+  },
+  {
+    "id": "2026-09-07-1",
+    "date": "2026-09-07",
+    "title": "休憩を導く菌糸体広告",
+    "pattern": "文脈×技術",
+    "seed": "「休憩」の本質を静かに問うたKitKatの屋外広告に、菌糸体の電位を記録・刺激するFungal Computerを掛けたら、生き物のリズムに合わせて\"休むタイミング\"を教える広告ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "kitkat-little-breaks-listening-strumming-reading-daydreaming",
+        "title": "KitKat Listening / Strumming / Reading / Daydreaming",
+        "desc": "KitKatのロゴを手描きイラストのキャンバスに変え、「休憩」の本質を静かに問うた屋外広告シリーズ。"
+      },
+      {
+        "type": "tech",
+        "id": "fungal-computer",
+        "title": "Fungal Computer（菌糸体メムリスタ／きのこコンピューティング）",
+        "desc": "菌糸体に電極を刺して神経細胞のようなスパイク電位を記録・刺激し、論理ゲートやメモリとして使う研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-07-2",
+    "date": "2026-09-07",
+    "title": "廃炉を見せるライブ地図",
+    "pattern": "文脈×技術",
+    "seed": "汚染水問題を工程図とデータで解いた朝日新聞のインフォグラフィックスに、ロボットのセンサー状態を時系列で可視化するRerun×Booster K1の手法を掛けたら、廃炉作業の\"今この瞬間\"を追える公共インフォグラフィックになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-1wsfeyh-2016",
+        "title": "朝日新聞 東日本大震災5年別刷り特集「福島第一原発 終わり見えぬ汚染水」",
+        "desc": "福島第一原発の汚染水問題を複雑な工程図とデータで解き明かした東日本大震災5年別刷り特集インフォグラフィックス。"
+      },
+      {
+        "type": "tech",
+        "id": "rerun-booster-robotics-k1",
+        "title": "Rerun × Booster Robotics K1",
+        "desc": "OSSの時系列可視化ツールRerunでヒューマノイドK1のセンサ・3D状態をリアルタイムにロギング・可視化したデモ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-07-3",
+    "date": "2026-09-07",
+    "title": "所作をその場で受け継ぐ",
+    "pattern": "文脈×技術",
+    "seed": "元芸者の身体知「所作」をAIとロボティクスに実装するKiQ×ICOMAのプロジェクトに、Webカメラ1台でモーキャプできるPoseCapを掛けたら、誰でもその場で\"所作\"を学び継承できる体験装置ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "kiq-icoma-ai-2026",
+        "title": "KiQ × ICOMA フィジカルAI共同プロジェクト",
+        "desc": "元芸者アーティストの身体知「所作」をAIとロボティクスに実装し、暮らしの体験を再設計する日本発の共同プロジェクト。"
+      },
+      {
+        "type": "tech",
+        "id": "posecap",
+        "title": "PoseCap",
+        "desc": "Webカメラ1台だけでBlenderにリアルタイムでモーションキャプチャを流し込める無料オープンソースツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-07-4",
+    "date": "2026-09-07",
+    "title": "液体ロボットの音楽演奏",
+    "pattern": "技術×技術",
+    "seed": "23ミリ秒でボーカル・ドラムを分離するHS-TasNetの各トラックを合図に、水のように形を変える群ロボットFluidicSwarmの硬さを操ったら、演奏に合わせて液状に蠢くロボット群のライブ演出ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "hs-tasnet",
+        "title": "HS-TasNet",
+        "desc": "23ミリ秒という極小フレームでボーカル・ドラム・ベース・その他をリアルタイムに分離する音源分離モデル。"
+      },
+      {
+        "type": "tech",
+        "id": "fluidicswarm",
+        "title": "FluidicSwarm",
+        "desc": "手のジェスチャーだけで複数の小型ロボット群を水のような一つの生き物のように自在に操作できるシステム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-07-5",
+    "date": "2026-09-07",
+    "title": "実写に馴染む生成キャラ量産",
+    "pattern": "技術×技術",
+    "seed": "1枚の絵から骨格とスキンごと動く3DキャラをつくるAniGenの生成物に、Nuke並みの精度を持つComfyUI-OCIOの色空間管理を掛けたら、実写合成でも浮かないキャラクターの量産パイプラインができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "anigen",
+        "title": "AniGen",
+        "desc": "1枚の画像から、動かせる骨格とスキンまで含んだアニメーション可能な3Dキャラクターを自動生成する技術。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-ocio",
+        "title": "ComfyUI-OCIO",
+        "desc": "映画・VFX業界標準の色空間管理システムOpenColorIOをComfyUIの中でNuke並みの精度で使えるようにする拡張。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-07-6",
+    "date": "2026-09-07",
+    "title": "短尺データで描く未来の街",
+    "pattern": "転用",
+    "seed": "5秒しか学習していない動画モデルを4分まで破綻なく引き延ばすSelf Gradient Forcingの発想を映像でなく都市計画に転用すれば、短期データしかない再開発予定地の数十年後の街並みを一貫性を保ったまま予測描画できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "self-gradient-forcing",
+        "title": "Self Gradient Forcing (SGF)",
+        "desc": "5秒クリップでしか学習していない動画生成モデルを、追加学習で最長約4分まで一貫性を保って生成できるようにする手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-07-7",
+    "date": "2026-09-07",
+    "title": "言葉で匿名化する監視映像",
+    "pattern": "転用",
+    "seed": "「赤いシャツの人」のような指示だけで動画から対象を切り抜けるRotoAIを、映像制作でなく防犯カメラのプライバシー保護に転用すれば、\"制服の人だけ残す\"といった条件指定型の匿名化処理ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "rotoai",
+        "title": "RotoAI",
+        "desc": "自然言語の指示だけで、動画から人物や物体をきれいに切り抜けるオープンソースのロトスコープ・スタジオ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-07-8",
+    "date": "2026-09-07",
+    "title": "商店主の顔で量産する広告",
+    "pattern": "文脈×技術",
+    "seed": "有名人のCM枠を個人商店のために開放したCadburyの#NotJustACadburyAdに、1キャラを一貫性保って量産生成できるComfyUI-Photoshootを掛けたら、商店主自身の顔で何十種類ものローカル広告を量産する仕組みができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "cadbury-not-just-ad",
+        "title": "#NotJustACadburyAd",
+        "desc": "キャドバリーのCM枠を地元の個人商店のために開放し、AI技術で有名人が商店オリジナルCMに出演する仕組み。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-photoshoot",
+        "title": "ComfyUI-Photoshoot",
+        "desc": "1人のキャラクターを一度作り込めば、構図・ポーズ・表情違いの写真を一貫性保ったまま大量生成できる拡張。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-07-9",
+    "date": "2026-09-07",
+    "title": "憑依するダンスフロア",
+    "pattern": "記憶の再演×技術",
+    "seed": "Studio 54を一夜だけ復活させたValentinoの体験に、1本の動画だけで体・手・顔を同時収録できるBlendCapを掛けたら、来場者の踊る姿を伝説のダンサーの映像と重ねて憑依させる演出ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "born-in-roma-ivory-collection-valentino",
+        "title": "Born in Roma Rendez-Vous Ivory Collection",
+        "desc": "伝説のStudio 54を一夜だけ復活させ、限定フレグランスを発表したValentinoの体験型イベント。"
+      },
+      {
+        "type": "tech",
+        "id": "blendcap",
+        "title": "BlendCap",
+        "desc": "1本のビデオを撮るだけで、Blenderの中で体・手・顔を同時にモーションキャプチャできるアドオン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-07-10",
+    "date": "2026-09-07",
+    "title": "溶け方をAIが先に確かめる",
+    "pattern": "文脈×技術",
+    "seed": "文字構造自体に熱で溶ける圧力を組み込んだRunblockのロゴタイプ設計に、AIエージェントが物理挙動を自動検証するovrtx/ovphysxを掛けたら、何度でどう溶けるかを作る前に予測・検証できるパイプラインができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "runblock-brand-identity-2026",
+        "title": "Runblock Brand Identity",
+        "desc": "ランナー向け日焼け止めのロゴタイプを、後付け加工でなく文字構造自体に熱で溶ける圧力を組み込んで設計。"
+      },
+      {
+        "type": "tech",
+        "id": "ovrtx-ovphysx",
+        "title": "ovrtx / ovphysx (NVIDIA Agent Toolkit — Omniverse Libraries)",
+        "desc": "AIエージェントが3Dシーンをシミュレーションしたり、制作ツール内で物理挙動を自動検証したりできるSDK群。"
+      }
+    ]
   }
 ]
