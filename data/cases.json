@@ -1,5 +1,36 @@
 [
   {
+    "id": "gionatan-nese-26-portfolio-website-2026",
+    "title": "Gionatan Nese '26 (Portfolio Website)",
+    "summary": "ミラノ拠点デザイナーの個人ポートフォリオがThree.js/WebGL製の無限スクロール体験でAwwwards Site of the Day・Developer Award同時受賞",
+    "client": "Gionatan Nese",
+    "agency": "Gionatan Nese（本人制作）",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "Awwwards Site of the Day / Developer Award（2026年9月5日）",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.awwwards.com/sites/gionatan-nese-26",
+    "thumbnail": "/thumbnails/gionatan-nese-26-portfolio-website-2026.jpg",
+    "videoId": "",
+    "overview": "ミラノ拠点のマルチディシプリナリーデザイナーGionatan Neseによる自身のポートフォリオサイト。Three.js・WebGL・GSAPを用いた無限スクロールのインタラクションが特徴で、大胆なアイデアを実装として体現するというコンセプトを掲げる。",
+    "background": "個人デザイナーが自身の実力とセンスを示す名刺代わりとして制作するポートフォリオサイトは、Web技術の実験場としても機能する。本作もその文脈で、自身の作品世界観を没入的なブラウザ体験として提示する狙いがあったとみられる。",
+    "execution": "Three.jsとWebGLによる3D表現、GSAPによる滑らかなアニメーション、無限スクロールを組み合わせ、通常のポートフォリオ閲覧を超えた没入的なナビゲーション体験を構築。開発にはYousuf Soomroも関わった。",
+    "evaluationImpact": "Awwwardsにて2026年9月5日にSite of the Dayとして選出され、さらに開発面の完成度が評価されDeveloper Awardも受賞。個人制作でありながら大手ブランドサイトと並ぶ技術水準が評価された事例。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Tech/3D",
+      "Form/Website"
+    ]
+  },
+  {
     "id": "prtimes-000000017-000069219-html-2026",
     "title": "宇宙兄弟展「完結：」〜ふたつの軌跡〜",
     "summary": "連載18年で完結した「宇宙兄弟」の直筆原稿・生原画・立体造作でふたりの軌跡を追体験する記念展。",
