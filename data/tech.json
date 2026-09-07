@@ -1,5 +1,160 @@
 [
   {
+    "id": "microduck",
+    "title": "Microduck",
+    "org": "Pollen Robotics（Hugging Face傘下）",
+    "type": "Tool",
+    "domains": [
+      "Motion/Body",
+      "HCI/MediaArt"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "Hugging Face傘下のPollen Roboticsが発表した、体重800g・全長25cmの二足歩行ロボット「Microduck」。歩行やボール蹴り、転倒からの起き上がりまで、すべての動きを強化学習でシミュレーション訓練し実機へ転送するソフトウェア一式がオープンソース公開された。",
+    "point": "「Microduck」がすごいのは、歩く・座る・ボールを蹴る・転んでも自分で起き上がる・ローラースケートで滑るといった一連の動きが、人間が振り付けたモーションではなく、コンピュータの中の仮想空間で何度も失敗と成功を繰り返しながら“体で覚えた”動き（強化学習=RLで学習した動き）だという点です。しかもその学習用ソフトウェア一式がオープンソースで公開されているため、誰でも自分だけの新しい仕草をMicroduckに学習させ、実機に転送できます。広告や展示の現場で考えると、CGキャラクターではなく実物の小型ロボットが、決められたモーションデータに縛られず自然によろけたり転んだりしながらも愛嬌のある動きをするマスコット・案内役として使える可能性があります。イベント会場で来場者とインタラクションする小さなキャラクター什器や、店頭のアテンド役、CMの中で本物のロボットが健気に動く演出など、「作り込まれたCGではない、本物の不完全さがかわいい」体験づくりのヒントになりそうです。",
+    "detail": "仕組みは「まず仮想空間で練習してから実機に移す」という2段階です。PPOという強化学習アルゴリズムを使い、シミュレーターの中で「転んだら罰点、うまく歩けたら得点」というルールだけを与え、何百万回も試行錯誤させます。うまくいった動きの回路（ニューラルネットワーク）をそのままロボット本体の15個のモーターに転送する「Sim-to-Real」という技術で、実機でも同じ動きを再現します。\n\n従来のロボットキャラクター（アニマトロニクスなど）は、あらかじめプログラムされた決まった動きを再生する方式が主流でした。Microduckは目的（起き上がる、ボールを蹴るなど）だけを与えれば動き自体をその場で“考えて”実行するため、毎回微妙に違う自然な動きになり、押されてバランスを崩すような想定外の状況にもとっさに対応できます。\n\n実機で試すには本体（$399・年内北米/欧州向け発送予定）が必要ですが、動きの学習だけならソフトウェア一式（無償・Apache-2.0）とシミュレーター、学習用のGPUがあれば試せます。Pythonの基礎知識と強化学習への多少の理解があると扱いやすい内容です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "本体ハードウェアは$399の有償予約販売だが、制御・強化学習用ソフトウェア一式はApache-2.0で無償公開"
+    },
+    "links": [
+      {
+        "kind": "project",
+        "url": "https://pollen-robotics.com/microduck/blog/introducing-microduck/"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/pollen-robotics/microduck_rl"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/pollen-robotics/microduck"
+      },
+      {
+        "kind": "product",
+        "url": "https://store.pollen-robotics.com/products/microduck"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/microduck.jpg",
+    "relatedWorks": [
+      {
+        "title": "Open_Duck_Mini",
+        "description": "同じくRLで訓練するオープンソースの小型二足歩行ロボット（ディズニーBDX droidベース）",
+        "url": "https://github.com/apirrone/Open_Duck_Mini"
+      },
+      {
+        "title": "Design and Control of a Bipedal Robotic Character",
+        "description": "ディズニーリサーチによる、キャラクター性を重視した二足歩行ロボットの設計・制御研究",
+        "url": "https://la.disneyresearch.com/publication/design-and-control-of-a-bipedal-robotic-character/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "editable-visual-design",
+    "title": "Editable Visual Design（Editable-Design）",
+    "org": "Sun Yat-sen University ほか（Junyan Ye氏らの共同研究）",
+    "type": "Research",
+    "domains": [
+      "AI/Agents",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "AIエージェントが画像生成とHTML/CSSコーディングを組み合わせ、あとから文字やレイアウトを編集できるポスター・チラシを作る研究「Editable Visual Design」。GitHubでコードが公開されている。",
+    "point": "このツールがすごいのは、AIにポスターやチラシを作らせたときによくある「一枚の絵として出力され、あとから文字だけ直せない」という問題を解決した点です。AIエージェントがまず画像生成AIで背景やイラストなど“部品”だけを個別に作り、それを本物のテキストと一緒にHTML/CSSのコードとして組み立てます。つまり出来上がるのは1枚の画像ではなく、パーツごとに分かれた“編集可能なWebページ”のようなデザインです。見た目のクオリティを保ったまま、あとから文字を打ち替えたり、レイアウトをマウスでドラッグして調整したりできます。広告制作の現場で考えると、AIが一発で作ったキービジュアルを“叩き台”で終わらせず、コピーライターやデザイナーがそのまま手を入れて仕上げられる状態で受け渡せるのが大きな価値です。バナー広告やSNS投稿画像、展示会用ポスターなど、量産と細かい調整の両方が必要な制作物のワークフローを変えるヒントになりそうです。",
+    "detail": "仕組みは「まず想像してから作る」という2段階です。まずAI（VLM）がデザイン全体の構成を考え、必要なイラストや写真だけを画像生成モデルに描かせます（この時点ではテキストは含めません）。次に、それらの画像パーツと別途生成した実際の文字情報を、コーディングAIエージェントがHTML/CSSとして配置し、実際にブラウザで描画した見た目を確認しながら「文字が枠からはみ出ていないか」「余白が不自然でないか」といった問題を自動でチェック・修正していきます。\n\nこれまでの画像生成AI（Stable Diffusion系など）は一枚のビットマップ画像として出力するため、あとから文字を直したくても全体を作り直すしかありませんでした。このツールは最初からレイヤー分けされたHTMLとして作るため、Webページを修正するのと同じ感覚で文字・画像・配置を個別に調整できます。付属のマウス操作エディタで、専門知識がなくても要素をドラッグして動かせるのも特徴です。\n\n現状はOpenAIの「Codex」というAIコーディング環境の追加機能（Skill）として動作し、GPT-5.6程度の高性能モデルへの有償API利用が前提になります。GitHubからコード一式（無償・Apache-2.0）を取得し、Node.js環境とOpenAIのAPIキーを用意すればパソコン上で試せますが、Claude・Geminiには現時点で対応していません。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "コード自体はApache-2.0で無償だが、動作にOpenAI GPT-5.6等の有償APIが必須。OpenAI Codex Skillとして実装されておりClaude等では未対応"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/yejy53/Editable-Design"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2609.04034"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/editable-visual-design.jpg",
+    "relatedWorks": [
+      {
+        "title": "GenClaw: Code-Driven Agentic Image Generation",
+        "description": "コード生成を介して画像を作るエージェント方式の類似研究",
+        "url": "https://arxiv.org/pdf/2605.30248"
+      },
+      {
+        "title": "From Pixels to Paths: A Multi-Agent Framework for Editable Scientific Illustration",
+        "description": "科学図解を編集可能な形式で生成するマルチエージェント研究",
+        "url": "https://arxiv.org/pdf/2510.27452"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "hannah-motion-model",
+    "title": "Hannah Motion Model (motionlab)",
+    "org": "Vanth Labs",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "AI/Agents"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "AIアシスタント「Hannah」のために開発された、しゃべる文章のテキストからその場で3D body languageの動き（身振り手振り）を直接生成する研究用モデル。",
+    "point": "従来、AIキャラクターに身振り手振りをつけさせる主流のやり方は「音声の波形を分析してそこから動きを推定する」という遠回りな方法でした。このHannah Motion Modelは、しゃべらせたい『文章そのもの』と『どんな感情・強さで話すか』という指定だけを入力すると、それに合った上半身・手・下半身の動きを直接生成します。声を経由しないので反応が速く、しかも「興奮して手を振る」のような具体的な演技指示（アクションプロンプト）も別途足せるのが特徴です。広告や体験づくりの観点では、バーチャル店員・AI司会者・VTuber風のブランドキャラクターに、台本のテキストを渡すだけで毎回違う自然な身振りをその場で付けられる、という使い道が考えられます。決め打ちのループアニメを使い回す必要がなくなり、セリフごとに『生きた』印象の動きを量産できる可能性があります。ただし開発元は個人規模のチームで、実績のある大手研究機関の成果ではなく、まだ発展途上の研究リポジトリである点は割り引いて見る必要があります。",
+    "detail": "仕組みは2段階です。まず「Stage A」で、人の動きを『上半身』『手』『下半身』のパーツごとに分解し、それぞれを短い数値の列（ちょうど音楽を五線譜に圧縮するように、動きの本質だけを抜き出したもの）に変換するVAE（自動で圧縮・復元を学習するモデル）を作ります。次に「Stage B」で、テキストの意味と感情・強さの指定を読み取り、その圧縮された動きの列を一気に生成する拡散モデル（Flow Matching DiT）を学習します。学習データはBEAT2・AMASS・Motion-X++という、研究でよく使われる人体動作データセットです。\n\n従来手法との違いは入力の起点で、多くの既存システムは『音声→動き』という間接的な変換のため、声質や間の取り方に動きの質が左右されがちでした。本モデルは『テキスト→動き』を直接学習しているため、音声合成が終わるのを待たずに動きの生成を始められ、遅延を減らせるとされています。\n\n使うには、Python 3.12とNVIDIAのCUDA対応GPU（学習・推論に相応の計算資源）が必要です。また学習済み重みを使う場合は研究データセットのライセンス上、非商用利用に限られ、商用で使いたい場合は自前データでの再学習が求められます。加えてSMPL-X（人体の3Dモデル形式）とAMASSデータセットは配布元に個別登録して取得する必要があり、誰でもすぐ商用導入できる完成品ではなく、研究者・開発者向けの土台という位置づけです。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "学習・推論コード自体はMIT。ただし配布済み学習済み重みはBEAT2データセットのライセンスを継承しCC BY-NC 4.0（非商用のみ）。商用利用には自前データでの再学習が必要。加えてAMASSデータとSMPL-Xモデルは利用者が個別に規約同意の上で入手する必要がある。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Vanth-Labs/motion-model"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/Vanth-Labs/hannah-motion"
+      },
+      {
+        "kind": "project",
+        "url": "https://vanthlabs.org"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/hannah-motion-model.jpg",
+    "relatedWorks": [
+      {
+        "title": "EMAGE",
+        "description": "音声から全身の身振りを生成する代表的な先行研究。本モデルはこの音声起点パイプラインをテキスト起点に置き換える狙いで開発された。",
+        "url": "https://pantomatrix.github.io/EMAGE/"
+      },
+      {
+        "title": "NVIDIA Kimodo",
+        "description": "テキストとキーフレーム指定から人体・ロボットの動きを生成するNVIDIA Researchの拡散モデル。同種のテキスト駆動モーション生成研究。",
+        "url": "https://research.nvidia.com/labs/sil/projects/kimodo/assets/kimodo_tech_report.pdf"
+      },
+      {
+        "title": "Tencent HY-Motion 1.0",
+        "description": "テキストからスケルトンベースの3Dモーションを生成する大手発の同種モデル。商用ライセンス体系の比較参考になる。",
+        "url": "https://huggingface.co/tencent/HY-Motion-1.0"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "stemdeck",
     "title": "StemDeck",
     "org": "stemdeckapp",
