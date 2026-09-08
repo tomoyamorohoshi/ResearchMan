@@ -1,5 +1,155 @@
 [
   {
+    "id": "flashrender",
+    "title": "FlashRender",
+    "org": "EverEx / Yonsei University / Korea University",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "撮影済みの動画に対して、後から好きなカメラアングル(パン・チルト・ズームなど)で撮り直した映像を数秒で生成できる技術。従来手法の25倍の速さで動作する。",
+    "point": "すごいのは「編集し放題」を実現するスピードです。従来のAI動画生成は、カメラの動きを変えるだけでも1本の映像に数分〜十数分かかっていましたが、FlashRenderはその25分の1、わずか4ステップの計算で同じ品質の映像を作れます。仕組みは、動画を作る過程(ノイズ除去のステップ)ごとに変わってしまうカメラの向きのズレを補正する仕掛けと、少ない手順でも滑らかな動きを保つ学習方法を組み合わせたものです。広告制作では、1回の実写ロケで撮った素材から、俯瞰・望遠・パンなど別アングルのバリエーションをその場で量産できるようになります。再ロケや高額な3Dスキャンなしで\"撮り直し\"の要望に応えられる可能性があり、SNS向けに縦横比や視点を変えた複数パターンを一気に作る量産用途にも向きます。",
+    "detail": "仕組みをたとえるなら、写真を何度も少しずつ描き直して仕上げていく「動画版の油絵」のような処理です。AI動画生成は通常、ノイズだらけの絵を何十回も少しずつ整えて完成させますが、整える回数を減らすとカメラの向きがステップごとにブレてしまうのが弱点でした。FlashRenderは各ステップでのカメラのズレを幾何学的に補正する仕組み(RETA)と、少ない手順でも滑らかさを保つ学習方法(MeanFlow)を組み合わせ、わずか4ステップ・数秒で高品質な撮り直し映像を生成します。\n\n従来のカメラ制御付き動画生成(TrajectoryCrafterやReCamMasterなど)は、品質を上げるほど計算時間が伸びるトレードオフを抱えていましたが、FlashRenderは同等の品質を25倍速く出せる点が最大の違いです。リアルタイムに近い速度で候補を何パターンも試せるため、クリエイティブの絞り込み作業に向いています。\n\n入手にはGitHub(byeongjun-park/FlashRender、Apache-2.0)からコードと学習済みモデルをダウンロードし、動画生成用のGPU(VRAM24GB前後を推奨)とPython/PyTorch環境が必要です。研究コードのため実運用には映像エンジニアによるパイプライン組み込みが前提になります。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "リポジトリのコードはApache-2.0。学習済みモデルの再配布条件は別途確認が必要な場合あり"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/byeongjun-park/FlashRender"
+      },
+      {
+        "kind": "project",
+        "url": "https://byeongjun-park.github.io/FlashRender/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2609.03563"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/flashrender.jpg",
+    "relatedWorks": [
+      {
+        "title": "TrajectoryCrafter",
+        "description": "単眼動画のカメラ軌道を拡散モデルで再方向付けする先行研究(ICCV2025)",
+        "url": "https://github.com/TrajectoryCrafter/TrajectoryCrafter"
+      },
+      {
+        "title": "ReCamMaster",
+        "description": "1本の動画から新しいカメラ軌道で生成レンダリングする比較対象手法",
+        "url": "https://jianhongbai.github.io/ReCamMaster/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "puffin-world",
+    "title": "Puffin-World",
+    "org": "S-Lab (Nanyang Technological University) / University of Michigan / Beijing Jiaotong University / ACE Robotics",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "AI/Agents"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "1枚の画像やテキストから、カメラの向き・奥行きなど物理的な整合性まで理解した3D空間を生成し、自由な視点で歩き回れる映像を作れる統合モデル。",
+    "point": "すごいのは、画像の見た目だけでなく、カメラが実際にどんな角度・高さで構えられていたか、地面がどちらにあるか(重力方向)といった物理的な状況までAIが理解した上で3D空間を作っている点です。多くの画像生成AIは見た目が整った1枚を作るだけですが、Puffin-Worldは室内・屋外を問わず1枚の画像やテキストから、実際に視点を動かして歩き回れる3D空間(67万点規模の点群相当)を生成し、極端な回転や長い移動軌跡でも破綻しない映像を作れます。広告・体験制作では、ロケハン写真1枚から仮想の店舗やショールームを歩き回れるバーチャル内覧動画を作ったり、CM撮影前にカメラワークを3D空間上で事前に試すプレビズ(撮影前の下見)に使える可能性があります。研究段階のモデルですが、写真1枚から\"歩き回れる下見\"を作れる可能性を示した技術です。",
+    "detail": "たとえるなら、1枚の写真から「その場に実際に立って見える景色」を計算して補う仕組みです。カメラのロール・ピッチ・視野角(そのカメラがどんな傾き・高さで構えられていたか)を先に推定し、それを設計図として使いながら、見た目(色や質感)と奥行き構造(形)を同時に生成します。これにより視点を動かしても壁や物の位置がねじれずに一貫した空間になります。\n\n従来の3D生成AIは「見た目の生成」と「奥行きの復元」を別々のモデルで行うことが多く、視点を大きく動かすと壁が歪んだり物が重複したりする破綻が起きやすい問題がありました。Puffin-Worldは両者を1つの生成プロセスで同時に扱う点、また1500万件規模の画像・カメラ姿勢データセット(Puffin-16M)で学習している点が新しさです。",
+    "license": {
+      "spdx": null,
+      "commercial": "research-only",
+      "note": "S-Lab License 1.0は非営利研究目的限定。商用利用には権利元への別途許諾確認が必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/KangLiao929/Puffin"
+      },
+      {
+        "kind": "project",
+        "url": "https://kangliao929.github.io/projects/puffin-world/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2609.04196"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/puffin-world.jpg",
+    "relatedWorks": [
+      {
+        "title": "Puffin",
+        "description": "カメラの物理的な姿勢理解に特化した前作の基盤モデル",
+        "url": "https://arxiv.org/abs/2510.08673"
+      },
+      {
+        "title": "Genie 3 (Google DeepMind)",
+        "description": "テキストから歩き回れる世界をリアルタイム生成する競合の世界モデル",
+        "url": "https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "worldsculpt",
+    "title": "WorldSculpt",
+    "org": "Alaya Lab / The University of Tokyo",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "物がぎゅうぎゅうに詰まった雑然としたシーンの映像から、重なり合う物体1つひとつを個別の3Dデータ(メッシュ)として切り出し、同じ空間座標上に配置し直せる技術。",
+    "point": "すごいのは、ごちゃごちゃに物が置かれた棚や部屋の映像から、隠れて見えない部分まで推測して、物1つずつをきれいな個別の3D部品として取り出せる点です。既存の3Dシーン生成AI(World Labsの「Marble」など)は空間全体を1つの点の集まり(ガウシアンスプラッティング)として再現するため見た目は綺麗でも、あとから「この商品だけ動かす」「この棚だけ差し替える」といった編集がしにくいという弱点がありました。WorldSculptは単体物体用の3D生成AIを応用し、物が何百個も重なった映像でも1個ずつを独立したパーツとして復元します。広告・CG制作では、実写で撮った店舗や商品陳列の映像から商品を個別に3Dデータ化して差し替え合成したり、CGでの棚替えシミュレーション、ECサイト向けの3D商品カタログを一括生成する、といった使い方が考えられます。",
+    "detail": "仕組みは、バラバラのパズルのピースを1つずつ復元してから元の箱の中に正しく配置し直す作業に似ています。もともと「1個の物体を3D化する」ためのAIを、複数視点の映像情報を手がかりに使えるように改造し、雑然としたシーンを1個ずつ物体に切り分けて立体化し、最後に同じ3D空間座標上に組み直します。隠れて見えない部分の形も、他の視点の映像から推測して補います。\n\n従来のシーン3D化AIは空間全体を丸ごと1つのデータとして再現するため見た目のリアルさは高い一方、物ごとに動かす・差し替えるといった編集ができませんでした。WorldSculptは1個の物体だけで学習したモデルでありながら、物が数百個重なった複雑なシーンにも対応できる汎化性能を示した点が新しく、密集度が上がるほど既存手法との差が広がると報告されています。\n\n入手はGitHub(AlayaLab/WorldSculpt、Apache-2.0で商用利用可)から。動作にはGPU環境とPython、複数視点の映像または画像データが必要です。研究者らは密集シーン評価用のベンチマーク「UE-MeshyScene」も同時公開しています。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/AlayaLab/WorldSculpt"
+      },
+      {
+        "kind": "project",
+        "url": "https://alaya-lab.github.io/WorldSculpt/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2609.05416"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/worldsculpt.jpg",
+    "relatedWorks": [
+      {
+        "title": "World Labs \"Marble\"",
+        "description": "空間全体を1つの3Dガウシアンスプラッティングとして生成する商用の世界生成AI(比較対象)",
+        "url": "https://www.worldlabs.ai/blog/marble-world-model"
+      },
+      {
+        "title": "3D Gaussian Splatting (原論文実装)",
+        "description": "WorldSculptが編集容易性の観点で対比する、点群ベースのシーン表現手法",
+        "url": "https://github.com/graphdeco-inria/gaussian-splatting"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "microduck",
     "title": "Microduck",
     "org": "Pollen Robotics（Hugging Face傘下）",
