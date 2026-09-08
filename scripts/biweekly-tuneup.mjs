@@ -49,7 +49,7 @@ import fs from "fs/promises";
 import os from "os";
 import path from "path";
 import https from "https";
-import { spawnSync } from "child_process";
+import { spawn, spawnSync } from "child_process";
 import { fileURLToPath } from "url";
 import { resolveClaudeBin, runClaudeJson } from "./lib/claude-cli.mjs";
 import {
@@ -253,11 +253,15 @@ function gitAdd(paths) {
 // metaPath/anglesPath/gitAddFnはテスト用の注入ポイント（既定値は本番と同じ実パス/実gitAdd。
 // スモークテストが実リポジトリのファイル・実gitコマンドに触れずに検証できるようにするため。
 // smoke-tuneup-angles.mjsから直接importして検証する）。
+// runGenerateIdeaAnglesCliFn/gitCheckoutRevertFnも同様の注入ポイント（ガードレール違反シナリオを
+// 実Agent SDK呼び出し・実git checkoutなしに検証するため。既定値は本番と同じ実関数）。
 export async function maybeRefreshIdeaAngles({
   cases,
   metaPath = IDEA_ANGLES_META_PATH,
   anglesPath = IDEA_ANGLES_PATH,
   gitAddFn = gitAdd,
+  runGenerateIdeaAnglesCliFn = runGenerateIdeaAnglesCli,
+  gitCheckoutRevertFn = gitCheckoutRevert,
 }) {
   const meta = await readAnglesMeta(metaPath);
   const caseCount = cases.length;
@@ -265,7 +269,12 @@ export async function maybeRefreshIdeaAngles({
   if (!meta) {
     // 初回導入時: いきなり再生成はせず、まずベースラインだけ記録する
     // （導入直後の初回チューンアップで無条件に高コストなClaude呼び出しが走らないようにするため）。
-    await writeAnglesMeta(metaPath, { caseCount, generatedAt: new Date().toISOString() });
+    // caseCount（語彙の生成起点）とlastAttemptCaseCount（次回判定の基準点）は初回は同値。
+    await writeAnglesMeta(metaPath, {
+      caseCount,
+      lastAttemptCaseCount: caseCount,
+      generatedAt: new Date().toISOString(),
+    });
     // ベースライン記録のみのパスでも、metaファイル自体は必ずgit addしておく
     // （そうしないと次に語彙リフレッシュが実際に発生するまでdata/idea-angles-meta.jsonが
     // 永久にgit untrackedのまま残ってしまうバグの修正）。
@@ -274,12 +283,14 @@ export async function maybeRefreshIdeaAngles({
     return [];
   }
 
+  const lastAttemptBaseline = meta.lastAttemptCaseCount ?? meta.caseCount;
+
   if (!shouldRefreshAngles(caseCount, meta)) {
-    log(`切り口語彙リフレッシュ条件未達（前回${meta.caseCount}件→現在${caseCount}件。+50件未満）→ スキップ`);
+    log(`切り口語彙リフレッシュ条件未達（前回${lastAttemptBaseline}件→現在${caseCount}件。+50件未満）→ スキップ`);
     return [];
   }
 
-  log(`切り口語彙リフレッシュ条件達成（前回${meta.caseCount}件→現在${caseCount}件）→ 再生成を実行`);
+  log(`切り口語彙リフレッシュ条件達成（前回${lastAttemptBaseline}件→現在${caseCount}件）→ 再生成を実行`);
 
   let oldAngles;
   try {
@@ -289,7 +300,7 @@ export async function maybeRefreshIdeaAngles({
     return ["⚠ 切り口語彙リフレッシュをスキップしました（既存ファイルの読み込みエラー）。"];
   }
 
-  const cliOk = runGenerateIdeaAnglesCli({ rootDir: ROOT });
+  const cliOk = await runGenerateIdeaAnglesCliFn({ rootDir: ROOT });
   if (!cliOk) {
     log("⚠ 切り口語彙の再生成CLIが失敗しました → 旧語彙を維持");
     gitCheckoutRevert([anglesPath]);
@@ -309,14 +320,21 @@ export async function maybeRefreshIdeaAngles({
   const guardrail = checkAnglesGuardrail({ oldAngles, newAngles, validCaseIds });
   if (!guardrail.ok) {
     log(`⚠ 切り口語彙ガードレール違反 → 旧語彙を維持:\n  ${guardrail.errors.join("\n  ")}`);
-    gitCheckoutRevert([anglesPath]);
+    gitCheckoutRevertFn([anglesPath]);
+    // 今回の生成結果は採用しない（meta.caseCount＝語彙の実際の生成起点は据え置く）が、
+    // 次回のshouldRefreshAngles判定は「今回の時点からの増分」で行われるようにするため、
+    // lastAttemptCaseCountだけ今回のcaseCountに更新して書き込む（デッドロック解消。
+    // TURNOVER_RATE_MAX自体は緩めない。docs/CODE_REVIEW_HANDOFF等参照不要、方針はここに記載）。
+    await writeAnglesMeta(metaPath, { ...meta, lastAttemptCaseCount: caseCount, generatedAt: meta.generatedAt });
+    gitAddFn([metaPath]);
+    log(`　→ 次回判定の基準点を更新（${caseCount}件時点）`);
     return [
       "⚠ 切り口語彙の再生成がガードレールに違反したため、旧語彙を維持しました。",
       ...guardrail.errors.map((e) => `・${e}`),
     ];
   }
 
-  await writeAnglesMeta(metaPath, { caseCount, generatedAt: new Date().toISOString() });
+  await writeAnglesMeta(metaPath, { caseCount, lastAttemptCaseCount: caseCount, generatedAt: new Date().toISOString() });
   gitAddFn([anglesPath, metaPath]);
   const diff = diffAngleLabels(oldAngles, newAngles);
   log(`✅ 切り口語彙を更新: ${oldAngles.length}→${newAngles.length}語彙`);
@@ -327,14 +345,172 @@ export async function maybeRefreshIdeaAngles({
   ];
 }
 
-function runDrySubpipeline(npmScript) {
-  log(`── dry-run検証: npm run ${npmScript} ──`);
-  const r = spawnSync("npm", ["run", npmScript], {
+// タイムアウト時、shell:true配下の孫プロセス（例: node scripts/generate-idea-seeds.mjs）が
+// killされずに生き残る実機事象（指摘3）への対処。
+//
+// 当初は spawnSync の組み込み timeout オプションのまま、返ってきた後に
+// `taskkill /PID <r.pid> /T /F` を呼ぶ実装を試みたが、実機検証で完全に無効と判明した:
+// spawnSync の timeout はNode内部が「トップの子(cmd.exe)をkillしてから」同期的に返ってくる
+// ため、呼び出し元がtaskkillを呼ぶ時点でr.pidは既に存在しない
+// （`taskkill /PID <死んだpid> /T /F` は "ERROR: ... not found" で何もしない。
+// 実機で ping.exe を孫に持つ cmd.exe を用いて確認: 親を先にkillしてから taskkill /T すると
+// 孫は生き残ったまま。一方、親がまだ生きている状態で taskkill /T すると孫ごと確実に落ちる）。
+// そのため spawnSync ではなく spawn（非同期）＋自前タイマーに切り替え、
+// 「プロセスがまだ生きているうちに」taskkillでツリーごと落とす方式にした。
+// 過剰設計を避けるため、これ以上のプロセス監視（監視デーモン化・ポーリングでの生存確認等）は
+// 行わない単純なタイマー1本の対処に留める。
+// taskkill /IM node.exe のような無差別killは本番Studioを巻き込む事故実績があるため厳禁だが、
+// /PID指定でのツリーkillは対象PID配下に限定されるため安全（CLAUDE.md参照）。
+function killProcessTreeSync(pid) {
+  if (!pid) return { attempted: false, ok: false, output: "(PID不明のためkillを試行できません)" };
+  const r = spawnSync("taskkill", ["/PID", String(pid), "/T", "/F"], {
     cwd: ROOT,
-    stdio: "inherit",
-    timeout: SUBPIPELINE_TIMEOUT_MS,
+    stdio: "pipe",
+    windowsHide: true,
   });
-  return !r.error && r.status === 0;
+  const output = `${r.stdout ? r.stdout.toString() : ""}${r.stderr ? r.stderr.toString() : ""}`.trim();
+  return { attempted: true, ok: r.status === 0, output };
+}
+
+// Windowsでshell:true経由のnpm起動が「起動そのものに失敗した(npmがPATH上に無い等)」のか
+// 「起動はできたがnpmスクリプト自体が失敗した」のかを判別するためのプリフライト。
+// shell:trueでは両者ともr.error=undefined・r.status=1という同一シグネチャになり
+// （実機確認済み。指摘1）、r.error/r.statusだけでは区別できない。npm --versionという
+// 最小コストの別コマンドを同じshell経由で実行し、それすら失敗するなら「npm自体が
+// 解決できない」＝今回の事故（npmがENOENTで起動できない）の再発と判定する。
+// 案として、cmd.exeのstderrメッセージ文字列判定（'npm' は…認識されていません 等）も
+// 検討したが、Windowsの表示言語・OSバージョンによって文言が変わりうる（本文言は
+// 日本語Windows実機のもの）ため、判定条件が壊れやすい。npm --versionの成否という
+// 言語非依存の機能的な判定の方が頑健なため、こちらを採用する。
+function npmResolvable(env) {
+  const p = spawnSync("npm --version", {
+    cwd: ROOT,
+    stdio: "pipe",
+    timeout: 15000,
+    shell: true,
+    windowsHide: true,
+    env,
+  });
+  return !p.error && p.status === 0;
+}
+
+// Windowsでは npm の実体が npm.cmd（バッチファイル）であり、shell:true を渡さない限り
+// spawnSync("npm", ...) は ENOENT で即死する（package.json 経由の子プロセス起動が
+// 一切成功していなかった根本原因。2026-07-08〜稼働開始以来、dry-run検証は毎回このENOENTで
+// 「起動すらしていない」まま false を返し、全ロールバックしていた）。
+// scripts/lib/tuneup-angles.mjs の runGenerateIdeaAnglesCli と同じ
+// 「process.platform === "win32" で分岐する」流儀を踏襲する。npm.cmd はバッチファイルのため
+// （tsxのcli.mjsと違い）process.execPath直接起動では代替できず、shell:true が必須
+// （spawnSync("<npm.cmdのフルパス>", [...]) を shell:true 無しで直接起動しても
+// EINVAL になることを実機確認済み）。npmScript は本関数呼び出し元（本ファイル内の
+// 固定配列リテラル、またはテスト）以外から渡らないため、shell経由でもコマンドインジェクションの
+// 実害は無い。
+// env/timeoutMsはテスト用の注入ポイント（既定はprocess.env / SUBPIPELINE_TIMEOUT_MS＝
+// 本番と同じ）。プリフライトが「npm解決不可」を正しく検出できること、タイムアウト分岐が
+// 「起動失敗」と区別してラベルされること・孫プロセスが実際に一掃されることを、それぞれ
+// 壊れたPATH・短いtimeoutMsを注入してスモークテストで検証する
+// （scripts/smoke-tuneup-dry-subpipeline.mjs参照。45分待つのは非現実的なため、
+// タイムアウト検出ロジック自体を短時間で検証するための注入）。
+//
+// spawnSync の組み込み timeout ではなく spawn(非同期)＋自前タイマーを使う理由は
+// killProcessTreeSync のコメント参照（指摘3。トップの子が既に死んだ後ではtaskkillが
+// 孫に届かないため）。呼び出し元(scripts/lib/tuneup-apply.mjs)は
+// `const result = await step()` と await 前提のため、Promiseを返すこの変更は
+// 呼び出し側の変更なしに互換である。
+export function runDrySubpipeline(npmScript, { env = process.env, timeoutMs = SUBPIPELINE_TIMEOUT_MS } = {}) {
+  log(`── dry-run検証: npm run ${npmScript} ──`);
+  const isWindows = process.platform === "win32";
+
+  return new Promise((resolve) => {
+    let settled = false;
+    let timedOut = false;
+    const settle = (v) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      resolve(v);
+    };
+
+    let child;
+    try {
+      child = isWindows
+        ? spawn(`npm run ${npmScript}`, { cwd: ROOT, stdio: "inherit", shell: true, windowsHide: true, env })
+        : spawn("npm", ["run", npmScript], { cwd: ROOT, stdio: "inherit", env });
+    } catch (e) {
+      // spawn自体が同期throwするのは稀（不正なcwd等）だが、念のため起動失敗として扱う。
+      const reason = `${npmScript} (起動失敗: ${e.message})`;
+      log(`❌ dry-run検証: npm run ${npmScript} の起動に失敗しました（${e.message}）`);
+      resolve({ ok: false, reason });
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      timedOut = true;
+      const minutes = Math.round(timeoutMs / 60000);
+      log(`❌ dry-run検証: npm run ${npmScript} がタイムアウトしました（${minutes}分経過）`);
+      if (isWindows && child.pid) {
+        // プロセスがまだ生きているうちにtaskkillでツリーごと落とす（指摘3。
+        // killProcessTreeSync直上のコメント参照）。
+        const killResult = killProcessTreeSync(child.pid);
+        log(
+          killResult.ok
+            ? `　→ プロセスツリーをtaskkillで終了させました（PID ${child.pid}）`
+            : `⚠ プロセスツリーのtaskkillに失敗した可能性があります（PID ${child.pid}）: ${killResult.output || "(出力なし)"}`
+        );
+      } else {
+        try {
+          child.kill("SIGTERM");
+        } catch {}
+      }
+      // "exit"イベントは通常この後に発火するが、万一発火しない場合に備えて
+      // タイムアウト結果を確実に返すフォールバックを少し遅らせて仕込む
+      // （taskkillでプロセスは既に落ちているはずなので、通常はexitイベントが先に来てここは実行されない）。
+      setTimeout(() => {
+        const reasonFallback = `${npmScript} (タイムアウト: ${minutes}分)`;
+        settle({ ok: false, reason: reasonFallback });
+      }, 5000).unref?.();
+    }, timeoutMs);
+    timer.unref?.();
+
+    child.on("error", (err) => {
+      const reason = `${npmScript} (起動失敗: ${err.message})`;
+      log(`❌ dry-run検証: npm run ${npmScript} の起動に失敗しました（${err.message}）`);
+      settle({ ok: false, reason });
+    });
+
+    child.on("exit", (code, signal) => {
+      // タイムアウト(上限時間走り切った末のkill)は「起動失敗」「検証失敗」より優先して判定する
+      // （指摘2。timedOutフラグはタイマー発火時に立てる）。
+      if (timedOut) {
+        const minutes = Math.round(timeoutMs / 60000);
+        settle({ ok: false, reason: `${npmScript} (タイムアウト: ${minutes}分)` });
+        return;
+      }
+
+      if (code === 0) {
+        log(`✅ dry-run検証: npm run ${npmScript} 成功`);
+        settle({ ok: true });
+        return;
+      }
+
+      if (isWindows) {
+        // shell:true経由では「npmが起動できない」も「npmスクリプトが検証に失敗した」も
+        // 同一シグネチャ（起動時エラーは出ずexit codeのみ非0）になる（実機確認済み。指摘1）。
+        // npm --versionのプリフライトで両者を判別する。
+        if (!npmResolvable(env)) {
+          const reason = `${npmScript} (起動失敗: npmが解決できません。PATH設定を確認してください)`;
+          log(`❌ dry-run検証: npm run ${npmScript} の起動に失敗しました（npm --versionも失敗＝npm解決不可）`);
+          settle({ ok: false, reason });
+          return;
+        }
+      }
+
+      const detail = `exit code ${code}${signal ? `, signal ${signal}` : ""}`;
+      const reason = `${npmScript} (${detail})`;
+      log(`❌ dry-run検証: npm run ${npmScript} が失敗終了しました（${detail}）`);
+      settle({ ok: false, reason });
+    });
+  });
 }
 
 function buildReport(lines) {

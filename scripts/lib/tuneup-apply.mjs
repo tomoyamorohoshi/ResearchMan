@@ -18,7 +18,11 @@
  *
  * @param {object} opts
  * @param {() => Promise<void>} opts.writeFiles 候補設定ファイルの書き込み
- * @param {Array<() => Promise<boolean>>} opts.verifySteps 検証ステップ（順に実行。falseで即中断）
+ * @param {Array<() => Promise<boolean|{ok: boolean, reason?: string}>>} opts.verifySteps
+ *   検証ステップ（順に実行。falseまたは{ok:false}で即中断）。{ok, reason}形式で返すと、
+ *   失敗理由（どのnpmScriptがどう失敗したか等）がそのまま最終戻り値のreasonへ伝播する
+ *   （2026-08 週次チューンアップdry-run検証がWindowsで常にENOENT即死していた際、
+ *   固定文字列"verification-failed"しかログに残らず原因究明が1ヶ月不可能だった再発防止）。
  * @param {() => Promise<void>} opts.revert 作業ツリーを書き込み前の状態へ戻す
  * @param {boolean} opts.dryRun
  * @returns {Promise<{ok: boolean, reverted: boolean, reason?: string}>}
@@ -27,10 +31,12 @@ export async function applyCandidateWithVerification({ writeFiles, verifySteps, 
   try {
     await writeFiles();
     for (const step of verifySteps) {
-      const ok = await step();
+      const result = await step();
+      const ok = typeof result === "object" && result !== null ? result.ok : result;
       if (!ok) {
         await revert();
-        return { ok: false, reverted: true, reason: "verification-failed" };
+        const detail = typeof result === "object" && result !== null && result.reason ? `: ${result.reason}` : "";
+        return { ok: false, reverted: true, reason: `verification-failed${detail}` };
       }
     }
     if (dryRun) {

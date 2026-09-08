@@ -13,6 +13,24 @@ test("buildIdeaAnglesPrompt: 事例一覧を含み15〜25個の指示を出す",
   assert.match(prompt, /15〜25/);
 });
 
+test("buildIdeaAnglesPrompt: currentAngles省略/空配列なら現行語彙セクションを含まない（初回フォールバック）", () => {
+  const prompt = buildIdeaAnglesPrompt("- [case-1] Foo（Client）: summary");
+  assert.doesNotMatch(prompt, /現行の切り口語彙/);
+  const promptEmpty = buildIdeaAnglesPrompt("- [case-1] Foo（Client）: summary", []);
+  assert.doesNotMatch(promptEmpty, /現行の切り口語彙/);
+});
+
+test("buildIdeaAnglesPrompt: currentAnglesを渡すと差分生成の指示とid・名前一覧を含む", () => {
+  const currentAngles = [
+    { id: "mitate", label: "見立て", description: "あるものを別のものになぞらえる発想", exemplarCaseIds: ["case-1"] },
+  ];
+  const prompt = buildIdeaAnglesPrompt("- [case-1] Foo（Client）: summary", currentAngles);
+  assert.match(prompt, /現行の切り口語彙/);
+  assert.match(prompt, /\[mitate\]/);
+  assert.match(prompt, /見立て/);
+  assert.match(prompt, /維持/);
+});
+
 const VALID_IDS = new Set(["case-1", "case-2", "case-3", "case-4"]);
 
 function makeAngle(i: number, exemplars: string[] = ["case-1"]) {

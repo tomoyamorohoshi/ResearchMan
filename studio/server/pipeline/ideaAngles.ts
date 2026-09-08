@@ -11,9 +11,14 @@
  */
 import { readFileSync } from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import type { CaseRecord } from "./ideaPure.js";
 import { formatCaseLine } from "./ideaPure.js";
 import { runPlainQuery } from "./sdkRunner.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+// studio/server/pipeline -> repo root（generateIdeaAnglesCli.tsと同じ導出方法）。
+const REPO_ROOT = path.join(__dirname, "..", "..", "..");
 
 export interface IdeaAngle {
   id: string;
@@ -40,7 +45,29 @@ export function loadIdeaAngles(root: string): IdeaAngle[] {
 
 const EXAMPLE_VOCAB = "見立て / 媒体の物理特性 / 機能の転用 / 参加型 / 引き算・不在 / データを素材化 / 制約を武器に";
 
-export function buildIdeaAnglesPrompt(caseLines: string): string {
+/**
+ * 現行語彙（data/idea-angles.json）をプロンプトに埋め込むための整形。
+ * id・名前の維持を優先させる差分生成のための材料。0件（初回・現行語彙なし）なら呼び出し側で
+ * セクション自体を省略する。
+ */
+function formatCurrentAngleLine(angle: IdeaAngle): string {
+  return `- [${angle.id}] ${angle.label}: ${angle.description}`;
+}
+
+export function buildIdeaAnglesPrompt(caseLines: string, currentAngles: IdeaAngle[] = []): string {
+  const currentAnglesSection =
+    currentAngles.length > 0
+      ? `
+
+# 現行の切り口語彙（維持を優先する）
+以下は前回までに蒸留された切り口です。概念として同じものが今回の事例一覧でも成立するなら、
+既存の id と名前をそのまま維持してください（同じ発想を指しているだけの言い換え・表記ゆれで
+id や名前を変えないこと）。本当に新しく現れた発想だけを追加し、実例がもう支えられなくなった
+（対応する事例が事例一覧から消えた、または他の切り口と実質的に重複してしまった）切り口だけを
+落としてください。
+${currentAngles.map(formatCurrentAngleLine).join("\n")}`
+      : "";
+
   return `あなたはクリエイティブ事例のアーキビストです。以下は ResearchMan（クリエイティブ事例データベース）に
 登録されている Case Study の一覧です。この全体から、作品を横断して繰り返し現れる
 「発想の型（切り口・創造メカニズム）」を蒸留してください。
@@ -51,6 +78,7 @@ ${caseLines}
 # 切り口とは
 個別の事例の内容ではなく、事例が使っている「発想の構造」です。例（参考。この語彙に縛られず
 実データから帰納してよい）: ${EXAMPLE_VOCAB}
+${currentAnglesSection}
 
 # ルール
 - 15〜25個の切り口を出す。互いに明確に区別できること（意味が重なるものは1つにまとめる）
@@ -110,13 +138,29 @@ export function validateIdeaAngles(raw: unknown, validCaseIds: Set<string>): Ide
 //    caseResearch.tsの各Agent呼び出しと同じ位置づけ） ────────────────
 
 /**
+ * 現行の data/idea-angles.json を差分生成の材料として読み込む。存在しない・壊れている場合は
+ * 空配列（呼び出し側はこれを「現行語彙なし」として扱い、従来どおりのゼロベース生成にフォールバック
+ * する。初回生成時はまだファイルが無いため、このフォールバックが必須）。
+ */
+function loadCurrentAnglesForDiff(): IdeaAngle[] {
+  try {
+    return loadIdeaAngles(REPO_ROOT);
+  } catch {
+    return [];
+  }
+}
+
+/**
  * data/cases.json 全件からプロンプトを組み立て、Agent SDK 1パスで切り口ライブラリを生成する。
+ * 現行の data/idea-angles.json が存在すれば差分生成（id・名前の維持を優先）のプロンプトを、
+ * 存在しなければ従来どおりゼロベース生成のプロンプトを組み立てる。
  * 不正なJSON・検証失敗時は最大3回まで再試行する（generate-idea-seeds.mjsのgenerateOnceと
  * 同じ再試行方針）。
  */
 export async function generateIdeaAngles(cases: CaseRecord[]): Promise<IdeaAngle[]> {
   const caseLines = cases.map(formatCaseLine).join("\n");
-  const prompt = buildIdeaAnglesPrompt(caseLines);
+  const currentAngles = loadCurrentAnglesForDiff();
+  const prompt = buildIdeaAnglesPrompt(caseLines, currentAngles);
   const validCaseIds = new Set(cases.map((c) => c.id));
 
   const MAX_ATTEMPTS = 3;

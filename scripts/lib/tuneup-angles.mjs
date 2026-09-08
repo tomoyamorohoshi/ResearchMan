@@ -29,13 +29,21 @@ const OVERLAP_MATCH_THRESHOLD = 0.5;
 const DEFAULT_CLI_TIMEOUT_MS = 15 * 60 * 1000; // cases.json全件を読み込み最大3回リトライしうるため長め
 
 /**
- * cases.json件数が前回語彙生成時（data/idea-angles-meta.json）から+50件以上増えていればtrue。
+ * cases.json件数が「直近のリフレッシュ判定・試行時点」（meta.lastAttemptCaseCount。
+ * 無ければ後方互換でmeta.caseCountにフォールバック）から+50件以上増えていればtrue。
  * meta未設定（初回）はfalseを返す（呼び出し側はこれを「ベースライン記録のみ行い、
  * いきなり再生成はしない」の合図として扱う）。
+ *
+ * meta.caseCount（現在アクティブな語彙が採用された時点の件数）と
+ * meta.lastAttemptCaseCount（次回判定の基準点。ガードレール違反で棄却した場合も含め、
+ * 判定・試行するたびに更新される）は意味が異なる。ここでは後者を使う
+ * （ガードレール違反で毎回棄却されても基準点が前進し続け、入れ替わり率が
+ * 改善しないまま永久に棄却され続ける自己強化的デッドロックを防ぐため）。
  */
 export function shouldRefreshAngles(caseCount, meta) {
   if (!meta || typeof meta.caseCount !== "number") return false;
-  return caseCount - meta.caseCount >= REFRESH_CASE_COUNT_DELTA;
+  const baseline = typeof meta.lastAttemptCaseCount === "number" ? meta.lastAttemptCaseCount : meta.caseCount;
+  return caseCount - baseline >= REFRESH_CASE_COUNT_DELTA;
 }
 
 function jaccard(a, b) {
@@ -49,8 +57,20 @@ function jaccard(a, b) {
 }
 
 /**
- * 新旧の切り口をexemplarCaseIdsの重なりで対応付け、旧語彙のうち新語彙に「生き残った」ものが
- * 無い割合（入れ替わり率）を返す。旧語彙が0件なら入れ替わりようがないので0を返す。
+ * 新旧の切り口が「同じ概念」かどうかを判定する: idが一致する（差分生成でid・名前が維持された
+ * ケース）、またはexemplarCaseIdsの重なり(Jaccard係数)が閾値以上（idをリネームしつつ概念は
+ * 維持したケース）のいずれかで一致とみなす。id一致を先にチェックすることで、代表事例が
+ * 総入れ替わりしていても概念が維持されていれば一致と判定できる。
+ */
+function isSameAngleConcept(oldAngle, newAngle) {
+  if (oldAngle?.id && newAngle?.id && oldAngle.id === newAngle.id) return true;
+  return jaccard(oldAngle?.exemplarCaseIds, newAngle?.exemplarCaseIds) >= OVERLAP_MATCH_THRESHOLD;
+}
+
+/**
+ * 新旧の切り口を対応付け、旧語彙のうち新語彙に「生き残った」ものが無い割合（入れ替わり率）を
+ * 返す。生存判定はisSameAngleConcept（id一致 または exemplarCaseIdsの重なり）。
+ * 旧語彙が0件なら入れ替わりようがないので0を返す。
  */
 export function computeAngleTurnoverRate(oldAngles, newAngles) {
   const old = oldAngles || [];
@@ -58,9 +78,7 @@ export function computeAngleTurnoverRate(oldAngles, newAngles) {
   if (old.length === 0) return 0;
   let survived = 0;
   for (const oldAngle of old) {
-    const hasMatch = next.some(
-      (newAngle) => jaccard(oldAngle.exemplarCaseIds, newAngle.exemplarCaseIds) >= OVERLAP_MATCH_THRESHOLD
-    );
+    const hasMatch = next.some((newAngle) => isSameAngleConcept(oldAngle, newAngle));
     if (hasMatch) survived++;
   }
   return 1 - survived / old.length;
@@ -123,7 +141,8 @@ export function checkAnglesGuardrail({ oldAngles, newAngles, validCaseIds }) {
 }
 
 /**
- * data/idea-angles-meta.json（前回語彙生成時のcases.json件数・生成日時）を読む。
+ * data/idea-angles-meta.json（caseCount: 現在の語彙が採用された時点のcases件数、
+ * lastAttemptCaseCount: 直近でリフレッシュ判定・試行を行った時点のcases件数、generatedAt）を読む。
  * 無い・壊れている場合はnull（呼び出し側はこれを「初回」として扱い、ベースライン記録のみ行う）。
  */
 export async function readAnglesMeta(metaPath, { readFileFn = fsPromises.readFile } = {}) {
@@ -137,7 +156,10 @@ export async function readAnglesMeta(metaPath, { readFileFn = fsPromises.readFil
   }
 }
 
-/** data/idea-angles-meta.json へ書き込む。 */
+/**
+ * data/idea-angles-meta.json へ書き込む。呼び出し側が渡すオブジェクトの形をそのままシリアライズする
+ * 汎用実装（caseCount/lastAttemptCaseCountの使い分けは呼び出し側の責務）。
+ */
 export async function writeAnglesMeta(metaPath, meta, { writeFileFn = fsPromises.writeFile } = {}) {
   await writeFileFn(metaPath, JSON.stringify(meta, null, 2) + "\n");
 }

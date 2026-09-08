@@ -46,17 +46,31 @@ Write-Host ""
 #   autoresearch : 毎日10:00〜23:00の毎正時（14回）
 #   techresearch : 毎日10:00〜23:00の毎正時（14回。autoresearchと同時刻だがgit排他ロックで直列化される）
 #   ideaseeds    : 毎日10:15〜23:15の毎正時15分（14回。収集2本より15分遅らせて配信）
-#   tuneup       : 毎週月曜08:30の単発トリガ（2026-07-14に隔週/毎月1・15日08:30から変更。
-#                  PC停止時はタスクスケジューラのStartWhenAvailableでキャッチアップ。
-#                  run-job.mjs側にも「月曜以外はスキップ」の保険があり、run-if-due.mjsのdaily-at
-#                  ゲートで同日重複防止する。旧「毎日8:30〜23:30毎正時30分（16回）＋
-#                  --monthly-days 1,15」構成は廃止）
+#   tuneup       : 毎週月曜23:40の単発トリガ（2026-08-18、08:30から変更。理由は後述コメント参照）
 #   watchdog     : 毎日12:30〜23:30の毎正時30分（12回。AM/PM 2段ゲートで実際は1日2回のみ実行）
+#
+# tuneupの時刻について（2026-08-18、08:30→23:40へ変更した理由）:
+#   Windows移行後に判明したshell:true起動修正（scripts/biweekly-tuneup.mjs）により、
+#   ENOENTで即死していたdry-run検証3本（ideas:dry / auto-research:tech:dry / auto-research:cc:dry。
+#   各上限45分＝SUBPIPELINE_TIMEOUT_MS）が初めて実走するようになった。分析2パス
+#   （ANALYSIS_TIMEOUT_MS 10分×2）＋dry-run 3本（45分×3=135分）で最大約155分かかりうる。
+#   tuneupはこの間ずっとgit排他ロック（run-job.mjs参照）を保持するため、8:30開始だと
+#   最悪11:05までロックを占有し、10:00のautoresearch・10:15のideaseedsがロック待ち上限30分
+#   （run-job.mjs参照）でタイムアウトし、===== Run start: マーカーすら書けないまま
+#   「実行されなかった」ことになりwatchdogの監視からも消えてしまう（実機で確認した事故構造）。
+#   autoresearch/techresearch/ideaseedsは10:00〜23:15の毎時走るため、155分という長い占有時間だと
+#   日中どこに置いても複数回分と衝突する。衝突を構造的に避けられるのは、その日最後の
+#   daily系ジョブ（autoresearch/techresearch 23:00、ideaseeds 23:15、watchdog 23:30）が
+#   すべて開始し終えた後だけなので、23:40に置く（終了は最悪でも翌日2:15頃で、
+#   翌日10:00のジョブまで7時間以上の余裕がある）。watchdogは短時間しかgitロックを取らない
+#   （scripts/lib/watchdog-git.mjsのgitSafeCommitAndPush/gitSafeRevertAndPushのみ・
+#   3分待ちで諦める設計）ため、tuneupが長時間ロックを保持していても、watchdogの主目的である
+#   read-onlyのcheckUnpushedCommits等の監視自体は影響を受けない。
 $JobSchedules = [ordered]@{
     autoresearch = @{ Type = "DailyHours"; Hours = 10..23; Minute = 0 }
     techresearch = @{ Type = "DailyHours"; Hours = 10..23; Minute = 0 }
     ideaseeds    = @{ Type = "DailyHours"; Hours = 10..23; Minute = 15 }
-    tuneup       = @{ Type = "Weekly"; DayOfWeek = "Monday"; Hour = 8; Minute = 30 }
+    tuneup       = @{ Type = "Weekly"; DayOfWeek = "Monday"; Hour = 23; Minute = 40 }
     watchdog     = @{ Type = "DailyHours"; Hours = 12..23; Minute = 30 }
 }
 

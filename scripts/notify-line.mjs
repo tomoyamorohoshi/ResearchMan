@@ -202,12 +202,13 @@ async function main() {
   const cfg = loadConfig();
   if (!cfg) return; // 未設定なら静かにスキップ
 
-  const mode = cfg.to ? `push(userId=${cfg.to})` : "broadcast(全友だち)";
+  // ログにはuserId自体を出さず、push/broadcastの種別のみ記録する（秘密情報を残さないため）
+  const mode = cfg.to ? "push(個人宛)" : "broadcast(全友だち宛)";
   const r = await sendLineMessages(cfg, text);
-  if (r.status === 200) {
-    log(`送信OK → ${mode}`);
+  if (r.ok) {
+    log(`送信OK → ${mode}（requestId=${r.requestId || "なし"}）`);
   } else {
-    log(`送信失敗（status=${r.status} ${r.body}）— 本体処理には影響なし`);
+    log(`送信失敗（status=${r.status} reason=${r.reason} body=${r.body}）— 本体処理には影響なし`);
   }
 }
 

@@ -63,13 +63,14 @@ async function main() {
     return;
   }
 
-  const mode = cfg.to ? `push(userId=${cfg.to})` : "broadcast(全友だち)";
+  // ログにはuserId自体を出さず、push/broadcastの種別のみ記録する（秘密情報を残さないため）
+  const mode = cfg.to ? "push(個人宛)" : "broadcast(全友だち宛)";
   const r = await sendLineMessages(cfg, digestText);
-  if (r.status !== 200) {
-    log(`送信失敗（status=${r.status} ${r.body}）— queueには触れず、次回に持ち越す`);
+  if (!r.ok) {
+    log(`送信失敗（status=${r.status} reason=${r.reason} body=${r.body}）— queueには触れず、次回に持ち越す`);
     return;
   }
-  log(`送信OK → ${mode}`);
+  log(`送信OK → ${mode}（requestId=${r.requestId || "なし"}）`);
 
   // 送信成功時のみqueueをクリアする。ただし送信開始前に読んだスナップショット(before)と
   // 現在のqueueを比較し、送信完了後に新規追記された分（beforeより後ろに増えた部分）は残す

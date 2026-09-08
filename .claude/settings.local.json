@@ -214,7 +214,22 @@
       "Bash(node --check scripts/auto-research-cc.mjs)",
       "Bash(node scripts/auto-research-cc.mjs --dry-run)",
       "Bash(node \"/private/tmp/claude-501/-Users-tm-Projects-Claude-ResearchMan/7ba8e8d5-6b2a-4874-b53a-c867be84c1bd/scratchpad/apply-fixes.mjs\")",
-      "Bash(node --check scripts/save-thumbnail.mjs)"
+      "Bash(node --check scripts/save-thumbnail.mjs)",
+      "Bash(powershell -NoProfile -Command \"Stop-Process -Id 26188 -Force -ErrorAction SilentlyContinue\")",
+      "Bash(mkdir -p /tmp/rm-backup)",
+      "Bash(cp scripts/biweekly-tuneup.mjs /tmp/rm-backup/biweekly-tuneup.mjs)",
+      "Bash(cp scripts/smoke-tuneup-dry-subpipeline.mjs /tmp/rm-backup/smoke-tuneup-dry-subpipeline.mjs)",
+      "Bash(cp scripts/lib/tuneup-apply.mjs /tmp/rm-backup/tuneup-apply.mjs)",
+      "Bash(cp /tmp/rm-backup/biweekly-tuneup.mjs scripts/biweekly-tuneup.mjs)",
+      "Bash(cp /tmp/rm-backup/tuneup-apply.mjs scripts/lib/tuneup-apply.mjs)",
+      "Read(//tmp/rm-backup/**)",
+      "Bash(node --check scripts/biweekly-tuneup.mjs)",
+      "Bash(cp scripts/lib/tuneup-apply.mjs /tmp/rm-backup/tuneup-apply-current.mjs)",
+      "Bash(cp /tmp/rm-backup/tuneup-apply-HEAD.mjs scripts/lib/tuneup-apply.mjs)",
+      "Bash(node scripts/smoke-tuneup-apply.mjs)",
+      "Bash(echo \"EXIT=$?\")",
+      "Bash(cp /tmp/rm-backup/tuneup-apply-current.mjs scripts/lib/tuneup-apply.mjs)",
+      "Bash(node --check scripts/lib/tuneup-apply.mjs)"
     ],
     "defaultMode": "dontAsk"
   }

@@ -93,6 +93,59 @@ async function run() {
     assert(calls.includes("revert"), "writeFiles失敗時もrevertを試みる");
   }
 
+  // ── 6. 検証ステップが {ok:false, reason} オブジェクトを返す（指摘6） ──
+  // runDrySubpipeline()が返す {ok, reason} 形式の経路が正しく最終戻り値のreasonへ
+  // 伝播することを確認する。全ステップがbooleanしか返さない従来のテストでは
+  // scripts/lib/tuneup-apply.mjs:35,38 の {ok, reason} 分岐（result.reason取り出し）が
+  // 一度も通っていなかった（指摘6）。
+  {
+    const { calls, record } = makeCalls();
+    const result = await applyCandidateWithVerification({
+      writeFiles: async () => record("write"),
+      verifySteps: [
+        async () => {
+          record("verify1");
+          return true;
+        },
+        async () => {
+          record("verify2-object-fails");
+          return { ok: false, reason: "ideas:dry (exit code 1)" };
+        },
+        async () => {
+          record("verify3-should-not-run");
+          return true;
+        },
+      ],
+      revert: async () => record("revert"),
+      dryRun: false,
+    });
+    assert(result.ok === false, "{ok:false,reason}を返す検証ステップ: ok=false");
+    assert(
+      result.reason === "verification-failed: ideas:dry (exit code 1)",
+      `{ok:false,reason}の理由がそのまま最終reasonへ伝播する (${JSON.stringify(result.reason)})`
+    );
+    assert(calls.includes("revert"), "{ok:false,reason}を返す検証ステップでも必ずrevertする");
+    assert(!calls.includes("verify3-should-not-run"), "失敗後の残りステップは実行しない");
+  }
+
+  // ── 7. 検証ステップが {ok:true} オブジェクトを返す場合も通常のtrueと同様に扱われる ──
+  {
+    const { calls, record } = makeCalls();
+    const result = await applyCandidateWithVerification({
+      writeFiles: async () => record("write"),
+      verifySteps: [
+        async () => {
+          record("verify1-object-succeeds");
+          return { ok: true };
+        },
+      ],
+      revert: async () => record("revert"),
+      dryRun: false,
+    });
+    assert(result.ok === true && result.reverted === false, "{ok:true}を返す検証ステップ: 通常のtrueと同様に成功扱い");
+    assert(!calls.includes("revert"), "{ok:true}の場合はrevertを呼ばない");
+  }
+
   if (failures > 0) {
     console.error(`\n${failures} 件失敗`);
     process.exit(1);

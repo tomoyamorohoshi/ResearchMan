@@ -52,6 +52,11 @@ const MAX_ROUNDS = 3; // 発見リトライ上限（重複ばかりでも粘る�
 const MODEL = "sonnet";
 const DISCOVER_TIMEOUT_MS = 600000;
 const ARTICLE_TIMEOUT_MS = 300000;
+// 発見フェーズ全体（ラウンド失敗時の埋め合わせ含む）の総経過時間の上限。
+// 通常3ラウンド×10分タイムアウト=最大30分に対し、埋め合わせ1回を許容しても
+// 大きく超えないよう40分とする（実測の日次ジョブは20分程度で終わる。
+// 10:15開始のideaseedsがgitロック待ちに入るため無制限に伸ばさない）。
+const MAX_TOTAL_DISCOVERY_MS = 40 * 60 * 1000;
 
 // ── ID・タイトル正規化 ────────────────────────────────────────
 
@@ -61,7 +66,92 @@ function shortHash(s) {
   return (h >>> 0).toString(36);
 }
 
-export function toId(title, year, client = "") {
+// タイトル/クライアント文字列に埋め込まれたラテン文字表記（ブランド名・作品名の英字表記等）を
+// 抜き出す。日本語主体の文章中に "Nike" や "TeamLab" のような英字トークンが混じっているケースを
+// 拾うための補助（\w は ASCII のみなので日本語部分は無視される）。数字のみのトークン（年号等）は
+// 除外するため、先頭は英字である前提でマッチする。最長のトークンを採用する。
+function extractLatinToken(s) {
+  const matches = (s || "").match(/[A-Za-z][A-Za-z0-9]{2,}/g) || [];
+  if (!matches.length) return "";
+  return matches.reduce((longest, m) => (m.length > longest.length ? m : longest), "");
+}
+
+// URL断片（パスセグメント・クエリ値・ドメインラベル）を人間可読なslugに変換する。
+// タイトル/クライアント用の slugOf（\w基準）とはあえて別関数にし、既存のタイトル/クライアント
+// 経路の挙動には一切触れない。percent-encodeされた日本語パス（例:
+// /%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9/...）はdecodeURIComponentしてから非ASCIIを除去する
+// （デコードしないと16進の羅列がそのままIDに残ってしまう）。アンダースコアも明示的に除去する
+// （\w に含まれるため slugOf 由来のロジックのままだと変換されずに残ってしまう）。
+function slugifyUrlPart(s) {
+  let decoded = s;
+  try {
+    decoded = decodeURIComponent(s);
+  } catch {
+    // 不正なpercent-encodingはデコード前の文字列のまま処理を続ける
+  }
+  return decoded
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+// よくある2段ccTLD（レジストリのpublic suffixに近い部分）。外部ライブラリは使わず、国内外の
+// 主要ドメインで人間可読になれば十分という前提の最小セット（完全なpublic suffix判定はしない）。
+const COMPOUND_TLD_SUFFIXES = new Set([
+  "co.jp", "ne.jp", "or.jp", "ac.jp", "go.jp", "ad.jp", "gr.jp", "lg.jp", "ed.jp",
+  "co.uk", "co.nz", "co.kr", "co.in", "com.au", "com.br", "com.cn", "com.hk", "com.sg", "com.tw",
+]);
+
+// ホスト名からブランド名相当のレジスタード・ドメインラベルを取り出す（例:
+// "jp.mercari.com" → "mercari"、"blog.hoge.co.jp" → "hoge"、"www.advertimes.com" → "advertimes"）。
+// "www." だけを特別扱いして削るのではなく、TLD直前のラベル（複合TLDの場合はその一段前）を
+// 採用することで、任意のサブドメインの下でも安定してブランド名相当のラベルが拾える。
+function registrableDomainLabel(hostname) {
+  const labels = hostname.toLowerCase().split(".").filter(Boolean);
+  if (labels.length <= 2) return labels[0] || "";
+  const lastTwo = labels.slice(-2).join(".");
+  if (COMPOUND_TLD_SUFFIXES.has(lastTwo)) {
+    return labels[labels.length - 3];
+  }
+  return labels[labels.length - 2];
+}
+
+// ソースURLから人間可読なID候補を組み立てる（例:
+// https://bijutsutecho.com/magazine/news/exhibition/32901 → "bijutsutecho-32901"）。
+// パス末尾から順に、slug化して2文字以上残る（＝記事固有の識別子が拾える）セグメントを探す。
+// 日本語オンリーのパス（decode後にASCII英数字が残らない）はそのセグメントを捨てて次を試す。
+// パスから何も拾えなければクエリパラメータの値を試し（?id=111等）、それも無ければドメインの
+// ラベルのみを返す（ドメインのみは同一ドメイン内の複数記事で衝突しうるが、呼び出し側の
+// dedupeId() による一意化サフィックスで最終的に救済される設計）。
+function slugFromSourceUrl(sourceUrl) {
+  let u;
+  try {
+    u = new URL(sourceUrl);
+  } catch {
+    return "";
+  }
+  const domainSlug = slugifyUrlPart(registrableDomainLabel(u.hostname));
+  if (domainSlug.length < 2) return "";
+
+  const segments = u.pathname.split("/").filter(Boolean);
+  let pathSlug = "";
+  for (let i = segments.length - 1; i >= 0 && !pathSlug; i--) {
+    const cand = slugifyUrlPart(segments[i]);
+    if (cand.length >= 2) pathSlug = cand;
+  }
+  if (!pathSlug && u.search) {
+    for (const [, value] of new URLSearchParams(u.search)) {
+      const cand = slugifyUrlPart(value);
+      if (cand.length >= 2) {
+        pathSlug = cand;
+        break;
+      }
+    }
+  }
+  return pathSlug ? `${domainSlug}-${pathSlug}` : domainSlug;
+}
+
+export function toId(title, year, client = "", sourceUrl = "") {
   const slugOf = (s) =>
     (s || "")
       .toLowerCase()
@@ -71,9 +161,47 @@ export function toId(title, year, client = "") {
   // 日本語のみのタイトルはスラッグが空になる → クライアント名 or ハッシュで一意化
   if (base.replace(/[\d-]/g, "").length < 3) {
     const clientSlug = slugOf(client);
-    base = clientSlug.replace(/[\d-]/g, "").length >= 3 ? clientSlug : `case-${shortHash(title)}`;
+    if (clientSlug.replace(/[\d-]/g, "").length >= 3) {
+      base = clientSlug;
+    } else {
+      // ここまでで両方失敗＝タイトル・クライアントとも日本語主体。ハッシュに飛ぶ前に、
+      // 人間が読める候補を試す。ソースURL由来（記事固有の識別子を含みやすく一意性が高い）を
+      // 最優先し、次点でタイトル/client中の埋め込みラテン語トークンを試す（"Instagram"や
+      // "Project"のような一般語は同年の別事例と衝突しやすいため、URL由来より優先度を下げる）。
+      const urlSlug = slugFromSourceUrl(sourceUrl);
+      const titleToken = slugOf(extractLatinToken(title));
+      const clientToken = slugOf(extractLatinToken(client));
+      if (urlSlug) {
+        base = urlSlug;
+      } else if (titleToken.length >= 3) {
+        base = titleToken;
+      } else if (clientToken.length >= 3) {
+        base = clientToken;
+      } else {
+        base = `case-${shortHash(title)}`;
+      }
+    }
   }
   return `${base}-${year}`.replace(/-+/g, "-").slice(0, 60).replace(/^-+|-+$/g, "");
+}
+
+// toId()が既存ID集合と衝突した場合に -2, -3... という連番サフィックスを年の直前に挿入して
+// 一意化する（純関数・副作用なし）。同一ソースドメインから複数事例を採る運用（実在する。例:
+// 瀬戸内芸術祭のように多数の作品が同一サイトで報じられるケース）で、タイトルが異なる新規事例が
+// 「IDが衝突している」という理由だけで永久に取り込まれなくなる事故を防ぐ。本来の重複判定は
+// タイトルの意味的一致（normTitle）や記事リンクの一致で行うべきで、ID空間の衝突はそれとは
+// 別問題として、こちらの関数だけで解決する。
+export function dedupeId(baseId, existingIds) {
+  if (!existingIds.has(baseId)) return baseId;
+  const m = baseId.match(/^(.*)-(\d{4})$/);
+  const stem = m ? m[1] : baseId;
+  const year = m ? m[2] : "";
+  for (let n = 2; n < 1000; n++) {
+    const candidate = year ? `${stem}-${n}-${year}` : `${baseId}-${n}`;
+    if (!existingIds.has(candidate)) return candidate;
+  }
+  // 理論上ここには到達しない（同一baseで1000件超の衝突は非現実的）が、無限ループ防止の保険
+  return `${baseId}-${Date.now().toString(36)}`;
 }
 
 // タイトル正規化（id違いの重複を検出するため）。記号・空白・年を除去して比較する。
@@ -114,7 +242,16 @@ async function saveLastRunDate() {
 // data/research-tuning.json の cc.roundFoci から読み込む（2026-07-08 バッチ2aでハードコードから
 // 外部化。既定値は完全一致）。隔週チューンアップがお気に入り分析に基づき更新する。
 
-function buildDiscoveryPrompt({ lastRunDate, existingTitles, seenThisRun, round, roundFoci }) {
+// ラウンド失敗時の埋め合わせ判定（純関数）。発見フェーズがタイムアウト等で失敗した場合、
+// そのラウンドのフォーカスがその日一度も試されないまま終わることを避けるため、最大1回だけ
+// 同じフォーカスを再試行する。総経過時間が上限(MAX_TOTAL_DISCOVERY_MS)を超えていたら
+// 追加しない（総実行時間の無制限な増大を防ぐ、明示的な上限）。
+export function shouldAddMakeupRound({ makeupAlreadyAdded, elapsedMs, budgetMs }) {
+  if (makeupAlreadyAdded) return false;
+  return elapsedMs < budgetMs;
+}
+
+export function buildDiscoveryPrompt({ lastRunDate, existingTitles, seenThisRun, round, roundFoci }) {
   const now = new Date();
   const today = now.toLocaleDateString("ja-JP", { year: "numeric", month: "long", day: "numeric" });
   const lastRun = lastRunDate.toLocaleDateString("ja-JP", { year: "numeric", month: "long", day: "numeric" });
@@ -187,7 +324,7 @@ export function buildArticlePrompt(cand, vocab) {
   公式ソースで確認できなければ空文字にする（2026-07-05・Cannes 2026監査で判明した
   レベル誤り13件はほぼ全てトレード記事のみを根拠にした受賞レベル記載が原因）。
 
-## 出力形式（JSON のみ、説明文なし）
+## 出力形式（JSON のみ、説明文なし。ファイルには一切保存せず、標準出力にJSONオブジェクトをそのまま出力すること。前置き・後書き・コードフェンス等の装飾も付けない）
 {
   "summary": "1文サマリー（日本語60字前後）",
   "categories": ["コンテンツ革新"],
@@ -335,8 +472,19 @@ async function main() {
   let discoveryErrors = 0;
   let roundsAttempted = 0;
 
-  for (let round = 1; round <= MAX_ROUNDS && toAdd.length < TARGET_NEW; round++) {
-    console.log(`── ラウンド ${round}/${MAX_ROUNDS}: 発見フェーズ ──`);
+  // 基本ラウンドは1..MAX_ROUNDS。発見フェーズがラウンド単位で失敗（タイムアウト等）した場合、
+  // そのラウンドのフォーカスがその日一度も試されないまま終わらないよう、失敗したラウンドの
+  // フォーカスを最大1回だけキューの末尾に積んで再試行する（shouldAddMakeupRound参照）。
+  // 総実行時間の無制限な増大を防ぐため、埋め合わせは1回のみ・MAX_TOTAL_DISCOVERY_MSを超えたら
+  // 追加しない。
+  const discoveryStart = Date.now();
+  const roundSchedule = Array.from({ length: MAX_ROUNDS }, (_, i) => i + 1);
+  let makeupAdded = false;
+
+  for (let scheduleIdx = 0; scheduleIdx < roundSchedule.length && toAdd.length < TARGET_NEW; scheduleIdx++) {
+    const round = roundSchedule[scheduleIdx];
+    const isMakeup = scheduleIdx >= MAX_ROUNDS;
+    console.log(`── ラウンド ${round}/${MAX_ROUNDS}${isMakeup ? "（埋め合わせ再試行）" : ""}: 発見フェーズ ──`);
     roundsAttempted++;
     let found = [];
     try {
@@ -349,6 +497,11 @@ async function main() {
     } catch (e) {
       console.error(`発見フェーズ失敗: ${e.message}`);
       discoveryErrors++;
+      if (shouldAddMakeupRound({ makeupAlreadyAdded: makeupAdded, elapsedMs: Date.now() - discoveryStart, budgetMs: MAX_TOTAL_DISCOVERY_MS })) {
+        console.log(`  → ラウンド${round}のフォーカスを埋め合わせ再試行としてキューに追加`);
+        roundSchedule.push(round);
+        makeupAdded = true;
+      }
       continue;
     }
     console.log(`候補: ${found.length}件`);
@@ -359,12 +512,16 @@ async function main() {
       if (!cand?.title || !cand?.year) continue;
       seenThisRun.push(cand.title);
 
-      const id = toId(cand.title, cand.year, cand.client);
-      if (existingIds.has(id) || existingTitleKeys.has(normTitle(cand.title))) {
+      // 真の重複判定はタイトルの意味的一致（normTitle）で行う。ID自体の衝突（同一ドメインから
+      // 複数の別事例が来た場合等）は「重複」ではないため dedupeId() で一意化し、取りこぼさない
+      // （2026-08-19レビューで判明: URL由来IDの衝突がここでスキップされ続けていた不具合の修正）。
+      if (existingTitleKeys.has(normTitle(cand.title))) {
         console.log(`スキップ（重複）: ${cand.title}`);
         stats.dup++;
         continue;
       }
+      const rawId = toId(cand.title, cand.year, cand.client, cand.link);
+      const id = existingIds.has(rawId) ? dedupeId(rawId, existingIds) : rawId;
 
       const lk = normLink(cand.link);
       if (lk && existingLinkKeys.has(lk)) {
