@@ -1,5 +1,136 @@
 [
   {
+    "id": "why-zero-2026",
+    "title": "Why (Zero リクルーティングプラットフォーム特設サイト)",
+    "summary": "崩壊した学位制度をAIネイティブ学習と実務経験で置き換えるZero Universityの世界観をWebGL没入型ワンページで体現",
+    "client": "Zero",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "Awwwards Site of the Day（2026年9月7日）",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://why.zero.university/",
+    "thumbnail": "/thumbnails/why-zero-2026.jpg",
+    "videoId": "",
+    "overview": "Zero Universityの特設サイト「Why Zero」。従来の大学の学位制度に代わり、AIネイティブな学習と実際のプロジェクト・トップ企業での実務を通じて人材を育成・採用するというZeroのミッションを、アニメーションとWebGLを駆使したワンページの没入型ストーリーとして紹介している。",
+    "background": "既存の大学教育は実社会の仕事内容と乖離しているという問題意識から、Zero Universityは「学位ではなく実務」を軸にした代替的な学習・就業プラットフォームとして設立された。サイトは「なぜZeroなのか」を訴求するブランドコンテンツとして制作され、AI時代の人材育成モデルを可視化する狙いがある。",
+    "execution": "開発はBUNQ LABS（Sindhur Dutta）、デザインはZero University自身が担当。実際の職務内容を逆算して設計された学習体験というコンセプトを、スクロール連動のアニメーションと3D/WebGL表現を用いたワンページ構成で表現し、単なる説明ではなく体感型のブランド体験に仕上げている。",
+    "evaluationImpact": "Awwwards Site of the Day（2026年9月7日、スコア7.73/10）およびCSS Design Awards Website of the Day（2026年8月11日、スコア8.90/10）を受賞。UI/UXデザインとイノベーション性が評価され、教育・採用領域における新しいブランドサイトの表現手法として注目を集めた。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/3D",
+      "Form/Website",
+      "Theme/Education"
+    ]
+  },
+  {
+    "id": "united-carriers-2026",
+    "title": "United Carriers コーポレートサイト",
+    "summary": "APAC物流企業のBtoBサイトがThree.js/GSAPの3D表現でAwwwards Developer Awardを受賞",
+    "client": "United Carriers",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "Awwwards Developer Award / Site of the Day（2026年9月6日）",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://unitedcarriers.com/",
+    "thumbnail": "/thumbnails/united-carriers-2026.jpg",
+    "videoId": "",
+    "overview": "APAC地域を拠点とする物流企業United Carriersのコーポレートサイト。Three.jsとGSAPを用いた3Dインタラクティブ表現とWebflowによるレスポンシブ実装を組み合わせ、BtoB企業サイトとしては異例の没入的な表現を実現している。",
+    "background": "オーストラリア・ニュージーランド・中国・香港にチームを持ち、100カ国以上に広がるネットワークで貨物輸送を手掛けるUnited Carriers APACが、企業ブランドの信頼性と技術力を伝えるためコーポレートサイトを刷新した。",
+    "execution": "香港拠点のスタジオBearplus（Kenny Ho）が制作を担当。GSAPによるスクロール連動アニメーションとThree.jsの3Dビジュアルを組み合わせ、Webflow上で高いパフォーマンスとレスポンシブ対応を両立させた開発設計が評価された。",
+    "evaluationImpact": "2026年9月6日にAwwwardsのSite of the DayおよびDeveloper Awardを受賞。デザイン性だけでなくコード品質・モダンなWeb標準準拠が評価される同賞で、地味になりがちな物流BtoBサイトが高評価を得た点が注目される。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Tech/Web",
+      "Form/Website"
+    ]
+  },
+  {
+    "id": "esoteric-t-01-magnedrive-system-2026",
+    "title": "Esoteric T-01 ターンテーブル（MagneDrive System）",
+    "summary": "Esotericが磁力でプラッターを非接触駆動する新型ターンテーブルT-01を発表、モーター振動の伝達を排除",
+    "client": "Esoteric",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.designboom.com/technology/esoterics-t-01-turntable-magnets-spinning-magnedrive-system/",
+    "thumbnail": "/thumbnails/esoteric-t-01-magnedrive-system-2026.jpg",
+    "videoId": "",
+    "overview": "日本の高級オーディオメーカーEsotericが2026年8月21日、特許技術「MagneDrive」による非接触駆動ターンテーブルT-01を発表。ベルトや機械接触を使わず磁気誘導でプラッターを回転させる新方式を採用した。",
+    "background": "MagneDriveは2022年発売の上位機Grandioso T1で初めて導入された技術で、5年以上の開発期間を経て確立された。T-01はこの技術を継承しつつ、より普及価格帯のモデルとして展開する位置づけの新製品。",
+    "execution": "モーター端に配置した磁気ドライバー（S極N極交互配置）とプラッター下部の軟鉄製インダクションホイールが非接触で磁力同期回転する仕組み。13kgのアルミプラッターの実効荷重を約4kgまで低減し摩擦を抑制。10MHz外部マスタークロック同期や0.1%単位の速度調整にも対応する。",
+    "evaluationImpact": "ベルトドライブやダイレクトドライブに代わる第三の駆動方式として、モーター振動のレコードへの伝達を根本から断つ点が評価されている。Forbesなど海外メディアも技術的独自性を報じ、アナログ再生技術の進化として注目された。",
+    "relatedWorks": [
+      {
+        "title": "Esoteric Grandioso T1",
+        "description": "MagneDriveシステムを世界で初めて搭載した上位機種ターンテーブル（2022年発売）",
+        "url": "https://www.esoteric.jp/en/support/news/712"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Tech/Device",
+      "Form/Product"
+    ]
+  },
+  {
+    "id": "worming-from-home-2026",
+    "title": "Worming from Home",
+    "summary": "ミミズを操りキーボードに全身を叩きつけて在宅財務アナリスト業務をこなす物理演算シムがSteamで公開",
+    "client": "Zach Northrop / Mason Sabharwal（インディー開発）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://automaton-media.com/articles/newsjp/20260907-465642/",
+    "thumbnail": "/thumbnails/worming-from-home-2026.jpg",
+    "videoId": "",
+    "overview": "インディー開発者Zach NorthropとMason Sabharwalが手がけた『Worming from Home』は、手も足もないミミズを操作してリモートワークの財務アナリスト業務をこなすコメディ物理シム。2026年9月5日にSteamでリリースされ、レビュー高評価98%の「非常に好評」となった。",
+    "background": "在宅勤務やリモートワークの不条理さを、人間の代わりに「ミミズ」が働くという設定で戯画化した企画。2026年1月30日にデモ版を先行公開し、300件超のレビューで98%の高評価を獲得したことが話題化の起点となった。",
+    "execution": "ラグドール風の物理演算で、意のままにならないミミズの体を無理やりキーボードやマウスに押し当てて操作するのが核となるゲームプレイ。メール返信や表計算作業のほか、インサイダー取引で儲けたり多数のインターンを監督したりする皮肉の効いたタスクも用意し、コスチューム収集やミニゲームも搭載した。",
+    "evaluationImpact": "発売直後からSteamで「非常に好評（98%）」を獲得し、Day of the Devs x San Franciscoにも出展されるなど注目を集めた。リモートワークの疲弊感をユーモラスな身体操作ゲームに転換した点が、日本のゲームメディアでも広く報じられる話題性につながった。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/App"
+    ]
+  },
+  {
     "id": "gionatan-nese-26-portfolio-website-2026",
     "title": "Gionatan Nese '26 (Portfolio Website)",
     "summary": "ミラノ拠点デザイナーの個人ポートフォリオがThree.js/WebGL製の無限スクロール体験でAwwwards Site of the Day・Developer Award同時受賞",
