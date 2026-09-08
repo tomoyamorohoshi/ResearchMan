@@ -13197,5 +13197,401 @@
         "desc": "AIエージェントが3Dシーンをシミュレーションしたり、制作ツール内で物理挙動を自動検証したりできるSDK群。"
       }
     ]
+  },
+  {
+    "id": "2026-09-08-1",
+    "date": "2026-09-08",
+    "title": "分身アイドルの常時配信",
+    "pattern": "文脈×技術",
+    "seed": "AKB48『好きish』MVが恋心を脳内の作戦会議室として可視化したように、Live Avatarで作ったメンバーの分身を24時間しゃべらせ続ければ、モニター越しに見守るファンとの新しい常時接続ライブ配信が生まれるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ish-music-video-2026",
+        "title": "好きish Music Video",
+        "desc": "AKB48『好きish』のMVで、恋心を脳内の“作戦会議室”として可視化した映像作品。"
+      },
+      {
+        "type": "tech",
+        "id": "live-avatar",
+        "title": "Live Avatar",
+        "desc": "1枚の顔写真と音声だけから、破綻せずしゃべり続けるリアルタイム映像アバターを生成するAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-08-2",
+    "date": "2026-09-08",
+    "title": "愛車の記憶を4D保存",
+    "pattern": "文脈×技術",
+    "seed": "80歳女性とRX-7の25年を描いたMazda「Goodbye RX-7」のように、愛車の走行動画をAny4Dで実寸スケールの4D世界として復元すれば、手放した後も車内から見た景色をもう一度歩いて追体験できる記憶装置になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "mazda-goodbye-rx7-saying-farewell-to-a-dear-friend",
+        "title": "Goodbye RX-7: Saying Farewell to a Dear Friend",
+        "desc": "80歳の女性とRX-7の25年間の絆を描いた実話ドキュメンタリーフィルム。"
+      },
+      {
+        "type": "tech",
+        "id": "any4d",
+        "title": "Any4D",
+        "desc": "RGB動画などの映像から、実寸スケールで動く3D世界を1回の推論で復元するモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-08-3",
+    "date": "2026-09-08",
+    "title": "ポップアップの記憶をフィルム化",
+    "pattern": "文脈×技術",
+    "seed": "原宿にソウル・ソンス駅を再現したMUSINSAのポップアップのような期間限定空間を、閉幕後もAURORA Film Labの実測フィルム調グレーディングで記録映像に焼き付ければ、消えた場所への郷愁を製品として売れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "musinsa-2026",
+        "title": "ムシンサステーション（原宿でソンス駅を再現したポップアップ）",
+        "desc": "韓国MUSINSAが原宿にソウルの駅構内を再現し77ブランドが集った期間限定ポップアップ。"
+      },
+      {
+        "type": "tech",
+        "id": "aurora-film-lab-v1-0",
+        "title": "AURORA Film Lab v1.0",
+        "desc": "実写フィルムの計測データから12種のルックを再現するDaVinci Resolve用カラーグレーディングツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-08-4",
+    "date": "2026-09-08",
+    "title": "分離ステムをAI自動リミックス",
+    "pattern": "技術×技術",
+    "seed": "python-audio-separatorでボーカル・楽器を一発分離し、そのステムを自然言語で操作できるDAW「Stratawright」のエージェントに渡せば、指示だけで無限パターンのリミックスを量産できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "python-audio-separator",
+        "title": "python-audio-separator (audio-separator)",
+        "desc": "数百種類の学習済みモデルをCLIやAPIで呼び出せる音源分離ツール。"
+      },
+      {
+        "type": "tech",
+        "id": "stratawright",
+        "title": "Stratawright",
+        "desc": "AIコーディングエージェントが自然言語だけで操作できるC++製のDAW。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-08-5",
+    "date": "2026-09-08",
+    "title": "一枚の写真に音のある空間",
+    "pattern": "技術×技術",
+    "seed": "InfiniSplatで1枚の写真から視点を動かせる3Dガウシアンスプラットを作り、その空間の見た目に合わせてMAGI-2-previewで環境音を同時生成すれば、静止画1枚から歩ける音のある場所を作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "infinisplat",
+        "title": "InfiniSplat",
+        "desc": "1枚の写真から視点を大きく動かしても破綻しない3D立体シーンを生成する研究。"
+      },
+      {
+        "type": "tech",
+        "id": "magi-2-preview",
+        "title": "MAGI-2-preview",
+        "desc": "音声と映像を同じモデルで同時に生成するオープンソースの動画生成モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-08-6",
+    "date": "2026-09-08",
+    "title": "湿度で変わる屋外看板",
+    "pattern": "転用",
+    "seed": "汗や体温で開閉する納豆菌スポーツウェア「bioLogic」の伸縮アクチュエーターを、着る物ではなく屋外広告の生地に転用すれば、雨や湿度に応じて自動でメッセージや形が変わる看板になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "biologic",
+        "title": "bioLogic",
+        "desc": "納豆菌の湿度に応じた伸縮運動を生地に印刷し、汗や体温で開閉するスポーツウェア技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-08-7",
+    "date": "2026-09-08",
+    "title": "菌糸体で森の感情を可視化",
+    "pattern": "転用",
+    "seed": "論理ゲートやメモリとして使う「Fungal Computer」の菌糸体電位を、演算ではなく森そのものの気分のセンサーとして転用すれば、菌類のスパイク信号で光や音が変化する生態系インスタレーションになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "fungal-computer",
+        "title": "Fungal Computer（菌糸体メムリスタ／きのこコンピューティング）",
+        "desc": "菌糸体に電極を刺してスパイク電位を記録・刺激し論理ゲートやメモリとして使う研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-08-8",
+    "date": "2026-09-08",
+    "title": "DIY失敗動画を即興オペラに",
+    "pattern": "文脈×技術",
+    "seed": "DIYの苦難をオペラ的叙事詩に昇華したHornbach「No Project Without Drama」のように、施工失敗の動画をDreamX-Creator 1.0に投げれば、最初の1コマとテキストだけから映像と歌声を同時生成する即興ミュージカルCMを量産できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "hornbach-no-project-without-drama",
+        "title": "No Project Without Drama",
+        "desc": "DIYの苦難をオペラ的な叙事詩として描き、カンヌで受賞したドイツHornbachのフィルム。"
+      },
+      {
+        "type": "tech",
+        "id": "dreamx-creator-1-0",
+        "title": "DreamX-Creator 1.0",
+        "desc": "最初の1コマとテキストだけから映像と音声を同時に生成できる軽量モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-08-9",
+    "date": "2026-09-08",
+    "title": "没入ドームを観客が操作",
+    "pattern": "文脈×技術",
+    "seed": "112万人が体験した没入型海洋3DCG「BLUE OCEAN DOME」の一場面をAlayaWorldに読み込ませれば、観客がカメラを動かした分だけ海の世界がその場でリアルタイム生成され続ける、操作できるドームシアターになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "blue-ocean-dome-2026",
+        "title": "BLUE OCEAN DOME 特別上映",
+        "desc": "大阪万博で112万人が体験した没入型海洋3DCG映像をドームシアターで再上映する企画。"
+      },
+      {
+        "type": "tech",
+        "id": "alayaworld",
+        "title": "AlayaWorld",
+        "desc": "1枚の画像とカメラの動き、テキストから動く映像世界をリアルタイム生成し続けるオープンソース世界モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-08-10",
+    "date": "2026-09-08",
+    "title": "分離楽器で映像を量産",
+    "pattern": "技術×技術",
+    "seed": "Ultimate Vocal Remover(UVR)で楽器ごとに分離した動画BGMを、画質を落とさず約3割速く生成できるComfyUI-Spectrum-MiniMax-H3のパイプラインに通せば、ステムごとに映像を差し替えたミュージックビデオ量産ラインが組めるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ultimate-vocal-remover",
+        "title": "Ultimate Vocal Remover (UVR)",
+        "desc": "複数の最先端AIモデルを切り替えて使えるボーカル・楽器分離の無料デスクトップアプリ。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-spectrum-minimax-h3",
+        "title": "ComfyUI-Spectrum-MiniMax-H3",
+        "desc": "MiniMax H3の動画生成を画質をほぼ落とさず約3割速くするComfyUI用ノード。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-08-11",
+    "date": "2026-09-08",
+    "title": "解体前ビルの永久保存",
+    "pattern": "文脈×技術",
+    "seed": "解体前のビルをギャラリー化したソノアイダ #赤坂を、VRChat Gaussian Splatting v4で丸ごとスキャンすれば、解体後もVR空間で歩き回れる永久保存版になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-1inujy-2026",
+        "title": "ソノ アイダ #赤坂（赤坂アドレスビル解体祭）",
+        "desc": "解体前の赤坂オフィスビルを丸ごとギャラリー化し、14組の作家の公開制作を行った企画。"
+      },
+      {
+        "type": "tech",
+        "id": "vrchat-gaussian-splatting-v4",
+        "title": "VRChat Gaussian Splatting v4",
+        "desc": "VRChatのワールド内でGaussian Splattingをリアルタイム描画し、1億スプラット規模を扱えるOSSツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-08-12",
+    "date": "2026-09-08",
+    "title": "生きるタイムライン映像",
+    "pattern": "文脈×技術",
+    "seed": "3秒から79年を紙面で見せた長崎新聞の核の脅威のタイムラインに、見せながら作るRAVEN Streaming LoRAを掛けたら、読む速度に合わせて時間経過映像が生成され続ける生きた年表になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-8l88um-2024",
+        "title": "核の脅威のタイムライン ―3秒から79年―",
+        "desc": "原爆炸裂後3秒から79年後までを、余白を活かした10ページの新聞タイムラインで表現した平和企画。"
+      },
+      {
+        "type": "tech",
+        "id": "raven-streaming-lora-for-minimax-h3",
+        "title": "RAVEN Streaming LoRA for MiniMax-H3 (MiniMax-H3-RAVEN-Streaming-LoRA)",
+        "desc": "動画を一括計算せず、直前の映像を見ながら次を生成し続けるストリーミング型動画生成技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-08-13",
+    "date": "2026-09-08",
+    "title": "粘菌が引く新しい航路",
+    "pattern": "文脈×技術",
+    "seed": "瀬戸内国際芸術祭『海を繋ぐもの』が結ぶ島々に、東京鉄道網を再現したPhysarum polycephalumの粘菌実験を応用すれば、島同士の新しい航路を粘菌に提案させる参加型作品になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2010-064",
+        "title": "海を繋ぐもの",
+        "desc": "瀬戸内国際芸術祭で小豆島・肥土山と中山地区に展開された丹治嘉彦の作品。"
+      },
+      {
+        "type": "tech",
+        "id": "physarum-polycephalumによる東京鉄道網再現実験",
+        "title": "Physarum polycephalum（真正粘菌）による東京鉄道網再現実験",
+        "desc": "単細胞生物の真正粘菌を東京圏36都市に見立てた培地で育て、実際の鉄道網に似た構造を再現した実験。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-08-14",
+    "date": "2026-09-08",
+    "title": "何時間でも崩れない分身",
+    "pattern": "技術×技術",
+    "seed": "長時間でも姿勢が崩れないStreamTalkの補正の仕組みを、声から全身が動くEchoAvatarに移植すれば、何時間歌っても踊っても破綻しないアバターが作れそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "streamtalk",
+        "title": "StreamTalk",
+        "desc": "スピーチ音声に合わせてジェスチャーを生成し、姿勢のズレを要所で修正するAI技術。"
+      },
+      {
+        "type": "tech",
+        "id": "echoavatar",
+        "title": "EchoAvatar",
+        "desc": "声や音楽をリアルタイムに聞き取り、全身が自然に動く3Dアバターをその場で生成する研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-08-15",
+    "date": "2026-09-08",
+    "title": "鼻歌から完パケ自動化",
+    "pattern": "技術×技術",
+    "seed": "AIエージェントが操作するDAW、Stratawrightで作った曲を、映像制作を自動化するOpenMontageに直結すれば、鼻歌一つから作曲・BGM・完パケ動画まで一気通貫でできそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "stratawright",
+        "title": "Stratawright",
+        "desc": "AIコーディングエージェントが自然言語だけで操作できる、エージェント制御前提のDAW。"
+      },
+      {
+        "type": "tech",
+        "id": "openmontage",
+        "title": "OpenMontage",
+        "desc": "AIコーディングアシスタントを映像制作スタジオに変え、リサーチから完パケまで自動化するシステム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-08-16",
+    "date": "2026-09-08",
+    "title": "顔認識だけ抜く転用",
+    "pattern": "転用",
+    "seed": "顔と背景を見分けて高解像度化するComfyUI Smart Tile 2.0の認識部分だけを転用すれば、集合写真から顔だけ自動検出してモザイクをかけるプライバシー保護ツールになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-ttp-toolset-smart-tile-2-0",
+        "title": "ComfyUI TTP Toolset – Smart Tile 2.0",
+        "desc": "顔と背景をAIに認識させてから必要な場所だけ高解像度化・部分編集できるComfyUI拡張機能。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-08-17",
+    "date": "2026-09-08",
+    "title": "歩行動画で遠隔トリアージ",
+    "pattern": "転用",
+    "seed": "スマホ動画から3Dモーションを復元するHTD-Refineを転用すれば、避難所の歩行動画から怪我や体力低下を遠隔で見分けるトリアージ支援に使えるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "htd-refine",
+        "title": "HTD-Refine",
+        "desc": "スマホ1台で撮った動画から専用機材なしで自然な人体の3Dモーションを復元するAI技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-08-18",
+    "date": "2026-09-08",
+    "title": "証言が動き出すポスター",
+    "pattern": "文脈×技術",
+    "seed": "一本の鉛筆をメガホンに見立てたAmnestyのWrite for Rightsポスターに、動くガウシアンと空間音声を1ファイルにまとめる4DGSを掛けたら、証言を聞きながら鉛筆が動き出す映像を追体験できるポスターになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "write-for-rights-pencil-poster-2021",
+        "title": "Write for Rights: Pencil Poster",
+        "desc": "巨大な鉛筆をスポットライトやメガホンに見立て、投獄された人々の解放を訴えるポスターシリーズ。"
+      },
+      {
+        "type": "tech",
+        "id": "4dgs",
+        "title": "4DGS",
+        "desc": "動く3Dガウシアンスプラット映像と空間オーディオを1ファイルにまとめ、シーク再生もできる新形式。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-08-19",
+    "date": "2026-09-08",
+    "title": "ロボット振付すり合わせ",
+    "pattern": "技術×技術",
+    "seed": "ロボットの全身動作を合成するGRAILのデータを、AIエージェントがタイムラインを操作するPalmier Proに流し込めば、実機を動かす前にエージェント同士で振付をすり合わせできそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "grail",
+        "title": "GRAIL",
+        "desc": "3Dアセットと動画生成AIから人型ロボット向け全身動作データを自動合成し実機に転移するパイプライン。"
+      },
+      {
+        "type": "tech",
+        "id": "palmier-pro",
+        "title": "Palmier Pro",
+        "desc": "AIエージェントが人間と同じタイムラインで動画を操作できる、Mac向けオープンソース動画編集ソフト。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-08-20",
+    "date": "2026-09-08",
+    "title": "日々のボツ案を資産化",
+    "pattern": "継承",
+    "seed": "5000日毎日作った作品をNFT化したBeeple EVERYDAYSのように、ブリーフや過去案件を管理するRunnitに日々のボツ案を蓄積するルールを組み込めば、埋もれた発想を資産として評価できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "beeple-everydays-nft",
+        "title": "EVERYDAYS: THE FIRST 5000 DAYS（Beeple）",
+        "desc": "5000日間毎日作り続けたデジタルアートをNFT化し、Christie'sで高額落札された作品。"
+      },
+      {
+        "type": "tech",
+        "id": "runnit",
+        "title": "Runnit",
+        "desc": "ブリーフやブランド資産、過去プロジェクト履歴を扱うAIネイティブの運用プラットフォーム。"
+      }
+    ]
   }
 ]
