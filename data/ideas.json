@@ -13593,5 +13593,197 @@
         "desc": "ブリーフやブランド資産、過去プロジェクト履歴を扱うAIネイティブの運用プラットフォーム。"
       }
     ]
+  },
+  {
+    "id": "2026-09-09-1",
+    "date": "2026-09-09",
+    "title": "月面OOHの3D事前ロケハン",
+    "pattern": "文脈×技術",
+    "seed": "Steph Curry Shoots the Moonの天体アライメント計算という発想に、LocalMeshの写真1枚から3Dメッシュを自動生成する技術を掛けたら、天体現象と建物が重なる瞬間を事前に3DシミュレーションできるOOHロケハン手法ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "random-house-steph-curry-shoots-the-moon",
+        "title": "Steph Curry Shoots the Moon",
+        "desc": "スーパームーンとの天体アライメントを計算し、バスケ選手のビルボードが月を撃つ瞬間を生み出した超低予算OOH"
+      },
+      {
+        "type": "tech",
+        "id": "localmesh",
+        "title": "LocalMesh",
+        "desc": "写真1枚から3Dガウシアンスプラットとテクスチャ付き3Dメッシュを自動生成するWindows向けローカルアプリ"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-09-2",
+    "date": "2026-09-09",
+    "title": "手の不自由な人へロボ代行美容",
+    "pattern": "文脈×技術",
+    "seed": "Tilt Accessible Beautyの手の不自由な人向けデザインという文脈に、TextOpのテキスト指示でヒューマノイドが全身モーションを生成する技術を掛けたら、身体の動きが制限された人の代わりにロボットが化粧動作を代行するデモができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "tilt-accessible-beauty-inclusive-design",
+        "title": "Tilt Accessible Beauty – Inclusive Design",
+        "desc": "手の不自由な人のために設計されたインクルーシブ・ビューティーブランドの包括的なデザインシステム"
+      },
+      {
+        "type": "tech",
+        "id": "textop",
+        "title": "TextOp",
+        "desc": "テキストで指示するとヒューマノイドロボットが全身モーションを生成・実行し、動作中の指示変更にも追従するAI"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-09-3",
+    "date": "2026-09-09",
+    "title": "動きで変わる宇宙美術館の影",
+    "pattern": "文脈×技術",
+    "seed": "Koo Jeong Aの香り・磁力・蓄光で美術館全体を宇宙に変える発想に、Splatlightのガウシアンスプラットへ自己遮蔽シャドウを後付けする技術を掛けたら、来場者の動きに合わせて展示空間の陰影がリアルタイムに変化する演出ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "koo-jeong-a-2026",
+        "title": "Koo Jeong A 個展",
+        "desc": "蓄光スケートパークや香り・磁力を使い、美術館全体を回遊ルートなき宇宙に変えた韓国最大規模の個展"
+      },
+      {
+        "type": "tech",
+        "id": "splatlight",
+        "title": "Splatlight",
+        "desc": "実写を3Dスキャンしたガウシアンスプラットに、シーンライトに反応する自己遮蔽シャドウを後付けできるBlenderアドオン"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-09-4",
+    "date": "2026-09-09",
+    "title": "DIY生活音がオペラの伴奏に",
+    "pattern": "文脈×技術",
+    "seed": "HornbachのNo Project Without DramaがDIYの苦労をオペラ的叙事詩にした発想に、MT3で1音源から複数楽器パートを別トラックへ自動採譜する技術を掛けたら、日曜大工の工具音や生活音をオペラの伴奏スコアに自動変換する広告ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "hornbach-no-project-without-drama",
+        "title": "No Project Without Drama",
+        "desc": "DIYの苦難をオペラ的叙事詩に昇華し、カンヌFilm Craft部門シルバーを受賞した傑作フィルム"
+      },
+      {
+        "type": "tech",
+        "id": "mt3",
+        "title": "MT3 (Multi-Task Multitrack Music Transcription)",
+        "desc": "1本の音源からピアノやドラムなど複数楽器パートを別々のMIDIトラックとして書き起こせる自動採譜モデル"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-09-5",
+    "date": "2026-09-09",
+    "title": "3D世界を歩いて奏でる",
+    "pattern": "技術×技術",
+    "seed": "ABot-World / ABot-3DWorldの1枚の画像から探索可能な3D世界を生成し続ける技術と、Basic Pitchの音楽ファイルをMIDIに変換するAIを組み合わせたら、生成した3D世界を歩くと足元の質感がリアルタイムで音楽に変わる、空間を演奏する体験ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "abot-world-abot-3dworld",
+        "title": "ABot-World / ABot-3DWorld",
+        "desc": "1枚の画像やテキストから探索可能な3D世界をその場で生成し続け、デスクトップGPU1枚でリアルタイム動作するAI"
+      },
+      {
+        "type": "tech",
+        "id": "basic-pitch",
+        "title": "Basic Pitch",
+        "desc": "音楽ファイルをアップロードするだけでピッチベンドまで含めてMIDIに変換できるSpotify製の自動採譜AI"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-09-6",
+    "date": "2026-09-09",
+    "title": "一言指示で作るビートMV",
+    "pattern": "技術×技術",
+    "seed": "Splice MCPで自然言語の指示だけでビートを組めるAIビートメイクと、Video Useのチャット指示で素材から動画を編集するAIエージェントを組み合わせたら、曲の盛り上がりに合わせてカット割りを変えるMVを一言指示で自動生成できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "splice-mcp-claude-beatmaking",
+        "title": "Splice MCP Server × Claude Cowork によるAIビートメイク検証",
+        "desc": "Spliceの公式MCPサーバーをClaudeに接続し、自然言語の指示だけでヒップホップトラックを組めるか検証した事例"
+      },
+      {
+        "type": "tech",
+        "id": "video-use",
+        "title": "Video Use",
+        "desc": "素材フォルダを渡してチャットで指示すると、フィラー除去や字幕入りの動画を自動編集するAIエージェント"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-09-7",
+    "date": "2026-09-09",
+    "title": "視覚障害向け什器の事前検査",
+    "pattern": "転用",
+    "seed": "AIエージェントが3Dシーンをカメラ・センサー視点で検証するovrtx / ovphysxを、広告制作の検品用途ではなく視覚障害者が空間をどう体験するかのシミュレーションに転用すれば、インクルーシブな什器・サイネージ設計の事前検査ツールになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ovrtx-ovphysx",
+        "title": "ovrtx / ovphysx (NVIDIA Agent Toolkit — Omniverse Libraries)",
+        "desc": "AIエージェントが3Dシーンをカメラ・センサー視点でシミュレーションし物理挙動を自動検証できるNVIDIAのSDK群"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-09-8",
+    "date": "2026-09-09",
+    "title": "回転シンセを触覚提示に転用",
+    "pattern": "転用",
+    "seed": "ガラスの円筒に配置した弦をリング状のばちが回転しながら弾くJAS-I Khorloを、楽器としてではなく触覚提示デバイスに転用すれば、視覚に頼らず回転速度で情報を伝えるインクルーシブなインターフェースになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "jas-i-khorlo",
+        "title": "JAS-I Khorlo",
+        "desc": "ガラスの円筒の周りに配置した弦をリング状のばちが回転しながら弾いて音を出す無料の物理モデリングシンセサイザー"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-09-9",
+    "date": "2026-09-09",
+    "title": "バイク事故のテイク2体験",
+    "pattern": "文脈×技術",
+    "seed": "Road Safety AuthorityのTake 2が撮影現場のテイク2概念を借用した発想に、ForgeWMの操作にリアルタイムで反応して映像を生成し続ける動画世界モデルを掛けたら、ゲームパッド操作でバイク事故のヒヤリ体験を追体験できるシミュレーターができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "take-2-2026",
+        "title": "Take 2",
+        "desc": "撮影現場のテイク2概念を借用し、T字路での二度見をバイク事故防止の合言葉に変えたPSA"
+      },
+      {
+        "type": "tech",
+        "id": "forgewm",
+        "title": "ForgeWM",
+        "desc": "キーボードやゲームパッドの操作にリアルタイムで反応し、次に見える映像をAIが直接生成し続ける操作可能な動画世界モデル"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-09-10",
+    "date": "2026-09-09",
+    "title": "オフライン多言語音声ガイド",
+    "pattern": "転用",
+    "seed": "音声・音楽まわりのAIモデルをPythonなしで手元PC上で動かせるaudio.cppを、音楽制作用途ではなくネット環境の悪いオフライン展示会場向けの多言語音声ガイド配信に転用すれば、クラウド不要でナレーションを届けられるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "audio-cpp",
+        "title": "audio.cpp",
+        "desc": "音声・音楽まわりのAIモデル60種類以上をPythonなしで手元のパソコン上で軽快に動かせるオープンソース推論エンジン"
+      }
+    ]
   }
 ]
