@@ -45,6 +45,7 @@ export const RESEARCH_SOURCES: ResearchSource[] = [
   { tag: "Pop-Up Spaces", kind: "order", label: "Pop-Up Spaces" },
   { tag: "Dignity", kind: "order", label: "Dignity" },
   { tag: "Infographics", kind: "order", label: "Infographics" },
+  { tag: "AI Music Videos", kind: "order", label: "AI Music Videos" },
   { tag: "Radar", kind: "radar", label: "Radar" },
 ];
 

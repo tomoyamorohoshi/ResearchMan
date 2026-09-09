@@ -1,5 +1,477 @@
 [
   {
+    "id": "the-hardest-part-2024",
+    "title": "The Hardest Part",
+    "summary": "OpenAI Sora初の公式ミュージックビデオ。700回の生成から選んだ55カットを繋ぎ、夫婦の一生を4分間の無限ズームで描いた",
+    "client": "Washed Out",
+    "agency": "Paul Trillo（監督）/ OpenAI",
+    "categories": [
+      "AIクリエイティブ",
+      "コンテンツ革新"
+    ],
+    "award": "Prix Ars Electronica 2024 Golden Nica（AI in Art Award）受賞",
+    "year": "2024",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.youtube.com/watch?v=-Nb-M1GAOX8",
+    "thumbnail": "/thumbnails/the-hardest-part-2024.jpg",
+    "videoId": "-Nb-M1GAOX8",
+    "overview": "Washed Outの楽曲「The Hardest Part」のミュージックビデオ。監督Paul TrilloがOpenAIの動画生成AI「Sora」を用いて制作した、Sora初の公式ミュージックビデオである。ワンショットの無限ズームのように見える映像で、一組の男女の出会いから老いまでの一生を約4分間で描いている。",
+    "background": "OpenAIは2024年、映像生成AI「Sora」の可能性を示すクリエイティブパートナーシップの一環として、監督Paul Trilloを起用しミュージックビデオ制作を委嘱した。Trilloは無限にズームし続けながら時間と人生の断片をシームレスに繋いでいく構成を着想し、Soraの生成能力を検証する題材としてWashed Outの楽曲を選んだ。",
+    "execution": "TrilloはSoraに対して約700回にのぼる生成を行い、その中から選び抜いた55のカットを一本の連続したズームのように編集で繋ぎ合わせた。カットごとに異なる時代・場所・年齢の男女が現れながらも、視覚的な連続性を保つことで、あたかも一つの人生の時間軸を一続きのショットで辿るような体験を作り出している。",
+    "evaluationImpact": "生成AI映像を実験的なビジュアルとしてではなく、感情的な物語を運ぶ表現手段として成立させた点が評価され、Prix Ars Electronica 2024でGolden Nicaを受賞した。Sora公開前段階での代表作例として広く参照され、AI生成映像がミュージックビデオという商業フォーマットで芸術的評価を得た初期の事例となった。",
+    "relatedWorks": [],
+    "sources": [
+      "AI Music Videos"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/MV",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "i-just-want-to-be-a-sound-2025",
+    "title": "I Just Want To Be A Sound",
+    "summary": "ゾンビと悪魔が徘徊する悪夢的世界をAI生成で描き、デヴィッド・リンチ的な映像世界とAIを融合させたロックMV",
+    "client": "Kadavar",
+    "agency": "Maximilian Wiedenhofer（監督）",
+    "categories": [
+      "AIクリエイティブ"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.youtube.com/watch?v=ryx-8vPlAEA",
+    "thumbnail": "/thumbnails/i-just-want-to-be-a-sound-2025.jpg",
+    "videoId": "ryx-8vPlAEA",
+    "overview": "ドイツのロックバンドKadavarの楽曲「I Just Want To Be A Sound」のミュージックビデオ。監督Maximilian Wiedenhoferが手がけ、ゾンビや悪魔的な存在が徘徊する悪夢のような世界をAI生成映像で描いている。Berlin Music Video Awards 2025のBest AI部門にノミネートされた。",
+    "background": "Kadavarはヘヴィなサイケデリック・ロックを基調とするバンドであり、楽曲の持つ不穏でトランス的な雰囲気を視覚化するにあたり、実写では表現しにくい超現実的なイメージが求められた。監督Wiedenhoferは、デヴィッド・リンチ的な悪夢の映像世界観をAI生成技術によって構築するアプローチを選んだ。",
+    "execution": "AI生成映像を用いて、ゾンビや悪魔的な人物・生物が徘徊する荒廃した世界を構築。歪んだパースペクティブや不連続なモーフィングなど、AI生成特有の不安定な質感をあえて活かした演出により、悪夢の中を彷徨うような感覚をバンドの楽曲に重ね合わせている。",
+    "evaluationImpact": "実写では再現困難な悪夢的ビジュアルをAI生成で成立させ、ロックバンドのMVという文脈にホラー的・シュルレアリスム的表現を持ち込んだ点が特徴。Berlin Music Video Awards 2025のBest AI部門ノミネートを通じ、AI生成MVの表現の幅を示す作品の一つとして位置づけられている。",
+    "relatedWorks": [],
+    "sources": [
+      "AI Music Videos"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/MV",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "love-you-more-2024",
+    "title": "Love You More",
+    "summary": "映画『Bosco』の主題歌MV。複数のAI生成ツールを駆使し、Snoop Doggが天国の門でラップする幻想的世界を描いた",
+    "client": "Snoop Dogg, Dave East, WHOISTEVENYOUNG",
+    "agency": "The Dor Brothers",
+    "categories": [
+      "AIクリエイティブ"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.youtube.com/watch?v=KW69yhold-E",
+    "thumbnail": "/thumbnails/love-you-more-2024.jpg",
+    "videoId": "KW69yhold-E",
+    "overview": "Snoop Dogg、Dave East、WHOISTEVENYOUNGによる楽曲「Love You More」のミュージックビデオ。映画『Bosco』のサウンドトラック曲として制作され、監督The Dor BrothersがIdeogram、Luma、Kling、Midjourneyなど複数のAI生成ツールを組み合わせ、Snoop Doggが天国の門でラップする幻想的な映像世界を構築している。",
+    "background": "映画『Bosco』のサウンドトラックとして書き下ろされた本曲は、現実離れした荘厳なイメージを必要としていた。The Dor Brothersは単一のAIツールに頼るのではなく、画像生成・動画生成それぞれに強みを持つ複数のAIツールを組み合わせることで、映画のトーンに合う幻想的な世界観を作り上げるアプローチを取った。",
+    "execution": "Ideogramでビジュアルの原案となる画像を生成し、Midjourneyでスタイルを精緻化、LumaやKlingで動画化するなど、複数のAI生成ツールを工程ごとに使い分けて制作。天国の門をモチーフにした荘厳な空間で、Snoop Doggがラップするシーンを中心に、光や雲海など非現実的な要素を重ねた映像に仕上げている。",
+    "evaluationImpact": "単一ツール依存ではなく複数のAI生成ツールを工程分業的に組み合わせる制作手法を、著名アーティストのMVという商業的な場で実践した点が特徴。映画のサウンドトラック曲というタイアップ文脈においてもAI生成映像が実用段階に入っていることを示す事例となった。",
+    "relatedWorks": [],
+    "sources": [
+      "AI Music Videos"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/MV",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "tore-up-2024",
+    "title": "Tore Up",
+    "summary": "バイクとストリップクラブが交錯するカオスな映像を、AI駆動のエフェクトで編集した2分間のミュージックビデオ",
+    "client": "Don Toliver",
+    "agency": "Shapxo × White Trash Tyler（監督）/ dreambear（制作）",
+    "categories": [
+      "AIクリエイティブ"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.youtube.com/watch?v=PvtQwxZJmL8",
+    "thumbnail": "/thumbnails/tore-up-2024.jpg",
+    "videoId": "PvtQwxZJmL8",
+    "overview": "Don Toliverの楽曲「Tore Up」のミュージックビデオ。監督Shapxo × White Trash Tylerが手がけ、dreambearが制作を担当。バイクとストリップクラブのイメージが交錯するカオスな映像を、AI駆動のエフェクトを使った編集で構成した約2分間の作品。Berlin Music Video Awards 2025のBest AI部門にノミネートされた。",
+    "background": "Don Toliverの楽曲が持つ攻撃的でハイテンションな空気感を映像化するにあたり、実写素材だけでは表現しきれないスピード感と過剰さが求められた。制作チームは実写のバイクやストリップクラブのイメージにAI駆動のビジュアルエフェクトを重ねることで、楽曲のテンションに見合う密度の映像を短時間で構築するアプローチを選んだ。",
+    "execution": "バイクの疾走感やストリップクラブの猥雑な雰囲気を捉えた素材に、AIを用いたエフェクト処理を施し、歪みやモーフィング、色彩の過剰な変化などを加えて編集。約2分という短尺の中に、視覚的な情報量とカオスな展開を凝縮させたテンポの速いカット構成になっている。",
+    "evaluationImpact": "実写映像とAI駆動エフェクトを組み合わせるハイブリッドな制作手法により、短尺かつ低コストでも高密度なビジュアルインパクトを出せることを示した。Berlin Music Video Awards 2025のBest AI部門ノミネートを通じ、AI編集技術がヒップホップ系MVの高速な制作サイクルに組み込まれつつあることを示す事例となった。",
+    "relatedWorks": [],
+    "sources": [
+      "AI Music Videos"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/MV",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "daddy-2025",
+    "title": "DADDY",
+    "summary": "コートジボワール発ラッパーHIMRAの楽曲MVを全編生成AI映像で制作、Berlin Music Video Awards 2025でノミネート",
+    "client": "HIMRA（コートジボワールのラッパー）",
+    "agency": "MTRai, Gaelmovie & La Toque（監督）",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "Berlin Music Video Awards 2025 Best AI部門 ノミネート",
+    "year": "2025",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.youtube.com/watch?v=B1LG8jSyZEs",
+    "thumbnail": "/thumbnails/daddy-2025.jpg",
+    "videoId": "B1LG8jSyZEs",
+    "overview": "コートジボワール出身のラッパーHIMRAによる楽曲「DADDY」のミュージックビデオ。監督La Toque、制作MTRaiとGaelmovieが手がけ、生成AI映像を全編に用いて成功と苦闘、決意というテーマを視覚化。Berlin Music Video Awards 2025のBest AI部門にノミネートされた。",
+    "background": "西アフリカの音楽シーンでは、限られた制作予算でも高い視覚表現を実現する手段として生成AI映像への関心が高まっている。HIMRAは楽曲「DADDY」で、成功をつかむまでの苦闘と決意という個人的なテーマを、実写では表現しづらいスケール感を持つAI映像で描くことを狙った。",
+    "execution": "監督La Toque、制作MTRaiとGaelmovieが中心となり、生成AI映像を主軸にしたビジュアル表現でHIMRAの半生を投影するストーリーを構築。全編AIビジュアルで統一しつつ楽曲のビートに合わせて展開を作り、アフリカ発アーティストが世界水準のAI映像制作に挑んだ事例となった。",
+    "evaluationImpact": "Berlin Music Video Awards 2025のBest AI部門にノミネートされたことで、コートジボワール発のAI映像作品が国際的な音楽映像賞の舞台に立った点が注目される。受賞はRight Angleが獲得したが、アフリカのクリエイティブシーンが生成AI活用で世界に伍する存在感を示した事例と位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "AI Music Videos"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/MV",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "we-are-futurists-future-kids-2024",
+    "title": "We Are Futurists – Future Kids",
+    "summary": "電子音楽の先駆者アンソニー・ロザーが人間と機械の共生をAI映像で描いたMV、Berlin Music Video Awards 2025でノミネート",
+    "client": "Anthony Rother",
+    "agency": "Timo Schlenstedt（監督）",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "Berlin Music Video Awards 2025 Best AI部門 ノミネート",
+    "year": "2024",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.youtube.com/watch?v=Il8jky1oDXM",
+    "thumbnail": "/thumbnails/we-are-futurists-future-kids-2024.jpg",
+    "videoId": "Il8jky1oDXM",
+    "overview": "ドイツの電子音楽先駆者アンソニー・ロザーの楽曲「Future Kids」のミュージックビデオ。監督Timo Schlenstedtが生成AI映像を用い、人間と機械の共生というロザーの一貫したテーマをフューチャリズム的なビジュアルで描いた。Berlin Music Video Awards 2025のBest AI部門にノミネートされた。",
+    "background": "エレクトロ/テクノの先駆者として知られるアンソニー・ロザーは、デビュー以来「人間と機械の融合」を作品世界の中核に据えてきた。2024年発表の楽曲「Future Kids」でも同テーマを掘り下げるにあたり、実写では描き切れない未来的世界観を表現する手段として生成AI映像の起用が選ばれた。",
+    "execution": "監督Timo Schlenstedtは生成AI映像を活用し、人間と機械が共存する近未来的なビジュアルをロザーの楽曲に合わせて構築。ロザーが長年掲げてきたフューチャリズムの美学を、AIならではの質感と変容表現によってアップデートする形で映像化した。",
+    "evaluationImpact": "Berlin Music Video Awards 2025のBest AI部門ノミネートにより、ベテラン電子音楽アーティストの一貫した作家性がAI映像という新しい表現手段でも通用することを示した。受賞はRight Angleに譲ったが、テクノシーンとAI映像の親和性を印象づけた一作として評価される。",
+    "relatedWorks": [],
+    "sources": [
+      "AI Music Videos"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/MV",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "shrine-of-the-unforgiven-2025",
+    "title": "Shrine of the Unforgiven",
+    "summary": "ベルリン発ダークエレクトロニックアーティストANCSTが自主制作のAI映像でディストピア世界を構築、BMVA 2025でノミネート",
+    "client": "ANCST",
+    "agency": "ANCST自主制作",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "Berlin Music Video Awards 2025 Best AI部門 ノミネート",
+    "year": "2025",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.youtube.com/watch?v=YoEw959qEoA",
+    "thumbnail": "/thumbnails/shrine-of-the-unforgiven-2025.jpg",
+    "videoId": "YoEw959qEoA",
+    "overview": "ベルリンを拠点とするダークエレクトロニック・アーティストANCSTのミュージックビデオ「Shrine of the Unforgiven」。ANCST自身が生成AI映像を用いて制作し、ディストピア的な世界観を構築した作品。Berlin Music Video Awards 2025のBest AI部門にノミネートされた。",
+    "background": "ダークエレクトロニック/インダストリアル系のシーンでは、荒廃した未来像やディストピア的な美学が作品世界の重要な要素となっている。ANCSTは自主制作でこうした世界観を映像化するにあたり、少人数体制でも大規模な世界構築が可能な生成AI映像を選択した。",
+    "execution": "ANCSTは監督・制作を自ら手がけ、生成AI映像によって荒廃した終末世界のビジュアルを構築。楽曲の重厚なサウンドに呼応させる形で、崩壊した聖域や赦されざる者たちのイメージを連続するカットとして組み上げた。",
+    "evaluationImpact": "自主制作という体制でありながらBerlin Music Video Awards 2025のBest AI部門にノミネートされたことは、個人アーティストでも生成AIを用いれば大規模な世界観構築が可能であることを示す事例となった。受賞はRight Angleだったが、インディーシーンにおけるAI映像活用の可能性を印象づけた。",
+    "relatedWorks": [],
+    "sources": [
+      "AI Music Videos"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/MV",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "lost-2023",
+    "title": "Lost",
+    "summary": "Linkin Parkが2003年当時の未発表曲に、生成AIツールKaiberでバンドの過去MV映像を再構築した回顧的作品",
+    "client": "Linkin Park",
+    "agency": "Shibuya（pplpleasr, Maciej Kuciara）／AI制作サポート: Kaiber",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2023",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.youtube.com/watch?v=fqWGHh3upHg",
+    "thumbnail": "/thumbnails/lost-2023.jpg",
+    "videoId": "fqWGHh3upHg",
+    "overview": "Linkin Parkが2023年に発表した「Lost」のミュージックビデオ。2003年当時に制作されながら未発表だった楽曲に合わせ、クリエイティブ集団Shibuya（pplpleasr、Maciej Kuciara）が生成AIツールKaiberを用いてバンドの過去のミュージックビデオ映像をAI変換・再構築し、一本の回顧的な作品として繋ぎ合わせた。",
+    "background": "「Lost」は2003年のアルバム制作時に生まれながら長らく未発表だった楽曲で、2023年のリイシューに合わせて初めて世に出た。楽曲の持つノスタルジックな性質を映像面でも表現するため、バンドの過去作MVのアーカイブ映像を素材に、当時と現在をつなぐ回顧的なビジュアル制作が企画された。",
+    "execution": "クリエイティブ集団Shibuya（pplpleasr、Maciej Kuciara）が、Linkin Parkの過去のミュージックビデオ映像を素材として選定し、生成AIツールKaiberでスタイル変換・再構築。過去作の記憶を残しながら新たな質感を持つ映像へと生まれ変わらせ、一本の回顧的なMVとして編集・構成した。",
+    "evaluationImpact": "メジャーアーティストが自らのアーカイブ映像を生成AIで再構築するという手法は、バンドの歴史そのものを新しい技術で再解釈する試みとして注目された。過去作を単に懐古するのではなく、AI技術によって新曲のリリースと過去の資産を結びつける手法の一例となった。",
+    "relatedWorks": [],
+    "sources": [
+      "AI Music Videos"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/MV",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "maestro-2024",
+    "title": "MAESTRO",
+    "summary": "SEVENTEENが「AIで何でも作れる時代の“真の巨匠”とは」を問う世界観を掲げ、生成AIシーンを明示的に組み込んだK-POP大作MVを公開",
+    "client": "SEVENTEEN",
+    "agency": "PLEDIS Entertainment",
+    "categories": [
+      "コンテンツ革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "海外"
+    ],
+    "link": "https://www.youtube.com/watch?v=ThI0pBAbFnk",
+    "thumbnail": "/thumbnails/maestro-2024.jpg",
+    "videoId": "ThI0pBAbFnk",
+    "overview": "SEVENTEENが2024年に発表した「MAESTRO」のミュージックビデオ。「AIで何でも作れる時代における“真の巨匠（マエストロ）”とは何か」という問いを世界観の軸に据え、映像の一部に生成AIによるシーンを明示的に組み込んだK-POP大作MVとして話題を集めた。",
+    "background": "生成AIツールの急速な普及により、映像制作のハードルが下がる一方で「誰でも作れる時代に人間のクリエイティビティの価値はどこにあるか」という問いが音楽・映像業界で広がっていた。PLEDIS EntertainmentはSEVENTEENの新曲コンセプトとしてこのテーマ自体を正面から扱う企画を選択した。",
+    "execution": "楽曲タイトル「MAESTRO」に沿って、伝統的な演奏・演出表現とAI生成による映像表現を対比的に配置。MVの一部シーンにAI生成技術を明示的に用いることで、AI時代の巨匠像というコンセプトを映像そのもので体現する構成とした。",
+    "evaluationImpact": "AIの是非を論じるのではなく、AI時代における「本物の巨匠」というテーマをK-POPの大作MVの世界観として昇華させた点が特徴。生成AIをタブー視せず作品コンセプトの中核に据えたアプローチとして、K-POP領域におけるAI表現の一事例となった。",
+    "relatedWorks": [],
+    "sources": [
+      "AI Music Videos"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/MV",
+      "Theme/Music",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "vultures-havoc-version-2024",
+    "title": "Vultures (Havoc Version)",
+    "summary": "MidjourneyでビジュアルコンセプトをつくりRunway Gen-2でアニメーション化、不穏な質感を生み出したAI映像作品",
+    "client": "¥$（Kanye West & Ty Dolla $ign）feat. Bump J & Lil Durk",
+    "agency": "Jon Rafman（監督）／Midjourney・Runway Gen-2使用",
+    "categories": [
+      "テクノロジー×アイデア",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "海外"
+    ],
+    "link": "https://www.youtube.com/watch?v=GQEcxrY0CWA",
+    "thumbnail": "/thumbnails/vultures-havoc-version-2024.jpg",
+    "videoId": "GQEcxrY0CWA",
+    "overview": "¥$（Kanye West & Ty Dolla $ign）feat. Bump J & Lil Durkの楽曲「Vultures」の「Havoc Version」ミュージックビデオ。監督のJon RafmanがMidjourneyで生成したビジュアルコンセプトをRunway Gen-2でアニメーション化し、不穏で歪んだ質感の映像世界を作り出した。",
+    "background": "アーティスト自身のパブリックイメージや論争を背景に持つプロジェクトの中で、Jon Rafmanは自身の作家性であるインターネット文化・デジタル美学とAI画像生成技術を組み合わせた映像表現を選択。生成AIツールが映像作家の表現手段として実用段階に入りつつあった時期の作品となった。",
+    "execution": "まずMidjourneyで楽曲の世界観に合わせた不穏なビジュアルコンセプトを大量に生成し、そこからRunway Gen-2を用いて静止画をアニメーション化。AI生成特有の揺らぎや歪みをあえて残すことで、楽曲の持つ緊張感・不安感と呼応する映像質感を作り上げた。",
+    "evaluationImpact": "著名アーティストの楽曲に、Midjourney×Runway Gen-2という組み合わせでAI生成映像を全面採用した早期事例の一つ。アート系映像作家がAIツールを自身の作家性の延長として使いこなす制作フローを示した点で、音楽映像領域におけるAI活用の参照点となった。",
+    "relatedWorks": [],
+    "sources": [
+      "AI Music Videos"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/MV",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "dystopia-2024",
+    "title": "Dystopia",
+    "summary": "ONE OK ROCK「Dystopia」はほぼ全カットに生成AIを使い、身体の一部をAIロボットに置換する表現でAIによるディストピアを描いた国内MV",
+    "client": "ONE OK ROCK",
+    "agency": "監督: 北田数馬",
+    "categories": [
+      "テクノロジー×アイデア",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://youtu.be/cIOntvhfJx4",
+    "thumbnail": "/thumbnails/dystopia-2024.jpg",
+    "videoId": "cIOntvhfJx4",
+    "overview": "ONE OK ROCK「Dystopia」のミュージックビデオ。監督・北田数馬のもと、ほぼ全カットに画像・映像生成AIを使用し、メンバーの身体の一部をAI生成のロボットに置換するなどの表現で「AIと共にAIによるディストピア」を描いた国内メジャーアーティストの事例。",
+    "background": "生成AI技術の進化に伴い、AIが人間の労働や創造性を代替する未来像への不安が社会的に語られる中、楽曲テーマ「Dystopia（ディストピア）」を映像表現の手法そのものでも体現することを企図。国内メジャーアーティストの作品として、生成AIを制作プロセスの中心に据えた点が異例だった。",
+    "execution": "監督・北田数馬がほぼ全カットに画像・映像生成AIを導入し、メンバーの身体の一部をAI生成のロボットパーツに置き換えるなどのビジュアルを制作。「AIによって描かれるディストピア」というテーマと制作手法を一致させることで、コンセプトと表現手法を不可分に結びつけた。",
+    "evaluationImpact": "国内メジャーアーティストのMVにおいて、生成AIをテーマの裏付けとして全面採用した数少ない事例。AI活用を単なる制作効率化ではなく作品コンセプトのメッセージそのものとして機能させた点で、国内音楽映像におけるAI表現の一つの到達点を示した。",
+    "relatedWorks": [],
+    "sources": [
+      "AI Music Videos"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/MV",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "ubu-2026",
+    "title": "UBU",
+    "summary": "NakamuraEmiのメジャーデビュー10周年記念曲「UBU」を全編AI技術のみで制作、公式MVとして公開",
+    "client": "NakamuraEmi",
+    "agency": "AIクリエイター「aicreataro」（ディレクター）／日本コロムビア COLOWORKS",
+    "categories": [
+      "テクノロジー×アイデア",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000004714.000019470.html",
+    "thumbnail": "/thumbnails/ubu-2026.jpg",
+    "videoId": "",
+    "overview": "NakamuraEmiのメジャーデビュー10周年記念曲「UBU」の公式ミュージックビデオ。AIクリエイター「aicreataro」がディレクションを担当し、全編を生成AI技術のみで制作。AI特有の質感と人間的な情感の両立を目指した作品として、日本コロムビア COLOWORKSから公開された。",
+    "background": "メジャーデビュー10周年という節目の記念曲にあたり、これまでの音楽性を踏まえつつ新しい表現へ挑戦する企画として、映像制作全体を生成AI技術のみで行うという方針が採用された。AIクリエイター「aicreataro」を起用し、AI制作と楽曲の情感表現の両立を狙いとした。",
+    "execution": "AIクリエイター「aicreataro」がディレクターとして映像全体を統括し、公式MVの全カットを生成AI技術によって制作。AI生成特有のビジュアル表現を活かしながら、楽曲の持つ人間的な情感を損なわないバランスを追求した構成とした。",
+    "evaluationImpact": "国内アーティストのメジャーレーベル公式MVとして、全編を生成AIのみで制作した事例。AI制作でありながら記念曲としての情感表現を両立させようとした試みであり、国内音楽業界における生成AI活用の実践例として位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "AI Music Videos"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/MV",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "case-6cdvj1-2026",
+    "title": "カムイ岬",
+    "summary": "演歌歌手・細川たかしが忍者に扮し宇宙船デコトラで熱唱する、全編生成AI映像による芸道50周年記念MV",
+    "client": "細川たかし",
+    "agency": "日本コロムビアグループ COLOWORKS",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.columbia.co.jp/press/details/20260107",
+    "thumbnail": "/thumbnails/case-6cdvj1-2026.jpg",
+    "videoId": "",
+    "overview": "日本コロムビアグループCOLOWORKSが2026年に公開した、細川たかし芸道50周年記念曲「カムイ岬」のミュージックビデオ。演歌歌手本人が忍者に扮し、宇宙船仕様に改造されたデコトラを駆って熱唱するという荒唐無稽な世界観を、全編生成AIによる映像で表現した“超次元”MVとして発表された。",
+    "background": "細川たかしの芸道50周年という節目の記念曲リリースにあたり、従来の演歌MVの様式にとどまらない話題性のある映像表現が求められた。生成AI映像技術の実用化が進む中、演歌という保守的なジャンルにあえてAI生成のシュールな異世界ビジュアルを掛け合わせることで、新規層への波及と話題化を狙った企画と考えられる。",
+    "execution": "忍者姿の細川たかしが宇宙船デコトラを操縦しながら熱唱するという設定を、実写ではなく全編生成AI映像で構築。演歌の歌唱世界観とSF・和のモチーフを組み合わせた非現実的なビジュアルを連続させ、既存の演歌MVの文法から大きく逸脱した“超次元”という打ち出し方でリリースした。",
+    "evaluationImpact": "重鎮演歌歌手のアニバーサリー企画に全編生成AI映像という手法を用いたこと自体が異色であり、AI映像制作のハードルの低下が伝統的な音楽ジャンルの表現にも波及していることを示す事例。荒唐無稽さを逆手に取った話題化の設計として注目された。",
+    "relatedWorks": [],
+    "sources": [
+      "AI Music Videos"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/MV",
+      "Theme/Music",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "city-of-desire-2024",
+    "title": "City of Desire",
+    "summary": "AI生成画像を積極活用したビジュアル表現で構成された、magicHourによるミュージックビデオ「City of Desire」",
+    "client": "magicHour",
+    "agency": "不明",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.youtube.com/watch?v=iFbFMG-Sfdg",
+    "thumbnail": "/thumbnails/city-of-desire-2024.jpg",
+    "videoId": "iFbFMG-Sfdg",
+    "overview": "国内新進アーティストmagicHourが2024年に発表したミュージックビデオ「City of Desire」。AI生成画像を積極的に取り入れたビジュアル表現を用いており、生成AIを実写やアニメーションに代わる映像素材として活用した音楽映像作品となっている。",
+    "background": "音楽映像制作において生成AI画像技術が実用レベルで扱えるようになったことを背景に、限られた制作リソースの中でもオリジナリティのあるビジュアルを構築する手段として、新進アーティストがAI生成画像を作品表現に取り入れる動きが広がっている。本作もそうした流れの中で制作されたと考えられる。",
+    "execution": "楽曲の世界観に合わせて生成AI画像を主要なビジュアル素材とし、連続する映像として構成。従来の撮影・アニメーション制作に依らず、AI生成画像をベースにした映像表現によって楽曲イメージを視覚化するアプローチを採った。",
+    "evaluationImpact": "国内の新進アーティストがメジャーな制作体制を介さずに生成AI画像を映像表現の核に据えた点で、音楽映像制作におけるAI活用の裾野の広がりを示す事例。制作コストや体制の制約を越えてビジュアル表現の幅を広げる手法として位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "AI Music Videos"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/MV",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "scatterhead-2019",
+    "title": "SCATTERHEAD",
+    "summary": "ニューラルネットワーク生成タイポグラフィを駆使したYACHT「SCATTERHEAD」のリリックビデオ",
+    "client": "YACHT",
+    "agency": "Telefantasy Studios（監督: Jennifer Juniper Stratford）／AIビジュアル: Google Brain論文由来のneural vector fontsほか",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "アルバム『Chain Tripping』（YACHT）が第62回グラミー賞 Best Immersive Audio Album にノミネート（受賞ではない／受賞はLUX by Morten Lindberg他）※SCATTERHEAD単体ではなくアルバム全体としてのノミネート",
+    "year": "2019",
+    "regions": [
+      "海外"
+    ],
+    "link": "https://www.youtube.com/watch?v=_yz8QYzcfxI",
+    "thumbnail": "/thumbnails/scatterhead-2019.jpg",
+    "videoId": "_yz8QYzcfxI",
+    "overview": "YACHTの2019年作品「SCATTERHEAD」は、Telefantasy Studios（監督：Jennifer Juniper Stratford）が手がけたリリックビデオ。Google Brainの論文に由来するneural vector fontsなど、ニューラルネットワークで生成したタイポグラフィ実験を映像表現の中心に据えた作品で、AI制作アルバム『Chain Tripping』のビジュアル面を象徴する一作となっている。",
+    "background": "YACHTはアルバム『Chain Tripping』の制作過程で人間のソングライティングをAIで補助・生成する手法を取り入れており、音楽制作そのものにAIを組み込んだコンセプトを掲げていた。そのビジュアル面でも、AIによる生成表現を映像に落とし込むことが企画の起点となり、歌詞をそのまま見せるリリックビデオという形式にニューラルネットワーク生成のタイポグラフィを用いる着想につながった。",
+    "execution": "Google Brainの研究論文に由来するneural vector fontsをはじめとするニューラルネットワーク生成のタイポグラフィ実験を、楽曲の歌詞表示と連動させて映像化。文字そのものがAIによって生成・変形される様子を見せることで、リリックビデオという形式自体をAI表現の実験の場として再構築した。",
+    "evaluationImpact": "音楽制作にAIを取り入れたコンセプトアルバム『Chain Tripping』の世界観を、タイポグラフィという文字表現の領域でもAI生成によって一貫させた点が特徴。同アルバムは第62回グラミー賞のBest Immersive Audio Album部門にノミネートされており、AIをテーマ・手法両面で貫いた音楽プロジェクトとして評価された。",
+    "relatedWorks": [],
+    "sources": [
+      "AI Music Videos"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/MV",
+      "Theme/Music"
+    ]
+  },
+  {
     "id": "prtimes-000008876-000001719-html-2026",
     "title": "「進撃の巨人の日」正式制定（9月9日）",
     "summary": "連載開始日にちなみ9月9日を日本記念日協会に申請し「進撃の巨人の日」として正式認定、99話無料公開と豪華生配信を実施",
