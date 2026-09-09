@@ -1,5 +1,154 @@
 [
   {
+    "id": "inpaint-canvas",
+    "title": "Inpaint Canvas (ComfyUI-InpaintCanvas)",
+    "org": "DenRakEiw（個人開発者 Eiw / Dennis）",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "GenVideo"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "ComfyUIの中に、写真編集ソフトのような『レイヤー編集キャンバス』を1個のノードとしてまるごと持ち込むツール。選択範囲を切り出してAI修正にかけ、結果を新しいレイヤーとして重ねる、を繰り返せる。",
+    "point": "普段ComfyUIで画像の一部だけを直したい（AI inpainting）ときは、マスク作成・切り抜き・生成・貼り戻しという複数のノードをその都度つなぎ直す必要があり、地味に手間がかかる。Inpaint Canvasは、PhotoshopやKrita（デジタルペイントソフト）のようなレイヤー編集画面をノード1個の中に丸ごと詰め込み、ブラシや矩形で選択するだけでなく、AI画像認識（Metaが開発したSAM2/SAM3）を使って『対象をクリックするだけ』『「顔」など言葉で指定するだけ』で選択範囲を作れる。選んだ部分は自動で切り出されてAI修正にかけられ、色味や境界をなじませたうえで新しいレイヤーとして戻ってくるので、直しては重ね、を1画面のまま繰り返せる。広告のキービジュアル制作なら、ロゴの差し替えや不要物の除去、人物の顔のリタッチなどを一人で素早く試行錯誤でき、最終的にはPSD形式でレイヤーごとデザイナーに渡したり、動画生成の参照フレームとして直接使ったりできる。",
+    "detail": "仕組みとしては、キャンバス上で選んだ範囲を『crop_image』『crop_mask』という切り抜き画像として自作のAI修正の処理列（インペイントチェーン）に流し込み、戻ってきた結果を境界のぼかし・色合わせ・サイズ調整まで自動でこなした上で新しいレイヤーとして重ねる、という往復処理を1つのノードが担っている。対象物の選択にはブラシや投げ縄選択に加えて、マウスを乗せるだけで対象を認識するSAM2や、テキストで指定して選択できるSAM3／GroundingDINOといったAI画像認識モデルを使える。\n\n従来のComfyUIでは、マスク作成・切り抜き・AI生成・合成をそれぞれ別ノードでつなぐため、直したい箇所が増えるほどノードの配線が複雑になっていた。Inpaint Canvasは、その一連の流れを1つの持続的なキャンバス（デスクトップの画像編集ソフトのようなレイヤー一覧、ソフトブラシ・スタンプ・修復ブラシ・グラデーション・文字入れなどの描画ツール、フィルムグレインやレベル補正・LUTなどの非破壊フィルターレイヤー）にまとめている点が大きな違い。\n\n導入にはComfyUIのcustom_nodesフォルダにクローンするだけで無料で使え、GPUの追加要件は特にない。ただしSAM2/SAM3による『クリックで選択』機能を使うには対応する追加モデル（Kijai氏のComfyUI-segment-anything-2、comfyui-rmbgなど）を別途用意する必要があり、プロンプトの自動補完にはローカルのQwen3-VL 2BやGeminiを使う設定も用意されている。ライセンスはGPL-3.0。",
+    "license": {
+      "spdx": "GPL-3.0",
+      "commercial": "conditional",
+      "note": "ツールとして使うだけなら商用映像制作に利用制限はない。ただし改変版を配布・再頒布する場合はGPL-3.0に従いソースコード公開が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/DenRakEiw/ComfyUI-InpaintCanvas"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=n3obFaFfn_0"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/inpaint-canvas.jpg",
+    "relatedWorks": [
+      {
+        "title": "ComfyUI-LayerForge",
+        "description": "同様にPhotoshop風のレイヤーキャンバスをComfyUIに持ち込むノード",
+        "url": "https://github.com/Azornes/Comfyui-LayerForge"
+      },
+      {
+        "title": "ComfyUI-LayerDivider",
+        "description": "SAMで画像を要素ごとに分割し、PSDレイヤーとして書き出すノード",
+        "url": "https://github.com/jtydhr88/ComfyUI-LayerDivider"
+      },
+      {
+        "title": "ComfyTV",
+        "description": "キャンバスベースのComfyUIアプリで、SAM分割とPSD入出力を備える",
+        "url": "https://github.com/jtydhr88/ComfyTV"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "dlss5-enhancer",
+    "title": "DLSS5 Enhancer (ComfyUI-DLSS5-Enhancer)",
+    "org": "Blueforcer（個人開発、NVIDIA非公式）",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "ゲーム向け最新AI高画質化技術『DLSS 5』のニューラルレンダリングエンジンを、ComfyUIのノードとして動画・画像バッチにそのままかけられるようにした非公式ツール。",
+    "point": "DLSS 5は2026年9月3日にNVIDIAが正式発表したばかりの、ゲームのリアルタイム3D描画の質感を底上げするAI技術。本来はゲームエンジンの中でしか使えない仕組みだが、このツールはNVIDIAのドライバに同梱されている処理エンジンを直接呼び出す通信手順を自作し、任意の動画ファイルや画像の束をこの『本物のニューラルレンダラー』に通せるようにした。肌の質感、髪の透け感、布の織り目など、通常の画質向上ソフトでは潰れがちな細部をAIが再構築してくれるため、荒い映像素材や生成AI特有ののっぺりした質感の映像を、より精細で自然な見た目に仕上げる用途に使える。広告・映像制作では、低解像度でラフに量産したカットを本番用の高解像度に底上げしたり、AI生成動画の質感を実写に近づけたりする使い方が考えられる。ただし対応GPU世代の制約があり、Windows専用、NVIDIA非公式のリバースエンジニアリングという点には注意が必要。",
+    "detail": "仕組みとしては、動画や画像バッチの各フレームを一度NVIDIAのネイティブレンダラー（D3D12で動く処理系）に転送し、AIが陰影・質感を描き直したフレームを受け取ってComfyUI側に戻す、という独自のバイナリ通信の手順を実装している。単なる画像フィルターのシミュレーションではなく、ゲーム用に作られた本物のニューラルネットワークにそのまま通している点が特徴で、画像バッチ向けの「DLSS5 Enhance Images」（1.5〜3倍の高画質化）と、動画ファイルを直接読み書きできる「DLSS5 Enhance Video File」の2種類のノードを提供する。\n\n一般的なAI動画高画質化ソフト（Topaz Video AIなど）が画像そのものの超解像処理であるのに対し、DLSS 5は「3Dガイド型ニューラルレンダリング」と呼ばれ、本来はゲームエンジンが持つ深度情報・法線・動きベクトルなどの3D情報を使って質感を描き直す技術。このツールはゲームエンジンなしに動画・画像だけを流し込む形になるため、本来の性能を完全には引き出せていない可能性がある点は留意したい。\n\n導入にはNVIDIA RTX 30/40/50シリーズのGPUと最新のGeForceドライバ、Windows環境が必須（NVIDIA公式発表では3Dガイド型ニューラルレンダリング自体はRTX 50シリーズ専用と案内されており、世代による対応幅の違いには注意）。ノード本体はMITライセンスで無料だが、DLSS 5本体やReShade/RenoDXの実行ファイルは同梱されないため自分で用意する必要がある。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "ノードのコード自体はMITで無料。ただし実行にはNVIDIA GeForceドライバに含まれるDLSS 5（NGX機能18）本体やReShade/RenoDXの実行ファイルが必要で、これらはリポジトリに同梱されず別途プロプライエタリライセンスに従う。対応はNVIDIA RTX 30/40/50シリーズGPU・Windows限定（README記載）。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Blueforcer/ComfyUI-DLSS5-Enhancer"
+      },
+      {
+        "kind": "post",
+        "url": "https://www.nvidia.com/en-us/geforce/news/dlss5-breakthrough-in-visual-fidelity-for-games/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/dlss5-enhancer.jpg",
+    "relatedWorks": [
+      {
+        "title": "ComfyUI-DLSS5-NR",
+        "description": "同じくDLSS 5をComfyUIに実験的に持ち込むノード",
+        "url": "https://github.com/lisitskyaa/ComfyUI-DLSS5-NR"
+      },
+      {
+        "title": "ComfyUI-AetherScale",
+        "description": "DLSS5を含むNVIDIA系の映像強化・復元ノード群",
+        "url": "https://github.com/vizart-vj/ComfyUI-AetherScale"
+      },
+      {
+        "title": "Topaz Video AI",
+        "description": "従来型の商用AI動画アップスケーラー（比較対象）",
+        "url": "https://www.topazlabs.com/topaz-video-ai"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "ai-movie-studio-v2",
+    "title": "AI Movie Studio v2",
+    "org": "Heroesjouney（Sandbox Entertainment、個人/小規模開発）",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "GenVideo"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "3Dカメラでカット割りを設計し、AIで絵コンテから映像・音声まで作って編集ソフトへ書き出せる、ブラウザで動く『AI映画制作ワークステーション』。",
+    "point": "映画やCM、ショート動画を作るとき、最初に『どのアングルで、どんな順番でカットをつなぐか』を決める絵コンテ（ストーリーボード）作りが必要になる。AI Movie Studio v2は、ブラウザ上の3D空間にカメラを実際に配置しながらカット割りを設計でき、そこからAIで各カットの絵コンテ画像を生成、さらにテキストからの動画生成や、画像にカメラの動きを付けて動画にする機能でカットを映像化し、セリフや音声も重ねたうえで、最終的にタイムラインをXML形式でPremiereなどの編集ソフトに書き出せる。ComfyUIをローカルのGPUで動かしても、Fal.aiやReplicateのクラウドAPIを使ってGPUなしで進めても良い『どちらでも使える』設計で、複数カットにまたがって人物やロケーションの見た目を保つ『継続性（コンティニュイティ）』の仕組みも持つ。広告制作で絵コンテからラフ動画までの叩き台を一人で高速に作りたい場合の実務ツールとして使える。",
+    "detail": "仕組みとしては、3D空間でカメラの位置・アングルを実際に動かしながらショットを設計するカメラディレクター機能から始まり、参照画像をもとにAIで複数アングル・複数バリエーションの絵コンテ画像を生成、気に入った画像を選んでテキスト→動画やカメラモーション付きの画像→動画で映像化し、タイムライン上でセリフ・音声を重ねて編集、最後にXML形式で書き出す、という一気通貫のワークフローになっている。\n\n従来のStoryboarder（2Dの絵コンテ専用ツール）やLTX Studio（AI映像制作のクラウドサービス）が特定の使い方に特化しているのに対し、このツールは特定のAIモデルに縛られない『モデル非依存』設計で、ローカルのComfyUIとクラウドAPIのどちらの生成方式も選べる点が特徴。前身のv1から全面的に書き直され、機能を詰め込みすぎない絞ったUIになっている。\n\n導入にはPython 3.10以上・FastAPI・Next.jsという構成で、ローカルで動かす場合はCUDA対応GPUを積んだPCでComfyUIを起動し、クラウドのみで使う場合はFal.aiやReplicateのAPIキー（従量課金）を用意する。ライセンスはAGPL-3.0で、改変版をサービスとして公開する場合はソース公開義務が生じるため、非公開の商用利用は作者への個別問い合わせが必要。",
+    "license": {
+      "spdx": "AGPL-3.0",
+      "commercial": "conditional",
+      "note": "AGPL-3.0は改変版をネットワーク経由サービスとして提供する場合もソース公開義務が生じる。公開したくない商用利用は作者へ個別に商用ライセンスを問い合わせる形（README記載の連絡先あり）。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Heroesjouney/AIMovieStudiov2"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/ai-movie-studio-v2.jpg",
+    "relatedWorks": [
+      {
+        "title": "Storyboarder",
+        "description": "従来型の2Dストーリーボード作成ツール（README内で比較対象として言及）",
+        "url": "https://wonderunit.com/storyboarder/"
+      },
+      {
+        "title": "LTX Studio",
+        "description": "AI映像制作のクラウドサービス（同じく比較対象として言及）",
+        "url": "https://ltx.studio/"
+      },
+      {
+        "title": "KupkaProd-Cinema-Pipeline",
+        "description": "テキストプロンプトから完全ローカルで映像制作までを自動化する別のAI映画制作パイプライン",
+        "url": "https://github.com/Matticusnicholas/KupkaProd-Cinema-Pipeline"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "flashrender",
     "title": "FlashRender",
     "org": "EverEx / Yonsei University / Korea University",
