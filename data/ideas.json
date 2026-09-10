@@ -13785,5 +13785,197 @@
         "desc": "音声・音楽まわりのAIモデル60種類以上をPythonなしで手元のパソコン上で軽快に動かせるオープンソース推論エンジン"
       }
     ]
+  },
+  {
+    "id": "2026-09-10-1",
+    "date": "2026-09-10",
+    "title": "依存の視界を360度化",
+    "pattern": "文脈×技術",
+    "seed": "Clouded Billboardの、依存が進むほど煙が視界を覆う仕掛けをSpheRoPEの360度パノラマ生成で拡張すれば、ギャンブル依存の視野の狭まりを全方位で体感できる没入インスタレーションになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "clouded-billboard-gambling-clouded-everything-i-did-2024",
+        "title": "Clouded Billboard（Gambling clouded everything I did）",
+        "desc": "内蔵の霧発生装置がタイマー作動し看板メッセージを煙が覆う、ギャンブル依存の視界の曇りを体感させるOOH。"
+      },
+      {
+        "type": "tech",
+        "id": "spherope",
+        "title": "SpheRoPE",
+        "desc": "学習済み動画生成AIの位置エンコーディングに球面幾何を注入し、追加学習なしで360度パノラマ映像を生成する技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-10-2",
+    "date": "2026-09-10",
+    "title": "気象で動く公共彫刻",
+    "pattern": "文脈×技術",
+    "seed": "Tryvann Snowing Billboardの実際の降雪をSMSで検知し看板に雪を降らせる仕掛けと、GPCのモーション予測AIを掛け合わせたら、リアルタイムの気象データでキャラクターやモニュメントが動き出す公共彫刻ができそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "tryvann-snowing-billboard-2009",
+        "title": "Tryvann Snowing Billboard",
+        "desc": "スキー場が実際の降雪をSMSで検知し、看板内部のファンと人工雪を連動させて雪を降らせた仕掛け。"
+      },
+      {
+        "type": "tech",
+        "id": "gpc",
+        "title": "GPC (Generative Pretraining for Transferable Motor Control)",
+        "desc": "大量のモーションキャプチャーで学習したAIが、次の瞬間の体の動きを予測し続けてキャラクターを制御する技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-10-3",
+    "date": "2026-09-10",
+    "title": "一枚写真の移動教室",
+    "pattern": "文脈×技術",
+    "seed": "FIELD TRIP TO MARSがスクールバスをARで火星に変えたように、InfiniSplatで生徒が撮った1枚の写真から3D空間を即生成すれば、教室そのものを行きたい場所に変える低コストな移動体験が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "field-trip-to-mars",
+        "title": "FIELD TRIP TO MARS",
+        "desc": "スクールバスをARで火星に変え、子どもたちに宇宙探査の夢を体験として与えたテクノロジー・デモ。"
+      },
+      {
+        "type": "tech",
+        "id": "infinisplat",
+        "title": "InfiniSplat",
+        "desc": "1枚の写真から、視点を大きく動かしても破綻しない3D空間（3Dガウシアンスプラット）を生成する研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-10-4",
+    "date": "2026-09-10",
+    "title": "ブランド専用演出AI",
+    "pattern": "技術×技術",
+    "seed": "Berniniの演出AIと作画AIが分業する編集モデルに、Fizgig v5でブランド専用にファインチューニングしたモデルを組み込めば、企業ごとの世界観を保ったまま自動編集できる広告制作パイプラインになりそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "bernini",
+        "title": "Bernini",
+        "desc": "指示を読み解く『演出担当』AIと映像を描く『作画担当』AIが分業し、自然な言葉で画像・動画を編集する統合モデル。"
+      },
+      {
+        "type": "tech",
+        "id": "fizgig-v5",
+        "title": "Fizgig v5",
+        "desc": "16GB程度のGPUだけで動画・画像生成AIのモデル自体を丸ごと学習し直せる無料のオープンソース学習ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-10-5",
+    "date": "2026-09-10",
+    "title": "リプレイに次の一手",
+    "pattern": "技術×技術",
+    "seed": "ATGSで長尺の多視点映像を破綻なく3D再構成する技術と、MolmoMotionの1枚の画像から数秒先の動きを予測する力を組み合わせたら、スポーツ中継のリプレイに「まだ起きていない次の一手」を重ねて見せられるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "atgs",
+        "title": "ATGS（Anchored Temporal Gaussian Splatting）",
+        "desc": "長時間・複雑な動きの多視点映像を破綻なく3Dガウシアン群として再構成し、自由視点再生を可能にする新手法。"
+      },
+      {
+        "type": "tech",
+        "id": "molmomotion",
+        "title": "MolmoMotion",
+        "desc": "1枚の画像と自然言語の指示だけで、物体が数秒先までにどう動くかを3Dで予測するAi2の基盤モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-10-6",
+    "date": "2026-09-10",
+    "title": "不在を強調する追悼映像",
+    "pattern": "転用",
+    "seed": "LTX-2.3 Clean Plate IC-LoRAは動画から人やモノを消して背景を復元する技術だけど、逆に「誰が・何が消えたか」を強調表示する使い方に転用すれば、不在や喪失を伝える追悼・啓発コンテンツになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ltx-2-3-clean-plate-ic-lora",
+        "title": "LTX-2.3 Clean Plate IC-LoRA",
+        "desc": "動画から人物や車などの動く被写体を消し、影や反射ごと背景を自動再構築するLTX-2.3用の公式LoRA。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-10-7",
+    "date": "2026-09-10",
+    "title": "AI創作の舞台裏公開",
+    "pattern": "転用",
+    "seed": "JarvisHubは個人がAIエージェントに長時間の創作を任せるキャンバスだが、これを展示会場のライブ制作の「舞台裏」として来場者に公開すれば、AIが作品を仕上げていく過程そのものが見世物になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "jarvishub",
+        "title": "JarvisHub",
+        "desc": "編集可能なキャンバスを作業台としてAIエージェントに与え、長時間の創作作業を任せられるオープンソースツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-10-8",
+    "date": "2026-09-10",
+    "title": "ポップアップの3D記憶",
+    "pattern": "文脈×技術",
+    "seed": "MUSINSAが原宿にソウルの駅を再現したように、来場者がModlyで会場をその場で3Dメッシュ化できれば、ポップアップの記憶を後日もスマホで歩き回れるデジタルツインとして残せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "musinsa-2026",
+        "title": "ムシンサステーション（原宿でソンス駅を再現したポップアップ）",
+        "desc": "韓国ムシンサが原宿にソウル・ソンス駅の駅構内を再現し、77ブランドが集う大型ポップアップを展開。"
+      },
+      {
+        "type": "tech",
+        "id": "modly",
+        "title": "Modly",
+        "desc": "写真をクラウドに送らず、自分のPCのGPUだけで3Dメッシュ化できる完全ローカルの画像→3Dアプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-10-9",
+    "date": "2026-09-10",
+    "title": "低予算ボリュメトリック広告",
+    "pattern": "技術×技術",
+    "seed": "たった4台のカメラで4D空間を復元する4C4Dと、ComfyUI Native Gaussian Splat Nodesのノード編集を組み合わせれば、少ない機材費で撮った映像をその場でスタイル加工できる低予算ボリュメトリック広告フローになりそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "4c4d",
+        "title": "4C4D",
+        "desc": "たった4台のカメラ映像から、動く3D空間（4D）を高精細に復元するCVPR 2026の研究。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-native-gaussian-splat-nodes",
+        "title": "ComfyUI Native Gaussian Splat Nodes（GAUSSIAN型 / v0.23.0）",
+        "desc": "ComfyUIに3D Gaussian Splatを扱うネイティブ型と読み込み・変換・レンダリングのノード群を追加する機能。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-10-10",
+    "date": "2026-09-10",
+    "title": "現地で書き換わるサイネージ",
+    "pattern": "転用",
+    "seed": "Editable Visual Designは広告ポスターをAIが生成・後編集可能にする研究だけど、これを被災地や公共施設の多言語サイネージに転用すれば、状況が変わるたびに現地で即座に情報を更新できるようになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "editable-visual-design",
+        "title": "Editable Visual Design（Editable-Design）",
+        "desc": "AIエージェントが画像生成とHTML/CSSを組み合わせ、あとから文字やレイアウトを編集できるポスターを作る研究。"
+      }
+    ]
   }
 ]
