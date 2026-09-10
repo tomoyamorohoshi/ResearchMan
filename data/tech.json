@@ -1,5 +1,52 @@
 [
   {
+    "id": "sa3-browser-tools",
+    "title": "SA3 Browser Tools (mucking_around_time_with_stable_audio_3)",
+    "org": "little-scale (Sebastian Tomczak)",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "AIオーディオモデル「Stable Audio 3」を、プロンプト一発生成の道具から、生成過程を手で触って作り込めるブラウザ制作環境へと拡張するオープンソースツールキット。",
+    "point": "生成AIで音楽や効果音を作るとき、多くのツールは『プロンプトを打って待つ』だけの一方向的な体験になりがちです。このツールがすごいのは、Stability AIが無料公開しているAI作曲モデル「Stable Audio 3」の内部の生成過程に、人間の手を差し込めるようにした点です。生成途中の音の“設計図”にあたる潜在表現を直接いじれる編集画面、外部の音楽ソフト（Max/MSP、TouchDesignerなど）から数値を送ってAIの生成をリアルタイムに操作できるOSC連携、複数のループを少しずつ変化させ続ける機能などを備えています。広告制作の現場では、CMやWeb動画のBGM・効果音を『AI任せ』の一発生成で終わらせず、演出意図に合わせて微調整しながら量産したり、インスタレーションやライブ演出でAI生成音を演者がその場で操作する、といった使い方が考えられます。",
+    "detail": "仕組みとしては、Stability AIが2026年5月に発表した音楽生成AIモデル「Stable Audio 3」をベースに、そのAIが音を表現するために内部で使っている数値の集合（潜在表現＝圧縮された音のレシピ）を、人間が見て触れる画面に可視化しています。プロがミキサーのフェーダーを動かすように、このレシピの一部を動かすと生成される音が少しずつ変化する仕組みです。さらに音楽制作の世界で広く使われる通信規格「OSC」に対応しているため、普段使っている制作ソフトの操作画面からAIの生成パラメータを操作できます。\n\n通常の音楽生成AIサービスは『言葉で指示→数十秒待って完成品を受け取る』という一方向的な体験ですが、このツールは生成の途中経過を見ながら狙った質感になるまで手で調整を重ねられる、いわば『制作道具』としての使い方を前提にしている点が大きな違いです。3つのループを同時に少しずつ変化させ続ける機能も、一発勝負ではなく『育てながら探す』音作りを可能にします。\n\n利用にはStable Audio 3のモデル本体（Hugging Faceでの利用登録が必要）に加え、NVIDIA RTX 4080クラス以上のGPU搭載PC、またはApple Silicon搭載Mac（M1以降）が必要です。ツール自体はブラウザで動くため専門知識は少なくて済みますが、Python 3.10以上・CUDA 12.6など開発環境の構築は必要です。ツール本体は無料ですが、Stable Audio 3自体の商用利用条件（年商100万ドルのライン）には注意が必要です。",
+    "license": {
+      "spdx": "0BSD",
+      "commercial": "conditional",
+      "note": "本ツール自体は0BSD（無条件で自由利用可）。ただし基盤となるStable Audio 3本体はStability AI Community Licenseの対象で、年商100万ドル未満の個人・小規模チームは無償商用利用可、それを超える企業はEnterpriseライセンス契約が別途必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/little-scale/mucking_around_time_with_stable_audio_3"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/sa3-browser-tools.jpg",
+    "relatedWorks": [
+      {
+        "title": "RAVE (IRCAM/ACIDS)",
+        "description": "音をリアルタイムに変換するニューラルオーディオ合成モデル。Max/MSPやPureDataから潜在表現を直接操作できる先駆的な取り組み",
+        "url": "https://github.com/acids-ircam/RAVE"
+      },
+      {
+        "title": "Stable Audio 3 (stabilityai/stable-audio-3-medium)",
+        "description": "本ツールが操作対象とする基盤の音楽生成AIモデル本体",
+        "url": "https://huggingface.co/stabilityai/stable-audio-3-medium"
+      },
+      {
+        "title": "ACE-Step",
+        "description": "ローカルPCで動く高速な音楽生成AIモデル。商用代替クオリティを謳う別系統のオープンソース選択肢",
+        "url": "https://github.com/ace-step/ACE-Step"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "inpaint-canvas",
     "title": "Inpaint Canvas (ComfyUI-InpaintCanvas)",
     "org": "DenRakEiw（個人開発者 Eiw / Dennis）",
