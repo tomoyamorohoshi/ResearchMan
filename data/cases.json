@@ -1,5 +1,511 @@
 [
   {
+    "id": "stranger-things-vecna-drone-show-las-vegas-finale-event-2025",
+    "title": "Stranger Things: Vecna Drone Show (Las Vegas Finale Event)",
+    "summary": "Netflix『ストレンジャー・シングス』最終章のPRとして、ラスベガス上空に4,979機のドローンで敵役ヴェクナの姿を描き、ギネス世界記録を樹立したドローンライトショー。",
+    "client": "Netflix",
+    "agency": "ACRONYM / Sky Elements",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "ギネス世界記録『Largest aerial display of a fictional character formed by multirotors/drones（マルチローター・ドローンで構成された架空キャラクターの最大規模の空中ディスプレイ）』／Sky Elementsが達成（2025年12月28日、4,979機、米ネバダ州ラスベガス、Netflix『ストレンジャー・シングス』のヴェクナ）",
+    "year": "2025",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.prnewswire.com/news-releases/sky-elements-sets-guinness-world-records-title-with-vecna-drone-show-for-stranger-things-final-season-302779630.html",
+    "thumbnail": "/thumbnails/stranger-things-vecna-drone-show-las-vegas-finale-event-2025.jpg",
+    "videoId": "gbARoq0t6Xw",
+    "overview": "Netflixドラマ『ストレンジャー・シングス』最終章のプロモーションとして、米ラスベガス上空に4,979機のドローンを飛ばし、作中の敵役ヴェクナの姿を夜空に立体的に描き出したドローンライトショー。ACRONYMとSky Elementsが制作を手掛け、単一の架空キャラクターを形作るドローン編隊としてギネス世界記録に認定された。",
+    "background": "『ストレンジャー・シングス』は最終章の配信を控え、Netflixは物語のクライマックスを象徴するビジュアルとして大規模な屋外演出を模索していた。ドローンライトショーは映画・エンタメ作品のキービジュアルを都市の夜空に描く手法として定着しつつあり、シリーズ最大の脅威であるヴェクナという単一キャラクターを描く企画が採用された。",
+    "execution": "ラスベガスの夜空に4,979機のドローンを展開し、LEDの発光パターンを緻密に制御しながらヴェクナの姿を段階的に形成。単一の架空キャラクターを構成するドローン数として、ギネス世界記録『Largest aerial display of a fictional character formed by multirotors/drones』の認定基準を満たす規模で実施された。",
+    "evaluationImpact": "4,979機という機体数でギネス世界記録に認定されたことは、ドローンライトショーが幾何学模様や企業ロゴの表現を超え、物語性のあるキャラクターを精緻に描写できる技術水準に達したことを示した。最終章公開に向けたPRとして大きな話題を呼び、ファン層への訴求力を可視化した事例となった。",
+    "relatedWorks": [],
+    "sources": [
+      "Drone Films"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Form/Event",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "intel-drone-light-show-pyeongchang-2018-winter-olympics-open",
+    "title": "Intel Drone Light Show – PyeongChang 2018 Winter Olympics Opening Ceremony",
+    "summary": "平昌冬季五輪の開会式演出として、1,218機のIntel Shooting Starドローンが五輪マークやスノーボーダーを夜空に描いた事前収録映像。",
+    "client": "Intel",
+    "agency": "",
+    "categories": [
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2018",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.intc.com/news-events/press-releases/detail/172/intel-drone-light-show-breaks-guinness-world-records-title",
+    "thumbnail": "/thumbnails/intel-drone-light-show-pyeongchang-2018-winter-olympics-open.jpg",
+    "videoId": "",
+    "overview": "平昌冬季オリンピック開会式の演出として、Intel Shooting Starドローン1,218機が夜空に五輪マークやスノーボーダーの姿を描いたドローンライトショー。会場での安全確保のため映像は事前収録され、開会式当日はその録画映像が放映された。",
+    "background": "Intelは先行するDrone 100の後継として開発したShooting Starドローンの実用性を示す場として、平昌冬季五輪の開会式を選定。大規模な観客が集まる屋外イベントでの安全性確保が課題となり、実際の飛行は会場外で事前に収録する方式が取られた。",
+    "execution": "1,218機のIntel Shooting Starドローンを用い、五輪マークやスノーボードで滑走する選手の姿など複数のビジュアルを夜空に編隊飛行で描画。撮影は開会式会場とは別の場所で事前に行われ、当日は収録映像として開会式の演出内に組み込まれて放映された。",
+    "evaluationImpact": "1,218機という同時飛行数はドローンライトショーの規模として当時最大級であり、Intelの群制御技術の到達点を世界的な放送を通じて示す機会となった。一方で実際にはリアルタイムの生中継ではなく事前収録映像だった点も報じられ、ドローンショーの演出と実施形態のあり方を考えるきっかけともなった。",
+    "relatedWorks": [],
+    "sources": [
+      "Drone Films"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Form/Event",
+      "Theme/Sports"
+    ]
+  },
+  {
+    "id": "galaxy-ai-is-here-samsung-galaxy-s24-drone-show-london-2024",
+    "title": "Galaxy AI Is Here – Samsung Galaxy S24 Drone Show (London)",
+    "summary": "552機のドローンがロンドン・カナリーワーフ上空に宇宙モチーフの映像と『Galaxy AIは今ここに』の巨大文字を描いたGalaxy S24ローンチ演出。",
+    "client": "Samsung",
+    "agency": "Taylor Herring / Celestial / St Mark's Studios",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.taylorherring.com/samsung-and-taylor-herring-launch-new-s24-series-with-dazzling-drone-show/",
+    "thumbnail": "/thumbnails/galaxy-ai-is-here-samsung-galaxy-s24-drone-show-london-2024.jpg",
+    "videoId": "Ewp2OuynmJ8",
+    "overview": "Samsung Galaxy S24シリーズの発売に合わせ、552機のドローンがロンドン・カナリーワーフの夜空に宇宙モチーフの映像や『Galaxy AI is here』というメッセージを描いたドローンライトショー。Taylor Herring、Celestial、St Mark's Studiosが制作を担当した。",
+    "background": "Galaxy S24シリーズはオンデバイスAI機能『Galaxy AI』を前面に打ち出したフラッグシップモデルであり、その発売キャンペーンでは製品の先進性を象徴する大規模な屋外演出が求められた。ロンドンの金融街カナリーワーフの上空という都市のランドマークを舞台に、多くの人々の目に触れる形での訴求が企画された。",
+    "execution": "552機のドローンをカナリーワーフ上空に展開し、惑星や星々といった宇宙を思わせるビジュアルを編隊飛行で描画した後、最終的に『Galaxy AIは今ここに』という文字メッセージを巨大な文字列として夜空に形成。Taylor Herring、Celestial、St Mark's Studiosが企画・制作を担当した。",
+    "evaluationImpact": "552機規模のドローンショーによって製品ローンチを都市の夜空という公共空間の体験に変換し、SNSでの拡散も含めて話題性を獲得した。スマートフォンの新機能というプロダクト訴求を、屋外での大規模なライブ体験として可視化した事例として位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Drone Films"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Tech/AI",
+      "Form/Event",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "nike-jordan-store-launch-drone-flown-qr-code-dubai-2021",
+    "title": "Nike Jordan Store Launch – Drone-Flown QR Code (Dubai)",
+    "summary": "ドバイの巨大構造物『The Frame』内で600機のドローンがJumpmanロゴを立体形成し、そのままスキャン可能な3D QRコードへ変形させたJordan Brand店舗ローンチ施策。",
+    "client": "Nike (Jordan Brand)",
+    "agency": "AO Creative / AO Drones",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2021",
+    "regions": [
+      "中東"
+    ],
+    "link": "https://ao-technology.com/project/jordan-store-launch/",
+    "thumbnail": "/thumbnails/nike-jordan-store-launch-drone-flown-qr-code-dubai-2021.jpg",
+    "videoId": "",
+    "overview": "ドバイの巨大な額縁型建造物『The Frame』内で、600機のドローンがJordan Brandのシンボルであるジャンプマンロゴを立体的に形成した後、そのままスキャン可能な3D QRコードへと変形させた店舗ローンチ演出。AO CreativeとAO Dronesが企画・制作を手掛けた。",
+    "background": "Nikeのバスケットボールブランド『Jordan Brand』がドバイに新店舗をオープンするにあたり、単なる看板や映像広告ではなく、実際に来店・購買行動へ接続できる体験型の演出が求められた。ドバイのランドマークである『The Frame』内の空間を舞台に、ドローンによる立体表現とQRコードによる機能性を組み合わせる企画が採用された。",
+    "execution": "600機のドローンを『The Frame』の額縁状の構造物内に展開し、まずジャンプマンロゴを立体的に編隊形成。続けて隊列を再構成し、スマートフォンで実際に読み取り可能な3D QRコードへと変形させ、スキャンした来場者を店舗情報へ誘導した。",
+    "evaluationImpact": "ドローンショーを視覚的な演出に留めず、QRコードという実用的なインターフェースとして機能させた点が新規性として評価された。空にロゴを描くだけの従来型ドローンショーから一歩進め、鑑賞と行動喚起を一体化させた店舗ローンチ施策の事例となった。",
+    "relatedWorks": [],
+    "sources": [
+      "Drone Films"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Form/Event",
+      "Theme/Retail",
+      "Theme/Fashion"
+    ]
+  },
+  {
+    "id": "nike-air-max-drone-delivery-2021",
+    "title": "Nike Air Max Drone Delivery",
+    "summary": "JD Sports店舗上空からドローンで抽選当選者にNike Air Maxを無料配送した、エアマックスデー記念のスタント施策。",
+    "client": "Nike × JD Sports",
+    "agency": "AKQA",
+    "categories": [
+      "OOH革新",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2021",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adweek.com/commerce/nike-drops-free-sneakers-by-drone-air-max/",
+    "thumbnail": "/thumbnails/nike-air-max-drone-delivery-2021.jpg",
+    "videoId": "",
+    "overview": "Nikeがエアマックスデーを記念し、JD Sports店舗の屋上からドローンを飛ばして抽選当選者に無料のNike Air Maxを直接配送した体験施策。AKQAが企画を手がけ、店舗周辺の限定エリアに応募した当選者のもとへドローンがスニーカーを届ける様子が話題となった。",
+    "background": "Air Max Dayは毎年恒例のNikeのブランドキャンペーンであり、単なる広告訴求ではなく体験を伴う驚きの演出が求められていた。小売パートナーのJD Sports店舗を拠点に、ドローン配送という当時まだ目新しかったテクノロジーを用いることで、記念日にふさわしい話題性のある施策を狙った。",
+    "execution": "JD Sports店舗周辺エリアで抽選への応募を募り、当選者にはドローンによる無料のAir Max配送を実施。店舗屋上からドローンが飛び立ち、当選者のもとへ直接商品を届ける様子を演出し、SNSやニュースメディアでの拡散を狙った体験型のプロモーションとして展開された。",
+    "evaluationImpact": "広告表現ではなく実際の商品配送そのものを体験化した点がユニークで、ドローン配送をエンタメ的なブランド体験として活用した早い事例として報じられた。小売店舗と連動した施策として、Air Max Dayの話題性を高める役割を果たした。",
+    "relatedWorks": [],
+    "sources": [
+      "Drone Films"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Stunt",
+      "Theme/Fashion"
+    ]
+  },
+  {
+    "id": "jack-daniel-s-drone-show-nashville-broadway-2023",
+    "title": "Jack Daniel's Drone Show (Nashville Broadway)",
+    "summary": "ナッシュビルのブロードウェイ上空でテネシー州とブランドの歴史を精細に描いたJack Daniel'sのブランデッド・ドローンショー。",
+    "client": "Jack Daniel's",
+    "agency": "Sky Elements",
+    "categories": [
+      "OOH革新",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2023",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://skyelementsdrones.com/jack-daniels",
+    "thumbnail": "/thumbnails/jack-daniel-s-drone-show-nashville-broadway-2023.jpg",
+    "videoId": "",
+    "overview": "Jack Daniel'sがナッシュビルのブロードウェイ上空で実施したブランデッド・ドローンショー。Sky Elementsが制作を担当し、多数のドローンでテネシー州の風景やジャック・ダニエルズのブランドを象徴するモチーフ、創業者の肖像などを夜空に精緻に描き出した。",
+    "background": "バーボンの聖地とされるテネシー州を象徴するブランドとして、Jack Daniel'sは地元ナッシュビルの繁華街ブロードウェイを舞台に、花火に代わる新しい夜空の演出手法であるドローンショーを採用。地域とブランドの結びつきを視覚的に表現する狙いがあった。",
+    "execution": "Sky Elementsが多数のドローンを編隊飛行させ、テネシー州の地形やジャック・ダニエルズのロゴ、ボトル、創業者の肖像などを段階的に夜空に描画。ナッシュビルの繁華街ブロードウェイ上空という象徴的なロケーションで実施され、観客に地域とブランドの物語を重ねて見せた。",
+    "evaluationImpact": "酒類ブランドが花火に代わる屋外演出としてドローンショーを採用した事例であり、ブランドの歴史や地域性を空の映像として物語化する表現手法を示した。Sky Elementsのブランデッド・ドローンショー実績の代表事例の一つとして紹介されている。",
+    "relatedWorks": [],
+    "sources": [
+      "Drone Films"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Event",
+      "Form/OOH",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "ford-expedition-reveal-drone-show-state-fair-of-texas-2024",
+    "title": "Ford Expedition Reveal Drone Show – State Fair of Texas",
+    "summary": "1,500機のドローンで新型Expeditionを夜空に描き、実車お披露目と連動させたテキサス州フェアの製品ローンチ施策。",
+    "client": "Ford",
+    "agency": "Sky Elements",
+    "categories": [
+      "OOH革新",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://skyelementsdrones.com/casestudy/ford",
+    "thumbnail": "/thumbnails/ford-expedition-reveal-drone-show-state-fair-of-texas-2024.jpg",
+    "videoId": "qtzgJXYTXGI",
+    "overview": "Fordが新型Expeditionの発表に合わせ、テキサス州フェアで実施したドローンショー。Sky Elementsが制作し、1,500機のパイロドローンが車両の3Dモデルを夜空に描き出し、実車お披露目と連動した体験型の製品ローンチ施策として展開された。",
+    "background": "新型車の発表イベントにおいて、単なる実車展示にとどまらない話題性のある演出が求められる中、Fordはアメリカ最大級の来場者を集めるState Fair of Texasを舞台に、大規模なドローンショーによる製品ビジュアライゼーションを採用した。",
+    "execution": "1,500機のパイロドローンを編隊飛行させ、新型Ford Expeditionの3Dモデルを砲門状の演出とともに夜空に立体的に描画。ドローンショーのクライマックスと合わせて実車のお披露目を行い、来場者の目の前で製品の存在感を印象づける構成とした。",
+    "evaluationImpact": "大規模な州フェアという集客力の高い場を活用し、製品発表をエンターテインメント化した事例として、自動車ブランドによるドローンショー活用の代表例の一つに位置づけられる。実車披露とドローン演出を連動させる手法は、他ブランドの製品ローンチにも応用可能な表現として注目される。",
+    "relatedWorks": [],
+    "sources": [
+      "Drone Films"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Event",
+      "Form/OOH",
+      "Theme/Mobility"
+    ]
+  },
+  {
+    "id": "star-island-2025-2025",
+    "title": "STAR ISLAND 2025",
+    "summary": "花火とドローンが競演する未来型花火エンターテインメント。各日1,800機・計3,600機がお台場の夜空に不死鳥などを描いた。",
+    "client": "STAR ISLAND実行委員会",
+    "agency": "株式会社レッドクリフ",
+    "categories": [
+      "空間体験",
+      "コンテンツ革新"
+    ],
+    "award": "Japan Drone Show Creativity Awards 2025「エンターテインメント部門」グランプリ（STAR ISLAND実行委員会主催）",
+    "year": "2025",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000100.000087924.html",
+    "thumbnail": "/thumbnails/star-island-2025-2025.jpg",
+    "videoId": "",
+    "overview": "お台場海浜公園で開催された、花火とドローンが競演する未来型花火エンターテインメント「STAR ISLAND 2025」。株式会社レッドクリフが制作を手がけ、開催各日1,800機、計3,600機のドローンが不死鳥などのモチーフを夜空に描き、花火との同期演出で新しい都市型ナイトエンターテインメントを提示した。",
+    "background": "花火という日本の伝統的な夏の風物詩に、ドローンによる立体的な映像表現を組み合わせることで、これまでにない没入感のある夜空のエンターテインメントを生み出すことを狙い、STAR ISLANDはお台場を舞台に毎年進化を続けるプロジェクトとして展開されてきた。2025年は開催規模を拡大して実施された。",
+    "execution": "各日1,800機、計3,600機のドローンを投入し、花火の打ち上げタイミングと同期させながら不死鳥などのモチーフを夜空に描画。株式会社レッドクリフが企画・制作・運用を一貫して担い、音楽演出とも連動させた総合的なライブエンターテインメントとして構成した。",
+    "evaluationImpact": "Japan Drone Show Creativity Awards 2025のエンターテインメント部門でグランプリを受賞し、花火とドローンを融合した国内最大級規模の演出として業界内外から高く評価された。花火とドローンショーを組み合わせる表現手法の国内における到達点を示す事例となっている。",
+    "relatedWorks": [],
+    "sources": [
+      "Drone Films"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Event",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "case-hcqxc2-2025",
+    "title": "オロナミンC60周年「元気ハツラツ！大空大合唱」ドローンショー",
+    "summary": "オロナミンC発売60周年を記念し全国5会場で約1,300機のドローンが「愛は勝つ」に合わせて夜空を演出、来場者参加型の合唱を促した記念プロモーション",
+    "client": "大塚製薬（オロナミンCドリンク）",
+    "agency": "株式会社レッドクリフ",
+    "categories": [
+      "空間体験",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "Japan Drone Show Creativity Awards 2025「広告・プロモーション部門」グランプリ（大塚製薬株式会社主催「オロナミンＣ60周年『元気ハツラツ！大空大合唱』」）",
+    "year": "2025",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000104.000087924.html",
+    "thumbnail": "/thumbnails/case-hcqxc2-2025.jpg",
+    "videoId": "",
+    "overview": "大塚製薬のロングセラー炭酸飲料「オロナミンC」発売60周年を記念し、株式会社レッドクリフが制作したドローンショー「元気ハツラツ！大空大合唱」。全国5会場で約1,300機のドローンが「愛は勝つ」の楽曲に合わせて夜空を演出し、来場者参加型の合唱を促す広告プロモーションとして展開された。",
+    "background": "オロナミンCは発売60周年という節目を迎え、ブランドを象徴する「元気ハツラツ！」というメッセージを次世代にも届ける記念施策が求められていた。単なる周年広告にとどまらず、来場者が実際に参加し一体感を体験できる形式として、全国複数会場を巡るドローンショーが企画された。",
+    "execution": "制作を手がけた株式会社レッドクリフは、全国5会場で約1,300機のドローンを編隊飛行させ、ブランドを象徴する楽曲「愛は勝つ」に合わせて夜空を演出。来場者が声を合わせて歌う参加型の「大合唱」を促す構成とし、周年記念キャンペーンを映像演出にとどまらない体験型のプロモーションへと拡張した。",
+    "evaluationImpact": "Japan Drone Show Creativity Awards 2025の「広告・プロモーション部門」でグランプリを受賞。全国5会場・約1,300機という規模と、来場者参加型の合唱演出を組み合わせた点が、ブランド周年施策におけるドローンショー活用のモデルケースとして評価された。",
+    "relatedWorks": [
+      {
+        "title": "大塚製薬プレスリリース「オロナミンＣ60周年『元気ハツラツ！大空大合唱』」",
+        "description": "本イベントの詳細と受賞を伝える大塚製薬のプレスリリース",
+        "url": "https://prtimes.jp/main/html/rd/p/000000104.000087924.html"
+      }
+    ],
+    "sources": [
+      "Drone Films"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Form/Event",
+      "Theme/Music",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "case-1rd9w7b-2025",
+    "title": "南会ドローン幻夜祭 ～天翔ける 推しイロの輝き～",
+    "summary": "福島県南会津地方振興局主催、下郷町で300機のドローンが地元の名物や文化を描きサイリウムダンスと共演した地域振興イベント",
+    "client": "福島県（南会津地方振興局）",
+    "agency": "株式会社White Crow",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "Japan Drone Show Creativity Awards 2025「地域・まちおこし部門」グランプリ（福島県主催「南会ドローン幻夜祭～天翔ける推しイロの輝き～」）",
+    "year": "2025",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000012.000147437.html",
+    "thumbnail": "/thumbnails/case-1rd9w7b-2025.jpg",
+    "videoId": "",
+    "overview": "福島県南会津地方振興局が主催し、株式会社White Crowが制作したドローンショー「南会ドローン幻夜祭～天翔ける推しイロの輝き～」。福島県下郷町で300機のドローンが地元の名物であるねぎそば、日本酒、ブナ、歌舞伎、キビタンをモチーフに夜空へ描き、サイリウムダンスと共演した自治体主導の地域振興イベント。",
+    "background": "南会津地方は豊かな自然と伝統文化を持つ一方、その魅力を広く発信する手段が課題となっていた。福島県南会津地方振興局は、地元の名産品や文化を象徴的に伝える新しい発信手段として、大規模なドローンショーによる地域振興イベントの開催を企画した。",
+    "execution": "制作を担った株式会社White Crowは、下郷町の夜空に300機のドローンを飛ばし、ねぎそば、日本酒、ブナ、歌舞伎、キビタンといった地域の名物・文化をモチーフとした造形を次々に描画。ドローンの光の演出にサイリウムダンスを組み合わせ、観客参加型の演出とした。",
+    "evaluationImpact": "Japan Drone Show Creativity Awards 2025の「地域・まちおこし部門」でグランプリを受賞。地域固有の名物・文化をドローンの造形表現に落とし込み、住民参加の演出と組み合わせた点が、自治体主導の地域振興施策のモデルとして評価された。",
+    "relatedWorks": [
+      {
+        "title": "福島県プレスリリース「南会ドローン幻夜祭～天翔ける推しイロの輝き～」",
+        "description": "本イベントの詳細と受賞を伝える福島県のプレスリリース",
+        "url": "https://prtimes.jp/main/html/rd/p/000000012.000147437.html"
+      }
+    ],
+    "sources": [
+      "Drone Films"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Form/Event",
+      "Theme/Food",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "lawson-50-2025",
+    "title": "LAWSON創業50周年記念ドローンショー",
+    "summary": "創業50周年の「ローソンの日」に東京・芝公園で500機のドローンが「からあげクン」や東京タワーを夜空に描いた記念ショー",
+    "client": "株式会社ローソン",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.advertimes.com/20250613/article501625/",
+    "thumbnail": "/thumbnails/lawson-50-2025.jpg",
+    "videoId": "",
+    "overview": "株式会社ローソンが創業50周年を迎えた「ローソンの日」に、東京・芝公園（増上寺周辺）で実施した記念ドローンショー。500機のドローンが看板商品「からあげクン」や東京タワーのシルエットを夜空に描き出し、周年を祝う記念イベントとして展開された。",
+    "background": "ローソンは2025年に創業50周年の節目を迎え、その記念日である「ローソンの日」に合わせた特別施策を検討していた。長年親しまれてきたブランドの歴史を象徴的に示す演出として、都心のランドマークである東京タワー周辺での大規模ドローンショーが企画された。",
+    "execution": "東京・芝公園、増上寺周辺の夜空に500機のドローンを展開し、ローソンの看板商品「からあげクン」のシルエットや、会場近くにそびえる東京タワーのモチーフを描画。都心の象徴的な景観とドローンショーを組み合わせ、周年記念にふさわしいスケール感のある演出を実現した。",
+    "evaluationImpact": "創業50周年という節目に、都心のランドマーク周辺で大規模なドローンショーを実施したことで、コンビニエンスストアの記念施策として高い話題性を獲得。人気商品を夜空に描くことで、ドローンショーを周年キャンペーンのビジュアル訴求手段として活用した事例となった。",
+    "relatedWorks": [
+      {
+        "title": "AdverTimes「ローソン、創業50周年を記念しドローンショー」",
+        "description": "本イベントを報じたAdverTimesの記事",
+        "url": "https://www.advertimes.com/20250613/article501625/"
+      }
+    ],
+    "sources": [
+      "Drone Films"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Form/Event",
+      "Theme/Retail",
+      "Theme/Food"
+    ]
+  },
+  {
+    "id": "42-time-warp-2026",
+    "title": "第42回関門海峡花火大会 ドローンショー「Time Warp〜時間旅行〜」",
+    "summary": "下関・関門海峡花火大会で900機のドローンが下関と釜山の姉妹都市50周年メッセージを演出、Netflix作品脚本家がシナリオを制作",
+    "client": "下関市／ドローンスクール下関（株式会社A-commerce）",
+    "agency": "株式会社レッドクリフ",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000014.000128025.html",
+    "thumbnail": "/thumbnails/42-time-warp-2026.jpg",
+    "videoId": "UH0UahViHA8",
+    "overview": "下関市とドローンスクール下関（株式会社A-commerce）が主催し、株式会社レッドクリフが制作した、関門海峡花火大会内のドローンショー「Time Warp〜時間旅行〜」。900機のドローンが下関市と釜山広域市の姉妹都市提携50周年を記念するメッセージなどを夜空に描き、花火大会に新たな演出を加えた。",
+    "background": "下関市は2026年に姉妹都市である韓国・釜山広域市との提携50周年を迎え、地域の歴史的な節目を市民や来場者に印象づける演出が求められていた。毎年開催される関門海峡花火大会に、花火とは異なる新しい表現手法としてドローンショーを組み込む企画が進められた。",
+    "execution": "制作を担った株式会社レッドクリフは、関門海峡の夜空に900機のドローンを展開し、下関と釜山の姉妹都市50周年を祝うメッセージなどを描画。シナリオ制作にはNetflix作品にも携わる工藤真一氏が参加し、花火大会の演出全体にストーリー性を持たせた構成とした。",
+    "evaluationImpact": "花火大会という地域の伝統行事に大規模なドローンショーを組み合わせ、姉妹都市提携の節目を可視化する演出として実施。900機規模の編隊飛行とプロの脚本家によるシナリオ構成により、地方都市の記念イベントにおけるドローン活用の新たな水準を示した。",
+    "relatedWorks": [
+      {
+        "title": "PR TIMES「第42回関門海峡花火大会 ドローンショー『Time Warp〜時間旅行〜』」",
+        "description": "本イベントの詳細を伝えるプレスリリース",
+        "url": "https://prtimes.jp/main/html/rd/p/000000014.000128025.html"
+      }
+    ],
+    "sources": [
+      "Drone Films"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Form/Event",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "case-1orz9ah-2025",
+    "title": "能登よさこい祭り＆和倉温泉復興ドローンショー2025",
+    "summary": "能登半島地震からの復興を願い、和倉温泉上空で500機のドローンが地元の祭礼をテーマに光の演出を披露したショー",
+    "client": "和倉温泉創造的復興まちづくり推進協議会／七尾市",
+    "agency": "株式会社レッドクリフ",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "Japan Drone Show Creativity Awards 2025「社会発信部門」グランプリ",
+    "year": "2025",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://redcliff-inc.co.jp/pressrelease/wakuraonsen-doroneshow/",
+    "thumbnail": "/thumbnails/case-1orz9ah-2025.jpg",
+    "videoId": "",
+    "overview": "能登半島地震からの復興を願い、石川県七尾市の和倉温泉「湯乃鵠」上空で500機のドローンが夜空を彩ったライトショー。能登よさこい祭りや青柏祭など地元の祭礼をモチーフにした演出を展開し、制作は株式会社レッドクリフが担当した。",
+    "background": "能登半島地震で大きな被害を受けた和倉温泉地域では、観光業の復興と地域の元気を取り戻すことが課題となっていた。和倉温泉創造的復興まちづくり推進協議会と七尾市は、地元の伝統的な祭礼文化を題材にした演出で復興への願いを発信するイベントとして本ショーを企画した。",
+    "execution": "500機のドローンを用い、和倉温泉のシンボルである「湯乃鵠」上空で、能登よさこい祭りの踊り手や青柏祭の曳山など地域固有のモチーフを光の編隊飛行で描出。地元の祭礼文化とドローン技術を組み合わせることで、被災地の記憶と再生への願いを視覚的に表現した。制作は株式会社レッドクリフが手がけた。",
+    "evaluationImpact": "Japan Drone Show Creativity Awards 2025の社会発信部門でグランプリを受賞。震災復興という社会課題に対し、地域固有の祭礼文化をモチーフに据えた点と、被災地の再生への願いを可視化した点が評価された。地域主催の復興イベントがドローンショーという表現形式で全国的な認知を得た事例といえる。",
+    "relatedWorks": [],
+    "sources": [
+      "Drone Films"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Event",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "yoasobi-2025",
+    "title": "YOASOBI 石川県ライブ後サプライズドローンショー",
+    "summary": "能登半島地震の被災地支援として、YOASOBIの石川県ライブ後に500機のドローンが直筆メッセージ「I♡石川」を夜空に描いたサプライズ演出",
+    "client": "YOASOBI（ソニー・ミュージックレーベルズ）",
+    "agency": "株式会社ドローンショー・ジャパン",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://droneshow.co.jp/casestudy/8732/",
+    "thumbnail": "/thumbnails/yoasobi-2025.jpg",
+    "videoId": "",
+    "overview": "能登半島地震の被災地支援企画として、YOASOBIが石川県で行ったライブの終演後に500機のドローンによるサプライズショーを実施。ボーカルAyaseとikuraの直筆メッセージ「I♡石川」を夜空に描き出した。制作は株式会社ドローンショー・ジャパンが担当した。",
+    "background": "能登半島地震の被害を受けた石川県で、アーティストとして地域を支援したいというYOASOBIの意向から、石川県でのライブ公演にあわせたサプライズ企画が立案された。単なる物理的な支援にとどまらず、ライブ会場という場でファンや地域住民に直接メッセージを届ける演出が求められた。",
+    "execution": "ライブ終演後、会場上空に500機のドローンを展開し、AyaseとikuraがそれぞLive後に直筆した「I♡石川」のメッセージをドローンの光で夜空に再現。制作は株式会社ドローンショー・ジャパンが担当し、アーティスト本人の言葉をそのままビジュアル化することで、ライブの余韻とメッセージ性を両立させた。",
+    "evaluationImpact": "受賞歴はないが、著名アーティストのライブ直後というタイミングでドローンショーを実施し、被災地支援のメッセージをファンに直接届けた点が特徴。アーティストの肉声・肉筆をドローン表現に落とし込む手法として、音楽イベントとドローンショーの掛け合わせの一例となった。",
+    "relatedWorks": [],
+    "sources": [
+      "Drone Films"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Event",
+      "Theme/Music",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "case-10j5weu-2025",
+    "title": "「シャウエッセン®花火」発売記念ドローンショー",
+    "summary": "日本ハム「シャウエッセン」の発売記念として、国営昭和記念公園で花火モチーフとブランドイメージを組み合わせたドローンショーを実施",
+    "client": "日本ハム（シャウエッセン）",
+    "agency": "株式会社レッドクリフ",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://redcliff-inc.co.jp/pressrelease/schauessen2025/",
+    "thumbnail": "/thumbnails/case-10j5weu-2025.jpg",
+    "videoId": "",
+    "overview": "日本ハムの商品「シャウエッセン®花火」発売を記念して、国営昭和記念公園で実施されたドローンショー。花火をモチーフにした演出とシャウエッセンのブランドイメージを組み合わせた光の演出を夜空に展開した。制作は株式会社レッドクリフが担当した。",
+    "background": "日本ハムは「シャウエッセン®花火」の発売にあわせ、商品名にちなんだ花火演出とブランド訴求を組み合わせたプロモーションイベントを企画。従来の花火演出に代わる新しい訴求手段として、ドローンショーによる商品発売記念イベントが選ばれた。",
+    "execution": "国営昭和記念公園を会場に、ドローンによって花火の光の広がりを模したモチーフと、シャウエッセンのブランドを想起させるビジュアルを組み合わせて演出。商品名に含まれる「花火」というキーワードを、実際の花火ではなくドローンの光で表現することで、商品コンセプトと演出手法を一致させた。制作は株式会社レッドクリフが担当した。",
+    "evaluationImpact": "受賞歴はないが、商品名の「花火」というモチーフを実際の花火ではなくドローンショーで表現した点が特徴的な事例。食品ブランドの新商品発売記念イベントにドローンショーを採用することで、商品コンセプトとプロモーション演出を直結させたアプローチといえる。",
+    "relatedWorks": [],
+    "sources": [
+      "Drone Films"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Event",
+      "Theme/Food"
+    ]
+  },
+  {
     "id": "2-977-lights-over-new-york-harbor-2026",
     "title": "2,977 Lights Over New York Harbor",
     "summary": "9.11から25年、犠牲者2,977人を悼み2,977機のドローンがニューヨーク港上空にツインタワーを光で再現した追悼インスタレーション",
