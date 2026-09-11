@@ -1,5 +1,151 @@
 [
   {
+    "id": "usavionix-2026",
+    "title": "USAvionix",
+    "summary": "自律偵察ドローン企業USAvionixが、黒基調3DとHUD演出で「空の最初のエージェント」という自社の思想をそのままサイト体験化した",
+    "client": "USAvionix",
+    "agency": "basement.studio",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "テクノロジー×アイデア"
+    ],
+    "award": "Awwwards Site of the Day（2026年9月9日）",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.awwwards.com/sites/usavionix",
+    "thumbnail": "/thumbnails/usavionix-2026.jpg",
+    "videoId": "",
+    "overview": "USAvionixは自律型ジェットドローン「Delta」とデュアルGPU搭載AIプラットフォーム「Phalanx AI」を展開する防衛テック企業。basement.studioが手がけたブランドサイトは黒と白のみの配色とWebGLによる3Dビジュアルで構成され、Next.js上に温度・LiDAR・座標データなどHUD風のリアルタイム表示演出を組み込んでいる。",
+    "background": "USAvionixはSpaceX、Apple、Tesla、Palantir、JPL出身者らが設立した防衛技術企業で、広大な地域を自律的に捜索できる「空の最初のエージェント」を標榜する。山火事対応や国境監視、インフラ防護など、人の常時監視を前提としない自律運用への転換を訴求する必要があり、そのビジョンを視覚的に伝えるブランドサイトが求められた。",
+    "execution": "制作はNext.jsとWebGLを用いた3D・インタラクティブ表現を得意とするbasement.studioが担当。黒基調のミニマルな配色にドローンの熱画像・LiDAR・座標データを模したHUD風UIとブートシーケンス演出を重ね、軍事プロダクトの機能美とテクノロジー企業らしいストーリーテリングを両立させている。",
+    "evaluationImpact": "Awwwards Site of the Day（2026年9月9日）を受賞し、総合7.41/10、開発面のDEV AWARDは7.74/10、創造性は8.00/10と特に高評価を得た。防衛・ハードウェア領域の企業サイトが、抑制されたトーンと精緻な3D演出だけで説得力あるブランド体験を成立させた事例として評価できる。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Tech/AI",
+      "Tech/Web",
+      "Form/Website"
+    ]
+  },
+  {
+    "id": "le-grand-bouquet-2026",
+    "title": "Le Grand Bouquet",
+    "summary": "パリ・デザインウィーク2026、グラン・パレの装飾意匠を活かし床と天井を巨大な発光する一輪の花に変える無料展示",
+    "client": "Uchronia",
+    "agency": "",
+    "categories": [
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.sortiraparis.com/en/what-to-do-in-paris/shopping-fashion/guides/350745-paris-design-week-2026-the-installations-we-ve-already-spotted-ahead-of-the-opening",
+    "thumbnail": "/thumbnails/le-grand-bouquet-2026.jpg",
+    "videoId": "",
+    "overview": "パリのデザインコレクティブUchroniaが、グラン・パレ「ロトンド・ダンタン」で発表した巨大インスタレーション。床の花モザイクと天井の植物装飾を取り込み、会場全体を一輪の巨大な発光する花へと変貌させる。会期は2026年9月11〜20日（月曜休館）で入場無料。",
+    "background": "パリ・デザインウィーク2026の一環として企画。Uchroniaは2019年にJulien Sebbanがパリで設立した多分野型デザインコレクティブで、建築の既存装飾と対話する作品づくりを一貫したテーマとしている。",
+    "execution": "グラン・パレのロトンド・ダンタンにもとから存在する床の花モチーフのモザイクと天井の植物モールディングを起点に、そこから育つように巨大な一輪の花を出現させ、照明で発光させる構成。空間の建築装飾そのものを作品の一部として取り込んだ点が特徴。",
+    "evaluationImpact": "歴史的建造物グラン・パレの装飾様式を活かしながら遊び心のある巨大スケール表現に転換し、無料公開でパリ・デザインウィークの目玉インスタレーションの一つとして複数のメディアに取り上げられた。",
+    "relatedWorks": [
+      {
+        "title": "DAYDREAM (Uchronia × Tiptoe)",
+        "description": "Uchroniaがフランスの家具スタジオTiptoeと組んだコラボコレクション。同時期にパリ・デザインウィークで発表",
+        "url": "https://www.designboom.com/design/designboom-guide-paris-design-week-2026-highlights-maisonobjet/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Form/Installation",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "koganecho-koganecho-bazaar-2026-2026",
+    "title": "黄金町バザール＋上大岡バザール2026 交差する私たち -アートでつながるまち-",
+    "summary": "黄金町(開始20年目)と上大岡(京急百貨店30周年)を初めて同時開催で結び、異なる2つの街の交差を描く地域アートフェスティバル",
+    "client": "特定非営利活動法人黄金町エリアマネジメントセンター",
+    "agency": "",
+    "categories": [
+      "社会包摂",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://koganecho.net/koganecho-bazaar-2026/",
+    "thumbnail": "/thumbnails/koganecho-koganecho-bazaar-2026-2026.jpg",
+    "videoId": "",
+    "overview": "黄金町バザール＋上大岡バザール2026「交差する私たち -アートでつながるまち-」は2026年9月10日〜10月12日、横浜市中区の黄金町エリアと京急百貨店・ウィング上大岡を会場に開催。黄金町16組、上大岡7組、計23組のアーティストが参加し、多様な背景を持つ作家が街なかで作品を発表する。主催はNPO法人黄金町エリアマネジメントセンター。",
+    "background": "黄金町は2008年に「アートによるまちづくり」を掲げて活動を開始し、2026年で約20年目を迎える。一方、京急百貨店・ウィング上大岡は開業30周年。2025年から黄金町の取り組みを上大岡へ拡大しており、歴史も性格も異なる2つの街を同時にアートで結ぶ試みとして、20周年と30周年という節目が重なる2026年に本格展開した。",
+    "execution": "ディレクター山野桂氏のもと、テーマ「交差する私たち」を軸に、黄金町会場（高架下スタジオ・周辺商店街など）と上大岡会場（京急百貨店・ウィング上大岡）で計23組の作品を展示。アーティストツアー、演劇公演『ザジモン!!』、日台対談、こども向けワークショップなど関連プログラムも実施し、来場者が街を回遊しながらアートと出会う構成とした。",
+    "evaluationImpact": "商業施設（京急百貨店）と地域アートNPOが同一テーマ・同時期で連携する試みは珍しく、駅・商店街・百貨店という異なる生活動線をアートでつなぐことで、来街動機の異なる客層の回遊を生む可能性を示した。20年継続してきたまちづくりの蓄積を、新たな商業エリアへ橋渡しする事例としても注目される。",
+    "relatedWorks": [
+      {
+        "title": "黄金町バザール＋上大岡バザール2025「通過中」",
+        "description": "上大岡展開が始まった前回2025年版のバザール。本作2026年版の直接の前身にあたる。",
+        "url": "https://koganecho.net/koganecho-bazaar-2025/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Event",
+      "Form/Exhibition",
+      "Theme/Art",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "46-music-video-2026",
+    "title": "ひなた坂46「風にキンモクセイ」MUSIC VIDEO",
+    "summary": "清水理央の初センター曲を手掛けた大久保拓朗が続投、陽炎のような夏の終わりを描くひなた坂46名義MV。",
+    "client": "日向坂46（ひなた坂46名義）",
+    "agency": "監督: 大久保拓朗",
+    "categories": [
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://bezzy.jp/2026/09/91930/",
+    "thumbnail": "/thumbnails/46-music-video-2026.jpg",
+    "videoId": "",
+    "overview": "日向坂46が四期生ユニット「ひなた坂46」名義で発表した楽曲「風にキンモクセイ」のミュージックビデオ。18thシングル『イチャイチャ虫』（2026年9月30日発売）収録の共通カップリング曲で、センターは四期生の清水理央。2026年9月10日にMV公開と先行配信が同時にスタートした。",
+    "background": "監督は大久保拓朗。清水理央が2022年に初センターを務めた「ブルーベリー＆ラズベリー」も同監督が手掛けており、同じメンバーのセンター曲を続けて任された形となる。テーマは「陽炎だった夏」。",
+    "execution": "過ぎゆく夏を惜しむように仲間たちと精一杯遊び、笑い合いながら思い出を作っていく清水理央を中心に構成。ハッピーでエネルギッシュな空気感の中に、もう戻れない時間への切なさがにじむノスタルジックな世界観で夏の終わりを描いている。",
+    "evaluationImpact": "同一監督が同一メンバーの初センター曲と再センター曲を継続して撮ることで、メンバーの成長を映像面で連続的に記録する構成になっている点が特徴。メディア各社が清水理央の“陽炎”をキーワードにした夏の情景描写を取り上げて報じた。",
+    "relatedWorks": [
+      {
+        "title": "日向坂46『ブルーベリー＆ラズベリー』MUSIC VIDEO",
+        "description": "清水理央の初センター曲。本作と同じく大久保拓朗が監督を務めた日向坂46四期生楽曲のMV。",
+        "url": "https://www.hinatazaka46.com/s/official/contents/lV_Boxqp-ak?ima=0000&link=ROBO004"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/MV",
+      "Theme/Music",
+      "Theme/Entertainment"
+    ]
+  },
+  {
     "id": "ars-electronica-festival-2026-negotiating-humanity-2026",
     "title": "Ars Electronica Festival 2026: Negotiating Humanity",
     "summary": "リンツ市内40会場を舞台化し、AI時代の人間性を問う3部構成の企画展を同時開催した都市型アート×テクノロジー祭典",
