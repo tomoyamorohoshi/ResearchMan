@@ -1,5 +1,39 @@
 [
   {
+    "id": "2-977-lights-over-new-york-harbor-2026",
+    "title": "2,977 Lights Over New York Harbor",
+    "summary": "9.11から25年、犠牲者2,977人を悼み2,977機のドローンがニューヨーク港上空にツインタワーを光で再現した追悼インスタレーション",
+    "client": "New York Foundation for the Arts",
+    "agency": "Sky Elements",
+    "categories": [
+      "空間体験",
+      "社会包摂"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.prnewswire.com/news-releases/2-977-lights-rise-over-new-york-harbor-and-rebuild-the-twin-towers-in-light-302874537.html",
+    "thumbnail": "/thumbnails/2-977-lights-over-new-york-harbor-2026.jpg",
+    "videoId": "",
+    "overview": "2001年9月11日の同時多発テロから25年を迎えるにあたり、ニューヨーク・ハーバー上空に2,977機のドローンを飛ばし、犠牲者2,977人を象徴すると同時にワールドトレードセンターのツインタワーを光で再現した追悼インスタレーション。制作はSky Elements、クリエイティブディレクターはAddison Mehr、デザインはYan Paul Dubbelmanが担当した。",
+    "background": "2026年は9.11から25年の節目にあたり、New York Foundation for the Artsが記念プロジェクトとして企画。失われた2,977人の命を悼むとともに、消えたツインタワーの姿を夜空に呼び戻すことで、記憶を次世代へつなぐ表現手段としてドローンによる大規模ライトショーを選択した。",
+    "execution": "クリエイティブディレクターAddison Mehrとデザイナー Yan Paul Dubbelmanが構成を手がけ、制作はドローンショー専門のSky Elementsが担当。芸術アドバイザーとしてStudio Drift、建築家Shigeru Ban、Dean Maltzが参加し、2,977機の編隊飛行でツインタワーのシルエットを夜空に立体的に描き出した。",
+    "evaluationImpact": "犠牲者と同数のドローン機体を用いる数の象徴性と、失われた建築物を光で再現するという視覚的インパクトを両立させた追悼表現として、PR Newswireなど複数メディアで報じられた。震災・テロの記念表現に、大規模ドローンアートという新しい選択肢を示した事例といえる。",
+    "relatedWorks": [],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Form/Event",
+      "Form/Installation",
+      "Theme/Art",
+      "Theme/SocialGood"
+    ]
+  },
+  {
     "id": "usavionix-2026",
     "title": "USAvionix",
     "summary": "自律偵察ドローン企業USAvionixが、黒基調3DとHUD演出で「空の最初のエージェント」という自社の思想をそのままサイト体験化した",
