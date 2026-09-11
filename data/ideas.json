@@ -13977,5 +13977,203 @@
         "desc": "AIエージェントが画像生成とHTML/CSSを組み合わせ、あとから文字やレイアウトを編集できるポスターを作る研究。"
       }
     ]
+  },
+  {
+    "id": "2026-09-11-1",
+    "date": "2026-09-11",
+    "title": "マスコット顔のポーズ量産",
+    "pattern": "文脈×技術",
+    "seed": "Coca-ColaのCreate Real Magicのようにブランド資産をファンに開放するなら、ComfyUI-Photoshootで自社マスコットの顔の一貫性を保ったまま構図・ポーズ違いの広告カットを無限に量産できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "coca-cola-create-real-magic",
+        "title": "CREATE REAL MAGIC",
+        "desc": "コカ・コーラがGPT-4とDALL-Eを開放し、ファンがブランドアーカイブを使って自由にアート作品を作れるようにした施策。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-photoshoot",
+        "title": "ComfyUI-Photoshoot",
+        "desc": "1人のキャラクターを一度作り込めば、構図・ポーズ・表情違いの写真を一貫性を保ったまま大量生成できるComfyUI拡張。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-11-2",
+    "date": "2026-09-11",
+    "title": "コロナ美術館を3D保存",
+    "pattern": "文脈×技術",
+    "seed": "The Covid Art Museumのように一時代の記録をアーカイブするなら、Gaussian SplatKingで街角や展示物をiPhoneだけで3Dスキャンし、単一ビジュアルでなく立体で残す「時代の博物館」を作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "the-covid-art-museum-2021",
+        "title": "The Covid Art Museum",
+        "desc": "パンデミック下に生まれたアート作品を1点ずつ単一ビジュアルで見せる、世界初のコロナ隔離期間生まれのアート専門ミュージアム。"
+      },
+      {
+        "type": "tech",
+        "id": "gaussian-splatking",
+        "title": "Gaussian SplatKing",
+        "desc": "iPhoneのデュアルレンズとLiDARでガウシアンスプラッティング向けの高品質な撮影データを無料取得できるアプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-11-3",
+    "date": "2026-09-11",
+    "title": "動きでVTuber憑依",
+    "pattern": "文脈×技術",
+    "seed": "ソニーの3D Meet & GreetのようなMR対面体験を、Viggle PINOC×Seedanceワークフローでファン自身の動きをモーキャプしVTuberに憑依させる「逆対面」ライブに発展させられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "3d-meet-greet-mr-vtuber-2026",
+        "title": "ソニー「3D Meet & Greet」MR技術によるVTuberとの対面体験",
+        "desc": "MR技術でVTuberが実空間に現れ対面できる、K-POP型ミート&グリートをバーチャルで実現した体験。"
+      },
+      {
+        "type": "tech",
+        "id": "viggle-pinoc-seedance-workflow",
+        "title": "Viggle PINOC × Seedance ワークフロー",
+        "desc": "動画からモーキャプを抽出し画像1枚からGaussian Splattingキャラを生成、3Dプリビズ後Seedanceで映像化する無料ワークフロー。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-11-4",
+    "date": "2026-09-11",
+    "title": "走行音を消す静寂広告",
+    "pattern": "文脈×技術",
+    "seed": "BMWのMoving Landscapesのように車自体を映さないなら、HS-TasNetで走行中の環境音を23ミリ秒でリアルタイム分離しエンジン音だけを消し去る「静寂の運転」を可聴化する広告も作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "moving-landscapes-bmw",
+        "title": "Moving Landscapes",
+        "desc": "走行中のBMWの車窓から捉えた風景を抽象画のように昇華させた、車を映さない広告。"
+      },
+      {
+        "type": "tech",
+        "id": "hs-tasnet",
+        "title": "HS-TasNet",
+        "desc": "音声のスペクトログラムと波形を同時に扱い、23ミリ秒の極小フレームでボーカル・ドラム等をリアルタイム分離するモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-11-5",
+    "date": "2026-09-11",
+    "title": "歌声だけで揺れる映像",
+    "pattern": "技術×技術",
+    "seed": "Ultimate Vocal Removerで楽曲からボーカルだけを抜き出し、その声の周波数にだけTiXLのリアルタイム・モーショングラフィックスを反応させたら、歌声の「形」だけが見える映像表現ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ultimate-vocal-remover",
+        "title": "Ultimate Vocal Remover (UVR)",
+        "desc": "MDX-NetやDemucsなど複数の最先端AIモデルを切り替えて使える、無料の多OS対応ボーカル・楽器分離アプリ。"
+      },
+      {
+        "type": "tech",
+        "id": "tixl",
+        "title": "TiXL（旧称 Tooll3）",
+        "desc": "音楽やMIDIに反応して映像がその場で変化する、無料のリアルタイム・モーショングラフィックス制作ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-11-6",
+    "date": "2026-09-11",
+    "title": "指示文で歩かす点群空間",
+    "pattern": "技術×技術",
+    "seed": "YaGSでUnreal上に実写風の点群3D空間を奥行き正しく構築し、そこにQwen-Video-Editの指示文編集で後から人物を歩かせるような合成をテキストだけで行えるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "yags",
+        "title": "YaGS",
+        "desc": "Unreal Engine上でGaussian Splattingを通常の3Dモデルと同じく奥行きで正しく重ねられる無料プラグイン。"
+      },
+      {
+        "type": "tech",
+        "id": "qwen-video-edit",
+        "title": "Qwen-Video-Edit",
+        "desc": "動画のコマを1枚の巨大画像のように並べ替えることで、指示文だけで動画編集を実現するAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-11-7",
+    "date": "2026-09-11",
+    "title": "環境音の都市ステム化",
+    "pattern": "転用",
+    "seed": "本来は楽曲のボーカル分離用であるmlx-audio-separatorを街の環境録音に転用し、車の走行音・人混み・鳥の声を高速分離して「都市のステム」を作る音のアーカイブに使えるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "mlx-audio-separator",
+        "title": "mlx-audio-separator",
+        "desc": "MacのApple Silicon専用MLXだけで動く音源分離ツール。PyTorch不要で既存ツール最大2.5倍速でステムを書き出せる。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-11-8",
+    "date": "2026-09-11",
+    "title": "生活音の演奏可能な素材化",
+    "pattern": "転用",
+    "seed": "Spotify製の自動採譜AI Basic Pitchを楽曲でなく商品の開封音やドアの軋みに転用し、生活音を「演奏可能なMIDI」に変換してブランドサウンドロゴ用の素材集めに使えるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "basic-pitch",
+        "title": "Basic Pitch",
+        "desc": "音楽ファイルをアップロードするだけで、ピッチベンドまで含めた複数楽器・ボーカルをMIDI化できるSpotify製の軽量自動採譜AI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-11-9",
+    "date": "2026-09-11",
+    "title": "消えゆく道具を糸の前に保存",
+    "pattern": "文脈×技術",
+    "seed": "塩田千春の「線の記憶」のように消えゆく生活道具を糸で編み込む前に、LocalMeshで島に残る古い機械を1枚の写真からローカルGPUだけで3Dメッシュ化し、「物の記憶」をデジタル保存できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2025-te23",
+        "title": "線の記憶",
+        "desc": "豊島に残された素麺の製造機を赤い糸で編み込み、島の生活の記憶を紡ぐ塩田千春の新作。"
+      },
+      {
+        "type": "tech",
+        "id": "localmesh",
+        "title": "LocalMesh",
+        "desc": "写真1枚から3Dガウシアンスプラットとテクスチャ付き3Dメッシュを自動生成する、クラウド不要のWindows向けローカルアプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-11-10",
+    "date": "2026-09-11",
+    "title": "雑音現場から顔と声だけ中継",
+    "pattern": "技術×技術",
+    "seed": "HS-TasNetでライブ配信の音声からノイズだけを23ミリ秒で分離しつつ、LeapTalkで話者の顔をリアルタイム生成すれば、雑音だらけの現場から「クリアな顔と声」だけを合成中継できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "hs-tasnet",
+        "title": "HS-TasNet",
+        "desc": "音声のスペクトログラムと波形を同時に扱い、23ミリ秒の極小フレームでボーカル・ドラム等をリアルタイム分離するモデル。"
+      },
+      {
+        "type": "tech",
+        "id": "leaptalk",
+        "title": "LeapTalk",
+        "desc": "話す顔を1回の計算ステップ・最大200FPSで生成できる高速技術。写真1枚と音声だけでリアルタイムのしゃべるアバター映像を作れる。"
+      }
+    ]
   }
 ]
