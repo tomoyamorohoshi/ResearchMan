@@ -1,5 +1,109 @@
 [
   {
+    "id": "umr",
+    "title": "UMR (Unified Motion Retargeting)",
+    "org": "HKUST(Guangzhou) / Hanyang University / HKU / Noitom Robotics",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "Spatial/3D"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "モーションキャプチャした人間の動きを、体格も関節数も異なるヒューマノイドロボットへ、手作業の対応づけなしで自動転送できるAI技術。",
+    "point": "このAI技術は、人間のダンサーやパフォーマーの動きを撮ったモーションキャプチャ映像を、体の大きさも関節の数もまったく違うヒューマノイドロボットの動きに、人手による細かい対応づけ作業なしで自動的に変換できる仕組みです。従来は「肩はここ、肘はここ」と人間とロボットの部位を一つひとつ手作業で結びつける必要がありましたが、UMRは体の表面全体を点の集まり(点群)として捉え、その形の対応関係をAIに学習させることで、この面倒な作業を自動化しました。広告やブランド体験の現場では、実際にロボットにダンスパフォーマンスをさせたり、店頭やイベント会場でヒューマノイドロボットが人間のような自然な動きで観客とふれあう演出を作ったりする際に、既存のモーションキャプチャ素材をそのまま使い回せる可能性があります。ロボット展示デモの制作コストや期間を圧縮できる基礎技術として注目できます。",
+    "detail": "UMRはまず、人間とロボットそれぞれの気をつけの姿勢(T字姿勢)の体表面を細かい点の集まり(点群)として捉え、「人間のこの部分の点は、ロボットのこの部分の点に対応する」という関係をニューラルネットワークに学習させます。次にその対応関係をもとに、動画から得た人間の動きの1コマごとに、点の位置や向き、体が地面や物に触れる接触情報までできるだけ一致するように、ロボットの関節の動かし方を逆算します。\n\nこれまでのモーション変換技術は、開発者が「右手首はここ」「左足首はここ」と人間とロボットの主要な関節ペアを一つずつ手作業で設定する必要があり、ロボットの機種が変わるたびにやり直しが発生していました。UMRは体表面の形をまるごと対応づけるため、二足歩行ロボットから犬型ロボット、テニスラケットを持たせたロボットまで、機種や持ち物が変わっても同じ枠組みで動きを移植できる点が新しい部分です。\n\nコードはGitHubで無料公開(MIT)されており、動作にはNVIDIA製GPUを積んだLinuxパソコンと、人体3Dモデルデータ(SMPL-X、研究用ライセンスで入手可)が必要です。対応させたいロボットの3Dモデルさえ用意すれば、既存のモーションキャプチャ素材から新しいロボットの動きを作れます。ロボット実機がなくても、ブラウザ上のインタラクティブデモや物理シミュレーター(MuJoCo)で動きを確認できます。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "コード本体はMIT。動作に必要な人体3DモデルSMPL-Xは公式配布元の別ライセンス(研究/条件付き商用)への同意が必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/hanyang9/UMR"
+      },
+      {
+        "kind": "project",
+        "url": "https://hanyang9.github.io/UMR/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2609.02134"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/umr.jpg",
+    "relatedWorks": [
+      {
+        "title": "GMR (General Motion Retargeting)",
+        "description": "CPU上でリアルタイム動作する人間→ヒューマノイドのモーションリターゲティング(ICRA 2026)",
+        "url": "https://github.com/YanjieZe/GMR"
+      },
+      {
+        "title": "MotionBricks (NVIDIA)",
+        "description": "35万種以上の動きをリアルタイム生成するNVIDIA発のモーション基盤(既掲載技術)",
+        "url": "https://github.com/GR00T-WholeBodyControl/motionbricks"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "hktex",
+    "title": "HKTex (Heat Kernel Textures)",
+    "org": "Imperial College London",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "3DモデルにテクスチャCG絵柄を貼る際に必須だった「UV展開」という下準備作業を丸ごと不要にする新手法。ECCV 2026ベストペーパー受賞。",
+    "point": "3DのキャラクターやCG商品を作るとき、立体の表面に絵柄(テクスチャ)を貼るには、まず立体を切り開いて平らな展開図(UVマップ)を作る「UV展開」という地味で手間のかかる下準備が必要でした。この作業は継ぎ目や絵の歪みを生みやすく、経験を積んだ3DCGアーティストでも時間のかかる工程です。HKTexはこの展開図作りの工程そのものを飛ばし、立体の表面に直接、絵柄の情報を「熱の伝わり方」の数式を応用したぼかしの塊(熱核)として貼り付けてしまう新方式です。結果として継ぎ目のない、歪みの少ないテクスチャを、これまでより少ないデータ量で扱えます。広告制作の現場では、キャンペーン用の3Dキャラクターや商品CGを作る際の下準備の手間を減らし、AIで自動生成した3Dモデルにも綺麗にテクスチャを乗せやすくなるため、3D制作の高速化につながる基礎技術として期待できます。",
+    "detail": "通常の3Dモデルは、立体の表面を平らな紙のように切り開いて広げた「UVマップ」という展開図の上に絵を描き、それを立体に貼り戻すことでテクスチャを表現します。HKTexはこの展開図を作らず、代わりに立体表面の上に「熱核(heat kernel)」と呼ばれる、温泉の熱がじわっと広がっていくような形のぼかし模様を無数に配置し、その重なり具合で色や模様を表現します。話題の「3Dガウシアン・スプラッティング」(空間に半透明の小さな点をたくさん置いて風景を再現する手法)の考え方を、平らな空間ではなく立体の曲面上で使えるように応用したものです。\n\nこれまでのUV展開は、立体をどう切り開くかによって継ぎ目が絵柄に段差を作ったり、部位ごとに絵の解像度がバラバラになったりする問題を避けられませんでした。HKTexは展開作業自体が不要なため、これらの問題が原理的に起きません。また、既存の写真のようなテクスチャからの変換だけでなく、複数方向から撮った写真(マルチビュー画像)から直接テクスチャを学習させることもできます。\n\nコードはGitHubで無料公開(MIT)されており、動作にはLinux環境とNVIDIA製GPU(CUDA対応)が必要です。現時点ではBlender等の3DCGソフトにすぐ組み込めるプラグインではなくPythonでの実行が前提のため、実務で使うにはエンジニアの手を借りた統合作業が必要になります。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "コードはMIT、プロジェクトページはCC BY-SA 4.0。依存ライブラリDiGeoのライセンスは別途要確認"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/circle-group/hktex"
+      },
+      {
+        "kind": "project",
+        "url": "https://circle-group.github.io/research/HeatKernelTextures"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2609.07557"
+      },
+      {
+        "kind": "video",
+        "url": "https://youtu.be/FA0QSIK1tNU"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/hktex.jpg",
+    "relatedWorks": [
+      {
+        "title": "3D Gaussian Splatting",
+        "description": "空間に半透明の点群を配置して3D風景を再現する技術。HKTexが着想を得た元手法",
+        "url": "https://github.com/graphdeco-inria/gaussian-splatting"
+      },
+      {
+        "title": "UV-free Texture Generation with Denoising and Geodesic Heat Diffusions",
+        "description": "同じく熱拡散を使いUV展開を回避するテクスチャ生成の関連研究",
+        "url": "https://arxiv.org/abs/2408.16762"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "sa3-browser-tools",
     "title": "SA3 Browser Tools (mucking_around_time_with_stable_audio_3)",
     "org": "little-scale (Sebastian Tomczak)",
