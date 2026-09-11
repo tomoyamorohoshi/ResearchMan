@@ -221,11 +221,14 @@ async function handleEvent(event: unknown, config: LineConfig, deps: LineWebhook
   }
 
   if (outcome.kind === "addCase") {
-    // 事例追加（URL投稿）は確認ステップなしで即ジョブ投入する（item1）。pendingは
-    // そもそも作っていない（wizard.ts::stepIdle参照）ので保存操作は不要。
+    // 事例追加（URL投稿）は確認ステップなしで即ジョブ投入する（item1）。addCase自体は
+    // pendingを作らないが、menu状態からURL投稿で入ってきた場合に古いpendingが残っていると
+    // 次のメッセージでまたメニューに戻ってしまうため、"execute"分岐と同じく
+    // 「ジョブ投入＝会話終了」としてここでnullクリアする（2026-09-11修正）。
     // lineUserId をリクエストに含めることで、パイプライン（addCase.ts）が完了/失敗時に
     // このuserId宛へ結果をpushする（API入口=Claude Code一括処理はlineUserIdが無いため
     // LINE通知はスキップされる）。
+    await deps.savePending(null);
     try {
       const job = await deps.createJob("add-case", { url: outcome.url, context: outcome.context, lineUserId: userId });
       await deps.respond(token, replyToken, userId, job.status === "queued" ? buildQueuedAcceptedText() : buildAddCaseAcceptedText());

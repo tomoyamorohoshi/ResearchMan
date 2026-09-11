@@ -549,6 +549,21 @@ test("事例追加: URL入りテキストは確認なしで即ジョブ投入し
   });
 });
 
+test("事例追加: menu状態のpendingがある状態でURLを送ると、ジョブ投入しpendingをnullにクリアする", async () => {
+  const fakes: Fakes = {
+    pushes: [],
+    createJobCalls: [],
+    pendingStore: { userId: USER_ID, state: "menu", expiresAt: "2026-07-12T00:30:00.000Z" },
+  };
+  const config: LineConfig = { channelSecret: SECRET, channelAccessToken: "tok", allowedUserId: USER_ID };
+  await withApp(buildDeps(config, fakes), async (baseUrl) => {
+    await post(baseUrl, eventBody([textEvent("https://example.com/article/456")]));
+    await waitFor(() => fakes.createJobCalls.length > 0);
+    assert.equal(fakes.createJobCalls[0].tab, "add-case");
+    assert.equal(fakes.pendingStore, null);
+  });
+});
+
 test("事例追加: URL+補足テキストはcontextとしてジョブに渡される", async () => {
   const fakes: Fakes = { pushes: [], createJobCalls: [], pendingStore: null };
   const config: LineConfig = { channelSecret: SECRET, channelAccessToken: "tok", allowedUserId: USER_ID };

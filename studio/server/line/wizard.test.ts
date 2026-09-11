@@ -136,6 +136,24 @@ test("menu: 認識できない入力はmenuを再掲する", () => {
   assert.match(r.reply, /何をしますか/);
 });
 
+test("menu: URL入りテキストはaddCase outcomeになる（stepIdleと同じ解釈がmenu状態でも効く）", () => {
+  const outcome = stepWizard(menuPending, "https://x.com/foo/status/123", NOW, USER);
+  assert.equal(outcome.kind, "addCase");
+  if (outcome.kind === "addCase") {
+    assert.equal(outcome.url, "https://x.com/foo/status/123");
+    assert.equal(outcome.context, "");
+  }
+});
+
+test("menu: ショートカット文はneedsStructure outcomeになる（stepIdleと同じ解釈がmenu状態でも効く）", () => {
+  const outcome = stepWizard(menuPending, "調べて AIを使ったMV", NOW, USER);
+  assert.equal(outcome.kind, "needsStructure");
+  if (outcome.kind === "needsStructure") {
+    assert.equal(outcome.requestKind, "Case Study");
+    assert.equal(outcome.freeText, "AIを使ったMV");
+  }
+});
+
 // ── await_theme / confirm_theme ──────────────────────────────────
 
 const awaitThemePending: LinePending = { userId: USER, state: "await_theme", kind: "Case Study", expiresAt: "x" };

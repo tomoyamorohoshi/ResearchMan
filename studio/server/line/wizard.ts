@@ -218,12 +218,12 @@ function firstStepFor(kind: LineRequestKind): { state: WizardState; reply: strin
   return { state: "await_theme", reply: buildThemeQuestionText() };
 }
 
-function stepIdle(text: string, userId: string, now: Date): WizardStepOutcome {
-  const kindSel = matchMenuSelection(text);
-  if (kindSel) {
-    const { state, reply } = firstStepFor(kindSel);
-    return { kind: "reply", pending: freshPending(userId, state, now, { kind: kindSel }), reply };
-  }
+/**
+ * メニュー選択以外のテキストの共通解釈（stepIdle/stepMenuで共有）。
+ * classifyRequestText（ショートカット文）→ extractAddCaseRequest（URL投稿）の順で試し、
+ * どちらにも当たらなければnullを返す（呼び出し側がフォールバック=メニュー提示/再掲を行う）。
+ */
+function interpretFreeText(text: string): WizardStepOutcome | null {
   const classified = classifyRequestText(text);
   if (classified) {
     return { kind: "needsStructure", requestKind: classified.kind, freeText: classified.rest };
@@ -235,16 +235,32 @@ function stepIdle(text: string, userId: string, now: Date): WizardStepOutcome {
   if (addCase) {
     return { kind: "addCase", url: addCase.url, context: addCase.context };
   }
+  return null;
+}
+
+function stepIdle(text: string, userId: string, now: Date): WizardStepOutcome {
+  const kindSel = matchMenuSelection(text);
+  if (kindSel) {
+    const { state, reply } = firstStepFor(kindSel);
+    return { kind: "reply", pending: freshPending(userId, state, now, { kind: kindSel }), reply };
+  }
+  const interpreted = interpretFreeText(text);
+  if (interpreted) return interpreted;
   return { kind: "reply", pending: freshPending(userId, "menu", now), reply: buildMenuText() };
 }
 
 function stepMenu(pending: LinePending, text: string, now: Date): WizardStepOutcome {
   const kindSel = matchMenuSelection(text);
-  if (!kindSel) {
-    return { kind: "reply", pending: withState(pending, {}, now), reply: buildMenuText() };
+  if (kindSel) {
+    const { state, reply } = firstStepFor(kindSel);
+    return { kind: "reply", pending: withState(pending, { state, kind: kindSel }, now), reply };
   }
-  const { state, reply } = firstStepFor(kindSel);
-  return { kind: "reply", pending: withState(pending, { state, kind: kindSel }, now), reply };
+  // stepIdleと同じ解釈（needsStructure/addCase）を試す。menu状態はidleと同じ「何も定まって
+  // いない」状態のため、ここで機能が欠落すると事例追加・ショートカットが永久に効かなくなる
+  // （2026-09-11修正: matchMenuSelectionのみでメニュー再掲に潰していたバグ）。
+  const interpreted = interpretFreeText(text);
+  if (interpreted) return interpreted;
+  return { kind: "reply", pending: withState(pending, {}, now), reply: buildMenuText() };
 }
 
 function stepAwaitTheme(pending: LinePending, text: string, now: Date): WizardStepOutcome {
