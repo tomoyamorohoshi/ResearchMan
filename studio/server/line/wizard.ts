@@ -3,11 +3,15 @@
  *
  * 状態機械（pending===null は「idle」を表す。永続化される状態はpending.stateのWizardState）:
  *
- *   idle ──(番号/種別名)───────────────────────────────────────────► await_theme
- *   idle ──(「調べて」等のショートカット)──► [needsStructure: Claude解釈] ─► final_confirm
+ *   idle/menu ──(番号/種別名)─────────────────────────────────────────► await_theme
+ *   idle/menu ──(「調べて」等のショートカット)──► [needsStructure: Claude解釈] ─► final_confirm
+ *   idle/menu ──(URL入りテキスト。事例追加)──────► [addCase: 即createJob]
  *   idle ──(その他任意テキスト)───────────────────────────────────────► menu
- *   menu ──(番号/種別名)──────────────────────────────────────────────► await_theme
- *   menu ──(それ以外)────────────────────────────────────────────────► menu（再掲）
+ *   menu ──(その他任意テキスト)───────────────────────────────────────► menu（再掲）
+ *
+ *   idle/menuの自由入力解釈は共通ヘルパーinterpretFreeTextが担う（判定順:
+ *   matchMenuSelection → classifyRequestText → extractAddCaseRequest → 該当なしなら
+ *   idleはmenuへ、menuはmenu再掲）。
  *   await_theme ──(任意テキスト)─────────────────────────────────────► confirm_theme
  *   confirm_theme ──(y)── research ──► await_viewpoint / ──(y)── idea ──► await_refs
  *   confirm_theme ──(n)──────────────────────────────────────────────► await_theme
