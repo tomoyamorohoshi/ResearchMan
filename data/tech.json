@@ -1,5 +1,115 @@
 [
   {
+    "id": "three-js-native-gaussian-splat-renderer",
+    "title": "Three.js Native Gaussian Splat Renderer",
+    "org": "three.js (mrdoob / OpenJS Foundation, 実装: Ben Houston 氏ら)",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "ブラウザで3D表現をつくる定番の無料ライブラリ「Three.js」が、写真から作った点の集合で実写の立体空間をリアルに描く技術『Gaussian Splatting』を、外部ライブラリ無しの標準機能としてついに搭載した。",
+    "point": "Three.jsは世界中のWebサイトやゲーム、VR/AR体験に使われている『ブラウザで3D映像を作るための共通の土台』です。今回のアップデートで、実写の風景や人物を無数の点(スプラット)として再現するGaussian Splattingという技術が、外部の追加ライブラリなしで最初から使えるようになりました。たとえるなら、これまで別売りだった高性能レンズが、標準レンズとしてカメラ本体に最初から付いてくるようになったようなものです。広告や展示の現場では、スマホやドローンで撮影した実際の空間をそのままWebサイトやAR体験に取り込み、ユーザーがその場で視点を動かして『歩き回れる』表現が、今までより簡単かつ軽く作れるようになります。店舗のバーチャル内覧、商品の360度ビジュアル、ロケ地の記録アーカイブなど、実写×3D体験の制作ハードルが一段下がったのが最大のポイントです。",
+    "detail": "Gaussian Splattingは、ドローンやスマホで対象物を多方向から撮った写真から、色と透明感を持つ無数の『ぼんやりした点』を自動計算し、重ね合わせて立体空間を再現する技術です。三角形の面を積み上げる従来の3Dモデルと違い、髪の毛や反射、ガラスのような複雑な質感も写真そのままの見た目で残せます。\n\nこれまでThree.js上でこの技術を使うには、Googleの可視化ライブラリluma.glや、コミュニティ製のGaussianSplats3Dなど外部ライブラリを別途組み込む必要がありました。今回、これらの実装をもとにした公式のローダー・レンダラーが本体にマージされ、次世代の高速描画API『WebGPU』と従来のWebGLの両方に対応。視点によって色味が変わる『スフェリカルハーモニクス』という光の表現や、クリックで点群を選べるレイキャスティング機能も含み、表示だけでなく編集やインタラクションを伴う用途にも使えます。\n\n利用は無料で、Three.jsをWebページに読み込むだけです。素材となるデータはPolycamやLuma AIなどのスマホアプリ、あるいはドローン撮影+専用ソフトで作成でき、専門的な3D制作ソフトがなくても実写空間のスキャンが可能。PLY・SPLAT・SPZ・glTFなど主要フォーマットに対応しており、他ツールで作った素材をそのまま持ち込める点も導入のハードルを下げています。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "three.js本体は無料オープンソース(MIT)。商用サイト・製品への組み込みも無償で可能"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/mrdoob/three.js/pull/33950"
+      },
+      {
+        "kind": "project",
+        "url": "https://threejs.org"
+      },
+      {
+        "kind": "post",
+        "url": "https://discourse.threejs.org/t/native-gaussian-splatting-in-three-js-for-webgpu-renderer/93509"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/three-js-native-gaussian-splat-renderer.jpg",
+    "relatedWorks": [
+      {
+        "title": "PlayCanvas SuperSplat 3.0",
+        "description": "同じ週にWebGPU専用へ全面刷新された、ブラウザ完結のGaussian Splat編集ツール",
+        "url": "https://blog.playcanvas.com/new-in-supersplat-editor-3-0-rebuilt-on-webgpu"
+      },
+      {
+        "title": "GaussianSplats3D (mkkellogg)",
+        "description": "Three.jsコミュニティが標準搭載以前から使ってきた非公式のビューア実装",
+        "url": "https://github.com/mkkellogg/GaussianSplats3D"
+      },
+      {
+        "title": "luma.gl splats",
+        "description": "Google/Luma AI系の可視化ライブラリが提供する同種のSplatレンダリングモジュール",
+        "url": "https://github.com/visgl/luma.gl"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "supersplat-editor-3-0",
+    "title": "SuperSplat Editor 3.0",
+    "org": "PlayCanvas",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "実写を点群で再現する『Gaussian Splatting』の無料オープンソース編集ソフト『SuperSplat』が全面刷新され、大容量シーンでも動作が大幅に軽量・高速になった。",
+    "point": "SuperSplatは、ゲームエンジンPlayCanvasが無料公開しているブラウザ完結型のGaussian Splatting編集ツールです。バージョン3.0では描画の仕組みを最新の高速描画API『WebGPU』専用に作り直し、これまでブラウザのメモリを1.5GB以上も使っていた大きな3Dシーンが、わずか100MB程度まで軽量化されました。たとえるなら、重い動画編集ソフトがブラウザだけで、しかも一般的なノートPCでもサクサク動くようになったようなイメージです。範囲選択や色調整の機能も強化されており、スマホやドローンで撮った実写空間を、インストール不要のブラウザ上でそのままトリミング・色合わせして仕上げ、Webや展示用コンテンツとして書き出す一連の作業がより実用的になりました。低スペックな端末でも大容量の実写3Dデータを扱えるようになった点が、広告制作の現場でも効いてきます。",
+    "detail": "Gaussian Splattingで撮影した空間データは、そのままだと不要な背景が写り込んでいたり色味が実物とずれていたりすることが多く、公開前に『点群を選んで消す』『色を整える』といった編集作業が必要です。SuperSplatはこの編集作業をブラウザだけで行える専用エディタとして、PlayCanvas社が2023年から無料公開してきました。\n\n3.0での最大の変更は、旧世代の描画API WebGLを切り捨て、WebGPU専用に処理を全面的に作り直したことです。点の並べ替えや視点に応じた描画順の計算といった重い処理をすべてGPU側に任せることで、同じ440万点規模のシーンでもメモリ使用量が15分の1程度まで下がり、視点操作の反応もこれまで秒単位かかっていたものが数十ミリ秒に短縮されました。範囲選択の精度を高める新ツールや、選択範囲だけの色調整機能も追加され、細部を狙って直す編集がしやすくなっています。\n\n利用は完全無料・オープンソース(MITライセンス)で、https://superspl.at/editor にアクセスするだけで追加ソフトのインストールなしに使い始められます。素材はスマホの空間キャプチャアプリやドローン撮影データをPLY/SPLAT/SOGなどの形式で用意すればよく、WebGPU対応ブラウザさえあれば、広告代理店や展示会社が自前でGaussian Splattingの実写素材を仕上げ、Web・AR書き出しまで内製できる体制が整います。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "無料オープンソース。インストール不要でブラウザからそのまま利用可能"
+    },
+    "links": [
+      {
+        "kind": "project",
+        "url": "https://superspl.at/editor"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/playcanvas/supersplat"
+      },
+      {
+        "kind": "post",
+        "url": "https://blog.playcanvas.com/new-in-supersplat-editor-3-0-rebuilt-on-webgpu"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/supersplat-editor-3-0.jpg",
+    "relatedWorks": [
+      {
+        "title": "Three.js Native Gaussian Splat Renderer",
+        "description": "同じ週にライブラリ本体へGaussian Splattingを標準搭載したWeb3D側の動き",
+        "url": "https://discourse.threejs.org/t/native-gaussian-splatting-in-three-js-for-webgpu-renderer/93509"
+      },
+      {
+        "title": "godot-gaussian-splatting (GDGS)",
+        "description": "ゲームエンジンGodot向けの同種のGaussian Splattingレンダリングプラグイン",
+        "url": "https://github.com/ReconWorldLab/godot-gaussian-splatting"
+      },
+      {
+        "title": "XGRIDS LCC Web SDK (WebXR対応)",
+        "description": "撮影機材からWeb/XR配信までをつなぐGaussian Splattingキャプチャ側のエコシステム",
+        "url": "https://radiancefields.com/xgrids-adds-webxr-support-to-the-lcc-web-sdk-in-v0.6.3"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "umr",
     "title": "UMR (Unified Motion Retargeting)",
     "org": "HKUST(Guangzhou) / Hanyang University / HKU / Noitom Robotics",
