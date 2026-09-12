@@ -14175,5 +14175,203 @@
         "desc": "話す顔を1回の計算ステップ・最大200FPSで生成できる高速技術。写真1枚と音声だけでリアルタイムのしゃべるアバター映像を作れる。"
       }
     ]
+  },
+  {
+    "id": "2026-09-12-1",
+    "date": "2026-09-12",
+    "title": "応答するインスタレーション",
+    "pattern": "文脈×技術",
+    "seed": "SEA VINEのように空き家に磁器の植物を広げる展示に、EmoMimeの表情を増幅するウェアラブルロボットアームを添えたら、来場者の反応でつるが震え応答するインスタレーションになるかも",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2010-048",
+        "title": "SEA VINE",
+        "desc": "磁器でつくられた植物のつるが空き家の内部に広がる瀬戸内国際芸術祭のインスタレーション、約10年公開された作品"
+      },
+      {
+        "type": "tech",
+        "id": "emomime",
+        "title": "EmoMime",
+        "desc": "顔のそばでも安全に動き、表情やしぐさを増幅して伝える人間の手の形をしたウェアラブルロボットアーム"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-12-2",
+    "date": "2026-09-12",
+    "title": "踊るミュージアムロゴ",
+    "pattern": "文脈×技術",
+    "seed": "展示量に応じて『W』が伸縮するWhitney Museumのグラフィックアイデンティティに、ARDYの約33ミリ秒モーション生成を重ねたら、来館者数に応じてロゴ自体が踊るように動き続けるサインになるかも",
+    "refs": [
+      {
+        "type": "case",
+        "id": "whitney-museum-graphic-identity-responsive-w-2013",
+        "title": "Whitney Museum Graphic Identity (Responsive W)",
+        "desc": "周囲のコンテンツ量に応じてジグザグの『W』が伸縮するホイットニー美術館のレスポンシブなグラフィックアイデンティティ"
+      },
+      {
+        "type": "tech",
+        "id": "ardy",
+        "title": "ARDY",
+        "desc": "テキスト指示だけで人体の3Dモーションを約33ミリ秒ごとに生成し続けられるNVIDIAとETH ZürichのAIモデル"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-12-3",
+    "date": "2026-09-12",
+    "title": "パーソナル予防啓発ソング",
+    "pattern": "文脈×技術",
+    "seed": "F*ck Cancerが音楽とアニメーションで予防啓発を伝えた手法に、ACE-Step 1.5の楽曲丸ごと生成AIを掛けたら、年代や状況ごとにパーソナライズした予防啓発ソングを量産できるかも",
+    "refs": [
+      {
+        "type": "case",
+        "id": "fck-cancer-beat-cancer-off",
+        "title": "Beat Cancer Off",
+        "desc": "射精頻度と前立腺がんリスクの関係を音楽とアニメーションでユーモラスに伝え男性の予防行動を促した健康啓発キャンペーン"
+      },
+      {
+        "type": "tech",
+        "id": "ace-step-1-5",
+        "title": "ACE-Step 1.5",
+        "desc": "歌詞とジャンルを指定するだけでボーカル入りの楽曲を丸ごと生成できる自分のPCで動くオープンソース音楽AI"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-12-4",
+    "date": "2026-09-12",
+    "title": "ロボット動作教材の自動量産",
+    "pattern": "技術×技術",
+    "seed": "物理的な正しさを重視するLingBot-Videoの動画生成AIと、指示にリアルタイムで追従するTextOpの全身モーション生成AIを組み合わせたら、ロボットの動作学習教材を自動で無限に作れるかも",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "lingbot-video",
+        "title": "LingBot-Video",
+        "desc": "見た目の美しさより物理的な正しさを重視して作られた、ロボットの動作学習にも使える大規模な動画生成AIモデル"
+      },
+      {
+        "type": "tech",
+        "id": "textop",
+        "title": "TextOp",
+        "desc": "テキストで指示するとヒューマノイドロボットが全身モーションをその場で生成・実行し動作中の指示変更にも追従するAI"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-12-5",
+    "date": "2026-09-12",
+    "title": "全視点統合3D空間",
+    "pattern": "技術×技術",
+    "seed": "複数の点群を位置合わせ統合するPoint Cloud Merger for Blenderと、360度映像から自動でGaussian Splatを作る360 Gaussian Proを組み合わせたら、地上・空撮・360度の全視点を1つの3D空間に統合できるかも",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "point-cloud-merger-for-blender",
+        "title": "Point Cloud Merger for Blender (PCM)",
+        "desc": "地上撮影やドローン空撮など別々に作った複数の点群データをBlender上でクリックだけで位置合わせして統合できるアドオン"
+      },
+      {
+        "type": "tech",
+        "id": "360-gaussian-pro",
+        "title": "360 Gaussian Pro",
+        "desc": "360度カメラの映像から自動でGaussian Splat(立体点群)を生成する有償デスクトップアプリ"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-12-6",
+    "date": "2026-09-12",
+    "title": "頭の動きで操る展示",
+    "pattern": "転用",
+    "seed": "本来は演奏補助であるbFaaaPの頭の傾きでペダルを操作する仕組みを転用したら、両手がふさがった展示会場で来場者が頭の動きだけでインスタレーションの音や照明を操作できるかも",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "bfaaap",
+        "title": "bFaaaP (barrier-Free assist as a Pedal)",
+        "desc": "頭の傾きだけでピアノのサスティンペダルを操作できるiPhoneの顔認識を使った日本発のオープンソース支援楽器システム"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-12-7",
+    "date": "2026-09-12",
+    "title": "店内音を触れる体験",
+    "pattern": "転用",
+    "seed": "本来は楽曲制作用であるSA3 Browser Toolsのブラウザ音響編集環境を転用したら、来店客がその場で店内の環境音を触って作り込める体験型店舗デザインに使えるかも",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "sa3-browser-tools",
+        "title": "SA3 Browser Tools (mucking_around_time_with_stable_audio_3)",
+        "desc": "AIオーディオモデルStable Audio 3を、生成過程を手で触って作り込めるブラウザ制作環境に拡張するオープンソースツールキット"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-12-8",
+    "date": "2026-09-12",
+    "title": "会話で進む漫画動画化",
+    "pattern": "文脈×技術",
+    "seed": "ギザコミのテキストだけでWEBTOONを自動生成する仕組みに、対話しながら編集を進めるFireRed-OpenStorylineを掛けたら、漫画からそのまま動画化まで会話だけで進む制作フローができるかも",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-6cep1w-2026",
+        "title": "ギザコミ",
+        "desc": "テキスト入力だけでコマ割り・作画・フキダシ配置まで自動生成するWEBTOON制作AIプラットフォーム"
+      },
+      {
+        "type": "tech",
+        "id": "firered-openstoryline",
+        "title": "FireRed-OpenStoryline",
+        "desc": "話しかけると素材選び・カット・つなぎまで自動化し人が途中で介入できる対話的な動画編集エージェント"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-12-9",
+    "date": "2026-09-12",
+    "title": "ロケ不要の映画制作",
+    "pattern": "技術×技術",
+    "seed": "空をきれいに分離するGaussianSplatting.jlのSky Dome機能で作った背景空間を、AI Movie Studio v2の絵コンテ映像化パイプラインに取り込んだら、ロケなしでカット割り済みの実写風映画を作れるかも",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "gaussiansplatting-jl-v2-0-0",
+        "title": "GaussianSplatting.jl v2.0.0",
+        "desc": "Julia言語で書かれたGaussian Splatting実装ライブラリで空をきれいに分離するSky Dome機能を持つ"
+      },
+      {
+        "type": "tech",
+        "id": "ai-movie-studio-v2",
+        "title": "AI Movie Studio v2",
+        "desc": "3Dカメラでカット割りを設計しAIで絵コンテから映像・音声まで作って編集ソフトへ書き出せるブラウザ制作ワークステーション"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-12-10",
+    "date": "2026-09-12",
+    "title": "一点物パッケージ生成",
+    "pattern": "転用",
+    "seed": "Nördik Impaktが来場者ごとに一枚ずつポスターを自動生成した仕組みを転用したら、Tiffany & Co. x Netflix's Frankensteinのような高級ブランドコラボで購入者ごとに一点物のパッケージデザインを作れるかも",
+    "refs": [
+      {
+        "type": "case",
+        "id": "n-rdik-impakt-20-poster-generator-2018",
+        "title": "Nördik Impakt 20 – Poster Generator",
+        "desc": "音楽祭20周年に向けジェネレーティブソフトで来場者ごとに一枚ずつ異なるポスターを自動生成した企画"
+      },
+      {
+        "type": "case",
+        "id": "tiffany-co-netflix-frankenstein",
+        "title": "Tiffany & Co. x Netflix's Frankenstein",
+        "desc": "ラグジュアリージュエリーが映画の語り手になったNetflixと高級ブランドの初の統合的コラボレーション事例"
+      }
+    ]
   }
 ]
