@@ -1,5 +1,147 @@
 [
   {
+    "id": "auk",
+    "title": "AuK",
+    "org": "Tencent Hunyuan",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "声の生成・声質変換・ノイズ除去・話者分離までを1つのAIモデルと自然言語の指示だけでこなす、Tencent発のオープンソース音声基盤モデル。",
+    "point": "AuKは「この声をもっと明るく」「ノイズを消して」といった自然な指示文だけで、声の合成・声質変換・感情の付け替え・ノイズ除去・複数人の声の分離までを1つのAIモデルでこなせる点が新しい。これまでは声を作るAI、ノイズを消すAI、声を分離するAIとツールがバラバラで、それぞれの使い方を覚える必要があったが、AuKは1つの窓口で全部済ませられる。しかも重みが公開されているため、クラウドAPIの従量課金なしに自社のPCやサーバーで動かせる。広告制作では、ナレーションの声色を複数パターン試作したり、現場で録った音声のノイズを消してクリアな仕上がりにしたり、SNS動画用に声だけ差し替えて多言語版を素早く作る、といった使い方が考えられる。声の演出をAIに丸ごと任せられる汎用ツールとして、動画・音声制作の下準備を大幅に短縮できる可能性がある。",
+    "detail": "AuKは、文章の意味を理解する大規模言語モデルと、音の特徴を圧縮・復元する仕組み（VAE）、実際に音を生成する拡散モデルを組み合わせた構成になっている。指示を理解する「翻訳者」と声の素材を扱う「録音技師」、実際に音を紡ぐ「演奏者」が一体になったような仕組みで、テキスト指示と参照音声を渡すだけで生成・編集・修復を同じパイプラインでこなす。学習には約200万時間の音声データが使われている。\n\n従来のAI音声ツールは、読み上げ・ボイスチェンジャー・ノイズ除去・話者分離がそれぞれ別モデル・別操作だった。AuKは同じモデルに指示文を変えるだけで別の作業をさせられるのが最大の違いで、4ステップで高速に動く軽量版（AuK-Flash）は通常版より4.5倍速く結果を出せる。\n\nMITライセンスで重み・コードとも無料公開されており商用利用も可能。Hugging Faceのデモページ（Space）でブラウザから試せるほか、ComfyUI用の拡張ノードも公開済みで既存の映像制作ワークフローに組み込みやすい。量子化版なら1GB台のVRAMからGPUで動かせる。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "コード・重みはMIT。同梱のQwen2.5-Omniエンコーダ部分のみQwen Research License対象。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Tencent-Hunyuan/AuK"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2609.08936"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/spaces/tencent/AuK"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/auk.jpg",
+    "relatedWorks": [
+      {
+        "title": "CosyVoice",
+        "description": "Alibabaのゼロショット音声クローン・多言語TTSモデル",
+        "url": "https://github.com/FunAudioLLM/CosyVoice"
+      },
+      {
+        "title": "F5-TTS",
+        "description": "フローマッチング方式の高速ゼロショットTTSモデル",
+        "url": "https://github.com/SWivid/F5-TTS"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "selflift",
+    "title": "SelfLift",
+    "org": "研究コミュニティ実装（論文著者+facok氏によるComfyUI移植）",
+    "type": "Research",
+    "domains": [
+      "CreatorTools",
+      "GenVideo"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "追加学習なしで画像・動画生成AIの処理速度を大幅に高速化する、解像度を段階的に引き上げる新しいサンプリング手法。",
+    "point": "SelfLiftは、画像や動画を生成するAIの「時間がかかる」という弱点を、AIモデル自体を再学習させることなく解決する高速化テクニックである。生成の前半は粗い低解像度で大まかな絵を作り、後半だけ高解像度に引き上げて仕上げるという、下描きから清書に進む作業に近い発想で無駄な計算を減らしている。既存の高速化技術のように学習し直す手間やコストがかからないのが利点で、論文では最大約30倍の速度向上が報告されている。広告や動画制作の現場では、クライアントに見せる案を何パターンも高速に試作したり、演出をリアルタイムに近い速度で確認しながら詰めていくといった使い方が考えられる。生成AIの「待ち時間」を減らす裏方技術として、既存のComfyUIワークフローにそのまま組み込める点も実用的である。",
+    "detail": "通常、画像や動画の生成AIは最初から最後まで同じ高い解像度でノイズを少しずつ取り除いていく。SelfLiftは序盤は解像度を落として粗い下描きだけを素早く作り、終盤で解像度を元に戻して細部を仕上げる2段構えにすることで計算量を減らす。解像度を切り替える瞬間に絵が破綻しないよう、AIモデル自身の「答え合わせ」の仕組み（pixel-VAEでの再エンコード）でズレを検知し自動補正する独自の工夫が入っている。\n\n画像生成を速くする既存手法の多くはモデルを速度重視で再学習し直す必要があり、専門知識と計算資源が必要だった。SelfLiftは追加学習なしで既存モデルにそのまま適用できるのが大きな違いで、動画生成モデル（MiniMax H3）向けの拡張機能も試験的に提供されている。\n\nComfyUIの拡張ノードとして無料公開されており、対応する画像生成モデル（Z-Image-TurboやFLUX.2-Kleinなど）をすでに使っている環境であれば追加導入できる。ただし配布元にライセンス表記がなく商用利用の可否は自己判断が必要で、ある程度のVRAMを積んだGPUが前提となる。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "リポジトリにライセンス表記なし。依存するMiniMax-H3系コンポーネント等のライセンスに従う必要あり。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/facok/comfyui-SelfLift"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2609.02036"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/selflift.jpg",
+    "relatedWorks": [
+      {
+        "title": "LCM-LoRA",
+        "description": "少ないステップ数で画像生成を高速化するLoRAベースの蒸留手法",
+        "url": "https://huggingface.co/latent-consistency/lcm-lora-sdxl"
+      },
+      {
+        "title": "Align Your Steps",
+        "description": "サンプリングスケジュールの最適化による生成高速化研究",
+        "url": "https://research.nvidia.com/labs/toronto-ai/AlignYourSteps/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "editvid",
+    "title": "EditVid",
+    "org": "PLAN Lab, University of Illinois Urbana-Champaign",
+    "type": "Research",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "1つのAIだけで、スタイル変更・物体の追加・特定人物の入れ替えなど多様な動画編集を追加学習なしにこなす研究フレームワーク。",
+    "point": "EditVidは「この服の色を変えて」「この人をロボットに置き換えて」といった多様な動画編集の要望を、専用のAIをその都度学習させることなく1つの仕組みで処理できる点が新しい。従来の動画編集AIは、雰囲気を変える編集が得意なもの、物を消す・足すのが得意なもの、というように用途ごとに別ツールを使い分ける必要があったが、EditVidは映像内の同じ人物・物体を編集前後で保ち続けながら幅広い編集指示に対応できることを検証実験で示している。広告映像の制作では、同じ素材から衣装違い・背景違いのバリエーションを短時間で作ったり、撮影後の細かい修正指示に応じて部分的に映像を差し替えたりする用途が考えられる。まだ研究段階の技術だが、動画の「あとから直す」編集作業を効率化する土台として注目できる。",
+    "detail": "EditVidは、動画の時間的なつながりを覚えておく仕組み（スパースな因果メモリ）と、編集前後で同じ人物・物体の特徴を対応づけて保持する仕組み、編集したい範囲だけをやわらかく合成する仕組みの3つを組み合わせている。動画のどのシーンに誰が写っていたかを記憶しながら、指定された部分だけをそっと描き直す編集者のような働き方をする。\n\n従来の訓練不要の動画編集手法は、スタイル変更は得意でも物体の入れ替えは苦手、といった得意不得意が分かれがちだったが、EditVidは同じ枠組みでスタイル変換・属性変更・物体挿入・部分編集・被写体の入れ替えまで幅広くカバーし、既存手法との比較実験でも高い評価を得ている（比較評価で既存最強手法を大きく上回る一致率、ユーザー評価でも半数以上が既存手法より好ましいと回答）。\n\n研究用コード一式がApache-2.0ライセンスで公開されており、Pythonと対応する拡散モデルの実行環境（GPU必須）があれば動かせる。現時点ではComfyUIなどへの組み込み済みノードはなく、コードを直接動かす技術的なハードルがあるため、今すぐ現場導入というよりは今後の実装待ちの研究成果として捉えるのが妥当。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "コードはApache-2.0。依存するベース拡散モデル（Diffusers特定コミット）側のライセンスにも留意が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/PLAN-Lab/EditVid"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2609.04190"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/editvid.jpg",
+    "relatedWorks": [
+      {
+        "title": "TokenFlow",
+        "description": "拡散特徴の伝播で一貫性を保つ訓練不要動画編集手法",
+        "url": "https://github.com/omerbt/TokenFlow"
+      },
+      {
+        "title": "AnyV2V",
+        "description": "画像編集モデルを動画編集に転用する訓練不要フレームワーク",
+        "url": "https://github.com/TIGER-AI-Lab/AnyV2V"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "three-js-native-gaussian-splat-renderer",
     "title": "Three.js Native Gaussian Splat Renderer",
     "org": "three.js (mrdoob / OpenJS Foundation, 実装: Ben Houston 氏ら)",
