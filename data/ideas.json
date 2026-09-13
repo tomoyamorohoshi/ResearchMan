@@ -14373,5 +14373,215 @@
         "desc": "ラグジュアリージュエリーが映画の語り手になったNetflixと高級ブランドの初の統合的コラボレーション事例"
       }
     ]
+  },
+  {
+    "id": "2026-09-13-1",
+    "date": "2026-09-13",
+    "title": "歓声を楽譜化する編集",
+    "pattern": "転用",
+    "seed": "本来は音源を複数楽器のMIDIに書き起こすMT3を、プレスマの来場者の歓声や足音の解析に転用したら、その日の体験の盛り上がりを『楽譜』として可視化し、ハイライト動画の編集リズムに反映できそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "mt3",
+        "title": "MT3 (Multi-Task Multitrack Music Transcription)",
+        "desc": "1本の音源から複数楽器を別々のMIDIトラックとして同時に書き起こす自動採譜モデル"
+      },
+      {
+        "type": "case",
+        "id": "case-1nx6ns7-2026",
+        "title": "プレスマ（テーマパーク来場者自動撮影・AIハイライト動画サービス）",
+        "desc": "テーマパーク内約50台のカメラで来場者を自動撮影し、AIが1日をハイライト動画に編集するサービス"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-13-2",
+    "date": "2026-09-13",
+    "title": "地球を輪切りにする展示",
+    "pattern": "転用",
+    "seed": "実在する人体をリアルタイムに切り裂けるDissectible Anatomyの仕組みを、Climate Crisisのように地球や氷河のデータに転用したら、気候変動を輪切りにして触れる展示にできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "dissectible-anatomy",
+        "title": "Dissectible Anatomy",
+        "desc": "人体の3DモデルをGPU上でリアルタイムに切ったり裂いたりできる仮想解剖シミュレーション"
+      },
+      {
+        "type": "case",
+        "id": "climate-crisis-2021",
+        "title": "Climate Crisis（気候危機を可視化する可変フォント）",
+        "desc": "北極海氷データに基づき文字が溶けていく可変フォントで気候変動を体感させた紙面広告"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-13-3",
+    "date": "2026-09-13",
+    "title": "島の声を継ぐ音響作品",
+    "pattern": "文脈×技術",
+    "seed": "アキノリウムのように竹木の音具が家全体で鳴り続ける演出に、VoiceStudioで再現した島の高齢住民の声を組み込んだら、家そのものが島の記憶を語り継ぐ音響作品になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2016-058",
+        "title": "アキノリウム",
+        "desc": "竹や木の自作音具が家全体で鳴り続ける、瀬戸内芸術祭の音響作品アキノリウム"
+      },
+      {
+        "type": "tech",
+        "id": "voicestudio",
+        "title": "VoiceStudio",
+        "desc": "有料音声AIの代わりに声のクローンや多言語吹替をローカル無料で行えるOSSツール"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-13-4",
+    "date": "2026-09-13",
+    "title": "字幕を対話でリメイク",
+    "pattern": "文脈×技術",
+    "seed": "字幕祭が目指す『映画体験としての字幕』に、動画を対話的に編集できるVideoAgentを掛けたら、観客がその場で字幕のテンポや言葉選びをリメイクしながら鑑賞する上映体験ができそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "koto-no-hashi-2026",
+        "title": "字幕祭〜字幕自動生成の試みとその裏側〜（Koto-no-Hashi）",
+        "desc": "AI字幕自動生成で『映画体験としての字幕』を目指すインディー映画の海外展開の試み"
+      },
+      {
+        "type": "tech",
+        "id": "videoagent",
+        "title": "VideoAgent",
+        "desc": "動画の理解・編集・リメイクを1つの対話型エージェントに統合したオープンソースの枠組み"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-13-5",
+    "date": "2026-09-13",
+    "title": "住所を歩く格差の体験",
+    "pattern": "文脈×技術",
+    "seed": "Zip Code Examが示す住所ごとの健康格差に、1枚の画像から歩き回れる3D世界を生成するABot-Worldを掛けたら、自宅の写真の中を歩きながら寿命格差を体感する展示にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "equality-health-foundation-zip-code-exam",
+        "title": "Zip Code Exam",
+        "desc": "郵便番号を健康診断に変え、住む場所が寿命を左右する医療格差を可視化したデザイン"
+      },
+      {
+        "type": "tech",
+        "id": "abot-world-abot-3dworld",
+        "title": "ABot-World / ABot-3DWorld",
+        "desc": "1枚の画像やテキストから歩き回れる探索可能な3D世界を生成し続けるAI"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-13-6",
+    "date": "2026-09-13",
+    "title": "反射込みロボット可視化",
+    "pattern": "技術×技術",
+    "seed": "ロボットのセンサー・3D状態を可視化するRerun×Booster Robotics K1のログを、正確な反射・屈折まで描けるGRayで描画したら、鏡面や水面のある会場でも破綻しないロボット可視化ショーケースになりそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "rerun-booster-robotics-k1",
+        "title": "Rerun × Booster Robotics K1",
+        "desc": "ヒューマノイドの動作のセンサー・3D状態をリアルタイムに可視化するRerunのデモ"
+      },
+      {
+        "type": "tech",
+        "id": "gray",
+        "title": "GRay",
+        "desc": "Gaussian Splattingを正確な反射・屈折・影ごとレイトレースで描画する新手法"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-13-7",
+    "date": "2026-09-13",
+    "title": "自前動画生成スタジオ",
+    "pattern": "技術×技術",
+    "seed": "動画生成モデルを丸ごと自前で再学習できるFizgig v5と、MiniMax H3の生成を3割速くするComfyUI-Spectrumを組み合わせたら、個人クリエイターが自分だけのモデルを高速に量産できるスタジオになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "fizgig-v5",
+        "title": "Fizgig v5",
+        "desc": "一般的なGPUだけで動画・画像生成AIモデル本体を丸ごと学習し直せる無料OSSツール"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-spectrum-minimax-h3",
+        "title": "ComfyUI-Spectrum-MiniMax-H3",
+        "desc": "MiniMax H3の動画生成を画質をほぼ落とさず約3割速くするComfyUI用ノード"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-13-8",
+    "date": "2026-09-13",
+    "title": "止まらない企画エンジン",
+    "pattern": "文脈×技術",
+    "seed": "創造性を組織のOSとして実装したAB InBevの発想に、落ちても続きから必ず再開するAmplioの実行基盤を掛けたら、複数ブランドの企画案を止まらず生成し続ける社内クリエイティブエンジンにできそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ab-inbev-creativity-at-scale",
+        "title": "AB InBev: Creativity at Scale",
+        "desc": "創造性を組織のOSとして実装し複数ブランドで継続的な成果を生んだ取り組み"
+      },
+      {
+        "type": "tech",
+        "id": "amplio",
+        "title": "Amplio",
+        "desc": "長時間動くAIエージェントを落ちても必ず続きから再開できる形で動かす軽量な実行基盤"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-13-9",
+    "date": "2026-09-13",
+    "title": "実写空間を歩き回る体験",
+    "pattern": "文脈×技術",
+    "seed": "現金の女王として煌びやかな物語をSNSで見せたTrinity Tatumの手法に、大容量シーンも軽快に扱えるSuperSplat Editor 3.0を掛けたら、本人の実写空間を点群化し視聴者が回り込める3D世界を公開できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "trinity-tatum-queen-of-cash-2026",
+        "title": "Trinity Tatum: Queen of Cash",
+        "desc": "Love Island優勝者を『現金の女王』に据え通信特典をSNSで訴求した企業タイアップ"
+      },
+      {
+        "type": "tech",
+        "id": "supersplat-editor-3-0",
+        "title": "SuperSplat Editor 3.0",
+        "desc": "実写を点群で再現するGaussian Splattingの無料編集ソフトが大容量シーンでも高速動作するよう刷新"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-13-10",
+    "date": "2026-09-13",
+    "title": "クレイ展の動くロボット",
+    "pattern": "転用",
+    "seed": "本来は踊りや武術用の全身モーションをテキスト指示だけで生成するTextOpを転用したら、YURAKUCHO MUSEUMのピングー展でクレイキャラそのままに動くロボット展示ができそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "textop",
+        "title": "TextOp",
+        "desc": "テキスト指示でヒューマノイドが全身モーションを生成し指示変更にもリアルタイム追従する技術"
+      },
+      {
+        "type": "case",
+        "id": "yurakucho-museum-2026",
+        "title": "YURAKUCHO MUSEUM オープン",
+        "desc": "東京国際フォーラムの新展示施設、こけら落としはピングーのクレイモデル展"
+      }
+    ]
   }
 ]
