@@ -1,5 +1,199 @@
 [
   {
+    "id": "cerebrium-2026",
+    "title": "Cerebrium",
+    "summary": "AIインフラのCerebrium公式サイトがThree.js×Cinema 4Dの3D演出でAwwwards SOTD受賞",
+    "client": "Cerebrium",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "Awwwards Site of the Day（2026年9月10日）",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.awwwards.com/sites/cerebrium",
+    "thumbnail": "/thumbnails/cerebrium-2026.jpg",
+    "videoId": "",
+    "overview": "南アフリカ発・米ニューヨーク拠点のサーバーレスAIインフラ企業Cerebriumの公式サイト。音声エージェントやLLM、AIワークロードのデプロイ基盤という無機質になりがちなB2Bプロダクトを、Three.jsとCinema 4Dによる3Dインタラクティブ表現で伝える設計。",
+    "background": "リアルタイムAI向けサーバーレス基盤という専門性の高いプロダクトを、技術者以外にも直感的に理解させ差別化を図る必要があった。競合の多いAIインフラ市場で、サイト自体の表現力をブランド体験の一部として機能させることが狙いと考えられる。",
+    "execution": "Three.jsによるWebGL上の3DビジュアルとCinema 4Dで制作したアセットを組み合わせ、GSAPでアニメーションを制御。Lottieも併用し、スクロールに連動した滑らかなインタラクションでプロダクトの処理性能やAIワークロードの動きを視覚化している。",
+    "evaluationImpact": "2026年9月10日にAwwwards Site of the Dayを受賞（スコア7.39/10）。制作はLouis Paquet、Domaine Publicらのチーム。B2B・インフラ系プロダクトでも高度な3D表現によりデザイン賞級の評価を得られることを示した事例。",
+    "relatedWorks": [
+      {
+        "title": "Awwwards - Cerebrium",
+        "description": "受賞ページ本体",
+        "url": "https://www.awwwards.com/sites/cerebrium"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Tech/Web",
+      "Form/Website"
+    ]
+  },
+  {
+    "id": "framing-ldf-london-design-festival-2026-2026",
+    "title": "Framing LDF（London Design Festival 2026 ビジュアルアイデンティティ）",
+    "summary": "PentagramがLDF2026向けに、フォーマット横断で伸縮・可変する『フレーム』を核とした新ビジュアルIDを開発。",
+    "client": "London Design Festival",
+    "agency": "Pentagram（Domenic Lippa）",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://londondesignfestival.com/stories/framing-ldf-by-pentagram/",
+    "thumbnail": "/thumbnails/framing-ldf-london-design-festival-2026-2026.jpg",
+    "videoId": "",
+    "overview": "ロンドン・デザイン・フェスティバル(LDF)2026の新グラフィックアイデンティティ「Framing LDF」。20年以上LDFのデザインパートナーを務めるPentagramのパートナー、Domenic Lippaが手がけた。ニュートラルなタイポグラフィと、印刷・デジタル・動画など複数フォーマットで可変する「フレーム」装置を組み合わせ、赤色を主要ブランドカラーとして継承した。",
+    "background": "LDFは毎年ロンドン各地の会場でデザインパートナーの作品を紹介する大規模フェスティバル。2026年は9月12日から20日まで開催され、新興クリエイターから確立したスタジオまで幅広い参加者の活動をどう束ねて見せるかが課題だった。Pentagramは長年のパートナー関係の中で、都市全体に分散する催しをひとつの視覚言語でつなぐ役割を新たに検討した。",
+    "execution": "コンセプトの核は「フレーミングデバイス」。このフレームはデジタル・印刷・映像といったフォーマットをまたいで形やサイズが伸縮・変化し、パートナー各社の作品やクリエイティブ活動のディテールをそのつど切り出して強調する。Lippaは「フレーミングデバイスによってパートナー作品の多様な詳細をハイライトできる」と説明し、フレームを「LDFへの窓」として機能させている。",
+    "evaluationImpact": "単一の固定ロゴではなく、可変するフレームという仕組みそのものをアイデンティティの核に据えた点が特徴。多数の会場・パートナー・ディシプリンに分散するフェスティバルの多様性を、統一感を保ちながら個々の作品の魅力を殺さずに見せる解として機能している。",
+    "relatedWorks": [
+      {
+        "title": "LDF23 Graphic Identity by Pentagram",
+        "description": "Pentagramが手がけた2023年のLDFグラフィックアイデンティティ",
+        "url": "https://londondesignfestival.com/stories/ldf23-graphic-identity-by-pentagram/"
+      },
+      {
+        "title": "London Design Festival 2025 (Pentagram)",
+        "description": "Pentagramによる2025年LDFのアイデンティティ・ワーク紹介",
+        "url": "https://www.pentagram.com/work/london-design-festival-2025"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Print",
+      "Form/Event",
+      "Form/Website"
+    ]
+  },
+  {
+    "id": "valve-steamvr-2-17-2026",
+    "title": "Valve SteamVR 2.17アップデート",
+    "summary": "Valveが2026年9月11日にSteamVR 2.17を全ユーザー配信、Steam Frame発売を見据えVRダッシュボードにクイックアクセスメニューやUSBストリーミングを追加",
+    "client": "Valve",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://roadtovr.com/valve-big-steamvr-update-steam-frame-launch/",
+    "thumbnail": "/thumbnails/valve-steamvr-2-17-2026.jpg",
+    "videoId": "",
+    "overview": "Valveは2026年9月11日、SteamVR 2.17アップデートを全ユーザーに配信開始した。Steam Deck風のクイックアクセスメニューをVRダッシュボードに追加し、通知・音量・明るさ・バッテリー状況を一括管理できるようにしたほか、USBストリーミング対応やLinux向け修正も含まれる。",
+    "background": "本アップデートはValveが開発中のスタンドアロンVRヘッドセット「Steam Frame」の発売を控えたタイミングでのリリースであり、同ヘッドセットの標準UIとなる見込みの「VRネイティブなユーザー体験」への布石と位置づけられている。当初は2026年7月にベータ版として一部ユーザーに公開されていた。",
+    "execution": "ゲーム内の実績やコミュニティガイド・メモへのアクセスをVR内から可能にし、オーバーレイ管理を改善。Steam Deckで馴染みのあるクイックアクセスメニューをVRダッシュボードバーに統合することで、既存Steamユーザーが違和感なく操作できるUIを目指した。",
+    "evaluationImpact": "スタンドアロンVRヘッドセットSteam Frameの発売直前という時期に、VR体験の操作性を底上げする大型アップデートを投入した点が注目されており、VR業界内外のメディアが「発売間近」の兆候として報じている。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/XR",
+      "Tech/Device",
+      "Form/Product"
+    ]
+  },
+  {
+    "id": "craft-x-tech-tokai-project-2026",
+    "title": "Craft x Tech Tokai Project",
+    "summary": "東海地方6県の伝統工芸職人と海外の著名デザイナー6組が協働し、V&Aで職人技を再解釈した6作品を展示",
+    "client": "Craft x Tech（Dr Hideki Yoshimoto / Tangent、キュレーション: Maria Cristina Didero）",
+    "agency": "",
+    "categories": [
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.vam.ac.uk/event/ZA6D9ZJXqee/ldf-sept-2026-craft-x-tech",
+    "thumbnail": "/thumbnails/craft-x-tech-tokai-project-2026.jpg",
+    "videoId": "",
+    "overview": "London Design Festival 2026の一環としてV&A South Kensingtonで開催された展示。日本・東海地方6県の伝統工芸職人と、David CaonやBethan Laura Woodら国際的デザイナー6組がペアを組み、漆・金属・木工・陶磁器・和紙・織物の技法を用いた家具・照明作品6点を新たに制作した。",
+    "background": "デザイナー兼エンジニアの吉本秀樹博士（Tangent）が創設したプロジェクトで、日本の職人技と現代のデザイン・テクノロジーの対話を掲げる。キュレーションはイタリアの独立キュレーター、マリア・クリスティーナ・ディデロが担当し、東海地方の伝統産地の技術を国際的な文脈で再提示することを目指した。",
+    "execution": "伊藤洋平×David Caon「Fushi」、千田隆則×Lanzavecchia + Wai「Grid Unwoven」、村瀬浩之×Bethan Laura Wood「Kataginu」、安藤重之×Philippe Malouin「Kasane」、加藤真由紀×Eugene Kangawa「Chair in Japanese Nuki and Dami style」、Atang Tshikare×松田朋之「Yamollo」の6組が協働し、それぞれ職人の技法を用いた新作を制作。2026年9月12日〜30日、V&A South Kensington Room 64bで無料公開された。",
+    "evaluationImpact": "London Design Festival 2026の中でV&Aという世界的な美術館を舞台に、東海地方という一地域の複数の伝統工芸を横断的に紹介した点が特徴。海外デザイナーとの協働により、職人技を現代的なプロダクトデザインの文脈に翻訳し、地方産地の国際発信の新しいモデルを提示した。",
+    "relatedWorks": [
+      {
+        "title": "London Design Festival — Craft x Tech Tokai Project",
+        "description": "London Design Festival公式サイトの活動ページ",
+        "url": "https://londondesignfestival.com/activities/craft-x-tech-tokai-project"
+      },
+      {
+        "title": "Craft x Tech Tokai Project | Dezeen Events Guide",
+        "description": "Dezeenによるイベント紹介",
+        "url": "https://www.dezeen.com/eventsguide/2026/09/craft-tech-tokai-project-ldf-2026/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "suno-v6-2026",
+    "title": "Suno v6（プロンプトレベル編集・マッシュアップ機能搭載の新モデル群）",
+    "summary": "Suno v6/v6-wild/v6-miniの3モデル体制で発表、自然言語での部分編集と自作曲のマッシュアップ生成を新搭載",
+    "client": "Suno",
+    "agency": "",
+    "categories": [
+      "AIクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://roo.beehiiv.com/p/suno-new-models-september-2026",
+    "thumbnail": "/thumbnails/suno-v6-2026.jpg",
+    "videoId": "",
+    "overview": "音楽生成AI企業Sunoは2026年9月9日、新モデル群「v6」「v6-wild」「v6-mini」を発表した。v6は精度重視の標準モデル、v6-wildは実験的で予測不能な出力を狙ったモデル、v6-miniは高速・軽量な無料提供モデルで、Sunoとして初めて複数モデルを同時展開した。",
+    "background": "生成AI音楽をめぐっては著作権侵害訴訟が業界の焦点となっており、Sunoは2025年11月にWarner Music Groupと和解している。v6ファミリーはWarner Music Group、BMG、Believeとライセンス契約を結んだ楽曲データで一から学習した初のモデルで、業界との協調路線への転換を示す。",
+    "execution": "既存曲の一部分やコード単位を自然言語の指示だけで書き換える編集機能、自分の複数曲から要素を組み合わせて新曲を作る「マッシュアップ」機能を追加。テキスト・音声・画像・動画を参照素材として入力できるマルチモーダル対応も導入した。v6-miniは全ユーザーが無料利用可能、v6とv6-wildはPro/Premier会員限定。",
+    "evaluationImpact": "生成AI音楽サービスが「作りっぱなし」から既存曲を対話的に手直しできる編集フェーズへ移行したことを示す事例。ライセンス取得済みデータでの学習は、権利者との対立から協業モデルへの業界的転換の一例として注目される。受賞歴は確認できず。",
+    "relatedWorks": [
+      {
+        "title": "Suno v5",
+        "description": "2025年9月にリリースされた前モデル。音質・ボーカルの自然さ・ジャンル認識精度を強化",
+        "url": "https://suno.com/release-notes"
+      },
+      {
+        "title": "Udio",
+        "description": "Suno競合の音楽生成AI。Universal Music Group・Warnerとライセンス契約を締結し、ポップ/メインストリーム系ジャンルの高速生成に強み",
+        "url": "https://www.udio.com/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/Audio",
+      "Form/App",
+      "Theme/Music"
+    ]
+  },
+  {
     "id": "snickers-ai-spoof-ad-ai-2026",
     "title": "Snickers' AI Spoof Ad（生成AI広告への皮肉パロディ）",
     "summary": "「Hungr.AI」は暴走するAIチャットボットにデジタルSnickersを与えて鎮める風刺キャンペーンで、SNS参加者には実物のバーが届く。",
