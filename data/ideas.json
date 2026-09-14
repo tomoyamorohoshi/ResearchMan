@@ -14583,5 +14583,196 @@
         "desc": "東京国際フォーラムの新展示施設、こけら落としはピングーのクレイモデル展"
       }
     ]
+  },
+  {
+    "id": "2026-09-14-1",
+    "date": "2026-09-14",
+    "title": "触覚で聴く音楽広告体験",
+    "pattern": "文脈×技術",
+    "seed": "Appleの『I'm Not Remarkable』が音楽とアクセシビリティを結んだように、HapticLensで楽曲の細かな動きを振動に変換したら、聴覚障害があっても音楽のグルーヴを肌で感じられる広告表現ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "apple-not-remarkable",
+        "title": "I'm Not Remarkable",
+        "desc": "音楽を通じてアクセシビリティ（利用しやすさ）の大切さを伝える、Appleが制作したフィルム作品。"
+      },
+      {
+        "type": "tech",
+        "id": "hapticlens",
+        "title": "HapticLens",
+        "desc": "動画の動きから振動（触覚）を自動生成するツール。たった1個の振動子だけで映像に触感を付けられる。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-14-2",
+    "date": "2026-09-14",
+    "title": "ARG舞台を3Dで巡回",
+    "pattern": "文脈×技術",
+    "seed": "Twenty One PilotsのARGは現実の都市に座標を隠しファンを歩かせたけど、Aholo Viewerでその都市を丸ごと10億スプラット級の3D空間としてブラウザに置いたら、現地に行けないファンも謎解きの舞台を歩き回れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "twenty-one-pilots-dmaorg-arg",
+        "title": "DMAORG.INFO ARG（Twenty One Pilots）",
+        "desc": "SpotifyのCanvas映像に座標を埋め込みファンを現実の都市へ誘導、現地でスキャンすると限定プレイリストが解禁されるARG。"
+      },
+      {
+        "type": "tech",
+        "id": "aholo-viewer",
+        "title": "Aholo Viewer",
+        "desc": "インストール不要のブラウザだけで最大10億スプラット級の巨大3D空間を表示できるOSSレンダラ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-14-3",
+    "date": "2026-09-14",
+    "title": "一夜の宿を永久アーカイブ",
+    "pattern": "文脈×技術",
+    "seed": "檸檬ホテルは豊島の空き家を一夜限りの宿に変えたけど、Lyra 2.0で滞在した部屋を1枚の写真から歩き回れる3D空間として書き出したら、終わった後もその空気感を誰でも追体験できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2016-030",
+        "title": "檸檬ホテル",
+        "desc": "瀬戸内・豊島の空き家を一夜一組限定の宿に変えた、スマイルズによる滞在型アート作品。"
+      },
+      {
+        "type": "tech",
+        "id": "lyra-2-0",
+        "title": "Lyra 2.0",
+        "desc": "1枚の画像や短い動画から、歩き回って探索できる3D空間を自動生成するNVIDIAの技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-14-4",
+    "date": "2026-09-14",
+    "title": "死角検知への念力転用",
+    "pattern": "文脈×技術",
+    "seed": "Hyundaiの『Vision Pulse』は死角にいる子どもをUWBで検知したけど、Telekinetic Driveの無意識の顔の動きを読む技術を運転者側に使ったら、装着物なしで『気づいてない』状態そのものを車に伝えられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "vision-pulse-sight-beyond-seeing-hyundai",
+        "title": "Vision Pulse: Sight Beyond Seeing",
+        "desc": "子どもを車の死角事故から守る、UWB無線ベースの安全技術をデザインで具体化したHyundaiのプロジェクト。"
+      },
+      {
+        "type": "tech",
+        "id": "telekinetic-drive",
+        "title": "Telekinetic Drive",
+        "desc": "顔に現れるわずかな無意識の動きをカメラで読み取り、装着物なしでロボットを操作できるインターフェース。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-14-5",
+    "date": "2026-09-14",
+    "title": "壊れた3D世界を映像で修復",
+    "pattern": "技術×技術",
+    "seed": "DreamX-World 1.0はテキストだけで歩き回れる3D世界を生成できるけど、粗い部分をArtiFixerで修復・未撮影アングルまで補完したら、生成した世界をそのままロケ撮影素材として使えるレベルまで仕上げられるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "dreamx-world-1-0",
+        "title": "DreamX-World 1.0",
+        "desc": "テキスト指示だけで、視点を動かしても矛盾なく繋がる『歩き回れる3D世界』の映像を生成できるAIモデル。"
+      },
+      {
+        "type": "tech",
+        "id": "artifixer",
+        "title": "ArtiFixer",
+        "desc": "壊れた・ぼやけた3D再構成を、ビデオ拡散モデルで修復し撮影していないアングルまで補完するNVIDIAの研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-14-6",
+    "date": "2026-09-14",
+    "title": "4台のカメラ映像をNukeへ",
+    "pattern": "技術×技術",
+    "seed": "4C4Dはたった4台のカメラ映像から動く3D空間を復元できるけど、Marble x Nukeでそれをそのまま合成ソフトNukeの3D空間に読み込んだら、少人数ロケでも本格的な4D合成映像を作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "4c4d",
+        "title": "4C4D",
+        "desc": "たった4台のカメラ映像から、動く3D空間（4D）を高精細に復元するCVPR 2026の研究。"
+      },
+      {
+        "type": "tech",
+        "id": "marble-x-nuke",
+        "title": "Marble x Nuke",
+        "desc": "テキストや画像から生成した3D世界を、映像業界定番の合成ソフト『Nuke』にそのまま読み込める無料プラグイン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-14-7",
+    "date": "2026-09-14",
+    "title": "言葉で操るアバター演出",
+    "pattern": "技術×技術",
+    "seed": "Live Avatarは1枚の顔写真と音声で何時間もしゃべり続けるアバターを生成できるけど、Berniniの自然言語での映像編集を組み合わせたら、配信中に『もっと驚いた顔で』と言うだけで演出を変えられるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "live-avatar",
+        "title": "Live Avatar",
+        "desc": "1枚の顔写真と音声だけから、何時間でも破綻せずしゃべり続けるリアルタイム映像アバターを生成するAI。"
+      },
+      {
+        "type": "tech",
+        "id": "bernini",
+        "title": "Bernini",
+        "desc": "自然な言葉の指示で画像も動画も生成・編集できる統合モデル。演出担当と作画担当のAIが分業する。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-14-8",
+    "date": "2026-09-14",
+    "title": "3Dスキャンで内見体験",
+    "pattern": "転用",
+    "seed": "Scaniverseのロボット訓練向けUSDZ書き出しは本来sim-to-realギャップを埋めるためのものだけど、これを不動産の3Dスキャンに転用したら、ロボットが学ぶのと同じ精度の空間データでオンライン内見ができるかも。",
+    "refs": []
+  },
+  {
+    "id": "2026-09-14-9",
+    "date": "2026-09-14",
+    "title": "モーキャプでフォーム診断",
+    "pattern": "転用",
+    "seed": "CEB SAM 3D Body v4は動画から3D人体ポーズを推定しBlenderのモーキャプデータにする道具だけど、これをスポーツ指導に転用したら、専用スタジオなしで選手のフォームのズレを3Dで可視化できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ceb-sam-3d-body-v4",
+        "title": "CEB SAM 3D Body v4 (Blender addon)",
+        "desc": "動画フッテージから3D人体ポーズを推定し、Blenderのモーションキャプチャデータとして読み込めるアドオン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-14-10",
+    "date": "2026-09-14",
+    "title": "クーポンゲームで映像変化",
+    "pattern": "文脈×技術",
+    "seed": "Mercado LibreのScoreCouponsは割引クーポンを遊びに変えたけど、RAVEN Streaming LoRAの『見せながら作る』動画生成を組み合わせたら、プレイの結果に応じて広告映像がリアルタイムで変化していく体験にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "mercado-libre-scorecoupons",
+        "title": "ScoreCoupons",
+        "desc": "割引クーポンをインタラクティブな遊びに変え、広告を中断でなく一緒に遊ぶ体験にするMercado Libreの施策。"
+      },
+      {
+        "type": "tech",
+        "id": "raven-streaming-lora-for-minimax-h3",
+        "title": "RAVEN Streaming LoRA for MiniMax-H3 (MiniMax-H3-RAVEN-Streaming-LoRA)",
+        "desc": "動画全体を一括計算せず、直前の映像を見ながら次を作り続ける『ストリーミング型』動画生成を実現する研究。"
+      }
+    ]
   }
 ]
