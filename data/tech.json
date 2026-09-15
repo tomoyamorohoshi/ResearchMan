@@ -1,5 +1,109 @@
 [
   {
+    "id": "unimate",
+    "title": "UniMate",
+    "org": "Princeton University / UC Berkeley / MIT",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "Spatial/3D"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "テキストで指示するだけで、人間・四足動物・鳥・魚・昆虫など骨格の形がまったく違うキャラクターを、たった1つのAIモデルでアニメーションさせられる技術です。",
+    "point": "UniMateがすごいのは、人型・四足・鳥・魚・虫など、骨格の形がまったく違うキャラクターを、たった1つのAIモデルで動かせてしまう点です。これまでのAIモーション生成は「人間用」「四足動物用」のように骨格ごとに別々のモデルを作ったり、新しいキャラクターが出るたびに個別に学習し直したりする手間が必要でした。UniMateは骨格の構造そのものをAIに読み込ませる仕組みを持つため、この手間が要りません。広告制作の現場では、マスコットキャラクターや架空の生物、動物モチーフのCMなど、既存のモーションデータが存在しないオリジナルキャラクターに対して、「歩く」「跳ねる」「驚く」といった動きをテキスト指示だけで素早く試作できるようになります。3DCGアニメーターがゼロからキーフレームを打つ前の、企画・絵コンテ段階でのモーション検討ツールとしても使えそうです。",
+    "detail": "仕組みとしては、「Topology-aware Diffusion Transformer」という拡散モデルを使い、骨と骨のつながり方（骨格のグラフ構造）をAIに理解させる特殊な注意機構を組み込んでいます。ちょうど路線図の駅同士のつながりを理解した上で最短ルートを考えるように、AIは骨の接続関係を把握してから自然な動きを生成する仕組みです。従来のモーション生成AIは、あらかじめ決められたテンプレート骨格（人間の関節数と配置が固定されたものなど）にしか対応できず、新しい骨格の動物やロボットを動かすには追加学習が必要でした。UniMateは学習後に追加のファインチューニングや最適化計算をせずに、初めて見る骨格構造にもそのまま対応できるのが最大の違いです。試すにはPython 3.10とGPU(CUDA対応)を積んだPCが必要で、コードはMITライセンスで無料公開されています。学習済みモデルの重みは執筆時点で「近日公開」のため、フル機能を試すには公開を待つか自前データで学習し直す必要があります。研究用に集めた13,006本のモーションデータセット「UniML3D」もHugging Face上で公開されています。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "コード本体はMITライセンスで商用利用可。ただし学習に使ったデータセットは各ソース元のライセンスに従う必要があり、学習済みチェックポイント(重み)は本稿執筆時点で「近日公開」で未公開。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Friedrich-M/UniMate"
+      },
+      {
+        "kind": "project",
+        "url": "https://linzhanmou.com/unimate/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2609.05415"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/unimate.jpg",
+    "relatedWorks": [
+      {
+        "title": "MocapAnything",
+        "description": "動画から直接、任意の骨格へモーションキャプチャする類似アプローチ（SIGGRAPH Asia 2026）",
+        "url": "https://github.com/phongdaot/MocapAnything"
+      },
+      {
+        "title": "HY-Motion-1.0 (Tencent Hunyuan)",
+        "description": "テキストから人型3Dモーションを生成する先行研究。UniMateは対応骨格を人型以外にも拡張",
+        "url": "https://github.com/Tencent-Hunyuan/HY-Motion-1.0"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "mocapanything-v2",
+    "title": "MoCapAnything V2",
+    "org": "Huawei (AniMotionLab / Huawei Central Research Institute, Singapore)",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "Spatial/3D"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "1台のカメラで撮った動画から、人間・動物・オブジェクトを問わず、どんな骨格の3Dキャラクターにもそのまま使えるモーションデータを自動生成する研究。",
+    "point": "従来のモーションキャプチャ(モーキャプ)は、専用スーツや多数のカメラを使う特殊なスタジオで撮影する手法でした。MoCapAnything V2は、スマホやYouTubeにあるような普通の1本の動画を入力するだけで、映っている動き(人間はもちろん、犬や鳥などの動物、さらには物体まで)を解析し、3Dキャラクターがそのまま踊ったり歩いたりできる「関節の回転データ」に変換します。しかも人間と骨格の形がまったく違うキャラクター(触手が生えたモンスターなど)でも、参照ポーズを1枚与えるだけで対応できるのが特徴です。従来手法より処理も約20倍速く、精度も大きく向上しました。広告制作の現場では、モーキャプスタジオを借りずに、既存のダンス動画や街頭の映像素材から独自キャラクターのアニメーションを量産する、といった使い方が考えられます。ブランドマスコットや架空の生き物を動かすプロモーション動画のコストと制作期間を大きく圧縮できる可能性があります。",
+    "detail": "通常、動画から3Dモーションを作るには「①動画から人の3D形状(メッシュ)を推定する」→「②メッシュから骨格の動きを逆算する」という2段階の変換が必要で、間に工程を挟むほど誤差が積み重なり処理も遅くなっていました。MoCapAnything V2は、動画から直接「関節がどう回転しているか」を一気に予測する1つのAIモデルにまとめることで、中間のメッシュ工程を丸ごと省略しました。通訳を2人挟んで話を伝えるのではなく、1人のネイティブ通訳が直接翻訳するようなイメージで、情報の劣化が減り速度も上がります。\n\n既存技術の多くは「人間の標準的な骨格」を前提に作られており、犬や独自デザインのキャラクターには使えないという制約がありました。本研究はキャラクターごとに違う骨格構造を扱う専用の注意機構を導入し、参照ポーズを1枚与えるだけで未知の骨格にも対応できるようにしています。論文によると、関節の向きのズレ(角度誤差)は従来の約17度から6.5度程度まで縮小し、処理速度は約20倍に高速化したとのことです。\n\nコードはGitHub上でMITライセンスにより無料公開されており、ブラウザで試せるデモも用意されています。ただし背景を切り抜く前処理部分は非商用ライセンスのAIモデルを使っているほか、学習用データセットの一部は別途利用許諾が必要なため、商用制作で全機能をそのまま使う場合はライセンス確認が必要です。動作にはNVIDIA製GPUを積んだPC(または対応クラウド環境)とPythonの実行環境が必要で、3Dソフトへの書き出しにはBlenderがあると便利です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "コア実装はMITで商用利用可だが、前処理で使う背景除去モデルRMBG-1.4(BRIA AI)は非商用ライセンス。学習データの一部(Truebones Zoo)は別途利用許諾契約が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/phongdaot/MocapAnything"
+      },
+      {
+        "kind": "project",
+        "url": "https://animotionlab.github.io/MoCapAnythingV2/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2604.28130"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=dMcMrAM4ZOM"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/mocapanything-v2.jpg",
+    "relatedWorks": [
+      {
+        "title": "MoCapAnything (V1)",
+        "description": "同チームによる前身研究。単眼動画から任意スケルトンへの3Dモーションキャプチャを初めて統合的に扱った",
+        "url": "https://arxiv.org/abs/2512.10881"
+      },
+      {
+        "title": "Kimodo (NVIDIA)",
+        "description": "テキストからヒト型の高品質なモーションを生成する拡散モデル。生成方向のアプローチとして対照的",
+        "url": "https://github.com/nv-tlabs/kimodo"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "yue2",
     "title": "YuE2",
     "org": "Multimodal Art Projection (M-A-P)",
