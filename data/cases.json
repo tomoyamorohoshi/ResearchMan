@@ -1,5 +1,433 @@
 [
   {
+    "id": "conifera-2019",
+    "title": "Conifera",
+    "summary": "木材とバイオプラスチックの格子ブロック700個で組み上げた、解体・再構築可能な回遊型パビリオン",
+    "client": "COS",
+    "agency": "Arthur Mamou-Mani (Mamou-Mani Architects)",
+    "categories": [
+      "空間体験",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2019",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.surfacemag.com/articles/arthur-mamou-mani-karin-gustafsson-coss-milan-design-week-pavilion/",
+    "thumbnail": "/thumbnails/conifera-2019.jpg",
+    "videoId": "",
+    "overview": "COSが2019年ミラノデザインウィークで発表したパビリオン「Conifera」。建築家Arthur Mamou-Mani（Mamou-Mani Architects）が、木材とバイオプラスチックを組み合わせた複合素材による格子状ブロック約700個を組み上げ、来場者が内部を回遊しながら光と構造の重なりを体感できる大型構造物として構築した。",
+    "background": "COSは毎年ミラノデザインウィークで実験的な建築インスタレーションを発表しており、素材や環境配慮をテーマにした挑戦を重ねてきた。2019年は建築家Arthur Mamou-Maniを起用し、展示後に解体して他所で再構築・再利用できる構造体という、使い捨てにならないパビリオンのあり方を追求した。",
+    "execution": "木材とバイオプラスチックの複合素材でつくられた格子状ブロックを約700個組み上げ、有機的な樹木の集合のような形状の回遊型パビリオンを構築。来場者は構造体の内部や間を歩き回りながら、格子越しに差し込む光や影の変化を体験できる。会期終了後は解体し、別の場所で再構築することを前提に設計されている。",
+    "evaluationImpact": "使い捨てで終わる仮設パビリオンではなく、解体・再構築を前提とした構造設計によって展示什器のライフサイクルを延ばす発想が、ミラノデザインウィークにおける素材実験の文脈で紹介された。ファッションブランドが建築的インスタレーションを通じてサステナビリティを表現する事例として位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Theme/Sustainability",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "plastic-reflectic-2016",
+    "title": "Plastic Reflectic",
+    "summary": "世界の海から集めたプラスチックごみ601個を来場者の動きに反応させ、自分自身の「プラスチックの影」を映し出すインスタレーション",
+    "client": "",
+    "agency": "Thijs Biersteker (front404)",
+    "categories": [
+      "空間体験",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2016",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.designboom.com/art/thijs-bierstekers-plastic-reflectic-11-02-2016/",
+    "thumbnail": "/thumbnails/plastic-reflectic-2016.jpg",
+    "videoId": "",
+    "overview": "アーティストThijs Biersteker（front404）による光のインスタレーション「Plastic Reflectic」。世界各地の海から集めたプラスチックごみ601個をモーターで浮沈させる装置を天井から吊るし、来場者の動きに合わせて水面に落ちる自分自身のシルエットを「プラスチックの影」として映し出す。",
+    "background": "海洋プラスチック汚染という統計的に語られがちな問題を、来場者自身の身体を通じて体感させる狙いで制作されたインスタレーション。実際に海から回収されたプラスチックごみを素材として用いることで、抽象的な環境問題を手に取れる物質として来場者に提示する構成を採った。",
+    "execution": "601個のプラスチックごみをモーター仕掛けで吊り下げ、水面上を上下に浮沈させる装置を構築。来場者がセンサーの前を通過すると、その動きに合わせてプラスチック片の集合が反応し、水面に映った来場者自身のシルエットが「プラスチックでできた影」として浮かび上がる仕組みになっている。",
+    "evaluationImpact": "自分の影がプラスチックごみで構成される体験を通じて、海洋プラスチック問題を他人事ではなく自分の身体に紐づく問題として提示した点が、デザイン系メディアで環境インスタレーションの事例として紹介された。実際の海洋ごみを素材化した点も説得力を高めている。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Tech/Device",
+      "Theme/Sustainability"
+    ]
+  },
+  {
+    "id": "water-run-2024",
+    "title": "Water Run",
+    "summary": "ステンレスレールと木製ボールで水循環の仕組みを手で辿れる、城内庭園の触覚的遊具インスタレーション",
+    "client": "Žďár nad Sázavou城",
+    "agency": "Matyáš Barák",
+    "categories": [
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.designboom.com/design/water-run-interactive-installation-water-cycles-tactile-play-movement-matyas-barak/",
+    "thumbnail": "/thumbnails/water-run-2024.jpg",
+    "videoId": "",
+    "overview": "チェコのデザイナーMatyáš Barákが手がけた大型インスタレーション「Water Run」。Žďár nad Sázavou城の敷地内に、精密に曲げられたステンレス製のレールと木製ボールを組み合わせた遊具を設置し、来場者がボールを転がしながら水が蒸発・降雨・流下を繰り返す水循環のプロセスを身体的に体感できるようにした。",
+    "background": "水循環という自然科学のテーマを、図解や説明パネルではなく実際に手を動かして遊ぶ体験として伝える目的で構想された。冷たく精密なステンレスと、温かみのある木製ボールという対照的な素材を組み合わせることで、機械的な仕組みと自然現象の両方を同時に感じさせる構成を狙った。",
+    "execution": "曲線を描くステンレス製のレールを大型の立体構造として組み上げ、来場者が木製ボールを投入するとレールを伝って上下左右に転がり落ちていく。ボールの動きは蒸発・凝結・降雨・流下といった水循環の各段階になぞらえて設計されており、城の庭園を訪れる来場者が自由に触れて遊べる屋外設置物となっている。",
+    "evaluationImpact": "説明を読まずとも手を動かすだけで水循環の仕組みが直感的に理解できる点が、教育的な遊具インスタレーションとしてデザインメディアで紹介された。歴史的な城の庭園という文脈に、精密機械的な現代インスタレーションを違和感なく溶け込ませた点も特徴的である。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Product",
+      "Theme/Education"
+    ]
+  },
+  {
+    "id": "volume-2017",
+    "title": "Volume",
+    "summary": "深度センサーで来場者を追尾する鏡面パネル100枚が光と音を反射・拡散させる、音楽フェス内の没入型キューブ空間",
+    "client": "HP (Hewlett-Packard) × Panorama Festival",
+    "agency": "SOFlab",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2017",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.designboom.com/art/softlab-volume-2-mirrored-light-installation-08-04-2017/",
+    "thumbnail": "/thumbnails/volume-2017.jpg",
+    "videoId": "",
+    "overview": "SOFTlabがHPとPanorama Music Festivalのために制作したインタラクティブインスタレーション「Volume」。鏡面パネル100枚を用いた立方体状の空間を構築し、デプスカメラで検知した来場者の動きに合わせて各パネルが個別に回転、光と音を反射・拡散させることで没入的な視覚体験を生み出す。",
+    "background": "HPは音楽フェスティバルという体験消費の場で、自社のテクノロジーと結びついたインタラクティブアート体験を提供する狙いでSOFTlabとの協業を実施。来場者の身体的な動きがそのまま空間全体の視覚効果に反映される、参加性の高いインスタレーションとしてPanorama Music Festival内に設置された。",
+    "execution": "立方体状のフレームに鏡面パネル100枚を配置し、それぞれにモーターとデプスカメラによるセンシング機構を組み込んだ。来場者が空間内を移動すると、その位置と動きに応じて周囲のパネルが個別に角度を変えて回転し、光や音、来場者自身の姿を反射・拡散させながら常に変化する視覚効果を作り出す。",
+    "evaluationImpact": "来場者の動きそのものが作品の変化を生み出す仕組みが、音楽フェスティバルという没入体験の文脈に合致したインタラクティブアートとして紹介された。ブランドが単なる展示什器ではなく、来場者参加型の体験装置としてテクノロジーを活用した事例である。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Tech/Device",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "bakeru-2017",
+    "title": "BAKERU",
+    "summary": "東北の伝統芸能の面をモチーフにした特製マスクを装着すると、スクリーン上で妖怪に変身するWOWのインタラクティブ映像インスタレーション",
+    "client": "WOW（企業文化・地域文化発信プロジェクト）",
+    "agency": "WOW inc.",
+    "categories": [
+      "カルチャーインサイト",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2017",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://wowlab.net/archives/project/bakeru",
+    "thumbnail": "/thumbnails/bakeru-2017.jpg",
+    "videoId": "",
+    "overview": "WOW inc.が手がけたインタラクティブ映像インスタレーション「BAKERU」。東北地方に伝わる伝統芸能――なまはげや鹿踊など――の面をモチーフにした特製マスクを来場者が装着すると、目の前のスクリーンに映る自身のシルエットが妖怪の姿へと変身する。2017年発表。",
+    "background": "少子高齢化や過疎化により継承が難しくなりつつある東北の伝統芸能・郷土芸能を、テクノロジーを用いて新たな形で体験できるようにする狙いから企画された。面という伝統的な意匠を現代的なインタラクティブ表現に落とし込み、文化の継承と体験価値の創出を両立させることを目指した。",
+    "execution": "来場者は、なまはげや鹿踊など東北の伝統的な面をモチーフにした特製マスクを装着してスクリーンの前に立つ。センサーが装着者の動きを検知し、スクリーンに映るシルエットがマスクに対応した妖怪の姿へとリアルタイムに変身する映像を投影する。",
+    "evaluationImpact": "地域の伝統文化をモチーフにしながら、最新の映像・センシング技術で体験化した点が特徴。WOWの企業文化・地域文化発信プロジェクトの一環として、伝統芸能の新たな伝え方を提示する事例として紹介されている。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Tech/Projection",
+      "Form/Installation",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "experience-a-new-energy-neuro_surge-2017",
+    "title": "EXPERIENCE A NEW ENERGY（NEURO_SURGE）",
+    "summary": "資生堂銀座ビル吹き抜けに設置された高さ約9mのファイバーモニュメントが、触れると神経伝達を模した光を全身に波及させるインタラクティブ照明",
+    "client": "SHISEIDO",
+    "agency": "WOW inc.（資生堂社内チームTEAM101と協働）",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2017",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.w0w.co.jp/en/news/128",
+    "thumbnail": "/thumbnails/experience-a-new-energy-neuro_surge-2017.jpg",
+    "videoId": "",
+    "overview": "WOW inc.が資生堂社内チームTEAM101と協働で手がけたインタラクティブ照明インスタレーション「EXPERIENCE A NEW ENERGY（NEURO_SURGE）」。資生堂銀座ビルの吹き抜け空間を貫く高さ約9mのモニュメントに極細ファイバーを用い、来場者がボールに触れると、神経伝達を模した光が全身に波及していく。2017年発表。",
+    "background": "資生堂銀座ビルという象徴的な空間の吹き抜けを活かし、来場者の行為が起点となって光が全身へと広がっていく体験を通じて、エネルギーや生命感といったブランドの世界観を可視化することを目指した企画。資生堂社内クリエイティブチームTEAM101とWOWの協働により実現した。",
+    "execution": "高さ約9mのモニュメントに極細のファイバーを張り巡らせ、来場者が触れるインタラクティブなボールを起点として、神経伝達の広がりを模した光の波がモニュメント全体を伝っていく仕組みを構築。吹き抜け空間全体を使い、来場者の行為が空間規模の光の演出へと連鎖する体験を設計した。",
+    "evaluationImpact": "来場者の小さな接触という行為が、建物規模の空間演出へと連鎖していくスケール感が特徴。ブランドの象徴的空間である資生堂銀座ビルを舞台に、企業と制作会社の協働によって実現した大型インタラクティブ照明の事例として紹介されている。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Installation",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "case-y04til-2024",
+    "title": "テクノロジーによるマテリアルの拡張：サステナブル素材“和紙”の可能性",
+    "summary": "土に還る和紙に通電・発音・可動・発光などの機能を持たせた6種のプロトタイプで、伝統素材とデジタル技術の融合を示した博展の展示",
+    "client": "株式会社博展",
+    "agency": "株式会社博展",
+    "categories": [
+      "テクノロジー×アイデア",
+      "空間体験"
+    ],
+    "award": "第1回 Tech Direction Awards R&D / Prototype部門 Silver（銀賞）",
+    "year": "2024",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://chizaizukan.com/property/hakutencreative-sustainablematerials/",
+    "thumbnail": "/thumbnails/case-y04til-2024.jpg",
+    "videoId": "",
+    "overview": "株式会社博展が手がけた研究開発プロジェクト。土に還るサステナブル素材である和紙に、「通電」「発音」「可動」「発光」といった機能を持たせた6種類のプロトタイプを制作し、伝統素材とデジタル技術を融合させたインタラクティブな展示として発表した。2024年、第1回Tech Direction Awards R&D/Prototype部門でSilverを受賞。",
+    "background": "使い捨てが前提となりがちな展示・イベント業界の資材において、土に還る素材である和紙を軸に、廃棄後も環境負荷の少ない演出・体験デバイスを開発する狙いから着手された研究開発プロジェクト。伝統素材が持つ質感や文化性を保ちながら、現代のデジタル技術を組み込む可能性を検証した。",
+    "execution": "和紙に対して電気を通す「通電」、音を発する「発音」、動く「可動」、光を放つ「発光」という4つの機能軸から、6種類のプロトタイプを試作。素材そのものの加工・実装レベルでテクノロジーを組み込むことで、和紙単体でインタラクティブな演出やデバイスとして機能する可能性を展示形式で示した。",
+    "evaluationImpact": "素材開発の段階から環境配慮と機能拡張を両立させた点が評価され、第1回Tech Direction Awards R&D/Prototype部門でSilverを受賞。展示・イベント業界におけるサステナブル素材の実装可能性を具体的なプロトタイプとして提示した事例である。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Tech/Audio",
+      "Form/Exhibition",
+      "Theme/Sustainability"
+    ]
+  },
+  {
+    "id": "fogbox-2025",
+    "title": "FogBox",
+    "summary": "旧芝離宮恩賜庭園の藤棚エリアに、霧とレーザーの密度を精密制御し光の軌跡を立体的に浮かび上がらせた屋外インスタレーション",
+    "client": "1→10（ワントゥーテン）",
+    "agency": "1→10",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://labs.1-10.com/2025/07/25/5198",
+    "thumbnail": "/thumbnails/fogbox-2025.jpg",
+    "videoId": "",
+    "overview": "1→10が旧芝離宮恩賜庭園の藤棚エリアに設置した屋外インスタレーション《FogBox》。透明フィルムで囲われた空間内にレーザーと霧を発生させ、霧の密度を精密に制御することでレーザー光の軌跡が立体的な形状として浮かび上がる仕組みを構築した。",
+    "background": "庭園という歴史的な屋外空間において、光やレーザーを用いた表現は空気の状態に左右されやすく、安定して視認できる形で見せることが難しいという課題がある。1→10はこの課題に対し、霧の濃度そのものを制御対象とする独自のアプローチで屋外環境下でも成立するレーザー表現の構築に取り組んだ。",
+    "execution": "透明フィルムで区切られたボックス状の空間内に霧を発生させ、その密度をリアルタイムで精密制御しながらレーザーを投射。霧の粒子密度をコントロールすることでレーザー光の視認性と輪郭を安定させ、フィルム越しに光の軌跡が立体的な造形として浮かび上がる体験を旧芝離宮恩賜庭園の藤棚エリアで展開した。",
+    "evaluationImpact": "霧の密度制御という技術的アプローチによって、屋外の庭園空間でも安定したレーザー表現を成立させた点が特徴。歴史的な庭園景観とテクノロジーによる光の演出を組み合わせ、屋外インスタレーションの新しい表現手法を提示した事例といえる。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Tech/Projection",
+      "Tech/Device",
+      "Form/Installation"
+    ]
+  },
+  {
+    "id": "case-196zwjm-2018",
+    "title": "箔巧館（体感型金箔総合ミュージアム）リニューアル",
+    "summary": "1万枚の金箔を貼った「金箔の間」で黄金甲冑にプロジェクションマッピングを投影し、来場者が甲冑を試着体験できるようリニューアルした金箔ミュージアム",
+    "client": "株式会社箔一",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2018",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.hakuichi.co.jp/news/release/detail.php?id=790",
+    "thumbnail": "/thumbnails/case-196zwjm-2018.jpg",
+    "videoId": "",
+    "overview": "金箔メーカーの箔一が運営する体感型金箔総合ミュージアム「箔巧館」を2018年にリニューアル。1万枚の金箔を貼った「金箔の間」を新設し、前田利家の黄金甲冑を中心にプロジェクションマッピングを投影するとともに、来場者が甲冑をバーチャルに試着できる変身コーナーを設けた。",
+    "background": "金沢の伝統産業である金箔の魅力を伝える既存の観光施設を、より体感性の高い展示にアップデートする狙いでリニューアルを実施。金箔そのものの物量的な迫力と、加賀藩ゆかりの黄金甲冑という歴史的モチーフを組み合わせ、来場者が金箔文化を身体的に体験できる展示への転換を図った。",
+    "execution": "壁面に1万枚の金箔を貼った「金箔の間」を新設し、その中心に前田利家の黄金甲冑を配置してプロジェクションマッピングを投影。さらに来場者自身が黄金甲冑をバーチャルに身にまとう体験ができる変身コーナーを併設し、鑑賞だけでなく参加・体験を伴う展示構成にリニューアルした。",
+    "evaluationImpact": "伝統産業である金箔の物量的な美しさを空間演出として最大化しつつ、プロジェクションマッピングとバーチャル試着という体感型の仕掛けを組み合わせた点が特徴。歴史的モチーフと最新映像技術を掛け合わせ、観光施設としての体験価値を高めた事例である。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Tech/Projection",
+      "Form/Exhibition",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "overture-2009",
+    "title": "OVERTURE（次世代のあかり文化への序曲）",
+    "summary": "松徳ガラス製電球型オブジェ約100個が人感・静電容量センサーで明滅し、触れると鼓動のような振動を返すミラノサローネ出展作品",
+    "client": "東芝株式会社",
+    "agency": "Takram／松井亮建築設計事務所",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2009",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.takram.com/ja/projects/overture",
+    "thumbnail": "/thumbnails/overture-2009.jpg",
+    "videoId": "",
+    "overview": "東芝がミラノサローネに出展した《OVERTURE（次世代のあかり文化への序曲）》。Takramと松井亮建築設計事務所が手がけ、松徳ガラス製の電球型オブジェ約100個を空間に配置。人感センサーで点灯し、来場者が触れると静電容量センサーが反応して光が明滅し、掌に鼓動のような振動が返される。",
+    "background": "白熱電球からLEDへの過渡期にあたり、東芝は「次世代のあかり文化」を提示するインスタレーションをミラノサローネという国際的なデザインの舞台で発表することを企図した。単なる照明の機能訴求ではなく、光と触覚を結びつけた新しい「あかり」との関わり方を提案する狙いがあった。",
+    "execution": "松徳ガラスによる電球型のガラスオブジェ約100個を空間内に並べ、人が近づくと人感センサーが反応して点灯。オブジェに直接触れると内蔵の静電容量センサーが感知し、光の明滅パターンが変化するとともに、掌に鼓動のような振動フィードバックが返る仕組みを構築した。",
+    "evaluationImpact": "光を「見る」対象から「触れて応答が返る」対象へ転換した点が特徴で、照明という日常的な存在に生命的な質感を与える表現として、国際的なデザインの舞台であるミラノサローネで発表された。テクノロジーと工芸（ガラス）を融合させた企業インスタレーションの先行例として位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Installation",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "wave-weave-sono-obi-2025",
+    "title": "WAVE WEAVE ― 音と織物の融合／SONO OBI",
+    "summary": "電子音楽のスペクトログラムを西陣織のパターンに変換し、織物から音を再生する「録音メディアとしてのテキスタイル」を提示したインスタレーション",
+    "client": "HOSOO（細尾）",
+    "agency": "カールステン・ニコライ（Alva Noto）× HOSOO",
+    "categories": [
+      "空間体験",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.hosoogallery.jp/en/exhibitions/wave-weave/",
+    "thumbnail": "/thumbnails/wave-weave-sono-obi-2025.jpg",
+    "videoId": "",
+    "overview": "西陣織のHOSOOと電子音楽家カールステン・ニコライ（Alva Noto）による《WAVE WEAVE ― 音と織物の融合／SONO OBI》。電子音楽のスペクトログラム（音の周波数解析画像）を織物のパターンへと変換し、逆に織り込まれたパターンから音を再生する、テキスタイルを録音メディアとして扱うインスタレーション。",
+    "background": "HOSOOは西陣織の技術を伝統工芸の枠を超えた表現領域へ展開する活動を続けており、音と視覚・触覚を横断する表現を追求するAlva Notoとの協業を企画。音を情報として記録・再生する「メディア」としての織物という着想のもと、電子音楽と織物技術という異なる領域を接続する試みとして構想された。",
+    "execution": "Alva Notoの電子音楽をスペクトログラムとして解析し、その周波数パターンを西陣織の帯（SONO OBI）の織り柄として表現。織り上げられたパターンを再度読み取り音として再生する仕組みを構築し、「聴く」と「見る」「触れる」を往復させる体験としてHOSOO GALLERYで展示した。",
+    "evaluationImpact": "音と織物という異素材の変換を双方向に成立させた点が特徴で、西陣織を単なる意匠表現ではなく情報記録媒体として再定義する試み。伝統工芸と電子音楽アーティストの協業により、テキスタイルの新しい可能性を提示した事例として位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Form/Installation",
+      "Form/Exhibition",
+      "Theme/Music",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "sf-with-yoasobi-2025",
+    "title": "半導体は、SFだ。 / with YOASOBI",
+    "summary": "来場者の心拍から生成した「心音オブジェクト」を、床振動のみで全身に触覚を届けるHaptic FloorでYOASOBIの心音と共鳴させる体験型インスタレーション。",
+    "client": "ソニーグループ（Ginza Sony Park／Sony Park展2025）",
+    "agency": "ソニー",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.ginzasonypark.com/activity/003/",
+    "thumbnail": "/thumbnails/sf-with-yoasobi-2025.jpg",
+    "videoId": "",
+    "overview": "Ginza Sony Parkで開催された「Sony Park展2025」内の展示「半導体は、SFだ。/ with YOASOBI」。来場者の心拍をセンシングし、一人ひとり異なる「心音オブジェクト」を生成。床の振動のみで全身に触覚を伝えるHaptic Floor技術により、生成された心音とYOASOBIの心音を空間内で共鳴させる体験型インスタレーション。",
+    "background": "ソニーグループの半導体技術を、SFのような未知の体験としてどう伝えるかという発想のもとに企画された展示。心拍という個人固有の生体情報をセンシングして可視化・可聴化する技術と、床振動だけで触覚を伝えるHaptic Floorを組み合わせ、不可視のテクノロジーを身体感覚として体感させることを狙った。",
+    "execution": "来場者は会場内で心拍をセンシングされ、その場で自分だけの「心音オブジェクト」が生成される。床全面に組み込まれたHaptic Floorが振動のみで全身に触覚を届け、生成された心音とYOASOBIの楽曲・心音が重なり合う空間演出を体験する仕組み。Ginza Sony ParkのSony Park展2025内で公開された。",
+    "evaluationImpact": "半導体という不可視の技術を、心拍という個人固有の生体情報と結びつけ、床の振動だけで全身に触覚を届ける技術で可視化・可触化した点が特徴。音楽アーティストとの協業により、企業のコア技術をエンターテインメント体験として提示した事例。",
+    "relatedWorks": [
+      {
+        "title": "ファイナンスは、詩だ。 / with 羊文学",
+        "description": "同じくSony Park展2025で公開された、ハプティック床技術を用いた姉妹展示",
+        "url": "https://www.ginzasonypark.com/activity/004/"
+      }
+    ],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Tech/Data",
+      "Form/Installation",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "paper-garden-2016",
+    "title": "Paper Garden",
+    "summary": "岐阜県美濃和紙の巨大モビール「Honminoshi Garden」を天井から幾重にも吊るし、光と影で彩ったスパイラルガーデンのエキシビション。",
+    "client": "SPIRAL／atelier oi × SPREAD",
+    "agency": "atelier oi（スイス）× SPREAD（日本）",
+    "categories": [
+      "空間体験",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2016",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://casabrutus.com/design/26540",
+    "thumbnail": "/thumbnails/paper-garden-2016.jpg",
+    "videoId": "",
+    "overview": "スイスのデザインスタジオatelier oiと日本のクリエイティブユニットSPREADによるコラボレーション展「Paper Garden」。岐阜県の伝統工芸・美濃和紙で作られた巨大なモビール「Honminoshi Garden」を、スパイラルガーデンの天井から幾重にも吊るし、光と影を用いて空間全体を彩ったエキシビション。",
+    "background": "日本の伝統的な手漉き和紙である美濃和紙の質感と、異なる性質を持つ複数の和紙を組み合わせることで生まれる光の透過や陰影の表現を、現代的な空間デザインとして再構築する試みとして企画。スイスと日本、双方のデザインの視点を組み合わせ、伝統工芸の新たな見せ方を提示することを意図した。",
+    "execution": "美濃和紙を用いた大小さまざまなモビール「Honminoshi Garden」を制作し、スパイラルガーデンの天井から幾重にも吊り下げて配置。異なる性質・厚みの和紙を組み合わせることで照明による光と影の陰影がモビールごとに変化し、来場者は歩きながら空間全体の表情の移り変わりを体感する構成とした。",
+    "evaluationImpact": "伝統的な手漉き和紙という素材を、スイスと日本のデザインスタジオの共同制作によって現代的な空間インスタレーションへと昇華させた点が特徴。工芸素材の質感や光の透過性を空間体験として提示する手法は、伝統工芸とデザインの協業事例として紹介されている。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Form/Installation",
+      "Theme/Art"
+    ]
+  },
+  {
     "id": "the-obliteration-room-2002",
     "title": "The Obliteration Room",
     "summary": "真っ白な部屋に来場者が無数のカラフルなドットシールを貼り重ね、会期を通じて空間全体を覆い尽くしていく草間彌生の参加型インスタレーション",
