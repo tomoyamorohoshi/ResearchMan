@@ -14774,5 +14774,203 @@
         "desc": "動画全体を一括計算せず、直前の映像を見ながら次を作り続ける『ストリーミング型』動画生成を実現する研究。"
       }
     ]
+  },
+  {
+    "id": "2026-09-15-1",
+    "date": "2026-09-15",
+    "title": "展示品を浮かせる配慮",
+    "pattern": "文脈×技術",
+    "seed": "ハンセン病資料館「生活のデザイン」が見せた入所者の自助具を、Single-Sided Bessel-Beam Acoustic Levitationで非接触のまま宙に浮かせて展示したら、「触れずに敬意を払う」という展示倫理そのものを体験させられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-1t9pmk3-2022",
+        "title": "企画展「生活のデザイン」ポスター・図録",
+        "desc": "ハンセン病療養所入所者の自助具を紹介する企画展「生活のデザイン」のポスター・図録デザイン"
+      },
+      {
+        "type": "tech",
+        "id": "single-sided-bessel-beam-acoustic-levitation",
+        "title": "Single-Sided Bessel-Beam Acoustic Levitation(ゼロ次ベッセルビームによる片側音響浮揚)",
+        "desc": "超音波のベッセルビームで軽い物体を非接触のまま約40cm離れた空中に浮かせ動かす技術"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-15-2",
+    "date": "2026-09-15",
+    "title": "折り紙をロボットが折る",
+    "pattern": "文脈×技術",
+    "seed": "KINCHOの「超難解折り紙。」を紙面でなく店頭で、EmoMimeのしぐさを増幅するウェアラブルロボットハンドに折らせて見せたら、殺虫剤の“不気味さ”と“精巧さ”を同時に体感させる什器になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "kincho-2017",
+        "title": "超難解折り紙。（キンチョール新聞広告）",
+        "desc": "折り目だけ印刷した新聞広告を指示通り折るとゴキブリの立体折り紙が完成するKINCHOの広告"
+      },
+      {
+        "type": "tech",
+        "id": "emomime",
+        "title": "EmoMime",
+        "desc": "顔のすぐそばでも安全に動き表情やしぐさを増幅して伝えるウェアラブルロボットアーム"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-15-3",
+    "date": "2026-09-15",
+    "title": "歯ブラシが花開く瞬間",
+    "pattern": "文脈×技術",
+    "seed": "Colgateが廃棄歯ブラシを花に変えた「Indianis Dentris」の写真を、CYANPUPPETSの208キーポイントMocapで“開花する手つき”としてアニメ化したら、静止画キャンペーンを踊る啓発動画に拡張できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "colgate-indianis-dentris",
+        "title": "Indianis Dentris",
+        "desc": "廃棄する歯ブラシを新種の花に見立てて口腔ケア習慣を揺さぶった体験型写真キャンペーン"
+      },
+      {
+        "type": "tech",
+        "id": "cyanpuppets-1b-parameter-ai-motion-capture",
+        "title": "CYANPUPPETS 1B-parameter AI Motion Capture",
+        "desc": "10億パラメータAIでウェブカメラ等から全身・顔・指208キーポイントを抽出するモーションキャプチャ"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-15-4",
+    "date": "2026-09-15",
+    "title": "落書きで即マルチアングル",
+    "pattern": "技術×技術",
+    "seed": "ComfyUI「Cinematic Annotate Video」で描いたカメラ指示を、FlashRenderで数秒の別アングル再撮に流し込めば、絵コンテを描いた瞬間にプレビズが完成する超高速演出会議ツールになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-cinematic-annotate-video",
+        "title": "ComfyUI「Cinematic Annotate Video」ワークフロー",
+        "desc": "画像への描き込みをLLMがモーションプロンプトに自動翻訳し動画生成するComfyUIワークフロー"
+      },
+      {
+        "type": "tech",
+        "id": "flashrender",
+        "title": "FlashRender",
+        "desc": "撮影済み動画を別アングルで撮り直したように従来の25倍速で生成できる技術"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-15-5",
+    "date": "2026-09-15",
+    "title": "360度空間に憑依するダンス",
+    "pattern": "技術×技術",
+    "seed": "360 Gaussian Proで丸ごと点群化した実在の街や店舗に、SCAIL-2で抜き出した他人のダンスや宙返りを憑依させれば、実写ロケなのに誰でも主役になれる没入型ミュージックビデオが作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "360-gaussian-pro",
+        "title": "360 Gaussian Pro",
+        "desc": "360度カメラ映像から自動でGaussian Splat(立体点群)を生成する有償デスクトップアプリ"
+      },
+      {
+        "type": "tech",
+        "id": "scail-2",
+        "title": "SCAIL-2",
+        "desc": "動画の人物の動きを骨格抽出なしで別キャラクターへEnd-to-Endで乗り移らせる技術"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-15-6",
+    "date": "2026-09-15",
+    "title": "高画質化を記憶の修復に",
+    "pattern": "転用",
+    "seed": "ゲームの高画質化技術を動画にかけるDLSS5 Enhancerを、新作映像の美化ではなく古いVHSや監視カメラ映像のレストアに転用したら、「記憶の解像度を上げる」ノスタルジー訴求の広告表現になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "dlss5-enhancer",
+        "title": "DLSS5 Enhancer (ComfyUI-DLSS5-Enhancer)",
+        "desc": "ゲーム向けAI高画質化技術DLSS5をComfyUIノードとして動画・画像に使えるようにした非公式ツール"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-15-7",
+    "date": "2026-09-15",
+    "title": "安いシード選びをオーディションに",
+    "pattern": "転用",
+    "seed": "生成AIの構図を安いプレビューだけで選別するComfyUI-KMSの発想を、実際のキャスティング・オーディションの事前スクリーニング比喩として転用すれば、「本番前にたくさん試せる」体験型採用広告が作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-kms",
+        "title": "ComfyUI-KMS（Multi-Choice KSampler）",
+        "desc": "フル生成せず安いプレビューだけで良い構図のシードを選びそれだけ仕上げるComfyUI拡張ノード"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-15-8",
+    "date": "2026-09-15",
+    "title": "ゲーム試着で実寸発注",
+    "pattern": "文脈×技術",
+    "seed": "BalenciagaがUE4ゲーム内でコレクションを着せた「AFTERWORLD: THE AGE OF TOMORROW」の発想に、Multi-View Foundation Modelsの視点間一貫の特徴づけを掛けたら、ゲーム内アバターの試着姿から実店舗発注できる仕組みが作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "balenciaga-afterworld-game",
+        "title": "AFTERWORLD: THE AGE OF TOMORROW（Balenciaga）",
+        "desc": "ブラウザで動くUE4製ゲームでファッションショーを代替しゲーム内でコレクションを購入できる体験"
+      },
+      {
+        "type": "tech",
+        "id": "multi-view-foundation-models",
+        "title": "Multi-View Foundation Models",
+        "desc": "DINO等の2D基盤モデルに視点間一貫の特徴を持たせるマルチビュー空間アダプタのフレームワーク"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-15-9",
+    "date": "2026-09-15",
+    "title": "ボタンの旗が観客に反応",
+    "pattern": "文脈×技術",
+    "seed": "Ai Weiweiが400万個のボタン旗で200年史を可視化した「Button Up!」に、UE 5.8のMetaHuman Animatorマーカーレスモーキャプを掛けたら、来場者の動きにボタンの旗が波打って反応するインタラクティブ壁画になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "button-up-2026",
+        "title": "Button Up!",
+        "desc": "400万個のボタン旗と350万個のブロック壁画で英中200年史を可視化したAi Weiweiの個展"
+      },
+      {
+        "type": "tech",
+        "id": "ue58-metahuman-markerless-mocap",
+        "title": "MetaHuman Animator マーカーレスMocap（UE 5.8）× AI再レンダリング検証",
+        "desc": "UE5.8でWebカメラ1台による全身マーカーレスモーションキャプチャを実現する機能"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-15-10",
+    "date": "2026-09-15",
+    "title": "作曲と作画を同時生成",
+    "pattern": "技術×技術",
+    "seed": "AIエージェントが自然言語だけで操作するDAW「Stratawright」と、物理的な正しさを重視するLingBot-Videoを組み合わせれば、同じ指示文から音楽と映像が同時に、動きの物理法則も揃って生まれるMV自動生成パイプラインが作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "stratawright",
+        "title": "Stratawright",
+        "desc": "Claude Code等のAIコーディングエージェントが自然言語だけで操作できるC++製のDAW"
+      },
+      {
+        "type": "tech",
+        "id": "lingbot-video",
+        "title": "LingBot-Video",
+        "desc": "見た目だけでなく物理的な正しさを重視して作られたロボット学習にも使える大規模動画生成AI"
+      }
+    ]
   }
 ]
