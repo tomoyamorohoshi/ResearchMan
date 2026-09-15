@@ -1,5 +1,413 @@
 [
   {
+    "id": "a-moving-sanctuary-for-lexus-2026",
+    "title": "A Moving Sanctuary for Lexus",
+    "summary": "繭型ポッドに入ると呼吸や体の微動をAIカメラが検知し、光と音がリアルタイムに反応する瞑想的インスタレーション",
+    "client": "Lexus",
+    "agency": "Random Studio",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://random.studio/projects/a-moving-sanctuary-for-lexus",
+    "thumbnail": "/thumbnails/a-moving-sanctuary-for-lexus-2026.jpg",
+    "videoId": "",
+    "overview": "Lexusが2026年ミラノデザインウィークの企画「Discover Together」で発表したインスタレーション「A Moving Sanctuary for Lexus」。クリエイティブスタジオRandom Studioが手がけ、繭のような形状のポッドに来場者が身を委ねると、AIカメラが呼吸や体のわずかな動きを検知し、その情報に応じて光と音がリアルタイムに変化する瞑想的な一人用の避難空間を作り出した。",
+    "background": "Lexusは移動を単なる機能ではなく心身を整える体験として捉え直す試みをミラノデザインウィークで続けており、2026年はミラノ市庁舎中庭を舞台にした共同企画「Discover Together」に参加した。慌ただしい都市生活の中で個人が内省し休息できる場を、AIとセンサー技術によって作ることを狙い、Random Studioとの協業でこの繭型ポッドを開発した。",
+    "execution": "繭型のポッド内部にAIカメラを組み込み、来場者の呼吸のリズムや体のわずかな微動を非接触でセンシング。検知したデータをリアルタイムに解析し、ポッド内の光の色調や強度、環境音の質感を連動して変化させることで、一人ひとりの状態に呼応する固有の瞑想的な体験を生み出す。来場者が落ち着くほど光と音も静けさを増していく設計とした。",
+    "evaluationImpact": "生体反応をAIで検知し感覚演出へ変換する手法により、自動車ブランドが提示する「移動」の概念を、身体的な安らぎの体験として再定義した点が特徴。Discover Togetherという共同キュレーション企画の中で、テクノロジーと内省というテーマの結びつきを示す事例として位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Tech/AI",
+      "Theme/Mobility",
+      "Theme/Health"
+    ]
+  },
+  {
+    "id": "the-sound-of-premium-2026",
+    "title": "The Sound of Premium",
+    "summary": "都市騒音を混沌→調和→静寂の3段階に翻訳し、高さの異なる柱が音楽と共鳴・明滅するタイヤ技術の体験展示",
+    "client": "Continental",
+    "agency": "WOA Studio（WPP Entertainment）",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.continental.com/en/press/press-releases/20260421-sound-of-premium/",
+    "thumbnail": "/thumbnails/the-sound-of-premium-2026.jpg",
+    "videoId": "",
+    "overview": "タイヤメーカーContinentalが2026年に発表したインスタレーション「The Sound of Premium」。WPP Entertainment傘下のWOA Studioが制作し、都市の騒音環境を「混沌」「調和」「静寂」という3つの段階に翻訳。高さの異なる柱状の構造体が音楽のリズムに合わせて明滅することで、タイヤの静粛性技術を多感覚的に体感させる展示とした。",
+    "background": "Continentalはタイヤが生み出す走行音や静粛性という、数値では伝わりにくい性能領域を一般に訴求する手段を模索していた。都市生活者が日常的に浴びる騒音のストレスを起点に、それがタイヤ技術によってどう整えられていくかを物語的に体験させる企画として、WOA Studioと協業した。",
+    "execution": "会場に高さの異なる柱状オブジェクトを林立させ、まず都市の喧騒を思わせる不規則な音と光の点滅で「混沌」を表現。続いて楽曲のリズムに柱の明滅が同期する「調和」の段階へと移行し、最後に音と光が収束する「静寂」で締めくくる3幕構成とした。この変化を通じてタイヤ技術による騒音低減の価値を体感型で伝えた。",
+    "evaluationImpact": "走行音の静粛性という抽象的な技術価値を、光と音による物語的な段階演出に翻訳した点が、BtoB色の強いタイヤブランドによる感覚訴求型インスタレーションの事例として注目される。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Tech/Audio",
+      "Theme/Mobility"
+    ]
+  },
+  {
+    "id": "google-presents-making-the-invisible-visible-2025",
+    "title": "Google presents Making the Invisible Visible",
+    "summary": "光と水の彫刻家Lachlan Turczanと組み、エネルギーと知覚の相互作用だけで空間を形作る没入型ライトインスタレーション",
+    "client": "Google",
+    "agency": "Lachlan Turczan（Google Design Studio共同制作）",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.fuorisalone.it/en/2025/events/5117/Google-presents-Making-the-Invisible-Visible",
+    "thumbnail": "/thumbnails/google-presents-making-the-invisible-visible-2025.jpg",
+    "videoId": "",
+    "overview": "Googleが2025年ミラノデザインウィークで発表したインスタレーション「Making the Invisible Visible」。光と水を素材に扱うアーティストLachlan TurczanとGoogle Design Studioが共同制作し、物理的なオブジェクトではなく、光・水・音といったエネルギーと来場者の知覚の相互作用のみによって空間全体の形を立ち上げる没入型体験を構築した。",
+    "background": "Googleはデザインウィークにおいて、プロダクトの展示ではなく知覚そのものをテーマにした表現を続けており、2025年は光と水の彫刻家として知られるLachlan Turczanとの協業により、目に見えないエネルギーの現象を可視化するというテーマに取り組んだ。物質を最小限に抑え、光と水の物理現象そのものを体験の核に据える方針で企画された。",
+    "execution": "会場内で水面に投影される光や霧状の粒子を用い、来場者の視点の動きや位置に応じて光の像が浮かび上がったり消えたりする現象を作り出した。固定された造形物を置くのではなく、光・水・音のエネルギーが相互に作用し合うことで空間の輪郭そのものが立ち現れる構成とし、Lachlan Turczanが培ってきた光の彫刻の手法を空間規模に拡張した。",
+    "evaluationImpact": "物理的なオブジェクトに頼らず、エネルギーと知覚の相互作用のみで空間体験を成立させた点が、Googleのデザイン哲学を象徴する事例としてFuorisaloneのプログラムで紹介された。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Tech/Projection",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "library-of-light-2025",
+    "title": "Library of Light",
+    "summary": "ブレラ絵画館の中庭でカノーヴァ彫刻を軸に回転する、3000冊の本で構成された直径18mの発光書架インスタレーション",
+    "client": "Es Devlin（Salone del Mobile特別企画）",
+    "agency": "Es Devlin Studio",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.designboom.com/design/es-devlin-rotating-library-of-light-installation-courtyard-milan-design-week-04-07-2025/",
+    "thumbnail": "/thumbnails/library-of-light-2025.jpg",
+    "videoId": "",
+    "overview": "アーティストEs Devlinが2025年ミラノデザインウィークにSalone del Mobile特別企画として発表したインスタレーション「Library of Light」。ブレラ絵画館の中庭に、彫刻家カノーヴァの作品を軸として据え、その周囲を3000冊の本で構成した直径18mの発光する書架構造体が回転する空間を作り上げた。",
+    "background": "Salone del Mobileはミラノデザインウィークの中心的な組織として、歴史的建築とデザイン表現を接続する特別企画を展開しており、2025年はEs Devlinを迎えてブレラ絵画館という美術史的な場所を舞台にした企画を実施した。知識の集積である「本」と、美術史的遺産である彫刻を組み合わせ、光を媒介に両者を結びつけることを狙った。",
+    "execution": "ブレラ絵画館の中庭中央にカノーヴァの彫刻を配置し、その周囲に3000冊の本を円環状に組み上げた直径18mの巨大な書架構造体を設置。構造体全体を発光させながらゆっくりと回転させることで、静的な彫刻と動的な書架の対比を生み出し、来場者が中庭を歩きながら光と本の集積が織りなす空間の変化を体感できる構成とした。",
+    "evaluationImpact": "歴史的な美術館の中庭という舞台で、書物の集積と彫刻という異なる時間軸の遺産を光と回転運動によって結びつけた点が、Es Devlinらしいスケール感のある空間演出としてデザインメディアで広く紹介された。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "pianissimo-fortissimo-pulse-2019",
+    "title": "Pianissimo Fortissimo（ヤマハ「pulse」展 出展作品）",
+    "summary": "壁一面の造形物に来場者が座って演奏できる、ヤマハ「pulse」展の体験型インスタレーション",
+    "client": "Yamaha（ヤマハ株式会社）",
+    "agency": "ヤマハデザイン研究所",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2019",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.japandesign.ne.jp/news/2019/11/50531/",
+    "thumbnail": "/thumbnails/pianissimo-fortissimo-pulse-2019.jpg",
+    "videoId": "",
+    "overview": "ヤマハが2019年ミラノデザインウィークで発表した「pulse」展の出展作品「Pianissimo Fortissimo」。ヤマハデザイン研究所が手がけ、壁一面を覆う絵画のような造形物に来場者が実際に座り、触れることで音を奏でられる、演奏可能な壁面インスタレーションとして構成した。",
+    "background": "楽器メーカーであるヤマハが、音や演奏という体験を新しい形の空間表現として提案する目的で、「pulse」展のためにヤマハデザイン研究所が企画。壁面という建築的な要素そのものを楽器化することで、演奏という行為の境界を拡張する狙いがあった。",
+    "execution": "展示壁の一面全体を絵画的な造形で覆い、来場者がその一部に腰掛けたり触れたりすることで音が鳴る仕組みを組み込んだ。観賞するだけの壁面装飾ではなく、来場者自身の身体的な関わりによって音楽が生まれる、座って演奏できるインスタレーションとして体験を設計した。",
+    "evaluationImpact": "壁というオブジェクトに演奏機能を組み込み、鑑賞と演奏の境界を曖昧にした点が特徴。ヤマハデザイン研究所によるミラノデザインウィーク「pulse」展の出展作として、楽器メーカーによる新しい音楽体験の提案例として紹介された。",
+    "relatedWorks": [
+      {
+        "title": "Sound Gravity",
+        "description": "同じ「pulse」展でヤマハデザイン研究所が発表した、チェロ型オブジェを抱きしめて音と振動を体感する作品",
+        "url": "https://www.minerva-jpn.co.jp/special/yamaha/"
+      }
+    ],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Tech/Audio",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "sound-gravity-pulse-2019",
+    "title": "Sound Gravity（ヤマハ「pulse」展 出展作品）",
+    "summary": "チェロ型オブジェを抱きしめると音と振動を全身で感じられる、ヤマハ「pulse」展の体験型作品",
+    "client": "Yamaha（ヤマハ株式会社）",
+    "agency": "ヤマハデザイン研究所",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2019",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.minerva-jpn.co.jp/special/yamaha/",
+    "thumbnail": "/thumbnails/sound-gravity-pulse-2019.jpg",
+    "videoId": "",
+    "overview": "ヤマハが2019年ミラノデザインウィーク「pulse」展で発表した出展作品「Sound Gravity」。ヤマハデザイン研究所が手がけ、内部に振動機構を組み込んだチェロ型のオブジェを来場者が抱きしめることで、楽器の音とその振動を全身で感じ取れる体験型インスタレーションとして構成した。",
+    "background": "耳で聴くだけでなく、身体を通じて音楽を感じる新しい体験を提案するため、ヤマハデザイン研究所が「pulse」展のために企画。チェロという楽器の形状を象徴的なオブジェとして再構築し、抱きしめるという行為を通じて音と振動を直接的に伝えることを狙った。",
+    "execution": "チェロを模した大型のオブジェの内部に振動機構を仕込み、来場者がそのオブジェを抱きしめると、演奏された音に連動した振動が全身に伝わる仕組みを構築。聴覚だけでなく触覚を通じて音楽を体感できる作品として、「pulse」展の会場内に設置した。",
+    "evaluationImpact": "楽器の音を耳だけでなく身体全体で感じさせるという体験設計が特徴。ヤマハデザイン研究所による「pulse」展の出展作として、音楽体験を触覚に拡張する試みの一例として紹介された。",
+    "relatedWorks": [
+      {
+        "title": "Pianissimo Fortissimo",
+        "description": "同じ「pulse」展でヤマハデザイン研究所が発表した、壁一面の造形物に座って演奏できるインスタレーション",
+        "url": "https://www.japandesign.ne.jp/news/2019/11/50531/"
+      }
+    ],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Tech/Device",
+      "Tech/Audio",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "continuum-roots-of-comfort-2024",
+    "title": "CONTINUUM -Roots of comfort-（おりん展示）",
+    "summary": "富山の職人と協働し、来場者が鳴らしたおりんの音と振動をその場で視覚化するミラノ出展作",
+    "client": "Toyota Boshoku（トヨタ紡織株式会社）",
+    "agency": "今人～imajin～（クリエイティブディレクション）／おりん職人 島谷好徳氏 協働",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.toyota-boshoku.com/jp/news/240404.html",
+    "thumbnail": "/thumbnails/continuum-roots-of-comfort-2024.jpg",
+    "videoId": "",
+    "overview": "トヨタ紡織が2024年ミラノデザインウィークで発表したインスタレーション「CONTINUUM -Roots of comfort-」。クリエイティブディレクションを手がける今人～imajin～が、富山のおりん職人・島谷好徳氏と協働し、来場者が鳴らしたおりんの音と振動をその場で光や映像として視覚化する展示を構成した。",
+    "background": "自動車内装部品メーカーであるトヨタ紡織が、心地よさ（Comfort）という自社が扱う価値を、伝統工芸の音色を通じて体感的に伝える狙いで企画。富山県で長年おりんを手がける職人・島谷好徳氏と協働することで、伝統工芸の音響技術と現代的な演出表現を組み合わせることを目指した。",
+    "execution": "来場者が実際に富山のおりんを鳴らし、その音と振動をセンサーで検知して光や映像としてリアルタイムに視覚化する仕組みを構築。聴覚で捉えたおりんの音色を、視覚情報として同時に体感できるインスタレーションとして、ミラノデザインウィークの会場内に展示した。",
+    "evaluationImpact": "伝統工芸である富山のおりんの音色を、現代的な視覚表現と組み合わせて体感化した点が特徴。トヨタ紡織が掲げる「心地よさ」というブランド価値を、職人技とテクノロジーの協働によって伝えた事例として紹介された。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Tech/Audio",
+      "Theme/Mobility"
+    ]
+  },
+  {
+    "id": "in-between-matter-2026",
+    "title": "In-Between Matter",
+    "summary": "分析計測の核心「分ける」という行為を、来場者の動作で物質変化として体感させるサイエンスアート・インスタレーション",
+    "client": "Shimadzu（島津製作所）",
+    "agency": "we+",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.shimadzu.co.jp/today/20260526-1.html",
+    "thumbnail": "/thumbnails/in-between-matter-2026.jpg",
+    "videoId": "",
+    "overview": "島津製作所とデザインスタジオwe+が2026年に発表したサイエンスアート・インスタレーション「In-Between Matter」。分析計測技術の根幹にある「分ける」という行為をテーマに、来場者が回す・押す・浸すといった身体的な動作を通じて物質の変化を引き起こし、目に見えない分析のプロセスを体感的に理解できる装置として構成した。島津とwe+にとって2度目の共作となる。",
+    "background": "島津製作所は分析計測機器メーカーとして、専門的で不可視な「分ける」という技術原理を、専門知識のない来場者にも直感的に伝える表現を模索していた。デザインスタジオwe+との協業は今回で2度目となり、素材や現象の変化を扱ってきたwe+の作風を活かし、分析装置の内部で起きている現象を身体感覚に翻訳する試みとして企画された。",
+    "execution": "会場には来場者が実際に回す・押す・浸すといった動作を行える複数の装置を配置し、それぞれの操作によって物質の状態や見え方がリアルタイムに変化する仕組みを構築した。分析計測機器が内部で行っている「分ける」というプロセスを、抽象的な数値ではなく手を動かして起こる物理的な変化として体験できるよう設計した。",
+    "evaluationImpact": "分析計測技術という専門性の高い領域を、身体的な操作を通じたサイエンスアートとして翻訳した点が、企業の技術訴求とアート表現を接続する事例として位置づけられる。島津とwe+の継続的な協業は、メーカーがデザインスタジオとの関係を単発でなく重ねていく手法の一例といえる。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Tech/Device",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "soundscape-2018",
+    "title": "Soundscape",
+    "summary": "宙に浮かべた35枚の透明ガラス板から音が鳴る仕組みで、ガラスから音が聴こえる不思議な音風景を体感させるインスタレーション",
+    "client": "AGC（旭硝子）",
+    "agency": "萬代基介建築設計事務所（デザイン）／堤田祐史（音響空間設計）",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2018",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.japandesign.ne.jp/interview/agc-soundscape/",
+    "thumbnail": "/thumbnails/soundscape-2018.jpg",
+    "videoId": "",
+    "overview": "AGC（旭硝子）が2018年に発表したインスタレーション「Soundscape」。萬代基介建築設計事務所によるデザインと、堤田祐史による音響空間設計のもと、宙に浮かせた35枚の透明なガラス板から音が鳴る仕組みを用い、来場者が「ガラスから音が聴こえる」という不思議な音風景を体感できる空間として構成した。",
+    "background": "AGCは主力製品であるガラスの新たな価値を、透明性や強度といった機能面だけでなく、感覚的な体験として伝える表現を模索していた。建築家の萬代基介と音響空間デザイナーの堤田祐史を迎え、視覚的にほぼ存在を感じさせない透明ガラスから音が発せられるという知覚のずれを起点に、素材の新しい魅力を提示する企画として構想された。",
+    "execution": "会場の宙空に35枚の透明なガラス板を浮かせるように配置し、各板に音響を伝える仕組みを組み込むことで、板そのものから音が鳴っているように知覚される空間を構築した。堤田祐史による音響設計は、来場者の位置や動きに応じて音の響き方が変化するよう調整され、視覚と聴覚のずれを活かした音風景を作り上げた。",
+    "evaluationImpact": "透明で存在感の薄いガラスという素材から音が生まれるという知覚的な意外性を軸に、素材の物性を体感的に伝える手法として建築・デザインメディアで紹介された。ガラスメーカーが自社素材の魅力を機能訴求ではなく感覚体験として提示する事例の一つとなった。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Tech/Audio",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "honda-experience-casa-connessa-tortona-2019",
+    "title": "Honda experience – Casa Connessa Tortona",
+    "summary": "欧州初公開のHonda eプロトタイプが体現する思想を、都市の喧騒から静けさへ移行する没入型視聴覚体験として構成したミラノ初出展インスタレーション",
+    "client": "Honda（本田技研工業）",
+    "agency": "Avantgarde",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2019",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://hondanews.eu/eu/no/cars/media/pressreleases/164702/honda-experience-casa-connessa-tortona-brings-connected-lifestyle-to-milan-design-week-2019",
+    "thumbnail": "/thumbnails/honda-experience-casa-connessa-tortona-2019.jpg",
+    "videoId": "",
+    "overview": "Hondaが2019年ミラノデザインウィークに初出展したインスタレーション「Honda experience – Casa Connessa Tortona」。代理店Avantgardeとの協業により、欧州初公開となったEV「Honda e プロトタイプ」のデザイン思想を、都市の喧騒から静けさへと移行していく没入型の視聴覚体験として構成し、コネクテッドなライフスタイルの世界観を伝えた。",
+    "background": "Hondaは欧州市場向けに発表したEV「Honda e プロトタイプ」が掲げる、都市生活とテクノロジーの新しい関係性というコンセプトを、スペック紹介ではなく体感的な形で伝える場を求めていた。ミラノデザインウィークへの初出展にあたり、代理店Avantgardeと共に、都市の喧騒から離れた静けさへ移行する体験を軸とした空間演出を企画した。",
+    "execution": "会場を訪れた来場者は、都市の雑踏を想起させる映像・音響から始まり、進むにつれて徐々に静けさへと移行していく視聴覚演出を体験する構成とした。Honda eプロトタイプが提示するコネクテッドなライフスタイルの世界観を、直接的なプロダクト展示ではなく、感覚の変化として体感させる空間設計を採用した。",
+    "evaluationImpact": "自動車ブランドとして初めてミラノデザインウィークに参加したHondaが、プロダクトの機能ではなくデザイン思想を没入型の視聴覚体験として提示した事例として、モビリティ関連の企業インスタレーションの一例に位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Tech/Audio",
+      "Theme/Mobility"
+    ]
+  },
+  {
+    "id": "emergence-of-form-2019",
+    "title": "Emergence of Form",
+    "summary": "ガラスの三次元曲面成形技術とセラミックス3Dプリント材で、シャボン玉が生まれる瞬間を視覚・触覚で体感できるよう造形化したインスタレーション",
+    "client": "AGC（旭硝子）",
+    "agency": "鈴木啓太（プロダクトデザイナー）",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2019",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.agc.com/news/detail/1198855_2148.html",
+    "thumbnail": "/thumbnails/emergence-of-form-2019.jpg",
+    "videoId": "",
+    "overview": "AGC（旭硝子）が2019年ミラノデザインウィークで発表したインスタレーション「Emergence of Form」。プロダクトデザイナーの鈴木啓太が、AGCのガラス三次元曲面成形技術とセラミックス3Dプリント材を用い、シャボン玉が生まれる瞬間の形状を造形化し、来場者が視覚と触覚の両方で体感できる展示として構成した。",
+    "background": "AGCはガラスの三次元曲面成形技術という独自の加工技術を、素材の可能性として広く伝える表現を模索していた。プロダクトデザイナーの鈴木啓太を迎え、液体の膜が瞬間的に球体を形成するシャボン玉という自然現象を題材に、ガラス成形とセラミックス3Dプリントという二つの技術を組み合わせて造形する企画とした。",
+    "execution": "シャボン玉が生まれる瞬間の膜の張りや歪みといった形状を、AGCのガラス三次元曲面成形技術で再現し、支持構造にはセラミックス素材の3Dプリントを用いて造形した。来場者は完成された作品を眺めるだけでなく、素材の質感や曲面に触れることで、一瞬で消える自然現象を静止した造形物として視覚・触覚の両面から体感できる構成とした。",
+    "evaluationImpact": "一瞬で消える自然現象を、ガラス成形と3Dプリントという異なる技術の組み合わせによって恒常的な造形物へと転換した点が、素材メーカーによる技術訴求とアート表現を接続する事例として紹介された。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Tech/3D",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "wonder-powder-2024",
+    "title": "WONDER POWDER",
+    "summary": "様々な素材を粉末化し水中での動きを観察する、島津製作所×we+によるミラノ初出展のリサーチ系インスタレーション",
+    "client": "Shimadzu（島津製作所）",
+    "agency": "we+",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000001.000140795.html",
+    "thumbnail": "/thumbnails/wonder-powder-2024.jpg",
+    "videoId": "",
+    "overview": "島津製作所とクリエイティブスタジオwe+が2024年ミラノデザインウィークに初出展したインスタレーション「WONDER POWDER」。木材や布、金属など様々な素材を粉末化し、それらが水中でどのように舞い沈み拡散するかを観察するリサーチプロジェクトを、来場者が間近で鑑賞できる体験型展示として構成した。",
+    "background": "島津製作所は分析・計測機器メーカーとして、粒子や物質の挙動を科学的に捉える知見を蓄積してきた。その知見を一般に開く手段として、we+と共同で素材の粉末化という現象そのものを美的な観察対象に転換し、科学的な視点と感性的な鑑賞体験を両立させる展示を企画、ミラノデザインウィークへの初出展に踏み切った。",
+    "execution": "木材、布、金属など多様な素材を粉末状に加工し、水を満たした透明な容器の中に投入。粉末が沈む、舞う、拡散するといった一連の動きを、来場者が容器のすぐそばで肉眼で観察できるよう配置した。素材ごとに異なる粒子の質感や動きの速度、広がり方の違いを比較しながら鑑賞できる構成とした。",
+    "evaluationImpact": "分析機器メーカーが持つ物質観察の視点を、専門的な数値やデータではなく、目の前で起こる現象そのものとして提示した点が特徴。科学的探究心と感性的な美しさを両立させたリサーチプロジェクトとして、ミラノデザインウィーク初出展の企業インスタレーション事例に位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Tech/Data",
+      "Theme/Art"
+    ]
+  },
+  {
     "id": "breeze-of-light-2019",
     "title": "Breeze of Light",
     "summary": "偏光フィルムの花1.7万本と可動スポットライト115台で、目に見えない風の動きを光と影として可視化したインスタレーション",
