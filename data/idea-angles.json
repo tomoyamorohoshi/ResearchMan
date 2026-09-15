@@ -4,11 +4,11 @@
     "label": "見立て変換",
     "description": "既存の形式・データを別のモチーフの形に置き換えて意味を重ねる発想",
     "exemplarCaseIds": [
-      "pocari-sweat-2005",
+      "ajinomoto-danran-lantern",
       "daiichikosho-dam-1000-meigara",
-      "kincho-2017",
-      "abraxas-interactive-print-2015",
-      "morning-hints-2023"
+      "hokkaido-shimbun-kombu-newspaper",
+      "heinz-look-familiar",
+      "pocari-sweat-2005"
     ]
   },
   {
@@ -16,11 +16,11 @@
     "label": "媒体の物理特性活用",
     "description": "媒体そのものの物理素材・特性に機能や意味を持たせる発想",
     "exemplarCaseIds": [
+      "ihi-2025",
+      "case-1uoh77r-2019",
       "mawbima-mosquito-repellent-newspaper",
       "mainichi-green-newspaper",
-      "asahi-origami-newspaper",
-      "seeds-2019",
-      "cook-this-page-2017"
+      "runblock-brand-identity-2026"
     ]
   },
   {
@@ -28,10 +28,11 @@
     "label": "機能の転用",
     "description": "既存インフラや日常の仕組みをそのまま広告・メディアに転用する発想",
     "exemplarCaseIds": [
+      "sell-your-car-2010",
+      "the-protection-ad-2014",
+      "traffic-busters-2017",
       "ikea-billboard-campaign-every-home-concept-2026",
-      "hiding-the-mess-behind-its-billboards-2026",
-      "ore-ida-rain-activated-billboard-2024",
-      "waoo-wifi-invasion"
+      "mcdonald-s-mcdelivery-speed-camera-ads"
     ]
   },
   {
@@ -40,7 +41,9 @@
     "description": "あえて何も足さず「無いこと」自体をメッセージにする発想",
     "exemplarCaseIds": [
       "annahar-blank-edition",
-      "claude-anthropic-keep-thinking"
+      "no-smiles-2023",
+      "kao-brands-silent-cleaning",
+      "fuelled-by-silence-2026"
     ]
   },
   {
@@ -48,10 +51,11 @@
     "label": "参加型UGCエンジン",
     "description": "受け手の投稿や行動がそのままコンテンツ・キャンペーンを完成させる発想",
     "exemplarCaseIds": [
-      "spotify-wrapped",
       "als-ice-bucket-challenge",
       "straight-outta-somewhere",
-      "barbie-selfie-ai"
+      "barbie-selfie-ai",
+      "spotify-wrapped",
+      "the-dr-pepper-jingle"
     ]
   },
   {
@@ -59,10 +63,10 @@
     "label": "データの素材化",
     "description": "既存データを収集・変換し創作物や体験の素材として使う発想",
     "exemplarCaseIds": [
-      "case-betmug-2017",
-      "battling-infectious-diseases-in-the-20th-century-the-impact",
-      "spotify-wrapped-design-2023",
-      "wheretosettle-gdzie-zamieszka-2022"
+      "case-8l88um-2024",
+      "centersquare-a-brand-identity-shaped-by-the-power-of-data-20",
+      "forest-carbon-in-tune-with-nature-2025",
+      "embratur-amazonia"
     ]
   },
   {
@@ -70,10 +74,10 @@
     "label": "制約を武器に",
     "description": "技術的・予算的制約をあえて課しそれを表現の武器に変える発想",
     "exemplarCaseIds": [
-      "coinbase-your-way-out",
-      "burger-king-moldy-whopper",
-      "honda-the-cog",
-      "beefeater-0-0-jamiroquai-virtual-insanity-2026"
+      "sans-forgetica-2018",
+      "mad-stars-2026-young-stars-new-stars-competitions-2026",
+      "digital-camouflage-2026",
+      "braille-neue-2017"
     ]
   },
   {
@@ -81,11 +85,11 @@
     "label": "虚構の実在化",
     "description": "架空の存在・組織をWeb上に「本物」として構築し没入させる発想",
     "exemplarCaseIds": [
-      "why-so-serious-dark-knight",
-      "cloverfield-arg",
       "prometheus-weyland-industries",
       "jurassic-world-park-site",
-      "discover-westworld-aideden"
+      "discover-westworld-aideden",
+      "balenciaga-afterworld-game",
+      "underscores-wallsocket-arg"
     ]
   },
   {
@@ -95,7 +99,7 @@
     "exemplarCaseIds": [
       "the-cure-songs-of-lost-world",
       "twenty-one-pilots-dmaorg-arg",
-      "decode-jayz-bing",
+      "year-zero-arg-nine-inch-nails",
       "tracking-bad-bunny"
     ]
   },
@@ -104,9 +108,9 @@
     "label": "隠れた真実の発見",
     "description": "誰も気づいていなかった一致や事実を発見し可視化する発想",
     "exemplarCaseIds": [
-      "heinz-look-familiar",
       "heinz-coincidence",
       "ikea-alsulaiman-is-that-a-pinntorp",
+      "doritos-the-triangle-theory",
       "colas-iceland-hola"
     ]
   },
@@ -115,10 +119,11 @@
     "label": "当事者主導設計",
     "description": "当事者本人を制作・設計の主体として巻き込むデザイン発想",
     "exemplarCaseIds": [
-      "dear-ai-disability-representation-campaign-2026",
       "asics-the-undropped-kit",
-      "tilt-accessible-beauty-product-design",
-      "ariel-p-g-2023"
+      "dear-ai-disability-representation-campaign-2026",
+      "supernova-rise-3-adaptive",
+      "girlguiding-uniform-redesign-2026",
+      "hackberry-2015"
     ]
   },
   {
@@ -126,22 +131,24 @@
     "label": "タブーへの正面突破",
     "description": "社会的に隠されてきたテーマに正面から向き合い可視化する発想",
     "exemplarCaseIds": [
+      "movember-don-t-let-an-old-myth-put-you-in-this-position-2026",
       "kotex-arts-missing-period",
       "bodyform-womb-stories",
-      "kotex-own-your-flow",
       "the-tampon-book-2019",
-      "movember-don-t-let-an-old-myth-put-you-in-this-position-2026"
+      "waronwhatshidden-2026"
     ]
   },
   {
-    "id": "hijack-competitor",
-    "label": "競合フォーマット乗っ取り",
-    "description": "競合のフォーマットや広告枠を逆手に取って自社に利用する発想",
+    "id": "ironic-context-reversal",
+    "label": "逆説の文脈転換",
+    "description": "ブランドや競合との前提関係をあえて逆転させ意外性を生む発想",
     "exemplarCaseIds": [
+      "toyota-escape-vehicle",
+      "desigual-tesla-elon-musk-2026",
+      "snickers-ai-spoof-ad-ai-2026",
       "back-market-lets-end-fast-tech",
-      "doordash-all-the-ads",
-      "maple-leaf-foods-look-for-the-leaf",
-      "the-choice-pepsi"
+      "koda-transforms-tour-de-france-penis-graffiti-to-promote-wom",
+      "maple-leaf-foods-look-for-the-leaf"
     ]
   },
   {
@@ -150,8 +157,10 @@
     "description": "主張を誇張やCGでなく現実のライブ実演で証明してみせる発想",
     "exemplarCaseIds": [
       "volvo-epic-split",
+      "honda-the-cog",
       "red-bull-stratos",
-      "graza-the-hot-lap-test-2026"
+      "graza-the-hot-lap-test-2026",
+      "k18-giant-hairball-nyc-stunt-2026"
     ]
   },
   {
@@ -159,21 +168,11 @@
     "label": "アーカイブ復元",
     "description": "過去の記録・人物・場を最新技術で蘇らせ再体験させる発想",
     "exemplarCaseIds": [
+      "lost-2023",
       "abba-voyage",
       "gorillaz-kong-studios-revival",
-      "dark-castle-beyond-dark-castle-pc-40-2026",
-      "shinronin-2026"
-    ]
-  },
-  {
-    "id": "anonymity-strategy",
-    "label": "匿名性の戦略化",
-    "description": "顔や正体を隠すことを弱みでなく戦略的な個性として使う発想",
-    "exemplarCaseIds": [
-      "ado-world-tour-wish",
-      "ado-uta-one-piece",
-      "holocozy-2026",
-      "aituber-luma-2026"
+      "one-museum-one-ok-rock-eye-of-the-storm-2019",
+      "the-spellbound-boom-boom-satellites-brand-new-drive-the-firs"
     ]
   },
   {
@@ -182,9 +181,8 @@
     "description": "センサーや脳波など技術で身体の表現・能力を拡張する発想",
     "exemplarCaseIds": [
       "hal-2014",
+      "brain2qwerty-v2-ai-2026",
       "waves-of-will",
-      "suretalk-ai-2021",
-      "hackberry-2015",
       "oton-glass-2016"
     ]
   },
@@ -193,10 +191,10 @@
     "label": "空間の一時ジャック",
     "description": "既存の公共・商業空間を期間限定で別の目的に転用する発想",
     "exemplarCaseIds": [
-      "house-of-vans-london-2014",
-      "loewe-2019",
-      "herm-s-2016",
       "j-wave-2018",
+      "loewe-2019",
+      "bang-olufsen-2019",
+      "gentle-monster-veggiemon-2026",
       "musinsa-2026"
     ]
   },
@@ -206,19 +204,9 @@
     "description": "キャンペーンを実際の制度・仕組みの変更にまで接続する発想",
     "exemplarCaseIds": [
       "axa-three-words",
-      "palau-pledge",
-      "girlguiding-uniform-redesign-2026",
-      "too-good-paid-sick-leave-for-cows"
-    ]
-  },
-  {
-    "id": "ironic-context-reversal",
-    "label": "逆説の文脈転換",
-    "description": "立場やブランドの前提をあえて逆転させ意外性を生む発想",
-    "exemplarCaseIds": [
-      "toyota-escape-vehicle",
-      "hansa-pilsener-delulu-is-the-solulu",
-      "hansa-pilsener-healing-era"
+      "too-good-paid-sick-leave-for-cows",
+      "the-period-uniform",
+      "palau-pledge"
     ]
   },
   {
@@ -226,34 +214,35 @@
     "label": "ゲームと現実の連動",
     "description": "ゲーム内の要素と現実の出来事・制度を直接連動させる発想",
     "exemplarCaseIds": [
+      "xbox-missing-managers",
+      "ea-sports-kiyan-prince",
       "haaland-payback-time-2025",
       "clash-of-clans-two-way-deal",
-      "clash-royale-copycats-welcome",
       "la-poste-delivered-by-tetris"
     ]
   },
   {
     "id": "realtime-trigger-response",
     "label": "リアルタイム連動反応",
-    "description": "天候・生体・試合展開など外部のリアルタイム信号が媒体や商品を即座に変化させる発想",
+    "description": "天候・生体・試合展開など外部信号が媒体や商品を即座に変化させる発想",
     "exemplarCaseIds": [
-      "benadryl-pollen-counts-2014",
-      "danactive-traffic-speed-billboard-2016",
-      "the-burnable-billboard-2025",
+      "magic-of-flying-lookup-2013",
+      "volvo-lightning-powered-billboard-purepower-2017",
       "tryvann-snowing-billboard-2009",
-      "disco2unt-billboard-2019"
+      "coraz-n-give-your-heart-2018",
+      "mercado-libre-discount-chants"
     ]
   },
   {
     "id": "generative-identity-system",
     "label": "生成的一点物システム",
-    "description": "アルゴリズムが個体ごとに異なる唯一無二の出力を作り続けるブランド・作品の仕組み",
+    "description": "アルゴリズムが個体ごとに異なる唯一無二の出力を作り続ける仕組み",
     "exemplarCaseIds": [
       "mit-media-lab-identity-2010",
       "casa-da-m-sica-identity-logo-generator-2007",
+      "absolut-unique-2012",
       "cohere-brand-identity-by-pentagram-2023",
-      "martin-obenaus-for-mousey-wine-6-000-unique-generative-label",
-      "absolut-unique-2012"
+      "forskningsr-det-rebrand-generative-identity-system-2023"
     ]
   },
   {
@@ -264,7 +253,7 @@
       "pope-yes-popeyes",
       "kitkat-the-kitkat-heist",
       "the-password-heist",
-      "koda-transforms-tour-de-france-penis-graffiti-to-promote-wom"
+      "youve-been-warned"
     ]
   },
   {
@@ -274,9 +263,35 @@
     "exemplarCaseIds": [
       "tennessee-tourism-realseal-campaign-2026",
       "dove-real-beauty-ai-era",
-      "jazz-is-dead-played-by-humans",
       "the-phoney-club-redefines-ai-made-worlds-2026",
-      "anthropic-ai-2026"
+      "coinbase-your-way-out",
+      "beefeater-0-0-jamiroquai-virtual-insanity-2026"
+    ]
+  },
+  {
+    "id": "ai-generation-aesthetic",
+    "label": "AI生成美学の全面採用",
+    "description": "生成AI特有の質感やゆらぎを隠さず前面に押し出し新しい映像表現の様式美とする発想",
+    "exemplarCaseIds": [
+      "the-hardest-part-2024",
+      "i-just-want-to-be-a-sound-2025",
+      "vultures-havoc-version-2024",
+      "dystopia-2024",
+      "cosmic-true-heart-2026",
+      "case-6cdvj1-2026"
+    ]
+  },
+  {
+    "id": "swarm-spectacle",
+    "label": "群体演出のスペクタクル",
+    "description": "多数のドローンや光・人を同期させ空や大地に一つの巨大な集合イメージを描く発想",
+    "exemplarCaseIds": [
+      "stranger-things-vecna-drone-show-las-vegas-finale-event-2025",
+      "intel-drone-light-show-pyeongchang-2018-winter-olympics-open",
+      "nike-jordan-store-launch-drone-flown-qr-code-dubai-2021",
+      "star-island-2025-2025",
+      "2-977-lights-over-new-york-harbor-2026",
+      "coca-cola-holiday-drone-show-2024"
     ]
   }
 ]

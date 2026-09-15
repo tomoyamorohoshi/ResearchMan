@@ -1,5 +1,250 @@
 [
   {
+    "id": "a-sky-of-infinite-wishes-ai-2026",
+    "title": "《A Sky of Infinite Wishes》（AI生成の「吉兆」を映すインスタレーション）",
+    "summary": "SputnikoがAIで東アジアの「吉兆」現象を無限生成し空を覆う映像を、Ars Electronica世界初公開",
+    "client": "Sputniko!（アーティスト）／Julius Baer and Ars Electronica（コミッション元）",
+    "agency": "P.I.C.S. TECH（株式会社ピクス傘下）",
+    "categories": [
+      "AIクリエイティブ",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000472.000037973.html",
+    "thumbnail": "/thumbnails/a-sky-of-infinite-wishes-ai-2026.jpg",
+    "videoId": "",
+    "overview": "英国系日本人アーティストSputniko!の新作《A Sky of Infinite Wishes》が、Julius BaerとArs Electronicaのコミッションにより制作され、2026年9月のArs Electronica Festival 2026でDeep Space 8Kにて世界初公開された。AIが彩雲・日暈・鳳凰雲など東アジアで「吉兆」とされる稀有な自然現象を無限に生成し、夕暮れの空に上書き・蓄積させていく大規模映像インスタレーション。",
+    "background": "一生に何度も出会えないような稀有な自然現象を、AIが際限なく生成し続けることで、現実と生成された世界の境界が曖昧になっていく状況を可視化しようとした試み。制作にはP.I.C.S. TECH（株式会社ピクスのグループ会社）が参加し、Creative Coder・AI Engineer・Sound Composerらが技術チームを構成した。",
+    "execution": "Deep Space 8Kという大型没入型映像空間を用い、AIが生成した吉兆的な雲や光の現象を次々と空に重ね合わせて表示する構成。P.I.C.S. TECHの上野陸氏（Creative Coder）、京田寛司氏（AI Engineer）らが技術実装を担い、The Original Jaermulk氏がサウンドを手がけた。2026年9月14日に発表され、その後約1年間、世界各地のDeep Spaceを巡回する予定。",
+    "evaluationImpact": "AIによる生成物の蓄積が「稀有さ」や「真正性」の価値を溶かしていく過程を、東アジアの吉兆文化というモチーフを通じて視覚化した点が特徴。銀行系企業と国際的なメディアアートの祭典によるコミッションという座組みも、AI時代のアート表現に対する企業支援のあり方として注目される。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/Projection",
+      "Form/Installation",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "vrchat-2026-2026",
+    "title": "VRChat 東京ゲームショウ2026 初出展",
+    "summary": "VRChatがTGS2026に初出展、初音ミク等人気IPとのVRグリーティング・ライブステージを幕張メッセで初展開",
+    "client": "VRChat Inc.",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000019.000171307.html",
+    "thumbnail": "/thumbnails/vrchat-2026-2026.jpg",
+    "videoId": "",
+    "overview": "ソーシャルVRプラットフォーム「VRChat」が東京ゲームショウ2026（9月17日〜21日、幕張メッセホール8）に初出展。初音ミクや超かぐや姫！、ラブライブ！サンシャイン!!など人気IPとのステージプログラムやVRグリーティングをブース08-N08で展開する。",
+    "background": "VRChatは世界最大級のソーシャルVRプラットフォームだが、国内最大級のゲーム展示会である東京ゲームショウには過去出展実績がなかった。国内での認知拡大とIPコラボによるユーザー体験の周知を狙い、2026年に初出展を決定した。",
+    "execution": "ビジネスデイにはVRChatトークセッションによる事例紹介、一般公開日には初音ミク「夜空プログラム2026」のVRグリーティング、超かぐや姫！のVRChat LIVE、ラブライブ！サンシャイン!!のGuilty Kiss Musical Performance、僕のヒーローアカデミア10周年記念展示、キズナアイ登壇など複数のステージ・展示を実施する。",
+    "evaluationImpact": "ゲームショウという大規模リアルイベントの場でVRプラットフォームとIPコラボを結び付け、来場者がヘッドセットを介してキャラクターと直接対話・交流できる体験を提供する点が新しい。ソーシャルVRの国内一般層への浸透を図る試金石となる出展といえる。",
+    "relatedWorks": [
+      {
+        "title": "東京ゲームショウ2026「VRChatブース」の最新情報が公開",
+        "description": "ステージタイムテーブルや出演IP・ゲスト詳細を報じる記事",
+        "url": "https://panora.tokyo/archives/155455"
+      },
+      {
+        "title": "「VRChat」がTGS2026に初出展！",
+        "description": "初音ミク夜空プログラム等コンテンツ概要を報じる記事",
+        "url": "https://www.gamer.ne.jp/news/202609040078/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/XR",
+      "Form/Event",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "suisai-2026",
+    "title": "suisai×「クレヨンしんちゃん」限定デザイン大規模屋外広告キャンペーン",
+    "summary": "suisai×クレヨンしんちゃんの限定描き下ろしデザインを、新宿駅の巨大ピールオフ広告でステッカー配布と連動させ体験化した",
+    "client": "カネボウ化粧品（suisai）",
+    "agency": "",
+    "categories": [
+      "OOH革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000931.000016220.html",
+    "thumbnail": "/thumbnails/suisai-2026.jpg",
+    "videoId": "",
+    "overview": "カネボウ化粧品「suisai」が『クレヨンしんちゃん』とコラボした限定描き下ろしデザイン商品の発売に合わせ、東京・福岡・大阪の3都市で大規模屋外広告キャンペーンを2026年9月14日より順次展開した。",
+    "background": "数量限定発売された限定デザイン商品の認知拡大とブランド認知度向上を狙い、駅や商店街など人流の多いエリアを活用した多層的なビジュアル展開を企画した。",
+    "execution": "新宿駅メトロプロムナードに巨大なピールオフ式広告を設置し、しんちゃんステッカー全6種とボーちゃんステッカーのセット、商品サンプル2点を1人1点限定で剥がして持ち帰れる仕組みとした（9/14〜27）。福岡・天神（9/21〜27）、大阪・心斎橋（9/24〜10/7）でも順次展開した。",
+    "evaluationImpact": "剥がして持ち帰れる参加型のピールオフギミックにより、通行人の足を止めて商品サンプルと連動した体験を提供し、単なる掲出型OOHを超えたエンゲージメント創出を図った。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Form/Event"
+    ]
+  },
+  {
+    "id": "sweet-memories-mv-2026",
+    "title": "新しい学校のリーダーズ×アイナ・ジ・エンド「Sweet Memories」MV",
+    "summary": "紙飛行機1枚が5人を出会わせ、商店街を即興ステージに変えるCM初共演MV。",
+    "client": "ブルボン（フェットチーネグミ）／新しい学校のリーダーズ／アイナ・ジ・エンド",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://natalie.mu/music/news/689514",
+    "thumbnail": "/thumbnails/sweet-memories-mv-2026.jpg",
+    "videoId": "",
+    "overview": "ブルボン「フェットチーネグミ」のCM初共演を記念し、新しい学校のリーダーズとアイナ・ジ・エンドが共同制作したオリジナル楽曲「Sweet Memories」のミュージックビデオ。2026年9月22日放映開始のCM「噛むたびココロ弾む」篇に先駆け、9月15日にYouTubeで公開された。",
+    "background": "フェットチーネグミは平打ちパスタ形状の弾む嚙みごこちが特徴の商品で、新しい学校のリーダーズにとって4度目の出演となるロングラン起用。今回はCM初共演となるアイナ・ジ・エンドを迎え、両者の接点をストーリー化した楽曲とMVを新規制作し、CM放映前に単独作品として先出しする構成を取った。",
+    "execution": "アイナ・ジ・エンドが屋上から飛ばした紙飛行機が風に乗って商店街に舞い降り、新しい学校のリーダーズのもとへ届くというストーリー仕立ての映像。別々の場所で互いを意識しながら踊っていた5人が出会い、商店街を行き交う人々を巻き込みながら熱狂的なパフォーマンスを繰り広げ、日常の街並みがステージへと変わっていく様を描いた。",
+    "evaluationImpact": "CM本編の放映前にMVを先行公開し、SNS上での話題化とダンスプラクティス映像の展開を組み合わせることで、楽曲・振付・CMを横断した多面的なプロモーション導線を設計した点が特徴。監督・制作会社のクレジットは公開情報からは確認できなかった。",
+    "relatedWorks": [
+      {
+        "title": "新しい学校のリーダーズ「Sweet Memories feat. アイナ・ジ・エンド」Dance Practice",
+        "description": "MV公開後にアソビシステムが公開した振付全編解禁のダンスプラクティス映像。",
+        "url": "https://prtimes.jp/main/html/rd/p/000000877.000017258.html"
+      },
+      {
+        "title": "商店街でココロ弾むオリジナルソング「Sweet Memories」を披露！新しい学校のリーダーズとアイナ・ジ・エンドがCM初共演",
+        "description": "ブルボンによる公式プレスリリース。CM放映日・商品リニューアル内容・楽曲クレジットを掲載。",
+        "url": "https://prtimes.jp/main/html/rd/p/000000010.000087634.html"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/MV",
+      "Form/Film",
+      "Theme/Music",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "ikea-alsulaiman-reverse-shop-2026",
+    "title": "IKEA Alsulaiman: Reverse Shop",
+    "summary": "家具買取サービス告知で、ロゴ・価格・広告表現まで全てを逆さに反転させたIKEAサウジのキャンペーン",
+    "client": "IKEA Alsulaiman (Saudi Arabia)",
+    "agency": "Droga5 London",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "中東・アフリカ"
+    ],
+    "link": "https://campaignbriefasia.com/2026/09/09/ikea-alsulaiman-turns-shopping-backwards-with-droga5-londons-reverse-shop/",
+    "thumbnail": "/thumbnails/ikea-alsulaiman-reverse-shop-2026.jpg",
+    "videoId": "",
+    "overview": "サウジアラビアのIKEA Alsulaimanが新設した家具買取（Buyback）サービスを告知するため、Droga5ロンドンと展開した「Reverse Shop」。ロゴやコピー、価格表示から名物ホットドッグ（逆さの「DOG HOT」）まで、あらゆる要素を逆向きにし「売ればIKEAが買う」という循環的な仕組みを視覚的に表現した。",
+    "background": "IKEA Alsulaimanは若くミレニアル・Z世代のサウジアラビア消費者に向け、循環型消費を促す新サービスとして家具の買取（Buyback）を開始。IKEA CMOは、この層が型破りで文化的に新鮮なブランドコミュニケーションを求めていると説明し、単なるサービス告知を超えた話題化を狙った。",
+    "execution": "2026年9月3日にSNSで「DOG HOT」という逆さホットドッグのティザーを公開し、9月6日にフルキャンペーン「Reverse Shop」をサウジアラビアで展開。BILLY本棚やSTRANDMONチェアなど代表商品を背面から見せ、見出し・価格・音楽キューまで全て逆転させた表現をSNS・デジタル・フィルム・CRM・自社サイト/アプリ・店頭で横断的に展開した。",
+    "evaluationImpact": "単に広告を反転させるのではなく背景描写や語順まで作り込む必要があり、細部まで一貫した「逆さ世界」を構築した点が評価されている。買取という循環型消費の仕組みを直感的に伝えるアイデアとして業界メディアで複数取り上げられた。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Form/SNS",
+      "Form/OOH",
+      "Theme/Sustainability",
+      "Theme/Retail"
+    ]
+  },
+  {
+    "id": "adora-fertility-no-awkward-2026",
+    "title": "Adora Fertility: No Awkward",
+    "summary": "オーストラリアの精子ドナー不足解消へ、あえて気まずい家族ポートレートで会話のタブーを笑いに変えた社会貢献広告",
+    "client": "Adora Fertility",
+    "agency": "Chisel",
+    "categories": [
+      "社会包摂",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://campaignbrief.com/adora-tackles-donor-shortage-with-awkward-family-portraits-in-new-campaign-via-chisel/",
+    "thumbnail": "/thumbnails/adora-fertility-no-awkward-2026.jpg",
+    "videoId": "",
+    "overview": "オーストラリアの生殖医療クリニックAdora Fertilityが、Chiselと共同で「Become a Sperm Donor. No Awkward」を展開。わざと気まずい家族ポートレート写真をテレビ・OOH・ソーシャル・デジタルで発信し、精子提供にまつわる会話の気まずさをユーモアで解きほぐす。",
+    "background": "オーストラリアでは精子ドナーが慢性的に不足し、患者は治療開始までに長期の待機を強いられている。海外の精子バンクへの依存はコストと時間の増加を招くため、Adora FertilityはクリニックDirect主導のドナー募集プログラムを立ち上げ、国内での提供者拡大を目指した。",
+    "execution": "従来の臨床的で堅い呼びかけでは行動変容を促せないという課題意識から、あえて不自然でぎこちない家族写真シリーズを制作。気まずさを笑いに転換するクリエイティブで精子提供という話題への心理的ハードルを下げ、TVCM・屋外広告・ソーシャル・デジタル広告で展開した。",
+    "evaluationImpact": "タブー視されがちな精子提供という社会課題に対し、深刻さではなくユーモアで向き合う切り口を提示した点が特徴。ドナー候補の裾野拡大と国内調達比率の向上を通じ、治療の待機時間短縮とコスト低減という具体的な社会的インパクトを狙う設計になっている。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Form/Print",
+      "Theme/Health",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "axa-black-cat-halloween-2026",
+    "title": "AXA: Black Cat Halloween",
+    "summary": "AXA傘下Direct Assuranceが黒猫の不運を保険の安心感に転換するコミカルスリラー広告映像を公開",
+    "client": "AXA",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://musebyclios.com/eurovisions/axas-black-cat-scares-up-some-halloween-spirit/",
+    "thumbnail": "/thumbnails/axa-black-cat-halloween-2026.jpg",
+    "videoId": "j-vp6GGWUYY",
+    "overview": "フランスのDirect Assurance（AXAグループ）が2026年9月、黒猫を引き取った父娘に次々と不運が降りかかる様子をコミカルなスリラー仕立てで描いた「Chat noir（黒猫）」を公開。良い保険があれば運任せにしなくていいというメッセージを伝えるキャンペーン。",
+    "background": "ハロウィン時期に合わせ、黒猫にまつわる迷信という文化的モチーフを保険という日常的で堅いテーマに結びつけることで、ブランドの認知獲得と親しみやすさの両立を狙った企画。",
+    "execution": "エージェンシーArtefact 3000が制作し、監督Tim Bullock、プロダクションLA/PAC、音響Schmoozeが手がけた映像を9月6日に公開。TV・オンライン動画（60秒/45秒/30秒）に加え、OOHやSNSでも展開するマルチフォーマット構成。",
+    "evaluationImpact": "迷信という誰もが知る民間信仰をコミカルなスリラー演出に落とし込み、保険という説明訴求になりがちな商材を情緒的な物語で訴求した点が評価しうる要素。トレード媒体Muse by Cliosでも欧州の注目キャンペーンとして紹介された。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Form/OOH",
+      "Theme/Entertainment"
+    ]
+  },
+  {
     "id": "cerebrium-2026",
     "title": "Cerebrium",
     "summary": "AIインフラのCerebrium公式サイトがThree.js×Cinema 4Dの3D演出でAwwwards SOTD受賞",
