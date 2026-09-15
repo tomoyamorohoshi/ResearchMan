@@ -1,5 +1,363 @@
 [
   {
+    "id": "breeze-of-light-2019",
+    "title": "Breeze of Light",
+    "summary": "偏光フィルムの花1.7万本と可動スポットライト115台で、目に見えない風の動きを光と影として可視化したインスタレーション",
+    "client": "Daikin",
+    "agency": "nendo",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2019",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.designboom.com/design/nendo-daikin-breeze-of-light-milan-design-week-04-09-2019/",
+    "thumbnail": "/thumbnails/breeze-of-light-2019.jpg",
+    "videoId": "",
+    "overview": "空調機器メーカーDaikinが2019年ミラノデザインウィークで発表したインスタレーション「Breeze of Light」。プロダクトデザインスタジオnendoが、偏光フィルムで作られた花状のオブジェクト約1万7000本と、天井に配置した115台の可動式スポットライトを組み合わせ、目に見えない風の流れを光と影の陰影として空間全体に可視化した。",
+    "background": "Daikinは空調機器メーカーとして「風」という自社の中核技術を、スペックではなく体感型のアート表現として一般に伝える機会を求めていた。目に見えない気流という現象をどう視覚化するかという課題に対し、nendoは光学フィルムと照明制御を組み合わせる手法で応えた。",
+    "execution": "偏光フィルムで作られた花状のオブジェクト約1万7000本を空間全体に敷き詰め、天井の可動スポットライト115台が偏光の角度を変えながら照射することで、花々の色味や濃淡が絶えず変化する。この変化のパターンが実際には見えない風の動きをなぞるように設計されており、来場者は光と影の推移として気流の存在を目撃する。",
+    "evaluationImpact": "空調というインフラ的な技術を、光学現象を用いた美しい視覚体験へと翻訳した点が、ミラノデザインウィークにおける企業インスタレーションの代表例としてデザインメディアで紹介された。見えないものを可視化するという着想は、その後の同種の企業インスタレーション企画にも影響を与えている。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Tech/Projection",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "time-2024",
+    "title": "Time",
+    "summary": "次世代EVコンセプトを着想源に、来場者の動きにモーションセンサーで反応する光と音のイマーシブ体験",
+    "client": "Lexus",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://newsroom.lexus.eu/lexus-presents-time-at-milan-design-week-2024-an-immersive-art-experience-inspired-by-next-generation-mobility/",
+    "thumbnail": "/thumbnails/time-2024.jpg",
+    "videoId": "",
+    "overview": "Lexusが2024年ミラノデザインウィークで発表したイマーシブアート・インスタレーション「Time」。次世代EVコンセプトから着想を得て、モーションセンサーで来場者の動きを検知し、それに反応する光と音の演出によって空間全体が変化する体験型展示として構成された。",
+    "background": "Lexusは次世代の電動モビリティビジョンを、スペック紹介ではなく感覚的な体験として伝えるため、ミラノデザインウィークでアート・インスタレーションを発表する取り組みを継続してきた。2024年は次世代EVコンセプトが持つ未来的な世界観を、光と音による没入空間として翻訳することを狙った。",
+    "execution": "会場内にモーションセンサーを配置し、来場者の位置や動きをリアルタイムに検知。その動きに応じて空間内の光の色や強度、音響が連動して変化する仕組みを構築し、来場者一人ひとりの動きが空間全体の演出を作り出すインタラクティブな体験とした。",
+    "evaluationImpact": "次世代モビリティという抽象的なコンセプトを、来場者の身体的な動きに反応する光と音の体験に落とし込んだ点が、自動車ブランドによるミラノデザインウィーク出展の一例として紹介された。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Tech/Device",
+      "Theme/Mobility"
+    ]
+  },
+  {
+    "id": "drift-us-2025",
+    "title": "Drift Us",
+    "summary": "独自開発のモーターとセンサーで、来場者の存在に糸が風になびくように反応するStudio Driftのロボティック・インスタレーション",
+    "client": "Audi",
+    "agency": "Studio Drift",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://studiodrift.com/drift-unveils-a-robotic-installation-with-audi-for-milan-design-week-2025/",
+    "thumbnail": "/thumbnails/drift-us-2025.jpg",
+    "videoId": "",
+    "overview": "AudiとStudio Driftが2025年ミラノデザインウィークで発表したロボティック・インスタレーション「Drift Us」。玉ねぎ状のオブジェクトから無数の糸が垂れ下がる構造体を、Studio Drift独自開発のモーターとセンサーで制御し、来場者が近づき通過するとその存在に反応して糸が風になびくように揺れ動く。",
+    "background": "Studio Driftは自然現象や生命的な動きを機械仕掛けで再現する作品を一貫して制作しており、Audiとの協業でもモビリティブランドが掲げる次世代の移動体験を、有機的で生命感のある動きの表現に落とし込むことを狙った。",
+    "execution": "玉ねぎのような球状のオブジェクトから垂らした無数の糸に、Studio Driftが独自開発したモーターとセンサーを組み込んだ機構を仕込み、来場者が構造体の下や周囲を通過すると、その動きを検知して糸の束が風になびくかのように連動して揺れる仕組みを実現した。",
+    "evaluationImpact": "モーターとセンサーの精密な制御によって、無機質な素材の集合に風や呼吸のような有機的な生命感を宿らせた点が、Studio Driftらしいキネティックアートの到達点としてデザインメディアで紹介された。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Tech/Robotics",
+      "Theme/Mobility"
+    ]
+  },
+  {
+    "id": "anima-mundi-a-visionary-impulse-2026",
+    "title": "Anima Mundi. A Visionary Impulse",
+    "summary": "1901年製4000本パイプの未使用オルガンを核に、来場者の存在をAIがリアルタイムで映像と音に変換する没入型インスタレーション",
+    "client": "Geely",
+    "agency": "Dotdotdot",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.fuorisalone.it/en/2026/events/6822/Anima-Mundi-A-Visionary-Impulse",
+    "thumbnail": "/thumbnails/anima-mundi-a-visionary-impulse-2026.jpg",
+    "videoId": "",
+    "overview": "Geelyが2026年ミラノデザインウィークで発表したインスタレーション「Anima Mundi. A Visionary Impulse」。デザインスタジオDotdotdotが、1901年製で4000本のパイプを持つ未使用のパイプオルガンを空間の核に据え、来場者の存在をAIがリアルタイムに映像と音へ変換する没入型体験を構築した。",
+    "background": "使われなくなった歴史的な楽器という物理的な遺産と、最先端のAI技術を組み合わせることで、過去と未来を接続する体験を提示する狙いで企画された。自動車ブランドGeelyが、単なるプロダクト訴求ではなく、テクノロジーと文化的遺産の対話というテーマでミラノデザインウィークに参加した。",
+    "execution": "1901年に製造され4000本のパイプを持つ未使用のパイプオルガンを空間の中心的なオブジェクトとして配置。会場内のセンサーが来場者の存在や動きを検知し、AIがその情報をリアルタイムに解析して、パイプオルガンと連動する映像と音の演出へと変換することで、来場者ごとに異なる没入体験を生み出す。",
+    "evaluationImpact": "歴史的な楽器という物理的な遺産をAIによるリアルタイム生成表現と組み合わせた点が、自動車ブランドによる文化的インスタレーションの新しいアプローチとしてFuorisaloneのプログラムで紹介された。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Tech/AI",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "a-un-2025",
+    "title": "A-Un",
+    "summary": "心拍に反応する竹繊維糸の蝶形巨大スクリーンが1/fゆらぎで明滅する、LEXUSの没入型インスタレーション",
+    "client": "LEXUS",
+    "agency": "SIX Inc. / STUDEO",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.axismag.jp/posts/2025/04/651462.html",
+    "thumbnail": "/thumbnails/a-un-2025.jpg",
+    "videoId": "",
+    "overview": "LEXUSが手がけた没入型インスタレーション「A-Un」。SIX Inc.とSTUDEOが制作を担当し、竹繊維の糸で織り上げた蝶の形状をした巨大スクリーンを空間の中心に配置。来場者の心拍データをセンサーで取得し、自然界のゆらぎのリズムである「1/fゆらぎ」のパターンで光を明滅させることで、人とテクノロジーが呼吸を合わせるような体験をつくり出した。",
+    "background": "「阿吽」という、言葉を交わさずとも通じ合う関係性を、人とテクノロジーの間に見出そうとする狙いから着想された企画。LEXUSが目指す先進技術と人との関係性を、心拍という身体的なデータを介して象徴的に表現するインスタレーションとして構想された。",
+    "execution": "竹繊維糸を素材にした蝶形の巨大スクリーンを空間中央に設置し、来場者の心拍を計測するセンサーと連動させた。取得した心拍データを1/fゆらぎのアルゴリズムで変換し、スクリーン全体の光の明滅パターンとして可視化。来場者一人ひとりの生体反応がそのまま空間の表情に反映される構成とした。",
+    "evaluationImpact": "心拍という個人の生体データを、竹という自然素材による大型オブジェの光の揺らぎに変換した点が、テクノロジーと身体感覚を結びつける表現としてデザインメディアで紹介された。LEXUSが掲げる人とテクノロジーの共生というテーマを、視覚と生理反応の両面から体感させる事例である。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Tech/Device",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "leading-with-light-2019",
+    "title": "LEADING WITH LIGHT",
+    "summary": "無数の光の筋に満ちた空間で人の動きに反応しロボットが自律的に動きダンサーと共演する、LEXUSのミラノデザインウィーク出展作",
+    "client": "LEXUS",
+    "agency": "Rhizomatiks（石橋素・真鍋大度）",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2019",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://global.toyota/jp/newsroom/lexus/26776715.html",
+    "thumbnail": "/thumbnails/leading-with-light-2019.jpg",
+    "videoId": "",
+    "overview": "LEXUSが2019年ミラノデザインウィークで発表したインスタレーション「LEADING WITH LIGHT」。Rhizomatiks（石橋素・真鍋大度）が制作を手がけ、無数の光の筋で満たされた空間の中に、人の動きをセンシングして自律的に動作するロボットを配置し、ダンサーとの共演によって光と機械と人体が織りなす体験をつくり出した。",
+    "background": "LEXUSは自動運転技術など「人とクルマの関係」を再定義する取り組みを進めており、その思想をミラノデザインウィークという国際的なデザインの舞台でインスタレーションとして表現することを企図。Rhizomatiksを起用し、機械の自律的な動きと人間の身体表現を組み合わせる構成が選ばれた。",
+    "execution": "空間全体を無数の光の筋で満たし、その中に人の動きをリアルタイムでセンシングして反応するロボットを配置。ロボットは事前にプログラムされた動作をなぞるのではなく、周囲の人やダンサーの動きに応じて自律的に軌道を変化させ、ダンサーのパフォーマンスと呼応しながら光と機械が一体となった空間演出を展開した。",
+    "evaluationImpact": "人の動きに応じてロボットが自律的に振る舞う様子を、ダンサーとの共演という身体表現の文脈で見せた点が、テクノロジーと人間性の関係を問うインスタレーションとして紹介された。LEXUSが掲げる先進技術と人間中心のデザイン思想を、ミラノデザインウィークという舞台で象徴的に体現した事例である。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Tech/Robotics",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "hidden-senses-2018",
+    "title": "Hidden Senses",
+    "summary": "壁に触れると音が鳴り花瓶を動かすと蝶の影が追ってくるなど、日常動作にそっと応答する知覚体験型インスタレーション",
+    "client": "SONY",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "Milano Design Award 2018 - Best Playfulness（Sony Design Center「Hidden Senses」）",
+    "year": "2018",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.axismag.jp/posts/2018/07/95698.html",
+    "thumbnail": "/thumbnails/hidden-senses-2018.jpg",
+    "videoId": "",
+    "overview": "SONYが2018年ミラノデザインウィークで発表した知覚体験型インスタレーション「Hidden Senses」。壁に触れると音が鳴る仕掛けや、花瓶を動かすとその動きに合わせて蝶の影がついてくる仕掛けなど、日常のなにげない動作にテクノロジーがさりげなく応答する複数の展示で構成された。",
+    "background": "先端技術を前面に押し出すのではなく、生活の中の何気ない動作に溶け込む形でテクノロジーを提示するというコンセプトのもと制作された。ミラノデザインウィークという国際的なデザインの舞台で、SONYの技術力を「隠れた感覚」というテーマで表現することが企図された。",
+    "execution": "壁に触れると音が鳴る仕掛けや、花瓶を動かすと壁に投影された蝶の影が追随して動く仕掛けなど、来場者の日常的な動作を起点に反応する複数のインスタレーションを空間内に配置。特別な操作を必要とせず、来場者が普段通りに振る舞うだけでテクノロジーの存在に気づく構成とした。",
+    "evaluationImpact": "Milano Design Award 2018のBest Playfulness部門を受賞。技術をあからさまに見せず、日常動作にさりげなく溶け込ませる体験設計が評価された。SONYが持つセンシング技術を、遊び心のある知覚体験として提示した事例である。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Tech/Device",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "affinity-in-autonomy-2019",
+    "title": "Affinity in Autonomy ＜共生するロボティクス＞",
+    "summary": "ToFセンサーとステレオカメラで人の存在を感知し呼応するロボット群を通じて「共生」を体験させる、SONYのミラノ出展作",
+    "client": "SONY",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2019",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://bijutsutecho.com/magazine/news/promotion/19638",
+    "thumbnail": "/thumbnails/affinity-in-autonomy-2019.jpg",
+    "videoId": "",
+    "overview": "SONYが2019年ミラノデザインウィークで発表したインスタレーション「Affinity in Autonomy ＜共生するロボティクス＞」。ToFセンサーやステレオカメラで来場者の存在や動きを感知し、それに応じて呼応する複数のロボットを配置することで、人とロボットが自然に共存する未来の姿を体験として提示した。",
+    "background": "自律的に動作するロボットが人間の生活空間にどう溶け込みうるかという問いを、実際にロボット群と対面する体験を通じて来場者に投げかける狙いから企画された。SONYのセンシング技術を応用し、ロボットが人間を「管理」するのではなく「共生」する関係性を示すことが目指された。",
+    "execution": "ToFセンサーとステレオカメラを搭載した複数のロボットを空間内に配置し、来場者が近づくとその存在や動きを感知して個々のロボットが反応・呼応する仕組みを構築。来場者はロボット群の間を歩きながら、機械が一方的に動くのではなく自分の存在に反応して振る舞いを変える様子を体感できる構成とした。",
+    "evaluationImpact": "人とロボットの関係を「支配」でも「無関心」でもない「共生」として提示した点が、テクノロジー展示の新しい方向性としてメディアで紹介された。SONYのセンシング技術をプロダクトではなく関係性のデザインとして見せた事例である。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Tech/Robotics",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "for-the-breathable-world-2023",
+    "title": "For the breathable world",
+    "summary": "旭化成の防水透湿フィルム「RespiGard™」の相反する機能を、対話を通じて体感させる素材系インスタレーション",
+    "client": "旭化成（RespiGard™）",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2023",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000071.000079452.html",
+    "thumbnail": "/thumbnails/for-the-breathable-world-2023.jpg",
+    "videoId": "",
+    "overview": "旭化成が開発した、水は通さず空気は通すフィルム素材「RespiGard™」の特性を伝える体験型ブース「For the breathable world」。スペックの説明ではなく、来場者との対話を通じて素材の機能を直接体感させる、素材そのものを主役に据えたインスタレーションとして構成された。",
+    "background": "目に見えず、数値だけでは実感しにくい「防水性」と「透湿性」という相反する機能を両立させた素材の価値を伝えるため、来場者が実際に触れて確かめられる体験を重視した展示形式を採用。BtoB向け素材の技術を一般来場者にも分かりやすく伝えることを狙った。",
+    "execution": "RespiGard™を用いたサンプルや体感装置をブース内に配置し、スタッフが来場者と対話しながら「水を通さず空気を通す」という相反する機能を実際に手で確認できる構成とした。説明パネルに頼らず、対話と体感を軸に素材の価値を伝えている。",
+    "evaluationImpact": "数値では伝わりにくい機能性素材の価値を、対話と体感を通じて理解させる展示手法として位置づけられる。素材メーカーが一般来場者に向けて技術の本質を分かりやすく届けた事例といえる。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Exhibition",
+      "Tech/Device",
+      "Theme/Health"
+    ]
+  },
+  {
+    "id": "mui-lab-2022-superdesign-show-2022",
+    "title": "mui Lab ミラノサローネ2022出展（Superdesign Show）",
+    "summary": "木製スマートホームコントローラー「muiボード」を軸に、カーム・テクノロジーの思想を体感させたミラノサローネ出展",
+    "client": "mui Lab",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2022",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://muilab.com/ja/journal/milansalone2022/",
+    "thumbnail": "/thumbnails/mui-lab-2022-superdesign-show-2022.jpg",
+    "videoId": "",
+    "overview": "mui Labが2022年ミラノデザインウィークの「Superdesign Show」内に出展したブース展示。木製スマートホームコントローラー「muiボード」を軸に、テクノロジーを生活に静かに溶け込ませる「カーム・テクノロジー」の思想を、対話型の体験を通じて伝えた。",
+    "background": "IoT機器が生活空間に増える中、通知や画面で存在感を主張するのではなく、木目の質感を通じて必要な情報だけを静かに伝えるという思想をmui Labは一貫して掲げてきた。世界的なデザインの舞台であるミラノサローネで、その哲学を国際的な来場者に直接伝える機会として出展した。",
+    "execution": "会場内にmuiボードを組み込んだ生活空間を再現し、来場者が木製パネルに触れて操作したり、パネル上に浮かび上がる文字や光の演出を確認したりできる体験型ブースを構成。スタッフとの対話を通じて、IoTと調和した暮らし方の思想を伝えた。",
+    "evaluationImpact": "プロダクト単体のスペック訴求ではなく、テクノロジーと生活の関係性そのものを問い直す姿勢を世界的なデザインの祭典で提示した点が特徴。カーム・テクノロジーという概念を体験型展示で伝えた事例として位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Form/Product",
+      "Tech/Device"
+    ]
+  },
+  {
+    "id": "transitions-air-inventions-100-2018",
+    "title": "TRANSITIONS（Air Inventions関連・パナソニック100周年インスタレーション）",
+    "summary": "空調・映像・音響・照明を統合し「目に見えない体験価値」を追求した、パナソニック創業100周年の体験型インスタレーション",
+    "client": "Panasonic",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "Milano Design Award 2018 - Best Technology（Panasonic「Air Inventions（TRANSITIONS）」）",
+    "year": "2018",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://kaden.watch.impress.co.jp/docs/news/1115983.html",
+    "thumbnail": "/thumbnails/transitions-air-inventions-100-2018.jpg",
+    "videoId": "",
+    "overview": "パナソニックが創業100周年を記念して制作した体験型インスタレーション「TRANSITIONS（Air Inventions）」。空調・映像・音響・照明といった複数の技術を統合し、「目に見えない体験価値」への挑戦をテーマに構成した展示で、Milano Design Award 2018のBest Technology部門を受賞した。",
+    "background": "創業100周年という節目に、パナソニックは単体の製品訴求ではなく、これまで培ってきた複数分野の技術を横断的に組み合わせ、次の100年に向けた挑戦の姿勢を示すブランド体験を構想。目に見えにくい「空気」や「体験価値」そのものをテーマに据えた展示を目指した。",
+    "execution": "空調技術による温度・湿度・気流の変化と、映像・音響・照明の演出を組み合わせ、来場者が空間を移動しながら風や光、音の変化を体感できる構成とした。個別の家電製品ではなく、複数技術の統合によって生まれる体験そのものを主役に据えている。",
+    "evaluationImpact": "複数技術を統合した体験価値の提示がMilano Design Award 2018のBest Technology部門受賞という形で評価された。企業の周年施策において、製品ではなく統合的な体験デザインを打ち出した事例として位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Interactive Installations"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Exhibition",
+      "Tech/Projection",
+      "Tech/Audio"
+    ]
+  },
+  {
     "id": "conifera-2019",
     "title": "Conifera",
     "summary": "木材とバイオプラスチックの格子ブロック700個で組み上げた、解体・再構築可能な回遊型パビリオン",
