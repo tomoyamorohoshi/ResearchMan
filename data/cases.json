@@ -1,5 +1,502 @@
 [
   {
+    "id": "field-of-light-uluru-tili-wiru-tjuta-nyakutjaku-2016",
+    "title": "Field of Light Uluru（Tili Wiru Tjuta Nyakutjaku）",
+    "summary": "エアーズロック周辺の砂漠に光ファイバー付きアクリル製の花茎5万2000本を敷き詰め、太陽光発電のみで発光させる大規模ランドアート",
+    "client": "Bruce Munro Studio（Ayers Rock Resort協力）",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2016",
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://www.designboom.com/art/bruce-munro-field-of-light-uluru-australia-solar-power-04-01-2016/",
+    "thumbnail": "/thumbnails/field-of-light-uluru-tili-wiru-tjuta-nyakutjaku-2016.jpg",
+    "videoId": "",
+    "overview": "光の彫刻家Bruce Munroが2016年にオーストラリア中央部のエアーズロック（ウルル）周辺の砂漠に発表した大規模ランドアート。先住民ピチャンチャチャラ語で「美しい光を見る」を意味する『Tili Wiru Tjuta Nyakutjaku』の名を持ち、光ファイバー付きアクリル製の花茎5万2000本を敷き詰め、総延長380kmの光ファイバーを太陽光発電のみで発光させた。",
+    "background": "Bruce Munroは以前からウルルを訪れた際に着想を得たとされる構想を、Ayers Rock Resortの協力のもとエアーズロック周辺の広大な砂漠地帯で実現した。世界的な聖地であるウルルの景観を損なわない形で光の表現を成立させるため、外部電源を持ち込まず太陽光発電のみで点灯するという制約を自らに課した。",
+    "execution": "エアーズロックを望む砂漠に、光ファイバーの先端にガラス球を付けたアクリル製の「花茎」5万2000本を植え込むように敷き詰めた。総延長380kmに及ぶ光ファイバー網を通じて夜間に多彩な色で発光させ、日中に蓄えた太陽光発電のみで電力を賄うことで、荒野の景観の中に静かに広がる光の野を作り出した。",
+    "evaluationImpact": "電源設備を持ち込まず太陽光発電のみで広大な砂漠を発光させた点が、環境負荷を抑えたランドアートの手法として注目された。世界的聖地であるウルルの景観と共存する形で成立した点も含め、Bruce Munroの代表作の一つとしてデザイン・アートメディアで広く紹介されている。",
+    "relatedWorks": [
+      {
+        "title": "Fireflies",
+        "description": "同じBruce Munro Studioが手がけた光ファイバー・インスタレーション",
+        "url": "https://sensoriopaso.com/exhibits"
+      }
+    ],
+    "sources": [
+      "Fiber Optics"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Theme/Art",
+      "Theme/Sustainability"
+    ]
+  },
+  {
+    "id": "fireflies-2023",
+    "title": "Fireflies",
+    "summary": "光ファイバーの先端に灯した白色光1万個が風にそよぎ蛍のように明滅する、Sensorioの屋外光インスタレーション",
+    "client": "Sensorio（Paso Robles）",
+    "agency": "Bruce Munro Studio",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2023",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://sensoriopaso.com/exhibits",
+    "thumbnail": "/thumbnails/fireflies-2023.jpg",
+    "videoId": "",
+    "overview": "光の彫刻家Bruce Munro Studioが、カリフォルニア州パソロブレスの野外アート施設Sensorioに設置した光ファイバー・インスタレーション「Fireflies」。約1万個の白色光を光ファイバーの先端に灯し、夜風にそよいで揺れ動く様子で、蛍が舞う情景を再現している。",
+    "background": "Sensorioは、Bruce MunroがField of Light Uluruなどで培ってきた光ファイバーによる自然現象の再現手法を核とする野外アート施設として運営されており、来場者が夜間の屋外を歩きながら複数の光インスタレーションを回遊する体験を提供している。その一角として、身近な自然現象である蛍の光をテーマにした作品が制作された。",
+    "execution": "光ファイバーの先端に白色光を灯した約1万個の光点を、屋外の植栽の間に散りばめるように配置。風が吹くたびに光ファイバー自体が細かく揺れ動くことで、光点の明滅と揺らぎが夜の蛍の飛び交う様子を思わせる情景を作り出した。来場者は暗闇の中を歩きながら、その揺らめきの中に身を置いて鑑賞する構成とした。",
+    "evaluationImpact": "自然界の儚い現象である蛍の光を、光ファイバーという素材の物理的な揺れによって再現した点が、Bruce Munroらしい自然観察に根ざした光の表現として位置づけられる。Sensorioが展開する複数の光インスタレーションの中でも、身近な自然現象をモチーフにした親しみやすい作品として体験されている。",
+    "relatedWorks": [
+      {
+        "title": "Field of Light Uluru（Tili Wiru Tjuta Nyakutjaku）",
+        "description": "同じBruce Munro Studioが手がけたエアーズロックの光ファイバー・ランドアート",
+        "url": "https://www.designboom.com/art/bruce-munro-field-of-light-uluru-australia-solar-power-04-01-2016/"
+      }
+    ],
+    "sources": [
+      "Fiber Optics"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "futurione-2024",
+    "title": "Futurione",
+    "summary": "モスクワVDNKh内に100万本の光ファイバーと3000株の胡蝶蘭を組み合わせた2000㎡超の常設デジタルアート空間",
+    "client": "VDNKh（モスクワ・ソヴィエト経済博覧会跡地）",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://en.wikipedia.org/wiki/Futurione",
+    "thumbnail": "/thumbnails/futurione-2024.jpg",
+    "videoId": "",
+    "overview": "モスクワのVDNKh（旧ソヴィエト経済博覧会跡地）内に2024年に開設された常設デジタルアート空間「Futurione」。100万本の光ファイバー、12万個のLED、1000個のガラス球、3000株の胡蝶蘭を組み合わせ、2000平方メートル超の規模で光と植物が共存する没入型の展示空間を構成している。",
+    "background": "VDNKhはソヴィエト時代の経済博覧会場を起源とする広大な文化・展示複合施設で、歴史的なパビリオン群を現代的なコンテンツで活用する取り組みを続けている。その一環として、光ファイバーやLEDといったデジタル素材と、実際の植物という有機物を組み合わせた大規模な常設インスタレーションが企画された。",
+    "execution": "2000平方メートルを超える館内空間に、100万本の光ファイバー、12万個のLED照明、1000個のガラス球を張り巡らせ、さらに3000株の胡蝶蘭を配して光と植物が一体化した景観を作り上げた。来場者は光の粒が織りなす空間を回遊しながら、人工の光と生きた植物が共存する非日常的な環境を体感する構成となっている。",
+    "evaluationImpact": "100万本規模の光ファイバーと数千株の生花を組み合わせた圧倒的なスケールが特徴で、歴史的な博覧会跡地を現代的な没入型アート空間として再生させた事例として位置づけられる。常設施設として継続的に運営されている点も、期間限定のインスタレーションが多い同分野の中で特徴的である。",
+    "relatedWorks": [],
+    "sources": [
+      "Fiber Optics"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Exhibition",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "wearable-space-2026",
+    "title": "WEARABLE SPACE",
+    "summary": "光ファイバーを織り込んだ刺繍コートが着用者の動きで発光し、身体の所作が空間演出を生むLexusのウェアラブル・インスタレーション",
+    "client": "Lexus（Milan Design Week 2026「Discover Together」内）",
+    "agency": "Guardini Ciuffreda Studio",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.urdesignmag.com/lexus-milan-design-week-2026-space-installations/",
+    "thumbnail": "/thumbnails/wearable-space-2026.jpg",
+    "videoId": "",
+    "overview": "Lexusが2026年ミラノデザインウィークの企画「Discover Together」内で発表したウェアラブル・インスタレーション「WEARABLE SPACE」。Guardini Ciuffreda Studioが手がけ、光ファイバーを織り込んだ刺繍コートを着用者が動かすことで発光し、身体の所作そのものが周囲の空間演出を生み出す仕組みとした。",
+    "background": "Lexusはミラノデザインウィークで「Discover Together」という共同企画のもと、移動や身体性をテーマにした複数のインスタレーションを展開しており、その一つとして、着る人の動きが空間の表情そのものを作り出すという着想のもと、Guardini Ciuffreda Studioとのウェアラブル作品の共同制作が企画された。",
+    "execution": "光ファイバーを刺繍のように織り込んだコートを制作し、着用者が歩く、腕を動かすといった所作に応じてコート自体が発光。身にまとう衣服が単なる照明装置ではなく、着用者の動きに連動する表現媒体として機能し、身体の所作がそのまま空間の光の演出になる体験を作り出した。",
+    "evaluationImpact": "衣服という身にまとうプロダクトを、動きに応じて発光する表現媒体へと転換した点が特徴で、Discover Togetherが掲げる「身体と空間の関係性」というテーマを、ファッションとテクノロジーの接点から体現する事例として紹介された。",
+    "relatedWorks": [
+      {
+        "title": "A Moving Sanctuary for Lexus",
+        "description": "同じLexus「Discover Together」内で発表されたRandom Studioによる瞑想的インスタレーション",
+        "url": "https://random.studio/projects/a-moving-sanctuary-for-lexus"
+      }
+    ],
+    "sources": [
+      "Fiber Optics"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Tech/Device",
+      "Theme/Fashion",
+      "Theme/Mobility"
+    ]
+  },
+  {
+    "id": "zac-posen-claire-danes-2016",
+    "title": "Zac Posen 発光ガウン（Claire Danes着用）",
+    "summary": "光ファイバー織りのガウンを電池で発光させ、Met Galaでシンデレラのような光の演出を披露したレッドカーペットルック。",
+    "client": "Met Gala「Manus x Machina」",
+    "agency": "Zac Posen",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2016",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://materialdistrict.com/article/fiber-optic-woven-dress-lights-met-gala/",
+    "thumbnail": "/thumbnails/zac-posen-claire-danes-2016.jpg",
+    "videoId": "",
+    "overview": "ファッションデザイナーZac Posenが2016年のMet Gala「Manus x Machina: Fashion in an Age of Technology」で、女優Claire Danesのために制作した発光ガウン。フランス製の光ファイバーを織り込んだオーガンジー生地に、ドレス内部へ縫い込んだ30個のミニ電池パックで通電し、暗闇の中でシンデレラの魔法を思わせる発光効果を生み出したレッドカーペットルックである。",
+    "background": "Met Galaのテーマ「Manus x Machina」は手仕事とテクノロジーの融合を主題に掲げ、ファッションにおける手工芸とデジタル技術の境界を問う年であった。Zac Posenはこのテーマに応え、伝統的な織物技術とエレクトロニクスを組み合わせたガウンの制作に取り組み、レッドカーペットという公の場で技術を纏うドレスを披露する機会とした。",
+    "execution": "フランスで織られた光ファイバー入りのオーガンジー生地を用いてガウンを仕立て、ドレスの内部に30個の小型電池パックを縫い込んで各所の光ファイバーに通電。照明を落とした会場でDanesが歩くと生地全体がやわらかく発光し、シンデレラの物語を思わせる魔法のような視覚効果が現れる仕掛けとした。",
+    "evaluationImpact": "光ファイバーという工業素材を電池駆動でドレスに実装し、レッドカーペットという最も注目度の高い舞台で披露したことで、着用可能なウェアラブルテクノロジーとハイファッションの融合を大衆に印象づけた事例として報じられた。",
+    "relatedWorks": [],
+    "sources": [
+      "Fiber Optics"
+    ],
+    "tags": [
+      "Form/Product",
+      "Tech/Device",
+      "Theme/Fashion",
+      "Form/Event"
+    ]
+  },
+  {
+    "id": "permeable-space-2008",
+    "title": "Permeable Space",
+    "summary": "光ファイバーの線だけで建築空間を貫き、光そのものが空間の輪郭を描き出すサイトスペシフィック・インスタレーション。",
+    "client": "Universidad de Valencia（La Nau / Ciudad de las Artes y las Ciencias）",
+    "agency": "Carlo Bernardini",
+    "categories": [
+      "空間体験",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2008",
+    "regions": [
+      "欧州"
+    ],
+    "link": "http://www.carlobernardini.it/File_uk/INTERNATIONAL_EXHIBITIONS/INTERNATIONAL_EXHIBITIONS-Pagine/Immagine14.html",
+    "thumbnail": "/thumbnails/permeable-space-2008.jpg",
+    "videoId": "",
+    "overview": "イタリアの彫刻家Carlo Bernardiniが2008年にバレンシア大学（La Nau）およびシウダー・デ・ラス・アルテス・イ・ラス・シエンシアスで発表したサイトスペシフィック作品「Permeable Space」。光ファイバーの細い線を壁や床、建物の内外を貫くように張り巡らせ、物質としての造形物ではなく光そのものによって空間の輪郭を描き出すインスタレーションである。",
+    "background": "Carlo Bernardiniは光ファイバーを用いた三次元的なドローイングによって空間の知覚を変容させる作風で知られ、歴史的建築物や公共空間を舞台に光による介入を続けてきた。本作ではバレンシアの歴史的建築と現代建築という異なる文脈の会場で、建築の境界を光で「透過」させる試みとして制作された。",
+    "execution": "光ファイバーの線を天井から床、壁から壁へと直線的に張り、建物の構造や開口部を横断するように配置。線そのものは細く目立たないため、発光する光の軌跡だけが空間内に浮かび上がり、来場者の視点の移動に伴って建築空間と光の彫刻が重なり合って見える構成とした。",
+    "evaluationImpact": "物理的な塊を持たない光の線だけで空間を再構築する手法により、建築とアートの境界を問い直す作品として位置づけられ、Bernardiniが各国の美術館・公共建築で継続する光ファイバー・インスタレーションの代表的な一例となった。",
+    "relatedWorks": [],
+    "sources": [
+      "Fiber Optics"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Tech/Device",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "woven-fiber-optics-fiber-optic-crossforms-days-of-awe-2006",
+    "title": "Woven Fiber Optics（Fiber Optic Crossforms / Days of Awe ほか）",
+    "summary": "産業用光ファイバー糸を二重織りで織り込み、発光するテキスタイル彫刻としてCooper Hewittに収蔵された作品群。",
+    "client": "Cooper Hewitt, Smithsonian Design Museum（永久収蔵）",
+    "agency": "Suzanne Tick（協働：Harry Allen）",
+    "categories": [
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2006",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://suzannetick.com/art/woven-fiber-optics/",
+    "thumbnail": "/thumbnails/woven-fiber-optics-fiber-optic-crossforms-days-of-awe-2006.jpg",
+    "videoId": "",
+    "overview": "テキスタイルデザイナーSuzanne Tickが2006年に制作した光ファイバー織物の彫刻シリーズ「Woven Fiber Optics」。「Fiber Optic Crossforms」や「Days of Awe」などの作品群から成り、産業用途で使われる光ファイバー糸を二重織り・多層構造で織り込むことで、テキスタイルそのものが発光する彫刻作品として構成し、Cooper Hewitt, Smithsonian Design Museumに永久収蔵されている。",
+    "background": "Suzanne Tickは工業素材をテキスタイルデザインに応用する手法を探求しており、本来は通信・照明用途で使われる光ファイバー糸を装飾的な織物表現に転用することで、素材の産業的機能性と工芸的な美しさを両立させる作品制作に取り組んだ。",
+    "execution": "光ファイバー糸を通常のテキスタイル糸と組み合わせて二重織り・多層構造で織り上げ、光源の接続と発光の見え方をデザイナーのHarry Allenと協働で検討。糸の織り方によって光の透過・反射の質感を変化させ、平面的な織物でありながら立体的に発光する彫刻作品として仕上げた。",
+    "evaluationImpact": "産業用光ファイバー素材を手工芸的な織りの技法と組み合わせたことで、テキスタイルと照明デザインの境界を横断する作品として評価され、Cooper Hewittの永久コレクションに収蔵されるなど、工芸とテクノロジーの融合を示す事例として位置づけられている。",
+    "relatedWorks": [],
+    "sources": [
+      "Fiber Optics"
+    ],
+    "tags": [
+      "Form/Product",
+      "Tech/Device",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "case-4vzr1s-2021",
+    "title": "ハレクラニ沖縄 プール＆ジャグジー 光ファイバー水中照明",
+    "summary": "ハレクラニ沖縄のプールとジャグジーの水面下に光ファイバーを敷設し、水中で光の粒がゆらめく夜間演出を施した施工事例。",
+    "client": "ハレクラニ沖縄",
+    "agency": "株式会社プロダクツ・ケイ",
+    "categories": [
+      "空間体験",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2021",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://works.products-kei.com/2024/03/fiber-optic-underwaterlighting2021.html",
+    "thumbnail": "/thumbnails/case-4vzr1s-2021.jpg",
+    "videoId": "",
+    "overview": "高級リゾートホテル「ハレクラニ沖縄」のプールおよびジャグジーにおいて、株式会社プロダクツ・ケイが2021年に手がけた光ファイバー水中照明の施工事例。水面下に光ファイバーを敷設し、水中から光の粒がゆらめくように浮かび上がる演出を施すことで、宿泊客が滞在するプールサイド空間の夜間の景観価値を高めた。",
+    "background": "ラグジュアリーホテルにおいてプールエリアは宿泊体験の核となる空間であり、日中だけでなく夜間の演出によって滞在価値を高めることが求められていた。ハレクラニ沖縄はホテル全体の高級感を支える照明計画の一環として、水中照明に光ファイバーを採用する施工をプロダクツ・ケイに依頼した。",
+    "execution": "プールとジャグジーの水面下に光ファイバーケーブルを敷設し、光源からファイバーを通じて水中に光を届ける方式で施工。電気系統を水中に露出させずに発光を実現できる光ファイバーの特性を生かし、水面のゆらぎと連動して光の粒がまたたくような演出を、プール全体とジャグジーの両方に一貫して施した。",
+    "evaluationImpact": "感電リスクを避けつつ水中で安全に発光演出を実現できる光ファイバー照明の特性を、高級リゾートのプール空間に応用した施工事例であり、ラグジュアリーホテルにおける夜間演出の一手法として同社の施工実績に位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Fiber Optics"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Tech/Device"
+    ]
+  },
+  {
+    "id": "case-1kyvxuy-2023",
+    "title": "軽井沢デザインホテル 光ファイバー星空天井",
+    "summary": "客室天井に光ファイバー束の切断端面を無数に露出させ、瞬きと色変化で満天の星空を再現した空間演出",
+    "client": "軽井沢デザインホテル",
+    "agency": "株式会社プロダクツ・ケイ",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2023",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://works.products-kei.com/2024/03/fiber-optic-starryceiling2023_1.html",
+    "thumbnail": "/thumbnails/case-1kyvxuy-2023.jpg",
+    "videoId": "",
+    "overview": "軽井沢のデザインホテル客室天井に、株式会社プロダクツ・ケイが手がけた光ファイバーによる星空演出。無数の光ファイバー束の切断端面を天井全面に露出させ、瞬きと色の変化によって満天の星空を室内に再現した施工事例。",
+    "background": "客室という限られた空間の中で非日常的な没入体験を提供する狙いから、天井全体を星空に見立てる演出が企画された。自然光や人工照明では表現しづらい満天の星のきらめきを、光ファイバーという素材の特性を活かして再現する方針で計画された。",
+    "execution": "天井面に光ファイバーの束を無数に配線し、その切断端面を意図的に露出させることで一つひとつが星のように瞬く点光源を作り出した。光源側で色や明滅のパターンを制御し、時間経過とともに星々が瞬き色を変化させることで、宿泊客が客室内で満天の星空を眺めているかのような体験を生み出した。",
+    "evaluationImpact": "建材ではなく光ファイバーという特殊素材を天井の演出に応用し、限られた客室空間に星空という非日常体験を組み込んだ点が特徴。ホテルの付加価値を照明演出によって高める手法として、光ファイバー活用の実例に位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Fiber Optics"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Tech/Device",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "case-1iab207-2018",
+    "title": "ラグーナベイコート蒲郡 プール 光ファイバー水中照明",
+    "summary": "会員制リゾートホテルのプールに光ファイバーを組み込み、夜間に水面下から色彩豊かな光の演出を生み出す施工",
+    "client": "ラグーナベイコート蒲郡（リゾートトラスト）",
+    "agency": "株式会社プロダクツ・ケイ",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2018",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://works.products-kei.com/2018/03/fiber-optic-underwaterlighting2018.html",
+    "thumbnail": "/thumbnails/case-1iab207-2018.jpg",
+    "videoId": "",
+    "overview": "リゾートトラストが運営する会員制リゾートホテル、ラグーナベイコート蒲郡のプールに、株式会社プロダクツ・ケイが光ファイバーによる水中照明を施工。夜間、水面下から光ファイバーが発する色彩豊かな光でプール全体を演出した事例。",
+    "background": "会員制リゾートホテルとして宿泊客に特別感のある滞在体験を提供するため、プール施設に夜間の演出照明を導入する計画が持ち上がった。水中という特殊環境下でも安定して発光し、色彩表現の自由度が高い光ファイバーが照明手段として選ばれた。",
+    "execution": "プールの底面や側面に光ファイバーを組み込み、水中から光を照射する構造で施工。光源側でカラーコントロールを行うことで、夜間のプールが多彩な色に染まる演出を実現した。水と光が織りなす視覚効果により、昼間とは異なる表情をプールに与えている。",
+    "evaluationImpact": "水中という制約の多い環境に光ファイバー照明を組み込み、リゾート施設の夜間演出という新たな価値を付加した点が特徴。宿泊施設における体験価値向上のための照明活用事例として位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Fiber Optics"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Tech/Device",
+      "Theme/Health"
+    ]
+  },
+  {
+    "id": "case-13h63f7-2020",
+    "title": "長野県美術館 光ファイバー水中演出照明",
+    "summary": "美術館敷地内の水盤に光ファイバーを用いた水中照明を施し、水面の揺らぎと光の粒を同時に見せる演出",
+    "client": "長野県美術館",
+    "agency": "株式会社プロダクツ・ケイ",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2020",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://works.products-kei.com/2024/03/fiber-optic-underwaterlighting2020-1.html",
+    "thumbnail": "/thumbnails/case-13h63f7-2020.jpg",
+    "videoId": "",
+    "overview": "長野県美術館の敷地内水盤に、株式会社プロダクツ・ケイが光ファイバーを用いた水中演出照明を施工。水面の揺らぎと光ファイバーが放つ光の粒を組み合わせ、美術館の外構空間に幻想的な表情を加えた事例。",
+    "background": "美術館の外構空間においても来館者の体験価値を高めることを目的に、敷地内の水盤に演出照明を導入する計画が進められた。静的な建築空間に動きのある光の要素を加えることで、来館前後の時間帯にも印象的な景観を提供する狙いがあった。",
+    "execution": "水盤の水中部分に光ファイバーを配置し、水面下から発光させる構造で施工。水の揺らぎによって光が乱反射し、光ファイバー特有の粒状の輝きと相まって、静止した水盤に動きのある光の演出を加えた。日没後は建築とランドスケープを一体化させる光景を作り出している。",
+    "evaluationImpact": "美術館という文化施設の外構に光ファイバー水中照明を導入し、建築・ランドスケープ・照明演出を一体で見せる手法として位置づけられる事例。展示空間の外側でも来館体験を演出する取り組みとして参照できる。",
+    "relatedWorks": [],
+    "sources": [
+      "Fiber Optics"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Tech/Device",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "case-1vycv8s-2022",
+    "title": "有馬離宮 光ファイバー水中照明",
+    "summary": "温泉旅館の水盤・浴場に光ファイバーによる水中照明を導入し、和の空間に幻想的な光の揺らぎを加えた事例",
+    "client": "有馬離宮",
+    "agency": "株式会社プロダクツ・ケイ",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2022",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://works.products-kei.com/2022/03/fiber-optic-underwaterlighting.html",
+    "thumbnail": "/thumbnails/case-1vycv8s-2022.jpg",
+    "videoId": "",
+    "overview": "温泉旅館・有馬離宮に、株式会社プロダクツ・ケイが光ファイバーによる水中照明を施工。水盤や浴場の水中に光ファイバーを組み込み、和の空間に幻想的な光の揺らぎを加えた事例。",
+    "background": "温泉旅館として和の情緒を大切にしながら、宿泊客に印象的な滞在体験を提供するための演出照明が求められた。伝統的な和の空間との親和性を保ちつつ非日常感を演出する手段として、光ファイバーによる水中照明が採用された。",
+    "execution": "水盤や浴場の水中部分に光ファイバーを配置し、水面下からの発光により幻想的な光の揺らぎを演出。光源側での色・明滅制御により、和の意匠を持つ空間に静かで上質な光の表情を加える施工を行った。",
+    "evaluationImpact": "和の温泉旅館という空間性を保ちながら、光ファイバー水中照明という技術要素を違和感なく組み込んだ点が特徴。伝統的な宿泊施設における光の演出手法の一事例として位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Fiber Optics"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Tech/Device",
+      "Theme/Health"
+    ]
+  },
+  {
+    "id": "case-1265g4b-2022",
+    "title": "東京麻布 テナントビル 光ファイバー壁面演出照明",
+    "summary": "東京・麻布のテナントビル壁面に光ファイバーを面状に配し、端面発光による柔らかな光のグラデーションを描いた演出照明",
+    "client": "テナントビル（東京・麻布）",
+    "agency": "株式会社プロダクツ・ケイ",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2022",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://works.products-kei.com/2024/03/fiber-optic-walllighting2022_0400833620.html",
+    "thumbnail": "/thumbnails/case-1265g4b-2022.jpg",
+    "videoId": "",
+    "overview": "照明デザイン会社プロダクツ・ケイが手がけた、東京・麻布のテナントビル向け演出照明。ビル壁面に光ファイバーを面状に配置し、ファイバー端面からの発光によって柔らかな光のグラデーションを生み出す施工を行い、建物のファサードに質感のある光の表情を与えた。",
+    "background": "テナントビルの資産価値やブランドイメージを高める手段として、建物外観にオリジナリティのある光の演出を求める需要が増えている中、プロダクツ・ケイは光ファイバーという素材特性を活かした壁面照明を提案。麻布という立地特性を踏まえ、派手な発光ではなく落ち着いた光のグラデーションで建物の存在感を静かに際立たせる方向性を採った。",
+    "execution": "光ファイバーをビル壁面に面状に敷設し、ファイバー端面から発せられる柔らかな光を活かして面全体にグラデーションを作り出す施工を実施。点発光ではなく面としての光の広がりを設計することで、均一な明るさではなく陰影のある表情豊かな壁面演出照明を実現した。",
+    "evaluationImpact": "光ファイバーの端面発光という特性を活かし、点や線ではなく面としてのグラデーション表現に落とし込んだ点が特徴。都市部のテナントビルにおける外装演出照明の一事例として、光ファイバーの意匠的な応用可能性を示している。",
+    "relatedWorks": [],
+    "sources": [
+      "Fiber Optics"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Installation"
+    ]
+  },
+  {
+    "id": "case-1m33fg4-2020",
+    "title": "東京銀座 百貨店 光ファイバー壁面照明",
+    "summary": "銀座の百貨店壁面に光ファイバーカーテン状の演出照明を設置し、店舗ファサードに光の質感を持たせた事例",
+    "client": "百貨店（東京・銀座）",
+    "agency": "株式会社プロダクツ・ケイ",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2020",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://works.products-kei.com/2024/03/fiber-optic-walllighting2020_0276741160.html",
+    "thumbnail": "/thumbnails/case-1m33fg4-2020.jpg",
+    "videoId": "",
+    "overview": "照明デザイン会社プロダクツ・ケイが、東京・銀座の百貨店向けに手がけた壁面演出照明。光ファイバーをカーテン状に垂らして構成し、店舗ファサードに柔らかく揺らぐような光の質感を持たせることで、銀座という立地にふさわしい上質な光の表情を作り出した。",
+    "background": "銀座という高感度な商業エリアにおいて、百貨店の外観は店舗の格や世界観を伝える重要な要素となる。プロダクツ・ケイは硬質な直接照明ではなく、光ファイバーが生む柔らかな光を用いることで、百貨店ファサードに素材感と奥行きのある演出を加えることを企画した。",
+    "execution": "光ファイバーをカーテン状に垂らして壁面に構成し、ファイバーの発光特性を活かして柔らかく揺らぐような光の連なりを作り出した。均質な面発光ではなくカーテンのような立体的な光の重なりを設計することで、百貨店ファサードに奥行きと質感を持たせる演出照明とした。",
+    "evaluationImpact": "光ファイバーをカーテン状に構成するという意匠的アプローチにより、百貨店という業態に求められる上質さと柔らかさを両立した点が特徴。銀座の商業ファサードにおける光ファイバー活用の一事例として位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Fiber Optics"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Installation",
+      "Theme/Retail"
+    ]
+  },
+  {
+    "id": "case-14dsj4s-2019",
+    "title": "沖縄読谷村 プール 光ファイバー水中照明",
+    "summary": "沖縄・読谷村のプールに光ファイバーを敷設し、水辺に星屑のような光の演出を加えた水中照明施工",
+    "client": "読谷村内プール施設（沖縄県）",
+    "agency": "株式会社プロダクツ・ケイ",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2019",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://works.products-kei.com/2019/07/fiber-optic-underwaterlighting2019.html",
+    "thumbnail": "/thumbnails/case-14dsj4s-2019.jpg",
+    "videoId": "",
+    "overview": "照明デザイン会社プロダクツ・ケイが、沖縄・読谷村内のプール施設に手がけた水中照明。光ファイバーをプール内に敷設し、端面発光によって水面や水中に星屑のような細かな光の粒を浮かび上がらせ、南国リゾートの水辺にふさわしい光の演出を加えた。",
+    "background": "沖縄のリゾート・観光需要が高いエリアにおいて、プールという水辺の施設に夜間の付加価値を持たせる手段として、光ファイバーを用いた水中照明が企画された。光源を水に直接触れさせない光ファイバーの特性を活かし、水回り施設でも扱いやすい演出照明として導入された。",
+    "execution": "光ファイバーをプール内に敷設し、ファイバー端面からの発光によって水面や水中に無数の光の粒を配置。星屑が水中に散りばめられたような視覚効果を作り出し、読谷村のプール施設に南国リゾートらしい夜間演出を加えた。",
+    "evaluationImpact": "光源を水に直接触れさせずに演出できる光ファイバーの特性を活かし、プールという水回り施設特有の制約に対応しながら意匠性の高い光演出を実現した点が特徴。沖縄における水辺施設の夜間演出照明の一事例である。",
+    "relatedWorks": [],
+    "sources": [
+      "Fiber Optics"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Installation"
+    ]
+  },
+  {
     "id": "a-moving-sanctuary-for-lexus-2026",
     "title": "A Moving Sanctuary for Lexus",
     "summary": "繭型ポッドに入ると呼吸や体の微動をAIカメラが検知し、光と音がリアルタイムに反応する瞑想的インスタレーション",
