@@ -1,5 +1,44 @@
 [
   {
+    "id": "the-impossible-order-2024",
+    "title": "The Impossible Order",
+    "summary": "ショッピングモールに仮想レストランを設置し、注文体験を通じてアルツハイマー病患者の混乱を追体験させる啓発キャンペーン",
+    "client": "AFA Zamora",
+    "agency": "VML Health",
+    "categories": [
+      "空間体験",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.zamoranews.com/articulo/valladolid/afa-zamora-vml-health-lanzan-rio-shopping-experiencia-inmersiva-sensibilizar-alzheimer/20241008100716302593.html",
+    "thumbnail": "/thumbnails/the-impossible-order-2024.jpg",
+    "videoId": "3PCwG8OQHjg",
+    "overview": "AFA Zamora（スペイン・サモラのアルツハイマー病患者家族協会）とVML Healthが手掛けたキャンペーン。ショッピングモール内に「The Impossible Burger」と名付けた仮想レストランを設置し、来場者にデジタル注文端末でハンバーガーを注文する体験を提供することで、アルツハイマー病患者が日常で感じる混乱や困難を追体験させた。",
+    "background": "アルツハイマー病は本人の記憶や認知だけでなく、日常のごく単純な行為すら困難にする病気だが、その体感的な苦しさは周囲に伝わりにくい。AFA Zamoraは、患者が抱える混乱を一般の人々に「わからせる」のではなく「体験させる」ことで、病気への理解と共感を広げる必要があると考え、本キャンペーンを企画した。",
+    "execution": "ショッピングモールの一角に、実際には存在しない架空メニュー「The Impossible Burger」を掲げた仮想レストランを設営。来場者はデジタル注文端末を使ってハンバーガーを注文しようとするが、選択肢が意図的にわかりにくく設計されており、思うように操作が進まない。この体験を通じて、アルツハイマー病患者が日常的に直面する判断や選択の困難さを追体験させる仕掛けとした。",
+    "evaluationImpact": "広告的な説明や統計ではなく、来場者自身に「できないもどかしさ」を体感させる参加型の手法で、アルツハイマー病への共感を喚起した点が特徴。地域メディアZamoranewsでも取り上げられ、地元コミュニティにおける疾患啓発の一事例として紹介された。",
+    "relatedWorks": [
+      {
+        "title": "AFA Zamora y VML Health lanzan Río Shopping: una experiencia inmersiva para sensibilizar sobre el Alzheimer",
+        "description": "地元メディアZamoranewsによる報道記事。キャンペーンの実施背景と内容を紹介",
+        "url": "https://www.zamoranews.com/articulo/valladolid/afa-zamora-vml-health-lanzan-rio-shopping-experiencia-inmersiva-sensibilizar-alzheimer/20241008100716302593.html"
+      }
+    ],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Tech/Device",
+      "Theme/Health"
+    ]
+  },
+  {
     "id": "sapporo-prepare-for-fugu-2026",
     "title": "Sapporo: Prepare for Fugu",
     "summary": "サッポロビールがフグ調理の緊張感を日本のサイコスリラー風短編に描き、豪・NZ消費者に本場フグ体験を懸賞化した統合キャンペーン",
