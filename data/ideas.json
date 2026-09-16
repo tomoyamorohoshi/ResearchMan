@@ -14972,5 +14972,203 @@
         "desc": "見た目だけでなく物理的な正しさを重視して作られたロボット学習にも使える大規模動画生成AI"
       }
     ]
+  },
+  {
+    "id": "2026-09-16-1",
+    "date": "2026-09-16",
+    "title": "一皿ごとの専用テーマ曲",
+    "pattern": "文脈×技術",
+    "seed": "Knorrの『Serving Singles』は料理と現代的な出会いを結びつけデートアプリ疲れの世代に提案したけど、ACE-Step 1.5でその場の会話や食材から即興のテーマソングを生成したら、初対面の沈黙を埋める小道具になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "knorr-serving-singles",
+        "title": "Serving Singles",
+        "desc": "料理と現代的な出会いを結びつけ、デートアプリ疲れの世代に料理を提案したKnorrのキャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "ace-step-1-5",
+        "title": "ACE-Step 1.5",
+        "desc": "歌詞とジャンル指定から、ボーカル入りの楽曲を丸ごと生成するオープンソースの音楽AI。自分のPCで動く。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-16-2",
+    "date": "2026-09-16",
+    "title": "400万通りの専用ソング",
+    "pattern": "文脈×技術",
+    "seed": "Absolut Uniqueは400万本のボトル塗装を1本も被らせなかったけど、ACE-Step 1.5で1本ずつ違う歌詞の専用ソングをQRで紐付けたら、ボトルの唯一性が『聴ける記念品』に変わるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "absolut-unique-2012",
+        "title": "Absolut Unique",
+        "desc": "38色×51パターンをランダム制御し、400万本すべてが異なる塗装のAbsolutボトルを実現した生産ライン。"
+      },
+      {
+        "type": "tech",
+        "id": "ace-step-1-5",
+        "title": "ACE-Step 1.5",
+        "desc": "歌詞とジャンル指定から、ボーカル入りの楽曲を丸ごと生成するオープンソースの音楽AI。自分のPCで動く。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-16-3",
+    "date": "2026-09-16",
+    "title": "観客動作のリアルタイム反映",
+    "pattern": "文脈×技術",
+    "seed": "QuikTripの『Bun Race』は観客の着ぐるみリレーで全員にQRを届けたけど、PoseCapでWebカメラ1台から観客の動きをリアルタイムに拾ってスタジアム大画面のキャラに反映したら、参加のハードルがもっと下がるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "qt-home-bun-race-2026",
+        "title": "QT Home Bun Race",
+        "desc": "観客がソーセージとパンの着ぐるみをリレーで組み合わせると、全員のスマホに無料ホットドッグの引換QRが届くスタジアム企画。"
+      },
+      {
+        "type": "tech",
+        "id": "posecap",
+        "title": "PoseCap",
+        "desc": "Webカメラ1台だけでBlenderにリアルタイムでモーションキャプチャを流し込める無料オープンソースツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-16-4",
+    "date": "2026-09-16",
+    "title": "退場劇を自由視点の肖像に",
+    "pattern": "文脈×技術",
+    "seed": "Seán Harteがロイ・キーンの退場劇11回を油パステルで描いたように、4DAnyoneでスマホの試合映像から選手を4D復元したら、伝説の瞬間を好きな角度から見返せる『動く肖像画』になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "sent-off-2026",
+        "title": "Sent Off",
+        "desc": "元マンチェスターU MFロイ・キーンの退場劇11回を油パステルで描いた画家の初個展。ダブリンで開催。"
+      },
+      {
+        "type": "tech",
+        "id": "4danyone",
+        "title": "4DAnyone",
+        "desc": "スマホ1台で撮った動画から人物を時間変化する3D(4D)データとして復元し、好きな角度から見返せる技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-16-5",
+    "date": "2026-09-16",
+    "title": "演奏動作をロボットへ転写",
+    "pattern": "技術×技術",
+    "seed": "NeuralNoteで演奏をその場でMIDI化し、そのタイミングデータをrobot_retargeterで体格の違う人型ロボットの動きに変換したら、楽器を弾く『演奏ロボット』インスタレーションが作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "neuralnote",
+        "title": "NeuralNote",
+        "desc": "DAW上の演奏や録音をほぼその場でMIDIノートに変換できる無料のオーディオプラグイン。Spotify製モデルを利用。"
+      },
+      {
+        "type": "tech",
+        "id": "robot-retargeter",
+        "title": "robot_retargeter",
+        "desc": "モーションキャプチャデータを、体格や関節数が違う人型ロボットの動きに自動変換する無料のオープンソースツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-16-6",
+    "date": "2026-09-16",
+    "title": "高精度モーキャプの点群清掃",
+    "pattern": "技術×技術",
+    "seed": "CYANPUPPETSで指先まで208キーポイント抽出した高精度モーキャプ映像を、Gaussian Splat Cleanup HDAでノイズ除去したら、指の演技まで見える自由視点ダンス映像を量産できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "cyanpuppets-1b-parameter-ai-motion-capture",
+        "title": "CYANPUPPETS 1B-parameter AI Motion Capture",
+        "desc": "1080pウェブカメラ2台等から、全身・顔・指を含む208キーポイントをリアルタイム抽出するAIモーションキャプチャ。"
+      },
+      {
+        "type": "tech",
+        "id": "gaussian-splat-cleanup-hda",
+        "title": "Gaussian Splat Cleanup HDA",
+        "desc": "Houdini向けにGaussian Splattingデータの重複点・ノイズ・浮遊物を自動で掃除する無料ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-16-7",
+    "date": "2026-09-16",
+    "title": "念力操作を本音センサーに",
+    "pattern": "転用",
+    "seed": "Telekinetic Driveは顔の無意識な動きを読み取ってロボットを念力操作する技術だけど、操作対象を無くして商談や面接の場に置いたら、装着物なしで緊張や本音を可視化するセンサーに転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "telekinetic-drive",
+        "title": "Telekinetic Drive",
+        "desc": "顔に現れるごくわずかな無意識の動きをカメラで読み取り、装着物なしでロボットを念力のように操作できるインターフェース。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-16-8",
+    "date": "2026-09-16",
+    "title": "写実化AIを回想療法に",
+    "pattern": "転用",
+    "seed": "MiniMax H3 Realism People LoRAは動画生成の人物を写実的にする映像制作用の技術だけど、高齢者施設で家族の若い頃の写真に適用したら、回想療法用の『動いて語りかける昔の家族』を作る転用ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "minimax-h3-realism-people-lora",
+        "title": "MiniMax H3 Realism People LoRA",
+        "desc": "動画生成AI『MiniMax H3』に追加で読み込ませるだけで、人物の顔や肌の質感を写実的に近づける追加学習データ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-16-9",
+    "date": "2026-09-16",
+    "title": "都市ごとの海面上昇を即生成",
+    "pattern": "文脈×技術",
+    "seed": "WATERLICHTは海面上昇後の未来を光の波として各都市で巡回展示したけど、ComfyUI-Spectrum-MiniMax-H3で生成を約3割速くしたら、巡回先ごとにその土地専用の水位映像をその場で作り替えられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "waterlicht-2015",
+        "title": "WATERLICHT（水位を可視化する光の波）",
+        "desc": "海面上昇後の未来を光の波として観客の頭上に描き出す、気候変動を可視化するライトインスタレーション。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-spectrum-minimax-h3",
+        "title": "ComfyUI-Spectrum-MiniMax-H3",
+        "desc": "MiniMax H3の動画生成を、画質をほぼ落とさず約3割速くするComfyUI用の追加ノード。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-16-10",
+    "date": "2026-09-16",
+    "title": "話すだけで絵コンテから編集",
+    "pattern": "技術×技術",
+    "seed": "FireRed-OpenStorylineが編集ディレクターのように段取りを組む力と、Frontstageのタイムライン編集にAI映像生成が組み込まれた仕組みを掛け合わせたら、話しかけるだけで生成から編集まで一気通貫の『動く絵コンテ』が作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "firered-openstoryline",
+        "title": "FireRed-OpenStoryline",
+        "desc": "話しかけると編集ディレクターのように段取りを組み、素材選び・カット・つなぎまで自動化する動画編集エージェント。"
+      },
+      {
+        "type": "tech",
+        "id": "frontstage",
+        "title": "Frontstage",
+        "desc": "ブラウザとWindowsで動く無料の動画編集ソフト。タイムライン編集にAI映像生成とチャット型自動編集が組み込まれている。"
+      }
+    ]
   }
 ]
