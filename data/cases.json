@@ -1,5 +1,44 @@
 [
   {
+    "id": "edeka-weihnachtshase-2023",
+    "title": "EDEKA Weihnachtshase",
+    "summary": "認知症の初期症状「日付の混同」を描いた感動的な映像と、クリスマス仕様のチョコウサギ販売を連動させ、売上1個につき1ユーロをアルツハイマー研究団体に寄付したEDEKAのキャンペーン",
+    "client": "EDEKA",
+    "agency": "Jung von Matt, Hamburg",
+    "categories": [
+      "コンテンツ革新",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2023",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.jvm.com/work/edeka-weihnachtshase/",
+    "thumbnail": "/thumbnails/edeka-weihnachtshase-2023.jpg",
+    "videoId": "f7jz5kR0U_s",
+    "overview": "ドイツのスーパーマーケットチェーンEDEKAとJung von Matt, Hamburgが手掛けたキャンペーン。イースターの定番商品であるチョコレート製ウサギをクリスマス仕様にした「Weihnachtshase」を発売し、認知症の初期症状である日付の混同を描いた感動的な短編映像と連動させて展開した。",
+    "background": "認知症の初期症状のひとつに、日付や季節の感覚があいまいになる「日付の混同」がある。この見過ごされがちなサインを家族が早期に気づくきっかけとして届けるため、EDEKAは毎年のイースター商戦の定番であるチョコウサギを題材に、季節感のズレそのものを企画の軸に据えたキャンペーンを企画した。",
+    "execution": "短編映像では、高齢の家族がクリスマスの時期にイースターのチョコウサギを買い求めてしまう様子を描き、その背景にある認知症の初期症状への気づきを促した。連動施策として、クリスマス仕様にデザインされたチョコウサギ「Weihnachtshase」を店頭で販売し、売上1個につき1ユーロをアルツハイマー研究団体に寄付する仕組みを組み込んだ。",
+    "evaluationImpact": "季節商品というスーパーマーケットならではの商材を、認知症の早期発見という社会課題の伝達装置に転換した点が特徴。単なる啓発映像にとどまらず、実売と連動した寄付の仕組みによって、商品購入という日常行動を通じて研究支援につなげた。",
+    "relatedWorks": [
+      {
+        "title": "EDEKA Weihnachtshase (Jung von Matt)",
+        "description": "制作エージェンシーJung von Matt, Hamburgによる作品ページ",
+        "url": "https://www.jvm.com/work/edeka-weihnachtshase/"
+      }
+    ],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Form/Film",
+      "Form/Product",
+      "Theme/Health",
+      "Theme/SocialGood"
+    ]
+  },
+  {
     "id": "the-impossible-order-2024",
     "title": "The Impossible Order",
     "summary": "ショッピングモールに仮想レストランを設置し、注文体験を通じてアルツハイマー病患者の混乱を追体験させる啓発キャンペーン",
