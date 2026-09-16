@@ -1,5 +1,108 @@
 [
   {
+    "id": "ppisp",
+    "title": "PPISP (Physically-Plausible Compensation and Control of Photometric Variations)",
+    "org": "NVIDIA",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "NVIDIAが開発した、3Dスキャン映像の露出ムラや色ズレを物理的に正しいかたちで補正するオープンソースのAIモジュール。",
+    "point": "写真や動画から3D空間を復元するガウシアンスプラッティングなどの技術は、撮影中に露出やホワイトバランスが少しずつ変化すると、復元した3D空間に色ムラや明るさのチラつきが出てしまう弱点がありました。PPISPは、カメラの絞りやISO、ホワイトバランスの効果を物理法則に沿った形でモデル化し、3D復元の学習と同時にその変化を分離・補正することでこの問題を解決します。さらに、まだ撮影していない新しい視点でも、あたかもカメラの自動露出・自動ホワイトバランスが働いたかのように明るさや色を自然に予測できるのが特徴です。広告制作の現場では、屋外ロケや照明を統一できない商業施設などでも、ムラのないクリーンな3Dスキャン(バーチャル背景・商品の3D化・空間コンテンツ)を作りやすくなり、後工程での色調整の手間を大きく減らせます。",
+    "detail": "仕組みとしては、3D復元の学習中に、カメラ・フレームごとの露出補正、レンズの周辺減光(ビネット)、色かぶりを直すホワイトバランス、カメラ固有の階調カーブを、それぞれ意味のあるパラメータとして分離して学習します。写真の色や明るさのクセを『カメラの設定メモ』として書き出しながら3D空間を作るイメージです。新しい視点用には、これらの設定を予測する専用のミニAI(コントローラ)も同時に学習します。\n\n従来の『バイラテラルグリッド』という手法も撮影条件のブレを補正できましたが、補正値が格子状の数値の集まりに過ぎず物理的な意味を持たないため、学習していない新しい視点では予測ができませんでした。PPISPは補正の意味を保ったまま学習するため、未知の視点でも自然な露出・色味を予測でき、精度でも上回っています。\n\n使うには、GitHub上でApache 2.0ライセンスで無料公開されているコードをPython/PyTorch/CUDA対応GPU環境に組み込む必要があり、現状はエンジニアがパイプラインに実装して使う形です。すぐ使えるGUIツールはまだありません。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "Apache 2.0で商用利用可。gsplat/3DGRUTへの統合が予定されている"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/nv-tlabs/ppisp"
+      },
+      {
+        "kind": "project",
+        "url": "https://research.nvidia.com/labs/sil/projects/ppisp/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2601.18336"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/nvidia-announces-ppisp-for-radiance-fields"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/ppisp.jpg",
+    "relatedWorks": [
+      {
+        "title": "gsplat",
+        "description": "NVIDIA/Nerfstudioが開発するガウシアンスプラッティングの主要オープンソースライブラリ。PPISPの統合先の一つ",
+        "url": "https://github.com/nerfstudio-project/gsplat"
+      },
+      {
+        "title": "3DGRUT",
+        "description": "NVIDIAのレイトレーシング対応ガウシアン粒子レンダリングライブラリ。PPISPの統合先の一つ",
+        "url": "https://github.com/nv-tlabs/3dgrut"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "recursive-code-world-models",
+    "title": "Recursive Code World Models (RCWM)",
+    "org": "Georgia Institute of Technology",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "1枚の絵から、建物や部屋のパーツまで作り込まれた『編集できる3D世界』を、AIが自分でプログラムコードを書きながら再帰的に組み上げる研究。",
+    "point": "たった1枚のイラストや写真から、中世の街並みのような複雑な3D空間を、見た目がそっくりなだけでなく家一軒ずつ・パーツ一つずつが独立した『編集可能な3Dシーン』として再構築する研究です。ポイントは『再帰(リカーシブ)』という考え方で、AIエージェントがまず街全体をざっくり作り、次に街区、次に一軒の家、というように同じ手順を繰り返しながらどんどん細部を作り込み、最後にまた全体を見直して整合性を取ります。3DCGを操作できるAIが自分でプログラムコードを書いて3D空間を組み立てていく仕組みで、生成された建物は後から個別に動かしたり色を変えたりできます。広告・映像制作では、ラフなコンセプトアートやロケ写真から背景美術やバーチャルセットのたたき台を素早く作り、その後アーティストが微調整する、という使い方が考えられます。",
+    "detail": "仕組みとしては、シーン全体→部分→さらに小さな部分という階層を再帰的にたどりながら、各階層でコーディング特化のAIエージェントに3D用のプログラムコード(three.js)を書かせます。各段階で、生成した3Dシーンのレンダリング画像と元の参考画像をAI自身が見比べて『ここが違う』とチェックし、書き直すループを繰り返して精度を上げていきます。\n\n従来の『画像から3Dコードを生成する』手法(VIGAやimg2threejsなど)はシーン全体を一度に作ろうとするため、複雑な街並みのような入り組んだ空間では細部が崩れがちでした。RCWMは全体と部分を行き来する再帰構造にすることで、街全体の配置の自然さを保ちながら建物一軒ずつの作り込みも両立できる点が新しい、と論文は主張しています。\n\n使うにはLinux環境が前提で、Python・Node.js(three.jsでのレンダリング確認用)の環境構築に加え、AIエージェント実行用のOpenAI有償APIキーが必要です。開発元はジョージア工科大学で、READMEには『まだ不安定な部分がある』との注記もあります。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "コード自体はMITで無料公開されているが、内部で使うAIエージェントがOpenAIの有償API(論文中でgpt-6-astraと呼ばれるモデル)必須のため実行には従量課金が発生する"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/ZhiqiLi-CG/RecursiveCWM_code"
+      },
+      {
+        "kind": "project",
+        "url": "https://zhiqili-cg.github.io/RecursiveCWM"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2609.11499"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/recursive-code-world-models.jpg",
+    "relatedWorks": [
+      {
+        "title": "VIGA",
+        "description": "画像を見ながらBlender上で3Dシーンを対話的に復元するAIエージェント。RCWMの比較対象の一つ",
+        "url": "https://github.com/Fugtemypt123/VIGA"
+      },
+      {
+        "title": "img2threejs",
+        "description": "1枚の参照画像からThree.js製の3Dオブジェクトを生成するツール。RCWMの比較対象の一つ",
+        "url": "https://github.com/img2threejs/img2threejs"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "unimate",
     "title": "UniMate",
     "org": "Princeton University / UC Berkeley / MIT",
