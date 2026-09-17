@@ -1,5 +1,143 @@
 [
   {
+    "id": "aspen-search-2026",
+    "title": "Aspen Search",
+    "summary": "量子取引・AI人材専門の採用サービスがThree.js×Next.jsのミニマル白黒サイトでAwwwards SOTDを獲得",
+    "client": "Aspen",
+    "agency": "Edoardo Lunardi, Elliott Mangham, Louis Saville",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "Awwwards Site of the Day（2026年9月15日）",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.awwwards.com/sites/aspen-search",
+    "thumbnail": "/thumbnails/aspen-search-2026.jpg",
+    "videoId": "",
+    "overview": "Aspen Searchは量的取引企業やベンチャー支援技術企業向けの専門人材紹介会社。そのコーポレートサイトはThree.js・Next.js・Sanityで構築され、白黒基調のミニマルなデザインにロゴアニメーションやテーマ切り替え、コンフェッティ演出などのインタラクションを組み込んでいる。",
+    "background": "採用サービス自体は専門性が高く地味になりがちな業界だが、Aspen Searchはブランド体験としてサイトを差別化する狙いでミニマル×モーション表現のデザインを採用したと見られる。",
+    "execution": "Edoardo Lunardi、Elliott Mangham、Louis Savilleが制作を手がけ、Three.jsによる3D/インタラクション表現とNext.js・Sanityによるモダンな実装を組み合わせ、白黒トーンの中にカルーセルやモーダル、テーマ切り替え機能を配置した。",
+    "evaluationImpact": "2026年9月15日にAwwwards Site of the Dayを受賞（スコア7.48/10）。装飾を抑えたミニマルなデザインでも技術的な作り込みと細部の演出でSOTD評価を獲得できることを示した事例。",
+    "relatedWorks": [
+      {
+        "title": "Aspen Search (Awwwards掲載ページ)",
+        "description": "受賞詳細・クレジット・使用技術を掲載する公式Awwwardsページ",
+        "url": "https://www.awwwards.com/sites/aspen-search"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Tech/3D",
+      "Form/Website"
+    ]
+  },
+  {
+    "id": "everyone-s-a-critic-the-sequel-2026",
+    "title": "Everyone's a Critic: The Sequel",
+    "summary": "TIFF開催11日間だけ市民が映画評論家に変貌する様を描くRogers「Everyone's a Critic」続編、著名映画監督が監督",
+    "client": "Rogers",
+    "agency": "Publicis Canada",
+    "categories": [
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://lbbonline.com/news/Rogers-Puts-Torontos-Film-Critics-in-the-Spotlight-for-Toronto-International-Film-Festival-2026",
+    "thumbnail": "/thumbnails/everyone-s-a-critic-the-sequel-2026.jpg",
+    "videoId": "",
+    "overview": "Rogersがトロント国際映画祭(TIFF)第3年目のプレゼンティングパートナーとして展開する「Everyone's a Critic: The Sequel」。トロント市民が11日間だけ自信満々の映画評論家になる様子をユーモラスに描く続編キャンペーン。",
+    "background": "2024年の第1弾「Everyone's a Critic」に続く続編。Rogersは3年連続でTIFFのプレゼンティングパートナーを務めており、毎年9月のTIFF開催期間中に市民が映画談義に熱中する独特の文化現象をブランド体験として描いてきた。",
+    "execution": "元映画評論家でもあるトロント出身の映画監督Chandler Levackが演出を担当。一般市民が自信たっぷりに映画評やドラマ性のある感想を語るユーモラスな映像を制作し、TIFF会場内の上映前トレーラー、デジタルOOH、Rogersの各種ソーシャルチャンネルで展開した。",
+    "evaluationImpact": "映画祭という特定の文化的瞬間に根差したインサイトを続編としてシリーズ化することで、単発のスポンサー広告ではなくブランドの継続的な文化的立ち位置を確立する事例として注目される。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Form/OOH",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "there-s-only-one-that-brings-us-together-2026",
+    "title": "There's Only One That Brings Us Together",
+    "summary": "McVitie'sの主要5ブランドを初めて1本の広告に集結、英国の日常に息づく絆を描いた新キャンペーン",
+    "client": "McVitie's",
+    "agency": "adam&eveTBWA",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/there-s-only-one-that-brings-us-together",
+    "thumbnail": "/thumbnails/there-s-only-one-that-brings-us-together-2026.jpg",
+    "videoId": "",
+    "overview": "英国のビスケットブランドMcVitie'sが、adam&eve\\TBWAとともに展開する新キャンペーン。Ginger Nuts、Rich Tea、Club、Jaffa Cakes、Digestivesという主要5ブランドを初めて1本の広告内に集結させ、家族・カップル・友人など日常の人間関係をビスケットが結びつける様子を描く。",
+    "background": "McVitie'sは英国生活に深く根付いたブランドだが、複数のサブブランドが個別に語られがちだった。ブランド全体としての存在意義を再定義し、日常の何気ない瞬間に寄り添う存在であることを訴求する狙いから本キャンペーンが企画された。",
+    "execution": "60秒のフィルムでは、旅立つ子どもへ親がビスケットを手渡す場面、マタニティヨガ中の妊婦、カップル、祖母と孫娘など複数のシナリオがソーシャルインサイトを基に描かれる。Philip OakeyとGiorgio Moroderの名曲のパンクカバーを起用し、TV・オンライン動画・ソーシャル・シネマ・OOH・店頭・限定パッケージまで横断展開した。",
+    "evaluationImpact": "単一商品訴求ではなく、ブランドポートフォリオ全体を横断して「絆」という情緒的価値を打ち出した点が特徴。英国の生活文化にビスケットを溶け込ませる手法として業界メディアからも注目された。",
+    "relatedWorks": [
+      {
+        "title": "McVitie's - There Is Only One",
+        "description": "本キャンペーンの60秒フィルム",
+        "url": "https://www.youtube.com/watch?v=o0UaAGy9tNc"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Form/OOH",
+      "Theme/Food"
+    ]
+  },
+  {
+    "id": "be-an-after-2026",
+    "title": "Be An After",
+    "summary": "ビフォーアフター写真を逆再生し、結果でなく変化を選んだ決断の瞬間こそ「アフター」だと再定義した米ヘアケアCM。",
+    "client": "Nutrafol",
+    "agency": "nice&frank",
+    "categories": [
+      "コンテンツ革新",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/be-an-after",
+    "thumbnail": "/thumbnails/be-an-after-2026.jpg",
+    "videoId": "",
+    "overview": "Nutrafolがnice&frankと制作した「Be An After」は、ヘアケア広告の定番である「ビフォーアフター」表現を逆転させたキャンペーン。2026年9月14日、第78回エミー賞授賞式に合わせてE!の生中継番組「Live with E!」で放映開始。産後の回復、離婚、マラソン訓練という3人の実話を基にしたストーリーで髪の成長と人生の変化を重ねて描く。",
+    "background": "ヘアケア業界は劇的な変身と即座の結果を誇示する広告表現に偏りがちだった。NutrafolのCMO Deena Bahriは、髪の成長は「非常に個人的」な体験であり、伝統的なビフォーアフターは変化に至る過程を消してしまうと指摘。結果志向から、変化を決断する瞬間そのものに価値を置く「希望と責任感」を軸にした表現へと転換した。",
+    "execution": "各スポットは定番のビフォーアフター写真から始まり、ナレーションと共に時間を逆再生。最終的な「アフター」の姿から、決断に至るまでの混沌とした本当の瞬間を映し出す。nice&frankのRob Stoneは「2点間の多くのストーリーが欠落している」とし、様々なメディア・技術で決断の瞬間まで遡って未加工な部分を表現したと説明。実際の利用者を取り上げたソーシャル向けカスタムセグメントも展開した。",
+    "evaluationImpact": "「ビフォーアフター」という業界の定型フォーマット自体を構造的に解体し、結果ではなく意思決定の瞬間に価値を置き直した視点の転換が評価点。美容・変身への注目度が高いエミー賞のタイミングに合わせて放映することで、既存の劇的変身広告への違和感を可視化し、ブランドの差別化メッセージを増幅させた。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Form/Event",
+      "Theme/Health",
+      "Theme/Entertainment"
+    ]
+  },
+  {
     "id": "edeka-weihnachtshase-2023",
     "title": "EDEKA Weihnachtshase",
     "summary": "認知症の初期症状「日付の混同」を描いた感動的な映像と、クリスマス仕様のチョコウサギ販売を連動させ、売上1個につき1ユーロをアルツハイマー研究団体に寄付したEDEKAのキャンペーン",
