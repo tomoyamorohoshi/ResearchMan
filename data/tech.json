@@ -1,5 +1,151 @@
 [
   {
+    "id": "refmods",
+    "title": "RefMods (MiniMax H3 Reference Latent Adapters)",
+    "org": "OSSコミュニティ（Luisa / ComfyUI-MiniMaxH3Mod）",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "動画生成AI「MiniMax H3」向けに、キャラクターの見た目を毎回学習し直さずに何度でも再現できる、1〜1.6MBの軽量な参照データ形式。",
+    "point": "MiniMax H3という動画生成AIで、同じキャラクターや商品をいつも同じ姿で登場させ続けられる仕組みです。従来、AIに『いつもの顔』を覚えさせるには専用の追加学習（ファインチューニング）が必要で、数十分〜数時間の計算とそれなりの知識が求められました。RefModsは参照にしたい画像や動画を一度『圧縮』して1〜1.6MBほどの小さなファイルに変換するだけで、あとはLoRAのように読み込んで使い回せます。広告制作では、同じマスコットキャラクターやブランド商品を複数のCMカットで一貫した見た目のまま登場させたり、キャンペーンごとに異なるシチュエーション動画を量産したりする際に、キャラクター崩れの心配を減らしながら制作スピードを上げられそうです。",
+    "detail": "仕組みとしては、参照にしたい画像や動画をAI動画モデルの『内部言語』（潜在表現）にいったん変換し、そこから人物やモノの特徴だけを抜き出して小さなファイルに保存します。たとえるなら、その人の『似顔絵の設計図』だけをコンパクトに保存しておき、必要なときにその設計図を読み込んで動画に反映させるイメージです。\n\n従来のキャラクター一貫性の確保方法は、参照画像を毎回モデルに読み込ませて計算し直すか、LoRAとして数十分かけて追加学習する方法が主流でした。RefModsは学習が不要で、保存も読み込みも一瞬。設計図ファイルはひとつのキャラクターにつき1〜1.6MBと非常に軽量なため、何十種類ものキャラクターや商品を用意してもストレージを圧迫しません。ただし声質の再現はまだ不安定で、素早い動きのシーンではぼやけが出ることがあると開発者自身が明記しています。\n\n使うにはComfyUIという無料のAI動画制作ソフトと、MiniMax H3という動画生成モデル、このRefModsを追加する拡張ノード（ComfyUI-MiniMaxH3Mod、MITライセンスで無料）が必要です。ある程度のGPU環境とComfyUIの基本操作に慣れている必要があり、社内に動画AI担当者がいれば導入コストは低めです。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "拡張ノード自体はMIT。生成に使うMiniMax H3本体の利用規約は別途確認が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Luisacaotica/ComfyUI-MiniMaxH3Mod"
+      },
+      {
+        "kind": "post",
+        "url": "https://comfyui-wiki.com/en/news/2026-09-07-minimax-h3-refmods"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/refmods.jpg",
+    "relatedWorks": [
+      {
+        "title": "MiniMax H3（Hailuo 3.0）",
+        "description": "RefModsが対象とする、音声つき動画を生成できるオープンウェイトの動画生成AI本体。",
+        "url": "https://www.minimax.io/blog/minimax-h3"
+      },
+      {
+        "title": "IP-Adapter",
+        "description": "画像生成AIで参照画像から人物・スタイルを反映させる先行手法。RefModsの発想の源流にあたる概念。",
+        "url": "https://github.com/tencent-ailab/IP-Adapter"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "block-sparse-attention-comfy-compiler",
+    "title": "Block Sparse Attention & Comfy Compiler",
+    "org": "Comfy-Org（コミュニティ実装: kijai ほか）",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "長尺・高解像度のAI動画生成を大幅に高速化・省メモリ化する、ComfyUIに標準搭載された新しい計算最適化機能。",
+    "point": "AI動画生成は、動画が長くなったり解像度が上がったりするほど、AIが『どのフレームのどの部分が互いに関係しているか』を総当たりで計算するため、処理時間とメモリ消費が急激に膨らみます。ComfyUI（無料の定番AI画像・動画制作ソフト）に標準搭載された『Block Sparse Attention』は、この総当たり計算を『本当に関係が深い部分だけ』に絞り込むことで無駄な計算を省く仕組みです。あわせて追加された『Comfy Compiler』はメモリの使い方をあらかじめ最適化し、生成中のメモリ不足エラーを減らします。実際に720p・158フレームという長尺のMiniMax H3動画生成が1ステップ約43秒まで速くなった例が報告されており、広告制作の現場では、これまで断念していた長尺・高解像度のAI動画ラフ制作や、限られたGPU環境での量産テストが現実的になりそうです。",
+    "detail": "AIが動画の各フレーム内の各部分（トークン）同士の関係性を計算する『アテンション』という処理は、動画が長くなるほど計算量が2乗・3乗で増えていきます。たとえるなら、教室の全員が他の全員と一言ずつ会話する総当たり自己紹介のようなもので、人数が増えると会話数が爆発的に増えるイメージです。Block Sparse Attentionは、あらかじめ『本当に関係の深そうなグループ』だけを選んで会話させ、無関係な組み合わせの会話を省略する仕組みです。\n\nこれまでも高速化の工夫は個別のカスタムノードとして存在していましたが、今回ComfyUI本体に3種類の方式（Sol-Attn／SLA／VSA）が統合され、ワークフロー上で切り替えられるようになりました。Comfy Compilerは、生成中に何度も発生するメモリの確保・解放処理をあらかじめまとめて計画することで、処理落ちやメモリ不足エラーを減らします。\n\n使うにはComfyUI本体（無料・GPL-3.0）を最新版に更新するだけで、追加の拡張機能は不要です。効果を最大限に得るにはNVIDIA製のある程度新しいGPUと、長尺・高解像度の動画生成ワークフロー（MiniMax H3など）についての知識が必要です。",
+    "license": {
+      "spdx": "GPL-3.0",
+      "commercial": "ok",
+      "note": "ComfyUI本体はGPL-3.0で無料利用可能。生成物の商用利用自体は制限されない。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Comfy-Org/ComfyUI/pull/16072"
+      },
+      {
+        "kind": "post",
+        "url": "https://docs.comfy.org/built-in-nodes/BlockSparseAttention"
+      },
+      {
+        "kind": "post",
+        "url": "https://comfyui-wiki.com/en/news/2026-09-08-h3-sparse-attention-compiler"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/block-sparse-attention-comfy-compiler.jpg",
+    "relatedWorks": [
+      {
+        "title": "VSA: Faster Video Diffusion with Trainable Sparse Attention",
+        "description": "動画生成向けスパースアテンションの学術的な先行研究で、今回統合された方式の一つ（VSA）の元論文。",
+        "url": "https://arxiv.org/abs/2505.13389"
+      },
+      {
+        "title": "FastVideo",
+        "description": "VSAなど動画生成高速化技術を実装したオープンソースフレームワーク。",
+        "url": "https://github.com/hao-ai-lab/FastVideo"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "msr-for-ltx-2-5",
+    "title": "MSR (Multiple Subject Reference) for LTX-2.5",
+    "org": "LiconStudio",
+    "type": "Research",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "1本の動画に登場する複数の人物・服・小物・背景を、5枚までの参照画像から混同せずに再現する動画生成AI向けの新しい条件付け技術。",
+    "point": "通常の動画生成AIは、1枚の参照画像から『主役ひとり』の見た目を再現するのは得意でも、複数の人物や商品を同じシーンに登場させようとすると、服や顔立ちが混ざったり、背景の細部が崩れたりしがちです。MSR（Multiple Subject Reference）は、最大5枚の参照画像をそれぞれ別々の『枠』としてAIに読み込ませ、混同しないように工夫した新しい仕組みです。オープンソースの動画生成AI『LTX-2.5』向けに、論文と一緒に実際に動くコードと学習済みデータが無料公開されています。広告制作では、複数の商品を並べたパッケージショットの動画化や、ブランドの複数キャラクターが共演するCM、異なる人物を同じ場面に自然に合成する演出など、これまでAI動画では崩れやすかった『複数被写体の共演』を安定して作れる可能性があります。",
+    "detail": "MSRは、参照にしたい画像それぞれに『何番目の参照か』を示す目印（学習済みの識別情報）をつけたうえで、動画データを扱う際の時間軸上の位置もわずかにずらしてAIに読み込ませます。たとえると、複数のゲストを1つの番組に呼ぶときに、それぞれに『名札』と『専用の椅子』を用意しておき、AIが誰が誰だか混同しないようにする工夫です。\n\n従来の参照画像を使う動画生成では、複数枚の画像をまとめて渡すと、AIが『どの服が誰のものか』『どの背景がどのシーンのものか』を混同しやすいという課題がありました。MSRは開発チームの実験でこの『参照の混同』を従来手法より減らせたと報告していますが、服装がよく似ている人物同士や、大きく異なる視点（アングル）からの参照ではまだ完全ではないという制約も論文内で明記されています。\n\n使うには無料のAI動画制作ソフト『ComfyUI』と、オープンソースの動画生成モデル『LTX-2.5』、MSRを動かす追加ノード（ComfyUI-LTX2.5-MSR）、学習済みのLoRAファイル（Apache-2.0で商用利用可）が必要です。ある程度のGPU環境とComfyUIの操作経験が前提となります。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "学習済みLoRA重み・コードともにApache-2.0。ベースモデルLTX-2.5のライセンスにも従う必要あり。"
+    },
+    "links": [
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2609.18393"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/liconstudio/ComfyUI-LTX2.5-MSR"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/LiconStudio/LTX-2.5-Multiple-Subject-Reference"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/msr-for-ltx-2-5.jpg",
+    "relatedWorks": [
+      {
+        "title": "LTX-2.5",
+        "description": "MSRが対応するオープンウェイトの動画生成AI本体。音声・映像を一括生成できる。",
+        "url": "https://huggingface.co/collections/Lightricks/ltx-25"
+      },
+      {
+        "title": "IP-Adapter",
+        "description": "単一被写体の参照条件付けの先行手法。MSRは複数被写体への拡張にあたる。",
+        "url": "https://github.com/tencent-ailab/IP-Adapter"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "ppisp",
     "title": "PPISP (Physically-Plausible Compensation and Control of Photometric Variations)",
     "org": "NVIDIA",
