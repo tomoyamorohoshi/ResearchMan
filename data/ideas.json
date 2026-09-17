@@ -15170,5 +15170,197 @@
         "desc": "ブラウザとWindowsで動く無料の動画編集ソフト。タイムライン編集にAI映像生成とチャット型自動編集が組み込まれている。"
       }
     ]
+  },
+  {
+    "id": "2026-09-17-1",
+    "date": "2026-09-17",
+    "title": "点群サグラダの光学再現",
+    "pattern": "文脈×技術",
+    "seed": "サグラダ・ファミリアの創造過程を歩いて体験できるフリーロームXRに、GRayのレイトレーシングで反射・屈折・影ごと描く点群を使えば、ガウディが仕込んだ光の設計思想まで肌で感じられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-1qyowif-2026",
+        "title": "歩ける世界遺産ミュージアム『ガウディ ー サグラダ・ファミリアの秘密』",
+        "desc": "フリーロームXRとハンドトラッキングでサグラダ・ファミリア誕生の過程を歩いて体験できる常設XRミュージアム"
+      },
+      {
+        "type": "tech",
+        "id": "gray",
+        "title": "GRay",
+        "desc": "実写を3D化するGaussian Splattingを、正確な反射・屈折・影までレイトレーシングで描画する新手法"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-17-2",
+    "date": "2026-09-17",
+    "title": "浮遊生物の感情肌",
+    "pattern": "技術×技術",
+    "seed": "ヘリウムで浮くCuddle-Fishの表面にMorphDropsの導電インク水滴ディスプレイを貼れば、宙に浮く生き物の肌に感情の模様がリアルタイムで浮かぶプロダクトになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "cuddle-fish",
+        "title": "Cuddle-Fish（Floating Companion）",
+        "desc": "ヘリウムと柔らかい羽ばたきヒレで浮遊移動する、静音・軽量なソフトロボットの浮遊コンパニオン"
+      },
+      {
+        "type": "tech",
+        "id": "morphdrops",
+        "title": "MorphDrops",
+        "desc": "紙に印刷した導電インクに電気を流し、水滴の形を自在に変化させられるディスプレイ技術"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-17-3",
+    "date": "2026-09-17",
+    "title": "粘菌ロジックの出店転用",
+    "pattern": "転用",
+    "seed": "真正粘菌(Physarum polycephalum)が東京圏の鉄道網に似た効率ネットワークを培地上で作った実験ロジックを、研究でなくブランドの新作ポップアップ拠点マップ選定に転用したら、意外な出店ルートが見えるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "physarum-polycephalumによる東京鉄道網再現実験",
+        "title": "Physarum polycephalum（真正粘菌）による東京鉄道網再現実験",
+        "desc": "脳を持たない真正粘菌を使い、東京圏の鉄道網に似た効率的なネットワークを培地上で再現した実験"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-17-4",
+    "date": "2026-09-17",
+    "title": "ご当地音の施錠ブランディング",
+    "pattern": "文脈×技術",
+    "seed": "Hyundaiがレンタカーの施錠音をプエルトリコ固有種コキーの鳴き声に差し替えたCOQUÍ ALARMEDのように、ACE-Step 1.5で各都市の方言や環境音から丸ごと楽曲を生成すれば、街ごとに違うご当地サウンドブランディングが作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "hyundai-coqui-alarmed",
+        "title": "COQUÍ ALARMED（Hyundai Puerto Rico）",
+        "desc": "車の施錠音をプエルトリコ固有種のカエル『コキー』の鳴き声に差し替えたHyundaiの音施策"
+      },
+      {
+        "type": "tech",
+        "id": "ace-step-1-5",
+        "title": "ACE-Step 1.5",
+        "desc": "歌詞とジャンル指定からボーカル入り楽曲を丸ごと生成できるオープンソースの音楽AI"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-17-5",
+    "date": "2026-09-17",
+    "title": "伸縮フレームの点群展示",
+    "pattern": "文脈×技術",
+    "seed": "London Design Festivalの新ID『Framing LDF』が持つ伸縮・可変するフレームの発想を、Aholo Viewerでブラウザだけで巨大3D空間を見せる技術に応用すれば、会場ごとに伸び縮みする点群アーカイブ展示になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "framing-ldf-london-design-festival-2026-2026",
+        "title": "Framing LDF（London Design Festival 2026 ビジュアルアイデンティティ）",
+        "desc": "LDF2026向けにPentagramが開発した、伸縮・可変する『フレーム』を核とする新ビジュアルID"
+      },
+      {
+        "type": "tech",
+        "id": "aholo-viewer",
+        "title": "Aholo Viewer",
+        "desc": "インストール不要のブラウザだけで最大10億スプラット級の3D空間を表示できるOSSレンダラ"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-17-6",
+    "date": "2026-09-17",
+    "title": "ロボット動作の事前物理検証",
+    "pattern": "技術×技術",
+    "seed": "ovrtx/ovphysxでBlender上のシーンをAIエージェントが自動で物理検証する仕組みと、GRAILが動画生成AIから人型ロボットの全身動作を合成するパイプラインを組み合わせれば、実機に転移する前に危険な動きを自動で弾けるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ovrtx-ovphysx",
+        "title": "ovrtx / ovphysx (NVIDIA Agent Toolkit — Omniverse Libraries)",
+        "desc": "AIエージェントが3Dシーンをカメラ視点でシミュレーションし物理挙動を自動検証できるNVIDIAのSDK群"
+      },
+      {
+        "type": "tech",
+        "id": "grail",
+        "title": "GRAIL",
+        "desc": "3Dアセットと動画生成AIから人型ロボットの全身動作データを自動合成し実機に転移させる研究パイプライン"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-17-7",
+    "date": "2026-09-17",
+    "title": "ロトスコープの匿名化転用",
+    "pattern": "転用",
+    "seed": "『赤いシャツの人』のような自然言語指示で対象を切り抜くRotoAIを、動画編集でなく監視カメラ映像の人物だけを自動で塗りつぶす匿名化処理に転用したら、プライバシー保護編集が一瞬で終わるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "rotoai",
+        "title": "RotoAI",
+        "desc": "自然言語の指示だけで動画から人物や物体をきれいに切り抜けるオープンソースのロトスコープツール"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-17-8",
+    "date": "2026-09-17",
+    "title": "島の物語の長尺一括編集",
+    "pattern": "文脈×技術",
+    "seed": "瀬戸内国際芸術祭で浦田琴恵が男木島を主題に描いた『A Girl in Ogi-island』のような島ローカルの物語を、MMLVEで人物の同一性とロケーションを保ったまま長尺編集すれば、島の一年を追う長編アートフィルムが低コストで作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2010-x18",
+        "title": "A Girl in Ogi-island",
+        "desc": "瀬戸内国際芸術祭で浦田琴恵が男木島を主題に制作したアート作品『A Girl in Ogi-island』"
+      },
+      {
+        "type": "tech",
+        "id": "mmlve",
+        "title": "MMLVE (Thinking on Shots)",
+        "desc": "人物の同一性やカメラワークを保ったまま長尺動画を自然言語の指示だけで一括編集できるAIエージェント"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-17-9",
+    "date": "2026-09-17",
+    "title": "浮遊物体と分離した空",
+    "pattern": "技術×技術",
+    "seed": "GaussianSplatting.jlのSky Dome機能で切り離した空だけの点群空間の下で、LeviFabの超伝導浮遊技術で磁石入り物体を実際に浮かせれば、点群の空と本物の浮遊が重なるAR展示ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "gaussiansplatting-jl-v2-0-0",
+        "title": "GaussianSplatting.jl v2.0.0",
+        "desc": "Julia言語で書かれたGaussian Splatting実装。空を分離するSky Dome機能を追加"
+      },
+      {
+        "type": "tech",
+        "id": "levifab",
+        "title": "LeviFab",
+        "desc": "液体窒素で冷却した超伝導体の力で、磁石入りの3Dプリント物体を空中に浮遊・操作できるHCI研究"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-17-10",
+    "date": "2026-09-17",
+    "title": "社内運用基盤の人材転用",
+    "pattern": "転用",
+    "seed": "Runnitがブリーフ・ブランド資産・チームのスキル情報を紐づける社内運用機能を、新人研修でなくフリーランス案件のマッチング(誰にどの案件を振るか)に転用したら、代理店版フリーランス人材プールになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "runnit",
+        "title": "Runnit",
+        "desc": "ブリーフやブランド資産、チームのスキル情報を紐づけるAIネイティブの社内運用プラットフォーム"
+      }
+    ]
   }
 ]
