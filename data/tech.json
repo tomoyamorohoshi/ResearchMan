@@ -1,5 +1,167 @@
 [
   {
+    "id": "agentstar",
+    "title": "AgentSTAR (Agentic Shape Tracking and Reconstruction)",
+    "org": "Amazon FAR (Frontier AI and Robotics)",
+    "type": "Research",
+    "domains": [
+      "AI/Agents",
+      "Motion/Body",
+      "Spatial/3D"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "コーディングエージェント（Claude Code / Codex）に1本の動画を見せると、Blenderスクリプトを自分で書いて「はさみ」などの可動物体を3Dで組み立て、フレームごとの動きまで復元してくれる研究。出力はGLBと関節つきの姿勢データ。",
+    "point": "何がすごいか：普通の3D復元は専用のAIモデルを学習させますが、これはAIエージェントに「動画とBlenderを渡して、実物と見比べながら自分で直して」と任せる発想です。エージェントは箱や円柱などの単純な部品で物体を組み立て、フレームごとに姿勢を合わせ、レンダリングして元の動画と比べ、ずれを直す作業を何時間も繰り返します。まるで新人3Dアーティストが実写を見ながらモデリングとアニメ付けを粘り強く仕上げる工程を、AIが代行するイメージです。広告・体験づくりでの活用：手元の商品や小道具（ハサミ、折りたたみ傘、開閉する箱など）をスマホで撮った動画から、名前つきパーツと関節を持つ3Dモデルに変換できれば、AR試着、商品の分解・開閉アニメ、インスタレーション用のデジタルツインの原型づくりに使えます。人の体ではなく「道具の動き」を取り込める点が、モーキャプ系の既存ツールと違う使いどころです。",
+    "detail": "①仕組み：このリポジトリは「エージェントが作業するための作業場（ハーネス）」です。エージェントは動画のフレームを見て、Blender用のPythonスクリプト（scene.py）を書き、物体を単純な部品で組み立てて各フレームの姿勢を決め、関節（回転軸など）を宣言します。そのあとレンダリングして実際のフレームと並べて比較し、ずれを見つけて直します。この繰り返しを支えるのが「姿勢探索ビュー」（多数の姿勢候補を一度に見比べる仕組み）と、時間方向の一貫性を確認する「temporal tool」です。プロジェクトページでは、はさみの動画から復元が回を追うごとに良くなっていく様子のタイムラプスと、関節軸・パーツ分割を確認できるビューアが見られます。ARCTICやHOT3Dという手と物体のデータセットで、正解データと比べた評価もされています。\n②従来との違い：これまでの復元は物体ごとに学習済みモデルやテンプレートが必要でした。この方法は学習を追加せず、汎用のコーディングエージェントが試行錯誤で解く点が新しく、使うモデルが賢くなるほど結果も良くなる設計です（READMEによると新しいモデルでは一部機能をオフにしたほうがよい場合もあります）。\n③使うには：Linux（x86_64）とNVIDIA GPU、micromamba、ffmpeg、Blender 4.2.5（install.shで導入）が必要で、サンドボックス用にroot権限も要ります。ANTHROPIC_API_KEYまたはOPENAI_API_KEYが必要です。1回の実行は数時間・大量のトークンを使う点に注意してください（--timeout-hoursで上限を設定できます）。サンプルとして庭ばさみの例が同梱されています。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "コードはMIT（SciPy由来のオプティマイザ部分はBSD-3-Clause）。動かすにはClaude CodeまたはCodexのAPIキーが必要で、その利用料は別途かかる。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/makezur/agenticSTAR"
+      },
+      {
+        "kind": "project",
+        "url": "https://agenticstar.github.io/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://agenticstar.github.io/assets/AgenticSTAR.pdf"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/agentstar.jpg",
+    "relatedWorks": [
+      {
+        "title": "ARCTIC",
+        "description": "手と関節物体の相互作用を捉えたデータセット。AgentSTARの評価にも使われている。",
+        "url": "https://arctic.is.tue.mpg.de/"
+      },
+      {
+        "title": "Claude Code",
+        "description": "AgentSTARがBlender操作の実行役として使うコーディングエージェント。",
+        "url": "https://www.anthropic.com/claude-code"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "kimodo-cpp",
+    "title": "kimodo.cpp",
+    "org": "LocalAI（localai-org）コミュニティ / 元モデル: NVIDIA Kimodo",
+    "type": "Tool",
+    "domains": [
+      "Motion/Body",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "NVIDIAのテキストから3D人物モーションを作る「Kimodo」を、C++/GGMLで自分のPC（CPU／Vulkan GPU）で動かせるようにしたオープンソースの移植版。「歩いて手を振る」のような文章から骨格アニメ（GLB）を生成できる。",
+    "point": "何がすごいか：Kimodoは、文章や「この地点を通る」「手をここに置く」といった条件から、人型キャラクターやロボットの全身モーションを作るNVIDIAのモデルです。本来は大きなPython環境とGPUが前提ですが、kimodo.cppは軽量な形式（GGUF）と量子化で小さくし、GPUメモリの少ないPCでも動くようにしました。ブラウザの画面でプロンプトを入力し、複数の文をつないだ連続動作の生成もできます。広告・体験づくりでの活用：モーキャプスタジオや役者がいなくても、キャラクターの仮モーションを数十秒で何案も出せるため、絵コンテ段階のアニメーション検討、ゲームやSNS用ショート動画の素材づくり、インスタレーション用の人型ロボットの動きの下書きに使えそうです。クラウドに依存せず手元で完結するので、社外秘の企画でも試しやすいのが強みです。ただし現状の出力は「骨格のみのGLB」で、Blenderなどに読み込んでからキャラクターに当てはめる後工程が必要です。",
+    "detail": "①仕組み：Kimodoは、ノイズを少しずつ取り除いて動きを作る「拡散モデル」です。約700時間の光学式モーキャプで学習していて、体の根元（腰の位置と向き）と各関節の動きを二段階に分けて予測することで、足が滑るなどの破綻を減らしています。kimodo.cppはこれをGGML（ローカルAI推論用のライブラリ）で書き直し、モデルを圧縮して保存する仕組み（Q8_0〜Q4_Kなどの量子化）に対応しました。テキストの理解にはLlama 3系のエンコーダを使い、その重みもHugging FaceのLocalAI-ioで変換済みのものが配布されています。\n②従来との違い：本家のPython実装は導入が重く、大きなGPUが前提でした。この移植版はC++のCLI、Cのライブラリ（kimodo_capi.h）、ローカルのWebデモ（ポート8094）を備え、CPUでも動きます。5種のモーションモデル（SMPL-X、SOMA RP/SEED、Unitree G1 RP/SEED）に対応しています。一方、任意の制約入力、77関節のSOMA展開、スキン付きメッシュの書き出しは未実装だとREADMEに明記されています。\n③使うには：C++23対応コンパイラ、CMake 3.25以上、Ninja、Python 3とHugging Face CLIが必要で、GPUを使う場合はVulkanのSDKも要ります。モデルと変換データで約17GBの保存領域を見込んでください。無料で使えますが、ライセンスはモデルごとに違います。商用で使うならSOMA/G1版を選び、Llama 3の条件も確認してください。Windows向けにはTheLocalLab/kimodo.cpp-windowsがあり、UE5リターゲット用の出力もありますが、簡単インストーラーはPatreon経由の有償です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "C++実装はApache-2.0。モデルはSOMA/G1版がNVIDIA Open Model License（商用可）、SMPL-X版は社内R&D専用で商用不可。テキストエンコーダにMeta Llama 3のライセンスも適用される。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/localai-org/kimodo.cpp"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/nv-tlabs/kimodo"
+      },
+      {
+        "kind": "project",
+        "url": "https://research.nvidia.com/labs/sil/projects/kimodo"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/kimodo-cpp.jpg",
+    "relatedWorks": [
+      {
+        "title": "Kimodo (NVIDIA)",
+        "description": "元になったテキスト・制約から人型モーションを作る運動学的拡散モデルの公式実装。",
+        "url": "https://github.com/nv-tlabs/kimodo"
+      },
+      {
+        "title": "HY-Motion 1.0 (Tencent Hunyuan)",
+        "description": "テキストから骨格ベースの3Dキャラクターアニメを生成するDiT+Flow Matching系モデル。",
+        "url": "https://github.com/Tencent-Hunyuan/HY-Motion-1.0"
+      },
+      {
+        "title": "Kimodo-SOMA-RP-v1 (Hugging Face)",
+        "description": "本家NVIDIAが配布するSOMA骨格用のチェックポイント。",
+        "url": "https://huggingface.co/nvidia/Kimodo-SOMA-RP-v1"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "customdance",
+    "title": "CustomDance",
+    "org": "Xulong Tang ほか（SIGGRAPH Asia 2026 採択）",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "AI/Agents",
+      "Audio/Music"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "音楽と文章の指示から、AIが「振付家のように」ダンスを段階的に作り上げる3Dダンス生成システム。全自動ではなく、候補を選びながら人が振付を仕上げていく対話型のコードが公開された。",
+    "point": "これまでの音楽→ダンス生成AIは「曲を入れたら踊りが出てくる」一発勝負で、出てきた動きが気に入らなくても細かく直せませんでした。CustomDanceは人間の振付家の進め方をまねて作業を3段階に分けています。まずAI（画像・音声も読める大規模言語モデル）が曲と「サビで大きく跳ぶ」などの文章指示を読み、見せ場の位置（アンカー）を提案します。次に、その位置ごとにダンスの動きライブラリから似合う候補を複数見せてくれるので、人が好きなものを選べます。最後に、選んだ動き同士を拡散モデル（ノイズから少しずつ形を作るAI）が曲に合わせて自然につなぎます。広告・体験づくりでは、ブランドソングに合わせた踊りのモーションを、ディレクターが「ここはこの動き」と指定しながら作る使い方が考えられます。バーチャルタレントのライブ演出、SNS用ダンス動画の絵コンテ代わりの3Dプレビュー、ゲームやXRのキャラクターダンスの初稿づくりなど、「AIに丸投げせず意図を反映したい」場面と相性が良い研究です。",
+    "detail": "仕組みは料理の段取りにたとえられます。①MLLMが曲と指示文から「どこで何を盛り込むか」のメモ（時間軸上のアンカー）を作る。②各アンカーで、事前に用意したダンス動作の「引き出し」から、曲の雰囲気と文章に合う動きをマルチモーダル検索（音と言葉の両方で探す）して複数候補を提示する。③人が選んだ動きの間を、曲に条件づけた拡散モデルのインペインティング（穴埋め）でなめらかにつなぐ。何度でも選び直してやり直せ、動きの強弱の可視化も見られます。従来の音楽→ダンス手法は入力から結果までがブラックボックスで、部分的な修正や意図の反映が苦手でした。本研究は「候補提示→選択→補間」という人間主導のループにした点が違いです。\n\n使うには、GitHubのコードに加え、FineDanceデータセット、SMPL人体モデル（登録して入手）、配布されている学習済みモデル一式が必要です。環境はPython 3.10、CUDA 12.8対応のNVIDIA GPU、Mamba系のCUDA拡張のビルドがあり、Linux前提でコマンド操作に慣れた人向けです。意図解析にはOpenAI APIキー（別途従量課金）が必要で、SMPLの非商用条項もあるため、実案件への直接利用は権利確認が前提になります。付属のブラウザ上のSMPLエディタでダンスを確認・編集でき、出力は3Dモーションデータなので、CGツールへの取り込みは追加作業になります。まずは社内の検証・企画のプロトタイプとして試すのが現実的です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "コードはMIT。ただし学習・実行にはFineDanceデータセットとSMPLモデル（SMPLは非商用ライセンス）が必要で、商用利用は各ライセンスの確認が要る。意図解析にOpenAI APIキー（従量課金）を使う。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/XulongT/CustomDance"
+      },
+      {
+        "kind": "project",
+        "url": "https://xulongt.github.io/customdance-project-page/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2608.06722"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/customdance.jpg",
+    "relatedWorks": [
+      {
+        "title": "FineDance",
+        "description": "本研究が学習に使う、プロダクション品質のダンスモーションデータセットと生成手法。",
+        "url": "https://github.com/li-ronghui/FineDance"
+      },
+      {
+        "title": "Bailando",
+        "description": "音楽から3Dダンスを生成する代表的な先行研究（CVPR 2022）。",
+        "url": "https://github.com/lisiyao21/Bailando"
+      },
+      {
+        "title": "AIST++ API",
+        "description": "ダンスモーション研究で広く使われるGoogleのデータセット用ツール。",
+        "url": "https://github.com/google/aistplusplus_api"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "refmods",
     "title": "RefMods (MiniMax H3 Reference Latent Adapters)",
     "org": "OSSコミュニティ（Luisa / ComfyUI-MiniMaxH3Mod）",
