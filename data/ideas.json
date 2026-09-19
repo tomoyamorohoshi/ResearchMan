@@ -15566,5 +15566,419 @@
         "desc": "動画生成AIの計算コストの大半を占めていた注意機構を線形に置き換え、生成を高速化する技術"
       }
     ]
+  },
+  {
+    "id": "2026-09-19-1",
+    "date": "2026-09-19",
+    "title": "思い出を少しずつ汚す展示",
+    "pattern": "文脈×技術",
+    "seed": "記憶汚染展で、来場者が持ち込んだ思い出写真の一部をInpaint Canvasのレイヤーで少しずつAI修正させ続けたら、帰る頃には本物と偽物の区別がつかない自分だけのアルバムを持ち帰れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-1ji7uqm-2026",
+        "title": "記憶汚染展",
+        "desc": "マンデラエフェクトやAIの間違いを題材に、記憶のあやふやさを体験させる渋谷の展覧会。"
+      },
+      {
+        "type": "tech",
+        "id": "inpaint-canvas",
+        "title": "Inpaint Canvas (ComfyUI-InpaintCanvas)",
+        "desc": "ComfyUIの中で、写真編集ソフトのようにレイヤーを重ねながらAI修正を繰り返せるツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-19-2",
+    "date": "2026-09-19",
+    "title": "欠けた音で覚える学習BGM",
+    "pattern": "文脈×技術",
+    "seed": "Sans Forgetica の欠落文字の発想を音に移し、basicpitch.cppで英単語の音読をMIDI化して音符を一部抜けば、脳が欠けを補う「忘れにくいBGM」ができそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "sans-forgetica-2018",
+        "title": "Sans Forgetica（記憶定着のための書体）",
+        "desc": "文字の一部をわざと欠かし、読む負荷を少し上げて記憶に残りやすくした学習用の書体。"
+      },
+      {
+        "type": "tech",
+        "id": "basicpitch-cpp",
+        "title": "basicpitch.cpp",
+        "desc": "音声を楽譜のようなMIDIデータに変える軽量ツールで、ブラウザ上でも高速に動く。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-19-3",
+    "date": "2026-09-19",
+    "title": "助けの言葉を身振りにする",
+    "pattern": "文脈×技術",
+    "seed": "Kids Help Phone の『Defining Help』の会話データから抽出した「助け」の言葉を、CoMoVi で3Dの人の動きと映像に変えたら、言葉なしで伝わる「助けの身振り辞典」になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "kids-help-phone-defining-help",
+        "title": "Defining Help",
+        "desc": "5000万件の会話データをもとに「助け」とは何かを捉え直した映像の取り組み。"
+      },
+      {
+        "type": "tech",
+        "id": "comovi",
+        "title": "CoMoVi",
+        "desc": "文章から3Dの人の動きと本物そっくりの映像を、ひとつの流れで同時に作るAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-19-4",
+    "date": "2026-09-19",
+    "title": "見知らぬ夢が声つき映像に",
+    "pattern": "文脈×技術",
+    "seed": "夢のたねプロジェクトで拾った他人の願いごとの文を MAGI-2-preview に渡し、声つきの短い映像として夜空へ投影したら、見知らぬ誰かの夢が聞こえる光景になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-7a6jh4-2005",
+        "title": "夢のたねプロジェクト",
+        "desc": "願いを書いたLED入りの種形の紙を気球で空に放ち、誰かの夢を拾い合う光のアート。"
+      },
+      {
+        "type": "tech",
+        "id": "magi-2-preview",
+        "title": "MAGI-2-preview",
+        "desc": "音声と映像をひとつのモデルで同時に生み出す、オープンソースの動画生成AI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-19-5",
+    "date": "2026-09-19",
+    "title": "粒の群れになって踊る人",
+    "pattern": "技術×技術",
+    "seed": "BlendCap で撮った1本の動画の身体モーションを、Gaussian Point Splatting の1億粒の風景に与えたら、人が粒の煙になって街ごと踊る映像が作れそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "blendcap",
+        "title": "BlendCap",
+        "desc": "1本のビデオだけで、Blender内で体・手・顔の動きを同時に読み取れる追加機能。"
+      },
+      {
+        "type": "tech",
+        "id": "gaussian-point-splatting",
+        "title": "Gaussian Point Splatting",
+        "desc": "1億個を超える粒で作った3D表現を、並べ替えなしでリアルタイムに描く手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-19-6",
+    "date": "2026-09-19",
+    "title": "音楽が全身ダンスになる",
+    "pattern": "技術×技術",
+    "seed": "basicpitch.cpp でブラウザ上の演奏音をMIDI化し、その音高の動きを SONIC の人型ロボットの操作指令として流せば、演奏に合わせ全身で踊るロボットが作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "basicpitch-cpp",
+        "title": "basicpitch.cpp",
+        "desc": "音声を楽譜のようなMIDIデータに変える軽量ツールで、ブラウザ上でも高速に動く。"
+      },
+      {
+        "type": "tech",
+        "id": "sonic",
+        "title": "SONIC（GR00T Whole-Body Control）",
+        "desc": "歩く・走る・跳ぶなど人型ロボットの全身の動きをまとめて扱える、動きの基盤モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-19-7",
+    "date": "2026-09-19",
+    "title": "1日中続く動きの生成映像",
+    "pattern": "技術×技術",
+    "seed": "CoMoVi の文章から動きと映像を作る力を Block Sparse Attention & Comfy Compiler で長尺化したら、ひとりの人の1日を数時間ぶん連続で生成するドキュメンタリーができそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comovi",
+        "title": "CoMoVi",
+        "desc": "文章から3Dの人の動きと本物そっくりの映像を、ひとつの流れで同時に作るAI。"
+      },
+      {
+        "type": "tech",
+        "id": "block-sparse-attention-comfy-compiler",
+        "title": "Block Sparse Attention & Comfy Compiler",
+        "desc": "長く高画質なAI動画の生成を、速く少ないメモリでできるようにするComfyUIの新機能。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-19-8",
+    "date": "2026-09-19",
+    "title": "映像が忘れていく演出",
+    "pattern": "転用",
+    "seed": "Block Sparse Attention & Comfy Compiler の「注意を間引く」仕組みを速度目的でなく演出に転用し、間引き率を上げて映像が忘れていくように崩れる表現ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "block-sparse-attention-comfy-compiler",
+        "title": "Block Sparse Attention & Comfy Compiler",
+        "desc": "長く高画質なAI動画の生成を、速く少ないメモリでできるようにするComfyUIの新機能。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-19-9",
+    "date": "2026-09-19",
+    "title": "退色アルバムの色を復元",
+    "pattern": "転用",
+    "seed": "PPISP の物理的に正しい色ズレ補正を3Dスキャンでなく家族アルバムの退色写真に転用すれば、蜷川実花展のように両親の時代の光をよみがえらせられるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ppisp",
+        "title": "PPISP (Physically-Plausible Compensation and Control of Photometric Variations)",
+        "desc": "NVIDIAが作った、3Dスキャン映像の明るさや色のズレを物理的に正しく直すAIモジュール。"
+      },
+      {
+        "type": "case",
+        "id": "yahoo-a5731d44763ec584dbdfd6d24aaa0c069266f280-2026",
+        "title": "蜷川実花展 はじまりの光（川口市立美術館 開館記念特別展）",
+        "desc": "写真家・蜷川実花が両親のアルバムをもとに新作を初公開する、美術館の開館記念展。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-19-10",
+    "date": "2026-09-19",
+    "title": "盆栽の手つきを残す",
+    "pattern": "文脈×技術",
+    "seed": "feel feel BONSAI の盆栽作家の剪定をスマホ1本で撮り BlendCap で手の動きだけ抽出すれば、展示に、職人の手つきの軌跡を光の彫刻として添えられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2016-044",
+        "title": "feel feel BONSAI",
+        "desc": "香川の盆栽産地と作家が組み、女木島で盆栽を展示した瀬戸内国際芸術祭の企画。"
+      },
+      {
+        "type": "tech",
+        "id": "blendcap",
+        "title": "BlendCap",
+        "desc": "1本のビデオだけで、Blender内で体・手・顔の動きを同時に読み取れる追加機能。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-19-11",
+    "date": "2026-09-19",
+    "title": "訪問者の動きで育つ球体演出",
+    "pattern": "文脈×技術",
+    "seed": "MSG SPHEREの巨大球面LEDに、HTD-Refineでスマホ撮影した観客一人ひとりの動きを3Dモーション化して流し込んだら、客席全員が球体の中の登場人物になるコンサート演出ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "sphere-las-vegas",
+        "title": "MSG SPHERE",
+        "desc": "直径157mの球体に巨大LEDを張り巡らせた、U2公演で開業したラスベガスの大型エンタメ施設。"
+      },
+      {
+        "type": "tech",
+        "id": "htd-refine",
+        "title": "HTD-Refine",
+        "desc": "スマホで撮った普通の動画から、専用機材なしで自然な人体の3D動作を復元するAI技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-19-12",
+    "date": "2026-09-19",
+    "title": "実写証明つきの手描き旅行録",
+    "pattern": "文脈×技術",
+    "seed": "Tennessee Tourism RealSeal の「本物の証明」に対し、ComfyUI Cinematic Annotate Video で観光客が写真に線を描くだけで旅の動画を作れたら、AI生成と実写の境界を逆手に取る観光体験になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "tennessee-tourism-realseal-campaign-2026",
+        "title": "Tennessee Tourism \"RealSeal\" Campaign",
+        "desc": "テネシー州観光局が自社写真の実写証明にメタデータ認証を取り入れた施策。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-cinematic-annotate-video",
+        "title": "ComfyUI「Cinematic Annotate Video」ワークフロー",
+        "desc": "画像に線や注釈を描くだけでカメラや動きを指定し、動画を生成できるワークフロー。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-19-13",
+    "date": "2026-09-19",
+    "title": "ドローン夜空を踊らせる振付",
+    "pattern": "文脈×技術",
+    "seed": "Ford Expedition Reveal Drone Show の1,500機に、SCAIL-2で人の踊りの動きを乗り移らせたら、夜空の光の点群が巨大なダンサーとして製品発表を踊るかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ford-expedition-reveal-drone-show-state-fair-of-texas-2024",
+        "title": "Ford Expedition Reveal Drone Show – State Fair of Texas",
+        "desc": "1,500機のドローンで新型車を夜空に描き、実車お披露目と連動させた製品発表の施策。"
+      },
+      {
+        "type": "tech",
+        "id": "scail-2",
+        "title": "SCAIL-2",
+        "desc": "動画の人物の動きを、別のキャラクターや動物へそっくり乗り移らせるAIツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-19-14",
+    "date": "2026-09-19",
+    "title": "弦が奏でるロボットの所作",
+    "pattern": "技術×技術",
+    "seed": "JAS-I Khorlo の回転ばちが弦を弾く仕組みに、SONICの人型ロボット全身動作を連動させたら、歩く・跳ぶ動きがそのまま音階になる身体楽器ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "jas-i-khorlo",
+        "title": "JAS-I Khorlo",
+        "desc": "ガラス円筒の周りの弦を、回転するばちが弾いて鳴らす無料のシンセサイザー。"
+      },
+      {
+        "type": "tech",
+        "id": "sonic",
+        "title": "SONIC（GR00T Whole-Body Control）",
+        "desc": "人型ロボットの歩行や跳躍など全身動作をまとめて担う、動きの基盤モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-19-15",
+    "date": "2026-09-19",
+    "title": "単眼映像から空間を歌わせる",
+    "pattern": "技術×技術",
+    "seed": "LingBot-Mapで街歩きの映像をリアルタイム3D化し、AuKの声生成で建物や路地の形ごとに違う声質を割り当てたら、歩くほど街が語りかけてくる音の地図になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "lingbot-map",
+        "title": "LingBot-Map",
+        "desc": "カメラ映像だけで、周囲の3D形状をリアルタイムに作り続けるAIモデル。"
+      },
+      {
+        "type": "tech",
+        "id": "auk",
+        "title": "AuK",
+        "desc": "声の生成や声質変換、ノイズ除去までをこなすオープンソースの音声AI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-19-16",
+    "date": "2026-09-19",
+    "title": "表情を増幅する腕と生成顔",
+    "pattern": "技術×技術",
+    "seed": "EmoMimeの手型ウェアラブルアームが顔のそばで表情を増幅する動きを、Live Avatarのアバター表情と同期させたら、現実の顔と映像の顔が掛け合うライブ演出になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "emomime",
+        "title": "EmoMime",
+        "desc": "顔の近くでも安全に動く、人の手の形をした身体拡張ロボットアーム。"
+      },
+      {
+        "type": "tech",
+        "id": "live-avatar",
+        "title": "Live Avatar",
+        "desc": "1枚の顔写真と音声から、長時間しゃべり続けるリアルタイム映像アバターを作るAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-19-17",
+    "date": "2026-09-19",
+    "title": "ミッキー操作を試すロボ体験",
+    "pattern": "転用",
+    "seed": "人型ロボット向けのSONICのゲームパッド操作を、本来の用途とは違い『キングダム ハーツIV』のミッキー操作パート体験に転用したら、ロボットがゲームの主人公を現実で演じるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "square-enix-2026",
+        "title": "『キングダム ハーツIV』2027年後半発売決定、新規映像公開",
+        "desc": "2027年後半発売が決まり、新規映像とミッキー操作パートが公開された新作ゲーム。"
+      },
+      {
+        "type": "tech",
+        "id": "sonic",
+        "title": "SONIC（GR00T Whole-Body Control）",
+        "desc": "人型ロボットの全身動作を担い、ゲームパッド等でも操作できる動きの基盤モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-19-18",
+    "date": "2026-09-19",
+    "title": "料理を弾く物理シンセ",
+    "pattern": "転用",
+    "seed": "JAS-I Khorlo の物理モデリングを楽器でなく、Curious Matters の削る・炙る素材の触感データに当てはめたら、素材そのものを鳴らして展示を音で読み解く使い方ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "jas-i-khorlo",
+        "title": "JAS-I Khorlo",
+        "desc": "弦とばちの物理を再現して音を出す、無料のシンセサイザー。"
+      },
+      {
+        "type": "case",
+        "id": "curious-matters-2026",
+        "title": "Curious Matters（キュリアス・マター）― 材料を再発見するデザイン",
+        "desc": "三菱ケミカルの素材を削る・炙るなど感覚的に再解釈した展示。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-19-19",
+    "date": "2026-09-19",
+    "title": "ドリトス陰謀劇のガチ映像化",
+    "pattern": "転用",
+    "seed": "MiniMax H3 Realism People LoRAを、本物らしさが価値になる場面ではなく、The Triangle Theoryのようなモキュメンタリーの偽の証言者づくりに使ったら、嘘の写実性が笑いの武器になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "minimax-h3-realism-people-lora",
+        "title": "MiniMax H3 Realism People LoRA",
+        "desc": "動画生成AIに追加し、人物の顔や肌をより写実的にする学習データ。"
+      },
+      {
+        "type": "case",
+        "id": "doritos-the-triangle-theory",
+        "title": "The Triangle Theory",
+        "desc": "ロナウドの髪型をドリトスの陰謀に仕立てた12分のモキュメンタリー。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-19-20",
+    "date": "2026-09-19",
+    "title": "展示ゾーンを歩く3D浮世絵",
+    "pattern": "文脈×技術",
+    "seed": "歌川国芳展の没入ゾーンに DreamX-World 1.0 を掛けて、来場者の一言から浮世絵の世界を視点を変えても破綻せず歩ける新作場面として生成できたら、原画の続きを体験できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-477dlp-2026",
+        "title": "浮世絵スーパークリエイター 歌川国芳展",
+        "desc": "国芳の原画約200点に3DCGとプロジェクションを組み合わせた企画展。"
+      },
+      {
+        "type": "tech",
+        "id": "dreamx-world-1-0",
+        "title": "DreamX-World 1.0",
+        "desc": "文章の指示だけで、視点を動かしても矛盾しない歩ける3D世界を生成するAI。"
+      }
+    ]
   }
 ]
