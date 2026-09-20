@@ -1,5 +1,169 @@
 [
   {
+    "id": "astronex-world-1-0",
+    "title": "Astronex-World 1.0",
+    "org": "Astronex Robotics / 南京信息工程大学",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "GenVideo"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "カメラ・アクション・イベントの3種類で操作できる、5Bパラメータの動画生成型ワールドモデル。単一GPUでリアルタイム生成でき、Apache 2.0でコードと重みが公開されています。",
+    "point": "文章や1枚の画像から「その先の映像」を生成し、しかもカメラの軌道、移動などの連続操作、途中で起きる出来事（雨や雷など）を指定して動かせる世界モデルです。ゲームのように視点を動かすと、それに合わせて映像がその場でつくられていきます。140億パラメータ級の大型モデルより小さい5Bなのに、比較ベンチマークで上回ったと報告されています。広告・体験づくりでは、実際に撮影やCG制作をせずに「雨の街を歩く視点」「嵐が来る瞬間」といったカメラワーク付きの世界を試作したり、展示・イベント向けに視点操作できる映像体験のプロトタイプを作ったりする用途が考えられます。商用利用可能なApache 2.0なので、案件で使う前提の検証もしやすい点も魅力です。",
+    "detail": "仕組みは、動画を生成する拡散モデル（ノイズから少しずつ絵を作るAI）に、カメラの位置や向き（PRoPEという方式）、64次元の操作信号、時刻つきのイベント指示を条件として与えるものです。共通の重みから、全体を見渡して高品質に作る「双方向モード」と、直前までの映像を記憶（KVキャッシュ）しながら1コマずつ続きを作る「因果（ストリーミング）モード」の2種類を使い分けられます。後者が対話的なリアルタイム生成を支えます。たとえるなら、双方向は「映画を編集室でじっくり作る」、因果は「生放送で先の展開を即興で演じる」ようなものです。\n\n従来の動画生成は、カメラや出来事を文章で頼むだけで細かく制御しにくいものが多く、大型モデルは重くて対話的に使えませんでした。本モデルは5段階の学習（軌道蒸留や分布マッチングを含む）で小型化と制御性を両立し、832×480と1280×704の24fpsに対応します。\n\n使うにはGitHubのリポジトリと約5Bの重みをHugging Faceから取得し、Pythonで推論します。リアルタイム動作の報告環境はNVIDIA L20（48GB）で、個人PCではVRAMが大きいGPUが必要になります。費用はソフトウェア自体は無料で、GPUのレンタル費用が主なコストです。コーディング経験があれば試せますが、環境構築には一定のスキルが必要です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "コードと重みの両方がApache 2.0。Hugging Face（Astronex-Lab/Astronex-World）で重みを配布。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Astronex-Robotics/Astronex-World"
+      },
+      {
+        "kind": "project",
+        "url": "https://world.astronex.com.cn"
+      },
+      {
+        "kind": "paper",
+        "url": "https://world.astronex.com.cn/assets/paper/astronex-world-technical-report.pdf"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/astronex-world-1-0.jpg",
+    "relatedWorks": [
+      {
+        "title": "HY-World 1.5 (WorldPlay)",
+        "description": "テンセントの対話型ワールドモデル。リアルタイムで探索可能な世界を生成する。",
+        "url": "https://huggingface.co/tencent/HY-World-2.0"
+      },
+      {
+        "title": "Lyra 2.0",
+        "description": "NVIDIAの、動画生成モデルから3D世界を作る研究。",
+        "url": "https://research.nvidia.com/labs/toronto-ai/lyra/"
+      },
+      {
+        "title": "LongCat-Video",
+        "description": "比較対象とされている13.6B規模の長尺動画生成モデル。",
+        "url": "https://huggingface.co/meituan-longcat/LongCat-Video"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "recgen3d",
+    "title": "RecGen3D",
+    "org": "Zhisheng Huang ら（SIGGRAPH Asia 2026採択）",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "数枚の写真（カメラ位置不明でもOK）から、形が欠けない完全な3Dモデルを作る手法。復元AIと生成AIを共通の座標空間で協調させ、コードと重みが公開されました。",
+    "point": "少ない写真から3Dモデルを作るとき、「写った部分は正確だが裏側が欠ける復元系」と「全体は埋まるが実物とズレやすい生成系」という弱点がありました。RecGen3Dは両者を組み合わせ、写真に忠実でしかも欠けのない3D形状を出力します。カメラの位置情報がなくても動く点も実用的です。広告や体験づくりでは、商品や小物を数枚スマホで撮っただけで3D化してAR・Webの3D表示・インタラクティブな展示に使ったり、撮り直しのきかない現物の簡易デジタルアーカイブを作ったりといった試作に向きます。ただし現状は非商用の研究用ライセンスなので、企画段階のプロトタイプや検証用途が中心になります。",
+    "detail": "仕組みは2段構成です。まずVGGT（複数の写真から奥行きやカメラ位置、3D点を一気に推定するAI）を改造し、物体を基準にした共通座標での点群（3D空間に散らした点の集まり）を作ります。次にその点群を「設計図」として、Hunyuan3D-Omni由来の拡散Transformer（VecSet DiT）に渡し、DINOの画像特徴も加えて欠けた部分を補いながら3D形状を仕上げます。たとえるなら、測量で骨組みを作ってから、彫刻家が写真を見ながら肉付けするイメージです。\n\n従来は復元系と生成系が別々の道具で、どちらかの弱点が残りました。本手法は同じ座標空間で両者をそろえることで、忠実さと完全さを両立したと論文は報告しています。\n\n使うにはGitHubのリポジトリと約23GBの重みをダウンロードし、inference.pyで推論します。大容量VRAMのGPUとPython環境が必要で、費用はソフトウェアは無料ですがライセンスは非商用限定です。商用の案件に使う場合は、上流ライセンスを確認するか別手法での再検証が必要です。",
+    "license": {
+      "spdx": null,
+      "commercial": "research-only",
+      "note": "上流のVGGTとHunyuan3D-Omniの制約を継承し、非商用の研究用途に限定（LICENSES/参照）。重みは約23GBでHFのzsh523/RecGen3Dから取得。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/zsh523/RecGen3D"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2604.01479"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/recgen3d.jpg",
+    "relatedWorks": [
+      {
+        "title": "VGGT",
+        "description": "複数画像からカメラ・奥行き・3D点を一括推定する基盤モデル。",
+        "url": "https://github.com/facebookresearch/vggt"
+      },
+      {
+        "title": "Hunyuan3D-Omni",
+        "description": "点群など多様な条件で制御できるテンセントの3D形状生成。",
+        "url": "https://github.com/Tencent-Hunyuan/Hunyuan3D-Omni"
+      },
+      {
+        "title": "LingBot-Map",
+        "description": "3D再構成系の関連プロジェクト。",
+        "url": "https://technology.robbyant.com/lingbot-map"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "spirula-studio",
+    "title": "Spirula Studio",
+    "org": "harry7557558（個人開発）",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "写真・動画から3Dガウシアンスプラット、さらにテクスチャ付きメッシュまでを、Python/COLMAP不要の単体アプリで作れる無料の3D学習ツール。NVIDIA以外のGPU（AMD/Intel等）でも動く。",
+    "point": "一番のすごさは「導入のハードルの低さ」です。これまでガウシアンスプラット（写真から実物そっくりの3D空間を作る技術）を自分で作るには、Python環境やCOLMAPという別ソフト、NVIDIA製GPUを揃える必要がありました。Spirula Studioは、動画を入れるだけで、カメラ位置の推定、背景の切り抜き、学習、メッシュ化までを1つのアプリで済ませます。しかもVulkanという方式でAMD・Intel・Appleのチップでも動き、8GBのVRAMで最大1,000万粒のスプラットを学習できます。9月13日版では、360度カメラやGPS・IMUの記録から実寸スケールを自動復元できるようになりました。広告・体験づくりでは、ロケ地や店舗、商品を360度カメラでさっと撮って3D化し、AR演出、バーチャルセット、Webでの3D体験、ゲームエンジン向けの背景アセットに使う、といった軽量な運用が現実的になります。UIは日本語を含む13言語に対応しています。",
+    "detail": "仕組みは「点描画を大量に重ねて立体を描く」イメージです。まず動画から静止画を切り出し、内蔵のSfM（複数の写真から各撮影位置と大まかな形を割り出す処理）でカメラの位置を推定します。次に、数百万個の色つきの小さな楕円（ガウシアン）を空間に置き、元の写真に近づくよう少しずつ調整して3Dシーンを作ります。人物などの不要物はAIマスクで除外でき、明るさのムラは補正機能でならします。その後、メッシュ化やデプス・法線マップ出力にも対応します。\n\n従来のツールとの違いは、Python・PyTorch・COLMAPなどを別々に入れる必要がなく、ひとつの実行ファイルで完結する点です。さらに、CUDA（NVIDIA専用）に加えてVulkan方式を持つため、NVIDIA以外のGPUでも動きます。魚眼や360度カメラを補正せずそのまま扱えるのも特徴です。開発は実質1人で、2026年8月から9月にかけて約5日おきにリリースが続くなど更新が非常に活発です。\n\n使うには、Windows/Linuxの配布ページからバイナリをダウンロードして解凍し、GUIを開くだけです（macOSは8月17日版以降の配布が終了）。費用は無料でライセンスはGPL-3.0です。必要なのは撮影用の動画と、8GB程度のVRAMを持つGPU。Vulkan SDKが必要なのはソースからビルドする場合のみです。出力したスプラットはSuperSplatやWebビューアで確認・編集でき、ワークフローに組み込みやすい作りです。",
+    "license": {
+      "spdx": "GPL-3.0",
+      "commercial": "conditional",
+      "note": "無料でDL・利用可。GPL-3.0のため、改変して配布する場合はソース公開義務あり。作ったスプラット/メッシュ自体の利用は制限なしと読めるが、商用案件では要確認。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/harry7557558/spirula-studio"
+      },
+      {
+        "kind": "product",
+        "url": "https://github.com/harry7557558/spirula-studio/releases"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/platforms/spirula-studio"
+      },
+      {
+        "kind": "project",
+        "url": "https://harry7557558.github.io/spirula-studio/viewer/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/spirula-studio.jpg",
+    "relatedWorks": [
+      {
+        "title": "LichtFeld Studio",
+        "description": "3DGSの学習・編集・書き出しを1つのネイティブアプリで行うオープンソースのスタジオ。",
+        "url": "https://lichtfeld.io/"
+      },
+      {
+        "title": "3D Gaussian Splatting (graphdeco-inria)",
+        "description": "ガウシアンスプラットの元祖リファレンス実装。",
+        "url": "https://github.com/graphdeco-inria/gaussian-splatting"
+      },
+      {
+        "title": "gsplat",
+        "description": "ガウシアンスプラット用のオープンソースライブラリ（JMLR論文）。",
+        "url": "https://www.jmlr.org/papers/v26/24-1476.html"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "agentstar",
     "title": "AgentSTAR (Agentic Shape Tracking and Reconstruction)",
     "org": "Amazon FAR (Frontier AI and Robotics)",
