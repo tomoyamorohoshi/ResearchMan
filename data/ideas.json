@@ -15980,5 +15980,215 @@
         "desc": "文章の指示だけで、視点を動かしても矛盾しない歩ける3D世界を生成するAI。"
       }
     ]
+  },
+  {
+    "id": "2026-09-20-1",
+    "date": "2026-09-20",
+    "title": "Spotify履歴で映画の変化を楽曲化",
+    "pattern": "技術×技術",
+    "seed": "Spider-Man: Brand New Day のファン別プレイリストに ACE-Step 1.5 を掛け、3年分の視聴履歴の「変化」をその人だけのボーカル入り主題歌に生成できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "spider-man-brand-new-day-personalised-fan-experience-2026",
+        "title": "Spider-Man: Brand New Day Personalised Fan Experience",
+        "desc": "Spotifyの3年分の視聴履歴から、映画の「変化」に合わせたファン別プレイリストを作る体験。"
+      },
+      {
+        "type": "tech",
+        "id": "ace-step-1-5",
+        "title": "ACE-Step 1.5",
+        "desc": "歌詞とジャンル指定から、歌入りの曲を自分のPCで数秒で作れる無料の音楽AI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-20-2",
+    "date": "2026-09-20",
+    "title": "薬箱スリーブに服薬の4D見守り",
+    "pattern": "文脈×技術",
+    "seed": "TuPharma 365 の The Safe Pack が解いた高齢者の服薬ミスに、4DAnyone を掛け、スマホ1台で撮った服薬の様子を家族が好きな角度から確認できる見守りにできそうかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "tupharma-365-the-safe-pack",
+        "title": "The Safe Pack",
+        "desc": "薬箱に付けるデザインスリーブで、高齢者の飲み間違いを減らしたパッケージ。"
+      },
+      {
+        "type": "tech",
+        "id": "4danyone",
+        "title": "4DAnyone",
+        "desc": "スマホ1台の動画から人物を時間で動く3Dとして復元し、好きな角度で見られる技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-20-3",
+    "date": "2026-09-20",
+    "title": "3単語約款をモーション化",
+    "pattern": "文脈×技術",
+    "seed": "AXA France の THREE WORDS が約款のたった3単語で社会問題に応えたように、ARDY で「逃げる」「助けを求める」など言葉をリアルタイムな身体動作にし、避難訓練の教材にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "axa-three-words",
+        "title": "THREE WORDS",
+        "desc": "配偶者の暴力を保険の補償理由に加えた、3単語だけの約款改定。"
+      },
+      {
+        "type": "tech",
+        "id": "ardy",
+        "title": "ARDY",
+        "desc": "文章の指示だけで、人の3D動作を約33ミリ秒ごとに作り続けるAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-20-4",
+    "date": "2026-09-20",
+    "title": "腕の動きで音を分ける演奏",
+    "pattern": "技術×技術",
+    "seed": "ARDY が生む人体モーションを操作信号にし、python-audio-separator で分けた歌・ドラム・ベースの音量を動きで混ぜる、身体ミキサーの舞台が作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ardy",
+        "title": "ARDY",
+        "desc": "文章の指示だけで、人の3D動作を約33ミリ秒ごとに作り続けるAI。"
+      },
+      {
+        "type": "tech",
+        "id": "python-audio-separator",
+        "title": "python-audio-separator (audio-separator)",
+        "desc": "曲から歌や楽器を分ける学習済みモデルを、コマンド一発で使える道具。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-20-5",
+    "date": "2026-09-20",
+    "title": "200ドル母子アニメの切り抜き",
+    "pattern": "転用",
+    "seed": "牛来のような手作りCGの世界に、本来は実写向けの RotoAI を使い、家族の動画から「赤い服の人」だけを抜いてアニメ背景に置く、誰でも作れる合成が広がるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "niu-lai-2026",
+        "title": "牛来（Niu Lai）",
+        "desc": "制作費200ドルの母子手作りCGアニメが、酷評から大ヒットした中国の現象。"
+      },
+      {
+        "type": "tech",
+        "id": "rotoai",
+        "title": "RotoAI",
+        "desc": "「赤いシャツの人」のような言葉で、動画から人や物を切り抜けるOSSツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-20-6",
+    "date": "2026-09-20",
+    "title": "祖母の介護を点群で残す",
+    "pattern": "文脈×技術",
+    "seed": "Vaseline の Mntana Ka Gogo が描いた祖母と孫のケアの絆に、4C4D を掛け、4台のカメラで台所の手仕事を4D保存し、孫が後から祖母の隣に立てる記録になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "vaseline-mntana-ka-gogo",
+        "title": "Mntana Ka Gogo",
+        "desc": "祖母と孫の絆を描き、南アフリカで話題になった介護とケアの物語。"
+      },
+      {
+        "type": "tech",
+        "id": "4c4d",
+        "title": "4C4D",
+        "desc": "たった4台のカメラから、動く3D空間を高精細に復元する研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-20-7",
+    "date": "2026-09-20",
+    "title": "住民集会所を動く点群で残す",
+    "pattern": "転用",
+    "seed": "Umaki camp のような島の集会所を、映像制作向けの YaGS で Unreal 上に実写風の点群で再現し、住民の記憶を保存する仮想の集会所に転用できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2013-082",
+        "title": "Umaki camp",
+        "desc": "住民が日常的に使える半屋外の集会所として建てられた建築作品。"
+      },
+      {
+        "type": "tech",
+        "id": "yags",
+        "title": "YaGS",
+        "desc": "Unreal Engineで点群3Dを、通常の3Dと奥行き正しく重ねる無料プラグイン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-20-8",
+    "date": "2026-09-20",
+    "title": "Red Bullの落下を楽曲へ",
+    "pattern": "技術×技術",
+    "seed": "Rerun × Booster Robotics K1 のセンサ記録を SA3 Browser Tools に流し、ロボットの蹴りや転倒を音に変えて、その場で手直しできる演奏ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "rerun-booster-robotics-k1",
+        "title": "Rerun × Booster Robotics K1",
+        "desc": "人型ロボが球を蹴る時のセンサ情報を、リアルタイムで見える化したデモ。"
+      },
+      {
+        "type": "tech",
+        "id": "sa3-browser-tools",
+        "title": "SA3 Browser Tools (mucking_around_time_with_stable_audio_3)",
+        "desc": "AI音声モデルの生成過程を手で触って作り込めるブラウザ環境。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-20-9",
+    "date": "2026-09-20",
+    "title": "IKEA検査紙を動画編集エージェントで",
+    "pattern": "転用",
+    "seed": "IKEA Pregnancy Test Ad の「使う人の行為で広告が現れる」仕掛けに、本来は編集用の Video Use を転用し、撮影素材から出会いのシーンを自動でつなぐ広告が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ikea-pregnancy-test-ad-2018",
+        "title": "IKEA Pregnancy Test Ad（尿をかけると割引が現れる雑誌広告）",
+        "desc": "尿をかけると割引が浮かぶ、妊娠検査紙つきの雑誌広告。"
+      },
+      {
+        "type": "tech",
+        "id": "video-use",
+        "title": "Video Use",
+        "desc": "素材を渡してチャットで指示すると、AIが動画を編集して仕上げるツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-20-10",
+    "date": "2026-09-20",
+    "title": "Z世代を皮肉る声の切り出し",
+    "pattern": "文脈×技術",
+    "seed": "Hansa Pilsener の The Hustle の皮肉なラジオに、Ultimate Vocal Remover を掛け、街の会話から声だけを分離して30歳以上を讃える音のドキュメンタリーが作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "hansa-pilsener-the-hustle",
+        "title": "The Hustle",
+        "desc": "Z世代の努力を皮肉り、30歳以上の飲み手を讃えたラジオ広告。"
+      },
+      {
+        "type": "tech",
+        "id": "ultimate-vocal-remover",
+        "title": "Ultimate Vocal Remover (UVR)",
+        "desc": "複数のAIで歌や楽器を分ける、無料のデスクトップ音源分離アプリ。"
+      }
+    ]
   }
 ]
