@@ -1,5 +1,161 @@
 [
   {
+    "id": "hyperflow",
+    "title": "HyperFlow (MiniMax-H3 8-step LoRA)",
+    "org": "Video Rebirth",
+    "type": "Research",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "動画生成モデルMiniMax-H3を、通常49回の計算ステップから8ステップに圧縮するLoRA。生成時間を約3分の1に短縮できる。ComfyUI用ノードも公開済み。",
+    "point": "最大の魅力は「同じモデルで動画が約3倍速く出せる」ことです。動画生成AIは1本作るのに数分〜十数分かかり、試行錯誤のたびに待たされるのが最大のストレスでした。HyperFlowは、画像を少しずつ磨き上げる工程（ステップ）を大幅に減らしても画質が崩れにくいよう、追加学習した小さな差分データ（LoRA）です。映像と音声を同時に生成するMiniMax-H3に対応しています。広告・体験づくりの現場では、絵コンテ代わりに何十パターンもの動画案を短時間で出して比較したり、クライアントの前でその場で修正案を出したりといった使い方が現実的になります。ComfyUIのノードとしても公開されているため、既存のワークフローに差し込むだけで速度アップを試せます。",
+    "detail": "仕組みは、遅い手順を真似て速い手順を覚える「自己蒸留」です。先生役が49回に分けて少しずつ描く工程を、生徒役が8回で済ませるよう学習します。ここで独自の工夫として、各ステップで「今の時刻」と「次にどこまで進むか」の2つの情報を同時に与える（two-time conditioning）ことで、大きな一歩でも間違えにくくしています。さらに、途中から注意計算を間引くSol-Attnという省力化オプションもあります。学習に元の教師データを使わない（data-free）点も特徴です。\n\n従来の高速化LoRAは「ステップ数を減らすと画質が落ちる」トレードオフが大きく、専用のスケジューラが必要なことも多くありました。公式の実測では、H200 GPU 4基で175秒→60秒、1基（CPUオフロード）で395秒→130秒と約3倍。文字エンコードと最後の画像復元は変わらないため、ステップ削減率ほど短くはなりません。\n\n使うにはMiniMax-H3本体とHyperFlowの重み（約3.6〜3.9GB、Hugging Faceで配布）、それにH200級の大型GPUが必要です。ComfyUIで使う場合はSaganaki22氏のノード集をcustom_nodesに入れ、重みを配置して再起動するだけ。費用は無料ですが、重みのライセンスに地域制限がある点は商用利用前に確認してください。Pythonやワークフロー編集の基礎知識があると導入が楽です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "コードはApache-2.0。LoRA重みはMiniMax H3 Community Licenseで、利用できる地域などに制限がある（EU・UK・韓国・米国は許諾が必要）。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Video-Rebirth/hyperflow"
+      },
+      {
+        "kind": "project",
+        "url": "https://www.videorebirth.com/lp/hyperflow"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/Saganaki22/ComfyUI-Hyperflow"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/hyperflow.jpg",
+    "relatedWorks": [
+      {
+        "title": "Wan2.2-Lightning",
+        "description": "Wan2.2を4ステップ程度で生成できる高速化LoRA",
+        "url": "https://github.com/ModelTC/Wan2.2-Lightning"
+      },
+      {
+        "title": "ComfyUI-LTXVideo",
+        "description": "LTX動画モデル向けの公式ComfyUIノード集",
+        "url": "https://github.com/Lightricks/ComfyUI-LTXVideo"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "timeline-studio",
+    "title": "Timeline Studio (ai-video-editor)",
+    "org": "MartinDelophy",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "GenVideo",
+      "AI/Agents"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "ブラウザ上で動く、ローカル完結型の動画編集ソフト。人間とAIエージェントが同じタイムラインを編集でき、9月にWebMCP経由の編集ツール21種が追加された。",
+    "point": "「人がCapCut風の画面で編集しつつ、同じタイムラインをAIエージェントも操作できる」のが特徴です。字幕の書き起こし、ナレーション生成、透かし除去、4倍の画質復元、ボーカル分離、AI音楽生成まで、すべてブラウザ内（WebGPU）で動きます。動画をサーバーに送らないので、未公開素材の扱いにも向きます。9月11日〜17日にWebMCPという仕組みで、字幕変更・音量・マーカー・クリップ移動などを外部のAIが呼び出せる編集ツールが21種になりました。広告制作では、ClaudeなどのAIに「この動画に字幕を付けて、無音部分を詰めて」と頼み、人が仕上がりをタイムライン上で確認・微修正する、というAIとの共同編集フローが試せそうです。SNS向け縦動画や多言語版の量産にも向きます。",
+    "detail": "仕組みは、ブラウザ（Chromium）の中にAIモデル一式を持たせる構成です。文字起こしはWhisper、話者音声はKokoroやPiper、音楽はStable Audio 3 Small、人物切り抜きはMODNetなど、軽量モデルをONNX RuntimeとWebGPUで動かします。書き出しはWebCodecsで、プレビューとは別の決定的なオフライン描画を行います。WebMCPは、ブラウザ上のページが「使える道具」をAIに公開する仕組みで、いわばAIに渡す編集用リモコンです。変更にはundo/redoと事前検証が付き、AIが壊してもすぐ戻せます。\n\n従来のAI動画編集は、クラウドに素材を上げる形か、AIが裏でファイルを書き換えて人が見えない形が多くありました。ここでは人とAIが同じ実タイムラインを共有し、AIの編集も人がレビューして採否を決められます。\n\n使うにはNode.js 20以上と最新のChromiumブラウザが必要で、git cloneしてnpm install、npm run devで起動します。ブラウザ版デモ（video-editor.ai-creator.top）はインストール不要で試せます。無料ですが、初回にモデルを数百MB以上ダウンロードし、WebGPU対応のGPUがあると快適です。なお、リポジトリは7月開始で、今回の新着はWebMCP編集機能です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "コードはMIT。同梱・ダウンロードされるモデル重みやフォント等の第三者素材には別ライセンスが適用される。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/MartinDelophy/ai-video-editor"
+      },
+      {
+        "kind": "product",
+        "url": "https://video-editor.ai-creator.top/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/timeline-studio.jpg",
+    "relatedWorks": [
+      {
+        "title": "FireRed-OpenStoryline",
+        "description": "自然言語で指示して動画を編集するAI編集エージェント",
+        "url": "https://github.com/FireRedTeam/FireRed-OpenStoryline"
+      },
+      {
+        "title": "OpenShot",
+        "description": "オープンソースの定番タイムライン型動画エディタ",
+        "url": "https://github.com/OpenShot/openshot-qt"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "fasth3",
+    "title": "FastH3 (FastVideo FastH3 8-Step V2)",
+    "org": "Hao AI Lab (UCSD) / FastVideo",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "音声つきの動画生成モデルMiniMax H3を、わずか8ステップで動画と音声を同時に作れるよう蒸留（軽量化）した公開チェックポイント。ComfyUI v0.36.0から標準で使え、DGX SparkやM4 Max搭載Macなど手元の機材でも動かす手順が公開された。",
+    "point": "一番のすごさは「待ち時間の短さ」です。通常の動画生成は絵を何十回も描き直しながら仕上げますが、FastH3は8回の描き直しで映像と同期した音声（セリフや効果音）まで出します。料理でいえば、下ごしらえ済みの半調理品でスピード提供するイメージで、画質と動きの細かさは少し譲る代わりに試行回数を大きく増やせます。広告・体験づくりでは、絵コンテ段階で『この映像に、この声と音をつけたらどうなるか』を数十パターン試して方向性を決める、クライアント提案前のモーションスケッチ量産に向きます。イベント会場のその場でお客さんの一言から映像を作る体験や、社内プレゼン用のムード映像の即席作成にも使えそうです。最終納品はベースのH3で作り直す前提の「ラフ用エンジン」として位置づけると効果的です。",
+    "detail": "仕組み：元のMiniMax H3（350億パラメータの大型モデル）が持つ『何十回も少しずつノイズを取り除いて映像にする』工程を、先生役のモデルの出力を生徒役に真似させるDMD2という蒸留手法で8回に圧縮しています。加えて、画面全体ではなく重要な部分だけを見るVideo Sparse Attention（VSA、80%スパース）で計算量を削っています。文字の理解や映像・音声の圧縮部品はH3のものをそのまま再利用するため、出力の作りは元モデルと揃います。\n\n従来との違い：従来のH3は高性能な分、生成に数十ステップとデータセンター級GPUが必要でした。公式ブログによると、DGX Spark上でvLLM-Omni基準の7〜8倍の高速化、M4 Max（メモリ36GB以上）でも約456秒（INT6）で生成できたと報告されています。ただし動きや音の忠実度は元モデルより落ち、複数の参照素材を指定する機能（Ref2VA）は蒸留対象外で、text-to-videoとimage-to-videoのみです。\n\n使うには：ComfyUI 0.36.0以上に、蒸留モデル・Qwenテキストエンコーダ・映像/音声VAEの4ファイルを置けばワークフローが動きます。モデルカード上の検証環境はB200 4枚ですが、ローカル版ガイドではDGX Spark（128GB統合メモリ）やApple Siliconを使う手順が案内されています。ライセンスは地域制限があるため、日本国内での利用可否と商用可否は導入前に確認が必要です。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "MiniMax H3 Community Licenseに準拠。適用地域が限定され、米国・EU・英国・韓国ではローカル実行（および出力物の利用）が許諾されないと報じられている。案件で使う前に必ず原文を確認すること（第三者ブログの解説を根拠にしており、原文の全文は未確認）"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/hao-ai-lab/FastVideo"
+      },
+      {
+        "kind": "project",
+        "url": "https://huggingface.co/FastVideo/FastVideo-FastH3-8-Step-V2"
+      },
+      {
+        "kind": "post",
+        "url": "https://haoailab.com/blogs/fasth3-local/"
+      },
+      {
+        "kind": "post",
+        "url": "https://docs.comfy.org/tutorials/video/minimax/minimax-h3-fastvideo"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/fasth3.jpg",
+    "relatedWorks": [
+      {
+        "title": "MiniMax-H3（ベースモデル）",
+        "description": "FastH3の蒸留元となる、映像と音声を同時生成する大型モデル",
+        "url": "https://haoailab.com/FastVideo/cookbook/minimax-h3/"
+      },
+      {
+        "title": "FastVideo（推論・ポストトレーニング基盤）",
+        "description": "動画生成を高速化する統合フレームワーク",
+        "url": "https://github.com/hao-ai-lab/FastVideo"
+      },
+      {
+        "title": "ComfyUI FastH3 ワークフロー例",
+        "description": "ComfyUI公式のFastH3利用チュートリアル",
+        "url": "https://docs.comfy.org/tutorials/video/minimax/minimax-h3-fastvideo"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "astronex-world-1-0",
     "title": "Astronex-World 1.0",
     "org": "Astronex Robotics / 南京信息工程大学",
