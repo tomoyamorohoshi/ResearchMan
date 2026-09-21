@@ -16190,5 +16190,245 @@
         "desc": "複数のAIで歌や楽器を分ける、無料のデスクトップ音源分離アプリ。"
       }
     ]
+  },
+  {
+    "id": "2026-09-21-1",
+    "date": "2026-09-21",
+    "title": "鳥の楽譜を弾くマイクロロボ",
+    "pattern": "技術×技術",
+    "seed": "Abradeeの鳥と電線の楽譜のように、Basic Pitchで採譜した実在の鳥の鳴き声MIDIを、Microduckの歩行や転倒起き上がりの動きに割り当てたら、鳥の歌に合わせて踊る小さなロボ群が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "abradee-searching-for-birds-on-wires",
+        "title": "Searching for Birds on Wires",
+        "desc": "電線に止まる鳥の写真を楽譜に変換し、電力インフラを交響曲にした音楽広告。"
+      },
+      {
+        "type": "tech",
+        "id": "basic-pitch",
+        "title": "Basic Pitch",
+        "desc": "音楽ファイルからボーカルや楽器の音程を読み取り、MIDIに自動変換するSpotify製のAI。"
+      },
+      {
+        "type": "tech",
+        "id": "microduck",
+        "title": "Microduck",
+        "desc": "体重800gの小型二足歩行ロボット。歩行やボール蹴り、転倒からの起き上がりができる。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-21-2",
+    "date": "2026-09-21",
+    "title": "納豆菌が開閉する空間の音",
+    "pattern": "技術×技術",
+    "seed": "bioLogicの湿度で伸縮する納豆菌の動きを、Fungal Computerの菌糸体スパイク電位と重ねたら、人の汗や息に反応して鳴り方が変わる「生き物だけで動く」インスタレーションになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "biologic",
+        "title": "bioLogic",
+        "desc": "納豆菌が湿度で伸び縮みする性質を使い、汗に反応して開閉する布を作る研究。"
+      },
+      {
+        "type": "tech",
+        "id": "fungal-computer",
+        "title": "Fungal Computer（菌糸体メムリスタ／きのこコンピューティング）",
+        "desc": "キノコの菌糸に電極を刺し、電気信号で計算や記憶をさせる研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-21-3",
+    "date": "2026-09-21",
+    "title": "デート疲れに効く3D食卓",
+    "pattern": "文脈×技術",
+    "seed": "Knorr Serving Singlesのデートアプリ疲れ世代に、Insta360 X6 Spatial Captureで撮った相手の台所を3D空間にして共有したら、会う前に「一緒に料理する」擬似体験ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "knorr-serving-singles",
+        "title": "Serving Singles",
+        "desc": "料理と出会いを結びつけ、デートアプリに疲れた世代に料理を提案した企画。"
+      },
+      {
+        "type": "tech",
+        "id": "insta360-x6-spatial-capture",
+        "title": "Insta360 X6 Spatial Capture",
+        "desc": "360度カメラで撮るだけで、歩き回れる3D空間に自動変換できる機能。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-21-4",
+    "date": "2026-09-21",
+    "title": "ファン投稿を曲にする実況",
+    "pattern": "文脈×技術",
+    "seed": "EA SPORTS FCのTHE CLUB IS YOURSのファン投稿を、ACE-Step 1.5で応援歌に変換し、試合中にLTX-2で音付き映像として即生成したら、ファンの声が試合演出になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ea-sports-the-club-is-yours",
+        "title": "THE CLUB IS YOURS",
+        "desc": "ファンの投稿アイデアをゲームや映像に実現した、EA FCの参加型キャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "ace-step-1-5",
+        "title": "ACE-Step 1.5",
+        "desc": "歌詞とジャンルから、ボーカル入りの曲を丸ごと作れるオープンソースの音楽AI。"
+      },
+      {
+        "type": "tech",
+        "id": "ltx-2",
+        "title": "LTX-2",
+        "desc": "音声と映像を同時に作れる、4K対応のオープンソース映像生成モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-21-5",
+    "date": "2026-09-21",
+    "title": "暁斎の寺社を歩ける3D化",
+    "pattern": "文脈×技術",
+    "seed": "湯島天満宮宝物殿の暁斎展を、Insta360 X6 Spatial Captureで境内ごと3D化し、Splat2Meshでメッシュにして、絵の中の神仏が境内に現れるゲーム空間にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "bijutsutecho-18719-2026",
+        "title": "「暁斎が住まう湯島」―描かれた神仏と寺社への思い―",
+        "desc": "河鍋暁斎の湯島での暮らしと神仏への関心を軸にした、文化財公開の展覧会。"
+      },
+      {
+        "type": "tech",
+        "id": "insta360-x6-spatial-capture",
+        "title": "Insta360 X6 Spatial Capture",
+        "desc": "360度カメラで撮るだけで、歩き回れる3D空間に自動変換できる機能。"
+      },
+      {
+        "type": "tech",
+        "id": "splat2mesh",
+        "title": "Splat2Mesh",
+        "desc": "3Dガウシアンスプラッティングのデータを、ゲームエンジンで使えるメッシュに変換する無料ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-21-6",
+    "date": "2026-09-21",
+    "title": "無料復刻の名機を採譜で蘇生",
+    "pattern": "転用",
+    "seed": "ShinRoninの無料復刻のように、Basic Pitchを音楽の変換でなく「消えた名曲の再発掘」に転用し、古いカセットの鼻歌をMIDI化してACE-Step 1.5で完成曲にするサービスがあり得るかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "shinronin-2026",
+        "title": "ShinRonin（無料化）",
+        "desc": "2003年の名機Ronin を最新OS対応で復刻し、無料配布したAudio Damageの企画。"
+      },
+      {
+        "type": "tech",
+        "id": "basic-pitch",
+        "title": "Basic Pitch",
+        "desc": "音楽ファイルからボーカルや楽器の音程を読み取り、MIDIに自動変換するSpotify製のAI。"
+      },
+      {
+        "type": "tech",
+        "id": "ace-step-1-5",
+        "title": "ACE-Step 1.5",
+        "desc": "歌詞とジャンルから、ボーカル入りの曲を丸ごと作れるオープンソースの音楽AI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-21-7",
+    "date": "2026-09-21",
+    "title": "ミニチュア喫茶を切り出す",
+    "pattern": "文脈×技術",
+    "seed": "De'Longhi Tiny Coffee Shopsの精巧なミニチュアカフェを撮影して、VCARで3D空間から椅子や客だけを切り出せば、好きな部品で自分の街角カフェを組める遊びになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "delonghi-tiny-coffee-shops",
+        "title": "Tiny Coffee Shops",
+        "desc": "マシンを世界5都市のミニチュアカフェに見立てた、De'Longhiの屋外広告。"
+      },
+      {
+        "type": "tech",
+        "id": "vcar",
+        "title": "VCAR",
+        "desc": "完成した3D空間から、追加学習なしで狙った物体だけを切り出す手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-21-8",
+    "date": "2026-09-21",
+    "title": "歩行ロボ用の電力ダンス",
+    "pattern": "転用",
+    "seed": "SONICの全身動作基盤モデルを人型ロボットの用途から離れ、Saudiaのスーツケースのように荷物を運ぶ「旅の相棒」の身振りに転用したら、文化を踊りで案内する荷物ロボが作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "sonic",
+        "title": "SONIC（GR00T Whole-Body Control）",
+        "desc": "人型ロボットの歩行や跳躍など全身の動きを、指示や操作で扱える動きの基盤モデル。"
+      },
+      {
+        "type": "case",
+        "id": "saudia-airlines-let-it-fly",
+        "title": "Let It Fly",
+        "desc": "サウジの文化をスーツケースに乗せて運ぶ、手荷物許容量が報酬になる企画。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-21-9",
+    "date": "2026-09-21",
+    "title": "ティザー映像を会話で編む",
+    "pattern": "転用",
+    "seed": "Video Useを編集の効率化でなく、Pruksaの謎ガジェットOOHのように「正体を隠す映像」の量産に転用し、素材の一部だけを毎日AIが差し替えて伏せ続けるティザー装置にできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "video-use",
+        "title": "Video Use",
+        "desc": "素材フォルダを渡してチャットで指示すると、動画を編集してくれるツール。"
+      },
+      {
+        "type": "case",
+        "id": "the-most-valuable-gadget-in-the-world-2026",
+        "title": "The Most Valuable Gadget in the World",
+        "desc": "謎の高級ガジェットを屋外広告で見せ、正体が住宅だと明かした不動産キャンペーン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-21-10",
+    "date": "2026-09-21",
+    "title": "洗剤の成分を映像で暴く",
+    "pattern": "技術×技術",
+    "seed": "#WarOnWhatsHiddenの成分暴露のノリで、EditVidで商品映像から特定の物体を入れ替え、JoyAI-Video-Editで隠れた成分を可視化すれば、比較広告が映像内で自動で切り替わるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "waronwhatshidden-2026",
+        "title": "#WarOnWhatsHidden",
+        "desc": "競合洗剤の成分を名指しし、無毒性を訴える挑発的な比較広告。"
+      },
+      {
+        "type": "tech",
+        "id": "editvid",
+        "title": "EditVid",
+        "desc": "1つのAIで、物体の追加や人物の入れ替えなど多様な動画編集ができる研究。"
+      },
+      {
+        "type": "tech",
+        "id": "joyai-video-edit",
+        "title": "JoyAI-Video-Edit",
+        "desc": "文字の指示だけで動画を編集できる、無償公開の大規模生成AI。"
+      }
+    ]
   }
 ]
