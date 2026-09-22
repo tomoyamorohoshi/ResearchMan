@@ -1,5 +1,565 @@
 [
   {
+    "id": "renaud-rohlinger-portfolio-2019",
+    "title": "Renaud Rohlinger Portfolio",
+    "summary": "3DモデルとWebGL/Three.jsによる映像的演出で作品を見せるクリエイティブ開発者Renaud Rohlingerの個人ポートフォリオ。",
+    "client": "Renaud Rohlinger（個人・クリエイティブ開発者）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "Awwwards Site of the Day（2019年6月14日、スコア7.32/10）",
+    "year": "2019",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.awwwards.com/sites/renaud-rohlinger-portfolio",
+    "thumbnail": "/thumbnails/renaud-rohlinger-portfolio-2019.jpg",
+    "videoId": "",
+    "overview": "フランスのクリエイティブ開発者Renaud Rohlingerによる個人ポートフォリオサイト。3DモデルとWebGL/Three.jsを用いた映像的な演出でプロジェクトを紹介する構成が特徴。2019年6月14日にAwwwardsのSite of the Dayを受賞し、スコアは7.32/10だった。制作クレジットの詳細は確認できていない。",
+    "background": "Rohlingerはインタラクティブな3D表現を得意とするクリエイティブ開発者で、本サイトは自身の作品集として制作された。個人サイトゆえクライアントワークのような発注背景はなく、技術デモンストレーションと作品アーカイブを兼ねる位置づけと見られる。具体的な制作経緯やチーム体制については確認できていない。",
+    "execution": "WebGLとThree.jsを軸に、3Dモデルをカメラワークとともに動かすことで映像作品のような見せ方を実現している。プロジェクト一覧から個々の作品へ遷移する導線に3D空間演出を組み込み、静的なポートフォリオではなく体験として作品を提示する構成を取っている。具体的なインタラクション設計の詳細は確認できていない。",
+    "evaluationImpact": "個人開発者による作品でありながらAwwwards Site of the Dayを獲得しており、WebGL/Three.jsを用いたクリエイティブ開発の技術力とビジュアル表現力が評価されたと見られる。フロントエンド開発者・クリエイティブコーダー界隈で参照されるポートフォリオ表現の一例。売上等のビジネス成果指標は該当せず確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Renaud Rohlinger Portfolio (Awwwards)",
+        "description": "Site of the Day受賞ページ。スコア詳細やクレジットを掲載",
+        "url": "https://www.awwwards.com/sites/renaud-rohlinger-portfolio"
+      }
+    ],
+    "sources": [
+      "Portfolio Sites"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Tech/Web",
+      "Form/Website"
+    ]
+  },
+  {
+    "id": "yasio-portfolio-2022",
+    "title": "Yasio Portfolio",
+    "summary": "コードエディタ風UIとスクロール連動演出で作品を見せるJan Baszczokの個人ポートフォリオ「Yasio」。",
+    "client": "Jan Baszczok（個人・フルスタック開発者/デザイナー）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "Awwwards Honorable Mention",
+    "year": "2022",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.awwwards.com/sites/yasio-portfolio",
+    "thumbnail": "/thumbnails/yasio-portfolio-2022.jpg",
+    "videoId": "",
+    "overview": "ポーランド人のフルスタック開発者/デザイナーJan Baszczokによる個人ポートフォリオサイト「Yasio」。コードエディタを模したUIとスクロールに連動したアニメーションでプロジェクトを提示する構成が特徴。AwwwardsでHonorable Mentionを受賞している。正確な受賞日は一次ページ上で確認できていない。",
+    "background": "Baszczokはウェブサイトの開発とデザインの両方を担うフルスタック人材で、本サイトは自身のスキルと作風を示すための作品集として制作された。開発者らしくコードエディタのメタファーをUIに取り入れており、エンジニアリング志向の強いポートフォリオ表現を志向したと見られる。詳細な制作経緯は確認できていない。",
+    "execution": "画面構成にコードエディタ風のインターフェースを採用し、ファイルツリーやコード表示を思わせる見た目でプロジェクト情報を整理している。スクロールに合わせて要素がアニメーションする演出を組み合わせ、開発者的な世界観と滑らかなインタラクションを両立させている。技術スタックの詳細は確認できていない。",
+    "evaluationImpact": "開発者自身のアイデンティティをUIメタファーに落とし込んだ発想が評価され、Awwwards Honorable Mentionを受賞した。コーディングという行為そのものを見せ方のモチーフにする手法は、開発者向けポートフォリオの一つの型として参照され得る。具体的な審査コメントや副次的な反響は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Yasio Portfolio (Awwwards)",
+        "description": "Honorable Mention受賞ページ",
+        "url": "https://www.awwwards.com/sites/yasio-portfolio"
+      }
+    ],
+    "sources": [
+      "Portfolio Sites"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Form/Website",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "pac-me-pertant-portfolio-2023",
+    "title": "Pacôme Pertant Portfolio",
+    "summary": "音と形が絡み合うリズミカルな演出を作り込んだモーション/サウンドデザイナーPacôme Pertantの個人ポートフォリオ。",
+    "client": "Pacôme Pertant（個人・モーション/サウンドデザイナー）",
+    "agency": "Louis Bocquet, Colin Demouge",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "Awwwards Site of the Day（スコア7.76/10）",
+    "year": "2023",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.awwwards.com/sites/pacome-pertant-portfolio",
+    "thumbnail": "/thumbnails/pac-me-pertant-portfolio-2023.jpg",
+    "videoId": "",
+    "overview": "フランスのモーション/サウンドデザイナーPacôme Pertantによる個人ポートフォリオサイト。GSAP・Three.js・Nuxt.jsを用いて、音と形が呼応するリズミカルな演出でプロジェクトを紹介する構成が特徴。AwwwardsのSite of the Dayを受賞し、スコアは7.76/10だった。制作にはLouis BocquetとColin Demougeが関わっている。",
+    "background": "Pertantはモーションとサウンドの両面からクリエイティブを手がける人材で、本サイトは自身の作風を体現する作品集として制作された。音とビジュアルの同期を軸にした表現を得意とすることから、ポートフォリオ自体も音と形の対話を主題に据えた設計になったと見られる。制作の詳細な経緯は確認できていない。",
+    "execution": "GSAPによるアニメーション制御とThree.jsによる3D表現、Nuxt.jsのフレームワークを組み合わせて構築されている。サウンドに合わせて形状やレイアウトが変化する演出が特徴で、視覚と聴覚を同時に動かすことでモーション/サウンドデザイナーとしての専門性をサイト体験そのもので提示している。Louis BocquetとColin Demougeの具体的な役割は確認できていない。",
+    "evaluationImpact": "音とビジュアルを一体化させた演出がAwwwardsで高いスコア（7.76/10）とともにSite of the Dayとして評価された。なお、一次ソース上での受賞表示は2026年6月頃に確認されており、本データベース上の制作年（2023年）とは時期にずれがある点に留意が必要。詳細な公開経緯は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Pacôme Pertant Portfolio (Awwwards)",
+        "description": "Site of the Day受賞ページ。スコアとクレジットを掲載",
+        "url": "https://www.awwwards.com/sites/pacome-pertant-portfolio"
+      }
+    ],
+    "sources": [
+      "Portfolio Sites"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Tech/Audio",
+      "Form/Website"
+    ]
+  },
+  {
+    "id": "artiom-yakushev-portfolio-2025",
+    "title": "Artiom Yakushev Portfolio",
+    "summary": "パララックスと映像を組み合わせたグラフィカルな個人ポートフォリオ。アルメニア拠点のデジタルデザイナーArtiom Yakushevが手がけた。",
+    "client": "Artiom Yakushev（個人・デジタルデザイナー）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "Awwwards Site of the Day（2025年12月27日）",
+    "year": "2025",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.awwwards.com/sites/artiom-yakushev",
+    "thumbnail": "/thumbnails/artiom-yakushev-portfolio-2025.jpg",
+    "videoId": "",
+    "overview": "アルメニア拠点のデジタルデザイナーArtiom Yakushevによる個人ポートフォリオサイト。パララックス表現と映像素材を組み合わせたグラフィカルな見せ方でプロジェクトを紹介する構成が特徴。2025年12月27日にAwwwardsのSite of the Dayを受賞した。制作クレジットの詳細は確認できていない。",
+    "background": "Yakushevはデジタルデザイン領域で活動する個人クリエイターで、本サイトは自身の作品を紹介するポートフォリオとして制作された。映像とグラフィックを組み合わせた表現を軸にしていることから、視覚的な訴求力を重視した設計思想がうかがえる。制作の背景や依頼経緯については確認できていない。",
+    "execution": "スクロールに連動したパララックス演出を全体の軸に据え、映像コンテンツをレイヤー的に配置することで奥行きのあるビジュアル体験を構成している。グラフィックデザインと動画表現を組み合わせることで、静的な画像だけでは伝えにくい作品の質感や雰囲気を提示する狙いがあると見られる。具体的な技術スタックは確認できていない。",
+    "evaluationImpact": "映像とグラフィックを組み合わせたパララックス表現がAwwwards Site of the Dayとして評価された。なお同ページ上で言及されることがある「Portfolio Honors」については、当該ページのバッジとしては確認できておらず、本データベースでは未検証情報として扱う。具体的な審査コメント等は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Artiom Yakushev Portfolio (Awwwards)",
+        "description": "Site of the Day受賞ページ",
+        "url": "https://www.awwwards.com/sites/artiom-yakushev"
+      }
+    ],
+    "sources": [
+      "Portfolio Sites"
+    ],
+    "tags": [
+      "Form/Website",
+      "Tech/Web",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "elliott-mangham-portfolio-2025",
+    "title": "Elliott Mangham Portfolio",
+    "summary": "英国のクリエイティブWeb開発者Elliott Manghamによる個人ポートフォリオが、精緻なインタラクション設計でAwwwards Site of the Dayを受賞",
+    "client": "Elliott Mangham（個人・クリエイティブWeb開発者）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "Awwwards Site of the Day（本人ポートフォリオ、2025年12月2日、スコア7.24/10）。Awwwardsプロフィール上ではSite of the Day計16件・Portfolio(HM)3件の集計が確認できるが、「23回受賞」「2026年1月」という主張は一次ソースで確認できず、未検証として扱う。",
+    "year": "2025",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.awwwards.com/sites/elliott-mangham",
+    "thumbnail": "/thumbnails/elliott-mangham-portfolio-2025.jpg",
+    "videoId": "",
+    "overview": "英国拠点のクリエイティブWeb開発者Elliott Manghamによる自身の個人ポートフォリオサイト。WordPressをベースにしながら高精度なインタラクションを作り込む構成で、2025年12月2日にAwwwards Site of the Dayを受賞した（スコア7.24/10）。",
+    "background": "個人のWeb開発者が自らの技術力とセンスを示す名刺として制作するポートフォリオサイトは、Awwwardsのような賞レースにおいても継続的な評価対象となる。Elliott ManghamはAwwwards上で複数回のSite of the Day受賞歴を持つ常連クリエイターとして知られる。",
+    "execution": "WordPressを基盤としながらも、既製テーマに頼らない高精度なインタラクション表現を組み込んで自身の作品を提示する構成を採用。具体的な演出手法やインタラクションの詳細、制作クレジットについては確認できていない。",
+    "evaluationImpact": "2025年12月2日にAwwwards Site of the Dayを受賞（スコア7.24/10）。Awwwardsプロフィール上ではSite of the Day計16件、Portfolio(HM)3件の集計が確認できるが、「23回受賞」「2026年1月」という主張は一次ソースで確認できず、未検証として扱う。",
+    "relatedWorks": [
+      {
+        "title": "Elliott Mangham - Awwwards",
+        "description": "受賞詳細・スコアを掲載する公式Awwwardsプロフィールページ",
+        "url": "https://www.awwwards.com/sites/elliott-mangham"
+      }
+    ],
+    "sources": [
+      "Portfolio Sites"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Form/Website",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "olha-lazarieva-portfolio-2025",
+    "title": "Olha Lazarieva Portfolio",
+    "summary": "ウクライナ拠点のシニアUX/UIデザイナーOlha Lazarievaの個人ポートフォリオが実験的なビジュアルシステムでAwwwards Site of the Dayを受賞",
+    "client": "Olha Lazarieva（個人・シニアUX/UIデザイナー）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "Awwwards Site of the Day（2025年10月2日、スコア7.29/10）。「Portfolio Honors」は当該ページのバッジとして確認できず、未検証として扱う。",
+    "year": "2025",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.awwwards.com/sites/olha-lazarieva",
+    "thumbnail": "/thumbnails/olha-lazarieva-portfolio-2025.jpg",
+    "videoId": "",
+    "overview": "ウクライナ拠点のシニアUX/UIデザイナーOlha Lazarievaによる個人ポートフォリオサイト。ミニマルなビジュアルシステムを軸にアイデアを表現する構成で、2025年10月2日にAwwwards Site of the Dayを受賞した（スコア7.29/10）。",
+    "background": "UX/UIデザイナーが自身の思考プロセスや美意識を伝える場として、実験的な個人ポートフォリオを制作する事例は多い。本作もその一つで、単なる作品リストではなく、デザインシステムそのものを見せる構成を志向したとみられる。",
+    "execution": "ミニマルな配色とレイアウトを核としたビジュアルシステムを構築し、その中に手がけたプロジェクトを組み込んで見せる構成を採用。具体的なインタラクション手法や使用技術、制作クレジットの詳細は確認できていない。",
+    "evaluationImpact": "2025年10月2日にAwwwards Site of the Dayを受賞（スコア7.29/10）。当該ページ上で「Portfolio Honors」バッジは確認できず、未検証のまま扱う。UX/UIデザイナー個人による実験的ポートフォリオの一事例として位置付けられる。",
+    "relatedWorks": [
+      {
+        "title": "Olha Lazarieva - Awwwards",
+        "description": "受賞詳細・スコアを掲載する公式Awwwardsプロフィールページ",
+        "url": "https://www.awwwards.com/sites/olha-lazarieva"
+      }
+    ],
+    "sources": [
+      "Portfolio Sites"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Form/Website",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "gianluca-gradogna-portfolio-2025",
+    "title": "Gianluca Gradogna Portfolio",
+    "summary": "イタリア人マルチディシプリナリーデザイナーGianluca Gradognaの個人ポートフォリオが黒白基調の演出でAwwwards Site of the Dayを受賞",
+    "client": "Gianluca Gradogna（個人・マルチディシプリナリーデザイナー）",
+    "agency": "Norman Gabriel",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "Awwwards Site of the Day（2025年1月23日、スコア7.4/10）",
+    "year": "2025",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.awwwards.com/sites/gianluca-gradogna-portfolio",
+    "thumbnail": "/thumbnails/gianluca-gradogna-portfolio-2025.jpg",
+    "videoId": "",
+    "overview": "イタリア人マルチディシプリナリーデザイナーGianluca Gradognaによる個人ポートフォリオサイト。制作はNorman Gabriel。黒白基調のミニマルな配色に、ローディングやギャラリー演出を組み合わせて作品を見せる構成で、2025年1月23日にAwwwards Site of the Dayを受賞した（スコア7.4/10）。",
+    "background": "複数分野を横断するデザイナーが自身の作品を統一的なトーンで提示するため、色数を絞ったミニマルなビジュアル言語を採用する例は多い。本作もその文脈で、制作会社Norman Gabrielと組んで自身のブランド表現を作り込んだとみられる。",
+    "execution": "黒白を基調とした配色設計のもと、ローディング演出とギャラリー表示を組み合わせて作品を見せる構成を採用。Norman Gabrielが制作を担当した。具体的な使用技術やインタラクションの詳細は確認できていない。",
+    "evaluationImpact": "2025年1月23日にAwwwards Site of the Dayを受賞（スコア7.4/10）。マルチディシプリナリーなクリエイターの作品世界を、抑制されたビジュアルトーンで統一的に見せる個人ポートフォリオの一事例として位置付けられる。",
+    "relatedWorks": [
+      {
+        "title": "Gianluca Gradogna Portfolio - Awwwards",
+        "description": "受賞詳細・スコア・制作クレジット（Norman Gabriel）を掲載する公式Awwwardsページ",
+        "url": "https://www.awwwards.com/sites/gianluca-gradogna-portfolio"
+      }
+    ],
+    "sources": [
+      "Portfolio Sites"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Form/Website",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "brittany-chiang-portfolio-2021",
+    "title": "Brittany Chiang Portfolio",
+    "summary": "フロントエンドエンジニアBrittany Chiangのダークテーマ1ページ型ポートフォリオが、開発者サイトの定番フォーマットとして広く参照される",
+    "client": "Brittany Chiang（個人・フロントエンドエンジニア）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "One Page Love Award（One Page Website Award掲載、掲載日2019年9月11日）。年次を2021年とする情報源と掲載日には差異があり、留意が必要。",
+    "year": "2021",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://brittanychiang.com/",
+    "thumbnail": "/thumbnails/brittany-chiang-portfolio-2021.jpg",
+    "videoId": "",
+    "overview": "フロントエンドエンジニアBrittany Chiangによる個人ポートフォリオサイト。ダークテーマの1ページ構成で、経歴・プロジェクト・執筆記事を縦方向のスクロールで横断的に見せる。One Page Loveが選出するOne Page Website Awardに掲載された（掲載日2019年9月11日）。",
+    "background": "開発者自身のスキルとセンスを示す名刺代わりのポートフォリオサイトは、フロントエンド業界において継続的に参照される表現領域である。本作は、シンプルな1ページ構成という制約の中でタイポグラフィと余白設計を作り込んだ事例として知られる。",
+    "execution": "ダークカラーを基調とした1ページのレイアウトに、自己紹介・職歴・プロジェクト一覧・記事へのリンクを縦方向に配置。過剰な演出を避け、タイポグラフィと余白、ホバー時の微細なインタラクションによって完成度を高める設計を採用した。",
+    "evaluationImpact": "One Page Loveが選出するOne Page Website Awardに掲載（掲載日2019年9月11日）。開発者ポートフォリオの定番フォーマットとして、レイアウトやコーディング手法が広く模倣・参照されており、フロントエンド業界での影響力が大きい事例として位置付けられる。なお年次表記（2021年）と掲載日には差異がある点に留意。",
+    "relatedWorks": [
+      {
+        "title": "Brittany Chiang Portfolio",
+        "description": "本人による個人ポートフォリオサイト本体",
+        "url": "https://brittanychiang.com/"
+      }
+    ],
+    "sources": [
+      "Portfolio Sites"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Form/Website"
+    ]
+  },
+  {
+    "id": "dennis-snellenberg-portfolio-2022",
+    "title": "Dennis Snellenberg Portfolio",
+    "summary": "パララックス演出を軸にした端正なデザインで話題化し、模倣サイトが乱立したオランダ人フリーランサーの個人ポートフォリオ。",
+    "client": "Dennis Snellenberg（個人・フリーランスデザイナー/開発者）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "Awwwards Site of the Day + Developer Award（2022年4月4日、DEV AWARDスコア7.47/10）",
+    "year": "2022",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.awwwards.com/sites/dennis-snellenberg-portfolio",
+    "thumbnail": "/thumbnails/dennis-snellenberg-portfolio-2022.jpg",
+    "videoId": "",
+    "overview": "オランダ人のフリーランスデザイナー・開発者Dennis Snellenbergによる個人ポートフォリオサイト。スクロール連動の滑らかなパララックス演出と、余白を効かせたタイポグラフィ中心のレイアウトで自身の制作実績を紹介する構成。2022年4月4日にAwwwards Site of the DayおよびDeveloper Award（DEV AWARDスコア7.47/10）を受賞した。",
+    "background": "フリーランスとして活動するデザイナー・開発者が、自身の技術力とデザインの完成度を示す名刺代わりの場として個人ポートフォリオを制作。過剰な演出やギミックに頼らず、パララックスとタイポグラフィの精度だけで魅せる、シンプルかつ端正な方向性が選ばれた。",
+    "execution": "スクロール量に応じて各要素の移動速度・出現タイミングを緻密に制御するパララックス表現を全編に採用。装飾を抑えたグリッドレイアウトとタイポグラフィで、プロジェクト紹介・自己紹介などのセクションを構成し、開発力とデザイン力の両方を示す仕上がりとした。",
+    "evaluationImpact": "Awwwards Site of the DayとDeveloper Awardをダブル受賞。完成度の高いパララックス表現がWebデザイナー・開発者コミュニティで大きな話題となり、レイアウトや演出を模倣したサイトがSNS上で乱立するほど、個人ポートフォリオの一つの規範として広く参照された。",
+    "relatedWorks": [],
+    "sources": [
+      "Portfolio Sites"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Form/Website"
+    ]
+  },
+  {
+    "id": "aw-portfolio-antoine-wodniack-2024",
+    "title": "AW Portfolio (Antoine Wodniack)",
+    "summary": "デザイナーとの協業を前面に押し出した、フランス人クリエイティブ開発者Antoine Wodniackによるアニメーション主導の個人ポートフォリオ。",
+    "client": "Antoine Wodniack（個人・クリエイティブ開発者）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "Awwwards Site of the Day（2024年12月12日、スコア7.56/10）／CSS Design Awards Website of the Year 2024 Nominee（受賞ではなくNominee止まり。同サイトは別途CSSDA Website of the Dayを2024年11月27日受賞）",
+    "year": "2024",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.awwwards.com/sites/aw-portfolio",
+    "thumbnail": "/thumbnails/aw-portfolio-antoine-wodniack-2024.jpg",
+    "videoId": "",
+    "overview": "フランス人クリエイティブ開発者Antoine Wodniackの個人ポートフォリオサイト「AW Portfolio」。アニメーションを主軸としたハイインパクトな表現を得意とする本人の作風を反映し、協業するデザイナーの名前とクレジットを前面に出す構成が特徴。2024年12月12日にAwwwards Site of the Day（スコア7.56/10）を受賞した。",
+    "background": "アニメーション主導の演出性の高いサイト制作を専門とするクリエイティブ開発者が、自身の技術力に加えて協業デザイナーとの関係性も伝わるポートフォリオを目指して制作。単独の技術デモではなく、デザイナーとの協業プロセスを見せる構成が選ばれた。",
+    "execution": "サイト全体にアニメーションを効かせたインタラクションを実装し、各プロジェクトにおける協業デザイナーの名前・役割を明記するクレジット表示を採用。CSS Design Awardsでは2024年11月27日にWebsite of the Dayを受賞し、同年のWebsite of the Yearにもノミネートされた。",
+    "evaluationImpact": "AwwwardsとCSS Design Awardsの双方で評価を得たことで、アニメーション表現力と協業クレジットの見せ方を両立した個人ポートフォリオの事例として、クリエイティブ開発者コミュニティで参照される存在となった。",
+    "relatedWorks": [],
+    "sources": [
+      "Portfolio Sites"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Form/Website"
+    ]
+  },
+  {
+    "id": "hisami-kurita-portfolio-2022",
+    "title": "Hisami Kurita Portfolio",
+    "summary": "Three.js・GSAPによるインタラクティブ表現でAwwwards Site of the Dayを受賞した、東京拠点フロントエンドデベロッパーHisami Kuritaの個人ポートフォリオ。",
+    "client": "Hisami Kurita（個人・フロントエンドデベロッパー）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "Awwwards Site of the Day（スコア7.65/10）。The FWA of the Dayについては一次ソース（thefwa.com/cases/hisami-kurita-portfolio）の内容が確認できず未検証。",
+    "year": "2022",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://hsmkrt1996.com/",
+    "thumbnail": "/thumbnails/hisami-kurita-portfolio-2022.jpg",
+    "videoId": "",
+    "overview": "東京を拠点に活動するフロントエンドデベロッパーHisami Kuritaの個人ポートフォリオサイト。Three.jsによる3D表現とGSAPによる緻密なアニメーション制御を組み合わせたインタラクティブな演出で、自身の開発実績を紹介する構成となっている。Awwwards Site of the Day（スコア7.65/10）を受賞した。",
+    "background": "フロントエンド開発者として3D表現とアニメーション実装の技術力を示すため、静的なリスト表示ではなくThree.js/GSAPを軸にしたインタラクティブな体験としてポートフォリオを設計。技術デモとしての側面と作品紹介としての側面を両立させる方向性が選ばれた。",
+    "execution": "Three.jsによる3DオブジェクトのレンダリングとGSAPによるタイムライン制御を組み合わせ、スクロールやカーソル操作に連動するインタラクションを全体に実装。プロジェクト紹介パートでも同様の演出手法を一貫して適用し、統一感のある体験に仕上げた。",
+    "evaluationImpact": "Awwwards Site of the Dayを受賞し、スコア7.65/10という評価を得た。なお公式サイトはThe FWA of the Day受賞も謳っているが、一次ソースの内容を確認できなかったため本データベースでは未検証情報として扱う。",
+    "relatedWorks": [],
+    "sources": [
+      "Portfolio Sites"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Tech/Web",
+      "Form/Website"
+    ]
+  },
+  {
+    "id": "tomoya-okada-portfolio-v7-2026",
+    "title": "Tomoya Okada Portfolio (v7)",
+    "summary": "自主制作を継続的に積み重ねるフロントエンドエンジニアTomoya Okadaの個人ポートフォリオ第7版。Awwwards Honorable Mentionを受賞。",
+    "client": "Tomoya Okada（個人・フロントエンドエンジニア）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "Awwwards Honorable Mention（Portfolio ver7、2025年5月6日）。過去バージョン（v5, v6, v1）も別途Honorable Mention受賞歴あり",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.awwwards.com/sites/tomoya-okada-portfolio",
+    "thumbnail": "/thumbnails/tomoya-okada-portfolio-v7-2026.jpg",
+    "videoId": "",
+    "overview": "フロントエンドエンジニアTomoya Okadaが継続的に更新している個人ポートフォリオサイトの第7版（ver7）。バージョンを重ねるごとに技術検証と表現のアップデートを重ねる自主制作プロジェクトで、2025年5月6日にAwwwards Honorable Mentionを受賞した。",
+    "background": "日々の自主制作を通じて技術力を磨き続けるフロントエンドエンジニアが、その成果を発表する場として個人ポートフォリオを継続的に更新。単発の制作物ではなく、バージョンを重ねて改善し続けるプロセス自体を作品として位置づけている。",
+    "execution": "過去のバージョン（v1, v5, v6）から表現手法や実装技術をアップデートしながらver7として公開。継続的な改修サイクルの中で、その時々のフロントエンド技術のトレンドを反映した演出やインタラクションを取り入れている。",
+    "evaluationImpact": "ver7で2025年5月6日にAwwwards Honorable Mentionを受賞。過去のバージョン（v1, v5, v6）でもそれぞれ個別にHonorable Mentionを受賞しており、継続的な自主制作が繰り返し評価される事例となっている。",
+    "relatedWorks": [],
+    "sources": [
+      "Portfolio Sites"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Form/Website"
+    ]
+  },
+  {
+    "id": "kuon-yagi-portfolio-2018",
+    "title": "Kuon Yagi Portfolio",
+    "summary": "沖縄・東京拠点のウェブデザイナー/エンジニアKuon Yagi氏の個人ポートフォリオ。AwwwardsのHonorable Mentionを受賞",
+    "client": "Kuon Yagi（個人・沖縄/東京拠点ウェブデザイナー）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "Awwwards Honorable Mention（2018年3月13日）",
+    "year": "2018",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.awwwards.com/sites/kuon-yagi-portfolio",
+    "thumbnail": "/thumbnails/kuon-yagi-portfolio-2018.jpg",
+    "videoId": "",
+    "overview": "沖縄・東京を拠点に活動するウェブデザイナー/エンジニアKuon Yagi氏の個人ポートフォリオサイト。自身の作品やスキルを紹介する構成で、2018年3月13日にAwwwardsのHonorable Mentionを受賞した。",
+    "background": "沖縄と東京の二拠点で活動するフリーランスのウェブデザイナー/エンジニアが、自身のスキルや作品を発信する場として制作したポートフォリオサイト。制作会社等の外部クレジットは確認できていない。",
+    "execution": "本人の作品紹介や経歴情報を軸にした構成で公開されている。具体的なレイアウトやインタラクション演出の詳細については、Awwwardsの掲載情報以上の一次情報を確認できていない。",
+    "evaluationImpact": "2018年3月13日、AwwwardsでHonorable Mentionを受賞した。個人のウェブデザイナー/エンジニアの作品として、制作力を対外的に示す実績の一つとなっている。受賞以外の反響については確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Kuon Yagi Portfolio (Awwwards)",
+        "description": "Awwwards掲載ページ",
+        "url": "https://www.awwwards.com/sites/kuon-yagi-portfolio"
+      }
+    ],
+    "sources": [
+      "Portfolio Sites"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Form/Website",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "shinya-okano-portfolio-2023",
+    "title": "Shinya Okano / Portfolio",
+    "summary": "東京拠点アートディレクターShinya Okano氏がWeb・グラフィック・映像を横断して見せる個人ポートフォリオ",
+    "client": "Shinya Okano（個人・アートディレクター/ビジュアルデザイナー）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "Awwwards Honorable Mention（2024年5月6日）／CSS Winner Site of the Day（2024年5月8日）",
+    "year": "2023",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://shinyaokano.jp/",
+    "thumbnail": "/thumbnails/shinya-okano-portfolio-2023.jpg",
+    "videoId": "",
+    "overview": "東京を拠点に活動するアートディレクター/ビジュアルデザイナーShinya Okano氏の個人ポートフォリオサイト。Web・グラフィック・映像といった複数領域の作品を横断的に紹介する構成で、2024年5月6日にAwwwards Honorable Mention、同年5月8日にCSS Winner Site of the Dayを受賞した。",
+    "background": "アートディレクター/ビジュアルデザイナーとして複数の表現領域を手がける本人が、自身の作品を一つのサイトにまとめて紹介するために制作したポートフォリオ。制作経緯や外部クレジットについての詳細は確認できていない。",
+    "execution": "Web、グラフィック、映像といった異なる領域の作品を横断的に見せる構成を採用している。具体的なレイアウトやインタラクションの演出手法については、公開情報以上の詳細を確認できていない。",
+    "evaluationImpact": "2024年5月6日にAwwwards Honorable Mention、5月8日にCSS Winner Site of the Dayを受賞し、複数のウェブデザイン評価サイトから評価を得た。なお本人プロフィール等で言及されるONE SHOW GOLDやCannes Lions BRONZEについては、lovethework.com等の一次ソースで該当データを確認できておらず、本データベースでは未検証としている。",
+    "relatedWorks": [
+      {
+        "title": "Shinya Okano / Portfolio",
+        "description": "本人のポートフォリオサイト本体",
+        "url": "https://shinyaokano.jp/"
+      }
+    ],
+    "sources": [
+      "Portfolio Sites"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Form/Website",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "tomoro-sugawara-design-profile-2025",
+    "title": "Tomoro Sugawara | Design Profile",
+    "summary": "名古屋拠点のウェブデザイナーTomoro SugawaraがSTUDIOで制作した、ベージュとグリーンを基調とする実務志向の個人プロフィールサイト",
+    "client": "Tomoro Sugawara（個人・名古屋拠点ウェブデザイナー）",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://tomoro-sugawara.studio.site/",
+    "thumbnail": "/thumbnails/tomoro-sugawara-design-profile-2025.jpg",
+    "videoId": "",
+    "overview": "名古屋を拠点に活動するウェブデザイナーTomoro Sugawaraが、ノーコードツールSTUDIOを用いて制作した個人プロフィールサイト。ベージュとグリーンを基調とした落ち着いた配色で、実績や自己紹介をシンプルに整理して見せる実務志向の構成になっている。",
+    "background": "フリーランス・個人事業のウェブデザイナーにとって、自身の作品と人となりを端的に伝えるプロフィールサイトは営業・受注活動の基盤となる。STUDIOのようなノーコードツールの普及により、個人でも短期間で一定水準のデザイン性を持つサイトを自ら構築できる環境が整っている。",
+    "execution": "STUDIOを用いてノーコードで構築し、ベージュを基調にグリーンをアクセントカラーとして配した配色設計で、装飾を抑えた読みやすいレイアウトを採用。名古屋拠点という活動地域や経歴、実績などを簡潔に伝える個人プロフィールサイトとしてまとめられている。具体的な機能構成やクレジットの詳細は確認できていない。",
+    "evaluationImpact": "受賞歴はないが、ノーコードツールでも配色設計とレイアウトの工夫次第で、実務者としての信頼感を伝えるプロフィールサイトを個人で構築できることを示す一例。派手な演出に頼らず、実務志向のトーンでブランディングを行う個人サイトの一つの型といえる。",
+    "relatedWorks": [],
+    "sources": [
+      "Portfolio Sites"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Form/Website"
+    ]
+  },
+  {
+    "id": "yugop-com-1999",
+    "title": "yugop.com",
+    "summary": "1999年開設、中村勇吾による日本のウェブデザイン史を代表する伝説的個人ポートフォリオサイト",
+    "client": "Yugo Nakamura（個人・クリエイティブディレクター/デザイナー/エンジニア）",
+    "agency": "",
+    "categories": [
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "1999",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://thefwa.com/cases/yugop",
+    "thumbnail": "/thumbnails/yugop-com-1999.jpg",
+    "videoId": "",
+    "overview": "クリエイティブディレクター/デザイナー/エンジニアの中村勇吾(Yugo Nakamura)が1999年に開設した個人サイト「yugop.com」。Flashを中心としたインタラクティブ表現の実験場として知られ、日本のウェブデザイン史における代表的な作品の一つとされる。",
+    "background": "1990年代末はFlashを用いたインタラクティブなウェブ表現が世界的に勃興した時期で、個人サイトが技術と表現の実験場として機能していた。yugop.comはその中でも早期から国際的に注目された日本発の個人サイトの一つとされる。",
+    "execution": "中村勇吾自身が単独でデザイン・実装を手がけ、マウス操作に連動する有機的なインタラクションや実験的なナビゲーションなど、当時の技術水準を超えるインタラクティブ表現を継続的に公開した。詳細な制作年ごとのアップデート内容や技術仕様までは確認できていない。",
+    "evaluationImpact": "The FWA(Favourite Website Awards)のケーススタディページに掲載されるなど、国際的なウェブデザインの歴史を語る上で繰り返し参照される存在となっている。個人サイトが業界全体のインタラクティブデザインの潮流に影響を与えた事例として位置づけられる。",
+    "relatedWorks": [
+      {
+        "title": "yugop (The FWA Case Study)",
+        "description": "yugop.comを紹介するThe FWAのケーススタディページ",
+        "url": "https://thefwa.com/cases/yugop"
+      }
+    ],
+    "sources": [
+      "Portfolio Sites"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Form/Website",
+      "Theme/Art"
+    ]
+  },
+  {
     "id": "aoto-still-blond-stay-gold-2026",
     "title": "AOTO「Still Blond, Stay Gold」ミュージックビデオ",
     "summary": "AOTOが髪を編み込む場面を主役に据え、ヘアスタイリスト帯同の日常を切り取った新曲MVを公開",
