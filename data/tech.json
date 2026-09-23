@@ -1,5 +1,168 @@
 [
   {
+    "id": "vggt",
+    "title": "VGGT-Ω (VGGT-Omega)",
+    "org": "Meta AI (FAIR) × University of Oxford VGG",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "複数枚の写真や動画からカメラ位置・角度・深度を数秒で一括推定するMeta×Oxfordのモデル。2026年9月に自前データで再学習できる訓練コードが新規公開された。",
+    "point": "VGGTはスマホで撮った何枚かの写真や短い動画から、カメラがどこにどんな向きで写したか（位置・角度・レンズの画角）と、写っている物体までの距離（深度）を、数秒で丸ごと推定してくれるAIモデルです。今回、モデル自体を自分のデータで学習し直すための「訓練コード」が公開されたことで、特定の建物や商品、キャラクターに特化したカメラ推定・3D再構成モデルを研究者だけでなく企業も独自にチューニングできるようになりました。広告や体験づくりの文脈では、実写した街並みや店舗をそのまま3D空間として取り込み、CGキャラクターを違和感なく配置したり、ドローン映像からVR空間を自動生成したりする土台になり得ます。従来は専門のフォトグラメトリ業者への発注や高価なLiDARスキャナが必要だった作業を、普通のカメラ映像だけで代替できる可能性を示す技術です。",
+    "detail": "仕組みをたとえるなら、複数人が同じ景色をバラバラの角度からスマホで撮った写真を集めて、「それぞれのスマホがどこに立っていたか」と「景色の凹凸」を同時に解いていくパズルのようなものです。VGGT-Ωはこれを一つのニューラルネットワークで一気に処理し、数百枚の画像でも数秒〜数十秒で位置合わせと3D点群化を終えます。\n\n従来のフォトグラメトリ（COLMAPなど）は特徴点マッチングを何段階も重ねる古典的な計算処理で、枚数が増えると処理時間が急激に伸びていました。VGGT-Ωは学習済みAIが直接答えを出す方式のため桁違いに高速で、今回追加された訓練コードにより、自社の建築物やロケ地の映像だけを使って推定精度をチューニングすることも可能になりました。\n\n使うにはNVIDIA GPU搭載のPC（学習には特にVRAMに余裕のある環境が望ましい）とPython/PyTorch環境が必要です。推論だけならHugging Face上の無料デモでブラウザから試せますが、ライセンスは非商用の研究利用限定のため、広告制作など商用利用には別途ライセンス交渉かオープンライセンスの代替技術との組み合わせを検討する必要があります。",
+    "license": {
+      "spdx": null,
+      "commercial": "research-only",
+      "note": "Meta FAIR Noncommercial Research License v1。商用利用は明示的に禁止"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/facebookresearch/vggt-omega"
+      },
+      {
+        "kind": "project",
+        "url": "http://vggt-omega.github.io/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2605.15195"
+      },
+      {
+        "kind": "post",
+        "url": "https://huggingface.co/spaces/facebook/vggt-omega"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/vggt.jpg",
+    "relatedWorks": [
+      {
+        "title": "VGGT (原型モデル)",
+        "description": "本モデルのベースとなった、単一ネットワークでカメラ姿勢と3D構造を推定する先行研究",
+        "url": "https://github.com/facebookresearch/vggt"
+      },
+      {
+        "title": "COLMAP",
+        "description": "特徴点マッチングに基づく従来型フォトグラメトリの定番ツール",
+        "url": "https://colmap.github.io/"
+      },
+      {
+        "title": "DUSt3R",
+        "description": "2枚の画像から3D幾何を直接推定する先行のend-to-end手法",
+        "url": "https://dust3r.europe.naverlabs.com/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "sol-pi",
+    "title": "SoL-Pi",
+    "org": "NVIDIA (NVlabs)",
+    "type": "Research",
+    "domains": [
+      "AI/Agents"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "AIコーディングエージェントのトークン浪費を自動発見・削減するNVIDIA研究の拡張機能。API利用コストを最大49%削減。",
+    "point": "SoL-Piは、Claude CodeやCodexのような「AIコーディングエージェント」が、同じタスクをこなすのにどれだけ無駄にAIモデルを呼び出しているかを自動で発見し、削れる部分を削るための拡張機能です。研究チームが150通り以上の効率化アイデアを自動生成・自動実験するループを回した結果、複雑なタスクの性能はほぼ落とさずにモデル呼び出し回数とトークン使用量を最大49%削減し、API利用コストを3分の1近くまで下げられる4つの手法にたどり着きました。広告制作の現場でAIエージェントに素材整理やコード生成、リサーチ作業を任せる場面が増える中、「同じ品質のアウトプットをより安く・速く得る」ための実践的な工夫として参考になります。人間が直接触るツールというより、AIエージェントを運用するエンジニアやPMが自分たちのワークフローに組み込むための技術です。",
+    "detail": "たとえるなら、優秀だけれど話が長い部下に「同じ確認作業を何度も繰り返さない」「過去に調べたことはメモを再利用する」「長い作業ログはいちいち全部読まず要点だけ見る」といった仕事の効率化ルールを覚えさせるようなものです。SoL-Piは実際に、検証コマンドをまとめて実行する「Action Fusion」、巨大な出力結果を短い参照IDに置き換える「ObservationPack」、途中経過のログを圧縮する「Evidence-Preserving Reducer」、完了済みの手順を要約してコンテキストを圧縮する「Online Context Compact」という4つの仕組みを組み合わせています。\n\nこれらは人間が経験則で思いついたものではなく、AIエージェント自身に改善案を大量に提案・実験させる「自動研究ループ」によって152通りの候補から選び抜かれた点が新しく、力技のプロンプト工夫ではなく再現性のある最適化として整理されています。\n\n使うにはNode.js 22.19以上の環境と、対応するコーディングエージェント（Pi coding agentなど）が必要です。MITライセンスで商用利用も可能なため、自社のAIエージェント運用基盤に手法の考え方だけ取り入れることもできます。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "MITライセンスで商用利用可"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/NVlabs/SoL-Pi"
+      },
+      {
+        "kind": "project",
+        "url": "https://nvlabs.github.io/SoL-Pi/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2609.20519"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/sol-pi.jpg",
+    "relatedWorks": [
+      {
+        "title": "Claude Code / Codex等の商用コーディングエージェント",
+        "description": "SoL-Piが効率化の対象とする、日常的に使われるAIコーディングエージェント群",
+        "url": "https://arxiv.org/abs/2609.20519"
+      },
+      {
+        "title": "Context Compaction系の先行研究",
+        "description": "長い対話履歴を要約・圧縮してLLMのコンテキストを節約する手法群",
+        "url": "https://arxiv.org/abs/2609.20519"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "animcraft-6-0",
+    "title": "Animcraft 6.0（AIリギング／テキスト→アニメーション機能）",
+    "org": "Basefount",
+    "type": "Tool",
+    "domains": [
+      "Motion/Body",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "Maya・3ds Max・Blender等をまたぐアニメーション素材ライブラリAnimcraftに、AI自動リギングとNVIDIA Kimodoベースのテキスト→モーション生成機能が9月に追加された。",
+    "point": "Animcraftは、Maya・3ds Max・Blender・Unreal Engine・Unityなど複数の3Dソフトをまたいでモーションデータを保管・変換・再利用できる「アニメーション版の素材ライブラリ」です。最新のバージョン6.0では、キャラクターの骨（ボーン）とメッシュを自動で結びつける「AIリギング」と、NVIDIAの研究成果Kimodoを使った「テキストからのモーション生成」が新たに追加され、専門アニメーターが手作業で行っていたセットアップ作業の一部を数秒〜数十秒で済ませられるようになりました。広告やプロモーション映像で3Dキャラクターを動かす際、「とりあえず歩く・手を振る」といった仮の動きを素早く用意してコンテ検証したり、複数ソフトを併用する制作パイプラインでモーションを使い回したりする用途に向いています。ただし生成されたモーションはそのまま本番品質ではなく、手直しが前提の「下ごしらえツール」です。",
+    "detail": "仕組みをたとえると、AIが大量のキャラクターモデルとボーン構造の実例を学習していて、新しいモデルを渡すと「このメッシュのどの部分がどの骨に対応するか」を自動で見抜いて重み付け（スキニング）してくれる、というものです。テキストからのモーション生成部分は、NVIDIAが700時間分のモーションキャプチャデータで学習した基盤モデルKimodoを内部で呼び出し、「歩く」「喜ぶ」といった言葉の指示をそのまま骨の動きに変換します。\n\n従来のAnimcraftは「すでにあるモーションを保管・変換・転送する」ライブラリ機能が中心でしたが、6.0では「ゼロから素材を生み出す」生成AI機能が初めて組み込まれた点が違いです。とはいえ紹介記事によれば、生成モーションはスケルトンのマッピングや向き・スケール・フレームレート調整をしないと本番では使えないとされており、あくまで叩き台を高速に作るツールという位置づけです。\n\n入手には公式サイトでの無料トライアル登録が必要で、コア機能とは別にAIリギング・テキスト生成機能は追加課金の対象です（金額は非公開）。対応するDCCソフト本体のライセンスも別途必要になります。",
+    "license": {
+      "spdx": null,
+      "commercial": "paid",
+      "note": "コア機能は商用ツール、新AI機能（自動リギング/テキスト→アニメーション）はコア本体とは別課金（金額非公開）。無料トライアルあり"
+    },
+    "links": [
+      {
+        "kind": "product",
+        "url": "https://www.animcraft.com/"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/basefount/animcraft"
+      },
+      {
+        "kind": "post",
+        "url": "https://digitalproduction.com/2026/09/14/animcraft-6-0-adds-ai-rigging-and-kimodo/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/animcraft-6-0.jpg",
+    "relatedWorks": [
+      {
+        "title": "NVIDIA Kimodo",
+        "description": "Animcraft 6.0のテキスト→モーション生成機能が内部で利用する、NVIDIAのモーション拡散モデル",
+        "url": "https://research.nvidia.com/labs/sil/projects/kimodo/"
+      },
+      {
+        "title": "Mixamo",
+        "description": "既存モーションをキャラクターに自動リグ付けして配布する先行の無料サービス",
+        "url": "https://www.mixamo.com/"
+      },
+      {
+        "title": "Reallusion Video Mocap",
+        "description": "動画から3Dモーションを抽出する競合のAIモーションキャプチャサービス",
+        "url": "https://www.reallusion.com/iclone/video-mocap.html"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "hyperflow",
     "title": "HyperFlow (MiniMax-H3 8-step LoRA)",
     "org": "Video Rebirth",
