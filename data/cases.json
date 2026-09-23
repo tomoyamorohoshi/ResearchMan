@@ -1,5 +1,194 @@
 [
   {
+    "id": "deafcity-hub-visual-identity-2026",
+    "title": "DeafCity Hub Visual Identity",
+    "summary": "英国手話の指の動きをモーションキャプチャし、クリエイティブコーディングで反応させるろう文化拠点のID",
+    "client": "DeafCity Hub (founder: Amanprit Arnold / Disability Urbanism)",
+    "agency": "Templo",
+    "categories": [
+      "社会包摂",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.itsnicethat.com/articles/templo-deafcity-hub-identity-graphic-design-project-220926",
+    "thumbnail": "/thumbnails/deafcity-hub-visual-identity-2026.jpg",
+    "videoId": "",
+    "overview": "ろう者コミュニティの文化空間「DeafCity Hub」のビジュアルアイデンティティ。デザイン会社Temploが、英国手話（BSL）の物理的ジェスチャーをブランドの中核に据え、モーションキャプチャとクリエイティブコーディングを組み合わせた反応型ビジュアルを開発した。",
+    "background": "創業者Amanprit Arnold（Disability Urbanism）が、ろう文化空間の価値実証と人材育成を目的とする1年間のパイロットキャンペーンとしてDeafCity Hubを立ち上げ。動きと3D空間言語、視覚的リズムがろう文化とコミュニケーションの中心にあるという考えから、アイデンティティ開発が始まった。",
+    "execution": "実際の手の動きをモーションキャプチャで記録し、従来のアニメーションではなく本物の人間の動きに基づくブランドモーションを構築。10個の泡（指先を表現）に囲まれたモジュラータイプフェイスのロゴが、キャプチャされた手の動きの自然な波打ちをミミックする。大胆なピンクとオレンジのカラーパレットで差別化を図った。",
+    "evaluationImpact": "手話という物理的言語をタイポグラフィとモーションに直接翻訳した点が特徴的で、既存のろう者主導アイデンティティとの視覚的差別化に成功。テクノロジーとろう文化を接続する試みとして2026年9月にIt's Nice Thatで紹介された。受賞情報は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/3D",
+      "Form/Print",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "menslies-a-decade-of-experimental-club-posters-2026",
+    "title": "Menslies: A Decade of Experimental Club Posters",
+    "summary": "北京クラブシーンのポスターがグリッドを捨て、あえて摩耗させた質感で10年の音の記憶を刻んだ",
+    "client": "Zhao Dai / 北京クラブシーン各所",
+    "agency": "Menslies（Haojun Pan・Yenk's）",
+    "categories": [
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.itsnicethat.com/articles/menslies-ten-years-of-posters-graphic-design-project-220926",
+    "thumbnail": "/thumbnails/menslies-a-decade-of-experimental-club-posters-2026.jpg",
+    "videoId": "",
+    "overview": "北京拠点のデザインユニットMenslies（Haojun Pan・Yenk's）が2016年から10年間手がけたクラブ・イベントポスターの回顧展。京都WarmUpにて9月27日まで開催され、Zhao Daiをはじめ北京の音楽シーンを彩った作品群を展示している。",
+    "background": "中国の多くの都市では公共スペースへのポスター貼付が奨励されず、スマートフォンやノートパソコンなど複数スクリーンでの表示が主要な流通形式となる。Mensliesはこの制約を逆手に取り、画面越しでも強い印象を残すビジュアル言語を10年かけて磨いてきた。",
+    "execution": "グリッドシステムを放棄し即興性を優先する構成に加え、デジタル制作でありながら意図的に摩耗させた質感を最終工程で付加。クラブ会場Zhao Daiのインハウスデザイナーを務めた経験を軸に、Unmute Hanoi、Oil Shenzhen、Heimなど各地のイベント・会場へと活動を広げた。",
+    "evaluationImpact": "単なる告知物だったフライヤーやプロモーションビジュアルが、北京の音楽シーンを支えるアーティスト・プロモーター・レーベルを束ねる独自のグラフィックデザイン実践へと発展した点が評価される。10周年を機とした回顧展は、中国クラブカルチャーの進化を可視化する記録としても機能している。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Print",
+      "Form/Exhibition",
+      "Theme/Music",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "bleibtgleich-26-2026",
+    "title": "bleibtgleich'26",
+    "summary": "ウクライナ拠点デザイナー個人サイトが白黒×大胆な動きの演出でAwwwards SOTDを連続受賞",
+    "client": "Maksym Bleibtgleich（個人）",
+    "agency": "The First The Last",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "Awwwards Site of the Day（2026年9月22日、総合スコア7.46/10）",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://bleibtgleich.dev",
+    "thumbnail": "/thumbnails/bleibtgleich-26-2026.jpg",
+    "videoId": "",
+    "overview": "ウクライナ・キーウ拠点のUX/UIデザイナー兼開発者Maksym Bleibtgleich自身のポートフォリオサイト。「the best ideas deserve execution」を掲げ、白黒2色のミニマルな配色に大型ビジュアルと大胆なタイポグラフィを組み合わせた構成で作品群を展示している。",
+    "background": "本人はThe First The Last（TFTL）に所属するUX/UIデザイナーであり、Awwwards Young Juryも務める業界人。2025年版の前作bleibtgleich'25もSite of the Dayを受賞しており、自身の技量とデザイン哲学を毎年アップデートしたポートフォリオで証明する狙いがあると考えられる。",
+    "execution": "Webflowで構築し、GSAPによるアニメーションでインタラクションを実装。シンプルなナビゲーション（ホーム・作品・コンタクト・実験）の裏で、豊富なモーションと実験的な演出要素を随所に配置し、静と動のコントラストで見せ方を工夫している。",
+    "evaluationImpact": "Awwwards審査ではデザイン7.73、クリエイティビティ7.42、ユーザビリティ7.15、コンテンツ7.4、開発7.22（各10点満点）と総合的に高評価。個人デザイナーのポートフォリオでも技術力とアートディレクションの両立でSite of the Dayに選出され得ることを示す事例。",
+    "relatedWorks": [
+      {
+        "title": "bleibtgleich'25",
+        "description": "同じくMaksym Bleibtgleichによる前年版ポートフォリオサイト。2025年3月23日にAwwwards Site of the Dayを受賞（スコア7.45/10）。",
+        "url": "https://www.awwwards.com/sites/bleibtgleich25"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Website",
+      "Tech/Web",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "tempest-instruments-sona-chroma-19-2026",
+    "title": "Tempest Instruments: Sona/Chroma と19世紀サウンドエフェメラ・アーカイブ",
+    "summary": "作曲家Alex Davis主宰Tempest Instrumentsが無料オーケストラ音源Sona/Chromaと、ショパンが弾いた1845年ピアノ・幽霊人形録音等19世紀サウンド秘宝を同時発信",
+    "client": "Tempest Instruments（作曲家Alex Davis主宰）",
+    "agency": "",
+    "categories": [
+      "カルチャーインサイト",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://cdm.link/oldest-recorded-voices-haunted-dolls-and-more-from-tempest-instruments/",
+    "thumbnail": "/thumbnails/tempest-instruments-sona-chroma-19-2026.jpg",
+    "videoId": "",
+    "overview": "映画・TV・ゲーム作曲家Alex Davis率いる小規模スタジオTempest Instrumentsが、16種の管弦楽器を音色ごとに色で可視化しブレンドできる無料Kontakt音源「Sona/Chroma」を公開。同時に、ショパンが弾いた1845年製ピアノの有料サンプリング音源や、エジソンのトーキング・ドール、19世紀の稀少な音声記録など「サウンドエフェメラ」の収集・発信も行っている。",
+    "background": "AlexDavisはEmbertone共同創業者を経て2025年にTempest Instrumentsを設立。「希少な鍵盤楽器のサンプリング」「伝説的音楽家との協業」を掲げ、Sigal Music Museum（サウスカロライナ州）所蔵の楽器群を有料コレクション化する一方、無料版として現代オーケストラ楽器を色でブレンドするSona/Chromaを並行リリースした。",
+    "execution": "Sona/ChromaはKontakt 8 Player対応の無料プラグインで、木管(青緑)・金管(黄橙)・弦(赤紫)16音色を色相にマッピングしシームレスに混合できる。並行して、1890年発売のエジソン製トーキング・ドール(Smithsonianが「不気味」と評した不良品)や、1800年生まれのプロイセン元帥モルトケが1889年にエジソンの蓄音機へ吹き込んだ現存最古級の肉声録音などを紹介記事として発信した。",
+    "evaluationImpact": "無料の実用音源ツールと、19世紀の音響史エピソード(幽霊人形・最古級録音)という一見畑違いの2つを1社の発信として同時に見せることで音楽メディアCDM(Create Digital Music)が単独記事として取り上げるなど、小規模スタジオが製品リリースを歴史文化コンテンツとして語ることで話題化と信頼構築を両立させた事例といえる。",
+    "relatedWorks": [
+      {
+        "title": "Sigal Collection Volume 1",
+        "description": "Sigal Music Museum所蔵の希少鍵盤楽器(1845年Broadwoodグランドピアノ=ショパン使用等、全6台)をサンプリングした有料($149)フラッグシップ音源。Sona/Chromaと同時期に展開",
+        "url": "https://tempest.audio/sigalcollection/"
+      },
+      {
+        "title": "The Sound of Edison's Talking Doll",
+        "description": "米国立公園局(Thomas Edison National Historical Park)による、1890年発売のエジソン製トーキング・ドールの録音・解説資料",
+        "url": "https://www.nps.gov/edis/learn/news/sound-of-edison-talking-doll.htm"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Theme/Music",
+      "Tech/Audio",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "charli-the-factory-uncanny-shifts-2026",
+    "title": "Charli & The Factory（Uncanny Shifts展）",
+    "summary": "旧眼鏡店を中世風ジムに改装し、バイオトラッキング技術批評のアニメ映画とインフレータブル彫刻を融合させた没入型インスタレーション",
+    "client": "Ellinor Aurora Aasgaard × Zayne Armstrong",
+    "agency": "",
+    "categories": [
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.designboom.com/art/opticians-shop-turned-art-installation-satirizes-bio-tracking-tech-at-uncanny-shifts/",
+    "thumbnail": "/thumbnails/charli-the-factory-uncanny-shifts-2026.jpg",
+    "videoId": "",
+    "overview": "ドイツ・ドルトムント駅近くの旧眼鏡店を舞台に、アーティストのエリノア・オーロラ・アースガードとザイン・アームストロングが、ヘンリー・ムーア風の膨張式彫刻、歴史画とベルリンの日常風景を重ねた絵画、30分のアニメ映画「Charli & The Factory」を融合させたインスタレーションを制作した。",
+    "background": "自己最適化文化や新自由主義的な労働観への批評として、爆発的な事故を起こすバイオトラッキング型スマートウォッチ「FitWatch」を調査するジャーナリストの物語を軸に、テクノロジーが人間を機械化していく様をトランスフォーマー風のキャラクターで風刺する構想が背景にある。",
+    "execution": "店舗跡を中世風ジムに見立て、絵画の中にジップロックで密閉した実物のスマートフォンを埋め込み、ファンで膨張・収縮するインフレータブル彫刻を配置。観客は装飾された空間を進みながら、中心となる短編アニメ映画へと導かれる構成になっている。",
+    "evaluationImpact": "都市の遊休店舗を活用したUrbane Künste Ruhr主催の展覧会「Uncanny Shifts」の一部として2026年8月から10月まで開催され、映像・絵画・彫刻・実物オブジェクトを横断する手法でバイオトラッキング技術への風刺を体験型に落とし込んだ点が評価されている。",
+    "relatedWorks": [
+      {
+        "title": "Uncanny Shifts (Urbane Künste Ruhr)",
+        "description": "ドルトムント駅周辺の遊休空間を活用した展覧会プログラム",
+        "url": "https://www.urbanekuensteruhr.de/en/exhibition/shifts"
+      },
+      {
+        "title": "The Factory — Ellinor Aurora Aasgaard & Zayne Armstrong",
+        "description": "アーティスト公式サイトの作品ページ",
+        "url": "https://aasgaard-armstrong.com/the-factory-1"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Exhibition",
+      "Form/Film",
+      "Theme/Health"
+    ]
+  },
+  {
     "id": "renaud-rohlinger-portfolio-2019",
     "title": "Renaud Rohlinger Portfolio",
     "summary": "3DモデルとWebGL/Three.jsによる映像的演出で作品を見せるクリエイティブ開発者Renaud Rohlingerの個人ポートフォリオ。",
