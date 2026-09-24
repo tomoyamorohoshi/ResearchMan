@@ -16634,5 +16634,197 @@
         "desc": "意識と行動の間にあるギャップを埋めるため、来場者が今日から実践できる具体的アクションを提示した展示グラフィック。"
       }
     ]
+  },
+  {
+    "id": "2026-09-24-1",
+    "date": "2026-09-24",
+    "title": "銭湯に常駐するアバター",
+    "pattern": "文脈×技術",
+    "seed": "J-WAVE湯が実在の銭湯を1週間ブランドジャックしたように、実在しない「湯守」をLive Avatarで常駐させ、入浴中ずっと会話し続ける温浴施設の接客体験ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "j-wave-2018",
+        "title": "J-WAVE湯",
+        "desc": "ラジオ局J-WAVEが実在の銭湯を1週間限定でブランドジャックし、湯に浸かりながら放送を聴ける体験を提供した施策。"
+      },
+      {
+        "type": "tech",
+        "id": "live-avatar",
+        "title": "Live Avatar",
+        "desc": "顔写真1枚と音声だけから何時間も破綻せず喋り続けるリアルタイム映像アバターを生成するAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-24-2",
+    "date": "2026-09-24",
+    "title": "盗難品の逃走を粘菌で追う",
+    "pattern": "文脈×技術",
+    "seed": "KitKatの盗難事件を宝探しPRに変えたThe KitKat Heistのように、Physarum polycephalumの東京鉄道網再現実験の手法で盗難品の逃走ルートを粘菌に再現させ、参加者への手がかり地図にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "kitkat-the-kitkat-heist",
+        "title": "The KitKat Heist",
+        "desc": "輸送中に盗まれたキットカットの実話を、誰もが参加できる公開の宝探しへと転換したリアルタイムPR施策。"
+      },
+      {
+        "type": "tech",
+        "id": "physarum-polycephalumによる東京鉄道網再現実験",
+        "title": "Physarum polycephalum（真正粘菌）による東京鉄道網再現実験",
+        "desc": "脳を持たない単細胞の粘菌を都市の位置に見立てた培地で育て、実際の鉄道網に似た経路を再現させた実験。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-24-3",
+    "date": "2026-09-24",
+    "title": "象嵌の欠けを点群で見せる",
+    "pattern": "文脈×技術",
+    "seed": "紙を切り抜き埋め込む象嵌技法で賞の趣旨を体現したKamiwazaのポスターのように、切り抜かれた「欠け」の空間をSuperSplat Editor 3.0で点群化し、素材の不在そのものを立体で見せる展示ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "kamiwaza-paper-craft-awards-2014",
+        "title": "Kamiwaza -Paper Craft Awards- ポスター",
+        "desc": "日本古来の象嵌技法で3種の紙を切り抜き埋め込み、賞の趣旨を紙という素材そのもので体現したポスター。"
+      },
+      {
+        "type": "tech",
+        "id": "supersplat-editor-3-0",
+        "title": "SuperSplat Editor 3.0",
+        "desc": "実写をGaussian Splattingの点群で再現する無料オープンソース編集ソフトの刷新版。大容量シーンも軽量に動く。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-24-4",
+    "date": "2026-09-24",
+    "title": "安プレビューで360度撮影",
+    "pattern": "技術×技術",
+    "seed": "動画生成のシード選びを安いプレビューだけで済ませるComfyUI-KMSの発想を、追加学習ゼロで360°パノラマを生成するSpheRoPEに応用し、大量の構図候補を低コストで試してから1枚だけ本生成する空間演出ワークフローができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-kms",
+        "title": "ComfyUI-KMS（Multi-Choice KSampler）",
+        "desc": "フル生成せず安いプレビューだけで良い構図のシードを見極め、選んだ1つだけ最後まで仕上げるComfyUI拡張ノード。"
+      },
+      {
+        "type": "tech",
+        "id": "spherope",
+        "title": "SpheRoPE",
+        "desc": "学習済みDiffusion Transformerに球面幾何の事前知識を注入し、追加学習なしで360°パノラマを生成する技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-24-5",
+    "date": "2026-09-24",
+    "title": "パート別に浮く音の粒",
+    "pattern": "技術×技術",
+    "seed": "曲を11.6ミリ秒遅延で4パートに分離するStemgenRTと、物体を非接触で空中浮遊させるSingle-Sided Bessel-Beam Acoustic Levitationを組み合わせ、ボーカルやドラムなど楽器ごとに違う動きで浮遊物が踊るライブ演出ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "stemgenrt",
+        "title": "StemgenRT",
+        "desc": "曲を再生しながらボーカル・ドラム・ベース等4トラックにわずかな遅延でリアルタイム分離するDJ/DAW用プラグイン。"
+      },
+      {
+        "type": "tech",
+        "id": "single-sided-bessel-beam-acoustic-levitation",
+        "title": "Single-Sided Bessel-Beam Acoustic Levitation(ゼロ次ベッセルビームによる片側音響浮揚)",
+        "desc": "特殊な超音波ビームで軽い物体を片側の装置だけで非接触に空中浮遊させ3次元的に動かす技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-24-6",
+    "date": "2026-09-24",
+    "title": "動く証拠品を3D復元",
+    "pattern": "転用",
+    "seed": "可動物体の動きを動画から自動で3D復元するAgentSTARを、映像制作ではなく事故現場や工場設備の稼働記録として使い、保険鑑定や事故検証の立体証拠にする転用ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "agentstar",
+        "title": "AgentSTAR (Agentic Shape Tracking and Reconstruction)",
+        "desc": "1本の動画からコーディングエージェントが自分でBlenderスクリプトを書き、可動物体の動きを3D復元する研究技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-24-7",
+    "date": "2026-09-24",
+    "title": "声のクローンで方言継承",
+    "pattern": "転用",
+    "seed": "声のクローンや多言語吹替を無料ローカルで行えるVoiceStudioを、広告の多言語展開ではなく消えゆく方言や少数言語の話者の声をクローンして継承するアーカイブ用途に転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "voicestudio",
+        "title": "VoiceStudio",
+        "desc": "声のクローン作成・動画の多言語吹き替え・文字起こしを1つのアプリで無料ローカルに行えるOSSツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-24-8",
+    "date": "2026-09-24",
+    "title": "身体の動きがそのまま象徴に",
+    "pattern": "文脈×技術",
+    "seed": "多様な身体性を象徴的グラフィックで表現した東京2020パラリンピック公式アイコニックポスターの発想を、Webカメラ1台でリアルタイムにモーションを取り込めるPoseCapと組み合わせ、来場者自身の動きをその場で象徴グラフィックへ変換する参加型ポスター制作ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ipc-2021",
+        "title": "東京2020パラリンピック公式アイコニックポスター",
+        "desc": "IPCが史上初めて公式に選定し、多様な身体性を象徴的グラフィックで表現した東京2020パラリンピックのポスター。"
+      },
+      {
+        "type": "tech",
+        "id": "posecap",
+        "title": "PoseCap",
+        "desc": "Webカメラ1台だけでBlenderにリアルタイムでモーションキャプチャを流し込める無料オープンソースツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-24-9",
+    "date": "2026-09-24",
+    "title": "展示の階層理解を動画に",
+    "pattern": "技術×技術",
+    "seed": "3D空間内の物を部分と全体の関係で階層的に理解するLEGOの言葉による指し示しを、複数カットの長尺動画を自然言語だけで一括編集するMMLVEにそのまま渡し、展示空間の構造理解に基づいたツアー動画を自動生成できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "lego",
+        "title": "LEGO",
+        "desc": "3D空間の写真群から物や場所の部分と全体の関係を自動で階層的に理解し、言葉で指し示せるようにする研究技術。"
+      },
+      {
+        "type": "tech",
+        "id": "mmlve",
+        "title": "MMLVE (Thinking on Shots)",
+        "desc": "複数カットの長尺動画を人物・背景・カメラワークを保ったまま自然言語の指示だけで一括編集するAIエージェント。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-24-10",
+    "date": "2026-09-24",
+    "title": "LoRAで古写真を修復",
+    "pattern": "転用",
+    "seed": "生成動画の人物をリアルに近づける追加学習データMiniMax H3 Realism People LoRAを、AI生成ではなく劣化した歴史的な記録映像や古写真の人物の質感補修に転用し、資料としての説得力を上げられるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "minimax-h3-realism-people-lora",
+        "title": "MiniMax H3 Realism People LoRA",
+        "desc": "動画生成AIに後から読み込ませるだけで人物の顔や肌の質感を写実的に近づける追加学習データ。"
+      }
+    ]
   }
 ]
