@@ -1,5 +1,93 @@
 [
   {
+    "id": "mira-scene",
+    "title": "Mira-Scene",
+    "org": "VAST AI Research / The University of Hong Kong",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "1枚の写真から、家具や物体がそれぞれ独立したパーツとして配置された『編集できる3Dシーン』を自動生成する研究。香港大学とVAST AI Researchによる。",
+    "point": "従来、1枚の写真から3Dシーンを作る技術は『カメラの位置と物の向きを推測して配置する』方式が主流で、物同士の位置関係がずれたり奥の物体が歪んだりしやすい弱点がありました。Mira-Sceneは、写真の各ピクセルが物体表面のどの位置に対応するかを密に対応づける『座標マップ』という仕組みを使い、この推測作業をより確実にすることで、Meta社のSAM 3Dという既存手法と比べて配置精度が体積ベースの指標で約4割向上したと報告されています。広告や体験制作の現場では、商品陳列やロケハン写真を1枚撮るだけで、家具や小物を個別に動かせる3DシーンをCG的に組み立て、CM用のプレビズやAR配置検証、バーチャル背景の下敷きとして素早く使えるようになる可能性があります。",
+    "detail": "仕組みを簡単に言うと、写真に写る机や椅子などの物体ごとに『真上や真横から見たらどう見えるか』という基準の姿を思い浮かべ、写真の各点がその基準姿のどこに当たるかを色分けした地図（座標マップ）を作ります。この地図と深度推定AIが作る大まかな奥行き情報を組み合わせることで、物体の3D的な向き・大きさ・位置を計算で求め、さらに拡散モデル（画像生成AIの一種）が物体の形とレイアウトを同時に生成します。\n\n従来手法は物体の3Dの向きや位置を『それらしい値を直接推測する』回帰型の方式が中心で、複数の物体が写る複雑な部屋のシーンでは誤差が蓄積しやすいという課題がありました。Mira-Sceneは各ピクセル単位の対応関係という密な手がかりを使うことでこの誤差を抑え、屋内外・現実/合成データを横断したテストで既存手法より高い精度を示したと論文は報告しています。\n\n利用にはNVIDIA製GPUを備えたLinux環境とPython、PyTorchが必要で、GitHub（VAST-AI-Research/Mira-Scene）で推論コードが公開され、学習済みモデルの一部の重みもHugging Face（Yang-Tian/Mira-Scene）から入手できます。ただし公開されているのはパイプラインの一部の重みで、物体切り出しや深度推定は別途サードパーティのモデルを組み合わせる必要があり、ライセンスファイルが見当たらないため商用利用には権利者への確認が必要です。",
+    "license": {
+      "spdx": null,
+      "commercial": "research-only",
+      "note": "GitHubリポジトリにLICENSEファイルが存在せず、権利条件が明示されていない。商用利用前に開発元への確認が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/VAST-AI-Research/Mira-Scene"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2609.23796"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/mira-scene.jpg",
+    "relatedWorks": [
+      {
+        "title": "SAM 3D (Meta AI)",
+        "description": "1枚の画像から物体・人物の3D形状を推定する手法。Mira-Sceneが精度比較のベースラインとした技術。",
+        "url": "https://ai.meta.com/sam3d/"
+      },
+      {
+        "title": "TRELLIS (Microsoft)",
+        "description": "画像やテキストから単一の3Dアセットを生成する構造化潜在表現モデル。物体単体の3D生成という先行研究にあたる。",
+        "url": "https://github.com/microsoft/TRELLIS"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "gs-object-extraction",
+    "title": "gs-object-extraction",
+    "org": "07LEE（個人開発者）",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "学習済みの3D Gaussian Splattingシーンから、狙った物体だけをクリックで選んで単独の3Dデータ（PLYファイル）として切り出せる無料オープンソースツール。",
+    "point": "3D Gaussian Splatting（通称3DGS）は、多数の写真から空間をまるごと立体的に再現する近年人気の3D撮影技術ですが、撮れるのは『部屋ごと』『建物ごと』の一体化されたデータで、その中の椅子や置物だけを取り出して別の場面で使い回すのは困難でした。gs-object-extractionは、3DGSシーンをビューアで開いて対象物を数回クリックするだけで、Meta社の物体認識AI『SAM2』が自動でその物体を構成する点群を判別し、単独のPLYファイルとして書き出せるツールです。撮り直しや再学習は不要です。広告制作では、ロケ撮影した3DGSシーンから商品や小道具だけを抜き出し、別の背景と合成したり複数カットで使い回したりする用途に使えそうです。",
+    "detail": "仕組みとしては、3DGSシーンは無数の半透明な『点(ガウシアン)』の集まりとして物体や空間を表現しています。このツールはまず3D空間を通常のカメラのように様々な角度から2D画像としてレンダリングし、その2D画像上でユーザーがクリックした点をもとにSAM2が『物体の輪郭マスク』を作ります。16視点以上から同じ物体にマスクを重ねることで、どのガウシアン点がその物体に属するかを立体的に絞り込み、対象物だけを抜き出したPLYファイルを書き出します。\n\n従来、3DGSシーンから特定の物体だけを分離するには、物体単体を撮り直して再学習するか、専門知識を要する手作業でのフィルタリングが必要でした。本ツールはSAM2による自動セグメンテーションとGPU上での高速処理（gsplat採用）を組み合わせ、GUI操作だけで完結させている点が特徴です。\n\n利用にはNVIDIA製GPU、Python 3.10〜3.12、CUDA Toolkit、PyTorchが必要で、SAM2のチェックポイント（約1GB）を追加でダウンロードします。ソースコードはGitHubで無料公開されておりApache-2.0ライセンスのため商用利用も可能ですが、開発者1名・スター数1の初期段階プロジェクトのため、実運用に組み込む前の自己検証を推奨します。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "本体はApache-2.0で商用利用可。依存するSAM2・gsplat等サードパーティ部分は各々のライセンスに従う必要あり。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/07LEE/gs-object-extraction"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/gs-object-extraction.jpg",
+    "relatedWorks": [
+      {
+        "title": "gaussian-splatting (graphdeco-inria)",
+        "description": "3D Gaussian Splattingの原論文の公式実装。本ツールが前提とする学習済みシーンの生成元。",
+        "url": "https://github.com/graphdeco-inria/gaussian-splatting"
+      },
+      {
+        "title": "segment-anything (Meta AI)",
+        "description": "本ツールが物体マスク抽出に利用しているSegment Anythingシリーズの公式実装。",
+        "url": "https://github.com/facebookresearch/segment-anything"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "vggt",
     "title": "VGGT-Ω (VGGT-Omega)",
     "org": "Meta AI (FAIR) × University of Oxford VGG",
