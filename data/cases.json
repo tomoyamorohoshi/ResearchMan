@@ -1,5 +1,221 @@
 [
   {
+    "id": "glay-mv-2026",
+    "title": "GLAY「汚れた英雄」MV",
+    "summary": "GLAY64thシングルのMVは全編スタジオ撮影にAI生成の壮大な背景を織り交ぜ、演奏映像と非現実的世界観を融合させた",
+    "client": "GLAY",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://news.livedoor.com/topics/detail/32391382/",
+    "thumbnail": "/thumbnails/glay-mv-2026.jpg",
+    "videoId": "",
+    "overview": "GLAYの64thシングル「汚れた英雄」（2026年9月23日発売）のミュージックビデオ。メンバーの演奏パフォーマンスを軸に、全編スタジオ撮影とAI生成の壮大な背景を組み合わせた映像で、楽曲の世界観を表現している。",
+    "background": "「汚れた英雄」はHISASHIが主人公の葛藤から着想を得て作詞・作曲した楽曲で、ロックへの原点回帰をテーマにライブツアーを通じて育てられた曲。64作目のシングルとしてリリースされ、その世界観を映像化するMVが同時公開された。",
+    "execution": "撮影自体はスタジオ内で完結させつつ、背景部分にAI生成映像を組み合わせることで、実写では再現が難しい壮大なシチュエーションを演出。メンバーの激しい演奏シーンとAI生成背景を融合させ、限られた撮影コストの中で楽曲の世界観を拡張する手法を取っている。",
+    "evaluationImpact": "制作会社・監督・使用AIツールなど技術的詳細は各種報道で明かされておらず不明だが、実写演奏とAI生成背景を組み合わせる手法は国内バンドのMV制作における低コスト・高表現の新たな選択肢を示す事例として報じられた。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/MV",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "with-you-season-after-season-2026",
+    "title": "With You, Season After Season",
+    "summary": "実写・実機・実録エンジン音と生成AIを融合し、農機の細部を保ったまま四季が滑らかに巡る30秒ハイブリッドAI広告",
+    "client": "New Holland Agriculture",
+    "agency": "Enigma / AiCandy",
+    "categories": [
+      "AIクリエイティブ",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://campaignbrief.com/new-holland-travels-through-a-year-of-farming-seasons-in-new-hybrid-ai-film-via-enigma/",
+    "thumbnail": "/thumbnails/with-you-season-after-season-2026.jpg",
+    "videoId": "MlPyFOM_x-c",
+    "overview": "New Holland Agricultureが2026年9月に発表した30秒のハイブリッドAI映像「With You, Season After Season」。Enigmaが企画し、豪AI映像制作会社AiCandyが制作。農機を画面中央に据えたまま、周囲の風景・天候・動物・農作業が季節ごとに移り変わる。",
+    "background": "多くの人が体感する四季に対し、農家は種まき・出産・梱包・収穫など、より多くの「季節」を経験している。この観察を起点に、1台の農機が1年を通じて働き続ける様子を1カットで見せる企画が生まれた。",
+    "execution": "実際の農機と本物のエンジン音を収録した実写素材に、高度なAI映像化技術を組み合わせ、New Hollandの各モデルを細部まで正確に保ったまま背景の風景・天候・動物・作業内容だけを連続的に変化させた。純粋な実写のみでは撮影が困難でコストも膨大になる表現をAIで実現した。",
+    "evaluationImpact": "実写とAI生成を役割分担させることで、ブランド資産である製品ディテールの正確性を犠牲にせず、従来は非現実的だった長期間・広範囲のロケ表現を可能にした点が新しい。生成AI広告における「プロダクト精度の担保」という実務課題への具体的な解法を示した事例。",
+    "relatedWorks": [
+      {
+        "title": "AiCandy About",
+        "description": "本作を制作したオーストラリアのAI映像制作会社AiCandyの紹介ページ",
+        "url": "https://www.aicandy.com.au/about"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Film",
+      "Theme/Sustainability"
+    ]
+  },
+  {
+    "id": "sky-vegas-primetime-play-2026",
+    "title": "Sky Vegas: Primetime Play",
+    "summary": "Sky Vegasが新ブランドプラットフォーム刷新、Kaya Scodelario起用の映像とWaterloo駅ジャック含む統合キャンペーンを展開",
+    "client": "Sky Vegas",
+    "agency": "Dentsu Creative",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://lbbonline.com/news/sky-vegas-turns-downtime-into-primetime-play-with-kaya-scodelario",
+    "thumbnail": "/thumbnails/sky-vegas-primetime-play-2026.jpg",
+    "videoId": "",
+    "overview": "Sky Vegasが新ブランドプラットフォーム「Primetime Play」を発表。Dentsu Creative UKが手掛け、Netflix『The Gentlemen』出演のKaya Scodelarioを起用したブランドフィルムと全国広告キャンペーンを展開した。",
+    "background": "Sky VegasはSkyのテレビ・スポーツ・ニュース・デジタルエンターテインメント事業とのブランド近接性を高めるため、既存のビジュアルアイデンティティを刷新し、より放送エンタメらしい世界観への転換を図った。",
+    "execution": "監督Scott LyonによるブランドフィルムはMark Ronsonの楽曲「Ooh Wee」に乗せ、溶岩流や宝石庫、熱帯雨林、巨大クラーケンなど没入感あるスタジオ空間をKaya Scodelarioが巡る構成。Electric Theatre CollectiveとのVFXと実写を融合し、ロンドンWaterloo駅のジャックを含む全国OOH展開を行った。",
+    "evaluationImpact": "オンラインギャンブルブランドの広告表現をエンタメ番組さながらの映像美とセレブリティ起用で刷新し、Skyグループ内でのブランドポジショニング強化を狙う事例として業界メディアで取り上げられた。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Form/OOH",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "dockers-fall-2026-jim-harbaugh-ambassador-2026",
+    "title": "Dockers Fall 2026: Jim Harbaugh Ambassador",
+    "summary": "NFLコーチJim Harbaughを起用し、カーキパンツを日常のユニフォームとして再定義した秋キャンペーン",
+    "client": "Dockers",
+    "agency": "Bolded (OBB Media)",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://lbbonline.com/news/dockers-jim-harbaugh-ambassador",
+    "thumbnail": "/thumbnails/dockers-fall-2026-jim-harbaugh-ambassador-2026.jpg",
+    "videoId": "",
+    "overview": "米アパレルブランドDockersが、ロサンゼルス・チャージャーズのヘッドコーチJim Harbaughを新アンバサダーに起用した2026年秋キャンペーン「The Everyday Uniform」。カーキ愛好家として知られる本人が、グリルやアイスプランジ、養蜂、筋トレ、空手など日常のさまざまなシーンでカーキを着用する様子をユーモラスに描く。",
+    "background": "Dockersはカーキパンツを長年定義してきたブランドとして、より現代的でユーモアのある形でヘリテージを再提示することを狙った。Harbaughがオフの場でもカーキを愛用していることに着目し、「一度良いものを見つけたら使い続ける」という彼の哲学とブランドの姿勢を重ね合わせた。",
+    "execution": "OBB Mediaのブランデッドコンテンツスタジオ「Bolded」が制作し、Mark Nickelsburgが監督。Harbaughがグリル、氷風呂、養蜂、ワークアウト、空手といったシュールで対照的な日常シーンをカーキ姿でこなす映像シリーズとして展開し、2026年9月14日にグローバルでローンチされた。",
+    "evaluationImpact": "スポーツ界の実力者コーチという意外な人選と、日常のあらゆる場面に対応する製品の汎用性を掛け合わせた点がユニーク。有名アスリート起用にありがちな競技シーン一辺倒ではなく、私生活のユーモラスな一面を見せることでブランドの「使い続けられる普段着」という価値を印象づけている。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Theme/Fashion",
+      "Theme/Sports"
+    ]
+  },
+  {
+    "id": "swag-for-life-jacket-to-bag-2026",
+    "title": "Swag for Life: Jacket-to-Bag",
+    "summary": "Aldiが着用でき10秒で買い物バッグに変形する防水ジャケットを限定数の応募制ギブアウェイで提供",
+    "client": "Aldi",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://lbbonline.com/news/aldi-swag-for-life-shopping-bag",
+    "thumbnail": "/thumbnails/swag-for-life-jacket-to-bag-2026.jpg",
+    "videoId": "",
+    "overview": "英国スーパーAldiが、消費者PR代理店Taylor Herringと共に「Swag For Life Jacket」を発表。紺色の防水ボンバージャケットで、ポケット部分から折りたたむとわずか10秒で食料品サイズのショッピングバッグに変形する。2026年9月23日から特設サイトでの応募制ギブアウェイとして限定数を配布した。",
+    "background": "英国の消費者調査で、46%が買い物バッグを頻繁に忘れ、85%が自宅に不要なエコバッグの「袋の袋」を溜め込んでいることが判明。約半数が月1回以上新しいエコバッグを買っている実態を踏まえ、日常的な買い忘れ問題を解決するウェアラブルな買い物グッズとして企画された。",
+    "execution": "Aldiのブランドカラー（ブルー・オレンジ）とロゴをあしらった防水ボンバージャケットを製作し、大きめのポケット構造によって着用状態から食料品サイズのバッグへ即座に変形できる仕組みを実装。2026年10月6日までの期間、指定メールアドレスへ氏名を送るだけで応募できるシンプルなギブアウェイ形式で展開した。",
+    "evaluationImpact": "実用課題（バッグ忘れ）を起点にした小規模プロダクトPR施策で、着用可能なファッションアイテムと買い物道具を一体化させた点がユニーク。大規模広告費をかけずにメディア報道を誘発する典型的なPRスタントとして、Aldiの節約・実用志向のブランドイメージ強化に寄与している。",
+    "relatedWorks": [
+      {
+        "title": "Swag For Life | ALDI UK",
+        "description": "Aldi公式のキャンペーン特設ページ・応募窓口",
+        "url": "https://www.aldi.co.uk/swagforlife"
+      },
+      {
+        "title": "No Bag? No Problem: Aldi Unveils Jacket That Transforms Into a Shopping Bag",
+        "description": "Aldi公式プレスセンターによる発表記事",
+        "url": "https://www.aldipresscentre.co.uk/product-news/no-bag-no-problem-aldi-unveils-jacket-that-transforms-into-a-shopping-bag/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Theme/Sustainability",
+      "Theme/Retail"
+    ]
+  },
+  {
+    "id": "175-years-of-advertising-2026",
+    "title": "175 Years of Advertising",
+    "summary": "NYTが自紙広告アーカイブから7点を厳選し、175年の広告史をキャンペーンとして再構成・発信",
+    "client": "The New York Times",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "メディア発明"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://lbbonline.com/news/new-york-times-advertising-175-years-campaign",
+    "thumbnail": "/thumbnails/175-years-of-advertising-2026.jpg",
+    "videoId": "",
+    "overview": "The New York Timesが創刊175周年を記念し、自社の広告アーカイブを活用したキャンペーン「175 Years of Advertising」を展開。1851年から2026年までにNYTに掲載された広告7点を選び、各時代の文化的文脈とともに紹介する企画。",
+    "background": "NYTは1851年創刊で、2026年9月18日に175周年を迎えた。同社広告部門(NYTA)は、広告主との長期的関係やジャーナリズムを支える広告の役割を可視化するため、自社の広告掲載史そのものを題材にした企業ブランディング施策を企画した。",
+    "execution": "全国版紙面に9ページの特集スプレッドを掲載し、Tiffany & Co.(1851)、Ford Model T(1909)、IBM(1966)、Heinz、Delta Air Lines、E*TRADE、L'Oréal Groupeなど象徴的な広告7点を年代順に再掲。デジタルではインタラクティブな年表とカスタム広告ユニット、Chief Advertising Officer Joy Robinsの声によるオーディオスポットも展開し、9月30日まで実施。",
+    "evaluationImpact": "「掲載企業はいずれも掲載費を払っていない」(SVP Tusar Barik)と明言し、広告そのものを文化史の一次資料として扱う姿勢を打ち出した点が評価ポイント。メディア企業が自社媒体の広告史を編集コンテンツ化する珍しい事例として、Adweek・The Drum・LBBなど複数のトレードメディアが報じた。",
+    "relatedWorks": [
+      {
+        "title": "New York Times Marks 175 Years With a Print Love Letter to Advertising",
+        "description": "Adweekによる詳細解説記事",
+        "url": "https://www.adweek.com/media/new-york-times-175-anniversary-print-advertising-campaign/"
+      },
+      {
+        "title": "The New York Times celebrates 175 years of its advertisers and their ads",
+        "description": "The Drumによる詳細解説記事",
+        "url": "https://www.thedrum.com/news/the-new-york-times-celebrates-175-years-of-its-advertisers-and-their-ads"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Print",
+      "Form/Website",
+      "Theme/Art"
+    ]
+  },
+  {
     "id": "deafcity-hub-visual-identity-2026",
     "title": "DeafCity Hub Visual Identity",
     "summary": "英国手話の指の動きをモーションキャプチャし、クリエイティブコーディングで反応させるろう文化拠点のID",
