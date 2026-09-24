@@ -51,6 +51,7 @@ export const RESEARCH_SOURCES: ResearchSource[] = [
   { tag: "Fiber Optics", kind: "order", label: "Fiber Optics" },
   { tag: "Portfolio Sites", kind: "order", label: "Portfolio Sites" },
   { tag: "Shiitake Ref", kind: "order", label: "Shiitake Ref" },
+  { tag: "Music Channels", kind: "order", label: "Music Channels" },
   { tag: "Radar", kind: "radar", label: "Radar" },
 ];
 
