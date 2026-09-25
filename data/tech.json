@@ -1,5 +1,102 @@
 [
   {
+    "id": "crossview-warp",
+    "title": "CrossView-Warp",
+    "org": "Cseti(個人開発者)",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools",
+      "Spatial/3D"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "既に撮影した動画クリップを、実際には撮っていない別のカメラアングルから見た映像に描き直す技術。奥行き情報をもとに画面を立体的に組み替え、新しいカメラ位置から見た映像をAIに生成させる。",
+    "point": "この技術がすごいのは、『撮り直しなしでカメラアングルを変えられる』という点です。動画編集では通常、別の角度から見たカットが欲しくても、もう一度その場にカメラを立てて撮影し直すしかありません。CrossView-Warpは、すでにある1本の動画から『奥行き地図』(画面のどこが手前でどこが奥かを示す情報)をAIが自動で推定し、その情報を頼りに『もしカメラが右に90度回り込んだらどう見えるか』を計算して映像を作り出します。カメラの動きは角度や距離といった数値で細かく指定できるため、文章のプロンプトでは難しかった正確な画角コントロールが可能です。広告制作の現場では、1回のロケ撮影素材から複数アングルのバリエーションを後から作る、あるいは商品の周りを回り込むようなカットを実写撮影なしで追加する、といった使い方が考えられます。既存のドローン映像や店頭撮影素材を活かして『別アングル版』を量産できれば、追加ロケ費用を抑えながら表現の幅を広げられる可能性があります。",
+    "detail": "仕組みを噛み砕くと3段階です。①MoGeという別のAIが、元動画の各フレームから『奥行き地図』(画面内の物体がカメラからどれくらい離れているか)を推定します。②その奥行き情報をもとに画面のピクセルを3D空間上に仮想的に配置し直し、指定したカメラ移動量(左右・上下・前後)に応じて再投影します。これで『新しい角度から見た大まかな映像』のたたき台ができますが、元のカメラが写していなかった部分(物陰など)は情報がなく、マゼンタ色の穴として残ります。③この穴だらけのたたき台と元動画を、MiniMax H3という動画生成AIに専用LoRA(狙った変化だけを追加学習させた軽量な補正データ)と一緒に読み込ませ、穴を自然に埋めながら被写体の見た目や動きの一貫性を保った最終映像を生成します。\n\n従来のAI動画生成でカメラを動かす場合、多くは『カメラを右に回り込ませて』といった文章プロンプトでAI任せにするしかなく、狙った角度に正確に合わせるのは苦手でした。CrossView-Warpは角度を数値で指定でき、しかも元映像の被写体の見た目(服装や商品パッケージなど)をそのまま維持できる点が違います。似た狙いの技術に、カメラパスを描いて映像を新規生成する『Camera H3』がありますが、CrossView-Warpは『すでにある映像を別角度に描き直す』復元・改変寄りのアプローチである点が特徴です。\n\n使うにはComfyUI(無料の画像・動画生成AIツール)、MiniMax H3という動画生成AIモデル(数十GBのダウンロードが必要)、深度推定用のMoGeモデル、そして専用LoRAファイルが必要です。ある程度のGPU性能(VRAM)を積んだPCが前提で、個人でも無料で試せますが、実務利用時はMiniMax H3側のライセンス条件(年商規模による商用可否、利用地域の制限など)を確認する必要があります。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "ノード本体(コード)はApache-2.0で無料商用可。ただし土台となるMiniMax H3本体は別のコミュニティライセンスで、年商2000万ドル未満なら『MiniMax H3』の表記付きで無料商用可・それ以上は別途許諾が必要。加えてオープンウェイトの直接利用は米国・EU・英国・韓国では許諾対象外(ホスト版サービス経由なら可)。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/cseti007/ComfyUI-CrossViewWarp"
+      },
+      {
+        "kind": "project",
+        "url": "https://huggingface.co/Cseti/MiniMax-H3_Ref2VA-LoRA-CrossView-Warp_v1"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=7QAapT9xMgM"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/crossview-warp.jpg",
+    "relatedWorks": [
+      {
+        "title": "Camera H3(3d-Camera-control-H3-Minimax)",
+        "description": "同じMiniMax H3向けに、ドラッグ操作でカメラパスを描いて新規映像を生成するComfyUIノード",
+        "url": "https://github.com/NyckM/3d-Camera-control-H3-Minimax"
+      },
+      {
+        "title": "MiniMax H3 VFX Edit & Style Transfer LoRAパック",
+        "description": "既存動画の動きや構図を保ったまま、プロンプト指示で部分的な見た目の編集を加えるLoRA群",
+        "url": "https://huggingface.co/Alissonerdx/Minimax-H3-ComfyUI"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "minimax-h3-vfx-edit-style-transfer-loraパック",
+    "title": "MiniMax H3 VFX Edit & Style Transfer LoRAパック",
+    "org": "Alissonerdx(個人開発者)",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "動画に『雨を降らせる』『映画風の色味にする』といった編集をテキストで指示するだけで加えられるAI用の追加学習データ(LoRA)セット。元の動きや構図を保ったまま見た目だけを変えられる。",
+    "point": "このLoRAパックのすごさは、『動画の一部だけをテキストで狙って書き換えられる』ことです。動画生成AIは新しく映像を一から作るのは得意でも、すでに撮った映像に対して『雨を足す』『色味を変える』といった“編集”だけを綺麗に行うのは実は難しい課題でした。全体を作り直すと被写体の動きや構図まで変わってしまうからです。このパックに含まれる『VFX Edit』は、元の動画の動きや構図を保ったまま、指定した変更だけを加えることに特化しています。加えて『Style Transfer』は参考画像やテキストで指定した画風(例:水彩画風、フィルムノワール調)を動画全体に一貫してかける機能、『Head Swap』は人物の頭部だけを参考画像の顔に差し替える実験的機能です。広告制作では、実写で撮影した素材に後からVFX的な演出を足したり、同じ素材から複数のトーン違いバリエーションを作ったりする用途が考えられます。撮影後の『やっぱりこの雰囲気にしたい』という要望に、再撮影なしで応えられる可能性があります。",
+    "detail": "仕組みとしては、MiniMax H3という動画生成AIの土台モデルに対して、LoRA(Low-Rank Adaptation、少ないデータで狙った変化だけを追加学習させる軽量な後付けパーツ)を組み合わせています。使いたい機能ごとに専用のLoRAファイル(VFX Edit用、Style Transfer用、Head Swap用)を使い分け、プロンプトの先頭に`vfx_edit:`や`style_transfer:`といった決まった合言葉(トリガーワード)を付けて指示を出す仕組みです。編集前の動画は『ガイド』としてAIに読み込ませることで、動き・構図・被写体の同一性を保ったまま、指定箇所だけが変化するよう設計されています。\n\n従来の動画生成AIは『真っ白な状態から動画を作る』か『既存動画をそのまま似せて再生成する』かの両極端になりがちで、『ここだけ変えたい』という編集的な要望には弱い面がありました。このLoRAパックは、動画編集ソフトのフィルターやエフェクトに近い感覚で、元の素材を活かしながらピンポイントに手を加えられる点が特徴です。実験段階のHead Swap機能を除けば、再現性を重視した実務投入向けの設計になっています。\n\n利用にはComfyUIと土台となるMiniMax H3モデル(数十GBのダウンロード)に加え、公開されているLoRAファイル(数百MB〜1GB程度)とワークフローファイルが必要です。個人のGPU環境でも動作しますが、素材動画のフレーム数を規定の値(5・22・39・56・73・90フレームなど)に合わせる必要があり、多少の慣れが要ります。商用利用時は土台であるMiniMax H3側のライセンス条件(年商規模・利用地域の制限)の確認が必須です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "LoRAファイル自体はApache-2.0。ただし土台となるMiniMax H3は別のコミュニティライセンスで、年商2000万ドル未満なら表記付きで無料商用可・それ以上は別途許諾が必要。オープンウェイトの直接利用は米国・EU・英国・韓国では制限がある。"
+    },
+    "links": [
+      {
+        "kind": "project",
+        "url": "https://huggingface.co/Alissonerdx/Minimax-H3-ComfyUI"
+      },
+      {
+        "kind": "post",
+        "url": "https://comfyui-wiki.com/en/news/2026-09-22-h3-vfx-edit-lora"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/minimax-h3-vfx-edit-style-transfer-loraパック.jpg",
+    "relatedWorks": [
+      {
+        "title": "CrossView-Warp",
+        "description": "既存の動画クリップを別のカメラアングルから見た映像に描き直すMiniMax H3向けLoRA",
+        "url": "https://github.com/cseti007/ComfyUI-CrossViewWarp"
+      },
+      {
+        "title": "Camera H3(3d-Camera-control-H3-Minimax)",
+        "description": "ドラッグ操作でカメラパスを描いて新規映像を生成するComfyUIノード",
+        "url": "https://github.com/NyckM/3d-Camera-control-H3-Minimax"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "mira-scene",
     "title": "Mira-Scene",
     "org": "VAST AI Research / The University of Hong Kong",
