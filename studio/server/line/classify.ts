@@ -10,7 +10,7 @@
  */
 import type { ResearchKind } from "../pipeline/pure.js";
 
-export type LineRequestKind = ResearchKind | "idea" | "awards";
+export type LineRequestKind = ResearchKind | "idea" | "awards" | "x_post";
 
 export interface ClassifiedRequest {
   kind: LineRequestKind;
@@ -97,6 +97,9 @@ const MENU_SELECTION_RULES: Array<{ kind: LineRequestKind; words: string[] }> = 
   // 追加の分岐無しで満たす（wizard.ts::stepIdle は matchMenuSelection を最初に判定するため）。
   { kind: "awards", words: ["3", "③", "AWARDS", "アワード"] },
   { kind: "idea", words: ["4", "④", "アイデア出し", "アイデア"] },
+  // メニュー5番: X投稿（DESIGN合意 docs/X_POST_DRAFTS_DESIGN.md v2）。final_confirmを挟まない
+  // AWARDSに似た専用ルート（await_xpost_url 1問のみ・確認ステップ無し）。
+  { kind: "x_post", words: ["5", "⑤", "X投稿"] },
 ];
 
 /**

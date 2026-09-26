@@ -37,6 +37,7 @@ export function buildMenuText(): string {
     "2️⃣ 技術調査",
     "3️⃣ AWARDS",
     "4️⃣ アイデア出し",
+    "5️⃣ X投稿",
     "",
     "番号で返信してください。やめるときは「キャンセル」と返信してください。",
   ].join("\n");
@@ -189,6 +190,26 @@ export function buildAwardResumeAcceptedText(): string {
  */
 export function buildAddCaseDuplicateAsCaseText(title: string): string {
   return `既に登録済み（Case Studyとして）: ${title}`;
+}
+
+// ── X投稿（DESIGN合意 docs/X_POST_DRAFTS_DESIGN.md v2） ────────────────────
+// research/ideaと異なりfinal_confirmを挟まず、URL1つの受付で即生成する
+// （事例追加・AWARDSと同じ「確認ステップなし」の考え方）。
+
+export function buildXPostUrlQuestionText(): string {
+  return "RMの事例/技術ページのURLを送ってください（例: https://research-man.vercel.app/cases/xxxxx）。";
+}
+
+/** RM以外のURL・存在しない形式のURLが来た場合。同じ状態のまま再入力を待つ。 */
+export function buildXPostUrlInvalidText(): string {
+  return ["RMの事例/技術ページのURL（/cases/{id} または /technology/{id}）を送ってください。", buildXPostUrlQuestionText()].join(
+    "\n",
+  );
+}
+
+/** 生成中に何らかの理由で失敗した場合（データ未検出・Claude構造化失敗・検証失敗の再生成後も失敗、等）。 */
+export function buildXPostFailedText(reason: string): string {
+  return [`X投稿文の生成に失敗しました: ${reason}`, "", buildXPostUrlQuestionText()].join("\n");
 }
 
 // ── 進捗照会（LINE「進捗」「状況」。要件A: 実行中/一時停止中ジョブの対話的照会） ──────

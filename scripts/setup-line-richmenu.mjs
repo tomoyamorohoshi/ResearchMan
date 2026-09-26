@@ -2,17 +2,21 @@
  * LINE公式アカウントのリッチメニュー作成・画像アップロード・デフォルト設定を行う
  * 一回きりのセットアップスクリプト（対話ウィザード拡張に伴うリッチメニュー導線用）。
  *
- * ボタン4つ（横4等分）はいずれも message アクションで固定文言を送信する。その文言は
- * studio/server/line/classify.ts::matchMenuSelection（idle/menu状態のメニュー選択判定）が
- * 受理する語と一致させてある（「事例調査」「技術調査」「事例+技術」「アイデア出し」）。
+ * ボタン5つ（横5等分。2026-09-27: X投稿タブ追加に伴い4→5）はいずれも message アクションで
+ * 固定文言を送信する。その文言は studio/server/line/classify.ts::matchMenuSelection
+ * （idle/menu状態のメニュー選択判定）が受理する語と一致させてある
+ * （「事例調査」「技術調査」「AWARDS」「アイデア出し」「X投稿」）。
  * これにより、ボタンをタップするだけで対話ウィザードのメニュー提示を飛ばして
- * await_theme（テーマ質問）から始まる。
+ * await_theme（テーマ質問。X投稿はawait_xpost_url）から始まる。
+ *
+ * 画像は scripts/generate-line-richmenu-image.mjs で生成する（このスクリプトの責務外。
+ * 5等分・2500x843pxの前提を共有する）。
  *
  * 使い方:
  *   node scripts/setup-line-richmenu.mjs --image path/to/menu.png            # 実行
  *   node scripts/setup-line-richmenu.mjs --image path/to/menu.png --dry-run  # 送信内容の表示のみ（何も送信しない）
  *
- * 画像生成はこのスクリプトの責務外。2500x843px（4等分前提）のPNG/JPEGを別途用意すること。
+ * 画像生成はこのスクリプトの責務外。2500x843px（5等分前提）のPNG/JPEGを別途用意すること。
  *
  * 認証情報はリポジトリに置かない。notify-line.mjs / studio/server/line/push.ts と同じ
  * ~/.researchman-line.json の channelAccessToken を使う（https直叩き・依存追加なし、同じ流儀）。
@@ -63,12 +67,13 @@ function loadConfig() {
   }
 }
 
-// 横4等分。文言は studio/server/line/classify.ts::matchMenuSelection の受理語と一致させること。
+// 横5等分。文言は studio/server/line/classify.ts::matchMenuSelection の受理語と一致させること。
 const RICHMENU_SIZE = { width: 2500, height: 843 };
-const AREA_WIDTH = RICHMENU_SIZE.width / 4;
+const AREA_WIDTH = RICHMENU_SIZE.width / 5;
 // 2026-07-15: メニュー3番を「事例+技術」からAWARDSへ変更（wizard側のメニュー置換に追随。
 // "AWARDS" は classify.ts::MENU_SELECTION_RULES の受理語）
-const BUTTON_LABELS = ["事例調査", "技術調査", "AWARDS", "アイデア出し"];
+// 2026-09-27: 5番目に「X投稿」を追加（DESIGN合意 docs/X_POST_DRAFTS_DESIGN.md v2）
+const BUTTON_LABELS = ["事例調査", "技術調査", "AWARDS", "アイデア出し", "X投稿"];
 
 function buildRichMenuPayload() {
   return {

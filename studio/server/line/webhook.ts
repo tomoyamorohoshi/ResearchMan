@@ -37,6 +37,7 @@ import {
   type Tab,
 } from "../jobs.js";
 import { resumeAwardJob } from "../pipeline/awardResearch.js";
+import { generateXPost, type XPostGenerationResult } from "../pipeline/xpost.js";
 import { isCancelText, isProgressText, isResumeText, type LineRequestKind } from "./classify.js";
 import { loadLineConfig, type LineConfig } from "./config.js";
 import {
@@ -53,17 +54,21 @@ import {
   buildQueuedAcceptedText,
   buildStructureFailedText,
   buildUnconfiguredAllowedUserText,
+  buildXPostFailedText,
 } from "./messages.js";
 import { isPendingExpired, loadPending, savePending, type LinePending } from "./pending.js";
-import { replyOrPushLineMessage } from "./reply.js";
+import { replyOrPushLineMessage, replyOrPushLineMessages } from "./reply.js";
 import { verifyLineSignature } from "./signature.js";
 import { structureAwardViaClaude, structureViaClaude, type AwardStructureResult, type StructureResult } from "./structure.js";
 import { buildMenuPending, pendingFromStructured, renderFinalConfirm, stepWizard } from "./wizard.js";
+import type { LineMessage } from "./xpostPure.js";
 
 export interface LineWebhookDeps {
   getConfig: () => LineConfig | null;
   /** 即時応答の送信。reply優先・失敗時push フォールバック（reply.ts参照）。 */
   respond: (channelAccessToken: string, replyToken: string | undefined, userId: string, text: string) => Promise<void>;
+  /** 複数吹き出し（テキスト/画像混在、最大5件）版のrespond。X投稿の結果送信に使う。 */
+  respondMulti: (channelAccessToken: string, replyToken: string | undefined, userId: string, messages: LineMessage[]) => Promise<void>;
   createJob: (tab: Tab, request: Record<string, unknown>) => Promise<Job>;
   loadPending: () => Promise<LinePending | null>;
   savePending: (p: LinePending | null) => Promise<void>;
@@ -74,6 +79,8 @@ export interface LineWebhookDeps {
   findResumableAwardsJob: () => Promise<ResumableAwardsJob | null>;
   /** 見つかったジョブをcheckpointから再開する（新しい予算枠で続行。awardResearch.ts参照）。 */
   resumeAwardsJob: (jobId: string) => Promise<void>;
+  /** X投稿の生成（データ読み込み・Claude生成・検証・吹き出し組み立て）。pipeline/xpost.ts参照。 */
+  generateXPost: (entryKind: "case" | "tech", entryId: string) => Promise<XPostGenerationResult>;
   /** 「進捗」「状況」キーワード向け: status="running"/"paused"の全ジョブ。 */
   listActiveJobs: () => Promise<Job[]>;
   /** 「進捗」「状況」キーワード向け: 実行中/一時停止中ジョブが無いときに案内する直近の完了ジョブ1件。 */
@@ -84,6 +91,7 @@ export interface LineWebhookDeps {
 const defaultDeps: LineWebhookDeps = {
   getConfig: loadLineConfig,
   respond: replyOrPushLineMessage,
+  respondMulti: replyOrPushLineMessages,
   createJob,
   loadPending,
   savePending,
@@ -91,6 +99,7 @@ const defaultDeps: LineWebhookDeps = {
   structureAward: structureAwardViaClaude,
   findResumableAwardsJob,
   resumeAwardsJob: resumeAwardJob,
+  generateXPost,
   listActiveJobs,
   findLatestFinishedJob,
   now: () => new Date(),
@@ -217,6 +226,19 @@ async function handleEvent(event: unknown, config: LineConfig, deps: LineWebhook
       const reason = err instanceof ValidationError || err instanceof Error ? err.message : String(err);
       await deps.respond(token, replyToken, userId, buildJobCreateFailedText(reason));
     }
+    return;
+  }
+
+  if (outcome.kind === "needsXPost") {
+    // 続けて別URLを送れば同タブで連続生成できるよう、pendingはawait_xpost_urlのまま保存する
+    // （"execute"/"addCase"分岐とは異なりnullクリアしない。DESIGN合意フロー5）。
+    await deps.savePending(outcome.pending);
+    const result = await deps.generateXPost(outcome.entryKind, outcome.entryId);
+    if (!result.ok) {
+      await deps.respond(token, replyToken, userId, buildXPostFailedText(result.error));
+      return;
+    }
+    await deps.respondMulti(token, replyToken, userId, result.messages);
     return;
   }
 

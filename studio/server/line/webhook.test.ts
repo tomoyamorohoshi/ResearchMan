@@ -18,6 +18,7 @@ import { createLineWebhookHandler, type LineWebhookDeps } from "./webhook.js";
 import type { LineConfig } from "./config.js";
 import type { Job } from "../jobs.js";
 import type { LinePending } from "./pending.js";
+import type { LineMessage } from "./xpostPure.js";
 
 const SECRET = "test-secret";
 const USER_ID = "Uallowed123";
@@ -35,6 +36,7 @@ interface Fakes {
   resumeAwardsJobCalls?: string[];
   activeJobs?: Job[];
   latestFinishedJob?: Job | null;
+  multiPushes?: Array<{ token: string; replyToken: string | undefined; userId: string; messages: LineMessage[] }>;
 }
 
 /** createJobの戻り値フェイク。テストが見るのは主にid/statusなので、残りはダミー値で埋める。 */
@@ -59,6 +61,10 @@ function buildDeps(config: LineConfig | null, fakes: Fakes, extra: Partial<LineW
     respond: async (token, replyToken, userId, text) => {
       fakes.pushes.push({ token, replyToken, userId, text });
     },
+    respondMulti: async (token, replyToken, userId, messages) => {
+      (fakes.multiPushes ??= []).push({ token, replyToken, userId, messages });
+    },
+    generateXPost: async () => ({ ok: false, error: "generateXPostはこのテストでは未設定です" }),
     createJob: async (tab, request) => {
       fakes.createJobCalls.push({ tab, request });
       if (fakes.createJobImpl) return fakes.createJobImpl(tab, request);
@@ -731,6 +737,85 @@ test("キャンセル: pendingが無ければその旨をpushする", async () =
     await waitFor(() => fakes.pushes.length > 0);
     assert.match(fakes.pushes[0].text, /キャンセルする依頼はありません/);
   });
+});
+
+// ── X投稿（DESIGN合意 docs/X_POST_DRAFTS_DESIGN.md v2: メニュー5→URL→即生成・連続生成可） ──
+
+test("X投稿経路: メニュー5番選択→URL送信→複数吹き出しで送信され、pendingはawait_xpost_urlのまま", async () => {
+  const fakes: Fakes = { pushes: [], createJobCalls: [], pendingStore: null };
+  const config: LineConfig = { channelSecret: SECRET, channelAccessToken: "tok", allowedUserId: USER_ID };
+  const messages: LineMessage[] = [
+    { type: "text", text: "postA" },
+    { type: "text", text: "postB" },
+    { type: "text", text: "RMページ: https://research-man.vercel.app/cases/foo" },
+  ];
+  const generateCalls: Array<{ entryKind: string; entryId: string }> = [];
+  await withApp(
+    buildDeps(config, fakes, {
+      generateXPost: async (entryKind, entryId) => {
+        generateCalls.push({ entryKind, entryId });
+        return { ok: true, messages };
+      },
+    }),
+    async (baseUrl) => {
+      await post(baseUrl, eventBody([textEvent("5")]));
+      await waitFor(() => fakes.pendingStore?.state === "await_xpost_url");
+      assert.match(fakes.pushes.at(-1)!.text, /URL/);
+
+      await post(baseUrl, eventBody([textEvent("https://research-man.vercel.app/cases/foo-2026")]));
+      await waitFor(() => (fakes.multiPushes?.length ?? 0) > 0);
+      assert.deepEqual(generateCalls, [{ entryKind: "case", entryId: "foo-2026" }]);
+      assert.deepEqual(fakes.multiPushes![0].messages, messages);
+      // 続けて別URLを送れる（"execute"/"addCase"と異なりpendingはnullクリアされない）
+      assert.equal(fakes.pendingStore?.state, "await_xpost_url");
+    },
+  );
+});
+
+test("X投稿経路: RM以外のURLは再入力を促しgenerateXPostは呼ばれない", async () => {
+  const fakes: Fakes = {
+    pushes: [],
+    createJobCalls: [],
+    pendingStore: { userId: USER_ID, state: "await_xpost_url", kind: "x_post", expiresAt: "2026-07-12T00:29:00.000Z" },
+  };
+  const config: LineConfig = { channelSecret: SECRET, channelAccessToken: "tok", allowedUserId: USER_ID };
+  let generateCalled = false;
+  await withApp(
+    buildDeps(config, fakes, {
+      generateXPost: async () => {
+        generateCalled = true;
+        return { ok: true, messages: [] };
+      },
+    }),
+    async (baseUrl) => {
+      await post(baseUrl, eventBody([textEvent("https://example.com/cases/foo")]));
+      await waitFor(() => fakes.pushes.length > 0);
+      assert.match(fakes.pushes[0].text, /URL/);
+      assert.equal(generateCalled, false);
+      assert.equal(fakes.pendingStore?.state, "await_xpost_url");
+    },
+  );
+});
+
+test("X投稿経路: 生成失敗時はエラー理由をpushし、pendingはawait_xpost_urlのまま", async () => {
+  const fakes: Fakes = {
+    pushes: [],
+    createJobCalls: [],
+    pendingStore: { userId: USER_ID, state: "await_xpost_url", kind: "x_post", expiresAt: "2026-07-12T00:29:00.000Z" },
+  };
+  const config: LineConfig = { channelSecret: SECRET, channelAccessToken: "tok", allowedUserId: USER_ID };
+  await withApp(
+    buildDeps(config, fakes, {
+      generateXPost: async () => ({ ok: false, error: "事例 foo-2026 が見つかりませんでした" }),
+    }),
+    async (baseUrl) => {
+      await post(baseUrl, eventBody([textEvent("https://research-man.vercel.app/cases/foo-2026")]));
+      await waitFor(() => fakes.pushes.length > 0);
+      assert.match(fakes.pushes[0].text, /見つかりませんでした/);
+      assert.equal(fakes.pendingStore?.state, "await_xpost_url");
+      assert.equal(fakes.multiPushes?.length ?? 0, 0);
+    },
+  );
 });
 
 // ── 期限切れ ────────────────────────────────────────────────────
