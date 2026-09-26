@@ -16,7 +16,7 @@
  *   node scripts/setup-line-richmenu.mjs --image path/to/menu.png            # 実行
  *   node scripts/setup-line-richmenu.mjs --image path/to/menu.png --dry-run  # 送信内容の表示のみ（何も送信しない）
  *
- * 画像生成はこのスクリプトの責務外。2500x843px（4等分前提）のPNG/JPEGを別途用意すること。
+ * 画像生成はこのスクリプトの責務外。2500x843px（5等分前提）のPNG/JPEGを別途用意すること。
  *
  * 認証情報はリポジトリに置かない。notify-line.mjs / studio/server/line/push.ts と同じ
  * ~/.researchman-line.json の channelAccessToken を使う（https直叩き・依存追加なし、同じ流儀）。

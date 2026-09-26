@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { buildReplyBubbleText, buildXPostBubbles, parseXPostUrl, validateXPostDraft, xWeightedLength } from "./xpostPure.js";
+import { buildReplyBubbleText, buildXPostBubbles, IMAGE_OMITTED_NOTE, parseXPostUrl, validateXPostDraft, xWeightedLength } from "./xpostPure.js";
 
 // ── parseXPostUrl ────────────────────────────────────────────────────
 
@@ -138,16 +138,19 @@ test("validateXPostDraft: 本文にURLがあれば拒否（postB）", () => {
 // ── buildReplyBubbleText / buildXPostBubbles ──────────────────────────
 
 test("buildReplyBubbleText: RMページURLのみ", () => {
-  const text = buildReplyBubbleText({ rmUrl: "https://research-man.vercel.app/cases/foo" });
+  const text = buildReplyBubbleText({ rmUrl: "https://research-man.vercel.app/cases/foo" }, false);
   assert.equal(text, "RMページ: https://research-man.vercel.app/cases/foo");
 });
 
 test("buildReplyBubbleText: 一次ソース・動画ありなら追記される", () => {
-  const text = buildReplyBubbleText({
-    rmUrl: "https://research-man.vercel.app/cases/foo",
-    sourceUrl: "https://example.com/article",
-    videoUrl: "https://www.youtube.com/watch?v=abc123",
-  });
+  const text = buildReplyBubbleText(
+    {
+      rmUrl: "https://research-man.vercel.app/cases/foo",
+      sourceUrl: "https://example.com/article",
+      videoUrl: "https://www.youtube.com/watch?v=abc123",
+    },
+    false,
+  );
   assert.match(text, /RMページ: https:\/\/research-man\.vercel\.app\/cases\/foo/);
   assert.match(text, /一次ソース: https:\/\/example\.com\/article/);
   assert.match(text, /動画: https:\/\/www\.youtube\.com\/watch\?v=abc123（公式動画/);
@@ -180,6 +183,99 @@ test("buildXPostBubbles: includeImage=falseなら画像を省略し3吹き出し
 test("buildXPostBubbles: thumbnailUrl未指定なら画像を省略", () => {
   const messages = buildXPostBubbles({ postA: "A", postB: "B" }, { rmUrl: "https://research-man.vercel.app/cases/foo" }, true);
   assert.equal(messages.length, 3);
+});
+
+// ── レビュー追加分（2026-09-27フォローアップ） ──────────────────────────
+
+test("buildReplyBubbleText: 画像省略なし(imageOmitted=false)なら注記を含まない", () => {
+  const text = buildReplyBubbleText({ rmUrl: "https://research-man.vercel.app/cases/foo" }, false);
+  assert.doesNotMatch(text, /サムネイル/);
+});
+
+test("buildReplyBubbleText: 画像省略あり(imageOmitted=true)なら注記を含む", () => {
+  const text = buildReplyBubbleText({ rmUrl: "https://research-man.vercel.app/cases/foo" }, true);
+  assert.match(text, new RegExp(IMAGE_OMITTED_NOTE.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+});
+
+test("buildXPostBubbles: includeImage=falseなら③に画像省略の注記が入る", () => {
+  const messages = buildXPostBubbles(
+    { postA: "A", postB: "B" },
+    { rmUrl: "https://research-man.vercel.app/cases/foo", thumbnailUrl: "https://research-man.vercel.app/thumbnails/foo.jpg" },
+    false,
+  );
+  assert.equal(messages.length, 3);
+  const replyBubble = messages[2];
+  assert.equal(replyBubble.type, "text");
+  if (replyBubble.type === "text") assert.match(replyBubble.text, /サムネイル/);
+});
+
+test("buildXPostBubbles: thumbnailUrl未指定でも画像省略の注記が入る", () => {
+  const messages = buildXPostBubbles({ postA: "A", postB: "B" }, { rmUrl: "https://research-man.vercel.app/cases/foo" }, true);
+  const replyBubble = messages[2];
+  assert.equal(replyBubble.type, "text");
+  if (replyBubble.type === "text") assert.match(replyBubble.text, /サムネイル/);
+});
+
+test("buildXPostBubbles: 画像を含む場合は注記が入らない", () => {
+  const messages = buildXPostBubbles(
+    { postA: "A", postB: "B" },
+    { rmUrl: "https://research-man.vercel.app/cases/foo", thumbnailUrl: "https://research-man.vercel.app/thumbnails/foo.jpg" },
+    true,
+  );
+  const replyBubble = messages[2];
+  assert.equal(replyBubble.type, "text");
+  if (replyBubble.type === "text") assert.doesNotMatch(replyBubble.text, /サムネイル/);
+});
+
+test("buildReplyBubbleText: sourceUrlとvideoUrlが完全一致なら一次ソース行を重複表示しない", () => {
+  const text = buildReplyBubbleText(
+    {
+      rmUrl: "https://research-man.vercel.app/cases/foo",
+      sourceUrl: "https://www.youtube.com/watch?v=abc123",
+      videoUrl: "https://www.youtube.com/watch?v=abc123",
+    },
+    false,
+  );
+  assert.doesNotMatch(text, /一次ソース/);
+  assert.match(text, /動画: https:\/\/www\.youtube\.com\/watch\?v=abc123（公式動画/);
+});
+
+test("buildReplyBubbleText: youtu.be形式とyoutube.com/watch形式は同一動画として重複表示しない", () => {
+  const text = buildReplyBubbleText(
+    {
+      rmUrl: "https://research-man.vercel.app/cases/foo",
+      sourceUrl: "https://youtu.be/abc123",
+      videoUrl: "https://www.youtube.com/watch?v=abc123",
+    },
+    false,
+  );
+  assert.doesNotMatch(text, /一次ソース/);
+});
+
+test("buildReplyBubbleText: 末尾スラッシュの違いだけなら同一URLとして重複表示しない", () => {
+  const text = buildReplyBubbleText(
+    {
+      rmUrl: "https://research-man.vercel.app/cases/foo",
+      sourceUrl: "https://example.com/article/",
+      videoUrl: "https://example.com/article",
+    },
+    false,
+  );
+  assert.doesNotMatch(text, /一次ソース/);
+  assert.match(text, /動画: https:\/\/example\.com\/article（公式動画/);
+});
+
+test("buildReplyBubbleText: sourceUrlとvideoUrlが異なるURLなら両方表示する", () => {
+  const text = buildReplyBubbleText(
+    {
+      rmUrl: "https://research-man.vercel.app/cases/foo",
+      sourceUrl: "https://example.com/article",
+      videoUrl: "https://www.youtube.com/watch?v=abc123",
+    },
+    false,
+  );
+  assert.match(text, /一次ソース: https:\/\/example\.com\/article/);
+  assert.match(text, /動画: https:\/\/www\.youtube\.com\/watch\?v=abc123（公式動画/);
 });
 
 test("buildXPostBubbles: 常に5件以下に切り詰める", () => {

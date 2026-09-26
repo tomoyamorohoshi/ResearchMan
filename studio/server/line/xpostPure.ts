@@ -127,30 +127,78 @@ export interface XPostSourceInfo {
   thumbnailUrl?: string;
 }
 
-/** 吹き出し③（セルフリプライ用テキスト）。RMページURL＋一次ソースURL＋（あれば）動画注記。 */
-export function buildReplyBubbleText(info: XPostSourceInfo): string {
+/** 画像吹き出しを省略した場合にセルフリプライへ追記する注記（レビュー追加分・2026-09-27）。 */
+export const IMAGE_OMITTED_NOTE =
+  "※サムネイル画像を取得できなかったため画像は省略しました（RMページの画像を手動で保存してください）";
+
+/**
+ * URLをゆるく正規化して比較用の文字列にする（末尾スラッシュ・www.の有無を無視し、
+ * YouTubeのyoutu.be/youtube.com/watch?v=/embed形式は動画idベースで同一視する）。
+ * パース不能な文字列は末尾スラッシュだけ除いてそのまま比較に使う（fail-open。
+ * 誤って別URL扱いになっても実害は「重複表示される」だけで安全側）。
+ */
+function normalizeUrlForCompare(url: string): string {
+  let parsed: URL;
+  try {
+    parsed = new URL(url);
+  } catch {
+    return url.trim().replace(/\/+$/, "");
+  }
+  const host = parsed.hostname.replace(/^www\./, "");
+  const pathname = parsed.pathname.replace(/\/+$/, "");
+
+  let videoId: string | null = null;
+  if (host === "youtu.be") {
+    videoId = pathname.slice(1) || null;
+  } else if (host === "youtube.com" || host === "m.youtube.com") {
+    if (pathname === "/watch") videoId = parsed.searchParams.get("v");
+    else if (pathname.startsWith("/embed/")) videoId = pathname.slice("/embed/".length);
+  }
+  if (videoId) return `youtube-video:${videoId}`;
+
+  return `${host}${pathname}`;
+}
+
+/** 2つのURLが（正規化のうえ）同一の対象を指しているか。どちらか未指定ならfalse。 */
+function urlsEquivalent(a: string | undefined, b: string | undefined): boolean {
+  if (!a || !b) return false;
+  return normalizeUrlForCompare(a) === normalizeUrlForCompare(b);
+}
+
+/**
+ * 吹き出し③（セルフリプライ用テキスト）。RMページURL＋一次ソースURL＋（あれば）動画注記。
+ * sourceUrlとvideoUrlが（正規化のうえ）同一URLを指す場合は「一次ソース:」行を省略し、
+ * 「動画:」行だけを表示する（レビュー指摘: 同じURLを2回貼らない）。
+ * imageOmitted=trueなら末尾に画像省略の注記を追記する（レビュー指摘: サムネイルが省略された
+ * ことをユーザーに伝える。DESIGN合意「本番で200を確認できない場合は省略し注記」の実装箇所）。
+ */
+export function buildReplyBubbleText(info: XPostSourceInfo, imageOmitted: boolean): string {
   const lines = [`RMページ: ${info.rmUrl}`];
-  if (info.sourceUrl) lines.push(`一次ソース: ${info.sourceUrl}`);
+  const sourceIsSameAsVideo = urlsEquivalent(info.sourceUrl, info.videoUrl);
+  if (info.sourceUrl && !sourceIsSameAsVideo) lines.push(`一次ソース: ${info.sourceUrl}`);
   if (info.videoUrl) {
     lines.push(`動画: ${info.videoUrl}（公式動画。Xへは引用・リンクで紹介。ダウンロード転載はしない）`);
   }
+  if (imageOmitted) lines.push(IMAGE_OMITTED_NOTE);
   return lines.join("\n");
 }
 
 /**
  * 吹き出し①〜④（投稿文案A/案B/セルフリプライ用テキスト/画像）を組み立てる。
- * includeImage=falseまたはthumbnailUrl未指定なら画像吹き出しは省略する
- * （DESIGN合意: 本番で200を確認できない場合は省略し注記。注記はwebhook.ts側のテキストで行う）。
+ * includeImage=falseまたはthumbnailUrl未指定（空文字・空白のみを含む）なら画像吹き出しを
+ * 省略し、セルフリプライ側に省略した旨の注記を追記する（DESIGN合意＋レビュー指摘）。
  * 最大5吹き出しに切り詰める（本関数の出力は4件のため実質no-op。将来の拡張に備えたガード）。
  */
 export function buildXPostBubbles(draft: XPostDraft, info: XPostSourceInfo, includeImage: boolean): LineMessage[] {
+  const hasThumbnail = !!info.thumbnailUrl && info.thumbnailUrl.trim() !== "";
+  const showImage = includeImage && hasThumbnail;
   const messages: LineMessage[] = [
     { type: "text", text: draft.postA },
     { type: "text", text: draft.postB },
-    { type: "text", text: buildReplyBubbleText(info) },
+    { type: "text", text: buildReplyBubbleText(info, !showImage) },
   ];
-  if (includeImage && info.thumbnailUrl) {
-    messages.push({ type: "image", originalContentUrl: info.thumbnailUrl, previewImageUrl: info.thumbnailUrl });
+  if (showImage) {
+    messages.push({ type: "image", originalContentUrl: info.thumbnailUrl!, previewImageUrl: info.thumbnailUrl! });
   }
   return messages.slice(0, 5);
 }

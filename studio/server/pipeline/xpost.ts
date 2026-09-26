@@ -21,9 +21,9 @@ import { readFile } from "node:fs/promises";
 import https from "node:https";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { assertWithinBudget } from "./budget.js";
+import { assertWithinBudget, BudgetExceededError } from "./budget.js";
 import { extractJsonObject } from "../line/structure.js";
-import { runPlainQuery } from "./sdkRunner.js";
+import { runPlainQuery, type AgentRunResult } from "./sdkRunner.js";
 import {
   buildXPostBubbles,
   validateXPostDraft,
@@ -150,7 +150,18 @@ function techSourceUrl(entry: TechRecordSlim): string | undefined {
 
 // ── サムネイル200確認（HEADリクエスト。失敗時は画像吹き出しを省略） ──────────
 
+/**
+ * サムネイルURLが実在する画像かどうかをHEADリクエストで確認する。
+ * - 200以外は不可
+ * - Content-Typeが image/* でなければ不可（レビュー指摘: 200だけでは静的ファイルの
+ *   フォールバックページ等を誤って画像として送りかねない）
+ * URLが空・空白のみの場合はリクエスト自体を送らずfalseを返す（レビュー指摘:
+ * data/cases.json・tech.jsonのthumbnailが空文字のエントリでサイトルート`${SITE}`への
+ * HEADになってしまうのを防ぐ。呼び出し側=findThumbnailUrlForで既にガードしているが、
+ * この関数単体でも安全側に倒す）。
+ */
 function headOk(url: string, timeoutMs = 8000): Promise<boolean> {
+  if (!url || !url.trim()) return Promise.resolve(false);
   return new Promise((resolve) => {
     let settled = false;
     const settle = (v: boolean): void => {
@@ -160,7 +171,8 @@ function headOk(url: string, timeoutMs = 8000): Promise<boolean> {
     };
     try {
       const req = https.request(url, { method: "HEAD" }, (res) => {
-        settle((res.statusCode ?? 0) === 200);
+        const contentType = res.headers["content-type"] ?? "";
+        settle((res.statusCode ?? 0) === 200 && contentType.startsWith("image/"));
       });
       req.on("error", () => settle(false));
       req.setTimeout(timeoutMs, () => {
@@ -172,6 +184,12 @@ function headOk(url: string, timeoutMs = 8000): Promise<boolean> {
       settle(false);
     }
   });
+}
+
+/** thumbnailフィールドが空・空白のみならサムネイルURL自体を組み立てない（headOkのガードと二重化）。 */
+function resolveThumbnailUrl(thumbnailField: string | undefined): string | undefined {
+  if (!thumbnailField || !thumbnailField.trim()) return undefined;
+  return `${SITE}${thumbnailField}`;
 }
 
 // ── タイムアウト（structure.tsと同じパターン） ──────────────────────────
@@ -192,8 +210,15 @@ function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
   });
 }
 
-async function generateDraftOnce(prompt: string): Promise<{ ok: true; draft: XPostDraft } | { ok: false; error: string }> {
-  const result = await withTimeout(runPlainQuery(prompt, XPOST_MODEL, { effort: XPOST_EFFORT }), XPOST_TIMEOUT_MS);
+export type XPostQueryFn = (prompt: string) => Promise<AgentRunResult>;
+
+/** 既定のClaude呼び出し（sdkRunner.ts::runPlainQuery）。テスト時はフェイクに差し替える。 */
+const defaultQueryFn: XPostQueryFn = (prompt) => runPlainQuery(prompt, XPOST_MODEL, { effort: XPOST_EFFORT });
+
+type DraftAttemptResult = { ok: true; draft: XPostDraft } | { ok: false; error: string };
+
+async function generateDraftOnce(prompt: string, queryFn: XPostQueryFn): Promise<DraftAttemptResult> {
+  const result = await withTimeout(queryFn(prompt), XPOST_TIMEOUT_MS);
   if (!result.ok) return { ok: false, error: result.error ?? "生成に失敗しました" };
   assertWithinBudget(result.costUsd, XPOST_BUDGET_USD);
   const validated = validateXPostDraft(extractJsonObject(result.text));
@@ -202,14 +227,31 @@ async function generateDraftOnce(prompt: string): Promise<{ ok: true; draft: XPo
 }
 
 /**
- * 検証失敗時に1回だけ再生成する（DESIGN合意: 「超過なら1回だけ再生成依頼、それでも超過なら
- * エラー扱いで案を落とす（切り詰めで意味を壊さない）」）。
+ * generateDraftOnceを実行し、例外を投げた場合は失敗結果に正規化する。
+ * ただしBudgetExceededErrorだけは再スローする（レビュー指摘: 予算超過は再生成せず即座に
+ * 停止する。budget.ts::assertWithinBudgetのポリシーと矛盾させないため）。
  */
-async function generateDraftWithRetry(prompt: string): Promise<{ ok: true; draft: XPostDraft } | { ok: false; error: string }> {
-  const first = await generateDraftOnce(prompt);
+async function attemptDraft(prompt: string, queryFn: XPostQueryFn): Promise<DraftAttemptResult> {
+  try {
+    return await generateDraftOnce(prompt, queryFn);
+  } catch (err) {
+    if (err instanceof BudgetExceededError) throw err;
+    return { ok: false, error: err instanceof Error ? err.message : String(err) };
+  }
+}
+
+/**
+ * 検証失敗時・タイムアウト等の例外発生時に1回だけ再生成する（DESIGN合意: 「超過なら1回だけ
+ * 再生成依頼、それでも超過ならエラー扱いで案を落とす（切り詰めで意味を壊さない）」。
+ * レビュー指摘: 検証失敗だけでなく、runPlainQuery自体がタイムアウト等で例外を投げた場合も
+ * 同様に1回だけ再試行する。BudgetExceededErrorだけは再試行せず呼び出し元へ伝播させる
+ * （合計最大2回の試行）。
+ */
+export async function generateDraftWithRetry(prompt: string, queryFn: XPostQueryFn = defaultQueryFn): Promise<DraftAttemptResult> {
+  const first = await attemptDraft(prompt, queryFn);
   if (first.ok) return first;
   const retryPrompt = `${prompt}\n\n【再生成】前回の出力は条件を満たしませんでした（理由: ${first.error}）。この条件を満たすよう作り直してください。`;
-  const second = await generateDraftOnce(retryPrompt);
+  const second = await attemptDraft(retryPrompt, queryFn);
   if (second.ok) return second;
   return { ok: false, error: `生成した投稿文が条件を満たせませんでした（再生成後も失敗）: ${second.error}` };
 }
@@ -225,8 +267,8 @@ export async function generateXPost(entryKind: XPostEntryKind, entryId: string):
       const drafted = await generateDraftWithRetry(buildCasePrompt(entry));
       if (!drafted.ok) return { ok: false, error: drafted.error };
 
-      const thumbnailUrl = `${SITE}${entry.thumbnail}`;
-      const includeImage = await headOk(thumbnailUrl);
+      const thumbnailUrl = resolveThumbnailUrl(entry.thumbnail);
+      const includeImage = thumbnailUrl ? await headOk(thumbnailUrl) : false;
       const sourceInfo: XPostSourceInfo = {
         rmUrl: `${SITE}/cases/${entryId}`,
         sourceUrl: entry.link || undefined,
@@ -242,8 +284,8 @@ export async function generateXPost(entryKind: XPostEntryKind, entryId: string):
     const drafted = await generateDraftWithRetry(buildTechPrompt(entry));
     if (!drafted.ok) return { ok: false, error: drafted.error };
 
-    const thumbnailUrl = `${SITE}${entry.thumbnail}`;
-    const includeImage = await headOk(thumbnailUrl);
+    const thumbnailUrl = resolveThumbnailUrl(entry.thumbnail);
+    const includeImage = thumbnailUrl ? await headOk(thumbnailUrl) : false;
     const sourceInfo: XPostSourceInfo = {
       rmUrl: `${SITE}/technology/${entryId}`,
       sourceUrl: techSourceUrl(entry),
