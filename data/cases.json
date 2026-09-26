@@ -1,5 +1,269 @@
 [
   {
+    "id": "resolume-7-28-2026",
+    "title": "Resolume 7.28 — ローカル動作のコンピュータビジョン搭載アップデート",
+    "summary": "VJソフトResolume 7.28が人物セグメンテーション・深度推定をクラウド不要でローカル処理する新Wireノードとエフェクト群を追加",
+    "client": "Resolume",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://cdm.link/resolume-7-28-computer-vision/",
+    "thumbnail": "/thumbnails/resolume-7-28-2026.jpg",
+    "videoId": "",
+    "overview": "VJ・ライブ映像制作ソフトResolumeの7.28アップデートは、Human SegmentationとDepth Estimationという2つの新しいコンピュータビジョンWireノードを基盤に、背景除去や深度ぼかし、深度ディスプレイスなど7種類の新しいビジョンベースエフェクトを実装した。",
+    "background": "近年のリアルタイム映像処理では人物切り抜きや深度推定にクラウドAPIやサーバーサイド処理を用いる例が多いが、Resolumeはライブパフォーマンス用途での低遅延性とプライバシー配慮を重視し、すべての処理をローカルのマシン上で完結させる設計を選んだ。",
+    "execution": "Human SegmentationとDepth Estimationの推論結果をWire（Resolumeのノードベースエフェクト構築システム）上のパラメータとして公開し、背景除去・深度フィールド・深度ディスプレイスなど7つのエフェクトを標準搭載。ユーザーはWireノードを組み替えて独自のビジョン駆動エフェクトをカスタム開発できる。あわせてGroup FFT機能やMIDI/OSCモニタリングの改善も行われた。",
+    "evaluationImpact": "監視技術としても使われがちな人物セグメンテーション・深度推定技術を、クラウドに頼らずローカルで完結させた上でクリエイティブ・アート表現向けに開放した点が評価されている。Wireによるノード改造の自由度により、VJやライブ演出の現場でカスタムビジュアルエフェクト開発の裾野が広がると見られる。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/Projection",
+      "Form/Event",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "the-tie-break-new-balance-miu-miu-interactive-site-2026",
+    "title": "The Tie-break — New Balance × Miu Miu Interactive Site",
+    "summary": "テニス選手Coco Gauff主演、WebGL×Three.jsのゲーム風インタラクティブサイトでNew Balance×Miu Miuコラボを体験購入できるECサイト",
+    "client": "New Balance × Miu Miu（Coco Gauff起用）",
+    "agency": "Merci Michel",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "テクノロジー×アイデア"
+    ],
+    "award": "Awwwards Site of the Day（2026年9月25日）",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.awwwards.com/sites/the-tie-break",
+    "thumbnail": "/thumbnails/the-tie-break-new-balance-miu-miu-interactive-site-2026.jpg",
+    "videoId": "",
+    "overview": "New Balance×Miu Miuのコラボコレクションを、テニス選手Coco Gauffと共に「プレイして探索する」形式で紹介するインタラクティブサイト。Merci Michel制作で、WebGLとThree.jsを用いたゲーム風のUIでコレクションを回遊・購入できる構成になっている。",
+    "background": "New BalanceとMiu Miuは2026年のコラボレーションでCoco Gauffを起用し、Wimbledon 2026で披露した全身白基調のテニスコレクション（530 SLスニーカー新色等）を展開。この製品ローンチに合わせ、単なる商品紹介を超えたゲーム性のあるデジタル体験としてサイトが制作された。",
+    "execution": "パリのゲーミフィケーション専門スタジオMerci Michelが制作を担当。WebGL/Three.jsによる3D演出とゲームのようなインタラクションでコレクションアイテムを探索させ、そのままECへ誘導する構成。Merci MichelはMiu Miuと2019年の「Miu Miu Twist」（Elle Fanning主演のピクセルアート風ランナーゲーム）でも協業しており、継続的な関係性がある。",
+    "evaluationImpact": "2026年9月25日にAwwwards Site of the Dayを受賞。スコアはDesign 7.29、Usability 7.2、Creativity 7.53、Content 6.99（総合7.28/10）。ゲーム的インタラクションとEC機能を融合させ、タレント起用型のコラボローンチを単なる特設ページ以上の体験に昇華させた点が評価されている。",
+    "relatedWorks": [
+      {
+        "title": "Miu Miu Twist — become a miuvie star",
+        "description": "Merci Michel制作、Miu Miu Twist香水ローンチに合わせたElle Fanning主演のピクセルアート風ランナーゲーム（2019年）",
+        "url": "https://www.merci-michel.com/projects/miumiu-twist/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Tech/Web",
+      "Form/Website",
+      "Theme/Fashion",
+      "Theme/Sports"
+    ]
+  },
+  {
+    "id": "featured-projects-2026-2026",
+    "title": "Featured Projects 2026",
+    "summary": "デザインの思考と制作プロセス自体を「間」として可視化・体験化する複合デザインフェスティバル",
+    "client": "Featured Projects実行委員会",
+    "agency": "",
+    "categories": [
+      "カルチャーインサイト",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://2026.featuredprojects.jp/",
+    "thumbnail": "/thumbnails/featured-projects-2026-2026.jpg",
+    "videoId": "",
+    "overview": "「ものがうまれる、その『間』」をテーマに2026年9月25日〜27日、コクヨ東京品川THE CAMPUSで開催されたデザインの祭典。トークセッション、クリエイターズマーケット、ワークショップ、展示、テーブルトーク、ライブパフォーマンスの6プログラムで構成され、70名以上のスピーカー・出展者が参加した。",
+    "background": "完成した作品だけでなく、その背後にある試行錯誤や思考のプロセスに光を当てたいという問題意識から、Featured Projects運営(後藤あゆみ・相良園果ら)がテーマを設定。「よいものづくりは、明日を拓く」という理念のもと、作り手同士・作り手と参加者の対話の場を目指した。",
+    "execution": "「ものがうまれる、その『間』展」ではNuevo.Tokyo™、Takram、藤田悠実、DAIKI TADOらが制作過程を展示。建築家・永山祐子やデザイナー原田祐馬ら35名超のゲストによるトークセッション、クリエイターズマーケット、ワークショップなど複数プログラムを3日間で並行実施した。",
+    "evaluationImpact": "完成品でなく制作の「途中」や思考のプロセスを主題化することで、デザインを結果ではなくプロセスとして捉え直す視点を提示。IN FOCUSなど企業がサポーターとして参画するなど、業界横断でものづくりの現場を可視化する場として機能した。",
+    "relatedWorks": [
+      {
+        "title": "Featured Projects 2026 公式サイト",
+        "description": "イベント概要・プログラム・出展者情報",
+        "url": "https://2026.featuredprojects.jp/"
+      },
+      {
+        "title": "AXIS Web記事",
+        "description": "テーマ「ものがうまれる、その『間』」の解説記事",
+        "url": "https://www.axismag.jp/posts/2026/09/723814.html"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Event",
+      "Form/Exhibition",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "vtuber-tobariq-2026",
+    "title": "VTuberプロジェクト「帳区（Tobariq）」",
+    "summary": "怪異と謎がテーマの男性VTuber4名「帳区」がMBS×アップランドで誕生、参加型の謎解き演出でIP育成",
+    "client": "MBSイノベーションドライブ × アップランド",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.moguravr.com/tobariq-vtuber-project-debut/",
+    "thumbnail": "/thumbnails/vtuber-tobariq-2026.jpg",
+    "videoId": "",
+    "overview": "MBSイノベーションドライブと株式会社アップランドが共同展開する男性VTuberプロジェクト「帳区（Tobariq）」。芦屋ノイ、二路ぐう太、志摩渡レイゲン、巳鳴トウガの4名が2026年9月26日にYouTubeでリレー形式デビューした。",
+    "background": "MBSグループ傘下のVTuber IP開発会社アップランドが、既存の女性中心VTuber市場と差別化するため「怪異と謎」をコンセプトに据えた男性VTuberグループを企画。日々の配信に謎や違和感を仕込む参加型の世界観設計で新規ファン層の獲得を狙った。",
+    "execution": "イラストレーター4名、映像制作（えるいー）、音楽制作（A&R株式会社）など多分野のクリエイターがメンバーごとの世界観を構築。9月24日に全貌公開、9月26日19時から各メンバーが30分刻みでYouTube配信するリレー形式デビューを実施し、記念グッズ・ボイス販売も同日展開した。",
+    "evaluationImpact": "怪異診断サイトなど謎解き要素を絡めた参加型プロモーションで、単なる配信告知に留まらないIP体験を設計。男性VTuber市場が拡大する中、放送局系企業とVTuber専業会社の共同プロジェクトとして今後の展開が注目される。",
+    "relatedWorks": [
+      {
+        "title": "帳区 公式サイト",
+        "description": "MBSイノベーションドライブ×アップランドが送る新規男性VTuberプロジェクトの公式サイト",
+        "url": "https://www.tobariq.com/"
+      },
+      {
+        "title": "【MBSイノベーションドライブ×アップランド】新規男性VTuberプロジェクト『帳区』本格始動！（プレスリリース）",
+        "description": "アップランドによる公式プレスリリース。企画背景・制作体制を掲載",
+        "url": "https://prtimes.jp/main/html/rd/p/000000232.000013275.html"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/SNS",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "vcam-vtuber-2026",
+    "title": "VCam（VTuber向けアバター撮影アプリ）",
+    "summary": "VRMアバターで自撮り・AR撮影ができるiPhone/iPad向けカメラアプリ「VCamカメラ」がApp Store公開",
+    "client": "VCam開発元",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.moguravr.com/vcam-vtuber-camera/",
+    "thumbnail": "/thumbnails/vcam-vtuber-2026.jpg",
+    "videoId": "",
+    "overview": "macOS向けVTuberアプリ「VCam」の開発元Unlyptが、iPhone/iPad向けに自分の代わりにVRMアバターを写す撮影アプリ「VCamカメラ」を2026年9月25日にApp Storeで公開した。",
+    "background": "従来VTuberの配信・撮影はPC向けソフトが中心で、スマホだけで手軽にアバター姿を撮影する手段は限られていた。3Dモデルを持たないユーザーにも配慮した簡易化ニーズがあった。",
+    "execution": "前面カメラでの自撮り（本人は自動で隠れる）、背面カメラでの表情・手のトラッキング、ARカメラでの現実空間への合成撮影の3モードを搭載。3Dモデルがなくてもイラスト1枚を自動で切り抜き顔の動きに追従させられる。LiDAR搭載機では物体の奥にアバターを隠す表現も可能。基本無料、Pro版は月額・年額・買い切りから選択できる。",
+    "evaluationImpact": "iPhone・iPadのみで完結するVTuber風撮影体験を提供し、3Dモデル未所持のライトユーザーも取り込める設計により、VTuber文化への参加ハードルを下げる可能性がある。",
+    "relatedWorks": [
+      {
+        "title": "バチャカム",
+        "description": "iPhone1台で実写背景との合成撮影ができる類似のVTuber撮影アプリ（ViRD社開発）",
+        "url": "https://vird.co.jp/VachaCam/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/App"
+    ]
+  },
+  {
+    "id": "un-instant-2026",
+    "title": "『(Un) Instant』展",
+    "summary": "ネオン管の物質性を通じ、瞬時に消費される現代の情報伝達に「時間」を問い直す個展",
+    "client": "市川大翔",
+    "agency": "",
+    "categories": [
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000120.000097754.html",
+    "thumbnail": "/thumbnails/un-instant-2026.jpg",
+    "videoId": "",
+    "overview": "ネオン管技工士でもあるアーティスト市川大翔の個展『(Un) Instant』が2026年9月29日〜10月31日、東京・虎ノ門「SIGNAL」で開催。ガラスを曲げ真空にしてガスを封入し電気を通すネオン制作の工程そのものを作品化し、「一瞬（instant）」と「一瞬ではない（un-instant）」の対比を提示する。",
+    "background": "情報が高速・効率的に流通し瞬時に消費される現代において、そこからこぼれ落ちる時間や物質性への意識が薄れているという問題意識から企画された。市川はネオンを単なる発光装置ではなく「現象の標本」として捉え、制作に費やされる手間や時間そのものを可視化する表現を追求してきた。",
+    "execution": "会場は虎ノ門The ParkRex TORANOMON 1Fの「SIGNAL」。株式会社SIGNINGが企画・プロデュースし、ヴィンセント一朔、奥村耕成が製作を担当。会期中の10月16日には作家本人が登壇する記念パーティーも開催され、入場は無料。広告とアートの境界領域を扱う構成となっている。",
+    "evaluationImpact": "SICF25廣川玉枝賞やLUMINE meets ART AWARDオーディエンス賞など受賞歴を持つ作家が、広告的な「瞬時に伝わること」への批評性を、自身の専門技術であるネオン制作の物質的プロセスを通じて提示する試みとして注目される。",
+    "relatedWorks": [
+      {
+        "title": "市川大翔個展『Diffusion』（DiEGO表参道）",
+        "description": "同作家による過去の個展。ネオンを用いた表現手法の系譜を示す関連作品。",
+        "url": "https://www.di-ego.net/topics/4039"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Form/Installation",
+      "Theme/Art",
+      "Tech/Device"
+    ]
+  },
+  {
+    "id": "liminal-2026",
+    "title": "『Liminal - 池内ヨシカツ展』",
+    "summary": "音と絵の翻訳不可能性を主題に、油絵・彫刻・サウンドインスタレーションで知覚の境界を可視化する個展",
+    "client": "池内ヨシカツ",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000001.000191638.html",
+    "thumbnail": "/thumbnails/liminal-2026.jpg",
+    "videoId": "",
+    "overview": "作曲家・美術家の池内ヨシカツによる個展『Liminal』。京都市京セラ美術館 本館1F「光の広間」にて2026年10月13日～25日（19日休館）に開催。油絵20点、ドローイング3点、彫刻3点に加えサウンドインスタレーションを展示し、入場無料。",
+    "background": "池内ヨシカツは京都府文化観光大使を務める作曲家・美術家で、音楽と視覚芸術を横断する独自の表現を追求し、香港・ソウル・バンコク・台湾などアジア各地で個展を開催してきた。本展では「見ること」と「聴くこと」の間にある翻訳不可能なものをテーマに掲げる。",
+    "execution": "油絵、ドローイング、彫刻に加えサウンドインスタレーションを組み合わせ、視覚と聴覚を単に対応させるのではなく、両者の間で変化が生じるその境界条件そのものに焦点を当てる構成で展示空間を設計した。",
+    "evaluationImpact": "音と絵という異なる感覚モダリティの「翻訳不可能性」を作品体験として提示する試みであり、美術館の空間全体を使った複合メディア展示として、視覚芸術と音楽表現の境界領域を探る事例となっている（受賞歴は公式ソースで未確認）。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Form/Installation",
+      "Tech/Audio",
+      "Theme/Art"
+    ]
+  },
+  {
     "id": "reflections-2026",
     "title": "Reflections",
     "summary": "履けない子供靴と通学できない子の反射像を重ね、貧困による教育格差を可視化したNZの寄付訴求広告。",
