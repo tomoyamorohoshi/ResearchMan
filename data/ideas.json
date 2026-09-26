@@ -17024,5 +17024,203 @@
         "desc": "Spliceの公式MCPサーバーをClaudeに接続し、自然言語の指示だけでヒップホップトラックを組めるか検証した事例。"
       }
     ]
+  },
+  {
+    "id": "2026-09-26-1",
+    "date": "2026-09-26",
+    "title": "道徳診断のAI即興作曲",
+    "pattern": "文脈×技術",
+    "seed": "The Price of Moralsの道徳観診断クイズのように、来場者の回答をもとにResonantがその場でオリジナル曲をAI作曲し、『モラルの傾き』を音楽として即興で聴かせる体験にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "the-price-of-morals-squid-game-the-challenge-2022",
+        "title": "The Price of Morals（Squid Game: The Challenge）",
+        "desc": "OOH連動の道徳観診断クイズで回答者を『モラルの傾き』のデータビジュアライゼーション上にマッピングする施策。"
+      },
+      {
+        "type": "tech",
+        "id": "resonant",
+        "title": "Resonant",
+        "desc": "Windows上で完結するローカルAI音楽制作スタジオ。作詞・AI作曲・声変換・DAW編集までを自然言語で操作できる。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-26-2",
+    "date": "2026-09-26",
+    "title": "名もなき家事の3D記録",
+    "pattern": "文脈×技術",
+    "seed": "エリエールのCMがノールックキャッチ演出で『名もなき家事』を可視化したように、HTD-Refineでユーザー投稿の家事動画から3Dモーションを復元し、家事の手つきの美しさをアーカイブする企画にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "daio-paper-news-2026",
+        "title": "エリエール フタつきウエットティシュー「ちょっと楽、してみません？」篇",
+        "desc": "草彅剛が家事に挑む新CM。詰め替え不要で乾きにくいフタつきウエットティシューをノールックキャッチ演出で訴求する。"
+      },
+      {
+        "type": "tech",
+        "id": "htd-refine",
+        "title": "HTD-Refine",
+        "desc": "スマホ1台の動画から専用機材なしで自然な人体の3Dモーションを復元するAI技術。CVPR 2026で最優秀論文候補。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-26-3",
+    "date": "2026-09-26",
+    "title": "職人技を3Dアーカイブ",
+    "pattern": "文脈×技術",
+    "seed": "『舟底の記憶』が鉄を叩き直す制作過程を公開ワークショップにしたように、MoCapAnything V2で職人が金属を叩く手つきをカメラ1台で3D記録し、失われゆく手仕事をアーカイブする展示にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2013-153",
+        "title": "舟底の記憶",
+        "desc": "使われなくなった鉄を叩き直し船底の形を作る瀬戸内国際芸術祭の作品。制作過程を公開するワークショップを伴った。"
+      },
+      {
+        "type": "tech",
+        "id": "mocapanything-v2",
+        "title": "MoCapAnything V2",
+        "desc": "1台のカメラの映像から人間・動物・物体を問わず、どんな骨格の3Dキャラにも使えるモーションを自動生成する研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-26-4",
+    "date": "2026-09-26",
+    "title": "音と空間を同時に構造化",
+    "pattern": "技術×技術",
+    "seed": "Basic Pitchが音源を編集可能なMIDIに変換するように、Splat2Meshは3D点群を編集可能なメッシュに変換する——両者を組み合わせ、演奏音と空間スキャンを同時に『編集可能データ』化するライブ配信ツールが作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "basic-pitch",
+        "title": "Basic Pitch",
+        "desc": "音楽ファイルをアップロードするだけで複数楽器やピッチベンドまでMIDIに変換できるSpotify製の自動採譜AI。"
+      },
+      {
+        "type": "tech",
+        "id": "splat2mesh",
+        "title": "Splat2Mesh",
+        "desc": "3Dガウシアンスプラッティングのデータを、Blenderやゲームエンジンで使えるポリゴンメッシュに変換する無料デスクトップツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-26-5",
+    "date": "2026-09-26",
+    "title": "演者と背景を音と像で分離",
+    "pattern": "技術×技術",
+    "seed": "Ultimate Vocal Removerが音源を声と楽器に分離するように、360 Gaussian Proは360度映像を人物と背景のSplatに自動分離できる——ライブ会場の映像から演者だけを抜き出し、声と映像を別々に再構成できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ultimate-vocal-remover",
+        "title": "Ultimate Vocal Remover (UVR)",
+        "desc": "複数の最先端AIモデルを切り替えて使える、無料でWindows/Mac/Linux対応のボーカル・楽器分離アプリ。"
+      },
+      {
+        "type": "tech",
+        "id": "360-gaussian-pro",
+        "title": "360 Gaussian Pro",
+        "desc": "360度カメラの映像から自動でGaussian Splatを生成する有償アプリ。SAM3で自動マスキングも行う。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-26-6",
+    "date": "2026-09-26",
+    "title": "手話モーション自動生成",
+    "pattern": "転用",
+    "seed": "テキスト指示だけで人物モーションを生成するkimodo.cppを、CG制作ではなく手話学習アプリの見本モーション自動生成に転用し、単語を打つだけで手話動画を量産できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "kimodo-cpp",
+        "title": "kimodo.cpp",
+        "desc": "テキストから3D人物モーションを作るNVIDIA『Kimodo』を、自分のPCのCPU/Vulkan GPUで動かせる移植版。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-26-7",
+    "date": "2026-09-26",
+    "title": "看板劣化の仮想修復",
+    "pattern": "転用",
+    "seed": "写真編集のレイヤーをComfyUIに持ち込むInpaint Canvasを、写真修正ではなく老朽化したOOH看板や落書きを『レイヤーとして仮想的に重ねて修復』するプレビューツールに転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "inpaint-canvas",
+        "title": "Inpaint Canvas (ComfyUI-InpaintCanvas)",
+        "desc": "ComfyUIにレイヤー編集キャンバスを1ノードとして持ち込み、選択範囲をAI修正して新レイヤーに重ねられるツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-26-8",
+    "date": "2026-09-26",
+    "title": "確信を可視化する3D展示",
+    "pattern": "文脈×技術",
+    "seed": "CERTAINLY TOKYOが『不確かさ』をテーマに国際巡回したように、クラウドに送らずローカル完結するModlyの3D化技術で『誰にも送信されない=誰にも見られない確信』を作品化するインスタレーションができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "certainly-tokyo-2026",
+        "title": "CERTAINLY TOKYO",
+        "desc": "香港のギャラリー発企画展が国際巡回し、表参道で日港中韓比9組が『不確かさ』を考察する展示。"
+      },
+      {
+        "type": "tech",
+        "id": "modly",
+        "title": "Modly",
+        "desc": "写真をクラウドに送らず、自分のPCのGPUだけで3Dメッシュ化できる完全ローカルの画像→3Dアプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-26-9",
+    "date": "2026-09-26",
+    "title": "対話で紡ぐ記憶映像",
+    "pattern": "文脈×技術",
+    "seed": "ボルタンスキーの『森の精』が住民の瞳の写真で記憶を留めたように、OpenChatCutで住民の思い出話をAIエージェントが対話しながら自動編集し、語るだけで紡がれる参加型の記憶ドキュメンタリー映像が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "les-esprits-de-la-for-t-2022",
+        "title": "森の精（Les Esprits de la Forêt）",
+        "desc": "越後妻有の森に地元住民の瞳の写真を吊るし、記憶と存在を留めたボルタンスキー最後の作品。"
+      },
+      {
+        "type": "tech",
+        "id": "openchatcut",
+        "title": "OpenChatCut",
+        "desc": "会話しながら本物のマルチトラックタイムラインを編集できるOSSのAI動画編集ソフト。AIエージェントが実編集操作を行う。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-26-10",
+    "date": "2026-09-26",
+    "title": "視線だけ高精細になる展示",
+    "pattern": "文脈×技術",
+    "seed": "Roca Cerámicaが磁器タイルを角柱・鏡面のインスタレーションに造形したように、Smart Tile 2.0の『必要な場所だけタイル状に高解像度化する』発想を投影に応用し、見る人の視線の先だけが高精細になる展示ディスプレイを作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "roca-ceramica-immersive-brand-experience-if-2026",
+        "title": "Roca Cerámica – Immersive Brand Experience",
+        "desc": "磁器タイルを角柱・鏡面・感覚トンネルに造形した、Roca Cerámicaの没入型見本市インスタレーション。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-ttp-toolset-smart-tile-2-0",
+        "title": "ComfyUI TTP Toolset – Smart Tile 2.0",
+        "desc": "顔と背景をAIが認識してから必要な場所だけ細かくタイル化し高解像度化・部分編集できるComfyUI拡張機能。"
+      }
+    ]
   }
 ]
