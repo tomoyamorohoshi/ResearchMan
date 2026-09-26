@@ -6,11 +6,15 @@
  *   従量課金APIキーは使わない。structure.tsと同じ流儀）。
  * - 入力はcases.json/tech.jsonの該当エントリのみ（DESIGN合意: エントリに無い事実・数字を
  *   足さない=ハルシネーション禁止をプロンプトで明示する）。
- * - 出力JSON（postA/postB）はxpostPure.ts::validateXPostDraftで検証する。超過・URL混入等で
- *   失敗したら1回だけ再生成し、それでも失敗すればエラーとして返す（切り詰めはしない。
- *   DESIGN合意: 「切り詰めで意味を壊さない」）。
+ * - 出力JSON（{postA:{text,claims}, postB:{text,claims}}）はxpostPure.ts::validateXPostDraftで
+ *   検証する。文字数超過・URL混入・改行不足・claims不備（事実データに実在しない引用＝
+ *   事実歪曲の疑い）等で失敗したら1回だけ再生成し、それでも失敗すればエラーとして返す
+ *   （切り詰めはしない。DESIGN合意: 「切り詰めで意味を壊さない」）。
  * - セルフリプライ用テキスト（吹き出し③）はLLMではなくコード側で組み立てる（RMページURL・
- *   一次ソースURL・動画注記は事実そのものであり、生成に委ねる理由が無いため）。
+ *   一次ソースURL/動画URLは事実そのものであり、生成に委ねる理由が無いため）。paste-ready
+ *   （Xへそのまま貼れる体裁）を維持するため案内文は含めない。動画転載禁止ガイダンス・
+ *   画像省略の注記は別のメモ吹き出し（最後・「📝メモ（投稿には含めない）」）に分離する
+ *   （レビュー指摘2026-09-27）。
  * - サムネイル画像URLの本番200確認は軽量なHEADリクエストで行う（失敗時は画像吹き出しを
  *   省略する。DESIGN合意）。
  *
@@ -91,51 +95,87 @@ async function findTech(id: string): Promise<TechRecordSlim | null> {
 }
 
 // ── プロンプト（X_POST_RESEARCH.md セクションCを要約して組み込む） ────────────
+// レビュー指摘（2026-09-27・オーナー確認分）: 生成された投稿文に「有料フェスをやめて無料化
+// した（実際は元々無料開催）」「即興開催（データに無い形容）」等の事実歪曲・誇張が混入した。
+// プロンプトでの注意喚起だけでは防げないため、出力JSONにclaims（引用元フィールド名＋逐語引用）
+// を必須化し、xpostPure.ts::validateXPostDraftで機械的に照合する（存在しない引用は却下）。
 
 const SHARED_INSTRUCTIONS = `あなたはX（旧Twitter）向けの事例紹介投稿の文案を作るアシスタントです。
 以下の事実データだけを根拠にしてください。データに無い事実・数字・固有名詞を絶対に足さないでください（ハルシネーション禁止）。
 
+厳守事項（事実歪曲防止。過去に違反例あり）:
+- データに「〜から〜へ変更した」「切り替えた」等の記述が無い限り、変化・ビフォーアフター・方針転換を勝手に示唆しない
+  （例: 単に「無料開催」としか書かれていないものを「有料をやめて無料化した」と書かない）
+- データに無い意図・速度・規模の形容語を足さない（例: 即興、世界初、話題沸騰、衝撃、伝説的、など）
+- 紹介対象を見下す・軽視するような否定的・冷笑的な表現をしない（例: 「〜止まり」「〜にすぎない」等）
+- 事実として書く内容は、必ず後述のclaims（引用）で裏付けられるものだけにする
+
 構成ルール（X_POST_RESEARCH.md セクションCより）:
-- 1行目で結論＋固有名詞（データにあれば数字も）を言い切る。フック型（数字インパクト/意外性/人称化/逆説対比/断定ラベル）のいずれかを使う
-- 改行で3〜5ブロックに区切る（壁テキストにしない）
-- 締めは問いかけ or 断定的評価で読者の返信を誘発する（煽り・釣りは禁止）
+- 1行目で結論＋固有名詞（データにあれば数字も）を言い切る（フック行）。フック型（数字インパクト/意外性/人称化/逆説対比/断定ラベル）のいずれかを使う
+- フック行→（改行して空行）→本文→（改行して空行）→締め、の3ブロック構成にする（最低2箇所の改行が必須）。壁テキストにしない
+- 締めは中立的な問いかけ、またはその企画・技術の価値/使いどころについての断定的評価にする（煽り・釣り・見下し・冷笑は禁止）
 - 絵文字は0〜1個まで。ハッシュタグは使わない
 - 本文にURLを一切含めない（出典・リンクは本文とは別に扱うため）
 - 日本語の目安は実質70〜140字程度（X加重文字数=CJK2・その他1で計算して280字以下に必ず収める。余裕を持って140字前後を狙う）
 - postA と postB は異なるフック・構成にすること（同じ切り口の言い換えにしない）
 
-出力はJSONオブジェクトのみ（前置き・後書き・コードブロック記法なし）:
-{"postA": "...", "postB": "..."}`;
+claims（引用による裏付け。必須・最低1件）:
+- 本文中に書いた事実の根拠となる、事実データの原文からの逐語引用を1件以上示すこと
+- sourceFieldには、事実データに示された英語キー（例: "summary","overview","execution","evaluationImpact","point","detail"等）をそのまま使うこと
+- quoteは、そのsourceFieldの原文に実在する部分文字列そのままにすること（要約・言い換え・翻訳は不可。改行や前後の空白の差異は許容される）
 
-function buildCasePrompt(entry: CaseRecordSlim): string {
-  const facts = [
-    `タイトル: ${entry.title}`,
-    entry.client ? `クライアント: ${entry.client}` : null,
-    entry.agency ? `制作: ${entry.agency}` : null,
-    entry.award ? `受賞: ${entry.award}` : null,
-    entry.year ? `年: ${entry.year}` : null,
-    entry.summary ? `概要: ${entry.summary}` : null,
-    entry.overview ? `背景・企画意図: ${entry.overview}` : null,
-    entry.execution ? `施策・実行内容: ${entry.execution}` : null,
-    entry.evaluationImpact ? `評価・反響: ${entry.evaluationImpact}` : null,
-  ]
-    .filter(Boolean)
-    .join("\n");
-  return `${SHARED_INSTRUCTIONS}\n\n## 事実データ（クリエイティブ事例）\n${facts}`;
+出力はJSONオブジェクトのみ（前置き・後書き・コードブロック記法なし）:
+{"postA": {"text": "...", "claims": [{"sourceField": "...", "quote": "..."}]}, "postB": {"text": "...", "claims": [{"sourceField": "...", "quote": "..."}]}}`;
+
+const CASE_FIELD_LABELS: Record<string, string> = {
+  title: "タイトル",
+  client: "クライアント",
+  agency: "制作",
+  award: "受賞",
+  year: "年",
+  summary: "概要",
+  overview: "背景・企画意図",
+  execution: "施策・実行内容",
+  evaluationImpact: "評価・反響",
+};
+
+const TECH_FIELD_LABELS: Record<string, string> = {
+  title: "ツール/技術名",
+  org: "開発元",
+  year: "発表時期",
+  summary: "概要",
+  point: "何がすごいか・使い所",
+  detail: "詳細",
+};
+
+/** entry内の非空フィールドだけを {sourceFieldキー: 原文} として抽出する（プロンプトのfacts表示とclaims照合の両方で同じマップを使い、ズレを防ぐ）。 */
+function buildEntryFields(entry: Record<string, unknown>, labels: Record<string, string>): Record<string, string> {
+  const fields: Record<string, string> = {};
+  for (const key of Object.keys(labels)) {
+    const value = entry[key];
+    if (typeof value === "string" && value.trim() !== "") fields[key] = value;
+  }
+  return fields;
 }
 
-function buildTechPrompt(entry: TechRecordSlim): string {
-  const facts = [
-    `ツール/技術名: ${entry.title}`,
-    entry.org ? `開発元: ${entry.org}` : null,
-    entry.year ? `発表時期: ${entry.year}` : null,
-    entry.summary ? `概要: ${entry.summary}` : null,
-    entry.point ? `何がすごいか・使い所: ${entry.point}` : null,
-    entry.detail ? `詳細: ${entry.detail}` : null,
-  ]
-    .filter(Boolean)
+function buildFactsSection(fields: Record<string, string>, labels: Record<string, string>): string {
+  return Object.entries(fields)
+    .map(([key, value]) => `${labels[key]} (sourceField: "${key}"): ${value}`)
     .join("\n");
-  return `${SHARED_INSTRUCTIONS}\n\n## 事実データ（クリエイティブテック/ツール）\n${facts}\n\nテンプレC（技術ツール紹介）を意識してください: ツール名＋一言でできること→使い所→入手性の一言。`;
+}
+
+function buildCasePrompt(entry: CaseRecordSlim): { prompt: string; fields: Record<string, string> } {
+  const fields = buildEntryFields(entry as unknown as Record<string, unknown>, CASE_FIELD_LABELS);
+  const facts = buildFactsSection(fields, CASE_FIELD_LABELS);
+  const prompt = `${SHARED_INSTRUCTIONS}\n\n## 事実データ（クリエイティブ事例）\n${facts}`;
+  return { prompt, fields };
+}
+
+function buildTechPrompt(entry: TechRecordSlim): { prompt: string; fields: Record<string, string> } {
+  const fields = buildEntryFields(entry as unknown as Record<string, unknown>, TECH_FIELD_LABELS);
+  const facts = buildFactsSection(fields, TECH_FIELD_LABELS);
+  const prompt = `${SHARED_INSTRUCTIONS}\n\n## 事実データ（クリエイティブテック/ツール）\n${facts}\n\nテンプレC（技術ツール紹介）を意識してください: ツール名＋一言でできること→使い所→入手性の一言。`;
+  return { prompt, fields };
 }
 
 // ── 一次ソース/動画URLの抽出 ─────────────────────────────────────────
@@ -217,11 +257,11 @@ const defaultQueryFn: XPostQueryFn = (prompt) => runPlainQuery(prompt, XPOST_MOD
 
 type DraftAttemptResult = { ok: true; draft: XPostDraft } | { ok: false; error: string };
 
-async function generateDraftOnce(prompt: string, queryFn: XPostQueryFn): Promise<DraftAttemptResult> {
+async function generateDraftOnce(prompt: string, entryFields: Record<string, string>, queryFn: XPostQueryFn): Promise<DraftAttemptResult> {
   const result = await withTimeout(queryFn(prompt), XPOST_TIMEOUT_MS);
   if (!result.ok) return { ok: false, error: result.error ?? "生成に失敗しました" };
   assertWithinBudget(result.costUsd, XPOST_BUDGET_USD);
-  const validated = validateXPostDraft(extractJsonObject(result.text));
+  const validated = validateXPostDraft(extractJsonObject(result.text), entryFields);
   if (!validated.ok) return { ok: false, error: validated.error };
   return { ok: true, draft: validated.value };
 }
@@ -231,9 +271,9 @@ async function generateDraftOnce(prompt: string, queryFn: XPostQueryFn): Promise
  * ただしBudgetExceededErrorだけは再スローする（レビュー指摘: 予算超過は再生成せず即座に
  * 停止する。budget.ts::assertWithinBudgetのポリシーと矛盾させないため）。
  */
-async function attemptDraft(prompt: string, queryFn: XPostQueryFn): Promise<DraftAttemptResult> {
+async function attemptDraft(prompt: string, entryFields: Record<string, string>, queryFn: XPostQueryFn): Promise<DraftAttemptResult> {
   try {
-    return await generateDraftOnce(prompt, queryFn);
+    return await generateDraftOnce(prompt, entryFields, queryFn);
   } catch (err) {
     if (err instanceof BudgetExceededError) throw err;
     return { ok: false, error: err instanceof Error ? err.message : String(err) };
@@ -245,13 +285,19 @@ async function attemptDraft(prompt: string, queryFn: XPostQueryFn): Promise<Draf
  * 再生成依頼、それでも超過ならエラー扱いで案を落とす（切り詰めで意味を壊さない）」。
  * レビュー指摘: 検証失敗だけでなく、runPlainQuery自体がタイムアウト等で例外を投げた場合も
  * 同様に1回だけ再試行する。BudgetExceededErrorだけは再試行せず呼び出し元へ伝播させる
- * （合計最大2回の試行）。
+ * （合計最大2回の試行）。事実歪曲・claims不備での却下（xpostPure.ts::validateXPostDraft）も
+ * 同じ再試行ロジックに乗る（レビュー指摘: 「Existing retry-once logic applies to these
+ * rejections too」）。
  */
-export async function generateDraftWithRetry(prompt: string, queryFn: XPostQueryFn = defaultQueryFn): Promise<DraftAttemptResult> {
-  const first = await attemptDraft(prompt, queryFn);
+export async function generateDraftWithRetry(
+  prompt: string,
+  entryFields: Record<string, string>,
+  queryFn: XPostQueryFn = defaultQueryFn,
+): Promise<DraftAttemptResult> {
+  const first = await attemptDraft(prompt, entryFields, queryFn);
   if (first.ok) return first;
   const retryPrompt = `${prompt}\n\n【再生成】前回の出力は条件を満たしませんでした（理由: ${first.error}）。この条件を満たすよう作り直してください。`;
-  const second = await attemptDraft(retryPrompt, queryFn);
+  const second = await attemptDraft(retryPrompt, entryFields, queryFn);
   if (second.ok) return second;
   return { ok: false, error: `生成した投稿文が条件を満たせませんでした（再生成後も失敗）: ${second.error}` };
 }
@@ -264,7 +310,8 @@ export async function generateXPost(entryKind: XPostEntryKind, entryId: string):
       const entry = await findCase(entryId);
       if (!entry) return { ok: false, error: `事例 ${entryId} が見つかりませんでした` };
 
-      const drafted = await generateDraftWithRetry(buildCasePrompt(entry));
+      const { prompt: casePrompt, fields: caseFields } = buildCasePrompt(entry);
+      const drafted = await generateDraftWithRetry(casePrompt, caseFields);
       if (!drafted.ok) return { ok: false, error: drafted.error };
 
       const thumbnailUrl = resolveThumbnailUrl(entry.thumbnail);
@@ -281,7 +328,8 @@ export async function generateXPost(entryKind: XPostEntryKind, entryId: string):
     const entry = await findTech(entryId);
     if (!entry) return { ok: false, error: `技術 ${entryId} が見つかりませんでした` };
 
-    const drafted = await generateDraftWithRetry(buildTechPrompt(entry));
+    const { prompt: techPrompt, fields: techFields } = buildTechPrompt(entry);
+    const drafted = await generateDraftWithRetry(techPrompt, techFields);
     if (!drafted.ok) return { ok: false, error: drafted.error };
 
     const thumbnailUrl = resolveThumbnailUrl(entry.thumbnail);

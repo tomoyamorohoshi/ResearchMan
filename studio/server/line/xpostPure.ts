@@ -81,35 +81,85 @@ export interface XPostDraft {
   postB: string;
 }
 
+/** 1件の引用根拠（LLM出力のclaims配列の要素）。 */
+export interface XPostClaim {
+  /** 引用元フィールド名（entryFieldsのキーと一致させる。例: "summary","overview","execution"）。 */
+  sourceField: string;
+  /** 引用元フィールドから逐語引用した部分文字列（改行・空白の差異は正規化して比較する）。 */
+  quote: string;
+}
+
 export type XPostValidationResult = { ok: true; value: XPostDraft } | { ok: false; error: string };
 
 const URL_IN_BODY_RE = /https?:\/\//;
 const MAX_WEIGHTED_LENGTH = 280;
+/** レビュー指摘（2026-09-27）: フック行/本文/締めを改行で区切ること（最低2箇所の改行）。 */
+const MIN_LINE_BREAKS = 2;
+
+/** 引用照合のための緩い正規化（連続する空白・改行を単一の半角スペースに畳み、前後を除去）。 */
+function normalizeForQuoteCheck(s: string): string {
+  return s.replace(/\s+/g, " ").trim();
+}
 
 /**
- * Claude応答から抽出したJSONオブジェクトを検証する。
- * - postA/postBが非空文字列であること
+ * 1件分（postA/postB片方）の {text, claims} を検証する。
+ * - textが非空文字列であること
  * - 本文にURLを含まないこと（X_POST_RESEARCH.md A3/C5: リンクはセルフリプライに置く）
  * - X加重文字数が280以下であること
+ * - 改行が最低2箇所あること（レビュー指摘: フック行/本文/締めの3ブロック構成を強制する）
+ * - claimsが1件以上あり、各claimのsourceFieldがentryFieldsに存在し、quoteが
+ *   （空白正規化のうえ）そのフィールドの逐語部分文字列であること
+ *   （レビュー指摘: 事実歪曲防止の機械的ガード。データに無い事実の追加を防ぐ）
  */
-export function validateXPostDraft(obj: unknown): XPostValidationResult {
-  if (!obj || typeof obj !== "object") return { ok: false, error: "生成結果がJSONオブジェクトではありませんでした" };
-  const o = obj as Record<string, unknown>;
-  const postA = typeof o.postA === "string" ? o.postA.trim() : "";
-  const postB = typeof o.postB === "string" ? o.postB.trim() : "";
-  if (!postA) return { ok: false, error: "postAが生成されませんでした" };
-  if (!postB) return { ok: false, error: "postBが生成されませんでした" };
-
-  for (const [label, text] of [
-    ["postA", postA],
-    ["postB", postB],
-  ] as const) {
-    if (URL_IN_BODY_RE.test(text)) return { ok: false, error: `${label}の本文にURLが含まれています` };
-    const len = xWeightedLength(text);
-    if (len > MAX_WEIGHTED_LENGTH) return { ok: false, error: `${label}が加重${len}文字で${MAX_WEIGHTED_LENGTH}文字を超えています` };
+function validateSinglePost(label: string, raw: unknown, entryFields: Record<string, string>): { ok: true; text: string } | { ok: false; error: string } {
+  if (!raw || typeof raw !== "object") return { ok: false, error: `${label}がオブジェクトではありませんでした` };
+  const r = raw as Record<string, unknown>;
+  const text = typeof r.text === "string" ? r.text.trim() : "";
+  if (!text) return { ok: false, error: `${label}.textが生成されませんでした` };
+  if (URL_IN_BODY_RE.test(text)) return { ok: false, error: `${label}の本文にURLが含まれています` };
+  const len = xWeightedLength(text);
+  if (len > MAX_WEIGHTED_LENGTH) return { ok: false, error: `${label}が加重${len}文字で${MAX_WEIGHTED_LENGTH}文字を超えています` };
+  const lineBreaks = (text.match(/\n/g) ?? []).length;
+  if (lineBreaks < MIN_LINE_BREAKS) {
+    return { ok: false, error: `${label}の改行が${lineBreaks}箇所しかありません（フック行/本文/締めを改行で区切ってください。最低${MIN_LINE_BREAKS}箇所必要）` };
   }
 
-  return { ok: true, value: { postA, postB } };
+  const claims = Array.isArray(r.claims) ? r.claims : null;
+  if (!claims || claims.length === 0) {
+    return { ok: false, error: `${label}.claimsが空です（根拠となる引用を最低1件含めてください）` };
+  }
+  for (const claim of claims) {
+    if (!claim || typeof claim !== "object") return { ok: false, error: `${label}.claimsの要素が不正です` };
+    const c = claim as Record<string, unknown>;
+    const sourceField = typeof c.sourceField === "string" ? c.sourceField : "";
+    const quote = typeof c.quote === "string" ? c.quote.trim() : "";
+    if (!sourceField || !quote) return { ok: false, error: `${label}.claimsにsourceField/quoteが不足しています` };
+    const fieldText = entryFields[sourceField];
+    if (fieldText === undefined) return { ok: false, error: `${label}.claimsのsourceField「${sourceField}」は事実データに存在しません` };
+    if (!normalizeForQuoteCheck(fieldText).includes(normalizeForQuoteCheck(quote))) {
+      return { ok: false, error: `${label}.claimsの引用「${quote}」がsourceField「${sourceField}」の原文に見つかりません（事実歪曲・捏造の疑い）` };
+    }
+  }
+
+  return { ok: true, text };
+}
+
+/**
+ * Claude応答から抽出したJSONオブジェクトを検証する。期待する形は
+ * {"postA": {"text": "...", "claims": [{"sourceField": "...", "quote": "..."}]}, "postB": {...}}。
+ * entryFieldsはプロンプトに渡した事実データのフィールド名→原文のマップで、claimsの引用が
+ * 実在するかの照合に使う（レビュー指摘の機械的ガード）。
+ */
+export function validateXPostDraft(obj: unknown, entryFields: Record<string, string>): XPostValidationResult {
+  if (!obj || typeof obj !== "object") return { ok: false, error: "生成結果がJSONオブジェクトではありませんでした" };
+  const o = obj as Record<string, unknown>;
+
+  const a = validateSinglePost("postA", o.postA, entryFields);
+  if (!a.ok) return a;
+  const b = validateSinglePost("postB", o.postB, entryFields);
+  if (!b.ok) return b;
+
+  return { ok: true, value: { postA: a.text, postB: b.text } };
 }
 
 // ── 吹き出し組み立て ─────────────────────────────────────────────────
@@ -131,63 +181,51 @@ export interface XPostSourceInfo {
 export const IMAGE_OMITTED_NOTE =
   "※サムネイル画像を取得できなかったため画像は省略しました（RMページの画像を手動で保存してください）";
 
-/**
- * URLをゆるく正規化して比較用の文字列にする（末尾スラッシュ・www.の有無を無視し、
- * YouTubeのyoutu.be/youtube.com/watch?v=/embed形式は動画idベースで同一視する）。
- * パース不能な文字列は末尾スラッシュだけ除いてそのまま比較に使う（fail-open。
- * 誤って別URL扱いになっても実害は「重複表示される」だけで安全側）。
- */
-function normalizeUrlForCompare(url: string): string {
-  let parsed: URL;
-  try {
-    parsed = new URL(url);
-  } catch {
-    return url.trim().replace(/\/+$/, "");
-  }
-  const host = parsed.hostname.replace(/^www\./, "");
-  const pathname = parsed.pathname.replace(/\/+$/, "");
-
-  let videoId: string | null = null;
-  if (host === "youtu.be") {
-    videoId = pathname.slice(1) || null;
-  } else if (host === "youtube.com" || host === "m.youtube.com") {
-    if (pathname === "/watch") videoId = parsed.searchParams.get("v");
-    else if (pathname.startsWith("/embed/")) videoId = pathname.slice("/embed/".length);
-  }
-  if (videoId) return `youtube-video:${videoId}`;
-
-  return `${host}${pathname}`;
-}
-
-/** 2つのURLが（正規化のうえ）同一の対象を指しているか。どちらか未指定ならfalse。 */
-function urlsEquivalent(a: string | undefined, b: string | undefined): boolean {
-  if (!a || !b) return false;
-  return normalizeUrlForCompare(a) === normalizeUrlForCompare(b);
-}
+/** 動画の再利用ガイダンス（メモ吹き出しに入れる。本文には含めない）。 */
+const VIDEO_REUSE_GUIDANCE = "動画は公式のものです。ダウンロード・再アップロードはせず、リンク・引用でご紹介ください。";
 
 /**
- * 吹き出し③（セルフリプライ用テキスト）。RMページURL＋一次ソースURL＋（あれば）動画注記。
- * sourceUrlとvideoUrlが（正規化のうえ）同一URLを指す場合は「一次ソース:」行を省略し、
- * 「動画:」行だけを表示する（レビュー指摘: 同じURLを2回貼らない）。
- * imageOmitted=trueなら末尾に画像省略の注記を追記する（レビュー指摘: サムネイルが省略された
- * ことをユーザーに伝える。DESIGN合意「本番で200を確認できない場合は省略し注記」の実装箇所）。
+ * 吹き出し③（セルフリプライ用テキスト）。Xにそのまま貼り付けられる体裁のみを含む
+ * （案内文・注記は一切含めない。レビュー指摘: セルフリプライはpaste-readyであること）。
+ * フォーマット:
+ *   詳しくはこちら
+ *   {RM URL}
+ *   （動画があれば）公式動画
+ *   {video URL}
+ *   （動画が無く一次ソースがあれば）出典
+ *   {source URL}
+ * 動画がある場合は一次ソースの表示を省略する（優先順位: video > source。同一URLの重複表示を
+ * 避けるための単純化）。
  */
-export function buildReplyBubbleText(info: XPostSourceInfo, imageOmitted: boolean): string {
-  const lines = [`RMページ: ${info.rmUrl}`];
-  const sourceIsSameAsVideo = urlsEquivalent(info.sourceUrl, info.videoUrl);
-  if (info.sourceUrl && !sourceIsSameAsVideo) lines.push(`一次ソース: ${info.sourceUrl}`);
+export function buildSelfReplyBubbleText(info: XPostSourceInfo): string {
+  const lines = ["詳しくはこちら", info.rmUrl];
   if (info.videoUrl) {
-    lines.push(`動画: ${info.videoUrl}（公式動画。Xへは引用・リンクで紹介。ダウンロード転載はしない）`);
+    lines.push("公式動画", info.videoUrl);
+  } else if (info.sourceUrl) {
+    lines.push("出典", info.sourceUrl);
   }
-  if (imageOmitted) lines.push(IMAGE_OMITTED_NOTE);
   return lines.join("\n");
 }
 
 /**
- * 吹き出し①〜④（投稿文案A/案B/セルフリプライ用テキスト/画像）を組み立てる。
+ * 吹き出し最終（メモ。「📝メモ（投稿には含めない）」プレフィックス）。
+ * 動画の転載禁止ガイダンス・画像省略の注記など、Xへの投稿には含めるべきでない運用メモを
+ * まとめる（レビュー指摘: セルフリプライ本文から分離する）。何も無ければnullを返す
+ * （＝メモ吹き出し自体を作らない）。
+ */
+export function buildMetaBubbleText(info: XPostSourceInfo, imageOmitted: boolean): string | null {
+  const notes: string[] = [];
+  if (info.videoUrl) notes.push(VIDEO_REUSE_GUIDANCE);
+  if (imageOmitted) notes.push(IMAGE_OMITTED_NOTE);
+  if (notes.length === 0) return null;
+  return ["📝メモ（投稿には含めない）", ...notes].join("\n");
+}
+
+/**
+ * 吹き出しを組み立てる（最大5件）: ①投稿文案A ②投稿文案B ③セルフリプライ（paste-ready）
+ * ④画像（あれば） ⑤メモ（動画転載禁止ガイダンス・画像省略注記があれば、常に最後）。
  * includeImage=falseまたはthumbnailUrl未指定（空文字・空白のみを含む）なら画像吹き出しを
- * 省略し、セルフリプライ側に省略した旨の注記を追記する（DESIGN合意＋レビュー指摘）。
- * 最大5吹き出しに切り詰める（本関数の出力は4件のため実質no-op。将来の拡張に備えたガード）。
+ * 省略し、メモ吹き出し側に省略した旨の注記を追記する。
  */
 export function buildXPostBubbles(draft: XPostDraft, info: XPostSourceInfo, includeImage: boolean): LineMessage[] {
   const hasThumbnail = !!info.thumbnailUrl && info.thumbnailUrl.trim() !== "";
@@ -195,10 +233,12 @@ export function buildXPostBubbles(draft: XPostDraft, info: XPostSourceInfo, incl
   const messages: LineMessage[] = [
     { type: "text", text: draft.postA },
     { type: "text", text: draft.postB },
-    { type: "text", text: buildReplyBubbleText(info, !showImage) },
+    { type: "text", text: buildSelfReplyBubbleText(info) },
   ];
   if (showImage) {
     messages.push({ type: "image", originalContentUrl: info.thumbnailUrl!, previewImageUrl: info.thumbnailUrl! });
   }
+  const metaText = buildMetaBubbleText(info, !showImage);
+  if (metaText) messages.push({ type: "text", text: metaText });
   return messages.slice(0, 5);
 }
