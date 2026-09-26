@@ -10,11 +10,17 @@
  * 事後通知（replyTokenが失効済み）は引き続き push.ts::pushLineMessage を直接使う。
  */
 import https from "node:https";
-import { pushLineMessage } from "./push.js";
+import { pushLineMessage, pushLineMessages } from "./push.js";
+import type { LineMessage } from "./xpostPure.js";
 
 const REPLY_URL = "https://api.line.me/v2/bot/message/reply";
 // push.ts と同じ安全マージン（本機能の返信はいずれも短文想定）。
 const LINE_MSG_LIMIT = 4800;
+const LINE_MESSAGES_PER_SEND = 5;
+
+function clampMessage(message: LineMessage): LineMessage {
+  return message.type === "text" ? { type: "text", text: message.text.slice(0, LINE_MSG_LIMIT) } : message;
+}
 
 export interface ReplyResult {
   ok: boolean;
@@ -89,4 +95,76 @@ export async function replyOrPushLineMessage(
     }
   }
   await deps.push(channelAccessToken, userId, text);
+}
+
+// ── 複数吹き出し送信（X投稿。DESIGN合意 docs/X_POST_DRAFTS_DESIGN.md v2） ──────────
+// reply優先・失敗時pushフォールバックという既存の設計方針をテキスト以外（複数吹き出し・
+// 画像混在）にも適用する。既存のreplyOrPushLineMessage（単一テキスト）は無改変。
+
+function requestReplyMessages(channelAccessToken: string, replyToken: string, messages: LineMessage[]): Promise<ReplyResult> {
+  const body = JSON.stringify({ replyToken, messages: messages.slice(0, LINE_MESSAGES_PER_SEND).map(clampMessage) });
+  return new Promise((resolve) => {
+    let settled = false;
+    const settle = (v: ReplyResult): void => {
+      if (settled) return;
+      settled = true;
+      resolve(v);
+    };
+    const req = https.request(
+      REPLY_URL,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Length": Buffer.byteLength(body),
+          Authorization: `Bearer ${channelAccessToken}`,
+        },
+      },
+      (res) => {
+        const chunks: Buffer[] = [];
+        const finish = (): void => settle({ ok: (res.statusCode ?? 0) === 200, status: res.statusCode ?? 0, body: Buffer.concat(chunks).toString() });
+        res.on("data", (d: Buffer) => chunks.push(d));
+        res.on("end", finish);
+        res.on("close", finish);
+        res.on("error", finish);
+      },
+    );
+    req.on("error", (e) => settle({ ok: false, status: 0, body: e.message }));
+    req.setTimeout(15_000, () => {
+      settle({ ok: false, status: 0, body: "timeout" });
+      req.destroy();
+    });
+    req.write(body);
+    req.end();
+  });
+}
+
+export interface ReplyOrPushMessagesDeps {
+  reply: (channelAccessToken: string, replyToken: string, messages: LineMessage[]) => Promise<ReplyResult>;
+  push: (channelAccessToken: string, userId: string, messages: LineMessage[]) => Promise<void>;
+}
+
+const defaultReplyOrPushMessagesDeps: ReplyOrPushMessagesDeps = { reply: requestReplyMessages, push: pushLineMessages };
+
+/**
+ * 複数吹き出し（最大5件、テキスト/画像混在）版のreply優先・失敗時pushフォールバック。
+ * 1回の送信は（reply/pushどちらでも）push無料枠を1通しか消費しない（DESIGN合意）。
+ */
+export async function replyOrPushLineMessages(
+  channelAccessToken: string,
+  replyToken: string | undefined,
+  userId: string,
+  messages: LineMessage[],
+  deps: ReplyOrPushMessagesDeps = defaultReplyOrPushMessagesDeps,
+): Promise<void> {
+  if (replyToken) {
+    try {
+      const result = await deps.reply(channelAccessToken, replyToken, messages);
+      if (result.ok) return;
+      console.warn(`[studio][line] reply送信失敗のためpushへフォールバック（status=${result.status} ${result.body}）`);
+    } catch (err) {
+      console.warn("[studio][line] reply送信で例外のためpushへフォールバック", err);
+    }
+  }
+  await deps.push(channelAccessToken, userId, messages);
 }

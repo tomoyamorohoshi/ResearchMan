@@ -63,8 +63,11 @@ import {
   buildThemeQuestionText,
   buildViewpointConfirmText,
   buildViewpointQuestionText,
+  buildXPostUrlInvalidText,
+  buildXPostUrlQuestionText,
 } from "./messages.js";
 import { expiryFrom, type LinePending, type WizardState } from "./pending.js";
+import { parseXPostUrl, type XPostEntryKind } from "./xpostPure.js";
 
 export type WizardStepOutcome =
   | { kind: "reply"; pending: LinePending | null; reply: string }
@@ -73,7 +76,12 @@ export type WizardStepOutcome =
   | { kind: "addCase"; url: string; context: string }
   // AWARDS専用（要件A.2）: Q1/Q2の2問を集めたら、webhook.ts が structureAwardViaClaude を
   // 呼んでcreateJobまで直行する（final_confirmを挟まない）。
-  | { kind: "needsAwardStructure"; q1: string; q2: string };
+  | { kind: "needsAwardStructure"; q1: string; q2: string }
+  // X投稿専用（DESIGN合意 docs/X_POST_DRAFTS_DESIGN.md v2）: URLを1つ受け取ったら、
+  // webhook.ts が pipeline/xpost.ts::generateXPost を呼んで即座に生成・送信する
+  // （final_confirmを挟まない）。pendingは await_xpost_url のまま返す（続けて別URLを
+  // 送れば同タブで連続生成できるようにするため。webhook.ts側でこのpendingを保存する）。
+  | { kind: "needsXPost"; entryKind: XPostEntryKind; entryId: string; pending: LinePending };
 
 // ── pending構築ヘルパー ──────────────────────────────────────────
 
@@ -219,6 +227,7 @@ function applyFieldEdit(pending: LinePending, edit: FieldEditCommand): Partial<L
 /** kind選択直後に遷移すべき状態と、その最初の質問文（awardsだけresearch/ideaと別ルート）。 */
 function firstStepFor(kind: LineRequestKind): { state: WizardState; reply: string } {
   if (kind === "awards") return { state: "await_award_name", reply: buildAwardNameQuestionText() };
+  if (kind === "x_post") return { state: "await_xpost_url", reply: buildXPostUrlQuestionText() };
   return { state: "await_theme", reply: buildThemeQuestionText() };
 }
 
@@ -412,6 +421,18 @@ function stepAwaitAwardCategories(pending: LinePending, text: string): WizardSte
   return { kind: "needsAwardStructure", q1: pending.awardNameRaw ?? "", q2: categoriesRaw };
 }
 
+// ── X投稿専用（DESIGN合意: URLを1つ受け取ったら即generateXPostへ。確認ステップ無し） ────
+
+function stepAwaitXPostUrl(pending: LinePending, text: string, now: Date): WizardStepOutcome {
+  const parsed = parseXPostUrl(text);
+  if (!parsed) {
+    return { kind: "reply", pending: withState(pending, {}, now), reply: buildXPostUrlInvalidText() };
+  }
+  // pendingはawait_xpost_urlのまま（TTLだけ更新）で返す。webhook.ts側がこれを保存することで
+  // 続けて別URLを送れば同タブで連続生成できる（DESIGN合意フロー5）。
+  return { kind: "needsXPost", entryKind: parsed.kind, entryId: parsed.id, pending: withState(pending, {}, now) };
+}
+
 // ── エントリポイント ─────────────────────────────────────────────
 
 /**
@@ -445,5 +466,7 @@ export function stepWizard(pending: LinePending | null, text: string, now: Date,
       return stepAwaitAwardName(pending, text, now);
     case "await_award_categories":
       return stepAwaitAwardCategories(pending, text);
+    case "await_xpost_url":
+      return stepAwaitXPostUrl(pending, text, now);
   }
 }

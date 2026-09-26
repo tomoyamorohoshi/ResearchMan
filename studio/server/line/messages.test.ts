@@ -17,6 +17,9 @@ import {
   buildFinalConfirmText,
   buildJobKindLabel,
   buildMenuText,
+  buildXPostFailedText,
+  buildXPostUrlInvalidText,
+  buildXPostUrlQuestionText,
   buildProgressStatusText,
   buildQueuedAcceptedText,
   buildRefsConfirmText,
@@ -78,6 +81,24 @@ test("buildMenuText: 4択と番号案内・キャンセル案内を含む（3番
   assert.doesNotMatch(text, /事例\+技術/);
   assert.match(text, /アイデア出し/);
   assert.match(text, /キャンセル/);
+});
+
+test("buildMenuText: 5番目にX投稿を含む", () => {
+  assert.match(buildMenuText(), /X投稿/);
+});
+
+test("buildXPostUrlQuestionText: URL入力を促す", () => {
+  assert.match(buildXPostUrlQuestionText(), /URL/);
+});
+
+test("buildXPostUrlInvalidText: 再入力を促す文言を含む", () => {
+  const text = buildXPostUrlInvalidText();
+  assert.match(text, /URL/);
+});
+
+test("buildXPostFailedText: 理由を含む", () => {
+  const text = buildXPostFailedText("見つかりませんでした");
+  assert.match(text, /見つかりませんでした/);
 });
 
 test("buildRefsQuestionText/buildRefsConfirmText: ideaは縛り・文脈、researchは参照URLに読み替える", () => {

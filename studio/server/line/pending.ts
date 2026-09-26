@@ -40,7 +40,11 @@ export type WizardState =
   // AWARDS専用（要件A.2）: research/ideaと違いfinal_confirmを挟まず、Q1/Q2の2問だけで
   // 受付・即実行する（confirm_*系のステップが無い）。
   | "await_award_name"
-  | "await_award_categories";
+  | "await_award_categories"
+  // X投稿専用（DESIGN合意 docs/X_POST_DRAFTS_DESIGN.md v2）: URLを1つ受け取ったら即生成する
+  // （確認ステップ無し）。生成後もこの状態のまま留まり、続けて別URLを送れば連続生成できる
+  // （wizard.ts::stepAwaitXPostUrl参照）。
+  | "await_xpost_url";
 
 export interface LinePending {
   userId: string;

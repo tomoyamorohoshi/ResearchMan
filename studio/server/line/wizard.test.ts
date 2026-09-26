@@ -526,6 +526,57 @@ test("pendingFromStructured + renderFinalConfirm: idea構造化結果をfinal_co
 
 // ── 状態が期限切れ扱い・カバレッジ外のような入力を渡しても例外を投げない防御確認 ──
 
+// ── idle/menu → await_xpost_url（X投稿。DESIGN合意 docs/X_POST_DRAFTS_DESIGN.md v2） ──
+
+test("idle: 番号「5」でawait_xpost_urlへ", () => {
+  const outcome = stepWizard(null, "5", NOW, USER);
+  const r = expectReply(outcome);
+  assert.equal(r.pending?.state, "await_xpost_url");
+  assert.equal(r.pending?.kind, "x_post");
+  assert.match(r.reply, /URL/);
+});
+
+test("menu: 「X投稿」でawait_xpost_urlへ", () => {
+  const menuPending: LinePending = { userId: USER, state: "menu", expiresAt: "x" };
+  const outcome = stepWizard(menuPending, "X投稿", NOW, USER);
+  const r = expectReply(outcome);
+  assert.equal(r.pending?.state, "await_xpost_url");
+});
+
+// ── await_xpost_url ──────────────────────────────────────────────
+
+const awaitXPostUrlPending: LinePending = { userId: USER, state: "await_xpost_url", kind: "x_post", expiresAt: "x" };
+
+test("await_xpost_url: RMの事例URLでneedsXPost（entryKind=case）", () => {
+  const outcome = stepWizard(awaitXPostUrlPending, "https://research-man.vercel.app/cases/foo-2026", NOW, USER);
+  assert.equal(outcome.kind, "needsXPost");
+  if (outcome.kind === "needsXPost") {
+    assert.equal(outcome.entryKind, "case");
+    assert.equal(outcome.entryId, "foo-2026");
+    // 続けて別URLを送れるよう、pendingはawait_xpost_urlのまま返る
+    assert.equal(outcome.pending.state, "await_xpost_url");
+  }
+});
+
+test("await_xpost_url: RMの技術URLでneedsXPost（entryKind=tech）", () => {
+  const outcome = stepWizard(awaitXPostUrlPending, "https://research-man.vercel.app/technology/mulacover", NOW, USER);
+  assert.equal(outcome.kind, "needsXPost");
+  if (outcome.kind === "needsXPost") assert.equal(outcome.entryKind, "tech");
+});
+
+test("await_xpost_url: RM以外のURLは再入力を促し状態は変わらない", () => {
+  const outcome = stepWizard(awaitXPostUrlPending, "https://example.com/cases/foo", NOW, USER);
+  const r = expectReply(outcome);
+  assert.equal(r.pending?.state, "await_xpost_url");
+  assert.match(r.reply, /URL/);
+});
+
+test("await_xpost_url: URLが無ければ再入力を促す", () => {
+  const outcome = stepWizard(awaitXPostUrlPending, "これは事例です", NOW, USER);
+  const r = expectReply(outcome);
+  assert.equal(r.pending?.state, "await_xpost_url");
+});
+
 test("stepWizard: 全状態を通しても例外を投げない（フォールスルー安全性）", () => {
   const states: LinePending["state"][] = [
     "menu",
@@ -540,6 +591,7 @@ test("stepWizard: 全状態を通しても例外を投げない（フォール�
     "await_count_edit",
     "await_award_name",
     "await_award_categories",
+    "await_xpost_url",
   ];
   for (const state of states) {
     const p: LinePending = { userId: USER, state, kind: "Case Study", theme: "t", viewpoint: "", refs: "", expiresAt: "x" };
