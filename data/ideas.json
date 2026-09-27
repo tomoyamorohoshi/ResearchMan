@@ -17222,5 +17222,203 @@
         "desc": "顔と背景をAIが認識してから必要な場所だけ細かくタイル化し高解像度化・部分編集できるComfyUI拡張機能。"
       }
     ]
+  },
+  {
+    "id": "2026-09-27-1",
+    "date": "2026-09-27",
+    "title": "家畜の休養証明",
+    "pattern": "文脈×技術",
+    "seed": "乳牛に有給病気休暇を与えたPaid Sick Leave for Cowsのように、家畜の疲労もMoCapAnything V2で動きから数値化できれば、酪農現場の休息基準を客観的に証明できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "too-good-paid-sick-leave-for-cows",
+        "title": "Paid Sick Leave for Cows",
+        "desc": "乳牛を労働者として登録し有給病気休暇を与えることで、抗生物質残留を経済の仕組みから断ち切ったケニアの施策。"
+      },
+      {
+        "type": "tech",
+        "id": "mocapanything-v2",
+        "title": "MoCapAnything V2",
+        "desc": "1台のカメラで撮った動画から、人間・動物・物を問わずどんな骨格の3Dキャラクターにも使えるモーションを自動生成する研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-27-2",
+    "date": "2026-09-27",
+    "title": "生息地喪失の自動陳情",
+    "pattern": "文脈×技術",
+    "seed": "絶滅危惧種の画像をファックスで議会に送ったThe Trojan Faxのように、SpatialClawに衛星画像から生息地縮小の距離を計算させ、証拠付きで政策提言を自動送付する仕組みができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "iucn-fujifilm-the-trojan-fax",
+        "title": "The Trojan Fax",
+        "desc": "絶滅危惧種の画像をファックスで議会に一斉送信し、26%の政策変容を引き出した環境保護キャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "spatialclaw",
+        "title": "SpatialClaw",
+        "desc": "画像や映像について物体同士の位置関係を、AIが自らコードを書きながら考えて答える空間推論エージェント。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-27-3",
+    "date": "2026-09-27",
+    "title": "難民居住地の追体験",
+    "pattern": "文脈×技術",
+    "seed": "難民の居住可能性を消費データで可視化したWhereToSettleに、ATGSで定点映像を自由視点3D化した現地の暮らしを重ねれば、支援者が歩いて確かめられる意思決定ツールになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "wheretosettle-gdzie-zamieszka-2022",
+        "title": "WhereToSettle（Gdzie Zamieszkać）",
+        "desc": "ウクライナ難民向けに消費データから都市ごとの居住・就労可能性を可視化したMastercardのプラットフォーム。"
+      },
+      {
+        "type": "tech",
+        "id": "atgs",
+        "title": "ATGS（Anchored Temporal Gaussian Splatting）",
+        "desc": "長時間・複雑な動きの多視点映像を破綻なく3Dガウシアン群として再構成し、自由視点再生を可能にする新手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-27-4",
+    "date": "2026-09-27",
+    "title": "家具小道具の量産CM",
+    "pattern": "技術×技術",
+    "seed": "Mira-Sceneが1枚の写真から生成した編集可能な3Dシーンのパーツ配置を参照画像にして、MSR (Multiple Subject Reference)に渡せば、家具や小物を混同しない商品CMを量産できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "mira-scene",
+        "title": "Mira-Scene",
+        "desc": "1枚の写真から、家具などが独立したパーツとして配置された編集可能な3Dシーンを自動生成する研究。"
+      },
+      {
+        "type": "tech",
+        "id": "msr-for-ltx-2-5",
+        "title": "MSR (Multiple Subject Reference) for LTX-2.5",
+        "desc": "1本の動画に登場する複数の人物・服・小物を、5枚までの参照画像から混同せず再現する動画生成AI向けの条件付け技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-27-5",
+    "date": "2026-09-27",
+    "title": "超高密度ライブ配信",
+    "pattern": "技術×技術",
+    "seed": "Gaussian Point Splattingの1億点超リアルタイム描画を4DGSのファイル形式に流し込めば、空間オーディオ付きの超高密度な動く3Dライブ映像を1本のファイルとして配布できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "gaussian-point-splatting",
+        "title": "Gaussian Point Splatting",
+        "desc": "1億個超のGaussian Splatを並べ替え処理なしでリアルタイム描画できる新しいレンダリング手法。"
+      },
+      {
+        "type": "tech",
+        "id": "4dgs",
+        "title": "4DGS",
+        "desc": "動く3Dガウシアンスプラット映像と空間オーディオを1本のファイルにまとめ、途中再生もできる新ファイル形式。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-27-6",
+    "date": "2026-09-27",
+    "title": "議事録の編集現場",
+    "pattern": "転用",
+    "seed": "生成AI動画編集のタイムラインをComfyUIに丸ごと組み込んだComfyUI-Sonder-Editorを動画でなく音声議事録に転用すれば、ノードで会議の発言を直感的に切り貼りできる議事録編集ソフトになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-sonder-editor",
+        "title": "ComfyUI-Sonder-Editor",
+        "desc": "ComfyUIの中に動画編集ソフトのタイムラインを丸ごと組み込み、ノードをいじらず編集できるようにする拡張機能。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-27-7",
+    "date": "2026-09-27",
+    "title": "会議の無駄取り",
+    "pattern": "転用",
+    "seed": "AIコーディングエージェントのトークン浪費を自動発見・削減するSoL-Piの発想を転用し、企画会議でのAIとの無駄なやり取りや堂々巡りの質問を検出・削減するツールにできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "sol-pi",
+        "title": "SoL-Pi",
+        "desc": "AIコーディングエージェントのトークン浪費を自動発見・削減するNVIDIA研究の拡張機能。コスト最大49%削減。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-27-8",
+    "date": "2026-09-27",
+    "title": "竹建築の再利用図面",
+    "pattern": "文脈×技術",
+    "seed": "竹と再生建材で作ったBamboo Book Houseのような建物をドローンと地上スキャンで撮影し、Point Cloud Merger for Blenderで点群統合すれば、世界中で使い回せる竹建築の再利用設計図がオープンソース化できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "bamboo-book-house-if-2022",
+        "title": "Bamboo Book House",
+        "desc": "竹という伝統素材と再生建材を使い、地域に開かれた形で建てられたコミュニティ図書館。"
+      },
+      {
+        "type": "tech",
+        "id": "point-cloud-merger-for-blender",
+        "title": "Point Cloud Merger for Blender (PCM)",
+        "desc": "地上撮影・ドローン空撮など別々に作った複数の点群データを、Blender上でクリックするだけで位置合わせして統合できるアドオン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-27-9",
+    "date": "2026-09-27",
+    "title": "テクスチャレスな試作",
+    "pattern": "技術×技術",
+    "seed": "AgentSTARが動画から自分でBlenderスクリプトを書いて復元した可動物体に、UV展開が不要なHKTexで即座にテクスチャを貼れば、手間なく製品プロトタイプの3Dモデルを量産できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "agentstar",
+        "title": "AgentSTAR (Agentic Shape Tracking and Reconstruction)",
+        "desc": "コーディングエージェントに動画を見せると、Blenderスクリプトを自分で書いて可動物体を3Dで組み立て動きまで復元する研究。"
+      },
+      {
+        "type": "tech",
+        "id": "hktex",
+        "title": "HKTex (Heat Kernel Textures)",
+        "desc": "3DモデルにCG絵柄を貼る際に必須だったUV展開という下準備作業を丸ごと不要にする新手法。ECCV 2026ベストペーパー受賞。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-27-10",
+    "date": "2026-09-27",
+    "title": "伝統芸能の継承コーチ",
+    "pattern": "文脈×技術",
+    "seed": "葬列の力を借りて抗議を社会的圧力に変えたThe Unburied Casketのように、儀式の型に意味があるなら、MotionMindで伝統芸能の振り付けを分解しAIコーチとして継承者不足の地域に伝えられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "women-for-change-the-unburied-casket",
+        "title": "The Unburied Casket",
+        "desc": "葬列という儀式が持つ社会的な力を借りて、フェミサイドへの抗議を社会的圧力に変えた施策。"
+      },
+      {
+        "type": "tech",
+        "id": "motionmind",
+        "title": "MotionMind",
+        "desc": "ダンス動画を1本渡すだけで3Dアバターが動きを再現し、AIが振り付けを分解してステップごとに教えてくれるパイプライン。"
+      }
+    ]
   }
 ]
