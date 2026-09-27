@@ -1,5 +1,170 @@
 [
   {
+    "id": "expressive-motion",
+    "title": "Expressive Motion (Learning Expressive Humanoid Locomotion from Monocular Runway Videos for Robot Fashion Shows)",
+    "org": "Advanced Telerobotics Research Lab, Kent State University / Vilnius University",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "HCI/MediaArt"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "ファッションショーのランウェイ映像1本から人間の歩き方の「らしさ」をヒューマノイドロボットBooster K1に転写し、実機で20回連続無転倒のキャットウォークを再現したパイプライン。",
+    "point": "すごさは、モデルの歩き方をスマホ動画1本から抽出し、そのままロボットの脚に「移植」できる点です。専用モーションキャプチャスタジオもマーカーも不要で、ランウェイ映像から3D姿勢を復元し(GVHMR)、ロボットの関節構造に変換し(GMR)、シミュレーションで調整してから実機に転送します。実際にBooster K1という等身大ヒューマノイドロボットに歩かせたところ、20回すべて転倒せず、モデル特有のつま先を一直線に置く狭い歩幅や腕・胴体の連動まで再現できました。広告・体験づくりの観点では、ロボットに単に歩かせるだけでなく「その人らしい歩き方」「ブランドが求める所作」を映像1本から学習させられることを意味します。実店舗やイベントでロボットモデルにランウェイを歩かせる企画、著名人の動きを模したパフォーマンスロボット、デジタルヒューマンの歩行モーションを実写から素早く量産する用途などに応用できそうです。ただし研究非商用ライセンスの部品に依存しており、商用展開には別途ライセンス取得と実機・GPU環境が必要です。",
+    "detail": "仕組みは4段階のリレーです。①GVHMRが単眼動画から人の3D骨格の動きを重力方向基準で復元(平面映像から棒人間の3Dアニメーションを起こす作業)。②GMRがその動きを、関節の可動域や体格が異なるロボット向けに「翻訳」。③調整後の動きをシミュレーター上で模倣学習によりロボットの制御ポリシーに焼き込み。④最後に実機に転送して物理世界で歩かせます。従来のロボット歩行制御は「安定して歩くこと」自体がゴールで「どう魅せるか」は対象外でしたが、本研究はモデルウォークという魅せる歩き方(歩幅・つま先角度・腕の振り・視線)を数値目標として明示し、人間のランウェイ映像との定量比較で近さを検証している点が新しさです。マーカー式mocapスタジオが不要で、市販動画からでも学習データを作れます。利用にはLinux環境、NVIDIA GPU(CUDA12.1以上)、ストレージ約30GB、Booster K1などの実機ヒューマノイドロボット(参考価格帯は数百万円)が必要で、GVHMR/SMPL-Xの商用利用には別途申請が要ります。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "パイプライン本体のコードはMITだが、依存するGVHMR・SMPL/SMPL-Xボディモデルは研究非商用ライセンスのため、商用利用には各配布元への別途申請が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/ATR-Lab/expressive-motion"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2609.27003"
+      },
+      {
+        "kind": "video",
+        "url": "https://atr-lab.github.io/expressive-motion/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/expressive-motion.jpg",
+    "relatedWorks": [
+      {
+        "title": "GVHMR",
+        "description": "重力方向を基準に単眼動画から3D人体姿勢を復元する先行研究(SIGGRAPH Asia 2024)",
+        "url": "https://github.com/zju3dv/GVHMR"
+      },
+      {
+        "title": "GMR (General Motion Retargeting)",
+        "description": "人間の動きを17種類以上のヒューマノイドロボットへリアルタイム変換するリターゲティングツール(ICRA 2026)",
+        "url": "https://github.com/YanjieZe/GMR"
+      },
+      {
+        "title": "ExBody2",
+        "description": "表現力豊かな全身制御をヒューマノイドロボットに学習させる先行研究",
+        "url": "https://arxiv.org/pdf/2412.13196"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "ax",
+    "title": "AX (Agent Executor)",
+    "org": "Google",
+    "type": "Tool",
+    "domains": [
+      "AI/Agents",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "自律型AIエージェントを何千・何百万規模で同時に走らせ、待機中は自動休止させてコストを抑える、GoogleがApache 2.0で公開したエージェント実行基盤。",
+    "point": "すごさは「AIエージェントの群れを工場のラインのように運用できる」点です。1エージェントに1タスクをやらせるだけなら簡単ですが、何千通りの広告コピー案を並行生成する、何百人分のペルソナごとにパーソナライズ動画台本を作る、といった規模になると各エージェントの起動・待機・再開・課金管理が煩雑になります。AXは「タスク」「作業スペース」「ゲートウェイ」「モデル」という部品を宣言するだけで、必要な時だけエージェントを起こし、待機中はほぼゼロコストで眠らせておく仕組みを提供します。広告・体験づくりの文脈では、A/Bテスト用クリエイティブ案を大量並行生成するパイプライン、SNS運用で毎日何百本ものパーソナライズ投稿文・画像プロンプトを自動生成する基盤、複数のAIエージェント(リサーチ役・コピー役・レビュー役)に分業させる制作フローなどに応用できそうです。ただしAX自体はエージェントの「頭脳」(LLM)を提供するものではなく、大量のエージェントを安く安全に走らせるための土台という位置づけです。",
+    "detail": "仕組みはKubernetesに似た「宣言的インフラ」です。開発者は「このタスクにはこのモデルとこの作業環境を使う」とAPIやYAMLで宣言するだけで、AXが隔離されたサンドボックス環境を用意し、実行・監視・再開を代行します。エージェントは通常のプログラムと違い「人間の返信を待つ」「外部APIの応答を待つ」など待機時間が長いのが特徴ですが、AXは待機中のエージェントをスナップショットとして一時停止し、必要な瞬間にサブ秒で再開させることで待機コストをほぼゼロにします。従来のクラウド基盤(エージェントを単なるコンテナとして動かす方式)では、待機中も計算資源を専有し続けてコストがかさむ、再起動のたびに数十秒のコールドスタートが発生する、といった問題がありました。AXは「長時間待って短時間だけ全力で動く」というエージェント特有の挙動に合わせて設計し直されている点が新しさです。利用にはKubernetesクラスタ、Redis、Goツールチェーンなどインフラ知識が必要で、個人クリエイターがすぐ触れるものではなく、開発チームが自社の生成AIパイプラインを構築する土台として使うツールです。コードはApache 2.0ライセンスでGitHub上に無料公開されており、READMEには安定版前の破壊的変更に注意する旨の記載があります。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "コア部分はApache 2.0で無料公開。商用利用可。安定版リリース前で破壊的変更の可能性あり。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/google/ax"
+      },
+      {
+        "kind": "project",
+        "url": "https://agentexecutor.io"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/ax.jpg",
+    "relatedWorks": [
+      {
+        "title": "Kubernetes",
+        "description": "コンテナオーケストレーションの業界標準。AXが「エージェント版Kubernetes」として設計思想を引き継ぐ対象",
+        "url": "https://kubernetes.io/"
+      },
+      {
+        "title": "Google Agent Development Kit (ADK)",
+        "description": "Googleが提供するエージェント自体を作るためのフレームワーク。AXは作ったエージェントを大量実行する側を担う",
+        "url": "https://github.com/google/adk-python"
+      },
+      {
+        "title": "CrewAI",
+        "description": "複数のAIエージェントに役割分担させるオープンソースのマルチエージェントフレームワーク",
+        "url": "https://github.com/crewAIInc/crewAI"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "skinned-motion-retargeting-via-artifact-driven-kinematic-pri",
+    "title": "Skinned Motion Retargeting via Artifact-driven Kinematic Prior Refinement",
+    "org": "KAIST (Seokhyeon Hong et al., SIGGRAPH Asia 2026 Journal Track)",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "Spatial/3D"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "モーションキャプチャの動きを体型の違うキャラクターに転写する際に起きる「体のめり込み」を、AIが自動検出して修正する技術。",
+    "point": "モーションキャプチャで人間の演者から取った動きを、体型がまったく違うキャラクター(頭が大きいマスコット、ロボット、獣人など)にそのまま流用すると、腕が胸に埋まったり足が交差してめり込んだりする「破綻」がよく起きます。この技術は、AIが変換後のポーズを実際にメッシュ(3Dモデルの表面)でチェックし、めり込みが起きた箇所を検出して、そこだけを自然に直すという仕組みを持っています。骨格の違いを吸収する共通の「動きの言語」をAIに学習させた上で、キャラクターごとの体型情報を加味して仕上げるため、これまで人力でリテイクしていた修正作業を自動化できます。広告のCM撮影で人間の演者の芝居をマスコットキャラクターやCGクリーチャーにそのまま流し込みたい場面、体験型施設で来場者の動きをロボットやアバターにリアルタイムで反映させたい場面などで、演出の質を落とさずに制作スピードを上げられる可能性があります。",
+    "detail": "仕組みをたとえるなら、Aさんの服(動き)をBさんの体型に合わせて仕立て直す作業です。まずAIに、体型の異なるキャラクター同士でも通じる「動きの共通言語」を大量のモーションデータから学習させます。次に、その言語を使って変換したポーズを実際に3Dモデルの表面(メッシュ)に当てはめてみて、腕や足がキャラクターの体にめり込んでいないかを自動でチェックします。めり込みが見つかった場合、その部分だけをピンポイントで直すための補正情報を作り、最終的な動きに反映します。\n\n従来のAIによるモーション変換は、動きの変換とめり込みの修正を1つのモデルに全部担わせていたため、学習していない未知の体型のキャラクターに使うと精度が落ちやすいという弱点がありました。この研究は「動きの変換」と「めり込みの検出・修正」の役割を分けたことで、初めて見る体型のキャラクターに対しても安定してきれいな動きを出せるようにしています。\n\n使うにはPythonの実行環境とGPU、モーションキャプチャデータ、動かしたいキャラクターの3Dモデル(骨格・スキニング情報付き)が必要で、現状は研究者・エンジニア向けの実装です。ライセンスはCC-BY-NC-4.0(非商用・研究目的限定)のため、そのまま広告制作物に組み込んで納品することはできず、商用パイプラインへの導入には権利元への許諾交渉か自社での再実装が前提になります。",
+    "license": {
+      "spdx": "CC-BY-NC-4.0",
+      "commercial": "research-only",
+      "note": "研究・非商用利用限定。商用制作物への組み込みには別途許諾または再実装が必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/seokhyeonhong/kinematic-refinement"
+      },
+      {
+        "kind": "project",
+        "url": "https://seokhyeonhong.github.io/projects/kinematic-refinement/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2609.06517"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=gpWf8LOA6eQ"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/skinned-motion-retargeting-via-artifact-driven-kinematic-pri.jpg",
+    "relatedWorks": [
+      {
+        "title": "ReActor: Reinforcement Learning for Physics-Aware Motion Retargeting",
+        "description": "強化学習で物理的な自然さを保ちながらモーションを別骨格に転写する手法",
+        "url": "https://arxiv.org/abs/2605.06593"
+      },
+      {
+        "title": "A Unified Conditional Flow for Motion Generation, Editing, and Intra-Structural Retargeting",
+        "description": "モーション生成・編集・骨格内リターゲティングを1つのフローモデルで統一的に扱う研究",
+        "url": "https://arxiv.org/abs/2604.13427"
+      },
+      {
+        "title": "Motion4Motion: Motion Transfer Across Subjects at Inference",
+        "description": "追加学習なしで推論時に被写体間の動き転写を行う手法",
+        "url": "https://arxiv.org/abs/2607.11644"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "mulacover",
     "title": "MuLaCover",
     "org": "HeartMuLa",
