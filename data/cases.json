@@ -442,7 +442,10 @@
       "Form/Installation",
       "Tech/Audio",
       "Theme/Art"
-    ]
+    ],
+    "quarantined": true,
+    "quarantineReason": "link-dead(二重確認済): 404: https://prtimes.jp/main/html/rd/p/000000001.000191638.html",
+    "quarantineTs": "2026-09-27T09:33:34.969Z"
   },
   {
     "id": "reflections-2026",
