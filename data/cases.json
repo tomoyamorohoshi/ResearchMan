@@ -1,5 +1,152 @@
 [
   {
+    "id": "p-doom-ai-three-js-2026",
+    "title": "P(doom) — 生成AI音楽ビジュアライザー（three.js）",
+    "summary": "楽曲の経過秒数を関数として毎フレーム描画するthree.js製ミュージックビデオを、Claude Opus 5.5が全コード自動生成した",
+    "client": "Three.js",
+    "agency": "",
+    "categories": [
+      "AIクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://whatships.com/videos/pdoom/",
+    "thumbnail": "/thumbnails/p-doom-ai-three-js-2026.jpg",
+    "videoId": "",
+    "overview": "「I'm Upping My P(doom)」という楽曲に合わせ、歌詞と同期するカラオケ風の生成ビジュアルを描画するミュージックビデオ。three.js/p5.jsベースのレンダラーで、各フレームは楽曲の経過時間を関数として計算される。",
+    "background": "2026年9月22日のClaude Opus 5.5公開と同日、開発者が同モデルにコード生成のみを指示してビデオ全体を制作。人間の指示はキャラクターデザインと歌詞ごとの演出方針程度に留め、シーン構成・レンダラー実装はモデルが担った。",
+    "execution": "TypeScript+three.js（一部p5.js/p5.brush）で描画エンジンを構築し、bun/Viteでビルド、ヘッドレスChromeでフレームをレンダリングしffmpegで音声と統合。Claude Code上での対話のみでコンセプト決定から音声解析、歌詞同期、レンダリングまで完結させた。",
+    "evaluationImpact": "生成AIが単なる画像・動画生成ではなく、音楽同期ロジックを含む複雑な描画コード一式を一気通貫で書き上げた事例として開発者コミュニティで拡散。複数の開発者が独自に同種のリポジトリを公開し模倣・再現が連鎖した。",
+    "relatedWorks": [
+      {
+        "title": "PDoomVideo (JohnHeibel)",
+        "description": "Claude Opus 5.5によるP(doom)ミュージックビデオのソースコード",
+        "url": "https://github.com/JohnHeibel/PDoomVideo"
+      },
+      {
+        "title": "pdoomvideo (d068571)",
+        "description": "同ミュージックビデオの別実装リポジトリ",
+        "url": "https://github.com/d068571/pdoomvideo"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/3D",
+      "Form/MV",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "shadercn-ui-2026",
+    "title": "shadercn — シェーダーオーブUIコンポーネント集",
+    "summary": "shadcn/ui向けにWebGPUベースのシェーダーオーブUIをワンコマンドで導入できるOSSライブラリshadercn",
+    "client": "Shadcn Labs",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://whatships.com/videos/shadercn/",
+    "thumbnail": "/thumbnails/shadercn-ui-2026.jpg",
+    "videoId": "",
+    "overview": "shadercnはshadcn/uiエコシステム向けに公開されたオープンソースのシェーダーコンポーネント集。vgpuとTypeGPUを基盤にWebGPUで動作するシェーダーオーブをReactアプリへコピー&ペースト形式で導入できる。",
+    "background": "shadcn/uiはコピー&ペーストで使う軽量UIコンポーネント文化を確立し、そのエコシステムを拡張するShadcn Labsがterminal UIや動画コンポーネントなど派生ライブラリ群を展開。shadercnはその一つとしてビジュアル表現の強化を担う。",
+    "execution": "開発元Shadcn LabsがGitHub上でshadercnを公開し、単一コマンドでのゼロコンフィグ導入とTypeScriptによる型安全性を打ち出した。2026年9月27日にX（@shadcnlabs）で発表され、複数のシェーダーオーブコンポーネントをカタログとして提供している。",
+    "evaluationImpact": "MITライセンスで公開されGitHub上で121スターを獲得するなど、開発者コミュニティから一定の関心を集めている。3Dグラフィックス表現をノーコストでUIに組み込める点が、フロントエンド開発者の表現力拡張として評価されている。",
+    "relatedWorks": [
+      {
+        "title": "orbkit",
+        "description": "shadcnレジストリ経由で配布されるWebGLシェーダーオーブのReactコンポーネント集",
+        "url": "https://github.com/zzzzshawn/orbkit"
+      },
+      {
+        "title": "shaderng",
+        "description": "shadercnのAngular移植版。WebGPUレンダリングによるオーブシェーダー集",
+        "url": "https://github.com/orcawhisperer/shaderng"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Tech/3D",
+      "Form/Product"
+    ]
+  },
+  {
+    "id": "realevate-web-2026",
+    "title": "Realevate（不動産投資プラットフォームのWebサイト）",
+    "summary": "AVIF軽量画像とGSAPアニメーションで、地中海圏3カ国の不動産投資を魅せるサイト",
+    "client": "Realevate",
+    "agency": "Or Halevi",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "コンテンツ革新"
+    ],
+    "award": "Awwwards Site of the Day（2026年9月27日、スコア7.22/10）",
+    "year": "2026",
+    "regions": [
+      "中東・アフリカ"
+    ],
+    "link": "https://realevate.agency/",
+    "thumbnail": "/thumbnails/realevate-web-2026.jpg",
+    "videoId": "",
+    "overview": "Realevateはキプロス・モンテネグロ・ジョージアの不動産投資機会を国際投資家向けに紹介するWebサイト。最低投資額10万ユーロからの物件を、By The Sea・Evergreen・Urban Living・Rare Gemsといったカテゴリで分類し提示する。",
+    "background": "国境を越えた不動産投資は情報の非対称性や信頼性への不安が障壁となりやすい。Realevateは複数国にまたがる投資機会をひとつのブランド体験として統合し、投資家に安心感と高級感を伝えるデジタル接点を必要としていた。",
+    "execution": "テルアビブ拠点のクリエイティブディレクターOr Haleviが率いるMAKETHECUT®が制作。Node.js・GSAP・JavaScriptを用い、AVIF形式の軽量画像、フルスクリーン演出、アニメーションカルーセル、マイクロインタラクションを組み合わせ、ナビゲーションからローディングまで一貫した高級感のある操作体験を構築した。",
+    "evaluationImpact": "2026年9月27日にAwwwards Site of the Dayを受賞し、スコア7.22/10を獲得。不動産という保守的な業界において、パフォーマンスと表現力を両立したデザインが評価された事例として、Web制作者コミュニティで参照される可能性が高い。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Form/Website"
+    ]
+  },
+  {
+    "id": "love-mv-2026",
+    "title": "＝LOVE「木漏れ日メゾフォルテ」MV公開",
+    "summary": "音嶋莉沙・瀧脇笙古Wセンター曲、カフェ舞台でドラマとダンスをシームレスに繋ぐ演劇仕立てMVを公開。",
+    "client": "＝LOVE（イコールラブ）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://natalie.mu/music/news/642048",
+    "thumbnail": "/thumbnails/love-mv-2026.jpg",
+    "videoId": "",
+    "overview": "＝LOVEの19thシングル『ラブソングに襲われる』(2025年10月8日発売)のカップリング曲『木漏れ日メゾフォルテ』のミュージックビデオが2025年9月27日にYouTubeで公開された。作詞は指原莉乃、作曲・編曲は齋藤奏太。音嶋莉沙と瀧脇笙古がダブルセンターを務め、秋の光と匂いが恋心を大きくしていく、控えめだが一途な気持ちを描いた日常系ラブソングとなっている。",
+    "background": "『ラブソングに襲われる』は＝LOVEの19thシングルで、本作はそのカップリング曲。歌詞テーマは秋の季節感の中で膨らんでいく控えめな恋心で、日常に寄り添うラブソングとして制作された。MVでは音嶋莉沙と瀧脇笙古の2人がダブルセンターに起用され、グループの季節に合わせた新曲展開の一環として公開された。",
+    "execution": "MVはカフェを舞台に、ドラマシーンとダンスシーンをシームレスに繋げる演劇のような構成で撮影された。木漏れ日に照らされたメンバーの表情を効果的に見せる演出が特徴。衣装・ヘアメイクはオサレカンパニーが担当。監督・制作会社の詳細は確認できなかった。",
+    "evaluationImpact": "アイドルMVにおいて、単なるダンスパフォーマンスの記録ではなく、カフェでの日常芝居とダンスシーンを継ぎ目なく行き来させる演劇的な構成を採用した点が特徴。公開時点で受賞歴等の公式発表は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/MV",
+      "Theme/Music",
+      "Theme/Entertainment"
+    ]
+  },
+  {
     "id": "audition-mv-2026",
     "title": "坂道選抜「Audition」MV公開",
     "summary": "乃木坂46・櫻坂46・日向坂46から各5名の坂道選抜15名が初共演、新グループ「青葉坂46」オーディションのテーマ曲「Audition」MVを公開",
