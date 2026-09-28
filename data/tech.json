@@ -1,5 +1,155 @@
 [
   {
+    "id": "uniquery4r",
+    "title": "UniQuery4R",
+    "org": "Kosmo Research (Jilin University, Tsinghua University 共同)",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "Motion/Body"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "動画中の任意の点を指定するだけで、その点の将来位置・3D座標・動きの向き・奥行きを1つのモデルでまとめて予測する4Dシーン復元技術。",
+    "point": "これまで動画から動きと3D形状を取り出すには、点の追跡・奥行き推定・3D復元をそれぞれ別のモデルで処理する必要があった。UniQuery4Rは動画に『付箋』を貼るように見たい点を指定すると、その点が別の時刻でどこに動き、3D空間のどこにあり、どちらに向かって動いているかを一括で返してくれる。疎な点の追跡にも、画面全体を敷き詰めた密な復元にも同じ仕組みで対応できるのが特徴。広告制作では、実写映像に写る人物や商品だけを3D的に切り出して背景合成したり、ダンスやスポーツ映像から動きのデータを抽出してCGキャラクターに転写する、といった使い方が考えられる。",
+    "detail": "仕組みとしては、動画の複数フレームをまとめて特徴データに変換しておき、見たい点（ピクセル）を『クエリ』として投げ込むと、対応点・3D位置・動き・奥行きがまとめて返ってくる。従来はトラッキング用、深度推定用、3D復元用と別々のツールを組み合わせる必要があったが、これを1つのモデルに統一した点が新しい。\n\n利用にはGitHubで無料公開された学習済みモデルとコードを使う。公式にはNVIDIAの業務用GPU（80GBクラス）での動作例が示されており、動画の長さやフレーム数に応じてメモリ消費が大きく変わるため、一般的なゲーミングPCで使う場合は短い動画・小さい処理単位に絞る必要がある。Pythonのコマンドライン操作に慣れていることが前提となる。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "本体コードはApache-2.0だが、依存するVGGT由来コンポーネントは研究利用限定ライセンス"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/KosmoResearch/UniQuery4R"
+      },
+      {
+        "kind": "project",
+        "url": "https://kosmoresearch.github.io/UniQuery4R/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2608.17283"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/uniquery4r.jpg",
+    "relatedWorks": [
+      {
+        "title": "VGGT",
+        "description": "画像群からカメラ位置と3D形状を一括推定する基盤モデル。UniQuery4Rが内部で参照する要素技術のひとつ。",
+        "url": "https://github.com/facebookresearch/vggt"
+      },
+      {
+        "title": "MonST3R",
+        "description": "動きのある動画から3D形状を復元する先行研究。同じ4D復元の文脈で比較対象になる手法。",
+        "url": "https://monst3r-project.github.io/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "worldcrafter",
+    "title": "WorldCrafter",
+    "org": "Tencent ARC Lab (Tencent IEG) × Peking University",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "GenVideo"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "1枚の画像やテキストから『自由に歩き回れる3D空間』を動画として生成し、一度見た場所に戻っても景色が矛盾しないカメラ操作可能な動画生成AI。",
+    "point": "通常の動画生成AIはカメラを動かした先の景色をその都度新しく作り直してしまうため、同じ場所に視点を戻すと景色が変わってしまう『一貫性のなさ』が弱点だった。WorldCrafterは見てきた景色を裏側で3D的に記憶しておく仕組みを持たせることで、一度見せた壁や家具の位置を覚え、視点を変えても・戻ってきても同じ景色を再現する。広告・体験づくりでは、1枚の商品ビジュアルや店舗写真から『その場を自由に歩き回れるバーチャル空間動画』を作ったり、VRや没入体験の仮映像（プリビズ）を素早く用意する、といった使い方が考えられる。ただし現時点では研究利用限定で商用不可のため、社内検証や企画段階のイメージ確認にとどめる必要がある。",
+    "detail": "仕組みは、画像やテキストから最初の場面を生成した後、カメラが動くたびに新しい映像を作りながら、これまで見た景色の3D的な記憶を参照して次のフレームを作る、というもの。舞台のセットを一度建てておけば、カメラがどこを向いても矛盾なく同じセットが映る、というイメージに近い。\n\n従来の動画生成AIは一方向にカメラが進む映像しか安定して作れず、振り返りや後戻りに弱かった。WorldCrafterは高速版（WorldCrafter-Fast）でほぼリアルタイムにカメラを動かして探索できる点も新しい。\n\n利用にはTencentの研究チームがコードと学習済みモデルをGitHub/Hugging Faceで無料公開しているが、ライセンスは学術研究目的限定で商用利用は明確に禁止されている。動かすには対応するNVIDIA GPUが必須（具体的な必要VRAMは非公開）。",
+    "license": {
+      "spdx": null,
+      "commercial": "research-only",
+      "note": "独自コードは学術研究目的限定・商用利用不可を明記。依存コンポーネントにもCC-BY-NC等の非商用ライセンスを含む"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/TencentARC/WorldCrafter"
+      },
+      {
+        "kind": "project",
+        "url": "https://drexubery.github.io/WorldCrafter/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2609.24984"
+      },
+      {
+        "kind": "video",
+        "url": "https://youtu.be/sg09ftQOl0E"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/worldcrafter.jpg",
+    "relatedWorks": [
+      {
+        "title": "World Labs Atlas",
+        "description": "同じく画像から3D空間を復元・生成する世界モデル。ただし本稿執筆時点でコード・デモとも非公開。",
+        "url": "https://www.worldlabs.ai/blog/atlas"
+      },
+      {
+        "title": "CAT4D",
+        "description": "動画から動きのある4Dシーンを復元する先行研究。世界モデル系の比較対象。",
+        "url": "https://cat-4d.github.io/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "ia-gs",
+    "title": "IA'GS (IA-GS)",
+    "org": "by-lastime（個人開発、OOOSplat/Brushベースの独立派生）",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "スマホで撮った写真の束を、Macだけで自動的に『自由に見回せる立体写真（3D Gaussian Splatting）』に変換してくれる無料の専用アプリ。",
+    "point": "写真から3D空間を作る『Gaussian Splatting』という技術は、これまでコマンドライン操作やクラウドサービス経由が主流で、専門知識かサブスク課金が必要だった。IA'GSはApple SiliconのMacにインストールするだけで、被写体の自動切り抜き→カメラ位置の推定→3D化までをすべてローカルのMac内だけで完結させてくれる。ネット接続やアカウント登録も不要で費用もかからない。広告や展示の現場で、商品や人物を複数アングルで撮影し、その場でMacに取り込んで立体ビジュアルに変換し、Web上でぐりぐり回せるプレビューとして見せる、といった使い方が考えられる。",
+    "detail": "仕組みとしては、写真を並べるとまずAppleの画像認識機能で被写体だけを自動的に切り抜き（必要なら手動修正も可能）、次にCOLMARという定番技術で各写真を撮ったカメラの位置関係を計算し、最後にBrushという学習エンジンで無数の半透明な『点（ガウス）』を配置して立体を再現する。ひとつの機材で『切る→並べる→焼く』まで完結させてくれるオーブンのようなイメージ。\n\n従来はこれらの工程を別々のツールをコマンドラインでつなぐ必要があり、Mac一本で完結する専用アプリはほぼなかった。プレビュー用の『Plus』と高品質仕上げ用の『Pro』の2モードを切り替えられる点も使いやすい。\n\n必要なのはApple Silicon搭載Mac（M系チップ）とmacOS 15以降のみで費用はかからない。ただし公開されたばかりのベータ版（v0.1.0）でApple公証を受けていないため、初回起動時にセキュリティ警告を手動で解除する必要がある。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "アプリ本体はApache-2.0で無料公開。ベータ版のためApple公証未取得（初回起動時に手動でセキュリティ警告を解除する必要あり）"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/by-lastime/IA-GS"
+      },
+      {
+        "kind": "product",
+        "url": "https://github.com/by-lastime/IA-GS/releases/tag/v0.1.0"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/ia-gs.jpg",
+    "relatedWorks": [
+      {
+        "title": "Brush",
+        "description": "IA'GSが内部で使う、Gaussian Splattingの学習エンジン本体。",
+        "url": "https://github.com/ArthurBrussee/brush"
+      },
+      {
+        "title": "Polycam",
+        "description": "スマホ写真から3Dモデル/splatを作れる商用アプリ。クラウド処理・サブスク課金型で、ローカル完結のIA'GSと対照的。",
+        "url": "https://poly.cam/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "expressive-motion",
     "title": "Expressive Motion (Learning Expressive Humanoid Locomotion from Monocular Runway Videos for Robot Fashion Shows)",
     "org": "Advanced Telerobotics Research Lab, Kent State University / Vilnius University",
