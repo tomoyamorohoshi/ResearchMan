@@ -10,8 +10,8 @@ import {
   fetchDataJson,
 } from "./publicDataBlob";
 
-test("blobPathnameFor: public-data/ 配下の固定パス", () => {
-  assert.equal(blobPathnameFor("idea-layouts.json"), "public-data/idea-layouts.json");
+test("blobPathnameFor: public-data/ 配下の固定パス（brotli圧縮済みbytesなので .br）", () => {
+  assert.equal(blobPathnameFor("idea-layouts.json"), "public-data/idea-layouts.json.br");
 });
 
 test("isAllowedBlobPathname: 許可リストの3ファイルのみtrue", () => {
@@ -19,6 +19,7 @@ test("isAllowedBlobPathname: 許可リストの3ファイルのみtrue", () => {
   assert.equal(isAllowedBlobPathname("favorites/favorites.json"), false);
   assert.equal(isAllowedBlobPathname("public-data/../favorites/favorites.json"), false);
   assert.equal(isAllowedBlobPathname("public-data/other.json"), false);
+  assert.equal(isAllowedBlobPathname("public-data/cases.json"), false); // 旧・非圧縮パスは許可しない
   assert.equal(isAllowedBlobPathname(""), false);
 });
 

@@ -7,9 +7,12 @@ export const PUBLIC_DATA_FILES = ["cases.json", "ideas.json", "idea-layouts.json
 export type PublicDataFile = (typeof PUBLIC_DATA_FILES)[number];
 
 const BLOB_PREFIX = "public-data/";
+// Blobには事前にbrotli圧縮したbytesを置く（Vercelのオンザフライ圧縮より高圧縮＝転送量が約6割減り、
+// プロキシ側のCPUも不要。/api/public-data が Content-Encoding: br でそのまま返す）
+const BLOB_SUFFIX = ".br";
 
 export function blobPathnameFor(name: string): string {
-  return `${BLOB_PREFIX}${name}`;
+  return `${BLOB_PREFIX}${name}${BLOB_SUFFIX}`;
 }
 
 // 署名付きアップロードを発行してよいpathnameを許可リストで限定する（トークン漏洩時の被害を
