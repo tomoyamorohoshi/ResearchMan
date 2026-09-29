@@ -5,10 +5,13 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { spawnSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
 import {
   buildShapeCacheSalt,
   computeCodeFingerprint,
   createFileShapeCache,
+  isDefaultIdeasInput,
   shapeAssignmentCacheKey,
 } from "./idea-shape-cache.mjs";
 
@@ -142,4 +145,62 @@ test("finalize: 今回触れなかった古いエントリは掃除される", (
   const c3 = createFileShapeCache({ filePath: file, salt, validKinds: KINDS });
   assert.equal(c3.get(old), undefined);
   assert.ok(c3.get(baseIdea));
+});
+
+test("finalize: 別salt(別ブランチ/worktree/旧ソース)のエントリは残す(本番キャッシュを消さない)", () => {
+  const file = tmpFile();
+  const saltB = mkSalt({ codeFingerprint: "other-branch" });
+  const b = createFileShapeCache({ filePath: file, salt: saltB, validKinds: KINDS });
+  b.set(baseIdea, { kind: "polygon", generous: false });
+  b.finalize();
+  // 別saltで(未使用のまま)finalizeしてもB側は消えない
+  const a = createFileShapeCache({ filePath: file, salt, validKinds: KINDS });
+  a.set({ ...baseIdea, id: "a-only" }, { kind: "blob", generous: false });
+  a.finalize();
+  const b2 = createFileShapeCache({ filePath: file, salt: saltB, validKinds: KINDS });
+  assert.deepEqual(b2.get(baseIdea), { kind: "polygon", generous: false });
+});
+
+test("finalize: 別saltのエントリは長期間(TTL)未使用なら掃除される", () => {
+  const file = tmpFile();
+  const saltB = mkSalt({ codeFingerprint: "old" });
+  const DAY = 24 * 3600 * 1000;
+  const t0 = 1_000_000_000_000;
+  const b = createFileShapeCache({ filePath: file, salt: saltB, validKinds: KINDS, now: () => t0 });
+  b.set(baseIdea, { kind: "polygon", generous: false });
+  b.finalize();
+  const a = createFileShapeCache({ filePath: file, salt, validKinds: KINDS, now: () => t0 + 8 * DAY, otherSaltTtlMs: 30 * DAY });
+  a.finalize();
+  assert.ok(createFileShapeCache({ filePath: file, salt: saltB, validKinds: KINDS }).get(baseIdea)); // 8日: 残る
+  const a2 = createFileShapeCache({ filePath: file, salt, validKinds: KINDS, now: () => t0 + 31 * DAY, otherSaltTtlMs: 30 * DAY });
+  a2.finalize();
+  assert.equal(createFileShapeCache({ filePath: file, salt: saltB, validKinds: KINDS }).get(baseIdea), undefined); // 31日: 消える
+});
+
+test("isDefaultIdeasInput: 既定のdata/ideas.json(絶対パス比較)のときだけtrue", () => {
+  const def = path.resolve("/repo/data/ideas.json");
+  assert.equal(isDefaultIdeasInput(def, def), true);
+  assert.equal(isDefaultIdeasInput(path.resolve("/repo/data/../data/ideas.json"), def), true);
+  assert.equal(isDefaultIdeasInput(path.resolve("/tmp/fixture-ideas.json"), def), false);
+  assert.equal(isDefaultIdeasInput(path.resolve("/other-worktree/data/ideas.json"), def), false);
+});
+
+test("precompute: 隔離入力(IDEAS_JSON_PATH差し替え)ではキャッシュファイルに触れない(統合)", () => {
+  const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "precompute-iso-"));
+  const ideas = path.join(dir, "ideas.json");
+  fs.writeFileSync(
+    ideas,
+    JSON.stringify([{ id: "iso-1", title: "隔離", date: "2026-07-27", seed: "短い本文", refs: [] }]),
+  );
+  const cachePath = path.join(dir, "cache.json");
+  const sentinel = JSON.stringify({ version: 2, entries: { keep: { kind: "blob", generous: false, s: "x", t: 1 } } });
+  fs.writeFileSync(cachePath, sentinel);
+  const r = spawnSync(process.execPath, [path.join(root, "node_modules/tsx/dist/cli.mjs"), path.join(root, "scripts/precompute-idea-layouts.mjs")], {
+    encoding: "utf-8",
+    env: { ...process.env, IDEAS_JSON_PATH: ideas, IDEA_LAYOUTS_JSON_PATH: path.join(dir, "out.json"), IDEA_SHAPE_CACHE_PATH: cachePath },
+  });
+  assert.equal(r.status, 0, r.stderr);
+  assert.equal(fs.readFileSync(cachePath, "utf-8"), sentinel);
+  assert.ok(fs.existsSync(path.join(dir, "out.json")));
 });

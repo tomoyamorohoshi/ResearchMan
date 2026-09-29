@@ -14,13 +14,26 @@
  *
  * 保存先は既定でリポジトリ外(~/.researchman/cache/)。デプロイ肥大・git汚染を避けるため。
  * 破損・読み書き失敗はすべて握りつぶして全計算にフォールバックする(機能を壊さない)。
+ *
+ * 本番キャッシュを消さないための2重の防御:
+ * (1) precompute側で「入力が既定のdata/ideas.json」の時だけ使う(isDefaultIdeasInput)。フィクスチャ等の
+ *     隔離実行はキャッシュに一切触れない。
+ * (2) finalize()の掃除は「現在のsaltのエントリ」に限る。別saltのエントリ(別ブランチ/worktreeなど)は
+ *     最終使用から30日経つまで残す。
  */
 import crypto from "node:crypto";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 
-const CACHE_FILE_VERSION = 1;
+const CACHE_FILE_VERSION = 2;
+// 別salt(別ブランチ/worktree/旧ソース版)のエントリを未使用のまま保持する期間
+const OTHER_SALT_TTL_MS = 30 * 24 * 3600 * 1000;
+
+/** 入力ideas.jsonが既定パス(絶対パス比較)か。隔離実行(フィクスチャ等)ではキャッシュを使わない判定用。 */
+export function isDefaultIdeasInput(ideasPath, defaultIdeasPath) {
+  return path.resolve(ideasPath) === path.resolve(defaultIdeasPath);
+}
 
 export function defaultShapeCachePath() {
   return (
@@ -55,7 +68,9 @@ function isValidEntry(v, validKinds) {
     typeof v === "object" &&
     typeof v.kind === "string" &&
     validKinds.includes(v.kind) &&
-    typeof v.generous === "boolean"
+    typeof v.generous === "boolean" &&
+    typeof v.s === "string" &&
+    Number.isFinite(v.t)
   );
 }
 
@@ -72,7 +87,7 @@ function loadEntries(filePath, validKinds, warn) {
     const parsed = JSON.parse(text);
     if (parsed && parsed.version === CACHE_FILE_VERSION && parsed.entries && typeof parsed.entries === "object") {
       for (const [k, v] of Object.entries(parsed.entries)) {
-        if (isValidEntry(v, validKinds)) entries.set(k, { kind: v.kind, generous: v.generous });
+        if (isValidEntry(v, validKinds)) entries.set(k, { kind: v.kind, generous: v.generous, s: v.s, t: v.t });
       }
     } else {
       warn("idea-shape-cache: 形式が想定外のため破棄して全計算にフォールバック");
@@ -85,20 +100,29 @@ function loadEntries(filePath, validKinds, warn) {
 
 /**
  * ファイル永続のキャッシュを作る。get/set/flush/finalizeはいずれもthrowしない。
- * - get(idea): ヒットなら{kind, generous}、無ければundefined(ヒット・保存したキーは「今回使用」として記録)
+ * エントリは{kind, generous, s(saltのハッシュ), t(最終使用時刻ms)}。
+ * - get(idea): ヒットなら{kind, generous}、無ければundefined(ヒットしたキーは「今回使用」として記録)
  * - set(idea, assignment): メモリに追加
  * - flush(): 読み込み済み+新規の全エントリをtmp→rename(原子的)で書き出す。途中で強制終了しても
  *   それまでの計算結果が残るよう、呼び出し側は進捗ごとに呼ぶ
- * - finalize(): 今回使われなかった古いエントリを掃除して書き出す(ideaが編集・削除された分の肥大防止)
+ * - finalize(): 現在saltで今回使われなかったエントリと、TTL超過の別saltエントリを掃除して書き出す
  */
-export function createFileShapeCache({ filePath, salt, validKinds, warn = (m) => console.warn(m) }) {
+export function createFileShapeCache({
+  filePath,
+  salt,
+  validKinds,
+  warn = (m) => console.warn(m),
+  now = () => Date.now(),
+  otherSaltTtlMs = OTHER_SALT_TTL_MS,
+}) {
   const entries = loadEntries(filePath, validKinds, warn);
+  const saltId = crypto.createHash("sha256").update(salt).digest("hex").slice(0, 16);
   const touched = new Set();
   let dirty = false;
 
-  function write(keys) {
+  function write() {
     const obj = {};
-    for (const k of keys) obj[k] = entries.get(k);
+    for (const [k, v] of entries) obj[k] = v;
     const tmp = `${filePath}.tmp-${process.pid}`;
     try {
       fs.mkdirSync(path.dirname(filePath), { recursive: true });
@@ -119,21 +143,31 @@ export function createFileShapeCache({ filePath, salt, validKinds, warn = (m) =>
     get(idea) {
       const key = shapeAssignmentCacheKey(idea, salt);
       const v = entries.get(key);
-      if (v) touched.add(key);
-      return v ? { kind: v.kind, generous: v.generous } : undefined;
+      if (!v || v.s !== saltId) return undefined;
+      touched.add(key);
+      return { kind: v.kind, generous: v.generous };
     },
     set(idea, assignment) {
       const key = shapeAssignmentCacheKey(idea, salt);
-      entries.set(key, { kind: assignment.kind, generous: assignment.generous });
+      entries.set(key, { kind: assignment.kind, generous: assignment.generous, s: saltId, t: now() });
       touched.add(key);
       dirty = true;
     },
     flush() {
-      if (dirty) write([...entries.keys()]);
+      if (dirty) write();
     },
     finalize() {
-      for (const k of [...entries.keys()]) if (!touched.has(k)) entries.delete(k);
-      write([...entries.keys()]);
+      const nowMs = now();
+      for (const [k, v] of [...entries]) {
+        if (touched.has(k)) {
+          v.t = nowMs;
+        } else if (v.s === saltId) {
+          entries.delete(k);
+        } else if (nowMs - v.t > otherSaltTtlMs) {
+          entries.delete(k);
+        }
+      }
+      write();
     },
   };
 }
