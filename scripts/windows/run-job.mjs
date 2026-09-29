@@ -33,12 +33,12 @@ import path from "path";
 import { spawnSync, execFileSync } from "child_process";
 import { fileURLToPath } from "url";
 import { isMainBranch, parseCurrentBranch } from "../lib/branch-guard.mjs";
+import { tryAcquire as tryAcquireGitLock, removeLockDir } from "../lib/git-lock.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..", ".."); // scripts/windows -> repo root
 const NODE_BIN = process.execPath; // PATHに依存しない（タスクスケジューラの実行環境対策）
 const LOCK_PATH = path.join(os.tmpdir(), "researchman-git.lock");
-const STALE_MS = 5400 * 1000; // 90分（既存3ジョブ・scripts/lib/watchdog-git.mjsと同じ閾値）
 
 const JOB = process.argv[2];
 
@@ -166,30 +166,14 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 async function acquireLock(waitMs) {
   const deadline = Date.now() + waitMs;
   for (;;) {
-    try {
-      fs.mkdirSync(LOCK_PATH);
-      return true;
-    } catch (e) {
-      if (e.code !== "EEXIST") throw e;
-    }
-    try {
-      const st = fs.statSync(LOCK_PATH);
-      if (Date.now() - st.mtimeMs > STALE_MS) {
-        log(`staleロック奪取: ${unixDateString()}`);
-        try {
-          fs.rmdirSync(LOCK_PATH);
-        } catch {}
-        continue;
-      }
-    } catch {}
+    // 空き/死亡PIDのロック/stale(90分超・旧形式)を判定して取得。判定ロジックは studio と共有（scripts/lib/git-lock.mjs）
+    if (tryAcquireGitLock(LOCK_PATH, `daily:${JOB}`, { log })) return true;
     if (Date.now() >= deadline) return false;
     await sleep(Math.min(30000, Math.max(0, deadline - Date.now())));
   }
 }
 function releaseLock() {
-  try {
-    fs.rmdirSync(LOCK_PATH);
-  } catch {}
+  removeLockDir(LOCK_PATH); // owner.json を消してから rmdir
 }
 
 // ── 各ジョブ ────────────────────────────────────────────────

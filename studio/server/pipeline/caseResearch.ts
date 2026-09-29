@@ -207,7 +207,7 @@ export async function runCaseResearchPipeline(
   let costUsd = 0;
   const budget = externalBudget ?? createJobBudgetTracker();
 
-  const { lock, ownsLock } = resolveLock(externalLock, tryAcquireLock);
+  const { lock, ownsLock } = resolveLock(externalLock, () => tryAcquireLock(undefined, "studio:caseResearch"));
   if (!lock) {
     await updateJob(jobId, {
       status: "error",

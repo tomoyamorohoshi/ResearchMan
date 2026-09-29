@@ -211,7 +211,7 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
   let costUsd = 0;
   const budget = createJobBudgetTracker();
 
-  const lock = tryAcquireLock();
+  const lock = tryAcquireLock(undefined, "studio:ideaResearch");
   if (!lock) {
     await updateJob(jobId, {
       status: "error",

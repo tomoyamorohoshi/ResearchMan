@@ -183,7 +183,7 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
   let costUsd = 0;
   const budget = createJobBudgetTracker();
 
-  const { lock, ownsLock } = resolveLock(undefined, tryAcquireLock);
+  const { lock, ownsLock } = resolveLock(undefined, () => tryAcquireLock(undefined, "studio:addCase"));
   if (!lock) {
     const message = "デイリージョブ実行中です。しばらく後に再実行してください。";
     await updateJob(jobId, { status: "error", progress: undefined, error: message });

@@ -7,9 +7,11 @@
  * Windowsではscripts/windows/run-job.mjs）の閾値5400秒と同じにして、クラッシュ後の
  * 残骸を双方が同じ基準で救済できるようにする。
  */
-import { mkdirSync, rmdirSync, statSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+// 判定ロジック（owner.json のPID死活・旧形式のmtimeフォールバック・非空rmdir対応）は
+// 日次ジョブ(scripts/windows/run-job.mjs)と共有する（意味を一致させるため）。
+import { isHeld, removeLockDir, tryAcquire } from "../../../scripts/lib/git-lock.mjs";
 
 export const DEFAULT_LOCK_PATH = join(tmpdir(), "researchman-git.lock");
 export const STALE_MS = 90 * 60 * 1000;
@@ -24,25 +26,11 @@ export interface LockHandle {
 
 /**
  * ロック取得を1回だけ試みる（リトライ・待機なし）。取得済みで stale でなければ null。
+ * 保持PIDが死んでいるロックは90分を待たず即時奪取する（owner.json。label は "studio:<pipeline>" 等）。
  */
-export function tryAcquireLock(lockPath: string = DEFAULT_LOCK_PATH): LockHandle | null {
-  try {
-    mkdirSync(lockPath);
-    return { release: () => releaseLock(lockPath) };
-  } catch (err) {
-    if ((err as NodeJS.ErrnoException).code !== "EEXIST") throw err;
-  }
-  try {
-    const stat = statSync(lockPath);
-    if (isLockStale(stat.mtimeMs, Date.now())) {
-      rmdirSync(lockPath);
-      mkdirSync(lockPath);
-      return { release: () => releaseLock(lockPath) };
-    }
-  } catch {
-    // stat/rmdir失敗 = 他プロセスが並行して操作中の可能性。安全側で取得失敗扱いにする。
-  }
-  return null;
+export function tryAcquireLock(lockPath: string = DEFAULT_LOCK_PATH, label: string = "studio"): LockHandle | null {
+  if (!tryAcquire(lockPath, label, { log: (m: string) => console.log(`[lock] ${m}`) })) return null;
+  return { release: () => releaseLock(lockPath) };
 }
 
 /**
@@ -53,27 +41,19 @@ export function tryAcquireLock(lockPath: string = DEFAULT_LOCK_PATH): LockHandle
  * パイプライン側が通常の「デイリージョブ実行中です」でerror終了するだけで安全（DESIGN.md参照）。
  */
 export function isLockHeld(lockPath: string = DEFAULT_LOCK_PATH): boolean {
-  let stat;
-  try {
-    stat = statSync(lockPath);
-  } catch {
-    return false; // 存在しない = 空き
-  }
-  return !isLockStale(stat.mtimeMs, Date.now());
+  return isHeld(lockPath); // 存在しない/保持PID死亡/stale は空き
 }
 
 export function releaseLock(lockPath: string = DEFAULT_LOCK_PATH): void {
-  try {
-    rmdirSync(lockPath);
-  } catch {
-    // 既に無い/権限エラー等は無視（次回のstale判定が最終的に救済する）
-  }
+  removeLockDir(lockPath); // owner.json を消してから rmdir。既に無い等は無視（次回判定が救済する）
 }
 
 export interface AcquireLockWithWaitOptions {
   maxWaitMs?: number;
   intervalMs?: number;
   sleepImpl?: (ms: number) => Promise<void>;
+  /** owner.json の label（既定 "studio"） */
+  label?: string;
 }
 
 const DEFAULT_MAX_WAIT_MS = 30 * 60 * 1000;
@@ -98,7 +78,7 @@ export async function acquireLockWithWait(
 
   const deadline = Date.now() + maxWaitMs;
   for (;;) {
-    const handle = tryAcquireLock(lockPath);
+    const handle = tryAcquireLock(lockPath, options.label);
     if (handle) return handle;
     if (Date.now() >= deadline) return null;
     await sleep(intervalMs);

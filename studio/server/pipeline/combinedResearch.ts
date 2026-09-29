@@ -202,7 +202,7 @@ export function buildBudgetHaltLineText(theme: string, casePhase: PhaseResult): 
 export async function runCombinedResearchPipeline(jobId: string, req: ValidatedResearchRequest): Promise<void> {
   // lockはここで1回だけ取得し、Case→Tech両方へ渡す（adversarial-reviewer指摘#2:
   // 個々のパイプラインに自前取得させると解放→再取得の間に競合窓ができるため）。
-  const lock = tryAcquireLock();
+  const lock = tryAcquireLock(undefined, "studio:combinedResearch");
   if (!lock) {
     await updateJob(jobId, {
       status: "error",

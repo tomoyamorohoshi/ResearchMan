@@ -11,13 +11,12 @@
  * として1回だけ叩く用途のため、pull --rebaseはしない（=commitを増やさない。単純な
  * push再試行のみ）。失敗しても無限リトライしない（呼び出し側がレポートに記録するだけ）。
  */
-import fs from "fs";
 import os from "os";
 import path from "path";
 import { spawnSync } from "child_process";
+import { tryAcquire as tryAcquireGitLock, removeLockDir } from "./git-lock.mjs";
 
 const LOCK_PATH = path.join(os.tmpdir(), "researchman-git.lock");
-const LOCK_STALE_MS = 5400 * 1000;
 const LOCK_WAIT_TIMEOUT_MS = 3 * 60 * 1000;
 const LOCK_POLL_MS = 2000;
 
@@ -33,29 +32,17 @@ function acquireLock() {
   const deadline = Date.now() + LOCK_WAIT_TIMEOUT_MS;
   for (;;) {
     try {
-      fs.mkdirSync(LOCK_PATH);
-      return true;
-    } catch (e) {
-      if (e.code !== "EEXIST") return false;
+      if (tryAcquireGitLock(LOCK_PATH, "push-once")) return true;
+    } catch {
+      return false; // mkdirがEEXIST以外で失敗（従来と同じくロック取得失敗扱い）
     }
-    try {
-      const st = fs.statSync(LOCK_PATH);
-      if (Date.now() - st.mtimeMs > LOCK_STALE_MS) {
-        try {
-          fs.rmdirSync(LOCK_PATH);
-        } catch {}
-        continue;
-      }
-    } catch {}
     if (Date.now() >= deadline) return false;
     sleepSync(Math.min(LOCK_POLL_MS, Math.max(0, deadline - Date.now())));
   }
 }
 
 function releaseLock() {
-  try {
-    fs.rmdirSync(LOCK_PATH);
-  } catch {}
+  removeLockDir(LOCK_PATH);
 }
 
 // ロックを取得して `git push` を1回だけ試みる。例外を投げず {ok, reason} を返す。

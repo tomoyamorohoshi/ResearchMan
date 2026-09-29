@@ -269,7 +269,7 @@ export async function runTechResearchPipeline(
   let costUsd = 0;
   const budget = externalBudget ?? createJobBudgetTracker();
 
-  const { lock, ownsLock } = resolveLock(externalLock, tryAcquireLock);
+  const { lock, ownsLock } = resolveLock(externalLock, () => tryAcquireLock(undefined, "studio:techResearch"));
   if (!lock) {
     await updateJob(jobId, buildLockUnavailablePatch());
     return;

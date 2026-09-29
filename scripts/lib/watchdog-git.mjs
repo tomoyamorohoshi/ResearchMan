@@ -20,9 +20,9 @@
  * （`.last-*-run.txt`の`run-if-due.mjs --daily-at`判定）で二重実行を防ぎつつ、
  * 通常どおりロックを取得して走れる。
  */
-import fs from "fs";
 import os from "os";
 import { spawnSync } from "child_process";
+import { tryAcquire as tryAcquireGitLock, removeLockDir } from "./git-lock.mjs";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -30,8 +30,6 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_ROOT = path.join(__dirname, "..", "..");
 
 const LOCK_PATH = path.join(os.tmpdir(), "researchman-git.lock");
-// 既存3ジョブ・tuneupと同じ90分staleしきい値（kill -9等の残骸奪取）
-const LOCK_STALE_MS = 5400 * 1000;
 // watchdog自身のgit操作はadd/commit/pull/pushのみで短時間に終わる想定。
 // 既存ジョブ（パイプライン全体を包む数十分待ち）ほど長く待つ必要はない
 const LOCK_WAIT_TIMEOUT_MS = 3 * 60 * 1000;
@@ -52,29 +50,17 @@ function acquireLock() {
   const deadline = Date.now() + LOCK_WAIT_TIMEOUT_MS;
   for (;;) {
     try {
-      fs.mkdirSync(LOCK_PATH);
-      return true;
-    } catch (e) {
-      if (e.code !== "EEXIST") return false;
+      if (tryAcquireGitLock(LOCK_PATH, "watchdog-git")) return true;
+    } catch {
+      return false; // mkdirがEEXIST以外で失敗（従来と同じくロック取得失敗扱い）
     }
-    try {
-      const st = fs.statSync(LOCK_PATH);
-      if (Date.now() - st.mtimeMs > LOCK_STALE_MS) {
-        try {
-          fs.rmdirSync(LOCK_PATH);
-        } catch {}
-        continue; // stale奪取後すぐ再トライ
-      }
-    } catch {}
     if (Date.now() >= deadline) return false;
     sleepSync(Math.min(LOCK_POLL_MS, Math.max(0, deadline - Date.now())));
   }
 }
 
 function releaseLock() {
-  try {
-    fs.rmdirSync(LOCK_PATH);
-  } catch {}
+  removeLockDir(LOCK_PATH);
 }
 
 function run(cmd, args, cwd) {

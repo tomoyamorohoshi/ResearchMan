@@ -195,3 +195,117 @@ test("acquireLockWithWait: maxWaitMsを超えたらnullを返す（取得でき�
     rmSync(p, { recursive: true, force: true });
   }
 });
+
+// ── owner.json（PID死活）対応: 保持プロセスが強制死したロックを90分待たず救済する ──
+import { spawnSync } from "node:child_process";
+import { readFileSync, writeFileSync } from "node:fs";
+import { inspectLock } from "../../../scripts/lib/git-lock.mjs";
+
+function deadPid(): number {
+  const r = spawnSync(process.execPath, ["-e", "process.stdout.write(String(process.pid))"], { encoding: "utf-8" });
+  return Number(r.stdout);
+}
+function ownerJson(pid: number, label = "daily:auto"): string {
+  return JSON.stringify({ pid, startedAt: new Date().toISOString(), label });
+}
+function age(p: string, ms: number): void {
+  const t = new Date(Date.now() - ms);
+  utimesSync(p, t, t);
+}
+
+test("tryAcquireLock: 取得時に owner.json(pid/startedAt/label)を書き、release で消えてディレクトリも消える", () => {
+  const p = tmpLockPath();
+  try {
+    const handle = tryAcquireLock(p, "studio:test");
+    assert.ok(handle);
+    const owner = JSON.parse(readFileSync(path.join(p, "owner.json"), "utf-8"));
+    assert.equal(owner.pid, process.pid);
+    assert.equal(owner.label, "studio:test");
+    handle.release();
+    assert.equal(existsSync(p), false);
+  } finally {
+    rmSync(p, { recursive: true, force: true });
+  }
+});
+
+test("tryAcquireLock/isLockHeld: 死亡PIDのロックは90分待たず即時奪取・空き扱い", () => {
+  const p = tmpLockPath();
+  mkdirSync(p);
+  writeFileSync(path.join(p, "owner.json"), ownerJson(deadPid()));
+  try {
+    assert.equal(isLockHeld(p), false);
+    const handle = tryAcquireLock(p, "studio:case");
+    assert.ok(handle);
+    assert.equal(JSON.parse(readFileSync(path.join(p, "owner.json"), "utf-8")).pid, process.pid);
+    handle.release();
+  } finally {
+    rmSync(p, { recursive: true, force: true });
+  }
+});
+
+test("tryAcquireLock/isLockHeld: 生存PIDのロックは待つ(取得不可・保持中)", () => {
+  const p = tmpLockPath();
+  mkdirSync(p);
+  writeFileSync(path.join(p, "owner.json"), ownerJson(process.pid));
+  try {
+    assert.equal(isLockHeld(p), true);
+    assert.equal(tryAcquireLock(p), null);
+  } finally {
+    rmSync(p, { recursive: true, force: true });
+  }
+});
+
+test("旧形式/壊れたowner.json(書き込み途中): mtime90分ルールにフォールバック", () => {
+  for (const raw of [null, "{\"pid\":1", ""]) {
+    const p = tmpLockPath();
+    mkdirSync(p);
+    if (raw !== null) writeFileSync(path.join(p, "owner.json"), raw);
+    try {
+      assert.equal(isLockHeld(p), true);
+      assert.equal(tryAcquireLock(p), null);
+      age(p, STALE_MS + 60_000);
+      assert.equal(isLockHeld(p), false);
+      const handle = tryAcquireLock(p);
+      assert.ok(handle, `古い壊れownerは奪取: ${String(raw)}`);
+      handle.release();
+    } finally {
+      rmSync(p, { recursive: true, force: true });
+    }
+  }
+});
+
+test("非空ロックディレクトリ(owner.json入り)のstaleも奪取・releaseできる", () => {
+  const p = tmpLockPath();
+  mkdirSync(p);
+  writeFileSync(path.join(p, "owner.json"), ownerJson(process.pid));
+  age(p, STALE_MS + 60_000);
+  try {
+    const handle = tryAcquireLock(p);
+    assert.ok(handle);
+    handle.release();
+    assert.equal(existsSync(p), false);
+  } finally {
+    rmSync(p, { recursive: true, force: true });
+  }
+});
+
+test("lock.ts と scripts/lib/git-lock.mjs(run-job.mjs が使う実装)は同じ判定になる", () => {
+  const cases: Array<{ name: string; setup: (p: string) => void; held: boolean }> = [
+    { name: "死亡PID", setup: (p) => writeFileSync(path.join(p, "owner.json"), ownerJson(deadPid())), held: false },
+    { name: "生存PID", setup: (p) => writeFileSync(path.join(p, "owner.json"), ownerJson(process.pid)), held: true },
+    { name: "旧形式(新しい)", setup: () => {}, held: true },
+    { name: "壊れowner(新しい)", setup: (p) => writeFileSync(path.join(p, "owner.json"), "{"), held: true },
+    { name: "旧形式(古い)", setup: (p) => age(p, STALE_MS + 60_000), held: false },
+  ];
+  for (const c of cases) {
+    const p = tmpLockPath();
+    mkdirSync(p);
+    c.setup(p);
+    try {
+      assert.equal(isLockHeld(p), c.held, c.name);
+      assert.equal(inspectLock(p).state === "held", c.held, `${c.name}(mjs)`);
+    } finally {
+      rmSync(p, { recursive: true, force: true });
+    }
+  }
+});

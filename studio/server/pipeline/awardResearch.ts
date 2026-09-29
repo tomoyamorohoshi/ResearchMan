@@ -481,7 +481,7 @@ async function runP5(ctx: PipelineCtx): Promise<void> {
   const { checkpoint, req, jobId } = ctx;
   await persistCheckpoint(ctx, "P5", 0, 1, "監査待ち（gitロック取得中）");
 
-  const lock = await acquireLockWithWait();
+  const lock = await acquireLockWithWait(undefined, { label: "studio:awardResearch" });
   if (!lock) {
     throw new Error('gitロックを30分待っても取得できませんでした。時間をおいて「再開」と送ってください。');
   }
