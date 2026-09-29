@@ -47,3 +47,9 @@
 - この作業ツリーは日次ジョブ（run-job.mjs）が直接 commit/push する**運用インフラ**。checkout状態がそのままジョブの出力先になる
 - **セッション終了時・長時間の待機前は必ず main に戻す**。ブランチでの開発作業は git worktree で隔離する
 - 防御: scripts/windows/run-job.mjs 冒頭の main ブランチ検査（main以外では収集を実行せず即失敗）
+
+## 巨大データJSONはBlob配信（2026-09-30〜。Deployment Storage肥大対策）
+
+- cases/ideas/idea-layouts はデプロイに同梱しない。`scripts/upload-public-data.mjs` が brotli事前圧縮して Vercel Blob（privateストア）の `public-data/<name>.br` へ上書きし、`/api/public-data/[name]` が中継配信する。クライアントは `/api/public-data/` → `/data/` の順にfetch（dev=BLOB_STORE_ID無しは /data/ のみ）
+- アップロードは **pre-push フック（scripts/hooks/pre-push の末尾）** が自動実行（ハッシュ変化時のみ・失敗してもpushは止めない）。フックの原本を変えたら `.git/hooks/pre-push` へ反映が必要（既存の注記どおり）
+- 「Blobが古い/サイトが更新されない」時は `node scripts/upload-public-data.mjs --force` を手動実行（認証は ~/.researchman-favsync.json を流用。署名発行は /api/data-upload）

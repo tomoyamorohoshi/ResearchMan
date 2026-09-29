@@ -25,6 +25,14 @@ function writeJson(outName, text) {
   console.log(`✓ ${outName}: ${(Buffer.byteLength(text) / 1024).toFixed(1)} KB → ${outPath}`);
 }
 
+// 2026-09-30〜: 本番(Vercel)ビルドではコピーしない。巨大JSONはVercel Blobから配信する
+// （scripts/upload-public-data.mjs がpre-pushで上げ、/api/public-data が中継する）。デプロイ同梱すると日次で
+// Deployment Storageが約50〜65MBずつ増えるため。Blob未設定（ローカル/dev）では従来どおりコピー
+if (process.env.VERCEL && process.env.BLOB_STORE_ID) {
+  console.log("✓ Vercelビルド: 巨大データJSONはBlob配信のため public/data へコピーしない");
+  process.exit(0);
+}
+
 // cases.json: src/lib/cases.ts の現行フィルタ（quarantined===trueを除外）と同じロジック（lib側に集約）
 for (const name of PUBLIC_DATA_FILES) {
   const raw = fs.readFileSync(path.join(DATA_DIR, name), "utf8");
