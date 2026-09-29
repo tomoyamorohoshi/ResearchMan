@@ -2,13 +2,11 @@
 // brotli事前圧縮bytesとして固定パスで置かれ（scripts/upload-public-data.mjs）、ブラウザから直接は
 // 読めないためここで中継する。デプロイ同梱(public/data)をやめる目的はDeployment Storageの肥大防止。
 // キャッシュ: ブラウザ60秒 / CDN(s-maxage)5分 + stale-while-revalidate 1日。ETagで304対応。
-// brotli非対応クライアント（curl等）にはサーバ側で展開して返す。
+// brotli+gzip併記でないクライアント（ボット等）には406（46MBの展開応答・CDN MISSを避ける。理由は acceptsBrotliAndGzip）。
 import type { NextRequest } from "next/server";
-import { Readable } from "node:stream";
-import zlib from "node:zlib";
 import { get } from "@vercel/blob";
 import { isBlobConfigured } from "@/lib/favoritesStore";
-import { blobPathnameFor, isAllowedBlobPathname } from "@/lib/publicDataBlob";
+import { acceptsBrotliAndGzip, blobPathnameFor, isAllowedBlobPathname } from "@/lib/publicDataBlob";
 
 export const dynamic = "force-dynamic";
 
@@ -20,7 +18,12 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
   if (!isAllowedBlobPathname(pathname)) return Response.json({ error: "not found" }, { status: 404 });
   if (!isBlobConfigured()) return Response.json({ error: "not configured" }, { status: 503 });
 
-  const acceptsBr = /\bbr\b/.test(request.headers.get("accept-encoding") ?? "");
+  if (!acceptsBrotliAndGzip(request.headers.get("accept-encoding"))) {
+    return Response.json(
+      { error: "Accept-Encoding must include br and gzip" },
+      { status: 406, headers: { Vary: "Accept-Encoding" } },
+    );
+  }
   try {
     const result = await get(pathname, {
       access: "private",
@@ -34,13 +37,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     };
     if (result.statusCode === 304) return new Response(null, { status: 304, headers });
     headers["Content-Type"] = "application/json; charset=utf-8";
-    if (acceptsBr) {
-      return new Response(result.stream, { status: 200, headers: { ...headers, "Content-Encoding": "br" } });
-    }
-    const decoded = Readable.fromWeb(result.stream as import("node:stream/web").ReadableStream).pipe(
-      zlib.createBrotliDecompress(),
-    );
-    return new Response(Readable.toWeb(decoded) as ReadableStream, { status: 200, headers });
+    return new Response(result.stream, { status: 200, headers: { ...headers, "Content-Encoding": "br" } });
   } catch (err) {
     console.error("[api/public-data] failed", err);
     return Response.json({ error: "internal error" }, { status: 500 });

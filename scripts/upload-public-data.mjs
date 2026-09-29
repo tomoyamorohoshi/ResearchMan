@@ -20,14 +20,18 @@ import {
   sha256Text,
   filesNeedingUpload,
   uploadUrlFromEndpoint,
+  UPLOAD_STATE_FILENAME,
+  withTimeout,
 } from "./lib/public-data.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = path.join(__dirname, "..", "data");
 const FAVSYNC_CONFIG_PATH = path.join(os.homedir(), ".researchman-favsync.json");
-const STATE_PATH = path.join(os.homedir(), ".researchman-data-upload-state.json");
+const STATE_PATH = path.join(os.homedir(), UPLOAD_STATE_FILENAME);
 const MULTIPART_THRESHOLD = 8 * 1024 * 1024;
 const MAX_ATTEMPTS = 3;
+// ネットワーク詰まりでpre-pushフックが固まり全pushをブロックしないよう、1試行ごとに打ち切る
+const UPLOAD_TIMEOUT_MS = Number(process.env.UPLOAD_TIMEOUT_MS) || 120 * 1000;
 
 const force = process.argv.includes("--force");
 const dryRun = process.argv.includes("--dry-run");
@@ -41,11 +45,10 @@ function readJsonSafe(p) {
 }
 
 const texts = {};
-const hashes = {};
 for (const name of PUBLIC_DATA_FILES) {
   texts[name] = buildPublicDataText(name, fs.readFileSync(path.join(DATA_DIR, name), "utf8"));
-  hashes[name] = sha256Text(texts[name]);
 }
+const hashes = Object.fromEntries(PUBLIC_DATA_FILES.map((n) => [n, sha256Text(texts[n])]));
 
 const state = readJsonSafe(STATE_PATH) ?? {};
 const targets = filesNeedingUpload(hashes, state, { force });
@@ -63,6 +66,9 @@ if (!cfg?.endpoint || !cfg?.token) {
 }
 const handleUploadUrl = process.env.DATA_UPLOAD_URL || uploadUrlFromEndpoint(cfg.endpoint);
 
+// pre-pushフックを長時間ブロックしないよう全体の予算も持つ（超過後は残りの試行をしない。次回pushで再試行）
+const DEADLINE = Date.now() + (Number(process.env.UPLOAD_BUDGET_MS) || 4 * 60 * 1000);
+
 let failed = 0;
 for (const name of targets) {
   const raw = Buffer.from(texts[name]);
@@ -76,15 +82,16 @@ for (const name of targets) {
     },
   });
   let ok = false;
-  for (let attempt = 1; attempt <= MAX_ATTEMPTS && !ok; attempt++) {
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS && !ok && Date.now() < DEADLINE; attempt++) {
     try {
-      const res = await uploadPresigned(`public-data/${name}.br`, body, {
+      const res = await withTimeout(uploadPresigned(`public-data/${name}.br`, body, {
         access: "private",
         handleUploadUrl,
         headers: { authorization: `Bearer ${cfg.token}` },
         contentType: "application/octet-stream",
         multipart: body.length > MULTIPART_THRESHOLD,
-      });
+        abortSignal: AbortSignal.timeout(UPLOAD_TIMEOUT_MS),
+      }), UPLOAD_TIMEOUT_MS, `upload ${name}`);
       state[name] = hashes[name];
       fs.writeFileSync(STATE_PATH, JSON.stringify(state, null, 2));
       console.log(`✓ ${name}: ${(raw.length / 1024).toFixed(0)} KB → br ${(body.length / 1024).toFixed(0)} KB → ${res.url}`);

@@ -52,6 +52,13 @@ import {
   appendIncidentSafe,
 } from "./lib/unpushed-commits.mjs";
 import { pushOnce } from "./lib/push-once.mjs";
+import {
+  computePublicDataHashes,
+  filesNeedingUpload,
+  buildBlobStaleReport,
+  blobStaleReasonKey,
+  UPLOAD_STATE_FILENAME,
+} from "./lib/public-data.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
@@ -68,6 +75,7 @@ const NOT_QUARANTINED_KINDS = ["videoId-mismatch", "thumbnail-dup"];
 const INCIDENTS_PATH = path.join(ROOT, "logs", "incidents.json");
 const VERIFY_STATE_PATH = path.join(ROOT, "logs", "verify-state.json");
 const UNPUSHED_STATE_PATH = path.join(ROOT, "logs", "unpushed-notify-state.json");
+const BLOB_STALE_STATE_PATH = path.join(ROOT, "logs", "blob-stale-notify-state.json");
 const STUDIO_JOBS_URL = "http://127.0.0.1:5178/api/jobs";
 const STUDIO_WEBHOOK_URL = "https://laptop-95255niv.tail5f64f5.ts.net/line-webhook";
 const STUDIO_TASK_NAMES = ["ResearchMan-Studio", "ResearchMan-studiokeeper"];
@@ -834,6 +842,37 @@ async function checkUnpushedCommits(report) {
 }
 
 // ─────────────────────────────────────────────────────────────
+// Blob配信データの鮮度検知（2026-09-30）。cases/ideas/idea-layoutsはpre-pushフックがVercel Blobへ
+// 上げる（scripts/upload-public-data.mjs。失敗してもpushは止めない設計）ため、同期が失敗し続けると
+// サイトは200のまま古い内容を配信し続ける（push滞留事故と同種の無音故障）。
+// 「最終アップロード成功時のハッシュ」と「現在のdata/*.jsonから求めたハッシュ」の不一致を検知する。
+// 同一の古いファイル集合の通知は1日1回に抑制する。
+// ─────────────────────────────────────────────────────────────
+async function checkBlobSyncFreshness(report) {
+  const statePath = path.join(os.homedir(), UPLOAD_STATE_FILENAME);
+  let uploaded = {};
+  try {
+    uploaded = JSON.parse(fs.readFileSync(statePath, "utf8"));
+  } catch {
+    // 状態ファイル無し/破損＝一度も成功していない扱い（全ファイルが古い判定になる）
+  }
+  const hashes = computePublicDataHashes(path.join(ROOT, "data"), (f) => fs.readFileSync(f, "utf8"));
+  const stale = filesNeedingUpload(hashes, uploaded);
+  if (stale.length === 0) return;
+
+  const reasonKey = blobStaleReasonKey(stale);
+  const today = jstDateString();
+  const state = readUnpushedStateSafe(BLOB_STALE_STATE_PATH);
+  if (!shouldNotifyUnpushed(state, reasonKey, today)) {
+    log("[blob-sync] Blob配信データが古い状態が継続中（同一理由で本日通知済み → 通知スキップ）");
+    return;
+  }
+  log(`[blob-sync] Blob配信データが古い: ${stale.join(", ")}`);
+  report.push(buildBlobStaleReport(stale));
+  writeUnpushedState(BLOB_STALE_STATE_PATH, { lastReason: reasonKey, lastNotifiedYmd: today });
+}
+
+// ─────────────────────────────────────────────────────────────
 // main
 // ─────────────────────────────────────────────────────────────
 async function main() {
@@ -847,6 +886,7 @@ async function main() {
   await safeCheck("collection-health", () => checkCollectionHealth(report));
   await safeCheck("studio-verify-schedule", () => checkStudioVerifySchedule(report));
   await safeCheck("unpushed-commits", () => checkUnpushedCommits(report));
+  await safeCheck("blob-sync", () => checkBlobSyncFreshness(report));
 
   let reportText = null;
   if (report.length) {

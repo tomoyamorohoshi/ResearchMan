@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { buildPublicDataText, sha256Text, filesNeedingUpload, uploadUrlFromEndpoint } from "./public-data.mjs";
+import { buildPublicDataText, sha256Text, filesNeedingUpload, uploadUrlFromEndpoint, buildBlobStaleReport, blobStaleReasonKey, withTimeout } from "./public-data.mjs";
 
 test("buildPublicDataText: cases.jsonはquarantined===trueを除外、他はそのまま", () => {
   const raw = { cases: JSON.stringify([{ id: "a" }, { id: "b", quarantined: true }]), ideas: "[1]", layouts: '{"x":1}' };
@@ -25,4 +25,21 @@ test("filesNeedingUpload: 前回成功ハッシュと異なる/未記録のも�
 test("uploadUrlFromEndpoint: favsyncのendpointと同一オリジンの /api/data-upload", () => {
   assert.equal(uploadUrlFromEndpoint("https://research-man.vercel.app/api/favorites"), "https://research-man.vercel.app/api/data-upload");
   assert.throws(() => uploadUrlFromEndpoint("not a url"));
+});
+
+test("buildBlobStaleReport: 古いファイル名と復旧コマンドを含む", () => {
+  const t = buildBlobStaleReport(["idea-layouts.json"]);
+  assert.match(t, /idea-layouts\.json/);
+  assert.match(t, /upload-public-data\.mjs --force/);
+});
+
+test("blobStaleReasonKey: 同じ集合なら同じキー（重複通知抑制用）、順序非依存", () => {
+  assert.equal(blobStaleReasonKey(["b", "a"]), blobStaleReasonKey(["a", "b"]));
+  assert.notEqual(blobStaleReasonKey(["a"]), blobStaleReasonKey(["a", "b"]));
+});
+
+test("withTimeout: 期限内なら結果を返し、超過ならrejectする（SDKがabortSignalを署名取得fetchへ渡さないための保険）", async () => {
+  assert.equal(await withTimeout(Promise.resolve(7), 1000, "x"), 7);
+  await assert.rejects(withTimeout(new Promise(() => {}), 30, "upload cases.json"), /upload cases\.json.*timeout/i);
+  await assert.rejects(withTimeout(Promise.reject(new Error("boom")), 1000, "x"), /boom/);
 });

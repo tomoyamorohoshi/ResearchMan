@@ -8,6 +8,7 @@ import {
   isBlobDataEnabled,
   dataUrlCandidates,
   fetchDataJson,
+  acceptsBrotliAndGzip,
 } from "./publicDataBlob";
 
 test("blobPathnameFor: public-data/ 配下の固定パス（brotli圧縮済みbytesなので .br）", () => {
@@ -78,4 +79,18 @@ test("fetchDataJson: 全候補失敗ならthrow", async () => {
     fetchDataJson("cases.json", true, async () => fakeRes(false, null)),
     /cases\.json/,
   );
+});
+
+test("acceptsBrotliAndGzip: ブラウザ標準(gzip,br併記)のみtrue。br単独・identity・gzipのみは不可", () => {
+  // 実測: Vercel CDNは gzip を含まない Accept-Encoding(br単独/zstd,br)だとbr事前圧縮を素通しせず
+  // 約20MBへ再圧縮＋CDN MISSになる。実ブラウザは常にgzipも併記するため、併記を要求して防ぐ
+  assert.equal(acceptsBrotliAndGzip("gzip, deflate, br, zstd"), true);
+  assert.equal(acceptsBrotliAndGzip("br, gzip;q=0.8"), true);
+  assert.equal(acceptsBrotliAndGzip("br"), false);
+  assert.equal(acceptsBrotliAndGzip("zstd, br"), false);
+  assert.equal(acceptsBrotliAndGzip("gzip"), false);
+  assert.equal(acceptsBrotliAndGzip("identity"), false);
+  assert.equal(acceptsBrotliAndGzip(""), false);
+  assert.equal(acceptsBrotliAndGzip(null), false);
+  assert.equal(acceptsBrotliAndGzip("br;q=0, gzip"), false);
 });

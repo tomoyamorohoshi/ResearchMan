@@ -55,3 +55,17 @@ export async function fetchDataJson<T>(
   }
   throw new Error(`Failed to load ${name}: ${lastErr instanceof Error ? lastErr.message : String(lastErr)}`);
 }
+
+// 実測（2026-09-30）: Accept-Encodingに gzip を含まない（br単独・zstd,br）リクエストは、Vercel CDNが
+// br事前圧縮を素通しせず約20MBへ再圧縮し、CDN MISSにもなる。gzip,br併記（実ブラウザは常にこれ）なら
+// 8.4MBのままCDN HIT。非対応クライアント（ボット等）へ46MB展開応答を返さないよう、併記を必須にする
+export function acceptsBrotliAndGzip(header: string | null | undefined): boolean {
+  const accepted = new Set<string>();
+  for (const part of (header ?? "").split(",")) {
+    const [enc, ...params] = part.trim().toLowerCase().split(";");
+    const q = params.map((p) => p.trim()).find((p) => p.startsWith("q="));
+    if (q !== undefined && Number(q.slice(2)) === 0) continue;
+    if (enc) accepted.add(enc.trim());
+  }
+  return accepted.has("br") && accepted.has("gzip");
+}
