@@ -511,7 +511,7 @@ async function main() {
   const daysSince = Math.round((Date.now() - lastRunDate) / (1000 * 60 * 60 * 24));
   console.log(`既存: ${existingCases.length}件`);
   console.log(`前回実行: ${lastRunDate.toLocaleDateString("ja-JP")}（${daysSince}日前）`);
-  console.log(`検索対象期間: 直近${daysSince}日間 / 目標新規${TARGET_NEW}件以上（最大${MAX_ROUNDS}ラウンド）\n`);
+  console.log(`検索対象期間: 直近${daysSince}日間 / 基準を満たすものだけ採用（ノルマなし・0件可。上限${MAX_ADD}件・最大${MAX_ROUNDS}ラウンド）\n`);
 
   const claudeBin = resolveClaudeBin();
   console.log(`Claude bin: ${claudeBin}\n`);

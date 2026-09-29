@@ -118,16 +118,21 @@ test("安全側フォールバック（発見）: 欠落・不正値・criterion
   assert.equal(normalizeDiscoveryGate(undefined).gateVerdict, "reject");
   // 大文字小文字・空白ゆれは許容
   const ok = normalizeDiscoveryGate({ gateVerdict: " Accept ", gateCriterion: "c ", gateReason: " r " });
-  assert.deepEqual(ok, { gateVerdict: "accept", gateCriterion: "C", gateReason: "r" });
+  assert.deepEqual(ok, { gateVerdict: "accept", gateCriterion: "C", gateReason: "r", invalidOutput: false });
 });
 
 test("記事化の関門: accept は criterion・score(1〜5)・告知でないことが揃った時のみ", () => {
   const good = { gateVerdict: "accept", gateCriterion: "A", gateScore: 4, gateReason: "読み替え一手", announcementType: "" };
-  assert.deepEqual(normalizeArticleGate(good), { gateVerdict: "accept", gateCriterion: "A", gateScore: 4, gateReason: "読み替え一手", announcementType: "" });
+  assert.deepEqual(normalizeArticleGate(good), { gateVerdict: "accept", gateCriterion: "A", gateScore: 4, gateReason: "読み替え一手", announcementType: "", invalidOutput: false });
   // 数値文字列は許容
   assert.equal(normalizeArticleGate({ ...good, gateScore: "3" }).gateScore, 3);
   // score 範囲外・欠落は reject
-  for (const s of [0, 6, 2.5, "x", undefined, null]) assert.equal(normalizeArticleGate({ ...good, gateScore: s }).gateVerdict, "reject", `score=${s}`);
+  // scoreは採否に使わない: 範囲外・非整数・不正でも accept のまま（丸め/クランプ、解釈不能は0）
+  for (const [raw, want] of [[4.5, 5], ["4/5", 4], ["4点", 4], [0, 1], [6, 5], [2.4, 2], ["x", 0], [undefined, 0], [null, 0]]) {
+    const g = normalizeArticleGate({ ...good, gateScore: raw });
+    assert.equal(g.gateVerdict, "accept", `score=${raw}`);
+    assert.equal(g.gateScore, want, `score=${raw}`);
+  }
   // acceptと告知種別の矛盾（告知のみと言いつつaccept）は reject
   for (const t of ["発売", "開催", "発表", "買収", "コンテスト", "other"]) {
     const g = normalizeArticleGate({ ...good, announcementType: t });
@@ -163,4 +168,44 @@ test("sourceIdFor: モデルの自己申告(実在id)を優先、無ければURL
   assert.equal(sourceIdFor({ sourceId: "bogus", link: "https://www.itsnicethat.com/a" }, reg), "itsnicethat");
   assert.equal(sourceIdFor({ link: "https://brand.example/x" }, reg), "");
   assert.equal(sourceIdFor({}, []), "");
+});
+
+test("複数記号のcriterion（A+B / A, B / A/B / A、B）は最初の記号で accept（発見・記事化とも）", () => {
+  for (const c of ["A+B", "A, B", "A/B", "A、B", "B and C", "A&B", " b, c "]) {
+    const d = normalizeDiscoveryGate({ gateVerdict: "accept", gateCriterion: c, gateReason: "r" });
+    assert.equal(d.gateVerdict, "accept", c);
+    assert.equal(d.gateCriterion, c.trim().toUpperCase().match(/[ABC]/)[0], c);
+    assert.equal(d.invalidOutput, false, c);
+    const a = normalizeArticleGate({ gateVerdict: "accept", gateCriterion: c, gateScore: 4, announcementType: "" });
+    assert.equal(a.gateVerdict, "accept", c);
+  }
+  assert.equal(normalizeDiscoveryGate({ gateVerdict: "accept", gateCriterion: "none" }).gateVerdict, "reject");
+  assert.ok(discoveryGatePromptSection().includes("最も強い1記号"));
+  assert.ok(articleGatePromptSection().includes("最も強い1記号"));
+});
+
+test("announcementTypeのnull風トークンは空扱い（acceptを潰さない）", () => {
+  for (const t of ["なし", "無し", "該当なし", "null", "NULL", "N/A", "n/a", "-", "—", "none", "None", "undefined", "  "]) {
+    const g = normalizeArticleGate({ gateVerdict: "accept", gateCriterion: "B", gateScore: 4, announcementType: t });
+    assert.equal(g.gateVerdict, "accept", `「${t}」`);
+    assert.equal(g.announcementType, "", `「${t}」`);
+  }
+  assert.equal(normalizeArticleGate({ gateVerdict: "accept", gateCriterion: "B", gateScore: 4, announcementType: "謎" }).gateVerdict, "reject");
+});
+
+test("観測性: 正規化による強制rejectは invalid-output: を付ける（モデル自身のrejectには付けない）", () => {
+  const forced = normalizeDiscoveryGate({ gateVerdict: "accept", gateCriterion: "none", gateReason: "r" });
+  assert.equal(forced.invalidOutput, true);
+  assert.match(gateRejectionDetail(forced, "discovery"), /^invalid-output:none:/);
+  const missing = normalizeDiscoveryGate({ title: "x" });
+  assert.equal(missing.invalidOutput, true);
+  const legit = normalizeDiscoveryGate(LITMUS.kh4);
+  assert.equal(legit.invalidOutput, false);
+  assert.equal(gateRejectionDetail(legit, "discovery"), "none:発売告知のみ");
+  const conflict = normalizeArticleGate({ gateVerdict: "accept", gateCriterion: "A", gateScore: 4, gateReason: "r", announcementType: "発売" });
+  assert.equal(conflict.invalidOutput, true);
+  assert.match(gateRejectionDetail(conflict, "article"), /^invalid-output:article:発売:/);
+  const legitArt = normalizeArticleGate({ gateVerdict: "reject", gateCriterion: "none", gateScore: 1, gateReason: "告知", announcementType: "発売" });
+  assert.equal(legitArt.invalidOutput, false);
+  assert.equal(gateRejectionDetail(legitArt, "article"), "article:発売:告知");
 });

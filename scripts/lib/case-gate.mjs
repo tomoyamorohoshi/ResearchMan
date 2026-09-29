@@ -22,6 +22,18 @@ export { GATE_CRITERIA_TEXT, GATE_LITMUS_TEXT, TASTE_TYPES_TEXT, ANNOUNCEMENT_TY
 const ANNOUNCEMENT_SET = new Set(ANNOUNCEMENT_TYPES);
 const str = (v) => (typeof v === "string" ? v.trim() : "");
 
+// "A+B" / "A, B" / "A/B" / "A、B" のような複数記号は最初の記号を採る（最も強い候補ほど複数該当と書かれやすい）。
+// 小文字1文字(a/b/c)も許容。A/B/Cが無ければ "" を返し normalizeGateItem 側で none 扱いになる。
+function firstCriterion(v) {
+  const t = str(v);
+  if (/^[abc]$/i.test(t)) return t.toUpperCase();
+  const m = t.match(/[ABC]/) || t.match(/(?:^|[^A-Za-z])([abc])(?![A-Za-z])/);
+  return m ? (m[1] || m[0]).toUpperCase() : "";
+}
+
+// null風トークン（"なし"/"null"/"N/A"/"-"等）は「値なし」として空文字にする
+const NULLISH = new Set(["", "なし", "無し", "該当なし", "該当無し", "null", "n/a", "na", "-", "－", "–", "—", "none", "undefined", "nil"]);
+
 /** 発見プロンプトに差し込む「採用基準＋4類型＋リトマス例＋自己判定の指示」節。 */
 export function discoveryGatePromptSection() {
   return `${TASTE_TYPES_TEXT}
@@ -32,7 +44,7 @@ ${GATE_LITMUS_TEXT}
 
 ## 自己判定（関門1回目）
 - 各候補に gateVerdict（accept / reject）・gateCriterion（A / B / C / none）・gateReason（一言・40字以内）を付ける。
-- accept は A/B/C のいずれかを満たす時だけ（その記号を gateCriterion に）。満たさない・迷うものは reject（gateCriterion は none）。
+- accept は A/B/C のいずれかを満たす時だけ（その記号を gateCriterion に）。複数に該当しても、最も強い1記号のみ書く（"A+B"等は書かない）。満たさない・迷うものは reject（gateCriterion は none）。
 - 一覧・見出しの情報だけで「告知・ニュースのみ」と分かるものは reject。
 - 探索中に見つけたが基準を満たさなかった候補は reject として含めてよい（最大3件。却下ログに記録され基準の調整に使われる）。無理に探す必要はない。`;
 }
@@ -47,8 +59,8 @@ ${GATE_CRITERIA_TEXT}
 ${GATE_LITMUS_TEXT}
 
 - gateVerdict: accept / reject
-- gateCriterion: A / B / C / none（reject は none）
-- gateScore: 1〜5の整数（採用基準をどれだけ強く満たすか。5=非常に強い、1=ほぼ満たさない）
+- gateCriterion: A / B / C / none（reject は none）。複数に該当しても、最も強い1記号のみ書く。
+- gateScore: 1〜5の整数（記録用。採用基準をどれだけ強く満たすか。5=非常に強い、1=ほぼ満たさない）
 - gateReason: 判定理由を一言（40字以内）
 - announcementType: 「発売・開催・発表・買収・コンテスト告知などの告知のみ」と判定した場合の種別（${ANNOUNCEMENT_TYPES.join(" / ")}）。告知のみでなければ空文字。告知のみなら必ず reject。
 - reject の場合でも JSON の形は崩さない（summary・overview 等の本文は空文字でよい）。`;
@@ -60,8 +72,9 @@ ${GATE_LITMUS_TEXT}
  */
 export function normalizeDiscoveryGate(cand) {
   const o = cand && typeof cand === "object" ? cand : {};
-  const g = normalizeGateItem({ verdict: o.gateVerdict, criterion: o.gateCriterion, reason: o.gateReason });
-  return { gateVerdict: g.verdict, gateCriterion: g.criterion, gateReason: g.reason };
+  const g = normalizeGateItem({ verdict: o.gateVerdict, criterion: firstCriterion(o.gateCriterion), reason: o.gateReason });
+  // invalidOutput: 出力の欠落・不正値・矛盾により正規化で強制rejectした（モデル自身のrejectではない）
+  return { gateVerdict: g.verdict, gateCriterion: g.criterion, gateReason: g.reason, invalidOutput: Boolean(g.invalid) };
 }
 
 /**
@@ -72,31 +85,37 @@ export function normalizeDiscoveryGate(cand) {
  */
 export function normalizeArticleGate(art) {
   const o = art && typeof art === "object" ? art : {};
-  const g = normalizeGateItem({ verdict: o.gateVerdict, criterion: o.gateCriterion, reason: o.gateReason });
+  const g = normalizeGateItem({ verdict: o.gateVerdict, criterion: firstCriterion(o.gateCriterion), reason: o.gateReason });
 
-  const rawScore = typeof o.gateScore === "string" && o.gateScore.trim() !== "" ? Number(o.gateScore) : o.gateScore;
-  const scoreOk = typeof rawScore === "number" && Number.isInteger(rawScore) && rawScore >= 1 && rawScore <= 5;
-  const gateScore = scoreOk ? rawScore : 0;
+  // gateScore は採否に使わない（記録用）。丸めて1〜5にクランプし、解釈不能は0。これでrejectはさせない
+  const n = typeof o.gateScore === "number" ? o.gateScore : parseFloat(str(o.gateScore));
+  const gateScore = Number.isFinite(n) ? Math.min(5, Math.max(1, Math.round(n))) : 0;
 
   let announcementType = str(o.announcementType);
-  if (announcementType.toLowerCase() === "none") announcementType = "";
+  if (NULLISH.has(announcementType.toLowerCase())) announcementType = "";
   if (announcementType && !ANNOUNCEMENT_SET.has(announcementType)) announcementType = "other";
 
   let verdict = g.verdict;
-  if (verdict === "accept" && (!scoreOk || announcementType)) verdict = "reject";
+  let invalidOutput = Boolean(g.invalid);
+  if (verdict === "accept" && announcementType) {
+    verdict = "reject"; // 「告知のみ」と言いつつ accept の矛盾
+    invalidOutput = true;
+  }
   return {
     gateVerdict: verdict,
     gateCriterion: verdict === "accept" ? g.criterion : "none",
     gateScore,
     gateReason: g.reason,
     announcementType,
+    invalidOutput,
   };
 }
 
 /** 却下ログ(logRejection)の detail 文字列。発見段階は "criterion:reason"、記事化段階は "article:種別:reason"。 */
 export function gateRejectionDetail(gate, stage = "discovery") {
-  if (stage === "article") return `article:${gate.announcementType || "-"}:${gate.gateReason}`;
-  return `${gate.gateCriterion}:${gate.gateReason}`;
+  const mark = gate.invalidOutput ? "invalid-output:" : "";
+  if (stage === "article") return `${mark}article:${gate.announcementType || "-"}:${gate.gateReason}`;
+  return `${mark}${gate.gateCriterion}:${gate.gateReason}`;
 }
 
 /**
