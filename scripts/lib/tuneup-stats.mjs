@@ -252,3 +252,28 @@ export function computeIdeaStructureStats(ideas) {
     overusedRefs: refFrequency.filter(([, n]) => n >= 3).slice(0, 20).map(([ref, count]) => ({ ref, count })),
   };
 }
+
+/**
+ * Radar発（sources:["Radar"]）事例の 情報源別(sourceId)・関門基準別(gateCriterion) のお気に入り/ごみ箱率
+ * （設計 §4-10・§4-11）。gateCriterion/sourceId フィールドが無い（旧エントリ・空文字）事例は "unknown"
+ * として集計する（マイグレーション不要）。favRate = fav / count。
+ */
+export function computeSourceGateStats({ favIds, trashedIds, cases }) {
+  const favSet = new Set(favIds || []);
+  const trashedSet = new Set(trashedIds || []);
+  const radar = (cases || []).filter((c) => (c.sources || []).includes("Radar"));
+  const bump = (map, key, c) => {
+    const e = (map[key] ||= { count: 0, fav: 0, trashed: 0, favRate: 0 });
+    e.count++;
+    if (favSet.has(c.id)) e.fav++;
+    if (trashedSet.has(c.id)) e.trashed++;
+    e.favRate = e.fav / e.count;
+  };
+  const bySource = {};
+  const byCriterion = {};
+  for (const c of radar) {
+    bump(bySource, c.sourceId || "unknown", c);
+    bump(byCriterion, c.gateCriterion || "unknown", c);
+  }
+  return { radarCaseCount: radar.length, bySource, byCriterion };
+}

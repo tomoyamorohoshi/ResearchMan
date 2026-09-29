@@ -6,11 +6,15 @@
  *
  * キュレーション方針（デジクリラジオの興味プロファイル準拠）:
  *   広告賞に限らず「デジタル×クリエイティブ」全域を広く収集する。
- *   厳選しない。新規5件たまるまで最大3ラウンド検索を繰り返す。
+ *   数を埋めるための収集はしない（Radar v2: docs/RADAR_V2_DESIGN.md）。TARGET_NEW/MAX_ADDは
+ *   「これ以上は増やさない」上限、および重複ばかりの日に再探索するループ機構としてのみ残す。
  *
  * アーキテクチャ（2段階。1プロンプト過積載によるタイムアウトを防ぐ）:
- *   Phase A 発見    … 軽量リスト（title/client/link等）を10〜14件返させる
- *   Phase B 記事化  … 重複除外・link実在・サムネ検証を通過した候補だけ個別に本文生成
+ *   Phase A 発見    … 軽量リスト（title/client/link等）を返させる。件数のノルマは無い
+ *                     （採用基準A/B/Cを満たすものだけ。0件の日があってよい）。各候補に自己判定
+ *                     （gateVerdict等）を同梱＝関門1回目。rejectはリンク/サムネ検証前にスキップ
+ *   Phase B 記事化  … 重複除外・link実在・サムネ検証を通過した候補だけ個別に本文生成。
+ *                     WebSearchで確認した事実に基づく最終判定＝関門2回目（rejectはcases.jsonに入れない）
  *   → 重複候補に長文生成の時間を浪費しない・1回のCLI呼び出しが短く確実に完了する
  *
  * 正確性の担保（絶対ルール）:
@@ -35,12 +39,22 @@ import { localDayIndex } from "./lib/day-index.mjs";
 import { logRejection } from "./lib/rejection-log.mjs";
 import { buildExistingTitlesText } from "./lib/existing-titles.mjs";
 import { normLink } from "./lib/norm-link.mjs";
+import {
+  discoveryGatePromptSection,
+  articleGatePromptSection,
+  normalizeArticleGate,
+  normalizeDiscoveryGate,
+  partitionByGate,
+  gateRejectionDetail,
+} from "./lib/case-gate.mjs";
+import { resolveSourcesText, inferSourceId, validateSourcesRegistry } from "./lib/sources-registry.mjs";
 import { fileURLToPath, pathToFileURL } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CASES_PATH = path.join(__dirname, "../data/cases.json");
 const VOCAB_PATH = path.join(__dirname, "../data/tag-vocabulary.json");
 const TUNING_PATH = path.join(__dirname, "../data/research-tuning.json");
+const SOURCES_PATH = path.join(__dirname, "../data/sources.json");
 const DRY_RUN = process.argv.includes("--dry-run");
 const LAST_RUN_PATH = path.join(__dirname, "../.last-research-run.txt");
 const LAST_ADD_PATH = path.join(os.tmpdir(), "researchman-last-add.json"); // 反映後の通知メール用サマリー
@@ -251,7 +265,7 @@ export function shouldAddMakeupRound({ makeupAlreadyAdded, elapsedMs, budgetMs }
   return elapsedMs < budgetMs;
 }
 
-export function buildDiscoveryPrompt({ lastRunDate, existingTitles, seenThisRun, round, roundFoci }) {
+export function buildDiscoveryPrompt({ lastRunDate, existingTitles, seenThisRun, round, roundFoci, sourcesRegistry }) {
   const now = new Date();
   const today = now.toLocaleDateString("ja-JP", { year: "numeric", month: "long", day: "numeric" });
   const lastRun = lastRunDate.toLocaleDateString("ja-JP", { year: "numeric", month: "long", day: "numeric" });
@@ -262,20 +276,24 @@ export function buildDiscoveryPrompt({ lastRunDate, existingTitles, seenThisRun,
 
   const retryNote =
     round > 1
-      ? `\n## リトライ指示（${round}ラウンド目）\n前ラウンドの候補は既存と重複が多かった。**よりロングテール（有名すぎない）な事例**を探すこと。今回すでに見た候補: ${seenThisRun.slice(-30).join(" / ") || "なし"}\n`
+      ? `\n## リトライ指示（${round}ラウンド目）\n前ラウンドは採用に至った候補が少なかった。**別の切り口・ロングテール（有名すぎない）な事例**も探すこと。ただし採用基準は下げない（基準を満たすものが無ければ空でよい）。今回すでに見た候補: ${seenThisRun.slice(-30).join(" / ") || "なし"}\n`
       : "";
 
+  // 情報源: data/sources.json の enabled な源のみtier順（有効源が未設定の間は従来の自由文字列にフォールバック）
+  const sourcesText =
+    resolveSourcesText(focus.sourceRefs, sourcesRegistry, focus.sources || "") ||
+    "（このテーマに有効な指定源なし。テーマに合う一次情報源・専門メディアをWebSearchで自分で選ぶ）";
+
   return `今日は${today}。前回調査日は${lastRun}（約${daysDiff}日前）。
-ResearchManというデジタルクリエイティブ事例データベースのために、**${lastRun}〜${today}に公開・発表・話題化した事例を5〜7件**リストアップしてください。この段階では詳細記事は不要（後工程で書く）。発見とURL確認に集中し、**WebSearchは合計10回以内**に収めること。
+ResearchManというデジタルクリエイティブ事例データベースのために、**${lastRun}〜${today}に公開・発表・話題化した事例のうち、下記の採用基準（A/B/Cのいずれか）を満たすものだけ**をリストアップしてください。件数のノルマは無い。無理に埋めず、該当がなければ found を空配列にしてよい（0件の日があってよい）。この段階では詳細記事は不要（後工程で書く）。発見とURL確認に集中し、**WebSearchは合計10回以内**に収めること。
 
 ## 今回の探索テーマ
 ${focus.label}
 
-## 情報源（このテーマを中心に。1つのメディアに偏らない）
-${focus.sources}
+## 情報源（このテーマを中心に。1つのメディアに偏らない。[id]は出力のsourceIdに使う）
+${sourcesText}
 
-## 利用者の関心（テーマ内での優先順位付けに使う）
-AI×クリエイティブ / 音楽×テック / 展示・インスタレーション / XR / ゲーム / ロボット・デバイス / すぐれたWeb・アプリ / 映像表現 / OOH・ブランド体験 / ファッション・スポーツ・食×テック / VTuber・SNS発カルチャー
+${discoveryGatePromptSection()}
 
 ## 厳守事項
 1. **鮮度**: この${daysDiff}日間に「公開/発表/受賞/バイラル化」したものだけ。過去の名作の掘り起こしは禁止。
@@ -297,7 +315,11 @@ ${existingTitles}
       "year": "2026",
       "link": "https://（WebSearch結果で確認済みの記事/公式URL）",
       "youtube_id": "公式動画のYouTube ID 11文字（検索結果で確認できた場合のみ。不明なら空文字）",
-      "note": "どんな事例か1行（日本語）"
+      "note": "どんな事例か1行（日本語。なぜ基準を満たすか＝企画の核を一文で）",
+      "sourceId": "見つけた情報源の[id]（上の情報源から見つけた場合のみ。不明・それ以外は空文字）",
+      "gateVerdict": "accept | reject",
+      "gateCriterion": "A | B | C | none",
+      "gateReason": "判定理由を一言（40字以内）"
     }
   ]
 }`;
@@ -324,8 +346,15 @@ export function buildArticlePrompt(cand, vocab) {
   公式ソースで確認できなければ空文字にする（2026-07-05・Cannes 2026監査で判明した
   レベル誤り13件はほぼ全てトレード記事のみを根拠にした受賞レベル記載が原因）。
 
+${articleGatePromptSection()}
+
 ## 出力形式（JSON のみ、説明文なし。ファイルには一切保存せず、標準出力にJSONオブジェクトをそのまま出力すること。前置き・後書き・コードフェンス等の装飾も付けない）
 {
+  "gateVerdict": "accept | reject",
+  "gateCriterion": "A | B | C | none",
+  "gateScore": 1,
+  "gateReason": "判定理由を一言（40字以内）",
+  "announcementType": "発売 | 開催 | 発表 | 買収 | コンテスト | other | （告知のみでなければ空文字）",
   "summary": "1文サマリー（日本語60字前後）",
   "categories": ["コンテンツ革新"],
   "award": "受賞情報（なければ空文字）",
@@ -341,6 +370,14 @@ export function buildArticlePrompt(cand, vocab) {
 categories候補: コンテンツ革新 / カルチャーインサイト / テクノロジー×アイデア / 社会包摂 / ブランドエクスペリエンス / メディア発明 / AIクリエイティブ / 空間体験 / OOH革新 / データクリエイティブ
 regions候補: 国内 / 北米 / 中南米 / 欧州 / アジア / 中東・アフリカ / オセアニア / グローバル
 tags候補（この中からのみ2〜5個。Form軸を必ず1つ以上）: ${allTags}`;
+}
+
+// 採用事例の取得元情報源id: 発見時にモデルが自己申告した[id]がレジストリに実在すればそれ、
+// 無ければ記事URLのホスト/Xハンドルから推定、特定できなければ空文字（設計 §4-11）。
+export function sourceIdFor(cand, registry) {
+  const claimed = typeof cand?.sourceId === "string" ? cand.sourceId.trim() : "";
+  if (claimed && (registry || []).some((s) => s.id === claimed)) return claimed;
+  return inferSourceId(cand?.link || "", registry);
 }
 
 // Claude CLI で YouTube ID を検索（最後の手段。結果は必ず oEmbed 照合にかける）
@@ -446,6 +483,19 @@ async function main() {
   const tuning = JSON.parse(await fs.readFile(TUNING_PATH, "utf-8"));
   const roundFoci = tuning.cc.roundFoci;
 
+  // 情報源レジストリ（Radar v2）。読めない/不正な場合は従来の情報源文字列で続行する（収集を止めない）
+  let sourcesRegistry = [];
+  try {
+    const raw = JSON.parse(await fs.readFile(SOURCES_PATH, "utf-8"));
+    const v = validateSourcesRegistry(raw);
+    if (v.ok) sourcesRegistry = raw;
+    else console.log(`情報源レジストリ不正（従来の情報源文字列で続行）: ${v.errors.slice(0, 3).join(" / ")}`);
+  } catch (e) {
+    console.log(`情報源レジストリ読込失敗（従来の情報源文字列で続行）: ${e.message}`);
+  }
+  const enabledSourceCount = sourcesRegistry.filter((s) => s.enabled).length;
+  console.log(`情報源レジストリ: ${sourcesRegistry.length}件中 有効${enabledSourceCount}件${enabledSourceCount ? "" : "（有効0件 → 従来の情報源文字列を使用）"}`);
+
   const existingCases = JSON.parse(await fs.readFile(CASES_PATH, "utf-8"));
   const existingIds = new Set(existingCases.map((c) => c.id));
   const existingTitleKeys = new Set(existingCases.map((c) => normTitle(c.title)));
@@ -468,7 +518,7 @@ async function main() {
 
   const toAdd = [];
   const seenThisRun = [];
-  const stats = { candidates: 0, dup: 0, rejected: 0 };
+  const stats = { candidates: 0, dup: 0, rejected: 0, gateRejected: 0 };
   let discoveryErrors = 0;
   let roundsAttempted = 0;
 
@@ -490,7 +540,7 @@ async function main() {
     try {
       const parsed = runClaudeJson(
         claudeBin,
-        buildDiscoveryPrompt({ lastRunDate, existingTitles, seenThisRun, round, roundFoci }),
+        buildDiscoveryPrompt({ lastRunDate, existingTitles, seenThisRun, round, roundFoci, sourcesRegistry }),
         { timeout: DISCOVER_TIMEOUT_MS, marker: '"found"', model: MODEL, allowedTools: "WebSearch" }
       );
       found = parsed?.found || [];
@@ -506,6 +556,10 @@ async function main() {
     }
     console.log(`候補: ${found.length}件`);
     stats.candidates += found.length;
+    {
+      const g = partitionByGate(found);
+      console.log(`関門1（発見時の自己判定）: accept ${g.accepted.length} / reject ${g.rejected.length}`);
+    }
 
     for (const cand of found) {
       if (toAdd.length >= MAX_ADD) break;
@@ -529,6 +583,23 @@ async function main() {
         stats.dup++;
         if (!DRY_RUN) {
           await logRejection({ pipeline: "cc", title: cand.title, reason: "link-duplicate", link: cand.link || "" });
+        }
+        continue;
+      }
+
+      // ── 関門1回目: 発見時の自己判定が reject の候補は、リンク/サムネ検証・記事化の前にスキップ ──
+      const gate1 = normalizeDiscoveryGate(cand);
+      if (gate1.gateVerdict !== "accept") {
+        console.log(`関門却下（発見時）: ${cand.title} [${gateRejectionDetail(gate1, "discovery")}]`);
+        stats.gateRejected++;
+        if (!DRY_RUN) {
+          await logRejection({
+            pipeline: "cc",
+            title: cand.title,
+            reason: "no-creative-merit",
+            detail: gateRejectionDetail(gate1, "discovery"),
+            link: cand.link || "",
+          });
         }
         continue;
       }
@@ -569,6 +640,27 @@ async function main() {
           model: MODEL,
           allowedTools: "WebSearch",
         });
+        // ── 関門2回目（最終判定）: WebSearchで確認した事実に基づく。reject/矛盾/欠落は cases.json に入れない ──
+        // 生成失敗判定より先に行う（rejectは本文が空でもよい指示のため、生成失敗と誤分類しない）
+        const gate2 = art ? normalizeArticleGate(art) : null;
+        if (art && gate2.gateVerdict !== "accept") {
+          console.log(`✗ 関門却下（記事化時）[${gateRejectionDetail(gate2, "article")}]`);
+          stats.gateRejected++;
+          if (!DRY_RUN) {
+            await logRejection({
+              pipeline: "cc",
+              title: cand.title,
+              reason: "no-creative-merit",
+              detail: gateRejectionDetail(gate2, "article"),
+              link: cand.link || "",
+            });
+          }
+          const orphan = path.join(__dirname, `../public/thumbnails/${id}.jpg`);
+          try {
+            await fs.unlink(orphan);
+          } catch {}
+          continue;
+        }
         if (!art || !(art.summary || "").trim() || (art.overview || "").length < 50) {
           console.log("✗ 生成失敗/説明不足 → 却下");
           stats.rejected++;
@@ -612,11 +704,14 @@ async function main() {
           relatedWorks,
           sources: ["Radar"], // TOPカードの専用色・Radarタブの対象
           tags: (art.tags || []).filter((t) => validTags.has(t)).slice(0, 5),
+          // Radar v2: 最終関門を通した基準(A/B/C)と取得元の情報源id（既存エントリには無い＝集計上「不明」）
+          gateCriterion: gate2.gateCriterion,
+          sourceId: sourceIdFor(cand, sourcesRegistry),
         });
         existingIds.add(id);
         existingTitleKeys.add(normTitle(cand.title));
         if (lk) existingLinkKeys.add(lk);
-        console.log(`✅ 採用: ${cand.title}`);
+        console.log(`✅ 採用: ${cand.title} [関門: ${gate2.gateCriterion} / score ${gate2.gateScore} / ${gate2.gateReason}]`);
       } catch (err) {
         console.log(`  ⚠ スキップ（処理失敗: ${err.message}）: ${cand.title}`);
         stats.rejected++;
@@ -630,7 +725,7 @@ async function main() {
       }
     }
     console.log(
-      `ラウンド${round}終了: 累計採用${toAdd.length} / 候補${stats.candidates} / 重複${stats.dup} / 検証却下${stats.rejected}\n`
+      `ラウンド${round}終了: 累計採用${toAdd.length} / 候補${stats.candidates} / 重複${stats.dup} / 関門却下${stats.gateRejected} / 検証却下${stats.rejected}\n`
     );
   }
 
@@ -643,7 +738,7 @@ async function main() {
   }
 
   if (!toAdd.length) {
-    console.log("追加対象がありませんでした（全候補が重複または検証却下）");
+    console.log("追加対象がありませんでした（候補なし、または全候補が重複・関門却下・検証却下）");
     // dry-runで本番の72h周期を消費しない（手動テストが次回自動実行を遅らせる事故防止）
     if (!DRY_RUN) {
       await saveLastRunDate();

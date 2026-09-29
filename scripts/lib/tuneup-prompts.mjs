@@ -56,7 +56,8 @@ ${oldResearchPlan}
 
 # 厳守事項（機械検証で拒否される。逸脱すると変更全体が破棄される）
 - research-tuning.json の構造（tech.lanes / cc.roundFoci、各要素の必須キー）は変えない。
-  label/sources/diversityの**文言**のみ変更可
+  label/sources/diversityの**文言**のみ変更可。cc.roundFociの sourceRefs（data/sources.json の情報源id配列）は
+  そのまま維持する（情報源の有効/無効・tierの変更は別ガードレールでオーナー判断の範囲）
 - tech.lanes・cc.roundFociとも件数は3〜6件を維持
 - x-radar-queries.jsonは文字列配列のまま、件数は1〜6件を維持
 - **変更は保守的に**: tech.lanes と cc.roundFoci を合わせて2件まで、x-radarクエリは3件までしか

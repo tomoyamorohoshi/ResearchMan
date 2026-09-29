@@ -8,7 +8,13 @@
  * ガードレール値（計画書どおり）:
  *   スキーマ: 型・必須キー・レーン数3〜6・クエリ数1〜6・重み0.25〜4.0・混合比合計=1(±0.01)
  *   変更量上限: レーン差替え(tech.lanes+cc.roundFoci合計)≤2・クエリ差替え≤3・重み変更≤10項目
+ *   情報源レジストリ(data/sources.json): tier/enabled のみ変更可（tier≤5件・enabled≤5件）。
+ *   id追加削除・kind/locator/lang/region等の変更はオーナー判断として機械的に拒否（設計 §4-12）
  */
+import { validateSourcesRegistry } from "./sources-registry.mjs";
+
+// スキーマ検証は sources-registry.mjs が実体（二重定義しない）。tuneup側の窓口としても公開する。
+export { validateSourcesRegistry };
 
 const LANE_COUNT_MIN = 3;
 const LANE_COUNT_MAX = 6;
@@ -21,6 +27,8 @@ export const GUARDRAIL_LIMITS = {
   laneChangesMax: 2,
   queryChangesMax: 3,
   weightChangesMax: 10,
+  sourceTierChangesMax: 5,
+  sourceEnabledChangesMax: 5,
 };
 
 function isNonEmptyString(v) {
@@ -65,7 +73,25 @@ export function validateResearchTuning(candidate) {
   if (!candidate.cc || typeof candidate.cc !== "object") {
     errors.push("cc must be an object");
   } else {
-    validateLaneArray(candidate.cc.roundFoci, ["label", "sources", "diversity"], "cc.roundFoci", errors);
+    // roundFoci は情報源を sources(自由文字列・従来) か sourceRefs(レジストリid配列) のどちらかで持つ
+    // （data/sources.json の有効化前は sources にフォールバックするため両方併記が正常）
+    validateLaneArray(candidate.cc.roundFoci, ["label", "diversity"], "cc.roundFoci", errors);
+    if (Array.isArray(candidate.cc.roundFoci)) {
+      candidate.cc.roundFoci.forEach((item, i) => {
+        if (!item || typeof item !== "object") return;
+        const hasSources = isNonEmptyString(item.sources);
+        const refs = item.sourceRefs;
+        if (refs !== undefined) {
+          if (!Array.isArray(refs) || refs.length === 0 || !refs.every(isNonEmptyString)) {
+            errors.push(`cc.roundFoci[${i}].sourceRefs must be a non-empty array of non-empty strings`);
+            return;
+          }
+        }
+        if (!hasSources && refs === undefined) {
+          errors.push(`cc.roundFoci[${i}] must have sources (string) or sourceRefs (array)`);
+        }
+      });
+    }
   }
   return { ok: errors.length === 0, errors };
 }
@@ -241,4 +267,41 @@ export function checkIdeaTuningChange(oldTuning, newTuning) {
     errors.push(`weight changes exceed limit (${weightChanges} > ${GUARDRAIL_LIMITS.weightChangesMax})`);
   }
   return { ok: errors.length === 0, errors, weightChanges };
+}
+
+/**
+ * data/sources.json の新旧比較（設計 §4-12）。許可する差分は既存id各件の tier・enabled のみ。
+ * id の追加・削除、tier/enabled 以外の全フィールド（kind/locator/lang/region/hitDensity/note等）の
+ * 変更は拒否。tier変更・enabled変更はそれぞれ GUARDRAIL_LIMITS の件数まで。
+ * @returns {{ok: boolean, errors: string[], tierChanges: number, enabledChanges: number}}
+ */
+export function checkSourcesChange(oldSources, newSources) {
+  const schema = validateSourcesRegistry(newSources);
+  const errors = [...schema.errors];
+  let tierChanges = 0;
+  let enabledChanges = 0;
+  if (Array.isArray(oldSources) && Array.isArray(newSources)) {
+    const oldById = new Map(oldSources.map((s) => [s?.id, s]));
+    const newById = new Map(newSources.map((s) => [s?.id, s]));
+    for (const id of newById.keys()) if (!oldById.has(id)) errors.push(`source id added (owner decision): ${id}`);
+    for (const id of oldById.keys()) if (!newById.has(id)) errors.push(`source id removed (owner decision): ${id}`);
+    for (const [id, o] of oldById) {
+      const n = newById.get(id);
+      if (!n || !o) continue;
+      if (o.tier !== n.tier) tierChanges++;
+      if (o.enabled !== n.enabled) enabledChanges++;
+      const keys = new Set([...Object.keys(o), ...Object.keys(n)]);
+      for (const k of keys) {
+        if (k === "tier" || k === "enabled") continue;
+        if (JSON.stringify(o[k]) !== JSON.stringify(n[k])) errors.push(`source ${id}: field "${k}" change not allowed (owner decision)`);
+      }
+    }
+  }
+  if (tierChanges > GUARDRAIL_LIMITS.sourceTierChangesMax) {
+    errors.push(`source tier changes exceed limit (${tierChanges} > ${GUARDRAIL_LIMITS.sourceTierChangesMax})`);
+  }
+  if (enabledChanges > GUARDRAIL_LIMITS.sourceEnabledChangesMax) {
+    errors.push(`source enabled changes exceed limit (${enabledChanges} > ${GUARDRAIL_LIMITS.sourceEnabledChangesMax})`);
+  }
+  return { ok: errors.length === 0, errors, tierChanges, enabledChanges };
 }

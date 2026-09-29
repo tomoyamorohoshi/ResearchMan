@@ -22,22 +22,25 @@
     ]
   },
   "cc": {
-    "_description": "auto-research-cc.mjs の発見プロンプトのラウンド別探索角度（ROUND_FOCI）。localDayIndex()+roundでレーン数に対して剰余ローテーションする",
+    "_description": "auto-research-cc.mjs の発見プロンプトのラウンド別探索角度（ROUND_FOCI）。localDayIndex()+roundでレーン数に対して剰余ローテーションする。情報源は sourceRefs（data/sources.json のid配列）で参照し、enabled:true のものだけがtier順に発見プロンプトへ入る。sources は data/sources.json に有効な情報源が1件も無い間だけ使う従来の自由文字列（互換フォールバック）",
     "roundFoci": [
       {
         "label": "海外の広告・クリエイティブキャンペーン + AI×クリエイティブ（最重要）",
         "sources": "lbbonline.com / contagious.com / adweek.com / campaignbrief.com / musebycl.io / adsoftheworld.com / itsnicethat.com / creativereview.co.uk / 広告賞(Cannes/D&AD/One Show/Clio)の直近発表",
+        "sourceRefs": ["lbbonline", "contagious", "campaignbrief", "campaignbrief-nz", "campaignbrief-asia", "muse-by-clio", "adsoftheworld", "itsnicethat", "creativereview", "creapills", "brand-innovators", "dandad", "oneshow", "clios", "adage-creativity", "campaignlive", "famouscampaigns", "adsofbrands", "lovethework", "x_ideafuls"],
         "diversity": "広告賞ネタは全体の半分以下。生成AI活用事例を最低1件含める。データ/音声駆動の生成的ブランドID・タイポグラフィ、サステナビリティ/ソーシャルグッド訴求のスタント・OOHはお気に入り実績が高いため優先的に拾う。"
       },
       {
         "label": "テック・プロダクト・XR・ゲーム・音楽×テクノロジー（広告キャンペーン以外を中心に）",
         "sources": "theverge.com / techcrunch.com / wired.com / creativeapplications.net / awwwards.com / whatships.com(Xのスタートアップ・プロダクトローンチ動画キュレーション) / pentagram.com / dezeen.com / designboom.com / moguravr.com / roadtovr.com / uploadvr.com / automaton-media.com / cdm.link / pitchfork.com / SXSW・Ars Electronica・CES等の発表",
+        "sourceRefs": ["bpando", "dezeen", "designboom", "creativeboom", "creativeapplications", "colossal", "ars-electronica", "stirworld", "wallpaper", "the-brandidentity", "brandnew", "fontsinuse", "typeroom", "dinamo", "collins", "wolffolins", "jkr", "pentagram"],
         "diversity": "広告キャンペーンは最大2件。ゲーム/XR/VR関連は最大1件に絞る（ごみ箱率が全タグ中トップ2＝関心が低いシグナル。特にゲーム新作リリース情報・VRイベント告知は避ける）。新ツール/プロダクト/ライブ演出/映像手法/インスタレーション/データ・音声駆動のブランドID・タイポグラフィ/Web・インタラクティブデザインを優先。"
       },
       {
         "label": "日本国内の事例 + 展示・アート・Webインタラクティブ",
         "sources": "gigazine.net / itmedia.co.jp / advertimes.com / campaign-jp.com / prtimes.jp / markezine.jp / 音楽ナタリー(natalie.mu) / 美術手帖(bijutsutecho.com) / X(Twitter)でバイラル中の国内クリエイティブ",
-        "diversity": "最低4件は日本国内の事例。展示・Webサイト・SNS発カルチャーも対象。"
+        "sourceRefs": ["advertimes", "brain", "axis", "jagda", "tcc", "acc", "adc", "gooddesign", "dentsulabtokyo", "party", "whatever", "rhizomatiks", "tha", "konel", "bassdrum", "cbcnet", "natalie", "automaton"],
+        "diversity": "展示・Webサイト・SNS発カルチャーも対象。国内事例に件数のノルマはない（基準A/B/Cを満たすものだけ）。"
       }
     ]
   }
