@@ -1,5 +1,422 @@
 [
   {
+    "id": "relievos-2013",
+    "title": "Relievos",
+    "summary": "フェルメールやゴッホなど名画表面の凹凸を3Dスキャンし、筆致まで再現した限定260部の立体複製画を製作・販売した。",
+    "client": "Van Gogh Museum",
+    "agency": "Fujifilm / Océ",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2013",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://hyperallergic.com/van-gogh-museum-3d-prints-its-own-paintings/",
+    "thumbnail": "/thumbnails/relievos-2013.jpg",
+    "videoId": "",
+    "overview": "ゴッホ美術館が富士フイルムとOcéの技術協力のもと、絵画表面の凹凸を3Dスキャンし筆致の立体感まで再現した複製画「Relievos」を製作。色調・光沢・筆のタッチを忠実に再現した限定260部の立体複製作品として館内外で販売された。",
+    "background": "名画の複製画は色彩の再現にとどまり、絵の具の盛り上がりや筆致がもたらす立体的な質感は平面印刷では伝えられなかった。ゴッホ美術館はこの課題に対し、絵画表面を高精度3Dスキャンして凹凸データを取得し、印刷技術と組み合わせて再現する開発に着手した。",
+    "execution": "富士フイルムとOcéが共同開発した3Dスキャン・プリント技術で原画表面を高密度に計測し凹凸データ化。UVインクジェットで盛り上げ印刷を重ね、色・光沢・厚みまで再現した立体複製画を1作品あたり限定260部で製作し、美術館ショップ等で販売した。",
+    "evaluationImpact": "絵画の「触覚的な質感」までを複製の対象とした点が海外メディアで注目され、名画複製のあり方に新たな基準を示した事例として紹介された。美術館グッズにおける高精度立体複製の可能性を広げる先行事例として言及されている。",
+    "relatedWorks": [],
+    "sources": [
+      "3D Installations"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/Product",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "michelangelo-s-david-3d-printed-replica-italy-pavilion-expo",
+    "title": "Michelangelo's David 3D Printed Replica (Italy Pavilion, Expo 2020 Dubai)",
+    "summary": "門外不出のダビデ像を高精度3Dスキャンし、原寸大の樹脂製レプリカとしてドバイ国際博覧会イタリア館に \"渡航\" させた。",
+    "client": "Italy Pavilion / University of Florence",
+    "agency": "Hexagon (scanning technology partner)",
+    "categories": [
+      "テクノロジー×アイデア",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2021",
+    "regions": [
+      "中東・アフリカ"
+    ],
+    "link": "https://3dprint.com/281418/replicating-a-masterpiece-michelangelos-david-gets-3d-printed-twin-for-expo-2020/",
+    "thumbnail": "/thumbnails/michelangelo-s-david-3d-printed-replica-italy-pavilion-expo.jpg",
+    "videoId": "",
+    "overview": "フィレンツェのアカデミア美術館所蔵、門外不出のミケランジェロ「ダビデ像」を高精度レーザースキャンし、原寸大の樹脂製レプリカとして3Dプリントで再現。ドバイ国際博覧会2020のイタリア館に展示し、実物が移動できない名作を初めて海外へ \"渡航\" させた。",
+    "background": "「ダビデ像」は保存上の理由から門外不出とされ、国際博覧会の場でイタリアの至宝を紹介したいという要望と、実物移送が不可能という制約の間にギャップがあった。フィレンツェ大学とイタリア館はこの課題に対し、精密スキャンによる複製という解決策を選んだ。",
+    "execution": "Hexagon社の技術協力のもと彫刻表面を高精度レーザースキャンし、5tに及ぶ原石の質感・寸法データを取得。得られたデータを基に軽量樹脂素材で原寸大の彫刻を3Dプリントで再現し、ドバイ国際博覧会イタリア館のパビリオン内に展示した。",
+    "evaluationImpact": "動かせない文化財を精密スキャン技術でデジタル複製し国外に持ち出すという手法が海外メディアでも報じられ、文化財のデジタル保存・展示活用の先行事例として言及された。文化財と3Dプリント技術の接点を示す象徴的な事例となった。",
+    "relatedWorks": [],
+    "sources": [
+      "3D Installations"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/Exhibition",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "down-boy-world-s-first-3d-printed-record-bacardi-3d-printing",
+    "title": "Down Boy — World's First 3D Printed Record (Bacardi 3D Printing Record Store)",
+    "summary": "音声波形データをレコード溝の3D形状に変換し、実際に再生できる世界初の3Dプリントレコードとしてチャリティー楽曲をリリースした。",
+    "client": "Bacardi",
+    "agency": "The Vinyl Factory / Amanda Ghassaei（技術）",
+    "categories": [
+      "テクノロジー×アイデア",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2013",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.thevinylfactory.com/news/introducing-the-worlds-first-3d-printing-record-store-bloc-partys-kele-okereke-to-release-inaugural-single",
+    "thumbnail": "/thumbnails/down-boy-world-s-first-3d-printed-record-bacardi-3d-printing.jpg",
+    "videoId": "",
+    "overview": "BacardiがThe Vinyl Factoryと技術者Amanda Ghassaeiと共に、音声波形データをレコード溝の3D形状データへ変換し実際にターンテーブルで再生可能な「世界初の3Dプリントレコード」を製作。Bloc PartyのKele Okerekeが書き下ろしたチャリティー楽曲「Down Boy」をこの手法でプレスし、ロンドンのポップアップストアで販売した。",
+    "background": "レコードは長らくアナログの物理的な溝の刻印によってのみ製造されてきたメディアであり、3Dプリント技術で音を再生可能な精度まで造形できるかは未検証の領域だった。Bacardiはこの技術的挑戦を、音楽と結びついたブランド体験の企画へと発展させた。",
+    "execution": "Amanda Ghassaeiが開発した音声波形をレコード溝の3D形状データへ変換する技術を用い、Bloc PartyのKele Okerekeが書き下ろしたチャリティー楽曲「Down Boy」をデータ化。3Dプリントでレコード盤を出力し、実際にターンテーブルで再生可能な状態でロンドンのポップアップ「Bacardi 3D Printing Record Store」で展示・販売した。",
+    "evaluationImpact": "音楽データを物理的な3Dオブジェクトへ変換しかつ機能させるという技術的挑戦が音楽・デザインメディアで話題となり、3Dプリント技術の応用可能性を音楽体験の文脈で示した先行事例として紹介された。",
+    "relatedWorks": [],
+    "sources": [
+      "3D Installations"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Tech/Audio",
+      "Form/Event",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "heritage-databank-2024",
+    "title": "渋谷軍艦島展（HERITAGE DATABANK プロジェクト第一弾）",
+    "summary": "世界遺産・軍艦島を約2週間かけてフォトグラメトリで3Dデータ化し、渋谷の実会場でバーチャル建築解剖展として公開した文化財データストーリーテリング企画。",
+    "client": "長崎市 / HERITAGE DATABANK事務局（電通）",
+    "agency": "電通",
+    "categories": [
+      "空間体験",
+      "カルチャーインサイト"
+    ],
+    "award": "Spikes Asia 2025 Digital Craft部門 Data Storytelling Grand Prix",
+    "year": "2024",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.atpress.ne.jp/news/381722",
+    "thumbnail": "/thumbnails/heritage-databank-2024.jpg",
+    "videoId": "",
+    "overview": "長崎県の世界遺産・端島（軍艦島）を対象に、フォトグラメトリで建造物群を3Dデータ化し、そのデータを渋谷の実会場でバーチャル建築解剖展や写真展など4フロア構成のオフライン展示イベントとして公開したHERITAGE DATABANKプロジェクトの第一弾。",
+    "background": "軍艦島は老朽化により崩落が進み、往時の姿を記録し後世に伝える手段が課題となっていた。電通は文化財のデジタルアーカイブと体験化を掛け合わせる「HERITAGE DATABANK」構想を立ち上げ、その第一弾として長崎市と組み軍艦島を対象に選定した。",
+    "execution": "現地で約2週間かけて建造物群をフォトグラメトリ撮影し高精度な3Dデータを構築。渋谷の会場を4フロアに分け、3Dデータを用いたバーチャル建築解剖展、当時の写真展など複数の切り口で軍艦島の実態を追体験できる構成の展示イベントとして実施した。",
+    "evaluationImpact": "Spikes Asia 2025のDigital Craft部門Data Storytelling Grand Prixを受賞。老朽化で失われつつある産業遺産を3Dデータという形で保存しつつ、実会場での没入体験に変換した点が、文化財継承とクリエイティブ表現を接続する事例として評価された。",
+    "relatedWorks": [],
+    "sources": [
+      "3D Installations"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Tech/Data",
+      "Form/Exhibition",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "case-agi8ka-2016",
+    "title": "東京藝術大学アフガニスタン特別企画展「素心 バーミヤン大仏天井壁画」～流出文化財とともに～（スーパークローン文化財）",
+    "summary": "タリバンにより爆破されたバーミヤン東大仏の天井壁画を、旧撮影写真と3D計測データから原寸大レプリカとして復元・公開した「スーパークローン文化財」展。",
+    "client": "東京藝術大学",
+    "agency": "東京藝術大学COI拠点・アートイノベーションセンター／AICON 3D Systems",
+    "categories": [
+      "カルチャーインサイト",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2016",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://museum.geidai.ac.jp/exhibit/2016/04/afghanistan.html",
+    "thumbnail": "/thumbnails/case-agi8ka-2016.jpg",
+    "videoId": "",
+    "overview": "2001年にタリバンによって破壊されたアフガニスタン・バーミヤン東大仏の天井壁画「天翔る太陽神」を、破壊以前の記録写真や3D計測データをもとに原寸大の立体レプリカとして復元し、東京藝術大学大学美術館で公開した特別企画展。",
+    "background": "バーミヤン石窟群は2001年の爆破により多くの壁画・仏像が失われた。東京藝術大学は文化財の記録と復元を目的とする「スーパークローン文化財」プロジェクトを進めており、旧撮影写真等の資料が残る東大仏天井壁画を対象に選び、流出・破壊された文化財の姿を伝える展示を企画した。",
+    "execution": "東京藝術大学COI拠点・アートイノベーションセンターとAICON 3D Systemsが、爆破以前に撮影された写真資料や3D計測データをもとに天井壁画を立体的に復元。原寸大のレプリカとして制作し、大学美術館の展示空間で「素心」展として一般公開した。",
+    "evaluationImpact": "破壊され現存しない文化財を、記録資料とデジタル技術によって立体的に復元・可視化した事例。物理的に失われた遺産をレプリカとして再び人々の前に提示する手法として、文化財保護分野における「スーパークローン文化財」構想の実践例に位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "3D Installations"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/Exhibition",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "case-1rzs7al-2017",
+    "title": "花坂観音堂「お身代わり」仏像奉納プロジェクト",
+    "summary": "盗難防止のため寺社の秘仏を3Dスキャン・3Dプリントで精巧に複製し「お身代わり」として奉納、原本は博物館で保管する文化財防犯プロジェクト。",
+    "client": "和歌山県立博物館 / 花坂観音堂",
+    "agency": "和歌山県立和歌山工業高等学校（3Dスキャン・出力）／和歌山大学教育学部（彩色）",
+    "categories": [
+      "テクノロジー×アイデア",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2017",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://hakubutu.wakayama.jp/information/%E8%8A%B1%E5%9D%82%E8%A6%B3%E9%9F%B3%E5%A0%82%E3%81%AB%E3%80%8C%E3%81%8A%E8%BA%AB%E4%BB%A3%E3%82%8F%E3%82%8A%E3%80%8D%E4%BB%8F%E5%83%8F%EF%BC%883d%E3%83%97%E3%83%AA%E3%83%B3%E3%82%BF%E3%83%BC%E8%A3%BD/",
+    "thumbnail": "/thumbnails/case-1rzs7al-2017.jpg",
+    "videoId": "",
+    "overview": "和歌山県立博物館と花坂観音堂が連携し、盗難被害が相次ぐ地域の仏像を3Dスキャン・3Dプリントで精巧に複製。彩色を施した「お身代わり」仏像を実際に堂内へ奉納する一方、オリジナルの仏像は博物館で厳重に保管するという文化財防犯の取り組み。",
+    "background": "和歌山県内では無住の寺社に安置された仏像の盗難が相次いでおり、地域の信仰対象であると同時に文化財でもある仏像をどう守るかが課題となっていた。博物館での保管と、堂内に安置されるべき信仰の対象という二つの要請を両立させる手段として「お身代わり」構想が生まれた。",
+    "execution": "和歌山県立和歌山工業高等学校が仏像を3Dスキャンし3Dプリンターで精密な複製を出力、和歌山大学教育学部が彩色を担当し原本に近い質感で仕上げた。完成した「お身代わり」仏像は花坂観音堂に奉納され、オリジナルは和歌山県立博物館が保管する体制を構築した。",
+    "evaluationImpact": "高校の3Dスキャン・出力技術と大学の彩色技術を組み合わせ、教育機関の連携によって地域の文化財を守る仕組みを実現した点が特徴。信仰の場としての機能を保ちながら盗難リスクを回避する具体的な解決策として、他地域の文化財防犯にも応用しうる先行事例となった。",
+    "relatedWorks": [],
+    "sources": [
+      "3D Installations"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/Product",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "3d-ar-2020",
+    "title": "国立科学博物館の標本が自宅に届く！3Dプリントレプリカ＆ARポストカード限定販売",
+    "summary": "国立科学博物館の非公開哺乳類標本を3Dスキャンし、実物大3Dプリントレプリカをクラウドファンディングの返礼品として支援者の自宅に届けた企画。",
+    "client": "国立科学博物館",
+    "agency": "一般社団法人路上博物館",
+    "categories": [
+      "テクノロジー×アイデア",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2020",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://camp-fire.jp/projects/267515/view",
+    "thumbnail": "/thumbnails/3d-ar-2020.jpg",
+    "videoId": "",
+    "overview": "国立科学博物館が所蔵する非公開の哺乳類頭骨標本など10体を対象に3Dスキャンを実施し、そのデータから3Dプリントした実物大レプリカとARポストカードをクラウドファンディングの返礼品として限定販売、支援者の自宅に届けた企画。",
+    "background": "博物館の収蔵標本の多くは保存や研究上の理由から常設展示されず、非公開のまま収蔵庫に眠っている。一般社団法人路上博物館は、こうした「見えない標本」を市民が手元で体験できる形にする活動を進めており、国立科学博物館と連携してクラウドファンディングによるレプリカ頒布企画を立ち上げた。",
+    "execution": "非公開の哺乳類頭骨標本など10体を3Dスキャンしデジタルデータ化。そのデータをもとに3Dプリンターで実物大レプリカを出力し、ARで補足情報を表示できるポストカードと組み合わせて、クラウドファンディングの返礼品として支援者に届けた。",
+    "evaluationImpact": "博物館の収蔵庫にある非公開標本を、3Dスキャン・プリント技術によって一般の支援者が自宅で所有・観察できる形に開放した点が特徴。クラウドファンディングという仕組みを通じ、博物館資料へのアクセスを物理的に拡張する試みとして機能した。",
+    "relatedWorks": [],
+    "sources": [
+      "3D Installations"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Tech/XR",
+      "Form/Product",
+      "Theme/Education"
+    ]
+  },
+  {
+    "id": "miami-manufacturing-initiative-through-additive-manufacturin",
+    "title": "MIAMIプロジェクト（Manufacturing Initiative through Additive Manufacturing Innovation）美しい義足",
+    "summary": "東京大学発、3Dスキャンデータから義肢装具士がソケット形状を自在編集し3Dプリントで試作できる設計ツール",
+    "client": "東京大学生産技術研究所",
+    "agency": "エリジオン／株式会社アスペクト／鉄道弘済会 義肢装具サポートセンター",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2014",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.elysium-global.com/ja/news/customer_story/miami/",
+    "thumbnail": "/thumbnails/miami-manufacturing-initiative-through-additive-manufacturin.jpg",
+    "videoId": "",
+    "overview": "MIAMIプロジェクトは、東京大学生産技術研究所が中心となり進めた義足ソケットの3Dプリント製造研究。3Dレーザースキャナーで採取した切断部の形状データをもとに、義肢装具士がPC上でソケット形状を自在に編集できる設計ツールを開発し、実際に装着可能な試作ソケットを3Dプリンタで製造した。",
+    "background": "義足のソケットは切断部の形状に合わせた一点ものの製作が必要で、従来は義肢装具士の手作業による石膏型の削り出しに大きく依存していた。デジタルファブリケーション技術を義肢装具製作に応用し、精度と再現性を高めた新たな設計・製造プロセスを確立することが求められていた。",
+    "execution": "東京大学生産技術研究所がエリジオン、株式会社アスペクト、鉄道弘済会 義肢装具サポートセンターと連携。3Dレーザースキャナーで取得した切断部データをもとに義肢装具士がソケット形状を編集できる専用設計ツールを構築し、株式会社アスペクトの3Dプリンタで実際に装着可能な試作ソケットを出力した。",
+    "evaluationImpact": "義肢装具製作という職人技に依存してきた領域に、3Dスキャン・設計ツール・積層造形を組み合わせたデジタルファブリケーションの手法を持ち込んだ研究事例。義肢装具士の技能をデジタルツール上で再現し、製作プロセスのデジタル化・効率化の可能性を示した。",
+    "relatedWorks": [],
+    "sources": [
+      "3D Installations"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/Product",
+      "Theme/Health"
+    ]
+  },
+  {
+    "id": "delmo-3d-2014-2014",
+    "title": "初音ミク×DELMO 3Dモデリングコンテスト（マジカルミライ2014連動企画）",
+    "summary": "初音ミクのファン制作3Dモデルを募集し、優秀作品をマジカルミライ2014大阪会場で3Dプリント出力・展示した企画",
+    "client": "クリプトン・フューチャー・メディア",
+    "agency": "DELMO（アドウェイズ）／ホビージャパン",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2014",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://blog.piapro.net/2014/06/3ddelmo3d.html",
+    "thumbnail": "/thumbnails/delmo-3d-2014-2014.jpg",
+    "videoId": "",
+    "overview": "クリプトン・フューチャー・メディアが主催する「初音ミク×DELMO 3Dモデリングコンテスト」は、ファンが制作した初音ミクなどキャラクターの3Dモデリングデータを募集し、優秀作品を「マジカルミライ2014」大阪会場で実際に3Dプリント出力して展示するファン参加型企画。",
+    "background": "ボーカロイド文化はファンによる二次創作が支える側面が大きく、イラストや楽曲に加え3Dモデリングも創作領域の一つとして広がりつつあった。3Dプリンタの普及を背景に、デジタルデータとしての創作物を物理的な立体物として提示する新たな発表の場が求められていた。",
+    "execution": "アドウェイズが運営する3Dプリントサービス「DELMO」とホビージャパンが連携し、初音ミクなどクリプトン・フューチャー・メディアのキャラクターをモチーフにした3Dモデリングデータをファンから公募。選出された優秀作品を3Dプリンタで出力し、「マジカルミライ2014」大阪会場で展示するとともに、月刊ホビージャパン誌にも掲載した。",
+    "evaluationImpact": "ファンが制作したデジタルデータを実際の立体物として発表できる場を提供し、ボーカロイド文化における創作の裾野を3Dモデリング領域へ広げた企画。デジタルとフィジカルをつなぐ3Dプリント技術を、ファンコミュニティの創作活動と結びつけた事例。",
+    "relatedWorks": [],
+    "sources": [
+      "3D Installations"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/Event",
+      "Theme/Entertainment",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "our-shurijo-2019",
+    "title": "みんなの首里城デジタル復元プロジェクト（Our Shurijo）",
+    "summary": "2019年焼失直後、世界中から集めた約8万枚の写真をフォトグラメトリで統合し首里城正殿を3D復元した有志プロジェクト",
+    "client": "沖縄県 / Google",
+    "agency": "有志エンジニア・研究者コミュニティ",
+    "categories": [
+      "テクノロジー×アイデア",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2019",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.our-shurijo.org/",
+    "thumbnail": "/thumbnails/our-shurijo-2019.jpg",
+    "videoId": "",
+    "overview": "「みんなの首里城デジタル復元プロジェクト（Our Shurijo）」は、2019年の火災で焼失した首里城正殿を、世界中の人々が撮影した過去の写真をもとにフォトグラメトリ技術で3Dモデルとして復元する有志プロジェクト。沖縄県やGoogleの協力のもと、集まった約8万枚の写真データから正殿の姿をデジタル空間上に再構築した。",
+    "background": "2019年10月、首里城正殿が火災で焼失し、貴重な文化財が失われた。実物が失われた建造物を後世に伝えるためには、既存の記録写真をデジタル技術で統合し、可能な限り正確な姿を復元・保存する手段が必要とされていた。",
+    "execution": "世界中から寄せられた首里城正殿の写真約8万枚を、有志のエンジニアや研究者からなるコミュニティがフォトグラメトリ技術で解析・統合し、正殿の3Dモデルを復元。復元データは実際の再建工事における参照資料として活用されたほか、Google Arts & Cultureを通じた巡回展示でも公開された。",
+    "evaluationImpact": "個人が撮影した写真という分散したデータをクラウドソーシング的に集約し、失われた文化財をデジタル上に再現した先進事例。復元データが実際の再建工事の参考資料として活用されるなど、デジタル技術が文化財保存・復興に直接貢献する可能性を示した。",
+    "relatedWorks": [],
+    "sources": [
+      "3D Installations"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Tech/Data",
+      "Form/Exhibition",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "750-part1-3d-2024",
+    "title": "特別展「文永の役750年 Part1 海底に眠るモンゴル襲来―水中考古学の世界―」発掘現場3Dプリント模型",
+    "summary": "長崎・鷹島沖の元寇沈没船発掘現場を数万枚の画像データから3Dプリントで再現した特別展の展示模型",
+    "client": "國學院大學博物館",
+    "agency": "",
+    "categories": [
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "国内"
+    ],
+    "link": "http://www.bunkamura.co.jp/sp/shibu-art/contents/9060.html",
+    "thumbnail": "/thumbnails/750-part1-3d-2024.jpg",
+    "videoId": "",
+    "overview": "國學院大學博物館の特別展「文永の役750年 Part1 海底に眠るモンゴル襲来―水中考古学の世界―」で展示された、長崎・鷹島沖の元寇沈没船発掘現場を再現した3Dプリント模型。海底での発掘調査を撮影した数万枚の画像データをもとに、現場の様子を立体的に再構築した。",
+    "background": "元寇沈没船の発掘現場は海底にあり、一般来場者が直接目にすることができない。水中考古学の調査成果を展示という形で分かりやすく伝えるためには、平面的な写真や図版だけでなく、発掘現場の立体的な状況を可視化する手段が必要とされていた。",
+    "execution": "長崎県鷹島沖での水中考古学調査で撮影された数万枚の画像データを解析し、発掘現場の3Dモデルを生成。これをもとに3Dプリンターで発掘現場模型を制作し、國學院大學博物館の特別展「文永の役750年 Part1」で他の出土品とあわせて展示した。",
+    "evaluationImpact": "直接見ることのできない海底の発掘現場を、写真データの解析と3Dプリントによって実物大に近い模型として可視化し、水中考古学の調査プロセスと成果を来場者に体感的に伝えた展示事例。",
+    "relatedWorks": [],
+    "sources": [
+      "3D Installations"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/Exhibition",
+      "Theme/Education"
+    ]
+  },
+  {
+    "id": "case-1o9u6xg-2022",
+    "title": "信州ブレイブウォリアーズ ウェイン・マーシャル選手 等身大3Dプリントフィギュア",
+    "summary": "身長211cmの選手本人を3Dスキャンし、大型3Dプリンターで等身大フィギュアを制作、試合会場に設置してファンを迎えた",
+    "client": "信州ブレイブウォリアーズ",
+    "agency": "ミマキエンジニアリング",
+    "categories": [
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2022",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://japan.mimaki.com/casestudy/collaboration/3d-sports.html",
+    "thumbnail": "/thumbnails/case-1o9u6xg-2022.jpg",
+    "videoId": "",
+    "overview": "信州ブレイブウォリアーズに所属する身長211cmのウェイン・マーシャル選手を3Dスキャンし、そのデータをもとに大型3Dプリンターで等身大フィギュアを制作。完成した実物大フィギュアは試合会場「ホワイトリング」に設置され、来場したファンを出迎える存在として活用された。",
+    "background": "プロバスケットボールチームはファンの会場体験価値向上や話題化のための新しい演出手段を模索していた。選手個人の存在感を試合会場という物理空間でどう表現するかが課題となる中、3Dスキャン・3Dプリント技術を持つミマキエンジニアリングとの協働で、選手本人の等身大立体物という前例の少ない企画が実現した。",
+    "execution": "ウェイン・マーシャル選手本人を3Dスキャンし取得した立体データをもとに、ミマキエンジニアリングの大型3Dプリンターで等身大サイズのフィギュアを出力。彩色を施した完成品は信州ブレイブウォリアーズのホームアリーナ「ホワイトリング」に設置され、試合当日に来場するファンを迎える演出として披露された。",
+    "evaluationImpact": "プロスポーツチームの会場演出に3Dスキャン・3Dプリント技術を応用した事例として、製造業向け技術のエンターテインメント分野への転用可能性を示した。ミマキエンジニアリング自身の事例紹介としても紹介され、スポーツ×製造技術のコラボレーション事例として取り上げられている。",
+    "relatedWorks": [],
+    "sources": [
+      "3D Installations"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/Installation",
+      "Form/Event",
+      "Theme/Sports"
+    ]
+  },
+  {
+    "id": "n-3d-body-3d-2023",
+    "title": "西川 オーダーメイド枕「ピマピッタ／N 3D-body」3Dボディスキャン計測",
+    "summary": "西川のオーダーメイド枕サービス。約120万点の3Dスキャンで頭部・寝姿勢を計測し、店頭でその場に一つだけの枕を仕立てる",
+    "client": "西川株式会社",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2023",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.watch.impress.co.jp/docs/topic/1504338.html",
+    "thumbnail": "/thumbnails/n-3d-body-3d-2023.jpg",
+    "videoId": "",
+    "overview": "寝具メーカー西川が展開するオーダーメイド枕サービス「ピマピッタ／N 3D-body」。専用機器で頭部と寝姿勢を約120万点という高密度の測定点で3Dスキャンし、得られたデータから一人ひとりに最適な枕の高さ・硬さを算出、店頭でその場限りの一点物の枕を仕立てる。",
+    "background": "枕は個人の頭部形状や寝姿勢によって最適な高さ・硬さが大きく異なり、既製品では合わない人が多いという課題が長年存在した。西川は採寸の精度を高めるため、従来の簡易計測に代わり高密度3Dスキャン技術を用いた本格的な計測サービスを開発した。",
+    "execution": "専用の3Dスキャナーで頭部と首から肩にかけての寝姿勢を約120万点の測定点で計測し、得られた立体データから最適な枕の高さを算出。店頭でスタッフが計測から調整までを担当し、その場で顧客一人ひとり専用の一点物の枕を仕立て上げる体制を構築した。",
+    "evaluationImpact": "3Dスキャン技術を寝具という日用品の採寸に応用し、店頭での個別対応をデータドリブンに高度化した事例としてメディアで紹介された。既製品中心だった寝具市場において、計測データに基づくパーソナライズ製品という新しい購買体験を提示した。",
+    "relatedWorks": [],
+    "sources": [
+      "3D Installations"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Tech/Data",
+      "Form/Product",
+      "Theme/Health"
+    ]
+  },
+  {
     "id": "p-doom-ai-three-js-2026",
     "title": "P(doom) — 生成AI音楽ビジュアライザー（three.js）",
     "summary": "楽曲の経過秒数を関数として毎フレーム描画するthree.js製ミュージックビデオを、Claude Opus 5.5が全コード自動生成した",

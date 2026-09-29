@@ -52,6 +52,7 @@ export const RESEARCH_SOURCES: ResearchSource[] = [
   { tag: "Portfolio Sites", kind: "order", label: "Portfolio Sites" },
   { tag: "Shiitake Ref", kind: "order", label: "Shiitake Ref" },
   { tag: "Music Channels", kind: "order", label: "Music Channels" },
+  { tag: "3D Installations", kind: "order", label: "3D Installations" },
   { tag: "Radar", kind: "radar", label: "Radar" },
 ];
 
