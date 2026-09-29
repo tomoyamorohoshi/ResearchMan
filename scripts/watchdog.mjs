@@ -58,6 +58,7 @@ import {
   buildBlobStaleReport,
   blobStaleReasonKey,
   UPLOAD_STATE_FILENAME,
+  shouldSkipBlobStaleCheck,
 } from "./lib/public-data.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -849,6 +850,10 @@ async function checkUnpushedCommits(report) {
 // 同一の古いファイル集合の通知は1日1回に抑制する。
 // ─────────────────────────────────────────────────────────────
 async function checkBlobSyncFreshness(report) {
+  if (shouldSkipBlobStaleCheck(path.join(os.tmpdir(), "researchman-git.lock"), fs.existsSync)) {
+    log("[blob-sync] gitロック存在中（ジョブ実行中）→ 誤検知回避のため今回はスキップ");
+    return;
+  }
   const statePath = path.join(os.homedir(), UPLOAD_STATE_FILENAME);
   let uploaded = {};
   try {
