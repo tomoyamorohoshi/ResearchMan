@@ -1,5 +1,146 @@
 [
   {
+    "id": "comfyui-obvpm-timeline",
+    "title": "comfyui-obvpm-timeline",
+    "org": "chanon（個人開発）",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "動画生成AI「MiniMax H3」で作った短い動画クリップを、ComfyUIの中でタイムライン上に並べ、延長・前足し・つなぎ直し・ループ化ができる編集ノード集。",
+    "point": "AI動画は1回の生成が数秒〜十数秒に限られ、長い映像は「つなぐ」作業が必要です。ふつうはクリップを一度普通の動画に書き出してから続きを作るため、つなぎ目で画質や動きが崩れがちです。このノード集は、動画になる前の内部データ（潜在空間）に「動きの文脈」を保存しておき、その続きを自然に生成します。つなぎ目の出来には評価が付き、別テイクへの差し替えもできます。タイムライン上でドラッグして並べ替え、最後に全体を一括で高精細化もできます。広告では、15秒や30秒のブランドムービーを1カットずつ作り足す、ボツになった中間だけを作り直す、商品が回り続けるループ動画を作る、といった使い方が考えられます。別のソフトに往復せずComfyUIの中で完結するので、試作のスピードが上がります。",
+    "detail": "仕組み：H3で作った動画は、画像として書き出す前に「潜在表現」という圧縮データの形を経ます。このツールはその一部と動きの情報を.mctxというファイルに残します。続きを作るときは、動画の最後の1コマだけを渡すのではなく、この動きの記憶を渡します。例えるなら、リレーで走者が「今の走りの勢い」ごとバトンを渡すイメージです。前に足す、間をつなぐ、ループにする、も同じ仕組みで、つなぎ目の品質は自動で採点されます。\n\n従来との違い：従来は生成→書き出し→最終フレームを次の入力に使う、という手順でした。書き出しの際の画質劣化と、動きの途切れが問題でした。本ツールは書き出し前のデータでつなぐため劣化が少なく、タイムライン画面で並べ替え、トリム、テイク差し替えまでできます。長い映像を窓ごとに区切って高精細化するので、VRAMが少なくても扱えます。\n\n使うには：ComfyUI 0.35.0以上、MiniMax H3のモデルと、依存する comfyui-obvpm、ComfyUI-KJNodes等が必要です。導入は custom_nodes に git clone するだけで、追加のPythonライブラリは不要とREADMEにあります。費用はソフト自体は無料ですが、H3を動かせるGPUが要ります。なおREADMEにデモ動画は載っておらず、実際の品質は自分の環境で試す必要があります。リリース0.1.1は2026-09-23で、まだ初期版です。",
+    "license": {
+      "spdx": "GPL-3.0",
+      "commercial": "conditional",
+      "note": "GPL-3.0。生成物の利用は自由だが、コードを改変して配布する場合は同じGPLで公開する必要がある。ComfyUI 0.35.0以上と comfyui-obvpm 0.2.9以上、KJNodes等の別ノード群が前提。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/chanon/comfyui-obvpm-timeline"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/comfyui-obvpm-timeline.jpg",
+    "relatedWorks": [
+      {
+        "title": "ComfyUI_MiniMax_H3_Extender",
+        "description": "H3の複数クリップを動きの文脈つきで連結する別実装のノード",
+        "url": "https://github.com/tritant/ComfyUI_MiniMax_H3_Extender"
+      },
+      {
+        "title": "ComfyUI-LTXVideo",
+        "description": "LTX-2をComfyUIで扱う公式ノード群",
+        "url": "https://github.com/Lightricks/ComfyUI-LTXVideo/"
+      },
+      {
+        "title": "ai-video-editor",
+        "description": "人とAIエージェントが同じタイムラインを編集するOSS",
+        "url": "https://github.com/MartinDelophy/ai-video-editor"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "comfyui-minimax-h3-extender",
+    "title": "ComfyUI MiniMax H3 Extender",
+    "org": "tritant（個人開発）",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-08",
+    "year": "2026",
+    "summary": "MiniMax H3で作った複数の動画クリップを、動きの文脈と音の連続性を保ったまま1本の長尺映像につなぐComfyUIノード。",
+    "point": "AI動画の弱点は「短い」ことです。このノードは、クリップごとに別のプロンプト・シード・長さを指定しながら、前のクリップの動きの情報を次に引き継いで、1本の連続した映像に仕上げます。画像は最大9枚、動画や音声は最大3件まで参照として渡せ、クリップごとの色補正やプロジェクトの保存・読み込み、全クリップの一括生成にも対応しています。広告では、絵コンテ1コマごとにプロンプトを書いて15〜30秒のブランドムービーを一気に生成する、同じ人物や商品の画像を参照に固定して複数カットを揃える、といった使い方が想像できます。途中の1カットだけを直して再生成できる個別書き出しも入っており、修正が多い実案件向きです。無料で使え、ComfyUI Managerから入れられる手軽さも魅力です。",
+    "detail": "仕組み：各クリップを生成するたびに、直前のクリップの動きの特徴（モーションコンテキスト）をディスクにキャッシュします。次のクリップはこれを参考に作られるため、人物の歩きやカメラの動きが途中で止まりにくくなります。最後にまとめて映像と音声を復号（デコード）するので、つなぎ目で画質が落ちにくい設計です。例えるなら、前のシーンの「空気」を次のシーンに持ち越すような仕組みです。\n\n従来との違い：単発のH3ノードでは長さに限りがありました。本ノードはクリップの連鎖、複数の参照（画像・映像・音声）の混在、色補正、途中保存と再開までを1つにまとめています。213コミットを重ねて頻繁に更新されており、GitHubのリリース一覧では8/29の1.10.0から9/27の2.8.4まで版が進んでいます。ただし最新のv2.9.0は、リリース一覧には無くREADME上の記載です。\n\n使うには：ComfyUIとMiniMax H3のモデル環境（十分なVRAMのGPU）が必要です。ComfyUI Managerで「MiniMax H3 Extender」を検索して入れるか、custom_nodesにgit cloneします。requirements.txtがあり、サンプルワークフローも同梱されています。リポジトリ作成は2026-08-15で、直近2週間の新規公開ではなく、大型更新が続いている案件です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "Apache-2.0で商用利用可。MiniMax H3本体のライセンス・利用条件は別途確認が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/tritant/ComfyUI_MiniMax_H3_Extender"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/comfyui-minimax-h3-extender.jpg",
+    "relatedWorks": [
+      {
+        "title": "comfyui-obvpm-timeline",
+        "description": "H3向けのタイムライン編集ノード集",
+        "url": "https://github.com/chanon/comfyui-obvpm-timeline"
+      },
+      {
+        "title": "ComfyUI-FastVideo",
+        "description": "FastVideoでマルチGPU分散の動画生成を行うノード",
+        "url": "https://github.com/kevin314/ComfyUI-FastVideo"
+      },
+      {
+        "title": "ComfyUI-LTXVideo",
+        "description": "LTX-2をComfyUIで扱う公式ノード群",
+        "url": "https://github.com/Lightricks/ComfyUI-LTXVideo/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "minimax-h3-third-person-view-lora",
+    "title": "Minimax-h3_Third_person_view LoRA",
+    "org": "WarmBloodAban（個人）",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "MiniMax H3向けのLoRA（追加学習の小さな部品）。三人称・一人称視点のゲーム風カメラワークとHUD表示を映像に出しやすくする。",
+    "point": "ゲームのカットシーンのような「主人公の背後から追うカメラ（肩越し視点）」を、H3の動画生成で安定して出しやすくするLoRAです。一人称視点への切り替えや、体力バー・照準といったゲームUIの重ね表示にも対応するとされています。LoRAは、巨大なAIモデル本体は変えずに小さなファイルを足して得意分野を追加する仕組みで、推奨の強さは0.7（0.6〜0.85）と書かれています。広告では、ゲームのプロモ映像やティザーのアクション風カットを実写素材なしで試作する、ゲームの世界観を借りたキャンペーンの絵コンテ動画を作る、といった用途が考えられます。ファイルは1つだけなので、ComfyUIやDiffusersで手軽に試せます。デモ動画付きで公開されています。",
+    "detail": "仕組み：H3という動画生成モデルに、ゲーム映像の特徴（背後視点のカメラ追従、視点の切り替え、HUD）を追加学習した差分ファイル（.safetensors）です。例えるなら、カメラマンに「ゲーム実況風の撮り方」だけを教える短期講習のようなもので、モデル全体を作り直すよりずっと軽く済みます。\n\n従来との違い：プロンプトだけで「三人称視点」と指示しても、カメラの位置や動きは毎回ぶれがちでした。このLoRAは視点の型を学習させているため、狙いの画作りが安定しやすいというのが売りです。ただし効果の定量的な評価は公開されておらず、確認できるのはデモ動画1本と説明文のみです。\n\n使うには：ベースのMiniMax-H3（INT8リファレンス構成）と、ComfyUIまたはDiffusers環境が必要です。ファイルはHugging Faceからダウンロードでき、費用はかかりません。HFのAPIで2026-09-17に作成されたことを確認しました。個人の投稿で、作者の説明の範囲を出ない点に注意してください。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "Apache-2.0。ベースのMiniMax-H3のライセンス条件にも従う必要がある。"
+    },
+    "links": [
+      {
+        "kind": "project",
+        "url": "https://huggingface.co/WarmBloodAban/Minimax_H3_LoRAs"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/minimax-h3-third-person-view-lora.jpg",
+    "relatedWorks": [
+      {
+        "title": "MiniMax-H3-RAVEN-Streaming-LoRA",
+        "description": "H3向けのストリーミング用LoRA",
+        "url": "https://huggingface.co/mvp-lab/MiniMax-H3-RAVEN-Streaming-LoRA"
+      },
+      {
+        "title": "MiniMax-H3-Realism-People-LoRA",
+        "description": "人物のリアルさを高めるH3用LoRA",
+        "url": "https://huggingface.co/fal/MiniMax-H3-Realism-People-LoRA"
+      },
+      {
+        "title": "LightX2V",
+        "description": "動画生成の軽量推論フレームワーク",
+        "url": "https://github.com/modeltc/lightx2v"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "uniquery4r",
     "title": "UniQuery4R",
     "org": "Kosmo Research (Jilin University, Tsinghua University 共同)",
