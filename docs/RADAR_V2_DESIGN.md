@@ -233,7 +233,7 @@ Xアカウントを特定 ─────────┘   bakeoff-sources.mjs �
 | 海外・広告賞／クリエイティブ報道 | D&AD（dandad.org） / The One Show / Clios / AdAge Creativity / Muse by Clio / Campaign（campaignlive） / Famous Campaigns / Ads of Brands / Little Black Book | 受賞・受賞候補の一次〜準一次ソース |
 | 海外・アート／素材／インスタレーション | designboom.com / Creative Boom / CreativeApplications.net / Colossal（thisiscolossal.com） / Ars Electronica / STIR world / Wallpaper* | 素材・空間・メディアアート型の発表先 |
 | 国内 | 宣伝会議（advertimes は打率低のため要測定） / ブレーン（brain） / AXIS / JAGDA / TCC / ACC / ADC / グッドデザイン賞 / Dentsu Lab Tokyo / PARTY / Whatever / Rhizomatiks / tha ltd. / Konel / BASSDRUM / CBCNET | 国内は「賞・制作会社の一次発表」に寄せる。prtimes・natalie・bijutsutecho・gigazine・moguravr・automaton は監査で打率0のため候補から外す（ベイクオフで再検証したい場合のみ `enabled: false` で残す） |
-| X（Phase 0後） | オーナーのフォロー中アカウントから抽出したクリエイティブ系 / お気に入り68件の制作会社・作者アカウント / 上記メディアの公式アカウント | `build-x-watchlist.mjs` の出力を候補に追加 |
+| X（Phase 0後） | **@ideafuls（IDEAFUL アイデア蒐集家。オーナー指定の見習い筆頭・2026-09-29）** / オーナーのフォロー中アカウントから抽出したクリエイティブ系 / お気に入り68件の制作会社・作者アカウント / 上記メディアの公式アカウント | `build-x-watchlist.mjs` の出力を候補に追加。@ideafuls は「1投稿=1事例＋なぜ面白いかの一文＋作者クレジット＋深掘りリンク」の体裁で、関門A/Bの手本（追補§Aの取り逃し実例を参照） |
 
 ### 4-9. `scripts/watchdog.mjs` の変更
 
@@ -405,3 +405,26 @@ Cookie失効・アカウント凍結時は手順2〜4を同じユーザー名で
 3. **Phase 2**: 関門（`case-gate.mjs`）＋プロンプト改訂＋ノルマ撤廃
 4. **Phase 3**: `fetch-x-cases.mjs`＋`twscrape-bin.mjs`共通化＋`checkXCasesHealth`＋`computeSourceGateStats`
 5. **Phase 4**（任意・本v2の必須範囲外）: LINEでの前日分フィードバック
+
+---
+
+## 追補（2026-09-29）: ごみ箱再集計とオーナー指摘の定量裏付け
+
+設計合意（09-14）後、オーナーから「ごみ箱を見ると偏りがある」との指摘を受けて再集計した。結果は設計の関門A/B/C・情報源選定の方向性を裏付ける。実装時（特に`case-gate.mjs`の基準文言と`data/sources.json`の初期tier）はここを参照すること。
+
+### A. オーナー指摘4点の検証結果
+
+| 指摘 | 実測 | 所在 |
+|---|---|---|
+| ゲーム/VTuber話題が多すぎ | ごみ箱40件中 Tech/Game 16件（40%）。automaton/moguravr/roadtovr/uploadvr のリリース・アプデ告知が主 | ごみ箱で確認 |
+| 展示の告知が多すぎ | ごみ箱40件中 Form/Event 18件＋Form/Exhibition 8件。JAGDA会議・ゼミ展・個展「開催発表」等、開催告知のみが大半 | ごみ箱で確認 |
+| awwwards偏重 | ごみ箱にはほぼ無いが、**採用済みRadar事例470件中 awwwards.com 直リンク13件**（ポートフォリオ/レジデンス/エージェンシーサイト等。「きれいなサイト」であって一文で言えるアイデアではない） | 採用済み側に混入 |
+| アイドルのただのMVが大量 | **採用済みRadar事例にMV系14件**（＝LOVE・坂道選抜・日向坂46・ひなた坂46等。natalie.mu 10件が供給源）。「MV公開」はニュースであってアイデアではない | 採用済み側に混入 |
+
+含意: ごみ箱に出る偏り（ゲーム/展示告知）は**発見プロンプトの固定関心リスト**の問題、採用済みに残る偏り（awwwards/アイドルMV）は**関門不在＋情報源**の問題。関門は「B: クラフトの卓越」を「サイトが良く出来ている」と読ませない基準文言にする（awwwards掲載＝Bではない。掲載自体は根拠にならず、手法・演出に固有の発明があるかで判定）。「◯◯公開/発売/開催/アプデ」型タイトルは告知のみとして却下する例をfew-shotに含める。
+
+### B. 取り逃し実例（関門のリトマステスト）
+
+- Suspicious Art（中国のアート集団）による北京の公共キネティックアート。風になびいて波・生き物のようなゆらぎを描く。出典: @ideafuls の投稿 https://x.com/ideafuls/status/2103322417137582305（2026-09-29 オーナー提示「収集していないといけない事例だった」）
+- v2関門では B（表現・演出・クラフトの卓越）ないし A（風という無償の素材で生き物のような動きを作る、と一文で言える）で採用されるべき事例。`case-gate.mjs` 実装時、この事例を accept できることをテストケースに含める
+- 逆リトマス（rejectされるべき例）: 「日向坂46 18thシングルMV公開」「Kingdom Hearts IV 発売決定」「VketReal 2026 開催」「awwwards掲載の建築事務所サイト」
