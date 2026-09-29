@@ -14,7 +14,7 @@
 import os from "os";
 import path from "path";
 import { spawnSync } from "child_process";
-import { tryAcquire as tryAcquireGitLock, removeLockDir } from "./git-lock.mjs";
+import { tryAcquire as tryAcquireGitLock, releaseOwnedLock } from "./git-lock.mjs";
 
 const LOCK_PATH = path.join(os.tmpdir(), "researchman-git.lock");
 const LOCK_WAIT_TIMEOUT_MS = 3 * 60 * 1000;
@@ -42,7 +42,7 @@ function acquireLock() {
 }
 
 function releaseLock() {
-  removeLockDir(LOCK_PATH);
+  releaseOwnedLock(LOCK_PATH);
 }
 
 // ロックを取得して `git push` を1回だけ試みる。例外を投げず {ok, reason} を返す。

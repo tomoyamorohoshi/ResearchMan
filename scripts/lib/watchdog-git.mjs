@@ -22,7 +22,7 @@
  */
 import os from "os";
 import { spawnSync } from "child_process";
-import { tryAcquire as tryAcquireGitLock, removeLockDir } from "./git-lock.mjs";
+import { tryAcquire as tryAcquireGitLock, releaseOwnedLock } from "./git-lock.mjs";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -60,7 +60,7 @@ function acquireLock() {
 }
 
 function releaseLock() {
-  removeLockDir(LOCK_PATH);
+  releaseOwnedLock(LOCK_PATH);
 }
 
 function run(cmd, args, cwd) {

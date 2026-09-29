@@ -66,10 +66,10 @@ export function withTimeout(promise, ms, label) {
 // 日次ジョブはgitロック（os.tmpdir()/researchman-git.lock。ディレクトリ）を握ったままdata更新→
 // pre-pushのBlob同期→pushまで行う。その間にwatchdogが走ると「Blobが古い」と誤検知し、
 // 1日1回の通知抑制枠を消費して本物の故障通知を握りつぶすため、ロック存在中は検査しない。
-// 存在の有無だけを見る（ロックの中身の形式には依存しない）
-export function shouldSkipBlobStaleCheck(lockPath, existsFn) {
+// heldFn には git-lock.mjs の isHeld を渡す（保持PIDが死んだ残骸ロックは「ジョブ実行中」と見なさない）
+export function shouldSkipBlobStaleCheck(lockPath, heldFn) {
   try {
-    return Boolean(existsFn(lockPath));
+    return Boolean(heldFn(lockPath));
   } catch {
     return false;
   }

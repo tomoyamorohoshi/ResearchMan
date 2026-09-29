@@ -33,7 +33,7 @@ import path from "path";
 import { spawnSync, execFileSync } from "child_process";
 import { fileURLToPath } from "url";
 import { isMainBranch, parseCurrentBranch } from "../lib/branch-guard.mjs";
-import { tryAcquire as tryAcquireGitLock, removeLockDir } from "../lib/git-lock.mjs";
+import { tryAcquire as tryAcquireGitLock, releaseOwnedLock } from "../lib/git-lock.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..", ".."); // scripts/windows -> repo root
@@ -173,7 +173,7 @@ async function acquireLock(waitMs) {
   }
 }
 function releaseLock() {
-  removeLockDir(LOCK_PATH); // owner.json を消してから rmdir
+  releaseOwnedLock(LOCK_PATH); // owner.json を消してから rmdir
 }
 
 // ── 各ジョブ ────────────────────────────────────────────────

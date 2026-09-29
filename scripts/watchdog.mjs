@@ -52,6 +52,7 @@ import {
   appendIncidentSafe,
 } from "./lib/unpushed-commits.mjs";
 import { pushOnce } from "./lib/push-once.mjs";
+import { cleanupStaleLock, isHeld as isLockHeld } from "./lib/git-lock.mjs";
 import {
   computePublicDataHashes,
   filesNeedingUpload,
@@ -350,16 +351,10 @@ function staleInfo(stateFile) {
 
 function cleanupStaleGitLock(lines) {
   const LOCK = path.join(os.tmpdir(), "researchman-git.lock");
-  try {
-    const st = fs.statSync(LOCK);
-    const ageSec = (Date.now() - st.mtimeMs) / 1000;
-    if (ageSec > 5400) {
-      fs.rmdirSync(LOCK);
-      lines.push(`staleロック掃除: ${LOCK}（${Math.round(ageSec)}秒経過）`);
-      return true;
-    }
-  } catch {}
-  return false;
+  const r = cleanupStaleLock(LOCK); // owner.json入り・保持PID死亡のロックも掃除（共有実装）
+  if (!r) return false;
+  lines.push(`staleロック掃除: ${LOCK}（${Math.round(r.ageSec)}秒経過${r.state === "dead" ? "・保持PID死亡" : ""}）`);
+  return true;
 }
 
 function waitForStateUpdate(stateFile) {
@@ -850,7 +845,7 @@ async function checkUnpushedCommits(report) {
 // 同一の古いファイル集合の通知は1日1回に抑制する。
 // ─────────────────────────────────────────────────────────────
 async function checkBlobSyncFreshness(report) {
-  if (shouldSkipBlobStaleCheck(path.join(os.tmpdir(), "researchman-git.lock"), fs.existsSync)) {
+  if (shouldSkipBlobStaleCheck(path.join(os.tmpdir(), "researchman-git.lock"), isLockHeld)) {
     log("[blob-sync] gitロック存在中（ジョブ実行中）→ 誤検知回避のため今回はスキップ");
     return;
   }

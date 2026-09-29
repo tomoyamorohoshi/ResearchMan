@@ -11,7 +11,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 // 判定ロジック（owner.json のPID死活・旧形式のmtimeフォールバック・非空rmdir対応）は
 // 日次ジョブ(scripts/windows/run-job.mjs)と共有する（意味を一致させるため）。
-import { isHeld, removeLockDir, tryAcquire } from "../../../scripts/lib/git-lock.mjs";
+import { isHeld, releaseOwnedLock, tryAcquire } from "../../../scripts/lib/git-lock.mjs";
 
 export const DEFAULT_LOCK_PATH = join(tmpdir(), "researchman-git.lock");
 export const STALE_MS = 90 * 60 * 1000;
@@ -45,7 +45,7 @@ export function isLockHeld(lockPath: string = DEFAULT_LOCK_PATH): boolean {
 }
 
 export function releaseLock(lockPath: string = DEFAULT_LOCK_PATH): void {
-  removeLockDir(lockPath); // owner.json を消してから rmdir。既に無い等は無視（次回判定が救済する）
+  releaseOwnedLock(lockPath); // 自分が取得したロックのときだけ owner.json を消して rmdir（奪取後の他者ロックは壊さない）
 }
 
 export interface AcquireLockWithWaitOptions {
