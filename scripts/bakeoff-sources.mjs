@@ -77,10 +77,15 @@ async function main() {
           allowedTools: "WebFetch,WebSearch",
         });
         const parsed = parseBakeoffOutput(raw);
+        // 0件かつ理由なし＝JSON解釈不能・usage limit・CLI謝罪文などの一過性失敗。キャッシュせず未採点のまま残す
+        if (parsed.items.length === 0 && !parsed.fetchNote) {
+          console.error(`[${i}/${picked.length}] ${s.id}: 一過性失敗の疑い（0件・理由なし）→未採点のまま残す`);
+          continue;
+        }
         const summary = summarizeBakeoff(parsed.items);
         await fs.writeFile(
           path.join(CACHE_DIR, `${s.id}.json`),
-          JSON.stringify({ id: s.id, scoredAt: new Date().toISOString(), items: parsed.items, summary, fetchNote: parsed.fetchNote || (raw ? "" : "モデル出力をJSONとして解釈できず") }, null, 2)
+          JSON.stringify({ id: s.id, scoredAt: new Date().toISOString(), items: parsed.items, summary, duplicatesRemoved: parsed.duplicatesRemoved, fetchNote: parsed.fetchNote }, null, 2)
         );
         console.log(`[${i}/${picked.length}] ${s.id}: ${summary.count}件 accept ${summary.accepted} (${Math.round((Date.now() - t0) / 1000)}s)`);
       } catch (e) {
@@ -93,7 +98,7 @@ async function main() {
   const results = [];
   for (const s of webs) {
     const c = await readCache(s.id);
-    if (c) results.push({ id: s.id, locator: s.locator, tier: s.tier, summary: c.summary, fetchNote: c.fetchNote });
+    if (c) results.push({ id: s.id, locator: s.locator, tier: s.tier, summary: c.summary, fetchNote: c.fetchNote, duplicatesRemoved: c.duplicatesRemoved || 0 });
   }
   const unscored = webs.filter((s) => !results.some((r) => r.id === s.id)).map((s) => s.id);
   await fs.writeFile(REPORT_PATH, renderReport({ date: DATE, results, unscored, n: N }), "utf-8");

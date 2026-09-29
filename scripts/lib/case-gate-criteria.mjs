@@ -22,6 +22,20 @@ export const GATE_LITMUS_TEXT = `## 判定の目安（リトマス例）
   - 「VketReal 2026 開催」（開催告知のみ）
   - 「awwwards掲載の建築事務所サイト」（きれいなサイトであって、一文で言えるアイデアでも手法の発明でもない）`;
 
+/**
+ * オーナーのお気に入り68件から言語化した「求められる事例の像」4類型（監査 2026-09-12 §2）。
+ * 発見プロンプト（固定ジャンルリストの代わり）と将来のベイクオフで共有する。
+ */
+export const TASTE_TYPES_TEXT = `## 探すべき事例の4類型（ジャンルではなく「構造」で選ぶ）
+- (a) 読み替え一手: すでにそこにあるもの（月の軌道・電線・Wi-Fi名など）を別の意味に読み替えるだけで成立する一手。
+- (b) 生成的ブランドID: 音・データ・気象などの入力に応じてロゴやタイポグラフィがリアルタイムに形を変える「動くブランドID」。
+- (c) 素材が主張するアート／プロダクト: 技法や見た目の前に、素材そのものが事実を語っている仕事（例: 化石コラーゲンから培養した恐竜レザー）。
+- (d) AIが表現・発見の手段になっている仕事: AIを使ったこと自体がニュースなのではなく、AIがないと成立しなかった仕事。
+ジャンル（広告／アート／プロダクト／ゲーム／音楽など）で選ばない。「仕組み・素材・データ・物理的制約を一文で言えるアイデアに変換できているか」で選ぶ。`;
+
+/** 記事化段階で「告知のみ」と判定した場合の種別（設計 §4-4）。 */
+export const ANNOUNCEMENT_TYPES = ["発売", "開催", "発表", "買収", "コンテスト", "other"];
+
 const VERDICTS = new Set(["accept", "reject"]);
 const CRITERIA = new Set(["A", "B", "C"]);
 
@@ -36,17 +50,29 @@ export function normalizeGateItem(raw) {
   let criterion = str(o.criterion).toUpperCase();
   if (!VERDICTS.has(verdict)) verdict = "reject";
   if (!CRITERIA.has(criterion)) criterion = "none";
+  // フォールバック（不正値→reject）が働いたかを記録し、レポートで件数を見えるようにする
+  const invalid = !VERDICTS.has(str(o.verdict).toLowerCase()) || (verdict === "accept" && criterion === "none");
   if (verdict === "accept" && criterion === "none") verdict = "reject";
   if (verdict === "reject") criterion = "none";
-  return { title: str(o.title), url: str(o.url), verdict, criterion, reason: str(o.reason) };
+  return { title: str(o.title), url: str(o.url), verdict, criterion, reason: str(o.reason), invalid };
 }
 
 /** runClaudeJson の戻り値（{bakeoffItems, fetchNote}）を正規化する */
 export function parseBakeoffOutput(obj) {
   const arr = obj && Array.isArray(obj.bakeoffItems) ? obj.bakeoffItems : [];
-  const items = arr.map(normalizeGateItem);
+  const normalized = arr.map(normalizeGateItem);
+  // 同一URLは最初の1件のみ数える（一覧取得の失敗で同一記事が繰り返される事例あり。末尾スラッシュ・#以降は無視）
+  const seen = new Set();
+  const items = normalized.filter((i) => {
+    if (!i.url) return true;
+    const key = i.url.replace(/#.*$/, "").replace(/\/+$/, "");
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
   return {
     items,
+    duplicatesRemoved: normalized.length - items.length,
     fetchNote: obj && typeof obj.fetchNote === "string" ? obj.fetchNote.trim() : "",
     fetchFailed: items.length === 0,
   };
@@ -64,6 +90,7 @@ export function summarizeBakeoff(items) {
     acceptRate: count === 0 ? null : acc.length / count,
     byCriterion,
     examples: acc.slice(0, 3),
+    invalidCount: items.filter((i) => i.invalid).length,
   };
 }
 

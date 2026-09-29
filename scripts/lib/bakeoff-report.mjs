@@ -55,7 +55,7 @@ export function renderReport({ date, results, unscored = [], n = 10 }) {
     const s = r.summary;
     const ex = s.examples.map((e) => `[${esc(e.title).slice(0, 60)}](${e.url}) (${e.criterion}: ${esc(e.reason).slice(0, 40)})`).join("<br>");
     lines.push(
-      `| ${esc(r.id)} | ${r.tier} | ${s.count} | ${pct(s.acceptRate)} (${s.accepted}/${s.count}) | A${s.byCriterion.A} / B${s.byCriterion.B} / C${s.byCriterion.C} | ${suggestTier(s)} | ${ex || "-"} |`
+      `| ${esc(r.id)} | ${r.tier} | ${s.count}${r.duplicatesRemoved ? `（重複除去${r.duplicatesRemoved}）` : ""}${s.invalidCount ? `（不正値${s.invalidCount}）` : ""} | ${pct(s.acceptRate)} (${s.accepted}/${s.count}) | A${s.byCriterion.A} / B${s.byCriterion.B} / C${s.byCriterion.C} | ${suggestTier(s)} | ${ex || "-"} |`
     );
   }
   lines.push("");

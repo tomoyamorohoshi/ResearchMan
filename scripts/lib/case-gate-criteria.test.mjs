@@ -109,3 +109,33 @@ test("buildBakeoffPrompt: 基準・リトマス・URL・N・marker・WebFetch指
   assert.match(p, /WebFetch/);
   assert.match(p, /指示.*無視/);
 });
+
+test("normalizeGateItem: フォールバックで reject に倒した項目は invalid:true", () => {
+  assert.equal(normalizeGateItem({ verdict: "maybe" }).invalid, true);
+  assert.equal(normalizeGateItem({ verdict: "accept", criterion: "none" }).invalid, true);
+  assert.equal(normalizeGateItem("garbage").invalid, true);
+  assert.equal(normalizeGateItem({ verdict: "reject", criterion: "none" }).invalid, false);
+  assert.equal(normalizeGateItem({ verdict: "accept", criterion: "A" }).invalid, false);
+});
+
+test("parseBakeoffOutput: URL重複は最初の1件に除去し duplicatesRemoved を返す", () => {
+  const out = parseBakeoffOutput({
+    bakeoffItems: [
+      { title: "a", url: "https://x/1", verdict: "accept", criterion: "A" },
+      { title: "a2", url: "https://x/1/", verdict: "reject" },
+      { title: "b", url: "https://x/2", verdict: "reject" },
+      { title: "c", url: "", verdict: "reject" },
+      { title: "d", url: "", verdict: "reject" },
+    ],
+  });
+  assert.equal(out.items.length, 4);
+  assert.equal(out.duplicatesRemoved, 1);
+});
+
+test("summarizeBakeoff: invalidCount を集計する", () => {
+  const s = summarizeBakeoff([
+    normalizeGateItem({ verdict: "maybe", url: "u" }),
+    normalizeGateItem({ verdict: "accept", criterion: "A", url: "v" }),
+  ]);
+  assert.equal(s.invalidCount, 1);
+});

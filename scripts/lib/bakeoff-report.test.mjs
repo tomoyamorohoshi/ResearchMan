@@ -56,3 +56,12 @@ test("renderReport: 表・accept率降順・取得失敗節・代表例を含む
   assert.match(md, /403/);
   assert.match(md, /未実行.*zz/);
 });
+
+test("renderReport: invalidCount と duplicatesRemoved を注記する", () => {
+  const results = [
+    { id: "q", locator: "https://q", tier: 1, summary: { count: 5, accepted: 1, acceptRate: 0.2, byCriterion: { A: 1, B: 0, C: 0 }, examples: [], invalidCount: 2 }, fetchNote: "", duplicatesRemoved: 3 },
+  ];
+  const md = renderReport({ date: "2026-09-30", results, unscored: [], n: 10 });
+  assert.match(md, /不正値2/);
+  assert.match(md, /重複除去3/);
+});
