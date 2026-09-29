@@ -8,6 +8,11 @@ import IdeaShapeCard from "@/components/IdeaShapeCard";
 import IdeaCardControls from "@/components/IdeaCardControls";
 import { useIdeaLikes } from "@/hooks/useIdeaLikes";
 import { useIdeaTrash } from "@/hooks/useIdeaTrash";
+import { fetchDataJson } from "@/lib/publicDataBlob";
+
+// 巨大データJSONのBlob配信元（next.config.tsがビルド時に埋め込む。未設定なら /data/ のみ）。
+// リテラルで参照しないとNext.jsのインライン化対象にならない
+const DATA_BLOB_BASE = process.env.NEXT_PUBLIC_DATA_BLOB_BASE ?? "";
 
 // /ideas ポスターレイアウト（DESIGN: goofy-hatching-mango.md 2026-07-08改訂・事前計算方式）。
 // 旧CSS Grid行詰め(computeColStarts)+widthPct/marginジッタによる近似的な「ニアタッチ」を、
@@ -65,22 +70,20 @@ export default function IdeasPoster({
 
   useEffect(() => {
     let cancelled = false;
-    fetch("/data/ideas.json")
-      .then((res) => res.json())
-      .then((data: Idea[]) => {
+    fetchDataJson<Idea[]>("ideas.json", DATA_BLOB_BASE)
+      .then((data) => {
         if (!cancelled) setIdeas(sortIdeas(data));
       })
       .catch((err) => {
-        console.error("Failed to load /data/ideas.json", err);
+        console.error("Failed to load ideas.json", err);
         if (!cancelled) setFetchFailed(true);
       });
-    fetch("/data/idea-layouts.json")
-      .then((res) => res.json())
-      .then((data: IdeaLayoutsFile) => {
+    fetchDataJson<IdeaLayoutsFile>("idea-layouts.json", DATA_BLOB_BASE)
+      .then((data) => {
         if (!cancelled) setLayoutsFile(data);
       })
       .catch((err) => {
-        console.error("Failed to load /data/idea-layouts.json", err);
+        console.error("Failed to load idea-layouts.json", err);
         if (!cancelled) setFetchFailed(true);
       });
     return () => {

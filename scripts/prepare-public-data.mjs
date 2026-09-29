@@ -10,6 +10,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { PUBLIC_DATA_FILES, buildPublicDataText } from "./lib/public-data.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
@@ -18,24 +19,16 @@ const OUT_DIR = path.join(ROOT, "public", "data");
 
 fs.mkdirSync(OUT_DIR, { recursive: true });
 
-function writeJson(outName, data) {
+function writeJson(outName, text) {
   const outPath = path.join(OUT_DIR, outName);
-  const text = JSON.stringify(data);
   fs.writeFileSync(outPath, text);
   console.log(`✓ ${outName}: ${(Buffer.byteLength(text) / 1024).toFixed(1)} KB → ${outPath}`);
 }
 
-// cases.json: src/lib/cases.ts の現行フィルタ（quarantined===trueを除外）と同じロジック
-const casesData = JSON.parse(fs.readFileSync(path.join(DATA_DIR, "cases.json"), "utf8"));
-const publicCases = casesData.filter((c) => !c.quarantined);
-writeJson("cases.json", publicCases);
-
-// ideas.json: フィルタ・ソート不要（そのままコピー。ソートはクライアント側のsortIdeasで行う）
-const ideasData = JSON.parse(fs.readFileSync(path.join(DATA_DIR, "ideas.json"), "utf8"));
-writeJson("ideas.json", ideasData);
-
-// idea-layouts.json: そのままコピー
-const ideaLayoutsData = JSON.parse(fs.readFileSync(path.join(DATA_DIR, "idea-layouts.json"), "utf8"));
-writeJson("idea-layouts.json", ideaLayoutsData);
+// cases.json: src/lib/cases.ts の現行フィルタ（quarantined===trueを除外）と同じロジック（lib側に集約）
+for (const name of PUBLIC_DATA_FILES) {
+  const raw = fs.readFileSync(path.join(DATA_DIR, name), "utf8");
+  writeJson(name, buildPublicDataText(name, raw));
+}
 
 console.log("✓ public/data/ の準備完了");

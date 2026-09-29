@@ -1,6 +1,12 @@
 import type { NextConfig } from "next";
+import { blobBaseUrlFromStoreId } from "./src/lib/publicDataBlob";
 
 const nextConfig: NextConfig = {
+  // 巨大データJSON（cases/ideas/idea-layouts）のBlob配信元。BLOB_STORE_ID未設定の環境
+  // （ローカル開発等）では空文字＝ローカル /data/ のみを使う（src/lib/publicDataBlob.ts）
+  env: {
+    NEXT_PUBLIC_DATA_BLOB_BASE: blobBaseUrlFromStoreId(process.env.BLOB_STORE_ID),
+  },
   images: {
     // 2026-07-08 画像402インシデント: Vercel Hobbyの画像変換クォータを使い切り、
     // /_next/image 経由の全サムネが HTTP 402 になった（キャッシュ済み変換も拒否される）。
