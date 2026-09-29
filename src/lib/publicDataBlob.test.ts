@@ -5,7 +5,7 @@ import {
   blobPathnameFor,
   isAllowedBlobPathname,
   isAuthorizedBearer,
-  blobBaseUrlFromStoreId,
+  isBlobDataEnabled,
   dataUrlCandidates,
   fetchDataJson,
 } from "./publicDataBlob";
@@ -31,19 +31,15 @@ test("isAuthorizedBearer: 一致のみtrue・トークン未設定は常にfalse
   assert.equal(isAuthorizedBearer("Bearer undefined", undefined), false);
 });
 
-test("blobBaseUrlFromStoreId: store_ 接頭辞を除き小文字化。未設定は空文字", () => {
-  assert.equal(blobBaseUrlFromStoreId("store_AbC123"), "https://abc123.public.blob.vercel-storage.com");
-  assert.equal(blobBaseUrlFromStoreId("AbC123"), "https://abc123.public.blob.vercel-storage.com");
-  assert.equal(blobBaseUrlFromStoreId(undefined), "");
-  assert.equal(blobBaseUrlFromStoreId(""), "");
+test("isBlobDataEnabled: BLOB_STORE_IDがあればtrue（ビルド時にNEXT_PUBLIC_DATA_FROM_BLOBへ）", () => {
+  assert.equal(isBlobDataEnabled("store_AbC123"), true);
+  assert.equal(isBlobDataEnabled(undefined), false);
+  assert.equal(isBlobDataEnabled("  "), false);
 });
 
-test("dataUrlCandidates: Blob設定あり→[Blob, ローカル]、なし→[ローカルのみ]", () => {
-  assert.deepEqual(dataUrlCandidates("cases.json", "https://x.public.blob.vercel-storage.com"), [
-    "https://x.public.blob.vercel-storage.com/public-data/cases.json",
-    "/data/cases.json",
-  ]);
-  assert.deepEqual(dataUrlCandidates("cases.json", ""), ["/data/cases.json"]);
+test("dataUrlCandidates: Blob有効→[プロキシAPI, ローカル]、無効→[ローカルのみ]", () => {
+  assert.deepEqual(dataUrlCandidates("cases.json", true), ["/api/public-data/cases.json", "/data/cases.json"]);
+  assert.deepEqual(dataUrlCandidates("cases.json", false), ["/data/cases.json"]);
 });
 
 function fakeRes(ok: boolean, body: unknown, status = ok ? 200 : 404) {
@@ -52,7 +48,7 @@ function fakeRes(ok: boolean, body: unknown, status = ok ? 200 : 404) {
 
 test("fetchDataJson: 1番目が成功すればそれを返す（2番目は呼ばない）", async () => {
   const calls: string[] = [];
-  const data = await fetchDataJson<number[]>("cases.json", "https://b", async (u) => {
+  const data = await fetchDataJson<number[]>("cases.json", true, async (u) => {
     calls.push(u);
     return fakeRes(true, [1]);
   });
@@ -62,15 +58,15 @@ test("fetchDataJson: 1番目が成功すればそれを返す（2番目は呼ば
 
 test("fetchDataJson: Blobが404/例外ならローカルへフォールバック", async () => {
   const calls: string[] = [];
-  const data = await fetchDataJson<number[]>("cases.json", "https://b", async (u) => {
+  const data = await fetchDataJson<number[]>("cases.json", true, async (u) => {
     calls.push(u);
-    if (u.startsWith("https://b")) return fakeRes(false, null);
+    if (u.startsWith("/api/")) return fakeRes(false, null);
     return fakeRes(true, [2]);
   });
   assert.deepEqual(data, [2]);
   assert.equal(calls.length, 2);
-  const data2 = await fetchDataJson<number[]>("cases.json", "https://b", async (u) => {
-    if (u.startsWith("https://b")) throw new Error("net");
+  const data2 = await fetchDataJson<number[]>("cases.json", true, async (u) => {
+    if (u.startsWith("/api/")) throw new Error("net");
     return fakeRes(true, [3]);
   });
   assert.deepEqual(data2, [3]);
@@ -78,7 +74,7 @@ test("fetchDataJson: Blobが404/例外ならローカルへフォールバック
 
 test("fetchDataJson: 全候補失敗ならthrow", async () => {
   await assert.rejects(
-    fetchDataJson("cases.json", "https://b", async () => fakeRes(false, null)),
+    fetchDataJson("cases.json", true, async () => fakeRes(false, null)),
     /cases\.json/,
   );
 });

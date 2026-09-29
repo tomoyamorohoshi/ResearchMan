@@ -10,9 +10,9 @@ import { useIdeaLikes } from "@/hooks/useIdeaLikes";
 import { useIdeaTrash } from "@/hooks/useIdeaTrash";
 import { fetchDataJson } from "@/lib/publicDataBlob";
 
-// 巨大データJSONのBlob配信元（next.config.tsがビルド時に埋め込む。未設定なら /data/ のみ）。
+// 巨大データJSONのBlob配信の有無（next.config.tsがビルド時に埋め込む。無効なら /data/ のみ）。
 // リテラルで参照しないとNext.jsのインライン化対象にならない
-const DATA_BLOB_BASE = process.env.NEXT_PUBLIC_DATA_BLOB_BASE ?? "";
+const DATA_FROM_BLOB = process.env.NEXT_PUBLIC_DATA_FROM_BLOB === "1";
 
 // /ideas ポスターレイアウト（DESIGN: goofy-hatching-mango.md 2026-07-08改訂・事前計算方式）。
 // 旧CSS Grid行詰め(computeColStarts)+widthPct/marginジッタによる近似的な「ニアタッチ」を、
@@ -70,7 +70,7 @@ export default function IdeasPoster({
 
   useEffect(() => {
     let cancelled = false;
-    fetchDataJson<Idea[]>("ideas.json", DATA_BLOB_BASE)
+    fetchDataJson<Idea[]>("ideas.json", DATA_FROM_BLOB)
       .then((data) => {
         if (!cancelled) setIdeas(sortIdeas(data));
       })
@@ -78,7 +78,7 @@ export default function IdeasPoster({
         console.error("Failed to load ideas.json", err);
         if (!cancelled) setFetchFailed(true);
       });
-    fetchDataJson<IdeaLayoutsFile>("idea-layouts.json", DATA_BLOB_BASE)
+    fetchDataJson<IdeaLayoutsFile>("idea-layouts.json", DATA_FROM_BLOB)
       .then((data) => {
         if (!cancelled) setLayoutsFile(data);
       })

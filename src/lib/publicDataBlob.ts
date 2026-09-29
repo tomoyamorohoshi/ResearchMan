@@ -1,6 +1,6 @@
 // 巨大データJSON（cases / ideas / idea-layouts）のVercel Blob配信まわりの共通ロジック。
 // デプロイ同梱(public/data)だと日次デプロイのたびにDeployment Storageが増える（idea-layouts
-// 65MB×毎日）ため、Blobに固定パスで上書きし、クライアントはBlob→/data/の順にfetchする。
+// 65MB×毎日）ため、Blobに固定パスで上書きし、クライアントは /api/public-data(Blobプロキシ)→/data/ の順にfetchする。
 // このファイルは純関数のみ（サーバ/クライアント/Nodeスクリプトから共用。Blob SDKはimportしない）。
 
 export const PUBLIC_DATA_FILES = ["cases.json", "ideas.json", "idea-layouts.json"] as const;
@@ -23,25 +23,25 @@ export function isAuthorizedBearer(header: string | null | undefined, token: str
   return (header ?? "") === `Bearer ${token}`;
 }
 
-// publicなBlobのURLは https://<storeIdの本体小文字>.public.blob.vercel-storage.com/<pathname>
-// 未設定（ローカル開発等）は空文字＝ローカル /data/ のみを使う
-export function blobBaseUrlFromStoreId(storeId: string | undefined): string {
-  const id = (storeId ?? "").trim().replace(/^store_/i, "").toLowerCase();
-  return id ? `https://${id}.public.blob.vercel-storage.com` : "";
+// ストアはprivate専用（Blob URLをブラウザから直接fetchできない）ため、同一オリジンのプロキシAPI
+// /api/public-data/<name>（CDNキャッシュ付き）経由で配信する。BLOB_STORE_IDがあるビルドでのみ有効。
+// 未設定（ローカル開発等）はローカル /data/ のみを使う
+export function isBlobDataEnabled(storeId: string | undefined): boolean {
+  return Boolean((storeId ?? "").trim());
 }
 
-export function dataUrlCandidates(name: string, blobBase: string): string[] {
+export function dataUrlCandidates(name: string, useBlob: boolean): string[] {
   const local = `/data/${name}`;
-  return blobBase ? [`${blobBase}/${blobPathnameFor(name)}`, local] : [local];
+  return useBlob ? [`/api/public-data/${name}`, local] : [local];
 }
 
 export async function fetchDataJson<T>(
   name: string,
-  blobBase: string,
+  useBlob: boolean,
   fetchFn: (url: string) => Promise<Response> = (u) => fetch(u),
 ): Promise<T> {
   let lastErr: unknown = null;
-  for (const url of dataUrlCandidates(name, blobBase)) {
+  for (const url of dataUrlCandidates(name, useBlob)) {
     try {
       const res = await fetchFn(url);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);

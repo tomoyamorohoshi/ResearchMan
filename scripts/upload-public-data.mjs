@@ -68,7 +68,7 @@ for (const name of targets) {
   for (let attempt = 1; attempt <= MAX_ATTEMPTS && !ok; attempt++) {
     try {
       const res = await uploadPresigned(`public-data/${name}`, body, {
-        access: "public",
+        access: "private",
         handleUploadUrl,
         headers: { authorization: `Bearer ${cfg.token}` },
         contentType: "application/json",

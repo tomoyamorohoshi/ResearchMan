@@ -17,9 +17,9 @@ import { TAG_AXES, tagAxis, tagLabel } from "@/lib/tags";
 import type { Graph3DViewProps } from "./Graph3DView";
 import { fetchDataJson } from "@/lib/publicDataBlob";
 
-// 巨大データJSONのBlob配信元（next.config.tsがビルド時に埋め込む。未設定なら /data/ のみ）。
+// 巨大データJSONのBlob配信の有無（next.config.tsがビルド時に埋め込む。無効なら /data/ のみ）。
 // リテラルで参照しないとNext.jsのインライン化対象にならない
-const DATA_BLOB_BASE = process.env.NEXT_PUBLIC_DATA_BLOB_BASE ?? "";
+const DATA_FROM_BLOB = process.env.NEXT_PUBLIC_DATA_FROM_BLOB === "1";
 
 // 3d-force-graph/threeはwindow依存のためssr:false必須。トグルON時にのみチャンク取得される。
 // Graph3DViewはジェネリック関数コンポーネントのため、dynamic()の型引数はこれを直接推論
@@ -80,7 +80,7 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
   useEffect(() => {
     if (!isSelfFetchMode) return;
     let cancelled = false;
-    fetchDataJson<Case[]>("cases.json", DATA_BLOB_BASE)
+    fetchDataJson<Case[]>("cases.json", DATA_FROM_BLOB)
       .then((data) => {
         if (!cancelled) setFetchedCases(data);
       })
