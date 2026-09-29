@@ -185,43 +185,101 @@ function reassignWeightFor(kind: ShapeKind): number {
   return isComplexShapeKind(kind) ? REASSIGN_COMPLEX_KIND_WEIGHT : KIND_WEIGHT[kind];
 }
 
-export function assignShapeKinds(ideas: readonly IdeaContentInput[]): Map<string, ShapeAssignment> {
-  const result = new Map<string, ShapeAssignment>();
-  for (const idea of ideas) {
-    const defaultResult = probeTierWidths(idea);
-    if (isFeasibleWidths(defaultResult.probes)) {
-      result.set(idea.id, { kind: defaultResult.kind, generous: false });
-      continue;
-    }
+// idea単位の永続キャッシュ(実装はscripts/lib/idea-shape-cache.mjs。ファイルI/Oはsrc側に持たない)。
+// assignShapeKindsの結果はideaごとの入力だけで決まる決定論的な純関数なので、キャッシュ有無で
+// 出力はバイト等価。キーの設計(ALGO_VERSION・コード指紋・フォント定数を含む)は実装側を参照
+export type ShapeAssignmentCache = {
+  get(idea: IdeaContentInput): ShapeAssignment | undefined;
+  set(idea: IdeaContentInput, assignment: ShapeAssignment): void;
+  flush?(): void; // 進捗ログのタイミングで呼ぶ(強制終了しても計算済み分が残るようにするため)
+};
 
-    type Evaluated = { kind: ShapeKind; generous: boolean; feasible: boolean; margin: number };
-    const evaluated: Evaluated[] = [];
-    for (const kind of SHAPE_KINDS) {
-      const { probes } = probeTierWidths(idea, { forceKind: kind });
-      evaluated.push({ kind, generous: false, feasible: isFeasibleWidths(probes), margin: marginRatioWidths(probes) });
-      if (isComplexShapeKind(kind)) {
-        const { probes: gProbes } = probeTierWidths(idea, { forceKind: kind, generous: true });
-        evaluated.push({ kind, generous: true, feasible: isFeasibleWidths(gProbes), margin: marginRatioWidths(gProbes) });
+export type AssignShapeKindsOptions = {
+  cache?: ShapeAssignmentCache;
+  progressEvery?: number; // N件ごとに進捗ログ(既定50)。0以下で無効
+  log?: (message: string) => void;
+};
+
+const DEFAULT_PROGRESS_EVERY = 50;
+
+function formatElapsed(ms: number): string {
+  const sec = Math.round(ms / 1000);
+  return sec < 60 ? `${sec}秒` : `${Math.floor(sec / 60)}分${sec % 60}秒`;
+}
+
+export function assignShapeKinds(
+  ideas: readonly IdeaContentInput[],
+  opts: AssignShapeKindsOptions = {},
+): Map<string, ShapeAssignment> {
+  const { cache, progressEvery = DEFAULT_PROGRESS_EVERY, log = (m: string) => console.log(m) } = opts;
+  const result = new Map<string, ShapeAssignment>();
+  const startedAt = Date.now();
+  let hits = 0;
+  let done = 0;
+  for (const idea of ideas) {
+    let cached: ShapeAssignment | undefined;
+    try {
+      cached = cache?.get(idea);
+    } catch {
+      cached = undefined; // キャッシュ読み取り失敗は黙って全計算にフォールバック
+    }
+    if (cached) {
+      hits++;
+      result.set(idea.id, { kind: cached.kind, generous: cached.generous });
+    } else {
+      const computed = computeShapeAssignment(idea);
+      result.set(idea.id, computed);
+      try {
+        cache?.set(idea, computed);
+      } catch {
+        // キャッシュ書き込み失敗は無視(結果には影響しない)
       }
     }
-
-    const feasibleCandidates = evaluated.filter((e) => e.feasible);
-    if (feasibleCandidates.length > 0) {
-      const weighted = feasibleCandidates.flatMap((c) => Array<Evaluated>(reassignWeightFor(c.kind)).fill(c));
-      const picked = weighted[hashId(idea.id) % weighted.length];
-      result.set(idea.id, { kind: picked.kind, generous: picked.generous });
-      continue;
+    done++;
+    if (progressEvery > 0 && (done % progressEvery === 0 || done === ideas.length)) {
+      try {
+        cache?.flush?.();
+      } catch {
+        // 無視
+      }
+      log(`shape割り当て ${done}/${ideas.length} (経過${formatElapsed(Date.now() - startedAt)}, キャッシュヒット${hits})`);
     }
-
-    let best = evaluated[0];
-    for (const e of evaluated) if (e.margin > best.margin) best = e;
-    console.warn(
-      `assignShapeKinds: ${idea.id} は全9種×浅い変種でも3ティアいずれかの行幅予算に収まらない。` +
-        `最もマージン比の高い組み合わせへフォールバック (kind=${best.kind}, generous=${best.generous}, マージン比=${best.margin.toFixed(3)})`,
-    );
-    result.set(idea.id, { kind: best.kind, generous: best.generous });
   }
   return result;
+}
+
+// idea1件分のシェイプ割り当て(旧assignShapeKindsのループ本体。ロジックは無変更)
+function computeShapeAssignment(idea: IdeaContentInput): ShapeAssignment {
+  const defaultResult = probeTierWidths(idea);
+  if (isFeasibleWidths(defaultResult.probes)) {
+    return { kind: defaultResult.kind, generous: false };
+  }
+
+  type Evaluated = { kind: ShapeKind; generous: boolean; feasible: boolean; margin: number };
+  const evaluated: Evaluated[] = [];
+  for (const kind of SHAPE_KINDS) {
+    const { probes } = probeTierWidths(idea, { forceKind: kind });
+    evaluated.push({ kind, generous: false, feasible: isFeasibleWidths(probes), margin: marginRatioWidths(probes) });
+    if (isComplexShapeKind(kind)) {
+      const { probes: gProbes } = probeTierWidths(idea, { forceKind: kind, generous: true });
+      evaluated.push({ kind, generous: true, feasible: isFeasibleWidths(gProbes), margin: marginRatioWidths(gProbes) });
+    }
+  }
+
+  const feasibleCandidates = evaluated.filter((e) => e.feasible);
+  if (feasibleCandidates.length > 0) {
+    const weighted = feasibleCandidates.flatMap((c) => Array<Evaluated>(reassignWeightFor(c.kind)).fill(c));
+    const picked = weighted[hashId(idea.id) % weighted.length];
+    return { kind: picked.kind, generous: picked.generous };
+  }
+
+  let best = evaluated[0];
+  for (const e of evaluated) if (e.margin > best.margin) best = e;
+  console.warn(
+    `assignShapeKinds: ${idea.id} は全9種×浅い変種でも3ティアいずれかの行幅予算に収まらない。` +
+      `最もマージン比の高い組み合わせへフォールバック (kind=${best.kind}, generous=${best.generous}, マージン比=${best.margin.toFixed(3)})`,
+  );
+  return { kind: best.kind, generous: best.generous };
 }
 
 // ── カーニング探索（B.3: 粗探索→二分探索の2段階 + 非重なり防御チェック） ──────────────

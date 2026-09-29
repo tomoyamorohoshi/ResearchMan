@@ -19,19 +19,48 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { computeIdeaLayoutsInputHash, IDEA_LAYOUTS_ALGO_VERSION } from "./lib/idea-layouts-hash.mjs";
-import { solveFixedSizeShape } from "../src/lib/ideaShapes.ts";
+import { SHAPE_KINDS, solveFixedSizeShape } from "../src/lib/ideaShapes.ts";
 import {
   assignShapeKinds,
   computeCollageLayout,
   FIXED_BODY_FONT_PX,
   FIXED_TITLE_FONT_PX,
+  TIER_REF_WIDTH_PX,
 } from "../src/lib/ideaCollageLayout.ts";
+import {
+  buildShapeCacheSalt,
+  computeCodeFingerprint,
+  createFileShapeCache,
+  defaultShapeCachePath,
+} from "./lib/idea-shape-cache.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const IDEAS_JSON_PATH = process.env.IDEAS_JSON_PATH || path.join(__dirname, "../data/ideas.json");
 const OUT_PATH = process.env.IDEA_LAYOUTS_JSON_PATH || path.join(__dirname, "../data/idea-layouts.json");
 
 const TIERS = ["mobile", "compact", "wide"];
+
+// assignShapeKindsのidea単位・永続キャッシュ(リポジトリ外 ~/.researchman/cache/)。出力はキャッシュ有無で
+// バイト等価。IDEA_SHAPE_CACHE=off で無効化できる(強制的に全計算したい時用)。
+// キャッシュキーにはALGO_VERSIONに加え、形状ロジックのソース(ideaShapes.ts/ideaCollageLayout.ts/
+// graph.ts=hashId)の内容ハッシュを含めるので、ALGO_VERSION更新を忘れて編集しても古い結果は使われない
+function createShapeCacheOrNull() {
+  if (process.env.IDEA_SHAPE_CACHE === "off") return null;
+  try {
+    const codeFingerprint = computeCodeFingerprint(
+      ["ideaShapes.ts", "ideaCollageLayout.ts", "graph.ts"].map((f) => path.join(__dirname, "../src/lib", f)),
+    );
+    const salt = buildShapeCacheSalt({
+      algoVersion: IDEA_LAYOUTS_ALGO_VERSION,
+      codeFingerprint,
+      constants: { titleFontPx: FIXED_TITLE_FONT_PX, bodyFontPx: FIXED_BODY_FONT_PX, tierRefWidthPx: TIER_REF_WIDTH_PX },
+    });
+    return createFileShapeCache({ filePath: defaultShapeCachePath(), salt, validKinds: SHAPE_KINDS });
+  } catch (e) {
+    console.warn(`shapeキャッシュを初期化できないため全計算で続行: ${e.message}`);
+    return null;
+  }
+}
 
 // ── rename-with-retryの堅牢化 ─────────────────────────────────────────────
 // 背景(2026-07-15障害): 本スクリプトはtmpファイルに書いてからfs.renameで本体へ原子的に
@@ -104,7 +133,9 @@ async function main() {
 
   // シェイプ種(kind/generous)の決定はティア非依存に1回だけ行う（assignShapeKindsが内部で
   // 3ティアすべての実行可能性を考慮するため。IdeasPoster.tsx旧実装と同じ考え方）
-  const assignments = assignShapeKinds(contentInputs);
+  const shapeCache = createShapeCacheOrNull();
+  const assignments = assignShapeKinds(contentInputs, { cache: shapeCache ?? undefined });
+  shapeCache?.finalize();
 
   const tiers = {};
   for (const tier of TIERS) {
