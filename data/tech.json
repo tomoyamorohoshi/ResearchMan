@@ -1,5 +1,114 @@
 [
   {
+    "id": "open-qwen-music",
+    "title": "Open-Qwen-Music",
+    "org": "Yangbin Yu, Mingyu Yang(独立研究者による再現実装。Qwen公式ではない)",
+    "type": "Research",
+    "domains": [
+      "Audio/Music",
+      "AI/Agents"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "歌詞・構成つきの文章から48kHzステレオ音楽を作る、「LLMが作曲→拡散モデルが音にする」2段構成のText-to-Musicを、学習データ・パイプライン・重みまで丸ごと公開した再現実装。",
+    "point": "何がすごいか：音楽生成AIの多くは中身が非公開ですが、これは「作曲する頭脳(30億パラメータのLLM)」と「音に仕上げる工程(拡散モデル)」の両方を、学習データ約6.2万件・処理手順・学習/推論スクリプト・重みまで含めて全部公開しています。何がどう動いているか追える点が最大の特徴です。作者自身も品質は商用サービス並みとは主張していません。広告・体験づくりでの使い道：歌詞と曲の構成(イントロ・サビ等)を指定してオリジナルBGMやジングルの叩き台を、自社のGPU環境の中で作れます。外部サービスに素材を出せない案件や、ブランド固有の音色を自前データで再学習して「専用の作曲エンジン」を作る試み、インスタレーション向けの生成音源の研究開発に向きます。一方で完成品のツールではなく研究用の土台なので、品質面は試作段階と割り切り、企画初期のスケッチ用途が現実的です。",
+    "detail": "①仕組み：まず音楽を「意味のかたまり(セマンティックトークン)」という短い記号列に変換する変換器があり、言語モデルが歌詞や構成の指示を読んで、この記号列で曲の設計図を書きます。人間で言えば作曲家が譜面を書く工程です。次に音響レンダラー(拡散モデル)が、その設計図を演奏・録音のように48kHzステレオの音に仕上げ、最後に帯域リファイナーが高音域の細かな響きを補います。圧縮用のAcoustic VAEも含め、計5つの部品で構成されます。\n\n②従来との違い：商用の音楽生成サービスは中身がブラックボックスで、学習データも不明です。本リポジトリは学習用データセット(62,417件)の作り方、学習設定、推論手順までそろえた「監査可能」な実装で、研究者やスタジオが自分のデータで作り直せます。ただし単一コミット・スター数も少ない新しいプロジェクトで、作者も品質は開発途中としています。また重みの一部はQwen Research Licenseに縛られるため、商用利用は事前確認が必要です。\n\n③使うには：CUDA対応でbfloat16が使えるGPUが実用上必要で、Python環境の構築とコマンド操作のスキルが要ります。費用はGPU環境のみで、コードはGitHub、重みはHugging Faceから無料で入手できます。まず試すだけなら、Hugging Face Spaces上のデモを利用できます(動作状況は変動する可能性あり)。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "ソースコードはApache-2.0。重みはQwen2.5-Omni-3B由来の言語モデルにQwen Research Licenseが適用され、混合ライセンス(open-qwen-music-mixed-model-terms)。商用利用は各コンポーネントの条件を要確認"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/biang15343100-source/Open-Qwen-Music"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2609.31652"
+      },
+      {
+        "kind": "project",
+        "url": "https://huggingface.co/spaces/oqmtest1451/open-qwen-music-demo"
+      },
+      {
+        "kind": "project",
+        "url": "https://huggingface.co/oqmtest1451/open-qwen-music-weights"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/open-qwen-music.jpg",
+    "relatedWorks": [
+      {
+        "title": "ACE-Step 1.5",
+        "description": "ローカル実行できるオープンな音楽生成基盤モデル。Mac/AMD/Intel/CUDAに対応",
+        "url": "https://github.com/ace-step/ACE-Step-1.5"
+      },
+      {
+        "title": "HeartMuLa (heartlib)",
+        "description": "2026年公開のオープンな音楽生成モデル。歌詞・スタイル制御に強い",
+        "url": "https://github.com/HeartMuLa/heartlib"
+      },
+      {
+        "title": "Neutone SDK",
+        "description": "PyTorch製ニューラル音声モデルをDAW上で動かすためのオープンなフレームワーク",
+        "url": "https://github.com/Neutone/neutone_sdk"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "swingscribe",
+    "title": "SwingScribe",
+    "org": "elkayem（個人開発）",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "ジャズの録音からソロだけを取り出して譜面（MusicXML）に起こすWindows向け無料ソフト。スウィングの跳ねたリズムを、演奏者が読み慣れた「普通の8分音符＋Swing記号」で書いてくれる。",
+    "point": "一番の特徴は、ジャズ特有の「跳ねるリズム（スウィング）」を、楽譜として自然な形で書き出せる点です。従来の自動採譜は、聞こえたままの長さで音符を刻むため、三連符や16分音符が入り乱れた読みにくい譜面になりがちでした。SwingScribeは、バンド全体のノリを区間ごとに測り、ソロ奏者が少し後ろに遅れて吹く癖まで差し引いてから、いちばん単純な書き方に整えます。しかも音源から管楽器やピアノのソロだけを分離するところまで一気通貫で、パソコンだけで動き、ネット上に音源を送る必要もありません。広告・体験づくりでは、ジャズ風のBGMや生演奏企画のリファレンス曲を譜面化して演奏者に渡す、往年の名演をなぞるライブ演出やインスタレーションの下準備をする、といった使い方が考えられます。音楽の素養が浅い制作チームでも、「この曲のこのソロ」を素早く手元の素材にできる道具です。",
+    "detail": "仕組みは5段階のパイプラインです。まずBand-Split RoFormerというAIが、バンド演奏の中から狙った楽器（サックスやトランペットなど）だけを取り出します。次にBeat This!が拍と小節の位置を割り出し、CREPEが1秒に100回のペースで音の高さを追跡します（ピアノの場合は専用のピアノ採譜モデルを使用）。最後にSwingScribe独自のリズムエンジンが、区間ごとのスウィングの強さを測り、奏者が拍の後ろに遅れる癖を補正して、各拍でもっとも単純な記譜に落とし込み、MusicXMLとして出力します。公式サイトによれば、この考え方は245件の人間による採譜の分析に基づいています。たとえるなら、「聞こえたまま全部書き写す速記」ではなく、「熟練の採譜者が読みやすく清書する」作業を自動化したものです。\n\n従来の採譜ツールとの違いは、既存のAIモデルを並べただけでなく、ジャズのリズム感を記譜に反映する独自ロジックを持つ点です。画面には波形と小節の格子、分離した音と元の録音の聴き比べ、音符ごとの根拠が見えるピアノロールが用意され、間違いを直してから書き出せます。作者自身も「確認して使う下書き」と位置づけており、精度の数値は公開されていません。\n\n使うにはWindows 10/11（64bit）で約450MBのzipを配布ページ（GitHub Releases）から入手し、展開してsetup.cmdを1回実行するだけです。空き容量は約2.5GB、GPUは不要です。Linuxではソースからuvで導入できます。書き出したMusicXMLはMuseScore、Finale、Sibelius、Dorico、B♭・E♭管への移調にも対応します。2026年8月に作られ、9月にv0.1.0（9/14）とv0.2.0（9/27）が出た新しいプロジェクトです。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "SwingScribe本体はMIT。初回起動時にダウンロードされるAIモデルの重みは別ライセンス（リポジトリのNOTICES.mdに記載）のため、商用利用は各モデルの条件を確認する必要がある。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/elkayem/swingscribe"
+      },
+      {
+        "kind": "project",
+        "url": "https://elkayem.github.io/swingscribe/"
+      },
+      {
+        "kind": "product",
+        "url": "https://github.com/elkayem/swingscribe/releases/tag/v0.2.0"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/swingscribe.jpg",
+    "relatedWorks": [
+      {
+        "title": "Beat This!",
+        "description": "SwingScribeが拍・小節の検出に使うJKU Linzの拍追跡Transformer",
+        "url": "https://github.com/CPJKU/beat_this"
+      },
+      {
+        "title": "CREPE",
+        "description": "SwingScribeがピッチ追跡に使うニューラル基本周波数推定モデル",
+        "url": "https://github.com/marl/crepe"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "comfyui-obvpm-timeline",
     "title": "comfyui-obvpm-timeline",
     "org": "chanon（個人開発）",
