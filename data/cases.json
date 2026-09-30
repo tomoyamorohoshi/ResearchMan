@@ -1,5 +1,81 @@
 [
   {
+    "id": "page-rage-2026",
+    "title": "Page Rage",
+    "summary": "任意のWebページを破壊可能なステージに読み替え、ジェットパックで要素を撃ち壊せる無料のブラウザ拡張ゲーム。",
+    "client": "Page Rage",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://gigazine.net/news/20260930-page-rage/",
+    "thumbnail": "/thumbnails/page-rage-2026.jpg",
+    "videoId": "",
+    "overview": "Page Rageは、閲覧中のWebページをそのまま破壊可能なステージに変えるブラウザ拡張機能のゲーム。ジェットパックを背負ったキャラクターをWASDで動かし、マウスで狙って武器を撃つと、ページ上の文字・画像・パネルが壊れて落下する。Chrome、Firefox、Edge向けに提供され、無料と報じられている。公式サイトには拡張なしで遊べる破壊用のサンプルページも用意されている。",
+    "background": "公式サイトによると作者はAlex Reardon氏。既存のWebページは通常、読む・操作する対象であり、壊す対象ではない。本作はその前提を逆手に取り、誰もが日常的に開く「ページ」を遊び場に変えた。拡張機能として配布されるため、特別なゲーム用素材を用意せず、ユーザーが選んだ任意のサイトがそのままコンテンツになる。開発の経緯は確認できていない。",
+    "execution": "拡張機能のアイコンを押すと、開いているページ上でゲームが始まる。移動はWASD、狙いはマウス、主武器は左クリック、補助武器は右クリック、1〜5キーで武器を切り替え、スペースでダッシュする。破壊はページの複製上で行われ、元のサイトには永続的な影響がない。Gigazineは武器を10種類、他の紹介記事は5種類と伝えており、数は資料間で食い違う。",
+    "evaluationImpact": "評価点は、企画の核が「どのWebページもステージになる」と一文で言え、素材の準備が不要なこと。ユーザーが毎回違うサイトを選ぶため、遊びの内容が変わり続ける。破壊が複製上で完結し、安全に遊べる点も配慮されている。受賞は確認できていない。GIGAZINEなど複数メディアで紹介されたが、影響の規模を示す数値は確認できなかった。",
+    "relatedWorks": [
+      {
+        "title": "Destroy Any Website(Hugo Duprez)",
+        "description": "任意のWebページの複製を破壊するブラウザゲーム。OMG! Ubuntuが紹介しており、対戦モードも報じられている。",
+        "url": "https://www.omgubuntu.co.uk/2026/09/destroy-any-website-browser-game"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Tech/Game",
+      "Form/App"
+    ],
+    "gateCriterion": "A",
+    "sourceId": ""
+  },
+  {
+    "id": "chatgpto-advertising-week-new-york-give-ai-a-break-2026",
+    "title": "ChatGPTO（Advertising Week New York「Give AI a Break」）",
+    "summary": "依頼をすべて断り「人間と話して」と促す“休暇中のAIチャットボット”で、AI疲れを逆手に取ったイベント告知",
+    "client": "Advertising Week New York",
+    "agency": "Mekanism USA",
+    "categories": [
+      "コンテンツ革新",
+      "カルチャーインサイト",
+      "AIクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://lbbonline.com/news/advertising-week-gives-ai-a-break-with-chatgpto",
+    "thumbnail": "/thumbnails/chatgpto-advertising-week-new-york-give-ai-a-break-2026.jpg",
+    "videoId": "",
+    "overview": "Advertising Week New York 2026が、広告代理店Mekanismと組んで公開した「Give AI a Break」キャンペーンの中核となるチャットボット「ChatGPTO」。見出し作成、Q4戦略デck作成、ポスター制作などを頼んでも一切応じず、「人間たちがAdvertising Weekから戻るまでサーバーの外に出ている」と自動返信し、実際の人間と話すよう促す。",
+    "background": "生成AIに何でも頼むことが日常化するなか、くだらない依頼も含めて「AIにやらせすぎ」という感覚が広がっている。広告・マーケティング業界のイベントであるAdvertising Weekは、その空気を逆手に取り、AIに休暇（PTO）を与えるという切り口で、人と人が直接会って話すイベントの価値を訴求した。",
+    "execution": "中核はAIが仕事を拒否するチャットボット体験。加えてMekanismが制作した60秒のフィルムでは、ChatGPT・Claude・Geminiを擬人化したChad、Claudette、Jiminyが「AIサポートグループ」に集まり、常に創作や分析を求められる疲れや不満を語り合う。キャンペーンはソーシャル、OOH、映像で展開され、ポスターのQRコードからチャットボット体験へ誘導する。",
+    "evaluationImpact": "「AIに休暇を取らせる」という一文で伝わる企画で、AIツールを使う側の広告業界が共感しやすい自虐的なユーモアに変換している。機能の「拒否」自体が告知メッセージになっており、イベント開催前からポスターのQRを通じて参加者との接点を作る設計も評価できる。受賞や成果数値は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Website",
+      "Form/OOH",
+      "Form/Film"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "lbbonline"
+  },
+  {
     "id": "relievos-2013",
     "title": "Relievos",
     "summary": "フェルメールやゴッホなど名画表面の凹凸を3Dスキャンし、筆致まで再現した限定260部の立体複製画を製作・販売した。",
