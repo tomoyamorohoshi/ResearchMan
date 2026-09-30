@@ -17618,5 +17618,221 @@
         "desc": "自律型AIエージェントを何百万規模で同時に走らせ、待機中は自動休止させてコストを抑えるエージェント実行基盤。"
       }
     ]
+  },
+  {
+    "id": "2026-09-30-1",
+    "date": "2026-09-30",
+    "title": "騒音看板を音響浮揚で立体化",
+    "pattern": "文脈×技術",
+    "seed": "Zerooh Noiseの「騒音を可視化する看板」を、Single-Sided Bessel-Beam Acoustic Levitationで軽い球が音の大きさに合わせて空中で上下する装置にしたら、街の喧騒が“浮遊する彫刻”として見えるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "zerooh-noise-a-real-time-decibel-sensing-billboard-2025",
+        "title": "Zerooh Noise: a real-time decibel-sensing billboard",
+        "desc": "道路の騒音をリアルタイムで測り、EVの静かさと対比させた看板広告。"
+      },
+      {
+        "type": "tech",
+        "id": "single-sided-bessel-beam-acoustic-levitation",
+        "title": "Single-Sided Bessel-Beam Acoustic Levitation(ゼロ次ベッセルビームによる片側音響浮揚)",
+        "desc": "超音波で軽い球を離れた場所から空中に浮かせて動かす技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-2",
+    "date": "2026-09-30",
+    "title": "無音ホラーを舌で遊ぶ",
+    "pattern": "文脈×技術",
+    "seed": "音を立てたら死ぬSILENT CLEANINGに、舌で操作するMouthPad/VOXを掛けたら、手も声も使わず“息を殺して”動かす究極の無音ゲームができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "kao-brands-silent-cleaning",
+        "title": "SILENT CLEANING",
+        "desc": "音を立てると負けになる、掃除をテーマにしたホラーゲーム。"
+      },
+      {
+        "type": "tech",
+        "id": "mouthpad-vox",
+        "title": "MouthPad (第2世代) / VOX",
+        "desc": "舌で操作するマウスピース型デバイスと、皮膚に貼る音声入力デバイス。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-3",
+    "date": "2026-09-30",
+    "title": "逆さ広告を消去AIで実写化",
+    "pattern": "文脈×技術",
+    "seed": "すべてを反転させたIKEA Alsulaiman: Reverse Shopに、LTX-2.3 Clean Plate IC-LoRAを掛け、実店舗の映像から客と商品を影ごと消して“買い取られた後の空っぽの部屋”を作ると、買取の価値を見せられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ikea-alsulaiman-reverse-shop-2026",
+        "title": "IKEA Alsulaiman: Reverse Shop",
+        "desc": "家具買取の告知で、ロゴや価格まで逆さにしたIKEAサウジの広告。"
+      },
+      {
+        "type": "tech",
+        "id": "ltx-2-3-clean-plate-ic-lora",
+        "title": "LTX-2.3 Clean Plate IC-LoRA",
+        "desc": "動画から動く人や物を影ごと消して背景を作り直すAIの追加モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-4",
+    "date": "2026-09-30",
+    "title": "回転弦シンセと音響浮揚",
+    "pattern": "技術×技術",
+    "seed": "JAS-I Khorloの回転する弦の音に合わせて、Single-Sided Bessel-Beam Acoustic Levitationの浮遊球が空中で軌道を描けば、音を“見て聴く”楽器ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "jas-i-khorlo",
+        "title": "JAS-I Khorlo",
+        "desc": "円形に張った弦をリング状のばちが回って弾く、無料の仮想シンセ。"
+      },
+      {
+        "type": "tech",
+        "id": "single-sided-bessel-beam-acoustic-levitation",
+        "title": "Single-Sided Bessel-Beam Acoustic Levitation(ゼロ次ベッセルビームによる片側音響浮揚)",
+        "desc": "超音波で軽い球を離れた場所から空中に浮かせて動かす技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-5",
+    "date": "2026-09-30",
+    "title": "ロボット群を写真から3D化",
+    "pattern": "技術×技術",
+    "seed": "FlexSplatで数枚の写真から作った3Dスプラットの形を、FluidicSwarmの手ジェスチャー操作で小型ロボット群が“水のように”なぞって再現したら、物体の立体コピーを群れで描けるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "flexsplat",
+        "title": "FlexSplat",
+        "desc": "位置を測らず、数枚の写真から一度で3D点群表現を作る手法。"
+      },
+      {
+        "type": "tech",
+        "id": "fluidicswarm",
+        "title": "FluidicSwarm",
+        "desc": "手の動きで小型ロボットの群れを一つの生き物のように操る仕組み。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-6",
+    "date": "2026-09-30",
+    "title": "HTML動画で毎日ポスター",
+    "pattern": "文脈×技術",
+    "seed": "毎日1点ポスターを蓄積するAnother Graphicに、HTMLを書けば動画になるHyperFramesを組み合わせ、各ポスターを動くタイポグラフィ動画へ自動変換すれば、静的アーカイブが“毎日の短編映画”になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "another-graphic-2014",
+        "title": "Another Graphic",
+        "desc": "世界のスタジオのポスターを毎日1点ずつ集めたデザインのアーカイブサイト。"
+      },
+      {
+        "type": "tech",
+        "id": "hyperframes",
+        "title": "HyperFrames",
+        "desc": "HTMLを書くだけで動画を作れ、AIエージェントも使えるオープンソース。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-7",
+    "date": "2026-09-30",
+    "title": "ロボットに沈黙のサーブ",
+    "pattern": "転用",
+    "seed": "テニス選手風のフォームを再現するAdaPTを、LALCEC One More Questionのような“沈黙を破る問い”の場で、ロボットがインタビュアーの間や仕草を真似る用途に転用したら、言いにくい話題を切り出す練習相手になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "adapt",
+        "title": "AdaPT",
+        "desc": "ロボットに有名テニス選手らしいフォームで打たせる技術。"
+      },
+      {
+        "type": "case",
+        "id": "lalcec-one-more-question",
+        "title": "One More Question",
+        "desc": "インタビューの最後に前立腺検診を問い、沈黙を破った施策。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-8",
+    "date": "2026-09-30",
+    "title": "解剖モデルで土地を切る",
+    "pattern": "転用",
+    "seed": "人体を自在に切れるDissectible Anatomyの仕組みを、人体ではなく360 Gaussian Proで撮った街や建物のスプラットに転用したら、都市を輪切りにして“内部の時間”を覗く体験になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "dissectible-anatomy",
+        "title": "Dissectible Anatomy",
+        "desc": "人体の断面データから作った3Dモデルをリアルタイムで切って見られるシミュレーション。"
+      },
+      {
+        "type": "tech",
+        "id": "360-gaussian-pro",
+        "title": "360 Gaussian Pro",
+        "desc": "360度カメラ映像から立体点群を自動生成するアプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-9",
+    "date": "2026-09-30",
+    "title": "バルーン内部を点群で歩く",
+    "pattern": "転用",
+    "seed": "YaGSで実写風の点群を3Dモデルと重ねる機能を、No.105の巨大な黄色バルーンの中に入る体験に転用したら、入った瞬間に現実と点群の世界が溶け合う“身体で入る映像”ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "yags",
+        "title": "YaGS",
+        "desc": "Unreal Engineで実写風の点群を通常の3Dと正しく重ねる無料プラグイン。"
+      },
+      {
+        "type": "case",
+        "id": "setouchi-2022-og19",
+        "title": "No.105",
+        "desc": "古い倉庫に置かれた黄色い巨大バルーンに入って体験する芸術作品。"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-10",
+    "date": "2026-09-30",
+    "title": "ボイス吹替で森の店を語る",
+    "pattern": "技術×技術",
+    "seed": "VoiceStudioの声クローンと多言語吹き替えに、EditAnythingの被写体置き換えを重ねたら、Atelier Baumのオークの苗木が“自分の声で各国語を語る”映像がつくれるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "voicestudio",
+        "title": "VoiceStudio",
+        "desc": "声のクローンや多言語吹き替えができる、無料のローカル音声ツール。"
+      },
+      {
+        "type": "tech",
+        "id": "editanything",
+        "title": "EditAnything (LTX-2.3 Video Edit LoRA)",
+        "desc": "テキスト指示で動画の被写体や背景を置き換えられる編集モデル。"
+      },
+      {
+        "type": "case",
+        "id": "atelier-baum-shiseido-forest-store-if-2024",
+        "title": "Atelier Baum",
+        "desc": "店内でオークの苗木を育てる資生堂BAUMの旗艦店。"
+      }
+    ]
   }
 ]
