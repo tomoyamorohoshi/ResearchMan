@@ -17834,5 +17834,203 @@
         "desc": "店内でオークの苗木を育てる資生堂BAUMの旗艦店。"
       }
     ]
+  },
+  {
+    "id": "2026-10-01-1",
+    "date": "2026-10-01",
+    "title": "記憶で増殖する百貨店迷宮",
+    "pattern": "文脈×技術",
+    "seed": "VRで百貨店を歩き回る迷界デパートの壁面に、継ぎ目なく360°を生成するSpheRoPEを掛けたら、客が通った売場の記憶から新しい階が勝手に増える迷宮になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-t41v4y-2026",
+        "title": "迷界デパート〜終わらない記憶が彷徨う、無限の百貨店迷宮〜",
+        "desc": "大丸東京店の催事場で、VRを着けて百貨店の迷宮を自由に歩き回るホラー体験。"
+      },
+      {
+        "type": "tech",
+        "id": "spherope",
+        "title": "SpheRoPE",
+        "desc": "追加の学習なしで、つなぎ目のない360°のパノラマ画像や動画を作れる仕組み。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-01-2",
+    "date": "2026-10-01",
+    "title": "私のソンス駅を持ち帰る",
+    "pattern": "文脈×技術",
+    "seed": "ムシンサステーションが原宿に再現したソンス駅を、来場者がInsta360 X6 Spatial Captureで歩き撮りして3D化すれば、各自の「私のソンス駅」を持ち帰って見比べられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "musinsa-2026",
+        "title": "ムシンサステーション（原宿でソンス駅を再現したポップアップ）",
+        "desc": "韓国ムシンサが、原宿にソウルのソンス駅の構内をそっくり再現したポップアップ。"
+      },
+      {
+        "type": "tech",
+        "id": "insta360-x6-spatial-capture",
+        "title": "Insta360 X6 Spatial Capture",
+        "desc": "360度カメラで撮るだけで、歩き回れる3D空間に自動変換してくれる機能。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-01-3",
+    "date": "2026-10-01",
+    "title": "AIにだけ読めない館内サイン",
+    "pattern": "文脈×技術",
+    "seed": "館名から専用書体を作ったCooper Hewitt Typefaceの発想に、AIには誤読されるDecoy Fontを掛けたら、人間にだけ正しく読める館内サインという新しい「人間限定の案内」になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "cooper-hewitt-identity-cooper-hewitt-typeface-2014",
+        "title": "Cooper Hewitt Identity & Cooper Hewitt Typeface",
+        "desc": "館名から専用の書体を作り、館内の看板や表示を統一したリブランディング。"
+      },
+      {
+        "type": "tech",
+        "id": "decoy-font",
+        "title": "Decoy Font",
+        "desc": "人には正しく読めるが、AIには別の単語と誤読される文字を作れるフォント。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-01-4",
+    "date": "2026-10-01",
+    "title": "音程で形を変える水滴楽譜",
+    "pattern": "技術×技術",
+    "seed": "歌声や楽器の音をbasicpitch.cppでMIDIに変え、その音程でMorphDropsの水滴の形を動かしたら、紙の上で音が雫の形として踊る、触れる楽譜ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "basicpitch-cpp",
+        "title": "basicpitch.cpp",
+        "desc": "音声を楽譜のような音符データ（MIDI）に素早く変換する軽量ツール。"
+      },
+      {
+        "type": "tech",
+        "id": "morphdrops",
+        "title": "MorphDrops",
+        "desc": "導電インクの紙に電気を流し、水滴の形を変えて見せるディスプレイ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-01-5",
+    "date": "2026-10-01",
+    "title": "試合を踊るロボット再演",
+    "pattern": "技術×技術",
+    "seed": "ATGSで長尺の試合を自由視点の3Dとして残し、そこから抜いた選手の動きをrobot_retargeterで人型ロボットに移せば、一試合まるごとをロボットが再演する舞台になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "atgs",
+        "title": "ATGS（Anchored Temporal Gaussian Splatting）",
+        "desc": "長時間で動きの激しい多視点映像を、崩れずに3Dで再現する新しい手法。"
+      },
+      {
+        "type": "tech",
+        "id": "robot-retargeter",
+        "title": "robot_retargeter",
+        "desc": "人の動きのデータを、体格の違うロボットの動きに自動変換する無料ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-01-6",
+    "date": "2026-10-01",
+    "title": "ゲーム映像を予告編にする編集",
+    "pattern": "技術×技術",
+    "seed": "ComfyUI-Sonder-Editorのタイムラインに、DLSS5 Enhancerの高画質化を並べたら、プレイ録画を生成映像と同じ編集画面で映画の予告編に仕立てられるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-sonder-editor",
+        "title": "ComfyUI-Sonder-Editor",
+        "desc": "動画編集ソフトのような編集画面を、ComfyUIの中で使えるようにした拡張機能。"
+      },
+      {
+        "type": "tech",
+        "id": "dlss5-enhancer",
+        "title": "DLSS5 Enhancer (ComfyUI-DLSS5-Enhancer)",
+        "desc": "ゲーム向けのAI高画質化を、動画や画像にそのまま使えるようにした非公式ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-01-7",
+    "date": "2026-10-01",
+    "title": "街に予兆の軌跡を描く",
+    "pattern": "転用",
+    "seed": "ロボットの動作計画向けに作られたMolmoMotionの軌跡予測を、街角の1枚の写真に「次に起きそうな動き」の線を重ねる、予兆を可視化するアート表現に転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "molmomotion",
+        "title": "MolmoMotion",
+        "desc": "1枚の画像と言葉の指示から、物体の数秒先の3D上の動きを予測するモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-01-8",
+    "date": "2026-10-01",
+    "title": "来場者の写真で縫う3D空間",
+    "pattern": "転用",
+    "seed": "3Dスキャンの露出ムラを直すPPISPを、来場者がバラバラの端末で撮った写真の色や明るさの個人差をそろえる道具に転用し、参加型の3D記念空間を縫い合わせられるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ppisp",
+        "title": "PPISP (Physically-Plausible Compensation and Control of Photometric Variations)",
+        "desc": "3Dスキャン映像の露出や色のズレを、物理的に正しく補正するAIモジュール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-01-9",
+    "date": "2026-10-01",
+    "title": "泊まれない客室を歩く",
+    "pattern": "文脈×技術",
+    "seed": "空き家を一夜一組の宿にした檸檬ホテルに、1枚の画像から歩ける3D空間を作るPuffin-Worldを掛けたら、泊まれなかった人が「もう一つの客室」を歩ける体験になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2016-030",
+        "title": "檸檬ホテル",
+        "desc": "豊島の空き家を、一夜に一組だけ泊まれる宿に変えた滞在型の作品。"
+      },
+      {
+        "type": "tech",
+        "id": "puffin-world",
+        "title": "Puffin-World",
+        "desc": "1枚の画像やテキストから、自由な視点で歩き回れる3D空間を作るモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-01-10",
+    "date": "2026-10-01",
+    "title": "ファンが組むパーティBGM",
+    "pattern": "文脈×技術",
+    "seed": "ねんどろいど6人が集う初音ミク スターリーパーティに、生成の途中を手で触れるSA3 Browser Toolsを掛けたら、ファンが各キャラの曲を自分で作り込む参加型BGM企画になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-1f4isuu-2026",
+        "title": "初音ミク スターリーパーティ",
+        "desc": "ねんどろいど版の初音ミクたち6人が集まる、完全新作のパーティアクションゲーム。"
+      },
+      {
+        "type": "tech",
+        "id": "sa3-browser-tools",
+        "title": "SA3 Browser Tools (mucking_around_time_with_stable_audio_3)",
+        "desc": "AI音楽生成の途中経過を手で触って作り込める、ブラウザ上の制作ツール。"
+      }
+    ]
   }
 ]
