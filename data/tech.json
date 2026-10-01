@@ -1,5 +1,161 @@
 [
   {
+    "id": "rev2d",
+    "title": "Rev2D",
+    "org": "RevStudio",
+    "type": "Tool",
+    "domains": [
+      "Motion/Body",
+      "AI/Agents",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "Live2DやSpineのような2Dキャラクターの「リグ（動かすための骨組み）」を、AIエージェントが読み書き・検証できる形で作れるOSSツールキット。9/25公開のv0.1。",
+    "point": "すごい点は、2Dキャラを動かす仕組み一式を「1つのJSONファイル」にまとめ、Claude CodeなどのAIが自分で作って、自分で確かめて、直すところまで回せることです。ふつうのリグ作りはマウスで一つずつ操作する職人作業ですが、ここでは「作る→画像で見る→数値で測る→直す」をAIが繰り返せます。広告・体験づくりでは、ブランドキャラや商品マスコットを、視線追従や呼吸、揺れ物つきのWeb用アニメ部品として量産したり、キャンペーンごとに表情や動きを差し替えたりする使い方が考えられます。人間は横のエディタで進み具合を見ながら、必要な所だけ手直しすることもできます。",
+    "detail": "仕組みは「設計図が文章（JSON）になっている」点が肝です。キャラの動くパーツ、骨、ゆがみ変形、物理（髪の揺れ）、IK（手を伸ばすと腕が追従する仕組み）、アニメーションが1つの.r2d.jsonに入っており、AIは料理のレシピを書くように作れます。画面描画はGPU不要の決まった結果が出る方式で、同じ入力なら必ず同じ絵になるため、AIが「ちゃんとできたか」を画像と数値で点検できます。CLI（19コマンド）、16個のツールを持つMCPサーバー、人間用のWebエディタ（React+WebGL2）が用意されています。\n\n従来のLive2D/Spineは人が画面を見て手で調整する前提でしたが、Rev2Dは最初から機械が読める形で設計され、エラーにも修正のヒントが付きます。テストは1,350件超です。\n\n使うにはNode 22以上が必要で、READMEの手順どおりgit cloneしてnpm installすれば動きます。費用はかからず（MIT）、AI連携にはClaude Code等のMCP対応クライアントを使います。実プロジェクトで使うには、まだv0.1なのでPSD取り込みなど周辺機能の成熟度を確認してください。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "MITライセンスで商用利用可。v0.1段階のため、1.0までは仕様が変わる可能性がある。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/RevStudio/Rev2D"
+      },
+      {
+        "kind": "post",
+        "url": "https://github.com/RevStudio/Rev2D/blob/main/docs/MCP.md"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/rev2d.jpg",
+    "relatedWorks": [
+      {
+        "title": "Iki",
+        "description": "Live2D代替を目指す2Dリグ人形アニメーションエンジン（WebGL2・MCP付き）。",
+        "url": "https://github.com/zeikar/iki"
+      },
+      {
+        "title": "PuppetLoom",
+        "description": "レイヤー分けPSDから2D動くキャラを自動生成・検証するWindowsデスクトップアプリ。",
+        "url": "https://github.com/CheshireMew/PuppetLoom"
+      },
+      {
+        "title": "ChibiRigKit",
+        "description": "1枚のイラストからまばたき・首振り付きの2Dキャラを作るOSS。",
+        "url": "https://github.com/milkc0de/ChibiRigKit"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "chibirigkit",
+    "title": "ChibiRigKit",
+    "org": "milkc0de",
+    "type": "Tool",
+    "domains": [
+      "Motion/Body",
+      "CreatorTools",
+      "HCI/MediaArt"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "1枚のキャラクターイラストから、まばたき・視線・首振り・揺れを持つ2Dキャラを作り、ブラウザで調整してWebMやOBS配信に使えるOSS。9/22公開のbeta。",
+    "point": "すごい点は、イラスト1枚を渡すだけで、目・瞳・髪・服などのパーツに分けた「動く2Dキャラ」を自動で組み立て、あとはAIなしでブラウザ上で滑らかに動かせるところです。Webカメラで顔の向きや表情を追従させたり、マイクの声で口を動かしたりでき、OBSに載せればそのままライブ配信にも使えます。広告・体験づくりでは、ブランドのイラストキャラを来場者の顔の動きに合わせて反応する展示や、SNS用のしゃべるマスコット動画、店頭モニターの案内キャラなどが、専用の3Dモデルを作らずに実現できそうです。録画した動きは再生もでき、公式のプレイグラウンドで先に体験できます。",
+    "detail": "仕組みは「AIは最初の組み立てだけ、動かすのは普通のブラウザ技術」という二段構えです。まずAI（Codex CLI）がイラストを見て、顔の輪郭、目、瞳、髪、服、閉じた目や口の差分などを切り分け、編集できるリグ（動かすための骨組み）を作ります。その後の再生・調整・カメラ追従（MediaPipe）・声の解析・OBS連携はAI不要で、インターネットにつながなくても動きます。人形劇でいえば、AIが人形のパーツを切り出して糸を付けるまで担当し、あとは自分で操る形です。\n\n従来のVTuber用アニメ化は、絵師にパーツ分けを依頼しLive2D等でモデリングする手間と費用がかかりました。これは1枚絵から試作できる手軽さが違いです。ただし正面向きのキャラが得意で、アニメ調の分割は失敗することもあり、現在はbetaです。\n\n使うにはNode.jsとPythonの環境、自動リグ作成を行う場合はCodex CLIが必要です。Windows/Mac/Linux用の起動スクリプトがあり、完成品はZIPやWebM、JSONで書き出せます。コードはApache-2.0で、作者のサンプル素材だけ使い方が異なる点に注意してください。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "コードはApache-2.0。作者のサンプル画像・ロゴ等の素材は別規約（MEDIA_NOTICE.md）。自動リグ作成にはCodex CLIが必要で、その利用条件・料金は別途。第三者部品（MediaPipe等）は各ライセンスに従う。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/milkc0de/ChibiRigKit"
+      },
+      {
+        "kind": "project",
+        "url": "https://milkc0de.github.io/ChibiRigKit/"
+      },
+      {
+        "kind": "post",
+        "url": "https://dev.to/milkc0de/i-built-chibirigkit-turning-a-single-character-image-into-an-animated-2d-rig-2j36"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/chibirigkit.jpg",
+    "relatedWorks": [
+      {
+        "title": "Rev2D",
+        "description": "2Dリグを1つのJSONにまとめ、AIエージェントが作成・検証できるツールキット。",
+        "url": "https://github.com/RevStudio/Rev2D"
+      },
+      {
+        "title": "Iki",
+        "description": "Live2D代替のWebGL2製2Dリグ人形アニメーションエンジン。",
+        "url": "https://github.com/zeikar/iki"
+      },
+      {
+        "title": "PuppetLoom",
+        "description": "PSDから動く2Dキャラを自動制作し透明ウィンドウで動かすデスクトップアプリ。",
+        "url": "https://github.com/CheshireMew/PuppetLoom"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "puppetloom",
+    "title": "PuppetLoom",
+    "org": "CheshireMew（個人開発）",
+    "type": "Tool",
+    "domains": [
+      "Motion/Body",
+      "AI/Agents",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "レイヤー分けされたキャラクターのPSDから、自動でリギング（動かすための骨組み作り）を行い、デスクトップ上で呼吸・視線・口パクをする2Dキャラクターに仕立てるWindows用OSSツール。外部のAIエージェントがCLI経由で作成・修正できる設計が特徴。",
+    "point": "PSDを読み込むと、パーツの分離・ノイズ除去・初期リギングまでを自動で行い、基本姿勢と12種類のポーズで破綻がないかを検証してくれます。完成したキャラは背景透過のウィンドウとしてデスクトップに常駐し、マウスを目で追い、Webカメラで表情を、マイクで口パクを拾って動きます。さらにClaude CodeなどのAIエージェントが「inspect」「create」「verify」といったコマンドで制作や手直しを任せられ、修正履歴も残るので、やり直しが利きます。広告・体験づくりでは、キャンペーン用のマスコットを短期間で動くキャラにする、展示会場の画面の隅で来場者を目で追う案内役を置く、配信用のVTuber風キャラの試作を素早く量産するといった使い方が考えられます。Live2D用の中間データも出力できるため、まず安く試作して、本格採用ならプロのモデラーへ引き継ぐ流れも作れます。",
+    "detail": "仕組みは「PSD→構造解析→リギング→検証→透過ウィンドウで実行」という流れです。切り絵のキャラクターを読み込んで、人形劇の糸を自動で張るようなイメージです。パーツのつながりを調べてゴミを取り、関節の位置にあたる制御点を置き、メッシュ（布のように曲がる網目）を作ります。最初は破綻しにくい保守的な設定で作り、あとから調整記録を重ねて精度を上げていきます。動きは、呼吸、目に引っ張られる頭の回転、首や胴体の遅れてついてくる揺れ（二次運動）などが自律的に走ります。\n\nこれまでのLive2D制作では、パーツ分割からリギングまで専門のモデラーが手作業で行うのが普通でした。PuppetLoomは、そこをエージェントが読める形式（JSON出力のCLIと、構造化された指示→読み取り専用の計画→パーツ単位の適用という手順）に整え、AIに作業を任せやすくした点が新しいところです。ただしアプリ内部にAIモデルは入っておらず、AIは外部のエージェントが担います。作者自身も、プロのLive2D制作の代わりにはならず、隠れた部分の補完や複雑な物理表現は完全には自動化できないと明記しています。.moc3ファイルの最終的な出力元はCubism Editorです。\n\n使うには、Windows PC、Node.js 24以上、npm 11、WebGL2対応GPUが必要で、現時点ではインストーラがなくソースからビルドします。費用はかかりませんが、ライセンスはAGPLなので、組み込みや再配布は条件を確認してください。レイヤー分解には別ツール（アニメキャラのレイヤー分解研究「See-through」）の公式オンラインデモを使うのが基本で、このコードには含まれていません。",
+    "license": {
+      "spdx": "AGPL-3.0-or-later",
+      "commercial": "conditional",
+      "note": "現行コードはAGPL-3.0-or-later（旧Apache-2.0からAGPLへ変更。READMEの一部に旧表記が残る）。キャラ素材・生成物・同梱の参照パックは別扱い。Windows専用でインストーラ未配布、ソースからビルド（Node.js 24+/npm 11/WebGL2対応GPU）。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/CheshireMew/PuppetLoom"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/puppetloom.jpg",
+    "relatedWorks": [
+      {
+        "title": "Duik (RxLaboratory)",
+        "description": "After Effects向けのリギング・アニメーションツール群。2Dキャラ制作の定番OSS。",
+        "url": "https://github.com/RxLaboratory/Duik"
+      },
+      {
+        "title": "Live2D (GitHub org)",
+        "description": "2Dイラストを動かすCubismの公式リポジトリ群。PuppetLoomの出力先の一つ。",
+        "url": "https://github.com/Live2D"
+      },
+      {
+        "title": "open-animate",
+        "description": "エージェント向けのOSSクリエイティブスイート。AIから制作ツールを操作する発想が近い。",
+        "url": "https://github.com/jacobcwright/open-animate"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "open-qwen-music",
     "title": "Open-Qwen-Music",
     "org": "Yangbin Yu, Mingyu Yang(独立研究者による再現実装。Qwen公式ではない)",
