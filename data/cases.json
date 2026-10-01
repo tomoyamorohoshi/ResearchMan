@@ -1,5 +1,41 @@
 [
   {
+    "id": "exposed-even-realities-2026",
+    "title": "Exposed（Even Realities）",
+    "summary": "カメラ付きスマートグラスで撮られる側の不安を、ジムやトイレ等の広告とシネマティックなマイクロドラマで体感させる、カメラ無しグラスのキャンペーン。",
+    "client": "Even Realities",
+    "agency": "VIRTUE Worldwide",
+    "categories": [
+      "OOH革新",
+      "カルチャーインサイト",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://lbbonline.com/news/even-realities-exposed-virtue",
+    "thumbnail": "/thumbnails/exposed-even-realities-2026.jpg",
+    "videoId": "",
+    "overview": "カメラを持たないスマートグラス「Even G2」を展開するEven Realitiesが、VIRTUE Worldwideと2026年9月に始動したキャンペーン「Exposed」。カメラ付きグラスの普及で、装着者ではなく周囲の人がどう「晒される」かに焦点を当てる。ニューヨークのタイムズスクエアを皮切りに、マンハッタンのジムやトイレにも展開予定。10月8日にはTikTokで全8話のマイクロドラマへ発展する。",
+    "background": "スマートグラスのカメラが普及し、本人の同意なく撮影・記録される不安が高まっている。Even Realitiesは「スマートグラスにカメラは不要」という立場を取る。G2はカメラを搭載せず、ナビ、リアルタイム翻訳、通知、テレプロンプターなどをディスプレイ中心で提供する。キャンペーンは、グラスを着ける人だけでなく周囲の人にも目を向けるべきだと業界に問いかける。",
+    "execution": "タイムズスクエアの大型展開に加え、ジムやトイレなど撮られたくない場所への広告を計画。サンフランシスコ/シリコンバレーでは、Meta Connect期間中にMetaのキャンパス周辺を走るラッピングバスも展開した。10月8日からは、イシャナ・ナイト・シャマラン監督による全8話のシネマティックなサスペンス・マイクロドラマをTikTokで公開する。広告の具体的なビジュアル表現は、確認できた範囲では不明。",
+    "evaluationImpact": "競合の発表イベント会場周辺にバスを走らせる、場所選びの鋭さが際立つ。製品の機能ではなく「撮られる側の恐怖」から入ることで、カメラ無しという仕様を価値に読み替えた。VIRTUEのDeepa Patel氏は、サスペンスの物語でないと人々は「見る」だけでなく「感じる」ことができないと語る。マイクロドラマ公開前で、反響や成果は未確認。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Form/SNS",
+      "Tech/Device",
+      "Theme/Entertainment"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "lbbonline"
+  },
+  {
     "id": "anrealage-ss27-skin-collection-2026",
     "title": "ANREALAGE SS27 \"SKIN\" Collection",
     "summary": "電子ペーパー製の鱗をまとい、光に反応してリアルタイムに色や模様が変化するドレスを発表したアンリアレイジ25周年のパリコレクション。",
