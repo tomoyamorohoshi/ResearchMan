@@ -18032,5 +18032,209 @@
         "desc": "AI音楽生成の途中経過を手で触って作り込める、ブラウザ上の制作ツール。"
       }
     ]
+  },
+  {
+    "id": "2026-10-02-1",
+    "date": "2026-10-02",
+    "title": "ささやき声で動く世界モデル",
+    "pattern": "技術×技術",
+    "seed": "NasoVoceのささやき発話でForgeWMの操作可能な動画世界を動かしたら、声を出せない場所でも小声ひとつで仮想空間を歩ける体験になるかも。図書館や電車内で遊べる没入ゲームができそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "nasovoce",
+        "title": "NasoVoce",
+        "desc": "スマートグラスの鼻当てに仕込んだマイクで、ささやき声でも認識できる音声入力技術"
+      },
+      {
+        "type": "tech",
+        "id": "forgewm",
+        "title": "ForgeWM",
+        "desc": "キーボードなどの操作にリアルタイムで反応し、次の映像をAIが生成し続ける世界モデル"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-02-2",
+    "date": "2026-10-02",
+    "title": "絶叫を音楽に変える採譜",
+    "pattern": "文脈×技術",
+    "seed": "Virtual FUJIQの絶叫で加速するコースターに、MT3の多パート採譜を掛けたら、乗客全員の叫びがその場でバンドの楽譜になるかも。絶叫が曲になって持ち帰れそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "virtual-fujiq-2026",
+        "title": "Virtual FUJIQ",
+        "desc": "叫ぶ声の大きさで加速するVRコースターを、VRChat上に常設した富士急ハイランドの企画"
+      },
+      {
+        "type": "tech",
+        "id": "mt3",
+        "title": "MT3 (Multi-Task Multitrack Music Transcription)",
+        "desc": "1つの音源から複数の楽器パートを別々のMIDIとして自動で書き起こすAIモデル"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-02-3",
+    "date": "2026-10-02",
+    "title": "U2の客席を撮り直す",
+    "pattern": "文脈×技術",
+    "seed": "MSG SPHEREの球体スクリーンで上映する映像を、FlashRenderで後から任意のカメラ角度に撮り直せたら、客席ごとに違う視点のライブ映像が球面に映せるかも。同じ公演が観客の数だけ生まれそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "sphere-las-vegas",
+        "title": "MSG SPHERE",
+        "desc": "直径157mの球体にLEDを張り巡らせた、世界最大級のエンタメ施設"
+      },
+      {
+        "type": "tech",
+        "id": "flashrender",
+        "title": "FlashRender",
+        "desc": "撮影済みの動画から、好きなカメラアングルの映像を数秒で作り直せる技術"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-02-4",
+    "date": "2026-10-02",
+    "title": "歩く廃屋を空間ごと再現",
+    "pattern": "文脈×技術",
+    "seed": "Trieb－家の廃屋に降り注ぐ水の空間をLingBot-Mapでスマホ撮影から3D化し、Splatlightで会場の照明に反応する影を足したら、離れた場所でも水の気配を体験できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2019-og11",
+        "title": "Trieb－家",
+        "desc": "廃屋の天井から大量の水が激しく落ち続ける、遠藤利克の芸術祭作品"
+      },
+      {
+        "type": "tech",
+        "id": "lingbot-map",
+        "title": "LingBot-Map",
+        "desc": "単眼カメラ映像だけで3D形状をリアルタイムに作り上げるAIモデル"
+      },
+      {
+        "type": "tech",
+        "id": "splatlight",
+        "title": "Splatlight",
+        "desc": "3Dスキャンした実写データに、Blenderの照明に反応する影を足せるアドオン"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-02-5",
+    "date": "2026-10-02",
+    "title": "デスゲームを人型ロボが代行",
+    "pattern": "文脈×技術",
+    "seed": "Echoes of Aincradのデスゲーム特番で、配信者の動きをSONICの全身制御に流し込み、ロボットが身体を張って挑戦する回を作ったら、セーブ削除の緊張感が物理世界に出るかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "echoes-of-aincrad-2026",
+        "title": "『ソードアート・オンライン Echoes of Aincrad』発売直前特番「デスゲームチャレンジ」",
+        "desc": "ゲームオーバーでセーブ削除となるルールで配信者が挑む、SAOゲームの発売前特番"
+      },
+      {
+        "type": "tech",
+        "id": "sonic",
+        "title": "SONIC（GR00T Whole-Body Control）",
+        "desc": "人型ロボットの歩行や格闘などの全身動作を担う、動きの基盤モデル"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-02-6",
+    "date": "2026-10-02",
+    "title": "撮影者の視線で動くVR",
+    "pattern": "技術×技術",
+    "seed": "ReViVで一人称動画から装着者の全身と視線を4D復元し、MoCapAnything V2で任意のキャラの骨格に載せ替えたら、誰かの日常が別の生き物の視点体験になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "reviv",
+        "title": "ReViV (Reconstructing the Viewer and the View in 4D from Monocular Egocentric Video)",
+        "desc": "一人称視点の動画1本から、装着者の全身や視線の動きと周囲を4Dで復元する研究"
+      },
+      {
+        "type": "tech",
+        "id": "mocapanything-v2",
+        "title": "MoCapAnything V2",
+        "desc": "1台のカメラ動画から、どんな骨格のキャラにも使える動きデータを作る研究"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-02-7",
+    "date": "2026-10-02",
+    "title": "ロボを音量つまみで踊らせる",
+    "pattern": "転用",
+    "seed": "Enigma Roboticsの音量調整のような操作を、ロボット操作ではなくDJやVJの現場に転用したら、つまみひとつで人型ロボの群舞を即興指揮するパフォーマンスができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "enigma-robotics-2026",
+        "title": "Enigma Robotics ステルス解禁 ― 音量調整のようにロボットを直感操作するインターフェース技術",
+        "desc": "音量調整のような直感でロボットを操作できるAI基盤を作る、Enigmaの技術"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-02-8",
+    "date": "2026-10-02",
+    "title": "撮影不要の紙面ふり返り",
+    "pattern": "文脈×技術",
+    "seed": "MORNING HINTSの、紙をめくると朝の光景が現れる仕掛けに、DreamX-World 1.0を掛けたら、紙面の中へ視点を動かして歩き回れる朝の部屋が生成できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "morning-hints-2023",
+        "title": "大塚製薬「カロリーメイト リキッド」読売新聞広告 MORNING HINTS",
+        "desc": "紙面をめくると朝の慌ただしい光景が現れる、特殊撮影の読売新聞広告"
+      },
+      {
+        "type": "tech",
+        "id": "dreamx-world-1-0",
+        "title": "DreamX-World 1.0",
+        "desc": "文章の指示だけで、視点を動かしても破綻しない歩ける3D世界の映像を作るAI"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-02-9",
+    "date": "2026-10-02",
+    "title": "シード選びを占いに転用",
+    "pattern": "転用",
+    "seed": "ComfyUI-KMSの安いプレビューで良いシードを選ぶ仕組みを、画像生成でなく神社のおみくじ体験に転用したら、来場者が数枚のぼんやりした未来像から1枚を選んで育てる占いになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-kms",
+        "title": "ComfyUI-KMS（Multi-Choice KSampler）",
+        "desc": "生成前に安いプレビューで良いシードを選び、1つだけ仕上げるComfyUIの拡張ノード"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-02-10",
+    "date": "2026-10-02",
+    "title": "スキャン映像の音で空間を弾く",
+    "pattern": "技術×技術",
+    "seed": "GaussianSplatting.jl v2.0.0のSky Dome分離で空だけを切り出し、FastH3で空に同期した音つき動画を生成したら、スキャンした街の空だけが歌い出す表現ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "gaussiansplatting-jl-v2-0-0",
+        "title": "GaussianSplatting.jl v2.0.0",
+        "desc": "Julia言語で書かれた3D点群レンダリングで、空をきれいに分離する機能を持つ"
+      },
+      {
+        "type": "tech",
+        "id": "fasth3",
+        "title": "FastH3 (FastVideo FastH3 8-Step V2)",
+        "desc": "音つき動画を8ステップで同時に作れるよう軽量化した動画生成モデル"
+      }
+    ]
   }
 ]
