@@ -1,5 +1,164 @@
 [
   {
+    "id": "gausser",
+    "title": "Gausser",
+    "org": "bezierking",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "Cinema 4D上でGaussian Splat（実写をスキャンした点群風の3Dデータ）を読み込み、MoGraphで動かして各種レンダラーで出力できるプラグイン。",
+    "point": "これまでGaussian Splatは「撮ったものをそのまま眺める」素材になりがちで、動かすには専用ツールやコードが必要でした。Gausserは、Cinema 4Dの定番機能であるMoGraphのフィールド・エフェクタ・デフォーマ・フォースをそのままスプラットに効かせられます。たとえば実写で取り込んだ店舗や商品が、ブロック状にはじけたり、波打ちながら立ち上がったり、ホログラム風に切り抜かれたりする演出が、モーションデザイナーの慣れた操作だけで作れます。クローナーや粒子の放出にも対応するため、実写スキャンのCG素材と手作りCGを混ぜた広告映像、イベントのオープニング映像、ブランドの世界観を見せるルック開発に使えそうです。書き出しも可能で、他ツールへ渡せます。",
+    "detail": "①仕組み：Gaussian Splatは、空間を「色と透明度を持つ小さなぼやけた粒」の集まりで表す方式です。Gausserはこの粒を、Cinema 4Dの粒子やクローンのように扱える形で取り込みます。そのため、ふだん3Dモデルを動かすMoGraphのフィールド（影響範囲を決める見えない領域）やエフェクタが、粒ひとつひとつに効きます。ビューポートは見ている距離に応じて描画の細かさを変え、羽根付きのボックスや楕円体で範囲を切り抜く機能もあります。\n②従来との違い：従来はスプラットを動かすにはUnityやUnreal、WebGLの専用実装、またはPythonを書く必要があり、C4Dで作ったモーションと合わせるのが面倒でした。Gausserは既存のC4Dの流れに載せ、Standard・Redshift・Octane・Arnoldの各レンダラーで出力できます。加工後のスプラットはPLY・SPLAT・SPZ形式で書き出せます。\n③使うには：Cinema 4D 2026以降が必要で、Windows x64かApple Siliconに対応します。価格はaescriptsで$24.99（2026-10-16までは$19.99）で、14日間のトライアルがあります。スプラットのデータ自体は別途スマホ撮影などで作る必要があります。Octaneでの設定チュートリアルも付属します。",
+    "license": {
+      "spdx": null,
+      "commercial": "paid",
+      "note": "シングルユーザーライセンス。通常$24.99、2026-10-16までプロモ価格$19.99。14日間トライアルあり"
+    },
+    "links": [
+      {
+        "kind": "product",
+        "url": "https://aescripts.com/gausser/"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=xGHW62UT2n8"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/gausser-brings-mograph-driven-gaussian-splat-animation-to-cinema-4d"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/gausser.jpg",
+    "relatedWorks": [
+      {
+        "title": "LichtFeld Studio",
+        "description": "オープンソースのGaussian Splat学習・編集ツール",
+        "url": "https://radiancefields.com/platforms/lichtfeld-studio"
+      },
+      {
+        "title": "gsplat",
+        "description": "Gaussian Splattingの高速CUDAラスタライザ（Nerfstudio）",
+        "url": "https://github.com/nerfstudio-project/gsplat"
+      },
+      {
+        "title": "OpenUSD 26.03 Native Gaussian Splat Support",
+        "description": "OpenUSDがGaussian Splatをネイティブ対応した話題",
+        "url": "https://radiancefields.com/openusd-26.03-adds-native-gaussian-splat-support"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "metalsplat",
+    "title": "MetalSplat",
+    "org": "Thibaut Chauffier",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "NVIDIAのGPU(CUDA)なしで、Apple SiliconのMac上でGaussian Splat（3DGS・2DGS）を学習できるOSS。Metalで書いたカーネルをPyTorchから使う。",
+    "point": "Gaussian Splattingの学習は長くNVIDIA製GPU前提でしたが、MetalSplatはMacBookなどのApple Siliconだけで3DGSと、形状の精度が高い2DGSを学習できます。READMEでは庭のシーンを15,000回の学習で、新しい視点でも23.5dBのPSNRで再現し、約33万個の粒を93fpsで描画できたと報告されています。広告やイベントの現場で撮った空間を、手元のMacで一晩のうちにスプラット化して、店舗や展示の記録、空間演出の素材に使う流れを作りやすくなります。2DGSは奥行きや面の向きも出力できるため、映像合成の素材づくりにも向きます。",
+    "detail": "①仕組み：Gaussian Splattingは、無数のぼやけた色の粒を写真と合うように少しずつ調整して、3Dシーンを作る手法です。この「描画して比べる」処理をGPUの専用プログラムで高速に行います。MetalSplatはこのプログラムをAppleのMetal用に書き、PyTorchのMPS機能から実行時にコンパイルして呼び出します。そのためXcodeのビルド作業は不要で、`uv sync`で環境が整います。\n②従来との違い：本家実装やgsplatはCUDA前提でMacでは動かず、クラウドGPUや別マシンが必要でした。本リポジトリはCOLMAPの読み込み、球面調和関数（見る角度による色変化）の次数3まで、Mip-Splattingの3Dフィルタ、AbsGS風の粒の分割、PLY書き出しまで備えます。v0.3.0では不透明度リセットの不具合修正、フィルタ幅の補正、2DGS描画が14.1msから6.9msへの高速化、テスト321本への拡充が行われました。\n③使うには：Apple SiliconのMacとPyTorch(MPS)、写真から求めたCOLMAPのカメラ位置データが必要です。MITライセンスで商用利用も可能です。制約として対応カメラはPINHOLE系のみで、2DGSからのメッシュ抽出は未対応です。コードを読んで実行できる開発者・テクニカルアーティスト向けの実験基盤です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "MIT。Apple Silicon Mac＋PyTorch MPSが必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/tchauffi/metalsplat"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/metalsplat-v0.3.0-trains-3dgs-and-2dgs-on-apple-silicon"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/metalsplat.jpg",
+    "relatedWorks": [
+      {
+        "title": "gsplat",
+        "description": "NerfstudioによるCUDA版の高速Gaussian Splatting実装",
+        "url": "https://github.com/nerfstudio-project/gsplat"
+      },
+      {
+        "title": "LichtFeld Studio",
+        "description": "オープンソースのGaussian Splat学習ツール",
+        "url": "https://radiancefields.com/platforms/lichtfeld-studio"
+      },
+      {
+        "title": "CorbeauSplat",
+        "description": "macOS向けGaussian Splattingパイプラインアプリ",
+        "url": "https://radiancefields.com/platforms/corbeausplat"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "gae",
+    "title": "GAE (Geometry-Native Autoencoder)",
+    "org": "Tencent ARC Lab",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "GenVideo"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "1枚の画像やテキストから、カメラを動かせる「立体的につじつまの合う」映像を作る研究。映像と同時に奥行き(深度)や点群(.ply)も出力できる。コードと学習済み重みが公開済み。",
+    "point": "普通の映像生成AIは、カメラを動かすと壁の位置や物の形が微妙にズレてしまいがちです。GAEは「絵」と「立体の形」を最初から1セットの圧縮データとして扱うので、1枚の画像から81コマ分のカメラ移動映像を作っても空間が破綻しにくく、同時に奥行きマップや3D点群まで取り出せます。論文では、既存手法に比べて映像の品質指標(FVD)が約13〜23%改善し、カメラ軌跡の誤差は約半分になったと報告されています。広告・体験づくりでは、1枚のキービジュアルから「その空間の中を歩くようなカメラワーク」のプレビズ(撮影前の仮映像)を作ったり、生成した空間の点群をBlenderやUnityに持ち込んでレイアウト検討に使ったりできそうです。ただしライセンスは学術専用なので、本番納品物ではなく社内の企画検証・技術リサーチ用と割り切る必要があります。",
+    "detail": "仕組み: 3D形状を理解する既存の「ジオメトリ基盤モデル」が持つ、巨大な特徴データ(3,072チャンネル)を、128チャンネルまで約24分の1に圧縮し、これを映像生成の「作業用の下書き空間(潜在空間)」として使います。たとえるなら、絵と設計図を別々に描くのでなく、最初から「設計図付きのスケッチ」を一枚で描いて、そこから絵・奥行き・カメラ位置・点群のどれにも展開できるようにした形です。生成にはFlow Matchingという方式の約10億パラメータの動画用Transformerを使い、テキスト指示はQwen3-0.6Bで与えます。\n\n従来との違い: これまでは映像を先に作って、あとから形状の制約を付け足すものが多く、視点を動かすとズレが出ました。GAEは形状を生成の中心に据えた点が新しく、RealEstate10KやDL3DVという標準データで、映像品質と3D整合性の両方で改善が示されています。\n\n使うには: GitHubでコード・学習/推論スクリプト・Gradioデモ(Camera Studioでカメラ経路を描ける)が公開済みで、重みはHugging Faceにあります。Python 3.10〜3.12とPyTorch 2.5.1が必要で、約10億パラメータのモデルなのでNVIDIA製GPUのある環境が前提です。費用はGPU環境のみですが、ライセンスは学術目的限定である点に注意してください。",
+    "license": {
+      "spdx": null,
+      "commercial": "research-only",
+      "note": "独自ライセンス(LICENSE.txt)。学術目的のみで、商用・本番利用は明確に禁止。広告案件の本番素材には使えず、社内の技術検証・企画の試作用途に限られる。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/TencentARC/GAE-GeometricAutoEncoder"
+      },
+      {
+        "kind": "project",
+        "url": "https://jiah-cloud.github.io/GAE.github.io/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2609.24981"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/TencentARC/GAE-D64-1B"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/gae.jpg",
+    "relatedWorks": [
+      {
+        "title": "Lyra 2.0",
+        "description": "NVIDIAが公開した、1枚の写真から探索可能な3D Gaussianワールドを生成するオープンソースの枠組み。",
+        "url": "https://research.nvidia.com/labs/sil/projects/lyra2/"
+      },
+      {
+        "title": "Gen3R",
+        "description": "3Dシーン生成とフィードフォワード再構成を組み合わせた手法。",
+        "url": "https://arxiv.org/pdf/2601.04090"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "rev2d",
     "title": "Rev2D",
     "org": "RevStudio",
