@@ -34,7 +34,8 @@ import { spawnSync, execFileSync } from "child_process";
 import { fileURLToPath } from "url";
 import { isMainBranch, parseCurrentBranch } from "../lib/branch-guard.mjs";
 import { tryAcquire as tryAcquireGitLock, releaseOwnedLock } from "../lib/git-lock.mjs";
-import { decideExhibitionNotify } from "../lib/exhibition-notify.mjs";
+import { decideExhibitionNotify, decideDeployTimeoutPriority } from "../lib/exhibition-notify.mjs";
+import { guardAudit, EXHIBITION_REVERT_GIT_ARGS } from "../lib/exhibition-guard.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..", ".."); // scripts/windows -> repo root
@@ -301,12 +302,27 @@ async function runExhibitionresearch() {
   try {
     log(`===== Exhibition run start: ${unixDateString()} =====`);
     const exh = runNode("scripts/auto-research-exhibition.mjs");
+    const revertExhibitionChanges = () => {
+      for (const args of EXHIBITION_REVERT_GIT_ARGS) runGit(args);
+    };
     const summaryPath = path.join(os.tmpdir(), "researchman-exhibition-last-add.json");
     const summaryArgs = ["--summary", summaryPath, "--route", "exhibition", "--label", "Exhibition"];
-    if (exh.status !== 0) {
-      log(`収集エラー終了: ${unixDateString()}`);
+    const notifyError = () => {
       runNode("scripts/run-if-due.mjs", ["--state", STATE, "--mark"]);
       runNode("scripts/notify-line.mjs", ["--result", "error", "--route", "exhibition", "--label", "Exhibition"]);
+    };
+    if (exh.status !== 0) {
+      // 非0終了のみ作業ツリーを戻す（発見だけ失敗した成功終了は status 更新を従来どおり commit する）
+      log(`収集エラー終了（作業ツリーを復元）: ${unixDateString()}`);
+      revertExhibitionChanges();
+      notifyError();
+      return;
+    }
+    // commit 前に pre-push と同じ監査を走らせる。FAIL を commit すると push が全滞留するため、戻して commit せずエラー通知
+    const auditGate = guardAudit({ audit: () => runNode("scripts/audit-exhibition.mjs"), revert: revertExhibitionChanges });
+    if (!auditGate.ok) {
+      log(`audit-exhibition FAIL（exit ${auditGate.status}）→ data/exhibition.json とサムネを復元し commit しない: ${unixDateString()}`);
+      notifyError();
       return;
     }
     // 通知方針をサマリーから決める（読めなければ 0件扱い＝routine）
@@ -335,7 +351,8 @@ async function runExhibitionresearch() {
           notifyOk();
         } else {
           log(`push成功だが反映未確認（時間切れ）: ${unixDateString()}`);
-          runNode("scripts/notify-line.mjs", ["--result", "unverified", ...summaryArgs]);
+          // 0件追加の回は routine（追加ありは従来どおり critical）
+          runNode("scripts/notify-line.mjs", ["--result", "unverified", ...summaryArgs, "--priority", decideDeployTimeoutPriority(summary)]);
         }
       } else {
         log(`push失敗（pre-push監査で中止の可能性）。コミットはローカル残存。要手動対応: ${unixDateString()}`);

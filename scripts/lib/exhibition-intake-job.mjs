@@ -8,6 +8,7 @@
  */
 import { processCandidates, htmlToText } from "./exhibition-build.mjs";
 import { buildIntakePrompt } from "./exhibition-prompts.mjs";
+import { normLink } from "./norm-link.mjs";
 
 export { buildIntakePrompt };
 
@@ -65,12 +66,15 @@ export async function fetchPostText(url, deps) {
 
 const failStatus = (attempts) => (attempts >= 1 ? "unverified" : "retry");
 
+/** 1回の Claude CLI 呼び出しで処理する投稿の最大数（出力長・タイムアウト対策） */
+export const MAX_POSTS_PER_EXTRACT = 8;
+
 /**
  * @param {object} p
  * @param {{url:string, ts?:number, attempts?:number}[]} p.items  GET /api/exhibition-intake の pending
  * @param {object} p.data     exhibition.json の中身
  * @param {string} p.today
- * @param {object} p.deps     { fetchJson, fetchHtml, extract(posts)->candidates[], patch(results), saveThumb, now }
+ * @param {object} p.deps     { fetchJson, fetchHtml, extract(posts)->candidates[], patch(results), saveThumb, now, persist?(data)（PATCH 送信前に data を保存） }
  * @param {object} [p.opts]   processCandidates の opts
  * @returns {Promise<{data:object, results:object[], unverified:object[], rejected:object[], added:object[], patched:boolean, patchError?:string}>}
  */
@@ -93,39 +97,55 @@ export async function runIntake({ items, data, today, deps, opts = {} }) {
     }
   }
 
-  if (fetched.length) {
+  const markUnverified = (f, reason, title) => {
+    const status = failStatus(f.item.attempts || 0);
+    results.push({ url: f.url, status, reason });
+    if (status === "unverified") unverified.push({ title, venue: "", link: "", reason, intakeUrl: f.url, at: deps.now() });
+  };
+
+  for (let i = 0; i < fetched.length; i += MAX_POSTS_PER_EXTRACT) {
+    const chunk = fetched.slice(i, i + MAX_POSTS_PER_EXTRACT);
     let candidates = null;
     try {
-      candidates = await deps.extract(fetched.map(({ url, text, author }) => ({ url, text, author })));
+      candidates = await deps.extract(chunk.map(({ url, text, author }) => ({ url, text, author })));
     } catch (e) {
-      for (const f of fetched) {
-        const status = failStatus(f.item.attempts || 0);
-        results.push({ url: f.url, status, reason: `extract-failed: ${e.message}` });
-        if (status === "unverified") unverified.push({ title: "(抽出失敗)", venue: "", link: "", reason: `extract-failed: ${e.message}`, intakeUrl: f.url, at: deps.now() });
-      }
+      for (const f of chunk) markUnverified(f, `extract-failed: ${e.message}`, "(抽出失敗)");
+      continue;
     }
-    if (candidates) {
-      for (const f of fetched) {
-        const group = (Array.isArray(candidates) ? candidates : [])
-          .filter((c) => c && c.intakeUrl === f.url)
-          .map((c) => ({ ...c, origin: "intake", intakeUrl: f.url }));
-        if (!group.length) {
-          results.push({ url: f.url, status: "rejected", reason: "no-exhibition-found" });
-          continue;
-        }
-        const out = await processCandidates({ data: current, candidates: group, today, deps, opts });
-        current = out.data;
-        added.push(...out.added);
-        unverified.push(...out.unverified);
-        rejected.push(...out.rejected);
-        if (out.added.length) results.push({ url: f.url, status: "added", exhibitionId: out.added[0].id });
-        else if (out.skipped.length) results.push({ url: f.url, status: "added", exhibitionId: out.skipped[0].existingId, reason: "already-registered" });
-        else if (out.updated.length) results.push({ url: f.url, status: "added", exhibitionId: out.updated[0].id, reason: "dates-updated" });
-        else if (out.unverified.length) results.push({ url: f.url, status: "unverified", reason: out.unverified[0].reason });
-        else results.push({ url: f.url, status: "rejected", reason: out.rejected[0]?.reason || "rejected" });
+    // 完全に空/非配列は「候補なし」と「Claude 失敗・パース失敗」を区別できない → 恒久 rejected にせず retry/unverified
+    if (!Array.isArray(candidates) || !candidates.length) {
+      for (const f of chunk) markUnverified(f, "extract-empty（Claude 出力が空またはパース失敗）", "(抽出結果なし)");
+      continue;
+    }
+    for (const f of chunk) {
+      const fKey = normLink(f.url);
+      const group = candidates
+        .filter((c) => c && typeof c === "object" && typeof c.intakeUrl === "string" && normLink(c.intakeUrl) === fKey)
+        .map((c) => ({ ...c, origin: "intake", intakeUrl: f.url }));
+      if (!group.length) {
+        results.push({ url: f.url, status: "rejected", reason: "no-exhibition-found" });
+        continue;
       }
+      const out = await processCandidates({ data: current, candidates: group, today, deps, opts });
+      current = out.data;
+      added.push(...out.added);
+      unverified.push(...out.unverified);
+      rejected.push(...out.rejected);
+      if (out.added.length) results.push({ url: f.url, status: "added", exhibitionId: out.added[0].id });
+      else if (out.skipped.length) results.push({ url: f.url, status: "added", exhibitionId: out.skipped[0].existingId, reason: "already-registered" });
+      else if (out.updated.length) results.push({ url: f.url, status: "added", exhibitionId: out.updated[0].id, reason: "dates-updated" });
+      else if (out.unverified.length) results.push({ url: f.url, status: "unverified", reason: out.unverified[0].reason });
+      else if (out.rejected[0]?.reason === "thumbnail-unavailable") {
+        // サムネ取得失敗は一時的な可能性がある → 恒久 rejected にせず retry、2回目以降は unverified
+        const status = failStatus(f.item.attempts || 0);
+        results.push({ url: f.url, status, reason: "thumbnail-unavailable" });
+        if (status === "unverified") unverified.push({ title: out.rejected[0].title, venue: "", link: out.rejected[0].link || "", reason: "thumbnail-unavailable", intakeUrl: f.url, at: deps.now() });
+      } else results.push({ url: f.url, status: "rejected", reason: out.rejected[0]?.reason || "rejected" });
     }
   }
+
+  // PATCH より前に data を保存する（PATCH 失敗・後続の想定外エラーで追加分を失わない）
+  if (current !== data && deps.persist) await deps.persist(current);
 
   let patched = false;
   let patchError;

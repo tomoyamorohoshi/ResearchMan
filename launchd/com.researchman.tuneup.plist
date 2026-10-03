@@ -28,7 +28,7 @@
       trap "rmdir $LOCK 2&gt;/dev/null" EXIT;
       echo "===== Tuneup start: $(date) =====" &gt;&gt; $LOG;
       if node scripts/biweekly-tuneup.mjs &gt;&gt; $LOG 2&gt;&amp;1; then
-        git add data/research-tuning.json data/idea-tuning.json data/x-radar-queries.json RESEARCH_PLAN.md &gt;&gt; $LOG 2&gt;&amp;1;
+        git add data/research-tuning.json data/idea-tuning.json data/x-radar-queries.json RESEARCH_PLAN.md data/exhibition-profile.json &gt;&gt; $LOG 2&gt;&amp;1;
         if git diff --cached --quiet; then
           echo "変更なし（分析結果は現状維持 or スキップ）: $(date)" &gt;&gt; $LOG;
           node scripts/notify-line.mjs --text-file /tmp/researchman-tuneup-report.txt &gt;&gt; $LOG 2&gt;&amp;1;

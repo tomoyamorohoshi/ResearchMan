@@ -16,3 +16,11 @@ export function decideExhibitionNotify(summary) {
   if ((summary.unverified || []).length) return { send: true, priority: "routine", reason: "裏取り待ちあり" };
   return { send: false, priority: "routine", reason: "追加はあるが全て70点未満（通知対象外）" };
 }
+
+/**
+ * push 済みだが verify-deploy が時間切れの通知 priority。
+ * 0件追加の回は急ぎの情報が無い（反映遅延は次回確認で足りる）ため routine、追加ありは従来どおり critical。
+ */
+export function decideDeployTimeoutPriority(summary) {
+  return (summary?.cases || []).length ? "critical" : "routine";
+}

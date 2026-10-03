@@ -17,3 +17,10 @@ test("70点未満のみは通知しない（unverified があれば routine）",
   assert.equal(decideExhibitionNotify({ count: 1, cases: [{ score: 65 }] }).send, false);
   assert.equal(decideExhibitionNotify({ count: 1, cases: [{ score: 65 }], unverified: [{ title: "x" }] }).send, true);
 });
+
+import { decideDeployTimeoutPriority } from "./exhibition-notify.mjs";
+test("verify-deploy 時間切れ通知: 0件追加の回は routine、追加ありは critical（従来どおり）", () => {
+  assert.equal(decideDeployTimeoutPriority({ count: 0, cases: [] }), "routine");
+  assert.equal(decideDeployTimeoutPriority(undefined), "routine");
+  assert.equal(decideDeployTimeoutPriority({ count: 1, cases: [{ score: 70 }] }), "critical");
+});

@@ -6,6 +6,17 @@
 export const HARD_EXCLUDE_NOTE =
   "excludeCategory: none | painting_oldmaster_ip（純粋な絵画・日本画・古美術・西洋名画巡回/IP・キャラ・アニメ原画コラボ） | merch_event（物販中心の大衆向け没入型エンタメ） | showroom（プロダクトショールーム型デザイン展） | ai_pictures（AI生成画像だけの展示）";
 
+/**
+ * Exhibition の全 Claude CLI 呼び出しの共通オプション。Web 取得系だけ許可し、Bash も禁止する
+ * （claude-cli.mjs が Write/Edit/NotebookEdit は既定で禁止。取得した外部本文経由の指示注入で任意コマンドを実行させない）。
+ */
+export const EXHIBITION_CLI_OPTS = { allowedTools: "WebSearch,WebFetch", extraDisallowedTools: "Bash" };
+
+/** 引用ブロックの区切り <<< / >>> を外部本文に含めさせない（ブロックを閉じて指示を注入されるのを防ぐ）。 */
+export function neutralizeMarkers(text) {
+  return String(text ?? "").replaceAll("<<<", "‹‹‹").replaceAll(">>>", "›››");
+}
+
 export const CANDIDATE_SCHEMA_TEXT = `[{
   "title": "公式表記の展覧会名", "artists": ["作家名"], "venue": "会場名",
   "venueType": "museum|alt_space|corporate|media_art_center|gallery|other",
@@ -119,7 +130,7 @@ export function buildIntakePrompt(posts, profile, today = "") {
   const blocks = posts
     .map(
       (p, i) =>
-        `<<<POST ${i + 1}>>>\nurl: ${p.url}\nauthor: ${p.author || "(不明)"}\ntext:\n${p.text}\n<<<END POST ${i + 1}>>>`
+        `<<<POST ${i + 1}>>>\nurl: ${neutralizeMarkers(p.url)}\nauthor: ${neutralizeMarkers(p.author || "(不明)")}\ntext:\n${neutralizeMarkers(p.text)}\n<<<END POST ${i + 1}>>>`
     )
     .join("\n\n");
   return `ResearchManサイト「Exhibition」タブ。ユーザーがX/Instagramで見つけて投稿した展覧会URLの内容から、展覧会を特定して登録候補JSONを作る。${today ? `今日は ${today}（JST）。` : ""}

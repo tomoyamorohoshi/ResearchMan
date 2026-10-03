@@ -9,6 +9,7 @@ macOS launchd（`launchd/com.researchman.*.plist`）6ジョブの Windows 版。
 |---|---|---|---|
 | `autoresearch` | com.researchman.autoresearch.plist | Case Study 日次自動収集 | 毎日10:00〜23:00 毎正時 |
 | `techresearch` | com.researchman.techresearch.plist | Technology 日次自動収集 | 毎日10:00〜23:00 毎正時 |
+| `exhibitionresearch` | com.researchman.exhibitionresearch.plist | Exhibition（展覧会）日次自動収集（commit 前に audit-exhibition で監査し、FAIL は復元して commit しない） | 毎日10:30〜23:30 毎時30分 |
 | `ideaseeds` | com.researchman.ideaseeds.plist | アイデアの種 生成・LINE配信 | 毎日10:15〜23:15 毎正時15分 |
 | `tuneup` | com.researchman.tuneup.plist | 週次チューンアップ（2026-07-14に隔週/毎月1・15日から変更。ファイル名`biweekly-tuneup.mjs`は後方互換で維持） | 毎週月曜08:30の単発トリガ（PC停止時はStartWhenAvailableでキャッチアップ） |
 | `watchdog` | com.researchman.watchdog.plist | 自己回復ウォッチドッグ | 毎日12:30〜23:30 毎正時30分（実際に動くのは12:30枠・18:30枠の1日2回のみ。日曜18:30枠のみ`--deep`） |

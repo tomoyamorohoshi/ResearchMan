@@ -18,7 +18,7 @@ import { fileURLToPath } from "url";
 import { todayJst } from "./lib/exhibition-status.mjs";
 import { processCandidates } from "./lib/exhibition-build.mjs";
 import { computeSeedScore } from "./lib/exhibition-score.mjs";
-import { buildIntakePrompt } from "./lib/exhibition-prompts.mjs";
+import { buildIntakePrompt, EXHIBITION_CLI_OPTS } from "./lib/exhibition-prompts.mjs";
 import { readJson, writeJsonAtomic, appendUnverified, defaultFetchHtml, makeSaveThumb } from "./lib/exhibition-io.mjs";
 import { resolveClaudeBin, runClaudeJsonArray } from "./lib/claude-cli.mjs";
 
@@ -121,9 +121,9 @@ async function main() {
     const posts = found.map((f) => ({ url: f.link, author: f.client || "", text: `${f.title}\n${f.note || ""}${f.date_note ? `\n${f.date_note}` : ""}` }));
     console.log(`news inbox: ${posts.length}件を Claude で展覧会候補化`);
     const extracted = runClaudeJsonArray(resolveClaudeBin(), buildIntakePrompt(posts, profile, TODAY), {
-      timeout: 900000, marker: "intakeUrl", model: "sonnet", allowedTools: "WebSearch,WebFetch",
+      timeout: 900000, marker: "intakeUrl", model: "sonnet", ...EXHIBITION_CLI_OPTS,
     });
-    const cands = extracted.map(({ intakeUrl, ...rest }) => ({ ...rest, sources: [...(rest.sources || []), ...(intakeUrl ? [{ name: "展覧会ニュース", url: intakeUrl, kind: "news" }] : [])] }));
+    const cands = extracted.filter((x) => x && typeof x === "object").map(({ intakeUrl, ...rest }) => ({ ...rest, sources: [...(rest.sources || []), ...(intakeUrl ? [{ name: "展覧会ニュース", url: intakeUrl, kind: "news" }] : [])] }));
     newsOut = await processCandidates({
       data: out.data, candidates: cands, today: TODAY, deps,
       opts: { addThreshold: profile.scoring.threshold.add, highlightThreshold: profile.scoring.threshold.highlight, maxAdd: Infinity, dryRun: DRY_RUN, reservedIds },

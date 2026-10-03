@@ -25,7 +25,7 @@ import { localDayIndex } from "./lib/day-index.mjs";
 import { todayJst } from "./lib/exhibition-status.mjs";
 import { applyStatusUpdate, processCandidates, PREFECTURES } from "./lib/exhibition-build.mjs";
 import { runIntake } from "./lib/exhibition-intake-job.mjs";
-import { buildDiscoveryPrompt, buildIntakePrompt, expandQueries, pickSourcesForDay } from "./lib/exhibition-prompts.mjs";
+import { buildDiscoveryPrompt, buildIntakePrompt, expandQueries, pickSourcesForDay, EXHIBITION_CLI_OPTS } from "./lib/exhibition-prompts.mjs";
 import {
   readJson,
   writeJsonAtomic,
@@ -124,8 +124,12 @@ async function main() {
                   timeout: INTAKE_TIMEOUT_MS,
                   marker: "intakeUrl",
                   model: MODEL,
-                  allowedTools: "WebSearch,WebFetch",
+                  ...EXHIBITION_CLI_OPTS,
                 }),
+              // PATCH 送信より前に追加分を保存する（PATCH 失敗・後続エラーで取りこぼさない）
+              persist: async (d) => {
+                if (!DRY_RUN) await writeJsonAtomic(DATA_PATH, d);
+              },
               patch: async (results) => {
                 if (DRY_RUN) {
                   console.log(`[intake] --dry-run: PATCH しません（${results.length}件）`);
@@ -164,7 +168,7 @@ async function main() {
         found = runClaudeJsonArray(
           claudeBin,
           buildDiscoveryPrompt({ profile, today: TODAY, sourceList, queries, existingTitles, seenThisRun }),
-          { timeout: DISCOVER_TIMEOUT_MS, marker: "officialUrl", model: MODEL, allowedTools: "WebSearch,WebFetch" }
+          { timeout: DISCOVER_TIMEOUT_MS, marker: "officialUrl", model: MODEL, ...EXHIBITION_CLI_OPTS }
         );
       } catch (e) {
         console.error(`発見フェーズ失敗: ${e.message}`);
@@ -174,7 +178,7 @@ async function main() {
       }
       console.log(`候補: ${found.length}件`);
       if (!found.length) break;
-      for (const c of found) if (c?.title) seenThisRun.push(c.title);
+      for (const c of found) if (typeof c?.title === "string" && c.title) seenThisRun.push(c.title);
 
       const capped = added.filter((a) => a.origin !== "intake" && !a.tags.some((t) => ["generative", "onchain"].includes(t)) && !a.venue.includes("NEORT")).length;
       const out = await processCandidates({ data, candidates: found, today: TODAY, deps, opts: { ...buildOpts, maxAdd: Math.max(0, MAX_ADD - capped), protectIds: new Set(added.map((a) => a.id)) } });

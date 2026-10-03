@@ -40,15 +40,23 @@ export function resolveClaudeBin() {
   return "claude";
 }
 
-function runClaude(claudeBin, prompt, { timeout, model, allowedTools }) {
+/** CLI 引数を組み立てる（テスト用に分離）。extraDisallowedTools（カンマ区切り、例 "Bash"）は既定の禁止に追加される。 */
+export function buildClaudeArgs(prompt, { model, allowedTools, extraDisallowedTools }) {
   const args = ["--print", "--model", model];
   if (allowedTools) args.push(`--allowedTools=${allowedTools}`);
   // ファイル書き込み系ツールを明示的に禁止する（2026-08-18・良質な生成結果がstdoutでなく
   // ファイルに保存され article-generation-failed として誤棄却される事故の再発防止）。
   // --dangerously-skip-permissions と併用してもCLIは --disallowedTools を尊重する
   // （`claude --help` で確認済み。両オプションは独立して機能する）。
-  args.push("--disallowedTools=Write,Edit,NotebookEdit");
+  const disallowed = ["Write", "Edit", "NotebookEdit"];
+  for (const t of String(extraDisallowedTools || "").split(",").map((x) => x.trim()).filter(Boolean)) if (!disallowed.includes(t)) disallowed.push(t);
+  args.push(`--disallowedTools=${disallowed.join(",")}`);
   args.push("--dangerously-skip-permissions", prompt);
+  return args;
+}
+
+function runClaude(claudeBin, prompt, { timeout, model, allowedTools, extraDisallowedTools }) {
+  const args = buildClaudeArgs(prompt, { model, allowedTools, extraDisallowedTools });
   // 従量課金防止ガード: APIキー系の環境変数をCLIに渡さない（常にサブスクのログイン認証で動かす。
   // ユーザー方針 2026-07-13。studio/server/index.ts / scripts/windows/run-job.mjs にも同じガードあり）
   const env = { ...process.env };
@@ -153,11 +161,11 @@ export function extractFirstParsableJson(output, { marker, openCh, closeCh }) {
  * Claude CLI を1回呼び、出力からJSONオブジェクトブロックを抽出して返す。
  * 候補ブロックが複数ある場合は marker を含む最初のパース可能なブロックを採用する
  * （1つ目のパースに失敗したら次の候補を試す。2026-08-18: 貪欲正規表現の1発マッチから変更）。
- * @param {object} opts { timeout, marker, model="sonnet", allowedTools="WebSearch" }
+ * @param {object} opts { timeout, marker, model="sonnet", allowedTools="WebSearch", extraDisallowedTools? }
  * @returns 抽出したオブジェクト、または見つからなければ null
  */
-export function runClaudeJson(claudeBin, prompt, { timeout, marker, model = "sonnet", allowedTools = "WebSearch" }) {
-  const output = runClaude(claudeBin, prompt, { timeout, model, allowedTools });
+export function runClaudeJson(claudeBin, prompt, { timeout, marker, model = "sonnet", allowedTools = "WebSearch", extraDisallowedTools }) {
+  const output = runClaude(claudeBin, prompt, { timeout, model, allowedTools, extraDisallowedTools });
   const { value, blockCount, lastError } = extractFirstParsableJson(output, { marker, openCh: "{", closeCh: "}" });
   if (value !== undefined) return value;
   if (blockCount === 0) {
@@ -176,8 +184,8 @@ export function runClaudeJson(claudeBin, prompt, { timeout, marker, model = "son
  * @param {object} opts { timeout, marker="techName", model="sonnet", allowedTools="WebSearch,WebFetch" }
  * @returns 抽出した配列、または見つからなければ []
  */
-export function runClaudeJsonArray(claudeBin, prompt, { timeout, marker = "techName", model = "sonnet", allowedTools = "WebSearch,WebFetch" }) {
-  const output = runClaude(claudeBin, prompt, { timeout, model, allowedTools });
+export function runClaudeJsonArray(claudeBin, prompt, { timeout, marker = "techName", model = "sonnet", allowedTools = "WebSearch,WebFetch", extraDisallowedTools }) {
+  const output = runClaude(claudeBin, prompt, { timeout, model, allowedTools, extraDisallowedTools });
   const { value, blockCount, lastError } = extractFirstParsableJson(output, { marker, openCh: "[", closeCh: "]" });
   if (value !== undefined) return value;
   if (blockCount === 0) {

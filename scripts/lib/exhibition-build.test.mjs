@@ -355,3 +355,130 @@ test("processCandidates: 同一実行で追加済みの展示は会期差分で�
   assert.equal(r2.skipped[0].reason, "duplicate");
   assert.equal(r2.data.items[0].startDate, "2026-10-12");
 });
+
+// ── レビュー修正（2026-10）: 必須欠落・型不正・公式照合強化 ──
+import { isSafeOfficialUrl, isPublicHttpUrl, titleAppearsInText } from "./exhibition-build.mjs";
+
+const run = (cands, depsOver = {}, opts) => {
+  const c0 = mkCand();
+  return processCandidates({
+    data: emptyData(),
+    candidates: cands,
+    today: TODAY,
+    deps: mkDeps({ fetchHtml: async () => ({ status: 200, body: okPage(c0) }), ...depsOver }),
+    opts,
+  });
+};
+
+test("processCandidates: city 空は追加せず unverified（理由つき・サムネ取得もしない）", async () => {
+  const deps = mkDeps({ fetchHtml: async () => ({ status: 200, body: okPage(mkCand()) }) });
+  const r = await processCandidates({ data: emptyData(), candidates: [mkCand({ city: "" })], today: TODAY, deps });
+  assert.equal(r.added.length, 0);
+  assert.equal(r.unverified.length, 1);
+  assert.match(r.unverified[0].reason, /city/);
+  assert.equal(deps.saved.length, 0);
+});
+
+test("processCandidates: matchReason 空・city 欠落（undefined）も unverified", async () => {
+  const r1 = await run([mkCand({ matchReason: "  " })]);
+  assert.equal(r1.added.length, 0);
+  assert.match(r1.unverified[0].reason, /matchReason/);
+  const c = mkCand();
+  delete c.city;
+  const r2 = await run([c]);
+  assert.equal(r2.added.length, 0);
+  assert.match(r2.unverified[0].reason, /city/);
+});
+
+test("processCandidates: null/非オブジェクト混在でも落ちず、有効候補は追加される", async () => {
+  const r = await run([null, 5, "x", [], undefined, mkCand()]);
+  assert.equal(r.added.length, 1);
+  assert.equal(r.rejected.filter((x) => x.reason === "invalid-candidate").length, 5);
+});
+
+test("processCandidates: tags/sources/artists の型不正（文字列・オブジェクト・null）を配列化して処理", async () => {
+  const r = await run([mkCand({ tags: "media_art", artists: "鈴木", sources: { name: "TAB", url: "https://www.tokyoartbeat.com/events/x", kind: "listing" } })]);
+  assert.equal(r.added.length, 1);
+  assert.deepEqual(r.added[0].tags, ["media_art"]);
+  assert.deepEqual(r.added[0].artists, ["鈴木"]);
+  const r2 = await run([mkCand({ tags: null, artists: 5, sources: [null, 3, { url: 5 }, { name: "x", url: "http://" }] })]);
+  assert.equal(r2.added.length, 1);
+  assert.deepEqual(r2.added[0].artists, []);
+  assert.equal(r2.added[0].sources.length, 1);
+});
+
+test("processCandidates: 非文字列の title/venue/score/officialUrl でも run が落ちない", async () => {
+  const r = await run([mkCand({ title: { a: 1 } }), mkCand({ venue: ["x"] }), mkCand({ officialUrl: 5 }), mkCand({ score: "abc" }), mkCand()]);
+  assert.equal(r.added.length, 1);
+});
+
+test("processCandidates: 候補単位の例外（saveThumb throw 等）はその候補だけ reject して続行", async () => {
+  const c1 = mkCand({ title: "展A", officialUrl: "https://other.example/ex/a", sources: [] });
+  const c2 = mkCand({ title: "展B", officialUrl: "https://other.example/ex/b", sources: [], score: 70 });
+  let n = 0;
+  const r = await processCandidates({
+    data: emptyData(), candidates: [c1, c2], today: TODAY,
+    deps: mkDeps({
+      fetchHtml: async (u) => ({ status: 200, body: okPage(u.endsWith("/a") ? c1 : c2) }),
+      saveThumb: async (id) => { if (n++ === 0) throw new Error("boom"); return `/thumbnails/exhibition/${id}.jpg`; },
+    }),
+  });
+  assert.equal(r.added.length, 1);
+  assert.ok(r.rejected.some((x) => x.reason === "candidate-error" && /boom/.test(x.detail)));
+});
+
+test("isSafeOfficialUrl: http(s) のみ・localhost/プライベート/IP直書き・listing/social ホストは拒否", () => {
+  for (const u of ["https://museum.example/ex/1", "http://museum.example/", "https://www.mot-art-museum.jp/exhibitions/x"]) assert.equal(isSafeOfficialUrl(u), true, u);
+  for (const u of [
+    "ftp://a.example/", "javascript:alert(1)", "file:///etc/passwd", "http://localhost/x", "http://foo.localhost/", "http://127.0.0.1/", "http://10.0.0.5/", "http://192.168.1.1/",
+    "http://169.254.169.254/", "http://[::1]/", "http://2130706433/", "http://8.8.8.8/", "http://intranet/", "http://", "", null, 5,
+    "https://x.com/u/status/1", "https://twitter.com/u", "https://www.instagram.com/p/x/", "https://facebook.com/e", "https://www.tokyoartbeat.com/events/x",
+    "https://artscape.jp/exhibition/x", "https://bijutsutecho.com/exhibitions/1", "https://api.fxtwitter.com/u/status/1", "https://www.youtube.com/watch?v=x", "https://youtu.be/x",
+  ]) assert.equal(isSafeOfficialUrl(u), false, String(u));
+});
+
+test("isPublicHttpUrl: サムネ取得元は http(s)・非プライベートのみ（SNS 画像ホストは可）", () => {
+  assert.equal(isPublicHttpUrl("https://pbs.twimg.com/media/x.jpg"), true);
+  for (const u of ["http://127.0.0.1/a.jpg", "file:///a.jpg", "http://localhost/a.jpg", "http://192.168.0.1/a.jpg", "data:image/png;base64,xx"]) assert.equal(isPublicHttpUrl(u), false, u);
+});
+
+test("processCandidates: 非公式（SNS/listing/内部）URL を officialUrl にした候補は unverified（取得しない）", async () => {
+  let fetched = 0;
+  for (const u of ["https://www.tokyoartbeat.com/events/x", "http://127.0.0.1/x", "ftp://a.example/x"]) {
+    const r = await run([mkCand({ officialUrl: u })], { fetchHtml: async () => { fetched++; return { status: 200, body: okPage(mkCand()) }; } });
+    assert.equal(r.added.length, 0, u);
+    assert.equal(r.unverified.length, 1, u);
+  }
+  assert.equal(fetched, 0);
+});
+
+test("processCandidates: 不正な thumbnailSource は捨てて公式ページにフォールバック（saveThumb へ渡さない）", async () => {
+  let seen;
+  const r = await run([mkCand({ thumbnailSource: "http://169.254.169.254/latest" })], { saveThumb: async (id, cand) => { seen = cand.thumbnailSource; return `/thumbnails/exhibition/${id}.jpg`; } });
+  assert.equal(r.added.length, 1);
+  assert.ok(!seen || seen === mkCand().officialUrl);
+});
+
+test("titleAppearsInText: 主要トークン照合（日付や汎用語だけでは通らない）", () => {
+  assert.equal(titleAppearsInText("Exhibition 2026 メゾンエルメス", "Ugo Janssens 展"), false);
+  assert.equal(titleAppearsInText("janssens | メゾンエルメス", "Janssens: Echo"), true);
+  assert.equal(titleAppearsInText("光の庭 展示", "光の庭"), true);
+  assert.equal(titleAppearsInText("2026年10月12日 開催", "展 2026"), false);
+  assert.equal(titleAppearsInText("ここは別のページ", "光の庭"), false);
+  assert.equal(titleAppearsInText("全く関係ない本文", "A"), false);
+});
+
+test("verifyOfficialPage: 本文に title が無ければ ng（日付・会場だけの一致は不可）", async () => {
+  const c = mkCand({ title: "固有名ワードアート展" });
+  const r = await verifyOfficialPage(c, { fetchHtml: async () => ({ status: 200, body: `<p>${c.venue}</p><p>2026年10月12日〜11月30日</p>` }) });
+  assert.equal(r.ok, false);
+  assert.match(r.reason, /title/);
+});
+
+test("venueAppearsInText: 汎用語（gallery/museum/art/center/ギャラリー/美術館…）だけの一致は無効", () => {
+  assert.equal(venueAppearsInText("Visit the art museum gallery center", "Foo Gallery"), false);
+  assert.equal(venueAppearsInText("どこかのギャラリーと美術館", "XYZ ギャラリー"), false);
+  assert.equal(venueAppearsInText("Maison Hermès Le Forum gallery", "Maison Hermès Le Forum"), true);
+  assert.equal(venueAppearsInText("foo gallery tokyo", "Foo Gallery"), true); // 全体一致
+  assert.equal(venueAppearsInText("art center", "Art Center"), false); // 汎用語のみの会場名は不可
+});

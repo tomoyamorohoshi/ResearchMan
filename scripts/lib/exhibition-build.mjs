@@ -45,6 +45,36 @@ function loadTagVocab() {
 
 const isHttpUrl = (u) => typeof u === "string" && /^https?:\/\//i.test(u);
 
+// 公式URL・サムネ取得元として拒否するホスト（listing/SNS/動画。公式の個別ページではない）
+const OFFICIAL_HOST_DENYLIST = [
+  "x.com", "twitter.com", "t.co", "instagram.com", "facebook.com", "tiktok.com",
+  "tokyoartbeat.com", "artscape.jp", "bijutsutecho.com",
+  "fxtwitter.com", "fixupx.com", "vxtwitter.com", "youtube.com", "youtu.be",
+];
+
+/** http(s) かつ localhost/内部ホスト/IP直書きでない URL か（SSRF 対策。new URL の throw は false）。 */
+export function isPublicHttpUrl(u) {
+  if (!isHttpUrl(u)) return false;
+  let host;
+  try {
+    host = new URL(u).hostname.toLowerCase();
+  } catch {
+    return false;
+  }
+  if (!host || host.includes(":") || host.startsWith("[")) return false; // IPv6 直書き
+  if (/^\d+(\.\d+){0,3}$/.test(host)) return false; // IPv4 直書き（new URL が 2130706433 等も正規化済み）
+  if (!host.includes(".")) return false; // intranet 名
+  if (/(^|\.)(localhost|local|internal|lan|home|corp)$/.test(host)) return false;
+  return true;
+}
+
+/** 公式ページとして使える URL か（公開 http(s) かつ listing/social の denylist ホストでない）。 */
+export function isSafeOfficialUrl(u) {
+  if (!isPublicHttpUrl(u)) return false;
+  const host = new URL(u).hostname.toLowerCase();
+  return !OFFICIAL_HOST_DENYLIST.some((d) => host === d || host.endsWith(`.${d}`));
+}
+
 /** title/venue 照合用キー（記号・空白・大小・全半角を無視）。 */
 function normKey(s) {
   return normTitle(String(s || "").normalize("NFKC")).replace(/[^\p{L}\p{N}]/gu, "");
@@ -139,21 +169,47 @@ export function dateAppearsInText(text, ymd) {
   return patterns.some((re) => re.test(t));
 }
 
-/** 会場名が text に現れるか（空白除去の全体一致、または階数を除いた最長トークン(3字以上)の一致）。 */
+// 単独では会場/題名の根拠にならない汎用語（これだけの一致は無効）
+const GENERIC_WORDS = [
+  "gallery", "museum", "art", "arts", "center", "centre", "hall", "space", "studio", "foundation", "institute", "tokyo", "japan",
+  "ミュージアム", "ギャラリー", "美術館", "博物館", "アート", "センター", "ホール", "スペース", "スタジオ", "東京", "日本",
+];
+const stripGeneric = (tk) => GENERIC_WORDS.reduce((acc, g) => acc.split(g).join(""), tk);
+
+/** 会場名が text に現れるか（空白除去の全体一致、または汎用語を除いた最長トークン(3字以上)の一致）。汎用語だけの一致は無効。 */
 export function venueAppearsInText(text, venue) {
   const collapse = (s) => String(s || "").normalize("NFKC").toLowerCase().replace(/\s+/g, "");
   const hay = collapse(text);
   const whole = collapse(venue);
   if (!whole) return false;
+  if (stripGeneric(whole).replace(/[^\p{L}\p{N}]/gu, "").length < 2) return false; // 汎用語のみの会場名は照合不能
   if (hay.includes(whole)) return true;
   const tokens = String(venue || "")
     .normalize("NFKC")
     .toLowerCase()
     .split(/[\s・＠@()（）/\-–—,、]+/)
-    .filter((tk) => tk && !/^\d+[f階]$/.test(tk) && tk.length >= 3);
+    .filter((tk) => tk && !/^\d+[f階]$/.test(tk) && tk.length >= 3 && stripGeneric(tk).length >= 3);
   if (!tokens.length) return false;
   const longest = tokens.reduce((a, b) => (b.length > a.length ? b : a));
   return hay.includes(longest);
+}
+
+/**
+ * 展覧会名の主要トークンが text に現れるか。全体一致、または汎用語・数字のみでない3字以上のトークンの一致。
+ * 3字以上のトークンが無い短い題名は全体一致のみ（日付や会場名だけの一致で通さない）。
+ */
+export function titleAppearsInText(text, title) {
+  const collapse = (s) => String(s || "").normalize("NFKC").toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
+  const hay = collapse(text);
+  const whole = collapse(title);
+  if (whole.length < 1) return false;
+  if (hay.includes(whole) && stripGeneric(whole).length >= 1 && !/^\d+$/.test(whole)) return true;
+  const tokens = String(title || "")
+    .normalize("NFKC")
+    .toLowerCase()
+    .split(/[^\p{L}\p{N}]+/u)
+    .filter((tk) => tk.length >= 3 && !/^\d+$/.test(tk) && stripGeneric(tk).length >= 3);
+  return tokens.some((tk) => hay.includes(tk));
 }
 
 /**
@@ -164,6 +220,7 @@ export function venueAppearsInText(text, venue) {
  */
 export async function verifyOfficialPage(cand, { fetchHtml }) {
   if (!isHttpUrl(cand.officialUrl)) return { ok: false, reason: "official-url-invalid" };
+  if (!isSafeOfficialUrl(cand.officialUrl)) return { ok: false, reason: "official-url-rejected: listing/social/internal host" };
   let res;
   try {
     res = await fetchHtml(cand.officialUrl);
@@ -176,10 +233,34 @@ export async function verifyOfficialPage(cand, { fetchHtml }) {
   if (!dateAppearsInText(text, cand.startDate)) return { ok: false, reason: `official-date-mismatch: startDate ${cand.startDate} not found` };
   if (!dateAppearsInText(text, cand.endDate)) return { ok: false, reason: `official-date-mismatch: endDate ${cand.endDate} not found` };
   if (!venueAppearsInText(text, cand.venue)) return { ok: false, reason: `official-venue-mismatch: ${cand.venue}` };
+  if (!titleAppearsInText(text, cand.title)) return { ok: false, reason: `official-title-mismatch: ${cand.title}` };
   return { ok: true };
 }
 
 // ── 候補の振り分け ───────────────────────────────────────────
+
+// 候補（Claude 出力）の型不正を吸収する。非文字列は String 化（オブジェクト/配列/null は空文字）、配列項目は配列化
+const STRING_FIELDS = [
+  "title", "venue", "venueType", "prefecture", "city", "startDate", "endDate", "admission", "matchReason",
+  "officialUrl", "officialName", "slugTitle", "slugVenue", "thumbnailSource", "intakeUrl", "excludeCategory", "origin",
+];
+const asArray = (v) => (Array.isArray(v) ? v : v == null || v === "" ? [] : [v]);
+function sanitizeCandidate(raw) {
+  const c = { ...raw };
+  for (const k of STRING_FIELDS) {
+    const v = c[k];
+    if (typeof v === "string") continue;
+    if (typeof v === "number" || typeof v === "boolean") c[k] = String(v);
+    else if (v === undefined) delete c[k];
+    else c[k] = "";
+  }
+  c.artists = asArray(raw.artists).filter((a) => typeof a === "string" && a.trim());
+  c.tags = asArray(raw.tags).filter((t) => typeof t === "string");
+  c.sources = asArray(raw.sources).filter((x) => x && typeof x === "object" && !Array.isArray(x) && typeof x.url === "string");
+  c.score = Number(raw.score);
+  if (c.thumbnailSource !== undefined && !isPublicHttpUrl(c.thumbnailSource)) delete c.thumbnailSource;
+  return c;
+}
 
 function normalizePrefecture(p) {
   const s = String(p || "").trim();
@@ -195,7 +276,7 @@ function effectiveScore(cand, opts) {
 }
 
 function buildSources(cand) {
-  const out = [{ name: cand.officialName || "公式", url: cand.officialUrl, kind: "official" }];
+  const out = [{ name: (typeof cand.officialName === "string" && cand.officialName) || "公式", url: cand.officialUrl, kind: "official" }];
   const seen = new Set([normLink(cand.officialUrl)]);
   const extra = [...(cand.sources || [])];
   if (cand.origin === "intake" && cand.intakeUrl) extra.push({ name: "ユーザー投稿", url: cand.intakeUrl, kind: "social" });
@@ -204,7 +285,13 @@ function buildSources(cand) {
     const key = normLink(s.url);
     if (!key || seen.has(key)) continue;
     seen.add(key);
-    out.push({ name: s.name || new URL(s.url).hostname, url: s.url, kind: SOURCE_KINDS.includes(s.kind) && s.kind !== "official" ? s.kind : "listing" });
+    let hostname = "";
+    try {
+      hostname = new URL(s.url).hostname;
+    } catch {
+      continue;
+    }
+    out.push({ name: (typeof s.name === "string" && s.name) || hostname, url: s.url, kind: SOURCE_KINDS.includes(s.kind) && s.kind !== "official" ? s.kind : "listing" });
   }
   return out;
 }
@@ -238,75 +325,81 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
       link: cand.officialUrl || "", reason, ...(cand.intakeUrl ? { intakeUrl: cand.intakeUrl } : {}), at: deps.now(),
     });
 
+  // null/非オブジェクトを除外し、型不正を吸収してから並べ替える（sort 中の throw で run 全体が落ちない）
+  const sane = [];
+  for (const raw of Array.isArray(candidates) ? candidates : []) {
+    if (!raw || typeof raw !== "object" || Array.isArray(raw)) {
+      rejected.push({ title: "(invalid)", reason: "invalid-candidate", detail: "not an object", link: "" });
+      continue;
+    }
+    sane.push(sanitizeCandidate(raw));
+  }
   // スコア上位を優先（日次上限が効くときに良い候補が残るように）
-  const ordered = [...candidates].sort((a, b) => effectiveScore(b, o) - effectiveScore(a, o));
+  const ordered = sane.sort((a, b) => effectiveScore(b, o) - effectiveScore(a, o));
   let capped = 0;
 
-  for (const cand of ordered) {
-    if (!cand || typeof cand.title !== "string" || !cand.title.trim() || typeof cand.venue !== "string" || !cand.venue.trim()) {
-      rejected.push({ title: cand?.title || "(no title)", reason: "invalid-candidate", detail: "title/venue required", link: cand?.officialUrl || "" });
-      continue;
+  const handle = async (cand) => {
+    if (!cand.title.trim() || !cand.venue.trim()) {
+      rejected.push({ title: cand.title || "(no title)", reason: "invalid-candidate", detail: "title/venue required", link: cand.officialUrl || "" });
+      return;
     }
-    if (!isHttpUrl(cand.officialUrl)) {
-      unver(cand, "official-url-missing");
-      continue;
-    }
-    if (!isValidYmd(cand.startDate) || !isValidYmd(cand.endDate)) {
-      unver(cand, "会期不明（startDate/endDate が不正または欠落）");
-      continue;
-    }
-    if (cand.startDate > cand.endDate) { reject(cand, "start-after-end"); continue; }
-    if (cand.endDate < today) { reject(cand, "already-ended"); continue; }
-    if (cand.excludeCategory && cand.excludeCategory !== "none") { reject(cand, "hard-exclusion", cand.excludeCategory); continue; }
+    if (!isHttpUrl(cand.officialUrl)) return unver(cand, "official-url-missing");
+    if (!isSafeOfficialUrl(cand.officialUrl)) return unver(cand, "official-url-rejected（listing/SNS/内部ホスト/不正URLは公式として不可）");
+    if (!isValidYmd(cand.startDate) || !isValidYmd(cand.endDate)) return unver(cand, "会期不明（startDate/endDate が不正または欠落）");
+    if (cand.startDate > cand.endDate) return reject(cand, "start-after-end");
+    if (cand.endDate < today) return reject(cand, "already-ended");
+    if (cand.excludeCategory && cand.excludeCategory !== "none") return reject(cand, "hard-exclusion", cand.excludeCategory);
     const prefecture = normalizePrefecture(cand.prefecture);
-    if (!prefecture) { reject(cand, "invalid-prefecture", String(cand.prefecture)); continue; }
+    if (!prefecture) return reject(cand, "invalid-prefecture", String(cand.prefecture));
 
     // dedupe。一致したら追加せず、会期・会場の変更だけ（公式で裏取りできた場合に限り）追従する
     const dup = findDuplicate(items, cand);
     if (dup) {
       const patch = diffDates(dup.item, cand);
       // 同一実行で追加済みの展示は更新しない（ラウンドごとに Claude の返す日付が揺れて上書きされるのを防ぐ）
-      if (!patch || protect.has(dup.item.id)) { skipped.push({ title: cand.title, reason: "duplicate", existingId: dup.item.id }); continue; }
+      if (!patch || protect.has(dup.item.id)) { skipped.push({ title: cand.title, reason: "duplicate", existingId: dup.item.id }); return; }
       const v = await verifyOfficialPage(cand, deps);
-      if (!v.ok) { unver(cand, `会期変更の裏取り失敗: ${v.reason}`); continue; }
+      if (!v.ok) return unver(cand, `会期変更の裏取り失敗: ${v.reason}`);
       const next = applyUpdate(dup.item, patch, today);
       items = items.map((i) => (i.id === dup.item.id ? next : i));
       updated.push({ id: dup.item.id, title: dup.item.title, patch });
-      continue;
+      return;
     }
 
     const score = effectiveScore(cand, o);
-    if (score < o.addThreshold) { reject(cand, "below-threshold", String(score)); continue; }
-    if (!String(cand.matchReason || "").trim()) { reject(cand, "no-match-reason"); continue; }
+    if (score < o.addThreshold) return reject(cand, "below-threshold", String(score));
+    // 必須 string（監査で FAIL になる空値）が欠ける候補は追加せず unverified（理由つき）
+    const missing = ["city", "matchReason"].filter((k) => !String(cand[k] || "").trim());
+    if (missing.length) return unver(cand, `required-field-missing: ${missing.join(",")}`);
     const exempt = cand.collectAll || cand.origin === "intake";
-    if (!exempt && capped >= o.maxAdd) { reject(cand, "daily-cap"); continue; }
+    if (!exempt && capped >= o.maxAdd) return reject(cand, "daily-cap");
 
     const v = await verifyOfficialPage(cand, deps);
-    if (!v.ok) { unver(cand, v.reason); continue; }
+    if (!v.ok) return unver(cand, v.reason);
 
     const id = buildExhibitionId({ startDate: cand.startDate, venue: cand.slugVenue || cand.venue, title: cand.slugTitle || cand.title }, taken);
     let thumbnail = `/thumbnails/exhibition/${id}.jpg`;
     if (!o.dryRun) {
       thumbnail = await deps.saveThumb(id, cand);
-      if (!thumbnail) { reject(cand, "thumbnail-unavailable", cand.thumbnailSource || cand.officialUrl); continue; }
+      if (typeof thumbnail !== "string" || !thumbnail.trim()) return reject(cand, "thumbnail-unavailable", cand.thumbnailSource || cand.officialUrl);
     }
 
     const item = {
       id,
       slug: id,
       title: cand.title.trim(),
-      artists: Array.isArray(cand.artists) ? cand.artists.filter((a) => typeof a === "string" && a.trim()) : [],
+      artists: cand.artists,
       venue: cand.venue.trim(),
       venueType: VENUE_TYPES.includes(cand.venueType) ? cand.venueType : "other",
       prefecture,
-      city: String(cand.city || ""),
+      city: cand.city.trim(),
       startDate: cand.startDate,
       endDate: cand.endDate,
       status: computeStatus(cand.startDate, cand.endDate, today),
-      admission: String(cand.admission || "UNKNOWN"),
-      tags: (cand.tags || []).filter((t) => vocab.has(t)),
+      admission: cand.admission.trim() || "UNKNOWN",
+      tags: cand.tags.filter((t) => vocab.has(t)),
       score,
-      matchReason: String(cand.matchReason).trim(),
+      matchReason: cand.matchReason.trim(),
       sources: buildSources(cand),
       link: cand.officialUrl,
       thumbnail,
@@ -320,6 +413,14 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
     items = [item, ...items];
     added.push(item);
     if (!exempt) capped++;
+  };
+
+  for (const cand of ordered) {
+    try {
+      await handle(cand);
+    } catch (e) {
+      rejected.push({ title: cand.title || "(no title)", reason: "candidate-error", detail: String(e?.message || e).slice(0, 200), link: cand.officialUrl || "", intakeUrl: cand.intakeUrl });
+    }
   }
 
   return { data: { ...data, statusAsOf: today, items }, added, updated, unverified, rejected, skipped };

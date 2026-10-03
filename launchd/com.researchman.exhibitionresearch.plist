@@ -28,7 +28,18 @@
       trap "rmdir $LOCK 2&gt;/dev/null" EXIT;
       echo "===== Exhibition run start: $(date) =====" &gt;&gt; $LOG;
       if ! node scripts/auto-research-exhibition.mjs &gt;&gt; $LOG 2&gt;&amp;1; then
-        echo "収集エラー終了: $(date)" &gt;&gt; $LOG;
+        echo "収集エラー終了（作業ツリーを復元）: $(date)" &gt;&gt; $LOG;
+        git checkout -- data/exhibition.json &gt;&gt; $LOG 2&gt;&amp;1;
+        git clean -fd public/thumbnails/exhibition &gt;&gt; $LOG 2&gt;&amp;1;
+        node scripts/run-if-due.mjs --state .last-exhibition-research-run.txt --mark &gt;&gt; $LOG 2&gt;&amp;1;
+        node scripts/notify-line.mjs --result error --route exhibition --label Exhibition &gt;&gt; $LOG 2&gt;&amp;1;
+        exit 0;
+      fi;
+      # commit 前に pre-push と同じ監査。FAIL を commit すると push が全滞留するため、戻して commit せずエラー通知
+      if ! node scripts/audit-exhibition.mjs &gt;&gt; $LOG 2&gt;&amp;1; then
+        echo "audit-exhibition FAIL → 復元して commit しない: $(date)" &gt;&gt; $LOG;
+        git checkout -- data/exhibition.json &gt;&gt; $LOG 2&gt;&amp;1;
+        git clean -fd public/thumbnails/exhibition &gt;&gt; $LOG 2&gt;&amp;1;
         node scripts/run-if-due.mjs --state .last-exhibition-research-run.txt --mark &gt;&gt; $LOG 2&gt;&amp;1;
         node scripts/notify-line.mjs --result error --route exhibition --label Exhibition &gt;&gt; $LOG 2&gt;&amp;1;
         exit 0;
@@ -45,7 +56,9 @@
             node scripts/notify-line.mjs --summary /tmp/researchman-exhibition-last-add.json --route exhibition --label Exhibition &gt;&gt; $LOG 2&gt;&amp;1;
           else
             echo "push成功だが反映未確認（時間切れ）: $(date)" &gt;&gt; $LOG;
-            node scripts/notify-line.mjs --result unverified --summary /tmp/researchman-exhibition-last-add.json --route exhibition --label Exhibition &gt;&gt; $LOG 2&gt;&amp;1;
+            # 0件追加の回は routine（追加ありは従来どおり critical）
+            if node -e "const s=JSON.parse(require('fs').readFileSync('/tmp/researchman-exhibition-last-add.json','utf8'));process.exit((s.cases||[]).length?1:0)" 2&gt;/dev/null; then PRI=routine; else PRI=critical; fi;
+            node scripts/notify-line.mjs --result unverified --summary /tmp/researchman-exhibition-last-add.json --route exhibition --label Exhibition --priority $PRI &gt;&gt; $LOG 2&gt;&amp;1;
           fi;
         else
           echo "push失敗（pre-push監査で中止の可能性）。コミットはローカル残存。要手動対応: $(date)" &gt;&gt; $LOG;

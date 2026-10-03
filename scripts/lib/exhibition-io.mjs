@@ -5,6 +5,7 @@
 import fs from "fs/promises";
 import os from "os";
 import path from "path";
+import { isPublicHttpUrl } from "./exhibition-build.mjs";
 
 const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36";
 const MAX_HTML_BYTES = 1_500_000;
@@ -168,7 +169,7 @@ export function makeSaveThumb(thumbDir) {
     const tried = new Set();
     const tryUrls = async (urls, minBytes) => {
       for (const u of urls) {
-        if (tried.has(u)) continue;
+        if (tried.has(u) || !isPublicHttpUrl(u)) continue; // 内部/IP直書き/非http(s)は取得しない
         tried.add(u);
         const buf = await fetchImage(u).catch(() => null);
         const norm = buf ? await normalizeAndEnforceMinBytes(buf, minBytes).catch(() => null) : null;
