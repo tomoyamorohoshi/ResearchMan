@@ -1,5 +1,162 @@
 [
   {
+    "id": "vlo-0-3",
+    "title": "Vlo 0.3",
+    "org": "PxTicks",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "GenVideo"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "ComfyUIを「生成エンジン」として裏で動かし、タイムラインで選んだ区間をそのままAI処理に回して編集レイヤーとして戻せる、無料・ローカル・オープンソースの動画エディタ。",
+    "point": "普通の動画編集ソフトとAI生成ツール（ComfyUI）は別アプリで、書き出して→読み込んで→戻す、という往復が面倒でした。Vloはその往復を無くし、編集画面で範囲を選ぶだけで、画像・マスク・映像が自動でComfyUIのワークフローに送られ、結果が新しいレイヤーとして返ってきます。つまり『AIに頼んだ部分だけを差し替えながら編集を続ける』ことができます。MiniMax H3、LTX-2.5、Qwen Image、Flux 2 Klein用の18本のワークフローが最初から入っています。広告制作では、実写カットの一部だけを背景差し替え・スタイル変換・人物差し替えしてクライアント確認用の複数案を短時間で作る、といった使い方に向きます。マスク切り（SAM2）、カラーグレード、キーフレーム、ビート検出、ステム分離（音声を声・伴奏などに分ける機能）も入っており、編集からAI生成まで一つの画面で完結します。社内で企画のモックアップ映像を作るプロトタイピング環境としても有力です。",
+    "detail": "仕組み：Vloはブラウザ上で動く編集画面（TypeScript）と、裏で動くPython製のサーバーで構成されています。タイムラインで選んだ範囲のフレームとマスクを、画面とは別に起動しているComfyUIへ自動で渡します。いわば『編集室の隣に専属のAI工房があり、依頼書（ワークフロー）を渡すと完成品が戻ってくる』イメージです。戻ってきた結果はそのままレイヤーとして重ねられ、さらに切ったり色を整えたりできます。v0.3の目玉は、この橋渡し（ライブブリッジ）が決まったメニューに限らず、あらゆるComfyUIワークフローを呼び出せる点です。\n\n従来との違い：これまでAI動画編集は、ComfyUIで生成→ファイルを書き出し→編集ソフトに読み込み→やり直し、と手作業でつなぐ必要がありました。Vloは画面のアスペクト比調整やマスクの受け渡しまで自動化します。また独自のフレームグラフ描画により、プレビューと書き出しの見た目が一致するよう設計されています。\n\n使うには：GitやNode.js等の導入はインストーラ（install.sh / install.bat）が自動で行い、必要なのはGitだけです。ChromeかEdgeなどChromium系ブラウザが必須（File System Access APIとWebCodecsを使うため）。ComfyUIは同梱の導入機能で入れるか、既存・リモート環境に接続できます。費用はソフト自体は無料ですが、MiniMax H3やLTX-2.5などの重いモデルを動かすにはVRAMの大きいGPUが現実的に必要です。ライセンスはAGPLなので、改変して外部公開するときは注意してください。",
+    "license": {
+      "spdx": "AGPL-3.0-or-later",
+      "commercial": "conditional",
+      "note": "無料・ローカル実行で制作物の商用利用は可能。ただしAGPLのため、改変版をネットサービスとして公開する場合はソース公開義務がある。生成に使うモデル側のライセンスは別途確認が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/PxTicks/vlo"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=G7HgMuUyfS0"
+      },
+      {
+        "kind": "post",
+        "url": "https://comfyui-wiki.com/en/news/2026-09-28-vlo-0-3-video-editor"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/vlo-0-3.jpg",
+    "relatedWorks": [
+      {
+        "title": "Concat",
+        "description": "Rust製のローカル型オープンソース動画エディタ。MCP対応でCapCutの代替を目指す。",
+        "url": "https://github.com/jub0t/Concat"
+      },
+      {
+        "title": "ComfyUI-VideoHelperSuite",
+        "description": "ComfyUIで動画の読み込み・書き出しを扱う定番ノード集。",
+        "url": "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite"
+      },
+      {
+        "title": "JoyAI-Video-Edit",
+        "description": "自然言語の指示で動画をリアルタイム編集する自己回帰拡散モデル。",
+        "url": "https://github.com/jd-opensource/JoyAI-Video-Edit"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "minimax-h3-character-swap-lora",
+    "title": "MiniMax-H3-Character-Swap-LoRA",
+    "org": "akatz-ai",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "元動画のシーンを保ったまま、指定した人物だけを参照画像のキャラクターに差し替えるMiniMax H3用の実験的LoRA。ComfyUIにサンプルワークフロー付きで公開。",
+    "point": "撮影済みの映像の中の『この人だけ』を、別のキャラクター画像に置き換えられるLoRA（既存モデルに後付けする小さな追加学習ファイル）です。背景・カメラの動き・他の人物は元のまま残るので、再撮影なしにキャスト差し替えができます。指示は『Replace only the man in the purple shirt in <Video 1> with the character in <Picture 1>.』のような英語の一文だけ。広告では、同じ撮影素材でモデルやキャラクターだけを変えた地域別・ターゲット別バージョン、架空キャラ（着ぐるみ・アニメ調）の実写合成案、企画段階のキャスティング比較映像などに使えそうです。作者自身が『実験的』と明記しており、4〜5秒の連続カットで最も安定し、長くなると構図やタイミングがずれる、カット切替がズームになる、表情が元の演技と一致しないなどの限界があります。本番素材というより、プリビズや提案用ビジュアルの用途に向く段階です。",
+    "detail": "仕組み：MiniMax H3の『Ref2VA』という機能（動画と参照画像を同時に入力として受け取れる）を土台に、合成データ134件（学習108・検証26）で1,000ステップだけ追加学習したLoRAです。データはフォトリアル、粘土のストップモーション、3Dアニメ調など様々な画風を含みます。いわば『元の映像を型紙にして、指定した人物の部分だけ別の布に張り替える』ような処理です。\n\n従来との違い：動画内の人物差し替えは、これまで手作業のマスク切りと合成、もしくは専用のクローズドなサービスが必要でした。このLoRAは単一のsafetensorsファイルと文章指示だけで、オープンな重みとして完結しています。学習設定（ai-toolkit）とサンプルワークフローも同梱され、同様の編集LoRAを自作する際の出発点にもなります。\n\n使うには：ComfyUI（H3対応版）とMiniMax H3のモデル本体、ref2va用チェックポイントが必要で、LoRAは強度1.0で読み込みます。入力は元動画（24fpsの短尺推奨）と置換したいキャラの画像、そして差し替え対象を説明する指示文です。音声の保持は後処理が必要です。重みは無料ですが、MiniMax H3コミュニティライセンスの地域制限があり、商用利用前に自社の所在地が対象かを必ず確認してください。大きなVRAMのGPUも必要です。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "MiniMax H3 Community License Agreement。米国・EU・英国・韓国は別途許諾なしでは対象外という地域制限あり。学習データセットはApache-2.0。"
+    },
+    "links": [
+      {
+        "kind": "project",
+        "url": "https://huggingface.co/akatz-ai/MiniMax-H3-Character-Swap-LoRA"
+      },
+      {
+        "kind": "project",
+        "url": "https://huggingface.co/datasets/akatz-ai/H3-Character-Swap-v1"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/minimax-h3-character-swap-lora.jpg",
+    "relatedWorks": [
+      {
+        "title": "ComfyUI-LTXVideo",
+        "description": "Lightricks公式のLTXビデオ用ComfyUIノード集。IC-LoRAによる編集・復元ワークフローを提供。",
+        "url": "https://github.com/Lightricks/ComfyUI-LTXVideo"
+      },
+      {
+        "title": "JoyAI-Video-Edit",
+        "description": "自然言語指示でリアルタイム動画編集を行う自己回帰拡散モデル。",
+        "url": "https://github.com/jd-opensource/JoyAI-Video-Edit"
+      },
+      {
+        "title": "H3-Character-Swap-v1 データセット",
+        "description": "本LoRAの学習に使われた合成データセット（134件、Apache-2.0）。",
+        "url": "https://huggingface.co/datasets/akatz-ai/H3-Character-Swap-v1"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "comfyui-fantastic-h3-prompt-builder-1-8",
+    "title": "ComfyUI Fantastic H3 Prompt Builder 1.8（マスク編集対応）",
+    "org": "Adudeguyman",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "GenVideo"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "MiniMax H3用の手動プロンプト作成・参照素材管理ノードに、SAM 3.1による『動画の一部だけを作り直すマスク編集』を追加したComfyUIカスタムノード集。",
+    "point": "動画生成では、全体を作り直すと気に入っていた部分まで変わってしまうのが悩みです。このノード集は『変えたい所だけ』をマスク（塗りつぶした範囲）で指定し、その領域だけをAIに再生成させ、残りは元の映像のまま合成して返します。マスクはSAM 3.1に『この物体』と文章で指定するか、クリックで自動作成でき、楕円・四角・多角形・ブラシで手描きもできます。さらにプロンプトは穴埋めテンプレート形式で、参照画像・動画をクリックで挿入、番号やタイミングの書式ミスをリアルタイムで検査してくれます。広告制作では、撮影済みカットの商品パッケージだけ差し替え、背景の看板だけ別バージョンにする、といった部分修正の高速な反復に向いています。クライアントの細かな修正指示に、全体を撮り直さず応えるイメージです。",
+    "detail": "仕組み：中心は『Fantastic H3 Edit Composite』というノードです。①SAM 3.1（画像・動画から物体を切り抜く分割モデル）でマスクを作る、②そのマスクに沿ってMiniMax H3に再生成させる、③元映像と生成結果をマスクで合成する、という流れです。切り抜き型紙を当ててその部分だけ塗り直し、他はそのまま残す『マスキングテープでの塗装修正』のようなものです。プロンプト側はT2VA・I2VA・FL2VA・L2VA・Reference の5モードに対応するテンプレートと、再利用できる参照ファイル（RefMod）管理が付きます。\n\n従来との違い：H3向けの既存ノードはプロンプト整形や延長が中心でしたが、本ノード集は『編集用マスクの作成から部分再生成・合成まで』をノード内で一貫して行える点が特徴です。非破壊のトリム／クロップ編集やドラフト機能など、作業用UIも充実しています。\n\n使うには：ComfyUI 0.30.0以降、MiniMax H3のfl2vaとref2vaチェックポイント、SAM 3.1のチェックポイント（sam3.1_multiplex_fp16）、PyAVが必要です。インストールは ComfyUI/custom_nodes にリポジトリをクローンして再起動するだけ。費用は無料ですが、H3は重いモデルのためVRAMの大きいGPUが前提です。リリースタグは未発行で、バージョンはREADMEの記載（1.8系）に従います。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "ノード自体はMIT。併用するMiniMax H3本体のライセンス（地域制限あり）とSAM 3.1のライセンスは別途確認。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Adudeguyman/ComfyUI-Fantastic-MiniMaxH3-PromptBuilder"
+      },
+      {
+        "kind": "post",
+        "url": "https://comfyui-wiki.com/en/news/2026-10-01-h3-prompt-builder-masked-edit"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/comfyui-fantastic-h3-prompt-builder-1-8.jpg",
+    "relatedWorks": [
+      {
+        "title": "ComfyUI-MiniMax-H3-Promptor",
+        "description": "MiniMax H3向けシネマ品質プロンプトを自動生成するComfyUIノード群。",
+        "url": "https://github.com/1038lab/Comfyui-Minimax-H3-Promptor"
+      },
+      {
+        "title": "ComfyUI-FastVideo",
+        "description": "FastVideoによる高速動画生成のComfyUIノード群。",
+        "url": "https://github.com/kevin314/ComfyUI-FastVideo"
+      },
+      {
+        "title": "ComfyUI-VideoHelperSuite",
+        "description": "ComfyUIの動画入出力を扱う定番ノード集。",
+        "url": "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "gausser",
     "title": "Gausser",
     "org": "bezierking",
