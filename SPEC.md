@@ -7,7 +7,7 @@
 **ユーザー確定（2026-10-04・本文より優先）**:
 - intake は POST にもパスフレーズ必須（`EXHIBITION_INTAKE_TOKEN`。Vercel env と `.env.local` に設定、UIで初回入力→localStorage保持）。未設定・不一致は 401。
 - 通知は 70点以上を routine（23:45 ダイジェスト）、80点以上のみ critical（即時）。
-- Machines of Loving Grace（真鍋大度×小山祐介, KARIMOKU RESEARCH CENTER, 10/17-25）は公式ページで裏取りできるまで掲載しない（unverified 扱い）。
+- Machines of Loving Grace（真鍋大度×神山友輔, KARIMOKU RESEARCH CENTER, 10/17-25）は公式ページで裏取りできるまで掲載しない（unverified 扱い）。
 
 ## 1. 目的
 
