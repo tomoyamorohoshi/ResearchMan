@@ -22,7 +22,7 @@ function readFromHead(repoRelPath) {
   return execFileSync("git", ["show", `HEAD:${repoRelPath}`], {
     cwd: ROOT,
     encoding: "utf-8",
-    maxBuffer: 64 * 1024 * 1024, // idea-layouts.jsonは数MB規模
+    maxBuffer: 512 * 1024 * 1024, // idea-layouts.jsonは2026-10-03時点で約68MB・1日約1.4MBずつ増加（64MBでENOBUFS実績）
   });
 }
 
