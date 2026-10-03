@@ -23,7 +23,6 @@ import * as slugMjs from "../../scripts/lib/exhibition-slug.mjs";
 
 function ex(p: Partial<Exhibition> & { id: string; startDate: string; endDate: string }): Exhibition {
   return {
-    id: p.id,
     slug: p.id,
     title: p.title ?? p.id,
     artists: [],

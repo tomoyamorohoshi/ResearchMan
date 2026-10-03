@@ -14,6 +14,7 @@
     "audit:thumbnails": "node scripts/audit-thumbnails.mjs",
     "thumbs:graph": "node scripts/generate-graph-thumbs.mjs",
     "audit:tech": "node scripts/audit-tech.mjs",
+    "audit:exhibition": "node scripts/audit-exhibition.mjs",
     "fetch-thumbnails": "node scripts/fetch-thumbnails.mjs",
     "check-links": "node scripts/check-links.mjs",
     "auto-research:cc": "node scripts/auto-research-cc.mjs",
@@ -32,7 +33,8 @@
     "refresh:tech-thumbs": "node scripts/refresh-tech-thumbnails.mjs",
     "notify:line:dry": "node scripts/notify-line.mjs --dry-run",
     "studio": "npm --prefix studio run dev",
-    "studio:install": "npm --prefix studio install"
+    "studio:install": "npm --prefix studio install",
+    "test:exhibition": "node --test scripts/lib/exhibition-status.test.mjs scripts/audit-exhibition.test.mjs && tsx --test src/lib/exhibition.test.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.105.0",

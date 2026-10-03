@@ -288,7 +288,7 @@ test("tech.json の id と衝突 → FAIL", () => {
 });
 
 test("WARN: statusAsOf が2日以上古い・admission UNKNOWN（exit 0）", () => {
-  const r = run({ statusAsOf: "2026-10-01", items: [goodItem({ admission: "UNKNOWN" })] });
+  const r = run({ statusAsOf: "2026-10-01", items: [goodItem({ admission: "UNKNOWN", status: "upcoming" })] });
   assert.equal(r.code, 0, r.out);
   assert.match(r.out, /WARN/);
   assert.match(r.out, /statusAsOf/);
