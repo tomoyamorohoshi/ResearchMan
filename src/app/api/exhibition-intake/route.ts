@@ -9,7 +9,7 @@
 import type { NextRequest } from "next/server";
 import { createHash, timingSafeEqual } from "node:crypto";
 import { isBlobConfigured } from "@/lib/favoritesStore";
-import { readIntakeBlob, writeIntakeBlob } from "@/lib/exhibitionIntakeStore";
+import { readIntakeBlob, writeIntakeBlob, StoreCorruptError } from "@/lib/exhibitionIntakeStore";
 import {
   addToQueue,
   applyResults,
@@ -83,6 +83,7 @@ export async function POST(request: NextRequest) {
     await writeIntakeBlob(data);
     return json({ status: "accepted" }, 200);
   } catch (err) {
+    if (err instanceof StoreCorruptError) return json({ error: "store_corrupt" }, 500);
     console.error("[api/exhibition-intake] POST failed", err);
     return json({ error: "internal error" }, 500);
   }
@@ -96,6 +97,7 @@ export async function GET(request: NextRequest) {
     const data = await readIntakeBlob();
     return json({ items: pendingItems(data) }, 200);
   } catch (err) {
+    if (err instanceof StoreCorruptError) return json({ error: "store_corrupt" }, 500);
     console.error("[api/exhibition-intake] GET failed", err);
     return json({ error: "internal error" }, 500);
   }
@@ -124,6 +126,7 @@ export async function PATCH(request: NextRequest) {
     await writeIntakeBlob(data);
     return json({ updated }, 200);
   } catch (err) {
+    if (err instanceof StoreCorruptError) return json({ error: "store_corrupt" }, 500);
     console.error("[api/exhibition-intake] PATCH failed", err);
     return json({ error: "internal error" }, 500);
   }

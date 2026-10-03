@@ -50,16 +50,21 @@ export function validateIntakeUrl(input: unknown): IntakeUrlResult {
   if (isX) {
     const pm = X_PATH.exec(parsed.pathname);
     if (!pm) return invalid("X url must be /{user}/status/{digits}");
-    return { ok: true, kind: "x", url: `https://x.com/${pm[1]}/status/${pm[2]}` };
+    return { ok: true, kind: "x", url: `https://x.com/${pm[1].toLowerCase()}/status/${pm[2]}` };
   }
   const pm = IG_PATH.exec(parsed.pathname);
   if (!pm) return invalid("Instagram url must be /p/{id} or /reel/{id}");
   return { ok: true, kind: "instagram", url: `https://www.instagram.com/${pm[1]}/${pm[2]}/` };
 }
 
-// 正規化済み URL → キュー内キー（sha256 hex の先頭16字）
+// 正規化済み URL → キュー内キー（sha256 hex の先頭16字）。
+// X は status id のみ（ユーザー名違い・大小違いの同一ツイートを同一視）、
+// IG は {p|reel}/{id}（id は大小区別）から作る。
 export function intakeKey(url: string): string {
-  return createHash("sha256").update(url).digest("hex").slice(0, 16);
+  const x = /^https:\/\/x\.com\/[^/]+\/status\/(\d+)/.exec(url);
+  const ig = /^https:\/\/www\.instagram\.com\/(p|reel)\/([^/]+)/.exec(url);
+  const basis = x ? `x:${x[1]}` : ig ? `ig:${ig[1]}/${ig[2]}` : url;
+  return createHash("sha256").update(basis).digest("hex").slice(0, 16);
 }
 
 export type IntakeStatus = "pending" | "added" | "rejected" | "unverified";
@@ -160,8 +165,25 @@ export function applyResults(
   return { data: { version: 1, items }, updated };
 }
 
+const ITEM_STATUSES = new Set(["pending", "added", "rejected", "unverified"]);
+
+function isValidIntakeItem(value: unknown): boolean {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return false;
+  const i = value as Record<string, unknown>;
+  return (
+    typeof i.url === "string" &&
+    typeof i.ts === "number" &&
+    Number.isFinite(i.ts) &&
+    typeof i.status === "string" &&
+    ITEM_STATUSES.has(i.status) &&
+    typeof i.attempts === "number" &&
+    Number.isFinite(i.attempts)
+  );
+}
+
 export function isValidIntakeData(value: unknown): value is IntakeData {
   if (!value || typeof value !== "object") return false;
   const v = value as Record<string, unknown>;
-  return v.version === 1 && Boolean(v.items) && typeof v.items === "object" && !Array.isArray(v.items);
+  if (v.version !== 1 || !v.items || typeof v.items !== "object" || Array.isArray(v.items)) return false;
+  return Object.values(v.items).every(isValidIntakeItem);
 }

@@ -59,7 +59,7 @@ function runAudit(root) {
 }
 
 /** フィクスチャ root を作り、audit を実行して {code, out, root} を返す */
-function run({ items, statusAsOf = "2026-10-04", thumbs, cases = [], tech = [], raw } = {}) {
+function run({ items, statusAsOf = "2026-10-04", thumbs, cases = [], tech = [], raw, noProfile = false } = {}) {
   const root = path.join(tmpRoot, `r${seq++}`);
   fs.mkdirSync(path.join(root, "data"), { recursive: true });
   fs.mkdirSync(path.join(root, "public/thumbnails/exhibition"), { recursive: true });
@@ -69,7 +69,7 @@ function run({ items, statusAsOf = "2026-10-04", thumbs, cases = [], tech = [], 
   fs.writeFileSync(path.join(root, "data/exhibition-tag-vocabulary.json"), JSON.stringify({ Tag: VOCAB }));
   fs.writeFileSync(path.join(root, "data/cases.json"), JSON.stringify(cases));
   fs.writeFileSync(path.join(root, "data/tech.json"), JSON.stringify(tech));
-  fs.writeFileSync(
+  if (!noProfile) fs.writeFileSync(
     path.join(root, "data/exhibition-profile.json"),
     JSON.stringify({
       seeds: [
@@ -82,7 +82,7 @@ function run({ items, statusAsOf = "2026-10-04", thumbs, cases = [], tech = [], 
   // サムネ: 既定では全 item に十分なサイズの実体を作る（thumbs[name]===null なら欠損）
   const sizes = thumbs ?? {};
   for (const it of list) {
-    const th = it.thumbnail;
+    const th = it?.thumbnail;
     if (typeof th !== "string" || !th.startsWith("/thumbnails/exhibition/")) continue;
     const name = th.replace("/thumbnails/exhibition/", "");
     const size = name in sizes ? sizes[name] : 8000;
@@ -298,4 +298,34 @@ test("WARN: statusAsOf が2日以上古い・admission UNKNOWN（exit 0）", () 
 test("実データ（リポジトリの data/exhibition.json）が exit 0", () => {
   const r = spawnSync(process.execPath, [AUDIT], { encoding: "utf8" });
   assert.equal(r.status, 0, r.stdout + r.stderr);
+});
+
+test("profile が無い → FAIL（preference_only 検査をスキップしない）", () => {
+  assertFails(run({ noProfile: true }), /PROFILE/);
+});
+
+test("items に null / 非オブジェクト → クラッシュせず ✗ で FAIL", () => {
+  for (const bad of [null, 5, "x", []]) {
+    const r = run({ items: [goodItem(), bad] });
+    assertFails(r, /INVALID ITEM/);
+    assert.doesNotMatch(r.out, /TypeError|at .*\.mjs/);
+  }
+});
+
+test("型不正 → FAIL", () => {
+  const cases = [
+    { artists: "exonemo" }, { artists: [1] }, { tags: "media_art" }, { tags: [1] },
+    { title: 5 }, { venue: 5 }, { city: 5 }, { admission: 5 }, { matchReason: 5 }, { link: 5 },
+    { prefecture: 5 }, { venueType: 5 }, { score: 82.5 }, { score: "82" },
+    { addedAt: "not-a-date" }, { addedAt: 5 },
+    { sources: "x" }, { sources: [{ name: 1, url: "https://a.example", kind: "official" }] },
+  ];
+  for (const c of cases) {
+    assertFails(run({ items: [goodItem(c)] }), /TYPE/);
+  }
+});
+
+test("thumbnail の ../ トラバーサル → FAIL", () => {
+  const r = run({ items: [goodItem({ thumbnail: "/thumbnails/exhibition/../../secret.jpg" })] });
+  assertFails(r, /THUMBNAIL PATH/);
 });

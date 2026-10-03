@@ -8,7 +8,7 @@ type Message = { kind: "ok" | "info" | "error"; text: string };
 
 function readToken(): string {
   try {
-    return window.localStorage.getItem(TOKEN_KEY) ?? "";
+    return (window.localStorage.getItem(TOKEN_KEY) ?? "").trim();
   } catch {
     return "";
   }
@@ -47,7 +47,7 @@ export default function ExhibitionIntakeBox() {
       setMessage({ kind: "error", text: "URLを入力してください" });
       return;
     }
-    const effectiveToken = needToken ? stripSpaces(token) : readToken();
+    const effectiveToken = needToken ? token.trim() : readToken();
     if (!effectiveToken) {
       // 初回送信（保存済みパスフレーズ無し）: 入力欄を出して入力を促す
       setNeedToken(true);
@@ -98,8 +98,15 @@ export default function ExhibitionIntakeBox() {
       } else {
         setMessage({ kind: "error", text: "送信に失敗しました。時間をおいてお試しください" });
       }
-    } catch {
-      setMessage({ kind: "error", text: "送信に失敗しました。通信状況を確認してください" });
+    } catch (err) {
+      // 非 ASCII のパスフレーズはヘッダ設定時に TypeError（fetch 到達前）
+      const nonAscii = err instanceof TypeError && [...effectiveToken].some((c) => c.charCodeAt(0) > 127);
+      setMessage({
+        kind: "error",
+        text: nonAscii
+          ? "パスフレーズは半角英数字記号で入力してください"
+          : "送信に失敗しました。通信状況を確認してください",
+      });
     } finally {
       setBusy(false);
     }

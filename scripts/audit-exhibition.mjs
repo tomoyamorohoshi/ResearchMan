@@ -6,6 +6,7 @@
  *       status が statusAsOf 基準の再計算と不一致・statusAsOf が未来 / タグ語彙・都道府県・score・highlight・origin /
  *       official 必須・link 整合・URL スキーム / サムネ配下・実体・最小サイズ /
  *       ended 以外の matchReason 空・UNKNOWN / preference_only seed の混入 / cases・tech の id との衝突
+   型検証・非オブジェクト item・profile 欠落・サムネ ../ トラバーサルも FAIL
  * WARN: 孤立サムネ、statusAsOf が2日以上古い、admission が UNKNOWN
  *
  * 使い方: node scripts/audit-exhibition.mjs  （npm run audit:exhibition）
@@ -107,14 +108,35 @@ if (!Array.isArray(data.items)) {
 const items = data.items;
 
 const preferenceOnly = (profile?.seeds || []).filter((s) => s.role === "preference_only");
-if (!profile) warn.push("data/exhibition-profile.json が無く preference_only の混入検査をスキップした");
+if (!profile) ng("PROFILE: data/exhibition-profile.json が無く preference_only の混入検査ができません（SPEC §7.10）");
 
 const idCounts = {};
 const linkCounts = {};
 const referencedFiles = new Set();
 
-for (const e of items) {
-  const label = e?.id || e?.title || "(id不明)";
+const isStr = (v) => typeof v === "string";
+const isStrArr = (v) => Array.isArray(v) && v.every(isStr);
+const STRING_FIELDS = ["title", "venue", "city", "admission", "matchReason", "link", "thumbnail", "prefecture", "venueType"];
+const THUMB_ROOT = path.resolve(THUMB_DIR);
+
+for (const [idx, e] of items.entries()) {
+  if (!e || typeof e !== "object" || Array.isArray(e)) {
+    ng(`INVALID ITEM: items[${idx}] がオブジェクトではありません（${JSON.stringify(e)}）`);
+    continue;
+  }
+  const label = (isStr(e.id) && e.id) || (isStr(e.title) && e.title) || "(id不明)";
+
+  // ── 1b. 型検証 ──
+  const typeErrs = [];
+  if (!isStrArr(e.artists)) typeErrs.push("artists(string[])");
+  if (!isStrArr(e.tags)) typeErrs.push("tags(string[])");
+  for (const f of STRING_FIELDS) if (!isStr(e[f])) typeErrs.push(`${f}(string)`);
+  if (!Number.isInteger(e.score)) typeErrs.push("score(integer)");
+  if (!isStr(e.addedAt) || !Number.isFinite(Date.parse(e.addedAt))) typeErrs.push("addedAt(日時文字列)");
+  if (!Array.isArray(e.sources) || !e.sources.every((s) => s && typeof s === "object" && isStr(s.name) && isStr(s.url) && isStr(s.kind))) {
+    typeErrs.push("sources([{name,url,kind: string}])");
+  }
+  if (typeErrs.length) ng(`TYPE: ${label} → ${typeErrs.join(", ")}`);
 
   // ── 2. 必須フィールド ──
   const missing = REQUIRED_FIELDS.filter((f) => {
@@ -156,7 +178,7 @@ for (const e of items) {
   }
 
   // ── 6. tags / prefecture / score / highlight / origin / venueType ──
-  for (const t of e.tags || []) {
+  for (const t of Array.isArray(e.tags) ? e.tags : []) {
     if (!tagVocab.has(t)) ng(`INVALID TAG: ${label} = "${t}"（語彙: ${[...tagVocab].join("/")}）`);
   }
   if (e.prefecture !== undefined && !PREFECTURES.includes(e.prefecture)) {
@@ -198,11 +220,12 @@ for (const e of items) {
   // ── 8. サムネイル ──
   const th = e.thumbnail || "";
   if (typeof th === "string" && th) {
-    if (!th.startsWith(THUMB_PREFIX)) {
+    const resolved = path.resolve(ROOT, "public" + th);
+    if (!th.startsWith(THUMB_PREFIX) || !resolved.startsWith(THUMB_ROOT + path.sep)) {
       ng(`THUMBNAIL PATH: ${label} = "${th}"（${THUMB_PREFIX} 配下であるべき）`);
     } else {
       referencedFiles.add(th.slice(THUMB_PREFIX.length));
-      const p = path.join(ROOT, "public" + th);
+      const p = resolved;
       if (!fs.existsSync(p)) {
         ng(`MISSING THUMBNAIL FILE: ${label} (${th})`);
       } else {

@@ -1,5 +1,6 @@
 import { exhibitionItems, getExhibitionBySlug, todayJst } from "@/lib/exhibition";
-import ExhibitionBadge, { formatPeriod } from "@/components/ExhibitionBadge";
+import { formatPeriod } from "@/components/ExhibitionBadge";
+import ExhibitionBadgeLive from "@/components/ExhibitionBadgeLive";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -53,7 +54,7 @@ export default async function ExhibitionPage({ params }: { params: Promise<{ slu
         </div>
 
         <div className="flex flex-wrap items-center gap-2 mb-4">
-          <ExhibitionBadge e={e} today={today} size="md" />
+          <ExhibitionBadgeLive e={e} initialToday={today} size="md" />
           {e.tags.map((t) => (
             <span key={t} className="text-xs px-2 py-0.5 bg-white border border-gray-300 text-gray-600 rounded-full">
               #{t}

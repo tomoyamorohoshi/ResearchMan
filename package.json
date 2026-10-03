@@ -34,7 +34,7 @@
     "notify:line:dry": "node scripts/notify-line.mjs --dry-run",
     "studio": "npm --prefix studio run dev",
     "studio:install": "npm --prefix studio install",
-    "test:exhibition": "node --test scripts/lib/exhibition-status.test.mjs scripts/audit-exhibition.test.mjs && tsx --test src/lib/exhibition.test.ts"
+    "test:exhibition": "node --test scripts/lib/exhibition-status.test.mjs scripts/audit-exhibition.test.mjs && tsx --test src/lib/exhibition.test.ts src/lib/exhibitionIntake.test.ts src/lib/exhibitionIntakeStore.test.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.105.0",

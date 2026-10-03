@@ -214,3 +214,28 @@ test("applyResults: 入力を破壊しない（純関数）", () => {
   applyResults(d, [{ url: U(1), status: "added" }], NOW + 1);
   assert.equal(JSON.stringify(d), snapshot);
 });
+
+test("X: ユーザー名は小文字化して正規化", () => {
+  assert.equal(ok("https://x.com/AyuPys/status/123"), "https://x.com/ayupys/status/123");
+});
+
+test("intakeKey: X は status id のみ、IG は大小区別", () => {
+  assert.equal(intakeKey("https://x.com/a/status/123"), intakeKey("https://x.com/b/status/123"));
+  assert.notEqual(intakeKey("https://x.com/a/status/123"), intakeKey("https://x.com/a/status/124"));
+  assert.notEqual(
+    intakeKey("https://www.instagram.com/p/AbC/"),
+    intakeKey("https://www.instagram.com/p/abc/"),
+  );
+  assert.notEqual(
+    intakeKey("https://www.instagram.com/p/AbC/"),
+    intakeKey("https://www.instagram.com/reel/AbC/"),
+  );
+});
+
+test("同一ツイートを別ユーザー名・大小違いで再投稿すると duplicate", () => {
+  const u1 = ok("https://x.com/Foo/status/999");
+  const u2 = ok("https://twitter.com/bar/status/999");
+  const first = addToQueue(emptyIntakeData(), u1, 1_000_000);
+  assert.equal(first.result, "accepted");
+  assert.equal(addToQueue(first.data, u2, 1_000_001).result, "duplicate");
+});

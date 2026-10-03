@@ -9,19 +9,30 @@ import { emptyIntakeData, isValidIntakeData, type IntakeData } from "@/lib/exhib
 
 const INTAKE_BLOB_PATHNAME = "exhibition-intake/intake.json";
 
-export async function readIntakeBlob(): Promise<IntakeData> {
-  const result = await get(INTAKE_BLOB_PATHNAME, { access: "private" });
-  if (!result) return emptyIntakeData();
-  const text = await new Response(result.stream).text();
+// Blob が壊れている/形が不正なとき。空扱いで上書きすると tombstone 履歴が消えるため例外にする。
+export class StoreCorruptError extends Error {
+  constructor() {
+    super("store_corrupt");
+    this.name = "StoreCorruptError";
+  }
+}
+
+export function parseIntakeBlobText(text: string): IntakeData {
   let parsed: unknown;
   try {
     parsed = JSON.parse(text);
   } catch {
-    // 壊れた JSON は空として扱う（書き込みは常に JSON.stringify したものだけ）
-    return emptyIntakeData();
+    throw new StoreCorruptError();
   }
-  if (!isValidIntakeData(parsed)) return emptyIntakeData();
+  if (!isValidIntakeData(parsed)) throw new StoreCorruptError();
   return { version: 1, items: parsed.items };
+}
+
+// Blob にファイルが無い（初回）ときだけ空として扱う
+export async function readIntakeBlob(): Promise<IntakeData> {
+  const result = await get(INTAKE_BLOB_PATHNAME, { access: "private" });
+  if (!result) return emptyIntakeData();
+  return parseIntakeBlobText(await new Response(result.stream).text());
 }
 
 export async function writeIntakeBlob(data: IntakeData): Promise<void> {
