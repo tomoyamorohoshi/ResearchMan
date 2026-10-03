@@ -18236,5 +18236,215 @@
         "desc": "音つき動画を8ステップで同時に作れるよう軽量化した動画生成モデル"
       }
     ]
+  },
+  {
+    "id": "2026-10-03-1",
+    "date": "2026-10-03",
+    "title": "VR配信とMVAの世界モデル",
+    "pattern": "文脈×技術",
+    "seed": "VR Games Showcase (August 2026)のようなVRゲーム配信ショーケースに、Masked Visual Actions for Unified World Modeling (MVA)を掛けたら、視聴者が操作を与えるだけで「次の未来映像」を予測生成する観戦体験ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "vr-games-showcase-august-2026-2026",
+        "title": "VR Games Showcase (August 2026)",
+        "desc": "Quest・PC・PS VR2向けのVRゲーム25本超を一挙に紹介した、ライブ配信形式のショーケース。"
+      },
+      {
+        "type": "tech",
+        "id": "masked-visual-actions-for-unified-world-modeling",
+        "title": "Masked Visual Actions for Unified World Modeling (MVA)",
+        "desc": "ロボットの動きから未来の映像を予測し、逆に動きも生成できる、1つで両方こなす世界モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-03-2",
+    "date": "2026-10-03",
+    "title": "鼻歌から作る即興ポープ曲",
+    "pattern": "文脈×技術",
+    "seed": "Popeyesが教皇選出の瞬間に「pope yes」と即投稿したスピードに、MuLaCoverを掛けたら、ニュース速報の瞬間に既存曲の骨格だけ借りてジャンルも歌詞も替えた祝祭ソングを数分で出せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "pope-yes-popeyes",
+        "title": "Pope Yes",
+        "desc": "米国初の教皇選出の瞬間に「pope yes」と投稿し、広告費ゼロで世界的な話題を集めた事例。"
+      },
+      {
+        "type": "tech",
+        "id": "mulacover",
+        "title": "MuLaCover",
+        "desc": "既存曲のメロディやコード進行の骨格を保ち、歌詞やジャンルを替えてカバー曲を作れるオープンソースAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-03-3",
+    "date": "2026-10-03",
+    "title": "文化遺産を歩く世界の生成",
+    "pattern": "文脈×技術",
+    "seed": "World Heritage Center — San Antonioが3Dスキャンした遺物に、Wild3Rで来場者の寄せ集め写真から復元した街並みを混ぜたら、遺物が「市民の記憶」の中に置かれる展示になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "world-heritage-center-san-antonio-2025",
+        "title": "World Heritage Center — San Antonio",
+        "desc": "3Dスキャンした遺物データをもとに、近づくとLEDが反応して浮かび上がる文化遺産の展示ゲート。"
+      },
+      {
+        "type": "tech",
+        "id": "wild3r",
+        "title": "Wild3R",
+        "desc": "観光地などでバラバラに撮られた写真だけから、一度のAI推論で3D空間を復元する技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-03-4",
+    "date": "2026-10-03",
+    "title": "手話ゲートを動かす身体転写",
+    "pattern": "文脈×技術",
+    "seed": "Washington School for the Deaf Art Gateの指文字に、SCAIL-2で手話者の動きを別キャラへ乗り移らせたら、ゲートの文字が来訪者へ手話で語りかけるキャラに変わるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "washington-school-deaf-art-gate-2025",
+        "title": "Washington School for the Deaf Art Gate",
+        "desc": "手話の指文字をレーザーカットの文字で表現した、全長22mの学校キャンパスのゲート。"
+      },
+      {
+        "type": "tech",
+        "id": "scail-2",
+        "title": "SCAIL-2",
+        "desc": "動画の人物の動きを、別のキャラクターや動物へそのまま乗り移らせられる動画生成AI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-03-5",
+    "date": "2026-10-03",
+    "title": "人体ロボとLED光点の共演",
+    "pattern": "技術×技術",
+    "seed": "UMRで人の動きを体格の違うロボへ転送し、そのロボの軌跡をGaussian Point Splattingの1億点級の光点で描いたら、動きが星雲のように残る舞台表現になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "umr",
+        "title": "UMR (Unified Motion Retargeting)",
+        "desc": "人の動きを、体格や関節数の違うヒューマノイドロボットへ自動で移し替えるAI技術。"
+      },
+      {
+        "type": "tech",
+        "id": "gaussian-point-splatting",
+        "title": "Gaussian Point Splatting",
+        "desc": "1億個超のGaussian Splatを、並べ替えなしでリアルタイムに描画できる手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-03-6",
+    "date": "2026-10-03",
+    "title": "リアルタイム分離で動く世界",
+    "pattern": "技術×技術",
+    "seed": "StemgenRTで曲を4トラックに瞬時分離し、ドラムでカメラ、ベースで地形をHY-World 1.5 / WorldPlayの歩ける映像世界に与えたら、DJが街を鳴らして動かせるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "stemgenrt",
+        "title": "StemgenRT",
+        "desc": "曲を再生しながら、ごく短い遅延で4つのパートにリアルタイム分離するプラグイン。"
+      },
+      {
+        "type": "tech",
+        "id": "hy-world-1-5-worldplay",
+        "title": "HY-World 1.5 / WorldPlay",
+        "desc": "1枚の画像やテキストから、操作に反応して歩き回れる映像世界を生成する世界モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-03-7",
+    "date": "2026-10-03",
+    "title": "ASMRを採譜して楽譜化",
+    "pattern": "転用",
+    "seed": "本来は楽曲用のBasic Pitchを、ASMRの囁きや咀嚼音に転用して音程のMIDIにしたら、Weird Sensation Feels Good展のような感覚体験を「演奏できる楽譜」に変えられるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "basic-pitch",
+        "title": "Basic Pitch",
+        "desc": "音楽ファイルから、ピッチベンドまで含めてMIDIファイルへ自動変換するSpotify製の採譜AI。"
+      },
+      {
+        "type": "case",
+        "id": "weird-sensation-feels-good-asmr-2022",
+        "title": "Weird Sensation Feels Good: The World of ASMR",
+        "desc": "ロンドンのデザインミュージアムで開かれた、複数人が同時にASMRを体感できる展示。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-03-8",
+    "date": "2026-10-03",
+    "title": "動画編集AIで舞踏譜を編む",
+    "pattern": "転用",
+    "seed": "MMLVEの複数カット一括編集を、動画でなくDancebook Brasilの舞踏記譜の再構成に転用したら、地域ごとの踊りを同じ人物・同じ視点で見比べる記録ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "mmlve",
+        "title": "MMLVE (Thinking on Shots)",
+        "desc": "複数カットの長尺動画を、人物や背景を保ったまま自然言語の指示で一括編集できるAIエージェント。"
+      },
+      {
+        "type": "case",
+        "id": "bradesco-dancebook-brasil",
+        "title": "Dancebook Brasil",
+        "desc": "ブラジルの踊りを舞踏記譜法で記録し、文化遺産として保存した書籍。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-03-9",
+    "date": "2026-10-03",
+    "title": "ロボ腕を表情の拡声器に",
+    "pattern": "文脈×技術",
+    "seed": "MovemberのMovember: Don't Let an Old Myth…が恐怖の表情で語った誤解を、EmoMimeの手型ウェアラブルアームで増幅したら、検査への本音の不安を身体で見せ会話の入口にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "movember-don-t-let-an-old-myth-put-you-in-this-position-2026",
+        "title": "Movember: Don't Let an Old Myth Put You in This Position",
+        "desc": "前立腺検査への俗説を、恐怖に歪んだ男性の写真で否定し検査行動を促す啓発キャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "emomime",
+        "title": "EmoMime",
+        "desc": "顔のそばでも安全に動く、人の手の形をしたウェアラブルロボットアーム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-03-10",
+    "date": "2026-10-03",
+    "title": "積み木字形を世界モデルで操作",
+    "pattern": "転用",
+    "seed": "TOYPOGRAPHYの組み替えパーツの発想を、Frontstageの動画編集に転用し、文字の部品が積み木のように動くモーションをチャット指示で組み立てられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "toypography-2006",
+        "title": "TOYPOGRAPHY",
+        "desc": "同じパーツの組み替えで欧文とかな漢字を組み立てられる、コクヨの立体レタリング玩具。"
+      },
+      {
+        "type": "tech",
+        "id": "frontstage",
+        "title": "Frontstage",
+        "desc": "ブラウザで動く無料の動画編集ソフトで、AI映像生成とチャット型の自動編集を備える。"
+      }
+    ]
   }
 ]
