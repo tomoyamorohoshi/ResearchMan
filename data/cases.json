@@ -1,5 +1,40 @@
 [
   {
+    "id": "brain-on-bikes-outride-summit-2026",
+    "title": "Brain on Bikes（Outride Summit）",
+    "summary": "固定バイクを漕ぐ参加者の脳波をリアルタイムで個別の生成アートに変換し、脳の健康への自転車の効用をグラフなしで体感させた",
+    "client": "Outride（Specialized Bicycle Components 創設の非営利団体）",
+    "agency": "MC&V",
+    "categories": [
+      "データクリエイティブ",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://campaignbrief.com/how-mcv-turned-live-brain-data-into-generative-art-for-outride/",
+    "thumbnail": "/thumbnails/brain-on-bikes-outride-summit-2026.jpg",
+    "videoId": "",
+    "overview": "Specialized Bicycle Components創設の非営利団体Outrideが、サンフランシスコ・ベイエリアのSpecialized本社で共催したOutride Summit(2026年8月6日)で披露した体験。豪州のクリエイティブAI制作会社MC&Vが制作し、参加者が固定バイクを漕ぐ間の脳波(EEG)をリアルタイムで、その人固有の生成アートへ変換した。",
+    "background": "Outrideは自転車が脳の健康やウェルビーイングに与える効果を研究・啓発している。課題は、複雑な神経科学の研究を専門用語や従来のグラフに頼らず直感的に伝えること、参加者一人ひとりにリアルタイムで反応すること、そして研究への関心を深めるきっかけを作ることだった。制作期間は3週間と短かった。",
+    "execution": "参加者が固定バイクを漕ぐ間の脳活動(EEG)を取得し、「動き・エネルギー・構図・形」という視覚言語に翻訳して、個人ごとに変化し続けるアートを生成した。ライブデータとの意味ある結びつき、視覚的魅力、直感的な操作、イベントでの安定動作の両立が求められた。制作ではバイブコーディングとAIによるビジュアル探索が用いられたと報じられている。",
+    "evaluationImpact": "脳波という不可視のデータを、グラフでなく本人だけの作品という形で返すことで、研究内容を直感的に伝えつつ参加者に持ち帰れる成果物を与えた点が評価できる。同イベントで初披露され、拡張可能なプラットフォームの第1弾と位置づけられている。ただし受賞や定量的な成果は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/Data",
+      "Form/Event",
+      "Theme/Health"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "campaignbrief"
+  },
+  {
     "id": "exposed-even-realities-2026",
     "title": "Exposed（Even Realities）",
     "summary": "カメラ付きスマートグラスで撮られる側の不安を、ジムやトイレ等の広告とシネマティックなマイクロドラマで体感させる、カメラ無しグラスのキャンペーン。",
