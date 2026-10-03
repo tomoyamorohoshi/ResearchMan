@@ -1,1 +1,247 @@
-{"version":1,"statusAsOf":"2026-10-04","items":[]}
+{
+  "version": 1,
+  "statusAsOf": "2026-10-04",
+  "items": [
+    {
+      "id": "2026-maison-hermes-le-forum-ann-veronica-janssens",
+      "slug": "2026-maison-hermes-le-forum-ann-veronica-janssens",
+      "title": "アン・ヴェロニカ・ヤンセンス Tokyo, Ginza 5-chome 4-1",
+      "artists": [
+        "Ann Veronica Janssens"
+      ],
+      "venue": "メゾンエルメス フォーラム",
+      "venueType": "corporate",
+      "prefecture": "東京都",
+      "city": "中央区",
+      "startDate": "2026-09-11",
+      "endDate": "2027-01-11",
+      "status": "ongoing",
+      "admission": "無料",
+      "tags": [
+        "light",
+        "installation",
+        "sound",
+        "sculpture"
+      ],
+      "score": 70,
+      "matchReason": "光・音・人工霧などの知覚/物質を扱う空間インスタレーションの作家による日本初の個展。",
+      "sources": [
+        {
+          "name": "公式",
+          "url": "https://www.hermes.com/jp/ja/content/401713-mgeditopagearticleforumf74/",
+          "kind": "official"
+        },
+        {
+          "name": "seed出所",
+          "url": "https://www.tokyoartbeat.com/events/-/Ann-Veronica-Janssens-5-Chome-4-1-Ginza-Tokyo/52276-C8-D/2026-09-11",
+          "kind": "listing"
+        }
+      ],
+      "link": "https://www.hermes.com/jp/ja/content/401713-mgeditopagearticleforumf74/",
+      "thumbnail": "/thumbnails/exhibition/2026-maison-hermes-le-forum-ann-veronica-janssens.jpg",
+      "addedAt": "2026-10-03T16:22:29.068Z",
+      "origin": "auto",
+      "highlight": false
+    },
+    {
+      "id": "2026-ggg-yoshihisa-tanaka-archive-achieve",
+      "slug": "2026-ggg-yoshihisa-tanaka-archive-achieve",
+      "title": "田中義久 ARCHIVE / ACHIEVE",
+      "artists": [
+        "田中義久"
+      ],
+      "venue": "ギンザ・グラフィック・ギャラリー",
+      "venueType": "corporate",
+      "prefecture": "東京都",
+      "city": "中央区",
+      "startDate": "2026-09-04",
+      "endDate": "2026-10-21",
+      "status": "ongoing",
+      "admission": "無料",
+      "tags": [
+        "graphic_design",
+        "design_archive"
+      ],
+      "score": 45,
+      "matchReason": "資料の保存・分類・展示の仕組みをグラフィックデザインの実践として捉え直すアーカイブ系のデザイン展。田中一光のアーカイブ資料も参照（公式ページ記載）。",
+      "sources": [
+        {
+          "name": "公式",
+          "url": "https://www.dnpfcp.jp/CGI/gallery/schedule/detail.cgi?l=1&t=1&seq=00000861",
+          "kind": "official"
+        },
+        {
+          "name": "seed出所",
+          "url": "https://www.tokyoartbeat.com/events/-/Yoshihisa-Tanaka-Archive-Achieve/1562-CC09/2026-09-04",
+          "kind": "listing"
+        }
+      ],
+      "link": "https://www.dnpfcp.jp/CGI/gallery/schedule/detail.cgi?l=1&t=1&seq=00000861",
+      "thumbnail": "/thumbnails/exhibition/2026-ggg-yoshihisa-tanaka-archive-achieve.jpg",
+      "addedAt": "2026-10-03T16:22:14.921Z",
+      "origin": "auto",
+      "highlight": false
+    },
+    {
+      "id": "2026-watarium-nam-june-paik-jugemu",
+      "slug": "2026-watarium-nam-june-paik-jugemu",
+      "title": "没後20年 ナムジュン・パイク｜じゅげむ展",
+      "artists": [
+        "ナム・ジュン・パイク"
+      ],
+      "venue": "ワタリウム美術館",
+      "venueType": "museum",
+      "prefecture": "東京都",
+      "city": "渋谷区",
+      "startDate": "2026-07-19",
+      "endDate": "2026-11-23",
+      "status": "ongoing",
+      "admission": "UNKNOWN",
+      "tags": [
+        "video_art",
+        "media_art",
+        "retrospective"
+      ],
+      "score": 70,
+      "matchReason": "ビデオ・アート/メディアアートの源流であるナム・ジュン・パイクの没後20年展。",
+      "sources": [
+        {
+          "name": "公式",
+          "url": "http://www.watarium.co.jp/jp/exhibition/202607/",
+          "kind": "official"
+        }
+      ],
+      "link": "http://www.watarium.co.jp/jp/exhibition/202607/",
+      "thumbnail": "/thumbnails/exhibition/2026-watarium-nam-june-paik-jugemu.jpg",
+      "addedAt": "2026-10-03T16:22:13.106Z",
+      "origin": "auto",
+      "highlight": false
+    },
+    {
+      "id": "2026-mot-minami-tada-light",
+      "slug": "2026-mot-minami-tada-light",
+      "title": "多田美波 ― 光、凛と ゆれる",
+      "artists": [
+        "多田美波"
+      ],
+      "venue": "東京都現代美術館",
+      "venueType": "museum",
+      "prefecture": "東京都",
+      "city": "江東区",
+      "startDate": "2026-08-29",
+      "endDate": "2026-12-06",
+      "status": "ongoing",
+      "admission": "一般1600円",
+      "tags": [
+        "light",
+        "sculpture",
+        "retrospective",
+        "design_archive"
+      ],
+      "score": 80,
+      "matchReason": "光の反射・屈折を取り込む造形と「光の造形」と呼ぶ照明作品を含む、没後初の大規模回顧展（公式ページ記載）。",
+      "sources": [
+        {
+          "name": "公式",
+          "url": "https://www.mot-art-museum.jp/exhibitions/Tada-Minami/",
+          "kind": "official"
+        },
+        {
+          "name": "seed出所",
+          "url": "https://www.mot-art-museum.jp/",
+          "kind": "listing"
+        }
+      ],
+      "link": "https://www.mot-art-museum.jp/exhibitions/Tada-Minami/",
+      "thumbnail": "/thumbnails/exhibition/2026-mot-minami-tada-light.jpg",
+      "addedAt": "2026-10-03T16:22:12.252Z",
+      "origin": "auto",
+      "highlight": true
+    },
+    {
+      "id": "2026-karimoku-research-center-machines-of-loving-grace",
+      "slug": "2026-karimoku-research-center-machines-of-loving-grace",
+      "title": "Machines of Loving Grace",
+      "artists": [
+        "真鍋大度",
+        "神山友輔"
+      ],
+      "venue": "KARIMOKU RESEARCH CENTER",
+      "venueType": "corporate",
+      "prefecture": "東京都",
+      "city": "港区",
+      "startDate": "2026-10-17",
+      "endDate": "2026-10-25",
+      "status": "upcoming",
+      "admission": "無料",
+      "tags": [
+        "media_art",
+        "ai_media_art",
+        "kinetic",
+        "installation",
+        "sound"
+      ],
+      "score": 90,
+      "matchReason": "Anthropic主催。真鍋大度（モジュラーシンセと植物の生体電位を使う作品）と神山友輔（光るアームのキネティック・インスタレーション）がClaudeとの協働で制作した新作を展示（公式プレスリリース記載）。",
+      "sources": [
+        {
+          "name": "公式",
+          "url": "https://www.karimoku.co.jp/index.cgi?mode=press_detail&key=166",
+          "kind": "official"
+        },
+        {
+          "name": "seed出所",
+          "url": "https://x.com/ayupys/status/2105985301751693583",
+          "kind": "social"
+        }
+      ],
+      "link": "https://www.karimoku.co.jp/index.cgi?mode=press_detail&key=166",
+      "thumbnail": "/thumbnails/exhibition/2026-karimoku-research-center-machines-of-loving-grace.jpg",
+      "addedAt": "2026-10-03T16:22:12.074Z",
+      "origin": "auto",
+      "highlight": true
+    },
+    {
+      "id": "2026-neort-an-exhibition-of-auto-destructive-art",
+      "slug": "2026-neort-an-exhibition-of-auto-destructive-art",
+      "title": "自己破壊芸術展 / An Exhibition of Auto-Destructive Art",
+      "artists": [
+        "荒川ゼロ一",
+        "exonemo",
+        "久保田晃弘",
+        "0xDEAFBEEF",
+        "0xfff",
+        "Toshi",
+        "Jonah Brucker-Cohen"
+      ],
+      "venue": "NEORT++",
+      "venueType": "alt_space",
+      "prefecture": "東京都",
+      "city": "中央区",
+      "startDate": "2026-10-02",
+      "endDate": "2026-10-18",
+      "status": "ongoing",
+      "admission": "UNKNOWN",
+      "tags": [
+        "generative",
+        "onchain",
+        "media_art",
+        "installation"
+      ],
+      "score": 90,
+      "matchReason": "NEORT++での、ブロックチェーン/計算システムを用いた作品の展覧会。荒川ゼロ一・exonemo・久保田晃弘・0xDEAFBEEF・0xfff・Toshi・Jonah Brucker-Cohenが参加（公式ページ記載）。",
+      "sources": [
+        {
+          "name": "公式",
+          "url": "https://two.neort.io/ja/exhibitions/auto_destructive_art",
+          "kind": "official"
+        }
+      ],
+      "link": "https://two.neort.io/ja/exhibitions/auto_destructive_art",
+      "thumbnail": "/thumbnails/exhibition/2026-neort-an-exhibition-of-auto-destructive-art.jpg",
+      "addedAt": "2026-10-03T16:22:10.775Z",
+      "origin": "auto",
+      "highlight": true
+    }
+  ]
+}

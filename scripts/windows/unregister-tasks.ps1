@@ -1,13 +1,13 @@
 ﻿<#
 .SYNOPSIS
-  scripts\windows\register-tasks.ps1 で登録した ResearchMan の5タスクを削除する
+  scripts\windows\register-tasks.ps1 で登録した ResearchMan の6タスクを削除する
   （ロールバック用）。
 
 .USAGE
   powershell -ExecutionPolicy Bypass -File scripts\windows\unregister-tasks.ps1
 #>
 
-$JobNames = @("autoresearch", "techresearch", "ideaseeds", "tuneup", "watchdog")
+$JobNames = @("autoresearch", "techresearch", "exhibitionresearch", "ideaseeds", "tuneup", "watchdog")
 
 foreach ($job in $JobNames) {
     $taskName = "ResearchMan-$job"
@@ -21,5 +21,5 @@ foreach ($job in $JobNames) {
 }
 
 Write-Host ""
-Write-Host "ResearchMan の5タスクをすべて削除しました。"
+Write-Host "ResearchMan の6タスクをすべて削除しました。"
 Write-Host "ログファイル（%USERPROFILE%\.researchman\logs\）・状態ファイル（.last-*-run.txt）は削除していません。"

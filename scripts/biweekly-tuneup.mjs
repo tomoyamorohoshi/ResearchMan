@@ -28,8 +28,11 @@
  *      RESEARCH_PLAN.md の改訂案を生成
  *   3. Claude CLI 分析パス2「アイデア構造見直し」: idea-tuning.json の改訂案を生成
  *   4. ガードレール（機械検証・スキーマ＋変更量上限）: scripts/lib/tuneup-guardrails.mjs
+ *   4b. Exhibition: お気に入り・intake投稿(2倍重み)・ごみ箱から data/exhibition-profile.json の
+ *      themes.weight / watch / scoring.threshold.add のみ決定論で提案（scripts/lib/tuneup-exhibition.mjs。
+ *      exclusions.hard・collectAll は自動変更禁止）
  *   5. dry-run全通し: 改訂案を一時的に書き込み、ideas:dry / auto-research:tech:dry /
- *      auto-research:cc:dry が正常終了するか確認。失敗なら git checkout で全戻し
+ *      auto-research:cc:dry / auto-research:exhibition:dry が正常終了するか確認。失敗なら git checkout で全戻し
  *   6. 成功時: 設定ファイルを書き込んだ状態で終了（exit 0）。commit/push/verify-deploy/
  *      LINE通知は run-job.mjs 側が担当（既存3ジョブと同じ役割分担）。切り口語彙を更新した場合は
  *      data/idea-angles.json・data/idea-angles-meta.jsonを自らgit addしておき、
@@ -67,7 +70,9 @@ import {
   checkResearchTuningChange,
   checkXRadarQueriesChange,
   checkIdeaTuningChange,
+  checkExhibitionProfileChange,
 } from "./lib/tuneup-guardrails.mjs";
+import { computeExhibitionStats, proposeExhibitionProfile } from "./lib/tuneup-exhibition.mjs";
 import { reinjectDescriptions } from "./lib/reinject-descriptions.mjs";
 import { applyCandidateWithVerification } from "./lib/tuneup-apply.mjs";
 import { buildPass1Prompt, buildPass2Prompt } from "./lib/tuneup-prompts.mjs";
@@ -85,6 +90,8 @@ const ROOT = path.join(__dirname, "..");
 const CASES_PATH = path.join(ROOT, "data/cases.json");
 const TECH_PATH = path.join(ROOT, "data/tech.json");
 const IDEAS_PATH = path.join(ROOT, "data/ideas.json");
+const EXHIBITION_PATH = path.join(ROOT, "data/exhibition.json");
+const EXHIBITION_PROFILE_PATH = path.join(ROOT, "data/exhibition-profile.json");
 const RESEARCH_TUNING_PATH = path.join(ROOT, "data/research-tuning.json");
 const IDEA_TUNING_PATH = path.join(ROOT, "data/idea-tuning.json");
 const XRADAR_QUERIES_PATH = path.join(ROOT, "data/x-radar-queries.json");
@@ -105,7 +112,7 @@ const ANALYSIS_TIMEOUT_MS = 600000;
 // 短すぎて正当な変更をタイムアウトで誤って破棄する方が有害。余裕を持たせて45分とする
 const SUBPIPELINE_TIMEOUT_MS = 2700000;
 
-const TOUCHED_PATHS = [RESEARCH_TUNING_PATH, IDEA_TUNING_PATH, XRADAR_QUERIES_PATH, RESEARCH_PLAN_PATH];
+const TOUCHED_PATHS = [RESEARCH_TUNING_PATH, IDEA_TUNING_PATH, XRADAR_QUERIES_PATH, RESEARCH_PLAN_PATH, EXHIBITION_PROFILE_PATH];
 
 // 外部シグナル（TaskStop/kill等）で中断された場合の保険。--dry-runは「作業ツリーを汚さない」が
 // 契約なので、候補ファイル書き込み後に中断されても復元を試みる（2026-07-08、検証中に
@@ -646,6 +653,14 @@ async function main() {
   const userCaseStats = computeUserCaseStats({ cases });
   const ideaFeedbackStats = computeIdeaFeedbackStats({ likedIds: likedIdeaIds, trashedIds: trashedIdeaIds, ideas, cases, tech });
 
+  // Exhibition: お気に入り(重み1)・intake投稿(重み2)・ごみ箱の分布から、プロファイルの weight/watch/threshold.add を決定論で提案する
+  // （除外ルール exclusions.hard と collectAll はユーザー確定事項のため自動変更禁止。ガードは tuneup-guardrails.mjs）
+  const exhibitionData = await readJson(EXHIBITION_PATH).catch(() => ({ items: [] }));
+  const oldExhibitionProfile = await readJson(EXHIBITION_PROFILE_PATH);
+  const exhibitionStats = computeExhibitionStats({ favIds, trashedIds, items: exhibitionData.items || [] });
+  const nextExhibitionProfile = proposeExhibitionProfile(oldExhibitionProfile, exhibitionStats, exhibitionData.items || []);
+  const exhibitionChanged = JSON.stringify(nextExhibitionProfile) !== JSON.stringify(oldExhibitionProfile);
+
   const oldResearchTuning = await readJson(RESEARCH_TUNING_PATH);
   const oldIdeaTuning = await readJson(IDEA_TUNING_PATH);
   const oldXRadarQueries = await readJson(XRADAR_QUERIES_PATH);
@@ -702,7 +717,8 @@ async function main() {
   const researchCheck = checkResearchTuningChange(oldResearchTuning, pass1.researchTuning);
   const queriesCheck = checkXRadarQueriesChange(oldXRadarQueries, pass1.xRadarQueries);
   const ideaCheck = checkIdeaTuningChange(oldIdeaTuning, pass2.ideaTuning);
-  const guardrailErrors = [...researchCheck.errors, ...queriesCheck.errors, ...ideaCheck.errors];
+  const exhibitionCheck = checkExhibitionProfileChange(oldExhibitionProfile, nextExhibitionProfile);
+  const guardrailErrors = [...researchCheck.errors, ...queriesCheck.errors, ...ideaCheck.errors, ...exhibitionCheck.errors];
   if (guardrailErrors.length) {
     log(`ガードレール違反:\n  ${guardrailErrors.join("\n  ")}`);
     await report(["❌ 分析結果がガードレールに違反したため、変更を破棄しました。", "", ...guardrailErrors.map((e) => `・${e}`)]);
@@ -726,8 +742,9 @@ async function main() {
       await writeJsonFile(IDEA_TUNING_PATH, nextIdeaTuning);
       await writeJsonFile(XRADAR_QUERIES_PATH, pass1.xRadarQueries);
       await fs.writeFile(RESEARCH_PLAN_PATH, pass1.researchPlanMarkdown.trimEnd() + "\n");
+      if (exhibitionChanged) await writeJsonFile(EXHIBITION_PROFILE_PATH, nextExhibitionProfile);
     },
-    verifySteps: ["ideas:dry", "auto-research:tech:dry", "auto-research:cc:dry"].map(
+    verifySteps: ["ideas:dry", "auto-research:tech:dry", "auto-research:cc:dry", "auto-research:exhibition:dry"].map(
       (npmScript) => () => runDrySubpipeline(npmScript)
     ),
     revert: async () => gitCheckoutRevert(TOUCHED_PATHS),
@@ -746,6 +763,7 @@ async function main() {
     `お気に入り: 事例${favStats.favoriteCaseCount}件・技術${favStats.favoriteTechCount}件を分析`,
     `ごみ箱(弱化)${trashStats.trashedCaseCount}件・ユーザー追加(強化)${userCaseStats.userCaseCount}件も分析材料に反映`,
     `アイデア評価: いいね${ideaFeedbackStats.likedIdeaCount}件・ゴミ箱${ideaFeedbackStats.trashedIdeaCount}件も分析材料に反映`,
+    `Exhibition: お気に入り${exhibitionStats.favoriteCount}件・intake投稿${exhibitionStats.intakeCount}件(重み2倍)・ごみ箱${exhibitionStats.trashedCount}件を分析（ごみ箱率${exhibitionStats.trashRate}）。プロファイル${exhibitionChanged ? "を更新（weight/watch/threshold.add）" : "は現状維持"}`,
     `変更: レーン/角度${researchCheck.laneChanges}件・Xクエリ${queriesCheck.queryChanges}件・重み${ideaCheck.weightChanges}件`,
     "",
     "【リサーチ計画】" + (pass1.rationale || "(理由の記載なし)"),

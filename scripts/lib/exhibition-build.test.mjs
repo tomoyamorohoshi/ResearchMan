@@ -309,7 +309,7 @@ test("processCandidates: サムネ取得不可は追加しない（thumbnail-una
 });
 
 test("processCandidates: 1日の追加上限（collectAll 以外 maxAdd）", async () => {
-  const cs = [1, 2, 3].map((n) => mkCand({ title: `展${n}`, officialUrl: `https://other.example/ex/${n}`, score: 70 + n }));
+  const cs = [1, 2, 3].map((n) => mkCand({ title: `展${n}`, officialUrl: `https://other.example/ex/${n}`, sources: [{ name: "TAB", url: `https://www.tokyoartbeat.com/events/-/e${n}`, kind: "listing" }], score: 70 + n }));
   const deps = mkDeps({ fetchHtml: async (u) => {
     const c = cs.find((x) => x.officialUrl === u);
     return { status: 200, body: okPage(c || cs[0]) };
@@ -343,4 +343,15 @@ test("processCandidates: dryRun でも data を返すが saveThumb は呼ばな�
   const r = await processCandidates({ data: emptyData(), candidates: [c], today: TODAY, deps, opts: { dryRun: true } });
   assert.equal(deps.saved.length, 0);
   assert.equal(r.added.length, 1);
+});
+
+test("processCandidates: 同一実行で追加済みの展示は会期差分でも更新しない（ラウンド間の日付揺れ対策）", async () => {
+  const c = mkCand();
+  const deps = mkDeps({ fetchHtml: async () => ({ status: 200, body: `${okPage(c)} 2026年10月13日` }) });
+  const r1 = await processCandidates({ data: emptyData(), candidates: [c], today: TODAY, deps });
+  const addedId = r1.added[0].id;
+  const r2 = await processCandidates({ data: r1.data, candidates: [{ ...c, startDate: "2026-10-13" }], today: TODAY, deps, opts: { protectIds: new Set([addedId]) } });
+  assert.equal(r2.updated.length, 0);
+  assert.equal(r2.skipped[0].reason, "duplicate");
+  assert.equal(r2.data.items[0].startDate, "2026-10-12");
 });

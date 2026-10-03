@@ -38,6 +38,7 @@ import { dedupeCandidates, extractKnownTechIdsFromAuditFailLines } from "./lib/q
 import { isUrlAlive } from "./verify-video.mjs";
 import { dueVerification, readIncidentsSafe, shouldRunToday, readVerifyStateSafe, writeVerifyState } from "./lib/verify-schedule.mjs";
 import { jstDateString } from "./lib/jst-date.mjs";
+import { computeStatus, todayJst } from "./lib/exhibition-status.mjs";
 import { runDeepVerification } from "./lib/studio-verify.mjs";
 import {
   AUDIT_SCRIPTS,
@@ -253,7 +254,7 @@ async function pageIs200(url) {
 const PIPELINE_CONFIG = {
   cc: {
     script: "auto-research-cc.mjs",
-    addPaths: ["data/cases.json", "public/thumbnails", ":(exclude)public/thumbnails/tech"],
+    addPaths: ["data/cases.json", "public/thumbnails", ":(exclude)public/thumbnails/tech", ":(exclude)public/thumbnails/exhibition"],
     commitMessage: () => `Auto research: ${todayStr()} (watchdog recovery)`,
     verifyDeploy: { args: [] },
     notify: { args: [] },
@@ -264,6 +265,13 @@ const PIPELINE_CONFIG = {
     commitMessage: () => `Tech radar: ${todayStr()} (watchdog recovery)`,
     verifyDeploy: { args: ["--skip-pages"], extraScripts: ["verify-tech-pages.mjs"] },
     notify: { args: ["--route", "technology", "--label", "Technology"] },
+  },
+  exhibition: {
+    script: "auto-research-exhibition.mjs",
+    addPaths: ["data/exhibition.json", "public/thumbnails/exhibition"],
+    commitMessage: () => `Exhibition radar: ${todayStr()} (watchdog recovery)`,
+    verifyDeploy: { args: ["--skip-pages"], extraScripts: ["verify-exhibition-pages.mjs"] },
+    notify: { args: ["--summary", path.join(os.tmpdir(), "researchman-exhibition-last-add.json"), "--route", "exhibition", "--label", "Exhibition"] },
   },
   ideas: {
     script: "generate-idea-seeds.mjs",
@@ -333,6 +341,7 @@ function attemptPipelineRecovery(jobKey) {
 const JOB_STATE_FILES = [
   { file: ".last-research-run.txt", label: "Case Study収集", launchdLabel: "com.researchman.autoresearch", jobKey: "cc" },
   { file: ".last-tech-research-run.txt", label: "Technology収集", launchdLabel: "com.researchman.techresearch", jobKey: "tech" },
+  { file: ".last-exhibition-research-run.txt", label: "Exhibition収集", launchdLabel: "com.researchman.exhibitionresearch", jobKey: "exhibition" },
   { file: ".last-idea-seeds-run.txt", label: "IdeaSeeds生成", launchdLabel: "com.researchman.ideaseeds", jobKey: "ideas" },
 ];
 
@@ -427,7 +436,7 @@ async function checkThumbnails(report) {
     log(`[thumb] Case Study: ${caseFailures.length}件失敗`);
     const heal = spawnSync("node", ["scripts/self-heal-thumbnails.mjs"], { cwd: ROOT, encoding: "utf-8", timeout: 20 * 60 * 1000 });
     const commitResult = gitSafeCommitAndPush({
-      addPaths: ["data/cases.json", "public/thumbnails", ":(exclude)public/thumbnails/tech"],
+      addPaths: ["data/cases.json", "public/thumbnails", ":(exclude)public/thumbnails/tech", ":(exclude)public/thumbnails/exhibition"],
       commitMessage: "fix: self-heal thumbnails (watchdog)",
       cwd: ROOT,
     });
@@ -456,6 +465,28 @@ async function checkThumbnails(report) {
       ].join("\n")
     );
   }
+
+  // Exhibition: 一覧に表示対象（ended以外）が1件も無いと <img> が無く「対象img srcが見つからない」を誤検知するため、
+  // 表示対象があるときだけ検査する。自動修復スクリプトは無いので通知のみ。
+  let hasVisibleExhibition = false;
+  try {
+    const exh = JSON.parse(fs.readFileSync(path.join(ROOT, "data/exhibition.json"), "utf-8"));
+    const today = todayJst();
+    hasVisibleExhibition = (exh.items || []).some((i) => !i.quarantined && computeStatus(i.startDate, i.endDate, today) !== "ended");
+  } catch {}
+  if (hasVisibleExhibition) {
+    const exhFailures = await checkThumbnailsOnPage(`${SITE}/exhibition`, { sampleCount: 4 }).catch((e) => [{ reason: `例外: ${e.message}` }]);
+    if (exhFailures.length) {
+      log(`[thumb] Exhibition: ${exhFailures.length}件失敗`);
+      report.push(
+        [
+          `🖼 Exhibitionサムネイル異常を検知（${exhFailures.length}件、ページ実URLで検査）`,
+          ...exhFailures.slice(0, 5).map((f) => `  - ${f.src || "(取得不可)"}: ${f.reason}`),
+          "Exhibition用の自動修復スクリプトは存在しないため自動修復はしていません（要手動確認）。",
+        ].join("\n")
+      );
+    }
+  }
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -464,6 +495,7 @@ async function checkThumbnails(report) {
 const LOG_JOBS = [
   { jobKey: "cc", label: "Case Study収集", logPath: defaultLogPath("auto") },
   { jobKey: "tech", label: "Technology収集", logPath: defaultLogPath("tech") },
+  { jobKey: "exhibition", label: "Exhibition収集", logPath: defaultLogPath("exhibition") },
   { jobKey: "ideas", label: "IdeaSeeds生成", logPath: defaultLogPath("ideas") },
 ];
 
@@ -562,6 +594,18 @@ async function runDeepAudit(report, priorEventCount) {
     techAuditFailLines = (techAuditRun.stdout || "").split("\n").filter((l) => l.startsWith("✗"));
   } catch (e) {
     log(`[deep] audit-tech実行に失敗: ${e.message}`);
+  }
+
+  // Exhibition監査（ネットワークなし・決定論）。FAIL行は件数のみサマリーに載せ、全文は通知に含める
+  let exhibitionAuditFailLines = [];
+  try {
+    const exhAuditRun = spawnSync("node", ["scripts/audit-exhibition.mjs"], { cwd: ROOT, encoding: "utf-8", timeout: 5 * 60 * 1000 });
+    exhibitionAuditFailLines = (exhAuditRun.stdout || "").split("\n").filter((l) => l.startsWith("✗"));
+  } catch (e) {
+    log(`[deep] audit-exhibition実行に失敗: ${e.message}`);
+  }
+  if (exhibitionAuditFailLines.length) {
+    report.push(["🚨 audit-exhibition.mjs がFAILしています（push滞留の原因になります）", ...exhibitionAuditFailLines.slice(0, 8)].join("\n"));
   }
 
   // tech links死活の標本再検査（30件・死んでいたものは直列でダブルチェック）
@@ -698,7 +742,7 @@ async function runDeepAudit(report, priorEventCount) {
     "📊 ResearchMan 今週のヘルスサマリー（日曜deep監査）",
     "",
     `監査対象: 事例${cases.length || "?"}件・技術${tech.length || "?"}件・techリンク標本${Math.min(30, tech.length || 0)}件`,
-    `検出した問題: 事例監査${integrityIssues.length}件（${summarizeByKind(integrityIssues)}）・tech監査FAIL${techAuditFailLines.length}件・tech links死活NG${deadTechLinks.length}件`,
+    `検出した問題: 事例監査${integrityIssues.length}件（${summarizeByKind(integrityIssues)}）・tech監査FAIL${techAuditFailLines.length}件・exhibition監査FAIL${exhibitionAuditFailLines.length}件・tech links死活NG${deadTechLinks.length}件`,
     `うち自動隔離しない低確度種別（videoId-mismatch/thumbnail-dup）: ${lowConfidenceCount}件`,
     `今回隔離: ${toQuarantine.length}件${deferred > 0 ? `（他${deferred}件は次回）` : ""}`,
     `サムネイル正規化: ${normalizeTargetCount}件`,
@@ -741,12 +785,12 @@ async function checkStudioVerifySchedule(report) {
 // ─────────────────────────────────────────────────────────────
 // 6. 未pushコミットの滞留検知（2026-07-31〜08-08 8日間pushブロック事故の再発防止）
 // ─────────────────────────────────────────────────────────────
-// ジョブは毎回commitまでは成功するが、.git/hooks/pre-push の4監査
+// ジョブは毎回commitまでは成功するが、.git/hooks/pre-push の5監査
 // （audit-cannes / audit-thumbnails / audit-tech / check-idea-layouts-freshness）の
 // いずれかが壊れるとpushだけが延々失敗し続け、既存watchdog（サイトの200応答のみ確認）は
 // 「古い内容配信中」を正常と誤判定して気づけなかった。ここでは未pushコミットの存在
-// そのものを検知し、原因（4監査のどれが何故落ちたか）を特定する:
-//   - 4監査すべて通過 → push詰まりの可能性が高いためpushを1回だけ再試行する
+// そのものを検知し、原因（5監査のどれが何故落ちたか）を特定する:
+//   - 5監査すべて通過 → push詰まりの可能性が高いためpushを1回だけ再試行する
 //   - いずれか失敗 → pushは試みず、logs/incidents.jsonに記録し、対処ヒント付きで通知する
 // 同一失敗理由の通知はlogs/unpushed-notify-state.jsonで1日1回に抑制する
 // （unpushedReasonKey/shouldNotifyUnpushed、理由が変わるか日付が変われば再通知可）。
@@ -769,7 +813,7 @@ async function checkUnpushedCommits(report) {
   const unpushedCount = Number.parseInt(countRun.stdout.trim(), 10);
   if (!Number.isFinite(unpushedCount) || unpushedCount <= 0) return; // 0件なら何もしない
 
-  log(`[unpushed] 未pushコミット${unpushedCount}件を検知 → 4監査を順に実行します`);
+  log(`[unpushed] 未pushコミット${unpushedCount}件を検知 → 5監査を順に実行します`);
 
   const oldestRun = git(["log", "origin/main..main", "--reverse", "--format=%cI", "-1"]);
   const oldestCommitAt = oldestRun.status === 0 ? oldestRun.stdout.trim() : null;
@@ -797,7 +841,7 @@ async function checkUnpushedCommits(report) {
 
   let pushResult = null;
   if (audit.allPassed) {
-    log("[unpushed] 4監査すべて通過 → pushを1回だけ再試行します");
+    log("[unpushed] 5監査すべて通過 → pushを1回だけ再試行します");
     pushResult = pushOnce(ROOT);
   } else {
     log(`[unpushed] 監査失敗を検知: ${audit.failedScript}`);

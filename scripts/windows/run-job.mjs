@@ -8,7 +8,7 @@
  * そのまま動くようにするため）。
  *
  * 使い方: node scripts/windows/run-job.mjs <job>
- *   <job> … autoresearch | techresearch | ideaseeds | tuneup | watchdog
+ *   <job> … autoresearch | techresearch | exhibitionresearch | ideaseeds | tuneup | watchdog
  *
  * ログ: %USERPROFILE%\.researchman\logs\researchman-<short>.log
  *   short: autoresearch→auto, techresearch→tech, ideaseeds→ideas, tuneup→tuneup,
@@ -34,6 +34,7 @@ import { spawnSync, execFileSync } from "child_process";
 import { fileURLToPath } from "url";
 import { isMainBranch, parseCurrentBranch } from "../lib/branch-guard.mjs";
 import { tryAcquire as tryAcquireGitLock, releaseOwnedLock } from "../lib/git-lock.mjs";
+import { decideExhibitionNotify } from "../lib/exhibition-notify.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..", ".."); // scripts/windows -> repo root
@@ -46,6 +47,7 @@ const JOB = process.argv[2];
 const JOB_TABLE = {
   autoresearch: { shortName: "auto" },
   techresearch: { shortName: "tech" },
+  exhibitionresearch: { shortName: "exhibition" },
   ideaseeds: { shortName: "ideas" },
   tuneup: { shortName: "tuneup" },
   watchdog: { shortName: "watchdog" },
@@ -201,7 +203,7 @@ async function runAutoresearch() {
     const heal = runNode("scripts/self-heal-thumbnails.mjs");
     if (heal.status !== 0) log(`self-heal失敗（続行）: ${unixDateString()}`);
 
-    runGit(["add", "--", "data/cases.json", "public/thumbnails", ":(exclude)public/thumbnails/tech"]);
+    runGit(["add", "--", "data/cases.json", "public/thumbnails", ":(exclude)public/thumbnails/tech", ":(exclude)public/thumbnails/exhibition"]);
     if (gitDiffCachedIsEmpty()) {
       log(`変更なし（新規事例なし）: ${unixDateString()}`);
       runNode("scripts/notify-line.mjs", ["--priority", "routine"]);
@@ -284,6 +286,68 @@ async function runTechresearch() {
   }
 }
 
+// Exhibition: runTechresearch() の複製。差分は state ファイル・実行スクリプト・--route exhibition・git add 対象・
+// verify-exhibition-pages.mjs・通知 priority（70点以上=routine、80点以上(highlight)を含む回のみ critical。decideExhibitionNotify）。
+// 10:30 起点・毎正時30分に発火する（10:00 の既存3ジョブとのロック待ち集中を避ける。register-tasks.ps1 参照）
+async function runExhibitionresearch() {
+  const STATE = ".last-exhibition-research-run.txt";
+  const due = runNode("scripts/run-if-due.mjs", ["--state", STATE, "--daily-at", "10", "--minute", "30"]);
+  if (due.status !== 0) return;
+
+  if (!(await acquireLock(30 * 60 * 1000))) {
+    log(`ロック取得タイムアウト: ${unixDateString()}`);
+    return;
+  }
+  try {
+    log(`===== Exhibition run start: ${unixDateString()} =====`);
+    const exh = runNode("scripts/auto-research-exhibition.mjs");
+    const summaryPath = path.join(os.tmpdir(), "researchman-exhibition-last-add.json");
+    const summaryArgs = ["--summary", summaryPath, "--route", "exhibition", "--label", "Exhibition"];
+    if (exh.status !== 0) {
+      log(`収集エラー終了: ${unixDateString()}`);
+      runNode("scripts/run-if-due.mjs", ["--state", STATE, "--mark"]);
+      runNode("scripts/notify-line.mjs", ["--result", "error", "--route", "exhibition", "--label", "Exhibition"]);
+      return;
+    }
+    // 通知方針をサマリーから決める（読めなければ 0件扱い＝routine）
+    let summary = { count: 0, cases: [] };
+    try {
+      summary = JSON.parse(fs.readFileSync(summaryPath, "utf-8"));
+    } catch {}
+    const notify = decideExhibitionNotify(summary);
+    const notifyOk = () => {
+      if (notify.send) runNode("scripts/notify-line.mjs", [...summaryArgs, "--priority", notify.priority]);
+      else log(`通知スキップ: ${notify.reason}`);
+    };
+    runGit(["add", "data/exhibition.json", "public/thumbnails/exhibition/"]);
+    if (gitDiffCachedIsEmpty()) {
+      log(`変更なし（新規展覧会なし）: ${unixDateString()}`);
+      notifyOk();
+    } else {
+      runGit(["commit", "-m", `Exhibition radar: ${todayYmd()}`]);
+      const push = runGit(["push"]);
+      if (push.status === 0) {
+        // verify-deployが失敗したらverify-exhibition-pagesは実行しない（Tech と同じ短絡評価）
+        const verifyDeploy = runNode("scripts/verify-deploy.mjs", ["--skip-pages"]);
+        const verifyPages = verifyDeploy.status === 0 ? runNode("scripts/verify-exhibition-pages.mjs") : verifyDeploy;
+        if (verifyDeploy.status === 0 && verifyPages.status === 0) {
+          log(`反映まで確認OK: ${unixDateString()}`);
+          notifyOk();
+        } else {
+          log(`push成功だが反映未確認（時間切れ）: ${unixDateString()}`);
+          runNode("scripts/notify-line.mjs", ["--result", "unverified", ...summaryArgs]);
+        }
+      } else {
+        log(`push失敗（pre-push監査で中止の可能性）。コミットはローカル残存。要手動対応: ${unixDateString()}`);
+        runNode("scripts/notify-line.mjs", ["--result", "pushfail", ...summaryArgs]);
+      }
+    }
+    log(`Exhibition completed: ${unixDateString()}`);
+  } finally {
+    releaseLock();
+  }
+}
+
 async function runIdeaseeds() {
   const due = runNode("scripts/run-if-due.mjs", ["--state", ".last-idea-seeds-run.txt", "--daily-at", "10"]);
   if (due.status !== 0) return;
@@ -347,7 +411,7 @@ async function runTuneup() {
     const reportArgs = ["--text-file", path.join(os.tmpdir(), "researchman-tuneup-report.txt")];
     const tuneup = runNode("scripts/biweekly-tuneup.mjs");
     if (tuneup.status === 0) {
-      runGit(["add", "data/research-tuning.json", "data/idea-tuning.json", "data/x-radar-queries.json", "RESEARCH_PLAN.md"]);
+      runGit(["add", "data/research-tuning.json", "data/idea-tuning.json", "data/x-radar-queries.json", "RESEARCH_PLAN.md", "data/exhibition-profile.json"]);
       if (gitDiffCachedIsEmpty()) {
         log(`変更なし（分析結果は現状維持 or スキップ）: ${unixDateString()}`);
         runNode("scripts/notify-line.mjs", [...reportArgs, "--priority", "routine"]);
@@ -439,6 +503,9 @@ async function main() {
         break;
       case "techresearch":
         await runTechresearch();
+        break;
+      case "exhibitionresearch":
+        await runExhibitionresearch();
         break;
       case "ideaseeds":
         await runIdeaseeds();
