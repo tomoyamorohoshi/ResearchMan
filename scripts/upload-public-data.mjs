@@ -9,6 +9,7 @@
 //   既定は「前回成功時とハッシュが違うファイルだけ」上げる（状態: ~/.researchman-data-upload-state.json）。
 //   pre-pushフックから毎回呼ばれる（変更が無ければハッシュ比較だけで即終了）。失敗時はexit 1。
 import fs from "fs";
+import { execFileSync } from "child_process";
 import os from "os";
 import path from "path";
 import zlib from "zlib";
@@ -23,6 +24,7 @@ import {
   UPLOAD_STATE_FILENAME,
   withTimeout,
 } from "./lib/public-data.mjs";
+import { readLocalLayoutsInputHash } from "./lib/idea-layouts-local.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = path.join(__dirname, "..", "data");
@@ -44,14 +46,31 @@ function readJsonSafe(p) {
   }
 }
 
+// idea-layouts.json は git 非追跡。ローカル本体が存在し、かつ inputHash がHEADのmanifestと一致する
+// 場合だけ送る（古い/別の本体をBlobへ上げて本番レイアウトを壊さない）。cases/ideas は常に対象
+function ideaLayoutsUploadable() {
+  try {
+    const manifest = JSON.parse(
+      execFileSync("git", ["show", "HEAD:data/idea-layouts.manifest.json"], { cwd: path.join(__dirname, ".."), encoding: "utf-8" }),
+    );
+    const bodyHash = readLocalLayoutsInputHash(path.join(DATA_DIR, "idea-layouts.json"));
+    if (bodyHash === manifest.inputHash) return true;
+    console.warn("[upload-public-data] 警告: ローカルのidea-layouts.jsonがHEADのmanifestと不一致のため、このファイルはアップロードしません");
+  } catch (e) {
+    console.warn(`[upload-public-data] 警告: idea-layouts.jsonを検証できないためアップロードしません: ${e instanceof Error ? e.message : e}`);
+  }
+  return false;
+}
+
+const uploadNames = PUBLIC_DATA_FILES.filter((n) => n !== "idea-layouts.json" || ideaLayoutsUploadable());
 const texts = {};
-for (const name of PUBLIC_DATA_FILES) {
+for (const name of uploadNames) {
   texts[name] = buildPublicDataText(name, fs.readFileSync(path.join(DATA_DIR, name), "utf8"));
 }
-const hashes = Object.fromEntries(PUBLIC_DATA_FILES.map((n) => [n, sha256Text(texts[n])]));
+const hashes = Object.fromEntries(uploadNames.map((n) => [n, sha256Text(texts[n])]));
 
 const state = readJsonSafe(STATE_PATH) ?? {};
-const targets = filesNeedingUpload(hashes, state, { force });
+const targets = filesNeedingUpload(hashes, state, { force }).filter((n) => n in texts);
 if (targets.length === 0) {
   console.log("[upload-public-data] 変更なし（前回アップロード済みと同一）");
   process.exit(0);

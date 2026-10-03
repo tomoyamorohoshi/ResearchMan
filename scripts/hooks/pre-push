@@ -8,6 +8,8 @@ echo "[pre-push] Running thumbnail health audit..."
 node scripts/audit-thumbnails.mjs || { echo "[pre-push] サムネ監査失敗：プレースホルダ/重複があります。push を中止しました。"; exit 1; }
 echo "[pre-push] Running Technology integrity audit..."
 node scripts/audit-tech.mjs || { echo "[pre-push] Technology監査失敗：フィールド/語彙/サムネイルに問題があります。push を中止しました。"; exit 1; }
+# 鮮度検査: manifest(コミット対象)==HEADのideas.json、かつ（ideas.json/manifestを変えるpushでは）ローカルの
+# idea-layouts.json本体(git非追跡)==manifest。本体がBlobへ送られる前提の保証
 echo "[pre-push] Running idea-layouts freshness check..."
 node scripts/check-idea-layouts-freshness.mjs || { echo "[pre-push] idea-layouts鮮度検査失敗：push を中止しました。"; exit 1; }
 # 巨大データJSON(cases/ideas/idea-layouts)をVercel Blobへ同期（Deployment Storage肥大の対策）。

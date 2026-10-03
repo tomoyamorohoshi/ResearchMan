@@ -17,7 +17,7 @@
  * 作業ツリーを戻す。committed=true以降は一切ロールバックしない
  * （rollbackIfNotCommittedはcaseResearch.tsのものをそのまま再利用。判定ロジックはタブに依存しない）。
  */
-import { readFile, writeFile } from "node:fs/promises";
+import { copyFile, readFile, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -28,6 +28,7 @@ import {
   gitCommit,
   gitPush,
   gitRevParseHead,
+  IDEA_LAYOUTS_BACKUP_REL,
   rollbackTouchedFiles,
   runBuild,
   runIdeaLayoutsPrecompute,
@@ -594,6 +595,12 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
     await writeJsonAtomic(IDEAS_JSON_PATH, updatedIdeas);
     trackedTouched.push("data/ideas.json");
 
+    // 本体(非追跡)は git restore で戻らないため、再計算前に退避する。ロールバック時は
+    // rollbackTouchedFiles が復元し、commit成功時は下で削除する（HEADのmanifestと本体の整合維持）
+    await copyFile(path.join(ROOT, "data/idea-layouts.json"), path.join(ROOT, IDEA_LAYOUTS_BACKUP_REL)).catch((e: NodeJS.ErrnoException) => {
+      if (e.code !== "ENOENT") throw e; // 本体が無い環境では退避不要
+    });
+
     const precomputeResult = await runIdeaLayoutsPrecompute(ROOT);
     if (!precomputeResult.ok) {
       await rollbackTouchedFiles(ROOT, trackedTouched, newUntracked);
@@ -632,6 +639,7 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
     // commit成功。以降は何が起きてもロールバックしない。
     committed = true;
     commitHash = await gitRevParseHead(ROOT);
+    await rm(path.join(ROOT, IDEA_LAYOUTS_BACKUP_REL), { force: true }); // 新本体=新manifestで確定。退避は不要
 
     const pushResult = await gitPush(ROOT);
     if (!pushResult.ok) {

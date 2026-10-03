@@ -8,7 +8,7 @@
  * ただし run() 自体の非ブロッキング性（P4 #1）は audit.test.ts で検証する。
  */
 import { spawn } from "node:child_process";
-import { rm } from "node:fs/promises";
+import { rename, rm } from "node:fs/promises";
 import path from "node:path";
 
 export interface CommandResult {
@@ -196,6 +196,11 @@ async function isTrackedAtHead(cwd: string, relPath: string): Promise<boolean> {
  * - 今回新規生成したファイル（サムネイル等）は削除する。
  * DESIGN.md §5: 「失敗時は commit 前に停止・作業ツリーを戻し」。
  */
+// idea-layouts.json本体は非追跡（HEADで復元されるのはmanifestだけ）のため、再計算前に退避した
+// バックアップをロールバック時に本体へ戻す（戻さないとHEADのmanifestと本体が食い違いpre-pushが止まる）。
+export const IDEA_LAYOUTS_BACKUP_REL = "data/.idea-layouts.json.bak";
+const IDEA_LAYOUTS_BODY_REL = "data/idea-layouts.json";
+
 export async function rollbackTouchedFiles(
   cwd: string,
   trackedPaths: string[],
@@ -228,6 +233,16 @@ export async function rollbackTouchedFiles(
       }
     }),
   );
+
+  // 退避済みのidea-layouts.json本体があれば原子的renameで戻す（precomputeが本体を書いた後
+  // manifest書き込み前に失敗した場合も、旧本体=HEADのmanifestと整合する状態へ復元される）
+  try {
+    await rename(path.join(cwd, IDEA_LAYOUTS_BACKUP_REL), path.join(cwd, IDEA_LAYOUTS_BODY_REL));
+  } catch (e) {
+    if ((e as NodeJS.ErrnoException).code !== "ENOENT") {
+      console.error(`[studio] rollbackTouchedFiles: idea-layouts.json本体の復元に失敗しました: ${String(e).slice(0, 300)}`);
+    }
+  }
 }
 
 // ── デプロイ確認・通知（既存スクリプトをそのまま呼ぶ） ─────────────

@@ -78,7 +78,7 @@ Mac常駐のローカルアプリ。**2タブ（Research / idea）× 3画面（�
   - Research(テーマ系): `link-checker`（URL死活）＋ `award-verifier`（受賞レベル/部門/年の一次ソース照合）
     ＋ `audit-thumbnails`/`audit-integrity`（Case）or `audit-tech`（Tech）＋ tsc/lint/build。
     ※デイリーCaseの `audit-cannes`（正解リスト網羅）はテーマ系には適用しない（対象が開いているため）。
-  - idea: `precompute-idea-layouts` 実行＋`ideas.json`と`idea-layouts.json`の**ペアコミット**
+  - idea: `precompute-idea-layouts` 実行＋`ideas.json`と`idea-layouts.manifest.json`の**ペアコミット**（本体は非追跡）
     （pre-push鮮度検査に整合。片方欠けは拒否）。
 - 失敗時は commit 前に停止・作業ツリーを戻し、LINEにエラー通知（デイリーの `--result error` と同流儀）。
 
@@ -102,7 +102,7 @@ Studioから起動 → `audit-tech` → commit/push → verify → LINE
    各案は ideas.json 準拠の `{title, pattern(切り口), seed(概要・「〜かも」), refs(CASE/TECH)}` を
    整備（title・seed はマスト、refs はあれば）。
 3. `ideas.json` 追記（切り口=既存 `pattern` フィールドを利用）→ `precompute-idea-layouts.mjs` →
-   `ideas.json`＋`idea-layouts.json` **ペアコミット** → verify → LINE。
+   `ideas.json`＋`idea-layouts.manifest.json` **ペアコミット**（本体は非追跡） → verify → LINE。
 - 生成中核（サンプリング重み・混合比・切り口ライブラリ）はデイリーIdeasと共有し、隔週ブラッシュアップが
   両方に効く（二重メンテを避ける）。
 

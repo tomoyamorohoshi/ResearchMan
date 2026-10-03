@@ -25,7 +25,7 @@ RMのアイデア生成は**2系統**ある。同じ `data/ideas.json` / `data/i
    - refsは**プロンプトで提示した実在idのみ**（ハルシネーションid排除）
    - 通過0件なら失敗
 8. **採点→改稿→再検証**（ヤング⑤相当。質の批評→育成。2026-07-16追加）— 機械検証を通過した案全件をSonnet1回でbatch採点（discovery/surprise/conviction各1〜5、15点満点）。合計が改稿閾値(11点)未満の案はSonnet1回でbatch改稿（切り口は変更禁止。指摘note付き）→ **改稿後も機械検証を必ず再通過**させる（通過しなければ破棄）→ 再採点し、破棄閾値(8点)未満なら破棄。採点・改稿の呼び出し自体が失敗した場合はenhancer方針で「無採点のまま元の案を通す」。count未達（採点・改稿を経ても依頼数に届かない）は警告付きで続行、全滅（1件も残らない）なら失敗
-9. **反映** — ideas.json追記 → レイアウト事前計算（`precompute-idea-layouts.mjs`。3ティア分のシェイプ・配置を計算。Vercelビルド凍結事故の教訓でビルド外に分離。2026-07-15に高速化・rename堅牢化済み）→ next build監査 → ideas.json+idea-layouts.jsonを**必ずペアで**commit/push（pre-pushの鮮度検査が入力ハッシュ一致を強制）→ /ideasに新規id全件が出るまでポーリング → LINE通知
+9. **反映** — ideas.json追記 → レイアウト事前計算（`precompute-idea-layouts.mjs`。3ティア分のシェイプ・配置を計算。Vercelビルド凍結事故の教訓でビルド外に分離。2026-07-15に高速化・rename堅牢化済み）→ next build監査 → ideas.json+idea-layouts.manifest.json（本体idea-layouts.jsonはgit非追跡）を**必ずペアで**commit/push（pre-pushの鮮度検査が入力ハッシュ一致を強制）→ /ideasに新規id全件が出るまでポーリング → LINE通知
 
 ## B. デイリー「アイデアの種」の流れ
 

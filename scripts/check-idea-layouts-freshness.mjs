@@ -13,11 +13,11 @@
 // 重要: (a)の検査対象は**作業ツリーではなくHEAD（=pushされる中身）**。作業ツリーを読むと
 // 「ディスク上は更新済みだが、コミットには ideas.json しか入っていない」ケース
 // （launchdラッパーの add 漏れ等）を素通しする（2026-07-08レビューで実際に検出した経路）。
-import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { computeIdeaLayoutsInputHash } from "./lib/idea-layouts-hash.mjs";
+import { decideLocalBodyCheck, readLocalLayoutsInputHash } from "./lib/idea-layouts-local.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
@@ -30,19 +30,21 @@ function readFromHead(repoRelPath) {
   });
 }
 
-/** ローカル本体の inputHash。先頭数KBに出力される（precomputeが最初のキーに書く）ので全体パースを避ける */
-function readLocalLayoutsInputHash(filePath) {
-  const fd = fs.openSync(filePath, "r");
+/**
+ * 今回のpushが ideas.json か manifest を変えるか（origin/main との差分）。
+ * origin/main が無い・diffが失敗した場合は安全側（変更あり=厳格）に倒す。
+ * （pre-pushフックはstdinのrefsをこのスクリプトへ渡していないため origin/main 比較を使う）
+ */
+function pushChangesLayoutInputs() {
   try {
-    const buf = Buffer.alloc(4096);
-    const n = fs.readSync(fd, buf, 0, buf.length, 0);
-    const m = buf.toString("utf-8", 0, n).match(/"inputHash"\s*:\s*"([0-9a-f]+)"/);
-    if (m) return m[1];
-  } finally {
-    fs.closeSync(fd);
+    execFileSync("git", ["diff", "--quiet", "origin/main", "HEAD", "--", "data/ideas.json", "data/idea-layouts.manifest.json"], {
+      cwd: ROOT,
+      stdio: "ignore",
+    });
+    return false; // exit 0 = 差分なし
+  } catch {
+    return true; // exit 1 = 差分あり / それ以外のエラー(origin/main欠落等)も変更扱い
   }
-  // 想定外のキー順の場合だけ全体をパース
-  return JSON.parse(fs.readFileSync(filePath, "utf-8")).inputHash;
 }
 
 const REGEN_HINT =
@@ -72,22 +74,27 @@ async function main() {
   }
 
   const localPath = path.join(ROOT, "data/idea-layouts.json");
-  let localHash;
+  let localHash = null;
+  let readError = null;
   try {
     localHash = readLocalLayoutsInputHash(localPath);
   } catch (e) {
-    console.error(`[idea-layouts鮮度検査] ローカルのdata/idea-layouts.json が読めません（非追跡のため消えていれば再生成が必要）: ${e.message}`);
-    console.error(REGEN_HINT);
-    process.exit(1);
+    readError = e;
   }
-  if (localHash !== manifest.inputHash) {
-    console.error(
-      "[idea-layouts鮮度検査] ローカルのdata/idea-layouts.json がmanifestと一致しません（古い本体をBlobへアップロードしようとしています）。",
-    );
-    console.error(`  manifestハッシュ = ${manifest.inputHash}`);
-    console.error(`  ローカル記録ハッシュ = ${localHash}`);
-    console.error(REGEN_HINT);
-    process.exit(1);
+  const changed = pushChangesLayoutInputs();
+  const verdict = decideLocalBodyCheck({ changed, bodyHash: localHash, manifestHash: manifest.inputHash });
+  if (verdict !== "ok") {
+    const detail = readError
+      ? `ローカルのdata/idea-layouts.json が読めません（非追跡のため消えていれば再生成が必要）: ${readError.message}`
+      : `ローカルのdata/idea-layouts.json がmanifestと一致しません（古い本体をBlobへアップロードしようとしています）。\n  manifestハッシュ = ${manifest.inputHash}\n  ローカル記録ハッシュ = ${localHash}`;
+    if (verdict === "fail") {
+      console.error(`[idea-layouts鮮度検査] ${detail}`);
+      console.error(REGEN_HINT);
+      process.exit(1);
+    }
+    // 今回のpushはideas.json/manifestを変えない（別マシン・無関係なpush）: 本体が無くても止めない。
+    // Blobへの本体アップロードはupload-public-data.mjs側が一致時のみ行う
+    console.warn(`[idea-layouts鮮度検査] 警告（このpushはideas.json/manifestを変更しないため通過）: ${detail}`);
   }
 
   console.log(

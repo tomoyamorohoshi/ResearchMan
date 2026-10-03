@@ -809,3 +809,5 @@ pre-pushの4監査は瀬戸内データに対しても素通りではなく、�
   staleロック奪取・ログローテ・未使用スクリプト19本のアーカイブ
 - 大きな判断材料はセッションメモリ（`~/.claude/projects/.../memory/`）にもある。特に
   `radar-curation`（キュレーション方針）と `node-http-destroy-bug`（settle パターンの経緯）
+
+- `data/idea-layouts.json`（68MB）は2026-10-04からgit非追跡。ideas.jsonとペアでコミットするのは鮮度証明の`data/idea-layouts.manifest.json`（pre-pushが本体==manifestを検査し、本体はBlobへ配信）

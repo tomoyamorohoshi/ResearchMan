@@ -35,7 +35,14 @@ if (process.env.VERCEL && process.env.BLOB_STORE_ID) {
 
 // cases.json: src/lib/cases.ts の現行フィルタ（quarantined===trueを除外）と同じロジック（lib側に集約）
 for (const name of PUBLIC_DATA_FILES) {
-  const raw = fs.readFileSync(path.join(DATA_DIR, name), "utf8");
+  const srcPath = path.join(DATA_DIR, name);
+  // idea-layouts.json は git 非追跡。無い環境（クローン直後等）ではスキップ（クライアントは
+  // /api/public-data → /data/ の順にfetchし、無ければ縮退表示する）
+  if (name === "idea-layouts.json" && !fs.existsSync(srcPath)) {
+    console.warn(`⚠ ${name}: ${srcPath} が無いためコピーをスキップ（npx tsx scripts/precompute-idea-layouts.mjs で生成可能）`);
+    continue;
+  }
+  const raw = fs.readFileSync(srcPath, "utf8");
   writeJson(name, buildPublicDataText(name, raw));
 }
 
