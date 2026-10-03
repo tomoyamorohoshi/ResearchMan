@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.researchman.exhibitionresearch</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/zsh</string>
+    <string>-c</string>
+    <string>
+      export PATH="$HOME/.local/bin:/usr/local/bin:/opt/homebrew/bin:$PATH";
+      cd /Users/tm/Projects/Claude/ResearchMan;
+      LOG=$HOME/Library/Logs/researchman-exhibition.log;
+      [ -f $LOG ] &amp;&amp; [ $(stat -f%z $LOG) -gt 5242880 ] &amp;&amp; mv $LOG $LOG.1;
+      node scripts/run-if-due.mjs --state .last-exhibition-research-run.txt --daily-at 10 --minute 30 &gt;&gt; $LOG 2&gt;&amp;1 || exit 0;
+      # Case Study側(autoresearch)と同時発火した際のgit競合を防ぐ排他ロック（最大30分待ち）。
+      # ロックが90分超残存していたらkill -9等の残骸とみなし奪取する（3ジョブ合計でも90分あれば完走する）
+      LOCK=/tmp/researchman-git.lock; waited=0;
+      while ! mkdir $LOCK 2&gt;/dev/null; do
+        if [ -d $LOCK ] &amp;&amp; [ $(( $(date +%s) - $(stat -f %m $LOCK) )) -gt 5400 ]; then
+          echo "staleロック奪取: $(date)" &gt;&gt; $LOG; rmdir $LOCK 2&gt;/dev/null; continue;
+        fi;
+        sleep 30; waited=$((waited+30));
+        [ $waited -ge 1800 ] &amp;&amp; { echo "ロック取得タイムアウト: $(date)" &gt;&gt; $LOG; exit 0; };
+      done;
+      trap "rmdir $LOCK 2&gt;/dev/null" EXIT;
+      echo "===== Exhibition run start: $(date) =====" &gt;&gt; $LOG;
+      if ! node scripts/auto-research-exhibition.mjs &gt;&gt; $LOG 2&gt;&amp;1; then
+        echo "収集エラー終了: $(date)" &gt;&gt; $LOG;
+        node scripts/run-if-due.mjs --state .last-exhibition-research-run.txt --mark &gt;&gt; $LOG 2&gt;&amp;1;
+        node scripts/notify-line.mjs --result error --route exhibition --label Exhibition &gt;&gt; $LOG 2&gt;&amp;1;
+        exit 0;
+      fi;
+      git add data/exhibition.json public/thumbnails/exhibition/ &gt;&gt; $LOG 2&gt;&amp;1;
+      if git diff --cached --quiet; then
+        echo "変更なし（新規展覧会なし）: $(date)" &gt;&gt; $LOG;
+        node scripts/notify-line.mjs --summary /tmp/researchman-exhibition-last-add.json --route exhibition --label Exhibition &gt;&gt; $LOG 2&gt;&amp;1;
+      else
+        git commit -m "Exhibition radar: $(date '+%Y-%m-%d')" &gt;&gt; $LOG 2&gt;&amp;1;
+        if git push &gt;&gt; $LOG 2&gt;&amp;1; then
+          if node scripts/verify-deploy.mjs --skip-pages &gt;&gt; $LOG 2&gt;&amp;1 &amp;&amp; node scripts/verify-exhibition-pages.mjs &gt;&gt; $LOG 2&gt;&amp;1; then
+            echo "反映まで確認OK: $(date)" &gt;&gt; $LOG;
+            node scripts/notify-line.mjs --summary /tmp/researchman-exhibition-last-add.json --route exhibition --label Exhibition &gt;&gt; $LOG 2&gt;&amp;1;
+          else
+            echo "push成功だが反映未確認（時間切れ）: $(date)" &gt;&gt; $LOG;
+            node scripts/notify-line.mjs --result unverified --summary /tmp/researchman-exhibition-last-add.json --route exhibition --label Exhibition &gt;&gt; $LOG 2&gt;&amp;1;
+          fi;
+        else
+          echo "push失敗（pre-push監査で中止の可能性）。コミットはローカル残存。要手動対応: $(date)" &gt;&gt; $LOG;
+          node scripts/notify-line.mjs --result pushfail --summary /tmp/researchman-exhibition-last-add.json --route exhibition --label Exhibition &gt;&gt; $LOG 2&gt;&amp;1;
+        fi;
+      fi;
+      echo "Exhibition completed: $(date)" &gt;&gt; $LOG
+    </string>
+  </array>
+
+  <!-- 毎朝10:30に実行（既存3ジョブの10:00発火とロック待ちが重ならないよう30分ずらす）。10時にスリープ/電源OFFでも、以降23時まで毎正時に起動して
+       run-if-due.mjs --daily-at 10 が「本日分未実行ならキャッチアップ」する。
+       Case Study側との同時発火は /tmp/researchman-git.lock の排他で保護 -->
+  <key>StartCalendarInterval</key>
+  <array>
+    <dict><key>Hour</key><integer>10</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Hour</key><integer>11</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Hour</key><integer>12</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Hour</key><integer>13</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Hour</key><integer>14</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Hour</key><integer>15</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Hour</key><integer>16</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Hour</key><integer>17</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Hour</key><integer>18</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Hour</key><integer>19</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Hour</key><integer>20</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Hour</key><integer>21</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Hour</key><integer>22</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Hour</key><integer>23</integer><key>Minute</key><integer>30</integer></dict>
+  </array>
+
+  <key>RunAtLoad</key>
+  <true/>
+
+  <key>KeepAlive</key>
+  <false/>
+
+  <key>StandardOutPath</key>
+  <string>/Users/tm/Library/Logs/researchman-exhibition.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/tm/Library/Logs/researchman-exhibition-error.log</string>
+</dict>
+</plist>

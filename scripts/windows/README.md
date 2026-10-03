@@ -1,6 +1,6 @@
 # ResearchMan Windows タスクスケジューラ移行
 
-macOS launchd（`launchd/com.researchman.*.plist`）5ジョブの Windows 版。各jobのシェルロジックは
+macOS launchd（`launchd/com.researchman.*.plist`）6ジョブの Windows 版。各jobのシェルロジックは
 `scripts/windows/run-job.mjs` に忠実に移植されている。
 
 ## ジョブ一覧と対応するplist
@@ -26,7 +26,7 @@ macOS launchd（`launchd/com.researchman.*.plist`）5ジョブの Windows 版。
    ```powershell
    powershell -ExecutionPolicy Bypass -File scripts\windows\register-tasks.ps1
    ```
-2. Mac側（launchd 5ジョブ）を停止する（`launchctl unload ~/Library/LaunchAgents/com.researchman.*.plist` 等）。
+2. Mac側（launchd 6ジョブ）を停止する（`launchctl unload ~/Library/LaunchAgents/com.researchman.*.plist` 等）。
    **Mac側とWindows側を同時に有効化しない**こと（同じリポジトリへの二重push・git競合の原因になる）。
 3. Windows側を有効化する:
    ```powershell
@@ -46,7 +46,7 @@ Get-ScheduledTask -TaskName "ResearchMan-*" | Disable-ScheduledTask
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts\windows\unregister-tasks.ps1
 ```
-登録時に作成された5タスクを削除する。ログファイル・状態ファイル（`.last-*-run.txt`）は削除されないので、
+登録時に作成された6タスクを削除する。ログファイル・状態ファイル（`.last-*-run.txt`）は削除されないので、
 Mac側へ戻す場合もそれらは手動で確認すること。
 
 ## ログの場所

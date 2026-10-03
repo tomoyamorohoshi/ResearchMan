@@ -73,3 +73,6 @@ studio/workdir/
 
 # サブエージェントの引き継ぎメモ・中間成果物（セッション固有。恒久ドキュメントはdocs/へ）
 /AUTO_RESUME_REPORT.md
+
+# Exhibition: 公式裏取りできなかった候補のローカルキュー（日次ジョブが追記。コミットしない）
+/data/inbox/exhibition-unverified.json

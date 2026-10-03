@@ -31,7 +31,7 @@
   },
   "watch": {
     "artists": [
-      "真鍋大度", "小山祐介", "exonemo", "久保田晃弘", "荒川ゼロ一", "0xfff", "0xDEAFBEEF", "Toshi", "Jonah Brucker-Cohen",
+      "真鍋大度", "神山友輔", "exonemo", "久保田晃弘", "荒川ゼロ一", "0xfff", "0xDEAFBEEF", "Toshi", "Jonah Brucker-Cohen",
       "Rhizomatiks", "ナム・ジュン・パイク", "多田美波", "小松宏誠", "strangers(高宮修平)", "Ann Veronica Janssens", "田中義久", "田中一光", "teamLab(要個別判断)"
     ],
     "venues": [
@@ -115,7 +115,7 @@
   },
   "seeds": [
     { "title": "自己破壊芸術展 / An Exhibition of Auto-Destructive Art", "venue": "Maruka 3F", "prefecture": "東京都", "city": "中央区", "startDate": "2026-10-02", "endDate": "2026-10-18", "url": "https://two.neort.io/ja/exhibitions/auto_destructive_art", "artists": ["荒川ゼロ一", "exonemo", "久保田晃弘", "0xDEAFBEEF", "0xfff", "Toshi", "Jonah Brucker-Cohen"], "role": "listing" },
-    { "title": "Machines of Loving Grace", "venue": "KARIMOKU RESEARCH CENTER", "prefecture": "東京都", "city": "港区", "startDate": "2026-10-17", "endDate": "2026-10-25", "url": "https://x.com/ayupys/status/2105985301751693583", "artists": ["真鍋大度", "小山祐介"], "role": "listing", "note": "単一ソース(X)。公式ページ未特定→ジョブ初回で裏取りし、取れなければ unverified に回す" },
+    { "title": "Machines of Loving Grace", "venue": "KARIMOKU RESEARCH CENTER", "prefecture": "東京都", "city": "港区", "startDate": "2026-10-17", "endDate": "2026-10-25", "url": "https://x.com/ayupys/status/2105985301751693583", "artists": ["真鍋大度", "神山友輔"], "role": "listing", "note": "単一ソース(X)。公式ページ未特定→ジョブ初回で裏取りし、取れなければ unverified に回す" },
     { "title": "BLACK AND BLUE", "venue": "スパイラルガーデン", "prefecture": "東京都", "city": "港区", "startDate": "2026-06-18", "endDate": "2026-06-22", "url": "https://bijutsutecho.com/magazine/special/promotion/32773", "artists": ["strangers(高宮修平)"], "role": "preference_only" },
     { "title": "多田美波 ― 光、凛と ゆれる", "venue": "東京都現代美術館", "prefecture": "東京都", "city": "江東区", "startDate": "2026-08-29", "endDate": "2026-12-06", "url": "https://www.mot-art-museum.jp/", "artists": ["多田美波"], "role": "listing", "note": "公式展覧会個別URLはジョブ初回で特定" },
     { "title": "小松宏誠展 光と影のモビール 海がのぼる空がふる", "venue": "瀬戸内市立美術館", "prefecture": "岡山県", "city": "瀬戸内市", "startDate": "2026-07-10", "endDate": "2026-09-27", "url": "https://artexhibition.jp/exhibitions/20260627-AEJ2936098/", "artists": ["小松宏誠"], "role": "preference_only" },

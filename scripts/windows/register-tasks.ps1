@@ -1,6 +1,6 @@
 ﻿<#
 .SYNOPSIS
-  ResearchMan の5ジョブ（autoresearch / techresearch / ideaseeds / tuneup / watchdog）を
+  ResearchMan の6ジョブ（autoresearch / techresearch / exhibitionresearch / ideaseeds / tuneup / watchdog）を
   Windows タスクスケジューラへ「現在ユーザー・管理者権限不要」で登録する。
 
 .DESCRIPTION
@@ -45,6 +45,7 @@ Write-Host ""
 # job → StartCalendarInterval相当（launchd/com.researchman.*.plist を参照）
 #   autoresearch : 毎日10:00〜23:00の毎正時（14回）
 #   techresearch : 毎日10:00〜23:00の毎正時（14回。autoresearchと同時刻だがgit排他ロックで直列化される）
+#   exhibitionresearch : 毎日10:30〜23:30の毎時30分（14回。後述のロック待ち計算に従い30分ずらす）
 #   ideaseeds    : 毎日10:15〜23:15の毎正時15分（14回。収集2本より15分遅らせて配信）
 #   tuneup       : 毎週月曜23:40の単発トリガ（2026-08-18、08:30から変更。理由は後述コメント参照）
 #   watchdog     : 毎日12:30〜23:30の毎正時30分（12回。AM/PM 2段ゲートで実際は1日2回のみ実行）
@@ -66,9 +67,21 @@ Write-Host ""
 #   （scripts/lib/watchdog-git.mjsのgitSafeCommitAndPush/gitSafeRevertAndPushのみ・
 #   3分待ちで諦める設計）ため、tuneupが長時間ロックを保持していても、watchdogの主目的である
 #   read-onlyのcheckUnpushedCommits等の監視自体は影響を受けない。
+#
+# exhibitionresearch を10:30起点・毎時30分にずらした理由とロック待ちの計算（2026-10-04）:
+#   日次系ジョブはすべて同じgit排他ロック（run-job.mjs参照）を直列に取り、待機上限は
+#   autoresearch/techresearch/exhibitionresearch=30分、ideaseeds=45分。10:00に3本目まで同時発火させると、
+#   最後尾のジョブが先行2本の実行時間ぶん待たされる。10:00=autoresearch→techresearch、10:15=ideaseeds、
+#   10:30=exhibitionresearch と時刻を分散すると、exhibitionresearch(10:30)の待ち上限は11:00まで。
+#   通常時の保持時間の目安は autoresearch≈20分・techresearch≈15分・ideaseeds≈10分（合計≈45分＝10:45頃に空く）で
+#   待ち上限30分(11:00)に収まる。先行3本の合計が60分を超える最悪ケースでは10:30の試行はロック待ちタイムアウトに
+#   なるが、状態ファイル(.last-exhibition-research-run.txt)は更新されないため次の毎時30分(11:30〜23:30)の発火が
+#   run-if-due.mjsのキャッチアップで再試行する（その日の分が欠落することはない）。staleロック奪取(90分)は
+#   「保持者1ジョブの実行時間」への閾値であり、4ジョブの合計時間には掛からない（各ジョブが取得時にロックを作り直す）。
 $JobSchedules = [ordered]@{
     autoresearch = @{ Type = "DailyHours"; Hours = 10..23; Minute = 0 }
     techresearch = @{ Type = "DailyHours"; Hours = 10..23; Minute = 0 }
+    exhibitionresearch = @{ Type = "DailyHours"; Hours = 10..23; Minute = 30 }
     ideaseeds    = @{ Type = "DailyHours"; Hours = 10..23; Minute = 15 }
     tuneup       = @{ Type = "Weekly"; DayOfWeek = "Monday"; Hour = 23; Minute = 40 }
     watchdog     = @{ Type = "DailyHours"; Hours = 12..23; Minute = 30 }
@@ -133,6 +146,6 @@ foreach ($job in $JobSchedules.Keys) {
 }
 
 Write-Host ""
-Write-Host "全5タスクを登録しました（すべて無効化状態です）。"
+Write-Host "全6タスクを登録しました（すべて無効化状態です）。"
 Write-Host "Mac側(launchd)を停止し、移行が完了したら以下で有効化してください:"
 Write-Host '  Get-ScheduledTask -TaskName "ResearchMan-*" | Enable-ScheduledTask'

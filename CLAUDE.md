@@ -30,8 +30,8 @@
 
 - 日次ジョブは **commit までは成功し push だけ失敗しうる**。この状態でもサイトは200を返し古い内容を配信し続けるため、外形監視では検知できない（実績: 11コミットが8日間滞留し本番未更新）
 - 「リサーチが途中で失敗した」「サイトが更新されない」と言われたら、まず `git rev-list --count origin/main..main` で滞留を確認する
-- 滞留があれば pre-push の4監査をローカル実行して原因監査を特定する（read-only・pushは不要）:
-  `node scripts/audit-cannes.mjs` / `node scripts/audit-thumbnails.mjs` / `node scripts/audit-tech.mjs` / `node scripts/check-idea-layouts-freshness.mjs`
+- 滞留があれば pre-push の5監査をローカル実行して原因監査を特定する（read-only・pushは不要）:
+  `node scripts/audit-cannes.mjs` / `node scripts/audit-thumbnails.mjs` / `node scripts/audit-tech.mjs` / `node scripts/audit-exhibition.mjs` / `node scripts/check-idea-layouts-freshness.mjs`
 - **監査を緩める方向で直さない**（プレースホルダ・不整合の混入検知が本務）。原因データの方を正す
 - 検知は `scripts/watchdog.mjs` の `checkUnpushedCommits` が自動化済み（滞留日数・失敗監査名・失敗文言つきで通知、同一理由は1日1回に抑制）
 - 手動 push 前は必ずジョブのgitロック（`$TEMP/researchman-git.lock`）と実行中ジョブの有無を確認する

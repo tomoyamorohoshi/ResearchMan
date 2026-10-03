@@ -21,6 +21,8 @@
     "auto-research:cc:dry": "node scripts/auto-research-cc.mjs --dry-run",
     "auto-research:tech": "node scripts/auto-research-tech.mjs",
     "auto-research:tech:dry": "node scripts/auto-research-tech.mjs --dry-run",
+    "auto-research:exhibition": "node scripts/auto-research-exhibition.mjs",
+    "auto-research:exhibition:dry": "node scripts/auto-research-exhibition.mjs --dry-run",
     "ideas": "node scripts/generate-idea-seeds.mjs",
     "ideas:dry": "node scripts/generate-idea-seeds.mjs --dry-run",
     "tuneup": "node scripts/biweekly-tuneup.mjs",
@@ -34,6 +36,7 @@
     "notify:line:dry": "node scripts/notify-line.mjs --dry-run",
     "studio": "npm --prefix studio run dev",
     "studio:install": "npm --prefix studio install",
+    "test:exhibition:jobs": "node --test scripts/lib/exhibition-build.test.mjs scripts/lib/exhibition-intake-job.test.mjs scripts/lib/exhibition-notify.test.mjs scripts/lib/tuneup-exhibition.test.mjs scripts/auto-research-exhibition.test.mjs scripts/exclude-paths.test.mjs",
     "test:exhibition": "node --test scripts/lib/exhibition-status.test.mjs scripts/audit-exhibition.test.mjs && tsx --test src/lib/exhibition.test.ts src/lib/exhibitionIntake.test.ts src/lib/exhibitionIntakeStore.test.ts"
   },
   "dependencies": {

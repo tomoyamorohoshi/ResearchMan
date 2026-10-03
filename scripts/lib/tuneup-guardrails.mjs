@@ -15,6 +15,8 @@ import { validateSourcesRegistry } from "./sources-registry.mjs";
 
 // スキーマ検証は sources-registry.mjs が実体（二重定義しない）。tuneup側の窓口としても公開する。
 export { validateSourcesRegistry };
+// Exhibition プロファイルのガード（提案対象外・exclusions.hard/collectAll の変更を拒否）。実体は tuneup-exhibition.mjs
+export { checkExhibitionProfileChange } from "./tuneup-exhibition.mjs";
 
 const LANE_COUNT_MIN = 3;
 const LANE_COUNT_MAX = 6;

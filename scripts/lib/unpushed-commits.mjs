@@ -6,7 +6,7 @@
  * ジョブ自体はcommitまでは成功し続けたため未pushコミットが11個滞留した。
  * 既存watchdog（サイトの200応答のみ確認）は「古い内容配信中」を正常と誤判定し続けて
  * 気づけなかった。ここでは「未pushコミットの滞留」自体を検知対象とし、
- *   1. pre-pushと同じ4監査をローカルで順に実行し、最初に落ちたものを特定する
+ *   1. pre-pushと同じ5監査をローカルで順に実行し、最初に落ちたものを特定する
  *   2. 全通過ならpushを1回だけ再試行する（=push詰まりからの自動復旧）
  *   3. 監査失敗時はpushせず、logs/incidents.json記録＋LINE通知（重複抑制つき）する
  * という副作用のないレポート組み立て・状態判定ロジックのみをここに切り出す。
@@ -17,12 +17,13 @@
  */
 import fs from "fs";
 
-// scripts/hooks/pre-push が実行する4監査と同じ順序（このファイルの原本はpre-push側。
+// scripts/hooks/pre-push が実行する5監査と同じ順序（このファイルの原本はpre-push側。
 // 変更したら両方揃えること）。
 export const AUDIT_SCRIPTS = [
   "audit-cannes.mjs",
   "audit-thumbnails.mjs",
   "audit-tech.mjs",
+  "audit-exhibition.mjs",
   "check-idea-layouts-freshness.mjs",
 ];
 
@@ -105,21 +106,21 @@ export function writeUnpushedState(statePath, { lastReason, lastNotifiedYmd }) {
   }
 }
 
-// 4監査すべて通過した場合のレポート文言（push再試行の成否で分岐）。
+// 5監査すべて通過した場合のレポート文言（push再試行の成否で分岐）。
 export function buildUnpushedAuditPassReport({ unpushedCount, oldestCommitAt, pushResult }) {
   const header = `未pushコミットが${unpushedCount}件滞留していました（最古: ${oldestCommitAt || "不明"}）`;
   if (pushResult?.ok) {
-    return ["✅ " + header, "→ 4監査すべて通過 → push成功しました（滞留は解消されています）。"].join("\n");
+    return ["✅ " + header, "→ 5監査すべて通過 → push成功しました（滞留は解消されています）。"].join("\n");
   }
   return [
     "🚨 " + header,
-    "→ 4監査すべて通過しましたが、pushの再試行に失敗しました。",
+    "→ 5監査すべて通過しましたが、pushの再試行に失敗しました。",
     `理由: ${pushResult?.reason || "不明"}`,
     "手動でのpush対応が必要です（ジョブロック確認後にgit pushしてください）。",
   ].join("\n");
 }
 
-// 4監査のいずれかが失敗した場合のレポート文言（対処ヒントつき）。
+// 5監査のいずれかが失敗した場合のレポート文言（対処ヒントつき）。
 // timeoutSuspected=trueの場合は「監査ロジックが壊れている」という通常の対処ヒントに加え、
 // プロセスがタイムアウト等で正常終了しなかった可能性を明示する。
 export function buildUnpushedAuditFailReport({ unpushedCount, oldestCommitAt, staleDays, failedScript, excerpt, timeoutSuspected }) {

@@ -84,7 +84,7 @@ function loadConfig() {
 }
 
 // --route から --label 省略時のラベルを簡易マッピングで補完する（queue追記用）。
-const ROUTE_LABEL_FALLBACK = { cases: "Auto research", technology: "Tech radar" };
+const ROUTE_LABEL_FALLBACK = { cases: "Auto research", technology: "Tech radar", exhibition: "Exhibition radar" };
 function queueLabel() {
   if (LABEL) return LABEL;
   return ROUTE_LABEL_FALLBACK[ROUTE] || "ResearchMan";
@@ -158,6 +158,12 @@ function buildText(summary, head) {
     lines.push(`🔍 ${name}: 本日の新規追加なし`);
     lines.push("");
     lines.push("（収集は正常実行。クライテリア適合の新着がありませんでした）");
+  }
+  // Exhibition: 公式ページで日付・会場を裏取りできず未掲載のもの（unverified）をユーザーに知らせる（SPEC §6.3）
+  if (RESULT === "ok" && Array.isArray(summary.unverified) && summary.unverified.length) {
+    lines.push("");
+    lines.push("裏取り待ち（公式で確認できず未掲載）:");
+    for (const u of summary.unverified) lines.push(`・${u.title}（${String(u.reason).slice(0, 60)}）`);
   }
   lines.push("");
   lines.push(`${SITE}/${ROUTE === "cases" ? "" : ROUTE}  (commit ${head})`);

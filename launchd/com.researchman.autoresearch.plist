@@ -35,7 +35,7 @@
       fi;
       node scripts/self-heal-thumbnails.mjs &gt;&gt; $LOG 2&gt;&amp;1 || echo "self-heal失敗（続行）: $(date)" &gt;&gt; $LOG;
       # tech配下はTechnologyパイプラインの管轄なので除外（クラッシュ残骸の混入防止）
-      git add -- data/cases.json public/thumbnails ":(exclude)public/thumbnails/tech" &gt;&gt; $LOG 2&gt;&amp;1;
+      git add -- data/cases.json public/thumbnails ":(exclude)public/thumbnails/tech" ":(exclude)public/thumbnails/exhibition" &gt;&gt; $LOG 2&gt;&amp;1;
       if git diff --cached --quiet; then
         echo "変更なし（新規事例なし）: $(date)" &gt;&gt; $LOG;
         node scripts/notify-line.mjs &gt;&gt; $LOG 2&gt;&amp;1;

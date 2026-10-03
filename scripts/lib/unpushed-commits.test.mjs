@@ -19,13 +19,25 @@ import {
   appendIncidentSafe,
 } from "./unpushed-commits.mjs";
 
-test("AUDIT_SCRIPTS: pre-pushの4監査と同じ順序", () => {
+test("AUDIT_SCRIPTS: pre-pushの監査と同じ順序（tech の次に exhibition）", () => {
   assert.deepEqual(AUDIT_SCRIPTS, [
     "audit-cannes.mjs",
     "audit-thumbnails.mjs",
     "audit-tech.mjs",
+    "audit-exhibition.mjs",
     "check-idea-layouts-freshness.mjs",
   ]);
+});
+
+test("findFirstAuditFailure: audit-exhibition.mjs の失敗を失敗監査名として特定する", () => {
+  const results = [
+    { script: "audit-tech.mjs", status: 0, stdout: "", stderr: "" },
+    { script: "audit-exhibition.mjs", status: 1, stdout: "✗ x", stderr: "" },
+  ];
+  const r = findFirstAuditFailure(results);
+  assert.equal(r.allPassed, false);
+  assert.equal(r.failedScript, "audit-exhibition.mjs");
+  assert.match(r.excerpt, /✗ x/);
 });
 
 test("truncateOutput: maxLines以下ならそのまま", () => {
