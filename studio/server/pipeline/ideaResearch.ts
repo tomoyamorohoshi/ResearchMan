@@ -5,7 +5,7 @@
  * （search-cases.mjs＋tech.jsonスコアリング） → 咀嚼(部分アイデアの書き出し。ヤング『アイデア
  * のつくり方』②相当) → 生成(Agent SDK 1パス) → 機械検証（スキーマ/seed書式/pattern語彙/
  * refs実在/重複除外） → 採点→改稿→再検証（ヤング⑤相当。質の批評→育成。改稿は既存の機械検証を
- * 必ず再通過させる） → 反映(ideas.json+idea-layouts.jsonペアコミット) → 監査(root build) →
+ * 必ず再通過させる） → 反映(ideas.json+idea-layouts.manifest.jsonペアコミット) → 監査(root build) →
  * commit/push → verify-deploy(--skip-pages) → notify-line、を caseResearch.ts と同じ品質
  * ガードレール・git運用・ロールバック方式で実行する。咀嚼・採点/改稿はいずれもenhancer
  * （呼び出し失敗時は安全側にフォールバックし、必須ゲートにはしない）。
@@ -588,7 +588,7 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
       return;
     }
 
-    // ── 10. 反映（ideas.json + idea-layouts.json ペア） ──────────
+    // ── 10. 反映（ideas.json + idea-layouts.manifest.json ペア） ──────────
     await setProgress(jobId, "反映中（データ書き込み）");
     const updatedIdeas = [...existingIdeas, ...newEntries];
     await writeJsonAtomic(IDEAS_JSON_PATH, updatedIdeas);
@@ -602,7 +602,8 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
         .join("\n---stdout---\n");
       throw new Error(`idea-layouts.json の再計算に失敗しました。反映を中止しロールバックしました。\n${tail}`);
     }
-    trackedTouched.push("data/idea-layouts.json");
+    // idea-layouts.json本体はgit管理外。コミット対象は鮮度証明のmanifestのみ（名指しgit addは失敗する）
+    trackedTouched.push("data/idea-layouts.manifest.json");
 
     // ── 11. 監査（root next build。ideas.json破損が/ideasページを壊さないことの最終確認） ──
     await setProgress(jobId, "品質監査中（build）");

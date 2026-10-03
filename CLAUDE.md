@@ -40,6 +40,7 @@
 
 - `/ideas` は実行時計算ではなく `data/idea-layouts.json` の事前計算結果を描画する。`src/lib/ideaCollageLayout.ts` を変えても**再生成しなければ本番に一切反映されない**
 - 鮮度検査のハッシュは `data/ideas.json` の内容と `IDEA_LAYOUTS_ALGO_VERSION` のみを見る。**レイアウトロジックの変更は検知されない**ため、ロジックを変えたら `scripts/lib/idea-layouts-hash.mjs` の `IDEA_LAYOUTS_ALGO_VERSION` を必ず上げる（上げないと古いレイアウトのまま検査が通り続ける）
+- **`data/idea-layouts.json`（68MB・日次+1.4MB）は git 非追跡**（.gitignore/.vercelignore。GitHubの100MB上限回避）。コミットされる鮮度証明は小さな `data/idea-layouts.manifest.json`（`{inputHash, algoVersion}`、precomputeが本体の後に書く）。pre-pushの鮮度検査は「manifest==HEADのideas.json」＋「ローカル本体のinputHash==manifest」の両方を見る。本体を名指しで `git add` すると失敗するので、ideas.jsonとペアで足すのは **manifest**。ローカル本体を失くしたら再生成（下記・20分超）が必要（Blobは配信用であり復元手段として当てにしない）
 - 再生成（`npx tsx scripts/precompute-idea-layouts.mjs`）は実測20分超。ALGO_VERSION更新→再生成→鮮度検査exit 0 までを1コミットで完結させる（中途半端な状態をコミットすると全pushがブロックされる）
 
 ## ブランチ運用（2026-07-19 誤ブランチcommit事故の再発防止）

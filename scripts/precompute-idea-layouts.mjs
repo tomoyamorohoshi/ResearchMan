@@ -39,6 +39,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const IDEAS_JSON_PATH = process.env.IDEAS_JSON_PATH || path.join(__dirname, "../data/ideas.json");
 const OUT_PATH = process.env.IDEA_LAYOUTS_JSON_PATH || path.join(__dirname, "../data/idea-layouts.json");
 
+/** idea-layouts.json の隣に置く manifest のパス（隔離実行でOUT_PATHが変わっても隣に出る） */
+export function manifestPathFor(layoutsPath) {
+  return path.join(path.dirname(layoutsPath), "idea-layouts.manifest.json");
+}
+
 const TIERS = ["mobile", "compact", "wide"];
 
 // assignShapeKindsのidea単位・永続キャッシュ(リポジトリ外 ~/.researchman/cache/)。出力はキャッシュ有無で
@@ -182,6 +187,9 @@ async function main() {
     tiers,
   };
   await writeIdeaLayoutsAtomic(OUT_PATH, output);
+  // 本体(git管理外・68MB)の鮮度証明となる小さなmanifest（コミット対象）。本体の後に書く
+  // （途中で落ちても「manifestだけ新しい」状態にならず、pre-pushのdisk検査で検知できる）
+  await writeIdeaLayoutsAtomic(manifestPathFor(OUT_PATH), { inputHash, algoVersion: IDEA_LAYOUTS_ALGO_VERSION });
 
   const elapsedMs = Date.now() - startedAt;
   console.log(

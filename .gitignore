@@ -60,6 +60,10 @@ studio/workdir/
 # data/*.jsonのコピーのためリポジトリにはコミットしない）
 /public/data/
 
+# 巨大(68MB超・日次+1.4MB)な事前計算レイアウト。gitでは追跡せずVercel Blob配信（pre-pushで送信）。
+# 鮮度の証明は小さなdata/idea-layouts.manifest.json（コミット対象）が担う
+/data/idea-layouts.json
+
 # Claude Code のエージェント作業用worktree実体（リポジトリ内に作られるが管理対象外）
 /.claude/worktrees/
 

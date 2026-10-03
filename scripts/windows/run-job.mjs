@@ -297,9 +297,10 @@ async function runIdeaseeds() {
     const gen = runNode("scripts/generate-idea-seeds.mjs");
     if (gen.status === 0) {
       runNode("scripts/notify-line.mjs", ["--text-file", path.join(os.tmpdir(), "researchman-idea-seeds.txt")]);
-      // data/ideas.json と data/idea-layouts.json は必ずペアでcommit/push
-      // （片方だけだとpre-push鮮度検査に拒否される。launchd/com.researchman.ideaseeds.plist参照）
-      runGit(["add", "data/ideas.json", "data/idea-layouts.json"]);
+      // data/ideas.json と data/idea-layouts.manifest.json は必ずペアでcommit/push
+      // （片方だけだとpre-push鮮度検査に拒否される。launchd/com.researchman.ideaseeds.plist参照）。
+      // idea-layouts.json本体はgit管理外（.gitignore）。名指しでgit addすると失敗するので追加しない
+      runGit(["add", "data/ideas.json", "data/idea-layouts.manifest.json"]);
       if (gitDiffCachedIsEmpty()) {
         log(`ideas.json変更なし（追記対象なし）: ${unixDateString()}`);
       } else {
