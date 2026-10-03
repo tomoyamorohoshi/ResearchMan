@@ -4,6 +4,11 @@
 
 **着手前に必ず**: `AGENTS.md` のとおり Next.js は 16.2.9 で既知の挙動と異なる。route handler / page の書き方は `node_modules/next/dist/docs/01-app/` を読んでから書く。既存の `src/app/technology/[slug]/page.tsx` と `src/app/api/favorites/route.ts` が現行バージョンで動く実例。
 
+**ユーザー確定（2026-10-04・本文より優先）**:
+- intake は POST にもパスフレーズ必須（`EXHIBITION_INTAKE_TOKEN`。Vercel env と `.env.local` に設定、UIで初回入力→localStorage保持）。未設定・不一致は 401。
+- 通知は 70点以上を routine（23:45 ダイジェスト）、80点以上のみ critical（即時）。
+- Machines of Loving Grace（真鍋大度×小山祐介, KARIMOKU RESEARCH CENTER, 10/17-25）は公式ページで裏取りできるまで掲載しない（unverified 扱い）。
+
 ## 1. 目的
 
 1. TOP タブに「Exhibition」を追加し、日本全国の「開催中/開催前」の展覧会のうち、ユーザーの好み（メディアアート・光/空間インスタレーション・ジェネラティブ/オンチェーン・アーカイブ系デザイン等）に合うものだけを一覧する
