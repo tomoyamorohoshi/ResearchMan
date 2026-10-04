@@ -7,7 +7,7 @@
  *      抽出結果は公式URL検証より前に既存 items と dedupe（掲載済みなら新規追加せず既存 id を返し social ソースだけ追記）
  *   4. 結果を PATCH（503 busy は短い待ちで最大3回試行）。PATCH が失敗しても data 更新は継続（次回 GET で同じ URL が来ても dedupe で追加されない＝冪等）
  */
-import { processCandidates, htmlToText, findDuplicate } from "./exhibition-build.mjs";
+import { processCandidates, htmlToText, findDuplicate, diffDates } from "./exhibition-build.mjs";
 import { buildIntakePrompt } from "./exhibition-prompts.mjs";
 import { normLink } from "./norm-link.mjs";
 
@@ -127,12 +127,16 @@ export async function runIntake({ items, data, today, deps, opts = {} }) {
         results.push({ url: f.url, status: "rejected", reason: "no-exhibition-found" });
         continue;
       }
-      // 掲載済みの展示は公式URL検証より前に拾う（公式URL欠落でも unverified にしない）
+      // 掲載済みの展示は公式URL検証より前に拾う。ただし近道に入れるのは「公式URLが空 or 既存 link と一致」し、
+      // かつ会期/会場が既存と同じ（または終了済み・除外カテゴリで更新対象外）の候補だけ。
+      // それ以外（別の公式URL・会期変更）は従来どおり processCandidates（公式照合・dates-updated）へ。
       const dupHits = [];
       const rest = [];
       for (const c of group) {
         const dup = findDuplicate(current.items, c);
-        if (dup) dupHits.push(dup.item);
+        const linkOk = !c.officialUrl || normLink(c.officialUrl) === normLink(dup?.item.link);
+        const frozen = (typeof c.endDate === "string" && c.endDate < today) || (c.excludeCategory && c.excludeCategory !== "none");
+        if (dup && linkOk && (frozen || !diffDates(dup.item, c))) dupHits.push(dup.item);
         else rest.push(c);
       }
       if (dupHits.length) {
@@ -157,8 +161,6 @@ export async function runIntake({ items, data, today, deps, opts = {} }) {
       unverified.push(...out.unverified);
       rejected.push(...out.rejected);
       if (out.added.length) results.push({ url: f.url, status: "added", exhibitionId: out.added[0].id });
-      else if (dupHits.length) results.push({ url: f.url, status: "added", exhibitionId: dupHits[0].id, reason: "already-registered" });
-      else if (out.skipped.length) results.push({ url: f.url, status: "added", exhibitionId: out.skipped[0].existingId, reason: "already-registered" });
       else if (out.updated.length) results.push({ url: f.url, status: "added", exhibitionId: out.updated[0].id, reason: "dates-updated" });
       else if (out.unverified.length) results.push({ url: f.url, status: "unverified", reason: out.unverified[0].reason });
       else if (out.rejected[0]?.reason === "thumbnail-unavailable") {
@@ -166,7 +168,9 @@ export async function runIntake({ items, data, today, deps, opts = {} }) {
         const status = failStatus(f.item.attempts || 0);
         results.push({ url: f.url, status, reason: "thumbnail-unavailable" });
         if (status === "unverified") unverified.push({ title: out.rejected[0].title, venue: "", link: out.rejected[0].link || "", reason: "thumbnail-unavailable", intakeUrl: f.url, at: deps.now() });
-      } else results.push({ url: f.url, status: "rejected", reason: out.rejected[0]?.reason || "rejected" });
+      } else if (out.skipped.length) results.push({ url: f.url, status: "added", exhibitionId: out.skipped[0].existingId, reason: "already-registered" });
+      else if (dupHits.length) results.push({ url: f.url, status: "added", exhibitionId: dupHits[0].id, reason: "already-registered" });
+      else results.push({ url: f.url, status: "rejected", reason: out.rejected[0]?.reason || "rejected" });
     }
   }
 

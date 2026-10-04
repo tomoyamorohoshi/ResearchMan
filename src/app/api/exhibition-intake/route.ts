@@ -10,7 +10,14 @@
 import type { NextRequest } from "next/server";
 import { createHash, timingSafeEqual } from "node:crypto";
 import { isBlobConfigured } from "@/lib/favoritesStore";
-import { readIntakeBlob, updateIntake, StoreCorruptError, StoreConflictError } from "@/lib/exhibitionIntakeStore";
+import {
+  readIntakeBlob,
+  updateIntake,
+  StoreCorruptError,
+  StoreConflictError,
+  StoreEtagMissingError,
+  StoreStaleReadError,
+} from "@/lib/exhibitionIntakeStore";
 import {
   addToQueue,
   applyResults,
@@ -22,6 +29,8 @@ import {
 
 // 常に最新のキューを読む必要があるため静的キャッシュ対象にしない
 export const dynamic = "force-dynamic";
+// 競合リトライ（最大約5秒の待ち＋Blob 往復）が関数のデフォルト上限に当たらないようにする
+export const maxDuration = 30;
 
 const MAX_RESULTS = 100;
 
@@ -85,7 +94,11 @@ export async function POST(request: NextRequest) {
     }
     return json({ status: "accepted" }, 200);
   } catch (err) {
-    if (err instanceof StoreConflictError) return json({ error: "busy" }, 503);
+    if (err instanceof StoreConflictError || err instanceof StoreStaleReadError) return json({ error: "busy" }, 503);
+    if (err instanceof StoreEtagMissingError) {
+      console.error("[api/exhibition-intake] etag missing", err);
+      return json({ error: "busy" }, 503);
+    }
     if (err instanceof StoreCorruptError) return json({ error: "store_corrupt" }, 500);
     console.error("[api/exhibition-intake] POST failed", err);
     return json({ error: "internal error" }, 500);
@@ -100,6 +113,11 @@ export async function GET(request: NextRequest) {
     const data = await readIntakeBlob();
     return json({ items: pendingItems(data) }, 200);
   } catch (err) {
+    if (err instanceof StoreStaleReadError) return json({ error: "busy" }, 503);
+    if (err instanceof StoreEtagMissingError) {
+      console.error("[api/exhibition-intake] etag missing", err);
+      return json({ error: "busy" }, 503);
+    }
     if (err instanceof StoreCorruptError) return json({ error: "store_corrupt" }, 500);
     console.error("[api/exhibition-intake] GET failed", err);
     return json({ error: "internal error" }, 500);
@@ -130,7 +148,11 @@ export async function PATCH(request: NextRequest) {
     });
     return json({ updated }, 200);
   } catch (err) {
-    if (err instanceof StoreConflictError) return json({ error: "busy" }, 503);
+    if (err instanceof StoreConflictError || err instanceof StoreStaleReadError) return json({ error: "busy" }, 503);
+    if (err instanceof StoreEtagMissingError) {
+      console.error("[api/exhibition-intake] etag missing", err);
+      return json({ error: "busy" }, 503);
+    }
     if (err instanceof StoreCorruptError) return json({ error: "store_corrupt" }, 500);
     console.error("[api/exhibition-intake] PATCH failed", err);
     return json({ error: "internal error" }, 500);

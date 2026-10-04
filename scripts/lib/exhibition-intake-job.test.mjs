@@ -267,7 +267,7 @@ test("runIntake: 既に同じ social ソースがあれば重複追加しない�
 
 test("runIntake: link 一致（公式URLが既存と同じ）でも dedupe される", async () => {
   const data = { version: 1, statusAsOf: TODAY, items: [existingItem({ title: "別題名" })] };
-  const deps = mkDeps({ extract: async () => [cand({ title: "Different title", venue: "Elsewhere" })] });
+  const deps = mkDeps({ extract: async () => [cand({ title: "Different title" })] });
   const r = await runIntake({ items: [{ url: X_URL, ts: 1, attempts: 0 }], data, today: TODAY, deps });
   assert.equal(r.data.items.length, 1);
   assert.equal(r.results[0].exhibitionId, existingItem().id);
