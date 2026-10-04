@@ -221,16 +221,19 @@ async function main() {
     detailParts.push("port 5178 のLISTENING PIDなし");
   }
 
-  const ended = endStudioTask();
-  log(`schtasks /end /tn ${TASK_NAME} ${ended ? "成功" : "失敗（無視）"}`);
-  detailParts.push(`schtasks /end ${ended ? "成功" : "失敗（無視）"}`);
-
+  // schtasks /end より前にスナップショットを取りルートを確定する（/end で連鎖の一部が
+  // 先に消えて親子関係が失われる前の状態で判定するため）。
   const snapshot = getProcessSnapshot();
   if (!snapshot) {
     log("プロセススナップショット取得失敗（LISTEN PIDのみを対象に続行）");
     detailParts.push("プロセススナップショット取得失敗");
   }
   const roots = findStudioKillRoots(snapshot, pids, ROOT);
+
+  const ended = endStudioTask();
+  log(`schtasks /end /tn ${TASK_NAME} ${ended ? "成功" : "失敗（無視）"}`);
+  detailParts.push(`schtasks /end ${ended ? "成功" : "失敗（無視）"}`);
+
   for (const root of roots) {
     const ok = killTree(root);
     log(`PID ${root} taskkill /F /T ${ok ? "成功" : "失敗"}`);
@@ -238,7 +241,13 @@ async function main() {
   }
   if (!roots.length) detailParts.push("kill対象ルートなし");
 
-  const stopped = await waitTaskNotRunning(TASK_STOP_WAIT_MS, 1000);
+  let stopped = await waitTaskNotRunning(TASK_STOP_WAIT_MS, 1000);
+  if (!stopped) {
+    const endedAgain = endStudioTask();
+    log(`タスクがRunningのまま → schtasks /end を再試行 ${endedAgain ? "成功" : "失敗（無視）"}`);
+    detailParts.push(`schtasks /end 再試行 ${endedAgain ? "成功" : "失敗（無視）"}`);
+    stopped = await waitTaskNotRunning(TASK_STOP_WAIT_MS, 1000);
+  }
   log(stopped ? "タスクがRunningでなくなったことを確認" : `タスクが${TASK_STOP_WAIT_MS / 1000}秒後もRunningのまま（/run は無視される可能性）`);
   if (!stopped) detailParts.push("タスクがRunningのまま");
 

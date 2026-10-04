@@ -104,11 +104,22 @@ function isTaskRootCmd(proc, rootN) {
 }
 
 // ResearchMan/studio/node_modules 配下の tsx で server/index.ts を動かしているプロセス
+// 構造一致のみ（node.exe が <root>\studio\node_modules の tsx を直接実行し、末尾が server/index.ts）。
+// tsc や claude のプロンプト等がパス文字列を含むだけでは一致しない。
 function isStudioTsx(proc, rootN) {
   const cmd = proc && proc.CommandLine;
-  if (!cmd) return false;
+  if (!cmd || !rootN || !nameIs(proc, "node.exe")) return false;
   const n = norm(cmd);
-  return n.includes(`${rootN}\\studio\\node_modules`) && /server\\index\.ts/.test(n);
+  const e = rootN.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const exe = String.raw`^"?[^"]*?\bnode(?:\.exe)?"?\s+`;
+  const nm = String.raw`${e}\\studio\\node_modules\\`;
+  const watcher = new RegExp(
+    String.raw`${exe}"?${nm}(?:\.bin\\\.\.\\tsx\\dist\\cli\.mjs|tsx\\dist\\cli\.mjs|\.bin\\tsx)"?\s+(?:watch\s+)?server\\index\.ts\s*$`,
+  );
+  const child = new RegExp(
+    String.raw`${exe}--require\s+"?${nm}tsx\\dist\\preflight\.cjs"?\s+--import\s+"?(?:file:\\\\\\)?${nm}tsx\\dist\\loader\.mjs"?\s+server\\index\.ts\s*$`,
+  );
+  return watcher.test(n) || child.test(n);
 }
 
 // `npm --prefix studio run dev`（cmd /c 形・npm-cli.js 形。末尾厳密一致）
@@ -129,8 +140,9 @@ function isNpmRunStudio(proc) {
 // LISTENしているPID群から、`taskkill /F /T /PID` するルートPID（文字列・昇順）の配列を返す純関数。
 // rootDir は ResearchMan のルートパス（keeperのROOT）。
 // (a) LISTEN pidごとに、許可された祖先（--prefix studio run dev / run studio（ルートcmd配下かrootDir含む）/
-//     rootDir配下のtsx / タスクのルートcmd）だけを辿った最上位。スナップショットに無いLISTEN pidはそのまま採用
-//     （スナップショット取得失敗時にも leaf を /T で落とせるように）。
+//     rootDir配下のtsx / タスクのルートcmd）だけを辿った最上位。スナップショット取得失敗（null/空）のときだけ
+//     スナップショットに無いLISTEN pidをそのまま採用（leaf を /T で落とせるように）。有効なスナップショットで
+//     無いpidは古い情報として無視。
 // (b) リスナー無しでも選ぶのは、タスクのルートcmdと、rootDir配下のtsx watcherだけ。
 // 他のルートの子孫は除外する。`taskkill /IM node.exe` 相当の広い選択は行わない。
 // 背景(2026-10-05): leaf(server)だけkillすると親cmd/npm/tsx watchが残りタスクがRunningのまま
@@ -161,6 +173,9 @@ export function findStudioKillRoots(snapshot, listeningPids, rootDir) {
   const selected = new Set();
   for (const raw of Array.isArray(listeningPids) ? listeningPids : []) {
     let cur = String(raw);
+    // 有効なスナップショットに無いlisten pidは古い情報（既に終了）なので採用しない。
+    // スナップショット取得失敗（null/空）のときだけ、leafを /T で落とすため採用する。
+    if (byPid.size > 0 && !byPid.has(cur)) continue;
     const seen = new Set([cur]);
     while (byPid.has(cur)) {
       const parent = parentOf(cur);
