@@ -305,3 +305,38 @@ test("runIntake: PATCH が 503 を繰り返しても継続（最大3回試行）
   });
   assert.equal(calls2, 1);
 });
+
+// ── dedupe の適用範囲（レビュー指摘） ──
+test("runIntake: 公式URLが既存 link と異なる候補は dedupe 近道に入れず processCandidates へ（social 追記しない）", async () => {
+  const data = { version: 1, statusAsOf: TODAY, items: [existingItem()] };
+  const deps = mkDeps({ extract: async () => [cand({ officialUrl: "https://other.example/mlg" })] });
+  const r = await runIntake({ items: [{ url: X_URL, ts: 1, attempts: 0 }], data, today: TODAY, deps });
+  assert.equal(r.data.items.length, 1);
+  assert.ok(!r.data.items[0].sources.some((s) => s.kind === "social"));
+  assert.notEqual(r.results[0].reason, undefined);
+});
+
+test("runIntake: 会期が既存と異なる候補は公式照合経由で更新される（dates-updated）", async () => {
+  const data = { version: 1, statusAsOf: TODAY, items: [existingItem({ endDate: "2026-10-20" })] };
+  const deps = mkDeps();
+  const r = await runIntake({ items: [{ url: X_URL, ts: 1, attempts: 0 }], data, today: TODAY, deps });
+  assert.equal(r.results[0].reason, "dates-updated");
+  assert.equal(r.data.items[0].endDate, "2026-10-25");
+});
+
+test("runIntake: already-ended の候補でも dedupe 一致なら social 追記のみ（会期は変えない）", async () => {
+  const data = { version: 1, statusAsOf: TODAY, items: [existingItem()] };
+  const deps = mkDeps({ extract: async () => [cand({ endDate: "2026-09-01", startDate: "2026-08-01" })] });
+  const r = await runIntake({ items: [{ url: X_URL, ts: 1, attempts: 0 }], data, today: TODAY, deps });
+  assert.equal(r.data.items[0].endDate, "2026-10-25");
+  assert.ok(r.data.items[0].sources.some((s) => s.kind === "social" && s.url === X_URL));
+  assert.equal(r.results[0].status, "added");
+});
+
+test("runIntake: 1投稿に dup と新規が混在し新規が unverified なら PATCH は unverified を優先", async () => {
+  const data = { version: 1, statusAsOf: TODAY, items: [existingItem()] };
+  const deps = mkDeps({ extract: async () => [cand(), cand({ title: "Other Show", venue: "Other Venue", officialUrl: "https://nomatch.example/x" })] });
+  const r = await runIntake({ items: [{ url: X_URL, ts: 1, attempts: 0 }], data, today: TODAY, deps });
+  assert.equal(r.results.length, 1);
+  assert.equal(r.results[0].status, "unverified");
+});

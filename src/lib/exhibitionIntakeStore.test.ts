@@ -29,7 +29,7 @@ test("形が不正（version違い・items 無し・値が null・status 不正�
 
 // ── updateIntake: 楽観ロック（etag / ifMatch）付き read-modify-write ──
 import { BlobPreconditionFailedError } from "@vercel/blob";
-import { updateIntake, StoreConflictError, type IntakeBlobClient } from "./exhibitionIntakeStore";
+import { updateIntake, StoreConflictError, StoreEtagMissingError, type IntakeBlobClient } from "./exhibitionIntakeStore";
 import type { IntakeData } from "./exhibitionIntake";
 
 const mkItem = (n: number) => ({ url: `https://x.com/a/status/${n}`, ts: n, status: "pending" as const, attempts: 0 });
@@ -159,4 +159,34 @@ test("updateIntake: precondition 以外のエラーはそのまま投げる／fn
   const r = await updateIntake(() => ({ data: null, result: "dup" }), { client: f.client, sleep: noSleep });
   assert.equal(r, "dup");
   assert.deepEqual(f.writes, []);
+});
+
+test("updateIntake: etag が空/欠落なら StoreEtagMissingError（ifMatch に空文字を渡さない）", async () => {
+  const writes: (string | null)[] = [];
+  const client: IntakeBlobClient = {
+    read: async () => ({ etag: "", text: JSON.stringify({ version: 1, items: {} }) }),
+    write: async (_t, m) => void writes.push(m),
+  };
+  await assert.rejects(
+    updateIntake((d) => ({ data: d, result: 0 }), { client, sleep: noSleep }),
+    StoreEtagMissingError,
+  );
+  assert.deepEqual(writes, []);
+});
+
+test("updateIntake: 200 空 body（stale 読み取り）は corrupt でなく競合扱いでリトライ", async () => {
+  let reads = 0;
+  const wrote: string[] = [];
+  const client: IntakeBlobClient = {
+    read: async () => (++reads === 1 ? { etag: "e0", text: "" } : { etag: "e1", text: JSON.stringify({ version: 1, items: {} }) }),
+    write: async (t) => void wrote.push(t),
+  };
+  await updateIntake((d) => ({ data: withItem(d, "a", 1), result: 0 }), { client, sleep: noSleep });
+  assert.equal(reads, 2);
+  assert.equal(wrote.length, 1);
+});
+
+test("updateIntake: 空 body が続けば StoreConflictError（StoreCorruptError ではない）", async () => {
+  const client: IntakeBlobClient = { read: async () => ({ etag: "e0", text: "  " }), write: async () => {} };
+  await assert.rejects(updateIntake((d) => ({ data: d, result: 0 }), { client, sleep: noSleep }), StoreConflictError);
 });
