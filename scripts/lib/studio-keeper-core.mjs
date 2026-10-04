@@ -83,3 +83,65 @@ export function writeJsonAtomicSync(filePath, content) {
   fs.writeFileSync(tmpPath, content);
   fs.renameSync(tmpPath, filePath);
 }
+
+// Studioタスク（`npm.cmd run studio` → npm --prefix studio run dev → tsx watch server/index.ts）
+// の連鎖に属するプロセスか。無関係なnode.exe（run-job.mjs / claude CLI / next dev等）を巻き込まないよう
+// 「run studio」という単語だけでは判定せず、npm起動形・--prefix studio・tsx+server/index.ts に限定する。
+const STUDIO_CHAIN_RES = [
+  /\bnpm(?:\.cmd|-cli\.js)?"?\s+(?:--prefix\s+studio\s+)?run\s+(?:studio|dev)\b/i,
+  /--prefix\s+studio\s+run\s+dev\b/i,
+  /\btsx\b[^\n]*server[\/\\]index\.ts/i,
+];
+function isStudioChain(proc) {
+  const cmd = proc && proc.CommandLine;
+  if (!cmd) return false;
+  if (/studio-keeper|run-job\.mjs/i.test(cmd)) return false;
+  return STUDIO_CHAIN_RES.some((re) => re.test(cmd));
+}
+
+// プロセススナップショット（Win32_Process: ProcessId/ParentProcessId/Name/CommandLine の配列）と
+// LISTENしているPID群から、`taskkill /F /T /PID` するルートPID（文字列）の配列を返す純関数。
+// (a) LISTEN pidごとに、Studio連鎖に属する親を辿った最上位 (b) コマンドラインがタスク起動形に一致するもの。
+// 他のルートの子孫は除外する。`taskkill /IM node.exe` 相当の広い選択は行わない。
+// 背景(2026-10-05): leaf(server)だけkillすると親cmd/npm/tsx watchが残りタスクがRunningのまま
+// IgnoreNewで再起動が無視され続けたため、ツリーごと落とす。
+export function findStudioKillRoots(snapshot, listeningPids) {
+  if (!Array.isArray(snapshot)) return [];
+  const byPid = new Map();
+  for (const proc of snapshot) {
+    if (proc && proc.ProcessId != null) byPid.set(String(proc.ProcessId), proc);
+  }
+  const parentOf = (pid) => {
+    const proc = byPid.get(pid);
+    if (!proc || proc.ParentProcessId == null) return null;
+    const ppid = String(proc.ParentProcessId);
+    return byPid.has(ppid) ? ppid : null;
+  };
+  const selected = new Set();
+  for (const raw of Array.isArray(listeningPids) ? listeningPids : []) {
+    let cur = String(raw);
+    if (!byPid.has(cur)) continue;
+    const seen = new Set([cur]);
+    for (;;) {
+      const parent = parentOf(cur);
+      if (!parent || seen.has(parent) || !isStudioChain(byPid.get(parent))) break;
+      seen.add(parent);
+      cur = parent;
+    }
+    selected.add(cur);
+  }
+  for (const [pid, proc] of byPid) {
+    if (isStudioChain(proc)) selected.add(pid);
+  }
+  const hasSelectedAncestor = (pid) => {
+    const seen = new Set([pid]);
+    let cur = parentOf(pid);
+    while (cur && !seen.has(cur)) {
+      if (selected.has(cur)) return true;
+      seen.add(cur);
+      cur = parentOf(cur);
+    }
+    return false;
+  };
+  return [...selected].filter((pid) => !hasSelectedAncestor(pid));
+}

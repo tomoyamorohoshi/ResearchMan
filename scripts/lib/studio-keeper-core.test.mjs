@@ -169,22 +169,22 @@ test("writeJsonAtomicSync: rename方式のため一時ファイルが最終的�
 });
 
 // ---- findStudioKillRoots: Studioプロセスツリーのkill対象ルート抽出 ----
-const R = "C:\Users\tomoy\Projects\ClaudeApps\ResearchMan";
+const R = String.raw`C:\Users\tomoy\Projects\ClaudeApps\ResearchMan`;
 const p = (ProcessId, ParentProcessId, Name, CommandLine) => ({ ProcessId, ParentProcessId, Name, CommandLine });
 const STUDIO_TREE = [
-  p(100, 1, "cmd.exe", `cmd.exe /c set X=1&& "C:\Program Files\nodejs\npm.cmd" run studio >> logs\studio.log 2>&1`),
-  p(101, 100, "node.exe", `"C:\Program Files\nodejs\node.exe" "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run studio`),
-  p(102, 101, "cmd.exe", `C:\WINDOWS\system32\cmd.exe /d /s /c "npm --prefix studio run dev"`),
-  p(103, 102, "node.exe", `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" --prefix studio run dev`),
-  p(104, 103, "cmd.exe", `C:\WINDOWS\system32\cmd.exe /d /s /c "tsx watch server/index.ts"`),
-  p(105, 104, "node.exe", `node ${R}\studio\node_modules\.bin\..\tsx\dist\cli.mjs watch server/index.ts`),
-  p(106, 105, "node.exe", `node --require x --import tsx server/index.ts`),
+  p(100, 1, "cmd.exe", String.raw`cmd.exe /c set X=1&& "C:\Program Files\nodejs\npm.cmd" run studio >> logs\studio.log 2>&1`),
+  p(101, 100, "node.exe", String.raw`"C:\Program Files\nodejs\node.exe" "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run studio`),
+  p(102, 101, "cmd.exe", String.raw`C:\WINDOWS\system32\cmd.exe /d /s /c "npm --prefix studio run dev"`),
+  p(103, 102, "node.exe", String.raw`node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" --prefix studio run dev`),
+  p(104, 103, "cmd.exe", String.raw`C:\WINDOWS\system32\cmd.exe /d /s /c "tsx watch server/index.ts"`),
+  p(105, 104, "node.exe", String.raw`node ${R}\studio\node_modules\.bin\..\tsx\dist\cli.mjs watch server/index.ts`),
+  p(106, 105, "node.exe", String.raw`node --require x --import tsx server/index.ts`),
 ];
 const UNRELATED = [
-  p(200, 1, "node.exe", `node scripts/windows/run-job.mjs daily-collect`),
-  p(201, 1, "node.exe", `node C:\Users\tomoy\AppData\npm\node_modules\@anthropic-ai\claude-code\cli.js -p "please run studio check"`),
-  p(202, 1, "node.exe", `node ${R}\node_modules\next\dist\bin\next dev -p 3000`),
-  p(203, 1, "node.exe", `node scripts/windows/studio-keeper.mjs`),
+  p(200, 1, "node.exe", String.raw`node scripts/windows/run-job.mjs daily-collect`),
+  p(201, 1, "node.exe", String.raw`node C:\Users\tomoy\AppData\npm\node_modules\@anthropic-ai\claude-code\cli.js -p "please run studio check"`),
+  p(202, 1, "node.exe", String.raw`node ${R}\node_modules\next\dist\bin\next dev -p 3000`),
+  p(203, 1, "node.exe", String.raw`node scripts/windows/studio-keeper.mjs`),
   p(204, 1, "explorer.exe", ""),
 ];
 
