@@ -86,7 +86,7 @@ export async function GET(request: NextRequest) {
   if (denied) return denied;
   if (!isBlobConfigured()) return json({ error: "intake not configured" }, 503);
   try {
-    return json({ items: await listPendingItems(Date.now()) }, 200);
+    return json({ items: await listPendingItems() }, 200);
   } catch (err) {
     console.error("[api/exhibition-intake] GET failed", err);
     return json({ error: "internal error" }, 500);
