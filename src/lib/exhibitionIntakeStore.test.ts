@@ -37,18 +37,14 @@ const withItem = (d: IntakeData, k: string, n: number): IntakeData => ({ version
 const noSleep = async () => {};
 
 // 実 Blob の挙動を模す: etag 一致で書き込み可、不一致は BlobPreconditionFailedError。
-// 作成時（ifMatch=null）は既存があれば失敗。get は staleReads 回だけ古いスナップショットを返す。
-function fakeBlob(initial: IntakeData | null, staleReads = 0) {
+// 作成時（ifMatch=null）は既存があれば失敗。
+function fakeBlob(initial: IntakeData | null) {
   let stored: { etag: string; text: string } | null = initial ? { etag: "e0", text: JSON.stringify(initial) } : null;
-  let stale: { etag: string; text: string } | null = stored;
+
   let rev = 0;
   const writes: (string | null)[] = [];
   const client: IntakeBlobClient = {
     async read() {
-      if (staleReads > 0) {
-        staleReads--;
-        return stale;
-      }
       return stored;
     },
     async write(text, ifMatch) {
@@ -82,7 +78,7 @@ test("updateIntake: get が古い etag/内容を返す→precondition 失敗→�
 });
 
 test("updateIntake: 並行する2件の追加が両方残る（古い読みで衝突→リトライ）", async () => {
-  const f = fakeBlob(null, 0);
+  const f = fakeBlob(null);
   const slept: number[] = [];
   const sleep = async (ms: number) => {
     slept.push(ms);

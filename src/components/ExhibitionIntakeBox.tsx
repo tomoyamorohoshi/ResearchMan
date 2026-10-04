@@ -94,7 +94,16 @@ export default function ExhibitionIntakeBox() {
       } else if (res.status === 429) {
         setMessage({ kind: "error", text: "受付上限に達しています。時間をおいてお試しください" });
       } else if (res.status === 503) {
-        setMessage({ kind: "error", text: "現在受付できません" });
+        let err = "";
+        try {
+          err = ((await res.json()) as { error?: string }).error ?? "";
+        } catch {
+          /* 本文が JSON でなければ通常の 503 扱い */
+        }
+        setMessage({
+          kind: "error",
+          text: err === "busy" ? "混み合っています。少し待って再送してください" : "現在受付できません",
+        });
       } else {
         setMessage({ kind: "error", text: "送信に失敗しました。時間をおいてお試しください" });
       }

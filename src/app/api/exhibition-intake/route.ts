@@ -6,10 +6,11 @@
 //          → 重複/処理済み(200) → 上限(429) → 保存(200)
 //   GET  : FAVORITES_SYNC_TOKEN 未設定(503) → 認証(401) → Blob設定(503) → pending 一覧(200)
 //   PATCH: GET と同認証 → body 検証(400) → Blob設定(503) → 適用(200 {updated})
+// POST/PATCH は updateIntake（etag 楽観ロック＋リトライ）で更新し、競合が解消しなければ 503 {error:"busy"}。
 import type { NextRequest } from "next/server";
 import { createHash, timingSafeEqual } from "node:crypto";
 import { isBlobConfigured } from "@/lib/favoritesStore";
-import { readIntakeBlob, writeIntakeBlob, StoreCorruptError } from "@/lib/exhibitionIntakeStore";
+import { readIntakeBlob, updateIntake, StoreCorruptError, StoreConflictError } from "@/lib/exhibitionIntakeStore";
 import {
   addToQueue,
   applyResults,
@@ -73,16 +74,18 @@ export async function POST(request: NextRequest) {
 
   try {
     const now = Date.now();
-    const current = await readIntakeBlob();
-    const { result, data } = addToQueue(current, v.url, now);
+    const result = await updateIntake((current) => {
+      const r = addToQueue(current, v.url, now);
+      return { data: r.result === "accepted" ? r.data : null, result: r.result };
+    });
     if (result === "duplicate") return json({ status: "duplicate" }, 200);
     if (result === "already_processed") return json({ status: "already_processed" }, 200);
     if (result === "limit_pending" || result === "limit_daily") {
       return json({ error: "rate_limited" }, 429);
     }
-    await writeIntakeBlob(data);
     return json({ status: "accepted" }, 200);
   } catch (err) {
+    if (err instanceof StoreConflictError) return json({ error: "busy" }, 503);
     if (err instanceof StoreCorruptError) return json({ error: "store_corrupt" }, 500);
     console.error("[api/exhibition-intake] POST failed", err);
     return json({ error: "internal error" }, 500);
@@ -121,11 +124,13 @@ export async function PATCH(request: NextRequest) {
   if (!isBlobConfigured()) return json({ error: "intake not configured" }, 503);
   try {
     const now = Date.now();
-    const current = sweepTombstones(await readIntakeBlob(), now);
-    const { data, updated } = applyResults(current, results as IntakeResult[], now);
-    await writeIntakeBlob(data);
+    const updated = await updateIntake((raw) => {
+      const r = applyResults(sweepTombstones(raw, now), results as IntakeResult[], now);
+      return { data: r.data, result: r.updated };
+    });
     return json({ updated }, 200);
   } catch (err) {
+    if (err instanceof StoreConflictError) return json({ error: "busy" }, 503);
     if (err instanceof StoreCorruptError) return json({ error: "store_corrupt" }, 500);
     console.error("[api/exhibition-intake] PATCH failed", err);
     return json({ error: "internal error" }, 500);

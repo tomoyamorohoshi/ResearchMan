@@ -4,9 +4,10 @@
  *   1. X: api.fxtwitter.com / IG: /embed/captioned/ を取得（失敗: attempts==0 → retry、>=1 → unverified）
  *   2. 本文を引用データとして Claude に渡し展覧会を抽出
  *   3. 抽出結果を公式ページ再取得で機械照合（build 側 processCandidates と同じ）。不一致は unverified
- *   4. 結果を PATCH。PATCH が失敗しても data 更新は継続（次回 GET で同じ URL が来ても dedupe で追加されない＝冪等）
+ *      抽出結果は公式URL検証より前に既存 items と dedupe（掲載済みなら新規追加せず既存 id を返し social ソースだけ追記）
+ *   4. 結果を PATCH（503 busy は短い待ちで最大3回試行）。PATCH が失敗しても data 更新は継続（次回 GET で同じ URL が来ても dedupe で追加されない＝冪等）
  */
-import { processCandidates, htmlToText } from "./exhibition-build.mjs";
+import { processCandidates, htmlToText, findDuplicate } from "./exhibition-build.mjs";
 import { buildIntakePrompt } from "./exhibition-prompts.mjs";
 import { normLink } from "./norm-link.mjs";
 
@@ -126,12 +127,37 @@ export async function runIntake({ items, data, today, deps, opts = {} }) {
         results.push({ url: f.url, status: "rejected", reason: "no-exhibition-found" });
         continue;
       }
-      const out = await processCandidates({ data: current, candidates: group, today, deps, opts });
+      // 掲載済みの展示は公式URL検証より前に拾う（公式URL欠落でも unverified にしない）
+      const dupHits = [];
+      const rest = [];
+      for (const c of group) {
+        const dup = findDuplicate(current.items, c);
+        if (dup) dupHits.push(dup.item);
+        else rest.push(c);
+      }
+      if (dupHits.length) {
+        const ids = new Set(dupHits.map((i) => i.id));
+        current = {
+          ...current,
+          items: current.items.map((i) => {
+            if (!ids.has(i.id)) return i;
+            const known = [i.link, ...(i.sources || []).map((s) => s?.url)].map((u) => normLink(u)).filter(Boolean);
+            if (known.includes(fKey)) return i;
+            return { ...i, sources: [...(i.sources || []), { name: "ユーザー投稿", url: f.url, kind: "social" }] };
+          }),
+        };
+      }
+      if (!rest.length) {
+        results.push({ url: f.url, status: "added", exhibitionId: dupHits[0].id, reason: "already-registered" });
+        continue;
+      }
+      const out = await processCandidates({ data: current, candidates: rest, today, deps, opts });
       current = out.data;
       added.push(...out.added);
       unverified.push(...out.unverified);
       rejected.push(...out.rejected);
       if (out.added.length) results.push({ url: f.url, status: "added", exhibitionId: out.added[0].id });
+      else if (dupHits.length) results.push({ url: f.url, status: "added", exhibitionId: dupHits[0].id, reason: "already-registered" });
       else if (out.skipped.length) results.push({ url: f.url, status: "added", exhibitionId: out.skipped[0].existingId, reason: "already-registered" });
       else if (out.updated.length) results.push({ url: f.url, status: "added", exhibitionId: out.updated[0].id, reason: "dates-updated" });
       else if (out.unverified.length) results.push({ url: f.url, status: "unverified", reason: out.unverified[0].reason });
@@ -151,8 +177,18 @@ export async function runIntake({ items, data, today, deps, opts = {} }) {
   let patchError;
   if (results.length) {
     try {
-      await deps.patch(results);
-      patched = true;
+      // サーバが同時更新の競合で 503 busy を返したときだけ短く待って再送（最大3回試行）。冪等なので安全
+      const sleep = deps.sleep || ((ms) => new Promise((r) => setTimeout(r, ms)));
+      for (let attempt = 0; ; attempt++) {
+        try {
+          await deps.patch(results);
+          patched = true;
+          break;
+        } catch (e) {
+          if (attempt >= 2 || !/[^0-9]503([^0-9]|$)/.test(String(e.message))) throw e;
+          await sleep(1000 * (attempt + 1));
+        }
+      }
     } catch (e) {
       patchError = e.message;
     }

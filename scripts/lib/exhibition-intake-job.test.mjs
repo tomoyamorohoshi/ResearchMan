@@ -130,10 +130,10 @@ test("runIntake: 成功 → added + exhibitionId、origin=intake・+10点・soci
 });
 
 test("runIntake: PATCH が失敗しても data 更新は継続し、再実行しても重複追加しない（冪等）", async () => {
-  const failingPatch = async () => { throw new Error("PATCH 503"); };
+  const failingPatch = async () => { throw new Error("PATCH 500"); };
   const r1 = await runIntake({ items: [{ url: X_URL, ts: 1, attempts: 0 }], data: emptyData(), today: TODAY, deps: mkDeps({ patch: failingPatch }) });
   assert.equal(r1.patched, false);
-  assert.match(String(r1.patchError), /PATCH 503/);
+  assert.match(String(r1.patchError), /PATCH 500/);
   assert.equal(r1.data.items.length, 1);
   // 次回 GET で同じ URL が再度来る
   const r2 = await runIntake({ items: [{ url: X_URL, ts: 1, attempts: 0 }], data: r1.data, today: TODAY, deps: mkDeps() });
@@ -207,7 +207,7 @@ test("runIntake: 追加分は PATCH 送信前に persist される（PATCH 失�
   const order = [];
   const deps = mkDeps({
     persist: async (d) => { order.push(`persist:${d.items.length}`); },
-    patch: async () => { order.push("patch"); throw new Error("PATCH 503"); },
+    patch: async () => { order.push("patch"); throw new Error("PATCH 500"); },
   });
   const r = await runIntake({ items: [{ url: X_URL, ts: 1, attempts: 0 }], data: emptyData(), today: TODAY, deps });
   assert.deepEqual(order, ["persist:1", "patch"]);
