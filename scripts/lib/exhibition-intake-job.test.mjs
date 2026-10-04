@@ -228,3 +228,80 @@ test("EXHIBITION_CLI_OPTS: Bash を禁止し WebSearch/WebFetch のみ許可", a
   assert.equal(EXHIBITION_CLI_OPTS.allowedTools, "WebSearch,WebFetch");
   assert.match(EXHIBITION_CLI_OPTS.extraDisallowedTools, /Bash/);
 });
+
+// ── 掲載済みの展示を投稿した場合: 公式URL検証より前に dedupe（unverified にしない） ──
+const existingItem = (over = {}) => ({
+  id: "2026-karimoku-research-center-machines-of-loving-grace",
+  slug: "2026-karimoku-research-center-machines-of-loving-grace",
+  title: "Machines of Loving Grace",
+  venue: "KARIMOKU RESEARCH CENTER",
+  startDate: "2026-10-17",
+  endDate: "2026-10-25",
+  link: "https://official.example/mlg",
+  origin: "auto",
+  sources: [{ name: "公式", url: "https://official.example/mlg", kind: "official" }],
+  ...over,
+});
+
+test("runIntake: 掲載済み展示（公式URL欠落の抽出でも）は新規追加せず既存 id で added、social ソース追加・origin 不変・unverified に入れない", async () => {
+  const data = { version: 1, statusAsOf: TODAY, items: [existingItem()] };
+  const deps = mkDeps({ extract: async () => [cand({ officialUrl: "" })] });
+  const r = await runIntake({ items: [{ url: X_URL, ts: 1, attempts: 0 }], data, today: TODAY, deps });
+  assert.equal(r.data.items.length, 1);
+  assert.deepEqual(r.results.map((x) => [x.status, x.exhibitionId]), [["added", existingItem().id]]);
+  assert.equal(r.unverified.length, 0);
+  const it = r.data.items[0];
+  assert.equal(it.origin, "auto");
+  assert.ok(it.sources.some((s) => s.kind === "social" && s.url === X_URL));
+  assert.deepEqual(deps.patched.map((p) => p.status), ["added"]);
+});
+
+test("runIntake: 既に同じ social ソースがあれば重複追加しない（再実行しても冪等）", async () => {
+  const data = { version: 1, statusAsOf: TODAY, items: [existingItem()] };
+  const deps = () => mkDeps({ extract: async () => [cand({ officialUrl: "" })] });
+  const r1 = await runIntake({ items: [{ url: X_URL, ts: 1, attempts: 0 }], data, today: TODAY, deps: deps() });
+  const r2 = await runIntake({ items: [{ url: X_URL, ts: 1, attempts: 0 }], data: r1.data, today: TODAY, deps: deps() });
+  assert.equal(r2.data.items[0].sources.filter((s) => s.url === X_URL).length, 1);
+  assert.equal(r2.results[0].status, "added");
+});
+
+test("runIntake: link 一致（公式URLが既存と同じ）でも dedupe される", async () => {
+  const data = { version: 1, statusAsOf: TODAY, items: [existingItem({ title: "別題名" })] };
+  const deps = mkDeps({ extract: async () => [cand({ title: "Different title", venue: "Elsewhere" })] });
+  const r = await runIntake({ items: [{ url: X_URL, ts: 1, attempts: 0 }], data, today: TODAY, deps });
+  assert.equal(r.data.items.length, 1);
+  assert.equal(r.results[0].exhibitionId, existingItem().id);
+});
+
+// ── PATCH の 503 リトライ ──
+test("runIntake: PATCH が 503 busy なら1回リトライして成功", async () => {
+  let calls = 0;
+  const deps = mkDeps({
+    patch: async (results) => {
+      calls++;
+      if (calls === 1) throw new Error("PATCH HTTP 503");
+      return { updated: results.length };
+    },
+    sleep: async () => {},
+  });
+  const r = await runIntake({ items: [{ url: X_URL, ts: 1, attempts: 0 }], data: emptyData(), today: TODAY, deps });
+  assert.equal(r.patched, true);
+  assert.equal(calls, 2);
+});
+
+test("runIntake: PATCH が 503 を繰り返しても継続（最大3回試行）、503 以外はリトライしない", async () => {
+  let calls = 0;
+  const r = await runIntake({
+    items: [{ url: X_URL, ts: 1, attempts: 0 }], data: emptyData(), today: TODAY,
+    deps: mkDeps({ patch: async () => { calls++; throw new Error("PATCH HTTP 503"); }, sleep: async () => {} }),
+  });
+  assert.equal(r.patched, false);
+  assert.equal(calls, 3);
+  assert.equal(r.data.items.length, 1);
+  let calls2 = 0;
+  await runIntake({
+    items: [{ url: X_URL, ts: 1, attempts: 0 }], data: emptyData(), today: TODAY,
+    deps: mkDeps({ patch: async () => { calls2++; throw new Error("PATCH HTTP 500"); }, sleep: async () => {} }),
+  });
+  assert.equal(calls2, 1);
+});
