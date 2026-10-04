@@ -11,8 +11,8 @@
  *
  * 死活判定: GET http://127.0.0.1:5178/api/jobs（timeout 5秒）を最大3回・10秒間隔で試し、
  * 1回でも200が返れば生存として何も出力せずexit 0（ジョブ実行中の一過性負荷での1回の
- * 失敗だけで誤killしないため）。3回とも失敗した場合のみ (1) port 5178 をLISTENしている
- * PIDだけをtaskkillしてハング状態を解消
+ * 失敗だけで誤killしないため）。3回とも失敗した場合のみ (1) schtasks /end + Studioプロセスツリー
+ * （LISTEN PIDの親連鎖ルート等）を taskkill /F /T してハング状態を解消
  * （`taskkill /IM node.exe` は本番ジョブ巻き込み事故の実績があるため絶対に使わない）→
  * (2) `schtasks /run /tn ResearchMan-Studio` で再起動 → (3) 最大90秒ポーリングして復旧確認 →
  * (4) logs/incidents.json へ記録 → (5) LINEへ通知、の順で自己回復を試みる。
@@ -30,6 +30,7 @@ import { spawnSync } from "child_process";
 import { fileURLToPath } from "url";
 import {
   parseListeningPids,
+  findStudioKillRoots,
   appendIncident,
   shouldRotate,
   toJstIsoString,
@@ -52,6 +53,7 @@ const CHECK_ALIVE_RETRY_COUNT = 3;
 const CHECK_ALIVE_RETRY_INTERVAL_MS = 10 * 1000;
 const RECOVERY_POLL_TIMEOUT_MS = 90 * 1000;
 const RECOVERY_POLL_INTERVAL_MS = 5000;
+const TASK_STOP_WAIT_MS = 15 * 1000;
 
 function log(msg) {
   console.log(`[studio-keeper] ${msg}`);
@@ -97,10 +99,54 @@ function getListeningPids() {
   return parseListeningPids(r.stdout || "", PORT);
 }
 
-// port 5178 をLISTENしているPIDだけをkillする（taskkill /IM node.exe は使わない。
-// 他の本番node.exeプロセス（日次収集ジョブ等）を巻き込む事故の実績があるため）。
-function killPid(pid) {
-  const r = spawnSync("taskkill", ["/PID", pid, "/F"], { encoding: "utf-8", timeout: 15000 });
+// Studioのプロセスツリー全体を落とす（taskkill /IM node.exe は使わない。他の本番node.exe
+// プロセス（日次収集ジョブ等）を巻き込む事故の実績があるため、PID指定のみ）。
+// leafだけkillすると親cmd/npm/tsx watchが残りタスクがRunningのままIgnoreNewで再起動が
+// 無視される（2026-10-05実インシデント）ため、ルートを /T で木ごとkillする。
+function endStudioTask() {
+  const r = spawnSync("schtasks", ["/end", "/tn", TASK_NAME], { encoding: "utf-8", timeout: 15000 });
+  return r.status === 0;
+}
+
+// 取得失敗・空・JSON不正のときは null（「ルート無し」と区別してログ/インシデントに残すため）。
+function getProcessSnapshot() {
+  const cmd =
+    "[Console]::OutputEncoding=[Text.Encoding]::UTF8; Get-CimInstance Win32_Process | Select-Object ProcessId,ParentProcessId,Name,CommandLine | ConvertTo-Json -Compress";
+  const r = spawnSync("powershell", ["-NoProfile", "-NonInteractive", "-Command", cmd], {
+    encoding: "utf-8",
+    timeout: 30000,
+    maxBuffer: 64 * 1024 * 1024,
+  });
+  try {
+    const parsed = JSON.parse(r.stdout || "");
+    const list = Array.isArray(parsed) ? parsed : [parsed];
+    return list.length ? list : null;
+  } catch {
+    return null;
+  }
+}
+
+function isStudioTaskRunning() {
+  const r = spawnSync(
+    "powershell",
+    ["-NoProfile", "-NonInteractive", "-Command", `(Get-ScheduledTask -TaskName '${TASK_NAME}').State`],
+    { encoding: "utf-8", timeout: 15000 },
+  );
+  return /Running/i.test(r.stdout || "");
+}
+
+// schtasks /end 後、タスクがRunningでなくなるまで待つ（Running中の /run はIgnoreNewで無視されるため）。
+async function waitTaskNotRunning(timeoutMs, intervalMs) {
+  const deadline = Date.now() + timeoutMs;
+  for (;;) {
+    if (!isStudioTaskRunning()) return true;
+    if (Date.now() >= deadline) return false;
+    await new Promise((resolve) => setTimeout(resolve, intervalMs));
+  }
+}
+
+function killTree(pid) {
+  const r = spawnSync("taskkill", ["/F", "/T", "/PID", pid], { encoding: "utf-8", timeout: 15000 });
   return r.status === 0;
 }
 
@@ -170,16 +216,40 @@ async function main() {
   const detailParts = [];
 
   const pids = getListeningPids();
-  if (pids.length) {
-    for (const pid of pids) {
-      const ok = killPid(pid);
-      log(`PID ${pid} taskkill /F ${ok ? "成功" : "失敗"}`);
-      detailParts.push(`PID ${pid} taskkill ${ok ? "成功" : "失敗"}`);
-    }
-  } else {
-    log("port 5178 をLISTENしているPIDが見つかりませんでした（プロセス自体が終了している可能性）");
+  if (!pids.length) {
+    log("port 5178 をLISTENしているPIDが見つかりませんでした（親プロセスだけ残っている可能性）");
     detailParts.push("port 5178 のLISTENING PIDなし");
   }
+
+  // schtasks /end より前にスナップショットを取りルートを確定する（/end で連鎖の一部が
+  // 先に消えて親子関係が失われる前の状態で判定するため）。
+  const snapshot = getProcessSnapshot();
+  if (!snapshot) {
+    log("プロセススナップショット取得失敗（LISTEN PIDのみを対象に続行）");
+    detailParts.push("プロセススナップショット取得失敗");
+  }
+  const roots = findStudioKillRoots(snapshot, pids, ROOT);
+
+  const ended = endStudioTask();
+  log(`schtasks /end /tn ${TASK_NAME} ${ended ? "成功" : "失敗（無視）"}`);
+  detailParts.push(`schtasks /end ${ended ? "成功" : "失敗（無視）"}`);
+
+  for (const root of roots) {
+    const ok = killTree(root);
+    log(`PID ${root} taskkill /F /T ${ok ? "成功" : "失敗"}`);
+    detailParts.push(`ルートPID ${root} taskkill /T ${ok ? "成功" : "失敗"}`);
+  }
+  if (!roots.length) detailParts.push("kill対象ルートなし");
+
+  let stopped = await waitTaskNotRunning(TASK_STOP_WAIT_MS, 1000);
+  if (!stopped) {
+    const endedAgain = endStudioTask();
+    log(`タスクがRunningのまま → schtasks /end を再試行 ${endedAgain ? "成功" : "失敗（無視）"}`);
+    detailParts.push(`schtasks /end 再試行 ${endedAgain ? "成功" : "失敗（無視）"}`);
+    stopped = await waitTaskNotRunning(TASK_STOP_WAIT_MS, 1000);
+  }
+  log(stopped ? "タスクがRunningでなくなったことを確認" : `タスクが${TASK_STOP_WAIT_MS / 1000}秒後もRunningのまま（/run は無視される可能性）`);
+  if (!stopped) detailParts.push("タスクがRunningのまま");
 
   const restarted = restartStudioTask();
   log(`schtasks /run /tn ${TASK_NAME} ${restarted ? "成功" : "失敗"}`);
