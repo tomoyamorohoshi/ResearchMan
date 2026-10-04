@@ -1,5 +1,166 @@
 [
   {
+    "id": "audionaut",
+    "title": "Audionaut",
+    "org": "kvoltmer（個人開発）",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools",
+      "AI/Agents"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "3〜4年かけて作られた、C++/JUCE製の無料オープンソース・マルチトラック音声エディタ。Claude CodeなどのAIエージェントからMCP経由で編集を指示できる。",
+    "point": "Audionaut の面白さは、「波形を見ながらハサミで切る」音声編集を、「23小節目で分割して」「このジャム録音を曲ごとに切り分けて」と話しかけるだけで実行できる点です。AIの編集は1操作ごとに普通のUndoの1手として積まれるので、気に入らなければ Ctrl+Z で戻せ、AIに任せきりで作品が壊れる不安が小さくなっています。さらにビート検出や無音・曲の切れ目の自動判定、ドラム/ベース/ボーカル/その他へのステム分離、テンポ・音程の変更までアプリ内で完結します。広告・体験づくりでは、長時間のフィールド録音やインタビュー、ライブのジャム音源から使える部分を素早く拾う作業、ナレーションやBGMの尺合わせ、イベントや展示で使う多チャンネル音源の整理に向きます。「編集の下ごしらえをAIに任せ、仕上げは人が耳で決める」流れを、無料で試せる実物として手に入れられるのが魅力です。",
+    "detail": "仕組みは、普通のデスクトップ向け音声編集ソフト（JUCEというC++の音響フレームワーク製）に、AIが操作できる「窓口」（MCP＝AIが外部アプリを操作するための共通規格）を付けたものです。Claude Desktop／Claude Code から `claude mcp add audionaut -- npx -y audionaut-mcp` を実行して接続すると、AIが「今開いているプロジェクト」に対して分割・移動・並べ替えなどの編集を送り込みます。たとえるなら、ミキサー卓の隣に“指示を聞いて手を動かしてくれるアシスタント”が座る感じです。内部ではビート検出などにEssentia、ステム分離にdemucs.cpp、時間伸縮にRubber Band R3を使い、プロジェクトは人が読めるJSON形式なので、中身を確認したり別のツールで加工したりもできます。\n\n従来の音声エディタ（AudacityやArdourなど）では、AI連携は後付けのプラグインか、クラウドに音を送る有料サービスが中心でした。Audionautは、編集の一手一手が透明（Undoに残る）で、ステム分離も端末内で完結する点、CLIで画面なしの自動処理もできる点が違います。\n\n使うには、公式の配布ページから macOS（Apple Silicon, 13以降）／Windows 64bit／Linux 用のインストーラ（v1.6.4、2026-10-01公開）を入れるだけで、費用は無料です。AI連携にはNode.js 18以上とClaude側のMCP対応環境が必要です。Windows版はSmartScreenの警告が出るため「詳細情報→実行」で進めます。なお、リポジトリが公開されたのは2026年8月でまだ若く、仕様変更が起きやすい点は留意してください。",
+    "license": {
+      "spdx": "GPL-3.0-or-later",
+      "commercial": "conditional",
+      "note": "GPL3+と商用ライセンスのデュアル。無料版（GPL）はソース公開義務あり、組み込み用途は商用ライセンスの確認が必要。アプリ自体は無料で使える"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/kvoltmer/Audionaut"
+      },
+      {
+        "kind": "product",
+        "url": "https://audionaut.app"
+      },
+      {
+        "kind": "product",
+        "url": "https://audionaut.app/download"
+      },
+      {
+        "kind": "post",
+        "url": "https://news.ycombinator.com/item?id=49931031"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/audionaut.jpg",
+    "relatedWorks": [
+      {
+        "title": "Ardour",
+        "description": "オープンソースの本格DAW。AI操作の窓口はなく、手動編集が中心",
+        "url": "https://ardour.org"
+      },
+      {
+        "title": "Audacity",
+        "description": "定番の無料音声エディタ。Audionautのようなエージェント編集は標準では持たない",
+        "url": "https://www.audacityteam.org"
+      },
+      {
+        "title": "Demucs",
+        "description": "ステム分離のオープンソースモデル（Audionautはそのc++版を利用）",
+        "url": "https://github.com/facebookresearch/demucs"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "this-is-the-voice",
+    "title": "This Is The Voice",
+    "org": "pehadavid（個人開発）",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "ボーカル録音〜仕上げに必要な処理を1つにまとめた、無料オープンソースのボーカルプラグイン（CLAP優先、VST3/AU/LV2対応）。報告レイテンシーがゼロなのが売り。",
+    "point": "This Is The Voice は、声の入力レベル調整、コンプレッサー、EQ、歯擦音（サ行のキツい音）を抑えるディエッサー、リバーブ、エコーまでを1つのプラグインにまとめ、少ないつまみで「声が整った状態」にできるツールです。通常、これらは別々のプラグインを何個も重ねますが、ここでは男性/中性/女性の声タイプを選ぶだけで処理の周波数帯が切り替わり、「COMPRESS」1つで並列と直列の圧縮をまとめて調整できます。遅延（レイテンシー）が出ない設計なので、歌いながら自分の声を確認する録音中に使っても違和感が出にくいのが利点です。広告・体験づくりでは、ナレーション、インタビュー、VTuber・配信、展示や体験型コンテンツの声収録など、音響の専門家がいない現場で一定品質の声を素早く用意したい場面に合います。ツール選びで迷う時間を減らし、録音の現場で「そのまま使える声」を作れそうです。",
+    "detail": "仕組みは、各処理を「今来た1サンプル（音の最小単位）だけで計算する」ように作り、先読み（ルックアヘッド）やオーバーサンプリングといった遅延の原因を使わないというものです。先読みなしで会話の前後を見ずに反応する“即答型”の設計で、サチュレーション（歪みの味付け）は微分の逆（反導関数）を使ってエイリアシング（余計な折り返し雑音）を抑え、フィルターは位相の遅れが出ないタイプを採用しています。Auto Level 機能は約10秒の実際のボーカルを聞いてレベルを合わせ、De-Ess は「サ行が鳴っている間だけ」働き、Air（高域の空気感）はサ行で自動的に引っ込みます。つまみは INPUT／COMPRESS／TONE（Body・Mid・Presence・Air）／COLOR（De-Ess・Saturate・Radio・Double・Chorus）／Echo・Reverb（Room・Plate・Hall・Ambient、声の最中は自動で控えめ）にまとまり、工場出荷プリセットが7つあります。\n\n従来は、複数のプラグインを組み合わせる「ボーカルチェーン」を自分で組む必要があり、有料の統合型プラグインも多くありました。本作は、MITで無料、ビルドごとに公式のclap-validatorを3OSで通している点が特徴です。\n\n使うには、GitHubのReleasesからLinux(x86_64)／macOS(10.15以降・Intel/Apple Silicon)／Windows 10以降のインストーラを入れ、CLAP/VST3/AU対応のDAW（Reaper・Bitwig・Logic等）に読み込みます。費用は無料です。2026-09-25にv0.9.0、同29日にv1.0.0と公開されたばかりで、実績は少ない点は理解した上で試すのがおすすめです。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "MIT。DPF・NanoVG・RtAudio等の寛容ライセンス部品を使用。インストーラは未署名でOSの警告を許可する必要あり"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/pehadavid/ThisIsTheVoice"
+      },
+      {
+        "kind": "product",
+        "url": "https://github.com/pehadavid/ThisIsTheVoice/releases"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/this-is-the-voice.jpg",
+    "relatedWorks": [
+      {
+        "title": "CLAP Validator",
+        "description": "CLAPプラグインの公式検証ツール。本作はこれを毎ビルド通している",
+        "url": "https://github.com/free-audio/clap-validator"
+      },
+      {
+        "title": "DPF (DISTRHO Plugin Framework)",
+        "description": "CLAP/VST3/LV2対応プラグインを作るオープンソースのフレームワーク（本作が使用）",
+        "url": "https://github.com/DISTRHO/DPF"
+      },
+      {
+        "title": "Ardour",
+        "description": "無料OSSのDAW。ボーカルプラグインの動作確認先の一つ",
+        "url": "https://ardour.org"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "iblis",
+    "title": "Iblis",
+    "org": "MeiuxMeiux（個人開発）",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "文章を書くだけで、自分のGPU上で曲を丸ごと作れるWindows用のAI音楽制作アプリ。手持ちの音源フォルダから「自分だけの音楽スタイル」を学習させる機能も付いている。インターネットに繋がなくても動き、無料で使える。",
+    "point": "すごいのは、音楽生成AIを「Webサービスにお金を払って使う」形から「自分のPCに置いて自由に育てる道具」に変えている点。クラウドにはデータが一切出ないので、未公開のBGMや社内の音源を学習素材にしても外に漏れない。さらに自分の曲フォルダから音楽の癖（スタイル）を学ぶLoRA機能があり、「ブランド専用の音の世界観」を作って使い回せる。広告・体験づくりでは、ブランドごとにサウンドロゴ風のBGMを大量に作り分ける、展示や店舗向けに毎日違う環境音楽を生成して流す、映像の尺と雰囲気に合わせて仮BGMをその場で何パターンも出す、といった使い方が考えられる。見た目を着せ替えられるスキンやプラグイン機構もあるので、制作チーム専用のツールに作り変えることもできる。",
+    "detail": "仕組みは、オープンな音楽生成モデル ACE-Step 1.5 を中身のエンジンとして使い、その外側に「曲を作る」「ライブラリで管理する」「スタイルを学習させる」「BPMやキーを解析する」といった画面をまとめた制作スタジオアプリです。たとえるなら、高性能だが操作が難しいエンジンに、運転しやすい車体をかぶせたもの。エンジンやスタイル学習機能は「プラグインパック」として署名付きカタログから初回起動時に追加され、機能の差し替えや拡張ができます。\n\n従来の音楽生成サービスは、クラウドで生成し、アカウントや従量課金に縛られ、学習素材のアップロードも必要でした。Iblis は生成も学習もPC内で完結し、アカウントなしで使える点が違います。ただし ACE-Step 自体を作ったのではなく、既存モデルを使いやすく包んだツールである点には注意してください。現状は alpha（v0.2.0-alpha.59、2026-09-25公開）で、不具合や仕様変更があると作者自身が明記しています。公開されているのはクライアント側のコードで、サーバー側は非公開です。\n\n使うには Windows 11（64bit）、VRAM 8GB以上の NVIDIA GPU、エンジン用に約8GBの空き容量（学習機能を使うならさらに数GB）が必要です。アプリは公式サイトからダウンロードでき、ソースからビルドする場合は Node 24・pnpm・Python 3 を使います。費用は無料。スキルとしては、インストールして文章で指示を出せれば使え、スタイル学習を試す場合のみ、音源フォルダを用意する程度の知識があれば十分です。",
+    "license": {
+      "spdx": "GPL-3.0-or-later",
+      "commercial": "conditional",
+      "note": "デスクトップ本体はGPL-3.0-or-later、Plugin SDKはApache-2.0、公式プラグインはMIT。生成した楽曲の権利は、土台モデル ACE-Step 1.5 のライセンスに従う想定で、利用前に確認が必要。コミュニティスタイルの公開・取得は製品キー制（無料、招待制）。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/MeiuxMeiux/Open-Iblis"
+      },
+      {
+        "kind": "product",
+        "url": "https://iblis.meiuxmeiux.com/"
+      },
+      {
+        "kind": "product",
+        "url": "https://iblis.meiuxmeiux.com/download"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/iblis.jpg",
+    "relatedWorks": [
+      {
+        "title": "AceForge",
+        "description": "同じACE-Stepを使うmacOS(Apple Silicon)向けのローカル音楽制作アプリ。ステム分離や音声→MIDI変換も内蔵",
+        "url": "https://github.com/audiohacking/AceForge"
+      },
+      {
+        "title": "ACE-Step 1.5",
+        "description": "Iblisの土台になるオープンな音楽生成モデル。数曲からLoRA学習ができる",
+        "url": "https://github.com/ace-step/ACE-Step-1.5"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "vlo-0-3",
     "title": "Vlo 0.3",
     "org": "PxTicks",
