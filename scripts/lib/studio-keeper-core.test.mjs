@@ -13,6 +13,7 @@ import {
   retryCheckAlive,
   buildIncidentsFileContent,
   writeJsonAtomicSync,
+  findStudioKillRoots,
 } from "./studio-keeper-core.mjs";
 
 const NETSTAT_SAMPLE = `
@@ -165,4 +166,71 @@ test("writeJsonAtomicSync: rename方式のため一時ファイルが最終的�
   } finally {
     fs.rmSync(dir, { recursive: true, force: true });
   }
+});
+
+// ---- findStudioKillRoots: Studioプロセスツリーのkill対象ルート抽出 ----
+const R = "C:\Users\tomoy\Projects\ClaudeApps\ResearchMan";
+const p = (ProcessId, ParentProcessId, Name, CommandLine) => ({ ProcessId, ParentProcessId, Name, CommandLine });
+const STUDIO_TREE = [
+  p(100, 1, "cmd.exe", `cmd.exe /c set X=1&& "C:\Program Files\nodejs\npm.cmd" run studio >> logs\studio.log 2>&1`),
+  p(101, 100, "node.exe", `"C:\Program Files\nodejs\node.exe" "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run studio`),
+  p(102, 101, "cmd.exe", `C:\WINDOWS\system32\cmd.exe /d /s /c "npm --prefix studio run dev"`),
+  p(103, 102, "node.exe", `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" --prefix studio run dev`),
+  p(104, 103, "cmd.exe", `C:\WINDOWS\system32\cmd.exe /d /s /c "tsx watch server/index.ts"`),
+  p(105, 104, "node.exe", `node ${R}\studio\node_modules\.bin\..\tsx\dist\cli.mjs watch server/index.ts`),
+  p(106, 105, "node.exe", `node --require x --import tsx server/index.ts`),
+];
+const UNRELATED = [
+  p(200, 1, "node.exe", `node scripts/windows/run-job.mjs daily-collect`),
+  p(201, 1, "node.exe", `node C:\Users\tomoy\AppData\npm\node_modules\@anthropic-ai\claude-code\cli.js -p "please run studio check"`),
+  p(202, 1, "node.exe", `node ${R}\node_modules\next\dist\bin\next dev -p 3000`),
+  p(203, 1, "node.exe", `node scripts/windows/studio-keeper.mjs`),
+  p(204, 1, "explorer.exe", ""),
+];
+
+test("findStudioKillRoots: LISTEN pidから親連鎖の最上位(root cmd)を1件だけ返す", () => {
+  assert.deepEqual(findStudioKillRoots([...STUDIO_TREE, ...UNRELATED], ["106"]), ["100"]);
+});
+
+test("findStudioKillRoots: LISTEN pidが無くてもコマンドライン一致でルートを返す（本番インシデント: 親だけ生存）", () => {
+  const snap = STUDIO_TREE.filter((x) => x.ProcessId < 105);
+  assert.deepEqual(findStudioKillRoots([...snap, ...UNRELATED], []), ["100"]);
+});
+
+test("findStudioKillRoots: 無関係なnode.exe（run-job/claude/next dev/keeper自身）は選ばない", () => {
+  assert.deepEqual(findStudioKillRoots(UNRELATED, []), []);
+  assert.deepEqual(findStudioKillRoots([...STUDIO_TREE, ...UNRELATED], ["106"]).includes("201"), false);
+});
+
+test("findStudioKillRoots: LISTEN pidの親がStudio連鎖でなければそのpid自身がルート", () => {
+  const snap = [p(300, 1, "node.exe", "node server.js"), p(301, 300, "node.exe", "node weird")];
+  assert.deepEqual(findStudioKillRoots(snap, ["301"]), ["301"]);
+});
+
+test("findStudioKillRoots: 親連鎖の途中に無関係な親がいたらそこで止まる", () => {
+  const snap = [
+    p(400, 1, "node.exe", "node scripts/windows/run-job.mjs x"),
+    p(401, 400, "cmd.exe", `cmd /c "npm --prefix studio run dev"`),
+    p(402, 401, "node.exe", "node tsx watch server/index.ts"),
+  ];
+  assert.deepEqual(findStudioKillRoots(snap, ["402"]), ["401"]);
+});
+
+test("findStudioKillRoots: 別ツリー2つは両方返し、子孫は重複除外・数値/文字列pidどちらも可", () => {
+  const second = [
+    p(500, 1, "cmd.exe", `cmd.exe /c "npm.cmd" run studio`),
+    p(501, 500, "node.exe", "node npm-cli.js run studio"),
+  ];
+  const r = findStudioKillRoots([...STUDIO_TREE, ...second], [105, "999"]);
+  assert.deepEqual(r.sort(), ["100", "500"]);
+});
+
+test("findStudioKillRoots: スナップショットが空/不正でも例外にならない", () => {
+  assert.deepEqual(findStudioKillRoots([], ["1"]), []);
+  assert.deepEqual(findStudioKillRoots(null, null), []);
+});
+
+test("findStudioKillRoots: 親pid循環でも無限ループしない", () => {
+  const snap = [p(1, 2, "cmd.exe", "cmd /c npm run studio"), p(2, 1, "cmd.exe", "cmd /c npm run studio")];
+  assert.equal(findStudioKillRoots(snap, ["1"]).length <= 1, true);
 });
