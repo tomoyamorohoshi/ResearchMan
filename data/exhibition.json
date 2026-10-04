@@ -3,6 +3,107 @@
   "statusAsOf": "2026-10-04",
   "items": [
     {
+      "id": "2026-geidai-art-museum-furukawa-kiyoshi-resonating-sounds-me",
+      "slug": "2026-geidai-art-museum-furukawa-kiyoshi-resonating-sounds-me",
+      "title": "古川聖退任記念展「共振する音とメディア 〜メディアアート・ミュージックの現在〜」",
+      "artists": [
+        "古川聖"
+      ],
+      "venue": "東京藝術大学大学美術館 陳列館",
+      "venueType": "museum",
+      "prefecture": "東京都",
+      "city": "台東区",
+      "startDate": "2026-10-31",
+      "endDate": "2026-11-08",
+      "status": "upcoming",
+      "admission": "無料",
+      "tags": [
+        "media_art",
+        "installation",
+        "sound",
+        "ai_media_art",
+        "retrospective"
+      ],
+      "score": 78,
+      "matchReason": "公式サイトによると、約30年のコンピュータ音楽・メディアアート活動を回顧する展覧会です。《Small Fish》(インタラクティブ映像・音響インスタレーション)、《Bubbles》(影とCGのインタラクティブ作品)、《Brain-Dreams Music Project》、《AI-Mashup》などを展示します。会期最終日にメディアパフォーマンスコンサートがあります。",
+      "sources": [
+        {
+          "name": "古川聖退任記念展「共振する音とメディア 〜メディアアート・ミュージックの現在〜」",
+          "url": "https://furukawalab.org/retirementexhibition/",
+          "kind": "official"
+        },
+        {
+          "name": "全国美術館会議 イベント情報",
+          "url": "https://www.museum.or.jp/event/126972",
+          "kind": "listing"
+        },
+        {
+          "name": "Tokyo Art Beat",
+          "url": "https://www.tokyoartbeat.com/events/-/Kiyoshi-Furukawa-Retirement-Memorial-Exhibition-Resonating-Sounds-and-Media-Media-Art-and-Music-Today/DBFDD779/2026-10-31",
+          "kind": "listing"
+        }
+      ],
+      "link": "https://furukawalab.org/retirementexhibition/",
+      "thumbnail": "/thumbnails/exhibition/2026-geidai-art-museum-furukawa-kiyoshi-resonating-sounds-me.jpg",
+      "addedAt": "2026-10-04T01:32:08.762Z",
+      "origin": "auto",
+      "highlight": false
+    },
+    {
+      "id": "2026-icc-icc-annual-2026",
+      "slug": "2026-icc-icc-annual-2026",
+      "title": "ICC アニュアル 2026　遺す／残る／受けとめる",
+      "artists": [
+        "ウー・チーユー",
+        "キム・ヨンウン",
+        "小林椋",
+        "SUGAI KEN",
+        "鈴木エリ",
+        "比嘉了",
+        "葉山嶺",
+        "ローザ・メンクマン",
+        "森永泰弘",
+        "宮下恵太",
+        "杉田碧",
+        "グレゴリー・バーサミアン",
+        "岩井俊雄",
+        "Circuit Lab. a team of UNIBA"
+      ],
+      "venue": "NTT InterCommunication Center [ICC]",
+      "venueType": "media_art_center",
+      "prefecture": "東京都",
+      "city": "新宿区",
+      "startDate": "2026-06-20",
+      "endDate": "2026-11-08",
+      "status": "ongoing",
+      "admission": "一般800円 / 大学生600円 / 65歳以上・高校生以下無料",
+      "tags": [
+        "media_art",
+        "installation",
+        "video_art",
+        "sound"
+      ],
+      "score": 80,
+      "matchReason": "ICCが開催する、歴史・技術・メディアの交差を主題としたメディアアートのグループ展。岩井俊雄、グレゴリー・バーサミアン、ローザ・メンクマンらが参加し、無響室体験も含む。会期は11/8まで。",
+      "sources": [
+        {
+          "name": "ICC アニュアル 2026　遺す／残る／受けとめる",
+          "url": "https://www.ntticc.or.jp/ja/exhibitions/2026/icc-annual-2026/",
+          "kind": "official"
+        },
+        {
+          "name": "ICC 展覧会一覧",
+          "url": "https://www.ntticc.or.jp/ja/exhibitions/",
+          "kind": "listing"
+        }
+      ],
+      "link": "https://www.ntticc.or.jp/ja/exhibitions/2026/icc-annual-2026/",
+      "thumbnail": "/thumbnails/exhibition/2026-icc-icc-annual-2026.jpg",
+      "addedAt": "2026-10-04T01:31:21.219Z",
+      "origin": "auto",
+      "highlight": true
+    },
+    {
       "id": "2026-maison-hermes-le-forum-ann-veronica-janssens",
       "slug": "2026-maison-hermes-le-forum-ann-veronica-janssens",
       "title": "「東京、銀座5丁目4-1」アン・ヴェロニカ・ヤンセン展",
