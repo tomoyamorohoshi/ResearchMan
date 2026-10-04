@@ -53,6 +53,7 @@ const CHECK_ALIVE_RETRY_COUNT = 3;
 const CHECK_ALIVE_RETRY_INTERVAL_MS = 10 * 1000;
 const RECOVERY_POLL_TIMEOUT_MS = 90 * 1000;
 const RECOVERY_POLL_INTERVAL_MS = 5000;
+const TASK_STOP_WAIT_MS = 15 * 1000;
 
 function log(msg) {
   console.log(`[studio-keeper] ${msg}`);
@@ -107,19 +108,40 @@ function endStudioTask() {
   return r.status === 0;
 }
 
+// 取得失敗・空・JSON不正のときは null（「ルート無し」と区別してログ/インシデントに残すため）。
 function getProcessSnapshot() {
   const cmd =
-    "Get-CimInstance Win32_Process | Select-Object ProcessId,ParentProcessId,Name,CommandLine | ConvertTo-Json -Compress";
+    "[Console]::OutputEncoding=[Text.Encoding]::UTF8; Get-CimInstance Win32_Process | Select-Object ProcessId,ParentProcessId,Name,CommandLine | ConvertTo-Json -Compress";
   const r = spawnSync("powershell", ["-NoProfile", "-NonInteractive", "-Command", cmd], {
     encoding: "utf-8",
     timeout: 30000,
     maxBuffer: 64 * 1024 * 1024,
   });
   try {
-    const parsed = JSON.parse(r.stdout || "[]");
-    return Array.isArray(parsed) ? parsed : [parsed];
+    const parsed = JSON.parse(r.stdout || "");
+    const list = Array.isArray(parsed) ? parsed : [parsed];
+    return list.length ? list : null;
   } catch {
-    return [];
+    return null;
+  }
+}
+
+function isStudioTaskRunning() {
+  const r = spawnSync(
+    "powershell",
+    ["-NoProfile", "-NonInteractive", "-Command", `(Get-ScheduledTask -TaskName '${TASK_NAME}').State`],
+    { encoding: "utf-8", timeout: 15000 },
+  );
+  return /Running/i.test(r.stdout || "");
+}
+
+// schtasks /end 後、タスクがRunningでなくなるまで待つ（Running中の /run はIgnoreNewで無視されるため）。
+async function waitTaskNotRunning(timeoutMs, intervalMs) {
+  const deadline = Date.now() + timeoutMs;
+  for (;;) {
+    if (!isStudioTaskRunning()) return true;
+    if (Date.now() >= deadline) return false;
+    await new Promise((resolve) => setTimeout(resolve, intervalMs));
   }
 }
 
@@ -201,13 +223,24 @@ async function main() {
 
   const ended = endStudioTask();
   log(`schtasks /end /tn ${TASK_NAME} ${ended ? "成功" : "失敗（無視）"}`);
-  const roots = findStudioKillRoots(getProcessSnapshot(), pids);
+  detailParts.push(`schtasks /end ${ended ? "成功" : "失敗（無視）"}`);
+
+  const snapshot = getProcessSnapshot();
+  if (!snapshot) {
+    log("プロセススナップショット取得失敗（LISTEN PIDのみを対象に続行）");
+    detailParts.push("プロセススナップショット取得失敗");
+  }
+  const roots = findStudioKillRoots(snapshot, pids, ROOT);
   for (const root of roots) {
     const ok = killTree(root);
     log(`PID ${root} taskkill /F /T ${ok ? "成功" : "失敗"}`);
     detailParts.push(`ルートPID ${root} taskkill /T ${ok ? "成功" : "失敗"}`);
   }
   if (!roots.length) detailParts.push("kill対象ルートなし");
+
+  const stopped = await waitTaskNotRunning(TASK_STOP_WAIT_MS, 1000);
+  log(stopped ? "タスクがRunningでなくなったことを確認" : `タスクが${TASK_STOP_WAIT_MS / 1000}秒後もRunningのまま（/run は無視される可能性）`);
+  if (!stopped) detailParts.push("タスクがRunningのまま");
 
   const restarted = restartStudioTask();
   log(`schtasks /run /tn ${TASK_NAME} ${restarted ? "成功" : "失敗"}`);
