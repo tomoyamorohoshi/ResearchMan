@@ -84,31 +84,61 @@ export function writeJsonAtomicSync(filePath, content) {
   fs.renameSync(tmpPath, filePath);
 }
 
-// Studioタスク（`npm.cmd run studio` → npm --prefix studio run dev → tsx watch server/index.ts）
-// の連鎖に属するプロセスか。無関係なnode.exe（run-job.mjs / claude CLI / next dev等）を巻き込まないよう
-// 「run studio」という単語だけでは判定せず、npm起動形・--prefix studio・tsx+server/index.ts に限定する。
-const STUDIO_CHAIN_RES = [
-  /\bnpm(?:\.cmd|-cli\.js)?"?\s+(?:--prefix\s+studio\s+)?run\s+(?:studio|dev)\b/i,
-  /--prefix\s+studio\s+run\s+dev\b/i,
-  /\btsx\b[^\n]*server[\/\\]index\.ts/i,
-];
-function isStudioChain(proc) {
+// Studioタスク（`cmd /c set STUDIO_NO_OPEN=1&& npm.cmd run studio >> logs\studio.log` →
+// npm run studio → npm --prefix studio run dev → tsx watch server/index.ts）のプロセス判定。
+// 無関係なnode.exe（run-job.mjs / claude CLI / 他プロジェクトのnpm run dev・tsx watch等）を
+// 巻き込まないよう、「run studio」等の語を行の任意位置で拾うことはせず、起動形を厳密に見る。
+const norm = (s) => String(s).replace(/\//g, "\\").toLowerCase();
+const nameIs = (proc, ...names) => names.includes(String(proc.Name || "").toLowerCase());
+
+// タスク直下のルートcmd（register-studio-autostart.ps1 の起動形）
+function isTaskRootCmd(proc, rootN) {
+  const cmd = proc && proc.CommandLine;
+  if (!cmd || !nameIs(proc, "cmd.exe")) return false;
+  return (
+    cmd.includes("STUDIO_NO_OPEN=1") &&
+    /\brun studio\b/.test(cmd) &&
+    /studio\.log/i.test(cmd) &&
+    norm(cmd).includes(rootN)
+  );
+}
+
+// ResearchMan/studio/node_modules 配下の tsx で server/index.ts を動かしているプロセス
+function isStudioTsx(proc, rootN) {
   const cmd = proc && proc.CommandLine;
   if (!cmd) return false;
-  if (/studio-keeper|run-job\.mjs/i.test(cmd)) return false;
-  return STUDIO_CHAIN_RES.some((re) => re.test(cmd));
+  const n = norm(cmd);
+  return n.includes(`${rootN}\\studio\\node_modules`) && /server\\index\.ts/.test(n);
+}
+
+// `npm --prefix studio run dev`（cmd /c 形・npm-cli.js 形。末尾厳密一致）
+function isPrefixDev(proc) {
+  const cmd = proc && proc.CommandLine;
+  if (!cmd || !nameIs(proc, "cmd.exe", "node.exe")) return false;
+  return /\bnpm(?:\.cmd|-cli\.js)?"?\s+--prefix\s+studio\s+run\s+dev\s*$/i.test(cmd);
+}
+
+// `npm-cli.js" run studio` / `npm.cmd" run studio`（末尾厳密一致）
+function isNpmRunStudio(proc) {
+  const cmd = proc && proc.CommandLine;
+  if (!cmd || !nameIs(proc, "cmd.exe", "node.exe")) return false;
+  return /\bnpm(?:\.cmd|-cli\.js)"?\s+run\s+studio\s*$/i.test(cmd);
 }
 
 // プロセススナップショット（Win32_Process: ProcessId/ParentProcessId/Name/CommandLine の配列）と
-// LISTENしているPID群から、`taskkill /F /T /PID` するルートPID（文字列）の配列を返す純関数。
-// (a) LISTEN pidごとに、Studio連鎖に属する親を辿った最上位 (b) コマンドラインがタスク起動形に一致するもの。
+// LISTENしているPID群から、`taskkill /F /T /PID` するルートPID（文字列・昇順）の配列を返す純関数。
+// rootDir は ResearchMan のルートパス（keeperのROOT）。
+// (a) LISTEN pidごとに、許可された祖先（--prefix studio run dev / run studio（ルートcmd配下かrootDir含む）/
+//     rootDir配下のtsx / タスクのルートcmd）だけを辿った最上位。スナップショットに無いLISTEN pidはそのまま採用
+//     （スナップショット取得失敗時にも leaf を /T で落とせるように）。
+// (b) リスナー無しでも選ぶのは、タスクのルートcmdと、rootDir配下のtsx watcherだけ。
 // 他のルートの子孫は除外する。`taskkill /IM node.exe` 相当の広い選択は行わない。
 // 背景(2026-10-05): leaf(server)だけkillすると親cmd/npm/tsx watchが残りタスクがRunningのまま
 // IgnoreNewで再起動が無視され続けたため、ツリーごと落とす。
-export function findStudioKillRoots(snapshot, listeningPids) {
-  if (!Array.isArray(snapshot)) return [];
+export function findStudioKillRoots(snapshot, listeningPids, rootDir) {
+  const rootN = norm(rootDir || "");
   const byPid = new Map();
-  for (const proc of snapshot) {
+  for (const proc of Array.isArray(snapshot) ? snapshot : []) {
     if (proc && proc.ProcessId != null) byPid.set(String(proc.ProcessId), proc);
   }
   const parentOf = (pid) => {
@@ -117,21 +147,33 @@ export function findStudioKillRoots(snapshot, listeningPids) {
     const ppid = String(proc.ParentProcessId);
     return byPid.has(ppid) ? ppid : null;
   };
+  const allowedAncestor = (pid) => {
+    const proc = byPid.get(pid);
+    if (!proc) return false;
+    if (rootN && (isTaskRootCmd(proc, rootN) || isStudioTsx(proc, rootN))) return true;
+    if (isPrefixDev(proc)) return true;
+    if (isNpmRunStudio(proc)) {
+      const par = parentOf(pid);
+      return (par && rootN && isTaskRootCmd(byPid.get(par), rootN)) || (rootN && norm(proc.CommandLine).includes(rootN));
+    }
+    return false;
+  };
   const selected = new Set();
   for (const raw of Array.isArray(listeningPids) ? listeningPids : []) {
     let cur = String(raw);
-    if (!byPid.has(cur)) continue;
     const seen = new Set([cur]);
-    for (;;) {
+    while (byPid.has(cur)) {
       const parent = parentOf(cur);
-      if (!parent || seen.has(parent) || !isStudioChain(byPid.get(parent))) break;
+      if (!parent || seen.has(parent) || !allowedAncestor(parent)) break;
       seen.add(parent);
       cur = parent;
     }
     selected.add(cur);
   }
-  for (const [pid, proc] of byPid) {
-    if (isStudioChain(proc)) selected.add(pid);
+  if (rootN) {
+    for (const [pid, proc] of byPid) {
+      if (isTaskRootCmd(proc, rootN) || isStudioTsx(proc, rootN)) selected.add(pid);
+    }
   }
   const hasSelectedAncestor = (pid) => {
     const seen = new Set([pid]);
@@ -143,5 +185,5 @@ export function findStudioKillRoots(snapshot, listeningPids) {
     }
     return false;
   };
-  return [...selected].filter((pid) => !hasSelectedAncestor(pid));
+  return [...selected].filter((pid) => !hasSelectedAncestor(pid)).sort((a, b) => Number(a) - Number(b));
 }

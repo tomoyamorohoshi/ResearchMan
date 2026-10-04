@@ -253,7 +253,7 @@ test("findStudioKillRoots: 親連鎖の途中に無関係な親がいたらそ�
 });
 
 test("findStudioKillRoots: 他プロジェクトのnpm run devは親連鎖でも辿らない", () => {
-  assert.deepEqual(roots(ALL, ["212"]), ["212"]);
+  assert.deepEqual(roots(UNRELATED, ["212"]), ["212"]);
 });
 
 test("findStudioKillRoots: 別のルートcmd2つは両方返し、子孫は重複除外・数値pidも可", () => {
