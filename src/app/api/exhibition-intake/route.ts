@@ -6,30 +6,16 @@
 //          → 重複/処理済み(200) → 上限(429) → 保存(200)
 //   GET  : FAVORITES_SYNC_TOKEN 未設定(503) → 認証(401) → Blob設定(503) → pending 一覧(200)
 //   PATCH: GET と同認証 → body 検証(400) → Blob設定(503) → 適用(200 {updated})
-// POST/PATCH は updateIntake（etag 楽観ロック＋リトライ）で更新し、競合が解消しなければ 503 {error:"busy"}。
+// 項目は1件1 Blob（共有ファイルの read-modify-write なし）。詳細は exhibitionIntakeStore.ts。
 import type { NextRequest } from "next/server";
 import { createHash, timingSafeEqual } from "node:crypto";
 import { isBlobConfigured } from "@/lib/favoritesStore";
-import {
-  readIntakeBlob,
-  updateIntake,
-  StoreCorruptError,
-  StoreConflictError,
-  StoreEtagMissingError,
-  StoreStaleReadError,
-} from "@/lib/exhibitionIntakeStore";
-import {
-  addToQueue,
-  applyResults,
-  pendingItems,
-  sweepTombstones,
-  validateIntakeUrl,
-  type IntakeResult,
-} from "@/lib/exhibitionIntake";
+import { enqueueUrl, listPendingItems, applyIntakeResults } from "@/lib/exhibitionIntakeStore";
+import { validateIntakeUrl, type IntakeResult } from "@/lib/exhibitionIntake";
 
 // 常に最新のキューを読む必要があるため静的キャッシュ対象にしない
 export const dynamic = "force-dynamic";
-// 競合リトライ（最大約5秒の待ち＋Blob 往復）が関数のデフォルト上限に当たらないようにする
+// list/get を複数回行うため関数のデフォルト上限に当たらないようにする
 export const maxDuration = 30;
 
 const MAX_RESULTS = 100;
@@ -82,11 +68,7 @@ export async function POST(request: NextRequest) {
   if (!isBlobConfigured()) return json({ error: "intake not configured" }, 503);
 
   try {
-    const now = Date.now();
-    const result = await updateIntake((current) => {
-      const r = addToQueue(current, v.url, now);
-      return { data: r.result === "accepted" ? r.data : null, result: r.result };
-    });
+    const result = await enqueueUrl(v.url, Date.now());
     if (result === "duplicate") return json({ status: "duplicate" }, 200);
     if (result === "already_processed") return json({ status: "already_processed" }, 200);
     if (result === "limit_pending" || result === "limit_daily") {
@@ -94,12 +76,6 @@ export async function POST(request: NextRequest) {
     }
     return json({ status: "accepted" }, 200);
   } catch (err) {
-    if (err instanceof StoreConflictError || err instanceof StoreStaleReadError) return json({ error: "busy" }, 503);
-    if (err instanceof StoreEtagMissingError) {
-      console.error("[api/exhibition-intake] etag missing", err);
-      return json({ error: "busy" }, 503);
-    }
-    if (err instanceof StoreCorruptError) return json({ error: "store_corrupt" }, 500);
     console.error("[api/exhibition-intake] POST failed", err);
     return json({ error: "internal error" }, 500);
   }
@@ -110,15 +86,8 @@ export async function GET(request: NextRequest) {
   if (denied) return denied;
   if (!isBlobConfigured()) return json({ error: "intake not configured" }, 503);
   try {
-    const data = await readIntakeBlob();
-    return json({ items: pendingItems(data) }, 200);
+    return json({ items: await listPendingItems(Date.now()) }, 200);
   } catch (err) {
-    if (err instanceof StoreStaleReadError) return json({ error: "busy" }, 503);
-    if (err instanceof StoreEtagMissingError) {
-      console.error("[api/exhibition-intake] etag missing", err);
-      return json({ error: "busy" }, 503);
-    }
-    if (err instanceof StoreCorruptError) return json({ error: "store_corrupt" }, 500);
     console.error("[api/exhibition-intake] GET failed", err);
     return json({ error: "internal error" }, 500);
   }
@@ -141,19 +110,9 @@ export async function PATCH(request: NextRequest) {
 
   if (!isBlobConfigured()) return json({ error: "intake not configured" }, 503);
   try {
-    const now = Date.now();
-    const updated = await updateIntake((raw) => {
-      const r = applyResults(sweepTombstones(raw, now), results as IntakeResult[], now);
-      return { data: r.data, result: r.updated };
-    });
+    const updated = await applyIntakeResults(results as IntakeResult[], Date.now());
     return json({ updated }, 200);
   } catch (err) {
-    if (err instanceof StoreConflictError || err instanceof StoreStaleReadError) return json({ error: "busy" }, 503);
-    if (err instanceof StoreEtagMissingError) {
-      console.error("[api/exhibition-intake] etag missing", err);
-      return json({ error: "busy" }, 503);
-    }
-    if (err instanceof StoreCorruptError) return json({ error: "store_corrupt" }, 500);
     console.error("[api/exhibition-intake] PATCH failed", err);
     return json({ error: "internal error" }, 500);
   }

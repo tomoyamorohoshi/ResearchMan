@@ -1,16 +1,35 @@
-// Exhibition intake キューの Blob I/O。favoritesStore.ts の readBlobData/writeBlobData と
-// 同じ流儀（access:"private", addRandomSuffix:false, allowOverwrite:true）。
-// サーバ専用（route.ts からのみ import する）。favoritesStore.ts の isBlobConfigured を共用する。
+// Exhibition intake キューの Blob I/O。サーバ専用（route.ts からのみ import する）。
 //
-// 同時書き込みは楽観ロック（etag + ifMatch）で守る。Vercel Blob の get() は書き込み直後に
-// 古い内容を返す（キャッシュ回避不可）ため、read-modify-write は etag 付きで書き、
-// precondition 失敗（他者が先に更新）なら再読込してやり直す。上限超は StoreConflictError（route は 503 busy）。
-import { get, head, put, BlobNotFoundError, BlobPreconditionFailedError, BlobUnknownError } from "@vercel/blob";
-import { emptyIntakeData, isValidIntakeData, type IntakeData } from "@/lib/exhibitionIntake";
+// 設計: 共有ファイルの read-modify-write は行わない。Vercel Blob の get()/ifMatch は書き込み直後に
+// 古い内容を返し続けるため、楽観ロックでもロスト更新が起きた（本番実測）。代わりに
+//   - 受付 1件 = 1オブジェクト（exhibition-intake/items/{intakeKey}.json）。POST は allowOverwrite:false の新規作成のみ
+//   - 処理結果は同じオブジェクトの上書き（書き手は日次ジョブの PATCH だけなので競合しない）
+// とし、並列 POST は別オブジェクトなので互いを消さない。同一 URL の並列は「作成が1つだけ成功」で決着する。
+// 旧 exhibition-intake/intake.json は読み取り専用で GET/PATCH にだけ合流させる（書き換えない）。
+import { get, head, list, put, del, BlobNotFoundError } from "@vercel/blob";
+import {
+  intakeKey,
+  applyResults,
+  isValidIntakeData,
+  validateIntakeUrl,
+  MAX_PENDING,
+  MAX_DAILY,
+  TOMBSTONE_DAYS,
+  type AddResult,
+  type IntakeData,
+  type IntakeItem,
+  type IntakeResult,
+} from "@/lib/exhibitionIntake";
+import { todayJst } from "../../scripts/lib/exhibition-status.mjs";
 
-const INTAKE_BLOB_PATHNAME = "exhibition-intake/intake.json";
+const ITEMS_PREFIX = "exhibition-intake/items/";
+const LEGACY_PATHNAME = "exhibition-intake/intake.json";
+const DAY_MS = 86400000;
+// 「未処理が溜まっている」概算に使う窓。list の uploadedAt だけで数える（処理済みを含みうる安全側の概算）
+const PENDING_WINDOW_DAYS = 3;
+const READ_CONCURRENCY = 8;
 
-// Blob が壊れている/形が不正なとき。空扱いで上書きすると tombstone 履歴が消えるため例外にする。
+// Blob が壊れている/形が不正なとき（旧ファイルの検査に使う）。
 export class StoreCorruptError extends Error {
   constructor() {
     super("store_corrupt");
@@ -29,122 +48,184 @@ export function parseIntakeBlobText(text: string): IntakeData {
   return { version: 1, items: parsed.items };
 }
 
-// Blob にファイルが無い（初回）ときだけ空として扱う
-export async function readIntakeBlob(): Promise<IntakeData> {
-  const r = await realClient.read();
-  if (!r) return emptyIntakeData();
-  assertFresh(r);
-  return parseIntakeBlobText(r.text);
+// Blob I/O の差し替え口（テストではメモリ上のフェイクを注入する）
+export interface IntakeBlobApi {
+  list(prefix: string): Promise<{ pathname: string; uploadedAt: Date }[]>;
+  // 不在（または stale で見えない）なら null
+  get(pathname: string): Promise<string | null>;
+  // 既に存在すれば "exists"（上書きしない）
+  create(pathname: string, text: string): Promise<"created" | "exists">;
+  overwrite(pathname: string, text: string): Promise<void>;
+  del(pathnames: string[]): Promise<void>;
 }
 
-// get() が etag を返さなかった。ifMatch に空値を渡すと楽観ロックが効かないため書き込まずに止める
-export class StoreEtagMissingError extends Error {
-  constructor() {
-    super("store_etag_missing");
-    this.name = "StoreEtagMissingError";
-  }
-}
+const putOpts = { access: "private", addRandomSuffix: false, contentType: "application/json" } as const;
 
-// 読み取りが古い（Blob の遅延）と判断できる状態: 200 だが空 body、または不在と読めたが実在する。
-// 壊れた Blob（StoreCorruptError）とは区別し、updateIntake ではリトライ、GET では 503 busy にする。
-export class StoreStaleReadError extends Error {
-  constructor() {
-    super("store_stale_read");
-    this.name = "StoreStaleReadError";
-  }
-}
-
-function assertFresh(r: { etag: string; text: string }): void {
-  if (!r.etag) throw new StoreEtagMissingError();
-  if (r.text.trim() === "") throw new StoreStaleReadError();
-}
-
-// 同時更新が続いてリトライ上限を超えたとき。データは書かれていない（呼び出し側は 503 busy を返す）
-export class StoreConflictError extends Error {
-  constructor() {
-    super("store_conflict");
-    this.name = "StoreConflictError";
-  }
-}
-
-// Blob I/O の差し替え口（テストで古い etag/内容・競合を再現する）
-export interface IntakeBlobClient {
-  // blob が無ければ null
-  read(): Promise<{ etag: string; text: string } | null>;
-  // ifMatch=null は「新規作成」（既存があれば失敗）、文字列は「その etag と一致するときだけ上書き」
-  write(text: string, ifMatch: string | null): Promise<void>;
-}
-
-const realClient: IntakeBlobClient = {
-  async read() {
-    const result = await get(INTAKE_BLOB_PATHNAME, { access: "private" });
-    if (!result || result.statusCode !== 200) {
-      // 不在と読めても書き込み直後の stale かもしれない。head で実在を確認し、実在すれば stale として
-      // リトライさせる（作成モードで put が「既に存在」→SDK 内部の unknown_error 多段リトライに入るのを避ける）
-      try {
-        await head(INTAKE_BLOB_PATHNAME);
-      } catch (err) {
-        if (err instanceof BlobNotFoundError) return null;
-        throw err;
-      }
-      throw new StoreStaleReadError();
-    }
-    return { etag: result.blob.etag, text: await new Response(result.stream).text() };
+const realApi: IntakeBlobApi = {
+  async list(prefix) {
+    const out: { pathname: string; uploadedAt: Date }[] = [];
+    let cursor: string | undefined;
+    do {
+      const page = await list({ prefix, cursor, limit: 1000 });
+      for (const b of page.blobs) out.push({ pathname: b.pathname, uploadedAt: new Date(b.uploadedAt) });
+      cursor = page.hasMore ? page.cursor : undefined;
+    } while (cursor);
+    return out;
   },
-  async write(text, ifMatch) {
-    await put(INTAKE_BLOB_PATHNAME, text, {
-      access: "private",
-      addRandomSuffix: false,
-      contentType: "application/json",
-      // 既存更新: ifMatch（SDK が allowOverwrite を自動で有効化）。新規作成: 既存があれば失敗させる
-      ...(ifMatch !== null ? { ifMatch } : { allowOverwrite: false }),
-    });
+  async get(pathname) {
+    try {
+      const r = await get(pathname, { access: "private" });
+      if (!r || r.statusCode !== 200) return null;
+      return await new Response(r.stream).text();
+    } catch (err) {
+      if (err instanceof BlobNotFoundError) return null;
+      throw err;
+    }
+  },
+  async create(pathname, text) {
+    // 既存なら head で先に判定（「既に存在」は SDK に専用エラーが無く unknown_error として内部で多段リトライされうる）。
+    if (await exists(pathname)) return "exists";
+    try {
+      await put(pathname, text, { ...putOpts, allowOverwrite: false });
+      return "created";
+    } catch (err) {
+      // 型に依らず、失敗後に実在するなら「他者が先に作成した」。実在しなければ本当の失敗として投げる
+      if (await exists(pathname).catch(() => false)) return "exists";
+      throw err;
+    }
+  },
+  async overwrite(pathname, text) {
+    await put(pathname, text, { ...putOpts, allowOverwrite: true });
+  },
+  async del(pathnames) {
+    if (pathnames.length) await del(pathnames);
   },
 };
 
-// 競合（他者が先に更新・作成した）か。作成時の「既に存在」は SDK に専用エラーが無く BlobUnknownError で
-// 返りうるため、作成モードに限りそれも競合扱い（再読込で解消／非解消なら上限超で 503）。ログで実際の型を残す。
-function isConflictError(err: unknown, creating: boolean): boolean {
-  if (err instanceof BlobPreconditionFailedError) return true;
-  if (creating && err instanceof BlobUnknownError) {
-    console.warn("[exhibitionIntakeStore] create conflict assumed from", err.name, err.message);
+async function exists(pathname: string): Promise<boolean> {
+  try {
+    await head(pathname);
     return true;
+  } catch (err) {
+    if (err instanceof BlobNotFoundError) return false;
+    throw err;
   }
-  return false;
 }
 
-export const RETRY_DELAYS_MS = [300, 800, 1500, 2500];
-const defaultSleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
+const itemPath = (url: string) => `${ITEMS_PREFIX}${intakeKey(url)}.json`;
 
-// read → fn → write を etag 付きで行う。fn は再実行されうるので副作用を持たせない。
-// fn が data:null を返したら書き込まない（result だけ返す）。
-export async function updateIntake<T>(
-  fn: (current: IntakeData) => { data: IntakeData | null; result: T },
-  opts: { client?: IntakeBlobClient; sleep?: (ms: number) => Promise<void>; delays?: number[] } = {},
-): Promise<T> {
-  const client = opts.client ?? realClient;
-  const sleep = opts.sleep ?? defaultSleep;
-  const delays = opts.delays ?? RETRY_DELAYS_MS;
-  for (let attempt = 0; ; attempt++) {
-    let snap: { etag: string; text: string } | null;
-    try {
-      snap = await client.read();
-      if (snap) assertFresh(snap);
-    } catch (err) {
-      if (!(err instanceof StoreStaleReadError)) throw err;
-      if (attempt >= delays.length) throw new StoreConflictError();
-      await sleep(delays[attempt]);
-      continue;
-    }
-    const { data, result } = fn(snap ? parseIntakeBlobText(snap.text) : emptyIntakeData());
-    if (data === null) return result;
-    try {
-      await client.write(JSON.stringify(data), snap ? snap.etag : null);
-      return result;
-    } catch (err) {
-      if (!isConflictError(err, snap === null)) throw err;
-      if (attempt >= delays.length) throw new StoreConflictError();
-      await sleep(delays[attempt]);
-    }
+function parseItem(text: string | null): IntakeItem | null {
+  if (text === null) return null;
+  try {
+    const o = JSON.parse(text) as Partial<IntakeItem>;
+    if (o && typeof o.url === "string" && typeof o.ts === "number" && typeof o.status === "string") return o as IntakeItem;
+  } catch {
+    /* 壊れた item は無いものとして扱う */
   }
+  return null;
+}
+
+async function mapLimited<T, R>(xs: T[], fn: (x: T) => Promise<R>): Promise<R[]> {
+  const out: R[] = [];
+  for (let i = 0; i < xs.length; i += READ_CONCURRENCY) {
+    out.push(...(await Promise.all(xs.slice(i, i + READ_CONCURRENCY).map(fn))));
+  }
+  return out;
+}
+
+// 旧ファイル（読み取り専用）。読めない/壊れているときは空扱い（旧 pending は翌日以降の再投稿で拾える）
+async function readLegacy(api: IntakeBlobApi): Promise<IntakeData> {
+  const text = await api.get(LEGACY_PATHNAME);
+  if (text === null) return { version: 1, items: {} };
+  try {
+    return parseIntakeBlobText(text);
+  } catch {
+    console.warn("[exhibitionIntakeStore] legacy intake.json is unreadable; ignored");
+    return { version: 1, items: {} };
+  }
+}
+
+// POST: 1件を受け付ける。上限は list の件数/uploadedAt からの概算で、list の反映遅れ（直前の投稿が
+// 数えられない）は許容する。重複判定を上限より先に行う（従来の判定順を維持）。
+export async function enqueueUrl(url: string, now: number, api: IntakeBlobApi = realApi): Promise<AddResult> {
+  const path = itemPath(url);
+  const classify = (it: IntakeItem | null): AddResult => (!it || it.status === "pending" ? "duplicate" : "already_processed");
+
+  const found = await api.get(path);
+  if (found !== null) return classify(parseItem(found));
+
+  const entries = await api.list(ITEMS_PREFIX);
+  const today = todayJst(new Date(now));
+  if (entries.filter((e) => todayJst(e.uploadedAt) === today).length >= MAX_DAILY) return "limit_daily";
+  const since = now - PENDING_WINDOW_DAYS * DAY_MS;
+  if (entries.filter((e) => e.uploadedAt.getTime() >= since).length >= MAX_PENDING) return "limit_pending";
+
+  const item: IntakeItem = { url, ts: now, status: "pending", attempts: 0 };
+  const r = await api.create(path, JSON.stringify(item));
+  if (r === "created") return "accepted";
+  // 他リクエストが先に作成した。読めなければ（stale）duplicate 扱い＝冪等で、データは失われない
+  return classify(parseItem(await api.get(path)));
+}
+
+// GET: pending 項目を ts 昇順で返す。読み取りが stale で見えない項目は翌日のジョブで拾える。
+export async function listPendingItems(
+  _now: number,
+  api: IntakeBlobApi = realApi,
+): Promise<{ url: string; ts: number; attempts: number }[]> {
+  const entries = await api.list(ITEMS_PREFIX);
+  const items = (await mapLimited(entries, async (e) => parseItem(await api.get(e.pathname)))).filter(
+    (i): i is IntakeItem => i !== null,
+  );
+  const byKey = new Map<string, IntakeItem>();
+  for (const i of items) byKey.set(intakeKey(i.url), i);
+  // 旧ファイルの pending は、新形式に同じ URL が無いものだけ合流（新形式に処理済みがあれば除外）
+  for (const [k, i] of Object.entries((await readLegacy(api)).items)) {
+    if (i.status === "pending" && !byKey.has(k)) byKey.set(k, i);
+  }
+  return [...byKey.values()]
+    .filter((i) => i.status === "pending")
+    .sort((a, b) => a.ts - b.ts)
+    .map((i) => ({ url: i.url, ts: i.ts, attempts: i.attempts }));
+}
+
+// PATCH: 結果を item に上書き。新形式に無い URL は旧ファイルの pending を元に新形式 item を作る（旧ファイルは触らない）。
+// 最後に30日超の処理済み tombstone を del で掃除する。
+export async function applyIntakeResults(
+  results: IntakeResult[],
+  now: number,
+  api: IntakeBlobApi = realApi,
+): Promise<number> {
+  let legacy: IntakeData | null = null;
+  let updated = 0;
+  for (const r of results) {
+    if (!r || typeof r !== "object") continue;
+    const v = validateIntakeUrl(r.url);
+    if (!v.ok) continue;
+    const key = intakeKey(v.url);
+    const path = `${ITEMS_PREFIX}${key}.json`;
+    let cur = parseItem(await api.get(path));
+    if (!cur) {
+      legacy ??= await readLegacy(api);
+      const old = legacy.items[key];
+      if (!old || old.status !== "pending") continue;
+      cur = old;
+    }
+    const out = applyResults({ version: 1, items: { [key]: cur } }, [r], now);
+    if (!out.updated) continue;
+    await api.overwrite(path, JSON.stringify(out.data.items[key]));
+    updated++;
+  }
+  await sweepOldItems(now, api);
+  return updated;
+}
+
+async function sweepOldItems(now: number, api: IntakeBlobApi): Promise<void> {
+  const limit = now - TOMBSTONE_DAYS * DAY_MS;
+  const old = (await api.list(ITEMS_PREFIX)).filter((e) => e.uploadedAt.getTime() < limit);
+  const doomed: string[] = [];
+  await mapLimited(old, async (e) => {
+    const it = parseItem(await api.get(e.pathname));
+    if (it && it.status !== "pending" && now - (it.processedAt ?? it.ts) > TOMBSTONE_DAYS * DAY_MS) doomed.push(e.pathname);
+  });
+  await api.del(doomed);
 }
