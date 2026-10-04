@@ -12486,7 +12486,10 @@
       "Form/Exhibition",
       "Theme/Art",
       "Theme/Retail"
-    ]
+    ],
+    "quarantined": true,
+    "quarantineReason": "link-dead(二重確認済): 404: https://news.livedoor.com/pr_topics/detail/32195511/",
+    "quarantineTs": "2026-10-04T09:33:33.424Z"
   },
   {
     "id": "ex-round1-2026",
