@@ -261,10 +261,25 @@ test("findStudioKillRoots: 別のルートcmd2つは両方返し、子孫は重�
   assert.deepEqual(roots([...STUDIO_TREE, ...second], [105]).sort(), ["100", "500"]);
 });
 
-test("findStudioKillRoots: スナップショットに無いLISTEN pidもルートとして返す（スナップショット取得失敗時の退行防止）", () => {
+test("findStudioKillRoots: スナップショット取得失敗(null/空)のときだけ、スナップショットに無いLISTEN pidをルートとして採用する", () => {
   assert.deepEqual(roots([], ["1234"]), ["1234"]);
   assert.deepEqual(roots(null, [1234, "1234"]), ["1234"]);
-  assert.deepEqual(roots(ALL, ["999"]), ["100", "999"]);
+  assert.deepEqual(roots(ALL, ["999"]), ["100"]); // 有効なスナップショットでは古いlisten pidは採用しない
+});
+
+test("findStudioKillRoots: tsc や claudeプロンプトが studio\\node_modules と server\\index.ts を含んでもルートにならない", () => {
+  const snap = [
+    p(600, 1, "node.exe", String.raw`node ${R}\studio\node_modules\typescript\bin\tsc --noEmit server\index.ts`),
+    p(601, 1, "node.exe", `${CLAUDE} -p "look at ${R}\\studio\\node_modules\\tsx and server\\index.ts"`),
+    p(602, 1, "cmd.exe", String.raw`cmd.exe /c node ${R}\studio\node_modules\tsx\dist\cli.mjs watch server/index.ts`),
+    p(603, 1, "node.exe", String.raw`node ${R}\studio\node_modules\tsx\dist\cli.mjs watch server/index.ts && echo server/index.ts`),
+  ];
+  assert.deepEqual(roots(snap, []), []);
+});
+
+test("findStudioKillRoots: .bin\\tsx 形のtsx watcherも構造一致でルートになる", () => {
+  const snap = [p(610, 1, "node.exe", String.raw`node ${R}\studio\node_modules\.bin\tsx watch server/index.ts`)];
+  assert.deepEqual(roots(snap, []), ["610"]);
 });
 
 test("findStudioKillRoots: スナップショットもLISTENも無ければ空", () => {
