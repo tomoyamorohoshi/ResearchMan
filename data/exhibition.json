@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "statusAsOf": "2026-10-04",
+  "statusAsOf": "2026-10-05",
   "items": [
     {
       "id": "2026-geidai-art-museum-furukawa-kiyoshi-resonating-sounds-me",
@@ -69,11 +69,11 @@
         "岩井俊雄",
         "Circuit Lab. a team of UNIBA"
       ],
-      "venue": "NTT InterCommunication Center [ICC]",
+      "venue": "NTTインターコミュニケーション・センター [ICC]",
       "venueType": "media_art_center",
       "prefecture": "東京都",
       "city": "新宿区",
-      "startDate": "2026-06-20",
+      "startDate": "2026-09-29",
       "endDate": "2026-11-08",
       "status": "ongoing",
       "admission": "一般800円 / 大学生600円 / 65歳以上・高校生以下無料",
@@ -251,6 +251,11 @@
           "name": "seed出所",
           "url": "https://www.mot-art-museum.jp/",
           "kind": "listing"
+        },
+        {
+          "name": "ユーザー投稿",
+          "url": "https://www.instagram.com/p/Dd6XYiYk386/",
+          "kind": "social"
         }
       ],
       "link": "https://www.mot-art-museum.jp/exhibitions/Tada-Minami/",
