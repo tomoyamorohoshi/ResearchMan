@@ -1,5 +1,157 @@
 [
   {
+    "id": "cozyclay",
+    "title": "CozyClay",
+    "org": "NomaDamas (Doyun)",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "Motion/Body",
+      "AI/Agents"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "ブラウザだけで動くオープンソースのプリビズ(撮影前の仮映像)ツール。シーンを組み、キャラにポーズを付け、カメラのカットを切り、そのカットをAI動画モデルへ渡せる。",
+    "point": "3Dソフトを開かなくても、ブラウザの1タブで「灰色の箱とキャラ人形で作った仮の映像」を作り、その構図・カメラワークをそのままAI動画生成モデル(Seedance、Kling、Veoなど)の参考素材として渡せる点が新しい。AI動画は文章だけだと構図やカメラの動きが思い通りにならないが、ここで先にカットを決めておけば意図が伝わりやすい。広告では、15秒CMの絵コンテ代わりに仮映像を作ってクライアントと合意し、そのまま本番のAI生成へ進める流れが作れそう。ClaudeやChatGPTなどのAIに「このシーンを組んで」と頼む操作(チャット・MCP・ターミナルCLI)にも対応し、人が触る画面とAIが触る画面が同じ命令系統になった2.0が2026年10月1日に出た。",
+    "detail": "仕組み: Three.jsという、ブラウザで3Dを表示する技術で作られたエディタです。画面上で箱や小道具を置き、キャラを配置し、ドリーレール(カメラを滑らせる線路)を引いてカメラの動きを設定できます。書き出しはMP4のほか、AI動画向けの連番画像パック、奥行き・法線(面の向き)の画像、絵コンテ、編集ソフト向けのカット表(OTIO)に対応します。モーションは、NVIDIAのKimodo(ポーズ列から動きを作るモデル)で生成でき、動画や写真から人の動きを取り出すモーキャプ機能(GVHMRベース)も備えます。\n\n従来との違い: 従来のプリビズはBlenderやMayaなど重いソフトを覚える必要があり、AI動画の作成とも別工程でした。CozyClayは「仮映像を作る→AI動画へ渡す」を1つの道具にまとめています。v2.0.0(2026-10-01)では画面を刷新し、人もAIも同じコマンドで操作する設計(エージェント対応)になり、v1.9.0からはAIアシスタントのパネルが複数のモデル提供元(Anthropic、OpenAI、Gemini、OpenRouterなど)に対応しています。\n\n使うには: Node.js 22.19以上とChromium系ブラウザがあれば、ターミナルで `npx cozyclay` と打つだけで起動します。ブラウザ上の体験版(cozyclay.org)で基本操作は試せますが、動画の書き出しなどはローカル起動が必要です。モーション生成にはKimodoを動かせるGPU(NVIDIA CUDA推奨、Apple Siliconでも可)が必要で、AI動画の生成自体は別サービスの費用が別途かかります。",
+    "license": {
+      "spdx": "AGPL-3.0-or-later",
+      "commercial": "conditional",
+      "note": "無料のOSS。AGPLのため、改変版をネットワーク経由で提供する場合はソース公開が必要。自社内で使う分には制約は小さい。モーション生成(Kimodo)とビデオモックアップはGPUマシンが必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/NomaDamas/CozyClay"
+      },
+      {
+        "kind": "project",
+        "url": "https://cozyclay.org"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/cozyclay.jpg",
+    "relatedWorks": [
+      {
+        "title": "Kimodo (NVIDIA)",
+        "description": "CozyClayのモーション生成に使われている、制御可能な人体モーション生成モデルのコードとデモ。",
+        "url": "https://github.com/nv-tlabs/kimodo"
+      },
+      {
+        "title": "VIREA",
+        "description": "テキストと会話からVRMキャラの連続モーションを生成する、14モデル統合の実験ランタイム(ライセンス未宣言)。",
+        "url": "https://github.com/Moonweave-AI/virea"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "iki",
+    "title": "iki",
+    "org": "zeikar",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "AI/Agents",
+      "Motion/Body"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "Live2Dの代わりになることを狙った、無料・MITライセンスの2Dパペット(顔が動く2Dキャラ)エンジン。Claude Code用プラグインが、文章の指示からキャラの部品画像を作り、まばたきや視線などの動きまで自動で仕込む。",
+    "point": "Live2D風の「顔や髪が自然に動く2Dキャラ」を作るには、パーツを細かく分けたイラストと、動かすための設定(リギング)に専門的な手間がかかるのが常識だった。ikiは、Claude Codeに「短い銅色のボブ、緑の目、制服」と頼むだけで、部品の生成・合成・動きの設定までを自動で行い、ブラウザで動くキャラに仕上げる。広告では、キャンペーン用のマスコットやバーチャル店員を短時間で複数案つくり、Webサイト上で視線がカーソルを追う、話しかけるとまばたきしながら口が動く、といったインタラクティブな見せ方を試作する用途が考えられる。オープンな形式なので、制作会社が自社のサイトやキオスクにそのまま組み込める点も魅力。公開は2026年6月だが、10月4〜5日にも顔パーツの配置やまぶたの描画などが頻繁に更新されている。",
+    "detail": "仕組み: Claude Codeのプラグインが、画像生成モデルを使って顔・目・虹彩・眉・口・鼻・髪・胴体を別々の画像として作ります。それらを1枚のキャンバスに合成して寸法を測り、動かしたときに破綻しそうな配置がないかを検査します。そのうえで自動リギング機能が、まぶたの折りたたみによるまばたき、視線、リップシンク、首の回転・うなずき・傾き、眉、呼吸、髪の揺れ(物理)といった動きの制御点を設定し、`.iki`というJSONファイルを出力します。\n\n従来との違い: Live2Dは優れた表現ができる一方、専用ソフトと熟練が必要で、形式も閉じています。ikiは形式が公開されたプレーンテキストで、WebGL2のランタイム(@ikijs/engine)で動き、エディタ(@ikijs/editor)ではPSDの読み込みや数値での微調整もできます。AIエージェントが使うMCPサーバ(@ikijs/mcp)も同梱され、AIが部品を作って組み、検査し、リギングするという一連を任せられます。\n\n使うには: ブラウザ上のプレイグラウンドとエディタ(zeikar.dev/iki)で、インストールなしで動きを確認できます。AIで自動作成するにはClaude Codeと、部品画像を作る画像生成モデルの利用環境が必要です(その利用料は別途かかる可能性があります)。作者自身が「early, but real(まだ初期だが実物)」と述べているとおり、スキーマは1.0前なので、納品物に使う場合は版を固定するのが安全です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "MITライセンスで商用利用可。.ikiモデルはプレーンなJSONで、作ったキャラは利用者が所有できる。スキーマは1.0前で、バージョン間で変わる可能性あり。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/zeikar/iki"
+      },
+      {
+        "kind": "project",
+        "url": "https://zeikar.dev/iki/"
+      },
+      {
+        "kind": "product",
+        "url": "https://zeikar.dev/iki/editor/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/iki.jpg",
+    "relatedWorks": [
+      {
+        "title": "PuppetLoom",
+        "description": "PSDやLive2D風キャラのリギングを行うデスクトップアプリ(既掲載の関連技術)。",
+        "url": "https://github.com/CheshireMew/PuppetLoom"
+      },
+      {
+        "title": "Animatica Blender Plugin",
+        "description": "Blender 5向けにテキストからモーション/ポーズを生成するアドオン(GPL-3.0、生成は既定でクラウド)。",
+        "url": "https://github.com/animatica-ai/animatica-blender-plugin"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "curvecodec",
+    "title": "CurveCodec (AnimationCodec)",
+    "org": "The University of Hong Kong / Adobe Research (Mingyi Shi, Huancheng Lin, Xuelin Chen, Taku Komura)",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "人・動物・ロボットなどどんな骨格のアニメーションでも、再学習なしで1/10以下に圧縮できるコーデック。SIGGRAPH Asia 2026採択で、コードと学習済み重みが2026年10月2日に公開された。",
+    "point": "モーションキャプチャやキャラクターアニメのデータは、骨(ボーン)の数×フレーム数の回転値の山で、長尺のライブラリになるとすぐ数百GBに膨らみます。CurveCodecは「動物でも人でもロボットでも、骨格の種類ごとに作り直さず同じ仕組みで圧縮できる」のが最大の特徴です。論文では、業界標準に近いUnreal Engine用の圧縮ライブラリACLと比べて、同じ精度(誤差0.1cm)で約2.7倍小さくなり、775GBのモーションデータ群を0.01cm精度のまま11.9GBに縮めたと報告されています。広告・体験づくりでは、大量のモーションを入れたWebインスタレーションやアプリの読み込みを軽くする、数十体のキャラクターを一斉に踊らせる展示で通信量を抑える、撮影現場で録ったモーションを素早く共有する、といった場面で効きます。ブラウザ上のデモにBVHファイルを入れるだけで効果を試せる点も、企画段階の検証向きです。",
+    "detail": "仕組みは2段構えです。まず1段目で、動きを「誤差の許容幅」(0.01〜1cm)の中で間引きます。重要なポーズ(キーフレーム)だけを残し、間は順運動学(骨の回転から手先や足先の位置を計算する処理)で復元して、元データとのズレが許容幅に収まっているかを毎回確認します。収まらなければ自動でやり直すので、「圧縮したら足がずれた」が起きにくい設計です。2段目では、約10.8万パラメータの小さなTransformer(文章の次の単語を予測するのと同じ種類のAI)に「次の値はこのあたりだろう」と予測させ、予測が当たった分だけデータを省く可逆圧縮(算術符号の一種)をかけます。モデルは870KBと小さく、約886時間・33種のモーションデータで一度だけ学習してあるため、犬など未学習の動物でも13.9倍に圧縮できたとされています。\n\n従来のACLは骨格ごとの手調整が前提で、AIを使う圧縮は特定の人体モデル(SMPLなど)専用になりがちでした。CurveCodecは骨格の種類を問わない点と、誤差の上限を保証する点が異なります。速度もCPU1コアで毎秒約8,700フレームを展開でき、リアルタイム再生に使える水準です。\n\n使うにはPython 3.9以上、numpy、Cコンパイラ、CMake、C++17対応コンパイラが必要で、pipでインストールします。GPUは不要です。コードと学習済み重みはGitHubで公開済みですが、ライセンスは非商用限定のため、クライアント案件など商用で使う場合は著者へのライセンス打診が必要です。まずは公式のブラウザデモ(BVHアップロード可)で、手持ちのモーションがどれだけ小さくなるかを確かめるのが手軽です。",
+    "license": {
+      "spdx": null,
+      "commercial": "research-only",
+      "note": "独自の非商用ライセンス。学術・非商用は無料、商用利用は著者との別途契約が必要。依存ライブラリ(ACL等)はMIT。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/AIGAnimation/AnimationCodec"
+      },
+      {
+        "kind": "project",
+        "url": "https://rubbly.cn/publications/curvecodec/"
+      },
+      {
+        "kind": "product",
+        "url": "https://playground.rubbly.cn/codec/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://doi.org/10.1145/3829340.3842192"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/curvecodec.jpg",
+    "relatedWorks": [
+      {
+        "title": "Animation Compression Library (ACL)",
+        "description": "ゲームエンジン向けの定番アニメーション圧縮ライブラリ(MIT)。CurveCodecの比較対象で、Unreal Engineにも統合されている。",
+        "url": "https://github.com/nfrechette/acl"
+      },
+      {
+        "title": "Kimodo",
+        "description": "NVIDIAによるテキスト・制約から骨格モーションを生成する拡散モデル。生成したモーションの保存・配信に圧縮が効く。",
+        "url": "https://github.com/nv-tlabs/kimodo"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "audionaut",
     "title": "Audionaut",
     "org": "kvoltmer（個人開発）",
