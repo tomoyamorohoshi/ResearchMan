@@ -18637,5 +18637,197 @@
         "desc": "ブラウザで動く動画編集ソフトで、人とAIエージェントが同じタイムラインを編集できる。"
       }
     ]
+  },
+  {
+    "id": "2026-10-05-1",
+    "date": "2026-10-05",
+    "title": "ロボが走る疾走ランウェイ",
+    "pattern": "文脈×技術",
+    "seed": "THE CATRACEが猫歩きを全力疾走に変えた発想に、SONICの忍び足・走行・跳躍をテキスト指示で切り替える人型ロボを掛け、ロボがスポーツウェアを着て駆け抜けるショーができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "distance-strava-the-catrace",
+        "title": "THE CATRACE（Distance x Strava）",
+        "desc": "パリのファッションウィークで、ランウェイを猫歩きから全力疾走に変えた1分間のスポーツウェアのショー。"
+      },
+      {
+        "type": "tech",
+        "id": "sonic",
+        "title": "SONIC（GR00T Whole-Body Control）",
+        "desc": "歩く・走る・跳ぶなど人型ロボの全身の動きを、文字やコントローラーの指示で操れる基盤モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-05-2",
+    "date": "2026-10-05",
+    "title": "湯上がり専用ソングの生成",
+    "pattern": "文脈×技術",
+    "seed": "J-WAVE湯の銭湯ブランドジャックに、MiniMax Music 3を掛け、入浴時間に合わせた約5分の完結した一曲を歌詞つきでその場生成し、湯上がりに持ち帰れる体験にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "j-wave-2018",
+        "title": "J-WAVE湯",
+        "desc": "ラジオ局J-WAVEが実在の銭湯を1週間だけ貸し切り、湯につかりながら放送を聴ける場にした企画。"
+      },
+      {
+        "type": "tech",
+        "id": "minimax-music-3",
+        "title": "MiniMax Music 3 (MiniMax-Music3)",
+        "desc": "歌詞と指示文から、ボーカル入りで最大5分の完成した曲を作れる公開の音楽生成AI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-05-3",
+    "date": "2026-10-05",
+    "title": "消えた四国像を写真で再建",
+    "pattern": "文脈×技術",
+    "seed": "台風で撤去された「本州から見た四国」の8mモニュメントを、来場者が撮った数枚の写真からRecGen3Dで欠けなく復元し、鏡面が島々を映す姿を画面上に再び立たせられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2022-un13",
+        "title": "本州から見た四国",
+        "desc": "四国の輪郭を金属パイプで描いた高さ約8mの作品。台風で壊れ撤去された。"
+      },
+      {
+        "type": "tech",
+        "id": "recgen3d",
+        "title": "RecGen3D",
+        "desc": "数枚の写真から、欠けのない完全な3Dモデルを作る手法。コードも公開されている。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-05-4",
+    "date": "2026-10-05",
+    "title": "写真1枚から続く境界なき世界",
+    "pattern": "文脈×技術",
+    "seed": "teamLab Borderlessの境界のない作品群に、AlayaWorldを掛け、来場者が撮った1枚の写真から1分以上続く動く世界を生成し、隣の作品へ流れ出す展示にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "teamlab-borderless",
+        "title": "teamLab Borderless",
+        "desc": "作品同士が影響し合い、境界を溶かすことを目指した世界初のデジタルアート美術館。"
+      },
+      {
+        "type": "tech",
+        "id": "alayaworld",
+        "title": "AlayaWorld",
+        "desc": "1枚の画像とカメラ操作から、1分以上遊べる動く映像の世界を作り続けるオープンソースの世界モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-05-5",
+    "date": "2026-10-05",
+    "title": "触ると鳴る楽器彫刻",
+    "pattern": "技術×技術",
+    "seed": "StemDeckで分けた6パートの音を、FlexSplatで組み立てた物体の3Dスプラットの各部位に割り当て、触る場所でドラムやピアノが鳴り出す楽器彫刻ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "stemdeck",
+        "title": "StemDeck",
+        "desc": "1つの曲をボーカルやドラムなど最大6パートに分ける、ローカルで動く無料アプリ。"
+      },
+      {
+        "type": "tech",
+        "id": "flexsplat",
+        "title": "FlexSplat",
+        "desc": "位置を測っていない複数枚の物体写真から、1回の推論で3Dガウシアンスプラットを作る手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-05-6",
+    "date": "2026-10-05",
+    "title": "ノートPC1台の街角ライブ",
+    "pattern": "技術×技術",
+    "seed": "MetalSplatでMac上に学習した街角の3Dスプラットの中を歩きながら、This Is The Voiceで自分の声を処理して歌う、ノートPC1台だけで完結する路上ライブができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "metalsplat",
+        "title": "MetalSplat",
+        "desc": "NVIDIAのGPUなしで、Apple SiliconのMacでガウシアンスプラットを学習できるオープンソース。"
+      },
+      {
+        "type": "tech",
+        "id": "this-is-the-voice",
+        "title": "This Is The Voice",
+        "desc": "ボーカル録音から仕上げまでの処理を1つにまとめた、無料で公開されたボーカルプラグイン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-05-7",
+    "date": "2026-10-05",
+    "title": "同じ顔で動く2Dキャラ",
+    "pattern": "技術×技術",
+    "seed": "Rev2DでAIエージェントが動かせる2Dキャラのリグを作り、RefModsの軽量な参照データで動画生成側にも同じ顔を再現させ、操演と生成を行き来する一人のキャラにできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "rev2d",
+        "title": "Rev2D",
+        "desc": "Live2DやSpineのような2Dキャラの骨組みを、AIエージェントが読み書きできる形で作れるツール群。"
+      },
+      {
+        "type": "tech",
+        "id": "refmods",
+        "title": "RefMods (MiniMax H3 Reference Latent Adapters)",
+        "desc": "動画生成AI向けに、キャラの見た目を毎回学習し直さず再現できる1〜1.6MBの参照データ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-05-8",
+    "date": "2026-10-05",
+    "title": "染物の色を残す色見本帳",
+    "pattern": "転用",
+    "seed": "映画用の色空間管理ComfyUI-OCIOを、映像でなく地域の伝統染物の記録に転用し、どの画面でも同じ藍色を再現できるデジタル色見本帳にできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-ocio",
+        "title": "ComfyUI-OCIO",
+        "desc": "映画やVFXで使う色の管理の仕組みを、ComfyUIの中で高い精度で使えるようにする拡張。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-05-9",
+    "date": "2026-10-05",
+    "title": "人だけ消した静けさ広告",
+    "pattern": "転用",
+    "seed": "動く被写体を影ごと消すLTX-2.3 Clean Plate IC-LoRAを、撮影補助でなく「不在」の表現に転用し、満員の渋谷から人だけ消して静けさを売る広告映像にできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ltx-2-3-clean-plate-ic-lora",
+        "title": "LTX-2.3 Clean Plate IC-LoRA",
+        "desc": "動画から人や車を消し、影や反射ごと背景を作り直すLTX-2.3用の公式LoRA。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-05-10",
+    "date": "2026-10-05",
+    "title": "別視点を結ぶ祭りアーカイブ",
+    "pattern": "転用",
+    "seed": "Multi-View Foundation Modelsを認識の高精度化でなく、参加者が別々に撮った祭りの写真を視点を超えて結ぶ用途に転用し、同じ神輿を追える参加型アーカイブにできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "multi-view-foundation-models",
+        "title": "Multi-View Foundation Models",
+        "desc": "DINOやSAMなどの2Dモデルに、視点が変わっても一貫した特徴を出させる汎用の仕組み。"
+      }
+    ]
   }
 ]
