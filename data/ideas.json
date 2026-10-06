@@ -18829,5 +18829,215 @@
         "desc": "DINOやSAMなどの2Dモデルに、視点が変わっても一貫した特徴を出させる汎用の仕組み。"
       }
     ]
+  },
+  {
+    "id": "2026-10-06-1",
+    "date": "2026-10-06",
+    "title": "群ロボで見せる多国間協調",
+    "pattern": "文脈×技術",
+    "seed": "Expo 2025の国連パビリオンが「多国間協調」を人間サイズの動線に翻訳した発想に、FluidicSwarmを掛けたら、来場者の握る・開く動作で小型ロボ群が合意へ集まったり散ったりする協調の可視化ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "un-pavilion-expo2025-osaka-if-2026",
+        "title": "Expo 2025 Osaka - United Nations Pavilion",
+        "desc": "国連創設80周年に、多国間協調という抽象的な考えを歩いて体験できる動線にした大阪万博の展示。"
+      },
+      {
+        "type": "tech",
+        "id": "fluidicswarm",
+        "title": "FluidicSwarm",
+        "desc": "手のジェスチャーだけで、複数の小型ロボットを水のような一つの生き物として操れる操作システム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-06-2",
+    "date": "2026-10-06",
+    "title": "視点で読む動く肖像画",
+    "pattern": "文脈×技術",
+    "seed": "John Lewis「Tableau」が英国100年を一枚の動く肖像画にした発想に、CrossView-Warpを掛けたら、鑑賞者が歩くと肖像画の中の暮らしを別アングルから覗ける、視点で時代を読む作品になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "john-lewis-tableau",
+        "title": "Tableau",
+        "desc": "John Lewisの創業100周年に、英国の100年の暮らしを一枚の動く肖像画で見せた企画。"
+      },
+      {
+        "type": "tech",
+        "id": "crossview-warp",
+        "title": "CrossView-Warp",
+        "desc": "撮影済みの動画を、実際には撮っていない別のカメラ位置から見た映像にAIで描き直す技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-06-3",
+    "date": "2026-10-06",
+    "title": "事故のない2036年のパリ",
+    "pattern": "文脈×技術",
+    "seed": "凱旋門に「2036」を映した飲酒運転根絶の屋外ジャックに、Gaussian Point Splattingを掛け、1億点超の精細な街のスプラットで未来のパリを描けば、事故のない2036年の街を歩ける映像にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "association-antoine-alleno-2036",
+        "title": "2036",
+        "desc": "大晦日のパリの凱旋門に2036と映し、飲酒運転の根絶を訴えた屋外広告。"
+      },
+      {
+        "type": "tech",
+        "id": "gaussian-point-splatting",
+        "title": "Gaussian Point Splatting",
+        "desc": "1億個超の点群ベース3D表現を、並べ替えなしでリアルタイムに描ける新しい描画手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-06-4",
+    "date": "2026-10-06",
+    "title": "馬が身振りで語る休暇返信",
+    "pattern": "文脈×技術",
+    "seed": "OUTHORSE YOUR EMAILの馬が休暇中の仕事を代わりに受け止める発想に、StreamTalkを掛けたら、返信メールを読み上げる音声に合わせ、馬のキャラが長尺でも身振りを崩さず語り続ける動画にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "outhorse-your-email",
+        "title": "OUTHORSE YOUR EMAIL",
+        "desc": "アイスランドの馬が、休暇中の旅行者の仕事メールを代わりに返信するVisit Icelandの企画。"
+      },
+      {
+        "type": "tech",
+        "id": "streamtalk",
+        "title": "StreamTalk",
+        "desc": "話す音声に合わせて自然な身振りをリアルタイムに作り続け、長時間でもズレにくいAI技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-06-5",
+    "date": "2026-10-06",
+    "title": "死角まで残す歩ける3D",
+    "pattern": "技術×技術",
+    "seed": "Insta360 X6 Spatial Captureで歩いた場所をスプラット化し、RecGen3Dで撮れなかった背面や死角を補完すれば、立ち入れない場所や取り壊し前の建物も形の欠けない3D空間として残せるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "insta360-x6-spatial-capture",
+        "title": "Insta360 X6 Spatial Capture",
+        "desc": "360度カメラで撮るだけで、その場を歩き回れる3D空間に自動変換してくれる新機能。"
+      },
+      {
+        "type": "tech",
+        "id": "recgen3d",
+        "title": "RecGen3D",
+        "desc": "数枚の写真から、形が欠けない完全な3Dモデルを作る手法で、コードと重みが公開されている。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-06-6",
+    "date": "2026-10-06",
+    "title": "曲の展開で切り替わる踊り",
+    "pattern": "技術×技術",
+    "seed": "Splice MCP Server×Claudeで組んだビートの区間ごとに、C1連続 in-loop-out モーション生成ツールでループ踊りを作れば、曲が展開するたび継ぎ目なく振りが切り替わるキャラが作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "splice-mcp-claude-beatmaking",
+        "title": "Splice MCP Server × Claude Cowork によるAIビートメイク検証",
+        "desc": "SpliceのMCPサーバーをClaudeに繋ぎ、文章の指示だけでヒップホップのビートを組む検証。"
+      },
+      {
+        "type": "tech",
+        "id": "akasaki-c1-loop-motion-tool",
+        "title": "C1連続 in-loop-out モーション生成ツール",
+        "desc": "モーションキャプチャの任意区間から、継ぎ目のないループ付きアニメーションを自動生成する個人開発ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-06-7",
+    "date": "2026-10-06",
+    "title": "着ぐるみに一人の踊りを移す",
+    "pattern": "技術×技術",
+    "seed": "Wan-Animate-2で1本の踊り動画の動きを転写し、Skinned Motion Retargetingのめり込み修正を重ねれば、巨大な頭や丸い体の着ぐるみキャラにも、破綻なく人の踊りを乗せられるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "wan-animate-2",
+        "title": "Wan-Animate-2",
+        "desc": "1本の動画から人物の動き・表情・カメラ視点まで転写できる、Alibaba発の無料公開アニメーション生成AI。"
+      },
+      {
+        "type": "tech",
+        "id": "skinned-motion-retargeting-via-artifact-driven-kinematic-pri",
+        "title": "Skinned Motion Retargeting via Artifact-driven Kinematic Prior Refinement",
+        "desc": "動きを体型の違うキャラへ移す際に起きる体のめり込みを、AIが自動で検出して直す技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-06-8",
+    "date": "2026-10-06",
+    "title": "動く文字で毎日解説する展覧会",
+    "pattern": "転用",
+    "seed": "商品紹介向けのAnymotionを、「もじ イメージ Graphic 展」の作品解説を毎日一本ずつ動く文字で書き出す用途に転用したら、会期中も育つキャプションになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "anymotion",
+        "title": "Anymotion",
+        "desc": "文章で指示するだけで、AIが解説動画のモーショングラフィックスを作りMP4で書き出すCLIツール。"
+      },
+      {
+        "type": "case",
+        "id": "graphic-2023",
+        "title": "企画展「もじ イメージ Graphic 展」",
+        "desc": "日本語の書字体系が生むグラフィックデザインの可能性を、1990年代以降の作品で見せた21_21 DESIGN SIGHTの企画展。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-06-9",
+    "date": "2026-10-06",
+    "title": "観客の一言を即映像化",
+    "pattern": "転用",
+    "seed": "生成時間を約3分の1にするHyperFlowを、制作の効率化でなく、Pocket-Sized Halftime Showのようなゲーム内ライブで観客の一言をその場の演出映像に変える用途に使えるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "hyperflow",
+        "title": "HyperFlow (MiniMax-H3 8-step LoRA)",
+        "desc": "動画生成モデルの計算ステップを49回から8回に減らし、生成時間を約3分の1にするLoRA。"
+      },
+      {
+        "type": "case",
+        "id": "clash-royale-pocket-sized-halftime-show",
+        "title": "Pocket-Sized Halftime Show",
+        "desc": "Lil WayneがClash Royaleのゲーム内アリーナでハーフタイムショーを行った企画。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-06-10",
+    "date": "2026-10-06",
+    "title": "現物なき文化財を取り戻す",
+    "pattern": "文脈×技術",
+    "seed": "スーパークローン文化財が壊された壁画を原寸で復元した発想に、RecGen3Dを掛け、流出した文化財の数枚の記録写真から欠けない3Dを作れば、現物がない作品も触れる形で展示に戻せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-agi8ka-2016",
+        "title": "東京藝術大学アフガニスタン特別企画展「素心 バーミヤン大仏天井壁画」～流出文化財とともに～（スーパークローン文化財）",
+        "desc": "爆破されたバーミヤン大仏の天井壁画を、写真と3D計測で原寸復元して公開した東京藝大の展覧会。"
+      },
+      {
+        "type": "tech",
+        "id": "recgen3d",
+        "title": "RecGen3D",
+        "desc": "数枚の写真から、形が欠けない完全な3Dモデルを作る手法で、コードと重みが公開されている。"
+      }
+    ]
   }
 ]
