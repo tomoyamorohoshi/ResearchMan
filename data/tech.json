@@ -1,5 +1,162 @@
 [
   {
+    "id": "gaussian-splat-patch",
+    "title": "Gaussian Splat Patch",
+    "org": "Tim Fennell（個人開発）",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "Gaussian Splat（写真から作る3Dスキャンデータ）を、Photoshopのスタンプやブラシのような感覚でBlender上で修正できる無料の拡張機能。不要物の消去、複製、色なじませ、穴埋めができる。",
+    "point": "3Dスキャンに写り込んだゴミ・ピン・髪の毛・床の影などを、2D写真のレタッチと同じ手つきで消せる点がすごい。特に「クローンスタンプ」は、コピー元の面の向きや、見る角度で変わる色まで自動で合わせて貼り付ける。消した跡の穴は曲面でふさぐ「ブリッジ」で埋められる。広告・体験づくりでは、実物スキャンを使ったプロダクトの360°ビューア、店舗・展示空間の3Dアーカイブ、XRやWebの空間コンテンツで、撮影後の「写り込み事故」をやり直し撮影なしで直す用途に向く。編集は元データを壊さず、いつでも元に戻せるため、クライアント確認の修正ラウンドにも対応しやすい。",
+    "detail": "仕組み：Gaussian Splatとは、無数の小さな色つきの粒（ガウス分布の楕円体）で3Dシーンを表す方式。このツールは、その粒をBlenderの3Dビューで直接選んで操作する。「消去」した粒は削除せず透明度0にして隠すだけで、元の値は.blendファイル内に残るため、「復元」ブラシでいつでも戻せる。複製した粒には印が付くので、後から区別できる。クローンは、貼り付け先の面の向きに合わせて粒を回転させ、見る角度による色変化も保つ。「ヒール」は貼った部分の色を周囲に合わせ、「スポットヒール」は近くの似た部分を自動で選んで補う。\n\n従来との違い：これまでスプラット編集は、粒を選んで消す程度のツールが中心だった。このツールは、2Dレタッチで定番のクローン、ヒーリング、穴埋めの考え方を3Dの粒に持ち込んだ点が新しい。開発者は昆虫標本スキャンから、固定用のピンやホコリ、毛を除く目的で作ったと説明している。READMEには蜂の標本での修正前後の画像がある。PLY書き出し機能も備え、Brush、SuperSplat、Blenderで開ける。\n\n使うには：Blender 5.3以降（READMEで要件を確認）と、GitHubのReleasesから入手するgs_patch zipが必要。Blenderの「Edit > Preferences > Get Extensions > Install from Disk」から入れる。費用はかからない。注意点として、200万粒を超える大きなスキャンは処理が重くなり、ブリッジは単層の面しか作り直せない。公開から日が浅く、現在はv0.1系。",
+    "license": {
+      "spdx": "GPL-3.0",
+      "commercial": "ok",
+      "note": "無料。GPL-3.0のため、改変して再配布する場合は同じライセンスでの公開が必要。Blender 5.3以降が必要（公開時点では5.3はプレリリース）"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/timfennell/blender-splat-patch"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/gaussian-splat-patch-brings-clone-stamp-and-healing-brushes-to-gaussian-splats-in-blender"
+      },
+      {
+        "kind": "product",
+        "url": "https://github.com/timfennell/blender-splat-patch/releases/tag/v0.1.12"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/gaussian-splat-patch.jpg",
+    "relatedWorks": [
+      {
+        "title": "SuperSplat",
+        "description": "PlayCanvas製のブラウザ型Gaussian Splat編集ツール（OSS）。",
+        "url": "https://github.com/playcanvas/supersplat"
+      },
+      {
+        "title": "LichtFeld Studio",
+        "description": "学習・編集・書き出しができるOSSのGaussian Splatting用アプリ。",
+        "url": "https://github.com/MrNeRF/LichtFeld-Studio"
+      },
+      {
+        "title": "splat-transform",
+        "description": "スプラットファイルの変換・圧縮を行うPlayCanvas製OSSツール。",
+        "url": "https://github.com/playcanvas/splat-transform"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "gaussian-render-capture",
+    "title": "Gaussian Render Capture",
+    "org": "Michael Klein（virtualrepublic）",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "Blender上の3Dモデルから、Gaussian Splatting学習用のCOLMAP形式データセット（複数視点の画像＋カメラ位置）を自動で作るアドオン。Postshot、LichtFeld Studio向け。",
+    "point": "「実物を撮影しなくても、3DモデルからGaussian Splatをつくれる」点がすごい。モデルの周りの球面にカメラを並べ、各視点から画像をレンダリングし、正確なカメラ位置情報とモデル頂点由来の初期点群まで書き出す。写真測量で必要な撮影・位置推定の手間と誤差がなく、きれいな学習データが手に入る。広告・体験づくりでは、CGで作った商品、キャラクター、レゴなどのホビーモデルを、Webやエンジン上で軽く回して見せられるスプラットアセットに変換する用途に向く。反射や透明など、通常のCGでは扱いづらい質感を、スプラットならではの見た目で見せる表現にも使える。",
+    "detail": "仕組み：作業は4段階。①モデルの周りの球面にカメラを配置（20〜1,280台）、②各視点からレンダリング、③カメラ位置を正確なデータとして出力、④COLMAP形式のデータセットとして保存する。このとき、モデルの頂点と材質の色から作った初期点群も同梱する。これを学習ソフトに渡すと、Gaussian Splatが作られる。GPUで見えない点を除外する処理も備える。学習後の浮遊ゴミを取る「Clean Splat」ツールも付属する。\n\n従来との違い：一般的なスプラット制作は、実物を多数撮影し、COLMAPなどでカメラ位置を推定する流れだった。このアドオンは、CGモデルならカメラ位置が最初から正確にわかる点を使い、位置推定に失敗する要因を除いている。READMEには操作手順の画像つきチュートリアル、クイックスタート、トラブルシューティングがあり、初めてでも進めやすい。サンプルとしてLDrawのフォルクスワーゲン・ビートルを同梱している。\n\n使うには：Blender 4.1以降（Windows 11で動作確認、LinuxとmacOSは自動テスト）。GitHub Releasesのgaussian_capture zipを、解凍せずBlenderのアドオンとして導入する。学習にはPostshot（Windows）か、NVIDIA GPUのあるLichtFeld Studio（Windows/Linux）が要る。アドオン自体は無料。GPUレンダリングはNVIDIAで検証され、AMD/Intelは未検証。",
+    "license": {
+      "spdx": "GPL-3.0-or-later",
+      "commercial": "ok",
+      "note": "無料。GPL-3.0以降。レイキャスト処理にArash Keshmirian氏のGauss Cannonのコードを組み込み（THIRD_PARTY.mdに記載）。学習には別途PostshotまたはLichtFeld Studioが必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/virtualrepublic/Gaussian-Render-Capture"
+      },
+      {
+        "kind": "product",
+        "url": "https://github.com/virtualrepublic/Gaussian-Render-Capture/releases/tag/v1.3.1"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/gaussian-render-capture.jpg",
+    "relatedWorks": [
+      {
+        "title": "LichtFeld Studio",
+        "description": "このアドオンの出力を学習できるOSSのGaussian Splattingトレーナー。",
+        "url": "https://github.com/MrNeRF/LichtFeld-Studio"
+      },
+      {
+        "title": "3DGS Render Blender Addon (KIRI Engine)",
+        "description": "Blender上でGaussian Splatを扱う既存アドオン。",
+        "url": "https://github.com/Kiri-Innovation/3dgs-render-blender-addon"
+      },
+      {
+        "title": "gsplat",
+        "description": "Gaussian Splatting学習用のOSSライブラリ（nerfstudio）。",
+        "url": "https://github.com/nerfstudio-project/gsplat"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "giro",
+    "title": "giro",
+    "org": "kevinraymond（個人開発）",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "GenVideo"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "1枚の画像から360°周回動画をAIで生成し、そこからVR対応のGaussian Splatを作る実験的パイプライン。失敗した動画を自動で選別・再生成する品質ゲートが特徴。",
+    "point": "画像1枚から、後ろ側まで回り込める3Dシーンを作る一連の流れを、手作業なしで回す点がすごい。AI生成の周回動画は、途中で動かない、元の向きに戻る、形が崩れるといった失敗が多い。giroは、カメラが330°以上回ったか、動きが安定しているか、ループが閉じているかを調べ、不合格の動画は別のシードで作り直す。広告・体験づくりでは、キャラクターや商品のイラスト1枚から、Meta Questのブラウザで見られる立体展示や、Webの回せるビジュアルを素早く試作する用途に向く。実験段階のプロトタイプなので、本番制作前の発想検証向きだ。",
+    "detail": "仕組み：①MiniMax H3で入力画像から360°周回動画を生成、②フレームを抜き出し、SAM 3.1で被写体を切り抜く、③COLMAP（Depth Anything 3を予備）でカメラ位置を復元、④品質ゲートで周回の質を検査、⑤Brushで背景が透明なスプラットを学習、⑥背景を切り落とし、実寸の高さに合わせてWeb・VR向けに書き出す。不合格のシードは自動で再抽選し、足りない弧の部分は補完用に再生成する。画面はReactのWebUIで、SparkビューアはWebXR対応。\n\n従来との違い：動画生成から3D化までを個別に手でつなぐのではなく、失敗を自動で見分けて回す工程管理が中心にある。docs/FINDINGS.mdに実測メモがあり、例えば158フレーム×20ステップの既定設定では4シード中3つが合格した。ただし数値は4被写体・各数シードの少数観察で、ベンチマークではないと作者自身が注記している。\n\n使うには：Linux、24GBのNVIDIA GPUを2枚（動画生成に約22GB）、Python 3.12、uv、Node.js、Rust、FFmpeg、COLMAP 4.xが必要で、モデルの重みは自分で用意する。導入のハードルは高い。リポジトリにはPLY/SOG/SPZ形式の完成サンプル6点がある。費用はソフトに無いが、GPU環境は自前で用意する必要がある。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "giro本体はMIT。連携する外部ツール（Brush等）はGPL-3.0、Apache-2.0、BSD-3-Clauseなどそれぞれのライセンスに従う。動画生成のMiniMax H3などモデルの重みは利用者が自分で用意する"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/kevinraymond/giro"
+      },
+      {
+        "kind": "post",
+        "url": "https://github.com/kevinraymond/giro/blob/HEAD/docs/FINDINGS.md"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/giro.jpg",
+    "relatedWorks": [
+      {
+        "title": "Lyra",
+        "description": "動画拡散モデルの知識を3D Gaussianへ蒸留してシーン生成するNVIDIAの研究。",
+        "url": "https://github.com/nv-tlabs/lyra"
+      },
+      {
+        "title": "Brush",
+        "description": "giroの学習工程で使われるOSSのGaussian Splattingトレーナー。",
+        "url": "https://github.com/ArthurBrussee/brush"
+      },
+      {
+        "title": "Spark",
+        "description": "Three.js向けのGaussian Splatレンダラー（giroのビューアで使用）。",
+        "url": "https://github.com/sparkjsdev/spark"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "cozyclay",
     "title": "CozyClay",
     "org": "NomaDamas (Doyun)",
