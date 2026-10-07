@@ -19039,5 +19039,215 @@
         "desc": "数枚の写真から、形が欠けない完全な3Dモデルを作る手法で、コードと重みが公開されている。"
       }
     ]
+  },
+  {
+    "id": "2026-10-07-1",
+    "date": "2026-10-07",
+    "title": "粘菌が描く動線の3D化",
+    "pattern": "技術×技術",
+    "seed": "Physarum polycephalum（真正粘菌）による東京鉄道網再現実験の育った経路を、InfiniSplatで1枚の写真から立体シーン化したら、生き物が設計した都市の模型を歩ける展示になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "physarum-polycephalumによる東京鉄道網再現実験",
+        "title": "Physarum polycephalum（真正粘菌）による東京鉄道網再現実験",
+        "desc": "脳のない粘菌を東京周辺の都市に見立てた培地で育て、鉄道網に似た効率的な経路を再現した実験。"
+      },
+      {
+        "type": "tech",
+        "id": "infinisplat",
+        "title": "InfiniSplat",
+        "desc": "1枚の写真から、視点を大きく動かしても崩れない立体のガウシアンスプラット場面を作る研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-07-2",
+    "date": "2026-10-07",
+    "title": "病院の壁を撮り直す条約",
+    "pattern": "文脈×技術",
+    "seed": "ICRC Laws Under Attackの「攻撃された壁に条約を刻む」発想に、FlashRenderを掛け、被害現場の記録動画を後から視聴者の立ち位置のアングルで撮り直せる証言映像にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "icrc-laws-under-attack",
+        "title": "Laws Under Attack",
+        "desc": "攻撃を受けた病院の壁にジュネーブ条約の条文を刻み、人道法を守るよう訴えた取り組み。"
+      },
+      {
+        "type": "tech",
+        "id": "flashrender",
+        "title": "FlashRender",
+        "desc": "撮影済みの動画を、後から好きなカメラ角度で撮り直したような映像にして数秒で作る技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-07-3",
+    "date": "2026-10-07",
+    "title": "踊るパビリオンの骨格化",
+    "pattern": "文脈×技術",
+    "seed": "The Dancing Pavilionはセンサーで踊りの鼓動を拾って鏡を動かした。センサーの代わりにHTD-Refineでスマホ動画から3D動作を復元すれば、街の人の何気ない動きで動く外壁にできそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "the-dancing-pavilion-rio-if-2018",
+        "title": "The Dancing Pavilion",
+        "desc": "ダンスの動きをセンサーで感知し、外壁の鏡が動いて踊る五輪期間限定のパビリオン。"
+      },
+      {
+        "type": "tech",
+        "id": "htd-refine",
+        "title": "HTD-Refine",
+        "desc": "スマホで撮った普通の動画から、専用機材なしで自然な人体の3D動作を復元するAI技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-07-4",
+    "date": "2026-10-07",
+    "title": "すごろく盤の無限実況",
+    "pattern": "文脈×技術",
+    "seed": "転生ゲーム カルマxクロスの「友情を壊す4人対戦」に、Live Avatarを掛け、負けた友人の顔写真だけで何時間も煽り続ける実況アバターを盤面に住ませたら、関係破壊が加速するかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-ggu2uy-2026",
+        "title": "転生ゲーム カルマxクロス",
+        "desc": "4人で遊び、友情が壊れることを売りにしたSwitch向けのすごろくゲーム。"
+      },
+      {
+        "type": "tech",
+        "id": "live-avatar",
+        "title": "Live Avatar",
+        "desc": "1枚の顔写真と音声から、何時間も破綻せず話し続けるリアルタイム映像アバターを作るAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-07-5",
+    "date": "2026-10-07",
+    "title": "万華鏡を撮り直す島",
+    "pattern": "文脈×技術",
+    "seed": "瀬戸内国際芸術祭「伊吹の樹」の鏡が島を万華鏡に映す仕掛けを、VGGT-Ωで来場者のスマホ写真から再現した3D空間に置き換え、見る人ごとに島の景色が組み変わる作品にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2019-ib05",
+        "title": "伊吹の樹",
+        "desc": "出産の場だった跡地に建つ生命の樹。内部の鏡が島の景色を万華鏡のように映す。"
+      },
+      {
+        "type": "tech",
+        "id": "vggt",
+        "title": "VGGT-Ω (VGGT-Omega)",
+        "desc": "複数の写真や動画から、カメラの位置・角度・奥行きを数秒でまとめて推定するモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-07-6",
+    "date": "2026-10-07",
+    "title": "ポートフォリオが話し出す",
+    "pattern": "技術×技術",
+    "seed": "PuppetLoomで個人サイトの作者キャラをPSDから動くようにし、Live Avatarの声で来訪者に作品を説明し続ける案内役にしたら、ポートフォリオ自体が常駐する人格になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "puppetloom",
+        "title": "PuppetLoom",
+        "desc": "レイヤー分けしたキャラのPSDから自動で骨組みを作り、呼吸や視線で動かすWindows用OSS。"
+      },
+      {
+        "type": "tech",
+        "id": "live-avatar",
+        "title": "Live Avatar",
+        "desc": "1枚の顔写真と音声から、何時間も話し続けるリアルタイム映像アバターを作るAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-07-7",
+    "date": "2026-10-07",
+    "title": "AIが組む可動ポスター",
+    "pattern": "技術×技術",
+    "seed": "AgentSTARで動画から可動物体を3Dで復元し、ikiの2Dパペットに部品として渡せば、はさみや扉など身の回りの物が表情を持って動き出すキャラ素材になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "agentstar",
+        "title": "AgentSTAR (Agentic Shape Tracking and Reconstruction)",
+        "desc": "動画を見せるとAIがBlenderで可動物体を3D復元し、動きまで再現するエージェント技術。"
+      },
+      {
+        "type": "tech",
+        "id": "iki",
+        "title": "iki",
+        "desc": "無料・MITライセンスの2Dパペットエンジン。文章指示でキャラの部品を作り動かせる。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-07-8",
+    "date": "2026-10-07",
+    "title": "粘菌でポスターを育てる",
+    "pattern": "転用",
+    "seed": "真正粘菌の鉄道網再現実験を、交通でなく文字の配置に転用し、Nora ArnoneのPoster Generatorのようにテキストを入れると粘菌的な最短経路で字が結ばれるポスターが育つかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "physarum-polycephalumによる東京鉄道網再現実験",
+        "title": "Physarum polycephalum（真正粘菌）による東京鉄道網再現実験",
+        "desc": "脳のない粘菌が、東京周辺の都市配置から鉄道網に似た経路を作った実験。"
+      },
+      {
+        "type": "case",
+        "id": "poster-generator-2024",
+        "title": "Poster Generator",
+        "desc": "テキストを入力するとその場でポスターを生成・保存できる、p5.jsの小さなツールサイト。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-07-9",
+    "date": "2026-10-07",
+    "title": "歌声の楽屋を動画で編集",
+    "pattern": "転用",
+    "seed": "動画クリップ用のcomfyui-obvpm-timelineの「延長・前足し・ループ化」を、映像でなくResonantで作った曲の構成編集に転用し、サビ前だけ前足しする編集を試せるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-obvpm-timeline",
+        "title": "comfyui-obvpm-timeline",
+        "desc": "ComfyUI上で短い動画クリップを並べ、延長・前足し・つなぎ直し・ループ化できるノード集。"
+      },
+      {
+        "type": "tech",
+        "id": "resonant",
+        "title": "Resonant",
+        "desc": "作詞・作曲・声の変換・書き出しまでWindows1台で行えるローカルAI音楽制作スタジオ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-07-10",
+    "date": "2026-10-07",
+    "title": "身体のない医学書を撮る",
+    "pattern": "転用",
+    "seed": "Nigrum Corpusが医学教育に欠けた黒人の身体を医学書で告発した文脈に、HTD-Refineを転用し、スマホ動画から多様な体の動きを3D化して教材の欠落を補う公開データにできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "idomed-nigrum-corpus",
+        "title": "Nigrum Corpus",
+        "desc": "医学教育で黒人の身体が欠けている現実を、人種差別を病気扱いした医学書で告発した取り組み。"
+      },
+      {
+        "type": "tech",
+        "id": "htd-refine",
+        "title": "HTD-Refine",
+        "desc": "スマホ1台の動画から、専用機材なしで人体の3D動作を復元するAI技術。"
+      }
+    ]
   }
 ]
