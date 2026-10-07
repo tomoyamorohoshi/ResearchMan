@@ -527,3 +527,28 @@ function isLockHeldPeek(): boolean {
     return false;
   }
 }
+
+test("updateJob: done/errorで終端したジョブをcancelledに巻き戻さない", async () => {
+  const job = makeFixtureJob({ status: "done" });
+  await writeJobFile(job);
+  try {
+    const updated = await updateJob(job.id, { status: "cancelled", error: "LINEから停止しました" });
+    assert.equal(updated?.status, "done");
+    assert.equal(updated?.error, undefined);
+  } finally {
+    await cleanupJobs(job);
+  }
+});
+
+test("cancelActiveJobs: 一覧取得後にdoneへ終端したジョブはcancelledにしない（再読込でスキップ）", async () => {
+  const job = makeFixtureJob({ status: "done" });
+  await writeJobFile(job);
+  try {
+    const results = await cancelActiveJobs({ onlyJobIds: new Set([job.id]) });
+    assert.equal(results.length, 0);
+    assert.equal((await getJob(job.id))?.status, "done");
+    assert.equal(isJobCancelled(job.id), false);
+  } finally {
+    await cleanupJobs(job);
+  }
+});

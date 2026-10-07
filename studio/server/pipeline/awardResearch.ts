@@ -73,7 +73,7 @@ import { pollStrictVerify } from "./strictVerify.js";
 import { loadLineConfig } from "../line/config.js";
 import { pushLineMessage } from "../line/push.js";
 import { getJob, listJobs, listRunningPriorityJobs, updateJob, type ResultCard } from "../jobs.js";
-import { beginCommit, CancelledError, isCancelledInContext, runInJobContext, throwIfCancelled } from "../jobCancel.js";
+import { beginCommit, CancelledError, markCommitting, isCancelledInContext, runInJobContext, throwIfCancelled } from "../jobCancel.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..", "..", ".."); // studio/server/pipeline -> repo root
@@ -513,7 +513,7 @@ async function runP5(ctx: PipelineCtx): Promise<void> {
     // git add・commitは一切再実行しない（再実行するとcases.jsonへ同一エントリが
     // 重複prependされ二重コミットされる）。push以降の完了処理のみ行う。
     if (checkpoint.p5 === "committed") {
-      beginCommit(); // push以降の完了処理のみ。キャンセル済みならここで投げ、pushしない
+      markCommitting(); // commit済み・pushのみの経路。中断せず完了させる（以後の停止は"too-late"）
       commitHash = await gitRevParseHead(ROOT);
       committed = true;
     } else {

@@ -87,6 +87,12 @@ export function beginCommit(): void {
   if (cur?.entry) cur.entry.committing = true;
 }
 
+/** 投げずにcommit中フラグだけ立てる（既にcommit済みでpushだけ行う経路用。以後requestCancelは"too-late"）。 */
+export function markCommitting(): void {
+  const cur = currentEntry();
+  if (cur?.entry) cur.entry.committing = true;
+}
+
 /** 「両方」(Case→Tech) の次フェーズ開始時など、commit完了後に再び中断可能へ戻す。 */
 export function endCommitPhase(): void {
   const cur = currentEntry();

@@ -776,7 +776,7 @@ test("キャンセル: 期限切れpendingのみなら「pendingなし」扱い�
     await post(baseUrl, eventBody([textEvent("キャンセル")]));
     await waitFor(() => fakes.pushes.length > 0);
     assert.equal(fakes.cancelCalls, 1);
-    assert.match(fakes.pushes[0].text, /停止しました/);
+    assert.match(fakes.pushes[0].text, /停止を受け付けました/);
   });
 });
 
@@ -794,7 +794,7 @@ test("停止/中止: 全状態で有効。実行中ジョブを止め一覧を�
       await post(baseUrl, eventBody([textEvent(word)]));
       await waitFor(() => fakes.pushes.length > 0);
       assert.equal(fakes.cancelCalls, 1);
-      assert.match(fakes.pushes[0].text, /停止しました/);
+      assert.match(fakes.pushes[0].text, /停止を受け付けました/);
       assert.match(fakes.pushes[0].text, /生成AI広告/);
       assert.deepEqual(fakes.pendingStore, pending);
       assert.equal(fakes.createJobCalls.length, 0);

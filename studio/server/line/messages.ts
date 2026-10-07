@@ -310,13 +310,17 @@ export function buildStopResultText(reports: CancelledJobReport[]): string {
   if (reports.length === 0) return "実行中のジョブはありません";
   const describe = (r: CancelledJobReport): string => {
     const summary = buildRequestSummary(r.job.request);
-    return `【${buildJobKindLabel(r.job)}】${summary}`.trimEnd();
+    const published = r.job.publishedPhases?.length ? `（${r.job.publishedPhases.join("・")}分は反映済み）` : "";
+    return `【${buildJobKindLabel(r.job)}】${summary}${published}`.trimEnd();
   };
   const stopped = reports.filter((r) => r.outcome === "cancelled");
   const tooLate = reports.filter((r) => r.outcome === "too-late");
   const lines: string[] = [];
   if (stopped.length > 0) {
-    lines.push("停止しました:", ...stopped.map((r) => `・${describe(r)}`));
+    lines.push(
+      "停止を受け付けました。実行中の処理（ビルド等）が終わり次第、反映せずに終了します:",
+      ...stopped.map((r) => `・${describe(r)}`),
+    );
   }
   if (tooLate.length > 0) {
     if (lines.length > 0) lines.push("");

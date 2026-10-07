@@ -498,9 +498,9 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
       }
 
       // ── 7. 反映（データ書き込み） ─────────────────────────────────
+      newUntracked.push(thumbnailRelPath); // 先に追跡（停止時のロールバックでサムネも消す）
       throwIfCancelled(); // LINE「停止」: 書き込み・commit前に中断（catchが未commitとしてロールバック）
       await setProgress(jobId, "反映中（データ書き込み）");
-      newUntracked.push(thumbnailRelPath);
       const updatedCases = [entry, ...existingCases];
       await writeJsonAtomic(CASES_PATH, updatedCases);
       trackedTouched.push("data/cases.json");
@@ -745,9 +745,9 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
       }
 
       // ── 5. 反映（データ書き込み） ─────────────────────────────────
+      newUntracked.push(thumbnailRelPath); // 先に追跡（停止時のロールバックでサムネも消す）
       throwIfCancelled(); // LINE「停止」: 書き込み・commit前に中断（catchが未commitとしてロールバック）
       await setProgress(jobId, "反映中（データ書き込み）");
-      newUntracked.push(thumbnailRelPath);
       const updatedTech = [techEntry, ...existingTechFull];
       await writeJsonAtomic(TECH_PATH, updatedTech);
       trackedTouched.push("data/tech.json");

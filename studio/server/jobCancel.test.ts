@@ -11,6 +11,7 @@ import {
   endCommitPhase,
   isCancelledInContext,
   isJobCancelled,
+  markCommitting,
   requestCancel,
   runInJobContext,
   throwIfCancelled,
@@ -111,4 +112,12 @@ test("別ジョブのコンテキストは干渉しない", async () => {
       assert.equal(isCancelledInContext(), false);
     }),
   ]);
+});
+
+test("markCommitting: 投げずにcommit中にし、以後のrequestCancelは 'too-late'（push専用経路向け）", async () => {
+  const id = nextId();
+  await runInJobContext(id, async () => {
+    markCommitting();
+    assert.equal(requestCancel(id), "too-late");
+  });
 });

@@ -323,7 +323,7 @@ test("buildProgressStatusText: running中とqueued中が混在してもそれぞ
 test("buildStopResultText: 停止したジョブの一覧（種別+依頼要約）を返す", () => {
   const job = { id: "j1", tab: "research", request: { kind: "Case Study", theme: "生成AI広告" } } as unknown as Job;
   const text = buildStopResultText([{ job, outcome: "cancelled" }]);
-  assert.match(text, /停止しました/);
+  assert.match(text, /停止を受け付けました/);
   assert.match(text, /事例調査/);
   assert.match(text, /生成AI広告/);
 });
@@ -343,4 +343,9 @@ test("buildCancelledWithJobsHintText: キャンセル文言+「停止」への�
   const text = buildCancelledWithJobsHintText();
   assert.ok(text.startsWith(buildCancelledText()));
   assert.match(text, /「停止」/);
+});
+
+test("buildStopResultText: Caseが反映済みのジョブには「Case分は反映済み」を付ける", () => {
+  const job = { id: "j1", tab: "research", request: { kind: "両方", theme: "AI" }, publishedPhases: ["Case"] } as unknown as Job;
+  assert.match(buildStopResultText([{ job, outcome: "cancelled" }]), /Case分は反映済み/);
 });

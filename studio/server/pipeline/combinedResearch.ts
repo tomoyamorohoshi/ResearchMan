@@ -242,7 +242,8 @@ export async function runCombinedResearchPipeline(jobId: string, req: ValidatedR
 
     // Techフェーズ開始前にジョブを running へ戻し、Case側の結果フィールドも明示的に
     // クリアする（TECH_PHASE_RESET_PATCH。adversarial-reviewer指摘#1）。
-    await updateJob(jobId, TECH_PHASE_RESET_PATCH);
+    // Caseがcommit済みなら記録（TECH_PHASE_RESET_PATCHがcommitを消すため。停止返信の「Case分は反映済み」用）
+    await updateJob(jobId, casePhase.commit ? { ...TECH_PHASE_RESET_PATCH, publishedPhases: ["Case"] } : TECH_PHASE_RESET_PATCH);
     endCommitPhase(); // Caseのcommit/push完了後。Techフェーズは再び中断可能にする
 
     await runTechResearchPipeline(jobId, req, lock, budget);

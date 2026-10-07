@@ -94,6 +94,8 @@ export interface Job {
   budgetExceeded?: boolean;
   /** status="paused" の理由（tab="awards"のみ使用）。 */
   pausedReason?: PausedReason;
+  /** 「両方」でCase等、既にcommit/push済みのフェーズ名（停止時の案内用）。 */
+  publishedPhases?: string[];
   /** ジョブ全体の進捗%（0〜100。tab="awards"のみ使用。awardPure.ts::computePhaseProgress参照）。 */
   progressPercent?: number;
   /** tab="awards"の再開可能性の唯一の情報源（awardPure.ts::AwardCheckpoint。自己完結）。 */
@@ -209,9 +211,16 @@ async function applyUpdate(id: string, patch: Partial<Job>): Promise<Job | null>
   const current = await getJob(id);
   if (!current) return null;
   let effective = patch;
+  // 既に done/error で終端したジョブを cancelled に巻き戻さない（古いスナップショットに基づく停止との競合）。
+  const isFinished = current.status === "done" || current.status === "error";
+  if (isFinished && patch.status === "cancelled") {
+    const { status: _s, error: _e, progress: _p, pausedReason: _r, ...rest } = patch;
+    void _s; void _e; void _p; void _r;
+    effective = rest;
+  } else
   // 停止(cancelled)済みジョブは終端状態。パイプライン側の後続更新（errorでの上書き・
   // runningへの復帰・進捗表示）でcancelledを巻き戻さない。コスト等の記録系は通す。
-  if ((current.status === "cancelled" || isJobCancelled(id)) && patch.status !== "cancelled") {
+  if ((current.status === "cancelled" || (isJobCancelled(id) && !isFinished)) && patch.status !== "cancelled") {
     effective = {
       ...patch,
       status: "cancelled",
@@ -474,7 +483,10 @@ export async function cancelActiveJobs(opts: { onlyJobIds?: ReadonlySet<string> 
       (!opts.onlyJobIds || opts.onlyJobIds.has(j.id)),
   );
   const reports: CancelledJobReport[] = [];
-  for (const job of targets) {
+  for (const snapshot of targets) {
+    // 一覧取得後に done/error へ終端している可能性があるため、直前に読み直す。
+    const job = await getJob(snapshot.id);
+    if (!job || !(job.status === "running" || job.status === "queued" || job.status === "paused")) continue;
     const outcome = requestCancel(job.id);
     if (outcome === "too-late") {
       reports.push({ job, outcome });
