@@ -811,7 +811,6 @@ test("停止: ジョブが無ければ「実行中のジョブはありません
     assert.equal(fakes.pushes[0].text, "実行中のジョブはありません");
   });
 });
-});
 
 // ── X投稿（DESIGN合意 docs/X_POST_DRAFTS_DESIGN.md v2: メニュー5→URL→即生成・連続生成可） ──
 
@@ -932,5 +931,4 @@ test("期限切れpending + 任意テキスト → idleと同じ返信（期限�
   assert.equal(expiredFakes.pushes[0].text, idleFakes.pushes[0].text);
   assert.doesNotMatch(expiredFakes.pushes[0].text, /期限切れ/);
   assert.deepEqual(expiredFakes.pendingStore, idleFakes.pendingStore);
-});
 });

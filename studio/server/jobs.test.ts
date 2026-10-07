@@ -414,7 +414,7 @@ test("cancelActiveJobs: running/queued/pausedをstatus='cancelled'にし、done/
   await Promise.all([running, queued, paused, done].map((j) => writeJobFile(j)));
   enqueueJob(queued.id);
   try {
-    const results = await cancelActiveJobs();
+    const results = await cancelActiveJobs({ onlyJobIds: new Set([running.id, queued.id, paused.id, done.id]) });
     const ids = results.map((r) => r.job.id);
     for (const j of [running, queued, paused]) assert.ok(ids.includes(j.id));
     assert.ok(!ids.includes(done.id));
@@ -454,7 +454,7 @@ test("cancelActiveJobs: 稼働中コントローラがあればabortされ、パ
       }) as Promise<void>;
     });
     await started;
-    const results = await cancelActiveJobs();
+    const results = await cancelActiveJobs({ onlyJobIds: new Set([job.id]) });
     assert.equal(results.find((r) => r.job.id === job.id)?.outcome, "cancelled");
     await finished;
     assert.equal(signal?.aborted, true);
@@ -472,7 +472,7 @@ test("cancelActiveJobs: commit/push着手後('too-late')のジョブは止めず
     const { beginCommit } = await import("./jobCancel.js");
     await runInJobContext(job.id, async () => {
       beginCommit();
-      const results = await cancelActiveJobs();
+      const results = await cancelActiveJobs({ onlyJobIds: new Set([job.id]) });
       assert.equal(results.find((r) => r.job.id === job.id)?.outcome, "too-late");
     });
     assert.equal((await getJob(job.id))?.status, "running");
@@ -495,7 +495,7 @@ test("updateJob: cancelled済みジョブへのstatus更新は無視される（
 });
 
 test("findLatestFinishedJob: cancelledも直近完了ジョブとして返しうる", async () => {
-  const job = makeFixtureJob({ status: "cancelled", at: "2999-01-01T00:00:00.000Z" });
+  const job = makeFixtureJob({ status: "cancelled", at: "9999-01-01T00:00:00.000Z" });
   await writeJobFile(job);
   try {
     assert.equal((await findLatestFinishedJob())?.id, job.id);

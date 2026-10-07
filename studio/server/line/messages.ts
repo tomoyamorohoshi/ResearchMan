@@ -4,7 +4,7 @@
  */
 import type { ValidatedIdeaRequest } from "../pipeline/ideaPure.js";
 import type { ValidatedResearchRequest } from "../pipeline/pure.js";
-import type { Job, PausedReason, Tab } from "../jobs.js";
+import type { CancelledJobReport, Job, PausedReason, Tab } from "../jobs.js";
 import type { LineRequestKind } from "./classify.js";
 
 /** 最終確認（final_confirm）の内容表示＋y/n・件数変更の案内。 */
@@ -97,6 +97,12 @@ export function buildNoPendingText(): string {
 
 export function buildCancelledText(): string {
   return "依頼をキャンセルしました。";
+}
+
+/** 「キャンセル」でウィザードのpendingを破棄したが、実行中のジョブも有る場合の案内付き文言。 */
+export function buildCancelledWithJobsHintText(): string {
+  return `${buildCancelledText()}
+実行中のジョブを止めるなら「停止」と送ってください。`;
 }
 
 export function buildExecStartedText(): string {
@@ -281,4 +287,43 @@ export function buildProgressStatusText(active: Job[], latestFinished: Job | nul
   const queuedByAtAsc = active.filter((j) => j.status === "queued").sort((a, b) => (a.at < b.at ? -1 : 1));
   const rankOf = new Map(queuedByAtAsc.map((j, i) => [j.id, i + 1]));
   return active.map((j) => buildJobStatusLine(j, now, rankOf.get(j.id))).join("\n\n");
+}
+
+// ── 停止（LINE「停止」「中止」。実行中/順番待ちのジョブを中断する） ──────────────
+
+const REQUEST_SUMMARY_MAX = 30;
+
+/** ジョブの依頼内容の短い要約（お題・URL・アワード名のうち最初に見つかったもの。無ければ空文字）。 */
+function buildRequestSummary(request: Record<string, unknown>): string {
+  for (const key of ["theme", "url", "awardName"]) {
+    const v = request[key];
+    if (typeof v === "string" && v.trim()) {
+      const t = v.trim();
+      return t.length > REQUEST_SUMMARY_MAX ? `${t.slice(0, REQUEST_SUMMARY_MAX)}…` : t;
+    }
+  }
+  return "";
+}
+
+/** 「停止」への返信。停止したジョブ一覧（種別+要約）、止められなかったものは理由つき。無ければ「実行中のジョブはありません」。 */
+export function buildStopResultText(reports: CancelledJobReport[]): string {
+  if (reports.length === 0) return "実行中のジョブはありません";
+  const describe = (r: CancelledJobReport): string => {
+    const summary = buildRequestSummary(r.job.request);
+    return `【${buildJobKindLabel(r.job)}】${summary}`.trimEnd();
+  };
+  const stopped = reports.filter((r) => r.outcome === "cancelled");
+  const tooLate = reports.filter((r) => r.outcome === "too-late");
+  const lines: string[] = [];
+  if (stopped.length > 0) {
+    lines.push("停止しました:", ...stopped.map((r) => `・${describe(r)}`));
+  }
+  if (tooLate.length > 0) {
+    if (lines.length > 0) lines.push("");
+    lines.push(
+      "反映処理(commit/push)の最中のため止められませんでした（そのまま完了します）:",
+      ...tooLate.map((r) => `・${describe(r)}`),
+    );
+  }
+  return lines.join("\n");
 }

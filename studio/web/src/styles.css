@@ -196,6 +196,7 @@ img{max-width:100%}
   background:var(--sunk); color:var(--muted); }
 .history-item-status.status-done { background:var(--ok-tint); color:var(--ok); }
 .history-item-status.status-error { background:var(--danger-tint); color:var(--danger); }
+.history-item-status.status-cancelled { background:var(--sunk); color:var(--muted); }
 .history-item-status.status-running { background:var(--accent-tint); color:var(--accent-ink); }
 @media (max-width:640px){ .history-item{ grid-template-columns:1fr 64px; grid-template-areas:"theme status" "at tab"; row-gap:4px; }
   .history-item-theme{ grid-area:theme; } .history-item-status{ grid-area:status; } .history-item-at{ grid-area:at; } .history-item-tab{ grid-area:tab; } }

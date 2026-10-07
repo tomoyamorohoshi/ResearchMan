@@ -29,7 +29,8 @@ export interface ResultCard {
   refs?: IdeaRefChip[];
 }
 
-export type JobStatus = "running" | "done" | "error";
+// "cancelled": LINEの「停止」でユーザーが中断したジョブ（error相当の終端状態）。
+export type JobStatus = "running" | "done" | "error" | "cancelled";
 
 export interface Job {
   id: string;

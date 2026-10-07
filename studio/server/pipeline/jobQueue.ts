@@ -9,8 +9,8 @@
  * 通常どおり「デイリージョブ実行中です」でerror終了するだけで、デッドロックや二重実行にはならない
  * 安全側のトレードオフ。
  *
- * 将来課題: queued状態のジョブをキャンセルするAPIは未実装（LINEの既存「キャンセル」は
- * ウィザード専用のため流用しない）。
+ * queued状態のジョブはLINE「停止」（jobs.ts::cancelActiveJobs）で removeFromQueue され、
+ * status="cancelled" になる（dispatch時のstatus確認でもskippedになる二重の安全策）。
  */
 import { getJob, listJobs, preparePipelineRun, updateJob, type Job } from "../jobs.js";
 import { isLockHeld } from "./lock.js";
@@ -21,6 +21,11 @@ let workerTimer: ReturnType<typeof setTimeout> | null = null;
 
 export function enqueueJob(jobId: string): void {
   queue.push(jobId);
+}
+
+/** キャンセル(LINE「停止」)されたqueuedジョブをFIFOから外す（dispatchさせない）。 */
+export function removeFromQueue(jobId: string): void {
+  for (let i = queue.length - 1; i >= 0; i--) if (queue[i] === jobId) queue.splice(i, 1);
 }
 
 /** テスト・診断用: 現在のFIFO内容のコピー。 */

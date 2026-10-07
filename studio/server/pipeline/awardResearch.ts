@@ -73,6 +73,7 @@ import { pollStrictVerify } from "./strictVerify.js";
 import { loadLineConfig } from "../line/config.js";
 import { pushLineMessage } from "../line/push.js";
 import { getJob, listJobs, listRunningPriorityJobs, updateJob, type ResultCard } from "../jobs.js";
+import { beginCommit, CancelledError, isCancelledInContext, runInJobContext, throwIfCancelled } from "../jobCancel.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..", "..", ".."); // studio/server/pipeline -> repo root
@@ -103,6 +104,7 @@ function sleep(ms: number): Promise<void> {
 
 async function notifyIfPossible(lineUserId: string, text: string): Promise<void> {
   if (!lineUserId) return;
+  if (isCancelledInContext()) return; // LINE「停止」済み: pushは送らない（停止返信で案内済み）
   const config = loadLineConfig();
   if (!config?.channelAccessToken) return;
   await pushLineMessage(config.channelAccessToken, lineUserId, text);
@@ -174,6 +176,7 @@ async function waitWhilePriorityJobsRunning(ctx: PipelineCtx): Promise<void> {
 
   while (priority.length > 0) {
     await sleep(PRIORITY_POLL_INTERVAL_MS);
+    throwIfCancelled(); // LINE「停止」: 一時停止中でも中断できる
     priority = await listRunningPriorityJobs(ctx.jobId);
   }
 
@@ -188,6 +191,7 @@ function startProgressPushTimer(ctx: PipelineCtx): ReturnType<typeof setInterval
   if (!ctx.req.lineUserId) return undefined;
   return setInterval(() => {
     void (async () => {
+      if (isCancelledInContext()) return;
       const config = loadLineConfig();
       if (!config?.channelAccessToken) return;
       const job = await getJob(ctx.jobId);
@@ -481,7 +485,15 @@ async function runP5(ctx: PipelineCtx): Promise<void> {
   const { checkpoint, req, jobId } = ctx;
   await persistCheckpoint(ctx, "P5", 0, 1, "監査待ち（gitロック取得中）");
 
-  const lock = await acquireLockWithWait(undefined, { label: "studio:awardResearch" });
+  throwIfCancelled();
+  const lock = await acquireLockWithWait(undefined, {
+    label: "studio:awardResearch",
+    // LINE「停止」: ロック待ち（最大30分）の間も中断できるよう、待機ごとに確認する（この時点では未取得）
+    sleepImpl: async (ms) => {
+      throwIfCancelled();
+      await sleep(ms);
+    },
+  });
   if (!lock) {
     throw new Error('gitロックを30分待っても取得できませんでした。時間をおいて「再開」と送ってください。');
   }
@@ -501,9 +513,17 @@ async function runP5(ctx: PipelineCtx): Promise<void> {
     // git add・commitは一切再実行しない（再実行するとcases.jsonへ同一エントリが
     // 重複prependされ二重コミットされる）。push以降の完了処理のみ行う。
     if (checkpoint.p5 === "committed") {
+      beginCommit(); // push以降の完了処理のみ。キャンセル済みならここで投げ、pushしない
       commitHash = await gitRevParseHead(ROOT);
       committed = true;
     } else {
+      throwIfCancelled(); // LINE「停止」: ファイル書き込み前に中断
+      // 書き込み後〜commit前に停止された場合、未commitのまま作業ツリーを戻して中断する。
+      const abortBeforeCommit = async (): Promise<never> => {
+        await rollbackTouchedFiles(ROOT, trackedTouched, newUntracked);
+        checkpoint.p5 = "pending";
+        throw new CancelledError();
+      };
       const existingCases = JSON.parse(await readFile(CASES_PATH, "utf-8")) as CaseEntry[];
       // 多重防御その2: checkpoint.p5によるスキップに加え、既存idと重複するエントリは
       // ここでも除外する（想定外の経路でこのブロックが再実行された場合の保険）。
@@ -537,6 +557,7 @@ async function runP5(ctx: PipelineCtx): Promise<void> {
         { name: "build", run: () => runBuild(ROOT) },
       ];
       for (const audit of audits) {
+        if (isCancelledInContext()) await abortBeforeCommit();
         const result = await audit.run();
         if (!result.ok) {
           const tail = [result.stderr.trim().slice(-3000), result.stdout.trim().slice(-1500)].filter(Boolean).join("\n---stdout---\n");
@@ -547,6 +568,8 @@ async function runP5(ctx: PipelineCtx): Promise<void> {
         }
       }
 
+      if (isCancelledInContext()) await abortBeforeCommit();
+      beginCommit(); // 以後はcommit/pushを中断しない（直前のチェックと同期的に連続）
       await persistCheckpoint(ctx, "P5", 0, 1, "反映中（commit/push）");
       const addResult = await gitAdd(ROOT, [...trackedTouched, ...newUntracked]);
       if (!addResult.ok) {
@@ -737,6 +760,8 @@ async function runCore(jobId: string, req: ValidatedAwardRequest, checkpoint: Aw
     await runP5(ctx);
   } catch (err) {
     if (err instanceof PipelinePausedError) return; // 一時停止処理は既に完了済み
+    // LINE「停止」: ジョブは既にcancelled（cancelActiveJobs）。errorで上書きせず失敗pushも送らない。
+    if (err instanceof CancelledError || isCancelledInContext()) return;
     if (err instanceof AwardSourceNotFoundError) {
       const message = `公式の受賞者一覧が見つからないため中止。トレード記事のみでの確定はSOPで禁止（${err.message}）`;
       await updateJob(jobId, { status: "error", progress: undefined, error: message, cost: ctx.cost.value });
@@ -760,7 +785,7 @@ async function runCore(jobId: string, req: ValidatedAwardRequest, checkpoint: Aw
 
 /** 新規ジョブの実行開始（jobs.ts::createJob("awards", ...)が呼ぶ）。 */
 export async function runAwardResearchPipeline(jobId: string, req: ValidatedAwardRequest): Promise<void> {
-  await runCore(jobId, req, emptyAwardCheckpoint());
+  await runInJobContext(jobId, () => runCore(jobId, req, emptyAwardCheckpoint()));
 }
 
 /**
@@ -769,9 +794,14 @@ export async function runAwardResearchPipeline(jobId: string, req: ValidatedAwar
  * 新しい予算トラッカーで実行される（要件D.3: 「再開」で新しい予算枠から続行）。
  */
 export async function resumeAwardJob(jobId: string): Promise<void> {
+  await runInJobContext(jobId, () => resumeAwardJobInContext(jobId));
+}
+
+async function resumeAwardJobInContext(jobId: string): Promise<void> {
   if (activeJobIds.has(jobId)) return;
   const job = await getJob(jobId);
   if (!job || job.tab !== "awards") return;
+  if (job.status === "cancelled") return; // LINE「停止」済みは再開しない
   const validated = validateAwardRequest(job.request);
   if (!validated.ok) {
     await updateJob(jobId, { status: "error", progress: undefined, error: `再開に失敗しました（依頼内容が不正です）: ${validated.error}` });
