@@ -1,5 +1,37 @@
 [
   {
+    "id": "100-wonder-2026",
+    "title": "東レ100周年企画展「WONDER!?展」",
+    "summary": "東レ創立100周年記念企画展「WONDER!?展」。TAKT PROJECTの吉泉聡がCD/デザインを担当し、三澤デザイン研究室が繊維素材をテーマにした作品展示を行う。",
+    "client": "東レ株式会社",
+    "agency": "TAKT PROJECT（クリエイティブディレクション/デザイン）、三澤デザイン研究室（参加クリエイター）",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://100th.toray/exhibition/",
+    "thumbnail": "/thumbnails/100-wonder-2026.jpg",
+    "videoId": "",
+    "overview": "東レ創立100周年を記念した企画展「WONDER!?展」。クリエイティブディレクション/デザインをTAKT PROJECTの吉泉聡が担当し、三澤デザイン研究室が参加クリエイターとして繊維素材をテーマにした作品展示を行う。東レが開発する素材の可能性を、デザインの視点から「驚き」として提示する展覧会として企画された。",
+    "background": "東レは2026年に創立100周年を迎え、記念企画の一環として本展を開催する。素材メーカーとしての技術や知見を一般の生活者にどう伝えるかが課題となる中、プロダクトやグラフィックの枠を超えた体験型デザインを手がけるTAKT PROJECTにクリエイティブディレクションを委ね、企画展という形式で素材の可能性を伝える試みとした。",
+    "execution": "TAKT PROJECTの吉泉聡が展覧会全体のクリエイティブディレクションとデザインを担当し、三澤デザイン研究室が参加クリエイターとして加わり、繊維素材をテーマにした作品を展示する構成。東レの技術やマテリアルを起点に、来場者が「WONDER（驚き）」を体感できる空間として設計されている。",
+    "evaluationImpact": "素材メーカーの周年事業を、技術展示ではなくデザイナー主導の企画展として構成した点が特徴。確認できた範囲では受賞情報はなく、クリエイティブディレクション体制と参加クリエイターの構成を記録する事例として扱う。",
+    "relatedWorks": [],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Form/Installation",
+      "Theme/Art"
+    ]
+  },
+  {
     "id": "teamlab-everything-exists-in-infinite-continuity-2026",
     "title": "teamLab: Everything Exists in Infinite Continuity",
     "summary": "人の動きが光と空間へ散逸していく様を描く『Dissipative Figures』など9作品からなる、teamLab中西部初の大規模個展。",
