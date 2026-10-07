@@ -15,13 +15,21 @@
  * （既存のauto-research-cc.mjs等、Claude CLI呼び出し部分も同様に無テスト）。
  */
 import { query, type AgentDefinition } from "@anthropic-ai/claude-agent-sdk";
+import { CANCELLED_MESSAGE, currentJobAbortController, isCancelledInContext } from "../jobCancel.js";
 import type { LoadedAgentDefinition } from "./agentLoader.js";
+
+/** テストでquery()を差し替えるための薄い間接層（本番では常にSDKのqueryを使う）。 */
+export const sdkDeps = { query };
 
 export interface AgentRunResult {
   ok: boolean;
   text: string;
   costUsd: number;
   error?: string;
+}
+
+function cancelledResult(costUsd: number): AgentRunResult {
+  return { ok: false, text: "", costUsd, error: CANCELLED_MESSAGE };
 }
 
 export async function runAgentQuery(
@@ -41,10 +49,14 @@ export async function runAgentQuery(
   let text = "";
   let costUsd = 0;
 
+  // LINE「停止」（jobCancel.ts）: キャンセル済みジョブはSDKを呼ばず即失敗（sticky）。
+  if (isCancelledInContext()) return cancelledResult(costUsd);
+
   try {
-    for await (const message of query({
+    for await (const message of sdkDeps.query({
       prompt,
       options: {
+        abortController: currentJobAbortController(),
         cwd,
         settingSources: [],
         agent: agentName,
@@ -59,14 +71,17 @@ export async function runAgentQuery(
         if (message.subtype === "success") {
           text = message.result;
         } else {
+          if (isCancelledInContext()) return cancelledResult(costUsd);
           const detail = message.errors.join("; ");
           return { ok: false, text: "", costUsd, error: detail || message.subtype };
         }
       }
     }
   } catch (err) {
+    if (isCancelledInContext()) return cancelledResult(costUsd);
     return { ok: false, text: "", costUsd, error: err instanceof Error ? err.message : String(err) };
   }
+  if (isCancelledInContext()) return cancelledResult(costUsd);
 
   if (!text) {
     return { ok: false, text: "", costUsd, error: "エージェントから結果テキストが得られませんでした" };
@@ -89,10 +104,12 @@ export async function runPlainQuery(
 ): Promise<AgentRunResult> {
   let text = "";
   let costUsd = 0;
+  if (isCancelledInContext()) return cancelledResult(costUsd);
   try {
-    for await (const message of query({
+    for await (const message of sdkDeps.query({
       prompt,
       options: {
+        abortController: currentJobAbortController(),
         settingSources: [],
         tools: [],
         model,
@@ -107,13 +124,16 @@ export async function runPlainQuery(
         if (message.subtype === "success") {
           text = message.result;
         } else {
+          if (isCancelledInContext()) return cancelledResult(costUsd);
           const detail = message.errors.join("; ");
           return { ok: false, text: "", costUsd, error: detail || message.subtype };
         }
       }
     }
   } catch (err) {
+    if (isCancelledInContext()) return cancelledResult(costUsd);
     return { ok: false, text: "", costUsd, error: err instanceof Error ? err.message : String(err) };
   }
+  if (isCancelledInContext()) return cancelledResult(costUsd);
   return { ok: !!text, text, costUsd, error: text ? undefined : "結果テキストが得られませんでした" };
 }

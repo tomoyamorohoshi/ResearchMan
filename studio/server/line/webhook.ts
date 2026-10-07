@@ -6,7 +6,7 @@
  * 送るため、ここでは実装しない（jobs.ts::createJob に渡すだけで完結する）。
  *
  * 会話の状態遷移そのものは wizard.ts::stepWizard（純粋関数）に切り出してある。このファイルの
- * 役割は「キャンセル判定→期限切れ判定→stepWizard呼び出し→（必要なら）Claude構造化/createJob
+ * 役割は「停止/キャンセル判定→stepWizard呼び出し（期限切れpendingはpendingなし扱い）→（必要なら）Claude構造化/createJob
  * という副作用の実行」という薄いオーケストレーションのみ。
  *
  * ルーティング上の制約: 署名検証には生のリクエストボディが要る。index.ts側で
@@ -27,18 +27,20 @@
  */
 import type express from "express";
 import {
+  cancelActiveJobs,
   createJob,
   findLatestFinishedJob,
   findResumableAwardsJob,
   listActiveJobs,
   ValidationError,
+  type CancelledJobReport,
   type Job,
   type ResumableAwardsJob,
   type Tab,
 } from "../jobs.js";
 import { resumeAwardJob } from "../pipeline/awardResearch.js";
 import { generateXPost, type XPostGenerationResult } from "../pipeline/xpost.js";
-import { isCancelText, isProgressText, isResumeText, type LineRequestKind } from "./classify.js";
+import { isCancelText, isProgressText, isResumeText, isStopText, type LineRequestKind } from "./classify.js";
 import { loadLineConfig, type LineConfig } from "./config.js";
 import {
   buildAddCaseAcceptedText,
@@ -46,10 +48,10 @@ import {
   buildAwardResumeAcceptedText,
   buildAwardResumeNotFoundText,
   buildCancelledText,
+  buildCancelledWithJobsHintText,
+  buildStopResultText,
   buildExecStartedText,
-  buildExpiredAndMenuText,
   buildJobCreateFailedText,
-  buildNoPendingText,
   buildProgressStatusText,
   buildQueuedAcceptedText,
   buildStructureFailedText,
@@ -60,7 +62,7 @@ import { isPendingExpired, loadPending, savePending, type LinePending } from "./
 import { replyOrPushLineMessage, replyOrPushLineMessages } from "./reply.js";
 import { verifyLineSignature } from "./signature.js";
 import { structureAwardViaClaude, structureViaClaude, type AwardStructureResult, type StructureResult } from "./structure.js";
-import { buildMenuPending, pendingFromStructured, renderFinalConfirm, stepWizard } from "./wizard.js";
+import { pendingFromStructured, renderFinalConfirm, stepWizard } from "./wizard.js";
 import type { LineMessage } from "./xpostPure.js";
 
 export interface LineWebhookDeps {
@@ -85,6 +87,8 @@ export interface LineWebhookDeps {
   listActiveJobs: () => Promise<Job[]>;
   /** 「進捗」「状況」キーワード向け: 実行中/一時停止中ジョブが無いときに案内する直近の完了ジョブ1件。 */
   findLatestFinishedJob: () => Promise<Job | null>;
+  /** 「停止」「中止」キーワード向け: running/queued/pausedの全ジョブを中断する（jobs.ts::cancelActiveJobs）。 */
+  cancelActiveJobs: () => Promise<CancelledJobReport[]>;
   now: () => Date;
 }
 
@@ -102,6 +106,7 @@ const defaultDeps: LineWebhookDeps = {
   generateXPost,
   listActiveJobs,
   findLatestFinishedJob,
+  cancelActiveJobs,
   now: () => new Date(),
 };
 
@@ -163,14 +168,24 @@ async function handleEvent(event: unknown, config: LineConfig, deps: LineWebhook
     return;
   }
 
-  // キャンセルは全状態で有効（item9）。stepWizardより前に判定する。
+  // 「停止」「中止」: 実行中/順番待ちのStudioジョブをすべて中断する。全状態で有効な予約語で、
+  // ウィザードのpendingには触れない（stepWizardより前に判定）。
+  if (isStopText(text)) {
+    await respondStopped(deps, token, replyToken, userId);
+    return;
+  }
+
+  // キャンセルは全状態で有効（item9）。stepWizardより前に判定する。有効なpendingがあれば
+  // それを破棄する（実行中ジョブがあれば「停止」への案内を添える）。有効なpendingが無ければ
+  // 「停止」と同じ挙動（ジョブの中断）にする。
   if (isCancelText(text)) {
     const pending = await deps.loadPending();
     if (pending && pending.userId === userId && !isPendingExpired(pending, now)) {
       await deps.savePending(null);
-      await deps.respond(token, replyToken, userId, buildCancelledText());
+      const hasActiveJobs = (await deps.listActiveJobs()).length > 0;
+      await deps.respond(token, replyToken, userId, hasActiveJobs ? buildCancelledWithJobsHintText() : buildCancelledText());
     } else {
-      await deps.respond(token, replyToken, userId, buildNoPendingText());
+      await respondStopped(deps, token, replyToken, userId);
     }
     return;
   }
@@ -186,15 +201,11 @@ async function handleEvent(event: unknown, config: LineConfig, deps: LineWebhook
   }
 
   const stored = await deps.loadPending();
-  const storedForUser = stored && stored.userId === userId ? stored : null;
-
-  // 期限切れのpendingが残っている状態でメッセージが来たら、内容に関わらず期限切れを通知し
-  // メニューへ差し戻す（item10）。
-  if (storedForUser && isPendingExpired(storedForUser, now)) {
-    await deps.savePending(buildMenuPending(userId, now));
-    await deps.respond(token, replyToken, userId, buildExpiredAndMenuText());
-    return;
-  }
+  // 期限切れのpendingは「pendingなし」として扱う（破棄して今回のメッセージをidleと同様に処理する）。
+  // 以前は期限切れ通知+メニューへ差し戻して今回の入力を捨てていたため、LINEからURL（事例追加）
+  // 等を送っても受理されない不具合があった。stepWizardに渡さなければ古い状態は残らない
+  // （この後の分岐が必ずsavePendingで上書き/クリアする）。
+  const storedForUser = stored && stored.userId === userId && !isPendingExpired(stored, now) ? stored : null;
 
   const outcome = stepWizard(storedForUser, text, now, userId);
 
@@ -275,6 +286,11 @@ async function handleEvent(event: unknown, config: LineConfig, deps: LineWebhook
 
   await deps.savePending(outcome.pending);
   await deps.respond(token, replyToken, userId, outcome.reply);
+}
+
+async function respondStopped(deps: LineWebhookDeps, token: string, replyToken: string | undefined, userId: string): Promise<void> {
+  const reports = await deps.cancelActiveJobs();
+  await deps.respond(token, replyToken, userId, buildStopResultText(reports));
 }
 
 export function createLineWebhookHandler(overrides: Partial<LineWebhookDeps> = {}): express.RequestHandler {

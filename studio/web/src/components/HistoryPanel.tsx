@@ -16,6 +16,7 @@ const STATUS_LABEL: Record<Job["status"], string> = {
   running: "実行中",
   done: "完了",
   error: "失敗",
+  cancelled: "停止",
 };
 
 function formatAt(at: string): string {
@@ -47,6 +48,9 @@ function themeLabel(job: Job): string {
 function ResultCardsGrid({ job }: { job: Job }) {
   if (job.status === "error") {
     return <p className="history-empty">このジョブは失敗しました{job.error ? `: ${job.error}` : ""}</p>;
+  }
+  if (job.status === "cancelled") {
+    return <p className="history-empty">このジョブはLINEから停止されました。</p>;
   }
   if (job.status === "running") {
     // 独立レビュー指摘（任意項目）: running中は結果カードが未生成なのが正常なので、

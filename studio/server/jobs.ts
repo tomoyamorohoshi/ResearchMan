@@ -20,7 +20,8 @@ import { runAwardResearchPipeline } from "./pipeline/awardResearch.js";
 import { runCaseResearchPipeline } from "./pipeline/caseResearch.js";
 import { runCombinedResearchPipeline } from "./pipeline/combinedResearch.js";
 import { runIdeaResearchPipeline } from "./pipeline/ideaResearch.js";
-import { enqueueJob } from "./pipeline/jobQueue.js";
+import { isJobCancelled, requestCancel, runInJobContext } from "./jobCancel.js";
+import { enqueueJob, removeFromQueue } from "./pipeline/jobQueue.js";
 import { isLockHeld } from "./pipeline/lock.js";
 import { runTechResearchPipeline } from "./pipeline/techResearch.js";
 import { validateResearchRequest } from "./pipeline/pure.js";
@@ -62,7 +63,11 @@ export interface ResultCard {
 // "queued" はデイリーgitロック（researchman-git.lock）が埋まっている間、research/idea/
 // add-caseジョブが順番待ちする状態（pipeline/jobQueue.ts参照）。awardsは対象外（元々
 // lockを保持しないため）。
-export type JobStatus = "running" | "done" | "error" | "paused" | "queued";
+// "cancelled" はLINEの「停止」でユーザーが中断したジョブ（cancelActiveJobs参照。終端状態）。
+export type JobStatus = "running" | "done" | "error" | "paused" | "queued" | "cancelled";
+
+/** status="cancelled" のジョブに書く、error相当の理由文。 */
+export const CANCELLED_JOB_ERROR = "LINEから停止しました";
 
 /**
  * status="paused" の理由（awardResearch.ts参照）。
@@ -89,6 +94,8 @@ export interface Job {
   budgetExceeded?: boolean;
   /** status="paused" の理由（tab="awards"のみ使用）。 */
   pausedReason?: PausedReason;
+  /** 「両方」でCase等、既にcommit/push済みのフェーズ名（停止時の案内用）。 */
+  publishedPhases?: string[];
   /** ジョブ全体の進捗%（0〜100。tab="awards"のみ使用。awardPure.ts::computePhaseProgress参照）。 */
   progressPercent?: number;
   /** tab="awards"の再開可能性の唯一の情報源（awardPure.ts::AwardCheckpoint。自己完結）。 */
@@ -183,9 +190,46 @@ export async function updateJob(
   id: string,
   patch: Partial<Job>,
 ): Promise<Job | null> {
+  // 同一ジョブへの更新を直列化する（read-modify-writeの競合で、cancelledが
+  // パイプライン側の古い読み取りに基づく書き込みで巻き戻されるのを防ぐ）。
+  const prev = updateChains.get(id) ?? Promise.resolve();
+  const run = prev.then(() => applyUpdate(id, patch));
+  const settled = run.then(
+    () => undefined,
+    () => undefined,
+  );
+  updateChains.set(id, settled);
+  void settled.then(() => {
+    if (updateChains.get(id) === settled) updateChains.delete(id);
+  });
+  return run;
+}
+
+const updateChains = new Map<string, Promise<void>>();
+
+async function applyUpdate(id: string, patch: Partial<Job>): Promise<Job | null> {
   const current = await getJob(id);
   if (!current) return null;
-  const updated: Job = { ...current, ...patch };
+  let effective = patch;
+  // 既に done/error で終端したジョブを cancelled に巻き戻さない（古いスナップショットに基づく停止との競合）。
+  const isFinished = current.status === "done" || current.status === "error";
+  if (isFinished && patch.status === "cancelled") {
+    const { status: _s, error: _e, progress: _p, pausedReason: _r, ...rest } = patch;
+    void _s; void _e; void _p; void _r;
+    effective = rest;
+  } else
+  // 停止(cancelled)済みジョブは終端状態。パイプライン側の後続更新（errorでの上書き・
+  // runningへの復帰・進捗表示）でcancelledを巻き戻さない。コスト等の記録系は通す。
+  if ((current.status === "cancelled" || (isJobCancelled(id) && !isFinished)) && patch.status !== "cancelled") {
+    effective = {
+      ...patch,
+      status: "cancelled",
+      progress: undefined,
+      pausedReason: undefined,
+      error: current.error ?? CANCELLED_JOB_ERROR,
+    };
+  }
+  const updated: Job = { ...current, ...effective };
   await writeJobFile(updated);
   jobEvents.emit(jobEventName(id), updated);
   return updated;
@@ -225,7 +269,7 @@ export function preparePipelineRun(
           : runCombinedResearchPipeline;
     return {
       initialProgress,
-      execute: (jobId: string) => pipeline(jobId, validated.value),
+      execute: (jobId: string) => runInJobContext(jobId, () => pipeline(jobId, validated.value)).then(() => undefined),
     };
   }
 
@@ -236,7 +280,7 @@ export function preparePipelineRun(
     }
     return {
       initialProgress: "URL取得・事例情報抽出中",
-      execute: (jobId: string) => runAddCasePipeline(jobId, validatedAddCase.value),
+      execute: (jobId: string) => runInJobContext(jobId, () => runAddCasePipeline(jobId, validatedAddCase.value)).then(() => undefined),
     };
   }
 
@@ -247,7 +291,7 @@ export function preparePipelineRun(
   }
   return {
     initialProgress: "切り口を選定しています…",
-    execute: (jobId: string) => runIdeaResearchPipeline(jobId, validatedIdea.value),
+    execute: (jobId: string) => runInJobContext(jobId, () => runIdeaResearchPipeline(jobId, validatedIdea.value)).then(() => undefined),
   };
 }
 
@@ -393,11 +437,11 @@ export async function listActiveJobs(): Promise<Job[]> {
 
 /**
  * 進捗照会向け: 実行中/一時停止中のジョブが無いときに案内する「直近の完了ジョブ」1件
- * （status="done"または"error"のうち最新）。無ければnull。
+ * （status="done"/"error"/"cancelled"のうち最新）。無ければnull。
  */
 export async function findLatestFinishedJob(): Promise<Job | null> {
   const jobs = await listJobs();
-  const found = jobs.find((j) => j.status === "done" || j.status === "error");
+  const found = jobs.find((j) => j.status === "done" || j.status === "error" || j.status === "cancelled");
   return found ?? null;
 }
 
@@ -414,4 +458,48 @@ export async function findResumableAwardsJob(): Promise<ResumableAwardsJob | nul
   const jobs = await listJobs();
   const found = jobs.find((j) => j.tab === "awards" && j.status === "paused" && j.pausedReason === "budget");
   return found ? { id: found.id } : null;
+}
+
+export interface CancelledJobReport {
+  job: Job;
+  /** "cancelled": 中断した / "too-late": commit/push着手済みのため止められなかった（そのまま完了させる）。 */
+  outcome: "cancelled" | "too-late";
+}
+
+/**
+ * LINE「停止」: status が running / queued / paused の全ジョブを中断する（Studioのジョブは
+ * ユーザー起動のみ。デイリージョブは別プロセス=run-job.mjsなので対象外）。
+ * - 稼働中ジョブ: jobCancel.requestCancel でSDK呼び出しをabortし、以後のクエリをfail-fastにする
+ *   （commit/push着手済みなら"too-late"でそのまま完了させる）
+ * - queued: jobQueueから外し、dispatchされないようにする
+ * - 生きたコントローラが無いジョブ（再起動前の孤児・予算超過で停止中のawards等）: ファイルを
+ *   cancelledにするだけ（「再開」「起動時復帰」の対象から外れる）
+ */
+export async function cancelActiveJobs(opts: { onlyJobIds?: ReadonlySet<string> } = {}): Promise<CancelledJobReport[]> {
+  // onlyJobIds はテスト用（共有のworkdir/jobsにある他テストのジョブを巻き込まないため）。
+  const targets = (await listJobs()).filter(
+    (j) =>
+      (j.status === "running" || j.status === "queued" || j.status === "paused") &&
+      (!opts.onlyJobIds || opts.onlyJobIds.has(j.id)),
+  );
+  const reports: CancelledJobReport[] = [];
+  for (const snapshot of targets) {
+    // 一覧取得後に done/error へ終端している可能性があるため、直前に読み直す。
+    const job = await getJob(snapshot.id);
+    if (!job || !(job.status === "running" || job.status === "queued" || job.status === "paused")) continue;
+    const outcome = requestCancel(job.id);
+    if (outcome === "too-late") {
+      reports.push({ job, outcome });
+      continue;
+    }
+    removeFromQueue(job.id);
+    await updateJob(job.id, {
+      status: "cancelled",
+      progress: undefined,
+      pausedReason: undefined,
+      error: CANCELLED_JOB_ERROR,
+    });
+    reports.push({ job, outcome });
+  }
+  return reports;
 }

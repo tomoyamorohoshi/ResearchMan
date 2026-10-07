@@ -59,6 +59,7 @@ import {
 import { dumpAgentDebug } from "./debugDump.js";
 import { acquireThumbnail, resetThumbnailDuplicateGuardForJob } from "./thumbnail.js";
 import { resolveLock, tryAcquireLock, type LockHandle } from "./lock.js";
+import { beginCommit, isCancelledInContext, throwIfCancelled } from "../jobCancel.js";
 import { runAgentQuery, runPlainQuery } from "./sdkRunner.js";
 import { BudgetExceededError, createJobBudgetTracker, type JobBudgetTracker } from "./budget.js";
 import { pollStrictVerify } from "./strictVerify.js";
@@ -96,6 +97,7 @@ async function setProgress(jobId: string, progress: string): Promise<void> {
 // 通知スキップ」を出す実装（scripts/notify-line.mjs参照）なのでログへ転記して可観測性を持たせる
 // （2026-07-10: 実E2E検証時にこのログが無く送信成否をパイプライン外で確認する必要があった）。
 async function notifyLine(args: string[]): Promise<void> {
+  if (isCancelledInContext()) return; // LINE「停止」済み: 失敗/完了pushは送らない（停止返信で案内済み）
   const result = await runNotifyLine(ROOT, args);
   console.log(`[studio] notify-line: ${result.stdout.trim() || result.stderr.trim() || "(no output)"}`);
 }
@@ -541,6 +543,7 @@ export async function runCaseResearchPipeline(
     budget.add(tagCostUsd);
 
     // ── 7. 反映（データ書き込み） ─────────────────────────────────
+    throwIfCancelled(); // LINE「停止」: 書き込み・commit前に中断（catchが未commitとしてロールバック）
     await setProgress(jobId, "反映中（データ書き込み）");
     // 先にresearchSources.ts側でタグ名を確定させる（既存のradar/award等と衝突する場合、
     // upsertOrderTagLineが別名に回避することがある — adversarial-reviewer指摘#3）。
@@ -600,6 +603,7 @@ export async function runCaseResearchPipeline(
       { name: "build", run: () => runBuild(ROOT) },
     ];
     for (const audit of audits) {
+      throwIfCancelled();
       const result = await audit.run();
       if (!result.ok) {
         // stderrを優先し、実際の例外・スタックトレースが末尾のログ整形メッセージで
@@ -614,6 +618,7 @@ export async function runCaseResearchPipeline(
     }
 
     // ── 9. commit/push ───────────────────────────────────────────
+    beginCommit(); // LINE「停止」: キャンセル済みなら投げる。以後はcommit/pushを中断しない
     await setProgress(jobId, "反映中（commit/push）");
     const addResult = await gitAdd(ROOT, [...trackedTouched, ...newUntracked]);
     if (!addResult.ok) {

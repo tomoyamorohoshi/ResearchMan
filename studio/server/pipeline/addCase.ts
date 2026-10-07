@@ -103,6 +103,7 @@ import {
 import { acquireTechThumbnail } from "./techThumbnail.js";
 import { isUrlAlive } from "./techExternalScripts.js";
 import { resolveLock, tryAcquireLock } from "./lock.js";
+import { beginCommit, isCancelledInContext, throwIfCancelled } from "../jobCancel.js";
 import { runAgentQuery } from "./sdkRunner.js";
 import { BudgetExceededError, createJobBudgetTracker } from "./budget.js";
 import { pollStrictVerify } from "./strictVerify.js";
@@ -143,6 +144,7 @@ async function setProgress(jobId: string, progress: string): Promise<void> {
  */
 async function notifyLineIfPossible(lineUserId: string, text: string): Promise<void> {
   if (!lineUserId) return;
+  if (isCancelledInContext()) return; // LINE「停止」済み: 失敗/完了pushは送らない
   const config = loadLineConfig();
   if (!config?.channelAccessToken) {
     console.warn("[studio][add-case] channelAccessToken未設定のためLINE通知をスキップしました");
@@ -496,8 +498,9 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
       }
 
       // ── 7. 反映（データ書き込み） ─────────────────────────────────
+      newUntracked.push(thumbnailRelPath); // 先に追跡（停止時のロールバックでサムネも消す）
+      throwIfCancelled(); // LINE「停止」: 書き込み・commit前に中断（catchが未commitとしてロールバック）
       await setProgress(jobId, "反映中（データ書き込み）");
-      newUntracked.push(thumbnailRelPath);
       const updatedCases = [entry, ...existingCases];
       await writeJsonAtomic(CASES_PATH, updatedCases);
       trackedTouched.push("data/cases.json");
@@ -523,6 +526,7 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
         { name: "build", run: () => runBuild(ROOT) },
       ];
       for (const audit of audits) {
+        throwIfCancelled();
         const result = await audit.run();
         if (!result.ok) {
           const tail = [result.stderr.trim().slice(-3000), result.stdout.trim().slice(-1500)].filter(Boolean).join("\n---stdout---\n");
@@ -532,6 +536,7 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
       }
 
       // ── 9. commit/push ───────────────────────────────────────────
+      beginCommit(); // LINE「停止」: キャンセル済みなら投げる。以後はcommit/pushを中断しない
       await setProgress(jobId, "反映中（commit/push）");
       const addResult = await gitAdd(ROOT, [...trackedTouched, ...newUntracked]);
       if (!addResult.ok) {
@@ -740,8 +745,9 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
       }
 
       // ── 5. 反映（データ書き込み） ─────────────────────────────────
+      newUntracked.push(thumbnailRelPath); // 先に追跡（停止時のロールバックでサムネも消す）
+      throwIfCancelled(); // LINE「停止」: 書き込み・commit前に中断（catchが未commitとしてロールバック）
       await setProgress(jobId, "反映中（データ書き込み）");
-      newUntracked.push(thumbnailRelPath);
       const updatedTech = [techEntry, ...existingTechFull];
       await writeJsonAtomic(TECH_PATH, updatedTech);
       trackedTouched.push("data/tech.json");
@@ -766,6 +772,7 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
         { name: "build", run: () => runBuild(ROOT) },
       ];
       for (const audit of techAudits) {
+        throwIfCancelled();
         const result = await audit.run();
         if (!result.ok) {
           const tail = [result.stderr.trim().slice(-3000), result.stdout.trim().slice(-1500)].filter(Boolean).join("\n---stdout---\n");
@@ -775,6 +782,7 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
       }
 
       // ── 7. commit/push ───────────────────────────────────────────
+      beginCommit(); // LINE「停止」: キャンセル済みなら投げる。以後はcommit/pushを中断しない
       await setProgress(jobId, "反映中（commit/push）");
       const techAddResult = await gitAdd(ROOT, [...trackedTouched, ...newUntracked]);
       if (!techAddResult.ok) {

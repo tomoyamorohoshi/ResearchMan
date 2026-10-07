@@ -53,6 +53,16 @@ export function isCancelText(text: string): boolean {
   return CANCEL_TEXTS.has(text.trim());
 }
 
+const STOP_TEXTS = new Set(["停止", "中止"]);
+
+/**
+ * 「停止/中止」に完全一致するか。全状態で有効（webhook.tsでstepWizardより前に判定）。
+ * 実行中/順番待ちのStudioジョブをすべて止める（ウィザードのpendingとは無関係）。
+ */
+export function isStopText(text: string): boolean {
+  return STOP_TEXTS.has(text.trim());
+}
+
 const RESUME_TEXTS = new Set(["再開"]);
 
 /**

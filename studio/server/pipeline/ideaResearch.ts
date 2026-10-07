@@ -78,6 +78,7 @@ import {
 } from "./ideaPure.js";
 import { extractJsonArray } from "./pure.js";
 import { tryAcquireLock } from "./lock.js";
+import { beginCommit, isCancelledInContext, throwIfCancelled } from "../jobCancel.js";
 import { runPlainQuery } from "./sdkRunner.js";
 import { updateJob, type IdeaRefChip, type Job, type ResultCard } from "../jobs.js";
 import { BudgetExceededError, createJobBudgetTracker } from "./budget.js";
@@ -104,6 +105,7 @@ async function setProgress(jobId: string, progress: string): Promise<void> {
 // notify-line.mjs は常にexit 0（設定不備・送信失敗でも本体を止めない「おまけ」設計）のため、
 // 送信成否をログへ転記して可観測性を持たせる（caseResearch.tsと同じ理由・2026-07-10）。
 async function notifyLine(args: string[]): Promise<void> {
+  if (isCancelledInContext()) return; // LINE「停止」済み: pushは送らない
   const result = await runNotifyLine(ROOT, args);
   console.log(`[studio] notify-line: ${result.stdout.trim() || result.stderr.trim() || "(no output)"}`);
 }
@@ -590,6 +592,7 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
     }
 
     // ── 10. 反映（ideas.json + idea-layouts.manifest.json ペア） ──────────
+    throwIfCancelled(); // LINE「停止」: 書き込み・commit前に中断（catchが未commitとしてロールバック）
     await setProgress(jobId, "反映中（データ書き込み）");
     const updatedIdeas = [...existingIdeas, ...newEntries];
     await writeJsonAtomic(IDEAS_JSON_PATH, updatedIdeas);
@@ -612,6 +615,7 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
     // idea-layouts.json本体はgit管理外。コミット対象は鮮度証明のmanifestのみ（名指しgit addは失敗する）
     trackedTouched.push("data/idea-layouts.manifest.json");
 
+    throwIfCancelled(); // precompute（長時間）中に停止された場合
     // ── 11. 監査（root next build。ideas.json破損が/ideasページを壊さないことの最終確認） ──
     await setProgress(jobId, "品質監査中（build）");
     const buildResult = await runBuild(ROOT);
@@ -624,6 +628,7 @@ export async function runIdeaResearchPipeline(jobId: string, req: ValidatedIdeaR
     }
 
     // ── 12. commit/push ────────────────────────────────────────
+    beginCommit(); // LINE「停止」: キャンセル済みなら投げる。以後はcommit/pushを中断しない
     await setProgress(jobId, "反映中（commit/push）");
     const addResult = await gitAdd(ROOT, trackedTouched);
     if (!addResult.ok) {

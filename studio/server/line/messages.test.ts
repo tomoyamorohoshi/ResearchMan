@@ -21,6 +21,9 @@ import {
   buildXPostUrlInvalidText,
   buildXPostUrlQuestionText,
   buildProgressStatusText,
+  buildStopResultText,
+  buildCancelledWithJobsHintText,
+  buildCancelledText,
   buildQueuedAcceptedText,
   buildRefsConfirmText,
   buildRefsQuestionText,
@@ -315,4 +318,34 @@ test("buildProgressStatusText: running中とqueued中が混在してもそれぞ
   const text = buildProgressStatusText([runningJob, queuedJob], null, now);
   assert.match(text, /技術収集中/);
   assert.match(text, /順番待ち（1番目）/);
+});
+
+test("buildStopResultText: 停止したジョブの一覧（種別+依頼要約）を返す", () => {
+  const job = { id: "j1", tab: "research", request: { kind: "Case Study", theme: "生成AI広告" } } as unknown as Job;
+  const text = buildStopResultText([{ job, outcome: "cancelled" }]);
+  assert.match(text, /停止を受け付けました/);
+  assert.match(text, /事例調査/);
+  assert.match(text, /生成AI広告/);
+});
+
+test("buildStopResultText: 反映中で止められなかったジョブはその旨を明記する", () => {
+  const job = { id: "j1", tab: "add-case", request: { url: "https://x.com/a/status/1" } } as unknown as Job;
+  const text = buildStopResultText([{ job, outcome: "too-late" }]);
+  assert.match(text, /止められませんでした/);
+  assert.match(text, /commit|反映/);
+});
+
+test("buildStopResultText: ジョブが無ければ「実行中のジョブはありません」", () => {
+  assert.equal(buildStopResultText([]), "実行中のジョブはありません");
+});
+
+test("buildCancelledWithJobsHintText: キャンセル文言+「停止」への誘導", () => {
+  const text = buildCancelledWithJobsHintText();
+  assert.ok(text.startsWith(buildCancelledText()));
+  assert.match(text, /「停止」/);
+});
+
+test("buildStopResultText: Caseが反映済みのジョブには「Case分は反映済み」を付ける", () => {
+  const job = { id: "j1", tab: "research", request: { kind: "両方", theme: "AI" }, publishedPhases: ["Case"] } as unknown as Job;
+  assert.match(buildStopResultText([{ job, outcome: "cancelled" }]), /Case分は反映済み/);
 });

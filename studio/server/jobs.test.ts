@@ -18,11 +18,12 @@
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import { mkdir, rm, writeFile } from "node:fs/promises";
-import { mkdirSync, rmSync } from "node:fs";
+import { existsSync, mkdirSync, rmSync } from "node:fs";
 import test from "node:test";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import {
+  cancelActiveJobs,
   clampCount,
   createJob,
   findLatestFinishedJob,
@@ -32,13 +33,15 @@ import {
   listJobs,
   listRunningPriorityJobs,
   subscribeJob,
+  preparePipelineRun,
   updateJob,
   writeJobFile,
   ValidationError,
   type Job,
 } from "./jobs.js";
 import { DEFAULT_LOCK_PATH } from "./pipeline/lock.js";
-import { queueSnapshot } from "./pipeline/jobQueue.js";
+import { enqueueJob, queueSnapshot } from "./pipeline/jobQueue.js";
+import { isJobCancelled, requestCancel, runInJobContext } from "./jobCancel.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const JOBS_DIR = path.join(__dirname, "..", "workdir", "jobs");
@@ -394,5 +397,158 @@ test("listJobs: 壊れたJSONファイルが1件混ざっていても残りの�
   } finally {
     await rm(brokenPath, { force: true });
     await rm(path.join(JOBS_DIR, `${good.id}.json`), { force: true });
+  }
+});
+
+// ── LINE「停止」: ジョブの中断（jobCancel.ts / cancelActiveJobs） ─────────────────────
+
+async function cleanupJobs(...jobs: Job[]): Promise<void> {
+  await Promise.all(jobs.map((j) => rm(path.join(JOBS_DIR, `${j.id}.json`), { force: true })));
+}
+
+test("cancelActiveJobs: running/queued/pausedをstatus='cancelled'にし、done/errorは触らない。キューからも外す", async () => {
+  const running = makeFixtureJob({ status: "running", progress: "収集中" });
+  const queued = makeFixtureJob({ status: "queued" });
+  const paused = makeFixtureJob({ tab: "awards", status: "paused", pausedReason: "budget" });
+  const done = makeFixtureJob({ status: "done" });
+  await Promise.all([running, queued, paused, done].map((j) => writeJobFile(j)));
+  enqueueJob(queued.id);
+  try {
+    const results = await cancelActiveJobs({ onlyJobIds: new Set([running.id, queued.id, paused.id, done.id]) });
+    const ids = results.map((r) => r.job.id);
+    for (const j of [running, queued, paused]) assert.ok(ids.includes(j.id));
+    assert.ok(!ids.includes(done.id));
+    for (const j of [running, queued, paused]) {
+      const after = await getJob(j.id);
+      assert.equal(after?.status, "cancelled");
+      assert.equal(after?.progress, undefined);
+      assert.equal(after?.error, "LINEから停止しました");
+      assert.equal(after?.pausedReason, undefined);
+    }
+    assert.equal((await getJob(done.id))?.status, "done");
+    assert.ok(!queueSnapshot().includes(queued.id));
+    // 「再開」は停止済みの予算超過AWARDSを見つけない
+    assert.notEqual((await findResumableAwardsJob())?.id, paused.id);
+    // 以後listActiveJobsに現れない
+    const active = (await listActiveJobs()).map((j) => j.id);
+    assert.ok(!active.includes(running.id) && !active.includes(queued.id) && !active.includes(paused.id));
+  } finally {
+    await cleanupJobs(running, queued, paused, done);
+  }
+});
+
+test("cancelActiveJobs: 稼働中コントローラがあればabortされ、パイプライン側の後続updateJob(error)でcancelledが上書きされない", async () => {
+  const job = makeFixtureJob({ status: "running" });
+  await writeJobFile(job);
+  try {
+    let signal: AbortSignal | undefined;
+    let finished: Promise<void> | undefined;
+    const started = new Promise<void>((resolveStarted) => {
+      finished = runInJobContext(job.id, async () => {
+        const { currentJobSignal } = await import("./jobCancel.js");
+        signal = currentJobSignal();
+        resolveStarted();
+        await new Promise<void>((r) => signal!.addEventListener("abort", () => r()));
+        // パイプラインのcatch/failが書く想定の更新
+        await updateJob(job.id, { status: "error", progress: undefined, error: "キャンセルされました" });
+      }) as Promise<void>;
+    });
+    await started;
+    const results = await cancelActiveJobs({ onlyJobIds: new Set([job.id]) });
+    assert.equal(results.find((r) => r.job.id === job.id)?.outcome, "cancelled");
+    await finished;
+    assert.equal(signal?.aborted, true);
+    assert.equal((await getJob(job.id))?.status, "cancelled");
+    assert.equal(isJobCancelled(job.id), true);
+  } finally {
+    await cleanupJobs(job);
+  }
+});
+
+test("cancelActiveJobs: commit/push着手後('too-late')のジョブは止めず、statusも変えない", async () => {
+  const job = makeFixtureJob({ status: "running" });
+  await writeJobFile(job);
+  try {
+    const { beginCommit } = await import("./jobCancel.js");
+    await runInJobContext(job.id, async () => {
+      beginCommit();
+      const results = await cancelActiveJobs({ onlyJobIds: new Set([job.id]) });
+      assert.equal(results.find((r) => r.job.id === job.id)?.outcome, "too-late");
+    });
+    assert.equal((await getJob(job.id))?.status, "running");
+  } finally {
+    await cleanupJobs(job);
+  }
+});
+
+test("updateJob: cancelled済みジョブへのstatus更新は無視される（cancelledのまま）", async () => {
+  const job = makeFixtureJob({ status: "cancelled", error: "LINEから停止しました" });
+  await writeJobFile(job);
+  try {
+    const updated = await updateJob(job.id, { status: "done", progress: "x", cost: 1.5 });
+    assert.equal(updated?.status, "cancelled");
+    assert.equal(updated?.progress, undefined);
+    assert.equal(updated?.cost, 1.5);
+  } finally {
+    await cleanupJobs(job);
+  }
+});
+
+test("findLatestFinishedJob: cancelledも直近完了ジョブとして返しうる", async () => {
+  const job = makeFixtureJob({ status: "cancelled", at: "9999-01-01T00:00:00.000Z" });
+  await writeJobFile(job);
+  try {
+    assert.equal((await findLatestFinishedJob())?.id, job.id);
+  } finally {
+    await cleanupJobs(job);
+  }
+});
+
+test("preparePipelineRun.execute: キャンセル済みジョブはパイプラインを一切起動しない（lock取得・data書込・commitに到達しない）", async () => {
+  const job = makeFixtureJob({ tab: "research", status: "cancelled", request: { kind: "Case Study", theme: "テスト" } });
+  await writeJobFile(job);
+  try {
+    requestCancel(job.id);
+    const prepared = preparePipelineRun("research", { kind: "Case Study", theme: "テスト", count: 1 });
+    const before = await getJob(job.id);
+    await prepared.execute(job.id);
+    assert.deepEqual(await getJob(job.id), before, "job状態が一切変化しない（パイプライン未起動）");
+    // 実パイプラインならlockを取って解放するが、起動していないのでlockも残らない
+    assert.equal(isLockHeldPeek(), false);
+  } finally {
+    await cleanupJobs(job);
+  }
+});
+
+function isLockHeldPeek(): boolean {
+  try {
+    return existsSync(DEFAULT_LOCK_PATH);
+  } catch {
+    return false;
+  }
+}
+
+test("updateJob: done/errorで終端したジョブをcancelledに巻き戻さない", async () => {
+  const job = makeFixtureJob({ status: "done" });
+  await writeJobFile(job);
+  try {
+    const updated = await updateJob(job.id, { status: "cancelled", error: "LINEから停止しました" });
+    assert.equal(updated?.status, "done");
+    assert.equal(updated?.error, undefined);
+  } finally {
+    await cleanupJobs(job);
+  }
+});
+
+test("cancelActiveJobs: 一覧取得後にdoneへ終端したジョブはcancelledにしない（再読込でスキップ）", async () => {
+  const job = makeFixtureJob({ status: "done" });
+  await writeJobFile(job);
+  try {
+    const results = await cancelActiveJobs({ onlyJobIds: new Set([job.id]) });
+    assert.equal(results.length, 0);
+    assert.equal((await getJob(job.id))?.status, "done");
+    assert.equal(isJobCancelled(job.id), false);
+  } finally {
+    await cleanupJobs(job);
   }
 });

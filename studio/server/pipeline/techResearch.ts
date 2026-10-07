@@ -55,6 +55,7 @@ import {
 import { acquireTechThumbnail } from "./techThumbnail.js";
 import { isUrlAlive } from "./techExternalScripts.js";
 import { resolveLock, tryAcquireLock, type LockHandle } from "./lock.js";
+import { beginCommit, isCancelledInContext, throwIfCancelled } from "../jobCancel.js";
 import { runAgentQuery } from "./sdkRunner.js";
 import { BudgetExceededError, createJobBudgetTracker, type JobBudgetTracker } from "./budget.js";
 import { pollStrictVerify } from "./strictVerify.js";
@@ -103,6 +104,7 @@ async function setProgress(jobId: string, progress: string): Promise<void> {
 // notify-line.mjs は「おまけ」設計で常にexit 0のため、送信成否をログへ転記する
 // （caseResearch.tsと同じ理由・2026-07-10）。
 async function notifyLine(args: string[]): Promise<void> {
+  if (isCancelledInContext()) return; // LINE「停止」済み: pushは送らない
   const result = await runNotifyLine(ROOT, args);
   console.log(`[studio] notify-line: ${result.stdout.trim() || result.stderr.trim() || "(no output)"}`);
 }
@@ -356,6 +358,7 @@ export async function runTechResearchPipeline(
     const warningMsg = appendCountShortfallWarning(withThumbnails.length, count, undefined);
 
     // ── 5. 反映（データ書き込み） ─────────────────────────────────
+    throwIfCancelled(); // LINE「停止」: 書き込み・commit前に中断（catchが未commitとしてロールバック）
     await setProgress(jobId, "反映中（データ書き込み）");
     const finalEntries: TechEntry[] = withThumbnails.map(({ candidate, thumbnail }) =>
       buildTechEntry(candidate, thumbnail, SOURCE_LABEL),
@@ -382,6 +385,7 @@ export async function runTechResearchPipeline(
       { name: "build", run: () => runBuild(ROOT) },
     ];
     for (const audit of audits) {
+      throwIfCancelled();
       const result = await audit.run();
       if (!result.ok) {
         const tail = [result.stderr.trim().slice(-3000), result.stdout.trim().slice(-1500)]
@@ -393,6 +397,7 @@ export async function runTechResearchPipeline(
     }
 
     // ── 7. commit/push ───────────────────────────────────────────
+    beginCommit(); // LINE「停止」: キャンセル済みなら投げる。以後はcommit/pushを中断しない
     await setProgress(jobId, "反映中（commit/push）");
     const addResult = await gitAdd(ROOT, [...trackedTouched, ...newUntracked]);
     if (!addResult.ok) {

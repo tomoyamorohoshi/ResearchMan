@@ -26,6 +26,7 @@ import { runCaseResearchPipeline } from "./caseResearch.js";
 import { runTechResearchPipeline } from "./techResearch.js";
 import { createJobBudgetTracker } from "./budget.js";
 import { tryAcquireLock } from "./lock.js";
+import { endCommitPhase, isCancelledInContext, isJobCancelled } from "../jobCancel.js";
 import type { ValidatedResearchRequest } from "./pure.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -72,6 +73,7 @@ export const TECH_PHASE_RESET_PATCH: Partial<Job> = {
 // notify-line.mjs は常にexit 0（設定不備・送信失敗でも本体を止めない「おまけ」設計）のため、
 // 送信成否をログへ転記して可観測性を持たせる（caseResearch.tsと同じ理由）。
 async function notifyLine(args: string[]): Promise<void> {
+  if (isCancelledInContext()) return; // LINE「停止」済み: pushは送らない
   const result = await runNotifyLine(ROOT, args);
   console.log(`[studio] notify-line: ${result.stdout.trim() || result.stderr.trim() || "(no output)"}`);
 }
@@ -219,6 +221,8 @@ export async function runCombinedResearchPipeline(jobId: string, req: ValidatedR
 
   try {
     await runCaseResearchPipeline(jobId, req, lock, budget);
+    // LINE「停止」: Caseフェーズ中に停止されたらTechへ進まない（statusは既にcancelled）
+    if (isJobCancelled(jobId)) return;
     const caseJobAfter = await getJob(jobId);
     const casePhase = phaseFromJob("Case", caseJobAfter);
 
@@ -238,7 +242,9 @@ export async function runCombinedResearchPipeline(jobId: string, req: ValidatedR
 
     // Techフェーズ開始前にジョブを running へ戻し、Case側の結果フィールドも明示的に
     // クリアする（TECH_PHASE_RESET_PATCH。adversarial-reviewer指摘#1）。
-    await updateJob(jobId, TECH_PHASE_RESET_PATCH);
+    // Caseがcommit済みなら記録（TECH_PHASE_RESET_PATCHがcommitを消すため。停止返信の「Case分は反映済み」用）
+    await updateJob(jobId, casePhase.commit ? { ...TECH_PHASE_RESET_PATCH, publishedPhases: ["Case"] } : TECH_PHASE_RESET_PATCH);
+    endCommitPhase(); // Caseのcommit/push完了後。Techフェーズは再び中断可能にする
 
     await runTechResearchPipeline(jobId, req, lock, budget);
     const techPhase = phaseFromJob("Tech", await getJob(jobId));

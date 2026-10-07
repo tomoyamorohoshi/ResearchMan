@@ -50,7 +50,7 @@ export default function IdeaPanel() {
       setProgress(job.progress || "処理中…");
       return;
     }
-    if (job.status === "error") {
+    if (job.status === "error" || job.status === "cancelled") {
       setJobError(job.error || "不明なエラーが発生しました。");
       setStage("error");
       return;
