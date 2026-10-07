@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "statusAsOf": "2026-10-06",
+  "statusAsOf": "2026-10-07",
   "items": [
     {
       "id": "2026-ycam-improvisation-otomo-ycam",
@@ -109,11 +109,11 @@
         "岩井俊雄",
         "Circuit Lab. a team of UNIBA"
       ],
-      "venue": "NTTインターコミュニケーション・センター [ICC] 4階",
+      "venue": "NTTインターコミュニケーション・センター [ICC]",
       "venueType": "media_art_center",
       "prefecture": "東京都",
       "city": "新宿区",
-      "startDate": "2026-06-20",
+      "startDate": "2026-09-12",
       "endDate": "2026-11-08",
       "status": "ongoing",
       "admission": "一般800円 / 大学生600円 / 65歳以上・高校生以下無料",
