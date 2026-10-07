@@ -1,5 +1,157 @@
 [
   {
+    "id": "prism",
+    "title": "Prism（動的スパースアテンションによる2Kネイティブ映像＋音声同時生成）",
+    "org": "Fudan University / Tencent Hunyuan Foundation Model Team / Zhejiang University",
+    "type": "Research",
+    "domains": [
+      "GenVideo",
+      "Audio/Music"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "映像と音声を同時に作る生成AIを、2K(2560×1440)解像度で直接学習できるようにした動的スパースアテンション手法。訓練コード・推論コード・preview重みがMITで公開された。",
+    "point": "従来の映像＋音声同時生成モデルは、計算量の都合で低解像度（480p〜720p）で学習してあとから引き伸ばすのが普通でした。Prismは画面を時間と空間の「ゾーン」に分け、動きが激しい場所や、音と映像が強く結びつく場所（口元や打楽器の当たる瞬間など）にだけ細かい注意計算をかける仕組みで、フル計算より学習が約2.5倍速いのに品質は同等以上と報告されています。広告・体験づくりでは、セリフ・効果音・BGMまで一度に付いた2K映像を素材として直接作れるため、スポーツや食事シーンのようなシズル感のあるカット、店頭サイネージ用の縦長・高精細ループ、ナレーション付き商品紹介の下書きなどに使えそうです。プロジェクトページには音付きの23ケースがあり、公開コードで自社データによる追加学習（LoRA的な拡張）も狙えます。",
+    "detail": "仕組み：動画のトークン（AIが読み取る細かい画像片）の並びを、時間×空間の大きなブロック（macro-zone）に区切ります。各ブロックについて「映像の特徴のばらつき（絵が大きく変わるか）」と「音から映像への注目の強さ（音が絵に効いているか）」の2つを測り、変化が大きい所は細かいブロック、単調な所は粗いブロックでアテンション（どこを見るかの計算）を行います。会議で全員が全員に話すのをやめ、必要な人同士だけ話すようにして時間を減らすイメージです。\n\n従来との違い：既存の音声付き映像モデル（Ovi、LTX-2.3、MOVAなど）は高解像度化でアテンション計算が爆発するため、低解像度で学習していました。Prismは2Kでネイティブ学習でき、論文では比較対象を上回る品質と、フルアテンション比2.5倍の学習高速化を示しています。リポジトリには720p/1080p/2Kの学習スクリプト、単GPU・FSDP（複数GPU分散）の推論スクリプト、データ準備ツールが入っており、READMEのみのプレースホルダではありません。\n\n使うには：重みはHugging Face（FrancisRing/Prism）で配布。推論は720pで80GB GPU 1枚、1080p/2Kは80GB GPU 4枚以上が目安、学習は32〜64枚の80GB GPUが必要で、個人PCではなくクラウドGPU向けです。費用はGPUレンタル代のみで、ライセンスはMITのため商用利用の障壁は低いです。まずは公開デモ動画とpreview重みでの検証から始めるのが現実的です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "コード・重み（FrancisRing/Prism）ともMIT。ただし依存する第三者コンポーネントは各元ライセンスに従う。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Tencent-Hunyuan/Prism"
+      },
+      {
+        "kind": "project",
+        "url": "https://francis-rings.github.io/Prism/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.05416"
+      },
+      {
+        "kind": "video",
+        "url": "https://youtu.be/XEL2IkSOSQw"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/prism.jpg",
+    "relatedWorks": [
+      {
+        "title": "Ovi",
+        "description": "Character.AIによる、映像と音声を同時生成するオープンモデル。",
+        "url": "https://github.com/character-ai/Ovi"
+      },
+      {
+        "title": "MOVA",
+        "description": "OpenMOSS発の映像・音声同時生成モデル。PrismのベースモデルにもなっているMOVA-360p。",
+        "url": "https://github.com/OpenMOSS/MOVA"
+      },
+      {
+        "title": "LTX-2",
+        "description": "Lightricksの音声付き映像生成オープンモデル。",
+        "url": "https://github.com/Lightricks/LTX-2"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "cinematic-director-camera-dsl",
+    "title": "Cinematic Director Camera DSL",
+    "org": "Sidekick Animation Studio Ltd (SK-SL-source)",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "「/MS /LOWANGLE /DOLLYIN:MS>MCU:SLOW」のような短い撮影用語を書くと、MiniMax H3・Kling・Veoなど各AI動画モデル向けのカメラ指示文に変換するDSL。Claude Codeスキル兼CLI。",
+    "point": "AI動画のカメラ指定は「ゆっくり寄る」と書いても、ドリーイン（カメラ自体が近づく）なのかズーム（レンズで拡大）なのかをモデルが取り違えがちで、毎回プロンプトを試行錯誤することになります。このツールは104のコマンドと244のエイリアスで、ショットサイズ・アングル・動き・レンズ・フォーカスを撮影現場の用語で1行に書け、決めていない項目は「未指定」と明示して勝手に補いません。MiniMax H3向けには、入力モードごとの実測に基づく信頼度（この動きは通りやすい・通りにくい）まで出します。広告では、絵コンテのカット割りをそのまま複数モデルに流し込んで比較する、ComfyUIワークフローに差し込むカメラ文を一貫管理する、といった使い方ができ、演出家と生成担当の共通言語になります。",
+    "detail": "仕組み：入力された短縮コマンドを、まず「ショットサイズ・視点・動き・開始/終了フレーミング・速度」という内部の共通表現に分解します。次に各モデル用のアダプター（MiniMax H3、Kling、Veo、FLUX、Qwen-Imageなど8種）が、そのモデルが理解しやすい言い回しに書き直します。日本語でいうと、同じ指示を各国語の通訳に渡すようなものです。ドリーとズーム、パンとトラック、ティルトとペデスタルといった混同しやすい動きを別物として扱う点が特徴で、被写体の近くに物が無いとドリーがズームに見えてしまうといった警告も出します。\n\n従来との違い：既存のプロンプト集はモデルごとの言い回しの寄せ集めでしたが、これは「撮影意図を1回書いて各モデルに展開する」構造で、未指定の項目を列挙し、H3の5つの入力モード（T2VA/I2VA/FL2VA/L2VA/Ref2VA）ごとの検証結果を根拠付きで返します。リポジトリにはschemas、models、examples（66以上のカメラ表現）、910件のテストが入っており、公開日は10/3です。\n\n使うには：Python 3だけで動き、APIキーも費用も不要です。Claude Codeのスキルとして導入するか、コマンドラインから呼び出して出力文をComfyUIや各社の動画生成画面に貼り付けます。導入は数分で、必要な知識は基本的な撮影用語（MS＝ミディアムショット等）程度です。生成物の画質そのものを上げるツールではなく、カメラ指示の精度と再現性を上げるツールです。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "MIT。Python3のみで動作、外部APIキー不要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/SK-SL-source/cinematic-director-camera-dsl"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/cinematic-director-camera-dsl.jpg",
+    "relatedWorks": [
+      {
+        "title": "ComfyUI-WanVideoWrapper",
+        "description": "Wan系など動画生成モデルをComfyUIから扱うカスタムノード群。カメラ文の差し込み先になる。",
+        "url": "https://github.com/kijai/ComfyUI-WanVideoWrapper"
+      },
+      {
+        "title": "LTX-2",
+        "description": "Lightricksのオープン動画生成モデル。自然言語でのカメラ指示を受け付ける。",
+        "url": "https://github.com/Lightricks/LTX-2"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "minimax-h3-on-tensorfold",
+    "title": "MiniMax H3 on TensorFold（NVFP4 ComfyUIローダー）",
+    "org": "jayleaton",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "MiniMax H3（音声付き動画モデル）をRTX 50シリーズ1枚で高速に動かす、ComfyUI用のドロップイン・ローダーノード。Windowsネイティブで標準の約2.3倍、Turbo LoRAと疎アテンション併用で最大7.7倍と報告。",
+    "point": "MiniMax H3は190億パラメータの大型モデルで、一般的なGPUでは5秒の動画1本に10分以上かかっていました。このツールは、ComfyUIの「Load Diffusion Model」ノードを「TensorFold MiniMax H3 Loader」に差し替えるだけで、Blackwell世代（RTX 50）のNVFP4（4ビット浮動小数）演算を使う高速エンジンに切り替えます。READMEの実測（RTX 5070 Ti 16GB、1344×768・5秒・音声付き）では、標準623秒が20ステップで273秒、Turbo LoRA＋疎アテンション＋int8 VAEの組み合わせで81秒まで短縮されています。広告制作では、クライアント確認用のカット案を1日に何十本も回す、ローカルで機密素材を外部に出さず生成する、といった運用が現実的になります。",
+    "detail": "仕組み：動画モデルの計算の大半は、巨大な行列の掛け算です。このローダーは、その中核であるDiTの50ブロックだけをTensorFoldというNVFP4対応の計算ライブラリに置き換え、文字・キーフレーム・音声・映像を並べる処理やテキストエンコーダ、VAE（画像⇔内部表現の変換器）は元のComfyUIのまま使います。工場のライン全体は変えず、一番遅い工程の機械だけを新型に替えるイメージです。\n\n従来との違い：標準のComfyUIはint8の重みをbf16のアテンション経路で流しており、4ビット演算の恩恵を受けられませんでした。ここでは4ビット化で画質の細部や構図が「同じプロンプトでも別サンプル」程度に変わる点をREADMEで明記し、6プロンプトでLPIPS・DINOv2類似度・PSNR・音声ログメル距離を標準版と比較する検証スクリプト（bench/quality.py）まで同梱しています。既掲載のFastH3やBlock Sparse Attentionとは、4ビットGEMMで本体計算そのものを置き換える別アプローチです。\n\n使うには：RTX 50シリーズ（Blackwell, sm_120）のGPU、Windows 11またはLinux、ComfyUI（検証は0.37.0・torch 2.10+cu130）、RAM 64GB程度が目安。READMEは作者が1台の環境で測った作業中（WIP）の数値だと明記しており、設定や数値は今後変わる可能性があります。ソフトの費用はかからず、導入はComfyUIのcustom_nodesへ配置してワークフローのノードを差し替える手順です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "本プロジェクト自身のコードはApache-2.0。TensorFoldは未改変のsubmoduleとして利用。MiniMax H3の重みは各自のライセンスに従う。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/jayleaton/minimax-h3-tensorfold-rtx"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/ashhart/TensorFold"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/minimax-h3-on-tensorfold.jpg",
+    "relatedWorks": [
+      {
+        "title": "TensorFold",
+        "description": "NVFP4 W4A4テンソルコアGEMMを提供する、本プロジェクトのエンジンの土台。",
+        "url": "https://github.com/ashhart/TensorFold"
+      },
+      {
+        "title": "Block-Sparse-Attention",
+        "description": "疎アテンションで長い動画系計算を速くするライブラリ。併用できる別方向の高速化。",
+        "url": "https://github.com/mit-han-lab/Block-Sparse-Attention"
+      },
+      {
+        "title": "LightX2V",
+        "description": "動画生成モデルの推論高速化フレームワーク。",
+        "url": "https://github.com/ModelTC/LightX2V"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "gaussian-splat-patch",
     "title": "Gaussian Splat Patch",
     "org": "Tim Fennell（個人開発）",
