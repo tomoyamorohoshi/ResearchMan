@@ -1,5 +1,44 @@
 [
   {
+    "id": "teamlab-everything-exists-in-infinite-continuity-2026",
+    "title": "teamLab: Everything Exists in Infinite Continuity",
+    "summary": "人の動きが光と空間へ散逸していく様を描く『Dissipative Figures』など9作品からなる、teamLab中西部初の大規模個展。",
+    "client": "Smart Museum of Art, University of Chicago",
+    "agency": "teamLab",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.teamlab.art/e/smartmuseum/",
+    "thumbnail": "/thumbnails/teamlab-everything-exists-in-infinite-continuity-2026.jpg",
+    "videoId": "",
+    "overview": "シカゴ大学スマート美術館（Smart Museum of Art）で開催された、teamLabによる米国中西部初の大規模個展「Everything Exists in Infinite Continuity」。『Dissipative Figures』シリーズを含む9つのインスタレーションで構成され、人の動きが環境へと散逸していく様をデジタルアートとして展示した。",
+    "background": "teamLabは「境界のない世界」や、個人と環境・他者との連続性をテーマに作品を展開してきた。本展はその文脈の延長として、美術館という学術色の強い会場で、来場者の身体的な動きが作品の一部として空間に溶け込み広がっていく表現を中心に構成された。",
+    "execution": "会場には『Dissipative Figures』をはじめとする9つのインスタレーションを配置し、来場者の動きや存在が光や映像として空間に散逸・拡散していく様子を見せた。シカゴ大学の美術館という会場特性を踏まえ、複数作品を連続した体験として鑑賞できる構成になっている。",
+    "evaluationImpact": "商業施設やテーマパークではなく大学附属美術館という学術的な場で、teamLabが中西部初の大規模個展を開催した点が特徴。確認できた範囲では受賞情報は無く、展示構成と作品テーマの提示にとどまる事例として記録する。",
+    "relatedWorks": [
+      {
+        "title": "Dissipative Figures",
+        "description": "人の動きが光として環境へ散逸していく様を描く、本展の中心を成すインスタレーションシリーズ。",
+        "url": "https://www.teamlab.art/e/smartmuseum/"
+      }
+    ],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/Projection",
+      "Form/Installation",
+      "Form/Exhibition",
+      "Theme/Art"
+    ]
+  },
+  {
     "id": "brain-on-bikes-outride-summit-2026",
     "title": "Brain on Bikes（Outride Summit）",
     "summary": "固定バイクを漕ぐ参加者の脳波をリアルタイムで個別の生成アートに変換し、脳の健康への自転車の効用をグラフなしで体感させた",
