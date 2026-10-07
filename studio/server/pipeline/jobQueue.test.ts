@@ -24,7 +24,7 @@ import { fileURLToPath } from "node:url";
 import test from "node:test";
 import { writeJobFile, type Job } from "../jobs.js";
 import { DEFAULT_LOCK_PATH } from "./lock.js";
-import { enqueueJob, processQueueOnce, queueSnapshot, recoverQueueOnStartup } from "./jobQueue.js";
+import { enqueueJob, processQueueOnce, queueSnapshot, recoverQueueOnStartup, removeFromQueue } from "./jobQueue.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // jobQueue.test.ts は server/pipeline/ に置かれる（server/直下のjobs.test.tsより1階層深い）ため、
@@ -155,4 +155,27 @@ test("recoverQueueOnStartup: status='running'かつtab!=='awards'の孤児ジョ
     await rm(path.join(JOBS_DIR, `${orphanedResearch.id}.json`), { force: true });
     await rm(path.join(JOBS_DIR, `${orphanedAwards.id}.json`), { force: true });
   }
+});
+
+test("recoverQueueOnStartup: status='cancelled'のジョブはキューへ再登録しない", async () => {
+  await drainQueue();
+  const cancelled = makeFixtureJob({ status: "cancelled", at: "2026-01-01T00:00:00.000Z" });
+  await writeJobFile(cancelled);
+  try {
+    await recoverQueueOnStartup();
+    assert.ok(!queueSnapshot().includes(cancelled.id));
+  } finally {
+    await rm(path.join(JOBS_DIR, `${cancelled.id}.json`), { force: true });
+  }
+});
+
+test("removeFromQueue: 指定idをFIFOから取り除く（キャンセルされたqueuedジョブをdispatchさせない）", async () => {
+  await drainQueue();
+  const a = randomUUID();
+  const b = randomUUID();
+  enqueueJob(a);
+  enqueueJob(b);
+  removeFromQueue(a);
+  assert.deepEqual(queueSnapshot(), [b]);
+  await drainQueue();
 });

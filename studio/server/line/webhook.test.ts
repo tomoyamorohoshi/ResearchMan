@@ -36,6 +36,8 @@ interface Fakes {
   resumeAwardsJobCalls?: string[];
   activeJobs?: Job[];
   latestFinishedJob?: Job | null;
+  cancelResults?: Array<{ job: Job; outcome: "cancelled" | "too-late" }>;
+  cancelCalls?: number;
   multiPushes?: Array<{ token: string; replyToken: string | undefined; userId: string; messages: LineMessage[] }>;
 }
 
@@ -80,6 +82,10 @@ function buildDeps(config: LineConfig | null, fakes: Fakes, extra: Partial<LineW
     },
     listActiveJobs: async () => fakes.activeJobs ?? [],
     findLatestFinishedJob: async () => fakes.latestFinishedJob ?? null,
+    cancelActiveJobs: async () => {
+      fakes.cancelCalls = (fakes.cancelCalls ?? 0) + 1;
+      return fakes.cancelResults ?? [];
+    },
     now: () => new Date("2026-07-12T00:00:00.000Z"),
     ...extra,
   };
@@ -729,14 +735,82 @@ test("キャンセル: 有効なpendingを破棄し、その旨をpushする", a
   });
 });
 
-test("キャンセル: pendingが無ければその旨をpushする", async () => {
+test("キャンセル: 有効なpendingもジョブも無ければ「実行中のジョブはありません」（停止と同じ挙動）", async () => {
   const fakes: Fakes = { pushes: [], createJobCalls: [], pendingStore: null };
   const config: LineConfig = { channelSecret: SECRET, channelAccessToken: "tok", allowedUserId: USER_ID };
   await withApp(buildDeps(config, fakes), async (baseUrl) => {
     await post(baseUrl, eventBody([textEvent("やめる")]));
     await waitFor(() => fakes.pushes.length > 0);
-    assert.match(fakes.pushes[0].text, /キャンセルする依頼はありません/);
+    assert.equal(fakes.pushes[0].text, "実行中のジョブはありません");
+    assert.equal(fakes.cancelCalls, 1);
   });
+});
+
+test("キャンセル: 有効なpendingがあり実行中ジョブも有れば、pendingを破棄して「停止」への案内を付ける（ジョブは止めない）", async () => {
+  const fakes: Fakes = {
+    pushes: [],
+    createJobCalls: [],
+    pendingStore: { userId: USER_ID, state: "await_theme", kind: "idea", expiresAt: "2026-07-12T00:29:00.000Z" },
+    activeJobs: [makeActiveJob()],
+  };
+  const config: LineConfig = { channelSecret: SECRET, channelAccessToken: "tok", allowedUserId: USER_ID };
+  await withApp(buildDeps(config, fakes), async (baseUrl) => {
+    await post(baseUrl, eventBody([textEvent("キャンセル")]));
+    await waitFor(() => fakes.pushes.length > 0);
+    assert.equal(fakes.pendingStore, null);
+    assert.match(fakes.pushes[0].text, /キャンセルしました/);
+    assert.match(fakes.pushes[0].text, /「停止」/);
+    assert.equal(fakes.cancelCalls ?? 0, 0);
+  });
+});
+
+test("キャンセル: 期限切れpendingのみなら「pendingなし」扱いで停止と同じ挙動になる", async () => {
+  const fakes: Fakes = {
+    pushes: [],
+    createJobCalls: [],
+    pendingStore: { ...EXPIRED_PENDING },
+    cancelResults: [{ job: makeActiveJob({ request: { kind: "Case Study", theme: "AI" } }), outcome: "cancelled" }],
+  };
+  const config: LineConfig = { channelSecret: SECRET, channelAccessToken: "tok", allowedUserId: USER_ID };
+  await withApp(buildDeps(config, fakes), async (baseUrl) => {
+    await post(baseUrl, eventBody([textEvent("キャンセル")]));
+    await waitFor(() => fakes.pushes.length > 0);
+    assert.equal(fakes.cancelCalls, 1);
+    assert.match(fakes.pushes[0].text, /停止しました/);
+  });
+});
+
+test("停止/中止: 全状態で有効。実行中ジョブを止め一覧を返し、pendingには触れない", async () => {
+  for (const word of ["停止", "中止"]) {
+    const pending: LinePending = { userId: USER_ID, state: "await_theme", kind: "idea", expiresAt: "2026-07-12T00:29:00.000Z" };
+    const fakes: Fakes = {
+      pushes: [],
+      createJobCalls: [],
+      pendingStore: { ...pending },
+      cancelResults: [{ job: makeActiveJob({ request: { kind: "Case Study", theme: "生成AI広告" } }), outcome: "cancelled" }],
+    };
+    const config: LineConfig = { channelSecret: SECRET, channelAccessToken: "tok", allowedUserId: USER_ID };
+    await withApp(buildDeps(config, fakes), async (baseUrl) => {
+      await post(baseUrl, eventBody([textEvent(word)]));
+      await waitFor(() => fakes.pushes.length > 0);
+      assert.equal(fakes.cancelCalls, 1);
+      assert.match(fakes.pushes[0].text, /停止しました/);
+      assert.match(fakes.pushes[0].text, /生成AI広告/);
+      assert.deepEqual(fakes.pendingStore, pending);
+      assert.equal(fakes.createJobCalls.length, 0);
+    });
+  }
+});
+
+test("停止: ジョブが無ければ「実行中のジョブはありません」", async () => {
+  const fakes: Fakes = { pushes: [], createJobCalls: [], pendingStore: null };
+  const config: LineConfig = { channelSecret: SECRET, channelAccessToken: "tok", allowedUserId: USER_ID };
+  await withApp(buildDeps(config, fakes), async (baseUrl) => {
+    await post(baseUrl, eventBody([textEvent("停止")]));
+    await waitFor(() => fakes.pushes.length > 0);
+    assert.equal(fakes.pushes[0].text, "実行中のジョブはありません");
+  });
+});
 });
 
 // ── X投稿（DESIGN合意 docs/X_POST_DRAFTS_DESIGN.md v2: メニュー5→URL→即生成・連続生成可） ──
@@ -820,23 +894,43 @@ test("X投稿経路: 生成失敗時はエラー理由をpushし、pendingはawa
 
 // ── 期限切れ ────────────────────────────────────────────────────
 
-test("期限切れ状態でメッセージが来たら、期限切れ通知とメニューを再提示する", async () => {
-  const fakes: Fakes = {
-    pushes: [],
-    createJobCalls: [],
-    pendingStore: {
-      userId: USER_ID,
-      state: "await_theme",
-      kind: "Case Study",
-      expiresAt: "2026-07-11T00:00:00.000Z", // now(2026-07-12)より過去
-    },
-  };
+// 仕様変更（ユーザー依頼）: 期限切れpendingは「pendingなし」として破棄し、今回のメッセージを
+// idleからと同様に処理する（期限切れ通知は出さない。URLを送ったのに握りつぶされる不具合の修正）。
+const EXPIRED_PENDING: LinePending = {
+  userId: USER_ID,
+  state: "await_theme",
+  kind: "Case Study",
+  expiresAt: "2026-07-11T00:00:00.000Z", // now(2026-07-12)より過去
+};
+
+test("期限切れpending + URL → 期限切れ通知なしでadd-caseジョブが作られ、pendingは破棄される", async () => {
+  const fakes: Fakes = { pushes: [], createJobCalls: [], pendingStore: { ...EXPIRED_PENDING } };
   const config: LineConfig = { channelSecret: SECRET, channelAccessToken: "tok", allowedUserId: USER_ID };
   await withApp(buildDeps(config, fakes), async (baseUrl) => {
-    await post(baseUrl, eventBody([textEvent("生成AI広告")]));
+    await post(baseUrl, eventBody([textEvent("https://x.com/user/status/123")]));
     await waitFor(() => fakes.pushes.length > 0);
-    assert.match(fakes.pushes[0].text, /期限切れ/);
-    assert.match(fakes.pushes[0].text, /何をしますか/);
-    assert.equal(fakes.pendingStore?.state, "menu");
+    assert.equal(fakes.createJobCalls.length, 1);
+    assert.equal(fakes.createJobCalls[0].tab, "add-case");
+    assert.equal(fakes.createJobCalls[0].request.url, "https://x.com/user/status/123");
+    assert.doesNotMatch(fakes.pushes[0].text, /期限切れ/);
+    assert.equal(fakes.pendingStore, null);
   });
+});
+
+test("期限切れpending + 任意テキスト → idleと同じ返信（期限切れ通知なし）", async () => {
+  const idleFakes: Fakes = { pushes: [], createJobCalls: [], pendingStore: null };
+  const expiredFakes: Fakes = { pushes: [], createJobCalls: [], pendingStore: { ...EXPIRED_PENDING } };
+  const config: LineConfig = { channelSecret: SECRET, channelAccessToken: "tok", allowedUserId: USER_ID };
+  await withApp(buildDeps(config, idleFakes), async (baseUrl) => {
+    await post(baseUrl, eventBody([textEvent("生成AI広告")]));
+    await waitFor(() => idleFakes.pushes.length > 0);
+  });
+  await withApp(buildDeps(config, expiredFakes), async (baseUrl) => {
+    await post(baseUrl, eventBody([textEvent("生成AI広告")]));
+    await waitFor(() => expiredFakes.pushes.length > 0);
+  });
+  assert.equal(expiredFakes.pushes[0].text, idleFakes.pushes[0].text);
+  assert.doesNotMatch(expiredFakes.pushes[0].text, /期限切れ/);
+  assert.deepEqual(expiredFakes.pendingStore, idleFakes.pendingStore);
+});
 });

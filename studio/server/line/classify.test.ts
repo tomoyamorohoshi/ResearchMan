@@ -9,6 +9,7 @@ import {
   isOkText,
   isProgressText,
   isResumeText,
+  isStopText,
   matchMenuSelection,
 } from "./classify.js";
 
@@ -179,4 +180,13 @@ test("extractAddCaseRequest: 全角記号・CJK文字が直後に続いてもURL
   assert.equal(extractAddCaseRequest("https://example.com/a、続き")?.url, "https://example.com/a");
   assert.equal(extractAddCaseRequest("（https://example.com/b）文脈")?.url, "https://example.com/b");
   assert.equal(extractAddCaseRequest("https://example.com/c」文脈")?.url, "https://example.com/c");
+});
+
+test("isStopText: 停止/中止 のみ完全一致で受理する（キャンセル/やめる・部分一致は対象外）", () => {
+  assert.equal(isStopText("停止"), true);
+  assert.equal(isStopText(" 中止 "), true);
+  assert.equal(isStopText("キャンセル"), false);
+  assert.equal(isStopText("やめる"), false);
+  assert.equal(isStopText("停止して"), false);
+  assert.equal(isStopText("調べて 停止"), false);
 });
