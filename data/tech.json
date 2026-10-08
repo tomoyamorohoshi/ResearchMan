@@ -1,5 +1,155 @@
 [
   {
+    "id": "smorph",
+    "title": "smorph (Playable Sound Morphing with Diffusion Models)",
+    "org": "Northwestern University / Adobe Research / Wizdom Music",
+    "type": "Prototype",
+    "domains": [
+      "Audio/Music",
+      "HCI/MediaArt"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "音の鳴り方（強弱・音程の動き）を保ったまま音色だけを別の音へ滑らかに変える、拡散モデルのサウンドモーフィング手法。2Dパッドで音色を弾いて探れるデモ付き（ISMIR 2026）。",
+    "point": "音の「中身（楽器や素材の音色）」だけを別の音へ変えながら、「鳴り方（音の強弱の波や音程の動き）」はそのまま残せるサウンドモーフィング技術。同じ音程のままトランペットの音が少しずつバイオリンに変わったり、ドラムのリズムはそのままで音色だけ水の泡の音へ滑らかに移ったりする。さらに画面上のパッド（四隅に4種類の音を割り当てた正方形）を指でなぞると、位置に応じて音色が混ざるので、楽器を弾く感覚で好みの音を探せる。広告・体験づくりでは、サウンドロゴのリズムを保ったまま季節や商品ごとに音色だけ変えて展開する、来場者が触れた位置で音の質感が変わるインスタレーション、既存の効果音のタイミングを保ったまま世界観に合う素材へ差し替えるサウンドデザインなどに使えそう。ただし現時点ではコード未公開で、論文とデモページのみ。",
+    "detail": "仕組みは、音を作る拡散モデル（ノイズから少しずつ音を描き出すAI）の生成途中に「この音量の波形を守る」という手がかりを毎回与える方式。たとえば元の音の音量の変化（RMSエンベロープ）や音程の線を型紙のように固定し、その型紙の中身だけをテキスト指示（「ブラス」→「ストリングス」など）に向けて塗り替えていく。追加の学習は不要（training-free）で、テキスト→テキスト、録音→テキスト、録音→録音の3種類のモーフィングに対応する。\n\n従来の拡散モデルによる音のモーフィングは、リズムの形と音色が絡み合っており、片方だけを固定できなかった。smorphは「時間構造は固定、音色だけ変える」と分けられるため、変化の途中の音も打楽器なら打楽器らしい打点を保つ。5×5の事前生成グリッドを使い、2Dパッド上でリアルタイムに音を行き来できるデモ（SoundCanvas）も公開され、ミュージシャンによる試用でも「表現的で演奏できる」と評価されたという。\n\n使うには、現状は公式デモページ（ブラウザ）で試すのみで、手元で動かすコードや重みは公開されていない。研究はNorthwestern UniversityとAdobe Research、Wizdom Music（Jordan Rudess）の共同で、ISMIR 2026採択。商用利用の可否は未定のため、実案件で使うなら公開を待つか、論文の手法を再実装する必要がある。",
+    "license": {
+      "spdx": null,
+      "commercial": "none",
+      "note": "コード・重みは未公開。ライセンス不明で、現状はデモページと論文のみ。"
+    },
+    "links": [
+      {
+        "kind": "project",
+        "url": "https://smorphspace.github.io/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.06478"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/smorph.jpg",
+    "relatedWorks": [
+      {
+        "title": "stable-audio-tools",
+        "description": "Stability AIの音声生成モデル学習・推論用ライブラリ。拡散ベースの音生成の土台",
+        "url": "https://github.com/Stability-AI/stable-audio-tools"
+      },
+      {
+        "title": "SDEdit",
+        "description": "生成の途中からノイズを足して戻す編集手法。smorphの録音→テキスト変換でも利用",
+        "url": "https://arxiv.org/abs/2108.01073"
+      },
+      {
+        "title": "AudioLDM",
+        "description": "テキストから効果音・音楽を作る潜在拡散モデルのOSS実装",
+        "url": "https://github.com/haoheliu/AudioLDM"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "sheetsage2",
+    "title": "SheetSage2",
+    "org": "Multimodal Art Projection (M-A-P)",
+    "type": "Research",
+    "domains": [
+      "Audio/Music"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "曲の音源(mp3など)から、メロディ・コード・拍・キー・曲の構成を読み取り、編集できる譜面(ABC記法)とMIDIに変換するAI。モデルの重みと推論コードが公開されている。",
+    "point": "音源を入れるだけで、メロディとコード進行を並べた「リードシート」(歌とコードだけを書いた簡易楽譜)と、メロディ用・コード用のMIDIが出てくるのがすごい点です。拍の位置、キー、サビなどの曲の区切りも同時に取れます。出力はABC記法やMIDIなので、そのままDAW(音楽制作ソフト)や譜面ソフトで直せます。広告・体験づくりでは、参考曲のコード進行を素早く把握して企画用の仮アレンジを作る、既存曲を別ジャンルにアレンジし直す前の下書きにする、といった使い方ができます。ライブ演出で、曲の拍や構成にあわせて映像や照明を切り替えるタイムライン(JSON/LAB形式)を自動で作る用途にも向いています。プロの採譜を丸ごと置き換えるものではなく、「耳コピの一次下書きを数分で出す」道具と考えると使いどころが見えます。",
+    "detail": "仕組みは3段階です。まず、約40万件のMIDIデータを音声に変換して「答え付きの練習問題」を大量に作ります。次に、音楽理解モデル(MERT-v2-FullSong)が音源の特徴を取り出し、そこから拍・コード・メロディを予測します。予測結果は、テンポが途中でぶれない、拍の位置がそろう、オクターブを取り違えないといった音楽のルールで整えます。最後に、この整える処理で得た結果を小型のモデル(BARTという文章生成型の仕組み)に覚えさせます。これで本番の処理では、複雑な後処理なしで一気に譜面の元になる記号の並びを出せます。従来のSheet Sage(2022年)より、15の評価項目のうち12で上回ったと論文は報告しています。\n\n使うには、Python 3.10〜3.11とFFmpegを用意し、Hugging Faceからモデルを呼び出します。モデルは約5700万パラメータで、重みは約229MBです。GPUがなくても動かせる規模ですが、速度は環境しだいなので試してみる必要があります。コードは `AutoModel.from_pretrained(\"m-a-p/SheetSage2\", trust_remote_code=True)` のあと `model.transcribe(\"song.mp3\")` と書くだけです。ライセンスは非商用(CC BY-NC 4.0)なので、社内の検討やリサーチ用途にとどめ、納品物への組み込みは避けるのが安全です。",
+    "license": {
+      "spdx": "CC-BY-NC-4.0",
+      "commercial": "research-only",
+      "note": "HuggingFaceのモデルカードはCC BY-NC 4.0(非商用)。arXiv論文ページの記載はCC BY 4.0で食い違うため、商用利用は不可とみなして扱う。"
+    },
+    "links": [
+      {
+        "kind": "project",
+        "url": "https://huggingface.co/m-a-p/SheetSage2"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.05336"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/sheetsage2.jpg",
+    "relatedWorks": [
+      {
+        "title": "Sheet Sage",
+        "description": "初代のリードシート採譜システム。Docker経由で曲からPDFやMIDIを作る。",
+        "url": "https://github.com/chrisdonahue/sheetsage"
+      },
+      {
+        "title": "Basic Pitch",
+        "description": "Spotifyの軽量な採譜ライブラリ。音声をMIDIに変換する(メロディ・コードの区別はしない)。",
+        "url": "https://github.com/spotify/basic-pitch"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "worldsonus",
+    "title": "WorldSonus",
+    "org": "HKUST / Noiz AI ほか",
+    "type": "Research",
+    "domains": [
+      "Audio/Music",
+      "GenVideo"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "映像を100ミリ秒ずつ流し込みながら、その場で48kHzのステレオ音を生成する「映像→音」モデル。再生中でも文字の指示を書き換えて音を変えられる。",
+    "point": "リアルタイムの1倍速より速く(論文のRTF 0.41)、映像に合わせた立体的なステレオ音を生成し続けられるのがすごい点です。さらに、途中で「雨の音から雷の音へ」のように文字の指示を差し替えると、音がその場で変わります。広告・体験づくりでは、ゲーム風の生成世界(ワールドモデル)や、その場で絵が変わるインスタレーションに合わせて、音を即興で鳴らす演出に使えそうです。たとえば来場者の動きで映像が変わる展示で、映像に追従する環境音を事前収録なしで出す、といった使い方です。映像完成後にFoley(効果音)をつける作業の下書きを作る用途にも向いています。ただし、論文のとおり研究用で、音が映像の出来事とずれたり、ノイズが入ったりすることがあります。商用利用もできません。まずはアイデア検証向けです。",
+    "detail": "仕組みは、映像を短い区間に区切って順番に処理し、「過去だけを見て次の音を作る」(因果的な自己回帰拡散)方式です。拡散モデルは、ノイズだらけの状態から少しずつ音を整えていく生成の仕組みです。それを、数十分の映像をまとめて処理するのではなく、100ミリ秒ごとの小さな塊に分けて回します。だから映像が届くそばから音が出ます。文字の指示には時間の目印を付けられ、「3秒目から風の音に切り替え」のような指定も可能です。ステレオ感は、ステレオ音源やアンビソニック(全方向の音の収録形式)のデータで学習して出しています。\n\n従来の映像→音モデル(MMAudioなど)は、動画全体を見てからまとめて音を作る方式が中心でした。そのため、生成中に指示を変えることはできませんでした。WorldSonusは、最初から「流れてくる映像に追従して鳴らす」ことを目的に作られています。\n\n使うには、Python 3.10以上、CUDA対応GPU、FFmpeg、PyTorch(CUDA 12.4)が必要です。コードはGitHubにあり、重みはHugging Faceからダウンロードできます。実行は `python -m worldsonus.infer --video input.mp4 --prompt \"…\" --output output.wav` のようなコマンド1行です。別途DINOv3とT5Gemma 2のエンコーダーを取得する手間があります。",
+    "license": {
+      "spdx": "CC-BY-NC-4.0",
+      "commercial": "research-only",
+      "note": "コード・重みともCC BY-NC 4.0(非商用)。DINOv3、T5Gemma、stable-audio-toolsなど外部部品は各自のライセンスに従う。学習コードとデータは未公開。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/NoizAI/WorldSonus"
+      },
+      {
+        "kind": "project",
+        "url": "https://noizai.github.io/WorldSonus/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.08760"
+      },
+      {
+        "kind": "project",
+        "url": "https://huggingface.co/FF2416/WorldSonus"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/worldsonus.jpg",
+    "relatedWorks": [
+      {
+        "title": "MMAudio",
+        "description": "映像・テキストから同期した音を作るCVPR 2025のモデル。全体を見てからまとめて生成する。",
+        "url": "https://github.com/hkchengrex/MMAudio"
+      },
+      {
+        "title": "HunyuanVideo-Foley",
+        "description": "映像に合わせた48kHzの効果音を生成するTencentのモデル。",
+        "url": "https://github.com/Tencent-Hunyuan/HunyuanVideo-Foley"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "prism",
     "title": "Prism（動的スパースアテンションによる2Kネイティブ映像＋音声同時生成）",
     "org": "Fudan University / Tencent Hunyuan Foundation Model Team / Zhejiang University",
