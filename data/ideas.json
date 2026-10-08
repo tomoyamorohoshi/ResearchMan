@@ -19249,5 +19249,215 @@
         "desc": "スマホ1台の動画から、専用機材なしで人体の3D動作を復元するAI技術。"
       }
     ]
+  },
+  {
+    "id": "2026-10-08-1",
+    "date": "2026-10-08",
+    "title": "想像の音風景を粘土の壁に刻む",
+    "pattern": "文脈×技術",
+    "seed": "ICRC「Laws Under Attack」の『壁に条約を刻む』発想に、AuKの声質変換・話者分離を掛けたら、爆撃跡の壁の前に立つと当時その場にいた人々の声が壁から聞こえる追悼装置になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "icrc-laws-under-attack",
+        "title": "Laws Under Attack",
+        "desc": "攻撃された病院の壁にジュネーブ条約を刻み、戦時の人道ルールを守るよう訴えた広告。"
+      },
+      {
+        "type": "tech",
+        "id": "auk",
+        "title": "AuK",
+        "desc": "声の生成や声質変換、ノイズ除去、話者分離を1つのAIと文章の指示で行えるオープンソースの音声モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-08-2",
+    "date": "2026-10-08",
+    "title": "波形で揺れるロゴを人の動きへ",
+    "pattern": "技術×技術",
+    "seed": "EchoAvatarが音から全身の動きを生む仕組みと、Philharmonie Luxembourgのように波形で振動する柱ロゴを組み合わせたら、演奏に合わせてロゴが人型に踊り出すホールの告知になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "echoavatar",
+        "title": "EchoAvatar",
+        "desc": "話し声や音楽を聞きながら、全身が自然に動く3Dアバターをその場で作る研究。"
+      },
+      {
+        "type": "case",
+        "id": "philharmonie-luxembourg-identity-2023",
+        "title": "Philharmonie Luxembourg Identity",
+        "desc": "演奏中の音の波形に反応して柱型のロゴが揺れ動く、コンサートホールのビジュアルアイデンティティ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-08-3",
+    "date": "2026-10-08",
+    "title": "ハンセン病の自助具を4Dで残す",
+    "pattern": "文脈×技術",
+    "seed": "「生活のデザイン」展が伝える入所者の自助具を、4DAnyoneで使っている手元ごと動画から復元できたら、展示ケースの外で道具が使われる所作まで来館者が見回せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-1t9pmk3-2022",
+        "title": "企画展「生活のデザイン」ポスター・図録",
+        "desc": "ハンセン病療養所の入所者が工夫して作った自助具を紹介する企画展のポスターと図録のデザイン。"
+      },
+      {
+        "type": "tech",
+        "id": "4danyone",
+        "title": "4DAnyone",
+        "desc": "スマホで撮った普通の動画から人物を時間で変化する3Dデータにして、好きな角度から見られる技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-08-4",
+    "date": "2026-10-08",
+    "title": "銀座の光ファイバー壁を世界モデルに",
+    "pattern": "文脈×技術",
+    "seed": "銀座の百貨店に垂れる光ファイバーの壁面照明へ、AlayaWorldが画像から生成し続ける動く世界を光の点の粗さで映したら、ファサードが通行人の足元から物語世界へ変わる窓になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-1m33fg4-2020",
+        "title": "東京銀座 百貨店 光ファイバー壁面照明",
+        "desc": "銀座の百貨店の壁に光ファイバーを垂らし、建物の外観に光の質感を持たせた演出照明。"
+      },
+      {
+        "type": "tech",
+        "id": "alayaworld",
+        "title": "AlayaWorld",
+        "desc": "1枚の画像とカメラの動き、文章の指示から、1分以上遊べる動く映像世界を作り続けるオープンソースのモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-08-5",
+    "date": "2026-10-08",
+    "title": "粘土質感の標本を動かす",
+    "pattern": "技術×技術",
+    "seed": "Splat.jsで手元の写真をブラウザだけで光の粒にし、LingBot-Mapで単眼カメラ映像から連続的に空間を読み取れば、散歩しながら町ごとの標本箱を作る個人アーカイブになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "splat-js",
+        "title": "Splat.js",
+        "desc": "写真をアップロードせず、ブラウザだけで立体を光の粒の集まりに変換できるツール。"
+      },
+      {
+        "type": "tech",
+        "id": "lingbot-map",
+        "title": "LingBot-Map",
+        "desc": "LiDARなしで普通のカメラ映像から、周りの3D形状を約20FPSでリアルタイムに作り直すモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-08-6",
+    "date": "2026-10-08",
+    "title": "物理検証を芸術祭の柱へ転用",
+    "pattern": "転用",
+    "seed": "ovrtx/ovphysxは制作ツール内で物理挙動を検証する道具だが、これを使い『大巻伸嗣「Liminal Air -core-」のような柱が風や人の流れでどう揺れるか』を設置前に試す、芸術祭作品の事前リハーサルに転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ovrtx-ovphysx",
+        "title": "ovrtx / ovphysx (NVIDIA Agent Toolkit — Omniverse Libraries)",
+        "desc": "AIが3Dシーンをカメラ視点でシミュレーションし、物理の動きを自動で確かめられるNVIDIAの開発キット。"
+      },
+      {
+        "type": "case",
+        "id": "setouchi-2010-002",
+        "title": "Liminal Air -core-",
+        "desc": "高松港に立つ大巻伸嗣の柱状作品で、瀬戸内国際芸術祭の玄関口を示す目印として置かれ続けた。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-08-7",
+    "date": "2026-10-08",
+    "title": "テニスロボで記憶の型を継承",
+    "pattern": "転用",
+    "seed": "AdaPTが選手らしいフォームのままロボットにサーブを打たせる技術を、スポーツでなく、80歳のオーナーとRX-7の運転所作を残す『暮らしの身振り』の継承に転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "adapt",
+        "title": "AdaPT",
+        "desc": "ヒューマノイドロボットに、有名テニス選手らしいフォームのままサーブやラリーを打たせる技術。"
+      },
+      {
+        "type": "case",
+        "id": "mazda-goodbye-rx7-saying-farewell-to-a-dear-friend",
+        "title": "Goodbye RX-7: Saying Farewell to a Dear Friend",
+        "desc": "80歳の女性とマツダRX-7の25年を描いた、クルマと人の絆の実話ドキュメンタリー。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-08-8",
+    "date": "2026-10-08",
+    "title": "編集エージェントで書籍表紙を量産",
+    "pattern": "転用",
+    "seed": "動画編集向けのFireRed-OpenStorylineが覚えるブランド固有スタイルを、動画でなくPenguin Great Ideasのような紙の質感ルールに当てはめ、装丁シリーズの統一感を保つ装丁編集者に転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "firered-openstoryline",
+        "title": "FireRed-OpenStoryline",
+        "desc": "話しかけると編集ディレクターのように素材選びからつなぎまで進める、ブランド固有スタイルも使える動画編集エージェント。"
+      },
+      {
+        "type": "case",
+        "id": "penguin-great-ideas-2005",
+        "title": "Penguin Great Ideas（ブックカバーシリーズ）",
+        "desc": "紙の質感や活版風の文字だけで、古典の思想書20冊を統一して装丁したペンギンのブックカバー。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-08-9",
+    "date": "2026-10-08",
+    "title": "ギネスのVが動く参加型OOH",
+    "pattern": "文脈×技術",
+    "seed": "ギネス「LoVely」のハープがVに変わる遊びに、EditAnythingのテキスト指示型の動画編集を掛けたら、通行人が言葉で頼むと街の映像の中のものが黒いビールの泡に置き換わるOOHになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "lovely-2026",
+        "title": "LoVely",
+        "desc": "ギネスのハープ形のロゴを文字「V」に変えて、広告を新しい見た目にした屋外広告。"
+      },
+      {
+        "type": "tech",
+        "id": "editanything",
+        "title": "EditAnything (LTX-2.3 Video Edit LoRA)",
+        "desc": "動画生成モデルを、文章の指示で背景や被写体を消したり置き換えたりする編集モデルに変える追加データ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-08-10",
+    "date": "2026-10-08",
+    "title": "Googleのドットを動くIDに戻す",
+    "pattern": "技術×技術",
+    "seed": "Evolving the Google Identityの状態で動きを変えるドットと、Any4DがIMUやレーダーから復元する実寸の動く世界を掛けたら、センサーが拾う場の気配に合わせて形を変えるブランドの目印が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "evolving-the-google-identity-2015",
+        "title": "Evolving the Google Identity",
+        "desc": "Googleのロゴを新書体にし、聞く・考えるなど状態で動く4色のドットを加えて、固定マークから仕組みへ変えた事例。"
+      },
+      {
+        "type": "tech",
+        "id": "any4d",
+        "title": "Any4D",
+        "desc": "動画に加えて深度やIMU、レーダーなど様々なセンサーから、実寸の動く3D世界を一度に作るモデル。"
+      }
+    ]
   }
 ]
