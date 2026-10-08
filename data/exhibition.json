@@ -1,7 +1,48 @@
 {
   "version": 1,
-  "statusAsOf": "2026-10-07",
+  "statusAsOf": "2026-10-08",
   "items": [
+    {
+      "id": "2026-mot-mot-collection-light-now",
+      "slug": "2026-mot-mot-collection-light-now",
+      "title": "MOTコレクション いつかの光を今みている",
+      "artists": [
+        "小瀬村真美",
+        "土屋公雄",
+        "戸谷成雄",
+        "熊谷亜莉沙",
+        "ダン・フレイヴィン",
+        "杉本博司"
+      ],
+      "venue": "東京都現代美術館 コレクション展示室",
+      "venueType": "museum",
+      "prefecture": "東京都",
+      "city": "江東区",
+      "startDate": "2026-09-19",
+      "endDate": "2027-01-06",
+      "status": "ongoing",
+      "admission": "一般500円 / 大学生・専門学校生400円 / 高校生・65歳以上250円 / 中学生以下無料",
+      "tags": [
+        "light",
+        "video_art",
+        "installation",
+        "sculpture"
+      ],
+      "score": 63,
+      "matchReason": "「光」と「時間」を主題に、100年前の木版画から最新の映像作品までを展示するコレクション展。東京都現代美術館(watch対象会場)で、ダン・フレイヴィンらの光を扱う作品を含む。",
+      "sources": [
+        {
+          "name": "MOTコレクション展「いつかの光を今みている」",
+          "url": "https://www.mot-art-museum.jp/exhibitions/mot-collection-260919/",
+          "kind": "official"
+        }
+      ],
+      "link": "https://www.mot-art-museum.jp/exhibitions/mot-collection-260919/",
+      "thumbnail": "/thumbnails/exhibition/2026-mot-mot-collection-light-now.jpg",
+      "addedAt": "2026-10-08T01:31:51.320Z",
+      "origin": "auto",
+      "highlight": false
+    },
     {
       "id": "2026-ycam-improvisation-otomo-ycam",
       "slug": "2026-ycam-improvisation-otomo-ycam",
@@ -113,7 +154,7 @@
       "venueType": "media_art_center",
       "prefecture": "東京都",
       "city": "新宿区",
-      "startDate": "2026-09-12",
+      "startDate": "2026-06-20",
       "endDate": "2026-11-08",
       "status": "ongoing",
       "admission": "一般800円 / 大学生600円 / 65歳以上・高校生以下無料",
