@@ -19459,5 +19459,221 @@
         "desc": "動画に加えて深度やIMU、レーダーなど様々なセンサーから、実寸の動く3D世界を一度に作るモデル。"
       }
     ]
+  },
+  {
+    "id": "2026-10-09-1",
+    "date": "2026-10-09",
+    "title": "粘菌でなくボーカル分離の路線図",
+    "pattern": "技術×技術",
+    "seed": "Ultimate Vocal Remover で分けた声と楽器を Basic Pitch で別々のMIDIに起こし、各パートを路線のように地図上へ配置すれば、1曲が「声の線・ドラムの線」で乗り換えできる楽曲マップになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ultimate-vocal-remover",
+        "title": "Ultimate Vocal Remover (UVR)",
+        "desc": "AIで曲からボーカルや楽器の音を分けて取り出せる、無料のデスクトップアプリ。"
+      },
+      {
+        "type": "tech",
+        "id": "basic-pitch",
+        "title": "Basic Pitch",
+        "desc": "音楽ファイルを、音の高さの変化まで含めてMIDIデータに自動変換するSpotify製のAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-09-2",
+    "date": "2026-10-09",
+    "title": "ハチ公の待ち合わせを消す",
+    "pattern": "文脈×技術",
+    "seed": "HACHI-8 PROJECT 2026 の「待ち合わせ」文化に、LTX-2.3 Clean Plate IC-LoRA で渋谷の人混みから人だけを消した映像を重ねたら、誰もいない街で待つ体験が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "hachi-8-project-2026-2026",
+        "title": "HACHI-8 PROJECT 2026",
+        "desc": "ハチ公の待ち合わせ文化を題材に、88組のアートで西武渋谷店と街を巡らせる企画。"
+      },
+      {
+        "type": "tech",
+        "id": "ltx-2-3-clean-plate-ic-lora",
+        "title": "LTX-2.3 Clean Plate IC-LoRA",
+        "desc": "動画から動く人や車を消し、影や反射も含めて背景を自動で補うAI用の追加モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-09-3",
+    "date": "2026-10-09",
+    "title": "本物証明を音の来歴に応用",
+    "pattern": "文脈×技術",
+    "seed": "Tennessee Tourism RealSeal のメタデータ認証の発想を、YuE2 が出す人が読める「楽譜」に掛けて、AI曲の作曲過程をそのまま来歴証明にする音楽認証ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "tennessee-tourism-realseal-campaign-2026",
+        "title": "Tennessee Tourism \"RealSeal\" Campaign",
+        "desc": "自社写真が本物だと示すため、メタデータ認証を取り入れたテネシー州観光局の施策。"
+      },
+      {
+        "type": "tech",
+        "id": "yue2",
+        "title": "YuE2",
+        "desc": "歌詞とスタイルから、人が読んで直せる楽譜を経由して曲を作る無料の音楽生成AI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-09-4",
+    "date": "2026-10-09",
+    "title": "アルバムの空間を歩く身体",
+    "pattern": "文脈×技術",
+    "seed": "KID A MNESIA EXHIBITION の「歩くだけの音楽空間」に、ARDY のテキスト指示でリアルタイム生成する人体モーションを置き、来場者の言葉で踊る住人が現れる展示になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "radiohead-kid-a-mnesia",
+        "title": "KID A MNESIA EXHIBITION（Radiohead）",
+        "desc": "アルバムの世界を3D空間にして、歩いて体験できるようにしたRadioheadの無料作品。"
+      },
+      {
+        "type": "tech",
+        "id": "ardy",
+        "title": "ARDY",
+        "desc": "文章の指示だけで、人の3D動きをリアルタイムに作り続けられるAIモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-09-5",
+    "date": "2026-10-09",
+    "title": "ブース社員をモーキャプ化",
+    "pattern": "文脈×技術",
+    "seed": "Your Teampreneur の社員が独自ジェスチャーで迎えるブースを、CEB SAM 3D Body v4 で来場者の動画から3Dポーズに変換し、真似した動きが社員の挨拶になる仕掛けにできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "your-teampreneur-janoschka-booth-if-2018",
+        "title": "Your Teampreneur",
+        "desc": "社員がそれぞれ独自のジェスチャーで来場者を迎えたJanoschkaのブース演出。"
+      },
+      {
+        "type": "tech",
+        "id": "ceb-sam-3d-body-v4",
+        "title": "CEB SAM 3D Body v4 (Blender addon)",
+        "desc": "動画から人の3Dポーズを読み取り、Blenderで動きのデータにできる追加機能。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-09-6",
+    "date": "2026-10-09",
+    "title": "粘菌動画のゴミ山を3D分解",
+    "pattern": "技術×技術",
+    "seed": "WorldSculpt で雑然と積まれた物を1つずつ3D化し、MolmoMotion で「崩れる先の軌跡」を予測させれば、ゴミ山が自分で片付いていく映像表現ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "worldsculpt",
+        "title": "WorldSculpt",
+        "desc": "ごちゃごちゃした映像から、重なる物を1つずつ別々の3Dデータにする技術。"
+      },
+      {
+        "type": "tech",
+        "id": "molmomotion",
+        "title": "MolmoMotion",
+        "desc": "1枚の画像と文章から、物が数秒先にどう動くかを3Dで予測するAi2のモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-09-7",
+    "date": "2026-10-09",
+    "title": "万博の生ごみを楽譜にする",
+    "pattern": "転用",
+    "seed": "audio.cpp を、本来の音声処理でなく Japan Pavilion の生ごみバイオガス発電の稼働データを音にする装置に転用すれば、パビリオンの代謝が聴こえる展示になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "audio-cpp",
+        "title": "audio.cpp",
+        "desc": "音声・音楽のAIモデル60種以上を、手元のPCで動かせるオープンソースの実行ソフト。"
+      },
+      {
+        "type": "case",
+        "id": "japan-pavilion-expo2025-osaka-if-2026",
+        "title": "Japan Pavilion at Expo 2025 Osaka, Kansai, Japan",
+        "desc": "会場の生ごみからバイオガスを作り、展示も変わり続ける大阪万博の日本館。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-09-8",
+    "date": "2026-10-09",
+    "title": "楽譜AIで照明を演奏する",
+    "pattern": "転用",
+    "seed": "NeuralNote が演奏をその場でMIDIにする仕組みを、音楽でなく長野県美術館の光ファイバー水中照明の制御信号に転用すれば、ピアノの音が水面の光の粒になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "neuralnote",
+        "title": "NeuralNote",
+        "desc": "DAW上の演奏をほぼ即座にMIDIの音符へ変えられる無料のプラグイン。"
+      },
+      {
+        "type": "case",
+        "id": "case-13h63f7-2020",
+        "title": "長野県美術館 光ファイバー水中演出照明",
+        "desc": "水盤に光ファイバーを入れ、水面の揺らぎと光の粒を見せた長野県美術館の照明。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-09-9",
+    "date": "2026-10-09",
+    "title": "代役CMの代役を無限に走らせる",
+    "pattern": "転用",
+    "seed": "Googleの AX (Agent Executor) を業務でなく、Pash Hard / Body Double のような「代役」の議論に使い、何千ものAI代役がコード戦争を勝手に論じ続ける巨大ライブ討論にできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ax",
+        "title": "AX (Agent Executor)",
+        "desc": "AIエージェントを大量に同時に動かし、待機中は休止させてコストを抑える基盤。"
+      },
+      {
+        "type": "case",
+        "id": "pash-hard-body-double-2026",
+        "title": "Pash Hard / Body Double",
+        "desc": "人気タレントの代役がビールCMに出て、ライブ討論企画に発展した施策。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-09-10",
+    "date": "2026-10-09",
+    "title": "再学習で作るアニメ化トラック",
+    "pattern": "技術×技術",
+    "seed": "Fizgig v5 で AnimeGen を自分の素材に学び直させ、UniQuery4R で点の将来位置を指定して動かせば、1枚の絵が狙った軌道で走る自作アニメ動画ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "fizgig-v5",
+        "title": "Fizgig v5",
+        "desc": "ゲーミングPC程度のGPUで、動画生成AIなどのモデル本体を学習し直せる無料ツール。"
+      },
+      {
+        "type": "case",
+        "id": "animegen-ai-2026",
+        "title": "AnimeGen（アニメ特化動画生成AIモデル）",
+        "desc": "国内のAIdeaLabが無償・商用可で公開した、アニメ特化の動画生成AI。"
+      },
+      {
+        "type": "tech",
+        "id": "uniquery4r",
+        "title": "UniQuery4R",
+        "desc": "動画内の指定した点の将来位置や3D座標、動きの向きをまとめて予測する技術。"
+      }
+    ]
   }
 ]
