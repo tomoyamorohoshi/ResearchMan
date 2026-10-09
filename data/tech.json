@@ -1,5 +1,174 @@
 [
   {
+    "id": "flowhmr",
+    "title": "FlowHMR",
+    "org": "FlowHMR authors（Zhanke Wang, Chengfeng Zhao, Qing Shuai ほか）",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "AI/Agents"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "1台のカメラで撮った普通の動画から、足が滑らず物理的に自然な3D人体モーションを取り出すモーションキャプチャ用の生成モデル。推論コード、チェックポイント、Web デモが公開済み。",
+    "point": "従来、動画から人の動きを3Dで取り出す手法は、足が地面を滑ったり体が床にめり込んだりして、そのままではゲームやロボットに使えないことが多くありました。FlowHMRはこの問題を、物理シミュレーションの結果を「ご褒美」にした追加学習（GRPO）で解決しています。公式ページでは、82.47%の動きが物理シミュレーション上でも倒れずに再現できたと報告されています。広告・体験づくりでは、スマホで撮った1本の動画や、動画生成AIで作った映像から、そのままCGキャラクターのアニメーションを起こせる可能性があります。公式ページはロボットへの転用例（Unitree G1）も紹介しているので、ダンスやパフォーマンスの動きを実機のロボットに踊らせる演出の素材づくりにも向きます。高価なモーションキャプチャスタジオなしで「動き」を作る入口として注目できます。",
+    "detail": "仕組みは、複数の部品をつないだパイプラインです。まず YOLOX が映像から人を見つけ、VGGT-Omega がカメラの位置や向きを推定し、SAM 3D Body が体の特徴を抜き出します。FlowHMR 本体は、それらを手がかりに時間方向の動きを一気に生成します。生成にはフローマッチングという、ノイズから少しずつ正解の動きへ「流れていく」方式を使っています。その後、物理シミュレータ上でキャラクターが倒れずに動きを再現できるかを採点し、高得点の動きを学習で強めます。これが GRPO による後処理です。従来の手法は「見た目が映像と合うか」だけを重視していましたが、本手法は「実際に立っていられるか」まで学習に含める点が違います。\n\n公式ページには、ロボット（Unitree G1）への動き転送、シーン再構築とキャラクター位置合わせ、テキストから動画を作ってからモーションを取り出す例が載っています。\n\n使うには、基本の動画→モーション変換（V2M）で Python 3.10 と PyTorch 2.5.1（CUDA 11.8）の環境が必要です。物理検証まで含めるフルパイプラインは Isaac Gym Preview 4 を要し、Python 3.8 の別環境になります。モデルは Hugging Face（0.46B パラメータ、base と latest の2種）で配布され、latest が推奨です。ライセンスは研究・非営利のみで、商用案件では使えません。合成データ生成コードと評価データは今後公開の予定です。",
+    "license": {
+      "spdx": null,
+      "commercial": "research-only",
+      "note": "独自LICENSE。教育・研究・非営利目的に限り使用・複製・改変・配布を許可（LICENSE本文で確認）。商用利用は不可"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/flowhmr/flowhmr"
+      },
+      {
+        "kind": "project",
+        "url": "https://flowhmr.github.io/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.03691"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/fafsaf1/flowhmr-0.46B"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/flowhmr.jpg",
+    "relatedWorks": [
+      {
+        "title": "GMR (General Motion Retargeting)",
+        "description": "人の動きを各種ヒューマノイドロボットへCPUでリアルタイム変換するリターゲティング手法（ICRA 2026）",
+        "url": "https://github.com/YanjieZe/GMR"
+      },
+      {
+        "title": "GR00T Whole-Body Control (SONIC)",
+        "description": "NVIDIAのヒューマノイド全身制御基盤。FlowHMRの物理トラッキングにも使われる",
+        "url": "https://github.com/NVlabs/GR00T-WholeBodyControl"
+      },
+      {
+        "title": "Human Motion Diffusion Model (MDM)",
+        "description": "テキストから人体モーションを生成する拡散モデルの代表的な先行研究",
+        "url": "https://github.com/GuyTevet/motion-diffusion-model"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "motionpersona",
+    "title": "MotionPersona",
+    "org": "Mingyi Shi, Wei Liu, Jidong Mei, Wangpok Tse, Rui Chen, Xuelin Chen, Taku Komura ほか（AIGAnimation）",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "GenVideo"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "「誰の歩き方か（人物）」「体型」「スタイル（怒り・酔っ払い・水泳など9種）」を指定して、キーボードやゲームパッド操作に応じて歩くキャラクターの動きをリアルタイム生成するモデル。コード・重み・リアルタイムデモが公開された。",
+    "point": "ゲームやCGでは、キャラクターを歩かせるたびに大量のモーションデータを用意し、体型が変わるたびに調整し直す手間がかかります。MotionPersonaは、実在する44人の歩き方の癖、SMPL-Xという人体モデルで表した体型、9種類のスタイルを組み合わせ、36Mパラメータ（比較的小さなモデル）で動きを作ります。ノートPCのCPUだけでも、1ブロック27ミリ秒で動くと公式ページに書かれています。広告・体験づくりでは、同じキャラクターが「酔っ払った歩き」や「怒った歩き」に歩きながら切り替わる演出、来場者の体型を反映したアバターが操作に応じて自然に歩くインスタレーション、ゲーム的なWeb体験の試作などが考えられます。専用GPUなしで動くため、展示会場の据え置きPCでも使えそうです。ただし非商用ライセンスなので、案件で使うには著者への確認が要ります。",
+    "detail": "仕組みは2段階です。1段目は、45フレーム分の動きを小さな数列（潜在トークン）に圧縮して復元する「形状対応VAE」です。復元の際に体型情報を渡すので、腰幅などが違っても姿勢のバランスが自然に変わります。公式ページによると、腰幅が広いほど前傾が浅くなる傾向まで再現されています。2段目は「潜在フローマッチング」の予測モデルで、直前までの動き、操作で指定した進行方向、人物、スタイル、体型を手がかりに、次の動きの数列を連続して作ります。文章でたとえると、前の数行と指示（誰が・どんな気分で・どこへ）から次の一行を書き続けるイメージです。\n\n従来のキャラクター制御は、動きをつなぎ合わせる方式が多く、人物やスタイルごとに大量のデータ整備が必要でした。本手法は約4,200時間のモーションデータ（MotionPersonaX）で学習しており、1つのモデルで人物・体型・スタイルを組み合わせて切り替えられます。\n\n使うには、Python 3.10〜3.12 と PyTorch が必要です。重み（約175MB）は Hugging Face から自動で取得されます。リアルタイムデモ（realtime_demo.py）には ai4animationpy と SMPL-X のモデルファイル（SMPLX_NEUTRAL.npz。別途入手）も要ります。まずは generate.py で20秒のクリップを書き出すだけなら手軽に試せます。学習をやり直す場合も、民生用GPUで合計約30時間と公式に書かれています。",
+    "license": {
+      "spdx": "CC-BY-NC-4.0",
+      "commercial": "research-only",
+      "note": "コードと学習済み重みは CC BY-NC 4.0（非商用）。商用利用は著者への問い合わせが必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/AIGAnimation/MotionPersona"
+      },
+      {
+        "kind": "project",
+        "url": "https://motionpersona25.github.io/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2506.00173"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/myshi/MotionPersona_V1"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/motionpersona.jpg",
+    "relatedWorks": [
+      {
+        "title": "Human Motion Diffusion Model (MDM)",
+        "description": "テキストから人体モーションを生成する拡散モデルの先行研究",
+        "url": "https://github.com/GuyTevet/motion-diffusion-model"
+      },
+      {
+        "title": "FlowHMR",
+        "description": "動画から物理的に自然な3D人体モーションを取り出す生成モデル（本日の別掲載候補）",
+        "url": "https://github.com/flowhmr/flowhmr"
+      },
+      {
+        "title": "GMR (General Motion Retargeting)",
+        "description": "人の動きを他の体型のロボットへリアルタイム変換する手法",
+        "url": "https://github.com/YanjieZe/GMR"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "emotecap",
+    "title": "EmoteCap",
+    "org": "eric20041027（HackNite Hackathon 2026 Overall Winner）",
+    "type": "Prototype",
+    "domains": [
+      "Motion/Body",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "ウェブカメラやiPhone動画、既存の動画ファイルから、スーツなしでUnity向けのヒューマノイドアニメーション（指30関節込み）を作るモーキャプツール。ハッカソン優勝作品。",
+    "point": "モーションキャプチャは専用スーツと機材が要り、個人や小規模チームには遠い存在でした。EmoteCapは、自分がカメラの前で演じた動きを、そのままUnityのキャラクター用アニメーションクリップとして書き出します。体だけでなく指30関節まで含む48本のボーンを動かし、撮影を止めずにキャラクターへリアルタイム反映する「Live Link」も備えています。公式デモ動画(1:41)では、カメラ前の演者が腕を振ると、物理演算つきのUnityキャラクターが同じ動きをして机や積み木を倒しています。広告・体験づくりでは、ゲーム的なプロモーションの試作や、来場者の動きでキャラクターを操作する展示のプロトタイプを、機材なしで素早く作る用途が考えられます。一晩で作られたハッカソン作品なので、品質は商用制作の最終工程ではなく、アイデア検証向きと見るのが妥当です。",
+    "detail": "仕組みは、Googleの MediaPipe Pose + Hands で映像の各フレームから関節の3D座標を取り、独自のクォータニオン（回転を表す数値）ソルバーで48本のボーンの回転に変換する流れです。さらに平滑化と接地処理（足が浮いたり沈んだりするのを防ぐ）を入れ、プレビュー・書き出し・ライブ再生で同じ結果になるようにしています。録画した1テイクは、Gemini が内容を見て自然な区切りで名前つきの短いクリップに分割し、ループ素材にします。Blenderを使ってヒューマノイドFBXにも書き出せます。\n\n従来のAI推定ツールは「関節位置を出すだけ」が多く、ゲームエンジンで使える形に整える作業が別途必要でした。本作は撮影から書き出し、Unityへの取り込みまでを一続きにしています。ただし姿勢推定自体は既存の MediaPipe に頼っており、独自性は変換・整形・ツール連携の部分にあります。\n\n使うには、Node.js 22以上、uv（Python 3.12）、ChromeかSafariとウェブカメラが必要です。FBX書き出しにはBlender 4.4以上、Unity連携にはUnity 2021.3以上が要ります。クリップ自動分割には Gemini の API キーが必要ですが、任意設定です。そのため、このキーを使う場合は従量課金の可能性があります。手順は .env.example を .env にコピーし、uvicorn のサーバーとウェブアプリを起動します。ライセンスは明記されていないので、案件利用の前に作者へ確認してください。",
+    "license": {
+      "spdx": null,
+      "commercial": "none",
+      "note": "リポジトリにLICENSEファイルなし（ライセンス未明示のため利用条件は不明。商用利用は作者への確認が必要）"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/eric20041027/EmoteCap"
+      },
+      {
+        "kind": "video",
+        "url": "https://youtu.be/ETPATTBDosc"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/emotecap.jpg",
+    "relatedWorks": [
+      {
+        "title": "MediaPipe",
+        "description": "Googleのリアルタイム姿勢・手指推定ライブラリ。EmoteCapの推定部分の土台",
+        "url": "https://github.com/google-ai-edge/mediapipe"
+      },
+      {
+        "title": "FlowHMR",
+        "description": "動画から物理的に自然な3D人体モーションを取り出す研究実装",
+        "url": "https://github.com/flowhmr/flowhmr"
+      },
+      {
+        "title": "MotionPersona",
+        "description": "人物・体型・スタイルを指定してリアルタイムに歩きを生成するモデル",
+        "url": "https://github.com/AIGAnimation/MotionPersona"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "smorph",
     "title": "smorph (Playable Sound Morphing with Diffusion Models)",
     "org": "Northwestern University / Adobe Research / Wizdom Music",
