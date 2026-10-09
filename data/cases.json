@@ -1,5 +1,85 @@
 [
   {
+    "id": "atlassian-williams-f1-ai-agents-built-from-the-real-race-tea",
+    "title": "Atlassian × Williams F1: AI agents built from the real race team",
+    "summary": "Williams F1の実在メンバー5人の仕事の型をAIエージェント化し、レース現場の連携を一般チームに開放した",
+    "client": "Atlassian",
+    "agency": "StillKidz / Strike Anywhere",
+    "categories": [
+      "AIクリエイティブ",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州",
+      "グローバル"
+    ],
+    "link": "https://lbbonline.com/news/how-atlassian-turned-aecades-of-williams-f1-knowledge-into-competitive-advantage",
+    "thumbnail": "/thumbnails/atlassian-williams-f1-ai-agents-built-from-the-real-race-tea.jpg",
+    "videoId": "",
+    "overview": "Atlassianは、Williams F1のタイトル&テクノロジーパートナーとして、Williamsのレースチームの5人をAIエージェントにした。ドライバー、パフォーマンスエンジニア、ストラテジスト、メカニックの実際の仕事の型を取り込み、あらゆるチームがF1チームの連携を使えるようにする。制作は StillKidz(監督)と Strike Anywhere(クリエイティブスタジオ)で、ブランドフィルムと5体のエージェントで構成される。展開は2026年10〜12月。",
+    "background": "Atlassianは「チームはコンテキストで動き、AtlassianはチームとコンテキストをつなぐEという考えを掲げており、Atlassian Executive Creative DirectorのLuke Martinは「世界はチームで動き、チームはコンテキストで動き、Atlassianはその両者をつなぐ」と述べている。Williamsとのパートナーシップは2025年初頭に始まり、AIチームメイト Rovo がチーム運営に組み込まれてきた。本件はその延長で、F1の連携という具体的な題材でAIによるチームワークを示す狙いがある。",
+    "execution": "フィルムは、雨がレースに入り込む転換点でのWilliamsの戦略適応を、暗い中間的な空間でスポットライトを介して知識がメンバー間を渡る様式化された演出で描く。歴代の名車やチームメンバーも登場する。撮影はバルセロナ・カタルーニャのサウンドステージとWilliams本拠地(英オックスフォードシャー・グローブ)で並行して行われ、デジカムと16mmフィルムを使用。実写の特殊効果と3D再現を組み合わせた。",
+    "evaluationImpact": "AI機能の説明に終始せず、実在のF1メンバーの仕事の型をエージェントにするという、一文で言える企画の核が明確。一方、エージェントの構築手法や利用成果の詳細、受賞は確認できていない。メディアはNYTやThe Athletic等のプレミアム媒体、LinkedIn、YouTube、Google Demand Gen、Xに加え、Atlassian Team Europe、Web Summit、Uberでの体験施策やOOHに展開する。",
+    "relatedWorks": [
+      {
+        "title": "Ad of the Day: Atlassian and Williams F1 Team turn racing legacy into AI-powered teamwork",
+        "description": "本キャンペーンの紹介記事(制作・展開情報)",
+        "url": "https://adsofbrands.net/public/en/news/ad-of-the-day-atlassian-and-williams-f1-team-turn-racing-legacy-into-ai-powered-teamwork/10868"
+      },
+      {
+        "title": "How Atlassian's System of Work has become the engine for innovation at Williams Racing",
+        "description": "AtlassianとWilliamsの協業の背景を扱う記事",
+        "url": "https://siliconangle.com/2025/12/01/atlassians-system-work-become-engine-innovation-williams-racing/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Film",
+      "Theme/Sports"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "lbbonline"
+  },
+  {
+    "id": "pump-for-democracy-2026",
+    "title": "Pump for Democracy",
+    "summary": "天安門の民主の女神像を高さ7mの膨張式にし、来場者が空気を送り続けないと潰れる仕掛けで民主主義の維持の手間を体感させる",
+    "client": "Public Matter(s): Democracy Workout / Design Museum Gent",
+    "agency": "zweintopf",
+    "categories": [
+      "カルチャーインサイト",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://designboom.com/art/inflatable-sculpture-ghent-pump-democracy-zweintopf",
+    "thumbnail": "/thumbnails/pump-for-democracy-2026.jpg",
+    "videoId": "",
+    "overview": "オーストリアのアーティストデュオZweintopfによる、高さ7mの白い膨張式彫刻。1989年の天安門広場の「民主の女神像」を単純化した人型で、作品名は「Perseverance (Goddess of Democracy)」。来場者が送気ステーションで空気を送り続けないと、像は徐々にしぼんで空っぽの殻になる。ゲントの「Public Matter(s): Democracy Workout」の一環として、Gravensteen城の堀(10/14まで)に展示され、10/15からDesign Museum Gentの中庭に移る。",
+    "background": "原作は2019年に初披露され、クラーゲンフルト、ボン、グラーツなどの展覧会で展示されてきた。今回のゲント展示は、Design Museum Gentが依頼したレプリカ。同館は「デザインと民主主義」をテーマに複数のプロジェクトを支援しており、本作はその関連企画に位置づけられる。民主主義を、一度手に入れれば続くものではなく、参加と手入れと共同の努力に支えられるものと捉え直す。",
+    "execution": "素材はテキスタイル、プラスチック、木、金属。像の脇に送気ステーションを置き、来場者がポンプで空気を送り込むと像が立ち上がる。送る人がいなくなると、像は自重でゆっくり崩れていく。像が立つ時間は来場者の労力に直接左右されるため、「立ち続けるには継続的な努力が要る」という主題を、解説文ではなく身体の動きで伝える。",
+    "evaluationImpact": "民主主義の脆さを、来場者が自分の腕で送った空気の量と像の姿で見せる点が評価できる。象徴的な像をあえて壊れやすい膨張式にしたことで、「守られる記念碑」から「皆で支え続ける像」へ意味が反転している。受賞は公式ソースで確認できていない。展示は城の堀と美術館の中庭という公共空間で行われ、通りがかりの人も参加できる。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Theme/Art",
+      "Form/Exhibition"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "designboom"
+  },
+  {
     "id": "100-wonder-2026",
     "title": "東レ100周年企画展「WONDER!?展」",
     "summary": "東レ創立100周年記念企画展「WONDER!?展」。TAKT PROJECTの吉泉聡がCD/デザインを担当し、三澤デザイン研究室が繊維素材をテーマにした作品展示を行う。",
