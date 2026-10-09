@@ -1,7 +1,129 @@
 {
   "version": 1,
-  "statusAsOf": "2026-10-08",
+  "statusAsOf": "2026-10-09",
   "items": [
+    {
+      "id": "2026-azabudai-hills-gallery-ambient-kyoto-tokyo-sakamoto-tak",
+      "slug": "2026-azabudai-hills-gallery-ambient-kyoto-tokyo-sakamoto-tak",
+      "title": "RYUICHI SAKAMOTO + SHIRO TAKATANI AMBIENT KYOTO - TOKYO",
+      "artists": [
+        "坂本龍一",
+        "高谷史郎",
+        "ZAK"
+      ],
+      "venue": "麻布台ヒルズギャラリー",
+      "venueType": "gallery",
+      "prefecture": "東京都",
+      "city": "港区",
+      "startDate": "2026-08-28",
+      "endDate": "2026-10-25",
+      "status": "ongoing",
+      "admission": "平日 2,200円(前売)/2,500円(当日)、土日祝 2,500円(前売)/2,800円(当日)",
+      "tags": [
+        "media_art",
+        "installation",
+        "video_art",
+        "sound",
+        "light"
+      ],
+      "score": 75,
+      "matchReason": "坂本龍一と高谷史郎による《async - immersion》を、幅26.4mのスクリーンとZAKの立体音響で見せるインスタレーション。2023年のAMBIENT KYOTOで初公開された作品で、光・映像・音を扱う空間作品。開催中で、会期は10月25日まで残り16日。",
+      "sources": [
+        {
+          "name": "RYUICHI SAKAMOTO + SHIRO TAKATANI AMBIENT KYOTO - TOKYO",
+          "url": "https://ambientkyoto.com/",
+          "kind": "official"
+        },
+        {
+          "name": "PR TIMES",
+          "url": "https://prtimes.jp/main/html/rd/p/000000007.000130649.html",
+          "kind": "news"
+        }
+      ],
+      "link": "https://ambientkyoto.com/",
+      "thumbnail": "/thumbnails/exhibition/2026-azabudai-hills-gallery-ambient-kyoto-tokyo-sakamoto-tak.jpg",
+      "addedAt": "2026-10-09T01:32:36.587Z",
+      "origin": "auto",
+      "highlight": false
+    },
+    {
+      "id": "2026-ycam-joeiji-forest-symphony-yamaguchi-seasonal-2026",
+      "slug": "2026-ycam-joeiji-forest-symphony-yamaguchi-seasonal-2026",
+      "title": "Forest Symphony (Yamaguchi Seasonal 2026／坂本龍一＋YCAM)",
+      "artists": [
+        "坂本龍一",
+        "YCAM"
+      ],
+      "venue": "常栄寺(YCAM Yamaguchi Seasonal)",
+      "venueType": "media_art_center",
+      "prefecture": "山口県",
+      "city": "山口市",
+      "startDate": "2026-07-24",
+      "endDate": "2026-12-06",
+      "status": "ongoing",
+      "admission": "無料",
+      "tags": [
+        "media_art",
+        "installation",
+        "sound"
+      ],
+      "score": 74,
+      "matchReason": "YCAM公式ページによると、世界の樹木から取得した生体電位でつくる坂本龍一とYCAMのサウンドインスタレーションを、山口市の常栄寺で再展示する。2013年初出で、同寺での展示は7年連続。",
+      "sources": [
+        {
+          "name": "Forest Symphony (Yamaguchi Seasonal 2026／坂本龍一＋YCAM)",
+          "url": "https://www.ycam.jp/events/2026/yamaguchi-seasonal-2026-forest-symphony/",
+          "kind": "official"
+        }
+      ],
+      "link": "https://www.ycam.jp/events/2026/yamaguchi-seasonal-2026-forest-symphony/",
+      "thumbnail": "/thumbnails/exhibition/2026-ycam-joeiji-forest-symphony-yamaguchi-seasonal-2026.jpg",
+      "addedAt": "2026-10-09T01:31:35.983Z",
+      "origin": "auto",
+      "highlight": false
+    },
+    {
+      "id": "2026-kotaro-nukaga-rhizomatiks-after-understanding",
+      "slug": "2026-kotaro-nukaga-rhizomatiks-after-understanding",
+      "title": "Rhizomatiks「After Understanding」",
+      "artists": [
+        "Rhizomatiks",
+        "真鍋大度"
+      ],
+      "venue": "KOTARO NUKAGA(天王洲)",
+      "venueType": "gallery",
+      "prefecture": "東京都",
+      "city": "品川区",
+      "startDate": "2026-09-12",
+      "endDate": "2026-10-17",
+      "status": "ongoing",
+      "admission": "UNKNOWN",
+      "tags": [
+        "media_art",
+        "generative",
+        "installation",
+        "sculpture"
+      ],
+      "score": 88,
+      "matchReason": "watch対象のRhizomatiksの個展。公式ページによると、回転するステンレス円盤にダイヤモンド針で一本の線を刻み続ける極座標プロッターが中心で、会期中に円盤の状態が変化する。ラマヌジャンの研究に関わる数式を扱う。",
+      "sources": [
+        {
+          "name": "After Understanding",
+          "url": "https://kotaronukaga.com/exhibition/rhizomatiks_after_understanding/",
+          "kind": "official"
+        },
+        {
+          "name": "Tokyo Art Beat",
+          "url": "https://www.tokyoartbeat.com/events/-/Rhizomatiks-After-Understanding/3-C6139-F8/2026-09-12",
+          "kind": "listing"
+        }
+      ],
+      "link": "https://kotaronukaga.com/exhibition/rhizomatiks_after_understanding/",
+      "thumbnail": "/thumbnails/exhibition/2026-kotaro-nukaga-rhizomatiks-after-understanding.jpg",
+      "addedAt": "2026-10-09T01:31:35.675Z",
+      "origin": "auto",
+      "highlight": true
+    },
     {
       "id": "2026-mot-mot-collection-light-now",
       "slug": "2026-mot-mot-collection-light-now",
@@ -154,7 +276,7 @@
       "venueType": "media_art_center",
       "prefecture": "東京都",
       "city": "新宿区",
-      "startDate": "2026-06-20",
+      "startDate": "2026-09-12",
       "endDate": "2026-11-08",
       "status": "ongoing",
       "admission": "一般800円 / 大学生600円 / 65歳以上・高校生以下無料",
