@@ -19675,5 +19675,215 @@
         "desc": "動画内の指定した点の将来位置や3D座標、動きの向きをまとめて予測する技術。"
       }
     ]
+  },
+  {
+    "id": "2026-10-10-1",
+    "date": "2026-10-10",
+    "title": "息切れ人の名前を読み上げる踊り",
+    "pattern": "文脈×技術",
+    "seed": "The Māori Roll Call は名前を30分読み続けて登録を促した。この声をEchoAvatarに渡し、読み上げ名簿に合わせて何百体ものアバターが全身で身振りする群衆映像にしたら、数の重さが見える投票キャンペーンになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "the-maori-roll-call",
+        "title": "The Māori Roll Call",
+        "desc": "活動家が500人超の新規登録者の名前を30分読み上げ、選挙人名簿への登録を促した企画。"
+      },
+      {
+        "type": "tech",
+        "id": "echoavatar",
+        "title": "EchoAvatar",
+        "desc": "話し声や音楽を聞きながら、全身が自然に動く3Dアバターをその場で作る研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-10-2",
+    "date": "2026-10-10",
+    "title": "日食を歩き回る3D世界",
+    "pattern": "文脈×技術",
+    "seed": "For Every Slice of Sun の「欠けた太陽＝ライムスライス」を、DreamX-World 1.0 で歩き回れる3D世界にしたら、日食の下を視点移動して巡る擬似体験ができ、次の天体イベントも先取りで売れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "for-every-slice-of-sun-2024",
+        "title": "For Every Slice of Sun（日食を利用したコロナのビジュアル）",
+        "desc": "日食で欠けた太陽をコロナのライムに見立てて撮った、天体現象連動の屋外広告。"
+      },
+      {
+        "type": "tech",
+        "id": "dreamx-world-1-0",
+        "title": "DreamX-World 1.0",
+        "desc": "文章の指示だけで、視点を動かしても矛盾しない歩ける3D世界の映像を作るAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-10-3",
+    "date": "2026-10-10",
+    "title": "二人で回す舞台の動きを採る",
+    "pattern": "文脈×技術",
+    "seed": "Carousel for Companionship の「複数人で押さないと回らない」手動回転舞台に、CYANPUPPETS の2台ウェブカメラ全身キャプチャを向けたら、人々の協力の身体の動きがそのまま街の記録アニメになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "carousel-for-companionship-columbus-2025",
+        "title": "Carousel for Companionship",
+        "desc": "複数人で力を合わせないと回らない、地元建築柄の手動式回転舞台。"
+      },
+      {
+        "type": "tech",
+        "id": "cyanpuppets-1b-parameter-ai-motion-capture",
+        "title": "CYANPUPPETS 1B-parameter AI Motion Capture",
+        "desc": "ウェブカメラ2台や動画から全身・顔・指の動きを読み取るマーカーなしモーションキャプチャ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-10-4",
+    "date": "2026-10-10",
+    "title": "AI楽曲に人間の証明を付ける",
+    "pattern": "文脈×技術",
+    "seed": "Jazz Is Dead の Played by Humans 認証の裏返しで、ACE-Step 1.5 が作る曲を「人が歌詞と構成を磨いた証明」付きで出す逆ラベルを作ったら、AI共作の誠実さが売りになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "jazz-is-dead-played-by-humans",
+        "title": "Played by Humans",
+        "desc": "人が演奏した音楽にブロックチェーンで証明を付ける、AI時代の認証運動。"
+      },
+      {
+        "type": "tech",
+        "id": "ace-step-1-5",
+        "title": "ACE-Step 1.5",
+        "desc": "歌詞とジャンルから、歌入りの曲を自分のPCで丸ごと作れる無料の音楽AI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-10-5",
+    "date": "2026-10-10",
+    "title": "歩き方を物語る路上キャラ",
+    "pattern": "技術×技術",
+    "seed": "MotionPersona の「人物・体型・怒りや酔っ払い等のスタイル」を指定した歩行生成に、MolmoMotion の画像から物体軌跡を予測する力を掛けたら、街の一枚写真から人や物の未来の動きを歩かせて見せられるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "motionpersona",
+        "title": "MotionPersona",
+        "desc": "人物や歩き方のスタイルを選び、操作に合わせて歩く動きを作るモデル。"
+      },
+      {
+        "type": "tech",
+        "id": "molmomotion",
+        "title": "MolmoMotion",
+        "desc": "1枚の画像と文章の指示から、物体の数秒先の3D上の動きを予測するモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-10-6",
+    "date": "2026-10-10",
+    "title": "歌詞が動かす絵コンテ現場",
+    "pattern": "技術×技術",
+    "seed": "Iblis で自分の音源フォルダの癖を学習させて作った曲を、AI Movie Studio v2 の3Dカメラ割りに流し込んだら、曲のリズムがカット割りを決めるMVの絵コンテが生まれるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "iblis",
+        "title": "Iblis",
+        "desc": "文章だけで自分のGPU上で曲を作り、手持ち音源の個性も学べるWindows用アプリ。"
+      },
+      {
+        "type": "tech",
+        "id": "ai-movie-studio-v2",
+        "title": "AI Movie Studio v2",
+        "desc": "3Dカメラでカット割りを作り、映像・音声まで作れるブラウザの映画制作ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-10-7",
+    "date": "2026-10-10",
+    "title": "方言を話す万博パビリオン",
+    "pattern": "転用",
+    "seed": "JoyAI-Video-Edit を編集でなく展示の「経年変化」装置に転用し、Uzbekistan Pavilion の煉瓦と彫刻の映像に「朝・夕・百年後」とテキスト指示を出し続けたら、建築が時間で語り変わるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "joyai-video-edit",
+        "title": "JoyAI-Video-Edit",
+        "desc": "文章の指示だけで動画をリアルタイムに編集できる160億パラメータの生成AI。"
+      },
+      {
+        "type": "case",
+        "id": "uzbekistan-pavilion-expo2025-2025",
+        "title": "Uzbekistan Pavilion \"Garden of Knowledge: Laboratory of Future Society\"",
+        "desc": "日干し煉瓦と木彫を融合させた、大阪・関西万博のウズベキスタン館。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-10-8",
+    "date": "2026-10-10",
+    "title": "撮影用カメラを漁場の測量に",
+    "pattern": "転用",
+    "seed": "LingBot-Map の単眼カメラだけで3D再構成する力を映像制作でなく、Seaweed Pavilion のような昆布パネルの透け具合を歩きながら測る計測に転用したら、光と色の移ろいを立体で記録できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "lingbot-map",
+        "title": "LingBot-Map",
+        "desc": "1台のカメラ映像だけで、場面の3D形状をリアルタイムに作り直すAI。"
+      },
+      {
+        "type": "case",
+        "id": "hidaka-ohmu-seaweed-pavilion-2020",
+        "title": "Hidaka Ohmu — Seaweed Pavilion",
+        "desc": "半透明の昆布パネルで覆われ、光と時間で色が変わる海藻のパビリオン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-10-9",
+    "date": "2026-10-10",
+    "title": "物理検証を遊具の安全に転用",
+    "pattern": "転用",
+    "seed": "Comfy MCP でエージェントが ComfyUI を操る仕組みを、画像生成でなく Camera Rolls のような屋外広告の看板の見え方検証に転用し、昼夜・雨天の見えを自動で並べ替えるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfy-mcp",
+        "title": "Comfy MCP",
+        "desc": "AIエージェントから自分のPCのComfyUIを直接操作できる公式ツール。"
+      },
+      {
+        "type": "case",
+        "id": "mcdonald-s-camera-rolls",
+        "title": "Camera Rolls",
+        "desc": "本物のカメラロールを使い、夜の終わりのマクドナルドを見せた屋外広告。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-10-10",
+    "date": "2026-10-10",
+    "title": "粘土ポーズで花火の注意喚起",
+    "pattern": "文脈×技術",
+    "seed": "Keep Fireworks from Ruining Fried Chicken Season の指負傷統計という題材を、CozyClay でキャラにポーズを付けて撮る絵コンテに落とせば、注意喚起をコミカルな事前映像にして量産できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "keep-fireworks-from-ruining-fried-chicken-season-2026",
+        "title": "Keep Fireworks from Ruining Fried Chicken Season",
+        "desc": "花火での指の負傷をネタにした、KFCのチキン広告。"
+      },
+      {
+        "type": "tech",
+        "id": "cozyclay",
+        "title": "CozyClay",
+        "desc": "ブラウザ上でキャラにポーズを付けカット割りまでできる無料のプリビズ道具。"
+      }
+    ]
   }
 ]
