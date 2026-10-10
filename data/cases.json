@@ -1,5 +1,42 @@
 [
   {
+    "id": "question-everything-but-yourself-equinox-2026-2026",
+    "title": "Question Everything But Yourself（Equinox 2026年グローバルブランドキャンペーン）",
+    "summary": "AIミーム風の偽画像と実写を並べ、「疑え、ただし自分自身以外は」と身体の実感を唯一の真実に据えたEquinoxの逆張り広告。",
+    "client": "Equinox",
+    "agency": "Angry Gods",
+    "categories": [
+      "カルチャーインサイト",
+      "AIクリエイティブ",
+      "OOH革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米",
+      "グローバル"
+    ],
+    "link": "https://lbbonline.com/news/equinox-2026-brand-campaign-AI",
+    "thumbnail": "/thumbnails/question-everything-but-yourself-equinox-2026-2026.jpg",
+    "videoId": "",
+    "overview": "高級フィットネスブランドEquinoxが2026年1月に始めたグローバルブランドキャンペーン。制作はLAのクリエイティブエージェンシーAngry Gods。AI生成の奇妙な画像と、鍛えた実在の人物の写真を並べ、「Question Everything But Yourself」と訴える。展開はデジタル・SNS、印刷、クラブの窓面を含むOOH、OTT配信に及ぶ。",
+    "background": "Equinoxが引用する調査では、70%の人がオンライン情報を何が本当か分からなくなったと答え、TikTokやInstagramのコンテンツの約52%がすでにAI生成とされる。2026年にはこの割合が最大90%に達するとの予測もある。フィードに偽画像があふれる状況を前提に、「それでも疑えない唯一のものは自分の身体」というブランドの主張を打ち出した。",
+    "execution": "ステーキに見えるケーキ、誇張された筋肉の男性、羊にバイクのようにまたがる男性、胸が3つある女性など、AIミームの文法を借りた画像を使用。そこに実在の人物のポートレートを並べ、フィード上で見慣れた「AIスロップ」と本物の対比を作った。AIを批判する広告自体にAI生成物を使い、見る側に違和感を体験させる構成である。",
+    "evaluationImpact": "「世の中のほぼすべてが偽物でも、身体だけは偽れない」と一文で言える逆張りで、新年のジム需要期に話題を集めた。一方、AI生成のアジア系女性の頭部画像が人種的ステレオタイプを強めるとアジア系クリエイターから批判され、Equinoxは広告を取り下げて謝罪した。AIを批評する際に何をAIで作るかの難しさを示す事例でもある。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/OOH",
+      "Theme/Health",
+      "Theme/Fashion"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "lbbonline"
+  },
+  {
     "id": "atlassian-williams-f1-ai-agents-built-from-the-real-race-tea",
     "title": "Atlassian × Williams F1: AI agents built from the real race team",
     "summary": "Williams F1の実在メンバー5人の仕事の型をAIエージェント化し、レース現場の連携を一般チームに開放した",
