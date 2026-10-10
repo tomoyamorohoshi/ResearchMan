@@ -1,5 +1,114 @@
 [
   {
+    "id": "long-wam",
+    "title": "Long-WAM",
+    "org": "NVIDIA / MIT / HKU / UCSD",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "AI/Agents"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "ロボットの過去映像を最大19.2秒ぶん覚えさせ、未来の映像を予測しながら約0.1秒で動作を決めるワールドモデル。コード・学習済みモデル公開済み。",
+    "point": "何がすごいか: 「ワールドモデル」とは、いま見えている映像から次に世界がどう動くかを頭の中で想像するAIです。Long-WAMは、直前の映像だけでなく最大19.2秒ぶんの過去映像を見せたほうが判断が良くなることを示し、課題の成功率を63.3%から78.7%に引き上げました。しかも1回の判断はRTX 5090で約107ミリ秒と、実機ロボットを止めずに動かせる速さです。広告・体験づくりでの使いどころ: 「過去の流れを踏まえて未来の映像を想像する」部分は、1枚の画像から続きの映像を生成するLongLive 2.0 Robotとして公開されており、物を置く・畳む・注ぐといった長めの動きを予測した映像をデモで見られます。インスタレーションで来場者の動きに反応するロボットや、動く展示物の制御、物理的に自然な動きを持つ映像生成の土台として試せます。",
+    "detail": "仕組み: 約1万時間のロボット視点・人の一人称視点の映像で、「過去の映像から次の瞬間を予測する」練習(自己回帰学習)をあらかじめ行った映像生成モデル(LongLive 2.0 Robot)が土台です。このモデルが頭の中で未来の映像(潜在表現)を想像し、その結果から、ロボットに送る動作のまとまり(アクションチャンク)を決めます。たとえるなら、ボールが転がってくる様子をしばらく見続けてから手を出すキャッチャーのようなもので、短い記憶しかないより、長く見たほうが先読みが正確になります。\n\n従来との違い: これまでは過去の映像を長くしても効果が出ない例が多くありました。本研究は、映像モデルが「過去から未来を予測する」形で事前学習されていることが条件だと示しました。また、映像の圧縮をストリーム処理にする、判断と動作を非同期にする、量子化で軽くするといった工夫で、RTX 5090・DGX Spark・Jetson AGX Thorで実時間動作させています。ベルトコンベヤ上のカップ積みは95%(19/20)の成功率でした。\n\n使うには: Python 3.10以上とCUDA対応のPyTorch環境が必要で、学習・評価・実機展開で環境を分ける構成です。LIBERO、RoboTwin 2.0、RoboCasa GR1などのシミュレータ用スクリプトと、Hugging Faceの学習済みモデル(コンテキスト長0〜19.2秒の5種)が用意されています。実機(Unitree G1等)を動かすには別途ロボットが必要で、導入は研究者・エンジニア向けです。映像予測部分だけを試す場合はGPU1枚から始められます。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "コードはApache 2.0。サードパーティ部品は各ライセンスに従う。学習済みモデルはHugging Face(Efficient-Large-Model)で公開。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/NVlabs/LongLive/tree/main/Long-WAM"
+      },
+      {
+        "kind": "project",
+        "url": "https://nvlabs.github.io/LongLive/Long-WAM/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://huggingface.co/papers/2610.10528"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/long-wam.jpg",
+    "relatedWorks": [
+      {
+        "title": "LongLive (NVlabs)",
+        "description": "Long-WAMの映像生成側の土台となるリアルタイム長尺映像生成プロジェクト。",
+        "url": "https://github.com/NVlabs/LongLive"
+      },
+      {
+        "title": "RoboJEPA: Scaling Robotic Latent World Models",
+        "description": "Metaによるロボット向け潜在ワールドモデル。",
+        "url": "https://huggingface.co/papers/2610.10515"
+      },
+      {
+        "title": "UniWAM: Unified World-Action Model",
+        "description": "世界の予測と行動を一つのモデルで扱う別アプローチ。",
+        "url": "https://huggingface.co/papers/2610.02054"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "mobile-4dgs",
+    "title": "Mobile-4DGS",
+    "org": "University of Technology Sydney",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "静的な3Dシーンも動く4Dシーンも、スマホのブラウザ(WebGL)でリアルタイム表示できるGaussian Splatting軽量化手法。学習・描画コードを公開。",
+    "point": "何がすごいか: Gaussian Splatting(実写から作る3Dシーンを小さな色つきの点の集まりで表す技術)は、色の細かな表現にデータを多く使うため、スマホでは重くなりがちでした。Mobile-4DGSは色情報を1次の簡易表現に圧縮して保存量を約61%減らし、動きのある部分と動かない背景を分けて、背景の描画順を使い回すことで計算も削減します。Snapdragon 8 Gen 3やA15 Bionicのスマホで動作を実証しています。広告・体験づくりでの使いどころ: 専用アプリなしで、URLを開くだけで商品や空間を3Dで見回せるWebコンテンツ、さらに炎や人物の動きなど時間で変化する4Dシーンを来場者のスマホで見せる展示・キャンペーンに向きます。プロジェクトページには、ブラウザで動かせる9つのシーンの試用ビューアがあります。",
+    "detail": "仕組み: 通常の3DGSは、点ごとに光の当たり方による色変化を表す球面調和関数(高次の係数)を持ち、これが容量の大半を占めます。本手法はモンテカルロ法で鏡面反射のエネルギーを集約し、高次係数を1次に畳み込みます。動くシーンは、各点の動きを位置・速度・加速度(2次の運動モデル)で表し、点ごとに「いつ存在するか」の範囲を学習するので、1フレームごとにAI推論をせず再生できます。さらに「動かない点」と「動く点」を2値で分け、静的部分の奥行き順(どの点が手前か)をキャッシュして再計算を減らします。\n\n従来との違い: 4D対応の従来手法はPCやハイエンドGPU前提のものが多く、スマホで滑らかに動かすのは困難でした。本手法は静的・動的を1つの枠組みで扱い、モバイル向けの軽さを両立しています。\n\n使うには: 学習にはCUDA 12.6・Python 3.11の環境と、N3DVデータセット等の前処理、MPEGのGPCC圧縮ツールが必要で、導入のハードルは高めです(リポジトリはtrain.py・render.py・metrics.pyなどが実在しますが、ドキュメントは簡素でスター数も少ない初期段階)。見るだけならプロジェクトページのWebGLビューアをスマホやPCのブラウザで開くだけで、費用も不要です。",
+    "license": {
+      "spdx": null,
+      "commercial": "none",
+      "note": "リポジトリにライセンス表記なし。商用利用は著者への確認が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/xiaobiaodu/mobile-4dgs"
+      },
+      {
+        "kind": "project",
+        "url": "https://xiaobiaodu.github.io/mobile-4dgs-project/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://huggingface.co/papers/2610.05289"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/mobile-4dgs.jpg",
+    "relatedWorks": [
+      {
+        "title": "gsplat",
+        "description": "Nerfstudio発のオープンソースGaussian Splatting学習・描画ライブラリ(Apache 2.0)。",
+        "url": "https://github.com/nerfstudio-project/gsplat"
+      },
+      {
+        "title": "Spark",
+        "description": "World Labs製、three.js向けのオープンソース(MIT)Gaussian Splatレンダラー。",
+        "url": "https://radiancefields.com/platforms/spark"
+      },
+      {
+        "title": "3D Gaussian Splatting (graphdeco-inria)",
+        "description": "3DGSの原典実装。",
+        "url": "https://github.com/graphdeco-inria/gaussian-splatting"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "flowhmr",
     "title": "FlowHMR",
     "org": "FlowHMR authors（Zhanke Wang, Chengfeng Zhao, Qing Shuai ほか）",
