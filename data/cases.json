@@ -12102,7 +12102,10 @@
       "Form/MV",
       "Theme/Music",
       "Form/SNS"
-    ]
+    ],
+    "quarantined": true,
+    "quarantineReason": "link-dead(二重確認済): 404: https://news.yahoo.co.jp/articles/6a6bcde7b69d9d5411b648fda9b16102f734b8ef",
+    "quarantineTs": "2026-10-11T09:34:35.215Z"
   },
   {
     "id": "the-hardest-part-2024",
@@ -52329,7 +52332,10 @@
       "Form/Print",
       "Theme/Health",
       "Theme/Food"
-    ]
+    ],
+    "quarantined": true,
+    "quarantineReason": "link-dead(二重確認済): 到達不能（Jina救済も失敗）: https://strategyonline.ca/2026/03/30/broadfork-cancer-prevention-discounts/",
+    "quarantineTs": "2026-10-11T09:34:35.215Z"
   },
   {
     "id": "fantasy-herd-meadow-fresh",
