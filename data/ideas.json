@@ -19885,5 +19885,215 @@
         "desc": "ブラウザ上でキャラにポーズを付けカット割りまでできる無料のプリビズ道具。"
       }
     ]
+  },
+  {
+    "id": "2026-10-11-1",
+    "date": "2026-10-11",
+    "title": "寝言レビューを3Dシーン化",
+    "pattern": "技術×技術",
+    "seed": "IKEAではなく技術同士で、Mira-Scene が1枚の写真から作る「編集できる3Dシーン」に、SA3 Browser Tools で作った環境音を物ごとに割り当てたら、家具を動かすと音も動く部屋が作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "mira-scene",
+        "title": "Mira-Scene",
+        "desc": "1枚の写真から、家具などが別パーツになった編集できる3Dシーンを自動で作る研究。"
+      },
+      {
+        "type": "tech",
+        "id": "sa3-browser-tools",
+        "title": "SA3 Browser Tools (mucking_around_time_with_stable_audio_3)",
+        "desc": "AI音声モデルの生成過程を、ブラウザ上で手で触りながら作り込める無料ツール群。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-11-2",
+    "date": "2026-10-11",
+    "title": "紙面が踊る水滴の新聞",
+    "pattern": "文脈×技術",
+    "seed": "朝日新聞「おり紙新聞」の『紙面で体験を作る』発想に MorphDrops を掛けて、紙に印刷した導電インクの上で水滴が文字や形に変わる、折らずに動く新聞広告ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "asahi-origami-newspaper",
+        "title": "朝日新聞「おり紙新聞」",
+        "desc": "紙面を折り紙の型紙にして、実際に折って作品にできる新聞の企画。"
+      },
+      {
+        "type": "tech",
+        "id": "morphdrops",
+        "title": "MorphDrops",
+        "desc": "紙に印刷した導電インクに電気を流し、置いた水滴の形を変えるディスプレイ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-11-3",
+    "date": "2026-10-11",
+    "title": "74紙の文字をカバー化",
+    "pattern": "文脈×技術",
+    "seed": "日本新聞協会「＃にほんをつなげ74」の1文字ずつ分担する仕掛けに MuLaCover を掛け、全国の人が1フレーズずつ歌詞を差し替えた同じ骨格の曲をつなぐ、合唱型キャンペーンができそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-lrr7mt-2018",
+        "title": "日本新聞協会「＃にほんをつなげ74」",
+        "desc": "全国74紙に1文字ずつ違う広告を載せ、つなぐとメッセージになる新聞広告。"
+      },
+      {
+        "type": "tech",
+        "id": "mulacover",
+        "title": "MuLaCover",
+        "desc": "曲のメロディとコードの骨格を保ち、歌詞やジャンルを差し替えてカバーを作るAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-11-4",
+    "date": "2026-10-11",
+    "title": "寝言を踊るアバターに",
+    "pattern": "文脈×技術",
+    "seed": "IKEA Sleep Talk Reviews の寝言という無意識の声を EchoAvatar に聞かせたら、眠っている人の本音が全身の動きで踊って現れる、夢の可視化展示ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ikea-sleep-talk-reviews",
+        "title": "Sleep Talk Reviews",
+        "desc": "IKEAのマットレスで眠った人の実際の寝言を、商品レビューにした音声キャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "echoavatar",
+        "title": "EchoAvatar",
+        "desc": "話し声や音楽を聞きながら、全身が自然に動く3Dアバターをその場で作る研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-11-5",
+    "date": "2026-10-11",
+    "title": "動画一本で動く彫刻",
+    "pattern": "技術×技術",
+    "seed": "AgentSTAR が動画から復元した可動物体の3Dと動きを、YaGS で Unreal Engine の実写風Gaussian Splatting空間に重ねたら、現実の道具が仮想空間で動く記録アーカイブになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "agentstar",
+        "title": "AgentSTAR (Agentic Shape Tracking and Reconstruction)",
+        "desc": "動画を見たAIが可動物体を3Dで組み立て、動きまで復元する研究。"
+      },
+      {
+        "type": "tech",
+        "id": "yags",
+        "title": "YaGS",
+        "desc": "Unreal Engine上で実写風の3D点群表現を正しい奥行きで重ねられる無料プラグイン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-11-6",
+    "date": "2026-10-11",
+    "title": "ロボが蹴る反射の世界",
+    "pattern": "技術×技術",
+    "seed": "Rerun × Booster Robotics K1 で記録したヒューマノイドの蹴り動作を GRay の反射・屈折つきGaussian Splatting空間に流し込めば、ガラスの競技場でロボが試合する映像表現ができそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "rerun-booster-robotics-k1",
+        "title": "Rerun × Booster Robotics K1",
+        "desc": "ヒューマノイドがボールを蹴る動きのセンサや3D状態を、リアルタイムに可視化したデモ。"
+      },
+      {
+        "type": "tech",
+        "id": "gray",
+        "title": "GRay",
+        "desc": "実写の3D表現を、反射・屈折・影ごとレイトレーシングで描く新手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-11-7",
+    "date": "2026-10-11",
+    "title": "アヒルロボを店番に転用",
+    "pattern": "転用",
+    "seed": "Microduck を歩く玩具ではなく、REI #OPTOUTSIDE のように店を閉めた日の「無人店舗の看板役」に転用し、客の代わりに店先をよちよち歩いて休業の理由を伝えたら愛されそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "microduck",
+        "title": "Microduck",
+        "desc": "体重800gの小型二足歩行ロボットで、歩行や蹴りや起き上がりまでできる。"
+      },
+      {
+        "type": "case",
+        "id": "rei-opt-outside",
+        "title": "#OPTOUTSIDE",
+        "desc": "ブラックフライデーに全店を閉め、従業員を野外へ送り出したREIの企画。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-11-8",
+    "date": "2026-10-11",
+    "title": "修復AIで記憶を補う",
+    "pattern": "転用",
+    "seed": "ArtiFixer を3D再構成の修復でなく、アルル発の写真展のような過去の1枚写真の「写っていない側」を想像で補う記憶の補完装置に転用したら、写真の裏側を歩ける展示ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "artifixer",
+        "title": "ArtiFixer",
+        "desc": "壊れた3D再構成を動画拡散モデルで修復し、撮っていない角度まで補う研究。"
+      },
+      {
+        "type": "case",
+        "id": "i-m-so-happy-you-are-here-2026",
+        "title": "まなざしの奇跡 ― 日本女性写真家の冒険（I'm So Happy You Are Here）",
+        "desc": "アルル国際写真祭発の女性写真家展が日本上陸し、30名の大規模展になった。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-11-9",
+    "date": "2026-10-11",
+    "title": "Vloで想像の音風景",
+    "pattern": "文脈×技術",
+    "seed": "IMAGINARY SOUNDSCAPE の「写真から想像の音を作る」発想を Vlo 0.3 のタイムライン編集に載せ、映像の区間ごとに別の風景音を差し込むと、場所が編集で変わる映像日記になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "imaginary-soundscape",
+        "title": "IMAGINARY SOUNDSCAPE",
+        "desc": "1枚の写真から、その場所で聞こえそうな音風景をAIが作るウェブアプリ。"
+      },
+      {
+        "type": "tech",
+        "id": "vlo-0-3",
+        "title": "Vlo 0.3",
+        "desc": "ComfyUIを裏で動かし、選んだ区間をAI処理できる無料のローカル動画エディタ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-11-10",
+    "date": "2026-10-11",
+    "title": "動画エージェントを診断室へ",
+    "pattern": "転用",
+    "seed": "Anymotion のテキストから解説モーションを作る仕組みを商品紹介でなく、LAUREN のように他人の暮らしへ介入する作家が、住人に向けて毎日の生活メモを即席アニメで返す道具に転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "anymotion",
+        "title": "Anymotion",
+        "desc": "テキスト指示で解説動画のモーショングラフィックスを自動生成するCLIツール。"
+      },
+      {
+        "type": "case",
+        "id": "lauren-2024",
+        "title": "LAUREN",
+        "desc": "作家がAIアシスタント役となり、1週間参加者の生活に介入するパフォーマンス。"
+      }
+    ]
   }
 ]
