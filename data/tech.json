@@ -1,5 +1,173 @@
 [
   {
+    "id": "minimax-h3-person-remover-lora",
+    "title": "MiniMax H3 Person Remover LoRA",
+    "org": "Akatz Labs (akatz-ai)",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "動画内で緑にマスクした人物をAIで消し、背景を補完して復元するMiniMax H3用LoRAとComfyUIワークフロー。",
+    "point": "動画から特定の人物だけをマスクで指定して消し、背景を自然に埋めてくれるのがすごい点です。カメラの動きや映像のタイミング、元の音声はそのまま保たれます。従来は1コマずつ背景を描き足すロトペイントやクリーンプレート撮影が必要で、手間のかかる作業でした。このLoRAは、SAM 3.1という人物追跡AIでマスクを作り、一定の長さの区間ごとに生成し直す「ウィンドウ再生成」の手順をワークフローとして公開しています。広告では、ロケで映り込んだ通行人やスタッフの除去、コンプライアンス上映せない人物の差し替え準備、複数テイクから不要な人物を取り除いた合成カットの作成などに使えそうです。1080p・音声付きの8つの作例GIF／動画が公開されています。",
+    "detail": "仕組みは、MiniMax H3という音声付き動画生成モデルの参照入力機能（Ref2VA）に、人物除去専用に学習した小さな追加モジュール（LoRA）を足すものです。学習は静止ペア128組、動くマスク付き抜粋80本（20シーン）、保持用クリップ6本を、2,000ステップ学習しています。入力動画の緑色マスク部分を「消して背景を再構成せよ」という指示として扱います。たとえるなら、写真編集のコンテンツ認識塗りつぶしを動画に拡張したものです。\n\n従来のAI動画インペイント（穴埋め）は、人物が動くと背景が揺れたり、音と映像がずれたりしがちでした。このLoRAはカメラの動きを保ったまま生成し、区間をまたぐ処理も含めたワークフローが付属しています。ただし作者自身が「実験的」と明記しており、あらゆる映像で完璧に消えるわけではありません。\n\n使うには、ネイティブのMiniMax H3とSAM 3.1に対応したComfyUI、H3 Ref2VA（INT8）、Qwen3-VLテキストエンコーダ、映像・音声VAEが必要です。RTX 4090で検証されており、映像は24fps、縦横32の倍数にそろえます。ライセンスは地域制限付きのMiniMax H3コミュニティライセンスで、米国・EU・英国・韓国は対象外です。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "MiniMax H3 Community License Agreement。米・EU・英・韓国は利用地域から除外される領域制限あり。実使用前に要確認"
+    },
+    "links": [
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/akatz-ai/MiniMax-H3-Person-Remover-LoRA"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/akatz-ai/h3-relay"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/facebookresearch/sam3"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/minimax-h3-person-remover-lora.jpg",
+    "relatedWorks": [
+      {
+        "title": "H3 Relay",
+        "description": "同作者によるMiniMax H3向け連携ツール",
+        "url": "https://github.com/akatz-ai/h3-relay"
+      },
+      {
+        "title": "SAM 3",
+        "description": "メタの物体・人物の分割／追跡モデル。マスク生成に使用",
+        "url": "https://github.com/facebookresearch/sam3"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "kandinsky-6-0-video",
+    "title": "Kandinsky 6.0 Video",
+    "org": "Kandinsky Lab",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "Audio/Music"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "映像と44kHzの音声(リップシンク込み)を同時に作る動画生成モデルが、コード・重みともMITで公開された。3B(Lite)と29B(Pro)の2種類で、ComfyUIノードとDiffusers対応も用意されている。",
+    "point": "テキストや1枚の画像から、5秒の映像と音声(セリフの口の動きも合わせたもの)を一度に作れるオープンな動画生成モデルです。3B(30億パラメータ)の軽量版Liteと、29B(290億)の高品質版Proがあり、追加の超解像モデルでフルHD(1920×1080)まで引き上げられます。コードも重みもMITライセンスなので、自分のGPUで動かして商用案件に使えます。広告やMVの制作では、絵コンテ段階の動くラフに声やBGMが付いた状態で出せるため、クライアント提案の説得力が上がります。口が合ったキャラクターのひと言CMや、SNS向けの短尺素材の量産にも向きます。ロシア語の理解に強みがある点も、多言語展開の素材づくりで特徴になります。ComfyUIのレジストリにノードがあるので、既存のワークフローに組み込めます。",
+    "detail": "仕組み:Kandinsky 6.0 Videoは、ノイズから少しずつ絵を描き出す拡散モデルの一種です。映像と音声を別々に作らず、1つのモデルで同時に作ります。このため、口の動きと声のタイミングが自然に合います。入力はテキストのみ(T2AV)か、画像+テキスト(I2AV)の2通りです。Liteは864×480、Proは高解像度の出力が可能で、別リポジトリの超解像モデルを後付けするとフルHDになります。\n\n従来との違い:これまでオープンな動画モデルは、映像だけを作り、音声は別ツールで足す構成が主流でした。本モデルは音声とリップシンクを最初から含み、しかも重みまでMITで公開されています。Diffusers、ComfyUI、vLLM-Omni、SGLang、FastVideoの各環境で動かせるため、導入先を選びやすいのも特徴です。READMEの実測では、5秒HDクリップの生成時間がRTX 5090でLiteが約296秒、Proが約638秒、H100でProが約292秒でした。\n\n使うには:NVIDIA GPUとPython 3.13または3.14、パッケージ管理ツールのuvとjustが必要です。初回実行時にモデルの重みが自動でダウンロードされます。Proは大きなGPUを前提にしており、RTX 4090ではProが約1194秒かかります。手元に環境がなければ、Hugging Face Spaceで蒸留版(少ない手順で生成する高速版)を無料で試せます。費用はGPU代のみで、ライセンス料はかかりません。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "READMEにコード・重みともMIT License適用と記載。商用利用可。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/kandinskylab/kandinsky-6"
+      },
+      {
+        "kind": "project",
+        "url": "https://kandinskylab.ai/models/video/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.05608"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/spaces/kandinskylab/Kandinsky-6.0-Pro-distill-5s"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/kandinsky-6-0-video.jpg",
+    "relatedWorks": [
+      {
+        "title": "Wan2.2",
+        "description": "Apache 2.0で公開されたオープンな動画生成モデル。映像のみで音声は含まない。",
+        "url": "https://github.com/Wan-Video/Wan2.2"
+      },
+      {
+        "title": "LTX-2",
+        "description": "Lightricksが公開した、音声付き動画を生成するオープンモデル。",
+        "url": "https://github.com/Lightricks/LTX-2"
+      },
+      {
+        "title": "minimax-h3-mlx",
+        "description": "33Bの映像+音声同時生成モデルMiniMax-H3をApple Silicon向けに移植したもの。",
+        "url": "https://github.com/PipeNetwork/minimax-h3-mlx"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "veda-sparse-attention-for-comfyui",
+    "title": "Veda Sparse Attention for ComfyUI (MiniMax-H3)",
+    "org": "Veda-Sparse (ByteDance / HKU)",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "動画生成の最大の負荷であるアテンション計算の約9割を飛ばし、ComfyUI上のMiniMax-H3の生成を約2.9倍に高速化するカスタムノード。MODELにつなぐだけで使える。",
+    "point": "動画生成AIは、画面の全部分どうしの関係を計算するため、長い映像ほど時間がかかります。Vedaは、小さな予測モデルで「重要な部分だけ」を先に当て、上位約10%だけ計算して残りを省く手法です。ComfyUIでは、MiniMax-H3のMODELの線にノードを1つ挟むだけで、RTX 5070で全体2.9倍、アテンション部分だけなら7.1倍の高速化が報告されています。長尺ほど効果が大きくなります。広告制作では、試作の生成待ち時間を短くでき、1日に回せる案の数が増えます。ターボLoRAやスタイルLoRA、量子化モデルともそのまま併用できるので、既存のワークフローを壊さずに導入できます。Ctrl+Bで無効化し、同じシードで通常品質と見比べることも簡単です。",
+    "detail": "仕組み:動画の拡散モデル(ノイズから映像を描き出すAI)は、画面を小さなタイル(ブロック)に区切り、タイル同士の関連度を全部計算します。ここが処理時間の大半を占めます。Vedaは、関連が強いタイルを事前に当てる小さな予測モデル(275MB)を使い、上位約10%だけを計算します。論文(ICML 2026、ByteDanceと香港大学)では、720P生成で5.1倍の高速化と、元の品質と同等の人間評価が報告されています。\n\n従来との違い:ComfyUIにはもともと「Model Sparse Attention」ノードがありますが、これは注意の仕組みを丸ごと置き換えます。Vedaは重みを書き換えず、アテンションの呼び出しだけを上書きする方式です。そのため、LoRA、量子化モデル、先頭・末尾フレーム指定、参照画像の条件づけと共存できます。Vedaが扱えない場面では、自動でモデル本来のアテンションに戻り、ノード上にその旨が表示されます。\n\n使うには:ComfyUI 0.38.0以上が必要です。ComfyUI ManagerでVedaを検索するか、`comfy node install veda-sparse-attention`で入れます。NVIDIAはSM80以降(RTX 30系以降)でTriton、Apple SiliconではMLXが使われます。予測モデルはテンプレートを開くとワンクリックで取得できます。費用はかかりません。MiniMax-H3本体の重みは別途用意が必要です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "ノードはMIT。対象のMiniMax-H3の重みは別途MiniMax H3 Community Licenseに従う。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/veda-sparse/Veda-on-ComfyUI"
+      },
+      {
+        "kind": "project",
+        "url": "https://veda-sparse.github.io/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2605.30325"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/Veda-Sparse/Minimax-H3-T2VA-Veda-8NFE-600Step-Preview"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/veda-sparse-attention-for-comfyui.jpg",
+    "relatedWorks": [
+      {
+        "title": "Radial Attention",
+        "description": "動画拡散モデル向けの、スパースアテンションによる長尺化・高速化の手法。",
+        "url": "https://github.com/mit-han-lab/radial-attention"
+      },
+      {
+        "title": "FlashAttention",
+        "description": "アテンション計算を高速・省メモリにする標準的なGPUカーネル。Vedaの比較基準。",
+        "url": "https://github.com/Dao-AILab/flash-attention"
+      },
+      {
+        "title": "minimax-h3-mlx",
+        "description": "MiniMax-H3をApple Silicon向けに移植したMLX実装。",
+        "url": "https://github.com/PipeNetwork/minimax-h3-mlx"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "long-wam",
     "title": "Long-WAM",
     "org": "NVIDIA / MIT / HKU / UCSD",
