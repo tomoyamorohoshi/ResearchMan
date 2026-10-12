@@ -1,5 +1,162 @@
 [
   {
+    "id": "vocaloid-style-mv-pipeline",
+    "title": "Vocaloid-Style MV Pipeline",
+    "org": "EGSECDA(個人開発者)",
+    "type": "Tool",
+    "domains": [
+      "HCI/MediaArt",
+      "Audio/Music",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "ボカロ風の「手書き(tegaki)リリックMV」を、曲と歌詞から自動で作るためのClaude Code用スキル兼プロジェクト雛形。1曲3分46秒・68カット級の作例を約4分でレンダリングできる。",
+    "point": "すごい点は、曲(wav)と歌詞を入れるだけで、ボカロMV特有の「手書き風の動くイラスト」「歌詞の文字が躍るタイポグラフィ」「ビートに合わせたカット切り替え」までを一つの流れで作れることです。すべてのコマが「時刻tの関数」として計算されるため、同じ入力から必ず同じ映像が出て、途中のカットだけ作り直すことも簡単です。広告・体験づくりでは、アーティストのリリックビデオ、音楽系キャンペーンの縦型ショート(9:16への自動レイアウト変換つき)、ライブ前の告知映像などを、少人数かつ短納期で量産する用途に向きます。作例には24種類のシーンテンプレートと13種類の場面転換が入っているので、完全なゼロからでなく、組み合わせて独自のMVに仕立てる使い方ができます。日本のボカロ文化の映像様式を、再現可能な「手順書つきの部品」にした点も珍しいところです。",
+    "detail": "仕組みは7段階の工程です。①曲をlibrosa(音声解析ライブラリ)で解析して拍・小節・セクションをJSONにし、②歌詞から色やキャラクターを決め、③AI画像生成でキャラクターのポーズ絵を作って背景色を抜き(クロマキー)透明化し、④絵コンテを「タイムライン」ファイルに書き、⑤Canvas2D(ブラウザの2D描画)で各コマを描いてWebGL2で光のにじみ・色ずれ・ノイズなどを重ね、⑥ヘッドレスブラウザ(画面を出さないブラウザ)で全コマを書き出してffmpegで動画化し、⑦16:9の本編、SNS用、縦型を出力します。必要ならBlender(EEVEEのトゥーンシェーディング)による3Dカットも混ぜられます。\n\n従来のAI動画生成は、1カットごとに「当たり外れ」がありカット単位の修正や再現が難しいのに対し、この仕組みは各コマが時間の純粋な関数なので、何度でも同じ結果を出せ、複数のワーカーで分担して並列にレンダリングできます。RTX 3080で3,796コマ(約3分46秒)を約4分で書き出したとREADMEに記載されています(CPUのみだと約10倍遅い)。\n\n使うにはNode.js 20以上、Python 3.10以上、ffmpeg、Edge/Chromeが必要で、曲のwavと公式歌詞を用意します。画像生成にはCodex CLIなどを任意で使います。コードはMITで無料ですが、作例「残光」の素材は使用禁止で、自作キャラ・自作テーマで作る前提です。Claude Codeなどのエージェントに手順を読ませて進める設計のため、コマンド操作とファイル編集に慣れた制作者向けです。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "コード・ドキュメントはMIT。同梱の作例MV「残光」の素材は著作権者(NikusonP)が権利を留保しており、再利用不可。画像生成APIやBlenderは任意で、API利用時は従量課金"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/EGSECDA/vocaloid-style-mv-pipeline"
+      },
+      {
+        "kind": "video",
+        "url": "https://github.com/EGSECDA/vocaloid-style-mv-pipeline/blob/main/docs/images/demo_16x9.mp4"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/vocaloid-style-mv-pipeline.jpg",
+    "relatedWorks": [
+      {
+        "title": "Remotion",
+        "description": "Reactのコードで動画をフレーム単位に描画して書き出すフレームワーク",
+        "url": "https://www.remotion.dev"
+      },
+      {
+        "title": "librosa",
+        "description": "拍・テンポ検出など音楽解析のPythonライブラリ(本ツールも利用)",
+        "url": "https://github.com/librosa/librosa"
+      },
+      {
+        "title": "Manim",
+        "description": "コードで数式・図形アニメーションを決定論的にレンダリングするPythonライブラリ",
+        "url": "https://github.com/3b1b/manim"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "ca-72",
+    "title": "CA-72",
+    "org": "Idle Foundry Ltd.",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "1970年代前半のアナログ・モノシンセ(Minimoog Model D系)を、回路図レベルで再現した無料のシンセサイザープラグイン。VST3・CLAP・AUに対応し、Windows/macOS/Linuxで使える。",
+    "point": "すごい点は、有名な古いアナログシンセの「音の個性」を、回路基板ごとにサービスマニュアルから書き起こしてシミュレーションしている点です。単にそれっぽい音色を並べたのではなく、電圧のゆらぎのような部品由来の不安定さまで再現するための「ENTROPY(個体差)」や、最大10音の同時発音、ステレオの広がりを作る「SPREAD」、重ね鳴らしの「UNISON」などの操作が付いています。広告・体験づくりでは、ブランドサウンドの太いベースやリード、映像のBGM、音に反応するインスタレーションの発音源などを、ライセンス費用なしでDAW(作曲ソフト)に追加できます。書き出し用の最高音質「ULTRA」と、軽量な「LO」の品質切り替えがあるので、制作時は軽く、納品時は高音質に、と使い分けられます。25個のプリセット(ドラム、パッド、ベース)も同梱されるので、すぐ音が出せます。",
+    "detail": "仕組みは、元の機材の電子回路(発振器、フィルター、アンプなど)を部品単位でソフトウェア上に写し取る「回路モデリング」です。実機の音が持つ温かみや歪みは回路の動きから生まれるため、波形をサンプリングして並べる方式より、操作に応じた音の変化が実機に近くなることを狙っています。プラグインはRust製のnih-plugという仕組みで作られ、AU版はCLAP形式からの変換ラッパーで提供されています。\n\n従来の無料シンセは、波形の足し引きで「それっぽく」作るものが多い一方、本作は元機材の回路図を一枚ずつ起こした点が特徴です。MIDI Learnで30以上のパラメータに外部コントローラーを割り当てられるので、ライブ演奏やインスタレーション連動にも向きます。\n\n使うにはDAW(Ableton Live、Reaper、Logicなど)が必要です。GitHubのReleasesからWindows用インストーラー(.exe)、macOS用.pkg、Linux用tar.gzを入手でき、費用は無料です。現在のバージョンは0.1.5(2026-10-08公開)と初期段階で、動作はDAWごとに確認した方が安全です。ソースからビルドする場合はRustとCMakeが必要ですが、通常利用ではビルド不要です。",
+    "license": {
+      "spdx": "GPL-3.0-or-later",
+      "commercial": "conditional",
+      "note": "GPL-3.0以降の無料オープンソース。このシンセで作った音(楽曲・効果音)の利用は自由だが、プラグイン自体を改変して配布する場合はGPLの公開義務が生じる"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/idlefoundry/ca-72"
+      },
+      {
+        "kind": "product",
+        "url": "https://github.com/idlefoundry/ca-72/releases/latest"
+      },
+      {
+        "kind": "video",
+        "url": "https://youtu.be/QLfwGqYg4wU"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/ca-72.jpg",
+    "relatedWorks": [
+      {
+        "title": "Surge XT",
+        "description": "オープンソースのハイブリッド・シンセサイザー",
+        "url": "https://github.com/surge-synthesizer/surge"
+      },
+      {
+        "title": "Dexed",
+        "description": "Yamaha DX7をエミュレートするオープンソースFMシンセ",
+        "url": "https://github.com/asb2m10/dexed"
+      },
+      {
+        "title": "nih-plug",
+        "description": "Rustでオーディオプラグイン(VST3/CLAP)を作るフレームワーク。CA-72が採用",
+        "url": "https://github.com/robbert-vdh/nih-plug"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "autosynth",
+    "title": "AutoSynth",
+    "org": "Gus Xia 研究グループ（Tristan Wu, Daniel Chin, Liwei Lin, Junan Zhang, Gus Xia）",
+    "type": "Research",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools",
+      "AI/Agents"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "「太いベース」のような文章や参考音を渡すと、完成した音そのものではなく、シンセサイザーのつまみの設定一式（音符・パラメータ・モジュレーション配線）を作ってくれるAI。出てきた音は、あとから人間がつまみで微調整できる。",
+    "point": "普通の音声生成AIは、できあがった波形（録音ファイルのようなもの）しか返さないので、「あと少し明るく」「リリースを短く」といった修正がほぼできません。AutoSynthは、波形ではなくシンセの設計図にあたる「プログラム」を出力します。音符の並び、音色を決める各パラメータ、音を時間変化させるモジュレーションの配線までを一度に生成し、結果はシンセ上で普通のプリセットのように開いて編集できます。公式デモでは、ベース、オルガン、効果音、パッド、アルペジオ、テクスチャの6種類を、参考音から再現する例とテキストから作る例の両方で聴き比べられ、既存の3手法（Synth Permutations、DDSynth-RL、CTAG）との比較も載っています。広告や映像の現場では、「このCMの雰囲気の音を、自分のシンセ環境で作り込める状態で出してほしい」という場面に向きます。サウンドロゴの試作や、体験型展示の効果音をその場で調整する用途に使えそうです。",
+    "detail": "仕組みは、翻訳に近い考え方です。「音（または文章）」を入力すると、モデルがシンセの「レシピ」を文章のように1語ずつ書き出します。レシピには、鳴らす音符、Helmの各パラメータの値、どの部品がどの部品を揺らすかという配線が含まれます。学習には、Helmのプリセットから作った約200万組の「音とレシピ」のペアを使います。さらに文章入力に対応するため、テンプレートから10万件の説明文を作り、Stable Audio 3で対応する音を生成してから、同じ「音→レシピ」モデルに通して学習させています。そのため、文章とレシピを人手で対応づけたデータは不要です。\n\n従来は、MIDIだけ、パラメータだけ、といった一部分しか扱えないことが多く、長さの変わるモジュレーション配線まで同時に作る手法は少数でした。論文では、音の近さを測る指標（CLAP距離）が合成音のテストセットで0.37となり、比較手法の0.49〜0.54より近いと報告されています。人による評価でも最高評価でした。制約として、対象はHelmのみで、編集できるのは5秒ほどの短い音に限られます。他のシンセへの拡張はまだ行われていません。\n\n使うにはPythonの実行環境と学習・推論用のGPUが必要です。リポジトリには推論（infer.py）、学習（train_sft.py、train_grpo.py）、評価、データ生成のスクリプトがそろっています。費用はかかりません。ただしライセンス表記がプロジェクトページに無く、事前学習済みの重みの入手先もREADMEからは確認できなかったため、まず自分で動かせるかを試す段階の研究コードと考えてください。公開されたばかりでスターは0です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "コードはApache-2.0。ただし学習済みチェックポイントの配布場所はREADME上で確認できず、すぐ動かせるかは未確認。出力の再生にはGPL-3.0のオープンソースシンセ Helm を使う（Helmは2025年2月にアーカイブ済み）。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Auto-Synth/AutoSynth"
+      },
+      {
+        "kind": "project",
+        "url": "https://auto-synth.github.io/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.10774"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/autosynth.jpg",
+    "relatedWorks": [
+      {
+        "title": "Helm",
+        "description": "AutoSynthが出力先に使う、無料のオープンソース・ポリフォニックシンセ（GPL-3.0、2025年2月にアーカイブ済み）",
+        "url": "https://github.com/mtytel/helm"
+      },
+      {
+        "title": "stable-audio-tools",
+        "description": "Stability AIの条件付き音声生成の学習・推論ツールキット。AutoSynthが文章入力の学習データ作りに使うStable Audioの系列",
+        "url": "https://github.com/Stability-AI/stable-audio-tools"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "minimax-h3-person-remover-lora",
     "title": "MiniMax H3 Person Remover LoRA",
     "org": "Akatz Labs (akatz-ai)",
