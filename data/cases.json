@@ -1,5 +1,51 @@
 [
   {
+    "id": "the-reverse-shock-collar-2026",
+    "title": "The Reverse Shock Collar",
+    "summary": "犬のしつけ用ショックカラーを反転し、おもちゃの「キュッ」音で飼い主が感電する人間用カラーを実機で作り、犬に1日支配させた",
+    "client": "BARK × Liquid Death",
+    "agency": "Tombras",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/the-reverse-shock-collar",
+    "thumbnail": "/thumbnails/the-reverse-shock-collar-2026.jpg",
+    "videoId": "",
+    "overview": "ペット用品のBARKとLiquid Deathのコラボ商品に合わせ、広告代理店Tombrasが制作したスタント企画。犬のしつけ用ショックカラーの力関係を反転させ、コラボ玩具の「キュッ」という音を検知すると装着した人間が感電するカラーを実際に製作した。BARKのブランドパートナーシップ担当VPが装着し、飼い犬に1日オフィスで主導権を握らせた。",
+    "background": "BARKとLiquid Deathは2026年に、犬とその飼い主向けの限定コレクションを共同展開した。Liquid Deathは死や悪ふざけを前面に出す挑発的なブランドトーンで知られ、BARKも犬の「いたずら」や「混沌」を愛でる文脈でコラボを訴求している。本企画は、その世界観を伝えるための告知コンテンツとして位置づけられている。",
+    "execution": "チームは人間用ショックカラーを実際に製作し、BARK×Liquid Deathのコラボ玩具の「キュッ」という音を認識して作動するようにした。玩具を噛んで鳴らすと、装着者が感電する仕組みである。BARKのVP、Dave Stangle氏が愛犬Uncleと共にオフィスで1日を過ごし、水入れが空、ソファを独占といった「落ち度」のたびに犬に「ZAP」される様子を撮影した。台本で固めず、実機を使って本物の反応を収めた。",
+    "evaluationImpact": "「しつけ用ショックカラーの立場を逆転する」という一文で説明できる明快な企画で、実機を作って本物のリアクションを撮ることで、コラボ商品の「犬に支配される飼い主」というユーモアを体感として伝えた。Ads of the Worldでは、BARKが単発の施策でなく継続的で文化に即したアイデアへ移行する流れの一例として紹介されている。受賞情報や成果数値は確認できなかった。",
+    "relatedWorks": [
+      {
+        "title": "Meet Ram Chop",
+        "description": "BARK×Liquid Deathコラボに関連してTombrasが制作した別企画(Ads of the World掲載)",
+        "url": "https://www.adsoftheworld.com/campaigns/meet-ram-chop"
+      },
+      {
+        "title": "The Most Forever Home",
+        "description": "同コラボで展開された、1ドルの棺桶型ドッグベッドと、ペットとの埋葬希望を記す書類を組み合わせた企画",
+        "url": "https://www.adsoftheworld.com/campaigns/the-reverse-shock-collar"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Stunt",
+      "Form/Film",
+      "Theme/Entertainment"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "adsoftheworld"
+  },
+  {
     "id": "question-everything-but-yourself-equinox-2026-2026",
     "title": "Question Everything But Yourself（Equinox 2026年グローバルブランドキャンペーン）",
     "summary": "AIミーム風の偽画像と実写を並べ、「疑え、ただし自分自身以外は」と身体の実感を唯一の真実に据えたEquinoxの逆張り広告。",
