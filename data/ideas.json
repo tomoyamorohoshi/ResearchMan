@@ -20095,5 +20095,197 @@
         "desc": "作家がAIアシスタント役となり、1週間参加者の生活に介入するパフォーマンス。"
       }
     ]
+  },
+  {
+    "id": "2026-10-12-1",
+    "date": "2026-10-12",
+    "title": "ささやきで刷る白紙の新聞",
+    "pattern": "文脈×技術",
+    "seed": "An-Nahar「The Blank Edition」の白紙の紙面に、NasoVoceで読者が口にできない本音をささやいて入力すると、声にならない抗議が少しずつ文字として浮かぶ号ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "annahar-blank-edition",
+        "title": "An-Nahar「The Blank Edition」（白紙の新聞）",
+        "desc": "レバノンの新聞が政治への抗議として朝刊を全ページ白紙で発行した事例。"
+      },
+      {
+        "type": "tech",
+        "id": "nasovoce",
+        "title": "NasoVoce",
+        "desc": "スマートグラスの鼻当てのマイクで、ささやき声でも認識できる入力装置。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-12-2",
+    "date": "2026-10-12",
+    "title": "宙に浮くダビデ像巡回展",
+    "pattern": "文脈×技術",
+    "seed": "門外不出のダビデ像の3Dレプリカを、LeviFabの磁石入り3Dプリントで小型化して空中に浮かせたら、『触れない宙の名作』として世界を巡回できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "michelangelo-s-david-3d-printed-replica-italy-pavilion-expo",
+        "title": "Michelangelo's David 3D Printed Replica (Italy Pavilion, Expo 2020 Dubai)",
+        "desc": "ダビデ像を3Dスキャンして原寸レプリカを作り、ドバイ万博の会場へ送った事例。"
+      },
+      {
+        "type": "tech",
+        "id": "levifab",
+        "title": "LeviFab",
+        "desc": "冷やした超伝導体の力で、磁石入りの3Dプリント物を空中に浮かせる研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-12-3",
+    "date": "2026-10-12",
+    "title": "自然の音色を演奏する",
+    "pattern": "文脈×技術",
+    "seed": "SOUNDS RIGHTで公式アーティストになった自然の音を、AutoSynthでシンセのつまみ設定に変換して配れば、誰もが森や海の音色を演奏でき、使うほど保全費が貯まるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "spotify-sounds-right",
+        "title": "SOUNDS RIGHT",
+        "desc": "自然をSpotifyのアーティストに登録し、楽曲の収益を生態系の保全に使う試み。"
+      },
+      {
+        "type": "tech",
+        "id": "autosynth",
+        "title": "AutoSynth",
+        "desc": "文章や参考音から、シンセサイザーのつまみ設定一式を作るAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-12-4",
+    "date": "2026-10-12",
+    "title": "生きた建築の巻き戻し",
+    "pattern": "文脈×技術",
+    "seed": "日々姿を変える日本館のような「生きたパビリオン」を、毎日の写真からQuerySplatで3D化して積み重ねれば、建物の変化を後から巻き戻して歩ける記録になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "japan-pavilion-expo2025-osaka-if-2026",
+        "title": "Japan Pavilion at Expo 2025 Osaka, Kansai, Japan",
+        "desc": "会場の生ごみからバイオガスを作り、展示が変わり続ける大阪万博の日本館。"
+      },
+      {
+        "type": "tech",
+        "id": "querysplat",
+        "title": "QuerySplat",
+        "desc": "複数の写真から、輪郭のにじみが少ない高精細な3D表現を作る研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-12-5",
+    "date": "2026-10-12",
+    "title": "食べられるレシピ紙の動画化",
+    "pattern": "文脈×技術",
+    "seed": "Cook This Pageの調理できる紙面に、HyperFramesでHTMLだけで作った手順動画を紐づけたら、包んで焼く間も次の工程が動画で出る広告になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "cook-this-page-2017",
+        "title": "Cook This Page",
+        "desc": "食品対応インクのレシピ付き紙で食材を包み、そのままオーブン調理できる広告。"
+      },
+      {
+        "type": "tech",
+        "id": "hyperframes",
+        "title": "HyperFrames",
+        "desc": "HTMLを書くだけで動画が作れる、AIエージェント向けのオープンソース。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-12-6",
+    "date": "2026-10-12",
+    "title": "歌詞を身体で増幅するMV",
+    "pattern": "技術×技術",
+    "seed": "EmoMimeの手形ロボットアームを、Vocaloid-Style MV Pipelineが歌詞から作るカット割りに同期させ、歌い手の表情を手が増幅する身体拡張ライブMVができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "emomime",
+        "title": "EmoMime",
+        "desc": "顔のそばで安全に動き、表情やしぐさを増幅する手形のウェアラブルアーム。"
+      },
+      {
+        "type": "tech",
+        "id": "vocaloid-style-mv-pipeline",
+        "title": "Vocaloid-Style MV Pipeline",
+        "desc": "曲と歌詞から手書き風の歌詞MVを自動で作るClaude Code用の雛形。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-12-7",
+    "date": "2026-10-12",
+    "title": "浮遊物と連動する実写空間",
+    "pattern": "技術×技術",
+    "seed": "LeviFabで浮かせた物体の動きを、Three.js Native Gaussian Splat Rendererで描く実写の3D空間とリンクさせ、浮遊物が動くと画面内の世界も歪む展示ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "levifab",
+        "title": "LeviFab",
+        "desc": "冷やした超伝導体の力で、磁石入りの3Dプリント物を空中に浮かせる研究。"
+      },
+      {
+        "type": "tech",
+        "id": "three-js-native-gaussian-splat-renderer",
+        "title": "Three.js Native Gaussian Splat Renderer",
+        "desc": "Three.js単体で、写真から作る実写風3D空間をブラウザに描ける機能。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-12-8",
+    "date": "2026-10-12",
+    "title": "師匠の所作を先読み稽古",
+    "pattern": "転用",
+    "seed": "Masked Visual Actionsの「動きから未来の映像を予測する」力をロボットでなく伝統芸能の所作に転用すれば、弟子が師匠の次の動きを先に見て稽古できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "masked-visual-actions-for-unified-world-modeling",
+        "title": "Masked Visual Actions for Unified World Modeling (MVA)",
+        "desc": "ロボットの動きと未来の映像を相互に予測する、統一型の世界モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-12-9",
+    "date": "2026-10-12",
+    "title": "飛ぶ紙面付録の事前検証",
+    "pattern": "転用",
+    "seed": "ovrtx / ovphysxの物理挙動の自動検証を制作の確認でなく紙飛行機の設計に転用し、AIが先に飛ばして選んだ形を新聞付録で折らせたら面白いかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ovrtx-ovphysx",
+        "title": "ovrtx / ovphysx (NVIDIA Agent Toolkit — Omniverse Libraries)",
+        "desc": "AIが3Dシーンの視点や物理挙動を、制作ツール内で自動検証できるSDK群。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-12-10",
+    "date": "2026-10-12",
+    "title": "歓声に即応する背景映像",
+    "pattern": "転用",
+    "seed": "MiniMax-H3-Turbo-Loraの4ステップ高速化を、完成映像づくりでなく『待ち時間の消去』に使い、ライブ会場の歓声に即応して背景映像が生まれ変わる演出にできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "minimax-h3-turbo-lora",
+        "title": "MiniMax-H3-Turbo-Lora",
+        "desc": "動画と音声の生成を、通常20ステップから4ステップに短縮する高速化用LoRA。"
+      }
+    ]
   }
 ]
