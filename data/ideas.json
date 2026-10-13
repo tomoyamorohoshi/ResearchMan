@@ -20287,5 +20287,227 @@
         "desc": "動画と音声の生成を、通常20ステップから4ステップに短縮する高速化用LoRA。"
       }
     ]
+  },
+  {
+    "id": "2026-10-13-1",
+    "date": "2026-10-13",
+    "title": "鼻先の囁きで3D骨格を操る",
+    "pattern": "技術×技術",
+    "seed": "NasoVoce のささやき発話で、AniGen が1枚絵から作った動かせるキャラの骨格を操れるかも。声を出せない場所でも、口元の小声だけで人形を動かす操演ができそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "nasovoce",
+        "title": "NasoVoce",
+        "desc": "スマートグラスの鼻当てで、ほぼ声を出さないささやきも聞き取る入力技術。"
+      },
+      {
+        "type": "tech",
+        "id": "anigen",
+        "title": "AniGen",
+        "desc": "1枚の画像から、骨格と皮膚の伸縮つきの動かせる3Dキャラを作る技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-13-2",
+    "date": "2026-10-13",
+    "title": "電線の鳥を空き家の記憶に",
+    "pattern": "文脈×技術",
+    "seed": "Searching for Birds on Wires の写真を楽譜にする発想に basicpitch.cpp を掛け、空き家に残る古い楽器や鼻歌の録音をMIDI化して「家の楽譜」にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "abradee-searching-for-birds-on-wires",
+        "title": "Searching for Birds on Wires",
+        "desc": "電線に止まる鳥の写真を楽譜にして、電力インフラを交響曲にした広告。"
+      },
+      {
+        "type": "tech",
+        "id": "basicpitch-cpp",
+        "title": "basicpitch.cpp",
+        "desc": "音声を楽譜データ(MIDI)に変換するモデルを、ブラウザでも動かせる軽量版。"
+      },
+      {
+        "type": "case",
+        "id": "refamily-2026",
+        "title": "空き家に眠るモノの履歴書から、空き家を未来へつなぐ！（ReFamily）",
+        "desc": "空き家に残る物の履歴に言葉を足し、循環させる体験を提案した企画。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-13-3",
+    "date": "2026-10-13",
+    "title": "消せる背景で寝床を見せる",
+    "pattern": "文脈×技術",
+    "seed": "The Unliveable Listings の路上の寝床を、LTX-2.3 Clean Plate IC-LoRA で人や車を消した「何もない街」に差し替えると、見えなくされた存在の不在を体感させられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "the-unliveable-listings-2026",
+        "title": "The Unliveable Listings",
+        "desc": "路上生活者の寝床を物件広告風に見せ、寄付を呼びかけた企画。"
+      },
+      {
+        "type": "tech",
+        "id": "ltx-2-3-clean-plate-ic-lora",
+        "title": "LTX-2.3 Clean Plate IC-LoRA",
+        "desc": "動画から動く人や車を消し、背景を自然に作り直すLoRAモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-13-4",
+    "date": "2026-10-13",
+    "title": "スタジアムの歌を骨格に変換",
+    "pattern": "文脈×技術",
+    "seed": "Discount Chants の応援歌のリアルタイム認識に HS-TasNet の音源分離を足し、観客の声だけ抜き出して、その歌声のリズムでスタジアム映像のキャラが踊る演出ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "mercado-libre-discount-chants",
+        "title": "Discount Chants",
+        "desc": "スタジアムの応援歌を聞き取り、歌詞の商品を割引にした屋外広告。"
+      },
+      {
+        "type": "tech",
+        "id": "hs-tasnet",
+        "title": "HS-TasNet",
+        "desc": "歌・ドラム・ベースなどを23ミリ秒で素早く分けて取り出す音源分離モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-13-5",
+    "date": "2026-10-13",
+    "title": "待ち合わせ街を撮り直す",
+    "pattern": "文脈×技術",
+    "seed": "HACHI-8 PROJECT 2026 の回遊型ストリートアートを、FlashRender で後から別アングルに撮り直せるようにすると、来場者の動画が街全体の自由視点アーカイブになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "hachi-8-project-2026-2026",
+        "title": "HACHI-8 PROJECT 2026",
+        "desc": "ハチ公の待ち合わせ文化を再解釈し、街を回遊するストリートアート企画。"
+      },
+      {
+        "type": "tech",
+        "id": "flashrender",
+        "title": "FlashRender",
+        "desc": "撮影済み動画を、後から好きなカメラ角度で撮り直したように作る技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-13-6",
+    "date": "2026-10-13",
+    "title": "ダンスを写し取り楽譜へ",
+    "pattern": "技術×技術",
+    "seed": "SCAIL-2 で動物に乗り移らせたダンスを MotionMind が振り付けに分解し、その各ステップを basicpitch.cpp で音階に変換すれば、動きから生まれる曲ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "scail-2",
+        "title": "SCAIL-2",
+        "desc": "動画の人物の動きを、別のキャラや動物にそのまま移す技術。"
+      },
+      {
+        "type": "tech",
+        "id": "motionmind",
+        "title": "MotionMind",
+        "desc": "ダンス動画を3Dアバターで再現し、ステップに分けて教えてくれる技術。"
+      },
+      {
+        "type": "tech",
+        "id": "basicpitch-cpp",
+        "title": "basicpitch.cpp",
+        "desc": "音声を楽譜データ(MIDI)に変換するモデルを、ブラウザでも動かせる軽量版。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-13-7",
+    "date": "2026-10-13",
+    "title": "splat補修と視点撮り直し",
+    "pattern": "技術×技術",
+    "seed": "Gaussian Splat Patch で不要物を消したスキャンを VGGT-Ω で再学習した自前データで推定し直すと、現場の記録を「直して」「測り直せる」街の複製が作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "gaussian-splat-patch",
+        "title": "Gaussian Splat Patch",
+        "desc": "写真から作る3Dスキャンを、Blender上でスタンプ感覚で直せる拡張機能。"
+      },
+      {
+        "type": "tech",
+        "id": "vggt",
+        "title": "VGGT-Ω (VGGT-Omega)",
+        "desc": "複数の写真や動画から、カメラの位置や奥行きを数秒で推定するモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-13-8",
+    "date": "2026-10-13",
+    "title": "水滴で聴く声のかたち",
+    "pattern": "転用",
+    "seed": "MorphDrops は水滴の形を変える紙のディスプレイだが、HS-TasNet で分けた声やドラムの成分ごとに水滴が変形する「音を見る紙」に転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "morphdrops",
+        "title": "MorphDrops",
+        "desc": "導電インクの紙に電気を流し、水滴の形を変えて見せる紙のディスプレイ。"
+      },
+      {
+        "type": "tech",
+        "id": "hs-tasnet",
+        "title": "HS-TasNet",
+        "desc": "歌・ドラム・ベースなどを23ミリ秒で素早く分けて取り出す音源分離モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-13-9",
+    "date": "2026-10-13",
+    "title": "ロボ用テニス技術を伝統継承に",
+    "pattern": "転用",
+    "seed": "AdaPT の「選手らしいフォームのまま動かす」技術を、Big Green Egg が描いた父から娘への料理の継承に転用し、名人の手つきをロボが再現して残せるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "adapt",
+        "title": "AdaPT",
+        "desc": "ロボットにテニス名選手らしいフォームでサーブやラリーをさせる技術。"
+      },
+      {
+        "type": "case",
+        "id": "some-traditions-are-worth-passing-down-2026",
+        "title": "Some Traditions Are Worth Passing Down",
+        "desc": "父娘の記憶を軸に、調理器具を世代継承の家宝として描いた米キャンペーン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-13-10",
+    "date": "2026-10-13",
+    "title": "クリーンプレートで謎を隠す",
+    "pattern": "転用",
+    "seed": "LTX-2.3 Clean Plate IC-LoRA は動く被写体を消す技術だが、CLOVERFIELD ARG のように映像から怪物の痕跡だけ消し、写り込みの違和感を探す謎解き素材に使えるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ltx-2-3-clean-plate-ic-lora",
+        "title": "LTX-2.3 Clean Plate IC-LoRA",
+        "desc": "動画から動く人や車を消し、背景を自然に作り直すLoRAモデル。"
+      },
+      {
+        "type": "case",
+        "id": "cloverfield-arg",
+        "title": "CLOVERFIELD ARG（1-18-08.com）",
+        "desc": "ポラロイド写真と架空サイトだけで映画の謎を広げたネット謎解き企画。"
+      }
+    ]
   }
 ]
