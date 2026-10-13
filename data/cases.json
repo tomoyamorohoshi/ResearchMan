@@ -1,5 +1,576 @@
 [
   {
+    "id": "a-british-original-2023",
+    "title": "A British Original",
+    "summary": "天候・時刻・ニュースに応じて文言が変化するアダプティブ・ビルボードを512点展開し、英国的ウィットで「旅の理由」を再定義したBritish Airwaysの大規模OOH。",
+    "client": "British Airways",
+    "agency": "Uncommon Creative Studio (London)",
+    "categories": [
+      "OOH革新",
+      "データクリエイティブ"
+    ],
+    "award": "Cannes Lions 2023 Outdoor Lions Grand Prix（British Airways／Uncommon Creative Studio）",
+    "year": "2023",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/a-british-original-case-study",
+    "thumbnail": "/thumbnails/a-british-original-2023.jpg",
+    "videoId": "",
+    "overview": "British Airwaysの大規模ブランドキャンペーン「A British Original」。制作はUncommon Creative Studio(ロンドン)。屋外・プリント・動画を合わせ512点のクリエイティブ・エグゼキューションを展開し、中心となるのは天候・時刻・時事ニュースなどのデータに応じて文言がリアルタイムに変化するアダプティブ・ビルボード。英国らしさと「旅に出る理由」を広告自体で再定義した。",
+    "background": "旅行需要が回復していく時期にあたり、British Airwaysは数年ぶりとなる大型ブランドキャンペーンを必要としていた。価格や便数といった機能訴求ではなく、英国らしい自信とユーモアを打ち出す新しいブランドプラットフォームによって、「なぜ旅に出るのか」という感情的な理由を広告自体で語り直すことが狙いとされた。",
+    "execution": "512点に及ぶ屋外・プリント・動画のクリエイティブを一括で開発し、各都市の天候・時刻・時事ニュースといったリアルタイムデータに連動してコピーが自動で切り替わるアダプティブ・ビルボードを中核に据えた。晴天や通勤時間帯などの文脈に応じ、British Airwaysらしい軽妙な英国的ウィットの一言が都市の屋外空間に大量に現れる仕組みを展開した。",
+    "evaluationImpact": "単発のビジュアルではなく、データ連動で文言が変わる仕組みを512点規模で量産した点が評価の軸となり、Cannes Lions 2023 Outdoor LionsでGrand Prixを受賞した。広告自体の「反応の速さ」でブランドの自信を体現し、屋外広告が静的な一方通行のメディアであるという前提を更新した事例として位置づけられる。",
+    "relatedWorks": [],
+    "sources": [
+      "Creative OOH"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Form/Print",
+      "Tech/Data",
+      "Theme/Mobility"
+    ]
+  },
+  {
+    "id": "find-your-summer-2024",
+    "title": "Find Your Summer",
+    "summary": "気象APIと連動したビルボードが冬のロンドンで日が差す場所をリアルタイム検出し、割引クーポンと共に夏の気分を届けたMagnumのデータドリブンOOH。",
+    "client": "Magnum Ice Cream",
+    "agency": "Lola MullenLowe (Madrid)",
+    "categories": [
+      "OOH革新",
+      "データクリエイティブ"
+    ],
+    "award": "Cannes Lions 2024 Outdoor Lions Bronze（Billboards: Sectors、Magnum／LOLA MullenLowe）※同キャンペーン内の別エントリー『STAIRS』『DOORSTEP』『CORNER』（Outdoor > Consumer Goods）がOutdoor Lions Grand Prixを受賞しているが、『Find Your Summer』単体でのGrand Prix受賞ではない",
+    "year": "2024",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/find-your-summer-case-study",
+    "thumbnail": "/thumbnails/find-your-summer-2024.jpg",
+    "videoId": "",
+    "overview": "Magnum Ice Creamのデータドリブンな屋外広告企画「Find Your Summer」。制作はLOLA MullenLowe(マドリード)。気象APIと連動したビルボードが、曇りや雨の多いロンドンの冬の中でリアルタイムに日が差している場所を検出し、近隣の「日だまりスポット」を案内する。合わせて位置情報ビーコンを用い、最寄りの取扱店舗への割引クーポンをプッシュ通知で送る仕組みも用意した。",
+    "background": "Magnumは夏を主戦場とするアイスクリームブランドであり、日照時間が短く天候も変わりやすいロンドンの冬場は需要創出が課題となる。「いま、どこかに日差しがある」という小さな事実を見つけ出し、季節外れの瞬間に夏の気分を届けるというアイデアとして着想された企画である。",
+    "execution": "気象データAPIと連動したビルボードが、ロンドン周辺でリアルタイムに日が差している場所を検出し、近隣3スポットを案内する表示に切り替わる構成。位置情報ビーコンと組み合わせ、近くのMagnum取扱店舗への来店を促す割引クーポンをスマートフォンへプッシュ通知で送付した。",
+    "evaluationImpact": "季節外れの需要創出という課題に対し、天候データをクリエイティブの表示内容そのものに組み込んだ点が評価され、Cannes Lions 2024 Outdoor Lions部門(Billboards: Sectors)でBronzeを受賞。同じ『Magnum×LOLA MullenLowe』の夏キャンペーン内では、別エントリー『STAIRS』『DOORSTEP』『CORNER』(Outdoor > Consumer Goods)がOutdoor Lions Grand Prixを受賞しており、同一キャンペーンでも部門ごとにエントリーが分かれていた点に注意が必要な事例。",
+    "relatedWorks": [],
+    "sources": [
+      "Creative OOH"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Tech/Data",
+      "Theme/Food"
+    ]
+  },
+  {
+    "id": "pub-museums-2024",
+    "title": "Pub Museums",
+    "summary": "アイルランドの歴史的パブをQRコード起点のARミュージアムに変え、地域の文化財としての価値を可視化したHeinekenの施策。",
+    "client": "Heineken (Heineken Ireland)",
+    "agency": "Publicis Dublin / LePub Milan / Thinkhouse",
+    "categories": [
+      "OOH革新",
+      "カルチャーインサイト"
+    ],
+    "award": "Cannes Lions 2024 Outdoor Lions Gold（Outdoor > Culture & Context／Heineken Ireland, LePub）",
+    "year": "2024",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/pub-museums-case-study",
+    "thumbnail": "/thumbnails/pub-museums-2024.jpg",
+    "videoId": "",
+    "overview": "Heineken Irelandによる「Pub Museums」。制作はPublicis Dublin、LePub Milan、Thinkhouse。アイルランドの歴史的なパブ建物そのものをミュージアムに見立て、QRコードを起点にARで解説を重ねて表示する仕組みを導入し、地域に根づくパブという場所の文化的価値を可視化した。",
+    "background": "アイルランドでは地域のパブの閉店・減少が続き、飲食店としてだけでなく地域コミュニティや歴史を担う場としての価値が失われつつあった。Heinekenはパブを「守るべき文化財」として再定義し、建物自体に歴史的価値を帯びさせることで存続を後押しする狙いを持った企画として着想した。",
+    "execution": "歴史あるパブの外観や内装にQRコードを設置し、来店者がスマートフォンで読み取るとARで建物の歴史やエピソードが重なって表示される仕組みを構築。パブの壁や扉そのものを展示物のように扱い、博物館の解説パネルのような体験を実在の店舗空間に組み込んだ。",
+    "evaluationImpact": "広告的な訴求を加えず、パブという既存の物理空間をメディア化し文化財相当の見せ方に転換した点が評価され、Cannes Lions 2024 Outdoor Lions部門(Outdoor > Culture & Context)でGoldを受賞。地域コミュニティの資産を守るという社会的文脈を、拡張現実という技術で可視化した事例。",
+    "relatedWorks": [],
+    "sources": [
+      "Creative OOH"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Tech/XR",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "shades-of-red-2025",
+    "title": "Shades of Red",
+    "summary": "色褪せたコカ・コーラの赤いオーニング12,700店分をメキシコ全土で張り替え、街の既存メディア網を巨大OOHに変えた施策。",
+    "client": "Coca-Cola",
+    "agency": "DAVID Madrid",
+    "categories": [
+      "OOH革新",
+      "メディア発明"
+    ],
+    "award": "Cannes Lions 2025 Outdoor Lions Gold（Special Build）",
+    "year": "2025",
+    "regions": [
+      "中南米"
+    ],
+    "link": "https://adswithbenefits.in/coca-colas-shades-of-red-used-faded-awnings-across-mexico-as-its-biggest-ooh-campaign/",
+    "thumbnail": "/thumbnails/shades-of-red-2025.jpg",
+    "videoId": "",
+    "overview": "コカ・コーラがメキシコ全土で展開した屋外広告キャンペーン。制作はDAVID Madrid。長年コカ・コーラの看板色として掲出されてきた全国12,700店舗の色褪せた赤いオーニング（庇）を新しい赤に張り替え、都市に既存する物理的な広告インフラそのものを国内最大規模のOOH施策へと転換した。Cannes Lions 2025 Outdoor Lions Gold（Special Build）を受賞。",
+    "background": "メキシコの個人商店の多くは長年コカ・コーラ提供の赤いオーニングを掲出しており、色褪せた庇が街の日常風景として定着していた。新規に看板や広告枠を設置するのではなく、すでに街にあるブランド資産の「劣化」そのものに着目し、張り替えという最小限の介入で最大規模のブランド再活性化を狙う発想が起点となった。",
+    "execution": "全国12,700店舗を対象に、色褪せた赤いオーニングを新しい鮮やかな赤へ張り替える施工を実施。新規出稿ではなく既存インフラの更新という形を取ることで、通常のOOH予算規模を大きく超える掲出面積を確保した。結果として、メキシコ全土の街並みそのものがコカ・コーラの巨大な屋外広告網へと変わった。",
+    "evaluationImpact": "既存の物理メディア網をメンテナンスという形でブランド施策に転換した発想が、Cannes Lions 2025 Outdoor Lions Gold（Special Build）に選ばれた。二次情報（Coca-Cola公式発表）ではOutdoor: Consumer Goods部門およびBrand Experience: Single Market Campaign部門でのBronze受賞も報じられているが、一次ソース上で該当エントリーを確認できておらず、本データベースでは未検証として扱う。",
+    "relatedWorks": [],
+    "sources": [
+      "Creative OOH"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Theme/Food"
+    ]
+  },
+  {
+    "id": "claustrobars-2025",
+    "title": "Claustrobars",
+    "summary": "混雑するロンドン・チリ・ブラジルの実在バー近隣にOOH/DOOHを設置し、現地の状況と掲出位置を連動させたステラ・アルトワの屋外広告群。",
+    "client": "Stella Artois",
+    "agency": "Grey London",
+    "categories": [
+      "OOH革新",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "Cannes Lions 2025 Outdoor Lions Gold（Billboards: Sectors）。『Claustrobars』はキャンペーン集約名で、個別エントリー『PROTECTOR OF THE CHALICE』（Stella Artois／Grey, London）がGold受賞。同キャンペーン傘下の『THE SIP OF SANCTUARY』『HAPPINESS WITHIN CHAOS』もOutdoor Lions Gold（Consumer Goods）",
+    "year": "2025",
+    "regions": [
+      "欧州",
+      "中南米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/claustrobars-7d82cbc7-bef2-4a8e-bc59-7d77f9249c10",
+    "thumbnail": "/thumbnails/claustrobars-2025.jpg",
+    "videoId": "",
+    "overview": "Stella Artoisが『Claustrobars』として展開したOOH/DOOHキャンペーン。制作はGrey London。ロンドン・チリ・ブラジルの混雑した実在のバー近隣に、その場所の状況と連動した屋外広告を設置するキャンペーン集約名で、個別エントリー『PROTECTOR OF THE CHALICE』がCannes Lions 2025 Outdoor Lions Gold（Billboards: Sectors）を受賞。同キャンペーン傘下の『THE SIP OF SANCTUARY』『HAPPINESS WITHIN CHAOS』もOutdoor Lions Gold（Consumer Goods）を受賞した。",
+    "background": "混雑した人気バーの周辺では、入店待ちや満席で中に入れない客が多く発生する。Stella Artoisはそうした「入れない状況」自体を広告の設置条件として逆手に取り、実在する特定のバーの近隣という文脈に合わせてメッセージを出し分ける発想を採用した。",
+    "execution": "ロンドン・チリ・ブラジルの混雑した実在バーの近隣に、OOH/DOOHを個別に設置。掲出場所となるバーの状況（満席、行列、喧騒など）とクリエイティブの内容を連動させ、場所ごとに異なるメッセージを展開した。『PROTECTOR OF THE CHALICE』をはじめ複数の個別エントリーで構成される。",
+    "evaluationImpact": "個別エントリー『PROTECTOR OF THE CHALICE』がCannes Lions 2025 Outdoor Lions Gold（Billboards: Sectors）を受賞、同キャンペーン傘下の『THE SIP OF SANCTUARY』『HAPPINESS WITHIN CHAOS』もOutdoor Lions Gold（Consumer Goods）を受賞するなど複数部門で評価された。設置場所の文脈とクリエイティブを一体化させるメディア活用の精度が評価点である。",
+    "relatedWorks": [],
+    "sources": [
+      "Creative OOH"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Theme/Food"
+    ]
+  },
+  {
+    "id": "phone-break-2025",
+    "title": "Phone Break",
+    "summary": "バス停や行列など人がスマホを触る場所の屋外広告に、画面の代わりにキットカットを持つ写実的ビジュアルを掲出したメディア発明。",
+    "client": "KitKat",
+    "agency": "VML Czechia (Prague)",
+    "categories": [
+      "OOH革新",
+      "メディア発明"
+    ],
+    "award": "Cannes Lions 2025 Outdoor Lions Grand Prix（Billboards: Sectors）。『Phone Break』はキャンペーン集約名で、個別エントリー『PUBLIC TRANSPORT』（KitKat／VML Prague）がGrand Prix受賞。同キャンペーン傘下の『STREET』『CROWD』もOutdoor Lions Grand Prix（Consumer Goods）",
+    "year": "2025",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/phone-break",
+    "thumbnail": "/thumbnails/phone-break-2025.jpg",
+    "videoId": "",
+    "overview": "KitKatが『Phone Break』として展開したOOHキャンペーン。制作はVML Czechia (Prague)。人々が無意識にスマートフォンを取り出す場所——バス停や行列など——に合わせて屋外広告を設置し、画面の代わりにキットカットを持つ写実的なビジュアルを掲出した。個別エントリー『PUBLIC TRANSPORT』がCannes Lions 2025 Outdoor Lions Grand Prix（Billboards: Sectors）を受賞。",
+    "background": "スマートフォンを待ち時間に無意識に取り出す行動は、バス停や行列、公共交通の利用シーンなど特定の場所に偏って起こる。KitKatは『手持ち無沙汰な時間にひと休み』という既存のブランドメッセージを、スマホ利用という現代の行動習慣とOOHの掲出場所選定そのものに結びつける発想を取った。",
+    "execution": "人がスマホを触る行動が集中するバス停・行列・混雑した場所を選定し、そこに実際の掲出位置と連動した写実的ビジュアルの屋外広告を設置。画面を見る代わりにキットカットを持つ人物を描き、場所の文脈をクリエイティブの前提として組み込んだ。個別エントリー『PUBLIC TRANSPORT』『STREET』『CROWD』で構成される。",
+    "evaluationImpact": "個別エントリー『PUBLIC TRANSPORT』がCannes Lions 2025 Outdoor Lions Grand Prix（Billboards: Sectors）を受賞、同キャンペーン傘下の『STREET』『CROWD』もOutdoor Lions Grand Prix（Consumer Goods）を獲得する最高評価を得た。掲出場所そのものをメッセージの一部にする、OOHのメディア活用としての精度が評価された。",
+    "relatedWorks": [],
+    "sources": [
+      "Creative OOH"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Theme/Food"
+    ]
+  },
+  {
+    "id": "scratch-sniff-2025",
+    "title": "Scratch & Sniff",
+    "summary": "マイクロカプセル印刷でビルボードに香りを仕込み、通行人が擦ると実際に匂いが立つ体験型OOHをLynx(Axe)が展開。",
+    "client": "Lynx (Axe)",
+    "agency": "LOLA MullenLowe",
+    "categories": [
+      "OOH革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "Cannes Lions 2025 Outdoor Lions Gold（Displays／Lynx・Axe, LOLA MullenLowe Madrid）",
+    "year": "2025",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.thedrum.com/news/ad-the-day-lynx-reveals-balls-the-wall-billboard-campaign",
+    "thumbnail": "/thumbnails/scratch-sniff-2025.jpg",
+    "videoId": "",
+    "overview": "Lynx（Axe）がLOLA MullenLowe Madrid制作で展開したビルボードキャンペーン。マイクロカプセル技術によるスクラッチ&スニフ印刷を屋外広告面に施し、通行人が実際に表面を擦ると製品の香りが立つ体験を作った。Cannes Lions 2025 Outdoor Lions Gold（Displays）を受賞。",
+    "background": "デオドラント・ボディスプレーのLynx（Axe）は、視覚情報が中心の屋外広告において製品最大の訴求点である「香り」を伝えられないという制約を抱えていた。印刷技術を使って香りそのものを掲出面に組み込むことで、視覚に偏る媒体の限界を突破する狙いがあった。",
+    "execution": "香り成分を封入したマイクロカプセルを含むインクをビルボードに印刷し、通行人が表面を擦るとカプセルが壊れて実際の香りが立つ仕組みを構築。見るだけでなく嗅覚でも製品を体験できる屋外広告として設置した。",
+    "evaluationImpact": "香りという視覚メディアでは伝えづらい要素を、印刷技術によって屋外広告そのものに組み込んだ発想がCannes Lions 2025 Outdoor Lions Gold（Displays）に選ばれた。デジタルやビジュアルに依存しない、物理媒体の技術的拡張としてOOHの可能性を広げた事例である。",
+    "relatedWorks": [],
+    "sources": [
+      "Creative OOH"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/OOH"
+    ]
+  },
+  {
+    "id": "gulf-of-mexico-bar-2025",
+    "title": "Gulf of Mexico (Bar)",
+    "summary": "メキシコ湾の改名騒動に対抗し、海上に実在するバーを建設してGoogleマップへ正式登録、デジタル地図自体をメディア化したTecateの施策。",
+    "client": "Tecate",
+    "agency": "LePub Mexico City",
+    "categories": [
+      "OOH革新",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "Cannes Lions 2025 Outdoor Lions Gold（Local Brand）／Brand Experience & Activation Lions Gold（Local Brand）",
+    "year": "2025",
+    "regions": [
+      "中南米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/gulf-of-mexico-bar",
+    "thumbnail": "/thumbnails/gulf-of-mexico-bar-2025.jpg",
+    "videoId": "",
+    "overview": "メキシコのビールブランドTecateとLePub Mexico Cityによる施策。「メキシコ湾」を「アメリカ湾」へ改称しようとする動きに対抗し、メキシコ領海内の海上に実在するバーの構造物を建設。Googleマップなど地図プラットフォームに公式施設として登録し、地図上で「Gulf of Mexico」を検索すると実際にこのバーが表示される仕組みを作った。",
+    "background": "2025年、米国側で「メキシコ湾」を「ガルフ・オブ・アメリカ」と呼び替える動きが広がり、メキシコ国内で反発が起きた。Tecateはメキシコを代表するビールブランドとして、この地名を巡る論争に文化的な立場から応答する施策を企画した。",
+    "execution": "メキシコ領海内の海上に実際に利用可能なバーの構造物を建造し、施設としてGoogleマップ等の地図プラットフォームへ正式に登録。地図上で「Gulf of Mexico」を検索すると、このバーの位置情報がヒットするようにし、デジタル地図というインフラそのものを広告のメディアとして利用した。",
+    "evaluationImpact": "Cannes Lions 2025でOutdoor Lions Gold（Local Brand）およびBrand Experience & Activation Lions Gold（Local Brand）をTecate、LePub Mexico Cityが受賞。地政学的な地名論争に対し、実在の建造物と地図データ登録という物理とデジタルを組み合わせた手法で応答し、屋外広告とブランド体験の両部門で評価された。",
+    "relatedWorks": [],
+    "sources": [
+      "Creative OOH"
+    ],
+    "tags": [
+      "Form/Stunt",
+      "Form/Event",
+      "Tech/Data",
+      "Theme/Food"
+    ]
+  },
+  {
+    "id": "case-wbaj8t-2023",
+    "title": "歌えるエスカレーター（うどんスープCMソング）",
+    "summary": "六本木駅のエスカレーター全面に歌詞を分割掲出し、歩くにつれ歌詞が進行してCMソングを体感できるヒガシマル醤油のOOH。",
+    "client": "ヒガシマル醤油",
+    "agency": "",
+    "categories": [
+      "OOH革新"
+    ],
+    "award": "",
+    "year": "2023",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.advertimes.com/20231226/article444447/",
+    "thumbnail": "/thumbnails/case-wbaj8t-2023.jpg",
+    "videoId": "",
+    "overview": "ヒガシマル醤油のうどんスープCMソングを題材に、都営大江戸線六本木駅のエスカレーター全面に歌詞を分割して掲出したOOH施策。エスカレーターに乗って上昇・下降する間に歌詞パネルが順に視界を流れ、CMソングの歌詞を体感的に辿れる仕掛けとした。",
+    "background": "ヒガシマル醤油のうどんスープには親しまれているCMソングがあり、その歌詞世界を単なる音源や映像でなく、通行人が実際に身体を動かしながら体験できる形で届けることが企画の出発点となった。",
+    "execution": "六本木駅のエスカレーター側面周辺を使い、歌詞を一文字・一句ずつ分割したパネルを連続して掲出。エスカレーターの移動速度に合わせて歌詞が次々と現れ、乗客が上り下りする間にCMソングの歌詞を最初から最後まで読み進められる構成にした。",
+    "evaluationImpact": "通勤・通学で日常的にエスカレーターを利用する乗客の移動そのものを歌詞の再生装置に変えた発想が注目され、advertimesで紹介された。受賞情報は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Creative OOH"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Theme/Music",
+      "Theme/Food"
+    ]
+  },
+  {
+    "id": "osaka-metro-2024",
+    "title": "Osaka Metro本町駅 ベローズプリント大型トリックアート",
+    "summary": "特殊印刷技術で進行方向別に異なる絵柄が見える、大阪メトロ本町駅連絡通路の大型メッセージボード。",
+    "client": "大阪メトロ アドエラ",
+    "agency": "SO-KEN／GRANDPOOL",
+    "categories": [
+      "OOH革新"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://osakametro-adera.jp/news/20240127",
+    "thumbnail": "/thumbnails/osaka-metro-2024.jpg",
+    "videoId": "",
+    "overview": "大阪メトロ本町駅の連絡通路に設置された大型メッセージボード。特殊印刷技術「ベローズプリント」を用い、通行する方向によって全く異なる絵柄――本町駅の過去の姿と未来の姿――が見えるトリックアートとして制作された。制作はSO-KENとGRANDPOOL。",
+    "background": "大阪メトロのOOHプラットフォーム「アドエラ」が、駅構内の連絡通路という日常的な移動空間を使い、単なる掲示物ではなく視覚体験そのものを価値化する広告表現を模索する中で企画された。",
+    "execution": "表面に凹凸をつけて印刷する「ベローズプリント」技術を用い、一枚のボードに2つの絵柄を角度分離して焼き込んだ。通路を一方向に進む人には本町駅の過去の姿が、反対方向に進む人には未来の姿が見えるよう設計し、同じ場所を通る人同士が全く異なる絵を見ているという体験を生んだ。",
+    "evaluationImpact": "特殊印刷という技術的な工夫のみで、通行方向という誰もが持つ動線の違いを体験の差異に変換した点が特徴。大阪メトロの公式ニュースリリースで紹介された。受賞情報は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Creative OOH"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Form/Print",
+      "Theme/Art"
+    ]
+  },
+  {
+    "id": "heartbuds-ooh-2024",
+    "title": "HeartBuds 鏡張りOOH",
+    "summary": "渋谷に全長22mのハート型イヤホン広告を掲出し、鏡面を組み込んで通行人が映り込み撮影できる仕掛けにしたSoftBank SELECTIONのOOH。",
+    "client": "SoftBank SELECTION（SB C&S）",
+    "agency": "",
+    "categories": [
+      "OOH革新"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.advertimes.com/20240208/article448442/",
+    "thumbnail": "/thumbnails/heartbuds-ooh-2024.jpg",
+    "videoId": "",
+    "overview": "SoftBank SELECTIONのイヤホン「HeartBuds」の告知として渋谷に掲出された、全長22mのハート型OOH。ハートの一部に鏡を組み込み、通行人が自然に自分の姿を映り込ませて撮影できる仕掛けにした。",
+    "background": "ハート型イヤホン「HeartBuds」の発売にあわせ、商品の形状そのものを街中で体感・発信してもらうための告知施策として企画された。SNSでの拡散を前提に、通行人自身が広告の一部になる仕組みが求められた。",
+    "execution": "渋谷の街頭に全長22mに及ぶ大型のハート型広告を設置し、ハートの一部分を鏡張りにした。通行人がその前に立つと自分の姿がハートの中に映り込み、商品を身につけているかのような写真が自然に撮れる構成にした。",
+    "evaluationImpact": "巨大なサイズと鏡を組み合わせることで、通行人の自発的な撮影・SNS投稿を誘発する設計とした点が特徴。advertimesで紹介された。受賞情報は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Creative OOH"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Tech/Device",
+      "Theme/Fashion"
+    ]
+  },
+  {
+    "id": "technics-2-2024",
+    "title": "Technics「#忘れられない風景と音楽」第2弾 ピールオフ・ミュージックキーホルダー広告",
+    "summary": "剥がすとスマホでプレイリストが再生される「音楽キーホルダー」がもらえるピールオフ広告をTechnicsが新宿・大阪に展開。",
+    "client": "パナソニック（Technics）",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新",
+      "OOH革新"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.advertimes.com/20240808/article470159/",
+    "thumbnail": "/thumbnails/technics-2-2024.jpg",
+    "videoId": "",
+    "overview": "パナソニックのオーディオブランドTechnicsが展開した「#忘れられない風景と音楽」第2弾の屋外広告。ポスター面を剥がすと中からミュージックキーホルダーが取り出せる仕掛けで、スマートフォンでかざすと特定のプレイリストが再生される。新宿・大阪の交通広告スペースに掲出された。",
+    "background": "第1弾に続くシリーズ展開で、音楽と風景・記憶の結びつきを訴求するブランドキャンペーンの一環。広告を見るだけで終わらせず、通行人が実際に持ち帰って音楽体験につなげられる仕掛けが求められた。",
+    "execution": "ポスター状の広告面にピールオフ加工を施し、剥がすとミュージックキーホルダーが現れる構造にした。キーホルダーはスマートフォンでの読み取りに対応し、シリーズテーマに沿ったプレイリストが再生される。新宿・大阪の主要エリアに掲出し、通行人が実際に手に取れる「持ち帰れる広告」として設計した。",
+    "evaluationImpact": "見るだけのOOHを、剥がして持ち帰り音楽を聴くという一連の行動に変換した点が特徴。ブランドが訴える「風景と音楽の記憶」というテーマを、キーホルダーという物理的な記念品とプレイリスト再生という体験の両方で補強した事例である。",
+    "relatedWorks": [],
+    "sources": [
+      "Creative OOH"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Form/OOH",
+      "Form/Product",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "case-1fxkut1-2025",
+    "title": "「クリンビューGコート」巨大広告（ぼやけた車窓→クリアな車窓）",
+    "summary": "新宿駅の大型ビジョンで、雨でぼやけた車窓とクリアな車窓を1週間ずつ差し替え、撥水コート剤の効果を時系列で見せたOOH。",
+    "client": "イチネンケミカルズ",
+    "agency": "",
+    "categories": [
+      "OOH革新",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://response.jp/article/2025/06/30/397687.html",
+    "thumbnail": "/thumbnails/case-1fxkut1-2025.jpg",
+    "videoId": "",
+    "overview": "イチネンケミカルズのガラスコーティング剤「クリンビューGコート」の屋外広告。東京メトロ新宿駅の大型ビジョンで、1週目は雨に濡れてぼやけた車窓の映像を、2週目はクリアに晴れた車窓の映像に差し替えて放映し、商品の撥水・視界確保効果を時系列の比較で見せた。",
+    "background": "ガラスコーティング剤は使用前後の違いが伝わりにくい商材であり、通常の静止広告では効果を体感的に示すことが難しい。駅の大型ビジョンという期間展開可能なメディアを使い、時間経過そのものを広告の仕掛けとして活用する発想が求められた。",
+    "execution": "新宿駅の大型ビジョンに、雨でぼやけた車窓の映像を1週目に掲出。2週目に同じ構図でクリアな車窓の映像へ切り替えることで、通勤客が1週目と2週目を見比べる形で商品の効果を体感できるようにした。差し替えのタイミング自体を「ビフォーアフター」の演出として利用している。",
+    "evaluationImpact": "静止画やワンショットの比較ではなく、掲出期間を使って時系列でビフォーアフターを体感させた点がOOHとしての工夫である。自動車ユーザーの日常的な視界の悩みを、駅という日常的な接触点で可視化した事例として紹介された。",
+    "relatedWorks": [],
+    "sources": [
+      "Creative OOH"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Theme/Mobility"
+    ]
+  },
+  {
+    "id": "instagram-ooh-2025",
+    "title": "アース製薬公式Instagram運用の軌跡を可視化したOOH",
+    "summary": "アース製薬が自社Instagram運用の軌跡を新宿駅のOOHで年表状に可視化し、持ち帰れるピールオフ型ビンゴカードも配布した。",
+    "client": "アース製薬",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新",
+      "OOH革新"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "国内"
+    ],
+    "link": "http://oh-ooh.com/?p=5697",
+    "thumbnail": "/thumbnails/instagram-ooh-2025.jpg",
+    "videoId": "",
+    "overview": "アース製薬が東京メトロ新宿～新宿三丁目間のメトロプロムナードで実施したOOH施策。自社Instagram公式アカウントの運用成果・過程・苦労を年表状に展示し、通行人がピールオフ型のビンゴカードを持ち帰れる仕組みも併設した。",
+    "background": "企業公式SNSの運用は社内外から成果が見えにくく、継続への評価や理解を得にくいという課題がある。アース製薬は自社のInstagram運用の歩みそのものを広告コンテンツ化し、SNS担当の苦労や工夫を可視化することで、運用の価値を社外に伝える狙いがあった。",
+    "execution": "新宿～新宿三丁目のメトロプロムナードという通行量の多い地下通路に、Instagram運用の軌跡を時系列の年表形式で展示。あわせてピールオフ型のビンゴカードを配布し、通行人が持ち帰って楽しめる「持ち帰れるメディア」として設計した。",
+    "evaluationImpact": "SNS運用という本来オンライン上の活動を、オフラインの通行空間に年表として物理化した点が特徴。見るだけでなく持ち帰って遊べる要素を加えたことで、通行人の接触を一方通行の広告視聴から持続的な関与に変えた事例として紹介された。",
+    "relatedWorks": [],
+    "sources": [
+      "Creative OOH"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Form/SNS",
+      "Form/Print"
+    ]
+  },
+  {
+    "id": "oh-my-teeth-2025",
+    "title": "Oh my teeth「”は並び”を考える月間」らはじゅく駅ポスター",
+    "summary": "Oh my teethが「は」のつく駅名を矯正メッセージに読み替え、原宿を「らはじゅく駅」にする等の言葉遊びポスターを都内複数駅に展開。",
+    "client": "Oh my teeth",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新",
+      "OOH革新"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://predge.jp/321100/",
+    "thumbnail": "/thumbnails/oh-my-teeth-2025.jpg",
+    "videoId": "",
+    "overview": "マウスピース矯正ブランドOh my teethの「”は並び”を考える月間」キャンペーン。都内で「は」のつく駅名を矯正メッセージに読み替えたポスターを制作し、原宿駅を「らはじゅく駅」に見せる等の言葉遊びで、複数駅に同時展開した。",
+    "background": "歯列矯正は検討期間が長く、きっかけがないと関心が持続しにくいサービスである。日常的に目にする駅名という身近な存在を使い、「は並び（歯並び）」という商品テーマを無理なく思い出させる接触点をつくる狙いがあった。",
+    "execution": "都内の「は」のつく駅名を対象に、文字を加えて「歯並び」を連想させる言葉遊びのポスターを制作。原宿駅を「らはじゅく駅」に見せる手法を軸に、複数の該当駅で同時展開し、通勤・通学で駅名を目にする人に自然とブランドメッセージを届けた。",
+    "evaluationImpact": "駅名という誰もが見慣れた固有名詞を一文字単位で読み替えるシンプルな言葉遊びで、矯正という検討期間の長い商材への接触頻度を高めた点が評価された。都内複数駅への同時展開により、SNSでの話題化も狙える設計になっている。",
+    "relatedWorks": [],
+    "sources": [
+      "Creative OOH"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Theme/Health"
+    ]
+  },
+  {
+    "id": "case-1vr47sh-2026",
+    "title": "『ちいかわ』コミックス重版記念 電柱広告（セイレーン編）",
+    "summary": "池袋の電柱20本に表裏25種のちいかわビジュアルを掲出し、レアな「セイレーン」柄探しで街を回遊させるOOH。",
+    "client": "講談社『ちいかわ』",
+    "agency": "",
+    "categories": [
+      "OOH革新",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://bizpa.net/mag/case-5338/",
+    "thumbnail": "/thumbnails/case-1vr47sh-2026.jpg",
+    "videoId": "",
+    "overview": "人気キャラクター『ちいかわ』のコミックス重版を記念した電柱広告施策。池袋エリア一帯の電柱20本に、表と裏で異なる計25種のビジュアルを掲出し、その中にレアな「セイレーン」柄を複数本仕込んだ。ファンが電柱を巡りながら目当ての柄を探し歩く、回遊型の屋外広告として展開された。",
+    "background": "『ちいかわ』はSNSを中心に人気を広げたキャラクターIPで、コミックス刊行時にはファンの熱量を可視化する販促企画が重視されてきた。重版という節目に合わせ、単に広告を掲出するだけでなく、ファンが街を歩いて楽曲的に「探す」楽しみを提供する施策として電柱広告が選ばれた。",
+    "execution": "池袋エリアの電柱20本を使い、表裏で異なる合計25種のビジュアルを掲出。大半は通常キャラクター柄だが、一部にレアな「セイレーン」柄を仕込み、ファンが実際にエリア内を歩き回って探す体験をつくった。SNSでの発見報告や位置共有がファン同士の情報交換を促す設計になっている。",
+    "evaluationImpact": "電柱という日常の屋外メディアを、コレクション欲求を刺激する回遊型コンテンツに変換した点が特徴。低コストな媒体を使いながらファンの自発的な街歩きとSNS発信を誘発する仕組みとして、IP販促のOOH活用例として記録できる。受賞情報は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Creative OOH"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Form/Event",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "mrs-green-apple-cd-10-cd-2025",
+    "title": "Mrs. GREEN APPLE「CD聴こうよ。」10周年ベストアルバム告知 CDプレーヤー立体広告",
+    "summary": "渋谷のハッピーボードに約150台のCDプレーヤーを立体配置し、アルバムジャケットを屋外に再現した立体OOH。",
+    "client": "Mrs. GREEN APPLE（ユニバーサルミュージック）",
+    "agency": "",
+    "categories": [
+      "OOH革新",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://space-media.jp/news/detail/6405/",
+    "thumbnail": "/thumbnails/mrs-green-apple-cd-10-cd-2025.jpg",
+    "videoId": "",
+    "overview": "Mrs. GREEN APPLEのデビュー10周年ベストアルバムに合わせた「CD聴こうよ。」告知キャンペーンの一環で実施された立体広告。渋谷・田園都市線沿いのハッピーボードに約150台のCDプレーヤーを立体的に配置し、アルバムジャケットのビジュアルを屋外空間に再現した。",
+    "background": "ストリーミングが主流となる中、本キャンペーンは10周年ベストアルバムの訴求として「CDで聴く」という体験そのものを前面に押し出すコンセプトを掲げた。タイトルの「CD聴こうよ。」が示すように、物理メディアとしてのCDの魅力を再発見させることが狙いとなっている。",
+    "execution": "渋谷・田園都市線のハッピーボードという大型OOH面に、約150台の実物相当のCDプレーヤーを立体的に組み上げて設置。遠目からはアルバムジャケットのビジュアルとして認識できる構成にし、通行人が近づくと一台一台のプレーヤーの集積であることが分かる仕掛けになっている。",
+    "evaluationImpact": "通常は平面のジャケット画像で告知されるアルバムを、実物を思わせる立体物の集積として屋外に出現させた点が特徴。ストリーミング時代に「CDを聴く」という行為自体を体感的に訴求する手法として、音楽プロモーションのOOH活用例として記録できる。受賞情報は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Creative OOH"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Theme/Music"
+    ]
+  },
+  {
+    "id": "adwater-2026",
+    "title": "ADWATER（広告視聴で天然水が無料になる次世代自販機）",
+    "summary": "50インチサイネージ付き自販機で約15秒の広告視聴と引き換えに天然水を無料提供する、日本発の体験型OOH自販機。",
+    "client": "GenectBox",
+    "agency": "",
+    "categories": [
+      "OOH革新",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://news.cube-soft.jp/article/4098277",
+    "thumbnail": "/thumbnails/adwater-2026.jpg",
+    "videoId": "",
+    "overview": "GenectBoxが開発した「ADWATER」は、50インチ大型デジタルサイネージを搭載した自動販売機。利用者が約15秒の広告動画を視聴すると、その対価として天然水が無料で提供される仕組みで、自販機自体を広告視聴メディア化した日本発の体験型OOHである。",
+    "background": "従来の自販機は商品購入が前提のメディアであり、広告面も静的なステッカーやパネル程度に留まっていた。GenectBoxは、人が足を止める自販機という接点を広告視聴の場として再設計し、視聴の対価として実利(無料の天然水)を返すことで、広告への抵抗感を下げる新しいメディアモデルを模索した。",
+    "execution": "自販機前面に50インチの大型デジタルサイネージを設置し、利用者が約15秒間の広告動画を視聴すると天然水が無料で提供される。購入という経済行為を伴わずに広告接触と実利提供を直結させることで、通行人の利用ハードルを下げ、繰り返し利用を促す設計になっている。",
+    "evaluationImpact": "自販機という日常的なインフラを、広告視聴と報酬交換の場に転換した点が特徴。購入行動を介さずに広告視聴を完結させるモデルは、屋外メディアの新しい収益・体験設計として注目される。受賞情報や導入規模などの数値は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Creative OOH"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/OOH",
+      "Form/Product",
+      "Theme/Sustainability"
+    ]
+  },
+  {
     "id": "the-reverse-shock-collar-2026",
     "title": "The Reverse Shock Collar",
     "summary": "犬のしつけ用ショックカラーを反転し、おもちゃの「キュッ」音で飼い主が感電する人間用カラーを実機で作り、犬に1日支配させた",
