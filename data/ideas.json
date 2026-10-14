@@ -20509,5 +20509,221 @@
         "desc": "ポラロイド写真と架空サイトだけで映画の謎を広げたネット謎解き企画。"
       }
     ]
+  },
+  {
+    "id": "2026-10-14-1",
+    "date": "2026-10-14",
+    "title": "白紙の遺伝子を写す幻想",
+    "pattern": "技術×技術",
+    "seed": "Decoy Fontで人間にだけ読める文字を作り、MAGI-2-previewで音声と映像を同時生成して、AIには別の言葉に聞こえ映る字幕付き映像にしたら、検閲を逃れる詩の表現になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "decoy-font",
+        "title": "Decoy Font",
+        "desc": "人間には正しく読めるのに、AI（OCRなど）には別の単語と誤読される文字を作れるフォント。"
+      },
+      {
+        "type": "tech",
+        "id": "magi-2-preview",
+        "title": "MAGI-2-preview",
+        "desc": "音声と映像を同じモデルで同時に作る、オープンソースの動画生成AIのプレビュー版。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-14-2",
+    "date": "2026-10-14",
+    "title": "結婚ロゴを歩ける街に",
+    "pattern": "文脈×技術",
+    "seed": "Marriage For All Japanのロゴが訴える「誰もが選べる社会」に、WorldCrafterの歩き回れる3D空間を掛け、ロゴ1枚から「結婚が自由な日本」の街を歩く体験を作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "marriage-for-all-japan-2019",
+        "title": "「結婚の自由をすべての人に」ロゴ",
+        "desc": "同性婚訴訟を支援する団体が、誰もが結婚を選べる社会を訴えるために作ったロゴ。"
+      },
+      {
+        "type": "tech",
+        "id": "worldcrafter",
+        "title": "WorldCrafter",
+        "desc": "1枚の画像やテキストから、自由に歩き回れる3D空間を動画として作るAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-14-3",
+    "date": "2026-10-14",
+    "title": "隠した差別語を触覚で露わに",
+    "pattern": "文脈×技術",
+    "seed": "Corinthiansの「Uncovering Racism」はユニフォームの内側に差別語を隠した。HapticLensで映像の動きから振動を作り、ユニフォームを脱ぐ瞬間に痛みを手に伝える触覚版にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "corinthians-uncovering-racism",
+        "title": "Uncovering Racism",
+        "desc": "差別語をユニフォームの内側に隠し、選手が入場時に見せて人種差別を可視化した印刷キャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "hapticlens",
+        "title": "HapticLens",
+        "desc": "動画の選んだ部分の動きから、振動子1個で触感を自動で作るツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-14-4",
+    "date": "2026-10-14",
+    "title": "竹の音を楽譜にして再演",
+    "pattern": "文脈×技術",
+    "seed": "瀬戸内の「アキノリウム」は竹や木の音具が家中で鳴り続ける。basicpitch.cppで録音を音符データに変え、ACE-Step 1.5でボーカル曲に作り替えれば、島の音が歌う家になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2016-058",
+        "title": "アキノリウム",
+        "desc": "竹や木の自作の音具が家全体で鳴り続ける、男木島の音響作品。"
+      },
+      {
+        "type": "tech",
+        "id": "basicpitch-cpp",
+        "title": "basicpitch.cpp",
+        "desc": "音声を音符（MIDI）データに変換する軽量ツールで、ブラウザでも動く。"
+      },
+      {
+        "type": "tech",
+        "id": "ace-step-1-5",
+        "title": "ACE-Step 1.5",
+        "desc": "歌詞とジャンルから、歌入りの曲を丸ごと作れる自分のPCで動く音楽AI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-14-5",
+    "date": "2026-10-14",
+    "title": "絵コンテを歩ける撮影現場に",
+    "pattern": "技術×技術",
+    "seed": "AI Movie Studio v2の3Dカメラでカット割りを作り、PixARMeshで1枚の室内写真から生成した部屋を舞台に置けば、写真1枚から撮影前に画角を歩いて決められるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ai-movie-studio-v2",
+        "title": "AI Movie Studio v2",
+        "desc": "3Dカメラでカット割りを作り、AIで映像・音声まで作るブラウザ上の映画制作ツール。"
+      },
+      {
+        "type": "tech",
+        "id": "pixarmesh",
+        "title": "PixARMesh",
+        "desc": "1枚の室内写真から、部屋全体の配置と編集できる3Dモデルを作る技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-14-6",
+    "date": "2026-10-14",
+    "title": "操作で変わる言葉の景色",
+    "pattern": "技術×技術",
+    "seed": "ForgeWMの操作に反応して映像を作り続ける世界と、Decoy Fontの読み違える文字を組み合わせ、歩くたびに看板の文字がAIの目だけ別の言葉に変わる世界を作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "forgewm",
+        "title": "ForgeWM",
+        "desc": "キーボード操作に反応し、次の映像をAIが作り続ける操作できる動画世界。"
+      },
+      {
+        "type": "tech",
+        "id": "decoy-font",
+        "title": "Decoy Font",
+        "desc": "人間には正しく読めるのに、AIには別の単語に誤読される文字のフォント。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-14-7",
+    "date": "2026-10-14",
+    "title": "ビデオ1本で踊る本の表紙",
+    "pattern": "転用",
+    "seed": "BlendCapはBlenderで体・手・顔を動画1本から取れる。これをPenguin Great Ideasのような活版風の本の表紙の活字に当て、著者の身振りで文字が踊る装丁に転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "blendcap",
+        "title": "BlendCap",
+        "desc": "1本のビデオから、Blender上で体・手・顔の動きを同時に取り込めるアドオン。"
+      },
+      {
+        "type": "case",
+        "id": "penguin-great-ideas-2005",
+        "title": "Penguin Great Ideas（ブックカバーシリーズ）",
+        "desc": "印刷用紙の質感や活版風文字だけで古典思想書20冊を意匠化したPenguinの表紙シリーズ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-14-8",
+    "date": "2026-10-14",
+    "title": "色ムラ補正を記憶の補正に",
+    "pattern": "転用",
+    "seed": "PPISPは3Dスキャンの露出や色のズレを物理的に正しく直す。これをKID A MNESIAのような記憶の展示で、褪せた古い写真の色を時代ごとに補正する道具に転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ppisp",
+        "title": "PPISP (Physically-Plausible Compensation and Control of Photometric Variations)",
+        "desc": "3Dスキャン映像の露出ムラや色ズレを、物理的に正しく補正するAIモジュール。"
+      },
+      {
+        "type": "case",
+        "id": "kid-a-mnesia-exhibition-2021",
+        "title": "KID A MNESIA EXHIBITION 特設サイト",
+        "desc": "3Dミュージアム内でアートワークや音源を段階的に解禁する、Radioheadの体験型サイト。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-14-9",
+    "date": "2026-10-14",
+    "title": "映画の色管理を菓子箱に転用",
+    "pattern": "転用",
+    "seed": "映画業界標準のComfyUI-OCIOの色空間管理を、Made to Shareのチョコ包装の印刷色再現に使えば、画面と店頭で色が一致する限定パッケージの量産に役立つかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-ocio",
+        "title": "ComfyUI-OCIO",
+        "desc": "映画やVFXで使う色空間管理の仕組みを、ComfyUIの中で正確に使える拡張ノード集。"
+      },
+      {
+        "type": "case",
+        "id": "made-to-share",
+        "title": "Made to Share",
+        "desc": "板チョコを場面別の分け前に区切った、感謝を伝える限定パッケージ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-14-10",
+    "date": "2026-10-14",
+    "title": "大地の絵画を歩ける展示へ",
+    "pattern": "文脈×技術",
+    "seed": "Specsavers先住民アーティストの絵画フレームの背景を、SuperSplat Editor 3.0で編集した実写の荒野スキャンにし、絵の中を歩いて寄付に参加できるギャラリーになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "specsavers-frames-to-help-close-the-eye-care-gap-2026",
+        "title": "Specsavers: Frames To Help Close The Eye Care Gap",
+        "desc": "先住民アーティストの絵をフレームに刻み、収益を眼科医療の格差解消に寄付する限定コレクション。"
+      },
+      {
+        "type": "tech",
+        "id": "supersplat-editor-3-0",
+        "title": "SuperSplat Editor 3.0",
+        "desc": "実写を点群で再現するGaussian Splattingを編集できる、無料のオープンソースソフト。"
+      }
+    ]
   }
 ]
