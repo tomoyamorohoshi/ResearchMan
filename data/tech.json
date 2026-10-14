@@ -1,5 +1,151 @@
 [
   {
+    "id": "unitas",
+    "title": "UNITAS",
+    "org": "DexForce / CUHK-SZ ほか",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "Motion/Body"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "ロボットの手や人の手の動きと、それによって物の置かれた空間がどう変わるかを、同じ3D座標の中でまとめて予測する「3D世界モデル」。1.7Bパラメータで、推論コードと学習済みモデルが公開されている。",
+    "point": "何がすごいか：映像（2D）を丸ごと生成するのではなく、空間内の点の動き（点群の軌跡）として「手が動くと、物がどう動くか」を予測します。ロボットの腕でも人の手でも同じ表現で扱えるので、動きの種類が違ってもひとつのモデルで予測できます。論文ではロボット操作のベンチマークで、既存手法（PointWorld）より予測の位置誤差を最大49%減らしたと報告しています。広告・体験づくりでの使い道：手でつかむ・押す・積むといった動作が空間にどんな変化を起こすかを、映像を作らずに3Dの動きとして得られます。たとえばインタラクティブ展示で来場者の手の動きから物が動く様子を先読みして演出する、ロボット演出の動きを事前にシミュレーションする、といった用途の試作に使えそうです。実際に使うには研究用の環境構築が必要で、制作現場向けのツールではない点には注意が必要です。",
+    "detail": "仕組み：カメラ映像から、空間の位置（メートル単位の3D座標）を持つ点の集まりを作ります。ロボットのグリッパーや人の手は「3D空間を動く点の軌跡」で、物の変化は「各点がどれだけ動いたか（変位）」で表します。点の軌跡という共通言語にしたので、ロボットでも人の手でも同じモデルで扱えます。ロボットの動作生成と、動作を入れたときの空間の変化の予測という2つの機能を同じモデルで持ちます。\n\n従来との違い：従来の世界モデルの多くは、次のフレームの画像を予測する方式でした。UNITASは3D座標のまま予測するため、カメラの位置や見た目に左右されにくく、距離やスケールの情報も保てます。論文ではLIBEROで成功率99.8%、RoboTwinのシーン予測でPointWorld比の誤差低減を報告しています（いずれも著者報告値で、筆者側で再現は確認していません）。\n\n使うには：GitHubにはインストール手順、推論・評価コード、結果を3Dで見る可視化スクリプト（ポート8080のビューア）があり、Python 3.10とCUDA対応のGPUが想定されています。学習済みモデルはHugging Faceから無料で入手できます。ただし学習コードと学習データは「公開予定」の状態です。ライセンスはApache-2.0で商用利用も可能です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "コードはApache-2.0。重みはHugging Faceで配布。ベースのFlorence-2-largeは別途ダウンロードが必要。学習コードと学習データは未公開（推論・評価コードのみ）。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/DexForce/UNITAS"
+      },
+      {
+        "kind": "project",
+        "url": "https://unitas-wam.github.io/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.12099"
+      },
+      {
+        "kind": "project",
+        "url": "https://huggingface.co/RobbinWang123/Unitas"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/unitas.jpg",
+    "relatedWorks": [
+      {
+        "title": "LIBERO",
+        "description": "UNITASが評価に使うロボット操作ベンチマーク",
+        "url": "https://github.com/Lifelong-Robot-Learning/LIBERO"
+      },
+      {
+        "title": "RoboTwin",
+        "description": "双腕ロボット操作のシミュレーションベンチマーク（UNITASが評価に使用）",
+        "url": "https://github.com/RoboTwin-Platform/RoboTwin"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "wallgs-pro",
+    "title": "WallGS Pro",
+    "org": "Walhar Gohar",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "3Dスキャン映像（Gaussian Splat）を Unreal Engine 5 の中でライティングし直せる有償プラグイン。静止の3DGSと動く4DGSの両方に対応し、Lumenの反射にもスプラットが映る。",
+    "point": "何がすごいか：Gaussian Splatは、現実を撮影した見た目をそのまま3D化できる一方、撮影時の光が焼き付いているため、ゲームエンジンの照明と馴染ませにくいのが弱点でした。WallGS Proは法線を自動生成して、撮影時の光とUnreal側の照明をスライダーで混ぜられます。さらにLumenの反射にもスプラットが映り込みます。静止だけでなく、動く4DGS（人物の動きを含むスキャン）も扱えます。広告・体験づくりでの使い道：実在の店舗や街並みをスキャンしてUnrealに持ち込み、夜景や夕焼けなど照明を変えたバーチャル空間を作れます。Meta Quest向けのAndroid Vulkan対応もあるため、XR体験やイベント用のPCVR展示にも使えそうです。スプラットを部分的に消す・残すクリップ領域をBlueprintから動かす演出も可能です。",
+    "detail": "仕組み：Gaussian Splatは、小さなぼかした粒（スプラット）を何百万個も空間に置いて場面を描く方式です。WallGS Proは各粒の向き（法線）を自動で推定し、Unrealの光が当たったときの明るさを計算し直します。写真のように焼き付いた光と、Unrealの新しい光のどちらを効かせるかを割合で調整できます。描画負荷は、距離に応じた間引き（空間LOD）と、画面外の粒を捨てる処理で抑えます。\n\n従来との違い：従来のUnreal向けスプラット表示は、撮影時の見た目を再生するだけのものが多く、ライティングの変更や反射の取り込みはできませんでした。WallGS Proは、リライト・Lumen反射・ランタイムでのスプラット読み込み・衝突判定用メッシュ生成（屋内・屋外・オブジェクトのプリセット）まで一つのプラグインで扱えます。なお、スプラットの学習や生成は行わず、既にある素材の描画に特化しています。\n\n使うには：Unreal Engine 5.4〜5.8が必要で、Windowsのデスクトップ／PCVRではDeferred Renderingが条件です。Fabで$119.99です（無印は$49.99）。無料のデモ（3,000万スプラットのWindowsビルドとQuest用APK）と無料の閲覧ビューアがあると記事にありますが、URLは記事に載っていません。スプラット素材は別のツール（LichtFeld Studio、Postshotなど）で作る必要があります。",
+    "license": {
+      "spdx": null,
+      "commercial": "paid",
+      "note": "Fabで$119.99の有償プラグイン（無印のWallGSは$49.99）。ライセンス条項は記事に記載なし。Fabのページはbot判定で403のため、商品ページ自体はブラウザでの確認が必要。"
+    },
+    "links": [
+      {
+        "kind": "product",
+        "url": "https://www.fab.com/listings/3e8a8fa7-38f5-4825-b714-3eb121fd9993"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/wallgs-pro-brings-gaussian-splat-relighting-to-unreal-engine-5"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/wallgs-pro.jpg",
+    "relatedWorks": [
+      {
+        "title": "gsplat",
+        "description": "Gaussian Splattingの学習・描画を行うオープンソースライブラリ",
+        "url": "https://github.com/nerfstudio-project/gsplat"
+      },
+      {
+        "title": "3D Gaussian Splatting for Real-Time Radiance Field Rendering",
+        "description": "3DGSの原典実装（Inria）",
+        "url": "https://github.com/graphdeco-inria/gaussian-splatting"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "tactyc-gaussian-splat-v2-0",
+    "title": "TACTYC Gaussian Splat v2.0",
+    "org": "TACTYC Studio",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "Gaussian Splatのスキャンを、Cinema 4D＋Redshiftでレンダリング・リライトできる形に変換するプラグイン。粒ごとに小さなテクスチャ付きカードを作る方式。",
+    "point": "何がすごいか：Gaussian SplatをCinema 4Dで扱うとき、専用ビューアのようには描画できず、モーショングラフィックスの道具も効きませんでした。このプラグインは粒1個につき1枚の小さなカードを面の向きに合わせて並べ、Redshiftの通常のジオメトリとして描画します。そのため、Redshiftでのライティングや、MoGraphのエフェクタ・ディフォーマ・フィールドを粒ごとに効かせられます。広告・体験づくりでの使い道：実写スキャンした商品や空間を、粒が弾け飛ぶ・ノイズで揺らぐ・波が走るといったモーショングラフィックス表現にして、CM映像やキービジュアルの3Dシーンに組み込めます。ACEScgなどカラーマネジメント済みの制作フローにも合わせられるので、既存のC4D制作環境にそのまま載せやすいのが利点です。",
+    "detail": "仕組み：各スプラットを、その場所の面の向きに合わせた小さなカードに置き換えます。色の方向依存の変化（見る角度で色が変わる効果）は球面調和関数で表し、RedshiftのOSLシェーダ内で計算します。精度はOff、SH1〜SH3から選べます。透明の扱いは、速いSprite／Dither切り抜きと、遅いが滑らかなSmooth Opacityから選びます。カード情報とテクスチャは、スキャンの隣にキャッシュとして書き出され、100万スプラットあたりおよそ100MBです。\n\n従来との違い：従来はスプラットを点群として表示するだけだったり、専用ビューア側でしか見られなかったりしました。この方式はレンダラ側から見ると普通のジオメトリなので、C4Dのアニメーションやエフェクト群がそのまま使えます。入力はPLY、PlayCanvas圧縮PLY、splat、SPZ（v1〜4）、バンドルSOG、ksplatに対応します。一方で、非バンドルSOG、ストリーミング／LODシーン、LCC、SH4次、2DGSは非対応です。\n\n使うには：Windows 10/11、Cinema 4D 2026、Redshiftが必要で、macOS版は開発中です。価格は€19で、Gumroadで購入するとWindowsインストーラーとREADMEが入手できます。スプラット素材は別ツールで撮影・生成して用意します。",
+    "license": {
+      "spdx": null,
+      "commercial": "paid",
+      "note": "€19（約$21）のGumroad販売。旧GSplat Importer v1の購入者は無料アップデート。サポートなし（現状有姿）。READMEとライセンス文書は同梱だが条項は未確認。"
+    },
+    "links": [
+      {
+        "kind": "product",
+        "url": "https://tactyc.gumroad.com/l/dgmnyj"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/tactyc-gaussian-splat-v2-0-renders-and-relights-gaussian-splats-in-cinema-4d-with-redshift"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/tactyc-gaussian-splat-v2-0.jpg",
+    "relatedWorks": [
+      {
+        "title": "gsplat",
+        "description": "Gaussian Splattingのオープンソース学習・描画ライブラリ",
+        "url": "https://github.com/nerfstudio-project/gsplat"
+      },
+      {
+        "title": "WallGS Pro",
+        "description": "Unreal Engine 5向けのスプラットリライト／描画プラグイン",
+        "url": "https://radiancefields.com/wallgs-pro-brings-gaussian-splat-relighting-to-unreal-engine-5"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "vocaloid-style-mv-pipeline",
     "title": "Vocaloid-Style MV Pipeline",
     "org": "EGSECDA(個人開発者)",
