@@ -1,5 +1,144 @@
 [
   {
+    "id": "lightvae",
+    "title": "LightVAE",
+    "org": "ModelTC / LightX2V チーム(論文: Shiqiao Gu ら)",
+    "type": "Research",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "動画生成AIの最後の工程である「潜在表現→映像に戻す処理(VAEデコード)」を、画質をほぼ保ったまま最大約3倍速くする軽量版VAEと、ComfyUI用ノード。",
+    "point": "動画生成AIは、まず圧縮された暗号のようなデータ(潜在表現)を作り、最後にそれを実際の映像へ展開します。LightVAEはこの展開役を小さく作り直し、MiniMax-H3では元の約2.97倍、Wan系でもH100で最大2.24倍の速さでデコードできると論文は報告しています。品質指標(VBench-2.0)は元モデルの99.51%を維持。広告・映像制作では、1案ごとの生成待ち時間が縮むので、同じ夜に試せるカット数やクライアント向けの比較案が増やせます。コンテやモックアップ用に何十本も短いクリップを回す場面や、ComfyUIで生成→確認→修正を繰り返す場面で、GPUを増やさずに回転を上げる助けになります。",
+    "detail": "仕組み:動画VAEの重い部分は、時間をまたいで計算する3次元の畳み込みです。LightVAEはこれを「1コマ内の空間の処理」と「前後コマの差分の補正」に分け、時間方向の情報を低ランク(要点だけ残す)で圧縮します。さらに、品質に効きにくい層を取り除く枝刈りを行い、元モデルを先生役にして出力のズレを学習で戻します。引越しの荷物を、使わない物を捨てて小さな箱にまとめ直すイメージです。\n\n従来との違い:VAEの中身(潜在表現の形式)を変えないため、動画生成モデル本体を作り直さず、デコーダだけ差し替えられます。Wan2.1/2.2向けのPro・Lite版、MiniMax-H3向けのエンコーダ/デコーダ個別のLite版が用意されています。\n\n使うには:NVIDIA GPU(論文の計測はH100/H200、RTX 5090でも向上は小さめで最大1.11倍)、ComfyUI、Hugging Faceからの重み取得が必要です。リポジトリのcomfyui/フォルダにH3用ノード(Load H3 LightVAE)とワークフローJSON3種があります。費用は無料(自前GPU)。注意点として、ComfyUIノードは現状H3専用で、Wan系はinfer.pyでの利用になります。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "重み(Hugging Face)はApache-2.0表記。GitHubリポジトリ自体にはLICENSEファイルが無い。元のWan/MiniMax-H3 VAEは別ライセンスなので各自確認が必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/ModelTC/LightVAE"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.14726"
+      },
+      {
+        "kind": "project",
+        "url": "https://huggingface.co/lightx2v/LightVAE"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/lightvae.jpg",
+    "relatedWorks": [
+      {
+        "title": "ComfyUI-WanVideoWrapper",
+        "description": "Wan系動画モデルをComfyUIで動かす定番ノード集(kijai)",
+        "url": "https://github.com/kijai/ComfyUI-WanVideoWrapper"
+      },
+      {
+        "title": "Wan2.1",
+        "description": "LightVAEが高速化対象とするオープンな動画生成モデル",
+        "url": "https://github.com/Wan-Video/Wan2.1"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "comfyui-nvidia-rtx-vsr-long-video",
+    "title": "ComfyUI NVIDIA RTX VSR Long Video",
+    "org": "tritant",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "NVIDIA RTXの動画超解像(最大4倍)を、長尺・高解像度でもメモリを使い切らずに実行できるComfyUIノード。音声保持とNVENC書き出し付き。",
+    "point": "AIで作った動画は低めの解像度で出ることが多く、納品サイズに上げる拡大処理が必要です。このノードはNVIDIAのRTX Video Super Resolutionを使い、フレームを1枚ずつ処理して一時ファイルに書き出すため、数分の長さでもPCのメモリが不足しにくいのが特徴です。必要ならノイズ除去・ぶれ除去も前処理でき、元の音声はそのまま残り、H.264/HEVCのGPUエンコードで一度のMP4に仕上げます。生成AI映像をSNS広告やデジタルサイネージ向けのフルHD〜4Kに引き上げる最終工程を、ComfyUI内の1ノードで済ませられます。ライブ映像の素材救済にも使えそうです。",
+    "detail": "仕組み:動画を最初から最後まで読み込むのではなく、1コマずつ読み→GPUで拡大→数秒ごとの小さな動画ファイルとしてディスクへ保存、最後に再エンコードなしでつなぎ合わせます。本をまるごとコピー機に載せず、1ページずつコピーして最後に綴じるイメージです。\n\n従来との違い:通常のアップスケールノードは全フレームをメモリに載せるため、長尺や高解像度で落ちがちです。本ノードはディスクを経由して低RAMで動き、ComfyUI標準のVIDEO入出力・プレビューにも対応します。\n\n使うには:NVIDIA RTX GPU、nvidia-vfx 0.2以上、h264_nvencまたはhevc_nvenc対応のFFmpegが必要。ComfyUIのcustom_nodesにcloneしてrequirements.txtを入れ、Load Video→RTX VSR Long Videoの順につなぎます。費用は無料。制約として、SDR 8bitのみ対応、H.264は一辺4096pxまでなので超える場合はHEVCを選びます。README内にベンチマーク数値は無く、速度は各自の環境で確認が必要です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "NVIDIAのnvidia-vfx(RTX Video Super Resolution)SDKの利用条件は別途確認。要NVIDIA RTX GPU"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/tritant/ComfyUI_NVIDIA_RTX_VSR_Long_Video"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/comfyui-nvidia-rtx-vsr-long-video.jpg",
+    "relatedWorks": [
+      {
+        "title": "TE-Speed-SeedVR2",
+        "description": "ComfyUI向けSeedVR2動画超解像の高速化ノード",
+        "url": "https://github.com/tl2012tl/TE-Speed-SeedVR2"
+      },
+      {
+        "title": "RTX-VSR-Studio",
+        "description": "ComfyUI無しで使えるRTX動画超解像のWindows GUI/CLI",
+        "url": "https://github.com/Garionhk/RTX-VSR-Studio"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "dgx-monarch",
+    "title": "DGX Monarch",
+    "org": "Deen-Media",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "NVIDIA DGX Spark 2台をつなぎ、ComfyUIの画像・動画生成を分担して高速化・大型モデル化するカスタムノード集。サンプルワークフロー59本付き。",
+    "point": "高品質な動画生成は1台のGPUだと時間もメモリも足りなくなりがちです。DGX Monarchは、小型AI機のDGX Sparkを2台つなぎ、1つの動画を2台で分けて作る、別々のプロンプトを同時に回す、巨大モデルの重みを2台に分割して載せる、の3方式をComfyUIの中で選べます。READMEの実測では、MiniMax H3(1280×720・241フレーム)が1台42分03秒→2台23分07秒(約1.82倍)に。社内スタジオでの長尺AI映像の下書き量産や、複数案を夜間に同時レンダリングする運用の土台になります。クラウド課金を避けたい制作チームの選択肢です。",
+    "detail": "仕組み:2台の連携にはPyTorch Monarch(複数マシンへ指示を送る仕組み)を、1つの映像を2台で分担して計算するアテンション並列にxDiT/xfuserを使います。工場の1本のラインを2台の機械で分担し、途中結果だけをやり取りする形です。ComfyUIの画面にメモリ・進捗を見るサイドバーも付きます。\n\n従来との違い:ComfyUIは基本的に1台のGPUで動く前提です。本ツールは既存のワークフローのローダーとサンプラーを差し替えるだけで分散実行でき、cluster.tomlが無ければ1台でも動きます。\n\n使うには:DGX Spark 2台(検証環境はConnectX-7 200Gで直結)、両機に同じComfyUIとモデルファイル、CUDA版PyTorch環境、外部から遮断されたネットワークが必要です。Pythonとネットワークの設定スキルが要ります。速度向上は1.38〜1.82倍で、構成により変わると明記されています。READMEには動画デモが無く、確認できるのはワークフロー画像とダッシュボードのスクリーンショットです。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "依存するPyTorch Monarch・xDiTは別ライセンス。NVIDIA DGX Spark 2台が前提(高価なハード)"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Deen-Media/dgx-monarch"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/dgx-monarch.jpg",
+    "relatedWorks": [
+      {
+        "title": "xDiT",
+        "description": "拡散Transformerを複数GPUで並列推論するフレームワーク",
+        "url": "https://github.com/xdit-project/xDiT"
+      },
+      {
+        "title": "PyTorch Monarch",
+        "description": "複数マシンを1つのプログラムとして扱う分散実行基盤",
+        "url": "https://github.com/meta-pytorch/monarch"
+      },
+      {
+        "title": "ComfyUI",
+        "description": "ノードベースの生成AIワークフローツール本体",
+        "url": "https://github.com/comfyanonymous/ComfyUI"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "80億分の1",
     "title": "80億分の1（1 in 8 Billion / 1in8b.life）",
     "org": "Jin Hwi-eus（個人開発者）",
