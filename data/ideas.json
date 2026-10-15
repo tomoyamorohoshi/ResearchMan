@@ -20725,5 +20725,197 @@
         "desc": "実写を点群で再現するGaussian Splattingを編集できる、無料のオープンソースソフト。"
       }
     ]
+  },
+  {
+    "id": "2026-10-15-1",
+    "date": "2026-10-15",
+    "title": "潮位で姿を変える宇野港",
+    "pattern": "文脈×技術",
+    "seed": "潮返が潮の動きを主題にした宇野港の1枚の写真を、ABot-Worldに渡して歩ける3D世界にしたら、満ち引きに合わせ街の姿が変わる、潮を体で読む作品になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2025-un17",
+        "title": "潮返",
+        "desc": "瀬戸内国際芸術祭で宇野港に置かれた、潮の動きを主題にした作品。"
+      },
+      {
+        "type": "tech",
+        "id": "abot-world-abot-3dworld",
+        "title": "ABot-World / ABot-3DWorld",
+        "desc": "1枚の画像から、歩き回れる3D世界をその場で作り続けるAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-15-2",
+    "date": "2026-10-15",
+    "title": "汚水噴水を歩いて浴びる",
+    "pattern": "文脈×技術",
+    "seed": "Dirty Business の実物大「汚水噴水」を多視点で撮り、ATGSで動きごと3D化したら、議会や駅の中で噴水のまわりを自由に歩ける証拠映像として問題提起を持ち込めるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "channel-4-dirty-business",
+        "title": "Dirty Business – The Fountain of Filth",
+        "desc": "下水汚染への問題提起として、街なかに汚水の噴水を実物大で置いた広告。"
+      },
+      {
+        "type": "tech",
+        "id": "atgs",
+        "title": "ATGS（Anchored Temporal Gaussian Splatting）",
+        "desc": "複数カメラの長い映像を、動く3Dデータとして崩れずに再現する技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-15-3",
+    "date": "2026-10-15",
+    "title": "指先を拡大する分身",
+    "pattern": "文脈×技術",
+    "seed": "分身ロボットカフェ DAWN ver.β の接客で、CYANPUPPETSが拾う指1本の微細な動きを、OriHime-Dの大きな身振りに拡大して返せば、重度障がいの人の表情豊かな接客になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "dawn-ver-2018",
+        "title": "分身ロボットカフェ DAWN ver.β",
+        "desc": "外出が難しい人が分身ロボットを遠隔操作して接客するカフェ。"
+      },
+      {
+        "type": "tech",
+        "id": "cyanpuppets-1b-parameter-ai-motion-capture",
+        "title": "CYANPUPPETS 1B-parameter AI Motion Capture",
+        "desc": "ウェブカメラ2台などから全身や指の動きをリアルタイムに読み取るAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-15-4",
+    "date": "2026-10-15",
+    "title": "誰もいない黒い家",
+    "pattern": "文脈×技術",
+    "seed": "未知の作品2019の真っ黒な空き家を来場者が撮った動画から、MiniMax H3 Person Remover LoRAで人を全員消して公開すれば、内容を明かさない作品が無人の記録だけで広まるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2019-og09",
+        "title": "未知の作品2019",
+        "desc": "空き家と庭を黒く染め、内容を事前公表しなかった芸術祭の作品。"
+      },
+      {
+        "type": "tech",
+        "id": "minimax-h3-person-remover-lora",
+        "title": "MiniMax H3 Person Remover LoRA",
+        "desc": "動画内の人物を消して、背景を自然に補うAIモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-15-5",
+    "date": "2026-10-15",
+    "title": "絵が踊りを覚える稽古",
+    "pattern": "技術×技術",
+    "seed": "CustomDanceで人が候補を選びながら振付を仕上げ、LatentDanceで1枚の絵のキャラに踊らせたら、振付家と絵が稽古を重ねて動きを育てるアニメ制作になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "customdance",
+        "title": "CustomDance",
+        "desc": "音楽と文章から、人が選びながら3Dダンスを作る対話型システム。"
+      },
+      {
+        "type": "tech",
+        "id": "latentdance",
+        "title": "LatentDance",
+        "desc": "1枚のキャラ画像とお手本の動きから、見た目を保ったアニメを作る研究モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-15-6",
+    "date": "2026-10-15",
+    "title": "Macで切り出す記憶の品",
+    "pattern": "技術×技術",
+    "seed": "MetalSplatでMac1台に町のスキャンを学習させ、gs-object-extractionで住民の思い出の品だけをクリックで切り出せば、持ち帰れる3Dの形見アーカイブが作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "metalsplat",
+        "title": "MetalSplat",
+        "desc": "NVIDIAのGPUなしで、Mac上で3Dガウシアンスプラットを学習できるOSS。"
+      },
+      {
+        "type": "tech",
+        "id": "gs-object-extraction",
+        "title": "gs-object-extraction",
+        "desc": "3Dシーンから選んだ物体だけをクリックで切り出す無料ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-15-7",
+    "date": "2026-10-15",
+    "title": "花びらが音になる空間",
+    "pattern": "技術×技術",
+    "seed": "LEGOが3D空間を「花束→花びら」のように階層で理解できるなら、Resonantで階層ごとに音色を割り当て、近づくほど和音が単音に解ける空間音楽ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "lego",
+        "title": "LEGO",
+        "desc": "3D空間の部分と全体の関係を自動で理解し、言葉で指し示せる研究技術。"
+      },
+      {
+        "type": "tech",
+        "id": "resonant",
+        "title": "Resonant",
+        "desc": "作曲から編集まで1台のPCで行える、ローカルAI音楽制作スタジオ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-15-8",
+    "date": "2026-10-15",
+    "title": "会期100日の育つ作品",
+    "pattern": "転用",
+    "seed": "落ちても続きから再開できるAmplioの仕組みを、芸術祭の会期中ずっと作品に少しずつ手を入れ続ける「育てる係」エージェントに転用したら、毎日変わる展示になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "amplio",
+        "title": "Amplio",
+        "desc": "長く動くAIエージェントを、止まっても続きから再開できるようにする基盤。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-15-9",
+    "date": "2026-10-15",
+    "title": "村の掟を毎日動画に",
+    "pattern": "転用",
+    "seed": "商品紹介用のAnymotionを、住民が口で語る村の昔のルールや行事の手順を毎日1本のモーショングラフィックスにする、地域の語り継ぎ装置に転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "anymotion",
+        "title": "Anymotion",
+        "desc": "文章の指示だけで解説動画のモーショングラフィックスを自動で作るCLIツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-15-10",
+    "date": "2026-10-15",
+    "title": "広告動画の考古学",
+    "pattern": "転用",
+    "seed": "動画を編集・リメイクするVideoAgentを、古い広告映像を時代ごとの空気で作り直して並べる「広告の考古学」に転用したら、世代間の価値観の違いを見せる展示になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "videoagent",
+        "title": "VideoAgent",
+        "desc": "動画の理解・編集・リメイクを1つにまとめた対話型のオープンソースエージェント。"
+      }
+    ]
   }
 ]
