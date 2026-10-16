@@ -1,5 +1,114 @@
 [
   {
+    "id": "eitwatch",
+    "title": "EITWatch",
+    "org": "Northwestern University SPICE Lab (Xuanyou Liu, Novel Alam, Karan Ahuja)",
+    "type": "Prototype",
+    "domains": [
+      "HCI/MediaArt",
+      "Motion/Body"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "スマートウォッチの裏ぶた（直径40mmの時計ケース裏）に電極を並べるだけで、手のジェスチャーを読み取るセンサー。回路図・基板データ・ファームウェアまで公開されている。",
+    "point": "腕時計の裏側にある、肌に触れる小さな円の中だけで、手の形や指の動きを判別できる点がすごい。腕に帯のようなセンサーを巻く必要がなく、普通の時計の見た目のまま使える。腕の内部を流れる微弱な電流の通りやすさは、筋肉や腱の動きで変わる。その変化から、握る・つまむなどの手の動きを当てる仕組みだ。広告や体験づくりでは、カメラを使わないジェスチャー操作に応用できそうだ。暗い会場や、手が隠れる場面でも使える。たとえば、展示会で来場者が腕時計型デバイスをはめて手の形で映像や音を操作するインスタレーションや、手を握る強さで演出が変わるライブ連動演出が考えられる。精度はまだ研究段階で、初対面の人に校正なしで使うと約55〜63%にとどまる。本番では事前の調整が必要になる。",
+    "detail": "仕組み：腕に触れる8個の金色の電極を、時計の裏ぶたと同じ31mmの輪の形に並べる。1つの電極から約50kHzの微弱な電流を流し、ほかの電極で電圧を測る。腕の中の筋肉や腱が動くと電流の通り道が変わり、測定値も変わる。電流を流す電極と受ける電極の組み合わせを変えながら、1フレームあたり35通りを毎秒約48回測る。組み合わせの距離を変えることで、皮膚の浅い層から6〜15mmほどの深さまでを探る。この多段の測定法は、隣り合う電極だけを使う従来方法より、精度が10〜15ポイント高かった。得られた数値は、ExtraTrees という軽量な機械学習モデルが分類する。\n\n従来との違い：これまでの手首型EIT（電気インピーダンス・トモグラフィ）は、手首をぐるりと囲む電極と、別体の測定回路が必要だった。EITWatch は電極を時計の裏ぶた内に収めている。12人を対象にした実験では、同じ装着中の精度が約92%（6種の保持姿勢）と約91%（5種の小さな動き）だった。一方、2日後に付け直すと約70〜73%、新しい人では55〜63%に下がる。個人差と装着ずれが今後の課題だと著者も述べている。\n\n使うには：マイコンは Seeed Studio の XIAO ESP32-S3 を使う。基板は6層で、Altium の設計データ、Gerber、部品表（BOM）、ESP-IDF v5.2以降用のファームウェアがGitHubで公開されている。基板の発注、はんだ付け、書き込みができる電子工作のスキルが必要。費用はリポジトリ上に記載がなく、確認できなかった。消費電力は約0.15Wで、300mAhの電池なら約8.6時間と見積もられている（著者は理想値としている）。発表は UIST 2026 の Short Paper & Demo。",
+    "license": {
+      "spdx": "CERN-OHL-P-2.0 (hardware) / Apache-2.0 (firmware)",
+      "commercial": "ok",
+      "note": "ハードウェアは CERN-OHL-P-2.0、ファームウェアは Apache-2.0。研究試作でありIRB承認済みの試験またはファントム試験向けで、医療機器ではない。埋め込み型電子機器を使う人には使用不可。"
+    },
+    "links": [
+      {
+        "kind": "project",
+        "url": "https://xuanyouliu.com/projects/eitwatch/"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/XuanyouLiu/EITWatch_Hardware"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2608.29415"
+      },
+      {
+        "kind": "post",
+        "url": "https://www.cnx-software.com/2026/08/14/eitwatch-open-source-esp32-s3-smartwatch-implements-planar-eit-hand-gesture-recognition/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/eitwatch.jpg",
+    "relatedWorks": [
+      {
+        "title": "Pneutouch",
+        "description": "空気で膨らむ素材を手首に付け、触覚を返すウェアラブル。手首まわりのインタラクション研究。",
+        "url": "https://arxiv.org/pdf/2501.18764"
+      },
+      {
+        "title": "MorphPatch",
+        "description": "形が変わる表示面とVRの視覚・触覚錯覚を組み合わせ、VRでペン操作の手応えを返す研究。",
+        "url": "https://arxiv.org/abs/2609.00371"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "jazz-pianist-style",
+    "title": "Jazz Pianist Style (Learning Jazz Pianist Style with Cross-Attention Conditioning)",
+    "org": "Drew Edwards (Queen Mary University of London) / Akira Maezawa (Yamaha) / Simon Dixon",
+    "type": "Research",
+    "domains": [
+      "Audio/Music",
+      "AI/Agents"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "ジャズピアニスト12人それぞれの「弾き癖」を学習し、指定した奏者らしい続きを作れるピアノAI。コード、学習済みモデル、デモページがすべて公開されている。",
+    "point": "「この人っぽい弾き方」を選んで、曲の続きを作らせられる点がすごい。ピアノの演奏データ（MIDI）で学習した既存モデルに、ピアニスト12人分の個性を表す小さな数値のかたまりを加えて、それを参照しながら音を作る仕組みだ。同じ曲の出だしでも、奏者を変えるとリズムの揺れや和音の選び方が変わる。広告や体験づくりでは、BGMを「誰らしいか」で指定する制作に使えそうだ。たとえば、ジャズ喫茶風のブランドムービーで奏者の雰囲気だけを変えた複数案を一気に作る、来場者の選んだ奏者で続きが生成される展示などが考えられる。生成されるのは音声ではなくMIDI（音符データ）なので、好きな音源で鳴らして手直しもできる。",
+    "detail": "仕組み：土台は、ピアノ演奏のMIDIを大量に学んだ Aria という16層のモデル。ここへピアニスト12人分のソロ演奏（PiJAMAデータセット）で追加学習をした。さらに後ろ8層に「ゲート付きクロスアテンション」という仕組みを足している。これは、音を作るたびに奏者ごとの4つの数値（性格のメモのようなもの）をのぞいて参考にする部品だ。ゲートは、そのメモをどれだけ反映するかを調整する弁にあたる。\n\n従来との違い：生成の良し悪しは、通常は予測の当たり具合（パープレキシティ）で測る。本件ではこの指標が条件の有無でほとんど変わらなかった。そこで、奏者を当てる分類器で、生成した演奏が狙った奏者に聞こえるかを測っている。結果は、条件なしの追加学習モデルで37%、条件ありで70%（事前学習のままだと25%）。生成物だけで学習した分類器でも、本物の録音を曲単位で95%の精度で当てられた。\n\n使うには：GitHub に uv 用のロックファイルが付いており、Python 環境があれば再現できる。学習済みの生成モデルと分類器2つは Hugging Face Hub（drewbie/jazz-pianist-style-generator など）にある。デモページには、12人で同じ出だしを弾き分けた例や、奏者当てクイズもある。費用はかからず、GPU があれば手元で動かせる。ただしデモ音声は選別した例で、著者もそう注記している。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "コードと学習済みモデルは Apache-2.0（ベースの Aria に合わせたもの）。同梱の cheston_dpi 部分のみ MIT。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/almostimplemented/jazz-pianist-style"
+      },
+      {
+        "kind": "project",
+        "url": "https://almostimplemented.github.io/jazz-pianist-style"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.02918"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/jazz-pianist-style.jpg",
+    "relatedWorks": [
+      {
+        "title": "LiveSynth",
+        "description": "MIDIで演奏でき、楽器の音色を録音や文章から作るストリーミング型ニューラルシンセ（2026年10月、コード未確認）。",
+        "url": "https://arxiv.org/abs/2610.13054"
+      },
+      {
+        "title": "Real-Time Interactive Music Generation via Data-Free Streaming Consistency Distillation",
+        "description": "演奏者の入力にその場で反応できる、低遅延の音楽生成。",
+        "url": "https://arxiv.org/abs/2606.24307"
+      },
+      {
+        "title": "DEMON: Diffusion Engine for Musical Orchestrated Noise",
+        "description": "拡散モデルによる音楽・ノイズ生成エンジン。ライブデモ付き。",
+        "url": "https://arxiv.org/pdf/2605.28657"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "lightvae",
     "title": "LightVAE",
     "org": "ModelTC / LightX2V チーム(論文: Shiqiao Gu ら)",
