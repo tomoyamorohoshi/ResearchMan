@@ -20917,5 +20917,203 @@
         "desc": "動画の理解・編集・リメイクを1つにまとめた対話型のオープンソースエージェント。"
       }
     ]
+  },
+  {
+    "id": "2026-10-16-1",
+    "date": "2026-10-16",
+    "title": "霧の中の軌跡を4D記録",
+    "pattern": "文脈×技術",
+    "seed": "Ann Veronica Janssens Hermès Ginza Installationの霧の空間を、Any4Dでレーダー等のセンサから実寸の動く3Dとして記録したら、見えない建築の中を歩いた来場者の軌跡が残せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ann-veronica-janssens-herm-s-ginza-installation-2026",
+        "title": "Ann Veronica Janssens Hermès Ginza Installation",
+        "desc": "光や霧そのものを素材にして、銀座の建築を見えない建築に変えた体験型の展示。"
+      },
+      {
+        "type": "tech",
+        "id": "any4d",
+        "title": "Any4D",
+        "desc": "動画だけでなくレーダーなど様々なセンサから、実寸の動く3D世界を一度に復元するAIモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-16-2",
+    "date": "2026-10-16",
+    "title": "無意識の表情で動く像",
+    "pattern": "文脈×技術",
+    "seed": "FEARLESS GIRLの像の前に立つ人の無意識な顔の動きをTelekinetic Driveで読み取り、通行人の表情だけで周囲の照明やロボットが動く静かな抗議にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "fearless-girl",
+        "title": "FEARLESS GIRL",
+        "desc": "ウォール街の雄牛の前に少女の像を置き、男女格差へ静かに抗議した広告。"
+      },
+      {
+        "type": "tech",
+        "id": "telekinetic-drive",
+        "title": "Telekinetic Drive",
+        "desc": "顔のごく小さな無意識の動きをカメラで読み、装着物なしでロボットを操作できる仕組み。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-16-3",
+    "date": "2026-10-16",
+    "title": "映像が生成され続く看板",
+    "pattern": "文脈×技術",
+    "seed": "A British Originalの天候や時刻で文言が変わるビルボードを、RAVEN Streaming LoRAで文言だけでなく背景映像も見せながら生成され続ける看板にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "a-british-original-2023",
+        "title": "A British Original",
+        "desc": "天気や時刻に応じて文言が変わる看板を512枚出した、British Airwaysの屋外広告。"
+      },
+      {
+        "type": "tech",
+        "id": "raven-streaming-lora-for-minimax-h3",
+        "title": "RAVEN Streaming LoRA for MiniMax-H3 (MiniMax-H3-RAVEN-Streaming-LoRA)",
+        "desc": "直前の映像を見ながら次の場面を次々生成し、見せながら作る動画生成の研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-16-4",
+    "date": "2026-10-16",
+    "title": "公開制作の3D手順書化",
+    "pattern": "文脈×技術",
+    "seed": "ヨタの漂う鬼の家の公開制作を撮った動画1本を、AgentSTARでBlenderの3D手順に起こし、廃船が進水式へ組み上がる動きを来場者が見返せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2019-sm02",
+        "title": "ヨタの漂う鬼の家",
+        "desc": "廃船から作った全長14mの航行できる作品。会期中に公開制作し進水式で完成した。"
+      },
+      {
+        "type": "tech",
+        "id": "agentstar",
+        "title": "AgentSTAR (Agentic Shape Tracking and Reconstruction)",
+        "desc": "動画を見たAIがBlenderの命令を自分で書き、はさみなどの動く物体を3Dで再現する研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-16-5",
+    "date": "2026-10-16",
+    "title": "家の中に家を入れる広告",
+    "pattern": "文脈×技術",
+    "seed": "コーヒーパッケージを家に見立てたDunkin' at Homeの一枚を、TACTYC Gaussian Splat v2.0で実在の家をスキャンし、パッケージ内部へ光を当て直して置く広告にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "dunkin-at-home-iconic-home",
+        "title": "Iconic Home – Original / French Vanilla / Midnight",
+        "desc": "コーヒーのパッケージを家に見立て、家で飲む楽しさを描いたシンプルな印刷広告。"
+      },
+      {
+        "type": "tech",
+        "id": "tactyc-gaussian-splat-v2-0",
+        "title": "TACTYC Gaussian Splat v2.0",
+        "desc": "3Dスキャンのデータを、Cinema 4Dで光の当て直しやレンダリングができる形に変えるプラグイン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-16-6",
+    "date": "2026-10-16",
+    "title": "鳴ると顔が動くシンセ人形",
+    "pattern": "技術×技術",
+    "seed": "ikiの2Dパペットのまばたきや視線を、CA-72の1970年代モノシンセの音程や揺らぎに同期させ、弾くほど顔が表情を変える楽器キャラが作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "iki",
+        "title": "iki",
+        "desc": "顔が動く2Dキャラを無料で作れるエンジン。文章の指示でまばたきや視線も付けられる。"
+      },
+      {
+        "type": "tech",
+        "id": "ca-72",
+        "title": "CA-72",
+        "desc": "1970年代のアナログシンセを回路図レベルで再現した、無料の音源プラグイン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-16-7",
+    "date": "2026-10-16",
+    "title": "生成3D世界の仮想ロケ",
+    "pattern": "技術×技術",
+    "seed": "Marble x Nukeで読み込んだ生成3D世界の映像を、EditAnythingで背景の除去や要素の置き換えをテキスト指示で行い、撮り直し無しの仮想ロケ地にできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "marble-x-nuke",
+        "title": "Marble x Nuke",
+        "desc": "文章や画像から作った3D世界を、映像合成ソフトNukeにそのまま読み込める無料プラグイン。"
+      },
+      {
+        "type": "tech",
+        "id": "editanything",
+        "title": "EditAnything (LTX-2.3 Video Edit LoRA)",
+        "desc": "動画生成モデルを、文章の指示で背景の除去や要素の置き換えができる編集用に変える追加学習。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-16-8",
+    "date": "2026-10-16",
+    "title": "踊り続けるロボのループ",
+    "pattern": "技術×技術",
+    "seed": "C1連続 in-loop-out モーション生成ツールで継ぎ目の無いループ動作を作り、GRAILの流れでUnitree G1に移せば、止まらず踊り続けるロボットの展示ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "akasaki-c1-loop-motion-tool",
+        "title": "C1連続 in-loop-out モーション生成ツール",
+        "desc": "モーションキャプチャから、始めと終わりが滑らかにつながるループ動作を自動で作る個人開発ツール。"
+      },
+      {
+        "type": "tech",
+        "id": "grail",
+        "title": "GRAIL",
+        "desc": "3D素材と動画生成AIから人型ロボット用の全身動作データを作り、実機に移すNVIDIAらの研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-16-9",
+    "date": "2026-10-16",
+    "title": "舌で切り替えるVJ演奏",
+    "pattern": "転用",
+    "seed": "舌で操作するMouthPad / VOXを、福祉用途ではなくVJやDJが両手で機材を触りながら舌でエフェクトを切り替える、新しいライブ演奏の道具に転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "mouthpad-vox",
+        "title": "MouthPad (第2世代) / VOX",
+        "desc": "舌で操作するマウスピース型デバイスと、皮膚に貼って使う音声入力デバイス。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-16-10",
+    "date": "2026-10-16",
+    "title": "顔だけ細密な巨大OOH",
+    "pattern": "転用",
+    "seed": "ComfyUI TTP Toolset Smart Tile 2.0の顔と背景を見分けるタイル分割を、高解像度化でなく、巨大OOHで顔だけ極細密にして視線を誘導する印刷設計に転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-ttp-toolset-smart-tile-2-0",
+        "title": "ComfyUI TTP Toolset – Smart Tile 2.0",
+        "desc": "顔と背景をAIが見分け、必要な場所だけ細かく高解像度化や部分編集ができるComfyUI拡張。"
+      }
+    ]
   }
 ]
