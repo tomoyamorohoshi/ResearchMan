@@ -1,5 +1,41 @@
 [
   {
+    "id": "timber-timbre-anthropic-machines-of-loving-grace-2026",
+    "title": "Timber / Timbre（Anthropic「Machines of Loving Grace」展）",
+    "summary": "カリモクと共同開発した木製筐体にモジュラーシンセを収め、その構成を真鍋大度がClaudeと探った音響インスタレーション",
+    "client": "Anthropic / カリモク家具",
+    "agency": "",
+    "categories": [
+      "AIクリエイティブ",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://kai-you.net/article/96722",
+    "thumbnail": "/thumbnails/timber-timbre-anthropic-machines-of-loving-grace-2026.jpg",
+    "videoId": "",
+    "overview": "メディアアーティスト真鍋大度の新作インスタレーション。カリモク家具のKARIMOKU RESEARCHと共同開発した木製筐体にモジュラーシンセサイザーを組み込み、その構成や部品の組み合わせを真鍋がClaudeとともに探索した。植物の生体電位や会場環境の変化を音の揺らぎとして反映する。Anthropic主催の展覧会「Machines of Loving Grace」で、2026年10月17日〜25日に東京・西麻布のKARIMOKU RESEARCH CENTERで展示される(入場無料)。",
+    "background": "カリモク家具は1960年代にピアノの鍵盤やアクション(打弦機構)を製造しており、そこで培った精密な木材加工の技術が後の家具づくりにも生かされているとされる。作品はこのカリモクと音楽の関わりに着目し、「家具と楽器のあいだ」を探るところから生まれた。展覧会はAnthropicが主催し、カリモク家具が特別協賛している。",
+    "execution": "木製筐体はカリモク家具(KARIMOKU RESEARCH)との共同開発で、モジュラーシンセサイザーを内蔵する。シンセの構成や組み合わせの検討をClaudeとの対話で進めた点が特徴。木、植物、電子回路、AIを一つに接続し、植物の生体電位や環境変化を音に反映させる。Claudeとの具体的なやり取りの方法は、参照記事では説明されていない。",
+    "evaluationImpact": "木工の精密加工、モジュラーシンセ、植物の生体電位、AIによる構成探索を一つに結び、自然と人工の境界を問う点が評価できる。AIを画像や文章の生成ではなく、楽器的な装置の設計パートナーとして使う例になっている。ただし展示は2026年10月17日開始の直前で、来場者の反応や受賞などはまだ確認できない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/Audio",
+      "Form/Installation",
+      "Form/Exhibition",
+      "Theme/Art"
+    ],
+    "gateCriterion": "C",
+    "sourceId": ""
+  },
+  {
     "id": "pepsi-shanghai-disney-resort-10-2026",
     "title": "Pepsi × Shanghai Disney Resort 10周年記念 モアレ効果アニメーションボトル",
     "summary": "上海ディズニーリゾート開園10周年を記念し、ボトルを回すとモアレ効果でミッキーマウスが動いて見えるアニメーションボトルをペプシが展開。",
