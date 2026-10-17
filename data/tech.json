@@ -1,5 +1,167 @@
 [
   {
+    "id": "openfilm",
+    "title": "OpenFilm",
+    "org": "OpenFilm contributors",
+    "type": "Tool",
+    "domains": [
+      "AI/Agents",
+      "CreatorTools",
+      "GenVideo"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "Claude CodeやCodexなどのコーディングAIに「Webページとして動画を作らせ」、ブラウザ上のエディタ(Studio)で手直しできるオープンソースの動画エージェント。",
+    "point": "すごい点は、動画を「1枚のHTMLファイル」として組み立てるところです。AIが書いた映像のどこでも、あとから人間がタイムライン上で動かしたり、文字を直したり、切ったりできます。一般的なAI動画は完成品の動画ファイルが出てきて、直したいときは作り直しになりがちです。OpenFilmは映像の中身（文字、図形、three.jsの3D、アニメーション）が編集可能な部品のまま残るので、AIに任せた後で人間が仕上げる流れが自然に作れます。広告・体験づくりでは、商品紹介やSNS向け告知の動くグラフィック、ロゴや文字のモーション、データを見せるアニメなどを、コーディングAIに指示するだけで下書きし、クライアント修正は手元のエディタで済ませる、といった使い方が考えられます。MP4(4K・モーションブラー対応)に加え、透明背景の動画、字幕、PremiereやDaVinci Resolve向けのタイムライン書き出しにも対応するので、既存の編集環境に渡せます。",
+    "detail": "仕組み：1本の映画は「film.html」を含むフォルダです。その中で、アニメーションするWebページが「時刻tを渡すとその瞬間の絵を描く関数frame(t)」を持ちます。同じtなら必ず同じ絵になる決まりなので、パラパラ漫画のようにコマ単位で確実に書き出せます。lookコマンドは、レンダリングのたびに絵が変わるコマ、ページのエラー、フォントや音声ファイルの欠け、はみ出した文字を自動点検します。AIはこのフォルダに部品を書き足し、人間はStudioで要素を動かしたり、拡大縮小や回転、文字やスタイルの編集、クリップのトリムができます。\n\n従来との違い：映像を直接生成するAI動画ツールと違い、OpenFilmはコードで構造を持った映像を作るため、再現性が高く、途中の修正が効きます。three.js、WebGL、canvas、SVG、CSS、GSAPなどWebの表現をそのまま使えます。似た動きのOpenMontageなど動画エージェント系に比べ、実際のエディタが付いている点が特徴です。\n\n使うには：Node 22.2以上とffmpegが必要です（Studioの保存履歴にはgitも使います）。初回は約100MBのヘッドレスChromiumをダウンロードします。導入は、エージェント用スキルを「npx skills add openfilm/openfilm」、CLIを「npx -y openfilm@latest」で入れます。macOSとWindowsはデスクトップアプリ（ffmpegとブラウザ同梱）も使えます。費用はOpenFilm自体が無料で、音声・音楽・画像の生成サービスやコーディングAIの利用料のみ、各自の契約で別途かかります。HTMLとJavaScriptが少し読めるとより使いこなせますが、基本はAIへの指示と画面操作です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "フォーマット・CLI・Studio・デスクトップアプリはMIT。名称とロゴは商標扱い（TRADEMARK.md）。音声・音楽・画像の生成は自分のAPIキー（ElevenLabs/OpenAI/Google/fal等）で課金されるが、映像の制作とレンダリング自体は無料でアカウント不要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/openfilm/openfilm"
+      },
+      {
+        "kind": "product",
+        "url": "https://openfilm.dev"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/openfilm/examples"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/openfilm.jpg",
+    "relatedWorks": [
+      {
+        "title": "OpenMontage",
+        "description": "コーディングAIを動画制作スタジオに変えるオープンソースのエージェント型動画制作システム。",
+        "url": "https://github.com/calesthio/OpenMontage"
+      },
+      {
+        "title": "Remotion",
+        "description": "Reactのコードで動画をプログラム生成するフレームワーク。コードで動画を作る考え方の先行例。",
+        "url": "https://www.remotion.dev"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "motion2mixamorig",
+    "title": "Motion2MixamoRig",
+    "org": "MaxLiu22(個人OSS)",
+    "type": "Tool",
+    "domains": [
+      "Motion/Body",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "1人の人物が映った動画（または1枚の写真のポーズ）から3Dの動きを推定し、AdobeのMixamo規格のキャラクターに自動で移し替え、Blender/Unityに持ち込めるアニメ付きキャラ(.glb)を出力するOSSツール。v0.1.5（2026-10-15）でBlender 4.2+用アドオンが加わった。",
+    "point": "すごい点は、モーションキャプチャ用のスーツや専用スタジオがなくても、スマホで撮った普通の動画から「人の動き」をそのまま3Dキャラの骨格の動き（アニメーション）に変換できることです。リポジトリには、人の動きを取り出す処理から、Mixamo用の関節回転への変換、プレビュー動画の書き出しまで、一通りが入っています。v0.1.5ではBlenderのアドオンも付き、Blenderの画面から実行して結果をそのまま読み込めるようになりました。広告・体験づくりでは、ダンサーや役者のリファレンス動画を撮って、ブランドキャラクターやゲーム風キャラに演じさせるラフアニメの高速制作に向きます。一度取り出した動きは保存して別キャラに使い回せる（数十秒で再変換）ので、同じ振付を複数キャラで踊らせるSNS向け展開、実写とCGキャラの並置映像、絵コンテ代わりの動くプリビズなどに使えそうです。まだ「実験的」と明記されており、仕上げの手直し前提の下書きツールとして見るのが現実的です。",
+    "detail": "仕組みは3段階です。まず動画の各コマから、人の全身の姿勢をSMPL-Xという標準的な人体モデルの形で推定します（GVHMRという既存の姿勢推定モデルを利用）。次に、この人体モデルの関節の動きを、Mixamoキャラクターの骨の名前・向きに合わせて対応づけ、関節ごとの回転データに変換します。最後に、キャラクターにその回転を当てて、アニメ付きの.glbファイルとプレビュー動画（骨格・キャラ・比較）を書き出します。たとえるなら、役者の動きを一度「共通の人形」に写し取り、それを好きな衣装のキャラに着せ替えて再演させる流れです。\n\n従来はモーキャプ機材を使うか、有料のクラウドサービスに動画を上げて変換する方法が中心でした。本ツールは手元のPCで動き、途中成果物（skeleton_motion.npz等）も取り出せるため、動きだけ再利用して別のキャラに差し替えられる点が違いです。写真1枚から静止ポーズを移すモードもあります。\n\n使うにはPython 3.11以上、約5GBのウェイト（初回に自動ダウンロード）、SMPL-Xの無料登録による入手、Adobeアカウントで取得するMixamoのキャラFBXが必要です。ffmpegがないと出力動画が無音になります。CPUでは30秒の動画で初回8〜15分かかるため、GPU（CUDA/Apple MPS）推奨です。コマンドは `m2mr doctor` で環境確認、`m2mr run` で実行。Blenderアドオンは4.2以降で、外部Python環境を呼び出して結果を取り込みます。費用はソフト自体は無料です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "リポジトリのコードはApache-2.0。ただしSMPL-Xボディモデルは既定で非商用、Mixamo FBXは再配布不可、推論ウェイト（GVHMR等）は各上流ライセンスに従う。商用利用は各アセットの条件確認が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/MaxLiu22/Motion2MixamoRig"
+      },
+      {
+        "kind": "video",
+        "url": "https://github.com/MaxLiu22/Motion2MixamoRig/blob/main/docs/assets/demo.mp4"
+      },
+      {
+        "kind": "project",
+        "url": "https://github.com/MaxLiu22/Motion2MixamoRig/blob/main/blender_extension/README.md"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/motion2mixamorig.jpg",
+    "relatedWorks": [
+      {
+        "title": "GVHMR",
+        "description": "動画から世界座標系の人体姿勢を推定する本ツールの土台モデル",
+        "url": "https://github.com/zju3dv/GVHMR"
+      },
+      {
+        "title": "FreeMoCap",
+        "description": "普通のカメラだけで使えるオープンソースのマーカーレスモーキャプ",
+        "url": "https://github.com/FreeMoCap/freemocap"
+      },
+      {
+        "title": "Blender MCP",
+        "description": "AIエージェントからBlenderを操作するブリッジ（Mixamo系リターゲットの自動化に併用される）",
+        "url": "https://github.com/ahujasid/blender-mcp"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "animatica-choreographer",
+    "title": "Animatica Choreographer（Blender add-on）",
+    "org": "Animatica",
+    "type": "Tool",
+    "domains": [
+      "Motion/Body",
+      "CreatorTools",
+      "AI/Agents"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "NVIDIAのテキスト→モーション生成モデル（Kimodo）などを、Blenderのタイムラインから使えるようにしたアドオン。文章とキーポーズ、通過点を指定して3Dキャラの動きを生成する。2026-10-11にv1.0となり、直近も改良が続く。",
+    "point": "すごい点は、「歩いて、ここで手を上げて、ここで止まる」といった指示を、文章と数枚のポーズ、床の通過点（ウェイポイント）で伝えるだけで、Blender上のキャラクターに約10秒ぶんの動きが自動で付くことです。気に入らなければ却下して別テイクを出し、複数の候補から選べます。ポーズの指定に沿って動きが作られるので、完全におまかせのAI生成より「演出意図に合わせる」ことができます。広告・体験づくりでは、実写撮影前の動くコンテ（プリビズ）、ゲームやVR空間の群衆・通行人の動き、ブランドキャラのループ素材（歩き・待機サイクル）の下書きなどに使えそうです。Blenderで組んだ仮の人形アニメを、動画生成AIに渡して仕上げる使い方も同社ページで紹介されています。ただし足が滑る、指示通りにならないことがあるとNVIDIAのモデルカードにも書かれており、最終的な手直しは必要です。",
+    "detail": "仕組みは、BlenderのアドオンがAnimatica Cloudに「文章・キーポーズ・通過点・手や足の固定位置」を送り、サーバー側のモーション生成モデルが、それらを満たす動きを返す形です。返ってきた動きはキャラの骨にキーフレームとして入るので、通常のBlenderアニメと同じように手で直せます。たとえるなら、監督が「ここからここまでこう動いて」と付箋を貼ると、アニメーターが下書きを描いてくれて、採用か却下かを選べる流れです。\n\n従来のテキスト→モーション研究は、コマンドラインで動かして結果を取り込む形が多く、タイムライン上で複数のプロンプトを区間ごとに指定し、区間ごとに作り直せる操作体系までは備えていませんでした。このアドオンは、プロンプトブロック、ゴースト表示、レビュー（承認/却下）、複数キャラ同時生成などの制作向けUIが特徴です。独自プロトコル（MMCP）に対応し、自分のPCにモデルを立てるセルフホストも可能です。\n\n使うにはBlender 5.0以上、Animaticaの無料アカウント、インターネット接続が必要で、GPUは不要です（クラウド生成）。無料枠は月10回の生成まで、超える場合は有料です。GitHubのReleasesからzipを入れて有効化します。手で動きを引っ張って編集するMarionette機能は別売です。",
+    "license": {
+      "spdx": "GPL-3.0-or-later",
+      "commercial": "conditional",
+      "note": "アドオンはGPL-3.0。生成はAnimatica Cloud（無料枠は月10回、以降は有料プラン）が既定で、生成モーションの商用利用は全プランで可と同社が記載。拡張のMarionetteは別売。Kimodoのウェイト自体はNVIDIA Open Model License。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/animatica-ai/animatica-blender-plugin"
+      },
+      {
+        "kind": "product",
+        "url": "https://animatica.ai/kimodo"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=Wc349qOwjfM"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/animatica-choreographer.jpg",
+    "relatedWorks": [
+      {
+        "title": "Kimodo",
+        "description": "NVIDIAが公開したテキスト・制約から人型モーションを生成する拡散モデル",
+        "url": "https://github.com/nv-tlabs/kimodo"
+      },
+      {
+        "title": "HY-Motion 1.0",
+        "description": "Tencent Hunyuanのテキストからスケルトンアニメを生成するモデル",
+        "url": "https://github.com/Tencent-Hunyuan/HY-Motion-1.0"
+      },
+      {
+        "title": "Blender MCP",
+        "description": "LLMからBlenderを操作するMIT OSSのブリッジ",
+        "url": "https://github.com/ahujasid/blender-mcp"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "eitwatch",
     "title": "EITWatch",
     "org": "Northwestern University SPICE Lab (Xuanyou Liu, Novel Alam, Karan Ahuja)",
