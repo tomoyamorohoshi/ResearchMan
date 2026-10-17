@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "statusAsOf": "2026-10-16",
+  "statusAsOf": "2026-10-17",
   "items": [
     {
       "id": "2026-azabudai-hills-gallery-ambient-kyoto-tokyo-sakamoto-tak",
@@ -182,7 +182,7 @@
       "city": "山口市",
       "startDate": "2026-10-17",
       "endDate": "2027-03-01",
-      "status": "upcoming",
+      "status": "ongoing",
       "admission": "一般1,000円 / 25歳以下・山口市民500円 / 18歳未満無料",
       "tags": [
         "media_art",
@@ -481,7 +481,7 @@
       "city": "港区",
       "startDate": "2026-10-17",
       "endDate": "2026-10-25",
-      "status": "upcoming",
+      "status": "ongoing",
       "admission": "無料",
       "tags": [
         "media_art",
