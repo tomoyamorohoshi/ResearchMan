@@ -21115,5 +21115,215 @@
         "desc": "顔と背景をAIが見分け、必要な場所だけ細かく高解像度化や部分編集ができるComfyUI拡張。"
       }
     ]
+  },
+  {
+    "id": "2026-10-17-1",
+    "date": "2026-10-17",
+    "title": "朧の没入空間を単眼動画で4D復元",
+    "pattern": "文脈×技術",
+    "seed": "BYREDOの「OBORO（朧）」が吉増剛造の世界を没入空間にしたが、来場者の一人称動画をReViVで全身・視線ごと4D復元すれば、「朧に包まれた時の身体の動き」自体を作品として持ち帰らせられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "byredo-oboro-2026",
+        "title": "BYREDO 日本限定フレグランス「OBORO（朧）」発売キャンペーン",
+        "desc": "香水「オボロ」の発売に合わせ、詩人・吉増剛造の世界を体験できる没入型の店舗空間を日本で初めて作った企画。"
+      },
+      {
+        "type": "tech",
+        "id": "reviv",
+        "title": "ReViV (Reconstructing the Viewer and the View in 4D from Monocular Egocentric Video)",
+        "desc": "一人称視点の動画1本から、装着者の全身・手・視線の動きと周囲の空間を立体的に復元する技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-17-2",
+    "date": "2026-10-17",
+    "title": "ランウェイ歩容を綴る塩田千春の糸",
+    "pattern": "文脈×技術",
+    "seed": "素麺の製造機を赤い糸で編んだ「線の記憶」に、Expressive Motionでランウェイ映像から歩き方を写し取ったロボットを加え、島の人々の歩き方の軌跡が糸になって空間に編まれていく作品になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2025-te23",
+        "title": "線の記憶",
+        "desc": "豊島の素麺製造機を赤い糸で編み込み、島の暮らしの記憶を表現した塩田千春の新作。"
+      },
+      {
+        "type": "tech",
+        "id": "expressive-motion",
+        "title": "Expressive Motion (Learning Expressive Humanoid Locomotion from Monocular Runway Videos for Robot Fashion Shows)",
+        "desc": "ランウェイ映像1本から人の歩き方の特徴をロボットに写し取り、実機で歩かせる技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-17-3",
+    "date": "2026-10-17",
+    "title": "ギターの振動を見て弾く壁楽器",
+    "pattern": "文脈×技術",
+    "seed": "座って弾けるヤマハの壁面インスタレーション「Pianissimo Fortissimo」に、Event Topology-based Visual Vibrometerを掛け、壁そのものの微細な振動を光なしで読み取り音にする、触れた痕跡が鳴る楽器になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "pianissimo-fortissimo-pulse-2019",
+        "title": "Pianissimo Fortissimo（ヤマハ「pulse」展 出展作品）",
+        "desc": "壁一面の造形物に来場者が座って演奏できる、ヤマハの展覧会向け体験型作品。"
+      },
+      {
+        "type": "tech",
+        "id": "event-topology-based-visual-vibrometer",
+        "title": "Event Topology-based Visual Vibrometer",
+        "desc": "高速カメラの生データから、物体の細かな振動を読み取って音として取り出す計測手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-17-4",
+    "date": "2026-10-17",
+    "title": "追悼誌を一枚写真から立体化",
+    "pattern": "文脈×技術",
+    "seed": "銃暴力で失われた若者を雑誌形式で追悼した「30Under30」の遺影を、InfiniSplatで1枚の写真から立体シーンにし、読者が誌面から視点を動かして故人の日常の部屋を歩ける追悼になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "change-the-ref-30under30",
+        "title": "30Under30",
+        "desc": "銃暴力で亡くなった30人の若者を、Forbes風の雑誌形式で追悼した存在してはならない雑誌。"
+      },
+      {
+        "type": "tech",
+        "id": "infinisplat",
+        "title": "InfiniSplat",
+        "desc": "1枚の写真から、視点を大きく動かしても崩れにくい立体シーンを作る研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-17-5",
+    "date": "2026-10-17",
+    "title": "歌う島とロボットの朧な歩行",
+    "pattern": "技術×技術",
+    "seed": "ACE-Step 1.5で歌詞から曲を作り、その曲の拍に合わせてExpressive Motionでランウェイ風の歩き方をロボットが踊れば、曲ごとに歩き方の個性が変わるショーが即興で作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ace-step-1-5",
+        "title": "ACE-Step 1.5",
+        "desc": "歌詞とジャンルを指定すると、歌入りの曲を丸ごと作れるオープンソースの音楽AI。"
+      },
+      {
+        "type": "tech",
+        "id": "expressive-motion",
+        "title": "Expressive Motion (Learning Expressive Humanoid Locomotion from Monocular Runway Videos for Robot Fashion Shows)",
+        "desc": "ランウェイ映像1本から人の歩き方の特徴をロボットに写し取り、実機で歩かせる技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-17-6",
+    "date": "2026-10-17",
+    "title": "1枚の絵から動く骨格を3D空間へ",
+    "pattern": "技術×技術",
+    "seed": "AniGenで1枚の絵から動く骨格つきキャラを作り、Puffin-Worldで生成した歩き回れる3D空間に置けば、子どもの落書きが自分の絵の世界を勝手に探検する様子を見られるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "anigen",
+        "title": "AniGen",
+        "desc": "1枚の画像から、動かせる骨とスキンを持つ3Dキャラクターを自動で作る技術。"
+      },
+      {
+        "type": "tech",
+        "id": "puffin-world",
+        "title": "Puffin-World",
+        "desc": "1枚の画像やテキストから、自由に歩き回れる3D空間の映像を作るモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-17-7",
+    "date": "2026-10-17",
+    "title": "鍵盤の音符で動くDAWエージェント",
+    "pattern": "技術×技術",
+    "seed": "NeuralNoteで鼻歌やリズムをMIDIにし、それをStratawrightのAIエージェント制御DAWに渡せば、口ずさんだ断片に対しエージェントが「次の展開」を自然言語で相談しながら曲に育てられるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "neuralnote",
+        "title": "NeuralNote",
+        "desc": "録音した音声をほぼその場でMIDIの音符データに変換できる無料プラグイン。"
+      },
+      {
+        "type": "tech",
+        "id": "stratawright",
+        "title": "Stratawright",
+        "desc": "AIコーディングエージェントが言葉だけで直接操作できる、音楽制作ソフト。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-17-8",
+    "date": "2026-10-17",
+    "title": "新聞の振動を聴く紙面広告",
+    "pattern": "転用",
+    "seed": "Event Topology-based Visual Vibrometerを計測ではなく、折る・回転させる紙の仕掛け新聞広告の読者体験に転用し、紙をめくる・折る動作の微細な振動を音として拾えば、紙面が楽器になる広告になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "pr-edge-2024",
+        "title": "アイデアが光る新聞広告事例10選（紙の仕掛け特集）",
+        "desc": "折る・重ねる・回転させるなど、紙の特性を活かした新聞広告を集めた特集記事。"
+      },
+      {
+        "type": "tech",
+        "id": "event-topology-based-visual-vibrometer",
+        "title": "Event Topology-based Visual Vibrometer",
+        "desc": "高速カメラの生データから、物体の細かな振動を読み取って音として取り出す計測手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-17-9",
+    "date": "2026-10-17",
+    "title": "フィルム実測値で歴史写真を調色",
+    "pattern": "転用",
+    "seed": "AURORA Film Lab v1.0の実測フィルムルックを、映像調整ではなく Spotify Wrapped のような年次パーソナライズに転用し、あなたの一年の写真を「その年のフィルム」で自動現像するふり返りが作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "spotify-wrapped",
+        "title": "SPOTIFY WRAPPED",
+        "desc": "一年で最も聴いた音楽を毎年12月にまとめて届け、利用者が自発的に拡散するSpotifyの企画。"
+      },
+      {
+        "type": "tech",
+        "id": "aurora-film-lab-v1-0",
+        "title": "AURORA Film Lab v1.0",
+        "desc": "実際のフィルム写真の測定データから選んだ12種のルックを混ぜて、フィルム調の色を作れる調色ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-17-10",
+    "date": "2026-10-17",
+    "title": "傷んだ倉庫跡を多視点で修復",
+    "pattern": "転用",
+    "seed": "ArtiFixerは3D再構成の修復用だが、元花卉倉庫のコンクリート痕跡を使ったWalter Knollの空間を、会期後の記録として未撮影アングルまで補完し、消えた展示を歩ける資料にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "walter-knoll-milan-design-week-2022",
+        "title": "Walter Knoll — Milan Design Week 2022",
+        "desc": "元花卉倉庫のコンクリート跡に、ロボット制作の白いカーテンや格子の家具を重ねた展示空間。"
+      },
+      {
+        "type": "tech",
+        "id": "artifixer",
+        "title": "ArtiFixer",
+        "desc": "壊れたりぼやけた3D再構成を動画拡散モデルで直し、撮っていない角度まで補う研究。"
+      }
+    ]
   }
 ]
