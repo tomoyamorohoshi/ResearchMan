@@ -1,5 +1,148 @@
 [
   {
+    "id": "code-video-model",
+    "title": "Code Video Model (CodeVideoBench)",
+    "org": "Code Video Model Team",
+    "type": "Research",
+    "domains": [
+      "GenVideo",
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "文章から「Three.jsのコード」で3Dシーンを組み、その粗い映像をお手本にして動画生成AIに最終映像を作らせる、設計図つきの動画生成手法。",
+    "point": "動画生成AIは「車を右から左へ走らせ、カメラは低い位置から追う」のような細かい動きや物理の指定が苦手で、何度も撮り直しになりがちです。この研究は、先にコードで粗い3Dシーン（箱や簡単な形で動きとカメラ位置を決めた下書き映像）を作り、それを動画生成AIへの指示書として渡します。下書きの構図とカメラワークは保ったまま、見た目だけをAIがリアルに仕上げます。広告では、商品の周りを回るカメラ、建築パースのウォークスルー、ゲーム風の一人称視点、被写体が止まって見えるバレットタイム風の演出など、「絵コンテどおりに動かしたい」カットで効きそうです。下書きはコードなので、カメラ位置や速度を数字で直して作り直せます。",
+    "detail": "仕組みは4段階です。①文章から、物体の配置・動き・カメラ・物理計算を書いたThree.js（ブラウザで3Dを動かすJavaScript）のプログラムを作る。②それを実行して、粗い下書き動画と基準画像を出す（公式ページでは1分以内とされる）。③下書き動画と基準画像を、学習済みの動画生成モデル（MiniMax-H3）に条件として渡す。④動画生成の最初の数ステップだけ下書きに従わせ、その後は手を離す。下書きは「のっぺりした見た目」なので、全工程で従わせるとAIがその質感まで真似てしまうためです。④は追加学習なしで使えます。\n\n従来の動画生成は、文章や1枚の画像だけでカメラや動きを指定するため、狙いどおりに動かすのが運任せでした。この手法は動きの設計をコードに任せ、見た目の仕上げをAIに任せます。公式ページでは、独自ベンチマークCodeVideoBench（22ケース・8用途）で最強の学習型ベースラインVACEを上回るとされています（採点はAIによる自動評価）。\n\n使うにはPython環境と、MiniMax-H3の重みをダウンロードするスクリプト（download_h3.py）、大きなGPUが要ります。評価スクリプトはOpenRouter経由のLLMを使うため、そこは有料APIです。コード生成側のLLMも用意する必要があります。実装はリポジトリのcvm・inferenceフォルダに入っています。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "コードはApache-2.0、サンプルはCC BY 4.0。生成にはMiniMax-H3の重みを別途取得して使うため、そのライセンスにも従う必要がある。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/code-video-model/CodeVideoModel"
+      },
+      {
+        "kind": "project",
+        "url": "https://code-video-model.github.io/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://code-video-model.github.io/tech_report.pdf"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/code-video-model.jpg",
+    "relatedWorks": [
+      {
+        "title": "ComfyUI-CodeVideo-ThreeJS",
+        "description": "同手法のThree.jsシーン生成部分だけをComfyUIの1ノードにした実装。",
+        "url": "https://github.com/slmonker/ComfyUI-CodeVideo-ThreeJS"
+      },
+      {
+        "title": "CodeVideoBench",
+        "description": "この研究が使う評価用データセット（Hugging Face）。",
+        "url": "https://huggingface.co/datasets/code-video-model/CodeVideoBench"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "hdr-converter",
+    "title": "HDR Converter",
+    "org": "Andrew Divnogorsky",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "GenVideo"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "AI生成映像（SDR）の白飛びした明るい部分だけを作り直し、合成ソフトで使える16bitのOpenEXR（HDR）連番に変換するWindows用アプリ。",
+    "point": "AI動画の多くは、空や照明が白く潰れた「SDR」映像として出てきます。そのままでは、実写素材と合成するときに明るさの調整で破綻しがちでした。このツールは白飛びした部分だけをAIで描き足し、明るさの情報を保ったHDR（OpenEXR）の連番画像に変換します。ほかの部分は元映像のままなので、見た目は変わりません。v0.2では奥行き・法線・動きベクトル・マスクなど、合成用の素材も同時に書き出せます。広告では、AI生成カットをNukeやDaVinciに入れて実写とそろえて露出を変えたり、光を後から足したりしたい場面で使えそうです。",
+    "detail": "仕組みは、LightricksのLTX-2.5（220億パラメータの動画生成モデル）と、SDRからHDRへの変換用に追加学習された小型モデル（IC-LoRA）を、ローカルのGPUで動かすものです。長い映像や大きな映像は、重なりを持たせた塊に分けて処理し、つなぎ目で露出をそろえて結合します。出力はACEScgという映画制作向けの色空間で、16bit半精度のOpenEXRです。ファイル名は元映像から引き継がれ、1001番から連番になり、全パラメータが1つのJSONに記録されます。\n\n従来は、AI動画をHDRにするには手作業で白飛びを補正するか、単純に明るさを持ち上げるしかありませんでした。持ち上げただけでは、白く潰れた部分は色のない面のままです。このツールは潰れた部分の中身をAIが推定して描くところが違います。全体を作り直さないため、ほかの部分のズレも起きにくい設計です。\n\n使うにはWindows 10/11と、NVIDIAのGPUが必要です。GitHub ReleasesのHDRConverterSetup-0.2.0.exe（約38MB）を入れると、セットアップ画面がモデルをHugging Faceから取得します。モデルの利用許諾は事前に承認が必要です。必要メモリは「TBD」とされていて、READMEは4Kを10GB GPU 1枚で処理できると主張しています。現状はベータで、インストーラーは署名なしのため警告が出ます。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "本体は独自のフリーウェア契約（個人・商用とも無料、再配布・改変版の配布は禁止）。内部で使うLTX-2.5はLTX-2 Community License（年商$10M未満は無料、超えるとLightricksと商用契約が必要）。ソース公開は未確認。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/divnogorsky/hdr-converter"
+      },
+      {
+        "kind": "product",
+        "url": "https://github.com/divnogorsky/hdr-converter/releases"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/hdr-converter.jpg",
+    "relatedWorks": [
+      {
+        "title": "ComfyUI NVIDIA RTX VSR Long Video",
+        "description": "AI動画の高画質化（解像度側）をComfyUIで行うノード。",
+        "url": "https://github.com/tritant/ComfyUI_NVIDIA_RTX_VSR_Long_Video"
+      },
+      {
+        "title": "TE-Speed-SeedVR2",
+        "description": "動画の超解像（SeedVR2）を高速化するComfyUIノード。",
+        "url": "https://github.com/tl2012tl/TE-Speed-SeedVR2"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "afflatus",
+    "title": "Afflatus",
+    "org": "bardak971",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "GenVideo"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "ComfyUIのノードグラフを見せず、モデルごとの入力フォームと履歴・タイムライン編集・複数PCへの振り分けキューを足した、自前サーバー用の画像・動画制作スタジオ。",
+    "point": "ComfyUIは強力ですが、ノードをつなぐ画面に慣れていない人には扱いにくいのが難点でした。Afflatusは裏でComfyUIに生成させつつ、画面はモデルごとのフォームにします。生成した作品は設定つきで履歴に残り、クリップを並べてつなぐタイムライン編集もあります。ジョブは、手元のPCと借りたRunPodのGPUのうち、先に終わりそうなマシンへ自動で回されます。広告制作では、チームで1つのGPU環境を共有してカット案を量産したり、外部サーバーを借りてコストを見ながら動画を回したりする運用に向きそうです。",
+    "detail": "仕組みは、ブラウザで開く管理画面（http://127.0.0.1:8720）が、ComfyUIのAPIに対してジョブを投げる構成です。対応モデルはSDXL、FLUX、Qwen Image、MiniMax H3、LTX、Wan 2.2、SCAIL-2などで、それぞれ専用フォームから実行します。レンダリングはすべてComfyUI側で行い、Afflatus側は入力・保存・順番待ち・料金集計を担います。comfy-nodesフォルダにはAfflatus用の追加ノードも入っています。\n\n従来のComfyUIは、1つの作品を作るたびにグラフを開いて設定を探す必要があり、どの設定で作ったかは自分で管理する必要がありました。Afflatusは作品ごとに設定を保存し、複数マシンのキューと費用管理、モデルのダウンロードまでを1画面にまとめます。なお、READMEの機能説明は実機で確認できていない部分が多く、プロジェクト自身も0.x段階で、Linux・macOS版は実機未検証と書いています。\n\n使うには、既存のComfyUI環境（またはRunPod）が必要です。Windowsはzipを展開してAfflatus.batを実行し、Docker、Kubernetes（Helm）、ソースからのビルドにも対応します。GPUが無くても、疑似ComfyUIを相手に画面を試す `pnpm demo` が使えます。最新はv0.5.1（10/16）で、Releasesに7つの配布物があります。",
+    "license": {
+      "spdx": "AGPL-3.0",
+      "commercial": "conditional",
+      "note": "本体はAGPL-3.0、comfy-nodesはMIT。各モデルのライセンスは別で、MiniMax H3など地域制限のあるものがある。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/bardak971/afflatus"
+      },
+      {
+        "kind": "product",
+        "url": "https://github.com/bardak971/afflatus/releases"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/afflatus.jpg",
+    "relatedWorks": [
+      {
+        "title": "FrameWeaver",
+        "description": "Google Flowを使う動画ワークスペース。タイムライン編集と字幕・音声をまとめて扱う。",
+        "url": "https://github.com/phucnguyentvp1/frameweaver"
+      },
+      {
+        "title": "ComfyUI-Spectrum-MiniMax-H3",
+        "description": "同じくMiniMax H3向けのComfyUI拡張（既掲載）。",
+        "url": "https://github.com/Comfy-Org/comfystreamerh3"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "openfilm",
     "title": "OpenFilm",
     "org": "OpenFilm contributors",
