@@ -1,5 +1,39 @@
 [
   {
+    "id": "starryworks-inc-2026",
+    "title": "光る音展",
+    "summary": "STARRYWORKS inc.創業20周年を記念し、音に同期して光や影が変化する体験型インスタレーション展「光る音展」を大阪・東京の2都市で開催。",
+    "client": "STARRYWORKS inc.",
+    "agency": "STARRYWORKS inc.",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://20th.starryworks.co.jp/",
+    "thumbnail": "/thumbnails/starryworks-inc-2026.jpg",
+    "videoId": "",
+    "overview": "STARRYWORKS inc.が創業20周年を記念して開催した体験型インスタレーション展「光る音展」。音とデジタル技術、物理現象が生み出す光や影を音に同期させて変化させる展示で、大阪・東京の2都市で開催された。来場者は音と光が連動する空間を体感する構成になっている。",
+    "background": "STARRYWORKS inc.の創業20周年という節目にあわせ、同社がこれまで培ってきた音や光、デジタル技術を活用した表現を体験型展示として一つの場に結集させる企画として着想された。節目を記念するイベントとして、単なる展示紹介ではなく体感できる場をつくることが意図されている。",
+    "execution": "音とデジタル技術、物理現象を組み合わせ、音の変化に同期して光や影がリアルタイムに変化する仕掛けを構築した。会場では来場者が音に反応する光や影の変化を直接体験できる構成とし、大阪・東京の2都市を巡回する形で展示を実施した。",
+    "evaluationImpact": "音と光・影という異なる感覚要素を同期させ、体験として一つの空間にまとめた点が特徴。企業の周年施策を広告的なメッセージ発信ではなく、来場者が直接体感できるインスタレーションとして設計したアプローチといえる。受賞情報や来場者数などの数値は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Tech/Device",
+      "Form/Installation",
+      "Form/Exhibition",
+      "Theme/Art"
+    ]
+  },
+  {
     "id": "timber-timbre-anthropic-machines-of-loving-grace-2026",
     "title": "Timber / Timbre（Anthropic「Machines of Loving Grace」展）",
     "summary": "カリモクと共同開発した木製筐体にモジュラーシンセを収め、その構成を真鍋大度がClaudeと探った音響インスタレーション",
