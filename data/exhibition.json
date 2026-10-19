@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "statusAsOf": "2026-10-18",
+  "statusAsOf": "2026-10-19",
   "items": [
     {
       "id": "2026-azabudai-hills-gallery-ambient-kyoto-tokyo-sakamoto-tak",
@@ -529,7 +529,7 @@
       "city": "中央区",
       "startDate": "2026-10-02",
       "endDate": "2026-10-18",
-      "status": "ongoing",
+      "status": "ended",
       "admission": "UNKNOWN",
       "tags": [
         "generative",
