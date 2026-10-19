@@ -21325,5 +21325,215 @@
         "desc": "壊れたりぼやけた3D再構成を動画拡散モデルで直し、撮っていない角度まで補う研究。"
       }
     ]
+  },
+  {
+    "id": "2026-10-19-1",
+    "date": "2026-10-19",
+    "title": "建築サイトの余白をホバーで彫る",
+    "pattern": "文脈×技術",
+    "seed": "Kononenko Architectural Bureauの白黒ミニマルなサイトに、LingBot-Mapで再構成した実在の建物の3D形状を重ね、ホバーすると壁や空間が静かに現れる事務所紹介にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "kononenko-architectural-bureau-2026",
+        "title": "Kononenko Architectural Bureau",
+        "desc": "建築事務所のサイトが白黒の簡素なデザインと繊細なホバー演出で賞を取った事例"
+      },
+      {
+        "type": "tech",
+        "id": "lingbot-map",
+        "title": "LingBot-Map",
+        "desc": "特殊センサーなしで、カメラ映像だけから周囲の3D形状をリアルタイムに作るAI"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-19-2",
+    "date": "2026-10-19",
+    "title": "難民の旗を掲げる群舞",
+    "pattern": "文脈×技術",
+    "seed": "The Refugee Nationの旗と国歌に、CustomDanceで「国の舞踊」を人と対話しながら振り付けたら、国を持たない人々に身体の言語まで与えられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "the-refugee-nation-2016",
+        "title": "The Refugee Nation",
+        "desc": "難民選手団のために難民アーティストが旗と国歌を作った人権団体の運動"
+      },
+      {
+        "type": "tech",
+        "id": "customdance",
+        "title": "CustomDance",
+        "desc": "音楽と文章から、人が候補を選びつつ3Dダンスを作り上げるAIシステム"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-19-3",
+    "date": "2026-10-19",
+    "title": "存在しない企業の音声採用面接",
+    "pattern": "文脈×技術",
+    "seed": "WEYLAND INDUSTRIESのような架空企業の世界観を、Kandinsky 6.0 Videoで口の動きまで合った社員の映像として量産し、採用ページで本物のように語らせられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "prometheus-weyland-industries",
+        "title": "WEYLAND INDUSTRIES（Prometheus ARG）",
+        "desc": "映画公開前から架空企業のサイトやCEO講演を本物らしく作り込んだ宣伝"
+      },
+      {
+        "type": "tech",
+        "id": "kandinsky-6-0-video",
+        "title": "Kandinsky 6.0 Video",
+        "desc": "映像と声を同時に作り、口の動きも合わせる動画生成AI（コード公開済み）"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-19-4",
+    "date": "2026-10-19",
+    "title": "忘れられた名曲の譜面発掘",
+    "pattern": "文脈×技術",
+    "seed": "ERRATA AT 88が歴史の誤りを正したように、SheetSage2で埋もれた古い録音から譜面を起こし、忘れられた作曲者の曲を次世代が演奏できる形で蘇らせられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "johnnie-walker-errata-88",
+        "title": "ERRATA AT 88（Johnnie Walker × Alaíde Costa）",
+        "desc": "忘れられたボサノバの歌手を88歳でカーネギーホールに立たせた酒ブランドの企画"
+      },
+      {
+        "type": "tech",
+        "id": "sheetsage2",
+        "title": "SheetSage2",
+        "desc": "曲の音源からメロディやコードを読み取り、編集できる譜面に変えるAI"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-19-5",
+    "date": "2026-10-19",
+    "title": "ドローン編隊を3D空間で稽古",
+    "pattern": "技術×技術",
+    "seed": "Animatica Choreographerで生成した人の動きをDrone 100型の編隊の軌道に写し替え、人の振付がそのまま夜空の群れの動きになるショーが作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "drone-100-2015",
+        "title": "Drone 100",
+        "desc": "100機の光るドローンが音楽に合わせて夜空を飛んだ世界記録のショー"
+      },
+      {
+        "type": "tech",
+        "id": "animatica-choreographer",
+        "title": "Animatica Choreographer（Blender add-on）",
+        "desc": "文章とポーズ指定で3Dキャラの動きを作るBlender用アドオン"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-19-6",
+    "date": "2026-10-19",
+    "title": "歩く体で作るスプラット楽譜",
+    "pattern": "技術×技術",
+    "seed": "EmoteCapで取った自分の歩きや踊りの動きを、MetalSplatでMac上で学習したGaussian Splatの空間に置き、身体の軌跡が残る3Dの記録作品にできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "emotecap",
+        "title": "EmoteCap",
+        "desc": "ウェブカメラ映像から、スーツなしで人の全身の動きデータを作るツール"
+      },
+      {
+        "type": "tech",
+        "id": "metalsplat",
+        "title": "MetalSplat",
+        "desc": "NVIDIA製GPUなしでMac上でも3D空間データを学習できるOSS"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-19-7",
+    "date": "2026-10-19",
+    "title": "浮遊物を音にする3D整地",
+    "pattern": "技術×技術",
+    "seed": "Gaussian Splat Cleanup HDAが捨てる浮遊点やノイズを、Audionautにエージェント経由で渡して音素材に変えれば、3Dの汚れから生まれる音の作品になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "gaussian-splat-cleanup-hda",
+        "title": "Gaussian Splat Cleanup HDA",
+        "desc": "3Dデータのゴミや浮遊物を自動で取り除く、Houdini用の無料ツール"
+      },
+      {
+        "type": "tech",
+        "id": "audionaut",
+        "title": "Audionaut",
+        "desc": "AIエージェントから操作できる無料のマルチトラック音声編集ソフト"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-19-8",
+    "date": "2026-10-19",
+    "title": "スタジオ動画を超解像で油絵化",
+    "pattern": "転用",
+    "seed": "ComfyUI NVIDIA RTX VSR Long Videoは画質向上用だが、あえて低解像の粗い映像を4倍化し、谷原菜摘子の個展「晩餐」のようなベルベットの質感の幻覚的な筆致を引き出せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "abc0120-226546-2026",
+        "title": "谷原菜摘子 個展「晩餐」",
+        "desc": "黒や赤のベルベットに油彩を重ね、豪華な晩餐の裏の崩壊を描く個展"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-nvidia-rtx-vsr-long-video",
+        "title": "ComfyUI NVIDIA RTX VSR Long Video",
+        "desc": "長い動画でも高画質に拡大できるComfyUI用のNVIDIAノード"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-19-9",
+    "date": "2026-10-19",
+    "title": "譜面解析で作る偽造ARG資料",
+    "pattern": "転用",
+    "seed": "SheetSage2は採譜用だが、Year Zero ARGのように、謎の音源から読み取ったコードや拍の配置を暗号文書として配り、ファンに解読させる素材にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "year-zero-arg-nine-inch-nails",
+        "title": "Year Zero ARG – Nine Inch Nails",
+        "desc": "会場のUSBや偽サイトなどをつなぎ18か月続いた音楽の体験型ゲーム"
+      },
+      {
+        "type": "tech",
+        "id": "sheetsage2",
+        "title": "SheetSage2",
+        "desc": "曲の音源からメロディやコードを読み取り、編集できる譜面に変えるAI"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-19-10",
+    "date": "2026-10-19",
+    "title": "MCPで動かす文脈の演劇MV",
+    "pattern": "転用",
+    "seed": "Comfy MCPはAIが画像を作るための仕組みだが、＝LOVE「木漏れ日メゾフォルテ」MVのような演劇仕立ての映像で、場面転換の指示役としてエージェントに演出を任せるのも面白いかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "love-mv-2026",
+        "title": "＝LOVE「木漏れ日メゾフォルテ」MV公開",
+        "desc": "カフェを舞台に、ドラマとダンスをつないだ演劇風のアイドルMV"
+      },
+      {
+        "type": "tech",
+        "id": "comfy-mcp",
+        "title": "Comfy MCP",
+        "desc": "AIエージェントから自分のPCのComfyUIを直接操作できる公式ツール"
+      }
+    ]
   }
 ]
