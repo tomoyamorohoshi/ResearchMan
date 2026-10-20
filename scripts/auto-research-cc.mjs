@@ -47,6 +47,8 @@ import {
   partitionByGate,
   gateRejectionDetail,
 } from "./lib/case-gate.mjs";
+import { toHandoffItem, appendHandoff, exhibitionRoutingPromptSection } from "./lib/exhibition-handoff.mjs";
+import { todayJst } from "./lib/exhibition-status.mjs";
 import { resolveSourcesText, inferSourceId, validateSourcesRegistry } from "./lib/sources-registry.mjs";
 import { fileURLToPath, pathToFileURL } from "url";
 
@@ -55,6 +57,7 @@ const CASES_PATH = path.join(__dirname, "../data/cases.json");
 const VOCAB_PATH = path.join(__dirname, "../data/tag-vocabulary.json");
 const TUNING_PATH = path.join(__dirname, "../data/research-tuning.json");
 const SOURCES_PATH = path.join(__dirname, "../data/sources.json");
+const ROOT = path.join(__dirname, "..");
 const DRY_RUN = process.argv.includes("--dry-run");
 const LAST_RUN_PATH = path.join(__dirname, "../.last-research-run.txt");
 const LAST_ADD_PATH = path.join(os.tmpdir(), "researchman-last-add.json"); // 反映後の通知メール用サマリー
@@ -295,6 +298,8 @@ ${sourcesText}
 
 ${discoveryGatePromptSection()}
 
+${exhibitionRoutingPromptSection()}
+
 ## 厳守事項
 1. **鮮度**: この${daysDiff}日間に「公開/発表/受賞/バイラル化」したものだけ。過去の名作の掘り起こしは禁止。
 2. **多様性**: ${focus.diversity} 有名ブランドの大型事例だけでなく、小規模でも面白いものを混ぜる。
@@ -319,7 +324,9 @@ ${existingTitles}
       "sourceId": "見つけた情報源の[id]（上の情報源から見つけた場合のみ。不明・それ以外は空文字）",
       "gateVerdict": "accept | reject",
       "gateCriterion": "A | B | C | none",
-      "gateReason": "判定理由を一言（40字以内）"
+      "gateReason": "判定理由を一言（40字以内）",
+      "contentKind": "case | exhibition",
+      "exhibition": "contentKindがexhibitionの時のみ付ける（上の「展覧会・展示の振り分け」参照）。caseなら省略"
     }
   ]
 }`;
@@ -518,7 +525,8 @@ async function main() {
 
   const toAdd = [];
   const seenThisRun = [];
-  const stats = { candidates: 0, dup: 0, rejected: 0, gateRejected: 0 };
+  const today = todayJst();
+  const stats = { candidates: 0, dup: 0, rejected: 0, gateRejected: 0, routed: 0 };
   let discoveryErrors = 0;
   let roundsAttempted = 0;
 
@@ -583,6 +591,30 @@ async function main() {
         stats.dup++;
         if (!DRY_RUN) {
           await logRejection({ pipeline: "cc", title: cand.title, reason: "link-duplicate", link: cand.link || "" });
+        }
+        continue;
+      }
+
+      // ── 展覧会告知（開催前/開催中・会場と会期あり）は cases に入れず Exhibition へ引き継ぐ ──
+      // 採用基準(関門)の前に振り分ける：展示は Exhibition 側の基準（公式ページ照合・score）で扱うため。
+      // 即 appendHandoff（kill/例外で失わない）。書き込めなければ cases 判定に戻す（cases から消えるだけにしない）。
+      const handoff = toHandoffItem(cand, today);
+      let routed = false;
+      if (handoff) {
+        try {
+          if (!DRY_RUN) await appendHandoff(ROOT, [handoff]);
+          routed = true;
+        } catch (e) {
+          console.error(`  ⚠ handoff 書き込み失敗（cases 判定に戻す）: ${e.message}`);
+        }
+      }
+      if (routed) {
+        console.log(`Exhibitionへ引き継ぎ${DRY_RUN ? "（dry-run: 書き込みなし）" : ""}: ${cand.title}（${handoff.venue} ${handoff.startDate}〜${handoff.endDate}）`);
+        stats.routed++;
+        existingTitleKeys.add(normTitle(cand.title));
+        if (lk) existingLinkKeys.add(lk);
+        if (!DRY_RUN) {
+          await logRejection({ pipeline: "cc", title: cand.title, reason: "routed-to-exhibition", detail: `${handoff.venue} ${handoff.startDate}〜${handoff.endDate}`, link: cand.link || "" });
         }
         continue;
       }
