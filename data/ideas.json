@@ -21535,5 +21535,215 @@
         "desc": "AIエージェントから自分のPCのComfyUIを直接操作できる公式ツール"
       }
     ]
+  },
+  {
+    "id": "2026-10-20-1",
+    "date": "2026-10-20",
+    "title": "アキタベン札を声で変形させる",
+    "pattern": "文脈×技術",
+    "seed": "秋田魁新報「アキタベン」のかるた札を、Ultimate Vocal Remover (UVR)で方言の朗読から声だけ抜き出し、その声の抑揚で札の文字が揺れる紙面広告にしたら、方言の音の記憶まで残せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "akita-sakigake-akitaben-karuta",
+        "title": "秋田魁新報「帰ってきたアキタベン ― あきた弁企業かるた」",
+        "desc": "新聞の広告欄を方言かるたの絵札・読み札に見立て、切り取って遊べるようにした連載企画。"
+      },
+      {
+        "type": "tech",
+        "id": "ultimate-vocal-remover",
+        "title": "Ultimate Vocal Remover (UVR)",
+        "desc": "AIで歌や話し声と伴奏を分けて取り出せる、無料のデスクトップアプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-20-2",
+    "date": "2026-10-20",
+    "title": "苔の公共物を3D粒で歩く",
+    "pattern": "文脈×技術",
+    "seed": "MOSSTOPIAの苔が生えた三角コーンやブロック塀を、Splat.jsでスマホ写真からブラウザ上のGaussian Splattingにし、街の苔の育ち方を共有する「苔の地図」にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "mosstopia-2026",
+        "title": "境界緑地 ─ 苔×公共物 ─（MOSSTOPIA）",
+        "desc": "街に放置された三角コーンなどに苔を育て、手間のかからない緑化に変える提案。"
+      },
+      {
+        "type": "tech",
+        "id": "splat-js",
+        "title": "Splat.js",
+        "desc": "写真をブラウザだけで、光の粒の集まりによる立体データに変換できるツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-20-3",
+    "date": "2026-10-20",
+    "title": "龍角散の絶叫を歩きに変換",
+    "pattern": "文脈×技術",
+    "seed": "龍角散のお化け屋敷で来場者が逃げる走り方を、MotionPersonaの「怒り」「酔っ払い」などスタイル指定で歩行キャラに変え、のどの調子別の歩き方を遊べるブース展開にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-qx3e2y-2026",
+        "title": "龍角散、展示会で仕掛ける\"本気のお化け屋敷\"体験型ブランド想起施策",
+        "desc": "龍角散が展示会でお化け屋敷を作り、絶叫とのどを結びつけた体験施策。"
+      },
+      {
+        "type": "tech",
+        "id": "motionpersona",
+        "title": "MotionPersona",
+        "desc": "人物や気分を指定し、操作に合わせて歩く動きをリアルタイムで作るモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-20-4",
+    "date": "2026-10-20",
+    "title": "サグラダを動画から再構築",
+    "pattern": "文脈×技術",
+    "seed": "日本XRセンターのガウディXRミュージアムに、Any4Dで街の動画から実寸の動く3Dを復元して重ね、現実の工事現場そのものがサグラダ誕生の続きを歩ける空間になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-1qyowif-2026",
+        "title": "歩ける世界遺産ミュージアム『ガウディ ー サグラダ・ファミリアの秘密』",
+        "desc": "XRでガウディの頭の中に入り、サグラダ・ファミリアの誕生過程を歩ける常設ミュージアム。"
+      },
+      {
+        "type": "tech",
+        "id": "any4d",
+        "title": "Any4D",
+        "desc": "動画や各種センサーから、実際の大きさをもつ動く3D世界を一度で復元するモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-20-5",
+    "date": "2026-10-20",
+    "title": "菌糸が弾くシンセの音色",
+    "pattern": "技術×技術",
+    "seed": "Fungal Computerの菌糸体が出す電気のスパイクを、CA-72のアナログモノシンセの音程や揺れとして鳴らしたら、キノコが勝手に演奏するような音楽インスタレーションができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "fungal-computer",
+        "title": "Fungal Computer（菌糸体メムリスタ／きのこコンピューティング）",
+        "desc": "キノコの根の電気信号を記録し、計算や記憶に使う研究。"
+      },
+      {
+        "type": "tech",
+        "id": "ca-72",
+        "title": "CA-72",
+        "desc": "1970年代のアナログシンセを回路から再現した、無料の音源プラグイン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-20-6",
+    "date": "2026-10-20",
+    "title": "白飛びを3D空間の光に",
+    "pattern": "技術×技術",
+    "seed": "HDR Converterで白飛びを直したAI映像のHDR連番を、Spirula Studioで作った3Dガウシアンスプラットの空間の光源として使えば、AI映像が空間を照らす表現ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "hdr-converter",
+        "title": "HDR Converter",
+        "desc": "AI生成映像の白飛びを作り直し、合成用のHDR連番にするWindowsアプリ。"
+      },
+      {
+        "type": "tech",
+        "id": "spirula-studio",
+        "title": "Spirula Studio",
+        "desc": "写真や動画から3Dガウシアンスプラットを作れる、無料の3D学習ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-20-7",
+    "date": "2026-10-20",
+    "title": "ロゴが踊り手の姿に応答",
+    "pattern": "技術×技術",
+    "seed": "EchoAvatarが声や音楽から踊るアバターを作るように、CEB SAM 3D Body v4で取った実在の人の動きと掛け合わせ、音と身体の両方で姿を変えるアバター表現ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "echoavatar",
+        "title": "EchoAvatar",
+        "desc": "話し声や音楽を聞きながら、全身が動く3Dアバターをその場で作る研究。"
+      },
+      {
+        "type": "tech",
+        "id": "ceb-sam-3d-body-v4",
+        "title": "CEB SAM 3D Body v4 (Blender addon)",
+        "desc": "動画から人の3Dポーズを推定し、Blenderにモーキャプとして取り込むアドオン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-20-8",
+    "date": "2026-10-20",
+    "title": "ロゴを動かす骨格として転用",
+    "pattern": "転用",
+    "seed": "MotionBricksはゲームキャラやロボットを動かす仕組みだが、Oi Responsive Logoのような形と色が変わるロゴを動かす身体として転用したら、ロゴが歩き回るブランドキャラになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "motionbricks",
+        "title": "MotionBricks",
+        "desc": "ゲームキャラと実在の二足歩行ロボットを同じモデルで動かすNVIDIAの生成システム。"
+      },
+      {
+        "type": "case",
+        "id": "oi-responsive-logo-2016",
+        "title": "Oi Responsive Logo",
+        "desc": "マイクの音の大きさや高さで、形と色が変わるリアルタイムのロゴ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-20-9",
+    "date": "2026-10-20",
+    "title": "ボーカル加工で街の声を録る",
+    "pattern": "転用",
+    "seed": "This Is The Voiceは歌の録音用プラグインだが、UNIQLOCKのような埋め込み型ウェブパーツに載せて、来訪者が声を録るだけで作品の一部になる参加型バナーに転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "this-is-the-voice",
+        "title": "This Is The Voice",
+        "desc": "録音から仕上げまでをまとめた、遅延ゼロが売りの無料ボーカルプラグイン。"
+      },
+      {
+        "type": "case",
+        "id": "uniqlock",
+        "title": "UNIQLOCK",
+        "desc": "ダンスと時計を融合し、世界中のブログに埋め込まれたユニクロのウェブ作品。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-20-10",
+    "date": "2026-10-20",
+    "title": "地球の端をスプラット化",
+    "pattern": "転用",
+    "seed": "Columbia「Expedition Impossible」の地球の端を探す挑発を、複数人のスマホ写真をSplat.jsで3D化して検証する場に転用し、「端は無かった」を立体で見せる証拠アーカイブにできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "columbia-expedition-impossible",
+        "title": "Expedition Impossible",
+        "desc": "地球平面説の信奉者に、地球の端を撮れば全財産を譲ると挑んだ企画。"
+      },
+      {
+        "type": "tech",
+        "id": "splat-js",
+        "title": "Splat.js",
+        "desc": "写真をブラウザだけで、光の粒の集まりによる立体データに変換できるツール。"
+      }
+    ]
   }
 ]
