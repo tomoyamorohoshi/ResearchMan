@@ -156,7 +156,7 @@ const EN_MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep"
 export function dateAppearsInText(text, ymd) {
   if (!isValidYmd(ymd)) return false;
   const [y, m, d] = ymd.split("-").map(Number);
-  const t = String(text || "").normalize("NFKC");
+  const raw = String(text || "").normalize("NFKC");
   const md = `0?${m}`;
   const dd = `0?${d}`;
   const patterns = [
@@ -166,7 +166,33 @@ export function dateAppearsInText(text, ymd) {
     new RegExp(`${EN_MONTHS[m - 1]}[a-z]*\\.?\\s*${dd}(?!\\d)`, "i"),
     new RegExp(`(?<!\\d)${dd}\\s*(?:st|nd|rd|th)?\\s*${EN_MONTHS[m - 1]}[a-z]*`, "i"),
   ];
-  return patterns.some((re) => re.test(t));
+  const compact = compactSpacedChars(raw);
+  return patterns.some((re) => re.test(raw) || (compact !== raw && re.test(compact)));
+}
+
+/**
+ * 字間スペース（1文字ずつ span で囲んだ letter-spacing 表記: "2 0 2 6 年 7 月 7 日"）対策。
+ * 日付を構成する1文字トークン（数字・年月日・区切り記号）が空白区切りで3つ以上連続する区間だけ空白を詰める。
+ * 通常の語間スペース（"10月 2 日 4 日" のような短い連続）は詰めない（別日付への誤一致防止）。
+ */
+function compactSpacedChars(text) {
+  const isDateChar = (tk) => tk.length === 1 && /[\d年月日/.\-〜~–:]/.test(tk);
+  const out = [];
+  let run = [];
+  const flush = () => {
+    if (run.length >= 3 && run.some((tk) => /\d/.test(tk))) out.push(run.join(""));
+    else out.push(...run);
+    run = [];
+  };
+  for (const tk of text.split(/\s+/)) {
+    if (isDateChar(tk)) run.push(tk);
+    else {
+      flush();
+      out.push(tk);
+    }
+  }
+  flush();
+  return out.join(" ");
 }
 
 // 単独では会場/題名の根拠にならない汎用語（これだけの一致は無効）
@@ -182,7 +208,10 @@ export function venueAppearsInText(text, venue) {
   const hay = collapse(text);
   const whole = collapse(venue);
   if (!whole) return false;
-  if (stripGeneric(whole).replace(/[^\p{L}\p{N}]/gu, "").length < 2) return false; // 汎用語のみの会場名は照合不能
+  // 汎用語のみの会場名は照合不能。残りが CJK を含めば1文字でも可（森美術館 → 森）、ラテン等は2文字以上
+  const core = stripGeneric(whole).replace(/[^\p{L}\p{N}]/gu, "");
+  const hasCjk = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/u.test(core);
+  if (core.length < (hasCjk ? 1 : 2)) return false;
   if (hay.includes(whole)) return true;
   const tokens = String(venue || "")
     .normalize("NFKC")
@@ -218,7 +247,14 @@ export function titleAppearsInText(text, title) {
  * @param {{fetchHtml:(url:string)=>Promise<{status:number, body:string}|null>}} deps
  * @returns {Promise<{ok:true}|{ok:false, reason:string}>}
  */
-export async function verifyOfficialPage(cand, { fetchHtml }) {
+export async function verifyOfficialPage(cand, deps) {
+  const f = await fetchOfficialText(cand, deps);
+  if (!f.ok) return f;
+  return checkOfficialText(cand, f.text);
+}
+
+/** 公式ページを取得してプレーンテキスト化する（fetch は1回。照合は checkOfficialText）。 */
+async function fetchOfficialText(cand, { fetchHtml }) {
   if (!isHttpUrl(cand.officialUrl)) return { ok: false, reason: "official-url-invalid" };
   if (!isSafeOfficialUrl(cand.officialUrl)) return { ok: false, reason: "official-url-rejected: listing/social/internal host" };
   let res;
@@ -229,7 +265,10 @@ export async function verifyOfficialPage(cand, { fetchHtml }) {
   }
   if (!res) return { ok: false, reason: "official-fetch-failed" };
   if (res.status !== 200) return { ok: false, reason: `official-status-${res.status}` };
-  const text = htmlToText(res.body);
+  return { ok: true, text: htmlToText(res.body) };
+}
+
+function checkOfficialText(cand, text) {
   if (!dateAppearsInText(text, cand.startDate)) return { ok: false, reason: `official-date-mismatch: startDate ${cand.startDate} not found` };
   if (!dateAppearsInText(text, cand.endDate)) return { ok: false, reason: `official-date-mismatch: endDate ${cand.endDate} not found` };
   if (!venueAppearsInText(text, cand.venue)) return { ok: false, reason: `official-venue-mismatch: ${cand.venue}` };
@@ -358,11 +397,19 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
       const patch = diffDates(dup.item, cand);
       // 同一実行で追加済みの展示は更新しない（ラウンドごとに Claude の返す日付が揺れて上書きされるのを防ぐ）
       if (!patch || protect.has(dup.item.id)) { skipped.push({ title: cand.title, reason: "duplicate", existingId: dup.item.id }); return; }
-      const v = await verifyOfficialPage(cand, deps);
+      const f = await fetchOfficialText(cand, deps);
+      if (!f.ok) return unver(cand, `会期変更の裏取り失敗: ${f.reason}`);
+      // 既存値が公式ページ上でまだ見つかるなら根拠は失われていない → 揺れた候補値でパッチしない
+      const effective = {};
+      if (patch.startDate && !dateAppearsInText(f.text, dup.item.startDate)) effective.startDate = patch.startDate;
+      if (patch.endDate && !dateAppearsInText(f.text, dup.item.endDate)) effective.endDate = patch.endDate;
+      if (patch.venue && !venueAppearsInText(f.text, dup.item.venue)) effective.venue = patch.venue;
+      if (!Object.keys(effective).length) { skipped.push({ title: cand.title, reason: "duplicate-existing-still-valid", existingId: dup.item.id }); return; }
+      const v = checkOfficialText(cand, f.text);
       if (!v.ok) return unver(cand, `会期変更の裏取り失敗: ${v.reason}`);
-      const next = applyUpdate(dup.item, patch, today);
+      const next = applyUpdate(dup.item, effective, today);
       items = items.map((i) => (i.id === dup.item.id ? next : i));
-      updated.push({ id: dup.item.id, title: dup.item.title, patch });
+      updated.push({ id: dup.item.id, title: dup.item.title, patch: effective });
       return;
     }
 
