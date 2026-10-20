@@ -89,6 +89,7 @@ import { validateCaseGate } from "./lib/case-gate-criteria.mjs";
 import { computeExhibitionStats, proposeExhibitionProfile } from "./lib/tuneup-exhibition.mjs";
 import { reinjectDescriptions } from "./lib/reinject-descriptions.mjs";
 import { applyCandidateWithVerification } from "./lib/tuneup-apply.mjs";
+import { buildVerifySteps } from "./lib/tuneup-verify-steps.mjs";
 import { buildPass1Prompt, buildPass2Prompt } from "./lib/tuneup-prompts.mjs";
 import {
   shouldRefreshAngles,
@@ -948,9 +949,8 @@ async function main() {
       // （検証中の中断でも、書いた分が取りこぼされない。失敗時は exit!=0 で run-job は add しない）
       if (!DRY_RUN && touchedRel.length) writeTouched(touchedRel);
     },
-    verifySteps: ["ideas:dry", "auto-research:tech:dry", "auto-research:cc:dry", "auto-research:exhibition:dry"].map(
-      (npmScript) => () => runDrySubpipeline(npmScript)
-    ),
+    // cc 段だけ短縮モード（v3 の通常 dry-run は45分超で毎回タイムアウトしていた）。詳細は lib/tuneup-verify-steps.mjs
+    verifySteps: buildVerifySteps(runDrySubpipeline),
     revert: async () => gitCheckoutRevert(revertablePaths()),
     dryRun: DRY_RUN,
   });

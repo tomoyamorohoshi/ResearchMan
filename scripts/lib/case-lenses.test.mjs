@@ -224,3 +224,36 @@ test("takeBorderlineToTry: 発見時gateScore上位から、試行済みを除�
   // 由来に関わらず枠を先取りしない: 試行数は関門1 borderline の記事化回数のみ
   assert.equal(pending.length, 7);
 });
+
+// ── 検証用の短縮モード（週次見直しの cc dry-run 検証。45分タイムアウト回避）──
+import { CC_VERIFY_ENV_KEY, VERIFY_MAX_ARTICLE_ATTEMPTS, isVerifyMode, planDiscoveryQueue } from "./case-lenses.mjs";
+
+test("isVerifyMode: dry-run との併用時のみ有効（本番では無視）", () => {
+  assert.equal(isVerifyMode({ env: { [CC_VERIFY_ENV_KEY]: "1" }, argv: ["--dry-run"] }), true);
+  assert.equal(isVerifyMode({ env: {}, argv: ["--dry-run", "--verify"] }), true);
+  assert.equal(isVerifyMode({ env: { [CC_VERIFY_ENV_KEY]: "1" }, argv: [] }), false);
+  assert.equal(isVerifyMode({ env: {}, argv: ["--verify"] }), false);
+  assert.equal(isVerifyMode({ env: { [CC_VERIFY_ENV_KEY]: "0" }, argv: ["--dry-run"] }), false);
+  assert.equal(isVerifyMode({ env: {}, argv: ["--dry-run"] }), false);
+});
+
+test("planDiscoveryQueue: 通常は4レンズ全部、短縮モードは最初のレンズ1ラウンドのみ", () => {
+  const order = [2, 0, 3, 1];
+  assert.deepEqual(planDiscoveryQueue(order), [
+    { kind: "base", lens: 2, round: 1 },
+    { kind: "base", lens: 0, round: 2 },
+    { kind: "base", lens: 3, round: 3 },
+    { kind: "base", lens: 1, round: 4 },
+  ]);
+  assert.equal(planDiscoveryQueue(order, { verify: false }).length, 4);
+  assert.deepEqual(planDiscoveryQueue(order, { verify: true }), [{ kind: "base", lens: 2, round: 1 }]);
+});
+
+test("articleBudgetCheck: 短縮モードは accept+borderline 合計2件で打ち切り、通常は不変", () => {
+  assert.equal(VERIFY_MAX_ARTICLE_ATTEMPTS, 2);
+  const base = { kind: "accept", acceptAttempts: 1, borderlineAttempts: 1, elapsedMs: 0 };
+  assert.match(articleBudgetCheck({ ...base, verify: true }), /verify/);
+  assert.equal(articleBudgetCheck({ ...base, borderlineAttempts: 0, verify: true }), null);
+  assert.equal(articleBudgetCheck(base), null);
+  assert.equal(articleBudgetCheck({ ...base, verify: false }), null);
+});

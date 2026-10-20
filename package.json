@@ -19,6 +19,7 @@
     "check-links": "node scripts/check-links.mjs",
     "auto-research:cc": "node scripts/auto-research-cc.mjs",
     "auto-research:cc:dry": "node scripts/auto-research-cc.mjs --dry-run",
+    "auto-research:cc:verify": "node scripts/auto-research-cc.mjs --dry-run --verify",
     "auto-research:tech": "node scripts/auto-research-tech.mjs",
     "auto-research:tech:dry": "node scripts/auto-research-tech.mjs --dry-run",
     "auto-research:exhibition": "node scripts/auto-research-exhibition.mjs",

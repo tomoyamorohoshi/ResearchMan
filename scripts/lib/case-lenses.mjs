@@ -21,6 +21,24 @@ export const MAX_EXTRA_ROUNDS = 2;
 // borderline系は最終枠3件＋2件(5件)まで。上限で打ち切った候補は却下ログに article-budget で記録する。
 export const ARTICLE_BUDGET_MS = 60 * 60 * 1000;
 export const MAX_ARTICLE_ATTEMPTS_ACCEPT = 20;
+
+// 検証用の短縮モード（週次見直しの cc dry-run 検証用。通常の dry-run・本番には影響しない）。
+// 通常の発見(4レンズ＋追加2)＋記事化(最大60分)は45分の検証タイムアウトを超えるため、
+// 発見はその日の最初のレンズ1ラウンドのみ（追加ラウンド・埋め合わせなし）、記事化は合計2件までにする。
+export const CC_VERIFY_ENV_KEY = "RESEARCHMAN_CC_VERIFY";
+export const VERIFY_MAX_ARTICLE_ATTEMPTS = 2;
+
+/** 短縮モードか。--dry-run との併用時のみ有効（本番で誤って有効になって発見が縮むのを防ぐ）。 */
+export function isVerifyMode({ env = process.env, argv = process.argv } = {}) {
+  if (!argv.includes("--dry-run")) return false;
+  return env[CC_VERIFY_ENV_KEY] === "1" || argv.includes("--verify");
+}
+
+/** 発見ラウンドのキュー。通常は日替わりのレンズ順で全レンズ、短縮モードは先頭レンズ1ラウンドのみ。 */
+export function planDiscoveryQueue(lensOrder, { verify = false } = {}) {
+  const order = verify ? lensOrder.slice(0, 1) : lensOrder;
+  return order.map((lens, i) => ({ kind: "base", lens, round: i + 1 }));
+}
 export const MAX_ARTICLE_ATTEMPTS_BORDERLINE = MAX_BORDERLINE + 2;
 
 const JST_OFFSET_MS = 9 * 60 * 60 * 1000;
@@ -254,8 +272,9 @@ export function formatLensTierSummary(stats, labels = []) {
  * 記事化を始めてよいか。始められなければ理由（却下ログ detail 用）、よければ null。
  * kind: "accept"（関門1 accept 由来）| "borderline"（関門1 borderline 由来）。件数は別カウント。
  */
-export function articleBudgetCheck({ kind, acceptAttempts, borderlineAttempts, elapsedMs }) {
+export function articleBudgetCheck({ kind, acceptAttempts, borderlineAttempts, elapsedMs, verify = false }) {
   if (elapsedMs >= ARTICLE_BUDGET_MS) return `time:${Math.round(elapsedMs / 60000)}min>=${ARTICLE_BUDGET_MS / 60000}min`;
+  if (verify && acceptAttempts + borderlineAttempts >= VERIFY_MAX_ARTICLE_ATTEMPTS) return `count:verify>=${VERIFY_MAX_ARTICLE_ATTEMPTS}`;
   if (kind === "borderline") {
     if (borderlineAttempts >= MAX_ARTICLE_ATTEMPTS_BORDERLINE) return `count:borderline>=${MAX_ARTICLE_ATTEMPTS_BORDERLINE}`;
   } else if (acceptAttempts >= MAX_ARTICLE_ATTEMPTS_ACCEPT) {
