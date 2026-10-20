@@ -161,19 +161,52 @@ const EN_MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep"
 /** text に ymd（YYYY-MM-DD）が各種表記（年あり/月日のみ/英語）で現れるか。 */
 export function dateAppearsInText(text, ymd) {
   if (!isValidYmd(ymd)) return false;
-  const [y, m, d] = ymd.split("-").map(Number);
   const raw = String(text || "").normalize("NFKC");
+  const compact = compactSpacedChars(raw);
+  const patterns = datePatterns(ymd);
+  return patterns.some((re) => re.test(raw) || (compact !== raw && re.test(compact)));
+}
+
+function datePatterns(ymd, flags = "") {
+  const [y, m, d] = ymd.split("-").map(Number);
   const md = `0?${m}`;
   const dd = `0?${d}`;
-  const patterns = [
-    new RegExp(`(?<!\\d)${y}\\s*[-/.年]\\s*${md}\\s*[-/.月]\\s*${dd}(?!\\d)`),
-    new RegExp(`(?<!\\d)${md}\\s*月\\s*${dd}\\s*日`),
-    new RegExp(`(?<![\\d/.])${md}\\s*[/.]\\s*${dd}(?![\\d])`),
-    new RegExp(`${EN_MONTHS[m - 1]}[a-z]*\\.?\\s*${dd}(?!\\d)`, "i"),
-    new RegExp(`(?<!\\d)${dd}\\s*(?:st|nd|rd|th)?\\s*${EN_MONTHS[m - 1]}[a-z]*`, "i"),
+  return [
+    new RegExp(`(?<!\\d)${y}\\s*[-/.年]\\s*${md}\\s*[-/.月]\\s*${dd}(?!\\d)`, flags),
+    new RegExp(`(?<!\\d)${md}\\s*月\\s*${dd}\\s*日`, flags),
+    new RegExp(`(?<![\\d/.])${md}\\s*[/.]\\s*${dd}(?![\\d])`, flags),
+    new RegExp(`${EN_MONTHS[m - 1]}[a-z]*\\.?\\s*${dd}(?!\\d)`, `i${flags}`),
+    new RegExp(`(?<!\\d)${dd}\\s*(?:st|nd|rd|th)?\\s*${EN_MONTHS[m - 1]}[a-z]*`, `i${flags}`),
   ];
+}
+
+// 範囲表記の間に挟まってよいもの: 区切り・括弧付き曜日・英語曜日・中間日の数字（時刻/別月/小数を除く）
+const RANGE_FILLER = String.raw`(?:[\s,、・–—〜~-]|\([^)]{0,12}\)|(?:mon|tue|wed|thu|fri|sat|sun)[a-z]{0,6}(?![a-z])|\d(?:\s?\d)?日?(?!\d|\s?[:月/]|\.\d))`;
+const RANGE_TAIL_MAX = 40;
+
+/**
+ * 月を省略した会期表記（"10/24(Sat)25(Sun)27(Tue)" "11/4–8" "10月24日〜27日"）の終了日照合。
+ * 開始日の表記の直後 RANGE_TAIL_MAX 文字以内に、同年同月の終了日の「日」だけが
+ * 区切り・曜日・中間日だけを挟んで現れる場合に true。
+ */
+function rangeEndAppearsInText(text, startYmd, endYmd) {
+  if (!isValidYmd(startYmd) || !isValidYmd(endYmd)) return false;
+  if (startYmd.slice(0, 7) !== endYmd.slice(0, 7) || endYmd <= startYmd) return false;
+  const endDay = Number(endYmd.slice(8, 10));
+  const endDigits = String(endDay).split("").join(String.raw`\s?`);
+  const endRe = new RegExp(String.raw`^${RANGE_FILLER}*?(?<!\d)0?${endDigits}(?!\d|\s?[:月/]|\.\d)`, "i");
+  const raw = String(text || "").normalize("NFKC");
   const compact = compactSpacedChars(raw);
-  return patterns.some((re) => re.test(raw) || (compact !== raw && re.test(compact)));
+  const startPatterns = datePatterns(startYmd, "g");
+  for (const hay of compact !== raw ? [raw, compact] : [raw]) {
+    for (const re of startPatterns) {
+      for (const mt of hay.matchAll(re)) {
+        const tail = hay.slice(mt.index + mt[0].length, mt.index + mt[0].length + RANGE_TAIL_MAX);
+        if (endRe.test(tail)) return true;
+      }
+    }
+  }
+  return false;
 }
 
 /**
@@ -283,7 +316,7 @@ async function fetchExistingOfficialText(item, deps, cache) {
 }
 function checkOfficialText(cand, text) {
   if (!dateAppearsInText(text, cand.startDate)) return { ok: false, reason: `official-date-mismatch: startDate ${cand.startDate} not found` };
-  if (!dateAppearsInText(text, cand.endDate)) return { ok: false, reason: `official-date-mismatch: endDate ${cand.endDate} not found` };
+  if (!dateAppearsInText(text, cand.endDate) && !rangeEndAppearsInText(text, cand.startDate, cand.endDate)) return { ok: false, reason: `official-date-mismatch: endDate ${cand.endDate} not found` };
   if (!venueAppearsInText(text, cand.venue)) return { ok: false, reason: `official-venue-mismatch: ${cand.venue}` };
   if (!titleAppearsInText(text, cand.title)) return { ok: false, reason: `official-title-mismatch: ${cand.title}` };
   return { ok: true };
