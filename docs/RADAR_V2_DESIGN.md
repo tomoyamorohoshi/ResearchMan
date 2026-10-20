@@ -174,6 +174,8 @@ Xアカウントを特定 ─────────┘   bakeoff-sources.mjs �
 
 `auto-research-cc.mjs`側で`sourceRefs`を`data/sources.json`から解決し、`enabled: true`のものだけ`tier`順に整形して発見プロンプトの「## 情報源」節に挿入するヘルパー（例: `resolveSourcesText(sourceRefs, sourcesRegistry)`）を追加する。
 
+補足（2026-10-20）: 有効源がある場合、`resolveSourcesText`は有効な`sourceRefs`（tier順）を「優先源」として先頭に出し、続けて従来の自由文`sources`を「その他の情報源」として残す（優先源とホストが重複する項目は除く）。有効化した少数源だけに探索が狭まるのを防ぐため。有効源0件の間は従来文字列のみ（変更なし）。
+
 `diversity`欄から「最低4件は日本国内の事例」を削除する（監査§3-2: 国内は投入量最大なのに打率最低。ノルマ自体を撤廃する方針と矛盾するため）。
 
 ### 4-4. `scripts/auto-research-cc.mjs` の変更

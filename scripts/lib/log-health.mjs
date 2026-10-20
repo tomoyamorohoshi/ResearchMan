@@ -100,6 +100,22 @@ export function hasConsecutiveOutcome(runs, outcome, count) {
   return tail.every((r) => r.outcome === outcome);
 }
 
+// 直近sinceMs以内の最新runが「error」で終わっていれば、その失敗行の抜粋を返す。無ければnull。
+// 週次ジョブ（tuneup）用: 2回連続を待つと2週間遅れるため、1回の失敗で検知する。
+// 最新runが成功/変更なしならnull（回復済み）。
+export function findRecentJobFailure(logText, sinceMs) {
+  const last = filterRecentRuns(parseJobRuns(logText), sinceMs).at(-1);
+  if (!last || last.outcome !== "error") return null;
+  const lines = logText.split("\n");
+  let startIdx = 0;
+  lines.forEach((l, i) => {
+    if (isStartLine(l)) startIdx = i;
+  });
+  const block = lines.slice(startIdx).filter(Boolean);
+  const fail = block.filter((l) => /失敗|エラー/.test(l));
+  return { startedAt: last.startedAt, excerpt: (fail.length ? fail : block).slice(-5).join("\n") };
+}
+
 // logs/rejections-YYYY-MM.jsonl（存在すれば）から本日分の件数を数える。
 // ファイル無し・ディレクトリ無し・JSON解析失敗行は無視して0扱い（例外を投げない）。
 export function countTodayRejections(logsDir) {

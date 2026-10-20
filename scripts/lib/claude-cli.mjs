@@ -41,7 +41,7 @@ export function resolveClaudeBin() {
 }
 
 /** CLI 引数を組み立てる（テスト用に分離）。extraDisallowedTools（カンマ区切り、例 "Bash"）は既定の禁止に追加される。 */
-export function buildClaudeArgs(prompt, { model, allowedTools, extraDisallowedTools }) {
+export function buildClaudeArgs({ model, allowedTools, extraDisallowedTools }) {
   const args = ["--print", "--model", model];
   if (allowedTools) args.push(`--allowedTools=${allowedTools}`);
   // ファイル書き込み系ツールを明示的に禁止する（2026-08-18・良質な生成結果がstdoutでなく
@@ -51,22 +51,25 @@ export function buildClaudeArgs(prompt, { model, allowedTools, extraDisallowedTo
   const disallowed = ["Write", "Edit", "NotebookEdit"];
   for (const t of String(extraDisallowedTools || "").split(",").map((x) => x.trim()).filter(Boolean)) if (!disallowed.includes(t)) disallowed.push(t);
   args.push(`--disallowedTools=${disallowed.join(",")}`);
-  args.push("--dangerously-skip-permissions", prompt);
+  // プロンプトは引数でなく stdin で渡す（Windows のコマンドライン長上限 約32K で ENAMETOOLONG になるため。
+  // `claude -p` は引数なしなら stdin からプロンプトを読む）
+  args.push("--dangerously-skip-permissions");
   return args;
 }
 
-function runClaude(claudeBin, prompt, { timeout, model, allowedTools, extraDisallowedTools }) {
-  const args = buildClaudeArgs(prompt, { model, allowedTools, extraDisallowedTools });
+export function runClaude(claudeBin, prompt, { timeout, model, allowedTools, extraDisallowedTools }, spawn = spawnSync) {
+  const args = buildClaudeArgs({ model, allowedTools, extraDisallowedTools });
   // 従量課金防止ガード: APIキー系の環境変数をCLIに渡さない（常にサブスクのログイン認証で動かす。
   // ユーザー方針 2026-07-13。studio/server/index.ts / scripts/windows/run-job.mjs にも同じガードあり）
   const env = { ...process.env };
   delete env.ANTHROPIC_API_KEY;
   delete env.ANTHROPIC_AUTH_TOKEN;
-  const result = spawnSync(claudeBin, args, {
+  const result = spawn(claudeBin, args, {
     encoding: "utf-8",
+    input: prompt,
     timeout,
     maxBuffer: 1024 * 1024 * 20,
-    stdio: ["ignore", "pipe", "pipe"],
+    stdio: ["pipe", "pipe", "pipe"],
     env,
   });
   if (result.error) throw new Error(`Claude CLI エラー: ${result.error.message}`);
