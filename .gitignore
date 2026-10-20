@@ -76,3 +76,5 @@ studio/workdir/
 
 # Exhibition: 公式裏取りできなかった候補のローカルキュー（日次ジョブが追記。コミットしない）
 /data/inbox/exhibition-unverified.json
+# Exhibition: cc ジョブ(Case Study収集)が見つけた展覧会告知の引き継ぎキュー（ローカルのみ。Exhibition ジョブが消費して除去）
+/data/inbox/exhibition-handoff.json

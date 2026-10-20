@@ -4,6 +4,7 @@
  * 流れ:
  *   1. status 更新（Claude 不要・最初に実行・即永続化）。全件を computeStatus で再計算し statusAsOf を今日に。ended は削除しない
  *   2. intake 処理: GET /api/exhibition-intake → 投稿本文取得 → Claude で抽出 → 公式裏取り → PATCH（失敗/未デプロイはスキップして続行）
+ *   2b. handoff: cc ジョブが積んだ展覧会告知（data/inbox/exhibition-handoff.json）を同じ検証経路で処理し、処理済みを除去
  *   3. 発見: data/exhibition-profile.json をプロンプトに埋め込み、ソースを日替わりローテーションして Claude (WebSearch/WebFetch) に探させる（最大 MAX_ROUNDS）
  *   4. 候補は scripts/lib/exhibition-build.mjs で機械検証（公式ページ再取得で日付・会場照合、dedupe、hard 除外、score、サムネ）。不一致は data/inbox/exhibition-unverified.json
  *   5. data/exhibition.json を原子的に更新し、通知サマリー os.tmpdir()/researchman-exhibition-last-add.json を 0 件でも必ず上書き
@@ -24,6 +25,7 @@ import { resolveClaudeBin, runClaudeJsonArray } from "./lib/claude-cli.mjs";
 import { localDayIndex } from "./lib/day-index.mjs";
 import { todayJst } from "./lib/exhibition-status.mjs";
 import { applyStatusUpdate, processCandidates, PREFECTURES } from "./lib/exhibition-build.mjs";
+import { consumeHandoff } from "./lib/exhibition-handoff.mjs";
 import { runIntake } from "./lib/exhibition-intake-job.mjs";
 import { buildDiscoveryPrompt, buildIntakePrompt, expandQueries, pickSourcesForDay, EXHIBITION_CLI_OPTS } from "./lib/exhibition-prompts.mjs";
 import {
@@ -147,6 +149,34 @@ async function main() {
       }
     } catch (e) {
       console.error(`[intake] 想定外のエラー（続行）: ${e.message}`);
+    }
+
+    // ── 2b. cc ジョブからの引き継ぎ（展覧会告知）。発見の前に processCandidates へ。日次上限 MAX_ADD の対象内 ──
+    try {
+      const out = await consumeHandoff({
+        root: ROOT,
+        data,
+        today: TODAY,
+        deps,
+        opts: { ...buildOpts, maxAdd: MAX_ADD, protectIds: new Set(added.map((a) => a.id)) },
+        dryRun: DRY_RUN,
+      });
+      if (out.warning) console.warn(`[handoff] 警告: ${out.warning} → スキップして続行`);
+      data = out.data;
+      added.push(...out.added);
+      unverified.push(...out.unverified);
+      if (out.added.length || out.updated.length || out.unverified.length || out.rejected.length || out.skipped.length) {
+        console.log(`[handoff] 追加${out.added.length} / 会期更新${out.updated.length} / unverified${out.unverified.length} / reject${out.rejected.length} / skip${out.skipped.length}`);
+      }
+      for (const x of out.added) console.log(`  ＋追加(handoff): ${x.title}（${x.venue} ${x.startDate}〜${x.endDate} score=${x.score}）`);
+      for (const x of out.unverified) console.log(`  ？unverified(handoff): ${x.title} — ${x.reason}`);
+      for (const x of out.rejected) {
+        console.log(`  ✗ reject(handoff): ${x.title} — ${x.reason}`);
+        if (!DRY_RUN) await logRejection({ pipeline: "exhibition", title: x.title, reason: x.reason, detail: x.detail || "", link: x.link || "" });
+      }
+      if (!DRY_RUN && out.added.length) await writeJsonAtomic(DATA_PATH, data);
+    } catch (e) {
+      console.error(`[handoff] 想定外のエラー（続行）: ${e.message}`);
     }
 
     // ── 3. 発見 + 4. 機械検証 ──
