@@ -84,7 +84,7 @@ export function describeExhibitionReason(reason: string): string {
   if (r.includes("official-title-mismatch")) return "公式ページで展覧会名が確認できませんでした";
   if (r.includes("official-fetch") || r.includes("official-status")) return "公式ページを取得できませんでした";
   if (r.startsWith("required-field-missing")) return "開催市区町村または選定理由を確認できませんでした";
-  if (r === "already-ended") return "既に終了している展示です";
+  if (r === "already-ended") return "すでに終了した展示のため追加しませんでした";
   if (r === "start-after-end") return "会期の開始日と終了日が不正でした";
   if (r === "hard-exclusion") return "Exhibitionの対象外カテゴリ（絵画・物販中心・ショールーム型・AI画像のみ等）の展示です";
   if (r === "invalid-prefecture") return "開催都道府県を確認できませんでした";
@@ -92,7 +92,7 @@ export function describeExhibitionReason(reason: string): string {
   if (r === "thumbnail-unavailable") return "サムネイル画像を確保できませんでした";
   if (r === "invalid-candidate") return "展覧会名または会場を確認できませんでした";
   if (r === "daily-cap") return "本日の追加上限に達しました";
-  return r || "不明な理由で追加できませんでした";
+  return r ? `追加処理中にエラーが起きました（コード: ${r}）` : "不明な理由で追加できませんでした";
 }
 
 /**
@@ -122,11 +122,23 @@ export async function processExhibitionAdd(p: {
     return { ...base, reasonJa: "指定されたURLから展覧会（会場・会期）を特定できませんでした" };
   }
 
-  const out = await processCandidates({ data, candidates, today, deps, opts });
+  // 終了済み（endDate < today）は公式URLの有無に関わらず先に reject する。processCandidates は
+  // 公式URL欠落を already-ended より先に unverified 化するため、未検証キューに積まれるのを防ぐ。
+  const isEnded = (c: Record<string, unknown>): boolean =>
+    typeof c.endDate === "string" && /^\d{4}-\d{2}-\d{2}$/.test(c.endDate) && c.endDate < today;
+  const endedRejected = candidates
+    .filter(isEnded)
+    .map((c) => ({ title: String(c.title ?? ""), reason: "already-ended" }));
+  const live = candidates.filter((c) => !isEnded(c));
+  if (live.length === 0) {
+    return { ...base, rejected: endedRejected, reasonJa: describeExhibitionReason("already-ended") };
+  }
+
+  const out = await processCandidates({ data, candidates: live, today, deps, opts });
   const added = out.added as ExhibitionItem[];
   const updated = out.updated as ProcessExhibitionResult["updated"];
   const unverified = out.unverified as UnverifiedEntry[];
-  const rejected = out.rejected as Array<{ title: string; reason: string }>;
+  const rejected = [...endedRejected, ...(out.rejected as Array<{ title: string; reason: string }>)];
   const common = { ...base, data: out.data as ExhibitionData, added, updated, unverified, rejected };
 
   if (added.length > 0 || updated.length > 0) {

@@ -12,7 +12,8 @@
  * 以降のステップを完全に分ける。caseは既存のcase-writer/link-checker/award-verifierを使う
  * 執筆パイプライン、techはtechResearch.ts（Research(Technology)の一括収集パイプライン）と
  * 同じ品質ガードレール（validateAndDedupeTechCandidates・runAuditTech・isUrlAlive等）を
- * 単一候補向けに転用する。exhibition（会場・会期のある開催前/開催中の展覧会告知）はdata/exhibition.jsonへ、\n * 日次ジョブ/intakeと同じprocessCandidates（addExhibition.ts）で公式ページ機械照合のうえ追加する。neitherは事例・技術のどちらでもない/確認不能として、従来どおり
+ * 単一候補向けに転用する。exhibition（会場・会期のある開催前/開催中の展覧会告知）はdata/exhibition.jsonへ、
+ * 日次ジョブ/intakeと同じprocessCandidates（addExhibition.ts）で公式ページ機械照合のうえ追加する。neitherは事例・技術のどちらでもない/確認不能として、従来どおり
  * 理由つきで失敗させる。
  *
  * caseResearch.tsとの違い:

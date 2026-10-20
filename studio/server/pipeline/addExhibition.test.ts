@@ -4,7 +4,7 @@
  */
 import assert from "node:assert/strict";
 import test from "node:test";
-import { processExhibitionAdd, type ExhibitionData } from "./addExhibition.js";
+import { describeExhibitionReason, processExhibitionAdd, type ExhibitionData } from "./addExhibition.js";
 
 const URL_ = "https://20th.starryworks.co.jp/";
 const TODAY = "2026-10-20";
@@ -171,4 +171,17 @@ test("candidatesが空なら rejected（展覧会として特定できません�
   });
   assert.equal(r.outcome, "rejected");
   assert.match(r.reasonJa, /展覧会/);
+});
+
+test("終了済み＋officialUrl空でも already-ended で reject（unverifiedキューに積まない）", async () => {
+  const cand = { ...baseCand, officialUrl: "", startDate: "2026-01-01", endDate: "2026-01-05" };
+  const r = await processExhibitionAdd({ obj: { candidates: [cand] }, url: URL_, data: makeData(), today: TODAY, deps: makeDeps(), opts });
+  assert.equal(r.outcome, "rejected");
+  assert.equal(r.unverified.length, 0);
+  assert.equal(r.reasonJa, "すでに終了した展示のため追加しませんでした");
+});
+
+test("describeExhibitionReason: 未対応コードは平易な文にコードを添える", () => {
+  assert.equal(describeExhibitionReason("candidate-error"), "追加処理中にエラーが起きました（コード: candidate-error）");
+  assert.match(describeExhibitionReason(""), /不明/);
 });
