@@ -518,6 +518,16 @@ test("processCandidates: 既存の会期が公式ページに残っていれば�
   assert.equal(r.data.items[0].startDate, "2026-09-12");
 });
 
+test("processCandidates: 月省略表記のページでも既存 endDate は残っていると判定し、揺れた候補で上書きしない", async () => {
+  const existing = mkItem({ startDate: "2026-10-24", endDate: "2026-10-27" });
+  const c = mkCand({ title: existing.title, venue: existing.venue, officialUrl: existing.link, startDate: "2026-10-24", endDate: "2026-10-25" });
+  const deps = mkDeps({ fetchHtml: async () => ({ status: 200, body: `<p>${existing.title} ${existing.venue} 10/24(Sat)25(Sun)27(Tue)</p>` }) });
+  const r = await processCandidates({ data: { version: 1, statusAsOf: "2026-10-03", items: [existing] }, candidates: [c], today: TODAY, deps });
+  assert.equal(r.updated.length, 0);
+  assert.equal(r.skipped[0].reason, "duplicate-existing-still-valid");
+  assert.equal(r.data.items[0].endDate, "2026-10-27");
+});
+
 test("processCandidates: 既存 venue が公式に残っていれば venue パッチしない", async () => {
   const existing = mkItem();
   const c = mkCand({ title: existing.title, venue: "別会場名ギャラリーX", officialUrl: existing.link, startDate: existing.startDate, endDate: existing.endDate });
@@ -625,4 +635,44 @@ test("processCandidates: opts.protectIds の展示は更新しない", async () 
   const deps = mkDeps({ fetchHtml: async () => ({ status: 200, body: "<p>ICC アニュアル 2026 ICC 2026年6月20日—11月8日</p>" }) });
   const r = await processCandidates({ data: { version: 1, statusAsOf: "2026-10-03", items: [iccItem()] }, candidates: [iccCand()], today: TODAY, deps, opts: { protectIds: new Set(["2026-icc-icc-annual-2026"]) } });
   assert.equal(r.updated.length, 0);
+});
+
+// ── 月省略の会期表記（開始日の直後に終了日の「日」だけが続く）──
+async function endDateCheck(body, startDate, endDate) {
+  const cand = { officialUrl: "https://example.com/x", title: "光る音展", venue: "テスト美術館", startDate, endDate };
+  return verifyOfficialPage(cand, { fetchHtml: async () => ({ status: 200, body: `<p>光る音展 テスト美術館 ${body}</p>` }) });
+}
+
+test("終了日照合: 月省略の会期表記を認める", async () => {
+  const ok = async (body, s, e) => assert.equal((await endDateCheck(body, s, e)).ok, true, body);
+  await ok("10/24(Sat)25(Sun)27(Tue)", "2026-10-24", "2026-10-27");
+  await ok("11/4(Wed)–8(Sun),2026", "2026-11-04", "2026-11-08");
+  await ok("10月24日（土）〜27日（火）", "2026-10-24", "2026-10-27");
+  await ok("2026.10.24 - 27", "2026-10-24", "2026-10-27");
+  await ok("10.24 sat — 27 tue", "2026-10-24", "2026-10-27");
+  await ok("会期 2026年10月24日(土)・25日(日)・27日(火)※月曜日休館", "2026-10-24", "2026-10-27");
+  await ok("2 0 2 6 . 1 0 . 2 4 - 2 7", "2026-10-24", "2026-10-27");
+  await ok("1 0 / 2 4 ( S a t ) 2 5 ( S u n ) 2 7 ( T u e ) , 2 0 2 6 ※ 1 1 : 0 0", "2026-10-24", "2026-10-27");
+  await ok("1 1 / 4 ( W e d ) – 8 ( S u n ) , 2 0 2 6", "2026-11-04", "2026-11-08");
+});
+
+test("終了日照合: 別月・遠い位置・時刻/電話番号では通らない", async () => {
+  const ng = async (body, s, e) => assert.equal((await endDateCheck(body, s, e)).ok, false, body);
+  await ng("10/24(Sat) 11/27(Fri)", "2026-10-24", "2026-10-27");
+  await ng("10/24 – 11月27日", "2026-10-24", "2026-10-27");
+  await ng("10/24 – Nov 27", "2026-10-24", "2026-10-27");
+  await ng(`10/24 ${"あ".repeat(45)} 27`, "2026-10-24", "2026-10-27");
+  await ng("10/24 開場 27:00", "2026-10-24", "2026-10-27");
+  await ng("10/24 開場 10:27", "2026-10-24", "2026-10-27");
+  await ng("10/24 TEL 03-1234-5627", "2026-10-24", "2026-10-27");
+  for (const b of [
+    "10/24 – 11-27", "10/24 – 11 27", "10/24 – 27 Dec", "10/24 – 27 Nov", "10/24 – 27 December", "10/24 – 27th Dec",
+    "10/24 – 27年", "10/24 – 27時", "10/24 – 27歳", "10/24 – 27点", "10/24 – 27名", "10/24 – 27人", "10/24 – 27,000円",
+    "10/24 – 27-1234", "10/24 – 27-1234-5678", "10/24 03-27", "10/24 (Sat) 12 27",
+  ]) await ng(b, "2026-10-24", "2026-10-27");
+  await ng("10/24 2 0 2 6", "2026-10-24", "2026-10-26");
+  await ng("営業時間 10/1 10-18時", "2026-10-01", "2026-10-18");
+  await ng("営業時間 10/3 10-17", "2026-10-03", "2026-10-17");
+  // 開始日と終了日が別月なら範囲照合は使わない
+  await ng("10/24 – 27", "2026-10-24", "2026-11-27");
 });

@@ -161,19 +161,59 @@ const EN_MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep"
 /** text に ymd（YYYY-MM-DD）が各種表記（年あり/月日のみ/英語）で現れるか。 */
 export function dateAppearsInText(text, ymd) {
   if (!isValidYmd(ymd)) return false;
-  const [y, m, d] = ymd.split("-").map(Number);
   const raw = String(text || "").normalize("NFKC");
+  const compact = compactSpacedChars(raw);
+  const patterns = datePatterns(ymd);
+  return patterns.some((re) => re.test(raw) || (compact !== raw && re.test(compact)));
+}
+
+function datePatterns(ymd, flags = "") {
+  const [y, m, d] = ymd.split("-").map(Number);
   const md = `0?${m}`;
   const dd = `0?${d}`;
-  const patterns = [
-    new RegExp(`(?<!\\d)${y}\\s*[-/.年]\\s*${md}\\s*[-/.月]\\s*${dd}(?!\\d)`),
-    new RegExp(`(?<!\\d)${md}\\s*月\\s*${dd}\\s*日`),
-    new RegExp(`(?<![\\d/.])${md}\\s*[/.]\\s*${dd}(?![\\d])`),
-    new RegExp(`${EN_MONTHS[m - 1]}[a-z]*\\.?\\s*${dd}(?!\\d)`, "i"),
-    new RegExp(`(?<!\\d)${dd}\\s*(?:st|nd|rd|th)?\\s*${EN_MONTHS[m - 1]}[a-z]*`, "i"),
+  return [
+    new RegExp(`(?<!\\d)${y}\\s*[-/.年]\\s*${md}\\s*[-/.月]\\s*${dd}(?!\\d)`, flags),
+    new RegExp(`(?<!\\d)${md}\\s*月\\s*${dd}\\s*日`, flags),
+    new RegExp(`(?<![\\d/.])${md}\\s*[/.]\\s*${dd}(?![\\d])`, flags),
+    new RegExp(`${EN_MONTHS[m - 1]}[a-z]*\\.?\\s*${dd}(?!\\d)`, `i${flags}`),
+    new RegExp(`(?<!\\d)${dd}\\s*(?:st|nd|rd|th)?\\s*${EN_MONTHS[m - 1]}[a-z]*`, `i${flags}`),
   ];
+}
+
+// 範囲表記の間に挟まってよいもの: 区切り・括弧付き曜日・英語曜日・「曜日 or 日」が直後に付く中間日。
+// 裸の数字（"11 27" "03-27" "10-18時"）は中間日にしない。
+const WD_EN = String.raw`(?:m\s?o\s?n|t\s?u\s?e|w\s?e\s?d|t\s?h\s?u|f\s?r\s?i|s\s?a\s?t|s\s?u\s?n)`;
+const WD_PAREN_HEAD = String.raw`\(\s*(?:[月火水木金土日祝]|${WD_EN})`;
+const RANGE_FILLER = String.raw`(?:[\s,、・–—〜~-]|${WD_PAREN_HEAD}[^)]{0,6}\)|${WD_EN}[a-z]{0,6}(?![a-z])|(?<!\d\s?)\d(?:\s?\d)?(?!\s?\d)(?:日|(?=\s*(?:${WD_PAREN_HEAD}|${WD_EN}))))`;
+// 終了日の直後の肯定的な境界: 日 / 曜日 / ",年4桁" / ・ / 文末・句読点・空白+（数字・ハイフン・英月名・単位以外）
+const EN_MONTH_RE = "(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)";
+const END_BOUNDARY = String.raw`(?:日|(?=\s*(?:${WD_PAREN_HEAD}|${WD_EN}(?![a-z])))|\s*,\s*2\s?0\s?\d\s?\d(?!\d)|・|(?=$|[。、;)\]】]|\.(?!\d)|\s+(?!\d|-|${EN_MONTH_RE}|[年月時歳点名人円日])))`;
+const RANGE_TAIL_MAX = 40;
+
+/**
+ * 月を省略した会期表記（"10/24(Sat)25(Sun)27(Tue)" "11/4–8" "10月24日〜27日"）の終了日照合。
+ * 開始日の表記の直後 RANGE_TAIL_MAX 文字以内に、同年同月の終了日の「日」だけが
+ * 区切り・曜日・中間日だけを挟んで現れる場合に true。
+ */
+function rangeEndAppearsInText(text, startYmd, endYmd) {
+  if (!isValidYmd(startYmd) || !isValidYmd(endYmd)) return false;
+  if (startYmd.slice(0, 7) !== endYmd.slice(0, 7) || endYmd <= startYmd) return false;
+  const endDay = Number(endYmd.slice(8, 10));
+  const endDigits = String(endDay).split("").join(String.raw`\s?`);
+  const endRe = new RegExp(String.raw`(${RANGE_FILLER}*?(?<!\d\s?)0?${endDigits}(?!\s?\d))${END_BOUNDARY}`, "iy");
+  const raw = String(text || "").normalize("NFKC");
   const compact = compactSpacedChars(raw);
-  return patterns.some((re) => re.test(raw) || (compact !== raw && re.test(compact)));
+  const startPatterns = datePatterns(startYmd, "g");
+  for (const hay of compact !== raw ? [raw, compact] : [raw]) {
+    for (const re of startPatterns) {
+      for (const mt of hay.matchAll(re)) {
+        endRe.lastIndex = mt.index + mt[0].length;
+        const m = endRe.exec(hay);
+        if (m && m[1].length <= RANGE_TAIL_MAX) return true;
+      }
+    }
+  }
+  return false;
 }
 
 /**
@@ -283,7 +323,7 @@ async function fetchExistingOfficialText(item, deps, cache) {
 }
 function checkOfficialText(cand, text) {
   if (!dateAppearsInText(text, cand.startDate)) return { ok: false, reason: `official-date-mismatch: startDate ${cand.startDate} not found` };
-  if (!dateAppearsInText(text, cand.endDate)) return { ok: false, reason: `official-date-mismatch: endDate ${cand.endDate} not found` };
+  if (!dateAppearsInText(text, cand.endDate) && !rangeEndAppearsInText(text, cand.startDate, cand.endDate)) return { ok: false, reason: `official-date-mismatch: endDate ${cand.endDate} not found` };
   if (!venueAppearsInText(text, cand.venue)) return { ok: false, reason: `official-venue-mismatch: ${cand.venue}` };
   if (!titleAppearsInText(text, cand.title)) return { ok: false, reason: `official-title-mismatch: ${cand.title}` };
   return { ok: true };
@@ -417,13 +457,13 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
       // 既存値が公式ページ上でまだ見つかるなら根拠は失われていない → 揺れた候補値でパッチしない
       const effective = {};
       if (patch.startDate && !dateAppearsInText(f.text, dup.item.startDate)) effective.startDate = patch.startDate;
-      if (patch.endDate && !dateAppearsInText(f.text, dup.item.endDate)) effective.endDate = patch.endDate;
+      if (patch.endDate && !dateAppearsInText(f.text, dup.item.endDate) && !rangeEndAppearsInText(f.text, dup.item.startDate, dup.item.endDate)) effective.endDate = patch.endDate;
       if (patch.venue && !venueAppearsInText(f.text, dup.item.venue)) effective.venue = patch.venue;
       if (!Object.keys(effective).length) { skipped.push({ title: cand.title, reason: "duplicate-existing-still-valid", existingId: dup.item.id }); return; }
       // 照合は title 常時 + effective に含まれる項目のみ（残った既存値の項目は候補値が公式に無くてもよい）
       let fail = null;
       if (effective.startDate && !dateAppearsInText(f.text, effective.startDate)) fail = `official-date-mismatch: startDate ${effective.startDate} not found`;
-      else if (effective.endDate && !dateAppearsInText(f.text, effective.endDate)) fail = `official-date-mismatch: endDate ${effective.endDate} not found`;
+      else if (effective.endDate && !dateAppearsInText(f.text, effective.endDate) && !rangeEndAppearsInText(f.text, effective.startDate || dup.item.startDate, effective.endDate)) fail = `official-date-mismatch: endDate ${effective.endDate} not found`;
       else if (effective.venue && !venueAppearsInText(f.text, effective.venue)) fail = `official-venue-mismatch: ${effective.venue}`;
       else if (!titleAppearsInText(f.text, dup.item.title) && !titleAppearsInText(f.text, cand.title)) fail = `official-title-mismatch: ${cand.title}`;
       if (fail) return unver(cand, `会期変更の裏取り失敗: ${fail}`);
