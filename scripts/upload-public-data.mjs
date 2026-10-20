@@ -62,64 +62,71 @@ function ideaLayoutsUploadable() {
   return false;
 }
 
-const uploadNames = PUBLIC_DATA_FILES.filter((n) => n !== "idea-layouts.json" || ideaLayoutsUploadable());
-const texts = {};
-for (const name of uploadNames) {
-  texts[name] = buildPublicDataText(name, fs.readFileSync(path.join(DATA_DIR, name), "utf8"));
-}
-const hashes = Object.fromEntries(uploadNames.map((n) => [n, sha256Text(texts[n])]));
-
-const state = readJsonSafe(STATE_PATH) ?? {};
-const targets = filesNeedingUpload(hashes, state, { force }).filter((n) => n in texts);
-if (targets.length === 0) {
-  console.log("[upload-public-data] 変更なし（前回アップロード済みと同一）");
-  process.exit(0);
-}
-console.log(`[upload-public-data] アップロード対象: ${targets.join(", ")}${dryRun ? " (dry-run)" : ""}`);
-if (dryRun) process.exit(0);
-
-const cfg = readJsonSafe(FAVSYNC_CONFIG_PATH);
-if (!cfg?.endpoint || !cfg?.token) {
-  console.error(`[upload-public-data] ${FAVSYNC_CONFIG_PATH} に endpoint/token がありません`);
-  process.exit(1);
-}
-const handleUploadUrl = process.env.DATA_UPLOAD_URL || uploadUrlFromEndpoint(cfg.endpoint);
-
-// pre-pushフックを長時間ブロックしないよう全体の予算も持つ（超過後は残りの試行をしない。次回pushで再試行）
-const DEADLINE = Date.now() + (Number(process.env.UPLOAD_BUDGET_MS) || 4 * 60 * 1000);
-
-let failed = 0;
-for (const name of targets) {
-  const raw = Buffer.from(texts[name]);
-  // Vercelのオンザフライ圧縮(65MB級で約18MB)より、窓16MB・品質9の事前圧縮のほうが小さい(約8MB)。
-  // 品質11だと約75秒かかるため9で妥協（約9秒）
-  const body = zlib.brotliCompressSync(raw, {
-    params: {
-      [zlib.constants.BROTLI_PARAM_QUALITY]: 9,
-      [zlib.constants.BROTLI_PARAM_LGWIN]: 24,
-      [zlib.constants.BROTLI_PARAM_SIZE_HINT]: raw.length,
-    },
-  });
-  let ok = false;
-  for (let attempt = 1; attempt <= MAX_ATTEMPTS && !ok && Date.now() < DEADLINE; attempt++) {
-    try {
-      const res = await withTimeout(uploadPresigned(`public-data/${name}.br`, body, {
-        access: "private",
-        handleUploadUrl,
-        headers: { authorization: `Bearer ${cfg.token}` },
-        contentType: "application/octet-stream",
-        multipart: body.length > MULTIPART_THRESHOLD,
-        abortSignal: AbortSignal.timeout(UPLOAD_TIMEOUT_MS),
-      }), UPLOAD_TIMEOUT_MS, `upload ${name}`);
-      state[name] = hashes[name];
-      fs.writeFileSync(STATE_PATH, JSON.stringify(state, null, 2));
-      console.log(`✓ ${name}: ${(raw.length / 1024).toFixed(0)} KB → br ${(body.length / 1024).toFixed(0)} KB → ${res.url}`);
-      ok = true;
-    } catch (err) {
-      console.error(`[upload-public-data] ${name} 試行${attempt}/${MAX_ATTEMPTS}失敗: ${err instanceof Error ? err.message : err}`);
-      if (attempt < MAX_ATTEMPTS) await new Promise((r) => setTimeout(r, 3000 * attempt));
-    }
+// process.exit() は fetch(undici)/@vercel/blob のハンドルが閉じる途中で呼ぶと Node24/Windows で
+// libuv の assert（UV_HANDLE_CLOSING）により abort し、pre-push 全体を失敗させる。
+// 終了コードは return → process.exitCode で渡し、自然終了させる。
+async function main() {
+  const uploadNames = PUBLIC_DATA_FILES.filter((n) => n !== "idea-layouts.json" || ideaLayoutsUploadable());
+  const texts = {};
+  for (const name of uploadNames) {
+    texts[name] = buildPublicDataText(name, fs.readFileSync(path.join(DATA_DIR, name), "utf8"));
   }
-  if (!ok) failed++;
+  const hashes = Object.fromEntries(uploadNames.map((n) => [n, sha256Text(texts[n])]));
+
+  const state = readJsonSafe(STATE_PATH) ?? {};
+  const targets = filesNeedingUpload(hashes, state, { force }).filter((n) => n in texts);
+  if (targets.length === 0) {
+    console.log("[upload-public-data] 変更なし（前回アップロード済みと同一）");
+    return 0;
+  }
+  console.log(`[upload-public-data] アップロード対象: ${targets.join(", ")}${dryRun ? " (dry-run)" : ""}`);
+  if (dryRun) return 0;
+
+  const cfg = readJsonSafe(FAVSYNC_CONFIG_PATH);
+  if (!cfg?.endpoint || !cfg?.token) {
+    console.error(`[upload-public-data] ${FAVSYNC_CONFIG_PATH} に endpoint/token がありません`);
+    return 1;
+  }
+  const handleUploadUrl = process.env.DATA_UPLOAD_URL || uploadUrlFromEndpoint(cfg.endpoint);
+
+  // pre-pushフックを長時間ブロックしないよう全体の予算も持つ（超過後は残りの試行をしない。次回pushで再試行）
+  const DEADLINE = Date.now() + (Number(process.env.UPLOAD_BUDGET_MS) || 4 * 60 * 1000);
+
+  let failed = 0;
+  for (const name of targets) {
+    const raw = Buffer.from(texts[name]);
+    // Vercelのオンザフライ圧縮(65MB級で約18MB)より、窓16MB・品質9の事前圧縮のほうが小さい(約8MB)。
+    // 品質11だと約75秒かかるため9で妥協（約9秒）
+    const body = zlib.brotliCompressSync(raw, {
+      params: {
+        [zlib.constants.BROTLI_PARAM_QUALITY]: 9,
+        [zlib.constants.BROTLI_PARAM_LGWIN]: 24,
+        [zlib.constants.BROTLI_PARAM_SIZE_HINT]: raw.length,
+      },
+    });
+    let ok = false;
+    for (let attempt = 1; attempt <= MAX_ATTEMPTS && !ok && Date.now() < DEADLINE; attempt++) {
+      try {
+        const res = await withTimeout(uploadPresigned(`public-data/${name}.br`, body, {
+          access: "private",
+          handleUploadUrl,
+          headers: { authorization: `Bearer ${cfg.token}` },
+          contentType: "application/octet-stream",
+          multipart: body.length > MULTIPART_THRESHOLD,
+          abortSignal: AbortSignal.timeout(UPLOAD_TIMEOUT_MS),
+        }), UPLOAD_TIMEOUT_MS, `upload ${name}`);
+        state[name] = hashes[name];
+        fs.writeFileSync(STATE_PATH, JSON.stringify(state, null, 2));
+        console.log(`✓ ${name}: ${(raw.length / 1024).toFixed(0)} KB → br ${(body.length / 1024).toFixed(0)} KB → ${res.url}`);
+        ok = true;
+      } catch (err) {
+        console.error(`[upload-public-data] ${name} 試行${attempt}/${MAX_ATTEMPTS}失敗: ${err instanceof Error ? err.message : err}`);
+        if (attempt < MAX_ATTEMPTS) await new Promise((r) => setTimeout(r, 3000 * attempt));
+      }
+    }
+    if (!ok) failed++;
+  }
+  return failed ? 1 : 0;
 }
-process.exit(failed ? 1 : 0);
+
+process.exitCode = await main();
