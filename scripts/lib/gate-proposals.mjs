@@ -171,16 +171,19 @@ export function buildProposalMessage(p) {
 // ── 送信（既定は既存の notify-line-send を使う。テストでは sendLine を注入） ─────
 
 /** ~/.researchman-line.json の { channelAccessToken, to } で既存の sendLineMessages を呼ぶ既定の送信関数。 */
-export async function defaultSendLine(text) {
-  const { sendLineMessages } = await import("./notify-line-send.mjs");
+export async function defaultSendLine(text, { configPath = path.join(os.homedir(), ".researchman-line.json"), send } = {}) {
+  const sendLineMessages = send ?? (await import("./notify-line-send.mjs")).sendLineMessages;
   let cfg;
   try {
-    cfg = JSON.parse(fs.readFileSync(path.join(os.homedir(), ".researchman-line.json"), "utf-8"));
+    cfg = JSON.parse(fs.readFileSync(configPath, "utf-8"));
   } catch (e) {
     return { ok: false, reason: `LINE設定を読めない: ${e.message}` };
   }
   if (!cfg.channelAccessToken) return { ok: false, reason: "channelAccessToken が未設定" };
-  return sendLineMessages({ channelAccessToken: cfg.channelAccessToken, to: cfg.to || cfg.allowedUserId }, text);
+  const to = cfg.to || cfg.allowedUserId;
+  // 宛先が無いと sendLineMessages は broadcast（全友だち宛）に落ちるため、送らない。
+  if (!to) return { ok: false, reason: "宛先（to / allowedUserId）が未設定のため送信しない（broadcast 防止）" };
+  return sendLineMessages({ channelAccessToken: cfg.channelAccessToken, to }, text);
 }
 
 export async function sendProposal(proposal, { sendLine = defaultSendLine } = {}) {

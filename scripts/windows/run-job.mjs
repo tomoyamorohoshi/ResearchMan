@@ -23,17 +23,18 @@
  *   全プロセスが同じ os.tmpdir() を返すため、これだけで排他が一致する）。
  *   30秒間隔でリトライし、待機上限はジョブごとにplistの値をそのまま踏襲する
  *   （autoresearch/techresearch=30分、ideaseeds/tuneup=45分）。90分（5400秒）超の
- *   staleロックは奪取する。watchdogジョブだけはこのロックを取得しない
+ *   staleロックは奪取する（mtime基準。autoresearch の cc 収集は90分を超えうるので、実行中は
+ *   lib/git-lock.mjs の startLockHeartbeat で mtime を更新し続け、奪取されないようにしている）。watchdogジョブだけはこのロックを取得しない
  *   （launchd/com.researchman.watchdog.plistのコメント参照: watchdog.mjs内部が
  *   scripts/lib/watchdog-git.mjs経由で必要な瞬間だけ短く握る設計になっている）。
  */
 import fs from "fs";
 import os from "os";
 import path from "path";
-import { spawnSync, execFileSync } from "child_process";
+import { spawn, spawnSync, execFileSync } from "child_process";
 import { fileURLToPath } from "url";
 import { isMainBranch, parseCurrentBranch } from "../lib/branch-guard.mjs";
-import { tryAcquire as tryAcquireGitLock, releaseOwnedLock } from "../lib/git-lock.mjs";
+import { tryAcquire as tryAcquireGitLock, releaseOwnedLock, startLockHeartbeat } from "../lib/git-lock.mjs";
 import { decideExhibitionNotify, decideDeployTimeoutPriority } from "../lib/exhibition-notify.mjs";
 import { guardAudit, EXHIBITION_REVERT_GIT_ARGS } from "../lib/exhibition-guard.mjs";
 
@@ -142,16 +143,42 @@ function log(msg) {
 // ── 子プロセス実行ヘルパー ──────────────────────────────────
 // nodeはPATHに依存せず process.execPath で呼ぶ。stdio はログへ追記
 // （plistの `>> $LOG 2>&1` に相当）。
-function runNode(relScriptPath, args = []) {
+function childEnv() {
   // 従量課金防止ガード: APIキー系の環境変数を子スクリプトに渡さない（常にサブスクの
   // ログイン認証で動かす。ユーザー方針 2026-07-13。claude-cli.mjs / studio にも同じガードあり）
   const env = { ...process.env };
   delete env.ANTHROPIC_API_KEY;
   delete env.ANTHROPIC_AUTH_TOKEN;
+  return env;
+}
+function runNode(relScriptPath, args = []) {
   return spawnSync(NODE_BIN, [path.join(ROOT, relScriptPath), ...args], {
     cwd: ROOT,
     stdio: ["ignore", logFd, logFd],
-    env,
+    env: childEnv(),
+  });
+}
+// runNode の非同期版（結果の形は {status}）。ロック保持中に90分(STALE_MS)を超えて走りうる子プロセス用:
+// spawnSync だと親のイベントループが止まりロックの mtime を更新できないため、非同期で待ちながら
+// ハートビートでロックの mtime を更新し続ける（他ジョブに stale 判定でロックを奪われない）。
+// 使うのは cc ジョブ（Case Study v3: 発見フェーズ最大90分＋記事化で90分超）だけ。
+function runNodeWithLockHeartbeat(relScriptPath, args = []) {
+  return new Promise((resolve) => {
+    const stop = startLockHeartbeat(LOCK_PATH);
+    const child = spawn(NODE_BIN, [path.join(ROOT, relScriptPath), ...args], {
+      cwd: ROOT,
+      stdio: ["ignore", logFd, logFd],
+      env: childEnv(),
+    });
+    child.on("error", (e) => {
+      stop();
+      log(`子プロセス起動エラー: ${e.message}`);
+      resolve({ status: 1 });
+    });
+    child.on("close", (code) => {
+      stop();
+      resolve({ status: code ?? 1 });
+    });
   });
 }
 function runGit(args) {
@@ -194,7 +221,7 @@ async function runAutoresearch() {
   }
   try {
     log(`===== Run start: ${unixDateString()} =====`);
-    const cc = runNode("scripts/auto-research-cc.mjs");
+    const cc = await runNodeWithLockHeartbeat("scripts/auto-research-cc.mjs");
     if (cc.status !== 0) {
       log(`収集エラー終了: ${unixDateString()}`);
       runNode("scripts/run-if-due.mjs", ["--mark"]);

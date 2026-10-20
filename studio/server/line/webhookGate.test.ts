@@ -103,6 +103,19 @@ test("ハンドラが例外でも落ちずエラー返信する", async () => {
   assert.match(rec.sent[0].text, /エラー/);
 });
 
+test("「修正 2026 年の予定」: G なしで台帳に無い番号は通常文として扱い、gate に渡さない", async () => {
+  const rec: Rec = { sent: [], gate: [], pending: null, jobs: 0 };
+  await send(deps(rec, { isKnownGateId: () => false }), "修正 2026 年の予定");
+  assert.equal(rec.gate.length, 0);
+  const rec2: Rec = { sent: [], gate: [], pending: null, jobs: 0 };
+  await send(deps(rec2, { isKnownGateId: () => true }), "修正 2026 年の予定");
+  assert.equal(rec2.gate.length, 1);
+  // G 付きは台帳に無くても gate に渡して「ありません」と返す
+  const rec3: Rec = { sent: [], gate: [], pending: null, jobs: 0 };
+  await send(deps(rec3, { isKnownGateId: () => false }), "修正 G99 短く");
+  assert.equal(rec3.gate.length, 1);
+});
+
 test("「承認」だけ（id なし）は gate に渡さない／許可外ユーザーも無視", async () => {
   const rec: Rec = { sent: [], gate: [], pending: null, jobs: 0 };
   await send(deps(rec), "承認");

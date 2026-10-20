@@ -41,7 +41,7 @@ import {
 import { resumeAwardJob } from "../pipeline/awardResearch.js";
 import { generateXPost, type XPostGenerationResult } from "../pipeline/xpost.js";
 import { isCancelText, isProgressText, isResumeText, isStopText, parseGateCommand, type GateCommand, type LineRequestKind } from "./classify.js";
-import { createDefaultGateFlowDeps, handleGateCommand, type GateCommandResult } from "./gateProposalFlow.js";
+import { createDefaultGateFlowDeps, handleGateCommand, isKnownGateProposal, type GateCommandResult } from "./gateProposalFlow.js";
 import { loadLineConfig, type LineConfig } from "./config.js";
 import {
   buildAddCaseAcceptedText,
@@ -92,6 +92,8 @@ export interface LineWebhookDeps {
   cancelActiveJobs: () => Promise<CancelledJobReport[]>;
   /** 基準の変更案への「承認/却下/修正 <ID>」（docs/CASE_RESEARCH_V3_SPEC.md §6）。gateProposalFlow.ts参照。 */
   handleGateCommand: (cmd: GateCommand) => Promise<GateCommandResult>;
+  /** 台帳にその番号の案があるか（G接頭辞なしの「修正 <数字> …」を通常文と区別するため）。 */
+  isKnownGateId: (id: number) => boolean;
   now: () => Date;
 }
 
@@ -111,6 +113,7 @@ const defaultDeps: LineWebhookDeps = {
   findLatestFinishedJob,
   cancelActiveJobs,
   handleGateCommand: (cmd) => handleGateCommand(cmd, createDefaultGateFlowDeps()),
+  isKnownGateId: isKnownGateProposal,
   now: () => new Date(),
 };
 
@@ -158,7 +161,9 @@ async function handleEvent(event: unknown, config: LineConfig, deps: LineWebhook
 
   // 基準の変更案への「承認/却下/修正 <ID>」: 既存のどの分類（再開・停止・キャンセル・進捗・
   // ウィザード・URL追加）よりも先に判定する。id 付きの完全な書式のみ一致するため既存の入力とは衝突しない。
-  const gateCmd = parseGateCommand(text);
+  let gateCmd = parseGateCommand(text);
+  // 「修正 2026 年の予定」のような通常文の誤爆対策: 「修正」で G 接頭辞が無く、台帳に無い番号なら通常文として既存処理へ流す。
+  if (gateCmd?.action === "revise" && !/^修正[\s　:：]*[#＃]?[GgＧｇ]/.test(text.trim()) && !deps.isKnownGateId(gateCmd.id)) gateCmd = null;
   if (gateCmd) {
     let result: GateCommandResult;
     try {

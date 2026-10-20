@@ -45,6 +45,10 @@ export interface GateFlowDeps {
   generateRevision: (prompt: string) => Promise<string>;
   /** system-alerts（logs/system-alerts.jsonl）への記録。 */
   recordAlert: (title: string, body: string) => void;
+  /** git ロック（日次ジョブと共有）の取得。取れなければ null。承認の適用〜push の間保持する。未指定なら取らない（テスト用）。 */
+  acquireLock?: () => { release: () => void } | null;
+  /** data/case-gate.json が HEAD と一致する（未コミット変更が無い）ことの確認。未指定なら確認しない（テスト用）。 */
+  checkClean?: () => Promise<{ ok: boolean; detail: string }>;
 }
 
 export interface GateCommandResult {
@@ -90,9 +94,34 @@ function failureReply(id: number, f: Failure): string {
 
 const inflightRevisions = new Set<string>();
 
-export async function handleGateCommand(cmd: GateCommand, deps: GateFlowDeps): Promise<GateCommandResult> {
+/** 承認・却下・修正受付・修正完了の台帳／case-gate.json 操作をプロセス内で直列化する（ロールバックが他の承認を消さないように）。 */
+let mutexTail: Promise<unknown> = Promise.resolve();
+function serialize<T>(fn: () => Promise<T>): Promise<T> {
+  const next = mutexTail.then(fn, fn);
+  mutexTail = next.catch(() => undefined);
+  return next;
+}
+
+/** 台帳にその番号の案があるか（webhook が「修正 <数字> …」を通常文と区別するのに使う）。 */
+export function isKnownGateProposal(id: number): boolean {
+  try {
+    return getProposal(id, { file: GATE_PROPOSALS_PATH }) != null;
+  } catch {
+    return false;
+  }
+}
+
+export function handleGateCommand(cmd: GateCommand, deps: GateFlowDeps): Promise<GateCommandResult> {
+  return serialize(() => handleGateCommandUnlocked(cmd, deps));
+}
+
+async function handleGateCommandUnlocked(cmd: GateCommand, deps: GateFlowDeps): Promise<GateCommandResult> {
   const opts = { file: deps.file, gatePath: deps.gatePath, now: deps.now() };
   const gid = formatGateId(cmd.id);
+
+  if (cmd.action !== "revise" && inflightRevisions.has(gid)) {
+    return { reply: `${gid} は修正案を作成中です。完成後の新しい案に返信してください。` };
+  }
 
   if (cmd.action === "reject") {
     const r = rejectProposal(cmd.id, opts) as { ok: true } | Failure;
@@ -121,33 +150,57 @@ export async function handleGateCommand(cmd: GateCommand, deps: GateFlowDeps): P
 
 async function approve(id: number, deps: GateFlowDeps, opts: { file: string; gatePath: string; now: Date }): Promise<string> {
   const gid = formatGateId(id);
-  const applied = applyProposal(id, opts) as { ok: true; backup: string } | Failure;
-  if (!applied.ok) return failureReply(id, applied);
+  // 先に状態を確認（処理済み・存在しない案のためにロックを取らない）
+  const peek = getProposal(id, opts) as { status: string } | null;
+  if (!peek) return failureReply(id, { ok: false, code: "not-found", message: "", proposal: null });
+  if (peek.status !== "pending") return failureReply(id, { ok: false, code: "not-pending", message: "", proposal: peek as Failure["proposal"] });
 
-  const rollback = (title: string, detail: string): string => {
-    restoreGate(applied.backup, opts.gatePath);
-    deps.recordAlert(title, `${gid}: ${detail}`);
-    return `${gid} の反映に失敗したため元に戻しました（${detail}）。案は承認待ちのままです。`;
-  };
-
-  let audit: { ok: boolean; detail: string };
+  // 書き込み前に git ロックを取り、適用→監査→commit→push の間ずっと保持する
+  // （日次ジョブが未承認・途中の文面を読んで commit しないように）。
+  const lock = deps.acquireLock ? deps.acquireLock() : { release: () => undefined };
+  if (!lock) return `${gid} は適用できませんでした: 他のジョブが git を使用中です。後でもう一度承認してください。`;
   try {
-    audit = await deps.audit();
-  } catch (err) {
-    audit = { ok: false, detail: err instanceof Error ? err.message : String(err) };
-  }
-  if (!audit.ok) return rollback("基準変更の監査に失敗", `監査失敗: ${audit.detail.slice(0, 300)}`);
+    if (deps.checkClean) {
+      const clean = await deps.checkClean();
+      if (!clean.ok) return `${gid} は適用しませんでした: data/case-gate.json に未コミットの変更があります（${clean.detail.slice(0, 200)}）。先に整理してください。`;
+    }
+    const applied = applyProposal(id, opts) as { ok: true; backup: string } | Failure;
+    if (!applied.ok) return failureReply(id, applied);
 
-  let pushed: { ok: boolean; error?: string };
-  try {
-    pushed = await deps.commitPush(`chore(case-gate): 基準${(getProposal(id, opts) as { criterionId: string }).criterionId}の文面を変更 (${gid} 承認)`);
-  } catch (err) {
-    pushed = { ok: false, error: err instanceof Error ? err.message : String(err) };
-  }
-  if (!pushed.ok) return rollback("基準変更の commit/push に失敗", `commit/push 失敗: ${pushed.error ?? "原因不明"}`);
+    const rollback = (title: string, detail: string): string => {
+      restoreGate(applied.backup, opts.gatePath);
+      deps.recordAlert(title, `${gid}: ${detail}`);
+      return `${gid} の反映に失敗したため元に戻しました（${detail}）。案は承認待ちのままです。`;
+    };
 
-  markApproved(id, opts);
-  return `${gid} を反映しました（case-gate.json を commit・push 済み）。`;
+    let audit: { ok: boolean; detail: string };
+    try {
+      audit = await deps.audit();
+    } catch (err) {
+      audit = { ok: false, detail: err instanceof Error ? err.message : String(err) };
+    }
+    if (!audit.ok) return rollback("基準変更の監査に失敗", `監査失敗: ${audit.detail.slice(0, 300)}`);
+
+    let pushed: { ok: boolean; error?: string };
+    try {
+      pushed = await deps.commitPush(`chore(case-gate): 基準${(getProposal(id, opts) as { criterionId: string }).criterionId}の文面を変更 (${gid} 承認)`);
+    } catch (err) {
+      pushed = { ok: false, error: err instanceof Error ? err.message : String(err) };
+    }
+    if (!pushed.ok) return rollback("基準変更の commit/push に失敗", `commit/push 失敗: ${pushed.error ?? "原因不明"}`);
+
+    try {
+      markApproved(id, opts);
+    } catch (err) {
+      // push は成功済みなのでファイルは戻さない
+      const detail = err instanceof Error ? err.message : String(err);
+      deps.recordAlert("基準変更の台帳更新に失敗", `${gid}: 反映済みだが台帳を approved にできなかった: ${detail}`);
+      return `${gid} は反映済みです（case-gate.json を commit・push 済み）が、台帳の更新に失敗しました。案が承認待ちのまま残るため、再承認しないでください。`;
+    }
+    return `${gid} を反映しました（case-gate.json を commit・push 済み）。`;
+  } finally {
+    lock.release();
+  }
 }
 
 async function revise(id: number, deps: GateFlowDeps, opts: { file: string; gatePath: string; now: Date }): Promise<string> {
@@ -158,7 +211,7 @@ async function revise(id: number, deps: GateFlowDeps, opts: { file: string; gate
     const out = await deps.generateRevision(buildRevisionPrompt(p, gate));
     const parsed = parseRevisionOutput(out);
     if (!parsed) throw new Error("修正案の出力を読み取れませんでした");
-    const done = completeRevision(id, parsed, opts) as { ok: true; proposal: unknown } | Failure;
+    const done = (await serialize(async () => completeRevision(id, parsed, opts))) as { ok: true; proposal: unknown } | Failure;
     if (!done.ok) throw new Error(done.message);
     return buildProposalMessage(done.proposal);
   } catch (err) {
@@ -189,9 +242,7 @@ async function auditCaseGate(): Promise<{ ok: boolean; detail: string }> {
 async function commitPushCaseGate(message: string): Promise<{ ok: boolean; error?: string }> {
   const branch = await run("git", ["rev-parse", "--abbrev-ref", "HEAD"], ROOT, 10_000);
   if (!branch.ok || branch.stdout.trim() !== "main") return { ok: false, error: `main ブランチではないため中止（現在: ${branch.stdout.trim() || "不明"}）` };
-  const lock = tryAcquireLock(DEFAULT_LOCK_PATH, "studio:gate-proposal");
-  if (!lock) return { ok: false, error: "他のジョブが git を使用中です（後でもう一度承認してください）" };
-  try {
+  {
     const head = await run("git", ["rev-parse", "HEAD"], ROOT, 10_000);
     const add = await run("git", ["add", "--", GATE_REL], ROOT, 30_000);
     if (!add.ok) return { ok: false, error: `git add 失敗: ${add.stderr.slice(0, 200)}` };
@@ -209,9 +260,13 @@ async function commitPushCaseGate(message: string): Promise<{ ok: boolean; error
       return { ok: false, error: `git push 失敗: ${(push.stderr || push.stdout).slice(0, 200)}` };
     }
     return { ok: true };
-  } finally {
-    lock.release();
   }
+}
+
+/** 作業ツリーの case-gate.json が HEAD と一致するか（未コミット変更があれば ok:false）。 */
+async function checkCaseGateClean(): Promise<{ ok: boolean; detail: string }> {
+  const r = await run("git", ["diff", "--quiet", "HEAD", "--", GATE_REL], ROOT, 15_000);
+  return r.ok ? { ok: true, detail: "" } : { ok: false, detail: (r.stderr || r.stdout || `exit ${r.code}`).trim() };
 }
 
 /** Claude CLI（サブスク認証。プロンプトは stdin 渡しで ENAMETOOLONG を避ける。claude-cli.mjs と同じ引数）を非同期実行する。 */
@@ -240,6 +295,8 @@ export function createDefaultGateFlowDeps(): GateFlowDeps {
     now: () => new Date(),
     audit: auditCaseGate,
     commitPush: commitPushCaseGate,
+    acquireLock: () => tryAcquireLock(DEFAULT_LOCK_PATH, "studio:gate-proposal"),
+    checkClean: checkCaseGateClean,
     generateRevision: runClaudeAsync,
     recordAlert: (title, body) => {
       try {

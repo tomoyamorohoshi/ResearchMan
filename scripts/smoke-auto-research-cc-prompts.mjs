@@ -11,6 +11,7 @@
 // 実行: node scripts/smoke-auto-research-cc-prompts.mjs
 import { buildDiscoveryPrompt, shouldAddMakeupRound } from "./auto-research-cc.mjs";
 import { localDayIndex } from "./lib/day-index.mjs";
+import { lensOrderForDay } from "./lib/case-lenses.mjs";
 import researchTuning from "../data/research-tuning.json" with { type: "json" };
 
 let failures = 0;
@@ -26,35 +27,34 @@ function assert(cond, message) {
 const roundFoci = researchTuning.cc.roundFoci;
 const baseArgs = { lastRunDate: new Date("2026-08-10T00:00:00+09:00"), existingTitles: "（既存タイトルなし）", seenThisRun: [] };
 
-// ── Round2（テック/ゲーム/XRフォーカス）にゲーム/VR上限が入っている ──
+// ── v3: レンズ4（新しい表現手法・テクノロジー表現）にゲーム/VR上限が入っている ──
 {
-  const now = new Date();
-  const idx2 = roundFoci.findIndex((f) => /ゲーム/.test(f.label) && /テック|プロダクト/.test(f.label));
-  assert(idx2 !== -1, "roundFociにテック・ゲーム・XRフォーカスが存在する");
-  // このフォーカスが選ばれるround番号を逆算する
-  const dayIdx = localDayIndex(now);
-  const round = ((idx2 - dayIdx) % roundFoci.length + roundFoci.length) % roundFoci.length + 1;
+  const idx4 = roundFoci.findIndex((f) => /表現手法/.test(f.label));
+  assert(idx4 !== -1, "roundFociに新しい表現手法レンズが存在する");
+  const order = lensOrderForDay(localDayIndex(new Date()), roundFoci.length);
+  const round = order.indexOf(idx4) + 1;
   const prompt = buildDiscoveryPrompt({ ...baseArgs, round, roundFoci });
-  assert(prompt.includes(roundFoci[idx2].label), "Round2のフォーカスラベルがプロンプトに含まれる");
-  assert(/ゲーム.{0,6}(最大|上限)|(最大|上限).{0,6}ゲーム/.test(roundFoci[idx2].diversity), "research-tuning.jsonのRound2 diversityにゲーム/VR件数の上限指示が含まれる");
-  assert(/[XVR]{1,3}/.test(roundFoci[idx2].diversity) || /XR|VR/.test(roundFoci[idx2].diversity), "Round2 diversityにXR/VRへの言及がある");
+  assert(prompt.includes(roundFoci[idx4].label), "レンズ4のラベルがプロンプトに含まれる");
+  assert(/ゲーム.{0,6}(最大|上限)|(最大|上限).{0,6}ゲーム/.test(roundFoci[idx4].diversity), "research-tuning.jsonのレンズ4 diversityにゲーム/VR件数の上限指示が含まれる");
+  assert(/XR|VR/.test(roundFoci[idx4].diversity), "レンズ4 diversityにXR/VRへの言及がある");
 }
 
-// ── Round1（広告キャンペーンフォーカス）の上限指示が従来どおり維持されている ──
+// ── レンズ1（広告）の上限指示が従来どおり維持されている ──
 {
   const idx1 = roundFoci.findIndex((f) => /広告/.test(f.label));
-  assert(idx1 !== -1, "roundFociに広告キャンペーンフォーカスが存在する");
-  assert(/広告賞ネタは全体の半分以下/.test(roundFoci[idx1].diversity), "Round1 diversityの広告賞上限指示が従来どおり維持されている");
+  assert(idx1 !== -1, "roundFociに広告フォーカスが存在する");
+  assert(/広告賞ネタは全体の半分以下/.test(roundFoci[idx1].diversity), "レンズ1 diversityの広告賞上限指示が従来どおり維持されている");
 }
 
-// ── ラウンドローテーションが従来どおり日替わりで動く（回帰防止） ──
+// ── 4レンズが毎日1回ずつ回る（日替わりなのは開始位置だけ） ──
 {
   const now = new Date();
-  const dayIdx = localDayIndex(now);
-  for (let round = 1; round <= 3; round++) {
-    const expectedFocus = roundFoci[(dayIdx + round - 1) % roundFoci.length];
+  const order = lensOrderForDay(localDayIndex(now), roundFoci.length);
+  assert(new Set(order).size === roundFoci.length, "当日のレンズ順は全レンズの順列");
+  for (let round = 1; round <= roundFoci.length; round++) {
+    const expectedFocus = roundFoci[order[round - 1]];
     const prompt = buildDiscoveryPrompt({ ...baseArgs, round, roundFoci });
-    assert(prompt.includes(expectedFocus.label), `round=${round}: localDayIndexベースのローテーションで期待フォーカス「${expectedFocus.label.slice(0, 12)}...」が選ばれる`);
+    assert(prompt.includes(expectedFocus.label), `round=${round}: 当日のレンズ順で期待フォーカス「${expectedFocus.label.slice(0, 12)}...」が選ばれる`);
   }
 }
 

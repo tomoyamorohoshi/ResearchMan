@@ -18,6 +18,8 @@ import {
   removeLockDir,
   cleanupStaleLock,
   releaseOwnedLock,
+  touchOwnedLock,
+  startLockHeartbeat,
 } from "./git-lock.mjs";
 
 function tmpLock() {
@@ -292,6 +294,83 @@ test("奪取後に掃除人ミューテックス(.reap)を残さない", () => {
     const leftovers = fs.readdirSync(os.tmpdir()).filter((n) => n.startsWith(`${path.basename(p)}.reap`));
     assert.deepEqual(leftovers, []);
   } finally {
+    cleanup(p);
+  }
+});
+
+// ── ハートビート（v3: cc ジョブが発見90分＋記事化でSTALE_MS=90分を超えて走っても、他ジョブにロックを奪われない）──
+
+test("touchOwnedLock: 自分が取得したロックの mtime を更新する（90分超の古さでも stale でなく held に戻る）", () => {
+  const p = tmpLock();
+  try {
+    assert.equal(tryAcquire(p, "cc"), true);
+    ageDir(p, STALE_MS + 60 * 1000);
+    assert.equal(inspectLock(p).state, "stale", "更新前は stale（他ジョブが奪取できる状態）");
+    assert.equal(touchOwnedLock(p), true);
+    assert.equal(inspectLock(p).state, "held");
+    assert.equal(tryAcquire(p, "other"), false, "他ジョブは奪取できない");
+    // owner.json は壊さない
+    assert.equal(JSON.parse(fs.readFileSync(path.join(p, OWNER_FILE), "utf-8")).label, "cc");
+  } finally {
+    releaseOwnedLock(p);
+    cleanup(p);
+  }
+});
+
+test("touchOwnedLock: 自分が取得していないロック・他者に奪われたロックは触らない（stale のまま）", () => {
+  const p = tmpLock();
+  try {
+    fs.mkdirSync(p);
+    writeOwnerRaw(p, { pid: process.pid, startedAt: "someone-else", label: "x" });
+    ageDir(p, STALE_MS + 60 * 1000);
+    assert.equal(touchOwnedLock(p), false, "このプロセスが取得していない");
+    assert.equal(inspectLock(p).state, "stale");
+    // 自分が取得 → 他者が奪取 → touch しても他者のロックを延命しない
+    cleanup(p);
+    assert.equal(tryAcquire(p, "mine"), true);
+    writeOwnerRaw(p, { pid: process.pid, startedAt: "taken-over", label: "thief" });
+    ageDir(p, STALE_MS + 60 * 1000);
+    assert.equal(touchOwnedLock(p), false);
+    assert.equal(inspectLock(p).state, "stale");
+  } finally {
+    cleanup(p);
+  }
+});
+
+test("touchOwnedLock: ロックが無ければ false で例外なし", () => {
+  assert.equal(touchOwnedLock(tmpLock()), false);
+});
+
+test("startLockHeartbeat: 一定間隔で mtime を更新し、stop() で止まる", async () => {
+  const p = tmpLock();
+  try {
+    assert.equal(tryAcquire(p, "cc"), true);
+    ageDir(p, STALE_MS + 60 * 1000);
+    const stop = startLockHeartbeat(p, { intervalMs: 20 });
+    await new Promise((r) => setTimeout(r, 120));
+    assert.equal(inspectLock(p).state, "held", "ハートビートで stale が解消");
+    stop();
+    ageDir(p, STALE_MS + 60 * 1000);
+    await new Promise((r) => setTimeout(r, 100));
+    assert.equal(inspectLock(p).state, "stale", "stop後は更新されない");
+  } finally {
+    releaseOwnedLock(p);
+    cleanup(p);
+  }
+});
+
+test("startLockHeartbeat: maxMs を超えたら自動で止まる（ハングしたジョブのロックを永遠に延命しない）", async () => {
+  const p = tmpLock();
+  try {
+    assert.equal(tryAcquire(p, "cc"), true);
+    const stop = startLockHeartbeat(p, { intervalMs: 15, maxMs: 60 });
+    await new Promise((r) => setTimeout(r, 150));
+    ageDir(p, STALE_MS + 60 * 1000);
+    await new Promise((r) => setTimeout(r, 80));
+    assert.equal(inspectLock(p).state, "stale", "maxMs 経過後は更新しない");
+    stop();
+  } finally {
+    releaseOwnedLock(p);
     cleanup(p);
   }
 });
