@@ -1,5 +1,139 @@
 [
   {
+    "id": "dualsense-haptic-designer",
+    "title": "DualSense Haptic Designer",
+    "org": "Jellybit（個人開発者）",
+    "type": "Tool",
+    "domains": [
+      "HCI/MediaArt",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "PS5コントローラー（DualSense）の振動と、トリガーの手応えを、音ファイルやグラフから設計・試し打ちできるデザインツール。Windowsアプリ版と、ChromeやEdgeで動くWeb版がある。",
+    "point": "DualSenseには、握った部分の左右のモーターによる細かな振動と、引き金（トリガー）に抵抗を返す仕組みが入っています。これまでは、こうした触覚を作るには専用SDKを使ったコードを書く必要がありました。このツールは、手持ちの効果音やBGMのファイルを読み込むだけでコントローラーの振動に変換し、モーターごとのイコライザーで強さを整え、鳴らしながら手応えを確かめられます。引き金の硬さや振動もグラフを描いて決められ、結果はWAVファイルとJSONで書き出せます。広告や体験づくりでは、ブランドのWebゲームや体験型イベントで「雨粒が手のひらに当たる」「弓を引くと途中で重くなる」といった手触りの演出を、プログラマーを待たずに企画の段階で試せます。映像と音に加えて「触れる演出」を提案書のプロトタイプに入れたいときに向いています。",
+    "detail": "仕組み：DualSenseの握り部分には2つの小さなモーター（左右）が入っていて、WAVのような音の波形を流すとそのとおりに震えます。このツールは、読み込んだ音の波形を各モーター向けに分け、低音・高音の強さを調整し、実機に流してその場で手応えを確かめられるようにしています。トリガーは、どこから抵抗が始まり、どのくらい重く、どう震えるかを、グラフ上の点で決めます。画面には実機と連動して動く3Dコントローラーも出て、押したボタンやスティックの動きが映ります。ほかに、物理シーンで遊べる実験コーナーと、触覚クリップの作曲機能、実験的なBluetooth接続も付いています。\n\n従来との違い：ゲーム機の触覚は、専用のエンジンやSDKの知識がある人が数値を書いて調整する作業が中心でした。これは「音を触覚に変える」ことと「引き金の手応えを描く」ことを、1つの画面で試しながらできる点が違います。出力はWAV（4チャンネル版と触覚のみ版）とトリガー設定のJSON（生のバイト列つき）なので、自分のゲームやアプリへそのまま持ち込めます。\n\n使うには：Windows PCとDualSense（または Edge）が必要です。Windows版は自分でビルドする形で、ビルド済み配布物（Releases）は現時点でありません。Node.js LTSがあれば手元で起動できます。手軽に試すなら、ChromeまたはEdgeでWeb版（jellybit.com/dualsense）を開きます。フル機能の触覚はUSB接続が推奨で、Bluetoothは実験的です。費用はかかりません。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "アプリ本体とアイコンはMIT。同梱の3DコントローラーモデルのみCC-BY-4.0（Sketchfab: AHarmlessPotato、表記が必要）。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Jellybit/DualSense-Haptic-Designer"
+      },
+      {
+        "kind": "product",
+        "url": "https://jellybit.com/dualsense/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/dualsense-haptic-designer.jpg",
+    "relatedWorks": [
+      {
+        "title": "DualSenseX",
+        "description": "DualSenseのトリガー効果やライトをPCから制御するWindows向けツール。",
+        "url": "https://github.com/Paliverse/DualSenseX"
+      },
+      {
+        "title": "Meta Haptics Studio",
+        "description": "音の波形からQuestコントローラー向けの振動を設計するMeta公式の触覚ツール。",
+        "url": "https://developers.meta.com/horizon/documentation/unity/haptics-studio/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "coopiano",
+    "title": "coopiano",
+    "org": "Peter Cooper（個人開発者）",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "録音した音（サンプル）を使わず、ハンマー・弦・響板の物理モデルだけでピアノの音を作るC++製シンセ。MIDIファイルをWAVに書き出せ、macOSではMIDI鍵盤からの演奏もできる。",
+    "point": "多くのソフトウェア・ピアノは、本物のピアノを録音した巨大な音のデータを再生しています。coopianoはそれを使わず、鍵盤を叩いたハンマーが弦を揺らし、その振動が響板（ピアノの共鳴板）に伝わり、ほかの弦も一緒に鳴る様子を、計算でシミュレーションして音にします。音の素材が要らないので数ファイルのソースだけで動き、設定ファイル（INI）でハンマーの硬さや響きの強さを変えて音色を作れます。部屋の残響もコードで足せます。広告や映像づくりでは、BGM用のピアノを権利や容量を気にせず書き出せる点、音色をパラメーターで細かく変えて「少し古いピアノ」「ささやくような音」を作れる点が使えます。インタラクティブ作品のなかに、サンプルなしで軽く入るピアノの音源を組み込むこともできるでしょう。",
+    "detail": "仕組み：ピアノの音が出るまでの流れを部品ごとに計算します。ハンマーが弦を叩く力、弦の振動、その振動を受けて音を広げる響板、押していない弦がつられて鳴る共鳴（シンパセティック・レゾナンス）です。最後に部屋の反響を足して、44.1kHz・16bitのステレオWAVにします。音の強さ（ベロシティ）が変わると音色も変わるのが特徴で、READMEには和音を強さを上げながら鳴らして聴き比べる audition コマンドがあります。\n\n従来との違い：商用のサンプル型ピアノは数GBの録音データを持ち、物理モデル型の製品は有償のものが中心です。これはMITライセンスで全ソースが公開されており、自分のプログラムに組み込んだり改造したりできます。ただし作者本人が「まだ初期段階（VERY EARLY days）」と明記しており、AU/VSTプラグイン版は未公開です。音の品質は、実際に聴いて確かめる必要があります。\n\n使うには：C++17対応のコンパイラとMakeがあれば、ダウンロードしてビルドできます。ライブ演奏（MIDI入力）はmacOSのみ動作確認済みで、他のOSではMIDIファイルをWAVに書き出す用途に限られます。費用はかからず、必要なのはビルドの基本スキルだけです。READMEには残響あり・なしの聴き比べ動画が載っています。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "MITライセンス。サンプル音源を使わず、外部ライブラリにも依存しない。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/peterc/coopiano"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/coopiano.jpg",
+    "relatedWorks": [
+      {
+        "title": "Pianoteq",
+        "description": "物理モデルでピアノを鳴らす有償の定番ソフト。サンプルを使わない点が共通。",
+        "url": "https://www.modartt.com/pianoteq"
+      },
+      {
+        "title": "FluidSynth",
+        "description": "サウンドフォントでMIDIを再生するオープンソースのソフトシンセ。",
+        "url": "https://github.com/FluidSynth/fluidsynth"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "tsov",
+    "title": "tsov (the shape of voice)",
+    "org": "luolianst（個人開発者）",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "AI/Agents"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "鼻歌を録音すると楽譜（MIDI）に起こし、AIチャットで編曲・ミックス・書き出しまで進められるローカル動作の音楽制作ワークスペース。変更は差分として確認でき、元に戻せる。",
+    "point": "鼻歌を録音するだけで、ノイズを取り、音程を拾い、リズムを揃え、スケール（音階）に合わせたメロディとして譜面に起こします。そこからチャットで「ベースを足して」「もう少しゆっくり」と頼むと、AIが編曲を提案し、変更は毎回「差分」として表示されるので、気に入らなければ取り消せます。ピアノロール画面でも手で直せ、ミックスや書き出し（ステム別・MIDI）も同じ画面でできます。曲の分解（ボーカル・ドラム・ベースの分離と採譜）は次の版に向けて開発中です。広告・映像づくりでは、ディレクターが鼻歌でイメージを伝えて作曲者に渡す、あるいは自分で仮の曲を素早く作る、といった初期の企画段階で使えそうです。作業はほぼ手元のPC内で済むため、未公開素材を外へ出したくない案件にも向きます。",
+    "detail": "仕組み：既存の音楽AIをつなぎ合わせた作りです。鼻歌の音程は RMVPE、曲からのボーカル・ドラム分離は htdemucs や Mel-Band Roformer、ドラム採譜は ADTOF、そのほかの楽器の採譜は YourMT3 で行い、MIDIの音はFluidSynthやDexedなどのVST3で鳴らします。チャットのAIは既定でDeepSeekですが、OpenAI互換のAPIならどれでも使え、外部のAIエージェントから操作するための実験的なMCPサーバーも付属します。人もAIも同じ「コマンド層」を通して編集するので、AIの変更が人の操作と同じ形で記録され、取り消せます。\n\n従来との違い：鼻歌の採譜、ステム分離、編曲、ミックスは別々のソフトで行うのが普通でした。これは1画面にまとめ、AIの編集を差分で見せる点が新しい点です。ただしモデル自体は既存のものを組み合わせた構成で、作者は v0.1 のプロトタイプで、今後 破壊的変更が入りうる と明記しています。\n\n使うには：主な対象はWindows 10/11（Mac/Linuxは未検証）で、Python 3.12、uv、ffmpegが必要です。大きなモデルは別途 vendor/ フォルダに置く必要があり、取得用のスクリプトがあります。チャットのAI機能だけはLLMのAPIキーが必要で、その分は従量課金になりえます（他は無料でオフライン動作）。ビルド済みバンドル（約3.7GB）は中国のミラー経由で、アカウントが必要です。",
+    "license": {
+      "spdx": "AGPL-3.0",
+      "commercial": "conditional",
+      "note": "AGPL-3.0。改変してネットワークサービスとして提供する場合はソース公開が必要。各モデル（Demucs等）は別ライセンスで、vendor/へ自分で配置する。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/luolianst/tsov"
+      },
+      {
+        "kind": "post",
+        "url": "https://github.com/luolianst/tsov/releases/tag/v0.1.8"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/tsov.jpg",
+    "relatedWorks": [
+      {
+        "title": "Demucs",
+        "description": "音楽をボーカル・ドラム・ベース等に分離するオープンソースのモデル。",
+        "url": "https://github.com/adefossez/demucs"
+      },
+      {
+        "title": "Dexed",
+        "description": "Yamaha DX7 互換のオープンソースFMシンセ。tsovのデモで使われるVST3。",
+        "url": "https://github.com/asb2m10/dexed"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "code-video-model",
     "title": "Code Video Model (CodeVideoBench)",
     "org": "Code Video Model Team",
