@@ -178,11 +178,11 @@ function writeIncidents(incidents) {
   writeJsonAtomicSync(INCIDENTS_PATH, buildIncidentsFileContent(incidents));
 }
 
-function notifyLine(text) {
+function notifyLine(text, level = "warn") {
   const tmpPath = path.join(os.tmpdir(), "researchman-studio-keeper-notify.txt");
   try {
     fs.writeFileSync(tmpPath, text);
-    const r = spawnSync("node", ["scripts/notify-line.mjs", "--text-file", tmpPath], {
+    const r = spawnSync("node", ["scripts/notify-line.mjs", "--kind", "system", "--source", "studio-keeper", "--level", level, "--text-file", tmpPath], {
       cwd: ROOT,
       encoding: "utf-8",
       timeout: 30000,
@@ -272,7 +272,7 @@ async function main() {
   const text = recovered
     ? `⚠️ Studioサーバ停止を検知→自動復旧しました（${hhmm(now)}）。直前にLINEで送った依頼は失われている可能性があります`
     : `🚨 Studioサーバ停止を検知しましたが自動復旧に失敗しました（${hhmm(now)}）。手動確認が必要です。`;
-  notifyLine(text);
+  notifyLine(text, recovered ? "warn" : "error");
 
   process.exit(recovered ? 0 : 1);
 }

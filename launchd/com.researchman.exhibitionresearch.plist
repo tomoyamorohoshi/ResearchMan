@@ -47,18 +47,18 @@
       git add data/exhibition.json public/thumbnails/exhibition/ &gt;&gt; $LOG 2&gt;&amp;1;
       if git diff --cached --quiet; then
         echo "変更なし（新規展覧会なし）: $(date)" &gt;&gt; $LOG;
-        node scripts/notify-line.mjs --summary /tmp/researchman-exhibition-last-add.json --route exhibition --label Exhibition &gt;&gt; $LOG 2&gt;&amp;1;
+        node scripts/notify-line.mjs --kind share --summary /tmp/researchman-exhibition-last-add.json --route exhibition --label Exhibition &gt;&gt; $LOG 2&gt;&amp;1;
       else
         git commit -m "Exhibition radar: $(date '+%Y-%m-%d')" &gt;&gt; $LOG 2&gt;&amp;1;
         if git push &gt;&gt; $LOG 2&gt;&amp;1; then
           if node scripts/verify-deploy.mjs --skip-pages &gt;&gt; $LOG 2&gt;&amp;1 &amp;&amp; node scripts/verify-exhibition-pages.mjs &gt;&gt; $LOG 2&gt;&amp;1; then
             echo "反映まで確認OK: $(date)" &gt;&gt; $LOG;
-            node scripts/notify-line.mjs --summary /tmp/researchman-exhibition-last-add.json --route exhibition --label Exhibition &gt;&gt; $LOG 2&gt;&amp;1;
+            node scripts/notify-line.mjs --kind share --summary /tmp/researchman-exhibition-last-add.json --route exhibition --label Exhibition &gt;&gt; $LOG 2&gt;&amp;1;
           else
             echo "push成功だが反映未確認（時間切れ）: $(date)" &gt;&gt; $LOG;
             # 0件追加の回は routine（追加ありは従来どおり critical）
             if node -e "const s=JSON.parse(require('fs').readFileSync('/tmp/researchman-exhibition-last-add.json','utf8'));process.exit((s.cases||[]).length?1:0)" 2&gt;/dev/null; then PRI=routine; else PRI=critical; fi;
-            node scripts/notify-line.mjs --result unverified --summary /tmp/researchman-exhibition-last-add.json --route exhibition --label Exhibition --priority $PRI &gt;&gt; $LOG 2&gt;&amp;1;
+            node scripts/notify-line.mjs --kind share --result unverified --summary /tmp/researchman-exhibition-last-add.json --route exhibition --label Exhibition --priority $PRI &gt;&gt; $LOG 2&gt;&amp;1;
           fi;
         else
           echo "push失敗（pre-push監査で中止の可能性）。コミットはローカル残存。要手動対応: $(date)" &gt;&gt; $LOG;

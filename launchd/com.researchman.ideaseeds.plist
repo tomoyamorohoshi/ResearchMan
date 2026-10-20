@@ -28,7 +28,7 @@
       trap "rmdir $LOCK 2&gt;/dev/null" EXIT;
       echo "===== Idea seeds start: $(date) =====" &gt;&gt; $LOG;
       if node scripts/generate-idea-seeds.mjs &gt;&gt; $LOG 2&gt;&amp;1; then
-        node scripts/notify-line.mjs --text-file /tmp/researchman-idea-seeds.txt &gt;&gt; $LOG 2&gt;&amp;1;
+        node scripts/notify-line.mjs --kind share --text-file /tmp/researchman-idea-seeds.txt &gt;&gt; $LOG 2&gt;&amp;1;
         # data/ideas.json（サイトのIdeasタブ用に生成スクリプトが追記済み）と、その事前計算
         # 生成物の鮮度証明 data/idea-layouts.manifest.json を**必ずペアで**commit/push（本体idea-layouts.jsonはgit管理外）（2026-07-08 事前計算方式）。
         # 片方だけだとpre-push鮮度検査(HEAD比較)に拒否される＝毎朝の更新が止まる。

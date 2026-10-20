@@ -12,9 +12,10 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { parseQueueLines, buildDigestText } from "./lib/notify-digest-core.mjs";
+import { parseQueueLines, buildDigestText, partitionQueue } from "./lib/notify-digest-core.mjs";
 import { loadLineConfig } from "./lib/notify-line-config.mjs";
 import { sendLineMessages } from "./lib/notify-line-send.mjs";
+import { appendSystemAlert } from "./lib/system-alerts.mjs";
 import { fetchQuotaUsage, shouldSkipForQuota } from "./lib/notify-quota-guard.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -42,7 +43,43 @@ async function main() {
     return;
   }
 
-  const entries = parseQueueLines(before);
+  // 2026-10-20 LINE方針変更: 切替前に積まれた system 相当の項目はLINEに送らず system-alerts へ移す
+  // （kindなしの旧形式は本文から再判定。判定不能は system）。share だけ残して以降の送信対象にする。
+  const { share: entries, system: legacySystem } = partitionQueue(parseQueueLines(before));
+  // 移送に失敗した項目はキューに残す（次回再試行。成功済みの項目は消すので重複追記しない）
+  let failedText = "";
+  if (legacySystem.length > 0) {
+    let moved = 0;
+    for (const e of legacySystem) {
+      try {
+        const text = String(e.text ?? "");
+        const nl = text.indexOf("\n");
+        appendSystemAlert(
+          { at: e.at, source: `notify-queue:${e.label || "unknown"}`, level: "info", title: (nl === -1 ? text : text.slice(0, nl)) || "(empty)", body: text },
+          {},
+        );
+        moved++;
+      } catch (err) {
+        failedText += `${JSON.stringify(e)}\n`;
+        log(`system-alertsへの移送失敗（キューに残し次回再試行）: ${err.message}`);
+      }
+    }
+    const rest = entries.map((e) => JSON.stringify(e)).join("\n");
+    const kept = (rest ? `${rest}\n` : "") + failedText;
+    let current;
+    try {
+      current = fs.readFileSync(QUEUE_PATH, "utf8");
+    } catch {
+      current = before;
+    }
+    // 読込後に追記された分は残す（送信成功時のクリアと同じ方針）
+    const appended = current.startsWith(before) ? current.slice(before.length) : "";
+    const tmp = `${QUEUE_PATH}.tmp`;
+    fs.writeFileSync(tmp, kept + appended);
+    fs.renameSync(tmp, QUEUE_PATH);
+    before = kept;
+    log(`queue内のsystem相当${moved}件をLINEに送らず logs/system-alerts.jsonl へ移動`);
+  }
   if (entries.length === 0) {
     log("queueが空 → 何もせず終了");
     return;
@@ -81,7 +118,7 @@ async function main() {
   } catch {
     after = "";
   }
-  const remainder = after.startsWith(before) ? after.slice(before.length) : after;
+  const remainder = failedText + (after.startsWith(before) ? after.slice(before.length) : after);
   const tmpPath = `${QUEUE_PATH}.tmp`;
   fs.writeFileSync(tmpPath, remainder);
   fs.renameSync(tmpPath, QUEUE_PATH);
