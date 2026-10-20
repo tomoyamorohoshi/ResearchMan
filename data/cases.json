@@ -1,5 +1,50 @@
 [
   {
+    "id": "fulham-f-c-ffc-original-2026",
+    "title": "Fulham F.C. ブランドリフレッシュ（スタジアムの壁の手描きレタリングから書体 FFC Original を制作）",
+    "summary": "Fulhamが本拠地Craven Cottageの手描きレタリングを拾い、クラブ専用書体FFC Originalとブランドアイデンティティに読み替えた",
+    "client": "Fulham F.C.",
+    "agency": "Music / F37 Foundry",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.itsnicethat.com/articles/music-f37-foundry-fulham-football-club-refresh-graphic-design-project-191026",
+    "thumbnail": "/thumbnails/fulham-f-c-ffc-original-2026.jpg",
+    "videoId": "",
+    "overview": "クリエイティブエージェンシーMusicが、書体制作会社F37 Foundryと組み、Fulham F.C.のブランドをリフレッシュした。中核はクラブ専用書体「FFC Original」で、試合日のグラフィック、キャンペーン、リテール、映像、デジタルまで同じ書体で統一している。2026/27シーズンのアウェイキット向けキャンペーンフィルムでもこの書体を使っている。",
+    "background": "Fulhamは145年を超える歴史を持つクラブで、Riverside Standの再開発やFulham Pierの登場により、サッカー以外の来訪者との接点も広がっている。熱心なサポーター、ホスピタリティの来場者、海外ファンなど多様な層に向けて、デジタル環境でも使える識別性の高いアイデンティティが求められていた。クラブは150周年も見据えている。",
+    "execution": "Musicはロンドン最古のサッカースタジアムとされるCraven Cottageを調査し、場内にある手描きのレタリングに着目した。その文字が持つシンプルさ・力強さ・個性を手がかりに、F37 Foundryとクラブ専用書体FFC Originalを制作し、この書体を軸にブランド全体を組み立てた。アウェイキットのフィルムは1990年代の視覚言語を参照し、遊び心のあるトーンで新書体と組み合わせている。",
+    "evaluationImpact": "新しい意匠を外から持ち込まず、スタジアムの壁にすでにある文字を書体にして歴史と現代性をつないだ点が評価できる。MusicのDave Simpsonは「Craven Cottageが答えをくれた」「ヘリテージが現代的なアイデンティティを生む」と語っている。専用書体なので、デジタルや商業展開での柔軟性と、クラブ独自の識別性を両立できる。",
+    "relatedWorks": [
+      {
+        "title": "F37 Foundry: Tottenham Hotspur カスタムフォント",
+        "description": "F37 Foundryによる別のプレミアリーグクラブ向けカスタム書体事例",
+        "url": "https://f37foundry.com/custom-fonts/tottenham-hotspur"
+      },
+      {
+        "title": "F37 Foundry: Chelsea FC カスタムフォント",
+        "description": "F37 Foundryによるロンドンのクラブ向けカスタム書体事例",
+        "url": "https://f37foundry.com/custom-fonts/chelsea-fc"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/Sports",
+      "Theme/Art"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "itsnicethat"
+  },
+  {
     "id": "starryworks-inc-2026",
     "title": "光る音展",
     "summary": "STARRYWORKS inc.創業20周年を記念し、音に同期して光や影が変化する体験型インスタレーション展「光る音展」を大阪・東京の2都市で開催。",
