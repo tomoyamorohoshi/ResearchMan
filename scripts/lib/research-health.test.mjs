@@ -8,7 +8,14 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
-import { runResearchHealthReview, parseRuns, dayAdd } from "./research-health.mjs";
+import { runResearchHealthReview, parseRuns, dayAdd, planResearchHealthRun } from "./research-health.mjs";
+
+test("planResearchHealthRun: 12:30枠は毎日・llmなし、deep(日曜18:30)はllmあり、通常の18:30枠は実行しない", () => {
+  const at = (h) => new Date(`2026-10-20T${String(h).padStart(2, "0")}:30:00+09:00`);
+  assert.deepEqual(planResearchHealthRun({ now: at(12), deep: false }), { llm: false });
+  assert.equal(planResearchHealthRun({ now: at(18), deep: false }), null);
+  assert.deepEqual(planResearchHealthRun({ now: at(18), deep: true }), { llm: true });
+});
 
 const NOW = new Date("2026-10-20T03:00:00Z"); // 2026-10-20 12:00 JST
 const TODAY = "2026-10-20";

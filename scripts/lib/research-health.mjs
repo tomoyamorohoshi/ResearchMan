@@ -510,6 +510,16 @@ function appendAlerts({ root, findings, now, today }) {
 }
 
 /**
+ * watchdog から呼ぶ実行計画。AM枠(JST 15時前＝12:30枠)は毎日実行(AIレビューなし)、
+ * deep(日曜枠)はAIレビュー付きで実行、通常の夕方枠は実行しない(null)。
+ */
+export function planResearchHealthRun({ now = new Date(), deep = false } = {}) {
+  if (deep) return { llm: true };
+  const jstHour = new Date(now.getTime() + 9 * 3600 * 1000).getUTCHours();
+  return jstHour < 15 ? { llm: false } : null;
+}
+
+/**
  * @param {{root:string, now?:Date, logDir?:string, llm?:boolean, runLlm?:(prompt:string)=>any, dryRun?:boolean}} o
  * @returns {Promise<{findings:Array, markdown:string, written:{alerts:number, markdown:string|null}}>}
  */

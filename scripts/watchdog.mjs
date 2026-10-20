@@ -53,6 +53,7 @@ import {
   appendIncidentSafe,
 } from "./lib/unpushed-commits.mjs";
 import { pushOnce } from "./lib/push-once.mjs";
+import { runResearchHealthReview, planResearchHealthRun } from "./lib/research-health.mjs";
 import { cleanupStaleLock, isHeld as isLockHeld } from "./lib/git-lock.mjs";
 import {
   computePublicDataHashes,
@@ -939,6 +940,12 @@ async function main() {
   await safeCheck("studio-verify-schedule", () => checkStudioVerifySchedule(report));
   await safeCheck("unpushed-commits", () => checkUnpushedCommits(report));
   await safeCheck("blob-sync", () => checkBlobSyncFreshness(report));
+
+  // リサーチ仕組みの健全性レビュー（LINEには送らない。logs/research-health-latest.md と system-alerts.jsonl に自前で書く）
+  await safeCheck("research-health", async () => {
+    const plan = planResearchHealthRun({ now: new Date(), deep: DEEP });
+    if (plan) await runResearchHealthReview({ root: ROOT, now: new Date(), logDir: path.join(os.homedir(), ".researchman", "logs"), llm: plan.llm });
+  });
 
   let reportText = null;
   if (report.length) {
