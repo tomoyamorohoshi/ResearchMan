@@ -349,3 +349,24 @@ test("buildStopResultText: Caseが反映済みのジョブには「Case分は反
   const job = { id: "j1", tab: "research", request: { kind: "両方", theme: "AI" }, publishedPhases: ["Case"] } as unknown as Job;
   assert.match(buildStopResultText([{ job, outcome: "cancelled" }]), /Case分は反映済み/);
 });
+
+// ── exhibition（LINE add-case） ─────────────────────────────────
+import {
+  buildAddExhibitionFailedText,
+  buildAddExhibitionNotAddedText,
+  buildAddExhibitionSuccessText,
+} from "./messages.js";
+
+test("buildAddExhibitionSuccessText: タイトル・会場・会期・URLを含む", () => {
+  const t = buildAddExhibitionSuccessText(
+    [{ title: "光る音展", venue: "大阪アートエリアB1", startDate: "2026-10-24", endDate: "2026-10-27" }],
+    "https://research-man.vercel.app/exhibition/x",
+  );
+  assert.match(t, /^Exhibition に追加しました: 光る音展（大阪アートエリアB1 2026-10-24〜2026-10-27）/);
+  assert.match(t, /https:\/\/research-man\.vercel\.app\/exhibition\/x/);
+});
+
+test("buildAddExhibitionNotAddedText / FailedText", () => {
+  assert.equal(buildAddExhibitionNotAddedText("光る音展", "公式ページで会期が確認できませんでした"), "Exhibition に追加できませんでした: 光る音展\n理由: 公式ページで会期が確認できませんでした");
+  assert.equal(buildAddExhibitionFailedText("x"), "展示の追加に失敗しました: x");
+});

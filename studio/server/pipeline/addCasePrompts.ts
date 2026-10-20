@@ -22,6 +22,8 @@
  * いる場合はそちらを優先し、prefetchedPageは無視する（X投稿専用の注入ロジックと二重に本文を
  * 埋め込まない）。
  */
+import { CANDIDATE_SCHEMA_TEXT, HARD_EXCLUDE_NOTE } from "../../../scripts/lib/exhibition-prompts.mjs";
+
 export interface TweetMediaPromptInput {
   /** 機械取得済みの投稿本文。 */
   text: string;
@@ -47,6 +49,9 @@ export interface CaseAdderPromptInput {
   /** pageFetch.ts::fetchPageWithFallbackで事前取得済みのページ本文（bot対策サイト向け救済）。
    * tweetMediaが指定されている場合は無視する。未指定/nullなら注入しない（Agent自身のWebFetch任せ）。 */
   prefetchedPage?: { text: string } | null;
+  /** exhibition判定時の自己採点用プロファイル（exhibition-prompts.mjs::profileForPromptのJSON文字列）。
+   * 未指定なら採点基準の埋め込みを省略する。 */
+  exhibitionProfileJson?: string;
 }
 
 /**
@@ -94,7 +99,17 @@ function buildPrefetchedPageNote(prefetchedPage: { text: string }): string {
   );
 }
 
-export function buildCaseAdderPrompt({ url, context, isXLink, tweetMedia, prefetchedPage }: CaseAdderPromptInput): string {
+export function buildCaseAdderPrompt({
+  url,
+  context,
+  isXLink,
+  tweetMedia,
+  prefetchedPage,
+  exhibitionProfileJson,
+}: CaseAdderPromptInput): string {
+  const profileNote = exhibitionProfileJson
+    ? `\n- 好み・採点プロファイル（JSON。score の自己採点は scoring に従う）:\n${exhibitionProfileJson}`
+    : "";
   const contextNote = context ? `\n\n## ユーザーからの補足（視点・メモ）\n${context}` : "";
   const xNote = tweetMedia
     ? buildTweetMediaNote(tweetMedia)
@@ -114,7 +129,9 @@ ${url}${xNote}${contextNote}
 1. URLの内容が次のどれに当たるか判定する（contentKind）:
    - "case": 広告・PR・キャンペーン・ブランド体験などのクリエイティブ事例
    - "tech": クリエイター向けの技術・ソフトウェア（OSS/ツール/研究プロトタイプ等。ResearchMan Technologyタブ相当）
-   - "neither": どちらでもない、または内容を確認できない
+   - "exhibition": 会場と会期（開始日・終了日）があり、これから開催／開催中の展覧会・展示・インスタレーション展の告知ページ／投稿
+     （終了済みの展示の記録記事や、展示を伴う広告キャンペーン事例は "exhibition" にせず "case" とする）
+   - "neither": どれでもない、または内容を確認できない
 2. contentKindに応じて、以下の対応する形式のJSONオブジェクトのみを返す（説明文なし）
 
 ## contentKind: "case" の出力形式
@@ -147,6 +164,18 @@ ${url}${xNote}${contextNote}
   "relatedWorks": [{"title":"...","description":"1行","url":"..."} 0-3件],
   "thumbnailSource": "デモ・キービジュアルが写る画像URL、またはそのog:imageを持つページURL（GitHubのopengraphカードのようなテキスト画像は不可）"
 }
+
+## contentKind: "exhibition" の出力形式
+{
+  "contentKind": "exhibition",
+  "found": true,
+  "candidates": ${CANDIDATE_SCHEMA_TEXT}
+}
+- candidates は上記スキーマの配列。会場・会期が複数（巡回展）なら会場ごとに別候補にする（会場ごとの startDate/endDate/venue/prefecture/city を書く）。officialUrl は公式サイト内の会場別ページがあればそれを使う（同一URLの候補は重複として1件に畳まれる）
+- ${HARD_EXCLUDE_NOTE}（該当するものは excludeCategory にその値を入れる）
+- "intakeUrl" は不要（機械側で送信URLを付与する）。"origin" も不要
+- 日付と会場は公式ページ（会場・主催者の個別展覧会ページ）をWebFetchで開いて確認した値のみ。公式ページが見つからなければ officialUrl は空文字（後段で未検証扱いになる）
+- score は0-100の整数で自己採点（ユーザー投稿ボーナスは機械側で加算するので含めない）。tags は上記語彙内のみ${profileNote}
 
 ## contentKind: "neither" の出力形式
 事実確認できなかった場合、または事例・技術のどちらでもない場合は必ず以下の形式のみを返してください（見切り発車で埋めない）:

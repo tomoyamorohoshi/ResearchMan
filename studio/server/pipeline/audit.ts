@@ -142,6 +142,9 @@ export const runAuditIntegrity = (cwd: string): Promise<CommandResult> =>
 // Technology用（DESIGN.md §5: テーマ系はTechの場合 audit-tech + tsc/lint/build）
 export const runAuditTech = (cwd: string): Promise<CommandResult> => run("node", ["scripts/audit-tech.mjs"], cwd, 60_000);
 
+// Exhibition用（pre-pushフックと同じ audit-exhibition。フィールド/語彙/status/サムネイル検査）
+export const runAuditExhibition = (cwd: string): Promise<CommandResult> => run("node", ["scripts/audit-exhibition.mjs"], cwd, 60_000);
+
 // アワード用（AWARD_RESEARCH_SOP.mdフェーズ5: 参照リスト網羅監査。refPath/awardPrefixは
 // awardResearch.tsがP3で組み立てたJSONファイルとアワード名+年の文字列を渡す）。
 export const runAuditAward = (cwd: string, refPath: string, awardPrefix: string): Promise<CommandResult> =>

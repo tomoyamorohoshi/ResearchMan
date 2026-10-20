@@ -200,3 +200,19 @@ test("buildCaseAdderPrompt: isXLinkがtrueでtweetMedia指定時はprefetchedPag
   assert.match(p, /ツイート本文/);
   assert.doesNotMatch(p, /無視されるべき本文/);
 });
+
+// ── contentKind: exhibition ────────────────────────────────────
+test("buildCaseAdderPrompt: exhibition判定基準と出力形式（Exhibition候補互換フィールド）を含む", () => {
+  const p = buildCaseAdderPrompt({ url: "https://20th.starryworks.co.jp/", context: "", isXLink: false });
+  assert.match(p, /"contentKind": "exhibition"/);
+  for (const f of ["candidates", "venue", "venueType", "prefecture", "city", "startDate", "endDate", "admission", "matchReason", "officialUrl", "slugTitle", "slugVenue", "thumbnailSource", "score", "tags", "artists"]) {
+    assert.ok(p.includes(`"${f}"`), `expected exhibition field: ${f}`);
+  }
+  assert.match(p, /会場ごとに別/);
+  assert.match(p, /終了済み/);
+});
+
+test("buildCaseAdderPrompt: exhibitionProfileJson指定時はプロファイルが埋め込まれる", () => {
+  const p = buildCaseAdderPrompt({ url: "https://example.com/", context: "", isXLink: false, exhibitionProfileJson: '{"scoring":{"marker":"XYZ"}}' });
+  assert.match(p, /XYZ/);
+});

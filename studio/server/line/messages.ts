@@ -157,6 +157,31 @@ export function buildAddTechFailedText(reason: string): string {
   return `技術の追加に失敗しました: ${reason}`;
 }
 
+export interface ExhibitionNotifyItem {
+  title: string;
+  venue: string;
+  startDate: string;
+  endDate: string;
+}
+
+/** exhibition追加成功のLINE通知。巡回展など複数件は1行ずつ並べる。 */
+export function buildAddExhibitionSuccessText(items: ExhibitionNotifyItem[], url: string, note?: string): string {
+  const lines = items.map((i) => `Exhibition に追加しました: ${i.title}（${i.venue} ${i.startDate}〜${i.endDate}）`);
+  lines.push(url, "サイトのExhibitionタブで見られます。");
+  if (note) lines.push(note);
+  return lines.join("\n");
+}
+
+/** exhibitionと判定したが追加しなかった（unverified/reject）場合の通知。理由は平易な日本語で渡す。 */
+export function buildAddExhibitionNotAddedText(title: string, reasonJa: string): string {
+  return `Exhibition に追加できませんでした: ${title}\n理由: ${reasonJa}`;
+}
+
+/** exhibition分岐確定後のエラー（push失敗等）の文言。 */
+export function buildAddExhibitionFailedText(reason: string): string {
+  return `展示の追加に失敗しました: ${reason}`;
+}
+
 /** 重複検知時の案内文（指摘3: 失敗ではなく案内のため、buildAddCaseFailedTextで二重ラップしない）。 */
 export function buildAddCaseDuplicateText(title: string): string {
   return `既に登録済み: ${title}`;

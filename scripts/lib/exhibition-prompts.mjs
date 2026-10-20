@@ -71,7 +71,7 @@ export function pickSourcesForDay(sources, dayIndex, perDay = { secondary: 3, su
   return picked;
 }
 
-function profileForPrompt(profile) {
+export function profileForPrompt(profile) {
   return JSON.stringify(
     {
       scope: profile.scope,
