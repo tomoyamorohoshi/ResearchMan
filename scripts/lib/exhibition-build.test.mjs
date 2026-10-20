@@ -482,3 +482,107 @@ test("venueAppearsInText: 汎用語（gallery/museum/art/center/ギャラリー/
   assert.equal(venueAppearsInText("foo gallery tokyo", "Foo Gallery"), true); // 全体一致
   assert.equal(venueAppearsInText("art center", "Art Center"), false); // 汎用語のみの会場名は不可
 });
+
+// ── 2026-10 誤判定修正: 字間スペース・短い固有名会場・既存会期の揺れ ──
+test("dateAppearsInText: 字間スペース入り（1文字ずつ span）でも照合できる / 別日付の誤一致はしない", () => {
+  const spaced = htmlToText("<span>2</span> <span>0</span> <span>2</span> <span>6</span> <span>年</span> <span>7</span> <span>月</span> <span>7</span> <span>日</span>");
+  assert.equal(spaced, "2 0 2 6 年 7 月 7 日");
+  assert.ok(dateAppearsInText(spaced, "2026-07-07"));
+  assert.ok(dateAppearsInText("2 0 2 6 年 1 0 月 2 4 日 〜 2 7 日", "2026-10-24"));
+  assert.ok(dateAppearsInText("開催 2 0 2 6 . 1 0 . 2 4 SAT", "2026-10-24"));
+  // 空白を詰めても別日付にはならない（通常の語間スペースは詰めない）
+  assert.equal(dateAppearsInText("2 0 2 6 年 7 月 7 日", "2026-07-17"), false);
+  assert.equal(dateAppearsInText("2026年10月 2 4 日", "2026-10-04"), false);
+  assert.equal(dateAppearsInText("10月 2 日 4 日", "2026-10-24"), false);
+  assert.equal(dateAppearsInText("Room 1 0 2 4 seats", "2026-10-24"), false);
+});
+
+test("venueAppearsInText: 短い固有名（森美術館）は全体一致で照合可 / 汎用語のみ・東京のみは不可", () => {
+  assert.ok(venueAppearsInText("会場：森美術館 六本木ヒルズ森タワー53階", "森美術館"));
+  assert.equal(venueAppearsInText("六本木ヒルズ", "森美術館"), false);
+  assert.equal(venueAppearsInText("東京の美術館", "美術館"), false);
+  assert.equal(venueAppearsInText("東京の美術館", "東京美術館"), false);
+  assert.equal(venueAppearsInText("東京", "東京"), false);
+  assert.equal(venueAppearsInText("x museum", "X"), false); // ラテン1文字は従来どおり不可
+});
+
+test("processCandidates: 既存の会期が公式ページに残っていれば揺れた日付でパッチしない（skip: duplicate-existing-still-valid）", async () => {
+  const existing = mkItem({ startDate: "2026-09-12", endDate: "2026-12-20" });
+  const c = mkCand({ title: existing.title, venue: existing.venue, officialUrl: existing.link, startDate: "2026-09-29", endDate: "2026-12-20" });
+  // 公式には既存の 9/12 も関連イベント日の 9/29 も載っている
+  const deps = mkDeps({ fetchHtml: async () => ({ status: 200, body: `<p>${existing.title} ${existing.venue} 2026年9月12日〜12月20日 関連イベント 9月29日</p>` }) });
+  const r = await processCandidates({ data: { version: 1, statusAsOf: "2026-10-03", items: [existing] }, candidates: [c], today: TODAY, deps });
+  assert.equal(r.updated.length, 0);
+  assert.equal(r.unverified.length, 0);
+  assert.equal(r.skipped[0].reason, "duplicate-existing-still-valid");
+  assert.equal(r.data.items[0].startDate, "2026-09-12");
+});
+
+test("processCandidates: 既存 venue が公式に残っていれば venue パッチしない", async () => {
+  const existing = mkItem();
+  const c = mkCand({ title: existing.title, venue: "別会場名ギャラリーX", officialUrl: existing.link, startDate: existing.startDate, endDate: existing.endDate });
+  const deps = mkDeps({ fetchHtml: async () => ({ status: 200, body: `<p>${existing.title} ${existing.venue} 別会場名ギャラリーX 2026年10月10日〜12月20日</p>` }) });
+  const r = await processCandidates({ data: { version: 1, statusAsOf: "2026-10-03", items: [existing] }, candidates: [c], today: TODAY, deps });
+  assert.equal(r.updated.length, 0);
+  assert.equal(r.skipped[0].reason, "duplicate-existing-still-valid");
+  assert.equal(r.data.items[0].venue, existing.venue);
+});
+
+test("processCandidates: 既存の終了日だけ根拠を失った場合は終了日のみパッチ（開始日は残っていれば触らない）・fetch は1回", async () => {
+  const existing = mkItem({ startDate: "2026-10-10", endDate: "2026-12-20" });
+  const c = mkCand({ title: existing.title, venue: existing.venue, officialUrl: existing.link, startDate: "2026-10-11", endDate: "2027-01-10" });
+  let calls = 0;
+  const deps = mkDeps({ fetchHtml: async () => { calls++; return { status: 200, body: `<p>${existing.title} ${existing.venue} 2026年10月10日〜2027年1月10日 前夜祭 10月11日</p>` }; } });
+  const r = await processCandidates({ data: { version: 1, statusAsOf: "2026-10-03", items: [existing] }, candidates: [c], today: TODAY, deps });
+  assert.equal(calls, 1);
+  assert.equal(r.updated.length, 1);
+  assert.deepEqual(r.updated[0].patch, { endDate: "2027-01-10" });
+  assert.equal(r.data.items[0].startDate, "2026-10-10");
+  assert.equal(r.data.items[0].endDate, "2027-01-10");
+});
+test("processCandidates: 公式照合は effective に残った項目だけ（start は既存が残るので候補 start が公式に無くても end のみ更新）", async () => {
+  const existing = mkItem({ startDate: "2026-10-10", endDate: "2026-12-20" });
+  const c = mkCand({ title: existing.title, venue: existing.venue, officialUrl: existing.link, startDate: "2026-10-15", endDate: "2027-01-10" });
+  const deps = mkDeps({ fetchHtml: async () => ({ status: 200, body: `<p>${existing.title} ${existing.venue} 2026年10月10日〜2027年1月10日</p>` }) });
+  const r = await processCandidates({ data: { version: 1, statusAsOf: "2026-10-03", items: [existing] }, candidates: [c], today: TODAY, deps });
+  assert.equal(r.unverified.length, 0);
+  assert.deepEqual(r.updated[0].patch, { endDate: "2027-01-10" });
+  assert.equal(r.data.items[0].startDate, "2026-10-10");
+});
+
+test("processCandidates: 部分適用で start > end になるパッチは適用せず unverified", async () => {
+  const existing = mkItem({ startDate: "2026-10-10", endDate: "2026-12-20" });
+  const c = mkCand({ title: existing.title, venue: existing.venue, officialUrl: existing.link, startDate: "2027-01-05", endDate: "2027-01-10" });
+  // 既存 start(10/10) は公式から消え、既存 end(12/20) は残っている → start のみ patch → 2027-01-05 > 2026-12-20
+  const deps = mkDeps({ fetchHtml: async () => ({ status: 200, body: `<p>${existing.title} ${existing.venue} 2027年1月5日 〜 2026年12月20日</p>` }) });
+  const r = await processCandidates({ data: { version: 1, statusAsOf: "2026-10-03", items: [existing] }, candidates: [c], today: TODAY, deps });
+  assert.equal(r.updated.length, 0);
+  assert.equal(r.unverified.length, 1);
+  assert.match(r.unverified[0].reason, /start-after-end|startDate.*endDate/);
+  assert.equal(r.data.items[0].startDate, "2026-10-10");
+});
+// ── 巡回展: 公式URL同一でも会場が違い会期が重ならなければ別展示 ──
+test("findDuplicate: 公式URL一致でも会場が異なり会期が重ならなければ別展示（巡回展）", () => {
+  const items = [mkItem({ title: "光る音展", venue: "大阪アートエリアB1", startDate: "2026-10-24", endDate: "2026-10-27", link: "https://20th.example/", sources: [{ name: "公式", url: "https://20th.example/", kind: "official" }] })];
+  const tour = mkCand({ title: "光る音展", venue: "BONDED GALLERY", startDate: "2026-11-04", endDate: "2026-11-08", officialUrl: "https://20th.example/" });
+  assert.equal(findDuplicate(items, tour), null);
+  // 会場が違っても会期が重なれば従来どおり重複（会場変更パッチ候補）
+  const overlap = mkCand({ title: "光る音展", venue: "BONDED GALLERY", startDate: "2026-10-26", endDate: "2026-11-08", officialUrl: "https://20th.example/" });
+  assert.equal(findDuplicate(items, overlap)?.kind, "link");
+  // 会場が同じなら従来どおり重複
+  const same = mkCand({ title: "光る音展", venue: "大阪アートエリアB1", startDate: "2026-11-04", endDate: "2026-11-08", officialUrl: "https://20th.example/" });
+  assert.equal(findDuplicate(items, same)?.kind, "link");
+});
+
+test("processCandidates: 巡回展の2会場目が追加される（既存あり・同一実行内とも）・id は衝突しない", async () => {
+  const a = mkCand({ title: "光る音展", venue: "Osaka Area B1", startDate: "2026-10-24", endDate: "2026-10-27", officialUrl: "https://20th.example/", sources: [] });
+  const b = { ...a, venue: "BONDED GALLERY", startDate: "2026-11-04", endDate: "2026-11-08" };
+  const body = `<p>光る音展 Osaka Area B1 BONDED GALLERY 10月24日〜10月27日 11月4日〜11月8日</p>`;
+  const deps = mkDeps({ fetchHtml: async () => ({ status: 200, body }) });
+  const r1 = await processCandidates({ data: emptyData(), candidates: [a, b], today: TODAY, deps });
+  assert.equal(r1.added.length, 2);
+  assert.notEqual(r1.added[0].id, r1.added[1].id);
+  const r2 = await processCandidates({ data: { version: 1, statusAsOf: "2026-10-03", items: [r1.added.find((x) => x.venue === "Osaka Area B1")] }, candidates: [b], today: TODAY, deps });
+  assert.equal(r2.added.length, 1);
+  assert.equal(r2.updated.length, 0);
+});
