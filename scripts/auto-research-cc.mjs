@@ -73,6 +73,9 @@ import {
   formatLensTierSummary,
   articleBudgetCheck,
   takeBorderlineToTry,
+  isVerifyMode,
+  planDiscoveryQueue,
+  VERIFY_MAX_ARTICLE_ATTEMPTS,
   runWithRetry,
   ARTICLE_BUDGET_MS,
   MAX_ARTICLE_ATTEMPTS_ACCEPT,
@@ -88,6 +91,8 @@ const TUNING_PATH = path.join(__dirname, "../data/research-tuning.json");
 const SOURCES_PATH = path.join(__dirname, "../data/sources.json");
 const ROOT = path.join(__dirname, "..");
 const DRY_RUN = process.argv.includes("--dry-run");
+// 検証用の短縮モード（週次見直しの検証専用。--dry-run との併用時のみ有効。詳細は lib/case-lenses.mjs）
+const VERIFY = isVerifyMode();
 const LAST_RUN_PATH = path.join(__dirname, "../.last-research-run.txt");
 const LAST_ADD_PATH = path.join(os.tmpdir(), "researchman-last-add.json"); // 反映後の通知メール用サマリー
 
@@ -584,6 +589,7 @@ async function main() {
   console.log(`検索対象期間: 作品の公開・発表が直近${win.days}日（${win.cutoffYmd}〜${win.todayYmd}）/ ${lensCount}レンズを毎日順に1回ずつ・全世界・多言語 / 基準を満たすものだけ採用（ノルマなし・0件可）`);
   console.log(`採用上限: accept 最大${MAX_ACCEPT}件 + borderline 別枠最大${MAX_BORDERLINE}件（gateScore上位）/ accept ${MIN_ACCEPT_BEFORE_EXTRA}件未満なら追加ラウンド最大${MAX_EXTRA_ROUNDS}回`);
   console.log(`記事化の上限: 累積${ARTICLE_BUDGET_MS / 60000}分 / accept系${MAX_ARTICLE_ATTEMPTS_ACCEPT}件 / borderline系${MAX_ARTICLE_ATTEMPTS_BORDERLINE}件`);
+  if (VERIFY) console.log(`⚠ 検証用の短縮モード: 発見は最初のレンズ1ラウンドのみ（追加・埋め合わせなし）/ 記事化は最大${VERIFY_MAX_ARTICLE_ATTEMPTS}件`);
   console.log(`本日のレンズ順・検索言語: ${lensOrder.map((l) => `レンズ${l + 1}[${langPlan[l].join("+")}]`).join(" → ")}\n`);
 
   const claudeBin = resolveClaudeBin();
@@ -683,7 +689,7 @@ async function main() {
 
     // ── 記事化フェーズの上限（累積時間・試行件数）。超えたら新しい記事化を始めず、理由つきで却下ログへ ──
     const kind = phase === "deferred" ? "borderline" : "accept";
-    const overBudget = articleBudgetCheck({ kind, acceptAttempts, borderlineAttempts, elapsedMs: articleElapsedMs });
+    const overBudget = articleBudgetCheck({ kind, acceptAttempts, borderlineAttempts, elapsedMs: articleElapsedMs, verify: VERIFY });
     if (overBudget) {
       console.log(`スキップ（記事化の上限 ${overBudget}）: ${cand.title}`);
       await rejectLog(cand, "article-budget", `${overBudget} lens=${lens + 1} gate1=${gate1.gateVerdict} score=${gate1.gateScore}`);
@@ -824,7 +830,7 @@ async function main() {
   // ── 発見フェーズ: 4レンズを毎日順に1回ずつ。失敗ラウンドは最大1回だけ埋め合わせ再試行。
   // accept が足りなければ追加ラウンド（最大2回）。時間の上限 MAX_TOTAL_DISCOVERY_MS は発見呼び出しの累積時間で測る
   // （記事化の時間は含めない）。新しいラウンド（埋め合わせ・追加）はこの上限に達していたら始めない。
-  const queue = lensOrder.map((lens, i) => ({ kind: "base", lens, round: i + 1 }));
+  const queue = planDiscoveryQueue(lensOrder, { verify: VERIFY });
   const usedLangsByLens = langPlan.map((l) => new Set(l));
   const extraByLens = Array(lensCount).fill(0);
   let makeupAdded = false;
@@ -837,7 +843,7 @@ async function main() {
       // 4レンズ（＋埋め合わせ）が終わった。惜しい候補を先に記事化してから accept 数で追加ラウンドの要否を決める
       await drainBorderline();
       const acceptCount = countPool("accept");
-      if (!shouldRunExtraRound({ acceptCount, extraDone, elapsedMs: discoveryElapsedMs, budgetMs: MAX_TOTAL_DISCOVERY_MS })) break;
+      if (VERIFY || !shouldRunExtraRound({ acceptCount, extraDone, elapsedMs: discoveryElapsedMs, budgetMs: MAX_TOTAL_DISCOVERY_MS })) break;
       const acceptByLens = lensStats.map((_, l) => pool.filter((p) => p.tier === "accept" && p.lens === l).length);
       const plan = planExtraRound({ dayIndex: dayIdx, acceptByLens, usedLangsByLens, extraByLens });
       for (const l of plan.langs) usedLangsByLens[plan.lensIndex].add(l);
@@ -873,7 +879,7 @@ async function main() {
       discoveryElapsedMs += Date.now() - t0;
       console.error(`発見フェーズ失敗: ${e.message}`);
       discoveryErrors++;
-      if (item.kind === "base" && shouldAddMakeupRound({ makeupAlreadyAdded: makeupAdded, elapsedMs: discoveryElapsedMs, budgetMs: MAX_TOTAL_DISCOVERY_MS })) {
+      if (!VERIFY && item.kind === "base" && shouldAddMakeupRound({ makeupAlreadyAdded: makeupAdded, elapsedMs: discoveryElapsedMs, budgetMs: MAX_TOTAL_DISCOVERY_MS })) {
         console.log(`  → レンズ${lens + 1}を埋め合わせ再試行としてキューに追加`);
         queue.push({ kind: "makeup", lens, round: item.round });
         makeupAdded = true;
