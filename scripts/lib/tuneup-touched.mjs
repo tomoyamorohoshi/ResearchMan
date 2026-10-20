@@ -23,6 +23,21 @@ export function dirtyPathsFromPorcelain(text) {
   return out;
 }
 
+/**
+ * 開始時の未コミット差分で v3 の変更をスキップした週の警告（system-alerts へ。LINE には出さない）。
+ * 対象ファイル以外の差分だけなら null。
+ */
+export function buildSkipAlert(dirtyPaths) {
+  const hit = (dirtyPaths || []).filter((p) => GUARDED_PATHS.includes(p));
+  if (!hit.length) return null;
+  return {
+    source: "tuneup",
+    level: "warn",
+    title: "週次見直しの v3 変更をスキップ（未コミット差分あり）",
+    body: `未コミットのファイル: ${hit.join(", ")}。他経路の変更を消さないため、具体例の入れ替え・巡回先の変更をスキップしました。手でコミットするか、不要なら破棄（git checkout）してください。そのままだと毎週スキップされます。`,
+  };
+}
+
 export function writeTouched(paths, file = TUNEUP_TOUCHED_PATH) {
   fs.writeFileSync(file, JSON.stringify([...new Set(paths)].filter((p) => GUARDED_PATHS.includes(p))));
 }

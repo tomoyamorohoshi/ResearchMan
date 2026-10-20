@@ -81,7 +81,8 @@ import {
 import { computeSourceGateStats } from "./lib/tuneup-stats.mjs";
 import { computeGateTierStats, computeLensStats, summarizeRejections, parseJsonl } from "./lib/tuneup-gate-stats.mjs";
 import { planLitmusSwap, buildLitmusCandidates } from "./lib/tuneup-litmus.mjs";
-import { GUARDED_PATHS, dirtyPathsFromPorcelain, writeTouched, clearTouched } from "./lib/tuneup-touched.mjs";
+import { GUARDED_PATHS, dirtyPathsFromPorcelain, writeTouched, clearTouched, buildSkipAlert } from "./lib/tuneup-touched.mjs";
+import { appendSystemAlert } from "./lib/system-alerts.mjs";
 import { runGateProposalStage } from "./lib/tuneup-gate-proposal.mjs";
 import { expireProposals, loadProposals, proposeGateChange } from "./lib/gate-proposals.mjs";
 import { validateCaseGate } from "./lib/case-gate-criteria.mjs";
@@ -617,10 +618,18 @@ async function main() {
 
   // v3: 開始時点で未コミット差分のある case-gate.json / sources.json / litmus-history.json は、変更をスキップし
   // 全戻しの対象からも外す（LINE承認や手作業の変更を消さない・commitに巻き込まない）
-  clearTouched();
+  if (!DRY_RUN) clearTouched(); // dry-run が本番実行の受け渡しファイルを消さない
   const dirtyAtStart = dirtyGuardedPaths();
   for (const rel of dirtyAtStart) protectedPaths.add(path.join(ROOT, rel));
   if (dirtyAtStart.length) log(`⚠ 未コミット差分あり → 変更をスキップ: ${dirtyAtStart.join(", ")}`);
+  const skipAlert = buildSkipAlert(dirtyAtStart);
+  if (skipAlert && !DRY_RUN) {
+    try {
+      appendSystemAlert(skipAlert); // system-alerts-latest.md / research-health で見える（LINEには出さない）
+    } catch (e) {
+      log(`⚠ system-alerts への記録に失敗（続行）: ${e.message}`);
+    }
+  }
   const skipGate = protectedPaths.has(CASE_GATE_PATH) || protectedPaths.has(LITMUS_HISTORY_PATH);
   const skipSources = protectedPaths.has(SOURCES_PATH);
 
@@ -935,6 +944,9 @@ async function main() {
       await writeJsonFile(XRADAR_QUERIES_PATH, pass1.xRadarQueries);
       await fs.writeFile(RESEARCH_PLAN_PATH, pass1.researchPlanMarkdown.trimEnd() + "\n");
       if (exhibitionChanged) await writeJsonFile(EXHIBITION_PROFILE_PATH, nextExhibitionProfile);
+      // run-job.mjs が実際に変更したファイルだけ git add するための受け渡し。検証より前に書く
+      // （検証中の中断でも、書いた分が取りこぼされない。失敗時は exit!=0 で run-job は add しない）
+      if (!DRY_RUN && touchedRel.length) writeTouched(touchedRel);
     },
     verifySteps: ["ideas:dry", "auto-research:tech:dry", "auto-research:cc:dry", "auto-research:exhibition:dry"].map(
       (npmScript) => () => runDrySubpipeline(npmScript)
@@ -954,7 +966,6 @@ async function main() {
   // ── v3 §5-§6: 基準A〜Dの文面の変更案（0〜1件）。自動では書き換えず、条件を満たせば台帳に保存してLINEへ送る。
   //    dry-run ではLINEへ送らず案の内容をレポートに書くだけ。失敗しても週次見直し本体は止めない
   let proposalResult = { status: "none" };
-  if (!DRY_RUN && touchedRel.length) writeTouched(touchedRel); // run-job.mjs が実際に変更したファイルだけ git add する
   try {
     // 提案の直前に case-gate.json を読み直す（分析中にLINE承認で基準文が変わっていたら、AIの前提が古いので見送る）
     const currentGate = gateUsable ? await readJsonOrNull(CASE_GATE_PATH) : null;
