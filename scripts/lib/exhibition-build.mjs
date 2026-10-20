@@ -180,8 +180,14 @@ function datePatterns(ymd, flags = "") {
   ];
 }
 
-// 範囲表記の間に挟まってよいもの: 区切り・括弧付き曜日・英語曜日・中間日の数字（時刻/別月/小数を除く）
-const RANGE_FILLER = String.raw`(?:[\s,、・–—〜~-]|\([^)]{0,12}\)|(?:mon|tue|wed|thu|fri|sat|sun)[a-z]{0,6}(?![a-z])|\d(?:\s?\d)?日?(?!\d|\s?[:月/]|\.\d))`;
+// 範囲表記の間に挟まってよいもの: 区切り・括弧付き曜日・英語曜日・「曜日 or 日」が直後に付く中間日。
+// 裸の数字（"11 27" "03-27" "10-18時"）は中間日にしない。
+const WD_EN = String.raw`(?:m\s?o\s?n|t\s?u\s?e|w\s?e\s?d|t\s?h\s?u|f\s?r\s?i|s\s?a\s?t|s\s?u\s?n)`;
+const WD_PAREN_HEAD = String.raw`\(\s*(?:[月火水木金土日祝]|${WD_EN})`;
+const RANGE_FILLER = String.raw`(?:[\s,、・–—〜~-]|${WD_PAREN_HEAD}[^)]{0,6}\)|${WD_EN}[a-z]{0,6}(?![a-z])|(?<!\d\s?)\d(?:\s?\d)?(?!\s?\d)(?:日|(?=\s*(?:${WD_PAREN_HEAD}|${WD_EN}))))`;
+// 終了日の直後の肯定的な境界: 日 / 曜日 / ",年4桁" / ・ / 文末・句読点・空白+（数字・ハイフン・英月名・単位以外）
+const EN_MONTH_RE = "(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)";
+const END_BOUNDARY = String.raw`(?:日|(?=\s*(?:${WD_PAREN_HEAD}|${WD_EN}(?![a-z])))|\s*,\s*2\s?0\s?\d\s?\d(?!\d)|・|(?=$|[。、;)\]】]|\.(?!\d)|\s+(?!\d|-|${EN_MONTH_RE}|[年月時歳点名人円日])))`;
 const RANGE_TAIL_MAX = 40;
 
 /**
@@ -194,15 +200,16 @@ function rangeEndAppearsInText(text, startYmd, endYmd) {
   if (startYmd.slice(0, 7) !== endYmd.slice(0, 7) || endYmd <= startYmd) return false;
   const endDay = Number(endYmd.slice(8, 10));
   const endDigits = String(endDay).split("").join(String.raw`\s?`);
-  const endRe = new RegExp(String.raw`^${RANGE_FILLER}*?(?<!\d)0?${endDigits}(?!\d|\s?[:月/]|\.\d)`, "i");
+  const endRe = new RegExp(String.raw`(${RANGE_FILLER}*?(?<!\d\s?)0?${endDigits}(?!\s?\d))${END_BOUNDARY}`, "iy");
   const raw = String(text || "").normalize("NFKC");
   const compact = compactSpacedChars(raw);
   const startPatterns = datePatterns(startYmd, "g");
   for (const hay of compact !== raw ? [raw, compact] : [raw]) {
     for (const re of startPatterns) {
       for (const mt of hay.matchAll(re)) {
-        const tail = hay.slice(mt.index + mt[0].length, mt.index + mt[0].length + RANGE_TAIL_MAX);
-        if (endRe.test(tail)) return true;
+        endRe.lastIndex = mt.index + mt[0].length;
+        const m = endRe.exec(hay);
+        if (m && m[1].length <= RANGE_TAIL_MAX) return true;
       }
     }
   }
