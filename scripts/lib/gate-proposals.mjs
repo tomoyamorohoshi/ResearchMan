@@ -18,7 +18,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export const GATE_PROPOSALS_PATH = path.join(__dirname, "..", "..", "data", "inbox", "gate-proposals.json");
 export const PROPOSAL_TTL_DAYS = 7;
 export const CRITERION_IDS = ["A", "B", "C", "D"];
-export const STATUSES = ["pending", "approved", "rejected", "expired", "superseded"];
+export const STATUSES = ["pending", "approved", "rejected", "expired", "superseded", "send-failed"];
 const DAY_MS = 86400000;
 
 // ── ID ────────────────────────────────────────────────────────────
@@ -199,6 +199,11 @@ export async function sendProposal(proposal, { sendLine = defaultSendLine } = {}
 export async function proposeGateChange(input, { sendLine, ...opts } = {}) {
   const proposal = createProposal(input, opts);
   const sent = await sendProposal(proposal, { sendLine });
+  if (!sent.ok) {
+    // 届いていない案は承認できない。pending のまま残すと同じ基準の次回提案を塞ぐので send-failed にする
+    const updated = updateProposal(proposal.id, (x) => (x.status = "send-failed"), opts.file ?? GATE_PROPOSALS_PATH);
+    return { proposal: updated ?? { ...proposal, status: "send-failed" }, sent };
+  }
   return { proposal, sent };
 }
 

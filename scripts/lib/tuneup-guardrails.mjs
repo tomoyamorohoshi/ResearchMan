@@ -313,6 +313,7 @@ export function checkSourcesChange(oldSources, newSources) {
 // ── v3 Phase 3 追加分 ─────────────────────────────────────────────
 
 /** cc.roundFoci の中で文言として変更を許すキー。これ以外のキー（lens/言語割り当て等＝領域を決めるもの）は不変 */
+export const ROUND_FOCI_LENS_COUNT = 4;
 const ROUND_FOCI_TEXT_KEYS = new Set(["label", "sources", "diversity", "sourceRefs"]);
 
 /**
@@ -322,11 +323,16 @@ const ROUND_FOCI_TEXT_KEYS = new Set(["label", "sources", "diversity", "sourceRe
  * @returns {{ok: boolean, errors: string[]}}
  */
 export function checkRoundFociLenses(oldFoci, newFoci) {
-  if (!Array.isArray(oldFoci)) return { ok: true, errors: [] };
   const errors = [];
   if (!Array.isArray(newFoci)) return { ok: false, errors: ["cc.roundFoci must be an array"] };
+  // 件数は旧データに依らず定数4で強制する
+  if (newFoci.length !== ROUND_FOCI_LENS_COUNT) {
+    errors.push(`cc.roundFoci is fixed to ${ROUND_FOCI_LENS_COUNT} lenses (no add/remove): got ${newFoci.length}`);
+    return { ok: false, errors };
+  }
+  if (!Array.isArray(oldFoci)) return { ok: true, errors: [] };
   if (newFoci.length !== oldFoci.length) {
-    errors.push(`cc.roundFoci is fixed to ${oldFoci.length} lenses (no add/remove): got ${newFoci.length}`);
+    errors.push(`cc.roundFoci must keep the current lens count ${oldFoci.length}: got ${newFoci.length}`);
     return { ok: false, errors };
   }
   oldFoci.forEach((o, i) => {
@@ -401,5 +407,11 @@ export function checkSourcesChangeProposal(oldSources, changes) {
   }
   const next = applySourceChanges(oldSources, changes);
   const r = checkSourcesChange(oldSources, next);
-  return { ...r, next };
+  // 週次見直しは有効化(false→true)しない。有効化はベイクオフ経由のみ（仕様 §7）。無効化(true→false)と tier 変更は可
+  const oldById = new Map((oldSources || []).map((s) => [s?.id, s]));
+  for (const n of next) {
+    const o = oldById.get(n?.id);
+    if (o && !o.enabled && n.enabled) r.errors.push(`source ${n.id}: enabling (false→true) not allowed in weekly tuneup (bakeoff only)`);
+  }
+  return { ...r, ok: r.errors.length === 0, next };
 }

@@ -69,6 +69,26 @@ test("同じ基準に pending の案があれば作らない / 別基準の pend
   assert.equal(r4.status, "proposed");
 });
 
+test("AI が前提にした文面と現行文面が違えば（分析中に承認で変わった）提案を見送る", async () => {
+  const f = mkFns();
+  const premiseGate = { criteria: gate.criteria.map((c) => (c.id === "B" ? { ...c, text: "分析開始時のB" } : c)) };
+  const r = await runGateProposalStage({ aiProposal: ai(), gate, premiseGate, evidencePool: pool, loadFn: noPending, proposeFn: f.proposeFn, dryRun: false, now: NOW });
+  assert.equal(r.status, "skipped-changed");
+  assert.match(r.reason, /B/);
+  assert.equal(f.calls.length, 0);
+  // 他の基準が変わっていても、提案対象の基準が同じなら進める
+  const premise2 = { criteria: gate.criteria.map((c) => (c.id === "A" ? { ...c, text: "別のA" } : c)) };
+  const r2 = await runGateProposalStage({ aiProposal: ai(), gate, premiseGate: premise2, evidencePool: pool, loadFn: noPending, proposeFn: f.proposeFn, dryRun: false, now: NOW });
+  assert.equal(r2.status, "proposed");
+});
+
+test("gate が読めない(null)ときは提案しない（v3関連のみスキップ）", async () => {
+  const f = mkFns();
+  const r = await runGateProposalStage({ aiProposal: ai(), gate: null, evidencePool: pool, loadFn: noPending, proposeFn: f.proposeFn, dryRun: false, now: NOW });
+  assert.equal(r.status, "none");
+  assert.equal(f.calls.length, 0);
+});
+
 test("dry-run では proposeFn(=LINE送信) を呼ばず、案の内容を返す", async () => {
   const f = mkFns();
   const r = await runGateProposalStage({ aiProposal: ai(), gate, evidencePool: pool, loadFn: noPending, proposeFn: f.proposeFn, dryRun: true, now: NOW });

@@ -19,6 +19,9 @@ import { validateCaseGate } from "./case-gate-criteria.mjs";
 
 export const LITMUS_SIDE_MAX = 8;
 export const LITMUS_SWAP_MAX = 3;
+/** 履歴（追加・外した・見送った例）の保持上限。古い順に切る */
+export const HISTORY_MAX = 400;
+const WHY_MAX = 140;
 /** 値が小さいほど外しやすい。未知の origin は 1（media 等と同列） */
 export const ORIGIN_KEEP_RANK = { tuneup: 0, award: 2, seed: 3, "owner-fav": 3 };
 const DEFAULT_RANK = 1;
@@ -57,7 +60,26 @@ function pickEviction(list, fresh) {
  * @param {{favCandidates?: Array<{title:string,url?:string,why:string}>, trashCandidates?: Array, now?: Date, max?: number, cap?: number}} o
  * @returns {{gate: object, changed: boolean, changes: Array<{side:'accept'|'reject', action:'add'|'replace', added:object, removed:object|null}>}}
  */
-export function planLitmusSwap(gate, { favCandidates = [], trashCandidates = [], now = new Date(), max = LITMUS_SWAP_MAX, cap = LITMUS_SIDE_MAX } = {}) {
+/**
+ * borderline の fav / トラッシュ一覧（{title, link}）と AI が書いた why から入れ替え候補を作る。
+ * why が無い・空・側が違う候補は採らない（記事の要約は流用しない）。一覧は cases.json の追加順なので新しい順に並べ直す。
+ * @param {Array<{title:string, link?:string}>} list
+ * @param {Array<{title:string, side:'accept'|'reject', why:string}>|undefined} whys
+ */
+export function buildLitmusCandidates(list, whys, side) {
+  const byTitle = new Map();
+  for (const w of Array.isArray(whys) ? whys : []) {
+    if (!w || w.side !== side || !nonEmpty(w.why) || !nonEmpty(w.title)) continue;
+    const k = normTitle(w.title);
+    if (!byTitle.has(k)) byTitle.set(k, w.why.replace(/\s+/g, " ").trim().slice(0, WHY_MAX));
+  }
+  return [...(list || [])]
+    .reverse()
+    .map((c) => ({ title: c.title, url: c.link, why: byTitle.get(normTitle(c.title)) }))
+    .filter((c) => nonEmpty(c.title) && nonEmpty(c.why));
+}
+
+export function planLitmusSwap(gate, { favCandidates = [], trashCandidates = [], now = new Date(), max = LITMUS_SWAP_MAX, cap = LITMUS_SIDE_MAX, history = [] } = {}) {
   const next = JSON.parse(JSON.stringify(gate));
   const lists = { accept: [...(next.litmus?.accept || [])], reject: [...(next.litmus?.reject || [])] };
   const queues = {
@@ -74,6 +96,21 @@ export function planLitmusSwap(gate, { favCandidates = [], trashCandidates = [],
   const fresh = new Set();
   const changes = [];
   const today = ymd(now);
+  // 履歴: 過去に追加した/外した/見送った例は再採用しない（毎週の入れ替わり続けを防ぐ）
+  const nextHistory = Array.isArray(history) ? [...history] : [];
+  const histLinks = new Set();
+  const histTitles = new Set();
+  const addHistKeys = (e) => {
+    const k = keysOf(e);
+    if (k.link) histLinks.add(k.link);
+    if (k.title) histTitles.add(k.title);
+  };
+  nextHistory.forEach(addHistKeys);
+  const record = (e, outcome) => {
+    const h = { title: e.title, ...(nonEmpty(e.url) ? { url: e.url } : {}), outcome, at: today };
+    nextHistory.push(h);
+    addHistKeys(h);
+  };
 
   const nextCandidate = (side) => {
     const q = queues[side];
@@ -82,6 +119,7 @@ export function planLitmusSwap(gate, { favCandidates = [], trashCandidates = [],
       if (!c || !nonEmpty(c.title) || !nonEmpty(c.why)) continue;
       const k = keysOf(c);
       if ((k.link && seenLinks.has(k.link)) || (k.title && seenTitles.has(k.title))) continue;
+      if ((k.link && histLinks.has(k.link)) || (k.title && histTitles.has(k.title))) continue;
       return c;
     }
     return null;
@@ -106,15 +144,18 @@ export function planLitmusSwap(gate, { favCandidates = [], trashCandidates = [],
     if (list.length >= cap) {
       const idx = pickEviction(list, fresh);
       if (idx < 0) {
-        // この側は置換不能。候補は捨てて次へ（同じ側の別候補でも結果は同じなので側ごと諦める）
+        // この側は置換不能。候補は見送りとして履歴に残し、側ごと諦める（別候補でも結果は同じ）
+        record(c, "skipped");
         exhausted[side] = true;
         side = side === "accept" ? "reject" : "accept";
         continue;
       }
       removed = list.splice(idx, 1)[0];
+      record(removed, "removed");
     }
     list.push(entry);
     fresh.add(entry);
+    record(entry, "added");
     const k = keysOf(entry);
     if (k.link) seenLinks.add(k.link);
     if (k.title) seenTitles.add(k.title);
@@ -122,9 +163,10 @@ export function planLitmusSwap(gate, { favCandidates = [], trashCandidates = [],
     side = side === "accept" ? "reject" : "accept";
   }
 
-  if (!changes.length) return { gate: next, changed: false, changes: [] };
+  const trimmedHistory = nextHistory.slice(-HISTORY_MAX);
+  if (!changes.length) return { gate: next, changed: false, changes: [], history: trimmedHistory };
   next.litmus = { ...next.litmus, accept: lists.accept, reject: lists.reject };
   next.updatedAt = today;
-  if (validateCaseGate(next).length) return { gate: JSON.parse(JSON.stringify(gate)), changed: false, changes: [] };
-  return { gate: next, changed: true, changes };
+  if (validateCaseGate(next).length) return { gate: JSON.parse(JSON.stringify(gate)), changed: false, changes: [], history: Array.isArray(history) ? history : [] };
+  return { gate: next, changed: true, changes, history: trimmedHistory };
 }

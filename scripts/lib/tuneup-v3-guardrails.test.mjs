@@ -70,8 +70,12 @@ test("checkRoundFociLenses: sourceRefs の追加・削除(並びだけでない�
   assert.equal(checkRoundFociLenses(foci(), next2).ok, false);
 });
 
-test("checkRoundFociLenses: 旧側が配列でなければ判定しない(初期導入)", () => {
+test("checkRoundFociLenses: 件数は定数4で強制（旧側が配列でなくても3件・5件の候補は拒否）", () => {
   assert.equal(checkRoundFociLenses(undefined, foci()).ok, true);
+  assert.equal(checkRoundFociLenses(undefined, foci().slice(0, 3)).ok, false);
+  assert.equal(checkRoundFociLenses(undefined, [...foci(), lens(5)]).ok, false);
+  // 旧側が3件(旧形式)でも、3件のままの候補は通さない
+  assert.equal(checkRoundFociLenses(foci().slice(0, 3), foci().slice(0, 3)).ok, false);
 });
 
 test("overlayRoundFociText: AI が lens/langs を落とした・変えた出力でも、文言キーだけ採用し他は旧値を保つ", () => {
@@ -103,25 +107,37 @@ test("checkResearchTuningChange: 4レンズ維持の文言変更(2件以内)は�
 });
 
 // ── sources.json 配線 ──
-const mkSrc = (id, o = {}) => ({ id, kind: "web", locator: `https://${id}.com/`, lang: "en", region: "欧州", tier: 2, hitDensity: null, enabled: false, note: "", ...o });
+const mkSrc = (id, o = {}) => ({ id, kind: "web", locator: `https://${id}.com/`, lang: "en", region: "欧州", tier: 2, hitDensity: null, enabled: true, note: "", ...o });
 const reg = () => ["a", "b", "c", "d", "e", "f", "g", "h"].map((id) => mkSrc(id));
 
 test("applySourceChanges: id 指定の部分更新を適用し、元配列を破壊しない", () => {
   const old = reg();
   const snap = JSON.stringify(old);
-  const next = applySourceChanges(old, [{ id: "a", tier: 1 }, { id: "b", enabled: true }]);
+  const next = applySourceChanges(old, [{ id: "a", tier: 1 }, { id: "b", enabled: false }]);
   assert.equal(next.find((s) => s.id === "a").tier, 1);
-  assert.equal(next.find((s) => s.id === "b").enabled, true);
+  assert.equal(next.find((s) => s.id === "b").enabled, false);
   assert.equal(JSON.stringify(old), snap);
 });
 
 test("checkSourcesChangeProposal: tier/enabled 各5件までは OK", () => {
-  const changes = ["a", "b", "c", "d", "e"].map((id) => ({ id, tier: 1, enabled: true }));
+  const changes = ["a", "b", "c", "d", "e"].map((id) => ({ id, tier: 1, enabled: false }));
   const r = checkSourcesChangeProposal(reg(), changes);
   assert.equal(r.ok, true, JSON.stringify(r.errors));
   assert.equal(r.tierChanges, 5);
   assert.equal(r.enabledChanges, 5);
   assert.equal(r.next.length, 8);
+});
+
+test("checkSourcesChangeProposal: enabled の false→true（有効化）は拒否。有効化はベイクオフ経由のみ(§7)", () => {
+  const old = reg();
+  old[0].enabled = false;
+  const r = checkSourcesChangeProposal(old, [{ id: "a", enabled: true }]);
+  assert.equal(r.ok, false);
+  assert.match(r.errors.join("\n"), /enabling|有効化/);
+  // true→false と tier 変更は可
+  assert.equal(checkSourcesChangeProposal(old, [{ id: "b", enabled: false }, { id: "c", tier: 1 }]).ok, true);
+  // 既に false のものを false のままにする指定は変更ではない
+  assert.equal(checkSourcesChangeProposal(old, [{ id: "a", enabled: false }]).ok, true);
 });
 
 test("checkSourcesChangeProposal: 6件の tier 変更を拒否", () => {
@@ -131,7 +147,7 @@ test("checkSourcesChangeProposal: 6件の tier 変更を拒否", () => {
 });
 
 test("checkSourcesChangeProposal: 6件の enabled 変更を拒否", () => {
-  const r = checkSourcesChangeProposal(reg(), ["a", "b", "c", "d", "e", "f"].map((id) => ({ id, enabled: true })));
+  const r = checkSourcesChangeProposal(reg(), ["a", "b", "c", "d", "e", "f"].map((id) => ({ id, enabled: false })));
   assert.equal(r.ok, false);
   assert.match(r.errors.join("\n"), /enabled changes exceed/);
 });

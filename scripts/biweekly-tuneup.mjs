@@ -80,7 +80,8 @@ import {
 } from "./lib/tuneup-guardrails.mjs";
 import { computeSourceGateStats } from "./lib/tuneup-stats.mjs";
 import { computeGateTierStats, computeLensStats, summarizeRejections, parseJsonl } from "./lib/tuneup-gate-stats.mjs";
-import { planLitmusSwap } from "./lib/tuneup-litmus.mjs";
+import { planLitmusSwap, buildLitmusCandidates } from "./lib/tuneup-litmus.mjs";
+import { GUARDED_PATHS, dirtyPathsFromPorcelain, writeTouched, clearTouched } from "./lib/tuneup-touched.mjs";
 import { runGateProposalStage } from "./lib/tuneup-gate-proposal.mjs";
 import { expireProposals, loadProposals, proposeGateChange } from "./lib/gate-proposals.mjs";
 import { validateCaseGate } from "./lib/case-gate-criteria.mjs";
@@ -112,6 +113,8 @@ const IDEA_ANGLES_META_PATH = path.join(ROOT, "data/idea-angles-meta.json");
 const RESEARCH_PLAN_PATH = path.join(ROOT, "RESEARCH_PLAN.md");
 const CASE_GATE_PATH = path.join(ROOT, "data/case-gate.json");
 const SOURCES_PATH = path.join(ROOT, "data/sources.json");
+// 判定の具体例の履歴（追加・外した・見送った例。再採用しない）。git追跡する（全戻しの対象に入れるため）
+const LITMUS_HISTORY_PATH = path.join(ROOT, "data/litmus-history.json");
 const LOGS_DIR = path.join(ROOT, "logs");
 // research-health（watchdog）が読む borderline の fav/トラッシュ率スナップショット（logs/ は gitignored）
 const GATE_STATS_PATH = path.join(LOGS_DIR, "case-gate-stats.json");
@@ -136,10 +139,16 @@ const TOUCHED_PATHS = [
   XRADAR_QUERIES_PATH,
   RESEARCH_PLAN_PATH,
   EXHIBITION_PROFILE_PATH,
-  // v3 §5: 判定の具体例の自動入れ替え(case-gate.json の litmus のみ)と巡回先の tier/enabled(sources.json)
+  // v3 §5: 判定の具体例の自動入れ替え(case-gate.json の litmus のみ)・その履歴・巡回先の tier/enabled(sources.json)
   CASE_GATE_PATH,
   SOURCES_PATH,
+  LITMUS_HISTORY_PATH,
 ];
+
+// 開始時に未コミット差分があった v3 対象ファイル。変更をスキップし、全戻し(git checkout)の対象からも外す
+// （他経路の未コミット変更を消さないため）。main() 冒頭で埋める
+const protectedPaths = new Set();
+const revertablePaths = () => TOUCHED_PATHS.filter((p) => !protectedPaths.has(p));
 
 // 外部シグナル（TaskStop/kill等）で中断された場合の保険。--dry-runは「作業ツリーを汚さない」が
 // 契約なので、候補ファイル書き込み後に中断されても復元を試みる（2026-07-08、検証中に
@@ -150,7 +159,7 @@ if (DRY_RUN) {
   const emergencyRevert = (signal) => {
     console.error(`\n⚠ ${signal}で中断されました。--dry-runのため作業ツリーを念のため復元します`);
     try {
-      spawnSync("git", ["checkout", "--", ...TOUCHED_PATHS], { cwd: ROOT });
+      spawnSync("git", ["checkout", "--", ...revertablePaths()], { cwd: ROOT });
     } catch {}
     process.exit(1);
   };
@@ -197,12 +206,19 @@ async function readRejectionEntries(now = new Date()) {
   return entries;
 }
 
-// 具体例候補の「なぜ良い/悪いか」の一文: 記事の要約(summary)を切り詰めて使う（AIに書かせない＝決定的）
-function toLitmusCandidates(list) {
-  return [...list]
-    .reverse() // cases.json は追加順なので、新しい順に採る
-    .map((c) => ({ title: c.title, url: c.link, why: String(c.summary || "").replace(/\s+/g, " ").trim().slice(0, 90) }))
-    .filter((c) => c.title && c.why);
+// 開始時に未コミット差分がある v3 対象ファイル（相対パス）を返す。git が使えなければ安全側で全部「差分あり」扱い
+function dirtyGuardedPaths() {
+  const r = spawnSync("git", ["status", "--porcelain", "--", ...GUARDED_PATHS], { cwd: ROOT, encoding: "utf-8" });
+  if (r.status !== 0) return [...GUARDED_PATHS];
+  return dirtyPathsFromPorcelain(r.stdout);
+}
+
+async function readJsonOrNull(p) {
+  try {
+    return await readJson(p);
+  } catch {
+    return null;
+  }
 }
 
 async function writeReport(text) {
@@ -599,6 +615,15 @@ async function main() {
     log(`⚠ 基準変更案の失効処理に失敗（続行）: ${e.message}`);
   }
 
+  // v3: 開始時点で未コミット差分のある case-gate.json / sources.json / litmus-history.json は、変更をスキップし
+  // 全戻しの対象からも外す（LINE承認や手作業の変更を消さない・commitに巻き込まない）
+  clearTouched();
+  const dirtyAtStart = dirtyGuardedPaths();
+  for (const rel of dirtyAtStart) protectedPaths.add(path.join(ROOT, rel));
+  if (dirtyAtStart.length) log(`⚠ 未コミット差分あり → 変更をスキップ: ${dirtyAtStart.join(", ")}`);
+  const skipGate = protectedPaths.has(CASE_GATE_PATH) || protectedPaths.has(LITMUS_HISTORY_PATH);
+  const skipSources = protectedPaths.has(SOURCES_PATH);
+
   const cases = await readJson(CASES_PATH);
   const tech = await readJson(TECH_PATH);
   const ideas = await readJson(IDEAS_PATH);
@@ -736,13 +761,18 @@ async function main() {
       log(`⚠ ${GATE_STATS_PATH} の書き込みに失敗（続行）: ${e.message}`);
     }
   }
-  const oldCaseGate = await readJson(CASE_GATE_PATH);
+  // case-gate.json が読めなくても、v3 のうち具体例・基準案だけスキップして本体は続ける
+  const oldCaseGate = await readJsonOrNull(CASE_GATE_PATH);
+  if (!oldCaseGate || !Array.isArray(oldCaseGate.criteria)) log("⚠ case-gate.json を読めない → 具体例の入れ替え・基準変更案はスキップ（他は続行）");
+  const gateUsable = Boolean(oldCaseGate) && Array.isArray(oldCaseGate.criteria);
   const oldSources = await readJson(SOURCES_PATH).catch(() => []);
-  const litmusCandidates = {
-    favCandidates: toLitmusCandidates(tierStats.borderlineFav),
-    trashCandidates: toLitmusCandidates(tierStats.borderlineTrashed),
-  };
-  const previewLitmusPlan = planLitmusSwap(oldCaseGate, { ...litmusCandidates, now: new Date() });
+  const recentProposals = (() => {
+    try {
+      return loadProposals().proposals.filter((p) => p.status === "rejected" || p.status === "superseded").slice(-5);
+    } catch {
+      return [];
+    }
+  })();
   const sourceStats = computeSourceGateStats({ favIds, trashedIds, cases }).bySource;
   const sourcesSummary = (Array.isArray(oldSources) ? oldSources : []).map((s) => ({
     id: s.id,
@@ -758,8 +788,9 @@ async function main() {
     tierStats,
     lensStats,
     rejectionSummary,
-    criteria: oldCaseGate.criteria,
-    litmusChanges: previewLitmusPlan.changes,
+    gateAvailable: gateUsable,
+    criteria: gateUsable ? oldCaseGate.criteria : null,
+    recentProposals,
     sourcesSummary,
   };
 
@@ -835,7 +866,11 @@ async function main() {
   const exhibitionCheck = checkExhibitionProfileChange(oldExhibitionProfile, nextExhibitionProfile);
   // v3: 巡回先(sources.json)の tier/enabled 変更。違反時は巡回先の変更だけを破棄する（他の改訂は生かす）
   const sourcesCheck = checkSourcesChangeProposal(oldSources, pass1.sourceChanges ?? []);
-  const sourcesApplied = sourcesCheck.ok && (sourcesCheck.tierChanges > 0 || sourcesCheck.enabledChanges > 0);
+  const sourcesWanted = sourcesCheck.ok && (sourcesCheck.tierChanges > 0 || sourcesCheck.enabledChanges > 0);
+  // 未コミット差分があれば適用しない。適用時は書き込み直前に読み直して再適用する（writeFiles 内）
+  let sourcesApplied = false;
+  let sourcesCheckFinal = sourcesCheck;
+  const touchedRel = [];
   if (!sourcesCheck.ok) log(`⚠ 巡回先の変更案がガードレール違反のため破棄（他の改訂は継続）:\n  ${sourcesCheck.errors.join("\n  ")}`);
   const guardrailErrors = [...researchCheck.errors, ...queriesCheck.errors, ...ideaCheck.errors, ...exhibitionCheck.errors];
   if (guardrailErrors.length) {
@@ -860,13 +895,41 @@ async function main() {
     writeFiles: async () => {
       // v3: 判定の具体例の入れ替え。長時間の分析中に承認された基準文などを上書きしないよう、書き込み直前に
       // case-gate.json を読み直し、その上で同じ決定的ルールを再計算する。validateCaseGate を通らなければ書かない
-      const freshGate = await readJson(CASE_GATE_PATH);
-      const plan = planLitmusSwap(freshGate, { ...litmusCandidates, now: new Date() });
-      if (plan.changed && validateCaseGate(plan.gate).length === 0) {
-        await writeJsonFile(CASE_GATE_PATH, plan.gate);
-        appliedLitmusPlan = plan;
+      // 候補の why は AI が書いたもの(pass1.litmusWhy)だけ。無い候補は採らない（記事の要約は流用しない）。
+      // 履歴(data/litmus-history.json)にある例は再採用しない
+      const freshGate = gateUsable && !skipGate ? await readJsonOrNull(CASE_GATE_PATH) : null;
+      if (freshGate && Array.isArray(freshGate.criteria)) {
+        const historyFile = (await readJsonOrNull(LITMUS_HISTORY_PATH)) ?? { version: 1, entries: [] };
+        const prevEntries = Array.isArray(historyFile.entries) ? historyFile.entries : [];
+        const plan = planLitmusSwap(freshGate, {
+          favCandidates: buildLitmusCandidates(tierStats.borderlineFav, pass1.litmusWhy, "accept"),
+          trashCandidates: buildLitmusCandidates(tierStats.borderlineTrashed, pass1.litmusWhy, "reject"),
+          now: new Date(),
+          history: prevEntries,
+        });
+        if (plan.changed && validateCaseGate(plan.gate).length === 0) {
+          await writeJsonFile(CASE_GATE_PATH, plan.gate);
+          appliedLitmusPlan = plan;
+          touchedRel.push("data/case-gate.json");
+        }
+        if (JSON.stringify(plan.history) !== JSON.stringify(prevEntries)) {
+          await writeJsonFile(LITMUS_HISTORY_PATH, { ...historyFile, entries: plan.history });
+          touchedRel.push("data/litmus-history.json");
+        }
       }
-      if (sourcesApplied) await writeJsonFile(SOURCES_PATH, sourcesCheck.next);
+      if (sourcesWanted && !skipSources) {
+        // 分析中の追記を消さないよう、書き込み直前に読み直して同じ差分を再適用し、再度ガードレールを通す
+        const freshSources = await readJsonOrNull(SOURCES_PATH);
+        if (Array.isArray(freshSources)) {
+          const again = checkSourcesChangeProposal(freshSources, pass1.sourceChanges ?? []);
+          sourcesCheckFinal = again;
+          if (again.ok && (again.tierChanges > 0 || again.enabledChanges > 0)) {
+            await writeJsonFile(SOURCES_PATH, again.next);
+            sourcesApplied = true;
+            touchedRel.push("data/sources.json");
+          }
+        }
+      }
       await writeJsonFile(RESEARCH_TUNING_PATH, nextResearchTuning);
       await writeJsonFile(IDEA_TUNING_PATH, nextIdeaTuning);
       await writeJsonFile(XRADAR_QUERIES_PATH, pass1.xRadarQueries);
@@ -876,7 +939,7 @@ async function main() {
     verifySteps: ["ideas:dry", "auto-research:tech:dry", "auto-research:cc:dry", "auto-research:exhibition:dry"].map(
       (npmScript) => () => runDrySubpipeline(npmScript)
     ),
-    revert: async () => gitCheckoutRevert(TOUCHED_PATHS),
+    revert: async () => gitCheckoutRevert(revertablePaths()),
     dryRun: DRY_RUN,
   });
 
@@ -891,10 +954,14 @@ async function main() {
   // ── v3 §5-§6: 基準A〜Dの文面の変更案（0〜1件）。自動では書き換えず、条件を満たせば台帳に保存してLINEへ送る。
   //    dry-run ではLINEへ送らず案の内容をレポートに書くだけ。失敗しても週次見直し本体は止めない
   let proposalResult = { status: "none" };
+  if (!DRY_RUN && touchedRel.length) writeTouched(touchedRel); // run-job.mjs が実際に変更したファイルだけ git add する
   try {
+    // 提案の直前に case-gate.json を読み直す（分析中にLINE承認で基準文が変わっていたら、AIの前提が古いので見送る）
+    const currentGate = gateUsable ? await readJsonOrNull(CASE_GATE_PATH) : null;
     proposalResult = await runGateProposalStage({
       aiProposal: pass1.gateCriterionProposal,
-      gate: oldCaseGate,
+      gate: currentGate,
+      premiseGate: oldCaseGate,
       evidencePool: [
         ...tierStats.borderlineFav.map((c) => ({ title: c.title, link: c.link, signal: "fav" })),
         ...tierStats.borderlineTrashed.map((c) => ({ title: c.title, link: c.link, signal: "trash" })),
@@ -913,15 +980,19 @@ async function main() {
     ? appliedLitmusPlan.changes
         .map((c) => `${c.side === "accept" ? "採用例" : "不採用例"}${c.action === "add" ? "追加" : `置換(${c.removed.title}→)`}「${c.added.title}」`)
         .join(" / ")
-    : "変更なし";
-  const sourcesLine = sourcesApplied
-    ? `tier変更${sourcesCheck.tierChanges}件・enabled変更${sourcesCheck.enabledChanges}件`
-    : sourcesCheck.ok
-      ? "変更なし"
-      : `提案を破棄（${sourcesCheck.errors[0]}）`;
+    : "変更なし（候補のwhyなし・履歴にある・上限等）";
+  const sourcesLine = skipSources
+    ? "未コミット差分があるためスキップ"
+    : sourcesApplied
+      ? `tier変更${sourcesCheckFinal.tierChanges}件・enabled変更${sourcesCheckFinal.enabledChanges}件（enabledは無効化のみ）`
+      : sourcesCheck.ok
+        ? "変更なし"
+        : `提案を破棄（${sourcesCheck.errors[0]}）`;
+  const litmusSkipNote = !gateUsable ? "case-gate.json を読めないためスキップ" : skipGate ? "未コミット差分があるためスキップ" : null;
   const proposalLine = {
     none: "なし",
     "skipped-pending": `見送り（基準${proposalResult.normalized?.criterionId}に承認待ちの案あり）`,
+    "skipped-changed": `見送り（${proposalResult.reason}）`,
     invalid: `見送り（案が不正: ${proposalResult.reason}）`,
     error: `失敗（${proposalResult.reason}）`,
     "dry-run": `あり（dry-runのためLINE未送信）基準${proposalResult.normalized?.criterionId}: 「${proposalResult.normalized?.before}」→「${proposalResult.normalized?.after}」 理由: ${proposalResult.normalized?.reason}`,
@@ -931,7 +1002,7 @@ async function main() {
     `選別(gateTier): accept ${fmtRate(tierStats.byTier.accept)} / borderline ${fmtRate(tierStats.byTier.borderline)} / 旧データ ${tierStats.byTier.legacy.count}件`,
     `レンズ別採用数: ${[1, 2, 3, 4].map((l) => `L${l}=${lensStats.byLens[l].count}`).join(" ")}（タグ無し${lensStats.untagged}件）`,
     `却下ログ(直近${rejectionSummary.windowDays}日): ${rejectionSummary.total}件 / 理由上位 ${rejectionSummary.byReason.slice(0, 3).map((r) => `${r.reason}×${r.count}`).join("、") || "なし"}`,
-    `具体例の入れ替え${DRY_RUN ? "（dry-runのため反映なし）" : ""}: ${litmusLine}`,
+    `具体例の入れ替え${DRY_RUN ? "（dry-runのため反映なし）" : ""}: ${litmusSkipNote ?? litmusLine}`,
     `巡回先(sources.json)${DRY_RUN ? "（dry-runのため反映なし）" : ""}: ${sourcesLine}`,
     `基準変更案: ${proposalLine}`,
   ];

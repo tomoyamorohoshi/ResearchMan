@@ -2,7 +2,7 @@
 // 実行: node --test scripts/lib/tuneup-litmus.test.mjs
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { planLitmusSwap, LITMUS_SWAP_MAX, LITMUS_SIDE_MAX, ORIGIN_KEEP_RANK } from "./tuneup-litmus.mjs";
+import { planLitmusSwap, buildLitmusCandidates, LITMUS_SWAP_MAX, LITMUS_SIDE_MAX, ORIGIN_KEEP_RANK, HISTORY_MAX } from "./tuneup-litmus.mjs";
 import { validateCaseGate } from "./case-gate-criteria.mjs";
 
 const NOW = new Date("2026-10-27T03:00:00Z");
@@ -149,6 +149,80 @@ test("候補0件・同一なら changed=false で gate は元と同一内容(upd
   const r = planLitmusSwap(g, { favCandidates: [], trashCandidates: [], now: NOW });
   assert.equal(r.changed, false);
   assert.equal(r.gate.updatedAt, "2026-10-01");
+});
+
+// ── 履歴（毎週の入れ替わり続けの防止） ──
+test("履歴: 追加・外したもの・見送ったものを記録する", () => {
+  const accept = Array.from({ length: 8 }, (_, i) => ent(i, "seed", `2026-09-0${i + 1}`));
+  const r = planLitmusSwap(gateOf(accept), { favCandidates: [cand(1)], trashCandidates: [], now: NOW, history: [] });
+  const outcomes = r.history.map((h) => h.outcome).sort();
+  assert.deepEqual(outcomes, ["added", "removed"]);
+  assert.ok(r.history.every((h) => h.at === "2026-10-27"));
+  // 外せず見送った候補は skipped
+  const origins = ["seed", "award", "owner-fav", "media", "a1", "a2", "a3", "a4"].map((o, i) => ent(i, o));
+  const s = planLitmusSwap(gateOf(origins), { favCandidates: [cand(9)], trashCandidates: [], now: NOW, history: [] });
+  assert.equal(s.changed, false);
+  assert.deepEqual(s.history.map((h) => h.outcome), ["skipped"]);
+});
+
+test("履歴にある候補（過去に追加・外した・見送った）は再採用しない", () => {
+  const g = gateOf([ent(1)]);
+  const history = [
+    { title: "候補1", url: "https://new.com/1", outcome: "removed", at: "2026-10-01" },
+    { title: "別名", url: "https://new.com/2", outcome: "skipped", at: "2026-10-01" },
+    { title: "候補3", url: "https://other.com/x", outcome: "added", at: "2026-10-01" },
+  ];
+  const r = planLitmusSwap(g, { favCandidates: [cand(1), cand(2), cand(3), cand(4)], trashCandidates: [], now: NOW, history });
+  assert.deepEqual(r.gate.litmus.accept.map((e) => e.title), ["例seed1", "候補4"]);
+});
+
+test("収束: 同じ入力で繰り返しても2週目以降は置換が起きない（外した例も戻らない）", () => {
+  let gate = gateOf(Array.from({ length: 8 }, (_, i) => ent(i, "seed", `2026-09-0${i + 1}`)));
+  let history = [];
+  const cands = [cand(1), cand(2)];
+  const trash = [cand(7)];
+  const changedPerWeek = [];
+  for (let w = 0; w < 4; w++) {
+    const r = planLitmusSwap(gate, { favCandidates: cands, trashCandidates: trash, now: NOW, history });
+    changedPerWeek.push(r.changes.length);
+    gate = r.gate;
+    history = r.history;
+  }
+  assert.deepEqual(changedPerWeek, [3, 0, 0, 0]);
+  // 外された seed が、入力候補に含まれていても戻らない（外した例も入力として与える）
+  const removed = history.filter((h) => h.outcome === "removed");
+  assert.equal(removed.length, 2);
+  const back = planLitmusSwap(gate, { favCandidates: removed.map((h) => ({ title: h.title, url: h.url, why: "w" })), trashCandidates: [], now: NOW, history });
+  assert.equal(back.changed, false);
+});
+
+test("履歴は上限 HISTORY_MAX 件で古い順に切る", () => {
+  const history = Array.from({ length: HISTORY_MAX }, (_, i) => ({ title: `old${i}`, url: `https://h.com/${i}`, outcome: "added", at: "2026-01-01" }));
+  const r = planLitmusSwap(gateOf([ent(1)]), { favCandidates: [cand(1)], trashCandidates: [], now: NOW, history });
+  assert.equal(r.history.length, HISTORY_MAX);
+  assert.equal(r.history.at(-1).title, "候補1");
+  assert.equal(r.history[0].title, "old1");
+});
+
+// ── why は AI が書く（記事要約を流用しない） ──
+test("buildLitmusCandidates: AI の why が無い・側が違う候補は採らない。新しい順。why は切り詰める", () => {
+  const list = [
+    { id: "1", title: "Alpha", link: "https://a/1", summary: "記事の要約A" },
+    { id: "2", title: "Beta", link: "https://a/2", summary: "記事の要約B" },
+    { id: "3", title: "Gamma", link: "https://a/3", summary: "記事の要約C" },
+  ];
+  const whys = [
+    { title: "alpha", side: "accept", why: "A基準: 読み替え一手で一文に言える。" },
+    { title: "Gamma", side: "reject", why: "側が違う" },
+    { title: "Beta", side: "accept", why: "x".repeat(500) },
+  ];
+  const r = buildLitmusCandidates(list, whys, "accept");
+  assert.deepEqual(r.map((c) => c.title), ["Beta", "Alpha"]);
+  assert.ok(r[0].why.length <= 141);
+  assert.equal(r[1].why, "A基準: 読み替え一手で一文に言える。");
+  assert.ok(r.every((c) => !c.why.includes("要約")));
+  assert.deepEqual(buildLitmusCandidates(list, undefined, "accept"), []);
+  assert.deepEqual(buildLitmusCandidates(list, [{ title: "Alpha", side: "accept", why: "  " }], "accept"), []);
 });
 
 test("max/cap を引数で変えられる（上限8は既定）", () => {

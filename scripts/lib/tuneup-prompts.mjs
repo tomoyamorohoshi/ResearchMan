@@ -11,7 +11,7 @@
  */
 
 // v3: 1つの配列セクションに流す件数の上限（プロンプト肥大＝ENAMETOOLONG事故の再発防止。全文は流さない）
-export const V3_PROMPT_LIMITS = { borderlineExamples: 12, rejectionSamples: 10, sourcesLines: 70, titleMax: 60 };
+export const V3_PROMPT_LIMITS = { borderlineExamples: 12, rejectionSamples: 10, sourcesLines: 70, titleMax: 60, summaryMax: 80, recentProposals: 5, proposalTextMax: 200 };
 
 const clipText = (s, n) => {
   const t = String(s ?? "");
@@ -25,7 +25,9 @@ const clipText = (s, n) => {
 export function buildV3Section(v3Input) {
   if (!v3Input) return "";
   const L = V3_PROMPT_LIMITS;
-  const ex = (list) => (list || []).slice(0, L.borderlineExamples).map((c) => ({ title: clipText(c.title, L.titleMax), link: c.link || "" }));
+  const gateOk = v3Input.gateAvailable !== false && Array.isArray(v3Input.criteria);
+  const ex = (list) =>
+    (list || []).slice(0, L.borderlineExamples).map((c) => ({ title: clipText(c.title, L.titleMax), link: c.link || "", summary: clipText(c.summary, L.summaryMax) }));
   const t = v3Input.tierStats;
   const rej = v3Input.rejectionSummary;
   const src = (v3Input.sourcesSummary || []).slice(0, L.sourcesLines).map((s) => `${s.id}\ttier${s.tier}\t${s.enabled ? "ON" : "off"}\t${s.lang || ""}\t${s.region || ""}\t採用${s.count ?? 0}/fav${s.fav ?? 0}/trash${s.trashed ?? 0}`);
@@ -36,10 +38,23 @@ export function buildV3Section(v3Input) {
 - borderlineでトラッシュされた例（不採用例候補。なぜ外れたかを見る）: ${JSON.stringify(ex(t.borderlineTrashed))}
 - レンズ別（discoveryLens 1〜4）の採用数/fav/トラッシュ: ${JSON.stringify(v3Input.lensStats.byLens)}（タグ無し=旧データ${v3Input.lensStats.untagged}件）
 - 却下ログ（直近${rej.windowDays}日・${rej.total}件。理由上位のみ）: ${JSON.stringify(rej.byReason)} / パイプライン別: ${JSON.stringify(rej.byPipeline)} / サンプル: ${JSON.stringify(rej.samples.slice(0, L.rejectionSamples))}
-- 判定の具体例の自動入れ替え（決定的ルールで実施済み・参考情報。あなたは触らない）: ${JSON.stringify((v3Input.litmusChanges || []).map((c) => ({ side: c.side, action: c.action, added: c.added.title, removed: c.removed?.title ?? null })))}
-
+${
+    gateOk
+      ? `
 # 現行の採用基準 A〜D（文面の変更案を出す場合の「変更前」）
 ${JSON.stringify(v3Input.criteria)}
+${
+  (v3Input.recentProposals || []).length
+    ? `
+# 直近の基準変更案（却下・置き換え済み。同じ趣旨の案は再提案しない）
+${JSON.stringify(
+  v3Input.recentProposals.slice(0, L.recentProposals).map((p) => ({ status: p.status, criterionId: p.criterionId, after: clipText(p.after, L.proposalTextMax), reason: clipText(p.reason, L.proposalTextMax) }))
+)}
+`
+    : ""
+}`
+      : ""
+  }
 
 # 巡回先（data/sources.json。id / tier / ON-off / 言語 / 地域 / この巡回先発の採用・fav・トラッシュ数。変更できるのは tier と enabled のみ）
 ${src.join("\n")}
@@ -49,6 +64,8 @@ ${src.join("\n")}
 const V3_RULES = `- cc.roundFoci は**4レンズ固定**: 件数・順序・各レンズの領域は変えない。変更してよいのは label / sources / diversity の文言と、sourceRefs の**並び順のみ**（要素の追加・削除は不可。lens等その他のキーは現状のまま維持）`;
 
 export function buildPass1Prompt({ favStats, trashStats, userCaseStats, oldResearchTuning, oldXRadarQueries, oldResearchPlan, v3Input = null }) {
+  // case-gate.json が読めない時は v3 のうち具体例・基準案だけ省く（巡回先の変更などは続ける）
+  const gateOk = Boolean(v3Input) && v3Input.gateAvailable !== false && Array.isArray(v3Input.criteria);
   // ユーザー追加事例（強化シグナル）は該当0件のときセクションごと省略する（空セクションを出さない）。
   const userSection =
     userCaseStats.userCaseCount > 0
@@ -104,8 +121,13 @@ ${V3_RULES}
 - 有意な傾向が見えない・お気に入りが少なすぎる場合は、無理に変えず現状のJSONをそのまま返してよい
 ${
   v3Input
-    ? `- 巡回先の変更(sourceChanges)は tier / enabled のみ。tier変更は5件まで・enabled変更は5件まで。id・locator・lang等は変えない。fav実績のある巡回先を上げ、トラッシュ偏重で採用が無い巡回先を下げる/OFFにする。根拠が弱ければ空配列
-- 基準A〜Dの文面の変更案(gateCriterionProposal)は**0〜1件**。borderlineのfav/トラッシュの実例が基準文の言葉では説明できない時だけ出す。根拠(evidence)には上の「borderlineでfav/トラッシュされた例」に載っているタイトルをそのまま使う（載っていないものは破棄される）。基準文は自動では書き換わらず、オーナーがLINEで承認した時だけ変わる。無ければnull`
+    ? `- 巡回先の変更(sourceChanges)は tier / enabled のみ。tier変更は5件まで・enabled変更は5件まで。id・locator・lang等は変えない。**enabled は true→false のみ**（OFF→ONの有効化は週次見直しでは行わない。有効化はベイクオフ経由）。fav実績のある巡回先のtierを上げ、トラッシュ偏重で採用が無い巡回先のtierを下げる/OFFにする。根拠が弱ければ空配列${
+        gateOk
+          ? `
+- 判定の具体例の why(litmusWhy): 上の「borderlineでfav/トラッシュされた例」のうち具体例にふさわしいものについて、title と side と why を返す。why は**記事の要約ではなく「なぜ採用／不採用の物差しになるか」の一文**（採用側=どの基準(A〜D)をどう満たすか、不採用側=なぜ基準に届かないか）。不採用側は、トラッシュ理由が品質以外（重複・リンク切れ・既知の話題など）と思われるもの、または理由が説明できないものは出さない。物差しにならない例は出さない（出さなければ採用されない）
+- 基準A〜Dの文面の変更案(gateCriterionProposal)は**0〜1件**。borderlineのfav/トラッシュの実例が基準文の言葉では説明できない時だけ出す。根拠(evidence)には上の「borderlineでfav/トラッシュされた例」に載っているタイトルをそのまま使う（載っていないものは破棄される）。基準文は自動では書き換わらず、オーナーがLINEで承認した時だけ変わる。却下・置き換え済みの案と同じ趣旨の再提案はしない。無ければnull`
+          : ""
+      }`
     : ""
 }
 
@@ -116,14 +138,19 @@ JSON1つのみ（前置き・後書きなし）:
   "xRadarQueries": ["..."],${
     v3Input
       ? `
-  "sourceChanges": [{ "id": "巡回先id", "tier": 1, "enabled": true }],
+  "sourceChanges": [{ "id": "巡回先id", "tier": 1, "enabled": false }],${
+    gateOk
+      ? `
+  "litmusWhy": [{ "title": "上の例のタイトル", "side": "accept|reject", "why": "物差しになる理由の一文" }],
   "gateCriterionProposal": null,`
+      : ""
+  }`
       : ""
   }
   "researchPlanMarkdown": "# RESEARCH_PLAN.md の全文（Markdown）。現在の関心仮説・強化する源・弱める源・根拠を人間可読に書く",
   "rationale": "LINE報告用の変更理由の要約（2〜4文、日本語）"
 }${
-    v3Input
+    gateOk
       ? `
 gateCriterionProposal を出す場合の形: { "criterionId": "A|B|C|D", "after": "変更後の基準文（全文）", "reason": "理由（1〜2文）", "evidence": [{ "title": "上の例のタイトル", "signal": "fav|trash" }] }`
       : ""

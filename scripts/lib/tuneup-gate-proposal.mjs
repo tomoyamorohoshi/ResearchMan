@@ -27,8 +27,9 @@ const nonEmpty = (v) => typeof v === "string" && v.trim() !== "";
  * @param {Date} [o.now]
  * @returns {Promise<{status: 'none'|'invalid'|'skipped-pending'|'dry-run'|'proposed'|'error', reason?: string, normalized?: object, proposal?: object, sent?: object}>}
  */
-export async function runGateProposalStage({ aiProposal, gate, evidencePool, loadFn, proposeFn, dryRun, now = new Date() }) {
+export async function runGateProposalStage({ aiProposal, gate, premiseGate, evidencePool, loadFn, proposeFn, dryRun, now = new Date() }) {
   if (!aiProposal || typeof aiProposal !== "object") return { status: "none" };
+  if (!gate || typeof gate !== "object") return { status: "none" }; // case-gate.json が読めない（v3関連のみスキップ）
 
   const criterionId = String(aiProposal.criterionId ?? "").trim().toUpperCase();
   if (!CRITERION_IDS.includes(criterionId)) return { status: "invalid", reason: `基準IDが不正: ${aiProposal.criterionId}` };
@@ -37,6 +38,13 @@ export async function runGateProposalStage({ aiProposal, gate, evidencePool, loa
   const before = (gate?.criteria || []).find((c) => c?.id === criterionId)?.text;
   if (!nonEmpty(before)) return { status: "invalid", reason: `現行の基準 ${criterionId} が見つからない` };
   if (aiProposal.after.trim() === before.trim()) return { status: "invalid", reason: "変更後が現行文面と同じ" };
+  // AI が分析の前提にした文面(premiseGate=分析開始時)と現行が違う＝分析中に承認で変わった。古い前提の案は出さない
+  if (premiseGate) {
+    const premise = (premiseGate.criteria || []).find((c) => c?.id === criterionId)?.text;
+    if (nonEmpty(premise) && premise.trim() !== before.trim()) {
+      return { status: "skipped-changed", reason: `基準${criterionId}の文面が分析中に変更されたため見送り` };
+    }
+  }
 
   const poolByTitle = new Map();
   for (const p of evidencePool || []) {

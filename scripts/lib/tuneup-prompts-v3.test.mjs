@@ -18,7 +18,6 @@ const v3 = (o = {}) => ({
   lensStats: { byLens: { 1: { count: 1, fav: 0, trashed: 0 } }, untagged: 5 },
   rejectionSummary: { windowDays: 7, total: 99, byReason: [{ reason: "r", count: 9 }], byPipeline: { cc: 99 }, samples: many(40, (i) => ({ title: `rej${i}`, reason: "r" })) },
   criteria: [{ id: "A", text: "基準A" }],
-  litmusChanges: [{ side: "accept", action: "add", added: { title: "新例" }, removed: null }],
   sourcesSummary: many(200, (i) => ({ id: `src${i}`, tier: 1, enabled: true, lang: "en", region: "x", count: 1, fav: 0, trashed: 0 })),
   ...o,
 });
@@ -32,7 +31,35 @@ test("v3Input なしなら v3 セクション・出力フィールドは出な�
 
 test("v3Input ありなら gateTier・レンズ・却下ログ・基準・巡回先と出力フィールドが入る", () => {
   const p = buildPass1Prompt({ ...base(), v3Input: v3() });
-  for (const s of ["gateTier別", "レンズ別", "却下ログ", "基準A", "巡回先", "sourceChanges", "gateCriterionProposal", "新例"]) assert.ok(p.includes(s), s);
+  for (const s of ["gateTier別", "レンズ別", "却下ログ", "基準A", "巡回先", "sourceChanges", "gateCriterionProposal"]) assert.ok(p.includes(s), s);
+});
+
+test("具体例の why: 例に要約を添え、側ごとの why を litmusWhy で書かせる。有効化(false→true)は禁止と明記", () => {
+  const input = v3();
+  input.tierStats.borderlineFav[0] = { title: "favX", link: "", summary: "S".repeat(300) };
+  const p = buildPass1Prompt({ ...base(), v3Input: input });
+  assert.match(p, /litmusWhy/);
+  assert.match(p, /採用側.*基準|どの基準/);
+  assert.match(p, /不採用側|届かない/);
+  assert.match(p, /enabled は true→false のみ|有効化.*しない/);
+  assert.ok(!p.includes("S".repeat(100)), "要約は短く切って渡す");
+  assert.ok(p.includes("S".repeat(V3_PROMPT_LIMITS.summaryMax)));
+});
+
+test("直近の却下・置き換え済みの案を渡し、再提案を避けるよう指示する（件数上限あり）", () => {
+  const recent = many(9, (i) => ({ id: `G${i}`, status: i % 2 ? "rejected" : "superseded", criterionId: "B", after: `案${i}-` + "z".repeat(500), reason: "r" }));
+  const p = buildPass1Prompt({ ...base(), v3Input: v3({ recentProposals: recent }) });
+  assert.match(p, /再提案/);
+  assert.ok(p.includes("案0-"));
+  assert.ok(!p.includes(`案${V3_PROMPT_LIMITS.recentProposals}-`));
+  assert.ok(!p.includes("z".repeat(V3_PROMPT_LIMITS.proposalTextMax + 50)));
+});
+
+test("case-gate.json が読めない(gateAvailable=false)ときは基準・案・why の節と出力欄を出さない", () => {
+  const p = buildPass1Prompt({ ...base(), v3Input: v3({ gateAvailable: false, criteria: null }) });
+  assert.ok(!p.includes("gateCriterionProposal"));
+  assert.ok(!p.includes("litmusWhy"));
+  assert.match(p, /sourceChanges/);
 });
 
 test("4レンズ固定の指示があり、roundFoci に「3〜6件」とは書かない", () => {
