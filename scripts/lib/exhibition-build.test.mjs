@@ -518,6 +518,16 @@ test("processCandidates: 既存の会期が公式ページに残っていれば�
   assert.equal(r.data.items[0].startDate, "2026-09-12");
 });
 
+test("processCandidates: 月省略表記のページでも既存 endDate は残っていると判定し、揺れた候補で上書きしない", async () => {
+  const existing = mkItem({ startDate: "2026-10-24", endDate: "2026-10-27" });
+  const c = mkCand({ title: existing.title, venue: existing.venue, officialUrl: existing.link, startDate: "2026-10-24", endDate: "2026-10-25" });
+  const deps = mkDeps({ fetchHtml: async () => ({ status: 200, body: `<p>${existing.title} ${existing.venue} 10/24(Sat)25(Sun)27(Tue)</p>` }) });
+  const r = await processCandidates({ data: { version: 1, statusAsOf: "2026-10-03", items: [existing] }, candidates: [c], today: TODAY, deps });
+  assert.equal(r.updated.length, 0);
+  assert.equal(r.skipped[0].reason, "duplicate-existing-still-valid");
+  assert.equal(r.data.items[0].endDate, "2026-10-27");
+});
+
 test("processCandidates: 既存 venue が公式に残っていれば venue パッチしない", async () => {
   const existing = mkItem();
   const c = mkCand({ title: existing.title, venue: "別会場名ギャラリーX", officialUrl: existing.link, startDate: existing.startDate, endDate: existing.endDate });
