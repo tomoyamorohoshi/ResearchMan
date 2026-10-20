@@ -89,15 +89,15 @@ export function extractJsonObject(text: string): Record<string, unknown> | null 
 
 // ── case-adder Agent応答の解釈 ──────────────────────────────────
 
-export type AddCaseContentKind = "case" | "tech" | "neither";
+export type AddCaseContentKind = "case" | "tech" | "exhibition" | "neither";
 
 /**
  * case-adder Agent応答の contentKind を解釈する（要件1: case/tech/neitherの自動振り分け）。
- * "case"/"tech" 以外（未指定・想定外の値）はすべて "neither" 扱いにする。isUsableCandidate と
+ * "case"/"tech"/"exhibition" 以外（未指定・想定外の値）はすべて "neither" 扱いにする。isUsableCandidate と
  * 同じfail-closed方針で、判定不能な応答を見切り発車で "case" 等に倒さない。
  */
 export function parseContentKind(obj: Record<string, unknown>): AddCaseContentKind {
-  return obj.contentKind === "case" || obj.contentKind === "tech" ? obj.contentKind : "neither";
+  return obj.contentKind === "case" || obj.contentKind === "tech" || obj.contentKind === "exhibition" ? obj.contentKind : "neither";
 }
 
 export interface ExtractedCandidate {
@@ -500,4 +500,26 @@ export function buildAddCaseCommitMessage(title: string): string {
  */
 export function buildAddTechCommitMessage(title: string): string {
   return `Studio(LINE) 技術追加: ${title}`;
+}
+
+/**
+ * add-case（exhibition振り分け時）専用のcommitメッセージ。
+ */
+export function buildAddExhibitionCommitMessage(title: string): string {
+  return `Studio(LINE) 展示追加: ${title}`;
+}
+
+// ── exhibition候補の解釈 ────────────────────────────────────────
+
+/**
+ * case-adder応答（contentKind:"exhibition"）のcandidates配列をExhibition候補
+ * （scripts/lib/exhibition-build.mjs::processCandidatesの入力）へ変換する。
+ * ユーザー投稿扱いのため origin は常に "intake"、intakeUrl は常に送信URLへ上書きする
+ * （Agent出力に紛れた値は採用しない）。オブジェクト以外の要素は捨てる。
+ */
+export function parseExhibitionCandidates(obj: Record<string, unknown>, url: string): Array<Record<string, unknown>> {
+  const raw = Array.isArray(obj.candidates) ? obj.candidates : [];
+  return raw
+    .filter((c): c is Record<string, unknown> => !!c && typeof c === "object" && !Array.isArray(c))
+    .map((c) => ({ ...c, origin: "intake", intakeUrl: url }));
 }

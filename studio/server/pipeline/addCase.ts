@@ -12,7 +12,7 @@
  * 以降のステップを完全に分ける。caseは既存のcase-writer/link-checker/award-verifierを使う
  * 執筆パイプライン、techはtechResearch.ts（Research(Technology)の一括収集パイプライン）と
  * 同じ品質ガードレール（validateAndDedupeTechCandidates・runAuditTech・isUrlAlive等）を
- * 単一候補向けに転用する。neitherは事例・技術のどちらでもない/確認不能として、従来どおり
+ * 単一候補向けに転用する。exhibition（会場・会期のある開催前/開催中の展覧会告知）はdata/exhibition.jsonへ、\n * 日次ジョブ/intakeと同じprocessCandidates（addExhibition.ts）で公式ページ機械照合のうえ追加する。neitherは事例・技術のどちらでもない/確認不能として、従来どおり
  * 理由つきで失敗させる。
  *
  * caseResearch.tsとの違い:
@@ -52,6 +52,7 @@ import {
   gitPush,
   gitRevParseHead,
   rollbackTouchedFiles,
+  runAuditExhibition,
   runAuditIntegrity,
   runAuditTech,
   runAuditThumbnails,
@@ -66,11 +67,16 @@ import { updateJob, type ResultCard } from "../jobs.js";
 import { buildAwardVerifierPrompt, buildCaseWriterPrompt, buildLinkCheckerPrompt } from "./prompts.js";
 import { buildCaseAdderPrompt, type TweetMediaPromptInput } from "./addCasePrompts.js";
 import { postFavorite } from "./autoFavorite.js";
+import { describeExhibitionReason, processExhibitionAdd, type ExhibitionData } from "./addExhibition.js";
+import { appendUnverified, defaultFetchHtml, makeSaveThumb } from "../../../scripts/lib/exhibition-io.mjs";
+import { profileForPrompt } from "../../../scripts/lib/exhibition-prompts.mjs";
+import { todayJst } from "../../../scripts/lib/exhibition-status.mjs";
 import { buildXMediaTempDir, cleanupXMediaDir, downloadTweetMedia, fetchTweetMedia } from "./xMedia.js";
 import { fetchPageWithFallback } from "./pageFetch.js";
 import {
   buildAddCaseCommitMessage,
   buildAddCaseEntry,
+  buildAddExhibitionCommitMessage,
   buildAddTechCommitMessage,
   buildWriterFieldsFromAgentOutput,
   ensureUniqueCaseId,
@@ -115,6 +121,9 @@ import {
   buildAddCaseDuplicateText,
   buildAddCaseFailedText,
   buildAddCaseSuccessText,
+  buildAddExhibitionFailedText,
+  buildAddExhibitionNotAddedText,
+  buildAddExhibitionSuccessText,
   buildAddTechFailedText,
 } from "../line/messages.js";
 import { rollbackIfNotCommitted, terminalStatus } from "./caseResearch.js";
@@ -127,6 +136,9 @@ const TAG_VOCAB_PATH = path.join(ROOT, "data", "tag-vocabulary.json");
 const TECH_PATH = path.join(ROOT, "data", "tech.json");
 const TECH_VOCAB_PATH = path.join(ROOT, "data", "tech-tag-vocabulary.json");
 const TECH_THUMB_DIR = path.join(ROOT, "public", "thumbnails", "tech");
+const EXHIBITION_PATH = path.join(ROOT, "data", "exhibition.json");
+const EXHIBITION_PROFILE_PATH = path.join(ROOT, "data", "exhibition-profile.json");
+const EXHIBITION_THUMB_DIR = path.join(ROOT, "public", "thumbnails", "exhibition");
 // verify-tech-pages.mjs（scripts/側・無改変）はこの固定パスの要約ファイルを読む。
 // techResearch.ts（Research(Technology)一括収集パイプライン）と同じ契約を共有する。
 const LAST_TECH_ADD_PATH = path.join(os.tmpdir(), "researchman-tech-last-add.json");
@@ -159,7 +171,8 @@ async function notifyLineIfPossible(lineUserId: string, text: string): Promise<v
  * 確定した後の失敗は、要件3（実測: tech判定後の失敗でも「事例の追加に失敗しました」と
  * 表示されユーザーが混乱していた）に沿ってbuildAddTechFailedTextを使う。
  */
-function buildFailedTextForKind(kind: "case" | "tech" | undefined, message: string): string {
+function buildFailedTextForKind(kind: "case" | "tech" | "exhibition" | undefined, message: string): string {
+  if (kind === "exhibition") return buildAddExhibitionFailedText(message);
   return kind === "tech" ? buildAddTechFailedText(message) : buildAddCaseFailedText(message);
 }
 
@@ -169,7 +182,7 @@ async function fail(
   message: string,
   costUsd: number,
   ownsLock: boolean,
-  kind?: "case" | "tech",
+  kind?: "case" | "tech" | "exhibition",
 ): Promise<void> {
   await updateJob(jobId, {
     status: terminalStatus(ownsLock, "error"),
@@ -199,7 +212,7 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
   let committed = false;
   let commitHash: string | null = null;
   // contentKind確定後の失敗文言の出し分け用（要件3）。case/tech分岐に入った時点で設定する。
-  let determinedKind: "case" | "tech" | undefined;
+  let determinedKind: "case" | "tech" | "exhibition" | undefined;
   // "public/thumbnails/<id>.jpg"（case）または "public/thumbnails/tech/<id>.jpg"（tech）。
   // ROOT基準の相対パス。dryRun時の掃除・commit前ロールバックの両方で使う。
   let thumbnailRelPath = "";
@@ -262,6 +275,14 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
       }
     }
 
+    // exhibition判定時の自己採点・しきい値用プロファイル（読めなければ未注入。exhibition分岐で必須扱い）
+    let exhibitionProfile: { scoring: { threshold: { add: number; highlight: number } } } | null = null;
+    try {
+      exhibitionProfile = JSON.parse(await readFile(EXHIBITION_PROFILE_PATH, "utf-8"));
+    } catch (e) {
+      console.warn("[studio][add-case] exhibition-profile.json の読み込みに失敗しました:", e);
+    }
+
     const adderDef = loadAgentDefinition(AGENTS_DIR, "case-adder");
     const adderResult = await runAgentQuery(
       ROOT,
@@ -273,6 +294,7 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
         isXLink: urlIsXLink,
         tweetMedia: tweetMediaInput,
         prefetchedPage: prefetchedPageInput,
+        exhibitionProfileJson: exhibitionProfile ? profileForPrompt(exhibitionProfile) : undefined,
       }),
     );
     costUsd += adderResult.costUsd;
@@ -607,7 +629,7 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
       // 反映確認が時間切れでも実際にはpush済み（=本番へ向かっている）ため、成功として通知する
       // （caseResearch.tsのunverified通知文言と同じ考え方。要件3: 成功時は種別+タイトル+サイトURL）。
       await notifyLineIfPossible(lineUserId, buildAddCaseSuccessText("case", entry.title, caseUrl, favoriteNote));
-    } else {
+    } else if (contentKind === "tech") {
       determinedKind = "tech";
       // contentKind === "tech"（要件2: Technology(tech.json)への振り分け）。
       // 以降はtechResearch.ts（Research(Technology)一括収集パイプライン）と同じ品質
@@ -865,6 +887,210 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
       const successNote = primarySourceFound ? undefined : "※一次ソース未発見のため投稿リンクで登録";
       const combinedNote = [successNote, techFavoriteNote].filter((s): s is string => !!s).join("\n") || undefined;
       await notifyLineIfPossible(lineUserId, buildAddCaseSuccessText("tech", techEntry.title, techUrl, combinedNote));
+    } else {
+      determinedKind = "exhibition";
+      // contentKind === "exhibition"（会場・会期のある開催前/開催中の展覧会告知）。
+      // 追加判定は日次ジョブ/intakeと同じ processCandidates（公式ページ機械照合・dedupe・
+      // hard除外・サムネ取得）に任せ、候補は origin:"intake"（ユーザー投稿扱い）で渡す。
+      // link-checker/award-verifier/case-writerはcase専用のため呼ばない。
+
+      // ── 2. 公式ページ照合・重複チェック・サムネ（processExhibitionAdd） ──
+      await setProgress(jobId, "公式ページ照合・重複チェック中");
+      if (!exhibitionProfile) {
+        throw new Error("exhibition-profile.json を読み込めませんでした（採点しきい値が不明のため中止）");
+      }
+      const exhibitionData = JSON.parse(await readFile(EXHIBITION_PATH, "utf-8")) as ExhibitionData;
+      // cases/techのidはお気に入り名前空間を共有するため、exhibitionのidと衝突させない
+      // （scripts/auto-research-exhibition.mjs::loadReservedIds と同じ）。
+      const reservedIds = new Set<string>(existingCases.map((c) => c.id));
+      try {
+        for (const t of JSON.parse(await readFile(TECH_PATH, "utf-8")) as Array<{ id?: string }>) {
+          if (t?.id) reservedIds.add(t.id);
+        }
+      } catch {
+        // tech.jsonが読めなくてもcases側のidは確保済み（日次ジョブと同じ縮退）
+      }
+      const exhibitionResult = await processExhibitionAdd({
+        obj,
+        url,
+        data: exhibitionData,
+        today: todayJst(),
+        deps: {
+          fetchHtml: defaultFetchHtml,
+          saveThumb: makeSaveThumb(EXHIBITION_THUMB_DIR),
+          now: () => new Date().toISOString(),
+        },
+        opts: {
+          addThreshold: exhibitionProfile.scoring.threshold.add,
+          highlightThreshold: exhibitionProfile.scoring.threshold.highlight,
+          dryRun,
+          reservedIds,
+        },
+      });
+      // サムネは processCandidates 内（保存済み）で作られるため、以降の失敗でロールバックできるよう先に追跡する
+      newUntracked.push(...exhibitionResult.thumbnailRelPaths);
+
+      // 裏取りできなかった候補は日次ジョブと同じ未検証キューへ（dryRunは書かない）
+      if (!dryRun && exhibitionResult.unverified.length > 0) {
+        await appendUnverified(ROOT, exhibitionResult.unverified).catch((e: unknown) => {
+          console.warn("[studio][add-case] exhibition-unverified.json への追記に失敗しました:", e);
+        });
+      }
+
+      if (exhibitionResult.outcome === "duplicate") {
+        const message = buildAddCaseDuplicateText(exhibitionResult.duplicateTitle || exhibitionResult.reasonJa);
+        await updateJob(jobId, { status: "error", progress: undefined, error: message, cost: costUsd });
+        await notifyLineIfPossible(lineUserId, message);
+        return;
+      }
+      if (exhibitionResult.outcome === "unverified" || exhibitionResult.outcome === "rejected") {
+        const failedTitle =
+          exhibitionResult.unverified[0]?.title || exhibitionResult.rejected[0]?.title || url;
+        const message = buildAddExhibitionNotAddedText(failedTitle, exhibitionResult.reasonJa);
+        await updateJob(jobId, { status: terminalStatus(ownsLock, "error"), progress: undefined, error: message, cost: costUsd });
+        await notifyLineIfPossible(lineUserId, message);
+        return;
+      }
+
+      const notifyItems = exhibitionResult.added.map((a) => ({
+        title: a.title,
+        venue: a.venue,
+        startDate: a.startDate,
+        endDate: a.endDate,
+      }));
+      // 追加と同時に一部候補が裏取りできなかった（巡回展の片方など）場合は、その理由を成功通知に添える
+      const partialNote =
+        exhibitionResult.unverified.length > 0
+          ? exhibitionResult.unverified
+              .map((u) => `※「${u.title}」（${u.venue}）は追加していません: ${describeExhibitionReason(u.reason)}`)
+              .join("\n")
+          : undefined;
+
+      if (dryRun) {
+        await updateJob(jobId, {
+          status: terminalStatus(ownsLock, "done"),
+          progress: undefined,
+          cost: costUsd,
+          addCasePreview: {
+            entry: (exhibitionResult.added[0] ?? exhibitionResult.updated[0]) as unknown as Record<string, unknown>,
+            verification: {
+              kind: "exhibition",
+              outcome: exhibitionResult.outcome,
+              duplicate: false,
+              officialPageVerified: true,
+              // dryRunではサムネ取得を行わない（processCandidatesのdryRunオプション）
+              thumbnailAcquired: false,
+              addedCount: exhibitionResult.added.length,
+              unverifiedCount: exhibitionResult.unverified.length,
+              entries: exhibitionResult.added as unknown as Record<string, unknown>[],
+            },
+          },
+        });
+        return;
+      }
+
+      // ── 3. 反映（データ書き込み） ─────────────────────────────────
+      throwIfCancelled(); // LINE「停止」: 書き込み・commit前に中断（catchが未commitとしてロールバック）
+      await setProgress(jobId, "反映中（データ書き込み）");
+      await writeJsonAtomic(EXHIBITION_PATH, exhibitionResult.data);
+      trackedTouched.push("data/exhibition.json");
+
+      // ── 4. 監査（audit-exhibition。pre-pushフックと同じ検査） ───────
+      await setProgress(jobId, "品質監査中（exhibition整合/tsc/lint/build）");
+      const exhibitionAudits: Array<{ name: string; run: () => Promise<{ ok: boolean; stdout: string; stderr: string }> }> = [
+        { name: "audit-exhibition", run: () => runAuditExhibition(ROOT) },
+        { name: "tsc --noEmit", run: () => runTypeCheck(ROOT) },
+        { name: "lint", run: () => runLint(ROOT) },
+        { name: "build", run: () => runBuild(ROOT) },
+      ];
+      for (const audit of exhibitionAudits) {
+        throwIfCancelled();
+        const result = await audit.run();
+        if (!result.ok) {
+          const tail = [result.stderr.trim().slice(-3000), result.stdout.trim().slice(-1500)].filter(Boolean).join("\n---stdout---\n");
+          await rollbackTouchedFiles(ROOT, trackedTouched, newUntracked);
+          throw new Error(`品質監査(${audit.name})に失敗しました。反映を中止しロールバックしました。\n${tail}`);
+        }
+      }
+
+      // ── 5. commit/push ───────────────────────────────────────────
+      beginCommit(); // LINE「停止」: キャンセル済みなら投げる。以後はcommit/pushを中断しない
+      await setProgress(jobId, "反映中（commit/push）");
+      const exhibitionAddResult = await gitAdd(ROOT, [...trackedTouched, ...newUntracked]);
+      if (!exhibitionAddResult.ok) {
+        await rollbackTouchedFiles(ROOT, trackedTouched, newUntracked);
+        throw new Error(`git add に失敗しました: ${exhibitionAddResult.stderr.slice(0, 500)}`);
+      }
+      const primaryTitle = exhibitionResult.added[0]?.title ?? exhibitionResult.updated[0]?.title ?? url;
+      const extraCount = exhibitionResult.added.length + exhibitionResult.updated.length - 1;
+      const commitTitle = extraCount > 0 ? `${primaryTitle} ほか${extraCount}件` : primaryTitle;
+      const exhibitionCommitResult = await gitCommit(ROOT, buildAddExhibitionCommitMessage(commitTitle));
+      if (!exhibitionCommitResult.ok) {
+        await rollbackTouchedFiles(ROOT, trackedTouched, newUntracked);
+        throw new Error(`git commit に失敗しました: ${exhibitionCommitResult.stderr.slice(0, 500)}`);
+      }
+      committed = true;
+      commitHash = await gitRevParseHead(ROOT);
+
+      const exhibitionPushResult = await gitPush(ROOT);
+      if (!exhibitionPushResult.ok) {
+        const message = `push に失敗しました（pre-push監査等の可能性）。コミットはローカルに残っています（commit ${commitHash?.slice(0, 8) ?? "不明"}）。手動対応が必要です。`;
+        await updateJob(jobId, {
+          status: terminalStatus(ownsLock, "error"),
+          progress: undefined,
+          error: message,
+          commit: commitHash,
+          cost: costUsd,
+        });
+        await notifyLineIfPossible(lineUserId, buildAddExhibitionFailedText(message));
+        return;
+      }
+
+      // ── 6. verify-deploy（--skip-pages: 既定のページ検証はCase Study用サマリーを読むため無効化。
+      //    techと同じ回避策。新規ページは下のpollStrictVerifyで個別に確認する） ──
+      await setProgress(jobId, "本番反映を確認中");
+      const exhibitionThumbUrls = exhibitionResult.added.map((a) => a.thumbnail);
+      const exhibitionVerifyResult = await runVerifyDeploy(ROOT, exhibitionThumbUrls, ["--skip-pages"]);
+      let exhibitionStrict: { ok: boolean; failedUrls: string[] } = { ok: true, failedUrls: [] };
+      if (exhibitionVerifyResult.ok && exhibitionResult.added.length > 0) {
+        await setProgress(jobId, "新規ページの反映を厳密確認中");
+        exhibitionStrict = await pollStrictVerify(
+          exhibitionResult.added.map((a) => ({ url: `${SITE}/exhibition/${a.id}`, markers: [a.id] })),
+        );
+      }
+      const exhibitionVerified = exhibitionVerifyResult.ok && exhibitionStrict.ok;
+      await updateJob(jobId, {
+        status: terminalStatus(ownsLock, "done"),
+        progress: undefined,
+        ...(exhibitionVerified
+          ? {}
+          : {
+              warning: !exhibitionVerifyResult.ok
+                ? "反映確認が時間切れでした。数分後に本番へ反映される見込みです。"
+                : "新規ページは表示されましたが、内容の反映確認が時間切れでした（キャッシュ等の可能性）。数分後に再度ご確認ください。",
+            }),
+        commit: commitHash,
+        deployedUrl: SITE,
+        cost: costUsd,
+      });
+
+      // ── 7. 自動お気に入り（exhibitionもお気に入りのid名前空間を共有するためcase/techと同じ扱い） ──
+      const exhibitionFavoriteTarget = exhibitionResult.added[0]?.id;
+      const exhibitionFavoriteResult = exhibitionFavoriteTarget ? await postFavorite(SITE, exhibitionFavoriteTarget) : "skip";
+      const exhibitionFavoriteNote = exhibitionFavoriteResult === "ok" ? "♥お気に入りに登録" : undefined;
+      const exhibitionNote = [partialNote, exhibitionFavoriteNote].filter((s): s is string => !!s).join("\n") || undefined;
+
+      if (notifyItems.length > 0) {
+        const pageUrl = `${SITE}/exhibition/${exhibitionResult.added[0].id}`;
+        await notifyLineIfPossible(lineUserId, buildAddExhibitionSuccessText(notifyItems, pageUrl, exhibitionNote));
+      } else {
+        // 既存展示の会期・会場だけが更新されたケース
+        const u = exhibitionResult.updated[0];
+        await notifyLineIfPossible(
+          lineUserId,
+          `Exhibition の既存展示を更新しました: ${u.title}（${Object.entries(u.patch).map(([k, v]) => `${k}=${String(v)}`).join(" ")}）`,
+        );
+      }
     }
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);

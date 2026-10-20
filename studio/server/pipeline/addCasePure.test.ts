@@ -8,6 +8,7 @@ import test from "node:test";
 import {
   buildAddCaseCommitMessage,
   buildAddCaseEntry,
+  buildAddExhibitionCommitMessage,
   buildAddTechCommitMessage,
   buildWriterFieldsFromAgentOutput,
   ensureUniqueCaseId,
@@ -20,6 +21,7 @@ import {
   isXLink,
   normalizeYear,
   parseContentKind,
+  parseExhibitionCandidates,
   parseExtractedCandidate,
   parseExtractedTechCandidate,
   validateAddCaseRequest,
@@ -616,4 +618,29 @@ test("validateTechCandidateAllowingFallbackSource: licenseが無ければcommerc
     assert.equal(result.value.license.commercial, "none");
     assert.equal(result.value.license.spdx, null);
   }
+});
+
+// ── contentKind: exhibition ────────────────────────────────────
+
+test("parseContentKind: exhibition を受理する", () => {
+  assert.equal(parseContentKind({ contentKind: "exhibition" }), "exhibition");
+  assert.equal(parseContentKind({ contentKind: "exhibit" }), "neither");
+});
+
+test("parseExhibitionCandidates: origin=intake/intakeUrl=送信URLを強制付与し、非オブジェクトは除外する", () => {
+  const out = parseExhibitionCandidates(
+    { candidates: [{ title: "A", intakeUrl: "https://evil.example/", origin: "auto" }, null, "x", [1]] },
+    "https://20th.starryworks.co.jp/",
+  );
+  assert.equal(out.length, 1);
+  assert.equal(out[0].origin, "intake");
+  assert.equal(out[0].intakeUrl, "https://20th.starryworks.co.jp/");
+});
+
+test("parseExhibitionCandidates: candidatesが無ければ空配列", () => {
+  assert.deepEqual(parseExhibitionCandidates({}, "https://x.example/"), []);
+});
+
+test("buildAddExhibitionCommitMessage", () => {
+  assert.equal(buildAddExhibitionCommitMessage("光る音展"), "Studio(LINE) 展示追加: 光る音展");
 });
