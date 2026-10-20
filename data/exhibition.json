@@ -1,7 +1,49 @@
 {
   "version": 1,
-  "statusAsOf": "2026-10-19",
+  "statusAsOf": "2026-10-20",
   "items": [
+    {
+      "id": "2026-ycam-without-records",
+      "slug": "2026-ycam-without-records",
+      "title": "without records(大友良英＋YCAM新作展「即興！」先行展示)",
+      "artists": [
+        "大友良英",
+        "青山泰知",
+        "伊藤隆之"
+      ],
+      "venue": "山口情報芸術センター[YCAM]",
+      "venueType": "media_art_center",
+      "prefecture": "山口県",
+      "city": "山口市",
+      "startDate": "2026-07-24",
+      "endDate": "2027-10-16",
+      "status": "ongoing",
+      "admission": "無料",
+      "tags": [
+        "media_art",
+        "installation",
+        "sound"
+      ],
+      "score": 68,
+      "matchReason": "大友良英・青山泰知・伊藤隆之が2008年にYCAMで初発表したサウンドインスタレーションで、ホワイエ・2階ギャラリー・中庭で展示される。10/17開幕の「即興！」にも継続展示される。入場無料。",
+      "sources": [
+        {
+          "name": "without records",
+          "url": "https://www.ycam.jp/events/2026/without-records/",
+          "kind": "official"
+        },
+        {
+          "name": "YCAM",
+          "url": "https://www.ycam.jp/",
+          "kind": "listing"
+        }
+      ],
+      "link": "https://www.ycam.jp/events/2026/without-records/",
+      "thumbnail": "/thumbnails/exhibition/2026-ycam-without-records.jpg",
+      "addedAt": "2026-10-20T01:33:26.143Z",
+      "origin": "auto",
+      "highlight": false
+    },
     {
       "id": "2026-azabudai-hills-gallery-ambient-kyoto-tokyo-sakamoto-tak",
       "slug": "2026-azabudai-hills-gallery-ambient-kyoto-tokyo-sakamoto-tak",
@@ -276,7 +318,7 @@
       "venueType": "media_art_center",
       "prefecture": "東京都",
       "city": "新宿区",
-      "startDate": "2026-09-12",
+      "startDate": "2026-09-29",
       "endDate": "2026-11-08",
       "status": "ongoing",
       "admission": "一般800円 / 大学生600円 / 65歳以上・高校生以下無料",
