@@ -274,6 +274,13 @@ async function fetchOfficialText(cand, { fetchHtml }) {
   return { ok: true, text: htmlToText(res.body) };
 }
 
+/** 既存エントリの公式ページ（link、無ければ sources の official）を取得してテキスト化。url 単位でキャッシュ。 */
+async function fetchExistingOfficialText(item, deps, cache) {
+  const url = [item.link, ...(item.sources || []).filter((s) => s && s.kind === "official").map((s) => s.url)].find((u) => isHttpUrl(u) && isSafeOfficialUrl(u));
+  if (!url) return { ok: false, reason: "existing-official-url-missing" };
+  if (!cache.has(url)) cache.set(url, fetchOfficialText({ officialUrl: url }, deps));
+  return cache.get(url);
+}
 function checkOfficialText(cand, text) {
   if (!dateAppearsInText(text, cand.startDate)) return { ok: false, reason: `official-date-mismatch: startDate ${cand.startDate} not found` };
   if (!dateAppearsInText(text, cand.endDate)) return { ok: false, reason: `official-date-mismatch: endDate ${cand.endDate} not found` };
@@ -356,6 +363,7 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
   let items = applyStatusUpdate(data, today).data.items;
   const protect = new Set(o.protectIds || []);
   const taken = new Set([...items.map((i) => i.id), ...(o.reservedIds || [])]);
+  const pageCache = new Map(); // 既存エントリの公式ページ取得結果（同一実行内で1URL1回）
 
   const added = [];
   const updated = [];
@@ -403,8 +411,9 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
       const patch = diffDates(dup.item, cand);
       // 同一実行で追加済みの展示は更新しない（ラウンドごとに Claude の返す日付が揺れて上書きされるのを防ぐ）
       if (!patch || protect.has(dup.item.id)) { skipped.push({ title: cand.title, reason: "duplicate", existingId: dup.item.id }); return; }
-      const f = await fetchOfficialText(cand, deps);
-      if (!f.ok) return unver(cand, `会期変更の裏取り失敗: ${f.reason}`);
+      // 根拠は既存エントリ自身の公式ページ（候補の officialUrl は別ページのことがあるため使わない）
+      const f = await fetchExistingOfficialText(dup.item, deps, pageCache);
+      if (!f.ok) { skipped.push({ title: cand.title, reason: `duplicate-existing-page-unavailable: ${f.reason}`, existingId: dup.item.id }); return; }
       // 既存値が公式ページ上でまだ見つかるなら根拠は失われていない → 揺れた候補値でパッチしない
       const effective = {};
       if (patch.startDate && !dateAppearsInText(f.text, dup.item.startDate)) effective.startDate = patch.startDate;
@@ -416,11 +425,12 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
       if (effective.startDate && !dateAppearsInText(f.text, effective.startDate)) fail = `official-date-mismatch: startDate ${effective.startDate} not found`;
       else if (effective.endDate && !dateAppearsInText(f.text, effective.endDate)) fail = `official-date-mismatch: endDate ${effective.endDate} not found`;
       else if (effective.venue && !venueAppearsInText(f.text, effective.venue)) fail = `official-venue-mismatch: ${effective.venue}`;
-      else if (!titleAppearsInText(f.text, cand.title)) fail = `official-title-mismatch: ${cand.title}`;
+      else if (!titleAppearsInText(f.text, dup.item.title) && !titleAppearsInText(f.text, cand.title)) fail = `official-title-mismatch: ${cand.title}`;
       if (fail) return unver(cand, `会期変更の裏取り失敗: ${fail}`);
       const next = applyUpdate(dup.item, effective, today);
       if (next.startDate > next.endDate) return unver(cand, `会期変更の裏取り失敗: start-after-end（部分適用で ${next.startDate} > ${next.endDate}）`);
       items = items.map((i) => (i.id === dup.item.id ? next : i));
+      protect.add(dup.item.id);
       updated.push({ id: dup.item.id, title: dup.item.title, patch: effective });
       return;
     }

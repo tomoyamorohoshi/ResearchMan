@@ -586,3 +586,43 @@ test("processCandidates: 巡回展の2会場目が追加される（既存あり
   assert.equal(r2.added.length, 1);
   assert.equal(r2.updated.length, 0);
 });
+// ── 2026-10-20 ICC 実例: dup 照合は既存エントリの公式ページで行う ──
+const ICC_LINK = "https://www.ntticc.or.jp/ja/exhibitions/2026/icc-annual-2026/";
+const iccItem = () => mkItem({ id: "2026-icc-icc-annual-2026", slug: "2026-icc-icc-annual-2026", title: "ICC アニュアル 2026", venue: "ICC", startDate: "2026-09-12", endDate: "2026-11-08", link: ICC_LINK, sources: [{ name: "公式", url: ICC_LINK, kind: "official" }] });
+const iccCand = (over = {}) => mkCand({ title: "ICC アニュアル 2026", venue: "ICC", officialUrl: "https://www.ntticc.or.jp/ja/events/talk-0929/", sources: [{ name: "ICC", url: ICC_LINK, kind: "listing" }], startDate: "2026-06-20", endDate: "2026-11-08", ...over });
+
+test("processCandidates: ICC 実例 - 候補が別URLでも既存ページに既存値が残るなら更新しない・候補URLは取得しない", async () => {
+  const urls = [];
+  const deps = mkDeps({ fetchHtml: async (url) => { urls.push(url); return { status: 200, body: "<p>ICC アニュアル 2026 ICC 会期：2026年6月20日（土）—11月8日（日） 関連イベント 9月12日 9月29日</p>" }; } });
+  const r = await processCandidates({ data: { version: 1, statusAsOf: "2026-10-03", items: [iccItem()] }, candidates: [iccCand(), iccCand({ startDate: "2026-09-29" })], today: TODAY, deps });
+  assert.equal(r.updated.length, 0);
+  assert.equal(r.data.items[0].startDate, "2026-09-12");
+  assert.ok(urls.every((u) => u === ICC_LINK), urls.join(","));
+});
+
+test("processCandidates: 既存値が既存ページから消え新値が載っているときだけ更新（候補URLが別でも）・同一実行で再更新しない", async () => {
+  const urls = [];
+  const deps = mkDeps({ fetchHtml: async (url) => { urls.push(url); return { status: 200, body: "<p>ICC アニュアル 2026 ICC 会期：2026年6月20日—11月8日 関連イベント 9月29日</p>" }; } });
+  const r = await processCandidates({ data: { version: 1, statusAsOf: "2026-10-03", items: [iccItem()] }, candidates: [iccCand({ score: 90 }), iccCand({ startDate: "2026-09-29" })], today: TODAY, deps });
+  assert.equal(r.updated.length, 1);
+  assert.deepEqual(r.updated[0].patch, { startDate: "2026-06-20" });
+  assert.equal(r.data.items[0].startDate, "2026-06-20");
+  assert.equal(r.skipped.length, 1);
+  assert.ok(urls.every((u) => u === ICC_LINK));
+});
+
+test("processCandidates: 既存エントリの公式ページが取得できなければパッチせず skipped", async () => {
+  for (const fetchHtml of [async () => ({ status: 404, body: "" }), async () => { throw new Error("boom"); }]) {
+    const r = await processCandidates({ data: { version: 1, statusAsOf: "2026-10-03", items: [iccItem()] }, candidates: [iccCand()], today: TODAY, deps: mkDeps({ fetchHtml }) });
+    assert.equal(r.updated.length, 0);
+    assert.equal(r.skipped.length, 1);
+    assert.match(r.skipped[0].reason, /duplicate-existing-page/);
+    assert.equal(r.data.items[0].startDate, "2026-09-12");
+  }
+});
+
+test("processCandidates: opts.protectIds の展示は更新しない", async () => {
+  const deps = mkDeps({ fetchHtml: async () => ({ status: 200, body: "<p>ICC アニュアル 2026 ICC 2026年6月20日—11月8日</p>" }) });
+  const r = await processCandidates({ data: { version: 1, statusAsOf: "2026-10-03", items: [iccItem()] }, candidates: [iccCand()], today: TODAY, deps, opts: { protectIds: new Set(["2026-icc-icc-annual-2026"]) } });
+  assert.equal(r.updated.length, 0);
+});
