@@ -811,3 +811,10 @@ pre-pushの4監査は瀬戸内データに対しても素通りではなく、�
   `radar-curation`（キュレーション方針）と `node-http-destroy-bug`（settle パターンの経緯）
 
 - `data/idea-layouts.json`（68MB）は2026-10-04からgit非追跡。ideas.jsonとペアでコミットするのは鮮度証明の`data/idea-layouts.manifest.json`（pre-pushが本体==manifestを検査し、本体はBlobへ配信）
+
+## 8. LINE通知の方針（2026-10-20〜: 事例のシェアだけ）
+
+- LINEに送るのは **share** のみ: 日次収集の新規追加紹介（ok かつ1件以上）/ アイデアの種配信 / ユーザーがLINEから依頼した処理への返信（Studio。`--context studio`）
+- それ以外（エラー・push失敗・反映未確認・0件・watchdog・tuneup・studio-keeper 等）は **system**: LINEに送らず `logs/system-alerts.jsonl`（{at, source, level, title, body}）に追記し、直近7日・最大100件を `logs/system-alerts-latest.md` に再生成する（logs/ は gitignore）
+- 振り分けは `scripts/notify-line.mjs` の `--kind share|system`（既定 system）と `scripts/lib/notify-dispatch.mjs`。share は呼び出し側が明示した経路のみで、share 指定でも ok 以外・0件は system に落ちる
+- 朝の確認は `logs/system-alerts-latest.md` を見る

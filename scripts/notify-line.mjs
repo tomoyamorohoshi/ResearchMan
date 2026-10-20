@@ -24,6 +24,13 @@
  *   1行追記するだけに変わる（notify-digest.mjsが23:45に1本へまとめて送る）。
  *   criticalは既存の送信ロジックのまま変更しない（quotaガードも呼ばない＝
  *   criticalはquotaに関わらず必ず送信を試みる仕様のため）。
+ *
+ * --kind <share|system>（既定 system。2026-10-20仕様変更）: LINEに送るのは share のみ。
+ *   share  … 日次収集の新規追加紹介（--result ok かつ1件以上）/ アイデアの種（--text-file）。
+ *            加えて --context studio（ユーザーがLINEから依頼した処理への返信）は常に share 扱い。
+ *   system … LINEに送らず logs/system-alerts.jsonl に追記（lib/notify-dispatch.mjs 参照）。
+ *            --result error|pushfail|unverified、0件、点検/チューンアップ/studio-keeper 等。
+ *   --source / --level <info|warn|error> / --title は system 記録用の任意メタ情報。
  */
 import fs from "fs";
 import os from "os";
@@ -33,6 +40,7 @@ import { fileURLToPath } from "url";
 import { buildErrorBodyLines } from "./lib/notify-line-text.mjs";
 import { loadLineConfig } from "./lib/notify-line-config.mjs";
 import { splitForLine, sendLineMessages } from "./lib/notify-line-send.mjs";
+import { resolveNotifyKind, dispatchNotification } from "./lib/notify-dispatch.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, ".."); // scripts -> repo root
@@ -73,6 +81,11 @@ if (!["critical", "routine"].includes(PRIORITY)) {
   console.error(`--priority の値が不正: ${PRIORITY}（critical|routine のいずれかを指定）`);
   process.exit(2);
 }
+// 通知の振り分け。呼び出し側は share にしたい経路だけ --kind share を明示する（既定 system）。
+const KIND = argOf("--kind", "system");
+const SOURCE = argOf("--source", undefined);
+const LEVEL = argOf("--level", undefined);
+const TITLE = argOf("--title", undefined);
 const SITE = "https://research-man.vercel.app";
 
 function log(msg) {
@@ -190,23 +203,41 @@ async function main() {
     text = buildText(loadSummary(), gitHead());
   }
 
+  const summaryCount = textFile ? 0 : loadSummary().count || 0;
+  const kind = resolveNotifyKind({ kind: KIND, result: RESULT, count: summaryCount, context: CONTEXT, hasTextFile: !!textFile });
+
   if (DRY_RUN) {
+    if (kind === "system") {
+      log(`--dry-run（LINEには送りません）kind=system → logs/system-alerts.jsonl に記録される内容:
+${text}`);
+      return;
+    }
     const parts = splitForLine(text);
-    log(`--dry-run（送信しません）本文${text.length}字 → ${parts.length}メッセージに分割`);
-    parts.forEach((p, i) => console.log(`--- LINE message ${i + 1}/${parts.length}（${p.length}字）---\n${p}`));
+    log(`--dry-run（送信しません）kind=share 本文${text.length}字 → ${parts.length}メッセージに分割`);
+    parts.forEach((p, i) => console.log(`--- LINE message ${i + 1}/${parts.length}（${p.length}字）---
+${p}`));
     return;
   }
 
-  if (PRIORITY === "routine") {
+  if (kind === "share" && PRIORITY === "routine") {
     // LINE APIに一切アクセスせずqueueへ積むだけ（quotaガードはここでは呼ばない。
     // notify-digest.mjsが送信時にshouldSkipForQuotaで判断する）。
     appendToQueue(text);
     return;
   }
 
-  // priority=critical（既定）: 既存の送信ロジックのまま変更しない。quotaに関わらず必ず送信を試みる。
+  // share（critical）: 既存の送信ロジックのまま。quotaに関わらず必ず送信を試みる。
+  // system: LINEへは送らず logs/system-alerts.jsonl に追記する。
+  const d = await dispatchNotification(
+    { kind: KIND, result: RESULT, count: summaryCount, context: CONTEXT, hasTextFile: !!textFile, text, level: LEVEL, title: TITLE, source: SOURCE, label: LABEL, route: ROUTE },
+    { send: sendShare },
+  );
+  if (d.route === "system") log(`kind=system → LINEには送らず logs/system-alerts.jsonl に記録（${d.entry.level}: ${d.entry.title}）`);
+}
+
+async function sendShare(text) {
   const cfg = loadConfig();
-  if (!cfg) return; // 未設定なら静かにスキップ
+  if (!cfg) return null; // 未設定なら静かにスキップ
 
   // ログにはuserId自体を出さず、push/broadcastの種別のみ記録する（秘密情報を残さないため）
   const mode = cfg.to ? "push(個人宛)" : "broadcast(全友だち宛)";
@@ -216,6 +247,7 @@ async function main() {
   } else {
     log(`送信失敗（status=${r.status} reason=${r.reason} body=${r.body}）— 本体処理には影響なし`);
   }
+  return r;
 }
 
 main().finally(() => process.exit(0));
