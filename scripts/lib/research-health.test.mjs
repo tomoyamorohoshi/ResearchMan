@@ -8,13 +8,24 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
-import { runResearchHealthReview, parseRuns, dayAdd, planResearchHealthRun } from "./research-health.mjs";
+import { runResearchHealthReview, parseRuns, dayAdd, planResearchHealthRun, readLastRun, writeLastRun } from "./research-health.mjs";
 
-test("planResearchHealthRun: 12:30枠は毎日・llmなし、deep(日曜18:30)はllmあり、通常の18:30枠は実行しない", () => {
+test("planResearchHealthRun: その日まだ実行していなければ実行(時刻非依存)、deepはllm付きで別枠", () => {
   const at = (h) => new Date(`2026-10-20T${String(h).padStart(2, "0")}:30:00+09:00`);
-  assert.deepEqual(planResearchHealthRun({ now: at(12), deep: false }), { llm: false });
-  assert.equal(planResearchHealthRun({ now: at(18), deep: false }), null);
-  assert.deepEqual(planResearchHealthRun({ now: at(18), deep: true }), { llm: true });
+  assert.deepEqual(planResearchHealthRun({ now: at(12) }), { llm: false, slot: "daily" });
+  assert.deepEqual(planResearchHealthRun({ now: at(18), lastRun: { daily: "2026-10-19" } }), { llm: false, slot: "daily" });
+  assert.equal(planResearchHealthRun({ now: at(18), lastRun: { daily: "2026-10-20" } }), null);
+  // 当日dailyが済んでいてもdeepは別枠で実行される
+  assert.deepEqual(planResearchHealthRun({ now: at(18), deep: true, lastRun: { daily: "2026-10-20" } }), { llm: true, slot: "deep" });
+  assert.equal(planResearchHealthRun({ now: at(18), deep: true, lastRun: { daily: "2026-10-20", deep: "2026-10-20" } }), null);
+});
+
+test("writeLastRun/readLastRun: deepはdailyも兼ねる", () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "rh-lr-"));
+  writeLastRun(root, "daily", new Date("2026-10-19T03:00:00Z"));
+  assert.deepEqual(readLastRun(root), { daily: "2026-10-19" });
+  writeLastRun(root, "deep", new Date("2026-10-20T03:00:00Z"));
+  assert.deepEqual(readLastRun(root), { daily: "2026-10-20", deep: "2026-10-20" });
 });
 
 const NOW = new Date("2026-10-20T03:00:00Z"); // 2026-10-20 12:00 JST
@@ -74,9 +85,10 @@ function buildFixture(opts = {}) {
       else exItems.push({ id: "flip", title: "ICC", venue: "ICC", startDate: "2026-11-01", endDate: "2026-12-01", addedAt: `${day(n)}T01:30:00.000Z` });
     }
     writeJson(path.join(root, "data/cases.json"), cases);
+    commitAt(root, day(n), `${opts.ccSubject ?? "Auto research:"} ${day(n)}`);
     writeJson(path.join(root, "data/tech.json"), tech);
     writeJson(path.join(root, "data/exhibition.json"), { version: 1, items: exItems });
-    commitAt(root, day(n));
+    commitAt(root, day(n), `Tech radar: ${day(n)}`);
   }
   const sources = opts.sourcesEnabled === 0 ? [{ id: "a", enabled: false }, { id: "b", enabled: false }] : [{ id: "a", enabled: true }, { id: "b", enabled: false }];
   writeJson(path.join(root, "data/sources.json"), sources);
@@ -186,16 +198,52 @@ test("dryRun=false で markdown と system-alerts.jsonl(high/medのみ・形式 
   assert.ok(lines.length >= 1);
   for (const l of lines) {
     assert.equal(l.source, "research-health");
-    assert.ok(["high", "med"].includes(l.level));
+    assert.ok(["error", "warn"].includes(l.level), l.level); // high→error, med→warn（infoにlowは入れない）
     assert.deepEqual(Object.keys(l).sort(), ["at", "body", "level", "source", "title"]);
+    assert.ok(!/\d/.test(l.title), `titleに数字: ${l.title}`); // 数字はbodyへ
   }
-  assert.ok(!lines.some((l) => l.level === "low"));
+  assert.ok(lines.some((l) => l.level === "error"));
+  assert.match(fs.readFileSync(path.join(root, "logs/system-alerts-latest.md"), "utf8"), /\[ERROR\]/);
   assert.match(r.markdown, /AIレビュー/);
   assert.match(r.markdown, /失敗/);
-  // 再実行で同日・同題の重複追記をしない
-  const before = fs.readFileSync(path.join(root, "logs/system-alerts.jsonl"), "utf8");
+  // 状態が変わらない限り、翌日・翌々日は再記録しない / 3日後に1回だけ再記録
+  const count = () => fs.readFileSync(path.join(root, "logs/system-alerts.jsonl"), "utf8").trim().split("\n").length;
+  const n0 = count();
   await runResearchHealthReview({ root, now: NOW, logDir });
-  assert.equal(fs.readFileSync(path.join(root, "logs/system-alerts.jsonl"), "utf8"), before);
+  assert.equal(count(), n0);
+  await runResearchHealthReview({ root, now: new Date(NOW.getTime() + 2 * 86400000), logDir });
+  assert.equal(count(), n0);
+  await runResearchHealthReview({ root, now: new Date(NOW.getTime() + 3 * 86400000), logDir });
+  assert.ok(count() > n0);
+});
+
+test("AIレビューのhighはsystem-alertsにerrorで記録される(med/lowは記録しない)", async () => {
+  const { root, logDir } = buildFixture();
+  await runResearchHealthReview({
+    root, now: NOW, logDir, llm: true,
+    runLlm: () => ({ findings: [
+      { severity: "high", title: "基準が形骸化", detail: "d", evidence: "e" },
+      { severity: "med", title: "偏りの疑い", detail: "d", evidence: "e" },
+    ] }),
+  });
+  const lines = fs.readFileSync(path.join(root, "logs/system-alerts.jsonl"), "utf8").trim().split("\n").map((l) => JSON.parse(l));
+  assert.deepEqual(lines.map((l) => [l.level, l.title]), [["error", "基準が形骸化"]]);
+});
+
+test("追加ペースは自動リサーチのコミットだけ数える(Studio/手動コミットの追加は除外)", async () => {
+  const { root, logDir } = buildFixture({ ccSubject: "Studio(LINE) 事例追加:" });
+  const r = await runResearchHealthReview({ root, now: NOW, logDir, dryRun: true });
+  assert.ok(codes(r).includes("cc:adds-stalled") || codes(r).includes("cc:pace-floor"), codes(r).join());
+});
+
+test("絶対下限: 基準自体が低下済み(週3件で安定)でも検知する", async () => {
+  const { root, logDir } = buildFixture({ ccAddsPerDay: (n) => (n % 3 === 0 ? 1 : 0), techAddsPerDay: (n) => (n % 4 === 0 ? 1 : 0), exAddsPerDay: () => 0 });
+  const r = await runResearchHealthReview({ root, now: NOW, logDir, dryRun: true });
+  const c = codes(r);
+  assert.ok(c.includes("cc:pace-floor"), c.join());
+  assert.ok(c.includes("tech:pace-floor"), c.join());
+  assert.ok(c.includes("exhibition:pace-floor"), c.join());
+  assert.ok(!c.includes("cc:pace-drop"), c.join());
 });
 
 test("llm=true で runLlm の findings が『AIレビュー』節に載る", async () => {

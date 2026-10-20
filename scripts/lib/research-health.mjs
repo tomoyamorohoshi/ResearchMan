@@ -16,6 +16,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
+import { appendSystemAlert } from "./system-alerts.mjs";
 
 // ───────── しきい値（根拠つき） ─────────
 /** 「直近」の窓（日）。週次リズムのジョブが多いので1週間 */
@@ -48,6 +49,16 @@ export const TUNEUP_STALE_DAYS = 10;
 export const MISCLASS_WINDOW_DAYS = 14;
 export const NEITHER_RATE = 0.3;
 export const NEITHER_MIN_JOBS = 5;
+/** 絶対下限（直近7日の追加数）。相対比較だけだと「基準28日そのものが低下済み」で自己消滅する（週35→3件に落ちた後は3件が基準になる）ため併用。
+ *  cc: 平時は週35〜40件、7件(=1日1件)未満は明確に異常 / tech: 日次1〜3件で週3件未満 / exhibition: 週数件、7日0件は異常 */
+export const ABS_MIN_WEEKLY = { cc: 7, tech: 3, exhibition: 1 };
+/** 追加ペースに数える自動リサーチのコミット件名（Studio・手動追加は除外） */
+export const AUTO_COMMIT_GREP = { cc: "^Auto research:", tech: "^Tech radar:" };
+/** git呼び出しの上限 */
+export const GIT_TIMEOUT_MS = 60000;
+export const GIT_MAX_BUFFER = 64 * 1024 * 1024;
+/** 同一 code の再記録間隔（日）。状態（重大度・対象）が変わらない限りこの間隔で1回だけ system-alerts に記録 */
+export const ALERT_REPEAT_DAYS = 3;
 /** AIレビューに渡す材料の合計上限（文字）。ユーザー指定2万字 */
 export const LLM_INPUT_MAX_CHARS = 20000;
 
@@ -81,39 +92,37 @@ function readText(p) {
 }
 const itemsOf = (v) => (Array.isArray(v) ? v : Array.isArray(v?.items) ? v.items : []);
 
+/** git実行。timeout/maxBuffer付き（cases.json は約4MB。64MBあれば十分で、暴走時に無制限メモリを食わない） */
 function gitOut(root, args) {
-  return execFileSync("git", ["-C", root, ...args], { encoding: "utf-8", maxBuffer: 512 * 1024 * 1024, stdio: ["ignore", "pipe", "ignore"] });
+  return execFileSync("git", ["-C", root, ...args], { encoding: "utf-8", maxBuffer: GIT_MAX_BUFFER, timeout: GIT_TIMEOUT_MS, stdio: ["ignore", "pipe", "ignore"] });
 }
-/** since（JST暦日）以降にfileを触ったコミットと、その直前の状態を古い順に返す: [{day, items}] 先頭は直前状態(day=null) */
-function gitSnapshots(root, file, sinceDay) {
-  const out = gitOut(root, ["log", `--since=${sinceDay}T00:00:00+09:00`, "--format=%H%x09%cI", "--reverse", "--", file]).trim();
+/** since（JST暦日）以降にfileを触ったコミット [{h, day}] を古い順で返す。grep指定時は件名がその正規表現に合うものだけ */
+function gitCommits(root, file, sinceDay, grep) {
+  const args = ["log", `--since=${sinceDay}T00:00:00+09:00`, "--format=%H%x09%cI", "--reverse"];
+  if (grep) args.push("-E", `--grep=${grep}`);
+  args.push("--", file);
+  const out = gitOut(root, args).trim();
   if (!out) return [];
-  const commits = out.split("\n").map((l) => { const [h, iso] = l.split("\t"); return { h, day: isoToDay(iso) }; });
-  const snaps = [];
-  let parent = [];
-  try { parent = itemsOf(JSON.parse(gitOut(root, ["show", `${commits[0].h}^:${file}`]))); } catch { parent = []; }
-  snaps.push({ day: null, items: parent });
-  for (const c of commits) {
-    let items = null;
-    try { items = itemsOf(JSON.parse(gitOut(root, ["show", `${c.h}:${file}`]))); } catch { items = null; }
-    if (items) snaps.push({ day: c.day, items });
-  }
-  return snaps;
+  return out.split("\n").map((l) => { const [h, iso] = l.split("\t"); return { h, day: isoToDay(iso) }; });
+}
+/** 指定リビジョンのfileを読み、mapper(items)で必要最小限へ縮約して返す（JSON本体は呼び出し側に残さない）。無ければnull */
+function gitShowReduced(root, rev, file, mapper) {
+  try { return mapper(itemsOf(JSON.parse(gitOut(root, ["show", `${rev}:${file}`])))); } catch { return null; }
 }
 
-/** gitの追加履歴: Map<day, [{id,title,overview}]>（直前状態に無かったidを、その日のコミットの追加とみなす） */
-function addsFromGit(root, file, sinceDay) {
-  const snaps = gitSnapshots(root, file, sinceDay);
+/**
+ * 自動リサーチのコミットごとの追加: Map<day, [{id,title,overview}]>。
+ * 各コミットを「そのコミット自身の親」と比べる（間に入った Studio・手動コミットの追加を自動分に混ぜない）。
+ * 保持するのは親側の id 集合と追加分の最小フィールドだけ。
+ */
+function addsFromGit(root, file, sinceDay, grep) {
   const byDay = new Map();
-  if (snaps.length < 2) return byDay;
-  let seen = new Set(snaps[0].items.map((x) => x.id));
-  for (const s of snaps.slice(1)) {
-    for (const it of s.items) {
-      if (seen.has(it.id)) continue;
-      seen.add(it.id);
-      if (!byDay.has(s.day)) byDay.set(s.day, []);
-      byDay.get(s.day).push({ id: it.id, title: it.title ?? "", overview: it.overview ?? "" });
-    }
+  for (const c of gitCommits(root, file, sinceDay, grep)) {
+    const parentIds = gitShowReduced(root, `${c.h}^`, file, (items) => new Set(items.map((x) => x.id))) ?? new Set();
+    const added = gitShowReduced(root, c.h, file, (items) =>
+      items.filter((x) => !parentIds.has(x.id)).map((x) => ({ id: x.id, title: x.title ?? "", overview: String(x.overview ?? "").slice(0, 400) })));
+    if (!added?.length) continue;
+    byDay.set(c.day, [...(byDay.get(c.day) || []), ...added]);
   }
   return byDay;
 }
@@ -132,11 +141,21 @@ function checkPace({ pipeline, label, byDay, today }) {
     if (d >= rFrom) recent += c; else if (d <= bTo) base += c;
   }
   const baseWeekly = base / (BASELINE_DAYS / RECENT_DAYS);
-  if (baseWeekly >= PACE_MIN_BASELINE_WEEKLY && recent < baseWeekly * PACE_DROP_RATIO) {
+  const relDrop = baseWeekly >= PACE_MIN_BASELINE_WEEKLY && recent < baseWeekly * PACE_DROP_RATIO;
+  const floor = ABS_MIN_WEEKLY[pipeline];
+  if (!relDrop && recent < floor) {
     findings.push({
-      severity: "med", pipeline, code: "pace-drop",
-      title: `${label}の追加ペースが激減（直近7日 ${recent}件 / 直前28日の週平均 ${baseWeekly.toFixed(1)}件）`,
-      detail: `直近${RECENT_DAYS}日の追加が基準週平均の${PACE_DROP_RATIO * 100}%未満です。発見の空振り・情報源の無効化・検証段階の誤却下を疑ってください。`,
+      severity: "med", pipeline, code: "pace-floor", sig: "med",
+      title: `${label}の追加が絶対下限を下回っている`,
+      detail: `直近${RECENT_DAYS}日の追加は${recent}件で、下限${floor}件未満です（直前28日の週平均は${baseWeekly.toFixed(1)}件。基準自体が低下済みでも検知するための絶対下限）。`,
+      evidence: { recent7d: recent, absoluteMinWeekly: floor, baselineWeeklyAvg: Number(baseWeekly.toFixed(2)) },
+    });
+  }
+  if (relDrop) {
+    findings.push({
+      severity: "med", pipeline, code: "pace-drop", sig: "med",
+      title: `${label}の追加ペースが激減`,
+      detail: `直近${RECENT_DAYS}日の追加は${recent}件で、直前28日の週平均${baseWeekly.toFixed(1)}件の${PACE_DROP_RATIO * 100}%未満です。発見の空振り・情報源の無効化・検証段階の誤却下を疑ってください。`,
       evidence: { recent7d: recent, baselineWeeklyAvg: Number(baseWeekly.toFixed(2)), baselineWindow: `${bFrom}〜${bTo}`, ratio: Number((recent / baseWeekly).toFixed(2)) },
     });
   }
@@ -148,9 +167,9 @@ function checkPace({ pipeline, label, byDay, today }) {
   const limit = ZERO_STREAK_HIGH[pipeline];
   if (base > 0 && streak >= limit) {
     findings.push({
-      severity: "high", pipeline, code: "adds-stalled",
-      title: `${label}の追加が${streak}日連続0件`,
-      detail: `連続0件日が${limit}日以上です（毎日ジョブは動いていても、検証・照合段階で全落ちしている可能性があります）。`,
+      severity: "high", pipeline, code: "adds-stalled", sig: "high",
+      title: `${label}の追加が長期間0件`,
+      detail: `連続${streak}日0件です（しきい値${limit}日）。（毎日ジョブは動いていても、検証・照合段階で全落ちしている可能性があります）。`,
       evidence: { zeroDaysUntilYesterday: streak, threshold: limit, baselineAdds28d: base },
     });
   }
@@ -200,9 +219,9 @@ function checkDiscovery({ pipeline, label, runs, today }) {
   const baseWeekly = base / (BASELINE_DAYS / RECENT_DAYS);
   if (baseWeekly >= DISCOVERY_MIN_BASELINE_WEEKLY && recent < baseWeekly * DISCOVERY_DROP_RATIO) {
     return [{
-      severity: "med", pipeline, code: "discovery-drop",
-      title: `${label}の発見候補が激減（直近7日 ${recent}件 / 直前28日の週平均 ${baseWeekly.toFixed(1)}件）`,
-      detail: `発見フェーズの候補総数が基準の${DISCOVERY_DROP_RATIO * 100}%未満です。情報源（data/sources.json）の無効化や検索基準の過剰な厳格化を疑ってください。直近7日に「候補: 0件」だった実行は ${recentZeroRuns}/${recentRuns} 回。`,
+      severity: "med", pipeline, code: "discovery-drop", sig: "med",
+      title: `${label}の発見候補が激減`,
+      detail: `直近7日の候補${recent}件は、直前28日の週平均${baseWeekly.toFixed(1)}件の${DISCOVERY_DROP_RATIO * 100}%未満です。情報源（data/sources.json）の無効化や検索基準の過剰な厳格化を疑ってください。直近7日に「候補: 0件」だった実行は ${recentZeroRuns}/${recentRuns} 回。`,
       evidence: { recent7dCandidates: recent, baselineWeeklyAvg: Number(baseWeekly.toFixed(2)), zeroCandidateRuns7d: `${recentZeroRuns}/${recentRuns}`, log: LOG_FILES[pipeline] },
     }];
   }
@@ -253,8 +272,9 @@ function checkVerification({ events, today }) {
       if (share > REASON_DOMINANCE_RATIO && !normal) {
         findings.push({
           severity: "med", pipeline, code: "reason-dominance",
-          title: `${pipeline}の却下/未検証の${Math.round(share * 100)}%が同一理由「${topReason}」`,
-          detail: `直近7日の却下・未検証${recent.length}件中${topN}件が同じ理由です（照合ロジックのバグの兆候。基準期間ではこの偏りは常態ではありませんでした）。`,
+          sig: topReason,
+          title: `${pipeline}の却下/未検証が同一理由に偏っている（${topReason}）`,
+          detail: `${Math.round(share * 100)}%。直近7日の却下・未検証${recent.length}件中${topN}件が同じ理由です（照合ロジックのバグの兆候。基準期間ではこの偏りは常態ではありませんでした）。`,
           evidence: { reason: topReason, recent7d: `${topN}/${recent.length}`, baselineShare: baseShare === null ? "n/a" : Number(baseShare.toFixed(2)), files: "logs/rejections-*.jsonl, data/inbox/exhibition-unverified.json" },
         });
       }
@@ -282,8 +302,9 @@ function checkVerification({ events, today }) {
       streaks.sort((a, b) => b.days - a.days);
       findings.push({
         severity: "med", pipeline, code: "same-title-streak",
-        title: `${pipeline}で同じタイトルが${streaks[0].days}日以上連続して却下/未検証（${streaks.length}件）`,
-        detail: `毎日同じ候補が見つかっては落ちています。照合の不具合か、既知の落選候補を除外できていません: ${streaks.slice(0, 5).map((s) => `「${s.title}」${s.days}日`).join(" / ")}`,
+        sig: streaks.map((s) => s.title).sort().join("|"),
+        title: `${pipeline}で同じタイトルが連続して却下/未検証`,
+        detail: `${streaks.length}件が${SAME_TITLE_STREAK_DAYS}日以上連続。毎日同じ候補が見つかっては落ちています。照合の不具合か、既知の落選候補を除外できていません: ${streaks.slice(0, 5).map((s) => `「${s.title}」${s.days}日`).join(" / ")}`,
         evidence: { titles: streaks.slice(0, 5), files: "logs/rejections-*.jsonl, data/inbox/exhibition-unverified.json" },
       });
     }
@@ -294,13 +315,17 @@ function checkVerification({ events, today }) {
 // ───────── チェック4: フリップフロップ ─────────
 function checkFlipFlop({ root, today }) {
   const since = dayAdd(today, -FLIP_WINDOW_DAYS);
-  const snaps = gitSnapshots(root, "data/exhibition.json", since);
-  if (snaps.length < 2) return [];
+  const commits = gitCommits(root, "data/exhibition.json", since);
+  if (!commits.length) return [];
   const FIELDS = ["startDate", "endDate", "venue"];
+  // 保持するのは id→{3フィールド} だけ（JSON本体は捨てる）。直前の1スナップショットのみメモリに置く
+  const reduce = (items) => new Map(items.map((x) => [x.id, { startDate: x.startDate, endDate: x.endDate, venue: x.venue }]));
   const changes = new Map(); // id -> [{day, field, from, to}]
-  let prev = new Map(snaps[0].items.map((x) => [x.id, x]));
-  for (const s of snaps.slice(1)) {
-    const cur = new Map(s.items.map((x) => [x.id, x]));
+  let prev = gitShowReduced(root, `${commits[0].h}^`, "data/exhibition.json", reduce) ?? new Map();
+  for (const c of commits) {
+    const cur = gitShowReduced(root, c.h, "data/exhibition.json", reduce);
+    if (!cur) continue;
+    const s = c;
     for (const [id, it] of cur) {
       const p = prev.get(id);
       if (!p) continue;
@@ -316,9 +341,9 @@ function checkFlipFlop({ root, today }) {
   const flips = [...changes].filter(([, c]) => c.length >= FLIP_MIN_CHANGES);
   if (!flips.length) return [];
   return [{
-    severity: "med", pipeline: "exhibition", code: "flip-flop",
-    title: `既存展示の会期・会場が直近${FLIP_WINDOW_DAYS}日で繰り返し書き換わっている（${flips.length}件）`,
-    detail: `同一idの startDate/endDate/venue が${FLIP_MIN_CHANGES}回以上変わっています（会期更新ロジックのフリップフロップの兆候）: ${flips.slice(0, 3).map(([id, c]) => `${id}(${c.length}回)`).join(", ")}`,
+    severity: "med", pipeline: "exhibition", code: "flip-flop", sig: flips.map(([id]) => id).sort().join("|"),
+    title: "既存展示の会期・会場が繰り返し書き換わっている",
+    detail: `直近${FLIP_WINDOW_DAYS}日で${flips.length}件。同一idの startDate/endDate/venue が${FLIP_MIN_CHANGES}回以上変わっています（会期更新ロジックのフリップフロップの兆候）: ${flips.slice(0, 3).map(([id, c]) => `${id}(${c.length}回)`).join(", ")}`,
     evidence: { file: "data/exhibition.json (git log)", items: flips.slice(0, 5).map(([id, c]) => ({ id, changes: c.slice(0, 6) })) },
   }];
 }
@@ -345,15 +370,15 @@ function checkConfig({ root, logDir, today }) {
       const recentFails = runs.filter((r) => r.day && r.day > lastSuccess && /チューンアップエラー終了/.test(r.text));
       const lastErr = (recentFails.at(-1)?.text.split("\n").find((l) => /失敗|エラー/.test(l) && !/終了/.test(l)) || "").slice(0, 160);
       findings.push({
-        severity: "high", pipeline: "config", code: "tuneup-stale",
-        title: `週次チューンアップの最終成功が${age}日前（${lastSuccess}）`,
-        detail: `${TUNEUP_STALE_DAYS}日超成功していません。${recentFails.length ? `その後の失敗${recentFails.length}回が連続しています（直近の失敗: ${lastErr || "理由不明"}）。` : ""}設定（探索角度・基準）が陳腐化します。`,
+        severity: "high", pipeline: "config", code: "tuneup-stale", sig: String(lastSuccess),
+        title: "週次チューンアップが長期間成功していない",
+        detail: `最終成功は${lastSuccess}（${age}日前）。${TUNEUP_STALE_DAYS}日超成功していません。${recentFails.length ? `その後の失敗${recentFails.length}回が連続しています（直近の失敗: ${lastErr || "理由不明"}）。` : ""}設定（探索角度・基準）が陳腐化します。`,
         evidence: { lastSuccess, ageDays: age, consecutiveFailures: recentFails.length, source },
       });
     }
   } else if (runs.length) {
     findings.push({
-      severity: "high", pipeline: "config", code: "tuneup-stale",
+      severity: "high", pipeline: "config", code: "tuneup-stale", sig: "never",
       title: "週次チューンアップの成功記録が1度もない",
       detail: `ログに${runs.length}回の実行がありますが成功マーカー（✅ 完了）がありません。`,
       evidence: { runs: runs.length, source },
@@ -364,9 +389,9 @@ function checkConfig({ root, logDir, today }) {
   const srcs = Array.isArray(srcRaw) ? srcRaw : Array.isArray(srcRaw?.sources) ? srcRaw.sources : null;
   if (srcs && srcs.filter((s) => s.enabled).length === 0) {
     findings.push({
-      severity: "high", pipeline: "config", code: "sources-all-disabled",
-      title: `data/sources.json の有効な情報源が0件（全${srcs.length}件が enabled:false）`,
-      detail: "情報源レジストリが全件無効のため、発見フェーズが候補を出せません（Case Study の激減原因になる）。",
+      severity: "high", pipeline: "config", code: "sources-all-disabled", sig: "high",
+      title: "data/sources.json の有効な情報源が0件",
+      detail: `全${srcs.length}件が enabled:false。情報源レジストリが全件無効のため、発見フェーズが候補を出せません（Case Study の激減原因になる）。`,
       evidence: { file: "data/sources.json", enabled: 0, total: srcs.length },
     });
   }
@@ -492,31 +517,59 @@ export function renderMarkdown({ findings, today, ai }) {
   return L.join("\n");
 }
 
-function appendAlerts({ root, findings, now, today }) {
-  const file = path.join(root, "logs/system-alerts.jsonl");
-  fs.mkdirSync(path.dirname(file), { recursive: true });
-  const existing = new Set();
-  for (const line of readText(file).split(/\r?\n/)) {
-    try {
-      const o = JSON.parse(line);
-      if (o.source === "research-health" && isoToDay(o.at) === today) existing.add(o.title);
-    } catch { /* skip */ }
+const LEVEL_OF = { high: "error", med: "warn" };
+const STATE_FILE = "research-health-state.json";
+/**
+ * high/med（とAIレビューのhigh）を main の appendSystemAlert 経由で system-alerts.jsonl に記録する
+ * （level: high→error, med→warn。system-alerts-latest.md もそちらが再生成する）。
+ * 同一 pipeline:code は、sig（重大度・対象）が変わらない限り ALERT_REPEAT_DAYS 日に1回だけ記録。
+ * 消えた項目は状態から外すので、再発時はすぐ記録される。
+ */
+function appendAlerts({ root, findings, aiFindings = [], now }) {
+  const logsDir = path.join(root, "logs");
+  const stateFile = path.join(logsDir, STATE_FILE);
+  const prev = readJson(stateFile, {});
+  const next = {};
+  let n = 0;
+  const cands = [
+    ...findings.filter((f) => f.severity === "high" || f.severity === "med"),
+    ...aiFindings.filter((f) => f.severity === "high").map((f) => ({ ...f, pipeline: "ai", code: `ai:${f.title}`, sig: f.title })),
+  ];
+  for (const f of cands) {
+    const key = `${f.pipeline}:${f.code}`;
+    const sig = `${f.severity}/${f.sig ?? ""}`;
+    const old = prev[key];
+    const due = !old || old.sig !== sig || now.getTime() - Date.parse(old.at) >= ALERT_REPEAT_DAYS * 86400000;
+    if (due) {
+      appendSystemAlert({ source: "research-health", level: LEVEL_OF[f.severity], title: f.title, body: `${f.detail}\n根拠: ${evStr(f.evidence)}` }, { logsDir, now });
+      next[key] = { sig, at: now.toISOString() };
+      n++;
+    } else next[key] = old;
   }
-  const lines = findings
-    .filter((f) => (f.severity === "high" || f.severity === "med") && !existing.has(f.title))
-    .map((f) => JSON.stringify({ at: now.toISOString(), source: "research-health", level: f.severity, title: f.title, body: `${f.detail}\n根拠: ${evStr(f.evidence)}` }));
-  if (lines.length) fs.appendFileSync(file, lines.join("\n") + "\n");
-  return lines.length;
+  fs.mkdirSync(logsDir, { recursive: true });
+  fs.writeFileSync(stateFile, JSON.stringify(next, null, 1));
+  return n;
 }
 
 /**
- * watchdog から呼ぶ実行計画。AM枠(JST 15時前＝12:30枠)は毎日実行(AIレビューなし)、
- * deep(日曜枠)はAIレビュー付きで実行、通常の夕方枠は実行しない(null)。
+ * watchdog から呼ぶ実行計画。時刻ではなく「その枠の今日分をまだ実行していないか」で決める
+ * （lastRun = {daily:'YYYY-MM-DD', deep:'YYYY-MM-DD'}）。deep(日曜枠)は llm 付きで別枠。
+ * 戻り値 {llm, slot} か、実行済みなら null。
  */
-export function planResearchHealthRun({ now = new Date(), deep = false } = {}) {
-  if (deep) return { llm: true };
-  const jstHour = new Date(now.getTime() + 9 * 3600 * 1000).getUTCHours();
-  return jstHour < 15 ? { llm: false } : null;
+export function planResearchHealthRun({ now = new Date(), deep = false, lastRun = {} } = {}) {
+  const today = jstDay(now);
+  if (deep) return lastRun?.deep === today ? null : { llm: true, slot: "deep" };
+  return lastRun?.daily === today ? null : { llm: false, slot: "daily" };
+}
+const LASTRUN_FILE = "research-health-lastrun.json";
+export function readLastRun(root) { return readJson(path.join(root, "logs", LASTRUN_FILE), {}); }
+/** 実行成功後に記録。deep は daily も兼ねる（deepも全機械チェックを実行するため） */
+export function writeLastRun(root, slot, now = new Date()) {
+  const cur = readLastRun(root);
+  const today = jstDay(now);
+  const next = { ...cur, daily: today, ...(slot === "deep" ? { deep: today } : {}) };
+  fs.mkdirSync(path.join(root, "logs"), { recursive: true });
+  fs.writeFileSync(path.join(root, "logs", LASTRUN_FILE), JSON.stringify(next));
 }
 
 /**
@@ -534,8 +587,8 @@ export async function runResearchHealthReview({ root, now = new Date(), logDir =
 
   const since = dayAdd(today, -(RECENT_DAYS - 1 + BASELINE_DAYS) - 1);
   const adds = { cc: new Map(), tech: new Map(), exhibition: new Map() };
-  guard("追加履歴(cases)", () => { adds.cc = addsFromGit(root, "data/cases.json", since); return []; });
-  guard("追加履歴(tech)", () => { adds.tech = addsFromGit(root, "data/tech.json", since); return []; });
+  guard("追加履歴(cases)", () => { adds.cc = addsFromGit(root, "data/cases.json", since, AUTO_COMMIT_GREP.cc); return []; });
+  guard("追加履歴(tech)", () => { adds.tech = addsFromGit(root, "data/tech.json", since, AUTO_COMMIT_GREP.tech); return []; });
   guard("追加履歴(exhibition)", () => {
     for (const it of itemsOf(readJson(path.join(root, "data/exhibition.json"), {}))) {
       const d = isoToDay(it.addedAt);
@@ -560,7 +613,7 @@ export async function runResearchHealthReview({ root, now = new Date(), logDir =
     fs.mkdirSync(path.dirname(mdPath), { recursive: true });
     fs.writeFileSync(mdPath, markdown);
     written.markdown = mdPath;
-    written.alerts = appendAlerts({ root, findings, now, today });
+    written.alerts = appendAlerts({ root, findings, aiFindings: ai?.ok ? ai.items : [], now });
   }
   return { findings, markdown, written };
 }
