@@ -105,14 +105,19 @@ export interface GateCommand {
 }
 
 const GATE_ACTIONS: Record<string, GateCommandAction> = { 承認: "approve", 却下: "reject", 修正: "revise" };
-const GATE_COMMAND_RE = /^(承認|却下|修正)[\s　]*[GgＧｇ]?([0-9０-９]+)(?![0-9０-９A-Za-z])(?:[\s　]+([\s\S]*))?$/;
+// 承認・却下: ID の後ろは空白・句読点・!・。だけ許す（「承認 3 件お願いします」等の通常文を誤爆させない）。
+// 修正: ID の後ろは空白/改行＋自由文のみ。「#G12」「：」「:」の表記ゆれも許す（送信文のヘッダが #G12 のため）。
+const GATE_HEAD = "[\\s　:：]*[#＃]?[GgＧｇ]?([0-9０-９]+)";
+const GATE_DECIDE_RE = new RegExp(`^(承認|却下)${GATE_HEAD}[\\s　。、.,!！]*$`);
+const GATE_REVISE_RE = new RegExp(`^(修正)${GATE_HEAD}(?:[\\s　]+([\\s\\S]*))?$`);
 
 /**
  * 「承認 G12」「却下 12」「修正 G12 もっと短く」を解釈する。id が無い（「承認」だけ等）・
  * 不正な場合は null（誤作動させない）。webhook.ts は他の全判定より先にこれを呼ぶ。
  */
 export function parseGateCommand(text: string): GateCommand | null {
-  const m = text.trim().match(GATE_COMMAND_RE);
+  const trimmed = text.trim();
+  const m = trimmed.match(GATE_DECIDE_RE) ?? trimmed.match(GATE_REVISE_RE);
   if (!m) return null;
   const id = Number(normalizeDigits(m[2]));
   if (!Number.isInteger(id) || id < 1) return null;
