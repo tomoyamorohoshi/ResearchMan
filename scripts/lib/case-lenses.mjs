@@ -274,3 +274,20 @@ export function takeBorderlineToTry(pending, alreadyTried, max = MAX_ARTICLE_ATT
   const n = Math.max(0, max - alreadyTried);
   return { take: sorted.slice(0, n), rest: sorted.slice(n) };
 }
+
+/**
+ * 同期処理を失敗時に1回だけ再試行する（計 attempts 回まで。既定2）。例外のみ再試行し、戻り値（nullを含む）はそのまま返す。
+ * 記事化の Claude CLI が一過性の異常終了（メモリ逼迫での 0xC0000409 等）をしたとき、同じ候補を捨てずにやり直すために使う。
+ */
+export function runWithRetry(fn, { attempts = 2, log = () => {} } = {}) {
+  let lastErr;
+  for (let i = 1; i <= attempts; i++) {
+    try {
+      return fn();
+    } catch (e) {
+      lastErr = e;
+      if (i < attempts) log(`失敗（${i}/${attempts}回目）→ 再試行: ${e.message}`);
+    }
+  }
+  throw lastErr;
+}
