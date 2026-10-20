@@ -2,7 +2,7 @@
 // 実行: node --test scripts/lib/notify-digest-core.test.mjs
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { parseQueueLines, filterToday, buildDigestText } from "./notify-digest-core.mjs";
+import { parseQueueLines, filterToday, buildDigestText, classifyQueueEntry, partitionQueue } from "./notify-digest-core.mjs";
 
 test("parseQueueLines: 空行を無視してjsonlをパースする", () => {
   const raw = '{"at":"2026-07-22T01:00:00.000Z","label":"A","text":"hello"}\n\n{"at":"2026-07-22T02:00:00.000Z","label":"B","text":"world"}\n';
@@ -73,4 +73,36 @@ test("buildDigestText: 各行は label と text の1行目を使う", () => {
   const text = buildDigestText(entries, "2026-07-22");
   assert.ok(text.includes("Auto research: 3件追加・本番反映OK"), `本文行が期待と異なる: ${text}`);
   assert.ok(!text.includes("title1"), "textの1行目以降まで含めてはいけない");
+});
+
+test("classifyQueueEntry: kind付きはそれに従う", () => {
+  assert.equal(classifyQueueEntry({ kind: "share", text: "x" }), "share");
+  assert.equal(classifyQueueEntry({ kind: "system", text: "🔍 ResearchMan: 3件追加" }), "system");
+});
+
+test("classifyQueueEntry: 旧形式は既存フィールドから判定（追加ありの紹介=share）", () => {
+  assert.equal(classifyQueueEntry({ label: "Auto research", text: "🔍 ResearchMan: 3件追加・本番反映OK
+
+・a" }), "share");
+  assert.equal(classifyQueueEntry({ label: "Tech radar", text: "🔍 ResearchMan Technology: 1件追加・本番反映OK" }), "share");
+  assert.equal(classifyQueueEntry({ label: "Exhibition", text: "⚠️ ResearchMan Exhibition: 2件追加・push済み（反映確認は時間切れ）" }), "share");
+});
+
+test("classifyQueueEntry: 0件・error・tuneup・watchdog・判定不能は system", () => {
+  for (const text of [
+    "🔍 ResearchMan: 本日の新規追加なし",
+    "🔍 ResearchMan: 0件追加・本番反映OK",
+    "❌ ResearchMan: 収集がエラー終了",
+    "🧪 tuneup report 3件追加した設定",
+    "🐕 ResearchMan Watchdog",
+    "",
+  ]) assert.equal(classifyQueueEntry({ label: "x", text }), "system", text);
+  assert.equal(classifyQueueEntry({}), "system");
+});
+
+test("partitionQueue: share/system に分ける", () => {
+  const e = [{ kind: "share", text: "a" }, { text: "🔍 ResearchMan: 本日の新規追加なし" }];
+  const { share, system } = partitionQueue(e);
+  assert.equal(share.length, 1);
+  assert.equal(system.length, 1);
 });

@@ -71,3 +71,22 @@ export function buildDigestText(entries, todayISODateStr) {
   }
   return lines.join("\n");
 }
+
+/**
+ * キュー項目を share / system に再判定する（2026-10-20 LINE方針変更）。
+ * kind があればそれに従う。旧形式（kindなし）は本文1行目から判定: 「🔍/⚠️ ResearchMan … N件追加」(N>=1)
+ * だけ share（新規追加の紹介）。それ以外・判定不能は system（安全側）。
+ */
+export function classifyQueueEntry(entry) {
+  if (entry && (entry.kind === "share" || entry.kind === "system")) return entry.kind;
+  const text = entry && typeof entry.text === "string" ? entry.text : "";
+  const first = firstLine(text);
+  return /^(🔍|⚠️) ResearchMan.*[1-9]d*件追加/.test(first) ? "share" : "system";
+}
+
+export function partitionQueue(entries) {
+  const share = [];
+  const system = [];
+  for (const e of entries) (classifyQueueEntry(e) === "share" ? share : system).push(e);
+  return { share, system };
+}

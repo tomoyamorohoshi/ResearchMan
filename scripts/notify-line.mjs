@@ -105,7 +105,7 @@ function queueLabel() {
 
 function appendToQueue(text) {
   fs.mkdirSync(path.dirname(QUEUE_PATH), { recursive: true });
-  const line = `${JSON.stringify({ at: new Date().toISOString(), label: queueLabel(), text })}\n`;
+  const line = `${JSON.stringify({ at: new Date().toISOString(), kind: "share", label: queueLabel(), text })}\n`;
   fs.appendFileSync(QUEUE_PATH, line, { flag: "a" });
   log(`priority=routine → ${QUEUE_PATH} に追記（実送信はnotify-digest.mjsに委譲）`);
 }

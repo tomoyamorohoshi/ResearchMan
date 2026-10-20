@@ -79,7 +79,7 @@ export function renderLatestMd(alerts, now = new Date()) {
  */
 export function appendSystemAlert(alert, { logsDir = DEFAULT_LOGS_DIR, now = new Date() } = {}) {
   const entry = {
-    at: now.toISOString(),
+    at: alert.at || now.toISOString(),
     source: String(alert.source || "unknown"),
     level: LEVELS.includes(alert.level) ? alert.level : "info",
     title: String(alert.title || ""),

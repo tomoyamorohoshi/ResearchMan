@@ -17,9 +17,15 @@ test("resolveNotifyKind: share明示 + ok + 新規1件以上 → share", () => {
   assert.equal(resolveNotifyKind({ kind: "share", result: "ok", count: 2 }), "share");
 });
 
-test("resolveNotifyKind: share明示でも 0件 / error / pushfail / unverified は system", () => {
+test("resolveNotifyKind: share明示 + unverified + 1件以上 → share（紹介は届ける）、0件なら system", () => {
+  assert.equal(resolveNotifyKind({ kind: "share", result: "unverified", count: 2 }), "share");
+  assert.equal(resolveNotifyKind({ kind: "share", result: "unverified", count: 0 }), "system");
+  assert.equal(resolveNotifyKind({ result: "unverified", count: 2 }), "system");
+});
+
+test("resolveNotifyKind: share明示でも 0件 / error / pushfail は system", () => {
   assert.equal(resolveNotifyKind({ kind: "share", result: "ok", count: 0 }), "system");
-  for (const result of ["error", "pushfail", "unverified"]) {
+  for (const result of ["error", "pushfail"]) {
     assert.equal(resolveNotifyKind({ kind: "share", result, count: 5 }), "system", result);
   }
 });
@@ -100,4 +106,19 @@ test("dispatchNotification: dryRun は送信も記録もしない", async () => 
   assert.equal(r.route, "system");
   assert.equal(r.recorded, false);
   assert.equal(readSystemAlerts(dir).length, 0);
+});
+
+test("dispatchNotification: unverified + 1件以上は share 送信しつつ、反映未確認を system にも1件記録", async () => {
+  const dir = tmp();
+  const sent = [];
+  const r = await dispatchNotification(
+    { kind: "share", result: "unverified", count: 2, label: "Technology", text: "⚠️ ResearchMan Technology: 2件追加・push済み（反映確認は時間切れ）" },
+    { send: async (t) => { sent.push(t); return { ok: true }; }, logsDir: dir },
+  );
+  assert.equal(r.route, "share");
+  assert.equal(sent.length, 1);
+  const alerts = readSystemAlerts(dir);
+  assert.equal(alerts.length, 1);
+  assert.equal(alerts[0].level, "warn");
+  assert.match(alerts[0].title, /反映未確認/);
 });

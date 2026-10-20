@@ -14,7 +14,8 @@ import { appendSystemAlert } from "./system-alerts.mjs";
 export function resolveNotifyKind({ kind, result = "ok", count = 0, context = "daily", hasTextFile = false }) {
   if (context === "studio") return "share";
   if (kind !== "share") return "system";
-  if (result !== "ok") return "system";
+  // unverified（push済み・反映確認だけ時間切れ）でも事例の紹介は届ける。error/pushfail は未公開なので system
+  if (result !== "ok" && result !== "unverified") return "system";
   if (hasTextFile) return "share";
   return count > 0 ? "share" : "system";
 }
@@ -44,6 +45,11 @@ export async function dispatchNotification(n, { send, logsDir, now, dryRun = fal
   if (route === "share") {
     if (dryRun) return { route, sent: false };
     const result = await send(n.text);
+    // 反映未確認という事実は system 側にも別途1件残す
+    if (n.result === "unverified") {
+      const meta = deriveAlertMeta({ ...n, title: `反映未確認: ${n.label || n.route || "収集"}（push済み・時間切れ）`, level: "warn" });
+      appendSystemAlert({ ...meta, body: n.text }, { logsDir, now });
+    }
     return { route, sent: true, result };
   }
   const meta = deriveAlertMeta(n);

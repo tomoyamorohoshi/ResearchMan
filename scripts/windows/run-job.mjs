@@ -219,7 +219,7 @@ async function runAutoresearch() {
           runNode("scripts/notify-line.mjs", ["--kind", "share", "--priority", "routine"]);
         } else {
           log(`push成功だが反映未確認（時間切れ）: ${unixDateString()}`);
-          runNode("scripts/notify-line.mjs", ["--result", "unverified"]);
+          runNode("scripts/notify-line.mjs", ["--kind", "share", "--result", "unverified"]);
         }
       } else {
         log(`push失敗（pre-push監査で中止の可能性）。コミットはローカル残存。要手動対応: ${unixDateString()}`);
@@ -274,7 +274,7 @@ async function runTechresearch() {
           runNode("scripts/notify-line.mjs", [...summaryArgs, "--kind", "share", "--priority", "routine"]);
         } else {
           log(`push成功だが反映未確認（時間切れ）: ${unixDateString()}`);
-          runNode("scripts/notify-line.mjs", ["--result", "unverified", ...summaryArgs]);
+          runNode("scripts/notify-line.mjs", ["--kind", "share", "--result", "unverified", ...summaryArgs]);
         }
       } else {
         log(`push失敗（pre-push監査で中止の可能性）。コミットはローカル残存。要手動対応: ${unixDateString()}`);
@@ -352,7 +352,7 @@ async function runExhibitionresearch() {
         } else {
           log(`push成功だが反映未確認（時間切れ）: ${unixDateString()}`);
           // 0件追加の回は routine（追加ありは従来どおり critical）
-          runNode("scripts/notify-line.mjs", ["--result", "unverified", ...summaryArgs, "--priority", decideDeployTimeoutPriority(summary)]);
+          runNode("scripts/notify-line.mjs", ["--kind", "share", "--result", "unverified", ...summaryArgs, "--priority", decideDeployTimeoutPriority(summary)]);
         }
       } else {
         log(`push失敗（pre-push監査で中止の可能性）。コミットはローカル残存。要手動対応: ${unixDateString()}`);

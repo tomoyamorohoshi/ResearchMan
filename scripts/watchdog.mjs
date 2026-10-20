@@ -322,7 +322,7 @@ function attemptPipelineRecovery(jobKey) {
     }
     spawnSync(
       "node",
-      ["scripts/notify-line.mjs", ...cfg.notify.args, ...(verified ? ["--kind", "share"] : ["--result", "unverified"])],
+      ["scripts/notify-line.mjs", ...cfg.notify.args, "--kind", "share", ...(verified ? [] : ["--result", "unverified"])],
       { cwd: ROOT, timeout: 30000 }
     );
   }
