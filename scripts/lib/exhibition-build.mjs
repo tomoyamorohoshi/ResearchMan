@@ -405,9 +405,15 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
       if (patch.endDate && !dateAppearsInText(f.text, dup.item.endDate)) effective.endDate = patch.endDate;
       if (patch.venue && !venueAppearsInText(f.text, dup.item.venue)) effective.venue = patch.venue;
       if (!Object.keys(effective).length) { skipped.push({ title: cand.title, reason: "duplicate-existing-still-valid", existingId: dup.item.id }); return; }
-      const v = checkOfficialText(cand, f.text);
-      if (!v.ok) return unver(cand, `会期変更の裏取り失敗: ${v.reason}`);
+      // 照合は title 常時 + effective に含まれる項目のみ（残った既存値の項目は候補値が公式に無くてもよい）
+      let fail = null;
+      if (effective.startDate && !dateAppearsInText(f.text, effective.startDate)) fail = `official-date-mismatch: startDate ${effective.startDate} not found`;
+      else if (effective.endDate && !dateAppearsInText(f.text, effective.endDate)) fail = `official-date-mismatch: endDate ${effective.endDate} not found`;
+      else if (effective.venue && !venueAppearsInText(f.text, effective.venue)) fail = `official-venue-mismatch: ${effective.venue}`;
+      else if (!titleAppearsInText(f.text, cand.title)) fail = `official-title-mismatch: ${cand.title}`;
+      if (fail) return unver(cand, `会期変更の裏取り失敗: ${fail}`);
       const next = applyUpdate(dup.item, effective, today);
+      if (next.startDate > next.endDate) return unver(cand, `会期変更の裏取り失敗: start-after-end（部分適用で ${next.startDate} > ${next.endDate}）`);
       items = items.map((i) => (i.id === dup.item.id ? next : i));
       updated.push({ id: dup.item.id, title: dup.item.title, patch: effective });
       return;

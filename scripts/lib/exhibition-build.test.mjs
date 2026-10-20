@@ -540,3 +540,24 @@ test("processCandidates: 既存の終了日だけ根拠を失った場合は終�
   assert.equal(r.data.items[0].startDate, "2026-10-10");
   assert.equal(r.data.items[0].endDate, "2027-01-10");
 });
+test("processCandidates: 公式照合は effective に残った項目だけ（start は既存が残るので候補 start が公式に無くても end のみ更新）", async () => {
+  const existing = mkItem({ startDate: "2026-10-10", endDate: "2026-12-20" });
+  const c = mkCand({ title: existing.title, venue: existing.venue, officialUrl: existing.link, startDate: "2026-10-15", endDate: "2027-01-10" });
+  const deps = mkDeps({ fetchHtml: async () => ({ status: 200, body: `<p>${existing.title} ${existing.venue} 2026年10月10日〜2027年1月10日</p>` }) });
+  const r = await processCandidates({ data: { version: 1, statusAsOf: "2026-10-03", items: [existing] }, candidates: [c], today: TODAY, deps });
+  assert.equal(r.unverified.length, 0);
+  assert.deepEqual(r.updated[0].patch, { endDate: "2027-01-10" });
+  assert.equal(r.data.items[0].startDate, "2026-10-10");
+});
+
+test("processCandidates: 部分適用で start > end になるパッチは適用せず unverified", async () => {
+  const existing = mkItem({ startDate: "2026-10-10", endDate: "2026-12-20" });
+  const c = mkCand({ title: existing.title, venue: existing.venue, officialUrl: existing.link, startDate: "2027-01-05", endDate: "2027-01-10" });
+  // 既存 start(10/10) は公式から消え、既存 end(12/20) は残っている → start のみ patch → 2027-01-05 > 2026-12-20
+  const deps = mkDeps({ fetchHtml: async () => ({ status: 200, body: `<p>${existing.title} ${existing.venue} 2027年1月5日 〜 2026年12月20日</p>` }) });
+  const r = await processCandidates({ data: { version: 1, statusAsOf: "2026-10-03", items: [existing] }, candidates: [c], today: TODAY, deps });
+  assert.equal(r.updated.length, 0);
+  assert.equal(r.unverified.length, 1);
+  assert.match(r.unverified[0].reason, /start-after-end|startDate.*endDate/);
+  assert.equal(r.data.items[0].startDate, "2026-10-10");
+});
