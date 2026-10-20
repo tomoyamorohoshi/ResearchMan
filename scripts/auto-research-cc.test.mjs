@@ -5,9 +5,9 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { buildDiscoveryPrompt, MAX_TOTAL_DISCOVERY_MS, DISCOVER_WEBSEARCH_LIMIT } from "./auto-research-cc.mjs";
+import { buildDiscoveryPrompt, MAX_TOTAL_DISCOVERY_MS, DISCOVER_WEBSEARCH_LIMIT, DISCOVER_WEBFETCH_LIMIT, DISCOVER_ALLOWED_TOOLS } from "./auto-research-cc.mjs";
 import { localDayIndex } from "./lib/day-index.mjs";
-import { lensOrderForDay, lensLanguagePlan, formatLensTierSummary } from "./lib/case-lenses.mjs";
+import { lensOrderForDay, lensLanguagePlan, formatLensTierSummary, runWithRetry } from "./lib/case-lenses.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const tuning = JSON.parse(fs.readFileSync(path.join(__dirname, "../data/research-tuning.json"), "utf-8"));
@@ -132,4 +132,44 @@ test("formatLensTierSummary: レンズ別・tier別の件数を1行ずつ出す"
   assert.match(lines[0], /accept 3/);
   assert.match(lines[0], /borderline 2/);
   assert.match(lines[0], /採用 accept 2 \+ borderline 1/);
+});
+
+test("発見の allowedTools は WebSearch,WebFetch（巡回先の新着一覧を開ける）", () => {
+  assert.equal(DISCOVER_ALLOWED_TOOLS, "WebSearch,WebFetch");
+  assert.equal(DISCOVER_WEBFETCH_LIMIT, 8);
+});
+
+test("発見プロンプト: 優先巡回先の新着一覧を WebFetch で開く手順・WebFetch回数上限・ページ内指示の無視", () => {
+  const p = buildDiscoveryPrompt({ ...base, round: 1 });
+  assert.match(p, /WebFetch/);
+  assert.match(p, new RegExp(`WebFetchは合計${DISCOVER_WEBFETCH_LIMIT}回以内`));
+  assert.match(p, /新着一覧/);
+  assert.match(p, /直近14日の記事/);
+  assert.match(p, /ページ(内|の中)の(指示|命令)[^。]*無視/);
+  assert.match(p, /データ(として|のみ)/);
+});
+
+test("発見プロンプト: ノルマ無しは維持しつつ、探索範囲の下限（全言語で検索・巡回先一覧・AI自由探索の両方）を明記", () => {
+  const p = buildDiscoveryPrompt({ ...base, round: 1 });
+  assert.match(p, /0件の日があってよい/);
+  assert.match(p, /探索の下限/);
+  assert.match(p, /割り当て言語(の)?それぞれ/);
+  assert.match(p, /自由探索/);
+  assert.match(p, /結論を出す前/);
+  assert.match(p, /件数ではなく|出す件数ではなく/);
+  assert.match(p, /目安.*分/, "1ラウンドの目安時間");
+});
+
+test("runWithRetry: 失敗したら同じ処理を1回だけ再試行（計2回まで）。成功値は即返す", () => {
+  let n = 0;
+  const logs = [];
+  assert.equal(runWithRetry(() => { n++; if (n === 1) throw new Error("exit 3221226505"); return "ok"; }, { log: (m) => logs.push(m) }), "ok");
+  assert.equal(n, 2);
+  assert.equal(logs.length, 1);
+  n = 0;
+  assert.throws(() => runWithRetry(() => { n++; throw new Error("boom"); }), /boom/);
+  assert.equal(n, 2);
+  n = 0;
+  assert.equal(runWithRetry(() => { n++; return null; }), null, "null(パース失敗)は再試行しない");
+  assert.equal(n, 1);
 });
