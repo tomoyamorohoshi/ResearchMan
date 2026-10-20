@@ -525,7 +525,6 @@ async function main() {
 
   const toAdd = [];
   const seenThisRun = [];
-  const handoffItems = []; // 展覧会告知（Exhibition へ引き継ぎ）
   const today = todayJst();
   const stats = { candidates: 0, dup: 0, rejected: 0, gateRejected: 0, routed: 0 };
   let discoveryErrors = 0;
@@ -598,11 +597,20 @@ async function main() {
 
       // ── 展覧会告知（開催前/開催中・会場と会期あり）は cases に入れず Exhibition へ引き継ぐ ──
       // 採用基準(関門)の前に振り分ける：展示は Exhibition 側の基準（公式ページ照合・score）で扱うため。
+      // 即 appendHandoff（kill/例外で失わない）。書き込めなければ cases 判定に戻す（cases から消えるだけにしない）。
       const handoff = toHandoffItem(cand, today);
+      let routed = false;
       if (handoff) {
-        console.log(`Exhibitionへ引き継ぎ: ${cand.title}（${handoff.venue} ${handoff.startDate}〜${handoff.endDate}）`);
+        try {
+          if (!DRY_RUN) await appendHandoff(ROOT, [handoff]);
+          routed = true;
+        } catch (e) {
+          console.error(`  ⚠ handoff 書き込み失敗（cases 判定に戻す）: ${e.message}`);
+        }
+      }
+      if (routed) {
+        console.log(`Exhibitionへ引き継ぎ${DRY_RUN ? "（dry-run: 書き込みなし）" : ""}: ${cand.title}（${handoff.venue} ${handoff.startDate}〜${handoff.endDate}）`);
         stats.routed++;
-        handoffItems.push(handoff);
         existingTitleKeys.add(normTitle(cand.title));
         if (lk) existingLinkKeys.add(lk);
         if (!DRY_RUN) {
@@ -751,18 +759,6 @@ async function main() {
     console.log(
       `ラウンド${round}終了: 累計採用${toAdd.length} / 候補${stats.candidates} / 重複${stats.dup} / 関門却下${stats.gateRejected} / 検証却下${stats.rejected}\n`
     );
-  }
-
-  // 展覧会告知の引き継ぎ（採用0件で早期returnする経路より前に必ず保存する）
-  if (handoffItems.length) {
-    console.log(`Exhibition引き継ぎ: ${handoffItems.length}件${DRY_RUN ? "（dry-run: 書き込みなし）" : ""}`);
-    if (!DRY_RUN) {
-      try {
-        await appendHandoff(ROOT, handoffItems);
-      } catch (e) {
-        console.error(`handoff 書き込み失敗（続行）: ${e.message}`);
-      }
-    }
   }
 
   // 全ラウンドがエラーで候補ゼロ＝「0件」ではなく「収集失敗」。

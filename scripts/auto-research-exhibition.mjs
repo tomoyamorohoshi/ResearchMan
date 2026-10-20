@@ -25,7 +25,7 @@ import { resolveClaudeBin, runClaudeJsonArray } from "./lib/claude-cli.mjs";
 import { localDayIndex } from "./lib/day-index.mjs";
 import { todayJst } from "./lib/exhibition-status.mjs";
 import { applyStatusUpdate, processCandidates, PREFECTURES } from "./lib/exhibition-build.mjs";
-import { consumeHandoff } from "./lib/exhibition-handoff.mjs";
+import { consumeHandoff, commitHandoff } from "./lib/exhibition-handoff.mjs";
 import { runIntake } from "./lib/exhibition-intake-job.mjs";
 import { buildDiscoveryPrompt, buildIntakePrompt, expandQueries, pickSourcesForDay, EXHIBITION_CLI_OPTS } from "./lib/exhibition-prompts.mjs";
 import {
@@ -87,6 +87,7 @@ async function main() {
   const added = [];
   const unverified = [];
   let cliFatal = false;
+  let handoffPlan = null; // handoff の除去計画。最終書き込み成功後かつ cliFatal でない時だけ commitHandoff する
 
   if (!STATUS_ONLY) {
     const profile = await readJson(PROFILE_PATH);
@@ -159,8 +160,8 @@ async function main() {
         today: TODAY,
         deps,
         opts: { ...buildOpts, maxAdd: MAX_ADD, protectIds: new Set(added.map((a) => a.id)) },
-        dryRun: DRY_RUN,
       });
+      handoffPlan = out.plan;
       if (out.warning) console.warn(`[handoff] 警告: ${out.warning} → スキップして続行`);
       data = out.data;
       added.push(...out.added);
@@ -234,6 +235,14 @@ async function main() {
     await appendUnverified(ROOT, unverified);
     await writeSummary(TMP_DIR, { added, unverified });
     if (!cliFatal) await saveLastRunDate();
+    // handoff の除去は data / unverified / summary の書き込み成功後のみ。cliFatal なら全件持ち越し（run-job が巻き戻しても失われない）
+    if (!cliFatal && handoffPlan) {
+      try {
+        await commitHandoff(ROOT, handoffPlan);
+      } catch (e) {
+        console.error(`[handoff] 除去失敗（次回再処理。dedupeで冪等）: ${e.message}`);
+      }
+    }
   }
   console.log(`\n完了: 追加${added.length}件 / unverified${unverified.length}件 / 合計${data.items.length}件${DRY_RUN ? "（dry-run: 書き込みなし）" : ""}`);
 
