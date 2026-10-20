@@ -53,6 +53,7 @@ import {
   appendIncidentSafe,
 } from "./lib/unpushed-commits.mjs";
 import { pushOnce } from "./lib/push-once.mjs";
+import { planResearchHealthRun, readLastRun, writeLastRun } from "./lib/research-health.mjs";
 import { cleanupStaleLock, isHeld as isLockHeld } from "./lib/git-lock.mjs";
 import {
   computePublicDataHashes,
@@ -939,6 +940,18 @@ async function main() {
   await safeCheck("studio-verify-schedule", () => checkStudioVerifySchedule(report));
   await safeCheck("unpushed-commits", () => checkUnpushedCommits(report));
   await safeCheck("blob-sync", () => checkBlobSyncFreshness(report));
+
+  // リサーチ仕組みの健全性レビュー（LINEには送らない。logs/research-health-latest.md と system-alerts.jsonl に自前で書く）
+  await safeCheck("research-health", async () => {
+    // その日の枠をまだ実行していなければ実行。子プロセスで隔離（メモリ・失敗・タイムアウトがwatchdogを止めない）
+    const plan = planResearchHealthRun({ now: new Date(), deep: DEEP, lastRun: readLastRun(ROOT) });
+    if (!plan) return;
+    const r = spawnSync("node", ["scripts/research-health.mjs", ...(plan.llm ? ["--llm"] : [])], {
+      cwd: ROOT, encoding: "utf-8", timeout: plan.llm ? 10 * 60 * 1000 : 3 * 60 * 1000, maxBuffer: 4 * 1024 * 1024,
+    });
+    if (r.status === 0) writeLastRun(ROOT, plan.slot);
+    else log(`[watchdog] research-health 失敗（続行・次の枠で再試行）: status=${r.status} ${r.error?.message || String(r.stderr || "").slice(0, 300)}`);
+  });
 
   let reportText = null;
   if (report.length) {

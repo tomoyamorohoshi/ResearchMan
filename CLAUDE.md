@@ -54,3 +54,8 @@
 - cases/ideas/idea-layouts はデプロイに同梱しない。`scripts/upload-public-data.mjs` が brotli事前圧縮して Vercel Blob（privateストア）の `public-data/<name>.br` へ上書きし、`/api/public-data/[name]` が中継配信する。クライアントは `/api/public-data/` → `/data/` の順にfetch（dev=BLOB_STORE_ID無しは /data/ のみ）
 - アップロードは **pre-push フック（scripts/hooks/pre-push の末尾）** が自動実行（ハッシュ変化時のみ・失敗してもpushは止めない）。フックの原本を変えたら `.git/hooks/pre-push` へ反映が必要（既存の注記どおり）
 - 「Blobが古い/サイトが更新されない」時は `node scripts/upload-public-data.mjs --force` を手動実行（認証は ~/.researchman-favsync.json を流用。署名発行は /api/data-upload）
+
+## 点検結果の確認
+
+- 新セッション開始時、および「更新されない」「止まっている」等の相談時は、まず `logs/research-health-latest.md` と `logs/system-alerts-latest.md` を読む（watchdog が毎日12:30枠で更新。日曜はAIレビュー付き）
+- high / med の項目があれば、ユーザーに最初に報告する（追加ペース激減・発見の空振り・照合の偏り・会期フリップフロップ・チューンアップ停止・情報源0件など）
