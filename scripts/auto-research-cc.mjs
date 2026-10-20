@@ -11,7 +11,7 @@
  *
  * アーキテクチャ（2段階。1プロンプト過積載によるタイムアウトを防ぐ）:
  *   Phase A 発見    … 軽量リスト（title/client/link等）を返させる。件数のノルマは無い
- *                     （採用基準A/B/Cを満たすものだけ。0件の日があってよい）。各候補に自己判定
+ *                     （採用基準A〜Dを満たすものだけ。0件の日があってよい）。各候補に自己判定
  *                     （gateVerdict等）を同梱＝関門1回目。rejectはリンク/サムネ検証前にスキップ
  *   Phase B 記事化  … 重複除外・link実在・サムネ検証を通過した候補だけ個別に本文生成。
  *                     WebSearchで確認した事実に基づく最終判定＝関門2回目（rejectはcases.jsonに入れない）
@@ -288,7 +288,7 @@ export function buildDiscoveryPrompt({ lastRunDate, existingTitles, seenThisRun,
     "（このテーマに有効な指定源なし。テーマに合う一次情報源・専門メディアをWebSearchで自分で選ぶ）";
 
   return `今日は${today}。前回調査日は${lastRun}（約${daysDiff}日前）。
-ResearchManというデジタルクリエイティブ事例データベースのために、**${lastRun}〜${today}に公開・発表・話題化した事例のうち、下記の採用基準（A/B/Cのいずれか）を満たすものだけ**をリストアップしてください。件数のノルマは無い。無理に埋めず、該当がなければ found を空配列にしてよい（0件の日があってよい）。この段階では詳細記事は不要（後工程で書く）。発見とURL確認に集中し、**WebSearchは合計10回以内**に収めること。
+ResearchManというデジタルクリエイティブ事例データベースのために、**${lastRun}〜${today}に公開・発表・話題化した事例のうち、下記の採用基準（A〜Dのいずれか）を満たすものだけ**をリストアップしてください。件数のノルマは無い。無理に埋めず、該当がなければ found を空配列にしてよい（0件の日があってよい）。この段階では詳細記事は不要（後工程で書く）。発見とURL確認に集中し、**WebSearchは合計10回以内**に収めること。
 
 ## 今回の探索テーマ
 ${focus.label}
@@ -322,8 +322,8 @@ ${existingTitles}
       "youtube_id": "公式動画のYouTube ID 11文字（検索結果で確認できた場合のみ。不明なら空文字）",
       "note": "どんな事例か1行（日本語。なぜ基準を満たすか＝企画の核を一文で）",
       "sourceId": "見つけた情報源の[id]（上の情報源から見つけた場合のみ。不明・それ以外は空文字）",
-      "gateVerdict": "accept | reject",
-      "gateCriterion": "A | B | C | none",
+      "gateVerdict": "accept | borderline | reject",
+      "gateCriterion": "A | B | C | D | none",
       "gateReason": "判定理由を一言（40字以内）",
       "contentKind": "case | exhibition",
       "exhibition": "contentKindがexhibitionの時のみ付ける（上の「展覧会・展示の振り分け」参照）。caseなら省略"
@@ -357,8 +357,8 @@ ${articleGatePromptSection()}
 
 ## 出力形式（JSON のみ、説明文なし。ファイルには一切保存せず、標準出力にJSONオブジェクトをそのまま出力すること。前置き・後書き・コードフェンス等の装飾も付けない）
 {
-  "gateVerdict": "accept | reject",
-  "gateCriterion": "A | B | C | none",
+  "gateVerdict": "accept | borderline | reject",
+  "gateCriterion": "A | B | C | D | none",
   "gateScore": 1,
   "gateReason": "判定理由を一言（40字以内）",
   "announcementType": "発売 | 開催 | 発表 | 買収 | コンテスト | other | （告知のみでなければ空文字）",
@@ -566,7 +566,7 @@ async function main() {
     stats.candidates += found.length;
     {
       const g = partitionByGate(found);
-      console.log(`関門1（発見時の自己判定）: accept ${g.accepted.length} / reject ${g.rejected.length}`);
+      console.log(`関門1（発見時の自己判定）: accept ${g.accepted.length} / borderline ${g.borderline.length} / reject ${g.rejected.length}`);
     }
 
     for (const cand of found) {
@@ -736,7 +736,7 @@ async function main() {
           relatedWorks,
           sources: ["Radar"], // TOPカードの専用色・Radarタブの対象
           tags: (art.tags || []).filter((t) => validTags.has(t)).slice(0, 5),
-          // Radar v2: 最終関門を通した基準(A/B/C)と取得元の情報源id（既存エントリには無い＝集計上「不明」）
+          // Radar v2: 最終関門を通した基準(A〜D)と取得元の情報源id（既存エントリには無い＝集計上「不明」）
           gateCriterion: gate2.gateCriterion,
           sourceId: sourceIdFor(cand, sourcesRegistry),
         });

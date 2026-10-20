@@ -1,0 +1,168 @@
+{
+  "version": 1,
+  "updatedAt": "2026-10-20",
+  "criteria": [
+    {
+      "id": "A",
+      "text": "一文で言えるアイデア。「〇〇を△△に読み替える／〇〇という無償の素材で△△を作る」のように、企画の核を一文で説明できる。"
+    },
+    {
+      "id": "B",
+      "text": "表現・演出・クラフトの卓越。制作物そのものに固有の発明・磨き込みがある。ただし「サイトや映像がきれい」「よくできたポートフォリオ」では成立しない。awwwards 等のギャラリー掲載自体は根拠にならず、手法・演出に固有の発明があるかで判定する。"
+    },
+    {
+      "id": "C",
+      "text": "技術・手法の新規性。新しい技術・素材・制作手法の使い方に新規性がある。"
+    },
+    {
+      "id": "D",
+      "text": "手法・アプローチの新規性。完成度や受賞見込みを問わず、他の仕事に転用できる新しい手法・アプローチがある（個人の実験・試作も可）。"
+    }
+  ],
+  "rejectTypical": "reject の典型: 「発売決定・開催告知・公開・アプデ・発表・買収・コンテスト告知」など、告知・ニュースのみで、中身にアイデア/クラフト/技術の言及がない記事。有名人・IPの単なる新作MV・新作ゲーム・展覧会の開催告知もここに入る。",
+  "tasteTypes": [
+    {
+      "id": "a",
+      "label": "読み替え一手",
+      "text": "すでにそこにあるもの（月の軌道・電線・Wi-Fi名など）を別の意味に読み替えるだけで成立する一手。"
+    },
+    {
+      "id": "b",
+      "label": "生成的ブランドID",
+      "text": "音・データ・気象などの入力に応じてロゴやタイポグラフィがリアルタイムに形を変える「動くブランドID」。"
+    },
+    {
+      "id": "c",
+      "label": "素材が主張するアート／プロダクト",
+      "text": "技法や見た目の前に、素材そのものが事実を語っている仕事（例: 化石コラーゲンから培養した恐竜レザー）。"
+    },
+    {
+      "id": "d",
+      "label": "AIが表現・発見の手段になっている仕事",
+      "text": "AIを使ったこと自体がニュースなのではなく、AIがないと成立しなかった仕事。"
+    },
+    {
+      "id": "e",
+      "label": "手法の発明",
+      "text": "完成度や受賞の有無に関わらず、他の仕事に転用できる新しい制作手法・表現手法・アプローチそのものが発明されている仕事（個人の実験・試作も含む）。"
+    },
+    {
+      "id": "f",
+      "label": "新しいメディアの発明",
+      "text": "既存の媒体の枠に収まらず、広告・表現が載る新しい場・媒体・接点そのものを発明している仕事（街や日用品・既存インフラをメディアに変えるなど）。"
+    }
+  ],
+  "litmus": {
+    "accept": [
+      {
+        "title": "Auspicious Art による北京の公共キネティックアート（風でなびいて波や生き物のようなゆらぎを描く）",
+        "why": "「風という無償の素材で生き物のような動きを作る」と一文で言え（A）、クラフトも卓越（B）",
+        "origin": "seed",
+        "addedAt": "2026-10-20"
+      },
+      {
+        "title": "Three Words（AXA / Publicis Conseil）",
+        "url": "https://www.lovethework.com/work-awards/entries/axa-three-words-757718",
+        "why": "保険約款に「家庭内暴力も」の3語を足して実際に補償を変えた、一文で言える施策。",
+        "origin": "award",
+        "addedAt": "2026-10-20"
+      },
+      {
+        "title": "Spreadbeats（Spotify / FCB New York）",
+        "url": "https://www.dandad.org/work/d-ad-awards-archive/spreadbeats",
+        "why": "メディアプランナーが毎日開くExcelだけで音楽映像を作った媒体選びの発明。",
+        "origin": "award",
+        "addedAt": "2026-10-20"
+      },
+      {
+        "title": "The Birdsong of Sorrow above Ukraine（Anastasia Balagurova）",
+        "url": "https://www.informationisbeautifulawards.com/showcase/7590-the-birdsong-of-sorrow-above-ukraine",
+        "why": "民間人の犠牲を鳥の歌の図像に置き換え、数字では伝わらない悲しみを可視化。",
+        "origin": "award",
+        "addedAt": "2026-10-20"
+      },
+      {
+        "title": "Philharmonie Luxembourg Identity（NB Studio）",
+        "url": "https://bpando.org/2023/11/14/music-branding-philharmonie-luxembourg-nb-studio/",
+        "why": "演奏の波形にロゴの柱がリアルタイムで反応する生成的ブランドID。",
+        "origin": "owner-fav",
+        "addedAt": "2026-10-20"
+      },
+      {
+        "title": "Computational Compost（Marina Otero Verzier）",
+        "url": "https://ars.electronica.art/starts-prize/en/computational-compost/",
+        "why": "スパコンの排熱でミミズ堆肥機を動かし、データ基盤と土の再生をつなげた。",
+        "origin": "award",
+        "addedAt": "2026-10-20"
+      },
+      {
+        "title": "Organism（Navid Navab, Garnet Willis）",
+        "url": "https://ars.electronica.art/mediaservice/?p=40162",
+        "why": "古いパイプオルガンをロボットで改造し、制御不能な音響を楽器にした。",
+        "origin": "award",
+        "addedAt": "2026-10-20"
+      },
+      {
+        "title": "Ancient Future（BIG）",
+        "url": "https://www.dezeen.com/2025/05/13/robots-venice-architecture-biennale-carlo-ratti/",
+        "why": "同一の梁を職人の手彫りとロボット切削で並べ、伝統技×デジタル製作を比較。",
+        "origin": "media",
+        "addedAt": "2026-10-20"
+      }
+    ],
+    "reject": [
+      {
+        "title": "日向坂46 18thシングルMV公開",
+        "why": "MV公開はニュースであってアイデアではない",
+        "origin": "seed",
+        "addedAt": "2026-10-20"
+      },
+      {
+        "title": "Kingdom Hearts IV 発売決定",
+        "why": "発売告知のみ",
+        "origin": "seed",
+        "addedAt": "2026-10-20"
+      },
+      {
+        "title": "VketReal 2026 開催",
+        "why": "開催告知のみ",
+        "origin": "seed",
+        "addedAt": "2026-10-20"
+      },
+      {
+        "title": "awwwards掲載の建築事務所サイト",
+        "why": "きれいなサイトであって、一文で言えるアイデアでも手法の発明でもない",
+        "origin": "seed",
+        "addedAt": "2026-10-20"
+      },
+      {
+        "title": "Muse Gadgets（Meta、Muse向けSDK）",
+        "url": "https://techcrunch.com/2026/10/02/meta-wants-you-to-build-your-own-muse-gadget/",
+        "why": "SDKの発表ニュースのみで、表現や手法の中身がない。",
+        "origin": "seed",
+        "addedAt": "2026-10-20"
+      },
+      {
+        "title": "Utsuroi Art（札幌リンクタワー 生成AI空間演出）",
+        "url": "https://digitalpr.jp/r/144069",
+        "why": "生成AIの実証放映の告知で、AIを使った以上の発明がない。",
+        "origin": "seed",
+        "addedAt": "2026-10-20"
+      },
+      {
+        "title": "Free Ben & Jerry's（ゲリラマーケ案の公募）",
+        "url": "https://www.adweek.com/brand-marketing/ben-cohen-calls-on-the-marketing-community-to-free-ben-jerrys/",
+        "why": "案の公募という告知で、事例そのものの中身がない。",
+        "origin": "seed",
+        "addedAt": "2026-10-20"
+      },
+      {
+        "title": "Es Devlin: Other Worlds（Design Museum 回顧展）",
+        "url": "https://www.designboom.com/design/es-devlin-rotating-library-2000-books-london-design-museum-other-worlds/",
+        "why": "有名作家の回顧展の開幕告知で、新しい手法の言及がない。",
+        "origin": "seed",
+        "addedAt": "2026-10-20"
+      }
+    ]
+  }
+}

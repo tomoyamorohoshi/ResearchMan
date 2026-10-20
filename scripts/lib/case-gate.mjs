@@ -13,22 +13,27 @@ import {
   GATE_CRITERIA_TEXT,
   GATE_LITMUS_TEXT,
   TASTE_TYPES_TEXT,
+  BORDERLINE_TEXT,
   ANNOUNCEMENT_TYPES,
   normalizeGateItem,
 } from "./case-gate-criteria.mjs";
 
-export { GATE_CRITERIA_TEXT, GATE_LITMUS_TEXT, TASTE_TYPES_TEXT, ANNOUNCEMENT_TYPES };
+export { GATE_CRITERIA_TEXT, GATE_LITMUS_TEXT, TASTE_TYPES_TEXT, BORDERLINE_TEXT, ANNOUNCEMENT_TYPES };
 
 const ANNOUNCEMENT_SET = new Set(ANNOUNCEMENT_TYPES);
 const str = (v) => (typeof v === "string" ? v.trim() : "");
 
 // "A+B" / "A, B" / "A/B" / "A、B" のような複数記号は最初の記号を採る（最も強い候補ほど複数該当と書かれやすい）。
-// 小文字1文字(a/b/c)も許容。A/B/Cが無ければ "" を返し normalizeGateItem 側で none 扱いになる。
+// 小文字1文字(a/b/c/d)も許容。A〜Dが無ければ "" を返し normalizeGateItem 側で none 扱いになる。
 function firstCriterion(v) {
   const t = str(v);
-  if (/^[abc]$/i.test(t)) return t.toUpperCase();
-  const m = t.match(/[ABC]/) || t.match(/(?:^|[^A-Za-z])([abc])(?![A-Za-z])/);
-  return m ? (m[1] || m[0]).toUpperCase() : "";
+  if (/^[abcd]$/i.test(t)) return t.toUpperCase();
+  // 単独トークンのみ採る（"Design"/"Does not apply" の語中大文字や "N/A" は基準扱いしない）。
+  // 2文字以上の英単語を含む自由文では大文字トークンのみ許容（"a novel idea" の冠詞 a を拾わない）
+  const s2 = t.replace(/n\/a/gi, " ");
+  const re = /[A-Za-z]{2,}/.test(s2) ? /(?:^|[^A-Za-z])([ABCD])(?![A-Za-z])/ : /(?:^|[^A-Za-z])([ABCDabcd])(?![A-Za-z])/;
+  const m = s2.match(re);
+  return m ? m[1].toUpperCase() : "";
 }
 
 // null風トークン（"なし"/"null"/"N/A"/"-"等）は「値なし」として空文字にする
@@ -42,9 +47,13 @@ ${GATE_CRITERIA_TEXT}
 
 ${GATE_LITMUS_TEXT}
 
+${BORDERLINE_TEXT}
+
 ## 自己判定（関門1回目）
-- 各候補に gateVerdict（accept / reject）・gateCriterion（A / B / C / none）・gateReason（一言・40字以内）を付ける。
-- accept は A/B/C のいずれかを満たす時だけ（その記号を gateCriterion に）。複数に該当しても、最も強い1記号のみ書く（"A+B"等は書かない）。満たさない・迷うものは reject（gateCriterion は none）。
+- 各候補に gateVerdict（accept | borderline | reject）・gateCriterion（A | B | C | D | none）・gateReason（一言・40字以内）を付ける。
+- accept は A/B/C/D のいずれかを満たす時だけ（その記号を gateCriterion に）。複数に該当しても、最も強い1記号のみ書く（"A+B"等は書かない）。
+- borderline は A〜D のどれかにあと一歩の時だけ。最も近い1記号を gateCriterion に、足りない点を gateReason に必ず書く（どちらか欠けると reject 扱い）。
+- どの基準にも近くない・迷うだけのものは reject（gateCriterion は none）。
 - 一覧・見出しの情報だけで「告知・ニュースのみ」と分かるものは reject。
 - 探索中に見つけたが基準を満たさなかった候補は reject として含めてよい（最大3件。却下ログに記録され基準の調整に使われる）。無理に探す必要はない。`;
 }
@@ -58,17 +67,19 @@ ${GATE_CRITERIA_TEXT}
 
 ${GATE_LITMUS_TEXT}
 
-- gateVerdict: accept / reject
-- gateCriterion: A / B / C / none（reject は none）。複数に該当しても、最も強い1記号のみ書く。
+${BORDERLINE_TEXT}
+
+- gateVerdict: accept | borderline | reject
+- gateCriterion: A | B | C | D | none（reject は none。borderline は最も近い基準の1記号が必須）。複数に該当しても、最も強い1記号のみ書く。
 - gateScore: 1〜5の整数（記録用。採用基準をどれだけ強く満たすか。5=非常に強い、1=ほぼ満たさない）
-- gateReason: 判定理由を一言（40字以内）
-- announcementType: 「発売・開催・発表・買収・コンテスト告知などの告知のみ」と判定した場合の種別（${ANNOUNCEMENT_TYPES.join(" / ")}）。告知のみでなければ空文字。告知のみなら必ず reject。
+- gateReason: 判定理由を一言（40字以内。borderline は何が足りないかを必ず書く）
+- announcementType: 「発売・開催・発表・買収・コンテスト告知などの告知のみ」と判定した場合の種別（${ANNOUNCEMENT_TYPES.join(" / ")}）。告知のみでなければ空文字。告知のみなら必ず reject（borderline も不可）。
 - reject の場合でも JSON の形は崩さない（summary・overview 等の本文は空文字でよい）。`;
 }
 
 /**
  * 発見候補の自己判定を正規化する（関門1回目）。不正値・欠落は reject。
- * @returns {{gateVerdict: "accept"|"reject", gateCriterion: "A"|"B"|"C"|"none", gateReason: string}}
+ * @returns {{gateVerdict: "accept"|"borderline"|"reject", gateCriterion: "A"|"B"|"C"|"D"|"none", gateReason: string}}
  */
 export function normalizeDiscoveryGate(cand) {
   const o = cand && typeof cand === "object" ? cand : {};
@@ -97,13 +108,13 @@ export function normalizeArticleGate(art) {
 
   let verdict = g.verdict;
   let invalidOutput = Boolean(g.invalid);
-  if (verdict === "accept" && announcementType) {
-    verdict = "reject"; // 「告知のみ」と言いつつ accept の矛盾
+  if ((verdict === "accept" || verdict === "borderline") && announcementType) {
+    verdict = "reject"; // 「告知のみ」と言いつつ accept/borderline の矛盾
     invalidOutput = true;
   }
   return {
     gateVerdict: verdict,
-    gateCriterion: verdict === "accept" ? g.criterion : "none",
+    gateCriterion: verdict === "accept" || verdict === "borderline" ? g.criterion : "none",
     gateScore,
     gateReason: g.reason,
     announcementType,
@@ -113,25 +124,28 @@ export function normalizeArticleGate(art) {
 
 /** 却下ログ(logRejection)の detail 文字列。発見段階は "criterion:reason"、記事化段階は "article:種別:reason"。 */
 export function gateRejectionDetail(gate, stage = "discovery") {
-  const mark = gate.invalidOutput ? "invalid-output:" : "";
+  const mark = (gate.invalidOutput ? "invalid-output:" : "") + (gate.gateVerdict === "borderline" ? "borderline:" : "");
   if (stage === "article") return `${mark}article:${gate.announcementType || "-"}:${gate.gateReason}`;
   return `${mark}${gate.gateCriterion}:${gate.gateReason}`;
 }
 
 /**
- * 発見候補を関門1回目の自己判定で accept/reject に分ける。accept 側の候補には正規化済みの
- * gateCriterion/gateReason を載せて返す。reject 側は却下ログ用 detail を付ける。
+ * 発見候補を関門1回目の自己判定で accept / borderline / reject に分ける。accept・borderline 側の候補には
+ * 正規化済みの gateCriterion/gateReason を載せて返す。reject 側は却下ログ用 detail を付ける。
  */
 export function partitionByGate(found) {
   const accepted = [];
+  const borderline = [];
   const rejected = [];
   for (const cand of found || []) {
     const g = normalizeDiscoveryGate(cand);
     if (g.gateVerdict === "accept") {
       accepted.push({ ...cand, ...g });
+    } else if (g.gateVerdict === "borderline") {
+      borderline.push({ ...cand, ...g });
     } else {
       rejected.push({ cand, ...g, detail: gateRejectionDetail(g, "discovery") });
     }
   }
-  return { accepted, rejected };
+  return { accepted, borderline, rejected };
 }
