@@ -49,17 +49,14 @@ async function main() {
   if (legacySystem.length > 0) {
     for (const e of legacySystem) {
       const text = String(e.text ?? "");
-      const nl = text.indexOf("
-");
+      const nl = text.indexOf("\n");
       appendSystemAlert(
         { at: e.at, source: `notify-queue:${e.label || "unknown"}`, level: "info", title: (nl === -1 ? text : text.slice(0, nl)) || "(empty)", body: text },
         {},
       );
     }
-    const rest = entries.map((e) => JSON.stringify(e)).join("
-");
-    const kept = rest ? `${rest}
-` : "";
+    const rest = entries.map((e) => JSON.stringify(e)).join("\n");
+    const kept = rest ? `${rest}\n` : "";
     let current;
     try {
       current = fs.readFileSync(QUEUE_PATH, "utf8");

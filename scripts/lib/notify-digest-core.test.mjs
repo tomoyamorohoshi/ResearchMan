@@ -81,9 +81,7 @@ test("classifyQueueEntry: kind付きはそれに従う", () => {
 });
 
 test("classifyQueueEntry: 旧形式は既存フィールドから判定（追加ありの紹介=share）", () => {
-  assert.equal(classifyQueueEntry({ label: "Auto research", text: "🔍 ResearchMan: 3件追加・本番反映OK
-
-・a" }), "share");
+  assert.equal(classifyQueueEntry({ label: "Auto research", text: "🔍 ResearchMan: 3件追加・本番反映OK\n\n・a" }), "share");
   assert.equal(classifyQueueEntry({ label: "Tech radar", text: "🔍 ResearchMan Technology: 1件追加・本番反映OK" }), "share");
   assert.equal(classifyQueueEntry({ label: "Exhibition", text: "⚠️ ResearchMan Exhibition: 2件追加・push済み（反映確認は時間切れ）" }), "share");
 });
