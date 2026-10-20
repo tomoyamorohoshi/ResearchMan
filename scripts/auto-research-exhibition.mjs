@@ -85,6 +85,7 @@ async function main() {
   if (!DRY_RUN) await writeJsonAtomic(DATA_PATH, data);
 
   const added = [];
+  const updated = []; // 会期更新済み（以後のラウンドで再更新しない）
   const unverified = [];
   let cliFatal = false;
   let handoffPlan = null; // handoff の除去計画。最終書き込み成功後かつ cliFatal でない時だけ commitHandoff する
@@ -144,6 +145,7 @@ async function main() {
           });
           data = out.data;
           added.push(...out.added);
+      updated.push(...out.updated);
           unverified.push(...out.unverified);
           console.log(`[intake] 結果: ${out.results.map((r) => `${r.status}`).join(", ")} / PATCH ${out.patched ? "OK" : `失敗（${out.patchError || "dry-run"}）→ data更新は継続`}`);
         }
@@ -159,12 +161,13 @@ async function main() {
         data,
         today: TODAY,
         deps,
-        opts: { ...buildOpts, maxAdd: MAX_ADD, protectIds: new Set(added.map((a) => a.id)) },
+        opts: { ...buildOpts, maxAdd: MAX_ADD, protectIds: new Set([...added, ...updated].map((a) => a.id)) },
       });
       handoffPlan = out.plan;
       if (out.warning) console.warn(`[handoff] 警告: ${out.warning} → スキップして続行`);
       data = out.data;
       added.push(...out.added);
+      updated.push(...out.updated);
       unverified.push(...out.unverified);
       if (out.added.length || out.updated.length || out.unverified.length || out.rejected.length || out.skipped.length) {
         console.log(`[handoff] 追加${out.added.length} / 会期更新${out.updated.length} / unverified${out.unverified.length} / reject${out.rejected.length} / skip${out.skipped.length}`);
@@ -212,9 +215,10 @@ async function main() {
       for (const c of found) if (typeof c?.title === "string" && c.title) seenThisRun.push(c.title);
 
       const capped = added.filter((a) => a.origin !== "intake" && !a.tags.some((t) => ["generative", "onchain"].includes(t)) && !a.venue.includes("NEORT")).length;
-      const out = await processCandidates({ data, candidates: found, today: TODAY, deps, opts: { ...buildOpts, maxAdd: Math.max(0, MAX_ADD - capped), protectIds: new Set(added.map((a) => a.id)) } });
+      const out = await processCandidates({ data, candidates: found, today: TODAY, deps, opts: { ...buildOpts, maxAdd: Math.max(0, MAX_ADD - capped), protectIds: new Set([...added, ...updated].map((a) => a.id)) } });
       data = out.data;
       added.push(...out.added);
+      updated.push(...out.updated);
       unverified.push(...out.unverified);
       for (const x of out.added) console.log(`  ＋追加: ${x.title}（${x.venue} ${x.startDate}〜${x.endDate} score=${x.score}）`);
       for (const x of out.updated) console.log(`  ↻会期更新: ${x.title} ${JSON.stringify(x.patch)}`);
