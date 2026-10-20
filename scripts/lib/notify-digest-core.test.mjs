@@ -104,3 +104,10 @@ test("partitionQueue: share/system に分ける", () => {
   assert.equal(share.length, 1);
   assert.equal(system.length, 1);
 });
+
+test("classifyQueueEntry: 10件・100件追加も share（d エスケープ回帰）", () => {
+  assert.equal(classifyQueueEntry({ text: "🔍 ResearchMan: 10件追加・本番反映OK" }), "share");
+  assert.equal(classifyQueueEntry({ text: "🔍 ResearchMan: 20件追加・本番反映OK" }), "share");
+  assert.equal(classifyQueueEntry({ text: "🔍 ResearchMan: 100件追加・本番反映OK" }), "share");
+  assert.equal(classifyQueueEntry({ text: "🔍 ResearchMan: 0件追加・本番反映OK" }), "system");
+});

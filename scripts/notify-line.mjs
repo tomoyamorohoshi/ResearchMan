@@ -228,11 +228,16 @@ ${p}`));
 
   // share（critical）: 既存の送信ロジックのまま。quotaに関わらず必ず送信を試みる。
   // system: LINEへは送らず logs/system-alerts.jsonl に追記する。
-  const d = await dispatchNotification(
-    { kind: KIND, result: RESULT, count: summaryCount, context: CONTEXT, hasTextFile: !!textFile, text, level: LEVEL, title: TITLE, source: SOURCE, label: LABEL, route: ROUTE },
-    { send: sendShare },
-  );
-  if (d.route === "system") log(`kind=system → LINEには送らず logs/system-alerts.jsonl に記録（${d.entry.level}: ${d.entry.title}）`);
+  try {
+    const d = await dispatchNotification(
+      { kind: KIND, result: RESULT, count: summaryCount, context: CONTEXT, hasTextFile: !!textFile, text, level: LEVEL, title: TITLE, source: SOURCE, label: LABEL, route: ROUTE },
+      { send: sendShare },
+    );
+    if (d.route === "system") log(`kind=system → LINEには送らず logs/system-alerts.jsonl に記録（${d.entry.level}: ${d.entry.title}）`);
+  } catch (e) {
+    // 通知は「おまけ」。記録/送信で例外が出ても本体を巻き込まず、原因だけログに残す
+    log(`通知の振り分け/記録で例外（${e.message}）— 本体処理には影響なし`);
+  }
 }
 
 async function sendShare(text) {

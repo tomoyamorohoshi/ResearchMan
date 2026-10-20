@@ -81,7 +81,7 @@ export function classifyQueueEntry(entry) {
   if (entry && (entry.kind === "share" || entry.kind === "system")) return entry.kind;
   const text = entry && typeof entry.text === "string" ? entry.text : "";
   const first = firstLine(text);
-  return /^(🔍|⚠️) ResearchMan.*[1-9]d*件追加/.test(first) ? "share" : "system";
+  return /^(🔍|⚠️) ResearchMan.*[1-9]\d*件追加/.test(first) ? "share" : "system";
 }
 
 export function partitionQueue(entries) {
