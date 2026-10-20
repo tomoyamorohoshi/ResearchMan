@@ -18,6 +18,7 @@ import {
   normalizeArticleGate,
   partitionByGate,
   gateRejectionDetail,
+  normalizeGateScore,
 } from "./case-gate.mjs";
 import { buildDiscoveryPrompt, buildArticlePrompt } from "../auto-research-cc.mjs";
 
@@ -118,17 +119,17 @@ test("安全側フォールバック（発見）: 欠落・不正値・criterion
   assert.equal(normalizeDiscoveryGate(undefined).gateVerdict, "reject");
   // 大文字小文字・空白ゆれは許容
   const ok = normalizeDiscoveryGate({ gateVerdict: " Accept ", gateCriterion: "c ", gateReason: " r " });
-  assert.deepEqual(ok, { gateVerdict: "accept", gateCriterion: "C", gateReason: "r", invalidOutput: false });
+  assert.deepEqual(ok, { gateVerdict: "accept", gateCriterion: "C", gateScore: 1, gateReason: "r", invalidOutput: false });
 });
 
-test("記事化の関門: accept は criterion・score(1〜5)・告知でないことが揃った時のみ", () => {
+test("記事化の関門: accept は criterion・告知でないことが揃った時のみ（score は 1〜10 に正規化）", () => {
   const good = { gateVerdict: "accept", gateCriterion: "A", gateScore: 4, gateReason: "読み替え一手", announcementType: "" };
   assert.deepEqual(normalizeArticleGate(good), { gateVerdict: "accept", gateCriterion: "A", gateScore: 4, gateReason: "読み替え一手", announcementType: "", invalidOutput: false });
   // 数値文字列は許容
   assert.equal(normalizeArticleGate({ ...good, gateScore: "3" }).gateScore, 3);
-  // score 範囲外・欠落は reject
-  // scoreは採否に使わない: 範囲外・非整数・不正でも accept のまま（丸め/クランプ、解釈不能は0）
-  for (const [raw, want] of [[4.5, 5], ["4/5", 4], ["4点", 4], [0, 1], [6, 5], [2.4, 2], ["x", 0], [undefined, 0], [null, 0]]) {
+  // scoreは採否に使わない: 範囲外・非整数・不正でも accept のまま。v3でスケールを1〜10に変更。
+  // 丸めて1〜10ならそのまま、範囲外（0以下/11以上）・解釈不能・欠損は安全側の最低点1
+  for (const [raw, want] of [[4.5, 5], ["4/5", 4], ["4点", 4], [0, 1], [6, 6], [10, 10], [11, 1], [-3, 1], [2.4, 2], ["x", 1], [undefined, 1], [null, 1]]) {
     const g = normalizeArticleGate({ ...good, gateScore: raw });
     assert.equal(g.gateVerdict, "accept", `score=${raw}`);
     assert.equal(g.gateScore, want, `score=${raw}`);
@@ -208,4 +209,20 @@ test("観測性: 正規化による強制rejectは invalid-output: を付ける�
   const legitArt = normalizeArticleGate({ gateVerdict: "reject", gateCriterion: "none", gateScore: 1, gateReason: "告知", announcementType: "発売" });
   assert.equal(legitArt.invalidOutput, false);
   assert.equal(gateRejectionDetail(legitArt, "article"), "article:発売:告知");
+});
+
+test("normalizeGateScore: 1〜10の整数に正規化。範囲外・欠損・非数は最低点（borderline枠に紛れ込ませない）", () => {
+  for (const [raw, want] of [[7, 7], ["7", 7], [7.4, 7], [7.5, 8], [10, 10], [1, 1], [0, 1], [0.4, 1], [10.6, 1], [11, 1], [99, 1], [-1, 1], ["x", 1], ["", 1], [undefined, 1], [null, 1], [NaN, 1], [Infinity, 1], [{}, 1]]) {
+    assert.equal(normalizeGateScore(raw), want, `raw=${String(raw)}`);
+  }
+});
+
+test("発見の関門: gateScore も正規化される（欠損は1）。partitionByGate の borderline に載る", () => {
+  assert.equal(normalizeDiscoveryGate({ gateVerdict: "borderline", gateCriterion: "D", gateReason: "あと一歩", gateScore: 8 }).gateScore, 8);
+  assert.equal(normalizeDiscoveryGate({ gateVerdict: "borderline", gateCriterion: "D", gateReason: "あと一歩" }).gateScore, 1);
+  assert.equal(normalizeDiscoveryGate({ gateVerdict: "borderline", gateCriterion: "D", gateReason: "あと一歩", gateScore: 50 }).gateScore, 1);
+  const { borderline } = partitionByGate([{ title: "b", gateVerdict: "borderline", gateCriterion: "A", gateReason: "足りない点", gateScore: "6" }]);
+  assert.equal(borderline[0].gateScore, 6);
+  assert.match(discoveryGatePromptSection(), /gateScore（1〜10/);
+  assert.match(articleGatePromptSection(), /gateScore: 1〜10/);
 });

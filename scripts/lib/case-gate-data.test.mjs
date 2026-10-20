@@ -114,7 +114,7 @@ test("3段階: borderline は criterion(A〜D)と reason が揃った時のみ�
 
 test("normalizeDiscoveryGate / normalizeArticleGate: borderline と D を運ぶ", () => {
   const g = normalizeDiscoveryGate({ gateVerdict: "borderline", gateCriterion: "D", gateReason: "転用できそうだが検証が浅い" });
-  assert.deepEqual(g, { gateVerdict: "borderline", gateCriterion: "D", gateReason: "転用できそうだが検証が浅い", invalidOutput: false });
+  assert.deepEqual(g, { gateVerdict: "borderline", gateCriterion: "D", gateScore: 1, gateReason: "転用できそうだが検証が浅い", invalidOutput: false });
   assert.equal(normalizeDiscoveryGate({ gateVerdict: "borderline", gateCriterion: "A" }).gateVerdict, "reject");
   assert.equal(normalizeDiscoveryGate({ gateVerdict: "borderline", gateCriterion: "A" }).invalidOutput, true);
   assert.equal(normalizeDiscoveryGate({ gateVerdict: "accept", gateCriterion: "D", gateReason: "r" }).gateCriterion, "D");

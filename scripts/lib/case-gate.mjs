@@ -36,6 +36,21 @@ function firstCriterion(v) {
   return m ? m[1].toUpperCase() : "";
 }
 
+export const GATE_SCORE_MIN = 1;
+export const GATE_SCORE_MAX = 10;
+
+/**
+ * gateScore（1〜10の整数。採用基準をどれだけ満たすか）の正規化。borderline 枠は「gateScore 上位から」選ぶため、
+ * 不正値で上位に入り込めないよう安全側（最低点=1）に倒す。数値文字列は許容（"7"・"7/10"→7）。
+ * 四捨五入後に範囲外（0以下・11以上）・非数・欠損はすべて最低点。
+ */
+export function normalizeGateScore(v) {
+  const n = typeof v === "number" ? v : parseFloat(str(v));
+  if (!Number.isFinite(n)) return GATE_SCORE_MIN;
+  const r = Math.round(n);
+  return r >= GATE_SCORE_MIN && r <= GATE_SCORE_MAX ? r : GATE_SCORE_MIN;
+}
+
 // null風トークン（"なし"/"null"/"N/A"/"-"等）は「値なし」として空文字にする
 const NULLISH = new Set(["", "なし", "無し", "該当なし", "該当無し", "null", "n/a", "na", "-", "－", "–", "—", "none", "undefined", "nil"]);
 
@@ -50,7 +65,7 @@ ${GATE_LITMUS_TEXT}
 ${BORDERLINE_TEXT}
 
 ## 自己判定（関門1回目）
-- 各候補に gateVerdict（accept | borderline | reject）・gateCriterion（A | B | C | D | none）・gateReason（一言・40字以内）を付ける。
+- 各候補に gateVerdict（accept | borderline | reject）・gateCriterion（A | B | C | D | none）・gateScore（1〜10の整数。採用基準をどれだけ強く満たすか。10=非常に強い、1=ほぼ満たさない。borderline 候補の採用優先順位に使う）・gateReason（一言・40字以内）を付ける。
 - accept は A/B/C/D のいずれかを満たす時だけ（その記号を gateCriterion に）。複数に該当しても、最も強い1記号のみ書く（"A+B"等は書かない）。
 - borderline は A〜D のどれかにあと一歩の時だけ。最も近い1記号を gateCriterion に、足りない点を gateReason に必ず書く（どちらか欠けると reject 扱い）。
 - どの基準にも近くない・迷うだけのものは reject（gateCriterion は none）。
@@ -71,7 +86,7 @@ ${BORDERLINE_TEXT}
 
 - gateVerdict: accept | borderline | reject
 - gateCriterion: A | B | C | D | none（reject は none。borderline は最も近い基準の1記号が必須）。複数に該当しても、最も強い1記号のみ書く。
-- gateScore: 1〜5の整数（記録用。採用基準をどれだけ強く満たすか。5=非常に強い、1=ほぼ満たさない）
+- gateScore: 1〜10の整数（採用基準をどれだけ強く満たすか。10=非常に強い、1=ほぼ満たさない。borderline の採用優先順位に使う）
 - gateReason: 判定理由を一言（40字以内。borderline は何が足りないかを必ず書く）
 - announcementType: 「発売・開催・発表・買収・コンテスト告知などの告知のみ」と判定した場合の種別（${ANNOUNCEMENT_TYPES.join(" / ")}）。告知のみでなければ空文字。告知のみなら必ず reject（borderline も不可）。
 - reject の場合でも JSON の形は崩さない（summary・overview 等の本文は空文字でよい）。`;
@@ -79,18 +94,19 @@ ${BORDERLINE_TEXT}
 
 /**
  * 発見候補の自己判定を正規化する（関門1回目）。不正値・欠落は reject。
- * @returns {{gateVerdict: "accept"|"borderline"|"reject", gateCriterion: "A"|"B"|"C"|"D"|"none", gateReason: string}}
+ * gateScore は 1〜10 に正規化（範囲外・欠損は最低点1）。borderline 枠の優先順位付けに使う。
+ * @returns {{gateVerdict: "accept"|"borderline"|"reject", gateCriterion: "A"|"B"|"C"|"D"|"none", gateScore: number, gateReason: string}}
  */
 export function normalizeDiscoveryGate(cand) {
   const o = cand && typeof cand === "object" ? cand : {};
   const g = normalizeGateItem({ verdict: o.gateVerdict, criterion: firstCriterion(o.gateCriterion), reason: o.gateReason });
   // invalidOutput: 出力の欠落・不正値・矛盾により正規化で強制rejectした（モデル自身のrejectではない）
-  return { gateVerdict: g.verdict, gateCriterion: g.criterion, gateReason: g.reason, invalidOutput: Boolean(g.invalid) };
+  return { gateVerdict: g.verdict, gateCriterion: g.criterion, gateScore: normalizeGateScore(o.gateScore), gateReason: g.reason, invalidOutput: Boolean(g.invalid) };
 }
 
 /**
  * 記事化出力の最終判定を正規化する（関門2回目）。accept になるのは次が全て揃った時のみ:
- * verdict=accept・criterion∈{A,B,C}・gateScore が1〜5の整数（数値文字列は許容）・告知のみでない。
+ * verdict=accept・criterion∈{A,B,C}・gateScore は採否に使わない（1〜10の整数に正規化。範囲外・欠損は最低点1）・告知のみでない。
  * 「告知のみ」と言いつつ accept の矛盾は reject に倒す。
  * @returns {{gateVerdict, gateCriterion, gateScore: number, gateReason: string, announcementType: string}}
  */
@@ -98,9 +114,8 @@ export function normalizeArticleGate(art) {
   const o = art && typeof art === "object" ? art : {};
   const g = normalizeGateItem({ verdict: o.gateVerdict, criterion: firstCriterion(o.gateCriterion), reason: o.gateReason });
 
-  // gateScore は採否に使わない（記録用）。丸めて1〜5にクランプし、解釈不能は0。これでrejectはさせない
-  const n = typeof o.gateScore === "number" ? o.gateScore : parseFloat(str(o.gateScore));
-  const gateScore = Number.isFinite(n) ? Math.min(5, Math.max(1, Math.round(n))) : 0;
+  // gateScore は採否に使わない（borderline 枠の優先順位用）。1〜10に正規化し、範囲外・欠損は最低点1
+  const gateScore = normalizeGateScore(o.gateScore);
 
   let announcementType = str(o.announcementType);
   if (NULLISH.has(announcementType.toLowerCase())) announcementType = "";

@@ -5,14 +5,21 @@
  * launchd（毎時起動→run-if-due.mjs が72時間ゲート）から呼ばれる。
  *
  * キュレーション方針（デジクリラジオの興味プロファイル準拠）:
- *   広告賞に限らず「デジタル×クリエイティブ」全域を広く収集する。
- *   数を埋めるための収集はしない（Radar v2: docs/RADAR_V2_DESIGN.md）。TARGET_NEW/MAX_ADDは
- *   「これ以上は増やさない」上限、および重複ばかりの日に再探索するループ機構としてのみ残す。
+ *   広告賞に限らず「テクノロジー×クリエイティブ」全域を広く収集する。
+ *   数を埋めるための収集はしない（Radar v2: docs/RADAR_V2_DESIGN.md）。
+ *
+ * v3（docs/CASE_RESEARCH_V3_SPEC.md §2・§4）:
+ *   - 領域レンズ4本（data/research-tuning.json の cc.roundFoci）を毎日順に1回ずつ回す。全世界・多言語
+ *     （英語・日本語は常に＋日替わり2言語。4レンズで中国語/韓国語/スペイン語・ポルトガル語/フランス語/ドイツ語が毎日すべて使われる）
+ *   - 鮮度: 作品自体の公開・発表が直近14日（受賞発表は鮮度の例外にしない）
+ *   - 関門1で borderline の惜しい候補も記事化へ。最終 tier は関門2の判定。採用は accept 最大10件＋borderline 別枠最大3件（gateScore 上位）
+ *   - accept が5件未満なら、少ないレンズを未使用言語・別の検索語で最大2ラウンド追加（基準は緩めない）
+ *   - 純関数は scripts/lib/case-lenses.mjs（テスト: case-lenses.test.mjs / auto-research-cc.test.mjs）
  *
  * アーキテクチャ（2段階。1プロンプト過積載によるタイムアウトを防ぐ）:
  *   Phase A 発見    … 軽量リスト（title/client/link等）を返させる。件数のノルマは無い
  *                     （採用基準A〜Dを満たすものだけ。0件の日があってよい）。各候補に自己判定
- *                     （gateVerdict等）を同梱＝関門1回目。rejectはリンク/サムネ検証前にスキップ
+ *                     （gateVerdict/gateScore等）を同梱＝関門1回目。rejectはリンク/サムネ検証前にスキップ
  *   Phase B 記事化  … 重複除外・link実在・サムネ検証を通過した候補だけ個別に本文生成。
  *                     WebSearchで確認した事実に基づく最終判定＝関門2回目（rejectはcases.jsonに入れない）
  *   → 重複候補に長文生成の時間を浪費しない・1回のCLI呼び出しが短く確実に完了する
@@ -49,6 +56,22 @@ import {
 } from "./lib/case-gate.mjs";
 import { toHandoffItem, appendHandoff, exhibitionRoutingPromptSection } from "./lib/exhibition-handoff.mjs";
 import { todayJst } from "./lib/exhibition-status.mjs";
+import {
+  MAX_ACCEPT,
+  MAX_BORDERLINE,
+  MIN_ACCEPT_BEFORE_EXTRA,
+  MAX_EXTRA_ROUNDS,
+  LENS_YARDSTICKS,
+  freshnessWindow,
+  lensLanguagePlan,
+  lensOrderForDay,
+  languageSection,
+  decideFinalTier,
+  selectAdoptions,
+  shouldRunExtraRound,
+  planExtraRound,
+  formatLensTierSummary,
+} from "./lib/case-lenses.mjs";
 import { resolveSourcesText, inferSourceId, validateSourcesRegistry } from "./lib/sources-registry.mjs";
 import { fileURLToPath, pathToFileURL } from "url";
 
@@ -62,18 +85,23 @@ const DRY_RUN = process.argv.includes("--dry-run");
 const LAST_RUN_PATH = path.join(__dirname, "../.last-research-run.txt");
 const LAST_ADD_PATH = path.join(os.tmpdir(), "researchman-last-add.json"); // 反映後の通知メール用サマリー
 
-const TARGET_NEW = 5; // 新規がこれだけたまったらラウンド終了
-const MAX_ADD = 10; // 1回の実行で追加する上限（厳選しない方針なので多め）
-const MAX_ROUNDS = 3; // 発見リトライ上限（重複ばかりでも粘る）
+// v3（docs/CASE_RESEARCH_V3_SPEC.md §4）: 件数のノルマは無い。TARGET_NEW（目標到達でラウンド終了）は廃止し、
+// 4レンズを毎日1回ずつ回す。採用上限は accept 最大10件＋borderline 別枠最大3件（lib/case-lenses.mjs）。
 // リサーチ・記事化はSonnetで十分（既定の上位モデルだと遅くタイムアウトしやすい）
 const MODEL = "sonnet";
-const DISCOVER_TIMEOUT_MS = 600000;
+// 1ラウンドの発見は英語・日本語＋日替わり2言語＝4言語で検索するため、従来（1言語・10分）より長く見る。
+const DISCOVER_TIMEOUT_MS = 900000;
 const ARTICLE_TIMEOUT_MS = 300000;
-// 発見フェーズ全体（ラウンド失敗時の埋め合わせ含む）の総経過時間の上限。
-// 通常3ラウンド×10分タイムアウト=最大30分に対し、埋め合わせ1回を許容しても
-// 大きく超えないよう40分とする（実測の日次ジョブは20分程度で終わる。
-// 10:15開始のideaseedsがgitロック待ちに入るため無制限に伸ばさない）。
-const MAX_TOTAL_DISCOVERY_MS = 40 * 60 * 1000;
+// WebSearchの回数上限（発見1ラウンドあたり）。従来は1言語で10回。v3は4言語（英・日・日替わり2言語）で
+// 検索語を変えて探すため、言語1つあたり3回＋情報源の巡回・URL確認の4回＝16回に見直す。
+// （上げすぎるとDISCOVER_TIMEOUT_MSに収まらない。ラウンドが4本＋追加2本に増えるので総量はMAX_TOTAL_DISCOVERY_MSで抑える）
+export const DISCOVER_WEBSEARCH_LIMIT = 16;
+// 発見フェーズ全体（4レンズ＋埋め合わせ再試行＋不足時の追加ラウンド）の経過時間の上限。
+// v3で40分→90分（時間はかかってよいとの指示）。新しいラウンドはこの上限に達していたら始めない
+// （最後のラウンドは上限直前に始まりうるので、発見の実際の最大は上限＋DISCOVER_TIMEOUT_MS）。
+// 90分はgitロックのSTALE_MS(90分)と同値だが、run-job.mjs がロック保持中に定期的に mtime を更新する
+// （lib/git-lock.mjs の touchOwnedLock）ので、発見＋記事化が90分を超えても他ジョブにロックを奪われない。
+export const MAX_TOTAL_DISCOVERY_MS = 90 * 60 * 1000;
 
 // ── ID・タイトル正規化 ────────────────────────────────────────
 
@@ -231,16 +259,8 @@ export function normTitle(t) {
     .replace(/[^a-z0-9ぁ-んァ-ヶ一-龠]+/g, "");
 }
 
-// ── 前回実行日時 ─────────────────────────────────────────────
-
-async function getLastRunDate() {
-  try {
-    const raw = await fs.readFile(LAST_RUN_PATH, "utf-8");
-    return new Date(raw.trim());
-  } catch {
-    return new Date(Date.now() - 3 * 24 * 60 * 60 * 1000);
-  }
-}
+// ── 実行日時 ─────────────────────────────────────────────────
+// （v3: 鮮度は前回調査日ではなく固定14日。前回実行日の読み込みは廃止し、保存のみ残す＝run-if-due の72時間ゲート用）
 
 async function saveLastRunDate() {
   if (!DRY_RUN) {
@@ -268,45 +288,62 @@ export function shouldAddMakeupRound({ makeupAlreadyAdded, elapsedMs, budgetMs }
   return elapsedMs < budgetMs;
 }
 
-export function buildDiscoveryPrompt({ lastRunDate, existingTitles, seenThisRun, round, roundFoci, sourcesRegistry }) {
-  const now = new Date();
-  const today = now.toLocaleDateString("ja-JP", { year: "numeric", month: "long", day: "numeric" });
-  const lastRun = lastRunDate.toLocaleDateString("ja-JP", { year: "numeric", month: "long", day: "numeric" });
-  const daysDiff = Math.max(1, Math.round((now - lastRunDate) / (1000 * 60 * 60 * 24)));
+const jaDate = (ymd) => {
+  const [y, m, d] = ymd.split("-").map(Number);
+  return `${y}年${m}月${d}日`;
+};
 
-  // 日単位でスタート位置を回すことで、目標に早く達した日でもテーマの偏りが蓄積しない（JST暦日基準）
-  const focus = roundFoci[(localDayIndex(now) + round - 1) % roundFoci.length];
+/**
+ * 発見プロンプト（v3）。1ラウンド＝1レンズ。
+ *   - round 1..N: 当日のレンズ順序（lensOrderForDay）で round 番目のレンズ。4レンズを毎日1回ずつ回す
+ *   - lensIndex / langs / extraVariant を渡すと追加ラウンド（不足時）や埋め合わせ再試行として明示指定できる
+ *   - 言語: 英語・日本語は常に、加えて日替わりで2言語（lensLanguagePlan）。検索語の例を提示
+ *   - 鮮度: 作品の公開・発表が直近14日（固定。前回調査日は使わない。lastRunDate は後方互換のため受け取るだけで無視）
+ */
+export function buildDiscoveryPrompt({ existingTitles, seenThisRun, round, roundFoci, sourcesRegistry, now = new Date(), lensIndex, langs, extraVariant = 0 }) {
+  const dayIdx = localDayIndex(now);
+  const win = freshnessWindow(now);
+  const lensCount = roundFoci.length;
+  const lens = Number.isInteger(lensIndex) ? lensIndex : lensOrderForDay(dayIdx, lensCount)[(round - 1) % lensCount];
+  const focus = roundFoci[lens];
+  const isExtra = extraVariant > 0;
+  const langIds = Array.isArray(langs) ? langs : lensLanguagePlan(dayIdx, lensCount)[lens];
+  const yardstick = LENS_YARDSTICKS[lens] || "";
 
-  const retryNote =
-    round > 1
-      ? `\n## リトライ指示（${round}ラウンド目）\n前ラウンドは採用に至った候補が少なかった。**別の切り口・ロングテール（有名すぎない）な事例**も探すこと。ただし採用基準は下げない（基準を満たすものが無ければ空でよい）。今回すでに見た候補: ${seenThisRun.slice(-30).join(" / ") || "なし"}\n`
-      : "";
+  const seenNote = seenThisRun.length ? `\n今回すでに見た候補（出さない）: ${seenThisRun.slice(-30).join(" / ")}\n` : "";
+  const extraNote = isExtra
+    ? `\n## 追加ラウンド（このレンズの${extraVariant}回目）
+今日のここまでの採用（accept）が${MIN_ACCEPT_BEFORE_EXTRA}件に届いていない。このレンズを、通常ラウンドとは**別の検索語・別の切り口**（ロングテール、個人・学生・小規模スタジオ、地域の専門メディア、上の検索言語）で追加探索する。**採用基準は緩めない**（基準を満たすものが無ければ found は空でよい）。\n`
+    : "";
 
   // 情報源: data/sources.json の enabled な源のみtier順（有効源が未設定の間は従来の自由文字列にフォールバック）
   const sourcesText =
     resolveSourcesText(focus.sourceRefs, sourcesRegistry, focus.sources || "") ||
     "（このテーマに有効な指定源なし。テーマに合う一次情報源・専門メディアをWebSearchで自分で選ぶ）";
 
-  return `今日は${today}。前回調査日は${lastRun}（約${daysDiff}日前）。
-ResearchManというデジタルクリエイティブ事例データベースのために、**${lastRun}〜${today}に公開・発表・話題化した事例のうち、下記の採用基準（A〜Dのいずれか）を満たすものだけ**をリストアップしてください。件数のノルマは無い。無理に埋めず、該当がなければ found を空配列にしてよい（0件の日があってよい）。この段階では詳細記事は不要（後工程で書く）。発見とURL確認に集中し、**WebSearchは合計10回以内**に収めること。
+  return `今日は${jaDate(win.todayYmd)}。
+ResearchManというデジタルクリエイティブ事例データベースのために、**作品自体の公開・発表・話題化が${jaDate(win.cutoffYmd)}〜${jaDate(win.todayYmd)}（直近${win.days}日以内）の事例のうち、下記の採用基準（A〜Dのいずれか）を満たすもの**（および「あと一歩」の惜しい候補＝borderline）だけをリストアップしてください。件数のノルマは無い。無理に埋めず、該当がなければ found を空配列にしてよい（0件の日があってよい）。この段階では詳細記事は不要（後工程で書く）。発見とURL確認に集中し、**WebSearchは合計${DISCOVER_WEBSEARCH_LIMIT}回以内**に収めること。
 
-## 今回の探索テーマ
-${focus.label}
+## 今回の探索テーマ（レンズ${lens + 1}/${lensCount}。全世界・多言語）
+${focus.label}${yardstick ? `\nこのレンズの物差し（探す場所と水準の目安。受賞していることは採用基準ではない）: ${yardstick}` : ""}
+
+${languageSection(langIds, lens, { extra: isExtra })}
 
 ## 情報源（このテーマを中心に。1つのメディアに偏らない。[id]は出力のsourceIdに使う）
 ${sourcesText}
+優先の情報源に無い分野・国は、そのテーマの一次情報・専門メディアを自分で選んで検索する（ハイブリッド）。
 
 ${discoveryGatePromptSection()}
 
 ${exhibitionRoutingPromptSection()}
 
 ## 厳守事項
-1. **鮮度**: この${daysDiff}日間に「公開/発表/受賞/バイラル化」したものだけ。過去の名作の掘り起こしは禁止。
+1. **鮮度**: **作品自体**の公開・発表・リリース・バイラル化が${jaDate(win.cutoffYmd)}以降（直近${win.days}日以内）のものだけ。**受賞発表は鮮度の例外にしない**: 受賞・ショートリスト発表・受賞者一覧の公開が直近でも、作品自体の公開・発表がそれより前なら不可（賞の発表は「探す場所」として使い、日付は作品側で判定する）。過去の名作の掘り起こしは禁止。
 2. **多様性**: ${focus.diversity} 有名ブランドの大型事例だけでなく、小規模でも面白いものを混ぜる。
 3. **linkの正確性（最重要）**: linkには**あなたがWebSearchの結果で実際に確認した実在のURL**のみを書く。記憶からURLを組み立てることを禁止。確認できたURLがない事例は含めない。
 4. **既存事例との重複禁止**: 下記の既存リストにあるものは出さない。
 5. **1記事1件**: 1つの記事URLからはその記事の主題である最重要の1件のみを出す。まとめ記事から複数の話題を切り出して複数件にしない。
-${retryNote}
+${extraNote}${seenNote}
 ## 既存事例（これらは出さない）
 ${existingTitles}
 
@@ -324,6 +361,7 @@ ${existingTitles}
       "sourceId": "見つけた情報源の[id]（上の情報源から見つけた場合のみ。不明・それ以外は空文字）",
       "gateVerdict": "accept | borderline | reject",
       "gateCriterion": "A | B | C | D | none",
+      "gateScore": 7,
       "gateReason": "判定理由を一言（40字以内）",
       "contentKind": "case | exhibition",
       "exhibition": "contentKindがexhibitionの時のみ付ける（上の「展覧会・展示の振り分け」参照）。caseなら省略"
@@ -514,252 +552,327 @@ async function main() {
   const { text: existingTitles, mode: existingTitlesMode } = buildExistingTitlesText(existingCases);
   if (existingTitlesMode !== "full") console.log(`既存タイトル提示モード: ${existingTitlesMode}`);
 
-  const lastRunDate = await getLastRunDate();
-  const daysSince = Math.round((Date.now() - lastRunDate) / (1000 * 60 * 60 * 24));
+  const dayIdx = localDayIndex();
+  const win = freshnessWindow();
+  const lensCount = roundFoci.length;
+  const lensOrder = lensOrderForDay(dayIdx, lensCount);
+  const langPlan = lensLanguagePlan(dayIdx, lensCount);
   console.log(`既存: ${existingCases.length}件`);
-  console.log(`前回実行: ${lastRunDate.toLocaleDateString("ja-JP")}（${daysSince}日前）`);
-  console.log(`検索対象期間: 直近${daysSince}日間 / 基準を満たすものだけ採用（ノルマなし・0件可。上限${MAX_ADD}件・最大${MAX_ROUNDS}ラウンド）\n`);
+  console.log(`検索対象期間: 作品の公開・発表が直近${win.days}日（${win.cutoffYmd}〜${win.todayYmd}）/ ${lensCount}レンズを毎日順に1回ずつ・全世界・多言語 / 基準を満たすものだけ採用（ノルマなし・0件可）`);
+  console.log(`採用上限: accept 最大${MAX_ACCEPT}件 + borderline 別枠最大${MAX_BORDERLINE}件（gateScore上位）/ accept ${MIN_ACCEPT_BEFORE_EXTRA}件未満なら追加ラウンド最大${MAX_EXTRA_ROUNDS}回`);
+  console.log(`本日のレンズ順・検索言語: ${lensOrder.map((l) => `レンズ${l + 1}[${langPlan[l].join("+")}]`).join(" → ")}\n`);
 
   const claudeBin = resolveClaudeBin();
   console.log(`Claude bin: ${claudeBin}\n`);
 
-  const toAdd = [];
+  const pool = []; // 記事化・最終関門（関門2）を通過した候補 { tier, gateScore, lens, entry }。最後に採用枠を適用する
+  const borderlinePending = []; // 関門1で borderline の候補。全ラウンド後に gate1 スコア上位から記事化へ進める
   const seenThisRun = [];
   const today = todayJst();
   const stats = { candidates: 0, dup: 0, rejected: 0, gateRejected: 0, routed: 0 };
+  const newLensStat = () => ({ candidates: 0, gate1: { accept: 0, borderline: 0, reject: 0 }, adopted: { accept: 0, borderline: 0 } });
+  const lensStats = Array.from({ length: lensCount }, newLensStat);
   let discoveryErrors = 0;
   let roundsAttempted = 0;
 
-  // 基本ラウンドは1..MAX_ROUNDS。発見フェーズがラウンド単位で失敗（タイムアウト等）した場合、
-  // そのラウンドのフォーカスがその日一度も試されないまま終わらないよう、失敗したラウンドの
-  // フォーカスを最大1回だけキューの末尾に積んで再試行する（shouldAddMakeupRound参照）。
-  // 総実行時間の無制限な増大を防ぐため、埋め合わせは1回のみ・MAX_TOTAL_DISCOVERY_MSを超えたら
-  // 追加しない。
-  const discoveryStart = Date.now();
-  const roundSchedule = Array.from({ length: MAX_ROUNDS }, (_, i) => i + 1);
-  let makeupAdded = false;
+  const countPool = (tier) => pool.filter((p) => p.tier === tier).length;
+  const removeOrphanThumb = async (id) => {
+    try {
+      await fs.unlink(path.join(__dirname, `../public/thumbnails/${id}.jpg`));
+    } catch {}
+  };
+  const rejectLog = async (cand, reason, detail = "") => {
+    if (!DRY_RUN) await logRejection({ pipeline: "cc", title: cand.title, reason, detail, link: cand.link || "" });
+  };
 
-  for (let scheduleIdx = 0; scheduleIdx < roundSchedule.length && toAdd.length < TARGET_NEW; scheduleIdx++) {
-    const round = roundSchedule[scheduleIdx];
-    const isMakeup = scheduleIdx >= MAX_ROUNDS;
-    console.log(`── ラウンド ${round}/${MAX_ROUNDS}${isMakeup ? "（埋め合わせ再試行）" : ""}: 発見フェーズ ──`);
+  // ── 1候補の処理（重複判定 → Exhibition振り分け → 関門1 → link/サムネ検証 → 記事化 → 関門2 → pool）──
+  // phase "stream": 発見直後。関門1 borderline は borderlinePending へ回す（記事化は全ラウンド後に gate スコア上位から）
+  // phase "deferred": borderlinePending から取り出した候補の記事化
+  const processCand = async (cand, lens, phase) => {
+    if (!cand?.title || !cand?.year) return;
+    if (phase === "stream") seenThisRun.push(cand.title);
+
+    // 真の重複判定はタイトルの意味的一致（normTitle）で行う。ID自体の衝突（同一ドメインから
+    // 複数の別事例が来た場合等）は「重複」ではないため dedupeId() で一意化し、取りこぼさない
+    // （2026-08-19レビューで判明: URL由来IDの衝突がここでスキップされ続けていた不具合の修正）。
+    if (existingTitleKeys.has(normTitle(cand.title))) {
+      console.log(`スキップ（重複）: ${cand.title}`);
+      stats.dup++;
+      return;
+    }
+    const rawId = toId(cand.title, cand.year, cand.client, cand.link);
+    const id = existingIds.has(rawId) ? dedupeId(rawId, existingIds) : rawId;
+
+    const lk = normLink(cand.link);
+    if (lk && existingLinkKeys.has(lk)) {
+      console.log(`スキップ（同一記事の重複）: ${cand.title} → ${cand.link}`);
+      stats.dup++;
+      await rejectLog(cand, "link-duplicate");
+      return;
+    }
+
+    // ── 展覧会告知（開催前/開催中・会場と会期あり）は cases に入れず Exhibition へ引き継ぐ ──
+    // 採用基準(関門)の前に振り分ける：展示は Exhibition 側の基準（公式ページ照合・score）で扱うため。
+    // 即 appendHandoff（kill/例外で失わない）。書き込めなければ cases 判定に戻す（cases から消えるだけにしない）。
+    const handoff = toHandoffItem(cand, today);
+    let routed = false;
+    if (handoff) {
+      try {
+        if (!DRY_RUN) await appendHandoff(ROOT, [handoff]);
+        routed = true;
+      } catch (e) {
+        console.error(`  ⚠ handoff 書き込み失敗（cases 判定に戻す）: ${e.message}`);
+      }
+    }
+    if (routed) {
+      console.log(`Exhibitionへ引き継ぎ${DRY_RUN ? "（dry-run: 書き込みなし）" : ""}: ${cand.title}（${handoff.venue} ${handoff.startDate}〜${handoff.endDate}）`);
+      stats.routed++;
+      existingTitleKeys.add(normTitle(cand.title));
+      if (lk) existingLinkKeys.add(lk);
+      await rejectLog(cand, "routed-to-exhibition", `${handoff.venue} ${handoff.startDate}〜${handoff.endDate}`);
+      return;
+    }
+
+    // ── 関門1回目: 発見時の自己判定が reject の候補は、リンク/サムネ検証・記事化の前にスキップ ──
+    const gate1 = normalizeDiscoveryGate(cand);
+    if (gate1.gateVerdict === "reject") {
+      console.log(`関門却下（発見時）: ${cand.title} [${gateRejectionDetail(gate1, "discovery")}]`);
+      stats.gateRejected++;
+      await rejectLog(cand, "no-creative-merit", gateRejectionDetail(gate1, "discovery"));
+      return;
+    }
+    if (phase === "stream") {
+      if (gate1.gateVerdict === "borderline") {
+        console.log(`惜しい候補（borderline・後で gateScore 上位から記事化）: ${cand.title} [score ${gate1.gateScore} / ${gate1.gateCriterion}:${gate1.gateReason}]`);
+        borderlinePending.push({ cand, gate1, lens });
+        return;
+      }
+      if (countPool("accept") >= MAX_ACCEPT) {
+        console.log(`スキップ（accept 上限${MAX_ACCEPT}件）: ${cand.title}`);
+        await rejectLog(cand, "accept-over-cap", `lens=${lens + 1} score=${gate1.gateScore} ${gate1.gateCriterion}:${gate1.gateReason}`);
+        return;
+      }
+    }
+
+    try {
+      // ── link 実在検証（誤リンクの根絶）──
+      if (!cand.link || !(await isUrlAlive(cand.link))) {
+        console.log(`却下（リンク到達不可）: ${cand.title} → ${cand.link || "(なし)"}`);
+        stats.rejected++;
+        await rejectLog(cand, "link-dead");
+        return;
+      }
+
+      // ── 検証済みサムネイル取得（取れなければ記事化前に却下）──
+      console.log(`検証中: ${cand.title}`);
+      const thumb = await acquireVerifiedThumbnail(id, cand, claudeBin);
+      if (!thumb || thumb.error) {
+        const detail = thumb?.error || "unknown";
+        console.log(`却下（検証済みサムネイル取得不可）: ${cand.title} [${detail}]`);
+        stats.rejected++;
+        await rejectLog(cand, "thumbnail-unverified", detail);
+        await removeOrphanThumb(id);
+        return;
+      }
+
+      // ── 記事化（検証通過後のみ長文生成コストを払う）──
+      process.stdout.write(`  [4] 記事生成中... `);
+      const art = runClaudeJson(claudeBin, buildArticlePrompt(cand, vocab), {
+        timeout: ARTICLE_TIMEOUT_MS,
+        marker: '"overview"',
+        model: MODEL,
+        allowedTools: "WebSearch",
+      });
+      // ── 関門2回目（最終判定）: WebSearchで確認した事実に基づく。reject/矛盾/欠落は cases.json に入れない ──
+      // 生成失敗判定より先に行う（rejectは本文が空でもよい指示のため、生成失敗と誤分類しない）
+      // 最終 tier は関門2の判定（関門1が accept でも関門2が borderline なら borderline、逆も同様）
+      const gate2 = art ? normalizeArticleGate(art) : null;
+      const tier = gate2 ? decideFinalTier(gate1.gateVerdict, gate2.gateVerdict) : null;
+      if (art && !tier) {
+        console.log(`✗ 関門却下（記事化時）[${gateRejectionDetail(gate2, "article")}]`);
+        stats.gateRejected++;
+        await rejectLog(cand, "no-creative-merit", gateRejectionDetail(gate2, "article"));
+        await removeOrphanThumb(id);
+        return;
+      }
+      if (!art || !(art.summary || "").trim() || (art.overview || "").length < 50) {
+        console.log("✗ 生成失敗/説明不足 → 却下");
+        stats.rejected++;
+        await rejectLog(cand, "article-generation-failed");
+        await removeOrphanThumb(id);
+        return;
+      }
+      console.log("✓");
+
+      // ── related_works の死リンクは除外（事例自体は残す）──
+      const relatedWorks = [];
+      for (const w of art.related_works || []) {
+        if (!w?.url) continue;
+        if (await isUrlAlive(w.url)) {
+          relatedWorks.push({ title: w.title || "", description: w.description || "", url: w.url });
+        }
+      }
+
+      const entry = {
+        id,
+        title: cand.title,
+        summary: art.summary,
+        client: cand.client || "",
+        agency: cand.agency || "",
+        categories: art.categories?.length ? art.categories : ["コンテンツ革新"],
+        award: art.award || "",
+        year: String(cand.year),
+        regions: art.regions?.length ? art.regions : ["グローバル"],
+        link: cand.link,
+        thumbnail: thumb.thumbnail,
+        videoId: thumb.videoId,
+        overview: art.overview || "",
+        background: art.background || "",
+        execution: art.execution || "",
+        evaluationImpact: art.evaluationImpact || "",
+        relatedWorks,
+        sources: ["Radar"], // TOPカードの専用色・Radarタブの対象
+        tags: (art.tags || []).filter((t) => validTags.has(t)).slice(0, 5),
+        // Radar v2: 最終関門を通した基準(A〜D)と取得元の情報源id（既存エントリには無い＝集計上「不明」）
+        gateCriterion: gate2.gateCriterion,
+        sourceId: sourceIdFor(cand, sourcesRegistry),
+        // v3: 最終 tier（関門2の判定）と見つけたレンズ（1〜4）。内部記録のみ＝サイトの表示には使わない
+        gateTier: tier,
+        discoveryLens: lens + 1,
+      };
+      pool.push({ tier, gateScore: gate2.gateScore, lens, entry });
+      existingIds.add(id);
+      existingTitleKeys.add(normTitle(cand.title));
+      if (lk) existingLinkKeys.add(lk);
+      console.log(`✅ 記事化OK[${tier}]: ${cand.title} [関門: ${gate2.gateCriterion} / score ${gate2.gateScore} / ${gate2.gateReason}]`);
+    } catch (err) {
+      console.log(`  ⚠ スキップ（処理失敗: ${err.message}）: ${cand.title}`);
+      stats.rejected++;
+      await rejectLog(cand, "exception", err.message);
+      await removeOrphanThumb(id);
+    }
+  };
+
+  // borderline の記事化: gate1 スコア上位から、最終 borderline が枠(MAX_BORDERLINE)に達するまで
+  const drainBorderline = async () => {
+    borderlinePending.sort((a, b) => b.gate1.gateScore - a.gate1.gateScore); // 安定ソート＝同点は発見順
+    while (borderlinePending.length && countPool("borderline") < MAX_BORDERLINE) {
+      const p = borderlinePending.shift();
+      console.log(`惜しい候補を記事化: ${p.cand.title} [gate1 score ${p.gate1.gateScore}]`);
+      await processCand(p.cand, p.lens, "deferred");
+    }
+  };
+
+  // ── 発見フェーズ: 4レンズを毎日順に1回ずつ。失敗ラウンドは最大1回だけ埋め合わせ再試行。
+  // accept が足りなければ追加ラウンド（最大2回）。時間の上限 MAX_TOTAL_DISCOVERY_MS は発見呼び出しの累積時間で測る
+  // （記事化の時間は含めない）。新しいラウンド（埋め合わせ・追加）はこの上限に達していたら始めない。
+  const queue = lensOrder.map((lens, i) => ({ kind: "base", lens, round: i + 1 }));
+  const usedLangsByLens = langPlan.map((l) => new Set(l));
+  const extraByLens = Array(lensCount).fill(0);
+  let makeupAdded = false;
+  let extraDone = 0;
+  let discoveryElapsedMs = 0;
+
+  for (;;) {
+    let item = queue.shift();
+    if (!item) {
+      // 4レンズ（＋埋め合わせ）が終わった。惜しい候補を先に記事化してから accept 数で追加ラウンドの要否を決める
+      await drainBorderline();
+      const acceptCount = countPool("accept");
+      if (!shouldRunExtraRound({ acceptCount, extraDone, elapsedMs: discoveryElapsedMs, budgetMs: MAX_TOTAL_DISCOVERY_MS })) break;
+      const acceptByLens = lensStats.map((_, l) => pool.filter((p) => p.tier === "accept" && p.lens === l).length);
+      const plan = planExtraRound({ dayIndex: dayIdx, acceptByLens, usedLangsByLens, extraByLens });
+      for (const l of plan.langs) usedLangsByLens[plan.lensIndex].add(l);
+      extraByLens[plan.lensIndex]++;
+      extraDone++;
+      item = { kind: "extra", lens: plan.lensIndex, round: lensCount + extraDone, langs: plan.langs, variant: plan.variant };
+      console.log(`accept ${acceptCount}件（${MIN_ACCEPT_BEFORE_EXTRA}件未満）→ 追加ラウンド${extraDone}/${MAX_EXTRA_ROUNDS}: レンズ${item.lens + 1} / 未使用言語 [${plan.langs.join("+") || "なし"}] / 別の検索語（基準は緩めない）`);
+    }
+
+    const lens = item.lens;
+    const tag = item.kind === "extra" ? "（追加ラウンド）" : item.kind === "makeup" ? "（埋め合わせ再試行）" : "";
+    console.log(`── ラウンド${item.round}: レンズ${lens + 1}/${lensCount}${tag} 発見フェーズ ──`);
     roundsAttempted++;
     let found = [];
+    const t0 = Date.now();
     try {
       const parsed = runClaudeJson(
         claudeBin,
-        buildDiscoveryPrompt({ lastRunDate, existingTitles, seenThisRun, round, roundFoci, sourcesRegistry }),
+        buildDiscoveryPrompt({
+          existingTitles,
+          seenThisRun,
+          round: item.round,
+          roundFoci,
+          sourcesRegistry,
+          lensIndex: lens,
+          langs: item.langs,
+          extraVariant: item.kind === "extra" ? item.variant : 0,
+        }),
         { timeout: DISCOVER_TIMEOUT_MS, marker: '"found"', model: MODEL, allowedTools: "WebSearch" }
       );
       found = parsed?.found || [];
     } catch (e) {
+      discoveryElapsedMs += Date.now() - t0;
       console.error(`発見フェーズ失敗: ${e.message}`);
       discoveryErrors++;
-      if (shouldAddMakeupRound({ makeupAlreadyAdded: makeupAdded, elapsedMs: Date.now() - discoveryStart, budgetMs: MAX_TOTAL_DISCOVERY_MS })) {
-        console.log(`  → ラウンド${round}のフォーカスを埋め合わせ再試行としてキューに追加`);
-        roundSchedule.push(round);
+      if (item.kind === "base" && shouldAddMakeupRound({ makeupAlreadyAdded: makeupAdded, elapsedMs: discoveryElapsedMs, budgetMs: MAX_TOTAL_DISCOVERY_MS })) {
+        console.log(`  → レンズ${lens + 1}を埋め合わせ再試行としてキューに追加`);
+        queue.push({ kind: "makeup", lens, round: item.round });
         makeupAdded = true;
       }
       continue;
     }
+    discoveryElapsedMs += Date.now() - t0;
+
     console.log(`候補: ${found.length}件`);
     stats.candidates += found.length;
-    {
-      const g = partitionByGate(found);
-      console.log(`関門1（発見時の自己判定）: accept ${g.accepted.length} / borderline ${g.borderline.length} / reject ${g.rejected.length}`);
-    }
+    const g = partitionByGate(found);
+    const ls = lensStats[lens];
+    ls.candidates += found.length;
+    ls.gate1.accept += g.accepted.length;
+    ls.gate1.borderline += g.borderline.length;
+    ls.gate1.reject += g.rejected.length;
+    console.log(`関門1（発見時の自己判定）: accept ${g.accepted.length} / borderline ${g.borderline.length} / reject ${g.rejected.length}`);
 
-    for (const cand of found) {
-      if (toAdd.length >= MAX_ADD) break;
-      if (!cand?.title || !cand?.year) continue;
-      seenThisRun.push(cand.title);
-
-      // 真の重複判定はタイトルの意味的一致（normTitle）で行う。ID自体の衝突（同一ドメインから
-      // 複数の別事例が来た場合等）は「重複」ではないため dedupeId() で一意化し、取りこぼさない
-      // （2026-08-19レビューで判明: URL由来IDの衝突がここでスキップされ続けていた不具合の修正）。
-      if (existingTitleKeys.has(normTitle(cand.title))) {
-        console.log(`スキップ（重複）: ${cand.title}`);
-        stats.dup++;
-        continue;
-      }
-      const rawId = toId(cand.title, cand.year, cand.client, cand.link);
-      const id = existingIds.has(rawId) ? dedupeId(rawId, existingIds) : rawId;
-
-      const lk = normLink(cand.link);
-      if (lk && existingLinkKeys.has(lk)) {
-        console.log(`スキップ（同一記事の重複）: ${cand.title} → ${cand.link}`);
-        stats.dup++;
-        if (!DRY_RUN) {
-          await logRejection({ pipeline: "cc", title: cand.title, reason: "link-duplicate", link: cand.link || "" });
-        }
-        continue;
-      }
-
-      // ── 展覧会告知（開催前/開催中・会場と会期あり）は cases に入れず Exhibition へ引き継ぐ ──
-      // 採用基準(関門)の前に振り分ける：展示は Exhibition 側の基準（公式ページ照合・score）で扱うため。
-      // 即 appendHandoff（kill/例外で失わない）。書き込めなければ cases 判定に戻す（cases から消えるだけにしない）。
-      const handoff = toHandoffItem(cand, today);
-      let routed = false;
-      if (handoff) {
-        try {
-          if (!DRY_RUN) await appendHandoff(ROOT, [handoff]);
-          routed = true;
-        } catch (e) {
-          console.error(`  ⚠ handoff 書き込み失敗（cases 判定に戻す）: ${e.message}`);
-        }
-      }
-      if (routed) {
-        console.log(`Exhibitionへ引き継ぎ${DRY_RUN ? "（dry-run: 書き込みなし）" : ""}: ${cand.title}（${handoff.venue} ${handoff.startDate}〜${handoff.endDate}）`);
-        stats.routed++;
-        existingTitleKeys.add(normTitle(cand.title));
-        if (lk) existingLinkKeys.add(lk);
-        if (!DRY_RUN) {
-          await logRejection({ pipeline: "cc", title: cand.title, reason: "routed-to-exhibition", detail: `${handoff.venue} ${handoff.startDate}〜${handoff.endDate}`, link: cand.link || "" });
-        }
-        continue;
-      }
-
-      // ── 関門1回目: 発見時の自己判定が reject の候補は、リンク/サムネ検証・記事化の前にスキップ ──
-      const gate1 = normalizeDiscoveryGate(cand);
-      if (gate1.gateVerdict !== "accept") {
-        console.log(`関門却下（発見時）: ${cand.title} [${gateRejectionDetail(gate1, "discovery")}]`);
-        stats.gateRejected++;
-        if (!DRY_RUN) {
-          await logRejection({
-            pipeline: "cc",
-            title: cand.title,
-            reason: "no-creative-merit",
-            detail: gateRejectionDetail(gate1, "discovery"),
-            link: cand.link || "",
-          });
-        }
-        continue;
-      }
-
-      try {
-        // ── link 実在検証（誤リンクの根絶）──
-        if (!cand.link || !(await isUrlAlive(cand.link))) {
-          console.log(`却下（リンク到達不可）: ${cand.title} → ${cand.link || "(なし)"}`);
-          stats.rejected++;
-          if (!DRY_RUN) {
-            await logRejection({ pipeline: "cc", title: cand.title, reason: "link-dead", link: cand.link || "" });
-          }
-          continue;
-        }
-
-        // ── 検証済みサムネイル取得（取れなければ記事化前に却下）──
-        console.log(`検証中: ${cand.title}`);
-        const thumb = await acquireVerifiedThumbnail(id, cand, claudeBin);
-        if (!thumb || thumb.error) {
-          const detail = thumb?.error || "unknown";
-          console.log(`却下（検証済みサムネイル取得不可）: ${cand.title} [${detail}]`);
-          stats.rejected++;
-          if (!DRY_RUN) {
-            await logRejection({ pipeline: "cc", title: cand.title, reason: "thumbnail-unverified", detail, link: cand.link || "" });
-          }
-          const orphan = path.join(__dirname, `../public/thumbnails/${id}.jpg`);
-          try {
-            await fs.unlink(orphan);
-          } catch {}
-          continue;
-        }
-
-        // ── 記事化（検証通過後のみ長文生成コストを払う）──
-        process.stdout.write(`  [4] 記事生成中... `);
-        const art = runClaudeJson(claudeBin, buildArticlePrompt(cand, vocab), {
-          timeout: ARTICLE_TIMEOUT_MS,
-          marker: '"overview"',
-          model: MODEL,
-          allowedTools: "WebSearch",
-        });
-        // ── 関門2回目（最終判定）: WebSearchで確認した事実に基づく。reject/矛盾/欠落は cases.json に入れない ──
-        // 生成失敗判定より先に行う（rejectは本文が空でもよい指示のため、生成失敗と誤分類しない）
-        const gate2 = art ? normalizeArticleGate(art) : null;
-        if (art && gate2.gateVerdict !== "accept") {
-          console.log(`✗ 関門却下（記事化時）[${gateRejectionDetail(gate2, "article")}]`);
-          stats.gateRejected++;
-          if (!DRY_RUN) {
-            await logRejection({
-              pipeline: "cc",
-              title: cand.title,
-              reason: "no-creative-merit",
-              detail: gateRejectionDetail(gate2, "article"),
-              link: cand.link || "",
-            });
-          }
-          const orphan = path.join(__dirname, `../public/thumbnails/${id}.jpg`);
-          try {
-            await fs.unlink(orphan);
-          } catch {}
-          continue;
-        }
-        if (!art || !(art.summary || "").trim() || (art.overview || "").length < 50) {
-          console.log("✗ 生成失敗/説明不足 → 却下");
-          stats.rejected++;
-          if (!DRY_RUN) {
-            await logRejection({ pipeline: "cc", title: cand.title, reason: "article-generation-failed", link: cand.link || "" });
-          }
-          const orphan = path.join(__dirname, `../public/thumbnails/${id}.jpg`);
-          try {
-            await fs.unlink(orphan);
-          } catch {}
-          continue;
-        }
-        console.log("✓");
-
-        // ── related_works の死リンクは除外（事例自体は残す）──
-        const relatedWorks = [];
-        for (const w of art.related_works || []) {
-          if (!w?.url) continue;
-          if (await isUrlAlive(w.url)) {
-            relatedWorks.push({ title: w.title || "", description: w.description || "", url: w.url });
-          }
-        }
-
-        toAdd.push({
-          id,
-          title: cand.title,
-          summary: art.summary,
-          client: cand.client || "",
-          agency: cand.agency || "",
-          categories: art.categories?.length ? art.categories : ["コンテンツ革新"],
-          award: art.award || "",
-          year: String(cand.year),
-          regions: art.regions?.length ? art.regions : ["グローバル"],
-          link: cand.link,
-          thumbnail: thumb.thumbnail,
-          videoId: thumb.videoId,
-          overview: art.overview || "",
-          background: art.background || "",
-          execution: art.execution || "",
-          evaluationImpact: art.evaluationImpact || "",
-          relatedWorks,
-          sources: ["Radar"], // TOPカードの専用色・Radarタブの対象
-          tags: (art.tags || []).filter((t) => validTags.has(t)).slice(0, 5),
-          // Radar v2: 最終関門を通した基準(A〜D)と取得元の情報源id（既存エントリには無い＝集計上「不明」）
-          gateCriterion: gate2.gateCriterion,
-          sourceId: sourceIdFor(cand, sourcesRegistry),
-        });
-        existingIds.add(id);
-        existingTitleKeys.add(normTitle(cand.title));
-        if (lk) existingLinkKeys.add(lk);
-        console.log(`✅ 採用: ${cand.title} [関門: ${gate2.gateCriterion} / score ${gate2.gateScore} / ${gate2.gateReason}]`);
-      } catch (err) {
-        console.log(`  ⚠ スキップ（処理失敗: ${err.message}）: ${cand.title}`);
-        stats.rejected++;
-        if (!DRY_RUN) {
-          await logRejection({ pipeline: "cc", title: cand.title, reason: "exception", detail: err.message, link: cand.link || "" });
-        }
-        const orphan = path.join(__dirname, `../public/thumbnails/${id}.jpg`);
-        try {
-          await fs.unlink(orphan);
-        } catch {}
-      }
-    }
+    // 関門1 accept を先に（accept 枠を先に確保）、borderline は processCand が pending に回す
+    const ordered = [...found].sort((a, b) => (normalizeDiscoveryGate(a).gateVerdict === "accept" ? 0 : 1) - (normalizeDiscoveryGate(b).gateVerdict === "accept" ? 0 : 1));
+    for (const cand of ordered) await processCand(cand, lens, "stream");
     console.log(
-      `ラウンド${round}終了: 累計採用${toAdd.length} / 候補${stats.candidates} / 重複${stats.dup} / 関門却下${stats.gateRejected} / 検証却下${stats.rejected}\n`
+      `ラウンド${item.round}終了: 記事化OK accept ${countPool("accept")} / borderline ${countPool("borderline")}（惜しい候補待ち${borderlinePending.length}）/ 候補${stats.candidates} / 重複${stats.dup} / 関門却下${stats.gateRejected} / 検証却下${stats.rejected} / 発見所要${Math.round(discoveryElapsedMs / 60000)}分\n`
     );
   }
+
+  // ── 採用枠の適用: accept 最大10件 + borderline 別枠最大3件（gateScore 上位）。枠外は理由つきで却下ログへ ──
+  for (const p of borderlinePending) {
+    // 記事化に進まなかった borderline（枠が埋まった）
+    await rejectLog(p.cand, "borderline-over-cap", `gate1:lens=${p.lens + 1} score=${p.gate1.gateScore} ${p.gate1.gateCriterion}:${p.gate1.gateReason}`);
+  }
+  if (borderlinePending.length) console.log(`惜しい候補で枠外（記事化せず）: ${borderlinePending.length}件`);
+  const { adopted, dropped } = selectAdoptions(pool);
+  for (const d of dropped) {
+    console.log(`枠外（${d.reason}）: ${d.item.entry.title} [tier ${d.item.tier} / gateScore ${d.item.gateScore}]`);
+    await rejectLog(
+      { title: d.item.entry.title, link: d.item.entry.link },
+      d.reason,
+      `lens=${d.item.lens + 1} tier=${d.item.tier} gateScore=${d.item.gateScore} ${d.item.entry.gateCriterion}`
+    );
+    await removeOrphanThumb(d.item.entry.id);
+  }
+  const toAdd = adopted.map((a) => a.entry);
+  for (const a of adopted) lensStats[a.lens].adopted[a.tier]++;
+  const byTier = { accept: adopted.filter((a) => a.tier === "accept").length, borderline: adopted.filter((a) => a.tier === "borderline").length };
+
+  // レンズ別・tier別のサマリー（ログと通知サマリーの両方に出す）
+  console.log(`── 実行サマリー（レンズ別・tier別）──`);
+  console.log(formatLensTierSummary(lensStats, roundFoci.map((f) => f.label)));
+  console.log(`採用: accept ${byTier.accept} + borderline ${byTier.borderline}（枠外 ${dropped.length + borderlinePending.length}）/ 追加ラウンド${extraDone}回 / 発見所要${Math.round(discoveryElapsedMs / 60000)}分\n`);
+  const addSummary = {
+    count: toAdd.length,
+    cases: adopted.map((a) => ({ id: a.entry.id, title: a.entry.title, year: a.entry.year, gateTier: a.tier, lens: a.lens + 1 })),
+    byTier,
+    byLens: lensStats.map((s, i) => ({ lens: i + 1, candidates: s.candidates, gate1: s.gate1, adopted: s.adopted })),
+    extraRounds: extraDone,
+  };
 
   // 全ラウンドがエラーで候補ゼロ＝「0件」ではなく「収集失敗」。
   // exit 1 で呼び出し元(plist)のエラー通知経路に乗せる（セッション制限等で
@@ -777,23 +890,18 @@ async function main() {
       // 前回実行のサマリーが残ると、self-heal起因のコミットで通知が走った際に
       // 旧事例を再通知してしまう（stale通知）。0件でも必ず上書きする
       try {
-        await fs.writeFile(LAST_ADD_PATH, JSON.stringify({ count: 0, cases: [] }, null, 2));
+        await fs.writeFile(LAST_ADD_PATH, JSON.stringify(addSummary, null, 2));
       } catch {}
     }
     return 0;
   }
 
   console.log(`追加: ${toAdd.length}件`);
-  toAdd.forEach((c) => console.log(`  + ${c.title} (${c.year}) [${(c.tags || []).join(", ")}]`));
+  adopted.forEach((a) => console.log(`  + [${a.tier}] ${a.entry.title} (${a.entry.year}) [${(a.entry.tags || []).join(", ")}]`));
 
   if (DRY_RUN) {
     // dry-run で保存したサムネイルは掃除（登録なしの孤立ファイルを残さない）
-    for (const c of toAdd) {
-      const f = path.join(__dirname, `../public/thumbnails/${c.id}.jpg`);
-      try {
-        await fs.unlink(f);
-      } catch {}
-    }
+    for (const c of toAdd) await removeOrphanThumb(c.id);
     return 0;
   }
 
@@ -802,16 +910,9 @@ async function main() {
   await saveLastRunDate();
   console.log(`\n✅ ${toAdd.length}件追加 → 合計${updated.length}件`);
 
-  // 反映後の通知メール/LINE用サマリー（send-mail.mjs / notify-line.mjs が読む）
+  // 反映後の通知メール/LINE用サマリー（send-mail.mjs / notify-line.mjs が読む。count/cases は従来どおり、byTier/byLens は追加）
   try {
-    await fs.writeFile(
-      LAST_ADD_PATH,
-      JSON.stringify(
-        { count: toAdd.length, cases: toAdd.map((c) => ({ id: c.id, title: c.title, year: c.year })) },
-        null,
-        2
-      )
-    );
+    await fs.writeFile(LAST_ADD_PATH, JSON.stringify(addSummary, null, 2));
   } catch {}
 
   return toAdd.length;

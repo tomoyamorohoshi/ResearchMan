@@ -92,10 +92,16 @@ $Settings = New-ScheduledTaskSettingsSet `
     -MultipleInstances IgnoreNew `
     -AllowStartIfOnBatteries `
     -DontStopIfGoingOnBatteries `
-    -ExecutionTimeLimit (New-TimeSpan -Hours 3)
-    # 3時間の根拠: ロック待ち最大45分（ideaseeds/tuneup）＋ 本体実行の想定上限90分
-    # （staleロック奪取閾値と同じ）＋ verify-deployポーリング最大~13分に余裕を足した値。
-    # plist時代は無制限だったが、ハング残骸がロックを90分超塞ぐ事故を防ぐため上限は設ける
+    -ExecutionTimeLimit (New-TimeSpan -Hours 5)
+    # 5時間の根拠（2026-10-20、Case Study v3 で3時間から変更）: autoresearch(cc)は
+    # ロック待ち最大30分 ＋ 発見フェーズ最大90分（MAX_TOTAL_DISCOVERY_MS。最後のラウンド分で+最大15分）
+    # ＋ 記事化（最大accept10＋borderline3件 ＋ 関門で落ちる分の記事生成。1件最大5分）
+    # ＋ self-heal・push・verify-deployポーリング最大~13分 で最悪4時間強になりうるため。
+    # tuneup(ロック待ち45分＋分析・dry-run 3本で最大約155分)もこの範囲に収まる。
+    # plist時代は無制限だったが、ハング残骸がロックを塞ぎ続ける事故を防ぐため上限は設ける。
+    # ロックのstale閾値(90分)は、cc 実行中だけ run-job.mjs がロックの mtime を更新(ハートビート)して
+    # 超えても奪取されないようにしている（lib/git-lock.mjs startLockHeartbeat。ハートビート自体も最大5時間で止まる）。
+    # ※このスクリプトの再実行（再登録）で反映される。登録済みタスクは再実行するまで旧設定(3時間)のまま
 
 $Principal = New-ScheduledTaskPrincipal -UserId "$env:USERDOMAIN\$env:USERNAME" -LogonType Interactive -RunLevel Limited
 
