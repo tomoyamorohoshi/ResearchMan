@@ -92,6 +92,33 @@ export function isProgressText(text: string): boolean {
   return PROGRESS_PREFIXES.some((p) => trimmed.startsWith(p));
 }
 
+// ── 基準の変更案（docs/CASE_RESEARCH_V3_SPEC.md §6）: 承認/却下/修正 ────────
+
+export type GateCommandAction = "approve" | "reject" | "revise";
+
+export interface GateCommand {
+  action: GateCommandAction;
+  /** 案の連番（"G12"/"g12"/"12"/全角いずれも 12）。 */
+  id: number;
+  /** 「修正」の自由文（複数行可）。承認・却下では空文字。 */
+  feedback: string;
+}
+
+const GATE_ACTIONS: Record<string, GateCommandAction> = { 承認: "approve", 却下: "reject", 修正: "revise" };
+const GATE_COMMAND_RE = /^(承認|却下|修正)[\s　]*[GgＧｇ]?([0-9０-９]+)(?![0-9０-９A-Za-z])(?:[\s　]+([\s\S]*))?$/;
+
+/**
+ * 「承認 G12」「却下 12」「修正 G12 もっと短く」を解釈する。id が無い（「承認」だけ等）・
+ * 不正な場合は null（誤作動させない）。webhook.ts は他の全判定より先にこれを呼ぶ。
+ */
+export function parseGateCommand(text: string): GateCommand | null {
+  const m = text.trim().match(GATE_COMMAND_RE);
+  if (!m) return null;
+  const id = Number(normalizeDigits(m[2]));
+  if (!Number.isInteger(id) || id < 1) return null;
+  return { action: GATE_ACTIONS[m[1]], id, feedback: (m[3] ?? "").trim() };
+}
+
 // ── ウィザード用: メニュー選択・y/n判定（対話ウィザード拡張） ──────────────
 
 /** 全角数字を半角へ正規化する（メニュー番号・件数入力の表記ゆれ吸収）。 */
