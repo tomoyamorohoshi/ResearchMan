@@ -301,7 +301,7 @@ function attemptPipelineRecovery(jobKey) {
 
   // ideas: 生成成功時点でLINE配信（既存plistと同じ順序。push成否は配信を巻き込まない）
   if (jobKey === "ideas" && cfg.notify.textFile) {
-    spawnSync("node", ["scripts/notify-line.mjs", "--text-file", cfg.notify.textFile], { cwd: ROOT, timeout: 30000 });
+    spawnSync("node", ["scripts/notify-line.mjs", "--kind", "share", "--text-file", cfg.notify.textFile], { cwd: ROOT, timeout: 30000 });
   }
 
   const commitResult = gitSafeCommitAndPush({ addPaths: cfg.addPaths, commitMessage: cfg.commitMessage(), cwd: ROOT });
@@ -323,7 +323,7 @@ function attemptPipelineRecovery(jobKey) {
     }
     spawnSync(
       "node",
-      ["scripts/notify-line.mjs", ...cfg.notify.args, ...(verified ? [] : ["--result", "unverified"])],
+      ["scripts/notify-line.mjs", ...cfg.notify.args, "--kind", "share", ...(verified ? [] : ["--result", "unverified"])],
       { cwd: ROOT, timeout: 30000 }
     );
   }
@@ -962,8 +962,8 @@ async function main() {
 
   if (reportText) {
     fs.writeFileSync(REPORT_PATH, reportText.trimEnd() + "\n");
-    spawnSync("node", ["scripts/notify-line.mjs", "--text-file", REPORT_PATH], { cwd: ROOT, timeout: 30000 });
-    log(`[watchdog] 異常検知・修復あり → LINE通知（${report.length}件）`);
+    spawnSync("node", ["scripts/notify-line.mjs", "--kind", "system", "--source", "watchdog", "--level", "warn", "--text-file", REPORT_PATH], { cwd: ROOT, timeout: 30000 });
+    log(`[watchdog] 異常検知・修復あり → logs/system-alerts.jsonl に記録（LINE非送信・${report.length}件）`);
   } else {
     log("異常なし・通知なし（静粛）");
   }
@@ -975,7 +975,7 @@ main()
     console.error("\n❌ watchdog自体がエラー終了:", e.stack || e.message);
     try {
       fs.writeFileSync(REPORT_PATH, `⚠ watchdog自体がエラー終了\n\n${e.stack || e.message}\n\n${SITE}\n`);
-      spawnSync("node", ["scripts/notify-line.mjs", "--text-file", REPORT_PATH], { cwd: ROOT, timeout: 30000 });
+      spawnSync("node", ["scripts/notify-line.mjs", "--kind", "system", "--source", "watchdog", "--level", "error", "--text-file", REPORT_PATH], { cwd: ROOT, timeout: 30000 });
     } catch {}
     process.exit(1);
   });
