@@ -77,13 +77,15 @@ export const MAX_POSTS_PER_EXTRACT = 8;
  * @param {string} p.today
  * @param {object} p.deps     { fetchJson, fetchHtml, extract(posts)->candidates[], patch(results), saveThumb, now, persist?(data)（PATCH 送信前に data を保存） }
  * @param {object} [p.opts]   processCandidates の opts
- * @returns {Promise<{data:object, results:object[], unverified:object[], rejected:object[], added:object[], patched:boolean, patchError?:string}>}
+ * @returns {Promise<{data:object, results:object[], unverified:object[], rejected:object[], added:object[], updated:object[], patched:boolean, patchError?:string}>}
  */
 export async function runIntake({ items, data, today, deps, opts = {} }) {
   const results = [];
   const unverified = [];
   const rejected = [];
   const added = [];
+  const updated = [];
+  const protectIds = new Set(opts.protectIds || []); // 同一 intake 内で更新/追加済みの展示を再パッチしない
   let current = data;
 
   const fetched = [];
@@ -155,9 +157,11 @@ export async function runIntake({ items, data, today, deps, opts = {} }) {
         results.push({ url: f.url, status: "added", exhibitionId: dupHits[0].id, reason: "already-registered" });
         continue;
       }
-      const out = await processCandidates({ data: current, candidates: rest, today, deps, opts });
+      const out = await processCandidates({ data: current, candidates: rest, today, deps, opts: { ...opts, protectIds } });
       current = out.data;
       added.push(...out.added);
+      updated.push(...out.updated);
+      for (const x of [...out.added, ...out.updated]) protectIds.add(x.id);
       unverified.push(...out.unverified);
       rejected.push(...out.rejected);
       if (out.added.length) results.push({ url: f.url, status: "added", exhibitionId: out.added[0].id });
@@ -197,5 +201,5 @@ export async function runIntake({ items, data, today, deps, opts = {} }) {
       patchError = e.message;
     }
   }
-  return { data: current, results, unverified, rejected, added, patched, ...(patchError ? { patchError } : {}) };
+  return { data: current, results, unverified, rejected, added, updated, patched, ...(patchError ? { patchError } : {}) };
 }

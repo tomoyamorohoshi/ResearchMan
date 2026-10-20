@@ -340,3 +340,39 @@ test("runIntake: 1投稿に dup と新規が混在し新規が unverified なら
   assert.equal(r.results.length, 1);
   assert.equal(r.results[0].status, "unverified");
 });
+
+test("runIntake: 戻り値に updated（会期更新の展示）が含まれる", async () => {
+  const data = { version: 1, statusAsOf: TODAY, items: [existingItem({ endDate: "2026-10-20" })] };
+  const r = await runIntake({ items: [{ url: X_URL, ts: 1, attempts: 0 }], data, today: TODAY, deps: mkDeps() });
+  assert.ok(Array.isArray(r.updated));
+  assert.equal(r.updated.length, 1);
+  assert.equal(r.updated[0].id, existingItem().id);
+  assert.deepEqual(runIntake.length >= 0 && (await runIntake({ items: [], data, today: TODAY, deps: mkDeps() })).updated, []);
+});
+
+test("runIntake: 2投稿が同じ既存展示を別会期で出しても1回しかパッチしない（protectIds 累積）", async () => {
+  const X2 = "https://x.com/ayupys/status/2105985301751693999";
+  const data = { version: 1, statusAsOf: TODAY, items: [existingItem({ endDate: "2026-10-20" })] };
+  let officialCalls = 0;
+  const deps = mkDeps({
+    fetchHtml: async (url) => {
+      if (url.startsWith("https://official.example")) {
+        officialCalls++;
+        // 1回目は終了日 10/25、以降は 10/28 だけ載るページ（保護が無ければ2回目の候補で再パッチされる）
+        return { status: 200, body: `<p>Machines of Loving Grace</p><p>KARIMOKU RESEARCH CENTER</p><p>2026年10月17日 - ${officialCalls === 1 ? "10月25日" : "10月28日"}</p>` };
+      }
+      return { status: 200, body: "<div>x</div>" };
+    },
+    extract: async () => [cand({ intakeUrl: X_URL, endDate: "2026-10-25" }), cand({ intakeUrl: X2, endDate: "2026-10-28" })],
+  });
+  const r = await runIntake({ items: [{ url: X_URL, ts: 1, attempts: 0 }, { url: X2, ts: 2, attempts: 0 }], data, today: TODAY, deps });
+  assert.equal(r.updated.length, 1);
+  assert.equal(r.data.items[0].endDate, "2026-10-25");
+});
+
+test("runIntake: 呼び出し元の opts.protectIds を尊重する", async () => {
+  const data = { version: 1, statusAsOf: TODAY, items: [existingItem({ endDate: "2026-10-20" })] };
+  const r = await runIntake({ items: [{ url: X_URL, ts: 1, attempts: 0 }], data, today: TODAY, deps: mkDeps(), opts: { protectIds: new Set([existingItem().id]) } });
+  assert.equal(r.updated.length, 0);
+  assert.equal(r.data.items[0].endDate, "2026-10-20");
+});

@@ -145,7 +145,7 @@ async function main() {
           });
           data = out.data;
           added.push(...out.added);
-      updated.push(...out.updated);
+          updated.push(...out.updated);
           unverified.push(...out.unverified);
           console.log(`[intake] 結果: ${out.results.map((r) => `${r.status}`).join(", ")} / PATCH ${out.patched ? "OK" : `失敗（${out.patchError || "dry-run"}）→ data更新は継続`}`);
         }
