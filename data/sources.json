@@ -73,8 +73,8 @@
     "region": "グローバル",
     "tier": 1,
     "hitDensity": null,
-    "enabled": false,
-    "note": "監査: 既存。ペイウォールの可能性あり"
+    "enabled": true,
+    "note": "監査: 既存。ペイウォールの可能性あり / 2026-10-20 ベイクオフ上位として有効化"
   },
   {
     "id": "adsoftheworld",
@@ -128,8 +128,8 @@
     "region": "欧州",
     "tier": 1,
     "hitDensity": null,
-    "enabled": false,
-    "note": "監査§7候補"
+    "enabled": true,
+    "note": "監査§7候補 / 2026-10-20 ベイクオフ上位として有効化"
   },
   {
     "id": "lovethework",
@@ -293,8 +293,8 @@
     "region": "グローバル",
     "tier": 2,
     "hitDensity": null,
-    "enabled": false,
-    "note": "Muse by Clio"
+    "enabled": true,
+    "note": "Muse by Clio / 2026-10-20 ベイクオフ上位として有効化"
   },
   {
     "id": "campaignlive",
@@ -324,10 +324,10 @@
     "locator": "https://www.adsofbrands.net/",
     "lang": "en",
     "region": "グローバル",
-    "tier": 3,
+    "tier": 2,
     "hitDensity": null,
-    "enabled": false,
-    "note": "Ads of Brands"
+    "enabled": true,
+    "note": "Ads of Brands / 2026-10-20 ベイクオフ上位として有効化"
   },
   {
     "id": "designboom",
@@ -335,10 +335,10 @@
     "locator": "https://www.designboom.com/",
     "lang": "en",
     "region": "グローバル",
-    "tier": 2,
+    "tier": 1,
     "hitDensity": null,
-    "enabled": false,
-    "note": "素材・空間・アート型"
+    "enabled": true,
+    "note": "素材・空間・アート型 / 2026-10-20 ベイクオフ上位として有効化"
   },
   {
     "id": "creativeboom",
@@ -346,10 +346,10 @@
     "locator": "https://www.creativeboom.com/",
     "lang": "en",
     "region": "欧州",
-    "tier": 2,
+    "tier": 1,
     "hitDensity": null,
-    "enabled": false,
-    "note": "Creative Boom"
+    "enabled": true,
+    "note": "Creative Boom / 2026-10-20 ベイクオフ上位として有効化"
   },
   {
     "id": "creativeapplications",
@@ -357,10 +357,10 @@
     "locator": "https://www.creativeapplications.net/",
     "lang": "en",
     "region": "グローバル",
-    "tier": 2,
+    "tier": 1,
     "hitDensity": null,
-    "enabled": false,
-    "note": "CreativeApplications.Net（メディアアート）"
+    "enabled": true,
+    "note": "CreativeApplications.Net（メディアアート） / 2026-10-20 ベイクオフ上位として有効化"
   },
   {
     "id": "colossal",
@@ -370,8 +370,8 @@
     "region": "北米",
     "tier": 2,
     "hitDensity": null,
-    "enabled": false,
-    "note": "Colossal（アート・素材）"
+    "enabled": true,
+    "note": "Colossal（アート・素材） / 2026-10-20 ベイクオフ上位として有効化"
   },
   {
     "id": "ars-electronica",
@@ -500,10 +500,10 @@
     "locator": "https://dentsulab.tokyo/",
     "lang": "ja",
     "region": "日本",
-    "tier": 3,
+    "tier": 1,
     "hitDensity": null,
-    "enabled": false,
-    "note": "Dentsu Lab Tokyo（制作会社一次発表）"
+    "enabled": true,
+    "note": "Dentsu Lab Tokyo（制作会社一次発表） / 2026-10-20 ベイクオフ上位として有効化"
   },
   {
     "id": "party",
@@ -555,10 +555,10 @@
     "locator": "https://konel.jp/",
     "lang": "ja",
     "region": "日本",
-    "tier": 3,
+    "tier": 1,
     "hitDensity": null,
-    "enabled": false,
-    "note": "Konel（制作会社一次発表）"
+    "enabled": true,
+    "note": "Konel（制作会社一次発表） / 2026-10-20 ベイクオフ上位として有効化"
   },
   {
     "id": "bassdrum",
