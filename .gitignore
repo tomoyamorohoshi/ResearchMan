@@ -78,3 +78,6 @@ studio/workdir/
 /data/inbox/exhibition-unverified.json
 # Exhibition: cc ジョブ(Case Study収集)が見つけた展覧会告知の引き継ぎキュー（ローカルのみ。Exhibition ジョブが消費して除去）
 /data/inbox/exhibition-handoff.json
+
+# Gate proposals (v3 Phase4): 基準変更案の承認待ち台帳（ローカル運用状態。コミットしない）
+/data/inbox/gate-proposals.json

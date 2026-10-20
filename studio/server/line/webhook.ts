@@ -40,7 +40,8 @@ import {
 } from "../jobs.js";
 import { resumeAwardJob } from "../pipeline/awardResearch.js";
 import { generateXPost, type XPostGenerationResult } from "../pipeline/xpost.js";
-import { isCancelText, isProgressText, isResumeText, isStopText, type LineRequestKind } from "./classify.js";
+import { isCancelText, isProgressText, isResumeText, isStopText, parseGateCommand, type GateCommand, type LineRequestKind } from "./classify.js";
+import { createDefaultGateFlowDeps, handleGateCommand, isKnownGateProposal, type GateCommandResult } from "./gateProposalFlow.js";
 import { loadLineConfig, type LineConfig } from "./config.js";
 import {
   buildAddCaseAcceptedText,
@@ -89,6 +90,10 @@ export interface LineWebhookDeps {
   findLatestFinishedJob: () => Promise<Job | null>;
   /** 「停止」「中止」キーワード向け: running/queued/pausedの全ジョブを中断する（jobs.ts::cancelActiveJobs）。 */
   cancelActiveJobs: () => Promise<CancelledJobReport[]>;
+  /** 基準の変更案への「承認/却下/修正 <ID>」（docs/CASE_RESEARCH_V3_SPEC.md §6）。gateProposalFlow.ts参照。 */
+  handleGateCommand: (cmd: GateCommand) => Promise<GateCommandResult>;
+  /** 台帳にその番号の案があるか（G接頭辞なしの「修正 <数字> …」を通常文と区別するため）。 */
+  isKnownGateId: (id: number) => boolean;
   now: () => Date;
 }
 
@@ -107,6 +112,8 @@ const defaultDeps: LineWebhookDeps = {
   listActiveJobs,
   findLatestFinishedJob,
   cancelActiveJobs,
+  handleGateCommand: (cmd) => handleGateCommand(cmd, createDefaultGateFlowDeps()),
+  isKnownGateId: isKnownGateProposal,
   now: () => new Date(),
 };
 
@@ -151,6 +158,33 @@ async function handleEvent(event: unknown, config: LineConfig, deps: LineWebhook
   }
 
   const now = deps.now();
+
+  // 基準の変更案への「承認/却下/修正 <ID>」: 既存のどの分類（再開・停止・キャンセル・進捗・
+  // ウィザード・URL追加）よりも先に判定する。id 付きの完全な書式のみ一致するため既存の入力とは衝突しない。
+  let gateCmd = parseGateCommand(text);
+  // 「修正 2026 年の予定」のような通常文の誤爆対策: 「修正」で G 接頭辞が無く、台帳に無い番号なら通常文として既存処理へ流す。
+  if (gateCmd?.action === "revise" && !/^修正[\s　:：]*[#＃]?[GgＧｇ]/.test(text.trim()) && !deps.isKnownGateId(gateCmd.id)) gateCmd = null;
+  if (gateCmd) {
+    let result: GateCommandResult;
+    try {
+      result = await deps.handleGateCommand(gateCmd);
+    } catch (err) {
+      console.error("[studio][line] 基準変更案の処理に失敗しました", err);
+      await deps.respond(token, replyToken, userId, "基準の変更案の処理中にエラーが発生しました。もう一度お試しください。");
+      return;
+    }
+    await deps.respond(token, replyToken, userId, result.reply);
+    if (result.background) {
+      // 「修正」の再生成: 返信後に非同期実行し、結果は push で追送する（replyTokenは使えない）。
+      void result
+        .background()
+        .then(async (messages) => {
+          for (const m of messages) await deps.respond(token, undefined, userId, m);
+        })
+        .catch((err) => console.error("[studio][line] 基準変更案の修正処理に失敗しました", err));
+    }
+    return;
+  }
 
   // 「再開」（要件A.3・D.3）: 予算超過で一時停止中のAWARDSジョブをユーザーの意思で再開する
   // 全状態で有効な予約語。pending（研究/アイデア/AWARDS Q1・Q2の対話状態）とは無関係のため、
