@@ -54,7 +54,16 @@ export const allTechYears = Array.from(new Set(techItems.map((t) => t.year))).so
 );
 
 export function getTechById(id: string): TechItem | undefined {
-  return techItems.find((t) => t.id === id);
+  // 動的ルートの params は非ASCII を %エンコードのまま渡すことがあるため、生とデコード後の両方で引く
+  const exact = techItems.find((t) => t.id === id);
+  if (exact) return exact;
+  let decoded: string;
+  try {
+    decoded = decodeURIComponent(id);
+  } catch {
+    return undefined;
+  }
+  return techItems.find((t) => t.id === decoded);
 }
 
 // 商用利用可否バッジの表示定義（TECHNOLOGY_SPEC.md §4）
