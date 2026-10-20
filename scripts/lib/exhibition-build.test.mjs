@@ -561,3 +561,28 @@ test("processCandidates: 部分適用で start > end になるパッチは適用
   assert.match(r.unverified[0].reason, /start-after-end|startDate.*endDate/);
   assert.equal(r.data.items[0].startDate, "2026-10-10");
 });
+// ── 巡回展: 公式URL同一でも会場が違い会期が重ならなければ別展示 ──
+test("findDuplicate: 公式URL一致でも会場が異なり会期が重ならなければ別展示（巡回展）", () => {
+  const items = [mkItem({ title: "光る音展", venue: "大阪アートエリアB1", startDate: "2026-10-24", endDate: "2026-10-27", link: "https://20th.example/", sources: [{ name: "公式", url: "https://20th.example/", kind: "official" }] })];
+  const tour = mkCand({ title: "光る音展", venue: "BONDED GALLERY", startDate: "2026-11-04", endDate: "2026-11-08", officialUrl: "https://20th.example/" });
+  assert.equal(findDuplicate(items, tour), null);
+  // 会場が違っても会期が重なれば従来どおり重複（会場変更パッチ候補）
+  const overlap = mkCand({ title: "光る音展", venue: "BONDED GALLERY", startDate: "2026-10-26", endDate: "2026-11-08", officialUrl: "https://20th.example/" });
+  assert.equal(findDuplicate(items, overlap)?.kind, "link");
+  // 会場が同じなら従来どおり重複
+  const same = mkCand({ title: "光る音展", venue: "大阪アートエリアB1", startDate: "2026-11-04", endDate: "2026-11-08", officialUrl: "https://20th.example/" });
+  assert.equal(findDuplicate(items, same)?.kind, "link");
+});
+
+test("processCandidates: 巡回展の2会場目が追加される（既存あり・同一実行内とも）・id は衝突しない", async () => {
+  const a = mkCand({ title: "光る音展", venue: "Osaka Area B1", startDate: "2026-10-24", endDate: "2026-10-27", officialUrl: "https://20th.example/", sources: [] });
+  const b = { ...a, venue: "BONDED GALLERY", startDate: "2026-11-04", endDate: "2026-11-08" };
+  const body = `<p>光る音展 Osaka Area B1 BONDED GALLERY 10月24日〜10月27日 11月4日〜11月8日</p>`;
+  const deps = mkDeps({ fetchHtml: async () => ({ status: 200, body }) });
+  const r1 = await processCandidates({ data: emptyData(), candidates: [a, b], today: TODAY, deps });
+  assert.equal(r1.added.length, 2);
+  assert.notEqual(r1.added[0].id, r1.added[1].id);
+  const r2 = await processCandidates({ data: { version: 1, statusAsOf: "2026-10-03", items: [r1.added.find((x) => x.venue === "Osaka Area B1")] }, candidates: [b], today: TODAY, deps });
+  assert.equal(r2.added.length, 1);
+  assert.equal(r2.updated.length, 0);
+});

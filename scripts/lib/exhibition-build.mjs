@@ -112,12 +112,18 @@ export function findDuplicate(items, cand) {
   const key = `${normKey(cand.title)}|${normKey(cand.venue)}|${cand.startDate}`;
   for (const item of items) {
     const itemLinks = [item.link, ...(item.sources || []).map((s) => s?.url)].map((u) => normLink(u)).filter(Boolean);
-    if (itemLinks.some((l) => candLinkSet.has(l))) return { item, kind: "link" };
+    if (itemLinks.some((l) => candLinkSet.has(l)) && !isTourLeg(item, cand)) return { item, kind: "link" };
     if (`${normKey(item.title)}|${normKey(item.venue)}|${item.startDate}` === key) return { item, kind: "key" };
   }
   return null;
 }
 
+/** 巡回展の別会場か: 会場が正規化で異なり、かつ会期が重ならない（公式URLが同一でも別展示として扱う）。 */
+function isTourLeg(item, cand) {
+  if (!cand.venue || normKey(cand.venue) === normKey(item.venue)) return false;
+  if (!isValidYmd(cand.startDate) || !isValidYmd(cand.endDate) || !isValidYmd(item.startDate) || !isValidYmd(item.endDate)) return false;
+  return cand.endDate < item.startDate || cand.startDate > item.endDate;
+}
 /** 既存と候補の会期・会場の差分（変更なしは null）。 */
 export function diffDates(existing, cand) {
   const patch = {};
