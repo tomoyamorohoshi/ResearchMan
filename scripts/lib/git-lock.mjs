@@ -115,6 +115,51 @@ export function releaseOwnedLock(lockPath = DEFAULT_LOCK_PATH) {
   removeLockDir(lockPath);
 }
 
+/**
+ * 自分(pid+startedAt)が取得したロックの mtime を現在時刻に更新する（ハートビート）。
+ * STALE_MS(90分)は「PID生存でも mtime が古ければ stale＝奪取可」というルールのため、
+ * 90分を超えて走りうるジョブ（Case Study v3 の cc ジョブ: 発見90分＋記事化）は保持中に定期的に呼ぶ。
+ * 他者に奪取されたロック・取得していないロックには触れない（他者のロックを延命しない）。
+ * 更新できたら true。
+ */
+export function touchOwnedLock(lockPath = DEFAULT_LOCK_PATH, now = new Date()) {
+  if (!ownedByThisProcess.has(lockPath)) return false;
+  const startedAt = ownedByThisProcess.get(lockPath);
+  const owner = readOwner(lockPath);
+  if (owner) {
+    if (owner.pid !== process.pid || owner.startedAt !== startedAt) return false;
+  } else if (startedAt !== null) {
+    return false; // 自分が書いたownerが消えている=奪取済み（または破壊済み）
+  }
+  try {
+    fs.utimesSync(lockPath, now, now);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export const HEARTBEAT_INTERVAL_MS = 5 * 60 * 1000;
+export const HEARTBEAT_MAX_MS = 5 * 3600 * 1000; // ハングしたジョブを永遠に延命しない上限（タスクの実行時間制限と揃える）
+
+/**
+ * touchOwnedLock を一定間隔で呼ぶ。戻り値の stop() で止める。maxMs 経過で自動停止
+ * （以後は従来の STALE_MS ルールに戻る）。タイマーはイベントループを塞がない(unref)。
+ * 注意: 呼び出し側が spawnSync で同期待ちするとタイマーは動かない。非同期の子プロセス待ちと組み合わせること。
+ */
+export function startLockHeartbeat(lockPath = DEFAULT_LOCK_PATH, { intervalMs = HEARTBEAT_INTERVAL_MS, maxMs = HEARTBEAT_MAX_MS } = {}) {
+  const startedAt = Date.now();
+  const timer = setInterval(() => {
+    if (Date.now() - startedAt >= maxMs) {
+      clearInterval(timer);
+      return;
+    }
+    touchOwnedLock(lockPath);
+  }, intervalMs);
+  timer.unref?.();
+  return () => clearInterval(timer);
+}
+
 function writeOwner(lockPath, label) {
   const startedAt = new Date().toISOString();
   try {
