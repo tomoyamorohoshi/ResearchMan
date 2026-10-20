@@ -28,8 +28,8 @@ test("resolveSourcesText: 有効な源が1つも無ければ従来文字列に�
 });
 
 test("resolveSourcesText: enabledのみ・tier順（同tierはsourceRefs順）・id併記・kind別整形", () => {
-  const t = resolveSourcesText(["a", "c", "b", "x1", "xq", "xl", "missing"], REG, "LEGACY");
-  assert.ok(!t.includes("LEGACY"));
+  const t = resolveSourcesText(["a", "c", "b", "x1", "xq", "xl", "missing"], REG, "");
+  assert.ok(!t.includes("その他の情報源"), "従来文字列が空ならその他の節は出ない");
   assert.ok(!t.includes("c-site.com"), "enabled:false は含めない");
   assert.ok(!t.includes("missing"));
   const iB = t.indexOf("b-site.com");
@@ -43,9 +43,27 @@ test("resolveSourcesText: enabledのみ・tier順（同tierはsourceRefs順）�
   assert.match(t, /Xリスト/);
 });
 
-test("resolveSourcesText: レジストリに有効源があるが当該sourceRefsに1つも無い → 空（従来文字列は復活させない）", () => {
-  assert.equal(resolveSourcesText(["c"], REG, "LEGACY"), "");
-  assert.equal(resolveSourcesText([], REG, "LEGACY"), "");
+// 期待仕様の変更（2026-10-20）: 従来は「有効源があれば自由文 sources を捨て、有効 sourceRefs のみ」だったが、
+// 有効化した少数源だけに探索が狭まる退行（ラウンド3が2源のみ）が出たため、
+// 有効 sourceRefs を優先源として先頭に並べ、従来の自由文 sources を「その他の情報源」として残す。
+test("resolveSourcesText: 有効源あり＋従来文字列 → 優先源を先頭、その他の情報源として従来文字列を残す（重複は除く）", () => {
+  const t = resolveSourcesText(["a", "b"], REG, "a-site.com / foo.com / 広告賞の直近発表 / b-site.com");
+  assert.match(t, /[b]/);
+  assert.ok(t.indexOf("[b]") < t.indexOf("その他の情報源"), "優先源が先");
+  const other = t.slice(t.indexOf("その他の情報源"));
+  assert.ok(other.includes("foo.com") && other.includes("広告賞の直近発表"), "従来文字列を残す");
+  assert.ok(!other.includes("a-site.com") && !other.includes("b-site.com"), "優先源と重複する従来源は除く");
+});
+
+test("resolveSourcesText: 従来文字列が全て優先源と重複 → その他の節を出さない", () => {
+  const t = resolveSourcesText(["a", "b"], REG, "a-site.com / b-site.com");
+  assert.ok(!t.includes("その他の情報源"));
+});
+
+test("resolveSourcesText: 有効源があるが当該sourceRefsに1つも無い → 従来文字列をそのまま（無ければ空）", () => {
+  assert.equal(resolveSourcesText(["c"], REG, "LEGACY"), "LEGACY");
+  assert.equal(resolveSourcesText([], REG, "LEGACY"), "LEGACY");
+  assert.equal(resolveSourcesText(["c"], REG, ""), "");
 });
 
 test("inferSourceId: 記事URLのホストからレジストリidを推定（wwwは無視・Xはハンドル）", () => {

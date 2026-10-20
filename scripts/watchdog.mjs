@@ -32,7 +32,7 @@ import {
   classifyDeployHealth,
 } from "./lib/deploy-health.mjs";
 import { gitSafeCommitAndPush, gitSafeRevertAndPush } from "./lib/watchdog-git.mjs";
-import { parseJobRuns, filterRecentRuns, hasConsecutiveOutcome, countTodayRejections, readLogSafe, defaultLogPath } from "./lib/log-health.mjs";
+import { parseJobRuns, filterRecentRuns, hasConsecutiveOutcome, countTodayRejections, readLogSafe, defaultLogPath, findRecentJobFailure } from "./lib/log-health.mjs";
 import { checkThumbnailsOnPage } from "./lib/thumbnail-page-check.mjs";
 import { dedupeCandidates, extractKnownTechIdsFromAuditFailLines } from "./lib/quarantine.mjs";
 import { isUrlAlive } from "./verify-video.mjs";
@@ -542,6 +542,14 @@ async function checkCollectionHealth(report) {
     }
 
     report.push(lines.join("\n"));
+  }
+
+  // 週次チューンアップ: 2回連続を待つと2週間遅れる（2026-09-07以降7週連続失敗が無検知だった）ため、
+  // 直近2日以内の最新runが1回でも error なら通知する。自動再実行/revertはしない（通知のみ）。
+  const tuneupFail = findRecentJobFailure(readLogSafe(defaultLogPath("tuneup")), twoDaysMs);
+  if (tuneupFail) {
+    log("[collection] tuneup: 直近runがerror");
+    report.push(["🚨 週次チューンアップが失敗しています（自動修復なし・要調査）。", "── 失敗ログ抜粋 ──", tuneupFail.excerpt].join("\n"));
   }
 
   const logsDir = path.join(ROOT, "logs");

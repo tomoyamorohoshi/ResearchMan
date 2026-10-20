@@ -59,10 +59,11 @@ function describeSource(s) {
  * roundFoci の sourceRefs（レジストリid配列）を発見プロンプトの「情報源」文字列に解決する
  * （docs/RADAR_V2_DESIGN.md §4-3）。
  * - レジストリに enabled:true が1件も無い間（情報源選定前）は legacyText をそのまま返す（互換動作）。
- * - 1件でも有効化された後は、enabled:false の源（除外決定・ベイクオフ待ち）を従来文字列経由で
- *   復活させないため、当該フォーカスに有効源が無ければ空文字を返す（呼び出し側で「指定なし」表示）。
- * - 出力は enabled の源のみ・tier昇順（同tierは sourceRefs の並び順）。各源に [id] を併記
- *   （発見結果の sourceId 自己申告に使う）。
+ * - 1件でも有効化された後は、有効な源（enabled のみ・tier昇順・同tierは sourceRefs 順・[id] 併記）を
+ *   「優先して巡回する情報源」として先頭に並べ、続けて従来の自由文 legacyText を「その他の情報源」として残す
+ *   （優先源のホストを含む従来項目は重複として除く）。
+ *   2026-10-20: 旧仕様は有効源があると legacyText を捨てたため、少数源だけに探索が狭まった（国内ラウンドが2源のみ）。
+ *   当該フォーカスに有効源が無い場合は legacyText をそのまま返す（無ければ空文字）。
  */
 export function resolveSourcesText(sourceRefs, registry, legacyText = "") {
   const reg = Array.isArray(registry) ? registry : [];
@@ -72,7 +73,16 @@ export function resolveSourcesText(sourceRefs, registry, legacyText = "") {
     .map((id, order) => ({ s: byId.get(id), order }))
     .filter((x) => x.s && x.s.enabled === true)
     .sort((a, b) => a.s.tier - b.s.tier || a.order - b.order);
-  return picked.map((x) => describeSource(x.s)).join(" / ");
+  if (!picked.length) return legacyText;
+  const priority = picked.map((x) => describeSource(x.s)).join(" / ");
+  const hosts = picked.map((x) => (x.s.kind === "web" ? hostOf(x.s.locator) : "")).filter(Boolean);
+  const others = String(legacyText || "")
+    .split(" / ")
+    .map((t) => t.trim())
+    .filter((t) => t && !hosts.some((h) => t.toLowerCase().includes(h)));
+  return others.length ? `${priority}
+
+その他の情報源（上記を優先して巡回し、補助的に参照）: ${others.join(" / ")}` : priority;
 }
 
 /**

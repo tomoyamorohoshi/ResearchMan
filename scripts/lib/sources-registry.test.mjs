@@ -60,12 +60,15 @@ test("web の locator は http(s) URL、x_account は @handle", () => {
   assert.equal(validateSourcesRegistry([ok({ kind: "x_account", locator: "ideafuls" })]).ok, false);
 });
 
-test("data/sources.json 実ファイルがスキーマを満たし、Phase 1では全件 enabled:false", () => {
+// 期待仕様の変更（2026-10-20）: ベイクオフ上位10源（accept率30%以上, docs/SOURCE_BAKEOFF_2026-09-30.md）を
+// オーナー了承で有効化した（設計 §4-8 の次手順）。旧「Phase 1では全件 enabled:false」から変更。
+const ENABLED_BY_BAKEOFF = ["creapills", "konel", "designboom", "creativeboom", "creativeapplications", "dentsulabtokyo", "contagious", "adsofbrands", "muse-by-clio", "colossal"];
+test("data/sources.json 実ファイルがスキーマを満たし、enabled:true はベイクオフ上位10源のみ", () => {
   const p = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "..", "data", "sources.json");
   const data = JSON.parse(fs.readFileSync(p, "utf-8"));
   const r = validateSourcesRegistry(data);
   assert.deepEqual(r.errors, []);
   assert.ok(data.length >= 40);
-  assert.ok(data.every((s) => s.enabled === false));
+  assert.deepEqual(data.filter((s) => s.enabled === true).map((s) => s.id).sort(), [...ENABLED_BY_BAKEOFF].sort());
   assert.ok(data.some((s) => s.id === "x_ideafuls" && s.kind === "x_account"));
 });
