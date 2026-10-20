@@ -31,6 +31,10 @@
  *   4b. Exhibition: お気に入り・intake投稿(2倍重み)・ごみ箱から data/exhibition-profile.json の
  *      themes.weight / watch / scoring.threshold.add のみ決定論で提案（scripts/lib/tuneup-exhibition.mjs。
  *      exclusions.hard・collectAll は自動変更禁止）
+ *   4c. Case Study v3（docs/CASE_RESEARCH_V3_SPEC.md §5）: gateTier別fav/トラッシュ率・レンズ別採用数・却下ログ要約を分析入力に追加。
+ *      判定の具体例(case-gate.json litmus)を決定的ルールで最大3件入れ替え(scripts/lib/tuneup-litmus.mjs)、
+ *      巡回先(sources.json)のtier/enabledを各5件まで変更、cc.roundFociは4レンズ固定。基準A〜Dの文面の変更案は
+ *      自動反映せずLINEへ提案のみ(scripts/lib/tuneup-gate-proposal.mjs。dry-runは送信しない)
  *   5. dry-run全通し: 改訂案を一時的に書き込み、ideas:dry / auto-research:tech:dry /
  *      auto-research:cc:dry / auto-research:exhibition:dry が正常終了するか確認。失敗なら git checkout で全戻し
  *   6. 成功時: 設定ファイルを書き込んだ状態で終了（exit 0）。commit/push/verify-deploy/
@@ -71,7 +75,15 @@ import {
   checkXRadarQueriesChange,
   checkIdeaTuningChange,
   checkExhibitionProfileChange,
+  checkSourcesChangeProposal,
+  overlayRoundFociText,
 } from "./lib/tuneup-guardrails.mjs";
+import { computeSourceGateStats } from "./lib/tuneup-stats.mjs";
+import { computeGateTierStats, computeLensStats, summarizeRejections, parseJsonl } from "./lib/tuneup-gate-stats.mjs";
+import { planLitmusSwap } from "./lib/tuneup-litmus.mjs";
+import { runGateProposalStage } from "./lib/tuneup-gate-proposal.mjs";
+import { expireProposals, loadProposals, proposeGateChange } from "./lib/gate-proposals.mjs";
+import { validateCaseGate } from "./lib/case-gate-criteria.mjs";
 import { computeExhibitionStats, proposeExhibitionProfile } from "./lib/tuneup-exhibition.mjs";
 import { reinjectDescriptions } from "./lib/reinject-descriptions.mjs";
 import { applyCandidateWithVerification } from "./lib/tuneup-apply.mjs";
@@ -98,6 +110,12 @@ const XRADAR_QUERIES_PATH = path.join(ROOT, "data/x-radar-queries.json");
 const IDEA_ANGLES_PATH = path.join(ROOT, "data/idea-angles.json");
 const IDEA_ANGLES_META_PATH = path.join(ROOT, "data/idea-angles-meta.json");
 const RESEARCH_PLAN_PATH = path.join(ROOT, "RESEARCH_PLAN.md");
+const CASE_GATE_PATH = path.join(ROOT, "data/case-gate.json");
+const SOURCES_PATH = path.join(ROOT, "data/sources.json");
+const LOGS_DIR = path.join(ROOT, "logs");
+// research-health（watchdog）が読む borderline の fav/トラッシュ率スナップショット（logs/ は gitignored）
+const GATE_STATS_PATH = path.join(LOGS_DIR, "case-gate-stats.json");
+const REJECTION_TAIL_BYTES = 1_500_000;
 const FAVSYNC_CONFIG_PATH = path.join(os.homedir(), ".researchman-favsync.json");
 const LAST_RUN_PATH = path.join(ROOT, ".last-tuneup-run.txt");
 const REPORT_PATH = path.join(os.tmpdir(), "researchman-tuneup-report.txt");
@@ -112,7 +130,16 @@ const ANALYSIS_TIMEOUT_MS = 600000;
 // 短すぎて正当な変更をタイムアウトで誤って破棄する方が有害。余裕を持たせて45分とする
 const SUBPIPELINE_TIMEOUT_MS = 2700000;
 
-const TOUCHED_PATHS = [RESEARCH_TUNING_PATH, IDEA_TUNING_PATH, XRADAR_QUERIES_PATH, RESEARCH_PLAN_PATH, EXHIBITION_PROFILE_PATH];
+const TOUCHED_PATHS = [
+  RESEARCH_TUNING_PATH,
+  IDEA_TUNING_PATH,
+  XRADAR_QUERIES_PATH,
+  RESEARCH_PLAN_PATH,
+  EXHIBITION_PROFILE_PATH,
+  // v3 §5: 判定の具体例の自動入れ替え(case-gate.json の litmus のみ)と巡回先の tier/enabled(sources.json)
+  CASE_GATE_PATH,
+  SOURCES_PATH,
+];
 
 // 外部シグナル（TaskStop/kill等）で中断された場合の保険。--dry-runは「作業ツリーを汚さない」が
 // 契約なので、候補ファイル書き込み後に中断されても復元を試みる（2026-07-08、検証中に
@@ -141,6 +168,41 @@ async function readJson(p) {
 
 async function writeJsonFile(p, data) {
   await fs.writeFile(p, JSON.stringify(data, null, 2) + "\n");
+}
+
+// 却下ログ(logs/rejections-YYYY-MM.jsonl)の当月・前月を、末尾 REJECTION_TAIL_BYTES だけ読む
+// （月次ローテでも大きくなりうるため全読みしない。プロンプトには summarizeRejections の要約だけを渡す）
+async function readRejectionEntries(now = new Date()) {
+  const months = [now, new Date(now.getFullYear(), now.getMonth() - 1, 15)].map((d) => d.toISOString().slice(0, 7));
+  const entries = [];
+  for (const m of months) {
+    const file = path.join(LOGS_DIR, `rejections-${m}.jsonl`);
+    try {
+      const fh = await fs.open(file, "r");
+      try {
+        const { size } = await fh.stat();
+        const len = Math.min(size, REJECTION_TAIL_BYTES);
+        const buf = Buffer.alloc(len);
+        await fh.read(buf, 0, len, size - len);
+        let text = buf.toString("utf-8");
+        if (size > len) text = text.slice(text.indexOf("\n") + 1); // 先頭の欠けた行を捨てる
+        entries.push(...parseJsonl(text));
+      } finally {
+        await fh.close();
+      }
+    } catch {
+      /* ファイル無しは正常（却下が無い月） */
+    }
+  }
+  return entries;
+}
+
+// 具体例候補の「なぜ良い/悪いか」の一文: 記事の要約(summary)を切り詰めて使う（AIに書かせない＝決定的）
+function toLitmusCandidates(list) {
+  return [...list]
+    .reverse() // cases.json は追加順なので、新しい順に採る
+    .map((c) => ({ title: c.title, url: c.link, why: String(c.summary || "").replace(/\s+/g, " ").trim().slice(0, 90) }))
+    .filter((c) => c.title && c.why);
 }
 
 async function writeReport(text) {
@@ -529,6 +591,14 @@ async function main() {
   log(`   ${new Date().toLocaleString("ja-JP")}`);
   if (DRY_RUN) log("   ⚠ DRY RUN（設定ファイルは検証後に必ず元へ戻します）");
 
+  // v3 §6: 実行の最初に、7日間返信のなかった基準変更案を失効させる（時間経過だけで決まる冪等な台帳更新。dry-runでも呼ぶ）
+  try {
+    const expired = expireProposals();
+    if (expired.length) log(`基準変更案を失効: ${expired.map((p) => p.id).join(", ")}`);
+  } catch (e) {
+    log(`⚠ 基準変更案の失効処理に失敗（続行）: ${e.message}`);
+  }
+
   const cases = await readJson(CASES_PATH);
   const tech = await readJson(TECH_PATH);
   const ideas = await readJson(IDEAS_PATH);
@@ -653,6 +723,46 @@ async function main() {
   const userCaseStats = computeUserCaseStats({ cases });
   const ideaFeedbackStats = computeIdeaFeedbackStats({ likedIds: likedIdeaIds, trashedIds: trashedIdeaIds, ideas, cases, tech });
 
+  // ── v3 §5: 選別の結果（gateTier別・レンズ別・却下ログ）と、判定の具体例の入れ替え案（決定的） ──
+  const tierStats = computeGateTierStats({ favIds, trashedIds, cases });
+  const lensStats = computeLensStats({ cases, favIds, trashedIds });
+  const rejectionSummary = summarizeRejections(await readRejectionEntries(), { now: new Date() });
+  if (!DRY_RUN) {
+    // research-health が読むスナップショット（dry-run はフィクスチャのお気に入りなので書かない）
+    try {
+      await fs.mkdir(LOGS_DIR, { recursive: true });
+      await writeJsonFile(GATE_STATS_PATH, { at: new Date().toISOString(), byTier: tierStats.byTier, byLens: lensStats.byLens });
+    } catch (e) {
+      log(`⚠ ${GATE_STATS_PATH} の書き込みに失敗（続行）: ${e.message}`);
+    }
+  }
+  const oldCaseGate = await readJson(CASE_GATE_PATH);
+  const oldSources = await readJson(SOURCES_PATH).catch(() => []);
+  const litmusCandidates = {
+    favCandidates: toLitmusCandidates(tierStats.borderlineFav),
+    trashCandidates: toLitmusCandidates(tierStats.borderlineTrashed),
+  };
+  const previewLitmusPlan = planLitmusSwap(oldCaseGate, { ...litmusCandidates, now: new Date() });
+  const sourceStats = computeSourceGateStats({ favIds, trashedIds, cases }).bySource;
+  const sourcesSummary = (Array.isArray(oldSources) ? oldSources : []).map((s) => ({
+    id: s.id,
+    tier: s.tier,
+    enabled: !!s.enabled,
+    lang: s.lang,
+    region: s.region,
+    count: sourceStats[s.id]?.count ?? 0,
+    fav: sourceStats[s.id]?.fav ?? 0,
+    trashed: sourceStats[s.id]?.trashed ?? 0,
+  }));
+  const v3Input = {
+    tierStats,
+    lensStats,
+    rejectionSummary,
+    criteria: oldCaseGate.criteria,
+    litmusChanges: previewLitmusPlan.changes,
+    sourcesSummary,
+  };
+
   // Exhibition: お気に入り(重み1)・intake投稿(重み2)・ごみ箱の分布から、プロファイルの weight/watch/threshold.add を決定論で提案する
   // （除外ルール exclusions.hard と collectAll はユーザー確定事項のため自動変更禁止。ガードは tuneup-guardrails.mjs）
   const exhibitionData = await readJson(EXHIBITION_PATH).catch(() => ({ items: [] }));
@@ -674,7 +784,7 @@ async function main() {
   try {
     pass1 = runClaudeJson(
       claudeBin,
-      buildPass1Prompt({ favStats, trashStats, userCaseStats, oldResearchTuning, oldXRadarQueries, oldResearchPlan }),
+      buildPass1Prompt({ favStats, trashStats, userCaseStats, oldResearchTuning, oldXRadarQueries, oldResearchPlan, v3Input }),
       { timeout: ANALYSIS_TIMEOUT_MS, marker: '"researchTuning"', model: MODEL }
     );
   } catch (e) {
@@ -714,10 +824,19 @@ async function main() {
 
   // ── 4. ガードレール（機械検証） ──
   log("── ガードレール検証 ──");
+  // v3: cc.roundFoci は4レンズ固定。AIが落とした/変えた領域キー(lens等)は旧値に戻し、文言と sourceRefs の並びだけ採用する
+  // （件数違いなどは overlay が素通しし、checkResearchTuningChange 内の checkRoundFociLenses が拒否する）
+  if (pass1.researchTuning?.cc && Array.isArray(pass1.researchTuning.cc.roundFoci)) {
+    pass1.researchTuning.cc.roundFoci = overlayRoundFociText(oldResearchTuning?.cc?.roundFoci, pass1.researchTuning.cc.roundFoci);
+  }
   const researchCheck = checkResearchTuningChange(oldResearchTuning, pass1.researchTuning);
   const queriesCheck = checkXRadarQueriesChange(oldXRadarQueries, pass1.xRadarQueries);
   const ideaCheck = checkIdeaTuningChange(oldIdeaTuning, pass2.ideaTuning);
   const exhibitionCheck = checkExhibitionProfileChange(oldExhibitionProfile, nextExhibitionProfile);
+  // v3: 巡回先(sources.json)の tier/enabled 変更。違反時は巡回先の変更だけを破棄する（他の改訂は生かす）
+  const sourcesCheck = checkSourcesChangeProposal(oldSources, pass1.sourceChanges ?? []);
+  const sourcesApplied = sourcesCheck.ok && (sourcesCheck.tierChanges > 0 || sourcesCheck.enabledChanges > 0);
+  if (!sourcesCheck.ok) log(`⚠ 巡回先の変更案がガードレール違反のため破棄（他の改訂は継続）:\n  ${sourcesCheck.errors.join("\n  ")}`);
   const guardrailErrors = [...researchCheck.errors, ...queriesCheck.errors, ...ideaCheck.errors, ...exhibitionCheck.errors];
   if (guardrailErrors.length) {
     log(`ガードレール違反:\n  ${guardrailErrors.join("\n  ")}`);
@@ -736,8 +855,18 @@ async function main() {
   const nextResearchTuning = reinjectDescriptions(oldResearchTuning, pass1.researchTuning);
   const nextIdeaTuning = reinjectDescriptions(oldIdeaTuning, pass2.ideaTuning);
 
+  let appliedLitmusPlan = { changed: false, changes: [] };
   const applyResult = await applyCandidateWithVerification({
     writeFiles: async () => {
+      // v3: 判定の具体例の入れ替え。長時間の分析中に承認された基準文などを上書きしないよう、書き込み直前に
+      // case-gate.json を読み直し、その上で同じ決定的ルールを再計算する。validateCaseGate を通らなければ書かない
+      const freshGate = await readJson(CASE_GATE_PATH);
+      const plan = planLitmusSwap(freshGate, { ...litmusCandidates, now: new Date() });
+      if (plan.changed && validateCaseGate(plan.gate).length === 0) {
+        await writeJsonFile(CASE_GATE_PATH, plan.gate);
+        appliedLitmusPlan = plan;
+      }
+      if (sourcesApplied) await writeJsonFile(SOURCES_PATH, sourcesCheck.next);
       await writeJsonFile(RESEARCH_TUNING_PATH, nextResearchTuning);
       await writeJsonFile(IDEA_TUNING_PATH, nextIdeaTuning);
       await writeJsonFile(XRADAR_QUERIES_PATH, pass1.xRadarQueries);
@@ -759,7 +888,57 @@ async function main() {
   }
   log("dry-run全通し PASS");
 
+  // ── v3 §5-§6: 基準A〜Dの文面の変更案（0〜1件）。自動では書き換えず、条件を満たせば台帳に保存してLINEへ送る。
+  //    dry-run ではLINEへ送らず案の内容をレポートに書くだけ。失敗しても週次見直し本体は止めない
+  let proposalResult = { status: "none" };
+  try {
+    proposalResult = await runGateProposalStage({
+      aiProposal: pass1.gateCriterionProposal,
+      gate: oldCaseGate,
+      evidencePool: [
+        ...tierStats.borderlineFav.map((c) => ({ title: c.title, link: c.link, signal: "fav" })),
+        ...tierStats.borderlineTrashed.map((c) => ({ title: c.title, link: c.link, signal: "trash" })),
+      ],
+      loadFn: () => loadProposals(),
+      proposeFn: (input) => proposeGateChange(input),
+      dryRun: DRY_RUN,
+    });
+  } catch (e) {
+    proposalResult = { status: "error", reason: e.message };
+  }
+  log(`基準変更案: ${proposalResult.status}${proposalResult.reason ? `（${proposalResult.reason}）` : ""}`);
+
+  const fmtRate = (e) => `${e.count}件 fav${e.fav}(${Math.round(e.favRate * 100)}%)/trash${e.trashed}(${Math.round(e.trashRate * 100)}%)`;
+  const litmusLine = appliedLitmusPlan.changed
+    ? appliedLitmusPlan.changes
+        .map((c) => `${c.side === "accept" ? "採用例" : "不採用例"}${c.action === "add" ? "追加" : `置換(${c.removed.title}→)`}「${c.added.title}」`)
+        .join(" / ")
+    : "変更なし";
+  const sourcesLine = sourcesApplied
+    ? `tier変更${sourcesCheck.tierChanges}件・enabled変更${sourcesCheck.enabledChanges}件`
+    : sourcesCheck.ok
+      ? "変更なし"
+      : `提案を破棄（${sourcesCheck.errors[0]}）`;
+  const proposalLine = {
+    none: "なし",
+    "skipped-pending": `見送り（基準${proposalResult.normalized?.criterionId}に承認待ちの案あり）`,
+    invalid: `見送り（案が不正: ${proposalResult.reason}）`,
+    error: `失敗（${proposalResult.reason}）`,
+    "dry-run": `あり（dry-runのためLINE未送信）基準${proposalResult.normalized?.criterionId}: 「${proposalResult.normalized?.before}」→「${proposalResult.normalized?.after}」 理由: ${proposalResult.normalized?.reason}`,
+    proposed: `${proposalResult.proposal?.id ?? ""} を作成（LINE送信${proposalResult.sent?.ok ? "済み" : `失敗: ${proposalResult.sent?.reason ?? "不明"}`}）基準${proposalResult.normalized?.criterionId}`,
+  }[proposalResult.status];
+  const v3Lines = [
+    `選別(gateTier): accept ${fmtRate(tierStats.byTier.accept)} / borderline ${fmtRate(tierStats.byTier.borderline)} / 旧データ ${tierStats.byTier.legacy.count}件`,
+    `レンズ別採用数: ${[1, 2, 3, 4].map((l) => `L${l}=${lensStats.byLens[l].count}`).join(" ")}（タグ無し${lensStats.untagged}件）`,
+    `却下ログ(直近${rejectionSummary.windowDays}日): ${rejectionSummary.total}件 / 理由上位 ${rejectionSummary.byReason.slice(0, 3).map((r) => `${r.reason}×${r.count}`).join("、") || "なし"}`,
+    `具体例の入れ替え${DRY_RUN ? "（dry-runのため反映なし）" : ""}: ${litmusLine}`,
+    `巡回先(sources.json)${DRY_RUN ? "（dry-runのため反映なし）" : ""}: ${sourcesLine}`,
+    `基準変更案: ${proposalLine}`,
+  ];
+
   const changeSummaryLines = [
+    ...v3Lines,
+    "",
     `お気に入り: 事例${favStats.favoriteCaseCount}件・技術${favStats.favoriteTechCount}件を分析`,
     `ごみ箱(弱化)${trashStats.trashedCaseCount}件・ユーザー追加(強化)${userCaseStats.userCaseCount}件も分析材料に反映`,
     `アイデア評価: いいね${ideaFeedbackStats.likedIdeaCount}件・ゴミ箱${ideaFeedbackStats.trashedIdeaCount}件も分析材料に反映`,

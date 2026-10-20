@@ -73,7 +73,7 @@ function buildFixture(opts = {}) {
   let seq = 0;
   // 古い→新しい順に36日分コミットを積む
   for (let n = 36; n >= 0; n--) {
-    for (let i = 0; i < ccAdds(n); i++) cases.push({ id: `c${seq++}`, title: `事例${seq}`, overview: "ふつうの概要" });
+    for (let i = 0; i < ccAdds(n); i++) cases.push({ id: `c${seq++}`, title: `事例${seq}`, overview: "ふつうの概要", ...(opts.caseExtra ? opts.caseExtra(n, i) : {}) });
     for (let i = 0; i < techAdds(n); i++) tech.push({ id: `t${seq++}`, title: `技術${seq}` });
     for (let i = 0; i < exAdds(n); i++)
       exItems.push({ id: `e${seq++}`, title: `展示${seq}`, venue: "会場A", startDate: "2026-11-01", endDate: "2026-12-01", addedAt: `${day(n)}T01:30:00.000Z` });
@@ -117,6 +117,7 @@ function buildFixture(opts = {}) {
   fs.mkdirSync(path.join(root, "logs"), { recursive: true });
   if (opts.rejections) fs.writeFileSync(path.join(root, "logs/rejections-2026-10.jsonl"), opts.rejections.map((r) => JSON.stringify(r)).join("\n") + "\n");
   writeJson(path.join(root, "data/inbox/exhibition-unverified.json"), { version: 1, items: opts.unverified ?? [] });
+  if (opts.gateStats) writeJson(path.join(root, "logs/case-gate-stats.json"), opts.gateStats);
   return { root, logDir };
 }
 
@@ -263,4 +264,23 @@ test("parseRuns: 開始マーカーで区切り、候補行を合算する", () 
   assert.equal(runs.length, 2);
   assert.deepEqual([runs[0].day, runs[0].candidates], ["2026-10-19", 2]);
   assert.equal(runs[1].candidates, null);
+});
+
+// ── v3 Phase 3: レンズ別採用数・borderline の fav/trash 率（統合） ──
+test("v3統合: 直近7日にレンズ4が0件(タグ付き十分)なら cc:lens-zero。均等なら出ない", async () => {
+  const skew = buildFixture({ ccAddsPerDay: () => 2, caseExtra: (n, i) => (n <= 6 ? { gateTier: "accept", discoveryLens: 1 + ((n + i) % 3) } : {}) });
+  const r1 = await runResearchHealthReview({ root: skew.root, now: NOW, logDir: skew.logDir, dryRun: true });
+  const f = r1.findings.find((x) => x.code === "lens-zero");
+  assert.ok(f, codes(r1).join());
+  assert.match(f.detail, /4/);
+  const even = buildFixture({ ccAddsPerDay: () => 2, caseExtra: (n, i) => (n <= 6 ? { gateTier: "accept", discoveryLens: 1 + ((n + i) % 4) } : {}) });
+  const r2 = await runResearchHealthReview({ root: even.root, now: NOW, logDir: even.logDir, dryRun: true });
+  assert.ok(!codes(r2).includes("cc:lens-zero"), codes(r2).join());
+});
+
+test("v3統合: logs/case-gate-stats.json の borderline が trash 偏重なら cc:borderline-trash-heavy", async () => {
+  const gateStats = { at: "2026-10-19T00:00:00Z", byTier: { borderline: { count: 30, fav: 2, trashed: 14 }, accept: { count: 40, fav: 12, trashed: 3 } } };
+  const { root, logDir } = buildFixture({ gateStats });
+  const r = await runResearchHealthReview({ root, now: NOW, logDir, dryRun: true });
+  assert.ok(codes(r).includes("cc:borderline-trash-heavy"), codes(r).join());
 });

@@ -428,7 +428,7 @@ async function runTuneup() {
     const reportArgs = ["--kind", "system", "--source", "tuneup", "--text-file", path.join(os.tmpdir(), "researchman-tuneup-report.txt")];
     const tuneup = runNode("scripts/biweekly-tuneup.mjs");
     if (tuneup.status === 0) {
-      runGit(["add", "data/research-tuning.json", "data/idea-tuning.json", "data/x-radar-queries.json", "RESEARCH_PLAN.md", "data/exhibition-profile.json"]);
+      runGit(["add", "data/research-tuning.json", "data/idea-tuning.json", "data/x-radar-queries.json", "RESEARCH_PLAN.md", "data/exhibition-profile.json", "data/case-gate.json", "data/sources.json"]);
       if (gitDiffCachedIsEmpty()) {
         log(`変更なし（分析結果は現状維持 or スキップ）: ${unixDateString()}`);
         runNode("scripts/notify-line.mjs", [...reportArgs, "--priority", "routine"]);

@@ -234,6 +234,8 @@ export function countWeightChanges(oldWeights, newWeights) {
 export function checkResearchTuningChange(oldTuning, newTuning) {
   const schema = validateResearchTuning(newTuning);
   const errors = [...schema.errors];
+  // v3: cc.roundFoci は4レンズ固定（件数・順序・領域は不変。文言と sourceRefs の並びのみ可）
+  errors.push(...checkRoundFociLenses(oldTuning?.cc?.roundFoci, newTuning?.cc?.roundFoci).errors);
   const laneChanges =
     countLaneChanges(oldTuning?.tech?.lanes, newTuning?.tech?.lanes) +
     countLaneChanges(oldTuning?.cc?.roundFoci, newTuning?.cc?.roundFoci);
@@ -306,4 +308,98 @@ export function checkSourcesChange(oldSources, newSources) {
     errors.push(`source enabled changes exceed limit (${enabledChanges} > ${GUARDRAIL_LIMITS.sourceEnabledChangesMax})`);
   }
   return { ok: errors.length === 0, errors, tierChanges, enabledChanges };
+}
+
+// ── v3 Phase 3 追加分 ─────────────────────────────────────────────
+
+/** cc.roundFoci の中で文言として変更を許すキー。これ以外のキー（lens/言語割り当て等＝領域を決めるもの）は不変 */
+const ROUND_FOCI_TEXT_KEYS = new Set(["label", "sources", "diversity", "sourceRefs"]);
+
+/**
+ * cc.roundFoci は「4つの領域レンズ」固定（v3 §5）。件数・順序・各レンズの領域は変えない。
+ * 変更してよいのは label / sources / diversity の文言と、sourceRefs の「並び」だけ（要素の追加・削除は不可）。
+ * 旧側が配列でなければ（初期導入）判定しない。
+ * @returns {{ok: boolean, errors: string[]}}
+ */
+export function checkRoundFociLenses(oldFoci, newFoci) {
+  if (!Array.isArray(oldFoci)) return { ok: true, errors: [] };
+  const errors = [];
+  if (!Array.isArray(newFoci)) return { ok: false, errors: ["cc.roundFoci must be an array"] };
+  if (newFoci.length !== oldFoci.length) {
+    errors.push(`cc.roundFoci is fixed to ${oldFoci.length} lenses (no add/remove): got ${newFoci.length}`);
+    return { ok: false, errors };
+  }
+  oldFoci.forEach((o, i) => {
+    const n = newFoci[i];
+    if (!o || !n || typeof o !== "object" || typeof n !== "object") return;
+    const keys = new Set([...Object.keys(o), ...Object.keys(n)]);
+    for (const k of keys) {
+      if (ROUND_FOCI_TEXT_KEYS.has(k)) continue;
+      if (JSON.stringify(o[k]) !== JSON.stringify(n[k])) {
+        errors.push(`cc.roundFoci[${i}].${k} change not allowed (lens order/area is fixed)`);
+      }
+    }
+    const oldRefs = o.sourceRefs;
+    const newRefs = n.sourceRefs;
+    if ((oldRefs === undefined) !== (newRefs === undefined)) {
+      errors.push(`cc.roundFoci[${i}].sourceRefs presence change not allowed`);
+    } else if (Array.isArray(oldRefs) && Array.isArray(newRefs)) {
+      const a = JSON.stringify([...oldRefs].sort());
+      const b = JSON.stringify([...newRefs].sort());
+      if (a !== b) errors.push(`cc.roundFoci[${i}].sourceRefs may only be reordered (no add/remove)`);
+    }
+  });
+  return { ok: errors.length === 0, errors };
+}
+
+/**
+ * AI が返した cc.roundFoci から、文言キー（label/sources/diversity/sourceRefs）だけを旧値に重ねる。
+ * lens/言語割り当てなど領域を決める他キーは常に旧値を保つ（AI が落とす・変える事故で週次の変更全体が
+ * 破棄されないようにする）。件数が違う・旧側が配列でない場合は AI 出力をそのまま返し、
+ * checkRoundFociLenses に拒否させる。
+ */
+export function overlayRoundFociText(oldFoci, aiFoci) {
+  if (!Array.isArray(oldFoci) || !Array.isArray(aiFoci) || oldFoci.length !== aiFoci.length) return aiFoci;
+  return oldFoci.map((o, i) => {
+    const n = aiFoci[i];
+    if (!o || typeof o !== "object" || !n || typeof n !== "object") return n;
+    const out = { ...o };
+    for (const k of ROUND_FOCI_TEXT_KEYS) if (Object.prototype.hasOwnProperty.call(n, k)) out[k] = n[k];
+    return out;
+  });
+}
+
+/**
+ * data/sources.json（配列）へ AI 提案の差分 [{id, tier?, enabled?, ...}] を適用した新配列を返す（元は破壊しない）。
+ * 未知の id は新規エントリとして末尾に追加される（= checkSourcesChange が「id added」で拒否する）。
+ * tier/enabled 以外のキーも素通しでマージする（拒否は checkSourcesChange に一本化＝二重定義しない）。
+ */
+export function applySourceChanges(oldSources, changes) {
+  const next = JSON.parse(JSON.stringify(oldSources || []));
+  const byId = new Map(next.map((s) => [s?.id, s]));
+  for (const ch of changes || []) {
+    if (!ch || typeof ch !== "object") continue;
+    const cur = byId.get(ch.id);
+    if (cur) Object.assign(cur, ch);
+    else {
+      const added = { ...ch };
+      next.push(added);
+      byId.set(ch.id, added);
+    }
+  }
+  return next;
+}
+
+/**
+ * 巡回先（data/sources.json）の AI 提案差分を検証する。applySourceChanges で適用したうえで checkSourcesChange
+ * （tier/enabled 以外の変更・id 増減・各5件超を拒否）に通す。週次見直しはこの結果の next を書き込む。
+ * @returns {{ok: boolean, errors: string[], tierChanges: number, enabledChanges: number, next: Array}}
+ */
+export function checkSourcesChangeProposal(oldSources, changes) {
+  if (!Array.isArray(changes)) {
+    return { ok: false, errors: ["sourceChanges must be an array"], tierChanges: 0, enabledChanges: 0, next: oldSources };
+  }
+  const next = applySourceChanges(oldSources, changes);
+  const r = checkSourcesChange(oldSources, next);
+  return { ...r, next };
 }
