@@ -41,9 +41,9 @@ export function renderReport({ date, results, unscored = [], n = 10 }) {
   const lines = [];
   lines.push(`# 情報源ベイクオフ結果 ${date}`);
   lines.push("");
-  lines.push(`- 生成: \`scripts/bakeoff-sources.mjs\`（設計書 docs/RADAR_V2_DESIGN.md §4-8）。kind=web のみ。1候補1回のClaude CLI呼び出しで、一覧ページの直近最大${n}件を取得し、関門A/B/C基準（\`scripts/lib/case-gate-criteria.mjs\`）で採点。`);
+  lines.push(`- 生成: \`scripts/bakeoff-sources.mjs\`（設計書 docs/RADAR_V2_DESIGN.md §4-8）。kind=web のみ。1候補1回のClaude CLI呼び出しで、一覧ページの直近最大${n}件を取得し、関門A/B/C/D基準（\`scripts/lib/case-gate-criteria.mjs\`）で採点。`);
   lines.push(`- 採点済み ${results.length} 候補（取得成功 ${ok.length} / 取得失敗 ${failed.length}）。cases.json・sources.json は変更していない（read-only）。`);
-  lines.push(`- **読み方**: accept率 = 関門A/B/Cのいずれかを満たした件数 ÷ 取得件数。1候補あたり最大${n}件の**小標本**なので、±20pt程度の揺れは誤差。tier案は目安（件数5件以上で accept率50%↑=tier1、30%↑=tier2、それ未満=見送り）。最終判断（\`enabled\`/\`tier\`）はオーナー。`);
+  lines.push(`- **読み方**: accept率 = 関門A/B/C/Dのいずれかを満たした件数 ÷ 取得件数。1候補あたり最大${n}件の**小標本**なので、±20pt程度の揺れは誤差。tier案は目安（件数5件以上で accept率50%↑=tier1、30%↑=tier2、それ未満=見送り）。最終判断（\`enabled\`/\`tier\`）はオーナー。`);
   lines.push(`- 採点はモデルが一覧のタイトル・要約から行うため、告知記事の見抜きは得意だがクラフト(B)の過大評価に注意。代表例は必ず目視で確認すること。`);
   lines.push(`- **既知のバイアス**: 採点は一覧のタイトル・要約のみ（本文は開かない）。ブランドID系（リブランド紹介）・受賞/審査系の媒体は「要点が本文にある」ため過小評価されやすい。逆に制作会社の作品一覧は「企画そのもの」が題名になるため accept 寄りに出る。0%は「事例が無い」ではなく「一覧の要約からは判定不能」を含む。0%の媒体を除外する前に代表的な記事を目視すること。`);
   lines.push("");
@@ -55,7 +55,7 @@ export function renderReport({ date, results, unscored = [], n = 10 }) {
     const s = r.summary;
     const ex = s.examples.map((e) => `[${esc(e.title).slice(0, 60)}](${e.url}) (${e.criterion}: ${esc(e.reason).slice(0, 40)})`).join("<br>");
     lines.push(
-      `| ${esc(r.id)} | ${r.tier} | ${s.count}${r.duplicatesRemoved ? `（重複除去${r.duplicatesRemoved}）` : ""}${s.invalidCount ? `（不正値${s.invalidCount}）` : ""} | ${pct(s.acceptRate)} (${s.accepted}/${s.count}) | A${s.byCriterion.A} / B${s.byCriterion.B} / C${s.byCriterion.C} | ${suggestTier(s)} | ${ex || "-"} |`
+      `| ${esc(r.id)} | ${r.tier} | ${s.count}${r.duplicatesRemoved ? `（重複除去${r.duplicatesRemoved}）` : ""}${s.invalidCount ? `（不正値${s.invalidCount}）` : ""} | ${pct(s.acceptRate)} (${s.accepted}/${s.count}) | A${s.byCriterion.A} / B${s.byCriterion.B} / C${s.byCriterion.C} / D${s.byCriterion.D ?? 0}${s.borderline ? `（惜しい${s.borderline}）` : ""} | ${suggestTier(s)} | ${ex || "-"} |`
     );
   }
   lines.push("");

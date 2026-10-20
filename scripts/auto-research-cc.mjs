@@ -322,8 +322,8 @@ ${existingTitles}
       "youtube_id": "公式動画のYouTube ID 11文字（検索結果で確認できた場合のみ。不明なら空文字）",
       "note": "どんな事例か1行（日本語。なぜ基準を満たすか＝企画の核を一文で）",
       "sourceId": "見つけた情報源の[id]（上の情報源から見つけた場合のみ。不明・それ以外は空文字）",
-      "gateVerdict": "accept | reject",
-      "gateCriterion": "A | B | C | none",
+      "gateVerdict": "accept | borderline | reject",
+      "gateCriterion": "A | B | C | D | none",
       "gateReason": "判定理由を一言（40字以内）",
       "contentKind": "case | exhibition",
       "exhibition": "contentKindがexhibitionの時のみ付ける（上の「展覧会・展示の振り分け」参照）。caseなら省略"
@@ -357,8 +357,8 @@ ${articleGatePromptSection()}
 
 ## 出力形式（JSON のみ、説明文なし。ファイルには一切保存せず、標準出力にJSONオブジェクトをそのまま出力すること。前置き・後書き・コードフェンス等の装飾も付けない）
 {
-  "gateVerdict": "accept | reject",
-  "gateCriterion": "A | B | C | none",
+  "gateVerdict": "accept | borderline | reject",
+  "gateCriterion": "A | B | C | D | none",
   "gateScore": 1,
   "gateReason": "判定理由を一言（40字以内）",
   "announcementType": "発売 | 開催 | 発表 | 買収 | コンテスト | other | （告知のみでなければ空文字）",

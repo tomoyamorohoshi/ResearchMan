@@ -88,7 +88,7 @@ test("summarizeBakeoff: accept率・基準内訳・代表例3件", () => {
   assert.equal(s.count, 5);
   assert.equal(s.accepted, 4);
   assert.equal(s.acceptRate, 0.8);
-  assert.deepEqual(s.byCriterion, { A: 1, B: 2, C: 1 });
+  assert.deepEqual(s.byCriterion, { A: 1, B: 2, C: 1, D: 0 });
   assert.equal(s.examples.length, 3);
   assert.ok(s.examples.every((e) => e.verdict === "accept"));
 });
