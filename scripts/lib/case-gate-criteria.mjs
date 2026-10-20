@@ -126,7 +126,7 @@ const CRITERIA = new Set(CRITERION_IDS);
 
 /**
  * 1件の判定を正規化する。不正値は reject 扱いにフォールバック（安全側）。
- * accept でも criterion が A/B/C でなければ reject。reject の criterion は "none"。
+ * accept でも criterion が A〜D でなければ reject。reject の criterion は "none"。
  */
 export function normalizeGateItem(raw) {
   const o = raw && typeof raw === "object" ? raw : {};

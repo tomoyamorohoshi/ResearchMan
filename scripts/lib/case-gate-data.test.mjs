@@ -173,3 +173,29 @@ test("プロンプト節: D・borderline の定義・出力形式・具体例・
   }
   assert.match(discoveryGatePromptSection(), /\(e\) 手法の発明/);
 });
+
+test("firstCriterion: 単語中の大文字・N/A は基準扱いしない。単独トークンは先頭の基準を採る", () => {
+  for (const c of ["Design", "Does not apply", "N/A", "n/a"]) {
+    const g = normalizeDiscoveryGate({ gateVerdict: "accept", gateCriterion: c, gateReason: "r" });
+    assert.equal(g.gateVerdict, "reject", c);
+    assert.equal(g.gateCriterion, "none", c);
+  }
+  for (const [c, want] of [["A", "A"], ["b", "B"], ["A, C", "A"], ["基準D", "D"], ["B and C", "B"]]) {
+    const g = normalizeDiscoveryGate({ gateVerdict: "accept", gateCriterion: c, gateReason: "r" });
+    assert.equal(g.gateVerdict, "accept", c);
+    assert.equal(g.gateCriterion, want, c);
+  }
+});
+
+test("発見プロンプト冒頭: 採用基準は A〜D と書かれ、A/B/C のみの記述が残っていない", async () => {
+  const { buildDiscoveryPrompt } = await import("../auto-research-cc.mjs");
+  const p = buildDiscoveryPrompt({
+    lastRunDate: new Date("2026-09-27T00:00:00+09:00"),
+    existingTitles: "（既存なし）",
+    seenThisRun: [],
+    round: 1,
+    roundFoci: [{ label: "L", sources: "s", diversity: "d" }],
+  });
+  assert.ok(!/A\/B\/C(?!\/D)/.test(p), "A/B/C のみの記述なし");
+  assert.match(p, /A〜D/);
+});

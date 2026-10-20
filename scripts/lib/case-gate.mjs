@@ -28,8 +28,12 @@ const str = (v) => (typeof v === "string" ? v.trim() : "");
 function firstCriterion(v) {
   const t = str(v);
   if (/^[abcd]$/i.test(t)) return t.toUpperCase();
-  const m = t.match(/[ABCD]/) || t.match(/(?:^|[^A-Za-z])([abcd])(?![A-Za-z])/);
-  return m ? (m[1] || m[0]).toUpperCase() : "";
+  // 単独トークンのみ採る（"Design"/"Does not apply" の語中大文字や "N/A" は基準扱いしない）。
+  // 2文字以上の英単語を含む自由文では大文字トークンのみ許容（"a novel idea" の冠詞 a を拾わない）
+  const s2 = t.replace(/n\/a/gi, " ");
+  const re = /[A-Za-z]{2,}/.test(s2) ? /(?:^|[^A-Za-z])([ABCD])(?![A-Za-z])/ : /(?:^|[^A-Za-z])([ABCDabcd])(?![A-Za-z])/;
+  const m = s2.match(re);
+  return m ? m[1].toUpperCase() : "";
 }
 
 // null風トークン（"なし"/"null"/"N/A"/"-"等）は「値なし」として空文字にする

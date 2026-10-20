@@ -2,7 +2,7 @@
  * 情報源ベイクオフ（Radar v2 Phase 1。docs/RADAR_V2_DESIGN.md §4-8）。
  *
  * data/sources.json の kind=web 候補（enabled問わず）ごとに、一覧ページの直近N件を
- * Claude CLI（サブスク内・1候補1呼び出し）で取得＋関門A/B/C基準で採点し、
+ * Claude CLI（サブスク内・1候補1呼び出し）で取得＋関門A〜D基準で採点し、
  * docs/SOURCE_BAKEOFF_<date>.md に accept率・件数・代表例を表で出力する。
  *
  * - read-only: cases.json / sources.json には一切書き込まない（何度でも再実行可）
