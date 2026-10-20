@@ -3,6 +3,48 @@
   "statusAsOf": "2026-10-20",
   "items": [
     {
+      "id": "2026-bonded-gallery-hikaru-oto-ten",
+      "slug": "2026-bonded-gallery-hikaru-oto-ten",
+      "title": "光る音展",
+      "artists": [
+        "STARRYWORKS inc."
+      ],
+      "venue": "BONDED GALLERY",
+      "venueType": "gallery",
+      "prefecture": "東京都",
+      "city": "品川区",
+      "startDate": "2026-11-04",
+      "endDate": "2026-11-08",
+      "status": "upcoming",
+      "admission": "UNKNOWN",
+      "tags": [
+        "installation",
+        "light",
+        "sound",
+        "media_art"
+      ],
+      "score": 85,
+      "matchReason": "STARRYWORKS inc. 創業20周年の体験型インスタレーション展。音に同期して光や影が変化する、光・影・音を扱う空間インスタレーション（RAY/DROP/PLANE/SLIT等）。",
+      "sources": [
+        {
+          "name": "STARRYWORKS プレスリリース(PR TIMES)",
+          "url": "https://prtimes.jp/main/html/rd/p/000000009.000015146.html",
+          "kind": "official"
+        },
+        {
+          "name": "光る音展 公式サイト",
+          "url": "https://20th.starryworks.co.jp/",
+          "kind": "listing"
+        }
+      ],
+      "link": "https://prtimes.jp/main/html/rd/p/000000009.000015146.html",
+      "thumbnail": "/thumbnails/exhibition/2026-bonded-gallery-hikaru-oto-ten.jpg",
+      "addedAt": "2026-10-20T01:40:27.473Z",
+      "origin": "intake",
+      "highlight": true,
+      "intakeUrl": "https://20th.starryworks.co.jp/"
+    },
+    {
       "id": "2026-ycam-without-records",
       "slug": "2026-ycam-without-records",
       "title": "without records(大友良英＋YCAM新作展「即興！」先行展示)",
@@ -533,7 +575,7 @@
         "sound"
       ],
       "score": 90,
-      "matchReason": "Anthropic主催。真鍋大度（モジュラーシンセと植物の生体電位を使う作品）と神山友輔（光るアームのキネティック・インスタレーション）がClaudeとの協働で制作した新作を展示（公式プレスリリース記載）。",
+      "matchReason": "Anthropic主催。真鍋大度の新作「Timber / Timbre」（KARIMOKU RESEARCHと共同開発した木製筐体にモジュラーシンセを組み込み、構成をClaudeと探索、植物の生体電位や会場環境の変化を音の揺らぎにする音響インスタレーション）と、神山友輔の光るアームのキネティック・インスタレーションを展示（公式プレスリリース記載）。",
       "sources": [
         {
           "name": "公式",
@@ -544,6 +586,11 @@
           "name": "seed出所",
           "url": "https://x.com/ayupys/status/2105985301751693583",
           "kind": "social"
+        },
+        {
+          "name": "KAI-YOU",
+          "url": "https://kai-you.net/article/96722",
+          "kind": "news"
         }
       ],
       "link": "https://www.karimoku.co.jp/index.cgi?mode=press_detail&key=166",
