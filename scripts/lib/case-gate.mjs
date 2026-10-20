@@ -42,13 +42,14 @@ export const GATE_SCORE_MAX = 10;
 /**
  * gateScore（1〜10の整数。採用基準をどれだけ満たすか）の正規化。borderline 枠は「gateScore 上位から」選ぶため、
  * 不正値で上位に入り込めないよう安全側（最低点=1）に倒す。数値文字列は許容（"7"・"7/10"→7）。
- * 四捨五入後に範囲外（0以下・11以上）・非数・欠損はすべて最低点。
+ * 範囲外（1未満・10超）・非数・欠損はすべて最低点。範囲内の小数は四捨五入。
  */
 export function normalizeGateScore(v) {
   const n = typeof v === "number" ? v : parseFloat(str(v));
   if (!Number.isFinite(n)) return GATE_SCORE_MIN;
-  const r = Math.round(n);
-  return r >= GATE_SCORE_MIN && r <= GATE_SCORE_MAX ? r : GATE_SCORE_MIN;
+  // 範囲判定は丸めの前（10.4 や 0.6未満は範囲外＝最低点。範囲内の小数だけ四捨五入）
+  if (n < GATE_SCORE_MIN || n > GATE_SCORE_MAX) return GATE_SCORE_MIN;
+  return Math.round(n);
 }
 
 // null風トークン（"なし"/"null"/"N/A"/"-"等）は「値なし」として空文字にする

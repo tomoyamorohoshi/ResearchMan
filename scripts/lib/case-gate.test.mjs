@@ -212,7 +212,7 @@ test("観測性: 正規化による強制rejectは invalid-output: を付ける�
 });
 
 test("normalizeGateScore: 1〜10の整数に正規化。範囲外・欠損・非数は最低点（borderline枠に紛れ込ませない）", () => {
-  for (const [raw, want] of [[7, 7], ["7", 7], [7.4, 7], [7.5, 8], [10, 10], [1, 1], [0, 1], [0.4, 1], [10.6, 1], [11, 1], [99, 1], [-1, 1], ["x", 1], ["", 1], [undefined, 1], [null, 1], [NaN, 1], [Infinity, 1], [{}, 1]]) {
+  for (const [raw, want] of [[7, 7], ["7", 7], [7.4, 7], [7.5, 8], [10, 10], [1, 1], [0, 1], [0.4, 1], [10.4, 1], [10.5, 1], [10.6, 1], [11, 1], [99, 1], [-1, 1], ["x", 1], ["", 1], [undefined, 1], [null, 1], [NaN, 1], [Infinity, 1], [{}, 1]]) {
     assert.equal(normalizeGateScore(raw), want, `raw=${String(raw)}`);
   }
 });

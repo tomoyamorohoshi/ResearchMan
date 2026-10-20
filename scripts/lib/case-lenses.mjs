@@ -15,6 +15,13 @@ export const MAX_ACCEPT = 10;
 export const MAX_BORDERLINE = 3;
 export const MIN_ACCEPT_BEFORE_EXTRA = 5;
 export const MAX_EXTRA_ROUNDS = 2;
+// 記事化フェーズの上限（発見最大約105分＋記事化＋検証がタスク実行時間上限に収まるようにする）。
+// 時間: 記事化（link検証・サムネ・記事生成）の累積が60分を超えたら新しい記事化を始めない。
+// 件数: 1件あたり数分かかるため、accept系は最終採用上限10件の2倍(20件=関門2で落ちる分の余裕)、
+// borderline系は最終枠3件＋2件(5件)まで。上限で打ち切った候補は却下ログに article-budget で記録する。
+export const ARTICLE_BUDGET_MS = 60 * 60 * 1000;
+export const MAX_ARTICLE_ATTEMPTS_ACCEPT = 20;
+export const MAX_ARTICLE_ATTEMPTS_BORDERLINE = MAX_BORDERLINE + 2;
 
 const JST_OFFSET_MS = 9 * 60 * 60 * 1000;
 const ymdJst = (d) => new Date(d.getTime() + JST_OFFSET_MS).toISOString().slice(0, 10);
@@ -241,4 +248,29 @@ export function formatLensTierSummary(stats, labels = []) {
       return `レンズ${i + 1}${name}: 候補${s.candidates || 0} / 関門1 accept ${g.accept || 0} borderline ${g.borderline || 0} reject ${g.reject || 0} / 採用 accept ${a.accept || 0} + borderline ${a.borderline || 0}`;
     })
     .join("\n");
+}
+
+/**
+ * 記事化を始めてよいか。始められなければ理由（却下ログ detail 用）、よければ null。
+ * kind: "accept"（関門1 accept 由来）| "borderline"（関門1 borderline 由来）。件数は別カウント。
+ */
+export function articleBudgetCheck({ kind, acceptAttempts, borderlineAttempts, elapsedMs }) {
+  if (elapsedMs >= ARTICLE_BUDGET_MS) return `time:${Math.round(elapsedMs / 60000)}min>=${ARTICLE_BUDGET_MS / 60000}min`;
+  if (kind === "borderline") {
+    if (borderlineAttempts >= MAX_ARTICLE_ATTEMPTS_BORDERLINE) return `count:borderline>=${MAX_ARTICLE_ATTEMPTS_BORDERLINE}`;
+  } else if (acceptAttempts >= MAX_ARTICLE_ATTEMPTS_ACCEPT) {
+    return `count:accept>=${MAX_ARTICLE_ATTEMPTS_ACCEPT}`;
+  }
+  return null;
+}
+
+/**
+ * 関門1 borderline の保留リストから、発見時 gateScore 上位（同点は発見順）で、試行済み数を除いた残り枠まで取り出す。
+ * 枠は「関門1 borderline の記事化試行数」で数える（関門1 accept 由来の関門2 borderline が枠を先取りしない）。
+ * 最終の borderline 3件は、関門2 で borderline になった全候補から関門2 の gateScore 上位で selectAdoptions が選ぶ。
+ */
+export function takeBorderlineToTry(pending, alreadyTried, max = MAX_ARTICLE_ATTEMPTS_BORDERLINE) {
+  const sorted = [...pending].sort((a, b) => (b.gate1?.gateScore || 0) - (a.gate1?.gateScore || 0));
+  const n = Math.max(0, max - alreadyTried);
+  return { take: sorted.slice(0, n), rest: sorted.slice(n) };
 }

@@ -71,6 +71,11 @@ import {
   shouldRunExtraRound,
   planExtraRound,
   formatLensTierSummary,
+  articleBudgetCheck,
+  takeBorderlineToTry,
+  ARTICLE_BUDGET_MS,
+  MAX_ARTICLE_ATTEMPTS_ACCEPT,
+  MAX_ARTICLE_ATTEMPTS_BORDERLINE,
 } from "./lib/case-lenses.mjs";
 import { resolveSourcesText, inferSourceId, validateSourcesRegistry } from "./lib/sources-registry.mjs";
 import { fileURLToPath, pathToFileURL } from "url";
@@ -102,6 +107,9 @@ export const DISCOVER_WEBSEARCH_LIMIT = 16;
 // 90分はgitロックのSTALE_MS(90分)と同値だが、run-job.mjs がロック保持中に定期的に mtime を更新する
 // （lib/git-lock.mjs の touchOwnedLock）ので、発見＋記事化が90分を超えても他ジョブにロックを奪われない。
 export const MAX_TOTAL_DISCOVERY_MS = 90 * 60 * 1000;
+// 記事化フェーズの上限（値と理由は lib/case-lenses.mjs の ARTICLE_BUDGET_MS / MAX_ARTICLE_ATTEMPTS_*）:
+// 累積60分・accept系20件・borderline系5件。発見最大約105分＋記事化60分＋検証がタスクの実行時間上限に収まる。
+// 打ち切った候補は却下ログに reason=article-budget で記録する。
 
 // ── ID・タイトル正規化 ────────────────────────────────────────
 
@@ -560,6 +568,7 @@ async function main() {
   console.log(`既存: ${existingCases.length}件`);
   console.log(`検索対象期間: 作品の公開・発表が直近${win.days}日（${win.cutoffYmd}〜${win.todayYmd}）/ ${lensCount}レンズを毎日順に1回ずつ・全世界・多言語 / 基準を満たすものだけ採用（ノルマなし・0件可）`);
   console.log(`採用上限: accept 最大${MAX_ACCEPT}件 + borderline 別枠最大${MAX_BORDERLINE}件（gateScore上位）/ accept ${MIN_ACCEPT_BEFORE_EXTRA}件未満なら追加ラウンド最大${MAX_EXTRA_ROUNDS}回`);
+  console.log(`記事化の上限: 累積${ARTICLE_BUDGET_MS / 60000}分 / accept系${MAX_ARTICLE_ATTEMPTS_ACCEPT}件 / borderline系${MAX_ARTICLE_ATTEMPTS_BORDERLINE}件`);
   console.log(`本日のレンズ順・検索言語: ${lensOrder.map((l) => `レンズ${l + 1}[${langPlan[l].join("+")}]`).join(" → ")}\n`);
 
   const claudeBin = resolveClaudeBin();
@@ -575,6 +584,9 @@ async function main() {
   let discoveryErrors = 0;
   let roundsAttempted = 0;
 
+  let articleElapsedMs = 0; // 記事化（link検証・サムネ・記事生成）の累積時間
+  let acceptAttempts = 0; // 関門1 accept 由来で記事化を試みた件数
+  let borderlineAttempts = 0; // 関門1 borderline 由来で記事化を試みた件数
   const countPool = (tier) => pool.filter((p) => p.tier === tier).length;
   const removeOrphanThumb = async (id) => {
     try {
@@ -654,6 +666,18 @@ async function main() {
       }
     }
 
+    // ── 記事化フェーズの上限（累積時間・試行件数）。超えたら新しい記事化を始めず、理由つきで却下ログへ ──
+    const kind = phase === "deferred" ? "borderline" : "accept";
+    const overBudget = articleBudgetCheck({ kind, acceptAttempts, borderlineAttempts, elapsedMs: articleElapsedMs });
+    if (overBudget) {
+      console.log(`スキップ（記事化の上限 ${overBudget}）: ${cand.title}`);
+      await rejectLog(cand, "article-budget", `${overBudget} lens=${lens + 1} gate1=${gate1.gateVerdict} score=${gate1.gateScore}`);
+      return;
+    }
+    if (kind === "borderline") borderlineAttempts++;
+    else acceptAttempts++;
+    const articleStart = Date.now();
+
     try {
       // ── link 実在検証（誤リンクの根絶）──
       if (!cand.link || !(await isUrlAlive(cand.link))) {
@@ -704,6 +728,14 @@ async function main() {
       }
       console.log("✓");
 
+      // 関門1 borderline→関門2 accept でも accept が既に上限なら採用できない（無駄な死リンク確認をせず捨てる）
+      if (tier === "accept" && countPool("accept") >= MAX_ACCEPT) {
+        console.log(`✗ accept 上限${MAX_ACCEPT}件に到達済み（関門2で accept）: ${cand.title}`);
+        await rejectLog(cand, "accept-over-cap", `lens=${lens + 1} gate1=${gate1.gateVerdict} gateScore=${gate2.gateScore}`);
+        await removeOrphanThumb(id);
+        return;
+      }
+
       // ── related_works の死リンクは除外（事例自体は残す）──
       const relatedWorks = [];
       for (const w of art.related_works || []) {
@@ -750,14 +782,19 @@ async function main() {
       stats.rejected++;
       await rejectLog(cand, "exception", err.message);
       await removeOrphanThumb(id);
+    } finally {
+      articleElapsedMs += Date.now() - articleStart;
     }
   };
 
-  // borderline の記事化: gate1 スコア上位から、最終 borderline が枠(MAX_BORDERLINE)に達するまで
+  // borderline の記事化: 関門1 borderline を発見時 gateScore 上位から、最大 MAX_ARTICLE_ATTEMPTS_BORDERLINE(=3+2)件まで必ず試す。
+  // 最終の borderline 枠(3件)は、関門2で borderline になった全候補（関門1 accept 由来も含む）から
+  // 関門2 の gateScore 上位で selectAdoptions が選ぶので、ここでは枠が埋まったかで打ち切らない。
   const drainBorderline = async () => {
-    borderlinePending.sort((a, b) => b.gate1.gateScore - a.gate1.gateScore); // 安定ソート＝同点は発見順
-    while (borderlinePending.length && countPool("borderline") < MAX_BORDERLINE) {
-      const p = borderlinePending.shift();
+    const { take, rest } = takeBorderlineToTry(borderlinePending, borderlineAttempts);
+    borderlinePending.length = 0;
+    borderlinePending.push(...rest);
+    for (const p of take) {
       console.log(`惜しい候補を記事化: ${p.cand.title} [gate1 score ${p.gate1.gateScore}]`);
       await processCand(p.cand, p.lens, "deferred");
     }

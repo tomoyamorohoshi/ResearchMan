@@ -14,6 +14,11 @@ import {
   selectAdoptions,
   shouldRunExtraRound,
   planExtraRound,
+  articleBudgetCheck,
+  takeBorderlineToTry,
+  ARTICLE_BUDGET_MS,
+  MAX_ARTICLE_ATTEMPTS_ACCEPT,
+  MAX_ARTICLE_ATTEMPTS_BORDERLINE,
   MAX_ACCEPT,
   MAX_BORDERLINE,
   MIN_ACCEPT_BEFORE_EXTRA,
@@ -189,4 +194,33 @@ test("planExtraRound: 未使用言語が尽きていれば langs は空（別の
   const used = [0, 1, 2, 3].map(() => new Set(["en", "ja", ...ROTATING_LANG_IDS]));
   const r = planExtraRound({ dayIndex: 1, acceptByLens: [0, 0, 0, 0], usedLangsByLens: used, extraByLens: [0, 0, 0, 0] });
   assert.deepEqual(r.langs, []);
+});
+
+test("記事化の上限: 累積60分・accept系20件・borderline系5件（MAX_BORDERLINE+2）", () => {
+  assert.equal(ARTICLE_BUDGET_MS, 60 * 60 * 1000);
+  assert.equal(MAX_ARTICLE_ATTEMPTS_ACCEPT, 20);
+  assert.equal(MAX_ARTICLE_ATTEMPTS_BORDERLINE, MAX_BORDERLINE + 2);
+});
+
+test("articleBudgetCheck: 時間超過・件数超過で理由を返し、枠内なら null", () => {
+  const ok = { kind: "accept", acceptAttempts: 19, borderlineAttempts: 0, elapsedMs: 59 * 60000 };
+  assert.equal(articleBudgetCheck(ok), null);
+  assert.match(articleBudgetCheck({ ...ok, elapsedMs: 60 * 60000 }), /time/);
+  assert.match(articleBudgetCheck({ ...ok, acceptAttempts: 20 }), /count/);
+  // borderline 系は別カウント: accept系が上限でも borderline は試せる
+  assert.equal(articleBudgetCheck({ kind: "borderline", acceptAttempts: 20, borderlineAttempts: 4, elapsedMs: 0 }), null);
+  assert.match(articleBudgetCheck({ kind: "borderline", acceptAttempts: 0, borderlineAttempts: 5, elapsedMs: 0 }), /count/);
+  assert.match(articleBudgetCheck({ kind: "borderline", acceptAttempts: 0, borderlineAttempts: 0, elapsedMs: 61 * 60000 }), /time/);
+});
+
+test("takeBorderlineToTry: 発見時gateScore上位から、試行済みを除いた残り枠(5件)まで", () => {
+  const pending = [2, 9, 5, 7, 7, 1, 8].map((s, i) => ({ id: i, gate1: { gateScore: s } }));
+  const r = takeBorderlineToTry(pending, 0);
+  assert.deepEqual(r.take.map((x) => x.gate1.gateScore), [9, 8, 7, 7, 5]);
+  assert.equal(r.rest.length, 2);
+  const r2 = takeBorderlineToTry(pending, 3);
+  assert.deepEqual(r2.take.map((x) => x.gate1.gateScore), [9, 8]);
+  assert.equal(takeBorderlineToTry(pending, 5).take.length, 0);
+  // 由来に関わらず枠を先取りしない: 試行数は関門1 borderline の記事化回数のみ
+  assert.equal(pending.length, 7);
 });
