@@ -59,6 +59,16 @@ export const GIT_TIMEOUT_MS = 60000;
 export const GIT_MAX_BUFFER = 64 * 1024 * 1024;
 /** 同一 code の再記録間隔（日）。状態（重大度・対象）が変わらない限りこの間隔で1回だけ system-alerts に記録 */
 export const ALERT_REPEAT_DAYS = 3;
+/** v3 レンズ別採用数: 直近7日にタグ付き(discoveryLens 1..4)の追加がこの件数以上たまるまでは判定しない（旧データ・導入直後の誤報防止） */
+export const LENS_MIN_TAGGED = 12;
+export const LENS_COUNT = 4;
+/** v3 borderline の fav/トラッシュ率: 週次見直しが書く logs/case-gate-stats.json を読む。borderline がこの件数以上かつ反応(fav+trash)がこの件数以上で判定 */
+export const BORDERLINE_MIN_COUNT = 20;
+export const BORDERLINE_MIN_REACTED = 10;
+/** 反応のうち trash / fav がこの割合以上なら指摘（控えめに70%） */
+export const BORDERLINE_SKEW_RATIO = 0.7;
+/** 統計ファイルがこの日数より古ければ無視（週次見直しが止まっている場合は tuneup-stale が別途警告する） */
+export const GATE_STATS_MAX_AGE_DAYS = 21;
 /** AIレビューに渡す材料の合計上限（文字）。ユーザー指定2万字 */
 export const LLM_INPUT_MAX_CHARS = 20000;
 
@@ -120,7 +130,12 @@ function addsFromGit(root, file, sinceDay, grep) {
   for (const c of gitCommits(root, file, sinceDay, grep)) {
     const parentIds = gitShowReduced(root, `${c.h}^`, file, (items) => new Set(items.map((x) => x.id))) ?? new Set();
     const added = gitShowReduced(root, c.h, file, (items) =>
-      items.filter((x) => !parentIds.has(x.id)).map((x) => ({ id: x.id, title: x.title ?? "", overview: String(x.overview ?? "").slice(0, 400) })));
+      items.filter((x) => !parentIds.has(x.id)).map((x) => ({
+        id: x.id, title: x.title ?? "", overview: String(x.overview ?? "").slice(0, 400),
+        // v3: レンズ別採用数・gateTier の監視用（旧エントリには無い）
+        ...(x.discoveryLens !== undefined ? { discoveryLens: x.discoveryLens } : {}),
+        ...(x.gateTier !== undefined ? { gateTier: x.gateTier } : {}),
+      })));
     if (!added?.length) continue;
     byDay.set(c.day, [...(byDay.get(c.day) || []), ...added]);
   }
@@ -441,6 +456,67 @@ function checkMisclassification({ root, today, ccByDay }) {
   return findings;
 }
 
+// ───────── チェック7（v3）: レンズ別採用数 / borderline の fav・トラッシュ率 ─────────
+/**
+ * 直近7日の自動追加（Auto research）のうち discoveryLens(1..4) を持つものを数え、タグ付きが十分あるのに
+ * 0件のレンズがあれば med。タグ付きが LENS_MIN_TAGGED 未満（旧データ・導入直後）は判定しない。
+ */
+export function checkLensAdoption({ ccByDay, today }) {
+  const from = dayAdd(today, -(RECENT_DAYS - 1));
+  const counts = { 1: 0, 2: 0, 3: 0, 4: 0 };
+  let tagged = 0;
+  for (const [d, arr] of ccByDay) {
+    if (d < from || d > today || !Array.isArray(arr)) continue;
+    for (const it of arr) {
+      const l = Number(it?.discoveryLens);
+      if (l >= 1 && l <= LENS_COUNT) { counts[l]++; tagged++; }
+    }
+  }
+  if (tagged < LENS_MIN_TAGGED) return [];
+  const zero = Object.keys(counts).filter((l) => counts[l] === 0);
+  if (!zero.length) return [];
+  return [{
+    severity: "med", pipeline: "cc", code: "lens-zero", sig: zero.join(","),
+    title: `Case Study の探索レンズ${zero.join("・")}の採用が直近${RECENT_DAYS}日で0件`,
+    detail: `タグ付きの追加${tagged}件のうち、${zero.map((l) => `レンズ${l}`).join("・")}が0件です（採用数: ${Object.entries(counts).map(([l, c]) => `レンズ${l}=${c}`).join(" / ")}）。そのレンズの検索語・巡回先・基準が噛み合っていない可能性があります。`,
+    evidence: { recent7d: counts, taggedAdds: tagged, minTagged: LENS_MIN_TAGGED },
+  }];
+}
+
+/**
+ * 週次見直しが書く統計（logs/case-gate-stats.json: {at, byTier:{borderline:{count,fav,trashed}, accept:{...}}}）から
+ * borderline の反応を判定する。trash 偏重(>=70%)なら med（枠が広すぎ/基準が緩すぎ）、fav 偏重なら low（accept が厳しすぎる可能性）。
+ */
+export function checkBorderlineRates({ stats, today }) {
+  const b = stats?.byTier?.borderline;
+  if (!b) return [];
+  const at = isoToDay(stats.at);
+  if (!at || dayDiff(today, at) > GATE_STATS_MAX_AGE_DAYS) return [];
+  const count = Number(b.count) || 0, fav = Number(b.fav) || 0, trashed = Number(b.trashed) || 0;
+  const reacted = fav + trashed;
+  if (count < BORDERLINE_MIN_COUNT || reacted < BORDERLINE_MIN_REACTED) return [];
+  const trashShare = trashed / reacted;
+  const favShare = fav / reacted;
+  const evidence = { statsAt: at, borderline: { count, fav, trashed }, accept: stats.byTier.accept ?? null };
+  if (trashShare >= BORDERLINE_SKEW_RATIO) {
+    return [{
+      severity: "med", pipeline: "cc", code: "borderline-trash-heavy", sig: "med",
+      title: `borderline 枠の反応がトラッシュに偏っている（${Math.round(trashShare * 100)}%）`,
+      detail: `borderline ${count}件のうち反応${reacted}件の${Math.round(trashShare * 100)}%（${trashed}件）がトラッシュ、favは${fav}件です。borderline の枠（上限・基準の緩さ）を見直す材料です。`,
+      evidence,
+    }];
+  }
+  if (favShare >= BORDERLINE_SKEW_RATIO) {
+    return [{
+      severity: "low", pipeline: "cc", code: "borderline-fav-heavy", sig: "low",
+      title: `borderline 枠の反応が fav に偏っている（${Math.round(favShare * 100)}%）`,
+      detail: `borderline ${count}件のうち反応${reacted}件の${Math.round(favShare * 100)}%（${fav}件）が fav、トラッシュは${trashed}件です。accept 基準が厳しすぎて、良いものを borderline に落としている可能性があります。`,
+      evidence,
+    }];
+  }
+  return [];
+}
+
 // ───────── AIレビュー（週1・--llm） ─────────
 const LLM_MARKER = '"findings"';
 function tailChars(s, n) { return s.length > n ? s.slice(s.length - n) : s; }
@@ -603,6 +679,8 @@ export async function runResearchHealthReview({ root, now = new Date(), logDir =
   guard("フリップフロップ", () => checkFlipFlop({ root, today }));
   guard("設定の鮮度", () => checkConfig({ root, logDir, today }));
   guard("振り分けの異常", () => checkMisclassification({ root, today, ccByDay: adds.cc }));
+  guard("レンズ別採用数", () => checkLensAdoption({ ccByDay: adds.cc, today }));
+  guard("borderlineの反応率", () => checkBorderlineRates({ stats: readJson(path.join(root, "logs/case-gate-stats.json"), null), today }));
 
   findings.sort((a, b) => SEV_ORDER[a.severity] - SEV_ORDER[b.severity]);
   const ai = llm ? await aiReview({ findings, logDir, root, runLlm }) : null;

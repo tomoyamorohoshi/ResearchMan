@@ -64,6 +64,7 @@ const STATUS_LABEL: Record<string, string> = {
   rejected: "却下済み",
   expired: "期限切れ",
   superseded: "修正済み（新しい案に置き換え）",
+  "send-failed": "送信失敗（承認不可。次回の見直しで再提案されます）",
 };
 
 interface Failure {

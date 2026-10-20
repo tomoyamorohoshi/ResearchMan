@@ -99,6 +99,17 @@ test("承認: 存在しないid・処理済み・期限切れは状態が分か�
   assert.match(r.reply, /期限切れ/);
 });
 
+test("承認: 送信失敗(send-failed)の案は承認不可で、状態ラベルが分かる返信", async () => {
+  const { deps, calls, opts } = setup();
+  createProposal({ criterionId: "B", after: "新B", reason: "r", evidence }, opts);
+  const store = JSON.parse(fs.readFileSync(opts.file, "utf-8"));
+  store.proposals[0].status = "send-failed";
+  fs.writeFileSync(opts.file, JSON.stringify(store));
+  const r = await handleGateCommand({ action: "approve", id: 1, feedback: "" }, deps);
+  assert.match(r.reply, /送信失敗/);
+  assert.equal(calls.commit.length, 0);
+});
+
 test("却下: rejected・返信。再却下は処理済み", async () => {
   const { deps, opts } = setup();
   createProposal({ criterionId: "B", after: "新B", reason: "r", evidence }, opts);

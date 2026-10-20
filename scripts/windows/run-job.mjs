@@ -37,6 +37,7 @@ import { isMainBranch, parseCurrentBranch } from "../lib/branch-guard.mjs";
 import { tryAcquire as tryAcquireGitLock, releaseOwnedLock, startLockHeartbeat } from "../lib/git-lock.mjs";
 import { decideExhibitionNotify, decideDeployTimeoutPriority } from "../lib/exhibition-notify.mjs";
 import { guardAudit, EXHIBITION_REVERT_GIT_ARGS } from "../lib/exhibition-guard.mjs";
+import { clearTouched, readTouched } from "../lib/tuneup-touched.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..", ".."); // scripts/windows -> repo root
@@ -453,9 +454,12 @@ async function runTuneup() {
     // ここではその内容をnotify-line --text-fileで中継するだけでよい（--result errorは使わない。
     // これは他3ジョブと異なる点＝tuneupのplistのみnotify-lineに--resultを渡していない）。
     const reportArgs = ["--kind", "system", "--source", "tuneup", "--text-file", path.join(os.tmpdir(), "researchman-tuneup-report.txt")];
+    clearTouched();
     const tuneup = runNode("scripts/biweekly-tuneup.mjs");
     if (tuneup.status === 0) {
-      runGit(["add", "data/research-tuning.json", "data/idea-tuning.json", "data/x-radar-queries.json", "RESEARCH_PLAN.md", "data/exhibition-profile.json"]);
+      // case-gate.json / sources.json / litmus-history.json は tuneup が実際に書いたものだけ add する
+      // （他経路の未コミット変更を巻き込まない。受け渡しは scripts/lib/tuneup-touched.mjs）
+      runGit(["add", "data/research-tuning.json", "data/idea-tuning.json", "data/x-radar-queries.json", "RESEARCH_PLAN.md", "data/exhibition-profile.json", ...readTouched()]);
       if (gitDiffCachedIsEmpty()) {
         log(`変更なし（分析結果は現状維持 or スキップ）: ${unixDateString()}`);
         runNode("scripts/notify-line.mjs", [...reportArgs, "--priority", "routine"]);
