@@ -1,5 +1,425 @@
 [
   {
+    "id": "re-calibrating-identity-an-autonomous-walker-explores-mental",
+    "title": "[Re]Calibrating Identity – An autonomous walker explores mental maps of Lahore's walled city",
+    "summary": "住民の手描き記憶地図で学習した歩行体が、地図を使わず記憶で旧市街を歩き、その軌跡をペンプロッターで描く",
+    "client": "Madhi Ur Rehman（University of Westminster MA Architecture (Digital Media) 修士制作）",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "データクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.creativeapplications.net/member/recalibrating-identity-an-autonomous-walker-explores-mental-maps-of-lahores-walled-city/",
+    "thumbnail": "/thumbnails/re-calibrating-identity-an-autonomous-walker-explores-mental.jpg",
+    "videoId": "",
+    "overview": "ウェストミンスター大学の修士制作で、ラホール旧市街の住民が記憶から描いた地図をSVG化して生成モデルに学習させ、新しい「頭の中の地図」を生成する。p5.jsの歩行エージェントがその上を歩き、軌跡をペンプロッターで描画し、サーマルプリンターが環境音を想起させる短い文とルート記録を印字する。地図ではなく記憶で都市を読み直す装置である。",
+    "background": "制作者は、Google Mapsの経路と自分の記憶に基づく彷徨(デリヴ)を歩き比べ、その違いを3枚目の地図として描いた。この体験から、地図は都市を知る唯一の方法ではないという問いを立てた。理論面ではルフェーヴルの空間の三幅対を、生きられた空間を起点に並べ替え、ケヴィン・リンチ『都市のイメージ』を参照している。",
+    "execution": "歩行体はp5.jsとJavaScriptで実装され、パーリンノイズで曲がり方・体の揺れ・微細なぶれ・停止時間を制御し、停止ごとに可視領域(アイソビスト)を計算する。出発点はデリー門。出力は280×180mmのペンプロッタ(GRBL互換)で、Python・Flask・ngrok・Overland(iOS)でGPSをライブ連携する。サーマルプリンターにはArduino経由で、ローマ字ウルドゥー語の約1,078断片から選んだ環境音の文を印字する。",
+    "evaluationImpact": "ナビゲーションの標準である地図を退け、住民の記憶を学習データにして都市を歩かせる点が、都市リサーチや参加型アーカイブに転用できる手法的な新規性である。印刷物が蓄積し、バザールや書籍フェスで来場者が自分の地図を加える公開アーカイブも構想されている。ただし構想中の部分も多く、受賞や展示は確認できていない。環境音の自動書き起こしも設計段階である。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/Robotics",
+      "Form/Installation",
+      "Theme/Art"
+    ],
+    "gateCriterion": "D",
+    "sourceId": "creativeapplications",
+    "gateTier": "accept",
+    "discoveryLens": 4
+  },
+  {
+    "id": "denial-2026",
+    "title": "DENIAL（溶けるロン・デサンティス像）",
+    "summary": "融点約30℃のガリウムで知事像を鋳造し、フロリダの暑さで溶ける姿を気候変動否定の可視化に変えた",
+    "client": "350 Action",
+    "agency": "Uncommon Creative Studio New York / m ss ng p eces",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://creapills.com/floride-statue-ron-desantis-fond-deni-climatique-20261020",
+    "thumbnail": "/thumbnails/denial-2026.jpg",
+    "videoId": "",
+    "overview": "気候団体350 Actionが、広告会社Uncommonと制作会社m ss ng p ecesと共に、フロリダ州知事ロン・デサンティスの等身大像をタラハシーに設置した。像はガリウム製で、設置後まもなく溶け始めた。2026年10月13日、支持者が集まる場で披露されたとHyperallergicが報じている。",
+    "background": "デサンティス知事は2018年の知事選で「私は地球温暖化の人ではない」と発言した。2024年にはHB 1645に署名し、州法から気候変動への言及を削除した。この法律は洋上・沿岸の風力タービンも禁止し、天然ガス利用の拡大を支持する内容だった。州側は同法を「常識的なエネルギー政策」と説明している。",
+    "execution": "素材は融点が約29.8℃（華氏85.6度）のガリウムで、タラハシーの夏の気温より低い温度で溶ける。Creapillsによると、本人を3Dスキャン・3Dプリントで再現した型からガリウムで鋳造した。台座の銘板には「私は地球温暖化の人ではない」の発言とHB 1645への言及を入れた。像の溶け方そのものが演出になっている。",
+    "evaluationImpact": "「否定は現実の熱に耐えられない」という主張を、説明ではなく素材の物性で見せた点が評価できる。像が溶けること自体が見出しになり、地元テレビ各局や美術媒体Hyperallergicが報じた。キャンペーンは中間選挙を前に、気候対策を重視する候補者への投票を呼びかける文脈に置かれている。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Stunt",
+      "Theme/SocialGood",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "thanks-for-your-service-33-2026",
+    "title": "Thanks for your service（-33%）",
+    "summary": "セールの「33% OFF」ラベルとレシートを借り、女性の年金が男性より約3割少ない事実を値引き表示として可視化した。",
+    "client": "Pregnant Then Screwed",
+    "agency": "Alietum Studio（デザイン）",
+    "categories": [
+      "社会包摂",
+      "カルチャーインサイト",
+      "OOH革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/pregnant-then-screwed-campagne-ecart-retraites-20261020",
+    "thumbnail": "/thumbnails/thanks-for-your-service-33-2026.jpg",
+    "videoId": "",
+    "overview": "英国の慈善団体Pregnant Then Screwedが2026年10月に展開した「Thanks for your service」。蛍光色の「33% OFF」スターバーストを女性の目元に重ねたポートレートと、人生の出来事を品目のように並べたレシートで、女性の年金が男性より約3割少ない事実を示す。ロンドン、グラスゴー、マンチェスター、バーミンガムなどの屋外広告、印刷物、SNSで展開された。",
+    "background": "同団体は妊娠・育児を理由にした職場差別に取り組む団体で、過去には巨大なCVシュレッダーを使ったCareer Shredderも実施している。英国では年金制度が継続的なフルタイム就労を前提に作られてきた。報道によれば、女性の年金額は男性より約3分の1少なく、労組Prospectの調査では差は32.9%とされる。団体は育児による就労・拠出の減少が背景にあると説明している。",
+    "execution": "ポートレートでは星形が女性の目を覆い、衣服やアクセサリー、笑顔は見える。配色は酸性グリーン、マスタードイエロー、マゼンタ。しわの入ったレシートには、妊娠、6週間での復職、週5日の保育、家族の支援なし、解雇などが買い物の品目のように並び、合計欄が「-33%」になる。ロンドンでは、女性が特大の段ボール看板を持つ街頭展開もあった。デザインはAlietum StudioのRachel Many、クリエイティブ・ディレクションはGemma Phillips、撮影はSane Seven。",
+    "evaluationImpact": "セールの記号は本来お得を意味するが、それを女性が生涯に失った年金額の表示に反転させ、見た瞬間に意味が伝わる。数字だけでは届きにくい格差を、日常の買い物体験の形式で見せた。Anna WhitehouseやAshley Jamesら著名人も参加している。一方、報道では政策変更につながるかは不明とされ、受賞も確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Pregnant Then Screwed subverts the conventions of retail design to highlight a vital gender issue（Creative Boom）",
+        "description": "本キャンペーンを小売デザインの慣習を転用した例として紹介する記事。",
+        "url": "https://www.creativeboom.com/news/pregnant-then-screwed-makes-clever-use-of-simple-design-to-highlight-a-vital-gender-issue/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Form/Print",
+      "Theme/SocialGood"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "pictoplasma-2026-identity-2026",
+    "title": "Pictoplasma 2026 Identity",
+    "summary": "書体に「目」のグリフを加え、文字を体・2点を目に見立てて、タイプするだけで顔になるフェスのID。",
+    "client": "Pictoplasma",
+    "agency": "andstudio",
+    "categories": [
+      "コンテンツ革新",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.creativeboom.com/work/how-two-simple-dots-gave-pictoplasma-a-face-after-20-years-of-neutral-design/",
+    "thumbnail": "/thumbnails/pictoplasma-2026-identity-2026.jpg",
+    "videoId": "",
+    "overview": "ベルリンのキャラクターデザイン・フェスティバル Pictoplasma の2026年版アイデンティティ。リトアニア・ビリニュスの andstudio が制作した。文字を体、2つの点を目に見立てて顔として読ませるパレイドリアを利用し、書体に目のグリフを加えた。画を描き足さなくても、タイプするだけでIDが成立する。ポジショニングは「Never faceless」。",
+    "background": "Pictoplasma は1999年にオンラインのキャラクターデザイン・アーカイブとして始まり、創設者の Peter Thaler と Lars Denicke が2004年にカンファレンスを開始した。のちにニューヨークとロンドンにも広がった。ブランドは約20年間、作家の作品を引き立てるため中立的なデザインを保ってきた。andstudio は来場者調査で、コミュニティの核は会場・キュレーション・内容にあり、デザインの寄与はほぼ無いと把握した。目標は、モーションや映像、スタジオ、代理店など多様な分野のクリエイターを呼び込むことと、欧州・米国・アジア太平洋へ向けた国際的な認知の確立だった。",
+    "execution": "書体は Lift Type の Melun を同ファンドリーと調整した「Pictoplasma Melun」で、イベント名をなめらかにつなぐ「ct」リガチャと、一対の目のグリフを追加した。回ごとに色やレイアウトは変わり、書体と2点は固定される。モーションは Greta Griniūtė が書体と2点のみで制作した。会場は Tony Michiels と低コストの手法で設計し、テントに2つの穴を開けて内外の人が交流できるようにした。2点を物に付ければキャラクターになるというルールで、フラッシュタトゥーのブースでは2点だけの柄を用意し、街中の物に点を貼るゲリラ展開も行った。",
+    "evaluationImpact": "「2つの点」という最小の要素に絞ったことで、ポスター、トートバッグ、雑誌の表紙、バナー、テント、タトゥー、街中の物へと、制作コストをかけずに展開できる再現性の高いIDになった。Creative Boom によれば、チケットは例年より大幅に早い開催6週間前に完売した。ただしこの完売がIDによるものかは記事から断定できない。公式な受賞は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "How two simple dots gave Pictoplasma a fresh personality for 2026 (Creative Boom)",
+        "description": "andstudio による Pictoplasma 2026 のID制作を解説した記事。",
+        "url": "https://www.creativeboom.com/work/how-two-simple-dots-gave-pictoplasma-a-face-after-20-years-of-neutral-design/"
+      },
+      {
+        "title": "Pictoplasma Berlin 2026（Booooooom）",
+        "description": "第22回 Pictoplasma Berlin 2026 の紹介記事。",
+        "url": "https://www.booooooom.com/2026/04/06/pictoplasma-berlin-2026/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/Art",
+      "Theme/Entertainment"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creativeboom",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "vollebak-rock-jacket-2026",
+    "title": "Vollebak Rock Jacket（フレキシブル・スレートタイル）",
+    "summary": "厚さ0.5mmのスレートを5mm角に切りネオプレンに接着し、硬い石を服になる柔軟素材に変えた",
+    "client": "Vollebak",
+    "agency": "Steven Leprizé（ARCA）",
+    "categories": [
+      "テクノロジー×アイデア",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://materialdistrict.com/article/flexible-slate-tiles-turn-stone-into-wearable-material/",
+    "thumbnail": "/thumbnails/vollebak-rock-jacket-2026.jpg",
+    "videoId": "",
+    "overview": "英国のアウトドアブランドVollebakが、フランスの素材テクノロジスト Steven Leprizé(ARCA)と作った一点物のジャケット。約54,000枚の薄いスレートタイルをネオプレンに貼り、石でできたクロップド丈のハリントンジャケットに仕立てた。実験的な試作で、日常着ではなく概念実証と位置づけられている。",
+    "background": "Leprizéは2009年にARCAを設立した研究型スタジオの主宰で、パリのÉcole Boulle出身。木の小片をゴムに貼って伸縮させるマルケトリ素材「WooWood」を手がけてきた。Vollebakは、試作品のWood Jacketをもっと着やすくできないかと同氏に相談した。",
+    "execution": "スレートは100×50cm・厚さ0.5mmのシートで、木材マルケトリ用の専用切断機を改造して5mm角のタイルに切る。タイルは圧力をかけてネオプレンに接着する(接着はスイス3Mの技術者と開発)。工程は約50段階。シートはレーザーで部材に切り出し、石を縫わないよう縫い目はテープ留めにした。屈曲に限界があるため、曲面や絞りの少ないハリントン型を選んだ。ポケットはCordura製。",
+    "evaluationImpact": "硬く割れやすい鉱物を、家具や表面デザインの手法で衣服素材に変えた点が新しい。Leprizéは花崗岩、大理石、砂岩、片岩でも同様の素材を開発中。一方、実用性や量産性は今後の課題で、ネオプレンと接着剤を使うため環境性能も未検証。記事も、石だから環境に良いとは言えないと指摘している。",
+    "relatedWorks": [
+      {
+        "title": "Vollebak Built a $50,000 \"Rock Jacket\" Out of 54,000 Actual Wearable Slate Tiles (Yanko Design)",
+        "description": "Rock Jacketの制作過程と素材を紹介する記事",
+        "url": "https://www.yankodesign.com/2026/10/05/vollebak-built-a-50000-rock-jacket-out-of-54000-actual-wearable-slate-tiles/amp/"
+      },
+      {
+        "title": "Stone Jacket by Vollebak (Dezeen)",
+        "description": "Vollebakのスレートジャケットを扱う記事",
+        "url": "https://www.dezeen.com/?p=2371089"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Product",
+      "Theme/Fashion"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "materialdistrict",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "design-doha-biennial-2026-identity-2026",
+    "title": "Design Doha Biennial 2026 Identity",
+    "summary": "アラビア文字とラテン文字を同じ細線で描き、延長した字画で結んで一つの組版に織り込む、両言語対等のバイリンガルID。",
+    "client": "Design Doha Biennial",
+    "agency": "Pentagram (Samar Maakaroun)",
+    "categories": [
+      "カルチャーインサイト",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "中東・アフリカ"
+    ],
+    "link": "https://www.creativeboom.com/news/pentagrams-festival-identity-finds-a-clever-way-to-give-arabic-and-english-equal-billing/",
+    "thumbnail": "/thumbnails/design-doha-biennial-2026-identity-2026.jpg",
+    "videoId": "",
+    "overview": "カタール・ドーハで2026年11月5日から2027年1月31日まで開かれるDesign Doha Biennial第2回のビジュアルアイデンティティ。Pentagramのパートナー、Samar Maakaroun率いるチームが手がけた。固定ロゴを置かず、アラビア語と英語を一つの組版に織り込むタイポグラフィ主体のシステムで構成されている。ポスター、冊子、Tシャツ、窓面ディスプレイなどに展開される。",
+    "background": "テーマは「つながり(Connection)」で、地域のデザイナー、キュレーター、コレクター、観客を結ぶビエンナーレの役割を反映する。2026年版は拡大版の第2回で、Fahad Al Obaidlyがディレクター、Glenn Adamsonがアーティスティックディレクターを務める(Pentagram公式ページ)。二言語併記では一方を小さく従属させたり上下に積んだりしがちで、そこに対等な扱いを持ち込むことが課題だったと読み取れる。",
+    "execution": "アラビア文字とラテン文字を同じ細く均一な線幅で描き、一つの書体ファミリーのように見せる。字画は延長され、ネットワークや星座の線のようにほかの要素をつなぐコネクターとして働く。文字は媒体に応じて伸縮する。配色はトラバーチン由来のベージュと深いマルーン、楽観を示すオレンジ、初回から引き継ぐ鮮やかな青。主要展「Arab Design Now」では、重量感のある幾何学形が噛み合って文字や数字を作る、より太い表現を用いる。",
+    "evaluationImpact": "二言語を積み重ねず一つの組版に織り込み、どちらも従属させない点が最大の特徴で、線幅を揃えるという単純な規則で両文字を同一ファミリーに見せている。延長した字画が「つながり」というテーマを造形そのものに担わせている。アラビア語圏の文化イベントで、言語の対等性を視覚構造で示した例として、多言語ブランディングに転用しうる手法である。受賞は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Design Doha Biennial(Pentagram公式プロジェクトページ)",
+        "description": "Pentagramによる2026年版アイデンティティの公式紹介。柔軟なタイポグラフィ・システムとバイリンガル構造を解説。",
+        "url": "https://www.pentagram.com/work/design-doha-biennial"
+      },
+      {
+        "title": "Pentagram's festival identity finds a clever way to give Arabic and English equal billing(Creative Boom)",
+        "description": "アイデンティティの手法と展開(ポスター、冊子、Arab Design Now)を紹介する記事。",
+        "url": "https://www.creativeboom.com/news/pentagrams-festival-identity-finds-a-clever-way-to-give-arabic-and-english-equal-billing/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/Art"
+    ],
+    "gateCriterion": "B",
+    "sourceId": "creativeboom",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "booleansequence-a-modern-yin-and-yang-2026",
+    "title": "booleanSequence – A modern yin and yang",
+    "summary": "単一ルールのセル生成系を+/−・0/1・不等号の記号ペアで走らせ、場の振る舞いの差を見せる実験作品",
+    "client": "CreativeApplications.Net掲載（作者名は未確認）",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "データクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.creativeapplications.net/member/booleansequence-a-modern-yin-and-yang/",
+    "thumbnail": "/thumbnails/booleansequence-a-modern-yin-and-yang-2026.jpg",
+    "videoId": "",
+    "overview": "Antonio Pezzella(niceunderground)による、単一ルールで動くリアルタイム生成システム。各セルは2値のどちらかで、似た値が集まって「領土」を作り、境界で影響し合う。プラス/マイナス(赤と黒)、0/1(白と黒)、不等号(青と白)の3組の記号ペアで走らせられる。2026年10月20日にCreativeApplications.Netで紹介された。",
+    "background": "最小限の局所ルールから複雑な全体パターンが生まれるセルオートマトン、小さな個人の選好から集団的な境界が生じるSchellingの分離モデル、1703年にLeibnizが二進法と易経の卦を結びつけた史的参照を下敷きにしている。陰陽という二元論を現代の二進表現へ読み替える着想が題名に表れている。",
+    "execution": "JavaScriptとp5.jsで実装。各セルは時間変化するPerlinノイズ場をサンプリングし、閾値で2値に分ける(閾値はスケッチごとに異なる)。動きは「生まれる・引き寄せる・排除する・消滅する」の4動詞で構成。ルールを変えずにペアだけ替えると場の振る舞いが変わる。TRIP 2026(トリノ、2026年10月3〜4日)でWindows PC3台にChrome全画面で展示された。",
+    "evaluationImpact": "同じルールを異なる記号の意味づけで走らせ、振る舞いの違いを比べられる点が手法として他の生成表現にも転用しやすい。ブラウザのp5.jsだけで動くため再現性も高い。一方、受賞は掲載ページに記載がなく、評価は個人実験としての手法の明快さにとどまる。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Form/Installation",
+      "Theme/Art"
+    ],
+    "gateCriterion": "D",
+    "sourceId": "creativeapplications",
+    "gateTier": "accept",
+    "discoveryLens": 4
+  },
+  {
+    "id": "worry-bench-gymnation-2026",
+    "title": "Worry Bench（GymNation）",
+    "summary": "ジムのベンチプレスで、悩みの言葉を刻んだプレートを重さとして持ち上げ、目に見えない心の負担を体感させた。",
+    "client": "GymNation",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "中東・アフリカ"
+    ],
+    "link": "https://creapills.com/gymnation-worry-bench-soucis-halteres-sante-mentale-20261019",
+    "thumbnail": "/thumbnails/worry-bench-gymnation-2026.jpg",
+    "videoId": "",
+    "overview": "GymNationが2026年の世界メンタルヘルスデーに合わせて発表した「Worry Bench」。ベンチプレス台と、「The Future」「Imposter Syndrome」などの悩みの言葉を刻んだウェイトプレートを組み合わせたもの。悩みの種類で5〜20kgの4段階に分けてあり、利用者は悩みを実際に持ち上げられる重りとして扱う。UAE、サウジアラビア、バーレーンの主要クラブで展開された。",
+    "background": "GymNationは会員約2,000人に調査を行い、将来への不安(21%)とインポスター症候群(17%)が上位の悩みだと把握していた。2025年の世界メンタルヘルスデーには、各ジムから全てのウェイトを一時撤去する施策を、地域のメンタルヘルス団体Sageと組んで実施している。今回はその流れで、ウェイトを「悩みを持ち上げる道具」にする発想を採った。",
+    "execution": "プレートには調査で挙がった悩みを刻印。20kgは「将来」「インポスター症候群」、15kgはToDoリストや他人との比較、10kgはやり直し・孤独・失業不安、5kgは家賃・受信箱・SNSの見過ぎ。重さの割り振りは創造的な比喩で、臨床的な重症度の尺度ではないと説明されている。展開は会期中の主要クラブ。公式リリースにエージェンシーのクレジットはなく、制作会社は確認できなかった。",
+    "evaluationImpact": "「悩みの重さ」という抽象的な比喩を、ジムの利用者が筋力で測れる実際の重量に置き換えた点が明快。ブランドの本業であるウェイトトレーニングと、メンタルヘルスという社会課題が自然に結びつく。2025年のウェイト撤去に続く連続施策で、調査データに基づく具体的な悩みを使っている。一方、メンタルヘルスへの効果や成果数値は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "GymNation: World Mental Health Day 2025(ウェイト撤去施策)",
+        "description": "2025年の世界メンタルヘルスデーに、Sageと連携して各ジムから全てのウェイトを一時撤去した施策。",
+        "url": "https://campaignme.com/gymnation-goes-weightless-for-world-mental-health-day/"
+      },
+      {
+        "title": "Worry Bench プレスリリース",
+        "description": "GymNationによる2026年10月8日付の公式リリース。",
+        "url": "https://insider.fitt.co/press-release/is-the-weight-lifting-gymnation-unveils-the-worry-bench-for-world-mental-health-day-2026/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Theme/Health",
+      "Theme/Sports"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "twinnin-rebrand-verified-human-mark-2026",
+    "title": "Twinnin Rebrand (Verified Human mark)",
+    "summary": "顔認識の計測点とホログラム調の質感で、本人同意のAI利用を示す「Verified Human」マークをブランドの核にした。",
+    "client": "Twinnin",
+    "agency": "UnitedUs",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.creativeboom.com/news/can-a-trust-mark-keep-your-face-out-of-ai-unitedus-thinks-so-with-its-rebrand-for-twinnin/",
+    "thumbnail": "/thumbnails/twinnin-rebrand-verified-human-mark-2026.jpg",
+    "videoId": "",
+    "overview": "英ブライトンのブランドエージェンシーUnitedUsが、顔の同意・ライセンス・来歴を管理するレジストリ「Twinnin」のリブランディングを手がけた。顔認識ソフトが使う顔の座標点でロゴを構成し、DVDやゲームカートリッジのセキュリティラベルを思わせるホログラム調の色で仕上げた。本人が同意したAI生成物であることを示す「Verified Human」マークを中核に据えている。",
+    "background": "Twinninは顔を持つ人が、ブランドや放送局、AI企業に顔をライセンスして使用ごとに報酬を得る道と、AI学習や合成メディアへの利用を拒否する宣言をブロックチェーンに記録する道を選べるサービス。共同創業者はKatrien GroblerとWilliam Haakon Berg。記事は、2022年から2023年にかけてディープフェイクの試行が3,000%増えたというEntrustの報告を文脈として挙げている。最初の参加エージェンシーはModel Managementで、同社の300万人超のモデルのネットワークにアクセスできる。",
+    "execution": "ブリーフは、Twinninを著名人や俳優に限らない「誰もが使える登録先」と位置づけ、人間の同意を視覚的に示すマークを作ることだった。戦略は「Your face. Your control.」というタグラインに集約された。マークは顔認識の計測点を使ったロゴ構造で、LicenceとDefendの2つの信頼バッジは立体的に光る表現になっている。トーンは脅しではなく、挑戦的で遊び心のある楽観に設定された。ホログラムやレインボーのグラデーションを、屋外広告、ステッカー、製品箱風のビジュアル、アプリのロゴに展開している。",
+    "evaluationImpact": "AIによる顔の無断利用への不安を、監視技術の部品である顔の計測点という素材そのものを使って「本人の同意の印」へ読み替えた点が評価できる。ホログラムの質感で本物の証明という既存の記号を借り、サイトやプロフィールに貼れるバッジとして機能させる設計になっている。受賞は確認できていない。Luke TaylorがTwinninの取締役会でエグゼクティブアドバイザーも務める。",
+    "relatedWorks": [
+      {
+        "title": "World（Tools for Humanity）の人間認証ブランド",
+        "description": "人間であることを証明する認証サービスのブランドとして、Fast Companyが紹介した別事例。",
+        "url": "https://fastcompany.co.za/co-design/2025-08-07-a-look-at-world-the-first-ever-human-verification-brand"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Website",
+      "Theme/SocialGood"
+    ],
+    "gateCriterion": "B",
+    "sourceId": "creativeboom",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "fillongley-2026",
+    "title": "Fillongley の編み物の警官とスピード検知器",
+    "summary": "村の編み物サークルが編み物の等身大警官と偽スピード検知器を交差点に置き、手作りの存在感でドライバーに減速を促した。",
+    "client": "Fillongley 村（有志の住民）",
+    "agency": "",
+    "categories": [
+      "カルチャーインサイト",
+      "OOH革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/fillongley-faux-policiers-radars-tricotes-20261019",
+    "thumbnail": "/thumbnails/fillongley-2026.jpg",
+    "videoId": "",
+    "overview": "英国ウォリックシャーのFillongley村で、地元の編み物サークル「Knit and Natter」が、蛍光ベストを着た等身大の編み物の人形と偽のスピード検知器を作った。小学校近くの交差点の30mph標識の下に設置し、接近する車に向けて置いている。記事によれば、この装置は何も計測せず、誰も取り締まらない。",
+    "background": "記事によると、この交差点では郡議会が4年間で11件の衝突事故を記録している。教区議会の書記Heather Badham氏もサークルの一員で、この展示は公的な道路改善の代わりではなく、問題への注意を引くためのものだと説明している。速度抑制に偽警官を使う例は他の村にもあるが、今回の情報源はCreapills1件のみで、独立した裏取りはできていない。",
+    "execution": "編み物の警官のほか、道路安全のメッセージを持つ編み物の子どもたちや、横断歩道標識の上に座る編み物のシマウマも作られた。素材は編み物のみで、設置数は記事に記載がない。空軍の制服を着せた人形は参加者の亡き父（第二次大戦の退役軍人）への敬意から作られたが、盗まれたとみられ、サークルは作り直しと警察への届け出を予定している。",
+    "evaluationImpact": "Badham氏は、検知器の人形に近づく車のブレーキランプが点灯するのを目にしたと述べている。ただしこれは逸話的な観察で、速度や事故の減少は計測されていない。住民の手仕事で安全啓発をする点には味があるが、偽警官自体は既存の手法で、評価は編み物というクラフトの置き換えにとどまる。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/OOH",
+      "Theme/SocialGood",
+      "Theme/Art"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "borderline",
+    "discoveryLens": 1
+  },
+  {
     "id": "80-1-1-in-8-billion-2026",
     "title": "80億分の1（1 in 8 Billion）",
     "summary": "世界141か国の統計データをもとに、ランダムに割り当てられた国と家庭で生まれてから死ぬまでの一人の人生を疑似体験できる無料ブラウザゲームアート作品。",
