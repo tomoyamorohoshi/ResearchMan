@@ -1,5 +1,165 @@
 [
   {
+    "id": "manga2animate",
+    "title": "Manga2Animate",
+    "org": "National Yang Ming Chiao Tung University",
+    "type": "Research",
+    "domains": [
+      "GenVideo",
+      "AI/Agents",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "漫画の数ページとキャラクター設定画から、まず台本、次に絵コンテを作り、最後に動画を生成するマルチエージェント方式の漫画アニメ化フレームワーク。",
+    "point": "漫画を動画モデルに丸ごと渡すとコマの意図が崩れたりキャラの顔が変わったりしがちです。この研究は「いきなり動画にせず、台本と絵コンテを挟み、各段階を別のAIがレビューする」ことで、原作に忠実で、ショット間でキャラが変わりにくいアニメを狙っています。論文の評価では、既存手法より原作に忠実で、ショット間の一貫性も高いと報告されています。広告・体験づくりでは、既存の漫画やイラスト連載を短いプロモーション動画にする、原作ファン向けのティザー映像を低コストで試作する、ストーリーボードの段階で人が手直ししてから動画化する、といった使い方が考えられます。最終映像の品質は使う動画モデル次第ですが、「台本→絵コンテ→動画」の工程が見える形で残るため、クライアントとの確認もしやすい構成です。",
+    "detail": "仕組みは3段階です。①前処理で、漫画のコマを読む順に切り出し、文字をOCRで読み取ります。②作り手役のAIが、キャラクター説明・台本・絵コンテの候補を3案ずつ作り、レビュー役のAIが元のコマと照らして最良案を選びます。これを標準で2ラウンド繰り返します。③出来上がった絵コンテをもとに動画を生成します。参照画像から1本の連続動画を作るモードと、コマごとに1クリップを作ってつなぐモードがあり、Seedance 2.0、MiniMax-H3、Wan 2.7、Index-AniSoraなどを切り替えられます。\n\n従来は漫画から動画までを1回の生成で済ませるため、途中で間違いに気づけませんでした。本手法は途中成果物を人間も読める形で残し、AIが検査します。\n\n使うにはPython 3.12環境、Geminiへのアクセス、使う動画モデル側のAPIキーが必要です。オープンソースだけで動かす場合、画像生成のFLUX.2-devに97GB級のVRAMが要るか、CPUオフロードで遅くなります。ライセンス未記載のため、まずは社内の試作・研究用途で試すのが安全です。",
+    "license": {
+      "spdx": null,
+      "commercial": "research-only",
+      "note": "READMEとプロジェクトページにコードのライセンス表記なし。漫画ページは学術・非営利の比較用途のみと明記されている。商用利用前に権利確認が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/annchenn/Manga2Animate"
+      },
+      {
+        "kind": "project",
+        "url": "https://annchenn.github.io/Manga2Animate/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.26851"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/manga2animate.jpg",
+    "relatedWorks": [
+      {
+        "title": "MAGI（漫画のコマ検出・OCR）",
+        "description": "本手法の前処理で使われる、漫画のコマ検出と文字認識の仕組み。",
+        "url": "https://github.com/ragavsachdeva/magi"
+      },
+      {
+        "title": "Index-AniSora",
+        "description": "アニメ調の映像生成に特化した動画モデル。本手法の生成バックエンドの1つ。",
+        "url": "https://github.com/bilibili/Index-AniSora"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "atas",
+    "title": "ATAS (Any Time, Any Space)",
+    "org": "Zhejiang University / Monash University / UC Berkeley BAIR ほか",
+    "type": "Research",
+    "domains": [
+      "GenVideo",
+      "AI/Agents",
+      "Spatial/3D"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "脚本から複数ショットの映画を作る際、「1つの世界」を3Dで覚えておき、場所の再訪や過去の出来事の別アングル撮影を可能にするエージェント型映像生成フレームワーク。",
+    "point": "AI動画は、ショットが変わると部屋の家具配置や小物が変わってしまうのが大きな弱点です。ATASは脚本を読み、シーンの3D構造と、いつ何が起きたかの記録を「世界の記憶」として持ち続け、次のショットを生成するときにその記憶から描いた映像を条件として渡します。4種類の動画生成モデルで試した結果、ショット間の一貫性の指標が全て改善したと報告されています。また、同じ部屋に戻って別アングルから撮る、過去の出来事を別の視点から撮り直す、といった映画的な演出ができます。広告では、同じ店内やセットを舞台にした連作CM、商品が置かれた空間を使ったシリーズ動画、空間体験のプリビズなどに応用できそうです。YouTubeのプロモ動画と、プロジェクトページの対話型プレイヤーで動作を確認できます。",
+    "detail": "仕組みは次の流れです。①脚本を「どの場所で、どのカメラで、いつ何が起きるか」が決まったショット依頼に分解します。②各依頼で、場所の3D形状を保存した「シーン記憶」と、出来事を時刻つきで保存した「イベント記憶」を検索します。③記憶から描いた映像を動画生成モデルに渡して新しいショットを作ります。④できたクリップを3Dに復元して世界に位置合わせし、審査・位置合わせ・状態チェックの3つに合格した場合だけ記憶を更新します。\n\n従来のマルチショット生成は前のショットの絵を参考にするだけで、別アングルや時間が戻る場面で破綻しがちでした。ATASは世界そのものを持つため、空間の再訪にも強い点が違いです。ただし、行動や状態まで正確に再現する部分は論文でも課題とされています。\n\n使うには、クライアント側はPython 3.12とffmpegがあれば動き、GPUは不要ですが、DashScopeのAPIキー（有料の可能性あり）が必要です。3D復元を行うジオメトリサービスには約20GBの空きVRAMを持つNVIDIA GPUと、Pi3X・SAM3の重みが要ります。READMEには examples/（bookstore、clockshop、record）とCLIが用意され、すぐ試せます。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "本体はMIT。geometry/backbones/ 内のサードパーティコードは各自のライセンス。依存するPi3X・SAM3の重みは別途条件の確認が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/ziplab/ATAS"
+      },
+      {
+        "kind": "project",
+        "url": "http://lhmd.top/atas"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.20571"
+      },
+      {
+        "kind": "video",
+        "url": "https://youtu.be/qsa63HUQzr4"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/atas.jpg",
+    "relatedWorks": [
+      {
+        "title": "Pi3",
+        "description": "ATASが3D復元に使う多視点ジオメトリ推定モデル。",
+        "url": "https://github.com/yyfz/Pi3"
+      },
+      {
+        "title": "SAM 3",
+        "description": "ATASが物体の切り出しに使うMetaのセグメンテーションモデル。",
+        "url": "https://github.com/facebookresearch/sam3"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "openvlharness",
+    "title": "OpenVLHarness",
+    "org": "UCLA NLP / Apple",
+    "type": "Research",
+    "domains": [
+      "AI/Agents"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "画像を見られるAI(マルチモーダルLLM)に、拡大・文字認識・物体の位置特定・奥行き推定・Web検索・Pythonコード実行などの道具を持たせ、見たものを「記憶」として貯めさせる、学習不要のエージェント基盤。",
+    "point": "AIに画像を渡して「この中の小さな文字を読んで」「この商品と同じものをネットで探して」と頼むと、一度見ただけでは間違えることがよくあります。OpenVLHarnessは、AIが人間のように「拡大して見直す」「文字を読み取る」「奥行きを測る」「Webで調べる」「計算用のコードを書く」といった道具を自分で選んで使い、取得した画像や調べた結果を記憶に残しながら答えにたどり着く仕組みです。AI本体の再学習はしていないのに、22種類のベンチマーク平均で+9.7〜+12.6ポイント精度が上がったと報告されています。広告・体験づくりでは、大量の参考画像やロケ写真の整理、競合クリエイティブの調査の自動化、展示物やパッケージの細部チェックなど、「画像を見ながら調べものをする下働きエージェント」の土台として使えそうです。ブラウザ上で試せるデモもあり、手元の画像を最大4枚アップロードして挙動を確かめられます。",
+    "detail": "仕組みは、司令塔役のAI(マルチモーダルLLM)が、料理人が包丁やフライパンを使い分けるように道具を使い分けるイメージです。道具は大きく3種類で、画像を調べる道具(拡大、文字認識、物体の位置特定、奥行き、カメラの向き)、情報を探す道具(テキスト検索、画像検索、Webページ閲覧)、そしてコードを書いて動かす道具です。各道具が出した画像や表データ、Webの参照先は「マルチモーダル記憶」に保存され、AIは後から取り出して使えます。さらに、うまくいかなかった約9,900件の失敗例をAIに読ませて原因を分析させ、足りない道具の追加や指示文の修正を自動で提案・適用する「ハーネス最適化」も行います。この間、AIモデルの重みは一切変えません。\n\n従来の「道具を使えるようにモデルを追加学習する」方式は学習コストが大きく、モデルを入れ替えるたびにやり直しでした。本手法は周りの仕組み(ハーネス)だけを改良するので、6種類の異なるモデルに載せ替えても効果が出たと報告されています。比較では、7Bクラスのモデルを追加学習なしで使って33.5点を記録し、追加学習した従来手法の25.0〜28.0点を上回りました。\n\n使うには、Python環境とツール呼び出しに対応したOpenAI互換のAPIエンドポイント(または自前でvLLMを立てたモデル)が必要です。Web検索を使うなら検索APIキーも要ります。コードはMITですが、既定で使うモデルやAPIは別途の費用・規約がかかる場合があります。コード・設定・評価キットは公開済みです。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "本体はMIT。評価キットはVLMEvalKit由来(Apache-2.0)、SAM 3の可視化補助はSAM License。既定ツールが使うモデル・サービス・データセットは別ライセンスで、THIRD_PARTY_LICENSES.md の確認が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/uclanlp/OpenVLHarness"
+      },
+      {
+        "kind": "project",
+        "url": "https://openvlharness.github.io"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.26860"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/openvlharness.jpg",
+    "relatedWorks": [
+      {
+        "title": "Visual Sketchpad",
+        "description": "AIが描画やコード実行を使い、スケッチで考えながら視覚的な問題を解く先行研究。",
+        "url": "https://visualsketchpad.github.io/"
+      },
+      {
+        "title": "Qwen3-VL",
+        "description": "本研究が失敗例分析の対象にした8Bクラスのオープンなマルチモーダルモデル。",
+        "url": "https://github.com/QwenLM/Qwen3-VL"
+      },
+      {
+        "title": "VLMEvalKit",
+        "description": "本研究の評価キットの元になった、マルチモーダルモデル評価ツールキット。",
+        "url": "https://github.com/open-compass/VLMEvalKit"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "dualsense-haptic-designer",
     "title": "DualSense Haptic Designer",
     "org": "Jellybit（個人開発者）",
