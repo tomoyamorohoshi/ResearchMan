@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "statusAsOf": "2026-10-20",
+  "statusAsOf": "2026-10-21",
   "items": [
+    {
+      "id": "2026-mori-art-museum-mariko-mori-sansan",
+      "slug": "2026-mori-art-museum-mariko-mori-sansan",
+      "title": "森万里子：燦燦",
+      "artists": [
+        "森万里子"
+      ],
+      "venue": "森美術館",
+      "venueType": "museum",
+      "prefecture": "東京都",
+      "city": "港区",
+      "startDate": "2026-10-31",
+      "endDate": "2027-03-28",
+      "status": "upcoming",
+      "admission": "一般2,800円(平日)/3,000円(土日祝)",
+      "tags": [
+        "installation",
+        "light",
+        "sculpture",
+        "video_art",
+        "media_art",
+        "retrospective"
+      ],
+      "score": 84,
+      "matchReason": "公式ページによれば、約30年・約40点の作品でCGを用いた写真・映像、彫刻、大型インタラクティブ・インスタレーションを紹介し、光を中心モチーフとする。会場は森美術館(watch.venues)で、開始まで10日。",
+      "sources": [
+        {
+          "name": "森万里子：燦燦",
+          "url": "https://www.mori.art.museum/jp/exhibitions/marikomori/index.html",
+          "kind": "official"
+        },
+        {
+          "name": "森美術館",
+          "url": "https://www.mori.art.museum/jp/",
+          "kind": "listing"
+        }
+      ],
+      "link": "https://www.mori.art.museum/jp/exhibitions/marikomori/index.html",
+      "thumbnail": "/thumbnails/exhibition/2026-mori-art-museum-mariko-mori-sansan.jpg",
+      "addedAt": "2026-10-21T01:30:49.846Z",
+      "origin": "auto",
+      "highlight": true
+    },
     {
       "id": "2026-bonded-gallery-hikaru-oto-ten",
       "slug": "2026-bonded-gallery-hikaru-oto-ten",
