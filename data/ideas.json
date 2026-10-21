@@ -21745,5 +21745,197 @@
         "desc": "写真をブラウザだけで、光の粒の集まりによる立体データに変換できるツール。"
       }
     ]
+  },
+  {
+    "id": "2026-10-21-1",
+    "date": "2026-10-21",
+    "title": "季節で変わる寝床の物件広告",
+    "pattern": "文脈×技術",
+    "seed": "「The Unliveable Listings」の物件広告風の寝床映像を、Qwen-Video-Editで「真夏の昼」「冬の豪雨の夜」と指示文だけで書き換えたら、季節ごとの過酷さを見せて寄付の継続を促せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "the-unliveable-listings-2026",
+        "title": "The Unliveable Listings",
+        "desc": "路上生活者の寝床を不動産広告風に見せ、週25ドルの寄付を募った施策。"
+      },
+      {
+        "type": "tech",
+        "id": "qwen-video-edit",
+        "title": "Qwen-Video-Edit",
+        "desc": "動画を指示文だけで編集できるAI。コマを巨大な1枚の画像のように並べて処理する。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-21-2",
+    "date": "2026-10-21",
+    "title": "改修途中の家を3D世界で往復",
+    "pattern": "文脈×技術",
+    "seed": "改修を途中で止めて公開する「小豆島ハウスプロジェクト」を、ATASで一つの3D世界として記憶させたら、未改修の過去と完成後の姿を同じ部屋の別アングルから往復できる映像になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2022-sd51",
+        "title": "小豆島ハウスプロジェクト",
+        "desc": "空き家の改修を途中で止め、その状態のまま公開した瀬戸内の建築プロジェクト。"
+      },
+      {
+        "type": "tech",
+        "id": "atas",
+        "title": "ATAS (Any Time, Any Space)",
+        "desc": "3Dで1つの世界を覚えさせ、場所の再訪や別アングル撮影ができる映像生成の仕組み。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-21-3",
+    "date": "2026-10-21",
+    "title": "水の流れで鳴る庭園の弦",
+    "pattern": "文脈×技術",
+    "seed": "ステンレスレールを木製ボールが転がる「Water Run」に、JAS-I Khorloの弦を弾くリングの発想を重ね、ボールの通過位置で弦が鳴るようにすれば、水循環を耳でも辿れる庭園になりそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "water-run-2024",
+        "title": "Water Run",
+        "desc": "レールと木のボールで水循環を手で辿れる、城の庭園にある遊具型の展示。"
+      },
+      {
+        "type": "tech",
+        "id": "jas-i-khorlo",
+        "title": "JAS-I Khorlo",
+        "desc": "ガラス筒の周りの弦を、回るリング状のばちが弾いて鳴らす無料シンセ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-21-4",
+    "date": "2026-10-21",
+    "title": "脳波アートを宙に浮かせる",
+    "pattern": "文脈×技術",
+    "seed": "「Brain on Bikes」で漕いだ人の脳波アートを、LeviFabの磁石入り3Dプリント物体が浮遊する動きに変換して見せたら、脳の健康が「宙に浮く形」として記憶に残るかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "brain-on-bikes-outride-summit-2026",
+        "title": "Brain on Bikes（Outride Summit）",
+        "desc": "自転車を漕ぐ人の脳波を、その場で個別の生成アートに変えた体験施策。"
+      },
+      {
+        "type": "tech",
+        "id": "levifab",
+        "title": "LeviFab",
+        "desc": "冷やした超伝導体の力で、磁石入りの3D印刷物を空中に浮かせて操作する研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-21-5",
+    "date": "2026-10-21",
+    "title": "言葉で楽器の構造ごと生成",
+    "pattern": "技術×技術",
+    "seed": "AutoSynthが作る「つまみ設定一式」を、JAS-I Khorloの弦の本数やばちの回転速度の設定に流し込めば、「雨上がりの琴」のような言葉だけで物理モデル楽器を量産できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "autosynth",
+        "title": "AutoSynth",
+        "desc": "文章から、完成音でなくシンセのつまみ設定一式を作ってくれるAI。"
+      },
+      {
+        "type": "tech",
+        "id": "jas-i-khorlo",
+        "title": "JAS-I Khorlo",
+        "desc": "ガラス筒の周りの弦を、回るリング状のばちが弾いて鳴らす無料シンセ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-21-6",
+    "date": "2026-10-21",
+    "title": "見回しても崩れない360度映像",
+    "pattern": "技術×技術",
+    "seed": "LingBot-Videoの物理を重視した動きを、SpheRoPEの球面生成に載せたら、360°の全方向を見回しても水や布の動きが破綻しない、継ぎ目のない没入空間が作れそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "lingbot-video",
+        "title": "LingBot-Video",
+        "desc": "見た目だけでなく物理的な正しさを重視して作られた、大規模な動画生成AI。"
+      },
+      {
+        "type": "tech",
+        "id": "spherope",
+        "title": "SpheRoPE",
+        "desc": "追加学習なしで、継ぎ目のない360°の画像や動画を作れる技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-21-7",
+    "date": "2026-10-21",
+    "title": "職人の所作をロボへ継承",
+    "pattern": "転用",
+    "seed": "Expressive Motionはファッションショー用だが、老舗の接客や茶の所作を撮った映像1本から動きの「らしさ」をロボットに転写すれば、消えゆく所作を残す展示になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "expressive-motion",
+        "title": "Expressive Motion (Learning Expressive Humanoid Locomotion from Monocular Runway Videos for Robot Fashion Shows)",
+        "desc": "ランウェイ映像1本から歩き方の個性をヒューマノイドロボットに写し取る手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-21-8",
+    "date": "2026-10-21",
+    "title": "眠るAIで街の昼夜を再現",
+    "pattern": "転用",
+    "seed": "AX (Agent Executor)を業務自動化ではなく、数十万体の「待機中は休止するエージェント」を街の住民に見立てて使い、起床と就寝の周期で町の昼夜のリズムを見せる作品にできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ax",
+        "title": "AX (Agent Executor)",
+        "desc": "膨大な数のAIエージェントを同時に動かし、待機中は自動で休止させる基盤。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-21-9",
+    "date": "2026-10-21",
+    "title": "条文を手書きMVにする",
+    "pattern": "転用",
+    "seed": "Vocaloid-Style MV Pipelineは曲用だが、市役所の条例文や契約書の条文を歌詞に見立てて手書きリリックMVにすれば、誰も読まない文書が最後まで見られる映像になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "vocaloid-style-mv-pipeline",
+        "title": "Vocaloid-Style MV Pipeline",
+        "desc": "曲と歌詞から、手書き風の歌詞MVを自動で作るClaude Code用の雛形。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-21-10",
+    "date": "2026-10-21",
+    "title": "隠しタグから家の記憶を再生",
+    "pattern": "文脈×技術",
+    "seed": "「IKEA Hidden Tags」の隠しタグを読むと、持ち主が十年前に撮った低画質のホームビデオがDLSS5 Enhancerで高画質化されて流れ、家具が暮らしと共に続いた証になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ikea-hidden-tags",
+        "title": "IKEA Hidden Tags",
+        "desc": "家具を一時的とみなす誤解に応え、隠しタグで長く使えると伝えた施策。"
+      },
+      {
+        "type": "tech",
+        "id": "dlss5-enhancer",
+        "title": "DLSS5 Enhancer (ComfyUI-DLSS5-Enhancer)",
+        "desc": "ゲーム向けAI高画質化DLSS 5を、動画や画像にまとめてかけられるツール。"
+      }
+    ]
   }
 ]
