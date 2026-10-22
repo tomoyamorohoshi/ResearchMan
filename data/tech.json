@@ -1,5 +1,115 @@
 [
   {
+    "id": "matrix-game-4-0",
+    "title": "Matrix-Game 4.0",
+    "org": "Skywork AI（UC San Diego・CUHK・上海AI Lab ほかとの共同研究）",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "GenVideo",
+      "AI/Agents"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "ゲームエンジンが出す粗いローポリ映像を、動画生成モデルがリアルタイムで精細なゲーム映像に描き直す「操作できるワールドモデル」。キー入力から画面表示までの遅れは112ms、RTX 5090で480p・60FPSの動作が報告されている。",
+    "point": "すごい点は、AIが映像を丸ごと想像するのではなく、「ルールと位置の管理はゲームエンジン」「見た目の描き込みは動画生成モデル」と役割を分けたこと。従来のワールドモデルは、長く遊ぶと世界の状態が崩れたり、操作への反応が遅れたりしがちだった。この方式ではキャラの位置や物理がエンジン側で保たれる。そのため54〜99秒の連続プレイでも破綻しにくく、1枚のGPUで60FPS前後の描画が報告されている。広告・体験づくりでは、粗いローポリで作ったレベルやカメラワークを、そのまま映画風や水彩風のルックに変換して遊べるブランドゲームを短期間で試作できそうだ。展示会向けのインタラクティブ映像、キャンペーンサイトの体験型コンテンツ、ライブ会場の大型スクリーン演出なども候補になる。ゲーム開発の素材制作コストを下げる手段としても使える。",
+    "detail": "仕組みは三層構造になっている。①ゲームエンジンが「プレイヤーの位置・当たり判定・ルール」を管理し、ローポリの下書き映像を出す。②コーディングエージェント（AIがゲームルールのコードを書き換える部分）が、場面の説明文（プロンプト）を80フレームごとに更新する。③蒸留した因果型DiT（過去のフレームだけを見て次を作る動画生成モデル）が、下書きを1〜2回のノイズ除去で精細な映像にする。カメラ位置ごとに過去のフレームを呼び戻す「空間メモリ」も持つ。たとえるなら、エンジンが「粗い絵コンテ」を描き、AIが「その場で清書する」イメージだ。\n\n従来のゲーム世代モデルは、AIがキー入力から次の映像を直接予測するため、数十秒で世界が崩れたり遅れが出たりしやすかった。本手法はルール判定をエンジンに任せ、AIは見た目の清書に専念する。公式ページでは、4種のゲーム比較と54〜99秒の連続プレイが公開されている。\n\n使うには、公式リポジトリ（Matrix-Game-4フォルダ）のコードと、Hugging Faceの重み（中世の城・古代エジプトのシューティング、市街地レーシングの3シーン、各約50億パラメータ）が必要になる。単一GPUで動き、公式にはA100、RTX 5090、5080、5070 Tiの推論手順が載っている。ライセンスはApache-2.0で、費用は自前GPUがあれば無料。ただし独自のゲームに使うには、シーンごとの再学習が必要になる。学習コードは未公開なので、現状は同梱の3シーンを動かして試す段階だ。導入にはPythonとGPU環境を扱えるスキルが要る。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "コードと3シーン分の重み・ゲームアセットはApache-2.0。TAEHVはMIT。レーシングシーンの音声にはCC BY 3.0素材があり、クレジット表記が必要。学習コードと学習データは未公開。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/SkyworkAI/Matrix-Game"
+      },
+      {
+        "kind": "project",
+        "url": "https://matrix-game-v4-0.github.io/page/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://huggingface.co/papers/2610.27999"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/Skywork/Matrix-Game-4.0"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/matrix-game-4-0.jpg",
+    "relatedWorks": [
+      {
+        "title": "Matrix-Game 2.0",
+        "description": "同じSkywork AIが公開した、リアルタイムで操作できるインタラクティブなワールドモデル",
+        "url": "https://github.com/SkyworkAI/Matrix-Game"
+      },
+      {
+        "title": "Genie 3",
+        "description": "Google DeepMindによる、テキストから操作可能な3D世界を生成するワールドモデル",
+        "url": "https://deepmind.google/discover/blog/genie-3-a-new-frontier-for-world-simulation/"
+      },
+      {
+        "title": "Hunyuan-GameCraft",
+        "description": "Tencentによる、キーボード・マウス操作に応じてゲーム映像を生成する動画モデル",
+        "url": "https://github.com/Tencent-Hunyuan/Hunyuan-GameCraft-1.0"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "freegaussian",
+    "title": "FreeGaussian",
+    "org": "OVER the Reality",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "Insta360の生データ(.insv)から、ブラウザだけでGaussian Splat（写真のようにリアルな3D空間）を作るクラウドツール。床が水平で実寸の空間になり、ロボット用シミュレータに使えるメッシュ(GLB/USDZ)も一緒に出力される。",
+    "point": "360°カメラで部屋をぐるっと歩いて撮るだけで、見回せる写真級の3D空間が手に入ります。これまでの360°動画からの3D化は、2つのレンズの映像をつなぎ合わせた(スティッチ済みの)パノラマ動画を使うため、つなぎ目のズレが3D化の精度を下げていました。FreeGaussianは、つなぎ合わせる前の魚眼レンズ2枚分の生データを直接使い、カメラ内蔵のジャイロ(傾きセンサー)も参照して、傾きの補正と実寸スケールの推定まで自動で行います。広告・体験づくりでは、店舗やイベント会場、ロケ地をスマホ感覚でスキャンして、Web上で歩き回れる商品紹介やバーチャル内覧に使えます。出力にはテクスチャ付きメッシュ(GLB/USDZ)も含まれるため、UnityやiOSのARでの配置確認にそのまま持ち込めます。さらに床面が連続した平面として出るので、物理シミュレーション用の空間としても使えそうです。",
+    "detail": "仕組み：Insta360の.insvファイルには、2つの魚眼レンズが撮った元の映像が入っています。通常はこれを1枚のパノラマにつなぎ合わせて(スティッチ)から3D化しますが、つなぎ目のゆがみが誤差の原因になります。FreeGaussianはスティッチ前の魚眼映像を直接3D化に使い、ジャイロと加速度センサーの記録で『上下の向き』を決めるので、床が水平で壁が垂直な状態で出力されます。長い通路や複数の部屋を歩いたときのズレ(ドリフト)を減らすため、同じ場所に戻ってきたかの照合(ループクローズ)も厳しくしたとされています。\n\n従来との違い：従来の360°動画ワークフローは、傾きの手直しや大きさの指定を手作業で行うことが多く、出力もスプラット(点群のような粒の集まり)だけでした。この更新では、実寸スケール、水平補正、メッシュ(GLB/USDZ)出力まで一括で自動化されています。なお、通常のequirectangular(パノラマ形式の)mp4にも対応しますが、その場合は水平補正と自動スケールは付きません。速度向上の数値や、処理時間は公開されておらず未確認です。\n\n使うには：ブラウザでfreegaussian.aiにサインインし、動画をアップロードするだけで、インストールや高価なGPUは不要です。無料プランがあり、.insv対応とメッシュ出力も無料プランで使えると案内されています(無料枠の上限や有料料金は未確認)。対応カメラは.insvを記録するInsta360(記事ではX5が例)で、他社の360°カメラはmp4経由になります。ソースコードは公開されていない商用クラウドサービスなので、商用案件で使う場合は利用規約の確認が必要です。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "クラウドのWebサービス。無料プランあり（クレジットカード不要）。無料枠の上限、有料プランの料金、出力物の利用条件は公開ページに記載がなく未確認。商用利用の前に利用規約を確認すること。"
+    },
+    "links": [
+      {
+        "kind": "product",
+        "url": "https://www.freegaussian.ai"
+      },
+      {
+        "kind": "post",
+        "url": "https://www.freegaussian.ai/blog/insv-native-fisheye-gaussian-splatting"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/freegaussian-trains-gaussian-splats-from-raw-insta360-insv-files-and-ships-sim-ready-meshes"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/freegaussian.jpg",
+    "relatedWorks": [
+      {
+        "title": "nerfstudio",
+        "description": "NeRFやGaussian Splattingを学習・可視化できるオープンソースの定番フレームワーク",
+        "url": "https://github.com/nerfstudio-project/nerfstudio"
+      },
+      {
+        "title": "gsplat",
+        "description": "Gaussian Splattingの学習・開発用オープンソースライブラリ(Apache-2.0)",
+        "url": "https://github.com/nerfstudio-project/gsplat"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "manga2animate",
     "title": "Manga2Animate",
     "org": "National Yang Ming Chiao Tung University",
