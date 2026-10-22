@@ -1,5 +1,348 @@
 [
   {
+    "id": "gta-vi-vice-city-2026",
+    "title": "GTA VI: Vice City 架空ブランドの偽ラグジュアリー広告（マイアミ）",
+    "summary": "ゲーム内の架空ブランド広告を実在の高級ブランド広告に見せ、マイアミの街頭で作品世界に読み替えた",
+    "client": "Rockstar Games",
+    "agency": "",
+    "categories": [
+      "OOH革新",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://creapills.com/gta-vi-fausses-publicites-miami-vice-city-20261021",
+    "thumbnail": "/thumbnails/gta-vi-vice-city-2026.jpg",
+    "videoId": "",
+    "overview": "Rockstar Gamesは『GTA VI』(2026年11月19日発売予定)の約1か月前、2026年10月19〜20日にマイアミのWynwood地区のデジタルキオスクで、ゲーム内の架空ブランド広告を掲出した。ポルシェのパロディとされるPfisterの車、宝飾のKowalski、時計のKronosなどが、実在の広告と交互に表示された。",
+    "background": "掲出の約1か月前は発売前の盛り上がりの時期にあたる。Creapillsの記事によれば、マイアミの一部議員の反対があり、公共物には『Grand Theft Auto』の名称が出されず、代わりにVice Cityの名、数字のVI、架空ブランドが使われたという。Rockstarはゲーム内でも架空ブランドを使ってきた。",
+    "execution": "高級ブランドの広告に見えるビジュアルとコピー(\"Go topless\"、\"Always come early\"など)を作り、街中のキオスクに表示した。目立つ要素は小さなVice Cityのロゴと、Rockstarにつながる QRコードだけ。Eris(ナイキのパロディとされる)、Burger Shot、Sprunk、Megamundoなど多数の架空ブランドが確認された。制作会社は記事に記載がなく不明。",
+    "evaluationImpact": "10月19〜20日に地元クリエイターのJoel Francoがキオスクの広告を投稿して拡散し、Redditのユーザーが別の広告を次々に見つけた。ファンには元ネタの発見という報酬になり、そうでない人には何の広告かという興味を残す、と記事は評している。架空と現実の境界を街頭で曖昧にした点が要点。受賞は公式ソースでは確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Wynwood Walls 新作壁画(GTA VI関連施策)",
+        "description": "同記事によると、Wynwood Wallsに15人のアーティストによる10点の新作壁画を展開し、ゲーム内のStockyard地区にも同じものを再現している。",
+        "url": "https://creapills.com/gta-vi-fausses-publicites-miami-vice-city-20261021"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/OOH",
+      "Theme/Entertainment"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "drift-of-the-uncharted-spectral-agents-of-humanity-2026",
+    "title": "Drift of the Uncharted – Spectral agents of humanity",
+    "summary": "3DGSで再現した海面上昇後の都市を、四足ロボットの追跡位置を仮想カメラにして搭載プロジェクターから投影する",
+    "client": "Ary-Yue Huang",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.creativeapplications.net/project/drift-of-the-uncharted-spectral-agents-of-humanity/",
+    "thumbnail": "/thumbnails/drift-of-the-uncharted-spectral-agents-of-humanity-2026.jpg",
+    "videoId": "",
+    "overview": "メディアアーティスト、Ary-Yue Huangによるロボット・インスタレーション。海面上昇で浸水が予測される上海・深圳・広州の都市を3D Gaussian Splattingで再構築し、Unityで水を加える。Unitree Go1にプロジェクターを載せ、浸水した都市の映像を投影しながら歩かせる。ロボットは「人類の亡霊的エージェント」と位置づけられている。",
+    "background": "作者は香港科技大学(広州)に所属し、ソフトウェアエージェントや物理ロボットを扱うエージェント型アートを研究している。浸水リスクの選定にはClimate Centralの沿岸リスク評価ツールで2050年を予測年とし、IPCC 2021のデータと、現行の排出政策で2100年に3.6℃上昇する想定を用いた。対象は浸水が予測される地域の文化的・都市的に重要な地点。",
+    "execution": "予測浸水域の主要地点を3D Gaussian Splattingで再構築し、ゲームエンジンUnityで水をシミュレーションする。Unitree Go1にはプロジェクターを搭載する。Vive Trackerと4基のVive Base Stationで位置を追跡し、OpenVR SDK経由でモーション制御プログラムとUnityへ送る。ロボットの動きが仮想カメラとなり、制御PCが描画映像を無線でプロジェクターへ送る。",
+    "evaluationImpact": "ロボットの追跡位置をそのまま仮想カメラにして、歩行を投影のカメラワークにする仕組みが明確で、他の空間演出にも転用できる。気候予測データと実在の都市スキャンを結びつけた点も特徴。受賞や展示会場は確認できなかった。研究論文(ACM, DOI 10.1145/3757369.3767598)も公開されている。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Tech/3D",
+      "Tech/Projection",
+      "Form/Installation"
+    ],
+    "gateCriterion": "D",
+    "sourceId": "creativeapplications",
+    "gateTier": "accept",
+    "discoveryLens": 4
+  },
+  {
+    "id": "the_local_aura-a-neighbourhood-s-present-carried-by-those-wh",
+    "title": "the_local_aura – A neighbourhood's present, carried by those who cross it",
+    "summary": "通行人のシルエットを追う文字枠に、地区限定のニュース見出しを貼り、街の今を人に背負わせる展示",
+    "client": "Antonio Pezzella (niceunderground)",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "データクリエイティブ",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.creativeapplications.net/member/the_local_aura-a-neighbourhoods-present-carried-by-those-who-cross-it/",
+    "thumbnail": "/thumbnails/the_local_aura-a-neighbourhood-s-present-carried-by-those-wh.jpg",
+    "videoId": "",
+    "overview": "Antonio Pezzella(niceunderground)による、イタリア・トリノ北部のBarriera di Milano地区を題材にしたインタラクティブ作品。来場者がカメラの前に立つと、その地区に関する最新の見出しを載せた白い文字ボックスがシルエットの周囲に現れ、動きに合わせて追従する。誰もいないときは、全見出しがゆっくり画面を流れる。画像は記録しない。",
+    "background": "作品はBarriera Design District協会が主催する分散型フェスティバル「TRIP 2026」で、2026年10月3〜4日にSecret Locationで展示された。芸術監督・キュレーターはLucrezia Nardi。見出しは街路名や地名で絞った地区のニュースで、制作者は街の現在を訪れる人に運ばせるという発想を取っている。",
+    "execution": "TypeScriptとThree.jsで構築し、Chromeのキオスクモードで動作。見出しはGoogle NewsのRSSをBarriera di Milanoの通り名・地名で絞って取得し、天気と大気質はOpen-Meteoから取る。音はWeb Audio APIで生成した。機材は55インチのディスプレイ、Logitech 720pのWebカメラ、Windowsのノートパソコン(ASUS TUF A15)である。文字ボックスは人の動きに遅れて追いつく挙動をとる。",
+    "evaluationImpact": "無償で公開されているニュースRSSと汎用Webカメラだけで、地区の「今」を鑑賞者の身体に貼り付ける体験にしている点が評価できる。画像を保存せず注意の向きだけを使うため、監視的な見え方を避けつつ地域情報を返す。個人制作の小規模な試作ながら、地域イベントで再現しやすい手法として転用できる。なお受賞情報は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Tech/Data",
+      "Form/Installation",
+      "Theme/Art"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creativeapplications",
+    "gateTier": "accept",
+    "discoveryLens": 4
+  },
+  {
+    "id": "perseverance-goddess-of-democracy-2026",
+    "title": "Perseverance (Goddess of Democracy) ゲント版",
+    "summary": "来場者がポンプで空気を送り続けないと萎む7mの民主の女神像で、参加し続けなければ民主主義は保てないことを体で感じさせる",
+    "client": "Design Museum Gent / zweintopf",
+    "agency": "zweintopf",
+    "categories": [
+      "空間体験",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/gand-sculpture-gonflable-democratie-zweintopf-20261021",
+    "thumbnail": "/thumbnails/perseverance-goddess-of-democracy-2026.jpg",
+    "videoId": "",
+    "overview": "オーストリアのデュオzweintopfによる、台座込みで高さ7mの白い膨張式の人型彫刻。ベルギー・ゲントのGravensteen城の堀に浮かぶ台の上に置かれ、来場者がポンプで空気を送り続けている間だけ立っていられる。送気をやめると少しずつ萎み、空の殻のようになる。Design Museum Gentが複製を委託し、参加型プログラム「Democracy Workout」の一部として設置された。",
+    "background": "原型は1989年5月、北京の天安門広場で中国の美術学生らが発泡素材や張り子で建てた「民主の女神」像で、同年6月4日に軍によって破壊された。zweintopfはこれを引用した作品を2019年にクラーゲンフルト(オーストリア)のエアロパークで初公開し、その後クラーゲンフルトのEuropapark(UNIKUM)やボンのBundeskunsthalleなど複数の会場で展示されてきた。ゲント版は、再開したDesign Museum Gentによる委託。",
+    "execution": "像は空気で形を保つ膨張式で、来場者が操作するポンプ式の送気装置につながっている。「Train your perseverance!(粘り強さを鍛えよう)」と呼びかけ、送気をやめると像はゆっくり萎む。像を立たせ続けるには誰かが空気を送り続ける必要があり、民主主義が参加の継続に支えられるという関係を、来場者の身体的な労力として体験させる。設置場所は城の堀に浮かぶ台である。",
+    "evaluationImpact": "「民主主義は参加し続けないと保てない」という抽象的な主張を、「ポンプを止めれば像が萎む」という一つの仕組みに置き換えた点が明快である。象徴を壊されたものの再現として膨らませ、さらに持続に人の労力を要する脆い存在にしたことで、民主主義の脆さと参加の必要性が見る人の体感として伝わる。受賞は公式ソースで確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Goddess of Democracy(民主の女神)",
+        "description": "1989年に北京の天安門広場で学生らが建てた像。本作の引用元で、同年6月4日に破壊された。",
+        "url": "https://en.wikipedia.org/wiki/Goddess_of_Democracy"
+      },
+      {
+        "title": "inflatable sculpture in ghent asks visitors to 'pump for democracy' to keep it standing",
+        "description": "designboomによるゲント版の紹介記事。",
+        "url": "https://www.designboom.com/?p=1210707"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Theme/Art",
+      "Tech/Device"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "compound-camera-no-3-2026",
+    "title": "Compound Camera No. 3",
+    "summary": "トンボの複眼を模した膨張式パビリオンが、デジタルなしで221個のレンズから周囲の景色を内壁に投影する",
+    "client": "Pneuhaus",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.thisiscolossal.com/2026/10/pneuhaus-compound-camera-3-inflatable-installation/",
+    "thumbnail": "/thumbnails/compound-camera-no-3-2026.jpg",
+    "videoId": "",
+    "overview": "米ロードアイランドのスタジオPneuhausによる、700平方フィート超の膨張式ウォークイン・カメラ。2026年9月18〜20日にミネソタ州ミネアポリスのMODE Festで初披露された(Yanko Design報道)。221個のカメラオブスクラ・セルが空や木々、建物、人々の像を柔らかな内壁に映し出す。スクリーンは使わず、何も記録しない。",
+    "background": "Pneuhausは大型の建築的インフレータブルで知られるスタジオ。本作は同シリーズの第3作で、2018年のPawtucket Art Festival向け初作は109個のピンホールセルで、働きアリの目をモデルにしていた(Yanko Design)。今回はトンボの複眼に着想を得て、レンズを複雑な曲面に並べ複数の視点を同時に集める構成にした。",
+    "execution": "各セルにガラスレンズを備え、素材はウレタンコーティングのナイロンと空気のみで、剛性フレームを持たない(Designboom)。上向きのレンズは空を、横向きのレンズは周囲の木や建物、人を映す。来場者は柔らかな内壁を手で押して像を歪ませ、焦点を調整できる。映像は太陽光だけで成立し、LEDやデジタル機器は使わない。設営は数時間とされる。",
+    "evaluationImpact": "カメラの原理そのものを「歩いて入れる空間」へ拡張し、複眼の視覚を身体で体験させる点が評価できる。電子機器なしで光だけで像を作る手法は、写真・建築・展示の領域に転用しうる。Colossal、Designboom、Yanko Designと複数の媒体が取り上げた。受賞は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Compound Camera(初作・109セル)",
+        "description": "2018年にPawtucket Art Festival向けに制作された、109個のピンホールセルから成る膨張式環境。働きアリの目がモデル。",
+        "url": "https://core77.com/projects/72073/Compound-Camera-An-Inflatable-Environment-Composed-of-109-Pinhole-Cameras"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Tech/Device",
+      "Theme/Art"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "colossal",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "aeolus-2026",
+    "title": "Aeolus",
+    "summary": "ガラス棒内の小さな光を来場者の動きで点灯させ、鑑賞者がいて初めて完成する「風」を彫刻にした",
+    "client": "Studio Drift",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.thisiscolossal.com/2026/10/aeolus-studio-drift-light-glass-installation/",
+    "thumbnail": "/thumbnails/aeolus-2026.jpg",
+    "videoId": "",
+    "overview": "アムステルダム拠点のDRIFT(Lonneke GordijnとRalph Nauta)による2026年のインスタレーション。内部に小さな光を持つ多数のガラス棒で構成され、来場者の動きによって光が点灯する。ロンドンのLadbroke Hall内Carpentersで10月25日まで展示されている。作品名はギリシャ神話の風の神アイオロスに由来する。",
+    "background": "DRIFTは自然とテクノロジーを組み合わせたインタラクティブな彫刻やインスタレーションで知られるスタジオ。過去にもガラス管が来場者の動きに反応する「Flylight」などを手がけてきた。今回はガラスと光を、儚さと移ろいを表す素材として選んだ。ガラスは透明で軽く、光は風と同じく、ある瞬間にあらわれて次の瞬間には消えるものとして捉えられている。",
+    "execution": "ガラス棒の内部に小さな光が仕込まれ、来場者の動きがその点灯のきっかけになる。見えない風を、人の動きが連鎖的に光らせる現象として可視化する構成である。センサーの種類やガラス棒の本数・サイズなど技術的な詳細は、確認できた情報源に記載がなく不明。",
+    "evaluationImpact": "作者は「風そのものと同じく、この作品は相互作用を通してのみ完全に存在する」と述べており、鑑賞者の存在が作品の成立条件になっている点が核である。「風という見えない現象を、人の動きで光る彫刻に置き換える」と一文で言える明快さがある。DRIFTは2027年初頭にアムステルダムで8,000平方メートルのDRIFT Museumの開館を予定している。",
+    "relatedWorks": [
+      {
+        "title": "Flylight",
+        "description": "手吹きガラス管を最大180本ケーブルで吊るし、来場者の動きに反応させるDRIFTのインスタレーション",
+        "url": "https://www.architectmagazine.com/technology/lighting/naturally-electric_o/"
+      },
+      {
+        "title": "In Twenty Steps",
+        "description": "20枚のガラスの翼が動き続ける2015年のDRIFT作品。人間の飛翔への願いへのオマージュ",
+        "url": "https://www.pacegallery.com/journal/mint-museum-presents-solo-exhibition-works-studio-drift/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Installation",
+      "Theme/Art"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "colossal",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "room-as-instrument-mathematical-patterns-in-motion-2026",
+    "title": "Room as Instrument – Mathematical patterns in motion",
+    "summary": "12個の木製球を数学関数で吊り上げ動かし、音楽と投影映像に同期させて部屋全体を楽器に変えたキネティック作品。",
+    "client": "",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.creativeapplications.net/member/room-as-instrument-mathematical-patterns-in-motion/",
+    "thumbnail": "/thumbnails/room-as-instrument-mathematical-patterns-in-motion-2026.jpg",
+    "videoId": "",
+    "overview": "2026年10月3日、アトランタのGoat Farm Arts Centerで開かれた一夜限りの実験芸術フェスティバル「SITE」で発表された。12個の木製球がモーター駆動のウインチから吊られ、数学関数に従って上下しながらパターンを描く。7曲のプレイリストに合わせて動きが切り替わり、室内の投影映像とも連動する。",
+    "background": "制作名義は「Room as Instrument — Lisa Li × (TBD) Design × Monsieur Blanc」。Steven Benton(TBD Design)が機械設計・壁の製作・電子機器・ファームウェア・モーション制御を担当し、Lisa Liが素材と空間環境、Monsieur Blancが音楽とスピーカーを担った。TouchDesignerはDerivativの商用ライセンス支援を受けた。",
+    "execution": "TouchDesignerが12チャンネルの位置データを生成し、シリアル通信で2基のBTT Octopus V1.1ボードへ送る。駆動はNEMA 17ステッピングモーターとTMC2209ドライバーで、ファームウェアはC++/PlatformIO製。動きのパターン間は7秒のトランジションでつなぎ、同じパターン選択が投影映像も切り替える。モーター個別のキャリブレーション、診断、非常停止も備える。フレームは幅8×高さ7フィートで、制御モジュール1基とモーターモジュール2基の3ユニットに分解できる。",
+    "evaluationImpact": "音・動き・映像を同じ制御系で連動させ、部屋全体を一つの楽器として扱う構成が特徴。市販に近いステッピングモーターやオープンなボードとTouchDesignerで組んでおり、個人・小規模チームでも応用しやすい制作手法として参照価値がある。ただし受賞や大きな反響は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Breaking Wave (Plebian Design / Hypersonic)",
+        "description": "804個の木製球をワイヤーで吊り、回転シャフトで高さを変えて、特定の2地点からだけパターンが現れるアナモルフィック・キネティック彫刻。",
+        "url": "https://thekidshouldseethis.com/post/breaking-wave-an-anamorphic-kinetic-sculpture-about-perspective"
+      },
+      {
+        "title": "Bits and Pieces (Nils Völker)",
+        "description": "108個の球状の要素をモーターで動かし、リズムとパターンに同期させるキネティック作品。",
+        "url": "https://www.thisiscolossal.com/?p=67241"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Tech/Audio",
+      "Form/Installation",
+      "Theme/Art"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "creativeapplications",
+    "gateTier": "accept",
+    "discoveryLens": 4
+  },
+  {
+    "id": "wastewater-algae-explored-as-a-binder-for-recycled-textile-m",
+    "title": "Wastewater Algae Explored as a Binder for Recycled Textile Materials",
+    "summary": "排水処理で育った藻類を、廃棄衣類繊維を固める生物由来バインダーにする素材研究。",
+    "client": "",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://materialdistrict.com/article/wastewater-algae-explored-as-a-binder-for-recycled-textile-materials/",
+    "thumbnail": "/thumbnails/wastewater-algae-explored-as-a-binder-for-recycled-textile-m.jpg",
+    "videoId": "",
+    "overview": "UNSW Sydneyの研究チームが、Sydney Water、Pacific Bioと組み、排水処理で育てた藻類のバイオマスを、廃棄された繊維を固めるバインダー(接着剤や樹脂に近い素材)として使えるか検証している。繊維廃棄物を新しい複合素材にする初期段階の研究で、まず繊維を試験対象とし、将来は他の用途も探る。",
+    "background": "オーストラリアでは年間30万トン超の衣類が埋め立てまたは輸出されているとされる。衣類は混紡、染料、ボタンやファスナー、PFASなどの化学物質を含むことが多く、分別が難しい。研究チームは、石油由来のバインダーに代わる素材の可能性も見据えている。",
+    "execution": "Sydney WaterのPicton施設で、Pacific BioのRegenAqua技術により在来の緑色大型藻類を排水処理の最終段階で育て、窒素やリンを除去する。育った藻類バイオマスを廃繊維などと組み合わせるバインダーとして試す。きれいに分別された原料に限らず、混紡や付属品を含む混合繊維廃棄物を扱える手法を開発中。バイオマスが少量・変動しうるため、小規模な地域内加工も検討している。",
+    "evaluationImpact": "排水浄化の副産物である藻類を、衣類廃棄物を固める素材に使うという、2つの廃棄物課題をつなぐ着想が特徴。ただしバインダーの性能や用途はこれから調べる段階で、結果は報告されていない。今後は樹脂の試作と応用例の作成を目指し、追加の資金で繊維業界のパートナーと進める計画。資金はUNSWの初期段階向け連携支援基金。",
+    "relatedWorks": [
+      {
+        "title": "Could wastewater algae become a new material for manufacturing?(UNSW Newsroom)",
+        "description": "UNSWによる本研究の公式発表記事",
+        "url": "https://www.unsw.edu.au/newsroom/news/2026/10/could-wastewater-algae-become-a-new-material-for-manufacturing"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Product",
+      "Theme/Sustainability",
+      "Theme/Fashion"
+    ],
+    "gateCriterion": "D",
+    "sourceId": "materialdistrict",
+    "gateTier": "borderline",
+    "discoveryLens": 3
+  },
+  {
     "id": "re-calibrating-identity-an-autonomous-walker-explores-mental",
     "title": "[Re]Calibrating Identity – An autonomous walker explores mental maps of Lahore's walled city",
     "summary": "住民の手描き記憶地図で学習した歩行体が、地図を使わず記憶で旧市街を歩き、その軌跡をペンプロッターで描く",
