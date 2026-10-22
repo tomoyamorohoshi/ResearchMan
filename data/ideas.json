@@ -21937,5 +21937,215 @@
         "desc": "ゲーム向けAI高画質化DLSS 5を、動画や画像にまとめてかけられるツール。"
       }
     ]
+  },
+  {
+    "id": "2026-10-22-1",
+    "date": "2026-10-22",
+    "title": "水位の光を粘菌が描く",
+    "pattern": "文脈×技術",
+    "seed": "WATERLICHTの「海面上昇後の水位を光の波にする」発想に、Physarum polycephalumの東京鉄道網再現を掛け、粘菌が伸びた経路を水没予測図と重ねれば、最も浸水しにくい避難路を生き物が選ぶ展示になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "waterlicht-2015",
+        "title": "WATERLICHT（水位を可視化する光の波）",
+        "desc": "海面上昇後の水位を光の波として頭上に描く、気候変動を伝えるライトインスタレーション。"
+      },
+      {
+        "type": "tech",
+        "id": "physarum-polycephalumによる東京鉄道網再現実験",
+        "title": "Physarum polycephalum（真正粘菌）による東京鉄道網再現実験",
+        "desc": "脳のない粘菌が、培地上で実際の東京圏の鉄道網によく似た効率的な経路を作った実験。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-22-2",
+    "date": "2026-10-22",
+    "title": "回遊ルートなき宇宙を粘菌が案内",
+    "pattern": "文脈×技術",
+    "seed": "Koo Jeong A個展の「回遊ルートなき宇宙」に、Physarum polycephalum(真正粘菌)の経路探索を入れ、来場者の動線を粘菌の育ち方で毎日変える美術館にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "koo-jeong-a-2026",
+        "title": "Koo Jeong A 個展",
+        "desc": "蓄光スケートパークや香りで、美術館全体を回遊ルートのない宇宙に変えた大規模個展。"
+      },
+      {
+        "type": "tech",
+        "id": "physarum-polycephalumによる東京鉄道網再現実験",
+        "title": "Physarum polycephalum（真正粘菌）による東京鉄道網再現実験",
+        "desc": "脳のない粘菌が、培地上で実際の東京圏の鉄道網によく似た効率的な経路を作った実験。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-22-3",
+    "date": "2026-10-22",
+    "title": "買い手が組む顔面タトゥー映像",
+    "pattern": "文脈×技術",
+    "seed": "Game Faceの顔面タトゥーキットを貼った観客の動きを、Wan-Animate-2で1本の動画から別キャラへ転写し、ファンの顔と動きがそのまま応援アニメの主役になる仕掛けができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "game-face-2026",
+        "title": "Game Face",
+        "desc": "コーヒー缶に4カ国のアーティスト監修の顔タトゥーキットを付け、ファンの自己表現を後押しした施策。"
+      },
+      {
+        "type": "tech",
+        "id": "wan-animate-2",
+        "title": "Wan-Animate-2",
+        "desc": "1本の動画から人物の動きや表情、カメラ視点まで別のキャラへ移せる無料公開のAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-22-4",
+    "date": "2026-10-22",
+    "title": "ビルボードが見せながら描く広告",
+    "pattern": "文脈×技術",
+    "seed": "A.I. Irresponsiblyのプロンプト印刷ビルボードに、RAVEN Streaming LoRAの「見せながら作る」生成を載せ、通行人の言葉に合わせて広告動画が途切れず育ち続ける屋外になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "brewlander-ai-irresponsibly",
+        "title": "A.I. Irresponsibly",
+        "desc": "AIプロンプトを看板に印刷し、誰でも自分のビール広告を作れる参加型の屋外広告。"
+      },
+      {
+        "type": "tech",
+        "id": "raven-streaming-lora-for-minimax-h3",
+        "title": "RAVEN Streaming LoRA for MiniMax-H3 (MiniMax-H3-RAVEN-Streaming-LoRA)",
+        "desc": "直前の映像を見ながら次の区切りを生成し続け、動画を見せながら作るAI研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-22-5",
+    "date": "2026-10-22",
+    "title": "忘れられた母の旋律を譜面に",
+    "pattern": "文脈×技術",
+    "seed": "ERRATA AT 88の「歴史の間違いを正す」発想に、SheetSage2を掛け、埋もれた古い録音から旋律と和音を起こして楽譜化し、無名の作曲家を次世代が演奏できる形で復権させられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "johnnie-walker-errata-88",
+        "title": "ERRATA AT 88（Johnnie Walker × Alaíde Costa）",
+        "desc": "ボサノバの忘れられた母を88歳でカーネギーホールに戻し、音楽史の誤りを正した施策。"
+      },
+      {
+        "type": "tech",
+        "id": "sheetsage2",
+        "title": "SheetSage2",
+        "desc": "曲の音源から旋律・コード・拍を読み取り、編集できる譜面とMIDIに変えるAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-22-6",
+    "date": "2026-10-22",
+    "title": "粘菌の鉄道網をその場で演奏",
+    "pattern": "技術×技術",
+    "seed": "Physarum polycephalumが広げる経路の太さを、StemgenRTの4トラック分離ミキサーにつなげ、粘菌の成長がライブでドラムやベースの音量を動かす生きたDJ卓になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "physarum-polycephalumによる東京鉄道網再現実験",
+        "title": "Physarum polycephalum（真正粘菌）による東京鉄道網再現実験",
+        "desc": "脳のない粘菌が、培地上で実際の東京圏の鉄道網によく似た効率的な経路を作った実験。"
+      },
+      {
+        "type": "tech",
+        "id": "stemgenrt",
+        "title": "StemgenRT",
+        "desc": "再生中の曲をボーカル・ドラム・ベース等に約11.6ミリ秒でリアルタイム分離するプラグイン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-22-7",
+    "date": "2026-10-22",
+    "title": "スプラット修復を無限に伸ばす",
+    "pattern": "技術×技術",
+    "seed": "Gaussian Splat Patchで消した不要物の跡に、HR Endless Samplerで何分も続く映像を流し込み、スキャンした空間の穴から終わらない別世界が覗く3D作品ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "gaussian-splat-patch",
+        "title": "Gaussian Splat Patch",
+        "desc": "写真から作った3Dスキャンを、スタンプのような感覚でBlender上で修正できる無料拡張。"
+      },
+      {
+        "type": "tech",
+        "id": "hr-endless-sampler",
+        "title": "HR Endless Sampler (ComfyUI-HR-Endless-Sampler)",
+        "desc": "ComfyUIでAI動画を何分でも破綻なく作り続けられるようにするサンプラー。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-22-8",
+    "date": "2026-10-22",
+    "title": "音源分離で作る世界モデル",
+    "pattern": "技術×技術",
+    "seed": "mlx-audio-separatorで楽器ごとに分けた音を、Astronex-Worldのイベント操作に割り当て、ドラムが鳴ると天候が変わり、ベースで地形が揺れる音楽駆動の動画世界ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "mlx-audio-separator",
+        "title": "mlx-audio-separator",
+        "desc": "Apple Silicon専用のMLXだけで動き、曲を楽器ごとに高速で分けられる音源分離ツール。"
+      },
+      {
+        "type": "tech",
+        "id": "astronex-world-1-0",
+        "title": "Astronex-World 1.0",
+        "desc": "カメラ・アクション・イベントで操作でき、リアルタイム生成できる動画生成型ワールドモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-22-9",
+    "date": "2026-10-22",
+    "title": "家具の履歴をローカルで3D化",
+    "pattern": "転用",
+    "seed": "Modlyは写真を3Dにするアプリだが、IKEA Hidden Tagsのように使い込んだ家具を持ち主のPC内だけで3D化し、傷や汚れを「十年使った証拠」として資産化する使い方ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "modly",
+        "title": "Modly",
+        "desc": "写真をクラウドに送らず、手元のPCのGPUだけで3Dメッシュにするデスクトップアプリ。"
+      },
+      {
+        "type": "case",
+        "id": "ikea-hidden-tags",
+        "title": "IKEA Hidden Tags",
+        "desc": "家具は一時的という誤解に応え、隠しタグを仕込んだ長期施策。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-22-10",
+    "date": "2026-10-22",
+    "title": "動画編集を議事録の場に",
+    "pattern": "転用",
+    "seed": "Timeline Studioは動画編集ソフトだが、人間とAIが同じタイムラインを触れる性質を生かし、audio.cppで起こした会議音声を並べて、合意の流れを編集する会議ツールに転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "timeline-studio",
+        "title": "Timeline Studio (ai-video-editor)",
+        "desc": "人間とAIエージェントが同じタイムラインを編集できる、ブラウザ上のローカル動画編集ソフト。"
+      },
+      {
+        "type": "tech",
+        "id": "audio-cpp",
+        "title": "audio.cpp",
+        "desc": "60種類以上の音声・音楽AIをPythonなしで手元のPCで動かせる推論エンジン。"
+      }
+    ]
   }
 ]
