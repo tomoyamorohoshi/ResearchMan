@@ -1,5 +1,335 @@
 [
   {
+    "id": "a-book-for-making-books-2026",
+    "title": "A Book for Making Books",
+    "summary": "ページを破り切り折って8種のZINE・製本テンプレートに変える、動画チュートリアルを紙に翻訳した自己出版ガイド本",
+    "client": "Carolina Incerti",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.itsnicethat.com/articles/carolina-incerti-a-book-for-making-books-publication-project-201026",
+    "thumbnail": "/thumbnails/a-book-for-making-books-2026.jpg",
+    "videoId": "",
+    "overview": "グラフィックデザイナー・研究者のCarolina Incertiによる、破る・切る・折ることでそのまま製本物やZINEを作れる自己出版ガイド本。8種類のテンプレートが収められ、複数折丁の綴じ本から1枚もののZINEまで幅広い。本自体が作り方の説明であり、同時に完成物の素材にもなる。It's Nice That が2026年10月20日付で紹介した。",
+    "background": "ノルウェーのArt Academy Bergenでの修士研究「Open Books: Collective Practices for Self-Publishing」が出発点。研究から、学生や教育者が誰でも参加できる週次のブッククラブ「Open Books」が生まれた。自己出版の知識を集団で共有・実践する場づくりの延長として、この本が作られた。",
+    "execution": "ブッククラブの参加者が試作テンプレートを試し、改善に協力したうえで、Incertiが折り紙のような仕組みの切り取り式の本にまとめた。本人は「動画チュートリアルを紙に翻訳するような、家具の組み立て説明書に近いもの」と説明する。配色は遊び場や子どものおもちゃに着想した原色、本文書体はClara Sambotのオープンソース書体CirrusCumulus。伝統的な組版ルールからは意図的に距離を置いている。",
+    "evaluationImpact": "製本の手順を動画ではなく紙そのものに埋め込み、読むことと作ることを一体にした点が一文で言えるアイデア。コミュニティでの実地テストを経た点も実用性を支える。ただし受賞や販売実績などは確認できず、評価は記事での紹介にとどまる。出版社や正確な刊行形態も記事からは確認できなかった。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/Art",
+      "Theme/Education"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "itsnicethat",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "notun-designing-for-damage-in-cyclone-prone-bangladesh-2026",
+    "title": "NOTUN – Designing for damage in cyclone-prone Bangladesh",
+    "summary": "壊れない建物でなく壊れても直せる集落を、シミュレーションと進化計算で設計し、デンプン結合ブロックに植えたベチバーの根で土を固める",
+    "client": "Chuyu Zhang, Darya Holub, Hankai Ye（AA Emergent Technologies and Design 修士研究）",
+    "agency": "Architectural Association School of Architecture",
+    "categories": [
+      "テクノロジー×アイデア",
+      "社会包摂"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.creativeapplications.net/member/notun-designing-for-damage-in-cyclone-prone-bangladesh/",
+    "thumbnail": "/thumbnails/notun-designing-for-damage-in-cyclone-prone-bangladesh-2026.jpg",
+    "videoId": "",
+    "overview": "NOTUN(ベンガル語で「新しい」)は、バングラデシュ沿岸部の洪水とサイクロンを前提に、被害が出ても修復できる集落をつくる提案。AA School(Architectural Association School of Architecture)のEmergent Technologies and Design修士で、Chuyu Zhang、Darya Holub、Hankai Yeが手がけた。対象地はパトゥアカリ県カラパラ。竹の高床住宅と、砂・粘土・ジャガイモデンプンのブロックによる堤防で構成する。",
+    "background": "沿岸部では毎年のモンスーン洪水とサイクロンの風が軽量な住宅を壊し、再建に使える時間も資源も少ない。そこで本プロジェクトは「壊れない」ことを目標にせず、被害を吸収・抑制し、再建を支える仕組みを目指した。2024年のMSc論文兼スペキュラティブ・デザイン研究で、ディレクターはElif Erdine博士とMilad Showkatbakhsh博士。",
+    "execution": "降雨シミュレーションで貯水池の位置を決め、エージェントベースモデルと多目的最適化で水路網を生成した。集落では風洞CFDで配置と形状を検証し、選んだ案では住宅群内の風速が約30%低下した。住宅は地元産の竹、金属コネクタ、交換可能な編み込みパネルで、壊れた部材だけを取り替えられる。堤防ブロックは砂・粘土・デンプン製で、開口部をベチバー草の根が通り、結合材が分解するにつれ土を固める。実寸ブロックはCNC型で製作し、Meta Quest 3による施工支援も試した。",
+    "evaluationImpact": "耐災害を「強度」から「修復可能性」へ読み替え、風・水・材料の各スケールを計算設計で一貫させた点が評価できる。コンクリートで固めず、分解する結合材と植物の根に土の補強を引き継ぐ仕組みは、他の防災・土木にも転用できる。一方、確認できたのは修士の研究提案で、実地での建設や公式な受賞は確認できなかった。",
+    "relatedWorks": [
+      {
+        "title": "NOTUN(AA Emergent Technologies and Design 公式プロジェクトページ)",
+        "description": "同じ3人による修士プロジェクトの大学側ページ。サイクロン被害地向けの竹と接続部材、ベチバー草を支えるバイオ素材のレンガを扱う。",
+        "url": "https://www.emtech.aaschool.ac.uk/notun"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Tech/Data",
+      "Form/Product",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "creativeapplications",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "wwf-belgium-cards-for-nature-pok-mon-2026",
+    "title": "WWF Belgium: Cards for Nature（Pokémon等のカード寄付オークション）",
+    "summary": "眠っているポケモン等のトレカを現金代わりに寄付してもらい、オークション収益を自然保護に充てる募金",
+    "client": "WWF Belgium",
+    "agency": "Brigada",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "社会包摂"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/wwf-belgique-cartes-pokemon-protection-animaux-20261022",
+    "thumbnail": "/thumbnails/wwf-belgium-cards-for-nature-pok-mon-2026.jpg",
+    "videoId": "",
+    "overview": "WWFベルギーが、コレクターの手元に眠るポケモン、マジック:ザ・ギャザリング、遊戯王などのトレーディングカードを寄付として集める「Cards for Nature」。集めたカードは2027年初頭にオンラインオークションで売却し、収益の全額を現地の保護プロジェクトに充てる。WWFベルギー創設60周年の取り組みで、企画はBrigadaが手がけた。",
+    "background": "トレーディングカードは大人のコレクターを中心に資産価値を持つ一方、手元で眠ったままのものも多い。WWFはこの『使われていない価値』に着目し、現金ではなくカードという形での寄付を呼びかけた。資金は、タイのトラ、コンゴ盆地のマウンテンゴリラ、ベルギーのカワウソといった保護活動に使われる。",
+    "execution": "寄付者はnature.wwf.beのフォームから申し込み、bpostの協力による無料の発送ラベルを受け取り、梱包してbbox(受取ボックス)に預ける。5ユーロ以上の価値のカードが推奨で、価値はCardmarketやPriceChartingで調べられる。2026年10月17〜18日にはブリュッセルのHeroes Worldフェスティバルで直接の受付も行った。受付は2026年12月31日まで。寄付者にはオリジナルの非売カード(カワウソのOlga、トラのGamma、ゴリラのUzima)が、在庫限りで贈られる。",
+    "evaluationImpact": "『カードを現金の代わりに寄付する』という一文で伝わる企画で、既存のコレクター文化に募金の入口を作った点が特長。無料の発送ラベルやbboxの活用で、寄付の手間を下げている。一方、記事時点では集まったカードの量や落札額などの成果は公表されておらず、受賞も確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Event",
+      "Theme/SocialGood",
+      "Theme/Entertainment"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "red-mud-studio-thusthat-2026",
+    "title": "Red Mud（Studio ThusThat）",
+    "summary": "アルミ精錬の有害廃棄物「赤泥」を陶土と釉薬に変え、スリップキャストで器やタイルにした素材研究",
+    "client": "Studio ThusThat（Kevin Rouff, Paco Böckelmann）",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.designboom.com/design/studio-thusthat-rusty-red-waste-aluminum-production-delicate-ceramics/",
+    "thumbnail": "/thumbnails/red-mud-studio-thusthat-2026.jpg",
+    "videoId": "",
+    "overview": "オランダ・アムステルダム拠点のStudio ThusThat(Kevin Rouff、Paco Böckelmann)による継続的な研究プロジェクト。アルミナ抽出の副産物であるボーキサイト残渣(赤泥)を処理し、陶器の素地と釉薬の両方に使って、器・食器・花器、さらに実験的な建材をつくる。素材の赤みがそのまま色になる。",
+    "background": "赤泥は世界で年間1億5000万トン超が発生し、備蓄は40億トン超とされる。研究開始時の再利用率は約3%(スタジオ見解)。強アルカリ性で有害物質を含みうるため扱いが難しく、産地ごとに性質も異なる。2019年にロンドンのRoyal College of Artで始まり、ベルギーのKU Leuvenの材料科学者と研究を進めた。",
+    "execution": "赤泥を処理して組成を調整し、スリップキャストなど伝統的な成形法に乗せられる陶土にした。釉薬にも赤泥由来の成分を使う。成果物は彫刻的な器、食器、精錬所の形に着想を得た細長い花器。ロンドンの建築事務所Tonkin Liuとは、屋根や沿岸再生向けに水を溜めたり植物を保持できる凹凸付きのモジュラータイルも試している。",
+    "evaluationImpact": "廃棄物を「美しい日用品」に変えて、素材自体が問題の大きさを語る点が評価できる。伝統技法に載せたことで量産や他素材への転用の道筋も見える。一方、建材は実験段階で、処理コストや精錬所と需要地の距離、輸送費、規制が課題とされ、製造パートナーと大規模化が必要。",
+    "relatedWorks": [
+      {
+        "title": "Red Mud Table Set 2019",
+        "description": "Design Museum Gentの所蔵する赤泥の食器セット",
+        "url": "https://www.designmuseumgent.be/en/object/red-mud-table-set"
+      },
+      {
+        "title": "RCA designers transform toxic industrial waste into ceramic tableware",
+        "description": "Dezeenによる赤泥陶器の紹介記事",
+        "url": "https://www.dezeen.com/?p=1327161"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Theme/Sustainability",
+      "Theme/Art"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "designboom",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "sandbag-castle-yvonne-mak-2026",
+    "title": "Sandbag Castle（Yvonne Mak）",
+    "summary": "洪水用の土嚢を10種超の低炭素コンクリート製モジュールに置き換え、川に浮かべた城で「次に選ぶコンクリート」を問う作品。",
+    "client": "Yvonne Mak",
+    "agency": "TBI ほか素材・技術パートナー",
+    "categories": [
+      "空間体験",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.designboom.com/art/sandbag-castle-sustainable-concrete-alternatives-floating-installation-eindhoven-yvonne-mak/",
+    "thumbnail": "/thumbnails/sandbag-castle-yvonne-mak-2026.jpg",
+    "videoId": "",
+    "overview": "ビジュアルアーティストのYvonne Makによる、アイントホーフェンのDommel川に浮かぶインスタレーション。幅5m・高さ3mの城を、土嚢の形をした数百個のコンクリートモジュールで積み上げている。素材は焼成粘土、ジオポリマー、自己修復コンクリート、再生骨材など10種類を超える低炭素・実験的配合。Van Abbemuseum Caféの隣に設置され、Dutch Design Weekの公式プログラムとして2026年10月17〜25日に無料公開される。",
+    "background": "セメント製造はCO₂排出が大きく、従来のコンクリート建設は環境負荷が高い。一方でコンクリートは堤防など防護インフラにも広く使われており、単純にやめることはできない。作品は「コンクリートを使うな」ではなく「私たちは未来の建築にどんなコンクリートを選ぶのか」を問う立場をとる。洪水対策の仮設バリアである土嚢が、この問いを示すモチーフとして選ばれている。",
+    "execution": "洪水用の土嚢という形を、低炭素コンクリートの実物サンプルに置き換えて積み上げ、城として川に浮かべた。10種以上のアプローチを一つの構造物に並べ、それぞれ建設の環境負荷に別の角度から取り組む素材を見比べられるようにしている。頂部には海水浴場の注意喚起を思わせる赤い警告旗があり、水・橋・植物・手の記号を入れた独自の紋章を掲げる。主要パートナーはTBIで、ほかに素材・技術の協力者が参加している。",
+    "evaluationImpact": "「土嚢を実物の素材見本に読み替える」という一文で言える企画で、抽象的になりがちな低炭素コンクリートの選択肢を、触れる大きさの構造物として一度に比較できる点が評価できる。洪水防御の象徴である土嚢と素材の議論が結びつき、建設業界とデザイン分野の対話を促す。なお、受賞や、浮かべる具体的な工法、各配合のCO₂削減数値は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Sandbag Castle: The Future of Concrete Is Now（Dutch Design Week公式プログラム）",
+        "description": "Dutch Design Week 2026の公式プログラム掲載ページ。展示期間は2026年10月17〜25日",
+        "url": "https://ddw.nl/en/programme/sandbag-castle-the-future-of-concrete-is-now"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Theme/Art",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "designboom",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "rocastle-arsenal-fc-2026",
+    "title": "Rocastle（Arsenal FC 特注ブラックレター書体）",
+    "summary": "アーカイブの紋章を手がかりに約4年かけ全字形を手描きした、Arsenal初の特注ブラックレター3ウェイト書体。",
+    "client": "Arsenal Football Club",
+    "agency": "terrain（David Rudnick, Léa Bruneau）",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.itsnicethat.com/features/david-rudnick-johnnie-campbell-arsenal-rocastle-typeface-graphic-design-spotlight-121026",
+    "thumbnail": "/thumbnails/rocastle-arsenal-fc-2026.jpg",
+    "videoId": "",
+    "overview": "Arsenal FCが、デザイナーのDavid Rudnickと Léa Bruneau（terrain）と共に制作した特注ブラックレター書体「Rocastle」。3ウェイトで構成され、2026年10月9日にロンドンのDesign Museumで公開された。「Arsenal by Design」展（10月10〜11日）に合わせた発表で、名称は1980〜90年代にクラブで277試合に出場し2001年に亡くなった選手David Rocastleに由来する。",
+    "background": "Arsenalのエンブレム周りには既にブラックレター調の文字があったが、完全な書体ではなかった。クラブ側ではCreative Studio責任者のJohnnie Campbellが担当し、サポーターが保有するメモラビリア、ゴシック調の紋章、紙のシーズンチケット、マッチデープログラムなどを調査した。制作は4年以上に及び、改稿を含めると5年に及んだとRudnick本人は語っている。",
+    "execution": "Rudnickが文字を手描きし、ほぼ全てのグリフをこの書体専用に作り込んだ。「G」だけで約2,000回の試作を重ねたという。現代的でイングランドらしく、ファンに馴染みがありつつ装飾過多や派手さを避けることを狙いとした。インライン書体やペナントの旗がなびく形を思わせるスワッシュも備える（Fast Company報道）。",
+    "evaluationImpact": "クラブがファンの記憶や歴史的資料を一次素材に、既存ロゴの断片を独立した書体体系へ拡張した点が特徴。用途はマッチデーではなく、ファッション・音楽・アートなどカルチャー領域や記念的な場面に絞り、クラブの既存書体（Northbank、Chapman）とは役割を分けている。Rudnickが理想の使い方に挙げたのは、ファンが書体をタトゥーにすることだった。",
+    "relatedWorks": [
+      {
+        "title": "Rocastle（Design Compass）",
+        "description": "Arsenalの歴史を言葉にしたブラックレター書体としての紹介記事",
+        "url": "https://designcompass.org/en/2026/10/13/arsenal-rocastle-blackletter-typeface-david-rudnick/"
+      },
+      {
+        "title": "Arsenal's new Rocastle typeface（Fast Company）",
+        "description": "インラインウェイトやスワッシュなど書体の特徴を解説した記事",
+        "url": "https://www.fastcompany.com/91624387/arsenal-rocastle-new-font"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/Sports",
+      "Theme/Art"
+    ],
+    "gateCriterion": "B",
+    "sourceId": "itsnicethat",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "apple-music-new-logo-fred-again-2026",
+    "title": "Apple Music new logo（Fred Again × 鉱物油の振動）",
+    "summary": "作曲した音を鉱物油の中で振動に変え、その波紋の撮影からApple Musicの新ロゴを形づくった",
+    "client": "Apple Music",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.creativeboom.com/news/apple-musics-new-logo-was-shaped-by-fred-again-and-a-bath-of-mineral-oil/",
+    "thumbnail": "/thumbnails/apple-music-new-logo-fred-again-2026.jpg",
+    "videoId": "",
+    "overview": "Apple Musicが2015年のサービス開始から11年で初めてアイデンティティを刷新した。コンセプトは「made by sound」。英国のプロデューサーFred Againとの楽曲を音符ごとに分け、鉱物油に沈めた振動装置で鳴らし、その波紋を撮影して音符アイコンの形のもとにした。ワードマークはAppleのシンボルとSF Proをもとにした小文字の太字書体を組み合わせている。",
+    "background": "Apple Musicは2015年の開始以来、ロゴを変えてこなかった。新ロゴの一部は9月にロンドンの新ライブ会場「Apple Music Hall」の告知でも先に見えていた。制作は長年のパートナーであるTBWA\\Media Arts Labが担当した。Fred AgainとNEST Acousticsが楽曲を手がけた。通常のビジュアルから音を当てる順序を逆にし、音を起点にビジュアルを作るという狙いがあった。",
+    "execution": "Fred AgainとNEST Acousticsが一つの楽曲を個々の音符に分解した。各音をトランスデューサー(音の信号を物理的な振動に変える装置)で鉱物油の中に伝え、生じた波紋の動きを撮影して、その映像を新しい見た目の基礎にした。数か月の試行が必要で、音数が多すぎたり音が高すぎたりすると油の動きが大きくなり、像が読めなくなったため、音と映像を同時に調整した。同じ楽曲が新しいサウンドシグネチャーにもなる。",
+    "evaluationImpact": "「音がどう見えるか」を想像で描くのでなく、音楽を物理的に記録した結果としてロゴの形を得た点が特徴。ビジュアルと音の両方を一つの楽曲から作ることで、ロゴとサウンドロゴが一体になる。Appleのデザイン言語Liquid Glassの中に収まる。メイキング映像はJoe Jacksonが監督した。iOS 27.2のアプリ内にも反映される予定。一方、Creative Bloqは新ロゴへの賛否が割れていると報じている。受賞は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Form/Product",
+      "Theme/Music"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "creativeboom",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "capture-resemble-simulating-self-aware-machine-behaviour-202",
+    "title": "Capture / Resemble – Simulating Self-Aware Machine Behaviour",
+    "summary": "来場者の顔特徴点を記録しXYZアクチュエータの抽象的な動きへ変換、無人時は記録を夢のように再解釈する彫刻。",
+    "client": "Andreas Lutz",
+    "agency": "KASUGA",
+    "categories": [
+      "テクノロジー×アイデア",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.creativeapplications.net/project/capture-resemble-simulating-self-aware-machine-behaviour/",
+    "thumbnail": "/thumbnails/capture-resemble-simulating-self-aware-machine-behaviour-202.jpg",
+    "videoId": "",
+    "overview": "ドイツのメディアアーティストAndreas Lutz(KASUGA)による、来場者の顔の特徴や表情を捉えて抽象的な動きに変換するインタラクティブ彫刻。AIエージェントのような、やり取りごとに適応する振る舞いを模倣する。2026年3月にフランス・ディジョンのSLASH SLASH Festivalで発表され、2026年10月13日にCreative Applications Networkで紹介された。",
+    "background": "Lutzは2012年にKASUGAを設立し、インタラクション・サウンド・デザインの実験的領域で音響映像インスタレーションを制作してきた。本作で使うDMXリニアアクチュエータは、2016年の作品Hypergradientにつながる系譜として2019年頃から自スタジオで開発してきたもの。機械の「自己認識的な振る舞い」を擬似的に作る試みである。",
+    "execution": "1080pのRGBカメラ映像をTouchDesignerのMediaPipeに通し、418点の3D顔特徴点を抽出、うち24点をPan/Tilt CHOPで追跡する。記録は30fpsの32bit TIFFとして保存し、「resemble」段階で再生、CHOPに戻してArt-Net経由でアクチュエータへ送る。各機にはESP32があり、パン/チルトのサーボとLEDリングを駆動する(1台12 DMXチャンネル)。一定間隔で反応を止め、蓄積したアーカイブを再評価する「夢」の状態に入る。",
+    "evaluationImpact": "人ごとに異なる顔の動きを潜在空間(latent space)で探り、異なる人々の間に共通する動きの語彙、いわば普遍的な人間と機械の振付を見つけようとしている。記録・比較・再解釈という機械の「記憶」の動きを、顔という具体データから物理的な動きとして見せる点が特徴。受賞は確認できていない。背面の画面にはキャプチャと処理のデータが表示される。",
+    "relatedWorks": [
+      {
+        "title": "Hypergradient",
+        "description": "Andreas Lutzの2016年作品。本作のアクチュエータの前身にあたる。文化庁メディア芸術祭で審査委員会推薦作品(第20回)に選出されたとされる。",
+        "url": "https://www.bunka.go.jp/j-mediaarts-festival/award/profile/andreas-lutz/index.html"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Tech/Device",
+      "Form/Installation",
+      "Theme/Art"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "creativeapplications",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
     "id": "gta-vi-vice-city-2026",
     "title": "GTA VI: Vice City 架空ブランドの偽ラグジュアリー広告（マイアミ）",
     "summary": "ゲーム内の架空ブランド広告を実在の高級ブランド広告に見せ、マイアミの街頭で作品世界に読み替えた",
@@ -28971,7 +29301,7 @@
     ],
     "link": "https://tenjin.keizai.biz/headline/50/",
     "thumbnail": "/thumbnails/pocari-sweat-2005.jpg",
-    "videoId": "",
+    "videoId": "2n-agea4_fg",
     "overview": "大塚製薬がPOCARI SWEATのプロモーションとして実施したスカイタイピング広告。5機の軽飛行機が編隊を組んで飛行し、人工的に発生させる飛行機雲を文字の形に描く「スカイタイピング」の手法で、「POCARI SWEAT」の文字を全長約4.5kmにわたり大空に描き出した。",
     "background": "地上の看板や交通広告とは異なるスケールで生活者の目に留まる広告表現として、屋外広告の一形態であるスカイタイピングが用いられた。広い空を舞台に巨大な文字を描く手法は視認性が高く、地域住民の話題化を狙う施策として企画された。",
     "execution": "5機の飛行機が高度・速度・タイミングを揃えて編隊飛行し、各機が担当する文字のパーツをそれぞれ飛行機雲で描画。地上から見上げると「POCARI SWEAT」の文字列が全長約4.5kmにわたって空に浮かび上がる構成とした。",
