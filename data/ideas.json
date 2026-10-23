@@ -22147,5 +22147,221 @@
         "desc": "60種類以上の音声・音楽AIをPythonなしで手元のPCで動かせる推論エンジン。"
       }
     ]
+  },
+  {
+    "id": "2026-10-23-1",
+    "date": "2026-10-23",
+    "title": "苔コーンを歩く3D庭園",
+    "pattern": "文脈×技術",
+    "seed": "「境界緑地 ─ 苔×公共物 ─」で苔が育つ三角コーンやブロック塀を、Insta360 X6 Spatial Captureで撮って歩ける3D空間にすれば、成長記録が街の「見に行く散歩コース」になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "mosstopia-2026",
+        "title": "境界緑地 ─ 苔×公共物 ─（MOSSTOPIA）",
+        "desc": "放置された三角コーンやブロック塀を苔の宿主にして、管理不要の緑化に変える提案。"
+      },
+      {
+        "type": "tech",
+        "id": "insta360-x6-spatial-capture",
+        "title": "Insta360 X6 Spatial Capture",
+        "desc": "360度カメラで撮るだけで、歩き回れる3D空間に自動変換する新機能。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-23-2",
+    "date": "2026-10-23",
+    "title": "口の動きで変わる社名ロゴ",
+    "pattern": "文脈×技術",
+    "seed": "「Oi Responsive Logo」の声で形が変わるロゴを、Live Avatarの何時間も喋り続ける顔に重ねたら、ロゴ自身が語り手になる終日ライブ放送ブランドが作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "oi-responsive-logo-2016",
+        "title": "Oi Responsive Logo",
+        "desc": "マイクの音量や音程に合わせて形と色が変わる通信会社のロゴ。"
+      },
+      {
+        "type": "tech",
+        "id": "live-avatar",
+        "title": "Live Avatar",
+        "desc": "1枚の顔写真と音声から、長時間しゃべり続ける映像アバターを作るAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-23-3",
+    "date": "2026-10-23",
+    "title": "ペダル操作で咲く種の紙",
+    "pattern": "文脈×技術",
+    "seed": "「Seeds（種入り紙の雑誌広告）」の「植えると咲く」体験に、bFaaaPの頭の傾き入力を掛け、体が不自由でも傾きで水やりして花を育てる参加型の広告ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "seeds-2019",
+        "title": "Seeds（種入り紙の雑誌広告）",
+        "desc": "花の種を漉き込んだ紙の雑誌広告で、土に植えると花が咲く。"
+      },
+      {
+        "type": "tech",
+        "id": "bfaaap",
+        "title": "bFaaaP (barrier-Free assist as a Pedal)",
+        "desc": "頭の傾きだけでピアノのペダルを操作できるオープンソースの支援楽器。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-23-4",
+    "date": "2026-10-23",
+    "title": "字幕が動き回る3D空間",
+    "pattern": "文脈×技術",
+    "seed": "「Caption with Intention」の感情を伝える動く字幕を、Puffin-Worldが作る歩き回れる3D空間に置き、話者の位置や距離で字幕が近づき揺れる没入型の聞こえの体験にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "caption-with-intention-2025",
+        "title": "Caption with Intention",
+        "desc": "色や動きで感情と話者を伝える、ろう者・難聴者向けの新しい字幕。"
+      },
+      {
+        "type": "tech",
+        "id": "puffin-world",
+        "title": "Puffin-World",
+        "desc": "1枚の画像やテキストから、自由に歩ける整合性ある3D空間を生成するモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-23-5",
+    "date": "2026-10-23",
+    "title": "偽女王を参照画像で再現",
+    "pattern": "文脈×技術",
+    "seed": "「Deepfake Queen」の乗っ取り放送を、MSR for LTX-2.5の複数参照で「本物の素材だけから合成した部分」を画面に明示する透明性つきの偽映像に進化させられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "deepfake-queen-2020-alternative-christmas-message-2020",
+        "title": "Deepfake Queen: 2020 Alternative Christmas Message",
+        "desc": "ディープフェイクの女王でクリスマスメッセージを乗っ取り、情報操作を警告した放送。"
+      },
+      {
+        "type": "tech",
+        "id": "msr-for-ltx-2-5",
+        "title": "MSR (Multiple Subject Reference) for LTX-2.5",
+        "desc": "最大5枚の参照画像から複数の人物や小物を混同せず動画に再現する技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-23-6",
+    "date": "2026-10-23",
+    "title": "スプラット化した人型ロボ舞台",
+    "pattern": "技術×技術",
+    "seed": "SONICが動かす人型ロボの全身動作を、MetalSplatでMac上学習したGaussian Splat空間に歩かせ、Splatlightのライトで影を落とせば、実写質感のロボ劇が作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "sonic",
+        "title": "SONIC（GR00T Whole-Body Control）",
+        "desc": "人型ロボの歩行や跳躍などの全身動作を一体で担う動きの基盤モデル。"
+      },
+      {
+        "type": "tech",
+        "id": "metalsplat",
+        "title": "MetalSplat",
+        "desc": "NVIDIA GPUなしでMac上でGaussian Splatを学習できるOSS。"
+      },
+      {
+        "type": "tech",
+        "id": "splatlight",
+        "title": "Splatlight",
+        "desc": "ガウシアンスプラットにBlenderのライトへ反応する影を付けるアドオン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-23-7",
+    "date": "2026-10-23",
+    "title": "1枚絵が走る世界の撮影",
+    "pattern": "技術×技術",
+    "seed": "AlayaWorldの1枚画像から続く世界を、CEB SAM 3D Body v4で撮った人の動きでモーキャプ化したキャラに歩かせたら、手描き風景を舞台に即興演技ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "alayaworld",
+        "title": "AlayaWorld",
+        "desc": "1枚の画像から1分以上遊べる動く映像世界を生成し続ける世界モデル。"
+      },
+      {
+        "type": "tech",
+        "id": "ceb-sam-3d-body-v4",
+        "title": "CEB SAM 3D Body v4 (Blender addon)",
+        "desc": "動画から3D人体ポーズを推定しBlenderにモーキャプとして取り込むアドオン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-23-8",
+    "date": "2026-10-23",
+    "title": "HTML動画を数秒で量産生成",
+    "pattern": "技術×技術",
+    "seed": "HyperFramesのHTMLで書く動画に、Video Delta Netの再生より速い生成を掛けたら、視聴者のクリックごとに続きが即座に作られる分岐型の動画広告になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "hyperframes",
+        "title": "HyperFrames",
+        "desc": "HTMLを書くだけで動画になるオープンソースのフレームワーク。"
+      },
+      {
+        "type": "tech",
+        "id": "video-delta-net",
+        "title": "Video Delta Net (VDN-H3)",
+        "desc": "動画生成AIの計算を高速化し、再生時間より速く動画を作れる仕組み。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-23-9",
+    "date": "2026-10-23",
+    "title": "ロゴを溶かす熱の転用",
+    "pattern": "転用",
+    "seed": "Onesplatの1枚画像から立体を作る力を、写真ではなく「Runblock Brand Identity」の熱で溶けるロゴに使えば、ロゴが夏の気温で溶けていく3Dを生成できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "onesplat",
+        "title": "Onesplat",
+        "desc": "1枚の画像から数秒でGaussian Splatを作りHoudiniで使えるプラグイン。"
+      },
+      {
+        "type": "case",
+        "id": "runblock-brand-identity-2026",
+        "title": "Runblock Brand Identity",
+        "desc": "熱で溶ける圧力を文字構造に組み込んだ日焼け止めのロゴタイプ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-23-10",
+    "date": "2026-10-23",
+    "title": "議論を舞台にする社会実験",
+    "pattern": "転用",
+    "seed": "OpenFilmのWebページとして動画を作る仕組みを、「WORLDS APART」のような分断した2人の対話記録を、閲覧者が操作できる編集可能な映像へ使えば、議論の再編集ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "openfilm",
+        "title": "OpenFilm",
+        "desc": "コーディングAIにWebページとして動画を作らせ、ブラウザで手直しできるツール。"
+      },
+      {
+        "type": "case",
+        "id": "heineken-worlds-apart",
+        "title": "WORLDS APART",
+        "desc": "共通点のない2人が家具を組み立て、立場の違いを知る社会実験広告。"
+      }
+    ]
   }
 ]
