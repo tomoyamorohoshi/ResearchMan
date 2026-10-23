@@ -1,5 +1,167 @@
 [
   {
+    "id": "comfyui-rmbg-v3-3-0",
+    "title": "ComfyUI-RMBG v3.3.0（VRMBG 動画マッティング＋Canvas）",
+    "org": "1038lab（コミュニティ開発）",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "GenVideo"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "ComfyUIで背景除去・切り抜きを行う定番ノード集が v3.3.0 で初の動画ノードを追加。前のフレームを手がかりに切り抜くため、ちらつきの少ない動画の背景除去ができる。",
+    "point": "静止画の切り抜きでは人気だったノード集に、動画用の切り抜きノード（VRMBG）が加わりました。動画の背景除去は、1コマずつ別々に切り抜くと輪郭がチカチカ揺れる問題が付きものです。このノードは「直前のコマで人物がどこにあったか」を記憶しながら次のコマを切り抜くので、髪の毛や服の縁の揺れが抑えられます。さらに最大5枚のレイヤーを重ねて不透明度や位置を調整できる Canvas ノードも入り、ComfyUIの中だけで「切り抜き→合成」まで完結します。広告・体験づくりでは、撮影済みの人物素材をグリーンバックなしで別の背景に載せる、生成AI動画の人物だけを抜いて別素材と合成する、ライブ展示用の映像素材を手早く下ごしらえする、といった使い方が見込めます。ノード自体は無料で、ComfyUIの既存ワークフローに差し込めるのも強みです。",
+    "detail": "仕組み：VRMBG-3.0（BRIA AI の動画向け切り抜きモデル）は、各コマを単独で処理せず、前のコマで検出した前景の特徴を引き継ぎながら次のコマを処理します（自己回帰的な状態追跡）。パラパラ漫画で前のページを見ながら次の絵を描くようなイメージで、輪郭の揺れが減ります。長い動画は小さなかたまり（チャンク）ごとに処理し、かたまりごとにVRAMを解放するため、長尺でもメモリが溢れにくい設計です。そのほか、髪・毛皮・ガラス・動きでぼけた縁を扱う FeyNoBg、バウンディングボックスから高精細に切り抜く Finegrain Box Segmenter、YOLO26-seg 対応のセグメント機能も追加されています。\n\n従来との違い：これまでの動画切り抜きは、静止画モデルをコマごとに回して後から平滑化するか、専用ツールに書き出す必要がありました。今回はComfyUIのノードとして時間方向の整合性を持つモデルが直接使え、Canvasノードで合成まで同じグラフ内で完結します。なお更新内容は主にノード集の機能追加で、元モデルはBRIA AI製です。\n\n使うには：ComfyUIの custom_nodes に GitHub リポジトリをクローンし、requirements.txt を ComfyUI の Python 環境へインストールして再起動します。VRMBG-3.0 の重みは Hugging Face の briaai/VRMBG-3.0 から（ゲート承認後に）手動で取得し、ComfyUI/models/RMBG/VRMBG-3.0/ に置きます。ノード自体は無料のOSS（GPL-3.0）ですが、商用利用はBRIAのモデルライセンスの確認が必要です。NVIDIA GPU環境でのFP16動作が前提で、ComfyUIの基本操作ができれば導入できます。",
+    "license": {
+      "spdx": "GPL-3.0",
+      "commercial": "conditional",
+      "note": "ノード本体はGPL-3.0。VRMBG-3.0の重みはBRIA AIのライセンス条件に従う必要があり、Hugging Faceのゲート付きリポジトリから手動ダウンロードが必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/1038lab/ComfyUI-RMBG"
+      },
+      {
+        "kind": "post",
+        "url": "https://comfyui-wiki.com/en/news/2026-10-21-comfyui-rmbg-v3-3-0"
+      },
+      {
+        "kind": "post",
+        "url": "https://github.com/1038lab/ComfyUI-RMBG/blob/main/update.md#v330-20261020"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/comfyui-rmbg-v3-3-0.jpg",
+    "relatedWorks": [
+      {
+        "title": "BRIA VRMBG-3.0",
+        "description": "BRIA AIの時間方向の一貫性を持つ動画向け背景マッティングモデル",
+        "url": "https://huggingface.co/briaai/VRMBG-3.0"
+      },
+      {
+        "title": "ComfyUI-VideoHelperSuite",
+        "description": "ComfyUIで動画の読み込み・書き出しを扱う定番ノード集",
+        "url": "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "taomate-h3-fl2va",
+    "title": "TaoMate-H3-FL2VA",
+    "org": "Alibaba TaoLive AIGC Team",
+    "type": "Research",
+    "domains": [
+      "GenVideo",
+      "Audio/Music"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "最初のコマと最後のコマを指定すると、その間をつなぐ映像と音声を同時に、ほぼリアルタイムでストリーミング生成するMiniMax H3用の3ステップLoRA。",
+    "point": "「この絵から始まって、この絵で終わる」という開始コマと終了コマを決めると、その間の映像と音声を一緒に作ってくれる技術です。普通の動画生成は一度に数秒を作って終わりですが、これは短いブロックを次々に生成しながら、音と映像の記憶（KVキャッシュ）を引き継ぐので、30秒（770コマ）級の長さでも前後がつながります。チームは「第一・最終フレーム指定のリアルタイム・ストリーミング型として初」と主張しています。広告・体験づくりでは、ライブ配信用のデジタルヒューマンが決めたポーズで話し始めて決めポーズで終わる、展示映像のループ素材を始点と終点を揃えて作る、といった用途が考えられます。公式の実行環境は大規模なので、まずはComfyUIでの変換版を試すのが現実的です。",
+    "detail": "仕組み：MiniMax H3は映像と音声を同じ時間軸で作る大型モデルです。TaoMate-H3は、これを3回のノイズ除去だけで1ブロック生成する軽量なLoRA（追加学習の小さな差分ファイル）で高速化し、ブロックを順に生成しながら過去の音と映像の記憶を保持します。FL2VAはそこに最初と最後のフレームの指定を加えたもので、始点・終点にきちんと着地する点が特徴です。公式の例は24fps・768×1376で、30秒モードは約770コマを3回のリクエストに分けて作ります。\n\n従来との違い：従来のフレーム指定付き動画生成は数秒の固定長を一括生成するのが中心で、長尺にすると音と映像がずれたり、つなぎ目が目立ったりしました。これはストリーミング生成で記憶を引き継ぎ、映像と音声を同時に扱う点が新しい部分です。論文はアバター生成向けのTaoMateで、arXiv 2607.24359 に出ています。\n\n使うには：公式ランタイムは Linux・NVIDIA Hopper世代（SM90）GPU が前提で、検証環境は H20 96GB を8枚という大規模構成です。個人環境向けには、ComfyUIの標準MiniMax H3 Image to Video ノード（first_frame / last_frame 入力あり）にLoRA変換版を載せる方法が紹介されており、Kijai氏らが変換版を公開しています。ベースのMiniMax H3モデルを別途ダウンロードする必要があり、ライセンスはMiniMax H3 Community Licenseに従います。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "MiniMax H3 Community License Agreement に従う。商用可否・条件は同ライセンス本文の確認が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/TaoLiveAIGC/TaoMate-H3"
+      },
+      {
+        "kind": "project",
+        "url": "https://huggingface.co/TaoLiveAIGC/TaoMate-H3-FL2VA"
+      },
+      {
+        "kind": "video",
+        "url": "https://github.com/user-attachments/assets/15d276f9-02c0-49c6-b98f-98656c36164a"
+      },
+      {
+        "kind": "post",
+        "url": "https://comfyui-wiki.com/en/news/2026-10-15-taomate-h3-fl2va"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/taomate-h3-fl2va.jpg",
+    "relatedWorks": [
+      {
+        "title": "MiniMax H3",
+        "description": "映像と音声を同時生成するベースモデル",
+        "url": "https://huggingface.co/MiniMaxAI/MiniMax-H3"
+      },
+      {
+        "title": "MiniMax-H3 experimental (Kijai)",
+        "description": "ComfyUI向けの変換版LoRAなどを集めたリポジトリ",
+        "url": "https://huggingface.co/Kijai/MiniMax-H3-experimental"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "ptdfor-minimax-h3",
+    "title": "PTD（Parametric Trajectory Distillation）for MiniMax-H3",
+    "org": "EPFL VITA Lab / NVIDIA / Stanford（Lan Feng ほか）",
+    "type": "Research",
+    "domains": [
+      "GenVideo"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "約33Bの映像＋音声同時生成モデルMiniMax-H3を、LoRAだけで4〜6ステップに蒸留し、50ステップの元モデルより約7〜11倍速く生成できるようにした手法とComfyUI対応コード。",
+    "point": "大きな動画生成モデルは、ノイズから映像を作るのに何十回も計算を繰り返すため遅いのが悩みです。PTDは、その計算回数を4回または6回に減らしつつ、品質を保つ蒸留（先生モデルのやり方を生徒モデルに教える）手法です。論文では、5秒・1344×768・音声付きの1クリップが、元の50ステップの343秒から4ステップで31秒、6ステップで46秒になります（H100を8枚使用、VAEデコード除く）。盲検の比較では、既存の4ステップ手法より66%の票で好まれ、動きの自然さと多様性も高いと報告されています。広告・体験づくりでは、構図案を何本も短時間で試す、展示場でその場で映像を作る、といった「待ち時間が企画の制約になる」場面で効いてきます。公式サイトには1分53秒の紹介映像と短編4本が掲載されています。",
+    "detail": "仕組み：通常の蒸留は「先生の1点での傾き（速度）」だけを真似させます。PTDは生徒モデルに、各ステップで「進む先の終点」と「そこへ向かう曲線の係数」を予測させ、先生の速度を曲線の途中数か所で読み取って最小二乗で合わせます。曲線は学習のための足場で、推論時は終点へ一直線にジャンプするだけなので速さは損なわれません。ステップごとに別々の小さなLoRAを持つ構成です。\n\n従来との違い：同じ4ステップ蒸留のLightX2V DMDと比較して、盲検評価（10名・74プロンプト・82票）で66%の票を得ています。ただし票数は少なく、信頼区間は54〜76%と幅があります。\n\n使うには：コードはGitHub（release/comfyui-inference ブランチ）で、CLIとComfyUIネイティブノードの両方に対応します。ただしこのブランチはコミット数が少なく、検証済みはComfyUIの4ステップ文字→動画のみ。6ステップや画像条件付きはフルモデルでは未検証と明記されています。重みはHugging Faceの epfl-vita/PTD-weights と、Taobaoチームの MiniMax-H3-PTD-LoRAs（8/4ステップ）から入手でき、これらはMiniMax H3 Community Licenseです。ベースモデルを含めて約140GBの重みが必要で、報告はH20クラスGPUでの検証です。個人のGPUで試すには、コミュニティの量子化対応ローダーを待つのが現実的です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "推論コードはApache-2.0。ベースモデル・PTD重み・出力はMiniMax H3 Community License Agreementに従う。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/vita-epfl/PTD-inference"
+      },
+      {
+        "kind": "project",
+        "url": "https://alan-lanfeng.github.io/PTD/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.11498"
+      },
+      {
+        "kind": "project",
+        "url": "https://huggingface.co/taobao-content-ai/MiniMax-H3-PTD-LoRAs"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/ptdfor-minimax-h3.jpg",
+    "relatedWorks": [
+      {
+        "title": "MiniMax-H3 Turbo (ModelTC)",
+        "description": "同じMiniMax H3を4ステップに蒸留した別アプローチ",
+        "url": "https://huggingface.co/lightx2v/Minimax-h3-Turbo"
+      },
+      {
+        "title": "MiniMax-H3-PTD-RefAsymOPD-LoRAs",
+        "description": "PTDに参照画像条件を加えた姉妹リリース",
+        "url": "https://huggingface.co/taobao-content-ai/MiniMax-H3-PTD-RefAsymOPD-LoRAs"
+      },
+      {
+        "title": "MiniMax H3",
+        "description": "蒸留元の映像＋音声同時生成ベースモデル",
+        "url": "https://huggingface.co/MiniMaxAI/MiniMax-H3"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "matrix-game-4-0",
     "title": "Matrix-Game 4.0",
     "org": "Skywork AI（UC San Diego・CUHK・上海AI Lab ほかとの共同研究）",
