@@ -1,7 +1,45 @@
 {
   "version": 1,
-  "statusAsOf": "2026-10-22",
+  "statusAsOf": "2026-10-23",
   "items": [
+    {
+      "id": "2026-neort-processing-community-day-tokyo-2026",
+      "slug": "2026-neort-processing-community-day-tokyo-2026",
+      "title": "Processing Community Day Tokyo 2026",
+      "artists": [],
+      "venue": "NEORT++",
+      "venueType": "alt_space",
+      "prefecture": "東京都",
+      "city": "中央区",
+      "startDate": "2026-10-24",
+      "endDate": "2026-10-24",
+      "status": "upcoming",
+      "admission": "UNKNOWN",
+      "tags": [
+        "generative",
+        "installation",
+        "media_art"
+      ],
+      "score": 75,
+      "matchReason": "NEORT++で開催されるProcessing 25周年記念イベント。公募作品（動くもの・静止・変化するもの）と会場限定作品「夢中。」を展示。NEORT++の展覧会として全件収集対象。",
+      "sources": [
+        {
+          "name": "Processing Community Day Tokyo 2026 (PCDTokyo2026)",
+          "url": "https://two.neort.io/ja/exhibitions/pcdtokyo2026",
+          "kind": "official"
+        },
+        {
+          "name": "NEORT++ 展覧会",
+          "url": "https://two.neort.io/ja/exhibitions",
+          "kind": "listing"
+        }
+      ],
+      "link": "https://two.neort.io/ja/exhibitions/pcdtokyo2026",
+      "thumbnail": "/thumbnails/exhibition/2026-neort-processing-community-day-tokyo-2026.jpg",
+      "addedAt": "2026-10-23T01:30:53.802Z",
+      "origin": "auto",
+      "highlight": false
+    },
     {
       "id": "2026-mori-art-museum-mariko-mori-sansan",
       "slug": "2026-mori-art-museum-mariko-mori-sansan",
