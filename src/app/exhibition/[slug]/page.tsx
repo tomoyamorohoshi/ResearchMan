@@ -1,6 +1,7 @@
 import { exhibitionItems, getExhibitionBySlug, todayJst } from "@/lib/exhibition";
 import { formatPeriod } from "@/components/ExhibitionBadge";
 import ExhibitionBadgeLive from "@/components/ExhibitionBadgeLive";
+import WantToGoButton from "@/components/WantToGoButton";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -80,14 +81,17 @@ export default async function ExhibitionPage({ params }: { params: Promise<{ slu
           <dd>{e.admission === "UNKNOWN" ? "不明（公式サイトで確認）" : e.admission}</dd>
         </dl>
 
+        <div className="flex flex-wrap items-center gap-3 mb-8">
         <a
           href={e.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block text-[11px] tracking-[0.2em] uppercase font-black px-4 py-2 bg-gray-900 text-white hover:bg-gray-700 transition-colors mb-8"
+          className="inline-block text-[11px] tracking-[0.2em] uppercase font-black px-4 py-2 bg-gray-900 text-white hover:bg-gray-700 transition-colors"
         >
           公式ページを開く ↗
         </a>
+        <WantToGoButton id={e.id} />
+        </div>
 
         <section className="mb-8">
           <h2 className="text-[10px] tracking-[0.3em] uppercase text-gray-400 font-bold mb-2">Why it matches</h2>

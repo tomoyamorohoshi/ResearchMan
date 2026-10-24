@@ -7,6 +7,7 @@ import { todayJst } from "../../scripts/lib/exhibition-status.mjs";
 import ExhibitionCard from "./ExhibitionCard";
 import { useFavorites } from "@/hooks/useFavorites";
 import { useTrash } from "@/hooks/useTrash";
+import { useWantToGo } from "@/hooks/useWantToGo";
 
 type Props = {
   // サーバが initialToday で ended を除外済みの一覧（終了済みは HTML に載せない）
@@ -36,6 +37,7 @@ export default function ExhibitionGalleryClient({ items, initialToday, tagVocabu
   const [urlReady, setUrlReady] = useState(false);
   const { favorites, toggle, mounted } = useFavorites();
   const { trashed, toggle: toggleTrash, mounted: trashMounted } = useTrash();
+  const { wantToGo, toggle: toggleWantToGo, mounted: wantMounted } = useWantToGo();
 
   useEffect(() => {
     // hydration 後にだけ実時刻/URLを反映する必要がある（SSR一致のため初期値では読めない）。意図的な mount 時 setState
@@ -182,6 +184,8 @@ export default function ExhibitionGalleryClient({ items, initialToday, tagVocabu
               isTrashed={trashMounted && trashed.has(e.id)}
               onToggleTrash={toggleTrash}
               trashMode={showTrashOnly}
+              isWantToGo={wantMounted && wantToGo.has(e.id)}
+              onToggleWantToGo={toggleWantToGo}
             />
           ))}
         </div>

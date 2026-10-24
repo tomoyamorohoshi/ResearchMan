@@ -13,8 +13,10 @@ import { emptyFavoritesData, type FavoritesData } from "@/lib/favoritesMerge";
 
 // 固定pathname。用途ごとに1個のJSONのみを扱う（バッチ1の設計どおり。ごみ箱機能追加に伴い
 // pathnameをパラメータ化し、read/write本体は共通のヘルパー関数に集約する）
-const FAVORITES_BLOB_PATHNAME = "favorites/favorites.json";
+export const FAVORITES_BLOB_PATHNAME = "favorites/favorites.json";
 const TRASH_BLOB_PATHNAME = "trash/trash.json";
+// Exhibition「行きたい」（Visitタブ用）。いいね・ごみ箱とは別idの集合
+export const WANT_TO_GO_BLOB_PATHNAME = "want-to-go/want-to-go.json";
 // /ideas ページの「いいね」「ゴミ箱」機能用（favorites/trashとは別idの集合。
 // data/ideas.json本体は変更しない＝ゴミ箱は復元可能なアーカイブとして残る）
 const IDEA_LIKES_BLOB_PATHNAME = "idea-likes/idea-likes.json";
@@ -93,4 +95,12 @@ export function readIdeaTrashBlob(): Promise<FavoritesData> {
 
 export function writeIdeaTrashBlob(data: FavoritesData): Promise<void> {
   return writeBlobData(IDEA_TRASH_BLOB_PATHNAME, data);
+}
+
+export function readWantToGoBlob(): Promise<FavoritesData> {
+  return readBlobData(WANT_TO_GO_BLOB_PATHNAME);
+}
+
+export function writeWantToGoBlob(data: FavoritesData): Promise<void> {
+  return writeBlobData(WANT_TO_GO_BLOB_PATHNAME, data);
 }

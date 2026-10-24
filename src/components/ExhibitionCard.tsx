@@ -14,6 +14,9 @@ type Props = {
   onToggleTrash?: (id: string) => void;
   // ごみ箱ビュー中（ボタンは「復元」になる）
   trashMode?: boolean;
+  // 「行きたい」（Visitタブ用。いいね・ごみ箱とは独立）
+  isWantToGo?: boolean;
+  onToggleWantToGo?: (id: string) => void;
 };
 
 export default function ExhibitionCard({
@@ -24,6 +27,8 @@ export default function ExhibitionCard({
   isTrashed = false,
   onToggleTrash,
   trashMode = false,
+  isWantToGo = false,
+  onToggleWantToGo,
 }: Props) {
   return (
     <div className="group relative flex flex-col bg-white" data-exhibition-id={e.id}>
@@ -88,6 +93,33 @@ export default function ExhibitionCard({
       </div>
 
       <div className="absolute top-2 right-2 flex items-center gap-1">
+        {onToggleWantToGo && (
+          <button
+            onClick={(ev) => {
+              ev.preventDefault();
+              ev.stopPropagation();
+              onToggleWantToGo(e.id);
+            }}
+            aria-label="行きたい"
+            aria-pressed={isWantToGo}
+            className={`w-7 h-7 flex items-center justify-center transition-all duration-150
+              ${isWantToGo
+                ? "text-sky-400 opacity-100"
+                : "text-white/80 opacity-0 [@media(hover:none)]:opacity-100 group-hover:opacity-100 focus-visible:opacity-100 hover:text-sky-300"
+              }`}
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill={isWantToGo ? "currentColor" : "none"}
+              stroke="currentColor"
+              strokeWidth={2}
+              className="w-4 h-4 drop-shadow"
+              aria-hidden="true"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 21V4m0 0h11l-2 4 2 4H5" />
+            </svg>
+          </button>
+        )}
         {onToggleTrash && (
           <button
             onClick={(ev) => {
