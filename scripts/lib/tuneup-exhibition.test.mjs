@@ -173,9 +173,32 @@ test("userPick 削除後に追加された新しい pick と新しい印付き�
   p = proposeExhibitionProfile(p, s1, old);
   assert.equal(p.likes.userPicks.length, 4);
   const since = p.likes.userPicksEvidenceSince;
-  const fresh = ["f1", "f2", "f3"].map((id) => ({ ...boosted(id), addedAt: since + "T12:00:00.000Z" }));
+  const fresh = ["f1", "f2", "f3"].map((id) => ({ ...boosted(id), addedAt: new Date(Date.parse(since) + 1000).toISOString() }));
   const all = [...old, ...fresh];
   const s2 = computeExhibitionStats({ favIds: [], trashedIds: ["b1", "b2", "f1", "f2"], items: all, boostedSince: since });
   assert.deepEqual(s2.boosted, { count: 3, trashed: 2, trashRate: 0.67 });
   assert.equal(proposeExhibitionProfile(p, s2, all).likes.userPicks.length, 3);
+});
+
+test("同一UTC日の境界: 当日01:30Zに追加された印付き3件は、同日の tuneup による削除後に翌週の証拠にならない", () => {
+  const day = new Date().toISOString().slice(0, 10);
+  let p = withPicks(5);
+  const items = ["b1", "b2", "b3"].map((id) => ({ ...boosted(id), addedAt: `${day}T00:00:00.000Z` }));
+  const stats = (prof) => computeExhibitionStats({ favIds: [], trashedIds: ["b1", "b2"], items, boostedSince: prof.likes.userPicksEvidenceSince });
+  p = proposeExhibitionProfile(p, stats(p), items);
+  assert.equal(p.likes.userPicks.length, 4);
+  assert.match(p.likes.userPicksEvidenceSince, /^\d{4}-\d{2}-\d{2}T/); // フルISO
+  assert.equal(checkExhibitionProfileChange(withPicks(5), p).ok, true);
+  const week2 = proposeExhibitionProfile(p, stats(p), items);
+  assert.equal(week2.likes.userPicks.length, 4); // 再発火しない
+});
+
+test("ガードレール: userPicksEvidenceSince は ISO日時と旧 YYYY-MM-DD を許可、他は拒否", () => {
+  const base = withPicks(3);
+  for (const v of ["2026-10-24T12:00:00.000Z", "2026-10-24"]) {
+    const n = structuredClone(base); n.likes.userPicksEvidenceSince = v;
+    assert.equal(checkExhibitionProfileChange(base, n).ok, true, v);
+  }
+  const bad = structuredClone(base); bad.likes.userPicksEvidenceSince = "yesterday";
+  assert.equal(checkExhibitionProfileChange(base, bad).ok, false);
 });

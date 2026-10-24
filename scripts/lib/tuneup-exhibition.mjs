@@ -61,7 +61,7 @@ export function computeExhibitionStats({ favIds, trashedIds, items, boostedSince
     if (fav.has(it.id)) stats.favoriteCount++;
     if (isIntake) stats.intakeCount++;
     if (trash.has(it.id)) stats.trashedCount++;
-    if (it.boostedBy === "userPick" && (!boostedSince || String(it.addedAt || "").slice(0, 10) >= boostedSince)) {
+    if (it.boostedBy === "userPick" && (!boostedSince || String(it.addedAt || "") > boostedSince)) {
       stats.boosted.count++;
       if (trash.has(it.id)) stats.boosted.trashed++;
     }
@@ -116,7 +116,7 @@ export function proposeExhibitionProfile(profile, stats, items) {
     picks.forEach((p, i) => { if (String(p.addedAt) < String(picks[oldest].addedAt)) oldest = i; });
     picks.splice(oldest, 1);
     // 証拠のリセット: 以後は今日以降に追加された印付き展示だけを母集団にする（毎週1件ずつ全消しになるのを防ぐ）
-    next.likes.userPicksEvidenceSince = new Date().toISOString().slice(0, 10);
+    next.likes.userPicksEvidenceSince = new Date().toISOString(); // フルISO（同一UTC日に追加済みの展示も証拠から外す）
   }
 
   // 支配的なタグのテーマ重みを +1（正シグナル合計5以上・最大シェア40%以上）
@@ -190,7 +190,7 @@ export function checkExhibitionProfileChange(oldProfile, newProfile) {
 
   {
     const es = newProfile.likes?.userPicksEvidenceSince;
-    if (es !== undefined && !/^\d{4}-\d{2}-\d{2}$/.test(String(es))) errors.push(`likes.userPicksEvidenceSince must be YYYY-MM-DD: ${es}`);
+    if (es !== undefined && !/^\d{4}-\d{2}-\d{2}(T[\d:.]+Z)?$/.test(String(es))) errors.push(`likes.userPicksEvidenceSince must be ISO datetime (or YYYY-MM-DD): ${es}`);
   }
   // likes.userPicks: 追加/削除の上限・最大件数・既存要素の改変禁止
   {
