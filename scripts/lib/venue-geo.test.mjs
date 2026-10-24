@@ -166,3 +166,68 @@ test("geocodeVenue: 二段目も実時間の throttle で1000ms空く", async ()
   assert.equal(calls.length, 2);
   assert.ok(calls[1] - calls[0] >= 1000);
 });
+
+test("pickCandidate: address の都道府県と完全一致で判定（施設名に県名を含む別県は不採用）", () => {
+  const kofu = { lat: "1", lon: "2", display_name: "東京都庁舎分室, 甲府市, 山梨県, 日本", address: { office: "東京都庁舎分室", city: "甲府市", province: "山梨県" } };
+  const yokohama = { lat: "1", lon: "2", display_name: "東京都立xx高校, 横浜市, 神奈川県, 日本", address: { amenity: "東京都立xx高校", city: "横浜市", state: "神奈川県" } };
+  assert.equal(pickCandidate([kofu], "東京都"), null);
+  assert.equal(pickCandidate([yokohama], "東京都"), null);
+  assert.ok(pickCandidate([kofu, { lat: "3", lon: "4", display_name: "A, 東京都", address: { province: "東京都" } }], "東京都"));
+});
+
+test("pickCandidate: 都道府県フィールドが無い結果（東京都）は先頭成分を除いた成分との完全一致で判定", () => {
+  const mori = { lat: "35.66", lon: "139.72", display_name: "森美術館, 1, 六本木六丁目, 六本木, 港区, 東京都, 106-6122, 日本", address: { tourism: "森美術館", "ISO3166-2-lvl4": "JP-13" } };
+  assert.ok(pickCandidate([mori], "東京都"));
+  // 先頭成分（施設名）が県名でも、後ろの成分に無ければ不採用
+  const fake = { lat: "1", lon: "2", display_name: "東京都庁舎分室, 甲府市, 日本", address: { office: "東京都庁舎分室" } };
+  assert.equal(pickCandidate([fake], "東京都"), null);
+});
+
+test("geocodeVenue: ハングする fetch はタイムアウトで null（signal を渡す）", async () => {
+  const f = (url, opts) =>
+    new Promise((_, reject) => {
+      assert.ok(opts.signal, "signal が渡されていない");
+      opts.signal.addEventListener("abort", () => reject(new Error("aborted")));
+    });
+  const r = await geocodeVenue({ venue: "X", city: "c", prefecture: "東京都" }, { fetchImpl: f, wait: noWait, userAgent: "UA", timeoutMs: 20 });
+  assert.equal(r, null);
+});
+
+test("geocodeAll: 429 を受けたら残りを打ち切り blocked=true、残りは skipped", async () => {
+  const items = [item("A"), item("B"), item("C")];
+  let n = 0;
+  const f = async () => {
+    n++;
+    return { ok: false, status: 429, json: async () => [] };
+  };
+  const out = await geocodeAll(items, { version: 1, venues: {} }, { fetchImpl: f, wait: noWait, userAgent: "UA", today: "2026-10-24" });
+  assert.equal(n, 1);
+  assert.equal(out.blocked, 429);
+  assert.deepEqual(out.skipped.map((v) => v.venue), ["B", "C"]);
+  assert.deepEqual(out.failed.map((v) => v.venue), ["A"]);
+});
+
+test("geocodeAll: 403 も打ち切り。503 は打ち切らない", async () => {
+  const run = async (status) => {
+    let n = 0;
+    const f = async () => { n++; return { ok: false, status, json: async () => [] }; };
+    const out = await geocodeAll([item("A"), item("B")], { version: 1, venues: {} }, { fetchImpl: f, wait: noWait, userAgent: "UA", today: "d" });
+    return { n, out };
+  };
+  assert.equal((await run(403)).out.blocked, 403);
+  const r503 = await run(503);
+  assert.equal(r503.out.blocked, null);
+  assert.equal(r503.n, 4); // 2会場 × 2段
+});
+
+test("geocodeAll: 1回の問い合わせ会場数は maxVenues（既定30）まで。超過分は skipped", async () => {
+  const items = Array.from({ length: 35 }, (_, i) => item(`会場${String(i).padStart(2, "0")}`));
+  let n = 0;
+  const f = async () => { n++; return { ok: true, status: 200, json: async () => [{ lat: "1", lon: "2", display_name: "東京都" }] }; };
+  const out = await geocodeAll(items, { version: 1, venues: {} }, { fetchImpl: f, wait: noWait, userAgent: "UA", today: "d" });
+  assert.equal(n, 30);
+  assert.equal(out.added.length, 30);
+  assert.equal(out.skipped.length, 5);
+  const out2 = await geocodeAll(items, { version: 1, venues: {} }, { fetchImpl: f, wait: noWait, userAgent: "UA", today: "d", maxVenues: 2 });
+  assert.equal(out2.added.length, 2);
+});

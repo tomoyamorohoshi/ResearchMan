@@ -152,9 +152,10 @@ function childEnv() {
   delete env.ANTHROPIC_AUTH_TOKEN;
   return env;
 }
-function runNode(relScriptPath, args = []) {
+function runNode(relScriptPath, args = [], { timeout } = {}) {
   return spawnSync(NODE_BIN, [path.join(ROOT, relScriptPath), ...args], {
     cwd: ROOT,
+    ...(timeout ? { timeout } : {}),
     stdio: ["ignore", logFd, logFd],
     env: childEnv(),
   });
@@ -355,7 +356,7 @@ async function runExhibitionresearch() {
     }
     // 会場の座標（Nominatim）。失敗してもジョブは失敗させない（ログだけ。収集結果の commit を妨げない）
     try {
-      const geo = runNode("scripts/geocode-venues.mjs");
+      const geo = runNode("scripts/geocode-venues.mjs", [], { timeout: 10 * 60 * 1000 });
       if (geo.status !== 0) log(`geocode-venues 失敗（無視して続行・exit ${geo.status}）: ${unixDateString()}`);
     } catch (e) {
       log(`geocode-venues 例外（無視して続行）: ${e && e.message}`);

@@ -35,7 +35,7 @@ if (offline || todo.length === 0) {
 }
 
 const userAgent = `ResearchMan-venue-geocoder/1.0 (+${repoUrl()})`;
-const { geo: next, added, failed } = await geocodeAll(items, geo, {
+const { geo: next, added, failed, skipped, blocked } = await geocodeAll(items, geo, {
   wait: createThrottle(),
   userAgent,
   today: todayJst(),
@@ -54,6 +54,14 @@ if (failed.length > 0) {
     level: "warn",
     title: `会場の座標を取得できませんでした（${failed.length}件）`,
     body: failed.map((v) => `${v.venue}（${v.prefecture} ${v.city}）`).join("\n"),
+  });
+}
+if (blocked || skipped.length > 0) {
+  appendSystemAlert({
+    source: "geocode-venues",
+    level: "warn",
+    title: blocked ? `Nominatim が HTTP ${blocked} を返したため会場の座標取得を打ち切りました` : `会場の座標取得が1回の上限（${skipped.length}件を次回へ繰り越し）`,
+    body: skipped.map((v) => `${v.venue}（${v.prefecture} ${v.city}）`).join("\n"),
   });
 }
 console.log(`追加 ${added.length} 件 / 未取得 ${failed.length} 件`);

@@ -5,19 +5,34 @@ import fs from "fs";
 export const NOMINATIM_URL = "https://nominatim.openstreetmap.org/search";
 export const MIN_INTERVAL_MS = 1000;
 export const RESULT_LIMIT = 5;
+export const REQUEST_TIMEOUT_MS = 15000;
+export const MAX_VENUES_PER_RUN = 30;
+const BLOCK_STATUSES = [429, 403];
 
 /** @param {{venue:string, city?:string, prefecture?:string}} v */
 export function buildQuery(v) {
   return [v.venue, v.city, v.prefecture].filter(Boolean).join(" ");
 }
 
-/** 住所に prefecture を含む最初の候補を返す。無ければ null（同名施設の誤一致防止）。 */
+/**
+ * prefecture 判定（完全一致）。施設名に県名を含む別県の施設（「東京都庁舎分室, 甲府市, 山梨県」等）を通さないため、
+ * address の都道府県フィールド（province / state）があればそれと完全一致で判定する。
+ * フィールドが無い結果（Nominatim は東京都で province を返さない＝実測）だけ、display_name の
+ * 先頭成分（施設名）を除いた後ろの成分に完全一致があるかで判定する。
+ * ※リクエストに Accept-Language を付けると display_name が「東京」になり判定が壊れるため付けない。
+ */
 export function pickCandidate(results, prefecture) {
   if (!Array.isArray(results) || !prefecture) return null;
   for (const r of results) {
     if (!r) continue;
-    const texts = [r.display_name, ...Object.values(r.address && typeof r.address === "object" ? r.address : {})];
-    if (texts.some((t) => typeof t === "string" && t.includes(prefecture))) return r;
+    const addr = r.address && typeof r.address === "object" ? r.address : {};
+    const field = addr.province || addr.state;
+    if (field) {
+      if (field === prefecture) return r;
+      continue;
+    }
+    const parts = String(r.display_name || "").split(",").map((t) => t.trim());
+    if ((parts.length === 1 ? parts : parts.slice(1)).includes(prefecture)) return r; // 1成分だけなら地域名そのもの
   }
   return null;
 }
@@ -52,7 +67,7 @@ export function createThrottle({
 }
 
 /** 1つの問い合わせ文で検索し、prefecture 判定を通った候補を返す。失敗は null。 */
-async function searchOnce(query, prefecture, { fetchImpl, wait, userAgent }) {
+async function searchOnce(query, prefecture, { fetchImpl = fetch, wait, userAgent, timeoutMs = REQUEST_TIMEOUT_MS }) {
   const url = new URL(NOMINATIM_URL);
   url.searchParams.set("q", query);
   url.searchParams.set("format", "jsonv2");
@@ -61,7 +76,8 @@ async function searchOnce(query, prefecture, { fetchImpl, wait, userAgent }) {
   url.searchParams.set("limit", String(RESULT_LIMIT));
   try {
     await wait();
-    const res = await fetchImpl(url.toString(), { headers: { "User-Agent": userAgent } });
+    const res = await fetchImpl(url.toString(), { headers: { "User-Agent": userAgent }, signal: AbortSignal.timeout(timeoutMs) });
+    if (BLOCK_STATUSES.includes(res.status)) return { blocked: res.status };
     if (!res.ok) return null;
     const hit = pickCandidate(await res.json(), prefecture);
     if (!hit) return null;
@@ -85,14 +101,30 @@ export async function geocodeVenue(v, opts) {
   return searchOnce(v.venue, v.prefecture, opts);
 }
 
-/** 未登録会場を全て問い合わせ、{geo(新), added, failed} を返す。入力 geo は変更しない。 */
-export async function geocodeAll(items, geo, { fetchImpl, wait, userAgent, today, onResult } = {}) {
+/**
+ * 未登録会場を問い合わせ、{geo(新), added, failed, skipped, blocked} を返す。入力 geo は変更しない。
+ * 1回の実行は maxVenues 会場まで。429/403 を受けたら残りを打ち切る（blocked に status、残りは skipped）。
+ */
+export async function geocodeAll(items, geo, { fetchImpl, wait, userAgent, today, onResult, timeoutMs, maxVenues = MAX_VENUES_PER_RUN } = {}) {
   const base = geo && geo.venues ? geo : { version: 1, venues: {} };
   const venues = { ...base.venues };
   const added = [];
   const failed = [];
-  for (const v of pendingVenues(items, base)) {
-    const r = await geocodeVenue(v, { fetchImpl, wait, userAgent });
+  const skipped = [];
+  let blocked = null;
+  const pending = pendingVenues(items, base);
+  for (const [i, v] of pending.entries()) {
+    if (blocked || i >= maxVenues) {
+      skipped.push(v);
+      continue;
+    }
+    const r = await geocodeVenue(v, { fetchImpl, wait, userAgent, timeoutMs });
+    if (r && r.blocked) {
+      blocked = r.blocked;
+      failed.push(v);
+      if (onResult) onResult(v, null);
+      continue;
+    }
     if (onResult) onResult(v, r);
     if (!r) {
       failed.push(v);
@@ -101,7 +133,7 @@ export async function geocodeAll(items, geo, { fetchImpl, wait, userAgent, today
     venues[v.venue] = { lat: r.lat, lng: r.lng, source: "nominatim", query: r.query, checkedAt: today };
     added.push({ ...v, ...r });
   }
-  return { geo: { ...base, version: base.version ?? 1, venues }, added, failed };
+  return { geo: { ...base, version: base.version ?? 1, venues }, added, failed, skipped, blocked };
 }
 
 /** 差分を安定させるため会場名でキーソート・2スペース・末尾改行。 */
