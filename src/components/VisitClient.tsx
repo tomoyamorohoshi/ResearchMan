@@ -60,20 +60,29 @@ export default function VisitClient({ items, geo, initialToday, initialView }: P
 
   // 地域グループ（50km 以内で連結）。初期表示は最大グループ、チップで切替
   const clusters = useMemo(() => clusterPins(pins, 50), [pins]);
-  // 選択は地域ラベルで保持。該当が無くなったら最大グループに正規化
-  const [regionSel, setRegionSel] = useState<string | null>(null); // null=最大グループ, "all"=全体, それ以外=ラベル
+  // 選択はグループ内ピンの会場名で保持（都道府県ラベルは重複しうる）。該当が無くなったら最大グループに正規化
+  const [regionSel, setRegionSel] = useState<string[] | "all" | null>(null); // null=最大グループ, "all"=全体
   const [fitNonce, setFitNonce] = useState(0);
   const mapBoxRef = useRef<HTMLDivElement>(null);
   const activeCluster = useMemo(() => {
     if (regionSel === "all") return -1;
-    const i = regionSel === null ? -1 : clusters.findIndex((c) => c.label === regionSel);
-    return i >= 0 ? i : 0;
+    if (regionSel === null) return 0;
+    let best = -1;
+    let bestN = 0;
+    clusters.forEach((c, i) => {
+      const n = c.pins.filter((p) => regionSel.includes(p.venue)).length;
+      if (n > bestN) {
+        best = i;
+        bestN = n;
+      }
+    });
+    return best >= 0 ? best : 0;
   }, [regionSel, clusters]);
   const fitPins = useMemo(
     () => (activeCluster < 0 ? pins : (clusters[activeCluster]?.pins ?? pins)),
     [activeCluster, clusters, pins],
   );
-  const pickRegion = useCallback((sel: string) => {
+  const pickRegion = useCallback((sel: string[] | "all") => {
     setRegionSel(sel);
     setFitNonce((n) => n + 1);
   }, []);
@@ -85,11 +94,12 @@ export default function VisitClient({ items, geo, initialToday, initialView }: P
 
   const changeView = useCallback((v: VisitView) => {
     setView(v);
-    changeDateFilter(null);
+    // 日付絞り込みが実際に解除される時だけ地図を fit し直す（パン/ズームを保つ）
+    if (dateFilter) changeDateFilter(null);
     try {
       window.history.replaceState(null, "", `?view=${v}`);
     } catch {}
-  }, [changeDateFilter]);
+  }, [dateFilter, changeDateFilter]);
 
   // 項目（リスト・バー）を押す: 強調 + 地図をその会場へ
   const selectItem = useCallback(
@@ -97,7 +107,8 @@ export default function VisitClient({ items, geo, initialToday, initialView }: P
       setHighlightIds([e.id]);
       // スマホ幅（lg 未満）は地図が画面外ならスクロールで見せる
       const box = mapBoxRef.current;
-      if (box && window.innerWidth < 1024) {
+      const located = pins.some((p) => p.items.some((x) => x.id === e.id));
+      if (box && located && window.innerWidth < 1024) {
         const r = box.getBoundingClientRect();
         if (r.top < 0 || r.bottom > window.innerHeight) box.scrollIntoView({ behavior: "smooth", block: "center" });
       }
@@ -173,7 +184,7 @@ export default function VisitClient({ items, geo, initialToday, initialView }: P
                 </button>
               )}
               {clusters.map((c, i) => (
-                <button key={`${c.label}-${i}`} type="button" aria-pressed={activeCluster === i} onClick={() => pickRegion(c.label)} className={chipClass(activeCluster === i)}>
+                <button key={`${c.label}-${i}`} type="button" aria-pressed={activeCluster === i} onClick={() => pickRegion(c.pins.map((p) => p.venue))} className={chipClass(activeCluster === i)}>
                   {c.label} {c.count}
                 </button>
               ))}
@@ -181,7 +192,7 @@ export default function VisitClient({ items, geo, initialToday, initialView }: P
           )}
           <div ref={mapBoxRef} className="relative h-[320px] lg:h-[calc(100vh-220px)] lg:min-h-[420px] border border-gray-300 bg-gray-100">
             <VisitMap pins={pins} fitPins={fitPins} fitNonce={fitNonce} highlightedVenue={highlightVenue} focus={focus} onPinSelect={selectPin} />
-            {dateFilter && mapItems.length === 0 && (
+            {dateFilter && pins.length === 0 && (
               <p role="status" className="absolute inset-x-4 top-4 z-[1000] bg-white/95 border border-gray-300 px-3 py-2 text-[12px] font-black text-gray-700 text-center">
                 この日に開いている展覧会はありません
               </p>

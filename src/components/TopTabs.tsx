@@ -13,7 +13,7 @@ export default function TopTabs({ active }: { active: "cases" | "tech" | "exhibi
   return (
     <nav
       aria-label="アーカイブ切替"
-      className="max-w-[1600px] mx-auto px-4 flex items-stretch gap-0.5 sm:gap-1 overflow-x-auto overflow-y-hidden"
+      className="max-w-[1600px] mx-auto px-4 -mb-px flex items-stretch gap-0.5 sm:gap-1 overflow-x-auto overflow-y-hidden"
     >
       {tabs.map((t) => (
         <Link
