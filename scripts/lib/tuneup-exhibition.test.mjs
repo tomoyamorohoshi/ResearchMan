@@ -96,3 +96,59 @@ test("checkExhibitionProfileChange: threshold.add 範囲外・重み範囲外・
   const d = structuredClone(p); d.watch.artists.pop();
   assert.equal(checkExhibitionProfileChange(p, d).ok, false);
 });
+
+// ── userPicks 印付きごみ箱率 ──
+const withPicks = (n) => {
+  const p = profile();
+  p.likes.userPicks = Array.from({ length: n }, (_, i) => ({ title: `P${i}`, venue: "V", tags: [], why: "w", addedAt: `2026-10-0${i + 1}T00:00:00.000Z` }));
+  return p;
+};
+const boosted = (id) => it(id, { boostedBy: "userPick", score: 62 });
+
+test("computeExhibitionStats: 印付き件数・ごみ箱件数・ごみ箱率", () => {
+  const items = [boosted("b1"), boosted("b2"), boosted("b3"), boosted("b4"), it("n")];
+  const s = computeExhibitionStats({ favIds: [], trashedIds: ["b1", "b2", "n"], items });
+  assert.deepEqual(s.boosted, { count: 4, trashed: 2, trashRate: 0.5 });
+  assert.deepEqual(computeExhibitionStats({ favIds: [], trashedIds: [], items: [it("x")] }).boosted, { count: 0, trashed: 0, trashRate: 0 });
+});
+
+test("proposeExhibitionProfile: 印付き3件以上かつごみ箱率50%以上なら最古の userPick を1件外す", () => {
+  const p = withPicks(3);
+  const items = [boosted("b1"), boosted("b2"), boosted("b3")];
+  const stats = computeExhibitionStats({ favIds: [], trashedIds: ["b1", "b2"], items });
+  const next = proposeExhibitionProfile(p, stats, items);
+  assert.deepEqual(next.likes.userPicks.map((x) => x.title), ["P1", "P2"]);
+  assert.equal(p.likes.userPicks.length, 3);
+  assert.equal(checkExhibitionProfileChange(p, next).ok, true);
+});
+
+test("proposeExhibitionProfile: 条件未満（2件 / 率49%）や userPicks 無しでは外さない", () => {
+  const p = withPicks(3);
+  const two = [boosted("b1"), boosted("b2")];
+  assert.equal(proposeExhibitionProfile(p, computeExhibitionStats({ favIds: [], trashedIds: ["b1", "b2"], items: two }), two).likes.userPicks.length, 3);
+  const four = [boosted("b1"), boosted("b2"), boosted("b3"), boosted("b4"), boosted("b5"), boosted("b6"), boosted("b7")];
+  const s7 = computeExhibitionStats({ favIds: [], trashedIds: ["b1", "b2", "b3"], items: four }); // 3/7=0.43
+  assert.equal(proposeExhibitionProfile(p, s7, four).likes.userPicks.length, 3);
+  const none = profile();
+  const three = [boosted("b1"), boosted("b2"), boosted("b3")];
+  const sN = computeExhibitionStats({ favIds: [], trashedIds: ["b1", "b2", "b3"], items: three });
+  assert.equal(proposeExhibitionProfile(none, sN, three).likes.userPicks, undefined);
+});
+
+test("checkExhibitionProfileChange: userPicks は削除1件・追加3件・上限10件まで許可。内容改変は拒否", () => {
+  const p = withPicks(5);
+  const del2 = structuredClone(p); del2.likes.userPicks.splice(0, 2);
+  assert.equal(checkExhibitionProfileChange(p, del2).ok, false);
+  const del1 = structuredClone(p); del1.likes.userPicks.splice(0, 1);
+  assert.equal(checkExhibitionProfileChange(p, del1).ok, true);
+  const add3 = structuredClone(p); for (let i = 0; i < 3; i++) add3.likes.userPicks.push({ title: `N${i}`, venue: "V", tags: [], why: "w", addedAt: "2026-10-20T00:00:00.000Z" });
+  assert.equal(checkExhibitionProfileChange(p, add3).ok, true);
+  const add4 = structuredClone(add3); add4.likes.userPicks.push({ title: "N9", venue: "V", tags: [], why: "w", addedAt: "2026-10-21T00:00:00.000Z" });
+  assert.equal(checkExhibitionProfileChange(p, add4).ok, false);
+  const over = structuredClone(withPicks(9)); for (let i = 0; i < 3; i++) over.likes.userPicks.push({ title: `M${i}`, venue: "V", tags: [], why: "w", addedAt: "2026-10-22T00:00:00.000Z" });
+  assert.equal(checkExhibitionProfileChange(withPicks(9), over).ok, false); // 12件 > 10
+  const edit = structuredClone(p); edit.likes.userPicks[0].why = "書き換え"; edit.likes.userPicks[1].why = "書き換え2"; // 2件差し替え=削除2+追加2
+  assert.equal(checkExhibitionProfileChange(p, edit).ok, false);
+  const fromNone = structuredClone(profile()); fromNone.likes.userPicks = [];
+  assert.equal(checkExhibitionProfileChange(profile(), fromNone).ok, true);
+});

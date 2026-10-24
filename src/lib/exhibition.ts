@@ -52,6 +52,8 @@ export type Exhibition = {
   addedAt: string;
   origin: "auto" | "intake";
   intakeUrl?: string;
+  /** 自動発見で userPick 加点によって初めて追加閾値を越えた展示の印（tuneup のごみ箱率集計用） */
+  boostedBy?: "userPick";
   highlight: boolean;
   quarantined?: boolean;
 };

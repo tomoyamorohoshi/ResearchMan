@@ -59,7 +59,7 @@ function runAudit(root) {
 }
 
 /** フィクスチャ root を作り、audit を実行して {code, out, root} を返す */
-function run({ items, statusAsOf = "2026-10-04", thumbs, cases = [], tech = [], raw, noProfile = false } = {}) {
+function run({ items, statusAsOf = "2026-10-04", thumbs, cases = [], tech = [], raw, noProfile = false, profileExtra = {} } = {}) {
   const root = path.join(tmpRoot, `r${seq++}`);
   fs.mkdirSync(path.join(root, "data"), { recursive: true });
   fs.mkdirSync(path.join(root, "public/thumbnails/exhibition"), { recursive: true });
@@ -77,6 +77,7 @@ function run({ items, statusAsOf = "2026-10-04", thumbs, cases = [], tech = [], 
         { title: "小松宏誠展 光と影のモビール", url: "https://artexhibition.jp/y", role: "preference_only" },
         { title: "Listing One", url: "https://example.com/l", role: "listing" },
       ],
+      ...profileExtra,
     }),
   );
   // サムネ: 既定では全 item に十分なサイズの実体を作る（thumbs[name]===null なら欠損）
@@ -328,4 +329,16 @@ test("型不正 → FAIL", () => {
 test("thumbnail の ../ トラバーサル → FAIL", () => {
   const r = run({ items: [goodItem({ thumbnail: "/thumbnails/exhibition/../../secret.jpg" })] });
   assertFails(r, /THUMBNAIL PATH/);
+});
+
+test("boostedBy=userPick は PASS / 不正値は FAIL", () => {
+  assert.equal(run({ items: [goodItem({ boostedBy: "userPick" })] }).code, 0);
+  assertFails(run({ items: [goodItem({ boostedBy: "other" })] }), /BOOSTEDBY/);
+});
+
+test("profile.likes.userPicks: 正常は PASS / 11件・必須欠落は FAIL", () => {
+  const p = (n) => ({ title: "t" + n, venue: "v", tags: [], why: "w", addedAt: "2026-10-01T00:00:00.000Z" });
+  assert.equal(run({ profileExtra: { likes: { userPicks: [p(1), p(2)] } } }).code, 0);
+  assertFails(run({ profileExtra: { likes: { userPicks: Array.from({ length: 11 }, (_, i) => p(i)) } } }), /USERPICKS/);
+  assertFails(run({ profileExtra: { likes: { userPicks: [{ title: "t", venue: "v", tags: [] }] } } }), /USERPICKS/);
 });

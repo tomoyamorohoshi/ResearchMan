@@ -142,13 +142,14 @@ test("runIntake: PATCH が失敗しても data 更新は継続し、再実行し
   assert.equal(r2.results[0].exhibitionId, r1.data.items[0].id);
 });
 
-test("runIntake: hard 除外は勝てない（rejected）／展覧会が見つからなければ rejected", async () => {
+test("runIntake: hard 除外カテゴリでも投稿は受け付ける（added）／展覧会が見つからなければ rejected", async () => {
   const r1 = await runIntake({
     items: [{ url: X_URL, ts: 1, attempts: 0 }], data: emptyData(), today: TODAY,
     deps: mkDeps({ extract: async () => [cand({ excludeCategory: "merch_event" })] }),
   });
-  assert.equal(r1.results[0].status, "rejected");
-  assert.equal(r1.data.items.length, 0);
+  assert.equal(r1.results[0].status, "added");
+  assert.equal(r1.data.items.length, 1);
+  assert.equal(r1.userPicks.length, 0); // hard 除外は userPicks（採点への加点材料）に学習させない
   const r2 = await runIntake({ items: [{ url: IG_URL, ts: 1, attempts: 0 }], data: emptyData(), today: TODAY, deps: mkDeps({ extract: async () => [cand()] }) });
   assert.equal(r2.results[0].status, "rejected");
   assert.equal(r2.results[0].reason, "no-exhibition-found");
@@ -375,4 +376,12 @@ test("runIntake: 呼び出し元の opts.protectIds を尊重する", async () =
   const r = await runIntake({ items: [{ url: X_URL, ts: 1, attempts: 0 }], data, today: TODAY, deps: mkDeps(), opts: { protectIds: new Set([existingItem().id]) } });
   assert.equal(r.updated.length, 0);
   assert.equal(r.data.items[0].endDate, "2026-10-20");
+});
+test("runIntake: 低スコア投稿(素点30)も added になり、userPicks に記録対象が返る", async () => {
+  const low = cand({ score: 30, pickWhy: "好みのポイント。" });
+  const deps = mkDeps({ extract: async () => [low], fetchHtml: async (url) => (url.startsWith("https://official.example") ? { status: 200, body: officialOk(low) } : { status: 200, body: "x" }) });
+  const r = await runIntake({ items: [{ url: X_URL, ts: 1, attempts: 0 }], data: emptyData(), today: TODAY, deps });
+  assert.equal(r.results[0].status, "added");
+  assert.equal(r.userPicks.length, 1);
+  assert.equal(r.userPicks[0].why, "好みのポイント。");
 });

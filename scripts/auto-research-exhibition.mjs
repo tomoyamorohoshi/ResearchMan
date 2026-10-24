@@ -26,6 +26,7 @@ import { localDayIndex } from "./lib/day-index.mjs";
 import { todayJst } from "./lib/exhibition-status.mjs";
 import { applyStatusUpdate, processCandidates, PREFECTURES } from "./lib/exhibition-build.mjs";
 import { consumeHandoff, commitHandoff } from "./lib/exhibition-handoff.mjs";
+import { applyUserPicks } from "./lib/exhibition-userpicks.mjs";
 import { runIntake } from "./lib/exhibition-intake-job.mjs";
 import { buildDiscoveryPrompt, buildIntakePrompt, expandQueries, pickSourcesForDay, EXHIBITION_CLI_OPTS } from "./lib/exhibition-prompts.mjs";
 import {
@@ -91,7 +92,7 @@ async function main() {
   let handoffPlan = null; // handoff の除去計画。最終書き込み成功後かつ cliFatal でない時だけ commitHandoff する
 
   if (!STATUS_ONLY) {
-    const profile = await readJson(PROFILE_PATH);
+    let profile = await readJson(PROFILE_PATH);
     const claudeBin = resolveClaudeBin();
     const saveThumb = makeSaveThumb(THUMB_DIR);
     const deps = { fetchHtml: defaultFetchHtml, fetchJson: defaultFetchJson, saveThumb, now: () => new Date().toISOString() };
@@ -144,6 +145,12 @@ async function main() {
             },
           });
           data = out.data;
+          // 素点<閾値で投稿された展示を likes.userPicks に機械的に記録（以降の発見の採点にだけ効く）
+          if (out.userPicks.length) {
+            profile = applyUserPicks(profile, out.userPicks);
+            if (!DRY_RUN) await writeJsonAtomic(PROFILE_PATH, profile);
+            console.log(`[intake] userPicks 記録: ${out.userPicks.map((p) => p.title).join(" / ")}`);
+          }
           added.push(...out.added);
           updated.push(...out.updated);
           unverified.push(...out.unverified);

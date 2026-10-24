@@ -5,6 +5,7 @@
  *  - computeExhibitionStats: お気に入り(重み1)・intake 投稿(重み2=お気に入りの2倍)・ごみ箱の分布
  *  - proposeExhibitionProfile: 提案対象は data/exhibition-profile.json の
  *      likes.themes[].weight / watch.artists・venues（intake 成功の作家・会場を追加） / scoring.threshold.add のみ
+ *  - likes.userPicks（オーナー投稿例。採点にだけ効く）: 加点(boostedBy=userPick)で入った展示のごみ箱率が高ければ最古を外す提案のみ
  *  - checkExhibitionProfileChange: 上記以外（exclusions.hard・collectAll を含む）の変更は拒否＝自動変更禁止
  */
 
@@ -16,6 +17,11 @@ export const EXHIBITION_GUARDRAIL_LIMITS = {
   thresholdAddMin: 55,
   thresholdAddMax: 80,
   thresholdAddStepMax: 5,
+  userPicksMax: 10,
+  userPicksAdditionsMax: 3,
+  userPicksRemovalsMax: 1,
+  boostedTrashMinCount: 3,
+  boostedTrashMinRate: 0.5,
 };
 
 // タグ → likes.themes[].key（weight 提案用）
@@ -46,7 +52,7 @@ const bump = (map, k, w) => {
 export function computeExhibitionStats({ favIds, trashedIds, items }) {
   const fav = new Set(favIds || []);
   const trash = new Set(trashedIds || []);
-  const stats = { favoriteCount: 0, intakeCount: 0, trashedCount: 0, tags: {}, venueTypes: {}, prefectures: {}, scoreBands: {}, trashRate: 0 };
+  const stats = { favoriteCount: 0, intakeCount: 0, trashedCount: 0, tags: {}, venueTypes: {}, prefectures: {}, scoreBands: {}, trashRate: 0, boosted: { count: 0, trashed: 0, trashRate: 0 } };
   let positive = 0;
   for (const it of items || []) {
     const isIntake = it.origin === "intake";
@@ -54,6 +60,10 @@ export function computeExhibitionStats({ favIds, trashedIds, items }) {
     if (fav.has(it.id)) stats.favoriteCount++;
     if (isIntake) stats.intakeCount++;
     if (trash.has(it.id)) stats.trashedCount++;
+    if (it.boostedBy === "userPick") {
+      stats.boosted.count++;
+      if (trash.has(it.id)) stats.boosted.trashed++;
+    }
     if (w > 0) {
       positive++;
       for (const t of it.tags || []) bump(stats.tags, t, w);
@@ -63,6 +73,7 @@ export function computeExhibitionStats({ favIds, trashedIds, items }) {
     }
   }
   const denom = positive + stats.trashedCount;
+  stats.boosted.trashRate = stats.boosted.count ? Math.round((stats.boosted.trashed / stats.boosted.count) * 100) / 100 : 0;
   stats.trashRate = denom ? Math.round((stats.trashedCount / denom) * 100) / 100 : 0;
   return stats;
 }
@@ -96,6 +107,15 @@ export function proposeExhibitionProfile(profile, stats, items) {
     next.scoring.threshold.add = Math.min(L.thresholdAddMax, Math.min(profile.scoring.threshold.add + L.thresholdAddStepMax, L.thresholdAddMax));
   }
 
+  // userPick 加点で入った展示が3件以上かつごみ箱率50%以上 → 加点の根拠が外れている可能性。最古の userPick を1件外す
+  const picks = next.likes?.userPicks;
+  const b = stats.boosted;
+  if (Array.isArray(picks) && picks.length && b && b.count >= L.boostedTrashMinCount && b.trashRate >= L.boostedTrashMinRate) {
+    let oldest = 0;
+    picks.forEach((p, i) => { if (String(p.addedAt) < String(picks[oldest].addedAt)) oldest = i; });
+    picks.splice(oldest, 1);
+  }
+
   // 支配的なタグのテーマ重みを +1（正シグナル合計5以上・最大シェア40%以上）
   const total = Object.values(stats.tags).reduce((a, b) => a + b, 0);
   if (total >= 5) {
@@ -121,6 +141,7 @@ function neutralize(p) {
     c.watch.venues = null;
   }
   if (c.scoring?.threshold) c.scoring.threshold.add = null;
+  if (c.likes) c.likes.userPicks = null;
   delete c.updatedAt;
   return c;
 }
@@ -159,6 +180,23 @@ export function checkExhibitionProfileChange(oldProfile, newProfile) {
     for (const x of o) if (!n.includes(x)) errors.push(`watch.${key} removal not allowed: ${x}`);
     const addedCount = n.filter((x) => !o.includes(x)).length;
     if (addedCount > L.watchAdditionsMax) errors.push(`watch.${key} additions exceed limit (${addedCount} > ${L.watchAdditionsMax})`);
+  }
+
+  // likes.userPicks: 追加/削除の上限・最大件数・既存要素の改変禁止
+  {
+    const o = oldProfile.likes?.userPicks || [];
+    const n = newProfile.likes?.userPicks ?? [];
+    if (!Array.isArray(n)) errors.push("likes.userPicks must be an array");
+    else {
+      const k = (p) => JSON.stringify(p);
+      const oldKeys = new Set(o.map(k));
+      const newKeys = new Set(n.map(k));
+      const removed = o.filter((p) => !newKeys.has(k(p))).length;
+      const added = n.filter((p) => !oldKeys.has(k(p))).length;
+      if (n.length > L.userPicksMax) errors.push(`likes.userPicks exceeds max (${n.length} > ${L.userPicksMax})`);
+      if (removed > L.userPicksRemovalsMax) errors.push(`likes.userPicks removals exceed limit (${removed} > ${L.userPicksRemovalsMax})`);
+      if (added > L.userPicksAdditionsMax) errors.push(`likes.userPicks additions exceed limit (${added} > ${L.userPicksAdditionsMax})`);
+    }
   }
 
   const oa = oldProfile.scoring?.threshold?.add;

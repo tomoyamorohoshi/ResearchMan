@@ -57,6 +57,14 @@ export interface UnverifiedEntry {
   [key: string]: unknown;
 }
 
+export interface UserPick {
+  title: string;
+  venue: string;
+  tags: string[];
+  why: string;
+  addedAt: string;
+}
+
 export interface ProcessExhibitionResult {
   outcome: ExhibitionOutcome;
   /** 更新後のdata（added/updated以外は入力のまま。statusAsOf等の再計算は反映される）。 */
@@ -69,6 +77,8 @@ export interface ProcessExhibitionResult {
   reasonJa: string;
   /** duplicateのとき、既存側のタイトル。 */
   duplicateTitle?: string;
+  /** 素点<閾値で追加された投稿（likes.userPicks の記録対象。反映は呼び出し側）。 */
+  userPicks: UserPick[];
   /** 追加分のサムネのROOT相対パス（"public/thumbnails/exhibition/<id>.jpg"。dryRunでは実体なし）。 */
   thumbnailRelPaths: string[];
 }
@@ -115,6 +125,7 @@ export async function processExhibitionAdd(p: {
     unverified: [],
     rejected: [],
     reasonJa: "",
+    userPicks: [],
     thumbnailRelPaths: [],
   };
   const candidates = parseExhibitionCandidates(obj, url);
@@ -139,7 +150,7 @@ export async function processExhibitionAdd(p: {
   const updated = out.updated as ProcessExhibitionResult["updated"];
   const unverified = out.unverified as UnverifiedEntry[];
   const rejected = [...endedRejected, ...(out.rejected as Array<{ title: string; reason: string }>)];
-  const common = { ...base, data: out.data as ExhibitionData, added, updated, unverified, rejected };
+  const common = { ...base, data: out.data as ExhibitionData, added, updated, unverified, rejected, userPicks: out.userPicks as UserPick[] };
 
   if (added.length > 0 || updated.length > 0) {
     return {

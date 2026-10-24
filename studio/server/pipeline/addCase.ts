@@ -71,6 +71,7 @@ import { postFavorite } from "./autoFavorite.js";
 import { describeExhibitionReason, processExhibitionAdd, type ExhibitionData } from "./addExhibition.js";
 import { appendUnverified, defaultFetchHtml, makeSaveThumb } from "../../../scripts/lib/exhibition-io.mjs";
 import { profileForPrompt } from "../../../scripts/lib/exhibition-prompts.mjs";
+import { applyUserPicks } from "../../../scripts/lib/exhibition-userpicks.mjs";
 import { todayJst } from "../../../scripts/lib/exhibition-status.mjs";
 import { buildXMediaTempDir, cleanupXMediaDir, downloadTweetMedia, fetchTweetMedia } from "./xMedia.js";
 import { fetchPageWithFallback } from "./pageFetch.js";
@@ -995,6 +996,16 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
       await setProgress(jobId, "反映中（データ書き込み）");
       await writeJsonAtomic(EXHIBITION_PATH, exhibitionResult.data);
       trackedTouched.push("data/exhibition.json");
+      // 素点<閾値で投稿された展示は likes.userPicks に機械的に記録（自動発見の採点にだけ効く）。失敗しても追加自体は続行
+      if (exhibitionResult.userPicks.length > 0) {
+        try {
+          const fullProfile = JSON.parse(await readFile(EXHIBITION_PROFILE_PATH, "utf-8")) as Record<string, unknown>;
+          await writeJsonAtomic(EXHIBITION_PROFILE_PATH, applyUserPicks(fullProfile, exhibitionResult.userPicks));
+          trackedTouched.push("data/exhibition-profile.json");
+        } catch (e) {
+          console.warn("[studio][add-case] userPicks の記録に失敗しました（追加は続行）:", e);
+        }
+      }
 
       // ── 4. 監査（audit-exhibition。pre-pushフックと同じ検査） ───────
       await setProgress(jobId, "品質監査中（exhibition整合/tsc/lint/build）");

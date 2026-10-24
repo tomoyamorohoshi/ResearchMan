@@ -75,7 +75,7 @@
     ],
     "overrides": [
       { "rule": "NEORT++/オンチェーン/ジェネラティブ展は score を最低 threshold.add に引き上げて必ず掲載" },
-      { "rule": "origin=intake(ユーザー投稿)は +10 の嗜好ボーナス。ただし hard 除外には勝てない(公式裏取り必須)" }
+      { "rule": "origin=intake(ユーザー投稿)は「入力した時点で興味あり」として score 閾値・hard 除外でも落とさず必ず受け付ける(+10 の嗜好ボーナスは score に加算)。ただし事実確認(公式ページ照合・会期・都道府県・サムネ・重複)は必須。素点が add 閾値未満だった投稿は likes.userPicks(最大10件・古い順に押し出し)に機械的に記録し、自動発見の採点にだけ user_pick_similarity として最大+10 を効かせる(発見クエリ・テーマ・閾値は変えない。hard 除外は覆さない)" }
     ],
     "threshold": { "add": 60, "highlight": 80, "notify": 70 },
     "unverifiedPolicy": "日付・会場が公式ページで確認できないものは掲載せず、裏取りキュー(data/inbox/exhibition-unverified.json)へ"
