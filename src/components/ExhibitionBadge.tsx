@@ -41,11 +41,11 @@ export default function ExhibitionBadge({
         : "bg-gray-200 text-gray-500";
   return (
     <span className="inline-flex items-center gap-1.5" data-exhibition-status={status}>
-      <span className={`${size === "md" ? "text-xs" : "text-[9px]"} font-bold tracking-wider text-gray-500`}>
+      <span className={`${size === "md" ? "text-xs" : "text-[9px]"} font-bold tracking-wider text-gray-500 whitespace-nowrap`}>
         {STATUS_LABEL[status]}
       </span>
       <span
-        className={`${base} font-black tracking-[0.08em] leading-none ${tone}`}
+        className={`${base} font-black tracking-[0.08em] leading-none whitespace-nowrap ${tone}`}
         data-exhibition-badge={urgent ? "urgent" : "normal"}
       >
         {label}

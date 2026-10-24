@@ -4,6 +4,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   computeStatus,
+  parseExhibitionLayout,
   todayJst,
   daysBetween,
   isValidYmd,
@@ -176,4 +177,13 @@ test("データ読み込み: exhibition.json の version/statusAsOf と items", 
   assert.match(exhibitionData.statusAsOf, /^\d{4}-\d{2}-\d{2}$/);
   assert.ok(Array.isArray(exhibitionItems));
   assert.equal(getExhibitionBySlug("__none__"), undefined);
+});
+
+test("parseExhibitionLayout: 既定は stack、compact/row のみ受理、不正値は既定", () => {
+  assert.equal(parseExhibitionLayout(null), "stack");
+  assert.equal(parseExhibitionLayout(""), "stack");
+  assert.equal(parseExhibitionLayout("compact"), "compact");
+  assert.equal(parseExhibitionLayout("row"), "row");
+  assert.equal(parseExhibitionLayout("ROW"), "stack");
+  assert.equal(parseExhibitionLayout("grid"), "stack");
 });
