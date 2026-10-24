@@ -2,8 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import type { Exhibition } from "@/lib/exhibition";
-import { parseExhibitionLayout, sortExhibitions, visibleExhibitions } from "@/lib/exhibition";
-import type { ExhibitionLayout } from "@/lib/exhibition";
+import { sortExhibitions, visibleExhibitions } from "@/lib/exhibition";
 import { todayJst } from "../../scripts/lib/exhibition-status.mjs";
 import ExhibitionCard from "./ExhibitionCard";
 import { useFavorites } from "@/hooks/useFavorites";
@@ -36,8 +35,7 @@ export default function ExhibitionGalleryClient({ items, initialToday, tagVocabu
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
   const [showTrashOnly, setShowTrashOnly] = useState(false);
   const [urlReady, setUrlReady] = useState(false);
-  // スマホ幅(sm未満)の並べ方（?layout=compact|row。比較用）と、絞り込みパネルの開閉
-  const [layout, setLayout] = useState<ExhibitionLayout>("stack");
+  // 絞り込みパネルの開閉
   const [filterOpen, setFilterOpen] = useState(false);
   const { favorites, toggle, mounted } = useFavorites();
   const { trashed, toggle: toggleTrash, mounted: trashMounted } = useTrash();
@@ -53,7 +51,6 @@ export default function ExhibitionGalleryClient({ items, initialToday, tagVocabu
     setTag(q.get("tag") ?? "");
     const s = q.get("status");
     setStatus(s === "ongoing" || s === "upcoming" ? s : "");
-    setLayout(parseExhibitionLayout(q.get("layout")));
     setUrlReady(true);
     /* eslint-enable react-hooks/set-state-in-effect */
   }, []);
@@ -194,10 +191,7 @@ export default function ExhibitionGalleryClient({ items, initialToday, tagVocabu
 
       <div className="max-w-[1600px] mx-auto">
         <div
-          className={`grid ${
-            layout === "compact" ? "grid-cols-[repeat(2,minmax(0,1fr))]" : "grid-cols-[minmax(0,1fr)]"
-          } sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-px bg-gray-300`}
-          data-exhibition-layout={layout}
+          className="grid grid-cols-[minmax(0,1fr)] sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-px bg-gray-300"
         >
           {filtered.map((e) => (
             <ExhibitionCard
@@ -211,7 +205,6 @@ export default function ExhibitionGalleryClient({ items, initialToday, tagVocabu
               trashMode={showTrashOnly}
               isWantToGo={wantMounted && wantToGo.has(e.id)}
               onToggleWantToGo={toggleWantToGo}
-              layout={layout}
             />
           ))}
         </div>
