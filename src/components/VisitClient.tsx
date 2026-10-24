@@ -6,7 +6,7 @@ import Link from "next/link";
 import type { Exhibition } from "@/lib/exhibition";
 import { useWantToGo } from "@/hooks/useWantToGo";
 import { useTrash } from "@/hooks/useTrash";
-import { buildPins, deriveVisit, exhibitionsOpenOn, todayJst, type VenueGeo } from "@/lib/visit";
+import { buildPins, clusterPins, deriveVisit, exhibitionsOpenOn, todayJst, type VenueGeo } from "@/lib/visit";
 import VisitBars from "./VisitBars";
 import VisitCalendar from "./VisitCalendar";
 import { VisitActiveList, VisitEndedList } from "./VisitList";
@@ -58,6 +58,14 @@ export default function VisitClient({ items, geo, initialToday, initialView }: P
   const { unlocated } = useMemo(() => buildPins(active, geo, today), [active, geo, today]);
   const unlocatedIds = useMemo(() => new Set(unlocated.map((e) => e.id)), [unlocated]);
 
+  // 地域グループ（50km 以内で連結）。初期表示は最大グループ、チップで切替
+  const clusters = useMemo(() => clusterPins(pins, 50), [pins]);
+  const [region, setRegion] = useState<"all" | number>(0);
+  const fitPins = useMemo(
+    () => (region === "all" ? pins : (clusters[region] ?? clusters[0])?.pins ?? pins),
+    [region, clusters, pins],
+  );
+
   const changeView = useCallback((v: VisitView) => {
     setView(v);
     setDateFilter(null);
@@ -102,6 +110,11 @@ export default function VisitClient({ items, geo, initialToday, initialView }: P
       on ? "bg-gray-900 text-white border-gray-900" : "bg-white text-gray-600 border-gray-300 hover:border-gray-900"
     }`;
 
+  const chipClass = (on: boolean) =>
+    `px-2.5 py-1 text-[11px] font-black tabular-nums border ${
+      on ? "bg-gray-900 text-white border-gray-900" : "bg-white text-gray-700 border-gray-300 hover:border-gray-900"
+    }`;
+
   return (
     <div className="max-w-[1600px] mx-auto px-4 py-4">
       <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
@@ -129,8 +142,22 @@ export default function VisitClient({ items, geo, initialToday, initialView }: P
 
       <div className="grid gap-4 lg:grid-cols-2 items-start">
         <div className="lg:sticky lg:top-4">
-          <div className="h-[320px] lg:h-[calc(100vh-180px)] lg:min-h-[420px] border border-gray-300 bg-gray-100">
-            <VisitMap pins={pins} highlightedVenue={highlightVenue} focus={focus} onPinSelect={selectPin} />
+          {clusters.length > 0 && (
+            <div className="flex flex-wrap gap-1 mb-2" role="group" aria-label="地図の表示地域">
+              {clusters.length > 1 && (
+                <button type="button" aria-pressed={region === "all"} onClick={() => setRegion("all")} className={chipClass(region === "all")}>
+                  全体 {mapItems.length}
+                </button>
+              )}
+              {clusters.map((c, i) => (
+                <button key={`${c.label}-${i}`} type="button" aria-pressed={region === i} onClick={() => setRegion(i)} className={chipClass(region === i)}>
+                  {c.label} {c.count}
+                </button>
+              ))}
+            </div>
+          )}
+          <div className="h-[320px] lg:h-[calc(100vh-220px)] lg:min-h-[420px] border border-gray-300 bg-gray-100">
+            <VisitMap pins={pins} fitPins={fitPins} highlightedVenue={highlightVenue} focus={focus} onPinSelect={selectPin} />
           </div>
           {dateFilter && (
             <p className="mt-2 text-[11px] text-gray-600">

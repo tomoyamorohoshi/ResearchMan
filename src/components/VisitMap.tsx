@@ -8,6 +8,8 @@ import { formatPeriod } from "./ExhibitionBadge";
 
 type Props = {
   pins: VenuePin[];
+  // 地図をこのピン群に fitBounds する（配列が変わるたびに実行）
+  fitPins: VenuePin[];
   highlightedVenue: string | null;
   // 項目クリックで地図を会場へ移動しポップアップを開く（nonce が変わるたびに実行）
   focus: { venue: string; nonce: number } | null;
@@ -31,10 +33,6 @@ function pinIcon(pin: VenuePin, highlighted: boolean): L.DivIcon {
 function popupContent(pin: VenuePin): HTMLElement {
   const root = document.createElement("div");
   root.style.cssText = "font:12px/1.5 sans-serif;min-width:160px;max-width:240px";
-  const v = document.createElement("div");
-  v.textContent = pin.venue;
-  v.style.cssText = "font-weight:700;color:#6b7280;margin-bottom:4px";
-  root.appendChild(v);
   for (const e of pin.items) {
     const block = document.createElement("div");
     block.style.cssText = "margin-top:6px";
@@ -45,13 +43,16 @@ function popupContent(pin: VenuePin): HTMLElement {
     const p = document.createElement("div");
     p.textContent = formatPeriod(e.startDate, e.endDate);
     p.style.cssText = "color:#6b7280;font-variant-numeric:tabular-nums";
-    block.append(a, p);
+    const v = document.createElement("div");
+    v.textContent = e.venue;
+    v.style.cssText = "font-weight:700;color:#6b7280";
+    block.append(a, v, p);
     root.appendChild(block);
   }
   return root;
 }
 
-export default function VisitMap({ pins, highlightedVenue, focus, onPinSelect }: Props) {
+export default function VisitMap({ pins, fitPins, highlightedVenue, focus, onPinSelect }: Props) {
   const elRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<L.Map | null>(null);
   const layerRef = useRef<L.LayerGroup | null>(null);
@@ -90,8 +91,8 @@ export default function VisitMap({ pins, highlightedVenue, focus, onPinSelect }:
     for (const pin of pins) {
       const m = L.marker([pin.lat, pin.lng], {
         icon: pinIcon(pin, false),
-        title: pin.venue,
-        alt: pin.venue,
+        title: pin.venues.join(" / "),
+        alt: pin.venues.join(" / "),
         zIndexOffset: pin.urgent ? 1000 : 0,
       });
       m.bindPopup(() => popupContent(pin));
@@ -99,13 +100,17 @@ export default function VisitMap({ pins, highlightedVenue, focus, onPinSelect }:
       m.addTo(layer);
       markersRef.current.set(pin.venue, m);
     }
-    if (pins.length > 0) {
-      map.fitBounds(L.latLngBounds(pins.map((p) => [p.lat, p.lng] as [number, number])), {
-        padding: [40, 40],
-        maxZoom: 15,
-      });
-    }
   }, [pins]);
+
+  // 表示範囲（地域チップ・初期表示）
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || fitPins.length === 0) return;
+    map.fitBounds(L.latLngBounds(fitPins.map((p) => [p.lat, p.lng] as [number, number])), {
+      padding: [40, 40],
+      maxZoom: 15,
+    });
+  }, [fitPins]);
 
   // 強調ピン
   useEffect(() => {

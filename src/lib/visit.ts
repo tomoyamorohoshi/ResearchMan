@@ -201,20 +201,33 @@ export function lookupVenueGeo(geo: VenueGeo, venue: string): VenueGeoEntry | un
 }
 
 export type VenuePin = {
-  venue: string; // トリム後の会場名
+  venue: string; // 代表の会場名（束ねたうち最初の会場。トリム後）。マーカーのキーに使う
+  venues: string[]; // 束ねた会場名（初出順・重複なし）
   lat: number;
   lng: number;
   items: Exhibition[];
   urgent: boolean; // items のどれかが終了間近
 };
 
-// 座標ありは同じ会場名ごとに1ピンへ束ね（初出順）、座標なしは unlocated で返す。
+// 会場名が違っても、この距離（m）以内なら同じピンに束ねる（例: 美術館本館とコレクション展示室）
+export const PIN_MERGE_METERS = 50;
+
+export function distanceKm(a: { lat: number; lng: number }, b: { lat: number; lng: number }): number {
+  const rad = Math.PI / 180;
+  const dLat = (b.lat - a.lat) * rad;
+  const dLng = (b.lng - a.lng) * rad;
+  const h =
+    Math.sin(dLat / 2) ** 2 + Math.cos(a.lat * rad) * Math.cos(b.lat * rad) * Math.sin(dLng / 2) ** 2;
+  return 12742 * Math.asin(Math.min(1, Math.sqrt(h)));
+}
+
+// 座標ありは「同じ会場名」または「PIN_MERGE_METERS 以内」で1ピンへ束ね（初出順）、座標なしは unlocated で返す。
 export function buildPins(
   items: readonly Exhibition[],
   geo: VenueGeo,
   today: string,
 ): { pins: VenuePin[]; unlocated: Exhibition[] } {
-  const byVenue = new Map<string, VenuePin>();
+  const pins: VenuePin[] = [];
   const unlocated: Exhibition[] = [];
   for (const e of items) {
     const g = lookupVenueGeo(geo, e.venue);
@@ -223,13 +236,51 @@ export function buildPins(
       continue;
     }
     const key = e.venue.trim();
-    let pin = byVenue.get(key);
+    let pin = pins.find(
+      (p) => p.venues.includes(key) || distanceKm(p, g) * 1000 <= PIN_MERGE_METERS,
+    );
     if (!pin) {
-      pin = { venue: key, lat: g.lat, lng: g.lng, items: [], urgent: false };
-      byVenue.set(key, pin);
+      pin = { venue: key, venues: [key], lat: g.lat, lng: g.lng, items: [], urgent: false };
+      pins.push(pin);
+    } else if (!pin.venues.includes(key)) {
+      pin.venues.push(key);
     }
     pin.items.push(e);
     if (isEndingSoon(e, today)) pin.urgent = true;
   }
-  return { pins: [...byVenue.values()], unlocated };
+  return { pins, unlocated };
+}
+
+// 「東京都」→「東京」。北海道はそのまま。
+export function regionLabel(prefecture: string): string {
+  return prefecture.length > 2 && /[都府県]$/.test(prefecture) ? prefecture.slice(0, -1) : prefecture;
+}
+
+export type PinCluster = { label: string; count: number; pins: VenuePin[] };
+
+// ピン同士が thresholdKm 以内で連結しているものを地域グループにする。展覧会件数の多い順
+// （同数は先に出たほう）。ラベルは所属展覧会で最も多い prefecture。
+export function clusterPins(pins: readonly VenuePin[], thresholdKm: number): PinCluster[] {
+  const parent = pins.map((_, i) => i);
+  const find = (i: number): number => (parent[i] === i ? i : (parent[i] = find(parent[i])));
+  for (let i = 0; i < pins.length; i++) {
+    for (let j = i + 1; j < pins.length; j++) {
+      if (distanceKm(pins[i], pins[j]) <= thresholdKm) parent[find(i)] = find(j);
+    }
+  }
+  const groups = new Map<number, VenuePin[]>();
+  pins.forEach((p, i) => {
+    const r = find(i);
+    groups.set(r, [...(groups.get(r) ?? []), p]);
+  });
+  const out: PinCluster[] = [...groups.values()].map((ps) => {
+    const tally = new Map<string, number>();
+    for (const p of ps) for (const e of p.items) tally.set(e.prefecture, (tally.get(e.prefecture) ?? 0) + 1);
+    const top = [...tally.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? "";
+    return { label: regionLabel(top), count: ps.reduce((n, p) => n + p.items.length, 0), pins: ps };
+  });
+  return out
+    .map((c, i) => ({ c, i }))
+    .sort((a, b) => b.c.count - a.c.count || a.i - b.i)
+    .map((x) => x.c);
 }

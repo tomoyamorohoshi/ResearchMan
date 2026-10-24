@@ -19,6 +19,8 @@ import {
   monthCalendar,
   lookupVenueGeo,
   buildPins,
+  clusterPins,
+  regionLabel,
   MAX_RANGE_DAYS,
   todayJst,
   type VenueGeo,
@@ -312,4 +314,55 @@ test("buildPins: 同一会場は1ピンに束ね、座標なしは unlocated、u
 
 test("buildPins: 空入力", () => {
   assert.deepEqual(buildPins([], geo, T), { pins: [], unlocated: [] });
+});
+
+const geo2: VenueGeo = {
+  version: 1,
+  venues: {
+    MOT: { lat: 35.6797754, lng: 139.8087878, source: "nominatim", query: "q", checkedAt: "2026-10-24" },
+    "MOT コレクション": { lat: 35.6797754, lng: 139.8087878, source: "nominatim", query: "q", checkedAt: "2026-10-24" },
+    近い: { lat: 35.6799, lng: 139.8089, source: "nominatim", query: "q", checkedAt: "2026-10-24" }, // 約 20m
+    遠い: { lat: 35.6820, lng: 139.8087878, source: "nominatim", query: "q", checkedAt: "2026-10-24" }, // 約 250m
+    YCAM: { lat: 34.1695, lng: 131.4672, source: "nominatim", query: "q", checkedAt: "2026-10-24" },
+    森: { lat: 35.6604, lng: 139.7292, source: "nominatim", query: "q", checkedAt: "2026-10-24" },
+  },
+};
+
+test("buildPins: 会場名が違っても同一座標・数十m以内は1ピンに束ねる（遠いものは別）", () => {
+  const items = [
+    ex({ id: "1", venue: "MOT", startDate: "2026-10-01", endDate: "2026-12-01" }),
+    ex({ id: "2", venue: "MOT コレクション", startDate: "2026-10-01", endDate: "2026-12-01" }),
+    ex({ id: "3", venue: "近い", startDate: "2026-10-01", endDate: "2026-12-01" }),
+    ex({ id: "4", venue: "遠い", startDate: "2026-10-01", endDate: "2026-12-01" }),
+  ];
+  const { pins } = buildPins(items, geo2, T);
+  assert.equal(pins.length, 2);
+  assert.deepEqual(pins[0].items.map((e) => e.id), ["1", "2", "3"]);
+  assert.equal(pins[0].venue, "MOT");
+  assert.deepEqual(pins[1].items.map((e) => e.id), ["4"]);
+});
+
+test("regionLabel: 都府県の接尾辞を外す、北海道はそのまま", () => {
+  assert.equal(regionLabel("東京都"), "東京");
+  assert.equal(regionLabel("京都府"), "京都");
+  assert.equal(regionLabel("山口県"), "山口");
+  assert.equal(regionLabel("北海道"), "北海道");
+});
+
+test("clusterPins: 50km 以内で連結、件数の多い順、ラベルは多数派の都道府県", () => {
+  const items = [
+    ex({ id: "1", venue: "MOT", startDate: "2026-10-01", endDate: "2026-12-01" }),
+    ex({ id: "2", venue: "森", startDate: "2026-10-01", endDate: "2026-12-01" }),
+    ex({ id: "3", venue: "森", startDate: "2026-10-01", endDate: "2026-12-01" }),
+    ex({ id: "4", venue: "YCAM", prefecture: "山口県", startDate: "2026-10-01", endDate: "2026-12-01" }),
+  ];
+  const { pins } = buildPins(items, geo2, T);
+  const cl = clusterPins(pins, 50);
+  assert.equal(cl.length, 2);
+  assert.equal(cl[0].label, "東京");
+  assert.equal(cl[0].count, 3);
+  assert.equal(cl[0].pins.length, 2);
+  assert.equal(cl[1].label, "山口");
+  assert.equal(cl[1].count, 1);
+  assert.deepEqual(clusterPins([], 50), []);
 });

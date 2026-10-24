@@ -21,8 +21,10 @@ export default function VisitBars({ active, today, highlightIds, unlocatedIds, o
   const ticks: { label: string; pos: number }[] = [];
   for (let i = 0; i < range.days; i++) {
     const d = addDays(range.start, i);
-    if (d.endsWith("-01")) {
-      ticks.push({ label: `${Number(d.slice(5, 7))}月`, pos: ((i + 0.5) / range.days) * 100 });
+    const pos = ((i + 0.5) / range.days) * 100;
+    // 「今日」ラベルと近すぎる月ラベルは出さない（スマホ幅で重なるため）
+    if (d.endsWith("-01") && Math.abs(pos - todayPos) >= 10) {
+      ticks.push({ label: `${Number(d.slice(5, 7))}月`, pos });
     }
   }
 
