@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import type { Exhibition, ExhibitionLayout } from "@/lib/exhibition";
+import type { Exhibition } from "@/lib/exhibition";
 import ExhibitionBadge, { formatPeriod } from "./ExhibitionBadge";
 
 type Props = {
@@ -17,8 +17,6 @@ type Props = {
   // 「行きたい」（Visitタブ用。いいね・ごみ箱とは独立）
   isWantToGo?: boolean;
   onToggleWantToGo?: (id: string) => void;
-  // スマホ幅(sm未満)の並べ方。sm以上は常に従来のカード
-  layout?: ExhibitionLayout;
 };
 
 export default function ExhibitionCard({
@@ -31,20 +29,16 @@ export default function ExhibitionCard({
   trashMode = false,
   isWantToGo = false,
   onToggleWantToGo,
-  layout = "stack",
 }: Props) {
-  const row = layout === "row";
-  const compact = layout === "compact";
+  // スマホ幅(sm未満)は左に正方形サムネ・右に本文の行リスト、sm以上は縦カード。
   // 行リストのアイコンは白背景上に置くので sm 未満だけ暗色にする
-  const idleIcon = row ? "text-gray-500 sm:text-white/80" : "text-white/80";
+  const idleIcon = "text-gray-500 sm:text-white/80";
   const btnSize = "w-10 h-10 sm:w-7 sm:h-7";
   return (
-    <div className={`group relative flex bg-white ${row ? "flex-row sm:flex-col" : "flex-col"}`} data-exhibition-id={e.id}>
+    <div className={`group relative flex bg-white flex-row sm:flex-col`} data-exhibition-id={e.id}>
       <Link
         href={`/exhibition/${e.slug}`}
-        className={`block relative overflow-hidden bg-gray-100 ${
-          row ? "w-24 h-24 shrink-0 sm:w-auto sm:h-auto sm:aspect-square" : layout === "stack" ? "aspect-[16/10] sm:aspect-square" : "aspect-square"
-        }`}
+        className="block relative overflow-hidden bg-gray-100 w-24 h-24 shrink-0 sm:w-auto sm:h-auto sm:aspect-square"
       >
         <Image
           src={e.thumbnail}
@@ -58,10 +52,10 @@ export default function ExhibitionCard({
       <div className="flex flex-col flex-1 min-w-0">
       <Link
         href={`/exhibition/${e.slug}`}
-        className={`block flex-1 min-w-0 ${row ? "p-3 pb-1" : compact ? "p-2.5 pb-1.5" : "p-4 pb-3"} sm:p-4 sm:pb-3`}
+        className="block flex-1 min-w-0 p-3 pb-1 sm:p-4 sm:pb-3"
       >
-        <div className={`flex items-start justify-between gap-2 sm:mb-3 ${row ? "mb-1.5" : compact ? "mb-2" : "mb-3"}`}>
-          <span className={`items-center gap-1.5 ${row || compact ? "hidden sm:flex" : "flex"}`}>
+        <div className="flex items-start justify-between gap-2 mb-1.5 sm:mb-3">
+          <span className="items-center gap-1.5 hidden sm:flex">
             <span
               className="text-[11px] font-black tracking-[0.2em] uppercase text-gray-900 leading-none"
               style={{ fontVariant: "all-small-caps" }}
@@ -76,17 +70,15 @@ export default function ExhibitionCard({
         </div>
 
         <h2
-          className={`font-black leading-tight text-gray-900 tracking-tight sm:text-base sm:mb-2 sm:line-clamp-none ${
-            row ? "text-sm line-clamp-2 mb-1" : compact ? "text-[13px] line-clamp-3 mb-1" : "text-base mb-2"
-          }`}
+          className="font-black leading-tight text-gray-900 tracking-tight text-sm line-clamp-2 mb-1 sm:text-base sm:mb-2 sm:line-clamp-none"
         >{e.title}</h2>
         {e.artists.length > 0 && (
-          <p className={`text-[11px] text-gray-600 leading-relaxed sm:mb-2 sm:line-clamp-2 ${row ? "hidden sm:block" : compact ? "line-clamp-1 mb-1" : "line-clamp-2 mb-2"}`}>{e.artists.join(" / ")}</p>
+          <p className="text-[11px] text-gray-600 leading-relaxed hidden sm:line-clamp-2 sm:mb-2">{e.artists.join(" / ")}</p>
         )}
 
-        <div className={`w-5 h-px bg-gray-900 mb-2 ${row ? "hidden sm:block" : compact ? "hidden sm:block" : ""}`} />
+        <div className="w-5 h-px bg-gray-900 mb-2 hidden sm:block" />
 
-        <p className={`text-gray-500 leading-snug line-clamp-2 sm:text-[10px] ${compact ? "text-[9px]" : "text-[10px]"}`}>
+        <p className="text-gray-500 leading-snug line-clamp-2 text-[10px]">
           <span className="font-bold text-gray-700">{e.venue}</span>
           <span className="text-gray-400">
             {" "}
@@ -96,7 +88,7 @@ export default function ExhibitionCard({
         </p>
 
         {e.tags.length > 0 && (
-          <p className={`mt-1.5 flex-wrap gap-x-1.5 gap-y-0.5 ${row ? "hidden sm:flex" : "flex"}`}>
+          <p className="mt-1.5 flex-wrap gap-x-1.5 gap-y-0.5 hidden sm:flex">
             {e.tags.slice(0, 3).map((t) => (
               <span key={t} className="text-[9px] tracking-wider text-gray-400">
                 #{t}
@@ -107,22 +99,16 @@ export default function ExhibitionCard({
       </Link>
 
       <div
-        className={`flex justify-between sm:gap-2 sm:px-4 sm:pb-3 sm:flex-row sm:items-center ${
-          row
-            ? "px-3 pb-2 flex-col items-start gap-0.5 pr-36"
-            : compact
-              ? "px-2.5 pb-2 flex-col items-start gap-0.5"
-              : "px-4 pb-3 items-center gap-2"
-        }`}
+        className="flex justify-between px-3 pb-2 flex-col items-start gap-0.5 pr-36 sm:gap-2 sm:px-4 sm:pb-3 sm:flex-row sm:items-center"
       >
         <span className="text-[10px] font-bold text-gray-700 min-w-0 line-clamp-2 sm:line-clamp-none">{e.admission === "UNKNOWN" ? "入場料不明" : e.admission}</span>
-        <span className={`font-black text-gray-900 tabular-nums shrink-0 whitespace-nowrap sm:text-[11px] ${compact || row ? "text-[10px]" : "text-[11px]"}`}>
+        <span className="font-black text-gray-900 tabular-nums shrink-0 whitespace-nowrap text-[10px] sm:text-[11px]">
           {formatPeriod(e.startDate, e.endDate)}
         </span>
       </div>
       </div>
 
-      <div className={`absolute flex items-center gap-1 sm:top-2 sm:right-2 sm:bottom-auto ${row ? "bottom-1 right-1" : "top-1 right-1"}`}>
+      <div className="absolute flex items-center gap-1 bottom-1 right-1 sm:top-2 sm:right-2 sm:bottom-auto">
         {onToggleWantToGo && (
           <button
             onClick={(ev) => {
