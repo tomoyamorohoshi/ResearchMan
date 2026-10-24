@@ -1,6 +1,6 @@
 import { exhibitionItems, todayJst } from "@/lib/exhibition";
 import venueGeoJson from "../../../data/venue-geo.json";
-import { parseCalStyle, type VenueGeo } from "@/lib/visit";
+import type { VenueGeo } from "@/lib/visit";
 import VisitClient from "@/components/VisitClient";
 import TopTabs from "@/components/TopTabs";
 
@@ -9,14 +9,10 @@ export const metadata = {
   description: "「行きたい」を押した展覧会を、地図と会期で見る",
 };
 
-// Next.js 16: searchParams は Promise
-export default async function VisitPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-}) {
-  const sp = await searchParams;
-  const calStyle = parseCalStyle(sp.cal);
+// 「今日」をリクエストごとに決めるため静的化しない（クエリは使わない）
+export const dynamic = "force-dynamic";
+
+export default function VisitPage() {
   return (
     <main className="min-h-screen">
       <header className="border-b border-gray-300 px-4 py-4 max-w-[1600px] mx-auto flex items-end justify-between gap-4">
@@ -34,7 +30,6 @@ export default async function VisitPage({
         items={exhibitionItems}
         geo={venueGeoJson as unknown as VenueGeo}
         initialToday={todayJst()}
-        calStyle={calStyle}
       />
     </main>
   );
