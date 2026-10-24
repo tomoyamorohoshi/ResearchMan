@@ -9,7 +9,12 @@ import {
   checkExhibitionProfileChange,
 } from "./tuneup-exhibition.mjs";
 
-const profile = () => JSON.parse(fs.readFileSync(new URL("../../data/exhibition-profile.json", import.meta.url), "utf-8"));
+// 本番データの likes.userPicks 系は今後増えても前提が崩れないよう取り除いた状態を土台にする。
+const profile = () => {
+  const p = JSON.parse(fs.readFileSync(new URL("../../data/exhibition-profile.json", import.meta.url), "utf-8"));
+  if (p.likes) { delete p.likes.userPicks; delete p.likes.userPicksEvidenceSince; }
+  return p;
+};
 
 const it = (id, over = {}) => ({
   id, slug: id, title: id, artists: ["A"], venue: "V", venueType: "museum", prefecture: "東京都", score: 72,
