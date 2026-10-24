@@ -20,14 +20,7 @@ const WEEK = ["日", "月", "火", "水", "木", "金", "土"];
 const HEAD = 22;
 const HEAD_TODAY = 34;
 
-// 今日の目印。オーナーが1案に絞る前提で、案ごとの差はこの TODAY_STYLES だけに閉じる。
-//  a: 黒地反転＋「今日」 / b: 太い黒枠(3px)＋「TODAY」 / c: 淡い黄色＋「今日」
-export type TodayStyle = "a" | "b" | "c";
-const TODAY_STYLES: Record<TodayStyle, { cell: string; num: string; label: string; text: string; ring: boolean; labelFirst: boolean }> = {
-  a: { cell: "bg-gray-900 text-white", num: "font-black text-white", label: "text-white", text: "今日", ring: false, labelFirst: false },
-  b: { cell: "bg-white", num: "font-black text-gray-900", label: "text-gray-900", text: "TODAY", ring: true, labelFirst: true },
-  c: { cell: "bg-[#fff3b0]", num: "font-black text-gray-900", label: "text-gray-900", text: "今日", ring: false, labelFirst: false },
-};
+// 今日の目印: 淡い黄色のマス＋「今日」（黄色はこの1か所だけ。2026-10-25 オーナー選定）
 
 type Props = {
   active: Exhibition[];
@@ -37,16 +30,14 @@ type Props = {
   highlightIds: Set<string>;
   unlocatedIds: Set<string>;
   onSelect: (e: Exhibition) => void;
-  todayStyle?: TodayStyle;
 };
 
 // 今日から6週のカレンダー（過去は出さない）。日付を押すとその日に開いている展覧会だけ地図に絞る。
 // 展示の識別は色でなく番号（一覧と同じ並び順）。色は白黒グレー＋終了間近の赤のみ。
 // 表示は名前入り横帯（週をまたいで連続）。
-export default function VisitCalendar({ active, today, dateFilter, onDateFilter, highlightIds, unlocatedIds, onSelect, todayStyle = "a" }: Props) {
+export default function VisitCalendar({ active, today, dateFilter, onDateFilter, highlightIds, unlocatedIds, onSelect }: Props) {
   const [page, setPage] = useState(0); // 0 = 今日を含む週から6週。過去へは戻れない
   const cells = useMemo(() => rangeCalendar(today, page, active), [today, page, active]);
-  const ts = TODAY_STYLES[todayStyle];
   const numberOf = useMemo(() => new Map(active.map((e, i) => [e.id, visitNo(i)] as const)), [active]);
   const byId = useMemo(() => new Map(active.map((e) => [e.id, e] as const)), [active]);
 
@@ -64,7 +55,7 @@ export default function VisitCalendar({ active, today, dateFilter, onDateFilter,
   // 選択枠・今日の枠は帯(z-20)より手前の overlay(z-30) で描くので、セル自体は z-index を持たない
   const cellClass = (c: Cell) =>
     `relative flex flex-col items-stretch justify-start min-w-0 text-left border-r border-b border-gray-300 ${
-      c.past ? "bg-[#eeece7] text-gray-300 cursor-default" : c.date === today ? `${ts.cell} hover:opacity-90` : "bg-white hover:bg-gray-50"
+      c.past ? "bg-[#eeece7] text-gray-300 cursor-default" : c.date === today ? "bg-[#fff3b0] hover:opacity-90" : "bg-white hover:bg-gray-50"
     }`;
 
   const dayNum = (c: Cell) => {
@@ -73,7 +64,7 @@ export default function VisitCalendar({ active, today, dateFilter, onDateFilter,
     return (
       <span
         className={`inline-block min-w-[18px] px-1 text-[10px] tabular-nums leading-[18px] text-center ${
-          c.past ? "" : isToday ? ts.num : "font-bold text-gray-700"
+          c.past ? "" : isToday ? "font-black text-gray-900" : "font-bold text-gray-700"
         }`}
       >
         {text}
@@ -82,8 +73,8 @@ export default function VisitCalendar({ active, today, dateFilter, onDateFilter,
   };
 
   const todayLabel = (
-    <span aria-hidden="true" className={`block px-1 text-[9px] font-black leading-[12px] tracking-wider ${ts.label}`}>
-      {ts.text}
+    <span aria-hidden="true" className={`block px-1 text-[9px] font-black leading-[12px] tracking-wider text-gray-900`}>
+      今日
     </span>
   );
 
@@ -149,22 +140,11 @@ export default function VisitCalendar({ active, today, dateFilter, onDateFilter,
                   onClick={() => onDateFilter(dateFilter === c.date ? null : c.date)}
                   className={`${cellClass(c)} pt-0.5 px-0.5`}
                 >
-                  {c.date === today && ts.labelFirst && todayLabel}
                   {dayNum(c)}
-                  {c.date === today && !ts.labelFirst && todayLabel}
+                  {c.date === today && todayLabel}
                 </button>
               ))}
-              {todayCol >= 0 && ts.ring && overlay(todayCol, "inset 0 0 0 3px #111827", "today-ring")}
-              {filterCol >= 0 &&
-                overlay(
-                  filterCol,
-                  todayCol === filterCol
-                    ? ts.ring
-                      ? "inset 0 0 0 3px #111827, inset 0 0 0 5px #fff, inset 0 0 0 7px #111827"
-                      : "inset 0 0 0 2px #fff"
-                    : "inset 0 0 0 2px #111827",
-                  "filter-ring",
-                )}
+              {filterCol >= 0 && overlay(filterCol, "inset 0 0 0 2px #111827", "filter-ring")}
               {segs.map((s) => {
                 const e = byId.get(s.id)!;
                 const t = tone(e);
