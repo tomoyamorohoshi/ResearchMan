@@ -9,7 +9,7 @@ import { fileURLToPath } from "url";
 import { spawnSync } from "child_process";
 import { todayJst } from "./lib/exhibition-status.mjs";
 import { appendSystemAlert } from "./lib/system-alerts.mjs";
-import { createThrottle, geocodeAll, loadGeo, pendingVenues, serializeGeo } from "./lib/venue-geo.mjs";
+import { createThrottle, geocodeAll, loadGeo, pendingVenues, writeGeoAtomic } from "./lib/venue-geo.mjs";
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const EXH = path.join(ROOT, "data", "exhibition.json");
@@ -35,10 +35,11 @@ if (offline || todo.length === 0) {
 }
 
 const userAgent = `ResearchMan-venue-geocoder/1.0 (+${repoUrl()})`;
-const { geo: next, added, failed, skipped, blocked } = await geocodeAll(items, geo, {
+const { added, failed, skipped, blocked } = await geocodeAll(items, geo, {
   wait: createThrottle(),
   userAgent,
   today: todayJst(),
+  onAdded: dryRun ? undefined : (g) => writeGeoAtomic(GEO, g),
   onResult: (v, r) =>
     console.log(r ? `  OK  ${v.venue}: ${r.lat}, ${r.lng}  [${r.displayName}]` : `  --  ${v.venue}: 取得できず（${v.prefecture} ${v.city}）`),
 });
@@ -47,21 +48,31 @@ if (dryRun) {
   console.log(`dry-run: 追加予定 ${added.length} 件 / 未取得 ${failed.length} 件（書き込みなし）`);
   process.exit(0);
 }
-if (added.length > 0) fs.writeFileSync(GEO, serializeGeo(next));
-if (failed.length > 0) {
+const list = (vs) => vs.map((v) => `${v.venue}（${v.prefecture} ${v.city}）`).join("\n");
+if (blocked) {
+  // 429/403 は「取得できなかった」と「打ち切り」を1件にまとめる
   appendSystemAlert({
     source: "geocode-venues",
     level: "warn",
-    title: `会場の座標を取得できませんでした（${failed.length}件）`,
-    body: failed.map((v) => `${v.venue}（${v.prefecture} ${v.city}）`).join("\n"),
+    title: `Nominatim が HTTP ${blocked} を返したため会場の座標取得を打ち切りました（未処理 ${failed.length + skipped.length}件）`,
+    body: list([...failed, ...skipped]),
   });
-}
-if (blocked || skipped.length > 0) {
-  appendSystemAlert({
-    source: "geocode-venues",
-    level: "warn",
-    title: blocked ? `Nominatim が HTTP ${blocked} を返したため会場の座標取得を打ち切りました` : `会場の座標取得が1回の上限（${skipped.length}件を次回へ繰り越し）`,
-    body: skipped.map((v) => `${v.venue}（${v.prefecture} ${v.city}）`).join("\n"),
-  });
+} else {
+  if (failed.length > 0) {
+    appendSystemAlert({
+      source: "geocode-venues",
+      level: "warn",
+      title: `会場の座標を取得できませんでした（${failed.length}件）`,
+      body: list(failed),
+    });
+  }
+  if (skipped.length > 0) {
+    appendSystemAlert({
+      source: "geocode-venues",
+      level: "warn",
+      title: `会場の座標取得が1回の上限（件数または時間）に達しました（${skipped.length}件を次回へ繰り越し）`,
+      body: list(skipped),
+    });
+  }
 }
 console.log(`追加 ${added.length} 件 / 未取得 ${failed.length} 件`);

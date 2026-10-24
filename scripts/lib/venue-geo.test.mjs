@@ -10,6 +10,8 @@ import {
   geocodeVenue,
   geocodeAll,
   serializeGeo,
+  writeGeoAtomic,
+  loadGeo,
 } from "./venue-geo.mjs";
 
 const item = (venue, prefecture = "東京都", city = "港区", extra = {}) => ({ venue, prefecture, city, ...extra });
@@ -230,4 +232,34 @@ test("geocodeAll: 1回の問い合わせ会場数は maxVenues（既定30）ま�
   assert.equal(out.skipped.length, 5);
   const out2 = await geocodeAll(items, { version: 1, venues: {} }, { fetchImpl: f, wait: noWait, userAgent: "UA", today: "d", maxVenues: 2 });
   assert.equal(out2.added.length, 2);
+});
+
+test("geocodeAll: 時間予算を超えたら残りを skipped に繰り越す（時計注入）", async () => {
+  let t = 0;
+  const f = async () => { t += 60; return { ok: true, status: 200, json: async () => [{ lat: "1", lon: "2", display_name: "東京都" }] }; };
+  const items = [item("A"), item("B"), item("C"), item("D")];
+  const out = await geocodeAll(items, { version: 1, venues: {} }, { fetchImpl: f, wait: noWait, userAgent: "UA", today: "d", now: () => t, budgetMs: 100 });
+  assert.deepEqual(out.added.map((v) => v.venue), ["A", "B"]);
+  assert.deepEqual(out.skipped.map((v) => v.venue), ["C", "D"]);
+});
+
+test("geocodeAll + writeGeoAtomic: 採用1件ごとに書き出し、途中で例外が起きても採用済みは残る", async () => {
+  const fs = await import("fs");
+  const os = await import("os");
+  const path = await import("path");
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "vgeo-"));
+  const file = path.join(dir, "venue-geo.json");
+  const f = async () => ({ ok: true, status: 200, json: async () => [{ lat: "1", lon: "2", display_name: "東京都" }] });
+  let n = 0;
+  await assert.rejects(
+    geocodeAll([item("A"), item("B"), item("C")], { version: 1, venues: {} }, {
+      fetchImpl: f, wait: noWait, userAgent: "UA", today: "d",
+      onAdded: (g) => writeGeoAtomic(file, g),
+      onResult: () => { if (++n === 3) throw new Error("boom"); },
+    }),
+    /boom/,
+  );
+  assert.deepEqual(Object.keys(loadGeo(file).venues), ["A", "B"]);
+  assert.deepEqual(fs.readdirSync(dir), ["venue-geo.json"], "一時ファイルが残らない");
+  fs.rmSync(dir, { recursive: true });
 });

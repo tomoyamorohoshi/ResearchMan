@@ -7,6 +7,7 @@ export const MIN_INTERVAL_MS = 1000;
 export const RESULT_LIMIT = 5;
 export const REQUEST_TIMEOUT_MS = 15000;
 export const MAX_VENUES_PER_RUN = 30;
+export const RUN_BUDGET_MS = 8 * 60 * 1000;
 const BLOCK_STATUSES = [429, 403];
 
 /** @param {{venue:string, city?:string, prefecture?:string}} v */
@@ -103,18 +104,19 @@ export async function geocodeVenue(v, opts) {
 
 /**
  * 未登録会場を問い合わせ、{geo(新), added, failed, skipped, blocked} を返す。入力 geo は変更しない。
- * 1回の実行は maxVenues 会場まで。429/403 を受けたら残りを打ち切る（blocked に status、残りは skipped）。
+ * 1回の実行は maxVenues 会場まで・全体で budgetMs まで（超えた分は skipped＝次回へ繰り越し）。採用1件ごとに onAdded(geo) を呼ぶ。429/403 を受けたら残りを打ち切る（blocked に status、残りは skipped）。
  */
-export async function geocodeAll(items, geo, { fetchImpl, wait, userAgent, today, onResult, timeoutMs, maxVenues = MAX_VENUES_PER_RUN } = {}) {
+export async function geocodeAll(items, geo, { fetchImpl, wait, userAgent, today, onResult, onAdded, timeoutMs, maxVenues = MAX_VENUES_PER_RUN, budgetMs = RUN_BUDGET_MS, now = () => Date.now() } = {}) {
   const base = geo && geo.venues ? geo : { version: 1, venues: {} };
   const venues = { ...base.venues };
   const added = [];
   const failed = [];
   const skipped = [];
   let blocked = null;
+  const startedAt = now();
   const pending = pendingVenues(items, base);
   for (const [i, v] of pending.entries()) {
-    if (blocked || i >= maxVenues) {
+    if (blocked || i >= maxVenues || now() - startedAt >= budgetMs) {
       skipped.push(v);
       continue;
     }
@@ -132,6 +134,7 @@ export async function geocodeAll(items, geo, { fetchImpl, wait, userAgent, today
     }
     venues[v.venue] = { lat: r.lat, lng: r.lng, source: "nominatim", query: r.query, checkedAt: today };
     added.push({ ...v, ...r });
+    if (onAdded) onAdded({ ...base, version: base.version ?? 1, venues: { ...venues } });
   }
   return { geo: { ...base, version: base.version ?? 1, venues }, added, failed, skipped, blocked };
 }
@@ -141,6 +144,13 @@ export function serializeGeo(geo) {
   const venues = {};
   for (const k of Object.keys(geo.venues || {}).sort()) venues[k] = geo.venues[k];
   return `${JSON.stringify({ ...geo, venues }, null, 2)}\n`;
+}
+
+/** 一時ファイルに書いてから rename（途中で kill されても壊れた JSON を残さない）。 */
+export function writeGeoAtomic(file, geo) {
+  const tmp = `${file}.tmp`;
+  fs.writeFileSync(tmp, serializeGeo(geo));
+  fs.renameSync(tmp, file);
 }
 
 export function loadGeo(file) {
