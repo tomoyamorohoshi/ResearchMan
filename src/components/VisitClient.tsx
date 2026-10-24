@@ -6,8 +6,7 @@ import Link from "next/link";
 import type { Exhibition } from "@/lib/exhibition";
 import { useWantToGo } from "@/hooks/useWantToGo";
 import { useTrash } from "@/hooks/useTrash";
-import { buildPins, clusterPins, deriveVisit, exhibitionsOpenOn, todayJst, type VenueGeo } from "@/lib/visit";
-import VisitBars from "./VisitBars";
+import { buildPins, clusterPins, deriveVisit, exhibitionsOpenOn, todayJst, type CalStyle, type VenueGeo } from "@/lib/visit";
 import VisitCalendar from "./VisitCalendar";
 import { VisitActiveList, VisitEndedList } from "./VisitList";
 
@@ -20,18 +19,15 @@ const VisitMap = dynamic(() => import("./VisitMap"), {
   ),
 });
 
-export type VisitView = "bars" | "calendar";
-
 type Props = {
   items: Exhibition[];
   geo: VenueGeo;
   initialToday: string;
-  initialView: VisitView;
+  calStyle: CalStyle;
 };
 
-export default function VisitClient({ items, geo, initialToday, initialView }: Props) {
+export default function VisitClient({ items, geo, initialToday, calStyle }: Props) {
   const [today, setToday] = useState(initialToday);
-  const [view, setView] = useState<VisitView>(initialView);
   const [dateFilter, setDateFilter] = useState<string | null>(null);
   const [highlightIds, setHighlightIds] = useState<string[]>([]);
   const [highlightVenue, setHighlightVenue] = useState<string | null>(null);
@@ -92,15 +88,6 @@ export default function VisitClient({ items, geo, initialToday, initialView }: P
   }, []);
   const pinItemCount = useMemo(() => pins.reduce((n, p) => n + p.items.length, 0), [pins]);
 
-  const changeView = useCallback((v: VisitView) => {
-    setView(v);
-    // 日付絞り込みが実際に解除される時だけ地図を fit し直す（パン/ズームを保つ）
-    if (dateFilter) changeDateFilter(null);
-    try {
-      window.history.replaceState(null, "", `?view=${v}`);
-    } catch {}
-  }, [dateFilter, changeDateFilter]);
-
   // 項目（リスト・バー）を押す: 強調 + 地図をその会場へ
   const selectItem = useCallback(
     (e: Exhibition) => {
@@ -139,11 +126,6 @@ export default function VisitClient({ items, geo, initialToday, initialView }: P
   const ready = wantMounted && trashMounted;
   const highlightSet = useMemo(() => new Set(highlightIds), [highlightIds]);
 
-  const toggleClass = (on: boolean) =>
-    `px-3 py-1.5 text-[11px] font-black tracking-wider border ${
-      on ? "bg-gray-900 text-white border-gray-900" : "bg-white text-gray-600 border-gray-300 hover:border-gray-900"
-    }`;
-
   const chipClass = (on: boolean) =>
     `px-2.5 py-1 text-[11px] font-black tabular-nums border ${
       on ? "bg-gray-900 text-white border-gray-900" : "bg-white text-gray-700 border-gray-300 hover:border-gray-900"
@@ -155,14 +137,6 @@ export default function VisitClient({ items, geo, initialToday, initialView }: P
         <h2 className="text-sm font-black tracking-tight text-gray-900">
           行きたい展覧会{ready ? `（${active.length}件）` : ""}
         </h2>
-        <div className="flex" role="group" aria-label="表示切替">
-          <button type="button" aria-pressed={view === "bars"} onClick={() => changeView("bars")} className={toggleClass(view === "bars")}>
-            地図＋会期バー
-          </button>
-          <button type="button" aria-pressed={view === "calendar"} onClick={() => changeView("calendar")} className={`${toggleClass(view === "calendar")} -ml-px`}>
-            地図＋カレンダー
-          </button>
-        </div>
       </div>
 
       {ready && active.length === 0 && (
@@ -209,25 +183,16 @@ export default function VisitClient({ items, geo, initialToday, initialView }: P
         </div>
 
         <div className="min-w-0">
-          {view === "bars" ? (
-            <VisitBars
-              active={active}
-              today={today}
-              highlightIds={highlightSet}
-              unlocatedIds={unlocatedIds}
-              onSelect={selectItem}
-            />
-          ) : (
-            <VisitCalendar
-              active={active}
-              today={today}
-              dateFilter={dateFilter}
-              onDateFilter={changeDateFilter}
-              highlightIds={highlightSet}
-              unlocatedIds={unlocatedIds}
-              onSelect={selectItem}
-            />
-          )}
+          <VisitCalendar
+            active={active}
+            today={today}
+            dateFilter={dateFilter}
+            onDateFilter={changeDateFilter}
+            highlightIds={highlightSet}
+            unlocatedIds={unlocatedIds}
+            onSelect={selectItem}
+            calStyle={calStyle}
+          />
         </div>
       </div>
 
