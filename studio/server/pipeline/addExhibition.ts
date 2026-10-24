@@ -145,7 +145,7 @@ export async function processExhibitionAdd(p: {
     return { ...base, rejected: endedRejected, reasonJa: describeExhibitionReason("already-ended") };
   }
 
-  const out = await processCandidates({ data, candidates: live, today, deps, opts });
+  const out = await processCandidates({ data, candidates: live, today, deps, opts: { ...opts, trustOrigin: true } });
   const added = out.added as ExhibitionItem[];
   const updated = out.updated as ProcessExhibitionResult["updated"];
   const unverified = out.unverified as UnverifiedEntry[];

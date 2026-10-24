@@ -125,7 +125,7 @@ ${queries.map((q) => `- ${q}`).join("\n")}
 # 重複禁止（既掲載）
 ${existingTitles.join(" / ") || "(なし)"}${seenThisRun.length ? ` / 今回既出: ${seenThisRun.join(", ")}` : ""}
 
-# 出力: JSON配列のみ（前置き・後書きなし）。各要素に上記スキーマの項目 + "userPickBoost"（任意。上の user_pick_similarity の加点。無ければ省略）
+# 出力: JSON配列のみ（前置き・後書きなし）。各要素に上記スキーマの項目 + "userPickBoost"（任意。上の user_pick_similarity の加点で score には含めない。無ければ省略）
 ${CANDIDATE_SCHEMA_TEXT}`;
 }
 

@@ -18,7 +18,7 @@ import { computeStatus, isValidYmd } from "./exhibition-status.mjs";
 import { buildExhibitionId } from "./exhibition-slug.mjs";
 import { normLink } from "./norm-link.mjs";
 import { normTitle } from "./norm-title.mjs";
-import { USER_PICK_BOOST_MAX } from "./exhibition-userpicks.mjs";
+import { USER_PICK_BOOST_MAX, cleanWhy } from "./exhibition-userpicks.mjs";
 
 // audit-exhibition.mjs と同じ47都道府県（監査側はモジュールとして export していないため複製）
 export const PREFECTURES = [
@@ -351,7 +351,7 @@ function sanitizeCandidate(raw) {
   c.tags = asArray(raw.tags).filter((t) => typeof t === "string");
   c.sources = asArray(raw.sources).filter((x) => x && typeof x === "object" && !Array.isArray(x) && typeof x.url === "string");
   c.score = Number(raw.score);
-  c.userPickBoost = Math.max(0, Math.min(USER_PICK_BOOST_MAX, Math.round(Number(raw.userPickBoost) || 0)));
+  c.userPickBoost = Number(raw.userPickBoost) || 0;
   if (c.thumbnailSource !== undefined && !isPublicHttpUrl(c.thumbnailSource)) delete c.thumbnailSource;
   return c;
 }
@@ -367,9 +367,16 @@ function rawScore(cand) {
   return Math.max(0, Math.min(100, Math.round(Number(cand.score) || 0)));
 }
 
+/** 自動発見の userPick 加点（0〜USER_PICK_BOOST_MAX に機械的に clamp。intake・collectAll には付けない）。 */
+function userPickBoostOf(cand) {
+  if (cand.origin === "intake" || cand.collectAll) return 0;
+  return Math.max(0, Math.min(USER_PICK_BOOST_MAX, Math.round(Number(cand.userPickBoost) || 0)));
+}
+
 function effectiveScore(cand, opts) {
   let s = rawScore(cand);
   if (cand.origin === "intake") s = Math.min(100, s + opts.intakeBonus);
+  else s = Math.min(100, s + userPickBoostOf(cand));
   if (cand.collectAll) s = Math.max(s, opts.addThreshold);
   return s;
 }
@@ -402,7 +409,7 @@ function buildSources(cand) {
  * @param {object[]} p.candidates
  * @param {string} p.today          JST YYYY-MM-DD
  * @param {object} p.deps           { fetchHtml, saveThumb(id, cand)->path|null, now()->ISO }
- * @param {object} [p.opts]         { protectIds(同一実行で追加済みid。会期更新しない), addThreshold, highlightThreshold, maxAdd, intakeBonus, dryRun, tagVocab, reservedIds }
+ * @param {object} [p.opts]         { trustOrigin(true は intake 経路だけ。false/未指定なら候補の origin/intakeUrl を無視して auto 扱い＝LLM 出力による偽装防止), protectIds(同一実行で追加済みid。会期更新しない), addThreshold, highlightThreshold, maxAdd, intakeBonus, dryRun, tagVocab, reservedIds }
  */
 export async function processCandidates({ data, candidates, today, deps, opts = {} }) {
   const o = { ...DEFAULTS, ...opts };
@@ -436,7 +443,12 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
       rejected.push({ title: "(invalid)", reason: "invalid-candidate", detail: "not an object", link: "" });
       continue;
     }
-    sane.push(sanitizeCandidate(raw));
+    const c = sanitizeCandidate(raw);
+    if (!o.trustOrigin) {
+      delete c.origin;
+      delete c.intakeUrl;
+    }
+    sane.push(c);
   }
   // スコア上位を優先（日次上限が効くときに良い候補が残るように）
   const ordered = sane.sort((a, b) => effectiveScore(b, o) - effectiveScore(a, o));
@@ -528,12 +540,12 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
       ...(cand.origin === "intake" && cand.intakeUrl ? { intakeUrl: cand.intakeUrl } : {}),
       highlight: score >= o.highlightThreshold,
       // 自動発見で userPick 加点によって初めて閾値を越えた展示の印（tuneup が印付きごみ箱率を見る）
-      ...(!isIntake(cand) && !cand.collectAll && cand.userPickBoost > 0 && score >= o.addThreshold && score - cand.userPickBoost < o.addThreshold ? { boostedBy: "userPick" } : {}),
+      ...(userPickBoostOf(cand) > 0 && score >= o.addThreshold && score - userPickBoostOf(cand) < o.addThreshold ? { boostedBy: "userPick" } : {}),
     };
     if (isIntake(cand) && rawScore(cand) < o.addThreshold && !(cand.excludeCategory && cand.excludeCategory !== "none")) {
       userPicks.push({
         title: item.title, venue: item.venue, tags: item.tags,
-        why: (cand.pickWhy || "").trim() || item.matchReason, addedAt: item.addedAt,
+        why: cleanWhy(cand.pickWhy) || cleanWhy(item.matchReason), addedAt: item.addedAt,
       });
     }
     taken.add(id);

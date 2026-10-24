@@ -47,9 +47,10 @@ const bump = (map, k, w) => {
 };
 
 /**
- * @param {{favIds:string[], trashedIds:string[], items:object[]}} p  items は exhibition.json の items
+ * @param {{favIds:string[], trashedIds:string[], items:object[], boostedSince?:string}} p  items は exhibition.json の items。
+ *   boostedSince(YYYY-MM-DD)があれば、印付き(boostedBy)の集計はそれ以降に追加された展示だけ（userPick 削除後に同じ証拠で再発火しないため）
  */
-export function computeExhibitionStats({ favIds, trashedIds, items }) {
+export function computeExhibitionStats({ favIds, trashedIds, items, boostedSince }) {
   const fav = new Set(favIds || []);
   const trash = new Set(trashedIds || []);
   const stats = { favoriteCount: 0, intakeCount: 0, trashedCount: 0, tags: {}, venueTypes: {}, prefectures: {}, scoreBands: {}, trashRate: 0, boosted: { count: 0, trashed: 0, trashRate: 0 } };
@@ -60,7 +61,7 @@ export function computeExhibitionStats({ favIds, trashedIds, items }) {
     if (fav.has(it.id)) stats.favoriteCount++;
     if (isIntake) stats.intakeCount++;
     if (trash.has(it.id)) stats.trashedCount++;
-    if (it.boostedBy === "userPick") {
+    if (it.boostedBy === "userPick" && (!boostedSince || String(it.addedAt || "").slice(0, 10) >= boostedSince)) {
       stats.boosted.count++;
       if (trash.has(it.id)) stats.boosted.trashed++;
     }
@@ -114,6 +115,8 @@ export function proposeExhibitionProfile(profile, stats, items) {
     let oldest = 0;
     picks.forEach((p, i) => { if (String(p.addedAt) < String(picks[oldest].addedAt)) oldest = i; });
     picks.splice(oldest, 1);
+    // 証拠のリセット: 以後は今日以降に追加された印付き展示だけを母集団にする（毎週1件ずつ全消しになるのを防ぐ）
+    next.likes.userPicksEvidenceSince = new Date().toISOString().slice(0, 10);
   }
 
   // 支配的なタグのテーマ重みを +1（正シグナル合計5以上・最大シェア40%以上）
@@ -141,7 +144,10 @@ function neutralize(p) {
     c.watch.venues = null;
   }
   if (c.scoring?.threshold) c.scoring.threshold.add = null;
-  if (c.likes) c.likes.userPicks = null;
+  if (c.likes) {
+    c.likes.userPicks = null;
+    c.likes.userPicksEvidenceSince = null;
+  }
   delete c.updatedAt;
   return c;
 }
@@ -182,6 +188,10 @@ export function checkExhibitionProfileChange(oldProfile, newProfile) {
     if (addedCount > L.watchAdditionsMax) errors.push(`watch.${key} additions exceed limit (${addedCount} > ${L.watchAdditionsMax})`);
   }
 
+  {
+    const es = newProfile.likes?.userPicksEvidenceSince;
+    if (es !== undefined && !/^\d{4}-\d{2}-\d{2}$/.test(String(es))) errors.push(`likes.userPicksEvidenceSince must be YYYY-MM-DD: ${es}`);
+  }
   // likes.userPicks: 追加/削除の上限・最大件数・既存要素の改変禁止
   {
     const o = oldProfile.likes?.userPicks || [];

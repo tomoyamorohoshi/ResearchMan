@@ -158,7 +158,7 @@ export async function runIntake({ items, data, today, deps, opts = {} }) {
         results.push({ url: f.url, status: "added", exhibitionId: dupHits[0].id, reason: "already-registered" });
         continue;
       }
-      const out = await processCandidates({ data: current, candidates: rest, today, deps, opts: { ...opts, protectIds } });
+      const out = await processCandidates({ data: current, candidates: rest, today, deps, opts: { ...opts, protectIds, trustOrigin: true } });
       current = out.data;
       added.push(...out.added);
       userPicks.push(...out.userPicks);

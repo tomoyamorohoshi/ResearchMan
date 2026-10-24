@@ -152,3 +152,30 @@ test("checkExhibitionProfileChange: userPicks は削除1件・追加3件・上�
   const fromNone = structuredClone(profile()); fromNone.likes.userPicks = [];
   assert.equal(checkExhibitionProfileChange(profile(), fromNone).ok, true);
 });
+
+test("userPick 削除は同じ証拠で再発火しない: 6週シミュレーションで5件→4件で止まる", () => {
+  let p = withPicks(5);
+  const items = ["b1", "b2", "b3"].map((id) => ({ ...boosted(id), addedAt: "2026-10-10T00:00:00.000Z" }));
+  const sim = (prof) => proposeExhibitionProfile(prof, computeExhibitionStats({ favIds: [], trashedIds: ["b1", "b2"], items, boostedSince: prof.likes.userPicksEvidenceSince }), items);
+  for (let w = 0; w < 6; w++) {
+    const next = sim(p);
+    assert.equal(checkExhibitionProfileChange(p, next).ok, true, JSON.stringify(checkExhibitionProfileChange(p, next).errors));
+    p = next;
+  }
+  assert.equal(p.likes.userPicks.length, 4);
+  assert.ok(p.likes.userPicksEvidenceSince);
+});
+
+test("userPick 削除後に追加された新しい pick と新しい印付き展示だけが次の証拠になる", () => {
+  let p = withPicks(5);
+  const old = ["b1", "b2", "b3"].map((id) => ({ ...boosted(id), addedAt: "2026-10-10T00:00:00.000Z" }));
+  const s1 = computeExhibitionStats({ favIds: [], trashedIds: ["b1", "b2"], items: old });
+  p = proposeExhibitionProfile(p, s1, old);
+  assert.equal(p.likes.userPicks.length, 4);
+  const since = p.likes.userPicksEvidenceSince;
+  const fresh = ["f1", "f2", "f3"].map((id) => ({ ...boosted(id), addedAt: since + "T12:00:00.000Z" }));
+  const all = [...old, ...fresh];
+  const s2 = computeExhibitionStats({ favIds: [], trashedIds: ["b1", "b2", "f1", "f2"], items: all, boostedSince: since });
+  assert.deepEqual(s2.boosted, { count: 3, trashed: 2, trashRate: 0.67 });
+  assert.equal(proposeExhibitionProfile(p, s2, all).likes.userPicks.length, 3);
+});

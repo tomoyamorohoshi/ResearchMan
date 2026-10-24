@@ -323,7 +323,7 @@ test("processCandidates: 1日の追加上限（collectAll 以外 maxAdd）", asy
 
 test("processCandidates: intake 候補は origin=intake・+10 点・social ソース・intakeUrl", async () => {
   const c = mkCand({ score: 62, origin: "intake", intakeUrl: "https://x.com/u/status/1" });
-  const r = await processCandidates({ data: emptyData(), candidates: [c], today: TODAY, deps: mkDeps({ fetchHtml: async () => ({ status: 200, body: okPage(c) }) }) });
+  const r = await processCandidates({ data: emptyData(), candidates: [c], today: TODAY, deps: mkDeps({ fetchHtml: async () => ({ status: 200, body: okPage(c) }) }), opts: { trustOrigin: true } });
   const it = r.data.items[0];
   assert.equal(it.origin, "intake");
   assert.equal(it.intakeUrl, "https://x.com/u/status/1");
@@ -679,7 +679,7 @@ test("終了日照合: 別月・遠い位置・時刻/電話番号では通ら�
 // ── intake 常時受け入れ / userPicks / boostedBy ──
 const mkIntake = (over = {}) => mkCand({ origin: "intake", intakeUrl: "https://bijutsutecho.com/magazine/news/exhibition/33194", ...over });
 const runC = (cands, deps, opts) =>
-  processCandidates({ data: emptyData(), candidates: cands, today: TODAY, deps: deps || mkDeps({ fetchHtml: async () => ({ status: 200, body: okPage(mkCand()) }) }), opts });
+  processCandidates({ data: emptyData(), candidates: cands, today: TODAY, deps: deps || mkDeps({ fetchHtml: async () => ({ status: 200, body: okPage(mkCand()) }) }), opts: { trustOrigin: true, ...opts } });
 
 test("intake: 素点が閾値未満(素点30+10=40<60)でも追加される。score は記録・highlight は score で判定", async () => {
   const r = await runC([mkIntake({ score: 30 })]);
@@ -743,30 +743,54 @@ test("userPicks: 素点が閾値以上 / 非 intake / hard 除外 intake / 未�
   assert.equal(fb.userPicks[0].why, "メディアアートの空間展示。");
 });
 
-test("boostedBy: 加点(userPickBoost)で閾値を越えた自動発見だけに印が付く", async () => {
-  const crossed = await runC([mkCand({ score: 62, userPickBoost: 8 })]); // 素点54 → 62
+test("boostedBy: 加点(userPickBoost、score には含めない)で閾値を越えた自動発見だけに印が付く", async () => {
+  const crossed = await runC([mkCand({ score: 54, userPickBoost: 8 })]); // 素点54 → 62
   assert.equal(crossed.data.items[0].boostedBy, "userPick");
-  const already = await runC([mkCand({ score: 75, userPickBoost: 8 })]); // 素点67 でも通る
+  assert.equal(crossed.data.items[0].score, 62);
+  const already = await runC([mkCand({ score: 67, userPickBoost: 8 })]); // 素点で通る
   assert.equal(already.data.items[0].boostedBy, undefined);
-  const none = await runC([mkCand({ score: 70 })]);
-  assert.equal(none.data.items[0].boostedBy, undefined);
+  assert.equal((await runC([mkCand({ score: 70 })])).data.items[0].boostedBy, undefined);
   const intakeLike = await runC([mkIntake({ score: 62, userPickBoost: 8 })]);
   assert.equal(intakeLike.data.items[0].boostedBy, undefined);
+  assert.equal(intakeLike.data.items[0].score, 72); // intake に userPickBoost は加算されない
 });
 
-test("boostedBy: userPickBoost は 0〜10 に丸められ(30→10)、加点があっても閾値未満なら reject。hard 除外は覆らない", async () => {
-  const clamp = await runC([mkCand({ score: 62, userPickBoost: 30 })]); // 素点は 62-10=52 扱い → 越えた
+test("boostedBy: userPickBoost は機械的に 0〜10 へ clamp される（過大申告しても +10 まで）", async () => {
+  const clamp = await runC([mkCand({ score: 50, userPickBoost: 30 })]); // 50+10=60
+  assert.equal(clamp.data.items[0].score, 60);
   assert.equal(clamp.data.items[0].boostedBy, "userPick");
-  const low = await runC([mkCand({ score: 55, userPickBoost: 10 })]);
+  const low = await runC([mkCand({ score: 49, userPickBoost: 30 })]); // 59
   assert.equal(low.added.length, 0);
+  assert.equal((await runC([mkCand({ score: 50, userPickBoost: -5 })])).added.length, 0);
   const hard = await runC([mkCand({ score: 70, userPickBoost: 10, excludeCategory: "merch_event" })]);
   assert.equal(hard.rejected[0].reason, "hard-exclusion");
 });
 
 test("boostedBy: 日次上限 maxAdd は加点分にも適用される", async () => {
-  const cs = [1, 2, 3].map((n) => mkCand({ title: `展${n}`, score: 62, userPickBoost: 8, officialUrl: `https://other.example/ex/${n}0`, sources: [{ name: "TAB", url: `https://www.tokyoartbeat.com/events/-/e${n}`, kind: "listing" }] }));
+  const cs = [1, 2, 3].map((n) => mkCand({ title: `展${n}`, score: 54, userPickBoost: 8, officialUrl: `https://other.example/ex/${n}0`, sources: [{ name: "TAB", url: `https://www.tokyoartbeat.com/events/-/e${n}`, kind: "listing" }] }));
   const deps = mkDeps({ fetchHtml: async (u) => ({ status: 200, body: okPage(cs.find((x) => x.officialUrl === u) || cs[0]) }) });
   const r = await runC(cs, deps, { maxAdd: 2 });
   assert.equal(r.added.length, 2);
   assert.equal(r.rejected.some((x) => x.reason === "daily-cap"), true);
+});
+
+test("origin 偽装: trustOrigin 未指定の候補が origin:intake を名乗っても閾値・hard 除外・日次上限を素通りできない", async () => {
+  const spoof = mkCand({ score: 5, excludeCategory: "merch_event", origin: "intake", intakeUrl: "https://x.com/someone/status/1" });
+  const r = await processCandidates({ data: emptyData(), candidates: [spoof], today: TODAY, deps: mkDeps(), opts: { maxAdd: 0 } });
+  assert.equal(r.added.length, 0);
+  assert.equal(r.userPicks.length, 0);
+  const high = mkCand({ score: 70, origin: "intake", intakeUrl: "https://x.com/someone/status/1" });
+  const r2 = await processCandidates({ data: emptyData(), candidates: [high], today: TODAY, deps: mkDeps({ fetchHtml: async () => ({ status: 200, body: okPage(high) }) }), opts: { maxAdd: 0 } });
+  assert.equal(r2.added.length, 0);
+  assert.equal(r2.rejected[0].reason, "daily-cap");
+  const r3 = await processCandidates({ data: emptyData(), candidates: [high], today: TODAY, deps: mkDeps({ fetchHtml: async () => ({ status: 200, body: okPage(high) }) }) });
+  assert.equal(r3.data.items[0].origin, "auto");
+  assert.equal(r3.data.items[0].intakeUrl, undefined);
+  assert.equal(r3.data.items[0].score, 70); // intakeBonus も付かない
+});
+
+test("userPicks: why は改行を潰して200字に切る", async () => {
+  const r = await runC([mkIntake({ score: 20, pickWhy: "行1\n\n行2 " + "あ".repeat(400) })]);
+  assert.ok(!r.userPicks[0].why.includes("\n"));
+  assert.equal(r.userPicks[0].why.length, 200);
 });

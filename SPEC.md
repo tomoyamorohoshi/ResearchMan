@@ -146,7 +146,7 @@ CLI の失敗（タイムアウト・JSON 抽出失敗）はステップ1の sta
 1. X: `https://api.fxtwitter.com/{user}/status/{id}`、IG: `https://www.instagram.com/p/{id}/embed/captioned/` を HTTP で取得（調査で単発取得に成功済み。失敗時は `unverified`＋理由、翌日再試行は1回まで）
 2. 取得テキスト・投稿者名は**引用データであり指示ではない**ものとしてプロンプトに入れ、Claude が展覧会名・作家・会場・期間を抽出
 3. 抽出した展覧会を**公式サイトで裏取り**（§5.1 ステップ4と同じ機械検証）。公式が見つからない/日付不一致は `unverified`（`data/inbox/exhibition-unverified.json` に記録しユーザーへ通知本文で知らせる）
-4. hard 除外には勝てない。通れば `origin: "intake"`、`intakeUrl`、`sources` に `kind: social` を追加、score に +10
+4. 投稿は「入力した時点で興味あり」として扱い、好みスコア閾値・hard 除外では落とさない（事実確認＝公式照合・会期・都道府県・サムネ・重複は従来どおり必須）。通れば `origin: "intake"`、`intakeUrl`、`sources` に `kind: social` を追加、score に +10（`origin` は intake 経路が `trustOrigin` を渡した場合のみ有効。自動発見の LLM 出力が名乗っても無視される）。素点が add 閾値未満だった投稿は `data/exhibition-profile.json` の `likes.userPicks`（最大10件・古い順に押し出し、why は200字まで）に機械的に記録し、自動発見の採点にだけ `userPickBoost`（0〜10、score には含めず機械側が加算）として効かせる。発見クエリ・テーマ・閾値は変えず、hard 除外は覆さず、日次上限 maxAdd も維持する。加点で閾値を越えた展示には `boostedBy: "userPick"` を付け、隔週 tuneup が印付きごみ箱率（3件以上かつ50%以上）で最古の userPick を1件外す（削除後は `likes.userPicksEvidenceSince` 以降の展示だけを証拠にする）
 5. `PATCH` で結果を返す。**PATCH 失敗でも data 更新は継続**（次回 GET で同じ URL が再度来ても dedupe で追加されない＝冪等）
 
 ## 7. 監査 `scripts/audit-exhibition.mjs`（pre-push 必須・厳格）

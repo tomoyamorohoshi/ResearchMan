@@ -47,7 +47,7 @@ const deps = {
 };
 const out = await processCandidates({
   data, candidates, today, deps,
-  opts: { addThreshold: profile.scoring.threshold.add, highlightThreshold: profile.scoring.threshold.highlight, dryRun: true },
+  opts: { addThreshold: profile.scoring.threshold.add, highlightThreshold: profile.scoring.threshold.highlight, dryRun: true, trustOrigin: true },
 });
 const raw = candidates.map((c) => ({ title: c.title, rawScore: c.score, excludeCategory: c.excludeCategory }));
 console.log(JSON.stringify({
