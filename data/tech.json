@@ -1,5 +1,107 @@
 [
   {
+    "id": "soundbox",
+    "title": "Soundbox",
+    "org": "HamSanders（個人開発）",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools",
+      "AI/Agents"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "効果音・音楽・音声合成・ボイスクローンを、すべて自分のPC上で動かせるデスクトップアプリ。ElevenLabsやSucoの代わりに使えるオープンソースを目指している。マルチトラックのタイムラインと、AIエージェント向けのMCPサーバーも付く。",
+    "point": "すごい点は、効果音づくり・曲づくり・ナレーション生成・声の複製・ミックスまでを、1本のアプリでクラウドに送らず自分のPC内で済ませられることです。ElevenLabsやSunoのような月額サービスだと、クライアント案件の素材を外部に送ることになります。Soundboxなら音声データも歌詞も社外に出ません。広告や体験づくりでは、映像の尺に合わせた効果音を文章で出し、BGMは同じプロンプトで3種類のモデルから聞き比べ、仮ナレーションは社内の声で作る、といった使い方ができます。プレゼン用のモックや動画コンテの音を、その場で何パターンも作れます。ClaudeCodeなどのAIエージェントから操作する窓口（MCP）も用意されているので、「この動画に合う効果音を10個作って」と頼む自動化も組めます。ただし公開から約10日の初版（v0.1.0）なので、品質や安定性は自分で試して確かめる必要があります。",
+    "detail": "仕組みは、アプリ内部で「audio.cpp」という音声AI専用の実行エンジンを動かし、複数のAIモデルを切り替えて使う形です。標準で有効なのは、効果音用のStable Audio 3.0 SFX、インストゥルメンタル用のStable Audio 3.0 Small Music、歌詞つきの曲を作るACE-Step 1.5 Turbo、同じく歌もの用のMiniMax Music 3の4つです。このほかカタログに61モデルがあり、音声合成が45、音楽が6、効果音が2、音の分離が4、声の変換が4という内訳です。曲の延長・カバー・一部の作り直し・パートごとの分離もできます。作った音はPC内のSQLiteとWAVファイルに保存され、プロンプトや乱数の設定も一緒に記録されます。\n\n従来は、効果音はElevenLabs、曲はSunoというようにサービスを使い分け、どれも課金とクラウド送信が前提でした。ローカルで動く音声AIは単体のPythonスクリプトが多く、環境構築が重いのが難点でした。Soundboxはインストーラー形式で、Pythonなしで動き、タイムライン、MIDIのピアノロール、録音、エフェクトまで一画面に入っています。同じ文章を3つのモデルに入れて聞き比べる画面もあります。\n\n使うにはWindows 10/11かmacOS（Apple siliconとIntel）が必要です。CUDA・HIP・Metal・Vulkanに対応し、GPUなしのCPUでも動きますが遅くなります。MiniMax Music 3は約10GBのVRAMを使います。アプリは無料で、モデルは初回に各配布元からダウンロードします。ソースから動かす場合はNode 22.12以上が要ります。インストーラーは署名なしなので、初回はWindowsでSmartScreenの警告を許可する操作が必要です。Docker版は認証がないため、ローカルホスト以外に公開しないようREADMEが注意しています。商用で使う前に、各モデルのライセンスを確認してください。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "アプリ本体はMIT。ただしGitHub APIのライセンス判定はNOASSERTION。モデル重みは別ライセンスで、Stable Audio 3.0は売上100万ドル未満なら商用可、MiniMax Music 3はコミュニティライセンス、ACE-Step 1.5はMIT。重みはアプリが各配布元から取得し、再配布はしない。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/HamSanders/soundbox"
+      },
+      {
+        "kind": "project",
+        "url": "https://hamsanders.github.io/soundbox/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/soundbox.jpg",
+    "relatedWorks": [
+      {
+        "title": "HOT-Step CPP",
+        "description": "ACE-Step 1.5、MiniMax-Music3、YuE2、Stable Audio 3を切り替えられるローカル音楽生成アプリ。",
+        "url": "https://github.com/scragnog/HOT-Step-CPP"
+      },
+      {
+        "title": "YuE2 Studio",
+        "description": "楽譜（ABC記法）を編集してから歌入りの曲を生成する、Windows向けデスクトップアプリ。",
+        "url": "https://github.com/timoncool/YuE2-Studio"
+      },
+      {
+        "title": "audio.cpp",
+        "description": "TTS・音声変換・音楽生成のモデルを動かすC++製の推論エンジン。Soundboxが内部で使っている。",
+        "url": "https://github.com/0xShug0/audio.cpp"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "metabeads",
+    "title": "MetaBeads",
+    "org": "Carnegie Mellon University Interactive Structures Lab(Alexandra Ion ほか)",
+    "type": "Prototype",
+    "domains": [
+      "HCI/MediaArt",
+      "Motion/Body"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "ふつうのビーズと糸だけで、形が変わり、硬さも切り替えられる素材・装置をつくる手法。UIST 2026(11月、デトロイト)採択の査読付き研究。",
+    "point": "すごいのは、手芸店で買えるビーズと糸だけで「柔らかい布が硬い筒や箱に変わる」「曲がる部品がカチッと固まる」といった、形と硬さの切り替えができる点です。ビーズを通す順番や糸の引き方で、折れ曲がる、筒になる、2つの安定した形を行き来する、といった動きの部品を作り分けます。論文では、服の脇に付けて体の形を支えるウェアラブル、教育用の道具、変形する家具の4つの試作が示されています。広告・体験づくりでは、触ると形や硬さが変わる展示物、来場者が自分で組み立てられるワークショップ素材、着ると体に沿って固まる衣装、手触りで状態が伝わる体験型のオブジェなどが作れそうです。高価な機材が要らず、手作りの温かい見た目のまま「動く仕組み」を持たせられるので、デジタル演出とクラフトを混ぜた企画に向きます。",
+    "detail": "仕組みは、ビーズを糸でつないだ「布状の構造」を基本単位にしています。ビーズ同士の並べ方や糸の通し方を変えると、糸を引いたときに全体が丸まって筒になる、平らな面が直方体に立ち上がる、といったふうに、決まった形へ変形します。糸を強く引くとビーズがぎゅっと詰まって硬くなり、緩めると柔らかく戻ります。身近な例では、ネックレスの糸を引き締めると形が固定されるイメージです。論文は、こうした部品を「変形」「硬さ」「2つの安定した形をもつ曲面」といった種類ごとに整理し、組み合わせて使えるようにしています。\n\n従来の形状変化・硬さ可変デバイスは、空気圧の袋や特殊な素材、3Dプリンタなどの専用設備が必要になることが多くありました。MetaBeadsは材料がビーズと糸だけで、特別な工作機械を使わず手で作れる点が違いです。作る人を支える対話式の設計ツールも論文で紹介されています(画像では、パラメータを入れて糸の通し方を生成する画面が確認できます)。\n\n使うには、現時点では論文とデモ映像(プロジェクトページ、YouTube)を見る形になります。コードや設計ツールの公開リンクは確認できておらず、ライセンスも不明なため、すぐ使える実物とは言えません。再現するにはビーズ、糸、手作業のスキルが必要で、費用は材料費程度と考えられます。商用利用の可否は著者への確認が必要です。",
+    "license": {
+      "spdx": null,
+      "commercial": "none",
+      "note": "論文・デモ映像のみ公開。コードや設計ツールの公開リンクは確認できず。使用許諾は未記載"
+    },
+    "links": [
+      {
+        "kind": "project",
+        "url": "https://interactive-structures.org/publications/2026-11-metabeads/"
+      },
+      {
+        "kind": "video",
+        "url": "https://youtu.be/7ior2RdtksU"
+      },
+      {
+        "kind": "paper",
+        "url": "https://doi.org/10.1145/3830398.3830618"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/metabeads.jpg",
+    "relatedWorks": [
+      {
+        "title": "FlexiFab: Laser-Cutting Volumetric Compliant Structures with Tunable-Stiffness",
+        "description": "同研究室のUIST '26論文。レーザーカッターで硬さを調整できる立体構造をつくる",
+        "url": "https://interactive-structures.org/publications/2026-11-flexifab/"
+      },
+      {
+        "title": "Interactive Structures Lab Publications",
+        "description": "同研究室の論文一覧。メタマテリアルを使った変形・硬さ可変インターフェースの系譜をたどれる",
+        "url": "https://interactive-structures.org/publications.html"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "comfyui-rmbg-v3-3-0",
     "title": "ComfyUI-RMBG v3.3.0（VRMBG 動画マッティング＋Canvas）",
     "org": "1038lab（コミュニティ開発）",
