@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "statusAsOf": "2026-10-23",
+  "statusAsOf": "2026-10-24",
   "items": [
     {
       "id": "2026-neort-processing-community-day-tokyo-2026",
@@ -13,7 +13,7 @@
       "city": "中央区",
       "startDate": "2026-10-24",
       "endDate": "2026-10-24",
-      "status": "upcoming",
+      "status": "ongoing",
       "admission": "UNKNOWN",
       "tags": [
         "generative",
