@@ -6,7 +6,7 @@ import Link from "next/link";
 import type { Exhibition } from "@/lib/exhibition";
 import { useWantToGo } from "@/hooks/useWantToGo";
 import { useTrash } from "@/hooks/useTrash";
-import { buildPins, clusterPins, deriveVisit, exhibitionsOpenOn, todayJst, type CalStyle, type VenueGeo } from "@/lib/visit";
+import { buildPins, clusterPins, deriveVisit, exhibitionsOpenOn, todayJst, type VenueGeo } from "@/lib/visit";
 import VisitCalendar from "./VisitCalendar";
 import { VisitActiveList, VisitEndedList } from "./VisitList";
 
@@ -23,10 +23,9 @@ type Props = {
   items: Exhibition[];
   geo: VenueGeo;
   initialToday: string;
-  calStyle: CalStyle;
 };
 
-export default function VisitClient({ items, geo, initialToday, calStyle }: Props) {
+export default function VisitClient({ items, geo, initialToday }: Props) {
   const [today, setToday] = useState(initialToday);
   const [dateFilter, setDateFilter] = useState<string | null>(null);
   const [highlightIds, setHighlightIds] = useState<string[]>([]);
@@ -191,7 +190,6 @@ export default function VisitClient({ items, geo, initialToday, calStyle }: Prop
             highlightIds={highlightSet}
             unlocatedIds={unlocatedIds}
             onSelect={selectItem}
-            calStyle={calStyle}
           />
         </div>
       </div>

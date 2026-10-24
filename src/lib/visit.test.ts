@@ -10,9 +10,6 @@ import {
   isUpcoming,
   badgeFor,
   deriveVisit,
-  computeBarRange,
-  barLayout,
-  todayLinePosition,
   monthGrid,
   shiftMonth,
   exhibitionsOpenOn,
@@ -21,7 +18,6 @@ import {
   buildPins,
   clusterPins,
   regionLabel,
-  MAX_RANGE_DAYS,
   todayJst,
   type VenueGeo,
 } from "./visit";
@@ -154,70 +150,6 @@ test("deriveVisit: 終了間近が先頭、その後は終了日昇順。同日�
 
 test("deriveVisit: 空入力", () => {
   assert.deepEqual(deriveVisit([], new Set(), new Set(), T), { active: [], ended: [] });
-});
-
-test("computeBarRange: start=今日-7、end=最も遅い終了日", () => {
-  const active = [
-    ex({ id: "a", startDate: "2026-10-01", endDate: "2026-11-10" }),
-    ex({ id: "b", startDate: "2026-10-01", endDate: "2026-12-01" }),
-  ];
-  const r = computeBarRange(active, T);
-  assert.equal(r.start, "2026-10-17");
-  assert.equal(r.end, "2026-12-01");
-  assert.equal(r.days, 46);
-  assert.equal(r.clipped, false);
-});
-
-test("computeBarRange: 最大6か月(183日)でクリップ", () => {
-  const active = [ex({ id: "a", startDate: "2026-10-01", endDate: "2028-01-01" })];
-  const r = computeBarRange(active, T);
-  assert.equal(r.start, "2026-10-17");
-  assert.equal(r.end, addDays("2026-10-17", MAX_RANGE_DAYS - 1));
-  assert.equal(r.days, MAX_RANGE_DAYS);
-  assert.equal(r.clipped, true);
-});
-
-test("computeBarRange: active 0件は今日-7〜今日+30日の既定範囲", () => {
-  const r = computeBarRange([], T);
-  assert.equal(r.start, "2026-10-17");
-  assert.equal(r.end, "2026-11-23");
-  assert.equal(r.days, 38);
-});
-
-test("barLayout: 範囲内・左右クリップ・完全範囲外", () => {
-  const range = computeBarRange([ex({ id: "z", startDate: "2026-10-01", endDate: "2026-11-25" })], T);
-  // start 10-17, end 11-25 => 40日
-  assert.equal(range.days, 40);
-  const inside = barLayout(ex({ id: "a", startDate: "2026-10-27", endDate: "2026-11-05" }), range);
-  assert.equal(inside.visible, true);
-  assert.equal(inside.leftDays, 10);
-  assert.equal(inside.widthDays, 10);
-  assert.equal(inside.left, 10 / 40);
-  assert.equal(inside.width, 10 / 40);
-  const clippedL = barLayout(ex({ id: "a", startDate: "2026-09-01", endDate: "2026-10-20" }), range);
-  assert.equal(clippedL.visible, true);
-  assert.equal(clippedL.left, 0);
-  assert.equal(clippedL.widthDays, 4);
-  const clippedR = barLayout(ex({ id: "a", startDate: "2026-11-20", endDate: "2027-03-01" }), range);
-  assert.equal(clippedR.visible, true);
-  assert.equal(clippedR.leftDays, 34);
-  assert.equal(clippedR.widthDays, 6);
-  assert.equal(clippedR.left + clippedR.width, 1);
-  const before = barLayout(ex({ id: "a", startDate: "2026-09-01", endDate: "2026-10-16" }), range);
-  assert.equal(before.visible, false);
-  const after = barLayout(ex({ id: "a", startDate: "2026-11-26", endDate: "2026-12-30" }), range);
-  assert.equal(after.visible, false);
-});
-
-test("barLayout: 6か月上限で後半の展覧会は範囲外", () => {
-  const range = computeBarRange([ex({ id: "z", startDate: "2026-10-01", endDate: "2028-01-01" })], T);
-  const late = barLayout(ex({ id: "a", startDate: "2027-06-01", endDate: "2027-07-01" }), range);
-  assert.equal(late.visible, false);
-});
-
-test("todayLinePosition: 今日の列の中心", () => {
-  const range = computeBarRange([ex({ id: "z", startDate: "2026-10-01", endDate: "2026-11-25" })], T);
-  assert.equal(todayLinePosition(range, T), 7.5 / 40);
 });
 
 test("monthGrid: 2026-10 は 6週42マス、日曜始まり、前後埋め草", () => {
@@ -367,16 +299,8 @@ test("clusterPins: 50km 以内で連結、件数の多い順、ラベルは多�
   assert.deepEqual(clusterPins([], 50), []);
 });
 
-// ---- カレンダー案 (?cal=) ----
-import { parseCalStyle, visitNo, weekSegments, endingOn } from "./visit";
-
-test("parseCalStyle: 不正値・無しは lines、count/bands はそのまま", () => {
-  assert.equal(parseCalStyle(undefined), "lines");
-  assert.equal(parseCalStyle("zzz"), "lines");
-  assert.equal(parseCalStyle(["count"]), "lines");
-  assert.equal(parseCalStyle("count"), "count");
-  assert.equal(parseCalStyle("bands"), "bands");
-});
+// ---- カレンダー（名前入り横帯） ----
+import { visitNo, weekSegments, endingOn } from "./visit";
 
 test("visitNo: 1始まり2桁", () => {
   assert.equal(visitNo(0), "01");

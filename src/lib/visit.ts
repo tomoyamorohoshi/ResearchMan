@@ -6,13 +6,6 @@ export { todayJst };
 
 // 終了間近: 終了まで7日以内（今日を含む＝残り 0〜7 日）。
 export const ENDING_SOON_DAYS = 7;
-// 会期バーの最大表示日数。仮定: 「6か月」= 183日。
-export const MAX_RANGE_DAYS = 183;
-// 会期バー: 今日より何日前から表示するか。
-export const RANGE_LEAD_DAYS = 7;
-// active が0件のときの既定の表示幅（今日 + この日数 を end にする）。
-export const EMPTY_RANGE_AHEAD_DAYS = 30;
-
 export function addDays(ymd: string, n: number): string {
   const [y, m, d] = ymd.split("-").map(Number);
   return new Date(Date.UTC(y, m - 1, d + n)).toISOString().slice(0, 10);
@@ -81,62 +74,6 @@ export function deriveVisit(
   });
   ended.sort((a, b) => b.endDate.localeCompare(a.endDate) || tie(a, b));
   return { active, ended };
-}
-
-// ---- 会期バー ----
-
-export type BarRange = {
-  start: string; // 表示範囲の最初の日（含む）
-  end: string; // 表示範囲の最後の日（含む）
-  days: number; // 日数（start〜end を両端含めて数える）
-  clipped: boolean; // 6か月上限で end を切り詰めたか
-};
-
-// 表示範囲: start = 今日 - 7日、end = active 中の最も遅い終了日。start + 183日 を超えたらクリップ。
-// active が0件のときは end = 今日 + 30日（バーなしの空の軸を出せるように）。
-export function computeBarRange(active: readonly Pick<Exhibition, "endDate">[], today: string): BarRange {
-  const start = addDays(today, -RANGE_LEAD_DAYS);
-  let end =
-    active.length === 0
-      ? addDays(today, EMPTY_RANGE_AHEAD_DAYS)
-      : active.reduce((max, e) => (e.endDate > max ? e.endDate : max), today);
-  const limit = addDays(start, MAX_RANGE_DAYS - 1);
-  let clipped = false;
-  if (end > limit) {
-    end = limit;
-    clipped = true;
-  }
-  return { start, end, days: daysBetween(start, end) + 1, clipped };
-}
-
-export type BarLayout = {
-  visible: boolean; // false = 範囲外で棒なし
-  leftDays: number; // start からのオフセット日数（visible のとき）
-  widthDays: number; // 両端含む日数（visible のとき）
-  left: number; // 0〜1
-  width: number; // 0〜1
-};
-
-// 棒の位置。開始日・終了日の日付マスを両端含めて塗る。範囲外はクリップ、完全に範囲外なら visible=false。
-export function barLayout(e: Pick<Exhibition, "startDate" | "endDate">, range: BarRange): BarLayout {
-  const none: BarLayout = { visible: false, leftDays: 0, widthDays: 0, left: 0, width: 0 };
-  if (e.endDate < range.start || e.startDate > range.end) return none;
-  const s = e.startDate < range.start ? range.start : e.startDate;
-  const t = e.endDate > range.end ? range.end : e.endDate;
-  const leftDays = daysBetween(range.start, s);
-  const widthDays = daysBetween(s, t) + 1;
-  return {
-    visible: true,
-    leftDays,
-    widthDays,
-    left: leftDays / range.days,
-    width: widthDays / range.days,
-  };
-}
-
-// 今日の縦線位置（0〜1）。今日の日付マスの中央。
-export function todayLinePosition(range: BarRange, today: string): number {
-  return (daysBetween(range.start, today) + 0.5) / range.days;
 }
 
 // ---- 月カレンダー ----
@@ -283,15 +220,6 @@ export function clusterPins(pins: readonly VenuePin[], thresholdKm: number): Pin
     .map((c, i) => ({ c, i }))
     .sort((a, b) => b.c.count - a.c.count || a.i - b.i)
     .map((x) => x.c);
-}
-
-// ---- カレンダー案 (?cal=) ----
-
-export type CalStyle = "lines" | "count" | "bands";
-
-// ?cal= の解釈。不正値・無しは既定の lines
-export function parseCalStyle(v: string | string[] | undefined): CalStyle {
-  return v === "count" || v === "bands" ? v : "lines";
 }
 
 // 展示の番号（一覧と同じ並び順の 0 始まり index → "01"）
