@@ -3,6 +3,47 @@
   "statusAsOf": "2026-10-24",
   "items": [
     {
+      "id": "2026-kk-line-roof-park-art-fes-2026",
+      "slug": "2026-kk-line-roof-park-art-fes-2026",
+      "title": "Tokyo Sky Corridor（KK線）『Roof Park Art Fes 2026』",
+      "artists": [
+        "YOSHIROTTEN",
+        "瀬戸内サーカスファクトリー"
+      ],
+      "venue": "KK線（旧東京高速道路）",
+      "venueType": "other",
+      "prefecture": "東京都",
+      "city": "中央区",
+      "startDate": "2026-11-21",
+      "endDate": "2026-11-29",
+      "status": "upcoming",
+      "admission": "平日800円/土日祝1000円（高校生以上）",
+      "tags": [
+        "installation",
+        "light"
+      ],
+      "score": 50,
+      "matchReason": "YOSHIROTTENが『見えないものの可視化』をテーマに、約40メートルの大型インスタレーションを制作し、夜景と融合する光の表現を展開する。",
+      "sources": [
+        {
+          "name": "Tokyo Sky Corridor（KK線）『Roof Park Art Fes 2026』",
+          "url": "https://roofpark-artfes.metro.tokyo.lg.jp/",
+          "kind": "official"
+        },
+        {
+          "name": "美術手帖",
+          "url": "https://bijutsutecho.com/magazine/news/exhibition/33194",
+          "kind": "news"
+        }
+      ],
+      "link": "https://roofpark-artfes.metro.tokyo.lg.jp/",
+      "thumbnail": "/thumbnails/exhibition/2026-kk-line-roof-park-art-fes-2026.jpg",
+      "addedAt": "2026-10-24T07:55:15.670Z",
+      "origin": "intake",
+      "intakeUrl": "https://bijutsutecho.com/magazine/news/exhibition/33194",
+      "highlight": false
+    },
+    {
       "id": "2026-neort-processing-community-day-tokyo-2026",
       "slug": "2026-neort-processing-community-day-tokyo-2026",
       "title": "Processing Community Day Tokyo 2026",
