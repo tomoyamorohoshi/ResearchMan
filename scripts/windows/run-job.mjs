@@ -333,6 +333,7 @@ async function runExhibitionresearch() {
     const exh = runNode("scripts/auto-research-exhibition.mjs");
     const revertExhibitionChanges = () => {
       for (const args of EXHIBITION_REVERT_GIT_ARGS) runGit(args);
+      runGit(["checkout", "--", "data/exhibition-profile.json"]); // intake の userPicks 記録も巻き戻す
     };
     const summaryPath = path.join(os.tmpdir(), "researchman-exhibition-last-add.json");
     const summaryArgs = ["--summary", summaryPath, "--route", "exhibition", "--label", "Exhibition"];
@@ -371,6 +372,7 @@ async function runExhibitionresearch() {
       if (notify.send) runNode("scripts/notify-line.mjs", [...summaryArgs, "--kind", "share", "--priority", notify.priority]);
       else log(`通知スキップ: ${notify.reason}`);
     };
+    runGit(["add", "data/exhibition-profile.json"]); // intake の userPicks 記録（変更なしなら no-op）
     runGit(["add", "data/exhibition.json", "data/venue-geo.json", "public/thumbnails/exhibition/"]);
     if (gitDiffCachedIsEmpty()) {
       log(`変更なし（新規展覧会なし）: ${unixDateString()}`);

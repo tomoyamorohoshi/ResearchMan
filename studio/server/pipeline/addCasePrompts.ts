@@ -22,7 +22,7 @@
  * いる場合はそちらを優先し、prefetchedPageは無視する（X投稿専用の注入ロジックと二重に本文を
  * 埋め込まない）。
  */
-import { CANDIDATE_SCHEMA_TEXT, HARD_EXCLUDE_NOTE } from "../../../scripts/lib/exhibition-prompts.mjs";
+import { CANDIDATE_SCHEMA_TEXT, HARD_EXCLUDE_NOTE, PICK_WHY_NOTE } from "../../../scripts/lib/exhibition-prompts.mjs";
 
 export interface TweetMediaPromptInput {
   /** 機械取得済みの投稿本文。 */
@@ -175,7 +175,8 @@ ${url}${xNote}${contextNote}
 - ${HARD_EXCLUDE_NOTE}（該当するものは excludeCategory にその値を入れる）
 - "intakeUrl" は不要（機械側で送信URLを付与する）。"origin" も不要
 - 日付と会場は公式ページ（会場・主催者の個別展覧会ページ）をWebFetchで開いて確認した値のみ。公式ページが見つからなければ officialUrl は空文字（後段で未検証扱いになる）
-- score は0-100の整数で自己採点（ユーザー投稿ボーナスは機械側で加算するので含めない）。tags は上記語彙内のみ${profileNote}
+- score は0-100の整数で自己採点（ユーザー投稿ボーナスは機械側で加算するので含めない）。tags は上記語彙内のみ
+${PICK_WHY_NOTE}${profileNote}
 
 ## contentKind: "neither" の出力形式
 事実確認できなかった場合、または事例・技術のどちらでもない場合は必ず以下の形式のみを返してください（見切り発車で埋めない）:

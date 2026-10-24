@@ -85,6 +85,7 @@ export async function runIntake({ items, data, today, deps, opts = {} }) {
   const rejected = [];
   const added = [];
   const updated = [];
+  const userPicks = []; // 素点<閾値で追加された投稿（likes.userPicks の記録対象。反映は呼び出し側）
   const protectIds = new Set(opts.protectIds || []); // 同一 intake 内で更新/追加済みの展示を再パッチしない
   let current = data;
 
@@ -157,9 +158,10 @@ export async function runIntake({ items, data, today, deps, opts = {} }) {
         results.push({ url: f.url, status: "added", exhibitionId: dupHits[0].id, reason: "already-registered" });
         continue;
       }
-      const out = await processCandidates({ data: current, candidates: rest, today, deps, opts: { ...opts, protectIds } });
+      const out = await processCandidates({ data: current, candidates: rest, today, deps, opts: { ...opts, protectIds, trustOrigin: true } });
       current = out.data;
       added.push(...out.added);
+      userPicks.push(...out.userPicks);
       updated.push(...out.updated);
       for (const x of [...out.added, ...out.updated]) protectIds.add(x.id);
       unverified.push(...out.unverified);
@@ -201,5 +203,5 @@ export async function runIntake({ items, data, today, deps, opts = {} }) {
       patchError = e.message;
     }
   }
-  return { data: current, results, unverified, rejected, added, updated, patched, ...(patchError ? { patchError } : {}) };
+  return { data: current, results, unverified, rejected, added, updated, userPicks, patched, ...(patchError ? { patchError } : {}) };
 }

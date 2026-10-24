@@ -808,7 +808,7 @@ async function main() {
   // （除外ルール exclusions.hard と collectAll はユーザー確定事項のため自動変更禁止。ガードは tuneup-guardrails.mjs）
   const exhibitionData = await readJson(EXHIBITION_PATH).catch(() => ({ items: [] }));
   const oldExhibitionProfile = await readJson(EXHIBITION_PROFILE_PATH);
-  const exhibitionStats = computeExhibitionStats({ favIds, trashedIds, items: exhibitionData.items || [] });
+  const exhibitionStats = computeExhibitionStats({ favIds, trashedIds, items: exhibitionData.items || [], boostedSince: oldExhibitionProfile.likes?.userPicksEvidenceSince });
   const nextExhibitionProfile = proposeExhibitionProfile(oldExhibitionProfile, exhibitionStats, exhibitionData.items || []);
   const exhibitionChanged = JSON.stringify(nextExhibitionProfile) !== JSON.stringify(oldExhibitionProfile);
 

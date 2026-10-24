@@ -3,6 +3,8 @@
  * 候補JSONのスキーマ・日替わりソースローテーション・検索クエリ展開をここに集約する。
  */
 
+import { userPicksPromptBlock } from "./exhibition-userpicks.mjs";
+
 export const HARD_EXCLUDE_NOTE =
   "excludeCategory: none | painting_oldmaster_ip（純粋な絵画・日本画・古美術・西洋名画巡回/IP・キャラ・アニメ原画コラボ） | merch_event（物販中心の大衆向け没入型エンタメ） | showroom（プロダクトショールーム型デザイン展） | ai_pictures（AI生成画像だけの展示）";
 
@@ -71,11 +73,18 @@ export function pickSourcesForDay(sources, dayIndex, perDay = { secondary: 3, su
   return picked;
 }
 
+/** intake 候補に付ける「好みのポイント」指示（userPicks 記録用。LINE/Web 投稿の両プロンプト共通）。 */
+export const PICK_WHY_NOTE =
+  '- "pickWhy": この展示のどこが投稿者の好みに合いそうか、記事・投稿から読み取れる事実だけで1文（推測や一般論は書かない）';
+
 export function profileForPrompt(profile) {
+  // userPicks は発見フェーズの採点プロンプトにだけ別ブロックで渡す（LINE/intake の自己採点には混ぜない）
+  const likes = { ...(profile.likes || {}) };
+  delete likes.userPicks;
   return JSON.stringify(
     {
       scope: profile.scope,
-      likes: profile.likes,
+      likes,
       watch: { artists: profile.watch?.artists, venues: profile.watch?.venues },
       exclusions: profile.exclusions,
       scoring: profile.scoring,
@@ -97,7 +106,7 @@ export function buildDiscoveryPrompt({ profile, today, sourceList, queries, exis
 NEORT++の全展覧会・オンチェーンアート展・ジェネラティブアート展は collectAll=true として必ず含める（件数上限外）。該当なしなら空配列 [] （無理に埋めない）。
 
 # 好み・除外・採点プロファイル（JSON）
-${profileForPrompt(profile)}
+${profileForPrompt(profile)}${userPicksPromptBlock(profile)}
 
 # 今日の巡回ソース（WebFetchで開いて確認。到達できないソースはスキップして続行）
 ${srcLines}
@@ -116,7 +125,7 @@ ${queries.map((q) => `- ${q}`).join("\n")}
 # 重複禁止（既掲載）
 ${existingTitles.join(" / ") || "(なし)"}${seenThisRun.length ? ` / 今回既出: ${seenThisRun.join(", ")}` : ""}
 
-# 出力: JSON配列のみ（前置き・後書きなし）
+# 出力: JSON配列のみ（前置き・後書きなし）。各要素に上記スキーマの項目 + "userPickBoost"（任意。上の user_pick_similarity の加点で score には含めない。無ければ省略）
 ${CANDIDATE_SCHEMA_TEXT}`;
 }
 
@@ -145,7 +154,9 @@ ${blocks}
 1. 各POSTから展覧会（名称・作家・会場・会期）を特定する。展覧会の告知でなければ、その url の候補は出さない
 2. 会場・主催者の**公式ページをWebSearch/WebFetchで探し、日付・会場を公式ページで確認**する。公式ページが見つからなければ officialUrl は空文字（後段で unverified になる）
 3. 各候補に "intakeUrl"（元のPOSTのurl）を必ず付ける。1つのPOSTに複数の展覧会があれば複数候補
-4. score は profile.scoring に従い自己採点（投稿ボーナス+10は機械側で加算するので含めない）${profile ? `\n\n# プロファイル（JSON）\n${profileForPrompt(profile)}` : ""}
+4. score は profile.scoring に従い自己採点（投稿ボーナス+10は機械側で加算するので含めない。投稿された＝興味ありとして扱われるが、score 自体は正直に付ける）
+5. 各候補に "pickWhy" を付ける:
+   ${PICK_WHY_NOTE}${profile ? `\n\n# プロファイル（JSON）\n${profileForPrompt(profile)}` : ""}
 
 # 出力: JSON配列のみ。要素は下記スキーマに "intakeUrl" を加えたもの。${HARD_EXCLUDE_NOTE}
 ${CANDIDATE_SCHEMA_TEXT}`;

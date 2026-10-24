@@ -110,6 +110,18 @@ const items = data.items;
 const preferenceOnly = (profile?.seeds || []).filter((s) => s.role === "preference_only");
 if (!profile) ng("PROFILE: data/exhibition-profile.json が無く preference_only の混入検査ができません（SPEC §7.10）");
 
+// likes.userPicks（オーナー投稿例。採点にだけ使う）の形式検査
+if (profile?.likes?.userPicks !== undefined) {
+  const up = profile.likes.userPicks;
+  if (!Array.isArray(up) || up.length > 10) ng(`INVALID USERPICKS: likes.userPicks は10件以下の配列（${Array.isArray(up) ? up.length + "件" : typeof up}）`);
+  else {
+    for (const [i, p] of up.entries()) {
+      const okp = p && typeof p === "object" && ["title", "why", "addedAt"].every((k) => typeof p[k] === "string" && p[k].trim()) && typeof p.venue === "string" && Array.isArray(p.tags) && p.tags.every((t) => typeof t === "string");
+      if (!okp) ng(`INVALID USERPICKS: likes.userPicks[${i}] は title/why/addedAt(非空文字列)・venue(文字列)・tags(文字列配列) が必要`);
+    }
+  }
+}
+
 const idCounts = {};
 const linkCounts = {};
 const referencedFiles = new Set();
@@ -195,6 +207,7 @@ for (const [idx, e] of items.entries()) {
   if (e.origin !== undefined && e.origin !== "auto" && e.origin !== "intake") {
     ng(`INVALID ORIGIN: ${label} = "${e.origin}"（auto|intake）`);
   }
+  if (e.boostedBy !== undefined && e.boostedBy !== "userPick") ng(`INVALID BOOSTEDBY: ${label} = ${JSON.stringify(e.boostedBy)}（userPick のみ）`);
   if (e.origin === "intake" && !e.intakeUrl) ng(`MISSING INTAKEURL: ${label} は origin=intake なのに intakeUrl がありません`);
 
   // ── 7. sources / link ──

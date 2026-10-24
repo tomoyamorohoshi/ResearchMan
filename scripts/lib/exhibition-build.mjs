@@ -18,6 +18,7 @@ import { computeStatus, isValidYmd } from "./exhibition-status.mjs";
 import { buildExhibitionId } from "./exhibition-slug.mjs";
 import { normLink } from "./norm-link.mjs";
 import { normTitle } from "./norm-title.mjs";
+import { USER_PICK_BOOST_MAX, cleanWhy } from "./exhibition-userpicks.mjs";
 
 // audit-exhibition.mjs と同じ47都道府県（監査側はモジュールとして export していないため複製）
 export const PREFECTURES = [
@@ -334,7 +335,7 @@ function checkOfficialText(cand, text) {
 // 候補（Claude 出力）の型不正を吸収する。非文字列は String 化（オブジェクト/配列/null は空文字）、配列項目は配列化
 const STRING_FIELDS = [
   "title", "venue", "venueType", "prefecture", "city", "startDate", "endDate", "admission", "matchReason",
-  "officialUrl", "officialName", "slugTitle", "slugVenue", "thumbnailSource", "intakeUrl", "excludeCategory", "origin",
+  "officialUrl", "officialName", "slugTitle", "slugVenue", "thumbnailSource", "intakeUrl", "excludeCategory", "origin", "pickWhy",
 ];
 const asArray = (v) => (Array.isArray(v) ? v : v == null || v === "" ? [] : [v]);
 function sanitizeCandidate(raw) {
@@ -350,6 +351,7 @@ function sanitizeCandidate(raw) {
   c.tags = asArray(raw.tags).filter((t) => typeof t === "string");
   c.sources = asArray(raw.sources).filter((x) => x && typeof x === "object" && !Array.isArray(x) && typeof x.url === "string");
   c.score = Number(raw.score);
+  c.userPickBoost = Number(raw.userPickBoost) || 0;
   if (c.thumbnailSource !== undefined && !isPublicHttpUrl(c.thumbnailSource)) delete c.thumbnailSource;
   return c;
 }
@@ -360,9 +362,21 @@ function normalizePrefecture(p) {
   return PREFECTURES.find((x) => x.slice(0, -1) === s) || null;
 }
 
+/** intakeBonus・collectAll 補正の前の素点（0〜100）。 */
+function rawScore(cand) {
+  return Math.max(0, Math.min(100, Math.round(Number(cand.score) || 0)));
+}
+
+/** 自動発見の userPick 加点（0〜USER_PICK_BOOST_MAX に機械的に clamp。intake・collectAll には付けない）。 */
+function userPickBoostOf(cand) {
+  if (cand.origin === "intake" || cand.collectAll) return 0;
+  return Math.max(0, Math.min(USER_PICK_BOOST_MAX, Math.round(Number(cand.userPickBoost) || 0)));
+}
+
 function effectiveScore(cand, opts) {
-  let s = Math.max(0, Math.min(100, Math.round(Number(cand.score) || 0)));
+  let s = rawScore(cand);
   if (cand.origin === "intake") s = Math.min(100, s + opts.intakeBonus);
+  else s = Math.min(100, s + userPickBoostOf(cand));
   if (cand.collectAll) s = Math.max(s, opts.addThreshold);
   return s;
 }
@@ -395,7 +409,7 @@ function buildSources(cand) {
  * @param {object[]} p.candidates
  * @param {string} p.today          JST YYYY-MM-DD
  * @param {object} p.deps           { fetchHtml, saveThumb(id, cand)->path|null, now()->ISO }
- * @param {object} [p.opts]         { protectIds(同一実行で追加済みid。会期更新しない), addThreshold, highlightThreshold, maxAdd, intakeBonus, dryRun, tagVocab, reservedIds }
+ * @param {object} [p.opts]         { trustOrigin(true は intake 経路だけ。false/未指定なら候補の origin/intakeUrl を無視して auto 扱い＝LLM 出力による偽装防止), protectIds(同一実行で追加済みid。会期更新しない), addThreshold, highlightThreshold, maxAdd, intakeBonus, dryRun, tagVocab, reservedIds }
  */
 export async function processCandidates({ data, candidates, today, deps, opts = {} }) {
   const o = { ...DEFAULTS, ...opts };
@@ -410,6 +424,10 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
   const unverified = [];
   const rejected = [];
   const skipped = [];
+  const userPicks = []; // 素点が閾値未満だったのに投稿(intake)され追加された展示 → likes.userPicks の記録対象（呼び出し側が反映）
+
+  // intake（オーナーの明示投稿＝興味あり）は好みスコア閾値・hard 除外では落とさない。事実確認系は intake でも従来どおり
+  const isIntake = (c) => c.origin === "intake";
 
   const reject = (cand, reason, detail = "") => rejected.push({ title: cand.title, reason, detail, link: cand.officialUrl || "", intakeUrl: cand.intakeUrl });
   const unver = (cand, reason) =>
@@ -425,7 +443,12 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
       rejected.push({ title: "(invalid)", reason: "invalid-candidate", detail: "not an object", link: "" });
       continue;
     }
-    sane.push(sanitizeCandidate(raw));
+    const c = sanitizeCandidate(raw);
+    if (!o.trustOrigin) {
+      delete c.origin;
+      delete c.intakeUrl;
+    }
+    sane.push(c);
   }
   // スコア上位を優先（日次上限が効くときに良い候補が残るように）
   const ordered = sane.sort((a, b) => effectiveScore(b, o) - effectiveScore(a, o));
@@ -441,7 +464,7 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
     if (!isValidYmd(cand.startDate) || !isValidYmd(cand.endDate)) return unver(cand, "会期不明（startDate/endDate が不正または欠落）");
     if (cand.startDate > cand.endDate) return reject(cand, "start-after-end");
     if (cand.endDate < today) return reject(cand, "already-ended");
-    if (cand.excludeCategory && cand.excludeCategory !== "none") return reject(cand, "hard-exclusion", cand.excludeCategory);
+    if (!isIntake(cand) && cand.excludeCategory && cand.excludeCategory !== "none") return reject(cand, "hard-exclusion", cand.excludeCategory);
     const prefecture = normalizePrefecture(cand.prefecture);
     if (!prefecture) return reject(cand, "invalid-prefecture", String(cand.prefecture));
 
@@ -476,7 +499,7 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
     }
 
     const score = effectiveScore(cand, o);
-    if (score < o.addThreshold) return reject(cand, "below-threshold", String(score));
+    if (!isIntake(cand) && score < o.addThreshold) return reject(cand, "below-threshold", String(score));
     // 必須 string（監査で FAIL になる空値）が欠ける候補は追加せず unverified（理由つき）
     const missing = ["city", "matchReason"].filter((k) => !String(cand[k] || "").trim());
     if (missing.length) return unver(cand, `required-field-missing: ${missing.join(",")}`);
@@ -516,7 +539,15 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
       origin: cand.origin === "intake" ? "intake" : "auto",
       ...(cand.origin === "intake" && cand.intakeUrl ? { intakeUrl: cand.intakeUrl } : {}),
       highlight: score >= o.highlightThreshold,
+      // 自動発見で userPick 加点によって初めて閾値を越えた展示の印（tuneup が印付きごみ箱率を見る）
+      ...(userPickBoostOf(cand) > 0 && score >= o.addThreshold && score - userPickBoostOf(cand) < o.addThreshold ? { boostedBy: "userPick" } : {}),
     };
+    if (isIntake(cand) && rawScore(cand) < o.addThreshold && !(cand.excludeCategory && cand.excludeCategory !== "none")) {
+      userPicks.push({
+        title: item.title, venue: item.venue, tags: item.tags,
+        why: cleanWhy(cand.pickWhy) || cleanWhy(item.matchReason), addedAt: item.addedAt,
+      });
+    }
     taken.add(id);
     protect.add(id);
     items = [item, ...items];
@@ -532,5 +563,5 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
     }
   }
 
-  return { data: { ...data, statusAsOf: today, items }, added, updated, unverified, rejected, skipped };
+  return { data: { ...data, statusAsOf: today, items }, added, updated, unverified, rejected, skipped, userPicks };
 }

@@ -185,3 +185,16 @@ test("describeExhibitionReason: 未対応コードは平易な文にコードを
   assert.equal(describeExhibitionReason("candidate-error"), "追加処理中にエラーが起きました（コード: candidate-error）");
   assert.match(describeExhibitionReason(""), /不明/);
 });
+
+test("低スコア(素点30)・hard除外カテゴリの投稿でも追加され、userPicks が返る", async () => {
+  const low = { ...baseCand, score: 30, pickWhy: "音と光の空間体験が好み。" };
+  const r = await processExhibitionAdd({ obj: { contentKind: "exhibition", found: true, candidates: [low] }, url: URL_, data: makeData(), today: TODAY, deps: makeDeps(), opts });
+  assert.equal(r.outcome, "added");
+  assert.equal(r.added[0].score, 40);
+  assert.equal(r.userPicks.length, 1);
+  assert.equal(r.userPicks[0].why, "音と光の空間体験が好み。");
+  const hard = { ...baseCand, excludeCategory: "painting_oldmaster_ip" };
+  const r2 = await processExhibitionAdd({ obj: { contentKind: "exhibition", found: true, candidates: [hard] }, url: URL_, data: makeData(), today: TODAY, deps: makeDeps(), opts });
+  assert.equal(r2.outcome, "added");
+  assert.equal(r2.userPicks.length, 0);
+});
