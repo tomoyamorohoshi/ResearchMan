@@ -366,3 +366,71 @@ test("clusterPins: 50km 以内で連結、件数の多い順、ラベルは多�
   assert.equal(cl[1].count, 1);
   assert.deepEqual(clusterPins([], 50), []);
 });
+
+// ---- カレンダー案 (?cal=) ----
+import { parseCalStyle, visitNo, weekSegments, endingOn } from "./visit";
+
+test("parseCalStyle: 不正値・無しは lines、count/bands はそのまま", () => {
+  assert.equal(parseCalStyle(undefined), "lines");
+  assert.equal(parseCalStyle("zzz"), "lines");
+  assert.equal(parseCalStyle(["count"]), "lines");
+  assert.equal(parseCalStyle("count"), "count");
+  assert.equal(parseCalStyle("bands"), "bands");
+});
+
+test("visitNo: 1始まり2桁", () => {
+  assert.equal(visitNo(0), "01");
+  assert.equal(visitNo(11), "12");
+});
+
+test("endingOn: その日が終了日の展示 id", () => {
+  const items = [
+    { id: "a", startDate: "2026-10-01", endDate: "2026-10-10" },
+    { id: "b", startDate: "2026-10-01", endDate: "2026-10-11" },
+  ];
+  assert.deepEqual(endingOn(items, "2026-10-10"), ["a"]);
+  assert.deepEqual(endingOn(items, "2026-10-09"), []);
+});
+
+test("weekSegments: 週をまたぐ帯を週ごとに分割し、端の連続を示す", () => {
+  // 2026-10 は 10/1(木) 始まり。グリッドは 9/27(日) から
+  const items = [
+    { id: "a", startDate: "2026-10-02", endDate: "2026-10-06" }, // 金〜火（週1→週2）
+    { id: "b", startDate: "2026-10-03", endDate: "2026-10-03" },
+  ];
+  const days = monthCalendar(2026, 10, items);
+  const weeks = weekSegments(days, items);
+  assert.equal(weeks.length, 6);
+  const a1 = weeks[0].find((s) => s.id === "a")!;
+  assert.deepEqual([a1.col, a1.span, a1.capLeft, a1.capRight], [5, 2, true, false]);
+  const a2 = weeks[1].find((s) => s.id === "a")!;
+  assert.deepEqual([a2.col, a2.span, a2.capLeft, a2.capRight], [0, 3, false, true]);
+  const b = weeks[0].find((s) => s.id === "b")!;
+  assert.equal(b.col, 6);
+  assert.notEqual(a1.lane, b.lane); // 同じ列(土)で重なるので別段
+});
+
+test("weekSegments: 重なる帯は別レーン", () => {
+  const items = [
+    { id: "a", startDate: "2026-10-05", endDate: "2026-10-08" },
+    { id: "b", startDate: "2026-10-06", endDate: "2026-10-07" },
+    { id: "c", startDate: "2026-10-09", endDate: "2026-10-09" },
+  ];
+  const weeks = weekSegments(monthCalendar(2026, 10, items), items);
+  const w = weeks[1];
+  const lane = (id: string) => w.find((s) => s.id === id)!.lane;
+  assert.notEqual(lane("a"), lane("b"));
+  assert.equal(lane("c"), lane("a")); // a が終わったあとは詰める
+});
+
+test("weekSegments: 開始列昇順で詰めるので X(列4-6) Y(列0-2) の入力順でも1段", () => {
+  // 2026-10-11(日)〜10-17(土) の週
+  const items = [
+    { id: "x", startDate: "2026-10-15", endDate: "2026-10-17" },
+    { id: "y", startDate: "2026-10-11", endDate: "2026-10-13" },
+  ];
+  const weeks = weekSegments(monthCalendar(2026, 10, items), items);
+  const w = weeks[2];
+  assert.equal(w.length, 2);
+  assert.equal(Math.max(...w.map((s) => s.lane)), 0);
+});

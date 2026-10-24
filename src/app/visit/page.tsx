@@ -1,6 +1,6 @@
 import { exhibitionItems, todayJst } from "@/lib/exhibition";
 import venueGeoJson from "../../../data/venue-geo.json";
-import type { VenueGeo } from "@/lib/visit";
+import { parseCalStyle, type VenueGeo } from "@/lib/visit";
 import VisitClient from "@/components/VisitClient";
 import TopTabs from "@/components/TopTabs";
 
@@ -16,7 +16,7 @@ export default async function VisitPage({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const sp = await searchParams;
-  const view = sp.view === "calendar" ? "calendar" : "bars";
+  const calStyle = parseCalStyle(sp.cal);
   return (
     <main className="min-h-screen">
       <header className="border-b border-gray-300 px-4 py-4 max-w-[1600px] mx-auto flex items-end justify-between gap-4">
@@ -34,7 +34,7 @@ export default async function VisitPage({
         items={exhibitionItems}
         geo={venueGeoJson as unknown as VenueGeo}
         initialToday={todayJst()}
-        initialView={view}
+        calStyle={calStyle}
       />
     </main>
   );

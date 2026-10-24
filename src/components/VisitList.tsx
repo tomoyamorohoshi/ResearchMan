@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import type { Exhibition } from "@/lib/exhibition";
-import { badgeFor } from "@/lib/visit";
+import { badgeFor, visitNo } from "@/lib/visit";
 import { formatPeriod } from "./ExhibitionBadge";
 
 export function VisitBadges({
@@ -55,7 +55,7 @@ export function VisitActiveList({
         一覧（終了間近が先頭）
       </h2>
       <ul className="grid gap-2 md:grid-cols-2 xl:grid-cols-3">
-        {active.map((e) => {
+        {active.map((e, i) => {
           const on = highlightIds.has(e.id);
           return (
             <li
@@ -70,7 +70,10 @@ export function VisitActiveList({
                 className="flex-1 min-w-0 text-left p-3 hover:bg-gray-50"
               >
                 <span className="flex items-start justify-between gap-2 mb-1">
-                  <span className="text-sm font-black leading-tight text-gray-900 tracking-tight">{e.title}</span>
+                  <span className="text-sm font-black leading-tight text-gray-900 tracking-tight">
+                    <span className="mr-1.5 text-[10px] tabular-nums tracking-wider text-gray-400">{visitNo(i)}</span>
+                    {e.title}
+                  </span>
                   <span className="flex flex-wrap justify-end gap-1">
                     <VisitBadges e={e} today={today} unlocated={unlocatedIds.has(e.id)} />
                   </span>

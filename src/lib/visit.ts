@@ -284,3 +284,68 @@ export function clusterPins(pins: readonly VenuePin[], thresholdKm: number): Pin
     .sort((a, b) => b.c.count - a.c.count || a.i - b.i)
     .map((x) => x.c);
 }
+
+// ---- カレンダー案 (?cal=) ----
+
+export type CalStyle = "lines" | "count" | "bands";
+
+// ?cal= の解釈。不正値・無しは既定の lines
+export function parseCalStyle(v: string | string[] | undefined): CalStyle {
+  return v === "count" || v === "bands" ? v : "lines";
+}
+
+// 展示の番号（一覧と同じ並び順の 0 始まり index → "01"）
+export function visitNo(index: number): string {
+  return String(index + 1).padStart(2, "0");
+}
+
+// date が終了日に当たる展示の id
+export function endingOn(items: readonly Pick<Exhibition, "id" | "endDate">[], date: string): string[] {
+  return items.filter((e) => e.endDate === date).map((e) => e.id);
+}
+
+export type WeekSegment = {
+  id: string;
+  col: number; // 0〜6
+  span: number; // 1〜7
+  lane: number; // 0 始まり。重ならない最小の段
+  capLeft: boolean; // この区間の左端が実際の会期開始日
+  capRight: boolean; // 右端が実際の会期終了日
+};
+
+// 6週×7日のマスを週ごとの帯に分割。items の順に段(lane)を貪欲に詰める。
+export function weekSegments(
+  days: readonly CalendarDay[],
+  items: readonly Pick<Exhibition, "id" | "startDate" | "endDate">[],
+): WeekSegment[][] {
+  const weeks: WeekSegment[][] = [];
+  for (let w = 0; w * 7 < days.length; w++) {
+    const row = days.slice(w * 7, w * 7 + 7);
+    const laneEnds: number[] = []; // 各段の使用済み最終列
+    // 週内で開始列の昇順に詰める（段数が最小になる）。返り値は items の順に戻す
+    const found = items
+      .map((e, order) => {
+        const cols = row.map((d, i) => (d.ids.includes(e.id) ? i : -1)).filter((i) => i >= 0);
+        return { e, order, cols };
+      })
+      .filter((x) => x.cols.length > 0);
+    const byOrder: WeekSegment[] = [];
+    for (const { e, order, cols } of [...found].sort((p, q) => p.cols[0] - q.cols[0] || p.order - q.order)) {
+      const col = cols[0];
+      const last = cols[cols.length - 1];
+      let lane = laneEnds.findIndex((end) => end < col);
+      if (lane < 0) lane = laneEnds.length;
+      laneEnds[lane] = last;
+      byOrder[order] = {
+        id: e.id,
+        col,
+        span: last - col + 1,
+        lane,
+        capLeft: row[col].date === e.startDate,
+        capRight: row[last].date === e.endDate,
+      };
+    }
+    weeks.push(byOrder.filter(Boolean));
+  }
+  return weeks;
+}
