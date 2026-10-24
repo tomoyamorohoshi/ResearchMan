@@ -22363,5 +22363,215 @@
         "desc": "共通点のない2人が家具を組み立て、立場の違いを知る社会実験広告。"
       }
     ]
+  },
+  {
+    "id": "2026-10-24-1",
+    "date": "2026-10-24",
+    "title": "万博の貫工法を4DGSで残す",
+    "pattern": "文脈×技術",
+    "seed": "Grand Ring（大阪万博の木造回廊）の貫工法による組み上げ過程を4DGSで空間オーディオごと記録したら、解体後も歩き回って見られる「動く建築アーカイブ」になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "grand-ring-expo2025-osaka-if-2026",
+        "title": "Grand Ring",
+        "desc": "大阪万博のシンボルとして、伝統的な貫工法で組まれた巨大な木造の回廊。"
+      },
+      {
+        "type": "tech",
+        "id": "4dgs",
+        "title": "4DGS",
+        "desc": "動く3D映像と空間音声を1つのファイルにまとめ、途中再生もできる新形式。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-24-2",
+    "date": "2026-10-24",
+    "title": "退場劇を物理AIで再演",
+    "pattern": "文脈×技術",
+    "seed": "Sent Off（Seán Harte）の退場11回の油パステル画を、MolmoMotionで1枚ごとに数秒先の動きを予測させたら、絵の中の選手が「退場直前の一瞬」を動き出す展示になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "sent-off-2026",
+        "title": "Sent Off",
+        "desc": "元サッカー選手ロイ・キーンの退場場面11回を油パステルで描いた画家の初個展。"
+      },
+      {
+        "type": "tech",
+        "id": "molmomotion",
+        "title": "MolmoMotion",
+        "desc": "1枚の画像と言葉の指示から、物体が数秒先にどう動くかを3Dで予測するAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-24-3",
+    "date": "2026-10-24",
+    "title": "71歳モデルの声を分離して街へ",
+    "pattern": "文脈×技術",
+    "seed": "MEET MARINA PRIETO（JCDecaux）のOOHの前で、通行人の声をHS-TasNetでリアルタイムに分離し、年配の声だけを拾って看板が相づちを返したら、エイジズムへの反論が対話になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "jcdecaux-marina-prieto",
+        "title": "MEET MARINA PRIETO",
+        "desc": "71歳でフォロワーゼロのモデルを屋外広告でデビューさせ、年齢への偏見に反論した企画。"
+      },
+      {
+        "type": "tech",
+        "id": "hs-tasnet",
+        "title": "HS-TasNet",
+        "desc": "歌や楽器などを23ミリ秒という短い間隔でリアルタイムに分けて取り出す音源分離AI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-24-4",
+    "date": "2026-10-24",
+    "title": "夢のたねを四季で撮り直す",
+    "pattern": "文脈×技術",
+    "seed": "夢のたねプロジェクトの、願いを書いた光る種が夜空へ放たれる映像を、MiniMax H3 VFX Edit LoRAパックで四季の空に差し替えたら、同じ夢が季節ごとに違う表情で届くかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-7a6jh4-2005",
+        "title": "夢のたねプロジェクト",
+        "desc": "願いを書いた光る紙の種を熱気球で夜空に放ち、見知らぬ人の夢を拾い合う参加型ライトアート。"
+      },
+      {
+        "type": "tech",
+        "id": "minimax-h3-vfx-edit-style-transfer-loraパック",
+        "title": "MiniMax H3 VFX Edit & Style Transfer LoRAパック",
+        "desc": "動きや構図を保ったまま、文章の指示で雨や色味など見た目だけを変えるAI用追加データ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-24-5",
+    "date": "2026-10-24",
+    "title": "採譜で作る農機の楽譜",
+    "pattern": "技術×技術",
+    "seed": "Omnizartでエンジン音のビートとコード進行を書き起こし、AuKで声質を変えた歌声を重ねたら、農機の実録音から「機械が歌う曲」の楽譜が自動で生まれるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "omnizart",
+        "title": "Omnizart",
+        "desc": "1曲の音から、メロディやドラム、コード、ビートの位置までまとめて楽譜化するツール。"
+      },
+      {
+        "type": "tech",
+        "id": "auk",
+        "title": "AuK",
+        "desc": "声の生成・声質変換・ノイズ除去などを自然言語の指示でこなす音声AIモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-24-6",
+    "date": "2026-10-24",
+    "title": "ループ動作の群衆を放し飼い",
+    "pattern": "技術×技術",
+    "seed": "C1連続 in-loop-out モーション生成ツールで作った途切れないループ動作を、AX (Agent Executor)で何千体ものエージェントに割り当てたら、同じ踊りを微妙にズラして続ける群衆ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "akasaki-c1-loop-motion-tool",
+        "title": "C1連続 in-loop-out モーション生成ツール",
+        "desc": "モーションキャプチャの一部から、始めと終わりがなめらかに繋がるループ動作を自動生成する。"
+      },
+      {
+        "type": "tech",
+        "id": "ax",
+        "title": "AX (Agent Executor)",
+        "desc": "AIエージェントを何千、何百万も同時に動かし、待機中は自動で休止させるGoogle製の基盤。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-24-7",
+    "date": "2026-10-24",
+    "title": "MacでスプラットのSky Dome",
+    "pattern": "技術×技術",
+    "seed": "GaussianSplatting.jlのSky Dome機能で空を切り離した空間を、MetalSplatでMac上に学習し直したら、背景の空だけ差し替え可能な持ち運べる3D風景ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "gaussiansplatting-jl-v2-0-0",
+        "title": "GaussianSplatting.jl v2.0.0",
+        "desc": "Julia言語で書かれた3D点群描画ライブラリ。空をきれいに分離する機能を追加。"
+      },
+      {
+        "type": "tech",
+        "id": "metalsplat",
+        "title": "MetalSplat",
+        "desc": "NVIDIAのGPUなしで、MacのApple Silicon上で3Dガウシアンスプラットを学習できるOSS。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-24-8",
+    "date": "2026-10-24",
+    "title": "音声エディタを展示の指揮者に",
+    "pattern": "転用",
+    "seed": "MCP経由でAIから操作できるAudionautを、音声編集ではなく個展会場の「照明係」として使い、Google presents Making the Invisible Visibleのような光の彫刻の明滅をトラック編集で作曲できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "audionaut",
+        "title": "Audionaut",
+        "desc": "AIエージェントからMCP経由で編集を指示できる、無料オープンソースの音声エディタ。"
+      },
+      {
+        "type": "case",
+        "id": "google-presents-making-the-invisible-visible-2025",
+        "title": "Google presents Making the Invisible Visible",
+        "desc": "光と水の彫刻家と組み、エネルギーと知覚だけで空間を形づくった没入型ライトインスタレーション。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-24-9",
+    "date": "2026-10-24",
+    "title": "ロボ用の動画AIで広告の物理を検査",
+    "pattern": "転用",
+    "seed": "ロボット教材向けで物理の正しさを重視するLingBot-Videoを、生成AI広告の「物理的におかしい」を検出する検査役に転用したら、Adathonの応募作の品質審査が自動化できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "lingbot-video",
+        "title": "LingBot-Video",
+        "desc": "体を持つAIの学習にも使える、物理的な正しさを重視した大規模な動画生成AI。"
+      },
+      {
+        "type": "case",
+        "id": "adathon-ai-ad-creation-contest-2026",
+        "title": "Adathon — AI Ad Creation Contest",
+        "desc": "Higgsfield AIとAdweekが開く、AIで広告を作って競う月間コンテスト。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-24-10",
+    "date": "2026-10-24",
+    "title": "楽曲採譜をキャスティングに転用",
+    "pattern": "転用",
+    "seed": "曲の構造を読み取るOmnizartを、台本のセリフの抑揚とビートの採譜に転用したら、The Kaprao Criminalsのような短編の「声のキャスティング」を音楽的に選べるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "omnizart",
+        "title": "Omnizart",
+        "desc": "1曲の音から、メロディやドラム、コード、ビートの位置までまとめて楽譜化するツール。"
+      },
+      {
+        "type": "case",
+        "id": "kfc-thailand-the-kaprao-criminals",
+        "title": "The Kaprao Criminals",
+        "desc": "国民食ガパオの改変論争を逆手に取った、キャスティングが巧みなKFC Thailandの短編。"
+      }
+    ]
   }
 ]
