@@ -10,6 +10,8 @@ type Props = {
   pins: VenuePin[];
   // 地図をこのピン群に fitBounds する（配列が変わるたびに実行）
   fitPins: VenuePin[];
+  // 初回表示と、この値が変わったとき（地域チップ・日付絞り込み）だけ fitBounds する
+  fitNonce: number;
   highlightedVenue: string | null;
   // 項目クリックで地図を会場へ移動しポップアップを開く（nonce が変わるたびに実行）
   focus: { venue: string; nonce: number } | null;
@@ -52,7 +54,7 @@ function popupContent(pin: VenuePin): HTMLElement {
   return root;
 }
 
-export default function VisitMap({ pins, fitPins, highlightedVenue, focus, onPinSelect }: Props) {
+export default function VisitMap({ pins, fitPins, fitNonce, highlightedVenue, focus, onPinSelect }: Props) {
   const elRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<L.Map | null>(null);
   const layerRef = useRef<L.LayerGroup | null>(null);
@@ -103,14 +105,19 @@ export default function VisitMap({ pins, fitPins, highlightedVenue, focus, onPin
   }, [pins]);
 
   // 表示範囲（地域チップ・初期表示）
+  const fittedRef = useRef(false);
+  const lastNonceRef = useRef(fitNonce);
   useEffect(() => {
     const map = mapRef.current;
     if (!map || fitPins.length === 0) return;
+    if (fittedRef.current && lastNonceRef.current === fitNonce) return; // パン/ズームを保つ
+    fittedRef.current = true;
+    lastNonceRef.current = fitNonce;
     map.fitBounds(L.latLngBounds(fitPins.map((p) => [p.lat, p.lng] as [number, number])), {
       padding: [40, 40],
       maxZoom: 15,
     });
-  }, [fitPins]);
+  }, [fitPins, fitNonce]);
 
   // 強調ピン
   useEffect(() => {

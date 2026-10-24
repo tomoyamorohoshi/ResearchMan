@@ -14,11 +14,12 @@ type Props = {
   dateFilter: string | null;
   onDateFilter: (d: string | null) => void;
   highlightIds: Set<string>;
+  unlocatedIds: Set<string>;
   onSelect: (e: Exhibition) => void;
 };
 
 // 案②: 月カレンダー。会期を色帯で重ね、日付クリックでその日に開いている展覧会だけ地図に絞る
-export default function VisitCalendar({ active, today, dateFilter, onDateFilter, highlightIds, onSelect }: Props) {
+export default function VisitCalendar({ active, today, dateFilter, onDateFilter, highlightIds, unlocatedIds, onSelect }: Props) {
   const [ym, setYm] = useState(() => ({ year: Number(today.slice(0, 4)), month: Number(today.slice(5, 7)) }));
   const cells = useMemo(() => monthCalendar(ym.year, ym.month, active), [ym, active]);
 
@@ -97,6 +98,11 @@ export default function VisitCalendar({ active, today, dateFilter, onDateFilter,
             <button type="button" onClick={() => onSelect(e)} className="flex items-center gap-2 text-left text-[11px] text-gray-700 hover:text-gray-900">
               <span className="inline-block w-3 h-3 shrink-0" style={{ background: colors.get(e.id) }} aria-hidden="true" />
               <span className="truncate">{e.title}</span>
+              {unlocatedIds.has(e.id) && (
+                <span className="shrink-0 text-[9px] px-1.5 py-1 leading-none text-gray-500 border border-dashed border-gray-400">
+                  地図未登録
+                </span>
+              )}
             </button>
           </li>
         ))}

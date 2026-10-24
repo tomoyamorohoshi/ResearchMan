@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import type { Exhibition } from "@/lib/exhibition";
@@ -60,24 +60,47 @@ export default function VisitClient({ items, geo, initialToday, initialView }: P
 
   // 地域グループ（50km 以内で連結）。初期表示は最大グループ、チップで切替
   const clusters = useMemo(() => clusterPins(pins, 50), [pins]);
-  const [region, setRegion] = useState<"all" | number>(0);
+  // 選択は地域ラベルで保持。該当が無くなったら最大グループに正規化
+  const [regionSel, setRegionSel] = useState<string | null>(null); // null=最大グループ, "all"=全体, それ以外=ラベル
+  const [fitNonce, setFitNonce] = useState(0);
+  const mapBoxRef = useRef<HTMLDivElement>(null);
+  const activeCluster = useMemo(() => {
+    if (regionSel === "all") return -1;
+    const i = regionSel === null ? -1 : clusters.findIndex((c) => c.label === regionSel);
+    return i >= 0 ? i : 0;
+  }, [regionSel, clusters]);
   const fitPins = useMemo(
-    () => (region === "all" ? pins : (clusters[region] ?? clusters[0])?.pins ?? pins),
-    [region, clusters, pins],
+    () => (activeCluster < 0 ? pins : (clusters[activeCluster]?.pins ?? pins)),
+    [activeCluster, clusters, pins],
   );
+  const pickRegion = useCallback((sel: string) => {
+    setRegionSel(sel);
+    setFitNonce((n) => n + 1);
+  }, []);
+  const changeDateFilter = useCallback((d: string | null) => {
+    setDateFilter(d);
+    setFitNonce((n) => n + 1);
+  }, []);
+  const pinItemCount = useMemo(() => pins.reduce((n, p) => n + p.items.length, 0), [pins]);
 
   const changeView = useCallback((v: VisitView) => {
     setView(v);
-    setDateFilter(null);
+    changeDateFilter(null);
     try {
       window.history.replaceState(null, "", `?view=${v}`);
     } catch {}
-  }, []);
+  }, [changeDateFilter]);
 
   // 項目（リスト・バー）を押す: 強調 + 地図をその会場へ
   const selectItem = useCallback(
     (e: Exhibition) => {
       setHighlightIds([e.id]);
+      // スマホ幅（lg 未満）は地図が画面外ならスクロールで見せる
+      const box = mapBoxRef.current;
+      if (box && window.innerWidth < 1024) {
+        const r = box.getBoundingClientRect();
+        if (r.top < 0 || r.bottom > window.innerHeight) box.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
       const pin = pins.find((p) => p.items.some((x) => x.id === e.id));
       if (pin) {
         setHighlightVenue(pin.venue);
@@ -145,24 +168,29 @@ export default function VisitClient({ items, geo, initialToday, initialView }: P
           {clusters.length > 0 && (
             <div className="flex flex-wrap gap-1 mb-2" role="group" aria-label="地図の表示地域">
               {clusters.length > 1 && (
-                <button type="button" aria-pressed={region === "all"} onClick={() => setRegion("all")} className={chipClass(region === "all")}>
-                  全体 {mapItems.length}
+                <button type="button" aria-pressed={activeCluster < 0} onClick={() => pickRegion("all")} className={chipClass(activeCluster < 0)}>
+                  全体 {pinItemCount}
                 </button>
               )}
               {clusters.map((c, i) => (
-                <button key={`${c.label}-${i}`} type="button" aria-pressed={region === i} onClick={() => setRegion(i)} className={chipClass(region === i)}>
+                <button key={`${c.label}-${i}`} type="button" aria-pressed={activeCluster === i} onClick={() => pickRegion(c.label)} className={chipClass(activeCluster === i)}>
                   {c.label} {c.count}
                 </button>
               ))}
             </div>
           )}
-          <div className="h-[320px] lg:h-[calc(100vh-220px)] lg:min-h-[420px] border border-gray-300 bg-gray-100">
-            <VisitMap pins={pins} fitPins={fitPins} highlightedVenue={highlightVenue} focus={focus} onPinSelect={selectPin} />
+          <div ref={mapBoxRef} className="relative h-[320px] lg:h-[calc(100vh-220px)] lg:min-h-[420px] border border-gray-300 bg-gray-100">
+            <VisitMap pins={pins} fitPins={fitPins} fitNonce={fitNonce} highlightedVenue={highlightVenue} focus={focus} onPinSelect={selectPin} />
+            {dateFilter && mapItems.length === 0 && (
+              <p role="status" className="absolute inset-x-4 top-4 z-[1000] bg-white/95 border border-gray-300 px-3 py-2 text-[12px] font-black text-gray-700 text-center">
+                この日に開いている展覧会はありません
+              </p>
+            )}
           </div>
           {dateFilter && (
             <p className="mt-2 text-[11px] text-gray-600">
               {dateFilter.replaceAll("-", ".")} に開いている展覧会だけを地図に表示中
-              <button type="button" onClick={() => setDateFilter(null)} className="ml-2 underline font-black text-gray-900">
+              <button type="button" onClick={() => changeDateFilter(null)} className="ml-2 underline font-black text-gray-900">
                 解除
               </button>
             </p>
@@ -183,8 +211,9 @@ export default function VisitClient({ items, geo, initialToday, initialView }: P
               active={active}
               today={today}
               dateFilter={dateFilter}
-              onDateFilter={setDateFilter}
+              onDateFilter={changeDateFilter}
               highlightIds={highlightSet}
+              unlocatedIds={unlocatedIds}
               onSelect={selectItem}
             />
           )}
