@@ -51,9 +51,8 @@ export function createThrottle({
   };
 }
 
-/** 1会場を問い合わせる。失敗（HTTP エラー・空・不採用・例外）は throw せず null。 */
-export async function geocodeVenue(v, { fetchImpl = fetch, wait, userAgent }) {
-  const query = buildQuery(v);
+/** 1つの問い合わせ文で検索し、prefecture 判定を通った候補を返す。失敗は null。 */
+async function searchOnce(query, prefecture, { fetchImpl, wait, userAgent }) {
   const url = new URL(NOMINATIM_URL);
   url.searchParams.set("q", query);
   url.searchParams.set("format", "jsonv2");
@@ -64,7 +63,7 @@ export async function geocodeVenue(v, { fetchImpl = fetch, wait, userAgent }) {
     await wait();
     const res = await fetchImpl(url.toString(), { headers: { "User-Agent": userAgent } });
     if (!res.ok) return null;
-    const hit = pickCandidate(await res.json(), v.prefecture);
+    const hit = pickCandidate(await res.json(), prefecture);
     if (!hit) return null;
     const lat = Number.parseFloat(hit.lat);
     const lng = Number.parseFloat(hit.lon);
@@ -73,6 +72,17 @@ export async function geocodeVenue(v, { fetchImpl = fetch, wait, userAgent }) {
   } catch {
     return null;
   }
+}
+
+/**
+ * 1会場を問い合わせる。1回目「会場名 区 都道府県」、不採用なら「会場名」だけで再検索（同じ間隔・同じ prefecture 判定）。
+ * 失敗（HTTP エラー・空・不採用・例外）は throw せず null。
+ */
+export async function geocodeVenue(v, opts) {
+  const first = buildQuery(v);
+  const r = await searchOnce(first, v.prefecture, opts);
+  if (r || first === v.venue) return r;
+  return searchOnce(v.venue, v.prefecture, opts);
 }
 
 /** 未登録会場を全て問い合わせ、{geo(新), added, failed} を返す。入力 geo は変更しない。 */

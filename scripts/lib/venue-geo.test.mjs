@@ -110,7 +110,7 @@ test("geocodeAll: 取得分だけ追加、manual は上書きしない、失敗�
     return { ok: true, status: 200, json: async () => res };
   };
   const out = await geocodeAll(items, geo, { fetchImpl: f, wait: noWait, userAgent: "UA", today: "2026-10-24" });
-  assert.deepEqual(queried.sort(), ["不明会場 港区 東京都", "森美術館 港区 東京都"]);
+  assert.deepEqual(queried.sort(), ["不明会場", "不明会場 港区 東京都", "森美術館 港区 東京都"].sort()); // 不明会場は二段目の会場名のみ検索も走る
   assert.deepEqual(out.added.map((a) => a.venue), ["森美術館"]);
   assert.deepEqual(out.failed.map((a) => a.venue), ["不明会場"]);
   assert.deepEqual(out.geo.venues["森美術館"], { lat: 35.6604, lng: 139.7292, source: "nominatim", query: "森美術館 港区 東京都", checkedAt: "2026-10-24" });
@@ -133,4 +133,36 @@ test("run-job.mjs: Exhibition は監査後に geocode-venues を実行し、venu
   const iGeo = src.indexOf("scripts/geocode-venues.mjs");
   const iAdd = src.indexOf('runGit(["add", "data/exhibition.json", "data/venue-geo.json"');
   assert.ok(iAudit > 0 && iGeo > iAudit && iAdd > iGeo);
+});
+
+test("geocodeVenue: 1回目不採用なら会場名だけで再検索し、採用ならその query を返す", async () => {
+  const qs = [];
+  const f = async (url) => {
+    const q = new URL(url).searchParams.get("q");
+    qs.push(q);
+    const res = q === "森美術館" ? [{ lat: "35.66", lon: "139.72", display_name: "森美術館, 東京都" }] : [{ lat: "1", lon: "2", display_name: "大分県" }];
+    return { ok: true, status: 200, json: async () => res };
+  };
+  const r = await geocodeVenue({ venue: "森美術館", city: "港区", prefecture: "東京都" }, { fetchImpl: f, wait: noWait, userAgent: "UA" });
+  assert.deepEqual(qs, ["森美術館 港区 東京都", "森美術館"]);
+  assert.equal(r.query, "森美術館");
+  assert.equal(r.lat, 35.66);
+});
+
+test("geocodeVenue: 2回目も不採用なら null。2回目の前にも wait を呼ぶ（1秒間隔）", async () => {
+  let waits = 0;
+  const f = async () => ({ ok: true, status: 200, json: async () => [{ lat: "1", lon: "2", display_name: "大分県" }] });
+  const r = await geocodeVenue({ venue: "X", city: "c", prefecture: "東京都" }, { fetchImpl: f, wait: async () => { waits++; }, userAgent: "UA" });
+  assert.equal(r, null);
+  assert.equal(waits, 2);
+});
+
+test("geocodeVenue: 二段目も実時間の throttle で1000ms空く", async () => {
+  let t = 0;
+  const calls = [];
+  const wait = createThrottle({ now: () => t, sleep: async (ms) => { t += ms; }, intervalMs: 1000 });
+  const f = async () => { calls.push(t); return { ok: true, status: 200, json: async () => [] }; };
+  await geocodeVenue({ venue: "X", city: "c", prefecture: "東京都" }, { fetchImpl: f, wait, userAgent: "UA" });
+  assert.equal(calls.length, 2);
+  assert.ok(calls[1] - calls[0] >= 1000);
 });

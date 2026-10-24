@@ -2,24 +2,24 @@
   "version": 1,
   "venues": {
     "BONDED GALLERY": {
-      "lat": 35.6227,
-      "lng": 139.7508,
+      "lat": 35.61981,
+      "lng": 139.746279,
       "source": "manual",
-      "query": "天王洲アイル周辺（東京都品川区東品川2）",
+      "query": "東京都品川区東品川1-32-8 TERRADA ART COMPLEX II（Tokyo Artbeat の会場座標）",
       "checkedAt": "2026-10-24"
     },
     "KARIMOKU RESEARCH CENTER": {
-      "lat": 35.6619,
-      "lng": 139.7219,
+      "lat": 35.661377,
+      "lng": 139.721053,
       "source": "manual",
-      "query": "東京都港区西麻布2-24-2（西麻布二丁目の代表点）",
+      "query": "東京都港区西麻布2-24-2（Tokyo Artbeat の会場座標）",
       "checkedAt": "2026-10-24"
     },
     "KOTARO NUKAGA(天王洲)": {
-      "lat": 35.6227,
-      "lng": 139.7508,
+      "lat": 35.61978,
+      "lng": 139.7462,
       "source": "manual",
-      "query": "天王洲アイル周辺（東京都品川区東品川）",
+      "query": "東京都品川区東品川1-32-8 TERRADA ART COMPLEX II 1F（Tokyo Artbeat の会場座標）",
       "checkedAt": "2026-10-24"
     },
     "NEORT++": {
@@ -44,10 +44,10 @@
       "checkedAt": "2026-10-24"
     },
     "メゾンエルメス フォーラム": {
-      "lat": 35.6725,
-      "lng": 139.764,
+      "lat": 35.6719565,
+      "lng": 139.7633922,
       "source": "manual",
-      "query": "東京都中央区銀座5-4-1（銀座5丁目・数寄屋橋付近の概略）",
+      "query": "東京都中央区銀座5-4-1 Le Forum - Hermès（OSM node 座標）",
       "checkedAt": "2026-10-24"
     },
     "ワタリウム美術館": {
@@ -65,10 +65,10 @@
       "checkedAt": "2026-10-24"
     },
     "常栄寺(YCAM Yamaguchi Seasonal)": {
-      "lat": 34.2009,
-      "lng": 131.503,
+      "lat": 34.198017,
+      "lng": 131.489869,
       "source": "manual",
-      "query": "山口県山口市宮野下2001-1（宮野下の代表点）",
+      "query": "山口県山口市宮野下2001-1 常栄寺（Wikipedia 座標。OSM の寺院ノードとも一致）",
       "checkedAt": "2026-10-24"
     },
     "東京藝術大学大学美術館 陳列館": {
