@@ -1,0 +1,110 @@
+{
+  "version": 1,
+  "venues": {
+    "BONDED GALLERY": {
+      "lat": 35.61981,
+      "lng": 139.746279,
+      "source": "manual",
+      "query": "東京都品川区東品川1-32-8 TERRADA ART COMPLEX II（Tokyo Artbeat の会場座標）",
+      "checkedAt": "2026-10-24"
+    },
+    "KARIMOKU RESEARCH CENTER": {
+      "lat": 35.661377,
+      "lng": 139.721053,
+      "source": "manual",
+      "query": "東京都港区西麻布2-24-2（Tokyo Artbeat の会場座標）",
+      "checkedAt": "2026-10-24"
+    },
+    "KOTARO NUKAGA(天王洲)": {
+      "lat": 35.61978,
+      "lng": 139.7462,
+      "source": "manual",
+      "query": "東京都品川区東品川1-32-8 TERRADA ART COMPLEX II 1F（Tokyo Artbeat の会場座標）",
+      "checkedAt": "2026-10-24"
+    },
+    "NEORT++": {
+      "lat": 35.6934,
+      "lng": 139.7824,
+      "source": "manual",
+      "query": "東京都中央区日本橋馬喰町2-2-14（JR馬喰町駅前）",
+      "checkedAt": "2026-10-24"
+    },
+    "NTTインターコミュニケーション・センター [ICC]": {
+      "lat": 35.6829,
+      "lng": 139.6869,
+      "source": "manual",
+      "query": "東京オペラシティタワー4F（東京都新宿区西新宿3-20-2）",
+      "checkedAt": "2026-10-24"
+    },
+    "ギンザ・グラフィック・ギャラリー": {
+      "lat": 35.6697,
+      "lng": 139.7626,
+      "source": "manual",
+      "query": "DNP銀座ビル（東京都中央区銀座7-7-2）",
+      "checkedAt": "2026-10-24"
+    },
+    "メゾンエルメス フォーラム": {
+      "lat": 35.6719565,
+      "lng": 139.7633922,
+      "source": "manual",
+      "query": "東京都中央区銀座5-4-1 Le Forum - Hermès（OSM node 座標）",
+      "checkedAt": "2026-10-24"
+    },
+    "ワタリウム美術館": {
+      "lat": 35.6707378,
+      "lng": 139.7133402,
+      "source": "nominatim",
+      "query": "ワタリウム美術館 渋谷区 東京都",
+      "checkedAt": "2026-10-24"
+    },
+    "山口情報芸術センター[YCAM]": {
+      "lat": 34.1695549,
+      "lng": 131.4672596,
+      "source": "nominatim",
+      "query": "山口情報芸術センター[YCAM] 山口市 山口県",
+      "checkedAt": "2026-10-24"
+    },
+    "常栄寺(YCAM Yamaguchi Seasonal)": {
+      "lat": 34.198017,
+      "lng": 131.489869,
+      "source": "manual",
+      "query": "山口県山口市宮野下2001-1 常栄寺（Wikipedia 座標。OSM の寺院ノードとも一致）",
+      "checkedAt": "2026-10-24"
+    },
+    "東京藝術大学大学美術館 陳列館": {
+      "lat": 35.7192,
+      "lng": 139.7719,
+      "source": "manual",
+      "query": "東京藝術大学大学美術館（台東区上野公園）に隣接",
+      "checkedAt": "2026-10-24"
+    },
+    "東京都現代美術館": {
+      "lat": 35.6797754,
+      "lng": 139.8087878,
+      "source": "nominatim",
+      "query": "東京都現代美術館 江東区 東京都",
+      "checkedAt": "2026-10-24"
+    },
+    "東京都現代美術館 コレクション展示室": {
+      "lat": 35.6797754,
+      "lng": 139.8087878,
+      "source": "manual",
+      "query": "東京都現代美術館と同一建物",
+      "checkedAt": "2026-10-24"
+    },
+    "森美術館": {
+      "lat": 35.660432,
+      "lng": 139.729261,
+      "source": "nominatim",
+      "query": "森美術館 港区 東京都",
+      "checkedAt": "2026-10-24"
+    },
+    "麻布台ヒルズギャラリー": {
+      "lat": 35.6625,
+      "lng": 139.743,
+      "source": "manual",
+      "query": "Azabudai Hills Gallery（OSM: 虎ノ門五丁目）",
+      "checkedAt": "2026-10-24"
+    }
+  }
+}

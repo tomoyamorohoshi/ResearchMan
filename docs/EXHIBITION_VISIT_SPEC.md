@@ -31,7 +31,7 @@
   `source` は `nominatim` か `manual`（手で直した値。自動処理で上書きしない）。
 - 座標の取得は **OpenStreetMap の Nominatim**（無料）を、データ生成側でだけ呼ぶ（ブラウザからは呼ばない）。
   - 利用規約を守る: 1秒1件まで、`User-Agent` に連絡先付きのアプリ名、結果は `venue-geo.json` にキャッシュして同じ会場を再問い合わせしない。
-  - 問い合わせ文は `venue + city + prefecture`。**結果の住所に prefecture が含まれない場合は採用しない**（同名施設の誤一致防止）。取れなかった会場は `venue-geo.json` に載せず、`logs/system-alerts.jsonl` に1行記録する。
+  - 問い合わせ文は `venue + city + prefecture`（採用候補が無ければ二段目として `venue` のみで再検索し、同じ prefecture 判定で採否を決める。どちらも1秒間隔）。**結果の住所に prefecture が含まれない場合は採用しない**（同名施設の誤一致防止）。取れなかった会場は `venue-geo.json` に載せず、`logs/system-alerts.jsonl` に1行記録する。
 - 新スクリプト `scripts/geocode-venues.mjs`（`--dry-run` あり）。日次の Exhibition ジョブ（`scripts/auto-research-exhibition.mjs` の後）で、座標未登録の会場だけを処理する。
   - `scripts/windows/run-job.mjs` の Exhibition の `git add` 対象に `data/venue-geo.json` を追加する（漏らすと毎回未コミットで残る）。
 - 初回は現行17件の会場を一括で取得し、実装者が全件を地図で目視確認する（明らかな誤りは `manual` で直す）。
