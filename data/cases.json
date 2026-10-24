@@ -1,5 +1,269 @@
 [
   {
+    "id": "yeast-and-gelatin-bind-sand-into-freeze-dried-building-mater",
+    "title": "Yeast and Gelatin Bind Sand Into Freeze-Dried Building Material for Mars",
+    "summary": "ムール貝由来接着タンパク質を出す改変酵母とゼラチンで砂を固め、焼成の代わりに凍結乾燥で硬化する火星向け建材",
+    "client": "Hong Kong University of Science and Technology (Jishen Qiu ら)",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.materialdistrict.com/article/yeast-and-gelatin-bind-sand-into-freeze-dried-building-material-for-mars/",
+    "thumbnail": "/thumbnails/yeast-and-gelatin-bind-sand-into-freeze-dried-building-mater.jpg",
+    "videoId": "",
+    "overview": "香港科技大学（HKUST）の土木工学チーム（Jishen Qiu ら）が、ムール貝の接着タンパク質を細胞表面に出すよう遺伝子改変した酵母とゼラチンで砂を固める建材を提案した。窯での焼成ではなく凍結乾燥で硬化させ、圧縮強度は約12MPaと低グレードのコンクリート並み。成果は学術誌Chem Circularityに掲載された。",
+    "background": "火星ではセメント製造や高温処理が難しいため、低エネルギーで作れる建材が求められていた。着想は、乾燥すると固まるフリーズドライ果物にあるという。火星の低温・低圧では氷が直接水蒸気になるため、この環境そのものを硬化工程に使える点に着目した。",
+    "execution": "ゼラチンが結合材と酵母の栄養を兼ね、砂が構造体の骨格になる。野生株1種と改変株7種の計8種の酵母を比較した。鋳造ブロックは約-55℃・地球の約1万分の1の気圧で2日間凍結乾燥した。3Dプリントでは体温程度で押し出し、約-30℃・約1%気圧の室内で固める。",
+    "evaluationImpact": "焼成不要で、ゼラチンを温水で溶かせば再成形でき、4回リサイクル後も圧縮強度は約11.8MPaを保った。曲げ強度は約6MPa。一方、最大の造形物はワインコルク大で、試料は火星土ではなく不活性な砂、放射線下での酵母の生存や気密性・耐候性は未検証。最良配合は地球産ゼラチンと栄養に依存する。",
+    "relatedWorks": [
+      {
+        "title": "Mars settlers may live in houses made of yeast and gelatin (Space.com)",
+        "description": "同研究を扱った報道記事",
+        "url": "https://www.space.com/astronomy/mars/future-humans-could-live-in-yeast-houses-on-mars"
+      },
+      {
+        "title": "Genetically engineered yeast could build the first Martian outposts (Universe Today)",
+        "description": "同研究の解説記事",
+        "url": "https://www.universetoday.com/articles/genetically-engineered-yeast-could-build-the-first-martian-outposts"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Form/Product",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "materialdistrict",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "aviva-menopause-monopoly-2026",
+    "title": "Aviva Menopause Monopoly",
+    "summary": "モノポリーの盤面を更年期の日常に読み替え、タブー視された話題を遊びながら語れる非売品ボードゲームにした。",
+    "client": "Aviva",
+    "agency": "Saatchi & Saatchi（Hasbro協働／OMD UK／Landor）",
+    "categories": [
+      "カルチャーインサイト",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/aviva-monopoly-menopause-20261023",
+    "thumbnail": "/thumbnails/aviva-menopause-monopoly-2026.jpg",
+    "videoId": "",
+    "overview": "英国の保険会社Avivaが、Saatchi & Saatchiと玩具大手Hasbroの協力で作った更年期版モノポリー。不動産のマスは「Self-Care」「Missed Promotion」「Financial Worries」に置き換えられ、コマは扇子、ナイトマスク、開いた財布になった。一般には販売されず、キャンペーン専用に作られた。",
+    "background": "Avivaはさまざまな更年期の段階にある女性への調査をもとに、更年期が仕事・お金・心身に及ぼす影響を扱っている。更年期は話しにくい話題とされてきた。Saatchi & SaatchiはAvivaが競合ピッチを経て選んだ新しいクリエイティブエージェンシーで、この施策はその文脈で展開された。",
+    "execution": "ボードはモノポリーの構造を保ちつつ、中身を更年期の経験に差し替えている。チャンスカードには、貯蓄の見直しや老後準備で銀行から200ポンドを受け取る内容や、「HELLO LIBIDO」のマスへ進む内容がある。このボードはChannel 4の番組「Games Night」の出発点になり、司会者やゲストが自身の体験を語り合う。OMD UKがChannel 4との提携を運営し、テレビ、ストリーミング、YouTube、SNSで展開した。Landorと作った情報サイト「Talk menopause with Aviva」も用意された。",
+    "evaluationImpact": "誰もが知るゲームの型を借りることで、重くなりがちな更年期の話題を、遊びながら話せるものに変えた点が評価できる。キャリアの停滞や資金不安といった、保険会社として扱える領域にも結びついている。一方、受賞や成果数値は公式ソースで確認できておらず、インパクトは現時点では未確認である。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Theme/Health",
+      "Theme/Entertainment"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "is-this-still-available-casey-roarty-2026",
+    "title": "Is This Still Available?（Casey Roarty）",
+    "summary": "Facebook Marketplaceの出品写真の偶然の構図を切り取り、手描きの加筆で作品に読み替える",
+    "client": "Casey Roarty",
+    "agency": "",
+    "categories": [
+      "カルチャーインサイト",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.creativeboom.com/work/casey-roarty-digs-through-facebook-marketplace-listings-and-transforms-his-findings-into-art/",
+    "thumbnail": "/thumbnails/is-this-still-available-casey-roarty-2026.jpg",
+    "videoId": "",
+    "overview": "グラフィックデザイナーのCasey Roartyによる個人プロジェクト。Facebook Marketplaceの出品写真から、不自然な切り取り、強いフラッシュ、圧縮ノイズなどで偶然美しくなった画像を探し、細部を切り出して単純化し、鉛筆やパステルの手描きの跡を加えて作品として再構成する。故障した65インチTV、ブリオの木製列車、金縁の鏡、等身大のマリリン・モンロー像などが題材になっている。",
+    "background": "Roartyは音楽分野でバンドのアートワークを手がけ、Warner Musicで働いたのち独立したフリーランスのデザイナー。引っ越し後にMarketplaceを見続けるうち、実用目的で撮られた写真に奇妙で意図せず美しいものが多いことに気づいた。完成度の高い画像が簡単に生成できる時代に、物語や制作過程の方が重要になるという考えが動機だと本人は語っている。",
+    "execution": "リスティングの3〜4枚目の写真に強い画像があることが多いといい、そこから珍しいディテールを切り取り、画像を単純化して、鉛筆やパステルなど手仕事のマークを加える。最終形を決めずに始めた点も特徴。お気に入りは、画像の角を切り取ると2体の武道用ダミーがキスしているように見える作品。制作者は個人で、クライアントや制作会社の情報は確認できなかった。",
+    "evaluationImpact": "掲載はCreative Boom（2026年10月20日付）。受賞や展示の記載は確認できなかった。評価点は、誰も作品として撮っていない日常の中古品写真という無償の素材から、奇妙で具体的で人間味のある像を掘り起こす視点にある。AI生成の洗練された画像と対比して手触りと物語を前面に出す姿勢で、既存画像を読み替えるリサーチ型の制作手法として他の仕事にも転用しやすい。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/SNS",
+      "Theme/Art"
+    ],
+    "gateCriterion": "D",
+    "sourceId": "creativeboom",
+    "gateTier": "accept",
+    "discoveryLens": 4
+  },
+  {
+    "id": "pubscription-heineken-amazon-fire-tv-2026",
+    "title": "Pubscription（Heineken × Amazon Fire TV）",
+    "summary": "ストリーミングのジャンル選択UIをパブ選びに転用し、毎週1枚の無料バウチャーで外出を促すHeinekenの英国限定サービス",
+    "client": "Heineken",
+    "agency": "LePub / The Romans / Brand Innovation Lab (Amazon Ads)",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "メディア発明"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/heineken-pubscription-amazon-streaming-20261023",
+    "thumbnail": "/thumbnails/pubscription-heineken-amazon-fire-tv-2026.jpg",
+    "videoId": "",
+    "overview": "HeinekenがAmazon Adsのクリエイティブ部門Brand Innovation Labと組み、Fire TV上で無料提供する英国限定のパブ探しサービス。映画や番組を選ぶ感覚で、夜の気分(ジャンル)ごとにパブを選べる。会員には4週間ごとに4枚、週1枚までHeinekenまたはHeineken 0.0と交換できるバウチャーが付く。",
+    "background": "ソファで配信を眺める時間が外出の競合になっているという状況に対し、Heinekenは英国でAmazonとの協業を進めてきた。配信サービスの『選ぶ体験』をそのまま使い、テレビの前から人をパブへ連れ出す逆転の発想を取った。現在は英国でのテスト展開で、対象は18歳以上の英国居住者。",
+    "execution": "年齢確認つきの無料アプリ『Pubscription』をFire TV上に用意し、パブをスポーツパブや落ち着いた地元の店など雰囲気別のジャンルに分けて表示する。友人を招待して集まることもでき、バウチャーはスマートフォンに表示して店で提示する。利用はイングランドの参加パブに限られ、2027年1月6日まで、または1万5000枚の利用までの期間限定。制作はLePubで、The Romansが支援した。",
+    "evaluationImpact": "配信UIという誰もが慣れた操作様式を、リアルな店選びに読み替えた点が一文で伝わる企画。画面の中の習慣を来店行動へ戻す設計で、小売・飲食の送客手法として他業種にも転用しやすい。一方で、公式な受賞や成果の数値は今回の調査では確認できなかった。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/App",
+      "Theme/Food",
+      "Theme/Retail"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "dictionary-of-the-illegible-2026",
+    "title": "Dictionary of the Illegible",
+    "summary": "メタルのロゴや暗号的な文字など「読めない文字」を約10年かけて集め、アルファベット順の辞典に編み直した書籍",
+    "client": "Source Type（Laurenz Brunner）",
+    "agency": "Source Type",
+    "categories": [
+      "カルチャーインサイト",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.itsnicethat.com/features/sourcetype-laurenz-brunner-dictionary-of-the-illegible-graphic-design-publication-spotlight-191026",
+    "thumbnail": "/thumbnails/dictionary-of-the-illegible-2026.jpg",
+    "videoId": "",
+    "overview": "スイス出身のデザイナー、Laurenz Brunnerが立ち上げたタイポグラフィ研究プラットフォームSource Typeから2026年に出版された書籍。メタルバンドのロゴ、スイカの絵文字、コミックの記号的な罵倒語、オンライン検閲を逃れる暗号的な表現などを収録する。16世紀の版画からFamily Guyのスクリーンキャプチャまで、時代や文化をまたいだ例を扱う。販売店の情報では480ページのハードカバー。",
+    "background": "Brunnerはスイスで育ち、グリッドや秩序ある「読みやすい」体系に囲まれてきたが、その堅さに物足りなさを感じ、粗削りな文字やメタルのロゴ、落書きに惹かれたという。2016年にロサンゼルスのArtCenterで研究の初期段階を展示し、その後リサーチ・編集・デザインにさらに約10年を費やした。Brunnerは2022年にSource Typeを立ち上げている。",
+    "execution": "章立てを時系列やテーマ別にすると硬直的すぎるとして退け、アルファベット順という既存の秩序を採用した。これにより、共通点の少ない事例同士が予想外に並置され、非線形な関連が生まれる。読みにくさを「欠陥」ではなく独自の伝達手段として扱い、辞典という形式で体系化している。",
+    "evaluationImpact": "「読みやすさをコミュニケーションと取り違えてはいけない」(David Carsonの言葉の引用)という視点を、辞典という形で示した点が核。読めなくても意味は伝わる文字表現を、版画からポップカルチャーまで同じ土俵で並べて編集した。収録数は販売店により250超とも400超ともされ、確認できていない。受賞は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Dictionary of the Illegible(書籍販売ページ)",
+        "description": "Laurenz Brunner編、Source Type刊の480ページのハードカバー。",
+        "url": "https://www.harvard.com/book/9798986918716"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/Art"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "itsnicethat",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "to-be-formed-lance-oppenheim-2026",
+    "title": "To Be Formed（Lance Oppenheim 制作会社）ブランド",
+    "summary": "結末を決めない映画づくりに合わせ、主ワードマークと約20種の差し替え可能な副ワードマークを持つ、固定されないブランド。",
+    "client": "To Be Formed",
+    "agency": "Day Job",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.itsnicethat.com/articles/tbf-day-job-graphic-design-project-211026",
+    "thumbnail": "/thumbnails/to-be-formed-lance-oppenheim-2026.jpg",
+    "videoId": "",
+    "overview": "映像作家Lance Oppenheim氏が共同設立した制作会社To Be Formedのブランドを、ロサンゼルスのデザインスタジオDay Jobが手がけた。主ワードマークが1つあり、それとは別に約20種の副ワードマークを用意して、自由に入れ替えて使える。主ロゴは副ワードマーク全体を混ぜ合わせたものとして位置づけられている。It's Nice That(2026年10月21日)が紹介した。",
+    "background": "To Be Formedは、Oppenheim氏の『Primetime』『You Can See Everything』やPhoebe Bridgersの「Lost Boys」MVで知られる映像作家が共同設立した制作会社。社名はもともと作品の仮タイトルで、のちに映画づくりを象徴する名前として正式に採用された。フィクションとノンフィクションの間にある作風が、ブランドの出発点になっている。",
+    "execution": "Day Jobの共同創設者Rion Harmon氏によれば、古い書籍カバーや2000年代初頭のDVDメニューなどの書体・デザイン参照を調べ、太い書体と細いカリグラフィー風の書体をx-heightを変えて組み合わせた。主ワードマークは同スタジオのデザイナーOrysia Zabeida氏が制作。副ワードマークには企業メディア文化のパロディも含まれる。サイトのナビゲーションには各作品の「思い出の品」が使われ、約20年前のウェブサイトのような雰囲気になっている。",
+    "evaluationImpact": "ロゴを1つの固定形にせず、複数のワードマークを入れ替えて使うことで、結末を決めない制作姿勢をブランドの見た目に反映している。「混沌」をブランドに組み込むという方針が、社名の「To Be Formed(これから形になる)」と合っている。一方、記事は単独の媒体報道で、受賞や成果指標の記載はなく、評価は手法の面白さに限られる。なお、メモにある「手作業での制作」は記事では確認できなかった。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Website",
+      "Theme/Entertainment"
+    ],
+    "gateCriterion": "B",
+    "sourceId": "itsnicethat",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "pan-ptico-spy-plaza-de-cibeles-madrid-2026",
+    "title": "Panóptico（SpY, Plaza de Cibeles, Madrid）",
+    "summary": "高さ20mの黒い三角形に覗き穴を開け、立つ位置で街の見え方が変わることを体験させる仮設インスタレーション。",
+    "client": "Madrid es Paisaje（マドリード市）/ SpY",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/panoptico-spy-madrid-triangle-20261023",
+    "thumbnail": "/thumbnails/pan-ptico-spy-plaza-de-cibeles-madrid-2026.jpg",
+    "videoId": "",
+    "overview": "マドリードのシベレス広場、CentroCentro正面に設置された高さ20mの黒い三角形の仮設構造物。さまざまな高さに小さな覗き穴が開いており、来場者は穴から周囲の建築や都市景観を部分的に切り取って眺める。2026年10月24日までの毎日10時〜20時、無料・予約不要で公開された。",
+    "background": "マドリード市が進める、芸術・文化遺産・都市景観をテーマにしたプログラム「Madrid es Paisaje」の新しい回の一環として制作された。作者のSpYはマドリードを拠点とする匿名の都市アーティストである。",
+    "execution": "黒い三角形の壁面に高さの異なる覗き穴を設け、見える範囲をあえて限定した。来場者は穴を選び、位置を変えて視点を比べることで、同じ場所でも立つ位置によって見え方が変わることを体験する。広場の建築を恒久的に変えない仮設の設置である。",
+    "evaluationImpact": "見えるものを隠し、穴越しに見せることで、普段は見過ごす都市の細部に注意を向けさせる点が特徴。ただし記事からは使用素材や穴の数などの制作面の詳細、受賞、反響は確認できず、手法の新規性までは判断できない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Theme/Art"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "borderline",
+    "discoveryLens": 1
+  },
+  {
     "id": "a-book-for-making-books-2026",
     "title": "A Book for Making Books",
     "summary": "ページを破り切り折って8種のZINE・製本テンプレートに変える、動画チュートリアルを紙に翻訳した自己出版ガイド本",
