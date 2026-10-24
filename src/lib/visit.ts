@@ -321,26 +321,31 @@ export function weekSegments(
   const weeks: WeekSegment[][] = [];
   for (let w = 0; w * 7 < days.length; w++) {
     const row = days.slice(w * 7, w * 7 + 7);
-    const segs: WeekSegment[] = [];
     const laneEnds: number[] = []; // 各段の使用済み最終列
-    for (const e of items) {
-      const cols = row.map((d, i) => (d.ids.includes(e.id) ? i : -1)).filter((i) => i >= 0);
-      if (cols.length === 0) continue;
+    // 週内で開始列の昇順に詰める（段数が最小になる）。返り値は items の順に戻す
+    const found = items
+      .map((e, order) => {
+        const cols = row.map((d, i) => (d.ids.includes(e.id) ? i : -1)).filter((i) => i >= 0);
+        return { e, order, cols };
+      })
+      .filter((x) => x.cols.length > 0);
+    const byOrder: WeekSegment[] = [];
+    for (const { e, order, cols } of [...found].sort((p, q) => p.cols[0] - q.cols[0] || p.order - q.order)) {
       const col = cols[0];
       const last = cols[cols.length - 1];
       let lane = laneEnds.findIndex((end) => end < col);
       if (lane < 0) lane = laneEnds.length;
       laneEnds[lane] = last;
-      segs.push({
+      byOrder[order] = {
         id: e.id,
         col,
         span: last - col + 1,
         lane,
         capLeft: row[col].date === e.startDate,
         capRight: row[last].date === e.endDate,
-      });
+      };
     }
-    weeks.push(segs);
+    weeks.push(byOrder.filter(Boolean));
   }
   return weeks;
 }

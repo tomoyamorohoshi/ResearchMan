@@ -422,3 +422,15 @@ test("weekSegments: 重なる帯は別レーン", () => {
   assert.notEqual(lane("a"), lane("b"));
   assert.equal(lane("c"), lane("a")); // a が終わったあとは詰める
 });
+
+test("weekSegments: 開始列昇順で詰めるので X(列4-6) Y(列0-2) の入力順でも1段", () => {
+  // 2026-10-11(日)〜10-17(土) の週
+  const items = [
+    { id: "x", startDate: "2026-10-15", endDate: "2026-10-17" },
+    { id: "y", startDate: "2026-10-11", endDate: "2026-10-13" },
+  ];
+  const weeks = weekSegments(monthCalendar(2026, 10, items), items);
+  const w = weeks[2];
+  assert.equal(w.length, 2);
+  assert.equal(Math.max(...w.map((s) => s.lane)), 0);
+});

@@ -156,7 +156,7 @@ export default function VisitCalendar({ active, today, dateFilter, onDateFilter,
                   aria-label={dayLabel(c)}
                   onClick={() => onDateFilter(selected ? null : c.date)}
                   className={`${cellClass(c)} ${calStyle === "count" ? "min-h-[56px]" : ""} pt-0.5 pb-1`}
-                  style={calStyle === "lines" ? { minHeight: 28 + lanes.length * 11 } : undefined}
+                  style={calStyle === "lines" ? { minHeight: Math.max(40, 28 + lanes.length * 11) } : undefined}
                 >
                   <span className="block px-0.5">{dayNum(c)}</span>
                   {calStyle === "count" ? (
@@ -217,12 +217,14 @@ export default function VisitCalendar({ active, today, dateFilter, onDateFilter,
                 return (
                   <ul className="grid gap-1 min-w-0">
                     {open.map((e) => (
-                      <li key={e.id} className="flex min-w-0 items-center gap-2 text-[12px]">
-                        <span className="text-[10px] font-black tabular-nums text-gray-400">{numberOf.get(e.id)}</span>
-                        <span className="font-black text-gray-900 truncate">{e.title}</span>
-                        {e.endDate === dateFilter && (
-                          <span className="shrink-0 text-[9px] px-1.5 py-1 font-black leading-none bg-red-600 text-white">本日まで</span>
-                        )}
+                      <li key={e.id} className="min-w-0">
+                        <button type="button" onClick={() => onSelect(e)} className="flex w-full min-w-0 items-center gap-2 min-h-[40px] text-left text-[12px] hover:bg-gray-50">
+                          <span className="shrink-0 text-[10px] font-black tabular-nums text-gray-400">{numberOf.get(e.id)}</span>
+                          <span className="font-black text-gray-900 truncate">{e.title}</span>
+                          {e.endDate === dateFilter && (
+                            <span className="shrink-0 text-[9px] px-1.5 py-1 font-black leading-none bg-red-600 text-white">本日まで</span>
+                          )}
+                        </button>
                       </li>
                     ))}
                   </ul>

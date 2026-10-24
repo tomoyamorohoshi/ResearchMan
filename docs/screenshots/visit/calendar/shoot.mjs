@@ -32,6 +32,8 @@ async function shot(name, url, { mobile = true, seed = true, tap = null } = {}) 
   }
   await page.waitForTimeout(800);
   const w = await page.evaluate(() => [document.documentElement.scrollWidth, document.documentElement.clientWidth]);
+  const hs = await page.evaluate(() => [...document.querySelectorAll("#visit-cal-h ~ div button[aria-pressed], section[aria-labelledby=visit-cal-h] button[aria-pressed]")].map((b) => b.getBoundingClientRect().height));
+  console.log(name, "cell min height", Math.min(...hs));
   await page.screenshot({ path: path.join(out, name), fullPage: true });
   console.log(name, "scrollWidth", w[0], "clientWidth", w[1], w[0] === w[1] ? "OK" : "OVERFLOW");
   await ctx.close();
