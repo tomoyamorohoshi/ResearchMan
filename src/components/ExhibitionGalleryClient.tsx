@@ -139,7 +139,7 @@ export default function ExhibitionGalleryClient({ items, initialToday, tagVocabu
                 setTag("");
                 setStatus("");
               }}
-              className="self-start min-h-10 sm:min-h-0 text-[10px] tracking-widest uppercase text-gray-400 hover:text-gray-900"
+              className="self-start sm:self-auto min-h-10 sm:min-h-0 text-[10px] tracking-widest uppercase text-gray-400 hover:text-gray-900"
             >
               Clear all
             </button>

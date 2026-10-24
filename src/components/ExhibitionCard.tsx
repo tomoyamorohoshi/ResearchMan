@@ -60,7 +60,7 @@ export default function ExhibitionCard({
         href={`/exhibition/${e.slug}`}
         className={`block flex-1 min-w-0 ${row ? "p-3 pb-1" : compact ? "p-2.5 pb-1.5" : "p-4 pb-3"} sm:p-4 sm:pb-3`}
       >
-        <div className={`flex items-start justify-between mb-3 gap-2 ${row ? "mb-1.5" : compact ? "mb-2" : ""} sm:mb-3`}>
+        <div className={`flex items-start justify-between gap-2 sm:mb-3 ${row ? "mb-1.5" : compact ? "mb-2" : "mb-3"}`}>
           <span className={`items-center gap-1.5 ${row || compact ? "hidden sm:flex" : "flex"}`}>
             <span
               className="text-[11px] font-black tracking-[0.2em] uppercase text-gray-900 leading-none"
@@ -76,8 +76,8 @@ export default function ExhibitionCard({
         </div>
 
         <h2
-          className={`font-black leading-tight text-gray-900 mb-2 tracking-tight sm:text-base sm:line-clamp-none ${
-            row ? "text-sm line-clamp-2 mb-1" : compact ? "text-[13px] line-clamp-3 mb-1" : "text-base"
+          className={`font-black leading-tight text-gray-900 tracking-tight sm:text-base sm:mb-2 sm:line-clamp-none ${
+            row ? "text-sm line-clamp-2 mb-1" : compact ? "text-[13px] line-clamp-3 mb-1" : "text-base mb-2"
           }`}
         >{e.title}</h2>
         {e.artists.length > 0 && (
@@ -86,7 +86,7 @@ export default function ExhibitionCard({
 
         <div className={`w-5 h-px bg-gray-900 mb-2 ${row ? "hidden sm:block" : compact ? "hidden sm:block" : ""}`} />
 
-        <p className={`text-[10px] text-gray-500 leading-snug line-clamp-2 ${compact ? "text-[9px] sm:text-[10px]" : ""}`}>
+        <p className={`text-gray-500 leading-snug line-clamp-2 sm:text-[10px] ${compact ? "text-[9px]" : "text-[10px]"}`}>
           <span className="font-bold text-gray-700">{e.venue}</span>
           <span className="text-gray-400">
             {" "}
@@ -107,12 +107,12 @@ export default function ExhibitionCard({
       </Link>
 
       <div
-        className={`flex justify-between gap-2 sm:px-4 sm:pb-3 sm:flex-row sm:items-center ${
+        className={`flex justify-between sm:gap-2 sm:px-4 sm:pb-3 sm:flex-row sm:items-center ${
           row
-            ? "px-3 pb-2 flex-col items-start gap-0.5 pr-[7.5rem]"
+            ? "px-3 pb-2 flex-col items-start gap-0.5 pr-36"
             : compact
               ? "px-2.5 pb-2 flex-col items-start gap-0.5"
-              : "px-4 pb-3 items-center"
+              : "px-4 pb-3 items-center gap-2"
         }`}
       >
         <span className="text-[10px] font-bold text-gray-700 min-w-0 line-clamp-2 sm:line-clamp-none">{e.admission === "UNKNOWN" ? "入場料不明" : e.admission}</span>
