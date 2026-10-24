@@ -10,10 +10,11 @@ import {
   isUpcoming,
   badgeFor,
   deriveVisit,
-  monthGrid,
-  shiftMonth,
+  weekStart,
+  rangeGrid,
+  rangeLabel,
   exhibitionsOpenOn,
-  monthCalendar,
+  rangeCalendar,
   lookupVenueGeo,
   buildPins,
   clusterPins,
@@ -152,36 +153,47 @@ test("deriveVisit: 空入力", () => {
   assert.deepEqual(deriveVisit([], new Set(), new Set(), T), { active: [], ended: [] });
 });
 
-test("monthGrid: 2026-10 は 6週42マス、日曜始まり、前後埋め草", () => {
-  const g = monthGrid(2026, 10);
+const TODAY = "2026-10-28"; // 水曜。その週の日曜は 10-25
+
+test("weekStart: 日曜はそのまま、他の曜日は直前の日曜、年跨ぎ", () => {
+  assert.equal(weekStart("2026-10-25"), "2026-10-25");
+  assert.equal(weekStart("2026-10-28"), "2026-10-25");
+  assert.equal(weekStart("2026-10-31"), "2026-10-25");
+  assert.equal(weekStart("2027-01-01"), "2026-12-27");
+});
+
+test("rangeGrid: 今日の週の日曜から6週42マス、今日より前は past", () => {
+  const g = rangeGrid(TODAY, 0);
   assert.equal(g.length, 42);
-  // 2026-10-01 は木曜 → 日曜始まりなので 9/27 から
-  assert.equal(g[0].date, "2026-09-27");
-  assert.equal(g[0].inMonth, false);
-  assert.equal(g[4].date, "2026-10-01");
-  assert.equal(g[4].inMonth, true);
-  assert.equal(g[34].date, "2026-10-31");
-  assert.equal(g[34].inMonth, true);
-  assert.equal(g[35].inMonth, false);
-  assert.equal(g[41].date, "2026-11-07");
-  assert.equal(g.filter((c) => c.inMonth).length, 31);
+  assert.equal(g[0].date, "2026-10-25");
+  assert.equal(g[41].date, "2026-12-05");
+  assert.deepEqual(g.slice(0, 4).map((c) => c.past), [true, true, true, false]);
+  assert.equal(g.filter((c) => c.past).length, 3);
+  assert.equal(g[3].date, TODAY);
 });
 
-test("monthGrid: 年跨ぎ（2027-01 は 12/27 始まり）と日曜1日の月", () => {
-  const g = monthGrid(2027, 1);
-  assert.equal(g[0].date, "2026-12-27");
-  assert.equal(g[0].inMonth, false);
-  assert.equal(g[5].date, "2027-01-01");
-  // 2026-02-01 は日曜
-  const f = monthGrid(2026, 2);
-  assert.equal(f[0].date, "2026-02-01");
-  assert.equal(f[0].inMonth, true);
+test("rangeGrid: 月付き表示は各月1日と範囲の最初の非過去マス（今日）", () => {
+  const g = rangeGrid(TODAY, 0);
+  const marked = g.filter((c) => c.showMonth).map((c) => c.date);
+  assert.deepEqual(marked, ["2026-10-28", "2026-11-01", "2026-12-01"]);
+  // page 1 は先頭マス（日曜）に月付き
+  const g1 = rangeGrid(TODAY, 1);
+  assert.equal(g1[0].date, "2026-12-06");
+  assert.equal(g1[0].showMonth, true);
+  assert.equal(g1.filter((c) => c.past).length, 0);
+  assert.deepEqual(g1.filter((c) => c.showMonth).map((c) => c.date), ["2026-12-06", "2027-01-01"]);
 });
 
-test("shiftMonth: 年跨ぎ", () => {
-  assert.deepEqual(shiftMonth(2026, 12, 1), { year: 2027, month: 1 });
-  assert.deepEqual(shiftMonth(2026, 1, -1), { year: 2025, month: 12 });
-  assert.deepEqual(shiftMonth(2026, 10, 14), { year: 2027, month: 12 });
+test("rangeGrid: 今日が日曜なら過去マスなし。page は負なら 0 扱い", () => {
+  const g = rangeGrid("2026-10-25", 0);
+  assert.equal(g[0].date, "2026-10-25");
+  assert.equal(g.filter((c) => c.past).length, 0);
+  assert.equal(rangeGrid("2026-10-25", -3)[0].date, "2026-10-25");
+});
+
+test("rangeLabel: 開始は今日（最初の範囲）、終わりは最後のマス", () => {
+  assert.equal(rangeLabel(rangeGrid(TODAY, 0)), "10.28 — 12.05");
+  assert.equal(rangeLabel(rangeGrid(TODAY, 1)), "12.06 — 01.16");
 });
 
 test("exhibitionsOpenOn: 境界を含む", () => {
@@ -196,16 +208,20 @@ test("exhibitionsOpenOn: 境界を含む", () => {
   assert.deepEqual(exhibitionsOpenOn(items, "2026-10-26").map((e) => e.id), []);
 });
 
-test("monthCalendar: 各マスに開いている展覧会 ID", () => {
-  const items = [ex({ id: "a", startDate: "2026-09-29", endDate: "2026-10-02" })];
-  const cells = monthCalendar(2026, 10, items);
+test("rangeCalendar: 各マスに開いている展覧会 ID。今日より前のマスは空（帯を切り詰める）", () => {
+  const items = [
+    ex({ id: "a", startDate: "2026-10-20", endDate: "2026-10-30" }), // 開始が過去
+    ex({ id: "p", startDate: "2026-10-01", endDate: "2026-10-27" }), // 全部過去
+  ];
+  const cells = rangeCalendar(TODAY, 0, items);
   assert.equal(cells.length, 42);
   const byDate = new Map(cells.map((c) => [c.date, c]));
-  assert.deepEqual(byDate.get("2026-09-28")!.ids, []);
-  assert.deepEqual(byDate.get("2026-09-29")!.ids, ["a"]); // 前月の埋め草マスにも出る
-  assert.equal(byDate.get("2026-09-29")!.inMonth, false);
-  assert.deepEqual(byDate.get("2026-10-02")!.ids, ["a"]);
-  assert.deepEqual(byDate.get("2026-10-03")!.ids, []);
+  assert.deepEqual(byDate.get("2026-10-25")!.ids, []);
+  assert.deepEqual(byDate.get("2026-10-27")!.ids, []);
+  assert.deepEqual(byDate.get("2026-10-28")!.ids, ["a"]);
+  assert.deepEqual(byDate.get("2026-10-30")!.ids, ["a"]);
+  assert.deepEqual(byDate.get("2026-10-31")!.ids, []);
+  assert.ok(cells.every((c) => !c.ids.includes("p")));
 });
 
 const geo: VenueGeo = {
@@ -322,7 +338,7 @@ test("weekSegments: 週をまたぐ帯を週ごとに分割し、端の連続を
     { id: "a", startDate: "2026-10-02", endDate: "2026-10-06" }, // 金〜火（週1→週2）
     { id: "b", startDate: "2026-10-03", endDate: "2026-10-03" },
   ];
-  const days = monthCalendar(2026, 10, items);
+  const days = rangeCalendar("2026-09-27", 0, items);
   const weeks = weekSegments(days, items);
   assert.equal(weeks.length, 6);
   const a1 = weeks[0].find((s) => s.id === "a")!;
@@ -340,7 +356,7 @@ test("weekSegments: 重なる帯は別レーン", () => {
     { id: "b", startDate: "2026-10-06", endDate: "2026-10-07" },
     { id: "c", startDate: "2026-10-09", endDate: "2026-10-09" },
   ];
-  const weeks = weekSegments(monthCalendar(2026, 10, items), items);
+  const weeks = weekSegments(rangeCalendar("2026-09-27", 0, items), items);
   const w = weeks[1];
   const lane = (id: string) => w.find((s) => s.id === id)!.lane;
   assert.notEqual(lane("a"), lane("b"));
@@ -353,8 +369,23 @@ test("weekSegments: 開始列昇順で詰めるので X(列4-6) Y(列0-2) の入
     { id: "x", startDate: "2026-10-15", endDate: "2026-10-17" },
     { id: "y", startDate: "2026-10-11", endDate: "2026-10-13" },
   ];
-  const weeks = weekSegments(monthCalendar(2026, 10, items), items);
+  const weeks = weekSegments(rangeCalendar("2026-09-27", 0, items), items);
   const w = weeks[2];
   assert.equal(w.length, 2);
   assert.equal(Math.max(...w.map((s) => s.lane)), 0);
+});
+
+test("weekSegments: 開始が過去の帯は今日のマスから始まり、左端は切れている(capLeft=false)", () => {
+  const items = [ex({ id: "a", startDate: "2026-10-20", endDate: "2026-10-30" })];
+  const weeks = weekSegments(rangeCalendar(TODAY, 0, items), items);
+  const a = weeks[0].find((s) => s.id === "a")!;
+  assert.deepEqual([a.col, a.span, a.capLeft, a.capRight], [3, 3, false, true]);
+  assert.equal(weeks[1].length, 0);
+  // 週をまたぐ場合も、今日で切れた左端は capLeft=false
+  const long = [ex({ id: "b", startDate: "2026-10-20", endDate: "2026-11-04" })];
+  const w2 = weekSegments(rangeCalendar(TODAY, 0, long), long);
+  const b1 = w2[0].find((s) => s.id === "b")!;
+  assert.deepEqual([b1.col, b1.span, b1.capLeft, b1.capRight], [3, 4, false, false]);
+  const b2 = w2[1].find((s) => s.id === "b")!;
+  assert.deepEqual([b2.col, b2.span, b2.capLeft, b2.capRight], [0, 4, false, true]);
 });

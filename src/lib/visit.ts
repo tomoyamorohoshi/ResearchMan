@@ -76,27 +76,46 @@ export function deriveVisit(
   return { active, ended };
 }
 
-// ---- 月カレンダー ----
+// ---- カレンダー（今日を含む週から6週） ----
 
-export type CalendarCell = { date: string; day: number; inMonth: boolean };
+export type CalendarCell = {
+  date: string;
+  day: number;
+  past: boolean; // 今日より前（帯なし・押せない）
+  showMonth: boolean; // 「11/1」のように月付きで出す（各月1日と範囲の最初のマス）
+};
 
-// 月表示のマス目。週の始まりは日曜、6週(42マス)固定。month は 1〜12。
-export function monthGrid(year: number, month: number): CalendarCell[] {
-  const first = new Date(Date.UTC(year, month - 1, 1));
-  const firstYmd = first.toISOString().slice(0, 10);
-  const offset = first.getUTCDay(); // 日曜=0
+// 日曜始まりで、ymd を含む週の日曜
+export function weekStart(ymd: string): string {
+  const [y, m, d] = ymd.split("-").map(Number);
+  return addDays(ymd, -new Date(Date.UTC(y, m - 1, d)).getUTCDay());
+}
+
+export const CALENDAR_CELLS = 42;
+
+// 今日を含む週の日曜から 6週(42マス) を1ページとし、page ページ目（0 始まり）のマス目。
+// 今日より前のマスは past。月付きは各月1日と「範囲の最初の過去でないマス」。
+export function rangeGrid(today: string, page: number): CalendarCell[] {
+  const start = addDays(weekStart(today), CALENDAR_CELLS * Math.max(0, Math.floor(page)));
   const cells: CalendarCell[] = [];
-  for (let i = 0; i < 42; i++) {
-    const date = addDays(firstYmd, i - offset);
-    const [y, m, d] = date.split("-").map(Number);
-    cells.push({ date, day: d, inMonth: y === year && m === month });
+  let firstShown = false;
+  for (let i = 0; i < CALENDAR_CELLS; i++) {
+    const date = addDays(start, i);
+    const past = date < today;
+    const day = Number(date.slice(8, 10));
+    const showMonth = !past && (!firstShown || day === 1);
+    if (!past) firstShown = true;
+    cells.push({ date, day, past, showMonth });
   }
   return cells;
 }
 
-export function shiftMonth(year: number, month: number, delta: number): { year: number; month: number } {
-  const idx = year * 12 + (month - 1) + delta;
-  return { year: Math.floor(idx / 12), month: (idx % 12) + 1 };
+// 見出し「10.25 — 12.05」。開始は最初の過去でないマス（最初のページでは今日）。
+export function rangeLabel(cells: readonly CalendarCell[]): string {
+  const first = cells.find((c) => !c.past) ?? cells[0];
+  const last = cells[cells.length - 1];
+  const md = (ymd: string) => `${ymd.slice(5, 7)}.${ymd.slice(8, 10)}`;
+  return `${md(first.date)} — ${md(last.date)}`;
 }
 
 // その日（date）に開いている展覧会（startDate <= date <= endDate）。入力順を保つ。
@@ -109,14 +128,15 @@ export function exhibitionsOpenOn<T extends Pick<Exhibition, "startDate" | "endD
 
 export type CalendarDay = CalendarCell & { ids: string[] };
 
-export function monthCalendar(
-  year: number,
-  month: number,
+// 各マスに開いている展覧会 ID。今日より前のマスは空（帯は今日から始まる）。
+export function rangeCalendar(
+  today: string,
+  page: number,
   items: readonly Pick<Exhibition, "id" | "startDate" | "endDate">[],
 ): CalendarDay[] {
-  return monthGrid(year, month).map((c) => ({
+  return rangeGrid(today, page).map((c) => ({
     ...c,
-    ids: exhibitionsOpenOn(items, c.date).map((e) => e.id),
+    ids: c.past ? [] : exhibitionsOpenOn(items, c.date).map((e) => e.id),
   }));
 }
 
