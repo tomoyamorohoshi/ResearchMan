@@ -2,7 +2,8 @@
 
 import { useEffect, useMemo, useState } from "react";
 import type { Exhibition } from "@/lib/exhibition";
-import { sortExhibitions, visibleExhibitions } from "@/lib/exhibition";
+import { parseExhibitionLayout, sortExhibitions, visibleExhibitions } from "@/lib/exhibition";
+import type { ExhibitionLayout } from "@/lib/exhibition";
 import { todayJst } from "../../scripts/lib/exhibition-status.mjs";
 import ExhibitionCard from "./ExhibitionCard";
 import { useFavorites } from "@/hooks/useFavorites";
@@ -35,6 +36,9 @@ export default function ExhibitionGalleryClient({ items, initialToday, tagVocabu
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
   const [showTrashOnly, setShowTrashOnly] = useState(false);
   const [urlReady, setUrlReady] = useState(false);
+  // スマホ幅(sm未満)の並べ方（?layout=compact|row。比較用）と、絞り込みパネルの開閉
+  const [layout, setLayout] = useState<ExhibitionLayout>("stack");
+  const [filterOpen, setFilterOpen] = useState(false);
   const { favorites, toggle, mounted } = useFavorites();
   const { trashed, toggle: toggleTrash, mounted: trashMounted } = useTrash();
   const { wantToGo, toggle: toggleWantToGo, mounted: wantMounted } = useWantToGo();
@@ -49,6 +53,7 @@ export default function ExhibitionGalleryClient({ items, initialToday, tagVocabu
     setTag(q.get("tag") ?? "");
     const s = q.get("status");
     setStatus(s === "ongoing" || s === "upcoming" ? s : "");
+    setLayout(parseExhibitionLayout(q.get("layout")));
     setUrlReady(true);
     /* eslint-enable react-hooks/set-state-in-effect */
   }, []);
@@ -95,11 +100,25 @@ export default function ExhibitionGalleryClient({ items, initialToday, tagVocabu
   const favoriteCount = mounted ? [...favorites].filter((id) => !trashed.has(id)).length : 0;
   const trashCount = trashMounted ? trashed.size : 0;
   const hasFilter = Boolean(pref || tag || status);
+  const filterCount = [pref, tag, status].filter(Boolean).length;
 
   return (
     <>
       <div className="border-b border-gray-300 bg-[#eeece7] sticky top-0 z-10">
-        <div className="max-w-[1600px] mx-auto px-4 py-3 flex items-center gap-x-6 gap-y-2 flex-wrap">
+        <div className="max-w-[1600px] mx-auto px-4 py-2 sm:py-3 flex items-center gap-x-4 sm:gap-x-6 gap-y-2 flex-wrap">
+          <button
+            type="button"
+            onClick={() => setFilterOpen((v) => !v)}
+            aria-expanded={filterOpen}
+            aria-controls="exhibition-filter-panel"
+            className="sm:hidden min-h-10 px-3 border border-gray-400 text-[11px] tracking-wider font-bold text-gray-700 whitespace-nowrap"
+          >
+            絞り込み{filterCount > 0 ? ` (${filterCount})` : ""} {filterOpen ? "▲" : "▼"}
+          </button>
+          <div
+            id="exhibition-filter-panel"
+            className={`${filterOpen ? "flex" : "hidden"} order-last basis-full flex-col gap-3 max-h-[60vh] overflow-y-auto py-1 sm:contents`}
+          >
           <FilterGroup
             label="状態"
             options={STATUS_OPTIONS.map((o) => o.value)}
@@ -120,13 +139,14 @@ export default function ExhibitionGalleryClient({ items, initialToday, tagVocabu
                 setTag("");
                 setStatus("");
               }}
-              className="text-[10px] tracking-widest uppercase text-gray-400 hover:text-gray-900"
+              className="self-start min-h-10 sm:min-h-0 text-[10px] tracking-widest uppercase text-gray-400 hover:text-gray-900"
             >
               Clear all
             </button>
           )}
+          </div>
 
-          <span className="text-gray-300">|</span>
+          <span className="text-gray-300 hidden sm:inline">|</span>
 
           <button
             onClick={() =>
@@ -137,7 +157,7 @@ export default function ExhibitionGalleryClient({ items, initialToday, tagVocabu
               })
             }
             aria-pressed={showFavoritesOnly}
-            className={`flex items-center gap-1 text-[10px] tracking-[0.2em] uppercase font-bold transition-colors ${
+            className={`flex items-center gap-1 min-h-10 sm:min-h-0 text-[10px] tracking-[0.2em] uppercase font-bold transition-colors ${
               showFavoritesOnly ? "text-yellow-500" : "text-gray-400 hover:text-gray-900"
             }`}
           >
@@ -156,7 +176,7 @@ export default function ExhibitionGalleryClient({ items, initialToday, tagVocabu
               })
             }
             aria-pressed={showTrashOnly}
-            className={`flex items-center gap-1 text-[10px] tracking-[0.2em] uppercase font-bold transition-colors ${
+            className={`flex items-center gap-1 min-h-10 sm:min-h-0 text-[10px] tracking-[0.2em] uppercase font-bold transition-colors ${
               showTrashOnly ? "text-red-500" : "text-gray-400 hover:text-gray-900"
             }`}
           >
@@ -173,7 +193,12 @@ export default function ExhibitionGalleryClient({ items, initialToday, tagVocabu
       </div>
 
       <div className="max-w-[1600px] mx-auto">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-px bg-gray-300">
+        <div
+          className={`grid ${
+            layout === "compact" ? "grid-cols-[repeat(2,minmax(0,1fr))]" : "grid-cols-[minmax(0,1fr)]"
+          } sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-px bg-gray-300`}
+          data-exhibition-layout={layout}
+        >
           {filtered.map((e) => (
             <ExhibitionCard
               key={e.id}
@@ -186,6 +211,7 @@ export default function ExhibitionGalleryClient({ items, initialToday, tagVocabu
               trashMode={showTrashOnly}
               isWantToGo={wantMounted && wantToGo.has(e.id)}
               onToggleWantToGo={toggleWantToGo}
+              layout={layout}
             />
           ))}
         </div>
@@ -220,7 +246,7 @@ function FilterGroup({
           key={opt || "all"}
           onClick={() => onSelect(opt)}
           aria-pressed={value === opt}
-          className={`text-[10px] tracking-wider px-2 py-0.5 border transition-colors ${
+          className={`text-[10px] tracking-wider px-2 py-1.5 sm:py-0.5 border transition-colors ${
             value === opt
               ? "border-gray-900 text-gray-900 font-bold"
               : "border-gray-300 text-gray-500 hover:border-gray-600 hover:text-gray-700"

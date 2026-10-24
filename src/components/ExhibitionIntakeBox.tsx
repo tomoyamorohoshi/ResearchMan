@@ -126,8 +126,8 @@ export default function ExhibitionIntakeBox() {
 
   return (
     <section aria-label="展覧会URLの投稿" className="border-b border-gray-300 bg-[#eeece7]">
-      <form onSubmit={onSubmit} className="max-w-[1600px] mx-auto px-4 py-3 flex flex-wrap items-end gap-x-4 gap-y-2" noValidate>
-        <div className="flex flex-col gap-1 flex-1 min-w-60 max-w-xl">
+      <form onSubmit={onSubmit} className="max-w-[1600px] mx-auto px-4 py-2 sm:py-3 flex flex-wrap items-end gap-x-3 sm:gap-x-4 gap-y-2" noValidate>
+        <div className="flex flex-col gap-1 flex-1 min-w-0 sm:min-w-60 max-w-xl">
           <label htmlFor="exhibition-intake-url" className="text-[9px] tracking-[0.2em] font-bold text-gray-500">
             気になる展示の投稿URL（X / Instagram）
           </label>
@@ -144,7 +144,7 @@ export default function ExhibitionIntakeBox() {
         </div>
 
         {needToken && (
-          <div className="flex flex-col gap-1 min-w-40">
+          <div className="flex flex-col gap-1 min-w-40 basis-full sm:basis-auto">
             <label htmlFor="exhibition-intake-token" className="text-[9px] tracking-[0.2em] font-bold text-gray-500">
               パスフレーズ
             </label>
@@ -176,12 +176,12 @@ export default function ExhibitionIntakeBox() {
         <button
           type="submit"
           disabled={busy}
-          className="text-[10px] tracking-[0.2em] uppercase font-black px-3 py-1.5 bg-gray-900 text-white disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-700 transition-colors"
+          className="text-[10px] tracking-[0.2em] uppercase font-black px-3 py-2.5 sm:py-1.5 whitespace-nowrap bg-gray-900 text-white disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-700 transition-colors"
         >
           {busy ? "送信中…" : "投稿する"}
         </button>
 
-        <p role="status" aria-live="polite" className={`basis-full text-[11px] min-h-4 ${tone}`} data-intake-message>
+        <p role="status" aria-live="polite" className={`basis-full text-[11px] sm:min-h-4 ${tone}`} data-intake-message>
           {message?.text ?? ""}
         </p>
       </form>

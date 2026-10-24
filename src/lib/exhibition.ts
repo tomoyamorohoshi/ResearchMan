@@ -111,3 +111,9 @@ export function sortExhibitions<T extends Exhibition>(items: T[], today: string)
 export function visibleExhibitions<T extends Exhibition>(items: T[], today: string): T[] {
   return items.map((e) => withStatus(e, today)).filter((e) => e.status !== "ended");
 }
+
+// スマホ幅（sm 未満）の一覧レイアウト。?layout= で切替（不正値は既定 stack）。3案比較用
+export type ExhibitionLayout = "stack" | "compact" | "row";
+export function parseExhibitionLayout(v: string | null | undefined): ExhibitionLayout {
+  return v === "compact" || v === "row" ? v : "stack";
+}
