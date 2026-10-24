@@ -7,7 +7,7 @@ import type { Exhibition } from "@/lib/exhibition";
 import { useWantToGo } from "@/hooks/useWantToGo";
 import { useTrash } from "@/hooks/useTrash";
 import { buildPins, clusterPins, deriveVisit, exhibitionsOpenOn, todayJst, type VenueGeo } from "@/lib/visit";
-import VisitCalendar from "./VisitCalendar";
+import VisitCalendar, { type TodayStyle } from "./VisitCalendar";
 import { VisitActiveList, VisitEndedList } from "./VisitList";
 
 const VisitMap = dynamic(() => import("./VisitMap"), {
@@ -23,9 +23,10 @@ type Props = {
   items: Exhibition[];
   geo: VenueGeo;
   initialToday: string;
+  todayStyle?: TodayStyle;
 };
 
-export default function VisitClient({ items, geo, initialToday }: Props) {
+export default function VisitClient({ items, geo, initialToday, todayStyle }: Props) {
   const [today, setToday] = useState(initialToday);
   const [dateFilter, setDateFilter] = useState<string | null>(null);
   const [highlightIds, setHighlightIds] = useState<string[]>([]);
@@ -190,6 +191,7 @@ export default function VisitClient({ items, geo, initialToday }: Props) {
             highlightIds={highlightSet}
             unlocatedIds={unlocatedIds}
             onSelect={selectItem}
+            todayStyle={todayStyle}
           />
         </div>
       </div>
