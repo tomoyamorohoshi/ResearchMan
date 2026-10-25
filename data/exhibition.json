@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "statusAsOf": "2026-10-24",
+  "statusAsOf": "2026-10-25",
   "items": [
     {
       "id": "2026-kk-line-roof-park-art-fes-2026",
@@ -54,7 +54,7 @@
       "city": "中央区",
       "startDate": "2026-10-24",
       "endDate": "2026-10-24",
-      "status": "ongoing",
+      "status": "ended",
       "admission": "UNKNOWN",
       "tags": [
         "generative",
