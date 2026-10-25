@@ -78,7 +78,7 @@ export default async function ExhibitionPage({ params }: { params: Promise<{ slu
             </span>
           </dd>
           <dt className="text-[10px] tracking-[0.2em] uppercase text-gray-400 font-bold pt-0.5">入場料</dt>
-          <dd>{e.admission === "UNKNOWN" ? "不明（公式サイトで確認）" : e.admission}</dd>
+          <dd>{e.admission === "UNKNOWN" ? (e.verifiedVia === "tokyoartbeat" ? "不明（Tokyo Art Beat のページで確認）" : "不明（公式サイトで確認）") : e.admission}</dd>
         </dl>
 
         <div className="flex flex-wrap items-center gap-3 mb-8">
@@ -88,7 +88,7 @@ export default async function ExhibitionPage({ params }: { params: Promise<{ slu
           rel="noopener noreferrer"
           className="inline-block text-[11px] tracking-[0.2em] uppercase font-black px-4 py-2 bg-gray-900 text-white hover:bg-gray-700 transition-colors"
         >
-          公式ページを開く ↗
+          {e.verifiedVia === "tokyoartbeat" ? "Tokyo Art Beat のページを開く ↗" : "公式ページを開く ↗"}
         </a>
         <WantToGoButton id={e.id} />
         </div>

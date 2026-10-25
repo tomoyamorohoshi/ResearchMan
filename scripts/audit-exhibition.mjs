@@ -22,6 +22,7 @@ import { computeStatus, todayJst, daysBetween, isValidYmd } from "./lib/exhibiti
 import { SLUG_PATTERN, slugify } from "./lib/exhibition-slug.mjs";
 import { normLink } from "./lib/norm-link.mjs";
 import { normTitle } from "./lib/norm-title.mjs";
+import { isTabEventUrl, VERIFIED_VIA_TAB } from "./lib/tab-url.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = process.env.EXHIBITION_AUDIT_ROOT || path.join(__dirname, "..");
@@ -219,7 +220,12 @@ for (const [idx, e] of items.entries()) {
     if (s && !SOURCE_KINDS.includes(s.kind)) ng(`INVALID SOURCE KIND: ${label} kind="${s.kind}"`);
   }
   const officials = sources.filter((s) => s?.kind === "official");
-  if (Array.isArray(e.sources) && e.sources.length > 0 && officials.length === 0) {
+  if (e.verifiedVia !== undefined && e.verifiedVia !== VERIFIED_VIA_TAB) ng(`INVALID VERIFIEDVIA: ${label} = ${JSON.stringify(e.verifiedVia)}（tokyoartbeat のみ）`);
+  // 例外: 投稿経由で TAB 展示ページを確認元にした展示（verifiedVia=tokyoartbeat）は、link が TAB 展示ページ URL かつ
+  // その listing source と一致するときだけ official 無しを許す（それ以外の検査は緩めない）
+  const tabVerified = e.verifiedVia === VERIFIED_VIA_TAB && isTabEventUrl(e.link) &&
+    sources.some((s) => s?.kind === "listing" && isTabEventUrl(s.url) && normLink(s.url) === nl);
+  if (Array.isArray(e.sources) && e.sources.length > 0 && officials.length === 0 && !tabVerified) {
     ng(`NO OFFICIAL SOURCE: ${label} に kind: official の source がありません（公式裏取りが必須）`);
   }
   if (typeof e.link === "string") {

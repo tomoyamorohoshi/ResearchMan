@@ -342,3 +342,41 @@ test("profile.likes.userPicks: 正常は PASS / 11件・必須欠落は FAIL", (
   assertFails(run({ profileExtra: { likes: { userPicks: Array.from({ length: 11 }, (_, i) => p(i)) } } }), /USERPICKS/);
   assertFails(run({ profileExtra: { likes: { userPicks: [{ title: "t", venue: "v", tags: [] }] } } }), /USERPICKS/);
 });
+
+// ── TAB 確認の展示（verifiedVia: tokyoartbeat）の NO OFFICIAL SOURCE / LINK NOT OFFICIAL 例外 ──
+const TAB_URL = "https://www.tokyoartbeat.com/events/-/Interlinked/F6117340/2026-09-18";
+const tabItem = (over = {}) => goodItem({
+  sources: [{ name: "Tokyo Art Beat", url: TAB_URL, kind: "listing" }],
+  link: TAB_URL,
+  verifiedVia: "tokyoartbeat",
+  origin: "intake",
+  intakeUrl: TAB_URL,
+  ...over,
+});
+
+test("TAB例外: verifiedVia=tokyoartbeat・link が TAB listing source と一致・TAB 展示ページ URL なら official 無しでも PASS", () => {
+  const r = run({ items: [tabItem()] });
+  assert.equal(r.code, 0, r.out);
+});
+
+test("TAB例外: verifiedVia が無ければ TAB listing だけの展示は従来どおり NO OFFICIAL SOURCE で FAIL", () => {
+  assertFails(run({ items: [tabItem({ verifiedVia: undefined })] }), /NO OFFICIAL SOURCE/);
+});
+
+test("TAB例外: link が TAB listing source と一致しなければ FAIL", () => {
+  assertFails(run({ items: [tabItem({ link: "https://www.tokyoartbeat.com/events/-/Other/F1/2026-09-18" })] }), /NO OFFICIAL SOURCE|LINK NOT OFFICIAL/);
+});
+
+test("TAB例外: link/source が TAB の展示個別ページでない（トップ・他サイト）なら FAIL", () => {
+  for (const u of ["https://www.tokyoartbeat.com/", "https://artscape.jp/exhibition/1.html", "https://tokyoartbeat.com.evil.example/events/-/x/1"]) {
+    assertFails(run({ items: [tabItem({ link: u, sources: [{ name: "x", url: u, kind: "listing" }] })] }), /NO OFFICIAL SOURCE/);
+  }
+});
+
+test("TAB例外: verifiedVia に tokyoartbeat 以外の値は FAIL", () => {
+  assertFails(run({ items: [tabItem({ verifiedVia: "artscape" })] }), /INVALID VERIFIEDVIA/);
+});
+
+test("TAB例外: official がある展示は verifiedVia があっても link 不一致を従来どおり FAIL", () => {
+  assertFails(run({ items: [tabItem({ sources: [{ name: "公式", url: "https://museum.example/a", kind: "official" }, { name: "Tokyo Art Beat", url: TAB_URL, kind: "listing" }] })] }), /LINK NOT OFFICIAL/);
+});

@@ -152,7 +152,7 @@ ${blocks}
 
 # 手順
 1. 各POSTから展覧会（名称・作家・会場・会期）を特定する。展覧会の告知でなければ、その url の候補は出さない
-2. 会場・主催者の**公式ページをWebSearch/WebFetchで探し、日付・会場を公式ページで確認**する。公式ページが見つからなければ officialUrl は空文字（後段で unverified になる）
+2. 会場・主催者の**公式ページをWebSearch/WebFetchで探し、日付・会場を公式ページで確認**する。公式ページが見つからなければ officialUrl は空文字（後段で unverified になる）。投稿本文が Tokyo Art Beat の展示ページ（URL が https://www.tokyoartbeat.com/events/-/ で始まる）なら、会場名・会期は TAB ページ記載どおりに書く（officialUrl は空のままでよい）
 3. 各候補に "intakeUrl"（元のPOSTのurl）を必ず付ける。1つのPOSTに複数の展覧会があれば複数候補
 4. score は profile.scoring に従い自己採点（投稿ボーナス+10は機械側で加算するので含めない。投稿された＝興味ありとして扱われるが、score 自体は正直に付ける）
 5. 各候補に "pickWhy" を付ける:

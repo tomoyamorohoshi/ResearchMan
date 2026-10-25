@@ -19,6 +19,7 @@ import { buildExhibitionId } from "./exhibition-slug.mjs";
 import { normLink } from "./norm-link.mjs";
 import { normTitle } from "./norm-title.mjs";
 import { USER_PICK_BOOST_MAX, cleanWhy } from "./exhibition-userpicks.mjs";
+import { isTabEventUrl, TAB_NAME, VERIFIED_VIA_TAB } from "./tab-url.mjs";
 
 // audit-exhibition.mjs と同じ47都道府県（監査側はモジュールとして export していないため複製）
 export const PREFECTURES = [
@@ -315,6 +316,23 @@ async function fetchOfficialText(cand, { fetchHtml }) {
   return { ok: true, text: htmlToText(res.body) };
 }
 
+/**
+ * TAB 展示ページを取得して checkOfficialText と同じ照合（開始日・終了日・会場・展示名）を行う。
+ * 理由コードは official- ではなく tab- 接頭（返信文で TAB 照合失敗と分かるように）。
+ */
+async function verifyTabPage(cand, tabUrl, { fetchHtml }) {
+  let res;
+  try {
+    res = await fetchHtml(tabUrl);
+  } catch (e) {
+    return { ok: false, reason: `tab-fetch-error: ${e.message}` };
+  }
+  if (!res) return { ok: false, reason: "tab-fetch-failed" };
+  if (res.status !== 200) return { ok: false, reason: `tab-status-${res.status}` };
+  const c = checkOfficialText(cand, htmlToText(res.body));
+  return c.ok ? c : { ok: false, reason: c.reason.replace(/^official-/, "tab-") };
+}
+
 /** 既存エントリの公式ページ（link、無ければ sources の official）を取得してテキスト化。url 単位でキャッシュ。 */
 async function fetchExistingOfficialText(item, deps, cache) {
   const url = [item.link, ...(item.sources || []).filter((s) => s && s.kind === "official").map((s) => s.url)].find((u) => isHttpUrl(u) && isSafeOfficialUrl(u));
@@ -381,9 +399,12 @@ function effectiveScore(cand, opts) {
   return s;
 }
 
-function buildSources(cand) {
-  const out = [{ name: (typeof cand.officialName === "string" && cand.officialName) || "公式", url: cand.officialUrl, kind: "official" }];
-  const seen = new Set([normLink(cand.officialUrl)]);
+function buildSources(cand, tabUrl = null) {
+  // TAB 確認の展示は公式 source が無い（TAB 展示ページを listing として先頭に置く）
+  const out = [tabUrl
+    ? { name: TAB_NAME, url: tabUrl, kind: "listing" }
+    : { name: (typeof cand.officialName === "string" && cand.officialName) || "公式", url: cand.officialUrl, kind: "official" }];
+  const seen = new Set([normLink(tabUrl || cand.officialUrl)]);
   const extra = [...(cand.sources || [])];
   if (cand.origin === "intake" && cand.intakeUrl) extra.push({ name: "ユーザー投稿", url: cand.intakeUrl, kind: "social" });
   for (const s of extra) {
@@ -459,8 +480,18 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
       rejected.push({ title: cand.title || "(no title)", reason: "invalid-candidate", detail: "title/venue required", link: cand.officialUrl || "" });
       return;
     }
-    if (!isHttpUrl(cand.officialUrl)) return unver(cand, "official-url-missing");
-    if (!isSafeOfficialUrl(cand.officialUrl)) return unver(cand, "official-url-rejected（listing/SNS/内部ホスト/不正URLは公式として不可）");
+    // 公式 URL が空/不可のとき、投稿(intake かつ trustOrigin)に限り TAB 展示ページを確認元にできる（自動発見では常に null）
+    let tabUrl = null;
+    if (!isHttpUrl(cand.officialUrl) || !isSafeOfficialUrl(cand.officialUrl)) {
+      if (o.trustOrigin === true && isIntake(cand)) {
+        tabUrl = [cand.intakeUrl, cand.officialUrl].find((u) => isTabEventUrl(u) && isPublicHttpUrl(u)) || null;
+      }
+      if (!tabUrl) {
+        if (!isHttpUrl(cand.officialUrl)) return unver(cand, "official-url-missing");
+        return unver(cand, "official-url-rejected（listing/SNS/内部ホスト/不正URLは公式として不可）");
+      }
+    }
+    const verifiedUrl = tabUrl || cand.officialUrl;
     if (!isValidYmd(cand.startDate) || !isValidYmd(cand.endDate)) return unver(cand, "会期不明（startDate/endDate が不正または欠落）");
     if (cand.startDate > cand.endDate) return reject(cand, "start-after-end");
     if (cand.endDate < today) return reject(cand, "already-ended");
@@ -469,11 +500,13 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
     if (!prefecture) return reject(cand, "invalid-prefecture", String(cand.prefecture));
 
     // dedupe。一致したら追加せず、会期・会場の変更だけ（公式で裏取りできた場合に限り）追従する
-    const dup = findDuplicate(items, cand);
+    const dup = findDuplicate(items, tabUrl ? { ...cand, officialUrl: tabUrl } : cand);
     if (dup) {
       const patch = diffDates(dup.item, cand);
       // 同一実行で追加済みの展示は更新しない（ラウンドごとに Claude の返す日付が揺れて上書きされるのを防ぐ）
       if (!patch || protect.has(dup.item.id)) { skipped.push({ title: cand.title, reason: "duplicate", existingId: dup.item.id }); return; }
+      // TAB 確認の既存展示は公式ページが無い（会期追従の根拠を再取得できない）→ 追従せず skip
+      if (dup.item.verifiedVia === VERIFIED_VIA_TAB) { skipped.push({ title: cand.title, reason: "duplicate-existing-tab-verified", existingId: dup.item.id }); return; }
       // 根拠は既存エントリ自身の公式ページ（候補の officialUrl は別ページのことがあるため使わない）
       const f = await fetchExistingOfficialText(dup.item, deps, pageCache);
       if (!f.ok) { skipped.push({ title: cand.title, reason: `duplicate-existing-page-unavailable: ${f.reason}`, existingId: dup.item.id }); return; }
@@ -506,14 +539,15 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
     const exempt = cand.collectAll || cand.origin === "intake";
     if (!exempt && capped >= o.maxAdd) return reject(cand, "daily-cap");
 
-    const v = await verifyOfficialPage(cand, deps);
+    const v = tabUrl ? await verifyTabPage(cand, tabUrl, deps) : await verifyOfficialPage(cand, deps);
     if (!v.ok) return unver(cand, v.reason);
 
     const id = buildExhibitionId({ startDate: cand.startDate, venue: cand.slugVenue || cand.venue, title: cand.slugTitle || cand.title }, taken);
     let thumbnail = `/thumbnails/exhibition/${id}.jpg`;
     if (!o.dryRun) {
-      thumbnail = await deps.saveThumb(id, cand);
-      if (typeof thumbnail !== "string" || !thumbnail.trim()) return reject(cand, "thumbnail-unavailable", cand.thumbnailSource || cand.officialUrl);
+      // TAB 確認の展示は TAB ページをサムネ取得元にする（officialUrl として渡す＝既存の og:image/img 取得ロジックの延長）
+      thumbnail = await deps.saveThumb(id, tabUrl ? { ...cand, officialUrl: tabUrl } : cand);
+      if (typeof thumbnail !== "string" || !thumbnail.trim()) return reject(cand, "thumbnail-unavailable", cand.thumbnailSource || verifiedUrl);
     }
 
     const item = {
@@ -532,8 +566,9 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
       tags: cand.tags.filter((t) => vocab.has(t)),
       score,
       matchReason: cand.matchReason.trim(),
-      sources: buildSources(cand),
-      link: cand.officialUrl,
+      sources: buildSources(cand, tabUrl),
+      link: verifiedUrl,
+      ...(tabUrl ? { verifiedVia: VERIFIED_VIA_TAB } : {}),
       thumbnail,
       addedAt: deps.now(),
       origin: cand.origin === "intake" ? "intake" : "auto",

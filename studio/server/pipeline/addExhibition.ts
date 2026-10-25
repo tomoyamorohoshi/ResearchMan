@@ -86,7 +86,11 @@ export interface ProcessExhibitionResult {
 /** processCandidatesの機械的な理由コードを、LINEで読める平易な日本語にする。 */
 export function describeExhibitionReason(reason: string): string {
   const r = reason || "";
-  if (r.startsWith("official-url-missing")) return "公式ページ（会場・主催者の個別ページ）が見つかりませんでした";
+  if (r.startsWith("tab-date-mismatch")) return "Tokyo Art Beat のページで会期を確認できませんでした（ページ上の開始日・終了日が候補と合いません）";
+  if (r.startsWith("tab-venue-mismatch")) return "Tokyo Art Beat のページで会場を確認できませんでした（ページ上の会場名が候補と合いません）";
+  if (r.startsWith("tab-title-mismatch")) return "Tokyo Art Beat のページで展覧会名を確認できませんでした（ページ上の展示名が候補と合いません）";
+  if (r.startsWith("tab-")) return "Tokyo Art Beat のページを取得できませんでした（会期・会場・展示名を確認できませんでした）";
+  if (r.startsWith("official-url-missing")) return "会場・主催者のサイトに展示の個別ページが見つかりませんでした（紹介サイトの情報だけでは追加できません。Tokyo Art Beat の展示ページURLなら確認元として使えます）";
   if (r.startsWith("official-url-")) return "公式ページとして使えるURLが見つかりませんでした";
   if (r.startsWith("会期不明")) return "会期（開始日・終了日）が確認できませんでした";
   if (r.includes("official-date-mismatch")) return "公式ページで会期が確認できませんでした";
