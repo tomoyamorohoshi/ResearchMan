@@ -982,3 +982,100 @@ test("TAB救済: 同一 TAB URL の再投稿は重複として skip", async () =
   assert.equal(r.added.length, 0);
   assert.equal(r.skipped.length, 1);
 });
+
+// ── TAB 救済（公式 URL はあるが取得できない: 403 等のボット拒否）: intake+trustOrigin に限り TAB 照合で救済 ──
+const OFFICIAL_BLOCKED = "https://www.goethe.example/ins/jp/ja/kul/eui/film.html";
+const blockedDeps = (c, status = 403, tabBody = okPage(c)) => {
+  const fetched = [];
+  const thumbCands = [];
+  return {
+    fetched, thumbCands,
+    fetchHtml: async (u) => {
+      fetched.push(u);
+      if (u === OFFICIAL_BLOCKED) {
+        if (status === "throw") throw new Error("ECONNRESET");
+        return status === null ? null : { status, body: "forbidden" };
+      }
+      return { status: 200, body: tabBody };
+    },
+    saveThumb: async (id, cand) => { thumbCands.push(cand); return `/thumbnails/exhibition/${id}.jpg`; },
+    now: () => "2026-10-04T01:00:00.000Z",
+  };
+};
+const mkBlocked = (over = {}) => mkCand({ officialUrl: OFFICIAL_BLOCKED, sources: [], origin: "intake", intakeUrl: TAB_URL, ...over });
+
+test("TAB救済(取得失敗): 公式が 403 でも TAB で照合が通れば TAB 確認形で追加（公式 URL は保存しない・サムネは TAB から）", async () => {
+  const c = mkBlocked();
+  const deps = blockedDeps(c);
+  const r = await runC([c], deps);
+  assert.equal(r.added.length, 1, JSON.stringify(r.unverified));
+  const it = r.data.items[0];
+  assert.equal(it.link, TAB_URL);
+  assert.equal(it.verifiedVia, "tokyoartbeat");
+  assert.deepEqual(it.sources[0], { name: "Tokyo Art Beat", url: TAB_URL, kind: "listing" });
+  assert.equal(it.sources.some((s) => s.url === OFFICIAL_BLOCKED || s.kind === "official"), false);
+  assert.equal(deps.thumbCands[0].officialUrl, TAB_URL);
+  assert.deepEqual(deps.fetched, [OFFICIAL_BLOCKED, TAB_URL]);
+});
+
+test("TAB救済(取得失敗): official-status-5xx / fetch-error / fetch-failed(null) も救済対象", async () => {
+  for (const s of [500, "throw", null]) {
+    const c = mkBlocked();
+    const r = await runC([c], blockedDeps(c, s));
+    assert.equal(r.added.length, 1, `${s}: ${JSON.stringify(r.unverified)}`);
+    assert.equal(r.data.items[0].verifiedVia, "tokyoartbeat");
+  }
+});
+
+test("TAB救済(取得失敗): 公式は取れたが会場・会期・展示名が合わない場合は救済しない（TAB も取得しない）", async () => {
+  const c = mkBlocked();
+  for (const body of [`<html><body><h1>${c.title}</h1><p>別会場</p><p>会期 2026年10月12日〜11月30日</p></body></html>`, "<html><body>全然違う</body></html>"]) {
+    const deps = tabDeps(c);
+    deps.fetchHtml = async (u) => { deps.fetched.push(u); return { status: 200, body }; };
+    const r = await runC([c], deps);
+    assert.equal(r.added.length, 0);
+    assert.match(r.unverified[0].reason, /^official-(venue|date|title)-mismatch/);
+    assert.deepEqual(deps.fetched, [OFFICIAL_BLOCKED]);
+  }
+});
+
+test("TAB救済(取得失敗): 公式 403 かつ TAB の照合も失敗なら unverified（理由に両方）", async () => {
+  const c = mkBlocked();
+  const r = await runC([c], blockedDeps(c, 403, "<html><body>無関係</body></html>"));
+  assert.equal(r.added.length, 0);
+  assert.match(r.unverified[0].reason, /^official-unreachable-tab-failed: official-status-403 \/ tab-date-mismatch/);
+});
+
+test("TAB救済(取得失敗): TAB URL が無い intake は救済されない（従来どおり official-status-403）", async () => {
+  const c = mkBlocked({ intakeUrl: "https://x.com/u/status/1" });
+  const deps = blockedDeps(c);
+  const r = await runC([c], deps);
+  assert.equal(r.added.length, 0);
+  assert.match(r.unverified[0].reason, /^official-status-403/);
+  assert.deepEqual(deps.fetched, [OFFICIAL_BLOCKED]);
+});
+
+test("TAB救済(取得失敗): 自動発見（trustOrigin なし / origin 偽装 / origin:auto）では効かない・TAB を取得しない", async () => {
+  for (const opts of [undefined, { trustOrigin: false }]) {
+    const c = mkBlocked();
+    const deps = blockedDeps(c);
+    const r = await processCandidates({ data: emptyData(), candidates: [c], today: TODAY, deps, opts });
+    assert.equal(r.added.length, 0);
+    assert.match(r.unverified[0].reason, /^official-status-403/);
+    assert.deepEqual(deps.fetched, [OFFICIAL_BLOCKED]);
+  }
+  const a = mkBlocked({ origin: "auto" });
+  const deps = blockedDeps(a);
+  const r = await runC([a], deps);
+  assert.equal(r.added.length, 0);
+  assert.deepEqual(deps.fetched, [OFFICIAL_BLOCKED]);
+});
+
+test("TAB昇格: 昇格パスで公式取得が失敗した場合は従来どおり skip（救済で上書きしない）", async () => {
+  const c = mkTab();
+  const first = await runC([c], tabDeps(c));
+  const c2 = mkBlocked();
+  const r = await processCandidates({ data: first.data, candidates: [c2], today: TODAY, deps: blockedDeps(c2), opts: { trustOrigin: true } });
+  assert.equal(r.added.length, 0);
+  assert.equal(r.skipped[0].reason, "duplicate-existing-tab-verified");
+});
