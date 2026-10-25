@@ -91,7 +91,8 @@ export function describeExhibitionReason(reason: string): string {
   if (r.startsWith("tab-title-mismatch")) return "Tokyo Art Beat のページで展覧会名を確認できませんでした（ページ上の展示名が候補と合いません）";
   if (r.startsWith("tab-")) return "Tokyo Art Beat のページを取得できませんでした（会期・会場・展示名を確認できませんでした）";
   if (r.startsWith("official-url-missing")) return "会場・主催者のサイトに展示の個別ページが見つかりませんでした（紹介サイトの情報だけでは追加できません。Tokyo Art Beat の展示ページURLなら確認元として使えます）";
-  if (r.startsWith("official-url-")) return "公式ページとして使えるURLが見つかりませんでした";
+  if (r.startsWith("official-url-")) return "公式ページとして使えるURLが見つかりませんでした（Tokyo Art Beat の展示ページURLなら確認元として使えます）";
+  if (r === "duplicate-existing-tab-verified") return "Tokyo Art Beat で確認して登録済みです（会期の変更は反映していません。公式の個別ページURLを送ると公式に切り替えます）";
   if (r.startsWith("会期不明")) return "会期（開始日・終了日）が確認できませんでした";
   if (r.includes("official-date-mismatch")) return "公式ページで会期が確認できませんでした";
   if (r.includes("official-venue-mismatch")) return "公式ページで会場が確認できませんでした";
@@ -164,9 +165,10 @@ export async function processExhibitionAdd(p: {
     };
   }
   if ((out.skipped as unknown[]).length > 0) {
-    const existingId = (out.skipped as Array<{ existingId: string }>)[0].existingId;
-    const existing = data.items.find((i) => i.id === existingId);
-    return { ...common, outcome: "duplicate", duplicateTitle: existing?.title ?? "", reasonJa: "既に登録済みです" };
+    const sk = (out.skipped as Array<{ existingId: string; reason?: string }>)[0];
+    const existing = data.items.find((i) => i.id === sk.existingId);
+    const reasonJa = sk.reason === "duplicate-existing-tab-verified" ? describeExhibitionReason(sk.reason) : "既に登録済みです";
+    return { ...common, outcome: "duplicate", duplicateTitle: existing?.title ?? "", reasonJa };
   }
   if (unverified.length > 0) {
     return { ...common, outcome: "unverified", reasonJa: describeExhibitionReason(unverified[0].reason) };

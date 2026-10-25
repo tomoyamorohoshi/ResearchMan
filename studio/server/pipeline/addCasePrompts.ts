@@ -174,7 +174,7 @@ ${url}${xNote}${contextNote}
 - candidates は上記スキーマの配列。会場・会期が複数（巡回展）なら会場ごとに別候補にする（会場ごとの startDate/endDate/venue/prefecture/city を書く）。officialUrl は公式サイト内の会場別ページがあればそれを使う（同一URLの候補は重複として1件に畳まれる）
 - ${HARD_EXCLUDE_NOTE}（該当するものは excludeCategory にその値を入れる）
 - "intakeUrl" は不要（機械側で送信URLを付与する）。"origin" も不要
-- 日付と会場は公式ページ（会場・主催者の個別展覧会ページ）をWebFetchで開いて確認した値のみ。公式ページが見つからなければ officialUrl は空文字（後段で未検証扱いになる）。入力URLが Tokyo Art Beat の展示ページの場合も、会場名・会期は TAB ページ記載どおりに書く（officialUrl は空のままでよい）
+- 日付と会場は公式ページ（会場・主催者の個別展覧会ページ）をWebFetchで開いて確認した値のみ。公式ページが見つからなければ officialUrl は空文字（後段で未検証扱いになる）。入力URLが Tokyo Art Beat（TAB）の展示ページの場合も、まず TAB ページ内の「展覧会URL」や会場サイトの個別公式ページを探して officialUrl に書く。見つからない場合だけ officialUrl は空（後段で TAB ページで確認される）。会場名・会期は TAB ページ記載どおりに書く
 - score は0-100の整数で自己採点（ユーザー投稿ボーナスは機械側で加算するので含めない）。tags は上記語彙内のみ
 ${PICK_WHY_NOTE}${profileNote}
 

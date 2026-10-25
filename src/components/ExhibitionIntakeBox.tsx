@@ -90,7 +90,7 @@ export default function ExhibitionIntakeBox() {
           setUrl("");
         }
       } else if (res.status === 400) {
-        setMessage({ kind: "error", text: "X/Instagramの投稿URLのみ受け付けます" });
+        setMessage({ kind: "error", text: "X/Instagramの投稿URL、またはTokyo Art Beatの展示ページURLのみ受け付けます" });
       } else if (res.status === 429) {
         setMessage({ kind: "error", text: "受付上限に達しています。時間をおいてお試しください" });
       } else if (res.status === 503) {

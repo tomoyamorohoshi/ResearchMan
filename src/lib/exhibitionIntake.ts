@@ -3,6 +3,7 @@
 // このモジュールは URL を一切 fetch しない（SSRF 防止。取得はローカルの日次ジョブのみ）。
 import { createHash } from "node:crypto";
 import { todayJst } from "../../scripts/lib/exhibition-status.mjs";
+import { isTabEventUrl } from "../../scripts/lib/tab-url.mjs";
 
 export const MAX_URL_LENGTH = 300;
 export const MAX_PENDING = 50; // 未処理キューの上限
@@ -14,11 +15,12 @@ const MAX_EXHIBITION_ID_LENGTH = 100;
 
 const X_HOSTS = new Set(["x.com", "twitter.com", "www.x.com", "mobile.twitter.com"]);
 const IG_HOSTS = new Set(["instagram.com", "www.instagram.com"]);
+const TAB_HOSTS = new Set(["tokyoartbeat.com", "www.tokyoartbeat.com"]);
 
 const X_PATH = /^\/([A-Za-z0-9_]{1,15})\/status\/(\d{1,25})\/?$/;
 const IG_PATH = /^\/(p|reel)\/([A-Za-z0-9_-]{1,64})\/?$/;
 
-export type IntakeUrlResult = { ok: true; url: string; kind: "x" | "instagram" } | { ok: false; error: string };
+export type IntakeUrlResult = { ok: true; url: string; kind: "x" | "instagram" | "tab" } | { ok: false; error: string };
 
 const invalid = (error: string): IntakeUrlResult => ({ ok: false, error });
 
@@ -36,7 +38,8 @@ export function validateIntakeUrl(input: unknown): IntakeUrlResult {
   if (authority.includes("xn--")) return invalid("punycode host is not accepted");
   const isX = X_HOSTS.has(authority);
   const isIg = IG_HOSTS.has(authority);
-  if (!isX && !isIg) return invalid("host not allowed");
+  const isTab = TAB_HOSTS.has(authority);
+  if (!isX && !isIg && !isTab) return invalid("host not allowed");
 
   let parsed: URL;
   try {
@@ -46,6 +49,11 @@ export function validateIntakeUrl(input: unknown): IntakeUrlResult {
   }
   if (parsed.protocol !== "https:" || parsed.username || parsed.password || parsed.port) {
     return invalid("url must not contain userinfo or port");
+  }
+  if (isTab) {
+    // Tokyo Art Beat の展示個別ページ（/events/-/ 配下）のみ。会場・主催者の個別公式ページが無い展示の確認元になる（2026-10-26）
+    if (!isTabEventUrl(parsed.href)) return invalid("Tokyo Art Beat url must be an event page (/events/-/...)");
+    return { ok: true, kind: "tab", url: `https://www.tokyoartbeat.com${parsed.pathname}` };
   }
   if (isX) {
     const pm = X_PATH.exec(parsed.pathname);

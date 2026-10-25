@@ -500,13 +500,40 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
     if (!prefecture) return reject(cand, "invalid-prefecture", String(cand.prefecture));
 
     // dedupe。一致したら追加せず、会期・会場の変更だけ（公式で裏取りできた場合に限り）追従する
-    const dup = findDuplicate(items, tabUrl ? { ...cand, officialUrl: tabUrl } : cand);
+    // 投稿(trustOrigin の intake)が TAB URL 由来のときは、その TAB URL でも既存の TAB 確認済み展示と重複判定する
+    const trustedIntake = o.trustOrigin === true && isIntake(cand);
+    const dupCand = tabUrl
+      ? { ...cand, officialUrl: tabUrl }
+      : trustedIntake && isTabEventUrl(cand.intakeUrl)
+        ? { ...cand, sources: [...(cand.sources || []), { url: cand.intakeUrl }] }
+        : cand;
+    const dup = findDuplicate(items, dupCand);
     if (dup) {
+      // 昇格: TAB 確認済みの既存展示に、投稿が公式個別ページ URL を持ち、その公式ページで照合に通れば公式へ切り替える
+      if (dup.item.verifiedVia === VERIFIED_VIA_TAB && trustedIntake && !protect.has(dup.item.id) && isHttpUrl(cand.officialUrl) && isSafeOfficialUrl(cand.officialUrl)) {
+        const f = await fetchOfficialText(cand, deps);
+        if (f.ok && checkOfficialText(cand, f.text).ok) {
+          const { verifiedVia: _drop, ...rest } = dup.item;
+          const patch = diffDates(dup.item, cand) || {};
+          const officialSource = { name: (typeof cand.officialName === "string" && cand.officialName) || "公式", url: cand.officialUrl, kind: "official" };
+          const key = normLink(cand.officialUrl);
+          const next = applyUpdate(
+            { ...rest, link: cand.officialUrl, sources: [officialSource, ...(dup.item.sources || []).filter((s) => normLink(s?.url) !== key)] },
+            patch,
+            today,
+          );
+          items = items.map((i) => (i.id === dup.item.id ? next : i));
+          protect.add(dup.item.id);
+          updated.push({ id: dup.item.id, title: dup.item.title, patch: { ...patch, link: cand.officialUrl } });
+          return;
+        }
+      }
       const patch = diffDates(dup.item, cand);
       // 同一実行で追加済みの展示は更新しない（ラウンドごとに Claude の返す日付が揺れて上書きされるのを防ぐ）
-      if (!patch || protect.has(dup.item.id)) { skipped.push({ title: cand.title, reason: "duplicate", existingId: dup.item.id }); return; }
-      // TAB 確認の既存展示は公式ページが無い（会期追従の根拠を再取得できない）→ 追従せず skip
+      if (protect.has(dup.item.id)) { skipped.push({ title: cand.title, reason: "duplicate", existingId: dup.item.id }); return; }
+      // TAB 確認の既存展示は公式ページが無い（会期追従の根拠を再取得できない）→ 追従せず skip（昇格できなかった場合。返信文で案内）
       if (dup.item.verifiedVia === VERIFIED_VIA_TAB) { skipped.push({ title: cand.title, reason: "duplicate-existing-tab-verified", existingId: dup.item.id }); return; }
+      if (!patch) { skipped.push({ title: cand.title, reason: "duplicate", existingId: dup.item.id }); return; }
       // 根拠は既存エントリ自身の公式ページ（候補の officialUrl は別ページのことがあるため使わない）
       const f = await fetchExistingOfficialText(dup.item, deps, pageCache);
       if (!f.ok) { skipped.push({ title: cand.title, reason: `duplicate-existing-page-unavailable: ${f.reason}`, existingId: dup.item.id }); return; }

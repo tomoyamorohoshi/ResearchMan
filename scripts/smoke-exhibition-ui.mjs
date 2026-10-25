@@ -237,7 +237,7 @@ async function main() {
     await page.waitForFunction(() => document.querySelector("[data-intake-message]")?.textContent?.includes("処理済み"));
     assert(true, "already_processed の文言");
 
-    for (const [status, text] of [[400, "X/Instagramの投稿URLのみ"], [429, "受付上限"], [503, "現在受付できません"]]) {
+    for (const [status, text] of [[400, "X/Instagramの投稿URL"], [429, "受付上限"], [503, "現在受付できません"]]) {
       nextResponse = { status, body: { error: "x" } };
       await submit.click();
       await page.waitForFunction((t) => document.querySelector("[data-intake-message]")?.textContent?.includes(t), text);

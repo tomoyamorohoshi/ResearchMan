@@ -10,6 +10,7 @@
 import { processCandidates, htmlToText, findDuplicate, diffDates } from "./exhibition-build.mjs";
 import { buildIntakePrompt } from "./exhibition-prompts.mjs";
 import { normLink } from "./norm-link.mjs";
+import { isTabEventUrl } from "./tab-url.mjs";
 
 export { buildIntakePrompt };
 
@@ -27,6 +28,8 @@ export function parseIntakeUrl(url) {
   if (u.protocol !== "https:") return null;
   const host = u.hostname.toLowerCase();
   let m;
+  // Tokyo Art Beat の展示個別ページ（host 完全一致・port/userinfo 無し・/events/-/ 配下。SSRF 対策は isTabEventUrl に集約）
+  if (isTabEventUrl(url)) return { kind: "tab", fetchUrl: url };
   if (["x.com", "www.x.com", "twitter.com", "mobile.twitter.com"].includes(host)) {
     m = /^\/([A-Za-z0-9_]{1,30})\/status\/(\d+)\/?$/.exec(u.pathname);
     if (!m) return null;
@@ -54,6 +57,13 @@ export async function fetchPostText(url, deps) {
       if (!tw?.text) return { ok: false, reason: "fxtwitter-no-tweet" };
       const name = tw.author?.name || p.user;
       return { ok: true, text: String(tw.text), author: `${name} (@${tw.author?.screen_name || p.user})` };
+    }
+    if (p.kind === "tab") {
+      const res = await deps.fetchHtml(p.fetchUrl);
+      if (!res || res.status !== 200) return { ok: false, reason: `tab-page-${res ? res.status : "unreachable"}` };
+      const text = htmlToText(res.body);
+      if (text.length < 5) return { ok: false, reason: "tab-page-empty" };
+      return { ok: true, text: text.slice(0, 6000), author: "(Tokyo Art Beat)" };
     }
     const res = await deps.fetchHtml(p.fetchUrl);
     if (!res || res.status !== 200) return { ok: false, reason: `instagram-embed-${res ? res.status : "unreachable"}` };
