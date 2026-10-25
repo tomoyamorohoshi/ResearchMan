@@ -12546,7 +12546,10 @@
     "tags": [
       "Form/Exhibition",
       "Theme/SocialGood"
-    ]
+    ],
+    "quarantined": true,
+    "quarantineReason": "link-dead(二重確認済): 404: https://sendai311-memorial.jp/exhibition_permanent/",
+    "quarantineTs": "2026-10-25T09:34:44.735Z"
   },
   {
     "id": "a-sky-of-infinite-wishes-ai-2026",
@@ -24500,7 +24503,10 @@
       "Tech/AI",
       "Form/App",
       "Theme/SocialGood"
-    ]
+    ],
+    "quarantined": true,
+    "quarantineReason": "link-dead(二重確認済): 到達不能（Jina救済も失敗）: https://www.suretalk.mb.softbank.jp/",
+    "quarantineTs": "2026-10-25T09:34:44.735Z"
   },
   {
     "id": "alter-2016",
