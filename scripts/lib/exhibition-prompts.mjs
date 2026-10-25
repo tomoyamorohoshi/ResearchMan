@@ -27,7 +27,7 @@ export const CANDIDATE_SCHEMA_TEXT = `[{
   "admission": "無料 / 一般800円 / UNKNOWN",
   "tags": ["media_art","generative","onchain","installation","light","kinetic","glass","sculpture","video_art","design_archive","graphic_design","architecture","ai_media_art","retrospective","sound" から選ぶ],
   "score": 0-100の整数（profile.scoring に従い自己採点）, "matchReason": "なぜ好みに合うか1〜2文。事実のみ・推測を混ぜない",
-  "officialUrl": "会場/主催者の公式の展覧会個別ページURL（一覧や検索結果・X・TAB等の転載ページは不可）",
+  "officialUrl": "会場/主催者の公式の展覧会個別ページURL（一覧や検索結果・X・TAB等の転載ページは不可。ただし下の手順で TAB 展示ページURLを書くよう指示された場合だけはそれに従う）",
   "officialName": "公式ページの名称（任意）",
   "slugTitle": "URL用の英題/ローマ字題（日本語のみの題名のとき必須。例: tada-minami-light）", "slugVenue": "URL用の会場英名（例: mot）",
   "sources": [{"name":"出所名","url":"https://...","kind":"listing|social|news"}],
