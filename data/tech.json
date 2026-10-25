@@ -1,5 +1,64 @@
 [
   {
+    "id": "length-varying-neural-motion-stitching-via-cluster-transitio",
+    "title": "Length-varying Neural Motion Stitching via Cluster Transition Graph",
+    "org": "KAIST Visual Media Lab (Haemin Kim, Junyong Noh ほか)",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "CreatorTools"
+    ],
+    "date": "2026-09",
+    "year": "2026",
+    "summary": "2つのモーション（アニメーション）クリップを、つなぎ目の長さを自動で決めながら自然につなぐ手法。SIGGRAPH Asia 2026採択で、学習・推論コードがMITで公開されている。",
+    "point": "すごい点は、「歩く→しゃがむ」のように性質の違う2つの動きをつなぐとき、これまで人が手で決めていた「何フレームかけて移行するか」を、AIが動きの種類に合わせて自動で決めてくれることです。短すぎると瞬間移動のように不自然になり、長すぎると足がすべります。この手法は動きを似たもの同士のグループに分け、グループ間の「つなげる道筋」を探して移行の長さを決め、Transformerで途中のポーズを生成します。這う、バスケットボールのシュート、ゆっくりした移動のように、かけ離れた動きどうしでもつなげると報告されています。広告・体験づくりでは、ゲームやインスタレーション、バーチャルキャラクターのライブ演出などで、用意した少数のモーション素材から「途切れずに動き続けるキャラクター」を組み立てる用途が考えられます。モーションをたくさん撮影し直さなくても、既存素材の組み合わせで長尺の演技を作れるため、制作コストの削減にもつながりそうです。",
+    "detail": "仕組みは3段階です。まず、入力されたモーションを、似た動きごとの「クラスタ」（仲間分け）に変換します。次に、クラスタをつなぐ「乗り換え路線図」のようなグラフを作り、出発の動きから到着の動きまでの最短ルートを探します。このルートが、移行にかける長さと大まかな経路を決めます。最後にTransformerという生成モデルが、そのルートに沿って途中のポーズを1フレームずつ作ります。\n\n従来のモーションつなぎは、移行の長さを固定にするか、人が手で調整する必要がありました。そのため、動きの組み合わせによっては不自然になりがちでした。この手法は、グラフの構造から移行時間を推定します。論文では、固定長の方式や、時間を直接予測する方式より、移行時間の推定が優れていて、品質も高いと報告されています。\n\n使うにはPython環境（Conda）と、LAFAN1などのモーションデータをMixamoのYBotキャラクターに合わせて22関節・60FPSへ整えた学習データが必要です。学習済みの部品（VQ-VAE、クラスタ遷移グラフ、モーション生成器）はGoogle Driveで配布されており、code/ディレクトリから python 40_nms.py を実行すると推論できます。結果はBVH形式で書き出せるので、BlenderやUnityなど既存のアニメーションツールに持ち込めます。公開から日が浅く、コミットは2件でスター数も少ない点は留意が必要です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "コードはMIT。学習データはLAFAN1とMixamo YBotを使用しており、データ側の利用条件は別途確認が必要。学習済みモデルはGoogle Drive配布。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/haem-k/neural-motion-stitching"
+      },
+      {
+        "kind": "project",
+        "url": "https://haem-k.github.io/nms/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2609.37167"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=gVvdhzmmegU"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/length-varying-neural-motion-stitching-via-cluster-transitio.jpg",
+    "relatedWorks": [
+      {
+        "title": "Kimodo",
+        "description": "NVIDIAによる、テキストと制約からヒト型モーションを生成する拡散モデル。",
+        "url": "https://github.com/nv-tlabs/kimodo"
+      },
+      {
+        "title": "HY-Motion 1.0",
+        "description": "Tencentによる、テキストから3Dキャラクターのモーションを生成するモデル。",
+        "url": "https://github.com/Tencent-Hunyuan/HY-Motion-1.0"
+      },
+      {
+        "title": "AnimationCodec",
+        "description": "あらゆる骨格に使えるモーション表現・圧縮ライブラリ（SIGGRAPH Asia 2026）。",
+        "url": "https://github.com/AIGAnimation/AnimationCodec"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "soundbox",
     "title": "Soundbox",
     "org": "HamSanders（個人開発）",
