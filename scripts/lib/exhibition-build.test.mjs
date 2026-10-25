@@ -794,3 +794,191 @@ test("userPicks: why は改行を潰して200字に切る", async () => {
   assert.ok(!r.userPicks[0].why.includes("\n"));
   assert.equal(r.userPicks[0].why.length, 200);
 });
+
+// ── TAB（Tokyo Art Beat）救済: 投稿(intake, trustOrigin)で公式個別ページが無いときだけ TAB 展示ページを確認元にする ──
+const TAB_URL = "https://www.tokyoartbeat.com/events/-/Interlinked/F6117340/2026-09-18";
+const mkTab = (over = {}) => mkCand({ officialUrl: "", sources: [], thumbnailSource: undefined, origin: "intake", intakeUrl: TAB_URL, ...over });
+const tabDeps = (c, extra = {}) => {
+  const fetched = [];
+  const thumbCands = [];
+  return {
+    fetched, thumbCands,
+    fetchHtml: async (u) => { fetched.push(u); return { status: 200, body: okPage(c) }; },
+    saveThumb: async (id, cand) => { thumbCands.push(cand); return `/thumbnails/exhibition/${id}.jpg`; },
+    now: () => "2026-10-04T01:00:00.000Z",
+    ...extra,
+  };
+};
+
+test("TAB救済: intake+trustOrigin で officialUrl 空・intakeUrl が TAB 展示ページなら TAB 照合で追加（link/sources/verifiedVia/サムネ元）", async () => {
+  const c = mkTab();
+  const deps = tabDeps(c);
+  const r = await runC([c], deps);
+  assert.equal(r.added.length, 1, JSON.stringify(r.unverified));
+  const it = r.data.items[0];
+  assert.equal(it.link, TAB_URL);
+  assert.equal(it.verifiedVia, "tokyoartbeat");
+  assert.deepEqual(it.sources[0], { name: "Tokyo Art Beat", url: TAB_URL, kind: "listing" });
+  assert.equal(it.sources.some((s) => s.kind === "official"), false);
+  assert.deepEqual(deps.fetched, [TAB_URL]);
+  assert.equal(deps.thumbCands[0].officialUrl, TAB_URL); // サムネ取得元は TAB ページ
+});
+
+test("TAB救済: officialUrl が TAB 自身（denylist で不可）でも intake なら TAB 照合で追加。intakeUrl が X 投稿でも可", async () => {
+  const c = mkTab({ officialUrl: TAB_URL, intakeUrl: "https://x.com/u/status/1" });
+  const r = await runC([c], tabDeps(c));
+  assert.equal(r.added.length, 1, JSON.stringify(r.unverified));
+  assert.equal(r.data.items[0].link, TAB_URL);
+  assert.equal(r.data.items[0].verifiedVia, "tokyoartbeat");
+});
+
+test("TAB救済: 通常の公式追加では verifiedVia を付けない", async () => {
+  const r = await runC([mkIntake()]);
+  assert.equal(r.added.length, 1);
+  assert.equal(r.data.items[0].verifiedVia, undefined);
+});
+
+test("TAB救済: auto（trustOrigin なし）では TAB URL でも未検証のまま・TAB を取得しない", async () => {
+  const c = mkTab();
+  const deps = tabDeps(c);
+  const r = await processCandidates({ data: emptyData(), candidates: [c], today: TODAY, deps });
+  assert.equal(r.added.length, 0);
+  assert.match(r.unverified[0].reason, /official-url-missing/);
+  assert.deepEqual(deps.fetched, []);
+});
+
+test("TAB救済: origin:intake を名乗る auto 候補（trustOrigin なし）は救済されない（officialUrl が TAB でも）", async () => {
+  const c = mkTab({ officialUrl: TAB_URL });
+  const deps = tabDeps(c);
+  const r = await processCandidates({ data: emptyData(), candidates: [c], today: TODAY, deps, opts: { trustOrigin: false } });
+  assert.equal(r.added.length, 0);
+  assert.match(r.unverified[0].reason, /official-url-rejected/);
+  assert.deepEqual(deps.fetched, []);
+});
+
+test("TAB救済: TAB 以外の紹介サイト（artscape/美術手帖/SNS）や TAB の展示個別でないページ・偽装ホストは不可", async () => {
+  for (const u of [
+    "https://artscape.jp/exhibition/current/1.html",
+    "https://bijutsutecho.com/magazine/news/exhibition/33194",
+    "https://x.com/u/status/1",
+    "https://www.tokyoartbeat.com/venues/-/abc",
+    "https://www.tokyoartbeat.com/",
+    "https://tokyoartbeat.com.evil.example/events/-/x/1/2026-09-18",
+    "https://www.tokyoartbeat.com@evil.example/events/-/x/1/2026-09-18",
+    "http://localhost/events/-/x",
+  ]) {
+    const c = mkTab({ officialUrl: "", intakeUrl: u });
+    const deps = tabDeps(c);
+    const r = await runC([c], deps);
+    assert.equal(r.added.length, 0, u);
+    assert.match(r.unverified[0].reason, /official-url-missing/, u);
+    assert.deepEqual(deps.fetched, [], u);
+  }
+});
+
+test("TAB救済: TAB ページで会期・会場・展示名が確認できなければ未検証（tab- 接頭の理由コード）", async () => {
+  const c = mkTab();
+  const bad = tabDeps(c, { fetchHtml: async () => ({ status: 200, body: "<html><body>関係ないページ</body></html>" }) });
+  const r = await runC([c], bad);
+  assert.equal(r.added.length, 0);
+  assert.match(r.unverified[0].reason, /^tab-date-mismatch/);
+  const r2 = await runC([c], tabDeps(c, { fetchHtml: async () => ({ status: 404, body: "" }) }));
+  assert.match(r2.unverified[0].reason, /^tab-status-404/);
+  const r3 = await runC([c], tabDeps(c, { fetchHtml: async () => { throw new Error("boom"); } }));
+  assert.match(r3.unverified[0].reason, /^tab-fetch-error/);
+});
+
+test("TAB救済: 公式URLがあって公式照合に失敗した場合は救済しない（TAB を取得しない）", async () => {
+  const c = mkTab({ officialUrl: "https://other.example/ex/9" });
+  const deps = tabDeps(c, { fetchHtml: async (u) => { deps.fetched.push(u); return { status: 200, body: "<html>no match</html>" }; } });
+  const r = await runC([c], deps);
+  assert.equal(r.added.length, 0);
+  assert.match(r.unverified[0].reason, /^official-/);
+  assert.deepEqual(deps.fetched, ["https://other.example/ex/9"]);
+});
+
+test("TAB救済: 既存の TAB 確認展示と重複して会期が揺れても、エラー/未検証を出さず skip する（追従しない）", async () => {
+  const c0 = mkTab();
+  const first = await runC([c0], tabDeps(c0));
+  const c1 = mkTab({ endDate: "2026-12-01" });
+  const deps = tabDeps(c1);
+  const r = await processCandidates({ data: first.data, candidates: [c1], today: TODAY, deps, opts: { trustOrigin: true } });
+  assert.equal(r.added.length, 0);
+  assert.equal(r.unverified.length, 0);
+  assert.equal(r.updated.length, 0);
+  assert.equal(r.skipped.length, 1);
+  assert.deepEqual(deps.fetched, []); // TAB 展示の既存エントリは再取得しない
+});
+
+// 昇格: TAB 確認済みの既存展示に、公式 URL つきの intake 候補が来て公式照合に通れば公式へ切り替える
+const promoteSetup = async () => {
+  const c0 = mkTab();
+  const first = await runC([c0], tabDeps(c0));
+  assert.equal(first.added.length, 1);
+  return first.data;
+};
+const OFFICIAL = "https://official.example/ex/duf";
+
+test("TAB昇格: 公式 URL つき intake 候補が公式照合に通れば link/sources を公式へ・verifiedVia 削除・会期差分も適用（updated）", async () => {
+  const data = await promoteSetup();
+  const c1 = mkTab({ officialUrl: OFFICIAL, endDate: "2026-12-01" });
+  const deps = tabDeps(c1, { fetchHtml: async (u) => { deps.fetched.push(u); return { status: 200, body: `<h1>${c1.title}</h1><p>${c1.venue}</p><p>2026年10月12日〜2026年12月1日</p>` }; } });
+  const r = await processCandidates({ data, candidates: [c1], today: TODAY, deps, opts: { trustOrigin: true } });
+  assert.equal(r.updated.length, 1, JSON.stringify(r));
+  assert.equal(r.added.length, 0);
+  const it = r.data.items[0];
+  assert.equal(it.link, OFFICIAL);
+  assert.equal(it.verifiedVia, undefined);
+  assert.equal(it.endDate, "2026-12-01");
+  assert.equal(it.sources.some((s) => s.kind === "official" && s.url === OFFICIAL), true);
+  assert.equal(it.sources.some((s) => s.url === TAB_URL), true); // TAB listing は残す
+  assert.deepEqual(deps.fetched, [OFFICIAL]);
+});
+
+test("TAB昇格: 日付差分が無くても公式に切り替わる", async () => {
+  const data = await promoteSetup();
+  const c1 = mkTab({ officialUrl: OFFICIAL });
+  const r = await processCandidates({ data, candidates: [c1], today: TODAY, deps: tabDeps(c1), opts: { trustOrigin: true } });
+  assert.equal(r.updated.length, 1);
+  assert.equal(r.data.items[0].link, OFFICIAL);
+  assert.equal(r.data.items[0].verifiedVia, undefined);
+});
+
+test("TAB昇格: 公式照合に失敗したら従来どおり skip（既存は不変）", async () => {
+  const data = await promoteSetup();
+  const c1 = mkTab({ officialUrl: OFFICIAL, endDate: "2026-12-01" });
+  const deps = tabDeps(c1, { fetchHtml: async () => ({ status: 200, body: "<html>no match</html>" }) });
+  const r = await processCandidates({ data, candidates: [c1], today: TODAY, deps, opts: { trustOrigin: true } });
+  assert.equal(r.updated.length, 0);
+  assert.equal(r.skipped[0].reason, "duplicate-existing-tab-verified");
+  assert.deepEqual(r.data.items[0], data.items[0]);
+});
+
+test("TAB昇格: 自動発見の候補（trustOrigin なし / origin 偽装）では昇格しない・取得もしない", async () => {
+  const data = await promoteSetup();
+  const c1 = mkTab({ officialUrl: OFFICIAL, endDate: "2026-12-01" });
+  const deps = tabDeps(c1);
+  const r = await processCandidates({ data, candidates: [c1], today: TODAY, deps });
+  assert.equal(r.updated.length, 0);
+  assert.equal(r.data.items[0].verifiedVia, "tokyoartbeat");
+  assert.equal(r.data.items[0].link, TAB_URL);
+  assert.deepEqual(deps.fetched, []);
+});
+
+test("TAB昇格: 公式 URL が不可（SNS 等）の候補は昇格しない", async () => {
+  const data = await promoteSetup();
+  const c1 = mkTab({ officialUrl: "https://x.com/u/status/1" });
+  const deps = tabDeps(c1);
+  const r = await processCandidates({ data, candidates: [c1], today: TODAY, deps, opts: { trustOrigin: true } });
+  assert.equal(r.updated.length, 0);
+  assert.equal(r.skipped[0].reason, "duplicate-existing-tab-verified");
+  assert.deepEqual(deps.fetched, []);
+});
+
+test("TAB救済: 同一 TAB URL の再投稿は重複として skip", async () => {
+  const c = mkTab();
+  const first = await runC([c], tabDeps(c));
+  const r = await processCandidates({ data: first.data, candidates: [c], today: TODAY, deps: tabDeps(c), opts: { trustOrigin: true } });
+  assert.equal(r.added.length, 0);
+  assert.equal(r.skipped.length, 1);
+});

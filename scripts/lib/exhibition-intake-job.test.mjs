@@ -63,6 +63,59 @@ test("parseIntakeUrl: X と IG の取得 URL", () => {
   assert.equal(ig.fetchUrl, "https://www.instagram.com/p/Dd6XYiYk386/embed/captioned/");
 });
 
+const TAB_URL = "https://www.tokyoartbeat.com/events/-/Interlinked/F6117340/2026-09-18";
+const tabPage = (c) => `<html><body><h1>${c.title}</h1><p>${c.venue}</p><p>2026年10月17日(土)〜2026年10月25日(日)</p></body></html>`;
+
+test("TAB投稿: parseIntakeUrl は TAB 展示ページを許可し、偽装ホスト・非展示ページ・http は null", () => {
+  const p = parseIntakeUrl(TAB_URL);
+  assert.equal(p.kind, "tab");
+  assert.equal(p.fetchUrl, TAB_URL);
+  for (const u of [
+    "https://www.tokyoartbeat.com/venues/-/abc",
+    "https://tokyoartbeat.com.evil.example/events/-/x/1",
+    "https://www.tokyoartbeat.com@evil.example/events/-/x/1",
+    "https://www.tokyoartbeat.com:8443/events/-/x/1",
+    "http://www.tokyoartbeat.com/events/-/x/1",
+  ]) assert.equal(parseIntakeUrl(u), null, u);
+});
+
+test("TAB投稿: fetchPostText は deps.fetchHtml で TAB ページを取得しテキスト化（失敗は ok=false）", async () => {
+  const c = cand();
+  const r = await fetchPostText(TAB_URL, mkDeps({ fetchHtml: async (u) => (u === TAB_URL ? { status: 200, body: tabPage(c) } : null) }));
+  assert.equal(r.ok, true);
+  assert.match(r.text, /Machines of Loving Grace/);
+  assert.equal((await fetchPostText(TAB_URL, mkDeps({ fetchHtml: async () => ({ status: 404, body: "" }) }))).ok, false);
+  assert.equal((await fetchPostText(TAB_URL, mkDeps({ fetchHtml: async () => { throw new Error("x"); } }))).ok, false);
+});
+
+test("TAB投稿: runIntake — 投稿 URL が TAB で officialUrl 空 → TAB 照合で added（verifiedVia/link）", async () => {
+  const c = cand({ officialUrl: "", intakeUrl: TAB_URL });
+  const deps = mkDeps({ fetchHtml: async () => ({ status: 200, body: tabPage(c) }), extract: async () => [c] });
+  const r = await runIntake({ items: [{ url: TAB_URL, ts: 1, attempts: 0 }], data: emptyData(), today: TODAY, deps });
+  assert.equal(r.added.length, 1, JSON.stringify(r.unverified));
+  assert.equal(r.data.items[0].link, TAB_URL);
+  assert.equal(r.data.items[0].verifiedVia, "tokyoartbeat");
+  assert.equal(r.results[0].status, "added");
+});
+
+test("TAB投稿: runIntake — X 投稿で LLM が officialUrl に TAB URL を書いた場合も TAB 照合で added", async () => {
+  const c = cand({ officialUrl: TAB_URL });
+  const deps = mkDeps({
+    fetchHtml: async (u) => (u === TAB_URL ? { status: 200, body: tabPage(c) } : { status: 200, body: "x" }),
+    extract: async () => [c],
+  });
+  const r = await runIntake({ items: [{ url: X_URL, ts: 1, attempts: 0 }], data: emptyData(), today: TODAY, deps });
+  assert.equal(r.added.length, 1, JSON.stringify(r.unverified));
+  assert.equal(r.data.items[0].verifiedVia, "tokyoartbeat");
+});
+
+test("buildIntakePrompt: 公式個別ページ探索を先に・見つからない場合だけ空、本文に TAB URL があれば officialUrl に TAB URL", () => {
+  const p = buildIntakePrompt([{ url: X_URL, text: "t", author: "a" }]);
+  assert.match(p, /展覧会URL/);
+  assert.match(p, /見つからない場合だけ officialUrl は空/);
+  assert.match(p, /officialUrl にその TAB URL/);
+});
+
 test("parseIntakeUrl: 不正は null", () => {
   assert.equal(parseIntakeUrl("https://evil.example/ayupys/status/1"), null);
   assert.equal(parseIntakeUrl("https://x.com/u/status/abc"), null);

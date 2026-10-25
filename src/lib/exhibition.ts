@@ -51,6 +51,8 @@ export type Exhibition = {
   thumbnail: string;
   addedAt: string;
   origin: "auto" | "intake";
+  // 投稿経由で会場・主催者の個別公式ページが無く、Tokyo Art Beat の展示ページを確認元にした展示（link は TAB URL）
+  verifiedVia?: "tokyoartbeat";
   intakeUrl?: string;
   /** 自動発見で userPick 加点によって初めて追加閾値を越えた展示の印（tuneup のごみ箱率集計用） */
   boostedBy?: "userPick";

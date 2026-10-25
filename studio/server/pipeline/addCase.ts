@@ -940,7 +940,11 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
       }
 
       if (exhibitionResult.outcome === "duplicate") {
-        const message = buildAddCaseDuplicateText(exhibitionResult.duplicateTitle || exhibitionResult.reasonJa);
+        const base = buildAddCaseDuplicateText(exhibitionResult.duplicateTitle || exhibitionResult.reasonJa);
+        // 「Tokyo Art Beat で確認して登録済み」など、重複に補足がある場合は理由も添える
+        const message = exhibitionResult.reasonJa && exhibitionResult.reasonJa !== "既に登録済みです" && exhibitionResult.duplicateTitle
+          ? `${base}\n${exhibitionResult.reasonJa}`
+          : base;
         await updateJob(jobId, { status: "error", progress: undefined, error: message, cost: costUsd });
         await notifyLineIfPossible(lineUserId, message);
         return;

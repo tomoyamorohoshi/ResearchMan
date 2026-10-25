@@ -239,3 +239,27 @@ test("同一ツイートを別ユーザー名・大小違いで再投稿する�
   assert.equal(first.result, "accepted");
   assert.equal(addToQueue(first.data, u2, 1_000_001).result, "duplicate");
 });
+
+test("TAB 展示ページ: 受理し、query/fragment を除去して www.tokyoartbeat.com に正規化", () => {
+  const base = "https://www.tokyoartbeat.com/events/-/Interlinked/F6117340/2026-09-18";
+  assert.equal(ok(base), base);
+  assert.equal(ok(base + "?utm=1#x"), base);
+  assert.equal(ok("https://tokyoartbeat.com/events/-/Interlinked/F6117340/2026-09-18"), base);
+});
+
+test("TAB: 展示ページ以外・偽装ホスト・http・userinfo・ポートは拒否", () => {
+  ng("https://www.tokyoartbeat.com/");
+  ng("https://www.tokyoartbeat.com/venues/-/abc");
+  ng("https://www.tokyoartbeat.com/events/-/");
+  ng("https://tokyoartbeat.com.evil.example/events/-/x/1");
+  ng("https://www.tokyoartbeat.com@evil.example/events/-/x/1");
+  ng("https://www.tokyoartbeat.com:8443/events/-/x/1");
+  ng("http://www.tokyoartbeat.com/events/-/x/1");
+});
+
+test("TAB: intakeKey は URL ごとに決定的で X/IG と衝突しない", () => {
+  const a = ok("https://www.tokyoartbeat.com/events/-/A/F1/2026-09-18");
+  const b = ok("https://www.tokyoartbeat.com/events/-/B/F1/2026-09-18");
+  assert.equal(intakeKey(a), intakeKey(a));
+  assert.notEqual(intakeKey(a), intakeKey(b));
+});

@@ -103,11 +103,23 @@ test("公式ページで会期が確認できない場合は unverified＋平易
   assert.equal(r.data.items.length, 0);
 });
 
-test("公式URLが無い候補は unverified（公式ページが見つかりませんでした）", async () => {
+test("公式URLが無い候補（TAB 以外の投稿URL）は unverified（個別ページが見つかりませんでした）", async () => {
   const obj = { contentKind: "exhibition", candidates: [{ ...baseCand, officialUrl: "" }] };
   const r = await processExhibitionAdd({ obj, url: URL_, data: makeData(), today: TODAY, deps: makeDeps(), opts });
   assert.equal(r.outcome, "unverified");
-  assert.match(r.reasonJa, /公式ページ/);
+  assert.match(r.reasonJa, /個別ページが見つかりませんでした/);
+});
+
+test("TAB 展示ページURLの投稿は、公式URLが空でも TAB 照合で added（verifiedVia 付き）。照合失敗は unverified", async () => {
+  const TAB = "https://www.tokyoartbeat.com/events/-/Hikaru/F1/2026-10-24";
+  const obj = { contentKind: "exhibition", candidates: [{ ...baseCand, officialUrl: "" }] };
+  const r = await processExhibitionAdd({ obj, url: TAB, data: makeData(), today: TODAY, deps: makeDeps(), opts });
+  assert.equal(r.outcome, "added");
+  assert.equal(r.added[0].link, TAB);
+  assert.equal(r.added[0].verifiedVia, "tokyoartbeat");
+  const r2 = await processExhibitionAdd({ obj, url: TAB, data: makeData(), today: TODAY, deps: makeDeps("<html>別のページ</html>"), opts });
+  assert.equal(r2.outcome, "unverified");
+  assert.match(r2.reasonJa, /Tokyo Art Beat のページで会期を確認できませんでした/);
 });
 
 test("終了済みは rejected（既に終了）", async () => {
@@ -197,4 +209,40 @@ test("低スコア(素点30)・hard除外カテゴリの投稿でも追加され
   const r2 = await processExhibitionAdd({ obj: { contentKind: "exhibition", found: true, candidates: [hard] }, url: URL_, data: makeData(), today: TODAY, deps: makeDeps(), opts });
   assert.equal(r2.outcome, "added");
   assert.equal(r2.userPicks.length, 0);
+});
+
+test("describeExhibitionReason: official-url-missing は TAB 展示ページの案内つき", () => {
+  const s = describeExhibitionReason("official-url-missing");
+  assert.match(s, /会場・主催者のサイトに展示の個別ページが見つかりませんでした/);
+  assert.match(s, /Tokyo Art Beat/);
+});
+
+test("describeExhibitionReason: official-url-rejected / duplicate-existing-tab-verified の文面", () => {
+  assert.match(describeExhibitionReason("official-url-rejected（listing/SNS）"), /Tokyo Art Beat の展示ページURLなら確認元として使えます/);
+  const d = describeExhibitionReason("duplicate-existing-tab-verified");
+  assert.match(d, /Tokyo Art Beat で確認して登録済み/);
+  assert.match(d, /公式の個別ページURLを送ると公式に切り替えます/);
+});
+
+test("TAB確認済みの既存展示と重複（昇格できず）→ duplicate で TAB 確認済みの文面。公式 URL 付きなら updated で公式へ", async () => {
+  const TAB = "https://www.tokyoartbeat.com/events/-/Hikaru/F1/2026-10-24";
+  const tabObj = { contentKind: "exhibition", candidates: [{ ...baseCand, officialUrl: "" }] };
+  const first = await processExhibitionAdd({ obj: tabObj, url: TAB, data: makeData(), today: TODAY, deps: makeDeps(), opts });
+  assert.equal(first.outcome, "added");
+  const again = await processExhibitionAdd({ obj: tabObj, url: TAB, data: first.data, today: TODAY, deps: makeDeps(), opts });
+  assert.equal(again.outcome, "duplicate");
+  assert.match(again.reasonJa, /Tokyo Art Beat で確認して登録済み/);
+  const promoObj = { contentKind: "exhibition", candidates: [{ ...baseCand, officialUrl: URL_ }] };
+  const promo = await processExhibitionAdd({ obj: promoObj, url: TAB, data: first.data, today: TODAY, deps: makeDeps(), opts });
+  assert.equal(promo.outcome, "updated");
+  assert.equal(promo.data.items[0].link, URL_);
+  assert.equal(promo.data.items[0].verifiedVia, undefined);
+});
+
+test("describeExhibitionReason: TAB 照合失敗は何が合わなかったかを含む", () => {
+  assert.match(describeExhibitionReason("tab-date-mismatch: startDate 2026-10-12 not found"), /Tokyo Art Beat.*会期/);
+  assert.match(describeExhibitionReason("tab-venue-mismatch: テスト美術館"), /Tokyo Art Beat.*会場/);
+  assert.match(describeExhibitionReason("tab-title-mismatch: 展"), /Tokyo Art Beat.*展覧会名/);
+  assert.match(describeExhibitionReason("tab-status-404"), /Tokyo Art Beat.*取得できません/);
+  assert.match(describeExhibitionReason("tab-fetch-error: x"), /Tokyo Art Beat.*取得できません/);
 });

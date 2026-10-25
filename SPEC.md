@@ -52,8 +52,9 @@
 | `tags` | string[] | `data/exhibition-tag-vocabulary.json`（新規。下記）内のみ |
 | `score` | number 0-100 | profile.scoring に従う |
 | `matchReason` | string | 1〜2文。なぜ好みに合うか。事実と推測を混ぜない |
-| `sources` | `{name,url,kind}[]` | `kind: official\|listing\|social\|news`。**official が1件以上必須**（裏取り済みの証拠） |
-| `link` | string | 公式の展覧会ページ（`sources` の official のどれか） |
+| `sources` | `{name,url,kind}[]` | `kind: official\|listing\|social\|news`。**official が1件以上必須**（裏取り済みの証拠）。唯一の例外は `verifiedVia: "tokyoartbeat"`（下記・2026-10-26） |
+| `link` | string | 公式の展覧会ページ（`sources` の official のどれか）。`verifiedVia: "tokyoartbeat"` の展示は TAB 展示ページ URL |
+| `verifiedVia` | `"tokyoartbeat"`（任意） | 投稿経由（LINE・Web投稿欄。trustOrigin の intake）で会場・主催者の個別公式ページが無く、Tokyo Art Beat の展示ページ（host が tokyoartbeat.com / www.tokyoartbeat.com、path が `/events/-/` 配下）を会期・会場・展示名の照合元にした展示。`link` = TAB URL、`sources` に `{kind:"listing", name:"Tokyo Art Beat", url: TAB URL}`。サムネ取得元も TAB ページ。自動発見では付かない・会期追従(dup 更新)の対象外（skip） |
 | `thumbnail` | string | `/thumbnails/exhibition/{id}.jpg`。実体必須 |
 | `addedAt` | string | ISO8601。初回追加日時。以後不変 |
 | `origin` | `auto\|intake` | intake はユーザー投稿起点 |
@@ -159,7 +160,7 @@ CLI の失敗（タイムアウト・JSON 抽出失敗）はステップ1の sta
 4. `startDate`/`endDate` が実在する `YYYY-MM-DD`、`startDate <= endDate`
 5. `status` が `computeStatus(start, end, statusAsOf)` と一致（ended を upcoming/ongoing と誤記する、またはその逆を検出。時計非依存）。さらに `statusAsOf` が **未来**ならFAIL
 6. `tags` が語彙内・`prefecture` が47都道府県のいずれか・`score` が 0〜100 の整数・`highlight===(score>=80)`・`origin` が `auto|intake`、intake なら `intakeUrl` 必須
-7. `sources` に `kind: official` が1件以上、`link` が sources 内の official と一致、全 URL が `https?://`
+7. `sources` に `kind: official` が1件以上、`link` が sources 内の official と一致、全 URL が `https?://`。例外: `verifiedVia === "tokyoartbeat"` かつ `link` が TAB 展示ページ URL で、その listing source と一致するときだけ official 無しを許す（`verifiedVia` は `tokyoartbeat` 以外 FAIL）
 8. `thumbnail` が `/thumbnails/exhibition/` 配下で実体があり `MIN_THUMB_BYTES` 以上（`thumbnail-constraints.mjs`）。**未参照の孤立サムネは WARN**（tech に倣う）
 9. ended 以外で `matchReason` が空、または `UNKNOWN` を `title/venue/日付` に含む
 10. seed の `role: preference_only`（BLACK AND BLUE・小松宏誠展）は `exhibition.json` に入れない前提のため、同 slug が存在すれば FAIL（嗜好専用の混入防止）

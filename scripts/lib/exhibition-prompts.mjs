@@ -27,7 +27,7 @@ export const CANDIDATE_SCHEMA_TEXT = `[{
   "admission": "無料 / 一般800円 / UNKNOWN",
   "tags": ["media_art","generative","onchain","installation","light","kinetic","glass","sculpture","video_art","design_archive","graphic_design","architecture","ai_media_art","retrospective","sound" から選ぶ],
   "score": 0-100の整数（profile.scoring に従い自己採点）, "matchReason": "なぜ好みに合うか1〜2文。事実のみ・推測を混ぜない",
-  "officialUrl": "会場/主催者の公式の展覧会個別ページURL（一覧や検索結果・X・TAB等の転載ページは不可）",
+  "officialUrl": "会場/主催者の公式の展覧会個別ページURL（一覧や検索結果・X・TAB等の転載ページは不可。ただし下の手順で TAB 展示ページURLを書くよう指示された場合だけはそれに従う）",
   "officialName": "公式ページの名称（任意）",
   "slugTitle": "URL用の英題/ローマ字題（日本語のみの題名のとき必須。例: tada-minami-light）", "slugVenue": "URL用の会場英名（例: mot）",
   "sources": [{"name":"出所名","url":"https://...","kind":"listing|social|news"}],
@@ -152,7 +152,7 @@ ${blocks}
 
 # 手順
 1. 各POSTから展覧会（名称・作家・会場・会期）を特定する。展覧会の告知でなければ、その url の候補は出さない
-2. 会場・主催者の**公式ページをWebSearch/WebFetchで探し、日付・会場を公式ページで確認**する。公式ページが見つからなければ officialUrl は空文字（後段で unverified になる）
+2. 会場・主催者の**公式ページをWebSearch/WebFetchで探し、日付・会場を公式ページで確認**する。公式ページが見つからなければ officialUrl は空文字（後段で unverified になる）。投稿本文が Tokyo Art Beat（TAB）の展示ページ（URL が https://www.tokyoartbeat.com/events/-/ で始まる）の場合も、まず TAB ページ内の「展覧会URL」や会場サイトの個別公式ページを探して officialUrl に書く。見つからない場合だけ officialUrl は空（後段で TAB ページで確認される）。公式個別ページが見つからず、投稿本文に TAB 展示ページ URL があれば officialUrl にその TAB URL を書く。いずれも会場名・会期は TAB ページ記載どおりに書く
 3. 各候補に "intakeUrl"（元のPOSTのurl）を必ず付ける。1つのPOSTに複数の展覧会があれば複数候補
 4. score は profile.scoring に従い自己採点（投稿ボーナス+10は機械側で加算するので含めない。投稿された＝興味ありとして扱われるが、score 自体は正直に付ける）
 5. 各候補に "pickWhy" を付ける:
