@@ -22573,5 +22573,221 @@
         "desc": "国民食ガパオの改変論争を逆手に取った、キャスティングが巧みなKFC Thailandの短編。"
       }
     ]
+  },
+  {
+    "id": "2026-10-25-1",
+    "date": "2026-10-25",
+    "title": "紙面を光にかざす重ね合わせ",
+    "pattern": "転用",
+    "seed": "『君の名は。』朝日新聞広告の「光にかざすと2ページが重なる」仕掛けを、Single-Sided Bessel-Beam Acoustic Levitationの浮かぶ球に転用し、2つの球が空中で寄り添い影が重なる瞬間だけ物語が成立する装置にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-1uoh77r-2019",
+        "title": "『君の名は。』地上波放送告知 朝日新聞広告",
+        "desc": "隣り合う新聞2ページを光にかざすと二人の絵が重なり、出会いを再現した映画告知の広告。"
+      },
+      {
+        "type": "tech",
+        "id": "single-sided-bessel-beam-acoustic-levitation",
+        "title": "Single-Sided Bessel-Beam Acoustic Levitation(ゼロ次ベッセルビームによる片側音響浮揚)",
+        "desc": "超音波で、装置から約40cm離れた軽い球を触れずに空中で動かす技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-25-2",
+    "date": "2026-10-25",
+    "title": "逆さ広告を歩き方で反転する",
+    "pattern": "文脈×技術",
+    "seed": "IKEA Alsulaiman: Reverse Shopの「すべてを逆さにする」発想に、MotionPersonaの「酔っ払い」などスタイル指定歩行を掛け、買取カウンターへ後ろ向きによろけて向かうキャラが案内する逆さ店舗体験ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ikea-alsulaiman-reverse-shop-2026",
+        "title": "IKEA Alsulaiman: Reverse Shop",
+        "desc": "ロゴや価格まで全部を上下逆さにした、IKEAサウジの家具買取キャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "motionpersona",
+        "title": "MotionPersona",
+        "desc": "人物・体型・歩き方のスタイルを指定し、操作に応じて歩く動きを即座に作るモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-25-3",
+    "date": "2026-10-25",
+    "title": "割れ米の結婚式を空間に残す",
+    "pattern": "文脈×技術",
+    "seed": "The Wedding Riceの、廃棄される割れ米を式で撒く米にした発想に、Mobile-4DGSを掛け、米が舞う一瞬をスマホで見返せる4Dのご祝儀アーカイブとして贈れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "wikifarmer-the-wedding-rice",
+        "title": "The Wedding Rice",
+        "desc": "食用にできず捨てられていた割れ米を、結婚式で撒く専用の米として商品化した事例。"
+      },
+      {
+        "type": "tech",
+        "id": "mobile-4dgs",
+        "title": "Mobile-4DGS",
+        "desc": "動く3D空間をスマホのブラウザでリアルタイム表示できる軽量な手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-25-4",
+    "date": "2026-10-25",
+    "title": "積む塔を30人で歩く追体験",
+    "pattern": "技術×技術",
+    "seed": "YaGSのUnreal上で正しく重なるGaussian Splattingと、EmoteCapの動画から作る全身アニメを組み合わせ、実写スキャンした空間を自分の撮った動きのアバターで歩けるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "yags",
+        "title": "YaGS",
+        "desc": "実写風の3D点群を、普通の3Dモデルと奥行きで正しく重ねて表示できる無料プラグイン。"
+      },
+      {
+        "type": "tech",
+        "id": "emotecap",
+        "title": "EmoteCap",
+        "desc": "ウェブカメラや動画から、指まで含む人の動きのアニメを作れるツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-25-5",
+    "date": "2026-10-25",
+    "title": "記憶の塔をスキャンして再生",
+    "pattern": "文脈×技術",
+    "seed": "Moment Capsuleの記憶を積む「時間の塔」を、ArtiFixerで壊れた3Dスキャンから復元する発想とつなげ、劣化した古い記憶の塔を撮っていない角度まで補って見せる展示にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "moment-capsule-if-2018",
+        "title": "Moment Capsule",
+        "desc": "個人の記憶を層にして積み上げ、時間の塔として形にした展示作品。"
+      },
+      {
+        "type": "tech",
+        "id": "artifixer",
+        "title": "ArtiFixer",
+        "desc": "ぼやけた3D再現を動画拡散モデルで直し、撮っていない角度も補う研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-25-6",
+    "date": "2026-10-25",
+    "title": "音声映像同時生成で和楽器MV",
+    "pattern": "技術×技術",
+    "seed": "LTX-2の音と映像の同時生成と、audio.cppを手元PCで動かす音声AIを掛け合わせ、鼓童のような生演奏の波形に合わせて映像が生まれる、通信なしの会場専用ライブ演出ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ltx-2",
+        "title": "LTX-2",
+        "desc": "音声と映像を同時につくれる、4K対応の公開された動画生成モデル。"
+      },
+      {
+        "type": "tech",
+        "id": "audio-cpp",
+        "title": "audio.cpp",
+        "desc": "60種以上の音声・音楽AIを、Python無しで手元のPCで動かせる推論エンジン。"
+      },
+      {
+        "type": "case",
+        "id": "case-1ajhui9-2026",
+        "title": "鼓童×初音ミク「響演」～和楽器スペシャルライブ～",
+        "desc": "初音ミクの曲を和太鼓や箏などの生演奏だけで再構成したライブ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-25-7",
+    "date": "2026-10-25",
+    "title": "ビートメイクを建築の骨格へ",
+    "pattern": "転用",
+    "seed": "Splice MCP Server × Claudeのビートメイク指示を、音楽でなくAniGenの骨格つきキャラの動きの設計に転用し、「ここはDJプレミア風に重く」と言葉でリズム感のある振付をつけられるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "splice-mcp-claude-beatmaking",
+        "title": "Splice MCP Server × Claude Cowork によるAIビートメイク検証",
+        "desc": "Spliceの音楽素材サーバーをClaudeにつなぎ、文章指示でビートを作る検証。"
+      },
+      {
+        "type": "tech",
+        "id": "anigen",
+        "title": "AniGen",
+        "desc": "1枚の画像から、動かせる骨格つきの3Dキャラを自動で作る技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-25-8",
+    "date": "2026-10-25",
+    "title": "空き家の宿を実写空間で複製",
+    "pattern": "文脈×技術",
+    "seed": "檸檬ホテルの空き家を一夜一組の宿にする試みに、Three.js Native Gaussian Splat Rendererを掛け、泊まれない日も部屋をブラウザで歩ける実写の「予約待ち部屋」として公開できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2016-030",
+        "title": "檸檬ホテル",
+        "desc": "豊島の空き家を、一夜に一組だけ泊まれる宿にした滞在型の作品。"
+      },
+      {
+        "type": "tech",
+        "id": "three-js-native-gaussian-splat-renderer",
+        "title": "Three.js Native Gaussian Splat Renderer",
+        "desc": "Three.jsで実写の立体空間をブラウザに直接描ける標準機能。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-25-9",
+    "date": "2026-10-25",
+    "title": "食べ残し広告を口パクにする",
+    "pattern": "転用",
+    "seed": "Rev2Dの2Dキャラ用リグを、Food Scrapsのような印刷広告の犬猫の絵に転用し、ゴミ箱の体の口が「それは食べられない」と動く、紙面からQRで起動する警告にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "food-scraps-2026",
+        "title": "Food Scraps",
+        "desc": "犬猫の体をゴミ箱に見立て、人の食べ残しを与える危険を訴えた印刷広告。"
+      },
+      {
+        "type": "tech",
+        "id": "rev2d",
+        "title": "Rev2D",
+        "desc": "2Dキャラの動かす骨組みを、AIが読み書きできる形で作るOSSツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-25-10",
+    "date": "2026-10-25",
+    "title": "透かしを消す機能の逆利用",
+    "pattern": "文脈×技術",
+    "seed": "Googleが可視透かしを消せるようにした発表に、EditAnything (LTX-2.3 Video Edit LoRA)を掛け、AI生成と明かす透かしをあえて作品の主役に置き直す、告白型の動画広告ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "google-ai-2026",
+        "title": "Google、AI生成コンテンツの可視透かし削除機能を発表",
+        "desc": "GeminiとFlowで、AI生成物の可視の透かしを任意で消せる新設定の発表。"
+      },
+      {
+        "type": "tech",
+        "id": "editanything",
+        "title": "EditAnything (LTX-2.3 Video Edit LoRA)",
+        "desc": "動画生成モデルを、文章指示で背景除去や要素の置換ができる編集用に変えるLoRA。"
+      }
+    ]
   }
 ]
