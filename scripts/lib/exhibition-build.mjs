@@ -320,6 +320,9 @@ async function fetchOfficialText(cand, { fetchHtml }) {
  * TAB 展示ページを取得して checkOfficialText と同じ照合（開始日・終了日・会場・展示名）を行う。
  * 理由コードは official- ではなく tab- 接頭（返信文で TAB 照合失敗と分かるように）。
  */
+// 公式ページ取得失敗の理由コード（fetchOfficialText が返すもの）。*-mismatch は含めない
+const OFFICIAL_UNREACHABLE_RE = /^official-(status-|fetch-error|fetch-failed)/;
+
 async function verifyTabPage(cand, tabUrl, { fetchHtml }) {
   let res;
   try {
@@ -482,16 +485,17 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
     }
     // 公式 URL が空/不可のとき、投稿(intake かつ trustOrigin)に限り TAB 展示ページを確認元にできる（自動発見では常に null）
     let tabUrl = null;
+    // 公式 URL は有効だが取得できない（403 等のボット拒否）ときの救済先。投稿(trustOrigin の intake)のときだけ非 null
+    const tabCandidate = o.trustOrigin === true && isIntake(cand)
+      ? [cand.intakeUrl, cand.officialUrl].find((u) => isTabEventUrl(u) && isPublicHttpUrl(u)) || null
+      : null;
     if (!isHttpUrl(cand.officialUrl) || !isSafeOfficialUrl(cand.officialUrl)) {
-      if (o.trustOrigin === true && isIntake(cand)) {
-        tabUrl = [cand.intakeUrl, cand.officialUrl].find((u) => isTabEventUrl(u) && isPublicHttpUrl(u)) || null;
-      }
+      tabUrl = tabCandidate;
       if (!tabUrl) {
         if (!isHttpUrl(cand.officialUrl)) return unver(cand, "official-url-missing");
         return unver(cand, "official-url-rejected（listing/SNS/内部ホスト/不正URLは公式として不可）");
       }
     }
-    const verifiedUrl = tabUrl || cand.officialUrl;
     if (!isValidYmd(cand.startDate) || !isValidYmd(cand.endDate)) return unver(cand, "会期不明（startDate/endDate が不正または欠落）");
     if (cand.startDate > cand.endDate) return reject(cand, "start-after-end");
     if (cand.endDate < today) return reject(cand, "already-ended");
@@ -566,7 +570,13 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
     const exempt = cand.collectAll || cand.origin === "intake";
     if (!exempt && capped >= o.maxAdd) return reject(cand, "daily-cap");
 
-    const v = tabUrl ? await verifyTabPage(cand, tabUrl, deps) : await verifyOfficialPage(cand, deps);
+    let v = tabUrl ? await verifyTabPage(cand, tabUrl, deps) : await verifyOfficialPage(cand, deps);
+    // 公式ページの「取得失敗」（403 等）に限り、投稿の TAB ページで照合して救済する。会期・会場・展示名の不一致は救済しない
+    if (!v.ok && !tabUrl && tabCandidate && OFFICIAL_UNREACHABLE_RE.test(v.reason)) {
+      const t = await verifyTabPage(cand, tabCandidate, deps);
+      if (t.ok) { tabUrl = tabCandidate; v = t; }
+      else v = { ok: false, reason: `official-unreachable-tab-failed: ${v.reason} / ${t.reason}` };
+    }
     if (!v.ok) return unver(cand, v.reason);
 
     const id = buildExhibitionId({ startDate: cand.startDate, venue: cand.slugVenue || cand.venue, title: cand.slugTitle || cand.title }, taken);
@@ -574,7 +584,7 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
     if (!o.dryRun) {
       // TAB 確認の展示は TAB ページをサムネ取得元にする（officialUrl として渡す＝既存の og:image/img 取得ロジックの延長）
       thumbnail = await deps.saveThumb(id, tabUrl ? { ...cand, officialUrl: tabUrl } : cand);
-      if (typeof thumbnail !== "string" || !thumbnail.trim()) return reject(cand, "thumbnail-unavailable", cand.thumbnailSource || verifiedUrl);
+      if (typeof thumbnail !== "string" || !thumbnail.trim()) return reject(cand, "thumbnail-unavailable", cand.thumbnailSource || tabUrl || cand.officialUrl);
     }
 
     const item = {
@@ -594,7 +604,7 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
       score,
       matchReason: cand.matchReason.trim(),
       sources: buildSources(cand, tabUrl),
-      link: verifiedUrl,
+      link: tabUrl || cand.officialUrl,
       ...(tabUrl ? { verifiedVia: VERIFIED_VIA_TAB } : {}),
       thumbnail,
       addedAt: deps.now(),

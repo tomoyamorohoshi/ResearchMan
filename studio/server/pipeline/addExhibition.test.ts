@@ -246,3 +246,8 @@ test("describeExhibitionReason: TAB 照合失敗は何が合わなかったか�
   assert.match(describeExhibitionReason("tab-status-404"), /Tokyo Art Beat.*取得できません/);
   assert.match(describeExhibitionReason("tab-fetch-error: x"), /Tokyo Art Beat.*取得できません/);
 });
+
+test("describeExhibitionReason: 公式取得不可かつ TAB 照合も失敗なら両方確認できなかったと分かる", () => {
+  const s = describeExhibitionReason("official-unreachable-tab-failed: official-status-403 / tab-date-mismatch: startDate 2026-11-04 not found");
+  assert.match(s, /公式ページは取得できず（403 等）、Tokyo Art Beat でも会期・会場・展示名を確認できませんでした/);
+});
