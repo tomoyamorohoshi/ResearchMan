@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "statusAsOf": "2026-10-25",
+  "statusAsOf": "2026-10-26",
   "items": [
     {
       "id": "2026-kk-line-roof-park-art-fes-2026",
@@ -223,7 +223,7 @@
       "city": "港区",
       "startDate": "2026-08-28",
       "endDate": "2026-10-25",
-      "status": "ongoing",
+      "status": "ended",
       "admission": "平日 2,200円(前売)/2,500円(当日)、土日祝 2,500円(前売)/2,800円(当日)",
       "tags": [
         "media_art",
@@ -687,7 +687,7 @@
       "city": "港区",
       "startDate": "2026-10-17",
       "endDate": "2026-10-25",
-      "status": "ongoing",
+      "status": "ended",
       "admission": "無料",
       "tags": [
         "media_art",
