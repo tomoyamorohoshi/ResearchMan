@@ -2,7 +2,7 @@
   "_description": "generate-idea-seeds.mjs のチューニング可能パラメータ。既定値は2026-07-08時点のハードコード（SEED_COUNT/CASE_SAMPLE/TECH_SAMPLE/パターン混合比/プロンプト文言）と完全一致させてある。隔週チューンアップ（scripts/biweekly-tuneup.mjs）がideas.jsonの機械指標とお気に入り分布に基づき更新する",
   "seedCount": 10,
   "caseSample": 14,
-  "techSample": 16,
+  "techSample": 20,
   "patternMix": {
     "_description": "各パターンの最低出現数はこの比率×seedCountを四捨五入した値。4つの比率の合計は常に1（freeは比率制約のない残り枠）",
     "contextXTech": 0.3,
@@ -19,11 +19,13 @@
       "Form/Print": 1.3,
       "Form/Website": 1.3,
       "Tech/Data": 1.3,
-      "Form/Film": 1.2,
       "Form/Installation": 1.2,
-      "Theme/SocialGood": 1.2
+      "Form/Event": 1.2
     },
-    "techDomains": {}
+    "techDomains": {
+      "Motion/Body": 1.2,
+      "CreatorTools": 1.2
+    }
   },
   "promptText": {
     "_description": "buildPrompt() が組み立てる文面のうち、チューンアップが調整しうる可変文節",
@@ -33,6 +35,6 @@
       "contextXTech": "（事例が扱った文脈・課題）にこの技術を掛けたら、こんな課題を解決できるかも",
       "repurpose": "この技術を本来の使い方ではない使い方をしたら、こんなことに役立つかも"
     },
-    "styleNotes": "意外な掛け合わせ・飛距離を優先。ありきたりな「AIで効率化」的な種は不可。候補技術のうち直近の生成で頻出しているものより、使用頻度の低い技術を優先して選ぶ。自由枠（free）では文脈×技術/技術×技術/転用の型に無理に当てはめず、リストにない新しいパターン名を自分で考えてよい"
+    "styleNotes": "意外な掛け合わせ・飛距離を優先。ありきたりな「AIで効率化」的な種は不可。候補技術のうち直近の生成で頻出しているものより、使用頻度の低い技術を優先して選ぶ。同じ技術を複数の種で繰り返し使わず、1回の生成内でも技術・事例の重複を避ける。自由枠（free）では文脈×技術/技術×技術/転用の型に無理に当てはめず、リストにない新しいパターン名を自分で考えてよい"
   }
 }

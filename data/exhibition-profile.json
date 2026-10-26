@@ -1,7 +1,7 @@
 {
   "_description": "Exhibitionタブ日次ジョブ(scripts/auto-research-exhibition.mjs)がプロンプトに読み込む機械可読プロファイル。根拠は docs/EXHIBITION_RESEARCH.md。重みやしきい値の更新は隔週チューンアップ(お気に入り/ごみ箱/intake)経由。sources.urlは2026-10-04に取得確認済みのもののみ",
   "version": 1,
-  "updatedAt": "2026-10-04",
+  "updatedAt": "2026-10-26",
   "scope": {
     "region": "日本全国（地域で差をつけない）",
     "includeStatuses": [
@@ -118,7 +118,10 @@
       "Ann Veronica Janssens",
       "田中義久",
       "田中一光",
-      "teamLab(要個別判断)"
+      "teamLab(要個別判断)",
+      "YOSHIROTTEN",
+      "瀬戸内サーカスファクトリー",
+      "STARRYWORKS inc."
     ],
     "venues": [
       "NEORT++",
@@ -133,7 +136,9 @@
       "森美術館",
       "国立新美術館",
       "KARIMOKU RESEARCH CENTER",
-      "瀬戸内市立美術館"
+      "瀬戸内市立美術館",
+      "KK線（旧東京高速道路）",
+      "BONDED GALLERY"
     ],
     "discoveryQueries": [
       "メディアアート 展覧会 {月}",
