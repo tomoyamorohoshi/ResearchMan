@@ -1,5 +1,238 @@
 [
   {
+    "id": "sonic-35th-anniversary-figure-with-synthetic-dna-2026",
+    "title": "Sonic 35th Anniversary Figure with Synthetic DNA",
+    "summary": "ソニックの青い体や泳げない性質など架空の設定を合成DNAに変換し、カオスエメラルド状カプセルに封入したフィギュア。",
+    "client": "SEGA",
+    "agency": "LOM BABY",
+    "categories": [
+      "コンテンツ革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://creapills.com/sega-figurine-sonic-adn-synthetique-20261019",
+    "thumbnail": "/thumbnails/sonic-35th-anniversary-figure-with-synthetic-dna-2026.jpg",
+    "videoId": "",
+    "overview": "SEGAがソニック誕生35周年を記念し、科学者・アーティスト・エンジニアの集団LOM BABYと制作した高さ約25cmのクローム仕上げのフィギュア。胸の緑のカオスエメラルドに保護カプセルが埋め込まれ、ソニックの特性から設計した合成DNAが封入されている。受注生産・限定番号入りで、価格は約330万円。",
+    "background": "LOM BABYは生命の起源をテーマにアーティスト、エンジニア、科学者が集まる日本のコレクティブで、キャラクターの外見・性格・能力を整理してDNAを合成する「DNAフィギュア」を手がける。SEGAの35周年企画として、2026年6月23日からSEGA STORE TOKYO(渋谷PARCO)で等身大版が展示された。",
+    "execution": "DNAはソニックの実在のゲノムの複製ではなく、青い体、音速で走る、加速、冒険好き、スピン攻撃、気性、泳げないといった架空の特性を表すよう設計されたもの。SEGAはDNAの設計・合成にAIを使っていないと明言している。展示では特性を説明するパネルも併設された。予約は2026年11月1日まで、納品は2027年1月予定。",
+    "evaluationImpact": "虚構のキャラクター設定を、物質としてのDNAに変換した点が企画の核で、「ファンが所有できる遺伝情報」という新しいIPグッズの形を示した。一方で報道には「DNAとされるもの」という懐疑的な見方もあり、公式発表と広報的演出の線引きを指摘する声がある。受賞は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Product",
+      "Theme/Entertainment",
+      "Theme/Art"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "eggsplosion-2026",
+    "title": "EGGSplosion",
+    "summary": "加熱で殻が破裂した卵の白身の漏れ方を観察し、その歪んだ形を磁器の花器に写した偶発性起点のデザイン実験。",
+    "client": "Arkadiusz Szwed",
+    "agency": "",
+    "categories": [
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/arkadiusz-szwed-eggsplosion-oeufs-porcelaine-20261021",
+    "thumbnail": "/thumbnails/eggsplosion-2026.jpg",
+    "videoId": "",
+    "overview": "ポーランドの陶芸家Arkadiusz Szwedによる「EGGSplosion」は、本物の卵を加熱して殻を破裂させ、その形を磁器の花器・容器に反映した作品シリーズ。写真では、茶卵・白卵が小さな金属の支持具に載り、凝固した白身が殻からはみ出している。出来上がった花器は不規則な縁と唐突な開口部、凸凹した表面を持つ。",
+    "background": "Szwedはワルシャワ在住で、SWPS大学School of Formの陶芸工房の責任者。陶芸家Marek Cecula のアシスタントを長く務め、Ćmielów磁器工房で学んだとされる。以前のシリーズ「BUMPS 2.0」でも、石膏型の上の柔らかい素材の下にプラスチック球を置き、予測不能な形を生んでおり、制御しきれない現象を造形に取り込む姿勢が一貫している。",
+    "execution": "加熱の強さと時間を変えながら卵を調理し、内圧で殻が割れる様子を観察した。割れ方、白身の質感、白身の漏れ出し方が卵ごとに異なる点を記録している。実験の一部にはMarta Lempickaが「卵の破壊者」として協力した。Creapillsによれば、壊れた卵を型取りするのではなく、その破裂した形を磁器で再解釈したという。",
+    "evaluationImpact": "調理という身近な現象の偶発的な破壊を、磁器の花器という工芸の形に転換した点が評価できる。意図的に設計できない形を観察・記録して素材に移す手法は、他の工芸やプロダクトにも転用しやすい。ただし受賞や展示の情報は確認できておらず、掲載は現時点でCreapills記事のみである。",
+    "relatedWorks": [
+      {
+        "title": "BUMPS 2.0",
+        "description": "同作家の磁器シリーズ。石膏型にかぶせた弾性素材の下でプラスチック球を動かし、偶然の形を生む鋳込み技法。",
+        "url": "https://www.ceramicsnow.org/?p=26293"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Theme/Art"
+    ],
+    "gateCriterion": "D",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "imperfect-tomato-sauce-bottle-gca-design-studio-2026",
+    "title": "Imperfect Tomato Sauce Bottle (GCA Design Studio)",
+    "summary": "ガラス瓶の輪郭を工業公差の範囲でわざと不揃いにし、トマトごとの形の違いを表現した有機トマトソース用パッケージ。",
+    "client": "有機トマトソースのパッケージ（クライアント名は記事に無し）",
+    "agency": "GCA Design Studio",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/bouteilles-sauce-design-imparfait-tomates-gca-20261023",
+    "thumbnail": "/thumbnails/imperfect-tomato-sauce-bottle-gca-design-studio-2026.jpg",
+    "videoId": "",
+    "overview": "GCA Design Studioによる、有機トマトソース用のガラス瓶デザイン(作品名「Perfectly Imperfect」)。全体の基本形状は共通にしつつ、輪郭にわずかな違いを持たせ、一本ごとに微妙に異なる瓶にした。違いは後加工ではなく通常の成形工程で生じさせる想定で、専用の金型や追加工程は不要とされる。クライアント名は記事中に示されていない。",
+    "background": "工業生産のガラス瓶は均一であることが前提で、許容範囲を外れた瓶は不良として弾かれ、再溶解に回る。一方、原料のトマトは一つひとつ形が異なる。素材の自然な個体差と、容器の均一性とのずれに着目し、不揃いを欠点でなく特徴として扱う発想が出発点になっている。記事によれば開発期間は2025年8月〜2026年2月で、Istanbulで行われたと書かれている。",
+    "execution": "既存の工業用ガラス生産で認められている変動幅の範囲内に、輪郭の違いを限定している。容器の安定性、充填、包装ラインでの搬送を損なわないことが条件とされる。公差分析と生産シミュレーションを行い、規格外として弾かれる瓶や再溶解を減らせるかどうかも検討したと記事は伝えている。",
+    "evaluationImpact": "新しい設備を使わず、既存の製造許容差の読み替えだけで個体差のある容器を作る点が評価できる。規格外品の削減につながる可能性も示した。ただし廃棄物削減の具体的な数値は示されておらず、商業的な導入も確認できていない。記事ではGCAがA' Design AwardのGoldを受賞したと述べているが、公式ソースでは確認できなかったため、award欄は空としている。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Theme/Food",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "ocean-of-dreams-a-landscape-of-waves-sand-words-and-collecti",
+    "title": "Ocean of Dreams – A landscape of waves, sand, words, and collective imagination",
+    "summary": "430人超の夢の言葉を手書き風に変え、波と砂の景観として広場に投影した参加型作品",
+    "client": "Behnaz Farahi / Critical Matter Group, MIT Media Lab（MIT Future Fest 2026）",
+    "agency": "Critical Matter Group",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.creativeapplications.net/member/ocean-of-dreams-a-landscape-of-waves-sand-words-and-collective-imagination/",
+    "thumbnail": "/thumbnails/ocean-of-dreams-a-landscape-of-waves-sand-words-and-collecti.jpg",
+    "videoId": "",
+    "overview": "MITメディアラボのBehnaz FarahiとCritical Matter Groupによる参加型の公共作品。MIT Future Fest 2026(9月30日〜10月4日)の会期中、ケンドール広場に投影された。来場者が多言語のWebインターフェースから寄せた希望の言葉が手書き風の要素になり、波と砂の景観を流れて消えていく。投稿者は430人超で、約75×38フィート(約2,850平方フィート)の面に映された。",
+    "background": "Farahiは、希望を受け身の楽観ではなく「違う未来がありうると想像する力(主体性)」と捉え、デザインを可能な未来を形づくる参加型の実践と位置づけている。本作は「人は一緒に夢見られるか」という問いから出発し、見知らぬ人どうしの希望を一つの景観に重ねることで、集合的な想像の場を作ろうとした。",
+    "execution": "投稿テキストを手書き風のビジュアルに変換し、変化し続ける海・波・砂の景観へ流し込んだ。映像はTouchDesignerで制作し、専用のNDIネットワークでAVシステムへ送出した。MIT Museum屋上(4階)に設置したパナソニックPT-RQ35K(30,000ルーメン)のレーザープロジェクター2台で広場へ投影。海の映像はJan Erik Waiderのアイスランド北部の空撮に由来し、波音にJustin Boreta(Juston表記の資料もあり)の音楽を重ねた。",
+    "evaluationImpact": "言葉の投稿を、その場で景観の一部として消えていく映像に変える構造が明快で、一文で説明できる企画。公共広場に大規模投影で参加型の集合的想像を実装した点が特徴。MIT Media LabやDezeenなどが取り上げた。受賞は確認できていない。一方で、手法自体は参加型プロジェクションの既存の延長でもあり、発明の強さは中程度。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Projection",
+      "Form/Installation",
+      "Form/Event",
+      "Theme/Art"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creativeapplications",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "pine-bark-amber-dust-and-coffee-grounds-baltic-biomaterials",
+    "title": "Pine Bark, Amber Dust and Coffee Grounds: Baltic Biomaterials at Dutch Design Week",
+    "summary": "松の内樹皮の革状素材や琥珀粉・コーヒーかすの素材化など、バルト地域の副産物を集めた素材展",
+    "client": "Baltic biomaterials designers（Dutch Design Week 2026）",
+    "agency": "",
+    "categories": [
+      "カルチャーインサイト",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://materialdistrict.com/article/pine-bark-amber-dust-and-coffee-grounds-baltic-biomaterials-at-dutch-design-week/",
+    "thumbnail": "/thumbnails/pine-bark-amber-dust-and-coffee-grounds-baltic-biomaterials.jpg",
+    "videoId": "",
+    "overview": "Dutch Design Week 2026（10月17〜25日、アイントホーフェン）のBioArt Laboratories（Strijp T+R）で開かれた「Biomaterials Library: Lithuanian & Baltic Creators」。リトアニアなどバルト地域の作り手が、樹皮・琥珀の粉・コーヒーかすなどの副産物から作った素材やプロトタイプを並べた。入場無料。",
+    "background": "主催のBiomaterials Libraryは、リトアニアのヴィリニュスを拠点とする独立の素材研究・知識共有プラットフォームで、キュレーターはAustėja Platūkytė。農業・食品・工業の副産物を素材として捉え直す動きを、地域単位でまとめて見せる場として企画された。",
+    "execution": "Studio Sarmīteの「PineSkins」は、伐採の副産物であるヨーロッパアカマツの内樹皮を溶液と天然ワックスで柔らかくした革状の素材で、茶・ピンク・テラコッタ・灰色に発色し、壁面材や突板代替を想定する。Evelina Kudabaitėの「Giria」は製材所の樹皮粉を自作の有機バインダーで固める。Agnė Kučerenkaitėの「Amber Waste is Bliss」は、琥珀の加工で出る粉からバイオコンポジットを作る。Waste Matters Studioは、地元で集めたコーヒーかすと天然バイオ樹脂でタイルを作る。",
+    "evaluationImpact": "捨てられてきた副産物を、壁材・タイル・革代替といった用途のある素材に変えた実作を地域ぐるみで見せた点が価値。個々の作り手の素材研究を、見る・触れる展示にまとめた。ただし、記事から確認できたのは素材の概要と用途案までで、性能や量産性、受賞に関する記載は見当たらなかった。",
+    "relatedWorks": [
+      {
+        "title": "Biomaterials Library: Lithuanian & Baltic Creators（DDW公式プログラム）",
+        "description": "Dutch Design Week 2026の公式プログラムページ。バルト地域の作り手によるバイオマテリアルのサンプル、プロトタイプ、デザインオブジェクトを紹介している。",
+        "url": "https://ddw.nl/en/programme/biomaterials-library-lithuanian-baltic-creators"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Theme/Sustainability",
+      "Theme/Art"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "materialdistrict",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "studio-herrstr-m-disruptor-music-label-identity-2026",
+    "title": "Studio Herrström × disruptor music label identity",
+    "summary": "車の窓ステッカーと道路標識の記号体系を借り、ミルクシェイクの味を配色にしたレーベルのアイデンティティ。",
+    "client": "Disruptor music label (name not confirmed)",
+    "agency": "Studio Herrström",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.itsnicethat.com/articles/studio-herrstrom-milkshake-graphic-design-201026",
+    "thumbnail": "/thumbnails/studio-herrstr-m-disruptor-music-label-identity-2026.jpg",
+    "videoId": "",
+    "overview": "ウィーンのデザインスタジオStudio Herrströmが、ストックホルム拠点の音楽レーベルMilkshake（Sony Music Entertainment傘下、2019年設立）のために手がけたアイデンティティ。稲妻のようなロゴマークと、ミルクシェイクのフレーバーを参照した配色が特徴。2026年10月20日にIt's Nice Thatが紹介した。",
+    "background": "Milkshakeはアーティスト第一のアプローチを取る、レーベルとマネジメントを兼ねた存在で、オルタナティブ・ポップに注力し所属アーティストを増やしている。レーベル名はドライブ中に提案されたもので、「新しい音楽を試し乗りする」という発想から、車が一貫したモチーフになった。",
+    "execution": "車の窓ステッカーが主要な着想源で、書体とグラフィック言語の構造的なロックアップがそれを想起させる。道路標識に着想を得たアイコンも全体に使われる。主書体はContext TypeのGates。旧アイデンティティの鮮やかさを保ちつつ、色調をミルクシェイクのフレーバーに寄せた。稲妻状のロゴマークは運動的なエネルギーと流動感を持つ。",
+    "evaluationImpact": "記事は「過剰さと日常性」を併せ持つ印象だと評し、規則的な構造がアーティストとエージェンシーの双方を支え、レーベルの拡大にも対応できるとみる。ただし、具体的な展開例は記事本文では詳述されず、手法そのものに他へ転用できる固有の発明があるかは確認できなかった。",
+    "relatedWorks": [
+      {
+        "title": "Influur identity（Studio Herrström）",
+        "description": "Studio Herrströmが手がけた、クリエイターとブランドをつなぐインフルエンサー・プラットフォームのリブランディング。",
+        "url": "https://www.creativeboom.com/work/studio-herrstroem-crafts-a-new-identity-for-influur-an-agency-working-to-get-a-better-deal-for-creators/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/Music",
+      "Theme/Mobility"
+    ],
+    "gateCriterion": "B",
+    "sourceId": "itsnicethat",
+    "gateTier": "borderline",
+    "discoveryLens": 2
+  },
+  {
     "id": "infinite-scroll-2026",
     "title": "Infinite Scroll",
     "summary": "実機スマホを1分に1回スワイプする6体のロボット彫刻で、無限スクロールという身振りを作品化した",
