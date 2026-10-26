@@ -1,5 +1,163 @@
 [
   {
+    "id": "tutticam",
+    "title": "TuttiCam",
+    "org": "dtpoi(個人開発)",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "iPhone・Androidスマホや一部のアクションカメラ、ミラーレスを最大8台そろえ、同じ瞬間に自動で連続撮影するGaussian Splatting用の撮影アプリ。3Dモデル生成そのものはしない。",
+    "point": "1台のスマホを親機にして、最大8台のスマホやカメラを同時にシャッターさせられます。しかも全台がブレずに静止したのをジャイロ(傾きセンサー)で確かめてから撮るため、「ブレた写真が混ざってスプラットが崩れる」失敗を減らせます。人や動くものを囲んで撮る必要がある3Dスキャンでは、1台で歩き回るより一瞬を丸ごと止めて撮りやすくなります。広告や体験づくりでは、商品・ブース・人物・屋外イベント会場を多視点で撮ってGaussian Splatsにし、VRChatやWebの360度体験やAR展示に使う、といった用途が考えられます。実際に公式サイトには、車の展示会を4,000枚で撮った例や、自宅を1,200枚で撮ってVRChatに公開した例が載っています。アカウント登録も広告もなく、撮った写真は各端末に残る点も、クライアント案件の素材を扱うときに安心です。",
+    "detail": "仕組みは、1台を「ホスト」、残りを「フォロワー」としてWi-Fiまたはホットスポット越しに自動で見つけ合い、各端末の時計をNTP方式でそろえて、同じタイミングでシャッターを切るというものです。撮影前に各端末のジャイロの値からブレ量を見積もり、全員が静止するまで待ちます。遠足で全員が揃うのを待ってから集合写真を撮る、と考えるとわかりやすいです。Bluetooth対応のDJI・GoPro・ソニー・キヤノン・富士フイルム・ニコン・リコーの一部機種は外部カメラとしてリモートシャッターでき、写真はカメラ側に残ります。撮影後は写真ごとのJSONメタデータとscene.jsonが出力されるので、COLMAP等の後処理に渡しやすい構成です。\n\n従来は、1台で動き回って撮るか、専用の同期撮影リグ(多数のカメラを有線で同期する装置)を組む必要がありました。これはスマホだけで簡易リグ相当を作れる点が違います。ただしこのアプリは撮影専用で、スプラットの学習・生成は別のツール(Postshot、nerfstudio、gsplatなど)が必要です。\n\n使うにはiOS 18以上のiPhone、またはAndroid 9以上の端末が必要です。iPhoneとAndroidの混在撮影も可能ですが、Android版は作者がSamsung Galaxy S24でしか動作確認していないと記載があり、外部カメラのBluetooth制御も実機未検証とあります。費用は無料(3台まで)、8台で撮るならProの月額$0.99か年額$8.99です。Android版はGitHubのリリースからAPKを入れられます。",
+    "license": {
+      "spdx": "GPL-3.0-only",
+      "commercial": "conditional",
+      "note": "Android版のソースはGPL-3.0で公開。iOS版はApp Store配布で、ライセンスは記載なし。無料版は3台まで、Pro(月$0.99/年$8.99・ホストのみ購入)で8台まで。"
+    },
+    "links": [
+      {
+        "kind": "product",
+        "url": "https://www.tutticam.com"
+      },
+      {
+        "kind": "product",
+        "url": "https://apps.apple.com/us/app/tutticam-multi-camera-sync/id6820396336"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/dtpoi/TuttiCam-Android"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/tutticam-syncs-up-to-8-cameras-for-gaussian-splat-capture"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/tutticam.jpg",
+    "relatedWorks": [
+      {
+        "title": "gsplat",
+        "description": "Gaussian Splattingの学習・描画ライブラリ(撮影後の学習側で使える)",
+        "url": "https://github.com/nerfstudio-project/gsplat"
+      },
+      {
+        "title": "Hi3D V1.0",
+        "description": "画像から高精細な3Dメッシュを作るオープンソースモデル",
+        "url": "https://github.com/hi3d-official/Hi3Dv1.0"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "r4dgs-refergaussian",
+    "title": "R4DGS / ReferGaussian",
+    "org": "Bangpu Chen ら(ACM MM 2026採択と記載)",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "AI/Agents"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "動く3Dシーン(4D Gaussian Splatting)に対して「手前で走っている人」のような自然言語で対象を指定し、時間をまたいで追跡・切り出せる手法とベンチマーク。",
+    "point": "動画から作った動く3D空間の中で、「赤い服で左へ歩いている人」「最後に画面から出ていく車」のように、言葉で指定したものだけを選び出せます。しかも対象ごとに追加学習をしない(training-free)ため、手持ちの4DGSシーンにそのままかけやすい手法です。広告・映像づくりでは、4D撮影した人物やプロダクトを言葉で指定して抜き出し、別シーンへ合成したり、特定の被写体だけ色や表示を変えたり、ボリュメトリック映像の編集を言葉でできる未来が見えます。まだ研究コードで、Linux+NVIDIA GPUでの環境構築が必要ですが、「3D空間の検索・編集をLLMで指示する」流れの最前線を試せます。",
+    "detail": "仕組みは、まず既存の4DGSで動くシーンを作り(ここは通常の手法のまま)、次に質問文をマルチモーダルLLM(Qwenベース)が「追跡すべき物の名前」と「条件(いつ・どこ・どう動く)」に分解します。分解結果をGrounded-SAM2で各フレームの画像上のマスクにし、その結果を3D上のガウス粒子に持ち上げて、時間をまたいで同一の物体としてまとめた「EntityBank(物体の名簿)」に入れます。名簿を引くことで、言葉で指定した物体の粒子だけを取り出せる、という流れです。\n\n従来の4D LangSplatなどは、シーンごとに言語特徴を学習する必要があり、複数対象・多段階の推論・該当なしの質問に弱いという課題がありました。本手法はシーンごとの意味学習をせず、LLMの推論力を使う点が違います。READMEの数値では、R4D-Bench-QAでAcc 76.5(4D LangSplatは58.4)ですが、HyperNeRF分割ではvIoUは4D LangSplatの方が高く(62.95対72.26)、全面的に勝つわけではありません。\n\n使うにはLinux、Miniconda、NVIDIA GPU(CUDA 12.1)、COLMAP、そしてQwenやGrounded-SAM2のモデル重みが必要です。リポジトリにはrefergaussianパッケージ、セットアップ・データ準備・学習・ベンチマーク用スクリプトとテストがあり、167コミットの実体あるコードです。費用はGPU環境のみで、コード自体はMITです。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "コードはMIT。ただし内部でQwen・Grounded-SAM2等の外部モデルを使うため、それぞれのライセンス確認が必要。Linux+NVIDIA GPU(CUDA 12.1)+COLMAPが前提。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/chenbangpu/R4DGS"
+      },
+      {
+        "kind": "project",
+        "url": "https://chenbangpu.github.io/R4DGS/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.30326"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/papers/r4dgs-referring-segmentation-in-4d-gaussian-splatting"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/r4dgs-refergaussian.jpg",
+    "relatedWorks": [
+      {
+        "title": "4D LangSplat",
+        "description": "4DGSに言語特徴を学習させて言葉で検索する先行手法(本論文の比較対象)",
+        "url": "https://github.com/zrporz/4DLangSplat"
+      },
+      {
+        "title": "gsplat",
+        "description": "Gaussian Splattingの学習・描画ライブラリ",
+        "url": "https://github.com/nerfstudio-project/gsplat"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "hi3d-v1-0",
+    "title": "Hi3D V1.0",
+    "org": "Hi3D(旧Sparc3D)",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "粗い3Dメッシュと参照画像から、最大1536³の高精細ジオメトリに仕上げる、3Dモデル生成モデルのオープンソース版(推論コードと重みを公開)。",
+    "point": "1枚の画像から作った粗い3Dモデルを、細部まで彫り込んだ高解像度のメッシュに仕上げ直すモデルです。約200万点の3Dアセットで学習し、3Dプリント用に切り出す際の成功率が約90%と公表されています。広告や体験づくりでは、商品写真やキャラクター画像から立体データを起こし、3Dプリントのノベルティ、ARで置ける商品モデル、Webの3Dビューアなどへ流用する下ごしらえに使えそうです。出力は形状のみでテクスチャ(色柄)は付かないので、色付けは別工程が要ります。一方で、動作には大容量のGPUが必要で、手元PCで気軽に試すというより、クラウドGPUやHugging Face上のデモで品質を見る使い方が現実的です。",
+    "detail": "仕組みは、物体を細かい立方体の格子(ボクセル)で表し、その格子の「疎(まばら)な部分だけ」を計算するSparc3D方式の上に、粗い形と参照画像を条件として入力し、高解像度のジオメトリへ磨き直す(リファイン)ものです。粗い彫刻に、写真を見ながらヤスリをかけて細部を出す作業に近いです。READMEによれば、検証は96GBのNVIDIA H20で1536³設定を試したもの限定です。\n\n従来のオープンな画像→3Dモデルは、解像度が低く細部が潰れる、3Dプリントで穴や破れが出る、といった課題がありました。本モデルは高解像度化と、実制作での使いやすさ(スライス成功率)に重点を置いています。ただし公開されているのは推論コードのみで、学習コードと評価コードは含まれず、重みはHugging Face側にあります。\n\n使うにはLinux、Python 3.10、compute capability 8.0以上のNVIDIA GPU、CUDA 12.0〜12.5、flash-attn(ソースからビルド)が必要で、CPU推論は不可です。粗い形の生成には、第三者のHunyuan3D-2 miniアダプタも任意で使えます。まずHugging Face Space(ilcve21/Sparc3D)のデモで品質を見て、本格利用はクラウドGPUで、という順序が現実的です。費用はGPU代のみで、同社は上位の商用版(v3.0、2048³・8Kテクスチャ)も案内しています。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "独自のHi3D Open License v1.0。商用利用は可だが、月間利用者20万人または月商100万ドルを超えると通知と別ライセンスが必要。商用組込みには「Powered by Hi3D 1.0」の表示が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/hi3d-official/Hi3Dv1.0"
+      },
+      {
+        "kind": "project",
+        "url": "https://www.hi3d.ai/hi3d-1-0-open-source"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/hi3d-official/Hi3Dv1.0"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/hi3d-v1-0.jpg",
+    "relatedWorks": [
+      {
+        "title": "Hunyuan3D-2",
+        "description": "Tencentによるオープンな画像→3D生成モデル",
+        "url": "https://github.com/Tencent-Hunyuan/Hunyuan3D-2"
+      },
+      {
+        "title": "HY-World 2.0",
+        "description": "3Dワールドの再構成・生成・シミュレーションを扱うTencentのワールドモデル",
+        "url": "https://github.com/Tencent-Hunyuan/HY-World-2.0"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "length-varying-neural-motion-stitching-via-cluster-transitio",
     "title": "Length-varying Neural Motion Stitching via Cluster Transition Graph",
     "org": "KAIST Visual Media Lab (Haemin Kim, Junyong Noh ほか)",
