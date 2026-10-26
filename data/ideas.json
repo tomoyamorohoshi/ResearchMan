@@ -22789,5 +22789,221 @@
         "desc": "動画生成モデルを、文章指示で背景除去や要素の置換ができる編集用に変えるLoRA。"
       }
     ]
+  },
+  {
+    "id": "2026-10-26-1",
+    "date": "2026-10-26",
+    "title": "紙の渦巻きスクリーンを踊らせる",
+    "pattern": "技術×技術",
+    "seed": "Nordic Circleの1km渦巻き米紙スクリーンに、CustomDanceで作った振付を投影し、紙の渦そのものが踊る身体の軌跡になる展示ができそうかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "nordic-circle-expo2025-2026",
+        "title": "Nordic Circle — Nordic Pavilion Expo 2025 Osaka",
+        "desc": "廃棄予定の米紙を1kmつなげた渦巻き状スクリーンに北欧の自然を映す、大阪万博の展示。"
+      },
+      {
+        "type": "tech",
+        "id": "customdance",
+        "title": "CustomDance",
+        "desc": "音楽と文章の指示から、対話しながら人が振付を仕上げていける3Dダンス生成システム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-26-2",
+    "date": "2026-10-26",
+    "title": "馬が返信する現場を群れで再現",
+    "pattern": "文脈×技術",
+    "seed": "OUTHORSE YOUR EMAILの「仕事を馬に任せる」発想に、FluidicSwarmの手ジェスチャー操作を掛け、小型ロボの群れが水のように動いてメールを捌く休暇演出になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "outhorse-your-email",
+        "title": "OUTHORSE YOUR EMAIL",
+        "desc": "休暇中の仕事メールを、アイスランドの馬が代わりに返信してくれるという観光キャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "fluidicswarm",
+        "title": "FluidicSwarm",
+        "desc": "手の握る・開くなどの動きで、複数の小型ロボットを一つの生き物のように操れるシステム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-26-3",
+    "date": "2026-10-26",
+    "title": "ExcelがそのままMVになる分離",
+    "pattern": "文脈×技術",
+    "seed": "SPREADBEATSのExcel MVに、HS-TasNetのリアルタイム音源分離を掛け、セルを編集するたびボーカルやドラムが個別に抜き差しされる、触れる音楽シートができそうかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "spotify-spreadbeats",
+        "title": "SPREADBEATS（Spotify）",
+        "desc": "ExcelのシートそのものをMVにした、ビジネス向けのSpotifyキャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "hs-tasnet",
+        "title": "HS-TasNet",
+        "desc": "音声をボーカル・ドラム・ベースなどに、ごく短い遅れでリアルタイムに分けるAIモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-26-4",
+    "date": "2026-10-26",
+    "title": "象嵌ポスターの自動リギング",
+    "pattern": "転用",
+    "seed": "PuppetLoomの自動リギングを紙工芸に転用し、Kamiwazaの象嵌ポスターの紙パーツをレイヤー分解して、呼吸するように微動する動くペーパークラフト広告にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "kamiwaza-paper-craft-awards-2014",
+        "title": "Kamiwaza -Paper Craft Awards- ポスター",
+        "desc": "3種の紙を象嵌技法で切り抜き埋め込んだ、ペーパークラフト賞のポスター。"
+      },
+      {
+        "type": "tech",
+        "id": "puppetloom",
+        "title": "PuppetLoom",
+        "desc": "レイヤー分けしたキャラのPSDを自動で動く骨組みにし、デスクトップで呼吸や口パクをさせるツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-26-5",
+    "date": "2026-10-26",
+    "title": "匂いの看板を未来予測する",
+    "pattern": "文脈×技術",
+    "seed": "Lynxの Scratch & Sniffで擦られる位置や回数を、MolmoMotionで「次に誰がどこへ手を伸ばすか」の軌跡予測に使えば、擦る前に香りが立つ先読みOOHになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "scratch-sniff-2025",
+        "title": "Scratch & Sniff",
+        "desc": "ビルボードに仕込んだ香りのカプセルを、擦ると匂いが立つ体験型の屋外広告。"
+      },
+      {
+        "type": "tech",
+        "id": "molmomotion",
+        "title": "MolmoMotion",
+        "desc": "1枚の画像と文章の指示から、物体が数秒先にどう動くかを3Dで予測するAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-26-6",
+    "date": "2026-10-26",
+    "title": "ロボ用世界モデルを展示記憶に",
+    "pattern": "転用",
+    "seed": "Long-WAMの「過去19秒を覚えて未来を予測する」仕組みを、ロボット操作ではなくNEO平成レトロ展の来場者動線の予測に転用し、次に見たくなる展示が先回りして光るかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "neo-2026",
+        "title": "NEO平成レトロ展＜名古屋＞",
+        "desc": "平成レトロを300点超の実物で追体験できる、名古屋PARCOの巡回展。"
+      },
+      {
+        "type": "tech",
+        "id": "long-wam",
+        "title": "Long-WAM",
+        "desc": "ロボットの過去映像約19秒を覚え、未来映像を予測して約0.1秒で動作を決めるモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-26-7",
+    "date": "2026-10-26",
+    "title": "点群の世界をNukeで合成",
+    "pattern": "技術×技術",
+    "seed": "Gaussian Point Splattingの1億点描画と、Marble x Nukeの生成3D世界の読み込みを組み、生成した世界の中に実写をNukeで合成する、巨大スプラット前提の映像制作ができそうかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "gaussian-point-splatting",
+        "title": "Gaussian Point Splatting",
+        "desc": "1億個超の3D点群を、並べ替えなしでリアルタイムに描ける新しい描画手法。"
+      },
+      {
+        "type": "tech",
+        "id": "marble-x-nuke",
+        "title": "Marble x Nuke",
+        "desc": "テキストや画像から作った3D世界を、合成ソフトNukeの3D空間に読み込める無料プラグイン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-26-8",
+    "date": "2026-10-26",
+    "title": "指先で動くルート映像ポートフォリオ",
+    "pattern": "文脈×技術",
+    "seed": "yugop.comの伝説的な実験サイトの精神に、Qwen-Video-Editの指示文だけの動画編集を掛け、来訪者が打った一文で動画の中身が書き換わるポートフォリオができそうかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "yugop-com-1999",
+        "title": "yugop.com",
+        "desc": "1999年開設、中村勇吾による日本のウェブデザイン史に残る個人サイト。"
+      },
+      {
+        "type": "tech",
+        "id": "qwen-video-edit",
+        "title": "Qwen-Video-Edit",
+        "desc": "動画を指示文だけで編集できるAI。コマを巨大な1枚の画像として並べて処理する。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-26-9",
+    "date": "2026-10-26",
+    "title": "アヒルロボで花言葉ポスター",
+    "pattern": "転用",
+    "seed": "Microduckの二足歩行や転倒からの起き上がりを、LIONS GOOD NEWS 2020のポスターフリップ演出に転用し、小さなロボが一枚ずつ花のポスターをめくって歩くかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "lions-good-news-2020-2020",
+        "title": "LIONS GOOD NEWS 2020",
+        "desc": "7つの花言葉をモチーフに、カンヌPR部門の受賞事例をポスターをめくる演出で見せた体験型アーカイブ。"
+      },
+      {
+        "type": "tech",
+        "id": "microduck",
+        "title": "Microduck",
+        "desc": "体重800gで二足歩行・ボール蹴り・起き上がりができる、Pollen Roboticsの小型ロボ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-26-10",
+    "date": "2026-10-26",
+    "title": "人の手だけの証明を速く作る",
+    "pattern": "技術×技術",
+    "seed": "DreamX-Creator 1.0の映像と音声の同時生成と、HyperFlowの8ステップ高速化を組み合わせれば、Doveの「人の手だけの美」と並べて見せる、生成の過程を丸ごと見せる対比映像を短時間で量産できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "dove-real-beauty-ai-era",
+        "title": "REAL BEAUTY REDEFINED FOR THE AI ERA",
+        "desc": "AI画像が美の基準を歪める時代に、人の手だけで作るリアルな美を守ると誓ったDoveの活動。"
+      },
+      {
+        "type": "tech",
+        "id": "dreamx-creator-1-0",
+        "title": "DreamX-Creator 1.0",
+        "desc": "最初のコマと文章だけで、映像と音声を同時に作れる軽量な動画生成モデル。"
+      },
+      {
+        "type": "tech",
+        "id": "hyperflow",
+        "title": "HyperFlow (MiniMax-H3 8-step LoRA)",
+        "desc": "動画生成モデルMiniMax-H3を、49回の計算から8回に圧縮し、生成時間を約3分の1にするLoRA。"
+      }
+    ]
   }
 ]
