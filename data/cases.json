@@ -1,5 +1,343 @@
 [
   {
+    "id": "natwest-savings-index-2026",
+    "title": "NatWest Savings Index",
+    "summary": "1万人規模の調査データをもとに「貯蓄」の会話をコンテンツ化し、LLM経由の流入も見据えたNatWestのメディア戦略プロジェクト。",
+    "client": "NatWest",
+    "agency": "Initiative UK / T&P",
+    "categories": [
+      "メディア発明",
+      "コンテンツ革新"
+    ],
+    "award": "Media Week Awards 2026 ファイナリスト（Shortlist）：『Turning Human Truth into Content People Trust』『From data to human truth』『Reinventing Media Planning』『From audience to automated conversation targeting』の4エントリーがShortlist入り（受賞ではない）",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.mediaweekawards.co.uk/finalists/natwest-savings-index-reinventing-media-planning-gn1jzjy3hovgytk",
+    "thumbnail": "/thumbnails/natwest-savings-index-2026.jpg",
+    "videoId": "",
+    "overview": "NatWestが1万人規模の調査データを基に『貯蓄』をテーマにした会話をメディア化する取り組み。Initiative UKとT&Pが企画し、生活者の貯蓄に関する人間的な実態をコンテンツに変換。検索エンジンだけでなくLLM経由の流入も想定し、データドリブンなメディアプランニングの再定義を目指した。",
+    "background": "英国では貯蓄に関する生活者の実感とメディア上の語られ方にギャップがあるとされ、NatWestは金融ブランドとして信頼される会話の起点になることを課題視した。Initiative UKとT&Pは大規模調査を通じて『人間の真実』をデータから抽出し、従来の広告的な訴求ではなくコンテンツ主導でメディア戦略を組み立てる方針をとった。",
+    "execution": "1万人規模の調査データを分析し、貯蓄にまつわる生活者の実態を『人間の真実』として抽出。これをコンテンツとして発信し、検索エンジンの結果だけでなく生成AI・LLM経由で参照されることも視野に入れた設計とした。オーディエンス単位の配信から、会話単位での自動的なターゲティングへとメディアプランニングの手法自体を転換した。",
+    "evaluationImpact": "Media Week Awards 2026では『人間の真実をコンテンツに』『データから人間の真実へ』『メディアプランニングの再発明』『オーディエンスから会話への自動ターゲティング』という4つの切り口でShortlist（ファイナリスト）入りした。複数の視点から同一プロジェクトが評価された点は、データとコンテンツとメディア手法を一体で設計したアプローチの広がりを示す。ただしいずれもファイナリストであり、受賞の確定はしていない。",
+    "relatedWorks": [
+      {
+        "title": "NatWest Savings Index – Reinventing Media Planning (Media Week Awards Finalists)",
+        "description": "Media Week Awards 2026のファイナリスト紹介ページ。本施策の概要とShortlist入りしたエントリー名を確認できる。",
+        "url": "https://www.mediaweekawards.co.uk/finalists/natwest-savings-index-reinventing-media-planning-gn1jzjy3hovgytk"
+      }
+    ],
+    "sources": [
+      "Financial Branding"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Tech/AI",
+      "Form/Website"
+    ]
+  },
+  {
+    "id": "wise-rebrand-2023",
+    "title": "Wise Rebrand",
+    "summary": "fintech定番の「安全な青」を脱し、柑橘グリーンと独自書体で175カ国同時刷新したWiseのグローバルリブランド。",
+    "client": "Wise",
+    "agency": "Ragged Edge",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "One Club ADC Awards 2024（第103回）Merit（Branding / Brand Communication Design部門）。Annual ID: ADC103_BCD075M、クレジット：Ragged Edge / London",
+    "year": "2023",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://raggededge.com/partnerships/wise",
+    "thumbnail": "/thumbnails/wise-rebrand-2023.jpg",
+    "videoId": "",
+    "overview": "国際送金サービスWiseが2023年に実施したグローバルリブランド。ロンドンのRagged Edgeが手がけ、金融ブランドの定番色だった『安全な青』を離れ、柑橘系のグリーンを基調色に採用。独自書体Wise Sansとともに、175カ国で同時に展開されたアイデンティティ刷新である。",
+    "background": "fintechブランドの多くは信頼感を示すために青を基調色として採用する傾向があり、同質化が進んでいた。Wiseは国際送金という事業の透明性・低コストという独自性を、既存の金融ブランドらしさから距離を置いたビジュアルで表現する必要があった。Ragged Edgeはこの課題に対し、業界の視覚的な慣習からの脱却を軸に設計した。",
+    "execution": "基調色を安全・信頼を連想させる青から、親しみやすく目を引く柑橘グリーンに変更。ロゴタイプとともに専用書体Wise Sansを新規開発し、国・言語をまたいで一貫したトーンを保てるシステムとした。このアイデンティティは175カ国で同時に切り替えられ、グローバルブランドとしての統一感を優先した展開となった。",
+    "evaluationImpact": "One Club ADC Awards 2024（第103回）のBranding / Brand Communication Design部門でMeritを受賞した。fintechの視覚的な常識だった『安全な青』からの離脱を、175カ国同時展開という規模で実行した点が評価されたと見られる。カスタム書体まで含めたシステム全体の設計が、単発のロゴ変更ではないリブランドとして成立している。",
+    "relatedWorks": [
+      {
+        "title": "Wise – Ragged Edge",
+        "description": "Ragged Edgeによる公式ケーススタディページ。リブランドの背景とビジュアルシステムを確認できる。",
+        "url": "https://raggededge.com/partnerships/wise"
+      }
+    ],
+    "sources": [
+      "Financial Branding"
+    ],
+    "tags": [
+      "Form/Print",
+      "Form/Website",
+      "Form/Product"
+    ]
+  },
+  {
+    "id": "everything-s-premier-2025",
+    "title": "Everything's Premier",
+    "summary": "ロンドン市街を舞台にした大規模OOHで、HSBC UK Premierアカウントが日常を特別な体験に変える様を訴求。",
+    "client": "HSBC UK",
+    "agency": "VML UK",
+    "categories": [
+      "OOH革新",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creative.salon/articles/work/hsbc-vml-everything-s-premier",
+    "thumbnail": "/thumbnails/everything-s-premier-2025.jpg",
+    "videoId": "",
+    "overview": "HSBC UKがVML UKと手がけた『Everything's Premier』キャンペーン。ロンドン市内を舞台に大規模なOOH展開を行い、HSBCのPremierアカウント保有者が日常のさまざまな場面で特別な体験を受けられることを訴求する。HSBC UKとして過去最大規模とされる統合キャンペーンである。",
+    "background": "HSBC UKのPremierアカウントは、通常の銀行サービスに付帯する特典や優待を特徴とするプレミアム向けの口座サービス。VML UKはこの『特典』という抽象的な価値を、生活者が実際に目にする街の風景の中で体感できる形に翻訳する必要があった。",
+    "execution": "ロンドン市内の主要なOOH媒体を大規模に活用し、街のさまざまな場面がPremierアカウントによって『特別』に変わる様子を描いた。単発のポスターではなく都市全体を舞台にする規模で展開し、HSBC UKの中でも最大級の統合キャンペーンとして位置づけられている。",
+    "evaluationImpact": "街全体を使った規模の大きさ自体がメッセージの一部になっている点が特徴で、Premierという特典サービスの価値を『日常が変わる』という体験価値に翻訳した。creative.salonで紹介されたのみで、成果数値や受賞は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "HSBC UK, VML UK — Everything's Premier (creative.salon)",
+        "description": "キャンペーンのビジュアルとOOH展開を紹介する記事。",
+        "url": "https://creative.salon/articles/work/hsbc-vml-everything-s-premier"
+      }
+    ],
+    "sources": [
+      "Financial Branding"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Theme/Retail"
+    ]
+  },
+  {
+    "id": "live-more-bank-less-2018",
+    "title": "Live More, Bank Less",
+    "summary": "「銀行は生活のために使うもの」という人間真理から、銀行の存在を透明化する体験設計へ転換したDBSのブランドプロミス。",
+    "client": "DBS Bank",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "OOH革新"
+    ],
+    "award": "",
+    "year": "2018",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.marketing-interactive.com/dbs-bank-supercharges-live-more-bank-less-campaign-with-ooh-campaign",
+    "thumbnail": "/thumbnails/live-more-bank-less-2018.jpg",
+    "videoId": "",
+    "overview": "DBS Bankが展開した『Live More, Bank Less』キャンペーン。2018年にOOH展開を強化する形で再始動した。『銀行業務そのものではなく、銀行を使うことで実現できる生活』に焦点を当て、銀行の存在感をできるだけ目立たせない体験設計を志向するブランドプロミスである。",
+    "background": "銀行サービスは本来、生活者にとって目的ではなく手段であるにもかかわらず、多くの銀行ブランドは手続きや店舗体験そのものを前面に押し出してきた。DBSはこの前提を疑い、『生活のために銀行を使う』という生活者側の視点に立ち返ることをブランドの核に据えた。",
+    "execution": "『Live More, Bank Less』というタグラインのもと、OOH広告を中心に展開を強化した。銀行業務の煩雑さをできるだけ感じさせず、デジタル化や手続きの簡略化によって生活者が『銀行を意識しない』で済む体験を作ることを志向し、キャンペーンの訴求もその生活実感に寄せた。",
+    "evaluationImpact": "『バンキングを減らして生活を増やす』という逆説的なコピーが、銀行サービスの存在を透明化するという事業方針そのものをブランドメッセージに変換した点が特徴である。marketing-interactiveの報道のみが確認でき、成果数値や受賞は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "DBS Bank supercharges 'Live More, Bank Less' campaign with OOH campaign",
+        "description": "marketing-interactiveによる、OOH展開強化の報道記事。",
+        "url": "https://www.marketing-interactive.com/dbs-bank-supercharges-live-more-bank-less-campaign-with-ooh-campaign"
+      }
+    ],
+    "sources": [
+      "Financial Branding"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Theme/Retail"
+    ]
+  },
+  {
+    "id": "klarna-apple-pay-2025",
+    "title": "Klarna × Apple Pay",
+    "summary": "KlarnaとApple Payが「組み合わせが機能する」を掲げ、Meta・Snapchat・OOHを横断して数百点のビジュアルを展開した国際連合キャンペーン。",
+    "client": "Klarna",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://vividcreative.studio/project/klarna-with-applepay-ad-campaign",
+    "thumbnail": "/thumbnails/klarna-apple-pay-2025.jpg",
+    "videoId": "",
+    "overview": "KlarnaとApple Payによる国際連合キャンペーン。「The combination works（組み合わせが機能する）」というタグラインを軸に、Meta、Snapchat、屋外広告(OOH)を横断して数百点のビジュアルを制作・展開した。両ブランドの組み合わせがもたらす利便性を、多数のクリエイティブ変化形で伝える構成になっている。",
+    "background": "KlarnaはBuy Now Pay Later(後払い)サービスを提供するフィンテック企業で、Apple Payとの連携機能を軸にしたキャンペーンを企画した。2つのブランドが「組み合わさることで機能する」という発想を、ペイメント体験そのもののメッセージとして打ち出している。",
+    "execution": "キャンペーンはMeta、Snapchat、OOHという複数のメディアを横断して展開され、各媒体・市場向けに数百点規模のビジュアルバリエーションを制作した。「The combination works」のタグラインを軸に、同じコンセプトを多数のクリエイティブで反復・展開する量産型の設計になっている。",
+    "evaluationImpact": "2ブランドの連携を単発の1枚絵でなく、数百点規模のビジュアル群として横断的に展開した点が特徴。制作側のポートフォリオサイトで紹介されているが、受賞や成果数値は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Financial Branding"
+    ],
+    "tags": [
+      "Form/SNS",
+      "Form/OOH",
+      "Theme/Retail"
+    ]
+  },
+  {
+    "id": "touchboard-discounts-2024",
+    "title": "Touchboard Discounts",
+    "summary": "サッカー場の広告ボードを双方向のショッピング体験に変えた、Itaú Unibancoのインタラクティブ施策。",
+    "client": "Itaú Unibanco",
+    "agency": "Africa Creative",
+    "categories": [
+      "OOH革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2024",
+    "regions": [
+      "中南米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/touchboard-discounts",
+    "thumbnail": "/thumbnails/touchboard-discounts-2024.jpg",
+    "videoId": "",
+    "overview": "ブラジルの銀行Itaú Unibancoが、Africa Creativeとともに展開した「Touchboard Discounts」。サッカー場のフィールド周囲に設置される広告ボード(アドボード)を、観客が触れて操作できるインタラクティブなショッピング体験装置に変えた施策。",
+    "background": "Itaú Unibancoはサッカー観戦という日常的な接点を使い、従来は一方通行だった競技場の広告ボードを顧客との双方向のやり取りに変える方法を模索した。単に見せるだけの広告枠を、操作して得をする体験に変える発想が出発点になっている。",
+    "execution": "競技場のフィールド周囲に並ぶ広告ボードをタッチ操作可能な装置として設置し、観客がボードに触れることでItaú Unibancoの割引やお得な情報を受け取れる仕組みを作った。サッカー観戦中の視線の先にある広告枠を、そのまま買い物の入口に転用している。",
+    "evaluationImpact": "常に見ているだけだったスタジアムの広告ボードを、触れて得をする双方向のメディアに変換した点が特徴。Ads of the Worldで紹介されているが、受賞や具体的な成果数値は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Financial Branding"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Tech/Device",
+      "Theme/Sports",
+      "Theme/Retail"
+    ]
+  },
+  {
+    "id": "money-without-borders-15-2026",
+    "title": "Money Without Borders（15周年ブランドプラットフォーム）",
+    "summary": "Wiseが創業時から15年間変えていない『国境のないお金』という約束を、フィンテックの流行追いと対比するブランドプラットフォームとして再提示。",
+    "client": "Wise",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "カルチャーインサイト"
+    ],
+    "award": "Financial Marketer誌 \"February Campaign of the Month\"（2026年2月）— Wise『Money without borders』15周年ブランドプラットフォームが選出",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://financial-marketer.com/wise-wins-financial-marketers-february-campaign-of-the-month/",
+    "thumbnail": "/thumbnails/money-without-borders-15-2026.jpg",
+    "videoId": "",
+    "overview": "Wiseが2011年の創業時に掲げた『国境のないお金(Money without borders)』という約束を、15周年を機に改めてブランドプラットフォームとして提示したキャンペーン。流行の機能や新技術を次々と打ち出すフィンテック業界の姿勢に対し、15年間変えてこなかった一つの約束を実績として前面に出す構成。Financial Marketer誌の2026年2月の月間キャンペーンに選出された。",
+    "background": "Wiseは国際送金サービスとして2011年に創業し、「国境のないお金」を企業の根幹の約束として掲げてきた。フィンテック業界では新機能や新技術を打ち出す競争が続く一方、Wiseは創業時の約束を変えずに15年間継続してきた点を強みとして捉え、15周年を機にこの約束そのものをブランドの核として再提示する企画に踏み切った。",
+    "execution": "15年間一貫して守ってきた『国境のないお金』という約束を、流行を追うフィンテック各社との対比軸として打ち出すブランドプラットフォームを構築した。創業来の実績の蓄積そのものをメッセージの土台とし、15周年という節目を単なる祝賀ではなく、約束の継続性を証明する機会として位置づけた。",
+    "evaluationImpact": "Financial Marketer誌の\"February Campaign of the Month\"(2026年2月)に選出され、金融業界のマーケティング専門メディアから評価を受けた。新機能競争が激しいフィンテック領域で、変わらない約束の蓄積を訴求軸にした点が、短期的な話題性に依存しない長期ブランド戦略として注目された。受賞以外の数値的な成果は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Financial Branding"
+    ],
+    "tags": [
+      "Form/Film",
+      "Theme/SocialGood"
+    ]
+  },
+  {
+    "id": "now-you-can-venmo-everything-2025",
+    "title": "Now You Can Venmo Everything",
+    "summary": "『ホワイトロータス』共演の俳優2人が踊りながら、Venmoを個人間送金から何でも支払えるツールへと再定義するキャンペーン。",
+    "client": "Venmo（PayPal）",
+    "agency": "72andSunny",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.adweek.com/commerce/venmo-paypal-white-lotus-patrick-schwarzenegger-aimee-lou-wood/",
+    "thumbnail": "/thumbnails/now-you-can-venmo-everything-2025.jpg",
+    "videoId": "NMicBnXPHqE",
+    "overview": "PayPal傘下のVenmoが2025年に展開した、72andSunny制作のブランドキャンペーン。『ホワイトロータス』で共演したAimee Lou WoodとPatrick Schwarzeneggerが出演し、ダンスを通じてVenmoが単なる個人間送金アプリではなく、店舗や通販を含めた支払い全般に使えるツールになったことを伝える。",
+    "background": "Venmoは友人同士の割り勘や送金アプリとして知られてきたが、実際には店舗決済やオンラインショッピングでも使える機能を備えている。この認知と実態のギャップを埋めるため、話題のドラマ『ホワイトロータス』で共演した俳優2人を起用し、ポップカルチャーの文脈でアプリの新しい使い方を伝える企画が立てられた。",
+    "execution": "Aimee Lou WoodとPatrick Schwarzeneggerの2人が、軽快な振付のダンスを通じて「Now You Can Venmo Everything」というメッセージを体現する映像を中心に展開。送金アプリの枠を超え、日常のあらゆる支払いにVenmoを使えることを、堅い説明ではなくエンターテインメントの形で見せる構成とした。",
+    "evaluationImpact": "話題のドラマの共演ペアを起用することで、個人間送金という既存イメージを超えたアプリの新しい使い方を、カルチャー文脈に乗せて伝えた点が特徴。Adweekがコマース系記事として取り上げている。受賞や数値的な成果は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Financial Branding"
+    ],
+    "tags": [
+      "Form/Film",
+      "Theme/Entertainment",
+      "Theme/Retail"
+    ]
+  },
+  {
+    "id": "that-s-smoooth-klarna-x-paris-hilton-y2k-2023",
+    "title": "That's Smoooth（Klarna x Paris Hilton Y2Kキャンペーン）",
+    "summary": "Paris HiltonとBretman RockがY2Kノスタルジーを纏い、Klarnaの後払い決済を『That's Smoooth』という合言葉で伝えるグローバル広告。",
+    "client": "Klarna",
+    "agency": "Klarna社内クリエイティブ＋11:11 Media（Paris Hilton）",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2023",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.marketingdive.com/news/klarna-Paris-Hilton-Y2K-fashion-trends/642174/",
+    "thumbnail": "/thumbnails/that-s-smoooth-klarna-x-paris-hilton-y2k-2023.jpg",
+    "videoId": "",
+    "overview": "Klarnaが2023年に展開したグローバル広告キャンペーン。Y2K(2000年代初頭)のファッションやムードを纏ったParis HiltonとBretman Rockが出演し、「That's Smoooth(なめらかだね)」という合言葉を通じて、Klarnaの後払い決済サービスの軽快さを伝える。制作はKlarnaの社内クリエイティブチームと、Paris Hiltonが所属する11:11 Mediaが手がけた。",
+    "background": "2020年代前半、ファッションやカルチャーの領域でY2K(2000年代初頭)のリバイバルトレンドが広がっていた。Klarnaは後払い決済(BNPL)サービスの訴求にあたり、この懐かしさと今っぽさが交差するY2Kムードを借り、堅い金融サービスのイメージとは異なる軽快な世界観を打ち出す企画を立てた。",
+    "execution": "2000年代の象徴的存在であるParis Hiltonと、Z世代に影響力を持つBretman Rockを起用し、Y2K風のファッションやビジュアルで出演させた。両者が繰り返す「That's Smoooth」という合言葉を軸に、Klarnaでの決済体験の滑らかさをファッション・カルチャーの言葉で表現した。",
+    "evaluationImpact": "金融サービスの機能説明ではなく、Y2Kリバイバルという当時のカルチャートレンドとセレブリティの力でブランドイメージを伝えた点が特徴。Marketing Diveがファッショントレンド記事として取り上げている。受賞や数値的な成果は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Financial Branding"
+    ],
+    "tags": [
+      "Form/Film",
+      "Theme/Fashion",
+      "Theme/Entertainment"
+    ]
+  },
+  {
+    "id": "great-ideas-travel-2025",
+    "title": "Great Ideas Travel",
+    "summary": "対面でのアイデア創出という人間的な価値を軸に、Amex GBTの新グローバルブランドを初めて導入したキャンペーン。",
+    "client": "American Express Global Business Travel（Amex GBT）",
+    "agency": "Droga5 London",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2025",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://creative.salon/articles/work/american-express-droga5-great-ideas-travel",
+    "thumbnail": "/thumbnails/great-ideas-travel-2025.jpg",
+    "videoId": "",
+    "overview": "American Express Global Business Travel(Amex GBT)が2025年にDroga5 Londonと制作した、新グローバルブランドの初の導入キャンペーン。出張によって人が直接顔を合わせることで生まれるアイデアや発想を軸に、Amex GBTの新しいブランドの考え方を伝える。",
+    "background": "Amex GBTは企業向けの出張管理サービスを提供する企業で、オンライン会議やリモートワークが広がる中でも、対面での出会いが仕事上のアイデアを生み出す価値を持つという前提のもとに、ブランドを刷新した。本キャンペーンはその新しいグローバルブランドを市場に初めて導入する位置づけで制作された。",
+    "execution": "「Great Ideas Travel(良いアイデアは旅をする)」というコンセプトを軸に、出張によって人と人が直接会うことが新しい発想を生む過程を描いた。オンラインのやり取りでは得られない、対面での偶発的な出会いや会話が持つ創造的な価値を、Amex GBTの新ブランドの考え方として提示する構成とした。",
+    "evaluationImpact": "リモート化が進む出張・ビジネス環境の中で、対面の価値を再定義してブランドの自社キャンペーンに据えた点が特徴。Creative Salonが制作記事として取り上げている。受賞や数値的な成果は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Financial Branding"
+    ],
+    "tags": [
+      "Form/Film",
+      "Theme/Mobility"
+    ]
+  },
+  {
     "id": "fjord-id-2026",
     "title": "Fjord（浮かぶサウナのブランドID）",
     "summary": "ワードマークの「o」を温度の度数記号「°」に置き換え、サウナの核を一文字で示す浮体サウナのブランドID。",

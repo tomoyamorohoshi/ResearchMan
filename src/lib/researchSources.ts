@@ -54,6 +54,7 @@ export const RESEARCH_SOURCES: ResearchSource[] = [
   { tag: "Music Channels", kind: "order", label: "Music Channels" },
   { tag: "3D Installations", kind: "order", label: "3D Installations" },
   { tag: "Creative OOH", kind: "order", label: "Creative OOH" },
+  { tag: "Financial Branding", kind: "order", label: "Financial Branding" },
   { tag: "Radar", kind: "radar", label: "Radar" },
 ];
 
