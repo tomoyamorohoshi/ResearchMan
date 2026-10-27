@@ -1,5 +1,362 @@
 [
   {
+    "id": "fjord-id-2026",
+    "title": "Fjord（浮かぶサウナのブランドID）",
+    "summary": "ワードマークの「o」を温度の度数記号「°」に置き換え、サウナの核を一文字で示す浮体サウナのブランドID。",
+    "client": "Fjord（カリフォルニア州サウサリート、サンフランシスコ湾の浮体サウナ＆水風呂）",
+    "agency": "DutchScot（カスタム書体: Playtype）",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.creativeboom.com/work/this-floating-saunas-brand-uses-a-simple-typographic-trick-to-stunning-effect/",
+    "thumbnail": "/thumbnails/fjord-id-2026.jpg",
+    "videoId": "",
+    "overview": "カリフォルニア州サウサリートでサンフランシスコ湾に浮かぶサウナ＆水風呂「Fjord」のブランドID。ロンドンの DutchScot が制作し、ワードマークの「o」を度数記号「°」に置き換えて FJ°RD と読ませる。この記号は単体でもF°のモノグラムでもグラフィック要素として機能する。",
+    "background": "Fjord は、運営者 Alex と Gabe が手がけるサンフランシスコ湾の浮体サウナ。DutchScot はスパのように自然やウェルネスの図像に頼らず、一帯の工業的な過去に着目した。Fjord を「スパではない」、共同的で屋外・セルフガイドの体験と位置づけている。",
+    "execution": "黒と白だけの硬質なシステムに、Playtype と作ったカスタム書体（角の丸い四角基調の頑丈な字形）を組み合わせた。ポスターはサウナの189°Fと湾の55°Fを大きな数字で対比する。Webサイトはスクロールで温度計が動き、左のナビが目盛りを模す。黒い金属サインや、FJ°RDラベル付きのフェルト製サウナハットも作られた。",
+    "evaluationImpact": "サウナを定義する「温度」という事業の核を、書体上の置換という最小の操作で全媒体に通した点が評価できる。ポスターの数字対比やWebの温度計UIまで、一つの記号から展開が広がっている。Creative Boom は「シンプルなタイポグラフィの工夫」と紹介した。受賞は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "dutchscot fjord san francisco sauna branding（BP&O）",
+        "description": "DutchScot による Fjord のブランドIDを、工業的でそぎ落とした体系として紹介したデザインレビュー",
+        "url": "https://bpando.org/2026/07/16/dutchscot-fjord-san-francisco-sauna-branding/"
+      },
+      {
+        "title": "Redwood clad sauna barge in San Francisco Bay（Dezeen）",
+        "description": "廃バージとコンテナを再利用した Fjord の浮体サウナ建築（設計: Nick Polansky）の紹介",
+        "url": "https://www.dezeen.com/2025/07/03/fjord-floating-sauna-shipping-containers-san-francisco-bay/amp/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Print",
+      "Form/Website",
+      "Theme/Health"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creativeboom",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "da-vinci-s-robot-a-will-dwelling-in-shadow-2026",
+    "title": "Da Vinci's Robot – A Will Dwelling in Shadow",
+    "summary": "モーター無しの全身外骨格の関節の動きをIMUで拾い、リアルタイムに音とレーザー光へ変えるパフォーマンス。",
+    "client": "Suguru Goto",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.creativeapplications.net/member/da-vincis-robot-a-non-powered-exoskeleton-whose-motion-becomes-sound/",
+    "thumbnail": "/thumbnails/da-vinci-s-robot-a-will-dwelling-in-shadow-2026.jpg",
+    "videoId": "",
+    "overview": "作曲家・新メディアアーティストの後藤英(Suguru Goto)による、モーターを持たない全身外骨格「Skeletonics」を装着して行うパフォーマンス作品。関節の動きをIMUで取得し、Max/MSPで音を合成する。レーザー光を外骨格に当てて舞台上に反射させ、動きを光でも見せる。2026年10月18日に東京の杉並ではなくTokyo Arts Center(天空劇場)で初演された。",
+    "background": "着想はレオナルド・ダヴィンチが1495年頃に設計した機械仕掛けの騎士(人間のように動く自動人形)にある。本作はこれを反転させ、機械は人間が動かさなければ動かず、人間も機械が許す範囲でしか動けない関係を作る。タイトルの「影に宿る意志」は、身体と機械の間に生じる意志を指す。作者はIRCAM(パリ)での活動歴があり、現在は東京藝術大学教授で、楽器やセンサーシステム、音響ソフトを自作してきた。",
+    "execution": "外骨格にはモーターやアクチュエータが無く、演者自身の関節の動きだけで駆動する。取り付けたIMUが四肢の向きと角速度を取得する。ソフトはMax/MSPと、Min-DevKitで作ったC++外部オブジェクト(sg.*ライブラリ)で、IMUの取得、動作の分類、リアルタイム合成を行う。音は動きのデータで連続的に生成され、事前録音やキュー送りは使わない。客席後方からレーザー光を構造体に照射し、反射光を舞台に広げる。",
+    "evaluationImpact": "動力を持たない外骨格を、動きを音に変えるセンサー付き楽器として使った点に独自性がある。人が機械を動かし、機械も人の動きを制約するという関係が、そのまま音と光の演出になっている。公式サイトでの受賞は確認できていないが、CreativeApplications.Netの記事によればLumen Prize 2026(Experiential Innovation Award)のファイナリストとされる。センサー駆動の身体拡張楽器や身体表現の手法として、他の舞台作品にも転用できる。",
+    "relatedWorks": [
+      {
+        "title": "Leonardo's robot",
+        "description": "レオナルド・ダヴィンチが15世紀末に設計した、人間の動きを模す機械仕掛けの騎士。本作の着想元。",
+        "url": "https://en.wikipedia.org/wiki/Leonardo%27s_robot"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Tech/Audio",
+      "Tech/Device",
+      "Form/Event"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "creativeapplications",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "send-nudes-send-nudes-to-yourself-2026",
+    "title": "Send Nudes（Send Nudes to Yourself）",
+    "summary": "ネットの定番フレーズ「Send nudes」を、自分の胸を撮って変化に気づく乳がんセルフチェックの合図に読み替えた",
+    "client": "Breast Cancer Awareness Month / YARD NYC",
+    "agency": "YARD NYC",
+    "categories": [
+      "カルチャーインサイト",
+      "OOH革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.creativeboom.com/work/why-is-this-new-york-agency-asking-women-to-send-nudes/",
+    "thumbnail": "/thumbnails/send-nudes-send-nudes-to-yourself-2026.jpg",
+    "videoId": "",
+    "overview": "ニューヨークの女性主導エージェンシーYARD NYCが、乳がん啓発月間(10月)に展開したキャンペーン。「SEND NUDES」の見出しと女性のトップレス写真の看板・ポスター・ステッカーで、女性に自分の胸を定期的に撮影するよう促す。胸の部分を覆うQRコードからsendnudestoyourself.comを開くと、送り先は自分自身だったと分かる。",
+    "background": "YARD NYCの記事によると、50歳未満の女性の乳がん罹患率は50歳以上の約2倍の速さで増えており、診断された女性の85%に家族歴がない。30代の女性は乳がんを「年上の人の病気」と捉えがちだという。共同創業者でCEOのRuth Bernsteinは自身の早期乳がんの経験が企画に影響したとされ、press releaseでは半年ごとの撮影が推奨されている。",
+    "execution": "ウィリアムズバーグのNorth 7th and Bedford付近やロウアー・イーストサイドのDimes Square近くなどニューヨーク各所で、屋外広告・ワイルドポスティング・ステッカーを展開。各ビジュアルでは女性の胸をQRコードが隠している。サイトでは胸の大きさや形の変化、皮膚のオレンジの皮状変化、乳頭分泌物、しこり、えくぼ状のへこみなど注意すべき兆候を紹介。InstagramとLinkedInでも展開し、「GOOD NUDES SAVE LIVES」Tシャツも制作した。",
+    "evaluationImpact": "CEOのBernsteinは「顔のシワや白髪は全部知っているのに」と述べ、ネットの言い回しを自分の体を知る合図に転換したと語る。CSOのCaroline Seklirは、自撮りが当たり前の世代にセルフチェックを当たり前にすることが狙いだと説明する。QRコードで胸を隠す仕掛けは、屋外広告の性的な連想を使ってメッセージに引き込む。ただし成果数値や受賞は確認できず、医学的枠組みの第三者評価も見つかっていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Form/Website",
+      "Theme/Health",
+      "Theme/SocialGood"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creativeboom",
+    "gateTier": "accept",
+    "discoveryLens": 4
+  },
+  {
+    "id": "duolingo-iphone-duo-apple-duo-2026",
+    "title": "Duolingo × iPhone Duo「Apple Duo」無料リンゴ配布",
+    "summary": "Appleの折りたたみiPhone Duo発売日に、Duolingoが5番街で『Apple Duo』名義の本物のリンゴを無料配布した。",
+    "client": "Duolingo",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://creapills.com/duolingo-pommes-apple-duo-iphone-20261025",
+    "thumbnail": "/thumbnails/duolingo-iphone-duo-apple-duo-2026.jpg",
+    "videoId": "",
+    "overview": "2026年10月23日のiPhone Duo店頭発売日、ニューヨークのApple Fifth Avenue前にDuolingoのマスコット・Duoが現れた。「Apple Duo」と書かれた白青のカーゴバイクから、Granny Smith種のリンゴを通行人に無料で配った。各リンゴには「Do your lesson」の丸ラベルとアプリへ誘導するQRコードが付いていた。",
+    "background": "Appleの折りたたみ型新製品『iPhone Duo』は、米国で256GBモデルが1,999ドルからと高額で、発売日の店頭には注目が集まっていた(MacRumors等の報道)。『Duo』という製品名がDuolingoのマスコット名と重なることに着目した企画。記事によるとApple社との提携はなく、発売の話題に便乗した形である。",
+    "execution": "Duoは紺のTシャツでApple Storeの店員風に装い、荷台に緑の「GRATUIT」バッジを付けた貨物バイクでリンゴを配布した。ラベルの中央にはお尻がリンゴの形をしたDuoの後ろ姿を描いた。建設現場の仮囲いにはAppleのミニマルな広告を模し、開いたiPhone Duoの画面にDuoの後ろ姿を載せた「This is Duo.」のポスターを掲出した。",
+    "evaluationImpact": "「Apple」という言葉を本物の果物に読み替え、高額な新製品に対して「無料のリンゴとアプリ」で対抗した点が一文で伝わる。Creapillsによれば、10月24日のInstagramカルーセルは1日で約88,000件のいいねを集めた。ただし確認できた情報源は同記事のみで、制作会社も不明である。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Stunt",
+      "Form/OOH",
+      "Theme/Education",
+      "Theme/Retail"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "temper-cider-label-wimbledon-2008-4-60-2026",
+    "title": "Temper cider label（Wimbledon 2008決勝の最終4秒をラベル60枚でパラパラ漫画化）",
+    "summary": "2008年ウィンブルドン決勝の最終4秒を60枚のラベルに分け、並べるとパラパラ漫画になり、型抜きのボールをサイダーが光で満たす。",
+    "client": "Temper（英国ローンチ記念の限定サイダー）",
+    "agency": "Hono",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.itsnicethat.com/articles/studio-hono-temper-branding-project-261026",
+    "thumbnail": "/thumbnails/temper-cider-label-wimbledon-2008-4-60-2026.jpg",
+    "videoId": "",
+    "overview": "ウィーンのStudio Honoが、テニス用品・体験のスタジオTemperと、サイダー職人Luka Zeichmannによる一度限りのコラボのためにデザインしたサイダーのラベル。2008年ウィンブルドン決勝(ナダルvsフェデラー)の最終4秒を60フレームに分け、1本に1フレームを割り当てた。60本を並べるとパラパラ漫画として動きが立ち上がる。",
+    "background": "Temperの英国ローンチは、ウィンブルドン第1週のロンドンで行われた。テニスの記憶を酒瓶という日常の物に落とし込む企画で、「1フレーム、1ボトル」という考え方が軸になっている。使われた場面は、テニス史に残る名勝負として知られる2008年決勝の最終局面である。",
+    "execution": "緑と紫のグリッド上に60フレームを配した。ミュンヘンのリソグラフ工房Herr & Frau Rioで、60種を別々に刷るのではなく1つのベースデザインを印刷し、Honoが手作業で仕上げと番号付けを行った。ボールは型抜きされ、光が瓶を通るとサイダーがボールに見える。ラベルをデジタル化してストップモーション化もしている。",
+    "evaluationImpact": "ラベル1枚を映像の1コマに見立て、瓶の並びを時間軸にした点が核になっている。型抜きで中身の液体を「ボール」に変える仕掛けは、パッケージの物質性そのものを演出に使った例である。リソ印刷のズレやかすれが、コマ間に微かな動きを足す。受賞は記事中で確認できなかった。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Form/Print",
+      "Theme/Sports",
+      "Theme/Food"
+    ],
+    "gateCriterion": "B",
+    "sourceId": "itsnicethat",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "deep-foam-photolithography-pfas-2026",
+    "title": "Deep Foam Photolithography（構造色の白・PFASフリー撥水の多孔ポリマー）",
+    "summary": "光で高分子を断片化し溶媒で膨潤させ、顔料もPFASも使わず白さと撥水を同時に出す表面を最大20,000dpiで印刷する手法。",
+    "client": "京都大学 iCeMS（Easan Sivaniah 教授ら）",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://materialdistrict.com/article/porous-polymers-create-white-water-repellent-surfaces-without-pigments-or-pfas/",
+    "thumbnail": "/thumbnails/deep-foam-photolithography-pfas-2026.jpg",
+    "videoId": "",
+    "overview": "京都大学iCeMSのEasan Sivaniah教授らが開発した「Deep Foam Photolithography（DFP）」は、高分子に光を当てて分子を断片化し、穏やかな溶媒で膨潤させて微細な多孔構造を作る手法。孔が光を散乱して顔料なしで白く見え（構造色の白）、同じ構造変化で撥水性も得られる。最大20,000dpiの精細なパターン形成が可能で、フィルムや布地で実証されたと報じられている。",
+    "background": "白色には酸化チタン（TiO₂）、撥水にはPFAS系のフッ素化合物が広く使われてきたが、いずれも環境・健康面の懸念がある。本研究は、白さと撥水を別々の添加物に頼らず、素材自体の微細構造で両立させることを狙った。ハスの葉に着想を得た多孔質の内部と粗い表面が撥水を担う。東京都立大学、東華大学（繊維研究）との共同研究。",
+    "execution": "光照射で高分子を小さな断片に分解し、続けて穏やかな溶媒で膨潤させると、連続した微細孔のネットワークができる。この孔が光を散乱させ、顔料なしの白色を生む。光でパターンを描けるため、白い撥水領域を最大20,000dpiで印刷的に作り分けられる。市販の複数の高分子（PETなどと報じられる）に適用でき、フィルムと布地で実証された。",
+    "evaluationImpact": "白さと撥水が同じ構造変化から生まれるため、TiO₂とPFASの両方を減らせる可能性がある点が新しい。包装、フィルム、コーティング、繊維への転用が見込まれ、素材表現としても高精細な白パターンの可能性を開く。一方、既存素材並みのコストと規模への拡大が課題とされ、生分解性やリサイクル性は示されていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Print",
+      "Theme/Sustainability",
+      "Theme/Art"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "materialdistrict",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "louis-vuitton-es-devlin-frieze-week-2026",
+    "title": "Louis Vuitton × Es Devlin 回転テーブルのディナー（Frieze Week）",
+    "summary": "円卓の内側だけを回転させ、席を立たずに向かいの客が入れ替わるLVの私的ディナーを演出",
+    "client": "Louis Vuitton",
+    "agency": "Es Devlin",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/table-tournante-louis-vuitton-es-devlin-20261026",
+    "thumbnail": "/thumbnails/louis-vuitton-es-devlin-frieze-week-2026.jpg",
+    "videoId": "",
+    "overview": "Louis VuittonがEs Devlinに依頼し、Frieze Week中のロンドンで開いた私的ディナー。大きな円形テーブルの外周は固定され、内側の円が電動の台座の上でゆっくり回る。客は席を移らないまま、向かいにいた人が離れ、新しい客が座る形で相手が入れ替わっていく。",
+    "background": "会場はリージェンツ・パーク近くの旧ヴィクトリア朝の乗馬学校を使ったPark Village studios。Devlinは劇場の回り舞台の発想を持つ舞台美術家で、Louis Vuittonとはコレクションの舞台装置などで協働してきた。Creapillsは、マイアミの回転する円形閲覧テーブルを使った『Library of Us』との共通性も指摘している。",
+    "execution": "暗い室内に白一色の中央構造を置き、光る輪で縁取った。客は向かい合う二重の円に座り、外周は固定、内周は回転台に載る。席は指定のまま、食事の間に隣や正面の相手が少しずつ変わる。食器は白い皿、銀のカトラリー、クリスタルのグラス、柄入りのナプキン。壁にはLVのロゴと、Devlinの下絵を思わせる白い線画が映った。",
+    "evaluationImpact": "舞台の回転装置は通常、観客や装置を動かす。この企画は動かす対象を客に替え、「席を立たず会う相手を変える」という体験に読み替えた点が明快。会食の席替えという社交上の課題を、移動なしに機構で解く。確認できた情報源は主にCreapillsの1記事で、受賞や反響の公式情報は未確認。",
+    "relatedWorks": [
+      {
+        "title": "Library of Us（Es Devlin）",
+        "description": "マイアミで回転する円形の閲覧テーブルを使ったEs Devlinのインスタレーション。Creapillsが今回の回転テーブルとの共通性を指摘している。",
+        "url": "https://creapills.com/table-tournante-louis-vuitton-es-devlin-20261026"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Form/Event",
+      "Form/Installation",
+      "Theme/Fashion"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "3d-printed-airless-tyres-2026",
+    "title": "3D Printed Airless Tyres（無人地上車両向けエアレスタイヤ）",
+    "summary": "空気室をラティス構造に置き換え、トレッドと支持体を一体で3Dプリントしたパンクしない無人車両用タイヤ。",
+    "client": "Print&Live × iSCALE3D",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://materialdistrict.com/article/3d-printed-airless-tyres-combine-elastomers-with-impact-absorbing-geometry/",
+    "thumbnail": "/thumbnails/3d-printed-airless-tyres-2026.jpg",
+    "videoId": "",
+    "overview": "Print&LiveとiSCALE3Dが開発した、無人地上車両(UGV)向けの完全3Dプリント製エアレスタイヤ。圧縮空気の入った空気室をなくし、内部のラティス(格子)構造で衝撃を吸収する。素材はエラストマーと複合ポリマーで、リムは炭素繊維強化ナイロン製の2分割式。ホイール1本の重量は荷重等級により16〜22kg。",
+    "background": "UGVは避難・物流、農業、防衛などで使われるが、従来の空気入りタイヤは岩・ワイヤー・破片によるパンクで走行不能になる弱点がある。報道によれば、ウクライナの戦場で使うUGV向けに開発された。トレッドと支持構造を別部品で作る従来手法に対し、造形そのものを見直す狙いがある。",
+    "execution": "積層造形でトレッドと支持構造を1つの部品として一体成形する。内部ラティスがクッションと衝撃吸収を担い、損傷後も形状を保つとされる。加圧室がないためパンク型の故障を避けられるが、損傷に対して無敵ではない。リムは炭素繊維強化ナイロンの2分割式で重量8kg。2026年にパイロット生産が予定されている。",
+    "evaluationImpact": "「空気で支える」を「形状で支える」に読み替え、素材と幾何構造で機能を作る積層造形の好例。使用温度は−30〜+40℃で、戦場での使用実績があるとされるが、数値は開発側の主張で、試験方法や第三者検証は示されていない。ラティス設計と一体造形は他の移動体やロボットの足回りにも転用できる。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Tech/Robotics",
+      "Form/Product",
+      "Theme/Mobility"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "materialdistrict",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "hypha-lume-pavilion-2026",
+    "title": "Hypha-lume pavilion（菌糸体パビリオン）",
+    "summary": "菌糸体モジュールの仮設パビリオンが来訪者の動きを光と音に変え、場の利用履歴を蓄積する。",
+    "client": "不明（designboom掲載）",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.designboom.com/architecture/mycelium-hypha-lume-pavilion-human-movement-light/",
+    "thumbnail": "/thumbnails/hypha-lume-pavilion-2026.jpg",
+    "videoId": "",
+    "overview": "Hypha-lumeは、菌糸体で作った再構成可能なモジュールからなる適応型パビリオン。センサーが来訪者の経路・滞留・集まりを捉え、リアルタイムの光のパターンと音に変換する。夜は建物表面への投影に過去の活動の痕跡が重なり、場の利用が積み重なる色の場として現れる。designboomの読者投稿(DIY submissions)で2026年10月15日に紹介された。",
+    "background": "設計者はDarya Holub、Selin Ozasik、Pinak Bhapkar、Nikhil Narendiran、Baskar Bharathwaj Subramanianの5名。設置場所、クライアント、制作主体、規模は確認できなかった。designboom以外に裏付けとなる二次情報も見つからず、実際に建設・稼働したのか、コンセプト提案なのかは記事からは判断できない。",
+    "execution": "20度・40度・60度の3種類の曲率を持つ先細りの菌糸体ブロックを、垂直の支持材のまわりに連結して殻を構成する。敷地ごとに組み替えられる。モジュール同士の接合部に沿って色のついた光が走り、色の変化で人が集まっている場所を示す。昼は開放的な囲いとして、遮蔽・視認性・動線のバランスを取り、夜は暖色の光が曲面形状を縁取る。",
+    "evaluationImpact": "生分解性素材の建築に、来訪者データを光と音で返す「場の記録装置」の役割を重ねた点が評価できる。素材の環境性とインタラクティブな空間体験を組み合わせた手法は、他の仮設建築や展示にも転用しうる。ただし実装規模・検証結果・設置事例が確認できず、手法の新規性を採用基準で言い切るには根拠が不足している。",
+    "relatedWorks": [
+      {
+        "title": "Growing Pavilion (Dutch Design Week)",
+        "description": "菌糸体で作られたパビリオン。Dutch Design Weekで仮設の演奏空間として使われた。",
+        "url": "https://www.dezeen.com/2019/10/29/growing-pavilion-mycelium-dutch-design-week/amp/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Theme/Sustainability",
+      "Theme/Art"
+    ],
+    "gateCriterion": "D",
+    "sourceId": "designboom",
+    "gateTier": "borderline",
+    "discoveryLens": 3
+  },
+  {
     "id": "sonic-35th-anniversary-figure-with-synthetic-dna-2026",
     "title": "Sonic 35th Anniversary Figure with Synthetic DNA",
     "summary": "ソニックの青い体や泳げない性質など架空の設定を合成DNAに変換し、カオスエメラルド状カプセルに封入したフィギュア。",
