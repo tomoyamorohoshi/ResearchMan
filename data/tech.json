@@ -1,5 +1,105 @@
 [
   {
+    "id": "comfyui-dbs",
+    "title": "ComfyUI-DBS",
+    "org": "hiroki-abe-58(非公式ノード)/ 元モデル: Tsinghua Univ. (Dynamic Band Splitting)",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "Audio/Music"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "映画やCMの音声を「音楽・効果音・セリフ」の3つに分けるComfyUIノード。セリフだけ消した動画も作れる。",
+    "point": "1本の音声を、音楽・効果音・セリフの3本に自動で分けられます。3本を足すと元の音に戻る設計です。セリフだけ抜いて音楽と効果音を残した動画を作れるので、素材のナレーションを差し替えたり、吹き替えや字幕用にセリフだけ取り出したりする作業がComfyUIの中で終わります。モデルは合計約23MBと小さく、CUDA対応GPUがなくてもCPUで動きます。広告制作では、既存映像のBGMを活かしたまま別言語の吹き替えを載せる、権利処理済みのSEだけ残してナレーションを撮り直す、といった使い方が考えられます。AI生成映像の音を整える後工程としても使えます。MITライセンスのため業務利用の見通しも立てやすい点も長所です。",
+    "detail": "仕組み: 音声を周波数ごとの帯域に分けて解析するAI(Dynamic Band Splitting)を使っています。従来は帯域の切り方が固定でしたが、この方式は音ごとに切り方を予測して変えます。ノードは2つです。「DBS Loader」でモデル(軽量なTIGERか、CPU向きのBSRNN)を選び、「DBS Separate」で音声を入れると music / sfx / speech の3本が出ます。長い音声は短い窓に区切って重ねながら処理するので、長さの制限はありません。ステレオを保つ「each channel」モードもあります。\n\n従来との違い: 公式の研究コードをそのまま動かすには環境構築が必要でしたが、このノードでComfyUIの動画ワークフローに直接つながります。作者の検証では、公式パッケージと同じ結果になることを確認済みです(CPUで6件中6件一致)。ただし分離の品質そのものは再評価しておらず、学習データは英語の映画風ミックスなので、歌入りの楽曲や日本語素材は自分の耳で確かめる必要があります。\n\n使うには: ComfyUI v0.38.0以降とPython 3.10以上が必要です。リポジトリを custom_nodes にclone → requirements.txtをインストール → tools/download_model.py でモデルをダウンロード(SHA-256で検証)します。無料です。workflows/gui/ に、3本に分けるもの、セリフを消すもの、動画のセリフを消すものの3種類のサンプルがあります。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "ノード本体はMIT。同梱の公式DBSコードとモデルはApache-2.0、学習データDnR v2はCC BY 4.0(表記が必要)。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/hiroki-abe-58/ComfyUI-DBS"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/JusperLee/Dynamic-Band-Splitting"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.14993"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/comfyui-dbs.jpg",
+    "relatedWorks": [
+      {
+        "title": "Dynamic Band Splitting (公式実装)",
+        "description": "このノードが使う分離モデルの元研究。BSRNN/TIGER等のDBS版と学習済みモデルを公開。",
+        "url": "https://github.com/JusperLee/Dynamic-Band-Splitting"
+      },
+      {
+        "title": "Learning Where to Split (arXiv 2610.14993)",
+        "description": "帯域の切り方を入力ごとに予測する音源分離の論文。",
+        "url": "https://arxiv.org/abs/2610.14993"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "comfyui-gem-x",
+    "title": "ComfyUI-GEM-X",
+    "org": "lkevincc0(非公式ノード)/ 元研究: NVIDIA (NVlabs GEM-X)",
+    "type": "Tool",
+    "domains": [
+      "Motion/Body",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "1本の動画から全身モーションを取り出し、Mixamo/Unreal/UnityのFBXキャラに適用するComfyUIノード。",
+    "point": "普通のビデオ1本から人の全身の動きを読み取り、ComfyUIの中でMixamo、Unreal、Unityのキャラクターに付けて、そのまま3D表示で確認できます。モーションキャプチャ用のスーツやカメラを並べる必要がありません。NVIDIAの研究モデルGEM-Xが77個の関節の動きを出し、ノードが骨の名前から相手のキャラの骨組みを自動で判別して当てはめます。足の長さに合わせた移動量の調整や、その場で動くアニメーションへの切り替えもできます。広告では、撮影した振付動画をそのままCGキャラに踊らせる、ゲームエンジン向けの仮アニメーションを素早く作る、といった使い方が考えられます。AI生成映像と3Dキャラを組み合わせた企画の試作にも向きます。",
+    "detail": "仕組み: 動画から人物を追跡し、ViTPoseで77点のキーポイントを取り、SAM-3D-Bodyの特徴量も使って、GEMがSOMAという人体モデルの動きに変換します。その動きを、キャラクターFBXの骨に再配置(リターゲット)して、アニメーション付きのFBXとして書き出します。ノードは4つで、動画→SOMAモーション、FBXへのリターゲット、フレーム列の動画化、動画パスの指定です。動きは motion.npz としても保存でき、他のツールで再利用できます。\n\n従来との違い: これまでは研究コードをコマンドラインで動かし、骨の対応づけは手作業でした。このノードでは、骨の名前の判定、Y-up/Z-upとTポーズ/Aポーズの揃え、指や補助ボーンの扱いまで自動化されています。書き出し後にアニメーションを読み戻して検証しますが、これは書き込みの正しさの確認で、動きの見た目の良し悪しは確認できません。主に1人だけを追い、カメラは固定という前提です。\n\n使うには: NVIDIA GPU(CUDA)とComfyUI、約10GBのディスク(標準モード)が必要です。clone → pip install -r requirements.txt → python install.py の手順で、モデルは初回利用時に自動ダウンロードされます。リポジトリにはキャラ3体とサンプルワークフローが入っています。無料ですが、モデル重みのNVIDIA Open Model Licenseを事前に確認してください。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "ノードのコードはApache-2.0。モデルの重みはNVIDIA Open Model License、同梱キャラはMixamo/Epic/Unityの各規約に従う。商用は各条項の確認が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/lkevincc0/ComfyUI-GEM-X"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/NVlabs/GEM-X"
+      },
+      {
+        "kind": "project",
+        "url": "https://research.nvidia.com/labs/dair/gem/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/comfyui-gem-x.jpg",
+    "relatedWorks": [
+      {
+        "title": "NVlabs/GEM-X",
+        "description": "NVIDIAの単眼動画から3D人体の姿勢と動きを推定する元の研究実装。",
+        "url": "https://github.com/NVlabs/GEM-X"
+      },
+      {
+        "title": "NVIDIA GEM プロジェクトページ",
+        "description": "GEM(人体モーション推定)の公式研究ページ。",
+        "url": "https://research.nvidia.com/labs/dair/gem/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "tutticam",
     "title": "TuttiCam",
     "org": "dtpoi(個人開発)",
