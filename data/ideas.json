@@ -23005,5 +23005,215 @@
         "desc": "動画生成モデルMiniMax-H3を、49回の計算から8回に圧縮し、生成時間を約3分の1にするLoRA。"
       }
     ]
+  },
+  {
+    "id": "2026-10-27-1",
+    "date": "2026-10-27",
+    "title": "仏画展を点群スプラットで巡る",
+    "pattern": "文脈×技術",
+    "seed": "福田美術館「幸せになりたい！ー祈りの絵画ー」の仏画・吉祥画の展示室をPCD Splatterでその場スキャンしてスプラット化し、来場できない人が祈りの空間ごと持ち帰れる「手元の祈りの間」にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-1i1qr82-2026",
+        "title": "幸せになりたい！ー祈りの絵画ー",
+        "desc": "福田美術館が仏画や吉祥画を軸に開いた、同館初の企画展。清方作品など17点を初公開した。"
+      },
+      {
+        "type": "tech",
+        "id": "pcd-splatter",
+        "title": "PCD Splatter (Point Cloud Density Splatter)",
+        "desc": "レーザースキャンの点群を、AI学習なしでその場で立体的な光の粒の3Dに変換するBlender用アドオン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-27-2",
+    "date": "2026-10-27",
+    "title": "ドローンの軌跡を先読みする演出",
+    "pattern": "文脈×技術",
+    "seed": "横浜DeNAのYOKOHAMA STAR☆NIGHT DRONE SHOWに、MolmoMotionの「画像と言葉から物体の数秒先の動きを予測する」力を掛けたら、2会場の機体が観客の掲げた一枚の写真から動きを描き出す演出ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "yokohama-star-night-drone-show-2026",
+        "title": "YOKOHAMA STAR☆NIGHT DRONE SHOW",
+        "desc": "横浜スタジアムとみなとみらいの2会場で同時に行われた、3,500機規模のドローンショー。"
+      },
+      {
+        "type": "tech",
+        "id": "molmomotion",
+        "title": "MolmoMotion",
+        "desc": "1枚の画像と文章の指示から、物体が数秒先にどう動くかを予測するAi2のAIモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-27-3",
+    "date": "2026-10-27",
+    "title": "騒音を楽譜にして歌う看板",
+    "pattern": "文脈×技術",
+    "seed": "Geely Zerooh Noiseの幹線道路の騒音センサー看板が拾う都市の喧騒を、YuE2の「読んで直せる楽譜」経由で曲に変えたら、EVの静けさが「騒音から生まれた1曲のあとの静寂」として聞こえるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "zerooh-noise-a-real-time-decibel-sensing-billboard-2025",
+        "title": "Zerooh Noise: a real-time decibel-sensing billboard",
+        "desc": "道路の騒音をリアルタイムで測って表示し、電気自動車の静かさを際立たせたデジタル看板。"
+      },
+      {
+        "type": "tech",
+        "id": "yue2",
+        "title": "YuE2",
+        "desc": "歌詞とスタイルから、人が読んで直せる楽譜を経由して曲を作る、無料でローカル動作する音楽AI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-27-4",
+    "date": "2026-10-27",
+    "title": "壁の手描き文字を踊らせる",
+    "pattern": "技術×技術",
+    "seed": "CEB SAM 3D Body v4で取った人の動きを、C1連続in-loop-outモーション生成ツールでループ化し、ダンスの軌跡から文字の筆跡を生む書体にしたら、動き自体がフォントになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ceb-sam-3d-body-v4",
+        "title": "CEB SAM 3D Body v4 (Blender addon)",
+        "desc": "動画から人の3Dポーズを推定し、Blender上のモーションデータにするアドオン。"
+      },
+      {
+        "type": "tech",
+        "id": "akasaki-c1-loop-motion-tool",
+        "title": "C1連続 in-loop-out モーション生成ツール",
+        "desc": "モーションキャプチャの一部から、つなぎ目のない繰り返しアニメーションを自動生成するツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-27-5",
+    "date": "2026-10-27",
+    "title": "頭の傾きで操る灰色の部屋",
+    "pattern": "技術×技術",
+    "seed": "bFaaaPの「頭の傾きでペダルを操る」仕組みと、DualSense Haptic Designerの振動設計を組み合わせたら、顔の角度だけで触感の変わる音と振動の体験装置ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "bfaaap",
+        "title": "bFaaaP (barrier-Free assist as a Pedal)",
+        "desc": "頭の傾きをiPhoneで読み取り、ピアノのペダルを動かす日本発のオープンソース支援装置。"
+      },
+      {
+        "type": "tech",
+        "id": "dualsense-haptic-designer",
+        "title": "DualSense Haptic Designer",
+        "desc": "PS5コントローラーの振動やトリガーの手応えを設計・試せるツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-27-6",
+    "date": "2026-10-27",
+    "title": "家電の整備手帳を声で残す",
+    "pattern": "文脈×技術",
+    "seed": "DartyのLong Lasting Passportの「家電に整備手帳を持たせる」発想に、VoiceStudioのローカル声クローンを掛け、持ち主が語った修理の思い出を次の持ち主へ元の声で引き継げるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "long-lasting-passport-darty",
+        "title": "Long Lasting Passport",
+        "desc": "大型家電に整備の記録を持たせ、長く使う文化を促したDartyの取り組み。"
+      },
+      {
+        "type": "tech",
+        "id": "voicestudio",
+        "title": "VoiceStudio",
+        "desc": "声のクローンや多言語吹き替えを、無料でローカルで行えるオープンソースのアプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-27-7",
+    "date": "2026-10-27",
+    "title": "ロボットの転倒を素麺糸で描く",
+    "pattern": "転用",
+    "seed": "Microduckの二足歩行ロボットの転び方や起き上がりの軌跡を、瀬戸内国際芸術祭「線の記憶」の赤い糸のように記録する作品にしたら、失敗の動きが島の記憶のように可視化されるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "microduck",
+        "title": "Microduck",
+        "desc": "体重800gの小型二足歩行ロボット。歩行や転倒からの起き上がりをこなす。"
+      },
+      {
+        "type": "case",
+        "id": "setouchi-2025-te23",
+        "title": "線の記憶",
+        "desc": "豊島の素麺製造機を赤い糸で編み込む、塩田千春の新作インスタレーション。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-27-8",
+    "date": "2026-10-27",
+    "title": "建築図面を入れる360度の夢",
+    "pattern": "転用",
+    "seed": "giroの「1枚から360°周回動画を作り、不良を自動で捨てる品質ゲート」を、冨安由真「かげたちのみる夢」の不穏な室内の再現に転用し、失敗した映像ほど不気味な「ずれた部屋」を意図的に選ぶ展示にできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "giro",
+        "title": "giro",
+        "desc": "1枚の画像から360度の周回動画を作り、そこから3D空間を作る実験的な仕組み。"
+      },
+      {
+        "type": "case",
+        "id": "setouchi-2022-te20",
+        "title": "かげたちのみる夢（Remains of Shadowings）",
+        "desc": "豊島の建物内に不穏な気配の室内空間をつくる、冨安由真のインスタレーション。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-27-9",
+    "date": "2026-10-27",
+    "title": "AIが読み解く舞踏記譜の書",
+    "pattern": "転用",
+    "seed": "AgentSTARの「動画を見せるとエージェントがBlenderで動きを組み立てる」仕組みを、Bradesco Dancebook Brasilの舞踏記譜法の解読に転用し、古い踊りの動画から記譜を逆算して書籍に戻せるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "agentstar",
+        "title": "AgentSTAR (Agentic Shape Tracking and Reconstruction)",
+        "desc": "動画を見たコーディングAIが、Blenderで可動物の3D動作を自動で組み立てる研究。"
+      },
+      {
+        "type": "case",
+        "id": "bradesco-dancebook-brasil",
+        "title": "Dancebook Brasil",
+        "desc": "ブラジルの踊りを舞踏記譜法で記録し、文化遺産として残した書籍。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-27-10",
+    "date": "2026-10-27",
+    "title": "かるた札が鳴らす方言の歌",
+    "pattern": "文脈×技術",
+    "seed": "秋田魁新報のアキタベンかるたの読み札を、SA3 Browser Toolsで一枚ずつ手触りで作り込める効果音にし、紙面を切り取って遊ぶと方言が音になって返ってくる体験にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "akita-sakigake-akitaben-karuta",
+        "title": "秋田魁新報「帰ってきたアキタベン ― あきた弁企業かるた」",
+        "desc": "新聞の広告欄を絵札と読み札に見立てた、遊べる方言かるたの連載企画。"
+      },
+      {
+        "type": "tech",
+        "id": "sa3-browser-tools",
+        "title": "SA3 Browser Tools (mucking_around_time_with_stable_audio_3)",
+        "desc": "音声生成AIを、ブラウザ上で手で触りながら作り込める制作ツールキット。"
+      }
+    ]
   }
 ]
