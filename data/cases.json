@@ -1,5 +1,240 @@
 [
   {
+    "id": "moma-ps1-warm-up-identity-2026",
+    "title": "MoMA PS1 Warm Up Identity",
+    "summary": "既存書体PS1 Sansの輪郭をMP3の周波数帯ごとに変形させる自作ツールで、曲ごとに踊る文字を生成したID",
+    "client": "MoMA PS1",
+    "agency": "SMLXL",
+    "categories": [
+      "テクノロジー×アイデア",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://the-brandidentity.com/project/smlxls-identity-for-moma-ps1s-warm-up-has-letters-that-dance-to-music",
+    "thumbnail": "/thumbnails/moma-ps1-warm-up-identity-2026.jpg",
+    "videoId": "",
+    "overview": "ニューヨークのMoMA PS1が毎夏開く音楽フェス「Warm Up」(2026年7月24日〜8月28日、第28回)のビジュアルアイデンティティ。ニューヨークとバルセロナ拠点のSMLXLが制作し、MoMA PS1の書体PS1 Sansの文字を音楽に合わせて踊らせた。出演アーティストごとのデジタルグラフィックと、ニューヨーク各所に掲出されたポスターで展開された。",
+    "background": "Warm Upは音楽・アート・コミュニティを約30年つないできた夏のフェスで、2026年はMoMA PS1の50周年にあたり、実験音楽中心のラインナップだった。SMLXLは「音楽に合わせて文字を踊らせる」ことを核に据え、アーティストと観客を中心に置いた。デザイナーのLea Naisbergは、観客のエネルギーと多様性を捉えることを狙いとして語っている。",
+    "execution": "PS1 Sans(Berton Hasebe/HB Type設計)には字形を追加せず、輪郭上の点を手足のようにずらして変形させた。自作ツールはSVGの文字とMP3を入力し、周波数帯ごとに解析して各帯域を文字や構成の一部に割り当て、音量や強度で表情を変える。「Crowded」など密度を決めるパラメータがあり、ランダム性を含むため同じ設定でも動きは毎回異なる。静止画や動画として書き出し、ポスターでは1曲につき10〜100フレームを書き出して文字や瞬間を選び、一部は手作業で調整した。配色はPS1既存パレットを使い、アーティスト用はデュオトーン。",
+    "evaluationImpact": "既存書体に手を加えず、音の周波数をそのまま文字の動きに変換する仕組みを作り、静止ポスターと動画の両方を同じツールから量産できる点が評価できる。ランダム性により曲ごと・出力ごとに異なる表情が生まれる一方、ポスターでは出力をそのまま使わず選別と手修正を加え、アーティスト名の可読性を保った。音に反応する生成的IDの系譜に連なる事例。なお、受賞は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Philharmonie Luxembourg Identity (NB Studio)",
+        "description": "演奏の波形にロゴの柱がリアルタイムで反応する生成的ブランドID。",
+        "url": "https://bpando.org/2023/11/14/music-branding-philharmonie-luxembourg-nb-studio/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Tech/Web",
+      "Form/OOH",
+      "Theme/Music"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "the-brandidentity",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "me-myself-sam-inherited-ep-2026",
+    "title": "Me, Myself & Sam（Inherited EPカバー兼インタラクティブ・マイクロサイト）",
+    "summary": "EPのカバーを警察の捜査ボードのマイクロサイトにし、証拠を合わせて殺人犯の顔を暴いてから曲に入る構成にした",
+    "client": "Inherited",
+    "agency": "Eder Anaya（Adrien Lamy: web開発、Alex Boyd: イラスト）",
+    "categories": [
+      "コンテンツ革新",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米",
+      "中南米"
+    ],
+    "link": "https://the-brandidentity.com/project/eder-anaya-makes-inheriteds-ep-cover-a-microsite-you-can-investigate",
+    "thumbnail": "/thumbnails/me-myself-sam-inherited-ep-2026.jpg",
+    "videoId": "",
+    "overview": "デスコアバンドInheritedのデビューEP『Me, Myself & Sam』は全3曲で、それぞれ実在の連続殺人犯をモチーフにしている。そのカバーは警察の捜査ボードをそのまま再現したインタラクティブなマイクロサイトで、PCでもスマホでも遊べる。中央の神経衰弱(メモラマ)形式の仕掛けで証拠を合わせると隠れた顔が現れ、人物のファイルが開いて対応する曲へつながる。",
+    "background": "ボーカル兼クリエイティブ・アートディレクターのEder Anaya(メキシコシティ拠点)が、リスナー自身が各曲の人物を突き止める「捜査」としてリリースを構想した。デスコアで定番の過激で流血的なビジュアルに頼らず、重さをテンポ・音・タイポグラフィ・編集・インターフェースに置くことを狙った。本人は殺人犯を美化する意図はないと述べている。",
+    "execution": "ボードには写真・書類・小物・手描き要素が並び、その関係性が手がかりになる。入場前に音声オンを促し、クリック音や環境音、楽曲の断片で緊張感を作る。人物の素性は断片的にしか明かさず、SNSの手がかりやトゥルークライム番組風のプロモ映像の顔・名前がカバーに戻る導線にした。実装はthree.js、SvelteKit、GSAP。紙やコピー機の質感もスキャンして重ねた。各曲は人物の一人称で書かれている。",
+    "evaluationImpact": "「ジャケットを開いて聴く」順序を「証拠を解いて顔を見つけてから聴く」に変え、カバーを鑑賞物から参加型の体験に読み替えた点が核。ジャンルの視覚的お約束を避け、インターフェースと音の演出で不穏さを出した。受賞は確認できていない。出典はThe Brand Identityの紹介記事(2026年10月26日付)のみで、公開後の反響や数値は未確認。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Website",
+      "Theme/Music",
+      "Tech/Web",
+      "Tech/3D"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "the-brandidentity",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "eating-scoby-emma-sicher-2026",
+    "title": "EATING SCOBY（Emma Sicher）— 野生の果実と自生微生物で育てた微生物セルロース素材",
+    "summary": "市販種菌を使わず、ベルリン近郊の野生果実と自生微生物だけで微生物セルロースを育て、包装材や食べられる試作品にした",
+    "client": "Emma Sicher",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.designboom.com/design/emma-sicher-biomaterials-microorganisms-cellulose-eating-scoby/",
+    "thumbnail": "/thumbnails/eating-scoby-emma-sicher-2026.jpg",
+    "videoId": "",
+    "overview": "ベルリン拠点のバイオデザイナーEmma Sicherによる、微生物セルロース（SCOBY）を使った素材研究。ベルリンで採れたナナカマドの実やブランデンブルクのミラベルなどの植物と、その土地に自生する微生物群から液体培地を作り、表面にセルロース膜を育てる。膜は乾燥させて包装材や小型容器になるほか、チップス、アイスのコーン、ポプシクル、ピンク色のパールなど食べられる試作品にもなる。",
+    "background": "SCOBYは細菌と酵母の共生培養体で、コンブチャで知られる。Sicherは2017年に果物や野菜の廃棄部分から生分解性の食品包装を育てる「From Peel to Peel」を発表している。現在はHfGオッフェンバッハ（Offenbach University of Art and Design）の博士課程に在籍し、フンボルト大学ベルリンのMatters of Activityクラスターに所属する。研究では、SCOBYを育てる営みを通じて、関係性に富み生物多様性を含む素材を生むことを探っている。",
+    "execution": "市販のコンブチャ種菌を使わず、ベルリンで採集したナナカマドの実、ブランデンブルクのミラベル、エルダーベリーなどと、自生の微生物コミュニティを利用する。液体を発酵させて表面に膜を作り、収穫して加工する。植物の浸出液や材料の選び方で色・密度・質感が変わり、色は淡い黄色から濃いピンクまで幅がある。乾燥させる面によって仕上がりも変わる。食品微生物学者やシェフと共同で、食べられる試作品も開発した。",
+    "evaluationImpact": "素材を「その土地の植物と微生物」だけで育てるという発想が、コンブチャ由来素材の既存の作り方と異なる点。包装材と食用の両方に展開している。一方、水分を吸いやすいため、湿った食品の包装には向かないという限界も記事に明記されている。受賞や展示の情報は確認できなかった。",
+    "relatedWorks": [
+      {
+        "title": "From Peel to Peel",
+        "description": "Emma Sicherによる2017年のプロジェクト。リンゴの皮やビーツの残りなど、廃棄される果物・野菜から生分解性の食品包装を育てた。",
+        "url": "https://materialdistrict.com/article/microbial-cellulose-packaging-material/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Theme/Sustainability",
+      "Theme/Food"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "designboom",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "the-unread-2026",
+    "title": "The Unread",
+    "summary": "Gmailの迷惑メールをゾンビに読み替え、倒すと実際にゴミ箱へ送られる無料ブラウザゲーム",
+    "client": "Uncommon Creative Studio × Resn",
+    "agency": "Uncommon Creative Studio / Resn",
+    "categories": [
+      "コンテンツ革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/unread-zombies-emails-indesirables-spams-gmail-20261027",
+    "thumbnail": "/thumbnails/the-unread-2026.jpg",
+    "videoId": "",
+    "overview": "Uncommon Creative Studioとデジタルスタジオ Resnが、ハロウィン時期に公開した無料のゾンビゲーム。プレイヤーがGmailアカウントを接続すると、受信箱の不要メールがゾンビとして現れる。ゾンビを1体倒すごとに対応するメールがGmailのゴミ箱へ移動する。Gmail接続なしで最初のステージだけ遊べる「Voyeur Mode」もある。",
+    "background": "報道では、平均的な人は1,000通超の未読メールを抱えているという調査が背景として挙げられている。Uncommonの共同創業者Nils Leonardは、デジタル作業から感情を取り除くツールとは逆に、あえて本能的でおバカで楽しいものにしたかったと述べた。ResnのCEO Rik Campbellは、先延ばししたい気持ちを使い、受信箱の片付けを楽しみにできるものにすると説明している。",
+    "execution": "ゲームには2つのモードがある。Gmailに接続する「Slaughter Mode」は、未読メールの数え上げと分類のための読み取り権限と、倒したメールをゴミ箱へ移すための変更権限を使う。ゲーム内の行動がそのまま受信箱の整理に反映される。Gmail接続不要の「Voyeur Mode」は第1ステージのみ遊べる。ゲーム名は未読(unread)とゾンビ(undead)の語呂合わせでもあると報じられている。",
+    "evaluationImpact": "「未読メールをゾンビに読み替え、倒す操作が実際の削除になる」と一文で言える企画で、ゲームの行為と実世界の作業を直結させている点が評価できる。ゲームの爽快感で面倒な作業への動機を作る手法は、他のデジタル作業の習慣化にも転用できる。公開直後の事例であり、受賞や成果数値は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Tech/Web",
+      "Form/App"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "cement-free-concrete-cycle-path-vogelweg-n706-2026",
+    "title": "Cement-Free Concrete Cycle Path（フレヴォラント州 Vogelweg N706）",
+    "summary": "セメントクリンカー不使用のジオポリマーコンクリートと再生骨材で約1.2kmの自転車道を舗装し、季節ごとに性能を検証する。",
+    "client": "Province of Flevoland / Reimert Groep（コンクリートは Theo Pouw Groep）",
+    "agency": "Reimert Groep",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://materialdistrict.com/article/cement-free-concrete-cycle-path-takes-shape-in-flevoland/",
+    "thumbnail": "/thumbnails/cement-free-concrete-cycle-path-vogelweg-n706-2026.jpg",
+    "videoId": "",
+    "overview": "オランダ・フレヴォラント州のVogelweg(N706)で、セメントクリンカーを使わないジオポリマーコンクリートによる約1.2kmの自転車道が整備された。2026年10月に2日間で打設。骨材には旧駅ホームなど公共空間の廃材由来の再生骨材を使う。同州で初のセメントレス自転車道とされる。",
+    "background": "セメントは製造時のCO₂排出が大きく、道路・橋の素材転換が課題になっている。Reimert GroepとTheo Pouw Groepは、アルメレのフロリアーデ博覧会で同じ素材の橋2本を施工しており、Kiwaが認証と監視を行っている。フレヴォラント州は両社とセメントレス自転車道の開発協議を続けていた。今回は橋に続く、道路舗装への適用となる。",
+    "execution": "発注はフレヴォラント州で、EUが共同出資している。施工はReimert Groep、コンクリートはTheo Pouw Groepが供給し、BKB Infraのスリップフォームペーバーが敷設した。ペーバーはGPS誘導でデジタル設計に沿って動く。湿った路盤を傷めないよう、履帯式ダンプで路肩側から搬入した。打設は季節をずらして段階的に進め、気象条件ごとの性能を確かめる。",
+    "evaluationImpact": "Reimertはこの混合でCO₂排出を従来コンクリート比50〜80%削減できると説明している。Theo PouwはKOMOの革新認証を取得済み。狙いは試験・パイロット段階から日常的な大規模インフラ利用への移行で、そのためには発注者が仕様に指定することが前提になるとしている。州の資料では価格は通常コンクリートの約1.5〜2倍とされる。",
+    "relatedWorks": [
+      {
+        "title": "Floriade Almere のセメントレスコンクリート橋(Reimert / Theo Pouw)",
+        "description": "同じジオポリマーコンクリートで施工した自転車・歩行者橋と交通橋の2本。Kiwaが認証と監視を行う。",
+        "url": "https://www.kiwa.com/nl/nl/markten/bouwmaterialen/nieuws/kiwa-certificeert-en-monitort-cementloos-beton-floriade-almere/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Theme/Sustainability",
+      "Theme/Mobility"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "materialdistrict",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "white-case-rebrand-2026",
+    "title": "White & Case rebrand",
+    "summary": "法律事務所の定番ネイビーを捨て電気的な青に替え、写真を色の筋へ変える独自ツールで動きを持たせたリブランド。",
+    "client": "White & Case",
+    "agency": "Uncommon",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.creativeboom.com/work/this-rebrand-ditches-every-law-firm-cliche-as-white-case-loses-the-navy-blue/",
+    "thumbnail": "/thumbnails/white-case-rebrand-2026.jpg",
+    "videoId": "",
+    "overview": "国際法律事務所White & Caseが、約13年ぶりの大型リブランドをUncommon Creative Studioと実施した。ネイビーを廃して「Catalyst Blue」を中核色に据え、ローマ碑文に着想した斜めカットのロゴ、独立したモノグラムとしてのアンパサンド、動きを感じさせる独自書体を導入した。ブランドフィルム「The Power of Complexity」、ポッドキャスト、広告、採用プラットフォームなどに展開されている。",
+    "background": "同事務所は創業125年で、顧客は複雑な世界を渡る経営層、業界は競争が激化している。CMOのJason Hillは、ブランドは差別化と事業成長の源泉になりうると述べる。グローバル・チーフ・デザイン・オフィサーのLisa Smithは、法務業界は「ネイビーの板」に埋もれ、金融やテックの陳腐な借り物と無難な選択に頼っていると指摘した。そこで「同質性の海」から抜け出す方向を採った。",
+    "execution": "色はCatalyst Blue（可視光の高エネルギー側に着想）を軸に、Marble White、Ink Black、Ion・Thermal・Solar・Ultravioletの副色で「高電圧パレット」を構成。ロゴはトラヤヌスの円柱の碑文に着想し、Wなどに斜めの切れ込みを入れて前傾する印象を出した。見出し用のカスタム・セリフも同じ方向性。独自ツール「Energy Studio」は写真の一部を色の筋に引き伸ばし、火山や高層ビル、風力タービンをデータの線のように見せる。",
+    "evaluationImpact": "「複雑さはリスクではなく好機」というメッセージを、色・書体・画像加工まで一貫して表した点が特徴。「Complexity creates risk / We see opportunity」などのコピーも同じ軸でそろえている。特に、ツールで写真に統一した効果をかけるやり方は、他の仕事にも転用できる方法といえる。ただしネイビー離れ自体は色の選択にとどまる。ツールの仕組みや運用の詳細は確認できず、受賞も確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Print",
+      "Form/Film",
+      "Tech/Web"
+    ],
+    "gateCriterion": "B",
+    "sourceId": "creativeboom",
+    "gateTier": "borderline",
+    "discoveryLens": 2
+  },
+  {
     "id": "natwest-savings-index-2026",
     "title": "NatWest Savings Index",
     "summary": "1万人規模の調査データをもとに「貯蓄」の会話をコンテンツ化し、LLM経由の流入も見据えたNatWestのメディア戦略プロジェクト。",
