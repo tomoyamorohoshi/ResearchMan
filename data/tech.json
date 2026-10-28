@@ -1,5 +1,147 @@
 [
   {
+    "id": "fragmenta",
+    "title": "Fragmenta",
+    "org": "MAz-Codes（個人開発）",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "自分の音源でStable Audio 3を追加学習（LoRA）し、そのモデルでの生成とライブ演奏までを1本で行えるデスクトップアプリ。v1.2.0を2026-10-27に公開。",
+    "point": "すごい点は、「音源を集める→タグ付け→追加学習→生成→ライブ演奏」という流れが、1つのデスクトップアプリで完結することです。自分の録音やサンプル集を読み込むと、自動でタグ付けして学習し、そのブランド専用・作家専用の音のモデルが作れます。さらに「Performance Mode」では4チャンネルのライブサンプラーとして、生成した音を効果音つきで鳴らしたり、Ableton Link（複数のソフト・機材のテンポを合わせる仕組み）やMIDIコントローラーで操作したりできます。広告・体験づくりでは、ブランド固有の音世界をAIで量産して展示や映像に使う、来場者の動きに応じて音素材をその場で生成・演奏するインスタレーション、ライブイベントでのAI即興演奏などが作れそうです。サンプルを自分で学習させるため、他人の曲に似すぎるリスクも抑えやすい点が、クリエイターには安心材料になります。",
+    "detail": "仕組み：土台はStability AIのStable Audio 3（文章から音を作る拡散モデル。ノイズから少しずつ音を浮かび上がらせる方式）です。Fragmentaはこの巨大モデルを丸ごと作り直さず、LoRA/DoRA/BoRAと呼ばれる「小さな差分だけを学習する」方法で、手元の音源の癖を覚えさせます。音源のタグ付けはDSP解析かLAION-CLAPという音の自動分類モデルが担当します。画面はDataset・Training・Generate・Performanceの4ページ構成で、READMEにスクリーンショットとデモ動画があります。\n\n従来との違い：これまでは学習用スクリプトを自分で動かし、生成も別ツール、演奏はDAWと、環境を行き来する必要がありました。Fragmentaは学習から演奏までを1アプリにまとめた点が新しさです。なお音声の編集機能（スタイル変換・インペイント等）は上流の精度が足りないため現状オフになっています。\n\n使うには：Windows/macOS/Linux対応で、READMEにインストールスクリプトがあります。生成だけなら一般的なGPUで動きますが、Mediumモデルはフラッシュアテンション2対応のNVIDIA GPUが必要です。モデル重みは別途ダウンロードし、Stability AI Community Licenseの条件確認が要ります。アプリ自体は無料のオープンソースですが、AGPL-3.0なので改変して配布・提供する場合はソース公開義務があります。",
+    "license": {
+      "spdx": "AGPL-3.0",
+      "commercial": "conditional",
+      "note": "アプリ本体はAGPL-3.0。同梱のStable Audio 3コードはMIT。モデル重みは再配布されず、Stability AI Community Licenseに従う。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/MAz-Codes/Fragmenta"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=lQgLaU8RujU"
+      },
+      {
+        "kind": "post",
+        "url": "https://github.com/MAz-Codes/Fragmenta/releases/tag/v1.2.0"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/fragmenta.jpg",
+    "relatedWorks": [
+      {
+        "title": "stable-audio-tools",
+        "description": "Stability AIの音声生成モデルの学習・推論ライブラリ。Fragmentaの土台にあたる。",
+        "url": "https://github.com/stability-AI/stable-audio-tools"
+      },
+      {
+        "title": "Ableton Link",
+        "description": "複数アプリ・機材のテンポを同期させる仕組み。Fragmentaのライブ演奏モードが対応。",
+        "url": "https://github.com/Ableton/link"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "yue2-studio",
+    "title": "YuE2 Studio",
+    "org": "timoncool（個人開発）",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "歌付きの楽曲を手元のNVIDIA GPUで作れるデスクトップアプリ。生成結果が楽譜（ABC記法）として見え、音符・テンポ・調を直して作り直せる。",
+    "point": "すごい点は、AIが作った曲が「ブラックボックスの音声ファイル」で終わらず、楽譜として画面に出て、音符やテンポ、調、コード、ドラムを人間が直してから再生成できることです。曲の骨格（作曲）は保ったまま、演奏や歌い方だけを変えられます。既存の録音からメロディを書き起こして別ジャンルで歌わせるカバー機能、6パートへの音源分離、MIDI書き出しも入っています。広告・体験づくりでは、ブランドソングやジングルの案を数分で複数作り、メロディだけ人間が手直しして仕上げる使い方ができます。長さは最大10分まで作れるため、展示や店頭の長尺BGMにも向きます。クラウドに素材を送らず手元で動くので、未公開の企画の音を外に出したくない案件でも扱いやすいのが利点です。",
+    "detail": "仕組み：YuE2という歌付き楽曲生成モデルを、C++/CUDAで動かすyue2.cppに移植し、その上にRustとReactで作ったTauriアプリを載せています。モデルがまず曲をABC記法という文字ベースの楽譜として書き、次にその楽譜に沿って歌と伴奏の音を作る二段構えのため、途中の楽譜に人が手を入れられます。保存した音声コードから同じ演奏を再現する「Exact replay」もあります。\n\n従来との違い：従来の歌付き音楽生成はプロンプトを変えてガチャを回すだけで、気に入った部分だけ直すことが困難でした。このアプリは楽譜とMIDIエディタを間に挟み、構成を固定した修正ができる点が違います。なお掲載済みのYuE2（モデル本体）やSheetSage2とは別物で、これらを使いやすい制作ツールにまとめたものです。\n\n使うには：Windows x64のインストーラーまたはポータブル版（リリースv3.8.2、2026-10-27）が配布されています。Linux（deb/AppImage）とmacOS dmgもありますが実験的扱いです。推奨はVRAM 6GB以上のNVIDIA GPUで、作者は主にRTX 4090で検証しています。モデル重みは別途取得し、CC BY-NC 4.0の条件を確認してください。LoRAによる追加学習や、AIエージェントから操作するMCPサーバーも備えています。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "アプリ・yue2.cppはMIT。モデル重みはCC BY-NC 4.0（個人クリエイター向けの許可あり）、SheetSage2等はCC BY-NC 4.0。商用利用は重みの条件を要確認。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/timoncool/YuE2-Studio"
+      },
+      {
+        "kind": "product",
+        "url": "https://github.com/timoncool/YuE2-Studio/releases/latest"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/yue2-studio.jpg",
+    "relatedWorks": [
+      {
+        "title": "HOT-Step CPP",
+        "description": "ACE-Step等を載せた別のローカル音楽生成アプリ。",
+        "url": "https://github.com/scragnog/HOT-Step-CPP"
+      },
+      {
+        "title": "acestep.cpp",
+        "description": "ACE-Stepのggml/C++推論エンジン。ローカル音楽生成アプリの共通基盤の一つ。",
+        "url": "https://github.com/ServeurpersoCom/acestep.cpp"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "hot-step-cpp",
+    "title": "HOT-Step CPP",
+    "org": "scragnog（個人開発）",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "ACE-Step 1.5・MiniMax-Music3・YuE2・Stable Audio 3を1つの画面で切り替えて使える、ローカル完結の音楽生成スタジオ。",
+    "point": "すごい点は、複数の音楽生成モデルを1つのアプリに統合し、歌詞作り（Lyric Studio）、カバー作り（Cover Studio）、部分的な作り直し（Repaint）、楽器パートごとの生成（Stem Builder）、ライブ演奏モード（STORM）まで、制作の各工程を画面で行える点です。クラウドやAPIキー、月額課金なしで、手元のPCだけで動きます。広告・体験づくりでは、同じお題で複数のモデルに曲を作らせて聴き比べ、一番合うものを選んでから直す、といった提案前の音の試作が速くなります。学習したスタイル用の小さなアダプターを入れ替えれば、ブランドごとの音色に寄せることもできます。MCPサーバーも備えるので、AIエージェントから「曲を5案作って」と頼むワークフローにも組み込めます。",
+    "detail": "仕組み：土台はacestep.cppという、音楽生成モデルをGPU・CPUどちらでも軽く動かすC++の推論エンジンです。その上にNode.jsベースの画面を載せ、モデルごとの違いをアプリ側で吸収しています。ライブラリ管理、モデルのダウンロード管理、LoRA/LoKr/DoRAアダプターの学習（Training Studio）、ステム分離、MIDI書き起こしが付き、Luaで拡張プラグインも書けます。\n\n従来との違い：従来は各モデルがそれぞれ別のリポジトリと別のUIで、使い分けるたびに環境構築が必要でした。ここでは同じ画面でモデルを切り替えられます。ただし中核の推論エンジンや各モデルは他者の成果で、このアプリの価値は統合と制作用UIにあります。\n\n使うには：Windows(CUDA/Vulkan/CPU)、Linux(CUDA/Vulkan/ROCm/CPU)、Apple Silicon(Metal)向けのポータブル版がv1.4.2（2026-10-22）で配布されています。入門用モデルパックは約9GBで、Windowsでは未署名のため警告が出ることがあります。スマホブラウザ（PWA）からの操作やColab用ノートブックもあります。費用はソフト自体は無料で、必要なのはGPUと十分なディスク容量です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "本体はMIT。一部プラグインはGPLv3。各モデル重みはそれぞれのライセンスに従う。リリースファイルはコード署名なし。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/scragnog/HOT-Step-CPP"
+      },
+      {
+        "kind": "product",
+        "url": "https://github.com/scragnog/HOT-Step-CPP/releases/latest"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/hot-step-cpp.jpg",
+    "relatedWorks": [
+      {
+        "title": "acestep.cpp",
+        "description": "HOT-Stepが土台にするC++/ggml版ACE-Step推論エンジン。",
+        "url": "https://github.com/ServeurpersoCom/acestep.cpp"
+      },
+      {
+        "title": "YuE2 Studio",
+        "description": "歌付き楽曲を楽譜つきで生成・編集する別のローカルアプリ。",
+        "url": "https://github.com/timoncool/YuE2-Studio"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "comfyui-dbs",
     "title": "ComfyUI-DBS",
     "org": "hiroki-abe-58(非公式ノード)/ 元モデル: Tsinghua Univ. (Dynamic Band Splitting)",
