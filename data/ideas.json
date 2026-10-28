@@ -23215,5 +23215,215 @@
         "desc": "音声生成AIを、ブラウザ上で手で触りながら作り込める制作ツールキット。"
       }
     ]
+  },
+  {
+    "id": "2026-10-28-1",
+    "date": "2026-10-28",
+    "title": "AI迷彩と動くカメラ位置の攪乱",
+    "pattern": "文脈×技術",
+    "seed": "Digital Camouflage Shirtは「AIに人と認識されない」服。FlashRenderで撮影後にカメラ角度を差し替えた映像を作り、シャツを着た人だけ視点が変わるたび検出されたりされなかったりする監視下ファッション映像にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "digital-camouflage-shirt-ai-2026",
+        "title": "Digital Camouflage Shirt（AI監視カメラ無効化シャツ）",
+        "desc": "AIカメラに人として認識されない模様をプリントした、ベルリンのアーティストによる実売シャツ。"
+      },
+      {
+        "type": "tech",
+        "id": "flashrender",
+        "title": "FlashRender",
+        "desc": "撮影済みの動画を、後から好きなカメラアングルで数秒で撮り直せる技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-28-2",
+    "date": "2026-10-28",
+    "title": "犬と観る野外シネマの3D記録",
+    "pattern": "文脈×技術",
+    "seed": "ONE Health芸術祭の「人と犬が並んで映画を観る野外シネマ」をInsta360 X6 Spatial Captureで撮れば、犬の目線の高さで芝生を歩き回れる3D空間アーカイブになり、来られなかった人も犬視点で追体験できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "one-health-2026-2026",
+        "title": "てとて、ONE Health 芸術祭2026",
+        "desc": "人と犬が並んで野外で映画を観るなど、人・動物・自然のつながりを体験する旭川の芸術祭。"
+      },
+      {
+        "type": "tech",
+        "id": "insta360-x6-spatial-capture",
+        "title": "Insta360 X6 Spatial Capture",
+        "desc": "360度カメラで撮るだけで、歩き回れる3D空間に自動変換される新機能。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-28-3",
+    "date": "2026-10-28",
+    "title": "ボルタンスキー心臓音の空間再生",
+    "pattern": "文脈×技術",
+    "seed": "ボルタンスキー展の「心臓音で存在の記憶を語る」手法に4DGSを掛け、来場者の動きを動くスプラットと空間オーディオで1本に封じ込めれば、その人の鼓動つきの3D肖像として持ち帰れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "lifetime-2019",
+        "title": "クリスチャン・ボルタンスキー −Lifetime",
+        "desc": "心臓音や写真アーカイブで生と死、存在の記憶を表現した、日本最大規模のボルタンスキー回顧展。"
+      },
+      {
+        "type": "tech",
+        "id": "4dgs",
+        "title": "4DGS",
+        "desc": "動く3D空間と空間オーディオを1本にまとめ、途中再生もできる新しいファイル形式。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-28-4",
+    "date": "2026-10-28",
+    "title": "降雪看板を音声で降らせる",
+    "pattern": "文脈×技術",
+    "seed": "Tryvann Snowing Billboardは実際の雪を検知して看板に雪を降らせた。Audionautで集めた現地の雪の環境音をMCP経由でAIに編集させ、天気に合わせて雪音が刻々と変わる看板サウンドにできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "tryvann-snowing-billboard-2009",
+        "title": "Tryvann Snowing Billboard",
+        "desc": "スキー場が実際の降雪をSMSで検知し、看板内で人工雪を降らせた広告。"
+      },
+      {
+        "type": "tech",
+        "id": "audionaut",
+        "title": "Audionaut",
+        "desc": "AIエージェントからMCP経由で編集を指示できる、無料のマルチトラック音声エディタ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-28-5",
+    "date": "2026-10-28",
+    "title": "歩く身体を一発で3D空間へ",
+    "pattern": "技術×技術",
+    "seed": "PoseCapのWebカメラ1台モーキャプで取った動きを、Puffin-Worldで生成した3D空間に流し込めば、部屋で踊るだけで存在しない世界を歩く自分を即席でプレビズできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "posecap",
+        "title": "PoseCap",
+        "desc": "Webカメラ1台でBlenderにリアルタイムでモーションを送れる無料ツール。"
+      },
+      {
+        "type": "tech",
+        "id": "puffin-world",
+        "title": "Puffin-World",
+        "desc": "1枚の画像やテキストから、歩き回れる物理的に整った3D空間を作るモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-28-6",
+    "date": "2026-10-28",
+    "title": "鼻歌から動く楽譜と舞踊",
+    "pattern": "技術×技術",
+    "seed": "basicpitch.cppで鼻歌をブラウザ上でMIDIに変え、その音列をkimodo.cppへテキスト指示として渡せば、歌った旋律に合わせて3D人物が踊る振付が自動で生まれるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "basicpitch-cpp",
+        "title": "basicpitch.cpp",
+        "desc": "音声をブラウザ上で素早くMIDIに変換できる軽量ツール。"
+      },
+      {
+        "type": "tech",
+        "id": "kimodo-cpp",
+        "title": "kimodo.cpp",
+        "desc": "文章から3D人物の動きを作るモデルを自分のPCで動かせる移植版。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-28-7",
+    "date": "2026-10-28",
+    "title": "新聞グラフィックスをWAN化",
+    "pattern": "転用",
+    "seed": "Wan-Animate-2は人物の動きを転写するAIだが、朝日新聞SNDの「米中の戦力比較」のような報道グラフィックスに使い、兵器アイコンへ人の身振りを転写すれば、数字が身体で語りだす紙面にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "snd-47-3-2025",
+        "title": "朝日新聞社 SND第47回クリエーティブコンペティション受賞3作品（米中の戦力比較と主な兵器 ほか）",
+        "desc": "朝日新聞デジタルの報道グラフィックスが、SNDコンペで優秀賞を受賞した作品群。"
+      },
+      {
+        "type": "tech",
+        "id": "wan-animate-2",
+        "title": "Wan-Animate-2",
+        "desc": "1本の動画から人物の動きや表情を別のキャラクターへ転写できるAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-28-8",
+    "date": "2026-10-28",
+    "title": "光ファイバー織物のスプラット化",
+    "pattern": "転用",
+    "seed": "発光する織物彫刻Woven Fiber Opticsを、点群のGaussian Splatを1億点級で描くAholo Viewerに入れると、糸一本ずつの光の揺らぎを拡大して潜り込める、ブラウザ上の光の森になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "woven-fiber-optics-fiber-optic-crossforms-days-of-awe-2006",
+        "title": "Woven Fiber Optics（Fiber Optic Crossforms / Days of Awe ほか）",
+        "desc": "光ファイバー糸を織り込んで発光させた、Cooper Hewittに収蔵されたテキスタイル彫刻。"
+      },
+      {
+        "type": "tech",
+        "id": "aholo-viewer",
+        "title": "Aholo Viewer",
+        "desc": "ブラウザだけで巨大な3D空間をなめらかに表示できるオープンソースの表示ソフト。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-28-9",
+    "date": "2026-10-28",
+    "title": "素材展を話しかけて編集する",
+    "pattern": "転用",
+    "seed": "動画編集用のOpenChatCutを、Curious Mattersのような素材展の来場者記録に転用し、「炙った感じの場面を前に」と話しかけて個人版ダイジェストを作れば、鑑賞体験そのものが編集作業になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "curious-matters-2026",
+        "title": "Curious Matters（キュリアス・マター）― 材料を再発見するデザイン",
+        "desc": "三菱ケミカルの素材を削る・炙るなど感覚的な手法で再解釈した展覧会。"
+      },
+      {
+        "type": "tech",
+        "id": "openchatcut",
+        "title": "OpenChatCut",
+        "desc": "会話しながら本物のタイムラインを編集できるオープンソースの動画編集ソフト。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-28-10",
+    "date": "2026-10-28",
+    "title": "紙面ステッカーに雨を降らせる",
+    "pattern": "文脈×技術",
+    "seed": "Volkswagen「Sell Your Car」の、切り取って貼る紙面広告の発想に、MiniMax H3 VFX Edit & Style Transfer LoRAパックを使い、貼った車窓越しの動画に雨や映画調の色を足す「車を物語にして売る」ARを重ねられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "sell-your-car-2010",
+        "title": "Sell Your Car",
+        "desc": "新聞広告を切り取ると、自分の車に貼れる「売ります」ステッカーになる紙面広告。"
+      },
+      {
+        "type": "tech",
+        "id": "minimax-h3-vfx-edit-style-transfer-loraパック",
+        "title": "MiniMax H3 VFX Edit & Style Transfer LoRAパック",
+        "desc": "動画に雨や映画風の色味などの編集を、文字の指示だけで加えられる追加学習データ。"
+      }
+    ]
   }
 ]
