@@ -23425,5 +23425,239 @@
         "desc": "動画に雨や映画風の色味などの編集を、文字の指示だけで加えられる追加学習データ。"
       }
     ]
+  },
+  {
+    "id": "2026-10-29-1",
+    "date": "2026-10-29",
+    "title": "ロゴが聴く音を織る帯",
+    "pattern": "技術×技術",
+    "seed": "basicpitch.cppで拾った鼻歌のMIDIをHOT-Step CPPに渡して曲化し、そのスペクトログラムをWAVE WEAVE/SONO OBIのように織柄へ変えたら、「自分の鼻歌が帯になる」体験になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "basicpitch-cpp",
+        "title": "basicpitch.cpp",
+        "desc": "歌声や楽器の音を、ブラウザ上でもMIDI(音符データ)に変換できる軽量ツール。"
+      },
+      {
+        "type": "tech",
+        "id": "hot-step-cpp",
+        "title": "HOT-Step CPP",
+        "desc": "複数の音楽生成AIを1つの画面で切り替えて使える、パソコン内で完結する作曲ツール。"
+      },
+      {
+        "type": "case",
+        "id": "wave-weave-sono-obi-2025",
+        "title": "WAVE WEAVE ― 音と織物の融合／SONO OBI",
+        "desc": "電子音楽の音の形を西陣織の模様にし、織物から音を鳴らすインスタレーション。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-29-2",
+    "date": "2026-10-29",
+    "title": "絶滅文字を踊らせる",
+    "pattern": "文脈×技術",
+    "seed": "Endangered Alphabetsの絶滅危機文字の書き順を、kimodo.cppでテキストから3D人物モーションにして踊らせたら、読めない文字が「身体で継承される言語」になり、保存の訴求が変わるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "endangered-alphabets-project-2010",
+        "title": "Endangered Alphabets Project",
+        "desc": "消えそうな少数言語の文字で世界人権宣言を彫り、文化を残そうと訴える活動。"
+      },
+      {
+        "type": "tech",
+        "id": "kimodo-cpp",
+        "title": "kimodo.cpp",
+        "desc": "「歩いて手を振る」などの文章から3D人物の動きを作るツールを、手元のPCで動かせる版。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-29-3",
+    "date": "2026-10-29",
+    "title": "風の膜を点群で記録",
+    "pattern": "文脈×技術",
+    "seed": "null²の風になびく金属膜を、fVDB v0.5.0で広い空間ごとガウシアンスプラット化したら、風の一瞬一瞬を「立体の標本」として残し、万博後も歩いて入れる記憶になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "null2-pavilion-expo2025-osaka-if-2026",
+        "title": "null² (Signature Pavilion, Expo 2025 Osaka)",
+        "desc": "風でなびく金属の膜に覆われた、大阪万博のパビリオン。"
+      },
+      {
+        "type": "tech",
+        "id": "fvdb-v0-5-0",
+        "title": "fVDB v0.5.0",
+        "desc": "広い空間を複数のGPUで速く軽く3Dデータにできる、NVIDIAの3D処理基盤。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-29-4",
+    "date": "2026-10-29",
+    "title": "ロボ格闘の実況アバター",
+    "pattern": "文脈×技術",
+    "seed": "REK TOKYO 2026の殴り合いロボの試合音声を、LeapTalkで写真1枚から作る実況アバターに喋らせ、観客ごとに別の顔の解説者が付く観戦体験にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "rek-tokyo-2026-2026",
+        "title": "REK TOKYO 2026",
+        "desc": "VR操縦のヒューマノイドロボットが秋葉原で戦う、ロボット格闘技の日本初開催。"
+      },
+      {
+        "type": "tech",
+        "id": "leaptalk",
+        "title": "LeapTalk",
+        "desc": "写真1枚と音声から、リアルタイムで話す顔の映像を作る高速技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-29-5",
+    "date": "2026-10-29",
+    "title": "雑踏を伴奏に変える看板",
+    "pattern": "転用",
+    "seed": "ボーカル分離のUltimate Vocal Removerを、街の雑踏録音から話し声だけを除く「プライバシー消し」に転用し、残った環境音だけで曲を作る街の看板ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ultimate-vocal-remover",
+        "title": "Ultimate Vocal Remover (UVR)",
+        "desc": "歌声と伴奏を分けられる、無料のAI音声分離アプリ。"
+      },
+      {
+        "type": "tech",
+        "id": "audio-cpp",
+        "title": "audio.cpp",
+        "desc": "音声・音楽系AIモデルを60種以上、手元のPCで動かせる実行エンジン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-29-6",
+    "date": "2026-10-29",
+    "title": "物件を一枚写真から体験",
+    "pattern": "文脈×技術",
+    "seed": "The Most Valuable Gadget in the Worldの「正体は住宅」という種明かしを、LocalMeshで間取り写真1枚から3D化した部屋の中を歩ける形にすると、ティザーの答えを体感できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "the-most-valuable-gadget-in-the-world-2026",
+        "title": "The Most Valuable Gadget in the World",
+        "desc": "謎の高級ガジェットの広告が、実は住宅だったと明かす不動産キャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "localmesh",
+        "title": "LocalMesh",
+        "desc": "写真1枚から3Dモデルを、クラウドなしでPC上で作るWindowsアプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-29-7",
+    "date": "2026-10-29",
+    "title": "生成ロゴの無限ループ映像",
+    "pattern": "技術×技術",
+    "seed": "The Norwegian Academy of Music Brand Identityの音で動くロゴ映像を、HR Endless Samplerで何分でも破綻なく伸ばし、RTX VSR Long Videoで高精細化したら、終わらない常設サイネージになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "the-norwegian-academy-of-music-brand-identity-2013",
+        "title": "The Norwegian Academy of Music Brand Identity",
+        "desc": "周囲の音を波形の図形に変え続ける、音楽学校のロゴシステム。"
+      },
+      {
+        "type": "tech",
+        "id": "hr-endless-sampler",
+        "title": "HR Endless Sampler (ComfyUI-HR-Endless-Sampler)",
+        "desc": "AI動画を何分でも自然に作り続けられるようにする新しい生成の仕組み。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-nvidia-rtx-vsr-long-video",
+        "title": "ComfyUI NVIDIA RTX VSR Long Video",
+        "desc": "長い動画でも高解像度化できる、NVIDIA製の超解像ノード。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-29-8",
+    "date": "2026-10-29",
+    "title": "鏡の彫刻を動きで揺らす",
+    "pattern": "転用",
+    "seed": "GPCのモーション予測を、The Mirror Spaceの鏡面キューブの「次に映る景色」を先読みして並べ替える制御に転用したら、通行人の動きに応じて明滅する彫刻になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "gpc",
+        "title": "GPC (Generative Pretraining for Transferable Motor Control)",
+        "desc": "大量の動作データから、次の瞬間の体の動きを予測する事前学習AI。"
+      },
+      {
+        "type": "case",
+        "id": "the-mirror-space-xian-if-2020",
+        "title": "The Mirror Space",
+        "desc": "鏡面ステンレスの立方体が浮いて見える、通行で景色が明滅する入口彫刻。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-29-9",
+    "date": "2026-10-29",
+    "title": "館内を歩く個展の影",
+    "pattern": "文脈×技術",
+    "seed": "HUMAN AND NATUREの館内から日比谷公園へ広がる約300点の展示を、4DAnyoneで来場者の動きを4D化し、作品の隣に「昨日の鑑賞者の影」として残せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "human-and-nature-2026",
+        "title": "HUMAN AND NATURE",
+        "desc": "新ホールの開館記念として、館内から公園まで作品約300点を並べた個展。"
+      },
+      {
+        "type": "tech",
+        "id": "4danyone",
+        "title": "4DAnyone",
+        "desc": "スマホ動画1本から、人物を好きな角度で見返せる4Dデータにする技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-29-10",
+    "date": "2026-10-29",
+    "title": "家具空間を会話で編集",
+    "pattern": "技術×技術",
+    "seed": "Inpaint Canvasのレイヤー編集とEditVidの動画編集を、OpenChatCutの会話編集に束ねたら、Walter Knollのような空間映像の素材を話しながら差し替えられるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "inpaint-canvas",
+        "title": "Inpaint Canvas (ComfyUI-InpaintCanvas)",
+        "desc": "画像の一部を切り出してAIで直し、新しい層として重ねられる編集ツール。"
+      },
+      {
+        "type": "tech",
+        "id": "editvid",
+        "title": "EditVid",
+        "desc": "1つのAIで動画のスタイル変更や物体追加などをこなす研究技術。"
+      },
+      {
+        "type": "tech",
+        "id": "openchatcut",
+        "title": "OpenChatCut",
+        "desc": "AIと会話しながら動画の編集ができるオープンソースのソフト。"
+      },
+      {
+        "type": "case",
+        "id": "walter-knoll-milan-design-week-2022",
+        "title": "Walter Knoll — Milan Design Week 2022",
+        "desc": "元花卉倉庫の跡にロボット製の白いカーテンと家具を置いた展示空間。"
+      }
+    ]
   }
 ]
