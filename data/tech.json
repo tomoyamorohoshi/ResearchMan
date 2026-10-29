@@ -1,5 +1,171 @@
 [
   {
+    "id": "trace",
+    "title": "TRACE (Typed Reference-Aware Conversational Editing for Humanoid Motion Diffusion)",
+    "org": "Multimodal-Perception-Action（Zejian Kang ほか）",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "AI/Agents"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "「もう少し深くお辞儀して」のような会話で、人型ロボット(Unitree G1)の動きを文章から作り、そのまま手直しできるモーション生成・編集システム。",
+    "point": "すごい点は、動きを一発で生成するだけでなく、「腕だけもっと高く」「ここの動きをゆっくりに」と会話で何度も修正できることです。言語モデルが「いつ足がつくか」「手がいつ動くか」といった動きの骨組みを先に決め、その骨組みをもとに拡散モデル(ノイズから少しずつ動きを描き起こすAI)が滑らかな動作に仕上げます。編集時は直したくない部分を固定したまま変更できるため、少しずつ演出を詰める作業と相性が良いです。広告・体験づくりでは、ロボットやキャラクターのダンス・お辞儀・ジェスチャーを「言葉で演出する」ワークフローに使えそうです。展示会のロボット受付、ショールームの人型ロボット演出、モーションキャプチャを使わない振付の叩き台づくりなどが想像できます。実機での動作映像(ジャンピングジャックの編集、ダンスなど)も公開されています。",
+    "detail": "仕組み：まず言語モデルが、指示文から「動きの長さ」と「足の接地・体の移動・手の動き」といった要所のタイミング(スパースなイベント)を予測します。次に、その要所と元の文章を条件にして拡散トランスフォーマーが全身の連続した軌道を生成します。編集用には別の拡散モデルがあり、「どの部位を・どの時間帯に・今の動きに対してどれだけ変えるか」を型付きの指示として受け取り、守りたい部分の値は生成中に固定します。\n\n従来との違い：多くのテキストtoモーション研究は一回きりの生成で、少し直したいときにプロンプトを書き直して全体が変わってしまう問題がありました。TRACEは前の出力を参照して相対的に直す(例：もっと深く)ことを狙い、連続した編集でも安定して実行できるとしています。ただし出力は平らな床を想定した運動の参照データで、実ロボットで動かすには別途検証済みの追従制御が必要です(リポジトリには含まれません)。\n\n使うには：Linux、Python 3.10〜3.12、NVIDIA GPUが推奨で、重みはModelScopeから、言語モデルの土台(Qwen系、約16GB)は別途ダウンロードします。生成・編集・対話のスクリプトとレンダリングは同梱されていますが、生成器・編集器の学習用エントリポイントは現時点で未収録です。費用は無料ですが、研究コード相当なので環境構築にはPythonとGPUの知識が必要です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "コードと学習済み重みはApache-2.0。ただし土台のQwen系モデルは各自のライセンス、学習データ(BONES-SEED)の権利は付与されない。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Multimodal-Perception-Action/TRACE"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.21515"
+      },
+      {
+        "kind": "post",
+        "url": "https://huggingface.co/kangzejian/TRACE"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/trace.jpg",
+    "relatedWorks": [
+      {
+        "title": "Kimodo (NVIDIA)",
+        "description": "テキストと簡単な制約から人間・ヒューマノイドの3Dモーションを生成するオープンモデル。",
+        "url": "https://github.com/NVlabs/ProtoMotions"
+      },
+      {
+        "title": "HY-Motion 1.0 (Tencent)",
+        "description": "10億パラメータ級のテキストtoモーション生成モデル。",
+        "url": "https://github.com/luffy-yu/HMC"
+      },
+      {
+        "title": "MoMask",
+        "description": "マスク予測による3D人体モーション生成の代表的な先行研究。",
+        "url": "https://huggingface.co/andrewatef/MoMask-test"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "context-aware-generation-and-modulation-of-expressive-motion",
+    "title": "Context-Aware Generation and Modulation of Expressive Motion Behavior (gen-mod-expressive-motion-behavior)",
+    "org": "Till Hielscher, Scaparro, Arras（Univ. of Stuttgart ロボティクス研究グループ）",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "AI/Agents",
+      "HCI/MediaArt"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "文章・画像・音声から「その場の状況に合った表情豊かなジェスチャー」をロボットに生成し、感情の強さなどをリアルタイムに調整できる、基盤モデル活用のモーション生成システム。",
+    "point": "すごい点は、ロボットの動きを「手振り→お辞儀→視線」といった動きの部品(アニメーションの12原則を数式化したもの)に分け、AIがその場の文脈に合わせて部品を選び、勢いや大きさを変えて組み立てることです。しかもロボットの形が違っても(人型のPepper、犬型のGo2、アーム型のGen3 Lite)同じ仕組みで動かせます。タイムラインで動きをなめらかにつなぎ、動いている人の方へ視線を向け続けるような調整もその場でできます。広告・体験づくりでは、来場者の声や状況に反応して身振りを変える展示ロボット、キャラクター型デバイスの演出、インタラクティブなインスタレーションの動き設計に応用できそうです。3Dビューア上の仮想ロボットで動きを確認できるので、実機がなくても試作できます。",
+    "detail": "仕組み：土台は、動きの基本形(ジェスチャーの軌道)を少ないパラメータで表す Dynamic Movement Primitives(DMP)という手法で、アニメーションの原則(予備動作、誇張など)を数式として実装しています。その上で、マルチモーダル基盤モデル(文章・画像・音声を理解できるAI)が「今の状況ならどの動きの部品を、どんなパラメータで」使うかを判断し、タイムラインが滑らかに実行します。研究では、重い手順を小さなモデルに蒸留して応答を速くしていますが、その蒸留モデル自体は公開されておらず、READMEは長い手順(long pipeline)の使用を勧めています。\n\n従来との違い：LLMにロボットAPIを直接叩かせる方式に比べ、動きに表現の質(強弱・緩急)を調整できる点が特徴です。ユーザー調査では、調整なしやAPI直叩きより文脈に合っていると評価されました(HRI 2026)。\n\n使うには：Python 3.10の環境にリポジトリと animation-dmp ライブラリを入れ、config.yaml でLLMを選んで python main.py を実行すると、ブラウザ(localhost:8088)でViser製3Dビューアが開きます。Ollama(例：gemma3:4b)ならAPIキー不要で無料、ただし音声入力は非対応です。OpenAIを使う場合はAPIキーと従量課金が必要です。自分のロボットに載せるには robot_template を参考にした実装が必要で、研究コードのため一定のプログラミング力が求められます。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "コードはMIT。LLMバックエンドはOllama(ローカル・無料)またはOpenAI(APIキー・従量課金)を選択。蒸留済み高速モデルは非公開。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/TillHielscher/gen-mod-expressive-motion-behavior"
+      },
+      {
+        "kind": "project",
+        "url": "https://gen-mod-expressive-motion-behavior.github.io/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.35615"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/TillHielscher/animation-dmp"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/context-aware-generation-and-modulation-of-expressive-motion.jpg",
+    "relatedWorks": [
+      {
+        "title": "Interactive Expressive Motion Generation Using Dynamic Movement Primitives (animation-dmp)",
+        "description": "同チームによる土台のDMP実装(IROS'25)。",
+        "url": "https://github.com/TillHielscher/animation-dmp"
+      },
+      {
+        "title": "Generative Expressive Robot Behaviors using Large Language Models",
+        "description": "LLMでロボットの表現的な行動を生成する先行研究。",
+        "url": "https://arxiv.org/pdf/2401.14673"
+      },
+      {
+        "title": "RoboMMT",
+        "description": "表現的でインタラクティブなロボットモーションを安定して追従する学習手法。",
+        "url": "https://arxiv.org/abs/2610.26414"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "motionbridge",
+    "title": "MotionBridge",
+    "org": "adonisglobal（個人開発）",
+    "type": "Tool",
+    "domains": [
+      "Motion/Body",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "手持ちの動画1本から人の動きを読み取り、3Dキャラ（Blender用）や2D切り抜きキャラの動きデータに変換できる、ブラウザ上で動くオープンソースのモーションキャプチャツール。",
+    "point": "高価なモーションキャプチャ用スーツや専用カメラがなくても、スマホで撮った動画だけで「人の動き」を3Dキャラに写し取れる点がすごいところです。PCのブラウザで動画を読み込むと、画面の中で動画とキャラの動きが並んで再生され、ずれを見ながら確認できます。出力はBlenderでそのまま使えるGLB形式やBVH形式（骨格の動きを記録する標準的なファイル）で、2D用にはPNGの切り抜きキャラ向けの動きデータ（JSON）も書き出せます。広告・体験づくりでは、ダンスや決めポーズを演者に動画で演じてもらいそのまま自社キャラクターに踊らせる、SNS用ショート動画のキャラ演技を撮影当日にラフ確認する、といった使い方が考えられます。制作前の企画段階で動きのイメージを素早く共有するプロトタイプ用途に向いています。なお作者自身が「実験的な土台」と位置づけており、動きの補正や対応モデルは発展途上です。",
+    "detail": "仕組みは、動画の各コマからGoogleのMediaPipe（人の関節位置を推定する無料のAIモデル）で体の関節の位置を読み取り、それを取り込んだキャラクターの骨（ボーン）に割り当てて動かす、というものです。人の関節の並びとキャラの骨の並びは作りによって違うため、ボーンの対応づけは自動でも手動でも調整できます。これは「人の動きを、体型の違う別の人形に着せ替える」作業にたとえられます。処理はTypeScript・React・Three.jsで書かれ、ブラウザ内で完結します。\n\n従来の本格的なモーションキャプチャは専用機材とスタジオが前提でしたが、これは普通の動画だけで始められるのが違いです。また、Blender向けの3Dと、PNGの切り抜きによる2Dの2系統を別々の作業場として用意している点も特徴です。ただし、リポジトリはコミット4件・v0.3.0の初期段階で、動きのブレ除去（クリーンアップ）、リターゲットの精度、対応モデルの幅、使いやすさはこれからです。OpenToonz向けの書き出しも未実装です。本番品質というより、ラフ確認や自作パイプラインの出発点として見るのが適切です。\n\n使うにはNode.js 24とnpm、ハードウェアアクセラレーション有効なデスクトップ版Chromium系ブラウザが必要です。git cloneのあと「npm ci」「npm run setup:assets」「npm run dev」を実行し、ブラウザで http://127.0.0.1:5173/ を開きます。費用は無料（MIT）で、Blenderは書き出したファイルの確認・利用時のみ必要です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "本体はMIT。MediaPipe等の外部ランタイム・モデルは各自の規約に従う（リポジトリ内 THIRD_PARTY_NOTICES.md に記載）。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/adonisglobal/motionbridge"
+      },
+      {
+        "kind": "post",
+        "url": "https://dev.to/adonisglobal/motionbridge-open-source-motion-capture-for-blender-and-2d-animation-gm6"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/motionbridge.jpg",
+    "relatedWorks": [
+      {
+        "title": "Motion2MixamoRig",
+        "description": "動画の人物の動きをMixamoリグのキャラに写し、Blender/Unity向けGLBにする無料OSS。",
+        "url": "https://x.com/Stefan_3D_AI/status/2109989762899570828"
+      },
+      {
+        "title": "GMR: General Motion Retargeting",
+        "description": "人の動きをさまざまなヒューマノイドロボットへ、CPUでリアルタイムに変換するリターゲットツール。",
+        "url": "https://github.com/YanjieZe/GMR"
+      },
+      {
+        "title": "MAMMA",
+        "description": "複数カメラ映像から接触の多い2人の動きをSMPL-Xで取得するCVPR 2026 Oralの手法。非商用研究向け。",
+        "url": "https://github.com/cuevhv/mamma"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "fragmenta",
     "title": "Fragmenta",
     "org": "MAz-Codes（個人開発）",
