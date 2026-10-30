@@ -1,5 +1,148 @@
 [
   {
+    "id": "aeon",
+    "title": "AEON",
+    "org": "Tsinghua University (Weiqi Zhang ら)",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "GenVideo"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "テキストや1枚の画像から、動画ではなく「あとから自由な角度で見られる4Dの世界」（動く3D空間）を直接生成する世界モデル。",
+    "point": "従来の動画生成AIは、出てきた映像を後から別の角度で見直すことができませんでした。AEONは動画生成モデル（Wan2.1）が内部で作る情報を、動く3D空間（4D Gaussian Splatting）に変換します。これにより、生成した世界を好きな時刻・好きなカメラ位置からリアルタイムに眺められます。深度や法線（面の向き）も一緒に出るため、後から編集もできます。例として、バンを歩くロボットに差し替える編集が示されています。広告・体験づくりでは、1枚のキービジュアルから「入り込める」空間を作る用途が考えられます。たとえばカメラを自由に動かせるMVの背景、店頭やイベントのインタラクティブ展示、コンテ段階でのカメラワーク検討などです。生成物が3Dなので、同じ世界から縦型・横型など複数のカットを切り出すこともできます。",
+    "detail": "仕組み：まずテキスト（または画像とテキスト）から、Wan2.1が「動画の設計図」にあたる潜在表現（latent）を作ります。次に、学習済みの変換モデル（ドメインアダプタと4D再構成モデル）が、この設計図から画素ごとの動く3D点（4D Gaussian）と各フレームのカメラ位置を読み出します。最後にgsplatで描画します。動画を一度作ってから3D化する方法より、動画生成の知識をそのまま3Dに引き継げるのが特徴です。\n\n従来との違い：動画モデル系は見た目は良くても3Dとして整合しません。3D生成モデル系は動きや多様さに弱いという課題がありました。AEONは両者を一つの流れにまとめ、動画の自然さと3Dの自由視点を両立しています。出力は動画ではなく4D Gaussian Splattingなので、レンダリング、編集、シミュレーションにそのまま使えます。\n\n使うには：GitHubにCLI（aeon-generate）とPython APIがあり、デコーダ重み（3.3GB）はHugging Faceから取得します。Wan2.1のベースモデルは別途ダウンロードが必要です。必要なGPUメモリは大きく、READMEでは14Bモデルで約50GB（CPUオフロードあり）、1.3Bモデルでピーク約60GBです。個人PCでは動かしにくいため、クラウドGPUでの利用が現実的です。Pythonとコマンドライン操作のスキルが必要です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "AEON本体のコードはMIT。ベースのWan2.1はApache-2.0。同梱の第三者コード（aeon4d/_vendor/）は個別ライセンスなので、商用利用前にTHIRD_PARTY_NOTICES.mdを確認すること。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/weiqi-zhang/AEON"
+      },
+      {
+        "kind": "project",
+        "url": "https://weiqi-zhang.github.io/AEON"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.28631"
+      },
+      {
+        "kind": "github",
+        "url": "https://huggingface.co/wiki1231/AEON"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/aeon.jpg",
+    "relatedWorks": [
+      {
+        "title": "Wan2.1",
+        "description": "AEONのベースになっているオープンな動画生成モデル。",
+        "url": "https://github.com/Wan-Video/Wan2.1"
+      },
+      {
+        "title": "gsplat",
+        "description": "AEONが4D Gaussianの描画に使うGaussian Splattingライブラリ。",
+        "url": "https://github.com/nerfstudio-project/gsplat"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "comfyui-spede",
+    "title": "ComfyUI-SpEdE (Splat Edit Engine)",
+    "org": "Burgstall-labs",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "Gaussian Splat（3Dスキャン）のシーン内でオブジェクトをクリックし、削除・差し替え・切り出しができるローカル実行のComfyUIノード群。",
+    "point": "3Dスキャンしたシーンは、写り込んだ不要物を消したり、別の物に置き換えたりするのが難しい素材でした。SpEdEは、シーン上の物体をクリック（または名前指定）で選ぶと、削除（Remove）、差し替え（Replace）、切り出し（Extract）ができます。削除では、物体に属する点を消した後、隠れていた面を画像生成AIで描き足します。穴の部分にだけ新しい点を足すので、周囲は壊れません。広告制作では、ロケ地を3Dスキャンしたあとで看板や人物、小道具だけを消す、商品を別の物に差し替えた複数案を作る、背景から主役だけを切り出して別シーンに置く、といった使い方ができます。撮影し直さずに空間素材を調整できるのが強みです。すべて手元のGPU上で動き、クラウドに素材を送らずに済みます。",
+    "detail": "仕組み：クリック位置からSAM 3.1で物体の範囲を特定します。深度推定（MoGe-3）で形を把握し、削除する場合はその物体のGaussianを取り除きます。その後、Qwen-Image 2.1が見えなくなった面を描き足し、穴の部分にだけ新しいGaussianを生成します。各ステップに品質のゲート（合格基準）があり、基準を満たさなければ処理が止まります。差し替えでは、生成した画像をTripoSplatでGaussianに変換して配置します。\n\n従来との違い：従来のGaussian Splat編集は、手作業で点を選んで消す作業が中心でした。消した後の穴埋めも別ツールが必要でした。SpEdEは、選択から穴埋めまでをComfyUIのワークフローとして一続きにしています。ワークフロー（API形式10本）とWeb UIも付属します。\n\n使うには：ComfyUI 0.37以降のcustom_nodesにクローンし、ComfyUI自身のPython環境で依存をインストールします。gsplat 1.5以上を、お使いのtorchとCUDAに合わせてビルドする必要があり、ここでつまずきやすいです。NVIDIA GPUが必須です。動作確認は32GBのRTX 5090のみで、Windowsは未検証です。メインの経路だけでモデル重みが約27GB、RAMは約64GB推奨です。公開直後（3コミット）で、作者もVRAMの少ない環境は未検証としています。",
+    "license": {
+      "spdx": "AGPL-3.0-or-later",
+      "commercial": "conditional",
+      "note": "コードはAGPL-3.0以降。使用するモデルは各自のライセンスに従う。例としてQwen-Image 2.1 Research Licenseは非商用で、編集後のシーンにも入力側の制約が引き継がれる。商用案件では使用モデルの確認が必須。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Burgstall-labs/ComfyUI-SpEdE"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/comfyui-spede.jpg",
+    "relatedWorks": [
+      {
+        "title": "SAM 3",
+        "description": "SpEdEが物体選択に使う、Metaの画像・動画セグメンテーションモデル。",
+        "url": "https://github.com/facebookresearch/sam3"
+      },
+      {
+        "title": "gsplat",
+        "description": "SpEdEが描画・最適化に使うGaussian Splattingライブラリ。",
+        "url": "https://github.com/nerfstudio-project/gsplat"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "gaussian-splat-to-blender-nodes",
+    "title": "Gaussian Splat to Blender Nodes (World to World Mapping)",
+    "org": "gokayfem",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools",
+      "AI/Agents"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "Gaussian Splatで撮ったシーンを、AIエージェントと一緒にBlenderの編集可能なジオメトリノードとシェーダに作り直すスキル／ツールキット。",
+    "point": "Gaussian Splatは見た目が美しい反面、点の集まりなので、Blenderで形を直したり、照明を変えたり、CGと合成したりするのは困難でした。このツールキットは、スプラットを手がかりに、シーンを測った寸法付きのBlenderシーン（ジオメトリノードとマテリアル）として再構築する手順を、AIエージェント向けのスキルとして提供します。ワンクリックで変換するツールではなく、計測、カメラ合わせ、部品ごとの再現、見た目の比較と検証までを、エージェントに段階的に進めさせる設計です。広告や映像制作では、スキャンした店舗や展示空間をBlender上の軽くて編集しやすい3Dセットに置き換えられます。カメラの動きを自由に付けたり、商品を差し替えたり、ライティングを調整したりと、後工程の自由度が上がります。",
+    "detail": "仕組み：スプラット参照から、計測した座標とカメラを求めます。次に、シーンを意味のある部品（机、壁など）に分け、それぞれをジオメトリノードとシェーダで作ります。最後にBlender上でレンダリングし、元のスプラットと見た目を比べて差を確認します。任意の工程として、複数視点のキャリブレーション済み投影（prepare、project、assembleの3段階）で、元の見た目をテクスチャとして貼り戻せます。プロンプト集、アセット検査、カメラ関連ツール、比較ツールがそろっています。\n\n従来との違い：スプラットからメッシュへの自動変換は、形が荒れたり編集しにくかったりします。本ツールは手続きとして編集可能なノード構造を狙っています。ただし作者は、自動セグメンテーションや汎用のスプラット読み込み機能は含まれないと明記しており、部品分けなどはエージェントが担います。\n\n使うには：Python 3.10以上とBlender 5.0以上が必要です（作者が確認したのは5.0.1のみ）。Agent Skills（npx skills add gokayfem/gaussian-splat-to-blender-nodes）、Claude Codeプラグイン、またはCodexスキルとして導入します。スキャンデータは同梱されませんが、デモ用の合成テーブルが付属し、スキャンなしで試せます。公開直後（3コミット）の実験的な位置づけで、GPUは必須ではありません。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "リポジトリのコードと手順書はMIT。同梱の一部コード（nodekit）は元のライセンスを維持。スキャンデータや第三者メディアは別規約。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/gokayfem/gaussian-splat-to-blender-nodes"
+      },
+      {
+        "kind": "video",
+        "url": "https://v3b.fal.media/files/b/0aafb407/k_VXzVOBiFnE1RwnpVGxF_world_to_world_mapping-gaussian_splat_to_blender_nodes.mp4"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/gaussian-splat-to-blender-nodes.jpg",
+    "relatedWorks": [
+      {
+        "title": "3D Gaussian Splatting for Real-Time Radiance Field Rendering",
+        "description": "Gaussian Splattingの原典となる論文とリファレンス実装。",
+        "url": "https://github.com/graphdeco-inria/gaussian-splatting"
+      },
+      {
+        "title": "gsplat",
+        "description": "Gaussian Splattingの学習・描画に使われるオープンソースライブラリ。",
+        "url": "https://github.com/nerfstudio-project/gsplat"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "trace",
     "title": "TRACE (Typed Reference-Aware Conversational Editing for Humanoid Motion Diffusion)",
     "org": "Multimodal-Perception-Action（Zejian Kang ほか）",
