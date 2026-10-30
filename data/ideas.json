@@ -23659,5 +23659,215 @@
         "desc": "元花卉倉庫の跡にロボット製の白いカーテンと家具を置いた展示空間。"
       }
     ]
+  },
+  {
+    "id": "2026-10-30-1",
+    "date": "2026-10-30",
+    "title": "鼻歌のような電線の鳥楽譜を弾くピアノ",
+    "pattern": "技術×技術",
+    "seed": "電線の鳥を楽譜にしたSearching for Birds on Wiresの譜面を、サンプルを使わず物理モデルで鳴らすcoopianoに渡したら、配電網そのものが毎回違う音色で鳴るかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "abradee-searching-for-birds-on-wires",
+        "title": "Searching for Birds on Wires",
+        "desc": "電線に止まる鳥の写真を楽譜にして、電力インフラを交響曲に変えた音楽広告。"
+      },
+      {
+        "type": "tech",
+        "id": "coopiano",
+        "title": "coopiano",
+        "desc": "録音を使わず、ハンマーや弦の物理モデルだけでピアノ音を作るC++製シンセ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-30-2",
+    "date": "2026-10-30",
+    "title": "萎れる肺看板を3D世界へ",
+    "pattern": "文脈×技術",
+    "seed": "Breathable Billboardの『空気で花が萎れる肺』を、ABot-Worldで歩ける3D世界に広げ、汚染が進むと街並み自体が枯れていく体験にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "breathable-billboard-2020",
+        "title": "Breathable Billboard",
+        "desc": "大気汚染データに応じて看板の肺の絵が咲いたり萎れたりするロンドンの広告。"
+      },
+      {
+        "type": "tech",
+        "id": "abot-world-abot-3dworld",
+        "title": "ABot-World / ABot-3DWorld",
+        "desc": "1枚の画像から歩き回れる3D世界をリアルタイムで生成し続けるAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-30-3",
+    "date": "2026-10-30",
+    "title": "消えた展示物の跡を撮り直す",
+    "pattern": "技術×技術",
+    "seed": "LTX-2.3 Clean Plate IC-LoRAで人や物を消した背景映像を、FlashRenderで別アングルから撮り直せば、誰もいない空間を自在に回遊する映像が作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ltx-2-3-clean-plate-ic-lora",
+        "title": "LTX-2.3 Clean Plate IC-LoRA",
+        "desc": "動画から動く被写体を消し、影ごと背景を再構築するLoRA。"
+      },
+      {
+        "type": "tech",
+        "id": "flashrender",
+        "title": "FlashRender",
+        "desc": "撮影済み動画を後から好きなカメラ角度で撮り直せる技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-30-4",
+    "date": "2026-10-30",
+    "title": "棚田のわら像を点群で保存",
+    "pattern": "文脈×技術",
+    "seed": "瀬戸内のわらアートは会期後に朽ちる。PCD Splatterでレーザースキャン点群をそのままスプラット化し、腐っていく過程ごと保存するアーカイブにできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2010-065",
+        "title": "わらアート",
+        "desc": "稲わらの大型動物像を棚田に据えた美大チームの芸術祭作品。"
+      },
+      {
+        "type": "tech",
+        "id": "pcd-splatter",
+        "title": "PCD Splatter (Point Cloud Density Splatter)",
+        "desc": "レーザー点群をAI学習なしでガウシアンスプラットに変換するBlenderアドオン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-30-5",
+    "date": "2026-10-30",
+    "title": "昆布新聞の紙面が語り出す",
+    "pattern": "文脈×技術",
+    "seed": "食べられる昆布新聞の記事を、LeapTalkで写真1枚から話す顔にして、漁師の担い手不足を『昆布が自分で語る』ライブ朗読にしたら刺さるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "hokkaido-shimbun-kombu-newspaper",
+        "title": "北海道新聞「昆布新聞」（#北海道をコブしたいプロジェクト）",
+        "desc": "昆布に食用インクで記事を印字した、北海道新聞の昆布漁啓発企画。"
+      },
+      {
+        "type": "tech",
+        "id": "leaptalk",
+        "title": "LeapTalk",
+        "desc": "写真1枚と音声から、リアルタイムにしゃべる顔映像を作る高速技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-30-6",
+    "date": "2026-10-30",
+    "title": "KID A空間に踊る来場者の動き",
+    "pattern": "転用",
+    "seed": "ARDYの動きを生む力を人の代わりに、KID A MNESIAの目的のない3D空間を漂う『住人』に使えば、歩く者に反応して勝手に振る舞う展示になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "radiohead-kid-a-mnesia",
+        "title": "KID A MNESIA EXHIBITION（Radiohead）",
+        "desc": "アルバムの世界を歩くだけの3Dミュージアムとして無料配布した試み。"
+      },
+      {
+        "type": "tech",
+        "id": "ardy",
+        "title": "ARDY",
+        "desc": "テキスト指示で人体の3Dモーションを約33msで生成し続けるAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-30-7",
+    "date": "2026-10-30",
+    "title": "漫画コマを企業サイトの案内人に",
+    "pattern": "転用",
+    "seed": "漫画アニメ化のManga2Animateを、物流企業のUnited Carriersのようなサイトの沿革紹介に転用し、会社史を絵コンテ経由の短編アニメにして3D空間に流せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "united-carriers-2026",
+        "title": "United Carriers コーポレートサイト",
+        "desc": "Three.js/GSAPの3D表現でAwwwards賞を受けた物流企業のサイト。"
+      },
+      {
+        "type": "tech",
+        "id": "manga2animate",
+        "title": "Manga2Animate",
+        "desc": "漫画と設定画から台本、絵コンテ、動画へと作るマルチエージェント方式。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-30-8",
+    "date": "2026-10-30",
+    "title": "自然アーティストの身体を作る",
+    "pattern": "技術×技術",
+    "seed": "Motion2MixamoRigで鳥や草木の動画から動きを抜いたキャラを作り、StableGen v0.3のBlender内生成でテクスチャまで貼れば、自然が踊るアーティスト像になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "motion2mixamorig",
+        "title": "Motion2MixamoRig",
+        "desc": "動画から3D動きを推定し、Mixamo規格キャラに移すツール。"
+      },
+      {
+        "type": "tech",
+        "id": "stablegen-v0-3",
+        "title": "StableGen v0.3",
+        "desc": "Blender内で生成AIによるテクスチャと3D素材作りを完結させるアドオン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-30-9",
+    "date": "2026-10-30",
+    "title": "歯ブラシの花を反射する3D化",
+    "pattern": "文脈×技術",
+    "seed": "Indianis Dentrisの『歯ブラシの新種の花』を、GRayの反射・屈折つきスプラットで撮ると、濡れた歯ブラシの質感が植物図鑑のように本物らしく見えるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "colgate-indianis-dentris",
+        "title": "Indianis Dentris",
+        "desc": "捨てる歯ブラシを新種の花に見せかけたインドの写真キャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "gray",
+        "title": "GRay",
+        "desc": "反射や屈折、影を正確に描くガウシアンスプラットのレイトレ描画手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-30-10",
+    "date": "2026-10-30",
+    "title": "ウェアラブル腕で招待状を渡す",
+    "pattern": "転用",
+    "seed": "EmoMimeの顔の近くで動く手型ロボットアームを、FKA twigsのような『URLがパスワード』の招待演出に転用し、入力した人の肩を叩いて秘密ライブへ誘う装置にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "fka-twigs-eusexua",
+        "title": "EUSEXUA キャンペーンサイト（FKA twigs）",
+        "desc": "メールを入力した人だけ秘密ライブに招待される最小限のサイト。"
+      },
+      {
+        "type": "tech",
+        "id": "emomime",
+        "title": "EmoMime",
+        "desc": "顔の近くでも安全に動く手型のウェアラブルロボットアーム。"
+      }
+    ]
   }
 ]
