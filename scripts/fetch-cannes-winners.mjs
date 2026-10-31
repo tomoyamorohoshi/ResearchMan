@@ -42,6 +42,7 @@ function categoryRecord(r) {
     headings: r.headings,
     counts: r.counts,
     complete: !!r.complete,
+    yearVerified: r.yearVerified === true,
   };
   if (!r.complete) {
     rec.incomplete = true;
@@ -92,7 +93,16 @@ function finalize(out, expected) {
   out.expectedCheck = expectedCheck;
   if (missingCategories) out.missingCategories = missingCategories;
   else delete out.missingCategories;
-  out.ok = (out.fetchErrors ?? []).length === 0 && !out.scan?.capped && expectedCheck !== 'failed';
+  // 年が未確認の部門・走査の打ち切り(capped/aborted)・取得エラー・0部門・期待部門の欠けはすべて ok:false(fail-closed)
+  out.yearUnverifiedIds = out.categories.filter((c) => c.yearVerified !== true).map((c) => c.entryTypeId);
+  out.yearVerified = out.categories.length > 0 && out.yearUnverifiedIds.length === 0;
+  out.ok =
+    (out.fetchErrors ?? []).length === 0 &&
+    out.categories.length > 0 &&
+    out.yearUnverifiedIds.length === 0 &&
+    !out.scan?.capped &&
+    !out.scan?.aborted &&
+    expectedCheck !== 'failed';
   return out;
 }
 
@@ -101,8 +111,7 @@ export function revalidateOutput(existing, expected) {
   const out = { ...existing };
   out.fetchErrors = existing.fetchErrors ?? [];
   out.scan = existing.scan ?? { recorded: false };
-  out.yearVerified = existing.yearVerified ?? false;
-  const { ok, expectedCheck, missingCategories, ...rest } = out; // 並び順を保つため再構成
+  const { ok, expectedCheck, missingCategories, yearVerified, yearUnverifiedIds, ...rest } = out; // 並び順を保つため再構成
   return finalize({ ...rest }, expected);
 }
 
@@ -129,7 +138,13 @@ export function buildOutput(year, results, existing, generatedAt = new Date().to
   let winners = found.flatMap(winnerRecords);
   let prevNotFoundDetail = [];
   let prevFetchErrors = [];
+  // scan = 直近の「全走査」の記録。id 指定の部分実行は partialRuns に追記し、全走査の capped/aborted を上書きしない
   let scan = opts.scan;
+  let partialRuns = existing?.partialRuns ?? [];
+  if (scan?.explicit) {
+    partialRuns = [...partialRuns, { at: generatedAt, ...scan }];
+    scan = existing?.scan;
+  }
   if (existing) {
     // 置換対象は「結果が確定した id」(発見 or 確定404)。fetchError の id は旧データを温存する
     const replaced = new Set([...found, ...absent].map((r) => r.entryTypeId));
@@ -141,21 +156,17 @@ export function buildOutput(year, results, existing, generatedAt = new Date().to
     const prevDetail = existing.notFoundDetail ?? (existing.notFound ?? []).map((id) => ({ entryTypeId: id, httpStatus: null }));
     prevNotFoundDetail = prevDetail.filter((d) => !allIds.has(d.entryTypeId));
     prevFetchErrors = (existing.fetchErrors ?? []).filter((e) => !allIds.has(e.entryTypeId));
-    if (!scan && existing.scan) scan = existing.scan;
   }
   const allNotFound = [...prevNotFoundDetail, ...notFoundDetail];
   const allFetchErrors = [...prevFetchErrors, ...fetchErrors];
-  const yearVerified = categories.length > 0 && (found.length === categories.length) && found.every((r) => r.yearVerified === true)
-    ? true
-    : (existing && found.every((r) => r.yearVerified === true) && existing.yearVerified === true);
   const out = {
     year,
     source: 'lovethework.com (Cannes Lions results table + winners-shortlists headings)',
     generatedAt,
     note: 'Grand Prix/Gold/Silver/Bronze(+Titanium等)のみ。Shortlistは見出し件数の参考値のみ(counts.Shortlist)。部門名はその年の公式名のまま。complete=見出し件数と取得件数が全レベルで一致。ok=取得エラー無し・走査完了・期待部門リスト(data/cannes/expected-categories.json)と一致(リスト無しは skipped)。yearVerified=結果表HTMLの年マーカーで年を確認済み。',
     ok: false,
-    yearVerified: !!yearVerified,
     scan: scan ?? { recorded: false },
+    partialRuns,
     categories,
     notFound: allNotFound.map((d) => d.entryTypeId),
     notFoundDetail: allNotFound,

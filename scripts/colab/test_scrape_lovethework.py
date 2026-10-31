@@ -249,7 +249,7 @@ class YearMarkerTest(unittest.TestCase):
 
 
 class ScanRangeTest(unittest.TestCase):
-    def run_scan(self, found_ids, stop_gap=5, error_ids=(), max_id=200):
+    def run_scan(self, found_ids, stop_gap=5, error_ids=(), max_id=200, max_errors=1000):
         calls = []
 
         def fake(eid, year):
@@ -261,7 +261,7 @@ class ScanRangeTest(unittest.TestCase):
         orig_s, orig_sleep = s.scrape_entry_type, s.time.sleep
         s.scrape_entry_type, s.time.sleep = fake, lambda *_: None
         try:
-            return s.scan_year(2025, stop_gap=stop_gap, max_id=max_id), calls
+            return s.scan_year(2025, stop_gap=stop_gap, max_id=max_id, max_errors=max_errors), calls
         finally:
             s.scrape_entry_type, s.time.sleep = orig_s, orig_sleep
 
@@ -294,6 +294,52 @@ class ExplicitIdsTest(unittest.TestCase):
         self.assertEqual(scan["explicit"], True)
         self.assertEqual([r["entryTypeId"] for r in results], [44, 45])
 
+class EmptyPageClassifyTest(unittest.TestCase):
+    def test_shell_page_with_no_results_in_script_is_error(self):
+        html = '<html><head><script>var t = "no results";</script></head><body><div id="root"></div></body></html>'
+        self.assertEqual(s.classify_results_response(200, html)["kind"], "error")
+
+    def test_no_results_text_without_results_h1_is_error(self):
+        html = "<html><body><h1>Maintenance</h1><p>No results</p></body></html>"
+        self.assertEqual(s.classify_results_response(200, html)["kind"], "error")
+
+    def test_results_h1_with_no_results_in_script_only_is_not_absent(self):
+        html = '<html><body><h1>Foo Lions results table</h1><script>x="no results"</script></body></html>'
+        self.assertNotEqual(s.classify_results_response(200, html)["kind"], "absent")
+
+    def test_real_empty_table_is_absent(self):
+        html = "<html><body><p>CANNES LIONS 2025 RESULT TABLE</p><h1>Foo Lions results table</h1><div><p>No results found</p></div></body></html>"
+        self.assertEqual(s.classify_results_response(200, html)["kind"], "absent")
+
+
+class ConsecutiveErrorAbortTest(unittest.TestCase):
+    def test_aborts_after_n_consecutive_errors(self):
+        calls = []
+
+        def fake(eid, year):
+            calls.append(eid)
+            if eid == 1:
+                return {"entryTypeId": eid, "exists": True}
+            return {"entryTypeId": eid, "exists": None, "fetchError": {"httpStatus": 429}}
+
+        orig_s, orig_sleep = s.scrape_entry_type, s.time.sleep
+        s.scrape_entry_type, s.time.sleep = fake, lambda *_: None
+        try:
+            results, scan = s.scan_year(2025, max_errors=5)
+        finally:
+            s.scrape_entry_type, s.time.sleep = orig_s, orig_sleep
+        self.assertEqual(calls, [1, 2, 3, 4, 5, 6])
+        self.assertEqual(scan["aborted"], "consecutive-errors")
+
+    def test_no_abort_flag_normally(self):
+        orig_s, orig_sleep = s.scrape_entry_type, s.time.sleep
+        s.scrape_entry_type = lambda eid, y: {"entryTypeId": eid, "exists": False, "httpStatus": 404}
+        s.time.sleep = lambda *_: None
+        try:
+            _, scan = s.scan_year(2025, stop_gap=3)
+        finally:
+            s.scrape_entry_type, s.time.sleep = orig_s, orig_sleep
+        self.assertIsNone(scan["aborted"])
 
 if __name__ == "__main__":
     unittest.main()

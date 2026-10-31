@@ -6,13 +6,13 @@ import path from 'node:path';
 import { extractJsonBlock, buildOutput, toWslPath, parseUsage, normalizeCategoryName, checkExpected, revalidateOutput, writeJsonAtomic } from './fetch-cannes-winners.mjs';
 
 const okCat = {
-  entryTypeId: 10, slug: 'digital-craft', category: 'Digital Craft', exists: true, complete: true, mismatches: [],
+  entryTypeId: 10, slug: 'digital-craft', category: 'Digital Craft', exists: true, yearVerified: true, complete: true, mismatches: [],
   sourceUrl: 'https://x/digital-craft', headings: { 'Grand Prix': 1, Shortlist: 43 },
   counts: { 'Grand Prix': { heading: 1, scraped: 1 }, Shortlist: { heading: 43, scraped: null } },
   cards: [{ level: 'Grand Prix', subcategory: 'UX', title: 'T', brand: 'B', product: 'P', agency: 'A', location: 'L', prize: 'Grand Prix', entryUrl: 'https://x/e1' }],
 };
 const badCat = {
-  entryTypeId: 20, slug: 'film', category: 'Film', exists: true, complete: false,
+  entryTypeId: 20, slug: 'film', category: 'Film', exists: true, yearVerified: true, complete: false,
   mismatches: [{ level: 'Gold', heading: 2, scraped: 1 }], sourceUrl: 'https://x/film',
   headings: { Gold: 2 }, counts: { Gold: { heading: 2, scraped: 1 } },
   cards: [{ level: 'Gold', subcategory: '', title: 'F', brand: 'B', product: '', agency: '', location: '', prize: 'Gold Lion', entryUrl: 'https://x/e2' }],
@@ -74,11 +74,47 @@ test('buildOutput: no errors + no expected list => ok true, expectedCheck skippe
 
 test('buildOutput: scan range and yearVerified recorded', () => {
   const scan = { explicit: false, scannedFrom: 1, scannedTo: 90, stopGap: 40, maxFoundId: 50, capped: false };
-  const o = buildOutput(2025, [{ ...okCat, yearVerified: true }], null, 't', { scan });
+  const o = buildOutput(2025, [okCat], null, 't', { scan });
   assert.deepEqual(o.scan, scan);
   assert.equal(o.yearVerified, true);
-  const o2 = buildOutput(2025, [okCat], null, 't');
+  const o2 = buildOutput(2025, [{ ...okCat, yearVerified: false }], null, 't');
   assert.equal(o2.yearVerified, false);
+});
+
+test('yearVerified:false fails closed: ok:false with yearUnverifiedIds', () => {
+  const o = buildOutput(2025, [okCat, { ...badCat, yearVerified: false }], null, 't');
+  assert.equal(o.ok, false);
+  assert.deepEqual(o.yearUnverifiedIds, [20]);
+  assert.equal(buildOutput(2025, [okCat], null, 't').yearUnverifiedIds.length, 0);
+});
+
+test('zero categories found => ok:false even without expected list', () => {
+  const o = buildOutput(2025, [missing], null, 't');
+  assert.equal(o.ok, false);
+});
+
+test('aborted scan (consecutive errors) => ok:false', () => {
+  const o = buildOutput(2025, [okCat], null, 't', { scan: { explicit: false, capped: false, aborted: 'consecutive-errors' } });
+  assert.equal(o.ok, false);
+});
+
+test('partial re-run keeps the full-scan record; explicit runs go to partialRuns', () => {
+  const full = buildOutput(2025, [okCat], null, 't1', { scan: { explicit: false, scannedTo: 90, capped: true, aborted: null } });
+  assert.equal(full.ok, false);
+  const partial = { explicit: true, ids: [10], scannedFrom: 10, scannedTo: 10, capped: false, aborted: null };
+  const merged = buildOutput(2025, [okCat], full, 't2', { scan: partial });
+  assert.equal(merged.scan.capped, true);
+  assert.equal(merged.ok, false);
+  assert.equal(merged.partialRuns.length, 1);
+  assert.deepEqual(merged.partialRuns[0].ids, [10]);
+  assert.equal(merged.partialRuns[0].at, 't2');
+});
+
+test('partial re-run after a clean full scan stays ok', () => {
+  const full = buildOutput(2025, [okCat], null, 't1', { scan: { explicit: false, scannedTo: 90, capped: false, aborted: null } });
+  const merged = buildOutput(2025, [okCat], full, 't2', { scan: { explicit: true, ids: [10], capped: false, aborted: null } });
+  assert.equal(merged.ok, true);
+  assert.equal(merged.scan.scannedTo, 90);
 });
 
 test('buildOutput: capped scan is not ok', () => {

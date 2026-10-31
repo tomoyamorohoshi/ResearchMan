@@ -1,7 +1,8 @@
 """lovethework.com の Cannes Lions 受賞一覧を決定的に取得する（Colab CPU ランタイム用）。
 
 使い方（colab run 経由）:  scrape_lovethework.py <year> [entry_type_id ...]
-  id 省略時は 1 から順に走査し、「最大の発見id より後に確定404/空が STOP_GAP 件連続」で止める（上限 MAX_SCAN_ID）。`n  存在しない=404か明示の空ページのみ。403/429/5xx/例外/見出し不明は fetchError として記録し、不在とは扱わない。
+  id 省略時は 1 から順に走査し、「最大の発見id より後に確定404/空が STOP_GAP 件連続」で止める（上限 MAX_SCAN_ID）。
+  存在しない=404か明示の空ページのみ。403/429/5xx/例外/見出し不明は fetchError として記録し、不在とは扱わない。
 
 方式（ブラウザ不要・標準ライブラリのみ）:
   1. 結果表ページ  /en/awards/results/cannes-lions?year=<y>&entry_type_id=<id>
@@ -25,6 +26,8 @@ BASE = "https://www.lovethework.com"
 JSON_BEGIN = "===JSON_BEGIN==="
 JSON_END = "===JSON_END==="
 WAIT_BETWEEN_REQUESTS = 2.5  # 秒（礼儀上 2 秒以上）
+MAX_CONSECUTIVE_ERRORS = 5  # fetchError がこの回数連続したら走査を中断（レート制限サイトを叩き続けない）
+MAX_CONSECUTIVE_ERRORS = 5  # fetchError がこの回数連続したら走査を中断（レート制限サイトを叩き続けない）
 STOP_GAP = 40  # 最大の発見idの後、確定404/空が連続この数続くまで走査する
 MAX_SCAN_ID = 400  # 暴走防止の絶対上限（到達したら capped として不完全扱い）
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
@@ -156,6 +159,12 @@ _YEAR_MARKER_RE = re.compile(r"CANNES LIONS\s+(\d{4})\s+RESULTS?\s+TABLE", re.I)
 _NO_RESULTS_RE = re.compile(r"\bno\s+results?(\s+found)?\b", re.I)
 
 
+def _visible_text(html):
+    """script/style/template/noscript を除いた表示テキスト（JS 断片内の "no results" を拾わない）。"""
+    html = re.sub(r"(?is)<(script|style|template|noscript)\b.*?</\1\s*>", " ", html)
+    return re.sub(r"<[^>]+>", " ", html)
+
+
 def classify_results_response(status, body):
     """結果表ページの応答を found / absent / error に分類する。
     不在と確定できるのは 404 か、200 で明示の「No results」ページのみ。それ以外の失敗は error。"""
@@ -170,8 +179,6 @@ def classify_results_response(status, body):
         return {"kind": "absent", "httpStatus": 200}
     if parsed["category"]:
         return {"kind": "found", "httpStatus": 200, "parsed": parsed}
-    if parsed["noResults"] and not parsed["cards"]:
-        return {"kind": "absent", "httpStatus": 200}
     return {"kind": "error", "httpStatus": 200, "error": "unrecognized page structure (no results-table h1)"}
 
 
@@ -210,7 +217,7 @@ def parse_results_html(html):
             "entryUrl": href if href.startswith("http") else BASE + href,
         })
     return {"category": category, "cards": cards, "shortlistRows": shortlist_rows,
-            "year": year, "noResults": bool(_NO_RESULTS_RE.search(html))}
+            "year": year, "noResults": bool(_NO_RESULTS_RE.search(_visible_text(html)))}
 
 
 def dedupe_cards(cards):
@@ -329,7 +336,7 @@ def scan_one(eid, year):
     return r
 
 
-def scan_year(year, ids=None, stop_gap=STOP_GAP, max_id=MAX_SCAN_ID):
+def scan_year(year, ids=None, stop_gap=STOP_GAP, max_id=MAX_SCAN_ID, max_errors=MAX_CONSECUTIVE_ERRORS):
     """(results, scan)。ids 指定時はそのidだけ。省略時は 最大発見id + stop_gap 件連続の確定不在まで。"""
     results = []
     if ids:
@@ -339,8 +346,8 @@ def scan_year(year, ids=None, stop_gap=STOP_GAP, max_id=MAX_SCAN_ID):
             results.append(scan_one(eid, year))
         return results, {"explicit": True, "ids": list(ids), "scannedFrom": min(ids), "scannedTo": max(ids),
                          "stopGap": None, "maxFoundId": max([r["entryTypeId"] for r in results if r.get("exists")], default=None),
-                         "capped": False}
-    streak, max_found, eid, capped = 0, None, 0, False
+                         "capped": False, "aborted": None}
+    streak, errors, max_found, eid, capped, aborted = 0, 0, None, 0, False, None
     while True:
         eid += 1
         if eid > max_id:
@@ -351,15 +358,18 @@ def scan_year(year, ids=None, stop_gap=STOP_GAP, max_id=MAX_SCAN_ID):
         r = scan_one(eid, year)
         results.append(r)
         if r.get("exists"):
-            max_found, streak = eid, 0
+            max_found, streak, errors = eid, 0, 0
         elif r.get("exists") is False:
-            streak += 1
+            streak, errors = streak + 1, 0
         else:  # fetchError は不在の証拠にならない
-            streak = 0
+            streak, errors = 0, errors + 1
+        if errors >= max_errors:
+            aborted = "consecutive-errors"
+            break
         if streak >= stop_gap:
             break
     return results, {"explicit": False, "scannedFrom": 1, "scannedTo": eid, "stopGap": stop_gap,
-                     "maxFoundId": max_found, "capped": capped}
+                     "maxFoundId": max_found, "capped": capped, "aborted": aborted}
 
 
 def main(argv):
