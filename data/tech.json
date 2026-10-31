@@ -1,5 +1,157 @@
 [
   {
+    "id": "openjutsu",
+    "title": "Openjutsu",
+    "org": "D3voz（個人開発者）",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "動画と1枚のキャラクター写真を渡すだけで、動画の主役をそのキャラクターに差し替える完全ローカルのツール。髪や服の変更、物体の削除、背景の変更にも対応する。",
+    "point": "動画と差し替えたいキャラクターの写真を用意して Generate を押すと、映像内の人物が写真のキャラクターに置き換わります。カメラワーク、カット割り、動き、音声はそのまま残ります。複数人が映る場面では、誰を誰に差し替えるかを人物ごとに指定できます。髪型や服だけを変える、車やサングラスのような物を消したり描き足したりする、といった部分的な編集にも対応します。顔が小さく映ると崩れやすいという弱点には、顔だけを大きく描き直して貼り戻す『Fix faces』を用意しています。広告制作では、撮影済みの素材を使い回してキャラクターやタレントを入れ替えるバリエーション制作、架空キャラクターの実写風プロモ動画、ライティングを17種類から選んで雰囲気を変える見せ方の検討などに使えそうです。再撮影のコストを抑えながら、複数パターンの映像案を短時間で並べられます。",
+    "detail": "仕組みは次のとおりです。まず SAM 3.1 という物体追跡モデルで動画内の人物を追いかけ、Qwen3-VL という画像を読めるAIが各カットの様子を文章にします。その情報をもとに、MiniMax H3 という動画生成モデルが、動きを保ったまま人物だけを描き直します。画面は Next.js 製の操作画面で、裏側では ComfyUI のワークフロー（処理の流れを部品でつないだ設計図）が動いています。Comfy 公式のリファレンスアプリ comfy-reshoot の作り方を踏襲しています。\n\n従来は ComfyUI のノードを自分でつないで、人物のマスク作成、プロンプト作成、生成、仕上げを手作業で行う必要がありました。Openjutsu は『簡単モード』『複数人モード』『物体モード』『写真から作るモード』『顔補正と色補正の後処理』をボタン操作にまとめています。実行前には、足りないカスタムノードやモデルファイルを自動で検出して案内する機能もあります。\n\n使うには、NVIDIA GPU（動作確認は RTX 4060 Ti 16GB、システムメモリ 64GB）、ComfyUI 0.41.2 以上、Node.js 22.6 以上が必要です。SolarRenderer など十数個のカスタムノードと数十GB規模のモデルを入れる準備が要るため、初回は導入に時間がかかります。費用はかかりません。GitHub から取得して start_openjutsu.bat で起動します。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "Openjutsu 本体は MIT。ただし MiniMax H3・SAM 3.1・SolarRenderer・Qwen3-VL などのモデル重みは、それぞれのライセンスに従う必要がある。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/D3voz/openjutsu"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/openjutsu.jpg",
+    "relatedWorks": [
+      {
+        "title": "comfy-reshoot",
+        "description": "Openjutsu が手本にした Comfy 公式のリファレンスアプリ。",
+        "url": "https://github.com/Comfy-Org/comfy-reshoot"
+      },
+      {
+        "title": "SolarRenderer",
+        "description": "Openjutsu の『写真から作るモード』で使う4ステップの動画描画 LoRA。",
+        "url": "https://github.com/Enderfga/SolarRenderer"
+      },
+      {
+        "title": "comfyui-h3-oneclick-swap",
+        "description": "Openjutsu の人物差し替え処理を担う ComfyUI ノード群。",
+        "url": "https://github.com/D3voz/comfyui-h3-oneclick-swap"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "kerf",
+    "title": "Kerf",
+    "org": "kamalivaturi（個人開発者）",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "GenVideo"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "Premiere Pro・After Effects・DaVinci Resolve の画面内で動く、無料のオープンソース編集支援ツールキット。無音カット、字幕、194種のテンプレート、手ぶれ補正、AI切り抜きなどを備える。",
+    "point": "1つのインストーラーで、Premiere Pro、After Effects、DaVinci Resolve の3つの編集ソフトに共通のパネルが追加されます。しゃべっていない無音部分や失敗テイクの自動カット、動くテロップ、194種類の編集できるテンプレート、速度の緩急、カメラの揺れの追加、手ぶれ補正、AIによる切り抜き、音楽に合わせたカット、BGMの自動音量調整など、編集で頻繁に使う作業を一か所にまとめています。文字で指示すると、AIが必要な機能を順番に組んで実行する『Prompt Edit』もあります。広告制作では、同じ素材から縦型・横型の複数サイズやショート動画を量産する場面や、インタビュー素材の粗編集を短時間で済ませる場面に向いています。編集ソフトを乗り換えずに、既存の制作フローの中で作業時間を減らせる点が強みです。",
+    "detail": "仕組みは、PC内で動く編集エンジン（Python 製）と、各編集ソフト側のパネルが通信する構成です。無音検出には音声区間を判定する Silero というモデル、文字起こしには faster-whisper、切り抜きには U²-Net（ONNX）を使い、いずれもPC内で処理します。編集内容はタイムラインの情報として組み立てられ、開いているシーケンスに反映されます。\n\n従来の編集補助ツールは、特定のソフト専用で有料のものが多く、ソフトごとに別の製品を買う必要がありました。Kerf は3つのソフトを1つのツールで扱え、MIT ライセンスで無料です。Prompt Edit は Claude、OpenAI、Gemini、または Ollama などのローカルモデルから選べます。独自の機能は Python ファイルを置くだけで追加できます。\n\n使うには、Premiere Pro 25.6 以降、After Effects 2022 以降、または DaVinci Resolve 18.6 以降のいずれかが必要です。Windows、macOS、Linux 用のインストーラーが GitHub のリリースページで配布されており、FFmpeg も使います（Python 版は別途用意）。Linux は Resolve のみ対応です。v0.3.1 は 2026-10-26 公開の新しいツールなので、不具合があり得る点は念頭に置いてください。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "MIT で無料。Claude・OpenAI・Gemini などの外部AI連携は任意で、使う場合は各社のAPI料金が別途かかる。オフラインでも主要機能は動く。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/kamalivaturi/kerf"
+      },
+      {
+        "kind": "project",
+        "url": "https://kamalivaturi.github.io/kerf/"
+      },
+      {
+        "kind": "product",
+        "url": "https://github.com/kamalivaturi/kerf/releases/tag/v0.3.1"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/kerf.jpg",
+    "relatedWorks": [
+      {
+        "title": "auto-editor",
+        "description": "無音・動きの少ない区間を自動でカットする定番のオープンソースCLI。",
+        "url": "https://github.com/WyattBlue/auto-editor"
+      },
+      {
+        "title": "OpenCut",
+        "description": "ブラウザ・デスクトップで動くオープンソースの動画エディタ。",
+        "url": "https://github.com/OpenCut-app/OpenCut"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "anima-reference-adapter",
+    "title": "Anima Reference Adapter (ComfyUI-Anima-Ref-Adapter)",
+    "org": "ElectronGirl（個人開発者）",
+    "type": "Research",
+    "domains": [
+      "CreatorTools",
+      "GenVideo"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "アニメ系画像モデル Anima に、参照画像を1枚渡すだけで、キャラクターと画風を保ったままポーズ・背景・構図をプロンプトで変えられる ComfyUI 用アダプター。",
+    "point": "参照画像を1枚読み込み、シーンだけを文章で書くと、同じキャラクター（髪、目、服、小物）と画風が保たれたまま、ポーズや背景を変えた絵が出力されます。キャラクター名、作家名、衣装のタグは不要なので、オリジナルキャラクターにも使えます。参照画像を2枚並べれば、2人のキャラクターを1枚に描くこともできます。広告・体験づくりでは、マスコットや架空キャラクターの設定画から、カフェ、海辺、空を飛ぶシーンなどの絵コンテや動画用の素材画像を量産する使い方が考えられます。LoRA（追加学習）を作る手間を省いて、キャラクターの一貫性を保った画像を並べられるため、動画生成の元画像づくりやキャラクターシートの検証に向いています。ただし重みは非商用ライセンスのため、実案件では企画検討や試作の段階での利用に限られます。",
+    "detail": "仕組みは、参照画像を一度だけ内部表現に変換し、それを画像生成モデル Anima の途中の層に追加の手がかりとして渡すものです。この処理を軽量な追加学習（rank 64 の LoRA、183MB）で実現しています。学習には2,300キャラクター・1,952の画風・計15,600枚のデータを使っています。参照の変換は1枚につき1回だけなので、前の試作版より約2倍速く、RTX 3060 Ti（VRAM 8GB）で832x1216の画像が約65秒で生成できます。\n\n従来のキャラクター固定は、キャラクターごとに LoRA を学習するか、キャラクター名をタグで指定する必要がありました。このアダプターは学習不要で、初めて見る絵柄の参照にも対応します。ポーズ・背景・構図はプロンプト側に任せるため、参照画像の構図に引きずられにくい設計です。\n\n使うには ComfyUI、Anima base v1.0、Qwen3-0.6B テキストエンコーダー、Qwen-Image VAE が必要です。ノード1つをカスタムノードとして git clone で追加するだけで、初回実行時に重みを自動でダウンロードします。ただし、資金不足のため開発は停止中で、キャラクターと画風を別々に参照する機能は未公開です。学習コードと実験記録は別リポジトリで公開されています。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "research-only",
+      "note": "コードは Apache-2.0。学習済み重みは CircleStone の非商用ライセンスで、商用利用はできない。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/ElectronGirl/anima-ref-adapter-research"
+      },
+      {
+        "kind": "project",
+        "url": "https://huggingface.co/ElectronGirl/anima-ref-adapter"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/anima-reference-adapter.jpg",
+    "relatedWorks": [
+      {
+        "title": "IP-Adapter",
+        "description": "参照画像を拡散モデルに条件として与える代表的なアダプター手法。",
+        "url": "https://github.com/tencent-ailab/IP-Adapter"
+      },
+      {
+        "title": "Anima (circlestone-labs)",
+        "description": "このアダプターの土台になっているアニメ系画像生成モデル。",
+        "url": "https://huggingface.co/circlestone-labs/Anima"
+      },
+      {
+        "title": "anima-ref-adapter-research",
+        "description": "学習コード・データ生成・実験ログを公開した研究リポジトリ。",
+        "url": "https://github.com/ElectronGirl/anima-ref-adapter-research"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "aeon",
     "title": "AEON",
     "org": "Tsinghua University (Weiqi Zhang ら)",
