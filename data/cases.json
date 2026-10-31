@@ -1,5 +1,252 @@
 [
   {
+    "id": "un-build-2026",
+    "title": "(Un)Build – 釘もネジも接着剤も使わないストラップ締結の木造接合システム",
+    "summary": "釘もネジも接着剤も使わず、張力ストラップと摩擦パッドだけで木材を固定し、解体・再利用できる接合を提案",
+    "client": "Clara Mu He, Henry Chung（Harvard University）",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://materialdistrict.com/article/clara-mu-he-and-henry-chung-swap-nails-for-straps/",
+    "thumbnail": "/thumbnails/un-build-2026.jpg",
+    "videoId": "",
+    "overview": "ハーバード大学のClara Mu HeとHenry Chungによる木造接合システム。木材をテンションをかけたストラップで巻き締め、接触面に挟んだ両面の摩擦パッドの摩擦だけで保持する。ストラップはポリプロピレン、PET、スチールが使え、製材、LVL、集成材、CLTに対応する。査読付き論文誌TADに掲載された。",
+    "background": "米国EPAの数値として、2018年の建設・解体で約4,100万トンの木材廃棄物が出て、リサイクルは9%、73%が埋立処分とされる。釘・ネジ・接着剤は部材を傷めずに分離するのが難しく、使える木材が捨てられがちになる。この問題への対案として、部材を傷めない接合が構想された。",
+    "execution": "荷重を受ける接合部には両面に1〜2mmの歯を持つ金属プレート、横方向の力が主な箇所には粗い両面サンドペーパーを摩擦パッドとして使う。試作1はポプラ材6フレーム(各約2.4m角)で、展示後にストラップを外して全材を回収。試作2は高さ約2.4m×長さ約6mの展示壁で、柔らかいポプラが凹んだため硬木に変更した。",
+    "evaluationImpact": "赤オークの予備試験で、木目直交方向の耐力はストラップ接合が約1.0ショートトン、ボルト0.9、ネジ0.2、釘0.1となり、ボルト同等以上の結果が出た(いずれも予備的・概算値)。解体して部材を再利用できる点が新しい。一方、断熱された多層建築での釘の代替はまだ難しく、湿度・温度変化下の耐久性試験が今後の課題とされる。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Exhibition",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "materialdistrict",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "portal-into-the-multi-species-the-woven-insect-canopy-made-b",
+    "title": "Portal Into The Multi-Species / The Woven Insect Canopy（Made by Insects）",
+    "summary": "カイガラムシ由来のシェラックを化学変性なしで吹き成形と3Dプリントにかけ、泡状の発光彫刻に仕立てた素材実験。",
+    "client": "Ori Orisun Merhav",
+    "agency": "Made by Insects",
+    "categories": [
+      "テクノロジー×アイデア",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.designboom.com/design/glowing-amber-sculptures-polymer-insects-ori-orisun-merhav/",
+    "thumbnail": "/thumbnails/portal-into-the-multi-species-the-woven-insect-canopy-made-b.jpg",
+    "videoId": "",
+    "overview": "ブリュッセル拠点のデザイナーOri Orisun Merhavが、研究プロジェクトMade by Insectsで、Kerria lacca(カイガラムシ)の分泌樹脂から作るシェラックを素材にした照明・彫刻を発表。個展「Portal Into The Multi-Species」は2026年10月14日〜11月7日にロンドンのSarah Myerscough Galleryで開催。新作シリーズ「The Woven Insect Canopy」(Awakening/Regeneration/Bifurcation)などを展示する。",
+    "background": "Merhavの出発点は2022年にデザイン・アカデミー・アイントホーフェンで制作した卒業プロジェクト「The Lac Lab Open Source」で、これがMade by Insectsに発展した。シェラックは砂粒ほどの昆虫が樹液の糖を変換して体の周りで固める樹脂を、採取・洗浄・加工したもの。合成代替品の普及で天然シェラックの需要は減っており、この素材に新しい用途を探る研究でもある。",
+    "execution": "シェラックは加熱で軟化し冷えると固まる性質があり、ガラス工芸に由来する技法で薄い膜に伸ばし中空に吹ける。大きな単一の泡から、昆虫の巣を手本にした小さな連結セルの集合へ移行した。3Dプリントは2023年にGinger Additive等と開始し、Avans応用科学大学のバイオポリマー研究室と継続。化学変性なしで押し出す。The Woven Insect Canopyは、シェラックで覆ったヤシの葉鞘を鋼製の支持体に収め、内部からLEDで照らす。",
+    "evaluationImpact": "「昆虫が自分の巣のために作る樹脂を、変性せず吹きと3Dプリントの両方で造形に使う」点が素材手法としての新規性である。素材の透過光や琥珀色の質感がそのまま作品表現になり、バイオ素材の彫刻・照明を大型の個展規模で示した。なお、2026年Dutch Design Award受賞はdesignboomの記事のみの記載で、公式発表を確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Insect Plantasia",
+        "description": "吹いたシェラックと3Dプリントしたシェラック、鋼を組み合わせたフロアランプ(2025)。",
+        "url": "https://rossanaorlandi.com/?p=52004"
+      },
+      {
+        "title": "Insects Cradle",
+        "description": "シェラック・金属・木で作ったベンチ。昆虫が繭を作る構造に着想を得た(2024)。",
+        "url": "https://rossanaorlandi.com/?p=49582"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/Exhibition",
+      "Form/Installation",
+      "Theme/Art",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "designboom",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "arlo-sims-street-furniture-electric-guitars-2026",
+    "title": "Arlo Sims – Street Furniture Electric Guitars",
+    "summary": "自転車ラックや道路標識などの街の既存物にネックと弦を付け、その形のまま路上で弾けるギターに変える",
+    "client": "Arlo Sims",
+    "agency": "",
+    "categories": [
+      "カルチャーインサイト",
+      "OOH革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://creapills.com/arlo-sims-guitares-street-art-20261029",
+    "thumbnail": "/thumbnails/arlo-sims-street-furniture-electric-guitars-2026.jpg",
+    "videoId": "",
+    "overview": "アーティストのArlo Simsが、道路標識、円形の自転車ラック、地下鉄の手すり、木製の樹木保護柵、スツール、しなやかな白い交通用ポールなど、街の既存物にネック・弦・ピックアップを取り付けた。小型アンプにつなぐと、その場で演奏できるギターになる。作品は歩道やメトロ車内で演奏する映像として、Instagram(@arlosims)で公開されている。",
+    "background": "Creapillsの記事によると、Arlo Simsはマサチューセッツ州ケンブリッジ出身の音楽家でマルチアーティスト。ギター演奏と音響オブジェの制作を組み合わせている。Harvard-Berkleeプログラムで音楽を学び、脳と行動に関する補完的な課程も修了したという。制作の動機や依頼元、制作体制については、確認できた範囲では言及がない。",
+    "execution": "物の形をそのままボディとして使う。円形の自転車ラックでは金属の輪がボディになる。三角形の標識では、ネックが片側の辺を延長する形になる。地下鉄では、ネックを手すりに縦に固定し、アンプは座席に置く。白い壁では、壁に描かれたピンクの矢印をネックが延長する見せ方をしている。しなやかな白いポールでは、ネックを引いて曲げると弦の張りが変わり、ビブラートがかかる。ピックアップの仕様は確認できなかった。",
+    "evaluationImpact": "既存の街の物の形を変えずに、楽器として読み替える点が一文で伝わる。物ごとの形の違いが、弾き方や音の出方の違いにつながる。例えば、ポールは曲げるとビブラートがかかる。映像で見せる短尺SNS向けの形式とも相性がよい。確認できた情報は紹介記事とInstagram投稿に限られる。受賞は確認できなかった。設置都市や制作の詳細も未確認である。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/SNS",
+      "Form/Stunt",
+      "Theme/Music",
+      "Theme/Art"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "soft-cinema-2-interview-with-lev-manovich-at-responsive-drea",
+    "title": "Soft Cinema 2 – Interview with Lev Manovich at Responsive Dreams 2026",
+    "summary": "固定した28章の物語に、映像データベースからモンドリアン風の分割画面をリアルタイム編集し続ける生成映画システム。",
+    "client": "Lev Manovich",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.creativeapplications.net/project/soft-cinema-2-interview-with-lev-manovich-at-responsive-dreams-2026/",
+    "thumbnail": "/thumbnails/soft-cinema-2-interview-with-lev-manovich-at-responsive-drea.jpg",
+    "videoId": "",
+    "overview": "メディア理論家レフ・マノヴィッチによる生成映画システム。映像・音・テキストのデータベースから、ルールと制御された乱数でリアルタイムに映画を組み立てる。物語は28の章に分かれ、章ごとに画面レイアウトと映像が切り替わり、最後まで行くと最初に戻る。2026年9月25〜27日、スペインのフェスティバル Responsive Dreams 2026 で上映された。",
+    "background": "原作の Soft Cinema は2002年にZKMの「Future Cinema」展向けに委嘱された作品で、構想は1997年頃に遡る。当時はアーティスト兼プログラマーが3か月担当し、マノヴィッチのアイデアの約5%しか実装できなかったという。元の映像は圧縮が強く低解像度で、2002年版はそのままでは上映できない。今回のフェスティバルが新作を委嘱し、Soft Cinema に言及した。",
+    "execution": "物語は1998年にマノヴィッチ自身が書いた短編小説で、全体を通して固定される。画面はモンドリアンの成熟期の絵画に着想を得た長方形に分割される。特定の場面に出す映像はあらかじめ指定され、残りはソフトウェアが選んで視覚的な連想を加える。ナレーションは2002年のプロの語り手からAI音声に変わった。コードはJavaScriptで、AIの支援を受けて開発された。",
+    "evaluationImpact": "物語を固定し視覚だけを変動させることで、編集をルールと乱数に委ねる手法を示している。2002年版は新システムの一部集合だと本人が位置づける。AIは編集ソフトの開発にのみ使い、映像や音の生成には使っていない点が特徴。編集判断の可視化モジュールも計画されており、将来は鑑賞者がパラメータを操作できる可能性がある。受賞は確認できなかった。",
+    "relatedWorks": [
+      {
+        "title": "Soft Cinema (2002–2005)",
+        "description": "マノヴィッチとアンドレアス・クラトキーによる原作。DVDとしてMIT Pressから2005年に刊行され、「Mission to Earth」「Absences」「Texas」の3作を収録。",
+        "url": "https://manovich.net/index.php/projects/soft-cinema"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Form/Installation",
+      "Theme/Art",
+      "Tech/AI"
+    ],
+    "gateCriterion": "D",
+    "sourceId": "creativeapplications",
+    "gateTier": "accept",
+    "discoveryLens": 4
+  },
+  {
+    "id": "vinya-llarga-wine-label-atipus-2026",
+    "title": "Vinya Llarga wine label（Atipus）",
+    "summary": "「長いブドウ畑」という名を、高速列車の窓から撮った風景のような色帯としてボトルに巻き付け、裏でピントが戻る演出にしたワインラベル。",
+    "client": "Maria Rigol Ordi / Vinya Llarga",
+    "agency": "Atipus",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.creativeboom.com/work/why-studio-atipus-designed-a-wine-label-to-look-like-its-been-shot-from-a-speeding-train/",
+    "thumbnail": "/thumbnails/vinya-llarga-wine-label-atipus-2026.jpg",
+    "videoId": "",
+    "overview": "バルセロナのデザインスタジオAtipusが、カタルーニャ・ペネデス地方サン・サドゥルニ・ダノイアの生産者Maria Rigol Ordiの初のスティルワイン「Vinya Llarga」のために手がけたラベル。黄・緑・青の横方向の色帯がボトルをぐるりと巻き、速い列車から撮った写真のように風景がぼんやりとしか見えない表現にしている。Creative Boomが2026年10月29日付で紹介した。",
+    "background": "Maria Rigol Ordiはカバで知られる生産者で、今回は同社にとって初めてのスティルワインとなる。Atipusのファビオラ・ウレーニャは、新しい領域での最初の商品であり、新たな章を映すラベルが課題だったと語っている。名称はカタルーニャ語で「長いブドウ畑」を意味し、ラベルには畑の歴史が1897年に遡ることを示す記載もある。",
+    "execution": "名前の「長い(llarga)」を文字通りに受け取り、ボトルを一周する横長の色帯で畑の連なりを表した。表ラベルは質感のある白地の上部に小さな縦長大文字で「Vinya Llarga」、下部に生産者名を置き、中央に品種・発酵方法・限定生産の規模などを小さく入れる。裏ラベルでは色帯が葉の緑のかたちに変わり、風景が再び見えてくる構成。濃色のガラス瓶に蝋封のキャップシールも組み合わせている。",
+    "evaluationImpact": "ウレーニャは、鮮やかな色が即座の視覚的インパクトと温かみを両立し、「シンプルな発想で個性とリズム、遊び心のあるワインを作れた」と述べている。名前の意味、瓶の円筒形状、表から裏へのピントの移ろいを一つの発想でつなげた点が見どころ。受賞は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Maria（Maria Rigol Ordi）",
+        "description": "同じ生産者のスパークリングワイン。Atipusがラベルを手がけた関連プロジェクト（Packaging of the World掲載）。",
+        "url": "https://packagingoftheworld.com/?p=261215"
+      },
+      {
+        "title": "Vinya Llarga Stretches the Vineyard Across the Bottle",
+        "description": "The Dielineによる同ラベルの紹介記事。",
+        "url": "https://thedieline.com/?p=599821"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Print",
+      "Form/Product",
+      "Theme/Food"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creativeboom",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "off-world-habitat-wall-section-aenara-2026",
+    "title": "Off-World Habitat Wall Section（AENARA）",
+    "summary": "硫黄コンクリートと現地レゴリスをロボットで3Dプリントし、2075年の火星居住施設の壁断面を1:1で見せる",
+    "client": "AENARA（Melodie Yashar）",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://www.designboom.com/design/robotic-3d-printed-regolith-shells-aenara-future-mars-habitat-powerhouse-parramatta/",
+    "thumbnail": "/thumbnails/off-world-habitat-wall-section-aenara-2026.jpg",
+    "videoId": "",
+    "overview": "宇宙建築スタジオAENARA(創設者Melodie Yashar)が、シドニーのPowerhouse Parramatta「Task Eternal」展のために制作した、2075年頃の火星居住施設の壁断面。外殻はロボットで3Dプリントし、内側に与圧膜、放射線遮蔽、断熱、配管を重ねる構成を1:1で見せる。展示は2026年11月7日開幕予定。",
+    "background": "AENARAは、オフワールド(地球外)の居住施設を自律的に建設する技術を開発する事務所。designboomの記事によると、本作は1年間の実現可能性調査に基づき、NASAの共同研究者、大学の研究者、産業パートナーと進めた。宇宙向けの研究を、地球上の循環型建設にも生かす手法として位置づけている。",
+    "execution": "designboomの記事によると、外殻は硫黄コンクリートと現地のレゴリス(砂礫)をロボットで3Dプリントして成形する。内側には与圧用のインフレータブル膜、放射線遮蔽材、断熱材を入れ、水の濾過、大気の再循環、データ通信、電力供給を担う配管も組み込む。採光や大きめの窓など、乗員の心理面への配慮もある。",
+    "evaluationImpact": "輸送できない建材の代わりに現地資源を使う工法を、実寸の壁断面として来場者に見せる点が見どころ。ただし確認できた情報はdesigboomの記事と展示告知にほぼ限られ、強度や耐久などの技術検証の詳細は確認できていない。展示も未開幕のため、実際の見え方や反響は評価できない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Tech/3D",
+      "Form/Exhibition"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "designboom",
+    "gateTier": "borderline",
+    "discoveryLens": 3
+  },
+  {
     "id": "survival-is-not-enough-2-5m-2026",
     "title": "Survival Is Not Enough（脳卒中の後遺症を伝える2.5mの氷の脳）",
     "summary": "脳卒中サバイバー5人の脳スキャンを高さ2.5mの氷の脳に彫り、後遺症の見えにくさと脆さを可視化した",
