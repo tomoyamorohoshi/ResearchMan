@@ -190,6 +190,29 @@ export function findStudioKillRoots(snapshot, listeningPids, rootDir) {
       if (isTaskRootCmd(proc, rootN) || isStudioTsx(proc, rootN)) selected.add(pid);
     }
   }
+  // (c) リスナー無しの孤児チェーン（2026-10-31インシデント）: npm-cli.js の cmdline には rootDir が
+  //     含まれないため、子孫に `--prefix studio run dev` を持つ `npm run studio` だけをStudio起動チェーンとみなす
+  //     （他プロジェクトの npm run studio は --prefix studio run dev を子に持たない）。
+  const children = new Map();
+  for (const [pid] of byPid) {
+    const par = parentOf(pid);
+    if (par) (children.get(par) || children.set(par, []).get(par)).push(pid);
+  }
+  const hasPrefixDevDescendant = (pid) => {
+    const seen = new Set([pid]);
+    const stack = [...(children.get(pid) || [])];
+    while (stack.length) {
+      const cur = stack.pop();
+      if (seen.has(cur)) continue;
+      seen.add(cur);
+      if (isPrefixDev(byPid.get(cur))) return true;
+      stack.push(...(children.get(cur) || []));
+    }
+    return false;
+  };
+  for (const [pid, proc] of byPid) {
+    if (isNpmRunStudio(proc) && hasPrefixDevDescendant(pid)) selected.add(pid);
+  }
   const hasSelectedAncestor = (pid) => {
     const seen = new Set([pid]);
     let cur = parentOf(pid);

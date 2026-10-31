@@ -291,3 +291,32 @@ test("findStudioKillRoots: 親pid循環でも無限ループせず、LISTEN pid�
   const snap = [p(1, 2, "cmd.exe", "cmd /c a"), p(2, 1, "cmd.exe", "cmd /c b")];
   assert.deepEqual(roots(snap, ["1"]), ["1"]);
 });
+
+// ---- 2026-10-31 20:23 -> 11-01 04:36 本番インシデント実測（serverの子は死に、親チェーンだけ生存）----
+const NPM_CLI_REAL = String.raw`"C:\Program Files\nodejs\node.exe" "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js"`;
+const ORPHANS = [
+  p(27192, 23464, "node.exe", `${NPM_CLI_REAL} run studio`),
+  p(30012, 27192, "cmd.exe", String.raw`C:\WINDOWS\system32\cmd.exe /d /s /c npm --prefix studio run dev`),
+  p(23976, 30012, "node.exe", `${NPM_CLI_REAL} --prefix studio run dev`),
+  p(25516, 30144, "node.exe", String.raw`"node" "${R}\studio\node_modules\.bin\..\tsx\dist\cli.mjs" watch server/index.ts`),
+];
+const KINECT = p(9000, 1, "kstudiohostservice.exe", String.raw`C:\WINDOWS\system32\Kinect\kstudiohostservice.exe`);
+
+test("findStudioKillRoots: 本番インシデント実測（リスナー無し・孤児チェーン）で2ルートを返し、Kinectは無視", () => {
+  assert.deepEqual(roots([...ORPHANS, KINECT, ...UNRELATED], []), ["25516", "27192"]);
+});
+
+test("findStudioKillRoots: 孤児チェーンの子（30012/23976）は祖先がルートなので返さない", () => {
+  const r = roots([...ORPHANS, KINECT], []);
+  assert.equal(r.includes("30012"), false);
+  assert.equal(r.includes("23976"), false);
+  assert.equal(r.includes("9000"), false);
+});
+
+test("findStudioKillRoots: 二重バックスラッシュ入りの tsx watcher 単体でもルートになる", () => {
+  assert.deepEqual(roots([ORPHANS[3]], []), ["25516"]);
+});
+
+test("findStudioKillRoots: 子に --prefix studio run dev を持たない他プロジェクトの npm run studio は選ばない", () => {
+  assert.deepEqual(roots([ORPHANS[0], KINECT], []), []);
+});
