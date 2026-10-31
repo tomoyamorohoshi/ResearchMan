@@ -23869,5 +23869,215 @@
         "desc": "顔の近くでも安全に動く手型のウェアラブルロボットアーム。"
       }
     ]
+  },
+  {
+    "id": "2026-10-31-1",
+    "date": "2026-10-31",
+    "title": "等身大フィギュアを3D空間へ",
+    "pattern": "文脈×技術",
+    "seed": "信州ブレイブウォリアーズの等身大3Dプリントフィギュアを、RecGen3Dで観客のスマホ写真数枚から欠けなく3D化したファン自身の像に置き換えたら、会場全体が「ファンの等身大像で埋まる応援席」になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-1o9u6xg-2022",
+        "title": "信州ブレイブウォリアーズ ウェイン・マーシャル選手 等身大3Dプリントフィギュア",
+        "desc": "身長211cmの選手を3Dスキャンし、等身大フィギュアを試合会場に置いた施策。"
+      },
+      {
+        "type": "tech",
+        "id": "recgen3d",
+        "title": "RecGen3D",
+        "desc": "数枚の写真から、形が欠けない完全な3Dモデルを作る手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-31-2",
+    "date": "2026-10-31",
+    "title": "渋滞速度で歌う看板",
+    "pattern": "文脈×技術",
+    "seed": "DanActive Traffic-Speed Billboardの渋滞データ連動を、MT3で街の音を楽器別MIDIに分解する仕組みに掛けたら、混雑度でドラムやピアノが増減する「渋滞を聴く看板」ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "danactive-traffic-speed-billboard-2016",
+        "title": "DanActive Traffic-Speed Billboard",
+        "desc": "実際の渋滞速度に応じて看板のメッセージが切り替わる施策。"
+      },
+      {
+        "type": "tech",
+        "id": "mt3",
+        "title": "MT3 (Multi-Task Multitrack Music Transcription)",
+        "desc": "1本の音源から複数の楽器パートを別々のMIDIに書き起こすAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-31-3",
+    "date": "2026-10-31",
+    "title": "歩ける万博パビリオン",
+    "pattern": "文脈×技術",
+    "seed": "null²の風になびく金属膜の空間を、HY-World 1.5 / WorldPlayに1枚の写真から読み込ませたら、会期後も来場者が歩き回って風の気配を体験できる「終わらないパビリオン」になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "null2-pavilion-expo2025-osaka-if-2026",
+        "title": "null² (Signature Pavilion, Expo 2025 Osaka)",
+        "desc": "風になびく金属膜で覆われた大阪万博のパビリオン。"
+      },
+      {
+        "type": "tech",
+        "id": "hy-world-1-5-worldplay",
+        "title": "HY-World 1.5 / WorldPlay",
+        "desc": "1枚の画像から操作に反応して歩き回れる映像世界を作る世界モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-31-4",
+    "date": "2026-10-31",
+    "title": "配信解禁を球面で遊ぶ",
+    "pattern": "文脈×技術",
+    "seed": "Raindcodeの実況・配信解禁で広がる口コミを、SpheRoPEで継ぎ目のない360°ゲーム世界パノラマとして生成し、配信者が視聴者と一緒に「見回して探す」参加型実況にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "raindcode-2026",
+        "title": "Raindcode（檀黎斗コード）配信規制解除",
+        "desc": "ゲームの実況・配信規制を全編解禁し口コミ拡散を狙う施策。"
+      },
+      {
+        "type": "tech",
+        "id": "spherope",
+        "title": "SpheRoPE",
+        "desc": "追加学習なしで継ぎ目のない360°画像・動画を作る手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-31-5",
+    "date": "2026-10-31",
+    "title": "時計で鳴らすAI楽譜",
+    "pattern": "技術×技術",
+    "seed": "EITWatchの手首ジェスチャー読み取りで、YuE2が出す「直せる楽譜」の音符を空中でつまんで動かせたら、腕時計だけで曲を編集する指揮者のような作曲体験になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "eitwatch",
+        "title": "EITWatch",
+        "desc": "時計の裏ぶたの電極で手のジェスチャーを読み取るセンサー。"
+      },
+      {
+        "type": "tech",
+        "id": "yue2",
+        "title": "YuE2",
+        "desc": "歌詞から人が直せる楽譜を経由して曲を作る音楽生成AI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-31-6",
+    "date": "2026-10-31",
+    "title": "ロボが打つ選手の癖",
+    "pattern": "技術×技術",
+    "seed": "AdaPTの「その選手らしいフォーム」の再現に、DualSense Haptic Designerで設計した手応えを重ねたら、プロのサーブの反動を手のひらで感じながらロボと打ち合えるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "adapt",
+        "title": "AdaPT",
+        "desc": "ロボットに有名選手風のテニスフォームで打たせる技術。"
+      },
+      {
+        "type": "tech",
+        "id": "dualsense-haptic-designer",
+        "title": "DualSense Haptic Designer",
+        "desc": "PS5コントローラーの振動や手応えを設計・試せるツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-31-7",
+    "date": "2026-10-31",
+    "title": "映像を見せながら作る",
+    "pattern": "技術×技術",
+    "seed": "RAVEN Streaming LoRAのリアルタイム生成と、ComfyUI-DBSで分けた音楽・効果音・セリフを組み合わせたら、音の3層に反応して映像がその場で変わるライブ上映ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "raven-streaming-lora-for-minimax-h3",
+        "title": "RAVEN Streaming LoRA for MiniMax-H3 (MiniMax-H3-RAVEN-Streaming-LoRA)",
+        "desc": "直前の映像を見ながら次の映像を作り続けるストリーミング動画生成。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-dbs",
+        "title": "ComfyUI-DBS",
+        "desc": "映像の音声を音楽・効果音・セリフに分けるComfyUIノード。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-31-8",
+    "date": "2026-10-31",
+    "title": "菌糸ブロックのモーション",
+    "pattern": "転用",
+    "seed": "Gaussian Splat Patchは本来3Dスキャンの修正用だが、MYMORIのキノコが育つ過程を日々スキャンして編集し、成長を「巻き戻して手直しできる」生き物の記録にしたら面白いかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "mymori-mushroom-toy-2023",
+        "title": "代替を超えるバイオ素材 — 生えるおもちゃMYMORI",
+        "desc": "キノコの菌糸体を育ててブロックを作る土に還るおもちゃ。"
+      },
+      {
+        "type": "tech",
+        "id": "gaussian-splat-patch",
+        "title": "Gaussian Splat Patch",
+        "desc": "3Dスキャンデータをブラシ感覚で修正できるBlender拡張機能。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-31-9",
+    "date": "2026-10-31",
+    "title": "ロボ移植で継ぐ踊り",
+    "pattern": "転用",
+    "seed": "UMRはロボットへの動き転送技術だが、瀬戸内の島の盆踊りを高齢の踊り手からロボットへ移し、体が動かなくなっても踊りが続く「動きの保存」に転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "umr",
+        "title": "UMR (Unified Motion Retargeting)",
+        "desc": "人の動きを体格の違うロボットへ自動で転送するAI技術。"
+      },
+      {
+        "type": "case",
+        "id": "setouchi-2010-053",
+        "title": "ウォールワーク5－カモ島からカモ神社へ",
+        "desc": "男木島に展開された、ウォールワークシリーズの作品。"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-31-10",
+    "date": "2026-10-31",
+    "title": "鉛筆を音で書く",
+    "pattern": "転用",
+    "seed": "Stratawrightは音楽用DAWだが、Write for Rights: Pencil Posterの鉛筆の線を音に見立て、AIエージェントに言葉で「声を上げる」サウンドポスターを作らせる使い方もありそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "stratawright",
+        "title": "Stratawright",
+        "desc": "AIコーディングエージェントが言葉だけで操作できる音楽制作ソフト。"
+      },
+      {
+        "type": "case",
+        "id": "write-for-rights-pencil-poster-2021",
+        "title": "Write for Rights: Pencil Poster",
+        "desc": "巨大な鉛筆で不当に投獄された人々の解放を訴えるポスター。"
+      }
+    ]
   }
 ]
