@@ -11496,5 +11496,18 @@
       "entryUrl": "https://www.lovethework.com/work/entries/the-desk-break-clause-758238",
       "sourceUrl": "https://www.lovethework.com/en/awards/winners-shortlists/cannes-lions/creative-b2b?tag=publication+dates@@year@@2025"
     }
-  ]
+  ],
+  "fetchErrors": [],
+  "scan": {
+    "recorded": false
+  },
+  "yearVerified": false,
+  "expectedCheck": "failed",
+  "missingCategories": [
+    "Entertainment Lions for Gaming",
+    "Entertainment Lions for Music",
+    "Entertainment Lions for Sport",
+    "Glass: The Lion for Change"
+  ],
+  "ok": false
 }

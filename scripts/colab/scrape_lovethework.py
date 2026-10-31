@@ -1,7 +1,7 @@
 """lovethework.com の Cannes Lions 受賞一覧を決定的に取得する（Colab CPU ランタイム用）。
 
 使い方（colab run 経由）:  scrape_lovethework.py <year> [entry_type_id ...]
-  id 省略時は 1..MAX_ENTRY_TYPE_ID を全部試し、結果表が存在する部門だけ採用する。
+  id 省略時は 1 から順に走査し、「最大の発見id より後に確定404/空が STOP_GAP 件連続」で止める（上限 MAX_SCAN_ID）。`n  存在しない=404か明示の空ページのみ。403/429/5xx/例外/見出し不明は fetchError として記録し、不在とは扱わない。
 
 方式（ブラウザ不要・標準ライブラリのみ）:
   1. 結果表ページ  /en/awards/results/cannes-lions?year=<y>&entry_type_id=<id>
@@ -25,7 +25,8 @@ BASE = "https://www.lovethework.com"
 JSON_BEGIN = "===JSON_BEGIN==="
 JSON_END = "===JSON_END==="
 WAIT_BETWEEN_REQUESTS = 2.5  # 秒（礼儀上 2 秒以上）
-MAX_ENTRY_TYPE_ID = 70
+STOP_GAP = 40  # 最大の発見idの後、確定404/空が連続この数続くまで走査する
+MAX_SCAN_ID = 400  # 暴走防止の絶対上限（到達したら capped として不完全扱い）
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
 
 
@@ -151,6 +152,29 @@ class _ResultsParser(HTMLParser):
                 self.label += data
 
 
+_YEAR_MARKER_RE = re.compile(r"CANNES LIONS\s+(\d{4})\s+RESULTS?\s+TABLE", re.I)
+_NO_RESULTS_RE = re.compile(r"\bno\s+results?(\s+found)?\b", re.I)
+
+
+def classify_results_response(status, body):
+    """結果表ページの応答を found / absent / error に分類する。
+    不在と確定できるのは 404 か、200 で明示の「No results」ページのみ。それ以外の失敗は error。"""
+    if status == 404:
+        return {"kind": "absent", "httpStatus": 404}
+    if status is None:
+        return {"kind": "error", "httpStatus": None, "error": (body or "unknown error")[:300]}
+    if status != 200:
+        return {"kind": "error", "httpStatus": status, "error": f"HTTP {status}"}
+    parsed = parse_results_html(body)
+    if parsed["category"] and not parsed["cards"] and parsed["noResults"]:
+        return {"kind": "absent", "httpStatus": 200}
+    if parsed["category"]:
+        return {"kind": "found", "httpStatus": 200, "parsed": parsed}
+    if parsed["noResults"] and not parsed["cards"]:
+        return {"kind": "absent", "httpStatus": 200}
+    return {"kind": "error", "httpStatus": 200, "error": "unrecognized page structure (no results-table h1)"}
+
+
 def parse_results_html(html):
     """結果表ページ → {category, cards(受賞のみ), shortlistRows}。見出し行・Shortlist 行は除外。"""
     p = _ResultsParser()
@@ -161,6 +185,8 @@ def parse_results_html(html):
         m = re.match(r"^(.*?)\s+Lions results table$", h1, flags=re.I)
         if m:
             category = m.group(1).strip()
+    ym = _YEAR_MARKER_RE.search(re.sub(r"<[^>]+>", " ", html))
+    year = int(ym.group(1)) if ym else None
     cards, shortlist_rows = [], 0
     for r in p.rows:
         cells = r["cells"]
@@ -183,7 +209,8 @@ def parse_results_html(html):
             "award": cells[6],
             "entryUrl": href if href.startswith("http") else BASE + href,
         })
-    return {"category": category, "cards": cards, "shortlistRows": shortlist_rows}
+    return {"category": category, "cards": cards, "shortlistRows": shortlist_rows,
+            "year": year, "noResults": bool(_NO_RESULTS_RE.search(html))}
 
 
 def dedupe_cards(cards):
@@ -254,13 +281,20 @@ def scrape_entry_type(entry_type_id, year):
     url = results_url(entry_type_id, year)
     status, body = fetch(url)
     res = {"entryTypeId": entry_type_id, "tableUrl": url, "httpStatus": status}
-    if status != 200:
+    cls = classify_results_response(status, body)
+    if cls["kind"] == "absent":
         res["exists"] = False
         return res
-    parsed = parse_results_html(body)
-    if not parsed["category"]:
-        res["exists"] = False
+    if cls["kind"] == "error":
+        res["exists"] = None
+        res["fetchError"] = {"httpStatus": cls["httpStatus"], "error": cls["error"]}
         return res
+    parsed = cls["parsed"]
+    if parsed["year"] is not None and parsed["year"] != int(year):
+        res["exists"] = None
+        res["fetchError"] = {"httpStatus": 200, "error": f"year mismatch: requested {year}, page says {parsed['year']}"}
+        return res
+    res["yearVerified"] = parsed["year"] is not None
     res["exists"] = True
     res["category"] = parsed["category"]
     res["cards"] = dedupe_cards(parsed["cards"])
@@ -282,31 +316,63 @@ def scrape_entry_type(entry_type_id, year):
     return res
 
 
+def scan_one(eid, year):
+    t0 = time.time()
+    try:
+        r = scrape_entry_type(eid, year)
+    except Exception as e:  # noqa: BLE001 - 1件の失敗で全体を止めず記録して続行
+        r = {"entryTypeId": eid, "tableUrl": results_url(eid, year), "exists": None,
+             "fetchError": {"httpStatus": None, "error": f"{type(e).__name__}: {e}"[:300]}}
+    r["elapsedSec"] = round(time.time() - t0, 1)
+    log(f"[{eid}] {r.get('category')} exists={r.get('exists')} complete={r.get('complete')} "
+        f"headings={r.get('headings')} cards={len(r.get('cards', []))} {r['elapsedSec']}s")
+    return r
+
+
+def scan_year(year, ids=None, stop_gap=STOP_GAP, max_id=MAX_SCAN_ID):
+    """(results, scan)。ids 指定時はそのidだけ。省略時は 最大発見id + stop_gap 件連続の確定不在まで。"""
+    results = []
+    if ids:
+        for i, eid in enumerate(ids):
+            if i:
+                time.sleep(WAIT_BETWEEN_REQUESTS)
+            results.append(scan_one(eid, year))
+        return results, {"explicit": True, "ids": list(ids), "scannedFrom": min(ids), "scannedTo": max(ids),
+                         "stopGap": None, "maxFoundId": max([r["entryTypeId"] for r in results if r.get("exists")], default=None),
+                         "capped": False}
+    streak, max_found, eid, capped = 0, None, 0, False
+    while True:
+        eid += 1
+        if eid > max_id:
+            capped, eid = True, max_id
+            break
+        if eid > 1:
+            time.sleep(WAIT_BETWEEN_REQUESTS)
+        r = scan_one(eid, year)
+        results.append(r)
+        if r.get("exists"):
+            max_found, streak = eid, 0
+        elif r.get("exists") is False:
+            streak += 1
+        else:  # fetchError は不在の証拠にならない
+            streak = 0
+        if streak >= stop_gap:
+            break
+    return results, {"explicit": False, "scannedFrom": 1, "scannedTo": eid, "stopGap": stop_gap,
+                     "maxFoundId": max_found, "capped": capped}
+
+
 def main(argv):
     if not argv:
         print("usage: scrape_lovethework.py <year> [entry_type_id ...]", file=sys.stderr)
         return 2
     year = int(argv[0])
-    ids = [int(x) for x in argv[1:]] or list(range(1, MAX_ENTRY_TYPE_ID + 1))
-    results = []
-    for i, eid in enumerate(ids):
-        if i:
-            time.sleep(WAIT_BETWEEN_REQUESTS)
-        t0 = time.time()
-        try:
-            r = scrape_entry_type(eid, year)
-        except Exception as e:  # noqa: BLE001 - 1件の失敗で全体を止めず記録して続行
-            r = {"entryTypeId": eid, "tableUrl": results_url(eid, year), "exists": None,
-                 "error": f"{type(e).__name__}: {e}"[:300]}
-        r["elapsedSec"] = round(time.time() - t0, 1)
-        log(f"[{eid}] {r.get('category')} exists={r.get('exists')} complete={r.get('complete')} "
-            f"headings={r.get('headings')} cards={len(r.get('cards', []))} {r['elapsedSec']}s")
-        results.append(r)
+    ids = [int(x) for x in argv[1:]]
+    results, scan = scan_year(year, ids or None)
     print(JSON_BEGIN)
-    print(json.dumps({"year": year, "results": results}, ensure_ascii=False))
+    print(json.dumps({"year": year, "results": results, "scan": scan}, ensure_ascii=False))
     print(JSON_END)
     return 0
-
 
 if __name__ == "__main__":
     rc = main(sys.argv[1:])

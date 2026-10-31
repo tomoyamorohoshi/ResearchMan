@@ -1,6 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { extractJsonBlock, buildOutput, toWslPath, parseUsage } from './fetch-cannes-winners.mjs';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { extractJsonBlock, buildOutput, toWslPath, parseUsage, normalizeCategoryName, checkExpected, revalidateOutput, writeJsonAtomic } from './fetch-cannes-winners.mjs';
 
 const okCat = {
   entryTypeId: 10, slug: 'digital-craft', category: 'Digital Craft', exists: true, complete: true, mismatches: [],
@@ -14,7 +17,8 @@ const badCat = {
   headings: { Gold: 2 }, counts: { Gold: { heading: 2, scraped: 1 } },
   cards: [{ level: 'Gold', subcategory: '', title: 'F', brand: 'B', product: '', agency: '', location: '', prize: 'Gold Lion', entryUrl: 'https://x/e2' }],
 };
-const missing = { entryTypeId: 99, tableUrl: 'https://x/99', exists: false, httpStatus: 500 };
+const missing = { entryTypeId: 99, tableUrl: 'https://x/99', exists: false, httpStatus: 404 };
+const errored = (id) => ({ entryTypeId: id, tableUrl: 'https://x/' + id, exists: null, fetchError: { httpStatus: 500, error: 'HTTP 500' } });
 
 test('extractJsonBlock picks the delimited block from noisy output', () => {
   const out = 'log line\n===JSON_BEGIN===\n{"year":2025,"results":[]}\n===JSON_END===\ntrailer';
@@ -30,6 +34,7 @@ test('buildOutput: flattens winners, marks incomplete with both counts, lists no
   assert.equal(o.year, 2025);
   assert.equal(o.categories.length, 2);
   assert.deepEqual(o.notFound, [99]);
+  assert.deepEqual(o.notFoundDetail, [{ entryTypeId: 99, httpStatus: 404 }]);
   const film = o.categories.find((c) => c.entryTypeId === 20);
   assert.equal(film.complete, false);
   assert.equal(film.incomplete, true);
@@ -51,6 +56,113 @@ test('buildOutput: partial run replaces only the given categories in existing ou
   assert.equal(merged.categories.length, 2);
   assert.equal(merged.categories.find((c) => c.entryTypeId === 20).complete, true);
   assert.equal(merged.winners.filter((w) => w.category === 'Digital Craft').length, 1);
+});
+
+test('buildOutput: 500 is a fetchError (ok:false), never notFound', () => {
+  const o = buildOutput(2025, [okCat, errored(41)], null, 't');
+  assert.deepEqual(o.notFound, []);
+  assert.equal(o.ok, false);
+  assert.deepEqual(o.fetchErrors, [{ entryTypeId: 41, tableUrl: 'https://x/41', httpStatus: 500, error: 'HTTP 500' }]);
+});
+
+test('buildOutput: no errors + no expected list => ok true, expectedCheck skipped', () => {
+  const o = buildOutput(2025, [okCat, missing], null, 't');
+  assert.equal(o.ok, true);
+  assert.equal(o.expectedCheck, 'skipped');
+  assert.equal(o.missingCategories, undefined);
+});
+
+test('buildOutput: scan range and yearVerified recorded', () => {
+  const scan = { explicit: false, scannedFrom: 1, scannedTo: 90, stopGap: 40, maxFoundId: 50, capped: false };
+  const o = buildOutput(2025, [{ ...okCat, yearVerified: true }], null, 't', { scan });
+  assert.deepEqual(o.scan, scan);
+  assert.equal(o.yearVerified, true);
+  const o2 = buildOutput(2025, [okCat], null, 't');
+  assert.equal(o2.yearVerified, false);
+});
+
+test('buildOutput: capped scan is not ok', () => {
+  const o = buildOutput(2025, [okCat], null, 't', { scan: { capped: true } });
+  assert.equal(o.ok, false);
+});
+
+test('normalizeCategoryName tolerates case / Lions / for only', () => {
+  assert.equal(normalizeCategoryName('Entertainment Lions For Sport'), normalizeCategoryName('Entertainment for Sport'));
+  assert.notEqual(normalizeCategoryName('Entertainment'), normalizeCategoryName('Entertainment for Sport'));
+  assert.equal(normalizeCategoryName('Film Lions'), normalizeCategoryName('film'));
+  assert.notEqual(normalizeCategoryName('Film'), normalizeCategoryName('Film Craft'));
+});
+
+test('checkExpected: missing categories reported; skipped without list', () => {
+  const cats = [{ category: 'Film' }, { category: 'Entertainment for Sport' }];
+  assert.deepEqual(checkExpected(cats, ['Film', 'Entertainment Lions for Sport', 'Entertainment Lions for Music']),
+    { expectedCheck: 'failed', missingCategories: ['Entertainment Lions for Music'] });
+  assert.deepEqual(checkExpected(cats, ['Film', 'Entertainment Lions for Sport']), { expectedCheck: 'ok', missingCategories: [] });
+  assert.deepEqual(checkExpected(cats, undefined), { expectedCheck: 'skipped' });
+});
+
+test('buildOutput: expected list failure => ok:false with missingCategories', () => {
+  const o = buildOutput(2025, [okCat], null, 't', { expected: ['Digital Craft', 'Glass: The Lion for Change'] });
+  assert.equal(o.ok, false);
+  assert.deepEqual(o.missingCategories, ['Glass: The Lion for Change']);
+  assert.equal(o.expectedCheck, 'failed');
+});
+
+test('partial re-run: errored id keeps its old category AND winners; no orphans', () => {
+  const first = buildOutput(2025, [okCat, badCat], null, 't1');
+  const merged = buildOutput(2025, [errored(20)], first, 't2');
+  assert.ok(merged.categories.find((c) => c.entryTypeId === 20));
+  assert.equal(merged.winners.filter((w) => w.category === 'Film').length, 1);
+  assert.equal(merged.ok, false);
+  assert.equal(merged.fetchErrors.length, 1);
+  // a later successful re-run clears the error
+  const fixed = buildOutput(2025, [{ ...badCat, complete: true, mismatches: [] }], merged, 't3');
+  assert.deepEqual(fixed.fetchErrors, []);
+  assert.equal(fixed.ok, true);
+});
+
+test('partial re-run: winners keyed by entryTypeId even if category was renamed', () => {
+  const first = buildOutput(2025, [okCat], null, 't1');
+  const renamed = { ...okCat, category: 'Digital Craft Renamed', cards: [{ ...okCat.cards[0], entryUrl: 'https://x/e9' }] };
+  const merged = buildOutput(2025, [renamed], first, 't2');
+  assert.equal(merged.winners.length, 1);
+  assert.equal(merged.winners[0].category, 'Digital Craft Renamed');
+});
+
+test('partial re-run: confirmed 404 removes old category and winners', () => {
+  const first = buildOutput(2025, [okCat, badCat], null, 't1');
+  const merged = buildOutput(2025, [{ entryTypeId: 20, exists: false, httpStatus: 404 }], first, 't2');
+  assert.equal(merged.categories.some((c) => c.entryTypeId === 20), false);
+  assert.equal(merged.winners.some((w) => w.category === 'Film'), false);
+});
+
+test('partial re-run: legacy winners without entryTypeId are mapped via category name', () => {
+  const first = buildOutput(2025, [okCat], null, 't1');
+  first.winners = first.winners.map(({ entryTypeId, ...w }) => w);
+  const merged = buildOutput(2025, [okCat], first, 't2');
+  assert.equal(merged.winners.length, 1);
+});
+
+test('revalidateOutput: marks existing data ok:false with missingCategories offline', () => {
+  const base = buildOutput(2025, [okCat], null, 't1');
+  const r = revalidateOutput(base, ['Digital Craft', 'Entertainment Lions for Sport']);
+  assert.equal(r.ok, false);
+  assert.deepEqual(r.missingCategories, ['Entertainment Lions for Sport']);
+  assert.equal(r.generatedAt, 't1');
+});
+
+test('writeJsonAtomic writes via temp file then rename', () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'cannes-'));
+  const f = path.join(dir, 'x.json');
+  writeJsonAtomic(f, { a: 1 });
+  assert.deepEqual(JSON.parse(fs.readFileSync(f, 'utf8')), { a: 1 });
+  assert.deepEqual(fs.readdirSync(dir), ['x.json']);
+});
+
+test('expected-categories.json has 2025 with 30 categories and a source note', () => {
+  const j = JSON.parse(fs.readFileSync(new URL('../data/cannes/expected-categories.json', import.meta.url), 'utf8'));
+  assert.equal(j['2025'].categories.length, 30);
+  assert.match(j['2025'].source, /unverified/);
 });
 
 test('toWslPath converts a Windows path', () => {

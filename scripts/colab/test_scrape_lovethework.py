@@ -182,5 +182,118 @@ class VerifyTest(unittest.TestCase):
         self.assertEqual(len(s.dedupe_cards([a, a, b])), 2)
 
 
+
+class ClassifyTest(unittest.TestCase):
+    def test_404_is_absent(self):
+        self.assertEqual(s.classify_results_response(404, "")["kind"], "absent")
+
+    def test_200_with_table_is_found(self):
+        r = s.classify_results_response(200, RESULTS_HTML)
+        self.assertEqual(r["kind"], "found")
+        self.assertEqual(r["parsed"]["category"], "Brand Experience & Activation")
+
+    def test_200_explicit_no_results_is_absent(self):
+        r = s.classify_results_response(200, "<html><body><h1>Foo Lions results table</h1><p>No results found</p></body></html>")
+        self.assertEqual(r["kind"], "absent")
+
+    def test_200_unrecognized_is_error(self):
+        r = s.classify_results_response(200, "<html><body><h1>Oops</h1></body></html>")
+        self.assertEqual(r["kind"], "error")
+
+    def test_other_statuses_are_errors_not_absence(self):
+        for st in (403, 429, 500, 503):
+            r = s.classify_results_response(st, "")
+            self.assertEqual(r["kind"], "error", st)
+            self.assertEqual(r["httpStatus"], st)
+
+    def test_exception_is_error_with_message(self):
+        r = s.classify_results_response(None, "URLError: timed out")
+        self.assertEqual(r["kind"], "error")
+        self.assertIn("timed out", r["error"])
+
+
+class YearMarkerTest(unittest.TestCase):
+    def test_marker_parsed(self):
+        self.assertEqual(s.parse_results_html(RESULTS_HTML)["year"], 2025)
+
+    def test_no_marker(self):
+        html = RESULTS_HTML.replace("CANNES LIONS 2025 RESULT TABLE", "x")
+        self.assertIsNone(s.parse_results_html(html)["year"])
+
+    def test_scrape_marks_verified_unverified_and_mismatch(self):
+        orig_fetch, orig_sleep = s.fetch, s.time.sleep
+        s.time.sleep = lambda *_: None
+        try:
+            s.fetch = lambda url: (200, RESULTS_HTML) if "results" in url else (404, "")
+            self.assertTrue(s.scrape_entry_type(8, 2025)["yearVerified"])
+            r = s.scrape_entry_type(8, 2024)
+            self.assertIsNone(r["exists"])
+            self.assertIn("year", r["fetchError"]["error"])
+            nomark = RESULTS_HTML.replace("CANNES LIONS 2025 RESULT TABLE", "x")
+            s.fetch = lambda url: (200, nomark) if "results" in url else (404, "")
+            r = s.scrape_entry_type(8, 2025)
+            self.assertTrue(r["exists"])
+            self.assertFalse(r["yearVerified"])
+        finally:
+            s.fetch, s.time.sleep = orig_fetch, orig_sleep
+
+    def test_500_is_fetch_error_not_absent(self):
+        orig_fetch = s.fetch
+        s.fetch = lambda url: (500, "")
+        try:
+            r = s.scrape_entry_type(9, 2025)
+        finally:
+            s.fetch = orig_fetch
+        self.assertIsNone(r["exists"])
+        self.assertEqual(r["fetchError"]["httpStatus"], 500)
+
+
+class ScanRangeTest(unittest.TestCase):
+    def run_scan(self, found_ids, stop_gap=5, error_ids=(), max_id=200):
+        calls = []
+
+        def fake(eid, year):
+            calls.append(eid)
+            if eid in error_ids:
+                return {"entryTypeId": eid, "exists": None, "fetchError": {"httpStatus": 503}}
+            return {"entryTypeId": eid, "exists": eid in found_ids, "httpStatus": 200 if eid in found_ids else 404}
+
+        orig_s, orig_sleep = s.scrape_entry_type, s.time.sleep
+        s.scrape_entry_type, s.time.sleep = fake, lambda *_: None
+        try:
+            return s.scan_year(2025, stop_gap=stop_gap, max_id=max_id), calls
+        finally:
+            s.scrape_entry_type, s.time.sleep = orig_s, orig_sleep
+
+    def test_scans_past_70(self):
+        (results, scan), calls = self.run_scan(set(range(1, 73)) - {20, 21}, stop_gap=5)
+        self.assertEqual(max(calls), 77)
+        self.assertEqual(scan["maxFoundId"], 72)
+        self.assertEqual(scan["scannedTo"], 77)
+        self.assertFalse(scan["capped"])
+
+    def test_errors_do_not_count_toward_gap(self):
+        (results, scan), calls = self.run_scan({3}, stop_gap=3, error_ids={5})
+        self.assertEqual(calls, [1, 2, 3, 4, 5, 6, 7, 8])  # 5 は error で連続カウントをリセット、6-8 で3連続 absent
+
+    def test_cap_is_flagged(self):
+        (results, scan), calls = self.run_scan({1, 2, 3}, stop_gap=5, error_ids=set(range(4, 100)), max_id=10)
+        self.assertTrue(scan["capped"])
+        self.assertEqual(max(calls), 10)
+
+
+class ExplicitIdsTest(unittest.TestCase):
+    def test_explicit_ids_recorded(self):
+        orig_s, orig_sleep = s.scrape_entry_type, s.time.sleep
+        s.scrape_entry_type = lambda eid, y: {"entryTypeId": eid, "exists": False, "httpStatus": 404}
+        s.time.sleep = lambda *_: None
+        try:
+            results, scan = s.scan_year(2025, ids=[44, 45])
+        finally:
+            s.scrape_entry_type, s.time.sleep = orig_s, orig_sleep
+        self.assertEqual(scan["explicit"], True)
+        self.assertEqual([r["entryTypeId"] for r in results], [44, 45])
+
+
 if __name__ == "__main__":
     unittest.main()

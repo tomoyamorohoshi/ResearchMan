@@ -53,6 +53,7 @@ function categoryRecord(r) {
 
 function winnerRecords(r) {
   return (r.cards ?? []).map((c) => ({
+    entryTypeId: r.entryTypeId,
     category: r.category,
     subcategory: c.subcategory,
     level: c.level,
@@ -67,31 +68,107 @@ function winnerRecords(r) {
   }));
 }
 
+// 公式部門名の正規化: 大文字小文字・記号・"Lions"/"for" だけを吸収する（曖昧一致はしない）
+export function normalizeCategoryName(name) {
+  return String(name)
+    .toLowerCase()
+    .replace(/&/g, ' and ')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .split(' ')
+    .filter((t) => t && t !== 'lions' && t !== 'lion' && t !== 'for')
+    .join(' ');
+}
+
+export function checkExpected(categories, expected) {
+  if (!Array.isArray(expected)) return { expectedCheck: 'skipped' };
+  const have = new Set(categories.map((c) => normalizeCategoryName(c.category)));
+  const missingCategories = expected.filter((n) => !have.has(normalizeCategoryName(n)));
+  return { expectedCheck: missingCategories.length ? 'failed' : 'ok', missingCategories };
+}
+
+// 完全性フラグ（ok / missingCategories / expectedCheck）を付与する。scan/fetchErrors は呼び出し側が設定済みであること
+function finalize(out, expected) {
+  const { expectedCheck, missingCategories } = checkExpected(out.categories, expected);
+  out.expectedCheck = expectedCheck;
+  if (missingCategories) out.missingCategories = missingCategories;
+  else delete out.missingCategories;
+  out.ok = (out.fetchErrors ?? []).length === 0 && !out.scan?.capped && expectedCheck !== 'failed';
+  return out;
+}
+
+// 既存出力をオフラインで再検証（ネットワーク不要）
+export function revalidateOutput(existing, expected) {
+  const out = { ...existing };
+  out.fetchErrors = existing.fetchErrors ?? [];
+  out.scan = existing.scan ?? { recorded: false };
+  out.yearVerified = existing.yearVerified ?? false;
+  const { ok, expectedCheck, missingCategories, ...rest } = out; // 並び順を保つため再構成
+  return finalize({ ...rest }, expected);
+}
+
+export function writeJsonAtomic(file, obj) {
+  const tmp = `${file}.${process.pid}.tmp`;
+  fs.writeFileSync(tmp, JSON.stringify(obj, null, 2) + '\n');
+  fs.renameSync(tmp, file);
+}
+
 // results: scrape_lovethework.py の results 配列。existing: 部分実行時に引き継ぐ既存出力(or null)
-export function buildOutput(year, results, existing, generatedAt = new Date().toISOString()) {
-  const found = results.filter((r) => r.exists);
-  const notFound = results.filter((r) => !r.exists).map((r) => r.entryTypeId);
+// opts: { expected: 公式部門名の配列|undefined, scan: scrape の走査範囲記録 }
+export function buildOutput(year, results, existing, generatedAt = new Date().toISOString(), opts = {}) {
+  const found = results.filter((r) => r.exists === true);
+  const absent = results.filter((r) => r.exists === false);
+  const errs = results.filter((r) => r.exists !== true && r.exists !== false);
+  const fetchErrors = errs.map((r) => ({
+    entryTypeId: r.entryTypeId,
+    tableUrl: r.tableUrl,
+    httpStatus: r.fetchError?.httpStatus ?? null,
+    error: r.fetchError?.error ?? r.error ?? 'unknown',
+  }));
+  const notFoundDetail = absent.map((r) => ({ entryTypeId: r.entryTypeId, httpStatus: r.httpStatus ?? null }));
   let categories = found.map(categoryRecord);
   let winners = found.flatMap(winnerRecords);
-  let prevNotFound = [];
+  let prevNotFoundDetail = [];
+  let prevFetchErrors = [];
+  let scan = opts.scan;
   if (existing) {
-    const replaced = new Set(results.map((r) => r.entryTypeId));
-    const replacedNames = new Set(found.map((r) => r.category));
+    // 置換対象は「結果が確定した id」(発見 or 確定404)。fetchError の id は旧データを温存する
+    const replaced = new Set([...found, ...absent].map((r) => r.entryTypeId));
+    const allIds = new Set(results.map((r) => r.entryTypeId));
+    const idByName = new Map(existing.categories.map((c) => [c.category, c.entryTypeId]));
+    const winnerId = (w) => w.entryTypeId ?? idByName.get(w.category);
     categories = [...existing.categories.filter((c) => !replaced.has(c.entryTypeId)), ...categories];
-    winners = [...existing.winners.filter((w) => !replacedNames.has(w.category)), ...winners];
-    prevNotFound = (existing.notFound ?? []).filter((id) => !replaced.has(id));
+    winners = [...existing.winners.filter((w) => !replaced.has(winnerId(w))), ...winners];
+    const prevDetail = existing.notFoundDetail ?? (existing.notFound ?? []).map((id) => ({ entryTypeId: id, httpStatus: null }));
+    prevNotFoundDetail = prevDetail.filter((d) => !allIds.has(d.entryTypeId));
+    prevFetchErrors = (existing.fetchErrors ?? []).filter((e) => !allIds.has(e.entryTypeId));
+    if (!scan && existing.scan) scan = existing.scan;
   }
-  return {
+  const allNotFound = [...prevNotFoundDetail, ...notFoundDetail];
+  const allFetchErrors = [...prevFetchErrors, ...fetchErrors];
+  const yearVerified = categories.length > 0 && (found.length === categories.length) && found.every((r) => r.yearVerified === true)
+    ? true
+    : (existing && found.every((r) => r.yearVerified === true) && existing.yearVerified === true);
+  const out = {
     year,
     source: 'lovethework.com (Cannes Lions results table + winners-shortlists headings)',
     generatedAt,
-    note: 'Grand Prix/Gold/Silver/Bronze(+Titanium等)のみ。Shortlistは見出し件数の参考値のみ(counts.Shortlist)。部門名はその年の公式名のまま。complete=見出し件数と取得件数が全レベルで一致。',
+    note: 'Grand Prix/Gold/Silver/Bronze(+Titanium等)のみ。Shortlistは見出し件数の参考値のみ(counts.Shortlist)。部門名はその年の公式名のまま。complete=見出し件数と取得件数が全レベルで一致。ok=取得エラー無し・走査完了・期待部門リスト(data/cannes/expected-categories.json)と一致(リスト無しは skipped)。yearVerified=結果表HTMLの年マーカーで年を確認済み。',
+    ok: false,
+    yearVerified: !!yearVerified,
+    scan: scan ?? { recorded: false },
     categories,
-    notFound: [...prevNotFound, ...notFound],
+    notFound: allNotFound.map((d) => d.entryTypeId),
+    notFoundDetail: allNotFound,
+    fetchErrors: allFetchErrors,
     winners,
   };
+  return finalize(out, opts.expected);
 }
 
+export function loadExpected(year, file = path.join(ROOT, 'data', 'cannes', 'expected-categories.json')) {
+  if (!fs.existsSync(file)) return undefined;
+  return JSON.parse(fs.readFileSync(file, 'utf8'))[String(year)]?.categories;
+}
 function wsl(cmd, opts = {}) {
   const r = spawnSync('wsl', ['-d', 'Ubuntu', '--', 'bash', '-lc', cmd], {
     encoding: 'utf8',
@@ -102,11 +179,20 @@ function wsl(cmd, opts = {}) {
 }
 
 function main() {
-  const [yearArg, ...ids] = process.argv.slice(2);
+  const argv = process.argv.slice(2);
+  const revalidate = argv[0] === '--revalidate';
+  const [yearArg, ...ids] = revalidate ? argv.slice(1) : argv;
   const year = Number(yearArg);
   if (!Number.isInteger(year)) {
-    console.error('usage: node scripts/fetch-cannes-winners.mjs <year> [entry_type_id ...]');
+    console.error('usage: node scripts/fetch-cannes-winners.mjs [--revalidate] <year> [entry_type_id ...]');
     process.exit(2);
+  }
+  if (revalidate) {
+    const f = path.join(ROOT, 'data', 'cannes', `${year}-winners.json`);
+    const out = revalidateOutput(JSON.parse(fs.readFileSync(f, 'utf8')), loadExpected(year));
+    writeJsonAtomic(f, out);
+    console.log(`revalidated ${f}: ok=${out.ok} expectedCheck=${out.expectedCheck} missing=${(out.missingCategories ?? []).join(' | ') || '(none)'}`);
+    process.exit(out.ok ? 0 : 1);
   }
   const usageBefore = parseUsage(wsl(`${COLAB} usage`).stdout || '');
   console.error(`[colab usage before] ${usageBefore}`);
@@ -122,18 +208,22 @@ function main() {
     process.exit(1);
   }
   fs.rmSync(path.join(ROOT, 'tmp-colab-stderr.log'), { force: true });
-  const { results } = extractJsonBlock(r.stdout);
+  const { results, scan } = extractJsonBlock(r.stdout);
   const outPath = path.join(ROOT, 'data', 'cannes', `${year}-winners.json`);
   const existing = ids.length && fs.existsSync(outPath) ? JSON.parse(fs.readFileSync(outPath, 'utf8')) : null;
-  const out = buildOutput(year, results, existing);
+  const out = buildOutput(year, results, existing, undefined, { expected: loadExpected(year), scan });
   fs.mkdirSync(path.dirname(outPath), { recursive: true });
-  fs.writeFileSync(outPath, JSON.stringify(out, null, 2) + '\n');
+  writeJsonAtomic(outPath, out);
   for (const c of out.categories) {
     const cols = Object.entries(c.counts).map(([k, v]) => `${k} ${v.heading}/${v.scraped ?? '-'}`).join(' ');
     console.log(`${c.complete ? 'OK ' : 'NG '} ${c.category}: ${cols}`);
   }
   console.log(`notFound: ${out.notFound.join(",") || "(none)"}  winners: ${out.winners.length}  -> ${outPath}`);
+  console.log(`ok=${out.ok} expectedCheck=${out.expectedCheck} yearVerified=${out.yearVerified} scan=${JSON.stringify(out.scan)}`);
+  if (out.missingCategories?.length) console.error(`MISSING categories: ${out.missingCategories.join(" | ")}`);
+  for (const e of out.fetchErrors) console.error(`FETCH ERROR id=${e.entryTypeId} status=${e.httpStatus} ${e.error}`);
   console.log(`colab: before=${usageBefore} | after=${usageAfter} | wall=${wall}s`);
+  if (!out.ok) process.exit(1);
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main();
