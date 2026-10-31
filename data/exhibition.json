@@ -1,7 +1,46 @@
 {
   "version": 1,
-  "statusAsOf": "2026-10-30",
+  "statusAsOf": "2026-10-31",
   "items": [
+    {
+      "id": "2026-ggg-japan-art-direction-2026",
+      "slug": "2026-ggg-japan-art-direction-2026",
+      "title": "ギンザ・グラフィック・ギャラリー第417回企画展 日本のアートディレクション展 2026",
+      "artists": [
+        "東京アートディレクターズクラブ(ADC)"
+      ],
+      "venue": "ギンザ・グラフィック・ギャラリー(ggg)",
+      "venueType": "corporate",
+      "prefecture": "東京都",
+      "city": "中央区",
+      "startDate": "2026-10-30",
+      "endDate": "2026-11-30",
+      "status": "ongoing",
+      "admission": "無料",
+      "tags": [
+        "graphic_design",
+        "design_archive"
+      ],
+      "score": 61,
+      "matchReason": "ggg公式ページで会期2026-10-30〜11-30・入場無料を確認。ADC賞のCI・ポスター・環境デザイン等の受賞作を展示する年次展で、gggはwatch対象会場。",
+      "sources": [
+        {
+          "name": "ギンザ・グラフィック・ギャラリー第417回企画展 日本のアートディレクション展 2026",
+          "url": "https://www.dnpfcp.jp/gallery/ggg/jp/00000862",
+          "kind": "official"
+        },
+        {
+          "name": "ggg",
+          "url": "https://www.dnpfcp.jp/gallery/ggg/",
+          "kind": "listing"
+        }
+      ],
+      "link": "https://www.dnpfcp.jp/gallery/ggg/jp/00000862",
+      "thumbnail": "/thumbnails/exhibition/2026-ggg-japan-art-direction-2026.jpg",
+      "addedAt": "2026-10-31T01:31:37.236Z",
+      "origin": "auto",
+      "highlight": false
+    },
     {
       "id": "2026-kk-line-roof-park-art-fes-2026",
       "slug": "2026-kk-line-roof-park-art-fes-2026",
@@ -94,7 +133,7 @@
       "city": "港区",
       "startDate": "2026-10-31",
       "endDate": "2027-03-28",
-      "status": "upcoming",
+      "status": "ongoing",
       "admission": "一般2,800円(平日)/3,000円(土日祝)",
       "tags": [
         "installation",
@@ -424,7 +463,7 @@
       "city": "台東区",
       "startDate": "2026-10-31",
       "endDate": "2026-11-08",
-      "status": "upcoming",
+      "status": "ongoing",
       "admission": "無料",
       "tags": [
         "media_art",
