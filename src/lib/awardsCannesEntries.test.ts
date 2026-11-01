@@ -7,7 +7,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import type { Case } from "./cases";
+import { cases as realCases, type Case } from "./cases";
 import {
   getAwardCollectionsFrom,
   getAwardCollections,
@@ -30,9 +30,21 @@ test("既存の Cannes コレクション: slug 一覧と件数が変更前と�
   assert.deepEqual(cols.map((c) => `${c.slug}|${c.category}`), Object.keys(expected));
 });
 
-test("getAwardCollections('cannes') は実データでも fixture と同じ slug 集合を含む（実データは増えうるので包含で確認）", () => {
+// 前提: 「実データは増えるだけ」ではなく「awardEntries で Cannes 受賞を持つ事例が1件もない年については、
+// fixture の slug を包含する」。awardEntries を適用した年（例: 2025）は、自由記述の award 由来の崩れた
+// コレクション（"2025-|）" 等）が意図どおり消えるため、fixture（変更前の出力）との包含は求めない。
+// slug の先頭 4 桁を年として判定する。
+test("getAwardCollections('cannes') は awardEntries 未適用の年については fixture と同じ slug 集合を含む", () => {
+  const appliedYears = new Set<string>();
+  for (const c of realCases) {
+    for (const e of c.awardEntries ?? []) if (e.org === "cannes") appliedYears.add(String(e.year));
+  }
   const slugs = new Set(getAwardCollections("cannes").map((c) => `${c.slug}|${c.category}`));
-  for (const k of Object.keys(expected)) assert.ok(slugs.has(k), `${k} が消えている`);
+  for (const k of Object.keys(expected)) {
+    const year = k.slice(0, 4);
+    if (appliedYears.has(year)) continue;
+    assert.ok(slugs.has(k), `${k} が消えている`);
+  }
 });
 
 test("awardEntries: 自由記述の award でも awardEntries 通りのコレクションとレベル", () => {
