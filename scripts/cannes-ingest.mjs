@@ -70,11 +70,14 @@ function writeAtomic(file, text) {
   fs.renameSync(tmp, file);
 }
 
+// 取り込み済み判定: 同年の cannes awardEntries を持ち、title(正規化)が一致するか、
+// 正規化 id（-<year> 付与前/後）と同じ id を持つ事例（draft.title が plan と違う表記でも冪等にするため）
 function findDuplicate(cases, year, work, flat) {
   const f = flat(work.title);
+  const base = makeCaseId(work.brand, work.title);
   return cases.find((c) => {
     const has = Array.isArray(c.awardEntries) && c.awardEntries.some((e) => e.org === "cannes" && Number(e.year) === Number(year));
-    return has && f && flat(c.title) === f;
+    return has && ((f && flat(c.title) === f) || (base && (c.id === base || c.id === `${base}-${year}`)));
   });
 }
 
@@ -170,6 +173,7 @@ export async function ingest(opts) {
   }
 
   const prepared = [];
+  try {
   for (const item of drafts) {
     const key = item?.key;
     const work = planByKey.get(key);
@@ -199,6 +203,11 @@ export async function ingest(opts) {
     result.added.push(id);
     log(`${dryRun ? "DRY " : ""}ADD ${key} -> ${id}\n  award: ${entry.award}\n  awardEntries: ${JSON.stringify(entry.awardEntries)}`);
   }
+  } catch (e) {
+    log(`ERROR(準備中): ${e.message} — 保存済みサムネを削除`);
+    cleanThumbs();
+    return { ...result, added: [], entries: [], exitCode: 1 };
+  }
 
   if (dryRun || prepared.length === 0) return result;
 
@@ -207,9 +216,10 @@ export async function ingest(opts) {
     cleanThumbs();
     return { ...result, added: [], exitCode: 1 };
   }
-  const originalText = fs.readFileSync(casesPath, "utf8");
+  let originalText = null;
   let written = false;
   try {
+    originalText = fs.readFileSync(casesPath, "utf8");
     const fresh = JSON.parse(originalText);
     const finalEntries = [];
     for (const p of prepared) {
