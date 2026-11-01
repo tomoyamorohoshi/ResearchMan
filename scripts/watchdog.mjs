@@ -305,6 +305,9 @@ function attemptPipelineRecovery(jobKey) {
   }
 
   const commitResult = gitSafeCommitAndPush({ addPaths: cfg.addPaths, commitMessage: cfg.commitMessage(), cwd: ROOT });
+  if (!commitResult.ok && !commitResult.committed) {
+    return { ok: false, committed: false, reason: commitResult.reason, lines: [`${jobKey}: 再実行しましたがcommitできず（${commitResult.reason}）`] };
+  }
   if (!commitResult.committed) {
     return { ok: true, committed: false, lines: [`${jobKey}: 再実行しましたが新規データなし（変更なし）`] };
   }
@@ -448,7 +451,9 @@ async function checkThumbnails(report) {
         heal.status !== 0 ? "self-heal-thumbnails.mjsの実行が異常終了しました。" : "",
         commitResult.committed
           ? `self-heal-thumbnails.mjsで修復しcommit/push${commitResult.ok ? "完了" : `に問題（${commitResult.reason}）`}。`
-          : "self-heal-thumbnails.mjsを実行しましたが変更なし（自動修復できなかった可能性）。",
+          : !commitResult.ok
+            ? `self-heal-thumbnails.mjsを実行しましたがcommitできず（${commitResult.reason}）。`
+            : "self-heal-thumbnails.mjsを実行しましたが変更なし（自動修復できなかった可能性）。",
       ]
         .filter(Boolean)
         .join("\n")
@@ -738,7 +743,7 @@ async function runDeepAudit(report, priorEventCount) {
         cwd: ROOT,
       });
       report.push(
-        `🗜 サムネイル肥大化を${normalizeTargetCount}件検出し正規化しました${commitResult.committed ? `（commit/push${commitResult.ok ? "完了" : `に問題: ${commitResult.reason}`}）` : "（実差分なし）"}。`
+        `🗜 サムネイル肥大化を${normalizeTargetCount}件検出し正規化しました${commitResult.committed ? `（commit/push${commitResult.ok ? "完了" : `に問題: ${commitResult.reason}`}）` : !commitResult.ok ? `（commitできず: ${commitResult.reason}）` : "（実差分なし）"}。`
       );
     }
   } catch (e) {
