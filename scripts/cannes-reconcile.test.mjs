@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { collapseWinners, buildPlan, applyPlan, checkCounts } from "./cannes-reconcile.mjs";
 
 const W = (category, level, title, brand = "Brand", extra = {}) => ({ category, level, title, brand, agency: "AG", country: "JP", sources: ["s1"], ...extra });
-const C = (id, title, client = "", award = "") => ({ id, title, client, award });
+const C = (id, title, client = "", award = "") => ({ id, year: "2025", title, client, award });
 const plan = (winners, cases, aliases) => buildPlan({ year: 2025, winners, cases, aliases, generatedAt: "t" });
 
 test("畳み込み: 同部門・同レベルの重複行は1エントリ、別部門は別エントリ、sources は和集合", () => {
@@ -117,8 +117,8 @@ test("複数候補のとき完全一致がちょうど1件ならそれを採る�
 
 test("1事例に複数作品が当たる場合は許可し、casesWithMultipleWorks に列挙する", () => {
   const p = plan(
-    [W("Film", "Gold", "Campaign", "Acme"), W("Film", "Silver", "Campaign Part Two", "Acme")],
-    [CY("camp", 2025, "Campaign", "Acme")],
+    [W("Film", "Gold", "Zebra Stripes", "Acme"), W("Film", "Silver", "Zebra Stripes Two", "Acme")],
+    [CY("camp", 2025, "Zebra Stripes", "Acme")],
   );
   assert.equal(p.counts.casesWithMultipleWorks, 1);
   assert.equal(p.casesWithMultipleWorks[0].caseId, "camp");

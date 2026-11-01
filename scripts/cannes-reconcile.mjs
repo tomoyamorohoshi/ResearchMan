@@ -78,10 +78,22 @@ export function buildPlan({ year, winners, cases, aliases = {}, generatedAt = ne
     else {
       const rt = toks(wk.title), rb = flat(wk.brand);
       hits = [];
+      const exact = new Set();
       for (const x of idx) {
-        if (f && x.f === f) hits.push(x.c);
-        else if (rb && x.cl && (x.cl.includes(rb) || rb.includes(x.cl)) && jac(rt, x.t) >= 0.3) hits.push(x.c);
+        const brandOk = !!(rb && x.cl && (x.cl.includes(rb) || rb.includes(x.cl)));
+        const isExact = !!(f && x.f === f);
+        if (isExact) {
+          // title 完全一致: brand 一致か、事例の year が対象年±1 のときだけ
+          const cy = Number(String(x.c.year ?? "").slice(0, 4));
+          if (brandOk || (Number.isFinite(cy) && Math.abs(cy - Number(year)) <= 1)) { hits.push(x.c); exact.add(x.c.id); }
+        } else if (brandOk) {
+          const j = jac(rt, x.t);
+          // brand 一致＋Jaccard≥0.5 は一致。0.3〜0.5 は当該年の Cannes 記載がある事例だけ
+          if (j >= 0.5 || (j >= 0.3 && awardHasCannesYear(x.c.award, year))) hits.push(x.c);
+        }
       }
+      // 複数候補のとき、完全一致の候補がちょうど1件ならそれを採る
+      if (hits.length > 1 && exact.size === 1) hits = hits.filter((h) => exact.has(h.id));
     }
     const work = { key: wk.key, title: wk.title, brand: wk.brand, agency: wk.agency, country: wk.country, sources: wk.sources };
     if (hits.length === 1) {
@@ -94,6 +106,12 @@ export function buildPlan({ year, winners, cases, aliases = {}, generatedAt = ne
       fresh.push({ ...work, entries: wk.entries, award: wk.entries.map((e) => formatCannesAward(e)).join(" / ") });
     }
   }
+  const byCase = new Map();
+  for (const m of matched) {
+    if (!byCase.has(m.caseId)) byCase.set(m.caseId, []);
+    byCase.get(m.caseId).push({ title: m.work.title, brand: m.work.brand });
+  }
+  const casesWithMultipleWorks = [...byCase].filter(([, ws]) => ws.length > 1).map(([caseId, works]) => ({ caseId, works }));
   const unmatchedExisting = cases
     .filter((c) => awardHasCannesYear(c.award, year) && !matchedCaseIds.has(c.id))
     .map((c) => ({ caseId: c.id, title: c.title, award: c.award }));
@@ -101,9 +119,10 @@ export function buildPlan({ year, winners, cases, aliases = {}, generatedAt = ne
     winnerRows: winners.length, works: works.length,
     matched: matched.length, ambiguous: ambiguous.length, new: fresh.length,
     unmatchedExisting: unmatchedExisting.length,
+    casesWithMultipleWorks: casesWithMultipleWorks.length,
   };
   checkCounts(counts, works.length);
-  return { year: Number(year), generatedAt, counts, matched, ambiguous, new: fresh, unmatchedExisting };
+  return { year: Number(year), generatedAt, counts, matched, ambiguous, new: fresh, casesWithMultipleWorks, unmatchedExisting };
 }
 
 /** matched を cases に適用（破壊的変更。変更した事例数を返す）。ambiguous / new は触らない */
