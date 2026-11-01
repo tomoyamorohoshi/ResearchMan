@@ -83,13 +83,14 @@ export function buildPlan({ year, winners, cases, aliases = {}, generatedAt = ne
         const brandOk = !!(rb && x.cl && (x.cl.includes(rb) || rb.includes(x.cl)));
         const isExact = !!(f && x.f === f);
         if (isExact) {
-          // title 完全一致: brand 一致か、事例の year が対象年±1 のときだけ
+          // title 完全一致: brand 一致、事例の year が対象年±1、または award に当該年の Cannes 記載があるときだけ
           const cy = Number(String(x.c.year ?? "").slice(0, 4));
-          if (brandOk || (Number.isFinite(cy) && Math.abs(cy - Number(year)) <= 1)) { hits.push(x.c); exact.add(x.c.id); }
+          if (brandOk || (Number.isFinite(cy) && Math.abs(cy - Number(year)) <= 1) || awardHasCannesYear(x.c.award, year)) { hits.push(x.c); exact.add(x.c.id); }
         } else if (brandOk) {
           const j = jac(rt, x.t);
-          // brand 一致＋Jaccard≥0.5 は一致。0.3〜0.5 は当該年の Cannes 記載がある事例だけ
-          if (j >= 0.5 || (j >= 0.3 && awardHasCannesYear(x.c.award, year))) hits.push(x.c);
+          const common = [...rt].filter((w) => x.t.has(w)).length;
+          // brand 一致＋Jaccard≥0.5 かつ共通語2語以上は一致。それ以外の Jaccard≥0.3 は当該年の Cannes 記載がある事例だけ
+          if ((j >= 0.5 && common >= 2) || (j >= 0.3 && awardHasCannesYear(x.c.award, year))) hits.push(x.c);
         }
       }
       // 複数候補のとき、完全一致の候補がちょうど1件ならそれを採る

@@ -21,8 +21,8 @@ test("畳み込み: 同部門・同レベルの重複行は1エントリ、別�
 
 test("matched / ambiguous / new の分類と件数", () => {
   const p = plan(
-    [W("Film", "Gold", "Alpha"), W("Film", "Gold", "Beta", "Zeta Corp"), W("Film", "Gold", "Gamma")],
-    [C("c1", "Alpha"), C("c2", "Beta Campaign", "Zeta Corp Japan"), C("c3", "Beta Story", "Zeta Corp")],
+    [W("Film", "Gold", "Alpha"), W("Film", "Gold", "Beta Zed", "Zeta Corp"), W("Film", "Gold", "Gamma")],
+    [C("c1", "Alpha"), C("c2", "Beta Zed One", "Zeta Corp Japan"), C("c3", "Beta Zed Two", "Zeta Corp")],
   );
   assert.deepEqual([p.counts.matched, p.counts.ambiguous, p.counts.new], [1, 1, 1]);
   assert.equal(p.matched[0].caseId, "c1");
