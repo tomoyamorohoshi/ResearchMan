@@ -13,6 +13,7 @@ import {
   getAwardCollections,
   getAwardLevelForCollection,
   compareByAwardForCollection,
+  getCaseAwardRefs,
 } from "./awards";
 
 const dir = path.join(__dirname, "__fixtures__");
@@ -84,4 +85,36 @@ test("compareByAwardForCollection は awardEntries のレベルで並ぶ", () =>
   const a = mk({ id: "a", year: "2023", award: "free text", awardEntries: [{ org: "cannes", year: 2023, category: "Outdoor", level: "Bronze" }] });
   const b = mk({ id: "b", year: "2023", award: "free text", awardEntries: [{ org: "cannes", year: 2023, category: "Outdoor", level: "Gold" }] });
   assert.ok(compareByAwardForCollection(a, b, "cannes", "2023", "Outdoor") > 0);
+});
+
+test("getCaseAwardRefs: awardEntries 持ちでも org 名の無い他 org セグメントを落とさない", () => {
+  const c = mk({
+    id: "refs1",
+    year: "2024",
+    award: "Cannes Lions 2024 Film Lions Gold / D&AD 2024 Design Yellow Pencil / FWA / Clio Gold / 文化庁メディア芸術祭",
+    awardEntries: [{ org: "cannes", year: 2024, category: "Design", level: "Gold" }],
+  });
+  const refs = getCaseAwardRefs(c);
+  assert.deepEqual(refs, [
+    "Cannes Lions 2024 Design Lions Gold",
+    "D&AD 2024 Design Yellow Pencil",
+    "FWA",
+    "Clio Gold",
+    "文化庁メディア芸術祭",
+  ]);
+});
+
+test("Grand Prix for Good の awardEntries は旧 'for Good' コレクションに合流し slug を保つ", () => {
+  const legacy = mk({ id: "g-old", year: "2021", award: "Cannes Lions 2021 Grand Prix for Good" });
+  const legacyHealth = mk({ id: "h-old", year: "2026", award: "Cannes Lions 2026 Health Grand Prix for Good" });
+  const e1 = mk({ id: "g-new", year: "2021", award: "x", awardEntries: [{ org: "cannes", year: 2021, category: "Grand Prix for Good", level: "Grand Prix" }] });
+  const e2 = mk({ id: "h-new", year: "2026", award: "x", awardEntries: [{ org: "cannes", year: 2026, category: "Lions Health Grand Prix for Good", level: "Grand Prix" }] });
+  const e3 = mk({ id: "g26", year: "2026", award: "x", awardEntries: [{ org: "cannes", year: 2026, category: "Grand Prix for Good", level: "Grand Prix" }] });
+  const cols = getAwardCollectionsFrom([legacy, legacyHealth, e1, e2, e3], "cannes");
+  const bySlug = Object.fromEntries(cols.map((x) => [x.slug, x.cases.map((k) => k.id).sort()]));
+  assert.ok(bySlug["2021-for-good"]?.includes("g-old") && bySlug["2021-for-good"]?.includes("g-new"));
+  assert.ok(bySlug["2026-health-for-good"]?.includes("h-new"));
+  assert.ok(bySlug["2026-health-for-good"]?.includes("h-old"));
+  assert.ok(!bySlug["2026-health-for-good"]?.includes("g26"), "Grand Prix for Good と Health は別コレクション");
+  assert.equal(cols.length, 3);
 });

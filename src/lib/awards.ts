@@ -280,7 +280,7 @@ export function getCaseAwardRefs(c: Case): string[] {
   const entries = cannesEntries(c.awardEntries, 'cannes');
   if (entries.length === 0) return segs;
   // awardEntries がある事例の Cannes 受賞は構造化データから数える（award 文字列の Cannes 部分は使わない）
-  const others = segs.filter(s => !segmentBelongsToOrg(s, 'cannes'));
+  const others = segs.filter(s => !matchesOrg(s, 'cannes'));
   const seen = new Set<string>();
   const refs: string[] = [];
   for (const e of entries) {

@@ -74,3 +74,11 @@ test("formatCannesAward", () => {
   assert.equal(fmt({ year: 2016, category: "Product Design", level: "Product Design Lion" }), "Cannes Lions 2016 Product Design Lions");
   assert.equal(fmt({ year: 2024, category: "Audio & Radio", level: "Silver" }), "Cannes Lions 2024 Audio & Radio Lions Silver");
 });
+
+test("旧コレクション名(レベル語除去後の 'for Good')と公式名は同キー、Health とは別キー", () => {
+  assert.ok(same("for Good", "Grand Prix for Good"));
+  assert.ok(same("Health for Good", "Lions Health Grand Prix for Good"));
+  assert.ok(same("Health for Good", "Health Grand Prix for Good"));
+  assert.ok(!same("for Good", "Health for Good"));
+  assert.ok(!same("Grand Prix for Good", "Lions Health Grand Prix for Good"));
+});

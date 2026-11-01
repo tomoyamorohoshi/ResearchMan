@@ -19,6 +19,10 @@ const ALIASES = new Map([
   ["b2b", "creative b2b"],
   ["business transformation", "creative business transformation"],
   ["print", "print & publishing"],
+  // 旧 parseCollection がレベル語 "grand prix" を除去した既存コレクション名("for Good" / "Health for Good")と合流させる
+  ["grand prix for good", "for good"],
+  ["lions health grand prix for good", "health for good"],
+  ["health grand prix for good", "health for good"],
 ]);
 
 export function normalizeCannesCategory(raw) {
