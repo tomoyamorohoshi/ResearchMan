@@ -105,7 +105,11 @@ export function runAudit(options = {}) {
     stopwords = DEFAULT_STOPWORDS,
     strict = false,
     outPath = null,
+    warnOnly = false, // true: 未カバー・公式照合済みレベル不一致もWARN表示のみ（exit 0）。strict時は呼び出し側でfalseにする
+    verbose = true, // false: warnOnly時の未カバー一覧を部門別件数だけに畳む
+    caseLabel = "RM 2026 cases",
   } = options;
+  const failMark = warnOnly ? "⚠ WARN" : "✗ FAIL";
 
   if (!awardPrefix) throw new Error("runAudit: awardPrefix is required");
   const label = options.label || awardPrefix;
@@ -216,17 +220,18 @@ export function runAudit(options = {}) {
 
   const byCat = {};
   missing.forEach((w) => (byCat[w.category] = byCat[w.category] || []).push(w));
-  console.log(`${label} deterministic audit — reference winners: ${ref.length}, RM 2026 cases: ${cn.length}`);
+  console.log(`${label} deterministic audit — reference winners: ${ref.length}, ${caseLabel}: ${cn.length}`);
 
-  const report = { missing, levelMismatches, extraSegments };
+  const report = { missing, levelMismatches, extraSegments, refCount: ref.length, matchedCount: ref.length - missing.length };
   if (outPath) fs.writeFileSync(outPath, JSON.stringify(report, null, 2));
 
   if (missing.length === 0) {
     console.log("✓ PASS — RMは正解リストの全受賞作を部門単位で網羅しています。");
   } else {
-    console.log(`✗ FAIL — ${missing.length} 件の受賞が RM で未カバー:\n`);
+    console.log(`${failMark} — ${missing.length} 件の受賞が RM で未カバー:\n`);
     for (const cat of Object.keys(byCat).sort()) {
       console.log(`### ${cat} (${byCat[cat].length})`);
+      if (warnOnly && !verbose) continue;
       byCat[cat].forEach((w) => console.log(`   - ${w.level}: ${w.title} — ${w.brand}`));
     }
   }
@@ -236,19 +241,19 @@ export function runAudit(options = {}) {
   const unverifiedMismatches = levelMismatches.filter((m) => !verifiedSet.has(m.category));
 
   if (verifiedMismatches.length) {
-    console.log(`\n✗ FAIL — 公式照合済み部門のレベル不一致 ${verifiedMismatches.length} 件（v2は公式確定のため誤りとして扱う）:`);
-    verifiedMismatches.forEach((m) => console.log(`   - ${m.id} [${m.category}]: 公式=${m.refLevel} / RM記載=${m.foundLevels}`));
+    console.log(`\n${failMark} — 公式照合済み部門のレベル不一致 ${verifiedMismatches.length} 件（v2は公式確定のため誤りとして扱う）:`);
+    if (!(warnOnly && !verbose)) verifiedMismatches.forEach((m) => console.log(`   - ${m.id} [${m.category}]: 公式=${m.refLevel} / RM記載=${m.foundLevels}`));
   }
   if (unverifiedMismatches.length) {
     console.log(`\n⚠ WARN — 未検証部門のレベル不一致 ${unverifiedMismatches.length} 件（参照リストが旧v1由来・未公式照合のため確定ではない）:`);
-    unverifiedMismatches.forEach((m) => console.log(`   - ${m.id} [${m.category}]: 参照=${m.refLevel} / RM記載=${m.foundLevels}`));
+    if (!(warnOnly && !verbose)) unverifiedMismatches.forEach((m) => console.log(`   - ${m.id} [${m.category}]: 参照=${m.refLevel} / RM記載=${m.foundLevels}`));
   }
   if (extraSegments.length) {
     console.log(`\n⚠ WARN — 余分な部門セグメント ${extraSegments.length} 件（参照リストに対応winnerが無い。参照リストの欠落かRM側の誤りの可能性）:`);
-    extraSegments.forEach((e) => console.log(`   - ${e.id}: "${e.segment}"`));
+    if (!(warnOnly && !verbose)) extraSegments.forEach((e) => console.log(`   - ${e.id}: "${e.segment}"`));
   }
 
-  const hardFail = missing.length > 0 || verifiedMismatches.length > 0;
+  const hardFail = !warnOnly && (missing.length > 0 || verifiedMismatches.length > 0);
   const softFail = strict && (unverifiedMismatches.length > 0 || extraSegments.length > 0);
   const exitCode = hardFail || softFail ? 1 : 0;
 

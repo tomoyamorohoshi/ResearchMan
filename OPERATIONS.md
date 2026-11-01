@@ -563,6 +563,11 @@ Cookie認証・ローカルSQLite）でX検索を素材Cとして追加した。
 | `npm run audit:tech` | Technology（tech.json）のフィールド/語彙/サムネイル整合検査 |
 | `npm run thumbs:graph` | 事例・技術の追加やサムネ差し替え後に実行。TOPページ/Technologyページ3Dグラフ用の縮小サムネ（Case: `public/thumbnails-graph/`、Tech: `public/thumbnails-graph/tech/`、いずれも256px・q60）を差分生成する（冪等）。未生成でも3D表示はフル解像度サムネにフォールバックするが転送量が増える |
 
+**Cannes 多年度監査と `data/cannes/years.json`（2026-11）**: `audit-cannes.mjs` は年ごとに監査し、年の状態を `data/cannes/years.json` で持つ。
+- `reference`＝参照一覧のみ（事例化していない）／`writing`＝事例化中／`complete`＝監査 FAIL の対象。`complete` の年だけ従来の FAIL 条件（未カバー・照合済み部門のレベル不一致）で exit 1、それ以外の年は同じ問題を WARN 表示するだけ（exit 0・pre-push を止めない）。2026 は現状維持で `complete`。2020 は中止年なので入れない。
+- 参照リスト: 2016〜2025 は `data/cannes/web/<year>-web.json`、2026 は `data/cannes2026-winners-v2.json`。事例に `awardEntries`（org=cannes）があればその年は award 文字列でなく awardEntries で判定する。
+- **年を `complete` にする条件**: その年の事例化が終わり、`npm run audit:cannes:strict -- --year <年>`（またはそのまま `node scripts/audit-cannes.mjs --strict --year <年>`）が通ったこと。通る前に complete にすると push が止まる。`--strict` は指定年（無指定は全年）を状態に関わらず厳格に見る。未カバー一覧は reference/writing 年では部門別件数に畳まれる（`--verbose` で全件）。
+
 `npm run audit:cannes` / `audit:thumbnails` / `audit:tech` は**pre-push hook で自動実行**（既定モード）。
 失敗すると push が中止される。hook原本は `scripts/hooks/pre-push`（git管理下）。実際に効くのは
 `.git/hooks/pre-push`（git管理外）なので、hookを変更したら必ず

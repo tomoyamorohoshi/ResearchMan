@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { extractJsonBlock, buildOutput, toWslPath, parseUsage, normalizeCategoryName, checkExpected, revalidateOutput, writeJsonAtomic } from './fetch-cannes-winners.mjs';
+import { extractJsonBlock, buildOutput, toWslPath, parseUsage, normalizeCategoryName, checkExpected, revalidateOutput, writeJsonAtomic, loadExpected } from './fetch-cannes-winners.mjs';
 
 const okCat = {
   entryTypeId: 10, slug: 'digital-craft', category: 'Digital Craft', exists: true, yearVerified: true, complete: true, mismatches: [],
@@ -195,10 +195,13 @@ test('writeJsonAtomic writes via temp file then rename', () => {
   assert.deepEqual(fs.readdirSync(dir), ['x.json']);
 });
 
-test('expected-categories.json has 2025 with 30 categories and a source note', () => {
-  const j = JSON.parse(fs.readFileSync(new URL('../data/cannes/expected-categories.json', import.meta.url), 'utf8'));
-  assert.equal(j['2025'].categories.length, 30);
-  assert.match(j['2025'].source, /unverified/);
+test('loadExpected reads the categories of a year from an expected-categories style file', () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'cannes-'));
+  const f = path.join(dir, 'expected.json');
+  fs.writeFileSync(f, JSON.stringify({ 2025: { source: 'fixture', categories: ['Film', 'Design'] } }));
+  assert.deepEqual(loadExpected(2025, f), ['Film', 'Design']);
+  assert.equal(loadExpected(2024, f), undefined);
+  assert.equal(loadExpected(2025, path.join(dir, 'missing.json')), undefined);
 });
 
 test('toWslPath converts a Windows path', () => {
