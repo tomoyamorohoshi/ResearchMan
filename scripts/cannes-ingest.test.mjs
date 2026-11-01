@@ -73,7 +73,7 @@ test("正常系: 1件追加・id/award/awardEntries/videoId/サムネが5件の�
   assert.equal(c.client, "Aritium");
   assert.equal(t.calls.audits, 1);
   assert.equal(t.calls.commits.length, 1);
-  assert.deepEqual(t.calls.commits[0].paths.sort(), ["data/cases.json", "public/thumbnails/aritium-painvisible.jpg"].sort());
+  assert.deepEqual(t.calls.commits[0].paths.sort(), ["cases.json", "thumbs/aritium-painvisible.jpg"].sort());
   assert.ok(!fs.existsSync(t.lockPath), "ロック解放済み");
 });
 
