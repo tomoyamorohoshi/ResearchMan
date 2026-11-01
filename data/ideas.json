@@ -24079,5 +24079,635 @@
         "desc": "巨大な鉛筆で不当に投獄された人々の解放を訴えるポスター。"
       }
     ]
+  },
+  {
+    "id": "2026-11-01-1",
+    "date": "2026-11-01",
+    "title": "ガラス弦と駅の揺れを鳴らす",
+    "pattern": "技術×技術",
+    "seed": "JAS-I Khorloの回転する「ばち」が弦を弾く物理モデルに、HapticLensが映像から作る振動を入力として流したら、映像の触感がそのまま楽器の音色になる『触覚で奏でる楽器』ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "jas-i-khorlo",
+        "title": "JAS-I Khorlo",
+        "desc": "ガラス円筒の周りの弦をリング状のばちが回って弾く、無料の物理モデリングシンセ。"
+      },
+      {
+        "type": "tech",
+        "id": "hapticlens",
+        "title": "HapticLens",
+        "desc": "動画の選んだ部分の動きから、振動子1個で感じられる触覚を自動で作るツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-2",
+    "date": "2026-11-01",
+    "title": "折り紙新聞を動く立体に",
+    "pattern": "文脈×技術",
+    "seed": "朝日新聞「おり紙新聞」で折った作品をSpirula Studioで3Dスキャンし、SuperSplat Editor 3.0で並べて、読者の折り作品が集まる巨大な『折り紙美術館』を作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "asahi-origami-newspaper",
+        "title": "朝日新聞「おり紙新聞」",
+        "desc": "新聞紙面が折り紙の型紙になっていて、読者が実際に折って遊べる朝日新聞の企画。"
+      },
+      {
+        "type": "tech",
+        "id": "spirula-studio",
+        "title": "Spirula Studio",
+        "desc": "写真や動画から3Dのガウシアンスプラットやメッシュを作れる無料の単体アプリ。"
+      },
+      {
+        "type": "tech",
+        "id": "supersplat-editor-3-0",
+        "title": "SuperSplat Editor 3.0",
+        "desc": "実写の3Dスキャン（スプラット）を編集できる無料オープンソースのソフト。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-3",
+    "date": "2026-11-01",
+    "title": "手描きの希望を踊らせる",
+    "pattern": "文脈×技術",
+    "seed": "Happy Dataの手描き「希望の数字」の文字を、ChibiRigKitで目や首が動くキャラ化したら、データが視線を向けて語りかけるインフォグラフィックになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "happy-data-2020",
+        "title": "Happy Data",
+        "desc": "手描きの文字と図で「希望の数字」を見せた、Pentagramの自主制作データ可視化。"
+      },
+      {
+        "type": "tech",
+        "id": "chibirigkit",
+        "title": "ChibiRigKit",
+        "desc": "1枚のイラストからまばたきや首振りをする2Dキャラを作れるOSS。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-4",
+    "date": "2026-11-01",
+    "title": "静寂を再照明する森",
+    "pattern": "文脈×技術",
+    "seed": "Jeep Silent Editionの野生動物を驚かせない撮影素材を3Dスキャンし、WallGS Proで夜明けから夜へライティングを変えると、時間ごとの『森の静けさ』を歩ける展示になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "jeep-silent-edition",
+        "title": "The Silent Edition",
+        "desc": "ハイブリッドSUVで野生動物を驚かせず自然を撮影したJeepの企画。"
+      },
+      {
+        "type": "tech",
+        "id": "wallgs-pro",
+        "title": "WallGS Pro",
+        "desc": "3Dスキャン映像をUnreal Engine 5内でライティングし直せる有償プラグイン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-5",
+    "date": "2026-11-01",
+    "title": "お化け屋敷の動きを自動生成",
+    "pattern": "文脈×技術",
+    "seed": "龍角散のお化け屋敷に、Mocara for Unreal Engineで「背後でゆっくり振り向く」など文章からお化けの動きを無限に生成させたら、毎回違う恐怖で来場者がリピートしたくなるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-qx3e2y-2026",
+        "title": "龍角散、展示会で仕掛ける\"本気のお化け屋敷\"体験型ブランド想起施策",
+        "desc": "龍角散が展示会ブースに本格お化け屋敷を作り、絶叫とのどを結びつけた施策。"
+      },
+      {
+        "type": "tech",
+        "id": "mocara-for-unreal-engine",
+        "title": "Mocara for Unreal Engine",
+        "desc": "文章を打つだけでUE5内にキャラの動きを作れるプラグイン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-6",
+    "date": "2026-11-01",
+    "title": "動きを圧縮してループ化",
+    "pattern": "技術×技術",
+    "seed": "CurveCodecで骨格モーションを1/10に圧縮し、C1連続 in-loop-out モーション生成ツールで継ぎ目ない無限ループにすれば、超軽量のWeb用ダンサー群が作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "curvecodec",
+        "title": "CurveCodec (AnimationCodec)",
+        "desc": "どんな骨格のアニメも再学習なしで1/10以下に圧縮できるコーデック。"
+      },
+      {
+        "type": "tech",
+        "id": "akasaki-c1-loop-motion-tool",
+        "title": "C1連続 in-loop-out モーション生成ツール",
+        "desc": "モーションの任意区間から滑らかにつながるループアニメを自動生成するツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-7",
+    "date": "2026-11-01",
+    "title": "歌声分離で作る生成映像",
+    "pattern": "転用",
+    "seed": "Ultimate Vocal Removerは歌と楽器を分けるアプリだが、街の雑踏を分離して声だけ・環境音だけに分け、Kandinsky 6.0 Videoに別々に与えれば音に合う映像が生まれるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ultimate-vocal-remover",
+        "title": "Ultimate Vocal Remover (UVR)",
+        "desc": "歌声と楽器音をAIで分けられる無料のデスクトップアプリ。"
+      },
+      {
+        "type": "tech",
+        "id": "kandinsky-6-0-video",
+        "title": "Kandinsky 6.0 Video",
+        "desc": "映像と音声を同時に作れる、MITで公開された動画生成モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-8",
+    "date": "2026-11-01",
+    "title": "アルゴリズムの藻で衣服設計",
+    "pattern": "転用",
+    "seed": "Modlyは写真から3Dメッシュを作るツールだが、Wastewater Algaeの藻類バインダーで固めた再生繊維の端材を撮ってメッシュ化し、素材の質感カタログを作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "modly",
+        "title": "Modly",
+        "desc": "写真を自分のPCだけで3Dメッシュにできる完全ローカルのアプリ。"
+      },
+      {
+        "type": "case",
+        "id": "wastewater-algae-explored-as-a-binder-for-recycled-textile-m",
+        "title": "Wastewater Algae Explored as a Binder for Recycled Textile Materials",
+        "desc": "排水処理で育てた藻類を、廃棄衣類繊維を固める接着剤にする素材研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-9",
+    "date": "2026-11-01",
+    "title": "約款を一語ずつ演じる",
+    "pattern": "文脈×技術",
+    "seed": "AXA THREE WORDSの3単語の約款改定を、MotionBridgeで俳優の動画から動きを抜いた3Dキャラが一語ずつ体で演じたら、法律文書が身体で伝わる啓発になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "axa-three-words",
+        "title": "THREE WORDS",
+        "desc": "配偶者の暴力を保険補償の理由に加えた、3単語の約款改定の企画。"
+      },
+      {
+        "type": "tech",
+        "id": "motionbridge",
+        "title": "MotionBridge",
+        "desc": "動画1本から人の動きを読み取り3Dや2Dキャラの動きデータにするOSSツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-10",
+    "date": "2026-11-01",
+    "title": "ポスターを剥がして再構築",
+    "pattern": "転用",
+    "seed": "ComfyUI-SpEdEは3Dシーンの物体編集ツールだが、Menslies北京クラブポスターの貼られた壁をスキャンして、重なった古いポスターを層ごとに剥がし10年を遡る展示にできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-spede",
+        "title": "ComfyUI-SpEdE (Splat Edit Engine)",
+        "desc": "3Dスキャンのシーン内でオブジェクトを選んで削除や差し替えができるノード群。"
+      },
+      {
+        "type": "case",
+        "id": "menslies-a-decade-of-experimental-club-posters-2026",
+        "title": "Menslies: A Decade of Experimental Club Posters",
+        "desc": "北京のクラブポスターを、あえて摩耗させた質感で10年分刻んだ作品集。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-11",
+    "date": "2026-11-01",
+    "title": "手描き文字を3Dで立体書体化",
+    "pattern": "文脈×技術",
+    "seed": "Fulham F.C.の手描きレタリングから書体を作った発想に、FlexSplatを掛け、街の看板や壁文字を数枚撮るだけで3D化して「立体書体」にできるかも。文字の凹凸や経年変化まで含むブランド資産になりそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "fulham-f-c-ffc-original-2026",
+        "title": "Fulham F.C. ブランドリフレッシュ（スタジアムの壁の手描きレタリングから書体 FFC Original を制作）",
+        "desc": "サッカークラブが本拠地の壁の手描き文字を拾い、専用書体とブランドの顔に作り変えた事例。"
+      },
+      {
+        "type": "tech",
+        "id": "flexsplat",
+        "title": "FlexSplat",
+        "desc": "カメラ位置を測らずに、物体の写真数枚から一度の計算で3Dガウシアンスプラットを作る手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-12",
+    "date": "2026-11-01",
+    "title": "よじ登る彫刻に動きを写す",
+    "pattern": "文脈×技術",
+    "seed": "The Blinky Climberのよじ登れる巨大ワニ遊具に、4DAnyoneで子どもたちの登り方を4D記録して並べたら、遊具の形を「登り方の履歴」から設計し直せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "blinky-climber-florida-2023",
+        "title": "The Blinky Climber",
+        "desc": "地元の伝説のワニをモチーフにした、全長30mのよじ登れる遊具彫刻。"
+      },
+      {
+        "type": "tech",
+        "id": "4danyone",
+        "title": "4DAnyone",
+        "desc": "スマホ1台の動画から人物を時間変化する3Dデータとして復元し、好きな角度から見られる技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-13",
+    "date": "2026-11-01",
+    "title": "香りの庭を所作で歩かせる",
+    "pattern": "文脈×技術",
+    "seed": "SOHADAM SOOPの香りで記憶を呼ぶ福祉施設に、MoCapAnything V2を掛け、入居者のゆっくりした歩きや手の動きを動画から取り、その人固有の動きに反応して香りが変わる庭にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "sohadam-soop-garden-of-memory-if-2026",
+        "title": "SOHADAM SOOP, GARDEN OF MEMORY AND EXPERIENCE",
+        "desc": "専用の香りで記憶や感情を呼び起こす、高齢者福祉施設の感覚の庭。"
+      },
+      {
+        "type": "tech",
+        "id": "mocapanything-v2",
+        "title": "MoCapAnything V2",
+        "desc": "1台のカメラ動画から、人や動物など任意の骨格に使える3D動きデータを作る研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-14",
+    "date": "2026-11-01",
+    "title": "ジャズ弾き癖で潮を動かす",
+    "pattern": "技術×技術",
+    "seed": "Jazz Pianist Styleの奏者ごとの「弾き癖」を、MorphDropsの紙上で形を変える水滴の動きに写したら、ピアニストの個性が水の形で見える楽譜ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "jazz-pianist-style",
+        "title": "Jazz Pianist Style (Learning Jazz Pianist Style with Cross-Attention Conditioning)",
+        "desc": "ジャズピアニスト12人それぞれの弾き癖を学び、その奏者らしい続きを作るAI。"
+      },
+      {
+        "type": "tech",
+        "id": "morphdrops",
+        "title": "MorphDrops",
+        "desc": "紙の導電インクに電気を流し、上に置いた水滴の形を変えるディスプレイ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-15",
+    "date": "2026-11-01",
+    "title": "鼻歌を譜面にして卓上で演奏",
+    "pattern": "技術×技術",
+    "seed": "SheetSage2で街の録音を譜面とMIDIに変え、Audionautにある音声編集へMCP経由でAIに指示させれば、街の音から自動で曲が仕上がる実験ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "sheetsage2",
+        "title": "SheetSage2",
+        "desc": "音源からメロディ・コード・拍などを読み取り、編集できる譜面とMIDIにするAI。"
+      },
+      {
+        "type": "tech",
+        "id": "audionaut",
+        "title": "Audionaut",
+        "desc": "AIエージェントからMCP経由で編集を指示できる、無料のマルチトラック音声エディタ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-16",
+    "date": "2026-11-01",
+    "title": "雨で現れる文字を3D空間へ",
+    "pattern": "技術×技術",
+    "seed": "LingBot-Mapで街を歩きながら単眼映像から3D形状をリアルタイムに取り、Cinematic Director Camera DSLの撮影用語で仮想カメラを走らせたら、その場の街を映画のように撮り直せるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "lingbot-map",
+        "title": "LingBot-Map",
+        "desc": "単眼カメラ映像だけで、シーンの3D形状をほぼリアルタイムに作り続ける基盤モデル。"
+      },
+      {
+        "type": "tech",
+        "id": "cinematic-director-camera-dsl",
+        "title": "Cinematic Director Camera DSL",
+        "desc": "短い撮影用語を、各AI動画モデル向けのカメラ指示文に変換する記法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-17",
+    "date": "2026-11-01",
+    "title": "透かし削除機能を逆手に取る",
+    "pattern": "転用",
+    "seed": "GoogleのAI生成物の可視透かしオフ機能を逆に、あえて「消せる透かし」を作品の一部とし、RotoAIで切り抜いた被写体にだけ透かしを残す広告にしたら、真贋の物語が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "google-ai-2026",
+        "title": "Google、AI生成コンテンツの可視透かし削除機能を発表",
+        "desc": "GeminiやFlowで、AI生成物の目に見える透かしを任意で消せる新設定。"
+      },
+      {
+        "type": "tech",
+        "id": "rotoai",
+        "title": "RotoAI",
+        "desc": "「赤いシャツの人」のような言葉の指示で、動画から人や物を切り抜けるOSSツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-18",
+    "date": "2026-11-01",
+    "title": "故人の声の倫理を譜面にする",
+    "pattern": "転用",
+    "seed": "ROADRUNNERで論争になったAIの故人の声再現を、Jazz Pianist Styleの「弾き癖だけを継ぐ」考え方に転用し、故人の癖を継ぐ新曲を、本人の声は使わず作る追悼表現ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "roadrunner-bourdain-ai",
+        "title": "ROADRUNNER: A FILM ABOUT ANTHONY BOURDAIN",
+        "desc": "故アンソニー・ボーデインの声をAIで再現し、倫理的な論争を呼んだ映画。"
+      },
+      {
+        "type": "tech",
+        "id": "jazz-pianist-style",
+        "title": "Jazz Pianist Style (Learning Jazz Pianist Style with Cross-Attention Conditioning)",
+        "desc": "奏者ごとの弾き癖を学び、その人らしい続きを作るピアノAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-19",
+    "date": "2026-11-01",
+    "title": "ロトスコープで夢を可塑化する",
+    "pattern": "転用",
+    "seed": "Honda「Power of Dreams」の白い可塑物質の夢を、ComfyUI-RMBG v3.3.0の動画マッティングで人の動きだけ抜き、背景を失った身体が粘土のように車に変わる映像にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "honda-power-of-dreams-2026",
+        "title": "Honda「Power of Dreams」バルーンクラウド・キャンペーン",
+        "desc": "人間の夢を白い可塑物質として見せ、車へ変貌させるHondaの欧州キャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-rmbg-v3-3-0",
+        "title": "ComfyUI-RMBG v3.3.0（VRMBG 動画マッティング＋Canvas）",
+        "desc": "ComfyUIで背景を除く定番ノード集。新しく動画の背景除去に対応した。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-20",
+    "date": "2026-11-01",
+    "title": "ARライブを自分の街の歩きに",
+    "pattern": "文脈×技術",
+    "seed": "GORILLAZ PRESENTS SKINNY APEのARライブに、Motion2MixamoRigを掛け、観客が動画で撮った自分のダンスをその場でキャラの動きにして、街の上空で一緒に踊らせられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "gorillaz-skinny-ape-ar",
+        "title": "GORILLAZ PRESENTS SKINNY APE（ARライブ）",
+        "desc": "ARCore Geospatial APIで都市の空間に出現した、Gorillazの屋外ARライブ。"
+      },
+      {
+        "type": "tech",
+        "id": "motion2mixamorig",
+        "title": "Motion2MixamoRig",
+        "desc": "動画の人物の動きを推定し、Mixamo規格のキャラに移してアニメ付きデータにするツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-21",
+    "date": "2026-11-01",
+    "title": "顔の彫刻を粘菌の経路で動かす",
+    "pattern": "技術×技術",
+    "seed": "Capture / Resemble の顔特徴点をXYZアクチュエータの動きに変える仕組みに、Physarum polycephalum（真正粘菌）の鉄道網再現の「効率的な経路」を使えば、無人時に彫刻が自分で最適な道筋を探して動く夢を見るかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "capture-resemble-simulating-self-aware-machine-behaviour-202",
+        "title": "Capture / Resemble – Simulating Self-Aware Machine Behaviour",
+        "desc": "来場者の顔の特徴を記録し、機械の動きに変えて見せる彫刻作品。"
+      },
+      {
+        "type": "tech",
+        "id": "physarum-polycephalumによる東京鉄道網再現実験",
+        "title": "Physarum polycephalum（真正粘菌）による東京鉄道網再現実験",
+        "desc": "脳のない粘菌を培地で育て、東京の鉄道網とよく似た経路をつくらせた実験。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-22",
+    "date": "2026-11-01",
+    "title": "移動クリニックの3D現場記録",
+    "pattern": "文脈×技術",
+    "seed": "Caritas の Vehicle of Hope のような移動小児科クリニックの内部を、Gaussian SplatKing で撮って3D化したら、寄付者が現地へ行かずに診察室の空気を歩いて体験できる支援報告になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "caritas-vehicle-of-hope",
+        "title": "Vehicle of Hope",
+        "desc": "教皇の専用車をガザの子ども向け移動クリニックに変えた支援キャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "gaussian-splatking",
+        "title": "Gaussian SplatKing",
+        "desc": "iPhoneのカメラとLiDARで、3D化用の撮影データを無料で集められるアプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-23",
+    "date": "2026-11-01",
+    "title": "フォント制作過程の無限映像",
+    "pattern": "文脈×技術",
+    "seed": "Arsenal の Rocastle が約4年かけた手描きの字形づくりを、HR Endless Sampler で破綻なく何分でも続く映像にして、紋章から一文字ずつ書体が生まれる長い記録にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "rocastle-arsenal-fc-2026",
+        "title": "Rocastle（Arsenal FC 特注ブラックレター書体）",
+        "desc": "アーセナルが紋章を手がかりに手描きで作った、専用のブラックレター書体。"
+      },
+      {
+        "type": "tech",
+        "id": "hr-endless-sampler",
+        "title": "HR Endless Sampler (ComfyUI-HR-Endless-Sampler)",
+        "desc": "AI動画を何分でも破綻なく作り続けるためのComfyUI用サンプラー。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-24",
+    "date": "2026-11-01",
+    "title": "分離体験を声のサンプラーへ",
+    "pattern": "文脈×技術",
+    "seed": "Shimadzu の In-Between Matter が「分ける」を体感させたように、Fragmenta で学習した自分の声モデルを来場者の動きで成分ごとに分離・再構成して鳴らすと、声の成分分析を耳で体験できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "in-between-matter-2026",
+        "title": "In-Between Matter",
+        "desc": "来場者の動作で物質が変化し、「分ける」ことを体感させる展示。"
+      },
+      {
+        "type": "tech",
+        "id": "fragmenta",
+        "title": "Fragmenta",
+        "desc": "自分の音源でAI音楽モデルを追加学習し、生成から演奏まで行えるアプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-25",
+    "date": "2026-11-01",
+    "title": "ポスター顔化粧の動画化",
+    "pattern": "文脈×技術",
+    "seed": "Mockingjay Part 2 の Interactive Poster Creator の戦化粧を、SCAIL-2 で来場者の動きごと別キャラクターへ乗り移らせたら、静止ポスターでなく戦士として踊る映像が作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "scail-2",
+        "title": "SCAIL-2",
+        "desc": "動画の人物の動きを、別のキャラクターにそのまま移せるAIモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-26",
+    "date": "2026-11-01",
+    "title": "単眼3Dを浮遊ロボで巡回",
+    "pattern": "技術×技術",
+    "seed": "Cuddle-Fish のヘリウムで浮かぶ柔らかいロボットに単眼カメラを載せ、LingBot-Map で飛んだ場所の3D地図をその場で描かせたら、人に安全な室内スキャナーになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "cuddle-fish",
+        "title": "Cuddle-Fish（Floating Companion）",
+        "desc": "ヘリウムで浮かび、ヒレで静かに動く安全なソフトロボット。"
+      },
+      {
+        "type": "tech",
+        "id": "lingbot-map",
+        "title": "LingBot-Map",
+        "desc": "普通のカメラ映像だけで周囲の3D形状を素早く作るAIモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-27",
+    "date": "2026-11-01",
+    "title": "解剖モデルで音を切る",
+    "pattern": "技術×技術",
+    "seed": "Dissectible Anatomy の「自由に切り裂ける」リアルタイム操作を、Audionaut の音声編集に載せ替えたら、波形を臓器のように断面で切って中身を覗く、新しい音の編集法になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "dissectible-anatomy",
+        "title": "Dissectible Anatomy",
+        "desc": "人体の3Dモデルをリアルタイムで自由に切って観察できる解剖シミュレーション。"
+      },
+      {
+        "type": "tech",
+        "id": "audionaut",
+        "title": "Audionaut",
+        "desc": "AIエージェントから操作もできる、無料のマルチトラック音声編集ソフト。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-28",
+    "date": "2026-11-01",
+    "title": "配達ゲームを揺れる広告へ",
+    "pattern": "文脈×技術",
+    "seed": "La Poste の DELIVERED BY TETRIS が示した積載最適化のゲーム性を、MaskVidExperiments で動く荷物だけ切り出し、RS 5 Shake のようにトラックの振動で歪む映像にしたらOOHになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "la-poste-delivered-by-tetris",
+        "title": "DELIVERED BY TETRIS",
+        "desc": "テトリスの考え方でトラックの積み方を最適化し、CO₂を減らした取り組み。"
+      },
+      {
+        "type": "tech",
+        "id": "maskvidexperiments",
+        "title": "MaskVidExperiments",
+        "desc": "動く被写体だけを切り出して加工し、元映像に自然に貼り戻すツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-29",
+    "date": "2026-11-01",
+    "title": "録音しないマイクの転用",
+    "pattern": "転用",
+    "seed": "録音せずその場で歌うEP-2350 FX-MIC のFXとサンプル機能を、ウィンドウ展示の Beauty Innovation の糸の揺れを操る装置に転用したら、声で素材の揺れを演奏する展示になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ep-2350-fx-mic-2026",
+        "title": "EP-2350 FX-MIC",
+        "desc": "録音せず、内蔵エフェクトとサンプルだけで歌う手持ちマイク。"
+      },
+      {
+        "type": "case",
+        "id": "beauty-innovation-shiseido-we-plus-2019",
+        "title": "Beauty Innovation",
+        "desc": "500本の染め糸がモーターで揺れる資生堂のウィンドウ展示。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-01-30",
+    "date": "2026-11-01",
+    "title": "地図用AIを空間の記憶装置に",
+    "pattern": "転用",
+    "seed": "MetalSplat は3D復元用だが、閉館する福岡PARCOの売り場を Mac で学習して、PARCO PRINT CENTER のポスター購入者に空間の一部を持ち帰らせる記憶メディアにできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "metalsplat",
+        "title": "MetalSplat",
+        "desc": "MacのGPUだけでGaussian Splat（3D再現）を学習できるオープンソース。"
+      },
+      {
+        "type": "case",
+        "id": "parco-print-center-art-poster-trade-in-fukuoka-close-2026",
+        "title": "PARCO PRINT CENTER 特別編 - ART POSTER TRADE in FUKUOKA \"CLOSE\"",
+        "desc": "閉館する福岡PARCOを記念した、限定ポスターの販売企画。"
+      }
+    ]
   }
 ]
