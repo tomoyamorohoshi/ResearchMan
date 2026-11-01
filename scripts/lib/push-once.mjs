@@ -28,11 +28,11 @@ function sleepSync(ms) {
   }
 }
 
-function acquireLock() {
+function acquireLock(lockPath) {
   const deadline = Date.now() + LOCK_WAIT_TIMEOUT_MS;
   for (;;) {
     try {
-      if (tryAcquireGitLock(LOCK_PATH, "push-once")) return true;
+      if (tryAcquireGitLock(lockPath, "push-once")) return true;
     } catch {
       return false; // mkdirがEEXIST以外で失敗（従来と同じくロック取得失敗扱い）
     }
@@ -41,13 +41,14 @@ function acquireLock() {
   }
 }
 
-function releaseLock() {
-  releaseOwnedLock(LOCK_PATH);
+function releaseLock(lockPath) {
+  releaseOwnedLock(lockPath);
 }
 
 // ロックを取得して `git push` を1回だけ試みる。例外を投げず {ok, reason} を返す。
-export function pushOnce(cwd) {
-  if (!acquireLock()) {
+// lockPath はテスト用（本番ジョブが保持中のロックを待って180秒タイムアウトしないよう分離する）。
+export function pushOnce(cwd, { lockPath = LOCK_PATH } = {}) {
+  if (!acquireLock(lockPath)) {
     return { ok: false, reason: "gitロック取得タイムアウト" };
   }
   try {
@@ -60,6 +61,6 @@ export function pushOnce(cwd) {
   } catch (e) {
     return { ok: false, reason: `push実行時に例外: ${e.message}` };
   } finally {
-    releaseLock();
+    releaseLock(lockPath);
   }
 }

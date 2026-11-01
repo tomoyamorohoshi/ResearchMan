@@ -41,7 +41,7 @@ test("pushOnce: git push origin main で明示的にmainブランチをpushす�
     git(["commit", "-am", "update"], workDir);
     const localMainHead = git(["rev-parse", "main"], workDir).trim();
 
-    const result = pushOnce(workDir);
+    const result = pushOnce(workDir, { lockPath: path.join(base, "git.lock") });
     assert.equal(result.ok, true);
 
     const originMainHead = git(["rev-parse", "refs/heads/main"], originDir).trim();
@@ -67,7 +67,7 @@ test("pushOnce: mainではない別ブランチをcheckoutした状態でも、�
     git(["checkout", "-b", "other-branch"], workDir);
     assert.equal(git(["rev-parse", "--abbrev-ref", "HEAD"], workDir).trim(), "other-branch");
 
-    const result = pushOnce(workDir);
+    const result = pushOnce(workDir, { lockPath: path.join(base, "git.lock") });
     assert.equal(result.ok, true);
 
     // originのmainが更新されていること（other-branchがpushされたのではない）
