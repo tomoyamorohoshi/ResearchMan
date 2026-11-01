@@ -3843,7 +3843,7 @@
       "OOH革新",
       "データクリエイティブ"
     ],
-    "award": "Cannes Lions 2024 Outdoor Lions Bronze（Billboards: Sectors、Magnum／LOLA MullenLowe）※同キャンペーン内の別エントリー『STAIRS』『DOORSTEP』『CORNER』（Outdoor > Consumer Goods）がOutdoor Lions Grand Prixを受賞しているが、『Find Your Summer』単体でのGrand Prix受賞ではない",
+    "award": "Cannes Lions 2024 Outdoor Lions Bronze（Billboards: Sectors、Magnum／LOLA MullenLowe）※同キャンペーン内の別エントリー『STAIRS』『DOORSTEP』『CORNER』（Outdoor > Consumer Goods）がOutdoor Lions Grand Prixを受賞しているが、『Find Your Summer』単体でのGrand Prix受賞ではない / Cannes Lions 2025 Creative Effectiveness Lions Silver",
     "year": "2024",
     "regions": [
       "欧州"
@@ -3863,6 +3863,14 @@
       "Form/OOH",
       "Tech/Data",
       "Theme/Food"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Creative Effectiveness",
+        "level": "Silver"
+      }
     ]
   },
   {
@@ -3875,7 +3883,7 @@
       "OOH革新",
       "カルチャーインサイト"
     ],
-    "award": "Cannes Lions 2024 Outdoor Lions Gold（Outdoor > Culture & Context／Heineken Ireland, LePub）",
+    "award": "Cannes Lions 2024 Outdoor Lions Gold（Outdoor > Culture & Context／Heineken Ireland, LePub） / Cannes Lions 2025 Creative Strategy Lions Bronze / Cannes Lions 2025 Media Lions Bronze",
     "year": "2024",
     "regions": [
       "欧州"
@@ -3895,6 +3903,20 @@
       "Form/OOH",
       "Tech/XR",
       "Theme/Art"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Creative Strategy",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Media",
+        "level": "Bronze"
+      }
     ]
   },
   {
@@ -3926,6 +3948,26 @@
     "tags": [
       "Form/OOH",
       "Theme/Food"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Outdoor",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Outdoor",
+        "level": "Bronze"
+      }
     ]
   },
   {
@@ -3958,6 +4000,32 @@
     "tags": [
       "Form/OOH",
       "Theme/Food"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Industry Craft",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Outdoor",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Outdoor",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Print & Publishing",
+        "level": "Gold"
+      }
     ]
   },
   {
@@ -3989,6 +4057,20 @@
     "tags": [
       "Form/OOH",
       "Theme/Food"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Outdoor",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Print & Publishing",
+        "level": "Silver"
+      }
     ]
   },
   {
@@ -4020,6 +4102,14 @@
     "tags": [
       "Tech/Device",
       "Form/OOH"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Outdoor",
+        "level": "Gold"
+      }
     ]
   },
   {
@@ -4053,6 +4143,50 @@
       "Form/Event",
       "Tech/Data",
       "Theme/Food"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Brand Experience & Activation",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Brand Experience & Activation",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Direct",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Media",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Outdoor",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "PR",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Social & Creator",
+        "level": "Silver"
+      }
     ]
   },
   {
@@ -15111,7 +15245,7 @@
     "categories": [
       "AIクリエイティブ"
     ],
-    "award": "",
+    "award": "Cannes Lions 2025 Social & Creator Lions Bronze",
     "year": "2026",
     "regions": [
       "北米"
@@ -15137,6 +15271,14 @@
       "Tech/AI",
       "Form/Film",
       "Form/SNS"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Social & Creator",
+        "level": "Bronze"
+      }
     ]
   },
   {
@@ -23291,6 +23433,14 @@
       "Form/Product",
       "Theme/Art",
       "Theme/SocialGood"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Glass: The Lion for Change",
+        "level": "Gold"
+      }
     ]
   },
   {
@@ -23329,6 +23479,14 @@
       "Form/Film",
       "Theme/SocialGood",
       "Theme/Food"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Creative Effectiveness",
+        "level": "Silver"
+      }
     ]
   },
   {
@@ -29039,7 +29197,7 @@
     "categories": [
       "コンテンツ革新"
     ],
-    "award": "Fast Company Innovation by Design 2025 Winner（Asia-Pacific region category／アジア太平洋地域部門）",
+    "award": "Fast Company Innovation by Design 2025 Winner（Asia-Pacific region category／アジア太平洋地域部門） / Cannes Lions 2025 Design Lions Bronze",
     "year": "2025",
     "regions": [
       "アジア"
@@ -29066,6 +29224,14 @@
       "Tech/Data",
       "Form/Print",
       "Theme/Sustainability"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Design",
+        "level": "Bronze"
+      }
     ]
   },
   {
@@ -30705,7 +30871,7 @@
       "OOH革新",
       "テクノロジー×アイデア"
     ],
-    "award": "",
+    "award": "Cannes Lions 2025 Direct Lions Silver / Cannes Lions 2025 Outdoor Lions Silver",
     "year": "2026",
     "regions": [
       "グローバル"
@@ -30731,6 +30897,20 @@
       "Tech/Device",
       "Form/OOH",
       "Theme/Mobility"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Direct",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Outdoor",
+        "level": "Silver"
+      }
     ]
   },
   {
@@ -41507,7 +41687,7 @@
       "Health",
       "Data"
     ],
-    "award": "Cannes Lions 2026 Design Lions Silver / Cannes Lions 2026 Creative Strategy Lions Bronze",
+    "award": "Cannes Lions 2026 Design Lions Silver / Cannes Lions 2026 Creative Strategy Lions Bronze / Cannes Lions 2025 Health & Wellness Lions Gold / Cannes Lions 2025 Health & Wellness Lions Silver / Cannes Lions 2025 PR Lions Bronze",
     "year": "2026",
     "regions": [
       "北米"
@@ -41544,6 +41724,26 @@
       "Form/Website",
       "Form/OOH",
       "Theme/Health"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Health & Wellness",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Health & Wellness",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "PR",
+        "level": "Bronze"
+      }
     ]
   },
   {
@@ -44503,7 +44703,7 @@
       "PR",
       "Health"
     ],
-    "award": "Cannes Lions 2026 Health & Wellness Lions Bronze / Cannes Lions 2026 Creative Effectiveness Lions Gold",
+    "award": "Cannes Lions 2026 Health & Wellness Lions Bronze / Cannes Lions 2026 Creative Effectiveness Lions Gold / Cannes Lions 2025 Creative Strategy Lions Gold / Cannes Lions 2025 Direct Lions Silver / Cannes Lions 2025 Social & Creator Lions Bronze / Cannes Lions 2025 Titanium",
     "year": "2026",
     "regions": [
       "中南米"
@@ -44539,6 +44739,32 @@
       "Form/Event",
       "Form/Product",
       "Theme/SocialGood"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Creative Strategy",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Direct",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Social & Creator",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Titanium",
+        "level": "Titanium"
+      }
     ]
   },
   {
@@ -47507,6 +47733,74 @@
       "Form/Film",
       "Theme/SocialGood",
       "Theme/Entertainment"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Brand Experience & Activation",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Brand Experience & Activation",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Creative B2B",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Design",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Digital Craft",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Digital Craft",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Entertainment",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Entertainment",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Innovation",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Titanium",
+        "level": "Titanium"
+      }
     ]
   },
   {
@@ -47544,6 +47838,50 @@
       "Tech/Game",
       "Form/OOH",
       "Theme/Sports"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Brand Experience & Activation",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Direct",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Entertainment",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Entertainment Lions for Sport",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Entertainment Lions for Sport",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "PR",
+        "level": "Gold"
+      }
     ]
   },
   {
@@ -47581,6 +47919,20 @@
       "Form/MV",
       "Theme/Music",
       "Theme/SocialGood"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Entertainment Lions for Music",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Social & Creator",
+        "level": "Bronze"
+      }
     ]
   },
   {
@@ -48339,6 +48691,14 @@
     "tags": [
       "Form/MV",
       "Theme/Music"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Entertainment Lions for Music",
+        "level": "Silver"
+      }
     ]
   },
   {
@@ -48416,6 +48776,26 @@
       "Form/MV",
       "Theme/Music",
       "Theme/Fashion"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Entertainment Lions for Music",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Film Craft",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Film Craft",
+        "level": "Silver"
+      }
     ]
   },
   {
@@ -48668,6 +49048,32 @@
       "Tech/Web",
       "Form/SNS",
       "Theme/Music"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Entertainment Lions for Music",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Entertainment Lions for Music",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Outdoor",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Social & Creator",
+        "level": "Bronze"
+      }
     ]
   },
   {
@@ -48728,7 +49134,7 @@
       "テクノロジー×アイデア",
       "データクリエイティブ"
     ],
-    "award": "Cannes Lions 2024 Creative B2B Grand Prix / D&AD 2025 Annual掲載",
+    "award": "Cannes Lions 2024 Creative B2B Grand Prix / D&AD 2025 Annual掲載 / Cannes Lions 2025 Brand Experience & Activation Lions Silver / Cannes Lions 2025 Design Lions Gold / Cannes Lions 2025 Design Lions Silver / Cannes Lions 2025 PR Lions Bronze",
     "year": "2024",
     "regions": [
       "グローバル"
@@ -48761,6 +49167,32 @@
       "Tech/Data",
       "Form/MV",
       "Theme/Music"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Brand Experience & Activation",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Design",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Design",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "PR",
+        "level": "Bronze"
+      }
     ]
   },
   {
@@ -48774,7 +49206,7 @@
       "コンテンツ革新",
       "社会包摂"
     ],
-    "award": "Cannes Lions 2023 PR Grand Prix",
+    "award": "Cannes Lions 2023 PR Grand Prix / Cannes Lions 2025 Creative Effectiveness Lions Gold",
     "year": "2023",
     "regions": [
       "欧州"
@@ -48808,6 +49240,14 @@
       "Form/Stunt",
       "Theme/Music",
       "Theme/Health"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Creative Effectiveness",
+        "level": "Gold"
+      }
     ]
   },
   {
@@ -50425,6 +50865,20 @@
       "Tech/AI",
       "Form/Film",
       "Theme/SocialGood"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Media",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Media",
+        "level": "Silver"
+      }
     ]
   },
   {
@@ -51441,6 +51895,32 @@
       "Form/Film",
       "Theme/Sports",
       "Theme/SocialGood"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Film",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Film",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Film Craft",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Film Craft",
+        "level": "Bronze"
+      }
     ]
   },
   {
@@ -51489,6 +51969,32 @@
       "Form/Stunt",
       "Theme/Music",
       "Theme/Sustainability"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Audio & Radio",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Creative Strategy",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Innovation",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Sustainable Development Goals",
+        "level": "Gold"
+      }
     ]
   },
   {
@@ -51539,6 +52045,68 @@
     "tags": [
       "Form/Stunt",
       "Theme/SocialGood"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Creative Business Transformation",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Creative Strategy",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Creative Strategy",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Direct",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Direct",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Direct",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Glass: The Lion for Change",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "PR",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "PR",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Titanium",
+        "level": "Grand Prix"
+      }
     ]
   },
   {
@@ -51590,6 +52158,38 @@
     ],
     "sources": [
       "Cannes 2026"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Entertainment",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Entertainment",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Film",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Film Craft",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "PR",
+        "level": "Silver"
+      }
     ]
   },
   {
@@ -51699,7 +52299,7 @@
       "社会包摂",
       "OOH革新"
     ],
-    "award": "Cannes Lions 2024 Titanium Lions",
+    "award": "Cannes Lions 2024 Titanium Lions / Cannes Lions 2025 Creative Strategy Lions Bronze",
     "year": "2024",
     "regions": [
       "欧州"
@@ -51735,6 +52335,14 @@
       "Form/OOH",
       "Form/Stunt",
       "Theme/SocialGood"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Creative Strategy",
+        "level": "Bronze"
+      }
     ]
   },
   {
@@ -52617,7 +53225,7 @@
       "ブランドエクスペリエンス",
       "OOH革新"
     ],
-    "award": "Cannes Lions 2015 Outdoor Grand Prix",
+    "award": "Cannes Lions 2015 Outdoor Grand Prix / Cannes Lions 2025 Creative Effectiveness Lions Grand Prix",
     "year": "2015",
     "regions": [
       "グローバル"
@@ -52652,6 +53260,14 @@
     "tags": [
       "Form/OOH",
       "Theme/Art"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Creative Effectiveness",
+        "level": "Grand Prix"
+      }
     ]
   },
   {
@@ -53908,7 +54524,7 @@
       "Health",
       "Design"
     ],
-    "award": "Cannes Lions 2026 Glass: The Lion for Change Grand Prix / Cannes Lions 2026 Creative Data Lions Bronze",
+    "award": "Cannes Lions 2026 Glass: The Lion for Change Grand Prix / Cannes Lions 2026 Creative Data Lions Bronze / Cannes Lions 2025 Design Lions Gold / Cannes Lions 2025 Health & Wellness Lions Gold / Cannes Lions 2025 Health & Wellness Lions Bronze / Cannes Lions 2025 Industry Craft Lions Grand Prix",
     "year": "2026",
     "regions": [
       "中南米"
@@ -53944,6 +54560,32 @@
       "Form/Print",
       "Theme/Health",
       "Theme/SocialGood"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Design",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Health & Wellness",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Health & Wellness",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Industry Craft",
+        "level": "Grand Prix"
+      }
     ]
   },
   {
@@ -55138,7 +55780,7 @@
     "categories": [
       "Media"
     ],
-    "award": "Cannes Lions 2026 Media Lions Silver",
+    "award": "Cannes Lions 2026 Media Lions Silver / Cannes Lions 2025 Creative Business Transformation Lions Bronze / Cannes Lions 2025 Creative Strategy Lions Silver",
     "year": "2026",
     "regions": [
       "北米"
@@ -55157,6 +55799,20 @@
       "Form/Stunt",
       "Theme/Entertainment",
       "Theme/Food"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Creative Business Transformation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Creative Strategy",
+        "level": "Silver"
+      }
     ]
   },
   {
@@ -55352,7 +56008,7 @@
       "Creative Strategy",
       "Glass: The Lion for Change"
     ],
-    "award": "Cannes Lions 2026 Media Lions Silver / Cannes Lions 2026 Creative Strategy Lions Bronze / Cannes Lions 2026 Glass: The Lion for Change Bronze",
+    "award": "Cannes Lions 2026 Media Lions Silver / Cannes Lions 2026 Creative Strategy Lions Bronze / Cannes Lions 2026 Glass: The Lion for Change Bronze / Cannes Lions 2025 Brand Experience & Activation Lions Silver / Cannes Lions 2025 Creative B2B Lions Bronze / Cannes Lions 2025 Sustainable Development Goals Lions Gold",
     "year": "2026",
     "regions": [
       "中東・アフリカ"
@@ -55372,6 +56028,26 @@
       "Form/Product",
       "Theme/Food",
       "Theme/SocialGood"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Brand Experience & Activation",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Creative B2B",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Sustainable Development Goals",
+        "level": "Gold"
+      }
     ]
   },
   {
@@ -55660,7 +56336,7 @@
     "categories": [
       "Creative Strategy"
     ],
-    "award": "Cannes Lions 2026 Creative Strategy Lions Silver",
+    "award": "Cannes Lions 2026 Creative Strategy Lions Silver / Cannes Lions 2025 Industry Craft Lions Silver",
     "year": "2026",
     "regions": [
       "欧州"
@@ -55678,6 +56354,14 @@
     "tags": [
       "Form/Product",
       "Theme/Food"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Industry Craft",
+        "level": "Silver"
+      }
     ]
   },
   {
@@ -55721,7 +56405,7 @@
       "Creative Effectiveness",
       "Creative Business Transformation"
     ],
-    "award": "Cannes Lions 2026 Creative Strategy Lions Silver / Cannes Lions 2026 Creative Effectiveness Lions Silver / Cannes Lions 2026 Creative Business Transformation Lions Silver",
+    "award": "Cannes Lions 2026 Creative Strategy Lions Silver / Cannes Lions 2026 Creative Effectiveness Lions Silver / Cannes Lions 2026 Creative Business Transformation Lions Silver / Cannes Lions 2025 Direct Lions Silver / Cannes Lions 2025 Health & Wellness Lions Grand Prix / Cannes Lions 2025 Media Lions Gold / Cannes Lions 2025 Media Lions Silver / Cannes Lions 2025 PR Lions Silver / Cannes Lions 2025 PR Lions Bronze / Cannes Lions 2025 Social & Creator Lions Grand Prix / Cannes Lions 2025 Social & Creator Lions Silver / Cannes Lions 2025 Titanium",
     "year": "2026",
     "regions": [
       "アジア"
@@ -55740,6 +56424,62 @@
     "tags": [
       "Form/SNS",
       "Theme/Health"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Direct",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Health & Wellness",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Media",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Media",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "PR",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "PR",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Social & Creator",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Social & Creator",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Titanium",
+        "level": "Titanium"
+      }
     ]
   },
   {
@@ -55751,7 +56491,7 @@
     "categories": [
       "Creative Strategy"
     ],
-    "award": "Cannes Lions 2026 Creative Strategy Lions Silver",
+    "award": "Cannes Lions 2026 Creative Strategy Lions Silver / Cannes Lions 2025 Creative Commerce Lions Silver / Cannes Lions 2025 Direct Lions Gold / Cannes Lions 2025 Direct Lions Silver / Cannes Lions 2025 Social & Creator Lions Gold / Cannes Lions 2025 Social & Creator Lions Bronze",
     "year": "2026",
     "regions": [
       "北米"
@@ -55770,6 +56510,38 @@
     "tags": [
       "Form/SNS",
       "Theme/Retail"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Creative Commerce",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Direct",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Direct",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Social & Creator",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Social & Creator",
+        "level": "Bronze"
+      }
     ]
   },
   {
@@ -55781,7 +56553,7 @@
     "categories": [
       "Creative Effectiveness"
     ],
-    "award": "Cannes Lions 2026 Creative Effectiveness Lions Silver",
+    "award": "Cannes Lions 2026 Creative Effectiveness Lions Silver / Cannes Lions 2025 Brand Experience & Activation Lions Silver / Cannes Lions 2025 Creative Data Lions Gold / Cannes Lions 2025 Creative Data Lions Bronze / Cannes Lions 2025 Direct Lions Gold / Cannes Lions 2025 Direct Lions Silver",
     "year": "2026",
     "regions": [
       "欧州"
@@ -55801,6 +56573,38 @@
       "Form/Product",
       "Theme/Retail",
       "Theme/Sustainability"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Brand Experience & Activation",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Creative Data",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Creative Data",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Direct",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Direct",
+        "level": "Silver"
+      }
     ]
   },
   {
@@ -55812,7 +56616,7 @@
     "categories": [
       "Creative Effectiveness"
     ],
-    "award": "Cannes Lions 2026 Creative Effectiveness Lions Silver",
+    "award": "Cannes Lions 2026 Creative Effectiveness Lions Silver / Cannes Lions 2025 Creative Commerce Lions Silver / Cannes Lions 2025 Creative Strategy Lions Bronze / Cannes Lions 2025 Direct Lions Gold / Cannes Lions 2025 Direct Lions Bronze / Cannes Lions 2025 Media Lions Silver / Cannes Lions 2025 Media Lions Bronze",
     "year": "2026",
     "regions": [
       "北米",
@@ -55836,7 +56640,45 @@
     ],
     "quarantined": true,
     "quarantineReason": "link-dead(二重確認済): 404: https://www.uber.com/us/en/uber-eats-super-bowl-commercial/",
-    "quarantineTs": "2026-08-09T09:33:04.137Z"
+    "quarantineTs": "2026-08-09T09:33:04.137Z",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Creative Commerce",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Creative Strategy",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Direct",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Direct",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Media",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Media",
+        "level": "Bronze"
+      }
+    ]
   },
   {
     "id": "loreal-luxe-code-protection-inclusion-black-consumers",
@@ -56151,7 +56993,7 @@
       "Industry Craft",
       "Brand Design"
     ],
-    "award": "Cannes Lions 2026 Industry Craft Lions Bronze",
+    "award": "Cannes Lions 2026 Industry Craft Lions Bronze / Cannes Lions 2025 Pharma Lions Silver",
     "year": "2026",
     "regions": [
       "中南米"
@@ -56169,6 +57011,14 @@
     "tags": [
       "Form/Product",
       "Theme/Health"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Pharma",
+        "level": "Silver"
+      }
     ]
   },
   {
@@ -56867,7 +57717,7 @@
       "Creative Strategy",
       "Creative Commerce"
     ],
-    "award": "Cannes Lions 2026 Creative Strategy Lions Bronze",
+    "award": "Cannes Lions 2026 Creative Strategy Lions Bronze / Cannes Lions 2025 Creative B2B Lions Bronze / Cannes Lions 2025 Creative Commerce Lions Grand Prix / Cannes Lions 2025 Direct Lions Gold / Cannes Lions 2025 Direct Lions Silver / Cannes Lions 2025 Direct Lions Bronze / Cannes Lions 2025 Media Lions Silver",
     "year": "2026",
     "regions": [
       "北米"
@@ -56886,6 +57736,44 @@
     "tags": [
       "Form/App",
       "Theme/Retail"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Creative B2B",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Creative Commerce",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Direct",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Direct",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Direct",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Media",
+        "level": "Silver"
+      }
     ]
   },
   {
@@ -59793,5 +60681,245 @@
       "Form/Installation",
       "Theme/Art"
     ]
+  },
+  {
+    "year": "2025",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2025"
+    ],
+    "id": "kimberly-clark-drops-of-hope",
+    "title": "Drops Of Hope",
+    "summary": "失禁パッドを自宅用の診断キットに再設計し、農村女性の健康検査につなげた施策",
+    "client": "Kimberly-Clark（Poise）",
+    "agency": "FCB New York",
+    "categories": [
+      "Brand Experience & Activation",
+      "Creative Data",
+      "Health & Wellness",
+      "Innovation",
+      "PR"
+    ],
+    "award": "Cannes Lions 2025 Brand Experience & Activation Lions Gold / Cannes Lions 2025 Brand Experience & Activation Lions Silver / Cannes Lions 2025 Creative Data Lions Silver / Cannes Lions 2025 Health & Wellness Lions Silver / Cannes Lions 2025 Health & Wellness Lions Bronze / Cannes Lions 2025 Innovation Lions Bronze / Cannes Lions 2025 PR Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Brand Experience & Activation",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Brand Experience & Activation",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Creative Data",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Health & Wellness",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Health & Wellness",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Innovation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "PR",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.selfstorming.com/tools/libraries/campaigns/drops-of-hope",
+    "videoId": "MnF0kip489Y",
+    "overview": "Kimberly-Clarkの失禁ケアブランドPoiseが、Panome Bioと組んで失禁パッドを自宅用の診断キットに作り替えた施策。農村部の女性が使用済みパッドを郵送すると、検体から健康状態を調べられる。",
+    "background": "失禁には根強いスティグマがあり、婦人科医が少ない地域(health deserts)の女性は検査を受ける機会も限られていた。日常的に使うパッドを検査の入口にすることで、この二重の壁を越えることを狙った。",
+    "execution": "パッドに含まれる高吸水ポリマーから尿の乾燥検体を抽出し、更年期・尿路感染症・腎疾患・膀胱がんなどのバイオマーカーを検査する仕組みを構築した。女性がパッドを郵送する形で利用でき、構想から実施まで4か月で進めた。",
+    "evaluationImpact": "selfstormingの記載では4.5Mリーチ、15州で調査を実施した。Campaign記事によればPhase 2のR&Dが承認された。カンヌライオンズ2025ではBrand Experience & Activation部門のGoldなど7つのLionsを獲得した。",
+    "tags": [
+      "Form/Product",
+      "Theme/Health",
+      "Tech/Data"
+    ],
+    "thumbnail": "/thumbnails/kimberly-clark-drops-of-hope.jpg"
+  },
+  {
+    "year": "2025",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2025"
+    ],
+    "id": "eurofarma-baby-minder",
+    "title": "Baby Minder",
+    "summary": "ベビーベッドのモビールに偽装したAI機器で乳児の神経疾患の兆候を早期検出",
+    "client": "Eurofarma",
+    "agency": "Ogilvy Health, New York",
+    "categories": [
+      "Innovation"
+    ],
+    "award": "Cannes Lions 2025 Innovation Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Innovation",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.eurofarma.cl/lang/en/press-room/baby-minder-study-pioneering-technology-that-identifies-neurological-conditions-in-babies",
+    "videoId": "hz6glruoDek",
+    "overview": "製薬会社Eurofarmaが、ベビーベッドのモビールに見せかけたAI診断機器を開発した施策。乳児の動きを観察し、神経発達上の早期兆候を小児科医へ知らせる。",
+    "background": "退院後は乳児の継続的なモニタリングが途切れ、初期の神経症状が見逃されうる。家庭で自然に置かれる物に診断機能を持たせることで、このギャップを埋めようとした。",
+    "execution": "WideLabsと共同でAIを開発し、センサーとコンピュータビジョンで乳児の動きを追跡する。数千時間の臨床映像で学習し、自閉症・てんかん・脳性麻痺などの早期兆候を検出して小児科医に通知する。Jundiaí大学病院が研究に協力した。",
+    "evaluationImpact": "Eurofarma公式によれば、3,000人超の乳児が研究対象で、0〜24か月を対象とした研究フェーズにある。カンヌライオンズ2025のInnovation部門でSilver Lionを受賞した。",
+    "tags": [
+      "Tech/AI",
+      "Tech/Device",
+      "Theme/Health"
+    ],
+    "thumbnail": "/thumbnails/eurofarma-baby-minder.jpg"
+  },
+  {
+    "year": "2025",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2025"
+    ],
+    "id": "poker-beer-retirement-account",
+    "title": "Beer Retirement Account",
+    "summary": "店主の失効ポイントを公的年金口座への積立に変えたAB InBevの仕組み",
+    "client": "AB InBev（Póker）",
+    "agency": "Monks, Bogota",
+    "categories": [
+      "Innovation"
+    ],
+    "award": "Cannes Lions 2025 Innovation Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Innovation",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://monks.com/case-studies/poker-beer-retirement-account-digital-platform",
+    "videoId": "",
+    "overview": "AB InBevのビールブランドPókerが、B2BアプリBEESで店主に付与するポイントをコロンビアの公的年金口座(Colpensiones)に積み立てられるようにした仕組み。",
+    "background": "コロンビアで完全な年金を受け取れるのは18%にとどまり、店主は短期の支出を優先しがちだった。BEESのポイントも従来は約70%が失効していた。",
+    "execution": "未使用のポイントをプッシュ通知で案内し、店主が任意で年金口座への積立に回せるようにした。政府およびColpensionesと連携して実現した。",
+    "evaluationImpact": "Monks公式によれば、BEES利用が21%増加し、2.714億ポイントが年金積立に交換され、店主の注文は12.5%増えた。4か月で1万人超が積立を開始した。カンヌライオンズ2025のInnovation部門でSilver Lionを受賞した。",
+    "tags": [
+      "Tech/Web",
+      "Theme/Retail"
+    ],
+    "thumbnail": "/thumbnails/poker-beer-retirement-account.jpg"
+  },
+  {
+    "year": "2025",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2025"
+    ],
+    "id": "aritium-painvisible",
+    "title": "Painvisible",
+    "summary": "体表温度の変化から痛みを可視化し、言葉で伝えられない患者を支援するAIアプリ",
+    "client": "Aritium",
+    "agency": "VML Madrid / VML New York",
+    "categories": [
+      "Innovation",
+      "Pharma"
+    ],
+    "award": "Cannes Lions 2025 Innovation Lions Bronze / Cannes Lions 2025 Pharma Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Innovation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Pharma",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.wpp.com/en/case-studies/vml-aritium-painvisible",
+    "videoId": "",
+    "overview": "Aritiumが、スマートフォン接続の小型サーマルカメラとAIアプリで痛みの位置と強度を可視化するツール「Painvisible」を開発した施策。乳児や自閉症の患者など、言葉で痛みを伝えにくい人を対象とする。",
+    "background": "痛みの評価は患者の自己申告に頼るため、伝えられない患者は痛みが過小評価されやすい。",
+    "execution": "WideLabsと共同で、体表温度の変化をAIで解析し痛みの位置と強度を示すアプリを構築した。スペインの病院で使用されている。",
+    "evaluationImpact": "成果の数値は公表されていない。The Cocktailによれば、スペイン初のInnovation Lionとなった。カンヌライオンズ2025ではInnovationとPharmaの両部門でBronzeを受賞した。",
+    "tags": [
+      "Tech/AI",
+      "Tech/Device",
+      "Theme/Health"
+    ],
+    "thumbnail": "/thumbnails/aritium-painvisible.jpg"
+  },
+  {
+    "year": "2025",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2025"
+    ],
+    "id": "atratus-living-fabric",
+    "title": "Living Fabric",
+    "summary": "原油に触れると菌が分解し土壌を回復する、フィケ繊維の生分解性テキスタイル",
+    "client": "Universidad de los Andes & Atratus",
+    "agency": "VML Bogota",
+    "categories": [
+      "Innovation"
+    ],
+    "award": "Cannes Lions 2025 Innovation Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Innovation",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.eltiempo.com/vida/medio-ambiente/proyecto-colombiano-recibe-galardon-en-cannes-lions-por-tejido-que-limpia-derrames-de-petroleo-3465288",
+    "videoId": "",
+    "overview": "Universidad de los AndesとAtratusが、Corpogenとの共同研究で開発した生分解性テキスタイル。フィケ(fique)繊維に石油分解菌を接種し、原油流出の汚染土壌を回復させる。",
+    "background": "コロンビアでは攻撃などによる陸上の原油流出が年1,000件超あるとUNEPを引用して説明されている。20年超の研究が開発の基盤となった。",
+    "execution": "フィケ繊維に石油分解菌Lysinibacillus sphaericusを接種した布を製作した。原油に触れると菌が炭化水素を分解する。作り方はオープンソースで公開された。",
+    "evaluationImpact": "制作側は30日未満で土壌が回復するとしている(独立検証なし)。El Tiempoはコロンビア史上2個目のInnovation Lionと報じた。カンヌライオンズ2025のInnovation部門でBronze Lionを受賞した。",
+    "tags": [
+      "Form/Product",
+      "Theme/Sustainability"
+    ],
+    "thumbnail": "/thumbnails/atratus-living-fabric.jpg"
   }
 ]
