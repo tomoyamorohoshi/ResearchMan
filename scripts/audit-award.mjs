@@ -52,7 +52,7 @@ function defaultExtractLevel(segment) {
 
 const deaccent = (s) => (s || "").normalize("NFD").replace(/[̀-ͯ]/g, "");
 
-function makeTextUtils(stopwords) {
+export function makeTextUtils(stopwords) {
   const norm = (s) =>
     deaccent(s || "")
       .toLowerCase()

@@ -81,3 +81,6 @@ studio/workdir/
 
 # Gate proposals (v3 Phase4): 基準変更案の承認待ち台帳（ローカル運用状態。コミットしない）
 /data/inbox/gate-proposals.json
+
+# Cannes 取り込みの生成物（cannes-reconcile の plan.json）。コミットしない
+/data/cannes/work/

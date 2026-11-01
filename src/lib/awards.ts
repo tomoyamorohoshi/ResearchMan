@@ -146,6 +146,16 @@ function cannesEntries(entries: Case['awardEntries'] | undefined, orgKey: OrgKey
   return (entries ?? []).filter(e => e && e.org === 'cannes' && e.category);
 }
 
+// awardEntries に含まれる年の Cannes 記載だけを award 文字列から解析しない（他の年は従来どおり）
+function cannesEntryYears(entries: Case['awardEntries'] | undefined, orgKey: OrgKey): Set<string> {
+  return new Set(cannesEntries(entries, orgKey).map(e => String(e.year)));
+}
+
+function segmentOverriddenByEntries(seg: string, caseYear: string, orgKey: OrgKey, years: Set<string>): boolean {
+  if (years.size === 0 || !segmentBelongsToOrg(seg, orgKey)) return false;
+  return years.has(parseCollection(seg, caseYear, orgKey).year);
+}
+
 function toSlug(year: string, category: string): string {
   // 年別org（瀬戸内）は category===year のため "2010-2010" を避けて年だけのslugにする
   if (category === year) return year;
@@ -168,13 +178,15 @@ export function getAwardLevelForCollection(
 ): AwardLevel | null {
   let best: AwardLevel | null = null;
   const entries = cannesEntries(awardEntries, orgKey);
+  const entryYears = cannesEntryYears(awardEntries, orgKey);
   if (entries.length > 0) {
     for (const e of entries) {
       if (String(e.year) !== year || !sameCannesCategory(e.category, category)) continue;
       const level = getAwardLevel(e.level);
       if (level && (!best || level.rank < best.rank)) best = level;
     }
-    return best;
+    // その年が awardEntries にあれば構造化データのみ。無い年は award 文字列から従来どおり
+    if (entryYears.has(year)) return best;
   }
   for (const seg of (awardStr || '').split('/')) {
     if (!seg.trim()) continue;
@@ -218,11 +230,14 @@ export function getAwardCollections(orgKey: OrgKey): AwardCollection[] {
 // 事例配列を引数に取る版（テスト用に cases.json 以外の入力でも同じ規則で作れるようにしている）
 export function getAwardCollectionsFrom(caseList: Case[], orgKey: OrgKey): AwardCollection[] {
   const map = new Map<string, { year: string; category: string; cases: Case[] }>();
-  // 1) 従来どおり award 文字列から作る（Cannes の awardEntries 持ちは対象外）
+  // 1) 従来どおり award 文字列から作る（Cannes は awardEntries に含まれる年の記載だけ対象外）
   for (const c of caseList) {
-    if (cannesEntries(c.awardEntries, orgKey).length > 0) continue;
-    if (!matchesOrg(c.award ?? '', orgKey)) continue;
-    for (const { year, category } of parseCollectionsAll(c.award ?? '', c.year, orgKey)) {
+    const years = cannesEntryYears(c.awardEntries, orgKey);
+    const award = years.size === 0
+      ? (c.award ?? '')
+      : (c.award ?? '').split('/').filter(seg => !segmentOverriddenByEntries(seg, c.year, orgKey, years)).join('/');
+    if (!matchesOrg(award, orgKey)) continue;
+    for (const { year, category } of parseCollectionsAll(award, c.year, orgKey)) {
       const key = `${year}::${category}`;
       if (!map.has(key)) map.set(key, { year, category, cases: [] });
       map.get(key)!.cases.push(c);
@@ -279,8 +294,9 @@ export function getCaseAwardRefs(c: Case): string[] {
     .filter(Boolean);
   const entries = cannesEntries(c.awardEntries, 'cannes');
   if (entries.length === 0) return segs;
-  // awardEntries がある事例の Cannes 受賞は構造化データから数える（award 文字列の Cannes 部分は使わない）
-  const others = segs.filter(s => !matchesOrg(s, 'cannes'));
+  // awardEntries に含まれる年の Cannes 受賞は構造化データから数える（その年の award 文字列記載は使わない）
+  const years = cannesEntryYears(c.awardEntries, 'cannes');
+  const others = segs.filter(s => !(matchesOrg(s, 'cannes') && segmentOverriddenByEntries(s, c.year, 'cannes', years)));
   const seen = new Set<string>();
   const refs: string[] = [];
   for (const e of entries) {

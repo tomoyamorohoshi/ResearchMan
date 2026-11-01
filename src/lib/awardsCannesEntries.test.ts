@@ -118,3 +118,29 @@ test("Grand Prix for Good の awardEntries は旧 'for Good' コレクション�
   assert.ok(!bySlug["2026-health-for-good"]?.includes("g26"), "Grand Prix for Good と Health は別コレクション");
   assert.equal(cols.length, 3);
 });
+
+test("上書きは年単位: awardEntries に無い年の award 文字列記載は従来どおり解析する", () => {
+  const c = mk({
+    id: "yr1",
+    year: "2026",
+    award: "Cannes Lions 2026 Outdoor Lions Gold",
+    awardEntries: [{ org: "cannes", year: 2025, category: "Outdoor", level: "Gold" }],
+  });
+  const cols = getAwardCollectionsFrom([c], "cannes");
+  assert.deepEqual(cols.map((x) => x.slug).sort(), ["2025-outdoor", "2026-outdoor"]);
+  assert.equal(getAwardLevelForCollection(c.award, "cannes", c.year, "2026", "Outdoor", c.awardEntries)?.label, "GOLD");
+  assert.equal(getAwardLevelForCollection(c.award, "cannes", c.year, "2025", "Outdoor", c.awardEntries)?.label, "GOLD");
+  assert.ok(getCaseAwardRefs(c).some((r) => r.includes("2026")));
+});
+
+test("同年の award 文字列記載は awardEntries が優先される（年単位でも維持）", () => {
+  const c = mk({
+    id: "yr2",
+    year: "2025",
+    award: "Cannes Lions 2025 Film Lions Gold",
+    awardEntries: [{ org: "cannes", year: 2025, category: "Outdoor", level: "Silver" }],
+  });
+  assert.deepEqual(getAwardCollectionsFrom([c], "cannes").map((x) => x.slug), ["2025-outdoor"]);
+  assert.equal(getAwardLevelForCollection(c.award, "cannes", c.year, "2025", "Film", c.awardEntries), null);
+  assert.deepEqual(getCaseAwardRefs(c), ["Cannes Lions 2025 Outdoor Lions Silver"]);
+});
