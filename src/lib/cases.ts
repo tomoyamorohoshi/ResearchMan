@@ -9,6 +9,9 @@ export type Case = {
   agency: string;
   categories: string[];
   award: string;
+  // 構造化された受賞（任意）。あれば Cannes のコレクション・受賞レベルは award 文字列でなくここから作る
+  // （award 文字列は表示用に残す。docs/CANNES_10Y_DESIGN.md §5-1）
+  awardEntries?: Array<{ org: string; year: number; category: string; level: string }>;
   year: string;
   regions: string[];
   link: string;

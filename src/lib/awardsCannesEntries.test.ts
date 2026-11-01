@@ -1,0 +1,87 @@
+// 手順①: Case.awardEntries（構造化受賞）による Cannes コレクション生成のテスト。
+// (1) 変更前の実データ(__fixtures__/cannes-cases-snapshot.json = 2026-11 時点の cases.json から
+//     Cannes を含む事例の id/award/year を抜粋)から作ったコレクションの slug とその件数が、
+//     変更前のコード出力(cannes-collections-expected.json)と完全一致すること。
+// (2) awardEntries を持つ合成 Case は、award が自由記述でも awardEntries 通りになること。
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
+import type { Case } from "./cases";
+import {
+  getAwardCollectionsFrom,
+  getAwardCollections,
+  getAwardLevelForCollection,
+  compareByAwardForCollection,
+} from "./awards";
+
+const dir = path.join(__dirname, "__fixtures__");
+const snapshot = JSON.parse(fs.readFileSync(path.join(dir, "cannes-cases-snapshot.json"), "utf8")) as Array<{ id: string; award: string; year: string }>;
+const expected = JSON.parse(fs.readFileSync(path.join(dir, "cannes-collections-expected.json"), "utf8")) as Record<string, number>;
+
+const mk = (o: Partial<Case> & { id: string; award: string; year: string }): Case =>
+  ({ title: o.id, summary: "", client: "", agency: "", categories: [], regions: [], link: "", thumbnail: "", overview: "", background: "", execution: "", evaluationImpact: "", relatedWorks: [], ...o }) as Case;
+
+test("既存の Cannes コレクション: slug 一覧と件数が変更前と完全一致", () => {
+  const cols = getAwardCollectionsFrom(snapshot.map(mk), "cannes");
+  const actual = Object.fromEntries(cols.map((c) => [`${c.slug}|${c.category}`, c.cases.length]));
+  assert.deepEqual(actual, expected);
+  assert.deepEqual(cols.map((c) => `${c.slug}|${c.category}`), Object.keys(expected));
+});
+
+test("getAwardCollections('cannes') は実データでも fixture と同じ slug 集合を含む（実データは増えうるので包含で確認）", () => {
+  const slugs = new Set(getAwardCollections("cannes").map((c) => `${c.slug}|${c.category}`));
+  for (const k of Object.keys(expected)) assert.ok(slugs.has(k), `${k} が消えている`);
+});
+
+test("awardEntries: 自由記述の award でも awardEntries 通りのコレクションとレベル", () => {
+  const c = mk({
+    id: "syn1",
+    year: "2023",
+    award: "カンヌ ライオンズ 2023 屋外部門 Finalist（詳細情報は確認中）",
+    awardEntries: [
+      { org: "cannes", year: 2023, category: "Outdoor", level: "Grand Prix" },
+      { org: "cannes", year: 2023, category: "Entertainment Lions for Music", level: "Gold" },
+    ],
+  });
+  const cols = getAwardCollectionsFrom([c], "cannes");
+  assert.deepEqual(cols.map((x) => x.slug).sort(), ["2023-entertainment-lions-for-music", "2023-outdoor"]);
+  assert.equal(getAwardLevelForCollection(c.award, "cannes", c.year, "2023", "Outdoor", c.awardEntries)?.label, "GRAND PRIX");
+  assert.equal(getAwardLevelForCollection(c.award, "cannes", c.year, "2023", "Entertainment Lions for Music", c.awardEntries)?.label, "GOLD");
+  assert.equal(getAwardLevelForCollection(c.award, "cannes", c.year, "2023", "Film", c.awardEntries), null);
+});
+
+test("awardEntries がある事例は award 文字列の Cannes 部分を解析しない（他 org は従来どおり）", () => {
+  const c = mk({
+    id: "syn2",
+    year: "2024",
+    award: "Cannes Lions 2024 Film Lions Gold / D&AD 2024 Design Yellow Pencil",
+    awardEntries: [{ org: "cannes", year: 2024, category: "Design", level: "Silver" }],
+  });
+  const cannes = getAwardCollectionsFrom([c], "cannes");
+  assert.deepEqual(cannes.map((x) => x.slug), ["2024-design"]);
+  const dad = getAwardCollectionsFrom([c], "dad");
+  assert.equal(dad.length, 1);
+});
+
+test("award に Cannes の記載が無くても awardEntries で Cannes コレクションに入る", () => {
+  const c = mk({ id: "syn3", year: "2022", award: "", awardEntries: [{ org: "cannes", year: 2022, category: "Film Craft", level: "Bronze" }] });
+  assert.deepEqual(getAwardCollectionsFrom([c], "cannes").map((x) => x.slug), ["2022-film-craft"]);
+});
+
+test("awardEntries の同一部門は正規化で畳まれ、既存事例と同じコレクションに合流する", () => {
+  const legacy = mk({ id: "old", year: "2026", award: "Cannes Lions 2026 Film Lions Gold" });
+  const entry = mk({ id: "new", year: "2026", award: "x", awardEntries: [{ org: "cannes", year: 2026, category: "Film", level: "Silver" }, { org: "cannes", year: 2026, category: "Film Lions", level: "Bronze" }] });
+  const cols = getAwardCollectionsFrom([legacy, entry], "cannes");
+  assert.equal(cols.length, 1);
+  assert.equal(cols[0].slug, "2026-film");
+  assert.equal(cols[0].cases.length, 2);
+  // 同一事例の重複エントリは1件として数え、最上位レベルを採る
+  assert.equal(getAwardLevelForCollection(entry.award, "cannes", entry.year, "2026", "Film", entry.awardEntries)?.label, "SILVER");
+});
+
+test("compareByAwardForCollection は awardEntries のレベルで並ぶ", () => {
+  const a = mk({ id: "a", year: "2023", award: "free text", awardEntries: [{ org: "cannes", year: 2023, category: "Outdoor", level: "Bronze" }] });
+  const b = mk({ id: "b", year: "2023", award: "free text", awardEntries: [{ org: "cannes", year: 2023, category: "Outdoor", level: "Gold" }] });
+  assert.ok(compareByAwardForCollection(a, b, "cannes", "2023", "Outdoor") > 0);
+});

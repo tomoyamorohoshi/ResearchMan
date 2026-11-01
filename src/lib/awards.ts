@@ -1,5 +1,7 @@
 import { cases, Case } from './cases';
 import { getAwardLevel, type AwardLevel } from './awardLevel';
+// Cannes 部門名の正規化表は audit-cannes / reconcile と共有（scripts/lib/cannes-categories.mjs）
+import { sameCannesCategory, normalizeCannesCategory, formatCannesAward } from '../../scripts/lib/cannes-categories.mjs';
 
 export const AWARD_ORGS = [
   { key: 'cannes', label: 'Cannes Lions',    abbr: 'CANNES LIONS'    },
@@ -136,6 +138,14 @@ function parseCollectionsAll(
   return results;
 }
 
+type AwardEntry = NonNullable<Case['awardEntries']>[number];
+
+// org="cannes" の awardEntries（構造化受賞）。あれば Cannes の判定は award 文字列でなくこちらを使う
+function cannesEntries(entries: Case['awardEntries'] | undefined, orgKey: OrgKey): AwardEntry[] {
+  if (orgKey !== 'cannes') return [];
+  return (entries ?? []).filter(e => e && e.org === 'cannes' && e.category);
+}
+
 function toSlug(year: string, category: string): string {
   // 年別org（瀬戸内）は category===year のため "2010-2010" を避けて年だけのslugにする
   if (category === year) return year;
@@ -154,8 +164,18 @@ export function getAwardLevelForCollection(
   caseYear: string,
   year: string,
   category: string,
+  awardEntries?: Case['awardEntries'],
 ): AwardLevel | null {
   let best: AwardLevel | null = null;
+  const entries = cannesEntries(awardEntries, orgKey);
+  if (entries.length > 0) {
+    for (const e of entries) {
+      if (String(e.year) !== year || !sameCannesCategory(e.category, category)) continue;
+      const level = getAwardLevel(e.level);
+      if (level && (!best || level.rank < best.rank)) best = level;
+    }
+    return best;
+  }
   for (const seg of (awardStr || '').split('/')) {
     if (!seg.trim()) continue;
     if (!segmentBelongsToOrg(seg, orgKey)) continue;
@@ -176,8 +196,8 @@ export function compareByAwardForCollection(
   year: string,
   category: string,
 ): number {
-  const ra = getAwardLevelForCollection(a.award, orgKey, a.year, year, category)?.rank ?? 9;
-  const rb = getAwardLevelForCollection(b.award, orgKey, b.year, year, category)?.rank ?? 9;
+  const ra = getAwardLevelForCollection(a.award, orgKey, a.year, year, category, a.awardEntries)?.rank ?? 9;
+  const rb = getAwardLevelForCollection(b.award, orgKey, b.year, year, category, b.awardEntries)?.rank ?? 9;
   if (ra !== rb) return ra - rb;
   return Number(b.year) - Number(a.year);
 }
@@ -192,14 +212,37 @@ export type AwardCollection = {
 };
 
 export function getAwardCollections(orgKey: OrgKey): AwardCollection[] {
-  const matched = cases.filter(c => matchesOrg(c.award ?? '', orgKey));
+  return getAwardCollectionsFrom(cases, orgKey);
+}
 
+// 事例配列を引数に取る版（テスト用に cases.json 以外の入力でも同じ規則で作れるようにしている）
+export function getAwardCollectionsFrom(caseList: Case[], orgKey: OrgKey): AwardCollection[] {
   const map = new Map<string, { year: string; category: string; cases: Case[] }>();
-  for (const c of matched) {
+  // 1) 従来どおり award 文字列から作る（Cannes の awardEntries 持ちは対象外）
+  for (const c of caseList) {
+    if (cannesEntries(c.awardEntries, orgKey).length > 0) continue;
+    if (!matchesOrg(c.award ?? '', orgKey)) continue;
     for (const { year, category } of parseCollectionsAll(c.award ?? '', c.year, orgKey)) {
       const key = `${year}::${category}`;
       if (!map.has(key)) map.set(key, { year, category, cases: [] });
       map.get(key)!.cases.push(c);
+    }
+  }
+  // 2) awardEntries から作る。同年・同部門（正規化キー一致）は既存コレクションに合流
+  const byNorm = new Map<string, string>();
+  for (const [key, v] of map) byNorm.set(`${v.year}::${normalizeCannesCategory(v.category)}`, key);
+  for (const c of caseList) {
+    for (const e of cannesEntries(c.awardEntries, orgKey)) {
+      const year = String(e.year);
+      const normKey = `${year}::${normalizeCannesCategory(e.category)}`;
+      let key = byNorm.get(normKey);
+      if (!key) {
+        key = `${year}::${e.category.trim()}`;
+        byNorm.set(normKey, key);
+        if (!map.has(key)) map.set(key, { year, category: e.category.trim(), cases: [] });
+      }
+      const col = map.get(key)!;
+      if (!col.cases.includes(c)) col.cases.push(c);
     }
   }
 
@@ -230,8 +273,21 @@ export function getOrgByKey(key: string) {
 // 例: "Cannes Lions Film Craft Grand Prix 2015 / D&AD Yellow Pencil / FWA" → 3件。
 // CaseCard の「+N」バッジ（複数部門受賞の表示）に使う。
 export function getCaseAwardRefs(c: Case): string[] {
-  return (c.award ?? '')
+  const segs = (c.award ?? '')
     .split('/')
     .map(s => s.trim())
     .filter(Boolean);
+  const entries = cannesEntries(c.awardEntries, 'cannes');
+  if (entries.length === 0) return segs;
+  // awardEntries がある事例の Cannes 受賞は構造化データから数える（award 文字列の Cannes 部分は使わない）
+  const others = segs.filter(s => !segmentBelongsToOrg(s, 'cannes'));
+  const seen = new Set<string>();
+  const refs: string[] = [];
+  for (const e of entries) {
+    const k = `${e.year}::${normalizeCannesCategory(e.category)}::${e.level}`;
+    if (seen.has(k)) continue;
+    seen.add(k);
+    refs.push(formatCannesAward(e));
+  }
+  return [...refs, ...others];
 }

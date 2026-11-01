@@ -32,7 +32,7 @@ export default function CaseCard({
   trashMode = false,
 }: Props) {
   const level = awardContext
-    ? getAwardLevelForCollection(c.award, awardContext.org, c.year, awardContext.year, awardContext.category)
+    ? getAwardLevelForCollection(c.award, awardContext.org, c.year, awardContext.year, awardContext.category, c.awardEntries)
     : getAwardLevel(c.award);
   const awardCount = getCaseAwardRefs(c).length;
   const isRadar = isRadarCase(c);
