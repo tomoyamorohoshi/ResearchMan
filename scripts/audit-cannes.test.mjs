@@ -92,7 +92,7 @@ test("caseAwardForYear: entries of that year only, else original award", () => {
     awardEntries: [{ org: "cannes", year: 2023, category: "Outdoor", level: "Gold" }, { org: "cannes", year: 2024, category: "Film", level: "Silver" }],
   });
   assert.equal(caseAwardForYear(c, 2023), "Cannes Lions 2023 Outdoor Lions Gold");
-  assert.equal(caseAwardForYear(c, 2022), c.award);
+  assert.equal(caseAwardForYear(c, 2022), ""); // 他年セグメントは判定対象にしない（A）
 });
 
 test("category matching normalizes spelling but never across years", () => {

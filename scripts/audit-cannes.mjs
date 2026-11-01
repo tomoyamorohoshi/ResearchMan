@@ -77,7 +77,16 @@ function extractLevel(segment) {
 // その年の判定に使う award 文字列。awardEntries（org=cannes・その年）があれば正規形で作り直す
 export function caseAwardForYear(c, year) {
   const entries = (c.awardEntries || []).filter((e) => e && e.org === "cannes" && e.category && String(e.year) === String(year));
-  if (!entries.length) return c.award;
+  if (!entries.length) {
+    // 2026 は pre-push の挙動を変えないため award 全文判定のまま
+    if (Number(year) === 2026) return c.award;
+    // 他年: その年の Cannes セグメントだけ。年なしセグメントは case.year が対象年のときだけ含む
+    const keep = (c.award || "").split("/").map((x) => x.trim()).filter(Boolean).filter((seg) => {
+      const m = seg.match(/\b(?:19|20)\d{2}\b/);
+      return m ? m[0] === String(year) : String(c.year) === String(year);
+    });
+    return keep.join(" / ");
+  }
   return entries.map((e) => formatCannesAward({ year, category: e.category, level: e.level })).join(" / ");
 }
 
@@ -142,6 +151,13 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const argv = process.argv.slice(2);
   const flag = (n) => { const i = argv.indexOf(n); return i >= 0 ? argv[i + 1] : null; };
   const yearArg = flag("--year");
+  if (argv.includes("--year")) {
+    const known = Object.keys(loadJson(path.join(__dirname, "../data/cannes/years.json")));
+    if (!yearArg || !/^\d{4}$/.test(yearArg) || !known.includes(yearArg)) {
+      console.error(`--year ${yearArg ?? "(未指定)"} は不正です。years.json にある年を指定してください: ${known.join(", ")}`);
+      process.exit(1);
+    }
+  }
   const result = runCannesAudit({
     years: yearArg ? [Number(yearArg)] : undefined,
     strict: argv.includes("--strict"),
