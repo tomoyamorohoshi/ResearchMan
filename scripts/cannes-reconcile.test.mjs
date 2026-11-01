@@ -65,3 +65,62 @@ test("適用: awardEntries は重複なし、award は当該年記載が無い�
   assert.deepEqual(cases[1].awardEntries, [{ org: "cannes", year: 2025, category: "Outdoor", level: "Silver" }]);
   assert.equal(cases[2].award, "Cannes Lions 2025 Film Lions Gold");
 });
+
+// --- 照合規則の厳格化（2025 dry-run の誤一致を再現する fixture） ---
+const CY = (id, year, title, client, award = "") => ({ id, year: String(year), title, client, award });
+
+test("誤一致の抑止: brand 一致＋Jaccard 0.3〜0.5 は当該年の Cannes 記載が無ければ一致しない", () => {
+  const p = plan(
+    [W("Outdoor", "Gold", "Pub Succession", "Heineken"), W("Direct", "Gold", "Oreo Empire", "Oreo"), W("Audio & Radio", "Gold", "Boxed Ads", "Mercado Libre")],
+    [
+      CY("pub-museums-2024", 2024, "Pub Museums", "Heineken (Heineken Ireland)", "Cannes Lions 2024 Outdoor Lions Gold"),
+      CY("oreo-cows", 2026, "Oreo Cows", "Oreo", "Cannes Lions 2026 Direct Lions Gold"),
+      CY("doorbell", 2026, "Doorbell Ads", "Mercado Libre", "Cannes Lions 2026 Audio & Radio Lions Silver"),
+    ],
+  );
+  assert.equal(p.counts.matched, 0);
+  assert.equal(p.counts.new, 3);
+});
+
+test("brand 一致＋Jaccard 0.3〜0.5 でも当該年の Cannes 記載があれば一致、0.5 以上なら記載不問で一致", () => {
+  const p = plan(
+    [W("Outdoor", "Gold", "Pub Succession", "Heineken"), W("Film", "Gold", "Red Blue Green Sky", "Acme")],
+    [
+      CY("hk", 2025, "Pub Museums", "Heineken", "Cannes Lions 2025 Outdoor"),
+      CY("ac", 2020, "Red Blue Green Moon", "Acme", ""), // jac 3/5=0.6
+    ],
+  );
+  assert.deepEqual(p.matched.map((m) => m.caseId).sort(), ["ac", "hk"]);
+});
+
+test("title 完全一致は brand 一致か case.year が対象年±1 のときだけ一致", () => {
+  const p = plan(
+    [W("Design", "Gold", "Found In Translation", "Medalla Light"), W("Film", "Gold", "Same Name", "Other Brand")],
+    [CY("old", 2021, "Found in Translation", "Google"), CY("near", 2026, "Same Name", "Unrelated")],
+  );
+  assert.deepEqual(p.matched.map((m) => m.caseId), ["near"]);
+  assert.equal(p.counts.new, 1);
+});
+
+test("複数候補のとき完全一致がちょうど1件ならそれを採る。完全一致が複数なら ambiguous", () => {
+  const p = plan(
+    [W("Outdoor", "Gold", "Shot On Iphone", "Apple"), W("Film", "Gold", "Sounds Right", "Spotify")],
+    [
+      CY("shot", 2015, "SHOT ON iPHONE", "Apple"), CY("bigman", 2026, "Big Man, Shot on iPhone", "Apple", "Cannes Lions 2025 Film"),
+      CY("sr1", 2025, "SOUNDS RIGHT", "Spotify"), CY("sr2", 2024, "Sounds Right", "Spotify"),
+    ],
+  );
+  assert.deepEqual(p.matched.map((m) => m.caseId), ["shot"]);
+  assert.equal(p.counts.ambiguous, 1);
+  assert.deepEqual(p.ambiguous[0].candidateCaseIds.sort(), ["sr1", "sr2"]);
+});
+
+test("1事例に複数作品が当たる場合は許可し、casesWithMultipleWorks に列挙する", () => {
+  const p = plan(
+    [W("Film", "Gold", "Campaign", "Acme"), W("Film", "Silver", "Campaign Part Two", "Acme")],
+    [CY("camp", 2025, "Campaign", "Acme")],
+  );
+  assert.equal(p.counts.casesWithMultipleWorks, 1);
+  assert.equal(p.casesWithMultipleWorks[0].caseId, "camp");
+  assert.equal(p.casesWithMultipleWorks[0].works.length, 2);
+});
