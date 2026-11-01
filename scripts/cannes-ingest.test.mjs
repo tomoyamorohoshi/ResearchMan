@@ -183,3 +183,36 @@ test("draft に必須本文が無い作品はスキップ", async () => {
   assert.deepEqual(r.added, []);
   assert.match(r.skipped[0].reason, /draft/);
 });
+
+test("ロック取得後の cases.json 読み込みで例外: ロック解放・新規サムネ掃除・exit 1", async () => {
+  const t = setup([]);
+  const r = await ingest({
+    ...t.base,
+    saveThumb: async (id) => { fs.writeFileSync(path.join(t.thumbDir, `${id}.jpg`), "x"); fs.unlinkSync(t.casesPath); return `/thumbnails/${id}.jpg`; },
+    drafts: [mkItem("painvisible|aritium")],
+  });
+  assert.equal(r.exitCode, 1);
+  assert.ok(!fs.existsSync(t.lockPath), "ロック解放済み");
+  assert.deepEqual(fs.readdirSync(t.thumbDir), []);
+});
+
+test("準備ループで想定外例外: それまでに保存したサムネを消して exit 1", async () => {
+  const t = setup([]);
+  const bad = mkItem("babyminder|eurofarma");
+  Object.defineProperty(bad.draft, "summary", { get() { throw new Error("boom"); } });
+  const r = await ingest({ ...t.base, drafts: [mkItem("painvisible|aritium"), bad] });
+  assert.equal(r.exitCode, 1);
+  assert.deepEqual(fs.readdirSync(t.thumbDir), []);
+  assert.equal(t.calls.commits.length, 0);
+});
+
+test("冪等性: draft.title が plan と違う表記でも2回 ingest して1件のまま", async () => {
+  const t = setup([]);
+  const drafts = [mkItem("painvisible|aritium", { title: "Painvisible: The Case Film" })];
+  const r1 = await ingest({ ...t.base, drafts });
+  assert.deepEqual(r1.added, ["aritium-painvisible"]);
+  const r2 = await ingest({ ...t.base, drafts });
+  assert.deepEqual(r2.added, []);
+  assert.match(r2.skipped[0].reason, /既に/);
+  assert.equal(readCases(t.casesPath).length, 1);
+});
