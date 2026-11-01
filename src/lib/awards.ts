@@ -296,7 +296,7 @@ export function getCaseAwardRefs(c: Case): string[] {
   if (entries.length === 0) return segs;
   // awardEntries に含まれる年の Cannes 受賞は構造化データから数える（その年の award 文字列記載は使わない）
   const years = cannesEntryYears(c.awardEntries, 'cannes');
-  const others = segs.filter(s => !(matchesOrg(s, 'cannes') && segmentOverriddenByEntries(s, c.year, 'cannes', years)));
+  const others = segs.filter(s => !(segmentOverriddenByEntries(s, c.year, 'cannes', years) && (matchesOrg(s, 'cannes') || /20\d{2}/.test(s))));
   const seen = new Set<string>();
   const refs: string[] = [];
   for (const e of entries) {

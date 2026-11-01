@@ -72,10 +72,8 @@ test("writeFileAtomic: 内容が置き換わり、一時ファイルが残らな
   const d = fs.mkdtempSync(path.join(os.tmpdir(), "rec-"));
   const f = path.join(d, "x.json");
   fs.writeFileSync(f, "old");
-  writeFileAtomic(f, "new
-");
-  assert.equal(fs.readFileSync(f, "utf8"), "new
-");
+  writeFileAtomic(f, "new" + String.fromCharCode(10));
+  assert.equal(fs.readFileSync(f, "utf8"), "new" + String.fromCharCode(10));
   assert.deepEqual(fs.readdirSync(d), ["x.json"]);
 });
 

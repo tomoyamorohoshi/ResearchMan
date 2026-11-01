@@ -41,9 +41,10 @@ export function collapseWinners(winners, year) {
   for (const w of winners) {
     const key = workKey(w);
     if (!works.has(key)) {
-      works.set(key, { key, title: w.title, brand: w.brand, agency: w.agency, country: w.country, sources: [], entries: [], _seen: new Set() });
+      works.set(key, { key, title: w.title, brand: w.brand, agency: w.agency, country: w.country, sources: [], entries: [], rows: 0, _seen: new Set() });
     }
     const wk = works.get(key);
+    wk.rows++;
     for (const s of w.sources || []) if (!wk.sources.includes(s)) wk.sources.push(s);
     const ek = `${normalizeCannesCategory(w.category)}::${w.level}`;
     if (wk._seen.has(ek)) continue;
@@ -53,10 +54,31 @@ export function collapseWinners(winners, year) {
   return [...works.values()].map(({ _seen, ...rest }) => rest);
 }
 
-export function checkCounts(counts, workCount) {
-  const sum = counts.matched + counts.ambiguous + counts.new;
-  if (sum !== workCount || counts.works !== workCount) {
-    throw new Error(`件数不一致: matched(${counts.matched})+ambiguous(${counts.ambiguous})+new(${counts.new})=${sum} / 作品数=${workCount}`);
+// 独立した量との突き合わせ: (a) 分類済み work.key の集合が works の key 集合と重複・欠落なく一致、
+// (b) 畳み込み前の行数の合計が winnerRows と一致
+export function verifyPlan(plan, works) {
+  const keys = [...plan.matched, ...plan.ambiguous, ...plan.new].map((x) => x.work?.key ?? x.key);
+  const expected = new Set(works.map((w) => w.key));
+  const got = new Set(keys);
+  const rowSum = works.reduce((n, w) => n + w.rows, 0);
+  const problems = [];
+  if (keys.length !== got.size) problems.push("重複あり");
+  if (got.size !== expected.size || [...expected].some((k) => !got.has(k))) problems.push("work.key の集合が不一致");
+  if (rowSum !== plan.counts.winnerRows) problems.push(`行数合計(${rowSum}) != winnerRows(${plan.counts.winnerRows})`);
+  if (problems.length) {
+    throw new Error(`件数不一致: ${problems.join(" / ")}（matched ${plan.matched.length} + ambiguous ${plan.ambiguous.length} + new ${plan.new.length}, 作品数 ${works.length}）`);
+  }
+}
+
+// 同じディレクトリの一時ファイルに書いてから rename（書き込み途中の破損を避ける）
+export function writeFileAtomic(file, data) {
+  const tmp = `${file}.${process.pid}.tmp`;
+  try {
+    fs.writeFileSync(tmp, data);
+    fs.renameSync(tmp, file);
+  } catch (e) {
+    try { fs.unlinkSync(tmp); } catch {}
+    throw e;
   }
 }
 
@@ -66,6 +88,7 @@ export function buildPlan({ year, winners, cases, aliases = {}, generatedAt = ne
   const works = collapseWinners(winners, year);
   const yearAlias = aliases[String(year)] || {};
   const byId = new Map(cases.map((c) => [c.id, c]));
+  const aliasMissing = Object.entries(yearAlias).filter(([, id]) => !byId.has(id)).map(([key, caseId]) => ({ key, caseId }));
   const idx = cases.map((c) => ({ c, f: flat(c.title), t: toks(c.title), cl: flat(c.client) }));
 
   const matched = [], ambiguous = [], fresh = [];
@@ -121,9 +144,11 @@ export function buildPlan({ year, winners, cases, aliases = {}, generatedAt = ne
     matched: matched.length, ambiguous: ambiguous.length, new: fresh.length,
     unmatchedExisting: unmatchedExisting.length,
     casesWithMultipleWorks: casesWithMultipleWorks.length,
+    aliasMissing: aliasMissing.length,
   };
-  checkCounts(counts, works.length);
-  return { year: Number(year), generatedAt, counts, matched, ambiguous, new: fresh, casesWithMultipleWorks, unmatchedExisting };
+  const plan = { year: Number(year), generatedAt, counts, matched, ambiguous, new: fresh, casesWithMultipleWorks, aliasMissing, unmatchedExisting };
+  verifyPlan(plan, works);
+  return plan;
 }
 
 /** matched を cases に適用（破壊的変更。変更した事例数を返す）。ambiguous / new は触らない */
@@ -175,7 +200,7 @@ function main() {
   if (!dry) {
     const changed = applyPlan(cases, plan);
     const eol = casesText.endsWith("\n") ? "\n" : "";
-    fs.writeFileSync(casesPath, JSON.stringify(cases, null, 2) + eol);
+    writeFileAtomic(casesPath, JSON.stringify(cases, null, 2) + eol);
     console.log(`[cannes-reconcile ${year}] applied: ${changed} cases updated`);
   }
 }
