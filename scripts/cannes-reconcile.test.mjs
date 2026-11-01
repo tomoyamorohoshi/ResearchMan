@@ -124,3 +124,24 @@ test("1事例に複数作品が当たる場合は許可し、casesWithMultipleWo
   assert.equal(p.casesWithMultipleWorks[0].caseId, "camp");
   assert.equal(p.casesWithMultipleWorks[0].works.length, 2);
 });
+
+test("title 完全一致: 年±1 でも brand 一致でもなくても、当該年の Cannes 記載（全角／区切り含む）があれば一致", () => {
+  const p = plan(
+    [W("Creative Effectiveness", "Silver", "No Smiles", "McDonald's")],
+    [CY("no-smiles-2023", 2023, "No Smiles", "日本マクドナルド", "Cannes Lions 2023 Film／Cannes Lions 2025 Creative Effectiveness Lions Silver")],
+  );
+  assert.deepEqual(p.matched.map((m) => m.caseId), ["no-smiles-2023"]);
+});
+
+test("brand 一致＋Jaccard≥0.5 でも title トークンの共通部分が1語だけなら規則3へ（記載が無ければ不一致）", () => {
+  const p = plan(
+    [W("Direct", "Gold", "Ariel #Sharetheload (10 Years)", "Ariel")],
+    [CY("ariel-p-g-2023", 2023, "Ariel（P&G）アクセシブル・パッケージデザイン", "Procter & Gamble / Ariel", "")],
+  );
+  assert.equal(p.counts.matched, 0);
+  const q = plan(
+    [W("Direct", "Gold", "Ariel #Sharetheload (10 Years)", "Ariel")],
+    [CY("ariel-p-g-2023", 2023, "Ariel（P&G）アクセシブル・パッケージデザイン", "Procter & Gamble / Ariel", "Cannes Lions 2025 Direct")],
+  );
+  assert.equal(q.counts.matched, 1);
+});
