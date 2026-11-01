@@ -118,3 +118,35 @@ test("Radio & Audio (2019) winner is not satisfied by an Audio & Radio case", ()
   }));
   assert.equal(r.exitCode, 1);
 });
+
+test("A: 2025 segment does not cover a 2026 winner (whole 2026 award string kept)", () => {
+  // 2026 は従来どおり award 全文判定のため対象外。2025 年の判定で他年セグメントを使わないことを確認
+  const c = cs("a", "Alpha Campaign", "Cannes Lions 2026 Film Lions Gold / Cannes Lions 2025 Titanium Grand Prix", { year: 2026 });
+  assert.equal(caseAwardForYear(c, 2025), "Cannes Lions 2025 Titanium Grand Prix");
+  assert.equal(caseAwardForYear(c, 2026), c.award);
+});
+
+test("A: year-less segments count only when case.year is the target year", () => {
+  const c = cs("a", "A", "Cannes Lions 2025 Film Lions Gold / Outdoor Lions Silver", { year: 2025 });
+  assert.equal(caseAwardForYear(c, 2025), c.award);
+  const d = { ...c, year: 2024 };
+  assert.equal(caseAwardForYear(d, 2025), "Cannes Lions 2025 Film Lions Gold");
+});
+
+test("A: other-year segment cannot cover a complete year's winner", () => {
+  const r = quiet(() => runCannesAudit({
+    years: [2025], states: { 2025: "complete" },
+    refs: { 2025: [w("Titanium", "Grand Prix", "Alpha Campaign")] },
+    caseRecords: [cs("alpha", "Alpha Campaign", "Cannes Lions 2025 Film Lions Gold / Cannes Lions 2024 Titanium Grand Prix", { year: 2025 })],
+  }));
+  assert.equal(r.exitCode, 1);
+});
+
+test("C: unknown or non-numeric --year exits 1 with a message", async () => {
+  const { spawnSync } = await import("node:child_process");
+  for (const y of ["2020", "abc"]) {
+    const r = spawnSync(process.execPath, [new URL("./audit-cannes.mjs", import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, "$1"), "--year", y], { encoding: "utf8" });
+    assert.equal(r.status, 1, y);
+    assert.match(r.stderr + r.stdout, /--year/);
+  }
+});
