@@ -144,3 +144,13 @@ test("同年の award 文字列記載は awardEntries が優先される（年�
   assert.equal(getAwardLevelForCollection(c.award, "cannes", c.year, "2025", "Film", c.awardEntries), null);
   assert.deepEqual(getCaseAwardRefs(c), ["Cannes Lions 2025 Outdoor Lions Silver"]);
 });
+
+test("getCaseAwardRefs: org 名なし Cannes セグメントも上書きされた年なら落とす（collections と対称）", () => {
+  const c = mk({
+    id: "refs2",
+    year: "2025",
+    award: "Cannes Lions 2025 Film Gold / Design Lions Silver 2025",
+    awardEntries: [{ org: "cannes", year: 2025, category: "Film", level: "Gold" }],
+  });
+  assert.deepEqual(getCaseAwardRefs(c), ["Cannes Lions 2025 Film Lions Gold"]);
+});

@@ -1,6 +1,9 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { collapseWinners, buildPlan, applyPlan, checkCounts } from "./cannes-reconcile.mjs";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { collapseWinners, buildPlan, applyPlan, verifyPlan, writeFileAtomic } from "./cannes-reconcile.mjs";
 
 const W = (category, level, title, brand = "Brand", extra = {}) => ({ category, level, title, brand, agency: "AG", country: "JP", sources: ["s1"], ...extra });
 const C = (id, title, client = "", award = "") => ({ id, year: "2025", title, client, award });
@@ -44,9 +47,36 @@ test("unmatchedExisting: 当該年の Cannes 記載があるのに一致しな�
   assert.deepEqual(p.unmatchedExisting.map((x) => x.caseId).sort(), ["c2", "c3"]);
 });
 
-test("件数不一致なら失敗", () => {
-  assert.throws(() => checkCounts({ works: 3, matched: 1, ambiguous: 1, new: 0 }, 3), /件数不一致/);
-  assert.doesNotThrow(() => checkCounts({ works: 3, matched: 1, ambiguous: 1, new: 1 }, 3));
+test("件数整合: 壊した plan（欠落・重複・行数ずれ）は verifyPlan が失敗する", () => {
+  const winners = [W("Film", "Gold", "Alpha"), W("Film", "Silver", "Alpha"), W("Film", "Gold", "Gamma")];
+  const works = collapseWinners(winners, 2025);
+  assert.deepEqual(works.map((w) => w.rows), [2, 1]);
+  const ok = plan(winners, [C("c1", "Alpha")]);
+  assert.doesNotThrow(() => verifyPlan(ok, works));
+  const missing = structuredClone(ok); missing.new.pop();
+  assert.throws(() => verifyPlan(missing, works), /件数不一致/);
+  const dup = structuredClone(ok); dup.new.push(structuredClone(dup.matched[0]));
+  assert.throws(() => verifyPlan(dup, works), /件数不一致/);
+  const rows = structuredClone(ok); rows.counts.winnerRows = 99;
+  assert.throws(() => verifyPlan(rows, works), /件数不一致/);
+});
+
+test("aliasMissing: 存在しない caseId の alias は通常照合に落ち、counts と一覧に出る", () => {
+  const p = plan([W("Film", "Gold", "Alpha")], [C("c1", "Alpha")], { 2025: { alpha: "nope" } });
+  assert.equal(p.matched[0].caseId, "c1");
+  assert.equal(p.counts.aliasMissing, 1);
+  assert.deepEqual(p.aliasMissing, [{ key: "alpha", caseId: "nope" }]);
+});
+
+test("writeFileAtomic: 内容が置き換わり、一時ファイルが残らない", () => {
+  const d = fs.mkdtempSync(path.join(os.tmpdir(), "rec-"));
+  const f = path.join(d, "x.json");
+  fs.writeFileSync(f, "old");
+  writeFileAtomic(f, "new
+");
+  assert.equal(fs.readFileSync(f, "utf8"), "new
+");
+  assert.deepEqual(fs.readdirSync(d), ["x.json"]);
 });
 
 test("適用: awardEntries は重複なし、award は当該年記載が無いときだけ末尾追記", () => {
