@@ -46,11 +46,11 @@ function sleepSync(ms) {
 
 // `os.tmpdir()/researchman-git.lock` を短時間だけ取得する。staleなら奪取。
 // 取得できなければfalse（呼び出し側はロック取得失敗として扱う）。
-function acquireLock() {
-  const deadline = Date.now() + LOCK_WAIT_TIMEOUT_MS;
+function acquireLock(lockPath = LOCK_PATH, waitMs = LOCK_WAIT_TIMEOUT_MS) {
+  const deadline = Date.now() + waitMs;
   for (;;) {
     try {
-      if (tryAcquireGitLock(LOCK_PATH, "watchdog-git")) return true;
+      if (tryAcquireGitLock(lockPath, "watchdog-git")) return true;
     } catch {
       return false; // mkdirがEEXIST以外で失敗（従来と同じくロック取得失敗扱い）
     }
@@ -59,8 +59,8 @@ function acquireLock() {
   }
 }
 
-function releaseLock() {
-  releaseOwnedLock(LOCK_PATH);
+function releaseLock(lockPath = LOCK_PATH) {
+  releaseOwnedLock(lockPath);
 }
 
 function run(cmd, args, cwd) {
@@ -99,37 +99,39 @@ function pullRebaseAndPushWithRetry(cwd, attempts = 2) {
   return { ok: false, reason: lastReason || "pull --rebase/push失敗" };
 }
 
-// add → (差分なければ終了) → commit → [ロック取得] → pull --rebase → push（1回リトライ）→ [ロック解放]。
-// ロック取得失敗時はcommitはローカルに残したまま{ok:false}を返す（呼び出し側でreasonをレポートに出す）。
-export function gitSafeCommitAndPush({ addPaths, commitMessage, cwd = DEFAULT_ROOT }) {
+// [ロック取得] → add → (差分なければ終了) → commit → pull --rebase → push（1回リトライ）→ [ロック解放]。
+// add/commitもロック保持中に行う（他プロセスがロック中に編集している途中状態を巻き込まないため）。
+// ロック取得失敗時はadd/commitせず{ok:false, committed:false}を返す。
+// lockPath/lockWaitMsはテスト用の差し替え（本番は既定値）。
+export function gitSafeCommitAndPush({ addPaths, commitMessage, cwd = DEFAULT_ROOT, lockPath = LOCK_PATH, lockWaitMs = LOCK_WAIT_TIMEOUT_MS }) {
   if (!addPaths || !addPaths.length) {
     return { ok: false, committed: false, reason: "addPaths未指定" };
   }
 
-  const add = run("git", ["add", ...addPaths], cwd);
-  if (add.status !== 0) {
-    return { ok: false, committed: false, reason: `git add失敗: ${(add.stderr || add.stdout || "").trim()}` };
-  }
-
-  const diff = run("git", ["diff", "--cached", "--quiet"], cwd);
-  if (diff.status === 0) {
-    return { ok: true, committed: false };
-  }
-
-  const commit = run("git", ["commit", "-m", commitMessage], cwd);
-  if (commit.status !== 0) {
-    return { ok: false, committed: false, reason: `git commit失敗: ${(commit.stderr || commit.stdout || "").trim()}` };
-  }
-
-  if (!acquireLock()) {
-    return { ok: false, committed: true, reason: "gitロック取得タイムアウト（コミットはローカル残存）" };
+  if (!acquireLock(lockPath, lockWaitMs)) {
+    return { ok: false, committed: false, reason: "gitロック取得タイムアウト（未コミット）" };
   }
   try {
+    const add = run("git", ["add", ...addPaths], cwd);
+    if (add.status !== 0) {
+      return { ok: false, committed: false, reason: `git add失敗: ${(add.stderr || add.stdout || "").trim()}` };
+    }
+
+    const diff = run("git", ["diff", "--cached", "--quiet"], cwd);
+    if (diff.status === 0) {
+      return { ok: true, committed: false };
+    }
+
+    const commit = run("git", ["commit", "-m", commitMessage], cwd);
+    if (commit.status !== 0) {
+      return { ok: false, committed: false, reason: `git commit失敗: ${(commit.stderr || commit.stdout || "").trim()}` };
+    }
+
     const result = pullRebaseAndPushWithRetry(cwd);
     if (!result.ok) return { ok: false, committed: true, reason: result.reason };
     return { ok: true, committed: true };
   } finally {
-    releaseLock();
+    releaseLock(lockPath);
   }
 }
 
