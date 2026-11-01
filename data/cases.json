@@ -34838,7 +34838,10 @@
       "Form/Website",
       "Form/Event",
       "Theme/Music"
-    ]
+    ],
+    "quarantined": true,
+    "quarantineReason": "link-dead(二重確認済): 404: https://www.akb48.co.jp/sousenkyo49th/quick_announcement",
+    "quarantineTs": "2026-11-01T09:37:43.711Z"
   },
   {
     "id": "case-1lhhktd-2023",
