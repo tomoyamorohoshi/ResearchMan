@@ -4,11 +4,11 @@
     "label": "見立て変換",
     "description": "既存の形式・データを別のモチーフの形に置き換えて意味を重ねる発想",
     "exemplarCaseIds": [
-      "sonic-35th-anniversary-figure-with-synthetic-dna-2026",
-      "pepsi-shanghai-disney-resort-10-2026",
-      "lovely-2026",
+      "vinya-llarga-wine-label-atipus-2026",
       "apple-music-new-logo-fred-again-2026",
-      "embratur-amazonia"
+      "pictoplasma-2026-identity-2026",
+      "fjord-id-2026",
+      "lovely-2026"
     ]
   },
   {
@@ -16,12 +16,11 @@
     "label": "媒体の物理特性活用",
     "description": "媒体そのものの物理素材・特性に機能や意味を持たせる発想",
     "exemplarCaseIds": [
-      "eggsplosion-2026",
-      "vollebak-rock-jacket-2026",
+      "case-1uoh77r-2019",
       "kincho-2017",
-      "climate-crisis-2021",
-      "woven-fiber-optics-fiber-optic-crossforms-days-of-awe-2006",
-      "braille-neue-2017"
+      "case-1guutkj-2023",
+      "seeds-2019",
+      "mawbima-mosquito-repellent-newspaper"
     ]
   },
   {
@@ -30,9 +29,10 @@
     "description": "既存インフラや日常の仕組みをそのまま広告・メディアに転用する発想",
     "exemplarCaseIds": [
       "pubscription-heineken-amazon-fire-tv-2026",
-      "case-wbaj8t-2023",
-      "osaka-metro-2024",
-      "the-wilderness-downtown"
+      "ikea-billboard-campaign-every-home-concept-2026",
+      "hiding-the-mess-behind-its-billboards-2026",
+      "arlo-sims-street-furniture-electric-guitars-2026",
+      "fillongley-2026"
     ]
   },
   {
@@ -42,8 +42,7 @@
     "exemplarCaseIds": [
       "annahar-blank-edition",
       "no-smiles-2023",
-      "tech-free-tranquillity-2026",
-      "annahar-elections-edition"
+      "sos-oceano-no-blue-no-green"
     ]
   },
   {
@@ -51,11 +50,11 @@
     "label": "参加型UGCエンジン",
     "description": "受け手の投稿や行動がそのままコンテンツ・キャンペーンを完成させる発想",
     "exemplarCaseIds": [
-      "spotify-wrapped",
-      "telfar-bag-security-program",
-      "change-the-ref-30under30",
-      "als-ice-bucket-challenge",
-      "always-like-a-girl"
+      "spotify-wrapped-design-2023",
+      "sketch-ocean-2020",
+      "the-obliteration-room-2002",
+      "the-dr-pepper-jingle",
+      "spotify-wrapped-dooh-2018"
     ]
   },
   {
@@ -63,11 +62,11 @@
     "label": "データの素材化",
     "description": "既存データを収集・変換し創作物や体験の素材として使う発想",
     "exemplarCaseIds": [
-      "case-betmug-2017",
-      "gender-equality-creative-platform-2021",
-      "ibm-data-visualization-guidelines-2017",
+      "case-ccohfo-2025",
+      "case-8l88um-2024",
       "happy-data-2020",
-      "case-8l88um-2024"
+      "ibm-flux-2017",
+      "forest-carbon-in-tune-with-nature-2025"
     ]
   },
   {
@@ -75,10 +74,10 @@
     "label": "制約を武器に",
     "description": "技術的・予算的制約をあえて課しそれを表現の武器に変える発想",
     "exemplarCaseIds": [
-      "niu-lai-2026",
-      "dark-castle-beyond-dark-castle-pc-40-2026",
-      "the-saga-of-rex-2026",
-      "mary-steam-2026"
+      "sans-forgetica-2018",
+      "climate-crisis-2021",
+      "raw-line-pavilion-if-2026",
+      "un-build-2026"
     ]
   },
   {
@@ -86,12 +85,12 @@
     "label": "虚構の実在化",
     "description": "架空の存在・組織・体験をWebや物理空間に段階的に実在化させ没入させる発想",
     "exemplarCaseIds": [
-      "why-so-serious-dark-knight",
       "cloverfield-arg",
-      "prometheus-weyland-industries",
-      "jurassic-world-park-site",
+      "balenciaga-afterworld-game",
       "discover-westworld-aideden",
-      "year-zero-arg-nine-inch-nails"
+      "jurassic-world-park-site",
+      "lil-miquela",
+      "aespa-kwangya"
     ]
   },
   {
@@ -101,8 +100,8 @@
     "exemplarCaseIds": [
       "heinz-look-familiar",
       "heinz-coincidence",
-      "heinz-look-familiar-outdoor",
-      "ikea-alsulaiman-is-that-a-pinntorp"
+      "design-disasters-or-creative-solutions-the-self-made-paper-s",
+      "doritos-the-triangle-theory"
     ]
   },
   {
@@ -110,12 +109,11 @@
     "label": "当事者主導設計",
     "description": "当事者本人を制作・設計の主体として巻き込むデザイン発想",
     "exemplarCaseIds": [
-      "hackberry-2015",
-      "thisables-2019",
-      "tilt-accessible-beauty-product-design",
-      "supernova-rise-3-adaptive",
       "girlguiding-uniform-redesign-2026",
-      "dear-ai-disability-representation-campaign-2026"
+      "supernova-rise-3-adaptive",
+      "tilt-accessible-beauty-product-design",
+      "dear-ai-disability-representation-campaign-2026",
+      "asics-the-undropped-kit"
     ]
   },
   {
@@ -124,11 +122,10 @@
     "description": "社会的に隠されてきたテーマに正面から向き合い可視化し、制度や規範の変更にまで繋げる発想",
     "exemplarCaseIds": [
       "aviva-menopause-monopoly-2026",
-      "the-tampon-book-2019",
-      "kotex-own-your-flow",
       "bodyform-womb-stories",
-      "axa-three-words",
-      "marriage-for-all-japan-2019"
+      "kotex-own-your-flow",
+      "the-tampon-book-2019",
+      "thanks-for-your-service-33-2026"
     ]
   },
   {
@@ -136,11 +133,11 @@
     "label": "逆説の文脈転換",
     "description": "ブランドや競合との前提関係をあえて逆転させ意外性を生む発想",
     "exemplarCaseIds": [
-      "ikea-alsulaiman-reverse-shop-2026",
+      "coinbase-your-way-out",
+      "toyota-escape-vehicle",
       "desigual-tesla-elon-musk-2026",
-      "the-choice-pepsi",
-      "snickers-ai-spoof-ad-ai-2026",
-      "hansa-pilsener-delulu-is-the-solulu"
+      "maple-leaf-foods-look-for-the-leaf",
+      "samsung-canada-iphone-duo-crack-ads-2026"
     ]
   },
   {
@@ -150,8 +147,8 @@
     "exemplarCaseIds": [
       "volvo-epic-split",
       "red-bull-stratos",
-      "graza-the-hot-lap-test-2026",
-      "batman-day-2026-batman-scales-sydney-opera-house-2026",
+      "honda-the-cog",
+      "burger-king-moldy-whopper",
       "the-big-drop-let-it-pour-2026"
     ]
   },
@@ -162,9 +159,9 @@
     "exemplarCaseIds": [
       "relievos-2013",
       "michelangelo-s-david-3d-printed-replica-italy-pavilion-expo",
+      "our-shurijo-2019",
       "case-agi8ka-2016",
-      "case-1rzs7al-2017",
-      "our-shurijo-2019"
+      "heritage-databank-2024"
     ]
   },
   {
@@ -173,10 +170,10 @@
     "description": "センサーや脳波など技術で身体の表現・能力を拡張する発想",
     "exemplarCaseIds": [
       "hal-2014",
-      "oton-glass-2016",
-      "suretalk-ai-2021",
+      "brain-on-bikes-outride-summit-2026",
       "waves-of-will",
-      "dawn-ver-2018"
+      "capture-resemble-simulating-self-aware-machine-behaviour-202",
+      "da-vinci-s-robot-a-will-dwelling-in-shadow-2026"
     ]
   },
   {
@@ -184,11 +181,11 @@
     "label": "空間の一時ジャック",
     "description": "既存の公共・商業空間や廃れた施設を期間限定・用途変更で別の目的に転用する発想",
     "exemplarCaseIds": [
-      "j-wave-2018",
+      "house-of-vans-london-2014",
       "loewe-2019",
+      "j-wave-2018",
       "herm-s-2016",
-      "bang-olufsen-2019",
-      "house-of-vans-london-2014"
+      "musinsa-2026"
     ]
   },
   {
@@ -196,12 +193,11 @@
     "label": "ゲームと現実の連動",
     "description": "ゲーム内の要素と現実の出来事・制度を直接連動させる発想",
     "exemplarCaseIds": [
-      "wwf-belgium-cards-for-nature-pok-mon-2026",
-      "fortnite-balenciaga",
-      "travis-scott-astronomical",
-      "xbox-missing-managers",
-      "ea-sports-kiyan-prince",
-      "la-poste-delivered-by-tetris"
+      "la-poste-delivered-by-tetris",
+      "clash-royale-cracked-royale",
+      "haaland-payback-time-2025",
+      "qt-home-bun-race-2026",
+      "clash-of-clans-two-way-deal"
     ]
   },
   {
@@ -210,11 +206,10 @@
     "description": "天候・生体・試合展開など外部信号が媒体や商品を即座に変化させる発想",
     "exemplarCaseIds": [
       "the-burnable-billboard-2025",
-      "zerooh-noise-a-real-time-decibel-sensing-billboard-2025",
+      "magic-of-flying-lookup-2013",
+      "volvo-lightning-powered-billboard-purepower-2017",
       "danactive-traffic-speed-billboard-2016",
-      "benadryl-pollen-counts-2014",
-      "tryvann-snowing-billboard-2009",
-      "volvo-lightning-powered-billboard-purepower-2017"
+      "zerooh-noise-a-real-time-decibel-sensing-billboard-2025"
     ]
   },
   {
@@ -222,12 +217,12 @@
     "label": "生成的一点物システム",
     "description": "アルゴリズムが個体ごとに異なる唯一無二の出力を作り続ける仕組み",
     "exemplarCaseIds": [
-      "martin-obenaus-for-mousey-wine-6-000-unique-generative-label",
+      "mit-media-lab-identity-2010",
       "absolut-unique-2012",
       "casa-da-m-sica-identity-logo-generator-2007",
-      "mullenlowe-global-rebrand-2023",
-      "cohere-brand-identity-by-pentagram-2023",
-      "mit-media-lab-identity-2010"
+      "edp-energias-de-portugal-2022",
+      "oi-responsive-logo-2016",
+      "martin-obenaus-for-mousey-wine-6-000-unique-generative-label"
     ]
   },
   {
@@ -235,10 +230,10 @@
     "label": "時事便乗リアルタイムPR",
     "description": "計画外に起きた事件・時事ネタへ即座に反応しブランド機会に転換する発想",
     "exemplarCaseIds": [
-      "pope-yes-popeyes",
       "kitkat-the-kitkat-heist",
-      "the-password-heist",
-      "koda-transforms-tour-de-france-penis-graffiti-to-promote-wom"
+      "pope-yes-popeyes",
+      "koda-transforms-tour-de-france-penis-graffiti-to-promote-wom",
+      "duolingo-iphone-duo-apple-duo-2026"
     ]
   },
   {
@@ -247,10 +242,10 @@
     "description": "AI生成物が氾濫する中で非AI・実写・人間性を積極的に証明・宣言する発想",
     "exemplarCaseIds": [
       "tennessee-tourism-realseal-campaign-2026",
-      "dove-real-beauty-ai-era",
+      "stack-overflow-rebrand-a-legacy-recoded-2025",
       "the-phoney-club-redefines-ai-made-worlds-2026",
-      "jazz-is-dead-played-by-humans",
-      "coinbase-your-way-out"
+      "dove-real-beauty-ai-era",
+      "jazz-is-dead-played-by-humans"
     ]
   },
   {
@@ -258,11 +253,11 @@
     "label": "AI生成美学の全面採用",
     "description": "生成AI特有の質感やゆらぎを隠さず前面に押し出し新しい映像表現の様式美とする発想",
     "exemplarCaseIds": [
-      "the-hardest-part-2024",
-      "dystopia-2024",
+      "lost-2023",
       "maestro-2024",
       "vultures-havoc-version-2024",
-      "daddy-2025"
+      "dystopia-2024",
+      "ubu-2026"
     ]
   },
   {
@@ -270,11 +265,11 @@
     "label": "群体演出のスペクタクル",
     "description": "多数のドローンや光・人を同期させ空や大地に一つの巨大な集合イメージを描く発想",
     "exemplarCaseIds": [
-      "field-of-light-uluru-tili-wiru-tjuta-nyakutjaku-2016",
       "stranger-things-vecna-drone-show-las-vegas-finale-event-2025",
       "intel-drone-light-show-pyeongchang-2018-winter-olympics-open",
       "2-977-lights-over-new-york-harbor-2026",
-      "yokohama-star-night-drone-show-2026"
+      "yokohama-star-night-drone-show-2026",
+      "coca-cola-holiday-drone-show-2024"
     ]
   },
   {
@@ -283,11 +278,10 @@
     "description": "鑑賞者の存在や動きをセンサーが検知し、光・音・映像が応答して初めて作品が完成する発想",
     "exemplarCaseIds": [
       "aeolus-2026",
-      "compound-camera-no-3-2026",
-      "resonating-forest-2016",
-      "hidden-senses-2018",
+      "drift-us-2025",
       "affinity-in-autonomy-2019",
-      "a-un-2025"
+      "resonating-forest-2016",
+      "a-moving-sanctuary-for-lexus-2026"
     ]
   },
   {
@@ -296,11 +290,10 @@
     "description": "産業廃棄物や生物プロセスを新たな素材・建材へ転生させサステナビリティを物質で語る発想",
     "exemplarCaseIds": [
       "red-mud-studio-thusthat-2026",
-      "pine-bark-amber-dust-and-coffee-grounds-baltic-biomaterials",
-      "yeast-and-gelatin-bind-sand-into-freeze-dried-building-mater",
-      "wastewater-algae-explored-as-a-binder-for-recycled-textile-m",
-      "the-growing-pavilion-2019",
-      "my-celium-growing-appliance-2017"
+      "eating-scoby-emma-sicher-2026",
+      "sara-farha-and-khaled-shalkha-turn-date-pits-into-pavers-dat",
+      "sandbag-castle-yvonne-mak-2026",
+      "yeast-and-gelatin-bind-sand-into-freeze-dried-building-mater"
     ]
   }
 ]
