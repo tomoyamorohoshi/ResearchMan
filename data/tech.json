@@ -1,5 +1,117 @@
 [
   {
+    "id": "openkatana",
+    "title": "OpenKatana",
+    "org": "rk0neki（個人開発・Comfy Developer Platform 上に構築）",
+    "type": "Tool",
+    "domains": [
+      "AI/Agents",
+      "CreatorTools",
+      "GenVideo"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "Claude Code や Codex などの AI エージェントが「動画編集者」として使える、オープンソースの編集エンジン。カット割り・速度変化・3D・文字アニメ・音楽を1つのプロジェクトにまとめ、手元の PC で書き出す。",
+    "point": "何がすごいか：AI に「この素材でこういう映像を作って」と頼むと、AI が72種類の編集ツール（コマンドや MCP）を自分で呼び出し、カット割り、スピードランプ、トランジション、文字の動き、3D シーン、音楽のビート合わせまで組み立てて、完成映像まで書き出せる点です。結果は「編集可能なプロジェクトファイル」として手元に残るので、AI が作った後に人が Studio という画面で細部を直せます。作者のデモでは動画生成 AI を一切使わず、コードで作った3D と音楽だけで24秒・1080p/60fps の製品フィルムを作っています。広告・体験づくりでの使いどころ：商品ティザーやSNS用ショートの量産、ビートに合わせたモーショングラフィックス、企画段階の動くコンテ（ラフ映像）の高速作成が考えられます。アカウント登録も従量課金もなく、手元で無料で動くため、社内で使う試作ツールとして導入しやすい構成です。ただし v0.1 の初期版です。",
+    "detail": "仕組み：AI エージェントは、OpenKatana が用意する72個の道具（コマンドラインや MCP 経由）を、人間がPhotoshopのツールを選ぶように使い分けます。素材の取り込み、カット、速度変化、3D シーンの作成（ブラウザの WebGL で描く方式、または Blender を使う方式）、文字の動き、音のミックス、書き出しまでが対象です。編集の中身は1つのプロジェクトファイルに入っていて、AI への指示、Studio という確認用の画面、ComfyUI の画面のどこから触っても同じ作業を続けられます。ComfyUI 版には85個のノードと6つの保存済みアプリ（Full workflow、Video to edit など）が入っており、ComfyUI で作った画像や動画をそのまま編集に流し込めます。\n\n従来との違い：これまでの「AI 動画」は、1本のプロンプトから映像をまるごと生成するものが中心でした。OpenKatana は逆に、AI に生成させるのではなく「編集作業を実行させる」道具です。そのため、カットや文字を後から人が差し替えられ、同じ素材から何度でも作り直せます。FFmpeg を包んだだけの編集 MCP とも違い、ビート解析、3D、書体・文字組み、カメラ移動まで一式が入っています。\n\n使うには：Python 3.11以上と Git が必要で、FFmpeg とブラウザ（Chromium系）は別途インストールします。Blender や生成モデルは任意で、専用 GPU は標準の編集・書き出しなら不要です。導入は `git clone` のあと `python scripts/setup.py` を実行するか、ComfyUI Manager で検索します（v0.1.1 はレジストリ審査中なので、見つからなければ git からの導入）。動作確認は Windows と Linux のみで、macOS は未検証です。AI エージェント側の利用料は別にかかる場合があります。3D は Studio 上で直接いじれず、コードで作る形です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "本体は Apache-2.0。同梱フォント・素材などは各ライセンスのまま（NOTICE 参照）。外部モデルや素材の権利は別扱い。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/rk0neki/OpenKatana"
+      },
+      {
+        "kind": "product",
+        "url": "https://comfy.icu/extension/rk0neki__OpenKatana"
+      },
+      {
+        "kind": "video",
+        "url": "https://youtu.be/sZys4qLAprw"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/openkatana.jpg",
+    "relatedWorks": [
+      {
+        "title": "Kinocut (mcp-video)",
+        "description": "FFmpeg を包んだ、AI エージェント用の動画編集 MCP サーバー。Apache-2.0。",
+        "url": "https://github.com/KyaniteLabs/mcp-video"
+      },
+      {
+        "title": "comfyui-mcp",
+        "description": "ComfyUI を LLM から操作する MCP サーバー兼サイドバーエージェント。",
+        "url": "https://github.com/artokun/comfyui-mcp"
+      },
+      {
+        "title": "Comfy Agent",
+        "description": "ComfyUI 公式の、キャンバス上でワークフローを組むエージェント機能（Comfy Cloud で提供中）。",
+        "url": "https://comfyui-wiki.com/en/news/2026-10-01-comfy-agent"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "anymove",
+    "title": "anymove",
+    "org": "Patch (Patch-gg)",
+    "type": "Tool",
+    "domains": [
+      "Motion/Body",
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "AI動画1本から、ドラゴンや蜘蛛などあらゆる「人間以外」のリグ付きキャラのアニメーションを作り、GLBで書き出すモーションキャプチャ手法とツール一式。",
+    "point": "すごい点は、人間用のモーキャプでは扱えない翼・尻尾・8本脚の生き物にも動きを付けられることです。動画生成AIに「正面」と「横」の2つのカメラ映像を1枚の画面に入れて動かしてもらい、その映像から関節の位置を3次元で割り出し、手持ちのキャラの骨にあてはめます。出力はUnityやUnreal、Blenderなど多くのツールが読める標準形式(GLB)です。README記載では、咆哮・叩きつけ・飛び立ち・足踏みのような大きな単発の動きが得意で、使える動き1本が約3ドルでできたとのことです。広告・体験づくりでは、ブランドのマスコットや架空の怪獣を、アニメーターに頼まず短時間でゲーム、AR、LED演出用の動くCGにできそうです。数十体を並べた群衆演出や、イベント用キャラの試作にも向きます。一方、8本脚の歩行や鳥の翼、尻尾のひと振りは苦手と明記されており、動画の約58%しか品質検査を通らないため、複数回の試行が前提です。",
+    "detail": "仕組みを身近なたとえで言うと、「正面と真横から同時に撮った2台のカメラ映像から、体の各点の位置を割り出す」やり方です。まずキャラの3Dモデルと骨を用意し、手足ごとに別の色を塗ります。次に、動画生成AI（MiniMax H3）に、正面と側面の2視点を1フレームに並べた映像を作らせます。そのキャラ専用に学習した「関節リーダー」（DINOv2ベースの画像モデル）が、両方の映像で関節を探します。同じ関節は2つの映像で同じ高さに写るため、2本の視線が交わる点が3次元の位置になり、その点に骨をあてて動きを作ります。\n\n従来のモーキャプは人間の体型が前提で、怪獣や多脚生物は手付けのアニメーションが必要でした。この手法は、キャラごとに約2,200通りのランダムなポーズで20分ほどリーダーを学習させる代わりに、動きの撮影を動画生成AIに任せます。README記載の数値では、オオカミの3D関節誤差は平均0.94cmで、足の滑りは1〜2cm程度です。生成したキャラは5〜6万ポリゴン・4Kテクスチャで、ブラウザゲームには重く、他のキャラへの動きの転用もできません。\n\n使うにはNVIDIA GPU（学習は12GB、24GB推奨）、Python 3.11、Blender 5.x、fal.aiのAPIキーが必要です。新しい生き物を1体作るのに約17ドルと数時間、動き1本は約3ドルとREADMEにあります。Windowsでは Git Bash で動かします。Claude Codeのプラグインとして、手順ごとのスキルも同梱されています。完成済みの9体（ティラノサウルス、騎士、馬など）はPatchのアセットとして入手でき、CPUだけで試せるドラゴンの咆哮のフィッティング例もリポジトリに含まれています。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "コードはApache-2.0。生成にはfal.aiのAPIキー（従量課金・1動き約3ドル）とNVIDIA GPUが必要。利用するMiniMax H3や3D生成サービス側の規約は別途確認。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Patch-gg/anymove"
+      },
+      {
+        "kind": "product",
+        "url": "https://patch.gg"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=AS92HYsEBqo"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/anymove.jpg",
+    "relatedWorks": [
+      {
+        "title": "EasyMocap",
+        "description": "複数カメラのRGB映像から人間のモーションをとる定番のオープンソースツールボックス。",
+        "url": "https://github.com/zju3dv/EasyMocap"
+      },
+      {
+        "title": "PoseCap",
+        "description": "Webカメラの全身ポーズをBlender上のキャラに流すオープンソースのマーカーレスモーキャプ。",
+        "url": "https://github.com/CorridorTech/PoseCap"
+      },
+      {
+        "title": "HoloMotion",
+        "description": "人型ロボットの全身制御向け基盤モデル（Horizon Robotics）。",
+        "url": "https://github.com/HorizonRobotics/HoloMotion"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "hairdeck",
     "title": "HairDeck",
     "org": "hyz317（研究グループ）",
