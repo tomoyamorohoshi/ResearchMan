@@ -1,5 +1,176 @@
 [
   {
+    "id": "hairdeck",
+    "title": "HairDeck",
+    "org": "hyz317（研究グループ）",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "1枚の画像から、ゲームやアバター用の「ヘアカード」（髪の毛束を表す板状メッシュ）と、それを揺らすスプリングボーンを同時に生成する。VRMでも書き出せる。",
+    "point": "1枚のイラストやレンダリング画像から、そのままゲームやVTuber用アバターに載せられる髪を作れる点がすごい。髪型を「髪束の板（カード）の集まり」として一気に生成し、さらに風や頭の動きで揺れる骨（スプリングボーン）まで自動で付ける。従来手法CHARMと比べて形の誤差は44%減り、カード生成は約33倍速い（33.7秒→1.01秒）。広告・体験づくりでは、キャラクターの髪型をキャンペーンごとに差し替えたいVTuber型の広告キャラや、リアルタイムで動くマスコットの制作で、手作業のモデリングを大幅に短縮できそう。コンセプトアートからゲームエンジンやブラウザ上で動くアバターまでの試作を、1日で何パターンも回せるようになる。",
+    "detail": "仕組みは、髪全体を「順番のないカードの集合」と考える点にある。各カードを1つのトークン（AIが扱う最小単位）に変換し、Set Diffusion Transformerという生成モデルが全カードを同時にノイズ除去して髪型を作る。たとえるなら、バラバラの紙片を一度に並べて髪の形に整えるイメージ。続いて2つ目のモデルが、カードを揺らすボーンの連なり（チェーン）を生成し、スキニング（骨とメッシュの紐付け）でつなぐ。出力はUV座標付きのGLBメッシュで、VRMアバターとしても書き出せる。\n\n従来のCHARMは制御点を1本ずつ順番に生成していたため遅く、画像ベースの手法は写実的な髪や、ひとかたまりのメッシュを出すものが多かった。HairDeckは個々のカードを保ったまま、アニメーション前提のアセットを出す点が違う。点群入力にも対応する。\n\n使うにはLinux、NVIDIA GPU（PyTorch 2.8 / CUDA 12.8で検証）、Python 3.12、Blender 4.2 LTSが必要。重みはHugging Faceで配布され、SAM 3とDINOv3は利用承認とログインが必要。ブラウザで試せるHugging Face Spacesのデモもある。費用はOSSで無料だが、環境構築にはPythonとGPUの知識がいる。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "コードとチェックポイントはApache-2.0。SAM 3・DINOv3などサードパーティのモデルは各ライセンスに従う（ゲート付きで承認が必要）。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/hyz317/HairDeck"
+      },
+      {
+        "kind": "project",
+        "url": "https://hyzcluster.github.io/HairDeck"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.40599"
+      },
+      {
+        "kind": "video",
+        "url": "https://huggingface.co/hyz317/HairDeck/resolve/main/assets/hairdeck-demo.mp4"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/hairdeck.jpg",
+    "relatedWorks": [
+      {
+        "title": "CHARM",
+        "description": "ヘアカードを制御点列の自己回帰で生成する従来手法。HairDeckの比較対象で、データセットも共有。",
+        "url": "https://huggingface.co/datasets/hyz317/CHARM"
+      },
+      {
+        "title": "HairDeck 公式デモ（Hugging Face Space）",
+        "description": "ブラウザ上で試せる公式デモ。",
+        "url": "https://huggingface.co/spaces/hyz317/HairDeck"
+      },
+      {
+        "title": "HairDeck 論文（arXiv）",
+        "description": "手法の詳細と比較実験。",
+        "url": "https://arxiv.org/abs/2610.40599"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "rgb-mocap",
+    "title": "RGB MoCap（toyxyz_RGBMocap）",
+    "org": "toyxyz",
+    "type": "Tool",
+    "domains": [
+      "Motion/Body",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "通常の動画から人物のモーションを取り出し、ミキサモ（Mixamo）・VRM・PMXキャラへ移して、FBXやVMDで書き出せるWindows用アプリ。処理はすべてローカルのAIで行う。",
+    "point": "スマホやカメラで撮った普通の動画から、専用スーツなしで人の全身と指の動きをデータ化できる点がすごい。複数のAIモデル（ExMR、FlowHMR、GVHMR）から選べ、足や手のひらが地面や物を滑って見える問題を、接触のタイミングを編集して直す機能まで備える。取り出した動きは、Mixamo、VRM、PMXのキャラへそのまま当てはめてFBXで出せ、MMD向けにVMDにも変換できる。広告・体験づくりでは、ダンサーや出演者の動きを撮影するだけで、3Dキャラクターのモーション素材にできそう。モーキャプ機材を借りるのが難しい小規模なCM、SNS動画、ライブ演出、VTuber企画の試作に向く。",
+    "detail": "仕組みは、動画の各フレームから人物を検出し、3Dの人体モデル（SMPL-X／SMPL-H）の姿勢を推定して、時間的につなげる流れ。たとえるなら、動画に写る人にぴったり合う「見えない骨格人形」を1コマずつ当てはめていく作業である。その後、足や手のひらが接地している区間を自動検出し、滑りを抑える補正を適用。人物が複数いる場合はFind personで対象を選べる。Webカメラや動画のリアルタイム追跡（PEAR、実験的）や、複数カメラ用のMAMMAにも対応する。\n\n従来はGVHMRなど各モデルのコードを個別にPythonで動かす必要があった。このアプリはそれらを1つのWindows用画面にまとめ、確認、補正、リターゲット、FBX／VMD出力まで一気通貫で行える。\n\n使うにはWindows 64bit、NVIDIA GPU、Git for Windowsが必要。git cloneしてinstall.cmdを実行し、RGBMoCap.cmdで起動、Model ManagerでAIモデルを取得する。5つのオフラインモデルで約68GBのディスクが必要。MAMMAとPromptHMRにはVisual Studio 2022 Build ToolsとCUDA 12.8が必要。アプリは無料だが、含まれるモデルのライセンス（非営利限定のものあり）を商用案件の前に確認すること。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "アプリ自体のコードはMIT。同梱・利用するAIモデル（GVHMR派生のExMRは非営利研究のみ、YOLOはAGPL-3.0など）は個別ライセンスで、商用利用は事前確認が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/toyxyz/toyxyz_RGBMocap"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.26213"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/rgb-mocap.jpg",
+    "relatedWorks": [
+      {
+        "title": "ExMR（Extremity Motion Refinement）",
+        "description": "単眼動画から手足の細かい動きまで含むSMPL-Xを再構成する研究。デモコードと重みは公開済みで、本ツールが利用している。",
+        "url": "https://github.com/twehrbein/ExMR"
+      },
+      {
+        "title": "GVHMR",
+        "description": "動画からワールド座標系の人体モーションを推定する手法。本ツールの対応モデルの1つ。",
+        "url": "https://github.com/zju3dv/GVHMR"
+      },
+      {
+        "title": "ExMR プロジェクトページ",
+        "description": "手足の精度向上手法の詳細と結果。",
+        "url": "https://twehrbein.github.io/exmr-website/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "proact",
+    "title": "ProAct",
+    "org": "ProActRobot（SIGGRAPH Asia 2026 Journal Track採択論文）",
+    "type": "Research",
+    "domains": [
+      "AI/Agents",
+      "Motion/Body",
+      "HCI/MediaArt"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "人と話しながら、声と身ぶりをリアルタイムに生成し、記憶や状況判断をもとに自分から話しかけるヒューマノイドロボット向けの対話システム。コードは2026-10-31に公開された。",
+    "point": "ロボットが人の話を聞きながら、同時に声と身ぶりを途切れなく出し続け、さらに記憶と空気を読む頭脳が別に働く点がすごい。素早く反応する「行動担当」と、会話の履歴から人の気持ちや意図を考える「認知担当」を分離している。そのため、ロボットが忘れ物を教えたり、ポスター展示へ誘ったり、疲れた様子の人を慰めたりと、受け身でなく自分から動く。広告・体験づくりでは、展示会場やショールームで来場者に能動的に話しかける案内キャラクターや、文脈に応じて身ぶりが変わる3Dキャラクターの接客演出に応用できそう。「相手の話を聞いている間の頷きや相づち」といった細かな非言語動作まで自動で生成できる点は、体験型演出の見せ場になる。",
+    "detail": "仕組みは2層構成。Behavioral System（行動担当）は、音声を扱うストリーミング型のマルチモーダルLLMと、flow matchingという生成方式を使ったモーション生成器を組み合わせ、話し手と聞き手の両方の動きを音声から連続生成する。ControlNet（元の生成を壊さず追加の指示を足す仕組み）で「慰める」「お祝いする」といった意図をテキストで注入し、窓の境界の動きの途切れも重ね合わせとキャッシュで抑える。Cognitive System（認知担当）は、履歴を有限のメモリに圧縮し、Behavior Plannerが「今、話しかけるべきか」を判断する。\n\n従来のロボット対話は、人が話し終わってから反応する受け身型が多かった。ProActは反応型と能動型の振る舞いを途切れなく切り替える点が違う。実機のヒューマノイド（G1）で動作する。\n\n使うにはCUDA対応GPU、Python環境、設定用の.envが必要。学習済みモデルとデータはHugging Face（UsanoCoCr/ProAct）から別途取得する。MuJoCo描画は任意で、シミュレータなしでも実行できる。BVHからG1へのリターゲットや学習スクリプトも含まれる。実機デモにはG1ロボットが必要で、費用は高いが、コード自体は無料で使える。リポジトリは公開直後で星2、コミット1件のため、安定性は未知数。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "ソースコードはMIT。モデル、データセット、図版、サードパーティ部品は個別条件（THIRD_PARTY_NOTICES.md）に従う。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/ProActRobot/ProAct-Official"
+      },
+      {
+        "kind": "project",
+        "url": "https://proactrobot.github.io/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2602.14048"
+      },
+      {
+        "kind": "video",
+        "url": "https://youtu.be/q4HXfnLmXAE"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/proact.jpg",
+    "relatedWorks": [
+      {
+        "title": "ProAct 論文（arXiv）",
+        "description": "手法の詳細とProActBenchの評価。",
+        "url": "https://arxiv.org/abs/2602.14048"
+      },
+      {
+        "title": "ProAct モデル（Hugging Face）",
+        "description": "公開された学習済みモデルの配布先。",
+        "url": "https://huggingface.co/UsanoCoCr/ProAct"
+      },
+      {
+        "title": "ProAct-Data（Hugging Face）",
+        "description": "学習・評価用のデータセット。",
+        "url": "https://huggingface.co/datasets/UsanoCoCr/ProAct-Data"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "jit-mpe",
     "title": "JIT-MPE (Just-in-Time Multi-Pitch Estimation)",
     "org": "Yoshiyuki Kobayashi (Frieve-A)",
