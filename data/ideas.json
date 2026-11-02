@@ -24709,5 +24709,227 @@
         "desc": "閉館する福岡PARCOを記念した、限定ポスターの販売企画。"
       }
     ]
+  },
+  {
+    "id": "2026-11-02-1",
+    "date": "2026-11-02",
+    "title": "単眼3Dで街を霧の彫刻に",
+    "pattern": "技術×技術",
+    "seed": "LingBot-Mapで歩きながら街を単眼映像から3D化し、そのままSuperSplat Editor 3.0で削って磨けば、「歩いた記憶だけが残る半透明の街」を即席の彫刻として展示できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "lingbot-map",
+        "title": "LingBot-Map",
+        "desc": "カメラ1台の映像だけで、周囲の3D形状をリアルタイムに作り続けるAI。"
+      },
+      {
+        "type": "tech",
+        "id": "supersplat-editor-3-0",
+        "title": "SuperSplat Editor 3.0",
+        "desc": "実写の点群データを無料で編集できるソフト。大きなデータも軽く動く。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-02-2",
+    "date": "2026-11-02",
+    "title": "落雷を待つ看板とVJの連動",
+    "pattern": "文脈×技術",
+    "seed": "Volvoの落雷で光る看板に、Resolume 7.28のローカル人物セグメンテーションを掛けて、雷が落ちた瞬間だけ通行人のシルエットが街中の画面に映る参加型OOHができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "volvo-lightning-powered-billboard-purepower-2017",
+        "title": "Volvo Lightning-Powered Billboard #PurePower",
+        "desc": "避雷針入りの看板が本物の落雷で光る、タイの雷雨シーズン限定の屋外広告。"
+      },
+      {
+        "type": "case",
+        "id": "resolume-7-28-2026",
+        "title": "Resolume 7.28 — ローカル動作のコンピュータビジョン搭載アップデート",
+        "desc": "VJソフトの新版で、人物の切り抜きや奥行き推定がネット不要でできるようになった。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-02-3",
+    "date": "2026-11-02",
+    "title": "回転する円卓に消える隣席",
+    "pattern": "文脈×技術",
+    "seed": "Louis Vuitton×Es Devlinの回転円卓ディナーで、MiniMax H3 Person Remover LoRAを使い、入れ替わる客の残像だけを映像から消して「いなかった人」を演出する余興ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "louis-vuitton-es-devlin-frieze-week-2026",
+        "title": "Louis Vuitton × Es Devlin 回転テーブルのディナー（Frieze Week）",
+        "desc": "円卓の内側だけが回り、座ったまま向かいの客が入れ替わるLVの私的ディナー。"
+      },
+      {
+        "type": "tech",
+        "id": "minimax-h3-person-remover-lora",
+        "title": "MiniMax H3 Person Remover LoRA",
+        "desc": "動画の中でマスクした人物を消し、背景を自然に埋め直すAI用の追加モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-02-4",
+    "date": "2026-11-02",
+    "title": "正気度で歪むUIなし世界",
+    "pattern": "文脈×技術",
+    "seed": "The Mound: Omen of Cthulhuの「UIなしで正気度が環境を歪ませる」発想を、AEONの4D世界に載せれば、観客の心拍で世界の構造そのものが崩れる没入展示になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "the-mound-omen-of-cthulhu-2026",
+        "title": "The Mound: Omen of Cthulhu",
+        "desc": "画面表示なしで、正気度が下がると周囲の景色が歪む協力型ホラーゲーム。"
+      },
+      {
+        "type": "tech",
+        "id": "aeon",
+        "title": "AEON",
+        "desc": "文章や1枚の画像から、好きな角度で見られる動く3D空間を作るAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-02-5",
+    "date": "2026-11-02",
+    "title": "歩く動きを楽器に変える",
+    "pattern": "技術×技術",
+    "seed": "MotionBridgeでスマホ動画から踊りの動きを抜き、その軌跡をbasicpitch.cppの音声→MIDI変換と逆向きに対応させれば、体の動きが旋律になる即興楽器ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "motionbridge",
+        "title": "MotionBridge",
+        "desc": "動画1本から人の動きを読み取り、3Dキャラ用の動きデータにするブラウザツール。"
+      },
+      {
+        "type": "tech",
+        "id": "basicpitch-cpp",
+        "title": "basicpitch.cpp",
+        "desc": "音声を楽譜データ(MIDI)に変える軽量ツールで、ブラウザ上でも動く。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-02-6",
+    "date": "2026-11-02",
+    "title": "ロボと生命の樹の舞踏",
+    "pattern": "文脈×技術",
+    "seed": "SKの「Tree of Life」のような技術の砂漠の展示場で、MotionBricksを使い、ゲームキャラとUnitree G1ロボを同じ「樹」の枝として同期して揺らせば、脱炭素を身体で語れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "tree-of-life-sk-ces2022-if-2023",
+        "title": "Tree of Life (The pavilion of SK at CES 2022)",
+        "desc": "CESの会場に生命の樹を立て、脱炭素を伝えたSKのパビリオン。"
+      },
+      {
+        "type": "tech",
+        "id": "motionbricks",
+        "title": "MotionBricks",
+        "desc": "ゲームキャラと実物の二足歩行ロボを1つのAIでリアルタイムに動かすNVIDIAの技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-02-7",
+    "date": "2026-11-02",
+    "title": "音楽アプリを工事現場の声に",
+    "pattern": "転用",
+    "seed": "Iblisは本来曲を作るアプリだが、現場の工具音フォルダを学習させて「建設音だけで鳴る街のテーマ曲」を作り、Deceuninckのような静けさ重視のブースで逆説的に流すのも面白いかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "iblis",
+        "title": "Iblis",
+        "desc": "文章から自分のPC上で曲を作るAI音楽アプリ。手持ちの音で学習もできる。"
+      },
+      {
+        "type": "case",
+        "id": "deceuninck-stand-smart-design-expo-if-2025",
+        "title": "Deceuninck stand by Smart Design Expo",
+        "desc": "光るキューブで見本市の喧騒から離れた静けさを作った窓枠メーカーのブース。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-02-8",
+    "date": "2026-11-02",
+    "title": "スマホ映像で火星の砂を再現",
+    "pattern": "転用",
+    "seed": "Gaussian Splat Cleanup HDAは掃除ツールだが、浮遊物を「残す」側に使い、Yeast and Gelatinの砂を固める過程を粒子の舞う記録映像に変えれば、素材研究の見せ方が変わるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "gaussian-splat-cleanup-hda",
+        "title": "Gaussian Splat Cleanup HDA",
+        "desc": "Houdini用に、3Dスキャンのゴミ点を自動で掃除する無料ツール。"
+      },
+      {
+        "type": "case",
+        "id": "yeast-and-gelatin-bind-sand-into-freeze-dried-building-mater",
+        "title": "Yeast and Gelatin Bind Sand Into Freeze-Dried Building Material for Mars",
+        "desc": "改変酵母とゼラチンで砂を固め、凍結乾燥で火星向け建材にする研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-02-9",
+    "date": "2026-11-02",
+    "title": "AIが組むポスター転用の作曲",
+    "pattern": "転用",
+    "seed": "Editable Visual Designは文字やレイアウトを後から直せるポスター生成の研究だが、これを譜面の編集に見立て、OpenVLHarnessで見たものを記憶に貯めながらHSBCの街中OOHを毎日書き換える仕組みにできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "editable-visual-design",
+        "title": "Editable Visual Design（Editable-Design）",
+        "desc": "AIが後から文字や配置を直せるポスターを作る研究。"
+      },
+      {
+        "type": "tech",
+        "id": "openvlharness",
+        "title": "OpenVLHarness",
+        "desc": "画像を見るAIに拡大や文字認識などの道具を持たせ、見た内容を記憶させる仕組み。"
+      },
+      {
+        "type": "case",
+        "id": "everything-s-premier-2025",
+        "title": "Everything's Premier",
+        "desc": "ロンドン市街で日常を特別な体験に変える様を訴求したHSBC UKの大規模屋外広告。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-02-10",
+    "date": "2026-11-02",
+    "title": "時代ゲームMVを複数参照で生成",
+    "pattern": "文脈×技術",
+    "seed": "A$AP Rockyの2000年代ゲーム風MV「Helicopter」を、MSR for LTX-2.5の5枚参照で人物・服・背景を固定し、EditVidで時代ごとにスタイルだけ入れ替えた別バージョンを量産できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "asap-rocky-helicopter",
+        "title": "Helicopter",
+        "desc": "2000年代初頭のゲームを参照した映像表現で作られたA$AP RockyのMV。"
+      },
+      {
+        "type": "tech",
+        "id": "msr-for-ltx-2-5",
+        "title": "MSR (Multiple Subject Reference) for LTX-2.5",
+        "desc": "5枚までの参照画像から複数の人や小物を混同せず動画で再現する技術。"
+      },
+      {
+        "type": "tech",
+        "id": "editvid",
+        "title": "EditVid",
+        "desc": "追加学習なしで、スタイル変更や人物入れ替えなど多様な動画編集をこなす研究。"
+      }
+    ]
   }
 ]
