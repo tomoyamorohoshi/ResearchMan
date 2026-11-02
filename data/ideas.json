@@ -24931,5 +24931,215 @@
         "desc": "追加学習なしで、スタイル変更や人物入れ替えなど多様な動画編集をこなす研究。"
       }
     ]
+  },
+  {
+    "id": "2026-11-02-11",
+    "date": "2026-11-02",
+    "title": "棚田ドームを菌糸が編む",
+    "pattern": "文脈×技術",
+    "seed": "小豆島の光のように竹を編んだドーム空間に、Fungal Computerの菌糸体電極を仕込んだら、来場者の滞在や呼吸に応じて菌がスパイクし、光や音が変わる「生きた建築」になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2013-063",
+        "title": "小豆島の光",
+        "desc": "小豆島の棚田に竹を編んで建てた、中に入れるドーム状の大きな作品。"
+      },
+      {
+        "type": "tech",
+        "id": "fungal-computer",
+        "title": "Fungal Computer（菌糸体メムリスタ／きのこコンピューティング）",
+        "desc": "キノコの根の組織に電極をつなぎ、電気信号で計算やメモリに使う研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-02-12",
+    "date": "2026-11-02",
+    "title": "風の可視化を音で聴く",
+    "pattern": "技術×技術",
+    "seed": "Event Topology-based Visual Vibrometerで拾った微細な振動を、FluidicSwarmの小型ロボット群の動きに変換したら、目に見えない音の波が群れの流れとして現れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "event-topology-based-visual-vibrometer",
+        "title": "Event Topology-based Visual Vibrometer",
+        "desc": "高速カメラの映像から、物の細かい振動つまり音を取り出す測定方法。"
+      },
+      {
+        "type": "tech",
+        "id": "fluidicswarm",
+        "title": "FluidicSwarm",
+        "desc": "手のジェスチャーで小型ロボットの群れを水のように操る操作システム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-02-13",
+    "date": "2026-11-02",
+    "title": "追悼のクレジットを再生",
+    "pattern": "文脈×技術",
+    "seed": "L'Oréalが50年越しに認めたIlon Specht未クレジットの不正義を、Live Avatarで本人像を同意前提で「語り続ける」展示にしたら、埋もれた作り手の名前を残し続ける装置になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "loreal-final-copy",
+        "title": "THE FINAL COPY OF ILON SPECHT",
+        "desc": "有名なコピーを書いた女性の名が50年間載らなかったと認めたフィルム。"
+      },
+      {
+        "type": "tech",
+        "id": "live-avatar",
+        "title": "Live Avatar",
+        "desc": "1枚の顔写真と音声から、長時間話し続ける映像アバターを作るAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-02-14",
+    "date": "2026-11-02",
+    "title": "文字の動きを踊りに移す",
+    "pattern": "文脈×技術",
+    "seed": "「もじ イメージ Graphic 展」が扱う日本語の書字体系を、SCAIL-2で書き順の筆の動きを人物の舞踊に乗り移らせたら、ひらがなや漢字が身体で読める文字表現になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "graphic-2023",
+        "title": "企画展「もじ イメージ Graphic 展」",
+        "desc": "漢字・かななど日本語の文字が生むデザインを紹介した展覧会。"
+      },
+      {
+        "type": "tech",
+        "id": "scail-2",
+        "title": "SCAIL-2",
+        "desc": "動画の人物の動きを、別のキャラクターへそのまま乗り移らせるツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-02-15",
+    "date": "2026-11-02",
+    "title": "スキャン生成ロゴの群れ",
+    "pattern": "技術×技術",
+    "seed": "MetalSplatでMac上に学習したGaussian Splatの街並みを、Gaussian Splat to Blender Nodesで編集可能なノード化して、都市の変化を一つの数式で動かせるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "metalsplat",
+        "title": "MetalSplat",
+        "desc": "NVIDIAのGPUなしで、Mac上で3D空間をスキャンして再現できるOSS。"
+      },
+      {
+        "type": "tech",
+        "id": "gaussian-splat-to-blender-nodes",
+        "title": "Gaussian Splat to Blender Nodes (World to World Mapping)",
+        "desc": "スキャンした3D空間を、Blenderで編集できる部品に作り直すツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-02-16",
+    "date": "2026-11-02",
+    "title": "風の花を別人の目で",
+    "pattern": "転用",
+    "seed": "Breeze of Lightの風を光に変える仕掛けを、本来は計測用のEvent Topology-based Visual Vibrometerの目で逆に使い、花の微細な振動を音として聴かせるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "breeze-of-light-2019",
+        "title": "Breeze of Light",
+        "desc": "偏光フィルムの花と照明で、見えない風を光と影で見せた作品。"
+      },
+      {
+        "type": "tech",
+        "id": "event-topology-based-visual-vibrometer",
+        "title": "Event Topology-based Visual Vibrometer",
+        "desc": "高速カメラの映像から、物の細かい振動つまり音を取り出す測定方法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-02-17",
+    "date": "2026-11-02",
+    "title": "ロゴを生む遺伝子の群",
+    "pattern": "転用",
+    "seed": "Forskningsrådetのようなロゴジェネレーターの発想を、Fizgig v5で自社データを学習し直すモデルに転用し、ブランド固有の「描き癖」を持つ映像生成器そのものを作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "forskningsr-det-rebrand-generative-identity-system-2023",
+        "title": "Forskningsrådet Rebrand (Generative Identity System)",
+        "desc": "線をつなぐ仕組みで多数のロゴ案を作り、38のサブブランドをまとめた事例。"
+      },
+      {
+        "type": "tech",
+        "id": "fizgig-v5",
+        "title": "Fizgig v5",
+        "desc": "家庭用ゲーミングPCでも動画や画像生成AIを学習し直せる無料ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-02-18",
+    "date": "2026-11-02",
+    "title": "スタジオの名前を返す",
+    "pattern": "文脈×技術",
+    "seed": "ジブリ初のタイアップとなった米津玄師「地球儀」の制作現場を、Gaussian Splat to Blender Nodesで3D化して編集可能な空間にすれば、没入的な制作史の資料館が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "kenshi-yonezu-boy-and-heron",
+        "title": "米津玄師「地球儀」×「君たちはどう生きるか」",
+        "desc": "ジブリの映画で、初めて商業タイアップ曲に選ばれた米津玄師の楽曲。"
+      },
+      {
+        "type": "tech",
+        "id": "gaussian-splat-to-blender-nodes",
+        "title": "Gaussian Splat to Blender Nodes (World to World Mapping)",
+        "desc": "スキャンした3D空間を、Blenderで編集できる部品に作り直すツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-02-19",
+    "date": "2026-11-02",
+    "title": "誰でもない目の転用",
+    "pattern": "転用",
+    "seed": "Twinninの「Verified Human」のような同意の証明を、Openjutsuの人物差し替えの導入に使い、本人が許可した範囲だけを映像で差し替えられる契約書として転用できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "twinnin-rebrand-verified-human-mark-2026",
+        "title": "Twinnin Rebrand (Verified Human mark)",
+        "desc": "本人同意のAI利用を示す「Verified Human」を中心にしたブランド。"
+      },
+      {
+        "type": "tech",
+        "id": "openjutsu",
+        "title": "Openjutsu",
+        "desc": "動画の人物を、1枚の写真のキャラクターに差し替えるローカルツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-02-20",
+    "date": "2026-11-02",
+    "title": "バーチャル歌手を弾き語る",
+    "pattern": "技術×技術",
+    "seed": "EmoteCapでウェブカメラから抜いた指の動きを、Dash方式のUnreal Engine 5演出に載せ、街の路上ライブがそのままバーチャルMVになる試みができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "dash-2025",
+        "title": "Dash",
+        "desc": "本物のアーティストの動きで操るバーチャルK-POPのMV。"
+      },
+      {
+        "type": "tech",
+        "id": "emotecap",
+        "title": "EmoteCap",
+        "desc": "ウェブカメラの映像から、指まで含めた人の動きデータを作るツール。"
+      }
+    ]
   }
 ]
