@@ -1,5 +1,177 @@
 [
   {
+    "id": "nc-normally-open-normally-closed-walls-are-alive-but-can-the",
+    "title": "NC (Normally Open, Normally Closed) – Walls are alive, but can they be trusted?",
+    "summary": "協働ロボットアーム4台で可動の壁を動かし、来場者を囲い込む「生きた壁」にした",
+    "client": "AATB（Andrea Anner & Thibault Brevet）/ Archizoom EPFL",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.creativeapplications.net/project/nc-normally-open-normally-closed-walls-are-alive-but-can-they-be-trusted/",
+    "thumbnail": "/thumbnails/nc-normally-open-normally-closed-walls-are-alive-but-can-the.jpg",
+    "videoId": "",
+    "overview": "AATB（Andrea AnnerとThibault Brevet）による公開インスタレーション。4つの自律的な障害物が位置を変え続け、ときに一時的な囲いを作る。来場者は迂回するか、間をすり抜けて進む。立ち止まると囲まれ、動き続けることが抜け出す唯一の方法になる。EPFLキャンパスで展示された。",
+    "background": "AATBはチューリッヒとマルセイユを拠点に、産業用ロボットを工場の外で使う人間と機械の関係を探る。展示は展覧会「Do Robots Dream of Construction Sites?」の一部で、Archizoom EPFLとPôle Culture（VPI）の委託による。壁は安定した境界ではなく、不安定で透過的な、固有の意思を持つかのような存在として扱われる。",
+    "execution": "Rainbow Robotics製RBシリーズの協働ロボットアーム4台を使う。各アームの下に制御ボックスがあり、本体コンピュータ、電源、安全系、I/O基板を収める。前面に手持ちのタッチ画面も付く。CreativeApplications.Netはアームから吊るしたカーテンが壁になると記すが、EPFLの公式ページは「膨らませたバリケード」と記し、素材の記述は食い違う。ソフトはC++とPolyScopeとされる。センサー構成や協調の仕組みは確認できなかった。",
+    "evaluationImpact": "壁や間仕切りを動かない構造物ではなく、動く主体として扱った点が核である。「壁は生きているが信頼できるのか」という問いを、建築と機械への不安として体験させる。協働ロボットを工場の外の公共空間に置く例にもなる。ただし受賞は確認できず、制御手法の詳細も公開情報では不明で、評価は企画の読み替えが中心。",
+    "relatedWorks": [
+      {
+        "title": "NO/NC Normally Open, Normally Closed – AATB（EPFL Archizoom）",
+        "description": "EPFL公式の作品ページ。展示日程とコンセプトを掲載",
+        "url": "https://www.epfl.ch/campus/art-culture/museum-exhibitions/archizoom/no-nc-normally-open-normally-closed-aatb/"
+      },
+      {
+        "title": "Do robots Dream of Construction Sites?",
+        "description": "本作が含まれるArchizoom EPFLの展覧会ページ",
+        "url": "https://livingarchives.epfl.ch/projects/8633/do-robots-dream-of-construction-sites/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Form/Installation",
+      "Theme/Art"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creativeapplications",
+    "gateTier": "accept",
+    "discoveryLens": 4
+  },
+  {
+    "id": "ai-knittakers-authentic-icelandic-knittakers-2026",
+    "title": "AI Knittakers（Authentic Icelandic Knittakers）",
+    "summary": "AI議事録ツールを「会議に同席し要点を一語に編む実在のアイスランドの編み手」に読み替え、会議離れを旅行訴求につなげた。",
+    "client": "Visit Iceland",
+    "agency": "M+C Saatchi North America / Peel",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州",
+      "北米",
+      "グローバル"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/ai-knittakers",
+    "thumbnail": "/thumbnails/ai-knittakers-authentic-icelandic-knittakers-2026.jpg",
+    "videoId": "",
+    "overview": "Visit Icelandが2026年10月29日に開始したキャンペーン。AI議事録ツールの代わりに、アイスランドの実在の編み手(Knittaker)がオンライン会議へ代理出席する。職人は農家の台所、港町、滝、地熱温泉のそばなど各地から参加して議論を聞き、最も重要な点を一語にまとめてアイスランドのウールで編む。予約は無料。",
+    "background": "Visit Icelandの委託調査では、4,000人のオフィスワーカーが不要と感じる会議に月約8時間を費やしており、63%が「多くの会議はメールで済んだ」と答えた。本施策は既存の観光キャンペーン「Looks Like You Need Iceland」を土台にしている。M+C Saatchi North AmericaとPeel Icelandが手がけ、同コンビはVisit Icelandの長期パートナーである。",
+    "execution": "会議の主催者がオンラインで編み手を予約すると、編み手がライブで会議に参加する。会議の要点を一語に絞って編み、予約者には編んだ単語を持つ職人の写真と、職人の名前・ストーリー・所在地が届く。米国と欧州の主催者には、在庫がある場合に編まれた要約が郵送される。映像を中心にした統合キャンペーンとして展開された。",
+    "evaluationImpact": "議事録AIという身近なツールを、手仕事の編み物に置き換えた点が核。「無駄な会議から逃げるならアイスランドへ」という旅行訴求にそのままつながり、一文で説明できる。AIの効率化とは逆の手触りでブランドの個性を出している。ただし、受賞や成果指標は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Looks Like You Need an Adventure（Visit Iceland / M&C Saatchi）",
+        "description": "2021年のVisit Iceland世界向けキャンペーン。同じ広告会社が手がけ、今回の施策の土台となった「Looks Like You Need Iceland」の流れにある。",
+        "url": "https://www.campaignlive.co.uk/article/visit-iceland-looks-need-adventure-m-c-saatchi/1720651"
+      },
+      {
+        "title": "A.U.R.O.R.A.S（Visit Iceland / M+C Saatchi Peel）",
+        "description": "オーロラ愛好家に向けたモキュメンタリー形式のVisit Iceland施策。",
+        "url": "https://www.bandt.com.au/visit-iceland-launches-mockumentary-introducing-a-u-r-o-r-a-s-for-northern-lights-aficionados-via-mc-saatchi-peel/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Event",
+      "Form/Film",
+      "Theme/Fashion"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "robotically-sprayed-earth-forms-a-noise-barrier-without-stee",
+    "title": "Robotically Sprayed Earth Forms a Noise Barrier Without Steel",
+    "summary": "砂・粘土・砂利の混合土をロボットで層状に吹き付け、鉄筋もコンクリート基礎も使わない防音壁を実現した",
+    "client": "Terrestrial（旧 FormWork Robotics / Jelle Feringa）",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://materialdistrict.com/article/robotically-sprayed-earth-forms-a-noise-barrier-without-steel/",
+    "thumbnail": "/thumbnails/robotically-sprayed-earth-forms-a-noise-barrier-without-stee.jpg",
+    "videoId": "",
+    "overview": "Terrestrial（旧FormWork Robotics、創業者Jelle Feringa）が開発した防音壁。砂・粘土・砂利と安定剤の混合物をロボットが高圧で吹き付け、水平の帯状に層を積んで壁にする。鉄筋・アンカー・コンクリート基礎は使わない。オランダ・Oirschot近郊の実証施設InnovA58で現場試験に成功し、次は130mの試作が計画されている。",
+    "background": "ProRailとRijkswaterstaatは、持続可能な防音壁を開発するIPDG（Innovatiepartnerschap Duurzame Geluidschermen）を運営している。Terrestrialもこのプログラムに参加した。従来の防音壁は鉄鋼やコンクリートに頼るため環境負荷が大きく、掘削で出た余剰土など二次材料を使う壁が求められていた。InnovA58は同じA58沿いで複数の防音壁が試される実証の場でもある。",
+    "execution": "Summum Engineeringが断面形状を計算した。壁には風圧や高速列車の圧力波がかかっても引張が生じないようにし、そのため鉄筋が要らない。段状で傾いた面が音を線路のバラスト側へ反射させる。壁は再生混合砕石とジオグリッドの上に載る。土はVan de Beeten社が他現場の掘削土を供給し、Mavro社が撥水・落書き防止の表面処理を開発中。排水で雨水や湿気も防ぐ。",
+    "evaluationImpact": "ProRailの資料では遮音36dB、吸音5dBで要求等級を上回る。環境コスト指標（MKI）は€3.62で、基準となる壁の€33.02の約11%（約89%減）。耐用年数を終えれば土に戻せる設計。ただし数値は事業者・ProRail資料に基づき、独立した検証結果は確認できていない。ロボット施工で土を構造材にする点は、他の土木・建築分野にも応用できる。",
+    "relatedWorks": [
+      {
+        "title": "Blade Barrier（Rijkswaterstaat）",
+        "description": "同じInnovA58に設置された、役目を終えた風力発電タービンのブレードを再利用した長さ60mの防音壁。初期測定では従来型コンクリート壁と同等の遮音性が報告されている。",
+        "url": "https://www.rijkswaterstaat.nl/en/news/archive/2026/02/blade-barrier-shows-promising-results"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Form/Installation",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "materialdistrict",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "swiss-post-sans-2026",
+    "title": "Swiss Post Sans",
+    "summary": "スイス郵便の新書体は、旧書体と同じ組みボリュームで差し替え可能にし、イタリックはa/b/e/gを筆記体化した混成型",
+    "client": "Swiss Post",
+    "agency": "Swiss Typefaces",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.creativeboom.com/work/swiss-typefaces-crafts-a-warmer-friendlier-custom-font-for-swiss-post/",
+    "thumbnail": "/thumbnails/swiss-post-sans-2026.jpg",
+    "videoId": "",
+    "overview": "Swiss Typefaces が、スイス郵便(Swiss Post)のために開発したカスタム書体「Swiss Post Sans」。開発に3年以上を要し、まず直立体、次にイタリックを制作した。ドイツ語・フランス語・イタリア語・ロマンシュ語の4言語に対応し、旧書体より温かく親しみやすい印象を狙っている。見出し、大型サイン、本文まで幅広く使われる。",
+    "background": "スイス郵便は既存の書体を、フォントファイルの差し替えだけで置き換える必要があった。そのため、デザインやレイアウトを変えずに済むよう、旧書体の全体的な組みボリュームを維持することが条件だった。4言語のアクセント記号や使用頻度の低い字形も正しく機能することが求められ、価格や時刻表を並べる用途もあった。",
+    "execution": "長く使われることを前提に、奇抜さを避けつつヒューマニスト的な要素を加えて温かみを出した。数字は価格や時刻表を並べやすいよう、既定で等幅(タビュラー)にした。クライアントの要望で、iとjの点を四角から丸に変更した。イタリックは単なる斜体化をせず、a・b・e・gに筆記体的な特徴を直接組み込んだ独自の混成型で、fは基線の下に伸びてシャープな切り口で終わる。ベータ版を早期に入手し、専門家の協力を得て実環境でテストした。",
+    "evaluationImpact": "レイアウトを崩さずに印象だけを温かくするという制約下で、書体設計を成立させた点が評価できる。差し替えだけで導入できる設計は、大規模な既存運用を持つ組織の書体刷新に転用しやすい。ウェブでは使用頻度の低いイタリックを、筆記体要素で独自の表現にした点も特徴的である。受賞は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Theme/Art"
+    ],
+    "gateCriterion": "B",
+    "sourceId": "creativeboom",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
     "id": "don-t-panic-room-2026",
     "title": "Don't Panic Room",
     "summary": "億万長者の終末シェルター文化を茶化し、同じ40フィートのバンカーを一般人の動画応募者に贈る",
