@@ -1,5 +1,169 @@
 [
   {
+    "id": "arrow",
+    "title": "ARROW (Arbitrary Reconstruction and Tracking of 4D Observations in the Wild)",
+    "org": "RWTH Aachen University (Computer Vision Group)",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "Motion/Body"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "写真の束、動くカメラの動画、複数カメラの映像のどれを入れても、3D形状の復元と「画面上の点が3D空間のどこへ動いたか」の追跡を1つのモデルで行う研究。推論コード・重み・ブラウザ用ビューアが公開されている。",
+    "point": "すごい点は、撮影順がバラバラの写真集でも、手持ちの動画でも、複数台のカメラ映像でも、同じモデルで3Dの形と点の動きを出せることです。従来は「3D復元」と「点の追跡」を別のツールで行い、入力も連続した動画が前提でした。ARROWは時間の順序を前提にしないため、イベント会場で来場者が撮った写真や動画を寄せ集めても、空間と動きをまとめて再構成できます。広告・体験づくりでは、参加者投稿の素材から会場の3D空間を立ち上げる演出や、人や物体の軌跡を3D上にトレイルとして可視化するインタラクティブ映像が考えられます。撮影済み映像の中の物体の動きを3D座標として取り出し、CGやエフェクトを位置合わせして重ねる用途にも向きます。ただし重みは非商用限定なので、そのまま商用案件に使うことはできません。企画段階の検証やプロトタイプ用と割り切るのが安全です。",
+    "detail": "仕組み：ARROWは複数枚の画像を読み込み、画像ごとに「この写真は何番目の観測か」を示す識別用の目印（トークン）を作ります。時間を表す情報は入れていません。そのうえで「この画像のこの画素が、別の時刻の画像・別のカメラから見るとどの3D座標か」という問いをモデルに投げ、答えを返してもらいます。たとえるなら、バラバラに並んだ写真の山から、同じ点を探して位置を答えてくれる係員のような働きです。同じ問いの形で、少数の点を追う追跡も、全画素を答える密な復元もできます。\n\n従来との違い：既存の手法は、静止した場面の復元用か、動画の点追跡用かで分かれ、入力の順序も決まっていることが多くありました。ARROWは順序なしの写真集、移動カメラの動画、複数カメラのストリームを同じ枠組みで扱います。論文では、3D追跡のベンチマークであるWorldTrackとTAPVid-3Dで最高水準、RGB画像だけを使うマルチビュー追跡の比較でも専用手法を上回ったと報告されています。復元の精度は同等レベルです。\n\n使うには：GitHubからソースを取得し、uvで環境を作ります。サンプル動画つきの推論スクリプトと、ブラウザで結果を見るビューアが入っています。環境が整っていればHugging Face上のデモでも試せます。評価・学習コードは「次に公開予定」の段階です。重みは非商用限定なので、商用利用には使えません。Python環境とNVIDIA GPUを扱えるスキルが目安です。",
+    "license": {
+      "spdx": null,
+      "commercial": "research-only",
+      "note": "READMEによると学習済み重みは非商用限定で、Waymoの利用条件にも従う必要がある。コードのライセンスはLICENSEファイルで確認が必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/ifradlin/arrow"
+      },
+      {
+        "kind": "project",
+        "url": "https://ifradlin.github.io/arrow/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.01314"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/arrow.jpg",
+    "relatedWorks": [
+      {
+        "title": "Any4D",
+        "description": "動画から実スケールの4D（3D＋時間）をフィードフォワードで復元する手法",
+        "url": "https://any-4d.github.io/"
+      },
+      {
+        "title": "Any3R",
+        "description": "魚眼やパノラマなど任意のカメラ種別から3D復元するモデル",
+        "url": "https://jingong-chen.github.io/Any3R/"
+      },
+      {
+        "title": "OmniX",
+        "description": "任意の視点・時刻の4D復元をフィードフォワードな軌道場で行う手法",
+        "url": "https://omnix4d.github.io/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "any3r",
+    "title": "Any3R",
+    "org": "Jingong Chen ほか（研究チーム）",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "ピンホール、魚眼（180度超）、360度パノラマなど、種類の異なるカメラの画像を混ぜて入れても、1回の処理でカメラ位置・深度・3D点群を出す3D復元モデル。推論・評価コードと重み、Gradioデモが公開されている。",
+    "point": "すごい点は、レンズの種類を気にせず3D復元できることです。従来の多くのモデルは普通のカメラ（ピンホール）前提で、魚眼や360度カメラの画像は事前に歪みを補正するか、別途学習し直す必要がありました。Any3Rは「各画素がどの方向を向いているか」という光線の情報を入力にするため、魚眼とパノラマと通常カメラの画像が混在していても、そのまま1回の処理で復元できます。広告・体験づくりでは、360度カメラやアクションカメラで撮った会場・店舗・街の映像から手早く3D空間を起こし、バーチャル展示やAR演出の下地にする使い方が考えられます。ロケハン映像からのレイアウト把握や、複数種類のカメラで撮った現場素材の統合にも向きます。重みは非商用限定なので、実案件ではまず社内検証や企画用のプロトタイプとして使うのが安全です。",
+    "detail": "仕組み：Any3Rは、画像1枚ごとに「画素ごとの視線の向き（単位ベクトル）」を計算して一緒にモデルへ渡します。たとえば魚眼は端ほど画像が歪みますが、視線の向きで表せば、歪んだ写真もそのまま同じ座標系で扱えます。さらに、画像の位置情報に行・列ではなく仰角と方位角を使い、損失の計算も「その画素が球面上で占める面積」で重みづけします。レンズの種類による有利・不利が出にくい学習になります。\n\n従来との違い：既存手法は、カメラの種類ごとに専用のモデルを用意するか、歪み補正をかけて普通のカメラ画像に直す必要がありました。Any3Rは13種類のカメラモデルで評価され、魚眼やパノラマが混在した入力も1回の処理で扱えます。READMEの表現では、深度、カメラ位置、統合した点群を1回の順伝播で出します。\n\n使うには：GitHubからソースを取得し、コマンドライン用demo.pyか、ブラウザで使えるdemo_gradio.pyを起動します。重み（約4.6GB）は初回にHugging Faceから自動ダウンロードされます。NVIDIA GPUとPython環境が必要で、評価の再現用スクリプトとサンプル画像3シーンも同梱されています。コードはMITですが、重みと一部コードは非商用研究ライセンスのため、商用案件への直接利用はできません。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "research-only",
+      "note": "コードはMITだが、VGGT-Omega由来の部分とモデル重みはFAIR Noncommercial Research Licenseで非商用限定"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Jingong-Chen/Any3R"
+      },
+      {
+        "kind": "project",
+        "url": "https://jingong-chen.github.io/Any3R/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.36150"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/any3r.jpg",
+    "relatedWorks": [
+      {
+        "title": "VGGT",
+        "description": "複数画像からカメラ・深度・点群を一度に出す基盤モデル（Any3Rの土台の系統）",
+        "url": "https://github.com/facebookresearch/vggt"
+      },
+      {
+        "title": "ARROW",
+        "description": "任意の画像集合から3D復元と3D点追跡を行うモデル",
+        "url": "https://ifradlin.github.io/arrow/"
+      },
+      {
+        "title": "Any4D",
+        "description": "動画からの実スケール4D復元モデル",
+        "url": "https://any-4d.github.io/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "pure",
+    "title": "PURE (Refining Feed-forward 3D Reconstruction with Unlabeled Post-training)",
+    "org": "Yaolong Zhu, Yuan Liu ほか（ACM Multimedia 2026 採択）",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "Motion/Body"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "既存の3D復元モデル（Pi3・Depth Anything 3・VGGT）を、正解データなしの普通の動画だけで追加学習し、動く被写体を含む場面でも精度を上げる手法。コード・重み・Hugging Faceデモが公開されている。",
+    "point": "すごい点は、人や車が動き回る「現実の動画」で苦手になりがちな3D復元を、高価な正解ラベルなしで改善できることです。3D復元モデルは、止まった景色には強い一方、動く被写体、物陰、光の変化が入った動画では精度が落ちがちでした。PURE は、すでに強い2D向けの深度推定などの知識を借りて、手持ちの動画だけで既存モデルを賢くします。広告・体験づくりでは、スポーツ中継やダンス、街のスナップなど動きの多い映像からカメラの動きと奥行きを取り出し、3D空間に文字やCGを自然に置く合成の下準備に使えます。点群を作って空間演出のベースにすることも考えられます。HFのPURE Studioで自分の動画を試せるので、使えそうか手軽に確かめられます。",
+    "detail": "仕組み：PUREは「先生と生徒」の追加学習です。先生役は、1枚の画像から相対的な奥行きを推定する強力な2Dモデルや、動く領域の検出、フレーム間の対応点などです。生徒役は、複数フレームから3D復元を行うモデル（Pi3、Depth Anything 3、VGGT）です。先生が出した「この物体はあれより手前」「この点は次のフレームのここに写っている」といった手がかりを使い、正解の深度やカメラ位置がない動画でも、生徒の予測が先生の知識と矛盾しないよう調整します。\n\n従来との違い：従来、動画の3D復元モデルを動的な場面に強くするには、深度やカメラ位置の正解データを大量に用意する必要があり、費用がかかりました。PUREは正解なしの動画から改善でき、論文では複数の最新アーキテクチャで合成・実写の動的ベンチマークとも精度向上が報告されています。ACM Multimedia 2026に採択されています。\n\n使うには：GitHubからソースを取得し、READMEの手順に沿ってデモ、Python API、学習スクリプトを使います。重みは初回に自動ダウンロードされ、ログインは不要です。ブラウザ上でHugging FaceのPURE Studioでも試せます（ZeroGPUの枠に制限あり）。自分で追加学習するには教師キャッシュの準備が必要で、一定のPython・GPUスキルが求められます。コードはMITですが、土台モデルごとの条件を確認してください。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "PURE自体のコードはMIT。組み込まれたモデル部品は各自の第三者ライセンスに従う（LICENSES/とTHIRD_PARTY_NOTICES.md参照）。用いる土台モデルごとに確認が必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/jiah-cloud/PURE"
+      },
+      {
+        "kind": "project",
+        "url": "https://funnyguy525.github.io/PURE-Page/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.14698"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/pure.jpg",
+    "relatedWorks": [
+      {
+        "title": "VGGT",
+        "description": "複数画像から深度・カメラ・点群を一度に推定する基盤モデル",
+        "url": "https://github.com/facebookresearch/vggt"
+      },
+      {
+        "title": "ARROW",
+        "description": "3D復元と3D点追跡を統合したモデル",
+        "url": "https://ifradlin.github.io/arrow/"
+      },
+      {
+        "title": "Any3R",
+        "description": "任意のカメラ種別に対応する3D復元モデル",
+        "url": "https://jingong-chen.github.io/Any3R/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "sculptforge",
     "title": "SculptForge",
     "org": "islandmed / SculptForge contributors",
