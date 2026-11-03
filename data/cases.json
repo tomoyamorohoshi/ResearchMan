@@ -1,5 +1,345 @@
 [
   {
+    "id": "tracks-to-relax-en-train-de-dormir-via-rail-2026",
+    "title": "Tracks to Relax / En train de dormir（VIA Rail）",
+    "summary": "録音した列車の走行音を区間の所要時間そのままの長さで公開し、乗車体験を睡眠用トラックに読み替えた",
+    "client": "VIA Rail Canada",
+    "agency": "Cossette（制作 Septième／音響 Parade）",
+    "categories": [
+      "コンテンツ革新",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://creapills.com/via-rail-sons-trains-sommeil-20261103",
+    "thumbnail": "/thumbnails/tracks-to-relax-en-train-de-dormir-via-rail-2026.jpg",
+    "videoId": "",
+    "overview": "VIA Rail Canada が、走行中の列車内で録音した音を睡眠用トラックとして無料公開した施策。仏語題は「En train de dormir」、英語題は「Tracks to Relax」。各トラックの長さは録音した移動区間の所要時間とちょうど同じで、広告用に短縮していない。11月1日に開始し、VIA Rail の SNS や音声配信プラットフォーム、公式 YouTube チャンネルで聴ける(Creapills の記事による)。",
+    "background": "VIA Rail は、列車を移動手段としてだけでなく、くつろげる場所として見せてきた。Cossette が手がけた通勤客向けの広告シリーズ(Shots の記事)でも、列車で一息つける点が打ち出されている。今回の背景や狙いについて、公式発表は今回の調査では確認できなかった。「列車の揺れと音で眠る」という使い方は、もともと一般の利用者にあった習慣を踏まえたものと考えられるが、その点も確認できていない。",
+    "execution": "企画・制作は Cossette。制作会社は Septième、サウンドハウスは Parade で、音響エンジニアとして Pierre-Olivier Rioux が関わった(Creapills による)。録音はネットワーク内のさまざまな路線で行われたとされるが、具体的な路線名は確認できていない。各トラックは録音した区間の所要時間と同じ長さで、旅程そのものを聴いて眠る形式になっている。",
+    "evaluationImpact": "広告向けに短縮しがちな音素材を、あえて旅程と同じ長さで出した点が核。サービスの中身である「移動時間」をそのままコンテンツにしており、列車はくつろげる場所だという主張を、説明ではなく聴く体験で示している。なお、睡眠への効果は記事では確認されていないと明記されている。受賞や成果数値は確認できなかった。",
+    "relatedWorks": [
+      {
+        "title": "VIA Rail: Why Don't You Take The Train?",
+        "description": "Cossette による VIA Rail の通勤客向け広告シリーズ。列車での休息を訴求している。",
+        "url": "https://shots.net/news/view/93182-via-rail-why-don-t-you-take-the-train"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Form/SNS",
+      "Theme/Mobility",
+      "Theme/Health"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "parallel-world-moth-colour-vision-2026",
+    "title": "Parallel World: Moth Colour Vision",
+    "summary": "本物の植物をスズメガの色覚を模したLED光で照らし、蛾の目に映る花と葉の見え方を人間に体験させる庭",
+    "client": "Adrien Lucca",
+    "agency": "Ali Aiman Raza（色彩科学）/ Colas Schretter / Marko Ilić（生物学）との共同制作",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.designboom.com/art/garden-changes-color-flowers-appear-moths-adrien-lucca-parallel-world/",
+    "thumbnail": "/thumbnails/parallel-world-moth-colour-vision-2026.jpg",
+    "videoId": "",
+    "overview": "ブリュッセル拠点のアーティスト Adrien Lucca による、室内の小さな草地を使ったインスタレーション。本物の植物をコンピュータ制御のLEDで照らし、光のスペクトルを一定間隔で切り替える。青みがかった局面では緑の葉が茶色〜ほぼ黒に、花は異様に明るく見える。植物は動かさず、届く波長だけを変える。Ars Electronica Festival 2026(リンツ)で展示され、ポーランド・グダニスクの Łaźnia でも紹介された。",
+    "background": "対象はスズメガの一種ベニスズメ(Deilephila elpenor)で、夜行性の送粉者。2002年の Nature 論文は、この種が星明かり程度の暗さでも色を識別できると示した。2017年の研究では、人工照明下の植物群落で夜間の訪花が62%減った。Lucca は2022年に種子会社 Ecosem、LMNO Gallery と『Mondes parallèles』を制作し、2024年に Gluon のレジデンシーでこの蛾に取り組んだ。",
+    "execution": "色彩科学者 Ali Aiman Raza、研究者 Colas Schretter、昆虫視覚を専門とする生物学者 Marko Ilić と共同で制作した。LEDの発光スペクトルを蛾の感度に合わせて設計し、実物の植物を照らす。人間は紫外線を直接見られず、蛾の複眼は光の処理も異なるため、再現はあくまで近似である。制作には Gluon、STUDIOTOPIA 2.0、S+T+ARTS、LMNO などが支援した。",
+    "evaluationImpact": "映像や図解でなく、本物の植物と光だけで「別の生き物の見え方」を体験させる点が評価できる。照明のスペクトルを変えるだけで視覚が変わる手法は、夜間照明が送粉者に与える影響の理解にもつながる。他の動物の視覚を扱う展示や教育に転用できる。ただし受賞は確認できず、周期の長さや使用植物の種は記事に記載がない。",
+    "relatedWorks": [
+      {
+        "title": "Artificial nighttime lighting impacts visual ecology links between flowers, pollinators and predators",
+        "description": "2021年の Nature Communications 論文。ベニスズメの視覚モデルで人工照明の色覚への影響を検証し、光のスペクトルによって色の見分けやすさが変わることを示した。",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8260664"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Installation",
+      "Theme/Art",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "D",
+    "sourceId": "designboom",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "the-metal-house-tweek-eek-vdl-groep-2026",
+    "title": "The Metal House（Tweek Eek × VDL Groep）",
+    "summary": "トラック製造の余剰プレス材や端材だけで、壁から食器まで金属の実寸の家を建て、傷も磨かず見せた",
+    "client": "Tweek Eek",
+    "agency": "VDL Groep / Studio RENS / Sarah Roseman / Jim Bob Ruijgrok / Teun Zwets / Choi Baekgi",
+    "categories": [
+      "空間体験",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://materialdistrict.com/article/truck-pressings-and-steel-offcuts-build-a-life-size-metal-house/",
+    "thumbnail": "/thumbnails/the-metal-house-tweek-eek-vdl-groep-2026.jpg",
+    "videoId": "",
+    "overview": "ジュエリーブランドTweek Eekが、オランダの製造会社VDL Groepの余剰在庫（トラックや生産ラインの部品だった板材・プレス材・パイプなど）だけを使い、壁・家具・照明・食器まで金属で作った実寸の家。パリ・ファッションウィークで披露され、2026年10月17〜25日のDutch Design Weekでもエイントホーフェンで公開された。",
+    "background": "Tweek Eekは2019年にRoos・Geertje Eek姉妹が創業したジュエリーブランドで、産業機械を使う手法を特徴とする。素材提供のVDL Groepはエイントホーフェン地域の家族経営メーカー。記事によれば、ブランドが持つ産業的アプローチを装身具から建築スケールへ広げる試みとして、工場の余剰素材を出発点にした。",
+    "execution": "壁は鋼のプレス材をパッチワーク状に組み、凹んだドア形やリブ状の打ち抜き痕をそのまま見せる。5組のデザイナーを招き、Studio RENSは穿孔ステンレスの端材で枠、Sarah Rosemanはコンベアベルトを元にした金属織り、Jim Bob Ruijgrokは車両部品を削り切った椅子、Teun Zwetsは機械加工部品とパレット材・グリース缶の照明、Choi Baekgiは針金とステンレスとシリコーンの彫刻を制作。各自が元の部品の形や寸法に従い、傷は研磨せず、焼き入れやめっきで鋼の隠れた色を引き出した。",
+    "evaluationImpact": "記事は「何も磨き消していない」と述べ、傷やプレス痕で各パネルの出自が読める点を特徴とする。端材を「再利用品」ではなく素材の主張として建築・家具・食器まで一貫させた点が評価できる。工場の余剰を共同制作の素材とするアプローチは、他の産業×デザインの協業にも転用できる。受賞は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Exhibition",
+      "Form/Installation",
+      "Theme/Fashion",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "materialdistrict",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "tana-delle-marmotte-skyway-monte-bianco-2026",
+    "title": "Tana delle Marmotte（マーモットの巣穴・Skyway Monte Bianco）",
+    "summary": "マーモットの冬眠巣穴を鋼管トンネルに置き換え、コンクリート基礎なしで撤去できる標高2,173mの学習空間",
+    "client": "Skyway Monte Bianco",
+    "agency": "Officina 82",
+    "categories": [
+      "空間体験",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.designboom.com/architecture/corten-steel-tubes-spruce-plywood-ribs-alpine-learning-burrow-officina-82-tana-delle-marmotte/",
+    "thumbnail": "/thumbnails/tana-delle-marmotte-skyway-monte-bianco-2026.jpg",
+    "videoId": "",
+    "overview": "イタリア・アオスタ谷のSkyway Monte Bianco中間駅Pavillon（標高2,173m）に、Officina82が設計した子ども・若者向けの地下型学習施設。アルプスマーモットの地下の生息環境をモジュール式の建築に置き換え、遊びながら環境教育を受けられる恒久的な体験空間として整備された。",
+    "background": "施設は山岳ロープウェイ事業者Skyway Monte Biancoの依頼で、同社の中間駅に設けられた。対象は子どもと十代で、遊びと環境教育の両立が目的。内部の形は、マーモットが冬眠のために掘るトンネルから着想している。公開日などの詳細な時期は確認できなかった。",
+    "execution": "主構造は工場でプレハブ化したコルテン鋼の管3本で、長さ8mの中央管と、直径2,200mmと1,300mmの横断管からなる。フランジ接合で、ヘリコプター搬入に合わせて重量を調整し、現地で乾式組立てした。管は砂利床に置くだけでコンクリート基礎がなく、撤去できる。内部は厚さ40mmのトウヒ合板リブで、座席・展示棚・階段を兼ねる。階段の先にはアクリル製の窓があり、LED照明が動線を導く。",
+    "evaluationImpact": "高所の自然保護区域で、基礎を打たず撤去可能な構法と、鋼材・木材などリサイクル可能な素材の選定を両立させた点が評価できる。巣穴の形をそのまま学習動線にし、展示・座席・階段を木製リブに統合した。標高での工期と現場への負荷を、工場製作と乾式組立てで抑えている。受賞情報は確認できなかった。",
+    "relatedWorks": [
+      {
+        "title": "Tana delle Marmotte（designboom掲載記事）",
+        "description": "Officina82によるPavillon駅の地下型学習施設の紹介記事。構造・素材・チーム構成を掲載。",
+        "url": "https://www.designboom.com/architecture/corten-steel-tubes-spruce-plywood-ribs-alpine-learning-burrow-officina-82-tana-delle-marmotte/"
+      },
+      {
+        "title": "Skyway for Kids（Valle d'Aosta観光データベース）",
+        "description": "Skyway Monte Biancoの子ども向け体験の紹介ページ。",
+        "url": "https://balteus.lovevda.it/en/database/11/children-playgrounds/courmayeur/skyway-for-kids/507"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Theme/Education",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "designboom",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "kevin-bacon-the-pudding-2026",
+    "title": "kevin bacon (The Pudding)",
+    "summary": "ケヴィン・ベーコンは中心ではないと共演網で示し、1万回の模擬で次のハリウッドの中心人物を確率で予測する",
+    "client": "The Pudding",
+    "agency": "",
+    "categories": [
+      "データクリエイティブ",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://pudding.cool/2026/10/kevin-bacon",
+    "thumbnail": "/thumbnails/kevin-bacon-the-pudding-2026.jpg",
+    "videoId": "",
+    "overview": "The Puddingによるスクロール型のデータストーリー。「ケヴィン・ベーコン・ゲーム」を題材に、約16万9千人の俳優データから、共演者網での中心からの遠さ(remoteness)を算出して俳優を並べる。現在の中心はサミュエル・L・ジャクソン(2.09)で、2位ウィレム・デフォー(2.13)、3位ロバート・デ・ニーロ(2.14)。ベーコン自身は中心ではないと示す。",
+    "background": "「ケヴィン・ベーコン数」はハリウッドの中心がベーコンだという通説に基づく遊びだが、共演網で測るとベーコンが最短ではないことは過去にも指摘されてきた(Oracle of Baconの分析、2013年のGigazineの報道など)。本作はその「誰が中心か」を現在の指標で測り直し、さらに将来の中心まで問う。記事はOwen Lacey氏によるとSix Colorsの紹介記事が伝える。",
+    "execution": "指標は出演作数と、共演作が多い上位50人の共演者の平均で測る。将来予測は、1997年以降生まれで5本以上出演した99人を候補に、キャリア年数と出演作数が近い過去の俳優の経歴を類似度で重み付けして抽選し、今後の出演作数と共演者の推移を作る。これを1万回繰り返して最多勝利数を集計した。1980年以降の中心をスライダーで見る「タイムマシン」や、俳優の組み合わせを当てるクイズも備える。",
+    "evaluationImpact": "1万回の試行の結果、最有力はクロエ・グレース・モレッツ11.6%、次いでAriana Greenblatt 9.4%、Maya Hawke 6.4%だった。有力候補でも確率は高くなく、「次の中心」が定まらないことを数字で見せる。女性はトップ100に16人で、最上位はニコール・キッドマンの21位という偏りも可視化する。受賞は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Who is the Center of the Hollywood Universe?",
+        "description": "Oracle of Baconによる、ベーコンより中心に近い俳優を共演網から調べた分析",
+        "url": "https://oracleofbacon.org/center.php"
+      },
+      {
+        "title": "The closest actor to the center of Hollywood is not Kevin Bacon but Dennis Hopper",
+        "description": "2013年にデニス・ホッパーのほうがベーコンより中心に近いと報じた記事",
+        "url": "https://gigazine.net/gsc_news/en/20130429-center-of-hollywood-universe"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/Website",
+      "Theme/Entertainment"
+    ],
+    "gateCriterion": "D",
+    "sourceId": "pudding",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "soft-pixel-sree-krishna-pillarisetti-2026",
+    "title": "Soft-pixel（Sree Krishna Pillarisetti）",
+    "summary": "菌糸体・麻・PHAの堆肥化可能な筐体で、写真をクラウドでなくmicroSDに残すコンセプトカメラ。",
+    "client": "Sree Krishna Pillarisetti",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.designboom.com/technology/compostable-mycelium-digital-camera-soft-pixel-sree-krishna-pillarisetti/",
+    "thumbnail": "/thumbnails/soft-pixel-sree-krishna-pillarisetti-2026.jpg",
+    "videoId": "",
+    "overview": "Sree Krishna Pillarisetti（Parsons関連、ニューヨーク）によるSoft-pixelは、菌糸体・麻・PHAバイオプラスチックで筐体を作った堆肥化可能なデジタルカメラのコンセプト。写真はクラウドではなくmicroSDカードにローカル保存する。背面には正方形の画面、4方向ボタン、スピーカー、マイクを備え、シャッターには「Cheese!」の表記がある。価格や発売時期は示されていない。",
+    "background": "Pillarisetti氏は先行作として、菌糸体・麻・PLAで筐体を作った生分解性の8GBハードドライブ「Soft-Drive」をParsonsの修士制作として発表している。これは、クラウド依存で個人データへの主導権を失うことへの応答だった。Soft-pixelはその延長にあたる。素材はPLAからPHAに替わり、対象は使い捨てカメラ的なデバイスに移っている。使い捨てカメラのうち何を捨てるべきかを問い直す企画である。",
+    "execution": "筐体は菌糸体を生物的に育て、熱プレスで成形している。外側は半透明の層で、内側は繊維質の構造をしており、記事はグラノーラバーに例えている。軽量で衝撃を吸収するとデザイナーは説明する。基板は目に見える4本のネジで固定されていて、開けて扱える設計と読める。手首ストラップの取り付け部もある。画像はmicroSDに保存され、データはユーザーの手元に残る。センサーの仕様は記事に記載がない。",
+    "evaluationImpact": "素材（菌糸体の筐体）と思想（データのローカル保持）を一つの製品にまとめた点が評価できる。電子機器の廃棄とクラウド依存を同時に扱っている。ただし堆肥化については、PHAの種類によっては家庭コンポストで分解しうるという一般論が示されるにとどまる。Soft-pixel自体の分解試験は確認できない。製品化の予定も不明で、実験的なコンセプトの段階にある。受賞は公式ソースで確認できなかったため記載していない。",
+    "relatedWorks": [
+      {
+        "title": "Soft-Drive（Sree Krishna Pillarisetti）",
+        "description": "菌糸体・麻・PLAの筐体を持つ生分解性の8GBハードドライブ。Parsonsの修士制作で、Soft-pixelの先行作。",
+        "url": "https://www.yankodesign.com/2026/01/15/someone-built-a-biodegradable-8gb-hard-drive-out-of-mushrooms/amp/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Product",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "designboom",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "g-desmet-2026",
+    "title": "G-Desmet 短繊維フラックスのプレス成形曲面パーツ",
+    "summary": "リネン用に長繊維を取った残りの短いフラックス・ヘンプ繊維を、接着剤と高圧プレスで家具の曲面パーツにする",
+    "client": "G-Desmet",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://materialdistrict.com/article/short-flax-fibres-pressed-into-curved-furniture-parts/",
+    "thumbnail": "/thumbnails/g-desmet-2026.jpg",
+    "videoId": "",
+    "overview": "ベルギー・メーネンの家族経営の曲げ木メーカーG-Desmetが、フラックス（亜麻）の短繊維とヘンプ（麻）を原料に、曲面の家具パーツを作る取り組み。繊維のマットに接着剤を塗り、金型で高圧プレスして形を保つ硬い曲面部材にする。ヘンプは座面シェルや背もたれ向けと紹介されている。",
+    "background": "フラックスの長繊維はリネンに使われる一方、短繊維は多くが使われずに余る。同社は合板・フェルト・無垢材の曲げ加工を手がけてきた。記事によれば、低環境負荷の素材や、素材の出どころを示せる供給元を求める顧客が増えており、天然繊維は同社にとって3つ目の素材ルートになる。",
+    "execution": "繊維マットに接着剤を塗って金型に入れ、高圧でプレスする。繊維の置き方が、曲面が保たれるか割れるかを左右するという。同社は、曲げすぎると割れる木材より急な形状が可能だと説明している。表面は繊維の筋が見える茶色の質感で、仕上げは素材のまま・ラッカー・色を変える上層から選べる。受注生産で、型から仕上げまで顧客と開発する。使う接着剤は記事に明記がない。",
+    "evaluationImpact": "リネン生産で余る短繊維を、家具の構造パーツという付加価値の高い用途に回す点が評価できる。フェルトで曲げられる形はヘンプでも曲げられるとされ、既存の家具設計に置き換えやすい。一方、環境面の主張は同社と記事の説明のみで第三者検証はなく、デザイナー名や具体的な製品事例も確認できなかった。短いフラックス繊維の家具利用自体も既存の先行例がある。",
+    "relatedWorks": [
+      {
+        "title": "Flax Chair（Christien Meindertsma）",
+        "description": "リネン用の長繊維の層と、短繊維から作ったフェルトをPLAと組み合わせて熱プレスした椅子。短繊維の活用という点で近い先行例。",
+        "url": "https://designmuseum.org/exhibitions/california-designing-freedom/product-z/flax-chair/qa-with-christien-meindertsma"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "materialdistrict",
+    "gateTier": "borderline",
+    "discoveryLens": 3
+  },
+  {
+    "id": "moshy-halloween-2026",
+    "title": "Moshy Halloween ホラー映画風ポスター（体重相談）",
+    "summary": "ホラー映画ポスターの型で、予約の取りにくさや体重相談の気まずさを「怖いもの」として描いた医療ブランドのハロウィン施策。",
+    "client": "Moshy（豪オンライン医療）",
+    "agency": "社内コンテンツスタジオ",
+    "categories": [
+      "カルチャーインサイト",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://creapills.com/moshy-halloween-affiches-films-horreur-poids-20261103",
+    "thumbnail": "/thumbnails/moshy-halloween-2026.jpg",
+    "videoId": "",
+    "overview": "オーストラリアのオンライン医療サービスMoshyが、2026年のハロウィンに合わせて展開したホラー映画風ポスターの施策。「Obsession」「Backrooms」など実在のホラー作品を連想させる構成で、体重相談にまつわる予約の遅れや取りにくさ、相談時の気まずさを恐怖として表現した。同社にとって2回目の年次ハロウィンキャンペーンにあたる。制作は社内コンテンツスタジオで、スケッチから納品まで72時間だったと発表されている。",
+    "background": "Moshyは体重管理などをオンラインで扱う医療サービスで、体重の悩みは相談すること自体に抵抗を感じやすい領域である。同社は今回の施策について、ホラーの様式を借りて、減量ケアにまつわる遅れや予約の困難、体重相談の気まずさといった身近な不安を扱い、助けを求めることを大げさな出来事にしないことが狙いだと説明している。前年のハロウィンでは姉妹ブランドMoshが薄毛をテーマにしたOOHを展開していた。",
+    "execution": "ホラー映画ポスターの構図やコピーの型を使い、「Obsession」「Backrooms」といった映画を想起させるビジュアルと、「見えてしまう」といった趣旨のキャプションで、体重にまつわる不安を怪談のように見せている。クレジットは、MoshとMoshyのクリエイティブディレクターJonathan Seidler、デザインのTonyteni Taulaga、アートディレクションのEamon Hayward、コンテンツ・キャンペーン責任者のOlivia Whiting、メディアのFourteen10。外部のクリエイティブエージェンシーは記事中で確認できなかった。",
+    "evaluationImpact": "身近な不安をジャンル映画の型に置き換えて笑いに変える手法は、センシティブな医療テーマの敷居を下げる点で分かりやすい。72時間で作り切る社内制作の機動力も特筆できる。一方で、同社は前年も薄毛をテーマにハロウィン施策を行っており、2年連続の同系統の手法であるため、読み替えそのものの新規性は限定的である。受賞や成果数値は確認できなかった。",
+    "relatedWorks": [
+      {
+        "title": "Mosh's 'hair loss' scares in Halloween OOH campaign",
+        "description": "Moshが前年のハロウィンに薄毛をテーマに展開したOOH施策の報道（AdNews）。",
+        "url": "https://www.adnews.com.au/news/mosh-s-hair-loss-scares-in-halloween-ooh-campaign"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/Health"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "borderline",
+    "discoveryLens": 1
+  },
+  {
     "id": "pearler-skeletons-in-suits-sydney-commuter-stunt-2026",
     "title": "Pearler – Skeletons in Suits (Sydney commuter stunt)",
     "summary": "スーツ姿の等身大の骸骨を通勤電車と駅に置き、ロゴ無しで「死ぬまで働く」不安を見せて後から投資調査につなげた",
