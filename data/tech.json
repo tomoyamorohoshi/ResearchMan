@@ -1,5 +1,110 @@
 [
   {
+    "id": "sculptforge",
+    "title": "SculptForge",
+    "org": "islandmed / SculptForge contributors",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "ZBrush代替をうたう無料のオープンソース彫刻アプリ。0.9.0で、スマホ動画や写真から手元のPCだけでGaussian Splatを学習し、ワンクリックで彫刻できるメッシュに変換する機能が入った。",
+    "point": "スマホで撮った動画や写真を読み込むと、アプリの中でGaussian Splat（空間を無数のぼんやりした点で表した3Dデータ）を作り、ボタン1つで「Make sculptable」を実行できます。すると、そのデータが彫刻ソフトで扱える四角形ポリゴンのメッシュに変わります。CUDA（NVIDIA GPU専用の計算環境）は不要で、データがクラウドにアップロードされることもありません。広告や展示の現場では、実在の小道具・商品・人物の像・ロケ地の一角をスマホで撮り、そのまま形を整えたり盛ったり削ったりして、ゲームや映像向けの軽い3Dモデルに仕上げる流れが1つのアプリで完結します。Splatのままだと編集しにくいという弱点を、ZBrushのような彫刻作業につなげられる点が新しい点です。外部の3D制作会社に出す前の素材づくりや、キャンペーン用キャラクターの試作にも使えそうです。",
+    "detail": "仕組みは次の通りです。動画からffmpegでコマ画像を取り出し、COLMAPというソフトでカメラの位置を推定します。そのうえでオープンソースのSplat学習ツールBrush（v0.3.0固定）で学習します。「Make sculptable」では、Gaussianの濃さ（不透明度）を3D空間の細かい格子（ボクセル）に集め、すき間のない閉じた表面を作ります。その表面を四角形メッシュに作り直します。ポリゴン数の目安は、ゲーム用4,000、映像用12,000、彫刻用2,000から選べます。撮影時の色は、ポリペイント（頂点ごとの色）かテクスチャとして引き継がれます。COLMAPやnerfstudioのデータセットもそのまま読み込めます。\n\n従来は、Splat学習ツール、メッシュ化ツール、彫刻ソフトを別々に使い、ファイルを受け渡す必要がありました。SculptForgeはこれらを1つのアプリにまとめています。リポジトリの確認では、公開から数日でv0.10.8まで更新されています（QRemesh 2、UVエディタ、PBRビューポートなど）。開発は非常に速い一方で、仕様が頻繁に変わる可能性があります。\n\n使うにはGitHubのReleasesからWindows・macOS・Linux向けのビルドを入手します。無料で、GPL-3.0-or-laterのライセンスです。macOSはユニバーサルdmgが確認できました。Windows向けファイルは今回のリリース一覧では確認できず、READMEに記載があるのみです。Linux ARMやIntel Macではプリビルドのないコンポーネントがあり、ソースからのビルドが必要になることがあります。撮影用のスマホがあれば始められ、3Dの基礎知識があるとより使いこなせます。",
+    "license": {
+      "spdx": "GPL-3.0-or-later",
+      "commercial": "ok",
+      "note": "無料のオープンソース。作ったモデルを商用で使うことは可能。ただしアプリ本体を改変して配布する場合はGPLの条件に従う必要がある。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/islandmed/SculptForge"
+      },
+      {
+        "kind": "product",
+        "url": "https://github.com/islandmed/SculptForge/releases"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/sculptforge-trains-gaussian-splats-from-phone-video"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/sculptforge.jpg",
+    "relatedWorks": [
+      {
+        "title": "Brush",
+        "description": "SculptForgeが内部で使うクロスプラットフォームのGaussian Splat学習ツール。",
+        "url": "https://github.com/ArthurBrussee/brush"
+      },
+      {
+        "title": "COLMAP",
+        "description": "写真・動画からカメラ位置と点群を推定する定番のSfM/MVSツール。",
+        "url": "https://github.com/colmap/colmap"
+      },
+      {
+        "title": "LichtFeld Studio",
+        "description": "ローカルでSplatを学習・編集できるオープンソースのスタジオ型ツール。",
+        "url": "https://github.com/MrNeRF/LichtFeld-Studio"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "relift",
+    "title": "ReLift (Dense 3D Tracking as Lifted Trajectory Repair)",
+    "org": "Technion / NVIDIA",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "Motion/Body"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "普通の動画1本から、映っている全ピクセルが3D空間でどう動いたかを追跡するモデルです。壊れた軌跡を直す小さな補正モデルで精度を上げています。",
+    "point": "ふつうの動画の中の「画面のどの点が、奥行きも含めてどこへ動いたか」を、全ピクセルぶん3Dの軌跡として取り出せる技術です。既存の2D追跡と3D形状推定モデルをそのまま組み合わせ、間違った軌跡や物の陰に隠れて途切れた部分を、小さな補正モデルで直して埋めます。同種の最新手法より高精度で速いと報告されています。広告・体験づくりでは、手持ちで撮った映像にあとからCGの要素を貼り付けて動きに追従させる、人や布や物の動きを3Dデータとして取り出してパーティクルやエフェクトの元にする、といった用途が考えられます。専用のモーションキャプチャ機材やマーカーなしで、スマホ動画から「動く点群」を作れるため、インタラクティブ展示やVFXの素材づくりが手軽になります。まだ研究コードの段階ですが、推論スクリプトも学習スクリプトも公開されており、検証や試作にすぐ使えます。",
+    "detail": "仕組み：まず既存の2Dトラッカーが「動画の各点が次のフレームでどこにあるか」を画面上で追います。次に既存の3D形状推定モデルが、各フレームの奥行きとカメラの位置を推定します。この2つを使って、2Dの軌跡をカメラから伸びる線上の推定した奥行きの位置まで持ち上げ、3Dの軌跡にします。ただしこのままでは奥行きの誤差や、物の陰に隠れた部分の欠損でガタガタになります。そこで小さなtransformer（補正モデル）が、壊れた部分を直して穴を埋めます。補正モデルは、PointOdysseyというCGデータの正解軌跡に擬似的な誤差を加えたもので学習するため、画像そのものや前段モデルを学習に使わずに済みます。\n\n従来との違い：3Dトラッキング専用に大きなモデルを一から作るのではなく、既存の部品を差し替えながら使え、1つの補正モデルがさまざまな組み合わせに対応します。WorldTrackというベンチマークで平均精度が最高水準と報告され、同程度の精度の手法より高速です。\n\n使うには：Linux、condaと、24GB以上のVRAMを持つCUDA対応GPUが必要です（一部のトラッカーは48GB）。git clone後にscripts/setup.shで環境を作り、download_weights.pyで重みを取得し、scripts/demo_video.pyで手持ち動画から3Dトラックを出力します。費用はかかりませんが、Pythonとコマンド操作の知識が必要です。商用で使う場合は組み合わせる前段モデルの非商用ライセンスに注意してください。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "リポジトリ本体はMIT。ただしthird_party/内の前段モデル5本のうち4本は非商用ライセンス、重みも個別ライセンス(configs/weights.yamlに記載)。VGGT-Omegaの重みはHugging Faceでアクセス申請が必要。商用利用は構成の確認が必須。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/ReLift3D/ReLift"
+      },
+      {
+        "kind": "project",
+        "url": "https://relift3d.github.io/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.42136"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/relift.jpg",
+    "relatedWorks": [
+      {
+        "title": "TrackCraft3R: Repurposing Video Diffusion Transformers for Dense 3D Tracking",
+        "description": "動画拡散モデルを転用して、1回の処理で全ピクセルの3D軌跡を出す手法。",
+        "url": "https://arxiv.org/abs/2605.12587"
+      },
+      {
+        "title": "4RC: 4D Reconstruction via Conditional Querying Anytime and Anywhere",
+        "description": "動画から任意の時刻・位置の4Dを問い合わせて再構成する手法。",
+        "url": "https://arxiv.org/pdf/2602.10094"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "openkatana",
     "title": "OpenKatana",
     "org": "rk0neki（個人開発・Comfy Developer Platform 上に構築）",
