@@ -25141,5 +25141,215 @@
         "desc": "ウェブカメラの映像から、指まで含めた人の動きデータを作るツール。"
       }
     ]
+  },
+  {
+    "id": "2026-11-03-1",
+    "date": "2026-11-03",
+    "title": "電線の鳥を弾く物理ピアノ",
+    "pattern": "技術×技術",
+    "seed": "coopianoの物理モデル(ハンマー・弦・響板)を、Searching for Birds on Wiresのように電線上の鳥の位置から読んだ楽譜で鳴らしたら、街ごとに音色の違う電線ピアノになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "coopiano",
+        "title": "coopiano",
+        "desc": "録音を使わず、ハンマーや弦の物理計算だけでピアノの音を作るソフト。"
+      },
+      {
+        "type": "case",
+        "id": "abradee-searching-for-birds-on-wires",
+        "title": "Searching for Birds on Wires",
+        "desc": "電線に止まる鳥の写真を楽譜にして、電力網を交響曲にした広告。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-03-2",
+    "date": "2026-11-03",
+    "title": "降雪看板に顔で操る雪",
+    "pattern": "文脈×技術",
+    "seed": "Tryvann Snowing Billboardは実際の降雪を検知して人工雪を降らせたが、Telekinetic Driveで通行人の無意識な表情の動きを拾い、笑うほど看板の雪が強まる仕掛けにできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "tryvann-snowing-billboard-2009",
+        "title": "Tryvann Snowing Billboard",
+        "desc": "本物の降雪をSMSで検知し、看板の中で人工雪を降らせたスキー場の広告。"
+      },
+      {
+        "type": "tech",
+        "id": "telekinetic-drive",
+        "title": "Telekinetic Drive",
+        "desc": "顔のわずかな無意識の動きをカメラで読み、ロボットを操作する技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-03-3",
+    "date": "2026-11-03",
+    "title": "野焼きを断つ肥料化の再現映像",
+    "pattern": "文脈×技術",
+    "seed": "Fertilizer 2.5が扱う稲わらの野焼き問題を、WorldCrafterで「焼かれる田んぼ」と「7日で肥料になる田んぼ」を歩いて見比べられる3D空間にして農家に見せたら、納得感が出るかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "thai-health-promotion-foundation-fertilizer-2-5",
+        "title": "Fertilizer 2.5",
+        "desc": "稲わらを7日で肥料にする微生物で、PM2.5の原因の野焼きをなくす取り組み。"
+      },
+      {
+        "type": "tech",
+        "id": "worldcrafter",
+        "title": "WorldCrafter",
+        "desc": "1枚の画像から、歩き回れる3D空間を動画として生成するAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-03-4",
+    "date": "2026-11-03",
+    "title": "手話の動きを3D彫刻に残す",
+    "pattern": "文脈×技術",
+    "seed": "SureTalkが認識する手話の動きを、AgentSTARで動画から可動3Dモデルとして復元し、会話そのものを触れる立体の彫刻として残せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "suretalk-ai-2021",
+        "title": "SureTalk（手話×音声 AI通訳プラットフォーム）",
+        "desc": "手話の動きをAIでリアルタイムに認識し、音声と相互に通訳する仕組み。"
+      },
+      {
+        "type": "tech",
+        "id": "agentstar",
+        "title": "AgentSTAR (Agentic Shape Tracking and Reconstruction)",
+        "desc": "動画を見たAIがBlenderで可動物体を3D復元するソフト。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-03-5",
+    "date": "2026-11-03",
+    "title": "Gaga MVを同時多視点で撮る",
+    "pattern": "文脈×技術",
+    "seed": "Abracadabra: From Fan to Featuredで選ばれたファン32人の撮影を、TuttiCamで最大8台同時に撮ってGaussian Splat化すれば、観客が自由な視点で自分の出番を見直せるMVになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "abracadabra-from-fan-to-featured-2025",
+        "title": "Abracadabra: From Fan to Featured",
+        "desc": "Lady Gagaのファン32人をMVの出演者にしたMastercardの企画。"
+      },
+      {
+        "type": "tech",
+        "id": "tutticam",
+        "title": "TuttiCam",
+        "desc": "スマホなど最大8台で同時に連続撮影する3D化用の撮影アプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-03-6",
+    "date": "2026-11-03",
+    "title": "ドローン隊列を即興で演奏",
+    "pattern": "技術×技術",
+    "seed": "OBSIDIAN Neuralがその場で生成するループ音源に合わせ、Drone 100のような編隊を動かし、演奏者の操作がそのまま夜空の隊形に変わるライブ楽器にできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "obsidian-neural",
+        "title": "OBSIDIAN Neural",
+        "desc": "AIがその場でループ音源を作る、ライブ演奏向けの無料楽器。"
+      },
+      {
+        "type": "case",
+        "id": "drone-100-2015",
+        "title": "Drone 100",
+        "desc": "100機のLEDドローンが曲に合わせて飛び、ギネス記録を作った公演。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-03-7",
+    "date": "2026-11-03",
+    "title": "口パクするデスクトップ妖怪",
+    "pattern": "技術×技術",
+    "seed": "PuppetLoomで自動リギングした2Dキャラを、LatentDanceのお手本ポーズ動画で踊らせれば、デスクトップに住みつき気分で踊り出す小さな妖怪が作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "puppetloom",
+        "title": "PuppetLoom",
+        "desc": "レイヤー分けしたキャラ絵を自動で動かせる形にするWindows用ツール。"
+      },
+      {
+        "type": "tech",
+        "id": "latentdance",
+        "title": "LatentDance",
+        "desc": "参照画像とお手本のポーズ動画から、見た目を保った踊りの動画を作るAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-03-8",
+    "date": "2026-11-03",
+    "title": "報道グラフィックを歩ける空間へ",
+    "pattern": "転用",
+    "seed": "VGGT-Ωは写真から空間を推定するモデルだが、SND受賞の報道グラフィックスのような戦力図を現地写真と重ね、記事の中を歩ける立体データに転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "vggt",
+        "title": "VGGT-Ω (VGGT-Omega)",
+        "desc": "複数の写真からカメラ位置や奥行きを数秒で推定するモデル。"
+      },
+      {
+        "type": "case",
+        "id": "snd-47-3-2025",
+        "title": "朝日新聞社 SND第47回クリエーティブコンペティション受賞3作品（米中の戦力比較と主な兵器 ほか）",
+        "desc": "朝日新聞デジタルの報道グラフィックスがSND賞を受けた事例。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-03-9",
+    "date": "2026-11-03",
+    "title": "建築展示を動画エージェントで撮る",
+    "pattern": "転用",
+    "seed": "OpenMontageは動画制作用のエージェントだが、RECAROのブース建築のような展示空間の設計図を渡し、完成前に見学ツアー映像を自動で作る建築プレゼンに転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "openmontage",
+        "title": "OpenMontage",
+        "desc": "AIコーディングアシスタントで企画から完パケまで動画を作る仕組み。"
+      },
+      {
+        "type": "case",
+        "id": "recaro-aix2022-driving-comfort-if-2023",
+        "title": "RECARO AS at AIX2022 - Driving Comfort in the Sky",
+        "desc": "飛行の世界観をブース建築に落とし込んだ航空座席の展示。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-03-10",
+    "date": "2026-11-03",
+    "title": "島の衝突を動きで翻訳する",
+    "pattern": "転用",
+    "seed": "UMRはロボット用の動き転送技術だが、伊吹島ドリフト伝説のコンタクト・ゴンゾの接触と衝突の動きを、体格の違う人や機械へ移し、島の記憶を別の身体で踊り直すのに転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "umr",
+        "title": "UMR (Unified Motion Retargeting)",
+        "desc": "人の動きを体格の違うロボットへ自動で転送するAI技術。"
+      },
+      {
+        "type": "case",
+        "id": "setouchi-2016-166",
+        "title": "伊吹島ドリフト伝説",
+        "desc": "身体をぶつけ合う集団が伊吹島で行ったパフォーマンス作品。"
+      }
+    ]
   }
 ]
