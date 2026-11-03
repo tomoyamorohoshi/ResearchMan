@@ -25351,5 +25351,233 @@
         "desc": "身体をぶつけ合う集団が伊吹島で行ったパフォーマンス作品。"
       }
     ]
+  },
+  {
+    "id": "2026-11-03-11",
+    "date": "2026-11-03",
+    "title": "家具に還る光の竹パビリオン",
+    "pattern": "技術×技術",
+    "seed": "VCARで完成済みの3Dガウシアンスプラットから特定オブジェクトだけを切り出し、Three.js Native Gaussian Splat Rendererで部材を1個ずつ浮かせて並べ替えれば、Emptiness, MUJI eco-pavilionのような「解体→家具化」を閲覧中に見せられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "muji-eco-pavilion-ciie-if-2025",
+        "title": "Emptiness, MUJI eco-pavilion",
+        "desc": "7524個の木製部材が展示後に家具へ生まれ変わる、無印良品の環境配慮型パビリオン。"
+      },
+      {
+        "type": "tech",
+        "id": "vcar",
+        "title": "VCAR",
+        "desc": "完成した3Dガウシアンスプラットから、狙った物体だけをにじみなく切り出す手法。"
+      },
+      {
+        "type": "tech",
+        "id": "three-js-native-gaussian-splat-renderer",
+        "title": "Three.js Native Gaussian Splat Renderer",
+        "desc": "Three.jsの標準機能だけで、写真から作った実写の立体空間をブラウザに描く仕組み。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-03-12",
+    "date": "2026-11-03",
+    "title": "ビルボードの裏の生活を消す",
+    "pattern": "文脈×技術",
+    "seed": "Hiding the mess behind its billboardsの「裏の散らかり」を、LTX-2.3 Clean Plate IC-LoRAで街頭映像から人や車ごと消して、IKEAの片付いた表だけの街を作り、現実の乱雑さと並べる対比広告にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "hiding-the-mess-behind-its-billboards-2026",
+        "title": "Hiding the mess behind its billboards",
+        "desc": "IKEAがビルボードの裏に収納箱を仕込み、片付いた表と散らかった裏を対比させた屋外広告。"
+      },
+      {
+        "type": "tech",
+        "id": "ltx-2-3-clean-plate-ic-lora",
+        "title": "LTX-2.3 Clean Plate IC-LoRA",
+        "desc": "動画から動く被写体を影や反射ごと消し、背景だけを自動で作り直すLoRA。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-03-13",
+    "date": "2026-11-03",
+    "title": "両親のアルバムを振付に変える",
+    "pattern": "文脈×技術",
+    "seed": "蜷川実花展 はじまりの光の「両親のアルバム」に写る人の姿勢をRGB MoCapで動きに起こし、CustomDanceで候補を選びながら家族の記憶を踊りにする展示ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "yahoo-a5731d44763ec584dbdfd6d24aaa0c069266f280-2026",
+        "title": "蜷川実花展 はじまりの光（川口市立美術館 開館記念特別展）",
+        "desc": "写真家・蜷川実花が両親のアルバムから新作を初公開する、川口市立美術館の開館記念展。"
+      },
+      {
+        "type": "tech",
+        "id": "rgb-mocap",
+        "title": "RGB MoCap（toyxyz_RGBMocap）",
+        "desc": "普通の動画から人物の動きを抜き出し、キャラ用データで書き出せるWindows用アプリ。"
+      },
+      {
+        "type": "tech",
+        "id": "customdance",
+        "title": "CustomDance",
+        "desc": "音楽と文章から、人が候補を選びつつ3Dダンスを作り上げる対話型の生成システム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-03-14",
+    "date": "2026-11-03",
+    "title": "廃船が歌い出すステム分離",
+    "pattern": "文脈×技術",
+    "seed": "ヨタの漂う鬼の家の廃船が進水するまでの公開制作の音を、python-audio-separatorで槌音・波音・人の声に分け、Basic Pitchで音程を拾って、船自体が奏でる楽曲にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2019-sm02",
+        "title": "ヨタの漂う鬼の家",
+        "desc": "家船に着想し、14mの廃船から作られた航行可能な作品。会期中に公開制作された。"
+      },
+      {
+        "type": "tech",
+        "id": "python-audio-separator",
+        "title": "python-audio-separator (audio-separator)",
+        "desc": "たくさんの学習済みモデルで音をパートごとに分けられる、コマンド一発のツール。"
+      },
+      {
+        "type": "tech",
+        "id": "basic-pitch",
+        "title": "Basic Pitch",
+        "desc": "楽器や声が混ざった音楽から、音の高さをMIDIに変換するSpotify製の採譜AI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-03-15",
+    "date": "2026-11-03",
+    "title": "ARGが4DGSの中で続く",
+    "pattern": "文脈×技術",
+    "seed": "Year Zero ARG – Nine Inch Nailsの偽造文書やUSBの謎を、4DGSの動く空間+空間音声の1ファイルに隠し、シークで時間を戻すと手掛かりが現れる現代版ARGにできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "year-zero-arg-nine-inch-nails",
+        "title": "Year Zero ARG – Nine Inch Nails",
+        "desc": "USBや偽サイト、謎の電話番号をつなぎ、18か月続いた音楽プロモーションのARG。"
+      },
+      {
+        "type": "tech",
+        "id": "4dgs",
+        "title": "4DGS",
+        "desc": "動く3Dガウシアンスプラットと空間音声を、途中再生もできる1本にまとめる新形式。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-03-16",
+    "date": "2026-11-03",
+    "title": "敵対パターンで踊る衣装",
+    "pattern": "技術×技術",
+    "seed": "Digital Camouflageの人物検出を欺く衣服パターンを、anymoveで作った人間以外のリグ付きキャラの動きに重ねれば、AIには人に見えず観客には異形が踊る舞台衣装になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "digital-camouflage-2026",
+        "title": "Digital Camouflage",
+        "desc": "全面の生成パターンで人物検出AIを欺く、角度や布の折れに強い衣服。"
+      },
+      {
+        "type": "tech",
+        "id": "anymove",
+        "title": "anymove",
+        "desc": "AI動画から、ドラゴンなど人間以外のキャラの動きを作りGLBで書き出す手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-03-17",
+    "date": "2026-11-03",
+    "title": "台詞だけ消えるMV",
+    "pattern": "転用",
+    "seed": "ComfyUI-DBSは映画CM向けの音声3分離ツールだが、Rosalía Berghainの生楽団MVに使い、楽団の音と声だけを個別に消し、観客が欠けた音を想像で補う鑑賞体験に転用できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "rosalia-berghain",
+        "title": "Berghain",
+        "desc": "Rosalíaのアルバム先行曲MV。生楽団と超現実を実写で融合している。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-dbs",
+        "title": "ComfyUI-DBS",
+        "desc": "映画やCMの音声を音楽・効果音・セリフに分け、セリフ抜きの動画も作れるノード。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-03-18",
+    "date": "2026-11-03",
+    "title": "骨格圧縮で10周年を配る",
+    "pattern": "転用",
+    "seed": "CurveCodecは骨格アニメ圧縮の技術だが、モンスターストライク10周年の「10大恩返し」で、全キャラの動きを軽量データにして特設サイトへ一斉に踊らせる配布手段に転用できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "mixi-xflag-2023",
+        "title": "モンスターストライク10周年感謝キャンペーン「イイことありすぎて怖いよ」特設サイト",
+        "desc": "10周年を記念し、コンテンツを順次公開していくモンスターストライクのオウンドサイト。"
+      },
+      {
+        "type": "tech",
+        "id": "curvecodec",
+        "title": "CurveCodec (AnimationCodec)",
+        "desc": "どんな骨格のアニメも再学習なしで1/10以下に圧縮できるコーデック。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-03-19",
+    "date": "2026-11-03",
+    "title": "住所から語るギター災害警報",
+    "pattern": "技術×技術",
+    "seed": "Ctrl-LFM Guitar Synthの弦ごとの音程・音量曲線を、Haven的な住所別リスクの強弱に割り当て、家の災害リスクを6弦ギターの演奏として聴かせる警報が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "suncorp-haven",
+        "title": "Haven",
+        "desc": "住所を入れるとAIが家ごとの災害リスクと対策を映像で語る保険会社の無料サービス。"
+      },
+      {
+        "type": "tech",
+        "id": "ctrl-lfm-guitar-synth",
+        "title": "Ctrl-LFM Guitar Synth (Expressive Guitar Synthesis via Controllable Latent Flow Matching)",
+        "desc": "楽譜から6弦ギターの演奏音を作り、弦ごとの音程と音量の曲線を編集できるAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-03-20",
+    "date": "2026-11-03",
+    "title": "漫画の絵コンテを光霧に変換",
+    "pattern": "転用",
+    "seed": "Manga2Animateは漫画をアニメ化する台本・絵コンテ生成の仕組みだが、Ann Veronica Janssens Hermès Ginza Installationの光と霧の動きを設計する「絵コンテ」づくりに転用できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ann-veronica-janssens-herm-s-ginza-installation-2026",
+        "title": "Ann Veronica Janssens Hermès Ginza Installation",
+        "desc": "光・霧・知覚を素材にし、銀座の建築を見えない建築に変える体験型インスタレーション。"
+      },
+      {
+        "type": "tech",
+        "id": "manga2animate",
+        "title": "Manga2Animate",
+        "desc": "漫画数ページと設定画から台本、絵コンテ、動画を順に作るマルチエージェント方式。"
+      }
+    ]
   }
 ]
