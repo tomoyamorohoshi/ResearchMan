@@ -1,7 +1,54 @@
 {
   "version": 1,
-  "statusAsOf": "2026-11-03",
+  "statusAsOf": "2026-11-04",
   "items": [
+    {
+      "id": "2026-kyoto-kyocera-naoko-tosa-generative",
+      "slug": "2026-kyoto-kyocera-naoko-tosa-generative",
+      "title": "現代美術家 土佐尚子展「生成されるものたち」－アート＆テクノロジーの現在地－",
+      "artists": [
+        "土佐尚子"
+      ],
+      "venue": "京都市京セラ美術館 本館1階「光の広間」",
+      "venueType": "museum",
+      "prefecture": "京都府",
+      "city": "京都市",
+      "startDate": "2026-11-07",
+      "endDate": "2026-11-22",
+      "status": "upcoming",
+      "admission": "無料",
+      "tags": [
+        "media_art",
+        "generative",
+        "installation",
+        "video_art",
+        "retrospective"
+      ],
+      "score": 72,
+      "matchReason": "1985年制作でMoMA収蔵の《An Expression》から新作《土佐琳派:気韻生動》までを紹介する約40年のアート＆テクノロジー個展。開幕まで3日で、会場は美術館級。",
+      "sources": [
+        {
+          "name": "現代美術家 土佐尚子展「生成されるものたち」－アート＆テクノロジーの現在地－",
+          "url": "https://naokotosa.co.jp/ja/exhibition/kyoto-2026/",
+          "kind": "official"
+        },
+        {
+          "name": "PR TIMES",
+          "url": "https://prtimes.jp/main/html/rd/p/000000004.000102955.html",
+          "kind": "news"
+        },
+        {
+          "name": "美術手帖",
+          "url": "https://bijutsutecho.com/magazine/news/exhibition/33125",
+          "kind": "news"
+        }
+      ],
+      "link": "https://naokotosa.co.jp/ja/exhibition/kyoto-2026/",
+      "thumbnail": "/thumbnails/exhibition/2026-kyoto-kyocera-naoko-tosa-generative.jpg",
+      "addedAt": "2026-11-04T02:33:17.107Z",
+      "origin": "auto",
+      "highlight": false
+    },
     {
       "id": "2026-ggg-japan-art-direction-2026",
       "slug": "2026-ggg-japan-art-direction-2026",
@@ -176,7 +223,7 @@
       "city": "品川区",
       "startDate": "2026-11-04",
       "endDate": "2026-11-08",
-      "status": "upcoming",
+      "status": "ongoing",
       "admission": "UNKNOWN",
       "tags": [
         "installation",
