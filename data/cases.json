@@ -1,5 +1,258 @@
 [
   {
+    "id": "ai-legory-of-the-cave-confined-to-representations-of-the-wor",
+    "title": "[AI]legory of the Cave – Confined to representations of the world",
+    "summary": "プラトンの洞窟を「LLMはASCII化された世界記述しか知らない」と読み替え、磁石ブロックで影の人物を妨げる体験にした。",
+    "client": "MIT Media Lab Fluid Interfaces Group (Sam Chin, Skye Gao, Leonie Dong, Cathy Fang, Alejandro Lopez-Rodriguez)",
+    "agency": "",
+    "categories": [
+      "AIクリエイティブ",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.creativeapplications.net/project/ailegory-of-the-cave-confined-to-representations-of-the-world/",
+    "thumbnail": "/thumbnails/ai-legory-of-the-cave-confined-to-representations-of-the-wor.jpg",
+    "videoId": "",
+    "overview": "MIT Media Lab Fluid Interfaces Groupのチーム(Sam Chin、Skye Gao、Leonie Dong、Cathy Fang、Alejandro Lopez-Rodriguez)による2026年のインタラクティブ・インスタレーション。LLMが操る影の人物の唯一の目的は、自分を存在させている光のスイッチを切ること。来場者はブロック、枠、階段を人物の進路に置いて妨げ、人物は蹴る、押す、諦める、再挑戦するといった反応を見せる。",
+    "background": "プラトンの洞窟の比喩は、影しか見えない囚人が世界の実像を知らない状況を描く。本作はこれをAIに当てはめ、LLMが世界そのものではなく世界の「記述」だけを通して理解している点を主題にした。制作はMIT Media Labのチームで、2026年11月3日にCreative Applications Netで紹介された。",
+    "execution": "投影された影をWebカメラで撮影し、色のしきい値処理で影と背景を分離する。シーンは影・人物・地面・スイッチを表す記号のASCIIに変換され、可能な行動(歩く、跳ぶ、登る、蹴る)の一覧とともにLLMへ渡される。2D物理にはMatter.jsを使う。人物が蹴ると、ESP32 XIAOが電磁石を作動させ、軽量ブロック内の磁石を動かす。スイッチにはソレノイドを用いる。",
+    "evaluationImpact": "LLMの世界理解を「ASCIIの記述しか受け取れない影の住人」に置き換え、AIの認識の限界を体験として示した点が核。影をカメラで読み取りLLMが判断し、電磁石で現実のブロックを動かす流れで、デジタルと物理の因果を往復させている。受賞はMIT Media Lab自身の投稿でBest in Show(Expanded 2026)とされるが、主催者の公式情報で確認できていないため記載しない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Installation",
+      "Theme/Art"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creativeapplications",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "norway-makes-shithouses-great-again-visit-norway-2026",
+    "title": "Norway Makes Shithouses Great Again（Visit Norway）",
+    "summary": "トランプの「便所の国」発言を逆手に取り、5年前の公共トイレ紹介ページを一行足しただけで観光PRに転用した",
+    "client": "Visit Norway",
+    "agency": "",
+    "categories": [
+      "カルチャーインサイト",
+      "メディア発明"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://skift.com/2026/10/30/visit-norway-trump-insult-most-viewed-page/",
+    "thumbnail": "/thumbnails/norway-makes-shithouses-great-again-visit-norway-2026.jpg",
+    "videoId": "",
+    "overview": "ノルウェー政府観光局Visit Norwayは、トランプ大統領に「shit house country」と呼ばれたことを受け、観光ルート沿いの個性的な公共トイレを紹介する既存ページに「Norway makes shithouses great again!」という一文を加えて公開した。Stegastein展望台のトイレ、ヘルゲラン海岸の波形のUreddplassen、セニャ島の金色の「Gulldassen」などを掲載している。",
+    "background": "トランプ氏はミシガン州ポートヒューロンの集会で、ノーベル平和賞を得られなかったことに触れつつノルウェーを侮辱した。公式サイトvisitnorway.comには、数年前から景勝ルートの建築的な公共トイレを扱うページがあった。Skiftによれば、運営は7人の社内チームで、キャンペーン型よりも編集部に近い常時稼働の体制だという。",
+    "execution": "新規に制作物は作らず、既存ページの見出しや文言を更新し、「MAGA」のもじりのスローガンを足した。同局はこのページへの誘導としてFacebookとInstagramで1万ドル未満の広告を出した。Skiftによると、ニューヨークのタイムズスクエアでも同テーマの広告を予定していた。担当エージェンシーは記事中に記載がなく、社内チームの対応とされる。",
+    "evaluationImpact": "Skiftによれば、5日間で170か国超から8万ビュー超を集め、前週比540倍超に増えた。流入の約90%はオーガニックで、米国が約4分の1を占めた。AP、CNN、Daily Beast、SBSなど各国の報道も拡散を後押しした。少額の広告と既存資産だけで時事の話題に乗れた点が、国のPR手法として注目される。受賞情報は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Form/Website",
+      "Form/SNS",
+      "Theme/Entertainment"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "baleworks-buildfest-2026-bethel-woods-2026",
+    "title": "BaleWorks (BuildFest 2026, Bethel Woods)",
+    "summary": "藁ベールの壁を炭素貯蔵に使い、役目後は汚染土浄化や土への還元に回す循環型シェルター兼ステージ。",
+    "client": "Marta H. Wisniewska / Cornell University Regenerative Architecture Lab",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "社会包摂"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://materialdistrict.com/article/straw-bales-and-timber-frames-build-a-shelter-that-returns-to-the-soil/",
+    "thumbnail": "/thumbnails/baleworks-buildfest-2026-bethel-woods-2026.jpg",
+    "videoId": "",
+    "overview": "BaleWorksは、コーネル大学のMarta H. Wisniewskaが2026年のBuildFest(米ニューヨーク州ベセルのBethel Woods)に出したインスタレーション。針葉樹材のモジュール式木造フレームに密に積んだ藁ベールの壁を組み合わせ、シェルターと公演ステージを兼ねる。屋根はスラット状で光が差し込む。",
+    "background": "設計者のWisniewskaはコーネル大学建築・芸術・計画学部の講師で、Regenerative Architecture Labを率いる。同研究室は2024年のMycoShell(菌糸体パネルのアーチが計画どおり崩壊して土に戻った)や、2023年の土壌コラム(ラムドアース柱9本を観察後に倒壊)など、土に還る建築を試してきた。資金はCornell Council for the Arts。",
+    "execution": "壁の藁は農業副産物で、建材であると同時に炭素の貯蔵庫になる。現在はシェルター兼ステージとして使い、次の段階で同じ木造フレームを仮設トイレに転用する。その際は新しい藁ベールに入れ替え、使用済みの藁は汚染土壌の浄化に再利用する。風化した藁は最終的に土へ戻り、栄養分も運ぶとされる。植物科学者Rebecca Nelsonが尿を肥料として使う研究で協力。",
+    "evaluationImpact": "建物の寿命の終わりを廃棄ではなく、土や汚染土の浄化への再利用として最初から設計に組み込んだ点が評価できる。フレームを再利用し、壁材だけ入れ替えて用途を変える構成は、仮設建築や野外イベントに転用しやすい。BuildFest自体が循環型プロセスの試験場と位置づけられている。ただし、浄化の効果や炭素貯蔵量の数値は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "MycoShell (BuildFest 2024)",
+        "description": "同研究室の作品。自社開発の代替合板MycoPlyによる菌糸体パネルの3連アーチ。計画どおり崩壊して土に戻った。",
+        "url": "https://materialdistrict.com/article/straw-bales-and-timber-frames-build-a-shelter-that-returns-to-the-soil/"
+      },
+      {
+        "title": "BuildFest 2026: Acts of Construction – Act One: Staging",
+        "description": "BaleWorksが出展した2026年のBuildFestの紹介(ArchDaily)。",
+        "url": "https://www.archdaily.com/1041766/buildfest-2026-acts-of-construction-act-one-staging"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Theme/Sustainability",
+      "Theme/Art"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "materialdistrict",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "jawf-sarah-naghawi-amman-design-week-2026-2026",
+    "title": "JAWF (Sarah Naghawi, Amman Design Week 2026)",
+    "summary": "溶接したステンレス板に液圧を送り膨らませ、変形と応力の痕をそのまま鏡面の造形にした実験的オブジェ。",
+    "client": "Sarah Naghawi",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "中東・アフリカ"
+    ],
+    "link": "https://www.designboom.com/design/hydromechanical-forming-reflective-stainless-steel-sculptural-objects-sarah-naghawi-jawf/",
+    "thumbnail": "/thumbnails/jawf-sarah-naghawi-amman-design-week-2026-2026.jpg",
+    "videoId": "",
+    "overview": "ヨルダンのデザイナー Sarah Naghawi による実験的コレクション「JAWF（جَوْف）」。周囲を溶接したステンレス板の組立体に作動液を送り込み、膨らませて座屈させ、金属の表皮を押し出して反射する立体に仕上げる。変形の痕跡と応力の集中が研磨面にそのまま残る。Amman Design Week 2026 で発表された。",
+    "background": "JAWF はアラビア語で「内側の部屋、守られた空洞」を意味する語に由来する。designboom の記事によれば、本作はこの産業的な成形技術をヨルダンのデザイン分野に初めて応用した事例とされるが、この主張はプロジェクト側のもので、第三者による検証は確認できていない。Amman Design Week 2026 のテーマは「Accumulations」。Wallpaper は Naghawi の作品を、凹みと機能を変形で探る膨らませた鋼の「キャビネット」と紹介している。",
+    "execution": "手法は液圧による水圧成形（hydromechanical forming）で、正圧と負圧の両方を使う。溶接した板の組立体に作動液を入れて膨らませ、座屈させて金属の表皮を変位させる。記事はこれを、一般的なスタンピングや冷間圧延を超える手法と位置づけている。仕上げは高反射の研磨面。寸法や製作を担った工房は記事に記載がなく、確認できない。",
+    "evaluationImpact": "板金の工業的な成形法を、仕上げで隠す「工程」ではなく、変形と応力の痕そのものを意匠として見せる素材表現に転用した点が評価点。ステンレスの鏡面が歪みを映し込み、工程の痕跡が造形の主役になる。ただし designboom 掲載は読者投稿枠で、受賞や第三者評価は確認できていない。「初」という主張も自己申告に留まる。",
+    "relatedWorks": [
+      {
+        "title": "Amman Design Week amplifies creative voices from across the region（Wallpaper）",
+        "description": "Amman Design Week 2026 の紹介記事。Naghawi の膨らませた鋼のキャビネット作品に触れている。",
+        "url": "https://www.wallpaper.com/design-interiors/design-events/amman-design-week-2026"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Form/Product",
+      "Form/Exhibition",
+      "Theme/Art"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "designboom",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "box-myst-re-free-reef-burger-king-france-2026",
+    "title": "Box Mystère × Free「Reef」（Burger King France）",
+    "summary": "Freeの広告に出る架空の競合Reefの世界に入り込み、「box」の二重の意味でランダム4品の10€ボックスを売った。",
+    "client": "Burger King France",
+    "agency": "Buzzman",
+    "categories": [
+      "コンテンツ革新",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/burger-king-box-mystere-reef-20261103",
+    "thumbnail": "/thumbnails/box-myst-re-free-reef-burger-king-france-2026.jpg",
+    "videoId": "",
+    "overview": "Burger King Franceが、通信会社Freeの広告シリーズに登場する架空の競合「Reef」の物語に入り込む形で、新商品「Box Mystère」を告知した。10ユーロで、人気バーガー、スナック、別のバーガー、フライドポテトの計4品がランダムに入る。15秒と30秒の動画で、2026年11月3日からオンライン・デジタル媒体で配信された。提供はフランス国内の店舗で11月23日まで。",
+    "background": "Reefは、Freeの広告で登場するライバル通信事業者という設定で、チームがFreeを出し抜こうと突飛なアイデアを練る。Burger Kingには、ランダムな品が届く「Burger Mystère」「Glace Mystère」「Cadeau Mystère」というサプライズ型メニューの流れがある。両ブランドはともにBuzzmanが担当しており、同じ代理店だから両者の世界観をつなぐ企画が成立した。",
+    "execution": "Reefの会議シーンで、チームが低価格の新しい「ボックス」を通信業界の視点で分析しようとするが、実はBurger Kingの食べ物の箱だったと判明する。「box」が回線接続機器と、物を分けて入れる箱の両方を指す言葉であることを利用した言葉遊びが核になっている。Free広告シリーズのキャラクターを引き継ぎ、監督はHafid Benamar、制作会社はSovage、代理店はBuzzman。",
+    "evaluationImpact": "他社ブランドの広告に出てくる架空キャラの世界へ別業種のブランドが入り込む構図で、同一代理店が担当する2社の資産を行き来できる点が特徴。「box」の二重の意味という一語で企画が成立しており、一文で説明できる。一方、取得できた情報には成果の数値や受賞情報は含まれず、評価は企画の構造に基づく。",
+    "relatedWorks": [
+      {
+        "title": "Mystery Burger（Burger King France / Buzzman、2017）",
+        "description": "2ユーロで10種のサンドイッチからランダムな1つを無地の白い箱で提供した、Burger Mystèreの原点となる施策。",
+        "url": "https://www.adsoftheworld.com/campaigns/mystery-burger"
+      },
+      {
+        "title": "Cadeau Mystère（Burger King France / Buzzman、2026年3月）",
+        "description": "1ユーロ追加でランダムなコレクターグッズが付く、Burger Mystèreに続くサプライズ型の施策。",
+        "url": "https://lareclame.fr/buzzman/realisations/cadeau-mystere-ce-nest-pas-un-communique-de-presse"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Theme/Food",
+      "Theme/Retail"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "highlands-visual-identity-matey-visit-highlands-2026",
+    "title": "Highlands visual identity（Matey × Visit Highlands）",
+    "summary": "町名のHに山の稜線を隠し、地元史料の文字から下に突き出ない縦長書体を作った風景由来の町ブランド",
+    "client": "Visit Highlands（ノースカロライナ州の町）",
+    "agency": "Matey",
+    "categories": [
+      "カルチャーインサイト",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://creapills.com/highlands-identite-visuelle-matey-logo-montagne-20261103",
+    "thumbnail": "/thumbnails/highlands-visual-identity-matey-visit-highlands-2026.jpg",
+    "videoId": "",
+    "overview": "ノースカロライナ州ブルーリッジ山脈の町Highlandsの観光ブランド「Visit Highlands」のビジュアルアイデンティティ。制作はMatey。ロゴは「Highlands」のHの中に山(Whiteside Mountainを想起させる)を組み込み、日の出、渡り鳥、シャクナゲ、サンショウウオを手描きで組み合わせたエンブレムも用意された。",
+    "background": "目的は、町の自然を「ありふれた山の絵はがき」に還元せずに見せること。制作にあたり、住民や地元商店との対話、フォーカスグループ、インタビューが行われたとされる(Creapills)。商工会議所(Highlands Chamber)が新ブランドを発表しており、町の洗練と野性味の両立を狙った内容と説明されている。",
+    "execution": "レタリングはHighlands Historical Societyのアーカイブ資料の文字をもとにしており、縦に伸びた直線的な文字がベースラインより下に出ないため、視線が上へ向かう設計(Creapills)。配色は森の緑、霧の青、大地の色、シャクナゲのピンク、黄金色。実用情報用の補助書体も用意。展開先はWeb、SNS、ビジターガイド、広告、サイン、グッズで、商工会議所向けの補完的なアイデンティティも作られた。",
+    "evaluationImpact": "地元の史料を書体の出発点にし、町の風景(山の稜線)を頭文字に埋め込むことで、場所固有の手触りを持つ識別子にしている点が評価できる。一方、今回確認できた範囲では受賞や成果数値はなく、手法の新規性よりも丁寧なクラフトと地域性が主な価値。Matey名義の制作クレジットはCreapills記事に拠り、商工会議所の発表ページでは確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "A fresh look for the Highlands you love（Highlands Chamber）",
+        "description": "商工会議所によるVisit Highlands新ブランドの発表ページ。日の出、渡り鳥、Whiteside Mountainのシルエット、シャクナゲ、サンショウウオといったモチーフと配色の考え方を説明している。",
+        "url": "https://www.highlandschamber.org/articles/post/a-fresh-look-for-the-highlands-you-love/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Print",
+      "Form/Website",
+      "Theme/Art"
+    ],
+    "gateCriterion": "B",
+    "sourceId": "creapills",
+    "gateTier": "borderline",
+    "discoveryLens": 1
+  },
+  {
     "id": "tracks-to-relax-en-train-de-dormir-via-rail-2026",
     "title": "Tracks to Relax / En train de dormir（VIA Rail）",
     "summary": "録音した列車の走行音を区間の所要時間そのままの長さで公開し、乗車体験を睡眠用トラックに読み替えた",
