@@ -1,5 +1,94 @@
 [
   {
+    "id": "comfyui-motion-previs-studio",
+    "title": "ComfyUI Motion Previs Studio",
+    "org": "navarisun1982(個人開発)",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools",
+      "Spatial/3D"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "3D空間でキャラ・カメラ・ライトを配置して動画生成AI用のプリビズ素材(骨格・深度・マスク・カメラ行列)を書き出すローカルのデスクトップ/Webツール。プロンプトを書くのではなく「ショットを演出する」発想。",
+    "point": "AI動画で一番困る「思った構図・カメラワークにならない」を、3Dのスタジオで先に決めてしまうツールです。3Dの舞台にキャラクター、カメラ、照明を置き、レンズや絞り、動きのタイミングをタイムラインで調整すると、その結果が24fpsのプリビズ動画、OpenPose骨格、深度マップ、アルファマスク、カメラ行列として書き出されます。さらにカメラに映る被写体だけを拾ってMiniMax H3やLTX-2.5、Seedance 2.0向けのプロンプトを自動整形します。広告では、AI動画案件で絵コンテ代わりに構図をクライアントと合意してから生成に進む、複数カットの人物配置と動線を統一する、といった使い方が考えられます。画像からのGLB(3Dモデル)生成と自動リギングまで内蔵し、日本語の動作指示のような自然文での演出補助もあります(英語・アラビア語が明記)。",
+    "detail": "仕組みは、Node.js製のアプリ(TypeScript、Electronのデスクトップ版あり)で、3Dビューとカメラ視点の2画面を見ながらシーンを組みます。キャラクターや小道具は、ローカルのComfyUIサーバーに画像またはテキストを渡してGLBとして生成し、人型・四足・柔軟背骨・剛体の4種で自動リグ付けします。動きは手続き型のIK(関節の自動計算)で、複数ステップの指示から作り、タイムラインで間を調整。書き出した骨格・深度・マスクはControlNetのように動画生成の条件として使えます。\n\n従来のAI動画は文章プロンプトだけでカメラや動きを指定するため再現性が低く、3Dソフトでプリビズを作るには専門スキルが必要でした。本ツールは3D経験が浅くても配置して動かせる点と、生成AI向けの出力形式に直結している点が違います。作者は有料サービスの代替としてオープンソース化したと説明しています。\n\n利用にはNode.js 20/22、Git、Windows/macOS/Linuxのいずれかが必要で、Windowsなら start_studio.bat をダブルクリックで起動できます。GLB生成や動画への最終レンダリングを行う場合はローカルのComfyUIとMiniMax H3の重みが別途要ります。LLM補助は任意で、OllamaならAPIキー不要です。機能の記述はREADMEの自己申告で、筆者は動作検証していません。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "リポジトリはMIT。連携するモデル(MiniMax H3等)や任意のLLM APIは各ライセンス・規約に従う。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/navarisun1982/comfyui-motion-previs-studio"
+      },
+      {
+        "kind": "video",
+        "url": "https://github.com/navarisun1982/comfyui-motion-previs-studio/raw/master/docs/demo/Comfy-AI-Director-Demo.mp4"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/comfyui-motion-previs-studio.jpg",
+    "relatedWorks": [
+      {
+        "title": "Openjutsu",
+        "description": "動画内キャラ差し替えのローカルOSS。本ツールが代替を目指す商用機能と同系統。",
+        "url": "https://github.com/D3voz/openjutsu"
+      },
+      {
+        "title": "Open Cinema Studio",
+        "description": "ストーリーからショット設計、LTX動画、最終編集までをローカルComfyUIで行うスタジオ。",
+        "url": "https://github.com/afj176/open-cinema-studio"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "comfyui-tessera",
+    "title": "ComfyUI-Tessera",
+    "org": "hashu786(個人開発)",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "MiniMax H3を使い、544p程度の動画を2K〜8Kへ、タイル・チャンク分割で一般向けGPU1枚でも処理できるようにしたComfyUIの動画アップスケーラー。",
+    "point": "低解像度で生成した動画を、単なる拡大ではなく生成モデルで細部を描き足しながら4K・8Kへ引き上げるノード群です。高解像度の動画全体をメモリに載せず、画面を小さなタイルと短い時間の塊に分けて順に仕上げ、結果を継ぎ合わせます。空など特徴のない部分は処理を飛ばして余計な描き足し(ハルシネーション)を防ぎ、最終デコードに失敗しても途中の潜在データが保存されて再計算なしでやり直せます。広告では、手元のGPUで作った試作カットを納品解像度に引き上げる、クラウドを使わずに社外秘素材を高画質化する、長尺のモーションを分割せず仕上げる、といった場面で役立ちそうです。事前に消費メモリや処理量を見積もるTile Planノードもあり、長尺処理の見通しを立てやすい設計です。",
+    "detail": "仕組みは9つのノードの組み合わせです。Streamed Encodeで動画を少しずつ潜在空間に変換し、Refineでタイルごとにサンプリングして細部を再生成、Streamed Decodeで少しずつ映像に戻します。画像を細かいモザイク片(タイル)で貼り直す作業に近く、全体を一度に持たないためメモリが膨らみません。spatial_tile/temporal_tile にはhigh_vram/low_vramのプリセットがあり、2倍拡大では最初のフレームを基準画像として使うと細部が増え、4倍以上では使わない運用がREADMEで勧められています。\n\n従来の動画アップスケーラーは入力に忠実だが細部を作れないか、全体を一括処理するため高解像度では大量のVRAMが必要でした。本ツールは生成モデルの描き足し能力と、分割処理による省メモリを両立させる点が特徴です。ただしREADMEに画質比較や処理時間の数値はなく、実際の品質は自分の素材で試す必要があります。デモ画像もなく、プロモ動画のみの提示です。\n\n利用にはComfyUIにリポジトリをcustom_nodesへクローンするだけ(追加の依存なし)ですが、MiniMax H3(ref2va、各種VAE、Qwen3-VLテキストエンコーダ)と推奨のLMS詳細LoRAのモデルファイルが別途必要です。example_workflows/tessera_upscaler.json を開き、動画と拡大率を指定して実行します。具体的なVRAM要件は明記されていません。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "ノード本体はMIT。必須のMiniMax H3や詳細LoRA、任意のQwen Image 2.1・SAM3は各モデルのライセンスを個別に確認。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/hashu786/ComfyUI-Tessera"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/comfyui-tessera.jpg",
+    "relatedWorks": [
+      {
+        "title": "ComfyUI-Open-H3-Regenerate",
+        "description": "MiniMax H3の下書きを768P〜4Kで再生成するComfyUIノードと高速VAEデコーダ。",
+        "url": "https://github.com/rdh9616/ComfyUI-Open-H3-Regenerate"
+      },
+      {
+        "title": "ComfyUI-H3-Continuity-Studio",
+        "description": "MiniMax H3の複数ショット動画をシーン記憶つきで組むタイムラインスタジオ。",
+        "url": "https://github.com/KadoBOT/ComfyUI-H3-Continuity-Studio"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "arrow",
     "title": "ARROW (Arbitrary Reconstruction and Tracking of 4D Observations in the Wild)",
     "org": "RWTH Aachen University (Computer Vision Group)",
