@@ -25579,5 +25579,197 @@
         "desc": "漫画数ページと設定画から台本、絵コンテ、動画を順に作るマルチエージェント方式。"
       }
     ]
+  },
+  {
+    "id": "2026-11-04-1",
+    "date": "2026-11-04",
+    "title": "手で握る復興ドローン",
+    "pattern": "文脈×技術",
+    "seed": "能登よさこい祭り＆和倉温泉復興ドローンショーの500機を、FluidicSwarmの握る・開くジェスチャーで観客が揺らせたら、見る復興が一緒に灯す復興になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-1orz9ah-2025",
+        "title": "能登よさこい祭り＆和倉温泉復興ドローンショー2025",
+        "desc": "能登半島地震からの復興を願い、和倉温泉上空で500機のドローンが祭礼をテーマに光る演出を行ったショー。"
+      },
+      {
+        "type": "tech",
+        "id": "fluidicswarm",
+        "title": "FluidicSwarm",
+        "desc": "手のジェスチャーで、小型ロボットの群れを水のような一つの生き物として操れる操作システム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-04-2",
+    "date": "2026-11-04",
+    "title": "体験談を多視点で立体保存",
+    "pattern": "文脈×技術",
+    "seed": "WOMB STORIESが描いた月経や流産の体験を、語り手の部屋でTuttiCamの8台同時撮影により立体記録できたら、語りの空気ごと残るアーカイブになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "bodyform-womb-stories",
+        "title": "WOMB STORIES",
+        "desc": "月経・流産・閉経など女性の身体に起きることをリアルに描いた生理用品の広告。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-04-3",
+    "date": "2026-11-04",
+    "title": "渋滞で踊りが変わる看板",
+    "pattern": "文脈×技術",
+    "seed": "DanActive Traffic-Speed Billboardの渋滞速度データを、TextOpのテキスト指示に変換し、混雑するほど看板前のロボットが気だるく、流れると軽快に動く演出ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "danactive-traffic-speed-billboard-2016",
+        "title": "DanActive Traffic-Speed Billboard",
+        "desc": "実際の渋滞速度を受信し、混雑度に応じてメッセージが切り替わるDanActiveの看板施策。"
+      },
+      {
+        "type": "tech",
+        "id": "textop",
+        "title": "TextOp",
+        "desc": "テキストで指示すると、ヒューマノイドロボットが全身の動きを生成して実行する技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-04-4",
+    "date": "2026-11-04",
+    "title": "羊のモールスを楽譜に",
+    "pattern": "文脈×技術",
+    "seed": "米津玄師「感電」の羊の絵文字によるモールス信号を、YuE2が経由する人が直せる楽譜に変換し、ファンが暗号を編曲して返す二次創作の場ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "yonezu-kanden-stray-sheep",
+        "title": "米津玄師「感電」YouTubeチャンネルハック",
+        "desc": "YouTubeチャンネルを「404 NOT FOUND」にし、羊の絵文字のモールス信号でMV公開を盛り上げた施策。"
+      },
+      {
+        "type": "tech",
+        "id": "yue2",
+        "title": "YuE2",
+        "desc": "歌詞とスタイルから、人が直せる楽譜を経由して楽曲を作る、ローカル実行できる音楽生成AI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-04-5",
+    "date": "2026-11-04",
+    "title": "譜面が決めるロボの感情",
+    "pattern": "技術×技術",
+    "seed": "SheetSage2が曲から読み取ったコードや構成の変化を、Context-Aware Generation and Modulation of Expressive Motion Behaviorの感情の強さパラメータに流せば、ロボが曲に感情で寄り添うかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "sheetsage2",
+        "title": "SheetSage2",
+        "desc": "音源からメロディ・コード・拍・曲の構成を読み取り、譜面とMIDIに変換するAI。"
+      },
+      {
+        "type": "tech",
+        "id": "context-aware-generation-and-modulation-of-expressive-motion",
+        "title": "Context-Aware Generation and Modulation of Expressive Motion Behavior (gen-mod-expressive-motion-behavior)",
+        "desc": "音声や文章から状況に合った表情豊かなジェスチャーをロボットに生成し、感情の強さを調整できるシステム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-04-6",
+    "date": "2026-11-04",
+    "title": "点群と動く人の合成",
+    "pattern": "技術×技術",
+    "seed": "PCD Splatterで即座にスプラット化したレーザースキャンの街に、MaskVidExperimentsで切り出した動く人物映像を継ぎ目なく貼り込めば、静かな廃墟に人が行き交う記録ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "pcd-splatter",
+        "title": "PCD Splatter (Point Cloud Density Splatter)",
+        "desc": "レーザースキャンの点群を、AI学習なしでガウシアンスプラットに変換するBlenderアドオン。"
+      },
+      {
+        "type": "tech",
+        "id": "maskvidexperiments",
+        "title": "MaskVidExperiments",
+        "desc": "動く被写体だけを切り出して加工し、ガクつきなく元映像へ貼り戻すComfyUI向けツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-04-7",
+    "date": "2026-11-04",
+    "title": "見せながら踊らせる生成",
+    "pattern": "技術×技術",
+    "seed": "MACE-Danceの写真と音楽から踊らせる手法を、RAVEN Streaming LoRAの見せながら作るストリーミング生成に載せれば、DJの選曲にその場で踊る映像が追従するかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "mace-dance",
+        "title": "MACE-Dance",
+        "desc": "1枚の人物写真と1曲の音楽から、その人が踊るダンス動画を自動生成する技術。"
+      },
+      {
+        "type": "tech",
+        "id": "raven-streaming-lora-for-minimax-h3",
+        "title": "RAVEN Streaming LoRA for MiniMax-H3 (MiniMax-H3-RAVEN-Streaming-LoRA)",
+        "desc": "直前の映像を見ながら次の区切りを生成し続ける、ストリーミング型の動画生成研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-04-8",
+    "date": "2026-11-04",
+    "title": "欠けた記憶を補う復元",
+    "pattern": "転用",
+    "seed": "ArtiFixerは壊れた3D再構成を直す技術だが、被災前の街を撮った数枚の古い写真から撮られなかった角度を補完する、失われた故郷の復元ツールに転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "artifixer",
+        "title": "ArtiFixer",
+        "desc": "ぼやけた3D再構成を動画拡散モデルで修復し、撮影していない角度まで補完するNVIDIAの研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-04-9",
+    "date": "2026-11-04",
+    "title": "夢ごとに専属エージェント",
+    "pattern": "転用",
+    "seed": "AXは大量のエージェント実行基盤だが、Ocean of Dreamsの430人の夢に1つずつ専属エージェントを割り当て、待機中は休止し、近づいた人にだけ語りかける展示に転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ax",
+        "title": "AX (Agent Executor)",
+        "desc": "自律型AIエージェントを大量に同時実行し、待機中は自動休止してコストを抑えるGoogleの実行基盤。"
+      },
+      {
+        "type": "case",
+        "id": "ocean-of-dreams-a-landscape-of-waves-sand-words-and-collecti",
+        "title": "Ocean of Dreams – A landscape of waves, sand, words, and collective imagination",
+        "desc": "430人超の夢の言葉を手書き風にし、波と砂の景観として広場に投影した参加型作品。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-04-10",
+    "date": "2026-11-04",
+    "title": "所作を教える継承コーチ",
+    "pattern": "転用",
+    "seed": "MotionMindはダンスの振り付けを分解して教えるツールだが、職人の手仕事や茶の湯の所作を1本の動画から段階ごとに音声で教える、技の継承コーチに転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "motionmind",
+        "title": "MotionMind",
+        "desc": "ダンス動画から3Dアバターで動きを再現し、ステップに分解して音声で教えるパイプライン。"
+      }
+    ]
   }
 ]
