@@ -1,5 +1,169 @@
 [
   {
+    "id": "machinista",
+    "title": "Machinista",
+    "org": "photogeen（個人開発）",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "HCI/MediaArt"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "Native Instruments の Maschine コントローラー（Mikro/MK1/MK2/MK3/Maschine+）を、Raspberry Pi 4/5 につなぐだけでパソコン不要の単体音楽制作機に変えるオープンソースのファームウェア兼アプリ。",
+    "point": "一番の特徴は、手元のパッド付きコントローラーをそのまま「単体の楽器」に変えられることです。ノートPCを開かずに、ビート作り、サンプルのスライス、シンセ演奏、ループ録音、ミキシングまでコントローラーの画面とボタンだけで進められます。必要な機材は Raspberry Pi、SD カード、手持ちの Maschine だけです。広告・体験づくりでは、展示会場や街頭インスタレーション、ライブ演出の現場に、PC を置かずに小さく置ける音の演奏装置として使えそうです。音楽担当でない人も、本番中にパッドで音を叩いて反応を変える体験型の音演出を、低予算で試作できます。スマホやタブレットのブラウザからサンプルを入れ替えられるので、現場で素早く音を差し替えるチーム作業にも向きます。ただしベータ版なので、本番の唯一の音源にするのは避けたほうが安全です。",
+    "detail": "仕組みは、Raspberry Pi 上で動く専用アプリが、USB でつないだ Maschine のパッドやつまみの入力を受け取り、本体の小さな液晶（機種によりモノクロまたはカラー）に操作画面を描く、というものです。コントローラー本体のファームウェアは書き換えないので、PC 用の Maschine ソフトに戻したいときは USB を差し替えるだけです。Pi が「小さな PC 兼音源」、Maschine が「鍵盤と画面」の役割を分担していると考えると分かりやすいと思います。音はシンセ、サンプルのスライス、EQ・コンプ・リバーブなど内蔵のエフェクト、LV2 形式の追加プラグインで作り、WAV/AIFF/MP3 で書き出せます。\n\n従来は、Maschine は PC 上の専用ソフトにつなぐのが前提で、単体で使えるのは別売りの Maschine+ だけでした。Machinista は旧型を含む Mikro MK1 や MK2 でも PC 抜きで動き、Maschine+ もコントローラーモードで外部 Pi につないで使えます。ブラウザの管理画面（WebUI）で、サンプルのアップロードやバックアップもできます。短いサンプルを 4 パートに分ける AI の分離機能（ボーカル・ドラム・ベース・その他）も任意で使えますが、別途モデルのダウンロードと十分な RAM が必要です。\n\n使うには、Raspberry Pi 4 または 5、電源、8GB 以上の SD カード、対応コントローラー、音声出力用のオーディオ機器が必要です。GitHub Releases の .img.xz を Raspberry Pi Imager で SD カードに書き込めば起動します（書き込み時にカードの中身は消えます）。英語・ドイツ語の写真入りマニュアルがあり、導入のハードルは低めです。無料ですが、ベータ版のため機種ごとの動作は未確認の部分が残っています。",
+    "license": {
+      "spdx": "GPL-3.0",
+      "commercial": "conditional",
+      "note": "GPL-3.0。LICENSING.md が別途あるため、商用利用や再配布の条件は使う前に確認が必要。公開イメージにはドラムサンプルやサードパーティ製プラグインは含まれない。現在はベータ版（v0.1.0-beta.15）。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/photogeen/machinista"
+      },
+      {
+        "kind": "product",
+        "url": "https://github.com/photogeen/machinista/releases/tag/v0.1.0-beta.15"
+      },
+      {
+        "kind": "project",
+        "url": "https://photogeen.github.io/machinista/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/machinista.jpg",
+    "relatedWorks": [
+      {
+        "title": "Ableton Move",
+        "description": "パソコン不要で使える携帯型の音楽制作機（有償ハードウェア）。",
+        "url": "https://www.ableton.com/en/move/"
+      },
+      {
+        "title": "Elektron Digitakt II",
+        "description": "パッドで操作する単体型のサンプラー兼シーケンサー（有償）。",
+        "url": "https://www.elektron.se/en/digitakt-ii"
+      },
+      {
+        "title": "Mixxx",
+        "description": "対応コントローラーが多い、無料のオープンソース DJ ソフト。",
+        "url": "https://mixxx.org"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "backspn",
+    "title": "Backspn",
+    "org": "suitux（個人開発）",
+    "type": "Tool",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "ステム分離（ドラム・ベース・ボーカル等に分解）、74種のビート同期エフェクト、あらゆる MIDI/HID コントローラー対応を備えた、Rust 製の無料オープンソース DJ ソフト。",
+    "point": "取り込んだ曲を、自分のパソコンの CPU だけで「ドラム・ベース・その他・ボーカル」の4パートに分けられ、パートごとに音量・フィルター・エフェクトを操作できます。GPU もネット接続も不要（初回のモデル取得後）で、結果は保存されるので2回目以降はすぐ読み込めます。ビートに合わせて自動で効く74種のエフェクトやドラムマシン、ループ録音、ミックス録音も入っています。広告・体験づくりでは、イベントやポップアップの BGM をその場でリミックスして演出する用途や、曲のボーカルだけ抜いたバージョンの試作に使えそうです。映像制作の現場でも、既存の曲のテンポや構成をその場で変えて尺に合わせる作業の下ごしらえに役立ちます。有償 DJ ソフトの機能の多くが無料で試せるのが大きな利点です。商用の曲を扱うときは権利処理に注意が必要です。",
+    "detail": "仕組みは、曲の波形を AI モデルに通して楽器ごとの層に分けるステム分離をローカルで実行し、分けた各パートを別々のデッキ（再生レーン）として扱うというものです。バンドの録音を、楽器別のトラックに後から分解するイメージです。2〜4デッキの同期再生では、全デッキのテンポをマスタークロックに合わせ、キーロック（テンポを変えても音程を保つ機能）も使えます。各デッキには8つのホットキュー（頭出し位置）、ループ、スリップ、リバースがあります。\n\n従来のステム分離は、別アプリで書き出してから DJ ソフトに読み込む手間がありました。Backspn は分離から演奏までを1つのアプリで完結させ、結果をキャッシュします。Native Instruments の Traktor など有償ソフトに近い機能を、市販・自作を問わず好みの MIDI/HID コントローラーで操作できる点も特徴です。Rust 製でビルドは軽く、macOS・Windows・Linux に対応しています。\n\n使うには、GitHub Releases から macOS(.dmg)・Windows(.exe)・Linux(.deb/AppImage)のインストーラーを入手します。ステム生成には macOS 13.4 以上が必要です。ベータ版のため未署名で、macOS では「システム設定 > プライバシーとセキュリティ」から「このまま開く」を一度押す必要があります。費用は無料で、コントローラーなしでもキーボードとマウスで使えます。",
+    "license": {
+      "spdx": "GPL-3.0-or-later",
+      "commercial": "ok",
+      "note": "GPL-3.0-or-later のオープンソースで、アプリ本体は無料。内蔵ドラムキットはアプリ自身が合成しており、著作権の問題はない。ベータ版でビルドは macOS/Windows とも未署名（初回起動時に警告が出る）。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/suitux/Backspn"
+      },
+      {
+        "kind": "product",
+        "url": "https://github.com/suitux/Backspn/releases"
+      },
+      {
+        "kind": "project",
+        "url": "https://backspn.com/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/backspn.jpg",
+    "relatedWorks": [
+      {
+        "title": "Mixxx",
+        "description": "長く続くオープンソースの DJ ソフト。コントローラー対応が広い。",
+        "url": "https://mixxx.org"
+      },
+      {
+        "title": "StemRoller",
+        "description": "ステム分離に特化した無料ツール。",
+        "url": "https://github.com/stemrollerapp/stemroller"
+      },
+      {
+        "title": "Ableton Move",
+        "description": "パソコン不要の携帯型音楽制作機（有償ハードウェア）。",
+        "url": "https://www.ableton.com/en/move/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "simllama",
+    "title": "SimLlama（Similarity-Label Conditioning for Game Music Generation）",
+    "org": "Centre for Digital Music, Queen Mary University of London",
+    "type": "Research",
+    "domains": [
+      "Audio/Music"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "ゲーム音楽の「テーマ曲」に対して、どれくらい似せるか（high/mid/low）をラベルで指定して、続きの楽曲セクションをMIDIで生成するAI。コード・学習済み重み・試聴デモが公開されている。",
+    "point": "この研究のすごさは、「テーマにどれくらい近い曲にするか」を3段階のラベル（似ている／中くらい／似ていない）で指定して、音楽の続きを作れる点です。普通の音楽生成AIは「ゲームっぽい曲」のようにざっくり指示するしかなく、メインテーマの雰囲気を保ちつつ変化させる、という調整が苦手でした。SimLlamaは、元の曲の特徴をまとめたベクトル（曲の要約メモのようなもの）とラベルを同時に渡すことで、似せ度合いをコントロールできます。広告や体験づくりでは、ブランドのサウンドロゴやテーマ曲を軸に、場面ごとに「ほぼ同じ」「少し展開」「大きく変化」したBGMバリエーションを一括生成する、といった使い方が考えられます。ゲームやインタラクティブ展示のように、同じテーマが場面に応じて変化していく音楽設計にも向いています。出力は音声ではなくMIDI（楽譜データ）なので、好きな音源で鳴らしたり、手で直したりできるのも制作現場向きです。",
+    "detail": "仕組み：スーパーマリオの楽曲を「セクション（まとまり）」のペアに分け、既存のMIDI向け基盤モデルMoonbeam（8.39億パラメータ）に、小さな追加部品（LoRAアダプターなど）だけを足して学習しています。生成時には、前のセクション（文脈）の要約ベクトルと、sim:high／sim:mid／sim:lowの類似度ラベルを渡すと、そのラベルに見合った続きのセクションが出ます。論文では、157個の文脈に対し各ラベルで6曲ずつ生成して12種類の指標で評価し、さらに聴取実験も行っています。結果、「似せて」と頼んだ曲は実際に文脈に近くなりますが、ラベルなしのモデルと比べて差が出るのは高類似度の指定のときだけでした。\n\n従来との違い：テキストで「雰囲気」を指定する方式と違い、「元の曲との近さ」を直接ノブのように操作できる点が新しいところです。音声ではなくMIDI生成なので、再生音源を差し替えたり楽譜として手直ししたりできます。\n\n使うには：リポジトリ（configs・scripts/model・training・inference・評価結果などを収録）をクローンし、PythonとPyTorch（GPU推奨）を用意します。学習済みチェックポイントはHugging Faceで公開されています。READMEの注意として、最初から全工程を再現するにはMuseScore 4、Slurmクラスタ、ベースモデルの重みなどが必要で、全工程の通し再実行は未検証と書かれています。評価結果の再現だけならCPUで可能です。曲データ作成のアノテーション部分はGoogleのAPIキーを使うため、そこは自前データに置き換えるのが無難です。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "コードはApache-2.0。ただしベースモデルMoonbeamの重みと学習に使ったスーパーマリオ楽曲データ（NinSheetMusicの譜面は再配布なし）の権利は別途確認が必要で、商用利用は要確認。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/ShxLuo-Saxon/simllama"
+      },
+      {
+        "kind": "project",
+        "url": "https://shxluo-saxon.github.io/simllama"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2611.01047"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/simllama.jpg",
+    "relatedWorks": [
+      {
+        "title": "YuE2",
+        "description": "シンボリック計画とエージェント型編集を備えたオープンな楽曲生成モデル。",
+        "url": "https://github.com/multimodal-art-projection/YuE"
+      },
+      {
+        "title": "Magenta RealTime / Live Music Models",
+        "description": "テキストや音声で操れるGoogle DeepMindのオープンウェイト・ライブ音楽生成モデル。",
+        "url": "https://arxiv.org/pdf/2508.04651"
+      },
+      {
+        "title": "LK_Jam",
+        "description": "軽量GRUによる、人とAIのリアルタイム相互ジャム生成システム。",
+        "url": "https://arxiv.org/html/2606.21018"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "comfyui-motion-previs-studio",
     "title": "ComfyUI Motion Previs Studio",
     "org": "navarisun1982(個人開発)",
