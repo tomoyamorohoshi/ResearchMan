@@ -25771,5 +25771,227 @@
         "desc": "ダンス動画から3Dアバターで動きを再現し、ステップに分解して音声で教えるパイプライン。"
       }
     ]
+  },
+  {
+    "id": "2026-11-05-1",
+    "date": "2026-11-05",
+    "title": "粘菌が描く観客の動線",
+    "pattern": "転用",
+    "seed": "Physarum polycephalumの鉄道網再現実験を転用し、Cheez-Itのエディンバラ・フリンジ会場に餌(チーズ)を置いて粘菌に最短路を育てさせたら、街の「本当の人の流れ」で試食マップが描けるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "physarum-polycephalumによる東京鉄道網再現実験",
+        "title": "Physarum polycephalum（真正粘菌）による東京鉄道網再現実験",
+        "desc": "単細胞の粘菌に都市の位置へ餌を置くと、実際の鉄道網に似た効率的な経路網を作る実験。"
+      },
+      {
+        "type": "case",
+        "id": "cheez-it-seize-the-cheese-edinburgh-fringe-takeover-2026",
+        "title": "Cheez-It Seize the Cheese: Edinburgh Fringe Takeover",
+        "desc": "Cheez-Itがフリンジの公式スナックとなり、街全体でジョーク大会と試食を行った企画。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-05-2",
+    "date": "2026-11-05",
+    "title": "空っぽを浮かべる音の彫刻",
+    "pattern": "文脈×技術",
+    "seed": "「〈空っぽ〉の発現」の、何もないことが何かを生む発想に、片側ベッセルビーム音響浮揚を掛けたら、ギャラリーの空白に軽い球がふわりと浮かぶ「見えない作品」ができそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "yugen-gallery-2026",
+        "title": "トークイベント「〈空っぽ〉の発現」（松田啓佑個展「世界は〈空っぽ〉から」関連プログラム）",
+        "desc": "作家と批評家が個展テーマ「空っぽ」の背景を語り合うトークイベント。"
+      },
+      {
+        "type": "tech",
+        "id": "single-sided-bessel-beam-acoustic-levitation",
+        "title": "Single-Sided Bessel-Beam Acoustic Levitation(ゼロ次ベッセルビームによる片側音響浮揚)",
+        "desc": "超音波ビームで、離れた場所の軽い物を触れずに空中に浮かせて動かす技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-05-3",
+    "date": "2026-11-05",
+    "title": "静寂の部屋を4Dで持ち帰る",
+    "pattern": "文脈×技術",
+    "seed": "瀬戸内の「静寂の部屋」を来場者の一人称動画1本からReViVで復元したら、各自の身体の動きと視線つきで「その人だけの静けさ」を持ち帰れる記録になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2019-sd28",
+        "title": "静寂の部屋",
+        "desc": "灰色一色の部屋を再現した、小豆島にある大型インスタレーション。"
+      },
+      {
+        "type": "tech",
+        "id": "reviv",
+        "title": "ReViV (Reconstructing the Viewer and the View in 4D from Monocular Egocentric Video)",
+        "desc": "一人称視点の動画1本から、装着者の動きと周囲の空間を立体的に復元する研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-05-4",
+    "date": "2026-11-05",
+    "title": "偽装フォントで読ませる広告",
+    "pattern": "技術×技術",
+    "seed": "Decoy Fontで人には読めるがAIには別語に見える文字を作り、Digital Camouflageの敵対的パターンと同じ布に組めば、AIに誤読されメッセージが人にだけ届く服ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "decoy-font",
+        "title": "Decoy Font",
+        "desc": "人間には正しく読めるが、AIには別の単語に誤読される文字を作れるフォント。"
+      },
+      {
+        "type": "case",
+        "id": "digital-camouflage-2026",
+        "title": "Digital Camouflage",
+        "desc": "衣服全面の模様で人物検出AIを欺く、敵対的攻撃のウェアラブル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-05-5",
+    "date": "2026-11-05",
+    "title": "軍艦島を浮かぶ点で触る",
+    "pattern": "技術×技術",
+    "seed": "ARROWで軍艦島のフォトグラメトリ点群の動きを追跡し、片側ベッセルビーム音響浮揚の浮遊粒子で建物の崩壊を空中に再現すれば、触れない3D模型の展示ができそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "arrow",
+        "title": "ARROW (Arbitrary Reconstruction and Tracking of 4D Observations in the Wild)",
+        "desc": "写真や動画から3D形状を復元し、点の動きも追う研究。"
+      },
+      {
+        "type": "tech",
+        "id": "single-sided-bessel-beam-acoustic-levitation",
+        "title": "Single-Sided Bessel-Beam Acoustic Levitation(ゼロ次ベッセルビームによる片側音響浮揚)",
+        "desc": "超音波ビームで、離れた場所の軽い物を触れずに空中に浮かせて動かす技術。"
+      },
+      {
+        "type": "case",
+        "id": "heritage-databank-2024",
+        "title": "渋谷軍艦島展（HERITAGE DATABANK プロジェクト第一弾）",
+        "desc": "軍艦島を3Dデータ化し、渋谷で公開した文化財展。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-05-6",
+    "date": "2026-11-05",
+    "title": "悩みを担ぐ身体の増幅",
+    "pattern": "文脈×技術",
+    "seed": "Worry Benchで悩みの重さを持ち上げる人の表情やしぐさを、EmoMimeの手型ウェアラブルアームが増幅して見せたら、心の負担が周囲にも伝わる共感装置になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "worry-bench-gymnation-2026",
+        "title": "Worry Bench（GymNation）",
+        "desc": "悩みを刻んだ重りをベンチプレスで持ち上げ、心の負担を体感させた企画。"
+      },
+      {
+        "type": "tech",
+        "id": "emomime",
+        "title": "EmoMime",
+        "desc": "顔の近くでも安全に動く手型のウェアラブルロボットアーム。表情を増幅する。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-05-7",
+    "date": "2026-11-05",
+    "title": "パスタの輪を踊らせる",
+    "pattern": "転用",
+    "seed": "Olympic Rings Pasta の形を、CyanPuppetsのマーカーレスモーキャプで取った選手の動きに合わせて変えれば、競技ごとに形が変わる食べられるモーションデータにできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "olympic-rings-pasta",
+        "title": "Olympic Rings Pasta",
+        "desc": "オリンピックの輪の形をしたパスタ。"
+      },
+      {
+        "type": "tech",
+        "id": "cyanpuppets-1b-parameter-ai-motion-capture",
+        "title": "CYANPUPPETS 1B-parameter AI Motion Capture",
+        "desc": "ウェブカメラや動画から全身の動きを取り出すマーカーレスのモーションキャプチャ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-05-8",
+    "date": "2026-11-05",
+    "title": "撮り直しを導くフィルム調",
+    "pattern": "技術×技術",
+    "seed": "Project IndigoのAI写真批評で出た撮り直し提案を、AURORA Film Labの実測フィルムルックと混ぜ、批評のたびに別のフィルムの「口調」で返ってくる写真指導ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "project-indigo-ai-2026",
+        "title": "Project Indigo AI写真批評機能",
+        "desc": "Adobeの実験カメラアプリが、構図や光を批評し撮り直しを提案する機能。"
+      },
+      {
+        "type": "tech",
+        "id": "aurora-film-lab-v1-0",
+        "title": "AURORA Film Lab v1.0",
+        "desc": "実測した55種のフィルムから選んだ色を混ぜて、独自のフィルム調を作る調色ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-05-9",
+    "date": "2026-11-05",
+    "title": "合言葉で開く時の海",
+    "pattern": "文脈×技術",
+    "seed": "TENETの音声起動のように、「時の海 – 東北」の実証実験でも合言葉を話すと実物大の作品がGAEで立体映像として現れ、竣工前の風景を各自の視点で歩けるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "tenet-voice-activation",
+        "title": "TENET tenetfilm.com 音声起動体験",
+        "desc": "「Tenet」と話しかけると未公開映像が見られる映画サイトの体験。"
+      },
+      {
+        "type": "case",
+        "id": "sea-of-time-tohoku-2026",
+        "title": "「時の海 – 東北」プロジェクト《Sea of Time – TOHOKU》公開実証実験",
+        "desc": "福島・富岡町に設置予定の宮島達男作品を、竣工前に東京で実物大検証した実験。"
+      },
+      {
+        "type": "tech",
+        "id": "gae",
+        "title": "GAE (Geometry-Native Autoencoder)",
+        "desc": "1枚の画像から、カメラを動かせる立体的につじつまの合う映像を作る研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-05-10",
+    "date": "2026-11-05",
+    "title": "廃屋の水を描いて動かす",
+    "pattern": "転用",
+    "seed": "ComfyUIのCinematic Annotate Videoは線を描いてカメラ動作を指定する道具だが、Trieb－家の落ち続ける水の軌跡を描く振付ツールに転用したら、水の動きを設計できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-cinematic-annotate-video",
+        "title": "ComfyUI「Cinematic Annotate Video」ワークフロー",
+        "desc": "画像に線を描くだけで動きやカメラワークを指定し、動画を生成するComfyUIの仕組み。"
+      },
+      {
+        "type": "case",
+        "id": "setouchi-2019-og11",
+        "title": "Trieb－家",
+        "desc": "廃屋の天井から大量の水が落ち続ける遠藤利克のインスタレーション。"
+      }
+    ]
   }
 ]
