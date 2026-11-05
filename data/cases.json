@@ -1,5 +1,96 @@
 [
   {
+    "id": "bustan-robotically-3d-printed-earthen-pavilion-around-an-oli",
+    "title": "BUSTAN – robotically 3D printed earthen pavilion around an olive tree",
+    "summary": "現地の土と植物繊維をロボット印刷した178個のレンガで、生きたオリーブの木を依頼主に見立てた多種共生の東屋を作った。",
+    "client": "Material Topology Research Lab (MTRL), Technion",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "中東・アフリカ"
+    ],
+    "link": "https://www.designboom.com/architecture/robotically-3d-printed-earth-bricks-multispecies-habitat-olive-tree-mtrl-technion/",
+    "thumbnail": "/thumbnails/bustan-robotically-3d-printed-earthen-pavilion-around-an-oli.jpg",
+    "videoId": "",
+    "overview": "BUSTAN(ヘブライ語系の語で「果樹園」)は、イスラエル工科大学Technion のMaterial Topology Research Lab(MTRL)とワイツマン科学研究所のTree Labが手がけた実寸の土のパビリオン。178個のロボット印刷レンガを、生きたオリーブの木の周りに組み上げる。レンガは1つずつ形状と表面が異なり、日陰・蓄熱・通風・保湿・生き物の棲み処といった役割を担う。Design Museum Holon の企画展「The Circle」で展示された。",
+    "background": "MTRLを率いるAaron Sprecher教授らは、先行プロジェクトTreeSoilで、ロボット押出し印刷した土のレンガで若木を守る生分解性シェルターを開発してきた。同作品は2025年のRed Dot Design Awardを受けたと報じられている。BUSTANはその延長で、苗木ではなく既存の木と、人以外の生き物も含む多種の共生に対象を広げた試み。研究リードはOfer Asaf、主任研究者はSprecher、Arnon Bentur、Tamir Klein。",
+    "execution": "レンガは現地産の土に植物系繊維と鉱物系バインダーを混ぜたペーストで、ロボットアームが押し出して印刷する。製作はTechnion Advanced Construction Center(TACC)で行われた。個々のレンガに筒や穴を設け、昆虫・鳥・小動物の巣穴となるすき間を作る。生きたオリーブの木を「クライアント」と位置づけ、木を中心に構造を組み立てる点が特徴。TreeSoilでは接着剤なしで組み上げる方式が使われている。",
+    "evaluationImpact": "建築を完成した固定物でなく、生態系の一部として変化し続けるものと捉え直し、土という低環境負荷の素材とロボット製造を結びつけた点に新規性がある。人のための空間を、木や虫・鳥との共生基盤として設計する発想は、都市の生物多様性や気候適応の建築に転用できる。ただし性能の実測データや公式な受賞は、今回の調査では確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "TreeSoil(MTRL)",
+        "description": "ロボット印刷した土のインターロッキングレンガで若木の微気候を守る生分解性シェルター。同じ研究室の先行作。",
+        "url": "https://www.designboom.com/design/3d-printed-modular-interlocking-bricks-earthen-microclimate-shelter-tree-saplings-material-topology-research-lab-mtrl-10-25-2025/"
+      },
+      {
+        "title": "Technion Researchers Win Prestigious Design Award for Developing New Technology to Protect Young Seedlings",
+        "description": "Technion による、若木保護の技術がデザイン賞を受けたとする公式ブログ記事。",
+        "url": "https://www.technion.ac.il/en/blog/article/technion-researchers-win-prestigious-design-award-for-developing-new-technology-to-protect-young-seedlings/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Tech/3D",
+      "Form/Exhibition",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "designboom",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "the-afterlife-of-pi-2026",
+    "title": "The Afterlife of Pi",
+    "summary": "円周率の桁数計算の記録史を、1706年から2025年の記録推移グラフを交えスクロール型で辿るビジュアルエッセイ。",
+    "client": "The Pudding",
+    "agency": "",
+    "categories": [
+      "データクリエイティブ",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://pudding.cool/2026/11/pi/",
+    "thumbnail": "/thumbnails/the-afterlife-of-pi-2026.jpg",
+    "videoId": "",
+    "overview": "The Pudding(米国のビジュアル・ジャーナリズム媒体)が2026年11月に公開したスクロール型のビジュアルエッセイ。円周率の桁数を計算する取り組みの歴史を、19世紀の挑戦、1940年代のENIAC(2,037桁)、2025年の314兆桁(計算に110日)という最新記録まで順に追う。1706年から2025年までの記録桁数の推移を示すチャートも含まれる。",
+    "background": "円周率の桁数計算は、手計算の時代からコンピュータの時代まで長く続く記録更新の競争であり、記録の積み重ねを一覧できるデータが存在する。記事中には、同時期にラザフォードが440桁まで独自に計算・照合したという記述もあり、競争や検証が絡んだ歴史として描かれている。企画の詳しい動機や制作体制は、確認できた範囲では不明。",
+    "execution": "確認できたのは、スクロール型の記事形式であること、時代順に記録を辿る構成であること、1706年から2025年までの記録桁数のチャートが入っていることまで。スクロールに連動した図の動き、インタラクション、使用技術などの演出の詳細は、検索で確認できていない。「150年」という枠組みも、確認できた範囲では記事本文から裏取りできなかった。",
+    "evaluationImpact": "記録の推移を一本のスクロール体験にまとめ、数字の羅列になりがちな桁数記録を歴史の物語として読ませる狙いがうかがえる。ただし、演出やクラフトにどんな固有の発明があるかは未確認で、受賞やメディア評価も確認できていない。The Pudding作品として定評はあるが、中身の裏取りが取れるまでは採用基準Bに届くとは言い切れない。",
+    "relatedWorks": [
+      {
+        "title": "The Afterlife of Pi",
+        "description": "The Pudding による本事例の記事ページ(検索結果で存在を確認)",
+        "url": "https://pudding.cool/2026/11/pi/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Tech/Web",
+      "Form/Website",
+      "Theme/Education"
+    ],
+    "gateCriterion": "B",
+    "sourceId": "pudding",
+    "gateTier": "borderline",
+    "discoveryLens": 2
+  },
+  {
     "id": "ai-legory-of-the-cave-confined-to-representations-of-the-wor",
     "title": "[AI]legory of the Cave – Confined to representations of the world",
     "summary": "プラトンの洞窟を「LLMはASCII化された世界記述しか知らない」と読み替え、磁石ブロックで影の人物を妨げる体験にした。",
