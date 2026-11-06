@@ -55,6 +55,7 @@ export const RESEARCH_SOURCES: ResearchSource[] = [
   { tag: "3D Installations", kind: "order", label: "3D Installations" },
   { tag: "Creative OOH", kind: "order", label: "Creative OOH" },
   { tag: "Financial Branding", kind: "order", label: "Financial Branding" },
+  { tag: "Print Ads", kind: "order", label: "Print Ads" },
   { tag: "Radar", kind: "radar", label: "Radar" },
 ];
 
