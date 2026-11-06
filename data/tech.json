@@ -1,5 +1,157 @@
 [
   {
+    "id": "kiteva",
+    "title": "Kiteva (motion-graphics-agent)",
+    "org": "delexw(個人開発・Yang Liu)",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "AI/Agents",
+      "GenVideo"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "文章で書いたアイデアと参考素材から、モーショングラフィックス主体の短編映像(最長5分・1080p/1440p)を作るローカル動作のエージェントアプリ。企画案の作成から3秒のプレビュー、本編レンダリング、編集用データの書き出しまでを1つの画面で進められる。",
+    "point": "すごい点は、「映像の企画書づくり」から「書き出し」までを、コーディングエージェント(ClaudeまたはCodex)にまとめて任せられることです。アイデアを入力すると、まず方向性の違う複数の案が3秒の無音プレビューで出てきます。気に入った案だけを選んで本編にできるので、いきなり長尺を作って外す無駄が減ります。完成した映像はMP4のほか、OpenTimelineIO・字幕(SRT)・音声という編集ソフトに持ち込める形でも出てきます。広告・体験づくりでは、商品ローンチ動画、イベント会場のオープニング映像、SNS用の解説ムービーなど、モーショングラフィックス中心の映像の初稿を短時間で複数案つくる用途に向きます。ナレーションもローカルで生成でき、字幕も付けられます。クライアント提案の前に「動く絵コンテ」として方向性を見せたい場面で、手作業のAfter Effects作業を前倒しで置き換えられそうです。",
+    "detail": "仕組みは段階式です。①アイデアと参考素材から「ブリーフ(企画の要点メモ)」を作る。②約140種のモーショングラフィックスの型と約50種の動きの部品から組み合わせ案を作る。③各案を3秒の無音プレビューにして見せる。④選んだ案を本編に仕上げる。描画にはHyperFrames(HTMLで映像を組み立てる仕組み)が標準で使われ、試験的なMultiplaneと予備のRemotionも選べます。外部のエージェントから使うためのMCP窓口(/mcp)もあり、下書き保存やビルド開始を呼び出せます。\n\n従来の「動画生成AI」はプロンプトから映像そのものを生成しますが、Kiteva は文字・図形・動きをコードで組み立てるため、文字がにじまず、後から編集用データで直せる点が違います。一方、既存のコーディングエージェントとレンダラーを束ねる性格が強く、独自のモデルを持つ研究ではありません。なお公開は2026年10月18日(v0.1.0)で、10月29日にv1.0.0が出たばかりです。\n\n使うには、git clone→./install.sh→npm startでブラウザの 127.0.0.1:18417 を開きます。動作確認済みはmacOSで、Windowsは実験的です。Python 3.11、FFmpeg、Chrome、そして Claude か Codex の認証(APIキーまたはログイン済みCLI)が必要です。作者の記録では、1作品あたりAPI換算で約16〜37ドルでした(ベンチマークではなく目安)。依存パッケージは約77個で、初回は大きなモデルのダウンロードも発生します。Node.js/ターミナルが使えるプロデューサー兼エンジニア向けです。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "v0.2.0(2026-10-21)でMIT化。ただし利用時は Claude または Codex の認証情報が必要で、組み込みのRemotion等は各自のライセンスに従う。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/delexw/motion-graphics-agent"
+      },
+      {
+        "kind": "post",
+        "url": "https://github.com/delexw/motion-graphics-agent/releases"
+      },
+      {
+        "kind": "video",
+        "url": "https://github.com/delexw/motion-graphics-agent/blob/main/docs/assets/kiteva-intro.mp4"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/kiteva.jpg",
+    "relatedWorks": [
+      {
+        "title": "HyperFrames",
+        "description": "HTMLから映像を書き出すオープンソースの動画エージェント基盤。Kiteva の標準レンダラー。",
+        "url": "https://github.com/heygen-com/hyperframes"
+      },
+      {
+        "title": "Remotion",
+        "description": "Reactコードで動画を作るフレームワーク。Kiteva の予備レンダラー。",
+        "url": "https://www.remotion.dev/"
+      },
+      {
+        "title": "motion-anything",
+        "description": "チャットで感覚を伝えるとアニメーションを生成するオープンソースのモーションエンジン(Apache-2.0)。",
+        "url": "https://github.com/nexu-io/motion-anything"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "topx",
+    "title": "TopX",
+    "org": "Tengjiao Sun ほか（Hansung Kim 研究グループ）",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "AI/Agents"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "骨格ファイル（BVH）だけを渡せば、未知のキャラクターでもテキストから動きを生成できるモデル。4〜117関節の骨格に1つのモデルで対応する。",
+    "point": "従来のテキストからの動き生成は、人型など決まった骨格ごとに学習されており、翼のあるキャラやロボット、モノのキャラを動かすには、その骨格専用のモーションデータ集めや再学習が必要でした。TopXは、キャラクターの骨の親子関係・初期ポーズ・関節名だけを読み取り、「Objectが前に歩いて座る」といった文章から、その骨格にそのまま使える回転と移動の動きを作ります。モーションのお手本も、他の骨格への変換作業（リターゲット）も、追加学習も要りません。広告やブランド体験では、商品キャラや擬人化したモノ、変則的な骨格のマスコットなど、既存のモーションライブラリに合わないキャラを短時間で試し動かしできます。絵コンテ段階の動きの検証や、リグ済みキャラの仮アニメーションを大量に出すプリビズ用途に向いています。出力はBVHなので、BlenderやUnity、Unrealにも渡せます。",
+    "detail": "仕組み：骨の接続関係を「地図」のように扱い、関節どうしの位置関係を熱の広がり方（ヒートカーネル）で数値化します。その情報を、関節の順番が変わっても結果が変わらない形でAIの注意機構に組み込んでいます（論文ではHK-RoPEと呼ばれます）。生成には73Mパラメータのフローマッチング・トランスフォーマーを使います。フローマッチングは、ノイズから少しずつ動きへ整えていく生成方式です。骨格の大きさと初期ポーズで動きを正規化するので、小さなキャラにも大きなキャラにも同じモデルで対応できます。最大240フレームまで生成できます。\n\n従来との違い：これまでは骨格ごとの学習データやリターゲットが前提でした。TopXは骨格ファイルだけを入力にします。リポジトリには9種類のデモ骨格があり、テキストエンコーダ無しで試せます。出力はnpz・確認用GIF・入力骨格に動きを当てたBVHです。\n\n使うには：Python環境、重み（Hugging Face）、NVIDIA GPUが必要です。自分のプロンプトを使う場合は、テキスト埋め込み用に約16GB（bf16）のLLM2Vecを読み込むため、VRAM 16GB級が目安です。費用はかかりません。ゲート付きLlama-3の利用同意は必要です。学習コードとベンチマークは今後追加予定と明記されています。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "コードはMIT。重みはHugging Face配布。テキスト埋め込みに使うLLM2VecはゲートされたLlama-3ベースで別途ライセンス同意が必要"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/CHDTevior/TopX-OOD-Code"
+      },
+      {
+        "kind": "project",
+        "url": "https://chdtevior.github.io/TopX-page/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.34321"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/topx.jpg",
+    "relatedWorks": [
+      {
+        "title": "NVIDIA Kimodo",
+        "description": "人型向けのテキスト→3Dモーション生成モデル（コード・重み公開）",
+        "url": "https://github.com/nv-tlabs/kimodo"
+      },
+      {
+        "title": "LAFAN1",
+        "description": "Ubisoftのモーションキャプチャデータセット。モーション研究の標準的な比較対象",
+        "url": "https://github.com/ubisoft/ubisoft-laforge-animation-dataset"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "open-bot-avatar",
+    "title": "Open Bot Avatar",
+    "org": "Dominik Scholz",
+    "type": "Tool",
+    "domains": [
+      "AI/Agents",
+      "CreatorTools"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "AIエージェントの「顔」となるキャラクターを、SVGパス1本と目の位置だけで定義し、立体感のある目線追従アニメーションとして表示するOSSとエディタ。",
+    "point": "チャットボットやAIエージェントのアイコンは、静止画の丸いロゴで済まされがちです。Open Bot Avatarは、輪郭を表すSVGパス1本と目の位置だけのJSONを渡すと、そこから奥行きを自動で推定し、マウスやタッチを目で追う立体キャラクターとして描画します。ゴースト、コントローラ、芽、猫、マグカップなど、あらゆるモノを「目のあるキャラ」にでき、「考え中」「うれしい」といった状態も表現できます。ブラウザ上のエディタで色や形を選べ、文章で説明すると生成AIが形のJSONを作るプロンプトも用意されています。広告・体験づくりでは、ブランドの商品そのものを喋るキャラとして問い合わせ窓口に置いたり、展示のAIガイドに愛着の持てる顔を与えたりといった使い方が考えられます。3Dモデルを作らず、軽いWebコードだけで実装できる点が魅力です。",
+    "detail": "仕組み：輪郭のパス（0〜100の正方形内）を、ミルフィーユのように何層もの断面として積み上げ、それを回転・投影して立体に見せます。目はx・y・間隔・大きさの4数値で指定します。描画は1枚のキャンバスへ毎フレーム行う方式です。SVG静止画の書き出しや、断面ごとにSVGを重ねるCSS 3Dのシーン表示（renderer: \"scene\"）も選べます。検証関数 validateAvatar で、他人が作ったJSONが正しいかを確認できます。\n\n従来との違い：キャラクター用に3Dモデルや専用ライブラリを用意する必要がなく、データがごく小さなJSONなので、AIに生成させやすい構造です。エージェント向けのスキル（generate-avatar）も同梱されています。\n\n使うには：pnpm add open-bot-avatar でインストールでき、Webの知識があれば数行で組み込めます。エディタはブラウザで動き、アカウントや費用は不要です。ギャラリーにはPRでJSONを追加できます。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "MITライセンス。npmパッケージ open-bot-avatar は依存なし"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/DominikScholz/open-bot-avatar"
+      },
+      {
+        "kind": "product",
+        "url": "https://dominikscholz.github.io/open-bot-avatar/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/open-bot-avatar.jpg",
+    "relatedWorks": [
+      {
+        "title": "Rive",
+        "description": "インタラクティブなキャラ・UIアニメーション用のランタイムとエディタ",
+        "url": "https://rive.app/"
+      },
+      {
+        "title": "Lottie",
+        "description": "ベクターアニメーションをWebやアプリで再生するためのフォーマット",
+        "url": "https://lottiefiles.com/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "machinista",
     "title": "Machinista",
     "org": "photogeen（個人開発）",
