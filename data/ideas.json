@@ -25993,5 +25993,221 @@
         "desc": "廃屋の天井から大量の水が落ち続ける遠藤利克のインスタレーション。"
       }
     ]
+  },
+  {
+    "id": "2026-11-06-1",
+    "date": "2026-11-06",
+    "title": "氷の脳を3Dアバターで動かす",
+    "pattern": "文脈×技術",
+    "seed": "Survival Is Not Enough の氷の脳は後遺症の「見えにくさ」を彫刻にした。そこにEchoAvatarを掛け、サバイバー本人の話し声に合わせて、崩れゆく氷像と同期する全身アバターが身振りで語る展示にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "survival-is-not-enough-2-5m-2026",
+        "title": "Survival Is Not Enough（脳卒中の後遺症を伝える2.5mの氷の脳）",
+        "desc": "脳卒中サバイバー5人の脳スキャンを2.5mの氷の脳に彫り、後遺症の見えにくさを可視化した展示。"
+      },
+      {
+        "type": "tech",
+        "id": "echoavatar",
+        "title": "EchoAvatar",
+        "desc": "話し声や音楽を聞きながら、全身が自然に動く3Dアバターをその場で作る研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-06-2",
+    "date": "2026-11-06",
+    "title": "ロゴ4万通りを納豆菌が動かす",
+    "pattern": "文脈×技術",
+    "seed": "MIT Media Lab Identity の7x7グリッドの生成ロゴを、bioLogicの湿度で伸縮する納豆菌生地に印刷したら、着る人の汗や体温でロゴが呼吸するように変形するユニフォームになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "mit-media-lab-identity-2010",
+        "title": "MIT Media Lab Identity",
+        "desc": "7x7グリッドから約4万通りのロゴを作り、メンバー全員が自分専用ロゴを持てるようにした事例。"
+      },
+      {
+        "type": "tech",
+        "id": "biologic",
+        "title": "bioLogic",
+        "desc": "納豆菌の湿度による伸縮を使い、汗や体温で開閉する生地を作る研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-06-3",
+    "date": "2026-11-06",
+    "title": "蝶が導く多感覚パビリオンを3D化",
+    "pattern": "文脈×技術",
+    "seed": "Colombia Pavilion の蝶が先導する物語空間を、TuttiCamで多数台同時撮影してGaussian Splat化し、閉幕後も世界のどこでも歩き回れる「保存された魔術的リアリズム」にできそうだ。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "colombia-pavilion-expo2025-osaka-if-2026",
+        "title": "Expo 2025 Osaka - Colombia Pavilion",
+        "desc": "「百年の孤独」の世界を、蝶が先導する多感覚の空間に翻訳した万博のパビリオン。"
+      },
+      {
+        "type": "tech",
+        "id": "tutticam",
+        "title": "TuttiCam",
+        "desc": "スマホなど最大8台を揃えて同時に連続撮影する、Gaussian Splatting用の撮影アプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-06-4",
+    "date": "2026-11-06",
+    "title": "副産物素材の喪失を動画で逆再生",
+    "pattern": "文脈×技術",
+    "seed": "Baltic Biomaterials の松樹皮や琥珀粉の素材展に、TaoMate-H3-FL2VAで「原料の山」から「素材になった姿」までの最初と最後のコマだけ渡し、変化の途中をほぼ即時に映像と音で生成する展示ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "pine-bark-amber-dust-and-coffee-grounds-baltic-biomaterials",
+        "title": "Pine Bark, Amber Dust and Coffee Grounds: Baltic Biomaterials at Dutch Design Week",
+        "desc": "松の樹皮や琥珀粉、コーヒーかすなど地域の副産物を素材にしたデザイン展。"
+      },
+      {
+        "type": "tech",
+        "id": "taomate-h3-fl2va",
+        "title": "TaoMate-H3-FL2VA",
+        "desc": "最初と最後のコマを指定すると、間の映像と音声をほぼ即時に生成する技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-06-5",
+    "date": "2026-11-06",
+    "title": "ロボットが選手の癖で踊る彫刻",
+    "pattern": "技術×技術",
+    "seed": "AdaPTの「その選手らしいフォームを保つ」動作再現と、MT3の複数楽器の自動採譜を組み合わせ、バンド演奏の音源から各奏者の癖を保ったままロボットが指揮や演奏の身振りをする舞台ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "adapt",
+        "title": "AdaPT",
+        "desc": "ヒューマノイドロボットに、有名テニス選手らしいフォームでサーブを打たせる技術。"
+      },
+      {
+        "type": "tech",
+        "id": "mt3",
+        "title": "MT3 (Multi-Task Multitrack Music Transcription)",
+        "desc": "1つの音源から複数の楽器パートを別々のMIDIに書き起こす自動採譜モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-06-6",
+    "date": "2026-11-06",
+    "title": "コードで組む映像を骨格で動かす",
+    "pattern": "技術×技術",
+    "seed": "Code Video Model のThree.jsで組んだ粗い3Dシーンに、AniGenで1枚絵から作った骨格つきキャラを入れ、動画生成AIの設計図にすれば、描いた落書きが主役の短編を作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "code-video-model",
+        "title": "Code Video Model (CodeVideoBench)",
+        "desc": "Three.jsのコードで組んだ粗い3D映像を手本に、動画生成AIで最終映像を作る手法。"
+      },
+      {
+        "type": "tech",
+        "id": "anigen",
+        "title": "AniGen",
+        "desc": "1枚の画像から、動かせる骨格と皮膚つきの3Dキャラを自動生成する技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-06-7",
+    "date": "2026-11-06",
+    "title": "スプラットをBlender部品に分解",
+    "pattern": "技術×技術",
+    "seed": "IA'GSでスマホ写真から作った立体写真を、Gaussian Splat to Blender Nodesで編集可能なノードに変えて、VideoAgentに「別の季節で撮り直して」と頼む、街の再演出ができそうだ。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ia-gs",
+        "title": "IA'GS (IA-GS)",
+        "desc": "スマホ写真の束をMacだけで自由に見回せる立体写真にする無料アプリ。"
+      },
+      {
+        "type": "tech",
+        "id": "gaussian-splat-to-blender-nodes",
+        "title": "Gaussian Splat to Blender Nodes (World to World Mapping)",
+        "desc": "Gaussian SplatをAIとBlenderの編集可能なノードに作り直すツール群。"
+      },
+      {
+        "type": "tech",
+        "id": "videoagent",
+        "title": "VideoAgent",
+        "desc": "動画の理解・編集・リメイクを1つの対話型エージェントでこなす枠組み。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-06-8",
+    "date": "2026-11-06",
+    "title": "採譜技術を植物の動きに転用",
+    "pattern": "転用",
+    "seed": "MT3は楽器の採譜モデルだが、Paper Gardenの吊るされた和紙モビールの揺れを音とみなして解釈させたら、風や人の動きが「楽譜」として残る空間インスタレーションになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "mt3",
+        "title": "MT3 (Multi-Task Multitrack Music Transcription)",
+        "desc": "1つの音源から複数の楽器パートを別々のMIDIに書き起こす自動採譜モデル。"
+      },
+      {
+        "type": "case",
+        "id": "paper-garden-2016",
+        "title": "Paper Garden",
+        "desc": "美濃和紙の巨大モビールを天井から吊り、光と影で彩った展示。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-06-9",
+    "date": "2026-11-06",
+    "title": "動画編集AIで投票記録を守る",
+    "pattern": "転用",
+    "seed": "Video Useは動画編集の自動化ツールだが、600K Networkのように市民が撮った大量の記録映像を整理・字幕化・要約する「市民の公文書係」として転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "video-use",
+        "title": "Video Use",
+        "desc": "素材フォルダを渡してチャットで指示すると動画を自動編集するAIツール。"
+      },
+      {
+        "type": "case",
+        "id": "comando-600k-network",
+        "title": "600K Network",
+        "desc": "60万人超のボランティアが投票記録を暗号化して保全した市民ネットワーク。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-06-10",
+    "date": "2026-11-06",
+    "title": "アップスケーラーで俗説を可視化",
+    "pattern": "文脈×技術",
+    "seed": "MovemberのAnd 俗説否定キャンペーンに、ComfyUI-Tesseraで低解像度の恐怖顔動画を8Kまで引き上げ、巨大OOHで一コマずつ恐怖が「ほぐれる」ビフォーアフターを作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "movember-don-t-let-an-old-myth-put-you-in-this-position-2026",
+        "title": "Movember: Don't Let an Old Myth Put You in This Position",
+        "desc": "前立腺検査への俗説を、恐怖顔のビジュアルで否定し検査を促す啓発キャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-tessera",
+        "title": "ComfyUI-Tessera",
+        "desc": "低解像度の動画を2K〜8Kへ、一般向けGPU1枚でも拡大できるアップスケーラー。"
+      }
+    ]
   }
 ]
