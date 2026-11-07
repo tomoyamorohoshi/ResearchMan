@@ -52,7 +52,7 @@ export interface ExhibitionBuildOpts {
 export type ExhibitionOutcome = "added" | "updated" | "duplicate" | "unverified" | "rejected" | "pending";
 
 /** 追加した展示の確認方法を1語で（LINE 返信用）。 */
-export function verifiedLabelJa(item: { verifiedVia?: unknown }): string {
+export function verifiedLabelJa(item: Record<string, unknown>): string {
   if (item.verifiedVia === "owner-intake") return "投稿者確認";
   if (item.verifiedVia === "tokyoartbeat") return "TAB";
   return "公式";
