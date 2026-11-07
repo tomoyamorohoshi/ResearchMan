@@ -3,6 +3,53 @@
   "statusAsOf": "2026-11-07",
   "items": [
     {
+      "id": "2026-seeen-harajuku-kohei-nawa-at-random",
+      "slug": "2026-seeen-harajuku-kohei-nawa-at-random",
+      "title": "名和晃平「At Random」",
+      "artists": [
+        "名和晃平"
+      ],
+      "venue": "seeen Harajuku",
+      "venueType": "alt_space",
+      "prefecture": "東京都",
+      "city": "渋谷区",
+      "startDate": "2026-11-01",
+      "endDate": "2026-11-28",
+      "status": "ongoing",
+      "admission": "無料",
+      "tags": [
+        "sculpture",
+        "installation",
+        "ai_media_art"
+      ],
+      "score": 82,
+      "matchReason": "名和晃平とSandwichが設計した建築全体を使い、AIが生成する情報環境下の記憶の断片化をテーマに彫刻・平面・インスタレーションが空間と呼応する構成で、アート×デザイン×テクノロジーの境界領域にあたる。",
+      "sources": [
+        {
+          "name": "Tokyo Art Beat",
+          "url": "https://www.tokyoartbeat.com/events/-/Kouhei-Nawa-At-Random/Seeen-Harajuku/2026-11-01",
+          "kind": "listing"
+        },
+        {
+          "name": "SCAI THE BATHHOUSE",
+          "url": "https://www.scaithebathhouse.com/ja/news/2026/10/kohei_nawa_seeen_harajuku/",
+          "kind": "news"
+        },
+        {
+          "name": "TECTURE MAG",
+          "url": "https://mag.tecture.jp/event/20261027-160493/",
+          "kind": "news"
+        }
+      ],
+      "link": "https://www.tokyoartbeat.com/events/-/Kouhei-Nawa-At-Random/Seeen-Harajuku/2026-11-01",
+      "verifiedVia": "tokyoartbeat",
+      "thumbnail": "/thumbnails/exhibition/2026-seeen-harajuku-kohei-nawa-at-random.jpg",
+      "addedAt": "2026-11-07T04:54:27.282Z",
+      "origin": "intake",
+      "intakeUrl": "https://www.tokyoartbeat.com/events/-/Kouhei-Nawa-At-Random/Seeen-Harajuku/2026-11-01",
+      "highlight": true
+    },
+    {
       "id": "2026-sas-tokyo-otowo-shitsurae-invisi",
       "slug": "2026-sas-tokyo-otowo-shitsurae-invisi",
       "title": "DESIGNART TOKYO 2026「おとを、しつらえる。| invisi」",
