@@ -3,6 +3,52 @@
   "statusAsOf": "2026-11-07",
   "items": [
     {
+      "id": "2026-kanda-square-mark-the-moment",
+      "slug": "2026-kanda-square-mark-the-moment",
+      "title": "TAKEO PAPER SHOW 50「祝と礼―MARK THE MOMENT」",
+      "artists": [
+        "三澤遥",
+        "三澤デザイン研究室"
+      ],
+      "venue": "KANDA SQUARE HALL",
+      "venueType": "other",
+      "prefecture": "東京都",
+      "city": "千代田区",
+      "startDate": "2026-10-17",
+      "endDate": "2026-10-25",
+      "status": "ended",
+      "admission": "無料",
+      "tags": [
+        "design_archive",
+        "graphic_design"
+      ],
+      "score": 30,
+      "matchReason": "レーザーカット・UVインクジェット印刷・箔押しなど紙の加工技術をテーマにした、グラフィックデザインのアーカイブ的内容であることが投稿本文から読み取れる。",
+      "sources": [
+        {
+          "name": "TAKEO PAPER SHOW 50「祝と礼」",
+          "url": "https://www.takeopapershow.com/",
+          "kind": "official"
+        },
+        {
+          "name": "竹尾 公式X投稿",
+          "url": "https://x.com/takeopaper/status/2112357795127591154",
+          "kind": "social"
+        },
+        {
+          "name": "PR TIMES（竹尾）",
+          "url": "https://koubo.jp/press-release/prtimes/c85255_r69",
+          "kind": "news"
+        }
+      ],
+      "link": "https://www.takeopapershow.com/",
+      "thumbnail": "/thumbnails/exhibition/2026-kanda-square-mark-the-moment.jpg",
+      "addedAt": "2026-11-07T12:54:35.471Z",
+      "origin": "intake",
+      "intakeUrl": "https://x.com/takeopaper/status/2112357795127591154",
+      "highlight": false
+    },
+    {
       "id": "2026-higashi-honganji-pangraphics",
       "slug": "2026-higashi-honganji-pangraphics",
       "title": "矢後直規 グラフィック展『Pangraphics』",

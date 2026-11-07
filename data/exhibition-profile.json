@@ -88,16 +88,6 @@
     "admission": "無料/有料で選ばない（記録はする）",
     "userPicks": [
       {
-        "title": "Tokyo Sky Corridor（KK線）『Roof Park Art Fes 2026』",
-        "venue": "KK線（旧東京高速道路）",
-        "tags": [
-          "installation",
-          "light"
-        ],
-        "why": "YOSHIROTTENによる『見えないものの可視化』をテーマにした大型インスタレーションが、廃止された高速道路跡地で夜景と融合する形で展開される点。",
-        "addedAt": "2026-10-24T07:55:15.670Z"
-      },
-      {
         "title": "BIEN「Three flames +1」",
         "venue": "PARCEL",
         "tags": [
@@ -187,6 +177,16 @@
         ],
         "why": "グラフィックデザインと屏風・着物・団扇など日本の伝統工芸を組み合わせた新作発表展であり、光・空間・メディアアート・ジェネラティブといった好みのテーマには直接合致しない。",
         "addedAt": "2026-11-07T12:37:36.634Z"
+      },
+      {
+        "title": "TAKEO PAPER SHOW 50「祝と礼―MARK THE MOMENT」",
+        "venue": "KANDA SQUARE HALL",
+        "tags": [
+          "design_archive",
+          "graphic_design"
+        ],
+        "why": "レーザーカット・UVインクジェット印刷・箔押しなど紙の加工技術をテーマにした、グラフィックデザインのアーカイブ的内容であることが投稿本文から読み取れる。",
+        "addedAt": "2026-11-07T12:54:35.471Z"
       }
     ]
   },
