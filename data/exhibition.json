@@ -3,6 +3,52 @@
   "statusAsOf": "2026-11-07",
   "items": [
     {
+      "id": "2026-skac-studio-raw-material-material-after-material",
+      "slug": "2026-skac-studio-raw-material-material-after-material",
+      "title": "Studio Raw Material「Material after Material」",
+      "artists": [
+        "Studio Raw Material"
+      ],
+      "venue": "SKAC（SKWAT KAMEARI ART CENTRE）space III",
+      "venueType": "alt_space",
+      "prefecture": "東京都",
+      "city": "葛飾区",
+      "startDate": "2026-10-31",
+      "endDate": "2027-01-31",
+      "status": "ongoing",
+      "admission": "無料",
+      "tags": [
+        "sculpture",
+        "installation"
+      ],
+      "score": 45,
+      "matchReason": "廃棄された石の瓦礫・竹・手漉き和紙・修繕された織物など、使い古された素材の再利用から空間を構成するインスタレーション的な展示であることが記事から確認できる。",
+      "sources": [
+        {
+          "name": "Tokyo Art Beat",
+          "url": "https://www.tokyoartbeat.com/events/-/Studio-Raw-Material-Material-after-Material/098-E012-E/2026-10-31",
+          "kind": "listing"
+        },
+        {
+          "name": "AXIS",
+          "url": "https://www.axismag.jp/posts/2026/10/727503.html",
+          "kind": "news"
+        },
+        {
+          "name": "Time Out Tokyo",
+          "url": "https://www.timeout.jp/tokyo/ja/news/skac-extension-2026-102226",
+          "kind": "news"
+        }
+      ],
+      "link": "https://www.tokyoartbeat.com/events/-/Studio-Raw-Material-Material-after-Material/098-E012-E/2026-10-31",
+      "verifiedVia": "tokyoartbeat",
+      "thumbnail": "/thumbnails/exhibition/2026-skac-studio-raw-material-material-after-material.jpg",
+      "addedAt": "2026-11-07T12:23:21.922Z",
+      "origin": "intake",
+      "intakeUrl": "https://www.tokyoartbeat.com/events/-/Studio-Raw-Material-Material-after-Material/098-E012-E/2026-10-31",
+      "highlight": false
+    },
+    {
       "id": "2026-kata-calm-colorless-studio",
       "slug": "2026-kata-calm-colorless-studio",
       "title": "calm",
