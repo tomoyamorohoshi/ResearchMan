@@ -169,9 +169,9 @@ export const gitPush = (cwd: string): Promise<CommandResult> => run("git", ["pus
 // 既に `git add` 済み（staged）の内容に対しては実質no-op（addされた新内容がindex/working
 // tree双方に残ってしまう）。add前でもadd後でも確実にHEADへ戻すため、ソースを明示的に
 // HEADにし、staged/working tree両方を対象にする。
-export const gitRestorePaths = (cwd: string, paths: string[]): Promise<CommandResult> =>
+export const gitRestorePaths = (cwd: string, paths: string[], runFn: typeof run = run): Promise<CommandResult> =>
   paths.length
-    ? run("git", ["restore", "--staged", "--worktree", "--source=HEAD", "--", ...paths], cwd, 30_000)
+    ? runFn("git", ["restore", "--staged", "--worktree", "--source=HEAD", "--", ...paths], cwd, 30_000)
     : Promise.resolve({ ok: true, stdout: "", stderr: "", code: 0 });
 
 export async function gitRevParseHead(cwd: string): Promise<string | null> {
@@ -186,9 +186,16 @@ export async function gitRevParseHead(cwd: string): Promise<string | null> {
 // 既存trackedファイルと同じ配列に入れて渡すため、区別せず信用するとこの組み合わせで
 // 発生する。呼び出し側の分類を信用せず、ここでHEAD追跡有無を実際にgitへ問い合わせて
 // 再分類する。
-async function isTrackedAtHead(cwd: string, relPath: string): Promise<boolean> {
-  const result = await run("git", ["cat-file", "-e", `HEAD:${relPath}`], cwd, 10_000);
-  return result.ok;
+//
+// 2026-11-07事故: 旧実装は `git cat-file -e` の ok だけを見ていたため、メモリ不足・タイムアウト・
+// spawn失敗でも「HEADに無い」と誤判定し、追跡済みの本番data/exhibition.jsonを削除した。
+// `git ls-tree HEAD -- <path>` は「無い」なら exit 0 + 空stdout、「ある」なら exit 0 + 1行を返す。
+// git自体の失敗(ok=false)は "unknown" とし、呼び出し側は削除しない。
+type HeadState = "present" | "absent" | "unknown";
+async function headState(cwd: string, relPath: string, runFn: typeof run): Promise<HeadState> {
+  const result = await runFn("git", ["ls-tree", "HEAD", "--", relPath], cwd, 10_000);
+  if (!result.ok) return "unknown";
+  return result.stdout.trim() ? "present" : "absent";
 }
 
 /**
@@ -208,19 +215,29 @@ export async function rollbackTouchedFiles(
   cwd: string,
   trackedPaths: string[],
   newUntrackedPaths: string[],
+  runFn: typeof run = run,
 ): Promise<void> {
   const headTracked: string[] = [];
   const notAtHead: string[] = [];
+  const unknown: string[] = [];
   for (const p of trackedPaths) {
     // eslint-disable-next-line no-await-in-loop -- パス数は数件程度のためシーケンシャルで十分
-    if (await isTrackedAtHead(cwd, p)) {
-      headTracked.push(p);
-    } else {
-      notAtHead.push(p);
-    }
+    const state = await headState(cwd, p, runFn);
+    if (state === "present") headTracked.push(p);
+    else if (state === "absent") notAtHead.push(p);
+    else unknown.push(p);
   }
 
-  const restoreResult = await gitRestorePaths(cwd, headTracked);
+  // 判定不能(gitの失敗)は削除せず、1件ずつrestoreを試みる（HEADに無いパスが混ざると一括restoreが全滅するため）
+  for (const p of unknown) {
+    // eslint-disable-next-line no-await-in-loop
+    const r = await gitRestorePaths(cwd, [p], runFn);
+    console.error(
+      `[studio] rollbackTouchedFiles: HEAD追跡判定に失敗したため削除せず保全します: ${p}（restore ${r.ok ? "成功" : "失敗: " + r.stderr.slice(0, 300)}）`,
+    );
+  }
+
+  const restoreResult = await gitRestorePaths(cwd, headTracked, runFn);
   if (!restoreResult.ok) {
     console.error(
       `[studio] rollbackTouchedFiles: git restore に失敗しました（対象: ${headTracked.join(", ") || "(なし)"}）: ${restoreResult.stderr.slice(0, 500)}`,

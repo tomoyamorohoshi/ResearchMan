@@ -120,6 +120,62 @@ test("rollbackTouchedFiles: newUntrackedPathsで渡したファイルも従来�
   }
 });
 
+// ── 2026-11-07事故: gitコマンド失敗(OOM/タイムアウト/spawn失敗)で追跡済みdata/exhibition.jsonが削除された ──
+// 「HEADに無い」と確定できたときだけ削除する。判定不能なら削除せずrestoreを試みる。
+type RunFn = typeof run;
+
+test("rollbackTouchedFiles: HEAD追跡判定のgitが失敗(OOM/timeout)したら削除せず、restoreも試みる", async () => {
+  const dir = makeTempRepo();
+  try {
+    writeFileSync(path.join(dir, "a.txt"), "modified\n");
+    const calls: string[][] = [];
+    const fake: RunFn = async (cmd, args, cwd, t) => {
+      calls.push(args);
+      if (args[0] === "restore") return run(cmd, args, cwd, t); // restoreは実gitに任せる
+      return { ok: false, stdout: "", stderr: "", code: null }; // 判定系は全部タイムアウト相当
+    };
+    await rollbackTouchedFiles(dir, ["a.txt"], [], fake);
+    assert.equal(existsSync(path.join(dir, "a.txt")), true, "判定不能なのに削除された");
+    assert.equal(readFileSync(path.join(dir, "a.txt"), "utf-8"), "original\n", "restoreが試みられていない");
+    assert.ok(calls.some((a) => a[0] === "restore"));
+  } finally {
+    cleanup(dir);
+  }
+});
+
+test("rollbackTouchedFiles: 判定もrestoreも全て失敗しても削除しない", async () => {
+  const dir = makeTempRepo();
+  try {
+    const fake: RunFn = async () => ({ ok: false, stdout: "", stderr: "spawn ENOMEM", code: null });
+    await rollbackTouchedFiles(dir, ["a.txt"], [], fake);
+    assert.equal(existsSync(path.join(dir, "a.txt")), true);
+  } finally {
+    cleanup(dir);
+  }
+});
+
+test("rollbackTouchedFiles: 本当にHEADに無いtrackedPathsは従来どおり削除される", async () => {
+  const dir = makeTempRepo();
+  try {
+    writeFileSync(path.join(dir, "brand-new.json"), "{}\n");
+    await rollbackTouchedFiles(dir, ["brand-new.json"], []);
+    assert.equal(existsSync(path.join(dir, "brand-new.json")), false);
+  } finally {
+    cleanup(dir);
+  }
+});
+
+test("rollbackTouchedFiles: HEADにあるファイルが作業ツリーで削除されていてもrestoreで復元する", async () => {
+  const dir = makeTempRepo();
+  try {
+    rmSync(path.join(dir, "a.txt"));
+    await rollbackTouchedFiles(dir, ["a.txt"], []);
+    assert.equal(readFileSync(path.join(dir, "a.txt"), "utf-8"), "original\n");
+  } finally {
+    cleanup(dir);
+  }
+});
+
 // ── run(): 非ブロッキング化（P4 #1） ─────────────────────────────────
 // 2026-07-10までの実装は spawnSync でイベントループを丸ごとブロックしていた
 // （子プロセス完了までタイマーもI/Oも一切進まない）。async spawn化後は、子プロセス実行中も
