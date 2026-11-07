@@ -3,6 +3,62 @@
   "statusAsOf": "2026-11-07",
   "items": [
     {
+      "id": "2026-mon-takanawa-feel-the-sound",
+      "slug": "2026-mon-takanawa-feel-the-sound",
+      "title": "Feel the Sound展",
+      "artists": [
+        "真鍋大度",
+        "マックス・クーパー",
+        "細井美裕",
+        "坂本龍一",
+        "エヴェリン・グレニー",
+        "ホリー・ハーンダン"
+      ],
+      "venue": "MoN Takanawa: The Museum of Narratives（Box1500）",
+      "venueType": "corporate",
+      "prefecture": "東京都",
+      "city": "港区",
+      "startDate": "2026-11-20",
+      "endDate": "2027-03-22",
+      "status": "upcoming",
+      "admission": "一般2,500円（前売2,300円）/U25 1,100円（前売900円）/小中高生550円（前売350円）/未就学児無料",
+      "tags": [
+        "media_art",
+        "installation",
+        "sound"
+      ],
+      "score": 92,
+      "matchReason": "真鍋大度やマックス・クーパー、細井美裕ら音・振動・技術を扱うアーティストが参加し、英Barbican Centreとの共同制作による音を全身で感じる没入型インスタレーション展であるため。",
+      "sources": [
+        {
+          "name": "Feel the Sound展",
+          "url": "https://montakanawa.jp/programs/feelthesound2026/",
+          "kind": "official"
+        },
+        {
+          "name": "Time Out Tokyo JP (X投稿)",
+          "url": "https://x.com/timeouttokyojp/status/2117904816944869528",
+          "kind": "social"
+        },
+        {
+          "name": "Time Out Tokyo",
+          "url": "https://www.timeout.jp/tokyo/ja/news/feel-the-sound-mon-takanawa-110426",
+          "kind": "news"
+        },
+        {
+          "name": "ユーザー投稿",
+          "url": "https://x.com/timeouttokyojp/status/2117904816944869528?s=46&t=rnvmMdiPT06JMvo-M3bC0A",
+          "kind": "social"
+        }
+      ],
+      "link": "https://montakanawa.jp/programs/feelthesound2026/",
+      "thumbnail": "/thumbnails/exhibition/2026-mon-takanawa-feel-the-sound.jpg",
+      "addedAt": "2026-11-07T04:12:31.681Z",
+      "origin": "intake",
+      "intakeUrl": "https://x.com/timeouttokyojp/status/2117904816944869528?s=46&t=rnvmMdiPT06JMvo-M3bC0A",
+      "highlight": true
+    },
+    {
       "id": "2026-parcel-bien-three-flames-plus1",
       "slug": "2026-parcel-bien-three-flames-plus1",
       "title": "BIEN「Three flames +1」",
