@@ -3,6 +3,56 @@
   "statusAsOf": "2026-11-07",
   "items": [
     {
+      "id": "2026-higashi-honganji-pangraphics",
+      "slug": "2026-higashi-honganji-pangraphics",
+      "title": "矢後直規 グラフィック展『Pangraphics』",
+      "artists": [
+        "矢後直規"
+      ],
+      "venue": "真宗大谷派 東本願寺 大玄関",
+      "venueType": "other",
+      "prefecture": "京都府",
+      "city": "京都市下京区",
+      "startDate": "2026-11-01",
+      "endDate": "2026-11-08",
+      "status": "ongoing",
+      "admission": "無料",
+      "tags": [
+        "graphic_design",
+        "design_archive"
+      ],
+      "score": 30,
+      "matchReason": "グラフィックデザインと屏風・着物・団扇など日本の伝統工芸を組み合わせた新作発表展であり、光・空間・メディアアート・ジェネラティブといった好みのテーマには直接合致しない。",
+      "sources": [
+        {
+          "name": "矢後直規 グラフィック展『Pangraphics』",
+          "url": "https://pangraphics.jp/exhibition2026",
+          "kind": "official"
+        },
+        {
+          "name": "Tokyo Art Beat (X投稿)",
+          "url": "https://x.com/tokyoartbeat_jp/status/2118599784856453244",
+          "kind": "social"
+        },
+        {
+          "name": "Tokyo Art Beat 展示ページ",
+          "url": "https://www.tokyoartbeat.com/events/-/Naonori-Yago-Pangraphics/higashi-honganji-temple/2026-11-01",
+          "kind": "listing"
+        },
+        {
+          "name": "PR TIMES",
+          "url": "https://prtimes.jp/main/html/rd/p/000000002.000188513.000188513.html",
+          "kind": "news"
+        }
+      ],
+      "link": "https://pangraphics.jp/exhibition2026",
+      "thumbnail": "/thumbnails/exhibition/2026-higashi-honganji-pangraphics.jpg",
+      "addedAt": "2026-11-07T12:37:36.634Z",
+      "origin": "intake",
+      "intakeUrl": "https://x.com/tokyoartbeat_jp/status/2118599784856453244",
+      "highlight": false
+    },
+    {
       "id": "2026-tokyo-node-yoshirotten-beyond-earth",
       "slug": "2026-tokyo-node-yoshirotten-beyond-earth",
       "title": "ヨシロットン展 彼方との交信／BEYOND EARTH",
