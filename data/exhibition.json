@@ -3,6 +3,44 @@
   "statusAsOf": "2026-11-07",
   "items": [
     {
+      "id": "2026-nine-hours-otemachi-tokyo-jazz-club",
+      "slug": "2026-nine-hours-otemachi-tokyo-jazz-club",
+      "title": "Tokyo Jazz Club",
+      "artists": [],
+      "venue": "神田錦町の旧カプセルホテル（旧ナインアワーズ大手町）",
+      "venueType": "other",
+      "prefecture": "東京都",
+      "city": "千代田区",
+      "startDate": "2026-11-01",
+      "endDate": "2026-11-08",
+      "status": "ongoing",
+      "admission": "UNKNOWN",
+      "tags": [
+        "installation",
+        "sound"
+      ],
+      "score": 45,
+      "matchReason": "旧カプセルホテル全8フロアを使った site-responsive なインスタレーション空間に、現代アート・ライブ演奏・音楽・リスニングブースなどが展開される、建築と展示が一体化した期間限定イベント。",
+      "sources": [
+        {
+          "name": "Tokyo Jazz Club",
+          "url": "https://tokyojazzclub.jp",
+          "kind": "official"
+        },
+        {
+          "name": "美術手帖",
+          "url": "https://bijutsutecho.com/magazine/news/report/33277",
+          "kind": "news"
+        }
+      ],
+      "link": "https://tokyojazzclub.jp",
+      "thumbnail": "/thumbnails/exhibition/2026-nine-hours-otemachi-tokyo-jazz-club.jpg",
+      "addedAt": "2026-11-07T04:58:48.706Z",
+      "origin": "intake",
+      "intakeUrl": "https://tokyojazzclub.jp",
+      "highlight": false
+    },
+    {
       "id": "2026-seeen-harajuku-kohei-nawa-at-random",
       "slug": "2026-seeen-harajuku-kohei-nawa-at-random",
       "title": "名和晃平「At Random」",
