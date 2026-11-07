@@ -98,6 +98,8 @@ export interface ProcessExhibitionResult {
 
 /** 会期未発表で保留にしたときの LINE 用の理由文。 */
 export const PENDING_REASON_JA = "会期未発表のため保留しました。発表され次第自動で追加します";
+/** 同じ投稿内の別展示と確認元URLが重複し、固有の確認元が無いときの保留文。 */
+export const PENDING_LINK_REASON_JA = "同じ投稿内の別の展示と確認元URLが重複したため保留しました。固有の確認元（公式・TAB・記事のURL）が見つかり次第自動で追加します";
 /** 確認は取れたがサムネイル画像を確保できなかったときの保留文。 */
 export const PENDING_THUMB_REASON_JA = "サムネイル画像を確保できなかったため保留しました。取得でき次第自動で追加します";
 
@@ -199,8 +201,9 @@ export async function processExhibitionAdd(p: {
     return { ...common, outcome: "duplicate", duplicateTitle: existing?.title ?? "", reasonJa };
   }
   if (pending.length > 0) {
-    const thumb = pending[0].pendingReason === "thumbnail-unavailable";
-    return { ...common, outcome: "pending", reasonJa: thumb ? PENDING_THUMB_REASON_JA : PENDING_REASON_JA };
+    const why = pending[0].pendingReason;
+    const reasonJa = why === "thumbnail-unavailable" ? PENDING_THUMB_REASON_JA : why === "link-collision" ? PENDING_LINK_REASON_JA : PENDING_REASON_JA;
+    return { ...common, outcome: "pending", reasonJa };
   }
   if (unverified.length > 0) {
     return { ...common, outcome: "unverified", reasonJa: describeExhibitionReason(unverified[0].reason) };

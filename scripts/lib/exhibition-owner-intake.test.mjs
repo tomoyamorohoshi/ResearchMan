@@ -194,7 +194,7 @@ test("再調査: それでも失敗なら再調査は1回だけで owner-intake 
 });
 
 // H3: 再調査の値は、実際に取得したページで確認できた項目だけ採用する
-const datedPage = "<html><body><p>2027年1月10日〜2027年3月1日</p></body></html>";
+const datedPage = "<html><body><h1>Midnight Session</h1><p>2027年1月10日〜2027年3月1日</p></body></html>"; // 日付は採用する題名も同じページに出ているときだけ採用（R1）
 test("再調査(H3): 取得したページで日付が確認できたときだけ採用され、会期未発表から追加される", async () => {
   const u = "https://venue.example/new";
   const deps = mkDeps({ [u]: datedPage }, { reinvestigate: async () => ({ startDate: "2027-01-10", endDate: "2027-03-01", officialUrl: u }) });
@@ -261,8 +261,48 @@ test("H2: 同じ投稿の2件目以降は固有URLを link にし、固有URLが
   assert.equal(new Set(links).size, links.length);
   assert.equal(r.added.length, 2);
   assert.equal(r.added.find((x) => x.title === "Beta Show").link, "https://hall.example/beta");
-  assert.equal(r.unverified.length, 1);
-  assert.match(r.unverified[0].reason, /link-collision/);
+  // R6: link-collision は unverified でなく保留（理由 link-collision）
+  assert.equal(r.unverified.length, 0);
+  assert.equal(r.pending.length, 1);
+  assert.equal(r.pending[0].pendingReason, "link-collision");
+  assert.equal(r.pending[0].title, "Gamma Show");
+});
+
+// R1: 会場の日程ページに複数展が並ぶとき、別の展覧会に化けない
+test("R1: A展・B展が並ぶ日程ページで、再調査が B展の題名と日付を返しても A展のまま（日付も元のまま）", async () => {
+  const u = "https://venue.example/schedule";
+  const page = "<html><body><h2>Alpha Show</h2><p>Tokyo Jazz Club 2026年11月20日〜21日</p><h2>Beta Show</h2><p>Tokyo Jazz Club 2026年12月5日〜12月10日</p></body></html>";
+  const deps = mkDeps({ [u]: page }, { reinvestigate: async () => ({ title: "Beta Show", startDate: "2026-12-05", endDate: "2026-12-10", officialUrl: u }) });
+  const r = await run([cand({ title: "Alpha Show", officialUrl: "" })], deps);
+  assert.equal(r.added.length, 1, JSON.stringify([r.pending, r.unverified, r.rejected]));
+  assert.equal(r.added[0].title, "Alpha Show");
+  assert.equal(r.added[0].startDate, "2026-11-20");
+  assert.equal(r.added[0].endDate, "2026-11-21");
+});
+
+test("R1: 日付だけ別（題名・会場が同じページに無い）なら採用しない。題名の差し替えも元の題名が出ていれば不可", async () => {
+  const u = "https://venue.example/other";
+  const deps = mkDeps({ [u]: "<html><body><p>2027年1月10日〜2027年3月1日</p></body></html>" }, { reinvestigate: async () => ({ startDate: "2027-01-10", endDate: "2027-03-01", officialUrl: u }) });
+  const r = await run([cand({ startDate: "", endDate: "", officialUrl: "" })], deps);
+  assert.equal(r.added.length, 0);
+  assert.equal(r.pending.length, 1);
+});
+
+// R2: 同一投稿の再投稿で題名が揺れても二重登録しない
+test("R2: 既存の owner-intake 項目と同じ intakeUrl・同じ会場で題名が揺れた候補は追加しない（再調査でも officialUrl が付いていても）", async () => {
+  const first = await run([cand({ officialUrl: "" })], mkDeps({}));
+  assert.equal(first.added[0].link, POST);
+  const second = await run(
+    [cand({ title: "Midnight Session Live", officialUrl: "https://jazz.example/ev/1" })],
+    mkDeps(jazzPages),
+    OWNER,
+    first.data,
+  );
+  assert.equal(second.added.length, 0, JSON.stringify(second.added.map((a) => a.title)));
+  assert.equal(second.skipped.length, 1);
+  // 同じ投稿でも会場が違えば別展
+  const third = await run([cand({ title: "Other Act", venue: "Other Hall", officialUrl: "https://hall.example/o" })], mkDeps({ "https://hall.example/o": "<html><body>x</body></html>" }), OWNER, first.data);
+  assert.equal(third.added.length, 1);
 });
 
 // M2/M4/M5
@@ -271,8 +311,10 @@ test("M2: 公式照合が通る通常経路では matchReason の既定値を入
   const ok = await run([cand({ officialUrl: "https://jazz.example/ok", city: "" })], mkDeps(pages));
   assert.equal(ok.added[0].verifiedVia, undefined);
   assert.equal(ok.added[0].matchReason, "投稿された展示。");
+  // R4: matchReason が空でも照合は飛ばさない。公式で照合できれば公式扱いのまま、item 側で既定値
   const noReason = await run([cand({ officialUrl: "https://jazz.example/ok", matchReason: "" })], mkDeps(pages));
-  assert.equal(noReason.added[0].verifiedVia, "owner-intake");
+  assert.equal(noReason.added[0].verifiedVia, undefined);
+  assert.equal(noReason.added[0].sources[0].kind, "official");
   assert.equal(noReason.added[0].matchReason, OWNER_MATCH_REASON);
 });
 
@@ -369,6 +411,13 @@ test("都道府県が特定できない候補は推測せず unverified（reject
 });
 
 // runIntake 経由（Web/日次ジョブの投稿処理）
+test("R5: PATCH の保留文言は pendingReason に応じて変わる（会期未発表／サムネ取得不可／link 重複）", async () => {
+  const { pendingPatchReason } = await import("./exhibition-intake-job.mjs");
+  assert.match(pendingPatchReason(undefined), /^pending-dates: 会期未発表/);
+  assert.match(pendingPatchReason("thumbnail-unavailable"), /^pending-thumbnail: サムネイル/);
+  assert.match(pendingPatchReason("link-collision"), /^pending-link-collision:/);
+});
+
 test("runIntake: 会期未発表は pending に返し PATCH は unverified(pending-dates)、ownerIntake の追加は added", async () => {
   const { runIntake } = await import("./exhibition-intake-job.mjs");
   const u1 = "https://x.com/o/status/101";

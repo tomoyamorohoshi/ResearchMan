@@ -52,9 +52,9 @@ test("owner-intake で追加された展示を含む data が audit-exhibition �
   ];
   const out = await processCandidates({ data, candidates: cands, today: TODAY, deps, opts });
   data = out.data;
-  // Gamma は固有URLが無く link-collision で追加されない。それ以外は全部追加される
+  // Gamma は固有URLが無く link-collision で保留（追加されない）。それ以外は全部追加される
   assert.equal(out.added.length, 7, JSON.stringify([out.unverified, out.rejected, out.pending]));
-  assert.ok(out.unverified.some((u) => u.title === "Gamma Show" && /link-collision/.test(u.reason)));
+  assert.ok(out.pending.some((p) => p.title === "Gamma Show" && p.pendingReason === "link-collision"));
   const m4 = out.added.find((i) => i.link === "https://jazz.example/ok");
   assert.ok(m4 && m4.verifiedVia === undefined, "M4: 公式扱いのまま");
 

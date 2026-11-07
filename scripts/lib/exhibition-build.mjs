@@ -120,6 +120,26 @@ export function findDuplicate(items, cand) {
   return null;
 }
 
+/**
+ * 投稿(trustOrigin の intake)用の重複判定。通常の findDuplicate に加え、同じ投稿(intakeUrl)由来の既存項目とも照合する（R2）。
+ * 同一投稿の中の複数展示は正規化した会場（＋題名／開始日）で区別する: 同じ会場で、開始日が同じか題名が一方を含むなら同一展とみなす
+ * （再調査などで題名が揺れても二重登録しない）。会場が違えば別展。
+ */
+export function findDuplicateIntake(items, cand) {
+  const base = findDuplicate(items, cand);
+  if (base) return base;
+  const post = normLink(cand.intakeUrl);
+  if (!post) return null;
+  const t = normKey(cand.title);
+  const v = normKey(cand.venue);
+  for (const item of items) {
+    if (normLink(item.intakeUrl) !== post || normKey(item.venue) !== v) continue;
+    const it = normKey(item.title);
+    if (item.startDate === cand.startDate || (t && it && (t.includes(it) || it.includes(t)))) return { item, kind: "post" };
+  }
+  return null;
+}
+
 /** 巡回展の別会場か: 会場が正規化で異なり、かつ会期が重ならない（公式URLが同一でも別展示として扱う）。 */
 function isTourLeg(item, cand) {
   if (!cand.venue || normKey(cand.venue) === normKey(item.venue)) return false;
@@ -585,7 +605,7 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
       : trustedIntake && isTabEventUrl(cand.intakeUrl)
         ? { ...cand, sources: [...(cand.sources || []), { url: cand.intakeUrl }] }
         : cand;
-    const dup = findDuplicate(items, dupCand);
+    const dup = trustedIntake ? findDuplicateIntake(items, dupCand) : findDuplicate(items, dupCand);
     if (dup) {
       // 昇格: TAB 確認済みの既存展示に、投稿が公式個別ページ URL を持ち、その公式ページで照合に通れば公式へ切り替える
       if ((dup.item.verifiedVia === VERIFIED_VIA_TAB || dup.item.verifiedVia === VERIFIED_VIA_OWNER) && trustedIntake && !protect.has(dup.item.id) && isHttpUrl(cand.officialUrl) && isSafeOfficialUrl(cand.officialUrl)) {
@@ -606,6 +626,8 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
           return;
         }
       }
+      // 同じ投稿由来の同一展（題名の揺れなど）は追加も更新もしない
+      if (dup.kind === "post") { skipped.push({ title: cand.title, reason: "duplicate", existingId: dup.item.id }); return; }
       const patch = diffDates(dup.item, cand);
       // 同一実行で追加済みの展示は更新しない（ラウンドごとに Claude の返す日付が揺れて上書きされるのを防ぐ）
       if (protect.has(dup.item.id)) { skipped.push({ title: cand.title, reason: "duplicate", existingId: dup.item.id }); return; }
@@ -642,7 +664,7 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
     if (!isIntake(cand) && score < o.addThreshold) return reject(cand, "below-threshold", String(score));
     // 必須 string（監査で FAIL になる空値）が欠ける候補は追加せず unverified（理由つき）
     // ownerIntake では city が空でも可（監査の必須項目なので item 側で都道府県名を入れ、表示側が「東京都 東京都」を出さない）。matchReason の既定値は投稿者確認の経路だけ
-    const missing = ["city", "matchReason"].filter((k) => !(collect && k === "city") && !String(cand[k] || "").trim());
+    const missing = ["city", "matchReason"].filter((k) => !(collect && (k === "city" || k === "matchReason")) && !String(cand[k] || "").trim());
     if (missing.length) return fail("unver", `required-field-missing: ${missing.join(",")}`);
     const exempt = cand.collectAll || cand.origin === "intake";
     if (!exempt && capped >= o.maxAdd) return reject(cand, "daily-cap");
@@ -684,7 +706,8 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
       admission: cand.admission.trim() || "UNKNOWN",
       tags: cand.tags.filter((t) => vocab.has(t)),
       score,
-      matchReason: cand.matchReason.trim(),
+      // ownerIntake では city と同じく item 側で既定値（照合は飛ばさない。公式で照合できれば公式扱い）
+      matchReason: cand.matchReason.trim() || (collect ? OWNER_MATCH_REASON : ""),
       sources: buildSources(cand, tabUrl),
       link: tabUrl || cand.officialUrl,
       ...(tabUrl ? { verifiedVia: VERIFIED_VIA_TAB } : {}),
@@ -722,7 +745,7 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
     const prefecture = normalizePrefecture(cand.prefecture);
     if (!prefecture) return unver(cand, "invalid-prefecture（都道府県を特定できず追加できません）");
     const dupCand = isTabEventUrl(cand.intakeUrl) ? { ...cand, sources: [...(cand.sources || []), { url: cand.intakeUrl }] } : cand;
-    const dup = findDuplicate(items, dupCand);
+    const dup = findDuplicateIntake(items, dupCand);
     if (dup) { skipped.push({ title: cand.title, reason: "duplicate", existingId: dup.item.id }); return; }
 
     // 確認元: 実際に取得して 200 だった URL だけ（公式 > TAB > 記事/一覧）。投稿URLは必ず kind:"social" で入れる（監査が要求）
@@ -752,7 +775,7 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
     // link は既存の全展示と重複させない（監査 DUPLICATE LINK）。同じ投稿の2件目以降は自分固有の URL を使い、無ければ追加しない
     const usedLinks = new Set(items.map((i) => normLink(i.link)));
     const linkSrc = own.find((s) => !usedLinks.has(normLink(s.url)));
-    if (!linkSrc) return unver(cand, "link-collision: 同じ投稿内の別の展示と確認元URLが重複し、固有の確認元（公式・TAB・記事のURL）が見つかりません");
+    if (!linkSrc) { pushPending(cand, "link-collision"); return; } // 固有の確認元（公式・TAB・記事のURL）が見つかるまで保留（日次で再調査）
     const link = linkSrc.url;
     const sources = [linkSrc, ...own.filter((s) => s !== linkSrc)];
 
@@ -820,14 +843,28 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
       next.officialUrl = rev.officialUrl;
       if (str(rev.officialName)) next.officialName = str(rev.officialName);
     }
-    if (str(rev.title) && anyText((t) => titleAppearsInText(t, rev.title))) next.title = str(rev.title);
     if (str(rev.venue) && anyText((t) => venueAppearsInText(t, rev.venue))) next.venue = str(rev.venue);
+    // 題名・日付: 会場の日程ページのように複数の展覧会が並ぶページでは、別の展覧会の題名・日付に化けないようにする（R1）。
+    //   - 元の題名と再調査の題名が同じページに並んでいる（=複数展が並ぶ）ページは、題名・日付の根拠にしない
+    //   - 日付は、そのページに「採用する題名」または「採用する会場」も出ているときだけ採用する
+    //   - 題名の差し替えは、元の題名がそのページに無く、かつ採用する日付がそのページで確認できたときだけ
     const s = isValidYmd(rev.startDate) ? rev.startDate : cand.startDate;
     const e = isValidYmd(rev.endDate) ? rev.endDate : cand.endDate;
-    if (isValidYmd(s) && isValidYmd(e) && s <= e && (s !== cand.startDate || e !== cand.endDate)
-      && anyText((t) => dateAppearsInText(t, s) && (dateAppearsInText(t, e) || rangeEndAppearsInText(t, s, e)))) {
-      next.startDate = s;
-      next.endDate = e;
+    const revTitle = str(rev.title);
+    const sameTitle = !revTitle || normKey(revTitle) === normKey(cand.title);
+    for (const p of pages) {
+      const origOn = titleAppearsInText(p.text, cand.title);
+      const revOn = !!revTitle && titleAppearsInText(p.text, revTitle);
+      if (!sameTitle && origOn && revOn) continue; // 複数展が並ぶページ
+      const dateOk = isValidYmd(s) && isValidYmd(e) && s <= e && dateAppearsInText(p.text, s) && (dateAppearsInText(p.text, e) || rangeEndAppearsInText(p.text, s, e));
+      const adoptedTitleOn = sameTitle ? origOn : revOn;
+      const venueOn = venueAppearsInText(p.text, next.venue);
+      if (!sameTitle && revOn && !origOn && dateOk) next.title = revTitle;
+      if (dateOk && (adoptedTitleOn || venueOn) && (s !== cand.startDate || e !== cand.endDate)) {
+        next.startDate = s;
+        next.endDate = e;
+      }
+      if (next.title === revTitle || next.startDate === s) break;
     }
     const pref = normalizePrefecture(rev.prefecture);
     if (pref && anyText((t) => t.includes(pref))) next.prefecture = pref;

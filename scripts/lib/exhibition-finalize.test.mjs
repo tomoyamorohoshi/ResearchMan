@@ -34,7 +34,7 @@ async function runDay(r, { audit }) {
   const patched = [];
   await stageFinalize(r, { intakePatch: [{ url: "https://x.com/o/status/2", status: "added" }], pendingPlan: out.plan, today: TODAY });
   let fin;
-  const gate = guardAudit({ audit: () => ({ status: audit }), revert: () => {}, onPass: () => { fin = runFinalize({ root: r, patch: async (res) => { patched.push(...res); } }); } });
+  const gate = guardAudit({ audit: () => ({ status: audit }), revert: () => {}, onPass: () => { fin = runFinalize({ root: r, today: TODAY, patch: async (res) => { patched.push(...res); } }); } });
   await fin;
   return { gate, patched };
 }
@@ -62,12 +62,38 @@ test("監査通過の日: PATCH と保留リスト更新が確定される", asy
 
 test("runFinalize: 計画が無ければ何もしない / PATCH 失敗でも保留リストは更新する", async () => {
   const r = fresh();
-  assert.equal((await runFinalize({ root: r, patch: async () => { throw new Error("x"); } })).none, true);
+  assert.equal((await runFinalize({ root: r, today: TODAY, patch: async () => { throw new Error("x"); } })).none, true);
   await appendPending(r, [entry()], TODAY);
   const out = await processPending({ root: r, data: { version: 1, statusAsOf: TODAY, items: [] }, today: TODAY, deps: deps(), opts: {} });
   await stageFinalize(r, { intakePatch: [{ url: "u", status: "added" }], pendingPlan: out.plan, today: TODAY });
-  const f = await runFinalize({ root: r, patch: async () => { throw new Error("503"); } });
+  const f = await runFinalize({ root: r, today: TODAY, patch: async () => { throw new Error("503"); } });
   assert.equal(f.ok, false);
   assert.match(f.error, /PATCH 失敗/);
   assert.equal((await readPending(r)).items[0].attempts, 1);
+});
+
+test("R3: discardStaleFinalize 自体が失敗する（unlink 不可）状況でも runFinalize は確定しない", async () => {
+  const r = fresh();
+  fs.mkdirSync(path.join(r, FINALIZE_REL), { recursive: true }); // 計画ファイルの場所がディレクトリ＝削除も読み込みもできない
+  await assert.rejects(() => discardStaleFinalize(r));
+  let n = 0;
+  const f = await runFinalize({ root: r, today: TODAY, patch: async () => { n++; } });
+  assert.equal(f.ok, false);
+  assert.equal(n, 0);
+});
+
+test("R3: 別の日の計画は確定せず破棄（discardStaleFinalize が失敗して残っていても PATCH も保留更新もしない）", async () => {
+  const r = fresh();
+  await appendPending(r, [entry()], TODAY);
+  const out = await processPending({ root: r, data: { version: 1, statusAsOf: TODAY, items: [] }, today: TODAY, deps: deps(), opts: {} });
+  await stageFinalize(r, { intakePatch: [{ url: "u", status: "added" }], pendingPlan: out.plan, today: "2026-11-06" }); // 前日の計画が残った
+  // discardStaleFinalize が失敗した状況: 計画ファイルは残ったまま、今日の --finalize が呼ばれる
+  let patched = 0;
+  const f = await runFinalize({ root: r, today: TODAY, patch: async () => { patched++; } });
+  assert.deepEqual([f.ok, f.stale, f.patched], [true, true, false]);
+  assert.equal(patched, 0);
+  const items = (await readPending(r)).items;
+  assert.equal(items.length, 1);
+  assert.equal(items[0].attempts, 0); // 保留リストは更新されていない
+  assert.ok(!fs.existsSync(path.join(r, FINALIZE_REL)));
 });

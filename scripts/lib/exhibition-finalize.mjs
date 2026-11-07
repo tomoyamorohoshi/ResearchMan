@@ -36,9 +36,9 @@ export async function discardStaleFinalize(root) {
 
 /**
  * 計画を確定する（監査通過後だけ呼ぶ）。PATCH の失敗は致命でない（投稿は次回 GET で戻り dedupe で冪等）。
- * @param {{root:string, patch:(results:object[])=>Promise<any>}} p
+ * @param {{root:string, patch:(results:object[])=>Promise<any>, today:string}} p  today は JST 暦日（計画の today と違えば stale）
  */
-export async function runFinalize({ root, patch }) {
+export async function runFinalize({ root, patch, today }) {
   const p = path.join(root, FINALIZE_REL);
   let plan;
   try {
@@ -46,6 +46,11 @@ export async function runFinalize({ root, patch }) {
   } catch (e) {
     if (e?.code === "ENOENT") return { ok: true, none: true, patched: false };
     return { ok: false, none: false, patched: false, error: `finalize 計画を読めません（${e.message}）` };
+  }
+  // 別の日の計画（前回の監査 FAIL で巻き戻された日の残りなど）は確定せず破棄する。discardStaleFinalize が失敗して残っていても確定に進まない
+  if (plan?.today !== today) {
+    await fs.unlink(p).catch(() => {});
+    return { ok: true, none: false, stale: true, patched: false };
   }
   const errors = [];
   let patched = false;

@@ -42,7 +42,7 @@ test("processPending: 日付が出ていれば追加し、保留から除去さ�
   const out = await processPending({
     root: r, data: emptyData(), today: TODAY,
     deps: deps({
-      fetchHtml: async (url) => (url === u ? { status: 200, body: "<html><body>2027年1月10日〜2027年3月1日</body></html>" } : { status: 404, body: "" }),
+      fetchHtml: async (url) => (url === u ? { status: 200, body: "<html><body><h1>ジェームズ・タレル展</h1>2027年1月10日〜2027年3月1日</body></html>" } : { status: 404, body: "" }),
       reinvestigate: async () => ({ startDate: "2027-01-10", endDate: "2027-03-01", officialUrl: u }),
     }),
     opts: {},

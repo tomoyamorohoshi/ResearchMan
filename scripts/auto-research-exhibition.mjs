@@ -86,8 +86,8 @@ async function main() {
   // ── 0. --finalize: 監査通過後に run-job から呼ばれる確定処理（intake の PATCH・保留リスト更新）だけ行って終わる ──
   if (FINALIZE_MODE) {
     const cfg = await loadIntakeConfig().catch(() => null);
-    const f = await runFinalize({ root: ROOT, patch: async (results) => { if (cfg) await patchIntakeResults(cfg, results); } });
-    console.log(f.none ? "[finalize] 確定する計画なし" : `[finalize] ${f.ok ? "完了" : `一部失敗（次回再処理。dedupeで冪等）: ${f.error}`}${f.patched ? " / intake PATCH 済み" : ""}`);
+    const f = await runFinalize({ root: ROOT, today: TODAY, patch: async (results) => { if (cfg) await patchIntakeResults(cfg, results); } });
+    console.log(f.none ? "[finalize] 確定する計画なし" : f.stale ? "[finalize] 別の日の計画のため確定せず破棄" :`[finalize] ${f.ok ? "完了" : `一部失敗（次回再処理。dedupeで冪等）: ${f.error}`}${f.patched ? " / intake PATCH 済み" : ""}`);
     return;
   }
   // 前回確定されなかった計画（監査 FAIL で巻き戻された日など）は破棄する。投稿は intake キュー/保留に残っており、再処理は dedupe で冪等
