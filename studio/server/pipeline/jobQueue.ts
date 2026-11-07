@@ -12,8 +12,14 @@
  * queued状態のジョブはLINE「停止」（jobs.ts::cancelActiveJobs）で removeFromQueue され、
  * status="cancelled" になる（dispatch時のstatus確認でもskippedになる二重の安全策）。
  */
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { getJob, listJobs, preparePipelineRun, updateJob, type Job } from "../jobs.js";
+import { rollbackTouchedFiles } from "./audit.js";
 import { isLockHeld } from "./lock.js";
+
+// studio/server/pipeline -> repo root（addCase.ts の ROOT と同じ）
+const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
 
 const queue: string[] = [];
 const QUEUE_POLL_INTERVAL_MS = 15_000;
@@ -81,12 +87,36 @@ export function startQueueWorker(intervalMs: number = QUEUE_POLL_INTERVAL_MS): v
  * 2. status:"running" かつ tab!=="awards" の孤児ジョブ（プロセス死の残骸）をerrorへ落とす
  *    （awardsは既存のrecoverAwardJobsOnStartupが別途処理するので触らない）
  */
-export async function recoverQueueOnStartup(): Promise<void> {
+export async function recoverQueueOnStartup(
+  rollback: (tracked: string[], untracked: string[]) => Promise<void> = (tracked, untracked) =>
+    rollbackTouchedFiles(ROOT, tracked, untracked),
+): Promise<void> {
   const jobs = await listJobs();
 
   const orphanedRunning = jobs.filter((j: Job) => j.status === "running" && j.tab !== "awards");
+  // add-case はプロセス死でcatchのロールバックが走らず、部分書き込み（exhibition.json・サムネ等）が
+  // 作業ツリーに残りうる。ジョブに永続化したロールバック対象を、再実行/error化の前に戻す。
+  // rollbackTouchedFilesはHEAD追跡済み（=commit済み）ファイルを消さないので、commit後に死んでいても安全。
+  // 失敗したジョブは再実行せず（不整合のまま重ねて書かない）errorにする。
+  const rollbackFailedIds = new Set<string>();
+  for (const j of orphanedRunning) {
+    if (j.tab !== "add-case" || !j.pendingRollback) continue;
+    try {
+      await rollback(j.pendingRollback.tracked, j.pendingRollback.untracked);
+      await updateJob(j.id, { pendingRollback: undefined }).catch(() => {});
+    } catch (err) {
+      console.error(`[studio] 起動時ロールバックに失敗しました (job ${j.id}):`, err);
+      rollbackFailedIds.add(j.id);
+      await updateJob(j.id, {
+        status: "error",
+        progress: undefined,
+        error:
+          "サーバ再起動により中断され、作業ツリーのロールバックにも失敗しました。data/ と public/thumbnails/ の未commit変更を確認してください。",
+      }).catch(() => {});
+    }
+  }
   // add-case（LINE投稿）は初回の再起動中断に限り、errorにせずqueuedへ戻して自動再実行する。
-  const resumable = orphanedRunning.filter((j: Job) => j.tab === "add-case" && (j.restartResumes ?? 0) < 1);
+  const resumable = orphanedRunning.filter((j: Job) => j.tab === "add-case" && (j.restartResumes ?? 0) < 1 && !rollbackFailedIds.has(j.id));
   const resumedIds = new Set<string>();
   for (const j of resumable) {
     const updated = await updateJob(j.id, {
@@ -103,7 +133,7 @@ export async function recoverQueueOnStartup(): Promise<void> {
   for (const j of queuedJobs) enqueueJob(j.id);
 
   for (const j of orphanedRunning) {
-    if (resumedIds.has(j.id)) continue;
+    if (resumedIds.has(j.id) || rollbackFailedIds.has(j.id)) continue;
     await updateJob(j.id, {
       status: "error",
       progress: undefined,

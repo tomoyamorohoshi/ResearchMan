@@ -95,6 +95,10 @@ export interface Job {
   /** tab="add-case" のみ使用: サーバ再起動で中断されたジョブを起動時復元(jobQueue.ts::recoverQueueOnStartup)が
    * queuedへ戻して自動再実行した回数。1以上なら2回目の中断は従来どおりerrorにする。 */
   restartResumes?: number;
+  /** tab="add-case" のみ使用: 実行中のロールバック対象（addCase.tsのtrackedTouched/newUntrackedの写し。
+   * ファイル書き込み前に保存し、commit成功時・通常ロールバック後にクリア）。プロセス死で残っていたら
+   * recoverQueueOnStartupがrollbackTouchedFilesで戻す。 */
+  pendingRollback?: { tracked: string[]; untracked: string[] };
   /** status="paused" の理由（tab="awards"のみ使用）。 */
   pausedReason?: PausedReason;
   /** 「両方」でCase等、既にcommit/push済みのフェーズ名（停止時の案内用）。 */

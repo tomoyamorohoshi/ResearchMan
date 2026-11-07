@@ -63,6 +63,7 @@ import {
   runVerifyDeploy,
   runVerifyTechPages,
 } from "./audit.js";
+import { clearPendingRollback, trackForRollback } from "./pendingRollback.js";
 import { loadAgentDefinition } from "./agentLoader.js";
 import { updateJob, type ResultCard } from "../jobs.js";
 import { buildAwardVerifierPrompt, buildCaseWriterPrompt, buildLinkCheckerPrompt } from "./prompts.js";
@@ -529,12 +530,12 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
       }
 
       // ── 7. 反映（データ書き込み） ─────────────────────────────────
-      newUntracked.push(thumbnailRelPath); // 先に追跡（停止時のロールバックでサムネも消す）
+      await trackForRollback(jobId, trackedTouched, newUntracked, { untracked: [thumbnailRelPath] }); // 先に追跡（停止時・プロセス死のロールバックでサムネも消す）
       throwIfCancelled(); // LINE「停止」: 書き込み・commit前に中断（catchが未commitとしてロールバック）
       await setProgress(jobId, "反映中（データ書き込み）");
       const updatedCases = [entry, ...existingCases];
+      await trackForRollback(jobId, trackedTouched, newUntracked, { tracked: ["data/cases.json"] }); // 書き込み前に追跡
       await writeJsonAtomic(CASES_PATH, updatedCases);
-      trackedTouched.push("data/cases.json");
 
       const resultCards: ResultCard[] = [
         {
@@ -581,6 +582,7 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
       }
       // commit成功。以降は何が起きてもロールバックしない（caseResearch.tsと同じ方針）。
       committed = true;
+      await clearPendingRollback(jobId);
       commitHash = await gitRevParseHead(ROOT);
 
       const pushResult = await gitPush(ROOT);
@@ -776,12 +778,12 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
       }
 
       // ── 5. 反映（データ書き込み） ─────────────────────────────────
-      newUntracked.push(thumbnailRelPath); // 先に追跡（停止時のロールバックでサムネも消す）
+      await trackForRollback(jobId, trackedTouched, newUntracked, { untracked: [thumbnailRelPath] }); // 先に追跡（停止時・プロセス死のロールバックでサムネも消す）
       throwIfCancelled(); // LINE「停止」: 書き込み・commit前に中断（catchが未commitとしてロールバック）
       await setProgress(jobId, "反映中（データ書き込み）");
       const updatedTech = [techEntry, ...existingTechFull];
+      await trackForRollback(jobId, trackedTouched, newUntracked, { tracked: ["data/tech.json"] }); // 書き込み前に追跡
       await writeJsonAtomic(TECH_PATH, updatedTech);
-      trackedTouched.push("data/tech.json");
 
       const techResultCards: ResultCard[] = [
         {
@@ -829,6 +831,7 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
         throw new Error(`git commit に失敗しました: ${techCommitResult.stderr.slice(0, 500)}`);
       }
       committed = true;
+      await clearPendingRollback(jobId);
       commitHash = await gitRevParseHead(ROOT);
 
       const techPushResult = await gitPush(ROOT);
@@ -955,7 +958,7 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
         },
       });
       // サムネは processCandidates 内（保存済み）で作られるため、以降の失敗でロールバックできるよう先に追跡する
-      newUntracked.push(...exhibitionResult.thumbnailRelPaths);
+      await trackForRollback(jobId, trackedTouched, newUntracked, { untracked: exhibitionResult.thumbnailRelPaths });
 
       // 裏取りできなかった候補は日次ジョブと同じ未検証キューへ（dryRunは書かない）
       if (!dryRun && exhibitionResult.unverified.length > 0) {
@@ -1036,14 +1039,14 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
       // ── 3. 反映（データ書き込み） ─────────────────────────────────
       throwIfCancelled(); // LINE「停止」: 書き込み・commit前に中断（catchが未commitとしてロールバック）
       await setProgress(jobId, "反映中（データ書き込み）");
+      await trackForRollback(jobId, trackedTouched, newUntracked, { tracked: ["data/exhibition.json"] }); // 書き込み前に追跡
       await writeJsonAtomic(EXHIBITION_PATH, exhibitionResult.data);
-      trackedTouched.push("data/exhibition.json");
       // 素点<閾値で投稿された展示は likes.userPicks に機械的に記録（自動発見の採点にだけ効く）。失敗しても追加自体は続行
       if (exhibitionResult.userPicks.length > 0) {
         try {
           const fullProfile = JSON.parse(await readFile(EXHIBITION_PROFILE_PATH, "utf-8")) as Record<string, unknown>;
+          await trackForRollback(jobId, trackedTouched, newUntracked, { tracked: ["data/exhibition-profile.json"] }); // 書き込み前に追跡
           await writeJsonAtomic(EXHIBITION_PROFILE_PATH, applyUserPicks(fullProfile, exhibitionResult.userPicks));
-          trackedTouched.push("data/exhibition-profile.json");
         } catch (e) {
           console.warn("[studio][add-case] userPicks の記録に失敗しました（追加は続行）:", e);
         }
@@ -1084,6 +1087,7 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
         throw new Error(`git commit に失敗しました: ${exhibitionCommitResult.stderr.slice(0, 500)}`);
       }
       committed = true;
+      await clearPendingRollback(jobId);
       commitHash = await gitRevParseHead(ROOT);
 
       const exhibitionPushResult = await gitPush(ROOT);
@@ -1179,6 +1183,7 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
       await fail(jobId, lineUserId, message, costUsd, ownsLock, determinedKind);
     }
   } finally {
+    await clearPendingRollback(jobId); // 通常経路（成功/ロールバック済み）の終了。プロセス死ではここに来ず残る
     await updateJob(jobId, { phaseDurationsMs: finishJob(jobId) }).catch(() => {});
     if (xMediaTempDir) await cleanupXMediaDir(xMediaTempDir).catch(() => {});
     if (ownsLock) lock.release();
