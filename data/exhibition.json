@@ -3,6 +3,103 @@
   "statusAsOf": "2026-11-07",
   "items": [
     {
+      "id": "2026-shiseido-gallery-ima-wa-itsu-no-koto-ka",
+      "slug": "2026-shiseido-gallery-ima-wa-itsu-no-koto-ka",
+      "title": "今はいつのことか―小村雪岱と玉山拓郎",
+      "artists": [
+        "小村雪岱",
+        "玉山拓郎"
+      ],
+      "venue": "資生堂ギャラリー",
+      "venueType": "corporate",
+      "prefecture": "東京都",
+      "city": "中央区",
+      "startDate": "2026-11-03",
+      "endDate": "2027-02-28",
+      "status": "ongoing",
+      "admission": "無料",
+      "tags": [
+        "media_art",
+        "installation",
+        "light",
+        "design_archive"
+      ],
+      "score": 90,
+      "matchReason": "歴史的作家（小村雪岱）と現代美術家（玉山拓郎）を組み合わせ、光・半透明の布・鏡面を用いた知覚を揺さぶる新作インスタレーションを展示する点が好みに合致する。",
+      "sources": [
+        {
+          "name": "今はいつのことか―小村雪岱と玉山拓郎 | SHISEIDO GALLERY",
+          "url": "https://gallery.shiseido.com/jp/exhibition/10043/",
+          "kind": "official"
+        },
+        {
+          "name": "美術手帖",
+          "url": "https://bijutsutecho.com/magazine/news/exhibition/33145",
+          "kind": "news"
+        },
+        {
+          "name": "PR TIMES",
+          "url": "https://prtimes.jp/main/html/rd/p/000003212.000005794.html",
+          "kind": "news"
+        }
+      ],
+      "link": "https://gallery.shiseido.com/jp/exhibition/10043/",
+      "thumbnail": "/thumbnails/exhibition/2026-shiseido-gallery-ima-wa-itsu-no-koto-ka.jpg",
+      "addedAt": "2026-11-07T14:44:41.733Z",
+      "origin": "intake",
+      "intakeUrl": "https://gallery.shiseido.com/jp/exhibition/10043/",
+      "highlight": true
+    },
+    {
+      "id": "2026-gyre-chaoscosmos-vol3-visible-viscosity",
+      "slug": "2026-gyre-chaoscosmos-vol3-visible-viscosity",
+      "title": "chaoscosmos vol.3 -visible viscosity 可視化された粘性-",
+      "artists": [
+        "高木由利子"
+      ],
+      "venue": "GYRE GALLERY",
+      "venueType": "corporate",
+      "prefecture": "東京都",
+      "city": "渋谷区",
+      "startDate": "2026-10-08",
+      "endDate": "2026-11-29",
+      "status": "ongoing",
+      "admission": "無料",
+      "tags": [
+        "video_art"
+      ],
+      "score": 35,
+      "matchReason": "重力・慣性・粘性という目に見えない自然現象を写真・映像で可視化する作家主導の展示だが、インスタレーション性やメディアアート文脈としての強い接点は確認できない。",
+      "sources": [
+        {
+          "name": "高木由利子 写真展 chaoscosmos vol.3 -visible viscosity 可視化された粘性-",
+          "url": "https://gyre-omotesando.com/artandgallery/yurikotakagi-chaoscosmos-vol3/",
+          "kind": "official"
+        },
+        {
+          "name": "X投稿(_tanrock_)",
+          "url": "https://x.com/_tanrock_/status/2118718906424807740",
+          "kind": "social"
+        },
+        {
+          "name": "美術手帖 開幕レポート",
+          "url": "https://bijutsutecho.com/magazine/news/report/33153",
+          "kind": "news"
+        },
+        {
+          "name": "ユーザー投稿",
+          "url": "https://x.com/_tanrock_/status/2118718906424807740?s=46&t=rnvmMdiPT06JMvo-M3bC0A",
+          "kind": "social"
+        }
+      ],
+      "link": "https://gyre-omotesando.com/artandgallery/yurikotakagi-chaoscosmos-vol3/",
+      "thumbnail": "/thumbnails/exhibition/2026-gyre-chaoscosmos-vol3-visible-viscosity.jpg",
+      "addedAt": "2026-11-07T14:36:38.410Z",
+      "origin": "intake",
+      "intakeUrl": "https://x.com/_tanrock_/status/2118718906424807740?s=46&t=rnvmMdiPT06JMvo-M3bC0A",
+      "highlight": false
+    },
+    {
       "id": "2026-kanda-square-mark-the-moment",
       "slug": "2026-kanda-square-mark-the-moment",
       "title": "TAKEO PAPER SHOW 50「祝と礼―MARK THE MOMENT」",
