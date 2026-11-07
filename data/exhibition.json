@@ -3,6 +3,51 @@
   "statusAsOf": "2026-11-07",
   "items": [
     {
+      "id": "2026-kata-calm-colorless-studio",
+      "slug": "2026-kata-calm-colorless-studio",
+      "title": "calm",
+      "artists": [
+        "colorless studio (natsume, alpha)",
+        "ftrygry",
+        "NEXTLIGHT (purini B2B Mi7s3)",
+        "Plan2+",
+        "so1anew",
+        "夜間同好会"
+      ],
+      "venue": "KATA",
+      "venueType": "alt_space",
+      "prefecture": "東京都",
+      "city": "渋谷区",
+      "startDate": "2026-11-08",
+      "endDate": "2026-11-08",
+      "status": "upcoming",
+      "admission": "ADV ¥2,500+1D ／ DOOR ¥3,000+1D",
+      "tags": [
+        "sound",
+        "video_art"
+      ],
+      "score": 50,
+      "matchReason": "電子音楽とシンクロした映像表現によるVJ出演を含む没入型ライブイベントで、音と映像の知覚的な演出という点でメディアアートの周辺領域に触れている",
+      "sources": [
+        {
+          "name": "calm",
+          "url": "https://kata-gallery.net/schedule/calm_20261108",
+          "kind": "official"
+        },
+        {
+          "name": "indiegrab",
+          "url": "https://indiegrab.jp/news/189911/",
+          "kind": "news"
+        }
+      ],
+      "link": "https://kata-gallery.net/schedule/calm_20261108",
+      "thumbnail": "/thumbnails/exhibition/2026-kata-calm-colorless-studio.jpg",
+      "addedAt": "2026-11-07T12:17:51.839Z",
+      "origin": "intake",
+      "intakeUrl": "https://kata-gallery.net/schedule/calm_20261108",
+      "highlight": false
+    },
+    {
       "id": "2026-nine-hours-otemachi-tokyo-jazz-club",
       "slug": "2026-nine-hours-otemachi-tokyo-jazz-club",
       "title": "Tokyo Jazz Club",
