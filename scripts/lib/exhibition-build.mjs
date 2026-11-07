@@ -446,6 +446,8 @@ function buildSources(cand, tabUrl = null) {
   return out;
 }
 
+const SOCIAL_HOST_RE = /(^|\.)(x\.com|twitter\.com|t\.co|instagram\.com|facebook\.com|tiktok\.com|fxtwitter\.com|fixupx\.com|vxtwitter\.com|youtube\.com|youtu\.be)$/i;
+
 /** ownerIntake の候補で、事実確認系の失敗を記録せず上位（handleOwner）へ返すための内部シグナル。 */
 class SoftFail extends Error {
   constructor(kind, reason, detail = "") {
@@ -514,6 +516,35 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
   // ownerIntake（オーナーの投稿を原則失敗させない）: trustOrigin の intake 候補だけ。auto・trustOrigin なしには一切効かない
   const isOwnerCand = (c) => o.ownerIntake === true && o.trustOrigin === true && isIntake(c);
 
+  // ownerIntake 用: 確認元 URL を実際に取得して 200 かを見る（同一実行内で1URL1回）。SNS・投稿URL自身・内部ホストは対象外
+  const probeCache = new Map();
+  const probe = (url) => {
+    if (!probeCache.has(url)) {
+      probeCache.set(url, (async () => {
+        try {
+          const r = await deps.fetchHtml(url);
+          return r && r.status === 200 ? { ok: true, text: htmlToText(r.body) } : { ok: false, text: "" };
+        } catch {
+          return { ok: false, text: "" };
+        }
+      })());
+    }
+    return probeCache.get(url);
+  };
+  const isFetchableSource = (u, intakeUrl) =>
+    isPublicHttpUrl(u) && normLink(u) !== normLink(intakeUrl) && !SOCIAL_HOST_RE.test(new URL(u).hostname);
+  // 取得元を順に試してサムネだけ保存する（urls の各 URL を officialUrl 扱いで saveThumb に渡す。最後に投稿URL）
+  const trySaveThumbElsewhere = async (id, cand, urls) => {
+    const tried = new Set();
+    for (const u of [cand.thumbnailSource, ...urls, ...(cand.sources || []).map((s) => s?.url), cand.intakeUrl]) {
+      if (!isPublicHttpUrl(u) || tried.has(u)) continue;
+      tried.add(u);
+      const t = await Promise.resolve(deps.saveThumb(id, { ...cand, officialUrl: u, thumbnailSource: u === cand.thumbnailSource ? u : undefined })).catch(() => null);
+      if (typeof t === "string" && t.trim()) return t;
+    }
+    return null;
+  };
+
   // collect=true（ownerIntake 候補）のとき、事実確認系の失敗は記録せず SoftFail で呼び出し元に返す（再調査→投稿者確認追加へ）
   const handle = async (cand0, collect = false) => {
     let cand = cand0;
@@ -525,11 +556,6 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
       if (collect) throw new SoftFail(kind, reason, detail);
       return kind === "unver" ? unver(cand, reason) : reject(cand, reason, detail);
     };
-    if (collect) {
-      // 空欄は事実を作らず「都道府県名」「投稿者が追加」で埋める（監査の必須項目を満たすため。公式にある値ではないと分かる表記）
-      const pref = normalizePrefecture(cand.prefecture);
-      cand = { ...cand, city: cand.city.trim() || pref || "", matchReason: cand.matchReason.trim() || OWNER_MATCH_REASON };
-    }
     // 公式 URL が空/不可のとき、投稿(intake かつ trustOrigin)に限り TAB 展示ページを確認元にできる（自動発見では常に null）
     let tabUrl = null;
     // 公式 URL は有効だが取得できない（403 等のボット拒否）ときの救済先。投稿(trustOrigin の intake)のときだけ非 null
@@ -615,7 +641,8 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
     const score = effectiveScore(cand, o);
     if (!isIntake(cand) && score < o.addThreshold) return reject(cand, "below-threshold", String(score));
     // 必須 string（監査で FAIL になる空値）が欠ける候補は追加せず unverified（理由つき）
-    const missing = ["city", "matchReason"].filter((k) => !String(cand[k] || "").trim());
+    // ownerIntake では city が空でも可（監査の必須項目なので item 側で都道府県名を入れ、表示側が「東京都 東京都」を出さない）。matchReason の既定値は投稿者確認の経路だけ
+    const missing = ["city", "matchReason"].filter((k) => !(collect && k === "city") && !String(cand[k] || "").trim());
     if (missing.length) return fail("unver", `required-field-missing: ${missing.join(",")}`);
     const exempt = cand.collectAll || cand.origin === "intake";
     if (!exempt && capped >= o.maxAdd) return reject(cand, "daily-cap");
@@ -634,6 +661,11 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
     if (!o.dryRun) {
       // TAB 確認の展示は TAB ページをサムネ取得元にする（officialUrl として渡す＝既存の og:image/img 取得ロジックの延長）
       thumbnail = await deps.saveThumb(id, tabUrl ? { ...cand, officialUrl: tabUrl } : cand);
+      if (collect && (typeof thumbnail !== "string" || !thumbnail.trim())) {
+        // 照合が通ったのでサムネだけ他の取得元（記事・投稿URL）で試す。公式扱いのまま格下げしない
+        thumbnail = await trySaveThumbElsewhere(id, cand, [cand.officialUrl, tabUrl]);
+        if (!thumbnail) { pending.push({ ...cand, pendingReason: "thumbnail-unavailable", at: deps.now() }); return; }
+      }
       if (typeof thumbnail !== "string" || !thumbnail.trim()) return fail("reject", "thumbnail-unavailable", cand.thumbnailSource || tabUrl || cand.officialUrl);
     }
 
@@ -645,7 +677,7 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
       venue: cand.venue.trim(),
       venueType: VENUE_TYPES.includes(cand.venueType) ? cand.venueType : "other",
       prefecture,
-      city: cand.city.trim(),
+      city: cand.city.trim() || (collect ? prefecture : ""),
       startDate: cand.startDate,
       endDate: cand.endDate,
       status: computeStatus(cand.startDate, cand.endDate, today),
@@ -678,10 +710,13 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
   };
 
   // ── ownerIntake: 公式照合・TAB 救済に失敗した投稿の最終手段（再調査1回 → 投稿者確認で追加 / 会期未発表は保留） ──
+  const pendingTitleOf = (c) => c.pendingTitle || c.title;
+  const pushPending = (c, reason) => pending.push({ ...c, pendingTitle: pendingTitleOf(c), pendingReason: reason, at: deps.now() });
+
   const ownerFallback = async (cand, why) => {
     if (!isValidYmd(cand.startDate) || !isValidYmd(cand.endDate) || cand.startDate > cand.endDate) {
       // 会期が実在の暦日で取れない＝推測で埋めず保留（日次ジョブで再調査）
-      pending.push({ ...cand, pendingReason: why.reason, at: deps.now() });
+      pushPending(cand, why.reason);
       return;
     }
     const prefecture = normalizePrefecture(cand.prefecture);
@@ -690,39 +725,42 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
     const dup = findDuplicate(items, dupCand);
     if (dup) { skipped.push({ title: cand.title, reason: "duplicate", existingId: dup.item.id }); return; }
 
-    // 確認元の優先順: 公式URL（照合不一致でも指しているページ）> TAB > 記事/一覧 > 投稿
-    const own = [];
-    const push = (name, url, kind) => {
-      if (!isHttpUrl(url) || !normLink(url) || own.some((s) => normLink(s.url) === normLink(url))) return;
-      own.push({ name, url, kind });
+    // 確認元: 実際に取得して 200 だった URL だけ（公式 > TAB > 記事/一覧）。投稿URLは必ず kind:"social" で入れる（監査が要求）
+    const postKey = normLink(cand.intakeUrl);
+    const others = [];
+    const addOther = async (name, url, kind) => {
+      if (!isFetchableSource(url, cand.intakeUrl) || others.some((s) => normLink(s.url) === normLink(url))) return;
+      if (!(await probe(url)).ok) return;
+      others.push({ name, url, kind });
     };
     const extra = (cand.sources || []).filter((s) => s && isHttpUrl(s.url));
-    if (isSafeOfficialUrl(cand.officialUrl)) push((typeof cand.officialName === "string" && cand.officialName) || "公式サイト（未照合）", cand.officialUrl, "listing");
-    for (const s of [...extra, { url: cand.officialUrl }]) if (isTabEventUrl(s.url) && isPublicHttpUrl(s.url)) push(TAB_NAME, s.url, "listing");
+    if (isSafeOfficialUrl(cand.officialUrl)) await addOther((typeof cand.officialName === "string" && cand.officialName) || "公式サイト（未照合）", cand.officialUrl, "listing");
+    for (const s of [...extra, { url: cand.officialUrl }]) if (isTabEventUrl(s.url)) await addOther(TAB_NAME, s.url, "listing");
     for (const s of extra) {
-      if (s.kind === "social" || !isPublicHttpUrl(s.url)) continue;
+      if (s.kind === "social") continue;
       let host = "";
       try { host = new URL(s.url).hostname; } catch { continue; }
-      push((typeof s.name === "string" && s.name) || host, s.url, s.kind === "news" ? "news" : "listing");
+      await addOther((typeof s.name === "string" && s.name) || host, s.url, s.kind === "news" ? "news" : "listing");
     }
-    push("ユーザー投稿", cand.intakeUrl, "social");
-    for (const s of extra) if (s.kind === "social") push((typeof s.name === "string" && s.name) || "SNS", s.url, "social");
+    const own = [...others];
+    if (postKey) own.push({ name: "ユーザー投稿", url: cand.intakeUrl, kind: "social" });
+    for (const s of extra) {
+      if (s.kind === "social" && normLink(s.url) && !own.some((x) => normLink(x.url) === normLink(s.url))) own.push({ name: (typeof s.name === "string" && s.name) || "SNS", url: s.url, kind: "social" });
+    }
     if (!own.length) return unver(cand, "確認元URLなし（投稿URLを特定できません）");
-    const link = own[0].url;
+
+    // link は既存の全展示と重複させない（監査 DUPLICATE LINK）。同じ投稿の2件目以降は自分固有の URL を使い、無ければ追加しない
+    const usedLinks = new Set(items.map((i) => normLink(i.link)));
+    const linkSrc = own.find((s) => !usedLinks.has(normLink(s.url)));
+    if (!linkSrc) return unver(cand, "link-collision: 同じ投稿内の別の展示と確認元URLが重複し、固有の確認元（公式・TAB・記事のURL）が見つかりません");
+    const link = linkSrc.url;
+    const sources = [linkSrc, ...own.filter((s) => s !== linkSrc)];
 
     const id = buildExhibitionId({ startDate: cand.startDate, venue: cand.slugVenue || cand.venue, title: cand.slugTitle || cand.title }, taken);
     let thumbnail = `/thumbnails/exhibition/${id}.jpg`;
     if (!o.dryRun) {
-      thumbnail = null;
-      const tried = [];
-      for (const u of [...(cand.thumbnailSource ? [cand.thumbnailSource] : []), ...own.map((s) => s.url)]) {
-        if (tried.includes(u)) continue;
-        tried.push(u);
-        thumbnail = await deps.saveThumb(id, { ...cand, officialUrl: u, thumbnailSource: u === cand.thumbnailSource ? u : undefined }).catch(() => null);
-        if (typeof thumbnail === "string" && thumbnail.trim()) break;
-        thumbnail = null;
-      }
-      if (!thumbnail) return reject(cand, "thumbnail-unavailable", link);
+      thumbnail = await trySaveThumbElsewhere(id, cand, own.map((s) => s.url));
+      if (!thumbnail) { pushPending(cand, "thumbnail-unavailable"); return; }
     }
     const score = effectiveScore(cand, o);
     const item = {
@@ -741,7 +779,7 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
       tags: cand.tags.filter((t) => vocab.has(t)),
       score,
       matchReason: cand.matchReason.trim() || OWNER_MATCH_REASON,
-      sources: own,
+      sources,
       link,
       verifiedVia: VERIFIED_VIA_OWNER,
       thumbnail,
@@ -759,28 +797,64 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
     added.push(item);
   };
 
-  // 再調査で採用してよい項目だけを元の候補に重ねる（日付は実在の YYYY-MM-DD のみ。score/origin/intakeUrl は触らない）
-  const REVISABLE_STR = ["title", "venue", "venueType", "prefecture", "city", "admission", "officialUrl", "officialName", "thumbnailSource", "slugTitle", "slugVenue"];
-  const applyRevision = (cand, rev) => {
+  /**
+   * 再調査(LLM)の返答のうち、実際に取得したページ(200)で確認できた項目だけを元の候補に重ねる。
+   * 題名・会場は dateAppearsInText/venueAppearsInText/titleAppearsInText が通ったものだけ。日付は開始・終了の組が同じページで確認できたときだけ。
+   * 確認できない項目は元の投稿由来の値のまま。取得できなかった URL は officialUrl にも sources にも入れない。
+   */
+  const verifyRevision = async (cand, rev) => {
+    const urls = [];
+    for (const u of [rev.officialUrl, ...(Array.isArray(rev.sources) ? rev.sources.map((s) => s?.url) : [])]) {
+      if (isFetchableSource(u, cand.intakeUrl) && !urls.includes(u)) urls.push(u);
+    }
+    const pages = [];
+    for (const u of urls.slice(0, 5)) {
+      const p = await probe(u);
+      if (p.ok) pages.push({ url: u, text: p.text });
+    }
+    if (!pages.length) return cand;
+    const anyText = (fn) => pages.some((p) => fn(p.text));
+    const str = (v) => (typeof v === "string" ? v.trim() : "");
     const next = { ...cand };
-    for (const k of REVISABLE_STR) if (typeof rev[k] === "string" && rev[k].trim()) next[k] = rev[k].trim();
-    for (const k of ["startDate", "endDate"]) if (isValidYmd(rev[k])) next[k] = rev[k];
-    if (Array.isArray(rev.artists) && rev.artists.some((a) => typeof a === "string" && a.trim())) next.artists = rev.artists.filter((a) => typeof a === "string" && a.trim());
-    const known = new Set((cand.sources || []).map((s) => normLink(s.url)));
-    const more = (Array.isArray(rev.sources) ? rev.sources : []).filter((s) => s && typeof s === "object" && isHttpUrl(s.url) && !known.has(normLink(s.url)));
-    next.sources = [...(cand.sources || []), ...more];
+    if (pages.some((p) => p.url === rev.officialUrl)) {
+      next.officialUrl = rev.officialUrl;
+      if (str(rev.officialName)) next.officialName = str(rev.officialName);
+    }
+    if (str(rev.title) && anyText((t) => titleAppearsInText(t, rev.title))) next.title = str(rev.title);
+    if (str(rev.venue) && anyText((t) => venueAppearsInText(t, rev.venue))) next.venue = str(rev.venue);
+    const s = isValidYmd(rev.startDate) ? rev.startDate : cand.startDate;
+    const e = isValidYmd(rev.endDate) ? rev.endDate : cand.endDate;
+    if (isValidYmd(s) && isValidYmd(e) && s <= e && (s !== cand.startDate || e !== cand.endDate)
+      && anyText((t) => dateAppearsInText(t, s) && (dateAppearsInText(t, e) || rangeEndAppearsInText(t, s, e)))) {
+      next.startDate = s;
+      next.endDate = e;
+    }
+    const pref = normalizePrefecture(rev.prefecture);
+    if (pref && anyText((t) => t.includes(pref))) next.prefecture = pref;
+    if (str(rev.city) && anyText((t) => t.includes(str(rev.city)))) next.city = str(rev.city);
+    if (VENUE_TYPES.includes(rev.venueType)) next.venueType = rev.venueType;
+    if (str(rev.admission) && anyText((t) => t.includes(str(rev.admission)))) next.admission = str(rev.admission);
+    if (Array.isArray(rev.artists)) {
+      const names = rev.artists.filter((a) => typeof a === "string" && a.trim() && anyText((t) => t.includes(a.trim()))).map((a) => a.trim());
+      if (names.length) next.artists = names;
+    }
+    for (const k of ["slugTitle", "slugVenue"]) if (str(rev[k])) next[k] = str(rev[k]);
+    if (isPublicHttpUrl(rev.thumbnailSource)) next.thumbnailSource = rev.thumbnailSource;
+    const known = new Set((cand.sources || []).map((x) => normLink(x.url)));
+    const more = (Array.isArray(rev.sources) ? rev.sources : []).filter((x) => x && pages.some((p) => p.url === x.url) && !known.has(normLink(x.url)) && x.url !== rev.officialUrl);
+    next.sources = [...(cand.sources || []), ...more.map((x) => ({ name: str(x.name), url: x.url, kind: x.kind === "news" ? "news" : "listing" }))];
     return sanitizeCandidate({ ...next, origin: cand.origin, intakeUrl: cand.intakeUrl });
   };
 
   const handleOwner = async (cand0) => {
-    let cand = cand0;
+    let cand = { ...cand0, pendingTitle: pendingTitleOf(cand0) }; // 保留キーは元の題名で固定（再調査で題名が変わっても保留から落とさない）
     let why;
     try { return await handle(cand, true); } catch (e) { if (!(e instanceof SoftFail)) throw e; why = e; }
-    if (typeof deps.reinvestigate === "function" && why.reason !== "thumbnail-unavailable") {
+    if (typeof deps.reinvestigate === "function") {
       let rev = null;
-      try { rev = await deps.reinvestigate(cand, why.reason); } catch { rev = null; }
+      try { rev = await deps.reinvestigate(cand, why.reason); } catch (e) { if (e?.name === "BudgetExceededError") throw e; rev = null; }
       if (rev && typeof rev === "object" && !Array.isArray(rev)) {
-        cand = applyRevision(cand, rev);
+        cand = await verifyRevision(cand, rev);
         try { return await handle(cand, true); } catch (e) { if (!(e instanceof SoftFail)) throw e; why = e; }
       }
     }
@@ -792,7 +866,8 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
       if (isOwnerCand(cand)) await handleOwner(cand);
       else await handle(cand);
     } catch (e) {
-      rejected.push({ title: cand.title || "(no title)", reason: "candidate-error", detail: String(e?.message || e).slice(0, 200), link: cand.officialUrl || "", intakeUrl: cand.intakeUrl });
+      if (e?.name === "BudgetExceededError") throw e; // 予算超過は握りつぶさずジョブごと止める
+      rejected.push({ title: cand.title || "(no title)", reason: "candidate-error", detail: String(e?.message || e).slice(0, 200), link: cand.officialUrl || "", intakeUrl: cand.intakeUrl, ...(cand.pendingTitle ? { pendingTitle: cand.pendingTitle } : {}) });
     }
   }
 

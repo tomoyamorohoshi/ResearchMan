@@ -51,13 +51,17 @@ export function parseReinvestigateOutput(text) {
  * deps.reinvestigate を作る。run(prompt) は Claude を1回呼んで出力テキスト（または配列）を返す async 関数。
  * 失敗は握りつぶして null（呼び出し側は投稿者確認での追加へ進む）。
  */
-export function makeReinvestigator({ run, today = "" }) {
+export function makeReinvestigator({ run, today = "", maxCalls = 5 }) {
+  let calls = 0; // 1回のジョブ内で共有する呼び出し回数。上限を超えたら呼ばずに null（投稿者確認での追加 / 保留へ進む）
   return async function reinvestigate(cand, reason) {
+    if (calls >= maxCalls) return null;
+    calls++;
     try {
       const out = await run(buildReinvestigatePrompt(cand, reason, today));
       if (Array.isArray(out)) return out.find((v) => v && typeof v === "object" && !Array.isArray(v)) || null;
       return parseReinvestigateOutput(out);
     } catch (e) {
+      if (e?.name === "BudgetExceededError") throw e; // 予算超過は握りつぶさない
       console.warn(`[reinvestigate] 失敗（投稿者確認へ進む）: ${e?.message || e}`);
       return null;
     }

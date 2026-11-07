@@ -26,7 +26,8 @@ import { localDayIndex } from "./lib/day-index.mjs";
 import { todayJst } from "./lib/exhibition-status.mjs";
 import { applyStatusUpdate, processCandidates, PREFECTURES } from "./lib/exhibition-build.mjs";
 import { consumeHandoff, commitHandoff } from "./lib/exhibition-handoff.mjs";
-import { appendPending, processPending, commitPending } from "./lib/exhibition-pending.mjs";
+import { appendPending, processPending } from "./lib/exhibition-pending.mjs";
+import { stageFinalize, discardStaleFinalize, runFinalize } from "./lib/exhibition-finalize.mjs";
 import { makeReinvestigator } from "./lib/exhibition-reinvestigate.mjs";
 import { applyUserPicks } from "./lib/exhibition-userpicks.mjs";
 import { runIntake } from "./lib/exhibition-intake-job.mjs";
@@ -56,6 +57,7 @@ const THUMB_DIR = path.join(ROOT, "public/thumbnails/exhibition");
 
 const DRY_RUN = process.argv.includes("--dry-run");
 const STATUS_ONLY = process.argv.includes("--status-only");
+const FINALIZE_MODE = process.argv.includes("--finalize");
 
 const MAX_ROUNDS = 2;
 // 1日の追加上限（NEORT++/オンチェーン/ジェネラティブ=collectAll と intake 投稿は上限外）
@@ -80,6 +82,17 @@ async function main() {
   console.log(`\nResearchMan Exhibition 日次収集`);
   console.log(`   ${new Date().toLocaleString("ja-JP")}（today=${TODAY}）`);
   if (DRY_RUN) console.log("   ⚠ DRY RUN（data・サムネ・サマリーは更新しません）");
+
+  // ── 0. --finalize: 監査通過後に run-job から呼ばれる確定処理（intake の PATCH・保留リスト更新）だけ行って終わる ──
+  if (FINALIZE_MODE) {
+    const cfg = await loadIntakeConfig().catch(() => null);
+    const f = await runFinalize({ root: ROOT, patch: async (results) => { if (cfg) await patchIntakeResults(cfg, results); } });
+    console.log(f.none ? "[finalize] 確定する計画なし" : `[finalize] ${f.ok ? "完了" : `一部失敗（次回再処理。dedupeで冪等）: ${f.error}`}${f.patched ? " / intake PATCH 済み" : ""}`);
+    return;
+  }
+  // 前回確定されなかった計画（監査 FAIL で巻き戻された日など）は破棄する。投稿は intake キュー/保留に残っており、再処理は dedupe で冪等
+  if (!DRY_RUN && (await discardStaleFinalize(ROOT).catch(() => false))) console.log("[finalize] 前回未確定の計画を破棄（投稿は intake キュー/保留から再処理）");
+  const stagedPatch = []; // intake の PATCH 計画（確定は --finalize）
 
   const original = await readJson(DATA_PATH);
 
@@ -146,12 +159,15 @@ async function main() {
               persist: async (d) => {
                 if (!DRY_RUN) await writeJsonAtomic(DATA_PATH, d);
               },
+              // PATCH（サーバの投稿キューから外す）はここでは送らず計画に積む。監査通過後に run-job が --finalize で確定する
+              // （監査 FAIL で data/exhibition.json が巻き戻されても、投稿は intake キューに残る。M3）
               patch: async (results) => {
                 if (DRY_RUN) {
                   console.log(`[intake] --dry-run: PATCH しません（${results.length}件）`);
                   return { updated: 0 };
                 }
-                return patchIntakeResults(cfg, results);
+                stagedPatch.push(...results);
+                return { updated: 0 };
               },
             },
           });
@@ -167,7 +183,16 @@ async function main() {
           unverified.push(...out.unverified);
           // 会期未発表の投稿は保留リストへ（日次で再調査し、日付が出たら追加）
           if (out.pending.length) {
-            if (!DRY_RUN) await appendPending(ROOT, out.pending, TODAY);
+            if (!DRY_RUN) {
+              try {
+                await appendPending(ROOT, out.pending, TODAY);
+              } catch (e) {
+                // 保留を書けなかった投稿は確定させず intake キューに戻す（次回再処理。dedupe で冪等）
+                const lost = new Set(out.pending.map((p) => p.intakeUrl));
+                for (const r of stagedPatch) if (lost.has(r.url)) Object.assign(r, { status: "retry", reason: "pending-write-failed" });
+                console.error(`[intake] 保留リストへの書き込み失敗 → intake キューに戻します: ${e.message}`);
+              }
+            }
             console.log(`[intake] 会期未発表で保留: ${out.pending.map((p) => p.title).join(" / ")}`);
           }
           console.log(`[intake] 結果: ${out.results.map((r) => `${r.status}`).join(", ")} / PATCH ${out.patched ? "OK" : `失敗（${out.patchError || "dry-run"}）→ data更新は継続`}`);
@@ -292,11 +317,12 @@ async function main() {
         console.error(`[handoff] 除去失敗（次回再処理。dedupeで冪等）: ${e.message}`);
       }
     }
-    if (!cliFatal && pendingPlan) {
+    // intake の PATCH と保留リストの更新は、監査通過後に run-job が `--finalize` で確定する（ここでは計画を残すだけ）
+    if (!cliFatal) {
       try {
-        await commitPending(ROOT, pendingPlan);
+        await stageFinalize(ROOT, { intakePatch: stagedPatch, pendingPlan, today: TODAY });
       } catch (e) {
-        console.error(`[pending] 更新失敗（次回再処理。dedupeで冪等）: ${e.message}`);
+        console.error(`[finalize] 計画の保存に失敗（投稿は intake キュー/保留に残り、次回再処理）: ${e.message}`);
       }
     }
   }

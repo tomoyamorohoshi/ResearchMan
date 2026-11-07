@@ -86,7 +86,7 @@ export default function ExhibitionCard({
           <span className="text-gray-400">
             {" "}
             / {e.prefecture}
-            {e.city ? ` ${e.city}` : ""}
+            {e.city && e.city !== e.prefecture ? ` ${e.city}` : ""}
           </span>
         </p>
 

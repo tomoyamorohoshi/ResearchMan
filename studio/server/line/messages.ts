@@ -167,8 +167,8 @@ export interface ExhibitionNotifyItem {
 }
 
 /** 会期未発表で保留にしたときのLINE通知（追加ではなく失敗でもない）。 */
-export function buildAddExhibitionPendingText(title: string): string {
-  return `Exhibition に保留しました: ${title}\n会期未発表のため保留しました。発表され次第自動で追加します`;
+export function buildAddExhibitionPendingText(title: string, reasonJa = "会期未発表のため保留しました。発表され次第自動で追加します"): string {
+  return `Exhibition に保留しました: ${title}\n${reasonJa}`;
 }
 
 /** exhibition追加成功のLINE通知。巡回展など複数件は1行ずつ並べる。 */

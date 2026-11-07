@@ -919,6 +919,8 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
       } catch {
         // tech.jsonが読めなくてもcases側のidは確保済み（日次ジョブと同じ縮退）
       }
+      let reinvestigateCalls = 0;
+      const MAX_REINVESTIGATE_PER_JOB = 3;
       const exhibitionResult = await processExhibitionAdd({
         obj,
         url,
@@ -930,6 +932,8 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
           now: () => new Date().toISOString(),
           // 公式・TAB の照合に失敗したら Claude（WebSearch/WebFetch）で探し直す（1候補1回）。失敗は null＝投稿者確認での追加へ
           reinvestigate: async (cand, reason) => {
+            if (reinvestigateCalls >= MAX_REINVESTIGATE_PER_JOB) return null; // 1ジョブの再調査回数の上限（費用の歯止め）
+            reinvestigateCalls++;
             try {
               const r = await runAgentQuery(ROOT, "case-adder", adderDef, buildReinvestigatePrompt(cand, reason, todayJst()), 20);
               costUsd += r.costUsd;
@@ -962,12 +966,11 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
 
       // 会期未発表の投稿は保留リストへ（日次の Exhibition ジョブが再調査し、日付が出たら追加する。dryRunは書かない）
       if (!dryRun && exhibitionResult.pending.length > 0) {
-        await appendPending(ROOT, exhibitionResult.pending, todayJst()).catch((e: unknown) => {
-          console.warn("[studio][add-case] exhibition-pending.json への追記に失敗しました:", e);
-        });
+        // 書き込みに失敗したら握りつぶさず失敗として返す（「保留しました」と言って消えるのを防ぐ。投稿は再送できる）
+        await appendPending(ROOT, exhibitionResult.pending, todayJst());
       }
       if (exhibitionResult.outcome === "pending") {
-        const message = buildAddExhibitionPendingText(String(exhibitionResult.pending[0]?.title ?? url));
+        const message = buildAddExhibitionPendingText(String(exhibitionResult.pending[0]?.pendingTitle ?? exhibitionResult.pending[0]?.title ?? url), exhibitionResult.reasonJa);
         await updateJob(jobId, { status: terminalStatus(ownsLock, "done"), progress: undefined, cost: costUsd, warning: exhibitionResult.reasonJa });
         await notifyLineIfPossible(lineUserId, message);
         return;

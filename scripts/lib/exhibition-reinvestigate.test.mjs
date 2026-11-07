@@ -29,3 +29,16 @@ test("makeReinvestigator: run の出力を解釈・例外は null", async () => 
   const ng = makeReinvestigator({ run: async () => { throw new Error("boom"); } });
   assert.equal(await ng(cand, "r"), null);
 });
+
+test("M6: 呼び出し回数の上限を超えたら run を呼ばず null / BudgetExceededError は握りつぶさない", async () => {
+  let n = 0;
+  const lim = makeReinvestigator({ maxCalls: 2, run: async () => { n++; return [{ intakeUrl: "u", venue: "V" }]; } });
+  assert.ok(await lim(cand, "r"));
+  assert.ok(await lim(cand, "r"));
+  assert.equal(await lim(cand, "r"), null);
+  assert.equal(n, 2);
+  const err = new Error("b");
+  err.name = "BudgetExceededError";
+  const bud = makeReinvestigator({ run: async () => { throw err; } });
+  await assert.rejects(() => bud(cand, "r"), /b/);
+});

@@ -98,6 +98,8 @@ export interface ProcessExhibitionResult {
 
 /** 会期未発表で保留にしたときの LINE 用の理由文。 */
 export const PENDING_REASON_JA = "会期未発表のため保留しました。発表され次第自動で追加します";
+/** 確認は取れたがサムネイル画像を確保できなかったときの保留文。 */
+export const PENDING_THUMB_REASON_JA = "サムネイル画像を確保できなかったため保留しました。取得でき次第自動で追加します";
 
 /** processCandidatesの機械的な理由コードを、LINEで読める平易な日本語にする。 */
 export function describeExhibitionReason(reason: string): string {
@@ -126,6 +128,9 @@ export function describeExhibitionReason(reason: string): string {
   if (r === "thumbnail-unavailable") return "サムネイル画像を確保できませんでした";
   if (r === "invalid-candidate") return "展覧会名または会場を確認できませんでした";
   if (r === "daily-cap") return "本日の追加上限に達しました";
+  if (r.startsWith("link-collision")) return "同じ投稿内の別の展示と確認元URLが重複し、固有の確認元（公式・TAB・記事のURL）が見つからなかったため追加できませんでした";
+  if (r.startsWith("pending-expired")) return "再調査を重ねても追加できなかったため、保留から外しました";
+  if (r.startsWith("invalid-prefecture")) return "開催都道府県を確認できませんでした";
   return r ? `追加処理中にエラーが起きました（コード: ${r}）` : "不明な理由で追加できませんでした";
 }
 
@@ -194,7 +199,8 @@ export async function processExhibitionAdd(p: {
     return { ...common, outcome: "duplicate", duplicateTitle: existing?.title ?? "", reasonJa };
   }
   if (pending.length > 0) {
-    return { ...common, outcome: "pending", reasonJa: PENDING_REASON_JA };
+    const thumb = pending[0].pendingReason === "thumbnail-unavailable";
+    return { ...common, outcome: "pending", reasonJa: thumb ? PENDING_THUMB_REASON_JA : PENDING_REASON_JA };
   }
   if (unverified.length > 0) {
     return { ...common, outcome: "unverified", reasonJa: describeExhibitionReason(unverified[0].reason) };

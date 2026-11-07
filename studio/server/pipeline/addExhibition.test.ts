@@ -4,7 +4,7 @@
  */
 import assert from "node:assert/strict";
 import test from "node:test";
-import { describeExhibitionReason, processExhibitionAdd, verifiedLabelJa, PENDING_REASON_JA, type ExhibitionData } from "./addExhibition.js";
+import { describeExhibitionReason, processExhibitionAdd, verifiedLabelJa, PENDING_REASON_JA, PENDING_THUMB_REASON_JA, type ExhibitionData } from "./addExhibition.js";
 
 const URL_ = "https://20th.starryworks.co.jp/";
 const TODAY = "2026-10-20";
@@ -291,10 +291,24 @@ test("ownerIntake: 会期未発表は pending（reasonJa は保留の案内）�
   assert.equal(r.unverified.length, 0);
 });
 
+test("ownerIntake(M4): 照合は通ったがサムネが取れない → pending（サムネ保留の文面）。公式扱いを格下げしない", async () => {
+  const deps = { ...makeDeps(), saveThumb: async () => null };
+  const r = await processExhibitionAdd({ obj: { candidates: [baseCand] }, url: URL_, data: makeData(), today: TODAY, deps, opts: ownerOpts });
+  assert.equal(r.outcome, "pending");
+  assert.equal(r.reasonJa, PENDING_THUMB_REASON_JA);
+  assert.equal(r.added.length, 0);
+});
+
+test("describeExhibitionReason: link-collision / pending-expired", () => {
+  assert.match(describeExhibitionReason("link-collision: x"), /固有の確認元/);
+  assert.match(describeExhibitionReason("pending-expired: x"), /保留から外し/);
+});
+
 test("ownerIntake: reinvestigate が1回だけ呼ばれ、得た日付で追加される", async () => {
   let n = 0;
   const cand = { ...baseCand, startDate: "", endDate: "", officialUrl: "" };
-  const deps = { ...makeDeps(), reinvestigate: async () => { n++; return { startDate: "2027-01-10", endDate: "2027-03-01" }; } };
+  // 再調査の日付は、取得したページ(officialUrl)で確認できたときだけ採用される
+  const deps = { ...makeDeps("<html><body>2027年1月10日〜2027年3月1日</body></html>"), reinvestigate: async () => { n++; return { startDate: "2027-01-10", endDate: "2027-03-01", officialUrl: "https://venue.example/new" }; } };
   const r = await processExhibitionAdd({ obj: { candidates: [cand] }, url: "https://x.com/o/status/4", data: makeData(), today: TODAY, deps, opts: ownerOpts });
   assert.equal(n, 1);
   assert.equal(r.outcome, "added");

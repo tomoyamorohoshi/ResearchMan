@@ -11,12 +11,16 @@ export const EXHIBITION_REVERT_GIT_ARGS = [
 ];
 
 /**
- * @param {{audit:()=>{status:number|null}, revert:()=>void}} p
+ * 通過したときだけ onPass を呼ぶ（intake の PATCH・保留リスト更新など、巻き戻せない確定処理をここに置く）。
+ * @param {{audit:()=>{status:number|null}, revert:()=>void, onPass?:()=>unknown}} p
  * @returns {{ok:true}|{ok:false, status:number|null}}
  */
-export function guardAudit({ audit, revert }) {
+export function guardAudit({ audit, revert, onPass }) {
   const r = audit();
-  if (r && r.status === 0) return { ok: true };
+  if (r && r.status === 0) {
+    if (onPass) onPass();
+    return { ok: true };
+  }
   revert();
   return { ok: false, status: r ? r.status : null };
 }

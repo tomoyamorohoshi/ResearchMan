@@ -349,7 +349,16 @@ async function runExhibitionresearch() {
       return;
     }
     // commit 前に pre-push と同じ監査を走らせる。FAIL を commit すると push が全滞留するため、戻して commit せずエラー通知
-    const auditGate = guardAudit({ audit: () => runNode("scripts/audit-exhibition.mjs"), revert: revertExhibitionChanges });
+    // 監査通過後にだけ、巻き戻せない確定処理（intake の PATCH・保留リスト更新。docs/INTAKE_NO_FAIL.md）を実行する。
+    // 監査 FAIL の日は data/exhibition.json を戻すだけで、投稿は intake キュー/保留リストに残る
+    const auditGate = guardAudit({
+      audit: () => runNode("scripts/audit-exhibition.mjs"),
+      revert: revertExhibitionChanges,
+      onPass: () => {
+        const fin = runNode("scripts/auto-research-exhibition.mjs", ["--finalize"]);
+        if (fin.status !== 0) log(`exhibition --finalize 失敗（無視して続行・次回再処理）: exit ${fin.status}`);
+      },
+    });
     if (!auditGate.ok) {
       log(`audit-exhibition FAIL（exit ${auditGate.status}）→ data/exhibition.json とサムネを復元し commit しない: ${unixDateString()}`);
       notifyError();

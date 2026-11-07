@@ -75,7 +75,7 @@ export default async function ExhibitionPage({ params }: { params: Promise<{ slu
             {e.venue}
             <span className="text-gray-500">
               （{e.prefecture}
-              {e.city ? ` ${e.city}` : ""}）
+              {e.city && e.city !== e.prefecture ? ` ${e.city}` : ""}）
             </span>
           </dd>
           <dt className="text-[10px] tracking-[0.2em] uppercase text-gray-400 font-bold pt-0.5">入場料</dt>
