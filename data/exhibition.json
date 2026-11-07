@@ -3,6 +3,58 @@
   "statusAsOf": "2026-11-07",
   "items": [
     {
+      "id": "2027-scarts-optical-drift",
+      "slug": "2027-scarts-optical-drift",
+      "title": "OPTICAL DRIFT（札幌国際芸術祭2027）",
+      "artists": [
+        "ソニーグループ クリエイティブセンター"
+      ],
+      "venue": "札幌文化芸術交流センター SCARTS",
+      "venueType": "other",
+      "prefecture": "北海道",
+      "city": "札幌市",
+      "startDate": "2027-01-16",
+      "endDate": "2027-02-21",
+      "status": "upcoming",
+      "admission": "無料",
+      "tags": [
+        "media_art",
+        "installation",
+        "light",
+        "sound"
+      ],
+      "score": 70,
+      "matchReason": "光学レンズ・SWIRイメージセンサー・360 Reality Audioを用い、霧と光と音で来場者の動きに応じて演出が変化する没入型インスタレーションで、光・空間・テクノロジーの境界領域にあたる。",
+      "sources": [
+        {
+          "name": "「札幌国際芸術祭2027」にイニシアティブ・パートナーとして参画（ソニーグループ株式会社 プレスリリース）",
+          "url": "https://prtimes.jp/main/html/rd/p/000000066.000062020.html",
+          "kind": "official"
+        },
+        {
+          "name": "X投稿（@beep_roadrunner）",
+          "url": "https://x.com/beep_roadrunner/status/2114952071984423175",
+          "kind": "social"
+        },
+        {
+          "name": "SIAF2027公式サイト",
+          "url": "https://siaf.jp/en/2027/about/",
+          "kind": "listing"
+        },
+        {
+          "name": "ユーザー投稿",
+          "url": "https://x.com/beep_roadrunner/status/2114952071984423175?s=46&t=rnvmMdiPT06JMvo-M3bC0A",
+          "kind": "social"
+        }
+      ],
+      "link": "https://prtimes.jp/main/html/rd/p/000000066.000062020.html",
+      "thumbnail": "/thumbnails/exhibition/2027-scarts-optical-drift.jpg",
+      "addedAt": "2026-11-07T04:44:32.513Z",
+      "origin": "intake",
+      "intakeUrl": "https://x.com/beep_roadrunner/status/2114952071984423175?s=46&t=rnvmMdiPT06JMvo-M3bC0A",
+      "highlight": false
+    },
+    {
       "id": "2026-kanazawa21-kyokara-ashita-sakuhin-keisho",
       "slug": "2026-kanazawa21-kyokara-ashita-sakuhin-keisho",
       "title": "今日から明日へ 作品を継承すること",
