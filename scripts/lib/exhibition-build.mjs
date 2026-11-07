@@ -295,10 +295,30 @@ export function titleAppearsInText(text, title) {
  * @param {{fetchHtml:(url:string)=>Promise<{status:number, body:string}|null>}} deps
  * @returns {Promise<{ok:true}|{ok:false, reason:string}>}
  */
-export async function verifyOfficialPage(cand, deps) {
+export async function verifyOfficialPage(cand, deps, { detectEmpty = false } = {}) {
   const f = await fetchOfficialText(cand, deps);
   if (!f.ok) return f;
+  // 200 だが JS 描画で本文に日付表記が皆無 → 内容を読み取れていない（取得失敗扱い）。投稿(trustOrigin の intake)経路だけで判定する
+  if (detectEmpty && !hasDateLikeText(f.text)) return { ok: false, reason: "official-empty-page: 日付表記が1つも無い（JavaScript 描画の可能性）" };
   return checkOfficialText(cand, f.text);
+}
+
+/** text に日付らしき表記（年/月日/数字区切り/英語月名＋日）が1つでもあるか。 */
+export function hasDateLikeText(text) {
+  const t = String(text || "").normalize("NFKC");
+  const compact = compactSpacedChars(t);
+  const res = [
+    /\d{4}\s*年/,
+    /\d{1,2}\s*月\s*\d{1,2}\s*日/,
+    /(?<![\d/.])\d{1,2}\s*[/.]\s*\d{1,2}(?!\d)/,
+    /(?<!\d)\d{4}\s*[-/.]\s*\d{1,2}/,
+    /\d{1,2}\s*月/, // 月だけ・月上旬など
+    /(?:令和|平成|昭和)\s*\d{1,2}\s*年/,
+    new RegExp(`(?:${EN_MONTHS.join("|")})[a-z]*\\.?,?\\s*\\d{4}`, "i"), // November 2026
+    new RegExp(`(?:${EN_MONTHS.join("|")})[a-z]*\\.?\\s*\\d{1,2}(?!\\d)`, "i"),
+    new RegExp(`(?<!\\d)\\d{1,2}\\s*(?:st|nd|rd|th)?\\s*(?:${EN_MONTHS.join("|")})[a-z]*`, "i"),
+  ];
+  return res.some((re) => re.test(t) || (compact !== t && re.test(compact)));
 }
 
 /** 公式ページを取得してプレーンテキスト化する（fetch は1回。照合は checkOfficialText）。 */
@@ -321,7 +341,7 @@ async function fetchOfficialText(cand, { fetchHtml }) {
  * 理由コードは official- ではなく tab- 接頭（返信文で TAB 照合失敗と分かるように）。
  */
 // 公式ページ取得失敗の理由コード（fetchOfficialText が返すもの）。*-mismatch は含めない
-const OFFICIAL_UNREACHABLE_RE = /^official-(status-|fetch-error|fetch-failed)/;
+const OFFICIAL_UNREACHABLE_RE = /^official-(status-|fetch-error|fetch-failed|empty-page)/;
 
 async function verifyTabPage(cand, tabUrl, { fetchHtml }) {
   let res;
@@ -487,7 +507,7 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
     let tabUrl = null;
     // 公式 URL は有効だが取得できない（403 等のボット拒否）ときの救済先。投稿(trustOrigin の intake)のときだけ非 null
     const tabCandidate = o.trustOrigin === true && isIntake(cand)
-      ? [cand.intakeUrl, cand.officialUrl].find((u) => isTabEventUrl(u) && isPublicHttpUrl(u)) || null
+      ? [cand.intakeUrl, cand.officialUrl, ...(cand.sources || []).map((s) => s?.url)].find((u) => isTabEventUrl(u) && isPublicHttpUrl(u)) || null
       : null;
     if (!isHttpUrl(cand.officialUrl) || !isSafeOfficialUrl(cand.officialUrl)) {
       tabUrl = tabCandidate;
@@ -570,7 +590,7 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
     const exempt = cand.collectAll || cand.origin === "intake";
     if (!exempt && capped >= o.maxAdd) return reject(cand, "daily-cap");
 
-    let v = tabUrl ? await verifyTabPage(cand, tabUrl, deps) : await verifyOfficialPage(cand, deps);
+    let v = tabUrl ? await verifyTabPage(cand, tabUrl, deps) : await verifyOfficialPage(cand, deps, { detectEmpty: trustedIntake });
     // 公式ページの「取得失敗」（403 等）に限り、投稿の TAB ページで照合して救済する。会期・会場・展示名の不一致は救済しない
     if (!v.ok && !tabUrl && tabCandidate && OFFICIAL_UNREACHABLE_RE.test(v.reason)) {
       const t = await verifyTabPage(cand, tabCandidate, deps);

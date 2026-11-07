@@ -890,7 +890,7 @@ test("TAB救済: TAB ページで会期・会場・展示名が確認できな�
 
 test("TAB救済: 公式URLがあって公式照合に失敗した場合は救済しない（TAB を取得しない）", async () => {
   const c = mkTab({ officialUrl: "https://other.example/ex/9" });
-  const deps = tabDeps(c, { fetchHtml: async (u) => { deps.fetched.push(u); return { status: 200, body: "<html>no match</html>" }; } });
+  const deps = tabDeps(c, { fetchHtml: async (u) => { deps.fetched.push(u); return { status: 200, body: "<html>no match 2026年1月5日</html>" }; } });
   const r = await runC([c], deps);
   assert.equal(r.added.length, 0);
   assert.match(r.unverified[0].reason, /^official-/);
@@ -1029,7 +1029,7 @@ test("TAB救済(取得失敗): official-status-5xx / fetch-error / fetch-failed(
 
 test("TAB救済(取得失敗): 公式は取れたが会場・会期・展示名が合わない場合は救済しない（TAB も取得しない）", async () => {
   const c = mkBlocked();
-  for (const body of [`<html><body><h1>${c.title}</h1><p>別会場</p><p>会期 2026年10月12日〜11月30日</p></body></html>`, "<html><body>全然違う</body></html>"]) {
+  for (const body of [`<html><body><h1>${c.title}</h1><p>別会場</p><p>会期 2026年10月12日〜11月30日</p></body></html>`, "<html><body>全然違う 2026年1月5日</body></html>"]) {
     const deps = tabDeps(c);
     deps.fetchHtml = async (u) => { deps.fetched.push(u); return { status: 200, body }; };
     const r = await runC([c], deps);
@@ -1078,4 +1078,125 @@ test("TAB昇格: 昇格パスで公式取得が失敗した場合は従来どお
   const r = await processCandidates({ data: first.data, candidates: [c2], today: TODAY, deps: blockedDeps(c2), opts: { trustOrigin: true } });
   assert.equal(r.added.length, 0);
   assert.equal(r.skipped[0].reason, "duplicate-existing-tab-verified");
+});
+
+// ── TAB 救済（公式が 200 だが JS 描画で日付表記が皆無）: official-empty-page を取得失敗扱いにして TAB 照合 ──
+const OFFICIAL_EMPTY = "https://seeen.example/harajuku";
+const X_URL = "https://x.com/u/status/1";
+const emptyPageDeps = (c, officialBody = "<html><body><h1>SEEEN</h1></body></html>") => {
+  const fetched = [];
+  return {
+    fetched,
+    fetchHtml: async (u) => {
+      fetched.push(u);
+      if (u === OFFICIAL_EMPTY) return { status: 200, body: officialBody };
+      return { status: 200, body: okPage(c) };
+    },
+    saveThumb: async (id) => `/thumbnails/exhibition/${id}.jpg`,
+    now: () => "2026-10-04T01:00:00.000Z",
+  };
+};
+const mkEmpty = (over = {}) =>
+  mkCand({
+    officialUrl: OFFICIAL_EMPTY,
+    sources: [{ name: "Tokyo Art Beat", url: TAB_URL, kind: "listing" }],
+    origin: "intake",
+    intakeUrl: X_URL,
+    ...over,
+  });
+
+test("TAB救済(描画なし): 公式 200・日付表記なし・trustOrigin intake・sources に TAB URL → TAB 照合で追加", async () => {
+  const c = mkEmpty();
+  const deps = emptyPageDeps(c);
+  const r = await runC([c], deps);
+  assert.equal(r.added.length, 1, JSON.stringify(r.unverified));
+  const it = r.data.items[0];
+  assert.equal(it.verifiedVia, "tokyoartbeat");
+  assert.equal(it.link, TAB_URL);
+  assert.deepEqual(deps.fetched, [OFFICIAL_EMPTY, TAB_URL]);
+});
+
+test("TAB救済(描画なし): 同条件でも auto / trustOrigin なしは unverified のまま", async () => {
+  for (const [cand, opts] of [[mkEmpty({ origin: "auto" }), undefined], [mkEmpty(), { trustOrigin: false }]]) {
+    const deps = emptyPageDeps(cand);
+    const r = await processCandidates({ data: emptyData(), candidates: [cand], today: TODAY, deps, opts });
+    assert.equal(r.added.length, 0);
+    assert.equal(r.unverified.length, 1);
+    assert.deepEqual(deps.fetched, [OFFICIAL_EMPTY]);
+  }
+});
+
+test("TAB救済(描画なし): 日付表記はあるが候補と合わない公式は mismatch のまま（救済しない）", async () => {
+  const c = mkEmpty();
+  const deps = emptyPageDeps(c, `<html><body><h1>${c.title}</h1><p>${c.venue}</p><p>会期 2026年9月1日〜9月30日</p></body></html>`);
+  const r = await runC([c], deps);
+  assert.equal(r.added.length, 0);
+  assert.match(r.unverified[0].reason, /^official-date-mismatch/);
+  assert.deepEqual(deps.fetched, [OFFICIAL_EMPTY]);
+});
+
+test("TAB救済(描画なし): TAB 候補が無ければ official-empty-page のまま。TAB 照合も失敗なら unreachable-tab-failed", async () => {
+  const c1 = mkEmpty({ sources: [] });
+  const r1 = await runC([c1], emptyPageDeps(c1));
+  assert.equal(r1.added.length, 0);
+  assert.match(r1.unverified[0].reason, /^official-empty-page/);
+  const c2 = mkEmpty();
+  const deps2 = emptyPageDeps(c2);
+  const base = deps2.fetchHtml;
+  deps2.fetchHtml = async (u) => (u === TAB_URL ? { status: 200, body: "<html><body>無関係</body></html>" } : base(u));
+  const r2 = await runC([c2], deps2);
+  assert.equal(r2.added.length, 0);
+  assert.match(r2.unverified[0].reason, /^official-unreachable-tab-failed: official-empty-page.* \/ tab-/);
+});
+
+// ── レビュー反映: 空ページ判定は trustOrigin の intake 経路に限定 / hasDateLikeText の網羅 / sources 由来 TAB ──
+import { hasDateLikeText } from "./exhibition-build.mjs";
+
+const SEEEN_BODY = "<html><body>seeen Harajuku｜原宿 ポップアップ・展示会・撮影スタジオに最適な名和晃平設計の空間</body></html>";
+
+test("空ページ判定: auto でも trustOrigin なしでも従来どおり official-date-mismatch（理由コードを変えない）", async () => {
+  for (const [cand, opts] of [[mkEmpty({ origin: "auto" }), undefined], [mkEmpty(), { trustOrigin: false }]]) {
+    const deps = emptyPageDeps(cand, SEEEN_BODY);
+    const r = await processCandidates({ data: emptyData(), candidates: [cand], today: TODAY, deps, opts });
+    assert.equal(r.added.length, 0);
+    assert.match(r.unverified[0].reason, /^official-date-mismatch:/);
+  }
+});
+
+test("空ページ判定: seeen 実測本文（日付ゼロ）で intake 救済が発動する", async () => {
+  const c = mkEmpty();
+  const r = await runC([c], emptyPageDeps(c, SEEEN_BODY));
+  assert.equal(r.added.length, 1, JSON.stringify(r.unverified));
+  assert.equal(r.data.items[0].verifiedVia, "tokyoartbeat");
+});
+
+test("hasDateLikeText: 真になる表記", () => {
+  for (const t of [
+    "2026年11月1日", "11月1日", "11/1", "11.1", "2026-11-01", "Nov 1", "1 November",
+    "November 2026 – January 2027", "11月〜12月", "11月上旬", "令和8年11月", "令和8年",
+  ]) assert.equal(hasDateLikeText(t), true, t);
+});
+
+test("hasDateLikeText: 偽になる表記", () => {
+  for (const t of ["", "seeen Harajuku｜原宿 ポップアップ・展示会・撮影スタジオに最適な名和晃平設計の空間", "月曜休み 入場無料", "Monday to Friday"])
+    assert.equal(hasDateLikeText(t), false, t);
+});
+
+test("TAB救済: officialUrl が空で sources だけに TAB URL がある intake は TAB 照合で追加", async () => {
+  const c = mkCand({ officialUrl: "", origin: "intake", intakeUrl: X_URL, sources: [{ name: "TAB", url: TAB_URL, kind: "listing" }] });
+  const deps = tabDeps(c);
+  const r = await runC([c], deps);
+  assert.equal(r.added.length, 1, JSON.stringify(r.unverified));
+  assert.equal(r.data.items[0].verifiedVia, "tokyoartbeat");
+  assert.deepEqual(deps.fetched, [TAB_URL]);
+});
+
+test("TAB救済: sources の偽装 TAB URL（別ホスト・ポート付き）は救済しない", async () => {
+  for (const fake of ["https://www.tokyoartbeat.com.evil/events/-/x/y/2026-11-01", "https://www.tokyoartbeat.com:8443/events/-/x/y/2026-11-01"]) {
+    const c = mkEmpty({ sources: [{ name: "TAB", url: fake, kind: "listing" }] });
+    const deps = emptyPageDeps(c);
+    const r = await runC([c], deps);
+    assert.equal(r.added.length, 0, fake);
+    assert.deepEqual(deps.fetched, [OFFICIAL_EMPTY], fake);
+  }
 });
