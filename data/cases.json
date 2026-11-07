@@ -1,5 +1,38 @@
 [
   {
+    "id": "anima-ludens-la-vie-en-jeu-2026",
+    "title": "Anima Ludens（アニマ・ルーデンス） — La vie en jeu",
+    "summary": "現代美術とインディーゲームを「遊び」という共通項から再定義する国際企画展。フランス・アルルの礼拝堂で開催。",
+    "client": "",
+    "agency": "ars・bit / Shibuya Asobi-ba Production Committee / Octobre Numérique - Faire Monde",
+    "categories": [
+      "コンテンツ革新",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://octobre-numerique.fr/anima-ludens",
+    "thumbnail": "/thumbnails/anima-ludens-la-vie-en-jeu-2026.jpg",
+    "videoId": "",
+    "overview": "「Anima Ludens（アニマ・ルーデンス）— La vie en jeu」は、現代美術とインディーゲームを「遊び（jeu）」という共通項から横断的に捉え直す国際企画展。フランス・アルルのトリニテール礼拝堂を会場に、2026年10月10日から11月8日まで開催された。ars・bit、渋谷アソビ場プロダクション委員会、Octobre Numérique - Faire Mondeによる共催企画である。",
+    "background": "現代美術とインディーゲームは、それぞれ独立した文脈で評価されることが多く、両者を同じ展示空間で並置し比較的に論じる機会は限られている。本展は、両ジャンルに共通して内在する「遊び」という行為・概念を手がかりに、ジャンルの境界を越えた作品の見方を提示することを企図し、フランスのデジタルアート祭典Octobre Numériqueの枠組みの中で企画された。",
+    "execution": "会場には元礼拝堂であるアルルのトリニテール礼拝堂を用い、宗教建築という非日常的な空間の中に現代美術とインディーゲームの作品を並べて構成した。日本側のars・bit、渋谷アソビ場プロダクション委員会と、フランス側のOctobre Numérique - Faire Mondeが共催し、国際的な制作体制のもとで企画・運営された。",
+    "evaluationImpact": "美術館やゲームイベントといった既存の文脈を離れ、礼拝堂という歴史的空間で現代美術とインディーゲームを横並びに展示した点が特徴。日本とフランスの団体による国際共催企画として、ジャンルを越えた「遊び」の捉え方を提示する試みである。受賞歴や来場者数等の実績数値は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/Exhibition",
+      "Theme/Art",
+      "Theme/Entertainment"
+    ]
+  },
+  {
     "id": "null-2026",
     "title": "null²ⁿ（ヌルヌルネクサス）",
     "summary": "大阪・関西万博パビリオン「null²」を継承し、落合陽一プロデュースで横浜ランドマークタワーに常設開館したミュージアムシアター。",
