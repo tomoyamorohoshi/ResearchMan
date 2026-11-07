@@ -295,11 +295,11 @@ export function titleAppearsInText(text, title) {
  * @param {{fetchHtml:(url:string)=>Promise<{status:number, body:string}|null>}} deps
  * @returns {Promise<{ok:true}|{ok:false, reason:string}>}
  */
-export async function verifyOfficialPage(cand, deps) {
+export async function verifyOfficialPage(cand, deps, { detectEmpty = false } = {}) {
   const f = await fetchOfficialText(cand, deps);
   if (!f.ok) return f;
-  // 200 だが JS 描画で本文に日付表記が皆無 → 内容を読み取れていない（取得失敗扱い）
-  if (!hasDateLikeText(f.text)) return { ok: false, reason: "official-empty-page: 日付表記が1つも無い（JavaScript 描画の可能性）" };
+  // 200 だが JS 描画で本文に日付表記が皆無 → 内容を読み取れていない（取得失敗扱い）。投稿(trustOrigin の intake)経路だけで判定する
+  if (detectEmpty && !hasDateLikeText(f.text)) return { ok: false, reason: "official-empty-page: 日付表記が1つも無い（JavaScript 描画の可能性）" };
   return checkOfficialText(cand, f.text);
 }
 
@@ -312,6 +312,9 @@ export function hasDateLikeText(text) {
     /\d{1,2}\s*月\s*\d{1,2}\s*日/,
     /(?<![\d/.])\d{1,2}\s*[/.]\s*\d{1,2}(?!\d)/,
     /(?<!\d)\d{4}\s*[-/.]\s*\d{1,2}/,
+    /\d{1,2}\s*月/, // 月だけ・月上旬など
+    /(?:令和|平成|昭和)\s*\d{1,2}\s*年/,
+    new RegExp(`(?:${EN_MONTHS.join("|")})[a-z]*\\.?,?\\s*\\d{4}`, "i"), // November 2026
     new RegExp(`(?:${EN_MONTHS.join("|")})[a-z]*\\.?\\s*\\d{1,2}(?!\\d)`, "i"),
     new RegExp(`(?<!\\d)\\d{1,2}\\s*(?:st|nd|rd|th)?\\s*(?:${EN_MONTHS.join("|")})[a-z]*`, "i"),
   ];
@@ -587,7 +590,7 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
     const exempt = cand.collectAll || cand.origin === "intake";
     if (!exempt && capped >= o.maxAdd) return reject(cand, "daily-cap");
 
-    let v = tabUrl ? await verifyTabPage(cand, tabUrl, deps) : await verifyOfficialPage(cand, deps);
+    let v = tabUrl ? await verifyTabPage(cand, tabUrl, deps) : await verifyOfficialPage(cand, deps, { detectEmpty: trustedIntake });
     // 公式ページの「取得失敗」（403 等）に限り、投稿の TAB ページで照合して救済する。会期・会場・展示名の不一致は救済しない
     if (!v.ok && !tabUrl && tabCandidate && OFFICIAL_UNREACHABLE_RE.test(v.reason)) {
       const t = await verifyTabPage(cand, tabCandidate, deps);

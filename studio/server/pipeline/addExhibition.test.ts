@@ -94,7 +94,7 @@ test("巡回展: 会場ごとの別候補が両方追加される", async () => 
 });
 
 test("公式ページで会期が確認できない場合は unverified＋平易な理由", async () => {
-  const deps = makeDeps("<html><body>光る音展 大阪アートエリアB1 近日公開</body></html>");
+  const deps = makeDeps("<html><body>光る音展 大阪アートエリアB1 近日公開 2026年1月5日更新</body></html>");
   const obj = { contentKind: "exhibition", candidates: [baseCand] };
   const r = await processExhibitionAdd({ obj, url: URL_, data: makeData(), today: TODAY, deps, opts });
   assert.equal(r.outcome, "unverified");
@@ -250,4 +250,11 @@ test("describeExhibitionReason: TAB 照合失敗は何が合わなかったか�
 test("describeExhibitionReason: 公式取得不可かつ TAB 照合も失敗なら両方確認できなかったと分かる", () => {
   const s = describeExhibitionReason("official-unreachable-tab-failed: official-status-403 / tab-date-mismatch: startDate 2026-11-04 not found");
   assert.match(s, /公式ページは取得できず（403 等）、Tokyo Art Beat でも会期・会場・展示名を確認できませんでした/);
+});
+
+test("describeExhibitionReason: 公式が空ページ（JavaScript 表示）の文面。TAB も失敗した場合は 403 の文面にならない", () => {
+  assert.match(describeExhibitionReason("official-empty-page: 日付表記が1つも無い"), /公式ページの内容を読み取れませんでした（JavaScript で表示されるページ）/);
+  const s = describeExhibitionReason("official-unreachable-tab-failed: official-empty-page: 日付表記が1つも無い / tab-date-mismatch: startDate 2026-11-04 not found");
+  assert.match(s, /公式ページの内容を読み取れず（JavaScript で表示されるページ）、Tokyo Art Beat でも確認できませんでした/);
+  assert.doesNotMatch(s, /403/);
 });
