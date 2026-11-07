@@ -1,5 +1,5 @@
 import { exhibitionItems, getExhibitionBySlug, todayJst } from "@/lib/exhibition";
-import { formatPeriod } from "@/components/ExhibitionBadge";
+import { formatPeriod, OwnerIntakeBadge } from "@/components/ExhibitionBadge";
 import ExhibitionBadgeLive from "@/components/ExhibitionBadgeLive";
 import WantToGoButton from "@/components/WantToGoButton";
 import { notFound } from "next/navigation";
@@ -55,6 +55,7 @@ export default async function ExhibitionPage({ params }: { params: Promise<{ slu
         </div>
 
         <div className="flex flex-wrap items-center gap-2 mb-4">
+          <OwnerIntakeBadge e={e} size="md" />
           <ExhibitionBadgeLive e={e} initialToday={today} size="md" />
           {e.tags.map((t) => (
             <span key={t} className="text-xs px-2 py-0.5 bg-white border border-gray-300 text-gray-600 rounded-full">
@@ -74,11 +75,11 @@ export default async function ExhibitionPage({ params }: { params: Promise<{ slu
             {e.venue}
             <span className="text-gray-500">
               （{e.prefecture}
-              {e.city ? ` ${e.city}` : ""}）
+              {e.city && e.city !== e.prefecture ? ` ${e.city}` : ""}）
             </span>
           </dd>
           <dt className="text-[10px] tracking-[0.2em] uppercase text-gray-400 font-bold pt-0.5">入場料</dt>
-          <dd>{e.admission === "UNKNOWN" ? (e.verifiedVia === "tokyoartbeat" ? "不明（Tokyo Art Beat のページで確認）" : "不明（公式サイトで確認）") : e.admission}</dd>
+          <dd>{e.admission === "UNKNOWN" ? (e.verifiedVia === "tokyoartbeat" ? "不明（Tokyo Art Beat のページで確認）" : e.verifiedVia === "owner-intake" ? "不明（掲載元ページで確認）" : "不明（公式サイトで確認）") : e.admission}</dd>
         </dl>
 
         <div className="flex flex-wrap items-center gap-3 mb-8">
@@ -88,7 +89,7 @@ export default async function ExhibitionPage({ params }: { params: Promise<{ slu
           rel="noopener noreferrer"
           className="inline-block text-[11px] tracking-[0.2em] uppercase font-black px-4 py-2 bg-gray-900 text-white hover:bg-gray-700 transition-colors"
         >
-          {e.verifiedVia === "tokyoartbeat" ? "Tokyo Art Beat のページを開く ↗" : "公式ページを開く ↗"}
+          {e.verifiedVia === "tokyoartbeat" ? "Tokyo Art Beat のページを開く ↗" : e.verifiedVia === "owner-intake" ? "掲載元ページを開く ↗" : "公式ページを開く ↗"}
         </a>
         <WantToGoButton id={e.id} />
         </div>

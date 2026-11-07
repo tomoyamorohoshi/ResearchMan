@@ -6,6 +6,8 @@
 
 export const TAB_NAME = "Tokyo Art Beat";
 export const VERIFIED_VIA_TAB = "tokyoartbeat";
+/** 公式照合・TAB 照合のどちらも通らなかった投稿を、投稿者（オーナー）確認として追加した展示の印（2026-11-07 オーナー決定）。 */
+export const VERIFIED_VIA_OWNER = "owner-intake";
 
 export function isTabEventUrl(u) {
   if (typeof u !== "string") return false;

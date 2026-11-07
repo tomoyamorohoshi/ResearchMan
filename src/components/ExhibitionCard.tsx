@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Exhibition } from "@/lib/exhibition";
-import ExhibitionBadge, { formatPeriod } from "./ExhibitionBadge";
+import ExhibitionBadge, { formatPeriod, OwnerIntakeBadge } from "./ExhibitionBadge";
 
 type Props = {
   e: Exhibition;
@@ -66,7 +66,10 @@ export default function ExhibitionCard({
               Exhibition
             </span>
           </span>
-          <ExhibitionBadge e={e} today={today} />
+          <span className="inline-flex flex-wrap items-center gap-1.5">
+            <OwnerIntakeBadge e={e} />
+            <ExhibitionBadge e={e} today={today} />
+          </span>
         </div>
 
         <h2
@@ -83,7 +86,7 @@ export default function ExhibitionCard({
           <span className="text-gray-400">
             {" "}
             / {e.prefecture}
-            {e.city ? ` ${e.city}` : ""}
+            {e.city && e.city !== e.prefecture ? ` ${e.city}` : ""}
           </span>
         </p>
 

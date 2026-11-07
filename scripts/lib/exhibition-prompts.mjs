@@ -151,8 +151,8 @@ export function buildIntakePrompt(posts, profile, today = "") {
 ${blocks}
 
 # 手順
-1. 各POSTから展覧会（名称・作家・会場・会期）を特定する。展覧会の告知でなければ、その url の候補は出さない
-2. 会場・主催者の**公式ページをWebSearch/WebFetchで探し、日付・会場を公式ページで確認**する。公式ページが見つからなければ officialUrl は空文字（後段で unverified になる）。投稿本文が Tokyo Art Beat（TAB）の展示ページ（URL が https://www.tokyoartbeat.com/events/-/ で始まる）の場合も、まず TAB ページ内の「展覧会URL」や会場サイトの個別公式ページを探して officialUrl に書く。見つからない場合だけ officialUrl は空（後段で TAB ページで確認される）。公式個別ページが見つからず、投稿本文に TAB 展示ページ URL があれば officialUrl にその TAB URL を書く。いずれも会場名・会期は TAB ページ記載どおりに書く
+1. 各POSTから展覧会（名称・作家・会場・会期）を特定する。展覧会でなくても、会場と日付のある1日イベント・ライブ・期間限定イベントなら候補にする（1日だけなら startDate と endDate を同じ日にする）。会期が終了済みでも候補にする。会期が未発表なら startDate / endDate は空文字（推測で埋めない）。会場も日付も全く特定できない投稿だけ、その url の候補は出さない
+2. 会場・主催者の**公式ページをWebSearch/WebFetchで探し、日付・会場を公式ページで確認**する。公式ページが見つからなければ officialUrl は空文字（後段で unverified になる）。投稿本文が Tokyo Art Beat（TAB）の展示ページ（URL が https://www.tokyoartbeat.com/events/-/ で始まる）の場合も、まず TAB ページ内の「展覧会URL」や会場サイトの個別公式ページを探して officialUrl に書く。見つからない場合だけ officialUrl は空（後段で TAB ページで確認される）。公式個別ページが見つからず、投稿本文に TAB 展示ページ URL があれば officialUrl にその TAB URL を書く。いずれも会場名・会期は TAB ページ記載どおりに書く。Tokyo Art Beat の展示個別ページを見つけたら sources に kind:"listing" で入れる（公式ページが JavaScript 描画で内容を読めない場合の確認元になる）
 3. 各候補に "intakeUrl"（元のPOSTのurl）を必ず付ける。1つのPOSTに複数の展覧会があれば複数候補
 4. score は profile.scoring に従い自己採点（投稿ボーナス+10は機械側で加算するので含めない。投稿された＝興味ありとして扱われるが、score 自体は正直に付ける）
 5. 各候補に "pickWhy" を付ける:

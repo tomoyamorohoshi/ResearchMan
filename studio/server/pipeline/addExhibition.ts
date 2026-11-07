@@ -36,6 +36,8 @@ export interface ExhibitionDeps {
   fetchHtml: (url: string) => Promise<{ status: number; body: string } | null>;
   saveThumb: (id: string, cand: Record<string, unknown>) => Promise<string | null>;
   now: () => string;
+  /** 照合失敗時に Claude で探し直す（投稿の ownerIntake のみ。1候補1回。見つからなければ null）。 */
+  reinvestigate?: (cand: Record<string, unknown>, reason: string) => Promise<Record<string, unknown> | null>;
 }
 
 export interface ExhibitionBuildOpts {
@@ -43,9 +45,18 @@ export interface ExhibitionBuildOpts {
   highlightThreshold: number;
   dryRun?: boolean;
   reservedIds?: Set<string>;
+  /** 投稿を原則失敗させない（docs/INTAKE_NO_FAIL.md）。再調査 → 投稿者確認で追加 / 終了済みも ended で追加 / 会期未発表は保留。 */
+  ownerIntake?: boolean;
 }
 
-export type ExhibitionOutcome = "added" | "updated" | "duplicate" | "unverified" | "rejected";
+export type ExhibitionOutcome = "added" | "updated" | "duplicate" | "unverified" | "rejected" | "pending";
+
+/** 追加した展示の確認方法を1語で（LINE 返信用）。 */
+export function verifiedLabelJa(item: Record<string, unknown>): string {
+  if (item.verifiedVia === "owner-intake") return "投稿者確認";
+  if (item.verifiedVia === "tokyoartbeat") return "TAB";
+  return "公式";
+}
 
 export interface UnverifiedEntry {
   title: string;
@@ -81,12 +92,23 @@ export interface ProcessExhibitionResult {
   userPicks: UserPick[];
   /** 追加分のサムネのROOT相対パス（"public/thumbnails/exhibition/<id>.jpg"。dryRunでは実体なし）。 */
   thumbnailRelPaths: string[];
+  /** 会期未発表で保留にした投稿（ownerIntake のみ。呼び出し側が data/inbox/exhibition-pending.json へ積む）。 */
+  pending: Array<Record<string, unknown>>;
 }
+
+/** 会期未発表で保留にしたときの LINE 用の理由文。 */
+export const PENDING_REASON_JA = "会期未発表のため保留しました。発表され次第自動で追加します";
+/** 同じ投稿内の別展示と確認元URLが重複し、固有の確認元が無いときの保留文。 */
+export const PENDING_LINK_REASON_JA = "同じ投稿内の別の展示と確認元URLが重複したため保留しました。固有の確認元（公式・TAB・記事のURL）が見つかり次第自動で追加します";
+/** 確認は取れたがサムネイル画像を確保できなかったときの保留文。 */
+export const PENDING_THUMB_REASON_JA = "サムネイル画像を確保できなかったため保留しました。取得でき次第自動で追加します";
 
 /** processCandidatesの機械的な理由コードを、LINEで読める平易な日本語にする。 */
 export function describeExhibitionReason(reason: string): string {
   const r = reason || "";
+  if (r.startsWith("official-unreachable-tab-failed: official-empty-page")) return "公式ページの内容を読み取れず（JavaScript で表示されるページ）、Tokyo Art Beat でも確認できませんでした";
   if (r.startsWith("official-unreachable-tab-failed")) return "公式ページは取得できず（403 等）、Tokyo Art Beat でも会期・会場・展示名を確認できませんでした";
+  if (r.startsWith("official-empty-page")) return "公式ページの内容を読み取れませんでした（JavaScript で表示されるページ）。Tokyo Art Beat の展示ページURLを送ると確認元として使えます";
   if (r.startsWith("tab-date-mismatch")) return "Tokyo Art Beat のページで会期を確認できませんでした（ページ上の開始日・終了日が候補と合いません）";
   if (r.startsWith("tab-venue-mismatch")) return "Tokyo Art Beat のページで会場を確認できませんでした（ページ上の会場名が候補と合いません）";
   if (r.startsWith("tab-title-mismatch")) return "Tokyo Art Beat のページで展覧会名を確認できませんでした（ページ上の展示名が候補と合いません）";
@@ -108,6 +130,9 @@ export function describeExhibitionReason(reason: string): string {
   if (r === "thumbnail-unavailable") return "サムネイル画像を確保できませんでした";
   if (r === "invalid-candidate") return "展覧会名または会場を確認できませんでした";
   if (r === "daily-cap") return "本日の追加上限に達しました";
+  if (r.startsWith("link-collision")) return "同じ投稿内の別の展示と確認元URLが重複し、固有の確認元（公式・TAB・記事のURL）が見つからなかったため追加できませんでした";
+  if (r.startsWith("pending-expired")) return "再調査を重ねても追加できなかったため、保留から外しました";
+  if (r.startsWith("invalid-prefecture")) return "開催都道府県を確認できませんでした";
   return r ? `追加処理中にエラーが起きました（コード: ${r}）` : "不明な理由で追加できませんでした";
 }
 
@@ -133,6 +158,7 @@ export async function processExhibitionAdd(p: {
     reasonJa: "",
     userPicks: [],
     thumbnailRelPaths: [],
+    pending: [],
   };
   const candidates = parseExhibitionCandidates(obj, url);
   if (candidates.length === 0) {
@@ -143,10 +169,12 @@ export async function processExhibitionAdd(p: {
   // 公式URL欠落を already-ended より先に unverified 化するため、未検証キューに積まれるのを防ぐ。
   const isEnded = (c: Record<string, unknown>): boolean =>
     typeof c.endDate === "string" && /^\d{4}-\d{2}-\d{2}$/.test(c.endDate) && c.endDate < today;
-  const endedRejected = candidates
-    .filter(isEnded)
-    .map((c) => ({ title: String(c.title ?? ""), reason: "already-ended" }));
-  const live = candidates.filter((c) => !isEnded(c));
+  // ownerIntake では終了済みも status:"ended" で追加するため、ここでは落とさない（processCandidates が扱う）
+  const ownerIntake = opts.ownerIntake === true;
+  const endedRejected = ownerIntake
+    ? []
+    : candidates.filter(isEnded).map((c) => ({ title: String(c.title ?? ""), reason: "already-ended" }));
+  const live = ownerIntake ? candidates : candidates.filter((c) => !isEnded(c));
   if (live.length === 0) {
     return { ...base, rejected: endedRejected, reasonJa: describeExhibitionReason("already-ended") };
   }
@@ -155,8 +183,9 @@ export async function processExhibitionAdd(p: {
   const added = out.added as ExhibitionItem[];
   const updated = out.updated as ProcessExhibitionResult["updated"];
   const unverified = out.unverified as UnverifiedEntry[];
+  const pending = (out.pending ?? []) as Array<Record<string, unknown>>;
   const rejected = [...endedRejected, ...(out.rejected as Array<{ title: string; reason: string }>)];
-  const common = { ...base, data: out.data as ExhibitionData, added, updated, unverified, rejected, userPicks: out.userPicks as UserPick[] };
+  const common = { ...base, data: out.data as ExhibitionData, added, updated, unverified, rejected, pending, userPicks: out.userPicks as UserPick[] };
 
   if (added.length > 0 || updated.length > 0) {
     return {
@@ -170,6 +199,11 @@ export async function processExhibitionAdd(p: {
     const existing = data.items.find((i) => i.id === sk.existingId);
     const reasonJa = sk.reason === "duplicate-existing-tab-verified" ? describeExhibitionReason(sk.reason) : "既に登録済みです";
     return { ...common, outcome: "duplicate", duplicateTitle: existing?.title ?? "", reasonJa };
+  }
+  if (pending.length > 0) {
+    const why = pending[0].pendingReason;
+    const reasonJa = why === "thumbnail-unavailable" ? PENDING_THUMB_REASON_JA : why === "link-collision" ? PENDING_LINK_REASON_JA : PENDING_REASON_JA;
+    return { ...common, outcome: "pending", reasonJa };
   }
   if (unverified.length > 0) {
     return { ...common, outcome: "unverified", reasonJa: describeExhibitionReason(unverified[0].reason) };

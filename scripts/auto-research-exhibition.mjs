@@ -26,6 +26,9 @@ import { localDayIndex } from "./lib/day-index.mjs";
 import { todayJst } from "./lib/exhibition-status.mjs";
 import { applyStatusUpdate, processCandidates, PREFECTURES } from "./lib/exhibition-build.mjs";
 import { consumeHandoff, commitHandoff } from "./lib/exhibition-handoff.mjs";
+import { appendPending, processPending } from "./lib/exhibition-pending.mjs";
+import { stageFinalize, discardStaleFinalize, runFinalize } from "./lib/exhibition-finalize.mjs";
+import { makeReinvestigator } from "./lib/exhibition-reinvestigate.mjs";
 import { applyUserPicks } from "./lib/exhibition-userpicks.mjs";
 import { runIntake } from "./lib/exhibition-intake-job.mjs";
 import { buildDiscoveryPrompt, buildIntakePrompt, expandQueries, pickSourcesForDay, EXHIBITION_CLI_OPTS } from "./lib/exhibition-prompts.mjs";
@@ -54,6 +57,7 @@ const THUMB_DIR = path.join(ROOT, "public/thumbnails/exhibition");
 
 const DRY_RUN = process.argv.includes("--dry-run");
 const STATUS_ONLY = process.argv.includes("--status-only");
+const FINALIZE_MODE = process.argv.includes("--finalize");
 
 const MAX_ROUNDS = 2;
 // 1日の追加上限（NEORT++/オンチェーン/ジェネラティブ=collectAll と intake 投稿は上限外）
@@ -62,6 +66,8 @@ const MAX_ADD = 5;
 const MODEL = "sonnet";
 const DISCOVER_TIMEOUT_MS = 600000;
 const INTAKE_TIMEOUT_MS = 600000;
+// 投稿の再調査（1候補1回）。intake の抽出より短く、WebSearch/WebFetch を数回使える程度
+const REINVESTIGATE_TIMEOUT_MS = 300000;
 
 // 実行ファイル不在・認証切れ/利用上限などで CLI が非0終了＝「完全に動かない」。タイムアウト/JSON抽出失敗は含めない
 const isCliFatal = (e) => /ENOENT|EACCES|終了コード/.test(String(e?.message));
@@ -77,6 +83,17 @@ async function main() {
   console.log(`   ${new Date().toLocaleString("ja-JP")}（today=${TODAY}）`);
   if (DRY_RUN) console.log("   ⚠ DRY RUN（data・サムネ・サマリーは更新しません）");
 
+  // ── 0. --finalize: 監査通過後に run-job から呼ばれる確定処理（intake の PATCH・保留リスト更新）だけ行って終わる ──
+  if (FINALIZE_MODE) {
+    const cfg = await loadIntakeConfig().catch(() => null);
+    const f = await runFinalize({ root: ROOT, today: TODAY, patch: async (results) => { if (cfg) await patchIntakeResults(cfg, results); } });
+    console.log(f.none ? "[finalize] 確定する計画なし" : f.stale ? "[finalize] 別の日の計画のため確定せず破棄" :`[finalize] ${f.ok ? "完了" : `一部失敗（次回再処理。dedupeで冪等）: ${f.error}`}${f.patched ? " / intake PATCH 済み" : ""}`);
+    return;
+  }
+  // 前回確定されなかった計画（監査 FAIL で巻き戻された日など）は破棄する。投稿は intake キュー/保留に残っており、再処理は dedupe で冪等
+  if (!DRY_RUN && (await discardStaleFinalize(ROOT).catch(() => false))) console.log("[finalize] 前回未確定の計画を破棄（投稿は intake キュー/保留から再処理）");
+  const stagedPatch = []; // intake の PATCH 計画（確定は --finalize）
+
   const original = await readJson(DATA_PATH);
 
   // ── 1. status 更新（最初に永続化。後続の失敗で捨てない） ──
@@ -90,12 +107,18 @@ async function main() {
   const unverified = [];
   let cliFatal = false;
   let handoffPlan = null; // handoff の除去計画。最終書き込み成功後かつ cliFatal でない時だけ commitHandoff する
+  let pendingPlan = null; // 会期未発表の保留リストの更新計画（handoffPlan と同じ扱い）
 
   if (!STATUS_ONLY) {
     let profile = await readJson(PROFILE_PATH);
     const claudeBin = resolveClaudeBin();
     const saveThumb = makeSaveThumb(THUMB_DIR);
     const deps = { fetchHtml: defaultFetchHtml, fetchJson: defaultFetchJson, saveThumb, now: () => new Date().toISOString() };
+    // 投稿(intake・保留)を原則失敗させない: 照合に失敗したら Claude に探し直させ、なお通らなければ投稿者確認で追加（docs/INTAKE_NO_FAIL.md）
+    const reinvestigate = makeReinvestigator({
+      today: TODAY,
+      run: async (prompt) => runClaudeJsonArray(claudeBin, prompt, { timeout: REINVESTIGATE_TIMEOUT_MS, marker: "intakeUrl", model: MODEL, ...EXHIBITION_CLI_OPTS }),
+    });
     const reservedIds = await loadReservedIds();
     const buildOpts = {
       addThreshold: profile.scoring.threshold.add,
@@ -121,9 +144,10 @@ async function main() {
             items: pending.items,
             data,
             today: TODAY,
-            opts: buildOpts,
+            opts: { ...buildOpts, ownerIntake: true },
             deps: {
               ...deps,
+              reinvestigate,
               extract: async (posts) =>
                 runClaudeJsonArray(claudeBin, buildIntakePrompt(posts, profile, TODAY), {
                   timeout: INTAKE_TIMEOUT_MS,
@@ -135,12 +159,15 @@ async function main() {
               persist: async (d) => {
                 if (!DRY_RUN) await writeJsonAtomic(DATA_PATH, d);
               },
+              // PATCH（サーバの投稿キューから外す）はここでは送らず計画に積む。監査通過後に run-job が --finalize で確定する
+              // （監査 FAIL で data/exhibition.json が巻き戻されても、投稿は intake キューに残る。M3）
               patch: async (results) => {
                 if (DRY_RUN) {
                   console.log(`[intake] --dry-run: PATCH しません（${results.length}件）`);
                   return { updated: 0 };
                 }
-                return patchIntakeResults(cfg, results);
+                stagedPatch.push(...results);
+                return { updated: 0 };
               },
             },
           });
@@ -154,6 +181,20 @@ async function main() {
           added.push(...out.added);
           updated.push(...out.updated);
           unverified.push(...out.unverified);
+          // 会期未発表の投稿は保留リストへ（日次で再調査し、日付が出たら追加）
+          if (out.pending.length) {
+            if (!DRY_RUN) {
+              try {
+                await appendPending(ROOT, out.pending, TODAY);
+              } catch (e) {
+                // 保留を書けなかった投稿は確定させず intake キューに戻す（次回再処理。dedupe で冪等）
+                const lost = new Set(out.pending.map((p) => p.intakeUrl));
+                for (const r of stagedPatch) if (lost.has(r.url)) Object.assign(r, { status: "retry", reason: "pending-write-failed" });
+                console.error(`[intake] 保留リストへの書き込み失敗 → intake キューに戻します: ${e.message}`);
+              }
+            }
+            console.log(`[intake] 会期未発表で保留: ${out.pending.map((p) => p.title).join(" / ")}`);
+          }
           console.log(`[intake] 結果: ${out.results.map((r) => `${r.status}`).join(", ")} / PATCH ${out.patched ? "OK" : `失敗（${out.patchError || "dry-run"}）→ data更新は継続`}`);
         }
       }
@@ -188,6 +229,28 @@ async function main() {
       if (!DRY_RUN && out.added.length) await writeJsonAtomic(DATA_PATH, data);
     } catch (e) {
       console.error(`[handoff] 想定外のエラー（続行）: ${e.message}`);
+    }
+
+    // ── 2c. 保留（会期未発表の投稿）の再調査。日付が出ていれば通常の追加（公式照合 → 投稿者確認）に進む。日次上限の対象外 ──
+    try {
+      const out = await processPending({
+        root: ROOT,
+        data,
+        today: TODAY,
+        deps: { ...deps, reinvestigate },
+        opts: { ...buildOpts, protectIds: new Set([...added, ...updated].map((a) => a.id)) },
+      });
+      pendingPlan = out.plan;
+      if (out.warning) console.warn(`[pending] 警告: ${out.warning} → スキップして続行`);
+      data = out.data;
+      added.push(...out.added);
+      updated.push(...out.updated);
+      unverified.push(...out.unverified);
+      for (const x of out.added) console.log(`  ＋追加(保留から): ${x.title}（${x.venue} ${x.startDate}〜${x.endDate}）`);
+      for (const x of out.pending) console.log(`  … 会期未発表のまま保留: ${x.title}`);
+      if (!DRY_RUN && out.added.length) await writeJsonAtomic(DATA_PATH, data);
+    } catch (e) {
+      console.error(`[pending] 想定外のエラー（続行）: ${e.message}`);
     }
 
     // ── 3. 発見 + 4. 機械検証 ──
@@ -252,6 +315,14 @@ async function main() {
         await commitHandoff(ROOT, handoffPlan);
       } catch (e) {
         console.error(`[handoff] 除去失敗（次回再処理。dedupeで冪等）: ${e.message}`);
+      }
+    }
+    // intake の PATCH と保留リストの更新は、監査通過後に run-job が `--finalize` で確定する（ここでは計画を残すだけ）
+    if (!cliFatal) {
+      try {
+        await stageFinalize(ROOT, { intakePatch: stagedPatch, pendingPlan, today: TODAY });
+      } catch (e) {
+        console.error(`[finalize] 計画の保存に失敗（投稿は intake キュー/保留に残り、次回再処理）: ${e.message}`);
       }
     }
   }

@@ -380,3 +380,54 @@ test("TAB例外: verifiedVia に tokyoartbeat 以外の値は FAIL", () => {
 test("TAB例外: official がある展示は verifiedVia があっても link 不一致を従来どおり FAIL", () => {
   assertFails(run({ items: [tabItem({ sources: [{ name: "公式", url: "https://museum.example/a", kind: "official" }, { name: "Tokyo Art Beat", url: TAB_URL, kind: "listing" }] })] }), /LINK NOT OFFICIAL/);
 });
+
+// ── 投稿者確認の展示（verifiedVia: owner-intake）の NO OFFICIAL SOURCE 例外 ──
+const POST_URL = "https://x.com/owner/status/1234567890";
+const ownerItem = (over = {}) => goodItem({
+  sources: [
+    { name: "会場サイト", url: "https://venue.example/events/1", kind: "listing" },
+    { name: "ユーザー投稿", url: POST_URL, kind: "social" },
+  ],
+  link: "https://venue.example/events/1",
+  verifiedVia: "owner-intake",
+  origin: "intake",
+  intakeUrl: POST_URL,
+  ...over,
+});
+
+test("owner-intake例外: origin=intake・intakeUrl あり・sources に投稿URL があれば official 無しでも PASS", () => {
+  const r = run({ items: [ownerItem()] });
+  assert.equal(r.code, 0, r.out);
+});
+
+test("owner-intake例外: 投稿URL自体を link にした展示も PASS", () => {
+  const r = run({ items: [ownerItem({ link: POST_URL, sources: [{ name: "ユーザー投稿", url: POST_URL, kind: "social" }] })] });
+  assert.equal(r.code, 0, r.out);
+});
+
+test("owner-intake例外: verifiedVia が無ければ従来どおり NO OFFICIAL SOURCE で FAIL", () => {
+  assertFails(run({ items: [ownerItem({ verifiedVia: undefined })] }), /NO OFFICIAL SOURCE/);
+});
+
+test("owner-intake例外: origin=auto なら FAIL", () => {
+  assertFails(run({ items: [ownerItem({ origin: "auto", intakeUrl: undefined })] }), /NO OFFICIAL SOURCE/);
+});
+
+test("owner-intake例外: intakeUrl が無ければ FAIL", () => {
+  assertFails(run({ items: [ownerItem({ intakeUrl: undefined })] }), /NO OFFICIAL SOURCE|INTAKEURL/);
+});
+
+test("owner-intake例外: sources に投稿URL が無ければ FAIL", () => {
+  assertFails(run({ items: [ownerItem({ sources: [{ name: "会場サイト", url: "https://venue.example/events/1", kind: "listing" }] })] }), /NO OFFICIAL SOURCE/);
+});
+
+test("owner-intake例外: 他の検査（status・日付・サムネ）は緩めない", () => {
+  assertFails(run({ items: [ownerItem({ status: "upcoming" })] }), /STATUS MISMATCH/);
+  assertFails(run({ items: [ownerItem({ endDate: "2026-09-01" })] }), /INVALID DATE/);
+  const it = ownerItem();
+  assertFails(run({ items: [it], thumbs: { [`${it.id}.jpg`]: null } }), /THUMBNAIL/);
+});
+
+test("owner-intake例外: official がある展示は link 不一致を従来どおり FAIL", () => {
+  assertFails(run({ items: [ownerItem({ sources: [{ name: "公式", url: "https://museum.example/a", kind: "official" }, { name: "ユーザー投稿", url: POST_URL, kind: "social" }] })] }), /LINK NOT OFFICIAL/);
+});

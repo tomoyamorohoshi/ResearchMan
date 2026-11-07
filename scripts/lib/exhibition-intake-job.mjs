@@ -75,7 +75,14 @@ export async function fetchPostText(url, deps) {
   }
 }
 
-const failStatus = (attempts) => (attempts >= 1 ? "unverified" : "retry");
+/** 保留にした理由に応じた PATCH 文言（API の語彙は変えず reason だけ変える）。 */
+export function pendingPatchReason(pendingReason) {
+  if (pendingReason === "thumbnail-unavailable") return "pending-thumbnail: サムネイル画像を取得できないため保留（取得でき次第自動で追加）";
+  if (pendingReason === "link-collision") return "pending-link-collision: 同じ投稿内の別の展示と確認元URLが重複したため保留（固有の確認元が見つかり次第自動で追加）";
+  return "pending-dates: 会期未発表のため保留（発表され次第自動で追加）";
+}
+
+const failStatus =(attempts) => (attempts >= 1 ? "unverified" : "retry");
 
 /** 1回の Claude CLI 呼び出しで処理する投稿の最大数（出力長・タイムアウト対策） */
 export const MAX_POSTS_PER_EXTRACT = 8;
@@ -95,6 +102,7 @@ export async function runIntake({ items, data, today, deps, opts = {} }) {
   const rejected = [];
   const added = [];
   const updated = [];
+  const pending = []; // 会期未発表の投稿（opts.ownerIntake のとき）。呼び出し側が保留リスト（exhibition-pending.mjs）へ積む
   const userPicks = []; // 素点<閾値で追加された投稿（likes.userPicks の記録対象。反映は呼び出し側）
   const protectIds = new Set(opts.protectIds || []); // 同一 intake 内で更新/追加済みの展示を再パッチしない
   let current = data;
@@ -176,8 +184,11 @@ export async function runIntake({ items, data, today, deps, opts = {} }) {
       for (const x of [...out.added, ...out.updated]) protectIds.add(x.id);
       unverified.push(...out.unverified);
       rejected.push(...out.rejected);
+      pending.push(...(out.pending || []));
       if (out.added.length) results.push({ url: f.url, status: "added", exhibitionId: out.added[0].id });
       else if (out.updated.length) results.push({ url: f.url, status: "added", exhibitionId: out.updated[0].id, reason: "dates-updated" });
+      // 会期未発表は保留リストへ（呼び出し側が積む）。PATCH には既存の語彙で伝える（API は変えない）
+      else if (out.pending?.length) results.push({ url: f.url, status: "unverified", reason: pendingPatchReason(out.pending[0]?.pendingReason) });
       else if (out.unverified.length) results.push({ url: f.url, status: "unverified", reason: out.unverified[0].reason });
       else if (out.rejected[0]?.reason === "thumbnail-unavailable") {
         // サムネ取得失敗は一時的な可能性がある → 恒久 rejected にせず retry、2回目以降は unverified
@@ -213,5 +224,5 @@ export async function runIntake({ items, data, today, deps, opts = {} }) {
       patchError = e.message;
     }
   }
-  return { data: current, results, unverified, rejected, added, updated, userPicks, patched, ...(patchError ? { patchError } : {}) };
+  return { data: current, results, unverified, rejected, added, updated, userPicks, pending, patched, ...(patchError ? { patchError } : {}) };
 }
