@@ -41,3 +41,24 @@ test("runClaude: 終了コード非0・spawnエラーは従来どおり例外", 
   assert.throws(() => runClaude("c", "p", { model: "m" }, () => ({ status: 1, stdout: "o", stderr: "e" })), /終了コード 1/);
   assert.throws(() => runClaude("c", "p", { model: "m" }, () => ({ error: new Error("boom") })), /Claude CLI エラー: boom/);
 });
+
+const toolsArg = (args) => args.filter((a) => a.startsWith("--tools"));
+
+test("buildClaudeArgs: allowedTools に WebFetch を含むと --tools=<同じ一覧> を付ける", () => {
+  const args = buildClaudeArgs({ model: "sonnet", allowedTools: "WebSearch,WebFetch" });
+  assert.ok(args.includes("--tools=WebSearch,WebFetch"));
+  assert.ok(args.includes("--allowedTools=WebSearch,WebFetch"));
+  assert.equal(args.at(-1), "--dangerously-skip-permissions");
+});
+
+test("buildClaudeArgs: WebFetch を含まない／未指定なら --tools を付けない", () => {
+  assert.deepEqual(toolsArg(buildClaudeArgs({ model: "sonnet", allowedTools: "WebSearch" })), []);
+  assert.deepEqual(toolsArg(buildClaudeArgs({ model: "sonnet" })), []);
+  assert.deepEqual(toolsArg(buildClaudeArgs({ model: "sonnet", allowedTools: "" })), []);
+});
+
+test("buildClaudeArgs: 空白入りの allowedTools でも WebFetch を検出して --tools を付ける", () => {
+  const args = buildClaudeArgs({ model: "sonnet", allowedTools: " WebSearch , WebFetch " });
+  assert.equal(toolsArg(args).length, 1);
+  assert.ok(args.includes("--tools= WebSearch , WebFetch ") || args.includes("--tools=WebSearch,WebFetch"));
+});
