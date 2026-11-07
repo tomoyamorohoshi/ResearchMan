@@ -3,6 +3,58 @@
   "statusAsOf": "2026-11-07",
   "items": [
     {
+      "id": "2026-kanazawa21-kyokara-ashita-sakuhin-keisho",
+      "slug": "2026-kanazawa21-kyokara-ashita-sakuhin-keisho",
+      "title": "今日から明日へ 作品を継承すること",
+      "artists": [
+        "ジェームズ・タレル",
+        "塩田千春",
+        "ヤノベケンジ",
+        "宮永愛子",
+        "石毛健太",
+        "髙橋銑",
+        "細井美裕"
+      ],
+      "venue": "金沢21世紀美術館",
+      "venueType": "museum",
+      "prefecture": "石川県",
+      "city": "金沢市",
+      "startDate": "2026-10-31",
+      "endDate": "2027-04-18",
+      "status": "ongoing",
+      "admission": "一般1,200円",
+      "tags": [
+        "light",
+        "installation",
+        "media_art"
+      ],
+      "score": 85,
+      "matchReason": "ジェームズ・タレル《ガスワークス》は鑑賞者が球体内部に横たわり移り変わる光と色に包まれる体験型作品で、知覚・物質を扱う光・空間インスタレーションという好みに合致する。",
+      "sources": [
+        {
+          "name": "今日から明日へ 作品を継承すること｜金沢21世紀美術館",
+          "url": "https://www.kanazawa21.jp/data_list.php?g=17&amp=&d=1853",
+          "kind": "official"
+        },
+        {
+          "name": "金沢21世紀美術館 公式X投稿",
+          "url": "https://x.com/kanazawa_21/status/2115319156770062751",
+          "kind": "social"
+        },
+        {
+          "name": "ユーザー投稿",
+          "url": "https://x.com/kanazawa_21/status/2115319156770062751?s=46&t=rnvmMdiPT06JMvo-M3bC0A",
+          "kind": "social"
+        }
+      ],
+      "link": "https://www.kanazawa21.jp/data_list.php?g=17&amp=&d=1853",
+      "thumbnail": "/thumbnails/exhibition/2026-kanazawa21-kyokara-ashita-sakuhin-keisho.jpg",
+      "addedAt": "2026-11-07T04:40:01.479Z",
+      "origin": "intake",
+      "intakeUrl": "https://x.com/kanazawa_21/status/2115319156770062751?s=46&t=rnvmMdiPT06JMvo-M3bC0A",
+      "highlight": true
+    },
+    {
       "id": "2026-art-center-new-under-commons-vol2",
       "slug": "2026-art-center-new-under-commons-vol2",
       "title": "Under Commons Vol.2 ―アクセスを仮設する",
