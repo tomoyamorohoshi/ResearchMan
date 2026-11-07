@@ -44,6 +44,10 @@ export function resolveClaudeBin() {
 export function buildClaudeArgs({ model, allowedTools, extraDisallowedTools }) {
   const args = ["--print", "--model", model];
   if (allowedTools) args.push(`--allowedTools=${allowedTools}`);
+  // 2026-11-05 から headless では WebFetch が既定ツールから外れ、--allowedTools だけでは使えない。
+  // --tools で名指しすると使える（WebFetch を含む時だけ付け、従来の挙動は変えない）。
+  const toolList = String(allowedTools || "").split(",").map((x) => x.trim()).filter(Boolean);
+  if (toolList.includes("WebFetch")) args.push(`--tools=${toolList.join(",")}`);
   // ファイル書き込み系ツールを明示的に禁止する（2026-08-18・良質な生成結果がstdoutでなく
   // ファイルに保存され article-generation-failed として誤棄却される事故の再発防止）。
   // --dangerously-skip-permissions と併用してもCLIは --disallowedTools を尊重する

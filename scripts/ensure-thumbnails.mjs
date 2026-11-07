@@ -201,7 +201,7 @@ Reference: ${c.link || "(none)"}
 Return ONLY the image URL on a single line. If none found, return exactly: NONE`;
   const r = spawnSync(
     CLAUDE_BIN,
-    ["--print", "--allowedTools=WebSearch,WebFetch", "--dangerously-skip-permissions", prompt],
+    ["--print", "--allowedTools=WebSearch,WebFetch", "--tools=WebSearch,WebFetch","--dangerously-skip-permissions", prompt],
     { encoding: "utf8", timeout: 90000, maxBuffer: 10 * 1024 * 1024 }
   );
   if (r.status !== 0 || !r.stdout) return null;
