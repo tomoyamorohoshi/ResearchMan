@@ -3,6 +3,41 @@
   "statusAsOf": "2026-11-07",
   "items": [
     {
+      "id": "2026-sas-tokyo-otowo-shitsurae-invisi",
+      "slug": "2026-sas-tokyo-otowo-shitsurae-invisi",
+      "title": "DESIGNART TOKYO 2026「おとを、しつらえる。| invisi」",
+      "artists": [
+        "invisi"
+      ],
+      "venue": "SAS® SHOWROOMING AND SPACE",
+      "venueType": "corporate",
+      "prefecture": "東京都",
+      "city": "渋谷区",
+      "startDate": "2026-10-30",
+      "endDate": "2026-11-08",
+      "status": "ongoing",
+      "admission": "無料",
+      "tags": [
+        "sound",
+        "installation"
+      ],
+      "score": 55,
+      "matchReason": "音を主軸としたクリエイティブチームinvisiによる、京都南條工房の「おりん」を楽器として再解釈したサウンド・インスタレーションで、知覚や空間性を扱う音のインスタレーションという点で嗜好に近いが、既知の作家・会場には該当しない。",
+      "sources": [
+        {
+          "name": "DESIGNART TOKYO 2026「おとを、しつらえる。| invisi」",
+          "url": "https://sas-tokyo.com/events/627/",
+          "kind": "official"
+        }
+      ],
+      "link": "https://sas-tokyo.com/events/627/",
+      "thumbnail": "/thumbnails/exhibition/2026-sas-tokyo-otowo-shitsurae-invisi.jpg",
+      "addedAt": "2026-11-07T04:50:06.234Z",
+      "origin": "intake",
+      "intakeUrl": "https://sas-tokyo.com/events/627/",
+      "highlight": false
+    },
+    {
       "id": "2027-scarts-optical-drift",
       "slug": "2027-scarts-optical-drift",
       "title": "OPTICAL DRIFT（札幌国際芸術祭2027）",
