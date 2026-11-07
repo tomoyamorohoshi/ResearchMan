@@ -136,6 +136,22 @@ test("rollbackTouchedFiles: commit済み(HEAD追跡)のファイルはuntracked�
   }
 });
 
+// サムネは「書く前」にパスを記録する方針のため、書き込み前にプロセスが死ぬと存在しないパスが
+// pendingRollbackに残る。存在しないパスは安全に無視され、他のパスの処理は続くこと。
+test("rollbackTouchedFiles: 存在しないパスがuntrackedに混ざっていても例外にならず、他のファイルは正しく戻る", async () => {
+  const dir = makeTempRepo();
+  try {
+    writeFileSync(path.join(dir, "a.txt"), "modified\n");
+    writeFileSync(path.join(dir, "real-thumb.jpg"), "x\n");
+    await rollbackTouchedFiles(dir, ["a.txt"], ["public/thumbnails/never-written.jpg", "real-thumb.jpg"]);
+    assert.equal(readFileSync(path.join(dir, "a.txt"), "utf-8"), "original\n");
+    assert.equal(existsSync(path.join(dir, "real-thumb.jpg")), false);
+    assert.equal(existsSync(path.join(dir, "public/thumbnails/never-written.jpg")), false);
+  } finally {
+    cleanup(dir);
+  }
+});
+
 // ── 2026-11-07事故: gitコマンド失敗(OOM/タイムアウト/spawn失敗)で追跡済みdata/exhibition.jsonが削除された ──
 // 「HEADに無い」と確定できたときだけ削除する。判定不能なら削除せずrestoreを試みる。
 type RunFn = typeof run;

@@ -24,7 +24,7 @@ import { fileURLToPath } from "node:url";
 import test from "node:test";
 import { writeJobFile, type Job } from "../jobs.js";
 import { DEFAULT_LOCK_PATH } from "./lock.js";
-import { clearPendingRollback, trackForRollback } from "./pendingRollback.js";
+import { clearPendingRollback, trackForRollback, withThumbTracking } from "./pendingRollback.js";
 import { enqueueJob, processQueueOnce, queueSnapshot, recoverQueueOnStartup, removeFromQueue } from "./jobQueue.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -383,6 +383,41 @@ test("trackForRollback: 配列へpushし、ジョブレコードのpendingRollba
     });
     await clearPendingRollback(j.id);
     assert.equal((await getJob(j.id))?.pendingRollback, undefined);
+  } finally {
+    await rm(path.join(JOBS_DIR, `${j.id}.json`), { force: true });
+  }
+});
+
+test("trackForRollback: 同じパスを二重に積まない", async () => {
+  const j = makeFixtureJob({ tab: "add-case", status: "running" });
+  await writeJobFile(j);
+  try {
+    const tracked: string[] = [];
+    const untracked: string[] = [];
+    await trackForRollback(j.id, tracked, untracked, { untracked: ["public/thumbnails/a.jpg"] });
+    await trackForRollback(j.id, tracked, untracked, { untracked: ["public/thumbnails/a.jpg"] });
+    assert.deepEqual(untracked, ["public/thumbnails/a.jpg"]);
+  } finally {
+    await rm(path.join(JOBS_DIR, `${j.id}.json`), { force: true });
+  }
+});
+
+test("withThumbTracking: サムネ保存関数の呼び出し「前」にそのパスがpendingRollbackへ永続化済みである", async () => {
+  const j = makeFixtureJob({ tab: "add-case", status: "running" });
+  await writeJobFile(j);
+  try {
+    const { getJob } = await import("../jobs.js");
+    const tracked: string[] = [];
+    const untracked: string[] = [];
+    let seenDuringSave: string[] | undefined;
+    const inner = async (id: string): Promise<string | null> => {
+      seenDuringSave = (await getJob(j.id))?.pendingRollback?.untracked;
+      return `/thumbnails/exhibition/${id}.jpg`;
+    };
+    const wrapped = withThumbTracking(j.id, tracked, untracked, inner, path.join("public", "thumbnails", "exhibition"));
+    const result = await wrapped("ex-1", {});
+    assert.equal(result, "/thumbnails/exhibition/ex-1.jpg");
+    assert.deepEqual(seenDuringSave, [path.join("public", "thumbnails", "exhibition", "ex-1.jpg")]);
   } finally {
     await rm(path.join(JOBS_DIR, `${j.id}.json`), { force: true });
   }
