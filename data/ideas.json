@@ -26209,5 +26209,215 @@
         "desc": "低解像度の動画を2K〜8Kへ、一般向けGPU1枚でも拡大できるアップスケーラー。"
       }
     ]
+  },
+  {
+    "id": "2026-11-07-1",
+    "date": "2026-11-07",
+    "title": "野焼きを断つ微生物と楽器",
+    "pattern": "技術×技術",
+    "seed": "Fertilizer 2.5の「稲わらを7日で肥料化する微生物」の発酵ムラを、OBSIDIAN Neuralの8トラック・ループに翻訳したら、畑の発酵が刻々と変わる音の楽譜になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "thai-health-promotion-foundation-fertilizer-2-5",
+        "title": "Fertilizer 2.5",
+        "desc": "稲わらを7日で肥料に変え、PM2.5の原因となる野焼きをやめさせる微生物の取り組み。"
+      },
+      {
+        "type": "tech",
+        "id": "obsidian-neural",
+        "title": "OBSIDIAN Neural",
+        "desc": "AIがその場でループ音源を作る、ライブ演奏向けの無料オープンソース楽器。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-07-2",
+    "date": "2026-11-07",
+    "title": "オペラ化するDIYの苦難",
+    "pattern": "文脈×技術",
+    "seed": "Hornbach「No Project Without Drama」のDIYをオペラ叙事詩にする発想に、CustomDanceの対話型振付を掛けたら、失敗の度に踊りが生まれる施工動画が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "hornbach-no-project-without-drama",
+        "title": "No Project Without Drama",
+        "desc": "DIYの苦労をオペラのような壮大な物語にしたカンヌ受賞フィルム。"
+      },
+      {
+        "type": "tech",
+        "id": "customdance",
+        "title": "CustomDance",
+        "desc": "音楽と文章から、人が選びながら3Dダンスの振付を作れるAIシステム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-07-3",
+    "date": "2026-11-07",
+    "title": "代理被害を空間で追体験",
+    "pattern": "文脈×技術",
+    "seed": "Ministry for Equality「The Treasure Hunt」が描く、子を介した暴力の見えにくさを、Lyra 2.0で一枚の写真から歩ける家に立ち上げ、被害者の視点で探索できる体験にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ministry-for-equality-the-treasure-hunt",
+        "title": "The Treasure Hunt",
+        "desc": "子どもを通じて行われる暴力の実態を描いた脚本重視の短編作品。"
+      },
+      {
+        "type": "tech",
+        "id": "lyra-2-0",
+        "title": "Lyra 2.0",
+        "desc": "1枚の画像や短い動画から、歩き回れる3D空間を自動生成するNVIDIAの技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-07-4",
+    "date": "2026-11-07",
+    "title": "天候で動く人型ロボ",
+    "pattern": "文脈×技術",
+    "seed": "Visit Nordkynの天気連動する雪結晶ロゴの考え方で、SONICの人型ロボの歩き方を現地の気象で変えたら、吹雪では忍び足、晴れでは跳ねる観光案内人になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "visit-nordkyn-where-nature-rules-2010",
+        "title": "Visit Nordkyn: Where Nature Rules",
+        "desc": "リアルタイム気象データで5分ごとに形が変わる雪結晶のロゴを使った観光ブランド。"
+      },
+      {
+        "type": "tech",
+        "id": "sonic",
+        "title": "SONIC（GR00T Whole-Body Control）",
+        "desc": "歩行や走行、跳躍など人型ロボットの全身動作を担う動きの基盤モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-07-5",
+    "date": "2026-11-07",
+    "title": "光のホタルを4Dで保存",
+    "pattern": "技術×技術",
+    "seed": "4DGSの映像と空間オーディオを一体で保存する形式で、Sensorio「Fireflies」の1万個の光が風に揺れる夜を記録し、後から光の中を歩き直せるアーカイブになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "fireflies-2023",
+        "title": "Fireflies",
+        "desc": "光ファイバー1万個の白い光が風で蛍のように明滅する屋外インスタレーション。"
+      },
+      {
+        "type": "tech",
+        "id": "4dgs",
+        "title": "4DGS",
+        "desc": "動く3Dガウシアンスプラット映像と空間音声を1本にまとめ、途中再生もできる形式。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-07-6",
+    "date": "2026-11-07",
+    "title": "歩く人が霧に残す軌跡",
+    "pattern": "技術×技術",
+    "seed": "FogBoxの霧とレーザーで光の軌跡を立体に浮かべる仕組みに、ComfyUI-GEM-Xで動画から抜いた全身モーションを流し込んだら、踊る人の動きが霧の中に彫刻として残るかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "fogbox-2025",
+        "title": "FogBox",
+        "desc": "霧とレーザーの密度を制御し、庭園に光の軌跡を立体的に見せた屋外インスタレーション。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-gem-x",
+        "title": "ComfyUI-GEM-X",
+        "desc": "1本の動画から全身の動きを取り出し、3Dキャラに適用するComfyUIのノード。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-07-7",
+    "date": "2026-11-07",
+    "title": "洞窟の影を声で操る",
+    "pattern": "転用",
+    "seed": "VoiceStudioの声クローンを本来の吹き替え用途から外し、[AI]legory of the Caveの「影しか知らないLLM」に来場者自身の声で語らせたら、自分の声に騙される洞窟体験になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ai-legory-of-the-cave-confined-to-representations-of-the-wor",
+        "title": "[AI]legory of the Cave – Confined to representations of the world",
+        "desc": "プラトンの洞窟を、LLMが文字化された世界しか知らない状況に読み替えた体験作品。"
+      },
+      {
+        "type": "tech",
+        "id": "voicestudio",
+        "title": "VoiceStudio",
+        "desc": "声のクローンや多言語吹き替えを完全ローカルで無料で行えるOSSツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-07-8",
+    "date": "2026-11-07",
+    "title": "棚田ドームを音の楽器に",
+    "pattern": "転用",
+    "seed": "Ultimate Vocal Removerの音源分離を、歌の分離ではなく小豆島の光の竹ドームに響く環境音に使えば、風・虫・足音を別々の楽器として聴き分ける空間になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2013-063",
+        "title": "小豆島の光",
+        "desc": "小豆島の棚田に建てられた、内部に入れる竹編みの大きなドーム。"
+      },
+      {
+        "type": "tech",
+        "id": "ultimate-vocal-remover",
+        "title": "Ultimate Vocal Remover (UVR)",
+        "desc": "複数のAIモデルでボーカルと楽器を分けられる無料のデスクトップアプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-07-9",
+    "date": "2026-11-07",
+    "title": "手描き文字を人形に変える",
+    "pattern": "文脈×技術",
+    "seed": "Fulham F.C.がスタジアムの手描きレタリングから書体を作った発想に、ikiの2Dパペットを掛けたら、壁の文字が目を動かして話しかけてくるクラブのキャラ文字になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "fulham-f-c-ffc-original-2026",
+        "title": "Fulham F.C. ブランドリフレッシュ（スタジアムの壁の手描きレタリングから書体 FFC Original を制作）",
+        "desc": "本拠地の手描きレタリングから専用書体とブランドを作ったサッカークラブの事例。"
+      },
+      {
+        "type": "tech",
+        "id": "iki",
+        "title": "iki",
+        "desc": "文章の指示でキャラ部品を作り、まばたきや視線を動かせる無料の2Dパペットエンジン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-07-10",
+    "date": "2026-11-07",
+    "title": "ペンギン行進の4D追跡",
+    "pattern": "転用",
+    "seed": "R4DGSの自然言語で動く対象を追う手法を、本来の解析用途から外し、Protest March of the Penguinsの群れに「先頭で歩く一羽」と指定して、デモの主役を毎日追う実況にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "penguins-international-protest-march-of-the-penguins",
+        "title": "Protest March of the Penguins",
+        "desc": "ペンギンの年次移動を抗議デモに見立てて配信した環境活動のライブストリーム。"
+      },
+      {
+        "type": "tech",
+        "id": "r4dgs-refergaussian",
+        "title": "R4DGS / ReferGaussian",
+        "desc": "動く3Dシーンで「手前を走る人」のように言葉で指定した対象を追跡できる手法。"
+      }
+    ]
   }
 ]
