@@ -9,7 +9,7 @@
  */
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
@@ -172,6 +172,119 @@ test("rollbackTouchedFiles: HEADにあるファイルが作業ツリーで削除
     await rollbackTouchedFiles(dir, ["a.txt"], []);
     assert.equal(readFileSync(path.join(dir, "a.txt"), "utf-8"), "original\n");
   } finally {
+    cleanup(dir);
+  }
+});
+
+// ── レビュー指摘: newUntracked / 一括restore失敗 / パス正規化 ──────────────
+test("rollbackTouchedFiles: newUntrackedPathsにHEAD追跡済みのパスが混ざっていても削除せずrestoreする", async () => {
+  const dir = makeTempRepo();
+  try {
+    writeFileSync(path.join(dir, "a.txt"), "modified\n");
+    await rollbackTouchedFiles(dir, [], ["a.txt"]);
+    assert.equal(readFileSync(path.join(dir, "a.txt"), "utf-8"), "original\n");
+  } finally {
+    cleanup(dir);
+  }
+});
+
+test("rollbackTouchedFiles: newUntrackedPathsの判定がgit失敗(unknown)なら削除しない", async () => {
+  const dir = makeTempRepo();
+  try {
+    writeFileSync(path.join(dir, "thumb.jpg"), "x\n");
+    const fake: RunFn = async () => ({ ok: false, stdout: "", stderr: "ENOMEM", code: null });
+    await rollbackTouchedFiles(dir, [], ["thumb.jpg"], fake);
+    assert.equal(existsSync(path.join(dir, "thumb.jpg")), true);
+  } finally {
+    cleanup(dir);
+  }
+});
+
+test("rollbackTouchedFiles: 一括restoreだけ失敗したら1件ずつ再試行し、失敗は console.error に残す", async () => {
+  const dir = makeTempRepo();
+  const errors: string[] = [];
+  const orig = console.error;
+  console.error = (...a: unknown[]) => void errors.push(a.join(" "));
+  try {
+    writeFileSync(path.join(dir, "b.txt"), "b\n");
+    execFileSync("git", ["add", "b.txt"], { cwd: dir });
+    execFileSync("git", ["commit", "-q", "-m", "b"], { cwd: dir });
+    writeFileSync(path.join(dir, "a.txt"), "modified\n");
+    writeFileSync(path.join(dir, "b.txt"), "modified\n");
+    const restoreCalls: string[][] = [];
+    const fake: RunFn = async (cmd, args, cwd, t) => {
+      if (args[0] === "restore") {
+        const paths = args.slice(args.indexOf("--") + 1);
+        restoreCalls.push(paths);
+        if (paths.length > 1) return { ok: false, stdout: "", stderr: "bulk-fail", code: 1 };
+        if (paths[0] === "b.txt") return { ok: false, stdout: "", stderr: "single-fail", code: 1 };
+      }
+      return run(cmd, args, cwd, t);
+    };
+    await rollbackTouchedFiles(dir, ["a.txt", "b.txt"], [], fake);
+    assert.deepEqual(restoreCalls, [["a.txt", "b.txt"], ["a.txt"], ["b.txt"]]);
+    assert.equal(readFileSync(path.join(dir, "a.txt"), "utf-8"), "original\n");
+    assert.equal(existsSync(path.join(dir, "b.txt")), true);
+    assert.ok(errors.some((e) => e.includes("b.txt") && e.includes("失敗")), errors.join("\n"));
+  } finally {
+    console.error = orig;
+    cleanup(dir);
+  }
+});
+
+test("rollbackTouchedFiles: Windows区切り・./付きでもHEAD追跡済みを正しく認識し削除しない", async () => {
+  const dir = makeTempRepo();
+  try {
+    mkdirSync(path.join(dir, "data"));
+    writeFileSync(path.join(dir, "data", "ex.json"), "{}\n");
+    execFileSync("git", ["add", "data/ex.json"], { cwd: dir });
+    execFileSync("git", ["commit", "-q", "-m", "d"], { cwd: dir });
+    writeFileSync(path.join(dir, "data", "ex.json"), "{\"x\":1}\n");
+    await rollbackTouchedFiles(dir, ["data\\ex.json"], ["./data/ex.json"]);
+    assert.equal(readFileSync(path.join(dir, "data", "ex.json"), "utf-8"), "{}\n");
+  } finally {
+    cleanup(dir);
+  }
+});
+
+test("rollbackTouchedFiles: 絶対パス・..・空文字は判定不能として削除しない", async () => {
+  const dir = makeTempRepo();
+  const outside = mkdtempSync(path.join(os.tmpdir(), "rb-outside-"));
+  const orig = console.error;
+  console.error = () => {};
+  try {
+    const abs = path.join(dir, "keep.txt");
+    writeFileSync(abs, "k\n");
+    writeFileSync(path.join(outside, "o.txt"), "o\n");
+    const dotdot = path.relative(dir, path.join(outside, "o.txt"));
+    await rollbackTouchedFiles(dir, [abs, dotdot, ""], [abs, dotdot, ""]);
+    assert.equal(existsSync(abs), true);
+    assert.equal(existsSync(path.join(outside, "o.txt")), true);
+  } finally {
+    console.error = orig;
+    cleanup(dir);
+    cleanup(outside);
+  }
+});
+
+test("rollbackTouchedFiles: present/absent/unknownの混在で、absentだけ削除されpresentはrestoreされる", async () => {
+  const dir = makeTempRepo();
+  const orig = console.error;
+  console.error = () => {};
+  try {
+    writeFileSync(path.join(dir, "a.txt"), "modified\n"); // present
+    writeFileSync(path.join(dir, "new.json"), "{}\n"); // absent
+    writeFileSync(path.join(dir, "weird.txt"), "w\n"); // git失敗 → unknown
+    const fake: RunFn = async (cmd, args, cwd, t) => {
+      if (args[0] === "ls-tree" && args.includes("weird.txt")) return { ok: false, stdout: "", stderr: "ENOMEM", code: null };
+      return run(cmd, args, cwd, t);
+    };
+    await rollbackTouchedFiles(dir, ["a.txt", "new.json", "weird.txt"], ["new.json"], fake);
+    assert.equal(readFileSync(path.join(dir, "a.txt"), "utf-8"), "original\n");
+    assert.equal(existsSync(path.join(dir, "new.json")), false);
+    assert.equal(existsSync(path.join(dir, "weird.txt")), true);
+  } finally {
+    console.error = orig;
     cleanup(dir);
   }
 });
