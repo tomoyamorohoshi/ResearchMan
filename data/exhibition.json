@@ -3,6 +3,60 @@
   "statusAsOf": "2026-11-07",
   "items": [
     {
+      "id": "2026-tokyo-node-yoshirotten-beyond-earth",
+      "slug": "2026-tokyo-node-yoshirotten-beyond-earth",
+      "title": "ヨシロットン展 彼方との交信／BEYOND EARTH",
+      "artists": [
+        "YOSHIROTTEN"
+      ],
+      "venue": "TOKYO NODE GALLERY A/B/C・SKY GARDEN & POOL",
+      "venueType": "corporate",
+      "prefecture": "東京都",
+      "city": "港区",
+      "startDate": "2026-10-30",
+      "endDate": "2027-01-11",
+      "status": "ongoing",
+      "admission": "一般2,200円（平日）/2,500円（土日祝）",
+      "tags": [
+        "media_art",
+        "light",
+        "video_art",
+        "installation",
+        "kinetic",
+        "sound"
+      ],
+      "score": 100,
+      "matchReason": "ウォッチ対象作家YOSHIROTTENの過去最大規模個展。JAXA協力による宇宙観測データ（ブラックホール観測・国際宇宙ステーションの全天観測データ等）を光と映像に変換する大規模メディアアート・インスタレーションで、吊り下げ式の光るリング彫刻（キネティック）や巨大スクリーン映像を展示。",
+      "sources": [
+        {
+          "name": "ヨシロットン展　彼方との交信／BEYOND EARTH（TOKYO NODE公式）",
+          "url": "https://www.tokyonode.jp/events/yoshirotten/index.html",
+          "kind": "official"
+        },
+        {
+          "name": "Tokyo Art Beat（投稿）",
+          "url": "https://x.com/tokyoartbeat_jp/status/2118893800714019145",
+          "kind": "social"
+        },
+        {
+          "name": "Tokyo Art Beat レポート記事",
+          "url": "https://www.tokyoartbeat.com/articles/-/yoshirotten-beyond-earth-report-202610",
+          "kind": "news"
+        },
+        {
+          "name": "PR TIMES",
+          "url": "https://prtimes.jp/main/html/rd/p/000000446.000048109.html",
+          "kind": "news"
+        }
+      ],
+      "link": "https://www.tokyonode.jp/events/yoshirotten/index.html",
+      "thumbnail": "/thumbnails/exhibition/2026-tokyo-node-yoshirotten-beyond-earth.jpg",
+      "addedAt": "2026-11-07T12:32:48.620Z",
+      "origin": "intake",
+      "intakeUrl": "https://x.com/tokyoartbeat_jp/status/2118893800714019145",
+      "highlight": true
+    },
+    {
       "id": "2026-shibuya-sakura-stage-luminescence-plants-exhibition",
       "slug": "2026-shibuya-sakura-stage-luminescence-plants-exhibition",
       "title": "ルミネセンスプランツ展 ― サステナブルな未来の光（GREEN VALLEY SHIBUYA）",
