@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "statusAsOf": "2026-11-06",
+  "statusAsOf": "2026-11-07",
   "items": [
     {
       "id": "2026-kyoto-kyocera-naoko-tosa-generative",
@@ -15,7 +15,7 @@
       "city": "京都市",
       "startDate": "2026-11-07",
       "endDate": "2026-11-22",
-      "status": "upcoming",
+      "status": "ongoing",
       "admission": "無料",
       "tags": [
         "media_art",
