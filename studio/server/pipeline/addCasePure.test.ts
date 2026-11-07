@@ -21,6 +21,7 @@ import {
   isXLink,
   normalizeYear,
   parseContentKind,
+  rescueNeitherAsCase,
   parseExhibitionCandidates,
   parseExtractedCandidate,
   parseExtractedTechCandidate,
@@ -140,6 +141,22 @@ test("isUsableCandidate: foundがtrueでもtitle/year/linkが欠落していれ�
 });
 
 // ── parseContentKind（要件1: case/tech/neitherの自動振り分け） ───────────
+
+test("rescueNeitherAsCase: neither でも題名と年があれば最も近いタブ(Case)として救済（link は未指定なら投稿URL）", () => {
+  const r = rescueNeitherAsCase({ contentKind: "neither", found: false, title: "何かの作品", year: "2026", summary: "s" }, "https://x.com/o/status/1");
+  assert.equal(r?.contentKind, "case");
+  assert.equal(r?.found, true);
+  assert.equal(r?.link, "https://x.com/o/status/1");
+  const keep = rescueNeitherAsCase({ contentKind: "neither", title: "t", year: 2025, link: "https://a.example/p" }, "https://x.com/o/status/1");
+  assert.equal(keep?.link, "https://a.example/p");
+});
+
+test("rescueNeitherAsCase: 題名か年が無い/neither 以外は null（事実を作らない・既存分岐を変えない）", () => {
+  assert.equal(rescueNeitherAsCase({ contentKind: "neither", found: false, reason: "x" }, "u"), null);
+  assert.equal(rescueNeitherAsCase({ contentKind: "neither", title: "t" }, "u"), null);
+  assert.equal(rescueNeitherAsCase({ contentKind: "case", title: "t", year: "2026" }, "u"), null);
+  assert.equal(rescueNeitherAsCase({ contentKind: "tech", title: "t", year: "2026" }, "u"), null);
+});
 
 test("parseContentKind: 'case'はそのまま'case'", () => {
   assert.equal(parseContentKind({ contentKind: "case" }), "case");

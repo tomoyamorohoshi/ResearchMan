@@ -26,6 +26,8 @@ import { localDayIndex } from "./lib/day-index.mjs";
 import { todayJst } from "./lib/exhibition-status.mjs";
 import { applyStatusUpdate, processCandidates, PREFECTURES } from "./lib/exhibition-build.mjs";
 import { consumeHandoff, commitHandoff } from "./lib/exhibition-handoff.mjs";
+import { appendPending, processPending, commitPending } from "./lib/exhibition-pending.mjs";
+import { makeReinvestigator } from "./lib/exhibition-reinvestigate.mjs";
 import { applyUserPicks } from "./lib/exhibition-userpicks.mjs";
 import { runIntake } from "./lib/exhibition-intake-job.mjs";
 import { buildDiscoveryPrompt, buildIntakePrompt, expandQueries, pickSourcesForDay, EXHIBITION_CLI_OPTS } from "./lib/exhibition-prompts.mjs";
@@ -62,6 +64,8 @@ const MAX_ADD = 5;
 const MODEL = "sonnet";
 const DISCOVER_TIMEOUT_MS = 600000;
 const INTAKE_TIMEOUT_MS = 600000;
+// 投稿の再調査（1候補1回）。intake の抽出より短く、WebSearch/WebFetch を数回使える程度
+const REINVESTIGATE_TIMEOUT_MS = 300000;
 
 // 実行ファイル不在・認証切れ/利用上限などで CLI が非0終了＝「完全に動かない」。タイムアウト/JSON抽出失敗は含めない
 const isCliFatal = (e) => /ENOENT|EACCES|終了コード/.test(String(e?.message));
@@ -90,12 +94,18 @@ async function main() {
   const unverified = [];
   let cliFatal = false;
   let handoffPlan = null; // handoff の除去計画。最終書き込み成功後かつ cliFatal でない時だけ commitHandoff する
+  let pendingPlan = null; // 会期未発表の保留リストの更新計画（handoffPlan と同じ扱い）
 
   if (!STATUS_ONLY) {
     let profile = await readJson(PROFILE_PATH);
     const claudeBin = resolveClaudeBin();
     const saveThumb = makeSaveThumb(THUMB_DIR);
     const deps = { fetchHtml: defaultFetchHtml, fetchJson: defaultFetchJson, saveThumb, now: () => new Date().toISOString() };
+    // 投稿(intake・保留)を原則失敗させない: 照合に失敗したら Claude に探し直させ、なお通らなければ投稿者確認で追加（docs/INTAKE_NO_FAIL.md）
+    const reinvestigate = makeReinvestigator({
+      today: TODAY,
+      run: async (prompt) => runClaudeJsonArray(claudeBin, prompt, { timeout: REINVESTIGATE_TIMEOUT_MS, marker: "intakeUrl", model: MODEL, ...EXHIBITION_CLI_OPTS }),
+    });
     const reservedIds = await loadReservedIds();
     const buildOpts = {
       addThreshold: profile.scoring.threshold.add,
@@ -121,9 +131,10 @@ async function main() {
             items: pending.items,
             data,
             today: TODAY,
-            opts: buildOpts,
+            opts: { ...buildOpts, ownerIntake: true },
             deps: {
               ...deps,
+              reinvestigate,
               extract: async (posts) =>
                 runClaudeJsonArray(claudeBin, buildIntakePrompt(posts, profile, TODAY), {
                   timeout: INTAKE_TIMEOUT_MS,
@@ -154,6 +165,11 @@ async function main() {
           added.push(...out.added);
           updated.push(...out.updated);
           unverified.push(...out.unverified);
+          // 会期未発表の投稿は保留リストへ（日次で再調査し、日付が出たら追加）
+          if (out.pending.length) {
+            if (!DRY_RUN) await appendPending(ROOT, out.pending, TODAY);
+            console.log(`[intake] 会期未発表で保留: ${out.pending.map((p) => p.title).join(" / ")}`);
+          }
           console.log(`[intake] 結果: ${out.results.map((r) => `${r.status}`).join(", ")} / PATCH ${out.patched ? "OK" : `失敗（${out.patchError || "dry-run"}）→ data更新は継続`}`);
         }
       }
@@ -188,6 +204,28 @@ async function main() {
       if (!DRY_RUN && out.added.length) await writeJsonAtomic(DATA_PATH, data);
     } catch (e) {
       console.error(`[handoff] 想定外のエラー（続行）: ${e.message}`);
+    }
+
+    // ── 2c. 保留（会期未発表の投稿）の再調査。日付が出ていれば通常の追加（公式照合 → 投稿者確認）に進む。日次上限の対象外 ──
+    try {
+      const out = await processPending({
+        root: ROOT,
+        data,
+        today: TODAY,
+        deps: { ...deps, reinvestigate },
+        opts: { ...buildOpts, protectIds: new Set([...added, ...updated].map((a) => a.id)) },
+      });
+      pendingPlan = out.plan;
+      if (out.warning) console.warn(`[pending] 警告: ${out.warning} → スキップして続行`);
+      data = out.data;
+      added.push(...out.added);
+      updated.push(...out.updated);
+      unverified.push(...out.unverified);
+      for (const x of out.added) console.log(`  ＋追加(保留から): ${x.title}（${x.venue} ${x.startDate}〜${x.endDate}）`);
+      for (const x of out.pending) console.log(`  … 会期未発表のまま保留: ${x.title}`);
+      if (!DRY_RUN && out.added.length) await writeJsonAtomic(DATA_PATH, data);
+    } catch (e) {
+      console.error(`[pending] 想定外のエラー（続行）: ${e.message}`);
     }
 
     // ── 3. 発見 + 4. 機械検証 ──
@@ -252,6 +290,13 @@ async function main() {
         await commitHandoff(ROOT, handoffPlan);
       } catch (e) {
         console.error(`[handoff] 除去失敗（次回再処理。dedupeで冪等）: ${e.message}`);
+      }
+    }
+    if (!cliFatal && pendingPlan) {
+      try {
+        await commitPending(ROOT, pendingPlan);
+      } catch (e) {
+        console.error(`[pending] 更新失敗（次回再処理。dedupeで冪等）: ${e.message}`);
       }
     }
   }

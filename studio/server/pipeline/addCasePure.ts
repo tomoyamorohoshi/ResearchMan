@@ -100,6 +100,20 @@ export function parseContentKind(obj: Record<string, unknown>): AddCaseContentKi
   return obj.contentKind === "case" || obj.contentKind === "tech" || obj.contentKind === "exhibition" ? obj.contentKind : "neither";
 }
 
+/**
+ * contentKind:"neither" の応答でも題名(title)と年(year)が取れていれば、最も近いタブ（Case Study）の候補として救済する
+ * （「該当しない」で投稿を落とさない。2026-11-07 オーナー決定）。link が無ければ投稿URL自体を一次ソースとする。
+ * 題名か年が無い（＝事実が無い）応答、neither 以外の応答は null（既存の分岐・エラーを変えない）。
+ */
+export function rescueNeitherAsCase(obj: Record<string, unknown>, url: string): Record<string, unknown> | null {
+  if (parseContentKind(obj) !== "neither") return null;
+  const title = typeof obj.title === "string" ? obj.title.trim() : "";
+  const hasYear = (typeof obj.year === "string" && obj.year.trim() !== "") || typeof obj.year === "number";
+  if (!title || !hasYear) return null;
+  const link = typeof obj.link === "string" && obj.link.trim() ? obj.link.trim() : url;
+  return { ...obj, contentKind: "case", found: true, link };
+}
+
 export interface ExtractedCandidate {
   found: boolean;
   reason?: string;

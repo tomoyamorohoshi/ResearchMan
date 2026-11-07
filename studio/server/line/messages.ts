@@ -162,11 +162,18 @@ export interface ExhibitionNotifyItem {
   venue: string;
   startDate: string;
   endDate: string;
+  /** 確認方法を1語で（公式／TAB／投稿者確認）。 */
+  via?: string;
+}
+
+/** 会期未発表で保留にしたときのLINE通知（追加ではなく失敗でもない）。 */
+export function buildAddExhibitionPendingText(title: string): string {
+  return `Exhibition に保留しました: ${title}\n会期未発表のため保留しました。発表され次第自動で追加します`;
 }
 
 /** exhibition追加成功のLINE通知。巡回展など複数件は1行ずつ並べる。 */
 export function buildAddExhibitionSuccessText(items: ExhibitionNotifyItem[], url: string, note?: string): string {
-  const lines = items.map((i) => `Exhibition に追加しました: ${i.title}（${i.venue} ${i.startDate}〜${i.endDate}）`);
+  const lines = items.map((i) => `Exhibition に追加しました: ${i.title}（${i.venue} ${i.startDate}〜${i.endDate}）${i.via ? `【確認: ${i.via}】` : ""}`);
   lines.push(url, "サイトのExhibitionタブで見られます。");
   if (note) lines.push(note);
   return lines.join("\n");

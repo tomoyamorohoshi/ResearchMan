@@ -354,6 +354,7 @@ test("buildStopResultText: Caseが反映済みのジョブには「Case分は反
 import {
   buildAddExhibitionFailedText,
   buildAddExhibitionNotAddedText,
+  buildAddExhibitionPendingText,
   buildAddExhibitionSuccessText,
 } from "./messages.js";
 
@@ -364,6 +365,18 @@ test("buildAddExhibitionSuccessText: タイトル・会場・会期・URLを含�
   );
   assert.match(t, /^Exhibition に追加しました: 光る音展（大阪アートエリアB1 2026-10-24〜2026-10-27）/);
   assert.match(t, /https:\/\/research-man\.vercel\.app\/exhibition\/x/);
+});
+
+test("buildAddExhibitionSuccessText: 確認方法(via)を1語で付ける", () => {
+  const t = buildAddExhibitionSuccessText(
+    [{ title: "光る音展", venue: "大阪アートエリアB1", startDate: "2026-10-24", endDate: "2026-10-27", via: "投稿者確認" }],
+    "https://research-man.vercel.app/exhibition/x",
+  );
+  assert.match(t, /^Exhibition に追加しました: 光る音展（大阪アートエリアB1 2026-10-24〜2026-10-27）【確認: 投稿者確認】/);
+});
+
+test("buildAddExhibitionPendingText: 保留の案内", () => {
+  assert.equal(buildAddExhibitionPendingText("タレル展"), "Exhibition に保留しました: タレル展\n会期未発表のため保留しました。発表され次第自動で追加します");
 });
 
 test("buildAddExhibitionNotAddedText / FailedText", () => {

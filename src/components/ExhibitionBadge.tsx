@@ -15,6 +15,20 @@ export function exhibitionBadgeInfo(
   return { label: n === 0 ? "本日まで" : `残り${n}日`, status, urgent: n <= 7 };
 }
 
+/** 投稿者確認で追加した展示（verifiedVia: "owner-intake"。公式・TAB の照合は通っていない）の小さな印。それ以外は何も出さない。 */
+export function OwnerIntakeBadge({ e, size = "sm" }: { e: Pick<Exhibition, "verifiedVia">; size?: "sm" | "md" }) {
+  if (e.verifiedVia !== "owner-intake") return null;
+  return (
+    <span
+      className={`${size === "md" ? "text-[10px] px-2 py-1" : "text-[8px] px-1 py-0.5"} font-bold tracking-wider leading-none whitespace-nowrap border border-dashed border-gray-400 text-gray-500`}
+      data-exhibition-verified="owner-intake"
+      title="公式ページ・Tokyo Art Beat での照合は通っていません。投稿された情報をもとに登録しています"
+    >
+      公式未確認
+    </span>
+  );
+}
+
 export function formatPeriod(startDate: string, endDate: string): string {
   return `${startDate.replaceAll("-", ".")} – ${endDate.replaceAll("-", ".")}`;
 }

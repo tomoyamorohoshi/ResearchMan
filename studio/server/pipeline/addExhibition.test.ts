@@ -4,7 +4,7 @@
  */
 import assert from "node:assert/strict";
 import test from "node:test";
-import { describeExhibitionReason, processExhibitionAdd, type ExhibitionData } from "./addExhibition.js";
+import { describeExhibitionReason, processExhibitionAdd, verifiedLabelJa, PENDING_REASON_JA, type ExhibitionData } from "./addExhibition.js";
 
 const URL_ = "https://20th.starryworks.co.jp/";
 const TODAY = "2026-10-20";
@@ -257,4 +257,46 @@ test("describeExhibitionReason: 公式が空ページ（JavaScript 表示）の�
   const s = describeExhibitionReason("official-unreachable-tab-failed: official-empty-page: 日付表記が1つも無い / tab-date-mismatch: startDate 2026-11-04 not found");
   assert.match(s, /公式ページの内容を読み取れず（JavaScript で表示されるページ）、Tokyo Art Beat でも確認できませんでした/);
   assert.doesNotMatch(s, /403/);
+});
+
+// ── ownerIntake（投稿を原則失敗させない。docs/INTAKE_NO_FAIL.md） ──
+const ownerOpts = { ...opts, ownerIntake: true };
+const MISMATCH_HTML = "<html><body>光る音展 近日公開 2026年1月5日更新</body></html>";
+
+test("ownerIntake: 公式で会期が確認できなくても投稿者確認で追加（verifiedVia・確認方法ラベル）", async () => {
+  const obj = { contentKind: "exhibition", candidates: [baseCand] };
+  const r = await processExhibitionAdd({ obj, url: "https://x.com/o/status/1", data: makeData(), today: TODAY, deps: makeDeps(MISMATCH_HTML), opts: ownerOpts });
+  assert.equal(r.outcome, "added");
+  assert.equal(r.added[0].verifiedVia, "owner-intake");
+  assert.equal(verifiedLabelJa(r.added[0]), "投稿者確認");
+  assert.equal(r.unverified.length, 0);
+});
+
+test("ownerIntake: 公式照合が通れば公式ラベル / 終了済みも ended で追加", async () => {
+  const ok = await processExhibitionAdd({ obj: { candidates: [baseCand] }, url: URL_, data: makeData(), today: TODAY, deps: makeDeps(), opts: ownerOpts });
+  assert.equal(verifiedLabelJa(ok.added[0]), "公式");
+  const ended = { ...baseCand, startDate: "2026-01-01", endDate: "2026-01-05", officialUrl: "" };
+  const r = await processExhibitionAdd({ obj: { candidates: [ended] }, url: "https://x.com/o/status/2", data: makeData(), today: TODAY, deps: makeDeps(), opts: ownerOpts });
+  assert.equal(r.outcome, "added");
+  assert.equal(r.added[0].status, "ended");
+});
+
+test("ownerIntake: 会期未発表は pending（reasonJa は保留の案内）。追加も unverified も無し", async () => {
+  const cand = { ...baseCand, startDate: "", endDate: "", officialUrl: "" };
+  const r = await processExhibitionAdd({ obj: { candidates: [cand] }, url: "https://x.com/o/status/3", data: makeData(), today: TODAY, deps: makeDeps(), opts: ownerOpts });
+  assert.equal(r.outcome, "pending");
+  assert.equal(r.pending.length, 1);
+  assert.equal(r.reasonJa, PENDING_REASON_JA);
+  assert.equal(r.data.items.length, 0);
+  assert.equal(r.unverified.length, 0);
+});
+
+test("ownerIntake: reinvestigate が1回だけ呼ばれ、得た日付で追加される", async () => {
+  let n = 0;
+  const cand = { ...baseCand, startDate: "", endDate: "", officialUrl: "" };
+  const deps = { ...makeDeps(), reinvestigate: async () => { n++; return { startDate: "2027-01-10", endDate: "2027-03-01" }; } };
+  const r = await processExhibitionAdd({ obj: { candidates: [cand] }, url: "https://x.com/o/status/4", data: makeData(), today: TODAY, deps, opts: ownerOpts });
+  assert.equal(n, 1);
+  assert.equal(r.outcome, "added");
+  assert.equal(r.added[0].startDate, "2027-01-10");
 });

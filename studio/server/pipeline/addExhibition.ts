@@ -36,6 +36,8 @@ export interface ExhibitionDeps {
   fetchHtml: (url: string) => Promise<{ status: number; body: string } | null>;
   saveThumb: (id: string, cand: Record<string, unknown>) => Promise<string | null>;
   now: () => string;
+  /** 照合失敗時に Claude で探し直す（投稿の ownerIntake のみ。1候補1回。見つからなければ null）。 */
+  reinvestigate?: (cand: Record<string, unknown>, reason: string) => Promise<Record<string, unknown> | null>;
 }
 
 export interface ExhibitionBuildOpts {
@@ -43,9 +45,18 @@ export interface ExhibitionBuildOpts {
   highlightThreshold: number;
   dryRun?: boolean;
   reservedIds?: Set<string>;
+  /** 投稿を原則失敗させない（docs/INTAKE_NO_FAIL.md）。再調査 → 投稿者確認で追加 / 終了済みも ended で追加 / 会期未発表は保留。 */
+  ownerIntake?: boolean;
 }
 
-export type ExhibitionOutcome = "added" | "updated" | "duplicate" | "unverified" | "rejected";
+export type ExhibitionOutcome = "added" | "updated" | "duplicate" | "unverified" | "rejected" | "pending";
+
+/** 追加した展示の確認方法を1語で（LINE 返信用）。 */
+export function verifiedLabelJa(item: { verifiedVia?: unknown }): string {
+  if (item.verifiedVia === "owner-intake") return "投稿者確認";
+  if (item.verifiedVia === "tokyoartbeat") return "TAB";
+  return "公式";
+}
 
 export interface UnverifiedEntry {
   title: string;
@@ -81,7 +92,12 @@ export interface ProcessExhibitionResult {
   userPicks: UserPick[];
   /** 追加分のサムネのROOT相対パス（"public/thumbnails/exhibition/<id>.jpg"。dryRunでは実体なし）。 */
   thumbnailRelPaths: string[];
+  /** 会期未発表で保留にした投稿（ownerIntake のみ。呼び出し側が data/inbox/exhibition-pending.json へ積む）。 */
+  pending: Array<Record<string, unknown>>;
 }
+
+/** 会期未発表で保留にしたときの LINE 用の理由文。 */
+export const PENDING_REASON_JA = "会期未発表のため保留しました。発表され次第自動で追加します";
 
 /** processCandidatesの機械的な理由コードを、LINEで読める平易な日本語にする。 */
 export function describeExhibitionReason(reason: string): string {
@@ -135,6 +151,7 @@ export async function processExhibitionAdd(p: {
     reasonJa: "",
     userPicks: [],
     thumbnailRelPaths: [],
+    pending: [],
   };
   const candidates = parseExhibitionCandidates(obj, url);
   if (candidates.length === 0) {
@@ -145,10 +162,12 @@ export async function processExhibitionAdd(p: {
   // 公式URL欠落を already-ended より先に unverified 化するため、未検証キューに積まれるのを防ぐ。
   const isEnded = (c: Record<string, unknown>): boolean =>
     typeof c.endDate === "string" && /^\d{4}-\d{2}-\d{2}$/.test(c.endDate) && c.endDate < today;
-  const endedRejected = candidates
-    .filter(isEnded)
-    .map((c) => ({ title: String(c.title ?? ""), reason: "already-ended" }));
-  const live = candidates.filter((c) => !isEnded(c));
+  // ownerIntake では終了済みも status:"ended" で追加するため、ここでは落とさない（processCandidates が扱う）
+  const ownerIntake = opts.ownerIntake === true;
+  const endedRejected = ownerIntake
+    ? []
+    : candidates.filter(isEnded).map((c) => ({ title: String(c.title ?? ""), reason: "already-ended" }));
+  const live = ownerIntake ? candidates : candidates.filter((c) => !isEnded(c));
   if (live.length === 0) {
     return { ...base, rejected: endedRejected, reasonJa: describeExhibitionReason("already-ended") };
   }
@@ -157,8 +176,9 @@ export async function processExhibitionAdd(p: {
   const added = out.added as ExhibitionItem[];
   const updated = out.updated as ProcessExhibitionResult["updated"];
   const unverified = out.unverified as UnverifiedEntry[];
+  const pending = (out.pending ?? []) as Array<Record<string, unknown>>;
   const rejected = [...endedRejected, ...(out.rejected as Array<{ title: string; reason: string }>)];
-  const common = { ...base, data: out.data as ExhibitionData, added, updated, unverified, rejected, userPicks: out.userPicks as UserPick[] };
+  const common = { ...base, data: out.data as ExhibitionData, added, updated, unverified, rejected, pending, userPicks: out.userPicks as UserPick[] };
 
   if (added.length > 0 || updated.length > 0) {
     return {
@@ -172,6 +192,9 @@ export async function processExhibitionAdd(p: {
     const existing = data.items.find((i) => i.id === sk.existingId);
     const reasonJa = sk.reason === "duplicate-existing-tab-verified" ? describeExhibitionReason(sk.reason) : "既に登録済みです";
     return { ...common, outcome: "duplicate", duplicateTitle: existing?.title ?? "", reasonJa };
+  }
+  if (pending.length > 0) {
+    return { ...common, outcome: "pending", reasonJa: PENDING_REASON_JA };
   }
   if (unverified.length > 0) {
     return { ...common, outcome: "unverified", reasonJa: describeExhibitionReason(unverified[0].reason) };
