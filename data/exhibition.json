@@ -3,6 +3,56 @@
   "statusAsOf": "2026-11-07",
   "items": [
     {
+      "id": "2026-parcel-bien-three-flames-plus1",
+      "slug": "2026-parcel-bien-three-flames-plus1",
+      "title": "BIEN「Three flames +1」",
+      "artists": [
+        "BIEN"
+      ],
+      "venue": "PARCEL",
+      "venueType": "gallery",
+      "prefecture": "東京都",
+      "city": "中央区",
+      "startDate": "2026-11-04",
+      "endDate": "2026-12-12",
+      "status": "ongoing",
+      "admission": "UNKNOWN",
+      "tags": [
+        "installation",
+        "video_art"
+      ],
+      "score": 55,
+      "matchReason": "絵画・映像・立体による空間的インスタレーションだが、光や知覚を主題とする作品ではなく、物語性（芥川龍之介『藪の中』）を中心としたコンセプチュアルな展示であり、好みの中核テーマ（光・空間・メディアアート・ジェネラティブ）とは一致度が高くない。",
+      "sources": [
+        {
+          "name": "BIEN「Three flames +1」",
+          "url": "https://parceltokyo.jp/exhibition/three-flames/",
+          "kind": "official"
+        },
+        {
+          "name": "Tokyo Art Beat (X投稿)",
+          "url": "https://x.com/tokyoartbeat_jp/status/2118343540413444459",
+          "kind": "social"
+        },
+        {
+          "name": "eyescream.jp",
+          "url": "https://eyescream.jp/art/169470/",
+          "kind": "news"
+        },
+        {
+          "name": "ユーザー投稿",
+          "url": "https://x.com/tokyoartbeat_jp/status/2118343540413444459?s=46&t=rnvmMdiPT06JMvo-M3bC0A",
+          "kind": "social"
+        }
+      ],
+      "link": "https://parceltokyo.jp/exhibition/three-flames/",
+      "thumbnail": "/thumbnails/exhibition/2026-parcel-bien-three-flames-plus1.jpg",
+      "addedAt": "2026-11-07T04:04:52.499Z",
+      "origin": "intake",
+      "intakeUrl": "https://x.com/tokyoartbeat_jp/status/2118343540413444459?s=46&t=rnvmMdiPT06JMvo-M3bC0A",
+      "highlight": false
+    },
+    {
       "id": "2026-kyoto-kyocera-naoko-tosa-generative",
       "slug": "2026-kyoto-kyocera-naoko-tosa-generative",
       "title": "現代美術家 土佐尚子展「生成されるものたち」－アート＆テクノロジーの現在地－",
