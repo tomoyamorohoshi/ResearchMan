@@ -120,6 +120,22 @@ test("rollbackTouchedFiles: newUntrackedPathsで渡したファイルも従来�
   }
 });
 
+// 起動時復元は「commit済みで死んだジョブ」にもpendingRollbackでrollbackを走らせうる。
+// HEAD追跡済み（=commit済み）のファイルは tracked/untracked どちらで渡されても消えないこと。
+test("rollbackTouchedFiles: commit済み(HEAD追跡)のファイルはuntrackedとして渡されても削除されず内容も保たれる", async () => {
+  const dir = makeTempRepo();
+  try {
+    writeFileSync(path.join(dir, "thumb.jpg"), "committed-thumb\n");
+    execFileSync("git", ["add", "thumb.jpg"], { cwd: dir });
+    execFileSync("git", ["commit", "-q", "-m", "add thumb"], { cwd: dir });
+    await rollbackTouchedFiles(dir, ["a.txt"], ["thumb.jpg"]);
+    assert.equal(readFileSync(path.join(dir, "thumb.jpg"), "utf-8"), "committed-thumb\n");
+    assert.equal(readFileSync(path.join(dir, "a.txt"), "utf-8"), "original\n");
+  } finally {
+    cleanup(dir);
+  }
+});
+
 // ── 2026-11-07事故: gitコマンド失敗(OOM/タイムアウト/spawn失敗)で追跡済みdata/exhibition.jsonが削除された ──
 // 「HEADに無い」と確定できたときだけ削除する。判定不能なら削除せずrestoreを試みる。
 type RunFn = typeof run;

@@ -24,6 +24,7 @@ import { fileURLToPath } from "node:url";
 import test from "node:test";
 import { writeJobFile, type Job } from "../jobs.js";
 import { DEFAULT_LOCK_PATH } from "./lock.js";
+import { clearPendingRollback, trackForRollback } from "./pendingRollback.js";
 import { enqueueJob, processQueueOnce, queueSnapshot, recoverQueueOnStartup, removeFromQueue } from "./jobQueue.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -261,4 +262,128 @@ test("removeFromQueue: 指定idをFIFOから取り除く（キャンセルされ
   removeFromQueue(a);
   assert.deepEqual(queueSnapshot(), [b]);
   await drainQueue();
+});
+
+// ── pendingRollback: プロセス死で走らなかったロールバックを起動時に実行する ──────────
+
+test("recoverQueueOnStartup: running+add-caseにpendingRollbackがあれば、queuedへ戻す前にrollbackを実行してクリアする", async () => {
+  await drainQueue();
+  const pending = { tracked: ["data/exhibition.json"], untracked: ["public/thumbnails/x.jpg"] };
+  const j = makeFixtureJob({ tab: "add-case", status: "running", pendingRollback: pending });
+  await writeJobFile(j);
+  const calls: Array<{ tracked: string[]; untracked: string[] }> = [];
+  try {
+    await recoverQueueOnStartup(async (tracked, untracked) => {
+      calls.push({ tracked, untracked });
+    });
+    const { getJob } = await import("../jobs.js");
+    const after = await getJob(j.id);
+    assert.deepEqual(calls, [pending]);
+    assert.equal(after?.status, "queued");
+    assert.equal(after?.restartResumes, 1);
+    assert.equal(after?.pendingRollback, undefined);
+    assert.ok(queueSnapshot().includes(j.id));
+  } finally {
+    removeFromQueue(j.id);
+    await rm(path.join(JOBS_DIR, `${j.id}.json`), { force: true });
+  }
+});
+
+test("recoverQueueOnStartup: ロールバック失敗時はerrorにして再実行しない（console.errorを出す）", async () => {
+  await drainQueue();
+  const j = makeFixtureJob({
+    tab: "add-case",
+    status: "running",
+    pendingRollback: { tracked: ["data/exhibition.json"], untracked: [] },
+  });
+  await writeJobFile(j);
+  const origError = console.error;
+  const errors: unknown[][] = [];
+  console.error = (...args: unknown[]) => {
+    errors.push(args);
+  };
+  try {
+    await recoverQueueOnStartup(async () => {
+      throw new Error("restore failed");
+    });
+    console.error = origError;
+    const { getJob } = await import("../jobs.js");
+    const after = await getJob(j.id);
+    assert.equal(after?.status, "error");
+    assert.match(after?.error ?? "", /ロールバック/);
+    assert.ok(!queueSnapshot().includes(j.id));
+    assert.ok(errors.length >= 1);
+  } finally {
+    console.error = origError;
+    await rm(path.join(JOBS_DIR, `${j.id}.json`), { force: true });
+  }
+});
+
+test("recoverQueueOnStartup: restartResumes>=1でerrorに落とす経路でもpendingRollbackがあればrollbackする", async () => {
+  await drainQueue();
+  const pending = { tracked: ["data/cases.json"], untracked: ["public/thumbnails/y.jpg"] };
+  const j = makeFixtureJob({ tab: "add-case", status: "running", restartResumes: 1, pendingRollback: pending });
+  await writeJobFile(j);
+  const calls: unknown[] = [];
+  try {
+    await recoverQueueOnStartup(async (tracked, untracked) => {
+      calls.push({ tracked, untracked });
+    });
+    const { getJob } = await import("../jobs.js");
+    const after = await getJob(j.id);
+    assert.deepEqual(calls, [pending]);
+    assert.equal(after?.status, "error");
+    assert.equal(after?.pendingRollback, undefined);
+    assert.ok(!queueSnapshot().includes(j.id));
+  } finally {
+    await rm(path.join(JOBS_DIR, `${j.id}.json`), { force: true });
+  }
+});
+
+test("recoverQueueOnStartup: pendingRollbackが無いジョブではrollbackを呼ばない / awardsは対象外", async () => {
+  await drainQueue();
+  const a = makeFixtureJob({ tab: "add-case", status: "running" });
+  const w = makeFixtureJob({
+    tab: "awards",
+    status: "running",
+    pendingRollback: { tracked: ["x"], untracked: [] },
+  });
+  await writeJobFile(a);
+  await writeJobFile(w);
+  let called = 0;
+  try {
+    await recoverQueueOnStartup(async () => {
+      called++;
+    });
+    assert.equal(called, 0);
+  } finally {
+    removeFromQueue(a.id);
+    await rm(path.join(JOBS_DIR, `${a.id}.json`), { force: true });
+    await rm(path.join(JOBS_DIR, `${w.id}.json`), { force: true });
+  }
+});
+
+// ── addCase側: ファイル書き込み前にpendingRollbackをジョブへ永続化する ──────────────
+
+test("trackForRollback: 配列へpushし、ジョブレコードのpendingRollbackに累積スナップショットを保存する", async () => {
+  const j = makeFixtureJob({ tab: "add-case", status: "running" });
+  await writeJobFile(j);
+  try {
+    const tracked: string[] = [];
+    const untracked: string[] = [];
+    await trackForRollback(j.id, tracked, untracked, { untracked: ["public/thumbnails/a.jpg"] });
+    await trackForRollback(j.id, tracked, untracked, { tracked: ["data/exhibition.json"] });
+    assert.deepEqual(tracked, ["data/exhibition.json"]);
+    assert.deepEqual(untracked, ["public/thumbnails/a.jpg"]);
+    const { getJob } = await import("../jobs.js");
+    const after = await getJob(j.id);
+    assert.deepEqual(after?.pendingRollback, {
+      tracked: ["data/exhibition.json"],
+      untracked: ["public/thumbnails/a.jpg"],
+    });
+    await clearPendingRollback(j.id);
+    assert.equal((await getJob(j.id))?.pendingRollback, undefined);
+  } finally {
+    await rm(path.join(JOBS_DIR, `${j.id}.json`), { force: true });
+  }
 });
