@@ -3,6 +3,59 @@
   "statusAsOf": "2026-11-07",
   "items": [
     {
+      "id": "2026-art-center-new-under-commons-vol2",
+      "slug": "2026-art-center-new-under-commons-vol2",
+      "title": "Under Commons Vol.2 ―アクセスを仮設する",
+      "artists": [
+        "遠藤麻衣",
+        "大石一貴",
+        "清原啓",
+        "Finnegan Shannon"
+      ],
+      "venue": "Art Center NEW",
+      "venueType": "alt_space",
+      "prefecture": "神奈川県",
+      "city": "横浜市",
+      "startDate": "2026-10-16",
+      "endDate": "2026-11-15",
+      "status": "ongoing",
+      "admission": "一般1,000円",
+      "tags": [
+        "installation",
+        "video_art"
+      ],
+      "score": 55,
+      "matchReason": "現代アート作家3名がゲームをプレイしテーマを読み解いて作品化する、ゲームと現代アートの境界領域を扱う企画で、アート×デザイン×テクノロジーの境界領域および会期終盤の時宜性が加点要素。",
+      "sources": [
+        {
+          "name": "Under Commons Vol.2",
+          "url": "https://artcenter-new.jp/under-commons-vol2/",
+          "kind": "official"
+        },
+        {
+          "name": "Tokyo Art Beat (X投稿)",
+          "url": "https://x.com/tokyoartbeat_jp/status/2116124162918109679",
+          "kind": "social"
+        },
+        {
+          "name": "美術手帖",
+          "url": "https://bijutsutecho.com/exhibitions/16982",
+          "kind": "news"
+        },
+        {
+          "name": "ユーザー投稿",
+          "url": "https://x.com/tokyoartbeat_jp/status/2116124162918109679?s=46&t=rnvmMdiPT06JMvo-M3bC0A",
+          "kind": "social"
+        }
+      ],
+      "link": "https://artcenter-new.jp/under-commons-vol2/",
+      "thumbnail": "/thumbnails/exhibition/2026-art-center-new-under-commons-vol2.jpg",
+      "addedAt": "2026-11-07T04:32:14.663Z",
+      "origin": "intake",
+      "intakeUrl": "https://x.com/tokyoartbeat_jp/status/2116124162918109679?s=46&t=rnvmMdiPT06JMvo-M3bC0A",
+      "highlight": false
+    },
+    {
       "id": "2026-21-h88a2be",
       "slug": "2026-21-h88a2be",
       "title": "塩田千春＋岡田利規《記憶の部屋について》上演",
