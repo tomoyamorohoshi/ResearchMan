@@ -169,6 +169,89 @@ test("recoverQueueOnStartup: status='cancelled'のジョブはキューへ再登
   }
 });
 
+test("recoverQueueOnStartup: running+add-case(初回)はerrorでなくqueuedへ戻しFIFO再登録、restartResumes=1・progressクリア", async () => {
+  await drainQueue();
+  const j = makeFixtureJob({ tab: "add-case", status: "running", progress: "取得中" });
+  await writeJobFile(j);
+  try {
+    await recoverQueueOnStartup();
+    const { getJob } = await import("../jobs.js");
+    const after = await getJob(j.id);
+    assert.equal(after?.status, "queued");
+    assert.equal(after?.restartResumes, 1);
+    assert.equal(after?.progress, undefined);
+    assert.equal(after?.error, undefined);
+    assert.ok(queueSnapshot().includes(j.id));
+  } finally {
+    removeFromQueue(j.id);
+    await rm(path.join(JOBS_DIR, `${j.id}.json`), { force: true });
+  }
+});
+
+test("recoverQueueOnStartup: running+add-caseでrestartResumes>=1ならerror（再登録しない）", async () => {
+  await drainQueue();
+  const j = makeFixtureJob({ tab: "add-case", status: "running", restartResumes: 1 });
+  await writeJobFile(j);
+  try {
+    await recoverQueueOnStartup();
+    const { getJob } = await import("../jobs.js");
+    const after = await getJob(j.id);
+    assert.equal(after?.status, "error");
+    assert.match(after?.error ?? "", /再起動/);
+    assert.ok(!queueSnapshot().includes(j.id));
+  } finally {
+    await rm(path.join(JOBS_DIR, `${j.id}.json`), { force: true });
+  }
+});
+
+test("recoverQueueOnStartup: running+researchは従来どおりerror（再登録しない）", async () => {
+  await drainQueue();
+  const j = makeFixtureJob({ tab: "research", status: "running" });
+  await writeJobFile(j);
+  try {
+    await recoverQueueOnStartup();
+    const { getJob } = await import("../jobs.js");
+    assert.equal((await getJob(j.id))?.status, "error");
+    assert.ok(!queueSnapshot().includes(j.id));
+  } finally {
+    await rm(path.join(JOBS_DIR, `${j.id}.json`), { force: true });
+  }
+});
+
+test("recoverQueueOnStartup: running+awardsは不変（restartResumesも付かない）", async () => {
+  await drainQueue();
+  const j = makeFixtureJob({ tab: "awards", status: "running" });
+  await writeJobFile(j);
+  try {
+    await recoverQueueOnStartup();
+    const { getJob } = await import("../jobs.js");
+    const after = await getJob(j.id);
+    assert.equal(after?.status, "running");
+    assert.equal(after?.restartResumes, undefined);
+    assert.ok(!queueSnapshot().includes(j.id));
+  } finally {
+    await rm(path.join(JOBS_DIR, `${j.id}.json`), { force: true });
+  }
+});
+
+test("recoverQueueOnStartup: 再登録されたadd-caseは既存queuedとat昇順で並ぶ", async () => {
+  await drainQueue();
+  const q1 = makeFixtureJob({ status: "queued", at: "2026-01-01T00:00:00.000Z" });
+  const orphan = makeFixtureJob({ tab: "add-case", status: "running", at: "2026-01-02T00:00:00.000Z" });
+  const q3 = makeFixtureJob({ status: "queued", at: "2026-01-03T00:00:00.000Z" });
+  for (const j of [q3, orphan, q1]) await writeJobFile(j);
+  try {
+    await recoverQueueOnStartup();
+    const snap = queueSnapshot().filter((id) => [q1.id, orphan.id, q3.id].includes(id));
+    assert.deepEqual(snap, [q1.id, orphan.id, q3.id]);
+  } finally {
+    for (const j of [q1, orphan, q3]) {
+      removeFromQueue(j.id);
+      await rm(path.join(JOBS_DIR, `${j.id}.json`), { force: true });
+    }
+  }
+});
+
 test("removeFromQueue: 指定idをFIFOから取り除く（キャンセルされたqueuedジョブをdispatchさせない）", async () => {
   await drainQueue();
   const a = randomUUID();

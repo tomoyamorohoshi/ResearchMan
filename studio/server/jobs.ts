@@ -92,6 +92,9 @@ export interface Job {
    * combinedResearch.ts が「Caseフェーズが予算超過で停止したらTechへ進まない」の判定に使う
    * （独立レビュー指摘#2）。 */
   budgetExceeded?: boolean;
+  /** tab="add-case" のみ使用: サーバ再起動で中断されたジョブを起動時復元(jobQueue.ts::recoverQueueOnStartup)が
+   * queuedへ戻して自動再実行した回数。1以上なら2回目の中断は従来どおりerrorにする。 */
+  restartResumes?: number;
   /** status="paused" の理由（tab="awards"のみ使用）。 */
   pausedReason?: PausedReason;
   /** 「両方」でCase等、既にcommit/push済みのフェーズ名（停止時の案内用）。 */

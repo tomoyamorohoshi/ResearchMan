@@ -84,13 +84,26 @@ export function startQueueWorker(intervalMs: number = QUEUE_POLL_INTERVAL_MS): v
 export async function recoverQueueOnStartup(): Promise<void> {
   const jobs = await listJobs();
 
+  const orphanedRunning = jobs.filter((j: Job) => j.status === "running" && j.tab !== "awards");
+  // add-case（LINE投稿）は初回の再起動中断に限り、errorにせずqueuedへ戻して自動再実行する。
+  const resumable = orphanedRunning.filter((j: Job) => j.tab === "add-case" && (j.restartResumes ?? 0) < 1);
+  const resumedIds = new Set<string>();
+  for (const j of resumable) {
+    const updated = await updateJob(j.id, {
+      status: "queued",
+      progress: undefined,
+      restartResumes: 1,
+    }).catch(() => null);
+    if (updated) resumedIds.add(j.id);
+  }
+
   const queuedJobs = jobs
-    .filter((j: Job) => j.status === "queued")
+    .filter((j: Job) => j.status === "queued" || resumedIds.has(j.id))
     .sort((a: Job, b: Job) => (a.at < b.at ? -1 : 1));
   for (const j of queuedJobs) enqueueJob(j.id);
 
-  const orphanedRunning = jobs.filter((j: Job) => j.status === "running" && j.tab !== "awards");
   for (const j of orphanedRunning) {
+    if (resumedIds.has(j.id)) continue;
     await updateJob(j.id, {
       status: "error",
       progress: undefined,
