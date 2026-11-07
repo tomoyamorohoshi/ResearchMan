@@ -1,5 +1,168 @@
 [
   {
+    "id": "starlightgs",
+    "title": "StarLightGS",
+    "org": "CoSTAR National Lab",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "Gaussian Splat（3Dスキャンの点群的な表現）をUnreal Engine 5のライトで照らし直せるようにする、オープンソースのUE5.7+プラグイン。",
+    "point": "これまでGaussian Splatは「撮影したときの光」が焼き付いたままで、あとからUEのライトを動かしても見た目が変わらないのが弱点でした。StarLightGSはスプラットをUEの描画情報(GBuffer)に書き込み、エンジン標準のライト、メッシュが落とす影、Lumenのグローバルイルミネーションを受けられるようにします。つまり実写スキャンした場所に、夕方・夜・ネオンといった別の照明を当てられます。広告やイベントの現場では、ロケ地やプロダクトをスキャンして仮想スタジオに置き、照明だけを差し替えて複数パターンの映像を作る、CGキャラクターを違和感なくスキャン背景に立たせる、といった使い方が想像できます。クリップ用のボックス・球ボリュームで不要部分を切り取って書き出す機能もあり、制作フローに組み込みやすい作りです。ベータ段階ですが、スキャン素材をゲームエンジンの映像表現に溶け込ませる道を開く実用的な一歩です。",
+    "detail": "仕組み：Gaussian Splatは、小さな楕円形の光る粒を何百万個も並べて空間を表現する方式です。StarLightGSはこの粒をUEの描画パイプラインの中間バッファ(GBuffer)に「不透明な楕円体」として書き込みます。するとUEは粒を普通のメッシュと同じ物体とみなし、ポイントライト・スポットライト、仮想シャドウマップによる影、Lumenの間接光、画面空間の反射を適用できます。ただし粒がLumenに光を返すわけではないため、スキャン物から周囲の物体へ間接光は落ちません。レイトレーシングも非対応です。\n\n従来との違い：従来のUE向けスプラットプラグインは「見た目をそのまま表示する」ものが主で、ライティングは焼き込み済みでした。本ツールは粒ごとの法線(向き)と材質(金属度・粗さ)を持つPLYを読み込み、再照明そのものを可能にします。そのための学習側パイプラインも別リポジトリで公開されています。\n\n使うには：UE 5.7以上とVisual Studio 2022以上が必要で、プラグインをプロジェクトのPluginsフォルダに置き、プロジェクトファイルを再生成してビルドします。既定の上限は500万スプラットで、コンソール変数r.Gaussians.MaxSplatsで拡張可能です。再照明用PLYの作成にはNVIDIA RTX 20〜50番台以上のGPU、Linux/WSL2、Dockerが必要で、学習ツールは非商用ライセンスなので商用案件では注意してください。費用はかかりません。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "UEプラグイン本体はMIT。ただし学習パイプライン(starlightgs-training)はInriaラスタライザ同梱のため非商用、サンプルアセットはCC BY-NC-SA 4.0。商用で使うなら自前のrelightable splatの用意が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/CoSTAR-National-Lab/starlightgs"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/CoSTAR-National-Lab/starlightgs-training"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/starlightgs-relights-gaussian-splats-inside-unreal-engine"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/starlightgs.jpg",
+    "relatedWorks": [
+      {
+        "title": "XV3DGS-UEPlugin",
+        "description": "UEでGaussian Splatを表示するプラグイン。ライティングは焼き込み済み。",
+        "url": "https://github.com/xverse-engine/XV3DGS-UEPlugin"
+      },
+      {
+        "title": "3D Gaussian Splatting (Inria)",
+        "description": "Gaussian Splatの原典となる公式実装。",
+        "url": "https://github.com/graphdeco-inria/gaussian-splatting"
+      },
+      {
+        "title": "gsplat",
+        "description": "Nerfstudioによるスプラット学習・描画ライブラリ。",
+        "url": "https://github.com/nerfstudio-project/gsplat"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "gaussianrenderformer",
+    "title": "GaussianRenderFormer",
+    "org": "SVLwoof (アカデミア研究チーム)",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "Gaussian Splatをラスタライザ(従来の描画エンジン)なしで、Transformerだけで画像に描画する研究。コードと学習済み重みが公開済み。",
+    "point": "Gaussian Splatは通常、専用の描画プログラム(ラスタライザ)で画面に変換します。GaussianRenderFormerはその工程を「Gaussianを1つ1つの単語のように扱い、Transformerに画像を出力させる」方式に置き換えました。学習済みモデルは2万個のGaussianからなる物体を、見えない物体に対してもPSNR 38dB台で描画できます。現時点では1枚あたり275ms(L40S)と専用ラスタライザ(1ms未満)よりずっと遅いので実用の描画器ではありません。ただし、描画がニューラルネットで表現されると、微分可能で、他のAIモデルと同じ土俵につなげられます。たとえば将来、照明や素材の変化を学習で肩代わりさせたり、スプラットから直接生成モデルへつないだりする研究・プロトタイプの土台になります。広告・体験づくりの観点では「3Dスキャン物をAIの描画パイプラインに直結する」実験を始めるための、動かせる出発点です。",
+    "detail": "仕組み：入力はGaussian Splatの集合で、各Gaussianが1つのトークン(Transformerが扱う単位)になります。出力側のビューデコーダは、画面を4×4ピクセルの小さなレイ(視線)パッチに分け、それぞれをGaussianトークンと照らし合わせて画素値を決めます。ベースは先行研究RenderFormerのモデルで、そこから初期化して学習しています。学習にはObjaverseの26,820物体(各2万Gaussianに間引き)を使い、300個の未見物体で38.08dB、同じ入力をラスタライズした場合の44.02dBに迫ります。\n\n従来との違い：従来の描画は「各Gaussianを画面に投影して並べて混ぜる」手計算の幾何処理でした。本研究は描画をデータから学習するため、描画規則を式で書かずに済みます。その代償として速度は約275倍以上遅く(195Mパラメータ)、精度も小さく劣ります。\n\n使うには：Linux、NVIDIA GPU、Python 3.12が必要で、`uv add \"gaussianformer @ git+https://github.com/SVLwoof/gaussianformer\"`でインストールします。学習済み重みはHugging Face(shahafvl/gaussianformer)にあります。研究コードなので、実験としてPython環境を扱えるスキルが前提です。費用は無料です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "コードと重みはMIT。ただし学習データObjaverse_Splatsの各オブジェクトは作者ごとのライセンスが残る。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/SVLwoof/gaussianformer"
+      },
+      {
+        "kind": "paper",
+        "url": "https://huggingface.co/papers/2611.05593"
+      },
+      {
+        "kind": "project",
+        "url": "https://svlwoof.github.io/gaussianrenderformer/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/gaussianrenderformer.jpg",
+    "relatedWorks": [
+      {
+        "title": "RenderFormer",
+        "description": "メッシュをTransformerだけで描画する先行研究（本研究の初期化元）。",
+        "url": "https://github.com/microsoft/renderformer"
+      },
+      {
+        "title": "3D Gaussian Splatting (Inria)",
+        "description": "従来のラスタライザ方式の原典実装。",
+        "url": "https://github.com/graphdeco-inria/gaussian-splatting"
+      },
+      {
+        "title": "gsplat",
+        "description": "高速なCUDAラスタライザ実装(比較対象の速度基準)。",
+        "url": "https://github.com/nerfstudio-project/gsplat"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "solv3r",
+    "title": "Solv3R",
+    "org": "UBC Vision (University of British Columbia)",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "ループ型Transformerで、複数枚の写真・映像から3D形状を、一括・逐次・ストリーミングのいずれでも復元できる研究。推論コードと重みが公開された。",
+    "point": "写真や動画から3D形状を復元する最近のAI(DUSt3RやVGGT系)は、「全部の写真を一度に処理する」か「1枚ずつ足していく」かで別々のモデルが必要でした。Solv3Rは同じ更新操作を繰り返し適用する「ループ型Transformer」で、一括・追加・ストリーミング・順不同の入力をまとめて扱います。解いた視点の情報はキャッシュとして持てるため、論文では並列処理のスループットが16倍、キャッシュが16〜34倍小さくなると報告しています。1視点あたりの再定位キャッシュは約2.86MBです。体験づくりの観点では、スマホで歩きながら撮った映像から空間をリアルタイムに組み上げる、後から撮り足した写真を既存の3Dに追加する、といった「撮りながら育つ3Dスキャン」の基盤技術として期待できます。重みが非商用な点は要注意ですが、プロトタイプ検証には十分使えます。",
+    "detail": "仕組み：3D復元モデルに「解く(solve)」という1つの更新操作を持たせ、これを何回か繰り返すことで答えを磨く構造です。宿題を1回で終わらせず、見直しを重ねて精度を上げるイメージです。API上は`Solv3R.from_pretrained()`でモデルを読み込み、`model.solve(ctx, calls=16)`で解き、`model.add_views(...)`で視点を後から追加します。既に解いた視点はkey-value状態として保存でき、次の更新でそのまま再利用されます。\n\n従来との違い：従来は一括型と逐次型でアーキテクチャが分かれ、新しい写真を足すたびに全体を計算し直すことも多くありました。Solv3Rは1つのモデルで両方をまかない、キャッシュの再利用により追加コストを小さくします。\n\n使うには：conda環境(Python 3.11)を作り`pip install -e .`で導入します。重みはHugging Face(jgkwak/solv3r)から取得します。GPU環境が前提で、README上のTODO欄は一部未更新(例：サンプルは「coming soon」)なので、まず公開済みの推論・評価コードから試すのが現実的です。コードは無料(Apache-2.0)ですが、重みは研究目的に限られます。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "research-only",
+      "note": "コードはApache-2.0だが、学習済み重みはNVIDIA License（非商用・研究評価目的のみ）。商用制作での利用は不可。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/ubc-vision/solv3r"
+      },
+      {
+        "kind": "paper",
+        "url": "https://huggingface.co/papers/2611.02857"
+      },
+      {
+        "kind": "project",
+        "url": "https://ubc-vision.github.io/solv3r/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/solv3r.jpg",
+    "relatedWorks": [
+      {
+        "title": "VGGT",
+        "description": "Meta/Oxfordによる、複数画像から3D属性を一括推定するフィードフォワードモデル。",
+        "url": "https://github.com/facebookresearch/vggt"
+      },
+      {
+        "title": "DUSt3R",
+        "description": "未校正の画像ペアから3D点マップを直接出力する先駆的研究。",
+        "url": "https://github.com/naver/dust3r"
+      },
+      {
+        "title": "MASt3R-SLAM",
+        "description": "3D基盤モデルをSLAMに活かした逐次再構成の研究。",
+        "url": "https://github.com/rmurai0610/MASt3R-SLAM"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "kiteva",
     "title": "Kiteva (motion-graphics-agent)",
     "org": "delexw(個人開発・Yang Liu)",
