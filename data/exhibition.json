@@ -3,6 +3,58 @@
   "statusAsOf": "2026-11-07",
   "items": [
     {
+      "id": "2026-21-h88a2be",
+      "slug": "2026-21-h88a2be",
+      "title": "塩田千春＋岡田利規《記憶の部屋について》上演",
+      "artists": [
+        "塩田千春",
+        "岡田利規"
+      ],
+      "venue": "金沢21世紀美術館",
+      "venueType": "museum",
+      "prefecture": "石川県",
+      "city": "金沢市",
+      "startDate": "2026-11-19",
+      "endDate": "2026-12-01",
+      "status": "upcoming",
+      "admission": "一般1,200円（展覧会「今日から明日へ 作品を継承すること」観覧料）",
+      "tags": [
+        "installation",
+        "glass",
+        "sculpture"
+      ],
+      "score": 50,
+      "matchReason": "塩田千春の窓枠インスタレーション《記憶の部屋》（2009年制作）に岡田利規の演劇プログラムが統合され、その日その時の上演に立ち会うことで作品が完成するという知覚・物質・時間性を扱う空間インスタレーション。",
+      "sources": [
+        {
+          "name": "今日から明日へ 作品を継承すること",
+          "url": "https://www.kanazawa21.jp/data_list.php?g=17&d=1853",
+          "kind": "official"
+        },
+        {
+          "name": "金沢21世紀美術館 公式X",
+          "url": "https://x.com/kanazawa_21/status/2117949989443821835",
+          "kind": "social"
+        },
+        {
+          "name": "jmapps 作品情報",
+          "url": "https://jmapps.ne.jp/kanazawa21/det.html?data_id=370",
+          "kind": "listing"
+        },
+        {
+          "name": "ユーザー投稿",
+          "url": "https://x.com/kanazawa_21/status/2117949989443821835?s=46&t=rnvmMdiPT06JMvo-M3bC0A",
+          "kind": "social"
+        }
+      ],
+      "link": "https://www.kanazawa21.jp/data_list.php?g=17&d=1853",
+      "thumbnail": "/thumbnails/exhibition/2026-21-h88a2be.jpg",
+      "addedAt": "2026-11-07T04:18:57.018Z",
+      "origin": "intake",
+      "intakeUrl": "https://x.com/kanazawa_21/status/2117949989443821835?s=46&t=rnvmMdiPT06JMvo-M3bC0A",
+      "highlight": false
+    },
+    {
       "id": "2026-mon-takanawa-feel-the-sound",
       "slug": "2026-mon-takanawa-feel-the-sound",
       "title": "Feel the Sound展",
