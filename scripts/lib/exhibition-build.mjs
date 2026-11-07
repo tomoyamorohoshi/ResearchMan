@@ -298,7 +298,24 @@ export function titleAppearsInText(text, title) {
 export async function verifyOfficialPage(cand, deps) {
   const f = await fetchOfficialText(cand, deps);
   if (!f.ok) return f;
+  // 200 だが JS 描画で本文に日付表記が皆無 → 内容を読み取れていない（取得失敗扱い）
+  if (!hasDateLikeText(f.text)) return { ok: false, reason: "official-empty-page: 日付表記が1つも無い（JavaScript 描画の可能性）" };
   return checkOfficialText(cand, f.text);
+}
+
+/** text に日付らしき表記（年/月日/数字区切り/英語月名＋日）が1つでもあるか。 */
+export function hasDateLikeText(text) {
+  const t = String(text || "").normalize("NFKC");
+  const compact = compactSpacedChars(t);
+  const res = [
+    /\d{4}\s*年/,
+    /\d{1,2}\s*月\s*\d{1,2}\s*日/,
+    /(?<![\d/.])\d{1,2}\s*[/.]\s*\d{1,2}(?!\d)/,
+    /(?<!\d)\d{4}\s*[-/.]\s*\d{1,2}/,
+    new RegExp(`(?:${EN_MONTHS.join("|")})[a-z]*\\.?\\s*\\d{1,2}(?!\\d)`, "i"),
+    new RegExp(`(?<!\\d)\\d{1,2}\\s*(?:st|nd|rd|th)?\\s*(?:${EN_MONTHS.join("|")})[a-z]*`, "i"),
+  ];
+  return res.some((re) => re.test(t) || (compact !== t && re.test(compact)));
 }
 
 /** 公式ページを取得してプレーンテキスト化する（fetch は1回。照合は checkOfficialText）。 */
@@ -321,7 +338,7 @@ async function fetchOfficialText(cand, { fetchHtml }) {
  * 理由コードは official- ではなく tab- 接頭（返信文で TAB 照合失敗と分かるように）。
  */
 // 公式ページ取得失敗の理由コード（fetchOfficialText が返すもの）。*-mismatch は含めない
-const OFFICIAL_UNREACHABLE_RE = /^official-(status-|fetch-error|fetch-failed)/;
+const OFFICIAL_UNREACHABLE_RE = /^official-(status-|fetch-error|fetch-failed|empty-page)/;
 
 async function verifyTabPage(cand, tabUrl, { fetchHtml }) {
   let res;
@@ -487,7 +504,7 @@ export async function processCandidates({ data, candidates, today, deps, opts = 
     let tabUrl = null;
     // 公式 URL は有効だが取得できない（403 等のボット拒否）ときの救済先。投稿(trustOrigin の intake)のときだけ非 null
     const tabCandidate = o.trustOrigin === true && isIntake(cand)
-      ? [cand.intakeUrl, cand.officialUrl].find((u) => isTabEventUrl(u) && isPublicHttpUrl(u)) || null
+      ? [cand.intakeUrl, cand.officialUrl, ...(cand.sources || []).map((s) => s?.url)].find((u) => isTabEventUrl(u) && isPublicHttpUrl(u)) || null
       : null;
     if (!isHttpUrl(cand.officialUrl) || !isSafeOfficialUrl(cand.officialUrl)) {
       tabUrl = tabCandidate;
