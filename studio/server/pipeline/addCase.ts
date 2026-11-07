@@ -63,7 +63,7 @@ import {
   runVerifyDeploy,
   runVerifyTechPages,
 } from "./audit.js";
-import { clearPendingRollback, trackForRollback } from "./pendingRollback.js";
+import { clearPendingRollback, trackForRollback, withThumbTracking } from "./pendingRollback.js";
 import { loadAgentDefinition } from "./agentLoader.js";
 import { updateJob, type ResultCard } from "../jobs.js";
 import { buildAwardVerifierPrompt, buildCaseWriterPrompt, buildLinkCheckerPrompt } from "./prompts.js";
@@ -479,6 +479,8 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
       await setProgress(jobId, "サムネイル取得中");
       // このジョブ開始時点のdata/cases.jsonを正として重複ガードを作り直す（2026-08-07再発防止）
       resetThumbnailDuplicateGuardForJob();
+      // サムネは acquireThumbnail 内で書かれる。パスは id から決まる（public/thumbnails/{id}.jpg）ので書き込み前に追跡する
+      await trackForRollback(jobId, trackedTouched, newUntracked, { untracked: [path.join("public", "thumbnails", `${id}.jpg`)] });
       const thumb = await acquireThumbnail(id, {
         title: candidate.title,
         client: candidate.client,
@@ -746,6 +748,8 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
 
       // ── 4. サムネイル（実画像必須。ダミー禁止 — 要件4はcase/tech共通） ────────────
       await setProgress(jobId, "サムネイル取得中");
+      // サムネは acquireTechThumbnail 内で書かれる。パスは id から決まる（public/thumbnails/tech/{id}.jpg）ので書き込み前に追跡する
+      await trackForRollback(jobId, trackedTouched, newUntracked, { untracked: [path.join("public", "thumbnails", "tech", `${validated.id}.jpg`)] });
       const techThumb = await acquireTechThumbnail(TECH_THUMB_DIR, validated.id, validated.links, validated.thumbnailSource);
       if (!techThumb) {
         throw new Error("サムネイル画像を確保できませんでした");
@@ -931,7 +935,14 @@ export async function runAddCasePipeline(jobId: string, req: ValidatedAddCaseReq
         today: todayJst(),
         deps: {
           fetchHtml: defaultFetchHtml,
-          saveThumb: makeSaveThumb(EXHIBITION_THUMB_DIR),
+          // 書き込みの直前に追跡（reinvestigateを含む長い区間でのプロセス死でもサムネを孤児にしない）
+          saveThumb: withThumbTracking(
+            jobId,
+            trackedTouched,
+            newUntracked,
+            makeSaveThumb(EXHIBITION_THUMB_DIR),
+            path.join("public", "thumbnails", "exhibition"),
+          ),
           now: () => new Date().toISOString(),
           // 公式・TAB の照合に失敗したら Claude（WebSearch/WebFetch）で探し直す（1候補1回）。失敗は null＝投稿者確認での追加へ
           reinvestigate: async (cand, reason) => {
