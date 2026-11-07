@@ -3,6 +3,57 @@
   "statusAsOf": "2026-11-07",
   "items": [
     {
+      "id": "2026-shibuya-sakura-stage-luminescence-plants-exhibition",
+      "slug": "2026-shibuya-sakura-stage-luminescence-plants-exhibition",
+      "title": "ルミネセンスプランツ展 ― サステナブルな未来の光（GREEN VALLEY SHIBUYA）",
+      "artists": [
+        "株式会社LEP",
+        "永井健治（大阪大学産業科学研究所）"
+      ],
+      "venue": "渋谷サクラステージ にぎわいSTAGE しぶS前",
+      "venueType": "other",
+      "prefecture": "東京都",
+      "city": "渋谷区",
+      "startDate": "2026-11-19",
+      "endDate": "2026-11-23",
+      "status": "upcoming",
+      "admission": "無料",
+      "tags": [
+        "light",
+        "installation"
+      ],
+      "score": 50,
+      "matchReason": "ホタルや発光キノコの生物発光の仕組みを植物に導入した自発光植物を使い、暗がりに光る撮影ブースや参加型の光のインスタレーションを展開する体験型イベント。",
+      "sources": [
+        {
+          "name": "GREEN VALLEY SHIBUYA（ルミネセンスプランツ展）",
+          "url": "https://www.start-lep.jp/gvs",
+          "kind": "official"
+        },
+        {
+          "name": "Time Out Tokyo JP (X投稿)",
+          "url": "https://x.com/timeouttokyojp/status/2118659806223347930",
+          "kind": "social"
+        },
+        {
+          "name": "Time Out Tokyo",
+          "url": "https://www.timeout.jp/tokyo/ja/news/luminescence-plants-exhibition-110326",
+          "kind": "news"
+        },
+        {
+          "name": "PR TIMES（株式会社LEP プレスリリース）",
+          "url": "https://prtimes.jp/main/html/rd/p/000000004.000174582.html",
+          "kind": "news"
+        }
+      ],
+      "link": "https://www.start-lep.jp/gvs",
+      "thumbnail": "/thumbnails/exhibition/2026-shibuya-sakura-stage-luminescence-plants-exhibition.jpg",
+      "addedAt": "2026-11-07T12:28:25.143Z",
+      "origin": "intake",
+      "intakeUrl": "https://x.com/timeouttokyojp/status/2118659806223347930",
+      "highlight": false
+    },
+    {
       "id": "2026-skac-studio-raw-material-material-after-material",
       "slug": "2026-skac-studio-raw-material-material-after-material",
       "title": "Studio Raw Material「Material after Material」",
