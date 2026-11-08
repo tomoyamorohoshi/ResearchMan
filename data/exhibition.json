@@ -1,7 +1,55 @@
 {
   "version": 1,
-  "statusAsOf": "2026-11-07",
+  "statusAsOf": "2026-11-08",
   "items": [
+    {
+      "id": "2026-mon-takanawa-eternal-art-space-resonance-2026",
+      "slug": "2026-mon-takanawa-eternal-art-space-resonance-2026",
+      "title": "ETERNAL Art Space Exhibition 2026: RESONANCE — Tradition Reimagined",
+      "artists": [
+        "Carsten Nicolai",
+        "Hatis Noit",
+        "Akiko Nakayama",
+        "FLIGHTGRAF",
+        "Shohei Fujimoto",
+        "ike-bana",
+        "Shuhei Matsuyama",
+        "Tetsuji Ohno"
+      ],
+      "venue": "MoN Takanawa: The Museum of Narratives",
+      "venueType": "museum",
+      "prefecture": "東京都",
+      "city": "港区",
+      "startDate": "2026-11-20",
+      "endDate": "2026-11-23",
+      "status": "upcoming",
+      "admission": "無料（4F 畳の視聴プログラムは1回1,000円・要予約）",
+      "tags": [
+        "media_art",
+        "installation",
+        "sound",
+        "video_art"
+      ],
+      "score": 72,
+      "matchReason": "公式ページによると、伝統文化とデジタルアートをテーマに、カールステン・ニコライ（HOSOOとの協働）ら国内外8組が映像・サウンド・オーディオビジュアルのインスタレーションを展示する。MUTEK.JP 2026と同時開催で、開始まで30日以内。",
+      "sources": [
+        {
+          "name": "ETERNAL Art Space Exhibition 2026: RESONANCE — Tradition Reimagined",
+          "url": "https://exhibition.eternalart.space/",
+          "kind": "official"
+        },
+        {
+          "name": "Time Out Tokyo",
+          "url": "https://www.timeout.jp/tokyo/ja/news/eternal-art-space-exhibition-2026-resonance-tradition-reimagined-110526",
+          "kind": "news"
+        }
+      ],
+      "link": "https://exhibition.eternalart.space/",
+      "thumbnail": "/thumbnails/exhibition/2026-mon-takanawa-eternal-art-space-resonance-2026.jpg",
+      "addedAt": "2026-11-08T01:36:04.202Z",
+      "origin": "auto",
+      "highlight": false
+    },
     {
       "id": "2026-shiseido-gallery-ima-wa-itsu-no-koto-ka",
       "slug": "2026-shiseido-gallery-ima-wa-itsu-no-koto-ka",
@@ -364,7 +412,7 @@
       "city": "渋谷区",
       "startDate": "2026-11-08",
       "endDate": "2026-11-08",
-      "status": "upcoming",
+      "status": "ongoing",
       "admission": "ADV ¥2,500+1D ／ DOOR ¥3,000+1D",
       "tags": [
         "sound",

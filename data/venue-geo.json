@@ -1,6 +1,13 @@
 {
   "version": 1,
   "venues": {
+    "Art Center NEW": {
+      "lat": 35.4619508,
+      "lng": 139.6270915,
+      "source": "nominatim",
+      "query": "Art Center NEW 横浜市 神奈川県",
+      "checkedAt": "2026-11-08"
+    },
     "BONDED GALLERY": {
       "lat": 35.61981,
       "lng": 139.746279,
@@ -21,6 +28,13 @@
       "source": "manual",
       "query": "東京都品川区東品川1-32-8 TERRADA ART COMPLEX II 1F（Tokyo Artbeat の会場座標）",
       "checkedAt": "2026-10-24"
+    },
+    "MoN Takanawa: The Museum of Narratives": {
+      "lat": 35.6394426,
+      "lng": 139.741663,
+      "source": "nominatim",
+      "query": "MoN Takanawa: The Museum of Narratives 港区 東京都",
+      "checkedAt": "2026-11-08"
     },
     "NEORT++": {
       "lat": 35.6934,
@@ -71,6 +85,13 @@
       "query": "山口県山口市宮野下2001-1 常栄寺（Wikipedia 座標。OSM の寺院ノードとも一致）",
       "checkedAt": "2026-10-24"
     },
+    "札幌文化芸術交流センター SCARTS": {
+      "lat": 43.0630307,
+      "lng": 141.3557129,
+      "source": "nominatim",
+      "query": "札幌文化芸術交流センター SCARTS 札幌市 北海道",
+      "checkedAt": "2026-11-08"
+    },
     "東京藝術大学大学美術館 陳列館": {
       "lat": 35.7192,
       "lng": 139.7719,
@@ -98,6 +119,20 @@
       "source": "nominatim",
       "query": "森美術館 港区 東京都",
       "checkedAt": "2026-10-24"
+    },
+    "資生堂ギャラリー": {
+      "lat": 35.6685768,
+      "lng": 139.7618973,
+      "source": "nominatim",
+      "query": "資生堂ギャラリー 中央区 東京都",
+      "checkedAt": "2026-11-08"
+    },
+    "金沢21世紀美術館": {
+      "lat": 36.5608382,
+      "lng": 136.6582097,
+      "source": "nominatim",
+      "query": "金沢21世紀美術館 金沢市 石川県",
+      "checkedAt": "2026-11-08"
     },
     "麻布台ヒルズギャラリー": {
       "lat": 35.6625,
