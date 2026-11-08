@@ -8,14 +8,15 @@
  * `cannes-ingest.mjs <year> --drafts <merged>`（git ロック・監査・commit は ingest 側）。
  * ingest が exit≠0 なら以降のバッチを止めて exit 1。
  * state: data/cannes/work/<year>-runner-state.json（git 非追跡）。ログ: ~/.researchman/logs/cannes-runner.log
- * 注意: buildClaudeArgs は Write/Edit を禁止するため、下書きファイルは Bash 経由で書かせる（プロンプトで指示）。
+ * 子 claude は WebSearch,WebFetch のみ（Bash/Read/Glob/Grep/Write/Edit 禁止）。works・手本・語彙はプロンプト本文に埋め込み、
+ * 結果は stdout の JSON オブジェクト（マーカー "cannesDrafts"）で回収する。
  */
 import fs from "fs";
 import os from "os";
 import path from "path";
 import { spawn, spawnSync } from "child_process";
 import { fileURLToPath, pathToFileURL } from "url";
-import { resolveClaudeBin, buildClaudeArgs } from "./lib/claude-cli.mjs";
+import { resolveClaudeBin, buildClaudeArgs, extractFirstParsableJson } from "./lib/claude-cli.mjs";
 import { findDuplicate } from "./cannes-ingest.mjs";
 import { makeMatcher } from "./cannes-reconcile.mjs";
 
@@ -130,33 +131,75 @@ export function updateState(state, { attemptedKeys, okKeys }) {
   return s;
 }
 
-export function buildPrompt(brief, { year, sp, worksFile, draftsFile }) {
-  const body = brief.replaceAll("{{YEAR}}", String(year)).replaceAll("{{SP}}", sp);
-  return `${body}\n\n## 今回の担当\n- works ファイル（担当作品。Read で読む）: ${worksFile}\n- drafts 出力ファイル: ${draftsFile}\n- Write/Edit ツールは使えない。drafts ファイルは Bash（node -e や heredoc）で書くこと。\n`;
+export const DRAFTS_MARKER = "cannesDrafts";
+
+/** cases から tags（出現回数上位 maxTags）と regions（全件）の語彙を集計 */
+export function buildVocab(cases, maxTags = 300) {
+  const tc = new Map(), rc = new Map();
+  for (const c of cases || []) {
+    for (const t of c?.tags || []) tc.set(t, (tc.get(t) || 0) + 1);
+    for (const r of c?.regions || []) rc.set(r, (rc.get(r) || 0) + 1);
+  }
+  const top = (m, n) => [...m.entries()].sort((a, b) => b[1] - a[1] || String(a[0]).localeCompare(String(b[0]))).slice(0, n).map((x) => x[0]);
+  return { tags: top(tc, maxTags), regions: top(rc, Infinity) };
 }
 
-/** 実 claude を非同期に起動する（runClaude は spawnSync で並列にできないため。引数・環境は buildClaudeArgs / runClaude と同じ方針）。
+export function buildPrompt(brief, { year, works, examples, vocab }) {
+  const body = brief.replaceAll("{{YEAR}}", String(year));
+  return `${body}
+
+## 今回の担当作品（works。この key だけを扱う）
+\`\`\`json
+${JSON.stringify(works, null, 2)}
+\`\`\`
+
+## 手本（既存の本番エントリ。文体・長さ・tags の付け方をこれに揃える）
+\`\`\`json
+${JSON.stringify(examples ?? [], null, 2)}
+\`\`\`
+
+## tags の語彙（この中から選ぶ。新語は作らない）
+${JSON.stringify(vocab?.tags ?? [])}
+
+## regions の語彙（この中から選ぶ）
+${JSON.stringify(vocab?.regions ?? [])}
+
+## 最終出力の形式（厳守）
+調査が終わったら、返答の最後に次の形の JSON オブジェクトを1つだけ、\`\`\`json フェンスで出力する（キー "${DRAFTS_MARKER}" が必須。これ以外の { } を最後のブロックの後に出さない）。
+{"${DRAFTS_MARKER}": [{"key": "<works の key>", "draft": {...}, "thumbnailCandidates": [...], "pageUrls": [...]}], "excluded": [{"key": "<works の key>", "reason": "<理由と出典URL>"}]}
+`;
+}
+
+/** stdout から drafts と excluded を回収する（マーカー付き JSON オブジェクト）。見つからなければ null */
+export function extractDrafts(output) {
+  const { value } = extractFirstParsableJson(String(output || ""), { marker: `"${DRAFTS_MARKER}"`, openCh: "{", closeCh: "}" });
+  if (!value || !Array.isArray(value[DRAFTS_MARKER])) return null;
+  return { drafts: value[DRAFTS_MARKER], excluded: Array.isArray(value.excluded) ? value.excluded : [] };
+}
+
+/** 実 claude を非同期に起動する（runClaude は spawnSync で並列にできないため。引数・環境は buildClaudeArgs / runClaude と同じ方針）。resolve は stdout 全文、reject の Error には回収済み stdout を e.stdout で付ける。
  *  タイムアウト時は自分が spawn した子の PID だけをツリーごと止める（win32: taskkill /PID <pid> /T /F）。reject は子の close 後。 */
-export function makeClaudeGroupRunner({ claudeBin = resolveClaudeBin(), timeout = TIMEOUT_MS, args = buildClaudeArgs({ model: "sonnet", allowedTools: "WebSearch,WebFetch,Read,Bash" }) } = {}) {
+export function makeClaudeGroupRunner({ claudeBin = resolveClaudeBin(), timeout = TIMEOUT_MS, args = buildClaudeArgs({ model: "sonnet", allowedTools: "WebSearch,WebFetch", extraDisallowedTools: "Bash,Read,Glob,Grep" }) } = {}) {
   return ({ prompt, cwd }) =>
     new Promise((resolve, reject) => {
       const env = { ...process.env };
       delete env.ANTHROPIC_API_KEY;
       delete env.ANTHROPIC_AUTH_TOKEN;
       const child = spawn(claudeBin, args, { stdio: ["pipe", "pipe", "pipe"], env, windowsHide: true, cwd });
-      let out = "", timedOut = false;
+      let out = "", err = "", timedOut = false;
+      const fail = (msg) => Object.assign(new Error(msg), { stdout: out });
       const timer = setTimeout(() => {
         timedOut = true;
         if (process.platform === "win32" && child.pid) spawnSync("taskkill", ["/PID", String(child.pid), "/T", "/F"], { windowsHide: true });
         else child.kill();
       }, timeout);
-      child.stdout.on("data", (d) => { out = (out + d).slice(-2000); });
-      child.stderr.on("data", (d) => { out = (out + d).slice(-2000); });
-      child.on("error", (e) => { clearTimeout(timer); reject(e); });
+      child.stdout.on("data", (d) => { out += d; });
+      child.stderr.on("data", (d) => { err = (err + d).slice(-2000); });
+      child.on("error", (e) => { clearTimeout(timer); reject(Object.assign(e, { stdout: out })); });
       child.on("close", (code) => {
         clearTimeout(timer);
-        if (timedOut) reject(new Error(`タイムアウト ${timeout / 1000}s`));
-        else code === 0 ? resolve(out) : reject(new Error(`claude 終了コード ${code}: ${out.slice(-300)}`));
+        if (timedOut) reject(fail(`タイムアウト ${timeout / 1000}s`));
+        else code === 0 ? resolve(out) : reject(fail(`claude 終了コード ${code}: ${(err + out.slice(-300)).slice(-300)}`));
       });
       child.stdin.on("error", () => {});
       child.stdin.end(prompt);
@@ -178,8 +221,9 @@ async function pool(items, limit, fn) {
 export async function runBatch({ year, works, state, batchNo, batchSize = 35, parallel = 7, groupSize = GROUP_SIZE, workRoot, brief, runGroup, runIngest, readCases = () => [], gitStatusCases = () => "", log = () => {} }) {
   const dir = path.join(workRoot, String(year), String(batchNo));
   fs.mkdirSync(dir, { recursive: true });
-  const examples = path.join(ROOT, "docs", "cannes", "DRAFT_EXAMPLES.json");
-  if (fs.existsSync(examples)) fs.copyFileSync(examples, path.join(dir, "examples.json"));
+  const exFile = path.join(ROOT, "docs", "cannes", "DRAFT_EXAMPLES.json");
+  const examples = fs.existsSync(exFile) ? readJson(exFile, []) : [];
+  const vocab = buildVocab(readCases());
   const target = works.slice(0, batchSize);
   const groups = chunk(target, groupSize);
   const started = Date.now();
@@ -187,20 +231,18 @@ export async function runBatch({ year, works, state, batchNo, batchSize = 35, pa
 
   const statusBefore = gitStatusCases();
   const results = await pool(groups, parallel, async (g, i) => {
-    const worksFile = path.join(dir, `g${i + 1}-works.json`);
-    const draftsFile = path.join(dir, `g${i + 1}-drafts.json`);
-    fs.writeFileSync(worksFile, JSON.stringify(g, null, 2));
-    fs.rmSync(draftsFile, { force: true });
-    const fwd = (p) => p.replaceAll("\\", "/");
-    const prompt = buildPrompt(brief, { year, sp: fwd(dir), worksFile: fwd(worksFile), draftsFile: fwd(draftsFile) });
-    let error = null, procError = null;
-    try { await runGroup({ prompt, worksFile, draftsFile, groupNo: i + 1, cwd: dir }); } catch (e) { error = procError = e.message; }
+    const outFile = path.join(dir, `g${i + 1}.out.txt`);
+    const prompt = buildPrompt(brief, { year, works: g, examples, vocab });
+    let error = null, procError = null, out = "";
+    try { out = (await runGroup({ prompt, groupNo: i + 1, cwd: dir })) ?? ""; } catch (e) { error = procError = e.message; out = e.stdout ?? ""; }
+    try { fs.writeFileSync(outFile, String(out)); } catch { /* デバッグ用 */ }
     let valid = [], dropped = [];
-    if (fs.existsSync(draftsFile)) {
-      try { ({ valid, dropped } = validateDrafts(JSON.parse(fs.readFileSync(draftsFile, "utf8")), new Set(g.map((w) => w.key)))); }
-      catch (e) { error = error || `drafts JSON 読込失敗: ${e.message}`; }
-    } else error = error || "drafts ファイルなし";
-    const procFailed = !!procError && !fs.existsSync(draftsFile);
+    const got = extractDrafts(out);
+    if (got) {
+      ({ valid, dropped } = validateDrafts(got.drafts, new Set(g.map((w) => w.key))));
+      if (got.excluded.length) log(`  グループ${i + 1} 除外申告: ${got.excluded.map((x) => `${x?.key}:${x?.reason}`).join("; ")}`);
+    } else error = error || "stdout に drafts JSON なし";
+    const procFailed = !!procError && !got;
     log(`  グループ${i + 1}: 担当${g.length} 採用${valid.length} 除外${dropped.length}${procFailed ? " [プロセス失敗]" : ""}${error ? ` エラー=${error}` : ""}${dropped.length ? ` (${dropped.map((d) => `${d.key}:${d.reason}`).join("; ")})` : ""}`);
     return { g, valid, procFailed };
   });
@@ -291,6 +333,12 @@ async function main() {
     const batch = sel.slice(0, o.batchSize);
     chunk(batch, GROUP_SIZE).forEach((g, i) => console.log(`  グループ${i + 1}: ${g.map((w) => `${w.key}[${w.entries?.[0]?.category}]`).join(", ")}`));
     console.log(`  バッチ数見込み=${Math.ceil(sel.length / o.batchSize)}`);
+    if (batch.length) {
+      const briefD = fs.readFileSync(path.join(ROOT, "docs", "cannes", "DRAFT_BRIEF.md"), "utf8");
+      const exD = readJson(path.join(ROOT, "docs", "cannes", "DRAFT_EXAMPLES.json"), []);
+      const pr = buildPrompt(briefD, { year, works: chunk(batch, GROUP_SIZE)[0], examples: exD, vocab: buildVocab(existingCases) });
+      console.log(`  プロンプト長(グループ1・stdin渡し)=${pr.length}文字`);
+    }
     return;
   }
 

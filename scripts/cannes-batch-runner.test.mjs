@@ -4,11 +4,12 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import {
-  selectTargets, filterThumbUrls, chunk, stripWorkNotes, validateDrafts, updateState, emptyState, buildPrompt, runBatch, parseArgs, makeClaudeGroupRunner,
+  selectTargets, filterThumbUrls, chunk, stripWorkNotes, validateDrafts, updateState, emptyState, buildPrompt, runBatch, parseArgs, makeClaudeGroupRunner, buildVocab, extractDrafts,
 } from "./cannes-batch-runner.mjs";
 
 const W = (key, cat = "Film", brand = "B", title = key) => ({ key, title, brand, agency: "A", country: "JP", entries: [{ category: cat, level: "Gold" }] });
 const inCases = (key, cat = "Film", brand = "B") => ({ id: `${brand.toLowerCase()}-${key}`, title: key, awardEntries: [{ org: "cannes", year: 2025, category: cat }] });
+const out = (keys, extra = {}) => "memo {x}\n```json\n" + JSON.stringify({ cannesDrafts: keys.map((key) => ({ key, draft: goodDraft() })), excluded: [], ...extra }) + "\n```\n";
 const goodDraft = () => ({ summary: "s", overview: "o", background: "b", execution: "e", evaluationImpact: "i", link: "https://x", regions: ["国内"], tags: ["t"] });
 
 test("selectTargets: skip・done・2回失敗を除き、先頭entryの部門が少ない順（部門内は元順）", () => {
@@ -66,11 +67,24 @@ test("updateState: 失敗 key は attempts+1、2回で skipped、成功 key は 
   assert.equal(emptyState().done.length, 0); // 元は破壊されない
 });
 
-test("buildPrompt: SP と YEAR を置換し works/drafts パスを付ける", () => {
-  const p = buildPrompt("Y={{YEAR}} SP={{SP}}", { year: 2025, sp: "/w", worksFile: "/w/g1-works.json", draftsFile: "/w/g1-drafts.json" });
-  assert.match(p, /Y=2025 SP=\/w/);
-  assert.match(p, /g1-works\.json/);
-  assert.match(p, /g1-drafts\.json/);
+test("buildPrompt: YEAR 置換・works/手本/語彙を本文に埋め込み、マーカー指示を付ける", () => {
+  const p = buildPrompt("Y={{YEAR}}", { year: 2025, works: [W("kk")], examples: [{ id: "ex1" }], vocab: { tags: ["タグA"], regions: ["国内"] } });
+  assert.match(p, /Y=2025/);
+  for (const m of [/"key": "kk"/, /"id": "ex1"/, /タグA/, /国内/, /cannesDrafts/]) assert.match(p, m);
+});
+
+test("buildVocab: tags は出現回数順で上限・regions 全件", () => {
+  const v = buildVocab([{ tags: ["a", "b"], regions: ["国内"] }, { tags: ["b", "c"], regions: ["南米"] }], 2);
+  assert.deepEqual(v.tags, ["b", "a"]);
+  assert.deepEqual([...v.regions].sort(), ["南米", "国内"].sort());
+});
+
+test("extractDrafts: 前置き・フェンス付きでも回収、excluded も返す。無ければ null", () => {
+  const r = extractDrafts(out(["a"], { excluded: [{ key: "z", reason: "r" }] }));
+  assert.equal(r.drafts[0].key, "a");
+  assert.deepEqual(r.excluded, [{ key: "z", reason: "r" }]);
+  assert.equal(extractDrafts("JSON なし {a}"), null);
+  assert.equal(extractDrafts('{"other": []}'), null);
 });
 
 test("runBatch: スタブ claude で回収→結合→ingest 呼び出し、state 更新", async () => {
@@ -79,10 +93,11 @@ test("runBatch: スタブ claude で回収→結合→ingest 呼び出し、stat
   let ingestArg = null;
   const res = await runBatch({
     year: 2025, works, state: emptyState(), batchNo: 1, batchSize: 6, parallel: 2, workRoot: tmp, brief: "{{YEAR}}{{SP}}",
-    runGroup: async ({ worksFile, draftsFile }) => {
-      const ks = JSON.parse(fs.readFileSync(worksFile, "utf8")).map((w) => w.key);
+    runGroup: async ({ prompt, groupNo, cwd }) => {
+      const all = ["a", "b", "c", "d", "e", "f"];
+      const ks = all.filter((k) => prompt.includes(`"key": "${k}"`));
       // 各グループの最後の key は返さない
-      fs.writeFileSync(draftsFile, JSON.stringify(ks.slice(0, -1).map((key) => ({ key, draft: goodDraft() }))));
+      return out(ks.slice(0, -1));
     },
     runIngest: (mergedFile) => { ingestArg = JSON.parse(fs.readFileSync(mergedFile, "utf8")); return { status: 0 }; },
     readCases: () => ["a", "b", "d", "e"].map((k) => inCases(k)),
@@ -99,7 +114,7 @@ test("runBatch: ingest 失敗は exitCode≠0 で state を更新しない", asy
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "cbr-"));
   const res = await runBatch({
     year: 2025, works: [W("a")], state: emptyState(), batchNo: 1, batchSize: 1, parallel: 1, workRoot: tmp, brief: "x",
-    runGroup: async ({ draftsFile }) => fs.writeFileSync(draftsFile, JSON.stringify([{ key: "a", draft: goodDraft() }])),
+    runGroup: async () => out(["a"]),
     runIngest: () => ({ status: 1 }),
     log: () => {},
   });
@@ -111,10 +126,10 @@ test("runBatch: claude が例外/タイムアウトでも他グループは続�
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "cbr-"));
   const res = await runBatch({
     year: 2025, works: ["a", "b"].map((k) => W(k)), state: emptyState(), batchNo: 1, batchSize: 2, parallel: 2, workRoot: tmp, brief: "x", groupSize: 1,
-    runGroup: async ({ worksFile, draftsFile }) => {
-      const k = JSON.parse(fs.readFileSync(worksFile, "utf8"))[0].key;
+    runGroup: async ({ prompt }) => {
+      const k = prompt.includes('"key": "a"') ? "a" : "b";
       if (k === "a") throw new Error("timeout");
-      fs.writeFileSync(draftsFile, JSON.stringify([{ key: k, draft: goodDraft() }]));
+      return out([k]);
     },
     runIngest: () => ({ status: 0 }),
     readCases: () => [inCases("b")],
@@ -152,7 +167,7 @@ test("runBatch: ingest 後 cases に入らなかった key は done にせず at
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "cbr-"));
   const res = await runBatch({
     year: 2025, works: ["a", "b"].map((k) => W(k)), state: emptyState(), batchNo: 1, batchSize: 2, parallel: 1, workRoot: tmp, brief: "x", groupSize: 2,
-    runGroup: async ({ draftsFile }) => fs.writeFileSync(draftsFile, JSON.stringify(["a", "b"].map((key) => ({ key, draft: goodDraft() })))),
+    runGroup: async () => out(["a", "b"]),
     runIngest: () => ({ status: 0 }),
     readCases: () => [inCases("a")],
     log: () => {},
@@ -166,7 +181,7 @@ test("runBatch: 子 claude の cwd はバッチ作業フォルダ、cases.json �
   let cwd = null; const logs = []; let n = 0;
   await runBatch({
     year: 2025, works: [W("a")], state: emptyState(), batchNo: 3, batchSize: 1, parallel: 1, workRoot: tmp, brief: "x",
-    runGroup: async ({ draftsFile, cwd: c }) => { cwd = c; fs.writeFileSync(draftsFile, JSON.stringify([{ key: "a", draft: goodDraft() }])); },
+    runGroup: async ({ cwd: c }) => { cwd = c; return out(["a"]); },
     runIngest: () => ({ status: 0 }), readCases: () => [inCases("a")],
     gitStatusCases: () => (n++ === 0 ? "" : " M data/cases.json"),
     log: (m) => logs.push(m),
@@ -196,4 +211,36 @@ test("makeClaudeGroupRunner: タイムアウトで自分の子をツリーごと
   const t = Date.now();
   await assert.rejects(run({ prompt: "x", cwd: os.tmpdir() }), /タイムアウト/);
   assert.ok(Date.now() - t < 10000);
+});
+
+test("runBatch: stdout を g<N>.out.txt に保存。タイムアウト時も e.stdout の部分出力から回収（プロセス失敗扱いにしない）", async () => {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "cbr-"));
+  const res = await runBatch({
+    year: 2025, works: ["a", "b"].map((k) => W(k)), state: emptyState(), batchNo: 1, batchSize: 2, parallel: 2, workRoot: tmp, brief: "x", groupSize: 1,
+    runGroup: async ({ prompt }) => {
+      if (prompt.includes('"key": "a"')) return out(["a"]);
+      throw Object.assign(new Error("タイムアウト"), { stdout: out(["b"]) });
+    },
+    runIngest: () => ({ status: 0 }), readCases: () => [inCases("a"), inCases("b")], log: () => {},
+  });
+  assert.deepEqual(res.state.done.sort(), ["a", "b"]);
+  const f = path.join(tmp, "2025", "1", "g1.out.txt");
+  assert.match(fs.readFileSync(f, "utf8"), /cannesDrafts/);
+});
+
+test("runBatch: JSON なし（プロセスは成功）は attempts+1、プロセス失敗＋出力なしは attempts 不変", async () => {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "cbr-"));
+  const res = await runBatch({
+    year: 2025, works: ["a", "b"].map((k) => W(k)), state: emptyState(), batchNo: 1, batchSize: 2, parallel: 2, workRoot: tmp, brief: "x", groupSize: 1,
+    runGroup: async ({ prompt }) => { if (prompt.includes('"key": "a"')) return "何も出さなかった"; throw new Error("usage limit"); },
+    runIngest: () => ({ status: 0 }), readCases: () => [], log: () => {},
+  });
+  assert.deepEqual(res.state.attempts, { a: 1 });
+});
+
+test("makeClaudeGroupRunner: stdout 全文を resolve（2000字超でも切らない）", async () => {
+  const run = makeClaudeGroupRunner({ claudeBin: process.execPath, args: ["-e", "process.stdout.write('x'.repeat(5000)+'END')"], timeout: 10000 });
+  const r = await run({ prompt: "", cwd: os.tmpdir() });
+  assert.equal(r.length, 5003);
+  assert.ok(r.endsWith("END"));
 });
