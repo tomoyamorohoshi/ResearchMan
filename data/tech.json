@@ -1,5 +1,147 @@
 [
   {
+    "id": "viggle-remake",
+    "title": "Viggle Remake",
+    "org": "Viggle AI",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "撮影済みの映像を、人物や物・背景・天候・照明だけ差し替えて「撮り直し」できる動画編集モデル。Viggle が MiniMax H3 向けの LoRA（既存モデルに後付けする追加学習ファイル）として公開した。",
+    "point": "すごい点は、元の動画のカメラワークとタイミング、音声をそのまま残して中身だけ入れ替えられることです。入れ替えたい箇所は、元のフレームに絵の具で描き足したような参照画像を1〜4枚渡すだけで指定できます。顔認識や人物の切り抜き（マスク）、姿勢推定は要りません。「swap」モードは人物・キャラクターの差し替え、「edit」モードは物の入れ替え・削除・追加、背景・天気・照明の変更を担当します。広告では、1本撮った映像を出演者違い・季節違い・商品違い・ロケ地違いに展開する地域別バリエーション制作に向きます。撮影後の差し替えで再撮影を減らせる可能性があり、完成映像の一部修正や、コンテ段階の見せ用映像づくりにも使えそうです。公式デモでは映画の1シーンを22通りに作り替える例や、100秒超の長尺のパロディ映像も示されています。",
+    "detail": "仕組み：MiniMax H3 という動画生成モデルの内部に、ランク256の LoRA を2種類（swap 用と edit 用）差し込んでいます。LoRA は、大きな基本モデルに少量の追加ファイルを足して得意技を覚えさせる方式です。利用者は元動画から選んだフレームに色を塗るなどして描き足した参照画像を渡し、プロンプトで <Picture 1>〜<Picture 4> と指定します。誰を残して何を変えるかは、顔の特徴を抽出する別モデルではなく、この描き足した画像から読み取られます。\n\n従来との違い：従来の動画差し替えは、人物の切り抜きやポーズ推定、トラッキングを組み合わせる手間のかかる工程が必要でした。このモデルはその前処理を省き、画像1枚の編集感覚で動画全体に反映できる点が違います。MCP サーバーも同梱され、AI エージェントから操作する使い方も想定されています。\n\n使うには：ComfyUI（0.42.0で動作確認）と MiniMax H3 の基本モデル（約144GB）が必要です。bf16では80GBクラスのGPUが前提ですが、量子化版（int8 21GB、GGUF Q4_K_M 14.3GB など）があり、12〜32GB級のGPU向けの設定表も付属します。ただし公開されている処理時間の実測は B200 のみで、家庭用GPUでの速度は未確認です。1回に処理できるのは90〜345フレームです。リポジトリ全体は約210GBなので、必要なファイルだけ選んで取得します。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "重みは minimax-h3-community-license（MiniMax H3 派生物としての条件付き）。inference/・examples/・comfyui/・mcp/ のコードは Apache 2.0。商用利用は MiniMax H3 の条件の確認が必要。"
+    },
+    "links": [
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/Viggle/Viggle-Remake"
+      },
+      {
+        "kind": "post",
+        "url": "https://comfyui-wiki.com/en/news/2026-11-04-viggle-remake"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/viggle-remake.jpg",
+    "relatedWorks": [
+      {
+        "title": "H3 Ripple",
+        "description": "手で編集した1〜2フレームの変更を、ショット全体へ伝播させる MiniMax H3 用 LoRA。",
+        "url": "https://huggingface.co/WepeNerd/H3_Ripple"
+      },
+      {
+        "title": "LynnReal-Omni",
+        "description": "MiniMax H3 ベースの、生成・制御・編集をまとめて扱う動画生成フレームワーク。",
+        "url": "https://github.com/LynnReal-AI/LynnReal-Omni"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "h3-continuity-studio",
+    "title": "H3 Continuity Studio (ComfyUI-H3-Continuity-Studio)",
+    "org": "KadoBOT",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "MiniMax H3 の動画クリップを時間軸（タイムライン）に並べて複数ショットの映像を作る ComfyUI 用ノード群。カットをまたいで部屋や衣装を保つ「視覚の記憶」機能を持つ。",
+    "point": "AI動画生成の弱点は、カットが変わると部屋の様子や服装が別物になってしまうことです。このツールは、ComfyUI の中に動画編集ソフトのようなタイムラインを作り、クリップごとにプロンプト・画像・参照・設定を持たせます。前のクリップを引き継ぐ「Continue」、新しい指示で始める「Cut」、場所は変えつつ見た目の履歴を残す「New scene」、短い移行映像を作る「Bridge」の4種類のつなぎ方があります。同じ部屋を別アングルから見せる例もデモに用意されています。広告では、同じ商品・同じ部屋・同じ人物が続くストーリー型の短編やブランドムービー、複数カット構成のコンテ映像づくりに役立ちそうです。同じカットを複数テイク保存して選べるため、制作チームでの比較検討にも向いています。",
+    "detail": "仕組み：過去のクリップから、保存済みの動画データ（潜在表現＝モデル内部で使う圧縮された映像データ）の5フレーム分を取り出し、次のクリップの生成時に「前の場面の記憶」として渡します。映像に戻して再び圧縮し直す手順を挟まないため、画質劣化を避けられる設計です。記憶の使い方はクリップごとに「Same scene」「Selected moments」「Cast」「Off」から選べます。あるクリップを再生成すると、それに依存する後続クリップに「要再レンダリング」の印が付きます。\n\n従来との違い：通常の ComfyUI では1クリップずつプロンプトを投げて手でつなぐ作業になりがちです。これは「映画を何本ものクリップの一覧として管理する」考え方に変えた点が違います。examples/memory_demo.json に6クリップ（1024×576、24fps）のサンプルがあります。ただし作者自身が、全モードの画質比較までは行っていないと明記しています。\n\n使うには：GPU、MiniMax H3 の基本モデル・テキストエンコーダー・映像VAE・音声VAE（任意で LoRA）を自分で用意し、コア機能の MiniMax H3 Context Windows ノードを含む ComfyUI が必要です。ComfyUI/custom_nodes に clone して pip install -r requirements.txt を実行します。脚本を自動で書く Story writer はオプションで、使う場合は別途OpenAI互換のエンドポイントが必要です。有効な参照画像がそこへ送られる点に注意が必要です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "オリジナルのコードは MIT。モデル重みと外部依存、任意のプロンプトガイドは別条項。リポジトリには APACHE-2.0.txt も同梱。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/KadoBOT/ComfyUI-H3-Continuity-Studio"
+      },
+      {
+        "kind": "post",
+        "url": "https://comfyui-wiki.com/en/news/2026-11-03-h3-continuity-studio"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/h3-continuity-studio.jpg",
+    "relatedWorks": [
+      {
+        "title": "Viggle Remake",
+        "description": "既存映像の人物・物・背景を差し替える MiniMax H3 用 LoRA。",
+        "url": "https://huggingface.co/Viggle/Viggle-Remake"
+      },
+      {
+        "title": "LynnReal-Omni",
+        "description": "ストリーミング続き生成や参照指定にも対応する動画生成フレームワーク。",
+        "url": "https://github.com/LynnReal-AI/LynnReal-Omni"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "h3-ripple",
+    "title": "H3 Ripple (ComfyUI-WepeNerd)",
+    "org": "WepeNerd",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "Photoshop などで手直しした1〜2枚のフレームの変更を、動画のショット全体へ波及させる MiniMax H3 用 LoRA と ComfyUI ノード。",
+    "point": "すごい点は、動画の編集を「画像の編集」だけで済ませられることです。動画から選んだ1〜2枚のフレームを、いつものペイントソフトや画像編集ツールで直せば、その変更がショット全体に反映されます。元のカメラワークや動きのタイミングは保たれ、文章で指示する必要もありません。公式デモでは、グリーンバックの背景をコンサート会場のステージに差し替える例が示されています。広告では、撮影済みカットの背景差し替え、小道具や商品パッケージの変更、季節や時間帯の差し替えなどを、テキスト指示よりも狙い通りに仕上げたい場面で試せそうです。画像編集に慣れたデザイナーが、動画の修正を直接手がけやすくなります。",
+    "detail": "仕組み：Ripple Clip ノードが動画の範囲・サイズ・切り抜きと、編集したいフレーム（アンカー）の位置を決めます。Ripple Apply ノードが、元の動画と編集済みアンカーを MiniMax H3 に渡し、変更を前後のフレームへ広げます。結果は元映像との比較つきで保存されます。広げる処理は H3 Turbo の4ステップ設定で行い、出力は約1メガピクセル、24fpsです。\n\n従来との違い：動画の部分修正は、トラッキングとマスク作業を重ねるか、プロンプトで言葉にして賭けるかのどちらかでした。ここでは指示を画像で示すため、「こう見せたい」を直接伝えられます。ワークフローは2種類あります。Ripple Simple は外部の画像エディタで編集する方式（既定90フレーム・アンカー1枚）、Ripple Local Editor は ComfyUI 内で Qwen Image 2.1 がアンカーを編集する方式（既定124フレーム・アンカー2枚）です。作者は限界も明記しており、速い動き、物の隠れ、大きな視点変化では難しく、狙った箇所以外のディテールが変わることもあります。\n\n使うには：ComfyUI と MiniMax H3 FL2VA の一式（拡散モデル・テキストエンコーダー・映像VAE）、H3 Turbo 4ステップ LoRA が必要です。LoRA 本体は298MBで、ComfyUI/models/loras/H3/ に置きます。Local Editor 版は加えて Qwen Image 2.1 一式が必要です。アンカー画像は構図と構え方を揃えてください。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "ノードのコードは MIT。LoRA 重みは MiniMax H3 Community License（基本モデルの条件）に従う。"
+    },
+    "links": [
+      {
+        "kind": "project",
+        "url": "https://wepenerd.github.io/ComfyUI-WepeNerd/"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/WepeNerd/ComfyUI-WepeNerd"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/WepeNerd/H3_Ripple"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/h3-ripple.jpg",
+    "relatedWorks": [
+      {
+        "title": "Viggle Remake",
+        "description": "参照フレームを描き足して映像を撮り直す、MiniMax H3 用 LoRA。",
+        "url": "https://huggingface.co/Viggle/Viggle-Remake"
+      },
+      {
+        "title": "H3 Continuity Studio",
+        "description": "複数クリップを時間軸で管理し、カット間の一貫性を保つ ComfyUI ノード群。",
+        "url": "https://github.com/KadoBOT/ComfyUI-H3-Continuity-Studio"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "starlightgs",
     "title": "StarLightGS",
     "org": "CoSTAR National Lab",
