@@ -15,6 +15,7 @@
  * ブラウザが解決するとおり、相対パスはoriginを前置するだけで、クエリ文字列を含め
  * 一切変更しない。
  */
+import fs from "fs";
 import https from "https";
 import http from "http";
 import { httpGet } from "../verify-video.mjs";
@@ -104,6 +105,16 @@ export async function checkThumbnailsOnPage(pageUrl, { sampleCount = 4 } = {}) {
     return [{ src: null, resolvedUrl: null, reason: `対象img srcが見つからない: ${pageUrl}` }];
   }
 
+  return checkThumbnailSrcs(allSrcs, siteOrigin, { sampleCount, notFoundReason: `対象img srcが見つからない: ${pageUrl}` });
+}
+
+// src配列（新着順）を受けて検証する。先頭2件＋残りからランダムでsampleCount件まで補い、
+// 各々の実URLを解決してHTTP検証する。失敗配列を返す（空配列=全件OK）。
+// checkUrl はテスト用に差し替え可能（既定は checkImageUrl）。
+export async function checkThumbnailSrcs(allSrcs, siteOrigin, { sampleCount = 4, checkUrl = checkImageUrl, notFoundReason = "検査対象のサムネイルsrcが0件" } = {}) {
+  if (!allSrcs.length) {
+    return [{ src: null, resolvedUrl: null, reason: notFoundReason }];
+  }
   const head = allSrcs.slice(0, 2);
   const restPool = allSrcs.slice(2);
   const randomCount = Math.max(0, Math.min(sampleCount - head.length, restPool.length));
@@ -118,7 +129,7 @@ export async function checkThumbnailsOnPage(pageUrl, { sampleCount = 4 } = {}) {
   const failures = [];
   for (const src of targets) {
     const resolvedUrl = resolveActualImageUrl(src, siteOrigin);
-    const result = await checkImageUrl(resolvedUrl);
+    const result = await checkUrl(resolvedUrl);
     if (!result.ok) {
       failures.push({
         src,
@@ -130,4 +141,23 @@ export async function checkThumbnailsOnPage(pageUrl, { sampleCount = 4 } = {}) {
     }
   }
   return failures;
+}
+
+// Case Study: クライアント(CaseCard)は cases.json の thumbnail をそのまま next/image
+// (unoptimized) の src にするため、表示対象(quarantined除外)の thumbnail が実URL。
+// cases.json は新着順（配列先頭が最新。日付フィールドは無い）。
+export function caseThumbnailSrcs(cases) {
+  return cases.filter((c) => c && !c.quarantined && c.thumbnail).map((c) => c.thumbnail);
+}
+
+// 2026-07-19以降トップHTMLにimgが無い（クライアントfetch描画）ため、cases.jsonからsrcを作って検査する。
+export async function checkCaseThumbnails(casesPath, siteOrigin, opts = {}) {
+  let cases;
+  try {
+    cases = JSON.parse(fs.readFileSync(casesPath, "utf-8"));
+    if (!Array.isArray(cases)) throw new Error("配列ではない");
+  } catch (e) {
+    return [{ src: null, resolvedUrl: null, reason: `cases.json 読み込み失敗: ${e.message}` }];
+  }
+  return checkThumbnailSrcs(caseThumbnailSrcs(cases), siteOrigin, { ...opts, notFoundReason: "cases.jsonに表示対象のthumbnailが0件" });
 }

@@ -33,7 +33,7 @@ import {
 } from "./lib/deploy-health.mjs";
 import { gitSafeCommitAndPush, gitSafeRevertAndPush } from "./lib/watchdog-git.mjs";
 import { parseJobRuns, filterRecentRuns, hasConsecutiveOutcome, countTodayRejections, readLogSafe, defaultLogPath, findRecentJobFailure } from "./lib/log-health.mjs";
-import { checkThumbnailsOnPage } from "./lib/thumbnail-page-check.mjs";
+import { checkThumbnailsOnPage, checkCaseThumbnails } from "./lib/thumbnail-page-check.mjs";
 import { dedupeCandidates, extractKnownTechIdsFromAuditFailLines } from "./lib/quarantine.mjs";
 import { isUrlAlive } from "./verify-video.mjs";
 import { dueVerification, readIncidentsSafe, shouldRunToday, readVerifyStateSafe, writeVerifyState } from "./lib/verify-schedule.mjs";
@@ -435,7 +435,8 @@ async function checkDailyRunHealth(report) {
 // 2. サムネイル（ページが実際に参照するURLで検査）
 // ─────────────────────────────────────────────────────────────
 async function checkThumbnails(report) {
-  const caseFailures = await checkThumbnailsOnPage(`${SITE}/`, { sampleCount: 4 }).catch((e) => [{ reason: `例外: ${e.message}` }]);
+  // Case Studyはトップ HTML に img が無い（クライアントが cases を fetch 描画）ため cases.json の thumbnail から検査する
+  const caseFailures = await checkCaseThumbnails(path.join(ROOT, "data/cases.json"), SITE, { sampleCount: 4 }).catch((e) => [{ reason: `例外: ${e.message}` }]);
   if (caseFailures.length) {
     log(`[thumb] Case Study: ${caseFailures.length}件失敗`);
     const heal = spawnSync("node", ["scripts/self-heal-thumbnails.mjs"], { cwd: ROOT, encoding: "utf-8", timeout: 20 * 60 * 1000 });
@@ -446,7 +447,7 @@ async function checkThumbnails(report) {
     });
     report.push(
       [
-        `🖼 Case Studyサムネイル異常を検知（${caseFailures.length}件、ページ実URLで検査）`,
+        `🖼 Case Studyサムネイル異常を検知（${caseFailures.length}件、cases.jsonのthumbnailを本番実URLで検査）`,
         ...caseFailures.slice(0, 5).map((f) => `  - ${f.src || "(取得不可)"}: ${f.reason}`),
         heal.status !== 0 ? "self-heal-thumbnails.mjsの実行が異常終了しました。" : "",
         commitResult.committed
