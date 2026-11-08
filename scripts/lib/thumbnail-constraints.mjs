@@ -13,6 +13,7 @@ import fs from "fs";
 import path from "path";
 import crypto from "crypto";
 import { fileURLToPath } from "url";
+import sharp from "sharp";
 import { normalizeThumbnailBuffer } from "./normalize-thumbnail.mjs";
 
 export const MIN_THUMB_BYTES = 5000;
@@ -25,6 +26,14 @@ export const MIN_THUMB_BYTES = 5000;
  */
 export async function normalizeAndEnforceMinBytes(buf, minBytes = MIN_THUMB_BYTES) {
   if (!buf) return null;
+  // デコード不能（HTML等）は normalizeThumbnailBuffer が素通しで返すため、ここで必ず不採用にする
+  // （2026-11: the-times-of-india-ink-of-democracy.jpg に HTML が保存された事故）
+  try {
+    const meta = await sharp(buf).metadata();
+    if (!meta || !meta.format) return null;
+  } catch {
+    return null;
+  }
   const normalized = await normalizeThumbnailBuffer(buf);
   if (!normalized || normalized.length < minBytes) return null;
   return normalized;

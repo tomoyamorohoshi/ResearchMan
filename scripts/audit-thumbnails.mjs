@@ -4,10 +4,12 @@
  *  (2) 2ファイル以上が完全一致 = 集約ページのog:imageを使い回した疑い
  *      （同一キャンペーンのprint/main等の正規バリアントのみ ALLOWED_DUP_GROUPS で許容）
  *  (3) thumbnailが/thumbnails/配下なのに実体が無い
+ *  (4) 実体が画像としてデコードできない（HTML等が.jpgとして保存された）
  * 使い方: node scripts/audit-thumbnails.mjs  （npm run audit:thumbnails）
  */
 import fs from "fs"; import path from "path"; import crypto from "crypto";
 import { fileURLToPath } from "url";
+import { isDecodableImageFile } from "./lib/thumbnail-decodable.mjs";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
 const cases = JSON.parse(fs.readFileSync(path.join(ROOT, "data/cases.json"), "utf8"));
@@ -39,6 +41,7 @@ for (const c of cases) {
   if (!t.startsWith("/thumbnails/")) continue;
   const p = path.join(ROOT, "public" + t);
   if (!fs.existsSync(p)) { console.log(`✗ MISSING file: ${c.id} (${t})`); fail++; continue; }
+  if (!(await isDecodableImageFile(p))) { console.log(`✗ UNDECODABLE image (HTML等・画像として開けない): ${c.id} (${t})`); fail++; continue; }
   const h = md5(p);
   if (BAD_HASHES[h]) { console.log(`✗ PLACEHOLDER: ${c.id} = ${BAD_HASHES[h]}`); fail++; }
   (hashToIds[h] = hashToIds[h] || []).push(c.id);

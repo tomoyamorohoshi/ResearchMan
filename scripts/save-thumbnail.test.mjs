@@ -511,3 +511,19 @@ test("hashThumbnailBuffer: saveThumbnailが書き込む正規化後バッファ�
   const expectedHash = cryptoModule.createHash("md5").update(writtenBuf).digest("hex");
   assert.equal(hashThumbnailBuffer(writtenBuf), expectedHash);
 });
+
+test("saveThumbnail: requireDecodable未指定でもHTMLバッファは保存せずnull（既定でデコード不能を弾く）", async () => {
+  const { saveThumbnail, _deps } = await import("./save-thumbnail.mjs");
+  const orig = _deps.fetchImage;
+  const html = Buffer.from("<!DOCTYPE html><html>" + "x".repeat(20000) + "</html>");
+  _deps.fetchImage = async () => html;
+  const id = `test-html-default-${Date.now()}`;
+  try {
+    assert.equal(await saveThumbnail(id, "https://example.com/x.jpg"), null);
+    const fs = await import("fs");
+    const p = new URL(`../public/thumbnails/${id}.jpg`, import.meta.url);
+    assert.equal(fs.existsSync(p), false);
+  } finally {
+    _deps.fetchImage = orig;
+  }
+});

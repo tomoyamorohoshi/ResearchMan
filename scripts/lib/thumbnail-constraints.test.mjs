@@ -127,3 +127,9 @@ test("createThumbnailDuplicateGuard: 既存ハッシュと一致するバッフ�
   guard.remember(newHash);
   assert.equal(guard.isDuplicate(newHash), true, "rememberしたハッシュは以降isDuplicateでtrueになるべき");
 });
+
+test("normalizeAndEnforceMinBytes: デコード不能なバッファ（HTML等）は閾値以上でもnull（2026-11 HTML .jpg保存事故の再発防止）", async () => {
+  const html = Buffer.from("<!DOCTYPE html><html><body>" + "x".repeat(20000) + "</body></html>");
+  assert.equal(await normalizeAndEnforceMinBytes(html, 0), null);
+  assert.equal(await normalizeAndEnforceMinBytes(html), null);
+});
