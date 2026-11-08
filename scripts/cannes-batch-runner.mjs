@@ -16,7 +16,8 @@ import path from "path";
 import { spawn, spawnSync } from "child_process";
 import { fileURLToPath, pathToFileURL } from "url";
 import { resolveClaudeBin, buildClaudeArgs } from "./lib/claude-cli.mjs";
-import { makeCaseId } from "./cannes-ingest.mjs";
+import { findDuplicate } from "./cannes-ingest.mjs";
+import { makeMatcher } from "./cannes-reconcile.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
@@ -35,15 +36,20 @@ function normState(s) {
   return { ...e, ...(s || {}), attempts: { ...(s?.attempts || {}) }, skipped: [...(s?.skipped || [])], done: [...(s?.done || [])] };
 }
 
-/** 対象選定: skip/done/試行上限・既存 id を除き、先頭 entry の部門の残件数が少ない順（同数は初出順、部門内は元順） */
-export function selectTargets(works, state, { existingIds = new Set(), year } = {}) {
+/** ingest と同じ重複判定（同年 cannes awardEntries を持つ事例と title 正規化一致 or 正規化 id 一致） */
+export function isAlreadyIngested(work, cases, year) {
+  const { flat } = makeMatcher(year);
+  return !!findDuplicate(cases, year, work, flat);
+}
+
+/** 対象選定: skip/done/試行上限・既存事例（ingest の findDuplicate と同規則）を除き、先頭 entry の部門の残件数が少ない順（同数は初出順、部門内は元順） */
+export function selectTargets(works, state, { existingCases = [], year } = {}) {
   const st = normState(state);
   const skip = new Set(st.skipped), done = new Set(st.done);
   const cand = works.filter((w) => {
     if (skip.has(w.key) || done.has(w.key)) return false;
     if ((st.attempts[w.key] || 0) >= MAX_ATTEMPTS) return false;
-    const base = makeCaseId(w.brand, w.title);
-    if (base && (existingIds.has(base) || (year && existingIds.has(`${base}-${year}`)))) return false;
+    if (year && existingCases.length && isAlreadyIngested(w, existingCases, year)) return false;
     return true;
   });
   const cat = (w) => w.entries?.[0]?.category ?? "";
@@ -129,21 +135,29 @@ export function buildPrompt(brief, { year, sp, worksFile, draftsFile }) {
   return `${body}\n\n## 今回の担当\n- works ファイル（担当作品。Read で読む）: ${worksFile}\n- drafts 出力ファイル: ${draftsFile}\n- Write/Edit ツールは使えない。drafts ファイルは Bash（node -e や heredoc）で書くこと。\n`;
 }
 
-/** 実 claude を非同期に起動する（runClaude は spawnSync で並列にできないため。引数・環境は buildClaudeArgs / runClaude と同じ方針） */
-export function makeClaudeGroupRunner({ claudeBin = resolveClaudeBin(), timeout = TIMEOUT_MS } = {}) {
-  return ({ prompt }) =>
+/** 実 claude を非同期に起動する（runClaude は spawnSync で並列にできないため。引数・環境は buildClaudeArgs / runClaude と同じ方針）。
+ *  タイムアウト時は自分が spawn した子の PID だけをツリーごと止める（win32: taskkill /PID <pid> /T /F）。reject は子の close 後。 */
+export function makeClaudeGroupRunner({ claudeBin = resolveClaudeBin(), timeout = TIMEOUT_MS, args = buildClaudeArgs({ model: "sonnet", allowedTools: "WebSearch,WebFetch,Read,Bash" }) } = {}) {
+  return ({ prompt, cwd }) =>
     new Promise((resolve, reject) => {
-      const args = buildClaudeArgs({ model: "sonnet", allowedTools: "WebSearch,WebFetch,Read,Bash" });
       const env = { ...process.env };
       delete env.ANTHROPIC_API_KEY;
       delete env.ANTHROPIC_AUTH_TOKEN;
-      const child = spawn(claudeBin, args, { stdio: ["pipe", "pipe", "pipe"], env, windowsHide: true });
-      let out = "";
-      const timer = setTimeout(() => { child.kill(); reject(new Error(`タイムアウト ${timeout / 1000}s`)); }, timeout);
+      const child = spawn(claudeBin, args, { stdio: ["pipe", "pipe", "pipe"], env, windowsHide: true, cwd });
+      let out = "", timedOut = false;
+      const timer = setTimeout(() => {
+        timedOut = true;
+        if (process.platform === "win32" && child.pid) spawnSync("taskkill", ["/PID", String(child.pid), "/T", "/F"], { windowsHide: true });
+        else child.kill();
+      }, timeout);
       child.stdout.on("data", (d) => { out = (out + d).slice(-2000); });
       child.stderr.on("data", (d) => { out = (out + d).slice(-2000); });
       child.on("error", (e) => { clearTimeout(timer); reject(e); });
-      child.on("close", (code) => { clearTimeout(timer); code === 0 ? resolve(out) : reject(new Error(`claude 終了コード ${code}: ${out.slice(-300)}`)); });
+      child.on("close", (code) => {
+        clearTimeout(timer);
+        if (timedOut) reject(new Error(`タイムアウト ${timeout / 1000}s`));
+        else code === 0 ? resolve(out) : reject(new Error(`claude 終了コード ${code}: ${out.slice(-300)}`));
+      });
       child.stdin.on("error", () => {});
       child.stdin.end(prompt);
     });
@@ -161,7 +175,7 @@ async function pool(items, limit, fn) {
  * 1バッチを実行する。runGroup({prompt, worksFile, draftsFile, groupNo}) と runIngest(mergedFile)→{status} は注入可能。
  * 戻り値: { exitCode, state, stats }。ingest 失敗時は state を更新しない（同じ作品を次回やり直せる）。
  */
-export async function runBatch({ year, works, state, batchNo, batchSize = 35, parallel = 7, groupSize = GROUP_SIZE, workRoot, brief, runGroup, runIngest, log = () => {} }) {
+export async function runBatch({ year, works, state, batchNo, batchSize = 35, parallel = 7, groupSize = GROUP_SIZE, workRoot, brief, runGroup, runIngest, readCases = () => [], gitStatusCases = () => "", log = () => {} }) {
   const dir = path.join(workRoot, String(year), String(batchNo));
   fs.mkdirSync(dir, { recursive: true });
   const examples = path.join(ROOT, "docs", "cannes", "DRAFT_EXAMPLES.json");
@@ -171,6 +185,7 @@ export async function runBatch({ year, works, state, batchNo, batchSize = 35, pa
   const started = Date.now();
   log(`バッチ${batchNo} 開始: ${target.length}件 / ${groups.length}グループ / parallel=${parallel}`);
 
+  const statusBefore = gitStatusCases();
   const results = await pool(groups, parallel, async (g, i) => {
     const worksFile = path.join(dir, `g${i + 1}-works.json`);
     const draftsFile = path.join(dir, `g${i + 1}-drafts.json`);
@@ -178,42 +193,64 @@ export async function runBatch({ year, works, state, batchNo, batchSize = 35, pa
     fs.rmSync(draftsFile, { force: true });
     const fwd = (p) => p.replaceAll("\\", "/");
     const prompt = buildPrompt(brief, { year, sp: fwd(dir), worksFile: fwd(worksFile), draftsFile: fwd(draftsFile) });
-    let error = null;
-    try { await runGroup({ prompt, worksFile, draftsFile, groupNo: i + 1 }); } catch (e) { error = e.message; }
+    let error = null, procError = null;
+    try { await runGroup({ prompt, worksFile, draftsFile, groupNo: i + 1, cwd: dir }); } catch (e) { error = procError = e.message; }
     let valid = [], dropped = [];
     if (fs.existsSync(draftsFile)) {
       try { ({ valid, dropped } = validateDrafts(JSON.parse(fs.readFileSync(draftsFile, "utf8")), new Set(g.map((w) => w.key)))); }
       catch (e) { error = error || `drafts JSON 読込失敗: ${e.message}`; }
     } else error = error || "drafts ファイルなし";
-    log(`  グループ${i + 1}: 担当${g.length} 採用${valid.length} 除外${dropped.length}${error ? ` エラー=${error}` : ""}${dropped.length ? ` (${dropped.map((d) => `${d.key}:${d.reason}`).join("; ")})` : ""}`);
-    return { g, valid };
+    const procFailed = !!procError && !fs.existsSync(draftsFile);
+    log(`  グループ${i + 1}: 担当${g.length} 採用${valid.length} 除外${dropped.length}${procFailed ? " [プロセス失敗]" : ""}${error ? ` エラー=${error}` : ""}${dropped.length ? ` (${dropped.map((d) => `${d.key}:${d.reason}`).join("; ")})` : ""}`);
+    return { g, valid, procFailed };
   });
+  const statusAfter = gitStatusCases();
+  if (statusAfter !== statusBefore) log(`  警告: 子 claude 実行中に data/cases.json が変化した (${JSON.stringify(statusAfter)})`);
+
 
   const merged = results.flatMap((r) => r.valid);
-  const attemptedKeys = target.map((w) => w.key);
-  const okKeys = merged.map((m) => m.key);
+  const okGroups = results.filter((r) => !r.procFailed);
+  // プロセス失敗（drafts なし）のグループは attempts を進めない
+  const attemptedKeys = okGroups.flatMap((r) => r.g.map((w) => w.key));
   let exitCode = 0, newState = state;
-  if (merged.length) {
+  if (!okGroups.length) {
+    log("  全グループが claude プロセス失敗（使用量上限・ログアウト等の疑い）のため停止");
+    exitCode = 1;
+  } else if (merged.length) {
     const mergedFile = path.join(dir, "merged-drafts.json");
     fs.writeFileSync(mergedFile, JSON.stringify(merged, null, 2));
     const r = await runIngest(mergedFile);
     log(`  ingest: exit=${r.status}`);
     if (r.status !== 0) exitCode = 1;
-    else newState = updateState(state, { attemptedKeys, okKeys });
+    else {
+      // 実際に cases.json に入った key だけ done（ingest と同じ重複判定）
+      const cases = readCases();
+      const byKey = new Map(target.map((w) => [w.key, w]));
+      const okKeys = merged.map((m) => m.key).filter((k) => isAlreadyIngested(byKey.get(k), cases, year));
+      log(`  cases.json 反映確認: ${okKeys.length}/${merged.length}`);
+      newState = updateState(state, { attemptedKeys, okKeys });
+    }
   } else {
     log("  採用0件のため ingest なし");
-    newState = updateState(state, { attemptedKeys, okKeys });
+    newState = updateState(state, { attemptedKeys, okKeys: [] });
   }
   log(`バッチ${batchNo} 終了: 採用${merged.length}/${target.length} 所要${Math.round((Date.now() - started) / 1000)}s exit=${exitCode}`);
-  return { exitCode, state: newState, stats: { attempted: target.length, adopted: merged.length } };
+  return { exitCode, state: newState, stats: { attempted: target.length, adopted: merged.length, procFailed: results.length - okGroups.length } };
 }
 
 function readJson(file, fallback) {
   try { return JSON.parse(fs.readFileSync(file, "utf8")); } catch { return fallback; }
 }
 
-function parseArgs(argv) {
-  const o = { year: argv.find((a) => /^\d{4}$/.test(a)), batchSize: 35, parallel: 7, maxBatches: Infinity, dryRun: argv.includes("--dry-run") };
+export function parseArgs(argv) {
+  const o = { year: undefined, batchSize: 35, parallel: 7, maxBatches: Infinity, dryRun: argv.includes("--dry-run") };
+  const valued = new Set(["--batch-size", "--parallel", "--max-batches"]);
+  for (let i = 0; i < argv.length; i++) {
+    if (valued.has(argv[i])) { i++; continue; }
+    if (argv[i].startsWith("--")) continue;
+    if (/^\d{4}$/.test(argv[i])) o.year = argv[i]; // 位置引数の先頭だけ
+    break;
+  }
   const num = (f) => { const i = argv.indexOf(f); return i >= 0 ? Number(argv[i + 1]) : undefined; };
   o.batchSize = num("--batch-size") ?? o.batchSize;
   o.parallel = num("--parallel") ?? o.parallel;
@@ -236,7 +273,8 @@ async function main() {
   const logFile = path.join(os.homedir(), ".researchman", "logs", "cannes-runner.log");
   const plan = readJson(planFile, null);
   if (!plan || !Array.isArray(plan.new)) { console.error(`plan が読めない: ${planFile}`); process.exit(2); }
-  const existingIds = new Set(caseList(readJson(casesFile, [])).map((c) => c.id));
+  const loadCases = () => caseList(readJson(casesFile, []));
+  let existingCases = loadCases();
 
   const log = (m) => {
     const line = `${new Date().toISOString()} [${year}] ${m}`;
@@ -247,8 +285,9 @@ async function main() {
   let state = normState(readJson(stateFile, null));
 
   if (o.dryRun) {
-    const sel = selectTargets(plan.new, state, { existingIds, year });
-    console.log(`[dry-run ${year}] plan.new=${plan.new.length} 対象=${sel.length} (skip=${state.skipped.length} done=${state.done.length} 既存idで除外=${plan.new.length - sel.length - state.skipped.length - state.done.length})`);
+    const sel = selectTargets(plan.new, state, { existingCases, year });
+    const noCases = selectTargets(plan.new, state, { year }).length;
+    console.log(`[dry-run ${year}] plan.new=${plan.new.length} 対象=${sel.length} (skip=${state.skipped.length} done=${state.done.length} 取り込み済みで除外=${noCases - sel.length} ※attempts上限は skip に含む)`);
     const batch = sel.slice(0, o.batchSize);
     chunk(batch, GROUP_SIZE).forEach((g, i) => console.log(`  グループ${i + 1}: ${g.map((w) => `${w.key}[${w.entries?.[0]?.category}]`).join(", ")}`));
     console.log(`  バッチ数見込み=${Math.ceil(sel.length / o.batchSize)}`);
@@ -259,13 +298,14 @@ async function main() {
   const head = () => spawnSync("git", ["rev-parse", "HEAD"], { cwd: ROOT, encoding: "utf8" }).stdout.trim();
   const runGroup = makeClaudeGroupRunner();
   const runIngest = (mergedFile) => spawnSync(process.execPath, [path.join(__dirname, "cannes-ingest.mjs"), String(year), "--drafts", mergedFile], { cwd: ROOT, stdio: "inherit" });
+  const gitStatusCases = () => spawnSync("git", ["status", "--porcelain", "data/cases.json"], { cwd: ROOT, encoding: "utf8" }).stdout.trim();
   let code = 0;
   for (let n = 0; n < o.maxBatches; n++) {
-    const works = selectTargets(plan.new, state, { existingIds, year });
+    const works = selectTargets(plan.new, state, { existingCases, year });
     if (!works.length) { log("対象が尽きた"); break; }
     state.batchSeq = (state.batchSeq || 0) + 1;
     const before = head();
-    const r = await runBatch({ year, works, state, batchNo: state.batchSeq, batchSize: o.batchSize, parallel: o.parallel, workRoot: path.join(os.homedir(), ".researchman", "cannes-runner"), brief, runGroup, runIngest, log });
+    const r = await runBatch({ year, works, state, batchNo: state.batchSeq, batchSize: o.batchSize, parallel: o.parallel, workRoot: path.join(os.homedir(), ".researchman", "cannes-runner"), brief, runGroup, runIngest, readCases: loadCases, gitStatusCases, log });
     state = r.state;
     state.batchSeq = Math.max(state.batchSeq || 0, 0);
     fs.writeFileSync(stateFile, JSON.stringify(state, null, 2));
@@ -274,8 +314,8 @@ async function main() {
       const l = spawnSync("git", ["log", "--oneline", `${before}..${after}`], { cwd: ROOT, encoding: "utf8" }).stdout.trim();
       log(`  追加 commit: ${l.replace(/\n/g, " / ")}`);
     }
-    for (const x of caseList(readJson(casesFile, []))) existingIds.add(x.id);
-    if (r.exitCode !== 0) { log("ingest 失敗のため停止"); code = 1; break; }
+    existingCases = loadCases();
+    if (r.exitCode !== 0) { log("ingest 失敗またはプロセス全失敗のため停止"); code = 1; break; }
   }
   process.exit(code);
 }

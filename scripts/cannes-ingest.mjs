@@ -72,7 +72,7 @@ function writeAtomic(file, text) {
 
 // 取り込み済み判定: 同年の cannes awardEntries を持ち、title(正規化)が一致するか、
 // 正規化 id（-<year> 付与前/後）と同じ id を持つ事例（draft.title が plan と違う表記でも冪等にするため）
-function findDuplicate(cases, year, work, flat) {
+export function findDuplicate(cases, year, work, flat) {
   const f = flat(work.title);
   const base = makeCaseId(work.brand, work.title);
   return cases.find((c) => {
