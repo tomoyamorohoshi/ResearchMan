@@ -70784,7 +70784,10 @@
       "Tech/Web",
       "Theme/Retail"
     ],
-    "thumbnail": "/thumbnails/waterstone-s-read-better.jpg"
+    "thumbnail": "/thumbnails/waterstone-s-read-better.jpg",
+    "quarantined": true,
+    "quarantineReason": "内容の出典が応募情報(WARC)のみ・作品画像なし（2026-11-09 手動）",
+    "quarantineTs": "2026-11-08T17:06:51.097Z"
   },
   {
     "year": "2025",
