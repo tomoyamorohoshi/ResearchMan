@@ -13809,7 +13809,10 @@
       "Tech/Web",
       "Form/Website",
       "Theme/Art"
-    ]
+    ],
+    "quarantined": true,
+    "quarantineReason": "link-dead(二重確認済): 404: https://thefwa.com/cases/yugop",
+    "quarantineTs": "2026-11-08T09:43:35.054Z"
   },
   {
     "id": "aoto-still-blond-stay-gold-2026",
@@ -36399,7 +36402,10 @@
       "Form/Installation",
       "Form/Event",
       "Theme/Entertainment"
-    ]
+    ],
+    "quarantined": true,
+    "quarantineReason": "link-dead(二重確認済): 404: https://thefwa.com/cases/hunger-games-interactive-poster-creator",
+    "quarantineTs": "2026-11-08T09:43:35.054Z"
   },
   {
     "id": "the-covid-art-museum-2021",

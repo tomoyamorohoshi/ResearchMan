@@ -9532,7 +9532,10 @@
     ],
     "sources": [
       "Tech Radar"
-    ]
+    ],
+    "quarantined": true,
+    "quarantineReason": "tech links[0]死活確認失敗(二重確認済): https://github.com/MiniMax-AI/MiniMax-Music3",
+    "quarantineTs": "2026-11-08T09:43:35.054Z"
   },
   {
     "id": "qwen-video-edit",
@@ -9994,7 +9997,10 @@
     ],
     "sources": [
       "Tech Radar"
-    ]
+    ],
+    "quarantined": true,
+    "quarantineReason": "tech links[0]死活確認失敗(二重確認済): https://github.com/ant-research/HTD-Refine",
+    "quarantineTs": "2026-11-08T09:43:35.054Z"
   },
   {
     "id": "openvideo",
@@ -14775,7 +14781,10 @@
     ],
     "sources": [
       "Batch Research"
-    ]
+    ],
+    "quarantined": true,
+    "quarantineReason": "tech links[0]死活確認失敗(二重確認済): https://github.com/TeleHuman/TextOp",
+    "quarantineTs": "2026-11-08T09:43:35.054Z"
   },
   {
     "id": "sonic",
