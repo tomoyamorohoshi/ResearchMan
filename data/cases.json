@@ -70738,5 +70738,131 @@
       "Theme/Health"
     ],
     "thumbnail": "/thumbnails/kiehl-s-pubic-service-announcement.jpg"
+  },
+  {
+    "year": "2025",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2025"
+    ],
+    "id": "waterstone-s-read-better",
+    "title": "Read Better",
+    "summary": "「人は毎日オンラインで大量の文章を読んでいる」という事実を見せ、書店Waterstonesが読書を「読み直す」ことを促した、UAE発のキャンペーン。",
+    "client": "Waterstone S",
+    "agency": "FP7 McCANN, Dubai / McCANN, Bristol",
+    "categories": [
+      "Digital Craft",
+      "Film"
+    ],
+    "award": "Cannes Lions 2025 Digital Craft Lions Bronze / Cannes Lions 2025 Film Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Digital Craft",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Film",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "中東",
+      "欧州"
+    ],
+    "link": "https://thebrandberries.com/fp7mccann-brings-home-seven-lions-at-cannes-for-regional-and-global-brands-including-arla-mcdonalds-waterstones-uk-testicular-cancer-society/",
+    "videoId": "",
+    "overview": "英国の書店チェーンWaterstonesが、FP7McCann Dubai・McCann Bristolと展開した「Read Better」。デジタル上の閲覧も「読むこと」とみなし直し、本への関心につなげる狙いで、短編フィルムとブラウザ拡張機能の2本立てで構成された。",
+    "background": "多くの成人が「本を読む時間がない」と言う一方、ウェブ・メール・SNSで日々大量の文字を読んでいる。この矛盾に着目し、読書の文化的な地位を、デジタルに慣れた層に向けて取り戻すことが課題だった。",
+    "execution": "1日にどれだけの文章を読んでいるかを見せる短編フィルムを制作。あわせて、ユーザーがオンラインで読んだ単語数を計測し、その閲覧傾向に合う本を薦めるブラウザ拡張機能を用意した。キャンペーンはUAEで展開された。",
+    "evaluationImpact": "カンヌライオンズ2025のDigital Craft部門とFilm部門でBronzeを受賞した。",
+    "tags": [
+      "Form/Film",
+      "Tech/Web",
+      "Theme/Retail"
+    ],
+    "thumbnail": "/thumbnails/waterstone-s-read-better.jpg"
+  },
+  {
+    "year": "2025",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2025"
+    ],
+    "id": "netflix-senna-s-cut",
+    "title": "Senna's Cut",
+    "summary": "Netflixのセナ伝記シリーズを、1990年モナコGPでのセナの最速ラップと同じ1分21秒314に編集した予告映像。",
+    "client": "Netflix",
+    "agency": "MONKS, Buenos Aires / MONKS, Bogota",
+    "categories": [
+      "Entertainment Lions for Sport"
+    ],
+    "award": "Cannes Lions 2025 Entertainment Lions for Sport Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Entertainment Lions for Sport",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/the-senna-s-cut-effdd0e2-697c-4774-8182-2fc79f8e905e",
+    "videoId": "",
+    "overview": "Netflixがアイルトン・セナの人生を描くシリーズ『Senna』のために、MONKSが制作した予告編。シリーズ全体を、セナが1990年モナコで記録したラップタイム1:21.314ちょうどの長さに圧縮し、編集のリズムをそのラップの加減速やコーナリングに重ねた。2024年12月にアルゼンチンとコロンビアで公開された。",
+    "background": "Netflixが自社プラットフォーム外でシリーズを本編公開前に丸ごと展開するという初の試みを伴う施策だった。F1ファンに加え、セナを知らない若い層にも物語を届ける必要があった。",
+    "execution": "ラップのテレメトリ（実際の走行データ）に合わせて映像をカットし、カーブやギアチェンジに編集点を対応させた。テレビとSNSで同時に公開し、インフルエンサーがコマごとの解析や考察を共有して話題を広げた。F1ドライバーやジャーナリスト、インフルエンサーを招いたライブプレミアも行われた。",
+    "evaluationImpact": "カンヌライオンズ2025のEntertainment Lions for Sport部門でBronzeを受賞した。",
+    "tags": [
+      "Form/Film",
+      "Theme/Sports",
+      "Theme/Entertainment",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/netflix-senna-s-cut.jpg"
+  },
+  {
+    "year": "2025",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2025"
+    ],
+    "id": "my-doctors-recipe-creamotherapy",
+    "title": "Creamotherapy",
+    "summary": "がん患者が食べられる数少ない食品であるアイスクリームに微量栄養素を封入し、がん治療における栄養不良に光を当てた英国の取り組み。",
+    "client": "My Doctors Recipe",
+    "agency": "HAVAS LYNX, Manchester / MY DOCTORS RECIPE, Dornoch",
+    "categories": [
+      "Health & Wellness"
+    ],
+    "award": "Cannes Lions 2025 Health & Wellness Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Health & Wellness",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/creamotherapy",
+    "videoId": "",
+    "overview": "My Doctor's RecipeとHavas Lynx（マンチェスター）による「Creamotherapy」。栄養補助アイス「Nutri-Ice」を通じて、がん治療の現場で栄養を治療と同じ重みで扱うことを訴える。2025年3月に英国で公開された。",
+    "background": "「がん患者の5人に1人は、がんそのものではなく栄養失調で亡くなる」とされる。口内炎、吐き気、味覚・嗅覚の変化、食欲低下で食事が難しくなる中、アイスクリームは多くの患者が口にできる一方で栄養価が乏しい点が課題だった。",
+    "execution": "マイクロカプセル化技術で必須のビタミンやミネラルを加え、味や匂いを変えずに摂取できるようにした。従来のサプリメントに伴う副作用を避けつつ、医療従事者にもより良い栄養の選択肢を知ってもらう狙いがある。",
+    "evaluationImpact": "カンヌライオンズ2025のHealth & Wellness部門でSilverを受賞した。D&AD 2025でもWood Pencilに選ばれている。",
+    "tags": [
+      "Theme/Health",
+      "Theme/Food",
+      "Form/Product"
+    ],
+    "thumbnail": "/thumbnails/my-doctors-recipe-creamotherapy.jpg"
   }
 ]
