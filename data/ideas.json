@@ -26419,5 +26419,215 @@
         "desc": "動く3Dシーンで「手前を走る人」のように言葉で指定した対象を追跡できる手法。"
       }
     ]
+  },
+  {
+    "id": "2026-11-08-1",
+    "date": "2026-11-08",
+    "title": "ソレノイド木琴を声で再構成",
+    "pattern": "技術×技術",
+    "seed": "Kuro Kasetto「Tiny Sound Machines」のソレノイド木琴の演奏音を、smorphで音の強弱や動きを保ったまま人の声の音色へ滑らかに変えたら、機械が囁く生成音響作品になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "kuro-kasetto-tiny-sound-machines-2026",
+        "title": "Kuro Kasetto「Tiny Sound Machines」ソレノイド音響作品",
+        "desc": "メキシコの音楽家が、ソレノイドで叩く小さな木琴を自動演奏させて作った生成音響作品。"
+      },
+      {
+        "type": "tech",
+        "id": "smorph",
+        "title": "smorph (Playable Sound Morphing with Diffusion Models)",
+        "desc": "音の強弱や音程の動きはそのままに、音色だけを別の音へ滑らかに変える技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-08-2",
+    "date": "2026-11-08",
+    "title": "人間演奏の証明を音源分離で",
+    "pattern": "文脈×技術",
+    "seed": "Played by Humans(Jazz Is Dead)の「人が演奏した証明」を、HS-TasNetのリアルタイム音源分離でライブ中に楽器ごと可視化し、呼吸や揺らぎが検証できる公開演奏証明にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "jazz-is-dead-played-by-humans",
+        "title": "Played by Humans",
+        "desc": "AI時代に、人間が演奏した音楽であることをブロックチェーンで認証する運動。"
+      },
+      {
+        "type": "tech",
+        "id": "hs-tasnet",
+        "title": "HS-TasNet",
+        "desc": "ボーカルやドラムなどを、約23ミリ秒の短さでリアルタイムに分けられる音源分離モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-08-3",
+    "date": "2026-11-08",
+    "title": "4秒のラベルを点群で立体化",
+    "pattern": "文脈×技術",
+    "seed": "Temper cider labelの決勝最終4秒のパラパラ漫画を、360 Gaussian Proで会場を撮った点群に置き換え、ラベル60枚をかざす角度で視点が動く立体の記憶にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "temper-cider-label-wimbledon-2008-4-60-2026",
+        "title": "Temper cider label（Wimbledon 2008決勝の最終4秒をラベル60枚でパラパラ漫画化）",
+        "desc": "ウィンブルドン決勝の最後の4秒を60枚のラベルに分け、並べるとパラパラ漫画になるサイダー。"
+      },
+      {
+        "type": "tech",
+        "id": "360-gaussian-pro",
+        "title": "360 Gaussian Pro",
+        "desc": "360度カメラの映像から、立体の点群データ(Gaussian Splat)を自動で作るアプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-08-4",
+    "date": "2026-11-08",
+    "title": "偽女王の声を分解して検証",
+    "pattern": "文脈×技術",
+    "seed": "Deepfake Queen: 2020 Alternative Christmas Messageの偽情報への警鐘を、MiniMax Music 3で偽の国民的歌を5分作り、聴き手が嘘の歌声を見抜く耳を鍛えるゲームにできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "deepfake-queen-2020-alternative-christmas-message-2020",
+        "title": "Deepfake Queen: 2020 Alternative Christmas Message",
+        "desc": "英国Channel 4が偽の女王映像でクリスマスメッセージを流し、情報操作の危険を訴えた放送。"
+      },
+      {
+        "type": "tech",
+        "id": "minimax-music-3",
+        "title": "MiniMax Music 3 (MiniMax-Music3)",
+        "desc": "歌詞と指示文から、ボーカル入りで最大5分の曲を一気に作れる無料公開の音楽生成AI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-08-5",
+    "date": "2026-11-08",
+    "title": "散らかる家をスプラット保存",
+    "pattern": "文脈×技術",
+    "seed": "IKEA Billboard Campaignの「片付けても散らかる家」を、SuperSplat Editor 3.0で実際の家庭をスキャンして時間差で重ね、散らかりの軌跡を歩いて見られる展示にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ikea-billboard-campaign-every-home-concept-2026",
+        "title": "IKEA Billboard Campaign (\"every home\" concept)",
+        "desc": "看板の裏に収納箱を仕込み、片付けても散らかる家庭のあるあるを見せたIKEAの屋外広告。"
+      },
+      {
+        "type": "tech",
+        "id": "supersplat-editor-3-0",
+        "title": "SuperSplat Editor 3.0",
+        "desc": "実写を点群で再現するGaussian Splattingを、無料で編集できるソフト。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-08-6",
+    "date": "2026-11-08",
+    "title": "音楽と踊りを楽譜で往復",
+    "pattern": "技術×技術",
+    "seed": "YuE2が作る「直せる楽譜」の曲をMACE-Danceに渡し、1枚の写真の人が踊る映像を生成。踊りの動きを見て楽譜を書き直すと、振付と作曲が往復するかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "yue2",
+        "title": "YuE2",
+        "desc": "歌詞と指定から、人が読んで直せる楽譜を経由して曲を作る音楽生成AI。"
+      },
+      {
+        "type": "tech",
+        "id": "mace-dance",
+        "title": "MACE-Dance",
+        "desc": "人物写真1枚と音楽1曲から、その人が踊る動画を自動で作る技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-08-7",
+    "date": "2026-11-08",
+    "title": "ブルーベリーを3D追跡で測る",
+    "pattern": "技術×技術",
+    "seed": "ReLiftで普通の動画から全ピクセルの3D軌跡を取り、Gausserでヒョウ柄の点群としてCinema 4D上でMoGraph化したら、日常の動きが生き物のような彫刻になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "relift",
+        "title": "ReLift (Dense 3D Tracking as Lifted Trajectory Repair)",
+        "desc": "普通の動画1本から、映っている全ピクセルの3D空間での動きを追跡するモデル。"
+      },
+      {
+        "type": "tech",
+        "id": "gausser",
+        "title": "Gausser",
+        "desc": "Cinema 4D上で点群データを読み込み、MoGraphで動かせるプラグイン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-08-8",
+    "date": "2026-11-08",
+    "title": "工事用ソレノイドを恋愛の音に",
+    "pattern": "転用",
+    "seed": "The Real Finds The Oneの「盛らない本物」を、AX(Agent Executor)を転用し、何千ものAIエージェントがプロフィールの嘘を互いに見破る社会実験として走らせたら、本物の価値が可視化されるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "the-real-finds-the-one-2026",
+        "title": "The Real Finds The One",
+        "desc": "加工や盛りが多いマッチングアプリで、本物の自分の価値を訴えたTinderタイのキャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "ax",
+        "title": "AX (Agent Executor)",
+        "desc": "自律型AIエージェントを大量に同時に走らせ、待機中は休止してコストを抑える実行基盤。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-08-9",
+    "date": "2026-11-08",
+    "title": "音源分離を店内の森に転用",
+    "pattern": "転用",
+    "seed": "HS-TasNetを音楽ではなく、Atelier Baumの店内に響く来店者の足音・会話・空調音の分離に転用し、成長するオークの苗木に「人の音だけ」を聴かせる森の店にできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "hs-tasnet",
+        "title": "HS-TasNet",
+        "desc": "音をボーカルやドラムなどにリアルタイムで分けられる音源分離モデル。"
+      },
+      {
+        "type": "case",
+        "id": "atelier-baum-shiseido-forest-store-if-2024",
+        "title": "Atelier Baum",
+        "desc": "オークの苗木を店内で育て、森に触れる体験を提供する資生堂BAUMの旗艦店。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-08-10",
+    "date": "2026-11-08",
+    "title": "フィルム調で消える記録を撮る",
+    "pattern": "転用",
+    "seed": "AURORA Film Labの実測フィルムルックを、映像の見た目調整ではなく、ロシアに散った北朝鮮兵の遺言のような報道写真の「時代感」を距離感として段階的に変える編集に転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "aurora-film-lab-v1-0",
+        "title": "AURORA Film Lab v1.0",
+        "desc": "実測した55種のフィルムから選んだ12種のルックを混ぜ、フィルム調の色を作る調色ツール。"
+      },
+      {
+        "type": "case",
+        "id": "case-zideyj-2025",
+        "title": "ロシアに散った北朝鮮兵の遺言",
+        "desc": "北朝鮮兵の遺留品や手記を分析し、写真とデータで見せた日経のビジュアル調査報道。"
+      }
+    ]
   }
 ]
