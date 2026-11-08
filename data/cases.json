@@ -1,5 +1,362 @@
 [
   {
+    "id": "vitamin-p-ee-2026",
+    "title": "Vitamin P(ee)",
+    "summary": "サプリの過剰摂取で尿に排出されたビタミンCを回収・精製してグミに戻し、「飲み過ぎは捨てているのと同じ」と体感させた。",
+    "client": "Apotek Hjärtat",
+    "agency": "Wenderfalck",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/apotek-hjartat-gummies-vitamine-c-urine-20261106",
+    "thumbnail": "/thumbnails/vitamin-p-ee-2026.jpg",
+    "videoId": "",
+    "overview": "スウェーデンの薬局チェーンApotek Hjärtatが、消費者が排出した余剰ビタミンCを尿から回収し、新しいグミ「Vitamin P(ee)」に作り変めた施策。非売品で、サプリを必要以上に摂っても体を素通りして捨てられる現実を、実物のグミで見せた。",
+    "background": "同社はVerianに委託した調査を実施し、サプリが脂溶性か水溶性かを把握している人は14%にとどまるなど、サプリへの理解不足が示された。サプリとの飲み合わせによるリスクにも警鐘を鳴らす狙いがあり、その問題提起をインパクトのある形で伝える必要があった。",
+    "execution": "一部の消費者が排出した余剰ビタミンCを尿から回収し、ウプサラ大学のヨナス・ベリクイスト教授ら研究者の協力でグミとして再生した。商品名は「Vitamin P(ee)」で、販売は想定していない。制作会社としてWenderfalckがクレジットされているが、今回の検索では確認できていない。",
+    "evaluationImpact": "主任薬剤師Annika Svedbergは、正しく使わなければサプリは「トイレに流すお金」になりかねないと語った。「飲み過ぎた分は捨てられている」という事実を、一口で体感できる物体に置き換えた点が評価できる。調査結果とも結びつき、薬局として責任ある摂取を促す立場の説得力も高めた。受賞は公式ソースでは確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "A Hard Pill To Swallow（Apotek Hjärtat）",
+        "description": "同社の過去のキャンペーン。Cannes Lions等のエントリーページに掲載されている。",
+        "url": "https://www.lovethework.com/work-awards/campaigns/a-hard-pill-to-swallow-667010"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Stunt",
+      "Form/Product",
+      "Theme/Health"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "the-soy-bouncer-2026",
+    "title": "The Soy Bouncer",
+    "summary": "「soy boy」の蔑称を逆手に、テクノクラブの用心棒が大豆ショットを飲まない客を断る隠し撮り施策",
+    "client": "Sojasun (Olga)",
+    "agency": "Marcel",
+    "categories": [
+      "カルチャーインサイト",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/sojasun-soy-bouncer-mascus-20261104",
+    "thumbnail": "/thumbnails/the-soy-bouncer-2026.jpg",
+    "videoId": "",
+    "overview": "フランスの大豆食品ブランド Sojasun が、代理店 Marcel と組んで実施した「The Soy Bouncer」。テクノ系パーティーの入口に用心棒を立て、大豆のショットを飲んだ人だけを入れる。飲まない人は入場できない。その様子を隠し撮りで記録し、TikTok・Instagram・Facebook で公開した。",
+    "background": "「soy boy(ソイボーイ)」は、男らしさを重んじるマスキュリニスト(男性優位主義)の界隈で、軽んじる意味で使われてきた蔑称。Sojasun は2026年5月の先行施策「SojaMan」で、その言葉をブランド側に引き取ってみせた。今回はその続編にあたり、同じ皮肉の対象を、パーティーの場へ持ち込んだ。",
+    "execution": "用心棒役がテクノ系パーティーの入口に立ち、大豆のショットを飲むことを入場の条件にする。やりとりはMeta製グラスで撮影され、入口での対応から会場内の様子までを収めた。映像には、テクノ・フード・スポーツ分野のクリエイター7人の発言も入る。ほとんどは現場に居合わせていた人たちだという。",
+    "evaluationImpact": "蔑称を否定せず、入場条件に変えて見せた点が核。「no soy, no party」と一言で言えるため、SNSで伝わりやすい。テクノ文化が掲げる包摂や多様性、互いへの敬意の側に立つ設計でもある。一方、再生数や受賞、反響の数字は確認できなかった。",
+    "relatedWorks": [
+      {
+        "title": "SojaMan(Sojasun × Marcel, 2026年5月)",
+        "description": "マスキュリニスト系の人物にSojasunのアンバサダーを依頼し、全員に断られたこと自体をオチにした先行施策。",
+        "url": "https://www.cbnews.fr/creation/sojasun-trolle-les-masculinistes-avec-marcel"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Stunt",
+      "Form/SNS",
+      "Theme/Music",
+      "Theme/Food"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "puddles-it-s-always-sunny-somewhere-2026",
+    "title": "Puddles（It's always sunny somewhere）",
+    "summary": "雨の英国の水たまりに映る空を行き先への窓に読み替え、冬の旅行意欲を喚起した英国航空の屋外ポスター",
+    "client": "British Airways",
+    "agency": "Uncommon",
+    "categories": [
+      "OOH革新",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.creativebloq.com/news/puddles-is-the-gorgeous-british-airways-poster-campaign-that-will-make-you-book-a-holiday-right-now",
+    "thumbnail": "/thumbnails/puddles-it-s-always-sunny-somewhere-2026.jpg",
+    "videoId": "",
+    "overview": "British Airwaysが2026年11月にUncommon制作で展開した冬の屋外ポスターシリーズ。コピーは「It's always sunny somewhere」。雨に濡れた英国の街並みと水たまりに映る反射を写真で捉え、暗く湿った英国の秋冬と、どこかにある晴れた土地との対比を示す。ロンドンのRail D6s等で展開され、メディアプランニングはMG OMD。",
+    "background": "英国の冬は曇天と雨が続き、人々が日差しを求める時期である。British AirwaysとUncommonは2022年の「A British Original」から協業し、2024年の「Windows」、2025年の「Reflections」と、写真を軸にした屋外広告を続けてきた。本作はその系譜にあり、反射という視覚モチーフを引き継ぎながら、冬の気分に合う旅行需要への訴求へ展開している。",
+    "execution": "素材は雨の英国で撮影した水たまりの写真。水面に映る空に飛行機が写り込み、足元の水たまりが遠くの晴れた土地への窓に見えるよう構成されている。行き先の名前を添える構成だが、各ポスターの具体的な表記や点数は今回の検索では確認できていない。雨の日の通行人の目線そのものを広告の舞台にしている点が特徴である。",
+    "evaluationImpact": "雨という英国の最も身近な不満を、広告素材そのものに変えた点が評価できる。Creative Bloqは暗く重い写真の質感を称賛し、「今すぐ休暇を予約したくなる」シリーズと紹介した。一文で伝わる読み替えと過去2作から続く一貫した写真表現でブランド資産を積み上げている。受賞や成果数値は現時点で公式には確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "British Airways: Reflections（Uncommon, 2025）",
+        "description": "窓の反射を使った前作系統の英国航空屋外キャンペーン。Creative Circle 2026で屋外クラフト部門のショートリスト掲載が確認されている",
+        "url": "https://www.thedrum.com/news/2025/10/22/british-airways-captures-the-magic-flight-with-reflections"
+      },
+      {
+        "title": "British Airways: A British Original（Uncommon）",
+        "description": "2022年から続く英国航空とUncommonの協業の起点となったブランドキャンペーン",
+        "url": "https://thedrum.com/creative-works/project/uncommon-british-airways-british-original"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Form/Print",
+      "Theme/Mobility"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "accidental-collage-2026",
+    "title": "Accidental Collage",
+    "summary": "剥がれて重なった街角ポスターの偶発的な層を、約400ページの広告史の書籍へ編集した",
+    "client": "Waiting Room Press",
+    "agency": "Dr.Me",
+    "categories": [
+      "カルチャーインサイト",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.itsnicethat.com/articles/dr-me-waiting-room-press-accidental-collage-advertising-publication-project-051126",
+    "thumbnail": "/thumbnails/accidental-collage-2026.jpg",
+    "videoId": "",
+    "overview": "マンチェスター拠点のクリエイティブデザインスタジオDr.Meが、Waiting Room Pressから刊行した約400ページの出版物。破れて剥がれ、何層にも重なった印刷広告のテクスチャを通して、物理的な広告の変遷をたどる。印刷物の儚いもの(エフェメラ)や、破れたポスター、過ぎ去った広告に潜む世界に気づくことを称える一冊として紹介されている。",
+    "background": "Dr.MeはRyan DoyleとMark Edwardsによるデザインスタジオで、コラージュを主題にした書籍『Cut That Out』のキュレーションも手がけている。出版元のWaiting Room Pressは、同スタジオの過去作『Not Dead or Famous Enough, Yet』の版元でもある。街の掲示面で起きる偶然の重なりを、コラージュとして読み直す視点が背景にある。",
+    "execution": "街角で剥がれたり破れたりして重なった広告ポスターを「偶発的なコラージュ」と捉え、約400ページの書籍として編集した。作為なく生まれた層の重なりや破れ、褪せを素材そのものとして見せ、物理的な広告の歴史を追う構成になっている。具体的な撮影手法や収録点数、判型などはWebSearchでは確認できなかった。",
+    "evaluationImpact": "誰のものでもない街の剥がれたポスターを、コラージュ作品として読み替える視点が一文で伝わる。広告が時間とともに壊れ重なる過程を、広告史の記録としても見せる点に面白さがある。受賞や反響の情報は確認できていない。元記事(Its Nice That)の本文以外に詳細な裏付けが乏しいため、評価は限定的。",
+    "relatedWorks": [
+      {
+        "title": "Cut That Out: Contemporary Collage in Graphic Design",
+        "description": "Dr.Me(Ryan Doyle、Mark Edwards)が手がけた、グラフィックデザインにおけるコラージュを50の先鋭的なデザイナーやスタジオの作例で紹介する書籍(Thames & Hudson)。",
+        "url": "https://www.creativereview.co.uk/dr-mes-new-book-about-collage/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/Art"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "itsnicethat",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "orange-publicis-conseil-forgoodconnections-2026",
+    "title": "Orange × Publicis Conseil: 絵文字に隠れたネットいじめの符丁を親に解読させる施策 (#ForGoodConnections)",
+    "summary": "無害に見える絵文字が若者間ではいじめの符丁だと、親の反応と十代の解説で突きつける啓発施策",
+    "client": "Orange",
+    "agency": "Publicis Conseil",
+    "categories": [
+      "社会包摂",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/orange-emojis-cyberharcelement-parents-20261105",
+    "thumbnail": "/thumbnails/orange-publicis-conseil-forgoodconnections-2026.jpg",
+    "videoId": "",
+    "overview": "Orangeが学校でのいじめ防止の国際デーである2026年11月5日に合わせ、Publicis Conseilと展開した啓発キャンペーン。一見無害なメッセージや絵文字に親が反応し、十代がその本当の意味を解説する映像が中心。フランス、ベルギー、スペインで始まり、2027年に他国へ広がる予定。Ifop調査も併せて公表した。#ForGoodConnectionsの一環。",
+    "background": "#ForGoodConnectionsはOrangeが2024年2月に始めた取り組みで、健全なデジタル習慣、子どもの画面時間の削減、ネットいじめ対策の3軸を持つ。Ifop調査は欧州8か国が対象で、仏では2026年10月2〜8日に中高生の親1,000人へオンライン実施した。仏の親の85%はネットいじめを子どもへのリスクと見る(8か国平均74%)一方、符丁の理解には穴がある。",
+    "execution": "映像は、害のなさそうなメッセージや絵文字に親が反応し、それを十代が解説して実際の意味を明かす構成。監督はLenny Grosman、制作はSovage。調査では、紹介された5つの絵文字のどれも人を嘲る用途に使えると思わない親が49%いた。親を専門家にするのでなく、質問し対話を続けるきっかけを作ることを狙いとする。",
+    "evaluationImpact": "「かわいい絵文字を、いじめの符丁として読み替えさせる」という一文で伝わる企画。解説役を子どもに置くことで、親が教わる側に回り対話が生まれる設計になる。Ifop調査の数値が、親の認識と実態のずれを裏づける。ただし、公式ソースで確認できた受賞はなく、成果指標の公表も確認できなかった。",
+    "relatedWorks": [
+      {
+        "title": "Orange Safe Zone(Fortnite/Roblox)",
+        "description": "OrangeとPublicis Conseilによる、ネットいじめ対策を扱った過去の施策。Cannes Lionsのエントリーとして掲載されている。",
+        "url": "https://lovethework.com/work-awards/campaigns/orange-safe-zone-1530300"
+      },
+      {
+        "title": "Orange SaferPhone",
+        "description": "クリスマスに親と十代の和解を促すOrangeの施策。",
+        "url": "https://lbbonline.com/news/orange-helps-to-reconcile-parents-and-teenagers-this-christmas-with-the-saferphone-solution"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Form/SNS",
+      "Tech/Data",
+      "Theme/SocialGood"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "berlin-s-trees-2026",
+    "title": "Berlin's Trees",
+    "summary": "ベルリン市の樹木台帳を、地図上のレンズで樹種・樹齢別の放射状バーに集計し、拡大で1本ずつの点に切り替える街路樹可視化",
+    "client": "VisQuill",
+    "agency": "",
+    "categories": [
+      "データクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://visquill.com/gallery/berlin-trees",
+    "thumbnail": "/thumbnails/berlin-s-trees-2026.jpg",
+    "videoId": "",
+    "overview": "VisQuillによるベルリンの街路樹・公園樹のデータビジュアライゼーション（ページ見出しは「Berlin's Trees」）。地図に重ねた円形レンズの中心に木を集計し、上半分に樹種別（上位8属とその他）、下半分に樹齢区分別（不明を含む）の放射状スポークを表示する。街路レベルまでズームすると、一本一本の木が点で現れる。",
+    "background": "樹木データはGeoportal Berlinの「Baumbestand Berlin」（街路樹・公園樹）で、WFSサービス経由で提供されライセンスはdl-de/zero-2-0。地図タイルはOpenFreeMapの「Liberty」（OpenStreetMap由来）。ページによれば私有地の樹木は台帳に含まれない。作者名はページ上に明記されておらず、©表記は「2026 VisQuill」のみ。",
+    "execution": "地図をレンズの下で自由に移動・ズームでき、レンズ内の集計がそれに追従する。各スポークは起点が太いバーで、先端に本数が示される。カテゴリをクリックすると該当する木の表示・非表示を切り替えられ、樹種と樹齢の条件を組み合わせて絞り込める。集計の俯瞰と個々の木の点表示を、ズームだけで連続して行き来できる。",
+    "evaluationImpact": "公開オープンデータだけで、地域ごとの樹種構成や樹齢構成を「見たい場所にレンズを当てる」操作で読み比べられる点が特徴。集計図と個別点という二つの粒度を一つの画面でつなぐ表現は、他の都市オープンデータの可視化にも転用しやすい。受賞や外部メディアでの評価は確認できなかった。",
+    "relatedWorks": [
+      {
+        "title": "Gieß den Kiez（CityLAB Berlin）",
+        "description": "ベルリンの樹木885,825本を地図上に表示し、樹種・樹齢・推定水需要を見せるインタラクティブマップ",
+        "url": "https://citylab-berlin.org/?p=3114"
+      },
+      {
+        "title": "Street trees and tree streets in Berlin（Datawrapper）",
+        "description": "ベルリンの街路樹データを扱ったDatawrapperのウィークリーチャート",
+        "url": "https://www.datawrapper.de/blog/weekly-chart-street-trees-and-tree-streets-in-berlin"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Tech/Web",
+      "Form/Website"
+    ],
+    "gateCriterion": "B",
+    "sourceId": "",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "made-of-rotterdam-wooning-david-derksen-2026",
+    "title": "Made of Rotterdam（Wooning × David Derksen）",
+    "summary": "ロッテルダム港の係船柱・クレーン・ロープを、再生ポリカとスチールの浴室・キッチン小物7点に読み替えた限定コレクション。",
+    "client": "Wooning",
+    "agency": "David Derksen",
+    "categories": [
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://materialdistrict.com/article/wooning-and-david-derksen-turn-rotterdams-port-into-bathroom-accessories/",
+    "thumbnail": "/thumbnails/made-of-rotterdam-wooning-david-derksen-2026.jpg",
+    "videoId": "",
+    "overview": "オランダの浴室・キッチン用品ブランドWooningが創業65周年を記念し、照明で知られるデザイナーDavid Derksenに依頼したコレクション。石鹸皿、壁棚、トレイ、タオルラック、タオルリング、ロープ吊りミラー、壁用ノブの7点で構成する。1アイテム10〜40点のエディションで、10月末にWooningのショールームで発表された。",
+    "background": "Wooningは創業65周年の節目に、地元ロッテルダムを題材にした記念企画を求めた。依頼を受けたDerksenはロッテルダム拠点の照明デザイナーで、バス・キッチン用品の制作は今回が初めて。港という土地の象徴を、日用品のレンジに落とし込む企画として始まった。",
+    "execution": "モチーフは港の係船柱、クレーン、ロープ、鋼材。記事によればDerksenはエラスムス橋型のタオルバーのような具体的な形の引用を避け、素材から出発した。素材はPlasticiet社の100%再生ポリカーボネート(石鹸皿Wavesは同社のKarlite)、レーザーカットのスチール、ロープ。Wavesはマース川の波を思わせるリブを持つ。",
+    "evaluationImpact": "港の風景という地域性を、形の引用ではなく素材の選択で日用品に移した点が見どころ。再生素材と限定生産で量産品との差を出している。価格は€45〜€155で、一部はDerksenのウェブショップでも受注する。受賞は確認できず、新しさは企画の読み替えと素材の扱いにある。",
+    "relatedWorks": [
+      {
+        "title": "Mother of Pearl(Plasticiet)",
+        "description": "ロッテルダムのPlasticietが再生ポリカーボネートの板から作った家具コレクション。Made of Rotterdamと同じ素材系統。",
+        "url": "https://www.dezeen.com/2020/03/20/plasticiet-mother-of-pearl-furniture/"
+      },
+      {
+        "title": "Buoy(The New Raw)",
+        "description": "ロッテルダム港で回収された廃ロープを3Dプリントで公共の座席にしたプロジェクト。",
+        "url": "https://www.thenewraw.org/projects/buoy"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "materialdistrict",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "amsterdam-museum-night-identity-2026",
+    "title": "Amsterdam Museum Night identity",
+    "summary": "夜想曲を核に、17世紀肖像の比率とジオラマの強制遠近法を写真素材のみのアニメーションで表したイベントID",
+    "client": "Amsterdam Museum Night",
+    "agency": "From Form",
+    "categories": [
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.itsnicethat.com/articles/from-form-amsterdam-museum-night-graphic-design-project-051126",
+    "thumbnail": "/thumbnails/amsterdam-museum-night-identity-2026.jpg",
+    "videoId": "",
+    "overview": "アムステルダムで26年続くAmsterdam Museum Nightの2026年版アイデンティティ。制作はFrom Formで、同スタジオが手がけて5年目にあたる。核は夜想曲(nocturne)で、夜の夢のような内省的な空気を表現する。アニメーションはすべて実写映像ではなく写真を組み合わせて作られている。",
+    "background": "From Formは同イベントのIDを5年担当している。最初の3回はフリップブックを軸にしたIDを作り、2024年以降は毎年ゼロから作り直す方針をとっている。2026年は、知覚と発見を遊ぶ、街の美術館を巡り隠れた宝を見つけるよう促すというテーマを置いた。",
+    "execution": "出発点は17世紀絵画に見られる独特の顔の比率(額や首が長い、目が大きい)と、ミニチュア・ジオラマの強制遠近法。この二つを視覚言語として取り込んだ。アニメーションは写真素材のみで組み上げられ、実写撮影は使っていない。それが夢のような、境界的な夜の雰囲気を支えている。",
+    "evaluationImpact": "毎年IDを作り直す方針の中で、古典絵画の比率とジオラマの遠近法という美術館イベントらしい参照を、写真素材だけのアニメーションに落とした点が特徴。一方、検索で確認できた詳細な制作工程や成果指標は It's Nice That の1記事に限られ、受賞や数値的な成果は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "This, That, There: From Form's Flip-Book Campaign for Amsterdam Museum Night",
+        "description": "From Formによる過去のAmsterdam Museum Nightキャンペーン。フリップブックを軸にした展開。",
+        "url": "https://www.printmag.com/branding-identity-design/this-that-there-from-form-amsterdam-museum-night/"
+      },
+      {
+        "title": "Amsterdam Museum Night Campaign 2024",
+        "description": "From Formによる2024年版キャンペーン。D&AD Awardsアーカイブに掲載されている。",
+        "url": "https://www.dandad.org/work/d-ad-awards-archive/amsterdam-museum-night-campaign-2024"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Event",
+      "Theme/Art"
+    ],
+    "gateCriterion": "B",
+    "sourceId": "itsnicethat",
+    "gateTier": "borderline",
+    "discoveryLens": 2
+  },
+  {
     "id": "anima-ludens-la-vie-en-jeu-2026",
     "title": "Anima Ludens（アニマ・ルーデンス） — La vie en jeu",
     "summary": "現代美術とインディーゲームを「遊び」という共通項から再定義する国際企画展。フランス・アルルの礼拝堂で開催。",
