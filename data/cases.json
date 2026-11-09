@@ -83200,5 +83200,629 @@
       "Theme/Fashion"
     ],
     "thumbnail": "/thumbnails/tbs-rockseeds.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "fortum-fishheart",
+    "title": "Fortum+Fishheart",
+    "summary": "水力発電ダムで魚の遡上を助ける装置「Fishheart」を実際に設置し、水力発電の環境への配慮を事実で示そうとしたフィンランドのエネルギー企業Fortumの施策。",
+    "client": "Fortum",
+    "agency": "TBWA\\SCREEN, Helsinki / FISHHEART, Helsinki",
+    "categories": [
+      "Sustainable Development Goals"
+    ],
+    "award": "Cannes Lions 2024 Sustainable Development Goals Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Sustainable Development Goals",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.fortum.com/media/2021/10/first-trout-have-been-transferred-upstream-over-leppikoski-hydropower-plant-finland-leppikoski-fishheart-inaugurated",
+    "videoId": "",
+    "overview": "Fortumと、魚道技術を持つFishheart、広告会社TBWA\\SCREEN（Helsinki）が組んだ取り組み。広告で「水力は環境に優しい」と主張する代わりに、ダムでの魚の遡上支援という実際の設備と、その稼働を伝える内容にした。",
+    "background": "水力発電ダムは魚の遡上を妨げるとして環境面の批判を受けやすい。Fortumの公式発表によれば、フィンランド北部パルタモのLeppikoski水力発電所では、絶滅の危機にあるオウルヤルヴィ湖のレイクトラウトの生息環境を守る対策の一環として、Fishheart魚道を導入した。",
+    "execution": "Fishheartは水力式の魚道で、発電所の下流側に設置され、魚が上流へ越えるのを助ける。Fortumの公式発表では、2022年は6月上旬に水中へ設置し、10月中旬に引き上げた。mrktng.fiのTBWA\\Helsinki CCOへのインタビューによれば、技術革新はFishheart、エンジニアリングと設置はFortum、戦略・コミュニケーション・映像はTBWAが担当した。ここでは2024年の応募作の広告展開そのものの詳細は確認できていないため、設置と役割分担のみを記す。",
+    "evaluationImpact": "カンヌライオンズ2024のSustainable Development Goals部門でSilverを受賞した。広告で主張するのではなく、実在する設備で環境配慮を示すアプローチが評価された。",
+    "tags": [
+      "Theme/Sustainability",
+      "Form/Product",
+      "Tech/Data"
+    ],
+    "thumbnail": "/thumbnails/fortum-fishheart.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "esaf-small-finance-bank-dabba-savings-account",
+    "title": "Dabba Savings Account",
+    "summary": "農村の女性が米びつに現金を隠す習慣に着目し、隠し仕切り付きの米用容器を配って貯蓄口座の開設につなげたインドESAF Small Finance Bankの施策。",
+    "client": "Esaf Small Finance Bank",
+    "agency": "McCANN, Gurugram",
+    "categories": [
+      "Sustainable Development Goals"
+    ],
+    "award": "Cannes Lions 2024 Sustainable Development Goals Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Sustainable Development Goals",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.medianews4u.com/esaf-banks-dabba-savings-campaign-bags-global-recognition-at-cannes-lions/",
+    "videoId": "",
+    "overview": "ESAF Small Finance BankとMcCannによる金融包摂の取り組み。インドの家庭で使われる米の容器（dabba）に隠し仕切りを設け、銀行に縁の薄い女性が、自分で管理できる貯蓄口座を持てるようにした。",
+    "background": "medianews4u.comの記事によれば、経済的に取り残された地域の女性は銀行を避けがちで、正規の金融システムの外にいることが多い。この施策は国連のSDGsとインド政府の優先課題である金融包摂に沿って設計された。",
+    "execution": "同記事によれば、2023年10月から、隠し仕切りを付けた容器を月例の女性の集まりで無料配布した。女性たちはその場で貯蓄口座を開き、以後の集まりで預け入れを続けられる。引き出しは、Aadhaar対応のマイクロATMを置いた米販売店で指紋認証により行う。南インドで始まり、その後全国に広げられた。",
+    "evaluationImpact": "カンヌライオンズ2024のSustainable Development Goals部門でBronzeを受賞した（medianews4u.com報道）。銀行幹部の話として、貯蓄が安全に守られる安心感が女性たちに生まれたことが紹介されている。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Retail",
+      "Form/Product"
+    ],
+    "thumbnail": "/thumbnails/esaf-small-finance-bank-dabba-savings-account.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "lay-s-drops-of-joy",
+    "title": "Drops Of Joy",
+    "summary": "ポテトチップスの製造で出る水蒸気を回収して水に戻す取り組みを、アニメ映画で伝えたLay's（インド）の施策。",
+    "client": "Lay's",
+    "agency": "LEO BURNETT, Mumbai",
+    "categories": [
+      "Sustainable Development Goals"
+    ],
+    "award": "Cannes Lions 2024 Sustainable Development Goals Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Sustainable Development Goals",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.storyboard18.com/advertising/lays-rolls-out-drops-of-joy-film-on-world-environment-day-33433.htm",
+    "videoId": "",
+    "overview": "PepsiCo IndiaのLay'sが、Leo Burnett Mumbaiと制作したアニメ映画「Drops of Joy」。ポテトを「真のスーパーヒーロー」と位置づけ、工場での水の再利用（ウォーターポジティブへの取り組み）を紹介した。",
+    "background": "PepsiCoは2030年までのウォーターポジティブ達成を掲げている。Lay'sによれば、ポテトに含まれる水分の約80%はフライの工程で蒸発する。この水蒸気を回収して水に戻す仕組みが、ブランドの環境への取り組みとして映画の題材になった。",
+    "execution": "映画は2024年6月5日の世界環境デーにインドで公開された。西ベンガル州（コルカタ）とウッタル・プラデーシュ州（コシ）の工場での取り組みを紹介する内容で、ポテト由来の水を再利用する様子をアニメで描いた（Storyboard18報道）。",
+    "evaluationImpact": "カンヌライオンズ2024のSustainable Development Goals部門でBronzeを受賞した。PepsiCo Indiaはこの年のカンヌで計4つのメタルを獲得し、本作もその一つとして報じられた（Storyboard18）。",
+    "tags": [
+      "Theme/Sustainability",
+      "Theme/Food",
+      "Form/Film"
+    ],
+    "thumbnail": "/thumbnails/lay-s-drops-of-joy.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "islam-alijaj-giving-a-voice-to-the-unheard",
+    "title": "Giving A Voice To The Unheard",
+    "summary": "重度の言語障害を持つ候補者を国政選挙で当選させるため、支持者参加型の選挙キャンペーンを展開したスイスの事例。",
+    "client": "Islam Alijaj",
+    "agency": "FARNER PR, Zurich",
+    "categories": [
+      "Sustainable Development Goals"
+    ],
+    "award": "Cannes Lions 2024 Sustainable Development Goals Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Sustainable Development Goals",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.horizont.net/schweiz/nachrichten/mit-einer-kampagne-fuer-inklusion-bronzener-loewe-an-der-werbe-wm-in-cannes-fuer-farner-220786",
+    "videoId": "",
+    "overview": "チューリヒのSP（社会民主党）名簿から国民議会選挙に出たIslam Alijajのために、Farner Consultingが設計した統合キャンペーン。スローガンは「Geschichte Schreiben（歴史を刻む）」で、障害のある人の声を政治に届けることを掲げた。",
+    "background": "Horizontによれば、スイスでは障害者権利条約の一部がまだ実施されておらず、約180万人の障害者が差別に直面している。Alijajは重度の言語障害があり、名簿上の順位も低く、当選は難しいと見られていた。",
+    "execution": "キャンペーンは2023年5月1日に始まり、障害のある人もない人も参加する草の根型（オーガナイジング）で進められた。支持者がイベントを開き、約20万枚のチラシを配り、SNSで拡散した。Horizontの報道では、チューリヒの1万人超の有権者が投票用紙にAlijajの名前を複数回書いた。",
+    "evaluationImpact": "Alijajは2023年10月22日の選挙で約9万5,000票を得て当選した。カンヌライオンズ2024のSustainable Development Goals部門でBronzeを受賞し、Farner Consultingにとって創業70年で初のライオンとなった（Horizont報道）。",
+    "tags": [
+      "Theme/SocialGood",
+      "Form/Event",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/islam-alijaj-giving-a-voice-to-the-unheard.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "amnesty-internationa-l-italia-the-humanity-check",
+    "title": "The Humanity Check",
+    "summary": "reCAPTCHAの「人間確認」の仕組みを借り、SNSの投稿をガザ停戦を求める署名への入口にしたAmnesty Italiaの施策。",
+    "client": "Amnesty Internationa L Italia",
+    "agency": "AMNESTY INTERNATIONAL, Rome",
+    "categories": [
+      "Sustainable Development Goals"
+    ],
+    "award": "Cannes Lions 2024 Sustainable Development Goals Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Sustainable Development Goals",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/the-humanity-check",
+    "videoId": "",
+    "overview": "Amnesty International Italiaが、2023年10月7日以降のイスラエル・ハマス間の衝突を受けて展開したデジタル施策。ウェブでおなじみの人間確認の画面を、連帯を示す行動に置き換え、SNSの閲覧者を活動への参加者に変えることを狙った。",
+    "background": "Michele Mariのサイトによれば、紛争の拡大を受けてAmnestyは停戦を求める署名活動を進めていた。SNSでは悲惨な数字が日々流れてもスクロールされて終わりがちで、その壁を破る必要があった。Youmarkの記事では、本作は広告会社ではなく、Michele Mari率いる独立チームが制作したとされる。",
+    "execution": "各投稿（フィード投稿やInstagramストーリーズ）に最新の被害の数字を載せ、末尾に「Humanity Check」の画面を置き、停戦を求める署名への参加を促した。施策はイタリア、オーストラリア、ニュージーランドで展開された。",
+    "evaluationImpact": "カンヌライオンズ2024のSustainable Development Goals部門でBronzeを受賞した（Youmark報道）。署名数など成果の数値は確認できなかった。",
+    "tags": [
+      "Theme/SocialGood",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/amnesty-internationa-l-italia-the-humanity-check.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "apple-inc-visionos",
+    "title": "Visionos",
+    "summary": "目・手・声だけで操作する、Apple Vision Pro向けの空間OS「visionOS」のインターフェース設計。",
+    "client": "Apple, Inc.",
+    "agency": "APPLE, Cupertino",
+    "categories": [
+      "Digital Craft"
+    ],
+    "award": "Cannes Lions 2024 Digital Craft Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Digital Craft",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.apple.com/newsroom/2023/06/introducing-apple-vision-pro/",
+    "videoId": "",
+    "overview": "Appleが2023年に発表したApple Vision Proの基盤となるOS。コントローラーを使わず、視線・手のジェスチャー・音声だけで3次元のUIを操作する仕組みを、一つの製品体験としてデザインした。",
+    "background": "Appleは空間コンピューティングという新しい分野に参入するにあたり、マウスやタッチパネルを前提としない入力とUIを一から作る必要があった。現実の風景を遮らず、その上に重ねて見やすい画面を作ることも課題だった。D&ADの解説記事によれば、製品開発の過程で新しい専門分野を生み出す必要もあったという。",
+    "execution": "Apple公式の発表では、アプリは見るだけで選べ、指のタップで決定し、手首のフリックでスクロールする。入力には音声のディクテーションや仮想キーボードも使える。visionOSはmacOS、iOS、iPadOSを土台にしている。D&ADの記事によれば、Apple Design Studioが中心となり、プロダクト、UI、サウンド、タイポグラフィ、色、ハプティクスなどの専門家が協働した。ジェスチャーやアニメーション、トランジション、音、影、反射まで含めて設計している。",
+    "evaluationImpact": "カンヌライオンズ2024のDigital Craft部門でSilverを受賞した。同じvisionOSはD&AD 2024のDigital Design(Connected Experiences)部門でBlack Pencilを受賞し、審査員は「feat of design(デザインの快挙)」と評した。",
+    "tags": [
+      "Tech/XR",
+      "Tech/Device"
+    ],
+    "thumbnail": "/thumbnails/apple-inc-visionos.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "nhk-enterprises-nhk-global-media-services-kiki-virtual-human-interpreter",
+    "title": "Kiki, Virtual Human Interpreter",
+    "summary": "テキストを入力すると日本手話の動画に変換する、NHK関連会社とMedia.Monksによる手話通訳のバーチャルヒューマン「Kiki」。",
+    "client": "Nhk Enterprises & Nhk Global Media Services",
+    "agency": "MEDIA.MONKS, Hilversum",
+    "categories": [
+      "Digital Craft",
+      "Sustainable Development Goals"
+    ],
+    "award": "Cannes Lions 2024 Digital Craft Lions Silver / Cannes Lions 2024 Sustainable Development Goals Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Digital Craft",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Sustainable Development Goals",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "国内"
+    ],
+    "link": "https://lbbonline.com/news/problem-solved-the-virtual-human-protecting-japans-deaf-community-from-natural-disasters",
+    "videoId": "",
+    "overview": "NHK EnterprisesとNHK Global Media Servicesが、Media.Monksと作った手話通訳のバーチャルヒューマン。Webアプリに文章を入力すると、日本手話(JSL)で通訳する動画を生成する。",
+    "background": "日本手話は日本語とは別の言語で、ろう者の中には日本語の読み書きが得意でない人もいる。文字や音声での情報提供だけでは、災害時などの緊急情報が届きにくい。NHKはこうした人に向けて、リアルタイムに近い形で手話の情報を出せる手段を求めていた。",
+    "execution": "Media.Monksが人間に近い3Dのキャラクターとして「Kiki」を作り、自然な表情と体の動きを持たせた。手だけでなく顔や口、体の動きも手話の一部であるため、それらを含めて再現している。文章から手話動画を作るWebプラットフォームも用意した。LBBの記事によれば、想定する主な用途は災害時の情報伝達である。",
+    "evaluationImpact": "カンヌライオンズ2024のDigital Craft部門でSilver、Sustainable Development Goals部門でBronzeを受賞した。Webby Awardsでも評価されている。",
+    "tags": [
+      "Theme/SocialGood",
+      "Tech/3D",
+      "Tech/AI",
+      "Form/Website"
+    ],
+    "thumbnail": "/thumbnails/nhk-enterprises-nhk-global-media-services-kiki-virtual-human-interpreter.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "open-to-diversity-closed-to-exclusion-the-most-inclusive-christmas-address",
+    "title": "Open To Diversity - Closed To Exclusion \"The Most Inclusive Christmas Address\"",
+    "summary": "ドイツ大統領のクリスマス演説をAIで12言語に翻訳し、ドイツ語がわからない人にも届けたJung von Mattの多様性キャンペーン。",
+    "client": "Open To Diversity - Closed To Exclusion",
+    "agency": "JUNG VON MATT AG, Hamburg",
+    "categories": [
+      "Digital Craft"
+    ],
+    "award": "Cannes Lions 2024 Digital Craft Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Digital Craft",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.horizont.net/agenturen/nachrichten/uebersetzung-in-zwoelf-sprachen-jvm-verwandelt-weihnachtsansprache-mit-ki-in-inklusionsmanifest-216896",
+    "videoId": "",
+    "overview": "Jung von Mattが、ヘッセン州の民主主義イニシアチブ「Offen für Vielfalt – Geschlossen gegen Ausgrenzung」と組み、2023年のシュタインマイアー大統領のクリスマス演説をAIで多言語化した。演説を多様性と包摂のマニフェストとして、2023年12月25日に公開した。",
+    "background": "毎年12月25日に放送される大統領演説は、ドイツ語の動画と英語の文字起こししかなかった。そのため、母語がドイツ語でない住民には届きにくかった。Horizontの記事によれば、居住者の約2割に届いていないという問題意識が出発点にある。",
+    "execution": "演説をトルコ語、ポーランド語、ウクライナ語、ロシア語、アラビア語、英語、フランス語、デンマーク語、ルーマニア語、ギリシャ語、イタリア語、スペイン語の12言語に、AIで翻訳した。各言語で視聴できる形で公開している。主催側は、大統領の発言内容は改変しておらず、公式の翻訳ではないと説明している。",
+    "evaluationImpact": "カンヌライオンズ2024のDigital Craft部門でSilverを受賞した。Jung von MattのMax Leder氏は、AIは偽情報と結びつけられがちだが、社会を近づける力にもなり得ると語っている(Horizont)。",
+    "tags": [
+      "Tech/AI",
+      "Theme/SocialGood",
+      "Form/Film"
+    ],
+    "thumbnail": "/thumbnails/open-to-diversity-closed-to-exclusion-the-most-inclusive-christmas-address.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "courageous-conversatio-n-global-foundation-driving-while-black",
+    "title": "Driving While Black",
+    "summary": "黒人ドライバーが警察の取り締まりで受ける危険を、「黒人ドライバーを守るコンセプトカー」というARで見せたキャンペーン。",
+    "client": "Courageous Conversatio N Global Foundation",
+    "agency": "GOODBY SILVERSTEIN AND PARTNERS, San / Francisco / CRITICAL MASS, Calgary",
+    "categories": [
+      "Digital Craft",
+      "Film"
+    ],
+    "award": "Cannes Lions 2024 Digital Craft Lions Silver / Cannes Lions 2024 Film Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Digital Craft",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Film",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/driving-while-black",
+    "videoId": "",
+    "overview": "Courageous Conversation Global Foundationが、Goodby Silverstein & PartnersとCritical Massと組んで作った。「DWB」というコンセプトカーを、新車発表のように見せて、警察による黒人ドライバーへの二重基準を問う。",
+    "background": "黒人ドライバーは交通停止の場面で、他の人より危険にさらされやすいとされる。団体はこの問題について対話を起こすため、自動車業界の安全性の話題に重ねる形を選んだ。2023年のデトロイトオートショーの場を使った。",
+    "execution": "車は実車を作らず、The Millが制作したARで体験する形にした。360度で見られるインタラクティブな画面で、車の各機能を実際の事件や警察改革のデータに結びつけている。機能には、手が見えるようにしておくための10時2時のハンドル、「合理的な疑い」を取り除く透明なドア、2016年にフィランド・カスティールが警察と接触した時に乗っていた車を思わせるシルエットなどがある。ナンバープレートは「3X」で、黒人が警察に殺される確率が3倍高いという主張を表す。デトロイトのオートショーに合わせ、公式の枠外で展開するゲリラ手法で、Ford Field付近の看板とダウンタウンのキオスクを使った(Selfstorming、LBB)。",
+    "evaluationImpact": "カンヌライオンズ2024のDigital Craft部門でSilver、Film部門でBronzeを受賞した。Clio Awards 2024でもGrandを受賞している(Ads of the World)。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Mobility",
+      "Tech/XR",
+      "Form/Film"
+    ],
+    "thumbnail": "/thumbnails/courageous-conversatio-n-global-foundation-driving-while-black.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "digital-public-library-of-america-banned-book-club",
+    "title": "Banned Book Club",
+    "summary": "本が禁止された地域の読者に、その禁書の電子版を無料で貸し出す、アメリカ・デジタル公共図書館(DPLA)の仮想図書館。",
+    "client": "Digital Public Library Of America",
+    "agency": "FCB CHICAGO",
+    "categories": [
+      "Digital Craft",
+      "Direct",
+      "Media"
+    ],
+    "award": "Cannes Lions 2024 Digital Craft Lions Bronze / Cannes Lions 2024 Direct Lions Bronze / Cannes Lions 2024 Media Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Digital Craft",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Direct",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Media",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.thedrum.com/news/2023/07/20/amid-nationwide-book-bans-digital-public-library-america-forms-banned-book-club",
+    "videoId": "",
+    "overview": "DPLAがFCB Chicagoと2023年7月に始めた取り組み。学校や図書館で禁書にされた本を、その地域の読者が電子書籍で無料で読めるようにする。",
+    "background": "アメリカでは学校や公共図書館で特定の本を撤去する動きが広がっていた。DPLAのジョン・S・ブラッケン氏は、書籍の禁止を「自由への最大の脅威の一つ」と述べている。禁止の対象になった本を、恒久的に誰でも読める状態にすることを目指した。",
+    "execution": "読者はPalaceというe-readerアプリを入れ、図書館として「Banned Book Club」を選び、無料の仮想図書館カードに登録する。位置情報(GPS)を使って、禁書が問題になった地域ごとに仮想図書館を設け、その地域で禁止された本を表示してダウンロードできる。バラク・オバマ氏がSNSで取り組みを紹介し、PEN AmericaやAmerican Library Associationとも連携して周知した。2023年10月にはシカゴ大学図書館との提携で、シカゴとイリノイ州の全読者にも利用を広げると発表した。",
+    "evaluationImpact": "カンヌライオンズ2024のMedia部門でGold、DirectとDigital CraftでBronzeを受賞した。オバマ氏の紹介や複数の図書館団体との連携で、禁書問題への注目を集めた。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Education",
+      "Form/App",
+      "Tech/Data"
+    ],
+    "thumbnail": "/thumbnails/digital-public-library-of-america-banned-book-club.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "anf-wwf-jardim-zoologico-de-lisboa-the-endangered-typeface",
+    "title": "The Endangered Typeface",
+    "summary": "各文字を絶滅危惧種に割り当て、種の個体数が減ると文字も欠けていく「生きたフォント」で生物多様性の損失を可視化したWWFポルトガルの施策。",
+    "client": "Anf|Wwf & Jardim ZoolÓGico De Lisboa",
+    "agency": "BAR OGILVY, Lisbon",
+    "categories": [
+      "Digital Craft"
+    ],
+    "award": "Cannes Lions 2024 Digital Craft Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Digital Craft",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.ogilvy.com/work/endangered-typeface",
+    "videoId": "",
+    "overview": "BAR Ogilvy Lisbonが、ANP|WWFおよびリスボン動物園と組んで制作したフォント。2023年5月22日の国際生物多様性の日に公開された。",
+    "background": "生物多様性の損失は数字で語られがちで、実感が伴いにくい。ANP|WWFは、種の減少を文字の見た目の変化として日常の文書作成に持ち込み、問題を身近に感じてもらうことを狙った。",
+    "execution": "各文字が絶滅の危機にある動物1種に対応し、IUCN（国際自然保護連合）のレッドリストのデータに基づいて、個体数が減ると文字が同じ割合で薄れ、増えると回復する。専用サイトからフォントをダウンロードでき、寄付もできる。B&Tによれば、公開から1年後には鮮明になった文字がある一方で大きく薄れた文字も多かった。2024年には50ユーロ以上の寄付で文字を選べる番号入りシルクスクリーン版も用意され、収益はANP|WWFの自然保護活動に充てられる。",
+    "evaluationImpact": "データをそのまま字形の変化として見せる発想が、Thedrumなど業界メディアで取り上げられた。カンヌライオンズ2024のDigital Craft部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Sustainability",
+      "Tech/Data",
+      "Form/Website",
+      "Theme/Art"
+    ],
+    "thumbnail": "/thumbnails/anf-wwf-jardim-zoologico-de-lisboa-the-endangered-typeface.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "change-the-ref-march-for-our-lives-the-shotline",
+    "title": "The Shotline",
+    "summary": "銃乱射事件で亡くなった子どもたちの声をAIで再現し、議員へ直接電話をかけて銃規制を訴える仕組みを作った米国の施策。",
+    "client": "Change The Ref & March For Our Lives",
+    "agency": "MULLENLOWE U.S., Boston",
+    "categories": [
+      "Digital Craft",
+      "PR"
+    ],
+    "award": "Cannes Lions 2024 Digital Craft Lions Bronze / Cannes Lions 2024 PR Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Digital Craft",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "PR",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.npr.org/2024/02/14/1231264701/gun-violence-parkland-anniversary-ai-generated-voices-congress",
+    "videoId": "",
+    "overview": "Change the RefとMarch For Our Livesが、MullenLowe U.S.と組んで2024年2月に始めた「The Shotline」。利用者が郵便番号を入力すると、地元の連邦議員の事務所にAI再現した被害者の声で電話がかかる。",
+    "background": "パークランド銃乱射事件から6年となる時期の公開。銃規制をめぐる議論が統計として語られがちななか、犠牲者本人の声を議員に届けることで、数字の裏にいる一人ひとりを意識させる狙いがあった。Change the Refは、事件で息子を亡くしたOliver夫妻が共同で立ち上げた団体である。",
+    "execution": "17歳でパークランドの事件で亡くなったJoaquin Oliverのほか、ユバルデの事件で亡くなった10歳のUziyah Garciaら6人の声をAIで再現した。声の使用は各遺族が同意しており、議員事務所に届くメッセージにはAI生成であることが明示される。NPR等の報道によると、遺族のなかには手法に抵抗を示した人もおり、Manuel Oliverは「抵抗を感じる人がいるならそれが狙いだ」と述べている。",
+    "evaluationImpact": "NPR、Democracy Nowなど米国の主要メディアが取り上げ、AIで故人の声を再現する倫理面の議論も呼んだ。カンヌライオンズ2024のDigital Craft部門とPR部門でBronzeを受賞した。",
+    "tags": [
+      "Tech/AI",
+      "Tech/Audio",
+      "Theme/SocialGood",
+      "Form/Website"
+    ],
+    "thumbnail": "/thumbnails/change-the-ref-march-for-our-lives-the-shotline.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "loewe-x-suna-fujita",
+    "title": "Loewe X Suna Fujita",
+    "summary": "京都の陶芸スタジオSuna Fujitaとのホリデーコレクションを、CGIを使わない手作りのストップモーション映像と立体OOHで見せたLoeweの施策。",
+    "client": "Loewe",
+    "agency": "LOEWE, Madrid",
+    "categories": [
+      "Luxury & Lifestyle"
+    ],
+    "award": "Cannes Lions 2024 Luxury & Lifestyle Lions Grand Prix",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Luxury & Lifestyle",
+        "level": "Grand Prix"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.reasonwhy.es/actualidad/espana-estrena-loewe-grand-prix-categoria-lujo-cannes-lions-2024",
+    "videoId": "FMfMbKhlyiY",
+    "overview": "スペインのLoeweが、2023年のホリデーシーズンに京都拠点のセラミックスタジオSuna Fujitaと組んで発売したコレクションとその展開。Luxury & Lifestyle部門が新設された2024年に、初のGrand Prixを受賞した。",
+    "background": "Loeweは、大量生産的でけばけばしくなりがちなクリスマスの定型表現を避け、ブランドの職人技へのこだわりを示すことを狙った。きっかけは、LoeweがSuna Fujitaの作品の購入を打診したことだった（Selfstorming）。",
+    "execution": "陶器作品に着想を得た動物（パンダ、キツネザル、カワウソなど）のモチーフをバッグ、小物、衣類に展開した。広告映像は、羊毛のニードルフェルトで登場人物も背景もすべて手作りしたストップモーションで、監督はAndrea Love。ロンドンのピカデリー・サーカスと上海では裸眼3D対応の大型OOHを出した。店舗ではアプリで3Dキャラクターを探すAR宝探しも行い、制作背景を紹介するドキュメンタリーも公開した。購入額の一部はSave the Childrenの教育支援に寄付される。",
+    "evaluationImpact": "Reason Whyによると、スペイン勢として同祭13個目、2024年では3個目のGrand Prixとなり、審査員長のCharles Georges-Picotは品質・創造性・責任感を兼ね備えた例として評価した。カンヌライオンズ2024のLuxury & Lifestyle部門でGrand Prixを受賞した。",
+    "tags": [
+      "Theme/Fashion",
+      "Form/Film",
+      "Form/OOH",
+      "Tech/3D"
+    ],
+    "thumbnail": "/thumbnails/loewe-x-suna-fujita.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "lancome-aya-nakamura-haut-niveau-by-lancome",
+    "title": "Aya Nakamura : Haut Niveau, By LancÔMe",
+    "summary": "ランコムのグローバルアンバサダーである歌手Aya Nakamuraに1年間密着し、約14分のドキュメンタリーとして本人のYouTubeチャンネルで公開した施策。",
+    "client": "LancÔMe",
+    "agency": "PUBLICIS LUXE, Paris",
+    "categories": [
+      "Luxury & Lifestyle"
+    ],
+    "award": "Cannes Lions 2024 Luxury & Lifestyle Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Luxury & Lifestyle",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://lareclame.fr/publicisluxe-aya-nakamura-warnermusicfrance-lancome-303121",
+    "videoId": "",
+    "overview": "LancômeとPublicis Luxeが制作した「Aya Nakamura : Haut Niveau」。2024年3月28日18時にAya Nakamura本人のYouTubeチャンネルで公開された。",
+    "background": "LancômeはAya Nakamuraをグローバルアンバサダーに起用した。CB Newsによれば、審査員は女性でありアーティストでもある彼女を起用したブランドの大胆さを評価した。ブランドの広告素材としてではなく、本人の素顔を見せる作品にすることで、彼女のファン層にも届けようとした。",
+    "execution": "2023年のパリAccor Arenaでのコンサート舞台裏、Lancômeのグラースのバラ園でのライブ、アルバム『DNK』のスタジオ録音などを収めた約14分の作品。監督はIdriss \"Yagooz\"とK. Gloire Savula Mbongo。Warner Music Franceが協力した。",
+    "evaluationImpact": "Numéro、La Réclame、CB Newsなどフランスの業界・文化メディアが公開時から取り上げた。カンヌライオンズ2024のLuxury & Lifestyle部門でGoldを受賞した。",
+    "tags": [
+      "Form/Film",
+      "Theme/Music",
+      "Theme/Entertainment"
+    ],
+    "thumbnail": "/thumbnails/lancome-aya-nakamura-haut-niveau-by-lancome.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "bottega-veneta-bottega-for-bottegas",
+    "title": "Bottega For Bottegas",
+    "summary": "ホリデーシーズンに自社商品を引っ込め、広告枠・店舗・公式サイトを小規模な工房（bottega）に明け渡したBottega Venetaの施策。",
+    "client": "Bottega Veneta",
+    "agency": "LEPUB, Milan",
+    "categories": [
+      "Luxury & Lifestyle"
+    ],
+    "award": "Cannes Lions 2024 Luxury & Lifestyle Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Luxury & Lifestyle",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.designboom.com/design/bottega-veneta-celebrates-italian-artisans-bottega-for-bottegas-12-20-2021/",
+    "videoId": "",
+    "overview": "Bottega Venetaが2021年12月に始めた「Bottega for Bottegas」。LePubなどが手がけ、2024年のカンヌではLePub Milanの応募作がLuxury & Lifestyle部門でSilverを受賞した。なお2024年応募分そのものの説明は見つからなかったため、本文は2021年の初回と第2回の施策の報道に基づく。",
+    "background": "ブランド名の由来でもある「bottega（工房）」への敬意を示し、パンデミック下で苦しむ小規模事業者への連帯を示す企画。CEOのBartolomeo Rongoneは、こうした工房に世界的な知名度を提供したいと述べている（Designboom）。",
+    "execution": "初回はイタリア各地の12の独立系工房（紙、ドラム、チョコレート、石鹸、ジンなど）を選び、ミラノ市内の屋外広告、店舗ウィンドウ、公式サイト、ニュースレターで紹介した。公式サイトからは各工房のオンラインショップへ誘導した。第2回は対象を日本5、中国圏5、米国4の計14工房に広げ、ニューヨークのBergdorf Goodmanにも特設ディスプレイを設けた（The Impression）。",
+    "evaluationImpact": "Wallpaper、Hypebeast、Designboomなどファッション・デザイン系メディアが取り上げ、ブランドが自社の露出を手放す企画として注目された。カンヌライオンズ2024のLuxury & Lifestyle部門でSilverを受賞した。",
+    "tags": [
+      "Theme/Fashion",
+      "Theme/Retail",
+      "Form/OOH"
+    ],
+    "thumbnail": "/thumbnails/bottega-veneta-bottega-for-bottegas.jpg"
   }
 ]
