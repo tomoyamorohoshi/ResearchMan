@@ -9,6 +9,7 @@
 
 ## やること（作品ごとに）
 1. Web 検索・WebFetch で作品の中身（何をしたか・背景・実施方法・成果）を一次情報寄りの出典（ブランド/代理店の公式、業界メディア記事、YouTube の公式動画）で確認する。
+   あわせて「作品名 + withdrawn / disqualified / 受賞取り消し」で1回検索し、受賞の取り下げ・取り消しの報道がないか確かめる。
 2. 下書きを書く。必須: summary overview background execution evaluationImpact link（文字列）、regions tags（非空配列）。任意: videoId（YouTube の ID が確認できた時だけ）。link は作品を説明する最良の公開ページ URL。
 3. サムネイル候補: 作品画像の直リンク URL（thumbnailCandidates。YouTube なら `https://i.ytimg.com/vi/<id>/maxresdefault.jpg` と hqdefault）と、og:image を持っていそうなページ URL（pageUrls）を数件ずつ。**代理店ロゴ・受賞トロフィー写真・人物の顔写真だけの画像は候補にしない**（作品そのものが写る画像を優先）。
 
