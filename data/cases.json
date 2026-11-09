@@ -904,7 +904,7 @@
       "メディア発明",
       "カルチャーインサイト"
     ],
-    "award": "第45回新聞広告賞（新聞広告賞2025）広告主部門 新聞広告大賞",
+    "award": "第45回新聞広告賞（新聞広告賞2025）広告主部門 新聞広告大賞 / Cannes Lions 2024 Digital Craft Lions Silver / Cannes Lions 2024 Entertainment Lions Bronze / Cannes Lions 2024 Film Lions Silver / Cannes Lions 2024 Health & Wellness Lions Bronze",
     "year": "2024",
     "regions": [
       "国内"
@@ -923,6 +923,32 @@
     "tags": [
       "Form/Print",
       "Theme/Food"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Digital Craft",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Film",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Health & Wellness",
+        "level": "Bronze"
+      }
     ]
   },
   {
@@ -6272,6 +6298,36 @@
         "year": 2025,
         "category": "Creative Effectiveness",
         "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Film",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Film Craft",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Industry Craft",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Outdoor",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Outdoor",
+        "level": "Bronze"
       }
     ]
   },
@@ -6318,6 +6374,78 @@
         "year": 2025,
         "category": "Media",
         "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Audio & Radio",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative B2B",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Direct",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Outdoor",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Outdoor",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "PR",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Brand Experience & Activation",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Direct",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Media",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Outdoor",
+        "level": "Silver"
       }
     ]
   },
@@ -14228,7 +14356,7 @@
       "AIクリエイティブ",
       "メディア発明"
     ],
-    "award": "The One Show 2025 Websites部門 Merit（The One Club公式サイトで確認）",
+    "award": "The One Show 2025 Websites部門 Merit（The One Club公式サイトで確認） / Cannes Lions 2024 PR Lions Bronze / Cannes Lions 2024 Print & Publishing Lions Silver",
     "year": "2026",
     "regions": [
       "中東・アフリカ"
@@ -14248,6 +14376,20 @@
       "Tech/AI",
       "Form/Website",
       "Form/Event"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "PR",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Print & Publishing",
+        "level": "Silver"
+      }
     ]
   },
   {
@@ -25891,6 +26033,24 @@
         "year": 2025,
         "category": "Creative Effectiveness",
         "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Audio & Radio",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment Lions for Music",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Social & Influencer",
+        "level": "Gold"
       }
     ]
   },
@@ -31489,7 +31649,7 @@
     "categories": [
       "コンテンツ革新"
     ],
-    "award": "D&AD Awards 2024 Yellow Pencil（Branding部門・Typography部門・Graphic Design部門の3部門でYellow Pencil受賞）",
+    "award": "D&AD Awards 2024 Yellow Pencil（Branding部門・Typography部門・Graphic Design部門の3部門でYellow Pencil受賞） / Cannes Lions 2024 Design Lions Gold / Cannes Lions 2024 Digital Craft Lions Bronze / Cannes Lions 2024 Industry Craft Lions Silver",
     "year": "2023",
     "regions": [
       "グローバル"
@@ -31515,6 +31675,26 @@
       "Tech/AI",
       "Form/App",
       "Form/Print"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Design",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Digital Craft",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Industry Craft",
+        "level": "Silver"
+      }
     ]
   },
   {
@@ -51152,6 +51332,20 @@
       "Form/Film",
       "Theme/Music",
       "Theme/Entertainment"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment Lions for Music",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Social & Influencer",
+        "level": "Bronze"
+      }
     ]
   },
   {
@@ -51532,6 +51726,14 @@
       "Form/Film",
       "Theme/Music",
       "Theme/SocialGood"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment Lions for Music",
+        "level": "Grand Prix"
+      }
     ]
   },
   {
@@ -51603,6 +51805,60 @@
         "year": 2025,
         "category": "PR",
         "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative B2B",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative B2B",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Data",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Digital Craft",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Digital Craft",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Digital Craft",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Direct",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Direct",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment Lions for Music",
+        "level": "Silver"
       }
     ]
   },
@@ -51617,7 +51873,7 @@
       "コンテンツ革新",
       "社会包摂"
     ],
-    "award": "Cannes Lions 2023 PR Grand Prix / Cannes Lions 2025 Creative Effectiveness Lions Gold",
+    "award": "Cannes Lions 2023 PR Grand Prix / Cannes Lions 2025 Creative Effectiveness Lions Gold / Cannes Lions 2024 Audio & Radio Lions Grand Prix / Cannes Lions 2024 Audio & Radio Lions Gold / Cannes Lions 2024 Audio & Radio Lions Silver / Cannes Lions 2024 Health & Wellness Lions Silver / Cannes Lions 2024 PR Lions Grand Prix / Cannes Lions 2024 PR Lions Silver",
     "year": "2023",
     "regions": [
       "欧州"
@@ -51658,6 +51914,42 @@
         "year": 2025,
         "category": "Creative Effectiveness",
         "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Audio & Radio",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Audio & Radio",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Audio & Radio",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Health & Wellness",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "PR",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "PR",
+        "level": "Silver"
       }
     ]
   },
@@ -54418,7 +54710,7 @@
       "社会包摂",
       "ブランドエクスペリエンス"
     ],
-    "award": "Cannes Lions 2026 Creative Effectiveness Lions Grand Prix / Cannes Lions 2025 Titanium Grand Prix / Cannes Lions 2026 Sustainable Development Goals Lions Silver",
+    "award": "Cannes Lions 2026 Creative Effectiveness Lions Grand Prix / Cannes Lions 2025 Titanium Grand Prix / Cannes Lions 2026 Sustainable Development Goals Lions Silver / Cannes Lions 2024 Innovation Lions Gold",
     "year": "2025",
     "regions": [
       "欧州"
@@ -54517,6 +54809,12 @@
         "year": 2025,
         "category": "Titanium",
         "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Innovation",
+        "level": "Gold"
       }
     ]
   },
@@ -54649,6 +54947,50 @@
       "Form/Film",
       "Form/Stunt",
       "Theme/Retail"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Direct",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Direct",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "PR",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Social & Influencer",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Titanium",
+        "level": "Grand Prix"
+      }
     ]
   },
   {
@@ -54753,6 +55095,42 @@
         "year": 2025,
         "category": "Creative Strategy",
         "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative B2B",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative B2B",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Outdoor",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Social & Influencer",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Social & Influencer",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Titanium",
+        "level": "Titanium"
       }
     ]
   },
@@ -54802,6 +55180,26 @@
       "Form/Stunt",
       "Theme/Sustainability",
       "Theme/Food"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative B2B",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Sustainable Development Goals",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Titanium",
+        "level": "Titanium"
+      }
     ]
   },
   {
@@ -54850,6 +55248,56 @@
       "Tech/Game",
       "Form/Stunt",
       "Theme/Sports"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Data",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Direct",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment Lions for Sport",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "PR",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Titanium",
+        "level": "Titanium"
+      }
     ]
   },
   {
@@ -54898,6 +55346,32 @@
       "Form/Film",
       "Theme/Entertainment",
       "Theme/Art"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Film",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Film",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Film Craft",
+        "level": "Silver"
+      }
     ]
   },
   {
@@ -55636,7 +56110,7 @@
       "ブランドエクスペリエンス",
       "OOH革新"
     ],
-    "award": "Cannes Lions 2015 Outdoor Grand Prix / Cannes Lions 2025 Creative Effectiveness Lions Grand Prix",
+    "award": "Cannes Lions 2015 Outdoor Grand Prix / Cannes Lions 2025 Creative Effectiveness Lions Grand Prix / Cannes Lions 2024 Entertainment Lions Silver / Cannes Lions 2024 Film Lions Bronze / Cannes Lions 2024 Media Lions Bronze",
     "year": "2015",
     "regions": [
       "グローバル"
@@ -55678,6 +56152,30 @@
         "year": 2025,
         "category": "Creative Effectiveness",
         "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Film",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Media",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment",
+        "level": "Bronze"
       }
     ]
   },
@@ -63225,12 +63723,24 @@
     "categories": [
       "Innovation"
     ],
-    "award": "Cannes Lions 2025 Innovation Lions Silver",
+    "award": "Cannes Lions 2025 Innovation Lions Silver / Cannes Lions 2024 Brand Experience & Activation Lions Bronze / Cannes Lions 2024 Direct Lions Silver",
     "awardEntries": [
       {
         "org": "cannes",
         "year": 2025,
         "category": "Innovation",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Direct",
         "level": "Silver"
       }
     ],
@@ -63576,13 +64086,49 @@
     "categories": [
       "Creative Business Transformation"
     ],
-    "award": "Cannes Lions 2025 Creative Business Transformation Lions Bronze",
+    "award": "Cannes Lions 2025 Creative Business Transformation Lions Bronze / Cannes Lions 2024 Creative B2B Lions Bronze",
     "awardEntries": [
       {
         "org": "cannes",
         "year": 2025,
         "category": "Creative Business Transformation",
         "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative B2B",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Creative B2B",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Entertainment",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "PR",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Entertainment Lions for Sport",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Media",
+        "level": "Gold"
       }
     ],
     "regions": [
@@ -63628,6 +64174,24 @@
         "year": 2025,
         "category": "Sustainable Development Goals",
         "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Entertainment",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Film",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Health & Wellness",
+        "level": "Gold"
       }
     ],
     "regions": [
@@ -63745,13 +64309,25 @@
     "categories": [
       "Glass: The Lion for Change"
     ],
-    "award": "Cannes Lions 2025 Glass: The Lion for Change Bronze",
+    "award": "Cannes Lions 2025 Glass: The Lion for Change Bronze / Cannes Lions 2024 Brand Experience & Activation Lions Bronze / Cannes Lions 2024 PR Lions Silver",
     "awardEntries": [
       {
         "org": "cannes",
         "year": 2025,
         "category": "Glass: The Lion for Change",
         "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "PR",
+        "level": "Silver"
       }
     ],
     "regions": [
@@ -64449,7 +65025,7 @@
       "Creative B2B",
       "Sustainable Development Goals"
     ],
-    "award": "Cannes Lions 2025 Creative B2B Lions Silver / Cannes Lions 2025 Sustainable Development Goals Lions Silver",
+    "award": "Cannes Lions 2025 Creative B2B Lions Silver / Cannes Lions 2025 Sustainable Development Goals Lions Silver / Cannes Lions 2024 Creative Data Lions Silver / Cannes Lions 2024 Direct Lions Bronze / Cannes Lions 2024 Media Lions Gold / Cannes Lions 2024 Media Lions Silver / Cannes Lions 2024 Media Lions Bronze",
     "awardEntries": [
       {
         "org": "cannes",
@@ -64462,6 +65038,36 @@
         "year": 2025,
         "category": "Sustainable Development Goals",
         "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Data",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Direct",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Media",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Media",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Media",
+        "level": "Bronze"
       }
     ],
     "regions": [
@@ -64658,6 +65264,12 @@
         "year": 2025,
         "category": "Sustainable Development Goals",
         "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Creative Commerce",
+        "level": "Bronze"
       }
     ],
     "regions": [
@@ -66130,13 +66742,19 @@
     "categories": [
       "Creative Effectiveness"
     ],
-    "award": "Cannes Lions 2025 Creative Effectiveness Lions Gold",
+    "award": "Cannes Lions 2025 Creative Effectiveness Lions Gold / Cannes Lions 2024 Direct Lions Silver",
     "awardEntries": [
       {
         "org": "cannes",
         "year": 2025,
         "category": "Creative Effectiveness",
         "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Direct",
+        "level": "Silver"
       }
     ],
     "regions": [
@@ -66216,13 +66834,19 @@
     "categories": [
       "Creative Effectiveness"
     ],
-    "award": "Cannes Lions 2025 Creative Effectiveness Lions Silver",
+    "award": "Cannes Lions 2025 Creative Effectiveness Lions Silver / Cannes Lions 2024 Creative Business Transformation Lions Grand Prix",
     "awardEntries": [
       {
         "org": "cannes",
         "year": 2025,
         "category": "Creative Effectiveness",
         "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Business Transformation",
+        "level": "Grand Prix"
       }
     ],
     "regions": [
@@ -66256,13 +66880,43 @@
     "categories": [
       "Creative Effectiveness"
     ],
-    "award": "Cannes Lions 2025 Creative Effectiveness Lions Silver",
+    "award": "Cannes Lions 2025 Creative Effectiveness Lions Silver / Cannes Lions 2024 Brand Experience & Activation Lions Silver / Cannes Lions 2024 Creative Commerce Lions Silver / Cannes Lions 2024 Media Lions Grand Prix / Cannes Lions 2024 Media Lions Silver",
     "awardEntries": [
       {
         "org": "cannes",
         "year": 2025,
         "category": "Creative Effectiveness",
         "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Commerce",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Media",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Media",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Media",
+        "level": "Bronze"
       }
     ],
     "regions": [
@@ -66296,13 +66950,19 @@
     "categories": [
       "Creative Effectiveness"
     ],
-    "award": "Cannes Lions 2025 Creative Effectiveness Lions Silver",
+    "award": "Cannes Lions 2025 Creative Effectiveness Lions Silver / Cannes Lions 2024 Creative Commerce Lions Gold",
     "awardEntries": [
       {
         "org": "cannes",
         "year": 2025,
         "category": "Creative Effectiveness",
         "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Commerce",
+        "level": "Gold"
       }
     ],
     "regions": [
@@ -66389,7 +67049,7 @@
       "Creative Effectiveness",
       "Creative Strategy"
     ],
-    "award": "Cannes Lions 2025 Creative Effectiveness Lions Bronze / Cannes Lions 2025 Creative Strategy Lions Bronze",
+    "award": "Cannes Lions 2025 Creative Effectiveness Lions Bronze / Cannes Lions 2025 Creative Strategy Lions Bronze / Cannes Lions 2024 Entertainment Lions Bronze / Cannes Lions 2024 Film Lions Bronze / Cannes Lions 2024 Health & Wellness Lions Gold / Cannes Lions 2024 Health & Wellness Lions Silver / Cannes Lions 2024 Media Lions Gold / Cannes Lions 2024 PR Lions Bronze / Cannes Lions 2024 Social & Influencer Lions Grand Prix / Cannes Lions 2024 Social & Influencer Lions Gold / Cannes Lions 2024 Social & Influencer Lions Silver",
     "awardEntries": [
       {
         "org": "cannes",
@@ -66402,6 +67062,60 @@
         "year": 2025,
         "category": "Creative Strategy",
         "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Film",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Health & Wellness",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Health & Wellness",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Media",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "PR",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Social & Influencer",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Social & Influencer",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Social & Influencer",
+        "level": "Silver"
       }
     ],
     "regions": [
@@ -66435,13 +67149,37 @@
     "categories": [
       "Creative Effectiveness"
     ],
-    "award": "Cannes Lions 2025 Creative Effectiveness Lions Bronze",
+    "award": "Cannes Lions 2025 Creative Effectiveness Lions Bronze / Cannes Lions 2024 Creative Strategy Lions Grand Prix / Cannes Lions 2024 Creative Strategy Lions Silver",
     "awardEntries": [
       {
         "org": "cannes",
         "year": 2025,
         "category": "Creative Effectiveness",
         "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Strategy",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Strategy",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment Lions for Music",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Health & Wellness",
+        "level": "Silver"
       }
     ],
     "regions": [
@@ -66476,7 +67214,7 @@
       "Creative Effectiveness",
       "Health & Wellness"
     ],
-    "award": "Cannes Lions 2025 Creative Effectiveness Lions Bronze / Cannes Lions 2025 Health & Wellness Lions Gold",
+    "award": "Cannes Lions 2025 Creative Effectiveness Lions Bronze / Cannes Lions 2025 Health & Wellness Lions Gold / Cannes Lions 2024 Brand Experience & Activation Lions Gold / Cannes Lions 2024 Design Lions Grand Prix / Cannes Lions 2024 Design Lions Bronze / Cannes Lions 2024 Direct Lions Silver / Cannes Lions 2024 Media Lions Gold / Cannes Lions 2024 Outdoor Lions Gold / Cannes Lions 2024 Outdoor Lions Silver / Cannes Lions 2024 Sustainable Development Goals Lions Gold",
     "awardEntries": [
       {
         "org": "cannes",
@@ -66488,6 +67226,54 @@
         "org": "cannes",
         "year": 2025,
         "category": "Health & Wellness",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Design",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Design",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Direct",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Media",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Outdoor",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Outdoor",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Sustainable Development Goals",
         "level": "Gold"
       }
     ],
@@ -66521,12 +67307,30 @@
     "categories": [
       "Creative Effectiveness"
     ],
-    "award": "Cannes Lions 2025 Creative Effectiveness Lions Bronze",
+    "award": "Cannes Lions 2025 Creative Effectiveness Lions Bronze / Cannes Lions 2024 Brand Experience & Activation Lions Bronze / Cannes Lions 2024 Entertainment Lions Bronze / Cannes Lions 2024 Social & Influencer Lions Bronze",
     "awardEntries": [
       {
         "org": "cannes",
         "year": 2025,
         "category": "Creative Effectiveness",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Social & Influencer",
         "level": "Bronze"
       }
     ],
@@ -66561,13 +67365,55 @@
     "categories": [
       "Creative Effectiveness"
     ],
-    "award": "Cannes Lions 2025 Creative Effectiveness Lions Bronze",
+    "award": "Cannes Lions 2025 Creative Effectiveness Lions Bronze / Cannes Lions 2024 Brand Experience & Activation Lions Silver / Cannes Lions 2024 Creative Business Transformation Lions Bronze / Cannes Lions 2024 Creative Commerce Lions Bronze / Cannes Lions 2024 Direct Lions Gold / Cannes Lions 2024 Direct Lions Bronze / Cannes Lions 2024 PR Lions Bronze / Cannes Lions 2024 Social & Influencer Lions Gold",
     "awardEntries": [
       {
         "org": "cannes",
         "year": 2025,
         "category": "Creative Effectiveness",
         "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Business Transformation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Commerce",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Direct",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Direct",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "PR",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Social & Influencer",
+        "level": "Gold"
       }
     ],
     "regions": [
@@ -66603,7 +67449,7 @@
       "Creative Effectiveness",
       "Creative Strategy"
     ],
-    "award": "Cannes Lions 2025 Creative Effectiveness Lions Bronze / Cannes Lions 2025 Creative Strategy Lions Bronze",
+    "award": "Cannes Lions 2025 Creative Effectiveness Lions Bronze / Cannes Lions 2025 Creative Strategy Lions Bronze / Cannes Lions 2024 Glass: The Lion for Change Grand Prix / Cannes Lions 2024 PR Lions Bronze",
     "awardEntries": [
       {
         "org": "cannes",
@@ -66615,6 +67461,18 @@
         "org": "cannes",
         "year": 2025,
         "category": "Creative Strategy",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Glass: The Lion for Change",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "PR",
         "level": "Bronze"
       }
     ],
@@ -66734,12 +67592,54 @@
     "categories": [
       "Creative Strategy"
     ],
-    "award": "Cannes Lions 2025 Creative Strategy Lions Silver",
+    "award": "Cannes Lions 2025 Creative Strategy Lions Silver / Cannes Lions 2024 Brand Experience & Activation Lions Gold / Cannes Lions 2024 Brand Experience & Activation Lions Silver / Cannes Lions 2024 Film Lions Bronze / Cannes Lions 2024 Health & Wellness Lions Grand Prix / Cannes Lions 2024 Health & Wellness Lions Silver / Cannes Lions 2024 Health & Wellness Lions Bronze / Cannes Lions 2024 Outdoor Lions Silver",
     "awardEntries": [
       {
         "org": "cannes",
         "year": 2025,
         "category": "Creative Strategy",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Film",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Health & Wellness",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Health & Wellness",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Health & Wellness",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Outdoor",
         "level": "Silver"
       }
     ],
@@ -66775,13 +67675,25 @@
     "categories": [
       "Creative Strategy"
     ],
-    "award": "Cannes Lions 2025 Creative Strategy Lions Silver",
+    "award": "Cannes Lions 2025 Creative Strategy Lions Silver / Cannes Lions 2024 Entertainment Lions Bronze / Cannes Lions 2024 Social & Influencer Lions Bronze",
     "awardEntries": [
       {
         "org": "cannes",
         "year": 2025,
         "category": "Creative Strategy",
         "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Social & Influencer",
+        "level": "Bronze"
       }
     ],
     "regions": [
@@ -66979,6 +67891,12 @@
         "year": 2025,
         "category": "Creative Strategy",
         "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Industry Craft",
+        "level": "Gold"
       }
     ],
     "regions": [
@@ -67011,13 +67929,31 @@
     "categories": [
       "Creative Strategy"
     ],
-    "award": "Cannes Lions 2025 Creative Strategy Lions Bronze",
+    "award": "Cannes Lions 2025 Creative Strategy Lions Bronze / Cannes Lions 2024 Brand Experience & Activation Lions Bronze / Cannes Lions 2024 Direct Lions Bronze / Cannes Lions 2024 Health & Wellness Lions Silver",
     "awardEntries": [
       {
         "org": "cannes",
         "year": 2025,
         "category": "Creative Strategy",
         "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Direct",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Health & Wellness",
+        "level": "Silver"
       }
     ],
     "regions": [
@@ -67098,13 +68034,25 @@
     "categories": [
       "Creative Strategy"
     ],
-    "award": "Cannes Lions 2025 Creative Strategy Lions Bronze",
+    "award": "Cannes Lions 2025 Creative Strategy Lions Bronze / Cannes Lions 2024 Glass: The Lion for Change Bronze / Cannes Lions 2024 Health & Wellness Lions Gold",
     "awardEntries": [
       {
         "org": "cannes",
         "year": 2025,
         "category": "Creative Strategy",
         "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Glass: The Lion for Change",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Health & Wellness",
+        "level": "Gold"
       }
     ],
     "regions": [
@@ -67897,12 +68845,36 @@
     "categories": [
       "Health & Wellness"
     ],
-    "award": "Cannes Lions 2025 Health & Wellness Lions Bronze",
+    "award": "Cannes Lions 2025 Health & Wellness Lions Bronze / Cannes Lions 2024 Entertainment Lions Silver / Cannes Lions 2024 Entertainment Lions for Gaming Gold / Cannes Lions 2024 Film Lions Gold / Cannes Lions 2024 Film Lions Bronze",
     "awardEntries": [
       {
         "org": "cannes",
         "year": 2025,
         "category": "Health & Wellness",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Film",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Film",
         "level": "Bronze"
       }
     ],
@@ -68230,6 +69202,12 @@
         "year": 2025,
         "category": "Outdoor",
         "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Film",
+        "level": "Silver"
       }
     ],
     "regions": [
@@ -68346,6 +69324,12 @@
         "org": "cannes",
         "year": 2025,
         "category": "Industry Craft",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Outdoor",
         "level": "Silver"
       }
     ],
@@ -69077,13 +70061,25 @@
     "categories": [
       "PR"
     ],
-    "award": "Cannes Lions 2025 PR Lions Bronze",
+    "award": "Cannes Lions 2025 PR Lions Bronze / Cannes Lions 2024 Brand Experience & Activation Lions Bronze / Cannes Lions 2024 Sustainable Development Goals Lions Gold",
     "awardEntries": [
       {
         "org": "cannes",
         "year": 2025,
         "category": "PR",
         "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Sustainable Development Goals",
+        "level": "Gold"
       }
     ],
     "regions": [
@@ -70622,6 +71618,12 @@
         "year": 2025,
         "category": "Print & Publishing",
         "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Outdoor",
+        "level": "Bronze"
       }
     ],
     "regions": [
@@ -70773,13 +71775,19 @@
     "categories": [
       "Print & Publishing"
     ],
-    "award": "Cannes Lions 2025 Print & Publishing Lions Bronze",
+    "award": "Cannes Lions 2025 Print & Publishing Lions Bronze / Cannes Lions 2024 Industry Craft Lions Silver",
     "awardEntries": [
       {
         "org": "cannes",
         "year": 2025,
         "category": "Print & Publishing",
         "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Industry Craft",
+        "level": "Silver"
       }
     ],
     "regions": [
@@ -72490,13 +73498,19 @@
     "categories": [
       "Social & Creator"
     ],
-    "award": "Cannes Lions 2025 Social & Creator Lions Gold",
+    "award": "Cannes Lions 2025 Social & Creator Lions Gold / Cannes Lions 2024 Entertainment Lions Bronze",
     "awardEntries": [
       {
         "org": "cannes",
         "year": 2025,
         "category": "Social & Creator",
         "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment",
+        "level": "Bronze"
       }
     ],
     "regions": [
@@ -73344,7 +74358,7 @@
       "Design",
       "Media"
     ],
-    "award": "Cannes Lions 2025 Design Lions Silver / Cannes Lions 2025 Media Lions Silver",
+    "award": "Cannes Lions 2025 Design Lions Silver / Cannes Lions 2025 Media Lions Silver / Cannes Lions 2024 Creative Strategy Lions Gold / Cannes Lions 2024 Digital Craft Lions Bronze / Cannes Lions 2024 Entertainment Lions for Gaming Silver / Cannes Lions 2024 PR Lions Silver",
     "awardEntries": [
       {
         "org": "cannes",
@@ -73356,6 +74370,30 @@
         "org": "cannes",
         "year": 2025,
         "category": "Media",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Strategy",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Digital Craft",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "PR",
         "level": "Silver"
       }
     ],
@@ -73474,12 +74512,24 @@
     "categories": [
       "Design"
     ],
-    "award": "Cannes Lions 2025 Design Lions Silver",
+    "award": "Cannes Lions 2025 Design Lions Silver / Cannes Lions 2024 Innovation Lions Silver / Cannes Lions 2024 Pharma Lions Silver",
     "awardEntries": [
       {
         "org": "cannes",
         "year": 2025,
         "category": "Design",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Innovation",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Pharma",
         "level": "Silver"
       }
     ],
@@ -73783,12 +74833,24 @@
     "categories": [
       "Design"
     ],
-    "award": "Cannes Lions 2025 Design Lions Bronze",
+    "award": "Cannes Lions 2025 Design Lions Bronze / Cannes Lions 2024 Brand Experience & Activation Lions Gold / Cannes Lions 2024 Direct Lions Bronze",
     "awardEntries": [
       {
         "org": "cannes",
         "year": 2025,
         "category": "Design",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Direct",
         "level": "Bronze"
       }
     ],
@@ -74172,6 +75234,12 @@
         "year": 2025,
         "category": "Film Craft",
         "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Film Craft",
+        "level": "Bronze"
       }
     ],
     "regions": [
@@ -74326,6 +75394,12 @@
         "year": 2025,
         "category": "Film Craft",
         "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Film",
+        "level": "Gold"
       }
     ],
     "regions": [
@@ -75580,13 +76654,25 @@
     "categories": [
       "Outdoor"
     ],
-    "award": "Cannes Lions 2025 Outdoor Lions Bronze",
+    "award": "Cannes Lions 2025 Outdoor Lions Bronze / Cannes Lions 2024 Brand Experience & Activation Lions Bronze / Cannes Lions 2024 Media Lions Silver",
     "awardEntries": [
       {
         "org": "cannes",
         "year": 2025,
         "category": "Outdoor",
         "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Media",
+        "level": "Silver"
       }
     ],
     "regions": [
@@ -76372,13 +77458,19 @@
     "categories": [
       "Media"
     ],
-    "award": "Cannes Lions 2025 Media Lions Bronze",
+    "award": "Cannes Lions 2025 Media Lions Bronze / Cannes Lions 2024 Social & Influencer Lions Silver",
     "awardEntries": [
       {
         "org": "cannes",
         "year": 2025,
         "category": "Media",
         "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Social & Influencer",
+        "level": "Silver"
       }
     ],
     "regions": [
@@ -76611,12 +77703,24 @@
     "categories": [
       "Media"
     ],
-    "award": "Cannes Lions 2025 Media Lions Bronze",
+    "award": "Cannes Lions 2025 Media Lions Bronze / Cannes Lions 2024 Film Lions Silver / Cannes Lions 2024 Social & Influencer Lions Bronze",
     "awardEntries": [
       {
         "org": "cannes",
         "year": 2025,
         "category": "Media",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Film",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Social & Influencer",
         "level": "Bronze"
       }
     ],
@@ -78958,7 +80062,7 @@
       "Brand Experience & Activation",
       "Industry Craft"
     ],
-    "award": "Cannes Lions 2025 Brand Experience & Activation Lions Silver / Cannes Lions 2025 Industry Craft Lions Bronze",
+    "award": "Cannes Lions 2025 Brand Experience & Activation Lions Silver / Cannes Lions 2025 Industry Craft Lions Bronze / Cannes Lions 2024 Design Lions Gold / Cannes Lions 2024 Design Lions Bronze / Cannes Lions 2024 Direct Lions Bronze / Cannes Lions 2024 Media Lions Bronze / Cannes Lions 2024 Outdoor Lions Silver",
     "awardEntries": [
       {
         "org": "cannes",
@@ -78971,6 +80075,36 @@
         "year": 2025,
         "category": "Industry Craft",
         "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Design",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Design",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Direct",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Media",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Outdoor",
+        "level": "Silver"
       }
     ],
     "regions": [
@@ -79607,7 +80741,7 @@
       "Brand Experience & Activation",
       "Entertainment"
     ],
-    "award": "Cannes Lions 2025 Brand Experience & Activation Lions Bronze / Cannes Lions 2025 Entertainment Lions Silver",
+    "award": "Cannes Lions 2025 Brand Experience & Activation Lions Bronze / Cannes Lions 2025 Entertainment Lions Silver / Cannes Lions 2024 Digital Craft Lions Gold / Cannes Lions 2024 Digital Craft Lions Silver / Cannes Lions 2024 Entertainment Lions for Sport Gold / Cannes Lions 2024 Entertainment Lions for Sport Silver",
     "awardEntries": [
       {
         "org": "cannes",
@@ -79619,6 +80753,30 @@
         "org": "cannes",
         "year": 2025,
         "category": "Entertainment",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Digital Craft",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Digital Craft",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment Lions for Sport",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment Lions for Sport",
         "level": "Silver"
       }
     ],
@@ -80346,7 +81504,7 @@
       "Brand Experience & Activation",
       "Media"
     ],
-    "award": "Cannes Lions 2025 Brand Experience & Activation Lions Bronze / Cannes Lions 2025 Media Lions Silver",
+    "award": "Cannes Lions 2025 Brand Experience & Activation Lions Bronze / Cannes Lions 2025 Media Lions Silver / Cannes Lions 2024 Creative B2B Lions Gold / Cannes Lions 2024 Creative B2B Lions Silver / Cannes Lions 2024 Direct Lions Silver / Cannes Lions 2024 Direct Lions Bronze / Cannes Lions 2024 Industry Craft Lions Gold / Cannes Lions 2024 Outdoor Lions Silver / Cannes Lions 2024 Print & Publishing Lions Gold",
     "awardEntries": [
       {
         "org": "cannes",
@@ -80359,6 +81517,48 @@
         "year": 2025,
         "category": "Media",
         "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative B2B",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative B2B",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Direct",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Direct",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Industry Craft",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Outdoor",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Print & Publishing",
+        "level": "Gold"
       }
     ],
     "regions": [
