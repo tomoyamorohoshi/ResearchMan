@@ -26629,5 +26629,227 @@
         "desc": "北朝鮮兵の遺留品や手記を分析し、写真とデータで見せた日経のビジュアル調査報道。"
       }
     ]
+  },
+  {
+    "id": "2026-11-09-1",
+    "date": "2026-11-09",
+    "title": "振動を聴く霧の花粉看板",
+    "pattern": "文脈×技術",
+    "seed": "Benadryl Pollen Countsは花粉量で看板表示を切り替えたが、Event Topology-based Visual Vibrometerで花粉が揺らす葉の微細振動を「音」として拾い、街角の看板から花粉の気配を聴かせられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "benadryl-pollen-counts-2014",
+        "title": "Benadryl Pollen Counts",
+        "desc": "地域の花粉量の実測データに合わせて、デジタル看板の表示が警告に変わる広告。"
+      },
+      {
+        "type": "tech",
+        "id": "event-topology-based-visual-vibrometer",
+        "title": "Event Topology-based Visual Vibrometer",
+        "desc": "高速カメラの映像から、物の細かな振動を音として取り出す計測技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-09-2",
+    "date": "2026-11-09",
+    "title": "スイスの街角を3D侵食するポスター",
+    "pattern": "文脈×技術",
+    "seed": "It's Not Happening Here, But It's Happening Nowの合成ポスターを、Splat.jsで街をその場でスキャンした立体にして、人権侵害の場面が歩く角度で現れる体験にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "it-s-not-happening-here-but-it-s-happening-now-2014",
+        "title": "It's Not Happening Here, But It's Happening Now",
+        "desc": "世界の人権侵害の場面をスイスの日常風景に合成した200枚のポスター。"
+      },
+      {
+        "type": "tech",
+        "id": "splat-js",
+        "title": "Splat.js",
+        "desc": "写真をブラウザだけで、光の粒でできた3Dに変換できるツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-09-3",
+    "date": "2026-11-09",
+    "title": "共演網を踊らせる確率の骨格",
+    "pattern": "文脈×技術",
+    "seed": "kevin bacon (The Pudding)が示した共演網の「次の中心人物」予測を、UniMateで人以外の骨格に割り当て、中心性が高い人ほど群れの先頭で踊る映像にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "kevin-bacon-the-pudding-2026",
+        "title": "kevin bacon (The Pudding)",
+        "desc": "共演関係の網で、次のハリウッドの中心人物を確率で予測した作品。"
+      },
+      {
+        "type": "tech",
+        "id": "unimate",
+        "title": "UniMate",
+        "desc": "文章の指示だけで、形の違う生き物の骨格を1つのAIで動かす技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-09-4",
+    "date": "2026-11-09",
+    "title": "浮遊する月と塩の彫刻",
+    "pattern": "技術×技術",
+    "seed": "LeviFabの超伝導ピン止めで磁石入りの3Dプリント物を浮かせ、Modlyで島の石や塩の結晶を自分のPCだけで3D化して浮遊させれば、小さな月と塩の標本棚が作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "levifab",
+        "title": "LeviFab",
+        "desc": "冷やした超伝導体の力で、磁石入りの3Dプリント物を空中に浮かせる研究。"
+      },
+      {
+        "type": "tech",
+        "id": "modly",
+        "title": "Modly",
+        "desc": "写真を自分のPCだけで3Dの形にできるデスクトップアプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-09-5",
+    "date": "2026-11-09",
+    "title": "歌う骨格のレイトレ舞台",
+    "pattern": "技術×技術",
+    "seed": "MiniMax Music 3で作った5分の曲に合わせ、Kimodo.cppでテキストから踊りを作り、GRayのレイトレGaussian Splattingで反射する床に映せば、ローカルだけの舞台映像になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "minimax-music-3",
+        "title": "MiniMax Music 3 (MiniMax-Music3)",
+        "desc": "歌詞と指示文から、歌入りの曲を最大5分で作る音楽生成AI。"
+      },
+      {
+        "type": "tech",
+        "id": "kimodo-cpp",
+        "title": "kimodo.cpp",
+        "desc": "文章から3Dの人の動きを作るAIを、自分のPCで動かせる版。"
+      },
+      {
+        "type": "tech",
+        "id": "gray",
+        "title": "GRay",
+        "desc": "3Dスキャンの像を、反射や影まで正確に描ける新しい描画法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-09-6",
+    "date": "2026-11-09",
+    "title": "圧縮した動きを配るメッセージ",
+    "pattern": "技術×技術",
+    "seed": "CurveCodecで骨格アニメーションを1/10に圧縮し、TRACEの会話編集と組み合わせれば、「もう少し深く」と返すだけで変形し続ける動きのバトンを、軽いファイルで人から人へ渡せるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "curvecodec",
+        "title": "CurveCodec (AnimationCodec)",
+        "desc": "どんな骨格のアニメも、1/10以下の大きさに縮められる圧縮方式。"
+      },
+      {
+        "type": "tech",
+        "id": "trace",
+        "title": "TRACE (Typed Reference-Aware Conversational Editing for Humanoid Motion Diffusion)",
+        "desc": "会話で人型ロボットの動きを作り直せる動作生成・編集システム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-09-7",
+    "date": "2026-11-09",
+    "title": "ロボ皮膚で触れる巨大覗き穴",
+    "pattern": "転用",
+    "seed": "Mirror Skinのロボット皮膚へ「触れる部位を映す」表示を、ロボではなくPanópticoの覗き穴に転用し、立つ位置の人の肩や背中の映像を壁面に映して見られる感覚を可視化できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "mirror-skin",
+        "title": "Mirror Skin",
+        "desc": "これから触れる人の体の部位を、ロボットの皮膚に映す表示手法。"
+      },
+      {
+        "type": "case",
+        "id": "pan-ptico-spy-plaza-de-cibeles-madrid-2026",
+        "title": "Panóptico（SpY, Plaza de Cibeles, Madrid）",
+        "desc": "20mの黒い三角形に覗き穴を開け、立つ位置で街の見え方が変わる展示。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-09-8",
+    "date": "2026-11-09",
+    "title": "漁網で作る音の振動鑑賞",
+    "pattern": "転用",
+    "seed": "そらあみの空に張った漁網を、Event Topology-based Visual Vibrometerで音を拾う巨大な弦として使えば、風と島の人の声が網の揺れから聴こえる作品になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2013-103",
+        "title": "そらあみ",
+        "desc": "島の人々と漁網を編み、空に向けて張り渡した参加型の作品。"
+      },
+      {
+        "type": "tech",
+        "id": "event-topology-based-visual-vibrometer",
+        "title": "Event Topology-based Visual Vibrometer",
+        "desc": "高速カメラの映像から、物の細かな振動を音として取り出す計測技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-09-9",
+    "date": "2026-11-09",
+    "title": "ストラップ接合を骨格圧縮で解く",
+    "pattern": "転用",
+    "seed": "(Un)Buildの釘を使わず解体できる接合を、建築ではなく動きの圧縮に例え、CurveCodecの圧縮動作を解体可能な部品のように組み替えるダンス振付ツールにできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "un-build-2026",
+        "title": "(Un)Build – 釘もネジも接着剤も使わないストラップ締結の木造接合システム",
+        "desc": "釘やネジなしで、ストラップと摩擦で木材を固定し再利用できる接合方法。"
+      },
+      {
+        "type": "tech",
+        "id": "curvecodec",
+        "title": "CurveCodec (AnimationCodec)",
+        "desc": "どんな骨格のアニメも、1/10以下の大きさに縮められる圧縮方式。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-09-10",
+    "date": "2026-11-09",
+    "title": "土の獣を生む角度で変わる声",
+    "pattern": "文脈×技術",
+    "seed": "高見島の土ヲ喰ムは見る角度で表情が変わる獣だった。VCARで切り出した土の獣のSplatを、YuE2の楽譜で歌わせ、立つ角度ごとに別の旋律になる廃屋にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2025-ta23",
+        "title": "≪ 高見島アートトレイル≫土ヲ喰ム",
+        "desc": "廃屋に現れる、島の土でできた見る角度で表情が変わる巨大な獣の作品。"
+      },
+      {
+        "type": "tech",
+        "id": "vcar",
+        "title": "VCAR",
+        "desc": "完成した3Dシーンから、狙った物だけを追加学習なしで切り出す手法。"
+      },
+      {
+        "type": "tech",
+        "id": "yue2",
+        "title": "YuE2",
+        "desc": "直せる楽譜を経由して曲を作る、ローカルで動く音楽生成AI。"
+      }
+    ]
   }
 ]
