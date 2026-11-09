@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { ingest, slugifyId, makeCaseId } from "./cannes-ingest.mjs";
+import { ingest, slugifyId, makeCaseId, cliExitCode } from "./cannes-ingest.mjs";
 import { tryAcquire, releaseOwnedLock } from "./lib/git-lock.mjs";
 
 const quiet = () => {};
@@ -215,4 +215,18 @@ test("冪等性: draft.title が plan と違う表記でも2回 ingest して1�
   assert.deepEqual(r2.added, []);
   assert.match(r2.skipped[0].reason, /既に/);
   assert.equal(readCases(t.casesPath).length, 1);
+});
+
+test("ロックが取れない: lockBusy=true、CLI の終了コードは 75。それ以外の失敗は 1", async () => {
+  const t = setup([]);
+  assert.equal(tryAcquire(t.lockPath, "other"), true);
+  try {
+    const r = await ingest({ ...t.base, drafts: [mkItem("painvisible|aritium")] });
+    assert.equal(r.lockBusy, true);
+    assert.equal(cliExitCode(r), 75);
+  } finally {
+    releaseOwnedLock(t.lockPath);
+  }
+  assert.equal(cliExitCode({ exitCode: 1 }), 1);
+  assert.equal(cliExitCode({ exitCode: 0 }), 0);
 });

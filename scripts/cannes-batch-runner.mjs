@@ -12,6 +12,7 @@
  * 結果は stdout の JSON オブジェクト（マーカー "cannesDrafts"）で回収する。
  */
 import fs from "fs";
+import { isHeld } from "./lib/git-lock.mjs";
 import os from "os";
 import path from "path";
 import { spawn, spawnSync } from "child_process";
@@ -276,6 +277,22 @@ export async function waitForResources({ readGuard, now = () => new Date(), slee
   }
 }
 
+/** ingest が 75（gitロック待ち）を返す間は待って同じ引数で再試行する。sleep・now・log は注入可能。上限超過時は最後の結果（status 75）を返す。 */
+export const LOCK_BUSY_STATUS = 75;
+export async function runIngestWithLockWait(runIngest, mergedFile, { now = () => new Date(), sleep = (ms) => new Promise((r) => setTimeout(r, ms)), log = () => {}, pollMs = 60000, heartbeatMs = 30 * 60 * 1000, maxWaitMs = 6 * 60 * 60 * 1000 } = {}) {
+  let r = await runIngest(mergedFile);
+  let waitStart = null, lastBeat = null;
+  while (r.status === LOCK_BUSY_STATUS) {
+    if (waitStart === null) { waitStart = lastBeat = now().getTime(); log("  gitロック待ち: 取り込みを待機"); }
+    else if (now().getTime() - waitStart >= maxWaitMs) { log("  gitロック待ちが6時間を超えたため停止"); return r; }
+    else if (now().getTime() - lastBeat >= heartbeatMs) { lastBeat = now().getTime(); log("  gitロック待ちが続いている"); }
+    await sleep(pollMs);
+    r = await runIngest(mergedFile);
+  }
+  if (waitStart !== null) log(`  gitロック解放: 待機${Math.round((now().getTime() - waitStart) / 60000)}分`);
+  return r;
+}
+
 async function pool(items, limit, fn) {
   const results = new Array(items.length);
   let next = 0;
@@ -288,7 +305,7 @@ async function pool(items, limit, fn) {
  * 1バッチを実行する。runGroup({prompt, worksFile, draftsFile, groupNo}) と runIngest(mergedFile)→{status} は注入可能。
  * 戻り値: { exitCode, state, stats }。ingest 失敗時は state を更新しない（同じ作品を次回やり直せる）。
  */
-export async function runBatch({ year, works, state, batchNo, batchSize = 35, parallel = 7, groupSize = GROUP_SIZE, workRoot, brief, runGroup, runIngest, readCases = () => [], gitStatusCases = () => "", log = () => {}, waitResources = async () => {} }) {
+export async function runBatch({ year, works, state, batchNo, batchSize = 35, parallel = 7, groupSize = GROUP_SIZE, workRoot, brief, runGroup, runIngest, readCases = () => [], gitStatusCases = () => "", log = () => {}, waitResources = async () => {}, now, sleep }) {
   const dir = path.join(workRoot, String(year), String(batchNo));
   fs.mkdirSync(dir, { recursive: true });
   const exFile = path.join(ROOT, "docs", "cannes", "DRAFT_EXAMPLES.json");
@@ -341,7 +358,7 @@ export async function runBatch({ year, works, state, batchNo, batchSize = 35, pa
   } else if (merged.length) {
     const mergedFile = path.join(dir, "merged-drafts.json");
     fs.writeFileSync(mergedFile, JSON.stringify(merged, null, 2));
-    const r = await runIngest(mergedFile);
+    const r = await runIngestWithLockWait(runIngest, mergedFile, { now, sleep, log });
     log(`  ingest: exit=${r.status}`);
     if (r.status !== 0) exitCode = 1;
     else {
@@ -425,7 +442,8 @@ async function main() {
   const brief = fs.readFileSync(path.join(ROOT, "docs", "cannes", "DRAFT_BRIEF.md"), "utf8");
   const head = () => spawnSync("git", ["rev-parse", "HEAD"], { cwd: ROOT, encoding: "utf8" }).stdout.trim();
   const runGroup = makeClaudeGroupRunner();
-  const runIngest = (mergedFile) => spawnSync(process.execPath, [path.join(__dirname, "cannes-ingest.mjs"), String(year), "--drafts", mergedFile], { cwd: ROOT, stdio: "inherit" });
+  // ロック保持中は ingest を起動しない（再試行のたびに外部サイトへサムネを取りに行かないため）
+  const runIngest = (mergedFile) => isHeld() ? { status: 75 } : spawnSync(process.execPath, [path.join(__dirname, "cannes-ingest.mjs"), String(year), "--drafts", mergedFile], { cwd: ROOT, stdio: "inherit" });
   const gitStatusCases = () => spawnSync("git", ["status", "--porcelain", "data/cases.json"], { cwd: ROOT, encoding: "utf8" }).stdout.trim();
   const readGuard = () => { try { return parseResourceGuard(fs.readFileSync(RESOURCE_GUARD_FILE, "utf8")); } catch { return null; } };
   const waitResources = makeResourceWaiter({ readGuard, log });

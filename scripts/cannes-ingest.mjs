@@ -142,6 +142,11 @@ export async function defaultGitCommit(root, paths, message) {
   }
 }
 
+/** CLI の終了コード。ロック取得失敗のみ 75（一時的な失敗＝呼び出し側は待って再試行できる）。監査/commit 失敗は 1。 */
+export function cliExitCode(r) {
+  return r.lockBusy ? 75 : r.exitCode;
+}
+
 export async function ingest(opts) {
   const {
     year, drafts, dryRun = false, root = ROOT,
@@ -214,7 +219,7 @@ export async function ingest(opts) {
   if (!tryAcquire(lockPath, "cannes-ingest")) {
     log("gitロックが取れない（日次ジョブ等が保持中）。何も書かずに終了");
     cleanThumbs();
-    return { ...result, added: [], exitCode: 1 };
+    return { ...result, added: [], exitCode: 1, lockBusy: true };
   }
   let originalText = null;
   let written = false;
@@ -269,7 +274,7 @@ async function main() {
   if (!Array.isArray(drafts)) { console.error("drafts は配列であること"); process.exit(2); }
   const r = await ingest({ year: Number(year), drafts, dryRun: args.includes("--dry-run") });
   console.log(`[cannes-ingest ${year}] added=${r.added.length} skipped=${r.skipped.length} exit=${r.exitCode}`);
-  process.exit(r.exitCode);
+  process.exit(cliExitCode(r));
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) main();

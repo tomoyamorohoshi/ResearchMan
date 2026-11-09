@@ -455,3 +455,61 @@ test("shouldPause: 5分超の未来の更新時刻も unknown（ちょうど5分
   assert.equal(f(5 * 60 * 1000 + 1).unknown, true);
   assert.equal(f(5 * 60 * 1000 + 1).pause, false);
 });
+
+// ---- gitロック待ち（ingest が 75 を返したら待って再試行） ----
+const lockBatch = async (runIngest, extra = {}) => {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "cbr-"));
+  const logs = [];
+  let clock = 0;
+  const sleeps = [];
+  const res = await runBatch({
+    year: 2025, works: [W("a")], state: emptyState(), batchNo: 1, batchSize: 1, parallel: 1, workRoot: tmp, brief: "x",
+    runGroup: async () => out(["a"]),
+    runIngest, readCases: () => [inCases("a")],
+    log: (m) => logs.push(m),
+    now: () => new Date(clock), sleep: async (ms) => { sleeps.push(ms); clock += ms; },
+    ...extra,
+  });
+  return { res, logs, sleeps };
+};
+
+test("runBatch: ingest が 75（gitロック待ち）→2回待って3回目成功で採用・state更新・ログ各1回", async () => {
+  const files = [];
+  let n = 0;
+  const { res, logs, sleeps } = await lockBatch((f) => { files.push(f); return { status: ++n < 3 ? 75 : 0 }; });
+  assert.equal(res.exitCode, 0);
+  assert.deepEqual(res.state.done, ["a"]);
+  assert.equal(n, 3);
+  assert.equal(new Set(files).size, 1, "同じ merged-drafts ファイルで再試行");
+  assert.deepEqual(sleeps, [60000, 60000]);
+  assert.equal(logs.filter((l) => l.includes("gitロック待ち: 取り込みを待機")).length, 1);
+  assert.equal(logs.filter((l) => l.includes("gitロック解放: 待機2分")).length, 1);
+  assert.equal(logs.filter((l) => l.includes("gitロック待ちが続いている")).length, 0);
+});
+
+test("runBatch: ingest が 75 以外の非0なら即停止（待たない・state不変）", async () => {
+  let n = 0;
+  const { res, sleeps } = await lockBatch(() => { n++; return { status: 1 }; });
+  assert.equal(res.exitCode, 1);
+  assert.equal(n, 1);
+  assert.deepEqual(sleeps, []);
+  assert.deepEqual(res.state.done, []);
+});
+
+test("runBatch: gitロック待ちが6時間を超えたら exit 1 で停止", async () => {
+  let n = 0;
+  const { res, logs } = await lockBatch(() => { n++; return { status: 75 }; });
+  assert.equal(res.exitCode, 1);
+  assert.deepEqual(res.state.done, []);
+  assert.ok(n >= 360 && n <= 362, `試行回数 ${n}`);
+  assert.ok(logs.some((l) => l.includes("6時間")));
+});
+
+test("runBatch: gitロック待ちは30分ごとに heartbeat、毎分はログしない", async () => {
+  let n = 0;
+  const { res, logs } = await lockBatch(() => ({ status: ++n <= 65 ? 75 : 0 })); // 65分待ち
+  assert.equal(res.exitCode, 0);
+  assert.equal(logs.filter((l) => l.includes("gitロック待ちが続いている")).length, 2);
+  assert.equal(logs.filter((l) => l.includes("gitロック待ち: 取り込みを待機")).length, 1);
+  assert.equal(logs.filter((l) => l.includes("gitロック解放: 待機65分")).length, 1);
+});
