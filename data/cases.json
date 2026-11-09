@@ -88772,5 +88772,583 @@
       "Form/SNS"
     ],
     "thumbnail": "/thumbnails/intimus-the-shameless-pad.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "editora-taverna-the-cure",
+    "title": "The Cure",
+    "summary": "1930〜40年代ブラジルの精神科施設での同性愛「矯正」を35mmで再現し、転向療法の犯罪化法案を後押しした短編映画。",
+    "client": "Editora Taverna",
+    "agency": "AFRICA CREATIVE DDB, Sao Paulo",
+    "categories": [
+      "Health & Wellness"
+    ],
+    "award": "Cannes Lions 2024 Health & Wellness Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Health & Wellness",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.bandt.com.au/brazilian-ad-agency-africa-creative-releases-powerful-gay-conversion-therapy-film/",
+    "videoId": "",
+    "overview": "ブラジルの出版社Editora TavernaがAfrica Creative（サンパウロ）と制作した短編映画「The Cure」。同社の書籍『Cura Gay（ゲイの治療）』に着想を得て、転向療法の現実を描く。",
+    "background": "ブラジルでは連邦心理学評議会が1999年に転向療法を禁じたが、刑事罰の対象にはなっていない。Marcas pelo Mundoは、セラピストの3人に1人が患者の性的指向の変更を提案するという調査を紹介している。作品は、転向療法を犯罪とする法案PL 5034/2023を後押しすることを狙った。",
+    "execution": "舞台は1930年代で、廃病院で35mmフィルム撮影し、タイトルはタイプライターで制作した。実際の医療記録に基づき、ピネル精神科施設での電気ショックや誘発発作などの「治療」を描く。終盤で、同様の行為が現在の心理士の診察室でも続いていることを示す。作品はCortina Film Clubで初上映され、その後の円卓討論を経てTikTokとInstagramで公開された。Grag Queenがアンバサダーを務めた（B&T、Marcas pelo Mundo、shots）。",
+    "evaluationImpact": "カンヌライオンズ2024のHealth & Wellness部門でBronzeを受賞した。転向療法の犯罪化を求める呼びかけとして、国内外の業界メディアが取り上げた。",
+    "tags": [
+      "Form/Film",
+      "Form/SNS",
+      "Theme/SocialGood",
+      "Theme/Health"
+    ],
+    "thumbnail": "/thumbnails/editora-taverna-the-cure.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "unilever-vaseline-sunitizer",
+    "title": "Vaseline Sunitizer",
+    "summary": "使われなくなった消毒液ディスペンサーを日焼け止めディスペンサーに作り替え、外出前の日焼け止め習慣を促したVaselineの施策。",
+    "client": "Unilever",
+    "agency": "VML, Jakarta",
+    "categories": [
+      "Health & Wellness"
+    ],
+    "award": "Cannes Lions 2024 Health & Wellness Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Health & Wellness",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.vml.com/work/sunitizer",
+    "videoId": "",
+    "overview": "UnileverのVaselineがVML Jakartaと展開した「Sunitizer」。コロナ後に放置されたハンドサニタイザーのディスペンサーを回収し、洗浄してVaselineの日焼け止めを充填、ビルの出口に戻した。",
+    "background": "インドネシアはUV指数が高い。Unilever側の説明では、Vaselineの調査で女性の半数が肌への影響を恐れて屋外活動を控えていた。ボディ用日焼け止めの購入者は消費者の約3%にとどまる（Suara Merdeka、Liputan6）。日焼け止めは海辺で使うものという見方を変え、日常使いを促すことを狙った。",
+    "execution": "ビルの入口に放置された消毒液ディスペンサーを回収・洗浄し、Vaselineの日焼け止めを入れて出口に設置した。各機にはQRコードを付け、日焼け止めの情報ページと購入先につなげた。Unileverの発表では、ジャカルタの人通りの多い50カ所に設置された。オフィスビルや観光地にも置かれ、インフルエンサーが話題づくりを担った（VML、Suara Merdeka）。",
+    "evaluationImpact": "カンヌライオンズ2024のHealth & Wellness部門でBronzeを受賞した。インドネシアのCitra Pariwaraでも受賞している（制作者Mark Verhagenのサイト）。",
+    "tags": [
+      "Form/Product",
+      "Theme/Health",
+      "Theme/Sustainability"
+    ],
+    "thumbnail": "/thumbnails/unilever-vaseline-sunitizer.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "allegra-adopt-your-allergies",
+    "title": "Adopt Your Allergies",
+    "summary": "猫アレルギーを理由に飼うのを諦めていた人に、避妊・去勢済みの猫との出会いを用意した、抗アレルギー薬Allegraの猫の譲渡施策。",
+    "client": "Allegra",
+    "agency": "McCANN, Bogota / MRM WORLDWIDE, Santiago / MRM WORLDWIDE, Madrid",
+    "categories": [
+      "Health & Wellness"
+    ],
+    "award": "Cannes Lions 2024 Health & Wellness Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Health & Wellness",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://elcronista.co/actualidad/la-rinitis-ya-no-es-una-excusa-para-no-adoptar-un-gato-callejero",
+    "videoId": "",
+    "overview": "Sanofi CHCの抗アレルギー薬Allegraが、コロンビアで行った猫の譲渡施策「Adopta tus alergias（Adopt Your Allergies）」。猫好きだがアレルギーがある人に、猫を飼う道を示す。",
+    "background": "猫アレルゲンのFel d1は猫の皮脂腺などで作られ、毛づくろいで広がる。避妊・去勢で大きく減るとされ、アレルギー専門医は薬で症状を抑えながら慣れていく方法も示している（Vanguardia、El Cronista）。アレルギーを理由に猫を諦める人が多いことを、ブランドの出番にした。",
+    "execution": "世界猫救助デーに合わせ、2024年3月16日にボゴタのLolita Casa Culturalで「Casa Adopta tus alergias」を開き、避妊・去勢済みの猫の譲渡会を行った。専門医の解説も添えた。猫のインフルエンサー「Michú」を使ったSNS展開も行った（El Cronista、Vanguardia）。",
+    "evaluationImpact": "カンヌライオンズ2024のHealth & Wellness部門でBronzeを受賞した。ラテンアメリカの業界メディアでも受賞が報じられた。",
+    "tags": [
+      "Form/Event",
+      "Form/SNS",
+      "Theme/Health"
+    ],
+    "thumbnail": "/thumbnails/allegra-adopt-your-allergies.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "greek-ministry-of-education-religious-affairs-and-sports-stop-bullying",
+    "title": "Stop Bullying",
+    "summary": "同じ暴力事件を3人の目撃者の視点で描き、学校でのいじめを通報するよう促したギリシャ教育省の短編映画。",
+    "client": "Greek Ministry Of Education, Religious Affairs And Sports",
+    "agency": "OGILVY, Athens",
+    "categories": [
+      "Health & Wellness"
+    ],
+    "award": "Cannes Lions 2024 Health & Wellness Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Health & Wellness",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://shots.net/news/view/the-greek-ministry-of-education-bears-witness-to-anti-bullying",
+    "videoId": "",
+    "overview": "ギリシャ教育・宗教・スポーツ省が、Ogilvy Athensと制作した短編映画「Witnesses」を中心とする反いじめ施策。省の新しい通報ウェブプラットフォームを知らせる役割も持つ。",
+    "background": "ShotsやOgilvyのページによれば、ギリシャの生徒の3人に1人がいじめの被害者で、63%が報復を恐れて通報していない。省は2024年4月に全国的な反暴力キャンペーンを発表し、Onassis財団が支援した（Protothema、Onassis財団）。",
+    "execution": "映画は、同じ暴力行為を3つの視点から語り直す構成。3家族がテレビで同級生への暴力のニュースを見る場面を描く。生徒と保護者に、stop-bullying.gov.grでの通報を促し、結びは「STOP Bullying. Don't tolerate bullying. Speak up. You can.」。2024年5月13日に公開された。監督はArgyris Papadimitropoulos、制作はFoss Productions（Shots、Protothema）。",
+    "evaluationImpact": "カンヌライオンズ2024のHealth & Wellness部門でBronzeを受賞した。省はその後、学校内の暴力・いじめに関する省令を採択している（Eurydice）。",
+    "tags": [
+      "Form/Film",
+      "Theme/SocialGood",
+      "Theme/Education",
+      "Theme/Health"
+    ],
+    "thumbnail": "/thumbnails/greek-ministry-of-education-religious-affairs-and-sports-stop-bullying.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "skin-cancer-uk-the-melanoma-law",
+    "title": "The Melanoma Law",
+    "summary": "法律の条文そのものを日焼けマシンに載せて焼き、日焼けマシン規制の古さを可視化した英国のSkin Cancer UKの啓発・署名キャンペーン。",
+    "client": "Skin Cancer Uk",
+    "agency": "OGILVY, London",
+    "categories": [
+      "Health & Wellness"
+    ],
+    "award": "Cannes Lions 2024 Health & Wellness Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Health & Wellness",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creative.salon/articles/work/ogilvy-health-uk-skin-cancer-uk-the-melanoma-law",
+    "videoId": "",
+    "overview": "英国の皮膚がん支援団体Skin Cancer UKとOgilvy Health UKによる施策。日焼けマシン規制法の紙のコピーを、法律上許される量の紫外線を出すマシンに置いて焼け焦げさせ、規制が時代遅れであることを示した。",
+    "background": "Creative Salonによれば、対象の規制法は成立から13年が経過していた。キャンペーンは、紫外線の危険を示す警告表示をたばこのパッケージのように日焼けマシンと店舗に義務づけるよう政府に求めた。背景として、TikTokで日焼けマシン関連の投稿が盛り上がり、若い世代が再び利用し始めていることも挙げられている。",
+    "execution": "2024年4月11日に開始。法律のコピーが日焼けマシンの上で徐々に焼ける様子を映像にし、焼け焦げた紙をそのまま屋外広告に使って全国で展開した。PR、インフルエンサー、VOD、SNSも併用し、特設サイトTheMelanomaLaw.comで議会にこの問題を取り上げるよう求める署名を集めた。日焼けマシンを日常的に使っていた実在の利用者の事例も紹介した。",
+    "evaluationImpact": "カンヌライオンズ2024のHealth & Wellness部門でBronzeを受賞した。紙が焼けるという単純な見せ方で、規制の古さと皮膚がんリスクを一目で伝えた点が評価された。",
+    "tags": [
+      "Theme/Health",
+      "Theme/SocialGood",
+      "Form/OOH",
+      "Form/Film"
+    ],
+    "thumbnail": "/thumbnails/skin-cancer-uk-the-melanoma-law.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "white-ribbon-short-life-stories",
+    "title": "Short Life Stories",
+    "summary": "架空のトランス女性Vivianの短すぎる人生を描き、トランスジェンダーへの暴力をなくすよう訴えたカナダのWhite Ribbonの約2分半の映画。",
+    "client": "White Ribbon",
+    "agency": "BENSIMON BYRNE, Toronto",
+    "categories": [
+      "Health & Wellness"
+    ],
+    "award": "Cannes Lions 2024 Health & Wellness Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Health & Wellness",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.campaigncanada.ca/article/white-ribbon-sharing-a-too-short-trans-life-story/44nwbs4m1w2874y5ap6rne6pnw",
+    "videoId": "",
+    "overview": "ジェンダーに基づく暴力の根絶を目指すカナダのNPO White Ribbonが、Bensimon Byrneとその姉妹PR会社Narrativeと制作した映画。実在の被害者に着想を得た架空の人物Vivianの物語で、トランスジェンダーに対する暴力の深刻さを伝える。",
+    "background": "Campaign Canadaによれば、White Ribbonは1989年のエコール・ポリテクニーク虐殺事件を受けて男性たちが始めた団体で、この施策ではその使命をトランスジェンダーへの暴力にも広げた。団体がAngus Reidに委託した調査では、カナダ人の73%がトランスの人々は暴力や差別をより多く受けていると考え、トランスの身近な人がいる人の80%が、他の人は彼らの直面する障壁を理解していないと感じていた。着想の核は、トランスの人の多くが、ありのままの自分として認められて初めて自分の人生が始まったと感じる点にある。",
+    "execution": "Vivianが初めて女性としてパスポートを取り、「Happy She/Her Day」のパーティーを開くなどの喜びの場面から始まり、周囲の敵意が強まって暴力が示唆されて終わる。最後に彼女が2年しか生きられなかったことが示され、友人たちが追悼のキャンドルを灯す。Westside Studioが制作し、Angela Birdが監督した。トランスジェンダー啓発週間（11月13〜19日）に合わせて2023年11月13日に公開。有料メディアは使わず、団体の自社チャンネルと提供メディアで展開し、EgaleやAdidasなどが支援した。映像は企業・軍・学校向けの研修でも使われている。",
+    "evaluationImpact": "カンヌライオンズ2024のHealth & Wellness部門でBronzeを受賞した（ONE Screenも受賞）。暴力そのものを見せず、結末を示唆にとどめる表現で、寄付や広告費に頼らず社会課題への理解を広げた。",
+    "tags": [
+      "Form/Film",
+      "Theme/SocialGood",
+      "Theme/Health"
+    ],
+    "thumbnail": "/thumbnails/white-ribbon-short-life-stories.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "fundacion-de-alba-a-c-test-icles",
+    "title": "Test-Icles",
+    "summary": "妊娠検査薬が精巣がんでも反応しうるホルモンを検出する点を使い、メキシコの男性に早期受診を促したユーモア啓発キャンペーン。",
+    "client": "FundaciÓN De Alba, A.C.",
+    "agency": "OGILVY, Mexico City / OGILVY HEALTH, New / York",
+    "categories": [
+      "Health & Wellness",
+      "Sustainable Development Goals"
+    ],
+    "award": "Cannes Lions 2024 Health & Wellness Lions Bronze / Cannes Lions 2024 Sustainable Development Goals Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Health & Wellness",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Sustainable Development Goals",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "中南米",
+      "北米"
+    ],
+    "link": "https://campaignsoftheworld.com/film-and-video/test-icles-testicular-cancer-awareness/",
+    "videoId": "",
+    "overview": "メキシコのがん支援団体Fundación De AlbaとOgilvy Mexico、Ogilvy Health New Yorkによる施策。「玉があるなら、妊娠検査薬を使おう」というメッセージで、精巣がんの自己チェックを呼びかけた。",
+    "background": "Campaigns of the Worldによれば、精巣がんは15〜35歳の男性が最もリスクが高い。受診を避ける理由には、恥ずかしさ、恐れ、必要性を感じないことがある。妊娠検査薬が検出するhCGは、一部の精巣がんでも作られるため、低価格で手に入る検査薬を最初のチェックに使えるという発想になった。",
+    "execution": "2人の精巣のキャラクターTanoとNatoが妊娠検査薬を試す40秒の広告を軸に、SNS、特設サイト（testicles.mx）、屋外広告、クリエイターによる呼びかけで展開した。陽性は診断ではなく泌尿器科を受診するきっかけとし、陰性でも油断しないよう案内している。",
+    "evaluationImpact": "カンヌライオンズ2024のHealth & Wellness部門とSustainable Development Goals部門でそれぞれBronzeを受賞した。羞恥心を笑いで和らげ、身近な検査薬を使って受診の第一歩を作った点が評価された。",
+    "tags": [
+      "Theme/Health",
+      "Theme/SocialGood",
+      "Form/Film",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/fundacion-de-alba-a-c-test-icles.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "st-jude-india-childcare-centres-the-impossible-choice",
+    "title": "The Impossible Choice",
+    "summary": "がんの子ども2人のうち1人しか受け入れられない寮の管理人の葛藤を描き、治療中の家族の宿泊支援への寄付を訴えたインドの映画。",
+    "client": "St. Jude India Childcare Centres",
+    "agency": "OGILVY, Mumbai",
+    "categories": [
+      "Health & Wellness"
+    ],
+    "award": "Cannes Lions 2024 Health & Wellness Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Health & Wellness",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://indiantelevision.com/mam/st-jude-india-childcare-centres-ogilvy-mumbai-illuminate-reality-through-the-impossible-choice-campaign/",
+    "videoId": "",
+    "overview": "インドでがん治療中の子どもと家族に宿泊先を提供するSt. Jude India ChildCare Centresと、Ogilvy Mumbaiによる映画。受け入れ枠が1人分しかない管理人が、子ども2人のどちらかを選ばなければならない状況を描く。",
+    "background": "Indian Televisionによれば、St. Jude'sはインド11都市で45の施設を運営し、毎日500世帯以上を受け入れている。約3万2,000人の子どもに滞在先が必要と見込まれる。長い治療の途中で費用が尽きた家族は、路上に出るか村に戻り、治療を中断せざるを得ないことがある。",
+    "execution": "苦しむ子どもの姿は見せず、誠実で人間的な物語として、選べない選択の痛みに絞って描いた。クリエイティブはFritz GonsalvesとJayesh Raut、制作はHungry Filmsで、監督はMahesh Gharat。映画は寄付の呼びかけとして作られ、寄付は各都市の宿泊施設の整備に充てられる。",
+    "evaluationImpact": "カンヌライオンズ2024のHealth & Wellness部門でBronzeを受賞した。治療そのものではなく「治療を受ける場所の不足」に焦点を当てた点が特徴。",
+    "tags": [
+      "Form/Film",
+      "Theme/Health",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/st-jude-india-childcare-centres-the-impossible-choice.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "coca-cola-recycle-me",
+    "title": "Recycle Me",
+    "summary": "リサイクル工程でつぶれたコカ・コーラ缶の形でロゴを描き、「缶は再生できる」と伝えた印刷・屋外広告のキャンペーン。",
+    "client": "Coca-Cola",
+    "agency": "OGILVY, New York",
+    "categories": [
+      "Industry Craft",
+      "Print & Publishing"
+    ],
+    "award": "Cannes Lions 2024 Industry Craft Lions Gold / Cannes Lions 2024 Print & Publishing Lions Grand Prix",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Industry Craft",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Print & Publishing",
+        "level": "Grand Prix"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.ogilvy.com/work/recycle-me",
+    "videoId": "",
+    "overview": "コカ・コーラがWPP Open X（Ogilvy New York主導）と展開した施策。缶がつぶれて変形したコカ・コーラのロゴを一連のビジュアルにし、使用済み缶の行き先に目を向けさせてリサイクルを促す。",
+    "background": "Storyboard18によれば、同社の「World without waste」戦略の一環で、パッケージがリサイクル可能であることの認知拡大を狙った。一方で、グリーンウォッシュだとする批判もあり、Fast CompanyやGreenMeなどが取り上げた。ロゴ変形というブランド資産の使い方も議論を呼んだ。",
+    "execution": "実際の缶を機械式プレスや真空でつぶし、ロゴの曲線をPhotoshopで整えて素材を制作した。デジタル屋外広告、印刷、SNSで展開し、制作過程を見せる短い映像も作られた。",
+    "evaluationImpact": "カンヌライオンズ2024のPrint & Publishing部門でGrand Prix、Industry Craft部門でGoldを受賞した（Outdoor部門でもGoldを獲得）。OgilvyにとってはPrint & PublishingでのGrand Prix初受賞で、コカ・コーラはこの年のCreative Brand of the Yearにも選ばれた。審査員長は、技術や背景の物語でなく、象徴的で古典的な印刷広告に立ち返る意図があったと述べている。",
+    "tags": [
+      "Form/Print",
+      "Form/OOH",
+      "Theme/Sustainability",
+      "Theme/Food"
+    ],
+    "thumbnail": "/thumbnails/coca-cola-recycle-me.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "nba-the-great-indian-dunk",
+    "title": "The Great Indian Dunk",
+    "summary": "インドの子どもたちが池や木の枝で見せる日常の跳躍を、NBAの名ダンクに重ねて見せた白黒写真のポスター施策。",
+    "client": "NBA",
+    "agency": "LEO BURNETT, Dubai",
+    "categories": [
+      "Industry Craft"
+    ],
+    "award": "Cannes Lions 2024 Industry Craft Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Industry Craft",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/the-great-indian-dunk",
+    "videoId": "",
+    "overview": "NBAがインドでバスケットボールを身近なものにするため、Leo Burnett Dubaiと展開したポスター施策。インドの写真家Prashant Godboleが、子どもたちの跳ぶ瞬間を撮影した。",
+    "background": "インドではクリケットが圧倒的に人気で、バスケットボールは輸入されたスポーツ、あるいは一部の人のものと見られがちだった。NBAはバスケットボールを現地の日常と地続きのものとして見せることを狙った。",
+    "execution": "村の池に飛び込む、木の枝にぶら下がる、障害物を跳び越えるといった子どもたちの空中の動きを、演出せずに白黒写真で撮影した。写真には、Jordan 23、Kobe 08、Lebron 06、Shaq 34といったNBAの名ダンクの名称が付けられている（adobo）。ポスターはスポーツ用品店、スポーツ施設、近所のバスケットコートなどに、NBA Academyの協力で第1・第2級都市で掲出された（Campaigns of the World）。",
+    "evaluationImpact": "Industry Craft部門でGoldを受賞した。D&ADでもGraphiteとWoodの鉛筆を計6本獲得したと報じられている。",
+    "tags": [
+      "Form/OOH",
+      "Form/Print",
+      "Theme/Sports"
+    ],
+    "thumbnail": "/thumbnails/nba-the-great-indian-dunk.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "rom-royal-ontario-museum-rom-s-immortal-timeline",
+    "title": "Rom’S Immortal Timeline",
+    "summary": "約1,300万点の収蔵品を「不滅のタイムライン」と捉え、ロゴ・書体・写真表現まで作り直したロイヤル・オンタリオ博物館のブランド刷新。",
+    "client": "Rom (Royal Ontario Museum)",
+    "agency": "LEO BURNETT, Toronto",
+    "categories": [
+      "Industry Craft"
+    ],
+    "award": "Cannes Lions 2024 Industry Craft Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Industry Craft",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.campaigncanada.ca/article/1854942/roms-short-film-history-humanity-launches-new-brand-platform",
+    "videoId": "",
+    "overview": "カナダ最大の博物館ROMが2022年に始めた新ブランドプラットフォーム「Immortal」のうち、Leo Burnett Designが手がけたブランドアイデンティティ。収蔵品の並びをタイムラインと見なす発想で、ロゴ、書体、写真、デザイン言語を組み立てた。",
+    "background": "ROMは「信頼できる」「懐かしい」という印象から、現代的で動きのある存在へのイメージ転換を狙った。中核の考えは「私たちは残したものの中で生き続ける」で、展示品をガラスケース内の古物ではなく、人と時代の物語を語るものとして位置づけた。",
+    "execution": "タイムラインを思わせるタイポグラフィのロゴと書体、収蔵品の写真表現でアイデンティティを構成した。ブランド展開は、Broken Heart Love Affairによる6分の短編映画「Immortal」（監督Mark Zibert）と、映画館向けの90秒版、遊び心のある見出しを付けた収蔵品の屋外・デジタル広告（トロントのユニオン駅での大型掲出を含む）で行った（Campaign Canada、Shots）。",
+    "evaluationImpact": "カンヌライオンズ2024のIndustry Craft部門でSilverを受賞した。",
+    "tags": [
+      "Theme/Art",
+      "Form/Film",
+      "Form/OOH"
+    ],
+    "thumbnail": "/thumbnails/rom-royal-ontario-museum-rom-s-immortal-timeline.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "oatly-rue-des-archives",
+    "title": "Rue Des Archives",
+    "summary": "商品やロゴを禁じるパリの壁画ルールを、文字だけの壁画と手前に置いた物の遠近法で回避したOatlyのフランス初キャンペーン。",
+    "client": "Oatly",
+    "agency": "OATLY DEPARTMENT OF MIND CONTROL, Malmo",
+    "categories": [
+      "Industry Craft"
+    ],
+    "award": "Cannes Lions 2024 Industry Craft Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Industry Craft",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.thedrum.com/news/2023/11/23/ad-the-day-oatly-hacks-outdoor-murals-forced-perspective-stunts",
+    "videoId": "",
+    "overview": "Oatly自社のクリエイティブ部門が、パリの壁画3か所（rue des Archives、rue de la Fontaine au Roi、rue Quincampoix）で実施した施策。rue des Archivesはその1つ。Oatlyにとって初のフランス向けキャンペーンだった。",
+    "background": "パリでは企業の壁画は「芸術的」なものに限られ、商品やロゴの描写は認められない。植物性ミルクがまだ日常的でない市場で、Oatlyはこの規制を逆手に取る方法を探した。狙いは現地の通行人だけでなく、現場を撮影してSNSで共有する人々にもあった。",
+    "execution": "壁面には文字だけを描き、現場の手前に工事用トイレ、段ボール箱、トラックなどを置いた。特定の角度から見ると、これらが壁の文字と合わさって商品を示す広告として成立する遠近法の仕掛けにした（La Réclame、Yellow Chili）。壁画自体は規則に沿い、商品は壁の外の物で見せている。",
+    "evaluationImpact": "現場の様子を撮った動画がSNSで広まったと報じられている。カンヌライオンズ2024のIndustry Craft部門でSilverを受賞した。",
+    "tags": [
+      "Form/OOH",
+      "Form/Stunt",
+      "Theme/Food"
+    ],
+    "thumbnail": "/thumbnails/oatly-rue-des-archives.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "british-airways-windows",
+    "title": "Windows",
+    "summary": "機窓から外を見る乗客の表情だけを撮り、航空会社名もコピーもほぼ消した、ブリティッシュ・エアウェイズの屋外広告シリーズ。",
+    "client": "British Airways",
+    "agency": "UNCOMMON, London",
+    "categories": [
+      "Industry Craft",
+      "Outdoor"
+    ],
+    "award": "Cannes Lions 2024 Industry Craft Lions Silver / Cannes Lions 2024 Outdoor Lions Gold / Cannes Lions 2024 Outdoor Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Industry Craft",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Outdoor",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Outdoor",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://lbbonline.com/news/passengers-take-in-the-world-below-in-epic-outdoor-series-from-british-airways",
+    "videoId": "",
+    "overview": "British AirwaysがUncommonと2024年3月に始めた屋外広告シリーズ。乗客が窓の外の景色にみせる驚きの表情を、写真家Christopher Andersonが撮影した。",
+    "background": "「A British Original」プラットフォームの一環で、ブランドフィルムに続いて展開した。旅の目的地ではなく、空から世界を見る体験そのものを表情で伝える方向を取った。",
+    "execution": "Creative Bloqによれば11種類のポスターで、それぞれが機内の窓の外を見る人を写す。文字は一部が見切れたロゴだけで、スローガン、URL、QRコードはなく、画像は印刷ミスのように不自然に切り取られている（Skift）。英国各地のデジタル・紙の屋外広告で、エディンバラ、カーディフ、マンチェスター、ロンドンなどを含む約324か所に掲出されたと報じられた（Creative Bloq）。",
+    "evaluationImpact": "ミニマルな表現を評価する声がある一方、ブランドについて何も語っていないとの批判もあり、反応は分かれた。カンヌライオンズ2024でOutdoor部門のGoldとSilver、Industry Craft部門のSilverを受賞した。",
+    "tags": [
+      "Form/OOH",
+      "Theme/Mobility"
+    ],
+    "thumbnail": "/thumbnails/british-airways-windows.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "kanazawa-high-school-sumo-tournament-reach-for-the-summit-a",
+    "title": "Reach For The Summit - A",
+    "summary": "組み合う相撲選手の体を、見上げる近接撮影で「山」に見立てた、高等学校相撲金沢大会のポスター。",
+    "client": "Kanazawa High School Sumo Tournament",
+    "agency": "DENTSU INC., Tokyo",
+    "categories": [
+      "Industry Craft"
+    ],
+    "award": "Cannes Lions 2024 Industry Craft Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Industry Craft",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.advertimes.com/?p=421935",
+    "videoId": "",
+    "overview": "北國新聞社が主催する高等学校相撲金沢大会（2023年5月21日、第107回）のために、電通が制作したグラフィック。アートディレクター・デザイナーは河野智氏、写真は高梨遼平氏。",
+    "background": "新型コロナの影響を経て、4年ぶりに観客を入れて開催された大会だった。「現地で誰かを応援する」日常を取り戻す機会にしたいという意図があり、生で見る選手の迫力を伝えることが課題だった。",
+    "execution": "偉大な人物は現場で見ると実物より大きく見えるという考えから、組み合う選手の体を山に見立てた。至近距離から見上げる角度で山に見える瞬間を探し、撮影とレタッチの両方で、初見では山に見えつつ相撲だと分かるバランスを取った（アドタイ）。D&ADの作品ページでは、白黒の写真で砂ぼこりの緊張感を描くと説明されている。",
+    "evaluationImpact": "カンヌライオンズ2024のIndustry Craft部門でSilverを受賞した。同作はD&ADでもGraphite Pencilを獲得したと報じられている。",
+    "tags": [
+      "Theme/Sports",
+      "Form/Print",
+      "Form/OOH"
+    ],
+    "thumbnail": "/thumbnails/kanazawa-high-school-sumo-tournament-reach-for-the-summit-a.jpg"
   }
 ]
