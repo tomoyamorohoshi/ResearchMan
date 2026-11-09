@@ -81860,5 +81860,689 @@
       "Form/Film"
     ],
     "thumbnail": "/thumbnails/acko-tailor-test.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "mastercard-room-for-everyone",
+    "title": "Room For Everyone",
+    "summary": "ウクライナ難民が起業する際の出店場所選びを、決済・人流などのデータで支援する無料ツール「Where to Start」を軸にしたMastercardの施策。",
+    "client": "Mastercard",
+    "agency": "McCANN POLAND, Warsaw",
+    "categories": [
+      "Creative B2B",
+      "Creative Data",
+      "Direct"
+    ],
+    "award": "Cannes Lions 2024 Creative B2B Lions Silver / Cannes Lions 2024 Creative Data Lions Grand Prix / Cannes Lions 2024 Direct Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative B2B",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Data",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Direct",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.reasonwhy.es/actualidad/grand-prix-creative-data-cannes-lions-2024-mastercard-mccann-polonia",
+    "videoId": "",
+    "overview": "Mastercardとマッキャン・ポーランドによる施策。ポーランドで事業を始めるウクライナ難民を含む小規模事業者向けに、出店先の適性を判断できるデータツールを無料で公開した。難民への否定的な見方を、経済への貢献を示すことで変えることも狙った。",
+    "background": "Reasonwhyの報道によれば、ポーランドでは2022年に31万社超が設立され、新規開業は1日約1,000件にのぼる。そのうち約10%をウクライナ難民が始めており、外国人との競合と見る向きから排外感情の火種にもなっていた。本施策は、難民の住居探しを支援して2024年にSDGs部門のGrand PrixとTitanium Lionを得た「Where to Settle」に続く取り組みである。",
+    "execution": "「Where to Start」は複数のデータを組み合わせ、特定の事業に立地が向いているかを示す。登録不要で無料。Mastercardの匿名・集計済みの消費トレンドに加え、人通り、騒音、周辺サービス、売り出し・賃貸中の物件の情報を使い、37都市に対応する。OrangeとMorizon-Gratka Groupが連携した。書店は宝飾店の近くで売上が伸びる、パン屋は美容室の近くで売上が伸びるなど、業種間の相性も表示される（Reasonwhy）。",
+    "evaluationImpact": "カンヌライオンズ2024でCreative Data部門のGrand Prixを受賞し、Direct部門でGold、Creative B2B部門でSilverも獲得した。Creative Data部門の審査員長は、創造性が成功を左右する最大の梃子であることを示す最良の例だと評した。",
+    "tags": [
+      "Tech/Data",
+      "Theme/SocialGood",
+      "Tech/Web"
+    ],
+    "thumbnail": "/thumbnails/mastercard-room-for-everyone.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "heinz-ketchup-fraud",
+    "title": "Heinz Ketchup Fraud",
+    "summary": "飲食店がHeinzの瓶に他社ケチャップを詰め替える「ケチャップ偽装」を逆手に取り、消費者に告発させて話題にしたHeinzのキャンペーン。",
+    "client": "Heinz Ketchup",
+    "agency": "RETHINK, Toronto",
+    "categories": [
+      "Creative B2B",
+      "Creative Strategy",
+      "Media",
+      "PR"
+    ],
+    "award": "Cannes Lions 2024 Creative B2B Lions Bronze / Cannes Lions 2024 Creative Strategy Lions Silver / Cannes Lions 2024 Media Lions Silver / Cannes Lions 2024 PR Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative B2B",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Strategy",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Media",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "PR",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://adsoftheworld.com/campaigns/ketchup-fraud-case-study",
+    "videoId": "",
+    "overview": "Heinz（Kraft Heinz）とRethinkによる2023年開始の施策で、2024年のカンヌに応募された。店で詰め替えられた他社ケチャップを「Heinzではない」と暴く内容を、広告とSNSで展開した。",
+    "background": "Heinz North Americaのマーケティング担当者によれば、着想は、実在の飲食店がHeinzの瓶に他社製品を詰め替える様子を映したSnapchat動画だった。ブランドは過去に、約20%の飲食店が詰め替えを認めたとする2000年のWall Street Journalの報道にも言及している。",
+    "execution": "ニューヨークとシカゴの大型屋外広告、印刷広告、SNS投稿で、店員が瓶に代用品を詰め替える場面を描き、「Even when it isn't Heinz, it has to be Heinz.」のコピーを添えた。消費者は、詰め替えを見かけた、または疑う店をHeinzのInstagramアカウントにタグ付けでき、ブランドは店を晒すのでなく、最も多くタグ付けされた店などにアプローチする方針を示した（Marketing Dive、LBB）。",
+    "evaluationImpact": "カンヌライオンズ2024でPR部門のGoldを受賞し、Creative Strategy部門とMedia部門でSilver、Creative B2B部門でBronzeを獲得した。審査員長は、商品の課題に正面から取り組んだ勇気を評価した（Strategy）。",
+    "tags": [
+      "Theme/Food",
+      "Form/OOH",
+      "Form/SNS",
+      "Form/Print"
+    ],
+    "thumbnail": "/thumbnails/heinz-ketchup-fraud.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "volkswagen-livelo-trucker-napp",
+    "title": "Trucker Napp",
+    "summary": "トラック運転手の睡眠時間をLiveloポイントに換え、居眠り運転の抑止につなげるフォルクスワーゲンの報酬プログラム。",
+    "client": "Volkswagen & Livelo",
+    "agency": "ALMAPBBDO, Sao Paulo",
+    "categories": [
+      "Creative B2B",
+      "Direct"
+    ],
+    "award": "Cannes Lions 2024 Creative B2B Lions Bronze / Cannes Lions 2024 Direct Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative B2B",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Direct",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/trucker-napp",
+    "videoId": "",
+    "overview": "フォルクスワーゲン・トラック＆バスとポイントサービスのLivelo、AlmapBBDOによる2024年4月開始の施策。運転手がしっかり眠るほどポイントが貯まる仕組みで、道路の安全と運転手の健康を狙った。パイロット段階での開始と報じられている。",
+    "background": "報道によれば、ブラジルの交通事故の42%は睡眠が関係するとされ、長時間労働の運転手に休息を取る動機を与える必要があった（出典記事の数値で原データは未確認）。",
+    "execution": "運転手はスマートウォッチやリストバンドなどのウェアラブルをアプリに連携し、睡眠の時間・質・頻度を記録する。深い睡眠・浅い睡眠・REMも計測され、連続して眠った夜が増えるほどポイントの倍率が上がる。ポイントは航空券、提携店での支払い、運転手の口座へのPix送金に交換できる。運転手はLiveloのサイトかアプリで無料アカウントを作ればよい。最初の導入先は運送会社Carsten Serviços e Transportesで、ほかの運送会社もサイトから申し込める（Propmark、LBB、Marcas pelo Mundo）。",
+    "evaluationImpact": "カンヌライオンズ2024でCreative B2B部門とDirect部門のBronzeを受賞した。",
+    "tags": [
+      "Theme/Mobility",
+      "Tech/Device",
+      "Tech/Data",
+      "Theme/Health"
+    ],
+    "thumbnail": "/thumbnails/volkswagen-livelo-trucker-napp.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "biogen-not-a-lonely-journey",
+    "title": "Not A Lonely Journey",
+    "summary": "脊髄性筋萎縮症（SMA）の当事者が書いた、車いす利用者向けの旅行ガイドブックを患者に配ったBiogenの施策。",
+    "client": "Biogen",
+    "agency": "VML, Milan",
+    "categories": [
+      "Pharma"
+    ],
+    "award": "Cannes Lions 2024 Pharma Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Pharma",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.vml.com/work/not-a-lonely-journey",
+    "videoId": "",
+    "overview": "BiogenとVML Milanによる施策。SMA患者や車いす利用者に向け、旅の実用情報と当事者の体験談を載せた旅行ガイドを作った。VMLによると、SMA患者、ライター、科学ライター、海外の旅行ジャーナリストが共同で執筆した。",
+    "background": "VMLの紹介やカンヌ応募の記述によれば、SMA患者に向けられがちな「哀れみ」の目を変えることが狙いだった。Biogenはこれを、SMA当事者が書いた初の旅行ガイドと位置づけている。",
+    "execution": "ガイドはデジタル版と印刷版で作られ、医療従事者を通じてSMA患者とその介護者に配布された。各号は患者一人の物語を軸に、障害のある人が旅をするための実用的な助言を載せる（VML、Biogenの紹介）。",
+    "evaluationImpact": "カンヌライオンズ2024のPharma部門でBronzeを受賞した。同部門の入賞はBiogenとOrganonの2件のみだったと業界メディアは伝えている。pharmaphorumは目的志向の製薬クリエイティブの例として取り上げた。",
+    "tags": [
+      "Theme/Health",
+      "Form/Print"
+    ],
+    "thumbnail": "/thumbnails/biogen-not-a-lonely-journey.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "organon-mis-s-diagnosed",
+    "title": "Mis[S]Diagnosed",
+    "summary": "女性の心臓発作の見逃されやすい症状を、聴診器で体験談を聞く啓発キットと医師・インフルエンサーを通じて中東に広めたOrganonの施策。",
+    "client": "Organon",
+    "agency": "MULLENLOWE MENA, Dubai / McCANN / HEALTH, Dubai",
+    "categories": [
+      "Pharma"
+    ],
+    "award": "Cannes Lions 2024 Pharma Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Pharma",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "中東"
+    ],
+    "link": "https://www.organon.com/meta-en/our-work/missdiagnosed/",
+    "videoId": "",
+    "overview": "OrganonとMullenLowe MENA、McCann Health Dubaiによる施策。女性の心臓病に特有の症状が見過ごされる問題を、中東の医療者と一般の女性に知らせることを狙った。",
+    "background": "MedEdge MEAによれば、心血管疾患は世界の女性の主な死因で、女性は顎の痛み、吐き気、背中上部の不快感、倦怠感など目立たない症状が出やすい。女性の心臓発作の78%が見逃されるとの調査が引用され、その背景に臨床試験での女性の少なさがあるとされる。",
+    "execution": "8つの医学会・団体の支持を得て、医療者には専用のメールと症状ガイドを送り、地域のインフルエンサーはハッシュタグ#KnowTheSignsで発信した。聴診器を通して実際の患者の体験談の音声が聞ける「啓発キット」を、医師、循環器医、インフルエンサーに配布した。セミナーや現地イベントも行い、製薬企業に臨床試験の多様化を促す「Trial for #ClinicalEquality」にもつながった（MedEdge MEA、Organon公式）。",
+    "evaluationImpact": "カンヌライオンズ2024のPharma部門でBronzeを受賞した。MedEdge MEAによれば、同年3月のDubai Lynxでも金・銅を含む計11の賞を得た。地域の診療所や家庭、政策担当者の間で議論を生んだと報じられている。",
+    "tags": [
+      "Theme/Health",
+      "Tech/Audio",
+      "Form/Product"
+    ],
+    "thumbnail": "/thumbnails/organon-mis-s-diagnosed.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "getinge-heart-surgeon-s-cookbook",
+    "title": "Heart Surgeon's Cookbook",
+    "summary": "心臓外科医とミシュラン星付きシェフが組み、外科手術の手技をキッチンで練習できる9レシピのレシピ本を作った、Getingeの外科医向け施策。",
+    "client": "Getinge",
+    "agency": "GETINGE, Gothenburg / FORSMAN & / BODENFORS, Gothenburg",
+    "categories": [
+      "Pharma"
+    ],
+    "award": "Cannes Lions 2024 Pharma Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Pharma",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.forsman.com/work/the-heart-surgeons-cookbook/",
+    "videoId": "",
+    "overview": "医療機器メーカーGetingeとForsman & Bodenforsによる施策。ニューヨークの心臓血管外科医Nirav Patel氏と、同地のレストランAskaのシェフFredrik Berselius氏が共同で、手先の器用さを要するレシピ9品を収めた『The Heart Surgeon's Cookbook』を制作した。外科医が日常の中で手技の感覚を保つ新しい練習方法として位置づけられている。",
+    "background": "Getingeは心臓血管領域の医療機器を提供する企業で、外科医とのつながりを深めることを狙った。news-medical.netの報道によれば、Patel氏は年間約350件の手術を行い、料理を趣味とする。キャリアの段階を問わず、外科医の手先の訓練になる題材として料理が選ばれた。",
+    "execution": "レシピには、精密な切断、狭い場所への注入、外科用の縫合、解剖のような処理、繊細な扱いといった技術が求められる。収録は「Kingfish Rose with Green Gooseberry」「Roasted Quail with Truffle and Ramp」「Venison and Savoy Cabbage」「Sea Scallop and Turnip in Warm Broth」などの9品。本は無料でダウンロードでき、冊子版も注文できる。2024年1月に世界の外科医向けとして公開された。",
+    "evaluationImpact": "報道では「世界で最も難しいレシピ本」と紹介された。カンヌライオンズ2024のPharma部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Health",
+      "Theme/Food",
+      "Form/Print"
+    ],
+    "thumbnail": "/thumbnails/getinge-heart-surgeon-s-cookbook.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "renault-plug-inn-for-business",
+    "title": "Renault - Plug-Inn For Business",
+    "summary": "個人宅の充電器を貸し借りするアプリPlug Innを、商店や事業者が店の充電器を一般に開放できる形に広げたルノーの施策。",
+    "client": "Renault",
+    "agency": "PUBLICIS CONSEIL, Paris",
+    "categories": [
+      "Creative Business Transformation",
+      "Outdoor"
+    ],
+    "award": "Cannes Lions 2024 Creative Business Transformation Lions Silver / Cannes Lions 2024 Outdoor Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Business Transformation",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Outdoor",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.cbnews.fr/node/83990",
+    "videoId": "",
+    "overview": "ルノーとPublicis Conseilによる、EV充電アプリPlug Innの事業者向け新インターフェース「Plug Inn for Business」。商店などの事業者が自店の充電器を登録・公開して来店客を呼び込める。2024年4月30日の開始予定と、cbnews.frが報じた。",
+    "background": "Plug Innは2021年から個人間で充電器を貸し借りする仕組みで知られ、2023年のカンヌライオンズではCreative StrategyでGrand Prixを受賞していた。cbnews.frによれば、Bumpの2023年調査ではEVドライバーの4人に1人が充電器のない店に行かなくなった経験があるとされ、ルノーは商店と組んで中心市街地の活性化を目指すとしている。",
+    "execution": "事業者は無料で利用でき、自店の充電器をアプリに登録して一般のEVドライバーに提供する。ドライバーにとっては充電できる場所が増え、店にとっては新たなサービスとして来店のきっかけになる。2024年の応募作そのものの説明が限られるため、ここでは確認できた範囲の事業者向けサービスの内容のみ記す。屋外広告部門の具体的な展開内容は確認できなかった。",
+    "evaluationImpact": "カンヌライオンズ2024のCreative Business Transformation部門でSilver、Outdoor部門でBronzeを受賞した。ルノーは同年に計11のライオンを獲得したと発表している。",
+    "tags": [
+      "Theme/Mobility",
+      "Form/App",
+      "Theme/Retail"
+    ],
+    "thumbnail": "/thumbnails/renault-plug-inn-for-business.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "pedigree-adoptable-by-pedigree",
+    "title": "Adoptable. By Pedigree",
+    "summary": "機械学習で保護施設の犬を撮影し直し、近隣のPedigree屋外デジタル広告に表示して、広告そのものを里親募集の場にした施策。",
+    "client": "Pedigree",
+    "agency": "COLENSO BBDO, Auckland",
+    "categories": [
+      "Creative Business Transformation",
+      "Direct",
+      "Outdoor"
+    ],
+    "award": "Cannes Lions 2024 Creative Business Transformation Lions Silver / Cannes Lions 2024 Direct Lions Gold / Cannes Lions 2024 Direct Lions Bronze / Cannes Lions 2024 Outdoor Lions Grand Prix",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Business Transformation",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Direct",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Direct",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Outdoor",
+        "level": "Grand Prix"
+      }
+    ],
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://www.adweek.com/brand-marketing/a-campaign-that-used-ai-to-house-dogs-just-won-a-cannes-grand-prix/",
+    "videoId": "",
+    "overview": "PedigreeとColenso BBDO（オークランド）、制作のNexus Studiosによる施策「Adoptable」。Adweekによれば、機械学習モデルを使い、地元の保護施設にいる実在の犬をPedigreeの屋外メディアに登場させた。",
+    "background": "ブランドの目的は、犬のホームレス状態をなくすことへの貢献。Colenso BBDOはMarsとの長年の協業先で、2023年にはAudio & Radio部門でGrand Prixを獲得していた。保護施設のスタッフが撮る写真は素人撮影で、広告として使える品質ではないことが課題だった。",
+    "execution": "Nexus Studiosの説明では、施設スタッフが撮った犬の写真をAIのパイプラインでプロ品質の画像に変換し、その施設の近くにあるPedigreeのデジタルポスターに表示する。展開は世界に広げられ、2026年までにPedigreeのあらゆるデジタル接点で地元の里親募集犬を見せることを目指すとされる。",
+    "evaluationImpact": "カンヌライオンズ2024のOutdoor部門でGrand Prixを受賞した（同部門のGrand Prixは2作品で、もう1作はMagnumの「Find Your Summer」）。そのほかDirect部門でGoldとBronze、Creative Business Transformation部門でSilverを獲得した。Outdoor審査員長のMarco Venturelli氏は「AIなしでは不可能な作品」と評した。",
+    "tags": [
+      "Tech/AI",
+      "Form/OOH",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/pedigree-adoptable-by-pedigree.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "gahr-wecapital-the-e-commerce-of-trust",
+    "title": "The E-Commerce Of Trust",
+    "summary": "近所の店の「つけ払い」の慣習をオンラインに移し、クレジットカードを持たない人が保証人なしで食料品を買えるようにしたメキシコのECサービス。",
+    "client": "Gahr Wecapital",
+    "agency": "DDB MEXICO, Mexico City",
+    "categories": [
+      "Creative Business Transformation",
+      "Creative Commerce",
+      "Sustainable Development Goals"
+    ],
+    "award": "Cannes Lions 2024 Creative Business Transformation Lions Bronze / Cannes Lions 2024 Creative Commerce Lions Silver / Cannes Lions 2024 Sustainable Development Goals Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Business Transformation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Commerce",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Sustainable Development Goals",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "中南米"
+    ],
+    "link": "https://thestandardcio.com/2023/12/14/wecapital-presenta-la-evolucion-del-ecommerce",
+    "videoId": "",
+    "overview": "メキシコの金融企業Gahr WeCapitalとDDB Mexicoによる「The E-Commerce of Trust」。サービス名はLa Tienda de Confianza。クレジットカードを持たない人でも、街の商店で行われてきた「つけ」の信用でオンライン購入できる。",
+    "background": "WeCapitalは先行施策「Data Tienda」で、近所の店主が持つ非公式な信用記録を信用スコアに変えていた。The Standardの2023年12月の記事によれば、新サービスはその延長で、銀行カードや担保を持たない層向けのECを狙う。同記事は、貧困層の就労者が約4,900万人という政府機関Coneval由来の数字を背景として挙げている。",
+    "execution": "The Standardによれば、利用者はFacebookアカウントでログインして商品を選び、5〜30日の支払期間を決めてクーポンをダウンロードし、近所の提携店で食料品を受け取る。支払いは期限内に、全国どの銀行からでもECの口座に入金する。保証人、銀行カード、担保は不要で、与信は少額が中心。",
+    "evaluationImpact": "カンヌライオンズ2024でCreative Business Transformation部門のBronze、Creative Commerce部門のSilver、Sustainable Development Goals部門のSilverを受賞した。",
+    "tags": [
+      "Theme/Retail",
+      "Theme/SocialGood",
+      "Tech/Data",
+      "Form/Website"
+    ],
+    "thumbnail": "/thumbnails/gahr-wecapital-the-e-commerce-of-trust.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "cusquena-amunas-recovery",
+    "title": "Amunas Recovery",
+    "summary": "ペルーのビール「Cusqueña」が、インカ以前から伝わる石の水路「アムナ」を復元し、雨水を地中に染み込ませて水不足に備える取り組み。",
+    "client": "CusqueÑA",
+    "agency": "BACKUS - AB INBEV, Lima / PUBLICIS PERU, Lima",
+    "categories": [
+      "Creative Business Transformation"
+    ],
+    "award": "Cannes Lions 2024 Creative Business Transformation Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Business Transformation",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.adsofbrands.net/en/news/amunas-water-sowing-the-new-campaign-by-cusquena-beer-and-publicis-peru/5766",
+    "videoId": "",
+    "overview": "Cusqueña、親会社Backus、Aquafondo、The Nature Conservancyによる環境施策を、Publicis Peruがキャンペーンとして発信した。アムナは雨水を集めて地下に浸透させ、湧水として貯めるための古い水路で、その復元と意義を伝える。",
+    "background": "Ads of Brandsによれば、ペルーの地域では気候変動により水不足が深刻化している。前インカ期の文化は石や粘土の水路で雨水を集め、渇水期に備えていた。Backusは2018年からこの水路の復元に取り組んでおり、Cusqueñaの責任者は、ブランドの先祖伝来の文化への姿勢を現在につなぐ施策だと説明している。",
+    "execution": "キャンペーンでは、アムナの仕組みと復元の様子を、地域住民、パートナー団体、Cusqueñaのチームの証言で紹介する。2024年4月に発表された。",
+    "evaluationImpact": "カンヌライオンズ2024のCreative Business Transformation部門でBronzeを受賞した。ペルーのメディアも、BackusとPublicis Limaの受賞として報じている。",
+    "tags": [
+      "Theme/Sustainability",
+      "Theme/SocialGood",
+      "Form/Film"
+    ],
+    "thumbnail": "/thumbnails/cusquena-amunas-recovery.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "harpic-india-harpic-loocator-befreetopee",
+    "title": "Harpic Loocator - #Befreetopee",
+    "summary": "女性が外出先で使える公共トイレを探せるアプリ「Harpic Loocator」を軸に、トイレ探しの不安を社会課題として可視化したインドのHarpicの施策。",
+    "client": "Harpic India",
+    "agency": "TGTHR, Mumbai / RECKITT BENCKISER, Gurgaon",
+    "categories": [
+      "Glass: The Lion for Change"
+    ],
+    "award": "Cannes Lions 2024 Glass: The Lion for Change Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Glass: The Lion for Change",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.afaqs.com/news/advertising/harpic-aims-to-alleviate-the-struggles-of-finding-public-toilets-with-its-new-harpic-loocator-app",
+    "videoId": "",
+    "overview": "Reckitt傘下のトイレ洗浄剤ブランドHarpic IndiaとTGTHR Mumbaiによる施策。近くの公共トイレを検索・評価できる無料アプリを公開し、「#BeFreeToPee」のキャンペーンで外出時に女性が抱える不安と無力感を描いた。",
+    "background": "afaqsによれば、Harpicはデリーでの調査で、女性の70%が外出先で公共トイレを見つけるのに苦労し、78%が外回りの仕事や長時間の移動を避け、81%がトイレを心配して水分を控えていると示した（ブランドの調査）。水分制限は脱水や尿路感染症のリスクにつながり得る。",
+    "execution": "Android・iOS向けアプリで、近くの公共トイレを探し、水・石けん・トイレットペーパー・清潔さ・照明などの項目で評価したり、新しいトイレを追加したりできる。映像「#BeFreeToPee with Harpic Loocator」はDevang Bhavsar監督で、年齢の異なる女性が出演する。報道ではキャンペーンは約4週間で、ラジオのRJによる呼びかけ、QRコード付きカップの配布のほか、国際女性デーにSulabh InternationalやPVR Nestと組んで利用の多い公共トイレを清掃したとされる。",
+    "evaluationImpact": "アプリの利用実績など独立した報道による成果数値は確認できなかった。カンヌライオンズ2024のGlass: The Lion for ChangeでSilverを受賞し、インドの業界メディアが同部門の受賞として報じた。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Health",
+      "Form/App"
+    ],
+    "thumbnail": "/thumbnails/harpic-india-harpic-loocator-befreetopee.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "lay-s-project-farm-equal",
+    "title": "Project Farm Equal",
+    "summary": "ポテトチップスのLay's（PepsiCo India）が、原料のじゃがいも農家である女性農業者を道具・研修・制度面から支えるインドのプロジェクト。",
+    "client": "Lay's",
+    "agency": "LEO BURNETT, Mumbai",
+    "categories": [
+      "Glass: The Lion for Change"
+    ],
+    "award": "Cannes Lions 2024 Glass: The Lion for Change Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Glass: The Lion for Change",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://thecsruniverse.com/articles/lay-s-launches-project-to-empower-women-farmers-and-raise-awareness-about-their-achievements",
+    "videoId": "",
+    "overview": "PepsiCo IndiaのLay'sが米国国際開発庁（USAID）と進めるプロジェクト。2024年の国際女性デーに、ウッタル・プラデーシュ州の女性農業者を支援し、その功績への認知を高める取り組みとして発表された。Leo Burnett Mumbaiがクリエイティブを担当した。",
+    "background": "発表資料によれば、女性は世界の農業労働力の40%以上を占めるが、研修・技術・金融・土地へのアクセスが不平等である。多くの女性農業者が家族の農業を支えながら、農場経営にも関わっている。",
+    "execution": "本文は、Cannesへの応募内容そのものではなく、2024年3月のプロジェクト発表に関する報道に基づく。取り組みは、女性の作業の効率と快適さに配慮した道具の開発、法制度や融資の利用支援、政府の社会保障制度へのアクセス支援、農場運営と財務の技術・財務研修の4つ。女性農業者の功績を記念するカスタム切手を作った（My Stamp）との報道もある。",
+    "evaluationImpact": "独立した報道による成果数値は確認できなかった。カンヌライオンズ2024のGlass: The Lion for ChangeでSilverを受賞した（exchange4media報道）。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Food",
+      "Theme/Sustainability"
+    ],
+    "thumbnail": "/thumbnails/lay-s-project-farm-equal.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "cambiemos-la-regla-welcome-to-the-group",
+    "title": "Welcome To The Group",
+    "summary": "生理用品の無償提供などを定める法案を通すため、コスタリカの国会議員と少女たちを同じWhatsAppグループに入れ、議員に直接お礼を伝えた施策。",
+    "client": "Cambiemos La Regla",
+    "agency": "PHD, San Jose / TBWA\\RIOT, San Jose",
+    "categories": [
+      "Glass: The Lion for Change",
+      "PR"
+    ],
+    "award": "Cannes Lions 2024 Glass: The Lion for Change Bronze / Cannes Lions 2024 PR Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Glass: The Lion for Change",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "PR",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "中南米"
+    ],
+    "link": "https://observador.cr/campana-costarricense-sobre-menstruacion-y-justicia-gana-plata-y-bronce-en-festival-publicitario-de-cannes/",
+    "videoId": "",
+    "overview": "Nosotras Women Connectingの「Cambiemos la regla」の一環で、PHD、RIOT\\TBWA、Shift Porter Novelliが制作した。国会議員と少女・若い女性を結ぶWhatsAppグループ「Gracias Diputados」を作り、「Menstruación y Justicia」法案の可決を後押しした。",
+    "background": "Observador.crによれば、コスタリカでは生理用品を買えず、生理中に学校を休む少女や若い女性が多い。同じチームは2023年初めに「Cambiemos la regla」を展開していた。法案は生理用品への税の扱い、収監中の女性や教育機関での提供、全国月経衛生の日の創設などを含む。",
+    "execution": "日常的に使われるメッセージアプリWhatsAppにグループを作り、議員と少女たちを参加させた。少女たちは議員に直接メッセージを送り、法案への賛成を前もって感謝する形で働きかけた。広告で社会課題を訴える代わりに、意思決定者との直接のやり取りを作った。",
+    "evaluationImpact": "Observador.crによれば、法律「Menstruación y Justicia」は2023年10月に全会一致で承認された。カンヌライオンズ2024でGlass: The Lion for ChangeのBronzeとPRのSilverを受賞した（同記事は部門名をCorporate Purpose and Social Responsibilityと記載）。",
+    "tags": [
+      "Theme/SocialGood",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/cambiemos-la-regla-welcome-to-the-group.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "o-boticario-5-days-give-me-a-break",
+    "title": "5 Days? Give Me A Break.",
+    "summary": "父親の育児休暇がわずか5日という現状を、新生児と過ごす父親の最初の数日間の映像で問いかけたO Boticárioの父の日キャンペーン。",
+    "client": "O BoticÁRio",
+    "agency": "ALMAPBBDO, Sao Paulo",
+    "categories": [
+      "Glass: The Lion for Change"
+    ],
+    "award": "Cannes Lions 2024 Glass: The Lion for Change Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Glass: The Lion for Change",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://marcaspelomundo.com.br/coberturas-especiais/almapbbdo-conquista-bronze-em-glass-the-lion-for-change/",
+    "videoId": "",
+    "overview": "ブラジルの化粧品ブランドO BoticárioとAlmapBBDOによる父の日の施策。トレード誌は2023年の「Instinto Paterno」と報じており、Cannes応募題「5 Days? Give Me A Break.」は同作品と推定される（媒体間で題名・年の記載が一致せず、断定できない）。父親が赤ちゃんと過ごす最初の日々から、5日で職場に戻る場面へ切り替わる映像で、育児休暇を男女平等の課題として語った。",
+    "background": "Marcas pelo Mundoによれば、ブラジルでは1988年以来、育児休暇は母親120日、父親5日と法で定められている。この差が母親の育児負担や就労継続の難しさにつながっているとして、父親の休暇延長を社会の議論にすることを狙った。O Boticário自身は従業員に父母ともに120日の休暇を設けている。",
+    "execution": "映像は父親が生後すぐの赤ちゃんと過ごす最初の日々を静かに描き、6日目に急に職場の場面へ切り替わる。結びに育児休暇について話そうと問いかける。ブランドのSNSや屋外広告で展開し、Nosso Meioによれば、NubankやVolvo Car Brasil、子育て関連団体と組んで、企業向けの育児休暇導入のベストプラクティス・ガイドも発表した。",
+    "evaluationImpact": "独立した報道による成果数値は確認できなかった。カンヌライオンズ2024のGlass: The Lion for ChangeでBronzeを受賞し、ブラジル勢で同部門唯一の受賞と報じられた（Nosso Meio、Clube de Criação）。",
+    "tags": [
+      "Theme/SocialGood",
+      "Form/Film",
+      "Form/OOH"
+    ],
+    "thumbnail": "/thumbnails/o-boticario-5-days-give-me-a-break.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "kvi-brave-fund-inc-voice-2-diabetes",
+    "title": "Voice 2 Diabetes",
+    "summary": "スマートフォンで数秒の声を録音するだけで2型糖尿病の可能性を判定するAIを、インドの現場を想定して社会に示したKlick Healthの取り組み。",
+    "client": "Kvi Brave Fund Inc",
+    "agency": "KLICK HEALTH, Toronto",
+    "categories": [
+      "Innovation",
+      "Pharma"
+    ],
+    "award": "Cannes Lions 2024 Innovation Lions Grand Prix / Cannes Lions 2024 Pharma Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Innovation",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Pharma",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://storyboard18.com/advertising/global-ads-spotlight-when-voice-2-diabetes-campaign-interspersed-ai-with-humankind-66295.htm",
+    "videoId": "",
+    "overview": "Klick Health（トロント）が、グループの研究部門Klick Labsの音声AIをKVI Brave Fund向けに発信した施策。短い音声と年齢・性別・身長・体重などの基本情報から、2型糖尿病の可能性を判別する。血液検査に代わる負担の少ない一次スクリーニングを目指す。",
+    "background": "Storyboard18によれば、2型糖尿病の患者は世界で5億人以上とされる。診断手段は農村部など恵まれない地域で不足しており、インドでは患者のほぼ半数が未診断とされる。reasonwhy.esは、既存の検査には時間・移動・費用がかかる点を挙げている。",
+    "execution": "音声から14の音響特徴（人の耳では分かりにくい音程や強度の変化など）を解析し、基本的な健康データと組み合わせて判別するAIモデルを作った。研究はインドで2021〜2022年に実施され、糖尿病と診断されていない人と糖尿病の人が2週間、定型フレーズを1日最大6回録音した。結果は『Mayo Clinic Proceedings: Digital Health』に掲載され、Health CanadaにSoftware as a Medical Deviceとして審査申請中と報じられた（2024年時点）。キャンペーンはインド農村部の映像と開発過程のドキュメンタリー風映像で構成された。",
+    "evaluationImpact": "カンヌライオンズ2024でInnovation部門のGrand Prixを受賞し、Pharma部門でもGoldを受賞した（Pharma部門のGrand Prixは別作品）。独立した報道による成果数値は確認できなかった。",
+    "tags": [
+      "Theme/Health",
+      "Tech/AI",
+      "Tech/Audio",
+      "Form/App"
+    ],
+    "thumbnail": "/thumbnails/kvi-brave-fund-inc-voice-2-diabetes.jpg"
   }
 ]
