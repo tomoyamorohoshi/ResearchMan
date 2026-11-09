@@ -97288,5 +97288,726 @@
       "Tech/Web"
     ],
     "thumbnail": "/thumbnails/team-heroine-correct-the-internet.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "world-literacy-foundation-literacy-pen",
+    "title": "Literacy Pen",
+    "summary": "手持ちのペンに取り付け、話した言葉を文字ごとに画面へ表示して、読み書きができない人が書き写しながら学べるようにしたデバイス。",
+    "client": "World Literacy Foundation",
+    "agency": "MEDIA.MONKS, Hilversum",
+    "categories": [
+      "Brand Experience & Activation"
+    ],
+    "award": "Cannes Lions 2024 Brand Experience & Activation Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.designboom.com/technology/literacy-writing-learning-world-literacy-foundation-media-monks-04-04-2024/",
+    "videoId": "",
+    "overview": "World Literacy FoundationとMedia.Monks（オランダ・ヒルフェルスム）が開発した「Literacy Pen」。市販のペンに装着する小型の機器で、内蔵マイクに向かって単語を話すと、音声入力で綴りが画面に1文字ずつ表示される。利用者はそれを見ながら紙に書き写す。オープンソースとして公開されている。",
+    "background": "designboomは、ユネスコの2024年の報告として世界で7億7,300万人が非識字の状態にあると伝えている。同記事によれば、非識字は就労機会の制約や社会参加の弱さにつながる。従来の仲間同士の教え合いや識字プログラムでは、心理的・社会的な障壁から学習者が離れてしまいがちだとされる。",
+    "execution": "ボタンを押して単語を話すと、音声入力で文字が画面に表示され、利用者がそれを紙に写す。書く・見るという反復で学習を促す設計で、軽量で持ちやすい形状とし、年齢や能力を問わず使えることを狙った。designboomの記事では設計がオープンソースで公開されているとされる。",
+    "evaluationImpact": "カンヌライオンズ2024のBrand Experience & Activation部門でSilverを受賞した。製品としての発表時に複数の媒体（designboom、The Next Webなど）が取り上げた。",
+    "tags": [
+      "Theme/Education",
+      "Theme/SocialGood",
+      "Form/Product",
+      "Tech/Device"
+    ],
+    "thumbnail": "/thumbnails/world-literacy-foundation-literacy-pen.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "heinz-reviews",
+    "title": "Reviews",
+    "summary": "ハンバーガー店の客が書くレビューを、店で働く難民の帰化申請を支える推薦状として使えるようにしたHeinzの施策。",
+    "client": "Heinz",
+    "agency": "AFRICA CREATIVE DDB, Sao Paulo",
+    "categories": [
+      "Brand Experience & Activation",
+      "Direct",
+      "Sustainable Development Goals"
+    ],
+    "award": "Cannes Lions 2024 Brand Experience & Activation Lions Silver / Cannes Lions 2024 Direct Lions Silver / Cannes Lions 2024 Sustainable Development Goals Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Direct",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Sustainable Development Goals",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://marcaspelomundo.com.br/coberturas-especiais/cannes-lions-2024-campanha-reviews-for-naturalization-da-heinz-e-africa-creative-e-premiada-com-bronze-em-sustainable-development-goals/",
+    "videoId": "",
+    "overview": "HeinzとAfrica Creative DDB（サンパウロ）が、国連難民高等弁務官事務所（UNHCR、ポルトガル語名ACNUR）と組んで実施した「Reviews for Naturalization」。ハンバーガー愛好家が店のレビューに、そこで働く難民従業員の仕事ぶりを褒める一文を書き、それを帰化申請の推薦材料にする。",
+    "background": "Marcas pelo Mundoによれば、ブラジルには2023年時点で約71万人の難民がおり、書類の不備や資格の不承認で安定した職を得にくい。難民の失業率は55%で、全国の7.9%を大きく上回る。Heinzは、難民が多く働くバーガー店の客コミュニティを動かすことで、品質と多様性・包摂という自社の価値観に沿う社会課題への関与を示した。",
+    "execution": "SNSでの呼びかけと、レビューを投稿する専用サイト（reviewsfornaturalization.com）で始まった。客は店のレビューの中で従業員の働きぶりを評価し、その文面が推薦状として申請に添えられる仕組み。",
+    "evaluationImpact": "カンヌライオンズ2024でSustainable Development Goals部門のBronzeを受賞した（Marcas pelo Mundo報道）。LBBの受賞一覧ではBrand Experience & ActivationのSilverとしても挙げられている。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Food",
+      "Form/SNS",
+      "Form/Website"
+    ],
+    "thumbnail": "/thumbnails/heinz-reviews.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "renault-time-fighters-program",
+    "title": "Renault - Time-Fighters Program",
+    "summary": "ルノーが世界の消防士と進める事故救助支援の取り組みを、ノデ兄弟のドキュメンタリー映画とともに打ち出した施策。",
+    "client": "Renault",
+    "agency": "PUBLICIS CONSEIL, Paris",
+    "categories": [
+      "Brand Experience & Activation"
+    ],
+    "award": "Cannes Lions 2024 Brand Experience & Activation Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://france.publicisgroupe.com/time-fighters-every-minute-counts-renault-unveils-a-unique-collaboration-with-firefighters-from-around-the-world-in-partnership-with-the-naudet-brothers-to-produce-this-unique-film",
+    "videoId": "JuvGvWmIXpc",
+    "overview": "Publicis Conseil（パリ）がルノーのために制作した「Time-Fighters Program」。事故直後の1分を争う救助にルノーが消防士とともに取り組んでいることを、ジュール&ゴデオン・ノデ兄弟による映画「Time Fighters: Every minute counts」で伝えた。2023年3月29日にグローバル展開が始まった。",
+    "background": "Publicis Franceの発表によれば、ルノーの安全の考え方は事故の前・最中・後を対象とし、消防士との協力は13年続いている。社員の消防中佐が世界各地で消防士に講習や救出訓練を行い、車両も寄贈している。事故後の最初の60分（ゴールデンアワー）を過ぎると、手当てがなければ生存の危険が半減するとされる。",
+    "execution": "ノデ兄弟がフランスのモンティニー＝ル＝ブルトヌー消防署で数日撮影し、ドキュメンタリーを制作した。映画に加え、消防士を主役にした印刷広告とSNS施策を展開した。同発表は、救助時に技術情報を即座に得られるQRコード（2023年以降のルノー車に標準）など、消防士と設計段階から開発した機能も紹介している。訓練ツールは#TimeFightersのプラットフォームで世界の消防士向けに提供する予定とされる。",
+    "evaluationImpact": "カンヌライオンズ2024のBrand Experience & Activation部門でSilverを受賞した。",
+    "tags": [
+      "Form/Film",
+      "Theme/Mobility",
+      "Theme/SocialGood",
+      "Form/Print"
+    ],
+    "thumbnail": "/thumbnails/renault-time-fighters-program.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "johnson-johnson-illustrate-change",
+    "title": "Illustrate Change",
+    "summary": "濃い肌色の人物を描いた医療イラストが不足している問題に対し、無料の医療イラスト・ライブラリとフェローシップで取り組んだJ&Jの施策。",
+    "client": "Johnson & Johnson",
+    "agency": "DELOITTE DIGITAL, New York / JOHNSON & / JOHNSON, New Brunswick",
+    "categories": [
+      "Brand Experience & Activation",
+      "Creative Business Transformation",
+      "Innovation",
+      "Sustainable Development Goals"
+    ],
+    "award": "Cannes Lions 2024 Brand Experience & Activation Lions Bronze / Cannes Lions 2024 Creative Business Transformation Lions Bronze / Cannes Lions 2024 Innovation Lions Bronze / Cannes Lions 2024 Sustainable Development Goals Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Business Transformation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Innovation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Sustainable Development Goals",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.jnj.com/media-center/press-releases/johnson-johnson-launches-illustrate-change-an-initiative-to-increase-diversity-and-representation-in-medical-illustrations",
+    "videoId": "",
+    "overview": "Johnson & JohnsonとDeloitte Digitalが、医療イラストレーター協会（AMI）と進めた「Illustrate Change」。有色人種の人物を描いた医療イラストを集めたライブラリ、有色人種の医療イラストレーターを支えるフェローシップ、啓発キャンペーンの3つで構成され、2023年6月20日に始まった。",
+    "background": "J&Jの発表によれば、医療画像での表現の偏りは、有色人種のコミュニティが医療制度に寄せる信頼にも影響する。Deloitte等の発表は、医療画像で濃い肌色が描かれるのは5%未満、医療イラストレーターで有色人種は8%と伝えている。ナイジェリアの医学生Chidiebere Ibeが黒人の患者を描いた図が話題になったことが出発点にある（Good Morning America報道）。",
+    "execution": "ライブラリはJ&Jの「Our Race to Health Equity」の助成で作られ、イラストレーターのChidiebere Ibeが中心となる。開始時にIbeの作品25点が公開され、illustratechange.comで利用できる。AMIのフェローシップは有色人種の次世代イラストレーターを支援する。Deloitte Digitalはウォール・ストリート・ジャーナルの全面広告も制作した。",
+    "evaluationImpact": "カンヌライオンズ2024のSustainable Development Goals部門でSilver、Brand Experience & Activation・Creative Business Transformation・Innovationの各部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Health",
+      "Theme/SocialGood",
+      "Theme/Education",
+      "Form/Website"
+    ],
+    "thumbnail": "/thumbnails/johnson-johnson-illustrate-change.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "aizome-wastecaretm-industrial-waste-certified-as-skincare",
+    "title": "Aizome Wastecare™ Industrial Waste - Certified As Skincare.",
+    "summary": "植物染めの工程で出る排水を、スキンケア用の美容液として仕立て、染色技術そのものを知らせた日本の染色スタートアップAizomeの施策。",
+    "client": "Aizome",
+    "agency": "SERVICEPLAN, Munich",
+    "categories": [
+      "Brand Experience & Activation"
+    ],
+    "award": "Cannes Lions 2024 Brand Experience & Activation Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.dezeen.com/2023/11/24/wastecare-aizome-textile-dyeing-skincare-serviceplan/",
+    "videoId": "",
+    "overview": "ドイツのServiceplan（ミュンヘン）がAizomeのために作った「Wastecare」。Aizomeの植物染めの排水を使った美容液を、繊維・ファッション・医療業界の関係者に送って技術を知らせた。販売されたわけではなく、同社の染色プロセスを伝えるための施策である（Dezeen）。",
+    "background": "Aizomeは、高周波の超音波で植物性の染料を繊維に定着させる染色を行う日本のスタートアップ。有機コットンを植物の粒子に浸しながら超音波をかけて色を定着させる。Serviceplanは、排水に薬用の藍の植物の成分が残る点に着目し、「廃棄物」と見られがちな排水の価値を示す題材にした。",
+    "execution": "排水を原料にした美容液を、2023年に業界の関係者へ届けた。ガラス瓶にリサイクルアルミ製の蓋をつけ、そのまま発送できる丈夫なリサイクル可能な紙箱に収め、輸送時の排出量を抑えた。このパッケージとグラフィックはDezeen Awards 2023のグラフィックデザイン部門でショートリストに入った。顔と首に使うとされ、保湿・抗炎症・抗酸化の効果は代理店の説明による。",
+    "evaluationImpact": "カンヌライオンズ2024のBrand Experience & Activation部門でBronzeを受賞した。パッケージとグラフィックはDezeen Awards 2023でショートリストに入った。",
+    "tags": [
+      "Theme/Sustainability",
+      "Form/Product",
+      "Theme/Health",
+      "Theme/Fashion"
+    ],
+    "thumbnail": "/thumbnails/aizome-wastecaretm-industrial-waste-certified-as-skincare.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "call-of-duty-endowment-loot-for-good",
+    "title": "Loot For Good",
+    "summary": "ゲーム内で稼いだ仮想キャッシュを、退役軍人の就職支援への実際の寄付に変えたCall of Duty Endowmentの施策。",
+    "client": "Call Of Duty Endowment",
+    "agency": "DAVID, New York",
+    "categories": [
+      "Brand Experience & Activation"
+    ],
+    "award": "Cannes Lions 2024 Brand Experience & Activation Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://adsofbrands.net/en/news/call-of-duty-endowment-turns-in-game-cash-into-real-donations-to-help-veterans-find-jobs/4500",
+    "videoId": "",
+    "overview": "Call of Duty Endowmentが、DAVID New Yorkと組んでCall of Duty: Warzone 2.0のDMZモード上で展開した寄付型のゲーム内チャレンジ。プレイヤーが仮想通貨を持ち帰るたびに、Activision Blizzardが現実の寄付を行った。",
+    "background": "Call of Duty Endowmentは退役軍人の就職支援を行う非営利団体で、施策は米国の軍人感謝月間（5月）に合わせて実施された。adsofbrands.netの記事によれば、同団体は女性退役軍人の失業率が男性より高い点を課題に挙げている。",
+    "execution": "2023年5月1日〜7日、DMZモードで1試合あたり3万ドル以上のゲーム内キャッシュを持ち帰る（extract する）たびに、Activision Blizzardがプレイヤー1人につき1ドルをEndowmentへ寄付する仕組みにした。寄付総額は100万ドルを上限に予定された。USAAが協賛し、退役軍人のカントリーデュオWar Hippiesの楽曲を使ったミュージックビデオも公開した。",
+    "evaluationImpact": "ゲームのプレイそのものを退役軍人支援につなげた点が評価され、カンヌライオンズ2024のBrand Experience & Activation部門でBronzeを受賞した。",
+    "tags": [
+      "Tech/Game",
+      "Theme/SocialGood",
+      "Theme/Entertainment"
+    ],
+    "thumbnail": "/thumbnails/call-of-duty-endowment-loot-for-good.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "samsung-impulse",
+    "title": "Samsung Impulse",
+    "summary": "話し言葉を解析してリズミカルな振動に変え、発話障害のある人の話す練習を助けるGalaxy Watch向けAIアプリ。",
+    "client": "Samsung",
+    "agency": "CHEIL WORLDWIDE, Madrid",
+    "categories": [
+      "Brand Experience & Activation",
+      "Design",
+      "Health & Wellness"
+    ],
+    "award": "Cannes Lions 2024 Brand Experience & Activation Lions Bronze / Cannes Lions 2024 Design Lions Gold / Cannes Lions 2024 Health & Wellness Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Design",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Health & Wellness",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://musebyclios.com/health/samsung-galaxy-watch-app-uses-ai-to-fight-speech-disorders-2/",
+    "videoId": "",
+    "overview": "SamsungとCheil Worldwide Madridが開発した、Galaxy Watch向けの無料アプリ。話した言葉をAIが解析し、手首の振動で発話のリズムを示す。吃音などの発話障害のある人が、周囲に気づかれにくい形で練習できる。",
+    "background": "Samsungは長年「目的のあるテクノロジー」として、技術で障壁を取り除く取り組みを続けてきた。Muse by Cliosによれば、今回はその手段としてAIを選び、Cheil Spainが約9か月かけて医療専門家や財団と協力しながら開発した。",
+    "execution": "自然言語処理に基づくアルゴリズムが単語を分析して振動に変換し、利用者は他人に聞こえない形で滑らかな発話を導くアシスタントを持てる。AIのコードはゼロから作成し、振動パターンや複数の練習モードを実装した。2024年春にスペインとポルトガルで公開され、紹介動画のナレーションにはアプリをテストした医師の患者が参加した。",
+    "evaluationImpact": "スマートウォッチの振動機能を発話支援に使う発想が評価され、カンヌライオンズ2024でDesign部門Gold、Health & Wellness部門Silver、Brand Experience & Activation部門Bronzeを受賞した。",
+    "tags": [
+      "Tech/AI",
+      "Tech/Device",
+      "Form/App",
+      "Theme/Health"
+    ],
+    "thumbnail": "/thumbnails/samsung-impulse.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "oreo-menu",
+    "title": "Oreo Menu",
+    "summary": "ウェブサイトの三本線「ハンバーガーメニュー」をOreoに見立て、メニュー項目名を入力するとクーポンが出るマイクロサイト施策。",
+    "client": "Oreo",
+    "agency": "VML, New York",
+    "categories": [
+      "Brand Experience & Activation",
+      "Creative Commerce"
+    ],
+    "award": "Cannes Lions 2024 Brand Experience & Activation Lions Bronze / Cannes Lions 2024 Creative Commerce Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Commerce",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.marketingdive.com/news/oreo-reimagines-internets-iconic-menu-icon-coupons/712924/",
+    "videoId": "",
+    "overview": "MondelezのOreoとVML New Yorkによる施策「The Oreo Menu」。インターネットで見慣れた三本線のメニューアイコンを、2枚重ねのOreoクッキーとして再解釈した。",
+    "background": "Marketing Diveによれば、Oreoの「Stay Playful」キャンペーンの延長にある取り組みで、誰もが毎日目にするウェブのメニューを遊びの入口に変えることを狙った。",
+    "execution": "2024年4月に公開された専用サイト oreomenu.com で、「About」「FAQ」「Products」など実際のサイトのメニューに出てきそうなタブ名やカテゴリ名をプロモーションコードとして入力すると、Oreo商品のクーポンが得られる。想定外の語句でも、その語句と見つけたURLを入力すれば割引オファーが得られた。クーポンはKrogerとの独占提携で利用でき、解説動画、インフルエンサー投稿、デジタル・SNSで展開された。",
+    "evaluationImpact": "ウェブの身近な要素を遊びとクーポンに変えた点が評価され、カンヌライオンズ2024のBrand Experience & Activation部門とCreative Commerce部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Food",
+      "Theme/Retail",
+      "Form/Website",
+      "Tech/Web"
+    ],
+    "thumbnail": "/thumbnails/oreo-menu.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "notco-notturtle",
+    "title": "Notturtle",
+    "summary": "絶滅危惧種のアオウミガメのスープを、AIで動物由来の材料なしに再現したNotCoの施策。",
+    "client": "Notco",
+    "agency": "GUT, Miami",
+    "categories": [
+      "Brand Experience & Activation",
+      "Creative Data"
+    ],
+    "award": "Cannes Lions 2024 Brand Experience & Activation Lions Bronze / Cannes Lions 2024 Creative Data Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Data",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://es.digitaltrends.com/entretenimiento/not-tortuga-documental-notco-receta-peligro-extincion-ia/",
+    "videoId": "",
+    "overview": "チリのフードテック企業NotCoが、GUT Miamiと組んで発表した「NotTurtle」。同社のAI「Giuseppe」を使い、アオウミガメのスープの味と食感を植物由来の材料だけで再現した。",
+    "background": "アオウミガメは絶滅危惧種だが、ペルーなどではウミガメのスープが伝統料理として文化的価値を持つ。Digital Trendsによれば、気候変動や生息地の喪失に加えてこのスープの消費も個体数減少の一因とされ、NotCoは食文化を残しながら捕獲をなくす代替を目指した。",
+    "execution": "ペルーのシェフDiego Okaが協力し、Giuseppeが植物性の素材を分子レベルで分析してレシピを組み立てた。ペルーのピウラで現地の人に試食してもらった。制作過程はケイマン諸島、サンフランシスコ、ピウラで撮影した短編ドキュメンタリーとして公開された。レシピは公開され、地元の料理人向けに無料の講座を開く計画も報じられた。",
+    "evaluationImpact": "AIを絶滅危惧種の保護と食文化の継承に使った点が評価され、カンヌライオンズ2024のBrand Experience & Activation部門とCreative Data部門でBronzeを受賞した。",
+    "tags": [
+      "Tech/AI",
+      "Tech/Data",
+      "Theme/Food",
+      "Theme/Sustainability",
+      "Form/Film"
+    ],
+    "thumbnail": "/thumbnails/notco-notturtle.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "diablo-blood-harvest",
+    "title": "Blood Harvest",
+    "summary": "Diablo IVのプレイヤーに実際の献血を呼びかけ、集めた量に応じてゲーム内報酬を全員に配った米国の献血キャンペーン。",
+    "client": "Diablo",
+    "agency": "GUT, Los Angeles",
+    "categories": [
+      "Brand Experience & Activation"
+    ],
+    "award": "Cannes Lions 2024 Brand Experience & Activation Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.engadget.com/blizzard-will-raffle-off-a-human-blood-infused-pc-if-diablo-iv-players-donate-666-quarts-192828807.html",
+    "videoId": "",
+    "overview": "BlizzardのDiablo IVが、GUT Los Angelesと組んでシーズン「Season of Blood」に合わせて実施した現実世界の献血企画「Blood Harvest」。",
+    "background": "シーズンの「血」というテーマを現実の献血につなげた施策で、米国で2023年10月から11月20日まで行われた。",
+    "execution": "プレイヤーは地元の献血センターで献血し、公式サイトで登録した。目標は合計666クォートで、33%・66%・100%の到達に応じて武器の外観アイテム、バーバリアンの防具、マウントが、献血したかどうかに関係なく全プレイヤーに11月22日に配布された。目標達成後は、米国在住の18歳以上なら誰でも応募できる抽選があり、賞品は人間の血液を冷却液に注入したカスタムPCだった。",
+    "evaluationImpact": "ゲームの世界観を献血という現実の行動に結びつけた点が評価され、カンヌライオンズ2024のBrand Experience & Activation部門でBronzeを受賞した。血液入りPCという演出には、ゲームファンの反応が賛否に分かれたとの調査もある（ISBT）。",
+    "tags": [
+      "Tech/Game",
+      "Theme/Health",
+      "Theme/SocialGood",
+      "Theme/Entertainment"
+    ],
+    "thumbnail": "/thumbnails/diablo-blood-harvest.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "planet-labs-pbc-greenpeace-flying-guardians",
+    "title": "Flying Guardians",
+    "summary": "フライトシミュレーターの地図を衛星画像に差し替え、プレイヤーがアマゾンの違法採掘や森林破壊を空から探せるようにしたGreenpeace Brasilの施策。",
+    "client": "Planet Labs Pbc & Greenpeace",
+    "agency": "ALMAPBBDO, Sao Paulo",
+    "categories": [
+      "Brand Experience & Activation"
+    ],
+    "award": "Cannes Lions 2024 Brand Experience & Activation Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://shots.net/news/view/how-greenpeace-turned-a-flight-sim-into-an-environmental-scanner",
+    "videoId": "",
+    "overview": "Greenpeace BrasilとAlmapBBDOが、衛星画像企業Planet Labs PBCと組んで公開した無料のMOD。ゲーム内の標準地図を実際の衛星画像に置き換え、ムンドゥルク族とヤノマミ族の土地を飛びながら違法採掘の痕跡を探せる。",
+    "background": "環境データは公開されていても、一般の人の関心を引きにくい。AlmapBBDOのCCOマルコ・ジャンネッリは、そこで人が集まるゲームを入口にしたと説明している（Shots）。Greenpeace Brasilの調査では、2023年にヤノマミ・カヤポー・ムンドゥルクの3地域で違法採掘により約1,409ヘクタールが荒らされたとされる（Marcas pelo Mundo）。",
+    "execution": "Shotsによれば、ゲームの地図ソースを既定のBing画像からPlanetの衛星データへ切り替え、AIで雲の少ない画素を選んで表示した。プレイヤーは実際の座標に基づく警告を送れる。Marcas pelo Mundoによれば、Greenpeaceの機体、2地域の座標を示す4つの管制塔、ゲームを離れずに請願「Amazônia Livre de Garimpo」へ署名できるコマンド、4つの車内ラジオ風チャンネルが用意された。公開は2024年4月15日で、配信者や インフルエンサーにも展開した。",
+    "evaluationImpact": "Shotsは、公開から数日で数百件の環境アラートが寄せられたと報じた。取り組みは他地域への拡大も見込まれている。カンヌライオンズ2024のBrand Experience & Activation部門でBronzeを受賞した。",
+    "tags": [
+      "Tech/Game",
+      "Tech/Data",
+      "Theme/SocialGood",
+      "Theme/Sustainability"
+    ],
+    "thumbnail": "/thumbnails/planet-labs-pbc-greenpeace-flying-guardians.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "deutscher-sparkassen-und-giroverband-e-v-s-communicati-on-services-gmbh-unhide-the-price",
+    "title": "Unhide The Price",
+    "summary": "ゲーム内通貨の金額をユーロに換算して見せる無料ツールを作り、課金の実質価格を見えるようにしたドイツ・Sparkassenの施策。",
+    "client": "Deutscher Sparkassen- Und Giroverband E.V. & S- Communicati On Services Gmbh",
+    "agency": "JUNG VON MATT AG, Hamburg",
+    "categories": [
+      "Brand Experience & Activation",
+      "Entertainment Lions for Gaming"
+    ],
+    "award": "Cannes Lions 2024 Brand Experience & Activation Lions Bronze / Cannes Lions 2024 Entertainment Lions for Gaming Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.hashtagsports.com/awards/shortlist-2024/sparkasse-unhide-the-price",
+    "videoId": "",
+    "overview": "ドイツの貯蓄銀行グループSparkassenがJung von Matt SPORTSらと展開した「Unhide the Price」。V-Bucksなどのゲーム内通貨をユーロに換算するマイクロサイト、アプリ、ブラウザ拡張を無料で提供した。",
+    "background": "ゲームの課金は独自の仮想通貨で表示されるため、実際にいくら使っているかが分かりにくい。t3nによれば、特に若いプレイヤーが支出を把握しづらいと消費者団体は指摘しており、ドイツのゲーム内課金市場は前年に約6%増の47億ユーロだった。",
+    "execution": "人気ゲームの通貨のユーロ価値を算出し、任意の金額を換算するツールを構築した。t3nとmein-mmoによれば、Fortnite、Roblox、Minecraft、Candy Crush Sagaなど主要30ゲームの通貨に対応する。アプリは画面を撮影すると換算額を表示し、ブラウザ拡張はChrome・Firefox・Safari・Edgeで商品のユーロ額をその場で示す。換算は基本価格のみで、セット販売や割引は反映しない。ゲーム配信者の活用や、プレイヤーが公開サーバーに価格をゲーマータグにしたアバターで入る演出も行われた。2024年4月に公開された。",
+    "evaluationImpact": "Hashtag Sports Awards 2024でBest Communications StrategyとBest Engagement for Goodの2部門でノミネートされた。カンヌライオンズ2024ではBrand Experience & ActivationとEntertainment Lions for Gamingの両部門でBronzeを受賞した。",
+    "tags": [
+      "Tech/Game",
+      "Form/App",
+      "Form/Website",
+      "Tech/Web",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/deutscher-sparkassen-und-giroverband-e-v-s-communicati-on-services-gmbh-unhide-the-price.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "burger-king-ghost-campaign",
+    "title": "Ghost Campaign",
+    "summary": "存在しない「見えない広告」をSNSで探させ、空っぽの場所を撮影して投稿した人に商品クーポンを返した、バーガーキング・スペインのハロウィン施策。",
+    "client": "Burger King",
+    "agency": "DAVID, Madrid",
+    "categories": [
+      "Brand Experience & Activation",
+      "Direct"
+    ],
+    "award": "Cannes Lions 2024 Brand Experience & Activation Lions Bronze / Cannes Lions 2024 Direct Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Direct",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creativebloq.com/news/burger-king-ghost-campaign",
+    "videoId": "",
+    "overview": "バーガーキング・スペインとDAVID Madridによる施策。ブランドは看板やポスターに広告を出さず、見えない広告があるという設定で、ユーザーに何もない空間をBurger Kingの広告に見立てて撮影してもらった。",
+    "background": "ハロウィン時期は各ブランドが一斉に企画を出し、驚きを作りにくい。DAVID MadridのクリエイティブディレクターFred Boschは、新鮮な発想を出すのが難しくなっていると語っている（キャンペーン発表時のコメント）。報道は2023年10月で、カンヌの部門表記は2024年。",
+    "execution": "ユーザーは空のテレビ画面や何もない壁などを撮り、ハッシュタグ #EnOcasionesVeoBurger（英語圏では #ISeeBurger）を付けてXに投稿する。投稿にはBurger King側のアカウントが、広告が見えていると返信し、商品名と店舗で使える引換コードを送った。賞品はナゲットやLong Chicken、Whopperなど。看板、ポスター、テレビ、ラジオ、マドリード中心部の大型看板にも「見えない広告」を出したとされる（CampaignME、Creative Bloq報道）。",
+    "evaluationImpact": "Creative Bloqは「愚かなのか見事なのか決められない」と評し、反応は分かれた。カンヌライオンズ2024のBrand Experience & ActivationとDirectの両部門でBronzeを受賞した。",
+    "tags": [
+      "Form/SNS",
+      "Form/OOH",
+      "Theme/Food",
+      "Theme/Retail"
+    ],
+    "thumbnail": "/thumbnails/burger-king-ghost-campaign.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "honest-eggs-co-fitchix",
+    "title": "Fitchix",
+    "summary": "鶏に歩数計を付け、1日の歩数を卵に直接印字して「放し飼い」表示の曖昧さに対抗したオーストラリアの小規模養鶏場の施策。",
+    "client": "Honest Eggs Co",
+    "agency": "VML, Melbourne",
+    "categories": [
+      "Brand Experience & Activation",
+      "Creative Effectiveness",
+      "Creative Strategy",
+      "Health & Wellness"
+    ],
+    "award": "Cannes Lions 2024 Brand Experience & Activation Lions Bronze / Cannes Lions 2024 Creative Effectiveness Lions Bronze / Cannes Lions 2024 Creative Strategy Lions Silver / Cannes Lions 2024 Creative Strategy Lions Bronze / Cannes Lions 2024 Health & Wellness Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Effectiveness",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Strategy",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Strategy",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Health & Wellness",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://www.theleader.com.au/story/8121138/fit-chicks-chicken-step-counter-helps-farmers-care-for-their-flock/",
+    "videoId": "",
+    "overview": "ビクトリア州の再生型農法の養鶏場Honest Eggs CoとVML Melbourneによる施策。鶏に小型トラッカーを付け、その日の歩数を卵の殻に印字して店頭に並べた。",
+    "background": "共同創業者のポール・リゲッティは、放し飼いの表示には曖昧さがあり、自社の飼い方の違いを示したいと語っている（ACM報道）。同社は鶏を移動式の鶏舎で牧草地ごとに移動させる方式を取る。",
+    "execution": "ACM（The Leader）によれば、翼の下に弾性ストラップで留める小型のバックパック型トラッカーで鶏の歩数を記録する。1羽あたり1日2万〜2.5万歩（約2〜3km）に達する。2023年3月からの6週間、ビクトリア、NSW、クイーンズランドの食料品店で歩数入りの卵を専用カートンで販売した。",
+    "evaluationImpact": "ローカル紙ACMが2023年3月に取り上げた。カンヌライオンズ2024ではCreative Strategy部門でSilverとBronze、Brand Experience & Activation、Creative Effectiveness、Health & Wellnessの各部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Food",
+      "Form/Product",
+      "Tech/Device",
+      "Tech/Data",
+      "Theme/Sustainability"
+    ],
+    "thumbnail": "/thumbnails/honest-eggs-co-fitchix.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "mercado-libre-ballboards",
+    "title": "Ballboards",
+    "summary": "スタジアムの広告看板をボール射出装置に変え、プレー中断時に新しいボールをすばやく届けて配送の速さを実演したMercado Livreの施策。",
+    "client": "Mercado Libre",
+    "agency": "GUT, Sao Paulo",
+    "categories": [
+      "Brand Experience & Activation",
+      "Direct",
+      "Media"
+    ],
+    "award": "Cannes Lions 2024 Brand Experience & Activation Lions Bronze / Cannes Lions 2024 Direct Lions Silver / Cannes Lions 2024 Media Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Direct",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Media",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://marcaspelomundo.com.br/anunciantes/mercado-livre-cria-a-primeira-placa-gandula-do-futebol-brasileiro/",
+    "videoId": "k0x1DvalHYg",
+    "overview": "Mercado Livre（Mercado Libre）とGUT São Pauloによる「Placa Gandula（ボールボーイ看板）」。ピッチ脇の広告板が、選手へボールを返す役割を担うブラジル初の試み。",
+    "background": "Mercado LivreはFlamengoのスポンサーで、スポーツ分野での存在感を広げている。広告枠を見せるだけでなく、同社の特徴である「届くのが速い」ことを試合の中で体験させる狙いがある（Marcas pelo Mundo、Propmark）。",
+    "execution": "Marcas pelo MundoとBaguete報道では、2024年のカリオカ選手権（Cariocão）決勝のFlamengo対Nova Iguaçu第1戦で導入された。Maracanã のゴール裏の広告板が自動のボールボーイとして機能し、第2戦（4月7日）でも実施された。通常のボールボーイも同席していた。",
+    "evaluationImpact": "成果数値の独立した報道は確認できていない。カンヌライオンズ2024ではBrand Experience & ActivationとMediaの部門でBronze、Direct部門でSilverを受賞した。",
+    "tags": [
+      "Theme/Sports",
+      "Form/OOH",
+      "Tech/Robotics",
+      "Tech/Device",
+      "Theme/Retail"
+    ],
+    "thumbnail": "/thumbnails/mercado-libre-ballboards.jpg"
   }
 ]
