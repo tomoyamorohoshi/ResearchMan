@@ -244,3 +244,54 @@ test("makeClaudeGroupRunner: stdout 全文を resolve（2000字超でも切ら�
   assert.equal(r.length, 5003);
   assert.ok(r.endsWith("END"));
 });
+
+test("updateState: 除外申告 key は attempts に関係なく即 skipped、理由を excludedReasons に残す（旧 state でも壊れない）", () => {
+  const old = { attempts: {}, skipped: [], done: [], batchSeq: 1 }; // excludedReasons なし
+  const s = updateState(old, { attemptedKeys: ["a", "x"], okKeys: ["a"], excludedKeys: ["x"], excludedReasons: { x: "出典が応募資料のみ" } });
+  assert.deepEqual(s.skipped, ["x"]);
+  assert.deepEqual(s.done, ["a"]);
+  assert.equal(s.excludedReasons.x, "出典が応募資料のみ");
+  assert.equal(s.attempts.x, undefined);
+});
+
+test("runBatch: 除外申告は即 skipped（担当外・空 key・採用済み key は無視）", async () => {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "cbr-"));
+  const res = await runBatch({
+    year: 2025, works: [W("a"), W("b"), W("c")], state: emptyState(), batchNo: 1, batchSize: 3, parallel: 1, workRoot: tmp, brief: "x",
+    runGroup: async () => out(["a"], { excluded: [{ key: "b", reason: "出典が応募資料のみ" }, { key: "zzz", reason: "担当外" }, { key: "", reason: "空" }, { key: "a", reason: "採用と矛盾" }] }),
+    runIngest: () => ({ status: 0 }),
+    readCases: () => [inCases("a")],
+    log: () => {},
+  });
+  assert.deepEqual(res.state.skipped, ["b"]);
+  assert.equal(res.state.excludedReasons.b, "出典が応募資料のみ");
+  assert.equal(res.state.excludedReasons.zzz, undefined);
+  assert.equal(res.state.excludedReasons.a, undefined);
+  assert.equal(res.state.attempts.c, 1);
+});
+
+test("runBatch: 採用0件（ingest なし）でも除外申告を反映", async () => {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "cbr-"));
+  const res = await runBatch({
+    year: 2025, works: [W("a")], state: emptyState(), batchNo: 1, batchSize: 1, parallel: 1, workRoot: tmp, brief: "x",
+    runGroup: async () => out([], { excluded: [{ key: "a", reason: "r" }] }),
+    runIngest: () => { throw new Error("no ingest"); },
+    log: () => {},
+  });
+  assert.deepEqual(res.state.skipped, ["a"]);
+});
+
+test("runBatch: ingest 失敗時は除外申告も state に反映しない", async () => {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "cbr-"));
+  const res = await runBatch({
+    year: 2025, works: [W("a"), W("b")], state: emptyState(), batchNo: 1, batchSize: 2, parallel: 1, workRoot: tmp, brief: "x",
+    runGroup: async () => out(["a"], { excluded: [{ key: "b", reason: "r" }] }),
+    runIngest: () => ({ status: 1 }),
+    log: () => {},
+  });
+  assert.deepEqual(res.state.skipped, []);
+});
+
+test("filterThumbUrls: grey.com（サブドメイン含む）を除外", () => {
+  assert.deepEqual(filterThumbUrls(["https://www.grey.com/og.jpg", "https://grey.com/a", "https://i.ytimg.com/vi/a/hq.jpg", "https://notgrey.com/x.jpg"]), ["https://i.ytimg.com/vi/a/hq.jpg", "https://notgrey.com/x.jpg"]);
+});

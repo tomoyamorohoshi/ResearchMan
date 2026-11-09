@@ -26,7 +26,7 @@ const MAX_ATTEMPTS = 2;
 const GROUP_SIZE = 5;
 const TIMEOUT_MS = 15 * 60 * 1000;
 /** og:image が汎用ロゴしか返さないため、サムネ候補から除外するドメイン */
-export const BLOCKED_THUMB_DOMAINS = ["vml.com", "dandad.org"];
+export const BLOCKED_THUMB_DOMAINS = ["vml.com", "dandad.org", "grey.com"];
 const REQ_STR = ["summary", "overview", "background", "execution", "evaluationImpact", "link"];
 const REQ_ARR = ["regions", "tags"];
 
@@ -34,7 +34,7 @@ export const emptyState = () => ({ attempts: {}, skipped: [], done: [], batchSeq
 
 function normState(s) {
   const e = emptyState();
-  return { ...e, ...(s || {}), attempts: { ...(s?.attempts || {}) }, skipped: [...(s?.skipped || [])], done: [...(s?.done || [])] };
+  return { ...e, ...(s || {}), attempts: { ...(s?.attempts || {}) }, skipped: [...(s?.skipped || [])], done: [...(s?.done || [])], excludedReasons: { ...(s?.excludedReasons || {}) } };
 }
 
 /** ingest と同じ重複判定（同年 cannes awardEntries を持つ事例と title 正規化一致 or 正規化 id 一致） */
@@ -120,10 +120,16 @@ export function validateDrafts(raw, workKeys) {
 }
 
 /** state 更新（非破壊）: 成功 key は done、失敗 key は attempts+1（上限で skipped） */
-export function updateState(state, { attemptedKeys, okKeys }) {
+export function updateState(state, { attemptedKeys, okKeys, excludedKeys = [], excludedReasons = {} }) {
   const s = normState(state);
   const ok = new Set(okKeys);
+  const excl = new Set(excludedKeys);
+  for (const k of excl) {
+    if (!s.skipped.includes(k)) s.skipped.push(k);
+    if (excludedReasons[k] != null) s.excludedReasons[k] = String(excludedReasons[k]);
+  }
   for (const k of attemptedKeys) {
+    if (excl.has(k)) continue;
     if (ok.has(k)) { if (!s.done.includes(k)) s.done.push(k); continue; }
     s.attempts[k] = (s.attempts[k] || 0) + 1;
     if (s.attempts[k] >= MAX_ATTEMPTS && !s.skipped.includes(k)) s.skipped.push(k);
@@ -237,14 +243,20 @@ export async function runBatch({ year, works, state, batchNo, batchSize = 35, pa
     try { out = (await runGroup({ prompt, groupNo: i + 1, cwd: dir })) ?? ""; } catch (e) { error = procError = e.message; out = e.stdout ?? ""; }
     try { fs.writeFileSync(outFile, String(out)); } catch { /* デバッグ用 */ }
     let valid = [], dropped = [];
+    const excluded = {};
     const got = extractDrafts(out);
     if (got) {
       ({ valid, dropped } = validateDrafts(got.drafts, new Set(g.map((w) => w.key))));
+      const mine = new Set(g.map((w) => w.key)), validKeys = new Set(valid.map((v) => v.key));
+      for (const x of got.excluded) {
+        const k = x?.key;
+        if (typeof k === "string" && k && mine.has(k) && !validKeys.has(k)) excluded[k] = String(x.reason ?? "");
+      }
       if (got.excluded.length) log(`  グループ${i + 1} 除外申告: ${got.excluded.map((x) => `${x?.key}:${x?.reason}`).join("; ")}`);
     } else error = error || "stdout に drafts JSON なし";
     const procFailed = !!procError && !got;
     log(`  グループ${i + 1}: 担当${g.length} 採用${valid.length} 除外${dropped.length}${procFailed ? " [プロセス失敗]" : ""}${error ? ` エラー=${error}` : ""}${dropped.length ? ` (${dropped.map((d) => `${d.key}:${d.reason}`).join("; ")})` : ""}`);
-    return { g, valid, procFailed };
+    return { g, valid, procFailed, excluded };
   });
   const statusAfter = gitStatusCases();
   if (statusAfter !== statusBefore) log(`  警告: 子 claude 実行中に data/cases.json が変化した (${JSON.stringify(statusAfter)})`);
@@ -254,6 +266,9 @@ export async function runBatch({ year, works, state, batchNo, batchSize = 35, pa
   const okGroups = results.filter((r) => !r.procFailed);
   // プロセス失敗（drafts なし）のグループは attempts を進めない
   const attemptedKeys = okGroups.flatMap((r) => r.g.map((w) => w.key));
+  const excludedReasons = Object.assign({}, ...okGroups.map((r) => r.excluded));
+  const excludedKeys = Object.keys(excludedReasons);
+  if (excludedKeys.length) log(`  除外申告 ${excludedKeys.length}件 → skipped`);
   let exitCode = 0, newState = state;
   if (!okGroups.length) {
     log("  全グループが claude プロセス失敗（使用量上限・ログアウト等の疑い）のため停止");
@@ -270,11 +285,11 @@ export async function runBatch({ year, works, state, batchNo, batchSize = 35, pa
       const byKey = new Map(target.map((w) => [w.key, w]));
       const okKeys = merged.map((m) => m.key).filter((k) => isAlreadyIngested(byKey.get(k), cases, year));
       log(`  cases.json 反映確認: ${okKeys.length}/${merged.length}`);
-      newState = updateState(state, { attemptedKeys, okKeys });
+      newState = updateState(state, { attemptedKeys, okKeys, excludedKeys, excludedReasons });
     }
   } else {
     log("  採用0件のため ingest なし");
-    newState = updateState(state, { attemptedKeys, okKeys: [] });
+    newState = updateState(state, { attemptedKeys, okKeys: [], excludedKeys, excludedReasons });
   }
   log(`バッチ${batchNo} 終了: 採用${merged.length}/${target.length} 所要${Math.round((Date.now() - started) / 1000)}s exit=${exitCode}`);
   return { exitCode, state: newState, stats: { attempted: target.length, adopted: merged.length, procFailed: results.length - okGroups.length } };
