@@ -78350,7 +78350,10 @@
       "Theme/Entertainment",
       "Theme/Food"
     ],
-    "thumbnail": "/thumbnails/rc-cola-miracle.jpg"
+    "thumbnail": "/thumbnails/rc-cola-miracle.jpg",
+    "quarantined": true,
+    "quarantineReason": "内容の出典が応募情報(D&AD)のみ（2026-11-09 手動）",
+    "quarantineTs": "2026-11-09T13:28:08.589Z"
   },
   {
     "year": "2025",
