@@ -78807,7 +78807,10 @@
       "Form/Exhibition",
       "Tech/3D"
     ],
-    "thumbnail": "/thumbnails/oka-biotech-plastic-blood.jpg"
+    "thumbnail": "/thumbnails/oka-biotech-plastic-blood.jpg",
+    "quarantined": true,
+    "quarantineReason": "DM9の応募取り下げ・受賞取り消し（Cannes Lions公式声明 https://www.canneslions.com/news/cannes-lions-statement-dm9-entries-into-cannes-lions-2025）（2026-11-09 手動）",
+    "quarantineTs": "2026-11-09T13:28:09.255Z"
   },
   {
     "year": "2025",
