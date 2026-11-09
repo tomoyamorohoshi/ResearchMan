@@ -80576,5 +80576,89 @@
       "Theme/Food"
     ],
     "thumbnail": "/thumbnails/mcdonald-s-the-meal.jpg"
+  },
+  {
+    "year": "2025",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2025"
+    ],
+    "id": "mrv-building-futures",
+    "title": "Building Futures",
+    "summary": "建設現場で働く人々に読み書きや算数を教えるMRVの社内教育プログラム「Escola Nota 10」に光を当て、その存在と働き手自身を可視化したDM9の施策。",
+    "client": "Mrv",
+    "agency": "DM9, Sao Paulo",
+    "categories": [
+      "Brand Experience & Activation"
+    ],
+    "award": "Cannes Lions 2025 Brand Experience & Activation Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.itatiaia.com.br/economia/projeto-da-mrv-que-combate-analfabetismo-nos-canteiros-de-obras-conquista-leao-em-cannes/",
+    "videoId": "",
+    "overview": "ブラジルの建設会社MRVとDM9による施策。MRVが建設現場内で運営する成人向け識字教育プログラムEscola Nota 10と、それを受ける現場作業員の姿を伝えることで、社会課題への関心を高めることを狙った。",
+    "background": "Itatiaiaの報道によれば、Escola Nota 10はMRVが現場で働く人に読み書きを教えるプログラムで、Instituto MRVがAlicerce Educaçãoと組んで運営している。開始から14年、これまでに5,000人超が参加した。DM9がこの取り組みをカンヌに持ち込む事例として制作し、課題と働き手自身の可視化を目的とした。",
+    "execution": "プログラムは建設現場の中で、勤務時間内にポルトガル語と算数の授業を成人の作業員に提供する。勤務を削らずに学べる点が特徴とされる。Itatiaiaによれば、現場の学校は34校で、2025年末までに47校を目標としている。一方、Marcas pelo Mundoは同作を、若い学生に建築・工学を身近にする現場体験として紹介しており、報道で説明が分かれる。施策の具体的な媒体展開は確認できていない。",
+    "evaluationImpact": "カンヌライオンズ2025でBronzeを受賞した（Marcas pelo MundoはBrand Experience & Activation部門、Itatiaiaは社会的責任の部門と報じており、部門表記は報道間で異なる）。受賞により、現場作業員の識字教育という地味な取り組みが広く知られるきっかけとなった。",
+    "tags": [
+      "Theme/Education",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/mrv-building-futures.jpg"
+  },
+  {
+    "year": "2025",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2025"
+    ],
+    "id": "acko-tailor-test",
+    "title": "Acko Tailor Test",
+    "summary": "街の仕立て屋が採寸するウエストとヒップの比から、心臓病リスクに気づかせるインドの保険会社Ackoの施策。",
+    "client": "Acko",
+    "agency": "LEO, Mumbai",
+    "categories": [
+      "Brand Experience & Activation",
+      "Creative Data"
+    ],
+    "award": "Cannes Lions 2025 Brand Experience & Activation Lions Bronze / Cannes Lions 2025 Creative Data Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Creative Data",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://campaignsoftheworld.com/ooh-campaigns/ackos-tailor-test/",
+    "videoId": "",
+    "overview": "インドのデジタル保険会社Ackoが、Leo Mumbaiと組んで世界心臓デーに展開した施策。仕立て屋が日常的に測る体の寸法を、心臓の健康チェックの入口に変えた。",
+    "background": "Campaigns of the Worldによれば、ウエスト・ヒップ比（WHR）は心臓の健康指標として見過ごされがちだった。afaqsはWHO指針として、WHRが女性0.85超、男性0.90超なら心臓の健康診断を検討すべきと伝えている。健診を避けがちな人に、身近な採寸の場で気づきを与える設計とした。",
+    "execution": "afaqsによれば、仕立て屋が登場する動画で、採寸したウエストとヒップから心臓リスクが分かることを示した。メッセージ役には有名人でなく実際の街の仕立て屋を起用し、動画に加えてラジオやテレビの啓発プログラムにも展開された。Campaigns of the Worldは、巻き尺を心臓の健康への警告に変える施策と紹介している。",
+    "evaluationImpact": "カンヌライオンズ2025でCreative Data部門のGoldとBrand Experience & Activation部門のBronzeを受賞した。Creative Data部門のGoldは3作品のみで、うちアジアの2作品（もう1つはDentsu Digital Tokyoの「Sato 2531」）に含まれ、Leoはこの部門で入賞した唯一のインド代理店となった（Campaign Brief Asia、Contagious報道）。",
+    "tags": [
+      "Theme/Health",
+      "Tech/Data",
+      "Form/Film"
+    ],
+    "thumbnail": "/thumbnails/acko-tailor-test.jpg"
   }
 ]
