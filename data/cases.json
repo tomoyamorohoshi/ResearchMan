@@ -73577,5 +73577,616 @@
       "Form/Product"
     ],
     "thumbnail": "/thumbnails/nestle-self-packing-cheese.jpg"
+  },
+  {
+    "year": "2025",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2025"
+    ],
+    "id": "imperia-genius-of-form-and-substance",
+    "title": "Imperia - Genius Of Form And Substance",
+    "summary": "創業1932年のパスタマシンメーカーImperiaを、ロゴが生地を延ばすローラーになる仕組みや専用書体で刷新したリブランディング。",
+    "client": "Imperia",
+    "agency": "IMPERIA & MONFERRINA, Roma / LANDOR, Milan",
+    "categories": [
+      "Design"
+    ],
+    "award": "Cannes Lions 2025 Design Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Design",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.printmag.com/branding-identity-design/landor-milanos-delicious-rebrand-of-imperia/",
+    "videoId": "",
+    "overview": "イタリアのパスタマシンメーカーImperiaが、Landor Milanoと取り組んだブランド刷新。ブランドの考え方を「il genio di forma e sostanza（形と素材の才能）」とし、エンブレム、専用書体、3Dと2Dのモーションまで一貫したデザインシステムを作った。",
+    "background": "Imperiaは1932年創業の老舗で、古風で懐古的な印象が強かった。PRINTの記事によれば、歴史を尊重しながら、世界の若い層にも届く現代的なブランドに変えることが課題だった。キッチンを創造や実験の場として見せることも狙いとされる。",
+    "execution": "1960年代のアーカイブにある横長のエンブレム形状を描き直し、ローラーのように「転がる」とワードマークが現れる表現にした。シート状のパスタ「sfoglia」から名付けた専用書体Sfoglia Groteskは、独自のリガチャを備える。ブルーノ・ムナーリの「役に立たない機械」に着想した3Dの彫刻的アニメーションと、パスタを押し延ばす2Dモーションも制作。The Dielineは、パスタ作りをルーブ・ゴールドバーグ・マシンのように見せるパッケージと紹介している。",
+    "evaluationImpact": "カンヌライオンズ2025のDesign部門でBronzeを受賞した。業界メディアでは、遊び心ある3Dとモーション、専用書体の完成度が取り上げられている。",
+    "tags": [
+      "Form/Product",
+      "Tech/3D"
+    ],
+    "thumbnail": "/thumbnails/imperia-genius-of-form-and-substance.jpg"
+  },
+  {
+    "year": "2025",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2025"
+    ],
+    "id": "ea-sports-fc-fc25",
+    "title": "Fc25",
+    "summary": "FIFAとの提携終了後に生まれたEA SPORTS FCのブランドを、三角形を軸にしたデザインシステムとFC 25のキャンペーンで展開した取り組み。",
+    "client": "Ea Sports Fc",
+    "agency": "UNCOMMON CREATIVE STUDIO, London",
+    "categories": [
+      "Design"
+    ],
+    "award": "Cannes Lions 2025 Design Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Design",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.itsnicethat.com/news/uncommon-creative-studio-ea-sports-fc-graphic-design-130423",
+    "videoId": "",
+    "overview": "EA SPORTS FCのデザインを手がけるUncommon Creative Studio（ロンドン）の作品。カンヌライオンズ2025のDesign部門でBronzeを受賞した。2025年の応募作そのものの説明は見つからなかったため、本文ではUncommonが手がけたEA SPORTS FCのアイデンティティと、FC 25の発売キャンペーンを関連施策として紹介する。",
+    "background": "サッカーゲームがFIFAの名称を離れ、EA SPORTS FCとして再出発した。Design Weekなどによれば、Uncommonは新ブランド名を、ゲームの歴史やパスの軌道、操作選手の表示にあった三角形に結びつけて設計した。",
+    "execution": "アイデンティティは三角形を核にしており、FCの2文字を60度の角度で三角形に収めるロゴと、等角グリッドに基づくデザインシステムで構成される。書体はF37 Foundryと共同開発し、ヨハン・クライフをモデルにした機能的なサンセリフと、マルタをモデルにしたセリフ体の2系統がある。モーションはBuckが担当。FC 25の発売に合わせては、Uncommonが「For The Club」キャンペーンを展開し、ジュード・ベリンガムやベッカムらを起用した（LBB）。",
+    "evaluationImpact": "カンヌライオンズ2025のDesign部門でBronzeを受賞した（Substackのカンヌ総括記事による）。",
+    "tags": [
+      "Theme/Sports",
+      "Tech/Game"
+    ],
+    "thumbnail": "/thumbnails/ea-sports-fc-fc25.jpg"
+  },
+  {
+    "year": "2025",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2025"
+    ],
+    "id": "mattel-creations-not-wheels",
+    "title": "Mattel Creations Not Wheels",
+    "summary": "ホイールが1本欠けて走れない、使い込まれたホットウィール風ダイキャストカー。初めての愛車への敬意を込めたMSCHFとの限定コラボ。",
+    "client": "Mattel Creations",
+    "agency": "MATTEL, Los Angeles / MSCHF PRODUCT STUDIO, New York",
+    "categories": [
+      "Design"
+    ],
+    "award": "Cannes Lions 2025 Design Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Design",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.designboom.com/design/missing-tire-mschf-hot-wheels-car-mattel-creations-08-28-2024/",
+    "videoId": "",
+    "overview": "MattelのMattel CreationsとMSCHFが共同で作った「Not Wheels」。ホットウィールの約1/64スケールのミニカーだが、あえて傷だらけで、タイヤが1本ない。2024年8月30日にMattel Creationsで30ドルで発売された。",
+    "background": "設計のモチーフは、初めて手にした車のくたびれた姿。designboomは、1990年代の日本車の輸入車に着想したと伝えている。「走るための玩具」であるホットウィールを、走れない形に反転させた点がこの企画の核になっている。",
+    "execution": "車体には凹み、サビ、素人修理の跡があり、フロントガラスのひび割れ、ワイパーに挟まれた駐車違反の切符、後部の「WASH ME!!!」の文字、ドアからはみ出したシートベルトまで作り込まれている。外れたタイヤの位置にはサビたハブがあり、黄色いスペアタイヤが付く。パッケージはホットウィールの様式を踏襲しつつ、ロゴをMSCHFの文字に置き換え、「Not Yet Totaled」などのジョークを入れた。購入は1人3個まで。",
+    "evaluationImpact": "The Dieline、designboom、Highsnobietyなどのデザイン・カルチャー系メディアが取り上げた。カンヌライオンズ2025のDesign部門でBronzeを受賞した。",
+    "tags": [
+      "Form/Product",
+      "Theme/Entertainment"
+    ],
+    "thumbnail": "/thumbnails/mattel-creations-not-wheels.jpg"
+  },
+  {
+    "year": "2025",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2025"
+    ],
+    "id": "families-surviving-feminicides-collective-justice-by-her-type",
+    "title": "Justice By Her Type",
+    "summary": "フェミサイド被害者10人の手書きの手紙を無料の書体に変え、女性への暴力に対する法案の成立を議員に求めたコスタリカのキャンペーン。",
+    "client": "Families Surviving Feminicides Collective",
+    "agency": "GARNIER BBDO, San Jose",
+    "categories": [
+      "Design"
+    ],
+    "award": "Cannes Lions 2025 Design Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Design",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "中南米"
+    ],
+    "link": "https://delfino.cr/2025/06/letras-de-lucha-pone-a-costa-rica-en-el-mapa-creativo-mundial-con-un-premio-bronce-en-cannes-lions",
+    "videoId": "",
+    "overview": "コスタリカの遺族団体「Familias Sobreviviendo al Feminicidio」とGarnier BBDO、SHIFT Porter Novelli、Kaijuによる「Letras de Lucha（闘いの文字）」。英語題はJustice By Her Type。被害者の筆跡を書体にし、その文字で議員宛てのメッセージを書けるようにした。",
+    "background": "Delfinoによれば、コスタリカでは2007年から2022年11月までに417件のフェミサイドが記録され、平均で月に2人の女性が殺害されている。女性への暴力に対処する12の法案が、国会で却下または長年止まったままだった。2024年8月に国会で発表され、モンセラート・ルイス・ゲバラ議員が主導した。",
+    "execution": "12歳から40歳までの被害者10人が遺した手書きの手紙や書類を集め、使える書体に起こした。市民はこの書体で、止まっていた法案を書き直したり、議員に宛てた手紙を書いたりできる。被害者の文字そのものが、法案を前に進めるための訴えになる設計。",
+    "evaluationImpact": "Delfinoは、記事の時点で12法案のうち5件が成立済みと報じている。カンヌライオンズ2025のDesign部門（Design-Driven Effectiveness）でBronzeを受賞し、中米・コスタリカにとって同賞の受賞となった。Global SABRE Awards 2025でも上位40キャンペーンに選ばれた。",
+    "tags": [
+      "Theme/SocialGood",
+      "Form/Website"
+    ],
+    "thumbnail": "/thumbnails/families-surviving-feminicides-collective-justice-by-her-type.jpg"
+  },
+  {
+    "year": "2025",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2025"
+    ],
+    "id": "samsung-australia-packed-full-of-history",
+    "title": "Packed Full Of History",
+    "summary": "Galaxy S24 Ultraを韓国の食料品のような包装で配り、韓国語のパッケージをスマホのAI翻訳で読ませたSamsung Australiaの開封体験。",
+    "client": "Samsung Australia",
+    "agency": "CLEMENGER BBDO, Sydney",
+    "categories": [
+      "Design"
+    ],
+    "award": "Cannes Lions 2025 Design Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Design",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://www.clemengerbbdo.com/work/samsung-packed-full-of-history",
+    "videoId": "",
+    "overview": "Clemenger BBDO Sydneyが手がけた、Galaxy S24 Ultraのインフルエンサー向け送付キット。開封動画が単調になっていた状況に対し、サムスンの出自を包装デザインに落とし込んだ。2024年3月公開。",
+    "background": "Clemengerの事例ページによれば、端末の変化が小さくなり、開封動画は退屈になっていた。そこでサムスンが1938年に韓国・大邱で乾物や麺類を扱う商店として始まった歴史に立ち返り、AI翻訳という新機能を見せる題材にした。オーストラリアでサムスンが韓国のルーツを前面に出したのは初めてとされる。",
+    "execution": "新製品を韓国の食料品に見立て、表記はすべて韓国語にした。受け取った人は端末の翻訳機能で包装を読むことになる。同梱物は、会社の歴史を載せた2色刷りのカタログ、中身を韓国語で記した個別レシート、サムスンの旧ロゴの小麦と縞（稲田の象徴）を再解釈した再利用可能なショッピングバッグなど。「三星」を表す3つの星は、漫画風の目の輝きや歯の光として描かれた。",
+    "evaluationImpact": "カンヌライオンズ2025のDesign部門でBronzeを受賞した。ほかにAGDA 2024のMerit（パッケージ構造、特別版パッケージ、イラスト）やGerety Awardsでも評価されている。",
+    "tags": [
+      "Form/Product",
+      "Form/SNS",
+      "Tech/AI"
+    ],
+    "thumbnail": "/thumbnails/samsung-australia-packed-full-of-history.jpg"
+  },
+  {
+    "year": "2025",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2025"
+    ],
+    "id": "super-extra-rice-rice-of-glory",
+    "title": "Rice Of Glory",
+    "summary": "エクアドルの米ブランドが、真っ黒なパッケージ約30万個のうち20個に、手描きの絵を施した「当たり米」1粒を忍ばせたプロモーション。",
+    "client": "Super Extra Rice",
+    "agency": "MARURI, Guayaquil / GREY ARGENTINA, Buenos Aires / GREY, Sao Paulo",
+    "categories": [
+      "Design"
+    ],
+    "award": "Cannes Lions 2025 Design Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Design",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.grey.com/ideas/revolutionising-the-food-category-one-grain-at-a-time",
+    "videoId": "",
+    "overview": "エクアドルで首位の米ブランドSuper Extra（Arroz Super Extra）が、MARURI（グアヤキル）とGrey Argentina、Grey Brazilと組んで展開した購買促進施策。中身が見えない黒い袋に賞品付きの米粒を1粒入れ、「米を買う」という地味な行為を宝探しに変えた。2025年のカンヌライオンズではDesign部門でBronzeを受賞した。",
+    "background": "Greyの事例ページによれば、同国の白米市場では20を超える競合ブランドが似た商品を売っており、差別化が難しかった。そこで、ウィリー・ウォンカの黄金のチケットのような「当たりを探す楽しさ」を米に持ち込んだ。",
+    "execution": "通常は白や米のイメージが並ぶ売り場に、全面を黒にしたパッケージを投入した。20個の袋にだけ、賞品の当選を示す米粒が入っている。当たり米はスリランカのマイクロアーティスト、ダヤナンダ氏が無害な植物性インクで1粒ずつ手描きした。賞品はクルーズ旅行、ガラパゴス旅行、航空券、スマートフォン、ノートPC、テレビ、スマートウォッチなど。TVスポットでは、米1粒のために人がどこまでやるかをブラックユーモアで描き、屋外広告やインフルエンサーによるSNS投稿（誤って当たり米を炊いてしまわないよう呼びかける内容など）で支えた（Grey、Storyboard18）。キャンペーン自体は2024年の実施で、同年のカンヌではBrand Experience & ActivationでGoldも受賞している。",
+    "evaluationImpact": "カンヌライオンズ2025のDesign部門でBronzeを受賞した。キャンペーン自体は2024年のカンヌでBrand Experience & Activation部門のGoldも獲得しており、米というコモディティ商品のパッケージと体験の設計が評価された。",
+    "tags": [
+      "Theme/Food",
+      "Theme/Retail",
+      "Form/Product"
+    ],
+    "thumbnail": "/thumbnails/super-extra-rice-rice-of-glory.jpg"
+  },
+  {
+    "year": "2025",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2025"
+    ],
+    "id": "sos-children-s-villages-workwear-for-kids",
+    "title": "Workwear For Kids",
+    "summary": "児童労働の現場で子どもが着る作業服を「実在してはならない服」として作り、ストックホルムの子ども服街にショールームを開いたSOS子どもの村の施策。",
+    "client": "Sos Children's Villages",
+    "agency": "NORD DDB, Stockholm",
+    "categories": [
+      "Design"
+    ],
+    "award": "Cannes Lions 2025 Design Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Design",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://designtaxi.com/news/426601/Workwear-For-Kids-Weaves-In-Alarming-Details-For-Child-Laborers/",
+    "videoId": "",
+    "overview": "SOS Children's Villages（SOS子どもの村）とNORD DDB Stockholmによる児童労働の啓発キャンペーン。鉱山、タバコ農園、レンガ工場で働く子どものための作業服コレクションを、本物のファッションブランドのように見せて発表した。2025年のカンヌライオンズではDesign部門でBronzeを受賞した。",
+    "background": "鉱山、タバコ栽培、レンガ製造では、5歳ほどの子どもを含む多くの子どもが危険な労働に就いている。DesignTAXIによれば、スマートフォンの電池、電気自動車、再生可能エネルギーといった私たちの生活を支える産業の裏側にある問題を、日常の「服」という身近な形で見せることを狙った。",
+    "execution": "5〜10歳向けのXXXSサイズで3点を制作した。レンガ用ジャケットは換気用の脇の開口部、手首の補強、酸素チューブとマスク用ポケットを備える。鉱山用パンツは膝の補強、懐中電灯ホルダー、落盤時用のGPS発信機、粉じん用マスクのポケット付き。タバコ用シャツは農薬と雨を防ぐワックスコットン製で、ニコチン汚れを隠す地味な色合いにしてある。販売価格は各産業で子どもが1年に稼ぐ額に合わせ、鉱山865ドル、タバコ385ドル、レンガ290ドルとした。2024年4月、ストックホルム中心部のプレミアム子ども服が並ぶ一角にショールームを開き、通りがかりの親に見せた（DesignTAXI、FashionUnited）。",
+    "evaluationImpact": "カンヌライオンズ2025のDesign部門でBronzeを受賞した。「存在すべきでない服」というコピーとプロダクトデザインで児童労働を可視化した点が国際メディアでも取り上げられた。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Fashion",
+      "Form/Product",
+      "Form/Exhibition"
+    ],
+    "thumbnail": "/thumbnails/sos-children-s-villages-workwear-for-kids.jpg"
+  },
+  {
+    "year": "2025",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2025"
+    ],
+    "id": "google-project-voice",
+    "title": "Project Voice",
+    "summary": "重度の身体障がいを持つ当事者と共に、Geminiで一人ひとりに合わせた予測変換を作り、少ない操作で会話できるようにしたGoogle Japanのプロジェクト。",
+    "client": "Google",
+    "agency": "GOOGLE, Tokyo",
+    "categories": [
+      "Design"
+    ],
+    "award": "Cannes Lions 2025 Design Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Design",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "国内"
+    ],
+    "link": "https://blog.google/intl/ja-jp/feed/project-voice/",
+    "videoId": "FSsi_NHiZz0",
+    "overview": "Google Japanが進めるProject VOICE（Valuing Our Individual Communication Expression）。病気や障がいで話すことや体を動かすことが難しい人のコミュニケーションを支える研究開発プロジェクトで、当事者が開発の中心に入る。2025年のカンヌライオンズではDesign部門でBronzeを受賞した。",
+    "background": "Google Japanのブログによれば、重度の身体障がいを持ちながら開発者・起業家として活動する小野克樹さんと協力し、発話や入力が難しい人でも社会に参加できるシステムを目指した。単なる発話補助ではなく、本人の言葉づかいに合う道具を当事者と共に作ることが出発点になっている。",
+    "execution": "GoogleのAIモデルGeminiの文脈予測を使い、少ない操作で文章を作れるようにした。小野さん自身の約5万件の過去の会話データでGeminiをファインチューニングし、本人専用の予測変換モデルに仕立てた。この技術は2025年6月にオープンソースとして無償公開された。制作過程を収めたドキュメンタリー動画も公開されている（Google Japan Blog）。",
+    "evaluationImpact": "カンヌライオンズ2025のDesign部門でBronzeを受賞した。Google Japanのブログによれば、iF Design Awardでも最高賞のGold Awardを受賞し、審査委員会は人間の尊厳とつながりに貢献するプロダクトデザインと評価した。",
+    "tags": [
+      "Tech/AI",
+      "Theme/SocialGood",
+      "Form/Product"
+    ],
+    "thumbnail": "/thumbnails/google-project-voice.jpg"
+  },
+  {
+    "year": "2025",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2025"
+    ],
+    "id": "pangu-cloud-signs-from-heaven",
+    "title": "Signs From Heaven",
+    "summary": "電気も携帯網もないマダガスカルの漁村に、AI気象予測を手描きの看板と部族の記号で伝えた、Huawei Pangu Cloudの嵐の警報システム。",
+    "client": "Pangu Cloud",
+    "agency": "OGILVY, Shanghai / OGILVY, Shenzhen",
+    "categories": [
+      "Design",
+      "Outdoor"
+    ],
+    "award": "Cannes Lions 2025 Design Lions Bronze / Cannes Lions 2025 Outdoor Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Design",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Outdoor",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "アジア",
+      "アフリカ"
+    ],
+    "link": "https://www.ogilvy.com/ap/work/signs-heaven",
+    "videoId": "",
+    "overview": "Huawei Pangu Cloudの気象AIを使い、マダガスカルの沿岸漁民に嵐の接近を知らせる低技術の警報システムMITAO Forecastを、Ogilvy Shanghai、Ogilvy Shenzhenが広告作品として見せた施策。2025年のカンヌライオンズではDesign部門とOutdoor部門でBronzeを受賞した。",
+    "background": "Ogilvyの事例ページによれば、マダガスカルでは電気や携帯ネットワークを使える人が少なく、強い熱帯低気圧が沿岸の漁民の命を奪ってきた。スマートフォンや電力に頼らずに警報を届ける必要があった。Huaweiは、現地のNGOであるMitao Forecastが2023年にPangu-Weatherモデルを見つけて活用したと紹介している。",
+    "execution": "PanguのAI気象モデルが嵐を予測し、その情報をSMSで各地の現地コーディネーターに送る。コーディネーターは、識字力に関係なく読めるよう色分けした部族の記号で、手描きの予報ボードを更新する。最大10日先の危険な天候を、住民が自分の目で見られる看板として伝える（Ogilvy、D&AD）。",
+    "evaluationImpact": "カンヌライオンズ2025のDesign部門とOutdoor部門でそれぞれBronzeを受賞した（Outdoorの受賞はCampaign Briefが報道）。ONE Asiaでも受賞しており、AI技術を現地の暮らしに合う屋外媒体に落とし込んだ点が評価された。",
+    "tags": [
+      "Theme/SocialGood",
+      "Tech/AI",
+      "Tech/Data",
+      "Form/OOH"
+    ],
+    "thumbnail": "/thumbnails/pangu-cloud-signs-from-heaven.jpg"
+  },
+  {
+    "year": "2025",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2025"
+    ],
+    "id": "telstra-donkey",
+    "title": "Donkey",
+    "summary": "電話を飲み込んだ農場のロバが歌ううちに世界的スターになり、やがて家族が恋しくなるTelstraのクリスマス映像（Together is for Christmas）。",
+    "client": "Telstra",
+    "agency": "REVOLVER, Sydney / BEAR MEETS EAGLE ON FIRE, Sydney / +61, Sydney",
+    "categories": [
+      "Film Craft"
+    ],
+    "award": "Cannes Lions 2025 Film Craft Lions Gold / Cannes Lions 2025 Film Craft Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Film Craft",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Film Craft",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/together-is-for-christmas",
+    "videoId": "",
+    "overview": "オーストラリアの通信大手Telstraが、Bear Meets Eagle On Fire、+61、Revolverと制作した90秒のクリスマス広告。歌うロバ「Little Donkey」が世界を巡って有名になり、クリスマスに家族の元へ帰る物語で、ブランド基盤「Wherever We Go」の一部。2025年のカンヌライオンズではFilm Craft部門でGoldとSilverを受賞した。作品名Donkeyは、この広告を指すと判断して記述した（Campaign Briefが同名でRevolver、BMEOF、+61の共同受賞を報じている）。",
+    "background": "2024年11月に公開され、前年のクリスマス広告に続く第2章に当たる。家族と過ごすことをテーマに、通信会社の広告でありながら商品説明ではなく物語を前面に出した。",
+    "execution": "農場主が携帯電話に「Have a Holly Jolly Christmas」を繰り返し流すよう頼み、その歌をロバが覚えて歌い出し、世界的ヒットになる、という筋立て。監督はRevolverのSteve Rogers、撮影はNicolas Karakatsanis、編集はThe EditorsのJack Hutchings。ポストプロダクションはBlockhead VFX、サウンドデザインはRumble Studios、音楽制作はJeremy Richmond（The Stable、Ads of the World）。映像のほか、クリスマスのストッキングや包装紙などのグッズも展開された。",
+    "evaluationImpact": "カンヌライオンズ2025のFilm Craft部門でGoldとSilverを受賞した（Campaign Brief）。同じTelstraの別広告「Better on a Better Network」もFilm CraftでGrand Prixを獲得し、BMEOFは独立系エージェンシー・オブ・ザ・イヤーの一つに選ばれた。",
+    "tags": [
+      "Form/Film",
+      "Theme/Entertainment",
+      "Theme/Music"
+    ],
+    "thumbnail": "/thumbnails/telstra-donkey.jpg"
+  },
+  {
+    "year": "2025",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2025"
+    ],
+    "id": "desperados-guao-guao",
+    "title": "Guao Guao",
+    "summary": "ビール「Desperados」のラテン的な世界観を、コロンビアのプロデューサーとベネズエラのラッパーによる新曲のミュージックビデオで表現した、Gen Z向けの音楽ブランド施策。",
+    "client": "Desperados",
+    "agency": "LEPUB, Milan",
+    "categories": [
+      "Film Craft"
+    ],
+    "award": "Cannes Lions 2025 Film Craft Lions Gold / Cannes Lions 2025 Film Craft Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Film Craft",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Film Craft",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.engage.it/eventi/cannes-lions-sale-il-bottino-dell-italia-grazie-a-lepub-e-landor.aspx",
+    "videoId": "",
+    "overview": "イタリアの広告会社LePub Milanが、Desperadosのために制作した「Guao Guao」。ラテン文化とブランドを結び付ける音楽プラットフォームの中心として、レゲトンの新曲とそのMVを作った。",
+    "background": "Desperadosは「ラテンの雰囲気を持つビール」というコミュニケーションの軸を持つ。Engageの報道によると、本施策はGen Zを意識し、ユーモアとリズムを前面に出した音楽プロジェクトとして設計された。",
+    "execution": "楽曲はコロンビア出身のグラミー受賞プロデューサーOvy On The Drumsが作り、ベネズエラのラッパーMicro TDHが歌う。映像は監督デュオBradley & Pabloが手がけ、市場、路上、パーティーで踊る人々を描く。制作はMassive Music（アムステルダム）とPrettybird（ロンドン）。",
+    "evaluationImpact": "カンヌライオンズ2025のFilm Craft部門でGoldとSilverを受賞した。Social & Creator部門ではショートリスト入りした（Engage報道）。",
+    "tags": [
+      "Theme/Music",
+      "Form/MV",
+      "Form/Film"
+    ],
+    "thumbnail": "/thumbnails/desperados-guao-guao.jpg"
+  },
+  {
+    "year": "2025",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2025"
+    ],
+    "id": "renault-argentina",
+    "title": "Renault - Argentina",
+    "summary": "電動車Megane E-Techの発売に合わせ、アルゼンチンの人々の人生の節目に寄り添ってきたルノーの歴史を、歴代モデルとともに振り返る映像。",
+    "client": "Renault",
+    "agency": "PUBLICIS CONSEIL, Paris",
+    "categories": [
+      "Film Craft"
+    ],
+    "award": "Cannes Lions 2025 Film Craft Lions Gold / Cannes Lions 2025 Film Craft Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Film Craft",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Film Craft",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.autoweb.com.ar/?p=44139",
+    "videoId": "",
+    "overview": "Publicis Conseilが手がけたRenault Argentinaのブランド映像「Historias argentinas」。ルノーとアルゼンチンの長い関係を描き、過去の歩みと100%電動のE-Tech車の未来をつなぐ。",
+    "background": "Autowebの報道によると、2024年4月にブエノスアイレスのテアトロ・コロンでのガライベントで、100%電動のMegane E-Techの発表と同時に紹介された。Publicis CCOのFabio Maziaは、つながりと思い出に満ちた感覚的なキャンペーンだと説明している。",
+    "execution": "アルゼンチン各地で撮影し、広大な風景、都市の風景、スポーツの勝利への反応、日常の場面、歴代の象徴的なモデルを重ねる。音楽はThe Carsの「Drive」（1984年）。監督は集団PanteraとPublicis ConseilアルゼンチンのエグゼクティブクリエイティブディレクターMarcelo Vergara、制作はMadrefoca（メキシコシティ）。",
+    "evaluationImpact": "カンヌライオンズ2025のFilm Craft部門でGoldとSilverを受賞した。",
+    "tags": [
+      "Form/Film",
+      "Theme/Mobility"
+    ],
+    "thumbnail": "/thumbnails/renault-argentina.jpg"
+  },
+  {
+    "year": "2025",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2025"
+    ],
+    "id": "life360-coffin",
+    "title": "Coffin",
+    "summary": "葬儀で棺の中から助けを呼ぶ声が響き、遺体が転がり出るというブラックユーモアで、家族の見守りアプリLife360とTileの安心機能を伝えた広告。",
+    "client": "Life360",
+    "agency": "ALTO, New York",
+    "categories": [
+      "Film Craft"
+    ],
+    "award": "Cannes Lions 2025 Film Craft Lions Silver / Cannes Lions 2025 Film Craft Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Film Craft",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Film Craft",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/family-proof-your-family",
+    "videoId": "",
+    "overview": "Life360とAlto New Yorkによる「Family-Proof Your Family」キャンペーンの1本。小さな行き違いが大騒動になる場面を、短い映像シリーズで描いた。",
+    "background": "Muse by Cliosの報道によると、2024年10月24日にTV、デジタル、屋外、SNSで展開した。Life360のCMO Mike Zemanは、小さな問題が大きな不安の種になるのを防ぐツールだと説明している。ブランドが避けがちな不穏な題材をあえて使う点が特徴とされる。",
+    "execution": "Ads of the Worldの事例ページによると、母の葬儀でトイレに入った女性がドアノブの故障で閉じ込められ、助けを求める声に教会が静まり返る。弟が棺を開けて遺体が転がり出る。その後、TileのSOSボタンを押せばLife360のサークルや緊急連絡先に通知が届く、という別の展開を見せる。シリーズは他に「Coat」「Curfew」。監督はMJZのSteve Ayson。",
+    "evaluationImpact": "カンヌライオンズ2025のFilm Craft部門でSilverとBronzeを受賞した。",
+    "tags": [
+      "Form/Film",
+      "Tech/Device"
+    ],
+    "thumbnail": "/thumbnails/life360-coffin.jpg"
+  },
+  {
+    "year": "2025",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2025"
+    ],
+    "id": "volvo-cars-moments",
+    "title": "Moments",
+    "summary": "Volvo EX90が事故を一瞬で防いだことで、生まれる前の娘の人生の場面が「起きた未来」として残る、父親の想像を描いたブランドフィルム。",
+    "client": "Volvo Cars",
+    "agency": "STENDAHLS, Gothenburg / VOLVO CARS, Goteborg",
+    "categories": [
+      "Film Craft"
+    ],
+    "award": "Cannes Lions 2025 Film Craft Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Film Craft",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.selfstorming.com/tools/libraries/campaigns/moments-that-never-happened",
+    "videoId": "",
+    "overview": "Stendahlsが制作したVolvo Cars EX90のフィルム「Moments That Never Happen」。2017年の同社広告「Moments」の精神的な続編と位置付けられている。",
+    "background": "Selfstormingの事例ページによると、本作は2017年の広告「Moments」に続くものとして作られた。Shotsは、死の直前に人生が走馬灯のように見えるという通念をひねった作品と紹介している。",
+    "execution": "約4分で、妊娠を知る夫婦から始まり、父親が思い描く娘の人生の節目をダブルエクスポージャーとソフトフォーカスで重ねる。EX90のSafeSpace技術が未来を可能にしたことを示す。監督はnew-landのMarcus Ibanez、撮影は『オッペンハイマー』で知られるHoyte van Hoytema。公開は2024年9月（Shots）。",
+    "evaluationImpact": "カンヌライオンズ2025のFilm Craft部門でSilverを受賞した。new-landの報告では、受賞内訳はCinematographyとEditingのSilver。スウェーデンのGuldägget 2026でもCraft部門のGoldを受賞した。",
+    "tags": [
+      "Form/Film",
+      "Theme/Mobility"
+    ],
+    "thumbnail": "/thumbnails/volvo-cars-moments.jpg"
+  },
+  {
+    "year": "2025",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2025"
+    ],
+    "id": "kfc-believe-in-chicken",
+    "title": "Believe In Chicken",
+    "summary": "人生はあてにならないが、チキンは信じられるという「信仰」の設定で、KFC UK&Irelandのブランドを語り直したローンチ映像。",
+    "client": "Kfc",
+    "agency": "MOTHER, London",
+    "categories": [
+      "Film Craft"
+    ],
+    "award": "Cannes Lions 2025 Film Craft Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2025,
+        "category": "Film Craft",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://shots.net/news/view/kfcs-poultry-beliefs",
+    "videoId": "",
+    "overview": "Mother Londonが手がけたKFC UK&Irelandの「Believe in Chicken」。同社の英国での最大規模のブランドキャンペーンとして、2024年6月に公開した。",
+    "background": "Ads of the Worldの記載によると、人生は不確かでがっかりすることがある一方、チキンは「いつも美味しく、いつもそこにあり、いつもクリスピー」だという考えを軸にする。コピーは「Believe. In. Chicken.」。事前に屋外広告で「believe in the original」などの意味深なコピーを出した。",
+    "execution": "Shotsによると、映像では軽食中の人々が、ファンキーなチキンのビートに合わせて体を揺らし始め、その笑顔にどこか不気味な気配が混じる。監督はシュールな演出で知られるVedran Rupic、制作はBusiness Club（ロンドン）、撮影はNico Poulsson。公開時のクリエイティブはMotherのFelix RichterとMartin Rose。",
+    "evaluationImpact": "カンヌライオンズ2025のFilm Craft部門でSilverを受賞した。同キャンペーンは2025年3月に続編が公開されるなど、シリーズとして続いている。",
+    "tags": [
+      "Form/Film",
+      "Theme/Food"
+    ],
+    "thumbnail": "/thumbnails/kfc-believe-in-chicken.jpg"
   }
 ]
