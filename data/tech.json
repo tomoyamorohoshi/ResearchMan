@@ -1,5 +1,157 @@
 [
   {
+    "id": "spell",
+    "title": "SpeLL",
+    "org": "GIST HCIS Lab（Jeongseok Oh, SeungJun Kim）",
+    "type": "Prototype",
+    "domains": [
+      "CreatorTools",
+      "AI/Agents",
+      "GenVideo"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "「炎の竜巻」「剣の斬撃」といった文章から、Unity上で後から調整できる3D VFX（視覚効果）の下書きを作る研究。UIST 2026採択。",
+    "point": "すごいのは、文章を入れるだけで3D空間の爆発・炎・斬撃といったエフェクトの「下書き」が、あとから手で直せる形で出てくることです。最近の動画生成AIは完成した映像を一発で出しますが、気に入らない所だけ直すのは苦手です。SpeLLは出力がUnityの部品（形状・ノイズ模様・パーティクル）の組み合わせなので、デザイナーがいつもの操作で色・大きさ・発生タイミングを調整できます。20人のプロのVFXデザイナーによる評価でも、意図の反映、空間と時間の配置、直しやすさが比較手法より良かったと報告されています。広告・体験づくりでは、ゲーム風プロモーション、イベントのインタラクティブ演出、AR/VRのエフェクトなどで、企画段階に「こんな演出」を素早く複数案つくって見せ、決まった案だけ職人が仕上げる流れが作れそうです。ただしコードは未公開なので、今は動向を押さえる段階です。",
+    "detail": "仕組みは3段階です。まず大規模言語モデル（ChatGPTのような文章AI）が、短い依頼文を「どんな部品がいるか」「どこに置くか」「どの順で発動するか」という詳しい設計メモに膨らませます。次に、あらかじめ用意された素材ライブラリ（メッシュ＝立体の形、タイル状ノイズ模様、パーティクル＝粒子の発生源）から、設計メモに合うものを検索して組み立てます。最後に、各部品の位置・大きさ・発動の順番をAIが調整し、Unityのパラメータ付きの下書きとして出力します。料理にたとえると、完成品の写真を作るのではなく、材料と手順書をそろえて渡してくれるイメージです。\n\n従来のテキストから3D生成は、形が固まった塊が出てくるだけで、エフェクトの「時間の流れ」や「後からの微調整」に弱いのが課題でした。SpeLLはプロのVFXデザイナーへの事前調査をもとに、下書きを素早く出して最終調整は人に任せる設計になっています。\n\n使うには、現時点では論文とプロジェクトページのデモ動画・作例を見る形になります。GitHubにはUnityクライアントやサーバーの置き場が用意されていますが、実行できる実装は未公開（Code coming soon）です。公開されれば、Unityの基本操作と、LLMを動かす環境（外部APIまたはローカルモデル）が必要になる見込みです。費用や商用利用条件は公開時のライセンス次第です。",
+    "license": {
+      "spdx": null,
+      "commercial": "none",
+      "note": "論文はCC BY 4.0。実装コードは未公開（Code coming soon）で、実装のライセンスも未定。デモに使われた第三者アセットの再配布権は付与されない。"
+    },
+    "links": [
+      {
+        "kind": "project",
+        "url": "https://stan5dard.github.io/SpeLL-project/"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/stan5dard/SpeLL-project"
+      },
+      {
+        "kind": "paper",
+        "url": "https://doi.org/10.1145/3830398.3830697"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/spell.jpg",
+    "relatedWorks": [
+      {
+        "title": "DreamFusion",
+        "description": "文章から3Dモデルを作る代表的な先行研究。形は作れるがエフェクトの時間変化と編集性は弱い。",
+        "url": "https://dreamfusion3d.github.io/"
+      },
+      {
+        "title": "MBits (UIST 2026)",
+        "description": "同じUIST 2026の、3Dプリントで振動に反応する物体の動きを設計する研究。",
+        "url": "https://make.kaist.ac.kr/project/2026-mbits"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "declarative-dragging",
+    "title": "Declarative Dragging（Dragology）",
+    "org": "Joshua Horowitz, Andrew Blinn, Jeffrey Heer（UIST 2026 Best Paper）",
+    "type": "Research",
+    "domains": [
+      "HCI/MediaArt",
+      "CreatorTools"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "「ドラッグしたらどの状態に変わるか」だけを書けば、滑らかなドラッグ操作が自動で作れるWebライブラリ。UIST 2026のBest Paper受賞。",
+    "point": "すごいのは、ドラッグの動きを細かくプログラムしなくても、「この要素を動かしたら、次はこの状態になる」という結果だけを書けば、吸着・浮遊・アニメーションまで含めた気持ちよいドラッグ操作が自動で組み上がることです。通常、ドラッグ操作は座標計算や判定の処理が大量に必要で、作るのが大変でした。公式ページには、代数の式ツリー、ベジェ曲線、編み込み、トランプの山、プログラムのリファクタリングなどを直接つかんで動かせるデモが並びます。広告・体験づくりでは、商品の仕様や組み合わせをユーザーが触って試せるWebコンテンツ、キャンペーンサイトの触れる図解、展示用のインタラクティブなインフォグラフィックなどを短期間で作る場面で役立ちそうです。ゲームパッド操作や3Dへの展開例も示されています。",
+    "detail": "仕組みを身近な例でいうと、将棋の駒を動かす操作を作るとき、「手で動かす軌跡」を書く代わりに「動かした後に考えられる盤面の一覧」を渡すイメージです。開発者は、ある要素をドラッグした時に到達しうるアプリの状態（モデル）を定義します。ライブラリはそれらの状態をあらかじめ描画し、ドラッグ中の要素が各状態の中でどこに着地するかを調べ、その間をなめらかにつないで操作を作ります。単純な挙動は、浮遊・吸着・遷移などの部品を重ねて組み合わせることもできます。\n\n従来は、ドラッグの座標処理、当たり判定、ドラッグ中の見た目、アニメーションを開発者が個別に書く必要がありました。Declarative Draggingは、その部分を「状態のつながり」の宣言に置き換えます。対象はSVGで作ったWebインターフェースです。\n\n使うには、Webの基本的な開発知識（JavaScript／TypeScriptとnpm）が必要です。npm install dragology で導入でき、ライセンスはMIT、無料です。リポジトリにはsrcとデモコード（src/demos）、Viteの利用例（examples/consumer）があり、手元で動かして確認できます。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "GitHubでMIT表記を確認。npmパッケージ dragology としても公開されている。"
+    },
+    "links": [
+      {
+        "kind": "project",
+        "url": "https://declarative-dragging.github.io/"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/declarative-dragging/dragology"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=l7v-UwpsEbk"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/declarative-dragging.jpg",
+    "relatedWorks": [
+      {
+        "title": "dnd kit",
+        "description": "ReactのドラッグアンドドロップUI用の定番ライブラリ。操作の挙動は開発者が組み立てる方式。",
+        "url": "https://dndkit.com/"
+      },
+      {
+        "title": "GSAP Draggable",
+        "description": "ドラッグ・慣性・スナップを扱うアニメーション向けプラグイン。",
+        "url": "https://gsap.com/docs/v3/Plugins/Draggable/"
+      },
+      {
+        "title": "Motion",
+        "description": "Webアニメーションとジェスチャーのライブラリ。",
+        "url": "https://motion.dev/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "mirror-skin",
+    "title": "Mirror Skin",
+    "org": "Saarland University Human Computer Interaction Lab（David Wagmann, Matti Krüger, Chao Wang, Michael Gienger, Jürgen Steimle）",
+    "type": "Prototype",
+    "domains": [
+      "HCI/MediaArt",
+      "Motion/Body"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "ロボットの皮膚に「これから触れる人の体の部位」を映し出し、いつ・どこに触れるかを事前に知らせる表示手法。UIST 2026採択。",
+    "point": "すごいのは、ロボットが人に触れる前に、その皮膚の表面へ「触れる相手の体の部位」を鏡のように映し出し、誰が・どこに・いつ触れようとしているかを一目で伝えるところです。タコやイカが体表の模様で意思を示す仕組みをヒントにしています。介護や理学療法のロボットが突然触れると人は驚きますが、この表示があると、触れる前に心の準備ができます。VR上の実験と実機の試作で、触れる意図を読み取る正確さと反応の速さが有意に上がり、体験の評価も良くなったと報告されています。広告・体験づくりでは、ロボットや触覚インスタレーションの「次に何が起きるか」を来場者に伝える演出、体に触れる展示の安心感のデザイン、表面がディスプレイになる立体物の見せ方の発想源になりそうです。",
+    "detail": "仕組みは、ロボットの皮膚そのものを表示面にして、触れる相手の体の部位（たとえば手のひらや腕）の像を、触れる場所に対応した位置へ映すというものです。鏡で自分の姿を見るように、触れる側と触れられる側の対応が一目でわかります。設計は専門家との構造化された検討を経て決められ、触れる主体、場所、直前のタイミングを表現しています。これを概念実証用の試作機で動かし、さらにVR環境でも比較実験をしています。\n\n従来のロボットは、音や光、腕の動き方などで意図を伝えることが多く、「どこに触れるか」を直接示すのは苦手でした。Mirror Skinは触れる場所の上に直接情報を出すので、見る場所と触れられる場所がずれません。\n\n使うには、現時点では論文（PDF）とプロジェクトページの動画で内容を確認する形です。コードは公開されていないため、再現には曲面ディスプレイや皮膚状の表示素材、ロボットアームなどの機材と開発が必要になります。展示や演出に使うなら、表示面の設計と安全面の検討から始めるのが現実的です。",
+    "license": {
+      "spdx": null,
+      "commercial": "none",
+      "note": "コード公開なし。論文とプロジェクトページのみ。"
+    },
+    "links": [
+      {
+        "kind": "project",
+        "url": "https://hci.cs.uni-saarland.de/?p=4015"
+      },
+      {
+        "kind": "paper",
+        "url": "https://hci.cs.uni-saarland.de/wp-content/uploads/projects/human_robot_interaction/mirror_skin/paper.pdf"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/mirror-skin.jpg",
+    "relatedWorks": [
+      {
+        "title": "MBits (UIST 2026)",
+        "description": "3Dプリントのばね質量ユニットで、物体の振動への反応を設計する研究。",
+        "url": "https://make.kaist.ac.kr/project/2026-mbits"
+      },
+      {
+        "title": "空中超音波の触覚で猫に触れる研究（CHI 2026）",
+        "description": "非接触の触覚提示でバーチャルな猫との触れ合いを体験させ、リラックス効果を調べた研究。",
+        "url": "https://www.itmedia.co.jp/news/articles/2604/30/news040.html"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "viggle-remake",
     "title": "Viggle Remake",
     "org": "Viggle AI",
