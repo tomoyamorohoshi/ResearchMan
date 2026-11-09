@@ -1,7 +1,7 @@
 {
   "_description": "Exhibitionタブ日次ジョブ(scripts/auto-research-exhibition.mjs)がプロンプトに読み込む機械可読プロファイル。根拠は docs/EXHIBITION_RESEARCH.md。重みやしきい値の更新は隔週チューンアップ(お気に入り/ごみ箱/intake)経由。sources.urlは2026-10-04に取得確認済みのもののみ",
   "version": 1,
-  "updatedAt": "2026-10-26",
+  "updatedAt": "2026-11-09",
   "scope": {
     "region": "日本全国（地域で差をつけない）",
     "includeStatuses": [
@@ -211,7 +211,12 @@
       "teamLab(要個別判断)",
       "YOSHIROTTEN",
       "瀬戸内サーカスファクトリー",
-      "STARRYWORKS inc."
+      "STARRYWORKS inc.",
+      "小村雪岱",
+      "玉山拓郎",
+      "高木由利子",
+      "三澤遥",
+      "三澤デザイン研究室"
     ],
     "venues": [
       "NEORT++",
@@ -228,7 +233,12 @@
       "KARIMOKU RESEARCH CENTER",
       "瀬戸内市立美術館",
       "KK線（旧東京高速道路）",
-      "BONDED GALLERY"
+      "BONDED GALLERY",
+      "資生堂ギャラリー",
+      "GYRE GALLERY",
+      "KANDA SQUARE HALL",
+      "真宗大谷派 東本願寺 大玄関",
+      "TOKYO NODE GALLERY A/B/C・SKY GARDEN & POOL"
     ],
     "discoveryQueries": [
       "メディアアート 展覧会 {月}",
