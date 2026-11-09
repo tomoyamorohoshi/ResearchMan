@@ -86672,7 +86672,10 @@
       "Form/Film",
       "Form/Event"
     ],
-    "thumbnail": "/thumbnails/itau-the-value-of-time.jpg"
+    "thumbnail": "/thumbnails/itau-the-value-of-time.jpg",
+    "quarantined": true,
+    "quarantineReason": "応募作と施策の対応が応募文以外で確認できない（推定で紐付け）",
+    "quarantineTs": "2026-11-09T17:22:02.437Z"
   },
   {
     "year": "2024",
