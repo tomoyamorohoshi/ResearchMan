@@ -1,7 +1,102 @@
 {
   "version": 1,
-  "statusAsOf": "2026-11-08",
+  "statusAsOf": "2026-11-09",
   "items": [
+    {
+      "id": "2026-takamatsu-art-museum-ugoku-ten-art-of-light-sound-motio",
+      "slug": "2026-takamatsu-art-museum-ugoku-ten-art-of-light-sound-motio",
+      "title": "動く！展 ―光と音と運動の芸術",
+      "artists": [
+        "田中敦子",
+        "城之内元晴",
+        "山口勝弘",
+        "ヨシダミノル",
+        "宮島達男",
+        "ヤノベケンジ",
+        "宮永愛子",
+        "石田尚志",
+        "後藤映則",
+        "赤松音呂",
+        "飯川雄大",
+        "鴻池朋子"
+      ],
+      "venue": "高松市美術館",
+      "venueType": "museum",
+      "prefecture": "香川県",
+      "city": "高松市",
+      "startDate": "2026-10-10",
+      "endDate": "2026-11-29",
+      "status": "ongoing",
+      "admission": "一般1,200円 / 大学生600円 / 高校生以下無料",
+      "tags": [
+        "kinetic",
+        "light",
+        "sound",
+        "installation",
+        "video_art",
+        "media_art"
+      ],
+      "score": 68,
+      "matchReason": "公式ページによれば、同館コレクションを軸に「動く」をキーワードとして、光・音・映像・観客参加型の作品で戦後日本の現代美術を振り返る展覧会。出品作家に田中敦子、山口勝弘、ヨシダミノル、宮島達男、後藤映則らが含まれる。会期は2026-11-29まで残り20日。",
+      "sources": [
+        {
+          "name": "動く！展 ―光と音と運動の芸術",
+          "url": "https://www.city.takamatsu.kagawa.jp/museum/takamatsu/event/exhibitions/exhibition_2026/exhibition_2026/ex_20261010.html",
+          "kind": "official"
+        },
+        {
+          "name": "Tokyo Art Beat",
+          "url": "https://www.tokyoartbeat.com/events/-/Art-that-Moves-Kinetic-Art-Exhibition-The-Art-of-Light-Sound-and-Movement/5-AC5-F3-C6/2026-10-10",
+          "kind": "listing"
+        }
+      ],
+      "link": "https://www.city.takamatsu.kagawa.jp/museum/takamatsu/event/exhibitions/exhibition_2026/exhibition_2026/ex_20261010.html",
+      "thumbnail": "/thumbnails/exhibition/2026-takamatsu-art-museum-ugoku-ten-art-of-light-sound-motio.jpg",
+      "addedAt": "2026-11-09T01:50:22.806Z",
+      "origin": "auto",
+      "highlight": false
+    },
+    {
+      "id": "2026-taro-nasu-philippe-parreno-4-freestanding-walls",
+      "slug": "2026-taro-nasu-philippe-parreno-4-freestanding-walls",
+      "title": "フィリップ・パレーノ「4 Freestanding Walls」",
+      "artists": [
+        "フィリップ・パレーノ"
+      ],
+      "venue": "TARO NASU",
+      "venueType": "gallery",
+      "prefecture": "東京都",
+      "city": "港区",
+      "startDate": "2026-10-30",
+      "endDate": "2026-11-28",
+      "status": "ongoing",
+      "admission": "無料",
+      "tags": [
+        "installation",
+        "light",
+        "sculpture",
+        "video_art"
+      ],
+      "score": 65,
+      "matchReason": "公式ページで会期（2026年10月30日〜11月28日）を確認。美術手帖の展覧会ページには、点灯するマーキー彫刻や「Happy Ending」シリーズなど光を軸にした空間インスタレーションで、映像・音も扱う作家と記載がある。",
+      "sources": [
+        {
+          "name": "フィリップ・パレーノ「4 Freestanding Walls」",
+          "url": "https://www.taronasugallery.com/exhibition/current/",
+          "kind": "official"
+        },
+        {
+          "name": "美術手帖 展覧会",
+          "url": "https://bijutsutecho.com/exhibitions/19003",
+          "kind": "listing"
+        }
+      ],
+      "link": "https://www.taronasugallery.com/exhibition/current/",
+      "thumbnail": "/thumbnails/exhibition/2026-taro-nasu-philippe-parreno-4-freestanding-walls.jpg",
+      "addedAt": "2026-11-09T01:49:23.835Z",
+      "origin": "auto",
+      "highlight": false
+    },
     {
       "id": "2026-mon-takanawa-eternal-art-space-resonance-2026",
       "slug": "2026-mon-takanawa-eternal-art-space-resonance-2026",
@@ -206,7 +301,7 @@
       "city": "京都市下京区",
       "startDate": "2026-11-01",
       "endDate": "2026-11-08",
-      "status": "ongoing",
+      "status": "ended",
       "admission": "無料",
       "tags": [
         "graphic_design",
@@ -412,7 +507,7 @@
       "city": "渋谷区",
       "startDate": "2026-11-08",
       "endDate": "2026-11-08",
-      "status": "ongoing",
+      "status": "ended",
       "admission": "ADV ¥2,500+1D ／ DOOR ¥3,000+1D",
       "tags": [
         "sound",
@@ -450,7 +545,7 @@
       "city": "千代田区",
       "startDate": "2026-11-01",
       "endDate": "2026-11-08",
-      "status": "ongoing",
+      "status": "ended",
       "admission": "UNKNOWN",
       "tags": [
         "installation",
@@ -537,7 +632,7 @@
       "city": "渋谷区",
       "startDate": "2026-10-30",
       "endDate": "2026-11-08",
-      "status": "ongoing",
+      "status": "ended",
       "admission": "無料",
       "tags": [
         "sound",
@@ -1095,7 +1190,7 @@
       "city": "品川区",
       "startDate": "2026-11-04",
       "endDate": "2026-11-08",
-      "status": "ongoing",
+      "status": "ended",
       "admission": "UNKNOWN",
       "tags": [
         "installation",
@@ -1382,7 +1477,7 @@
       "city": "台東区",
       "startDate": "2026-10-31",
       "endDate": "2026-11-08",
-      "status": "ongoing",
+      "status": "ended",
       "admission": "無料",
       "tags": [
         "media_art",
@@ -1442,7 +1537,7 @@
       "city": "新宿区",
       "startDate": "2026-09-29",
       "endDate": "2026-11-08",
-      "status": "ongoing",
+      "status": "ended",
       "admission": "一般800円 / 大学生600円 / 65歳以上・高校生以下無料",
       "tags": [
         "media_art",
