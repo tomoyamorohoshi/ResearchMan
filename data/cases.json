@@ -82544,5 +82544,661 @@
       "Form/App"
     ],
     "thumbnail": "/thumbnails/kvi-brave-fund-inc-voice-2-diabetes.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "amazon-web-services-vanishing-emails",
+    "title": "Vanishing Emails",
+    "summary": "期限切れの販促メールを自動で見つけて削除し、受信箱に溜まるデータ量と保管に伴うCO2排出を減らそうとしたツール。",
+    "client": "Amazon Web Services",
+    "agency": "VML, Lima",
+    "categories": [
+      "Innovation"
+    ],
+    "award": "Cannes Lions 2024 Innovation Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Innovation",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://vml.com/work/vanishing-emails",
+    "videoId": "",
+    "overview": "AWSのクラウド基盤を使い、VMLペルー（リマ）がSlalomと組んで作ったWebツール。不要になった販促メールを自動で整理し、メール保管の環境負荷を下げることを狙った。",
+    "background": "Slalomの事例ページによれば、受信箱に残り続ける期限切れの販促メールは保管用のストレージ需要を増やし、CO2排出につながる。メール1通は小さくても、数が膨大なため、ユーザーが手作業で消さなくても済む仕組みを作ろうとした。",
+    "execution": "送信元、件名、本文のパターンから販促メールを判別し、期限切れのものにタグを付けて削除する。画面には削除による環境面の効果を「カーボン換算」で日常的な量に置き換えて表示する。複数のブランドのメールに対応する設計で、技術面ではAmazon Bedrock、AWS Lambda、Amazon API Gateway、Next.js、Gmail APIなどが使われている（VML・Slalomの公開情報）。",
+    "evaluationImpact": "カンヌライオンズ2024のInnovation部門でBronzeを受賞した。独立した報道で確認できた成果数値はなく、ここでは受賞のみを記す。",
+    "tags": [
+      "Theme/Sustainability",
+      "Tech/AI",
+      "Tech/Web",
+      "Tech/Data"
+    ],
+    "thumbnail": "/thumbnails/amazon-web-services-vanishing-emails.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "stream2sea-reef-relief",
+    "title": "Reef Relief",
+    "summary": "肌を紫外線から守りつつ、絶滅の危機にあるサンゴ礁の成長を助けることを狙って作られた日焼け止め。",
+    "client": "Stream2Sea",
+    "agency": "McCANN DEMAND, London",
+    "categories": [
+      "Innovation"
+    ],
+    "award": "Cannes Lions 2024 Innovation Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Innovation",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://lbbonline.com/news/stream2sea-develops-first-scientifically-proven-sunscreen-to-nourish-endangered-coral-reefs",
+    "videoId": "",
+    "overview": "サンゴに有害な成分を避けるだけでなく、サンゴを養う成分を配合した日焼け止め。Stream2SeaとMcCann Demandが、英ダービー大学の研究と組んで開発した。",
+    "background": "日焼け止めの成分がサンゴ礁に害を与えるという問題を受け、これまでの「害を減らす」製品から一歩進めて「サンゴに役立つ」製品を目指した。LBBの報道によれば、ダービー大学のMichael Sweet教授ら研究側の知見が開発の土台になっている。",
+    "execution": "日焼け止めの処方をサンゴへの影響の面から科学的に検証し、「Reef Relief」として発表した。あわせて、ダービー大学とMcCannが、製品がサンゴ礁に与える影響を示す認証「Reef Protection Factor（RPF）」を開発したと報じられている。製品名は後に「Coral Care」へ変更された。",
+    "evaluationImpact": "カンヌライオンズ2024のInnovation部門でBronzeを受賞した。サンゴ成長率などの数値は代理店・ブランド側の資料に由来するため記載せず、独立した検証結果は確認できていない。",
+    "tags": [
+      "Theme/Sustainability",
+      "Form/Product",
+      "Theme/Health"
+    ],
+    "thumbnail": "/thumbnails/stream2sea-reef-relief.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "google-contrails-making-flying-more-sustainable-with-google-ai",
+    "title": "Contrails: Making Flying More Sustainable With Google Ai",
+    "summary": "航空機が作る飛行機雲（コントレイル）の発生しやすい空域をAIで予測し、パイロットが高度を変えて避ける実証を進めたGoogleの取り組み。",
+    "client": "Google",
+    "agency": "GOOGLE, Mountain View / GOOGLE CREATIVE / LAB, New York",
+    "categories": [
+      "Innovation",
+      "Sustainable Development Goals"
+    ],
+    "award": "Cannes Lions 2024 Innovation Lions Bronze / Cannes Lions 2024 Sustainable Development Goals Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Innovation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Sustainable Development Goals",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://blog.google/innovation-and-ai/technology/ai/ai-airlines-contrails-climate-change/",
+    "videoId": "",
+    "overview": "Google ResearchがAmerican Airlines、Breakthrough Energyと進めた飛行機雲の回避実験。航空の気候影響のうち、CO2以外の要因である飛行機雲を減らすことを狙った。なお2024年のカンヌ応募文は確認できておらず、本文はこの実証に関する報道に基づく。",
+    "background": "Trellisの報道によれば、飛行機雲は航空が地球温暖化に与える影響の約35%を占めるとIPCCが推定している。湿度の高い空域を避けるだけで発生を抑えられるとの研究があり、その実用化が課題だった。",
+    "execution": "衛星画像、気象データ、飛行経路データをAIで解析して飛行機雲の予測マップを作成。American Airlinesのパイロット70人が6か月間、このマップを見て飛行機雲ができにくい経路を選んだ（Trellis）。",
+    "evaluationImpact": "Trellisの報道では、試験飛行で衛星画像上の飛行機雲が54%減った。回避した便は燃料が約2%増えたが、対象を一部の便に絞れば航空会社全体では0.3%程度まで抑えられる見込みとされ、Googleは1tあたり5〜25ドル（CO2換算）での実施を見込む。カンヌライオンズ2024でInnovation部門Bronze、Sustainable Development Goals部門Silverを受賞した。",
+    "tags": [
+      "Tech/AI",
+      "Tech/Data",
+      "Theme/Sustainability",
+      "Theme/Mobility"
+    ],
+    "thumbnail": "/thumbnails/google-contrails-making-flying-more-sustainable-with-google-ai.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "heineken-the-gaming-fridge",
+    "title": "The Gaming Fridge",
+    "summary": "冷蔵庫の中にゲーミングPCを組み込み、ゲーム中に席を立たずに冷えたビールが飲めるようにしたHeinekenのプロダクト。",
+    "client": "Heineken",
+    "agency": "LEPUB, Milan / LEPUB, Sao Paulo",
+    "categories": [
+      "Entertainment Lions for Gaming"
+    ],
+    "award": "Cannes Lions 2024 Entertainment Lions for Gaming Silver / Cannes Lions 2024 Entertainment Lions for Gaming Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州",
+      "南米"
+    ],
+    "link": "https://www.marketingdive.com/news/heineken-gaming-PC-beer-marketing-Brazil/692688/",
+    "videoId": "",
+    "overview": "HeinekenブラジルとLePubが作った「TH3 G4M1NG FR1DG3」。Heineken 0.0の冷蔵庫を改造してPCを内蔵し、ゲーマーのための家具兼PCとして発表した。",
+    "background": "Marketing Diveによれば、自作PCを改造するモッダーの間では、すでにPCに冷蔵庫を付ける例があった。Heinekenの「Not All Nights Out are Out」キャンペーン（2023年3月開始）が掲げる、自宅でゲームを楽しむ夜を社交の場にするという狙いに合わせ、これを製品にした。",
+    "execution": "LePubのイノベーション部門LeGarageが制作。能動的な空気循環、整流板、強制送風を備えた冷却機構で結露を抑え、ビールとPC部品を同じ筐体で冷やす。Muse by Clioによれば、収納は12〜16本、ビールは約2℃に保たれ、PC部品は高負荷時も40℃未満とされる。製作は10台で、ブラジルのTwitch配信者Gaulesのフォロワー向けプレゼントや、配信番組「Aprovado」への登場、リーグ・オブ・レジェンドの大会（CBLoL 2023）の優勝チームへの贈呈などで展開した。",
+    "evaluationImpact": "カンヌライオンズ2024のEntertainment Lions for GamingでSilverとBronzeを受賞した。独立した報道で確認できた成果数値はない。",
+    "tags": [
+      "Tech/Game",
+      "Form/Product",
+      "Theme/Food",
+      "Tech/Device"
+    ],
+    "thumbnail": "/thumbnails/heineken-the-gaming-fridge.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "brawl-stars-starr-park-cctv",
+    "title": "Starr Park Cctv",
+    "summary": "1995年のStarr Parkを監視カメラ映像で見せ、ゲームの世界観の裏話を6週間かけて探すイベントを『ブロスタ』内で展開した施策。",
+    "client": "Brawl Stars",
+    "agency": "SUPERCELL, Helsinki",
+    "categories": [
+      "Entertainment Lions for Gaming"
+    ],
+    "award": "Cannes Lions 2024 Entertainment Lions for Gaming Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.dandad.org/work/d-ad-awards-archive/starr-park-cctv",
+    "videoId": "",
+    "overview": "SupercellがBrawl Starsの5周年に実施した、6週間のゲーム内スカベンジャーハント。プレイヤーは監視カメラの映像を通じて、ゲームの舞台Starr Parkの過去を探る。",
+    "background": "D&ADの掲載情報によれば、5周年に合わせて物語の背景（ロア）を掘り下げる企画として作られた。制作はSupercell自身で、デザインはBuck Los Angeles、制作にWild、Twisted Mountain Animation、Antfoodが関わった。",
+    "execution": "Unreal Engineで作った仮想の遊園地を、54台のカメラ映像と3万人の来場者の映像として見せる監視室を用意した。プレイヤーは1995年当時のパークを見て回り、アニメ映像、謎めいた日誌、留守番電話のメッセージを通じて、パークが戦場に変わった経緯を明らかにしていく。SNS投稿に隠されたタイムコードで先行のストーリーが開くなど、コミュニティの参加も促した。",
+    "evaluationImpact": "D&ADの審査員は、ファンが作ってきたロアを活かした点、1995年風の懐かしい映像、リアルタイム生成のコンテンツ、コミュニティの投稿を促す仕組みを評価した。カンヌライオンズ2024のEntertainment Lions for GamingでBronzeを受賞し、D&AD 2024でもGaming & Virtual Worldsの部門で入賞した。",
+    "tags": [
+      "Tech/Game",
+      "Theme/Entertainment",
+      "Tech/3D",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/brawl-stars-starr-park-cctv.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "playstation-play-has-no-limits-feat-king-gnu",
+    "title": "Play Has No Limits Feat. King Gnu",
+    "summary": "PlayStationのブランドキャンペーンで、King Gnuの4人が「△○×□」のキャラクターに扮し、合体して巨大な敵と戦う映像と、いいね数でキャラが進化するSNS企画を組み合わせた施策。",
+    "client": "Playstation",
+    "agency": "SIX INC, Tokyo",
+    "categories": [
+      "Entertainment Lions for Gaming"
+    ],
+    "award": "Cannes Lions 2024 Entertainment Lions for Gaming Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.advertimes.com/?p=444053",
+    "videoId": "",
+    "overview": "ソニー・インタラクティブエンタテインメントの「PlayStation」が、ロックバンドKing Gnuと組んで展開した日本向けのブランドキャンペーン「Play Has No Limits “限界突破”」。SIXが制作を担当した。King Gnuの書き下ろし曲『):阿修羅:(』を軸に、CM、SNS、屋外広告を連動させた。",
+    "background": "アドタイムスの報道によれば、SIXのクリエイティブディレクターは、子どもの落書きのような妄想をCGで高品質なエンタメに仕上げることが、PlayStationらしさとKing Gnuらしさの両方につながると語っている。グローバルのスローガン「Play Has No Limits」を日本の生活者になじませることが狙いだった。この狙いは、Hakuhodo Globalの作品紹介ページに基づく。",
+    "execution": "メンバー4人がコントローラーのボタンマーク「△○×□」を表したキャラクターを演じ、ゲームのような世界で巨大モンスター「ダークヌー」に遭遇し、4人が合体した「ジャイアントヌー」で立ち向かう映像を制作した。2023年11月20日にPlayStationのマークとKing Gnuの王冠マークを合わせたロゴを公開し、23日にキャンペーンを開始、24日にテレビCMの放映を始めた。公式Xでは、いいね数に応じてキャラクターが進化する企画（LV.23ドットヌー＝5,028いいね、LV.45ポリゴンヌー＝15,336いいね、LV.99キングヌー＝45,328いいね）を実施した。屋外では、渋谷駅前のヒットビジョンでの映像放映と、原宿20カ所でのグラフィック広告を展開した。",
+    "evaluationImpact": "カンヌライオンズ2024のEntertainment Lions for GamingでBronzeを受賞した。成果の数値は、独立した報道では確認できなかった。",
+    "tags": [
+      "Theme/Music",
+      "Tech/Game",
+      "Form/Film",
+      "Form/SNS",
+      "Form/OOH"
+    ],
+    "thumbnail": "/thumbnails/playstation-play-has-no-limits-feat-king-gnu.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "the-lego-group-lego-fortnite",
+    "title": "Lego Fortnite",
+    "summary": "レゴグループとEpic Gamesが組み、Fortnite内に「レゴ」の世界をつくった協業ゲーム。ブロックで建てて遊ぶサバイバルクラフト体験を、Fortniteのユーザー層に向けて提供した。",
+    "client": "The Lego Group",
+    "agency": "THE LEGO GROUP, Billund",
+    "categories": [
+      "Entertainment Lions for Gaming"
+    ],
+    "award": "Cannes Lions 2024 Entertainment Lions for Gaming Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://digiday.com/marketing/here-is-how-legos-partnership-with-fortnite-stacks-up-as-an-example-of-video-game-brand-marketing",
+    "videoId": "",
+    "overview": "The Lego GroupがEpic Gamesと進める長期提携の最初の大型タイトル「LEGO Fortnite」。2023年12月7日にFortnite内で公開された。Unreal Engineで作られたオープンワールドで、プレイヤーはデジタル化されたレゴブロックで建物などを作れる。なお、2024年の応募内容そのものは応募文以外で確認できなかったため、本項は発売とその後の拡張に関する公開情報に基づく。",
+    "background": "Digidayの分析記事（発売前）によれば、レゴ側は数億人規模とされるFortniteのゲーマー層にアクセスでき、Epic側はRobloxやMinecraftに比べ子ども向けと見られやすい中で、より家族向けのイメージを得られる可能性がある。レゴは1997年の「Lego Island」以来ゲームを手がけてきた。",
+    "execution": "Digidayによれば、LEGO Fortniteの世界は「Fortnite: Battle Royale」の環境の20倍の広さで、開発側は約1万個のレゴブロックをデジタル化した。Epicのアカウントは「Lego Insiders ID」と連携できる。2024年3月にはレゴ公式が、クリエイターがUnreal Editor for FortniteやFortnite Creativeで「LEGO Islands」を制作・公開できるようになったと発表した。",
+    "evaluationImpact": "カンヌライオンズ2024のEntertainment Lions for GamingでBronzeを受賞した。プレイヤー数などの成果数値は、独立した報道では確認できなかった。",
+    "tags": [
+      "Tech/Game",
+      "Theme/Entertainment",
+      "Theme/Education"
+    ],
+    "thumbnail": "/thumbnails/the-lego-group-lego-fortnite.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "diablo-anthem",
+    "title": "Diablo Anthem",
+    "summary": "『ディアブロ IV』の発売に合わせ、HalseyとBTSのSUGAによる主題歌「Lilith」のリミックスとミュージックビデオを公開し、ゲームを音楽ファンの話題にもした施策。",
+    "client": "Diablo",
+    "agency": "72ANDSUNNY, Los Angeles",
+    "categories": [
+      "Entertainment Lions for Gaming"
+    ],
+    "award": "Cannes Lions 2024 Entertainment Lions for Gaming Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://hypebeast.com/2023/6/bts-suga-halsey-diablo-iv-anthem-lilith-music-video-track-release",
+    "videoId": "",
+    "overview": "Blizzard Entertainmentの『ディアブロ IV』の発売時に、72andSunny Los Angelesが制作した主題歌「Lilith (Diablo IV Anthem)」とそのMV。Halseyの楽曲「Lilith」をゲーム向けに作り直し、SUGAが途中から歌唱に加わる。2023年6月5日に公開された。",
+    "background": "72andSunnyは、10年ぶりの新作となる本作の発売に向け、音楽ビデオを積極的に見るYouTubeの視聴者層に届く「不気味なアンセム」を、人気アーティストとの協業で作る方針をとった。この点は応募文由来のため、背景として定性的な記述にとどめる。",
+    "execution": "Hypebeastによれば、MVの監督はHenry Hobson。撮影場所はフランス・カンブレのChapelle des Jésuites（イエズス会礼拝堂）で、ゲームに着想を得た床から天井までの絵画と、約160フィート（約49m）の壁画が使われた。プロジェクションマッピングによる壁画は、ゲーム発売前の2023年3月にThe Drumが報じた「大聖堂に160フィートの悪魔の壁画」と同じ場所での取り組みとされる。楽曲は発売日にあたる6月5日にMVとともに公開された。",
+    "evaluationImpact": "カンヌライオンズ2024のEntertainment Lions for GamingでBronzeを受賞した。成果の数値は、独立した報道では確認できなかった。",
+    "tags": [
+      "Theme/Music",
+      "Tech/Game",
+      "Form/MV",
+      "Theme/Entertainment"
+    ],
+    "thumbnail": "/thumbnails/diablo-anthem.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "gatorade-turf-finder",
+    "title": "Turf Finder",
+    "summary": "交通データを分析して道路が空く時間帯を割り出し、その時間に街の道を一時的なスポーツ用ターフに変えた、Gatoradeのインドでの施策。",
+    "client": "Gatorade",
+    "agency": "LEO BURNETT, Mumbai",
+    "categories": [
+      "Creative Data",
+      "Entertainment Lions for Sport"
+    ],
+    "award": "Cannes Lions 2024 Creative Data Lions Gold / Cannes Lions 2024 Entertainment Lions for Sport Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Data",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment Lions for Sport",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://media4growth.com/ooh-news/leo-burnett-mumbai-strikes-gold-in-creative-data-for-gatorades-turf-finder-campaign-7589",
+    "videoId": "",
+    "overview": "PepsiCo傘下のGatorade（インド）とLeo Burnett Mumbaiによる「Turf Finder」。インドの都市部で遊べる場所が足りないという課題に対し、使われていない時間帯の道路や空き地を、クリケットやバスケットボールができるコートに変えた。",
+    "background": "media4growthとSocial Samosaによれば、インドの都市では若者が気軽に運動できる場所が限られている。そこでGatoradeは、場所そのものを増やすのではなく、既にある街路が空く時間を見つける発想をとった。",
+    "execution": "Social Samosaによれば、Google Mapsとの連携で交通データを分析し、道路が空いている時間帯を特定した。そこに一時的なターフを設置し、ムンバイとグルガオンで実施した。報道によってデータの説明は異なり、Google Mapsのデータとする記事と交通データとする記事がある。対象競技はクリケットとバスケットボール。",
+    "evaluationImpact": "カンヌライオンズ2024のCreative Data部門でGoldを受賞した（インドの2つ目のGold）。Entertainment Lions for SportでもBronzeを受賞している。成果の数値は、独立した報道では確認できなかった。",
+    "tags": [
+      "Tech/Data",
+      "Theme/Sports",
+      "Theme/Mobility",
+      "Form/Event"
+    ],
+    "thumbnail": "/thumbnails/gatorade-turf-finder.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "asdra-absurd-promises",
+    "title": "Absurd Promises",
+    "summary": "2023年のアルゼンチン大統領選の討論会で、候補者の公約が「どれだけ実現しにくいか」をAIでリアルタイムに数値化し、ダウン症の人々に必要な政策の実現しやすさと並べて見せたASDRAの施策。",
+    "client": "Asdra",
+    "agency": "VML, Buenos Aires",
+    "categories": [
+      "Creative Data",
+      "Sustainable Development Goals"
+    ],
+    "award": "Cannes Lions 2024 Creative Data Lions Gold / Cannes Lions 2024 Sustainable Development Goals Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Data",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Sustainable Development Goals",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.cronista.com/economia-politica/de-la-dolarizacion-a-quitar-el-cepo-midieron-con-ia-la-viabilidad-de-las-promesas-de-campana",
+    "videoId": "",
+    "overview": "アルゼンチン・ダウン症候群協会（ASDRA）とVML Argentina（制作は旧Wunderman Thompson Argentinaとされる）による「Absurd Promises」。選挙討論会の最中に各公約の「複雑度（Índice de Complejidad）」を算出してXに投稿し、障害のある人の暮らしを変える簡単な政策の実行を迫った。ハッシュタグは「#PROMESASMÁSFACILES」。",
+    "background": "Cronistaによれば、ASDRAは10年以上求めてきた政策の実施を候補者に迫る活動「SÍNDROME ELECTORAL」を2023年初頭から展開していた。選挙戦の議論が派手な公約に偏る中、実現しやすい政策が置き去りになる状況に注目を集める狙いがあった。",
+    "execution": "AIを使い、討論会中に候補者の公約の難易度をパーセントで算出して投稿した。Cronistaが報じた例では、Mileiの教育バウチャーが2,346%、ドル化が1,953%、中央銀行の廃止が932%、Bullrichの二通貨経済が889%、Massaの来年の財政均衡が210%。これらを、ダウン症の子どもの通常学校への就学（0.3%）や新障害者法（0.01%）といったASDRAの求める政策の数値と並べた。ただし算出方法の詳細は公開されておらず、AIモデルも明示されていない。",
+    "evaluationImpact": "カンヌライオンズ2024でCreative Data部門のGoldとSustainable Development Goals部門のBronzeを受賞した。政策面の成果は、独立した報道では確認できなかった。",
+    "tags": [
+      "Tech/AI",
+      "Tech/Data",
+      "Theme/SocialGood",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/asdra-absurd-promises.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "banco-del-pacifico-gamer-loan",
+    "title": "Gamer Loan",
+    "summary": "ゲームアカウントを融資の担保として認めるよう貸付方針を改め、担保を持てない若者に借入の道を開いたエクアドルの銀行施策。",
+    "client": "Banco Del PacÍFico",
+    "agency": "PARADAIS DDB, Guayaquil",
+    "categories": [
+      "Creative Data",
+      "Direct",
+      "Entertainment Lions for Gaming"
+    ],
+    "award": "Cannes Lions 2024 Creative Data Lions Silver / Cannes Lions 2024 Direct Lions Silver / Cannes Lions 2024 Entertainment Lions for Gaming Gold / Cannes Lions 2024 Entertainment Lions for Gaming Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Data",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Direct",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/gamer-loan",
+    "videoId": "",
+    "overview": "エクアドルのBanco del Pacíficoが、Paradais DDBと組んで2024年2月に発表した施策。オンラインゲームのアカウントを非伝統的な資産として担保に受け入れ、ローンを組めるようにした。",
+    "background": "Ads of the Worldの事例ページによれば、エクアドルの若者の約8割は、銀行が求める担保（車や住宅など）を持たないためローンを組めない。一方で若者はゲームアカウントに継続的に投資しており、それを価値ある資産として扱う発想から生まれた。",
+    "execution": "LBBによれば、同行は貸付方針を更新し、ゲームアカウントを担保として認めた最初の銀行となった。アカウントを検証したうえで市場価値を算定し、承認まで48〜72時間で処理する。Ecuadorの地元紙Vistazoは、この発表を前向きなゲーム文化と若者向け金融のメリットを訴える動画として報じている。",
+    "evaluationImpact": "カンヌライオンズ2024のEntertainment Lions for GamingでGoldとSilver、Creative Data LionsとDirect LionsでそれぞれSilverを受賞した。地元紙Vistazoも、エクアドルの代理店が金獅子を獲得したと報じている。",
+    "tags": [
+      "Tech/Game",
+      "Tech/Data",
+      "Theme/Entertainment"
+    ],
+    "thumbnail": "/thumbnails/banco-del-pacifico-gamer-loan.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "dasa-integrated-health-system-blood-aid",
+    "title": "Blood Aid",
+    "summary": "血液に触れると数秒で血液型が分かる絆創膏を、採血後の患者に配ったブラジルの検査機関Dasaの施策。",
+    "client": "Dasa Integrated Health System",
+    "agency": "DM9, Sao Paulo",
+    "categories": [
+      "Creative Data",
+      "Design",
+      "Direct"
+    ],
+    "award": "Cannes Lions 2024 Creative Data Lions Bronze / Cannes Lions 2024 Design Lions Bronze / Cannes Lions 2024 Direct Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Data",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Design",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Direct",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/blood-aid",
+    "videoId": "",
+    "overview": "ブラジルの診断・医療グループDasaが、DM9 São Pauloと開発した絆創膏。薄い層が血液に触れると血液型を数秒で表示し、採血検査の場で患者が自分の血液型を知れるようにした。",
+    "background": "Ads of the Worldの事例ページによれば、ブラジル人の約40%は自分の血液型を知らない。血液型は特定の病気のなりやすさや、献血の呼びかけに応じる場面で重要になる。",
+    "execution": "通常の絆創膏の代わりにDasa施設の採血後に配布した。患者は血液型を知ったあと、その血液型に関連する健康情報の資料を受け取り、その血液型が不足したときに血液バンクから連絡を受ける登録もできる。Dasa施設のみで配られ、市販はされない。",
+    "evaluationImpact": "カンヌライオンズ2024のCreative Data Lions、Design Lions、Direct LionsでそれぞれBronzeを受賞した。2025年のClio Awardsでも受賞が確認できる。",
+    "tags": [
+      "Theme/Health",
+      "Form/Product",
+      "Tech/Data"
+    ],
+    "thumbnail": "/thumbnails/dasa-integrated-health-system-blood-aid.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "veolia-pulse-of-nature",
+    "title": "Pulse Of Nature",
+    "summary": "ベルギー各地の環境データをリアルタイムで地図化し、自然自身が「優先課題トップ10」を決める形で見せたVeoliaのプラットフォーム。",
+    "client": "Veolia",
+    "agency": "FAMOUSGREY, Brussels",
+    "categories": [
+      "Creative Data"
+    ],
+    "award": "Cannes Lions 2024 Creative Data Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Data",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://aim2flourish.com/innovations/measures-the-heartbeat-of-belgian-nature-to-accelerate-ecological-transformation",
+    "videoId": "",
+    "overview": "環境サービス企業VeoliaとFAMOUSGREY Brusselsによる施策。水質・気候・廃棄物など、ベルギーの環境データを集めて全国地図上に示し、地域ごとの優先すべき環境課題を可視化する。",
+    "background": "環境課題を企業側の都合ではなく、自然の状態から語り直すことを狙った。FamousGreyは複数の政府機関のオープンデータを使っている（LBB報道）。",
+    "execution": "水質や水位、気温・CO2排出量、廃棄物や土壌汚染などのデータの変動から、ベルギーで最も重要な10の環境課題を割り出して地図で示す。Veoliaは2024年4月に、2023年9月から2024年3月までのデータをアースデーに合わせて公開している。",
+    "evaluationImpact": "カンヌライオンズ2024のCreative Data LionsでBronzeを受賞した（Grey公式の受賞報告）。手法や効果を独立に検証した報道は確認できなかった。",
+    "tags": [
+      "Tech/Data",
+      "Form/Website",
+      "Theme/Sustainability"
+    ],
+    "thumbnail": "/thumbnails/veolia-pulse-of-nature.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "rip-curl-virtual-pro",
+    "title": "Rip Curl Virtual Pro",
+    "summary": "GPSサーフウォッチの記録データを使い、世界中のサーファーが自動的に競い合う仮想サーフィン大会を開いたRip Curlの施策。",
+    "client": "Rip Curl",
+    "agency": "VML, Sydney",
+    "categories": [
+      "Creative Data"
+    ],
+    "award": "Cannes Lions 2024 Creative Data Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Creative Data",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://www.adnews.com.au/campaigns/the-rip-curl-virtual-pro-returns-via-vml",
+    "videoId": "",
+    "overview": "Rip CurlとVML Sydneyによる世界初とされる仮想サーフィン大会。Rip CurlのSearch GPSウォッチで記録したセッションのデータを使い、個々のサーファー同士が競う。",
+    "background": "ウォッチの利用データを大会の競技結果に変えることで、実際の波で遊ぶ一般のサーファーを選手として扱える仕組みにした。VMLの紹介では、第1回は記録したサーファーが自動的に参加扱いになるため、本人が競技に参加していると知らない場合もあった。",
+    "execution": "2023年の初回はTourism Fijiが提供し、優勝者は小学校教師のNick Cashinだった。2024年の第2シーズンは西オーストラリア州の観光局が提供して開催された（mi-3、adnewsの報道）。",
+    "evaluationImpact": "カンヌライオンズ2024のCreative Data LionsでBronzeを受賞した。D&ADのWood Pencilも獲得している。",
+    "tags": [
+      "Theme/Sports",
+      "Tech/Data",
+      "Tech/Device"
+    ],
+    "thumbnail": "/thumbnails/rip-curl-virtual-pro.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "tbs-rockseeds",
+    "title": "Rockseeds",
+    "summary": "海底の岩に昆布の苗を守る窪みを彫り、藻場の再生を後押しした、アパレルブランドTBSと海洋保護団体の取り組み。",
+    "client": "Tbs",
+    "agency": "CHANGE AN FCB ALLIANCE, Paris",
+    "categories": [
+      "Sustainable Development Goals"
+    ],
+    "award": "Cannes Lions 2024 Sustainable Development Goals Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Sustainable Development Goals",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.dandad.org/work/d-ad-awards-archive/rockseeds",
+    "videoId": "",
+    "overview": "フランスのブランドTBSがChange（FCB Alliance, Paris）と組み、One Ocean Foundationと進めたプロジェクト。海底の岩に昆布の苗を育てる空間を彫り、岩を昆布の「種」に変える。",
+    "background": "D&ADの紹介によれば、若い昆布は高さ約12cmに育つまで、海水温の上昇する環境で成長を始められない。そこで苗が安全に育つ場所を岩に設けることにした。",
+    "execution": "岩に窪みを彫り、苗が十分に育つまで保護する。D&ADは数千個の岩に適用したとしている。FCBの紹介では、One Ocean Foundationと写真家Alexis Rosenfeldの発信力を使って告知したとされる。",
+    "evaluationImpact": "カンヌライオンズ2024のSustainable Development Goals LionsでSilverを受賞した。2025年のD&ADやThe One Showでも評価されている。",
+    "tags": [
+      "Theme/Sustainability",
+      "Form/Product",
+      "Theme/Fashion"
+    ],
+    "thumbnail": "/thumbnails/tbs-rockseeds.jpg"
   }
 ]
