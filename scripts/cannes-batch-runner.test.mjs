@@ -4,7 +4,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import {
-  selectTargets, filterThumbUrls, chunk, stripWorkNotes, validateDrafts, updateState, emptyState, buildPrompt, runBatch, parseArgs, makeClaudeGroupRunner, buildVocab, extractDrafts,
+  selectTargets, filterThumbUrls, chunk, stripWorkNotes, validateDrafts, updateState, emptyState, buildPrompt, runBatch, parseArgs, makeClaudeGroupRunner, buildVocab, extractDrafts, parseResourceGuard, shouldPause, waitForResources, makeResourceWaiter,
 } from "./cannes-batch-runner.mjs";
 
 const W = (key, cat = "Film", brand = "B", title = key) => ({ key, title, brand, agency: "A", country: "JP", entries: [{ category: cat, level: "Gold" }] });
@@ -294,4 +294,164 @@ test("runBatch: ingest 失敗時は除外申告も state に反映しない", as
 
 test("filterThumbUrls: grey.com（サブドメイン含む）を除外", () => {
   assert.deepEqual(filterThumbUrls(["https://www.grey.com/og.jpg", "https://grey.com/a", "https://i.ytimg.com/vi/a/hq.jpg", "https://notgrey.com/x.jpg"]), ["https://i.ytimg.com/vi/a/hq.jpg", "https://notgrey.com/x.jpg"]);
+});
+
+// ---- 資源待機 ----
+const GUARD_TEXT = `# PC resource guard
+- 更新: 2026-11-09 21:10:05（1分ごと。5分以上古ければ見張りが止まっている）
+- 状態: 正常（注意=コミット残り12GB未満かC:空き8GB未満 / 危険=6GB未満かC:空き3GB未満。危険域が続くとフリーズする）
+- コミット（仮想メモリ）残り: 24.3 / 63.8 GB
+- RAM 空き: 4.7 / 31.8 GB
+- GPU（使用MiB, 総MiB, 使用率%）: 0, 16384, 0
+- C: 空き: 85.2 GB
+`;
+const NOW = new Date(2026, 10, 9, 21, 12, 0);
+const mkGuard = (commit, disk, updatedAt = new Date(2026, 10, 9, 21, 10, 5)) => ({ updatedAt, commitFreeGB: commit, diskFreeGB: disk });
+
+test("parseResourceGuard: 実物テキスト（状態行の数字は拾わない）", () => {
+  const g = parseResourceGuard(GUARD_TEXT);
+  assert.equal(g.commitFreeGB, 24.3);
+  assert.equal(g.diskFreeGB, 85.2);
+  assert.deepEqual([g.updatedAt.getFullYear(), g.updatedAt.getMonth(), g.updatedAt.getDate(), g.updatedAt.getHours(), g.updatedAt.getMinutes(), g.updatedAt.getSeconds()], [2026, 10, 9, 21, 10, 5]);
+});
+
+test("parseResourceGuard: BOM + CRLF", () => {
+  const g = parseResourceGuard("﻿" + GUARD_TEXT.replace(/\n/g, "\r\n"));
+  assert.equal(g.commitFreeGB, 24.3);
+  assert.equal(g.diskFreeGB, 85.2);
+  assert.equal(g.updatedAt.getMinutes(), 10);
+});
+
+test("parseResourceGuard: 読めない内容は null", () => {
+  assert.deepEqual(parseResourceGuard("garbage"), { updatedAt: null, commitFreeGB: null, diskFreeGB: null });
+  assert.deepEqual(parseResourceGuard(undefined), { updatedAt: null, commitFreeGB: null, diskFreeGB: null });
+});
+
+test("shouldPause: commit 12GB ちょうどは続行・直下は pause", () => {
+  assert.equal(shouldPause(mkGuard(12, 50), NOW).pause, false);
+  const r = shouldPause(mkGuard(11.9, 50), NOW);
+  assert.equal(r.pause, true);
+  assert.equal(r.unknown, false);
+  assert.match(r.reason, /11\.9/);
+});
+
+test("shouldPause: C: 3GB ちょうどは続行・直下は pause、5GBでも続行", () => {
+  assert.equal(shouldPause(mkGuard(30, 3), NOW).pause, false);
+  assert.equal(shouldPause(mkGuard(30, 5), NOW).pause, false);
+  assert.equal(shouldPause(mkGuard(30, 2.9), NOW).pause, true);
+});
+
+test("shouldPause: 5分超古い・null・値欠損は unknown で pause しない", () => {
+  const old = shouldPause(mkGuard(1, 1, new Date(NOW.getTime() - 5 * 60 * 1000 - 1)), NOW);
+  assert.deepEqual([old.pause, old.unknown], [false, true]);
+  assert.equal(shouldPause(mkGuard(1, 1, new Date(NOW.getTime() - 5 * 60 * 1000)), NOW).pause, true);
+  assert.deepEqual([shouldPause(null, NOW).pause, shouldPause(null, NOW).unknown], [false, true]);
+  assert.equal(shouldPause(mkGuard(null, 50), NOW).unknown, true);
+  assert.equal(shouldPause(mkGuard(30, null), NOW).unknown, true);
+  assert.equal(shouldPause(mkGuard(30, 50, null), NOW).unknown, true);
+});
+
+// 仮想時計: sleep が時計を進める
+const mkClock = (start = NOW.getTime()) => { let t = start; return { now: () => new Date(t), sleep: async (ms) => { t += ms; }, get t() { return t; } }; };
+
+test("waitForResources: pause→回復で再開。待機ログ1回・再開ログ1回", async () => {
+  const clk = mkClock(); const logs = [];
+  const seq = [mkGuard(5, 50), mkGuard(5, 50), mkGuard(20, 50)];
+  let i = 0;
+  const readGuard = () => { const g = seq[Math.min(i++, seq.length - 1)]; return { ...g, updatedAt: new Date(clk.t) }; };
+  await waitForResources({ readGuard, now: clk.now, sleep: clk.sleep, log: (m) => logs.push(m) });
+  assert.equal(logs.filter((m) => m.startsWith("資源不足のため待機:")).length, 1);
+  const resumed = logs.filter((m) => m.startsWith("資源回復のため再開:"));
+  assert.equal(resumed.length, 1);
+  assert.match(resumed[0], /待機2分/);
+  assert.equal(logs.length, 2);
+});
+
+test("waitForResources: 問題なければ何もログせず即戻る", async () => {
+  const clk = mkClock(); const logs = [];
+  await waitForResources({ readGuard: () => ({ ...mkGuard(30, 50), updatedAt: new Date(clk.t) }), now: clk.now, sleep: clk.sleep, log: (m) => logs.push(m) });
+  assert.deepEqual(logs, []);
+  assert.equal(clk.t, NOW.getTime());
+});
+
+test("waitForResources: heartbeat は30分ごと（毎分はログしない）", async () => {
+  const clk = mkClock(); const logs = [];
+  let calls = 0;
+  const readGuard = () => { calls++; const ok = clk.t - NOW.getTime() >= 65 * 60 * 1000; return { ...(ok ? mkGuard(30, 50) : mkGuard(5, 50)), updatedAt: new Date(clk.t) }; };
+  await waitForResources({ readGuard, now: clk.now, sleep: clk.sleep, log: (m) => logs.push(m) });
+  assert.equal(logs.filter((m) => m.startsWith("資源不足で待機中:")).length, 2);
+  assert.equal(logs.filter((m) => m.startsWith("資源不足のため待機:")).length, 1);
+  assert.ok(calls > 60);
+});
+
+test("waitForResources: unknown は待たず警告、連続では出さず、解消後の再発で再度出す", async () => {
+  const clk = mkClock(); const logs = [];
+  const seq = [null, null, mkGuard(30, 50), null];
+  let i = 0;
+  const readGuard = () => { const g = seq[i++]; return g ? { ...g, updatedAt: new Date(clk.t) } : null; };
+  const wait = makeResourceWaiter({ readGuard, now: clk.now, sleep: clk.sleep, log: (m) => logs.push(m) });
+  for (let k = 0; k < 4; k++) await wait();
+  const warns = logs.filter((m) => m.startsWith("警告: PC の見張りを読めないため確認なしで続行:"));
+  assert.equal(warns.length, 2);
+  assert.equal(clk.t, NOW.getTime());
+});
+
+test("waitForResources: readGuard の例外は unknown 扱いで落ちない", async () => {
+  const clk = mkClock(); const logs = [];
+  await waitForResources({ readGuard: () => { throw new Error("EBUSY"); }, now: clk.now, sleep: clk.sleep, log: (m) => logs.push(m) });
+  assert.equal(logs.length, 1);
+  assert.match(logs[0], /^警告: PC の見張りを読めないため確認なしで続行:/);
+});
+
+test("runBatch: グループごとに waitResources を runGroup より先に呼ぶ", async () => {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "cbr-"));
+  const works = ["a", "b", "c", "d"].map((k) => W(k));
+  const events = [];
+  await runBatch({
+    year: 2025, works, state: emptyState(), batchNo: 1, batchSize: 4, parallel: 1, workRoot: tmp, brief: "{{YEAR}}{{SP}}", groupSize: 2,
+    waitResources: async () => { events.push("wait"); },
+    runGroup: async ({ groupNo }) => { events.push(`run${groupNo}`); return out([]); },
+    runIngest: () => ({ status: 0 }),
+    readCases: () => [], log: () => {},
+  });
+  assert.deepEqual(events, ["wait", "run1", "wait", "run2"]);
+});
+
+test("waitForResources(並列): 7本同時でも待機ログ1・再開ログ1・ポーリングは1系統", async () => {
+  const clk = mkClock(); const logs = [];
+  let calls = 0;
+  const readGuard = () => { calls++; const ok = clk.t - NOW.getTime() >= 2 * 60 * 1000; return { ...(ok ? mkGuard(30, 50) : mkGuard(5, 50)), updatedAt: new Date(clk.t) }; };
+  const wait = makeResourceWaiter({ readGuard, now: clk.now, sleep: clk.sleep, log: (m) => logs.push(m) });
+  await Promise.all(Array.from({ length: 7 }, () => wait()));
+  assert.equal(logs.filter((m) => m.startsWith("資源不足のため待機:")).length, 1);
+  assert.equal(logs.filter((m) => m.startsWith("資源回復のため再開:")).length, 1);
+  assert.equal(calls, 3);
+});
+
+test("waitForResources: 待機中の unknown は連続3回未満なら待機を維持", async () => {
+  const clk = mkClock(); const logs = [];
+  const seq = [mkGuard(5, 50), null, null, mkGuard(5, 50), null, null, mkGuard(30, 50)];
+  let i = 0;
+  const readGuard = () => { const g = seq[i++]; return g ? { ...g, updatedAt: new Date(clk.t) } : null; };
+  await waitForResources({ readGuard, now: clk.now, sleep: clk.sleep, log: (m) => logs.push(m) });
+  assert.equal(i, 7);
+  assert.equal(logs.filter((m) => m.startsWith("警告:")).length, 0);
+  assert.equal(logs.filter((m) => m.startsWith("資源回復のため再開:")).length, 1);
+});
+
+test("waitForResources: 待機中に unknown が3回続いたら警告して抜ける", async () => {
+  const clk = mkClock(); const logs = [];
+  const seq = [mkGuard(5, 50), null, null, null, mkGuard(5, 50)];
+  let i = 0;
+  const readGuard = () => { const g = seq[i++]; return g ? { ...g, updatedAt: new Date(clk.t) } : null; };
+  await waitForResources({ readGuard, now: clk.now, sleep: clk.sleep, log: (m) => logs.push(m) });
+  assert.equal(i, 4);
+  assert.equal(logs.filter((m) => m.startsWith("警告: PC の見張りを読めないため確認なしで続行:")).length, 1);
+});
+
+test("shouldPause: 5分超の未来の更新時刻も unknown（ちょうど5分は有効）", () => {
+  const f = (ms) => shouldPause(mkGuard(1, 1, new Date(NOW.getTime() + ms)), NOW);
+  assert.equal(f(5 * 60 * 1000).unknown, false);
+  assert.equal(f(5 * 60 * 1000 + 1).unknown, true);
+  assert.equal(f(5 * 60 * 1000 + 1).pause, false);
 });

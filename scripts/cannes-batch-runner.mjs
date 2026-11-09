@@ -212,6 +212,70 @@ export function makeClaudeGroupRunner({ claudeBin = resolveClaudeBin(), timeout 
     });
 }
 
+/** ---- PC 資源の見張り（~/.claude/state/resource-guard.md を読むだけ） ---- */
+export const RESOURCE_GUARD_FILE = path.join(os.homedir(), ".claude", "state", "resource-guard.md");
+
+export function parseResourceGuard(text) {
+  const t = String(text ?? "").replace(/^\uFEFF/, "").replace(/\r/g, "");
+  const num = (re) => { const m = t.match(re); return m ? Number(m[1]) : null; };
+  let updatedAt = null;
+  const u = t.match(/^- 更新:\s*(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2}):(\d{2})/m);
+  if (u) updatedAt = new Date(+u[1], +u[2] - 1, +u[3], +u[4], +u[5], +u[6]);
+  return {
+    updatedAt,
+    commitFreeGB: num(/^- コミット（仮想メモリ）残り:\s*([\d.]+)/m),
+    diskFreeGB: num(/^- C: 空き:\s*([\d.]+)/m),
+  };
+}
+
+export function shouldPause(guard, now, { minCommitGB = 12, minDiskGB = 3, staleMs = 5 * 60 * 1000 } = {}) {
+  const unknown = (reason) => ({ pause: false, reason, unknown: true });
+  if (!guard) return unknown("見張りファイルなし/読めない");
+  const { updatedAt, commitFreeGB, diskFreeGB } = guard;
+  if (!(updatedAt instanceof Date) || isNaN(updatedAt) || typeof commitFreeGB !== "number" || typeof diskFreeGB !== "number" || isNaN(commitFreeGB) || isNaN(diskFreeGB)) return unknown("値が取れない");
+  if (Math.abs(now.getTime() - updatedAt.getTime()) > staleMs) return unknown("見張りの更新時刻が現在と5分以上ずれている");
+  const why = [];
+  if (commitFreeGB < minCommitGB) why.push(`コミット残り ${commitFreeGB}GB (<${minCommitGB}GB)`);
+  if (diskFreeGB < minDiskGB) why.push(`C: 空き ${diskFreeGB}GB (<${minDiskGB}GB)`);
+  return { pause: why.length > 0, reason: why.join(" / "), unknown: false };
+}
+
+/** 資源が足りない間は待つ。readGuard()→guard|null、now()→Date、sleep(ms) は注入可能。unknown 警告は連続して出さない状態を持つ。 */
+export function makeResourceWaiter(opts) {
+  const st = { warned: false };
+  let inflight = null; // 並列ワーカーが同時に呼んでも待機は1本だけ（ログ・ポーリングを共有）
+  return (o = {}) => {
+    if (!inflight) inflight = waitForResources({ ...opts, ...o, _state: st }).finally(() => { inflight = null; });
+    return inflight;
+  };
+}
+export async function waitForResources({ readGuard, now = () => new Date(), sleep = (ms) => new Promise((r) => setTimeout(r, ms)), log = () => {}, pollMs = 60000, heartbeatMs = 30 * 60 * 1000, thresholds = {}, _state = { warned: false } }) {
+  const check = async () => {
+    try { return shouldPause(await readGuard(), now(), thresholds); }
+    catch (e) { return { pause: false, unknown: true, reason: `読み取り例外: ${e.message}` }; }
+  };
+  let r = await check();
+  let waitStart = null, lastBeat = null, unknownRun = 0;
+  while (true) {
+    if (r.unknown) {
+      // 待機中の一過性 unknown（非 atomic な書き込み途中など）は3回続くまで待機を維持する
+      if (waitStart !== null && ++unknownRun < 3) { await sleep(pollMs); r = await check(); continue; }
+      if (!_state.warned) { log(`警告: PC の見張りを読めないため確認なしで続行: ${r.reason}`); _state.warned = true; }
+      return;
+    }
+    unknownRun = 0;
+    _state.warned = false;
+    if (!r.pause) {
+      if (waitStart !== null) log(`資源回復のため再開: 待機${Math.round((now().getTime() - waitStart) / 60000)}分`);
+      return;
+    }
+    if (waitStart === null) { waitStart = lastBeat = now().getTime(); log(`資源不足のため待機: ${r.reason}`); }
+    else if (now().getTime() - lastBeat >= heartbeatMs) { lastBeat = now().getTime(); log(`資源不足で待機中: ${r.reason}`); }
+    await sleep(pollMs);
+    r = await check();
+  }
+}
+
 async function pool(items, limit, fn) {
   const results = new Array(items.length);
   let next = 0;
@@ -224,7 +288,7 @@ async function pool(items, limit, fn) {
  * 1バッチを実行する。runGroup({prompt, worksFile, draftsFile, groupNo}) と runIngest(mergedFile)→{status} は注入可能。
  * 戻り値: { exitCode, state, stats }。ingest 失敗時は state を更新しない（同じ作品を次回やり直せる）。
  */
-export async function runBatch({ year, works, state, batchNo, batchSize = 35, parallel = 7, groupSize = GROUP_SIZE, workRoot, brief, runGroup, runIngest, readCases = () => [], gitStatusCases = () => "", log = () => {} }) {
+export async function runBatch({ year, works, state, batchNo, batchSize = 35, parallel = 7, groupSize = GROUP_SIZE, workRoot, brief, runGroup, runIngest, readCases = () => [], gitStatusCases = () => "", log = () => {}, waitResources = async () => {} }) {
   const dir = path.join(workRoot, String(year), String(batchNo));
   fs.mkdirSync(dir, { recursive: true });
   const exFile = path.join(ROOT, "docs", "cannes", "DRAFT_EXAMPLES.json");
@@ -237,6 +301,7 @@ export async function runBatch({ year, works, state, batchNo, batchSize = 35, pa
 
   const statusBefore = gitStatusCases();
   const results = await pool(groups, parallel, async (g, i) => {
+    await waitResources();
     const outFile = path.join(dir, `g${i + 1}.out.txt`);
     const prompt = buildPrompt(brief, { year, works: g, examples, vocab });
     let error = null, procError = null, out = "";
@@ -362,13 +427,15 @@ async function main() {
   const runGroup = makeClaudeGroupRunner();
   const runIngest = (mergedFile) => spawnSync(process.execPath, [path.join(__dirname, "cannes-ingest.mjs"), String(year), "--drafts", mergedFile], { cwd: ROOT, stdio: "inherit" });
   const gitStatusCases = () => spawnSync("git", ["status", "--porcelain", "data/cases.json"], { cwd: ROOT, encoding: "utf8" }).stdout.trim();
+  const readGuard = () => { try { return parseResourceGuard(fs.readFileSync(RESOURCE_GUARD_FILE, "utf8")); } catch { return null; } };
+  const waitResources = makeResourceWaiter({ readGuard, log });
   let code = 0;
   for (let n = 0; n < o.maxBatches; n++) {
     const works = selectTargets(plan.new, state, { existingCases, year });
     if (!works.length) { log("対象が尽きた"); break; }
     state.batchSeq = (state.batchSeq || 0) + 1;
     const before = head();
-    const r = await runBatch({ year, works, state, batchNo: state.batchSeq, batchSize: o.batchSize, parallel: o.parallel, workRoot: path.join(os.homedir(), ".researchman", "cannes-runner"), brief, runGroup, runIngest, readCases: loadCases, gitStatusCases, log });
+    const r = await runBatch({ year, works, state, batchNo: state.batchSeq, batchSize: o.batchSize, parallel: o.parallel, workRoot: path.join(os.homedir(), ".researchman", "cannes-runner"), brief, runGroup, runIngest, readCases: loadCases, gitStatusCases, log, waitResources });
     state = r.state;
     state.batchSeq = Math.max(state.batchSeq || 0, 0);
     fs.writeFileSync(stateFile, JSON.stringify(state, null, 2));
