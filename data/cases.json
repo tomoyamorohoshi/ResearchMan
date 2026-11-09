@@ -74767,7 +74767,10 @@
       "Theme/Health",
       "Theme/Food"
     ],
-    "thumbnail": "/thumbnails/dutchie-fight-for-thais-gut.jpg"
+    "thumbnail": "/thumbnails/dutchie-fight-for-thais-gut.jpg",
+    "quarantined": true,
+    "quarantineReason": "内容の出典が応募情報(The One Show・YouTube Works)のみ（2026-11-09 手動）",
+    "quarantineTs": "2026-11-09T08:00:01.246Z"
   },
   {
     "year": "2025",
