@@ -1,5 +1,218 @@
 [
   {
+    "id": "schattenrequisit-column-2026",
+    "title": "Schattenrequisit: Column",
+    "summary": "ミリ波センサーで来場者の接近を検知し、簾に着想した糸の円柱を回して壁や床の影を変える、人の存在を影に置き換える装置。",
+    "client": "Youtaro Sakamoto（坂本陽太郎）",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.designboom.com/art/youtaro-sakamoto-kinetic-thread-column-human-presence-shifting-shadows-schattenrequisit/",
+    "thumbnail": "/thumbnails/schattenrequisit-column-2026.jpg",
+    "videoId": "",
+    "overview": "アーティスト・エンジニア・研究者の坂本陽太郎（Youtaro Sakamoto）による、糸を使ったキネティック・インスタレーション。細い糸を密に並べた円柱が、近づく来場者に反応してゆっくり回り、周囲の壁や床に映る影の形を変え続ける。DESIGNART TOKYO 2026の一環として、2026年10月30日〜11月8日に東京の日比谷OKUROJIで展示された。",
+    "background": "作品は、建築的な永続性、人の存在、移ろう影の投影の関係を探るもの。着想源は、光を通しつつ視線を遮る日本の伝統的な簾（すだれ）の透過性だという。固定された都市インフラと、そこを行き交う一時的な人の流れとの関係を、静的な柱の原型を動かすことで映し出すことが狙いとされる。",
+    "execution": "来場者の接近はミリ波センサーで検知される。その検知をきっかけにステッピングモーターが作動し、糸の集合体をゆっくり回転させる。糸同士の重なり方が変わることで、密に揃った状態から開けた視界へと糸の密度が徐々に移り、壁や床の影が変化する。機構は計算的デザインと物理的プロトタイピングを通じて開発されたと説明されている。",
+    "evaluationImpact": "人の存在という目に見えにくいものを、センサーと機械的な動き、そして影の変化に置き換える手法が明快で、他の空間演出にも転用しやすい。簾という日本の素材感を、センサー駆動の動く柱へ更新した点も特徴的。ただし受賞は確認できず、センサー機種や糸の素材などの技術詳細も公開情報では不明で、評価は一次的な紹介記事の範囲にとどまる。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Tech/Robotics",
+      "Form/Installation",
+      "Theme/Art"
+    ],
+    "gateCriterion": "D",
+    "sourceId": "designboom",
+    "gateTier": "accept",
+    "discoveryLens": 4
+  },
+  {
+    "id": "enroute-identity-outpace-yourself-2026",
+    "title": "Enroute identity（Outpace Yourself）",
+    "summary": "走行距離と同じ数の点を記号にし、注文の配送進捗にも同じ点を使うランニング／サイクル小売のブランドID",
+    "client": "Enroute（バンクーバーのランニング／サイクリング小売）",
+    "agency": "Tinloof",
+    "categories": [
+      "データクリエイティブ",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://the-brandidentity.com/project/a-sub-45-minute-10k-gave-tinloof-the-concept-for-enroutes-identity",
+    "thumbnail": "/thumbnails/enroute-identity-outpace-yourself-2026.jpg",
+    "videoId": "",
+    "overview": "バンクーバー発のランニング／サイクリング用品ブランドEnrouteが、制作会社Tinloofとともに作ったブランドアイデンティティ。点とバーによるパフォーマンス・シンボルを軸に、ランニング向けのenroute.runとサイクリング向けのenroute.ccを一つの世界観にまとめた。点の数は実際のレース距離や配送のチェックポイントと対応する(この点は1つのトレード記事のみで確認)。",
+    "background": "Tinloofの共同創業者Seif GhezalaのLinkedIn投稿によると、担当した2人のデザイナーはともにランナーだった。1人はサブ45分の10Kを目指して練習中で、もう1人はすでに40分を切っていた。自分の限界を押し上げ続けるという共通の感覚が、このアイデンティティの出発点になったという。EnrouteはInstagramでも、新しいアイデンティティ、両サイトの刷新、新しいモバイルアプリを発表し、Tinloofをクリエイティブとエンジニアリングのパートナーとしている。",
+    "execution": "グラフィックシンボル、デザインシステム、モーション言語まで、同じ考え方で一貫して設計された。書体はFlorian KarstenのFK Grotesk、写真はモーションブラーをかけたアスリート像。点の数をレース距離や配送チェックポイントに対応させる仕組みで、ロゴが飾りではなく数量を表す記号になっている。ウェブとアプリの両方に展開された。なお点の間隔と運動強度の対応などの詳細は、今回の検索では確認できていない。",
+    "evaluationImpact": "『距離を点の数で表す』と一文で言え、ロゴ、サイト、アプリ、配送状況をまたいで同じ記号を使えるため、ブランドの一貫性が出やすい。ランナー自身が着想源という点も、スポーツ小売の文脈に説得力を与えている。ただし受賞は確認できず、点の仕組みの詳細は単一ソースに依存しており、影響の大きさは今後の検証が必要。",
+    "relatedWorks": [
+      {
+        "title": "Behind Enroute's rebrand",
+        "description": "Tinloofのサイトに掲載されているEnrouteのリブランドに関する記事(タイトルのみ確認)",
+        "url": "https://tinloof.com/"
+      },
+      {
+        "title": "Enroute",
+        "description": "Visual Journalに掲載された同アイデンティティの紹介ページ",
+        "url": "https://visualjournal.it/enroute"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Website",
+      "Form/App",
+      "Theme/Sports",
+      "Theme/Retail",
+      "Tech/Data"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "the-brandidentity",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "invisible-dominion-crystal-city-substation-2026",
+    "title": "inVISIBLE (Dominion Crystal City Substation)",
+    "summary": "変電所の電圧降下の段階を2・4・6インチのタイル寸法に置き換え、見えない電気を建物の表皮に可視化した",
+    "client": "Arlington Public Art / Dominion Energy（Elena Manferdini）",
+    "agency": "Atelier Manferdini",
+    "categories": [
+      "空間体験",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.designboom.com/architecture/pixelated-ceramic-tiles-folded-aluminum-electrical-substation-facade-virginia-atelier-manferdini-invisible/",
+    "thumbnail": "/thumbnails/invisible-dominion-crystal-city-substation-2026.jpg",
+    "videoId": "",
+    "overview": "米バージニア州アーリントンのクリスタルシティ変電所(1720 S. Fern St.)に設置された、Elena Manferdini(Atelier Manferdini)による公共アート兼ファサード。カスタム塗装のプレキャストコンクリート、陽極酸化アルミ、セラミックタイルで構成される。Designboomによれば、生成的なタイル割付と折り曲げアルミパネル、プログラム可能なRGB LEDを組み合わせている。市の資料では、設置は2025年、お披露目は2026年とされる。",
+    "background": "アーリントン郡のパブリックアートと、事業主のDominion Energyが資金を出す変電所の外装計画として始まった。2022年の地元報道では、当初案の「雲」のコンセプトが住民の意見を受けて差し替えられたと伝えられている。変電所は街の電力を支えながら、住民にはほとんど見えない存在である。Manferdini自身も「都市の見えない力」を作品の主題にしてきた。ローカルの建築家・技術者はDewberryが担当した。",
+    "execution": "下部の外壁は2・4・6インチの3種のセラミックタイルで覆われる。Designboomは、この3種の寸法を変電所内の電圧降下(変換)の段階を反映したものと伝えている。市はこのタイルを「電気が帯電して響く場」のようなパターンと説明している。タイルの配置は生成的な手法で決められ、その上に折り曲げアルミパネルとRGB LED照明が重なる。素材は陶磁器、アルミ、コンクリートで構成される。",
+    "evaluationImpact": "電圧の段階というインフラ内部の技術的事実を、タイルの寸法という触れる単位に置き換えた点が核である。通りすがりの人が目にできる建築の表皮の模様が、電力設備の仕組みを示す。公共インフラの外装を、機能を隠す覆いではなく作品として扱う試みで、変電所の景観対策として他都市にも転用しやすい。ただし、確認できた情報はDesignboomの報道と市・事業者の公式ページが中心で、受賞は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "322 ceramic tiles translate electromagnetic fields into textured switchstation facade (Studio RAP)",
+        "description": "オランダ・ベーフェルウェイクの開閉所で、電磁場を3Dプリントのセラミックタイルの凹凸に置き換えたファサード。",
+        "url": "https://www.designboom.com/design/322-ceramic-tiles-electromagnetic-fields-textured-switchstation-facade-studio-rap-powerhouse-company-beverwijk-netherlands/"
+      },
+      {
+        "title": "IF–DO and Lakwena electrical substation artwork",
+        "description": "ロンドン・ブレントクロスの変電所外装を、IF–DOとアーティストLakwenaがアートとして仕上げた例。",
+        "url": "https://www.dezeen.com/2023/01/19/if-do-lakwena-brent-cross-town-electrical-substation/amp/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Theme/Art"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "designboom",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "erase-your-ex-canva-what-will-you-canva-today-2026",
+    "title": "Erase Your Ex（Canva「What Will You Canva Today?」）",
+    "summary": "写真から元恋人を消す編集デモを、連絡が来たら『元に戻す』を押す恋愛の小話に読み替えたCanvaの新ブランド広告。",
+    "client": "Canva",
+    "agency": "Goodby Silverstein & Partners / Canva in-house",
+    "categories": [
+      "コンテンツ革新",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.bandt.com.au/canva-shows-you-how-to-scrub-your-ex-from-photos-as-it-rolls-out-new-brand-platform/",
+    "thumbnail": "/thumbnails/erase-your-ex-canva-what-will-you-canva-today-2026.jpg",
+    "videoId": "RwHFkUgXLgU",
+    "overview": "Canvaが北米で始めた新ブランドプラットフォーム「What Will You Canva Today?」の中核となる広告「Erase Your Ex」。女性が写真から元恋人たちを次々に消していくが、ひとりから「会いたい」とテキストが届くと、すぐに『元に戻す(Undo)』を押す。製品機能のデモをそのまま小さな恋愛ドラマにした作品で、3本構成のキャンペーンの1本目にあたる。",
+    "background": "Canvaは約13年間、ホームページで「What will you design today?」と問いかけてきた。新プラットフォームではこれを「What Will You Canva Today?」に置き換え、ブランド名そのものを動詞として使う形にした。論評では、グラフィックデザインにとどまらない幅広い制作用途へブランドの認識を広げる狙いと読まれている。",
+    "execution": "制作はGoodby Silverstein & PartnersとCanvaの社内チーム。B&Tによると監督はTucker Bliss、制作会社はSmuggler。映像では、消去という機能デモから、未練が出たらUndoで戻すという感情の動きまでを一続きで見せる。キャンペーンにはラベンダーラテやプロムの誘いを題材にした他の2本もあり、屋外広告やSNS向けにも展開される。",
+    "evaluationImpact": "製品の編集機能を、誰もが共感できる恋愛の場面に重ねて見せた点が評価できる。機能説明を前面に出さず、Undoという操作自体にオチを持たせている。一方、受賞や成果指標は公式ソースで確認できておらず、新プラットフォームの認知や利用への効果はこれから問われる段階にある。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Film",
+      "Theme/Entertainment"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "reset-identity-ester-2026",
+    "title": "Reset identity（Ester）",
+    "summary": "ブロックでできたキャラ Ester の幾何と回転運動を、ワードマークからアプリUIまで貫く適応型ブランドID。",
+    "client": "Reset",
+    "agency": "Studio Kiln",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://the-brandidentity.com/project/studio-kiln-designs-an-identity-for-reset-that-adapts-like-its-app",
+    "thumbnail": "/thumbnails/reset-identity-ester-2026.jpg",
+    "videoId": "",
+    "overview": "英国の Studio Kiln が、減量プロダクト Reset のために手がけたブランドアイデンティティ。中心にいるのは、ブロックで構成され、回転したり並び替わったりするキャラクター Ester。Creative Review によれば、Ester はガイド役であり、安心感を与える存在として設計されている。",
+    "background": "ウェルネス系アプリには、明るすぎるマスコットを置く例が多い。Kiln は Ester をその路線から外し、漫画的になりすぎない控えめな存在にした。抽象的な形にしておくことで、ユーザーが自分の感情を重ねられる余白も残している。",
+    "execution": "Ester は幾何学的な形と回転運動で成り立っており、その特徴がワードマークからデジタルインターフェースまで一貫して使われている。プロダクト内では複数の遊び心ある姿で現れる。記事によれば、Ester はチャットボットのような一画面の窓に収まらず、アプリそのものとして働く。",
+    "evaluationImpact": "キャラクター、ロゴ、UIを同じ幾何と動きの規則でつなぎ、静的なロゴではなくプロダクトの挙動として設計した点が評価できる。ユーザーに合わせて見た目が変わる適応型IDという考え方は、他のアプリやサービスのブランド設計にも転用しやすい。ただし、書体の扱いや気分に応じた変化の詳細は、今回の検索では確認できなかった。",
+    "relatedWorks": [
+      {
+        "title": "Kiln Studio designs identity for new weight-loss product, Reset（Creative Review）",
+        "description": "Reset と Ester の考え方を紹介する記事。",
+        "url": "https://www.creativereview.co.uk/kiln-studio-identity-weight-loss-product-reset/"
+      },
+      {
+        "title": "Vinted refresh（Studio Kiln）",
+        "description": "同スタジオによる、固定要素と可変要素を組み合わせた柔軟なアイデンティティの別事例。",
+        "url": "https://www.creativeboom.com/news/vinted-refresh/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/App",
+      "Theme/Health"
+    ],
+    "gateCriterion": "D",
+    "sourceId": "the-brandidentity",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
     "id": "vitamin-p-ee-2026",
     "title": "Vitamin P(ee)",
     "summary": "サプリの過剰摂取で尿に排出されたビタミンCを回収・精製してグミに戻し、「飲み過ぎは捨てているのと同じ」と体感させた。",
