@@ -94201,5 +94201,530 @@
       "Form/OOH"
     ],
     "thumbnail": "/thumbnails/jian-ai-elderly-charity-center-lost-in-time.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "oreo-x-pac-man-supermarcade",
+    "title": "Oreo X Pac-Man Supermarcade",
+    "summary": "スーパーの売り場をAR版パックマンの迷路に変え、来店客がクッキーを集めながらオレオのコラボ限定品の棚へ向かう体験型施策。",
+    "client": "Oreo",
+    "agency": "SAATCHI & SAATCHI, Dusseldorf",
+    "categories": [
+      "Outdoor"
+    ],
+    "award": "Cannes Lions 2024 Outdoor Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Outdoor",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.horizont.net/marketing/nachrichten/augmented-reality-oreo-holt-die-pac-man-geister-in-einen-edeka-markt-219207",
+    "videoId": "",
+    "overview": "OreoとPac-Manのコラボ限定商品「Chase Playfulness」の一環として、Saatchi & Saatchi Düsseldorfが手がけた店頭施策。ドイツ・デュッセルドルフのスーパーで、来店客が自分のスマートフォンを使ってパックマンの世界を歩く。",
+    "background": "2024年1月にOreoは、6種類のパックマン柄エンボス入りクッキーを欧州で限定発売した。Horizontによれば、この店頭施策は、体験をそのまま購入につなげる「Experience to Purchase」型の取り組みとして、Publicisグループで初めてだという。",
+    "execution": "Horizontの報道によると、2024年4月10日の1日限り、デュッセルドルフのEdeka Zurheide Feine Kostで実施された。来店客は入口でQRコードを読み込み、スマートフォン上でARのクッキーを集めながら通路を進む。パックマンの4体のゴースト（Blinky、Pinky、Inky、Clyde）が追ってくる。クッキーの道はOreoの棚に続き、限定商品を購入できる。賞品には本物のOreo x Pac-Manアーケード機が用意された。現場の実装はForm & Funが担当し、屋内でARとVirtual Private Server技術を使うのは初めての試みだったという。店内は一部をセンチ単位で測量した。",
+    "evaluationImpact": "独立した報道で確認できた参加者数や売上の数値はない。カンヌライオンズ2024のOutdoor部門でBronzeを受賞した。",
+    "tags": [
+      "Tech/XR",
+      "Tech/Game",
+      "Theme/Retail",
+      "Theme/Food",
+      "Form/Event"
+    ],
+    "thumbnail": "/thumbnails/oreo-x-pac-man-supermarcade.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "unilever-the-unmentionables",
+    "title": "The Unmentionables",
+    "summary": "昼は普通の広告に見え、夜はUVライトで隠れた体液のシミが浮かび上がる屋外広告で、Unilever傘下の洗濯情報サイトCleanipediaを知らせた施策。",
+    "client": "Unilever",
+    "agency": "MULLENLOWE UK, London",
+    "categories": [
+      "Outdoor"
+    ],
+    "award": "Cannes Lions 2024 Outdoor Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Outdoor",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://lbbonline.com/news/mullenlowe-partners-with-cleanipedia-to-shine-a-light-on-the-stains-no-one-talks-about",
+    "videoId": "",
+    "overview": "UnileverのCleanipediaとMullenLowe UKによる屋外広告。ネット上で最も検索されるシミの悩みが、芝生や赤ワインではなく体液であることに着目し、普段は語られない汚れを広告そのものに見せた。",
+    "background": "MullenLowe UKは、混戦のカテゴリーで挑戦者ブランドのCleanipediaの認知を高める役割を担った。調査で、オンラインで最も多く助けを求められるシミが体液だと分かり、これを「The Unmentionables（口に出せないもの）」と名付けた（LBB掲載の紹介による）。",
+    "execution": "Campaignの報道によれば、ロンドンのLondon Bridge、Shoreditch、New Crossの3か所に、寝具、男性用下着、スポーツウェアの広告を掲出した。昼間は普通の広告に見えるが、夜にUVライトを当てるとシミが浮かび上がり、Cleanipediaのブランド表示とQRコードが現れる。QRコードは、「Cleanfluencer」が科学的根拠に基づく洗い方を解説するTikTok動画につながり、若い層をCleanipediaのTikTokチャンネルへ誘導した。",
+    "evaluationImpact": "独立した報道で確認できた到達数などの成果数値はない。カンヌライオンズ2024のOutdoor部門でBronzeを受賞した。",
+    "tags": [
+      "Form/OOH",
+      "Tech/Device",
+      "Form/SNS",
+      "Theme/Health"
+    ],
+    "thumbnail": "/thumbnails/unilever-the-unmentionables.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "whatsapp-privacy-swap",
+    "title": "Privacy Swap",
+    "summary": "SNSで撮影されやすい米国の有名な建物にプライバシーシェードを設置し、窓の外側をWhatsAppの広告面にして、住む人の視線対策と広告を交換した屋外施策。",
+    "client": "Whatsapp",
+    "agency": "BBDO NEW YORK",
+    "categories": [
+      "Outdoor"
+    ],
+    "award": "Cannes Lions 2024 Outdoor Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Outdoor",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.thestable.com.au/bbdo-new-york-whatsapp-gives-privacy-to-some-of-the-us-most-instagrammed-homes/",
+    "videoId": "",
+    "overview": "WhatsAppとBBDO New Yorkによる屋外広告。人気ドラマの舞台として観光客に撮影されがちな建物に、目隠しのシェードを取り付けた。シェードの外側は、WhatsAppのプライバシー機能を伝える広告面になっている。",
+    "background": "WhatsAppは、プライバシーを守る新機能（ステルスモードなど）の訴求を狙った。他人の視線から建物を守るシェードを広告媒体にして、「プライバシーと広告の交換」として見せた。なお、この記述は、同じ仕組みを紹介した報道（プライバシーシェード）と、The One Showの作品説明に基づく。2024年の応募作が同一施策であることは、名称の違いがあるため、完全には確認できていない。",
+    "execution": "The Stableの2023年7月の報道によると、設置場所は米国の3か所。ドラマ『New Girl』のアパート（ロサンゼルス）、『Full House』の家（サンフランシスコのPainted Ladies）、『Seinfeld』のTom's Diner（ニューヨーク）である。シェードの内側は住人にとってインテリアアートとして機能し、外側にはWhatsAppのプライバシー対策を紹介する広告が掲示された。",
+    "evaluationImpact": "独立した報道で確認できた成果数値はない。カンヌライオンズ2024のOutdoor部門でBronzeを受賞した。",
+    "tags": [
+      "Form/OOH",
+      "Form/Stunt",
+      "Tech/Device"
+    ],
+    "thumbnail": "/thumbnails/whatsapp-privacy-swap.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "heineken-laundromatch",
+    "title": "Laundromatch",
+    "summary": "深夜に開いている24時間営業のコインランドリーを、UEFAチャンピオンズリーグを観戦できるスポーツバーに変えたハイネケンの韓国施策。",
+    "client": "Heineken®",
+    "agency": "LEPUB, Singapore / LEPUB, Milan",
+    "categories": [
+      "Outdoor"
+    ],
+    "award": "Cannes Lions 2024 Outdoor Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Outdoor",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://campaignbriefasia.com/?p=158640",
+    "videoId": "",
+    "overview": "ハイネケンとLePub APAC（LePub Singapore）による施策。ハイネケンのグローバルキャンペーン「Cheers To The Real Hardcore Fans」をアジアに広げる取り組みで、韓国の熱心なサッカーファンに、深夜の観戦場所を用意した。",
+    "background": "アジアでは、UEFAチャンピオンズリーグの試合が現地の午前3〜4時に生中継される。韓国ではこの時間にバーの多くが閉まっており、自宅では仲間と盛り上がりにくい。そこで、唯一夜通し開いている場所として、コインランドリーに目を付けた（Campaign Brief Asia）。",
+    "execution": "Campaign Brief Asiaによると、韓国最大級のコインランドリーチェーンWashEnjoyと組み、2024年4月10〜11日の2夜、韓国時間の午前3時にソウルの店舗で観戦イベントを開いた。4〜6月には、全国のWashEnjoyに置いたQRコードから、SPOTVの30日間無料視聴権を取得でき、準々決勝・準決勝の観戦に使えた。6月1日には、決勝戦の観戦旅行（4名分）を抽選で提供した。",
+    "evaluationImpact": "独立した報道で確認できた来場者数や売上の数値はない。カンヌライオンズ2024のOutdoor部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Sports",
+      "Form/Event",
+      "Theme/Retail",
+      "Form/OOH"
+    ],
+    "thumbnail": "/thumbnails/heineken-laundromatch.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "salvation-army-salvation-hanger",
+    "title": "Salvation Hanger",
+    "summary": "ホテルの客室に寄付用のハンガーを置き、買いすぎてスーツケースに入らない服をそのまま寄付に回してもらう、救世軍のブラジルでの施策。",
+    "client": "Salvation Army",
+    "agency": "WMcCANN, Sao Paulo",
+    "categories": [
+      "Outdoor"
+    ],
+    "award": "Cannes Lions 2024 Outdoor Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Outdoor",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.thestable.com.au/wmccann-the-salvation-army-turns-hotel-hangers-into-donation-boxes/",
+    "videoId": "",
+    "overview": "救世軍とWMcCann São Pauloによる施策。サンパウロのホテルの客室にあるハンガーを、衣類寄付の窓口にした。",
+    "background": "サンパウロはブラジルで服を買い足す主要な目的地で、旅行者は荷物に入りきらない服を抱えがちだ。The Stableの報道では、不要な服を寄付すれば、空港での超過手荷物料金も避けられるという発想だった。",
+    "execution": "The Stableによると、2024年4月3日に開始した。参加ホテル（記事ではSheratonの名前のみ確認できる）の客室にQRコード付きのハンガーを置く。宿泊客がQRコードを読み取ると、取り組みの説明が表示され、不要な服をハンガーにかけて寄付するよう促される。インフルエンサーによる告知も予定されていた。",
+    "evaluationImpact": "独立した報道で確認できた寄付量などの成果数値はない。カンヌライオンズ2024のOutdoor部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/SocialGood",
+      "Form/OOH",
+      "Theme/Fashion"
+    ],
+    "thumbnail": "/thumbnails/salvation-army-salvation-hanger.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "samsung-nz-different",
+    "title": "Different.",
+    "summary": "Galaxy Z Flip5の発売に合わせ、Appleの「Think different」を逆手に取り、iPhoneが並ぶ中に1台だけSamsungの折りたたみ端末を置いて「Different.」とだけ訴えたSamsung NZのOOH施策。",
+    "client": "Samsung Nz",
+    "agency": "DDB NEW ZEALAND, Auckland",
+    "categories": [
+      "Outdoor"
+    ],
+    "award": "Cannes Lions 2024 Outdoor Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Outdoor",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://bestawards.co.nz/graphic/design-craft/ddb-group-aotearoa-nz/different-samsung-nz/",
+    "videoId": "",
+    "overview": "Samsung New Zealandが、DDB New Zealandと組んでGalaxy Z Flip5の発売時に展開した屋外広告中心の施策。端末の機能説明ではなく、iPhoneからの乗り換えを促す挑発的な一語のメッセージで勝負した。",
+    "background": "DDBの事例紹介によれば、ニュージーランドではAppleが最大の競合で、若いiPhoneユーザーは惰性で同じ機種を選び続けていた。Samsungは挑戦者として大きな注目を得る必要があった。Appleの「Think different」は今や画一性の象徴になっている、という見立てが出発点になった。",
+    "execution": "同じ見た目のiPhoneがずらりと並ぶ中に、Samsungの折りたたみ端末が1台だけ置かれ、コピーは「Different.」の一語のみというビルボードを展開した。Appleのブランド思想そのものを引用して、Samsungに替えることこそが「違う考え方」だと見せる構成になっている（DDBの事例紹介、Best Awardsの応募情報による）。",
+    "evaluationImpact": "カンヌライオンズ2024のOutdoor部門でBronzeを受賞した（LBBのオーストラリア・ニュージーランド受賞者一覧）。",
+    "tags": [
+      "Form/OOH",
+      "Tech/Device",
+      "Theme/Retail"
+    ],
+    "thumbnail": "/thumbnails/samsung-nz-different.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "makro-colombia-adscan",
+    "title": "Adscan",
+    "summary": "街中の屋外広告に載っている商品を認識し、Makroの在庫から同等品を探して購入オファーを出す、屋外広告そのものをECの入口に変えるツール。",
+    "client": "Makro Colombia",
+    "agency": "VML, Bogota",
+    "categories": [
+      "Outdoor"
+    ],
+    "award": "Cannes Lions 2024 Outdoor Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Outdoor",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "中南米"
+    ],
+    "link": "https://www.vml.com/work/adscan-by-makro",
+    "videoId": "",
+    "overview": "コロンビアの卸売・小売Makroが、VML Bogotáと開発したショッピングツール「Adscan」。他ブランドを含む屋外広告を、Makroの購入の入口として使えるようにした。",
+    "background": "VMLの事例ページによれば、Makroは価格面で魅力のある商品を多く持つ一方、競合より店舗数もメディア予算も少ないチャレンジャーだった。自前の媒体を増やすのではなく、すでに街に出ている他社の広告を利用する発想で、この制約を逆手に取った。",
+    "execution": "ユーザーが屋外広告に写る商品を撮影すると、Google Cloud Visionで商品画像を認識し、OpenAIでMakroの在庫から該当する商品を判別して購入オファーを生成する。最初はパイロットとして始め、その後、自社メディアとデジタルメディアで全国展開した。Makro店舗のある15以上の都市で使えるとされる（VMLの事例ページ）。",
+    "evaluationImpact": "カンヌライオンズ2024のOutdoor部門でBronzeを受賞した（LBBの受賞者一覧）。",
+    "tags": [
+      "Form/OOH",
+      "Tech/AI",
+      "Theme/Retail",
+      "Tech/Web"
+    ],
+    "thumbnail": "/thumbnails/makro-colombia-adscan.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "terre-des-femmes-unsilence-the-violence",
+    "title": "Unsilence The Violence",
+    "summary": "触られて胸だけが明るくすり減った女性ブロンズ像を、性的嫌がらせの「痕跡」の象徴にし、QRコードで像に語らせたドイツの人権団体の施策。",
+    "client": "Terre Des Femmes",
+    "agency": "SCHOLZ & FRIENDS, Hamburg / 2030 / KOMMUNIKATION, Munich",
+    "categories": [
+      "Outdoor"
+    ],
+    "award": "Cannes Lions 2024 Outdoor Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Outdoor",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.horizont.net/marketing/nachrichten/terre-des-femmes-so-clever-macht-scholz--friends-sexuelle-belaestigung-sichtbar-219065",
+    "videoId": "",
+    "overview": "女性の権利団体Terre des Femmesと広告会社Scholz & Friendsによる施策。2024年4月8日、性暴力防止月間に合わせて、ミュンヘン、ベルリン、ブレーメンの女性像で展開した。",
+    "background": "Terre des Femmesによれば、ドイツでは女性の3人に2人が性的嫌がらせを経験している。被害者の多くは、信じてもらえない、責められるといった不安から声を上げられない。ブロンズ像の胸が通行人に触られて明るく摩耗する現象を、目に見えない心の傷の比喩にした（Horizont）。",
+    "execution": "ミュンヘンの「Bezaubernde Julia」、ベルリンの「Frau Rhein」、ブレーメンの「Jugend」の3体が対象。像の背後に「Sexuelle Belästigung hinterlässt Spuren（性的嫌がらせは痕跡を残す）」と書いたポスターを置いた。ポスターのQRコードで像がアニメーションし、被害者に代わって語る。ハッシュタグは#UnsilenceTheViolenceで、特設サイトに相談窓口を載せた（Horizont）。",
+    "evaluationImpact": "カンヌライオンズ2024のOutdoor部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/SocialGood",
+      "Form/OOH",
+      "Form/Stunt"
+    ],
+    "thumbnail": "/thumbnails/terre-des-femmes-unsilence-the-violence.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "ikea-guilty-pets",
+    "title": "Guilty Pets",
+    "summary": "ペットが壊してしまったIKEA商品を堂々と見せ、「心配しないで、買い直せる値段です」と手頃さを伝えた中東のIKEAの広告。",
+    "client": "Ikea",
+    "agency": "INGO, Hamburg",
+    "categories": [
+      "Outdoor"
+    ],
+    "award": "Cannes Lions 2024 Outdoor Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Outdoor",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "中東"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/ikea-guilty-pets",
+    "videoId": "",
+    "overview": "中東でIKEAを運営するAl-Futtaim IKEAが、INGO Hamburgと2024年3月に展開した施策。ペットが壊した商品の写真で、IKEA商品の価格の手頃さを訴えた。",
+    "background": "Horizontによれば、UAEには約150万人のペット飼い主がいる。IKEA Al-Futtaimにとって、ペットを正面から扱うのはこれが初めてだった。景気を背景に、品質を落とさず出費を抑えたい消費者に向けて、価格訴求をペットの話題に重ねた。",
+    "execution": "犬や猫が、Chiafrönの植木鉢、Stilrenの花瓶、Kärleksgräsのクッションなどを壊した直後の様子を、4本のスポットと対応するプリント広告で見せた。コピーは「Don't worry, you can afford it」。壊れた商品をあえて見せる点が、通常の広告の作法に反していると、INGOのCCOは話している。展開はOOH、プリント、SNS、TVで、オマーン、カタール、UAEに出稿された（Ads of the World、Horizont）。",
+    "evaluationImpact": "カンヌライオンズ2024のOutdoor部門でBronzeを受賞した。",
+    "tags": [
+      "Form/OOH",
+      "Form/Print",
+      "Theme/Retail"
+    ],
+    "thumbnail": "/thumbnails/ikea-guilty-pets.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "netflix-no-one-moves-snow-like-griselda",
+    "title": "No One Moves Snow Like Griselda",
+    "summary": "ドラマ『Griselda』の配信に合わせ、スペイン北部の道路で除雪車を広告媒体にして、「雪（コカインの隠語）を動かす」というダジャレを実際の除雪と重ねたNetflixの屋外施策。",
+    "client": "Netflix",
+    "agency": "CYW, Madrid",
+    "categories": [
+      "Outdoor"
+    ],
+    "award": "Cannes Lions 2024 Outdoor Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Outdoor",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.zalathun.com/acciones-street-marketing-de-netflix/",
+    "videoId": "",
+    "overview": "Netflixがコロンビアの麻薬王グリセルダ・ブランコを描くドラマ『Griselda』を配信するにあたり、スペインで大雪をもたらした低気圧の直後に、ブランドとドラマのビジュアルを貼った除雪車を走らせた施策。制作はCYW Madrid。",
+    "background": "『Griselda』の主人公は、「雪（nieve）」がコカインの隠語として使われる麻薬取引で財を成した人物。大雪で道路が閉ざされた時期に、「雪を動かす」という言葉が除雪作業とブランコの「商売」の両方を指せることに着目した。",
+    "execution": "北部スペインの道路で、ブランドとドラマの図柄を付けた除雪車が実際に除雪を行い、車体には「Nadie mueve mejor la nieve que Griselda Blanco（グリセルダ・ブランコほど上手に雪を動かす者はいない）」というコピーと配信開始日が入っていた（Zalathunの街頭マーケ事例集による）。除雪という実用的な行為そのものを広告枠に変えている。",
+    "evaluationImpact": "スペインの除雪車の施策を伝える独立した報道は少なく、成果を示す数値は確認できなかった。同じ作品の別施策であるパリの屋外広告は批判を受けて取り下げられたが、本作とは別の話である。カンヌライオンズ2024のOutdoor部門でBronzeを受賞した。",
+    "tags": [
+      "Form/OOH",
+      "Form/Stunt",
+      "Theme/Entertainment"
+    ],
+    "thumbnail": "/thumbnails/netflix-no-one-moves-snow-like-griselda.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "budweiser-et-le-buuuuud",
+    "title": "Et Le Buuuuud",
+    "summary": "ホッケーでゴールを叫ぶ「Et le but!」の声を「Et le Bud!」に重ね、モントリオール・カナディアンズの得点に連動して広告を出したBudweiserのケベック施策。",
+    "client": "Budweiser",
+    "agency": "BETC, Paris",
+    "categories": [
+      "Outdoor"
+    ],
+    "award": "Cannes Lions 2024 Outdoor Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Outdoor",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.linkedin.com/in/hugoghiglia/",
+    "videoId": "",
+    "overview": "AB InBevとBETCが、ケベックでのBudweiserの販促として行った施策。フランス語でゴールを伝える「but（ビュット）」と「Bud」の音が近いことを使い、得点のたびにBudの名前を呼ばせる形にした。",
+    "background": "カナディアンズはMolsonとの結びつきが強く、Budweiserはチームの名前やロゴを使えない。そこで、チームの名前ではなく「ゴールの瞬間」の言葉を自社のものにする発想を取った。",
+    "execution": "BETC関係者のLinkedIn投稿によれば、カナディアンズが得点するたびにモントリオールの屋外広告がゴールに連動して切り替わり、専用の「et le Buuuuud」パックを出してCouche-Tardで土曜に最低価格で販売した。パックの表記を変えた点は、過去のフランスの同系統施策（W杯期間）と混同されやすいが別の取り組みである。",
+    "evaluationImpact": "成果の数値は独立した報道では確認できなかった。同投稿によれば、この施策はClio Awardsでも金賞を受けた。カンヌライオンズ2024のOutdoor部門とMedia部門でBronzeを受賞した。",
+    "tags": [
+      "Form/OOH",
+      "Theme/Sports",
+      "Tech/Data"
+    ],
+    "thumbnail": "/thumbnails/budweiser-et-le-buuuuud.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "netflix-the-cruise-heist",
+    "title": "The Cruise Heist",
+    "summary": "ネイマール主催のクルーズ船パーティーで人気MCの宝飾品が「盗まれた」という話題をSNSで広げ、Netflixドラマ『Berlin』の配信告知に結びつけたブラジルの施策。",
+    "client": "Netflix",
+    "agency": "404, Sao Paulo / GALERIA, Sao Paulo",
+    "categories": [
+      "Outdoor",
+      "Social & Influencer"
+    ],
+    "award": "Cannes Lions 2024 Outdoor Lions Bronze / Cannes Lions 2024 Social & Influencer Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Outdoor",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Social & Influencer",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://news.designrush.com/how-a-cruise-heist-in-brazil-became-a-clio-award-winning-netflix-campaign",
+    "videoId": "",
+    "overview": "『ペーパー・ハウス』の前日譚『Berlin』のシーズン1をブラジルで配信するにあたり、404が作った施策。クリスマスと年末の間の注目を集めにくい時期に、強盗ドラマの筋書きを現実のニュースのように見せた。",
+    "background": "DesignRushのインタビュー記事によれば、ブラジルで最も狙われる宝飾品は人気ラッパーが身に着けるものだと考え、強盗の筋書きをブラジル向けに置き換えた。配信前夜にネイマールが多数のアーティストを招いたクルーズを予定しており、それを物語の出発点にした。",
+    "execution": "クルーズに参加したアーティストが自分の宝飾品が無くなったとSNSに投稿し、本物の盗難のように噂が広がった。話題がXのトレンド上位に入った後、「盗まれた」宝飾品を『Berlin』の登場人物が身に着けた屋外広告とSNS投稿で種明かしし、配信開始を告知した。",
+    "evaluationImpact": "成果の数値は独立した報道では確認できなかった。カンヌライオンズ2024でOutdoor部門のBronzeとSocial & Influencer部門のSilverを受賞した。",
+    "tags": [
+      "Form/SNS",
+      "Form/Stunt",
+      "Form/OOH",
+      "Theme/Entertainment"
+    ],
+    "thumbnail": "/thumbnails/netflix-the-cruise-heist.jpg"
+  },
+  {
+    "year": "2024",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2024"
+    ],
+    "id": "axe-lynx-robbery",
+    "title": "Robbery",
+    "summary": "田舎のパブに強盗に入った女が、ウェイターの体臭ならぬ香りに惚れ込み、金と一緒に彼を連れて逃げる、Lynx（Axe）の1分のブラックコメディ広告。",
+    "client": "Axe/Lynx",
+    "agency": "LOLA MULLENLOWE, Madrid",
+    "categories": [
+      "Film",
+      "Film Craft"
+    ],
+    "award": "Cannes Lions 2024 Film Lions Gold / Cannes Lions 2024 Film Craft Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Film",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Film Craft",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.thedrum.com/news/2024/05/01/ad-the-day-lynx-makes-bold-bet-comedy-with-two-new-spots",
+    "videoId": "",
+    "overview": "LOLA MullenLoweによるLynx（Axe）の「The Power of a Fragrance」キャンペーンの1本。新しい香水「Blue Lavender」を、ダークユーモアの短編として見せた。",
+    "background": "同じキャンペーンは「Funeral」と合わせ2本の映像で2024年に始まった。LOLA MullenLoweのトマス・オスティグリアが、約10案から3案を選んだと語っている（Marketing Directo）。ブランドは笑いの方向に振った。",
+    "execution": "ウェイターが、ブリタニア・インというパブでの強盗を回想する形で進む。ハンマーを持った覆面の女が客を床に伏せさせ、キッチンから出てきたウェイターに近づいて匂いを嗅ぎ、その香りを褒める。警察が到着すると彼の上に覆いかぶさり、二人は金を持って逃げる。最後に製品カットと「The Power of a Fragrance」で終わる。演出はLionel Goldstein名義のKoen MortierとJoe Vanhoutteghem。LBBによればFilm Craftでは配役（キャスティング）が評価された。",
+    "evaluationImpact": "成果の数値は独立した報道では確認できなかった。カンヌライオンズ2024でFilm部門のGoldとFilm Craft部門のBronzeを受賞した。",
+    "tags": [
+      "Form/Film"
+    ],
+    "thumbnail": "/thumbnails/axe-lynx-robbery.jpg"
   }
 ]
