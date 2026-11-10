@@ -1,5 +1,166 @@
 [
   {
+    "id": "vit-h",
+    "title": "ViT-H",
+    "org": "北京大学 / BIGAI(北京通用人工知能研究院)",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "AI/Agents"
+    ],
+    "date": "2026-10",
+    "year": "2026",
+    "summary": "普通のカメラで撮った人の動画から、人型ロボット(Unitree G1)が実際に実行できる動きを直接つくり出す技術。従来の「人の姿勢を復元→ロボットに変換→追従」という3段階を飛ばせる。",
+    "point": "何がすごいか:人の動画からロボットの動きを作る従来の流れは、①人の3D姿勢を復元、②ロボットの体型に合わせて変換、③ロボットが再現、という3段階でした。各段階の小さな誤差が積み重なり、ロボットが転んだり不自然になったりしがちでした。ViT-Hは動画から「ロボットが実際に実行できる動き」を拡散モデル(ノイズから少しずつ動きを描き出すAI)で直接生成します。さらに、生成した動きを実際にロボットの制御ソフトに追従させ、うまくいったかどうかの結果をAIの学習に戻すので、「見た目は良いが実行できない動き」が減ります。広告・体験づくりでの使い道:来場者がカメラの前で踊ったりポーズを取ったりすると、人型ロボットが同じ動きをその場で返す展示や、ダンサーの動画をそのままロボット演舞に変えるステージ演出、ロボットを使ったライブ型コンテンツなどが考えられます。リアルタイム版はカメラ1台で遅延が約250ミリ秒と報告されており、操作を体験できる展示にも向きます。",
+    "detail": "仕組み:学習済みの動画から動きを生成するAI(16層のトランスフォーマー、動画は30fpsに変換して120フレームずつ処理)が、動画を見てロボット用の動きの下書きを直接つくります。次に、MuJoCo(物理シミュレータ)上の追従制御で実際に動かしてみて、成功した動きと失敗した動きの差をAIに教え直します(DPOという好みの学習手法)。先生が生徒の答案を採点して、良い答案の書き方を覚えさせるイメージです。リアルタイム版は逐次生成型で、遠隔操作に使えます。\n\n従来との違い:これまでは姿勢の復元やロボットへの変換を別々に最適化していたため、後段でロボットが失敗しても前段を直せませんでした。ViT-Hは追従結果をそのまま生成側に返すため、全体が一体で良くなります。論文では、モデルや学習データを増やすほど性能が上がることも報告されています。コードは2026年10月15日から公開が始まり、10月27日に推論・学習コード、28日にG1の追従器とアセットが追加され、11月2日にも修正が入っています。\n\n使うには:Pythonとコマンド実行の知識、NVIDIA GPU、SAM3D・SMPL/SMPL-X・検出器などの外部素材のダウンロードが必要です。モデルの再学習には大規模なモーションデータ(AMASSなど)が要ります。推論スクリプト(tools/infer_video.py)で動画から動きを生成でき、実機のロボットは必須ではなく、同梱のMuJoCo追従器で動きの確認ができます。実機デプロイ用のコードは2026年12月1日公開予定と記載されています。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "コードはMIT。SMPL/SMPL-X等の身体モデルや学習データは別規約のため、商用利用は各素材の条件を要確認。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/mileret/ViT-H-release"
+      },
+      {
+        "kind": "project",
+        "url": "https://awfuact.github.io/vit-h/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.32966"
+      },
+      {
+        "kind": "video",
+        "url": "https://youtu.be/j3q7f4-EUpk"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/vit-h.jpg",
+    "relatedWorks": [
+      {
+        "title": "GMR (General Motion Retargeting)",
+        "description": "人の動きを様々な人型ロボットへCPUでリアルタイムに変換するリターゲティングツール。ViT-Hが飛ばす従来の変換段階にあたる。",
+        "url": "https://github.com/YanjieZe/GMR"
+      },
+      {
+        "title": "Humanoid-GPT",
+        "description": "Unitree G1向けのゼロショット動作追従(CVPR 2026)。ViT-Hの追従フィードバック先の一つ。",
+        "url": "https://github.com/GalaxyGeneralRobotics/Humanoid-GPT"
+      },
+      {
+        "title": "HumanTracker",
+        "description": "人型ロボットの動作追従を人の好みに合わせて評価するベンチマーク(ECCV 2026)。",
+        "url": "https://github.com/GalaxyGeneralRobotics/HumanTracker"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "halo",
+    "title": "HALO (Perceptive Humanoid Motion from Simulation)",
+    "org": "Apple（apple-aiml-research）",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "AI/Agents"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "シミュレーション上の1,000軒の仮想住宅だけで学習し、ヒューマノイドロボット（Unitree G1）が本物の家で座る・くぐる・押すを自律実行する研究。データ生成から学習、実機配備までのコードを公開している。",
+    "point": "すごい点は、実際の家のデータを1件も使わず、コンピュータ上の仮想の家だけで学習したロボットが、そのまま現実の家で動いたことです。論文では未知の6環境・計360回の試行で91%成功と報告されています。カメラ映像と音声の指示から、椅子やソファに座る、机の下にしゃがんで潜る、箱を押す、人についていく、といった全身の動きを自動で作ります。広告・体験づくりでは、「人の言葉で動きを指示すると、周囲の家具に合わせて身体が自然に動くキャラクター」の発想源になります。たとえば店舗やイベント会場で、来場者に近づく、椅子に座って待つ、といった演技を現場ごとの作り込みなしで行うロボット演出や、同じ仕組みをデジタルキャラクターに転用して、空間に合わせて勝手に動く仮想スタッフを作る案が考えられます。コードは公開されているので、動きの生成部分だけを取り出して試すこともできます。",
+    "detail": "仕組みは3段構えです。まず上位の「司令塔」（視覚と言語を扱うAI、約0.5秒に1回）が「ソファに座って」のような依頼を小さな作業に分けます。次に「動き生成」モデル（約3回/秒）がカメラ画像を見て、今後5秒間の全身の動きを計画します。最後に「追従」モデル（毎秒50回）が、深度センサーと関節の状態を見ながらその計画どおりに身体を動かします。たとえるなら、監督・振付師・ダンサーの3人が別々の速さで働くチームです。学習データは、住宅を自動生成するInfinigenで作った1,000軒の仮想の家の中に、衝突しない動きを配置して作られ、見た目も8種類のランダム化でばらつかせています。\n\n従来は、ロボットの全身動作を作るには実機での計測や人手の調整が多く必要でした。HALOは計算量を増やすほどデータが増える方式で、人手が要りません。GitHubには、データ生成（datagen）、動き生成（generator）、G1用の追従ポリシーとIsaac Labでの学習・PythonおよびC++の配備（tracker）、司令塔（orchestrator）、シミュレーション・実機システム（system）が含まれます。\n\n使うには、NVIDIA GPU、Isaac Lab、MuJoCo、Infinigenなどの環境と、実機で試すならUnitree G1が必要です。論文の学習は大規模GPU（動き生成に64基のB200など）で行われているため、個人が一から再現するのは難しく、学習済みの重みもREADMEには記載がありません。ライセンスは商用可否が曖昧なので、仕事で使う前にApple側の条件確認が必要です。まずはプロジェクトページのデモ映像を、演出の参考資料として見るのが現実的です。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "Apple独自の許諾文（SPDX判定なし）。「personal, non-exclusive license」と書かれ商用可否は明記なし。サブコンポーネントは別ライセンス。学習済み重みはREADMEに記載なし（未確認）。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/apple-aiml-research/ml-halo"
+      },
+      {
+        "kind": "project",
+        "url": "https://apple-aiml-research.github.io/ml-halo/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2611.06908"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/halo.jpg",
+    "relatedWorks": [
+      {
+        "title": "Kimodo",
+        "description": "NVIDIAのテキスト・制約からヒューマノイド動作を作る拡散モデル。HALOのデータ生成で使われる",
+        "url": "https://github.com/nv-tlabs/kimodo"
+      },
+      {
+        "title": "GMR (General Motion Retargeting)",
+        "description": "人の動作を様々なヒューマノイドロボットへCPUでリアルタイムに移し替える",
+        "url": "https://github.com/YanjieZe/GMR"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "vork",
+    "title": "Vork",
+    "org": "Voyager（Nullframe, Inc.）",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools",
+      "AI/Agents"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "AIエージェントがコードでシーンを書き、GPUで描画して結果を見て修正するための、画面を持たない3D・VFXエンジン。Rust製で、Windows・Linux・Macで動く。",
+    "point": "すごい点は、AIエージェント（Claude Codeのようなコード実行型のAI）が、人間の代わりに3D制作の「書く→描く→見る→直す」を自分で回せるように設計された描画エンジンであることです。シーン、カメラ、材質、光、物理をJSON（必要ならTypeScriptやPython）で記述し、コマンド1つで画像や映像にできます。公式のデモには、100万羽の鳥の群れ、夜道を走る車の映像、実写映像にネオンサインを足すVFX、ブラックホール、水の流れなどがあります。広告・体験づくりでは、「AIに頼んで数十パターンの3Dカットを一晩で出す」「実写素材にネオンや雨などのエフェクトをコードで重ねる」「商品のモーションを大量にバリエーション出しする」といった使い方が考えられます。Blenderの重い画面操作を覚えなくても、言葉で指示しながら絵作りの試行回数を増やせるのが強みです。ただし現時点は0.3の研究プレビューで、煙や霧などの体積表現は未対応で、大きなシーンでは失敗することもあります。",
+    "detail": "仕組みは、シーンの記述（JSON）を読み込み、GPUで描画するというものです。Vulkan（WindowsとLinux）とMetal（Mac）を使い、まず物体の見える範囲を高速に求め、そこにハードウェアのレイトレーシング（光の道筋を追う計算）で光を足します。必要なら、より高品質な経路追跡（パストレーサー）も選べます。カメラの光線、材質、光の伝わり方、フィルムの反応といった各所にプログラムを差し込める作りです。「脚本を書けば撮影所が自動で映像にしてくれる」ようなもので、画面に人が触れず、出力も画像ファイルなので、AIが結果を見て直す往復に向いています。\n\n従来の3Dソフトは、人がGUIで操作する前提で作られています。VorkはAIが操作することを前提にしており、公式の説明では一部のシーンでBlenderのEEVEEより速いとされていますが、画質や測定条件の注意書きがあり、鵜呑みにはできません。\n\n使うには、NVIDIA製の新しいレイトレーシング対応GPU（WindowsとUbuntu 22.04以降）か、macOS 26のApple Siliconが必要です。インストールは install.sh / install.ps1、または `npm create vork@latest my-shot` で、`vork render scene.json --out render.png` で描画します。研究プレビュー中は商用でも無料ですが、ライセンスは独自で、プレビュー後の価格は未発表です。Blender連携は integrations/blender にあります。クライアント納品は許されていても、他人の依頼を受けて描画するサービス化には許可が必要です。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "ソース公開だがオープンソースではない独自ライセンス。研究プレビュー期間中は商用作品にも無料で使える。再販・改変版の配布・他人のジョブを受けるホスティング提供は許可が必要。完成映像をクライアントに納品するのは可。Blender連携部分のみGPL-3.0以降。プレビュー後の価格は未発表。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/voyager-so/vork"
+      },
+      {
+        "kind": "project",
+        "url": "https://voyager.so/vork"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/vork.jpg",
+    "relatedWorks": [
+      {
+        "title": "Blender",
+        "description": "オープンソースの3D制作ソフト。VorkはBlender連携ブリッジを同梱",
+        "url": "https://www.blender.org/"
+      },
+      {
+        "title": "Remotion",
+        "description": "Reactコードで映像を作るフレームワーク。コード駆動の映像制作という点が近い",
+        "url": "https://www.remotion.dev/"
+      },
+      {
+        "title": "three.js",
+        "description": "ブラウザで動くコード駆動の3D描画ライブラリ",
+        "url": "https://github.com/mrdoob/three.js"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "spell",
     "title": "SpeLL",
     "org": "GIST HCIS Lab（Jeongseok Oh, SeungJun Kim）",
