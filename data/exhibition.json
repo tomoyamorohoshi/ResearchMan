@@ -1,7 +1,49 @@
 {
   "version": 1,
-  "statusAsOf": "2026-11-09",
+  "statusAsOf": "2026-11-10",
   "items": [
+    {
+      "id": "2026-yokohama-museum-of-art-yuko-mohri-recompose",
+      "slug": "2026-yokohama-museum-of-art-yuko-mohri-recompose",
+      "title": "毛利悠子 Recompose — 第60回ヴェネチア・ビエンナーレ日本館帰国展",
+      "artists": [
+        "毛利悠子"
+      ],
+      "venue": "横浜美術館",
+      "venueType": "museum",
+      "prefecture": "神奈川県",
+      "city": "横浜市",
+      "startDate": "2026-07-24",
+      "endDate": "2026-11-23",
+      "status": "ongoing",
+      "admission": "無料",
+      "tags": [
+        "installation",
+        "kinetic",
+        "sound",
+        "light",
+        "media_art"
+      ],
+      "score": 78,
+      "matchReason": "公式ページによると、磁力・重力・空気の流れなどの自然現象で不規則な動きや音を生む作品を、拾得物や自作装置で構成するインスタレーション展。「Decomposition」は腐敗する果実に電極をつなぎ、水分の変化で音と光を発生させる。第60回ヴェネチア・ビエンナーレ日本館の帰国展で、横浜美術館 展示室9で開催、入場無料。",
+      "sources": [
+        {
+          "name": "毛利悠子 Recompose — 第60回ヴェネチア・ビエンナーレ日本館帰国展",
+          "url": "https://yokohama.art.museum/exhibition/202607_mohriyuko/",
+          "kind": "official"
+        },
+        {
+          "name": "Tokyo Art Beat",
+          "url": "https://www.tokyoartbeat.com/events/-/Yuko-Mohri-Recompose-A-Homecoming-Exhibition-from-Japan-Pavilion-of-the-60th-Venice-Biennale/603694-BD/2026-07-24",
+          "kind": "listing"
+        }
+      ],
+      "link": "https://yokohama.art.museum/exhibition/202607_mohriyuko/",
+      "thumbnail": "/thumbnails/exhibition/2026-yokohama-museum-of-art-yuko-mohri-recompose.jpg",
+      "addedAt": "2026-11-10T01:55:47.325Z",
+      "origin": "auto",
+      "highlight": false
+    },
     {
       "id": "2026-takamatsu-art-museum-ugoku-ten-art-of-light-sound-motio",
       "slug": "2026-takamatsu-art-museum-ugoku-ten-art-of-light-sound-motio",
