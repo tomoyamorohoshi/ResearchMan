@@ -26851,5 +26851,215 @@
         "desc": "直せる楽譜を経由して曲を作る、ローカルで動く音楽生成AI。"
       }
     ]
+  },
+  {
+    "id": "2026-11-10-1",
+    "date": "2026-11-10",
+    "title": "潮の椅子を譜面で奏でる",
+    "pattern": "技術×技術",
+    "seed": "TIDES（NOROO）の鎖状に連なる100脚の椅子に、SheetSage2で潮騒の録音から取ったメロディ譜を割り当て、座ると音が鳴る「潮汐の鍵盤」にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "tides-noroo-milan-2019",
+        "title": "TIDES — Milan Design Week 2019",
+        "desc": "日食形の椅子100脚を鎖でつなぎ、潮の満ち引きを表した塗料ブランドの展示。"
+      },
+      {
+        "type": "tech",
+        "id": "sheetsage2",
+        "title": "SheetSage2",
+        "desc": "曲の音源から、メロディやコードを読み取り編集できる譜面とMIDIに変えるAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-10-2",
+    "date": "2026-11-10",
+    "title": "人間証明を声の署名にする",
+    "pattern": "文脈×技術",
+    "seed": "Worldcoinの「人間であること」の証明を虹彩ではなく、AuKの話者分離で声の混ざりを解いて「この場にいた人の声」だけを証明する屋外広告にしたら、AI時代の本人確認が変わるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "worldcoin-you-must-be-human",
+        "title": "You Must Be Human",
+        "desc": "AIと人間の区別がつかない時代に、虹彩スキャンで人間の証明を訴えた屋外広告。"
+      },
+      {
+        "type": "tech",
+        "id": "auk",
+        "title": "AuK",
+        "desc": "声の生成・声質変換・ノイズ除去・話者分離を1つのAIと文章の指示でこなす音声モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-10-3",
+    "date": "2026-11-10",
+    "title": "失踪Macを消した映像で追う",
+    "pattern": "転用",
+    "seed": "LTX-2.3 Clean Plate IC-LoRAは被写体を消す道具だが、The Underdogsの盗まれたMacの映像から主役のMacだけを消し、「いない物を探す」ミステリー広告に転用できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "apple-the-underdogs-swiped-mac",
+        "title": "The Underdogs: Swiped Mac",
+        "desc": "盗まれたMacを4人組が追う約8分のアクション・コメディ映画。"
+      },
+      {
+        "type": "tech",
+        "id": "ltx-2-3-clean-plate-ic-lora",
+        "title": "LTX-2.3 Clean Plate IC-LoRA",
+        "desc": "動画から動く被写体を影や反射ごと消し、背景を作り直すLTX-2.3用の公式LoRA。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-10-4",
+    "date": "2026-11-10",
+    "title": "ピアノ物理音で鳥群を弾く",
+    "pattern": "技術×技術",
+    "seed": "coopianoの物理モデルピアノを、FlowHMRで取った人の全身モーションで弾かせ、鳥の群れのように動く身体が鍵盤を叩く録音なしの合奏ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "coopiano",
+        "title": "coopiano",
+        "desc": "録音を使わず、ハンマーや弦の物理モデルだけでピアノの音を作る合成ソフト。"
+      },
+      {
+        "type": "tech",
+        "id": "flowhmr",
+        "title": "FlowHMR",
+        "desc": "普通の動画1本から、足が滑らない自然な3D人体の動きを取り出すAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-10-5",
+    "date": "2026-11-10",
+    "title": "屋上の孤独を世界モデルで",
+    "pattern": "文脈×技術",
+    "seed": "Heinekenのソウルの屋上再生に、AlayaWorldを掛けて、屋上の写真1枚から「まだ誰も来ていない夜の宴」をリアルタイム生成し続ける無人のソーシャル体験を試せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "heineken-rooftop-revival",
+        "title": "Rooftop Revival",
+        "desc": "ソウルの使われていない屋上を衛星画像で見つけ、孤独に向き合う交流の場に変えた施策。"
+      },
+      {
+        "type": "tech",
+        "id": "alayaworld",
+        "title": "AlayaWorld",
+        "desc": "1枚の画像とカメラの動きから、遊び続けられる映像世界を生成するオープンソースの世界モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-10-6",
+    "date": "2026-11-10",
+    "title": "ライブラリを楽器の取説に",
+    "pattern": "転用",
+    "seed": "AutoSynthはシンセの設定を作るAIだが、Cornell Labの鳥の群飛彫刻に使い、鳴き声の特徴を「つまみ設定」として出力して、来館者が編集できる鳥の楽器にしたらどうだろう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "cornell-lab-ornithology-visitor-center-2025",
+        "title": "Cornell Lab of Ornithology Visitor Center",
+        "desc": "鳥の大群飛を立体彫刻にし、鳴き声当てテーブルなどを備えたビジターセンター。"
+      },
+      {
+        "type": "tech",
+        "id": "autosynth",
+        "title": "AutoSynth",
+        "desc": "文章や参考音から、シンセのつまみの設定一式を作り、人が後から直せるAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-10-7",
+    "date": "2026-11-10",
+    "title": "職人の手を3D空間で保存",
+    "pattern": "文脈×技術",
+    "seed": "Craft x Tech Tokai Projectの職人技を、FreeGaussianでInsta360撮影から実寸のGaussian Splatにして残し、V&Aの来場者が工房の空間ごと歩ける展示にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "craft-x-tech-tokai-project-2026",
+        "title": "Craft x Tech Tokai Project",
+        "desc": "東海の伝統工芸職人と海外デザイナーが協働し、V&Aで再解釈作品を展示した企画。"
+      },
+      {
+        "type": "tech",
+        "id": "freegaussian",
+        "title": "FreeGaussian",
+        "desc": "Insta360の生データから、ブラウザだけで写真のような3D空間を作るクラウドツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-10-8",
+    "date": "2026-11-10",
+    "title": "ハイライトを2Dキャラが語る",
+    "pattern": "技術×技術",
+    "seed": "プレスマが作る来場者のハイライト動画の語り手を、ChibiRigKitの1枚絵から作った2Dキャラにして、まばたきや視線で一日を振り返らせたら、思い出が人格を持つかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-1nx6ns7-2026",
+        "title": "プレスマ（テーマパーク来場者自動撮影・AIハイライト動画サービス）",
+        "desc": "テーマパーク内のカメラが来場者を撮影し、AIが1日の動画に自動編集するサービス。"
+      },
+      {
+        "type": "tech",
+        "id": "chibirigkit",
+        "title": "ChibiRigKit",
+        "desc": "1枚のイラストからまばたきや視線を持つ2Dキャラを作り、配信にも使えるOSS。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-10-9",
+    "date": "2026-11-10",
+    "title": "契約条項を映像の雨で見せる",
+    "pattern": "転用",
+    "seed": "MiniMax H3 VFX Edit LoRAの「雨を降らせる」編集を、演出ではなくPoweradeのAthletes Codeの条項が適用される瞬間の可視化に転用し、契約が選手を守る様子を見せられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "powerade-the-athletes-code",
+        "title": "The Athletes Code",
+        "desc": "競技を休んでもスポンサー契約を失わない条項を全契約に入れた取り組み。"
+      },
+      {
+        "type": "tech",
+        "id": "minimax-h3-vfx-edit-style-transfer-loraパック",
+        "title": "MiniMax H3 VFX Edit & Style Transfer LoRAパック",
+        "desc": "動画へ雨や映画風の色味などの編集を文章で加えられる追加学習データ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-10-10",
+    "date": "2026-11-10",
+    "title": "法律事務所の青を踊らせる",
+    "pattern": "文脈×技術",
+    "seed": "White & Caseの写真を色の筋に変えるリブランドツールに、Bernini の「触らない領域を保つ編集」を掛けたら、顔や署名は守りつつ背景だけが電気的な青へ溶ける動的な表現ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "white-case-rebrand-2026",
+        "title": "White & Case rebrand",
+        "desc": "ネイビーをやめて電気的な青に替え、写真を色の筋にする独自ツールを使ったリブランド。"
+      },
+      {
+        "type": "tech",
+        "id": "bernini",
+        "title": "Bernini",
+        "desc": "言葉の指示で画像も動画も編集でき、触らない領域を保てる統合モデル。"
+      }
+    ]
   }
 ]
