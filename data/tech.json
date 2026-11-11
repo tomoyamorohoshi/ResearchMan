@@ -1,5 +1,114 @@
 [
   {
+    "id": "quick-gs-editor",
+    "title": "Quick GS Editor（Quick Gaussian Splat Editor）",
+    "org": "Tijerín Art Studio",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "ガウシアン・スプラッティング（写真から作る3Dシーン）を、ブラウザ上で穴埋め・クリーニング・位置合わせ・変形・合成できる無料のエディタです。World Labs のオープンソース描画エンジン Spark で作り直され、有償のWindows版 Pro ではローカルで1枚の画像から3Dシーンを生成できます。",
+    "point": "スキャンした3Dシーンには、空中のゴミ（フローター）、穴、汚れ、傾いた地面がつきものです。Quick GS Editor はそれをブラウザだけで直せます。複数のシーンを1つにまとめたり、ブラシで一部をコピーして穴を隠したり、画像を貼って汚れを塗りつぶしたりもできます。1億点超の点を同時に描画でき、4DGS（動くスプラット）のタイムライン再生にも対応します。Pro版は、1枚の画像からローカルで3Dシーンを作る TripoSplat、HDRIの反射を焼き込む機能、粒子の流体シミュレーションを備えます。広告では、現場スキャンの後処理を専用ソフトなしで素早く済ませたい場面や、スキャンしたロケ地や商品を合成して映像・Web体験の素材にする場面で使えそうです。インストール不要で、リンクを開くだけで試せます。",
+    "detail": "仕組みとしては、ガウシアン・スプラッティングで作ったシーンを、色・大きさ・透明度を持つ無数の小さな楕円体の集まりとして扱います。ツールはその集まりを直接編集します。たとえば Clean は、色・大きさ・不透明度のしきい値で不要な楕円体を間引き、Multiply は隣り合う楕円体の間を補間して穴を埋め、Sculpt は塊ごと形をゆがめます。Project は画像を3D空間に投影して汚れの上に貼り、Clone Stamp は Photoshop のスタンプのように別の場所の見た目をコピーします。描画には、World Labs が公開しているオープンソースの three.js 向けレンダラー Spark を使っています。\n\n従来のスプラット編集は、SuperSplat のような汎用エディタで選択・削除を中心に行う使い方が主でした。本ツールは、穴埋め、スタンプ、画像投影、ソフトマスクによる合成、メッシュ変換といった「直す・作り込む」ための機能を1つのブラウザアプリに集めています。Proでは、VASTのオープンソースモデルで単一画像からスプラットを生成する TripoSplat や、球面調和関数の差し替えで反射を足す Reflect Engine、結果を PLY 連番で書き出す実験的な流体シミュレーションが加わります。\n\n使い方は、無料版ならブラウザで itch.io のページを開くだけです。Pro版は約191MBのポータブルWindows版で、オフライン動作し、$8.99以上で購入できます。TripoSplat には、6GB以上のVRAMを持つNVIDIA GPU（CUDA 12.1）、約15GBのディスク、重みを取得する初回のネット接続が必要です。ライセンス文面とソースは公開されていないため、商用案件で使う場合は、出力物の権利と利用条件を作者に確認すると安心です。",
+    "license": {
+      "spdx": null,
+      "commercial": "paid",
+      "note": "ブラウザ版は無料です。ライセンス条項やソース公開は確認できません（OSSではありません）。Windows版 Pro は買い切りで $8.99〜。itch.io のAI開示は「AI Assisted / AI Code」です。"
+    },
+    "links": [
+      {
+        "kind": "product",
+        "url": "https://tijerinart.itch.io/quick-gs-editor"
+      },
+      {
+        "kind": "product",
+        "url": "https://tijerinart.itch.io/quick-gs-editor-pro"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/tijerin-art-studio-rebuilds-quick-gs-editor-on-spark"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/quick-gs-editor.jpg",
+    "relatedWorks": [
+      {
+        "title": "SuperSplat",
+        "description": "PlayCanvas製のオープンソースのスプラットエディタ。選択・削除・書き出しの定番。",
+        "url": "https://github.com/playcanvas/supersplat"
+      },
+      {
+        "title": "Spark",
+        "description": "World Labs製のオープンソースな three.js 向けスプラットレンダラー。本ツールの描画基盤。",
+        "url": "https://github.com/sparkjsdev/spark"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "click3r",
+    "title": "Click3R",
+    "org": "University of Virginia (UVA Computer Vision Lab)",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "2枚の写真から3Dを復元するAIが間違えたとき、人が「この点とこの点は同じ場所」とクリックで数回教えるだけで、その場で直せる手法です。",
+    "point": "写真から3Dを起こすAI（DUSt3R系）は、繰り返し模様や左右対称の建物、のっぺりした壁、大きく角度が違う写真だと、1回の推論で出た結果が間違っていても直す手段がありませんでした。Click3Rは、2枚の写真の同じ場所を人が1〜12回クリックして伝えるだけで、再学習や長い最適化なしにその場で復元をやり直せます。論文では、実際の人のクリック（平均3.8回）で精度指標が35.7から56.2へ上がっています。広告や展示づくりでは、現地で撮った数枚の写真から会場や商品の3D背景を素早く作り、崩れた部分だけクリックで直す、という使い方が考えられます。撮影素材が少ない案件や、ロケハン写真からのプリビズ（仮の3D空間）づくりに向きます。ブラウザのデモが公開されているので、まず手元の写真で試せます。",
+    "detail": "仕組み：土台は、2枚の写真から各ピクセルの3D位置を一度に予測するDUSt3Rです。そこに約3,400万パラメータの小さな追加部品（アダプタ）を足します。ユーザーがクリックした対応点の位置を数値の列に変えて、モデルの内部に注意機構（どこを見るか決める仕組み）で差し込みます。クリックが0回のときは追加部品を使わず、元のモデルと同じ動きになります。学習では、正解の3D情報から自動で作った疑似クリックを使っています。\n\n従来との違い：これまでの同種モデルは、出力が1回で固定でした。結果が崩れたら別のモデルに替えるか、時間のかかる後処理をするしかありませんでした。Click3Rは1クリックから精度が上がり、人が直すことを前提にした設計です。難しい写真ペアを集めたベンチマークHard3DBenchも同時に公開されています。\n\n使うには：コードはMITライセンスで、Python 3.11とNVIDIA GPUがあれば、demo.pyで重みの取得から起動までできます。ただし重みは非商用ライセンスなので、案件の納品物に直接使う場合は注意が必要です。公開直後のリポジトリでコミット数もまだ少なく、動作は筆者側で未検証です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "research-only",
+      "note": "コードはMIT。学習済みの重み（チェックポイント）はCC BY-NC-SA 4.0で、非商用のみ。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/UVA-Computer-Vision-Lab/click3r"
+      },
+      {
+        "kind": "project",
+        "url": "https://uva-computer-vision-lab.github.io/click3r/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2611.12875"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/spaces/uva-cv-lab/Click3R"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/click3r.jpg",
+    "relatedWorks": [
+      {
+        "title": "DUSt3R",
+        "description": "2枚の画像から3D点群を直接予測する基盤モデルで、Click3Rの土台。",
+        "url": "https://github.com/naver/dust3r"
+      },
+      {
+        "title": "VGGT",
+        "description": "多数の画像から一度にカメラ姿勢と3D構造を出す大規模フィードフォワード再構成モデル。",
+        "url": "https://github.com/facebookresearch/vggt"
+      },
+      {
+        "title": "MASt3R",
+        "description": "DUSt3Rに画像間の対応づけ能力を加えた後継モデル。",
+        "url": "https://github.com/naver/mast3r"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "vit-h",
     "title": "ViT-H",
     "org": "北京大学 / BIGAI(北京通用人工知能研究院)",
