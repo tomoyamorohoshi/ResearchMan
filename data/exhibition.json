@@ -1,7 +1,128 @@
 {
   "version": 1,
-  "statusAsOf": "2026-11-10",
+  "statusAsOf": "2026-11-11",
   "items": [
+    {
+      "id": "2026-timedo-gallery-mariko-mori-shrine-ii",
+      "slug": "2026-timedo-gallery-mariko-mori-shrine-ii",
+      "title": "森万里子展：Shrine Ⅱ —内なる光のトポロジー",
+      "artists": [
+        "森万里子"
+      ],
+      "venue": "タイム堂ギャラリー",
+      "venueType": "gallery",
+      "prefecture": "京都府",
+      "city": "京都市上京区",
+      "startDate": "2026-11-06",
+      "endDate": "2027-03-31",
+      "status": "ongoing",
+      "admission": "無料",
+      "tags": [
+        "installation",
+        "light",
+        "sculpture"
+      ],
+      "score": 62,
+      "matchReason": "森万里子の立体インスタレーション《Shrine II》を核にした個展。水晶の磐座を几帳で囲む空間で、作家の「光の記憶」を詞書にした掛軸も展示する。公式ページで会期（2026-11-06〜2027-03-31）と会場を確認した。入場料は公式ページに記載がなく、無料は美術手帖の記載による。",
+      "sources": [
+        {
+          "name": "森万里子展：Shrine Ⅱ —内なる光のトポロジー (Mariko Mori: Shrine II)",
+          "url": "https://timedo.jp/exhibition/marikomori",
+          "kind": "official"
+        },
+        {
+          "name": "美術手帖",
+          "url": "https://bijutsutecho.com/exhibitions/19047",
+          "kind": "listing"
+        }
+      ],
+      "link": "https://timedo.jp/exhibition/marikomori",
+      "thumbnail": "/thumbnails/exhibition/2026-timedo-gallery-mariko-mori-shrine-ii.jpg",
+      "addedAt": "2026-11-11T01:41:14.828Z",
+      "origin": "auto",
+      "highlight": false
+    },
+    {
+      "id": "2026-artizon-museum-jam-session-fujii-hikaru-whose-light",
+      "slug": "2026-artizon-museum-jam-session-fujii-hikaru-whose-light",
+      "title": "ジャム・セッション 石橋財団コレクション×藤井光 WHOSE LIGHT? —だれのひかりか",
+      "artists": [
+        "藤井光"
+      ],
+      "venue": "アーティゾン美術館",
+      "venueType": "museum",
+      "prefecture": "東京都",
+      "city": "中央区",
+      "startDate": "2026-10-24",
+      "endDate": "2027-01-31",
+      "status": "ongoing",
+      "admission": "一般 ウェブ予約1,200円 / 窓口1,500円",
+      "tags": [
+        "installation",
+        "video_art",
+        "glass",
+        "light"
+      ],
+      "score": 61,
+      "matchReason": "映像インスタレーションで知られる藤井光の新作を含む約10点と、石橋財団コレクション22点を組み合わせる。石橋財団所蔵のガラス器・陶器を用いたインスタレーション《服従する者を赦し、驕る者を討て》(2026)を含む。",
+      "sources": [
+        {
+          "name": "ジャム・セッション　石橋財団コレクション×藤井光　WHOSE LIGHT? —だれのひかりか",
+          "url": "https://www.artizon.museum/exhibition/detail/608",
+          "kind": "official"
+        },
+        {
+          "name": "Tokyo Art Beat",
+          "url": "https://www.tokyoartbeat.com/events/-/Jam-Session-The-Ishibashi-Foundation-Collection-FUJII-Hikaru-Whose-Light/FA-482-B8-B/2026-10-24",
+          "kind": "listing"
+        }
+      ],
+      "link": "https://www.artizon.museum/exhibition/detail/608",
+      "thumbnail": "/thumbnails/exhibition/2026-artizon-museum-jam-session-fujii-hikaru-whose-light.jpg",
+      "addedAt": "2026-11-11T01:40:02.798Z",
+      "origin": "auto",
+      "highlight": false
+    },
+    {
+      "id": "2026-scai-piramide-mariko-mori-unity",
+      "slug": "2026-scai-piramide-mariko-mori-unity",
+      "title": "Mariko Mori, \"Unity\"",
+      "artists": [
+        "森万里子"
+      ],
+      "venue": "SCAI PIRAMIDE",
+      "venueType": "gallery",
+      "prefecture": "東京都",
+      "city": "港区",
+      "startDate": "2026-11-05",
+      "endDate": "2026-12-19",
+      "status": "ongoing",
+      "admission": "UNKNOWN",
+      "tags": [
+        "light",
+        "installation",
+        "media_art"
+      ],
+      "score": 66,
+      "matchReason": "光をテーマにしたディスク状のフォトペインティング「Unity」シリーズと、インタラクティブ・インスタレーション《Wave UFO》(2017)の模型およびアニメーション《Connected World》を展示する。森美術館の個展「燦燦」と同時期の開催。",
+      "sources": [
+        {
+          "name": "Mariko Mori, \"Unity\"",
+          "url": "https://www.scaithebathhouse.com/en/exhibitions/2026/11/mariko_mori_unity/",
+          "kind": "official"
+        },
+        {
+          "name": "美術手帖",
+          "url": "https://bijutsutecho.com/exhibitions/19020",
+          "kind": "listing"
+        }
+      ],
+      "link": "https://www.scaithebathhouse.com/en/exhibitions/2026/11/mariko_mori_unity/",
+      "thumbnail": "/thumbnails/exhibition/2026-scai-piramide-mariko-mori-unity.jpg",
+      "addedAt": "2026-11-11T01:40:01.531Z",
+      "origin": "auto",
+      "highlight": false
+    },
     {
       "id": "2026-yokohama-museum-of-art-yuko-mohri-recompose",
       "slug": "2026-yokohama-museum-of-art-yuko-mohri-recompose",
