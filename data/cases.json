@@ -1,5 +1,337 @@
 [
   {
+    "id": "kit-code-kitkat-vietnam-2026",
+    "title": "Kit=Code（KitKat Vietnam）",
+    "summary": "AIコーディング中に生成される「=」を数え、一定数でKitKatバーに変えて休憩を促す開発者向け施策",
+    "client": "KitKat",
+    "agency": "Leo Vietnam",
+    "categories": [
+      "テクノロジー×アイデア",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://creapills.com/kitkat-kitcode-pause-developpeurs-20261110",
+    "thumbnail": "/thumbnails/kit-code-kitkat-vietnam-2026.jpg",
+    "videoId": "",
+    "overview": "Leo VietnamがKitKatのために制作した「Kit=Code」は、AIコーディングツールが生成する「=」の数を数えるローカル型の補助ツール。一定数に達すると画面上の「=」の記号がKitKatバーに変わり、休憩のヒントを表示する。あわせてGrabの割引コードも提示する。開発者は専用マイクロサイトで使うAIコーディングツールを選び、セットアップ用プロンプトをコピーして導入する。",
+    "background": "KitKatは「Have a Break」を長年のブランドの合図としてきた。Campaign Brief Asiaは、この施策がベトナムの過労気味のコーダーを対象にしていると伝えている。AIコーディングで長時間の作業が続く層に、休憩というブランドの価値を届ける接点として選ばれたとみられる。なお、本件の情報は業界メディアの報道に基づき、公式サイトでは確認できていない。",
+    "execution": "導入はマイクロサイトでAIコーディングツールを選び、表示されるセットアップ用プロンプトをコピーして貼り付けるだけ。ツールはローカルで動作し、AIが生成する「=」を数える。しきい値に達すると、「=」の2本線がKitKatバーに変わるアニメーションが出て、休憩のヒントとGrabの割引コードが現れる。割引コードの数・額・期間は確認できていない。",
+    "evaluationImpact": "開発者が毎日大量に打つ記号をブランドの休憩の合図に読み替えた点が核で、一文で説明できる。AI支援コーディングという新しい作業習慣の中に、広告枠を使わず製品体験そのものとして入り込む手法は他の領域にも転用しやすい。成果指標（参加数・利用数）は確認できず、受賞も確認されていない。",
+    "relatedWorks": [
+      {
+        "title": "Leo Vietnam launches 'Kit=Code' for KitKat to encourage breaks during AI coding sessions",
+        "description": "Campaign Brief Asiaによる本施策の報道",
+        "url": "https://campaignbriefasia.com/2026/11/09/leo-vietnam-launches-kitcode-for-kitkat-to-encourage-breaks-during-ai-coding-sessions/"
+      },
+      {
+        "title": "KitKat transforme le signe = en rappel de pause pour les développeurs",
+        "description": "Creapillsによる本施策の紹介",
+        "url": "https://creapills.com/kitkat-kitcode-pause-developpeurs-20261110"
+      },
+      {
+        "title": "Phone Break（KitKat / VML）",
+        "description": "KitKatの休憩をテーマにした過去施策",
+        "url": "https://www.vml.com/work/phone-break"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Website",
+      "Theme/Food"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "lo-pi-radio-2026",
+    "title": "lo-pi radio",
+    "summary": "円周率の桁を改変せずF majorの音階に割り当て、0と9を休符にして永遠に流すローファイラジオ。",
+    "client": "The Pudding",
+    "agency": "",
+    "categories": [
+      "データクリエイティブ",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://pudding.cool/projects/lopi",
+    "thumbnail": "/thumbnails/lo-pi-radio-2026.jpg",
+    "videoId": "",
+    "overview": "The Pudding の「lo-pi radio」は、円周率の桁から生成したローファイ音楽を流し続けるライブ配信型のラジオである。桁を順番どおりに並べ、各桁をF majorの音に対応させ、0と9は無音の休符として扱う。桁は飛ばしたり改変したりしない。音が鳴るタイミングと長さは決められたルールで決まる。付随ビジュアル「walking pi」は、桁ごとに四角形の軌跡を描く。トップページでは「円周率の桁によるライブのローファイを永遠に」と紹介されている。",
+    "background": "本作は、The Pudding の記事「The Afterlife of Pi」(2026年11月)の関連企画として公開された。制作者として確認できたのは Russell Samora と Kevin Litman-Navarro の2名である。The Pudding はデータを使った視覚的ストーリーテリングで知られるメディアで、音楽や波形を扱った過去企画もある。クライアント名は The Pudding 自身とした。制作会社の有無は確認できなかった。",
+    "execution": "円周率の桁を先頭から順に読み、各桁を F major の音階の音に割り当てて旋律にする。0 と 9 は休符になる。桁の並びそのものが旋律を決め、桁の順序は変えない。音の発音タイミングと長さには別のルールを設けている。映像側の「walking pi」では、1〜8 の桁が各方向へ1マス進む動きとして描かれ、0 と 9 は動かない。古いマスは徐々に薄れる。",
+    "evaluationImpact": "円周率の桁を、並べ替えや選別を加えずに旋律へ読み替え、ローファイラジオという身近な形式に載せた点が一文で言える企画である。桁の並びが聴き心地のよい音楽として終わりなく流れ、データを聴いて理解する形になっている。ビジュアルの軌跡も同じ桁列から作られる。受賞や外部メディアでの評価は、今回の検索では確認できなかった。",
+    "relatedWorks": [
+      {
+        "title": "The Afterlife of Pi",
+        "description": "lo-pi radio の元になった The Pudding の記事(2026年11月)。",
+        "url": "https://pudding.cool/2026/11/pi/"
+      },
+      {
+        "title": "Let's Learn About Waveforms",
+        "description": "The Pudding による、波形を題材にした過去の企画。",
+        "url": "https://pudding.cool/2018/02/waveforms/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Tech/Audio",
+      "Form/Website",
+      "Theme/Music"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "pudding",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "glowing-mycelium-sculptures-luminousnetworks-berlin-science",
+    "title": "Glowing Mycelium Sculptures（LuminousNetworks / Berlin Science Week）",
+    "summary": "木質残渣に霊芝の菌糸を育てた彫刻で、菌糸自体の蛍光をUV光で見せる素材表現",
+    "client": "Fraunhofer WKI × Malte Taffner",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://materialdistrict.com/article/glowing-mycelium-sculptures-head-to-berlin-science-week/",
+    "thumbnail": "/thumbnails/glowing-mycelium-sculptures-luminousnetworks-berlin-science.jpg",
+    "videoId": "",
+    "overview": "Fraunhofer WKIのプロジェクト「LuminousNetworks」で、アーティストのMalte Taffnerが木質残渣と生きた菌糸から彫刻を制作する。菌糸が持つ蛍光性により、UV光の下で彫刻が発光する。Berlin Science Weekの2026年プログラムにはTaffnerが参加者として掲載されている。ただしWKI側の資料で確認できた蛍光彫刻は試作段階のもので、Berlin Science Weekでの展示内容・日程の詳細は確認できていない。",
+    "background": "LuminousNetworksは、Fraunhofer「Science, Art and Design」ネットワークの助成を受け、菌糸系素材の可能性を一般の人々に伝えることを目的としている。WKIは菌糸を持続可能で機能的なバイオ素材として研究しており、協働相手は霊芝(Ganoderma属)のサルノコシカケ類を扱う。研究成果を美術の文脈に置き、素材の魅力を直感的に見せる狙いがある。",
+    "execution": "Taffnerは木質残渣を基材に生きた菌糸を育て、彫刻の形に仕上げる。WKIの2026年2月のプレスリリースによると、最初の蛍光彫刻試作は、フィッツウィリアム博物館所蔵のサラミスのディオニュソス像トルソーの複製である。UV光を当てると菌糸の蛍光で発光する。顔料や電飾を足さず、素材そのものの性質で色と光を出す点が特徴。",
+    "evaluationImpact": "廃材と菌糸という低コストで再生可能な素材から、発光する彫刻を作れることを示した点が評価できる。素材研究と美術を結ぶことで、バイオ素材を研究者以外にも伝わる形にしている。一方、受賞は公式ソースで確認できず、公開されている蛍光彫刻は試作段階。Berlin Science Weekでの展示規模も未確認で、インパクトは今後の展開次第。",
+    "relatedWorks": [
+      {
+        "title": "LuminousNetworks (Fraunhofer WKI)",
+        "description": "菌糸ネットワークにおける生物学・科学・文化の多様性をテーマにしたWKIの研究プロジェクト",
+        "url": "https://www.wki.fraunhofer.de/en/research-projects/2025/luminous-networks_biological-scientific-and-cultural-diversity-in-the-mycelium-network.html"
+      },
+      {
+        "title": "Mycelium as a sustainable and functional biomaterial (Fraunhofer WKI)",
+        "description": "WKIの2026年2月のプレスリリース。蛍光彫刻の試作とGanodermaの扱いに言及",
+        "url": "https://www.wki.fraunhofer.de/en/press-media/2026/press-release_2026-02_Fraunhofer-WKI-in-the-science-showcase-the-colorful-world-of-fungi.html"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Theme/Art",
+      "Theme/Sustainability",
+      "Tech/3D"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "materialdistrict",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "automatar-an-intelligent-ai-guitar-2026",
+    "title": "Automatar – An intelligent AI guitar",
+    "summary": "演奏者の4弦に反応し、内蔵GPUのAIが自らの弦を電磁的に振動させて呼応する、AI内蔵の楽器。",
+    "client": "Antonis Christou（MIT Media Lab Opera of the Future Group）",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "AIクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.creativeapplications.net/member/automatar-an-intelligent-ai-guitar/",
+    "thumbnail": "/thumbnails/automatar-an-intelligent-ai-guitar-2026.jpg",
+    "videoId": "",
+    "overview": "Automatarは、MIT Media Labのプロジェクトとして紹介されているAI搭載のベースギターです。演奏者が主となる4本の弦を弾くと、楽器内蔵のAIモデルが演奏の仕方を理解し、楽器自身が電磁的に弦を振動させて和声的に呼応します。スピーカーや音の合成は使わず、実際に弦が振動して音になります。",
+    "background": "MIT Media Labの公式ページは、デジタルとフィジカルの世界をつなぐことを狙った知的なAIギターとしてAutomatarを紹介しています。プロジェクトページにはJimmy Dayの名前がクレジットされています。AIを画面の中ではなく楽器という物体の中に入れ、演奏者と共演させる発想が出発点です。特許出願中で、研究は継続中と説明されています。",
+    "execution": "楽器にはNVIDIAのGPUが組み込まれ、オンボードのAIモデルが人間の演奏を解釈します。人間が4本の主弦を弾くと、その入力に反応して楽器が電磁アクチュエーションで自らの弦を振動させます。電気的に音を作るのではなく、スピーカーも合成音も介さず、アコースティックな弦の振動そのものを使う点が実装の特徴です。",
+    "evaluationImpact": "AIが生成音を別途再生するのではなく、楽器の物理的な弦を鳴らして共演する点が新しいです。演奏者はAIを外部機器ではなく楽器の一部として扱え、ライブ演奏への転用が考えられます。公式ページではさらに別のバージョンや楽器の開発も進行中とされ、他の楽器への展開も期待できます。受賞は確認できていません。",
+    "relatedWorks": [
+      {
+        "title": "Guitar Machine (MIT Media Lab)",
+        "description": "MIT Media Labによる、AIとロボティクスを電気ギターに組み合わせた先行プロジェクト。",
+        "url": "https://www-prod.media.mit.edu/projects/guitar-machine/overview/"
+      },
+      {
+        "title": "Guitar Machine II (MIT Media Lab)",
+        "description": "Guitar Machineの後継プロジェクト。",
+        "url": "https://www.media.mit.edu/projects/guitar-machine-ii/overview/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/Audio",
+      "Form/Product",
+      "Theme/Music"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "creativeapplications",
+    "gateTier": "accept",
+    "discoveryLens": 4
+  },
+  {
+    "id": "heureusement-on-ne-se-comporte-pas-dans-la-vie-comme-sur-la",
+    "title": "Heureusement, on ne se comporte pas dans la vie comme sur la route（Victimes & Citoyens）",
+    "summary": "道路上のクラクションや暴言を日常の場面にそのまま移し替え、運転中の無礼の不条理さを固定カメラ1カットで見せる交通安全映像。",
+    "client": "Victimes & Citoyens",
+    "agency": "joga（制作: Les Fistons）",
+    "categories": [
+      "カルチャーインサイト",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/victimes-citoyens-comportements-volant-20261109",
+    "thumbnail": "/thumbnails/heureusement-on-ne-se-comporte-pas-dans-la-vie-comme-sur-la.jpg",
+    "videoId": "",
+    "overview": "フランスの交通事故被害者支援団体Victimes & Citoyensが、広告会社jogaと展開した映像キャンペーン。クラクション、車間を詰める、暴言といった運転中の振る舞いを日常生活の場面に置き換えた、固定カメラの短編2本で構成する。制作はLes Fistons、監督はMathis JaulhacとJonathan Pasi。2026年11月9日からデジタルとコネクテッドTV(CTV)で配信された。",
+    "background": "Victimes & Citoyensは2004年設立で、交通事故の被害者を支援し、危険な運転行動の予防にも取り組む団体。同団体はjogaと、男性の過信を突いたTikTok風の映像や「Code de la Sortie de Route」など、運転者の意識に切り込む施策を重ねてきた。今回は、団体の会長Julien Thibautが語るとおり、危険は無礼が習慣になるところから始まるという考えが出発点にある。",
+    "execution": "道路上では許されてしまう攻撃的な行動を、そのまま日常の場面で人に演じさせる。固定カメラによる短編2本で、運転席という匿名の空間を取り除いたときの振る舞いの異様さを見せる。演出は場面の見立てだけに絞った簡潔なもの。配信はデジタルとCTVで、2026年11月9日に始まった。",
+    "evaluationImpact": "「運転中の無礼を日常に持ち込む」という一文で説明できる見立てで、説教に頼らず、見る人が自分の運転を省みるよう促す。実際のクラフトは簡素で、派手な技術や発明はない。受賞は公式ソースでは確認できていない。今回の確認範囲では、評価の根拠は企画の明快さに限られる。",
+    "relatedWorks": [
+      {
+        "title": "Messieurs, il est temps d'atterrir（Victimes & Citoyens / joga）",
+        "description": "飛行機を着陸させられると答える男性のTikTok動画を引き、運転時の男性の過信を事故の現実と対比させた同団体の施策。",
+        "url": "https://lareclame.fr/joga-victimescitoyens-trend-tiktok-avion-320015"
+      },
+      {
+        "title": "INCIVILITY（Victimes & Citoyens）",
+        "description": "同団体の関連キャンペーン。Ads of the Worldに掲載。",
+        "url": "https://www.adsoftheworld.com/campaigns/incivilty"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Theme/SocialGood",
+      "Theme/Mobility"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "mexico-city-slides-carsten-h-ller-2026",
+    "title": "Mexico City Slides（Carsten Höller）",
+    "summary": "4本の巨大スパイラル滑り台が複合施設を縫い、異なる場所の人々を同じ着地点に集める常設の公共インスタレーション",
+    "client": "Arte Abierto / SOMA",
+    "agency": "Sordo Madaleno（建築協働）",
+    "categories": [
+      "空間体験",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "中南米"
+    ],
+    "link": "https://www.designboom.com/?p=1215276",
+    "thumbnail": "/thumbnails/mexico-city-slides-carsten-h-ller-2026.jpg",
+    "videoId": "",
+    "overview": "アーティストのカールステン・ヘラー(Carsten Höller)が、メキシコシティのAntara拡張区画「Arte Abierto Polanco」に設置した、4本の大型スパイラル滑り台による常設インスタレーション。ステンレス製の滑り台が中央の支持構造体の周囲に巻き付く形で、敷地内のレストランやGoogleのオフィス、建設予定のRosewoodホテル、Arte Abiertoの新会場などをつなぐ。",
+    "background": "Arte Abiertoは開発会社SOMAが2019年に設立した非営利の現代美術財団。Antaraの最新拡張(コロニア・グラナダ)に伴い、Arte AbiertoとSOMAが本作を委嘱し、建築事務所Sordo Madalenoが協働した。Sordo Madalenoは拡張区画の造園された歩行路、段状のテラス、2,500平方メートルの公共庭園も設計している。ヘラーは2006年のテート・モダンの滑り台作品や、2019年のタマヨ美術館での個展「Sunday」(ラテンアメリカ初の回顧的個展)でも知られる。",
+    "execution": "滑り台は複合施設内の異なる地点を起点とし、乗り手は別々の場所から出発しても同じ着地エリアに到着できる。通常は動線が交わらないレストラン利用者やオフィス勤務者などが、滑るという共通の体験を通じて同じ場所に集まる設計になっている。素材はステンレスで、中央の支持構造体を巻くスパイラル形状。",
+    "evaluationImpact": "「滑り台」というヘラーの代表的モチーフを、美術館内の体験から都市の複合開発施設の恒久的な動線装置へ拡張した点が特徴。アートが商業・オフィス・宿泊機能の間の人の流れを結び、公共空間での出会いを生む仕組みとなっている。ただし、2026年のプロジェクト詳細は主にDesignboomの1記事に依拠しており、利用規則や入場条件などは確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Carsten Höller: Test Site (Tate Modern, 2006)",
+        "description": "テート・モダンのタービンホールに5本の巨大スパイラル滑り台を設置し、あらゆる年齢の来場者が滑れるようにした作品。",
+        "url": "https://theartstory.org/amp/artist/holler-carsten/"
+      },
+      {
+        "title": "Carsten Höller: Sunday (Museo Tamayo, 2019)",
+        "description": "メキシコシティのタマヨ美術館で開催された、ヘラーのラテンアメリカ初の大規模個展。",
+        "url": "https://www.wallpaper.com/art/carsten-holler-sunday-museo-tamayo-mexico-city"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Theme/Art",
+      "Tech/Device"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "designboom",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "masglo-100-vegan-nail-polish-posters-2026",
+    "title": "Masglo 100% Vegan Nail Polish posters（爪の代わりに果物）",
+    "summary": "マニキュアの爪を果物に置き換え、ヴィーガン処方の色と質感を一目で伝える5点の広告ポスター",
+    "client": "Masglo",
+    "agency": "The Juju Bogota",
+    "categories": [
+      "OOH革新",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "中南米"
+    ],
+    "link": "https://creapills.com/vernis-ongles-veganes-masglo-20261109",
+    "thumbnail": "/thumbnails/masglo-100-vegan-nail-polish-posters-2026.jpg",
+    "videoId": "",
+    "overview": "コロンビアのコスメブランドMasglo（制作The Juju Bogotá、2026年）の「100% Vegan Nail Polish」ポスター。マンゴー、ブドウ、トマト、オレンジ、青リンゴの5つの果物を、色鮮やかなマニキュアを塗った爪に見立てている。爪の根元にあたる甘皮や半月の位置には、果物のヘタや葉が配置されている。ポスターには「100% VEGAN NAIL POLISH」の文言とV-Labelのシールが入る。",
+    "background": "ヴィーガン処方であることは、パッケージの成分表示を読まなければ伝わりにくく、見た目では他社製品と区別しづらい。MasgloはV-Label認証を受けた「100%ヴィーガン」のマニキュアという特徴を、広告で直感的に伝える必要があった。そこで、植物由来という性質と、マニキュアの色や艶をつなぐ共通のモチーフとして果物を選んだ。",
+    "execution": "指先の爪の位置に果物を置き、その果実の色と質感をマニキュアの仕上がり見本として見せる。マンゴーの黄橙、ブドウの紫、トマトの赤、オレンジ、青リンゴの緑と、色の幅も1つずつ示している。ヘタや葉を爪の根元に当てることで、果物が爪にしか見えない構図にしている。コピーは製品の特徴とV-Labelの表示に絞っている。",
+    "evaluationImpact": "「爪＝果物」という置き換えにより、ヴィーガンという目に見えない処方上の特徴と、製品の色・艶の訴求を1枚で同時に伝えている。説明的なコピーに頼らずビジュアルだけで成立する点が評価できる。ただし、一次情報（Masgloやエージェンシーの公式発表）は確認できておらず、受賞も公式ソースでは未確認。インパクトの定量データは見つからなかった。",
+    "relatedWorks": [
+      {
+        "title": "KitKat Vietnam チョコレート香りのマニキュア",
+        "description": "KitKatが自社のバーをモチーフに、チョコレートの香りのマニキュアコレクションを展開した事例（Creapills掲載）。",
+        "url": "https://creapills.com/kitkat-risque-vernis-chocolat-20260629"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Print",
+      "Form/OOH",
+      "Theme/Fashion"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
     "id": "se-al-ticas-del-autocuidado-volvo-trucks-chile-2026",
     "title": "Señaléticas del autocuidado (Volvo Trucks Chile)",
     "summary": "STOPやロータリーなど道路標識の見た目を借り、乳房セルフチェックの手順に読み替えたVolvo Trucksのポスター企画",
