@@ -27061,5 +27061,203 @@
         "desc": "言葉の指示で画像も動画も編集でき、触らない領域を保てる統合モデル。"
       }
     ]
+  },
+  {
+    "id": "2026-11-11-1",
+    "date": "2026-11-11",
+    "title": "粘菌が決める昆布の窪み配置",
+    "pattern": "文脈×技術",
+    "seed": "TBSのRockseedsは岩に昆布の苗を守る窪みを彫った。その彫る位置を、東京の鉄道網を再現したPhysarum polycephalumに海底地形で培養させて探らせたら、人が思いつかない藻場の配置が見つかるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "tbs-rockseeds",
+        "title": "Rockseeds",
+        "desc": "海底の岩に昆布の苗を守る窪みを彫り、藻場の再生を後押しした取り組み。"
+      },
+      {
+        "type": "tech",
+        "id": "physarum-polycephalumによる東京鉄道網再現実験",
+        "title": "Physarum polycephalum（真正粘菌）による東京鉄道網再現実験",
+        "desc": "脳を持たない粘菌を培地で育てると、実際の鉄道網に似た効率的な経路ができた実験。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-11-2",
+    "date": "2026-11-11",
+    "title": "汗で開く妊娠検査紙の広告",
+    "pattern": "文脈×技術",
+    "seed": "IKEAの妊娠検査紙広告は尿で割引が現れた。bioLogicの納豆菌が湿度で開閉する生地を使えば、読者の体温や汗にだけ反応して紙面が開き、クーポンが現れる、身体そのものが引き金の広告になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ikea-pregnancy-test-ad-2018",
+        "title": "IKEA Pregnancy Test Ad（尿をかけると割引が現れる雑誌広告）",
+        "desc": "雑誌の検査紙に尿をかけると、ベビーベッドの割引クーポンが浮かぶ広告。"
+      },
+      {
+        "type": "tech",
+        "id": "biologic",
+        "title": "bioLogic",
+        "desc": "納豆菌が湿度で伸び縮みする性質を使い、汗に反応して開閉するスポーツウェア。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-11-3",
+    "date": "2026-11-11",
+    "title": "来場者がダビデ像になる展示",
+    "pattern": "文脈×技術",
+    "seed": "ダビデ像の原寸レプリカを“渡航”させた発想を逆にして、TuttiCamで来場者をスマホ8台で同時撮影し、Gaussian Splattingの立体像として台座に並べたら、人の方が展示品になる体験が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "michelangelo-s-david-3d-printed-replica-italy-pavilion-expo",
+        "title": "Michelangelo's David 3D Printed Replica (Italy Pavilion, Expo 2020 Dubai)",
+        "desc": "門外不出のダビデ像を3Dスキャンし、原寸レプリカをドバイ万博へ送った。"
+      },
+      {
+        "type": "tech",
+        "id": "tutticam",
+        "title": "TuttiCam",
+        "desc": "スマホなど最大8台で同じ瞬間に自動撮影する、Gaussian Splatting用の撮影アプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-11-4",
+    "date": "2026-11-11",
+    "title": "歩いた軌跡が缶の記憶になる",
+    "pattern": "文脈×技術",
+    "seed": "ボルタンスキーのMEMORIALは無数の錆びた缶で名もなき生を刻んだ。LingBot-Mapで来場者がスマホで歩いた空間を単眼映像から3D再構成し、歩いた人数分の軌跡を缶のように積み上げる、増え続ける記憶の層ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "memorial-2022",
+        "title": "MEMORIAL",
+        "desc": "南三陸の常設アートゾーンに、錆びた缶を無数に積んだボルタンスキーの作品。"
+      },
+      {
+        "type": "tech",
+        "id": "lingbot-map",
+        "title": "LingBot-Map",
+        "desc": "LiDARなしで単眼カメラ映像から、3D形状をリアルタイムに再構成するAIモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-11-5",
+    "date": "2026-11-11",
+    "title": "遺族の端末だけで鳴る故人の声",
+    "pattern": "文脈×技術",
+    "seed": "ROADRUNNERではAIによる故人の声の再現が論争になった。audio.cppでネット接続なしに遺族の端末の中だけで動かし、再生は家族の前の一度きりと決めれば、倫理の線引きを仕組みで示す追悼表現になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "roadrunner-bourdain-ai",
+        "title": "ROADRUNNER: A FILM ABOUT ANTHONY BOURDAIN",
+        "desc": "故ボーデインの声をAIで再現し、倫理的な議論を呼んだドキュメンタリー映画。"
+      },
+      {
+        "type": "tech",
+        "id": "audio-cpp",
+        "title": "audio.cpp",
+        "desc": "60種類以上の音声・音楽AIを、Pythonなしで手元のPCで動かせる推論エンジン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-11-6",
+    "date": "2026-11-11",
+    "title": "鼻歌が映像を踊らせる装置",
+    "pattern": "技術×技術",
+    "seed": "NeuralNoteで鼻歌や楽器をその場でMIDIに変え、そのMIDIをTiXLに渡して映像を動かしたら、楽譜も機材知識も要らず、口ずさむだけで即興VJができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "neuralnote",
+        "title": "NeuralNote",
+        "desc": "録音した音声をほぼその場でMIDIノートに変換する無料のオーディオプラグイン。"
+      },
+      {
+        "type": "tech",
+        "id": "tixl",
+        "title": "TiXL（旧称 Tooll3）",
+        "desc": "音楽やMIDIに反応して映像が変わる、無料のリアルタイム映像制作ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-11-7",
+    "date": "2026-11-11",
+    "title": "ロボの身ぶりを顔横の手で増幅",
+    "pattern": "技術×技術",
+    "seed": "自分から話しかけるProActのヒューマノイドの声と身ぶりを、EmoMimeの顔のそばで動く手型ウェアラブルアームへ流したら、会話相手の気持ちを自分の顔まわりで感じる、新しい遠隔対話ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "proact",
+        "title": "ProAct",
+        "desc": "声と身ぶりを生成し、自分から話しかけるヒューマノイド向け対話システム。"
+      },
+      {
+        "type": "tech",
+        "id": "emomime",
+        "title": "EmoMime",
+        "desc": "顔のそばでも安全に動く、人の手の形をしたウェアラブルロボットアーム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-11-8",
+    "date": "2026-11-11",
+    "title": "4D世界を実写風の街に置く",
+    "pattern": "技術×技術",
+    "seed": "AEONで生成した動く4D世界を、YaGSでUnreal Engine上の通常の3Dモデルと奥行きを正しく重ねて配置したら、生成された幻の風景の中を、実在の建物と一緒に歩けるロケ地ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "aeon",
+        "title": "AEON",
+        "desc": "文章や1枚の画像から、後で自由な角度で見られる動く3D空間を生成するモデル。"
+      },
+      {
+        "type": "tech",
+        "id": "yags",
+        "title": "YaGS",
+        "desc": "Unreal EngineでGaussian Splattingを奥行きどおりに重ねられる無料プラグイン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-11-9",
+    "date": "2026-11-11",
+    "title": "割れた器を欠け方で標本化",
+    "pattern": "転用",
+    "seed": "彫刻アプリSculptForgeのスマホ動画からのメッシュ化を、造形ではなく割れた器の記録に使えないか。破片を撮って欠け方ごと立体標本にし、修復前の姿を残す“壊れ方のアーカイブ”になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "sculptforge",
+        "title": "SculptForge",
+        "desc": "無料の彫刻アプリ。スマホ動画からGaussian Splatを学習しメッシュ化できる。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-11-10",
+    "date": "2026-11-11",
+    "title": "実家の記憶を動画に再現",
+    "pattern": "転用",
+    "seed": "MSRは広告用の複数人物の再現技術だが、取り壊す実家の部屋・家具・家族の服や小物を5枚の写真で参照し、混同せず動く思い出動画にすれば、解体前の“家の追悼映像”に使えるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "msr-for-ltx-2-5",
+        "title": "MSR (Multiple Subject Reference) for LTX-2.5",
+        "desc": "5枚までの参照画像から、複数の人物・服・小物・背景を混同せず再現する動画生成技術。"
+      }
+    ]
   }
 ]
