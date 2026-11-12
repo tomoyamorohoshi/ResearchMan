@@ -1,5 +1,318 @@
 [
   {
+    "id": "buoy-series-the-new-raw-2026",
+    "title": "Buoy series（The New Raw）",
+    "summary": "ロッテルダム港の廃棄マリンロープを再生PPにし、ロボット積層で無着色のまま座ると揺れるブイ形ベンチに作り替えた",
+    "client": "The New Raw",
+    "agency": "The New Raw（協力: Healix, IKM Hendrik Veder）",
+    "categories": [
+      "テクノロジー×アイデア",
+      "空間体験"
+    ],
+    "award": "Dezeen Awards 2026 サステナブルデザイン部門ショートリスト入り、および同アワードの一般投票(Public vote)で同部門の勝者に選出（Dezeen掲載情報。審査員による最終結果は2026年11月16日発表予定）",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://materialdistrict.com/article/discarded-harbour-ropes-become-swinging-seats-in-rotterdam/",
+    "thumbnail": "/thumbnails/buoy-series-the-new-raw-2026.jpg",
+    "videoId": "",
+    "overview": "ロッテルダムのスタジオThe New Rawが、同市の港で回収された廃棄ロープを素材に作った公共用の座具シリーズ。港の海事ロープをマーストリヒトで洗浄・粉砕して再生ペレットにし、ロッテルダムの工房でロボットにより積層造形した。形はブイを想起させ、座ると揺れる。顔料は加えず、ロープ本来の色が各座具の色味になる。",
+    "background": "The New Rawは2016年設立で、創設者はFoteini SetakiとPanos Sakkas。産業用ロボットアームで再生ポリプロピレンを積層し、家具やベンチを制作してきた。海運や港湾で使われる合成ロープは使用後に廃棄されやすい。同スタジオは地元の港湾関係者や再生ネットワークと連携し、地元で出た廃棄物を地元の公共空間の家具へ戻す循環を試みた。",
+    "execution": "港で集めたプラスチック製ロープは、マーストリヒトで洗浄・粉砕され、機械的リサイクルによりペレット化される。ペレットはロッテルダムの工房で溶融され、ロボットが積層して成形する。造形はブイの形を参照し、座ると揺れる動きを持たせた。着色はせず、素材由来の色をそのまま見せる。スタジオは作品を、アート、都市家具、素材システムの要素を併せ持つものと位置づけている。",
+    "evaluationImpact": "「港の廃棄ロープを、港の街のブイ形の揺れる座具にする」と一文で言える点が強い。形と素材の由来が一致しており、座った人が素材の出自を体で感じられる。着色せず素材の色を見せる点も、再生素材の見せ方として明快。Dezeen Awards 2026のサステナブルデザイン部門でショートリスト入りし、一般投票でも評価された。",
+    "relatedWorks": [
+      {
+        "title": "Scrapped marine rope recast as stools that rock like buoys（Dezeen）",
+        "description": "Buoyを取り上げたDezeenの記事。ロープの回収から3Dプリントまでを紹介している。",
+        "url": "https://dezeen.com/2026/11/01/buoy-stools-the-new-raw"
+      },
+      {
+        "title": "The New Raw 3D prints swinging public seats from Rotterdam harbour rope",
+        "description": "3dprinting.comによる、同プロジェクトの造形工程の記事。",
+        "url": "https://3dprinting.com/news/the-new-raw-3d-prints-swinging-public-seats-from-rotterdam-harbour-rope/"
+      },
+      {
+        "title": "The New Raw: Buoy（プロジェクトページ）",
+        "description": "スタジオ公式のBuoy紹介ページ。",
+        "url": "https://www.thenewraw.org/projects/buoy"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Tech/3D",
+      "Form/Product",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "materialdistrict",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "porcelain-foam-porous-silence-2026",
+    "title": "Porcelain Foam / Porous Silence（直接発泡磁器）",
+    "summary": "スポンジ型を焼き飛ばす従来法をやめ、磁器の泥漿に直接空気を入れて発泡させ、水フィルターと吸音パネルに展開した",
+    "client": "Charlotte Becker, Eva Conci（Hochschule Coburg）",
+    "agency": "University of Bayreuth セラミック材料研究室 / KOBER",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://materialdistrict.com/article/directly-foamed-porcelain-becomes-water-filter-and-acoustic-panel/",
+    "thumbnail": "/thumbnails/porcelain-foam-porous-silence-2026.jpg",
+    "videoId": "",
+    "overview": "Hochschule CoburgのCharlotte BeckerとEva Conciが学士論文として取り組んだ、磁器の直接発泡プロジェクト。泥漿に空気を導入して発泡させた多孔質磁器を、積み重ね式の水フィルターと吸音パネル「Porous Silence」に仕立てた。Dutch Design Week 2026で「Porcelain Foam – Experiment and Potential」として展示された。記事は研究であって製品ではないと明記している。",
+    "background": "従来のセラミックフォームフィルターは、高分子のスポンジ型に泥漿を含浸させて焼成時に型を焼失させ、その複製を得る方法が一般的だった。この方法は焼失する担体が排出物になり、成形の自由度も限られる。二人はUniversity of Bayreuthのセラミック材料講座、磁器メーカーKOBERと協力し、Coburgの研究室とバイロイトで試験を行った。",
+    "execution": "粘性のある泥漿に直接空気を入れて発泡させ、有機系添加剤で気泡を安定させたまま固化させる。鋳込みできるため、大きな形状でも割れずに焼成でき、気孔径と気孔率は製造時に調整できる。Beckerはモジュール式フォーム要素を積んだ水フィルター、Conciは面取りしたレリーフ状の吸音パネルを試作した。添加剤の種類、焼成条件、気孔率の数値は記事に記載がない。",
+    "evaluationImpact": "ポリマー型を使わないので焼失する担体がなく、連続的なフォーム生産もしやすいとされ、同じ素材が濾過と吸音という別用途に展開できる。要素は洗浄して再利用でき、パネルは耐湿性があり屋内プール等が想定される。SEM分析で濾過性能を裏付けたとデザイナーは述べるが、除去率や吸音率の数値は未確認。課題は乾燥工程の信頼性向上とされる。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Product",
+      "Theme/Sustainability",
+      "Theme/Art"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "materialdistrict",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "big-red-mo-movember-australia-2026",
+    "title": "Big Red Mo（Movember Australia）",
+    "summary": "ブロークンヒル近郊に幅180mの口ひげを地面に造り、国際宇宙ステーションに撮影を依頼した、大地を宇宙向け媒体にする施策。",
+    "client": "Movember",
+    "agency": "Ogilvy PR ANZ",
+    "categories": [
+      "OOH革新",
+      "メディア発明"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://campaignbrief.com/movember-carves-giant-big-red-mo-into-the-outback-and-asks-international-space-station-for-a-photo/",
+    "thumbnail": "/thumbnails/big-red-mo-movember-australia-2026.jpg",
+    "videoId": "",
+    "overview": "Movember Australiaが2026年11月、ニューサウスウェールズ州ブロークンヒル近郊(Mt Gipps Station)の遠隔地の滑走路に、幅180mの口ひげ「Big Red Mo」を土で造った。国際宇宙ステーション(ISS)の乗組員に「公式の高高度写真家」として撮影を依頼する。一般の人にはSNSでInstagramの@issやXの@Space_Stationをタグ付けして呼びかけてもらう。Ogilvy PR ANZが関わる。",
+    "background": "Movember APAC Country DirectorのCharlene Brennan氏は、オーストラリアの地方・遠隔地では自殺率が2倍高いと述べている。男性は女性より平均4年早く亡くなり、その多くは予防可能とされる。地方・遠隔地の男性が支援を求めるときの障壁を取り上げるため、この地を舞台に選んだと説明している。Movemberのグローバル理事Nathan Appo氏はこれを男性の健康への「SOS」と位置づけた。",
+    "execution": "幅180mの口ひげを地面に造り、「宇宙から見えるサイズ」とした。コメディアンのLuke McGregor氏と地元のBrendan Cullen氏が最後の土の山を動かし、表面を削って仕上げたと報じられている。ISSの乗組員に撮影を依頼し、人々にはISSの公式SNSアカウントへタグ付けを促した。月間の行動呼びかけ「Growmitment」も掲げ、相談窓口の番号を併記している。",
+    "evaluationImpact": "大地そのものを宇宙から見える媒体にし、「ISSに撮ってもらう」という行為をSNS拡散の仕掛けにした点が一文で言える企画である。地方・遠隔地の男性の孤立という課題と、遠隔地に造る舞台が結びついている。ただし2026年11月3日付の記事時点ではISSが撮影したかは不明で、受賞も確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Movember 20周年のドローン製巨大口ひげ",
+        "description": "Movember 20周年の開始時に、ドローンで作った巨大な口ひげを飛ばした施策。",
+        "url": "https://movember.com/news/is-it-a-bird-is-it-a-plane-mo"
+      },
+      {
+        "title": "Jon Montgomery's moustache sent to space (Movember Canada)",
+        "description": "2024年、MovemberカナダがAmazing Race Canada司会者の口ひげの一部を高高度まで飛ばした施策。",
+        "url": "https://strategyonline.ca/?p=302204"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Stunt",
+      "Form/Installation",
+      "Form/OOH",
+      "Theme/Health",
+      "Theme/SocialGood"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "campaignbrief",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "first-light-2026",
+    "title": "FIRST LIGHT",
+    "summary": "Robert HenkeがMaxMSP製の自作レーザー描画ソフトでサラウンド音響と同期させたAV公演をBarbicanで世界初演",
+    "client": "Robert Henke",
+    "agency": "Barbican Centre（委嘱）",
+    "categories": [
+      "テクノロジー×アイデア",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://roberthenke.com/concerts/firstlight.html",
+    "thumbnail": "/thumbnails/first-light-2026.jpg",
+    "videoId": "",
+    "overview": "FIRST LIGHTは、Robert Henkeが作曲・サウンドデザイン・演奏・ソフト開発を担うオーディオビジュアル公演。サラウンド音響とレーザー光を組み合わせ、Barbican Centreの委嘱作品として2026年11月7日にBarbican Concert Hallで世界初演された。レーザー機材はベルリンのLaserAnimation Sollingerが提供している。",
+    "background": "タイトルは望遠鏡が初めて天体を観測する「ファーストライト」に由来し、作品は功績をほとんど認められてこなかった女性科学者たちに捧げられている。Henkeはこれまでもバービカンで『Lumière』『Cosmic Pulses』などレーザーを用いた作品を発表しており、その系譜に連なる新作である。",
+    "execution": "レーザー描画に使うソフトウェア「FirstLightEngine」は、Henke自身が2020年から開発しているMaxMSPベースのツールである。音響はサラウンド環境で構成され、音とレーザーの動きをひとつの作品として設計する。なお、公演の演出や映像表現の細部は、今回の確認範囲では裏付けが取れていない。",
+    "evaluationImpact": "約6年かけて自作したレーザー描画エンジンを核に、音と光を同じ作者が一貫して設計している点が特徴である。ただし、公演後の批評や受賞は今回の検索では確認できなかった。ソフトの新規性そのものを裏付ける第三者評価も未確認のため、評価は公式情報の範囲にとどまる。",
+    "relatedWorks": [
+      {
+        "title": "Lumière (Robert Henke)",
+        "description": "Henkeによるレーザーを用いたAV作品。Robin Foxとの共演版もあり、FIRST LIGHTの系譜にあたる。",
+        "url": "https://thevinylfactory.com/films/watch-robert-henke-robin-foxs-mind-bending-av-laser-show-lumiere"
+      },
+      {
+        "title": "Karlheinz Stockhausen: Cosmic Pulses",
+        "description": "Henkeがバービカンなどで手がけた、サラウンド音響を扱う関連公演。",
+        "url": "https://roberthenke.com/concerts/cp.html"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Tech/Projection",
+      "Form/Event",
+      "Theme/Music",
+      "Theme/Art"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "creativeapplications",
+    "gateTier": "accept",
+    "discoveryLens": 4
+  },
+  {
+    "id": "woven-women-s-triathlon-community-identity-2026",
+    "title": "Woven（women's triathlon community identity）",
+    "summary": "トライアスロン3種目を重なる3つのシェブロンに置き換え、その重なりが「W」になる女性スポーツコミュニティのID",
+    "client": "Woven",
+    "agency": "Essential Viewing",
+    "categories": [
+      "カルチャーインサイト",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "オセアニア",
+      "グローバル"
+    ],
+    "link": "https://www.creativeboom.com/news/this-new-identity-for-a-womens-sports-community-swaps-cheerleading-for-real-talk/",
+    "thumbnail": "/thumbnails/woven-women-s-triathlon-community-identity-2026.jpg",
+    "videoId": "",
+    "overview": "Essential Viewing（ニュージーランドのスタジオ）が、Ironmanの女性向けグローバルトライアスロンコミュニティ「Woven」のネーミング、ブランド戦略、アイデンティティ、トーンオブボイス、グッズ、ローンチキャンペーンを手がけた。スイム・バイク・ランを表す3つのシェブロンが重なり、さりげなく「W」を形づくる。タグラインは「Strength in every thread」。",
+    "background": "Ironmanは2014年に立ち上げた「Women For Tri」をすでに運営していたが、それより大きな取り組みを求めていた。Wovenはハワイ・カイルア・コナのIronman世界選手権で発表され、その後45の国・地域に展開されている。出典はCreative Boomの記事1本で、展開規模はスタジオ側の発言に基づく。",
+    "execution": "シンボルは3つの連なるシェブロン（スイム・バイク・ラン）で、重なりが「W」になる。スタジオはこれを「braid of resilience」と呼ぶ。コピーは応援の決まり文句を避け、「I Am Not One Thing」と「Neither Is My Sport」を対にした。写真は粗削りでざらついた質感で、配色はオレンジ・ピンク・ライラック・ブルーのグラデーション。90年代UKガラージの音楽文化を参照し、青は支え合い、橙は力、ピンクはレース当日を表す。ヒーロー映像「Not One Thing」も同スタジオが脚本・監督・制作した。",
+    "evaluationImpact": "3種目という競技の構造をそのままロゴにし、重なりから頭文字Wが生まれる点が一文で説明できるアイデア。応援調の定型を避け、フルタイムの選手でなくても居場所があるというメッセージを打ち出した。色の出典に音楽文化を使い、スポーツブランドの定型から離している。12か月かけてデジタル、SNS、Strava、イベント、グッズへ展開する。受賞などの第三者評価は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Form/SNS",
+      "Theme/Sports"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creativeboom",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "novya-biotech-2026",
+    "title": "Novya Biotech 発酵染料（遺伝子編集した酵母が青紫の色素を生産）",
+    "summary": "CRISPR-Casで編集した酵母に青紫の色素を発酵生産させ、スカーフや綿糸、バクテリアセルロースを染めた試作",
+    "client": "Novya Biotech",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://materialdistrict.com/article/engineered-yeast-brews-purple-blue-dye-for-scarves-and-cellulose/",
+    "thumbnail": "/thumbnails/novya-biotech-2026.jpg",
+    "videoId": "",
+    "overview": "オランダ・ワーヘニンゲンのスタートアップNovya Biotechが、酵母に色素を発酵生産させ、その色素で染めたスカーフ、綿糸、バクテリアセルロースのシートを、Dutch Design Week 2026のBiodesign Warehouse(アイントホーフェン・Klokgebouw)で見せた。いずれも試作品で、市販はされていない。同社は、このスカーフを酵母が醸した色素で染めた初の繊維製品だと説明している。",
+    "background": "Novya Biotechは、ワーヘニンゲン大学(WUR)で微生物学者Carina Nieuwenwegが進めた博士研究から生まれ、2024年に創業した。同社は、色の供給源が石油由来の合成染料と植物色素の二つに偏っていると位置づける。植物色素には土地と原料が必要だとし、酵母による発酵を第三の経路として示した。",
+    "execution": "同社のCRISPR-Cas編集法は、成功した編集を再利用して積み重ねられる。そのため、新しい分子に合わせた酵母株を、段階的に編集する方法より速く作れるとされる。現在の青紫の色素に加え、黄色も開発中という。染色の対象は綿、メリノウール、ポリアミド、バクテリアセルロースの4種。セルロースは、細菌と酵母の共生培養で育てたシートに使った。",
+    "evaluationImpact": "新しいのは、酵母に色素そのものを作らせて染料の供給源にする点だ。バクテリアセルロースを染める同種の研究は、KAISTなどで先行している。ただし今回確認できた記事には、色素の分子名、収量、コスト、堅牢度などの数値がない。同社は、同じ酵母の基盤が将来は香料、食品原料、医薬にも使えるとしており、デザイナー向けにサンプル請求とヒアリングも受け付けている。",
+    "relatedWorks": [
+      {
+        "title": "KAIST: 細菌で紡ぎ染めるカラフルなバクテリアセルロース",
+        "description": "大腸菌が作る色素(バイオレイシンなど)で、細菌セルロースを紫・青・緑などに染めた研究。Trends in Biotechnology掲載。",
+        "url": "https://www.the-microbiologist.com/news/bacteria-spin-and-dye-rainbow-colored-sustainable-textiles/7273.article"
+      },
+      {
+        "title": "Novya Biotech(WUR紹介記事)",
+        "description": "CRISPR-Casで酵母を微小な工場に変えるスタートアップ。染料・顔料も狙う対象に挙げている。",
+        "url": "https://www.wur.nl/en/longread/novya-biotech-develops-tiny-yeast-factories"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/Exhibition",
+      "Form/Product",
+      "Theme/Fashion",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "materialdistrict",
+    "gateTier": "borderline",
+    "discoveryLens": 3
+  },
+  {
+    "id": "suspended-ripple-light-screen-jialiang-guo-2026",
+    "title": "Suspended ripple light screen（Jialiang Guo）",
+    "summary": "小川が石を避けて流れる水の動きを図案にし、住居の作業スペースを仕切る吊り下げ式の光のスクリーンにした。",
+    "client": "Jialiang Guo",
+    "agency": "",
+    "categories": [
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.designboom.com/readers/suspended-ripple-light-screen-fluid-water-currents-waves-light-shadow-jialiang-guo/",
+    "thumbnail": "/thumbnails/suspended-ripple-light-screen-jialiang-guo-2026.jpg",
+    "videoId": "",
+    "overview": "Jialiang Guoによる「Ripple Light Screen」は、住宅内の作業スペース向けに構想された、吊り下げ型で発光する間仕切りである。designboomの読者投稿として2026年11月に紹介された。記事の写真には、木の縁と布の裏地、円形の開口を持つ3枚のパネルが写っている。試作品は座席の上に吊るされている。",
+    "background": "図案の着想は流体の動き、具体的には小川の水が石を避けて流れる様子にある。記事によると、住居内の作業スペースを仕切る用途で構想された。制作の経緯や制作体制、クライアントの有無は確認できていない。",
+    "execution": "3枚のパネルに木の縁と布の裏地を組み合わせ、円形の開口を設けて吊り下げている。水流が石を迂回する動きをパネルのグラフィックに写し、光と影の波として見せる。光源の種類、素材の加工法、制作工程などの詳細は、確認できた範囲では不明。",
+    "evaluationImpact": "水流の動きを光と影の模様に置き換えるという着想は、一文で説明できる。一方、確認できた範囲では、製品や空間演出としての新しい手法や技術の裏付けがない。受賞や実装事例も確認できなかった。そのため評価は保留とし、詳細が分かれば再判定する余地がある。",
+    "relatedWorks": [
+      {
+        "title": "Ripple Screens（XJTLU）",
+        "description": "デジタルファブリケーションと空間体験を組み合わせ、流動的な形が光と影のパターンを生む設計インスタレーション。ただしJialiang Guoとの関係は確認できていない。",
+        "url": "https://scholar.xjtlu.edu.cn/en/publications/ripple-screens/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Product",
+      "Theme/Art"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "designboom",
+    "gateTier": "borderline",
+    "discoveryLens": 3
+  },
+  {
     "id": "kit-code-kitkat-vietnam-2026",
     "title": "Kit=Code（KitKat Vietnam）",
     "summary": "AIコーディング中に生成される「=」を数え、一定数でKitKatバーに変えて休憩を促す開発者向け施策",
