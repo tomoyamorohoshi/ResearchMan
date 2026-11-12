@@ -27259,5 +27259,203 @@
         "desc": "5枚までの参照画像から、複数の人物・服・小物・背景を混同せず再現する動画生成技術。"
       }
     ]
+  },
+  {
+    "id": "2026-11-12-1",
+    "date": "2026-11-12",
+    "title": "人混みから家族の声を抜く",
+    "pattern": "文脈×技術",
+    "seed": "Viの迷子再会ビーズは数字を刻んだ数珠だったが、mlx-audio-separatorで巡礼の雑踏録音から「呼び声」だけを分離し、声で家族を探す仕組みも作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "vi-vodafone-idea-vi-guardian-beads",
+        "title": "Vi Guardian Beads",
+        "desc": "巡礼地で電話番号入りの数珠を配り、迷子の家族との再会を助けた施策。"
+      },
+      {
+        "type": "tech",
+        "id": "mlx-audio-separator",
+        "title": "mlx-audio-separator",
+        "desc": "Mac専用の仕組みで動く音源分離ツール。声や楽器を別々に取り出せる。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-12-2",
+    "date": "2026-11-12",
+    "title": "2,977の追悼を室内に浮かべる",
+    "pattern": "文脈×技術",
+    "seed": "2,977機のドローンによる追悼は夜空のものだったが、LeviFabの磁気浮遊で2,977粒の小さな光を静かな部屋に浮かべ、一人で向き合う追悼にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "2-977-lights-over-new-york-harbor-2026",
+        "title": "2,977 Lights Over New York Harbor",
+        "desc": "9.11の犠牲者数と同じ2,977機のドローンで港上空にツインタワーを描いた追悼。"
+      },
+      {
+        "type": "tech",
+        "id": "levifab",
+        "title": "LeviFab",
+        "desc": "超伝導体の性質で、磁石入りの3Dプリント物を空中に浮かせて動かす研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-12-3",
+    "date": "2026-11-12",
+    "title": "飴の手触りで学ぶ画像AI",
+    "pattern": "文脈×技術",
+    "seed": "Winis Fontは手成形の飴で215文字を作った。この飴文字を教材にFizgig v5で画像モデルを丸ごと学習し直せば、あらゆる絵が飴の質感になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "winis-font",
+        "title": "Winis Font",
+        "desc": "柔らかいキャンディを手で成形して作った、菓子ブランドWinisの書体。"
+      },
+      {
+        "type": "tech",
+        "id": "fizgig-v5",
+        "title": "Fizgig v5",
+        "desc": "ゲーミングPC級のGPUで画像・動画生成モデルを一から学習し直せる無料ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-12-4",
+    "date": "2026-11-12",
+    "title": "画面の隅に住む手話通訳",
+    "pattern": "文脈×技術",
+    "seed": "手話バーチャルヒューマンKikiを、PuppetLoomで呼吸や視線を持つ2Dキャラにしてデスクトップに常駐させ、書いた文章をそばで手話にしてくれる相棒にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "nhk-enterprises-nhk-global-media-services-kiki-virtual-human-interpreter",
+        "title": "Kiki, Virtual Human Interpreter",
+        "desc": "入力した文章を日本手話の動画に変えるバーチャルヒューマンの通訳。"
+      },
+      {
+        "type": "tech",
+        "id": "puppetloom",
+        "title": "PuppetLoom",
+        "desc": "キャラ絵のPSDから自動で骨組みを作り、デスクトップで動かせるOSSツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-12-5",
+    "date": "2026-11-12",
+    "title": "生成映像の音を会話で仕上げる",
+    "pattern": "技術×技術",
+    "seed": "Prismで映像と音声を同時生成し、その音声トラックをAudionautにMCP経由で渡して、AIエージェントに「雨音を遠くして」と話しかけて整音できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "prism",
+        "title": "Prism（動的スパースアテンションによる2Kネイティブ映像＋音声同時生成）",
+        "desc": "映像と音声を同時に作る生成AIを、2K画質で学習できる手法。"
+      },
+      {
+        "type": "tech",
+        "id": "audionaut",
+        "title": "Audionaut",
+        "desc": "AIエージェントから操作もできる、無料のマルチトラック音声エディタ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-12-6",
+    "date": "2026-11-12",
+    "title": "写真1枚から舞台を作り演者を走らせる",
+    "pattern": "技術×技術",
+    "seed": "Mira-Sceneで1枚の部屋写真を家具が動かせる3Dシーンにし、Mocaraで「3歩進んで振り返る」と打って演者を動かせば、写真から芝居の絵コンテが作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "mira-scene",
+        "title": "Mira-Scene",
+        "desc": "1枚の写真から、家具が別々に動かせる3Dシーンを作る研究。"
+      },
+      {
+        "type": "tech",
+        "id": "mocara-for-unreal-engine",
+        "title": "Mocara for Unreal Engine",
+        "desc": "文章を打つだけでUnreal Engine内にキャラの動きを作るプラグイン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-12-7",
+    "date": "2026-11-12",
+    "title": "祭りのからくりを動画から復元",
+    "pattern": "転用",
+    "seed": "AgentSTARは「はさみ」のような可動物の復元に使われるが、山車や獅子舞のからくりを1本の動画から3Dで組み直し、失われかけた仕掛けの設計図に転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "agentstar",
+        "title": "AgentSTAR (Agentic Shape Tracking and Reconstruction)",
+        "desc": "動画を見たAIがBlenderで可動する物体を3Dで復元する研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-12-8",
+    "date": "2026-11-12",
+    "title": "3D映像を触れる地図にする",
+    "pattern": "転用",
+    "seed": "Splat2Meshはゲーム素材づくりの道具だが、街のスキャンをメッシュにして3Dプリントすれば、視覚に頼らず手で街を確かめる触れる地図に転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "splat2mesh",
+        "title": "Splat2Mesh",
+        "desc": "3Dガウシアンのデータを、Blender等で使えるメッシュに変える無料ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-12-9",
+    "date": "2026-11-12",
+    "title": "町から主役を消す",
+    "pattern": "引き算・不在",
+    "seed": "Telstraは26の町を映像で描いた。gs-object-extractionで町の3Dから「電波塔」だけを消すと、つながりの不在が見え、通信の価値を逆から伝えられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "telstra-better-on-a-better-network",
+        "title": "Telstra - Better On A Better Network",
+        "desc": "オーストラリアの町を舞台にした26本のストップモーション短編シリーズ。"
+      },
+      {
+        "type": "tech",
+        "id": "gs-object-extraction",
+        "title": "gs-object-extraction",
+        "desc": "3Dシーンから選んだ物体だけをクリックで切り出せる無料ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-12-10",
+    "date": "2026-11-12",
+    "title": "被災前の家を保険の証拠に",
+    "pattern": "制度への実装",
+    "seed": "Suncorpの災害に強い住まい構想に、GaussianSplatting.jlで被災前の家を空と分けて精密に3D保存し、契約時の「家の履歴書」として査定の証拠に使う制度にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "suncorp-building-a-more-resilient-australia",
+        "title": "Building A More Resilient Australia",
+        "desc": "災害後の保険金支払いにとどまらず、災害に強い住まいづくりを軸にした長期施策。"
+      },
+      {
+        "type": "tech",
+        "id": "gaussiansplatting-jl-v2-0-0",
+        "title": "GaussianSplatting.jl v2.0.0",
+        "desc": "Julia言語で書かれた3Dガウシアン描画ライブラリ。空の分離機能がある。"
+      }
+    ]
   }
 ]
