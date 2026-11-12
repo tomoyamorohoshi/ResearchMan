@@ -1,5 +1,156 @@
 [
   {
+    "id": "pan-2",
+    "title": "PAN 2",
+    "org": "MBZUAI Institute of Foundation Models (IFM)",
+    "type": "Research",
+    "domains": [
+      "GenVideo",
+      "AI/Agents"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "MBZUAI が公開した290億パラメータの「世界モデル」。行動を書いたテキストと最初の1コマから、最長20秒・704x1248・24fps の映像を生成する。重み・推論コード・学習設定が Apache-2.0 で公開されている。",
+    "point": "すごいのは、映像を「見た目の絵づくり」ではなく「その行動をしたら世界がどう変わるか」の予測として作る点です。『コップを傾ける』『ドアを開けて歩く』のような行動を時間区切りで書くと、状態が連続して変化する最長20秒の映像が出ます。しかも290億パラメータ級のモデルの重みだけでなく、学習用の設定ファイルまで Apache-2.0 で公開されているので、商用案件でも自社データで追加学習できます。広告・体験づくりでは、商品を使う一連の動作の事前確認(絵コンテ代わりの動くプレビュー)、物理的にそれらしく動く短尺の素材づくり、インスタレーションで来場者の行動に反応する映像の試作などに使えそうです。コミュニティ製の ComfyUI ノードも出ており、fp8 版とブロック入れ替え(重みを少しずつ GPU に載せる方式)で、手元の RTX 4090/5090 でも低解像度なら動作が報告されています。",
+    "detail": "仕組み:PAN 2 は画像・映像を作る Transformer(MMDiT)を290億パラメータまで大きくしたモデルで、文章を理解する部分に Qwen3.5-9B、映像の圧縮・復元に Wan 2.2 の VAE を組み合わせます。「ノイズから少しずつ絵を整えていく」拡散方式で、プロンプトは時間範囲つきの構造化された行動記述(0〜5秒:〜する、など)として与えます。たとえるなら、一枚絵のイラストレーターではなく、台本の動きを順番に演じさせて撮影する小さな撮影所のような使い方です。\n\n従来との違い:一般的な動画生成は『それっぽい見た目』を優先しがちですが、PAN 2 は『行動→結果』という世界の変化の予測を目的に学習されています。リポジトリには推論だけでなく学習コードと設定(sft/pretrain の yaml)、Diffusers と vLLM 対応も含まれ、研究や再現がしやすい構成です。\n\n使うには:公式の推論は CUDA 13 系の PyTorch と FlashAttention が必要で、H200 級 GPU 向けのセットアップ手順が中心です。手元で試すなら有志の ComfyUI-PAN2 ノードと fp8 重み(約33.7GB)を使い、Windows でも動きます。作者の実測では 448x256・13フレームで RTX 5090 が約65秒、4090 が約129秒です。50ステップの本来解像度(704x1248)や長尺はまだ未計測なので、本番利用前に自分の環境で確認が必要です。費用は重みが無料のためGPU環境代のみです。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "PAN 2 本体のコードと重みは Apache-2.0。Wan 2.2 VAE・Qwen3.5-9B など第三者部品は各自のライセンス(NOTICE/THIRD_PARTY_LICENSES 参照)。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/ifm-ai/PAN2"
+      },
+      {
+        "kind": "project",
+        "url": "https://huggingface.co/IFM/PAN2"
+      },
+      {
+        "kind": "post",
+        "url": "https://comfyui-wiki.com/en/news/2026-11-10-pan-2"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/pan-2.jpg",
+    "relatedWorks": [
+      {
+        "title": "ComfyUI-PAN2",
+        "description": "PAN 2 を ComfyUI で動かす有志のノード。fp8 重みとブロックスワップ対応、プロンプトビルダー付き。",
+        "url": "https://github.com/UnlimitedEditing/ComfyUI-PAN2"
+      },
+      {
+        "title": "Critiques of World Models (PAN の元論文)",
+        "description": "PAN 2 が引用する世界モデルの位置づけ論文。",
+        "url": "https://arxiv.org/abs/2507.05169"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "comfyui-dials",
+    "title": "ComfyUI-Dials",
+    "org": "matlowai(個人開発)",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "MiniMax H3 の出力を「2つのプロンプトの差」から約14KBのスライダーに変えて操作する、学習不要の ComfyUI ノード集。動きの量(ほぼ静止〜疾走)などを数値で連続調整できる。",
+    "point": "すごいのは、LoRA の学習も参照画像も要らず、『静かな文』と『激しい文』のようにプロンプトを2本書くだけで、その差を約14KBのつまみ(ダイヤル)にできる点です。つまみは-2〜+2の範囲で、動きのダイヤルなら-2でほぼ静止、+2で通常の約2.7倍の動きになります。ほかに不穏さなど雰囲気を変えるダイヤルも同梱されています。広告制作では、同じ構図・同じキャラクターのまま『動きだけ強める』『空気感だけ重くする』といったA/B案を、再レンダリングの試行錯誤なしに量産できます。ダイヤルは他のLoRAとも重ねられるため、既存の画風LoRAで動きが失われたときの補正にも向きます。クライアント提案で『もう少し動かして』の微調整を数値で返せる、現場向きの道具です。",
+    "detail": "仕組み:H3 は文章をいったん内部のベクトル(数字の列)に直してから映像を作ります。Make Dial ノードは、2つのプロンプトをそれぞれ変換し、その差(B−A)を複数ペアで平均します。被写体の違いは平均で打ち消し合い、『動きの強さ』のような共通の方向だけが残ります。この方向を、文章理解のすぐ後ろ(token refiner の後)に足し引きするのがダイヤルです。ラジオのチューニングつまみのように、文章はそのままで『成分だけ』を増減するイメージです。\n\n従来との違い:これまで性質を変えるには LoRA を学習するか、プロンプトを何度も書き直す必要がありました。Dials は学習も追加の描画パスも不要で、ファイルは約14KB。Apply Dial は既存モジュールの構造を変えない形で差し込むので、LoRA や Pika H3 Flex の6ステップLoRAとも積み重ねられます。『pre_refiner』モードでは通常のLoRAローダーで読める形式でも保存できます。\n\n使うには:MiniMax H3 が ComfyUI で動く環境(Comfy-Org の repack)が前提です。リポジトリを custom_nodes に clone し、dials/*.safetensors を models/loras/dials/ に置き、workflows/ のサンプルを読み込むだけで、追加の依存はありません。費用は無料ですが、コードが AGPL-3.0、ダイヤル重みが H3 コミュニティライセンスと二重なので、商用利用は条件を確認してください。アルファ版のため安定性は自分で検証が必要です。",
+    "license": {
+      "spdx": "AGPL-3.0",
+      "commercial": "conditional",
+      "note": "コードは AGPL-3.0。ダイヤル重み(dials/*.safetensors)は MiniMax H3 Community License が適用され、対象地域の制限がある。プロジェクトページ上ではアルファ版と明記。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/matlowai/ComfyUI-Dials"
+      },
+      {
+        "kind": "project",
+        "url": "https://matlowai.github.io/ComfyUI-Dials"
+      },
+      {
+        "kind": "post",
+        "url": "https://comfyui-wiki.com/en/news/2026-11-06-h3-dials"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/comfyui-dials.jpg",
+    "relatedWorks": [
+      {
+        "title": "Open-H3-Regenerate-2K-IC",
+        "description": "MiniMax H3 の下書き動画を顔・文字を保ったまま2K/4Kで再生成する IC-LoRA。",
+        "url": "https://huggingface.co/Efficient-Large-Model/Open-H3-Regenerate-2K-IC"
+      },
+      {
+        "title": "ComfyUI-PAN2",
+        "description": "同時期に公開された、別系統の動画モデルを ComfyUI で使うノード。",
+        "url": "https://github.com/UnlimitedEditing/ComfyUI-PAN2"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "instanthmr",
+    "title": "InstantHMR (ComfyUI-InstantHMR)",
+    "org": "Naturalpad Studio / jtydhr88",
+    "type": "Tool",
+    "domains": [
+      "Motion/Body",
+      "CreatorTools",
+      "GenVideo"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "写真・動画・ライブカメラに写る人物の3D体形とポーズを、1人あたり約1msで復元する軽量モデル。ComfyUI ノード版では GLB/BVH 書き出しやキャラ駆動、VMC 配信まで行える。",
+    "point": "すごいのは、カメラ1台の映像から人の3D姿勢・体形・70点のキーポイントをほぼリアルタイムで取り出せる軽さです。2000〜3000万パラメータ級で、デスクトップGPUでは約1ミリ秒、スマホのNPUでも約5ミリ秒と報告されています。モーションキャプチャ用の専用スーツや複数カメラが要らず、Webカメラや手元の動画だけで人の動きを3Dデータにできます。広告・体験づくりでは、ダンサーや出演者の動きをBVHにしてBlenderやUEのキャラクターに当てる、来場者の全身の動きに反応するインスタレーション、VMC経由でVTuber風アバターを動かす、生成動画の人物ポーズの参照を作る、といった用途に向きます。ComfyUI の標準 SAM 3D Body と同じ形式なので、既存の平滑化・描画・書き出しの流れにそのままつながります。",
+    "detail": "仕組み:まず人物検出(RT-DETR や SAM3)で人の位置を囲み、その切り抜きから小さなニューラルネットが、体の関節角度・体形・画面上の位置・メッシュ(Meta の MHR という人体リグ)を一度の計算で推定します。さらに『キネマティックフィット』という仕上げで、推定した2Dキーポイントに合うよう姿勢を微調整します。たとえるなら、人形師が骨組みを素早く人に合わせて曲げ直す作業を、AIが1ミリ秒で行うイメージです。\n\n従来との違い:同種の人体メッシュ推定は大型モデルが多く、実時間で動かすには強いGPUが必要でした。InstantHMR は nano〜medium の5サイズをONNX形式で公開し、CUDA・TensorRT・CPU・CoreML に対応します。2026-11-06の公開から数日で v1.1、PyTorch チェックポイントと更新が続いており、ComfyUI ノード版では静止画・動画・ライブカメラ用のサンプルワークフローが付属します。\n\n使うには:単体なら Python 3.10〜3.12 と NVIDIA ドライバ525以上で、`python demo.py --video clip.mp4` のように実行すると Rerun ビューアで骨格と3Dが確認できます。ComfyUI で使う場合は v0.34.0 以降のネイティブ SAM 3D Body ノードと、models/detection に置く重みが必要です。費用は無料ですが、商用案件では必ず medium-commercial 重みを選んでください。他の重みは非商用限定です。スマホのカメラを使うには HTTPS の設定も要ります。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "コードは Apache-2.0。重みは SAM License で、nano/tiny/small/medium は非商用のみ、medium-commercial だけ商用可。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Naturalpad-studio/InstantHMR"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/jtydhr88/ComfyUI-InstantHMR"
+      },
+      {
+        "kind": "post",
+        "url": "https://comfyui-wiki.com/en/news/2026-11-08-comfyui-instant-hmr"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/instanthmr.jpg",
+    "relatedWorks": [
+      {
+        "title": "ComfyUI-InstantHMR 紹介記事",
+        "description": "ComfyUI 版ノードの機能と必要環境の解説。",
+        "url": "https://comfyui-wiki.com/en/news/2026-11-08-comfyui-instant-hmr"
+      },
+      {
+        "title": "ComfyUI-PAN2",
+        "description": "動作・物理の予測を目的にした動画生成モデルを ComfyUI で動かすノード。",
+        "url": "https://github.com/UnlimitedEditing/ComfyUI-PAN2"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "quick-gs-editor",
     "title": "Quick GS Editor（Quick Gaussian Splat Editor）",
     "org": "Tijerín Art Studio",
