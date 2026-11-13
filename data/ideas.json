@@ -27457,5 +27457,203 @@
         "desc": "Julia言語で書かれた3Dガウシアン描画ライブラリ。空の分離機能がある。"
       }
     ]
+  },
+  {
+    "id": "2026-11-13-1",
+    "date": "2026-11-13",
+    "title": "加害の動きを子どもの身体へ",
+    "pattern": "文脈×技術",
+    "seed": "Ferが描いた子ども目線の日常的な暴力に、Wan-Animate-2を掛けて大人自身の動きと表情を子どもの身体へ転写して見せたら、無自覚な言動を自分事として体感させられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "save-the-children-mexico-fer",
+        "title": "Fer",
+        "desc": "子どもの目線で日常の嫌がらせや暴力を描き、ジェンダー暴力は幼少期から始まると訴えた短編映像。"
+      },
+      {
+        "type": "tech",
+        "id": "wan-animate-2",
+        "title": "Wan-Animate-2",
+        "desc": "1本の動画から人物の動き・表情・カメラ視点をまるごと別のキャラクターに写せる、無料公開のアニメーション生成AI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-13-2",
+    "date": "2026-11-13",
+    "title": "表情で膨らむ民主主義の像",
+    "pattern": "文脈×技術",
+    "seed": "Perseverance (Goddess of Democracy)の女神像を、Telekinetic Driveで来場者の無意識な顔の動きが空気を送る仕組みにしたら、無関心な顔だと萎む民主主義を体感させられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "perseverance-goddess-of-democracy-2026",
+        "title": "Perseverance (Goddess of Democracy) ゲント版",
+        "desc": "来場者がポンプで空気を送り続けないと萎んでしまう、高さ7mの民主の女神像の展示。"
+      },
+      {
+        "type": "tech",
+        "id": "telekinetic-drive",
+        "title": "Telekinetic Drive",
+        "desc": "顔のごくわずかな無意識の動きをカメラで読み取り、何も付けずにロボットを操作できるインターフェース。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-13-3",
+    "date": "2026-11-13",
+    "title": "ささやきで話すタブーの相談",
+    "pattern": "文脈×技術",
+    "seed": "Andrexがトイレの恥ずかしさというタブーを破ったように、NasoVoceでほとんど声を出さず話せる場を作れば、言いづらい体の悩みを人前でもささやき相談できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "andrex-get-comfortable",
+        "title": "Get Comfortable",
+        "desc": "トイレの恥ずかしさというタブーを逆手に取り、商品訴求から離れて打ち出したトイレットペーパーのブランド施策。"
+      },
+      {
+        "type": "tech",
+        "id": "nasovoce",
+        "title": "NasoVoce",
+        "desc": "スマートグラスの鼻当てに仕込んだセンサで、ささやき声でも音声を認識できる発話インターフェース。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-13-4",
+    "date": "2026-11-13",
+    "title": "来場者の声で続く坂本の音",
+    "pattern": "文脈×技術",
+    "seed": "坂本龍一展が示した「死後も彼の音は生き続ける」に、smorphで音の鳴り方は保ったまま音色だけ来場者の声へ変える仕掛けを掛けたら、弾くたび余韻が個人の音になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ryuichi-sakamoto-exhibition",
+        "title": "坂本龍一｜音を視る 時を聴く",
+        "desc": "坂本龍一が構想を残した展覧会。共作者たちの手で、没後も彼の音が生き続けることを示した。"
+      },
+      {
+        "type": "tech",
+        "id": "smorph",
+        "title": "smorph (Playable Sound Morphing with Diffusion Models)",
+        "desc": "音の強弱や音程の動きを保ったまま、音色だけを別の音へ滑らかに変える拡散モデルの手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-13-5",
+    "date": "2026-11-13",
+    "title": "解体前の店を点群で保存",
+    "pattern": "文脈×技術",
+    "seed": "取り壊し予定の旧店舗を剥き出しにしたBang & Olufsen京都のように、解体前の建物の内外をPoint Cloud Mergerで1つの点群に統合すれば、消える直前の姿を展示できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "bang-olufsen-2019",
+        "title": "Bang & Olufsen 京都ポップアップストア",
+        "desc": "取り壊し予定の京都の旧衣料品店を、解体途中のような剥き出しの内装に改装したポップアップストア。"
+      },
+      {
+        "type": "tech",
+        "id": "point-cloud-merger-for-blender",
+        "title": "Point Cloud Merger for Blender (PCM)",
+        "desc": "別々に作った複数の点群データを、Blender上でクリックだけで位置合わせして1つに統合するアドオン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-13-6",
+    "date": "2026-11-13",
+    "title": "動きが弦になる人型ロボ",
+    "pattern": "技術×技術",
+    "seed": "MotionBricksで動かす人型ロボットの全身動作を、Ctrl-LFM Guitar Synthの弦ごとの音程・音量カーブに結び付けたら、腕や脚の動きがそのまま演奏になる身体楽器ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "motionbricks",
+        "title": "MotionBricks",
+        "desc": "1つのAIモデルで、ゲーム内キャラクターと実在の二足歩行ロボットをリアルタイムに動かせるモーション生成システム。"
+      },
+      {
+        "type": "tech",
+        "id": "ctrl-lfm-guitar-synth",
+        "title": "Ctrl-LFM Guitar Synth (Expressive Guitar Synthesis via Controllable Latent Flow Matching)",
+        "desc": "楽譜から6弦ギターの演奏音を作り、弦ごとの音程や音量の曲線を編集できるAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-13-7",
+    "date": "2026-11-13",
+    "title": "歩くと楽器が変わる音の街",
+    "pattern": "技術×技術",
+    "seed": "MT3で曲を楽器パートごとのMIDIに分け、Puffin-Worldで作った3D空間の別々の場所に配置すれば、歩き回るほど聴こえる楽器が変わる音の街を体験できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "mt3",
+        "title": "MT3 (Multi-Task Multitrack Music Transcription)",
+        "desc": "1本の音源から、ピアノやドラムなど複数の楽器パートを別々のMIDIトラックとして書き起こす自動採譜モデル。"
+      },
+      {
+        "type": "tech",
+        "id": "puffin-world",
+        "title": "Puffin-World",
+        "desc": "1枚の画像やテキストから、奥行きなど物理的に整合した3D空間を作り、自由な視点で歩ける映像にできるモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-13-8",
+    "date": "2026-11-13",
+    "title": "言葉が映像と歌を同時に変える",
+    "pattern": "技術×技術",
+    "seed": "JoyAI-Video-Editに出す編集指示の文章を、そのままMiniMax Music 3の歌詞にしたら、映像の書き換えと歌が同じ言葉で同時に進むライブ演出ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "joyai-video-edit",
+        "title": "JoyAI-Video-Edit",
+        "desc": "文字で指示するだけで動画を編集できる、京東が無償公開した160億パラメータの生成AI。"
+      },
+      {
+        "type": "tech",
+        "id": "minimax-music-3",
+        "title": "MiniMax Music 3 (MiniMax-Music3)",
+        "desc": "歌詞と指示文から、ボーカル入りの完成曲を最大5分間作れるオープンウェイトの音楽生成AI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-13-9",
+    "date": "2026-11-13",
+    "title": "仮設の場に置く声の日記機",
+    "pattern": "転用",
+    "seed": "Machinistaで楽器コントローラーを単体機にする仕組みを、PCが使えない病室や仮設住宅の共有スペースに転用すれば、パッドを叩くだけで声の日記が残せる装置になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "machinista",
+        "title": "Machinista",
+        "desc": "Maschineコントローラーを、Raspberry Piにつなぐだけでパソコン不要の単体機にできる仕組み。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-13-10",
+    "date": "2026-11-13",
+    "title": "職人の所作をロボが演じる",
+    "pattern": "転用",
+    "seed": "SONICのVRなりきり操作を、ロボット制御ではなく無形の所作の保存に転用し、職人の身体の癖をロボットに演じさせれば、弟子が隣で真似られる教材になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "sonic",
+        "title": "SONIC（GR00T Whole-Body Control）",
+        "desc": "歩行や跳躍、物の受け渡しなど人型ロボットの全身動作を一体で担い、VRなどで操作できる動きの基盤モデル。"
+      }
+    ]
   }
 ]
