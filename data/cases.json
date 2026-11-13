@@ -1,5 +1,208 @@
 [
   {
+    "id": "the-mattress-atm-nedbank-justsave-2026",
+    "title": "The Mattress ATM（Nedbank / JustSave）",
+    "summary": "マットレス自体を偽ATMに作り替え、「マットレス貯金」の習慣を貯蓄口座JustSaveへの誘導に変えた",
+    "client": "Nedbank",
+    "agency": "Joe Public（制作: Joe Motion）",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "OOH革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "中東・アフリカ"
+    ],
+    "link": "https://creapills.com/nedbank-matelas-faux-distributeurs-20261112",
+    "thumbnail": "/thumbnails/the-mattress-atm-nedbank-justsave-2026.jpg",
+    "videoId": "",
+    "overview": "南アフリカのNedbankが、実物のマットレスを偽のATMに作り替えて人通りの多い場所に置いた施策「The Mattress ATM」。マットレスの中央を切り抜き、テンキーとカード・紙幣の投入口を付けた。縫い付けのケアラベルを模した表示と、黄色い警告帯も加えている。家に現金を隠す習慣に疑問を投げかける内容である。",
+    "background": "Creapillsの記事によれば、狙いは自宅に現金を隠す習慣を見直してもらうことだ。依頼の資料では、この習慣の受け皿として貯蓄口座JustSaveへ誘導したとされる。ただしJustSaveとの具体的な接続方法は、今回の調査では一次情報で確認できなかった。",
+    "execution": "Creapillsが確認できる範囲では、本物のマットレスを切り抜いてATMの操作部を組み込んでいる。具体的には、中央にテンキーを置き、カードと紙幣のスロットを設けた。縫い付けのケアラベルを模した表示と黄色の警告帯も付いている。設置は人の多い場所で、依頼メモにはショッピングモールとある。制作会社の詳細は一次情報で未確認。",
+    "evaluationImpact": "「マットレスの下に隠す」という日常の行為を、マットレスそのものをATMにすることで一目で伝わる形にした点が評価できる。依頼メモには900万インプレッションとXトレンド5位とあるが、今回の調査では確認できなかった。受賞も確認できていない。出典はCreapillsの記事1本のみである。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Stunt",
+      "Theme/SocialGood"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "pneuma-marlot-meyer-2026",
+    "title": "Pneuma (Marlot Meyer)",
+    "summary": "ワッデン海の潮の動きと来場者の呼吸を、膨らむ微細藻類型の彫刻に連動させ、身体で海のリズムを感じさせる。",
+    "client": "Marlot Meyer",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.designboom.com/art/marlot-meyer-giant-inflatable-creatures-breathe-tides-wadden-sea-pneuma/",
+    "thumbnail": "/thumbnails/pneuma-marlot-meyer-2026.jpg",
+    "videoId": "",
+    "overview": "オランダのアーティストMarlot Meyerによる没入型インスタレーション。ワッデン海の干潟付近で取得した潮のリズムと来場者の呼吸を、膨張する彫刻の動きに結びつける。造形は同海域の泥で見つけた微細藻類に着想を得ている。来場者は小さな形を抱きしめ、その呼吸が大きな形へ伝わる。アムステルダムの海事博物館(Het Scheepvaartmuseum)のPride Amsterdamプログラムでも案内された。",
+    "background": "Meyerは1997年生まれのオランダ人アーティスト。フリースラント州でのレジデンシー中に、身体がワッデン海の潮の満ち引きをどう感じ取れるかを探った。浜辺に設置したセンサーと連動する膨らむベストを昼夜問わず着用し、海のリズムとの身体的なつながりを体験したことが出発点。タイトルのPneumaはギリシャ語で「息・精神」を意味し、呼吸と潮の関係を示す。",
+    "execution": "波打ち際に置いたセンサーのデータが膨張するベストを動かし、作者自身がそれを着て海のリズムを体感した。その経験を展示へ展開し、微細藻類に着想を得た色鮮やかで奇妙な生き物のような彫刻が膨張・収縮する。小さな形を抱くと内蔵センサーが来場者の呼吸を拾い、その呼吸が大きな形の中に共鳴する。博物館では、専用ベストを着て作品を探す日も案内された。",
+    "evaluationImpact": "自然現象(潮)と人間の呼吸という2つの周期をセンサーと膨張素材で一つの身体的な体験につなげた点が新しい。自然のデータを画面上の可視化ではなく、触れて抱ける彫刻の動きとして感じさせる手法は、環境をテーマにした展示や空間表現に転用しやすい。受賞などは公式ソースでは確認できていない。なお、湿度データの利用はWebSearchでは確認できなかった。",
+    "relatedWorks": [
+      {
+        "title": "Pneuma (Het Scheepvaartmuseum 展示案内)",
+        "description": "Marlot MeyerのPneumaの展示案内。呼吸のリズムで動くインスタレーションとして紹介されている。",
+        "url": "https://www.hetscheepvaartmuseum.com/do/agenda/4702/pneuma"
+      },
+      {
+        "title": "Marlot Meyer (Mondriaan Fonds プロフィール)",
+        "description": "作者のプロフィールページ。",
+        "url": "https://www.mondriaanfonds.nl/en/profile/marlot-meyer/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Installation",
+      "Theme/Art"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "designboom",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "book-burners-wanted-sitting-wren-2026",
+    "title": "Book Burners Wanted（Sitting Wren）",
+    "summary": "「本を燃やす」という過激な言葉を逆手に取り、マッチ箱の販促物で本好きを募った出版社キャンペーン",
+    "client": "Sitting Wren",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.creativeboom.com/news/publisher-sitting-wren-encourages-readers-to-burn-books-but-not-in-the-way-you-think/",
+    "thumbnail": "/thumbnails/book-burners-wanted-sitting-wren-2026.jpg",
+    "videoId": "",
+    "overview": "小規模出版社Sitting Wrenが展開した「Book Burners Wanted」は、マッチ箱をモチーフにした販促物で読者に呼びかけるキャンペーン。箱には「To burn, or not to burn... Book burners wanted.」というコピーと鳥のイラストが入る。オードリー・ヘプバーンが同社の本を読むというジョークを載せた箱もある。屋外広告には「The Little Book Publisher Against The Big Bad Wolves」の一文が使われた。",
+    "background": "Sitting Wrenは、ヴィンテージな時代設定の新作小説を専門に出す小さな出版社で、予算も限られている。焚書は抑圧を連想させる強い言葉で、出版社が使うのは異例。Creative Boomの記事は、この挑発性そのものが魅力だと伝えている。ブランドは鳥をモチーフにしたアイデンティティで統一されている。",
+    "execution": "誰もが知るマッチ箱という既存のアイコンを、本の販促物の形に転用している。「To burn, or not to burn」はハムレットの台詞のもじり。鳥のイラストと有名人を使った小ネタで、ブランドの世界観を一貫させた。屋外広告では「大きな悪いオオカミ（大手出版社）」に対抗する小さな出版社という構図を打ち出した。",
+    "evaluationImpact": "本を燃やす行為は抑圧の象徴だが、それを本に熱中する読者を探す呼びかけに転じた点が一文で説明できる。言葉のインパクトと身近なマッチ箱の形で、小さな予算でも記憶に残る。公式な受賞、販売数、反響などの成果データは、今回の検索では確認できなかった。",
+    "relatedWorks": [
+      {
+        "title": "Unburnable Book（The Handmaid's Tale）",
+        "description": "Penguin Random House と Margaret Atwood が、検閲や禁書への抗議として作った燃えない版の『侍女の物語』。",
+        "url": "https://lbbonline.com/news/margaret-atwood-and-penguin-random-house-fight-censorship-with-unburnable-edition-of-the-handmaids-tale"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Form/OOH",
+      "Theme/Entertainment"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creativeboom",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "landscape-of-future-memories-buro-zemla-2026",
+    "title": "Landscape of Future Memories（Buro Zemla）",
+    "summary": "土と鉱物を素材に発芽試験で草種を選び、成長する土壌を「記憶の地形」として画廊に出現させた空間インスタレーション。",
+    "client": "Buro Zemla",
+    "agency": "",
+    "categories": [
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.designboom.com/art/sprouted-earth-soil-gallery-landscape-future-memories-installation-buro-zemla/",
+    "thumbnail": "/thumbnails/landscape-of-future-memories-buro-zemla-2026.jpg",
+    "videoId": "",
+    "overview": "ランドスケープ設計・デザイン事務所Buro Zemlaが、モスクワのA-House Galleryで展覧会「Architecture 1.0」の一環として発表した場所固有のインスタレーション。土や鉱物といった素材を主媒体に、記憶と物質としての大地の関係を探る。設置の進行は毎日写真で記録された。リード・デザイナーはMikhail Kozlovと記載されている。",
+    "background": "Buro Zemlaはランドスケープ・アーキテクチャとデザインを手がける事務所で、この作品では記憶という抽象的な主題を、土という物質で扱った。展示はA-House Galleryの空間を使い、展覧会Architecture 1.0の中で披露された。制作の詳しい経緯や会期、制作協力者は、今回の検索では確認できなかった。",
+    "execution": "Designboomの記事によると、生の土と鉱物素材を核に空間を構成した。展示に先立ち発芽試験を行い、どの草種がよく発芽し、どれだけ速く育つかを確認した。設置の経過は毎日写真で記録されている。苔の使用、浴槽やカウンターといった什器の扱いは、今回の検索では裏づけが取れなかった。",
+    "evaluationImpact": "発芽する植物を展示の仕組みに組み込み、会期中に変化し続ける土壌で「記憶」を表現した点が評価できる。完成形を固定せず、時間で育つ素材を扱う手法は他の空間展示にも転用できる。一方、受賞や反響の確認できる情報はなく、手法の詳細も限られるため、採用は惜しい水準にとどまる。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Exhibition",
+      "Theme/Art",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "designboom",
+    "gateTier": "borderline",
+    "discoveryLens": 3
+  },
+  {
+    "id": "advertimes-563503-2026",
+    "title": "履くホカロン「#ウカ論」ピールオフ広告（ウカロンソックス）",
+    "summary": "広告面をはがすと受験生向け限定靴下がもらえ、広告に受験の「持論」を並べた履くホカロンのピールオフ広告",
+    "client": "レンフロ・ジャパン（履くホカロン）",
+    "agency": "",
+    "categories": [
+      "OOH革新",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.advertimes.com/?p=563503",
+    "thumbnail": "/thumbnails/advertimes-563503-2026.jpg",
+    "videoId": "",
+    "overview": "レンフロ・ジャパンが「履くホカロン」で2026年11月9日に始めた受験生応援キャンペーン。合言葉は「履くホカロンで受験にウカロン」。東京・渋谷駅の道玄坂改札外にある「道玄坂ハッピーボードA」の広告をはがすと、限定デザインの靴下がもらえる。配布は数量限定で、全国5都市での順次展開が予定されている。",
+    "background": "「履くホカロン」はロッテの携帯カイロ「ホカロン」のライセンス商品。急に寒くなる11月は受験期の入口にあたる。同社は受験生を応援する企画として、冷えやすい足元を温める自社の靴下を、広告そのものを入口にして届ける形を選んだ。制作体制は確認できなかった。",
+    "execution": "広告には「受験に受かるための持論を伝授」と題した「ウカ論」が並ぶ。思わず笑ってしまう持論から、受験に役立つまじめなアドバイスまで混在している。受験生が広告面をはがすと靴下が出てくる。渋谷で始め、札幌・名古屋・大阪・福岡へ順次広げる計画。靴下の仕様の詳細は確認できなかった。",
+    "evaluationImpact": "広告を見る、はがす、商品を受け取るが一つの体験でつながり、商品サンプリングと受験生への応援メッセージを同じ広告面で行っている。ピールオフ型の広告自体は既存の手法で、新規性は「ウカ論」という受験の持論を題材にした点にとどまる。効果測定や反響の数値は確認できなかった。",
+    "relatedWorks": [
+      {
+        "title": "ピールオフ型広告（Advertimes タグ一覧）",
+        "description": "広告をはがして景品を受け取る形式の過去事例がまとまっている",
+        "url": "https://www.advertimes.com/tags/%e3%83%94%e3%83%bc%e3%83%ab%e3%82%aa%e3%83%95%e5%9e%8b%e5%ba%83%e5%91%8a/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Form/Product",
+      "Theme/Education"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "advertimes",
+    "gateTier": "borderline",
+    "discoveryLens": 1
+  },
+  {
     "id": "buoy-series-the-new-raw-2026",
     "title": "Buoy series（The New Raw）",
     "summary": "ロッテルダム港の廃棄マリンロープを再生PPにし、ロボット積層で無着色のまま座ると揺れるブイ形ベンチに作り替えた",
