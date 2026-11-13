@@ -1,5 +1,59 @@
 [
   {
+    "id": "sonic-stage",
+    "title": "Sonic Stage",
+    "org": "HKUST / Columbia University / University of Rochester（Shuchang Xu, Xiaofu Jin, Gaurav Jain, Wenshuo Zhang, Huamin Qu, Brian A. Smith, Yukang Yan）",
+    "type": "Prototype",
+    "domains": [
+      "Audio/Music",
+      "HCI/MediaArt"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "ドラマや対談など「セリフが中心の動画」を、目の見えない人・見えにくい人が場面を把握しやすい立体音響（3D空間音響）に自動変換するシステム。UIST 2026 のベストペーパー受賞作。",
+    "point": "すごい点は、動画の映像から人物の立ち位置と動きを自動で読み取り、「誰がどこにいるか」をセリフの聞こえてくる方向で表現し、さらに歩く・物を置くといった動作を効果音で足し、細かな視覚情報は聞き返せる説明として添えるところです。通常の音声ガイドはセリフと重なると入れられませんが、方向と効果音という別の通り道を使うことでその制約を避けています。人物の軌跡の復元精度は91.9%、視覚障害のある視聴者12名の実験でも理解度と没入感が既存手法より向上しました。広告・体験づくりでは、映像を持たずに「音だけで空間と動きを伝える」企画に応用できそうです。たとえば、アクセシブルなCMや映画予告、音だけで場面が立ち上がるラジオ風の映像作品、美術館や舞台のバリアフリー鑑賞ガイド、ダンスや演劇の音響演出などです。映像素材から自動で空間音を組み立てる発想は、メディアアートの音響インスタレーションにも使えます。",
+    "detail": "仕組みは3段階です。まず動画から代表的なコマを抜き出し、次にそのコマの人物や背景から場面を3D空間として再構成します。映像の中に仮想のステージを作り、俳優の立ち位置を座標で求めるイメージです。最後に、その座標をもとにセリフを聞こえる方向に配置し、動作に合わせた効果音を足し、必要な細部の説明を組み合わせて1本の空間音声にまとめます。カメラが切り替わっても同じ3D空間を共有するため、音の位置関係が破綻しにくい設計です。\n\n従来の音声解説（セリフの合間に説明を読み上げる方式）や、CHI 2024 で発表された SPICA（質問に答える形で映像を探索する支援システム）は、主に言葉で情報を補っていました。Sonic Stage は言葉に加えて音の方向と効果音を使い、場面の空間そのものを耳で感じさせる点が違います。著者らは、スケッチコメディ、オペラ、ダンス、ドキュメンタリーにも広げられると述べています。\n\n使うには、現時点では公式のコードや配布物は確認できません（プロジェクトページに記載なし）。体験できるのは YouTube のデモ動画（『Friends』『Diana: The Musical』『Forrest』『The Bilibili Interview』の4本）と、ACM に掲載された論文までです。同様の仕組みを自分で作るには、動画からの3D復元、音声の空間化、効果音の合成を組み合わせる開発スキルが必要になります。なお、全景・中景のショットが少ない映像や特徴点が少ない映像では3D復元の誤差が出やすいと論文で報告されています。",
+    "license": {
+      "spdx": null,
+      "commercial": "none",
+      "note": "コード・ツールは未公開（プロジェクトページに記載なし）。論文と公式デモ動画のみ。利用は研究参照の範囲。"
+    },
+    "links": [
+      {
+        "kind": "project",
+        "url": "https://shuchangxu.github.io/Sonic_Stage_Demo"
+      },
+      {
+        "kind": "paper",
+        "url": "https://doi.org/10.1145/3830398.3830486"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=xOd_z5jei9g"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=UbV0Azireik"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/sonic-stage.jpg",
+    "relatedWorks": [
+      {
+        "title": "SPICA: Interactive Video Content Exploration through Augmented Audio Descriptions for Blind or Low-Vision Viewers",
+        "description": "CHI 2024。音声解説に、ナビゲーション・物体レベルの説明・空間音を加えて動画を対話的に探索できるAIシステム。Sonic Stage の比較対象。",
+        "url": "https://sites.google.com/nd.edu/spica"
+      },
+      {
+        "title": "SPICA（arXiv版）",
+        "description": "SPICA の論文プレプリント。著者は Zheng Ning, Toby Jia-Jun Li ら。",
+        "url": "https://arxiv.org/abs/2402.07300"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "pan-2",
     "title": "PAN 2",
     "org": "MBZUAI Institute of Foundation Models (IFM)",
