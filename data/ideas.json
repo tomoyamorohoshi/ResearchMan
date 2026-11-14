@@ -27655,5 +27655,203 @@
         "desc": "歩行や跳躍、物の受け渡しなど人型ロボットの全身動作を一体で担い、VRなどで操作できる動きの基盤モデル。"
       }
     ]
+  },
+  {
+    "id": "2026-11-14-1",
+    "date": "2026-11-14",
+    "title": "Annahar×MoCapAnything V2",
+    "pattern": "文脈×技術",
+    "seed": "Annahar's Active Journalismは報じる側から動かす側へ踏み出した。MoCapAnything V2で街頭デモ映像を骨格データ化し、群衆の身振りを匿名のまま可視化して世論を動かす報道にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "annahar-s-active-journalism",
+        "title": "Annahar's Active Journalism",
+        "desc": "レバノンの新聞Annaharが、事件を報じるだけでなく自ら動かす側に回る戦略を打ち出した施策。"
+      },
+      {
+        "type": "tech",
+        "id": "mocapanything-v2",
+        "title": "MoCapAnything V2",
+        "desc": "1台のカメラ動画から、人でも動物でも任意の骨格に使える動きデータを自動生成する研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-14-2",
+    "date": "2026-11-14",
+    "title": "牛の休暇を触覚で届ける",
+    "pattern": "文脈×技術",
+    "seed": "Paid Sick Leave for Cowsは牛を労働者として扱った。HapticLensで牛舎映像の細かな動きを振動に変え、消費者の手元で「病気の牛の体の重さ」を触れる形で伝えられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "too-good-paid-sick-leave-for-cows",
+        "title": "Paid Sick Leave for Cows",
+        "desc": "ケニアで乳牛を労働者として登録し、有給の病気休暇を与えて抗生物質の混入を防いだ施策。"
+      },
+      {
+        "type": "tech",
+        "id": "hapticlens",
+        "title": "HapticLens",
+        "desc": "動画の選んだ部分の動きから、1個の振動子で触感の振動を自動生成する制作ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-14-3",
+    "date": "2026-11-14",
+    "title": "汚水噴水の音を映像から生成",
+    "pattern": "文脈×技術",
+    "seed": "Channel 4のDirty Business噴水は見た目の不快さで訴えた。WorldSonusで噴水の映像から音を即時生成し、街の通行人ごとに違う「汚れの音」を鳴らすと、嫌悪感が記憶に残るかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "channel-4-dirty-business",
+        "title": "Dirty Business – The Fountain of Filth",
+        "desc": "英国の下水汚染を訴えるため、ロンドンの街に実物大の汚水噴水を置いた屋外施策。"
+      },
+      {
+        "type": "tech",
+        "id": "worldsonus",
+        "title": "WorldSonus",
+        "desc": "映像を短い間隔で受け取りながら、その場でステレオ音を生成する映像→音のモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-14-4",
+    "date": "2026-11-14",
+    "title": "splatの街を声で編集する",
+    "pattern": "技術×技術",
+    "seed": "luma.gl splatsでブラウザに出したGaussian Splatの街を、JoyAI-Video-Editの指示型編集で「夕方にして」「雨にして」と話しかけて書き換えると、触れる時間旅行ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "luma-gl-splats",
+        "title": "@luma.gl/splats (luma.gl 9.4.0 beta)",
+        "desc": "ブラウザ上でGaussian Splatting（写実的な3D表現）をGPUで直接描画できる新モジュール。"
+      },
+      {
+        "type": "tech",
+        "id": "joyai-video-edit",
+        "title": "JoyAI-Video-Edit",
+        "desc": "文章で指示するだけで動画を編集できる、無償公開の大型生成AI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-14-5",
+    "date": "2026-11-14",
+    "title": "歌声を骨格で踊らせる",
+    "pattern": "技術×技術",
+    "seed": "AuKで歌声から話者ごとに声を分離し、SCAIL-2の動き転写に渡して、各声の抑揚で別々のキャラが踊る合唱映像を作れるかも。声が身体を持つ表現になりそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "auk",
+        "title": "AuK",
+        "desc": "声の生成・変換・ノイズ除去・話者分離を1つのモデルでこなすオープンソース音声モデル。"
+      },
+      {
+        "type": "tech",
+        "id": "scail-2",
+        "title": "SCAIL-2",
+        "desc": "動画の人物の動きを骨格抽出なしで別キャラクターに乗り移らせるモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-14-6",
+    "date": "2026-11-14",
+    "title": "OK Goのモザイクを3D化",
+    "pattern": "文脈×技術",
+    "seed": "A Stone Only Rolls Downhillの64台iPhoneモザイクに、Click3Rで各画面を撮った写真の対応点を数回クリックして3D復元すれば、観客が歩き回れる立体の映像になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ok-go-a-stone-only-rolls-downhill",
+        "title": "A Stone Only Rolls Downhill",
+        "desc": "64台のiPhoneに同じワンテイクの別バージョンを映し、動くモザイクにした音楽映像。"
+      },
+      {
+        "type": "tech",
+        "id": "click3r",
+        "title": "Click3R",
+        "desc": "2枚の写真からの3D復元の間違いを、人が数回クリックで直せる手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-14-7",
+    "date": "2026-11-14",
+    "title": "ロボットの身振りで手話通訳",
+    "pattern": "転用",
+    "seed": "Context-Aware Generation and Modulation of Expressive Motion Behaviorは感情ロボット用だが、緊急放送の文章から強弱つきの身振りを生成し、駅の案内ロボットが感情ごと伝える通訳になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "context-aware-generation-and-modulation-of-expressive-motion",
+        "title": "Context-Aware Generation and Modulation of Expressive Motion Behavior (gen-mod-expressive-motion-behavior)",
+        "desc": "文章や音声から状況に合った表情豊かなジェスチャーをロボットに作り、強さも調整できる。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-14-8",
+    "date": "2026-11-14",
+    "title": "採譜を地図の凹凸に転用",
+    "pattern": "転用",
+    "seed": "MT3は曲を楽器別のMIDIに書き起こす道具だが、街の環境音を録って採譜し、Streetnavの段差情報と重ねて、通る道が「楽譜」として聞こえる歩行ガイドになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "mt3",
+        "title": "MT3 (Multi-Task Multitrack Music Transcription)",
+        "desc": "1本の音源から複数の楽器パートを別々のMIDIトラックに書き起こす自動採譜モデル。"
+      },
+      {
+        "type": "case",
+        "id": "streetco-streetnav",
+        "title": "Streetnav",
+        "desc": "市民が報告した段差や工事の情報で、車椅子やベビーカー向けの道を出すフランスの無料ナビ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-14-9",
+    "date": "2026-11-14",
+    "title": "ロボットが家で朝を迎える劇",
+    "pattern": "転用",
+    "seed": "HALOは1,000軒の仮想住宅で学んだロボットの研究だが、俳優役として本物の家に配し、座る・くぐる・押すだけの無言劇を上演すると、家具の意味を見直す作品になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "halo",
+        "title": "HALO (Perceptive Humanoid Motion from Simulation)",
+        "desc": "仮想住宅だけで学習したヒューマノイドロボットが、実際の家で座る・くぐる・押すを行う研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-14-10",
+    "date": "2026-11-14",
+    "title": "ファンの履歴で組む指揮者不在",
+    "pattern": "不在の指揮",
+    "seed": "Spider-Man: Brand New Dayの視聴履歴プレイリストから「選曲者」を消し、Stable Audio 3用のSA3 Browser Toolsに履歴の波形だけを渡して、誰も作っていない劇伴を観客の手で育てられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "spider-man-brand-new-day-personalised-fan-experience-2026",
+        "title": "Spider-Man: Brand New Day Personalised Fan Experience",
+        "desc": "Spotifyの3年分の視聴履歴から、映画の「変化」に合うファン個別のプレイリストを作る体験。"
+      },
+      {
+        "type": "tech",
+        "id": "sa3-browser-tools",
+        "title": "SA3 Browser Tools (mucking_around_time_with_stable_audio_3)",
+        "desc": "Stable Audio 3の生成過程を手で触って作り込める、ブラウザ上のオープンソース制作環境。"
+      }
+    ]
   }
 ]
