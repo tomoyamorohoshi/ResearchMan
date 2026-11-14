@@ -1,5 +1,158 @@
 [
   {
+    "id": "supermimic",
+    "title": "SuperMimic",
+    "org": "UC Berkeley（HybridRobotics / Pieter Abbeel・Koushil Sreenath 研究室）",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "AI/Agents"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "人型ロボットの全身モーション追従を、「1つの微分可能な世界モデル」で学習するUC Berkeleyの手法。従来7日間・GPU128枚だった学習を、H100 1枚・約3時間で上回ったと報告している。",
+    "point": "すごいのは学習の軽さです。人間の動きを人型ロボットにそっくり再現させる学習は、これまで大規模なGPUクラスタで1週間ほどかかるのが普通でした。SuperMimicは「物理シミュレータの挙動を学ぶ小さなAI（世界モデル）」を作り、その中で動きを何度も頭の中で試し練習させることで、同じ品質を約3時間・GPU1枚で上回ったと報告しています。バク転や横転のような難しい動きも含めて、約13万件のモーションのうち失敗は25件だけです。論文では実機のUnitree G1でも、動きごとの調整なしで動くことを示しています。広告・体験づくりでは、ダンスやパフォーマンスのモーションキャプチャ映像をそのままロボットに踊らせる展示、モーションを入れ替えながら動かすライブ演出、ロボットとキャラクターの動きを同期させるインスタレーションなどが現実的な使い道になりそうです。学習が数時間で済むため、イベントや案件ごとに新しい振付を試せる点も大きな利点です。",
+    "detail": "仕組み：まず普通の物理シミュレータ（MuJoCo Warp）でロボットを動かし、「今の状態でこの操作をすると次にどうなるか」という記録を集めます。その記録から、ニューラルネットワークの世界モデルを学びます。ロボットの動かし方（ポリシー）は、この世界モデルの中で32ステップ先まで想像上で動かしながら、「どちらに調整すれば追従が良くなるか」という勾配を直接受け取って学びます。たとえるなら、実際に何度も転んで覚えるのでなく、頭の中のシミュレーションで練習してから本番に出る方式です。世界モデルとポリシーは同じループの中で同時に更新されます。\n\n従来との違い：先行する NVIDIA の SONIC は、約21,000 GPU時間（L40を128枚で7日間）をかけて学習しています。SuperMimicは1枚のH100で約3時間で、その成績（正規化リターン0.90）を超えたと主張しています。学習データも611時間でなく約265時間と少ない量です。想像上の動きの生成はシミュレータより10倍以上速い、とも書かれています。数値はすべてプロジェクトページと論文の自己申告で、第三者の再現は未確認です。\n\n使うには：リポジトリは Python のパッケージ管理ツール uv で入れ、姉妹リポジトリ mjlab_research を並べて置きます。train.py にタスクID（SuperMimic-GenCoord-G1 など）を渡せば学習でき、play.py で学習済みモデルを再生できます。NVIDIA GPUとロボット制御・強化学習の知識が前提で、制作現場がすぐ使うものではありません。ブラウザ上の再生デモと実機の映像はプロジェクトページで見られます。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "コードは Apache-2.0。学習には別リポジトリ mjlab_research を並べて置く必要がある。学習用モーションデータ（BONES-SEED）の利用条件は別途確認が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/HybridRobotics/supermimic"
+      },
+      {
+        "kind": "project",
+        "url": "https://supermimic.github.io"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2610.28480"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/supermimic.jpg",
+    "relatedWorks": [
+      {
+        "title": "SONIC（GR00T Whole-Body Control）",
+        "description": "NVIDIAの人型ロボット全身制御の基盤モデル。SuperMimicの比較対象。",
+        "url": "https://github.com/NVlabs/GR00T-WholeBodyControl"
+      },
+      {
+        "title": "Kimodo",
+        "description": "NVIDIAによる、テキストからヒューマノイド向けモーションを生成する拡散モデル。",
+        "url": "https://github.com/nv-tlabs/kimodo"
+      },
+      {
+        "title": "DreamerV3",
+        "description": "世界モデルの中で想像上の練習をして学ぶ強化学習手法。SuperMimicが着想元に挙げている。",
+        "url": "https://github.com/danijar/dreamerv3"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "livliv-player",
+    "title": "LivLiv Player",
+    "org": "LivLiv（livliv-dev）",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "Motion/Body",
+      "HCI/MediaArt"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "ブラウザ上で2.5Dキャラクターを動かす軽量JavaScriptライブラリ。マイク音声からのリップシンクとウェブカメラの顔トラッキングに対応し、VRMやPNGTuber形式も同じAPIで扱える。",
+    "point": "すごいのは、重い専用ソフトなしで「しゃべって表情が動くキャラクター」をWebページやライブ配信に出せる点です。本体は圧縮後で約30KBと小さく、依存ライブラリもありません。マイクの声に合わせて口が動き、ウェブカメラの顔の動きもキャラクターに反映されます。LivLiv形式、VRM（3Dアバターの標準形式）、2枚絵のPNGTuberという3種類を同じ書き方で扱えます。広告・体験づくりでは、ブランドキャラクターがブラウザ上でユーザーの声に反応するキャンペーンサイト、展示のタッチパネルで来場者の顔に合わせて動く案内役、OBSの透過ブラウザソースを使った配信用マスコットなどに使えそうです。カメラ映像は端末の外に出ない設計なので、イベント会場での利用も説明しやすいです。ただし同梱の25体のキャラクターは非商用なので、案件では自前のキャラクターを用意する前提になります。",
+    "detail": "仕組み：WebGL2（ブラウザのGPU描画機能）でキャラクターを描き、呼吸・まばたき・首の向き・口の開きといった動きをパラメータ（mouthOpen など）で制御します。リップシンクは音声の大きさを解析して口の開きに変換します。顔トラッキングはGoogleのMediaPipeをブラウザ内で動かし、必要になった時点で読み込みます。全身キャラクターは足を地面に付けたまま体を揺らしたり、しゃがんだりでき、view.fit で全身・膝上・顔アップの構図を切り替えられます。\n\n従来との違い：同種の2Dアバター表示は、専用ソフトやSDKに依存するものが多くありました。このライブラリは npm の小さなパッケージで、Live2D のソフトやSDKは使っていません（.moc3 などは読めません）。READMEによると、LivLiv形式（model.json v4）・VRM・PNGTuberを1つのAPIで切り替えられます。Chrome/Edge 97+、Firefox 104+、Safari 15.4+ で動きますが、スマホでの動作確認はまだ十分ではないと書かれています。\n\n使うには：Node.js 環境で npm から @livliv-dev/player を入れ、canvas に Player を作って load() にキャラクターのフォルダか .livliv ファイルを渡します。声で動かすには createSpeech、顔追従には startFaceTracking を追加します。JavaScriptが書ければ数十行で組め、費用はかかりません。まず公式デモページ（demo.html / png.html / vrm.html）で挙動を試せます。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "プレイヤー本体のコードは Apache-2.0 で商用可。同梱のキャラクター素材は別ライセンスで、個人の非商用のみ・クレジット必須・AI学習利用不可。Kujira／Kujira Q／Pen はさらに別条件。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/livliv-dev/player"
+      },
+      {
+        "kind": "project",
+        "url": "https://livliv-dev.github.io/player/"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/livliv-player.jpg",
+    "relatedWorks": [
+      {
+        "title": "three-vrm",
+        "description": "VRMアバターをThree.jsで表示するpixivのライブラリ。",
+        "url": "https://github.com/pixiv/three-vrm"
+      },
+      {
+        "title": "MediaPipe",
+        "description": "ブラウザやスマホで顔・体の動きを検出するGoogleのライブラリ。LivLivが顔トラッキングに利用。",
+        "url": "https://github.com/google-ai-edge/mediapipe"
+      },
+      {
+        "title": "Inochi2D",
+        "description": "オープンソースの2Dパペットアニメーションフレームワーク。",
+        "url": "https://github.com/Inochi2D/inochi2d"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "toyxyz-blender-retargeter",
+    "title": "Toyxyz Blender Retargeter",
+    "org": "toyxyz",
+    "type": "Tool",
+    "domains": [
+      "Motion/Body",
+      "CreatorTools"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "体型の違うキャラクター同士でモーションを移し替える Blender 5.0 以上向けアドオン。足の長さの違いに合わせて歩幅・足の接地・手の届く範囲を自動調整し、ライブでプレビューしてからアニメーションとして書き出せる。",
+    "point": "すごいのは、体型が違うキャラクターへモーションを移しても、足が滑ったり地面にめり込んだりしにくいところです。普通のリターゲット（動きの移し替え）は、関節の回転をそのままコピーするため、脚の短いキャラクターで足が空を切ったり、長いキャラクターで引きずったりしがちです。このアドオンは体型の差に合わせて移動量・歩幅・足の接地を調整します。作者のデモ動画は、同じ動きを短い脚・標準・長い脚の3体に移し、アドオンありとなしを比較しています。広告・体験づくりでは、モーションキャプチャした1本の振付を、ブランドキャラクター、デフォルメ体型のマスコット、等身の違う複数キャラクターへ配る制作に向きます。キャラクターごとの手直し時間を減らせるため、短納期のSNS動画やダンス素材の量産で効きそうです。手の接地の制御は限定的、と作者自身が制限事項として書いています。",
+    "detail": "仕組み：移し替え元（ソース）と先（ターゲット）のスケルトン（骨格）を選び、骨の対応表を自動で作るか手動で指定します。そのうえで、体の中心（ルート）の移動量、腕や脚の伸びる長さ、足の接地を体型に合わせて補正します。たとえるなら、大人の歩き方を子どもに教えるとき、真似をさせるだけでなく歩幅を子どもの足に合わせて直す作業を自動でやるイメージです。複数キャラクターを同時に扱え、対応表はJSONのプリセットとして保存・再利用できます。ライブでプレビューし、納得したら Bake to Action ボタンで Blender のアクションに焼き込みます。\n\n従来との違い：Blender の標準機能や一般的なアドオンは、関節の回転コピーが中心で、体型差の補正は手作業になりがちでした。このアドオンは足の接地や移動量の補正が標準で入っている点が特徴です。READMEは仕組みを大まかにしか説明しておらず、内部アルゴリズムの詳細は確認できていません。公開直後（リリース 0.4.29 / 0.4.30 とも2026年11月12日）で、コミット数も8と少ない初期版です。\n\n使うには：Blender 5.0 以上が必要です。GitHub のリリースから ZIP をダウンロードし、Preferences → Get Extensions → Install from Disk で入れ、3Dビューの Retarget タブで元と先のアーマチュアを選んで Build Bones List → Connect → Bake の順に進みます。費用は無料で、Blender の基本操作ができれば使えます。",
+    "license": {
+      "spdx": "GPL-3.0-or-later",
+      "commercial": "conditional",
+      "note": "GPL-3.0-or-later。アドオン自体の商用利用は可能だが、改変して配布する場合は同じGPLで公開する義務がある。生成したアニメーションの利用には制限なし。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/toyxyz/toyxyz-blender-retargeter"
+      },
+      {
+        "kind": "product",
+        "url": "https://github.com/toyxyz/toyxyz-blender-retargeter/releases/latest"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/toyxyz-blender-retargeter.jpg",
+    "relatedWorks": [
+      {
+        "title": "Rokoko Studio Live for Blender",
+        "description": "Rokokoのモーションキャプチャをライブで Blender のキャラクターに流し込むアドオン。",
+        "url": "https://github.com/Rokoko/rokoko-studio-live-blender"
+      },
+      {
+        "title": "Kimodo",
+        "description": "NVIDIAのテキスト→ヒューマノイドモーション生成。出力を別の骨格へ移す工程が後に必要になる。",
+        "url": "https://github.com/nv-tlabs/kimodo"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "sonic-stage",
     "title": "Sonic Stage",
     "org": "HKUST / Columbia University / University of Rochester（Shuchang Xu, Xiaofu Jin, Gaurav Jain, Wenshuo Zhang, Huamin Qu, Brian A. Smith, Yukang Yan）",
