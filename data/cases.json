@@ -1,5 +1,357 @@
 [
   {
+    "id": "attenboulder-greenpeace-uk-2026",
+    "title": "Attenboulder（Greenpeace UK）",
+    "summary": "トロール漁を物理的に阻む海底の岩を、アッテンボローの彫像に仕立てて抗議と規制執行を一体化した。",
+    "client": "Greenpeace UK",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "社会包摂"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/greenpeace-rocher-david-attenborough-20261113",
+    "thumbnail": "/thumbnails/attenboulder-greenpeace-uk-2026.jpg",
+    "videoId": "",
+    "overview": "Greenpeace UKは2026年11月10日、デヴィッド・アッテンボローの姿を彫った石灰岩の岩「Attenboulder」を、同団体の船Arctic Sunriseに載せてロンドンのテムズ川で公開した。南部北海の特別保護区に沈めてトロール漁を阻む岩の障壁を完成させる狙いで、12日に海底へ投下したと同団体は発表している。",
+    "background": "南部北海の特別保護区（SAC）は、Greenpeaceによれば英国で最も底引き漁が行われている海洋保護区である。同団体はすでに9個の岩を沈めており、障壁は116平方キロメートルの底引き漁を事実上閉め出したと主張する。一方、海洋管理機構（MMO）は11月5日付の書簡で、追加すれば法的措置もありうると警告していた。",
+    "execution": "障壁用の岩の最後の1個を、保護区の「顔」となる著名人の彫像に作り替えた。ロンドンのタワーブリッジ付近で公開して注目を集め、その後に海底へ沈めている。投下位置の座標は当局に共有済みとされる。海上では巡視船と監視機が付き添う緊迫した状況だったと同団体は発表している。制作者・協力会社は確認できなかった。",
+    "evaluationImpact": "保護区の指定だけで実際には漁が続く現状に対し、規制を岩という物理物で自ら執行し、その岩を人々が関心を寄せる彫像にして話題化した点が一文で言える強さを持つ。MMOの法的警告との対立も報道を呼んだ。ただし障壁の実効性や当局の次の対応は、同団体の発表以外での確認が取れていない。",
+    "relatedWorks": [
+      {
+        "title": "Greenpeace UK boulder barrier（South West Deeps、2022）",
+        "description": "2022年に同団体がSouth West Deeps保護区の海底へ18個のポートランド石灰岩を沈めた先行行動。アンモナイト彫刻も含まれ、MMOが調査に動いた。",
+        "url": "https://www.aljazeera.com/news/2022/9/2/greenpeace-drops-boulders-in-uk-sea-against-destructive-fishing"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Stunt",
+      "Form/Installation",
+      "Theme/SocialGood",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "the-scamcrow-whoscall-2026",
+    "title": "The Scamcrow（Whoscall）",
+    "summary": "田んぼの案山子の腕をタイ式合掌「ワイ」に変え、詐欺電話の標的の農家へアプリ導入を懇願させた",
+    "client": "Whoscall",
+    "agency": "Sour Bangkok",
+    "categories": [
+      "OOH革新",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://creapills.com/whoscall-epouvantails-arnaques-telephoniques-thailande-20261113",
+    "thumbnail": "/thumbnails/the-scamcrow-whoscall-2026.jpg",
+    "videoId": "",
+    "overview": "WhoscallがSour Bangkokと展開した「The Scamcrow」は、タイ各地の田んぼに置いた案山子を使った屋外施策。通常は両腕を広げる案山子の腕を、タイ式挨拶「ワイ」の合掌ポーズに替え、通りがかる農家へWhoscallのダウンロードを懇願するように見せた。",
+    "background": "Campaign Brief Asiaによれば、タイには詐欺の標的になり得る農家が1,400万人以上いるとされる。スマホ向けの注意喚起は農村部の高齢層に届きにくく、Whoscallは詐欺電話対策アプリを、農家が日常的に目にする田畑の風景の中で訴える方法を選んだ。",
+    "execution": "各地の田んぼに設置した案山子は、鳥を追い払う本来の役割を保ったまま、腕を合掌の形に変えて「お願い」の姿勢をとる。タイ文化に根ざしたワイの所作が、アプリを入れてほしいという切実さを言葉なしで伝える。制作はSour Bangkokで、掲載情報では2026年10月に公開された。",
+    "evaluationImpact": "既存の農村の風景と案山子という無償の素材を媒体に読み替え、一文で説明できる。ワイという文化的ジェスチャーが、行政文書的になりがちな詐欺啓発を人間味のある訴えに変えた点が評価できる。受賞や効果数値は公式ソースで確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Form/Installation",
+      "Theme/SocialGood"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "volvo-ex60-sky-nature-innovation-is-in-our-nature-2026",
+    "title": "Volvo EX60 × Sky Nature: Innovation is in our Nature（植物の電気信号を音楽に）",
+    "summary": "イーデン・プロジェクトの生きた植物の電気信号をMIDIに変換して作曲し、Sky Nature向け16本のスポンサーidentの音楽に用いた",
+    "client": "Volvo Car UK",
+    "agency": "Grey London",
+    "categories": [
+      "コンテンツ革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/volvo-sky-nature-musique-plantes-20261113",
+    "thumbnail": "/thumbnails/volvo-ex60-sky-nature-innovation-is-in-our-nature-2026.jpg",
+    "videoId": "",
+    "overview": "Volvo Car UKがEX60の発売に合わせ、Sky Natureで流す16本のスポンサーidentを展開した。音楽はアーティストのAlice Boydが、イーデン・プロジェクトの生きた植物から取得したデータで制作している。データはMIDI信号に変換され、音符を動かす。この手法はバイオソニフィケーションと呼ばれ、映像に映る植物自体が音楽の生成にも関わっている。2026年11月初旬から2027年にかけてSky Natureで放映される。",
+    "background": "Volvoはイーデン・プロジェクトの公式エレクトリックカーパートナーで、野外音楽イベントEden Sessionsのプレゼンティングパートナーも務める。提携は2027年まで延長されている。EX60の発売でも、Grey Londonがイーデンと組んだ体験施策をOuternet Londonなどで展開しており、自然との結びつきを軸にした流れの中の一施策である。今回はSkyの自然番組枠の提供という場に合わせて企画された。",
+    "execution": "Grey LondonがVolvo、Sky、イーデン・プロジェクトの協働を主導した。イーデンの植物から得たデータをMIDI信号に変換して音符を駆動し、Alice Boyd名義の楽曲に仕立てた。その音楽を16本のidentに使い、映像に映る植物そのものが楽曲の生成元にもなる構成としている。電極の取り付け方など個別の計測手順は、確認できた資料の範囲では未確認である。",
+    "evaluationImpact": "スポンサーidentの音を「自然番組の提供枠」という文脈に合わせ、植物自体の生体信号から作る点が新しい。映像と音の双方で自然を扱う一貫性があり、ブランドの自然・サステナビリティの訴求とも整合する。一方、植物が作曲するわけではなく、信号の音への割り当ては人が選ぶという指摘もある。公式の受賞や視聴指標は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "The Human Recharging Station（Volvo Car UK / Grey London）",
+        "description": "EX60発売に合わせ、イーデン・プロジェクトと組んでOuternet Londonで展開した多感覚体験",
+        "url": "https://creative.salon/articles/work/the-human-recharging-station-volvo-car-uk-grey-london"
+      },
+      {
+        "title": "Volvo EX60 and Eden Project at Outernet London",
+        "description": "Volvo UK公式のOuternet London施策の紹介ページ",
+        "url": "https://www.volvocars.com/uk/news/volvo-ex60-and-eden-project-at-outernet-london/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Form/Film",
+      "Theme/Sustainability",
+      "Theme/Music"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "sit-for-a-while-sknypl-swiss-biennale-of-territory-2026",
+    "title": "Sit For A While（SKNYPL / Swiss Biennale of Territory）",
+    "summary": "取り壊し予定の建物脇の足場と防護ネットを、座って眺める観察の場に読み替えたルガーノの介入",
+    "client": "SKNYPL",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/sknypl-echafaudages-batiments-menaces-demolition-20261113",
+    "thumbnail": "/thumbnails/sit-for-a-while-sknypl-swiss-biennale-of-territory-2026.jpg",
+    "videoId": "",
+    "overview": "SKNYPLによる「Sit For A While」は、第6回スイス領土ビエンナーレ（スイス・ルガーノ、テーマ「Handle with Care」）のために制作されたインスタレーション。足場と安全メッシュを使った観察用の場を、取り壊しの危機にある建物の脇に設ける。公式のCall for Actionでは、危機にある建物の傍らに立ち止まる移動式の観察室と説明されている。設置場所はPiazza BessoとViganelloのPiazzale ex Scuoleの2か所とされる。",
+    "background": "ビエンナーレのテーマは「Handle with Care」。Designboomは本作を、自治体による都市の維持管理と、既存建物の取り壊しとの間の緊張を扱う作品と紹介している。Call for Actionの文面では、建物が注目されるのは取り壊しの直前に限られるのはなぜか、という問いが示されている。ルガーノのBorgo Bessoでは取り壊しをめぐり、文化遺産団体が反対している。本作がこの件と同一の現場かは確認できていない。ビエンナーレの会期は2026年10月1日〜11月28日。",
+    "execution": "Designboomの見出しによれば、足場と安全メッシュの枠が取り壊し現場の観察台として使われている。依頼メモには、切り抜きと木のベンチを足場や防護ネットに付けたとある。ただし今回の検索では、切り抜きやベンチの具体的な仕様を本文で確認できなかった。制作者は、Designboomによるとアザマト・ニーロフ氏とアレクサンドル・プロトキン氏。2か所に分けて設置される。",
+    "evaluationImpact": "工事現場の足場や防護ネットは通常、通行人の視界から建物を隠す存在だが、本作はそれを「座って建物を眺める場」に変えた。新しい構造物を建てず、取り壊しの工程で現れる既存の仮設物を素材にしている点が一文で言える企画の核。失われつつある建物に、取り壊しの前に目を向ける時間を作る。受賞は確認できていない。物理的な構成の詳細は、公式情報で未確認。",
+    "relatedWorks": [
+      {
+        "title": "Designboom: scaffolding and safety mesh frame observation platforms at lugano demolition sites",
+        "description": "Sit For A While を紹介したDesignboomの記事。",
+        "url": "https://www.designboom.com/?p=1214421"
+      },
+      {
+        "title": "6th Biennale svizzera del territorio: Call for Action（10プロジェクト選定）",
+        "description": "ビエンナーレ公式のCall for Actionで選定された10プロジェクトの発表。",
+        "url": "https://www.i2a.ch/en/articles/2026-06-17-call-for-action-i-10-progetti-selezionati"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Theme/Art",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "onomatopia-yuri-suzuki-2026",
+    "title": "Onomatopia（Yuri Suzuki）",
+    "summary": "観覧車やダッジェムなど遊園地の乗り物を、ホーンと配管で組んだ音の出る彫刻に読み替えた個展",
+    "client": "Yuri Suzuki",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.designboom.com/art/yuri-suzuki-amusement-park-rides-acoustic-sculptures-onomatopia/",
+    "thumbnail": "/thumbnails/onomatopia-yuri-suzuki-2026.jpg",
+    "videoId": "",
+    "overview": "Yuri Suzukiの個展「Onomatopia」は、ロンドン・イズリントンのPentagram本社内Osh Galleryで2026年11月10日から2027年1月7日まで開催。ジェットコースター、観覧車、ダッジェム、ヘルター・スケルター、ソニック・カルーセルの5つのジオラマで構成され、各乗り物は色鮮やかな配管、縦型のファンネル、ホーンで組まれ、それぞれ固有のサウンドトラックを持つ。",
+    "background": "Suzukiは2018年から2024年までPentagramのパートナーを務め、その後は自身のアート、音楽、インスタレーション中心の活動に専念している。本展は2025年のロイヤル・アカデミー夏季展出品作「Coaster of Sounds」の構想を発展させたもの。ディズニーなど実在のテーマパークや万博に着想を得たとされる。共同キュレーターはVicky Richardson。",
+    "execution": "遊園地の乗り物を、音を生む形状（ホーン・ファンネル・配管）そのもので構成し直し、構造体がそのまま音響装置として機能する楽器的な彫刻にしている。作品にはCollision Orchestra、Sonic Carousel、Whistling Helter Skelterなどがある。Designboomは、これらを将来の大型パブリック音響介入のプロトタイプと位置づけている。",
+    "evaluationImpact": "「遊園地の乗り物を音の出る建築彫刻に読み替える」と一文で言え、遊びと音響と建築が交差する点をWallpaperが評している。Suzuki自身は、音を生む形が逃避の風景をつくると語る。大型の公共空間への展開を見据えた試作という位置づけで、音の建築化という手法の転用可能性がある。ただし受賞は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "UTOOTO",
+        "description": "Suzukiが2025年に発表した、モジュラーホーンを来場者が組み立てるインタラクティブな音響インスタレーション。",
+        "url": "https://www.designboom.com/art/in-yuri-suzuki-utooto-sonic-interactive-installation-modular-horns-london-08-11-2025/"
+      },
+      {
+        "title": "Sonic Bloom",
+        "description": "Suzukiによる、ロンドンの音と人をつなぐホーンのインスタレーション。",
+        "url": "https://www.dezeen.com/?p=1706684"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Form/Exhibition",
+      "Form/Installation",
+      "Theme/Art"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "designboom",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "growing-facade-ii-unusual-heijmans-2026",
+    "title": "Growing Facade II（.unusual × Heijmans）",
+    "summary": "3Dプリントした繊維の浮き彫りに菌糸を通して固め、型なしで一点物の吸音タイルを作り1枚から注文可能にした",
+    "client": ".unusual（Eric Klarenbeek, Maartje Dros）",
+    "agency": "Heijmans",
+    "categories": [
+      "テクノロジー×アイデア",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://materialdistrict.com/article/growing-facade-mycelium-panels-move-indoors-as-acoustic-tiles/",
+    "thumbnail": "/thumbnails/growing-facade-ii-unusual-heijmans-2026.jpg",
+    "videoId": "",
+    "overview": "オランダのデザインスタジオ.unusual(Eric Klarenbeek、Maartje Dros)が建設会社Heijmansと制作した、菌糸製の吸音タイル。285×285mmの平面タイルと、285mm高・半径285mm・45度の曲面タイルがあり、曲面2枚で90度の角を作れる。MaterialDistrictは2026年11月11日付で、1枚単位で注文できると報じた。価格は1枚135ユーロ(オランダ付加価値税込)。",
+    "background": "2025年の「Growing Facade」は60×60cmの浮き彫りパネルで、Heijmansの拠点Heijmans Hiveに壁一面として設置された。同じ系統のパネルはアムステルダムのMarineterrein(イノベーション・パビリオン)にも掛けられており、アムステルダム応用科学大学とSensorlabが市の資金で状態を観察している。今回の「II」はこの外装パネルを室内向けの吸音タイルに展開したものである。",
+    "execution": "まず3Dプリンターが木または海藻の繊維とおがくずで浮き彫りを積層し、そこへ菌糸を育てて繊維同士を結合させる。型は使わない。購入者には育成室に入れる前に自分のパネルの画像が届く。色は淡いクリーム色できめ細かな質感で、錆色の斑点が出るものもある。個体ごとに仕上がりが異なる。",
+    "evaluationImpact": "建築の外装用に実証した菌糸と3Dプリントの組み合わせを、小ロット注文できる室内向け製品にした点が評価できる。型を使わない製法のため、1枚ごとの形状差を製品の個性として売れる。一方、記事には吸音性能の数値、防火等級、施工方法の記載がなく、性能面は未確認である。受賞の記載もない。",
+    "relatedWorks": [
+      {
+        "title": "Growing Facade (Heijmans Hive)",
+        "description": "2025年に発表された菌糸・海藻繊維・おがくず製の外装パネル。Heijmans Hiveに設置。",
+        "url": "https://materialdistrict.com/article/ai-grown-mycelium-facade-showcases-a-scalable-circular-building-material/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/Product",
+      "Theme/Sustainability",
+      "Theme/Art"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "materialdistrict",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "crimson-star-2026",
+    "title": "Crimson Star",
+    "summary": "NASAの太陽観測衛星SDOの極端紫外線画像を補正・調色・リタイムし、脈打つ太陽大気を一本の映像にした作品。",
+    "client": "Seán Doran",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新",
+      "データクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.thisiscolossal.com/2026/11/sean-doran-crimson-star-film/",
+    "thumbnail": "/thumbnails/crimson-star-2026.jpg",
+    "videoId": "",
+    "overview": "Seán DoranによるNASAの太陽観測衛星SDO(Solar Dynamics Observatory)の画像を用いた映像作品。kottke.orgは、極端紫外線で見た太陽大気が脈打ち流れる様子を捉えた作品として紹介している。Doranは画像のコンフォーム、修復、グレーディング、ブレンド、リスケール、リタイムを担当したと記されている。",
+    "background": "DoranはSDOの画像を素材にした映像を繰り返し制作している。過去作には、2014年8月のAIA 171Å画像78,846枚を修復・リスケールして作った4K映像『One Month of Sun』や、SDO映像を使った約45分の『Blackstar』がある。Doranは天文・宇宙アートに関心を持つビジュアルアーティストで、NASAのJuno探査機チームの木星画像処理を支援した経歴も報じられている。",
+    "execution": "素材はNASA SDOの公開観測画像。kottke.orgによれば、Doranがこれらを整え(コンフォーム・修復)、色を調整し(グレーディング)、重ね合わせ(ブレンド)、解像度を上げ(リスケール)、時間軸を整えて(リタイム)映像化した。波長ごとにピンク〜赤を割り当てたという点や制作の詳細、上映時間は、今回の検索では確認できなかった。",
+    "evaluationImpact": "観測データを科学記録のままにせず、編集の工程を重ねて鑑賞できる映像作品にしている点が特徴。作品は過去作と同じ系統にあるが、本作固有の新しい技法は今回確認できなかった。このため採用基準にあと一歩届かない。受賞歴や公式発表は確認できていない。参考URLのColossal記事も検索では見つからず、kottke.orgの記事のみ確認した。",
+    "relatedWorks": [
+      {
+        "title": "One Month of Sun",
+        "description": "Seán Doranが2014年8月のSDO画像78,846枚から作った4Kの1か月タイムラプス。",
+        "url": "https://www.thisiscolossal.com/2021/11/sean-doran-sun-timelapse/"
+      },
+      {
+        "title": "Blackstar — The Sun In A New Light",
+        "description": "SDO映像を使った約45分の太陽映像作品。",
+        "url": "https://kottke.org/23/06/blackstar-the-sun-in-a-new-light"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/Film",
+      "Theme/Art"
+    ],
+    "gateCriterion": "D",
+    "sourceId": "colossal",
+    "gateTier": "borderline",
+    "discoveryLens": 4
+  },
+  {
+    "id": "giffgaff-rebrand-koto-2026",
+    "title": "Giffgaff rebrand（Koto）",
+    "summary": "giffgaffのワードマーク末尾「f」の先端を矢印にし、価格や特典を指す道標としてブランド全体に通すリブランド。",
+    "client": "Giffgaff",
+    "agency": "Koto",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.creativeboom.com/news/koto-points-giffgaff-towards-its-next-chapter-with-an-arrow-led-rebrand/",
+    "thumbnail": "/thumbnails/giffgaff-rebrand-koto-2026.jpg",
+    "videoId": "",
+    "overview": "英国のモバイル通信ブランドgiffgaffが、ロンドン拠点のKotoと進めたブランドリフレッシュ。新しいワードマークは末尾の「f」の先端が尖り、よく見ると矢印として読める。「gg」のリガチャ(合字)で旧ロゴとのつながりも残した。全体は、より大胆で緑の強いアイデンティティで、矢印の道標が価格やオファーを指し示す。2026年10月下旬に発表され、Webサイト、アプリ、メール施策などへ段階的に展開される。",
+    "background": "giffgaffは4百万人超のメンバーを持つ「チャレンジャー」系の通信ブランドで、新規参入の増えた競争の激しい市場にいる。同社は2026年4月に「We're Up To Good」のポジショニングと「Ode to Bad」キャンペーンを打ち出していた。今回のリフレッシュは、個性を失わずにブランドを進化させ「次の章」に備える目的で行われた。Kotoは今後も長期のパートナーとして、ブランド戦略とアイデンティティの開発を続けるとされる。",
+    "execution": "核になるのは、ワードマーク末尾の「f」の先端を矢印にしたこと。この矢印を「道標(signpost)」として、価格やオファーなど、ユーザーに見てほしい場所を指すためにロゴとアイデンティティ全体で使う。「gg」のリガチャは旧ロゴを引き継ぐ要素になっている。色は緑を強めた。展開はWebサイト、アプリ、メール施策から段階的に進む。梱包テープなど物理媒体への展開は、今回の検索では確認できなかった。",
+    "evaluationImpact": "ロゴの一部を「次に見る場所を指す」機能に変えた点が評価できる。ロゴが飾りで終わらず、価格やオファーへ視線を誘導する案内役になる。ただし、実際の展開の幅や効果は、今回の検索では確認できていない。Made Goodの解説は、文字の形は概ね旧ロゴを保っていると指摘しており、変化の大きさには見方の違いがある。受賞は公式ソースで確認できなかった。",
+    "relatedWorks": [
+      {
+        "title": "Bolt gets a striking new identity by Koto",
+        "description": "Kotoが手がけた別のブランドアイデンティティ事例。",
+        "url": "https://www.creativeboom.com/work/bolt-gets-a-striking-new-identity-by-koto/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Theme/Retail"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creativeboom",
+    "gateTier": "borderline",
+    "discoveryLens": 2
+  },
+  {
     "id": "the-mattress-atm-nedbank-justsave-2026",
     "title": "The Mattress ATM（Nedbank / JustSave）",
     "summary": "マットレス自体を偽ATMに作り替え、「マットレス貯金」の習慣を貯蓄口座JustSaveへの誘導に変えた",
