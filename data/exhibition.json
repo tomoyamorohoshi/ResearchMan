@@ -1,7 +1,48 @@
 {
   "version": 1,
-  "statusAsOf": "2026-11-13",
+  "statusAsOf": "2026-11-14",
   "items": [
+    {
+      "id": "2026-hyper-museum-hanno-emi-kusano-end-of-nostalgia",
+      "slug": "2026-hyper-museum-hanno-emi-kusano-end-of-nostalgia",
+      "title": "草野絵美展「エンド・オブ・ノスタルジア」",
+      "artists": [
+        "草野絵美"
+      ],
+      "venue": "ハイパーミュージアム飯能",
+      "venueType": "museum",
+      "prefecture": "埼玉県",
+      "city": "飯能市",
+      "startDate": "2026-11-14",
+      "endDate": "2027-01-31",
+      "status": "ongoing",
+      "admission": "UNKNOWN",
+      "tags": [
+        "ai_media_art",
+        "installation",
+        "sculpture",
+        "video_art"
+      ],
+      "score": 62,
+      "matchReason": "公式ページによると、生成AIで制作する草野絵美の美術館個展。TVモニターを積み上げた大型インスタレーション《Memory Metabolism》、立体作品《Mementoid》、LED映像作品、《Ornament Survival》シリーズ25点で構成される。2026-11-14に開幕。",
+      "sources": [
+        {
+          "name": "草野絵美展「エンド・オブ・ノスタルジア」",
+          "url": "https://metsa-hanno.com/hypermuseumhanno/exhibition/2611",
+          "kind": "official"
+        },
+        {
+          "name": "美術手帖",
+          "url": "https://bijutsutecho.com/exhibitions/19063",
+          "kind": "listing"
+        }
+      ],
+      "link": "https://metsa-hanno.com/hypermuseumhanno/exhibition/2611",
+      "thumbnail": "/thumbnails/exhibition/2026-hyper-museum-hanno-emi-kusano-end-of-nostalgia.jpg",
+      "addedAt": "2026-11-14T01:35:02.724Z",
+      "origin": "auto",
+      "highlight": false
+    },
     {
       "id": "2026-timedo-gallery-mariko-mori-shrine-ii",
       "slug": "2026-timedo-gallery-mariko-mori-shrine-ii",
