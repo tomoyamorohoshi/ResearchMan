@@ -108009,5 +108009,638 @@
       "Theme/Retail"
     ],
     "thumbnail": "/thumbnails/the-coca-cola-company-i-see-coke.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "cinego-the-impossible-campus",
+    "title": "The Impossible Campus",
+    "summary": "ハンガリーのアートハウス映画配信Cinegoが、映画に追加音声として解説講義を重ね、国家管理下に置かれた映画大学の元教員たちの教育を支えた施策。",
+    "client": "Cinego",
+    "agency": "DDB, Budapest",
+    "categories": [
+      "Radio & Audio"
+    ],
+    "award": "Cannes Lions 2023 Radio & Audio Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Radio & Audio",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://welovebudapest.com/cikk/2023/04/27/latnivalok-es-kultura-cinego-filmelemzes-kampany-freeszfe/",
+    "videoId": "",
+    "overview": "Cinegoは、DDB Budapestと組み、配信作品に独立系教育団体Freeszfeの講師による解説音声トラックを付けた「Cinego Campus（The Impossible Campus）」を始めた。視聴者は言語メニューのような感覚で解説音声に切り替えて映画を観られる。",
+    "background": "2020年、ハンガリー政府の主導でブダペストの演劇映画大学（SZFE）の運営体制が変わり、これに反対した教員と学生が独立の教育団体Freeszfeを立ち上げた。Freeszfeは資金面で運営が苦しい状況にあった。",
+    "execution": "We Love Budapestの報道（2023年4月）によれば、公開時点で3作品が対象で、ハンガリー映画『Larry』、イラン映画『The Client』、韓国のクライムスリラーに、Freeszfeの講師が音声解説を付けた。解説は作品の背景や映画分析の見方を伝える内容で、映画ファンの議論の質を高めることと、Freeszfeへの注目を集めることを狙った。映画の視聴による収益の大きな部分はFreeszfeに寄付される。",
+    "evaluationImpact": "カンヌライオンズ2023のRadio & Audio部門でSilverを受賞した。映画配信の音声トラックという既存の仕組みを、教育支援の手段として使った点が特徴とされる。",
+    "tags": [
+      "Theme/Education",
+      "Tech/Audio",
+      "Theme/Entertainment",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/cinego-the-impossible-campus.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "visit-sweden-spellbound-by-sweden",
+    "title": "Spellbound By Sweden",
+    "summary": "スウェーデン政府観光局が、ホラー作家の書き下ろし音声ストーリーを、特定の場所でしか聴けない設定で公開し、国の自然と民話を音で伝えた施策。",
+    "client": "Visit Sweden",
+    "agency": "PRIME WEBER SHANDWICK, Stockholm",
+    "categories": [
+      "Radio & Audio"
+    ],
+    "award": "Cannes Lions 2023 Radio & Audio Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Radio & Audio",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://press.visitsweden.com/20223-04-25-Sweden-Welcomes-Travelers-Through-Chilling-Audio-Story-By-Renowned-Author-John-Ajvide-Lindqvist",
+    "videoId": "",
+    "overview": "Visit SwedenとPrime Weber Shandwickによる「Spellbound by Sweden」。『Let the Right One In』で知られる作家John Ajvide Lindqvistが書いた音声短編『Kiln』を、「スウェーデン自身が語る」形で届けた。",
+    "background": "観光誘致の広告で自然の美しさを見せる定番の手法とは別の方法で、スウェーデンの神話・民話・ミステリー文学の背景を生かして関心を集めることを狙った。Weber ShandwickのグローバルCCOが、Mumbrellaのイベントでこの方針を説明している。",
+    "execution": "物語は森の妖精フルドラ（huldra）と出会う人物を描く。当初は聴ける場所を限定する位置ロックがかけられており、2023年4月末のヴァルプルギスの夜に合わせてロックが外され、世界中で無料で聴けるようになった。Spotifyでも配信され、公園や森の木にもたれて聴くことが勧められた。予告編は自然保護区で撮影された。",
+    "evaluationImpact": "カンヌライオンズ2023のRadio & Audio部門でSilverを受賞した。同作はWebby Awardsなど他の賞でも評価されている。",
+    "tags": [
+      "Tech/Audio",
+      "Theme/Entertainment",
+      "Theme/Sustainability"
+    ],
+    "thumbnail": "/thumbnails/visit-sweden-spellbound-by-sweden.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "husqvarna-happy-birthday-from-earth",
+    "title": "Happy Birthday From Earth",
+    "summary": "世界中のHusqvarna製ロボット芝刈り機に「ハッピーバースデー」を歌わせ、火星探査車キュリオシティの10歳の誕生日を祝った施策。",
+    "client": "Husqvarna",
+    "agency": "PRIME WEBER SHANDWICK, Stockholm",
+    "categories": [
+      "Radio & Audio"
+    ],
+    "award": "Cannes Lions 2023 Radio & Audio Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Radio & Audio",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.robotics247.com/article/husqvarna_hosts_worldwide_birthday_celebration_nasa_mars_curiosity_rover",
+    "videoId": "",
+    "overview": "HusqvarnaとPrime Weber Shandwickが、ロボット芝刈り機Automowerのソフトウェア更新で、NASAの火星探査車キュリオシティの着陸10周年（2022年8月5日）を祝う合唱を実現した。",
+    "background": "キュリオシティは1歳の誕生日に自分で「ハッピーバースデー」を歌ったが、その後は電力節約のため誕生日が祝われてこなかったと報じられている。Husqvarnaは「誰も自分に歌うべきではない」という発想で、ロボットからロボットへの祝福を企画した。",
+    "execution": "Automowerの既存のアラーム音を使い、IFTTT連携で曲を鳴らせるようにした。対象は405X・415X・435X AWDなどのモデルで、オーナーはAutomower Connectアプリで通知を受け、参加を選んだ。8月5日の現地時間12時・15時・18時に、参加した機体が歌った。この機能は9月以降、オーナー向けに常設された。",
+    "evaluationImpact": "カンヌライオンズ2023のRadio & Audio部門でBronzeを受賞した。製品機能として常設された点も、施策の特徴として報じられている。",
+    "tags": [
+      "Tech/Robotics",
+      "Tech/Audio",
+      "Form/Product",
+      "Theme/Entertainment"
+    ],
+    "thumbnail": "/thumbnails/husqvarna-happy-birthday-from-earth.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "babyshop-frequencies-of-peace",
+    "title": "Frequencies Of Peace",
+    "summary": "神経科学者と作った子守唄を、シリアの2大ラジオ局で毎晩20時に流し、戦火の中で眠れない子どもたちに安らぎを届けようとした施策。",
+    "client": "Babyshop",
+    "agency": "FP7 McCANN, Dubai",
+    "categories": [
+      "Entertainment Lions for Music",
+      "Media",
+      "Radio & Audio"
+    ],
+    "award": "Cannes Lions 2023 Radio & Audio Lions Bronze / Cannes Lions 2023 Entertainment Lions for Music Bronze / Cannes Lions 2023 Media Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Radio & Audio",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Entertainment Lions for Music",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "中東"
+    ],
+    "link": "https://thebrandberries.com/babyshop-launches-award-winning-arabic-lullaby-for-children-affected-by-conflict-in-collaboration-with-unhcr/",
+    "videoId": "",
+    "overview": "中東の子ども用品小売Babyshopが、FP7 McCann Dubai、音楽療法プラットフォームSpiritune、UNHCRと組んだ「Frequencies of Peace」。シリア人歌手Ghaliaa Chakerがアラビア語で歌う子守唄を制作した。",
+    "background": "Babyshopは、紛争地の子どもにとって安らかな眠りは贅沢だという認識から取り組みを始めた。子守唄は、ニューヨーク大学やスタンフォード大学などの音楽療法・神経科学の研究を踏まえて設計された。",
+    "execution": "単純な旋律、反復、低い強度、柔らかい音の立ち上がりで、子どもを落ち着かせる設計にした。シリアではMelody FMとArabesque FMで毎晩20時に放送し、AnghamiやSpirituneアプリでも配信した。のちに専用のウェブラジオ局「Frequencies of Peace FM」も作られた。リスナーには共有とUNHCRへの寄付を呼びかけ、寄付はレバノンのシリア難民の子どもの保護支援に充てられる。放送は2023年3月に始まったと報じられている（資料により時期の記載に差がある）。",
+    "evaluationImpact": "カンヌライオンズ2023でRadio & Audio、Entertainment Lions for Music、Mediaの3部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Music",
+      "Tech/Audio",
+      "Theme/SocialGood",
+      "Theme/Health"
+    ],
+    "thumbnail": "/thumbnails/babyshop-frequencies-of-peace.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "halls-boss-face-sticker",
+    "title": "Boss Face Sticker",
+    "summary": "同僚を揶揄する上司ステッカーを、職場のグループチャットに誤送信してしまう場面を描いたHallsのラジオ広告。息を吸って吐く間に物語が進む。",
+    "client": "Halls",
+    "agency": "DAVID, Madrid / DAVID, New York / DAVID, Miami",
+    "categories": [
+      "Radio & Audio"
+    ],
+    "award": "Cannes Lions 2023 Radio & Audio Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Radio & Audio",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creativereview.co.uk/halls-ad-david-madrid",
+    "videoId": "",
+    "overview": "のど飴ブランドHallsの「Breathe Through It」キャンペーンのうち、DAVID Madridが制作したラジオ・音声広告。緊張する瞬間をひと息で乗り越えるというブランドの考え方を、音声だけで伝える。",
+    "background": "Creative Reviewによれば、この広告はブラジル市場向けの全国キャンペーンの一部として作られた。もともとラジオの依頼から生まれ、息を吸う・吐くという呼吸の間合いに合わせて語る構成が着想の核になっている。",
+    "execution": "上司の顔を使った風刺的なステッカーを作った会社員が、うっかりその1枚を仕事のグループチャットに送ってしまう。ナレーションが短い出来事を語り、吸う息で青ざめ、吐く息で安堵する構成で、オチは上司が「全部送ってくれ」と気に入ってしまうこと。呼吸の合図が音声広告の拍子になっている。",
+    "evaluationImpact": "カンヌライオンズ2023のRadio & Audio部門でBronzeを受賞した。この音声広告から始まった発想は、その後Hallsの複数媒体にまたがる世界的キャンペーンへ広がっていると報じられている。",
+    "tags": [
+      "Tech/Audio",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/halls-boss-face-sticker.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "samsung-spain-samsung-unfear",
+    "title": "Samsung Unfear",
+    "summary": "自閉スペクトラム症の人が恐怖を感じる音だけをAIで小さくする、Galaxy Buds2 Pro向けの無料アプリ。",
+    "client": "Samsung Spain",
+    "agency": "CHEIL WORLDWIDE, Madrid",
+    "categories": [
+      "Brand Experience & Activation",
+      "Mobile",
+      "Radio & Audio",
+      "Sustainable Development Goals"
+    ],
+    "award": "Cannes Lions 2023 Radio & Audio Lions Bronze / Cannes Lions 2023 Brand Experience & Activation Lions Silver / Cannes Lions 2023 Mobile Lions Bronze / Cannes Lions 2023 Sustainable Development Goals Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Radio & Audio",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Brand Experience & Activation",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Mobile",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Sustainable Development Goals",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://lbbonline.com/news/samsung-turns-down-the-volume-on-fear-triggering-sounds-for-people-with-autism",
+    "videoId": "",
+    "overview": "サムソンスペインとCheil Worldwide Madridが作ったアプリ「Unfear」。サイレンや犬の鳴き声、花火のように不安やパニックのきっかけになる音だけを下げ、必要な音は聞こえたままにする。",
+    "background": "自閉症の人には、音への過敏さから不快感や不安が生じる人が多い。従来の対策であるノイズキャンセリングヘッドホンはすべての音を遮るため、周囲から切り離された状態になりやすい。Cheilのクリエイティブ責任者は、このアルゴリズムを「音のエアバッグ」と表現している（Branding in Asia）。",
+    "execution": "機械学習でリアルタイムに音を識別し、恐怖の引き金になる音を選んで音量を下げる。屋外の音に加え、ゲームや動画、SNSなどスマートフォン内の音にも対応し、利用者は音ごとに調整できる。スペインの自閉症関連団体10団体と、100人超の自閉症当事者とその家族がテストに関わった。2023年3月、世界自閉症啓発週間に合わせてスペイン語と英語でGoogle Playに公開された。",
+    "evaluationImpact": "カンヌライオンズ2023でRadio & Audio部門Bronze、Brand Experience & Activation部門Silver、Mobile部門Bronze、Sustainable Development Goals部門Silverを受賞した。LBBやCampaign系メディアなど業界媒体でも取り上げられた。",
+    "tags": [
+      "Tech/AI",
+      "Tech/Audio",
+      "Tech/App",
+      "Theme/Health",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/samsung-spain-samsung-unfear.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "tiktok-galvao-bueno-s-million-voices",
+    "title": "GalvÃO Bueno’S Million Voices",
+    "summary": "ワールドカップ中継で知られる実況者ガウヴァン・ブエノの声を、TikTokの読み上げ機能に加えたブラジルの施策。",
+    "client": "Tiktok",
+    "agency": "TIKTOK, Sao Paulo / GALERIA, Sao Paulo",
+    "categories": [
+      "Radio & Audio"
+    ],
+    "award": "Cannes Lions 2023 Radio & Audio Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Radio & Audio",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://olhardigital.com.br/2022/11/14/internet-e-redes-sociais/tiktok-adiciona-voz-de-galvao-bueno-em-edicao-de-videos-saiba-como-usar/",
+    "videoId": "",
+    "overview": "TikTokがブラジルで、実況者ガウヴァン・ブエノの声を動画編集の読み上げ機能に追加した。Galeriaとの関連キャンペーンで、ユーザーが自分の動画に「ガウヴァンの実況」を付けて遊べるようにした。応募作そのものの説明は確認できず、本文は2022年の機能追加と関連キャンペーンの報道に基づく。",
+    "background": "TikTokは2021年からガウヴァン・ブエノと組み、サッカーファン向けの企画を行ってきた。2022年のカタールW杯では公式スポンサー権がなく、ポルトガル語圏のサッカーファンの動画文化に別の形で入り込む必要があった。",
+    "execution": "2022年11月14日、ポルトガル語のテキスト読み上げ機能にガウヴァン・ブエノの声を追加した。iOSとAndroidで使え、動画にテキストを入れて読み上げの声に彼を選ぶだけで、実況風のナレーションが付く。W杯開幕（11月20日）の直前に公開された。関連するGaleria制作の「Entre no jogo com a voz do Galvão」では、テレビCM、デジタル、屋外広告、使い方のチュートリアル、クリエイター施策が展開されたと報じられている。",
+    "evaluationImpact": "カンヌライオンズ2023のRadio & Audio部門でBronzeを受賞した。Meio & Mensagemは、ブラジル関係の受賞作の一つとして報じた。",
+    "tags": [
+      "Tech/Audio",
+      "Form/SNS",
+      "Theme/Sports"
+    ],
+    "thumbnail": "/thumbnails/tiktok-galvao-bueno-s-million-voices.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "frontline19-hopeline-radio",
+    "title": "Hopeline Radio",
+    "summary": "医療従事者への感謝メッセージを24時間流し続ける、慈善団体Frontline19のラジオ局。",
+    "client": "Frontline19",
+    "agency": "adam&eveDDB, London",
+    "categories": [
+      "Radio & Audio"
+    ],
+    "award": "Cannes Lions 2023 Radio & Audio Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Radio & Audio",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://lbbonline.com/news/problem-solved-creating-a-247-radio-station-to-support-frontline-workers",
+    "videoId": "",
+    "overview": "英国のNHSなど最前線で働く人を無料のセラピーで支えるFrontline19が、adam&eveDDB Londonと作ったラジオ局。2021年の電話サービス「Hopeline19」に寄せられたメッセージを、2023年3月に24時間のラジオ局にした。",
+    "background": "Hopeline19は、市民が感謝や励ましの声を留守電に残し、落ち込んだ医療従事者が同じ番号に電話してそれを聞ける仕組みだった。新型コロナ後も心的負担を抱える最前線の人たちに、いつでも励ましを届け続ける方法として、これをラジオに発展させた。",
+    "execution": "寄せられた声のメッセージを編集して、24時間流れ続けるラジオ局にした。ウェブサイトやスマートスピーカーなどで聴ける。局を聴くことが、Frontline19のセラピー支援を知るきっかけにもなる。",
+    "evaluationImpact": "カンヌライオンズ2023のRadio & Audio部門でBronzeを受賞した。同部門で英国から受賞した唯一の作品とされる。前身のHopeline19はD&ADなどでも評価された。",
+    "tags": [
+      "Tech/Audio",
+      "Theme/Health",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/frontline19-hopeline-radio.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "greenpeace-los-santos-3oc",
+    "title": "Los Santos +3ºC",
+    "summary": "GTA Vのロールプレイ用サーバー内の街を、気温が3℃上がった姿に作り替え、気候危機を遊びながら体験させたグリーンピース・ブラジルの施策。",
+    "client": "Greenpeace",
+    "agency": "VMLY&R, Sao Paulo",
+    "categories": [
+      "Entertainment Lions for Gaming"
+    ],
+    "award": "Cannes Lions 2023 Entertainment Lions for Gaming Gold / Cannes Lions 2023 Entertainment Lions for Gaming Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.thedrum.com/news/2022/02/25/ad-the-day-greenpeace-hijacks-gta-serve-climate-disaster-message-the-metaverse",
+    "videoId": "",
+    "overview": "VMLY&R Sao Pauloが、グリーンピース・ブラジルのためにGTA Vの舞台ロスサントスを改変したマップ「Los Santos +3ºC」を作った。地球温暖化が3℃進んだ世界を、ゲームの中で歩いて確かめられる。",
+    "background": "気候危機を、ブラジルのゲーマーが日常的に集まる場所で伝えるため、ゲームの世界の中に入り込む方法を選んだ。グリーンピースは科学チームが示す将来予測をマップの設計に提供した。",
+    "execution": "マップでは洪水に遭った地域、干上がった貯水池、大気汚染、動植物の激減が再現され、環境・社会・経済面の変化と、社会環境をテーマにした専用ミッションが加わる。FiveMクライアントを使い、Kings Roleplayサーバーで「LOS SANTOS +3C」を探して参加する。ブラジルのストリーマーがTwitchで配信し、2022年2月25日までの期間限定で公開された。",
+    "evaluationImpact": "カンヌライオンズ2023のEntertainment Lions for Gaming部門でGoldとSilverを受賞した。この作品は2022年にも複数のLionを獲得したと報じられている。",
+    "tags": [
+      "Tech/Game",
+      "Theme/Sustainability",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/greenpeace-los-santos-3oc.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "zikaron-baslon-fighting-to-remember",
+    "title": "Fighting To Remember",
+    "summary": "ホロコースト生存者がゲーム『Call of Duty: WWII』を配信者と一緒にプレイし、体験を語ることで、若い世代に記憶を伝えようとしたイスラエルの施策。",
+    "client": "Zikaron Baslon",
+    "agency": "McCANN, Tel Aviv",
+    "categories": [
+      "Entertainment Lions for Gaming",
+      "Media",
+      "PR",
+      "Social & Influencer"
+    ],
+    "award": "Cannes Lions 2023 Entertainment Lions for Gaming Gold / Cannes Lions 2023 Entertainment Lions for Gaming Bronze / Cannes Lions 2023 Media Lions Bronze / Cannes Lions 2023 PR Lions Gold / Cannes Lions 2023 PR Lions Bronze / Cannes Lions 2023 Social & Influencer Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "PR",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "PR",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Social & Influencer",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "中東"
+    ],
+    "link": "https://www.gamingbible.com/news/holocaust-survivors-play-call-of-duty-wwii-231987-20230426",
+    "videoId": "",
+    "overview": "ホロコースト生存者と若者を対話の場で結ぶイスラエルの団体Zikaron BaSalonと、McCann Tel Avivによる施策。若者に身近なゲームの場に生存者を招き、証言を届けた。",
+    "background": "GAMINGBIBLEの報道によれば、第二次世界大戦から約80年が経ち、若い世代にはホロコーストの出来事が十分知られていない。McCann Tel Avivの調査では、イスラエルの10代の76%が生存者に会ったことがなく、18〜29歳のユダヤ人の48%がバビ・ヤール虐殺を知らなかったとされる。",
+    "execution": "イスラエルのコンテンツクリエイター5人が『Call of Duty: WWII』のキャンペーンをプレイし、ホロコースト生存者が同席して、ゲーム内の場面に重なる自身の体験や出来事を語った。GAMINGBIBLEによれば、生存者の証言を教室に届ける計画や、Amazon Prime Videoで配信予定のドキュメンタリーシリーズも含まれる。",
+    "evaluationImpact": "カンヌライオンズ2023のEntertainment Lions for GamingとPR部門でGoldを受賞し、Gamingで1つ、Media、PR、Social & Influencerでそれぞれ1つのBronzeも獲得した。ゲームという若者の場で生存者の証言を届ける発想が評価された。",
+    "tags": [
+      "Theme/SocialGood",
+      "Tech/Game",
+      "Form/SNS",
+      "Theme/Education"
+    ],
+    "thumbnail": "/thumbnails/zikaron-baslon-fighting-to-remember.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "mcdonald-s-unbranded-menu",
+    "title": "Unbranded Menu",
+    "summary": "ゲームの中に紛れた「マクドナルドそっくりの食べ物」を探して投稿してもらい、ブランド名を出さずにゲーマーとの接点を作ったフィリピンの施策。",
+    "client": "Mcdonald's",
+    "agency": "LEO BURNETT, Manila",
+    "categories": [
+      "Entertainment Lions for Gaming"
+    ],
+    "award": "Cannes Lions 2023 Entertainment Lions for Gaming Silver / Cannes Lions 2023 Entertainment Lions for Gaming Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://leoburnett.com/news/leo-burnett-manila-and-mcdonalds-enter-the-gaming-multiverse",
+    "videoId": "",
+    "overview": "McDonald's PhilippinesとLeo Burnett Manilaによる施策。ゲーム内に登場するビッグマックやフライドポテト風の架空の食べ物を見つけてスクリーンショットを投稿するチャレンジで、ハッシュタグは#ThisIsMcDonaldsだった。",
+    "background": "LBBやMarketech APACの報道によれば、フィリピンには4,000万人超のゲーマーがいる。ゲーム内の架空の食べ物がマクドナルドの商品に似ていることが多く、ゲーマーが思い出の場面をスクリーンショットに残す習慣を、ブランドへの愛着づくりに使った。",
+    "execution": "ゲーム系インフルエンサーのAlodia Gosiengfiaoが『GTA V』で見つけたビッグマック風の食べ物を投稿し、800万人のフォロワーに探すよう呼びかけた。ゲーマーやストリーマーがThe Sims、Resident Evil、Fall Guys、Roblox、PUBG、Genshin Impactなど多数のタイトルで見つけたフライドポテトやクォーターパウンダー風の食べ物を投稿した。投稿には、マクドナルドの食品、ゲーム用クレジット、ゲーム機やグッズが贈られた。",
+    "evaluationImpact": "カンヌライオンズ2023のEntertainment Lions for GamingでSilver（Community部門の Influencer & Co-Creation）とBronzeを受賞した。LBBの報道では、Spikes Asiaではゲーム部門の初代Grand Prixを獲得している。",
+    "tags": [
+      "Tech/Game",
+      "Theme/Food",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/mcdonald-s-unbranded-menu.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "pringles-the-pringles-npc",
+    "title": "The Pringles Npc",
+    "summary": "ゲーム『Train Sim World』に登場するNPC（ノンプレイヤーキャラクター）の役を一般公募し、当選者の姿をゲーム内に残したPringlesの施策。",
+    "client": "Pringles",
+    "agency": "GREY, London",
+    "categories": [
+      "Entertainment Lions for Gaming"
+    ],
+    "award": "Cannes Lions 2023 Entertainment Lions for Gaming Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.thestable.com.au/grey-london-pringles-searches-for-a-paid-npc-you-have-to-be-human/",
+    "videoId": "",
+    "overview": "Grey Londonが手がけたPringlesの「Stay in the Game」施策。ゲーマー向けのブランド軸「Mind Popping」の一環で、実在の人物を有償のNPCとしてゲームに登場させた。",
+    "background": "The Stableの報道によれば、前年の2021年にGrey Londonが手がけたPringlesの施策では、ゾンビのFrankがゲームから抜け出してTwitch配信者の部屋に現れた。2022年はそれに続き、ゲームを遊ぶ人ではなくゲームの登場人物になる、という発想を打ち出した。",
+    "execution": "2022年6月20日〜7月6日に、Pringlesの缶を持った動画か自撮りで、自動販売機の補充役NPCに向いている理由を50語以内で投稿する形で募集した。ハッシュタグは#PringlesStayInTheGameだった。50人が選ばれ、声優Ian Smithが声を当てた話す自動販売機がロンドンのBoxpark Shoreditchで面接を行った。当選者の姿は3Dでモデリングされ、2022年9月から『Train Sim World』に登場した。賞金は2万ポンドで、既存のNPCが人間の参加に不満を言うフィルムも作られた。英国、フランス、ドイツで展開し、イタリアとスペインでも告知した。",
+    "evaluationImpact": "カンヌライオンズ2023のEntertainment Lions for GamingでSilverを受賞した。2022年に実施された施策で、ゲーム内に実在の人物を登場させる点が評価された。",
+    "tags": [
+      "Tech/Game",
+      "Theme/Food",
+      "Form/Stunt",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/pringles-the-pringles-npc.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "dell-technologie-s-the-gaming-cap",
+    "title": "The Gaming Cap",
+    "summary": "ゲーム内の音を、帽子に仕込んだ振動で伝えることで、聴覚に障害のあるプレイヤーを支援するDellの製品施策。",
+    "client": "Dell Technologie S",
+    "agency": "VMLY&R, Sao Paulo",
+    "categories": [
+      "Entertainment Lions for Gaming"
+    ],
+    "award": "Cannes Lions 2023 Entertainment Lions for Gaming Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.bolha.com.br/en/case/the-gaming-cap",
+    "videoId": "",
+    "overview": "Dell TechnologiesとVMLY&R São Pauloによる施策。ゲームの音を振動に変えるウェアラブル「Gaming Cap」を作り、聴覚に障害のあるゲーマーが音の情報を触覚で受け取れるようにした。",
+    "background": "ゲームでは、敵の接近や周囲の物音といった音が重要な手がかりになる。聴覚に障害のあるプレイヤーはその情報を受け取りにくく、遊びの面で不利になる。Gaming Capは、その差を埋める目的で作られた。",
+    "execution": "開発会社Bolhaの事例ページによれば、帽子の内側に複数の振動子があり、プロセッサが音の周波数を振動の強さ・速さ・位置に変換して、キャラクターの周囲で起きていることを360度の触覚で伝える。VMLY&Rと共同で作られ、AbleGamersとAMEが知見を提供した。Bolhaが工学設計、製品デザイン、帽子の製作を担当した。なお、独立した報道は確認できず、製品としての発売状況は未確認。",
+    "evaluationImpact": "カンヌライオンズ2023のEntertainment Lions for GamingでSilverを受賞した。ゲームの音を触覚に置き換えるアクセシビリティ製品として評価された。",
+    "tags": [
+      "Tech/Game",
+      "Tech/Device",
+      "Form/Product",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/dell-technologie-s-the-gaming-cap.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "battlegroun-d-mobile-india-machinegun-mouth",
+    "title": "Machinegun Mouth",
+    "summary": "ゲームの効果音を口で再現し続ける若者を描き、ゲームのやりすぎを心配する親の目線をユーモアで描いたBGMIの映像施策。",
+    "client": "Battlegroun D Mobile India",
+    "agency": "DDB MUDRA GROUP, Mumbai",
+    "categories": [
+      "Entertainment Lions for Gaming"
+    ],
+    "award": "Cannes Lions 2023 Entertainment Lions for Gaming Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.exchange4media.com/marketing-news/in-new-campaign-battlegrounds-mobile-india-promotes-safe-and-responsible-gaming-117083.html",
+    "videoId": "",
+    "overview": "Krafton IndiaのモバイルゲームBattlegrounds Mobile India（BGMI）のために、DDB Mudraが作った映像。ゲーマーの家族を主人公に、止まらないゲーム音を、ビートボックスのように口から出る「機関銃の口」として表現した。",
+    "background": "インドではBGMIの人気が高まる一方、ゲームのやりすぎが問題視されるようになり、特に親から厳しい目を向けられていた。BGMIは、未成年向けのOTP認証や1日のゲーム内課金の上限といった保護者が管理しやすくなる機能を導入しており、その周知が狙いだった。",
+    "execution": "Indian Televisionやexchange4mediaの報道によれば、映像は2021年11月に「Game Responsibly」キャンペーンの一部としてYouTubeと一部のテレビチャンネルで公開され、ゲーム内のメッセージからも映像へ誘導した。ユーモアを使って、依存対策の機能を伝えた。監督はAbhinav Pratiman、制作はEarly Man Film。2021年公開の映像が、2023年のカンヌライオンズに応募された。",
+    "evaluationImpact": "カンヌライオンズ2023のEntertainment Lions for GamingでBronzeを受賞した（Branded Content for Gaming部門に応募）。ゲームの依存対策という社会的な論点を、ユーモラスな映像で伝えた点が評価された。",
+    "tags": [
+      "Tech/Game",
+      "Form/Film",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/battlegroun-d-mobile-india-machinegun-mouth.jpg"
   }
 ]
