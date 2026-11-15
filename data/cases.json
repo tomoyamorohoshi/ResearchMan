@@ -103361,5 +103361,488 @@
       "Tech/Data"
     ],
     "thumbnail": "/thumbnails/american-society-of-clinical-oncology-asco-the-most-beautiful-sound.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "the-chrysalis-initiative-inequality-you-can-t-ignore",
+    "title": "Inequality You Can't Ignore",
+    "summary": "乳がん医療における人種格差をテーマに、医療者自身の無意識の偏見に気づかせるため、病院の目の前のバス停にARポスターを出した施策。",
+    "client": "The Chrysalis Initiative",
+    "agency": "INTOUCH SOLUTIONS, New York",
+    "categories": [
+      "Pharma"
+    ],
+    "award": "Cannes Lions 2023 Pharma Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Pharma",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/inequality-you-can-t-ignore",
+    "videoId": "",
+    "overview": "乳がん医療の人種格差解消に取り組む非営利団体The Chrysalis Initiativeと、代理店Intouch（現Eversana Intouch）による啓発キャンペーン。差別を経験した3人の女性の写真と体験談を使い、医療従事者に自らの偏見を考えさせることを狙った。",
+    "background": "The Stable（業界メディア）によれば、米国では所得や医療アクセスが同等でも、黒人女性は白人女性より乳がんで亡くなる確率が42%高い。同団体は先行施策「Erase the Line」で当事者向けのアプリを作っており、今回は矛先を医療者側に向けた。",
+    "execution": "3人の女性の胸に不等号（≠）を白く描いたシンプルな写真をポスターに使い、ポスター上のQRコードを読むと、黒人女性が直面する偏見についての事実を示すAR体験が起動する。QRコードの先のサイトでは、無意識バイアス研修への申込みや資料閲覧ができる。女性たちの体験を語るキャンペーン映像も作られた。トライステート地域の病院にロビーでの掲示を依頼したが、すべて断られるか無視されたため、病院の出入口前のバス停と、職員の通勤経路にあたる場所に掲出した。",
+    "evaluationImpact": "掲出を断った病院の目の前に作品を置くという展開が業界メディアで注目された。カンヌライオンズ2023のPharma部門でGoldを受賞した。",
+    "tags": [
+      "Form/OOH",
+      "Tech/XR",
+      "Theme/Health",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/the-chrysalis-initiative-inequality-you-can-t-ignore.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "lokelma-under-a-rock",
+    "title": "Under A Rock",
+    "summary": "高カリウム血症の治療が1960年代のまま止まっている医師を「岩の下で暮らす人々」として描き、新薬Lokelmaへの関心を促した医療者向けフィルム。",
+    "client": "Lokelma",
+    "agency": "21GRAMS, New York",
+    "categories": [
+      "Pharma"
+    ],
+    "award": "Cannes Lions 2023 Pharma Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Pharma",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.dandad.org/work/d-ad-awards-archive/under-a-rock",
+    "videoId": "",
+    "overview": "AstraZenecaの高カリウム血症治療薬Lokelmaの医療者向け映像を、21GRAMS（ニューヨーク）が制作した。1960年代の病院を舞台にした時代劇仕立てで、旧来の治療に留まる医師に、相手を責めすぎずに「新しい選択肢」を知らせる。",
+    "background": "D&ADの作品ページによれば、高カリウム血症の治療薬は1960年代から長く進歩がなく、2018年のLokelma登場で状況が変わった。ターゲットは、まだLokelmaを処方していない医療従事者。",
+    "execution": "映像は1960年代の病院から始まり、シャーリー・エリスの「The Nitty Gritty」（1963年）に乗って進む。ナレーションはなく、1960年代のテレビの質感に合わせてKowaのアナモルフィックレンズで撮影した。突然の地鳴りで病院の床に穴が開き、現代の「同僚」が下をのぞき込んで、高カリウム血症の新しい管理方法があると医師たちに語りかける。制作はChief Productions。",
+    "evaluationImpact": "カンヌライオンズ2023のPharma部門でSilverを受賞した。D&AD 2024のPharma部門にも出品されている。",
+    "tags": [
+      "Form/Film",
+      "Theme/Health"
+    ],
+    "thumbnail": "/thumbnails/lokelma-under-a-rock.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "horizon-therapeutic-s-the-outside-in-experiment-nails",
+    "title": "The Outside In Experiment: Nails",
+    "summary": "痛風の痛みを患者の言葉と医学的事実から生成AIで映像化し、医師の共感を引き出した「The Outside In Experiment」シリーズの一編（Nails）。",
+    "client": "Horizon Therapeutic S",
+    "agency": "AREA 23, AN IPG HEALTH NETWORK / COMPANY, New York",
+    "categories": [
+      "Pharma"
+    ],
+    "award": "Cannes Lions 2023 Pharma Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Pharma",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.oneclub.org/awards/theoneshow/-award/49120/the-outside-in-experiment/Javascript:",
+    "videoId": "",
+    "overview": "Horizon Therapeuticsと代理店Area 23（IPG Health）による、コントロール不良の痛風を医師に伝えるAI生成映像のシリーズ。本稿は2023年のカンヌ応募作「Nails」単体の説明が公開情報で見つからなかったため、同シリーズ全体の内容に基づく。",
+    "background": "One Showの出品情報によれば、痛風は強い痛みに加え、尿酸結晶が臓器にたまることによる危険も伴う。外から見えない「内側」の苦しみを、リウマチ医や腎臓医に実感してもらうことが狙いだった。",
+    "execution": "SNSのソーシャルリスニングで集めた患者の痛みの表現と、尿酸結晶が体に与える影響についての医学的事実を、画像生成AIに入力した。オープンソースのDeforum Stable Diffusionで1本あたり約1,000フレームをアニメーション化し、20〜50のプロンプトでカメラの動きや色を制御した。プロンプトエンジニア、機械学習の専門家、アーティスト、ライターの社内チームがワークフローを組み、各作品にはDolby Atmosのオリジナル音響が付く（音響はRitmika Audio Arts）。",
+    "evaluationImpact": "シリーズはPharma分野で初めて、患者の発言と医学的事実から生成AIの映像を作った事例とされる。One Show 2023でMerit（Craft / Use of Technology）、カンヌライオンズ2023のPharma部門でNailsがSilverを受賞した。",
+    "tags": [
+      "Tech/AI",
+      "Form/Film",
+      "Theme/Health"
+    ],
+    "thumbnail": "/thumbnails/horizon-therapeutic-s-the-outside-in-experiment-nails.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "jobst-irregular-bold",
+    "title": "Jobst Irregular Bold",
+    "summary": "リンパ浮腫・脂肪浮腫・静脈疾患の人の体の「不規則さ」を、文字ごとに太さがランダムに変わる書体で表したJOBSTのブランド施策。",
+    "client": "Jobst",
+    "agency": "PUBLICIS•POKE, London",
+    "categories": [
+      "Pharma"
+    ],
+    "award": "Cannes Lions 2023 Pharma Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Pharma",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.jobst-usa.com/compression-therapy/about-jobst/a-font-to-represent-the-misrepresented",
+    "videoId": "",
+    "overview": "圧迫療法ブランドJOBSTと代理店Publicis•Poke（ロンドン）が作った書体「Irregular Bold」。入力するたびに各文字の太さがランダムに決まる。JOBSTのブランド・プラットフォーム「Defy Gravity」と映像「Unsynchronized」を支える要素として2023年5月ごろに公開された。",
+    "background": "JOBSTの説明では、これらの疾患の人は体の形の変化について誤解や偏見を受けやすい。D&ADの作品説明は、どの手足がどの程度影響を受けるか予測できない診断の感覚を、文字の太さの不規則さに重ねている。",
+    "execution": "書体は、文字ごとにランダムに太さが変わる仕組みで、手足の一部が大きくなる病状を表す。映像「Unsynchronized」（6人の当事者が登場）とJOBSTのブランド全体で使われ、JOBSTは今後のブランド表現やコミュニケーションにも組み込むとしている。",
+    "evaluationImpact": "カンヌライオンズ2023のPharma部門でSilverを受賞した。D&AD 2024のPharma部門のブランディングでもショートリストに入った。",
+    "tags": [
+      "Theme/Health",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/jobst-irregular-bold.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "mnd-association-deepai-amylyx-pharmaceuti-cals-mind-s-eye",
+    "title": "Mind’S Eye",
+    "summary": "運動ニューロン疾患（MND）の人が視線入力だけでAIアートを作れるようにした、無料のアート生成ツール。",
+    "client": "Mnd Association, Deepai, Amylyx Pharmaceuti Cals",
+    "agency": "AREA 23, AN IPG HEALTH NETWORK / COMPANY, New York",
+    "categories": [
+      "Pharma"
+    ],
+    "award": "Cannes Lions 2023 Pharma Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Pharma",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米",
+      "欧州"
+    ],
+    "link": "https://mndassociation.org/media/latest-news/unleashing-artistic-creativity-with-new-ai-art-platform",
+    "videoId": "",
+    "overview": "Area 23（IPG Health）、Smartbox、Amylyx Pharmaceuticals、DeepAI、MND Associationの協業で作られた「Mind's Eye」。身体の動きが限られた人が、視線操作で自分のデジタル作品を作り、会話に絵を添えて気持ちを伝えることもできる。",
+    "background": "MND Associationの発表によれば、Area 23がMND当事者との作業セッションを重ねて要望を聞き取り、当事者が公開前に試用した。MND Associationが技術企業と当事者を集める「NextGen Think Tank」の取り組みの一つとして位置付けられている。",
+    "execution": "初心者でも数クリックで作品を作れ、経験者には柔軟な操作も可能な設計。視線入力(eye-gaze)のコミュニケーション機器であるSmartboxのGrid Padの端末・アプリ向けに、無料のグリッドセットとして提供された。当事者のMike Small氏が日常で試し、「絵は千の言葉に値するというが、百万の言葉ならどうだろう」と評した。",
+    "evaluationImpact": "利用者数などの数値は公表されていない。カンヌライオンズ2023のPharma部門でSilverを受賞した。",
+    "tags": [
+      "Tech/AI",
+      "Form/App",
+      "Theme/Health",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/mnd-association-deepai-amylyx-pharmaceuti-cals-mind-s-eye.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "lenalidomid-e-picture-the-days-ahead-patient-booklet",
+    "title": "Picture The Days Ahead (Patient Booklet)",
+    "summary": "骨髄腫の新規診断患者向けに、日付スタンプで5年分の「これからの日々」をタイポグラフィのアートにして冊子とポスターに載せた、Sandozのレナリドミド向け施策。",
+    "client": "Lenalidomid E",
+    "agency": "FCB HEALTH EUROPE, London",
+    "categories": [
+      "Pharma"
+    ],
+    "award": "Cannes Lions 2023 Pharma Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Pharma",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://clios.com/health/winner/print-pharmaceutical/sandoz-lenalidomide/picture-the-days-ahead-500564",
+    "videoId": "",
+    "overview": "Sandozのジェネリック医薬品レナリドミドの患者向け冊子「Picture The Days Ahead」。制作はFCB Health Europe（ロンドン）。診断直後の骨髄腫患者に、治療を受けながら生きていく先の時間を具体的に思い描いてもらうことを狙った。カンヌライオンズ2023のPharma部門でBronzeを受賞した。",
+    "background": "骨髄腫は血液のがんで、診断を受けた患者には死の宣告のように感じられることがある。Sandozの欧州19か国でのジェネリック・レナリドミド発売（2022年）に合わせ、新たに処方された患者向けの資料として作られた。",
+    "execution": "応募側の説明によれば、日付スタンプと、治療を受ける患者の平均的な生存期間にあたる5年分の日付を使い、タイポグラフィのアート作品群を制作した。作品は患者向け冊子とポスターに展開され、患者に残された日々が積み重なって一つの人生になることを見せた。",
+    "evaluationImpact": "カンヌライオンズ2023のPharma部門でBronzeを受賞した。The One Showでも受賞しており、MUSEのTypography部門でも評価された。",
+    "tags": [
+      "Theme/Health",
+      "Form/Print"
+    ],
+    "thumbnail": "/thumbnails/lenalidomid-e-picture-the-days-ahead-patient-booklet.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "nextmed-lifesaving-radio",
+    "title": "Lifesaving Radio",
+    "summary": "手術中の集中力と正確さを高めるハードロックを、AIのDJが流す手術室向けのラジオ局にした、NextMed Healthの施策。",
+    "client": "Nextmed",
+    "agency": "KLICK HEALTH, Toronto",
+    "categories": [
+      "Pharma"
+    ],
+    "award": "Cannes Lions 2023 Pharma Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Pharma",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.foxnews.com/health/ai-powered-lifesaving-radio-helps-surgeons-operate-greater-efficiency-accuracy",
+    "videoId": "",
+    "overview": "NextMed HealthとKlick Health（トロント）が2023年3月に発表した「世界初のAI搭載ヘルスケア・ラジオ局」。手術チームが手術室で流せる音楽を提供する。SpotifyのAI DJ技術を使い、AC/DCのトリビュート楽曲を中心に編成した。カンヌライオンズ2023のPharma部門でBronzeを受賞した。",
+    "background": "元になったのは、ドイツの研究者がLangenbeck's Archives of Surgeryに発表した2022年の研究。医学生が腹腔鏡手術に関連する課題を、AC/DC（ハードロック）、ビートルズ（ソフトロック）、無音の条件で行った。ハードロックを中程度の音量で流すと、正確さを保ったまま作業が速くなったと報じられている（Fox News）。外科医・研修医の約9割が手術室で音楽を聴くとも伝えられた。",
+    "execution": "サンディエゴで開かれたNextMed Healthの年次会議で3月にお披露目した。AC/DCの代表曲11曲を手術の診療科別に再解釈したアルバム「Highway to Heal」を、AC/DCのトリビュート・ミュージシャンが演奏した。30時間超のハードロックを、テンポ・キー・音量の分析をもとに編成した。AI DJ「Angus」が手術チームの名前を呼び上げてから曲を流す。5月にはSpotifyでも配信された。",
+    "evaluationImpact": "米国のメディアで広く取り上げられた（Fox Newsなど）。カンヌライオンズ2023のPharma部門でBronzeを受賞し、Clio Healthでも受賞した。",
+    "tags": [
+      "Tech/AI",
+      "Tech/Audio",
+      "Theme/Health",
+      "Theme/Music"
+    ],
+    "thumbnail": "/thumbnails/nextmed-lifesaving-radio.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "biogen-invisibles",
+    "title": "Invisibles",
+    "summary": "脊髄性筋萎縮症（SMA）の娘と母親の関係を描き、患者を支える介護者の「見えない」日々に光を当てた、Biogenと患者団体FundAMEの啓発フィルム。",
+    "client": "Biogen",
+    "agency": "VMLY&R HEALTH, Madrid",
+    "categories": [
+      "Pharma"
+    ],
+    "award": "Cannes Lions 2023 Pharma Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Pharma",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adweek.com/creativity/this-moving-health-campaign-sheds-light-on-the-invisible-work-of-caregivers/",
+    "videoId": "",
+    "overview": "BiogenとスペインのSMA患者団体FundAMEによる啓発キャンペーン。制作はVMLY&R Health（マドリード）。SMAの患者とその周囲の人々の「見えない暮らし」を可視化し、社会の支援を求める内容で、2022年6月にスペインとポルトガルで公開された。カンヌライオンズ2023のPharma部門でBronzeを受賞した。",
+    "background": "AdweekによればSMAは欧州で出生6,000〜10,000人に1人が発症する希少な神経変性疾患で、社会にはほとんど知られていない。治療しなければ最重症型の子どもの約9割が2歳を超えられないとされ、早期スクリーニングの導入を求める声も背景にある。スペインでは製薬企業が自社製品を宣伝できないため、社会的な目的を掲げた非ブランド型の啓発として設計された。",
+    "execution": "中心は、SMAの娘と母親の関係を描くフィルム。実在のSMA当事者の経験に基づく。映像のほか、印刷物、SNS、PRにも展開し、患者向け情報サイト（togetherinsma.com）へ誘導した。",
+    "evaluationImpact": "カンヌライオンズ2023のPharma部門でBronzeを受賞した。Adweekなどの業界メディアで取り上げられた。",
+    "tags": [
+      "Theme/Health",
+      "Form/Film",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/biogen-invisibles.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "mondelez-shah-rukh-khan-my-ad",
+    "title": "Shah Rukh Khan-My-Ad",
+    "summary": "AIでシャー・ルク・カーンの顔と声を再現し、街の小さな商店が自分の店名入りの広告を無料で作れるようにしたCadbury Celebrationsの施策。",
+    "client": "Mondelez",
+    "agency": "OGILVY, Mumbai",
+    "categories": [
+      "Creative Effectiveness"
+    ],
+    "award": "Cannes Lions 2023 Creative Effectiveness Lions Grand Prix / Cannes Lions 2023 Creative Effectiveness Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Creative Effectiveness",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Creative Effectiveness",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.storyboard18.com/quantum-brief/cannes-lions-2023-mondelez-and-ogilvy-india-bring-home-creative-effectiveness-grand-prix-9352.htm",
+    "videoId": "",
+    "overview": "MondelezのCadbury Celebrationsが、Ogilvy Mumbaiと組んで展開した「Not Just a Cadbury Ad」系のキャンペーン。人気俳優シャー・ルク・カーンが、全国の個人商店の店名を呼びかけるパーソナライズ広告として登場する。2023年のカンヌではCreative Effectiveness部門でGrand Prixと、Single Market区分のSilverを受賞した。",
+    "background": "Storyboard18によれば、Mondelez Indiaは2021年からAIを使った実験を始めており、「語る広告」から「行動する広告」への転換を狙っていた。コロナ禍で打撃を受けた小規模店舗を、祭礼シーズンのディワリ商戦で後押しする意図もあった。本施策は2022年にインド初のTitanium Lionを獲得しており、その実績を基にCreative Effectiveness部門へ応募された。",
+    "execution": "店主は専用サイトに店の名前や業種などを入力する。AIが事前収録した広告素材をもとに、シャー・ルク・カーンが店名を口にする動画を生成し、店主へMP4（WhatsApp経由）で届ける。生成した広告はSNSなどで配信できる。顔と声の再現にはRephrase.ai、配信面ではDeltaXなどが協力し、メディアはWavemakerが担当した（Storyboard18、afaqs、LBB）。また視聴者の近くにある店を勧める、地域別の広告配信も行った。",
+    "evaluationImpact": "カンヌライオンズ2023のCreative Effectiveness部門でGrand Prixを受賞し、同部門のSilverも獲得した。インド初のTitanium Lionに続く受賞として、インドの広告業界メディアが大きく報じた。",
+    "tags": [
+      "Tech/AI",
+      "Theme/Retail",
+      "Form/Film"
+    ],
+    "thumbnail": "/thumbnails/mondelez-shah-rukh-khan-my-ad.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "brahma-the-foamy-haircut",
+    "title": "The Foamy Haircut",
+    "summary": "ビール広告のユニフォーム掲出が禁じられたブラジルで、選手の髪をビールの泡に見立てて注目を集めたBrahmaの施策。",
+    "client": "Brahma",
+    "agency": "AFRICA CREATIVE DDB, Sao Paulo",
+    "categories": [
+      "Creative Effectiveness"
+    ],
+    "award": "Cannes Lions 2023 Creative Effectiveness Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Creative Effectiveness",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://campaignsoftheworld.com/ooh-campaigns/brahma-foamy-haircut/",
+    "videoId": "",
+    "overview": "AB InBevのビールブランドBrahmaと、サンパウロのAfricaによる施策。理容師アリエル・フランコと共に、下が金色、上が白い泡の、ビールグラスを模したヘアスタイルを考案し、サッカー選手に取り入れてもらった。2023年のカンヌではCreative Effectiveness部門でGoldを受賞した。",
+    "background": "ブラジルのサッカーではスタジアム内でのアルコール販売が長く禁じられ、アルコールブランドがユニフォームのスポンサーになることも認められていない。そのためBrahmaは、選手が個性を見せる「髪」を広告の場にした（Campaigns of the World）。",
+    "execution": "2021年7月10日、サンパウロFCの左サイドバック、レイナルドがバイーア戦でこのヘアスタイルを披露した。翌日にはフランコとレイナルドが作る様子を描いたCMを公開している。その後ティアゴ・シウバやジョルジーニョなど他の選手も、UEFAスーパーカップなどの場で同じスタイルを取り入れた（Campaigns of the World）。",
+    "evaluationImpact": "カンヌライオンズ2023のCreative Effectiveness部門でGoldを受賞した。Contagiousなど業界メディアが、規制をかいくぐる発想として取り上げている。",
+    "tags": [
+      "Theme/Sports",
+      "Form/Stunt",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/brahma-the-foamy-haircut.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "madrid-fusion-invaluable-food",
+    "title": "Invaluable Food",
+    "summary": "出演料を払えない美食会議が、名シェフの特別メニューと引き換えにロバート・デ・ニーロを招待した、期限付きの「契約書」施策。",
+    "client": "Madrid Fusion",
+    "agency": "LEO BURNETT, Madrid",
+    "categories": [
+      "Creative Effectiveness"
+    ],
+    "award": "Cannes Lions 2023 Creative Effectiveness Lions Gold / Cannes Lions 2023 Creative Effectiveness Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Creative Effectiveness",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Creative Effectiveness",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.reasonwhy.es/actualidad/leo-burnett-madrid-fusion-robert-niro-gran-premio-nacional-creatividad-c-de-c-2022",
+    "videoId": "",
+    "overview": "スペインの美食会議Madrid Fusiónと、Leo Burnett Madridによる施策。デ・ニーロに「お金では買えない食事」を提示して会議の宣伝を依頼する、という形をとった。2023年のカンヌではCreative Effectiveness部門でGoldとBronzeを受賞した。",
+    "background": "Reason Whyによれば、Madrid Fusiónはコロナ禍で延期された後、2021年に循環型の食をテーマにハイブリッド形式で再開した。主催者にはデ・ニーロへの出演料を払う予算がなく、現金の代わりに、国内外の一流シェフによる特別メニューを提案することにした。開催の可否が5月初旬まで不透明だったため、制作期間は約3週間だった。",
+    "execution": "2021年5月24日に公開されたティーザー動画では、Madrid Fusiónの「弁護士」が登場し、ジョアン・ロカ、ホセ・アンドレス、マルティン・ベラサテギらシェフの名で、48時間以内の受諾を求めた。デ・ニーロ本人はSNSを使っていないため、主催者のアカウントからリアーナやテイラー・スウィフトなど多数の著名人へ拡散を呼びかけた。期限は72時間に延長され、デ・ニーロが短い動画で承諾した。2022年3月1日、マドリードのホテルの個室で、3時間以上かけてシェフたちのテイスティングメニューを味わった（Reason Why）。",
+    "evaluationImpact": "Reason Whyによれば、主催者の目的であるデ・ニーロの獲得は達成され、有料の広告に頼らず国際的な注目も集めた。スペインのc de c 2022ではGran Premio Nacional de Creatividadを受賞し、カンヌライオンズ2023のCreative Effectiveness部門ではGoldとBronzeを獲得した。",
+    "tags": [
+      "Theme/Food",
+      "Theme/Entertainment",
+      "Form/Film",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/madrid-fusion-invaluable-food.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "back-market-hack-market",
+    "title": "Hack Market",
+    "summary": "アースデーに、Appleストア内のiPhoneへAirDropで広告を送り、新品でなく再生品を勧めたBack Marketの施策。",
+    "client": "Back Market",
+    "agency": "MARCEL, Paris",
+    "categories": [
+      "Creative Effectiveness"
+    ],
+    "award": "Cannes Lions 2023 Creative Effectiveness Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Creative Effectiveness",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/hack-market",
+    "videoId": "",
+    "overview": "再生デバイスのマーケットプレイスBack Marketと、パリのMarcelによる施策。新品購入の直前にいる客のスマートフォンへ直接メッセージを送り、同じ機種の再生品を選ぶよう促した。2023年のカンヌではCreative Effectiveness部門でSilverを受賞した。",
+    "background": "Back Marketは新品を買おうとする人に、購入の直前で再生品という選択肢を示したかった。Ads of the Worldによれば、実施は2022年4月22日のアースデーだった。",
+    "execution": "AppleのAirDrop機能を使い、パリ、ベルリン、ロンドンの計6店のApple Storeで、店内にいる人のデバイスへメッセージを配信した。対象はiPhone、iPad、MacBookなど、Appleの売れ筋製品を見ている客で、「同じ機種をBack Marketの再生品で買えば、環境にも家計にも優しい」と訴えた（Ads of the World）。",
+    "evaluationImpact": "CB Newsによれば、カンヌライオンズ2023のCreative Effectivenessで、フランスの最終候補6件のうち受賞したのはMarcelのみだった。この作品は2022年のカンヌで既にGold 1、Silver 4、Bronze 2を獲得しており、同年のフランスで最も多く受賞した。2023年のClioでもGoldを複数受賞している（Ads of the World）。",
+    "tags": [
+      "Form/Stunt",
+      "Tech/Device",
+      "Theme/Sustainability",
+      "Theme/Retail"
+    ],
+    "thumbnail": "/thumbnails/back-market-hack-market.jpg"
   }
 ]
