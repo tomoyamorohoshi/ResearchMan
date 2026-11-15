@@ -1,5 +1,206 @@
 [
   {
+    "id": "i-am-ai-2026",
+    "title": "i am Ai",
+    "summary": "来場者が立つと体が「i」の縦線になり、AIは人がいて完成すると示す彫刻",
+    "client": "Tel Aviv University (AI Week)",
+    "agency": "No, No, No, No, No, Yes (Gideon Amichay)",
+    "categories": [
+      "空間体験",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "中東・アフリカ"
+    ],
+    "link": "https://creapills.com/sculpture-interactive-i-am-ai-20261112",
+    "thumbnail": "/thumbnails/i-am-ai-2026.jpg",
+    "videoId": "",
+    "overview": "テルアビブ大学のAI Weekで披露されたインタラクティブな彫刻。大きな「A」の横に点が宙に浮き、その下に空間が空いている。来場者がそこに立つと、体が「i」の縦線になり「i am Ai」の文字が完成する。制作はGideon Amichay率いるエージェンシーNo, No, No, No, No, Yes。公開は2026年11月9日のAI Week開幕時とされる。",
+    "background": "AI Weekはテルアビブ大学が2019年から続けるAIをテーマにした週間イベントである。AIが人の仕事や創造を置き換えるのではないかという議論が続く中、この作品は「AIは人がいなければ未完成」という立場を、説明ではなく文字の形で示した。制作元のNo, No, No, No, No, Yesは、Gideon Amichayの著書名・TEDx講演名と同じ名前を持つ。",
+    "execution": "「A」と宙に浮く点を置き、「i」の縦線にあたる部分をあえて空けた彫刻である。来場者が下に立つと、その体が欠けた縦線を埋めて「i am Ai」が成立する。仕掛けは文字の形と立ち位置だけで、センサーや映像は報じられていない。クレジットはGideon Amichay、Rony Schneider、Liron Ben-Yacov、Gil Aviyam、Zeev Ravid、Daphna Tsror、Tamar Heilweil、Liat Lapushin、Gali Snir Namdar、Moshe Benisti。",
+    "evaluationImpact": "「AI」の「I」を人間が担うことで、AIと人の関係を一文で言える形にした点が評価できる。来場者が参加して写真に収まる構造なので、会場での記念撮影を通じて広がりやすい。ただし確認できたのはCreapillsの1記事とエージェンシーの作品ページのみで、受賞や独立した報道、来場数などの成果は確認できなかった。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Event",
+      "Theme/Art"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "wasp-dual-extrusion-3d-2026",
+    "title": "WASP Dual Extrusion（除去できるプラスチック補強層で土を3Dプリント）",
+    "summary": "土ペーストと熱可塑性樹脂を層ごとに交互に積み、後で樹脂を外して両方再利用できる3Dプリント手法",
+    "client": "WASP",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://materialdistrict.com/article/wasp-reinforces-3d-printed-earth-with-removable-plastic-layers/",
+    "thumbnail": "/thumbnails/wasp-dual-extrusion-3d-2026.jpg",
+    "videoId": "",
+    "overview": "イタリアのWASPが開発中の特許出願中のデュアル押出プロセス。土ペーストと熱可塑性樹脂(初期試験では再生PLA)を同一の造形工程で層ごとに交互に積み、樹脂が土の補強材として働く。使い終えた段階で樹脂を土から分離し、両素材を回収・再利用できる。",
+    "background": "WASPは土を使った3Dプリント建築を手がけてきた。土だけでは自重で崩れやすく、オーバーハングや複雑な形状が難しいという制約がある。一方、補強材を混ぜ込むと土と分離できず、再利用や循環が難しくなる。",
+    "execution": "土ペースト用のLDM(Liquid Deposition Modeling)と、熱可塑性樹脂用のFGF(Fused Granulate Fabrication)という既存の2つの押出方式を組み合わせる。土の層と樹脂の層を1回の造形で交互に積み、樹脂が土の崩れを抑える。初期試験では再生PLAを使用した。",
+    "evaluationImpact": "補強を「混ぜる」のではなく「層として挟み、後で外す」ことで、強度と素材の循環を両立させる点が新しい。土の造形で作れる形状の幅が広がる可能性がある。ただし2026年10月時点の報道では、性能データや商用展開は確認できず、初期段階の取り組みである。",
+    "relatedWorks": [
+      {
+        "title": "dwasp makes dual extruder for reversible composites",
+        "description": "WASPのデュアル押出による可逆的な複合材の取り組みを伝える3DPrint.comの記事",
+        "url": "https://3dprint.com/335150/dwasp-makes-dual-extruder-for-reversible-composites/"
+      },
+      {
+        "title": "WASP combines earth and recycled plastic in a single 3D print",
+        "description": "土と再生プラスチックを1回の造形で組み合わせるWASPの手法を伝える記事",
+        "url": "https://foro3d.com/en/2026/octubre/wasp-combina-tierra-y-plastico-reciclado-en-una-sola-impresion-3d.html"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Tech/Robotics",
+      "Form/Product",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "materialdistrict",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "wwf-norway-stop-arctic-oil-2026",
+    "title": "WWF Norway: Stop Arctic Oil 急ぎ足の北極ツアーガイド",
+    "summary": "北極の氷が消える前にと観光客を急かすガイドを主人公にし、石油探査の脅威による喪失の速さを映像で見せた",
+    "client": "WWF Norway",
+    "agency": "Smeh（監督 Sara Haag / 制作 Fantefilm）",
+    "categories": [
+      "コンテンツ革新",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/wwf-guide-arctique-petrole-20261113",
+    "thumbnail": "/thumbnails/wwf-norway-stop-arctic-oil-2026.jpg",
+    "videoId": "",
+    "overview": "WWF Norwayの「Rushes to Stop Arctic Oil」は、広告会社Smehが手がけた映像シリーズ。主人公は、観光客をホッキョクグマやトナカイ、クジラのそばへ大急ぎで案内する架空の北極ツアーガイドである。ガイドが急ぐ理由は、仕事を失うのを恐れているからだ。Ads of the Worldでの掲載は2026年11月とされている。",
+    "background": "ノルウェーでは北極圏での新たな石油・ガス探査が議論になっており、WWFはこれに反対してきた。クリエイティブ側は、ガイドという人物は架空だが、その焦りの背景にある事実は現実のものだと説明している。環境への影響という抽象的な問題を、観光という身近な場面に置き換えて見せる狙いがあると読み取れる。",
+    "execution": "監督はSara Haag、制作はFantefilmで、撮影はスヴァールバルで行われた。クリエイティブはSebastian Graf Stenberg、Mira Liv Helland Mortensen、Frederik Feilerが担当し、撮影監督はAnders Flatland。ガイドが動物たちの前を急ぎ足で通り過ぎるという演出が、変化の速さを伝えている。",
+    "evaluationImpact": "「消える前に急いで案内する」という一文で言える設定が、見る側に北極を失うまでの時間の短さを実感させる。ユーモアのあるガイドの姿を通して、石油探査という重いテーマへの入口を作っている点が評価できる。なお、受賞や成果数値は、確認できた範囲では見つかっていない。確認できたのはAds of the Worldの掲載1件のみである。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Theme/SocialGood",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "bolt-grand-trip-away-2026",
+    "title": "Bolt: Grand Trip Away",
+    "summary": "GTA VI発売週に、ゲームに没頭する相手を待つパートナーを主役に据え、欧州旅行が当たる懸賞で待ち時間を冒険へ読み替えた。",
+    "client": "Bolt",
+    "agency": "",
+    "categories": [
+      "カルチャーインサイト",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/bolt-grand-trip-away-gta-vi-20261113",
+    "thumbnail": "/thumbnails/bolt-grand-trip-away-2026.jpg",
+    "videoId": "",
+    "overview": "欧州の配車・フードデリバリー事業者Boltが、GTA VIの発売日(2026年11月19日)に合わせて実施した「Grand Trip Away」。専用サイトgrandtripaway.comで、ゲームに没頭する相手を待つパートナーを募る。当選者は友人1人と、欧州34都市から選んだ行き先への旅行(往復航空券2枚、ホテル2泊、Bolt Rewards 150ユーロ分、合計約1,500ユーロ相当)に行ける。",
+    "background": "GTA VIは世界的に注目された発売で、発売週末にはプレイヤーが長時間ゲームに没頭する。その結果、同居のパートナーなど「プレイしない側」は置き去りになりやすい。Boltは、発売週末というゲームの文化的な出来事を、ゲームをしない側の視点から捉え直す切り口を選んだ。この切り口の主な根拠は、Roastbriefの記事とキャンペーン公式サイトの記述である。",
+    "execution": "参加者は専用サイトからエントリーする。企画は、ゲームの外に置かれた側の待ち時間を、現実世界で進めるサイドクエストとして描き直すもの。賞品は旅行と、現地での移動を支えるBolt Rewardsで、Boltの移動サービスにつながる設計になっている。制作会社、映像などの表現の詳細、応募規模は、今回の検索では確認できなかった。",
+    "evaluationImpact": "ゲームの発売というカルチャーインサイトを、ゲームをしない側の視点から読み替えた点が最大の見どころ。サイドクエストという言い換えで、ゲームの外にいる人に向けた発売週のタイアップとして成立している。一方、確認できた中身は懸賞が中心で、演出やクラフト上の固有の発明までは確認できなかった。受賞情報も公式ソースでは確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Bolt's Grand Trip Away (Roastbrief US)",
+        "description": "キャンペーンを紹介する記事。GTA VI発売週末に、見過ごされがちなゲーマーのパートナーへ現実の冒険を贈る企画として伝えている。",
+        "url": "https://roastbrief.us/bolts-grand-trip-away-gives-one-overlooked-gamers-partner-a-real-life-adventure-on-the-gta-vi-launch-weekend"
+      },
+      {
+        "title": "Grand Trip Away(公式サイト)",
+        "description": "Boltによるキャンペーンの応募サイト。",
+        "url": "https://grandtripaway.com/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/SNS",
+      "Theme/Entertainment",
+      "Theme/Mobility"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "borderline",
+    "discoveryLens": 1
+  },
+  {
+    "id": "p-a-c-bakery-identity-polar-2026",
+    "title": "P.A.C. bakery identity（Polar）",
+    "summary": "ロゴを作り込まず店名P.A.C.を文字と句読点で打つだけで識別させる、パン屋の速さに合わせたブランドID。",
+    "client": "P.A.C.",
+    "agency": "Polar",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "中南米"
+    ],
+    "link": "https://www.itsnicethat.com/articles/polar-pac-graphic-design-project-041126",
+    "thumbnail": "/thumbnails/p-a-c-bakery-identity-polar-2026.jpg",
+    "videoId": "",
+    "overview": "ブラジル・サンパウロのデザインスタジオPolarが、パン屋P.A.C.のために手がけたアイデンティティ。ロゴマークは特別に構築せず、店名を文字として打っただけのもの。It's Nice Thatが2026年11月4日に紹介した。マグカップや紙コップ、チラシなどに青や黒のP.A.C.の文字が展開されている。",
+    "background": "Polarはサンパウロを拠点とする4人の創業者のスタジオで、そのうち2人がP.A.C.のパートナーでもある。そのため今回は地元での案件で、クライアントと制作者が近い関係にあった。パン屋の素早いペースに合うブランドの形を探したと記事は伝えている。",
+    "execution": "タイポグラフィの道具立てを意図的に絞り込み、ロゴは特別な構築を持たず、ただ打ち出した文字として扱う。Polarのパートナーで店のパートナーでもあるBruno Ribeiroは、名前が3文字しかなく、文字の形と句読点だけで十分な個性が出ると説明している。",
+    "evaluationImpact": "固定のロゴマークに頼らず、文字と句読点だけでブランドを成立させる割り切りが特徴。パートナーは事業の変化に合わせてアイデンティティがどう進むかを試したいと話しており、進化型の運用を前提にしている。ただし、運用の具体的な仕組みや成果は確認できなかった。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/Food"
+    ],
+    "gateCriterion": "D",
+    "sourceId": "itsnicethat",
+    "gateTier": "borderline",
+    "discoveryLens": 2
+  },
+  {
     "id": "attenboulder-greenpeace-uk-2026",
     "title": "Attenboulder（Greenpeace UK）",
     "summary": "トロール漁を物理的に阻む海底の岩を、アッテンボローの彫像に仕立てて抗議と規制執行を一体化した。",
