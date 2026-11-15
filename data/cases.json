@@ -105558,5 +105558,643 @@
       "Form/Website"
     ],
     "thumbnail": "/thumbnails/eton-the-index-shirt.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "kfc-re-store",
+    "title": "Kfc Re:Store",
+    "summary": "テンセントのQQ系アバター空間「超级QQ秀」の中に仮想のKFC店舗を開き、若者の来店減を「若者のいる場所に店を出す」発想で補おうとした施策。",
+    "client": "Kfc",
+    "agency": "DENTSU CREATIVE, Shanghai",
+    "categories": [
+      "Creative Commerce"
+    ],
+    "award": "Cannes Lions 2023 Creative Commerce Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Creative Commerce",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.dentsu.com/our-work/kfc-restore-case-study",
+    "videoId": "",
+    "overview": "KFC（中国）とDentsu Creative Shanghaiによる施策。アバターや仮想ペットで遊ぶ超级QQ秀の中に「跨次元炸鸡店（KFC Re:Store）」を設け、仮想空間での体験と実店舗での購買をつなげた。",
+    "background": "Digitalingの記事によれば、コロナ禍で在宅消費が広がり、若年層の来店が減っていた。「若者が店に来ないなら、彼らのいる場所に行けばよい」という問いが出発点で、仮想のアイデンティティに投資する若者の傾向が根拠とされた。同記事や中国メディアの報道では、この企画は代理店側から提案されたものとされる。",
+    "execution": "店舗は2階建てで、国潮風の「珍馐阁」と「凤膳房」がある。プレイヤーは仮想の厨房機器でKFCのメニューを作れる。開発にはUnreal Engine 4が使われ、テンセント側の開発スタジオと協働した。KFC限定のアバター衣装や家具、案内役のNPC「肯上校」、仮想ペット「凤丸」などを用意し、仮想通貨「鸡腿币」で衣装や家具と交換できるようにした。2022年7月29日に開店し、8月には上海・深圳の指定店舗でも同名のテーマ店が展開された。",
+    "evaluationImpact": "カンヌライオンズ2023のCreative Commerce部門でBronzeを受賞した。中国勢が同年獲得した4つのライオンの1つとして中国の業界メディアに取り上げられた。",
+    "tags": [
+      "Tech/Game",
+      "Theme/Food",
+      "Theme/Retail"
+    ],
+    "thumbnail": "/thumbnails/kfc-re-store.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "kinokuniya-time-to-read",
+    "title": "Time To Read",
+    "summary": "SNSに費やす時間で何冊読めるかを、本を積んだ棒グラフで見せ、書店への来店を促したドバイの紀伊國屋書店の施策。",
+    "client": "Kinokuniya",
+    "agency": "SAATCHI & SAATCHI ME, Dubai",
+    "categories": [
+      "Creative Commerce"
+    ],
+    "award": "Cannes Lions 2023 Creative Commerce Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Creative Commerce",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "中東"
+    ],
+    "link": "https://www.reasonwhy.es/actualidad/libros-podrias-leer-tiempo-pasas-redes-sociales-libreria-mejora-ventas-apelando-argumento-kinokuniya-saatchi-dubai",
+    "videoId": "",
+    "overview": "UAEにある紀伊國屋書店の店舗向けに、Saatchi & Saatchi ME（ドバイ）が実施した施策。「SNSを見る時間を読書に置き換えたら何冊読めるか」を実物の本で可視化した。",
+    "background": "reasonwhy.esによれば、UAE在住者のSNS利用時間は週平均8時間とされた。その時間を読書に回せば、という切り口で、SNSと書店を競合ではなく比較の対象にした。",
+    "execution": "SNS別の読書冊数を換算した。Facebook 35冊、Instagram 43冊、Twitter 22冊、TikTokとYouTubeは各42冊である。同じ色の本を積み上げた棒グラフ状のインスタレーションを店内と市内の複数地点に置き、来場者が手に取って読めるようにした。SNS上では各プラットフォームの利用時間に応じた冊数を示す広告を出し、関心分野の本の割引を案内した。店舗では、SNS利用が多い18時〜22時に割引を設定した。紙媒体・屋外広告にはMark Zuckerberg、Bill Gates、Oprah Winfreyが本を持つ姿を使い、QRコードから各人の推薦書へ誘導した。",
+    "evaluationImpact": "カンヌライオンズ2023のCreative Commerce部門でBronzeを受賞した。Dubai Lynx 2023ではMedia部門とCreative Strategy部門でグランプリを獲得した。",
+    "tags": [
+      "Form/Installation",
+      "Form/OOH",
+      "Form/SNS",
+      "Theme/Retail"
+    ],
+    "thumbnail": "/thumbnails/kinokuniya-time-to-read.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "m-m-s-spokescandies-on-pause",
+    "title": "M&M's - Spokescandies On Pause",
+    "summary": "キャラクター刷新をめぐる炎上を逆手に取り、M&M'Sのキャラクターを「無期限休止」させて話題を作り、スーパーボウル広告につなげたブランド施策。",
+    "client": "M&M's",
+    "agency": "BBDO, New York",
+    "categories": [
+      "Creative Strategy"
+    ],
+    "award": "Cannes Lions 2023 Creative Strategy Lions Gold / Cannes Lions 2023 Creative Strategy Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Creative Strategy",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Creative Strategy",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.thedrum.com/news/2023/02/02/mm-s-strange-super-bowl-lvii-saga-continues-maya-rudolph-adds-clams-the-mayas-mix",
+    "videoId": "",
+    "overview": "Mars（M&M'S）とBBDO New Yorkによる施策。2023年1月、ブランドは擬人化キャラクター「スポークスキャンディ」を無期限で休止すると発表し、代わりに俳優のMaya Rudolphを起用した。",
+    "background": "2022年にキャラクターの外見を変更し、グリーンのブーツをスニーカーに替え、9月には女性キャラクターのパープルを加えた。これらに批判が出ていた。ABC30の報道によれば、休止の発表は2023年1月23日で、Marsは別の人物をブランドの顔に据えると説明した。",
+    "execution": "SNSで休止を発表し、キャラクターは「ほかの情熱を追求する」ためとされた。Maya Rudolphは「楽しさの力を広める」役として紹介され、スーパーボウルLVIIの広告に出演した。その後、キャラクターは同広告に戻ることも発表された。この一連の流れは、Campaign Asiaなど一部のメディアにスーパーボウルに向けた仕掛けと見られていた。",
+    "evaluationImpact": "カンヌライオンズ2023のCreative Strategy部門でGoldとBronzeを受賞した。The One Show 2023でもCultural Driver部門に入賞した。",
+    "tags": [
+      "Theme/Food",
+      "Theme/Entertainment",
+      "Form/SNS",
+      "Form/Film"
+    ],
+    "thumbnail": "/thumbnails/m-m-s-spokescandies-on-pause.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "reckitt-and-ambitious-about-autism-me-my-autism-i",
+    "title": "Me, My Autism & I",
+    "summary": "自閉症の15歳の少女Ashの1日を、本人と家族・友人の出演で描いた約3分半のショートフィルム。自閉症の女児が見過ごされやすい問題を伝える。",
+    "client": "Reckitt And Ambitious About Autism",
+    "agency": "HAVAS, London",
+    "categories": [
+      "Creative Strategy",
+      "Film Craft"
+    ],
+    "award": "Cannes Lions 2023 Creative Strategy Lions Gold / Cannes Lions 2023 Film Craft Lions Silver / Cannes Lions 2023 Film Craft Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Creative Strategy",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film Craft",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film Craft",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.channel4.com/press/news/me-my-autism-and-i-vanish-unveils-its-channel-4-diversity-advertising-award-winning",
+    "videoId": "4Xtog_zRRJg",
+    "overview": "Reckitt傘下の衣類用ステイン除去ブランドVanishが、Havas Londonと慈善団体Ambitious about Autismの協力で制作した映画。Oscar受賞監督のTom Hooperが監督した。",
+    "background": "Channel 4のプレスリリースによれば、自閉症の少女は男児より診断を受けにくく、その割合は3分の1とされる。映画は、見落とされやすい女児の自閉症への理解を広げることを狙った。",
+    "execution": "主人公は15歳のAsh本人で、実際の家族と親友が出演した。母親を除き演技経験はない。お気に入りのパーカーとの関係を軸に、1日の中で起きるシャットダウンと、常同行動・温かさ・才能・ユーモアといった前向きな面の両方を描く。制作はSMUGGLER London。2023年3月31日にChannel 4の『Gogglebox』の放送中に初公開され、世界自閉症啓発デーの前の「世界自閉症受容週間」にあたった。Channel 4のDiversity in Advertising Awardを受賞し、100万ポンド相当の放送枠が提供された。",
+    "evaluationImpact": "カンヌライオンズ2023のCreative Strategy部門でGold、Film Craft部門でSilverとBronzeを受賞した。",
+    "tags": [
+      "Form/Film",
+      "Theme/SocialGood",
+      "Theme/Health"
+    ],
+    "thumbnail": "/thumbnails/reckitt-and-ambitious-about-autism-me-my-autism-i.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "grupo-estrategico-pae-morning-after-island",
+    "title": "Morning After Island",
+    "summary": "緊急避妊薬が禁止されていたホンジュラスで、政府の管轄外の公海上に小さな島を浮かべ、起訴の恐れなく服用できる場にした人権団体の施策。",
+    "client": "Grupo Estrategico Pae",
+    "agency": "OGILVY HONDURAS, Tegucigalpa",
+    "categories": [
+      "Creative Strategy"
+    ],
+    "award": "Cannes Lions 2023 Creative Strategy Lions Gold / Cannes Lions 2023 Creative Strategy Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Creative Strategy",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Creative Strategy",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "中南米"
+    ],
+    "link": "https://www.ogilvy.com/work/morning-after-island",
+    "videoId": "",
+    "overview": "女性の権利団体Grupo Estratégico PAEとOgilvy Hondurasによる施策。ホンジュラスの規制が及ばない公海上に約4メートル四方の「Morning After Island」を浮かべ、女性が緊急避妊薬を服用できるようにした。",
+    "background": "ホンジュラスでは2009年から緊急避妊薬の使用が禁止されていた。Advertimesによれば、18歳未満の女性の4人に1人が妊娠し、そのうち約半数は近しい男性による強姦が原因とされる。Grupo Estratégico PAEは10年以上にわたり解禁を訴えてきたが、メディア予算も民間の支援もなかった。",
+    "execution": "島で薬を飲めるようにし、島を訪れる見学ツアーを定期的に実施した。制作はOgilvy Hondurasと14 al Centro Latamが担当した。国際的に報じられることで、国内の議論と政府への圧力を生んだ。",
+    "evaluationImpact": "報道によれば、ホンジュラスの保健大臣は強姦被害者に限って使用を認可すると発表した。さらに2023年3月にはCastro大統領が行政文書に署名し、緊急避妊薬が広く入手可能になった（WUSF報道）。カンヌライオンズ2023のCreative Strategy部門でGoldとSilverを受賞した。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Health",
+      "Form/Installation",
+      "Form/Stunt"
+    ],
+    "thumbnail": "/thumbnails/grupo-estrategico-pae-morning-after-island.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "popeye-s-louisiana-kitchen-chicken-wars",
+    "title": "Chicken Wars",
+    "summary": "Popeyesが新発売のチキンサンドイッチで、首位Chick-fil-Aとの「チキン戦争」をSNS上で巻き起こし、発売直後に完売させた施策。",
+    "client": "Popeye's Louisiana Kitchen",
+    "agency": "GSD&M, Austin",
+    "categories": [
+      "Creative Strategy"
+    ],
+    "award": "Cannes Lions 2023 Creative Strategy Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Creative Strategy",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://fortune.com/2019/08/29/how-popeyes-chicken-sandwich-crossed-the-road-raceahead/",
+    "videoId": "",
+    "overview": "米国のファストフードPopeyes Louisiana Kitchenと広告会社GSD&M（オースティン）による、チキンサンドイッチ発売時の施策。ライバルのChick-fil-AとのSNS上のやり取りを軸に、話題を一気に広げた。",
+    "background": "チキンサンドイッチ市場にはChick-fil-Aなどの強力な競合がいた。Popeyesはこの市場で新商品を認知させる必要があった。なお、このカンヌ2023のCreative Strategy部門の応募内容そのものは確認できなかったため、本文は2019年8月に始まったChicken Warsの報道に基づく。",
+    "execution": "2019年8月12日に新しいチキンサンドイッチを発売した。Chick-fil-AのTwitter投稿をきっかけに、Popeyesが気軽な返信で応じ、他のファストフード各社も加わって「チキン戦争」と呼ばれる話題になった。Fortuneの寄稿は、ミームや動画で盛り上げたのはBlack Twitterだったと指摘している。",
+    "evaluationImpact": "Fortuneの報道によれば、Popeyesのサンドイッチは売り切れとなり、店舗は「いまは完売」と告知する動画を出した。需要の急増でサプライチェーンに負担がかかり、現場の従業員に負荷が集中した点も指摘されている。カンヌライオンズ2023のCreative Strategy部門でSilverを受賞した。",
+    "tags": [
+      "Form/SNS",
+      "Theme/Food"
+    ],
+    "thumbnail": "/thumbnails/popeye-s-louisiana-kitchen-chicken-wars.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "mayor-of-london-have-a-word",
+    "title": "Have A Word",
+    "summary": "男性自身が友人の性差別的な言動に声を上げるよう促した、ロンドン市長の女性・少女への暴力撲滅キャンペーン。",
+    "client": "Mayor Of London",
+    "agency": "OGILVY, London",
+    "categories": [
+      "Creative Strategy"
+    ],
+    "award": "Cannes Lions 2023 Creative Strategy Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Creative Strategy",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creative.salon/articles/work/mayor-of-london-ogilvy-violence-against-women",
+    "videoId": "",
+    "overview": "ロンドン市長室とOgilvy UKによる「Have a word with yourself, then your mates」。女性への嫌がらせや性差別的な発言を見たとき、まず自分を省み、次に友人に声をかけるよう男性に呼びかけた。Ogilvy UKがプロボノで制作した。",
+    "background": "市長は、女性と少女への暴力は男性によって行われる「流行病」だとし、言葉の軽視と暴力には関連があると述べた。Ogilvyの担当者は英国で3日に1人の女性が男性に殺されるという統計を挙げている。",
+    "execution": "2022年3月14日に開始した。タクシーを待つ女性に若い男たちが絡む場面を描いたフィルムは、傍観する友人が鏡の中の自分と対話して介入を決意する構成。屋外広告、放送、SNS、スポーツ連携、インフルエンサーを統合し、市長がクリスタル・パレス対マンチェスター・シティ戦の前にスタジアムで上映した。ハッシュタグは#HaveAWord。",
+    "evaluationImpact": "2022年のDMA Awardsでグランプリを受賞した。LBBの報道によれば、市長は加害行為を抑える取り組みに追加で1,800万ポンドの資金を割り当てた。2023年には続編「Say Maaate to a Mate」が展開された。カンヌライオンズ2023のCreative Strategy部門でSilverを受賞した。",
+    "tags": [
+      "Theme/SocialGood",
+      "Form/Film",
+      "Form/OOH"
+    ],
+    "thumbnail": "/thumbnails/mayor-of-london-have-a-word.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "sickkids-foundation-house-of-legends",
+    "title": "House Of Legends",
+    "summary": "小児病院SickKidsの歴史と患者・医療者を「伝説」と呼び、新病院建設の募金の最終局面を描いた短編映画中心の施策。",
+    "client": "Sickkids Foundation",
+    "agency": "COSSETTE, Toronto",
+    "categories": [
+      "Creative Strategy"
+    ],
+    "award": "Cannes Lions 2023 Creative Strategy Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Creative Strategy",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.campaigncanada.ca/article/1855208/legendary-addition-sickkids-vs-fundraising-campaign",
+    "videoId": "",
+    "overview": "カナダのSickKids FoundationとCossette（トロント）による、募金プラットフォーム「SickKids VS」の2022年の施策。患者だけでなく、医師、看護師、研究者を含む病院の全員を「レジェンド」として描いた。",
+    "background": "SickKids VSは2016年の「Undeniable」で始まり、若い患者をトップアスリートのような戦士として描いてきた。その後、新病院建設のための募金目標は15億カナダドルに引き上げられた。今回は目標達成が近いことを伝えつつ、VSの勢いを保つ必要があった。",
+    "execution": "1分50秒の短編フィルムを軸に、30秒・60秒の広告、デジタル・SNS、印刷、屋外広告を展開した。フィルムは車椅子と歩行器の山の上に立つ患者から始まり、1875年の病院創設に遡り、現在に至る。「Undeniable」に登場した患者の6年後の姿や、募金完了を見られなかった患者への追悼も含む。結びの言葉は「Legendary stories call for a legendary hospital.」で、音楽はスティーヴィー・ワンダー曲のカバー。",
+    "evaluationImpact": "Campaign Canadaによると、財団は2023年3月までに15億カナダドルの目標達成を見込んでおり、達成すればカナダの医療分野で最大の募金になるとされた。同記事は最終的な寄付額を報じていない。フィルムは2023年のGerety Awardsで受賞し、Clioでもショートリストに入った。カンヌライオンズ2023のCreative Strategy部門でSilverを受賞した。",
+    "tags": [
+      "Theme/Health",
+      "Theme/SocialGood",
+      "Form/Film"
+    ],
+    "thumbnail": "/thumbnails/sickkids-foundation-house-of-legends.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "p-g-whisper-the-missing-chapter",
+    "title": "The Missing Chapter",
+    "summary": "生理の基礎を学校で教えるよう求め、壁画やフィルム、パッケージで「欠けた章」を補ったP&G Whisperのインドでの施策。",
+    "client": "P&G Whisper",
+    "agency": "LEO BURNETT, Mumbai",
+    "categories": [
+      "Creative Strategy"
+    ],
+    "award": "Cannes Lions 2023 Creative Strategy Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Creative Strategy",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.socialsamosa.com/2022/03/whisper-launches-new-chapter-keepgirlsinschool-initiative",
+    "videoId": "",
+    "overview": "P&G Whisperの#KeepGirlsInSchoolの一環で、Leo Burnett Indiaが制作した「The Missing Chapter」。学校の教科書にない生理の知識を補い、カリキュラムへの導入を訴えた。",
+    "background": "Social Samosaが引用する調査では、インドでは生理が始まる時期に約2,300万人の少女が学校をやめるとされる。思春期の少女の71%が、最初の生理が来るまで生理を知らないという。本文は2022年の施策に基づく（2023年の応募内容そのものは確認できなかった）。",
+    "execution": "2022年3月、ブランドアンバサダーのブーミ・ペードネーカルが出演するフィルムを公開した。少女たちが赤い紙片を回して知識を伝える内容。インド各地では、マドゥバニやビルなど地域の伝統美術を使った壁画を25か所に描いた。ペードネーカルをあしらった限定パッケージカバー1万1,000枚も配り、学校教育での生理教育の義務化を求めた。",
+    "evaluationImpact": "この施策は2022年のカンヌライオンズSustainable Development Goals部門でグランプリを獲得した（LBBの報道）。カンヌライオンズ2023のCreative Strategy部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Education",
+      "Theme/Health",
+      "Theme/SocialGood",
+      "Form/Film",
+      "Form/OOH"
+    ],
+    "thumbnail": "/thumbnails/p-g-whisper-the-missing-chapter.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "dgt-the-36",
+    "title": "The 36",
+    "summary": "ビッグデータが予測した復活祭週の交通事故死者36人と同じ属性の人々を広告に登場させ、「ビッグデータを外れさせよう」と呼びかけたスペイン交通総局の施策。",
+    "client": "Dgt",
+    "agency": "OGILVY, Madrid",
+    "categories": [
+      "Creative Strategy"
+    ],
+    "award": "Cannes Lions 2023 Creative Strategy Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Creative Strategy",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.dgt.es/comunicacion/campanas/Los-Treinta-y-Seis",
+    "videoId": "kS8X3Xgp0qo",
+    "overview": "スペイン交通総局（DGT）とOgilvy Madridによる2022年の復活祭（セマナ・サンタ）向け交通安全キャンペーン「Los 36」。予測された死者数と属性を示し、運転者の行動で予測を覆すよう促した。",
+    "background": "復活祭の週は移動が集中し、事故が増える。DGTは、データで事故を予測できるなら、防ぐこともできるはずだと考えた。",
+    "execution": "データ分析の専門家ニコラス・ロドリゲスが、過去の復活祭期間の大量の事故データを予測モデルで分析し、36人という予測と、性別・年齢・事故の起きる地域といった属性を導いた。Ogilvyは全国でキャスティングを行い、予測と同じ属性の36人を出演させた。メインのTV広告に加え、デジタル、SNS、印刷、データ分析を説明する特設サイトlos36.dgt.esを展開し、制作過程のメイキング映像も公開した。",
+    "evaluationImpact": "スペインの広告賞の「Inspirational」でグランプリを受賞した。一方でカーウォウは、この広告を問題のある演出と批評している。カンヌライオンズ2023のCreative Strategy部門でBronzeを受賞した。",
+    "tags": [
+      "Tech/Data",
+      "Theme/Mobility",
+      "Form/Film",
+      "Form/Website"
+    ],
+    "thumbnail": "/thumbnails/dgt-the-36.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "skinny-friendvertising",
+    "title": "Friendvertising",
+    "summary": "ニュージーランドの格安通信Skinnyが、実際の顧客46人を主役にしたCMを作り、友人・知人に向けて届けた「友人が広告になる」施策。",
+    "client": "Skinny",
+    "agency": "COLENSO BBDO, Auckland",
+    "categories": [
+      "Creative Strategy"
+    ],
+    "award": "Cannes Lions 2023 Creative Strategy Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Creative Strategy",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/friendvertising",
+    "videoId": "",
+    "overview": "Colenso BBDO Aucklandが手がけたSkinnyの施策。「ニュージーランドでは誰もが誰かの知り合い」という国民感覚を使い、一般の顧客自身が出演するCMを全国放送とSNSで展開した。",
+    "background": "Skinnyは大手に対して知名度で劣る格安ブランドだった。広告より口コミのほうが効くという考えから、見知らぬタレントではなく、視聴者が知っている人の顔で全国に届くことを狙った。本件は2020年3月に始まった施策で、カンヌライオンズ2023のCreative Strategy部門の応募作そのものの説明は確認できなかったため、この施策をもとに記述している。",
+    "execution": "顧客に呼びかけるメッセージを送ると数千件の応募があり、俳優ではない顧客を起用して、それぞれ別内容の46本のテレビCMを制作した。各CMはシーソーやチェスなど友人2人の場面を設定し、出演者が友人にSkinnyを勧める形をとった。出演者には自分の友人・家族・同僚に向けてCMを届けるための媒体費も渡され、放送とSNSの両方で拡散する設計だった。ヒンディー語・広東語・サモア語・手話などの版も制作された(Campaign Brief、AdNews、Ads of the Worldの報道による)。",
+    "evaluationImpact": "この施策は2021年のWebby Awardsのソーシャル部門でHonoreeに選ばれた。カンヌライオンズ2023のCreative Strategy部門でBronzeを受賞した。",
+    "tags": [
+      "Form/Film",
+      "Form/SNS",
+      "Theme/Retail"
+    ],
+    "thumbnail": "/thumbnails/skinny-friendvertising.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "poker-influencers-friends",
+    "title": "Influencers' Friends",
+    "summary": "高額な著名人起用ができない地場ビールのPokerが、有名人本人ではなくその「親友」を起用して友情を主題にした広告を作った施策。",
+    "client": "Poker",
+    "agency": "DDB COLOMBIA, Bogota",
+    "categories": [
+      "Creative Strategy",
+      "Direct",
+      "Entertainment"
+    ],
+    "award": "Cannes Lions 2023 Creative Strategy Lions Bronze / Cannes Lions 2023 Direct Lions Silver / Cannes Lions 2023 Entertainment Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Creative Strategy",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Direct",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Entertainment",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.dandad.org/awards/professional/2023/237691/influencers-friends/",
+    "videoId": "",
+    "overview": "DDB Colombiaが、AB InBev傘下のビールブランドPokerのために展開した施策。J Balvinの親友やKarol Gの親友など、有名人の身近な友人を広告の主役にした。",
+    "background": "Pokerは「友人たちのビール」というポジションを持つが、地場ブランドのためグローバルブランドのように有名インフルエンサーを使う予算はなかった。そこで、有名人本人ではなく、有名人と最も近い関係にある友人に着目した。",
+    "execution": "J Balvinの親友Andrés Lopez、Karol Gの親友Daiky Gamboa、サッカー選手Juan Fernando Quinteroの親友Ivan Ceballosなど、有名人自身ではない親友たちを起用した。有名人と並ぶ姿を含むコンテンツを作り、主にInstagramのストーリーズなどのSNSで展開した(D&AD、Cannes応募情報の公開要約による)。",
+    "evaluationImpact": "D&AD 2023でGraphite Pencilなどを受賞し、The One ShowでもBronze Pencilを獲得した。カンヌライオンズ2023ではDirect部門とEntertainment部門でSilver、Creative Strategy部門でBronzeを受賞した。",
+    "tags": [
+      "Form/SNS",
+      "Theme/Entertainment",
+      "Theme/Food"
+    ],
+    "thumbnail": "/thumbnails/poker-influencers-friends.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "wendy-s-still-fresh-never-frozen",
+    "title": "Still Fresh. Never Frozen.",
+    "summary": "Wendy'sが、広告費で影響力を借りる代わりにブランド自身をSNS上の「文化的インフルエンサー」として振る舞わせ、若年層との接点を作った長期施策。",
+    "client": "Wendy's",
+    "agency": "VMLY&R, Kansas City",
+    "categories": [
+      "Creative Strategy"
+    ],
+    "award": "Cannes Lions 2023 Creative Strategy Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Creative Strategy",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.wpp.com/en/case-studies/vmly_r-wendys-still-fresh-never-frozen",
+    "videoId": "",
+    "overview": "VMLY&R Kansas Cityが手がけたWendy'sの長期戦略。企業というより一人の人物のように話すブランド像で、18〜34歳に注目してもらうことを狙った。",
+    "background": "WPPの事例ページによれば、Wendy'sは店舗数でMcDonald'sに大きく劣り、利便性では勝負できなかった。そこで、ファストフードの主な利用層である18〜34歳に、ブランドを好きになってもらうことを目標にした。",
+    "execution": "WPPの事例ページによれば、辛口でユーモアのあるTwitterの投稿(#NationalRoastDay、#NuggsforCarterなど)、ミックステープ(音楽作品)の発表、Twitch配信などを組み合わせ、メディアや番組での言及を獲得する戦略をとった。「新鮮で冷凍しない牛肉」という長年のブランドメッセージは保ちつつ、広告枠ではなく話題性で注目を得る設計だった。同社の公式ブログによれば、ミックステープはTwitter上でのラップバトルをきっかけに作られた。",
+    "evaluationImpact": "カンヌライオンズ2023のCreative Strategy部門でBronzeを受賞した。The One Show 2023でもPenta Pencilの掲載がある。",
+    "tags": [
+      "Form/SNS",
+      "Theme/Food",
+      "Theme/Music"
+    ],
+    "thumbnail": "/thumbnails/wendy-s-still-fresh-never-frozen.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "dove-reverse-selfie",
+    "title": "Reverse Selfie",
+    "summary": "加工された自撮り写真を逆再生で元の姿に戻し、SNS上の加工が10代の少女の自己肯定感を損なう問題を描いたDoveのフィルム施策。",
+    "client": "Dove",
+    "agency": "OGILVY, London",
+    "categories": [
+      "Creative Strategy"
+    ],
+    "award": "Cannes Lions 2023 Creative Strategy Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Creative Strategy",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creative.salon/articles/work/dove-reverse-selfie",
+    "videoId": "",
+    "overview": "Ogilvy Londonが手がけたDoveの施策。2006年の「Evolution」の続編として位置づけられ、写真加工アプリが当たり前になった時代の課題を取り上げた。",
+    "background": "Creative Salonによれば、コピーは「SNSのプレッシャーが少女たちの自己肯定感を傷つけている」というもの。Doveは2006年の「Evolution」で広告業界の修整を問題にしたが、今回は少女たち自身が日常的に使う加工アプリに焦点を移した。本件は2021年4月に始まった施策で、カンヌライオンズ2023のCreative Strategy部門にはこの施策をもとに応募されたと考えられる。",
+    "execution": "60秒のフィルム(監督はBenito Montorio)は、投稿された自撮りから、フィルター、顔の形の加工、肌の修整、メイクなどを順に取り除いていき、最後に10代前半の少女が現れる。プリント広告にも、実際に多くの少女が使う修整アプリで加工した同じ写真を使った。2021年4月26日からテレビ・印刷・デジタル・SNSで複数の市場で展開し、親や保護者がSNSとの付き合い方を子どもに伝えるための無料ツールも提供した(Creative Salonの報道による)。",
+    "evaluationImpact": "カンヌライオンズ2023のCreative Strategy部門でBronzeを受賞した。",
+    "tags": [
+      "Form/Film",
+      "Form/Print",
+      "Theme/SocialGood",
+      "Theme/Health"
+    ],
+    "thumbnail": "/thumbnails/dove-reverse-selfie.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "havaianas-the-pride-research",
+    "title": "The Pride Research",
+    "summary": "ブラジルの公的統計にないLGBTQIAPN+人口を、Havaianasが調査機関Datafolhaと団体All Outとともに調べて公表し、その数字をOOHなどで広めた施策。",
+    "client": "Havaianas",
+    "agency": "MEDIA.MONKS, Sao Paulo",
+    "categories": [
+      "Creative Strategy",
+      "Sustainable Development Goals"
+    ],
+    "award": "Cannes Lions 2023 Creative Strategy Lions Bronze / Cannes Lions 2023 Sustainable Development Goals Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Creative Strategy",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Sustainable Development Goals",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://allout.org/en/highlights/a-survey-to-collect-unpublished-data-on-lgbt-people-in-brazil/",
+    "videoId": "",
+    "overview": "Media.Monks Sao PauloがHavaianasのために実施した「Pride Research(Pesquisa do Orgulho)」。ブランドが調査そのものの当事者になることで、LGBTQIAPN+の可視化につなげようとした。",
+    "background": "All Outによれば、ブラジルには政府の公式なLGBT+人口データがなく、政策の設計が難しい状態だった。Havaianasは2020年からPrideコレクションの収益の一部をAll Outに寄付しており、その延長で調査を実施した。",
+    "execution": "Havaianas、Datafolha、All Outが2022年9月に調査を公表した。Correio Braziliense等の報道では、サンプルは3,674人の面接で全地域を代表するよう設計された。結果は、インフルエンサー、議員、NGO、他ブランドなどに共有され、サンパウロの地下鉄駅などでの屋外広告にも使われた。調査結果を誰でも見られるウェブサイトも設けた。",
+    "evaluationImpact": "調査では、16歳以上のブラジル人の約9.3%、約1,550万人がLGBTQIAPN+と推計された(Datafolha、All Out、Correio Braziliense)。IBGEの調査では約290万人(1.9%)で、約5倍の差があった。カンヌライオンズ2023では、Sustainable Development Goals部門でSilver、Creative Strategy部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/SocialGood",
+      "Tech/Data",
+      "Form/OOH",
+      "Form/Website"
+    ],
+    "thumbnail": "/thumbnails/havaianas-the-pride-research.jpg"
   }
 ]
