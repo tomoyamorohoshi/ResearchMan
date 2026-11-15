@@ -108642,5 +108642,615 @@
       "Theme/SocialGood"
     ],
     "thumbnail": "/thumbnails/battlegroun-d-mobile-india-machinegun-mouth.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "world-of-warcraft-the-taiwanese-world-of-warcraft",
+    "title": "The Taiwanese World Of Warcraft",
+    "summary": "『ウォークラフト』の人気ストーリーを台湾の伝統人形劇と台湾語の台詞で再現し、台湾のプレイヤーに向けて拡張パックへの関心を呼び戻した映像施策。",
+    "client": "World Of Warcraft",
+    "agency": "DENTSU CREATIVE TAIWAN, Taipei",
+    "categories": [
+      "Entertainment Lions for Gaming"
+    ],
+    "award": "Cannes Lions 2023 Entertainment Lions for Gaming Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.dentsu.com/tw/en/our-work/the-taiwanese-world-of-warcraft",
+    "videoId": "",
+    "overview": "Activision Blizzard の World of Warcraft の台湾向け施策。Dentsu Creative Taiwan が、拡張パック「Wrath of the Lich King Classic」の物語を台湾の布袋戯（手踊り人形劇）で語り直した。",
+    "background": "Dentsu の事例ページによれば、狙いは台湾のプレイヤーにLich King拡張パックへの関心を呼び戻すこと。台湾に根づいた人形劇文化を、ゲームの世界観と掛け合わせた。",
+    "execution": "アーサスが堕ちてリッチキングになる物語を、台湾の人形師たちが人形劇として演じ、台詞は台湾の言葉に書き直した。2022年12月16日にWoW公式Twitterアカウントが紹介し、ゲームメディアWellPlayedも取り上げた。Dentsu Creative Taiwanの事例ページでは、あわせて巡回用の移動式人形劇場も制作したとされる。",
+    "evaluationImpact": "カンヌライオンズ2023の初開催となるEntertainment Lions for Gamingで、Branded Content for Gaming（オーディオビジュアル部門）のBronzeを受賞した。公式Twitterで紹介されるなど、ゲームコミュニティで話題になった。",
+    "tags": [
+      "Tech/Game",
+      "Theme/Entertainment",
+      "Form/Film"
+    ],
+    "thumbnail": "/thumbnails/world-of-warcraft-the-taiwanese-world-of-warcraft.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "enterogerm-ina-ready-player-mom",
+    "title": "Ready Player Mom",
+    "summary": "人気ゲーマーの母親をアバター化して息子のライブ配信に「乱入」させ、ゲーマーの偏った食生活と腸の健康を話題にしたEnterogerminaの施策。",
+    "client": "Enterogerm Ina",
+    "agency": "MRM, Madrid",
+    "categories": [
+      "Entertainment Lions for Gaming"
+    ],
+    "award": "Cannes Lions 2023 Entertainment Lions for Gaming Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州",
+      "南米"
+    ],
+    "link": "https://www.reasonwhy.es/actualidad/madres-importantes-gamers-brasilenos-cuelan-directos-hijos-mejor-dieta-mrm-enterogermina-sanofi",
+    "videoId": "",
+    "overview": "サノフィの整腸用プロバイオティクス「Enterogermina」のブラジル向け施策。MRM（スペイン）が発案し、ゲーム専門のDruid Gamingと組んで、有名ゲーマーの母親たちを配信に登場させた。",
+    "background": "ゲーマーはファストフードやスナックに偏った食事になりがちで、腸の健康が見過ごされやすい。ブラジルにはゲーマーが約9,000万人いるとされ、Enterogerminaは市場での存在感の薄い若いゲーマー層に認知を広げようとした（ReasonWhy、Marcas pelo Mundoの報道）。",
+    "execution": "Nobru、Scorpion、Lipaoらの母親（一部は父親）の実写に近いアバターを作り、息子たちのゲーム配信にサプライズで登場させた。参加者はMinecraft、Fortnite、Sims 4、Roblox、Zepetoなどで操作の訓練を受けた。配信はTwitch、YouTube、TikTok、Facebookで視聴された。母親が画面の中で食事を気遣う一言を投げかけ、視聴者を巻き込んだ。",
+    "evaluationImpact": "カンヌライオンズ2023のEntertainment Lions for GamingでBronzeを受賞した。母親が配信に現れる意外性が、ブラジルのゲーム系・広告系メディアで取り上げられた。",
+    "tags": [
+      "Theme/Health",
+      "Tech/Game",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/enterogerm-ina-ready-player-mom.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "burger-king-mission-whopper",
+    "title": "Mission: Whopper",
+    "summary": "対戦ゲーム終了時のスコアボードで、プレイヤー名をワッパーの具材名にして「ワッパーを組み立てる」遊びを広げたバーガーキング・ブラジルの施策。",
+    "client": "Burger King",
+    "agency": "DAVID, Sao Paulo / DAVID, Buenos Aires",
+    "categories": [
+      "Entertainment Lions for Gaming",
+      "Social & Influencer"
+    ],
+    "award": "Cannes Lions 2023 Entertainment Lions for Gaming Bronze / Cannes Lions 2023 Social & Influencer Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Social & Influencer",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.meioemensagem.com.br/marketing/burger-king-gamers-call-of-duty",
+    "videoId": "",
+    "overview": "Burger King Brazil と DAVID（サンパウロ／ブエノスアイレス）による施策。Activisionとの提携で、Call of Dutyのスコアボード上でワッパーを完成させるミッションをゲーマーに投げかけた。",
+    "background": "Call of Duty: Modern Warfare IIのリリースに合わせた取り組みで、ゲーマーが日常的に目にする試合後のスコアボードを、ブランド表現の場に変えた。",
+    "execution": "2022年12月、ブラジルの人気ゲーム配信者たちによるTwitch配信で開始（Meio & Mensagemの報道）。プレイヤーは各自のニックネームをパティ、チーズ、レタスなどワッパーの具材名に変え、スコアボードの並びでバーガーを再現する。完成したらスクリーンショットを#MissionWhopperで投稿し、分隊全員分のクーポンを受け取る。最初の挑戦は失敗し、のちにWarzone 2.0のブラジルコミュニティイベントで成功したと報じられている。遊びはCall of Dutyにとどまらず、他の多数のオンラインゲームにも広がった。",
+    "evaluationImpact": "カンヌライオンズ2023のEntertainment Lions for GamingでBronze、Social & Influencer LionsでSilverを受賞した。",
+    "tags": [
+      "Tech/Game",
+      "Form/SNS",
+      "Theme/Food"
+    ],
+    "thumbnail": "/thumbnails/burger-king-mission-whopper.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "frank-s-redhot-the-floor-is-flava",
+    "title": "The Floor Is Flava",
+    "summary": "「床は溶岩」遊びをFortnite内で「床はフレーバー」に置き換え、ホットソースの火山を登るオリジナル島を作ったFrank's RedHotのゲーム施策。",
+    "client": "Frank's Redhot",
+    "agency": "GREY, New York",
+    "categories": [
+      "Entertainment Lions for Gaming"
+    ],
+    "award": "Cannes Lions 2023 Entertainment Lions for Gaming Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://news.mccormick.com/2023-01-23-Franks-RedHot-R-Launches-New-Fortnite-Game-The-Floor-Is-Flava",
+    "videoId": "",
+    "overview": "McCormickのホットソースブランドFrank's RedHotが、GreyニューヨークとSuperAwesomeと作ったFortnite Creativeの島。2023年1月30日に公開された。",
+    "background": "Frank's RedHotは、アメフトの決勝戦（Big Game）に合わせた試合日の食べ物として知られ、公開はこのタイミングに合わせた。ブランドはそれ以前にも、バッファローウィングを使った食べられるNFTや「Bonecoin」といったデジタル施策を行っていた。",
+    "execution": "チキンウィング形の島の中央にある火山「Mt. Frank」からソースが噴き出し、プレイヤーは浜辺、森、廃墟の街を抜けて頂上を目指す。試合日の食べ物の石像を足場にし、ニワトリをジェットパックにし、ソース発射器や冷却グレネードで防御する。スキン「Tender Defender」や、火山内に隠された神殿などブランド要素を散りばめた。Ali-A、SushiBAE、SypherPKらのゲーム配信者が挑戦し、PlayStation、Xbox、Switch、PC、スマホで無料で遊べた。Epic Gamesの公認ではなく、独立して作られた体験として公開された。",
+    "evaluationImpact": "カンヌライオンズ2023の初開催となるEntertainment Lions for GamingでBronzeを受賞した。食品ブランドがゲーム内に遊び場を作る例として、米国の食品・ゲーム系メディアで取り上げられた。",
+    "tags": [
+      "Tech/Game",
+      "Theme/Food",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/frank-s-redhot-the-floor-is-flava.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "fresh-step-adopt-a-stray",
+    "title": "Adopt A Stray",
+    "summary": "猫ゲーム『Stray』の配信で、保護猫をそっくりのアバターにして遊び、視聴者の里親申込につなげたFresh Stepの施策。",
+    "client": "Fresh Step",
+    "agency": "FCB CHICAGO",
+    "categories": [
+      "Entertainment Lions for Gaming"
+    ],
+    "award": "Cannes Lions 2023 Entertainment Lions for Gaming Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.dvm360.com/view/fresh-step-and-best-friends-animal-society-launch-streaming-adoption-event",
+    "videoId": "",
+    "overview": "猫砂ブランドFresh StepがFCB Chicagoと、動物保護団体Best Friends Animal Societyと組んだ配信型の里親募集イベント。2022年11月9日に全米動物保護施設感謝週間に合わせてTwitchとYouTubeで行われた。",
+    "background": "米国では毎年多くの猫が保護施設に入るが、年長の猫や特別な世話が必要な猫は引き取り手が見つかりにくい。猫好きが多いゲーム配信の場を使い、そうした猫に注目を集めようとした。",
+    "execution": "IhasCupquake、SapNap、Shipwrecked、RikkiChuuらのゲーム配信者が、猫が主人公の『Stray』を、実在の保護猫をモデルにしたアバターで遊んだ。配信中に各猫の情報を紹介し、視聴者はチャットで写真や詳細を確認して、里親申込フォームに進める。",
+    "evaluationImpact": "カンヌライオンズ2023のEntertainment Lions for GamingでBronzeを受賞した。ニューヨーク・フェスティバルのSmall Budget/Big Idea部門でもSilverを受賞したとされる。",
+    "tags": [
+      "Tech/Game",
+      "Theme/SocialGood",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/fresh-step-adopt-a-stray.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "wendy-s-super-wendy-s-world",
+    "title": "Super Wendy's World",
+    "summary": "ゲーム広告を嫌うゲーマー向けに、Wendy'sが毎週人気ゲームに登場し「冷凍しない牛肉」の主張を遊びの中で見せた施策。",
+    "client": "Wendy's",
+    "agency": "VMLY&R, Kansas City",
+    "categories": [
+      "Entertainment Lions for Gaming"
+    ],
+    "award": "Cannes Lions 2023 Entertainment Lions for Gaming Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.wpp.com/en/case-studies/vmlyr-super-wendys-world",
+    "videoId": "",
+    "overview": "Wendy'sとVMLY&R, Kansas Cityによるゲーム施策。広告枠やスポンサーではなく、ブランド自身がゲームの参加者として登場することで、「フレッシュ、冷凍なし」というビーフの訴求を若いゲーマーに届けた。",
+    "background": "WPPの事例ページによれば、ゲーマーはブランドの介入を嫌う層で、通常の広告では届きにくい。Wendy'sは以前から、Fortniteで仮想の冷凍庫を壊すなど、ゲーム内での振る舞いで「冷凍肉への反対」を表現してきた。この作品はその延長として、遊びの場に参加する形を取った。",
+    "execution": "Twitchで毎週ライブ配信を行い、Wendy'sが人気ゲームに登場して「冷凍に反対する」ひねりを加えたプレイをした。視聴者と一緒に遊ぶ形を取り、ダウンロードして遊べるブランド入りのゲーム内コンテンツも用意した。ゲーム内のレストランの再現や、メニューをモチーフにしたコースなども展開された（WPP、Cannes Lions応募ページの掲載年は2021年で、2023年応募時の内容との差は未確認）。",
+    "evaluationImpact": "ゲーマーの文化に「参加する」形で入り込んだ点が評価され、カンヌライオンズ2023のEntertainment Lions for GamingでBronzeを受賞した。",
+    "tags": [
+      "Tech/Game",
+      "Theme/Food",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/wendy-s-super-wendy-s-world.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "waoo-love-squad",
+    "title": "Love Squad",
+    "summary": "ゲームに夢中で相手にされないパートナーが、プロゲーマーに「ゲーム内での処刑」を依頼できるデンマークのネット回線会社Waooの施策。",
+    "client": "Waoo",
+    "agency": "UNCLE GREY, Copenhagen",
+    "categories": [
+      "Entertainment Lions for Gaming"
+    ],
+    "award": "Cannes Lions 2023 Entertainment Lions for Gaming Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://adsofbrands.net/en/news/internet-provider-waoo-launches-virtual-hitman-service/4492",
+    "videoId": "",
+    "overview": "デンマークのインターネット回線会社WaooとUNCLE GREYによる、2023年4月27日開始のキャンペーン。ゲーム中毒気味の恋人や配偶者に不満を持つ人が、専用ページからゲーム内の「ヒット」を注文できる、架空の殺し屋サービスとして展開した。",
+    "background": "Ads of Brandsによれば、施策は英国の調査で、Fortniteが離婚申請の5%の理由になっていたという話を引いている。「Waooの高速回線でも解決できないことがある」という自虐を含み、画面から離れて二人で過ごす時間の大切さを伝える狙いがあった。",
+    "execution": "注文者はサイトで標的を指定し、愛のある、またはそうでもないメッセージを添えられる。プロゲーマーやストリーマー5人（Jaxstyle、Marie Watson、Esther、Tobii、Jørgen Bjørn）がCounter-Strike: GO、GTA5 Online、Fortnite、Call of Duty内で標的を倒し、メッセージを届けた。ゲーマー同士の話題からカップル、そしてWaooの一般層へと会話を広げる構成だった。",
+    "evaluationImpact": "ゲームを巡る夫婦・恋人間の悩みをユーモアで扱った点が評価され、カンヌライオンズ2023のEntertainment Lions for GamingでBronzeを受賞した。",
+    "tags": [
+      "Tech/Game",
+      "Theme/Entertainment",
+      "Form/SNS",
+      "Form/Website"
+    ],
+    "thumbnail": "/thumbnails/waoo-love-squad.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "elkj-p-urban-miner",
+    "title": "Urban Miner",
+    "summary": "古い家電を店に持ち込むと、Minecraftで使える通貨Minecoinsがもらえる、北欧の家電量販Elkjøpのリサイクル施策。",
+    "client": "ElkjØP",
+    "agency": "NORD DDB, Oslo / NORD DDB, Stockholm",
+    "categories": [
+      "Entertainment Lions for Gaming"
+    ],
+    "award": "Cannes Lions 2023 Entertainment Lions for Gaming Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://lbbonline.com/news/old-electronics-become-unique-minecraft-coins-in-tech-retailer-elkjps-recycling-initiative",
+    "videoId": "",
+    "overview": "ノルウェー発の家電量販Elkjøp（北欧ではElgiganten、Gigantti名でも展開）が、NORD DDBとMicrosoftと組んで始めたe-waste回収の取り組み。不要な電子機器を店に持ち込んだ人に、Minecraftで使えるMinecoinsを渡す。",
+    "background": "LBBなどの報道によれば、ゲーマー層が多いMinecraftの経済圏を使い、使わなくなった電子機器を回収に回す動機をつくることが狙い。電子機器には貴重な素材が含まれており、都市に眠る資源を採掘する「Urban Miner（都市鉱山）」という発想をMinecraftの採掘に重ねた。",
+    "execution": "ノルウェー、スウェーデン、デンマーク、フィンランドのElkjøp、Elgiganten、Gigantti各店で古い電子機器を回収し、機器ごとに含まれる素材の価値に応じたMinecoinsを付与する。受け取ったMinecoinsはゲーム内のMarketplaceで使える。SNSやゲームのプラットフォーム上でも展開された。",
+    "evaluationImpact": "リサイクルとゲーム内通貨を結びつけた発想が評価され、カンヌライオンズ2023のEntertainment Lions for GamingでBronzeを受賞した。D&ADでもGraphite Pencilを獲得している。",
+    "tags": [
+      "Tech/Game",
+      "Theme/Sustainability",
+      "Theme/Retail"
+    ],
+    "thumbnail": "/thumbnails/elkj-p-urban-miner.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "guarana-antarctica-game-her",
+    "title": "Game-Her",
+    "summary": "ブラジル女子代表選手がサッカーゲームに登場しない問題に対し、ガラナ・アンタルチカがゲーム内に選手を「入れる」運動を行った施策。",
+    "client": "GuaranÁ Antarctica",
+    "agency": "SOKO, Sao Paulo",
+    "categories": [
+      "Entertainment Lions for Gaming"
+    ],
+    "award": "Cannes Lions 2023 Entertainment Lions for Gaming Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://marcaspelomundo.com.br/anunciantes/guarana-antarctica-cria-movimento-para-facilitar-a-inclusao-de-jogadoras-brasileiras-nos-games/",
+    "videoId": "",
+    "overview": "ブラジルの飲料ブランドGuaraná AntarcticaとSOKOが、女子サッカーのゲーム内表現の不足を訴えた運動。2023年の応募作Game-Herそのものの説明は公式応募ページ以外で確認できなかったため、ここでは関連施策#BotaElasNoJogoの報道に基づいて記述する。",
+    "background": "Marcas pelo Mundoによれば、ブラジル女子代表の選手はサッカーゲームで選べず、顔も本名も出ない状態だった。ブランドは女子代表のスポンサーで、ゲームに入れなかったために得られなかった肖像権の分を肩代わりするとした。2023年3月の報道では、運動が前年に始まった#BotaElasNoJogoの続きと位置づけられ、Ambevの男女平等の取り組みにもつながっている。",
+    "execution": "2022年9月には、Tamires、Bia Zaneratto、Maria Eduarda、Adriana、Ary Borgesが出る、ゲーム文化に着想を得た3Dアニメ映像を公開した。ストリーマーがサッカーゲームで選手のアバターを作り、The SimsやElden Ringなど別ジャンルでも女性アバターを作る配信を2週間続けた。2023年3月には、ゲーム会社が選手を起用するための契約書と雛形、アバター制作の手順書を載せた専用サイトを公開し、女性がゲームで活躍する姿を描いた350ml限定缶も出した。",
+    "evaluationImpact": "女子サッカーとゲームの表現格差を、ブランドが実際の制作支援まで含めて動かした点が評価され、カンヌライオンズ2023のEntertainment Lions for GamingでBronzeを受賞した。",
+    "tags": [
+      "Tech/Game",
+      "Theme/Sports",
+      "Theme/SocialGood",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/guarana-antarctica-game-her.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "burger-king-burger-glitch",
+    "title": "Burger Glitch",
+    "summary": "アプリやSNSに仕込んだ「バグ」を探すと割引が手に入る、ゲームの不具合文化を使ったバーガーキング・ブラジルのアプリ施策。",
+    "client": "Burger King",
+    "agency": "DAVID, Sao Paulo",
+    "categories": [
+      "Entertainment Lions for Gaming"
+    ],
+    "award": "Cannes Lions 2023 Entertainment Lions for Gaming Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.marketingdive.com/news/burger-king-glitch-mobile-app-gamers/623663/",
+    "videoId": "",
+    "overview": "バーガーキング・ブラジルとDAVID São Pauloによる2022年のキャンペーン。アプリや店舗の注文端末などに意図的な「グリッチ（不具合）」を仕込み、見つけた人が割引を受けられる仕組みにした。",
+    "background": "Marketing Diveによれば、パンデミック以降、外食チェーンにとってアプリの重要性が増している。ゲームを定期的に遊ぶ層はZ世代の87%、ミレニアル世代の83%とされ、ゲーマーに近い遊びでアプリのダウンロードと利用を促すことが狙いだった。",
+    "execution": "アプリやSNS上で、最大40%引きになるバグ付きのオファーを探してもらう。見つけた人はハッシュタグ#BugKingを付けてSNSで共有すると割引を受けられ、期間中は毎日新しいオファーが出た。ゲームの不具合を模した映像のほか、パティやナゲットが余分に載った「バグった」バーガーも作り、店頭で配り、ブラジルの有名ゲーム配信者にも送った。",
+    "evaluationImpact": "不具合をおもしろがるゲーマーの感覚をブランド体験に変えた点が評価され、カンヌライオンズ2023のEntertainment Lions for GamingでBronzeを受賞した。",
+    "tags": [
+      "Tech/Game",
+      "Tech/App",
+      "Theme/Food",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/burger-king-burger-glitch.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "kaufland-turbokaddy",
+    "title": "Turbokaddy",
+    "summary": "高齢者の象徴とされるキャリーバッグ「fofrtaška」を、eスポーツチームと組んでゲーマー向けに作り替え、若い層に向けたKauflandのイメージ刷新を狙った施策。",
+    "client": "Kaufland",
+    "agency": "DDB, Prague / DDB FTW PRAGUE, Prague",
+    "categories": [
+      "Entertainment Lions for Gaming"
+    ],
+    "award": "Cannes Lions 2023 Entertainment Lions for Gaming Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.mediaguru.cz/clanky/2023/06/cannes-lions-bronzoveho-lva-veze-kaufland-za-fofrtasku/",
+    "videoId": "",
+    "overview": "チェコのスーパーKauflandとDDB FTW Pragueが、eスポーツチームSINNERSおよびバッグメーカーBraasiと作った限定版キャリーバッグ「Fofrtaška 2.0（TurboKaddy）」。高齢者向けの買い物用品というイメージを、ゲーマーが持ち歩きたいアイテムに変えた。",
+    "background": "Kauflandは高齢の顧客に特に支持されている一方、若い世代へのアプローチが課題だった。同社は2022年にSINNERSとの提携を始め、15〜29歳の男性が中心のeスポーツ層を狙った（MediaGuru）。きっかけは、前年にSNSで広まった「fofrtaška」のジョーク画像と、製品化を求めるファンの声だった。",
+    "execution": "黒地に白いラインのデザインで、ソーラーパネルによるスマホ充電、赤いLEDライト、サスペンション付きの車輪、伸縮式ハンドルを備える。ゲーミング機器も入れられ、機内持ち込みにも使える。2023年3月15日17時にSINNERS公式e-shopで数十個の限定販売を行った。デザインはDDB FTWが担当した（cc.cz）。",
+    "evaluationImpact": "カンヌライオンズ2023のEntertainment Lions for GamingでBronzeを受賞し、MediaGuruはチェコ勢の同年最初の受賞と報じた。同施策（Fofrtaška）はその後、Festival of Mediaでもゴールドとブロンズを受けたとMediaGuruが伝えている。",
+    "tags": [
+      "Tech/Game",
+      "Form/Product",
+      "Theme/Retail",
+      "Theme/Entertainment"
+    ],
+    "thumbnail": "/thumbnails/kaufland-turbokaddy.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "memorial-sloan-kettering-cancer-center-msk-working-with-cancer",
+    "title": "Working With Cancer",
+    "summary": "がんを抱えて働く人への偏見をなくすため、企業に「支える職場」の誓約を求めた業界横断の連合「Working With Cancer」の施策。",
+    "client": "Memorial Sloan Kettering Cancer Center (Msk)",
+    "agency": "LA FOUNDATION PUBLICIS, Chicago / PUBLICIS CONSEIL, Paris / LE TRUC, New / York / DIGITAS, New York / SAATCHI & / SAATCHI HEALTH, New York / PUBLICIS / GROUPE UK, London",
+    "categories": [
+      "Health & Wellness"
+    ],
+    "award": "Cannes Lions 2023 Health & Wellness Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Health & Wellness",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/working-with-cancer",
+    "videoId": "",
+    "overview": "Publicis Groupeが2023年1月に世界経済フォーラム（ダボス）で立ち上げた連合で、Memorial Sloan Kettering、Macmillan、Gustave Roussy研究所などが支援する。企業に、がん患者にオープンで支え合う職場づくりを誓約させる。応募は、MSKと複数のPublicis系エージェンシーの共同クレジットである。",
+    "background": "Publicis CEOのArthur Sadounは2022年4月にがんと診断され、治療を受けた。公表後、仕事や生活への不安を訴える声が多数寄せられたことが出発点になった。Ads of the Worldの事例ページによれば、がん患者の半数は診断を雇用主に伝えることを恐れている。",
+    "execution": "2023年1月17日にダボスで誓約を始め、企業が自社の取り組みを誓約サイトで示せるようにした。Publicis自身も、がん患者に最低1年間の雇用保障を約束した。世界がんデーの2月4日には、メディア各社が提供する広告枠を使った大規模な呼びかけを行った。MediaPostはこれを1億ドル規模のグローバルキャンペーンと報じた。なお、本エントリの2023年応募物そのものの詳細は確認できていないため、ここでは2023年の連合発足と初期キャンペーンの内容を述べている。",
+    "evaluationImpact": "カンヌライオンズ2023のHealth & Wellness部門でGoldを受賞した。同キャンペーンはLions HealthのGrand Prix for Goodも獲得したと報じられている（shootonline）。",
+    "tags": [
+      "Theme/Health",
+      "Theme/SocialGood",
+      "Form/Film",
+      "Form/OOH"
+    ],
+    "thumbnail": "/thumbnails/memorial-sloan-kettering-cancer-center-msk-working-with-cancer.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "sole-music",
+    "title": "Sole Music",
+    "summary": "耳が聞こえない人が音楽を足裏の振動で感じられる、靴に入れるインソール型デバイス。",
+    "client": "Sole Music",
+    "agency": "‿ AND US, Dubai",
+    "categories": [
+      "Health & Wellness"
+    ],
+    "award": "Cannes Lions 2023 Health & Wellness Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Health & Wellness",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "中東"
+    ],
+    "link": "https://www.thestable.com.au/%E2%80%BFand-us-sole-music-puts-music-at-the-feet-of-the-hearing-impaired/",
+    "videoId": "",
+    "overview": "ドバイの‿ and usが、中東最大級の音楽配信サービスAnghamiと開発した触覚インソール。任意の靴に入れ、スマホとBluetoothで接続すると、再生中の音楽が足裏への振動に変換される。",
+    "background": "世界人口の約5%は音楽を聴き取れないが、振動としては感じられる。足裏は単位面積あたりの神経終末が多く、振動に敏感である。開発には約2年かかったとファウンダーのFadi Yaishが説明している（The Stable）。",
+    "execution": "振動のパターンはダンス、クラシック、ジャズ、ロックなどジャンルごとの音波の特徴を反映する。発売に合わせ、製品に最適化したプレイリストを用意した。生まれつき聴覚のないダンサーPierre Geagea氏が初めて体験する様子を、短編ドキュメンタリーにまとめた。製品は公式サイトから注文できた（2023年2月発表）。",
+    "evaluationImpact": "カンヌライオンズ2023のHealth & Wellness部門でSilverを受賞した。Anghamiは聴覚障害のある人々から非常に好意的な反応があったとしているが、独立した検証や販売データは確認できなかった。",
+    "tags": [
+      "Theme/Health",
+      "Theme/Music",
+      "Form/Product",
+      "Tech/Device",
+      "Tech/Audio"
+    ],
+    "thumbnail": "/thumbnails/sole-music.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "augmental-mouthpad",
+    "title": "Mouthpad^",
+    "summary": "上肢に障害のある人が、舌の動きだけでPCやスマホを操作できるマウスピース型デバイス「MouthPad^」。",
+    "client": "Augmental",
+    "agency": "WUNDERMAN THOMPSON, Lima / AUGMENTAL, San Francisco",
+    "categories": [
+      "Health & Wellness",
+      "Innovation"
+    ],
+    "award": "Cannes Lions 2023 Health & Wellness Lions Silver / Cannes Lions 2023 Innovation Lions Grand Prix",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Health & Wellness",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Innovation",
+        "level": "Grand Prix"
+      }
+    ],
+    "regions": [
+      "南米",
+      "北米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/mouthpad",
+    "videoId": "",
+    "overview": "MITメディアラボ発のスタートアップAugmentalが開発した、上あごに装着する舌操作のタッチパッド。Wunderman Thompson Limaが、社内の包括的体験（Inclusive Experience）ユニットと共に製品の打ち出しを担った。",
+    "background": "手や腕を自由に動かせない人にとって、視線追跡や音声操作、口でくわえるジョイスティックなどの既存手段は、疲労や歯への負担があるとされる。開発チームは、舌の細かく多様な動きに着目した（reasonwhy）。",
+    "execution": "口腔内スキャンから3Dモデルを作り、歯科用レジンで個人ごとに出力する。内部には感圧式のトラックパッドを備え、舌の位置や圧力を機械学習で解析し、Bluetoothでカーソル移動やクリックに変換する。電子部品は唾液から守る密閉ケースに収め、iOS、Android、macOS、Windows、Linuxに対応する。",
+    "evaluationImpact": "カンヌライオンズ2023のInnovation部門でGrand Prix、Health & Wellness部門でSilverを受賞した。ペルーとして2度目のGrand Prixとされる。",
+    "tags": [
+      "Tech/Device",
+      "Tech/AI",
+      "Theme/Health",
+      "Form/Product"
+    ],
+    "thumbnail": "/thumbnails/augmental-mouthpad.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "sidaction-kamasutra",
+    "title": "Kamasutra +",
+    "summary": "古典『カーマ・スートラ』の69の体位を、多様な性的指向に合わせて描き直し、HIV予防の手段を絵の中に自然に織り込んだフランスのSidactionの書籍。",
+    "client": "Sidaction",
+    "agency": "THE GOOD COMPANY, Paris",
+    "categories": [
+      "Health & Wellness"
+    ],
+    "award": "Cannes Lions 2023 Health & Wellness Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Health & Wellness",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.cbnews.fr/node/72114",
+    "videoId": "",
+    "overview": "フランスのエイズ支援団体SidactionとThe Good Companyが、出版社Kiblind Éditionsと2022年に刊行した『Kamasutra +』。あらゆるアイデンティティとセクシュアリティを包摂する形で作り直した。",
+    "background": "カーマ・スートラは世界で広く読まれてきたが、描かれる関係は異性愛が中心になりがちだった。Sidactionはこの古典を、性的少数者も含む形に作り直し、HIVとエイズへの意識を高めようとした（CB News）。",
+    "execution": "フランス国内外のLGBT+当事者や支持者のアーティストが69の体位をイラスト化し、コンドーム、デンタルダム、PrEPなどの予防手段を絵の中に自然に描き込んだ。内容は「自分を守る方法」と「HIV/エイズの支援の受け方」の2テーマで構成される。序文は歌手のEddy de Pretto、文章はAmandine Dhée、Patrick Autréaux、Mathieu Bermannが書いた。限定版として発売し、利益はすべてSidactionの研究や予防・支援活動に充てられる。",
+    "evaluationImpact": "カンヌライオンズ2023のHealth & Wellness部門でSilverを受賞した。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Health",
+      "Theme/Art",
+      "Form/Print"
+    ],
+    "thumbnail": "/thumbnails/sidaction-kamasutra.jpg"
   }
 ]
