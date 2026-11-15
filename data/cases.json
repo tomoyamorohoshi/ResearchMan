@@ -95143,7 +95143,10 @@
       "Form/App",
       "Theme/Sports"
     ],
-    "thumbnail": "/thumbnails/gatorade-match-saver.jpg"
+    "thumbnail": "/thumbnails/gatorade-match-saver.jpg",
+    "quarantined": true,
+    "quarantineReason": "link-dead(二重確認済): 404: https://welcometospringtime.com/gatorade-match-saver.html",
+    "quarantineTs": "2026-11-15T09:36:39.880Z"
   },
   {
     "year": "2024",
@@ -96835,7 +96838,10 @@
       "Theme/Sports",
       "Theme/Entertainment"
     ],
-    "thumbnail": "/thumbnails/general-entertainme-nt-authority-rumble.jpg"
+    "thumbnail": "/thumbnails/general-entertainme-nt-authority-rumble.jpg",
+    "quarantined": true,
+    "quarantineReason": "link-dead(二重確認済): 404: https://shootonline.com/node/97597",
+    "quarantineTs": "2026-11-15T09:36:39.880Z"
   },
   {
     "year": "2024",
