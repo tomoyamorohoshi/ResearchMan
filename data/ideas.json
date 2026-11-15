@@ -27853,5 +27853,221 @@
         "desc": "Stable Audio 3の生成過程を手で触って作り込める、ブラウザ上のオープンソース制作環境。"
       }
     ]
+  },
+  {
+    "id": "2026-11-15-1",
+    "date": "2026-11-15",
+    "title": "カムイ岬の宇宙船を空間化",
+    "pattern": "文脈×技術",
+    "seed": "細川たかし『カムイ岬』の全編生成AI映像の宇宙船デコトラ世界に、ABot-World / ABot-3DWorldを掛けたら、MVの中を歩き回れる探索可能な演歌ワールドになり、ファンが自分の足で聴く新しい記念体験になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-6cdvj1-2026",
+        "title": "カムイ岬",
+        "desc": "演歌歌手・細川たかしが忍者姿で宇宙船デコトラで歌う、全編生成AIの50周年記念MV。"
+      },
+      {
+        "type": "tech",
+        "id": "abot-world-abot-3dworld",
+        "title": "ABot-World / ABot-3DWorld",
+        "desc": "1枚の画像やテキストから、歩き回れる3D世界をリアルタイムで作り続けるAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-15-2",
+    "date": "2026-11-15",
+    "title": "皮肉の犬が語る長尺動画",
+    "pattern": "文脈×技術",
+    "seed": "Cologuardの「しゃべる犬が検診を促す」皮肉を、ComfyUI-Dialsで『犬の語りの熱量』をスライダー化し、ComfyUI MiniMax H3 Extenderで長尺につなげば、視聴者の反応に合わせ説教が強まる検診啓発になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "cologuard-pick-up-your-poop",
+        "title": "Pick Up Your Poop",
+        "desc": "愛犬のフンは拾うのに自分の検診は避ける皮肉を、しゃべる犬が語る大腸がん検診の広告。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-dials",
+        "title": "ComfyUI-Dials",
+        "desc": "動画生成の動きの量などを、スライダーで連続的に調整できるComfyUIの部品。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-minimax-h3-extender",
+        "title": "ComfyUI MiniMax H3 Extender",
+        "desc": "複数の動画クリップを、動きや音の流れを保ったまま1本の長尺映像につなぐ部品。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-15-3",
+    "date": "2026-11-15",
+    "title": "織物から現れる浮遊物体",
+    "pattern": "技術×技術",
+    "seed": "LeviFabの磁石入り3Dプリント物体を超伝導体で浮かせ、その浮遊の高さや揺れを音に変えれば、触れずに操る楽器が生まれるかも。音はJIT-MPEで鳴った音程を即座に読み取って光に返す。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "levifab",
+        "title": "LeviFab",
+        "desc": "超伝導体の力で、磁石入りの3Dプリント物体を空中に浮かせて動かす研究。"
+      },
+      {
+        "type": "tech",
+        "id": "jit-mpe",
+        "title": "JIT-MPE (Just-in-Time Multi-Pitch Estimation)",
+        "desc": "ライブ演奏の音を20ミリ秒ごとに判定し、今鳴っている音程を推定するAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-15-4",
+    "date": "2026-11-15",
+    "title": "撮り直しで作る神話の世界",
+    "pattern": "文脈×技術",
+    "seed": "CLOVERFIELD ARGが架空のSlushoサイトから映画の神話を広げたように、Viggle Remakeで撮影済み映像の人物や天候だけ差し替え、同じ事件を別の目撃者視点で何本も出せば、ネットに自然発生する都市伝説が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "cloverfield-arg",
+        "title": "CLOVERFIELD ARG（1-18-08.com）",
+        "desc": "架空のドリンクサイトなどから映画の世界観をWeb上に広げた、謎解き型の宣伝。"
+      },
+      {
+        "type": "tech",
+        "id": "viggle-remake",
+        "title": "Viggle Remake",
+        "desc": "撮影済みの映像の人物・背景・天候などだけを差し替えて撮り直せる動画編集モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-15-5",
+    "date": "2026-11-15",
+    "title": "ゲームパッドで動くテニスロボ",
+    "pattern": "技術×技術",
+    "seed": "AdaPTの「選手らしいフォームで打つロボ」に、Brahmaの「コントローラー入力でゴールポーズを再現」の発想を借りた操作層を足せば、観客がゲームパッドで往年の名選手のサーブを現実で再現できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "adapt",
+        "title": "AdaPT",
+        "desc": "ヒューマノイドロボットに有名テニス選手風のフォームでサーブやラリーを打たせる技術。"
+      },
+      {
+        "type": "case",
+        "id": "brahma-r2r-gaming-challenge",
+        "title": "R2R←",
+        "desc": "ロナウドのゴールポーズを、ゲームのコントローラー入力で再現させたビールの体験施策。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-15-6",
+    "date": "2026-11-15",
+    "title": "便器の歴史を空間スキャン",
+    "pattern": "転用",
+    "seed": "Gaussian SplatKingは街や物の撮影用だが、INAXがミラノで見せた明治期の陶製便器から最新品までを、来館者のiPhoneで撮らせてスプラット化し、持ち帰れる『水の儀礼』の3Dアーカイブにすれば展示の転用になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "gaussian-splatking",
+        "title": "Gaussian SplatKing",
+        "desc": "iPhoneのレンズとLiDARで、立体撮影用の高品質データを無料で取れるアプリ。"
+      },
+      {
+        "type": "case",
+        "id": "inax-exhibition-milan2019-if-2020",
+        "title": "INAX Exhibition at Milan Design Week 2019",
+        "desc": "日本の水の儀礼を軸に、陶製便器の歴史を見せたミラノの展示ブース。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-15-7",
+    "date": "2026-11-15",
+    "title": "ヘアカードで揺れる織物",
+    "pattern": "転用",
+    "seed": "HairDeckは髪の毛束と揺れ骨を作る技術だが、これをWAVE WEAVEの西陣織に転用し、織物の糸束を揺らすメッシュとして生成すれば、音に反応して実際にそよぐ布のデジタルツインが作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "hairdeck",
+        "title": "HairDeck",
+        "desc": "1枚の画像から、髪の毛束の板状メッシュとそれを揺らす骨を同時に作る技術。"
+      },
+      {
+        "type": "case",
+        "id": "wave-weave-sono-obi-2025",
+        "title": "WAVE WEAVE ― 音と織物の融合／SONO OBI",
+        "desc": "電子音楽を西陣織の模様に変換し、織物から音を再生するインスタレーション。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-15-8",
+    "date": "2026-11-15",
+    "title": "静かな声で話す細川カラオケ",
+    "pattern": "転用",
+    "seed": "iikiは2Dキャラを動かす道具だが、ikiで菌糸体パビリオンのHypha-lumeに『顔』を与え、来訪者の動きに合わせてまばたきや視線で反応させれば、建築が人に気づく仕掛けに転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "iki",
+        "title": "iki",
+        "desc": "文章の指示から2Dキャラの部品を作り、まばたきや視線を動かす無料のパペットエンジン。"
+      },
+      {
+        "type": "case",
+        "id": "hypha-lume-pavilion-2026",
+        "title": "Hypha-lume pavilion（菌糸体パビリオン）",
+        "desc": "菌糸体モジュールの仮設パビリオンが、来訪者の動きを光と音に変えて記録する。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-15-9",
+    "date": "2026-11-15",
+    "title": "用心棒を撮る長尺カメラ語",
+    "pattern": "文脈×技術",
+    "seed": "The Soy Bouncerの隠し撮りの緊張感を、Cinematic Director Camera DSLの「/LOWANGLE /DOLLYIN」で用心棒の目線に寄せて生成すれば、実在しない店でも『断られる体験』を何本も量産できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "the-soy-bouncer-2026",
+        "title": "The Soy Bouncer",
+        "desc": "テクノクラブの用心棒が大豆ショットを飲まない客を断る隠し撮り施策。"
+      },
+      {
+        "type": "tech",
+        "id": "cinematic-director-camera-dsl",
+        "title": "Cinematic Director Camera DSL",
+        "desc": "短い撮影用語を書くと、各AI動画モデル向けのカメラ指示文に変換する仕組み。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-15-10",
+    "date": "2026-11-15",
+    "title": "ペンギン表紙を鳴らす本棚",
+    "pattern": "虚構の実在化",
+    "seed": "Penguin Great Ideasの活版風の表紙を、Backspnのステム分離とビート同期エフェクトで『読むほど音が重なるDJ』にして、古典の思想書を棚ごと楽器化すれば、本が実在の音の景色として立ち上がるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "penguin-great-ideas-2005",
+        "title": "Penguin Great Ideas（ブックカバーシリーズ）",
+        "desc": "印刷素材の質感だけで古典思想書20冊を意匠化したペンギンのブックカバー。"
+      },
+      {
+        "type": "tech",
+        "id": "backspn",
+        "title": "Backspn",
+        "desc": "ステム分離やビート同期エフェクトを備えた、無料のオープンソースDJソフト。"
+      }
+    ]
   }
 ]
