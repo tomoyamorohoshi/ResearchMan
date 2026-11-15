@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/prepare-public-data.mjs",
+    "prebuild": "node scripts/generate-sm-thumbs.mjs --missing-only && node scripts/prepare-public-data.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",

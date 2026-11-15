@@ -1,6 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
+import { pickThumbnailSrc } from "@/lib/thumbSm";
 import Image from "next/image";
 import type { Case } from "@/lib/cases";
 import { getAwardLevel } from "@/lib/awardLevel";
@@ -31,6 +33,8 @@ export default function CaseCard({
   onToggleTrash,
   trashMode = false,
 }: Props) {
+  // 一覧は縮小版(/thumbnails-sm)を使い、読み込み失敗したサムネだけ元画像へ戻す
+  const [smFailedFor, setSmFailedFor] = useState<string | null>(null);
   const level = awardContext
     ? getAwardLevelForCollection(c.award, awardContext.org, c.year, awardContext.year, awardContext.category, c.awardEntries)
     : getAwardLevel(c.award);
@@ -46,7 +50,9 @@ export default function CaseCard({
       {/* ── 上段：画像エリア ── */}
       <Link href={`/cases/${c.id}`} className="block relative aspect-square overflow-hidden">
         <Image
-          src={c.thumbnail}
+          src={pickThumbnailSrc(c.thumbnail, smFailedFor === c.thumbnail)}
+          onError={() => setSmFailedFor(c.thumbnail)}
+          loading="lazy"
           alt={c.title}
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-500"
