@@ -1,5 +1,107 @@
 [
   {
+    "id": "vauss",
+    "title": "Vauss",
+    "org": "voyager-so",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools",
+      "AI/Agents"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "スマホや360°カメラで撮った動画を、コマンド1本で3D Gaussian Splatのシーンに変換するRust製ツール。Blender 5.3向け出力、ゲーム用の当たり判定の書き出し、AIエージェント連携まで備える。",
+    "point": "動画から3D空間を作る作業を、フレーム選び・カメラ位置の推定・学習・書き出しまで `vauss run` の1コマンドにまとめた点が特徴です。しかも結果をBlender向けのパックやSPZ形式、ブラウザで見られるビューア、さらに1人称で歩き回れるボクセル風ゲームにまで変換できます。Claude CodeなどのAIエージェントから操作するMCP連携もあります。広告・体験づくりでは、ロケ地や店舗、商品展示を動画でさっと撮って3Dセット化し、Blenderでカメラワークや人物・小道具を足したCGカットを作る、ブラウザで歩ける体験サイトにする、といった使い方が考えられます。撮影から3D素材化までの手間が減るので、企画の初期検証を素早く回せます。",
+    "detail": "仕組みは、動画から使いやすい画像だけを選び、カメラの位置関係を計算（COLMAPのような処理にあたる工程）し、数万〜数百万個の小さな色付きの「ぼかした点（ガウシアン）」をGPUで最適化して、写真のような3D空間を作る、という流れです。学習部分はBrushという既存のOSS（Apache-2.0）をベースにしており、Rustの機械学習基盤（Burn／CubeCL／wgpu）で書かれているため、Vulkan・Metal・DX12のGPUで動きます。魚眼や360°（正距円筒）映像にも対応し、カメラ移動の指定や手ぶれ補正のコマンドも付いています。\n\n従来は、COLMAPで位置推定をして、別のツールで学習し、さらに別のツールで編集・変換する、と複数のソフトを渡り歩く必要がありました。Vaussは作成から出力までを1つのCLIにまとめ、Blenderやゲームエンジン向けの形式までそのまま出せるのが違いです。リポジトリは2026年11月12日に作られた新しいもので、バージョンは 0.1.21-rc、公開時点のコミットは9件と、まだ試験的な段階です。\n\n使うにはGPU（RTX系など）と、Linux/macOSならインストールスクリプト、WindowsならReleasesページのアーカイブが必要です。ソースからのビルドにはRustツールチェーンを使います。導入後は `vauss doctor` でGPU環境を確認できます。ライセンスはプレビュー期間中は商用も無料ですが、正式版でどうなるかは未定なので、案件で使う前に最新の条文を確認してください。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "独自の「Vauss Preview License」（ソース公開だがOSIのオープンソースではない）。研究プレビュー期間中は商用利用・私的改変は無料。改変版の再配布とホスト型サービス提供は制限される。Brush由来のsplat-train系クレートはApache-2.0。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/voyager-so/vauss"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/vauss.jpg",
+    "relatedWorks": [
+      {
+        "title": "Brush",
+        "description": "Rust製のクロスプラットフォームな3DGS学習ツール。Vaussの学習部分の元になっている。",
+        "url": "https://github.com/ArthurBrussee/brush"
+      },
+      {
+        "title": "LichtFeld Studio",
+        "description": "3DGSシーンの学習・編集・書き出しができるネイティブアプリ。",
+        "url": "https://github.com/MrNeRF/LichtFeld-Studio"
+      },
+      {
+        "title": "nerfstudio",
+        "description": "NeRFや3DGSを一通り扱えるPython製のフレームワーク。",
+        "url": "https://github.com/nerfstudio-project/nerfstudio"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "edgar",
+    "title": "EDGAR (Efficient Diffusion-Driven Gaussian Avatar Refinement via Synthetic Failure)",
+    "org": "KAIST（Kwan Yun, Junyong Noh ら）",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "ぼやけ・伸び・ちらつきが出た Gaussian Splatting 製の頭部アバターを、1枚の本人参照画像と1ステップ拡散モデルで補修する手法。補修結果は元の3Dアバターに焼き戻されるため、描画速度は落ちない。",
+    "point": "Gaussian Splatting（無数の半透明の点で3D物体を表現する技術）でつくった顔アバターは、少ない映像から作ると、ぼやけたり、横に伸びたり、動かすとちらついたりしがちです。EDGAR はこの傷んだ映像を、本人の参照画像を手がかりに拡散モデル（画像生成AI）で直し、直した複数視点の画像を教師にして、アバター本体の3Dデータを一度だけ更新します。その後は元のアバターと同じ方法で描画できるので、リアルタイム性を保ったまま質だけが上がります。広告・体験づくりでは、社員や出演者の顔を短時間のスマホ撮影でアバター化し、イベントのインタラクティブ展示、バーチャル接客、ゲーム内のなりきりコンテンツなどに使う場面で、撮影量を減らしつつ顔の破綻を抑える後処理として使えそうです。論文では、1人分の補修は RTX 3090 で約5〜17分とされています。",
+    "detail": "仕組みは、まず「わざと壊した画像」と「正しい画像」のペアを大量に作り、壊れ方を直す1ステップの拡散モデル（SD-Turbo ベース）を学習させるところから始まります。直すときに顔が別人にならないよう、Sapiens という人体向け基盤モデルから取り出した「本人らしさの特徴」を融合ブロックでモデルに注入します。さらに、ぼやけ・伸びなど壊れ方の種類や強さごとに担当を分ける Mixture-of-Experts 構造を採用しています。補修した複数視点の画像は、1体のアバターを最適化し直すための擬似的な正解になります。このため、描画のたびに拡散モデルを回す必要はありません。\n\n従来の「出力した各フレームを後から画像補正する」方式は、毎フレーム重い処理が要り、フレーム間でちらつきやすいという弱点がありました。EDGAR は3D側を直す方式で、論文によると CAP4D は 50.3→49.4 FPS、RGBAvatar は 813.8→826.3 FPS と、速度はほぼ変わりません。既存のアバター手法（RGBAvatar、CAP4D など）に後付けできる点も特徴です。限界として、欠けた領域や大きな構造の誤り、極端な角度、口の内側のアーティファクトは残りやすいと記されています。\n\n使うには Linux、Python 3.10、NVIDIA の CUDA 対応 GPU が必要です。`pip install -e .` で入れ、EDGAR のチェックポイントと Sapiens 0.3B の TorchScript モデルを `checkpoints/` に置き、`edgar-infer` で画像を補修し、`edgar-refine-avatar` でアバター全体を補修します。学習用データのうち CAFCA のみのパッケージは公開されていますが、「Both」パッケージはアクセス申請が必要です。コード自体はあるものの、非商用ライセンスの部分があるため、案件で使う場合は権利の確認が必須です。",
+    "license": {
+      "spdx": null,
+      "commercial": "research-only",
+      "note": "リポジトリに LICENSE.txt / NOTICE / THIRD_PARTY.md あり。NVIDIA 由来コードは非商用の研究・評価用とされている。データやモデルは別条件。商用利用の前に各ライセンスの確認が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/kwanyun/edgar-code"
+      },
+      {
+        "kind": "project",
+        "url": "https://kwanyun.github.io/edgar/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2611.07909"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/edgar.jpg",
+    "relatedWorks": [
+      {
+        "title": "CAP4D",
+        "description": "少数の画像から4D（動く）頭部アバターを生成する手法。EDGAR が補修対象にしているパイプラインの1つ。",
+        "url": "https://github.com/felixtaubner/cap4d"
+      },
+      {
+        "title": "RGBAvatar",
+        "description": "RGB動画から高速に動かせる Gaussian 頭部アバターを作る手法。EDGAR のアダプタ対応先。",
+        "url": "https://github.com/gapszju/RGBAvatar"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "supermimic",
     "title": "SuperMimic",
     "org": "UC Berkeley（HybridRobotics / Pieter Abbeel・Koushil Sreenath 研究室）",
