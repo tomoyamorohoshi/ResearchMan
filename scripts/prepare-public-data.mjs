@@ -10,7 +10,8 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { PUBLIC_DATA_FILES, buildPublicDataText } from "./lib/public-data.mjs";
+import { ALL_PUBLIC_DATA_FILES, sourceFileFor, buildPublicDataText } from "./lib/public-data.mjs";
+import { buildCaseDetailFiles } from "./lib/case-index.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
@@ -25,6 +26,18 @@ function writeJson(outName, text) {
   console.log(`✓ ${outName}: ${(Buffer.byteLength(text) / 1024).toFixed(1)} KB → ${outPath}`);
 }
 
+// 事例ごとの詳細JSON（public/data/cases/<id>.json）。TOPギャラリーは一覧に軽量インデックス
+// (cases-index.json)だけを読み、詳細パネルを開いた時にだけこれをfetchする。
+// 1ファイル数KBで総量も小さいため、Blob配信のVercelビルドでもデプロイに同梱する（毎回作り直し）
+{
+  const detailDir = path.join(OUT_DIR, "cases");
+  fs.rmSync(detailDir, { recursive: true, force: true });
+  fs.mkdirSync(detailDir, { recursive: true });
+  const { files, skipped } = buildCaseDetailFiles(JSON.parse(fs.readFileSync(path.join(DATA_DIR, "cases.json"), "utf8")));
+  for (const f of files) fs.writeFileSync(path.join(detailDir, f.fileName), f.text);
+  console.log(`✓ cases/<id>.json: ${files.length} 件 → ${detailDir}`);
+  for (const s of skipped) console.warn(`⚠ cases/<id>.json: スキップ(${s.reason}) id=${String(s.id)}`);
+}
 // 2026-09-30〜: 本番(Vercel)ビルドではコピーしない。巨大JSONはVercel Blobから配信する
 // （scripts/upload-public-data.mjs がpre-pushで上げ、/api/public-data が中継する）。デプロイ同梱すると日次で
 // Deployment Storageが約50〜65MBずつ増えるため。Blob未設定（ローカル/dev）では従来どおりコピー
@@ -34,8 +47,8 @@ if (process.env.VERCEL && process.env.BLOB_STORE_ID) {
 }
 
 // cases.json: src/lib/cases.ts の現行フィルタ（quarantined===trueを除外）と同じロジック（lib側に集約）
-for (const name of PUBLIC_DATA_FILES) {
-  const srcPath = path.join(DATA_DIR, name);
+for (const name of ALL_PUBLIC_DATA_FILES) {
+  const srcPath = path.join(DATA_DIR, sourceFileFor(name));
   // idea-layouts.json は git 非追跡。無い環境（クローン直後等）ではスキップ（クライアントは
   // /api/public-data → /data/ の順にfetchし、無ければ縮退表示する）
   if (name === "idea-layouts.json" && !fs.existsSync(srcPath)) {

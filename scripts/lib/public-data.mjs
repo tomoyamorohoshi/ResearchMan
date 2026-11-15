@@ -2,14 +2,27 @@
 // scripts/prepare-public-data.mjs（ローカル/dev用のpublic/dataコピー）と
 // scripts/upload-public-data.mjs（Blobアップロード）で共用する。
 import crypto from "crypto";
+import { buildCasesIndex } from "./case-index.mjs";
 
 export const PUBLIC_DATA_FILES = ["cases.json", "ideas.json", "idea-layouts.json"];
 
-// rawText: data/<name> の生テキスト。cases.jsonのみ src/lib/cases.ts と同じフィルタ
-// （quarantined===trueを除外）を適用する。ideas/idea-layoutsはminifyのみ
+// data/ に実体が無く、別ファイルから導出して配るもの（導出元はdata/配下のファイル名）。
+// cases-index.json: TOPギャラリー用の軽量インデックス（cases.jsonの一覧用項目のみ）
+export const DERIVED_PUBLIC_DATA_FILES = { "cases-index.json": "cases.json" };
+export const ALL_PUBLIC_DATA_FILES = [...PUBLIC_DATA_FILES, ...Object.keys(DERIVED_PUBLIC_DATA_FILES)];
+
+export function sourceFileFor(name) {
+  return DERIVED_PUBLIC_DATA_FILES[name] ?? name;
+}
+
+// rawText: data/<sourceFileFor(name)> の生テキスト。cases.json/cases-index.jsonは src/lib/cases.ts と
+// 同じフィルタ（quarantined===trueを除外）を適用する。ideas/idea-layoutsはminifyのみ
 export function buildPublicDataText(name, rawText) {
   if (name === "cases.json") {
     return JSON.stringify(JSON.parse(rawText).filter((c) => !c.quarantined));
+  }
+  if (name === "cases-index.json") {
+    return JSON.stringify(buildCasesIndex(JSON.parse(rawText)));
   }
   if (name === "ideas.json" || name === "idea-layouts.json") {
     return JSON.stringify(JSON.parse(rawText)); // 従来のprepare-public-dataと同じくminify
@@ -22,7 +35,7 @@ export function sha256Text(text) {
 }
 
 export function filesNeedingUpload(hashes, state, { force = false } = {}) {
-  return PUBLIC_DATA_FILES.filter((f) => force || (state ?? {})[f] !== hashes[f]);
+  return ALL_PUBLIC_DATA_FILES.filter((f) => f in hashes && (force || (state ?? {})[f] !== hashes[f]));
 }
 
 // ~/.researchman-favsync.json の endpoint（…/api/favorites）と同一オリジンのアップロードAPI
@@ -35,8 +48,8 @@ export const UPLOAD_STATE_FILENAME = ".researchman-data-upload-state.json";
 // 現在のdata/*.jsonから配信用テキストのハッシュを求める（upload-public-dataとwatchdogで共用）
 export function computePublicDataHashes(dataDir, readFile) {
   const out = {};
-  for (const name of PUBLIC_DATA_FILES) {
-    out[name] = sha256Text(buildPublicDataText(name, readFile(`${dataDir}/${name}`)));
+  for (const name of ALL_PUBLIC_DATA_FILES) {
+    out[name] = sha256Text(buildPublicDataText(name, readFile(`${dataDir}/${sourceFileFor(name)}`)));
   }
   return out;
 }

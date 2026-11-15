@@ -3,7 +3,8 @@
 // 65MB×毎日）ため、Blobに固定パスで上書きし、クライアントは /api/public-data(Blobプロキシ)→/data/ の順にfetchする。
 // このファイルは純関数のみ（サーバ/クライアント/Nodeスクリプトから共用。Blob SDKはimportしない）。
 
-export const PUBLIC_DATA_FILES = ["cases.json", "ideas.json", "idea-layouts.json"] as const;
+// cases-index.json はcases.jsonから導出するTOPギャラリー用の軽量インデックス（scripts/lib/public-data.mjs）
+export const PUBLIC_DATA_FILES = ["cases.json", "cases-index.json", "ideas.json", "idea-layouts.json"] as const;
 export type PublicDataFile = (typeof PUBLIC_DATA_FILES)[number];
 
 const BLOB_PREFIX = "public-data/";

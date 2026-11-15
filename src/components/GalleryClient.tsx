@@ -16,6 +16,16 @@ import { tabSources, getSourceKind } from "@/lib/researchSources";
 import { TAG_AXES, tagAxis, tagLabel } from "@/lib/tags";
 import type { Graph3DViewProps } from "./Graph3DView";
 import { fetchDataJson } from "@/lib/publicDataBlob";
+import { useDebouncedValue } from "@/hooks/useDebouncedValue";
+import {
+  INITIAL_VISIBLE,
+  hasMoreToShow,
+  nextVisibleCount,
+  resolveVisibleCount,
+  type VisibleState,
+} from "@/lib/progressiveList";
+
+const SEARCH_DEBOUNCE_MS = 150;
 
 // 巨大データJSONのBlob配信の有無（next.config.tsがビルド時に埋め込む。無効なら /data/ のみ）。
 // リテラルで参照しないとNext.jsのインライン化対象にならない
@@ -80,12 +90,15 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
   useEffect(() => {
     if (!isSelfFetchMode) return;
     let cancelled = false;
-    fetchDataJson<Case[]>("cases.json", DATA_FROM_BLOB)
+    // 一覧用の軽量インデックス（長文を除いた項目のみ。summaryは検索対象のため全文）。
+    // 長文はCasePanelを開いた時に事例ごとのJSONから取得する。一覧が使わない項目は
+    // 実行時に存在しないが、使う側（CaseCard/awards/caseGraphAdapter/絞り込み）は参照しない
+    fetchDataJson<Case[]>("cases-index.json", DATA_FROM_BLOB)
       .then((data) => {
         if (!cancelled) setFetchedCases(data);
       })
       .catch((err) => {
-        console.error("Failed to load cases.json", err);
+        console.error("Failed to load cases-index.json", err);
         if (!cancelled) setFetchFailed(true);
       });
     return () => {
@@ -117,44 +130,63 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
 
   // filtered/sorted: 3D遷移フック(useGraphViewTransition)がrect採取・優先ロード対象の
   // 算出に使うため、フック呼び出しより前に計算しておく
-  const filtered = effectiveCases.filter((c) => {
-    // ごみ箱ビュー時はtrashedのみ表示、通常時はtrashedを除外（TOP一覧・3Dグラフから隠す。
-    // data/cases.json本体は変更しない＝復元可能なアーカイブとして残る）
-    if (showTrashOnly) {
-      if (!trashed.has(c.id)) return false;
-    } else if (trashed.has(c.id)) {
-      return false;
-    }
-    if (tab && !(c.sources ?? []).includes(tab)) return false;
-    if (showFavoritesOnly && !favorites.has(c.id)) return false;
-    if (filters.category && !c.categories.includes(filters.category)) return false;
-    if (filters.year && c.year !== filters.year) return false;
-    if (filters.region && !c.regions.includes(filters.region)) return false;
-    if (filters.source && !(c.sources ?? []).includes(filters.source)) return false;
-    if (filters.tag && !(c.tags ?? []).includes(filters.tag)) return false;
-    if (query) {
-      const q = query.toLowerCase();
-      return (
-        c.title.toLowerCase().includes(q) ||
-        c.summary.toLowerCase().includes(q) ||
-        c.client.toLowerCase().includes(q) ||
-        c.agency.toLowerCase().includes(q) ||
-        (c.tags ?? []).some((t) => t.toLowerCase().includes(q))
-      );
-    }
-    return true;
-  });
+  // 検索入力は150msデバウンスして全件走査の回数を減らす（入力欄自体はqueryで即時反映）
+  const debouncedQuery = useDebouncedValue(query, SEARCH_DEBOUNCE_MS);
 
-  const sorted =
-    sort === "year"
-      ? [...filtered].sort((a, b) => parseInt(b.year) - parseInt(a.year))
-      : sort === "award"
-        ? [...filtered].sort(
-            awardContext
-              ? (a, b) => compareByAwardForCollection(a, b, awardContext.org, awardContext.year, awardContext.category)
-              : compareByAward,
-          )
-        : filtered;
+  const filtered = useMemo(
+    () =>
+      effectiveCases.filter((c) => {
+        // ごみ箱ビュー時はtrashedのみ表示、通常時はtrashedを除外（TOP一覧・3Dグラフから隠す。
+        // data/cases.json本体は変更しない＝復元可能なアーカイブとして残る）
+        if (showTrashOnly) {
+          if (!trashed.has(c.id)) return false;
+        } else if (trashed.has(c.id)) {
+          return false;
+        }
+        if (tab && !(c.sources ?? []).includes(tab)) return false;
+        if (showFavoritesOnly && !favorites.has(c.id)) return false;
+        if (filters.category && !c.categories.includes(filters.category)) return false;
+        if (filters.year && c.year !== filters.year) return false;
+        if (filters.region && !c.regions.includes(filters.region)) return false;
+        if (filters.source && !(c.sources ?? []).includes(filters.source)) return false;
+        if (filters.tag && !(c.tags ?? []).includes(filters.tag)) return false;
+        if (debouncedQuery) {
+          const q = debouncedQuery.toLowerCase();
+          return (
+            c.title.toLowerCase().includes(q) ||
+            c.summary.toLowerCase().includes(q) ||
+            c.client.toLowerCase().includes(q) ||
+            c.agency.toLowerCase().includes(q) ||
+            (c.tags ?? []).some((t) => t.toLowerCase().includes(q))
+          );
+        }
+        return true;
+      }),
+    [effectiveCases, showTrashOnly, trashed, tab, showFavoritesOnly, favorites, filters, debouncedQuery],
+  );
+
+  const sorted = useMemo(
+    () =>
+      sort === "year"
+        ? [...filtered].sort((a, b) => parseInt(b.year) - parseInt(a.year))
+        : sort === "award"
+          ? [...filtered].sort(
+              awardContext
+                ? (a, b) => compareByAwardForCollection(a, b, awardContext.org, awardContext.year, awardContext.category)
+                : compareByAward,
+            )
+          : filtered,
+    [filtered, sort, awardContext],
+  );
+
+  // 段階描画（無限スクロール）: DOMに作るカードは先頭から visibleCount 件だけ。
+  // 絞り込み・並び替え・検索が変わるとkeyが変わり、先頭（INITIAL_VISIBLE）から描き直す。
+  // 3Dグラフ(items=sorted)と件数表示(sorted.length)は全件のまま。
+  const listKey = JSON.stringify([tab, filters, debouncedQuery, sort, showFavoritesOnly, showTrashOnly]);
+  const [visibleState, setVisibleState] = useState<VisibleState>({ key: "", count: INITIAL_VISIBLE });
+  const visibleCount = resolveVisibleCount(visibleState, listKey, sorted.length);
+  const hasMore = hasMoreToShow(visibleCount, sorted.length);
+  const sentinelRef = useRef<HTMLDivElement>(null);
 
   const { showGrid, showGraph, graphWrapRef, handleGraphReady } = useGraphViewTransition({
     items: effectiveCases,
@@ -163,6 +195,25 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
     gridRef,
     headerRef,
   });
+
+  // 番兵が画面の少し手前に入ったら追加描画。描画件数が増えるたびに再observeする
+  // （番兵がまだ画面近くなら続けて追加される）。グリッド非表示（3D表示中）は番兵が無い
+  useEffect(() => {
+    const el = sentinelRef.current;
+    if (!el || !hasMore) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((e) => e.isIntersecting)) return;
+        setVisibleState((prev) => ({
+          key: listKey,
+          count: nextVisibleCount(resolveVisibleCount(prev, listKey, sorted.length), sorted.length),
+        }));
+      },
+      { rootMargin: "800px 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [hasMore, visibleCount, listKey, sorted.length, showGrid]);
 
   // タブ（リサーチオーダー／Radar）— データに1件以上あるものだけ件数付きで表示（trashedは除外）
   const tabs = tabSources
@@ -333,7 +384,7 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
           {/* ── グリッド ── */}
           <div className="max-w-[1600px] mx-auto">
             <div ref={gridRef} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-px bg-gray-300">
-              {sorted.map((c) => (
+              {sorted.slice(0, visibleCount).map((c) => (
                 <CaseCard
                   key={c.id}
                   c={c}
@@ -346,6 +397,7 @@ export default function GalleryClient({ cases, categories, years, regions, sourc
                 />
               ))}
             </div>
+            {hasMore && <div ref={sentinelRef} aria-hidden="true" className="h-px" />}
           </div>
 
           {sorted.length === 0 && (

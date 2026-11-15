@@ -16,7 +16,8 @@ import zlib from "zlib";
 import { fileURLToPath } from "url";
 import { uploadPresigned } from "@vercel/blob/client";
 import {
-  PUBLIC_DATA_FILES,
+  ALL_PUBLIC_DATA_FILES,
+  sourceFileFor,
   buildPublicDataText,
   sha256Text,
   filesNeedingUpload,
@@ -66,10 +67,10 @@ function ideaLayoutsUploadable() {
 // libuv の assert（UV_HANDLE_CLOSING）により abort し、pre-push 全体を失敗させる。
 // 終了コードは return → process.exitCode で渡し、自然終了させる。
 async function main() {
-  const uploadNames = PUBLIC_DATA_FILES.filter((n) => n !== "idea-layouts.json" || ideaLayoutsUploadable());
+  const uploadNames = ALL_PUBLIC_DATA_FILES.filter((n) => n !== "idea-layouts.json" || ideaLayoutsUploadable());
   const texts = {};
   for (const name of uploadNames) {
-    texts[name] = buildPublicDataText(name, fs.readFileSync(path.join(DATA_DIR, name), "utf8"));
+    texts[name] = buildPublicDataText(name, fs.readFileSync(path.join(DATA_DIR, sourceFileFor(name)), "utf8"));
   }
   const hashes = Object.fromEntries(uploadNames.map((n) => [n, sha256Text(texts[n])]));
 
