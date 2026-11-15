@@ -114481,5 +114481,680 @@
       "Theme/Entertainment"
     ],
     "thumbnail": "/thumbnails/live-nation-luger-the-shuffle-ticket.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "vedantu-the-everything-book",
+    "title": "The Everything Book",
+    "summary": "弱い2G回線を束ねて「ハイパースポット」にする通信機器を絵本に仕込み、ネット環境の乏しいインドの農村の子どもにオンライン授業を届けたVedantuの施策。",
+    "client": "Vedantu",
+    "agency": "DENTSU CREATIVE, Gurgaon",
+    "categories": [
+      "Design"
+    ],
+    "award": "Cannes Lions 2023 Design Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Design",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.dentsu.com/in/en/our-news/vedantu-and-dentsu-creative-india-launch-the-everything-book",
+    "videoId": "",
+    "overview": "インドのEdTech企業VedantuとDENTSU CREATIVE Indiaによる施策。特許取得済みのネットワーク集約装置を、イラスト入りの本「The Everything Book」に内蔵した。本を開くと、通信環境の悪い地域でも子どもがオンライン授業や講座にアクセスできる。",
+    "background": "afaqsの記事によれば、インドの農村部の学校では、質の高い教育を受けられない子どもが8割に上るとされる（出典の記載なし）。Vedantuは「Stream School」という名で前年にSimsa村でパイロットを行い、2023年に規模を広げて「The Everything Book」として展開した。",
+    "execution": "本体は、複数の弱い2G回線を束ねて4G並みの速度を目指す携帯型の通信集約装置。これを本の中に収めた。本には4つの物語を収録し、アヴァディ、ラージプート、マドゥバニ、シッキム・タンカ、ピチワイ、チトラカティ、ケララ壁画、カラムカリといった地域の画風を一冊に集めている。本は子どもが日常的に手に取る物なので、通信機器そのものを意識させずに使える。",
+    "evaluationImpact": "カンヌライオンズ2023のDesign部門でBronzeを受賞した。通信環境の乏しい地域の教育格差に、本という身近な形で応えた点が評価された。",
+    "tags": [
+      "Theme/Education",
+      "Form/Product",
+      "Tech/Device"
+    ],
+    "thumbnail": "/thumbnails/vedantu-the-everything-book.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "nike-home",
+    "title": "Home",
+    "summary": "女子ユーロ2022で優勝したイングランド代表を、「HOME」の一語とSwooshを組み合わせて祝ったNikeの施策。",
+    "client": "Nike",
+    "agency": "WIEDEN+KENNEDY, London",
+    "categories": [
+      "Design",
+      "PR",
+      "Print & Publishing"
+    ],
+    "award": "Cannes Lions 2023 Design Lions Bronze / Cannes Lions 2023 PR Lions Gold / Cannes Lions 2023 Print & Publishing Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Design",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "PR",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Print & Publishing",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creativebrief.com/agency/wieden-kennedy-london/case-studies/nike-home",
+    "videoId": "",
+    "overview": "Wieden+Kennedy Londonが手がけたNikeのキャンペーン。2022年7月31日の決勝でイングランド女子代表（Lionesses）がドイツを破って初の欧州王者となった瞬間を、「HOME」という言葉とNikeのSwooshを組み合わせた表現で祝い、優勝を象徴する視覚にすることを狙った。",
+    "background": "イングランドでは、母国開催の大会での優勝が「Football's coming home」という言葉とともに長く語られてきた。女子代表が決勝で勝った瞬間に、この言葉の感情を最も端的に表す視覚をNikeのものにする、という発想に立つ。",
+    "execution": "「HOME」の語とSwooshを合わせたグラフィックを、優勝の場面を伝える象徴的な視覚として投入した。優勝後の報道やSNSで、ブランドの表現が優勝の記憶と結びつくよう設計されたPR施策である。Wieden+Kennedy Londonは2025年、女子代表の連覇を受けて同じ発想を「IIOME」として再展開している。",
+    "evaluationImpact": "カンヌライオンズ2023のPR部門でGold、Design部門とPrint & Publishing部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Sports",
+      "Form/SNS",
+      "Theme/Fashion"
+    ],
+    "thumbnail": "/thumbnails/nike-home.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "deliveroo-one-star-cookbook",
+    "title": "One Star Cookbook",
+    "summary": "配達で食べ物が潰れた・こぼれた・遅れたといった実際の低評価レビューを「レシピ」に変えた、DeliverooのUAEでのレシピ本。",
+    "client": "Deliveroo",
+    "agency": "‿ AND US, Dubai",
+    "categories": [
+      "Design"
+    ],
+    "award": "Cannes Lions 2023 Design Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Design",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "中東"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/one-star-cookbook",
+    "videoId": "",
+    "overview": "Deliveroo UAEがドバイの独立系代理店‿ AND USと2022年11月に出した「One Star Cookbook」。実際に届いた星1つのレビューを元にした36品を収録する。配達品質の向上を約束するメッセージを、失敗談のレシピ本で伝えた。",
+    "background": "marcommnewsによれば、Deliveroo UAEは配達品質と配達員の研修をサービスの約束として打ち出していた。マーケティング責任者のGeorge Schempers氏はこの本を「改善し続ける」という約束として位置づけている。",
+    "execution": "潰れた、割れた、ぶつけた、こぼれた、遅れたといった実際の配達事故ごとに、それぞれ背景のストーリー付きの料理を作り、36品にまとめた。写真、フードスタイリング、アートディレクション、組版まで高級料理書と同じ作り込みで制作した。本は販売せず、専用サイトで申し込んだ人に先着順で配り、フードブロガーやインフルエンサーにも送ってSNSで広めた。初版は3万部とされる。",
+    "evaluationImpact": "カンヌライオンズ2023のDesign部門でBronzeを受賞した。クレームという負の素材を、ブランドが自ら笑い飛ばす作り込まれた本にした点が話題になった。",
+    "tags": [
+      "Theme/Food",
+      "Form/Print",
+      "Theme/Retail"
+    ],
+    "thumbnail": "/thumbnails/deliveroo-one-star-cookbook.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "down-syndrome-internationa-l-kami",
+    "title": "Kami",
+    "summary": "ダウン症のある女性を表す世界初のバーチャルインフルエンサー「Kami」を、当事者の声を取り入れて作り、Instagramで活動させた施策。",
+    "client": "Down Syndrome Internationa L",
+    "agency": "FORSMAN & BODENFORS, Singapore",
+    "categories": [
+      "Design",
+      "Digital Craft",
+      "PR"
+    ],
+    "award": "Cannes Lions 2023 Design Lions Bronze / Cannes Lions 2023 Digital Craft Lions Bronze / Cannes Lions 2023 PR Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Design",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Digital Craft",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "PR",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.ds-int.org/introducing-kami",
+    "videoId": "",
+    "overview": "Down Syndrome International（DSi）が、Forsman & Bodenfors Singaporeとバーチャルモデル事務所The Diigitalsと組んで作った。Kamiは2022年5月に登場し、Instagram（@itskamisworld）で日常や興味、友人との様子を発信する。名前はKamilahの略で、「完璧」を意味するとDSiは説明している。",
+    "background": "SNSやバーチャルの世界で見かけるインフルエンサーやモデルには、ダウン症のある人がほとんど登場しない。DSiは、デジタル空間をもっと包摂的にし、ダウン症のある人にスポットを当てる存在としてKamiを作った。",
+    "execution": "DSiの国際ネットワークから、ダウン症のある100人以上の若い女性が、外見や人物像を決める過程に関わった。制作は秘密裏に進められた。Kamiは3Dモデルとして作られ、Instagramアカウントで日常の様子を投稿する。",
+    "evaluationImpact": "カンヌライオンズ2023でPR部門Silver、Design部門とDigital Craft部門でBronzeを受賞した。ダウン症のある人の表象を、デジタル空間に広げた試みとして評価された。",
+    "tags": [
+      "Theme/SocialGood",
+      "Form/SNS",
+      "Tech/3D"
+    ],
+    "thumbnail": "/thumbnails/down-syndrome-internationa-l-kami.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "women-helping-women-asia-undercover",
+    "title": "Undercover",
+    "summary": "怒鳴り声や侮辱の言葉をAIで検知し、自動で録音して証拠を残す、家庭内暴力の被害者向けの無料アプリ。",
+    "client": "Women Helping Women Asia",
+    "agency": "OGILVY, Hong Kong",
+    "categories": [
+      "Design",
+      "Digital Craft"
+    ],
+    "award": "Cannes Lions 2023 Design Lions Bronze / Cannes Lions 2023 Digital Craft Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Design",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Digital Craft",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.ogilvy.com/work/undercover",
+    "videoId": "",
+    "overview": "香港の非営利団体Women Helping Women Asiaの依頼で、Ogilvy Hong Kongが企画し、Verticurlが開発したアプリ「UNDERCOVER」。言葉による暴言を検知して録音し、被害の証拠を残す。Google Playで無料配布した。",
+    "background": "Verticurlの記事によれば、香港では毎日数百人の女性がジェンダーに基づく暴力や家庭内虐待の影響を受けている。身体的暴力の前に暴言があることが多いという研究がある一方、証拠がなく届け出されない事例が多い。",
+    "execution": "AIが英語と広東語の侮辱や罵倒の言葉を、通常の会話や雑音から区別して聞き分ける。90デシベルを超える暴言を検知すると、その後の場面を密かに録音する。深層学習モデルが状況が命に関わる段階へ進みそうかを推定し、悪化すると事前に登録した信頼できる連絡先へSMSで知らせる。録音は日時と位置情報つきで保存され、指紋や顔認証でないと開けない。画面は目立たないよう簡素にし、誤操作で録音が止まらない設計にした。約2か月かけて広東語と英語のモデルを調整し、20種類超の対象フレーズに対応した。地域団体や女性支援団体を通じて配布し、北京語、ベトナム語、韓国語、日本語など複数言語で使える。",
+    "evaluationImpact": "カンヌライオンズ2023のDesign部門とDigital Craft部門でBronzeを受賞した。D&AD 2023ではDigital Design（Health & Wellbeing）部門でGraphite Pencilを獲得している（Verticurl報道）。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Health",
+      "Tech/AI",
+      "Form/App"
+    ],
+    "thumbnail": "/thumbnails/women-helping-women-asia-undercover.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "united24-nova-ukraine-voices-of-children-boctok-sos-the-undeniable-street-view",
+    "title": "The Undeniable Street View",
+    "summary": "グーグルのストリートビュー風のサイトで、戦禍を受けたウクライナの都市の街並みを歩いて見られるようにし、被害の事実を否定できない形で示した施策。",
+    "client": "United24, Nova Ukraine, Voices Of Children, Boctok Sos",
+    "agency": "‿ AND US, Dubai",
+    "categories": [
+      "Design"
+    ],
+    "award": "Cannes Lions 2023 Design Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Design",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "中東"
+    ],
+    "link": "https://lbbonline.com/news/world-first-interactive-website-documents-the-true-destruction-of-ukraine",
+    "videoId": "",
+    "overview": "ドバイの‿ AND USが、UNITED24、Nova Ukraine、Voices of Children、Vostok SOSと組んで制作した。全面侵攻から1年となる2023年2月に公開した。",
+    "background": "ウクライナ侵攻から1年が経ち、現地の被害を伝える映像や写真に対し、否認や情報の風化が課題になっていた。記事によれば、現地の被害を第三者が自分で歩いて確かめられる形にすることが狙いだった。",
+    "execution": "ウクライナのGoogleストリートビュー撮影者ミコラ・オメルチェンコ氏らが撮影した100km超の素材を使い、ストリートビューのように街を移動できるサイトにした。報道ではキーウ周辺、イルピン、チェルニーヒウ、ハルキウなどの都市が紹介され、一部の場所では侵攻前と現在の映像を切り替えて比べられる。対象都市の数は報道により異なる。",
+    "evaluationImpact": "カンヌライオンズ2023のDesign部門でBronzeを受賞した。D&ADではDigital DesignでGraphite Pencilを受賞し、英国メディアなどが「戦禍の街を歩けるウェブサイト」として報じた。",
+    "tags": [
+      "Form/Website",
+      "Tech/Web",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/united24-nova-ukraine-voices-of-children-boctok-sos-the-undeniable-street-view.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "pantone-colors-of-love",
+    "title": "Colors Of Love",
+    "summary": "ワールドカップ・カタール大会で虹色の旗が禁じられる中、虹の各色をPantoneの色番号に置き換えて掲げられるようにした施策。",
+    "client": "Pantone",
+    "agency": "TBWA\\ Paris, Paris",
+    "categories": [
+      "Design",
+      "Direct"
+    ],
+    "award": "Cannes Lions 2023 Design Lions Bronze / Cannes Lions 2023 Direct Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Design",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Direct",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/colors-of-love",
+    "videoId": "",
+    "overview": "PantoneとフランスのNPO Stop HomophobieがTBWA\\Parisと2022年11月に展開した。禁止された虹の旗の色を、Pantoneのカラーコードで表した。",
+    "background": "2022年のサッカーW杯開催国カタールでは、当局が虹の旗の掲示を禁じていた。同性愛を罰する法のある国で、サポーターが旗を示しにくい状況があった。",
+    "execution": "虹の旗の各色を対応するPantoneコードに置き換えた旗を作り、旗とサッカーのシャツ、トートバッグを組み合わせたキットを、ジャーナリストやインフルエンサー、現地へ行くサポーターに配った。FIFAがUEFAの「OneLove」腕章を認めなかった後は、旗を基にした腕章を代表チームのキャプテンに提案した。パリ市長がStop Homophobie宛てに支持の書簡を送ったとも報じられた。",
+    "evaluationImpact": "カンヌライオンズ2023のDesign部門とDirect部門でBronzeを受賞した。フランスのCB NewsはDesign部門のBronzeとして取り上げた。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Sports",
+      "Form/Product"
+    ],
+    "thumbnail": "/thumbnails/pantone-colors-of-love.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "alivia-cancer-foundation-buy-my-cancer",
+    "title": "Buy My Cancer",
+    "summary": "患者の生きたがん細胞をアート作品のNFTにして販売し、公的に償還されない希少がんの治療費を集める仕組みをつくった施策。",
+    "client": "Alivia Cancer Foundation",
+    "agency": "OGILVY POLAND, Warsaw",
+    "categories": [
+      "Design",
+      "Media"
+    ],
+    "award": "Cannes Lions 2023 Design Lions Bronze / Cannes Lions 2023 Media Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Design",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.thedrum.com/creative-works/project/ogilvy-institute-oncology-buy-my-cancer",
+    "videoId": "",
+    "overview": "ポーランドのAlivia Cancer Foundation（がん患者支援財団）が、国立腫瘍研究所、アーティストのPaweł Swanski氏、Ogilvy Polandと2022年に始めた資金調達プロジェクト。患者の生きたがん細胞を使ったNFTを販売し、収益を治療費に充てる。なお、2023年の応募作の説明そのものは見つからなかったため、本文は2022年の施策の報道に基づく。",
+    "background": "ポーランドでは公的に償還されない高額な治療があり、Aliviaは希少がんの患者の治療費を支援している。報道によれば、新しい資金調達の方法としてNFTが選ばれた。",
+    "execution": "Swanski氏が実際の生きたがん細胞と自身の作風を組み合わせて作品を制作し、NFTとして売り出した。売上は患者の治療費に回され、第1弾に続く作品群も計画された。",
+    "evaluationImpact": "カンヌライオンズ2023のDesign部門とMedia部門でBronzeを受賞した。Clioでも健康分野でBronzeを受賞している。The Drumは「医療資金調達の新しい型」として紹介した。",
+    "tags": [
+      "Theme/Health",
+      "Theme/SocialGood",
+      "Theme/Art"
+    ],
+    "thumbnail": "/thumbnails/alivia-cancer-foundation-buy-my-cancer.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "relate-the-hornicultural-society",
+    "title": "The Hornicultural Society",
+    "summary": "野菜の種袋そっくりのコンドーム袋を園芸店やデジタル屋外広告で展開し、高齢者の性感染症予防を呼びかけた英国の施策。",
+    "client": "Relate",
+    "agency": "OGILVY, London",
+    "categories": [
+      "Design",
+      "Direct",
+      "Health & Wellness",
+      "Industry Craft"
+    ],
+    "award": "Cannes Lions 2023 Design Lions Bronze / Cannes Lions 2023 Direct Lions Bronze / Cannes Lions 2023 Health & Wellness Lions Silver / Cannes Lions 2023 Industry Craft Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Design",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Direct",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Health & Wellness",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Industry Craft",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.ogilvy.com/uk/work/hornicultural-society",
+    "videoId": "",
+    "overview": "英国の関係性支援チャリティRelateが、Ogilvy UKと展開した。「Let's talk the joy of later life sex」シリーズの第3弾で、園芸を意味する「horticultural」をもじった「Hornicultural」の名で出した。",
+    "background": "英国の公衆衛生機関の調査で、65歳以上の性感染症が過去最高水準にあるとされた。高齢者の性は語られにくく、この層が自分ごととして受け取れる入口を、趣味の園芸に求めた。",
+    "execution": "ナス、プラム、ズッキーニ、玉ねぎ、アボカドの5種類の野菜を描き、王立園芸協会の種袋のように見せたコンドームのパッケージを作り、全国ガーデニングウィークに合わせて園芸店Finchley Nurseriesなどで展開した。コンドームはHANX製の限定品。Clear ChannelやBauer Media Outdoorのデジタル屋外広告にも出し、同じデザインをRelateのサイトでも提供した。",
+    "evaluationImpact": "The SunやGood Morning Britainなど英国の全国メディアに取り上げられた。カンヌライオンズ2023でDesign部門Bronze、Direct部門Bronze、Health & Wellness部門Silver、Industry Craft部門Silverを受賞したほか、DMA Awardsでも受賞した。",
+    "tags": [
+      "Theme/Health",
+      "Theme/SocialGood",
+      "Form/OOH",
+      "Form/Product"
+    ],
+    "thumbnail": "/thumbnails/relate-the-hornicultural-society.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "inverroche-bee-bee",
+    "title": "Bee & Bee",
+    "summary": "ジンの限定パッケージの木箱を、そのまま野生のハナバチの巣箱（ビーホテル）として使えるようにした南アフリカの施策。",
+    "client": "Inverroche",
+    "agency": "GRID WORLDWIDE, Johannesburg",
+    "categories": [
+      "Design"
+    ],
+    "award": "Cannes Lions 2023 Design Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Design",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "アフリカ"
+    ],
+    "link": "https://www.bizcommunity.com/Article/196/162/233200.html",
+    "videoId": "",
+    "overview": "南アフリカのクラフトジンInverrocheが、Grid Worldwide（ヨハネスブルグ）と、ブランドの「By Nature」キャンペーンの一環として出した「Bee&Bee」。Classic Ginの限定版で、空になった箱を巣箱に転用する。",
+    "background": "記事によれば、ハチの約9割は単独で巣を作る種で、蜂蜜は作らず、刺すこともない。巣を作る場所が減っており、Inverrocheのジンに使うフィナボス（fynbos）の生態系でも重要な受粉者だとされる。",
+    "execution": "生物多様性研究者のChevonne Reynolds氏（Jozi Bee Hotel Project）と、家具会社Houtlanderの協力で制作した。箱は侵略的外来樹種の木材で作り、自然の巣穴を模して大きさの違う穴を開けた。オンラインストアで限定販売した。",
+    "evaluationImpact": "カンヌライオンズ2023のDesign部門でBronzeを受賞した。One ShowやADC Awardsにも入選している。",
+    "tags": [
+      "Theme/Sustainability",
+      "Form/Product",
+      "Theme/Food"
+    ],
+    "thumbnail": "/thumbnails/inverroche-bee-bee.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "trucss",
+    "title": "Trucss",
+    "summary": "トランス女性の腎臓疾患リスクに光を当てるため、専用ランジェリーブランド「Trucss」を保守的なテレビ局のCMで立ち上げ、無償配布を求める働きかけまで行ったブラジルの施策。",
+    "client": "Trucss",
+    "agency": "AFRICA CREATIVE DDB, Sao Paulo",
+    "categories": [
+      "Design",
+      "Direct"
+    ],
+    "award": "Cannes Lions 2023 Design Lions Bronze / Cannes Lions 2023 Direct Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Design",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Direct",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/trucss",
+    "videoId": "",
+    "overview": "Africa Creative DDB（サンパウロ）が、トランス女性向けに設計された下着ブランドTrucssのために実施した施策。ブランドを「ファッションとしてのランジェリー」として見せつつ、トランス女性が性器を隠すことで生じる健康被害を可視化した。",
+    "background": "ブラジルはトランス女性の殺害率が高い国の一つとされる。路上での暴力を避けるため、粘着テープや紐、強力接着剤などで性器を隠す人が多く、その結果、排尿が難しくなり腎臓関連の疾患につながると指摘されている（Ads of Brands掲載の紹介記事）。この問題はほとんど知られていなかった。",
+    "execution": "2023年5月にブラジルの保守的なテレビ局Record TVでTrucssのCMを放映し、テープや紐、接着剤で身体を隠す実態を示した上で、専用の下着を安全な代替として提示した。泌尿器科医のThiago Caetano医師が「下着を着けるほうが健康的」と支持し、アレルギーや皮膚の傷、尿路感染のリスクが減るとコメントしている。共同創業者でCEOのSilvana Bentoは署名活動を呼びかけ、この下着を統一保健医療システム（SUS）で無償配布するよう求める提案が上院の市民参加ページに提出された。",
+    "evaluationImpact": "上院の市民提案（Sugestão n° 13/2023）は、2023年6月下旬時点で約17,300署名を集めた（法案化に必要なのは20,000署名。em.com.br報道）。保守的なチャンネルでのCM放映は大きな話題を呼んだ。カンヌライオンズ2023のDirect部門でSilver、Design部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Health",
+      "Theme/SocialGood",
+      "Theme/Fashion",
+      "Form/Film"
+    ],
+    "thumbnail": "/thumbnails/trucss.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "ab-inbev-sa-bread-of-the-nation",
+    "title": "Bread Of The Nation",
+    "summary": "ビール醸造で出る麦芽かすを小麦粉に加工してパンにし、食料支援団体を通じて困窮する人々に届けた、Castle Lagerの南アフリカでの取り組み。",
+    "client": "Ab Inbev Sa",
+    "agency": "OGILVY SOUTH AFRICA, Cape Town",
+    "categories": [
+      "Outdoor"
+    ],
+    "award": "Cannes Lions 2023 Outdoor Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Outdoor",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "アフリカ"
+    ],
+    "link": "https://www.engineeringnews.co.za/article/castle-lager-feeds-communities-with-new-bread-of-the-nation-campaign--2023-03-08",
+    "videoId": "",
+    "overview": "AB InBev傘下のCastle Lagerが、Ogilvy South Africaと進めた「Bread of the Nation」。醸造の副産物である麦芽かす（spent grain）を食品に変え、地域の食料支援につなげた。カンヌライオンズ2023のOutdoor部門でGoldを受賞した。",
+    "background": "Castle Lagerは南アフリカを代表するビールブランドで、醸造のたびに大量の麦芽かすが出る。Ogilvy South AfricaのCEOは、この企画が完成まで4年かかったと語っている。",
+    "execution": "2023年3月8日にヨハネスブルグ南部のWalkervilleで開始。良質な麦芽かすをUber Nutritionが粉に挽き、ハウテン州Kya Sandsのパン工房Health Foodが焼成する。配布は食料救済NGOのSA Harvestが担い、Castle Lagerは3年間続けて実現可能性を検証する計画とされた（Engineering News報道）。同作品はカンヌのDan Wieden Titanium部門でもショートリストに入った。",
+    "evaluationImpact": "カンヌライオンズ2023のOutdoor部門（Corporate Purpose and Social Responsibility）でGoldを受賞し、Ogilvy South Africaは同年の南アフリカで最多受賞の代理店となった。のちに2025年のWARC Awards Middle East & AfricaでもGoldを受けた。",
+    "tags": [
+      "Theme/Food",
+      "Theme/SocialGood",
+      "Theme/Sustainability",
+      "Form/Product"
+    ],
+    "thumbnail": "/thumbnails/ab-inbev-sa-bread-of-the-nation.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "university-zumbi-dos-palmares-ooh-1",
+    "title": "Ooh - 1",
+    "summary": "小売店で黒人客が万引きを疑われ、レシートの提示を求められる差別を、実際のレシートと店のレシートプリンターを使って可視化したブラジルのキャンペーン。",
+    "client": "University Zumbi Dos Palmares",
+    "agency": "GREY, Sao Paulo",
+    "categories": [
+      "Outdoor"
+    ],
+    "award": "Cannes Lions 2023 Outdoor Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Outdoor",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://marcaspelomundo.com.br/anunciantes/universidade-zumbi-dos-palmares-cria-acao-para-combater-a-discriminacao-racial-no-comercio/",
+    "videoId": "",
+    "overview": "ブラジルのZumbi dos Palmares大学が、Grey Brazilと実施した反人種差別プログラム「Racismo Zero」の施策「Receipts to Keep (Fighting)」（ポルトガル語名 Notas do Respeito）。街頭広告と、店舗向けの無料ソフトウェアの2本立てで構成する。",
+    "background": "小売店では、黒人客が警備員に付きまとわれたり、万引きの濡れ衣を着せられたりして、買った商品の持ち主であることをレシートで証明させられる例がある。大学は、この日常的な差別を可視化し、企業に反人種差別の取り組みへの参加を促すことを狙った（2023年4月の発表）。",
+    "execution": "前半は、サンパウロ、リオデジャネイロ、ブラジリアのストリートファニチャー広告で、被害者から集めた実際のレシートを掲示し、企業にRacismo Zeroへの参加を呼びかけた。後半は、店のレシートプリンター用の無料ソフトウェアで、黒人の抵抗の象徴である握りこぶし型のQRコードをレシートに印字する。QRコードは通報・法的支援・心理的支援の窓口サイトにつながり、レシートには黒人市民が受けた差別の実話も載る。企業が差別事例をなくせば「反人種差別企業」の認証が得られる。ほかにSNS、屋外広告、Landia・Malala Filmes制作の映像（監督Viviane Santos）も展開した。",
+    "evaluationImpact": "カンヌライオンズ2023のOutdoor部門（Consumer Services / B2B）でSilverを受賞した（同作品はDirect部門でもBronzeを獲得）。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Retail",
+      "Form/OOH",
+      "Form/Film"
+    ],
+    "thumbnail": "/thumbnails/university-zumbi-dos-palmares-ooh-1.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "cheetos-cheetle-in-cheadle",
+    "title": "Cheetle In Cheadle",
+    "summary": "スナック菓子を食べると指に付くオレンジ色の粉を「Cheetle」と名付け、同音の地名を持つアルバータ州の集落Cheadleに、その粉をまとった巨大な手の像を建てたCheetosの施策。",
+    "client": "Cheetos",
+    "agency": "CITIZEN RELATIONS, Toronto",
+    "categories": [
+      "Outdoor"
+    ],
+    "award": "Cannes Lions 2023 Outdoor Lions Silver / Cannes Lions 2023 Outdoor Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Outdoor",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Outdoor",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://canadiangrocer.com/cheetos-unveils-statue-alberta-paying-tribute-orange-cheetle-dust",
+    "videoId": "",
+    "overview": "PepsiCo Foods CanadaのCheetosがCitizen Relations（トロント）と実施した「Cheetle in Cheadle」。Cheetosの粉を表す造語「Cheetle」を、地名の響きが同じCheadleで記念碑にして知らせた。",
+    "background": "Cheetosを食べた後に指に残る粉は誰もが知っているが、名前がなかった。ブランドはこの粉に「Cheetle」という名前を与え、「Cheetosの体験の一部」として公式に認める形にした。Cheadleはアルバータ州Wheatland Countyの集落で、2021年国勢調査の人口は83人。",
+    "execution": "2022年10月、Cheadleの400 Railway Aveに、Cheetosの粉で汚れた指でCheetos Puffsを持つ高さ約17フィート（約5m）の手の像を設置した。展示は11月4日までの期間限定で、PepsiCo Foods Canadaのシニアマーケティングディレクターが「Cheetleを大きなスケールで祝いたかった」と発表している。CTV News、CNN、Daily Hiveなど国内外のメディアが取り上げた。",
+    "evaluationImpact": "カンヌライオンズ2023のOutdoor部門でSilverとBronzeを受賞した（Provoke Mediaは、PR会社Citizen Relationsの2つのLions受賞として報じた）。",
+    "tags": [
+      "Theme/Food",
+      "Form/OOH",
+      "Form/Installation",
+      "Form/Stunt"
+    ],
+    "thumbnail": "/thumbnails/cheetos-cheetle-in-cheadle.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "furphy-what-the-truck",
+    "title": "Furphy, What The Truck?!",
+    "summary": "シドニー中心部のビルの隙間に、トラックが縦に挟まったように見える巨大なインスタレーションを設置し、新製品のビールの発売を話題にしたFurphyの施策。",
+    "client": "Furphy",
+    "agency": "THINKERBELL, Melbourne",
+    "categories": [
+      "Outdoor"
+    ],
+    "award": "Cannes Lions 2023 Outdoor Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Outdoor",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://mediaweek.com.au/thinkerbell-brings-new-furphy-installation-to-life",
+    "videoId": "",
+    "overview": "オーストラリアのビールブランドFurphyが、Thinkerbell（メルボルン）と実施した「What The Truck?!」。新製品Furphy Crisp Lagerの発売に合わせ、ありえない状況を街頭に出現させた。",
+    "background": "Furphy Crisp Lagerの発売にあたり、広告であることを隠したように見える驚きの出来事で、街とSNSの話題を作ることを狙った。Thinkerbellのクリエイティブは、パブでも街でも会話が起きる「what the truck?（なんだこのトラック）」の瞬間を目指したと説明している。",
+    "execution": "2022年4月下旬、シドニーCBDのLittle Hunter Streetの路地で、Furphyのトラックが2棟のビルの間に縦に挟まった状態のインスタレーションが現れた。インスタレーション・アーティストのJames Diveと制作会社Scoundrel Projectsが「ありえないトラック」の設置を実現した。OOH、ラジオ、SNS、デジタルでも展開し、続くBWS店頭での6本パック配布プロモーションにつなげた。事情の分からない通行人の反応や、広告であることを疑う声（Mumbrellaなど）もSNSで広がった。",
+    "evaluationImpact": "シドニーのニュースサイトやSNSで広く取り上げられ、オーストラリアの業界メディアが多数報じた。カンヌライオンズ2023のOutdoor部門でSilverを受賞し、D&AD、One Showでも評価を受けた（One ShowはBronze Pencil）。",
+    "tags": [
+      "Theme/Food",
+      "Form/OOH",
+      "Form/Installation",
+      "Form/Stunt"
+    ],
+    "thumbnail": "/thumbnails/furphy-what-the-truck.jpg"
   }
 ]
