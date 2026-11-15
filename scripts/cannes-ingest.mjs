@@ -169,7 +169,9 @@ export async function ingest(opts) {
   const usedIds = new Set();
   const newThumbs = []; // 今回新規に作ったサムネファイル（ロールバック用）
   const skip = (key, reason) => { result.skipped.push({ key, reason }); log(`SKIP ${key}: ${reason}`); };
-  const cleanThumbs = () => { for (const f of newThumbs) { try { fs.unlinkSync(f); } catch {} } newThumbs.length = 0; };
+  // 縮小版（public/thumbnails-sm/<id>.webp。保存経路 saveThumbnail が同時に作る）のパス
+  const smOf = (jpg) => path.join(thumbDir, "../thumbnails-sm", path.basename(jpg).replace(/\.jpe?g$/i, ".webp"));
+  const cleanThumbs = () => { for (const f of newThumbs) { for (const x of [f, smOf(f)]) { try { fs.unlinkSync(x); } catch {} } } newThumbs.length = 0; };
 
   if (!dryRun && (!saveThumb || !saveFromPage)) {
     const m = await import("./save-thumbnail.mjs");
@@ -233,7 +235,7 @@ export async function ingest(opts) {
       if (idTaken || findDuplicate([...fresh, ...finalEntries], year, work, flat)) {
         skip(p.key, "ロック取得後の再読込で id 衝突/重複");
         result.added = result.added.filter((i) => i !== p.entry.id);
-        if (newThumbs.includes(p.thumbFile)) { try { fs.unlinkSync(p.thumbFile); } catch {} }
+        if (newThumbs.includes(p.thumbFile)) { for (const x of [p.thumbFile, smOf(p.thumbFile)]) { try { fs.unlinkSync(x); } catch {} } }
         continue;
       }
       finalEntries.push(p.entry);
@@ -247,7 +249,9 @@ export async function ingest(opts) {
     if (!audit.ok) throw new Error(`監査失敗: ${audit.failed.join(", ")}`);
 
     const rel = (p) => path.relative(root, p).split(path.sep).join("/");
-    const paths = [rel(casesPath), ...finalEntries.map((e) => rel(path.join(thumbDir, `${e.id}.jpg`)))];
+    // 縮小版は存在するものだけ含める（存在しない pathspec は git add が失敗するため）
+    const smPaths = finalEntries.map((e) => smOf(path.join(thumbDir, `${e.id}.jpg`))).filter((f) => fs.existsSync(f)).map(rel);
+    const paths = [rel(casesPath), ...finalEntries.map((e) => rel(path.join(thumbDir, `${e.id}.jpg`))), ...smPaths];
     await gitCommit(paths, `Cannes ${year}: ${finalEntries.length}件を取り込み (cannes-ingest)\n\n${finalEntries.map((e) => `- ${e.id}`).join("\n")}`);
     log(`OK: ${finalEntries.length}件を commit（push はしない）`);
     return result;

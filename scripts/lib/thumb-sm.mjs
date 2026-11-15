@@ -4,6 +4,9 @@ import fs from "fs";
 import path from "path";
 import sharp from "sharp";
 
+// Windows では sharp がファイルを開いたまま保持して上書き rename が EPERM になるため、ファイルキャッシュを切る
+sharp.cache(false);
+
 export const SM_WIDTH = 480;
 export const SM_WEBP_QUALITY = 70;
 
@@ -21,13 +24,47 @@ export function needsRebuild({ srcMtimeMs, smMtimeMs, force = false, missingOnly
   return srcMtimeMs > smMtimeMs;
 }
 
-/** 1枚生成。 */
+/** Windows の一時的な EPERM/EBUSY に備え数回リトライする rename。 */
+function renameWithRetry(from, to, tries = 5) {
+  for (let i = 0; ; i++) {
+    try { return fs.renameSync(from, to); } catch (e) {
+      if (i >= tries - 1 || !['EPERM', 'EBUSY', 'EACCES'].includes(e.code)) throw e;
+      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 50 * (i + 1));
+    }
+  }
+}
+
+/** 1枚生成。一時ファイルに書いてから rename（書き込み途中の壊れたファイルを残さない）。 */
 export async function buildSmThumb(srcPath, outPath) {
-  await sharp(srcPath)
-    .rotate()
-    .resize({ width: SM_WIDTH, withoutEnlargement: true })
-    .webp({ quality: SM_WEBP_QUALITY })
-    .toFile(outPath);
+  const tmp = `${outPath}.${process.pid}.${Date.now()}.tmp.webp`;
+  try {
+    await sharp(srcPath)
+      .rotate()
+      .resize({ width: SM_WIDTH, withoutEnlargement: true })
+      .webp({ quality: SM_WEBP_QUALITY })
+      .toFile(tmp);
+    renameWithRetry(tmp, outPath);
+  } catch (e) {
+    try { fs.unlinkSync(tmp); } catch {}
+    throw e;
+  }
+}
+
+/**
+ * 元画像を保存・上書きした経路から呼ぶ。縮小版を作り直す（成否は戻り値。例外は外に出さない）。
+ * 元画像の保存処理の成否には影響させないこと。
+ */
+export async function ensureSmThumb(srcPath, outDir) {
+  try {
+    const outName = smFileName(path.basename(srcPath));
+    if (!outName) return false;
+    fs.mkdirSync(outDir, { recursive: true });
+    await buildSmThumb(srcPath, path.join(outDir, outName));
+    return true;
+  } catch (e) {
+    console.warn(`[thumbs-sm] WARN 縮小版の生成に失敗（元画像へフォールバック）: ${path.basename(srcPath)}: ${e.message}`);
+    return false;
+  }
 }
 
 /** srcDir 直下の jpg を走査し、必要な分だけ outDir に生成。 */

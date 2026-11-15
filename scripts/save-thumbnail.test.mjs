@@ -29,6 +29,8 @@ import { MIN_THUMB_BYTES, hashThumbnailBuffer } from "./lib/thumbnail-constraint
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const THUMBNAILS_DIR = path.join(__dirname, "../public/thumbnails");
 const thumbnailPath = (id) => path.join(THUMBNAILS_DIR, `${id}.jpg`);
+// 元画像と、保存と同時に作られる縮小版(public/thumbnails-sm)の両方を消す
+const rmThumbnail = (id) => Promise.all([fs.rm(thumbnailPath(id), { force: true }), fs.rm(path.join(THUMBNAILS_DIR, "../thumbnails-sm", `${id}.webp`), { force: true })]);
 
 /** ノイズ画素からJPEGバッファを生成する（フラットカラーだと圧縮でサイズ予測がぶれるため）。 */
 async function makeNoiseJpeg(width, height) {
@@ -227,7 +229,7 @@ test("saveThumbnailFromPage: og:image取得に成功した場合はimgタグフ�
   });
 
   const id = `test-flow-og-success-${Date.now()}`;
-  t.after(() => fs.rm(thumbnailPath(id), { force: true }));
+  t.after(() => rmThumbnail(id));
 
   const result = await saveThumbnailFromPage(id, "https://example.com/article");
   assert.equal(result, `/thumbnails/${id}.jpg`);
@@ -258,7 +260,7 @@ test("saveThumbnailFromPage: og:imageが無い場合、候補1件目が小さす
   });
 
   const id = `test-flow-second-candidate-${Date.now()}`;
-  t.after(() => fs.rm(thumbnailPath(id), { force: true }));
+  t.after(() => rmThumbnail(id));
 
   const result = await saveThumbnailFromPage(id, "https://example.com/article");
   assert.equal(result, `/thumbnails/${id}.jpg`);
@@ -289,7 +291,7 @@ test("saveThumbnailFromPage: 候補がデコード不能（画像ではないバ
   });
 
   const id = `test-flow-undecodable-${Date.now()}`;
-  t.after(() => fs.rm(thumbnailPath(id), { force: true }));
+  t.after(() => rmThumbnail(id));
 
   const result = await saveThumbnailFromPage(id, "https://example.com/article");
   assert.equal(result, `/thumbnails/${id}.jpg`);
@@ -315,7 +317,7 @@ test("saveThumbnailFromPage: [img-fallback] OK/NG ログが期待通り出力さ
 
   const logSpy = t.mock.method(console, "log");
   const id = `test-flow-log-${Date.now()}`;
-  t.after(() => fs.rm(thumbnailPath(id), { force: true }));
+  t.after(() => rmThumbnail(id));
 
   await saveThumbnailFromPage(id, "https://example.com/article");
 
@@ -369,7 +371,7 @@ test("saveThumbnail: 正規化前は閾値を超えていても正規化後に�
   stubDeps(t, { fetchImage: async () => flatJpeg });
 
   const id = `test-normalize-shrink-${Date.now()}`;
-  t.after(() => fs.rm(thumbnailPath(id), { force: true }));
+  t.after(() => rmThumbnail(id));
 
   const result = await saveThumbnail(id, "https://example.com/flat.jpg");
   assert.equal(result, null, "正規化後に閾値未満へ縮小した画像はnullを返すべき");
@@ -385,7 +387,7 @@ test("saveThumbnail: 正規化後も閾値以上の画像は保存されロー�
   stubDeps(t, { fetchImage: async () => validJpeg });
 
   const id = `test-normalize-ok-${Date.now()}`;
-  t.after(() => fs.rm(thumbnailPath(id), { force: true }));
+  t.after(() => rmThumbnail(id));
 
   const result = await saveThumbnail(id, "https://example.com/ok.jpg");
   assert.equal(result, `/thumbnails/${id}.jpg`);
@@ -430,7 +432,7 @@ test("saveThumbnail: 既存サムネイルと同一バイト列（正規化後�
   stubDeps(t, { fetchImage: async () => raw });
 
   const id = `test-dup-existing-${Date.now()}`;
-  t.after(() => fs.rm(thumbnailPath(id), { force: true }));
+  t.after(() => rmThumbnail(id));
 
   const result = await saveThumbnail(id, "https://example.com/dup-existing.jpg");
   assert.equal(result, null, "既存サムネイルと同一バイト列の画像はnullを返すべき");
@@ -450,7 +452,7 @@ test("saveThumbnail: 同一プロセス内で1件目の保存後、2件目が同
 
   const id1 = `test-dup-inprocess-1-${Date.now()}`;
   const id2 = `test-dup-inprocess-2-${Date.now()}`;
-  t.after(() => Promise.all([fs.rm(thumbnailPath(id1), { force: true }), fs.rm(thumbnailPath(id2), { force: true })]));
+  t.after(() => Promise.all([rmThumbnail(id1), rmThumbnail(id2)]));
 
   const result1 = await saveThumbnail(id1, "https://example.com/shared-1.jpg");
   assert.equal(result1, `/thumbnails/${id1}.jpg`, "1件目は保存成功するはず");
@@ -481,7 +483,7 @@ test("saveThumbnail: 重複しない画像は従来通り保存される（回�
 
   const idA = `test-nodup-a-${Date.now()}`;
   const idB = `test-nodup-b-${Date.now()}`;
-  t.after(() => Promise.all([fs.rm(thumbnailPath(idA), { force: true }), fs.rm(thumbnailPath(idB), { force: true })]));
+  t.after(() => Promise.all([rmThumbnail(idA), rmThumbnail(idB)]));
 
   const resultA = await saveThumbnail(idA, "https://example.com/unique-a.jpg");
   const resultB = await saveThumbnail(idB, "https://example.com/unique-b.jpg");
@@ -500,7 +502,7 @@ test("hashThumbnailBuffer: saveThumbnailが書き込む正規化後バッファ�
   stubDeps(t, { fetchImage: async () => raw });
 
   const id = `test-hash-alg-${Date.now()}`;
-  t.after(() => fs.rm(thumbnailPath(id), { force: true }));
+  t.after(() => rmThumbnail(id));
 
   const result = await saveThumbnail(id, "https://example.com/hash-check.jpg");
   assert.equal(result, `/thumbnails/${id}.jpg`);

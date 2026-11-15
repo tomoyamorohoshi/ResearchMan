@@ -24,6 +24,7 @@ import path from "path";
 import { spawnSync, execFileSync } from "child_process";
 import { fileURLToPath } from "url";
 import { normalizeThumbnailBuffer } from "./lib/normalize-thumbnail.mjs";
+import { ensureSmThumb } from "./lib/thumb-sm.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CASES_PATH = path.join(__dirname, "../data/cases.json");
@@ -214,6 +215,7 @@ async function save(id, buf) {
   await fs.mkdir(THUMBS_DIR, { recursive: true });
   // 直接配信(images.unoptimized)前提の正規化: 幅上限・JPEG化・メタデータ除去
   await fs.writeFile(path.join(THUMBS_DIR, `${id}.jpg`), await normalizeThumbnailBuffer(buf));
+  await ensureSmThumb(path.join(THUMBS_DIR, `${id}.jpg`), path.join(THUMBS_DIR, "../thumbnails-sm")); // 一覧用縮小版（失敗しても例外なし）
 }
 
 function hasGoodThumb(id) {

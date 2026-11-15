@@ -23,6 +23,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
 import { normalizeThumbnailBuffer, THUMB_MAX_WIDTH } from "./lib/normalize-thumbnail.mjs";
+import { ensureSmThumb } from "./lib/thumb-sm.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const THUMBS_DIR = path.join(__dirname, "../public/thumbnails");
@@ -64,7 +65,11 @@ for (const f of files) {
   console.log(
     `${DRY_RUN ? "[dry] " : ""}${f}: ${(st.size / 1024).toFixed(0)}KB(${width}px) → ${(out.length / 1024).toFixed(0)}KB`
   );
-  if (!DRY_RUN) await fs.writeFile(p, out);
+  if (!DRY_RUN) {
+    await fs.writeFile(p, out);
+    // 直下の jpg だけ縮小版も作り直す（tech/・exhibition/ 配下は縮小版の対象外）
+    if (!/[\\/]/.test(f)) await ensureSmThumb(p, path.join(THUMBS_DIR, "../thumbnails-sm"));
+  }
 }
 
 console.log(

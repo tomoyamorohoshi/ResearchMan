@@ -10,6 +10,7 @@ import { fileURLToPath } from "url";
 import { execFile } from "child_process";
 import { promisify } from "util";
 import sharp from "sharp";
+import { ensureSmThumb } from "./lib/thumb-sm.mjs";
 import {
   MIN_THUMB_BYTES,
   normalizeAndEnforceMinBytes,
@@ -19,6 +20,7 @@ import {
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const THUMBNAILS_DIR = path.join(__dirname, "../public/thumbnails");
+const THUMBNAILS_SM_DIR = path.join(__dirname, "../public/thumbnails-sm"); // 一覧用縮小版（保存と同時に作る）
 
 // ── サムネイル重複ガード（2026-08-07 サムネイル重複ロールバック障害の再発防止） ──
 // 同一プロセス内の複数回のsaveThumbnail呼び出しをまたいで状態を保持する
@@ -296,6 +298,7 @@ export async function saveThumbnail(id, sourceUrl, minBytes = MIN_THUMB_BYTES, r
 
   await fs.writeFile(localPath, normalized);
   guard.remember(hash);
+  await ensureSmThumb(localPath, THUMBNAILS_SM_DIR); // 失敗しても保存は成功扱い（例外を出さない）
   return `/thumbnails/${id}.jpg`;
 }
 

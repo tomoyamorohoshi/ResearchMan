@@ -230,3 +230,35 @@ test("ロックが取れない: lockBusy=true、CLI の終了コードは 75。�
   assert.equal(cliExitCode({ exitCode: 1 }), 1);
   assert.equal(cliExitCode({ exitCode: 0 }), 0);
 });
+
+// ── 縮小版サムネ(public/thumbnails-sm)の扱い ──
+const withSm = (t) => async (id, url) => {
+  t.calls.saveThumb.push([id, url]);
+  fs.writeFileSync(path.join(t.thumbDir, `${id}.jpg`), "x");
+  const sm = path.join(t.thumbDir, "../thumbnails-sm");
+  fs.mkdirSync(sm, { recursive: true });
+  fs.writeFileSync(path.join(sm, `${id}.webp`), "w");
+  return `/thumbnails/${id}.jpg`;
+};
+
+test("縮小版サムネがあれば commit 対象パスに含める", async () => {
+  const t = setup([]);
+  const r = await ingest({ ...t.base, saveThumb: withSm(t), drafts: [mkItem("painvisible|aritium")] });
+  assert.equal(r.exitCode, 0);
+  assert.ok(t.calls.commits[0].paths.some((p) => p.endsWith("thumbnails-sm/aritium-painvisible.webp")), JSON.stringify(t.calls.commits[0].paths));
+});
+
+test("縮小版サムネが無ければ commit 対象パスに含めない（存在しない pathspec で git が失敗しない）", async () => {
+  const t = setup([]);
+  const r = await ingest({ ...t.base, drafts: [mkItem("painvisible|aritium")] });
+  assert.equal(r.exitCode, 0);
+  assert.ok(!t.calls.commits[0].paths.some((p) => p.includes("thumbnails-sm")));
+});
+
+test("監査失敗でロールバックするとき、新規の縮小版サムネも削除する", async () => {
+  const t = setup([]);
+  const r = await ingest({ ...t.base, saveThumb: withSm(t), runAudits: async () => ({ ok: false, failed: ["x"] }), drafts: [mkItem("painvisible|aritium")] });
+  assert.equal(r.exitCode, 1);
+  assert.equal(fs.existsSync(path.join(t.thumbDir, "../thumbnails-sm/aritium-painvisible.webp")), false);
+  assert.equal(fs.existsSync(path.join(t.thumbDir, "aritium-painvisible.jpg")), false);
+});
