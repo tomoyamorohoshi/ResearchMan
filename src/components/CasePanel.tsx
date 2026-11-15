@@ -3,18 +3,14 @@
 // TOPページ3Dノードグラフ用の右側詳細パネル（旧CaseModalの置き換え）。
 // 画面分割で左のグラフを操作し続けられるよう、モーダルではなく非モーダルの
 // complementaryリージョンとして実装する（フォーカストラップ・body scroll lockはしない）。
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import type { Case } from "@/lib/cases";
 import { getAwardLevel } from "@/lib/awardLevel";
 import { tagLabel } from "@/lib/tags";
-import { fetchCaseDetail } from "@/lib/caseDetail";
 
 type Props = { c: Case; onClose: () => void };
-
-// 長文（概要など）は一覧のインデックスに含まれないため、パネルを開いた事例の分だけ事例別JSONから取得する
-type DetailState = { id: string; status: "ok" | "error"; overview: string };
 
 export default function CasePanel({ c, onClose }: Props) {
   const panelRef = useRef<HTMLDivElement>(null);
@@ -35,28 +31,6 @@ export default function CasePanel({ c, onClose }: Props) {
     closeButtonRef.current?.focus();
     if (panelRef.current) panelRef.current.scrollTop = 0;
   }, [c]);
-
-  // 詳細取得。結果は取得対象のidとセットで持ち、id不一致の間は「読み込み中」として扱う
-  // （effect内で同期setStateしない）。awardsページ等で既に長文を持つ事例はfetchしない
-  const hasInlineOverview = typeof c.overview === "string" && c.overview !== "";
-  const [detail, setDetail] = useState<DetailState | null>(null);
-  useEffect(() => {
-    if (hasInlineOverview) return;
-    let cancelled = false;
-    fetchCaseDetail(c.id)
-      .then((d) => {
-        if (!cancelled) setDetail({ id: c.id, status: "ok", overview: d.overview ?? "" });
-      })
-      .catch((err) => {
-        console.error("Failed to load case detail", c.id, err);
-        if (!cancelled) setDetail({ id: c.id, status: "error", overview: "" });
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [c.id, hasInlineOverview]);
-  const detailForThis = detail && detail.id === c.id ? detail : null;
-  const overview = hasInlineOverview ? c.overview : (detailForThis?.overview ?? "");
 
   // Escで閉じる（パネル表示中のみ。フォーカストラップはしない＝左のグラフ操作を妨げない）
   useEffect(() => {
@@ -126,14 +100,6 @@ export default function CasePanel({ c, onClose }: Props) {
         <h2 className="text-lg font-black leading-tight tracking-tight text-gray-900 mb-2">{c.title}</h2>
 
         {c.summary && <p className="text-[11px] text-gray-600 leading-relaxed mb-4">{c.summary}</p>}
-
-        {overview ? (
-          <p className="text-[11px] text-gray-600 leading-relaxed mb-4 whitespace-pre-line line-clamp-6">{overview}</p>
-        ) : !hasInlineOverview && !detailForThis ? (
-          <p role="status" className="text-[10px] tracking-widest text-gray-400 mb-4">詳細を読み込み中…</p>
-        ) : !hasInlineOverview && detailForThis?.status === "error" ? (
-          <p role="alert" className="text-[10px] tracking-widest text-red-500 mb-4">詳細を読み込めませんでした</p>
-        ) : null}
 
         <div className="bg-[#f6f4ef] p-4 grid grid-cols-2 gap-x-6 gap-y-3 mb-5">
           <MetaField label="クライアント" value={c.client} />

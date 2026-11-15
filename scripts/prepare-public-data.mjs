@@ -11,7 +11,6 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { ALL_PUBLIC_DATA_FILES, sourceFileFor, buildPublicDataText } from "./lib/public-data.mjs";
-import { buildCaseDetailFiles } from "./lib/case-index.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
@@ -26,23 +25,15 @@ function writeJson(outName, text) {
   console.log(`✓ ${outName}: ${(Buffer.byteLength(text) / 1024).toFixed(1)} KB → ${outPath}`);
 }
 
-// 事例ごとの詳細JSON（public/data/cases/<id>.json）。TOPギャラリーは一覧に軽量インデックス
-// (cases-index.json)だけを読み、詳細パネルを開いた時にだけこれをfetchする。
-// 1ファイル数KBで総量も小さいため、Blob配信のVercelビルドでもデプロイに同梱する（毎回作り直し）
-{
-  const detailDir = path.join(OUT_DIR, "cases");
-  fs.rmSync(detailDir, { recursive: true, force: true });
-  fs.mkdirSync(detailDir, { recursive: true });
-  const { files, skipped } = buildCaseDetailFiles(JSON.parse(fs.readFileSync(path.join(DATA_DIR, "cases.json"), "utf8")));
-  for (const f of files) fs.writeFileSync(path.join(detailDir, f.fileName), f.text);
-  console.log(`✓ cases/<id>.json: ${files.length} 件 → ${detailDir}`);
-  for (const s of skipped) console.warn(`⚠ cases/<id>.json: スキップ(${s.reason}) id=${String(s.id)}`);
-}
 // 2026-09-30〜: 本番(Vercel)ビルドではコピーしない。巨大JSONはVercel Blobから配信する
 // （scripts/upload-public-data.mjs がpre-pushで上げ、/api/public-data が中継する）。デプロイ同梱すると日次で
 // Deployment Storageが約50〜65MBずつ増えるため。Blob未設定（ローカル/dev）では従来どおりコピー
 if (process.env.VERCEL && process.env.BLOB_STORE_ID) {
-  console.log("✓ Vercelビルド: 巨大データJSONはBlob配信のため public/data へコピーしない");
+  // cases-index.json(約1.8MB)だけは同梱する。Blob(/api/public-data)が未更新・失敗の時でも
+  // クライアントの /data/cases-index.json フォールバックでTOPが空にならないようにするため
+  const indexSrc = path.join(DATA_DIR, sourceFileFor("cases-index.json"));
+  writeJson("cases-index.json", buildPublicDataText("cases-index.json", fs.readFileSync(indexSrc, "utf8")));
+  console.log("✓ Vercelビルド: 巨大データJSONはBlob配信のため public/data へコピーしない（cases-index.jsonのみ同梱）");
   process.exit(0);
 }
 

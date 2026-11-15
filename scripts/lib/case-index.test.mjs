@@ -3,10 +3,7 @@ import assert from "node:assert/strict";
 import {
   INDEX_FIELDS,
   pickIndexEntry,
-  pickDetailEntry,
   buildCasesIndex,
-  buildCaseDetailFiles,
-  detailFileName,
 } from "./case-index.mjs";
 import { buildPublicDataText, computePublicDataHashes, filesNeedingUpload, sourceFileFor } from "./public-data.mjs";
 
@@ -50,38 +47,9 @@ test("pickIndexEntry: 元に無い任意項目は出力しない（undefinedを�
   assert.deepEqual(e, { id: "x", title: "t" });
 });
 
-test("pickDetailEntry: インデックス外の項目とidだけ。隔離フラグは含めない", () => {
-  const d = pickDetailEntry({ ...full, quarantineReason: "r" });
-  assert.equal(d.id, "a-1");
-  assert.equal(d.overview, "O");
-  assert.equal(d.videoId, "v1");
-  assert.equal("summary" in d, false);
-  assert.equal("quarantineReason" in d, false);
-});
-
-test("index+detail をマージすると元の事例に戻る（情報が失われない）", () => {
-  assert.deepEqual({ ...pickIndexEntry(full), ...pickDetailEntry(full) }, full);
-});
-
 test("buildCasesIndex: quarantined===true を除外", () => {
   const idx = buildCasesIndex([full, { ...full, id: "q", quarantined: true }]);
   assert.deepEqual(idx.map((c) => c.id), ["a-1"]);
-});
-
-test("buildCaseDetailFiles: 1事例1ファイル、隔離/ID無し/重複は除外してskippedに記録", () => {
-  const { files, skipped } = buildCaseDetailFiles([
-    full,
-    { ...full, id: "q", quarantined: true },
-    { ...full, id: "a-1", title: "dup" },
-    { title: "noid" },
-  ]);
-  assert.deepEqual(files.map((f) => f.fileName), ["a-1.json"]);
-  assert.equal(JSON.parse(files[0].text).overview, "O");
-  assert.deepEqual(skipped.map((s) => s.reason), ["duplicate-id", "no-id"]);
-});
-
-test("detailFileName: 特殊文字はエンコードしてパス区切りを含まない", () => {
-  assert.equal(detailFileName("a b/c"), "a%20b%2Fc.json");
 });
 
 test("配信: cases-index.json は cases.json 由来のテキストで、ハッシュ・アップロード判定に乗る", () => {
