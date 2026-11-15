@@ -112159,5 +112159,616 @@
       "Form/Stunt"
     ],
     "thumbnail": "/thumbnails/whitelion-the-loudest-call.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "cleartrip-or-travel-on-cleartrip",
+    "title": "Or Travel On Cleartrip",
+    "summary": "新聞に載る他社のセール広告をスマホで読み取ると、同じ価格帯のCleartripの旅行オファーが出る、印刷広告とQRコードを組み合わせた施策。",
+    "client": "Cleartrip",
+    "agency": "TALENTED.AGENCY, Bangalore",
+    "categories": [
+      "Media"
+    ],
+    "award": "Cannes Lions 2023 Media Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.storyboard18.com/quantum-brief/clutter-breakers-cleartrips-guerilla-esque-ad-that-uses-qr-codes-and-print-2214.htm",
+    "videoId": "",
+    "overview": "インドの旅行予約サービスCleartripとTalented Agencyによる施策。祭事シーズンの新聞で、他ブランドのセール広告を「旅行のセール広告」に読み替えさせ、買い物に向かう消費を旅行へ振り向けることを狙った。",
+    "background": "Storyboard18によれば、この時期は多くのブランドが大型セールの広告を新聞に出し、紙面が広告で埋まる。Cleartripは、その埋もれやすい状況の中で目立つため、他社のセール広告を逆に利用する発想を採った。",
+    "execution": "Storyboard18によれば、2022年9月23日の新聞に小さなQRコード付きの広告を掲載した。QRを読み取るとCleartripのマイクロサイトが開き、読者は紙面の他社商品広告を読み取ると、その商品と近い価格の旅行オファーが表示される。例えば5万ルピーのスマートフォンが半額なら、料金が半額近くに下がったホテルが示される。Campaign Indiaなどの報道では、過去5年分の祭事シーズンの広告をアルゴリズムに学習させ、航空会社・ホテルと組んで価格を裏側で合わせたとされる。",
+    "evaluationImpact": "カンヌライオンズ2023のMedia部門でSilverを受賞した。インドの受賞作の中では、印刷広告とQRコードで他社広告を取り込む「ゲリラ的」な発想が業界メディアに取り上げられた。",
+    "tags": [
+      "Form/Print",
+      "Tech/Web",
+      "Theme/Retail"
+    ],
+    "thumbnail": "/thumbnails/cleartrip-or-travel-on-cleartrip.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "afrisam-blackstudio-plan-a",
+    "title": "Plan (A)",
+    "summary": "自力で家を建てる南アフリカの人々向けに、低コストの住宅設計図そのものを新聞広告として載せた、建材メーカーAfriSamと建築事務所BlackStudioの施策。",
+    "client": "Afrisam, Blackstudio",
+    "agency": "PROMISE, Johannesburg",
+    "categories": [
+      "Media",
+      "Print & Publishing"
+    ],
+    "award": "Cannes Lions 2023 Media Lions Silver / Cannes Lions 2023 Print & Publishing Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Print & Publishing",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "アフリカ"
+    ],
+    "link": "https://ididthat.co/?p=43250",
+    "videoId": "",
+    "overview": "AfriSamが広告・ブランド代理店のPROMISE、建築事務所BlackStudioと組んだ施策。低コストで質の高い住宅を建てるための設計図を、誰でも使える形で広告として公開した。",
+    "background": "ididthat.coの作品ページによれば、南アフリカでは住宅支援が限られ、自力で家を建てる人が多い。予算が少ないうえ専門家の設計を受けられないため、間取りの不備や想定外の費用、基礎の欠陥が起こりやすい。",
+    "execution": "ididthat.coによれば、広告は建築図面を兼ねた一連の新聞広告で、施工者はそのまま図面を見て建てられ、市の審査に出せる状態に整えられている。Concrete Trendsの記事では、モジュール式で組み合わせを変えられる設計とされ、地域紙の見開きで掲載された。受賞部門はMediaとPrint & Publishingである。",
+    "evaluationImpact": "カンヌライオンズ2023でMedia部門のSilver、Print & Publishing部門のBronzeを受賞した。広告枠を、実際に使える設計情報の提供に使った点が評価された。",
+    "tags": [
+      "Form/Print",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/afrisam-blackstudio-plan-a.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "unicef-brazil-missing-students",
+    "title": "Missing Students",
+    "summary": "教師と生徒の像を公園に置き、数日後に生徒の像だけを消して、学校に通えない子どもたちの問題を可視化したユニセフ・ブラジルの屋外施策。",
+    "client": "Unicef Brazil",
+    "agency": "ARTPLAN COMUNICACAO S/A, Rio De Janeiro",
+    "categories": [
+      "Media"
+    ],
+    "award": "Cannes Lions 2023 Media Lions Silver / Cannes Lions 2023 Media Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/missing-students",
+    "videoId": "",
+    "overview": "ユニセフ・ブラジルとArtplanによる施策。教育の記念碑に見せかけた像から生徒が消えるという展開で、就学していない子どもの問題と「教育に投票を」という呼びかけを伝えた。",
+    "background": "Marcas pelo Mundoによれば、施策は学校をやめてしまう子どもの問題に注意を向け、有権者が教育を意識して投票するよう促すことを目的とし、ハッシュタグ#votepelaeducaçãoを使った。",
+    "execution": "Marcas pelo Mundoによれば、第1段階では教師1人と生徒7人の等身大の像を、サンパウロのイビラプエラ公園、ベレンのレプブリカ公園、サルバドールのカンポ・グランデ広場に設置した。次に生徒の像が消えて教師だけが残り、像は近くの路上に缶集め、菓子売り、赤ちゃんの世話、車いす、物乞い、いじめといった状況の子どもとして再び現れた。これらはユニセフが挙げる退学の主な原因にあたる。AdRubyによれば、像の隣の看板で状況を説明し、候補者に教育計画を求めるよう呼びかけた。",
+    "evaluationImpact": "カンヌライオンズ2023のMedia部門でSilverとBronzeを受賞した（Marcas pelo Mundo報道）。像の「失踪」がメディアで広く報じられた（AdRuby）。",
+    "tags": [
+      "Form/Installation",
+      "Form/OOH",
+      "Theme/SocialGood",
+      "Theme/Education"
+    ],
+    "thumbnail": "/thumbnails/unicef-brazil-missing-students.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "the-joshua-ribera-foundation-depzman-life-cut-short",
+    "title": "Depzman - Life Cut Short",
+    "summary": "2013年に刺殺されたグライム・ラッパーDepzmanをディープフェイクで蘇らせ、本人の声で刃物犯罪の結末を語らせた、英国の反ナイフ・キャンペーン。",
+    "client": "The Joshua Ribera Foundation",
+    "agency": "McCANN, London",
+    "categories": [
+      "Media"
+    ],
+    "award": "Cannes Lions 2023 Media Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://adsoftheworld.com/campaigns/life-cut-short-depzman",
+    "videoId": "",
+    "overview": "ジョシュア・リベラ財団とMcCann Londonによる施策。財団は、母親のアリソン・コープが、刃物犯罪で亡くなった息子ジョシュア・リベラ（Depzman）の名で設立した。若者に届く声で刃物犯罪を語るため、新曲「Life Cut Short」のミュージックビデオを作った。",
+    "background": "Marketing Beatによれば、Depzmanは英国のグライム・シーンで期待された存在だったが、2013年に殺害された。施策は、若者に刃物と文化の問題を語れる「本物の声」を求めて作られた。",
+    "execution": "Marketing Beatによれば、ディープフェイクと音声技術で、Depzman本人が自分の幼少期、音楽活動、亡くなった夜を語る新曲を作った。歌詞は中部地方のラッパーShadowCVとT-Roadzが母親の協力のもと書き、Native Musicが制作した。メディア企業SBTVと組み、映像は英国内65の刑務所でも上映される予定とされた。",
+    "evaluationImpact": "カンヌライオンズ2023のMedia部門でSilverを受賞した。Epica AwardsでもSilverを受賞している（Best Use of Music）。ヒップホップ界のアーティストがシェアするなど、若者層への届き方が話題になった（Marketing Beat）。",
+    "tags": [
+      "Form/Film",
+      "Form/MV",
+      "Tech/AI",
+      "Theme/SocialGood",
+      "Theme/Music"
+    ],
+    "thumbnail": "/thumbnails/the-joshua-ribera-foundation-depzman-life-cut-short.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "hinz-kunzt-hamburger-kunsthalle-the-homeless-gallery",
+    "title": "The Homeless Gallery",
+    "summary": "ハンブルクの路上雑誌Hinz&Kunztが、ホームレスの人々の人生をAI画像生成で作品にし、駅や高架下など屋外で展示した野外ギャラリー。",
+    "client": "Hinz&Kunzt / Hamburger Kunsthalle",
+    "agency": "PHILIPP UND KEUNTJE, Hamburg / MANTIKOR, Hamburg",
+    "categories": [
+      "Media"
+    ],
+    "award": "Cannes Lions 2023 Media Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.horizont.net/agenturen/nachrichten/homeless-gallery-mit-dieser-kunstaktion-kaempft-puk-fuer-obdachlose--210108",
+    "videoId": "",
+    "overview": "ハンブルクの路上雑誌Hinz&Kunztの創刊30周年に、ハンブルク美術館と組んで行った施策。Philipp und KeuntjeとMantikorが発案した。ホームレスの人々の人生の物語を、アート作品として街に見せた。",
+    "background": "Festival of Mediaの事例によれば、Hinz&Kunztは1993年創刊の路上雑誌で、販売や雇用を通じて困窮者を支えてきた。寄付と販売の減少に直面し、ホームレス問題について声を届け直す必要があった。",
+    "execution": "Horizontによれば、ハンブルクの30人の人生を題材にした30点の作品を、Sバーン駅の屋外で展示し、その後、作家たちが生活していた橋の下や地下道、公園などへ巡回した。AIの画像生成ツールが美術のデータベースを参照して、参加者が自分の物語を画像にするのを助けた。作品は展示の最後にオークションにかけ、収益を雑誌に寄付する計画だった。",
+    "evaluationImpact": "カンヌライオンズ2023のMedia部門でSilverを受賞した。Festival of Mediaでは、Best Use of TechnologyとBest Integrated CampaignでGoldを受賞している。",
+    "tags": [
+      "Form/Exhibition",
+      "Form/OOH",
+      "Tech/AI",
+      "Theme/Art",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/hinz-kunzt-hamburger-kunsthalle-the-homeless-gallery.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "skoda-dashboard-billboards",
+    "title": "Dashboard Billboards",
+    "summary": "競合他社の車のバックカメラに映るよう、駐車場に超小型の看板を置いて電気自動車を訴求したŠkodaのスウェーデンでの屋外施策。",
+    "client": "ŠKoda",
+    "agency": "NORD DDB, Stockholm",
+    "categories": [
+      "Media"
+    ],
+    "award": "Cannes Lions 2023 Media Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.marketing-beat.co.uk/2022/12/22/skoda-nordddb-ooh-campaign/",
+    "videoId": "",
+    "overview": "Škodaのスウェーデン向けにNORD DDB Stockholmが手がけた施策。駐車場の後方に精巧なミニチュア看板を設置し、他社の車が駐車する際にバックカメラのモニターへŠkodaの広告が映る仕組みにした。",
+    "background": "marketing-beat.co.ukの記事によれば、Škodaは拡大する電気自動車ラインナップを訴求する際、大手より目立つ広告枠を持てないことを前提に発想した。アートディレクターのJosefina Noréns氏は「最大になれないなら、最も賢くなればいい」と述べている。年末の騒がしい時期に、運転手が画面に注目する駐車の瞬間を狙った。",
+    "execution": "スウェーデン各地の駐車場に、バックカメラの視野に入る位置へ小さな看板を設置した。看板はスウェーデンのミニチュア作家Christopher Robin Nordström氏が制作し、スポットライト、はしご、落書きなどを作り込んだ。運転手には、競合車のダッシュボード画面の中でŠkodaの広告が実物大の屋外広告のように見える。報道は2022年12月（marketing-beat.co.uk）。",
+    "evaluationImpact": "車内の画面という既存の装置を広告枠に変える発想が、業界メディアで『ずる賢い』ゲリラ的屋外広告として紹介された。カンヌライオンズ2023のMedia部門でSilverを受賞した。",
+    "tags": [
+      "Form/OOH",
+      "Theme/Mobility",
+      "Form/Stunt"
+    ],
+    "thumbnail": "/thumbnails/skoda-dashboard-billboards.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "british-heart-foundation-heart-stopping",
+    "title": "Heart Stopping",
+    "summary": "ラジオ広告の途中に心停止を告げる心電図モニターの長い電子音を流し、遺伝性心疾患の研究助成を訴えた英国心臓財団のオーディオ施策。",
+    "client": "British Heart Foundation",
+    "agency": "PHD WORLDWIDE, London / GLOBAL MEDIA / AND ENTERTAINMENT, London",
+    "categories": [
+      "Media"
+    ],
+    "award": "Cannes Lions 2023 Media Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.phdmedia.com/london/?p=989",
+    "videoId": "",
+    "overview": "英国心臓財団（BHF）のためにPHD UKがラジオ大手Globalと組んで実施した施策。英国最大のラジオネットワークHeartで、他社ブランドの広告が心停止したかのように途切れる演出を行った。",
+    "background": "BHFが遺伝性の心筋症を対象に、同財団として過去最大規模の研究助成を行うことを発表するタイミングの施策。PHDの発表によれば、心疾患研究への資金の必要性を広く知らせることが目的だった。",
+    "execution": "Heartの放送枠で、英国の著名な7ブランドの広告を意図的に途中で『心停止』させた。広告は心電図モニターが心停止を知らせる平坦な電子音に切り替わり、その後にBHFの研究助成に関するメッセージが流れる構成。企画はPHD UKとGlobalの共同（phdmedia.com）。",
+    "evaluationImpact": "PHDによれば、この作品は英国の媒体代理店で唯一Media Lionsを受賞した。カンヌライオンズ2023のMedia部門でSilver（Media Execution）を受賞した。",
+    "tags": [
+      "Theme/Health",
+      "Tech/Audio"
+    ],
+    "thumbnail": "/thumbnails/british-heart-foundation-heart-stopping.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "twitter-tweet-scarves",
+    "title": "Tweet Scarves",
+    "summary": "UEFA女子ユーロ2022で、ライオネス（イングランド女子代表）への実際のツイートを印刷したスカーフをファンに配布したTwitterの施策。",
+    "client": "Twitter",
+    "agency": "DAVID, Madrid",
+    "categories": [
+      "Media"
+    ],
+    "award": "Cannes Lions 2023 Media Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.ogilvy.com/work/share-your-roar",
+    "videoId": "",
+    "overview": "TwitterのためにDAVID Madridが企画した施策。ライオネスやファンの実際のツイートを印刷した限定スカーフを作り、大会期間中にファンへ配布した。ツイートをスタジアムで身に着けられる物にした。",
+    "background": "UEFA女子ユーロ2022にあわせ、Twitterが女子サッカーの応援の場として存在感を示すことを狙った。ハッシュタグ#ShareYourRoarで応援メッセージを募った（Twitter Marketing UKの投稿ほか）。",
+    "execution": "ライオネスと、その応援に寄せられた実在のツイートをスカーフに印刷した。数千枚が大会期間を通じてファンに配られ、ライオネスも準決勝と決勝の勝利の場でスカーフを使った（Ogilvyの事例ページ）。",
+    "evaluationImpact": "スカーフは試合会場やピッチ上にも登場し、オンライン上の応援がリアルな応援グッズになった。カンヌライオンズ2023のMedia部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Sports",
+      "Form/SNS",
+      "Form/Product"
+    ],
+    "thumbnail": "/thumbnails/twitter-tweet-scarves.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "lgbt-association-the-folded-newspaper",
+    "title": "The Folded Newspaper",
+    "summary": "右派系の新聞の裏面に広告を載せ、紙を折ると紙名と合わさって「イスラエル・トゥデイ、明日はロシア？」と読める抗議メッセージにしたLGBT団体の新聞広告。",
+    "client": "Lgbt Association",
+    "agency": "BLANCO, Tel Aviv",
+    "categories": [
+      "Media"
+    ],
+    "award": "Cannes Lions 2023 Media Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "中東"
+    ],
+    "link": "https://www.ice.co.il/advertising-marketing/news/article/958961",
+    "videoId": "",
+    "overview": "イスラエルのLGBT団体（Association for LGBT Equality in Israel）のためにBlanco Tel Avivが制作した新聞広告。日刊紙Israel Hayom（英語名Israel Today）の裏面に広告を載せ、折りたたむと紙名とメッセージがつながる。",
+    "background": "ice.co.ilの記事によれば、差別的な法案をめぐる議論が高まる中での施策。2023年1月の新政権発足後、LGBTコミュニティへの敵対的な政策への懸念を背景に実施された。",
+    "execution": "紙面の裏面にハーフページの広告を置き、新聞を折ると紙名の横に「明日はロシア？」という言葉が現れ、「イスラエルをLGBTコミュニティにとって敵対的な国にしないで」という訴えが読める構成にした。広告が載る紙面そのものを抗議の道具にしている。",
+    "evaluationImpact": "ice.co.ilによれば、数十人のオピニオンリーダーが新聞を折る動画を投稿して拡散した。コミュニティのメンバーがガソリンスタンドやカフェで新聞を集めて広めたとも報じられた。カンヌライオンズ2023のMedia部門でBronzeを受賞した。",
+    "tags": [
+      "Form/Print",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/lgbt-association-the-folded-newspaper.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "musti-group-be-aware-of-the-dogs",
+    "title": "Be Aware Of The Dogs",
+    "summary": "花火の音に反応する巨大な仮想犬をヘルシンキの年越しイベントに登場させ、花火が犬に与える恐怖を訴えたペット用品大手の屋外施策。",
+    "client": "Musti Group",
+    "agency": "MUSTI GROUP, Helsinki / ERMA & / REINIKAINEN, Helsinki",
+    "categories": [
+      "Media"
+    ],
+    "award": "Cannes Lions 2023 Media Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adsofbrands.net/en/news/be-aware-of-the-dogs-20-foot-anti-fireworks-dog-hijacks-helsinki-s-new-year-s-celebrations/4022",
+    "videoId": "",
+    "overview": "北欧のペット用品大手Musti Groupが、Erma&Reinikainenと組んで実施した年越しの施策。ヘルシンキの公式新年イベントの大型スクリーンに、花火の音に反応する高さ約6mの3D仮想犬を映した。",
+    "background": "adsofbrands.netによれば、同社のマーケティング責任者は、ペットを飼っていない人は花火で動物が受ける苦痛に気づきにくいと語っている。大晦日に花火がペットへ与える影響への配慮を呼びかけることが狙い。",
+    "execution": "大型スクリーンに騒音計をつなぎ、犬の『耳』として花火の音に合わせて仮想犬がリアルタイムに反応する仕組みにした。仮想犬は制作会社Cocoaが作った。フィンランド各都市の屋外広告でも、住宅から離れた場所で花火を打ち上げるよう呼びかけ、飼い主には#beawareofthedogsで写真を共有するよう促した。実施は2022年12月。",
+    "evaluationImpact": "公開された独立報道では、成果の数値は確認できなかった。カンヌライオンズ2023のMedia部門でBronzeを受賞した。",
+    "tags": [
+      "Form/OOH",
+      "Tech/3D",
+      "Form/Stunt"
+    ],
+    "thumbnail": "/thumbnails/musti-group-be-aware-of-the-dogs.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "the-mexican-red-cross-donate-siren",
+    "title": "Donate Siren",
+    "summary": "救急車のサイレン音声を「dona（寄付して）」という呼びかけに変え、走るだけで寄付を促す媒体にしたメキシコ赤十字の施策。",
+    "client": "The Mexican Red Cross",
+    "agency": "VMLY&R COMMERCE, Mexico City",
+    "categories": [
+      "Media"
+    ],
+    "award": "Cannes Lions 2023 Media Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "中南米"
+    ],
+    "link": "https://lbbonline.com/news/problem-solved-how-vmlyr-commerce-mexico-turned-ambulance-sirens-into-donations",
+    "videoId": "",
+    "overview": "メキシコ赤十字とVMLY&R COMMERCE Mexico Cityによる施策。全国で日々走る救急車のサイレンそのものを、予算をかけずに寄付を呼びかけ続ける広告媒体として使った。",
+    "background": "Merca2.0によれば、寄付の方法自体は国民に知られていたが、日常的に寄付を思い出させる接点が乏しく、広告予算も限られていた。資金の95%が緊急対応に使われている点も、寄付を集めるうえでの課題とされた。",
+    "execution": "救急車の音声システムにRCA入力端子を取り付け、サイレン音を差し替えられるようにした。まず主要3都市で試験運用して寄付者の反応を確かめ、その後、全国32州で同時に稼働する448台に展開した（Merca2.0）。当初は3か月の運用予定だったが、年間を通じて必要に応じて使えるブランド資産に位置づけ直された。LBBonlineによれば、音声の変更はメキシコのサイレン規制の範囲内で行われ、赤十字は無償で告知できた。",
+    "evaluationImpact": "寄付への関心を持続させる施策として継続運用へ拡大された。カンヌライオンズ2023のMedia部門でBronzeを受賞した（2024年にはClio Awardsでも入賞）。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Health",
+      "Tech/Audio",
+      "Theme/Mobility"
+    ],
+    "thumbnail": "/thumbnails/the-mexican-red-cross-donate-siren.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "ikea-window-shopping",
+    "title": "Ikea Window Shopping",
+    "summary": "トロント都心の新店オープンに合わせ、実在の住宅の窓をIKEAのショールーム風ディスプレイに変えた屋外広告。",
+    "client": "Ikea",
+    "agency": "RETHINK, Toronto",
+    "categories": [
+      "Media",
+      "Outdoor"
+    ],
+    "award": "Cannes Lions 2023 Media Lions Bronze / Cannes Lions 2023 Outdoor Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Outdoor",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://lbbonline.com/news/ikea-canada-introduces-toronto-downtown-store-with-inspired-real-life-windows",
+    "videoId": "",
+    "overview": "IKEA CanadaとRethink（トロント）による施策。郊外型というイメージの強いIKEAが都心の暮らしに合うことを、実際に人が住む家やコンドミニアムの窓で見せた。",
+    "background": "Muse by Cliosによれば、IKEA Canadaの屋外広告はこれまで家具を並べたイメージ画像が中心だった。今回は実際の住居と実在の住人に置き換えた点が初の試みとされる。トロント・ヤング通りとジェラード通り周辺の新店舗の告知が目的で、スローガンは「Made for Downtown Living.」。",
+    "execution": "Danforth Ave.、Queen Street West、Distillery District、Roncesvalles、Cedarvaleなどで、住人の協力を得て窓にIKEA商品の展示と看板を設置した。個人的なつながりとロケーションスカウトで居住空間を探した（Rethinkの談話）。展示にはコーヒーテーブル、花瓶、ノートPCスタンドなどが使われ、同ブランドの案内矢印も使って店舗への誘導を図った。制作はUndivided Creative、メディアはCarat。キャンペーンは2022年5月に展開され、同作は2023年のアワードに出品された。",
+    "evaluationImpact": "カンヌライオンズ2023のMedia部門でBronze、Outdoor部門でSilverを受賞した。One Show 2023でもBronze Pencilを獲得している。",
+    "tags": [
+      "Theme/Retail",
+      "Form/OOH",
+      "Form/Stunt"
+    ],
+    "thumbnail": "/thumbnails/ikea-window-shopping.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "borussia-dortmund-a-hand-ball-that-could-save-your-life",
+    "title": "A Hand Ball That Could Save Your Life.",
+    "summary": "ハラー選手の精巣がん闘病を受け、スタジアムのピッチ中央に腫瘍のような膨らみを作って男性の検診を呼びかけたドルトムントの施策。",
+    "client": "Borussia Dortmund",
+    "agency": "ACCENTURE SONG, Hamburg",
+    "categories": [
+      "Media"
+    ],
+    "award": "Cannes Lions 2023 Media Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.bvb.de/News/Uebersicht/BVB-Kampagne-zur-Hodenkrebs-Vorsorge-gewinnt-Kreativpreise",
+    "videoId": "",
+    "overview": "ドルトムントとAccenture Song（ハンブルク）による啓発施策。ブンデスリーガの試合会場のピッチそのものを使い、精巣がんの早期発見のための自己検診を男性に訴えた。",
+    "background": "FWセバスチャン・ハラーが精巣がんの診断を受けて復帰した経緯があり、クラブは男性の検診への意識を高めることを狙った。世界がんデーに合わせた対フライブルク戦が舞台となった。",
+    "execution": "試合に向けてセンターサークルに大きな膨らみを作り、精巣腫瘍を象徴させた。ハーフタイムにハラーとグラウンドキーパーが登場する動画を流し、「Ein Griff ist die beste Verteidigung（一つかみが最良の守り）」の合言葉で定期的な自己検診を訴えた。",
+    "evaluationImpact": "BVB公式サイトによれば、この試合でハラーは精巣がん克服後の初ゴールを決め、同じ日のピッチの異変は世界的な話題になった。カンヌライオンズ2023のMedia部門でBronzeを受賞し、ADC Awardsでは2つのGoldを得た。2026年にはクラブがスタジアム内で検診を受けられる「Balls for Balls」を実施している。",
+    "tags": [
+      "Theme/Sports",
+      "Theme/Health",
+      "Theme/SocialGood",
+      "Form/Stunt"
+    ],
+    "thumbnail": "/thumbnails/borussia-dortmund-a-hand-ball-that-could-save-your-life.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "transparen-cy-internationa-l-lebanon-no-corruption-ti-lb-the-currency-of-corruption",
+    "title": "The Currency Of Corruption",
+    "summary": "価値が暴落したレバノンの通貨危機を風刺し、汚職を題材にした模擬紙幣「ロラー」をATMで配ったレバノンの反汚職キャンペーン。",
+    "client": "Transparen Cy Internationa L Lebanon - No Corruption (Ti-Lb)",
+    "agency": "LEO BURNETT, Beirut / LEO BURNETT, Jeddah",
+    "categories": [
+      "Media"
+    ],
+    "award": "Cannes Lions 2023 Media Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "中東"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/the-lollar-currency-of-corruption",
+    "videoId": "",
+    "overview": "Transparency Internationalのレバノン支部（Lebanese Transparency Association）とLeo Burnett Beirutによる施策。市民に政府への支払いを「ロラー」で行うよう呼びかける抗議として、2022年5月に展開された。",
+    "background": "レバノン・ポンドは2019年以降に価値の9割超を失ったとされ、ドル建て預金が現地通貨でしか引き出せない状況を「lollar」と呼ぶ言葉が広まっていた。2022年5月15日の総選挙を前に、汚職が危機を招いたことを可視化する狙いがあった。",
+    "execution": "英国人アーティストのTom Youngが、交通・環境・電力・港湾・消防管理などの汚職による被害を描いた6種の紙幣をデザインした。100ロラーはベイルート港爆発、50ロラーは電力不足、10ロラーはごみ問題を題材にしている。紙幣はベイルートのRaouche、Sassine、Doraなどに置いた専用ATMで受け取れ、専用マイクロサイトからは印刷もできた。5月13日に政府への支払いをロラーで行うよう呼びかけた。",
+    "evaluationImpact": "Al Arabiya、Khaleej Times、Al-Monitorなど中東の主要メディアが取り上げ、選挙直前の話題となった。カンヌライオンズ2023のMedia部門（イベント・スタント）でBronzeを受賞した。",
+    "tags": [
+      "Theme/SocialGood",
+      "Form/Stunt",
+      "Form/Website",
+      "Theme/Art"
+    ],
+    "thumbnail": "/thumbnails/transparen-cy-internationa-l-lebanon-no-corruption-ti-lb-the-currency-of-corruption.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "tinder-not-so-classic-dates",
+    "title": "Not-So Classic Dates",
+    "summary": "モーツァルトらの作曲家をTinderのプロフィールにして、若い世代をラジオ・フランスのクラシック公演へ誘導した施策。",
+    "client": "Tinder",
+    "agency": "OGILVY PARIS, Paris",
+    "categories": [
+      "Media"
+    ],
+    "award": "Cannes Lions 2023 Media Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://lareclame.fr/ogilvyparis/realisations/ogilvy-paris-presente-un-date-pas-si-classique-avec-tinder-et-les-formations-musicales-de-radio-france",
+    "videoId": "",
+    "overview": "TinderとOgilvy Paris、ラジオ・フランスの音楽団体による施策。出会いアプリの中でクラシックの作曲家と「マッチ」させ、敷居が高いと思われがちなクラシックを若者に近づけた。",
+    "background": "Adsofbrandsの記事によれば、2020年に世界でストリーミングされたクラシック音楽の34%を18〜25歳が占め、音楽はTinderユーザーが最も挙げる興味の一つだった。Tinder France側は、クラシックを若者にも身近で関連性のあるものにすることを狙いとした。",
+    "execution": "映画で使われるモーフィング技術で、モーツァルト、ドビュッシー、チャイコフスキーの姿を現代風に作り替え、Tinderのプロフィールとして表示した。ユーザーが作曲家を右スワイプするとアプリ内メッセージが届き、ラジオ・フランスのInstagramへ誘導される。そこでコメントした人の中から、コンサートのチケットと舞台裏ツアーが当たる。100人には2022/2023シーズンのユース向けパスも用意された。2022年5月にフランスで展開された。",
+    "evaluationImpact": "カンヌライオンズ2023のMedia部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Music",
+      "Theme/Entertainment",
+      "Form/SNS",
+      "Form/App"
+    ],
+    "thumbnail": "/thumbnails/tinder-not-so-classic-dates.jpg"
   }
 ]
