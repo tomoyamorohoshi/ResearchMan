@@ -112770,5 +112770,516 @@
       "Form/App"
     ],
     "thumbnail": "/thumbnails/tinder-not-so-classic-dates.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "orange-safe-zone",
+    "title": "Orange - Safe Zone",
+    "summary": "ゲーム内にサイバーいじめの相談窓口と学習クイズを置いた「Safe Zone」を、Fortnite などの仮想空間に設けたOrangeの施策。",
+    "client": "Orange",
+    "agency": "PUBLICIS CONSEIL, Paris",
+    "categories": [
+      "Media"
+    ],
+    "award": "Cannes Lions 2023 Media Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.universfreebox.com/article/536509/orange-sinstalle-sur-fortnite-minecraft-et-roblox-pour-lutter-contre-le-cyberharcelement/amp",
+    "videoId": "",
+    "overview": "フランスの通信大手OrangeがPublicis Conseilと組み、若いプレイヤーが遊ぶゲームの世界の中に、安心して過ごせて相談もできる場所を作った。2022年11月3日にFortniteで始まり、RobloxとMinecraftにも広げる計画が発表された。",
+    "background": "サイバーいじめの対策日（11月10日）に合わせた取り組みとして、Orangeが自社の貢献として打ち出した。若いプレイヤーにデジタルツールの責任ある使い方を伝えることが目的とされ、被害を受けやすい子どもたちが日常的に過ごすゲーム空間そのものに入り込む発想を採った。",
+    "execution": "Fortnite上の専用マップ内に、デジタルの危険に関するクイズが用意され、正解するとゲーム内で使える報酬を得られる。案内役のボット「Orange Droid」がプレイヤーを誘導し、「jump to talk」ボタンから被害の相談ができる。被害者や目撃者はアドバイスを受け、QRコードや電話番号を通じて支援窓口へつながる。フランスでは子ども向けの無料・匿名の全国ヘルプライン3018が案内される（universfreebox報道）。",
+    "evaluationImpact": "カンヌライオンズ2023のMedia部門でBronzeを受賞した。ゲーム内に支援窓口を置くという手法が、サイバーいじめ対策の新しい接点として注目された。",
+    "tags": [
+      "Tech/Game",
+      "Theme/SocialGood",
+      "Theme/Education"
+    ],
+    "thumbnail": "/thumbnails/orange-safe-zone.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "budweiser-the-billboard-is-yours-to-take",
+    "title": "The Billboard Is Yours To Take",
+    "summary": "BRIT Awardsの前夜、ロンドンの屋外広告をステージに変え、女性とノンバイナリーの新進アーティスト8組に演奏の場を提供したBudweiserの施策。",
+    "client": "Budweiser",
+    "agency": "FCB NEW YORK",
+    "categories": [
+      "Media"
+    ],
+    "award": "Cannes Lions 2023 Media Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.eventmarketer.com/article/budweiser-billboard-stage-yours-to-take/",
+    "videoId": "",
+    "overview": "BudweiserとFCB New Yorkが、ロンドン東部ショーディッチの屋外広告をライブステージとして開放した。「The Stage is Yours to Take」と掲げ、評価の機会が少ないアーティストに生演奏の場を渡した。",
+    "background": "2023年のBRIT Awardsで「Artist of the Year」部門に女性アーティストが1人もノミネートされず、批判が起きた。Budweiserは音楽との長年の関わりを生かし、ブランドとして背景を問わず活躍の機会を提供する姿勢を示すため、この状況への応答として施策を打ち出した（Event Marketer報道）。",
+    "execution": "BRIT Awards（2023年2月11日開催）の前夜に、鮮やかな赤の屋外広告をステージとして使い、女性とノンバイナリーの新進アーティスト8組が演奏した。演奏は市内各所のプロジェクターでライブ配信され、その後O2 Arena前と会場内の画面でも放映された。会場内の放映ではQRコードを表示し、出演者の楽曲をまとめたプレイリストへ誘導した。",
+    "evaluationImpact": "出演したシンガーソングライターMychelleが音楽・テクノロジー企業Kobaltのスカウトに注目され、KobaltおよびDepartment of Musicとのプロデモ契約につながった（Event Marketer、Marketing Beat報道）。カンヌライオンズ2023のMedia部門でBronzeを受賞した。",
+    "tags": [
+      "Form/OOH",
+      "Form/Event",
+      "Theme/Music",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/budweiser-the-billboard-is-yours-to-take.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "colgate-line-for-change",
+    "title": "Line For Change",
+    "summary": "路上生活者に歯科ケアを届けるため、ロンドンの2階建てバスを歯科診療の場に改装した、ColgateとChange Pleaseの取り組みを軸にした施策。",
+    "client": "Colgate",
+    "agency": "VMLY&R, Paris",
+    "categories": [
+      "Media"
+    ],
+    "award": "Cannes Lions 2023 Media Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://colgate.com/en-gb/driving-for-change",
+    "videoId": "",
+    "overview": "VMLY&R Parisが手がけたColgateの「Line for Change」。2023年の応募作そのものの説明は応募文以外で確認できなかったため、本文は同じColgate×Change Pleaseの関連施策「Driving for Change」と、Channel 4と組んだ「Futures to Smile About」の報道に基づく。",
+    "background": "住所がないと歯科を受診しにくく、路上生活者は口腔ケアから取り残されやすい。Colgateの担当者は、固定の住所がないことが歯科サービス利用の大きな障壁だと説明している（LBB報道）。",
+    "execution": "2021年にColgateはロンドンの社会的企業Change Pleaseと組み、2階建てバスの改装に参加した。改装バスには歯科、診療、シャワー、散髪などのサービスがあり、すべて無料で、路上生活者はテキストメッセージでバスを呼べる（The National報道）。2022年にはChannel 4と組み、司会者Karim Zeroualが、17歳で住まいを失ったChange Pleaseのメンターを訪ねるドキュメンタリー調の番組『Futures to Smile About』を放送した。4月にGoggleboxの時間帯で始まり、7月15日までChannel 4の各チャンネルとAll 4で流れ、Colgateの自社SNSでも配信された。",
+    "evaluationImpact": "カンヌライオンズ2023のMedia部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Health",
+      "Theme/SocialGood",
+      "Theme/Mobility"
+    ],
+    "thumbnail": "/thumbnails/colgate-line-for-change.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "czech-insurance-asociation-the-13-minutes-national-delay-day",
+    "title": "The 13 Minutes National Delay Day",
+    "summary": "スポーツ・文化・教育の開始時刻を象徴的に13分遅らせ、急ぐことの危険を国全体で考えさせたチェコ保険協会の「全国・急がない日」。",
+    "client": "Czech Insurance Asociation",
+    "agency": "McCANN, Prague",
+    "categories": [
+      "Media"
+    ],
+    "award": "Cannes Lions 2023 Media Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.mediaguru.cz/clanky/2023/06/cannes-lions-druhy-bronz-pro-cesko-priveze-cap/",
+    "videoId": "",
+    "overview": "チェコ保険協会（ČAP）とMcCann Pragueによる施策。サッカー、テレビ、劇場、大学などの予定を symbolic に13分遅らせる日を設け、運転中の速度超過をやめるよう呼びかけた。第1回は2023年4月5日に行われた。",
+    "background": "前年の「13 minut」キャンペーン（ČAP、Besip、チェコ警察、McCann Prague）はカンヌライオンズ2022でPR部門のSilverを受賞していた。報道では、ドライバーの86%が制限速度を定期的に超えているというBehavioの調査と、死亡事故の約4割が急ぎすぎに関係するという背景が挙げられている。",
+    "execution": "チェコサッカー協会はMOL Cup準決勝のキックオフを遅らせ、Česká televizeは遅らせた形で中継を放送した。Vysoká škola kreativní komunikaceは授業を13分遅らせ、劇場Jatka78やサーカス団Cirk La Putykaも参加した。Sparta Praha、Slavia Praha などのサッカークラブは共同動画に出た（mediaguru、newstream報道）。",
+    "evaluationImpact": "カンヌライオンズ2023のMedia部門でBronzeを受賞した（部門内の区分は Society & Social Responsibility 系と報じられた）。同じ年にBrand Experience & Activation部門のショートリストにも入った。",
+    "tags": [
+      "Form/Event",
+      "Theme/Mobility",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/czech-insurance-asociation-the-13-minutes-national-delay-day.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "dove-thumbstopping-beauty-biases",
+    "title": "Thumbstopping Beauty Biases",
+    "summary": "スマホのキーボードアプリにAIを組み込み、外見を貶す言葉を打とうとした瞬間に別の言い方を提案して、インドの若い女性への「ビューティーテスト」を減らそうとしたDoveの施策。",
+    "client": "Dove",
+    "agency": "MINDSHARE INDIA, Mumbai",
+    "categories": [
+      "Media"
+    ],
+    "award": "Cannes Lions 2023 Media Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.socialsamosa.com/2022/12/dove-suggests-using-all-sizes-are-lovely-instead-of-try-losing-some-weight-with-ai",
+    "videoId": "",
+    "overview": "Doveの#StopTheBeautyTestの一環として、Mindshare Indiaがキーボードアプリ事業者Bobble AIと組んで実施した。チャットの中で、外見への否定的な言葉が送信される前に介入する。",
+    "background": "Doveの調査では、インドの女子生徒の8割が外見を品定めされる「ビューティーテスト」を経験しているとされる。SNSやチャットアプリでも同様の外見評価が行われていることから、会話が実際に交わされる入力の場面そのものに介入する発想がとられた。",
+    "execution": "Bobble AIのキーボードが「skinny」「lose weight」「dark spots」など、体型や肌の色を貶める語を検知し、入力中にポップアップを表示する。たとえば「try losing some weight」と打つと「All sizes are lovely」という別の言い方が提示され、利用者は言葉を改められる。Bobble AIのキーボードを入れた端末で全国的に展開された（Social Samosa、2022年12月13日報道）。",
+    "evaluationImpact": "カンヌライオンズ2023のMedia部門でBronzeを受賞した。同作品はFestival of Media Globalでもデータ活用などの部門で受賞している。",
+    "tags": [
+      "Tech/AI",
+      "Tech/App",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/dove-thumbstopping-beauty-biases.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "prime-video-who-a-thread-movie",
+    "title": "Who - A Thread Movie",
+    "summary": "Twitter上のホラー・スレッドを、YouTuberのSqueezieを起用して短編映画にし、ハロウィン前後に公開したPrime Video Franceの施策。",
+    "client": "Prime Video",
+    "agency": "HEREZIE, Paris",
+    "categories": [
+      "Social & Influencer"
+    ],
+    "award": "Cannes Lions 2023 Social & Influencer Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Social & Influencer",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.cbnews.fr/creation/image-cannes-lions70-social-influencer-herezie-mccann-gold-betc-bronze-77486",
+    "videoId": "",
+    "overview": "Prime Video FranceとHerezieによる施策。ツイートの連なりとして語られる怖い話を、1ツイート＝1シーンの映像にして短編映画に仕立てた。",
+    "background": "フランスで人気のYouTuber、Squeezieのファン層に向け、動画配信サービスのPrime Videoが話題の中心に入ることを狙った。Twitterでスレッド形式の怪談が読まれる文化を、そのまま映像化の題材にしている。",
+    "execution": "スレッドの各ツイートを映像化した短編をYouTubeで公開し、Squeezieが出演した。Prime VideoのTwitterアカウントでも各シーンを元のツイートと並べて投稿した。2022年10月30日のPrime Videoの投稿には「Un thread c'est bien. Avec des images c'est mieux」とある（CB News）。",
+    "evaluationImpact": "カンヌライオンズ2023のSocial & Influencer部門でGoldを受賞した（CB Newsが報道）。",
+    "tags": [
+      "Form/SNS",
+      "Form/Film",
+      "Theme/Entertainment"
+    ],
+    "thumbnail": "/thumbnails/prime-video-who-a-thread-movie.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "flash-cashback-for-your-jersey-s-back",
+    "title": "Cashback For Your Jersey’S Back",
+    "summary": "W杯直前、公式スポンサーではないFlashが、ブラジル代表ユニフォームに自社名を入れた人へユニフォーム代相当をカード入金で戻した施策。",
+    "client": "Flash",
+    "agency": "FCB BRASIL, Sao Paulo",
+    "categories": [
+      "Social & Influencer"
+    ],
+    "award": "Cannes Lions 2023 Social & Influencer Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Social & Influencer",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://flashapp.com.br/blog/institucional/flash-festival-cannes-lions",
+    "videoId": "",
+    "overview": "FlashのブログがこのFCB Brasilとの施策を「Flash na Amarelinha」として紹介している。受賞名との同一性はブログの記述（同じ部門のGold）からの推定である。",
+    "background": "Flashは福利厚生カードを扱うブランドで、2022年11月のカタールW杯前にW杯の話題へ公式スポンサーなしで入り込むことを狙った。ブラジル国民の代表ユニフォーム熱を、ブランドの接点に変える設計である。",
+    "execution": "ブラジル代表のユニフォームにFlashの名前を入れてカスタマイズした人に、ユニフォームの公式価格に相当する額をFlashカードに入金した。入金額は用途を問わず使える（Flash公式ブログ）。",
+    "evaluationImpact": "カンヌライオンズ2023のSocial & Influencer部門でGoldを受賞した。Flash公式ブログによれば、同社にとってカンヌ初参加での金賞で、D&AD 2023でも受賞している。",
+    "tags": [
+      "Form/SNS",
+      "Theme/Sports",
+      "Theme/Retail"
+    ],
+    "thumbnail": "/thumbnails/flash-cashback-for-your-jersey-s-back.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "michelob-ultra-michelob-guy",
+    "title": "Michelob Guy",
+    "summary": "PGA選手権でスマホを持たずにビールを手に観戦していた男性の写真が拡散した出来事に、ブランドが数日で乗り、本人を起用してグッズや広告にしたMichelob Ultraの施策。",
+    "client": "Michelob Ultra",
+    "agency": "MICHELOB ULTRA, New York / WIEDEN+KENNEDY, New York / DRAFTLINE, New York",
+    "categories": [
+      "Social & Influencer"
+    ],
+    "award": "Cannes Lions 2023 Social & Influencer Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Social & Influencer",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.cbssports.com/golf/news/look-pga-championship-fan-signs-michelob-ultra-deal-after-screenshot-with-tiger-woods-goes-viral",
+    "videoId": "",
+    "overview": "2022年5月のPGA選手権（サザンヒルズ）でタイガー・ウッズを見守る観客のうち、1人だけスマホを持たず、Michelob Ultraを手にしていた男性の写真が拡散した。AB InBevのMichelob Ultraはこれを広告とグッズに転用した。",
+    "background": "写真に写っていたのはミズーリ州のマーク・ラデティック氏。2022年5月21日にTwitterに「No cell phone. Just a man watching Tiger with a Michelob Ultra」という投稿がされて広まった。",
+    "execution": "Michelob Ultraは本人の許可を得て、写真を使ったSNS広告を出し、「It's only worth it if you enjoy it」のコピー入りTシャツと帽子を用意した。限定缶の色を白か青かでフォロワーに問う投稿もし、本人にビールを贈ることも提案した（CBS Sports、2022年5月28日報道）。",
+    "evaluationImpact": "カンヌライオンズ2023のSocial & Influencer部門でSilverを受賞した。同作品はD&AD 2023のDigital/Tactical部門でWood Pencilも受賞している。",
+    "tags": [
+      "Form/SNS",
+      "Theme/Sports",
+      "Form/Product"
+    ],
+    "thumbnail": "/thumbnails/michelob-ultra-michelob-guy.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "netflix-wednesday-hates-marketing",
+    "title": "Wednesday Hates Marketing",
+    "summary": "広告を嫌う主人公ウェンズデー自身に「宣伝されること」への皮肉を語らせ、SNSと屋外広告で配信前のドラマを盛り上げたNetflixの施策。",
+    "client": "Netflix",
+    "agency": "NETFLIX MARKETING PARTNERSHIPS, Los Angeles / TRAILER PARK, New York / ART MACHINE, Los Angeles / HUSTLE LA, Los Angeles",
+    "categories": [
+      "Social & Influencer"
+    ],
+    "award": "Cannes Lions 2023 Social & Influencer Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Social & Influencer",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://yellowchili.substack.com/p/wednesday-hates-marketing-you-are",
+    "videoId": "",
+    "overview": "Netflixのドラマ『ウェンズデー』（2022年11月配信開始）のプレミア前の宣伝。広告を嫌うという主人公の性格を、広告そのものの語り口に使った。",
+    "background": "作り込まれた宣伝を冷めた目で見る視聴者に向けて、広告が広告であることを自覚し皮肉る姿勢をとることで、宣伝を押し付けと感じさせない狙いとみられる。",
+    "execution": "プレミアの数カ月前にウェンズデー名義のTwitterアカウントを開設し、投稿やミームで視聴者と交流した。米国各地の看板、駅、トラックなどの屋外広告でも、宣伝を皮肉るウェンズデーの口調を使った。TikTokではダンス企画も広がった（Yellow Chiliのニュースレターによる）。",
+    "evaluationImpact": "カンヌライオンズ2023のSocial & Influencer部門でSilverを受賞した。同作品はClioやOne Showでも受賞している。",
+    "tags": [
+      "Form/SNS",
+      "Form/OOH",
+      "Theme/Entertainment"
+    ],
+    "thumbnail": "/thumbnails/netflix-wednesday-hates-marketing.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "voila-by-sobeys-trending-2-table",
+    "title": "Trending 2 Table",
+    "summary": "TikTokで流行しそうなレシピを予測し、動画から材料入りのカートへ1タップで進めるようにした、食料品宅配Voilàの施策。",
+    "client": "VoilÀ By Sobeys",
+    "agency": "FCB TORONTO",
+    "categories": [
+      "Social & Influencer"
+    ],
+    "award": "Cannes Lions 2023 Social & Influencer Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Social & Influencer",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://strategyonline.ca/?p=241550",
+    "videoId": "",
+    "overview": "SobeysのオンラインスーパーVoilàが、FCB Torontoと組んで実施した。TikTokで流行するレシピを先読みし、フード系クリエイターの動画から購入までを短い導線でつないだ。",
+    "background": "TikTokのレシピ動画は人気が出ても、見た人が材料を自分で書き出して買い物に行く手間があった。Voilàは、流行の発生源であるTikTok上で「見る」から「買う」までを直結させようとした。",
+    "execution": "FCBの独自の「Trend Index」で、TikTok Creative Centerのランキングなどを組み合わせて流行を予測した。その結果をもとに、@nutrientmatters などのフード系クリエイターと組んでレシピ動画を制作した。動画はSpark Adsとして配信し、タップすると材料が入ったVoilà.caのカートに移る（TikTok事例ページ、Strategy）。",
+    "evaluationImpact": "カンヌライオンズ2023のSocial & Influencer部門でSilverを受賞した。SNSの流行データを使って買い物行動までつないだ点が評価された。",
+    "tags": [
+      "Theme/Retail",
+      "Theme/Food",
+      "Form/SNS",
+      "Tech/Data"
+    ],
+    "thumbnail": "/thumbnails/voila-by-sobeys-trending-2-table.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "coordown-ridiculous-excuses-not-to-be-inclusive",
+    "title": "Ridiculous Excuses Not To Be Inclusive",
+    "summary": "ダウン症の人が実際に言われた「排除の言い訳」をコミカルな映像にして、世界ダウン症の日にTikTokから発信した啓発キャンペーン。",
+    "client": "Coordown",
+    "agency": "INDIANA PRODUCTION COMPANY, Milan / SMALL, New York",
+    "categories": [
+      "Social & Influencer"
+    ],
+    "award": "Cannes Lions 2023 Social & Influencer Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Social & Influencer",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州",
+      "北米"
+    ],
+    "link": "https://www.coordown.it/en/?p=9742",
+    "videoId": "",
+    "overview": "イタリアのダウン症団体CoorDownが、SMALL New York、Indiana Production Companyと制作した2023年の世界ダウン症の日（3月21日）向けのキャンペーン。映像は最初にCoorDownのTikTokチャンネルで公開された。",
+    "background": "CoorDownは世界各地の団体の協力を得て、ダウン症の人とその家族に、排除されたときに聞かされた言い訳を集めた。「椅子が足りないから会議に呼べない」のような、もっともらしいが筋の通らない理由が多く寄せられた。",
+    "execution": "集まった実話をもとに5つの場面を作り、差別の言い訳を皮肉たっぷりに見せる映像にした。映像はTikTokを起点に公開され、参加者が自分の体験した言い訳を投稿できる形にしている（LBB、Global Down Syndrome Foundationの紹介ページ）。",
+    "evaluationImpact": "カンヌライオンズ2023のSocial & Influencer部門でSilverを受賞した。深刻な題材を笑いに包んで広げた点が特徴で、世界の複数のダウン症団体が公式に紹介した。",
+    "tags": [
+      "Theme/SocialGood",
+      "Form/Film",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/coordown-ridiculous-excuses-not-to-be-inclusive.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "pepco-illiterate-ads",
+    "title": "Illiterate Ads",
+    "summary": "読み書きに困難を抱える農村部の子どもたちに新学期広告の文章を書かせ、誤字だらけのまま公開して、識字の問題を可視化したPepcoの施策。",
+    "client": "Pepco",
+    "agency": "VMLY&R, Bucharest",
+    "categories": [
+      "Social & Influencer"
+    ],
+    "award": "Cannes Lions 2023 Social & Influencer Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Social & Influencer",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.vml.com/work/illiterate-ads",
+    "videoId": "",
+    "overview": "ルーマニアのPepcoが、VMLY&R Romaniaと、Noi Orizonturi財団、Teach For Romaniaの協力で実施した新学期（Back to School）キャンペーン。",
+    "background": "ルーマニアでは、恵まれない環境の子どもの6割が小学校を終えても読み書きができないとされる（Revista Biz）。農村部では特にこの問題が深刻だった。",
+    "execution": "識字に困難のある子どもたちが書いた広告文を、修正せずにPepcoの公式SNSに掲載した。誤字はすぐ指摘され、ネットでは嘲笑も出た。その後、世界識字デーの9月8日に短いドキュメンタリーを公開し、書き手が子どもたちだったことと問題の規模を明かした。",
+    "evaluationImpact": "カンヌライオンズ2023のSocial & Influencer部門（Social Insights & Engagement）でSilverを受賞した。同年のEffie（Positive Change – Social Good – Brands）でもBronzeを獲得した（Revista Biz）。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Education",
+      "Form/SNS",
+      "Form/Film"
+    ],
+    "thumbnail": "/thumbnails/pepco-illiterate-ads.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "fightmnd-i-m-neale-daniher",
+    "title": "I'm Neale Daniher",
+    "summary": "運動ニューロン病で声を失いつつあるニール・ダニエル氏の演説を、TikTokのデュエット機能で国民が「声を貸して」代読した、FightMNDの募金啓発施策。",
+    "client": "Fightmnd",
+    "agency": "CLEMENGER BBDO, Sydney",
+    "categories": [
+      "Social & Influencer"
+    ],
+    "award": "Cannes Lions 2023 Social & Influencer Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Social & Influencer",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://www.dandad.org/work/d-ad-awards-archive/im-neale-daniher",
+    "videoId": "",
+    "overview": "オーストラリアの運動ニューロン病（MND）研究支援団体FightMNDの施策。2013年にMNDと診断され、団体の「顔」として語ってきたニール・ダニエル氏が、病気で声を失いつつある状況を出発点にした。作品は2022年の展開で、2023年の各賞に応募された。",
+    "background": "ダニエル氏の声は長年FightMNDの訴えの中心だったが、病気の進行で話せなくなりつつあった。団体は、本人に代わって多くの人が語る形で募金と研究支援の訴えを続ける必要があった。",
+    "execution": "無音のダニエル氏のTikTok動画に演説を文字で重ね、利用者がデュエット機能で自分の声で演説を読み上げられるようにした（D&AD）。同じ2022年5月には、Clemenger BBDO Melbourneが著名人の大使たちが本人の言葉を代読する長尺映像と屋外・デジタル素材も展開した（Campaign Brief）。",
+    "evaluationImpact": "カンヌライオンズ2023のSocial & Influencer部門でSilverを受賞した（D&ADにも応募）。本人の声の喪失そのものを参加の仕掛けにした点が特徴。",
+    "tags": [
+      "Theme/Health",
+      "Theme/SocialGood",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/fightmnd-i-m-neale-daniher.jpg"
   }
 ]
