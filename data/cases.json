@@ -111557,5 +111557,607 @@
       "Tech/3D"
     ],
     "thumbnail": "/thumbnails/woodkid-reactor.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "ladbrokes-rocky",
+    "title": "Rocky",
+    "summary": "映画『ロッキー』の名場面を、ロッキー以外の出演者を消して差し替える大規模なVFXで作り直した、ラドブロークスのブランドフィルム。",
+    "client": "Ladbrokes",
+    "agency": "LADBROKES, Gibraltar / NEVERLAND, London",
+    "categories": [
+      "Film Craft"
+    ],
+    "award": "Cannes Lions 2023 Film Craft Lions Silver / Cannes Lions 2023 Film Craft Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film Craft",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film Craft",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.ciclopefestival.com/?p=1051",
+    "videoId": "",
+    "overview": "英国のブックメーカー、ラドブロークスとNeverlandによる映像作品。映画『ロッキー』の有名な走るシーンを再現し、ブランドの世界観に合う人々を画面に登場させた。",
+    "background": "CICLOPE Festivalの事例紹介によれば、Neverlandは「We Play Together」の発想を映画の枠を超えてラドブロークスのブランド全体に広げようとした。権利元のMGMには企画の初期から構想を共有し、協力を得ている。",
+    "execution": "監督はMJZのNicolai Fuglsig、VFXはSelected Worksが担当した。ほぼ全編を大がかりなモーションコントロールの1つの動きで撮るため、ワイヤーカムを大きなステージに組んだ。初日は装置の調整で使える映像が撮れなかった。フィラデルフィアの街並みはVFXで整えられ、監督は約5万時間の作業が投じられたと語っている（CICLOPE）。Creative Salonは、1979年の『ロッキーII』の走るシーンの再現だと伝えている。",
+    "evaluationImpact": "カンヌライオンズ2023のFilm Craft部門でSilverとBronzeを受賞した。「ハリウッド史上最も野心的なキャラクター差し替え」と紹介され、VFXの完成度が評価された。",
+    "tags": [
+      "Form/Film",
+      "Theme/Sports",
+      "Theme/Entertainment"
+    ],
+    "thumbnail": "/thumbnails/ladbrokes-rocky.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "red-cross-trajectory",
+    "title": "Trajectory",
+    "summary": "1発の流れ弾が被害者本人だけでなく、家族や地域の人々の人生まで変えていく様子を描いた、赤十字の銃暴力反対フィルム。",
+    "client": "Red Cross",
+    "agency": "PRIMO AUDIOVISUAL SA (INVOICE), Montevideo / TBWA\\ESPAÑA, Madrid",
+    "categories": [
+      "Film Craft"
+    ],
+    "award": "Cannes Lions 2023 Film Craft Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film Craft",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州",
+      "中南米"
+    ],
+    "link": "https://adsofbrands.net/en/ads/red-cross-trajectory/14787",
+    "videoId": "",
+    "overview": "赤十字（Cruz Roja）とTBWA Españaによる反銃のPSA。流れ弾の軌道をたどり、被害者の周囲に広がる影響を描く。",
+    "background": "演出のM&M（Martin JalfenとMike Usandivaras）は、ラテンアメリカの経済的に厳しい地域を調べた。Usandivarasは「ラテンアメリカの銃暴力の被害者は戦争より多い」と語り、1発の弾丸が地域全体に与える影響を描くことにした（Ads of Brands）。被害者の家族が恐怖から転居したり、子どもが学校をやめて働いたりする例もあり、多くはPTSDへの心理的支援を受けられていない。",
+    "execution": "全編を16mmフィルムで撮影した。撮影監督はGalo Olivares、ロケ地はメキシコシティの実在の地区で、安全面の配慮のもと撮った。音楽にはトム・ヨーク（Radiohead）の「Dawn Chorus」を使った。銃創の描写は生々しいが、意図は衝撃を与えることではなく人的な被害を示すことだと伝えられている。",
+    "evaluationImpact": "カンヌライオンズ2023のFilm Craft部門でBronzeを受賞した。16mmの質感と撮影が評価され、他の映像祭でもファイナリストに挙がった。",
+    "tags": [
+      "Form/Film",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/red-cross-trajectory.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "voiz-the-eyes",
+    "title": "The Eyes",
+    "summary": "「目は心の窓」というタイ語の言い回しを使い、告白する少年の目玉が飛び出すタイ流のユーモアでワッフルチョコ菓子を見せたVoizのフィルム。",
+    "client": "Voiz",
+    "agency": "OGILVY, Bangkok",
+    "categories": [
+      "Film Craft"
+    ],
+    "award": "Cannes Lions 2023 Film Craft Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film Craft",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://ogilvy.com/work/innocent-eyes",
+    "videoId": "",
+    "overview": "タイの菓子ブランドVoizとOgilvy Bangkokによる短編フィルム。作品名はThe Innocent Eyesとも表記される。Voizの映像シリーズの3作目で、前作はThe LaserとThe Ghost。",
+    "background": "Voizは「分け合うほどおいしい」という菓子カテゴリーの定番とは逆に、「おいしすぎて分けられない」というメッセージを掲げた。クライアントの最初の依頼は、既存のシリーズの物語を続けることだった（LBB）。",
+    "execution": "美術スタジオで、少年が少女Allyに愛を告白する。Allyは信じず、嘘を見抜くために目を見せてと言う。すると少年の両目が飛び出し、2人の小さな少年となってVoizのワッフルチョコクリスプを奪いに行く。少女役はタイの若手スターのAlly Nitibhonで、タイ語の表現を絵にした不条理なユーモアで見せる（Storyboard18、Ogilvy）。",
+    "evaluationImpact": "カンヌライオンズ2023のFilm Craft部門でBronzeを受賞した。One Show 2023のFilm & VideoでBest of Disciplineに選ばれ、D&AD 2023でもペンシルを獲得するなど、複数の賞で評価された。",
+    "tags": [
+      "Form/Film",
+      "Theme/Food",
+      "Theme/Entertainment"
+    ],
+    "thumbnail": "/thumbnails/voiz-the-eyes.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "waka-kotahi-through-my-eyes",
+    "title": "Through My Eyes",
+    "summary": "スピード違反を取り締まる警察官の視点から、「少し速かっただけ」という言い訳の先にある事故の現場を見せた、ニュージーランド交通局の交通安全フィルム。",
+    "client": "Waka Kotahi",
+    "agency": "RUSKIN, Auckland / FCB NEW ZEALAND, Auckland",
+    "categories": [
+      "Film Craft"
+    ],
+    "award": "Cannes Lions 2023 Film Craft Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film Craft",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://campaignbrief.co.nz/?p=90609",
+    "videoId": "",
+    "overview": "Waka Kotahi NZ Transport AgencyとFCB New Zealandが2023年1月27日に公開したスピード違反抑止のキャンペーンフィルム。ニュージーランド警察との協力で作られた。",
+    "background": "ニュージーランドの交通死亡・重傷事故を2030年までに2018年比で40%減らす「Road to Zero」戦略の一環。速度は事故の重さを左右し、死傷か無事かを分ける要因になる。FCBが2022年6月に戦略クリエイティブ代理店に選ばれてから最初の仕事で、メディアはMBMが担当した（Campaign Brief）。",
+    "execution": "警察官がスピード違反のドライバーを止めると、ドライバーはそれぞれ見慣れた言い訳をする。その後、速度さえ出ていなければ防げた事故の現場に警察官が向かう。主役には実際の警察官を起用した。制作はFilm Ruskin、監督はNathan Price、撮影はZiga Zupancic、音響と音楽はCam Ballantyneが担当した。",
+    "evaluationImpact": "カンヌライオンズ2023のFilm Craft部門でBronzeを受賞した。One Show 2023ではMeritを受けた。",
+    "tags": [
+      "Form/Film",
+      "Theme/SocialGood",
+      "Theme/Mobility"
+    ],
+    "thumbnail": "/thumbnails/waka-kotahi-through-my-eyes.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "winamax-the-ball-of-yarn",
+    "title": "The Ball Of Yarn",
+    "summary": "猫人間が暮らす街で真っ赤な毛糸玉を全員が追いかける様子を描き、「大事なのは勝つこと」という新ブランドシグネチャーを伝えたWinamaxのフィルム。",
+    "client": "Winamax",
+    "agency": "TBWA\\ Paris, Paris",
+    "categories": [
+      "Film Craft"
+    ],
+    "award": "Cannes Lions 2023 Film Craft Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film Craft",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://tbwa-paris.com/en/work/la-pelote/",
+    "videoId": "",
+    "overview": "フランスのオンラインゲーミングブランドWinamaxとTBWA\\Parisによる、2022年10月4日公開のブランドフィルム。原題は「La Pelote」。",
+    "background": "cbnewsによれば、ギャンブル広告の規制環境が変わる中で、ブランドの考え方を率直かつ派手に見せる狙いがあった。フィルムは「Le plus important c'est de gagner（大事なのは勝つこと）」という新しい署名で終わる。",
+    "execution": "夕暮れの街で、猫人間たちの静けさを赤い毛糸玉が破り、全員が路地や通りを追いかける。競い合う群れが1つの塊になって毛糸玉を捕まえようとする。監督はSolabのRomain Chassaing。TVでは60秒版と30秒版を放送し、オンラインでも流した。中国人イラストレーターShan Jiangの原画によるポスターも全国で展開した。音楽はThe Johnston Brothersの「Hernando's Hideaway」。",
+    "evaluationImpact": "カンヌライオンズ2023のFilm Craft部門でBronzeを受賞した。One Show 2023のMerit、D&AD 2023のWood Pencilなども受けた。後続の「The Moon Race」でもこの毛糸玉が引用された。",
+    "tags": [
+      "Form/Film",
+      "Theme/Entertainment"
+    ],
+    "thumbnail": "/thumbnails/winamax-the-ball-of-yarn.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "australia-for-unhcr-the-reluctant-shanty",
+    "title": "The Reluctant Shanty",
+    "summary": "難民5人へのインタビューをもとに作ったシーシャンティ（船乗りの労働歌）を、オーストラリア在住の難民3人が無伴奏で歌うフィルム。世界難民の日に合わせて公開された。",
+    "client": "Australia For Unhcr",
+    "agency": "FINCH, Sydney / BMF, Sydney",
+    "categories": [
+      "Film Craft"
+    ],
+    "award": "Cannes Lions 2023 Film Craft Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film Craft",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://www.bandt.com.au/australia-for-unhcr-teams-up-with-tiktok-star-and-bmf-for-haunting-sea-shanty-campaign/",
+    "videoId": "",
+    "overview": "Australia for UNHCRがBMFと組み、世界難民の日（2022年6月20日）に公開した啓発施策。TikTokでシャンティが流行していた文脈を借り、危険な海の旅を経た難民の経験を歌として届けた。",
+    "background": "シャンティは船乗りが物語を伝えるために生まれた音楽で、BMFのクリエイティブ・ディレクターDoug Hamiltonはこの性質に着目した（B&T報道）。命がけの海路で逃れてきた難民の経験と重ね、難民への理解を深め、その勇気と回復力を称えることを狙った。",
+    "execution": "楽曲は難民5人へのインタビューから作られた。映像にはオーストラリアに暮らす難民3人が登場し、不気味さをたたえた無伴奏の歌唱で数行ずつ歌う。監督はFINCHのKyra Bartley。TikTokスターのNathan Evansが公開に関わり、TikTok・PR・Instagramで展開した。寄付はAustralia for UNHCRを通じてUNHCRの活動資金になる。",
+    "evaluationImpact": "カンヌライオンズ2023のFilm Craft部門でBronzeを受賞した。D&AD 2023でもDirectionとSound Design & Use of Musicでショートリスト入りしている。",
+    "tags": [
+      "Form/Film",
+      "Form/SNS",
+      "Theme/SocialGood",
+      "Theme/Music"
+    ],
+    "thumbnail": "/thumbnails/australia-for-unhcr-the-reluctant-shanty.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "gucci-kaguya-by-gucci",
+    "title": "Kaguya By Gucci",
+    "summary": "『竹取物語』を現代の東京に置き換え、人型ロボットAlter4が歌う語り手として登場するGucciの短編映画。竹製ハンドルのバッグ誕生75周年の企画。",
+    "client": "Gucci",
+    "agency": "DENTSU INC., Tokyo / TSUZUKU, Tokyo",
+    "categories": [
+      "Film Craft"
+    ],
+    "award": "Cannes Lions 2023 Film Craft Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film Craft",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "国内"
+    ],
+    "link": "https://itsnicethat.com/news/makoto-nagahisa-kaguya-by-gucci-film-120822",
+    "videoId": "",
+    "overview": "Gucciが2022年8月に公開した「Kaguya by Gucci」。電通とTSUZUKUが手がけ、監督は永久誠、音楽は渋谷慶一郎、コンセプトは田辺俊彦。光る竹から見つかった月の姫かぐやの物語を現代の東京で描く。",
+    "background": "2022年はGucciが竹をハンドバッグに使い始めて75年にあたり、その記念として1947 BambooバッグとDianaバッグを紹介する短編と位置づけられた（Hypebeast）。竹から生まれる姫という日本の古典を、ブランドの象徴である竹と結びつけた。",
+    "execution": "かぐや役を光石研ではなく満島ひかり、竹取の翁役を山田あおい、帝役を永山瑛太が演じる。人型ロボットAlter4が、渋谷のピアノ即興に合わせて歌いながら物語を語る狂言回しを務める。登場人物を磁器の人形やプラスチックの飾り玉のような姿に変える場面や、東京タワー・電話ボックスなどの都市の象徴にはCGとアニメーションを使った（It's Nice That）。gucci.comとYouTubeで公開された。",
+    "evaluationImpact": "カンヌライオンズ2023のFilm Craft部門でBronzeを受賞した。",
+    "tags": [
+      "Form/Film",
+      "Theme/Fashion",
+      "Tech/Robotics",
+      "Tech/3D",
+      "Theme/Music"
+    ],
+    "thumbnail": "/thumbnails/gucci-kaguya-by-gucci.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "prostate-cancer-uk-ode-to-dads",
+    "title": "Ode To Dads",
+    "summary": "実在の父親たちの何気ない日常を2分で描き、父の日に前立腺がんの啓発と研究への寄付を呼びかけたProstate Cancer UKのフィルム。",
+    "client": "Prostate Cancer Uk",
+    "agency": "BBH, London",
+    "categories": [
+      "Film Craft"
+    ],
+    "award": "Cannes Lions 2023 Film Craft Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film Craft",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creative.salon/articles/work/bbh-prostate-cancer-ode-to-dads",
+    "videoId": "",
+    "overview": "BBH Londonが2022年の父の日（6月19日）に向けて制作した施策。下手な冗談や不器用なDIYなど、父親の多面的な姿を祝いながら、前立腺がんの認知向上と寄付を促した。",
+    "background": "父の日のカードがバーベキューや釣り、ゴルフといった限られた姿しか描かないことに対し、より丁寧に父親を祝う内容にした（Adweek）。英国では1日に約30人の男性が前立腺がんで亡くなるとされ、その啓発も目的だった（Creative Salon）。",
+    "execution": "2分のヒーロー映像に、実在の父親が下手な冗談を言う、すりむいた膝を手当てする、レコードを整理する、泣いている人に肩を貸す、といった場面が登場する。音楽はWorld Partyの「She's the One」をアレンジしたもの。90年代風のテレビ用バージョンも作り、Channel 4の『Celebrity Gogglebox』で初放送した。6月9日から2週間テレビとSNSで展開し、ラジオと、Clear Channel、JACK、City Lights、Open Mediaなどの屋外広告・デジタル屋外広告が支えた。",
+    "evaluationImpact": "カンヌライオンズ2023のFilm Craft部門でBronzeを受賞した。",
+    "tags": [
+      "Form/Film",
+      "Form/OOH",
+      "Theme/Health",
+      "Theme/SocialGood",
+      "Theme/Music"
+    ],
+    "thumbnail": "/thumbnails/prostate-cancer-uk-ode-to-dads.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "penny-the-rift",
+    "title": "The Rift",
+    "summary": "壁やレンズに走る亀裂で一人暮らしの高齢女性の不安を描き、隣人同士の対話を呼びかけたドイツのスーパー、Pennyのクリスマスフィルム。",
+    "client": "Penny",
+    "agency": "SERVICEPLAN, Munich",
+    "categories": [
+      "Film Craft"
+    ],
+    "award": "Cannes Lions 2023 Film Craft Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film Craft",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/the-rift",
+    "videoId": "",
+    "overview": "Serviceplan Munichが2022年11月に公開した約4分のホリデー広告。監督はSeb Edwards。パンデミック後の社会に生じた分断を「亀裂」として描き、「Let's heal the rifts in our society」で締める。",
+    "background": "ワクチンをめぐる友人関係の緊張、偏見、デモなど、パンデミック後に広がった社会の亀裂がテーマ（Muse by Clios）。Pennyは前年のホリデー広告に続き、コミュニティを軸に据えた。",
+    "execution": "一人暮らしの高齢女性が、若者からの嫌がらせ、紛争報道、コロナへの恐怖に囲まれて過ごす。家の中の物が壊れ、壁にひびが入る描写が彼女の心の状態を映す。終盤で若者の一人が訪ねて「Can we talk?」と声をかけると、割れた眼鏡が元に戻る。ブカレストの高層住宅とサウンドステージで撮影し、レンズ・階段の壁・ピアノの鍵などにセットとして亀裂を彫り込んだ。初期シーンでは後処理で亀裂を消し、徐々に増える様子を表現している。SNSとドイツの映画館で公開した。",
+    "evaluationImpact": "カンヌライオンズ2023のFilm Craft部門でBronzeを受賞した。EpicaのOnline & Viral Films部門でSilver、Clio Awardsのサウンドデザインでも受賞している。",
+    "tags": [
+      "Form/Film",
+      "Theme/Retail",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/penny-the-rift.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "coca-cola-the-coca-cola-company-masterpiece",
+    "title": "The Coca-Cola Company - Masterpiece",
+    "summary": "ウォーホル、ターナー、ムンク、ゴッホなどの名画を行き来しながらコカ・コーラが受け渡される、アート引用の映像。VFXはElectric Theatre Collectiveが担当した。",
+    "client": "Coca-Cola",
+    "agency": "ELECTRIC THEATRE COLLECTIVE, London / BLITZWORKS, Leamington Spa",
+    "categories": [
+      "Film Craft"
+    ],
+    "award": "Cannes Lions 2023 Film Craft Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film Craft",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.stashmedia.tv/?p=95054",
+    "videoId": "",
+    "overview": "Blitzworksが手がけたCoca-Colaのフィルム。監督はAcademy FilmsのHenry Scholfield、VFXはElectric Theatre Collective。有名な美術作品を取り込んだ「アート・アプロプリエーション」の作品として紹介された（Stash、2023年3月）。",
+    "background": "Stashの記事によれば、キャンペーンは名画の引用に加え、新進アーティストを紹介する取り組みとして展開された。",
+    "execution": "映像にはAndy Warholの『Coca-Cola』（1962）、TurnerのThe Shipwreck、Munchの『The Scream』（再着色したリトグラフ）、Van Goghの『Bedroom in Arles』、Vermeerの『Girl with a Pearl Earring』などが登場する。アフリカ、インド、中東、ラテンアメリカの新進クリエイターの作品も含まれる。展開は、新進アーティストのインタビューを載せたオンラインギャラリー、3Dビルボード、デジタルコレクティブルなど。撮影監督はBen Todd、編集はTenThree、音楽・サウンドはYessian Music。",
+    "evaluationImpact": "カンヌライオンズ2023のFilm Craft部門でBronzeを受賞した。Clio Awardsでもフィルムクラフト（ビジュアルエフェクト）部門でGoldを受賞している。",
+    "tags": [
+      "Form/Film",
+      "Theme/Art",
+      "Tech/3D"
+    ],
+    "thumbnail": "/thumbnails/coca-cola-the-coca-cola-company-masterpiece.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "kendrick-lamar-the-heart-part-5",
+    "title": "The Heart Part 5",
+    "summary": "ケンドリック・ラマーの顔をディープフェイクで次々と別の著名人に変えながら、自身の内面を語らせたミュージックビデオ。",
+    "client": "Kendrick Lamar",
+    "agency": "PGLANG, Los Angeles",
+    "categories": [
+      "Film Craft"
+    ],
+    "award": "Cannes Lions 2023 Film Craft Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film Craft",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://itsnicethat.com/news/deep-voodoo-kendrick-lamar-the-heart-part-5-digital-100522",
+    "videoId": "",
+    "overview": "2022年5月に公開されたケンドリック・ラマーのシングル「The Heart Part 5」のミュージックビデオ。ラマーとDave Freeが監督し、PGLANGが制作した。ディープフェイクの制作は、サウスパークの生みの親トレイ・パーカーとマット・ストーンによるスタジオDeep Voodooが担当した。",
+    "background": "It's Nice Thatによれば、Deep Voodooはパーカーとストーンが2020年のSassy Justiceで使ったディープフェイク技術を発展させたスタジオで、約20人のアーティストと技術者が所属する。パーカーはこの技術を「新しい形のアニメーション」と位置づけ、ショットごとに演者と声を細かく制御できると語っている（ニューヨーク・タイムズのインタビューとして同記事が引用）。",
+    "execution": "ラマーの顔がカニエ・ウェスト、O.J.シンプソン、ウィル・スミス、コービー・ブライアント、ニプシー・ハッスルの顔へと切り替わり、それぞれの人物にまつわる物語がラップのリリックと重ねて描かれる。顔の置き換えは映像全体にわたり、各人物の表情と声が映像の中で一体となるよう作られた。",
+    "evaluationImpact": "公開直後から、ディープフェイクを音楽映像の表現手法として使った例として多くのメディアが取り上げた。カンヌライオンズ2023のFilm Craft部門でBronzeを受賞した。",
+    "tags": [
+      "Form/MV",
+      "Theme/Music",
+      "Tech/AI"
+    ],
+    "thumbnail": "/thumbnails/kendrick-lamar-the-heart-part-5.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "apple-share-the-joy",
+    "title": "Share The Joy",
+    "summary": "AirPods Proの音声共有機能を、ブエノスアイレスの街が雪に変わるダンスで見せたAppleの2022年ホリデー映像。",
+    "client": "Apple",
+    "agency": "BLACKSMITH, New York / TBWA\\MEDIA ARTS / LAB, Los Angeles",
+    "categories": [
+      "Film Craft"
+    ],
+    "award": "Cannes Lions 2023 Film Craft Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film Craft",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.reasonwhy.es/actualidad/nieve-sol-buenos-aires-anuncio-navidad-apple-juan-cabral-bizarrap-bhavi",
+    "videoId": "I_40JFauCFk",
+    "overview": "Appleが2022年11月17日に公開したホリデー映像で、AirPods Proのオーディオ共有機能を紹介する。TBWA\\Media Arts Labが手がけ、監督はMJZ所属のフアン・カブラル。Appleの世界向けホリデー広告として初めて、全編スペイン語の楽曲を使った。",
+    "background": "ホリデー映像は寒い地域を舞台にすることが多いが、本作は夏の陽射しが降り注ぐブエノスアイレスを舞台にした。振付はフランス・ベルギー出身のダミアン・ジャレが担当し、これが初の広告仕事となった（Reason Why、Muse by Clio）。",
+    "execution": "カフェで退屈そうにしていた二人が、AirPods Proで1曲を分け合うと、リズムに乗って街へ踊り出し、触れたものが雪の粒に変わっていく。ダンサーはVinson FraleyとGal Zusmanovich、楽曲はBizarrapとBhaviの「Puff」。雪への変化の視覚効果はBlacksmithが制作した。約90秒の本編のほか、放送・デジタル・SNS向けの短縮版も展開された。",
+    "evaluationImpact": "カンヌライオンズ2023のFilm Craft部門でBronzeを受賞した。2023年のADC AwardsやThe One Showのクラフト部門にも入選している。",
+    "tags": [
+      "Form/Film",
+      "Tech/Audio"
+    ],
+    "thumbnail": "/thumbnails/apple-share-the-joy.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "decathlon-canada-ability-signs",
+    "title": "Ability Signs",
+    "summary": "車いすの国際シンボルマークを、バスケットボールやテニスなどスポーツをする姿に描き直した、デカトロン・カナダの「アビリティ・サイン」。",
+    "client": "Decathlon Canada",
+    "agency": "RETHINK, Toronto",
+    "categories": [
+      "Media"
+    ],
+    "award": "Cannes Lions 2023 Media Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/ability-signs",
+    "videoId": "",
+    "overview": "スポーツ用品店Decathlon CanadaがRethinkと組み、2021年10月にカナダで始めた施策。国際アクセシビリティマークを、障害のある人ができることを示す図柄に作り替えた。",
+    "background": "Decathlonは「スポーツをすべての人に」という考えを掲げている。この施策は、その考えを障害のある人にも広げるものとして実施された（Ads of the World）。",
+    "execution": "バスケットボール、ラグビー、テニスなどのスポーツをする姿を描いた18種類のサインを作った。専用サイトabilitysigns.caで、誰でもダウンロードして印刷・掲示できる。",
+    "evaluationImpact": "カンヌライオンズ2023のMedia部門でGoldを受賞した（Campaign Canada報道）。この年Rethinkは、Decathlonを含む作品でGold1、Silver1、Bronze3を獲得している。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Sports",
+      "Form/OOH",
+      "Form/Website"
+    ],
+    "thumbnail": "/thumbnails/decathlon-canada-ability-signs.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "mcdonald-s-a-promo-no-body-s-heard-of",
+    "title": "A Promo No Body's Heard Of",
+    "summary": "ワールドカップ中継の手話通訳画面を使い、聴覚障害のある人だけに無料コンボを知らせたマクドナルド・パナマの施策。",
+    "client": "Mcdonald's",
+    "agency": "LEO BURNETT PANAMA, Panama City",
+    "categories": [
+      "Media"
+    ],
+    "award": "Cannes Lions 2023 Media Lions Silver / Cannes Lions 2023 Media Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "中南米"
+    ],
+    "link": "https://www.revistaeyn.com/empresasymanagement/creatividad-panamena-destaca-en-festival-cannes-lions-por-campana-para-personas-con-discapacidad-auditiva-GC14521722",
+    "videoId": "",
+    "overview": "マクドナルドのパナマの運営会社Arcos Dorados Panamáによる、聴覚障害のある人向けのプロモーション。サッカーのワールドカップ中継の中で、手話通訳者の映像を通じて告知した。",
+    "background": "中継の手話通訳は通常、他の人の発言を訳すために使われる。この施策は、その画面を企業自身のメッセージを伝える場に転用した（Revista E&N）。",
+    "execution": "試合中継の副画面に映る手話通訳者が、障害者手帳を店で見せると無料のコンボがもらえると伝えた。手話がわかる人にしか伝わらない告知にしてある。店で商品を受け取る人には、同社の従業員採用プログラムへの参加方法も案内された。",
+    "evaluationImpact": "カンヌライオンズ2023のMedia部門でSilverとBronzeを受賞した（Revista E&N報道）。交換数や採用人数など成果の数値は報じられていない。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Sports",
+      "Theme/Food",
+      "Form/Stunt"
+    ],
+    "thumbnail": "/thumbnails/mcdonald-s-a-promo-no-body-s-heard-of.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "whitelion-the-loudest-call",
+    "title": "The Loudest Call",
+    "summary": "全国の公衆電話に同時に電話をかけ、若者の声で寄付を呼びかけたWhitelionの施策。",
+    "client": "Whitelion",
+    "agency": "OGILVY AUSTRALIA, Sydney",
+    "categories": [
+      "Media"
+    ],
+    "award": "Cannes Lions 2023 Media Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://www.brandinginasia.com/contenders-at-cannes-2023-whitelion-the-loudest-call-ogilvy-australia/",
+    "videoId": "",
+    "overview": "オーストラリアで若者の自立を支援する小さな慈善団体Whitelionが、Ogilvy Australiaと実施した施策。ある1日に、全国の公衆電話へ一斉に発信し、受話器を取った人に若者のメッセージを聞かせた。",
+    "background": "Branding in Asiaによれば、この施策は、オーストラリアで家を出て暮らす若者がおよそ4万6,000人にのぼることを背景にした。街で見過ごされがちな公衆電話と、見過ごされがちな若者の存在を重ねた。",
+    "execution": "公衆電話が公的な記録に載っていることを利用し、自動発信の仕組みで全国約1万5,000台の公衆電話へ同時にかけた。受話器を取った人は、支援を求める若者の声を聞き、最後にwhitelion.org.auでの寄付を案内される。",
+    "evaluationImpact": "カンヌライオンズ2023のMedia部門でSilverを受賞した。使われなくなった公衆電話を、社会課題を訴える媒体として使い直した点が評価された。",
+    "tags": [
+      "Theme/SocialGood",
+      "Tech/Audio",
+      "Form/Stunt"
+    ],
+    "thumbnail": "/thumbnails/whitelion-the-loudest-call.jpg"
   }
 ]
