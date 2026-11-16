@@ -28069,5 +28069,221 @@
         "desc": "ステム分離やビート同期エフェクトを備えた、無料のオープンソースDJソフト。"
       }
     ]
+  },
+  {
+    "id": "2026-11-16-1",
+    "date": "2026-11-16",
+    "title": "伊吹島の壁画を踊らせる",
+    "pattern": "文脈×技術",
+    "seed": "瀬戸内国際芸術祭の伊吹島で、ゲゲルボヨの壁画的作品『つながる海』に描かれた生き物たちを、anymoveで人間以外のリグ付きキャラにして動かせるかも。島の漁師の歌に合わせて壁から泳ぎ出す祭りになりそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2022-ib09",
+        "title": "つながる海",
+        "desc": "インドネシアのアーティスト集団が、香川の伊吹島に壁画のような作品を描いた瀬戸内国際芸術祭の展示。"
+      },
+      {
+        "type": "tech",
+        "id": "anymove",
+        "title": "anymove",
+        "desc": "AI動画から、ドラゴンや蜘蛛など人間以外のキャラの動きを作り、3Dデータで書き出せる技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-16-2",
+    "date": "2026-11-16",
+    "title": "納豆菌ウェアで声を届ける",
+    "pattern": "文脈×技術",
+    "seed": "Islam Alijajの『Giving A Voice To The Unheard』に、bioLogicの湿度で開閉する納豆菌ウェアを掛けたら、言葉が出にくい人の緊張や高ぶりを服の開閉で可視化し、声を代弁できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "islam-alijaj-giving-a-voice-to-the-unheard",
+        "title": "Giving A Voice To The Unheard",
+        "desc": "重度の言語障害のある候補者を、支持者と一緒に国政選挙で当選させようとしたスイスの選挙運動。"
+      },
+      {
+        "type": "tech",
+        "id": "biologic",
+        "title": "bioLogic",
+        "desc": "納豆菌が湿度で伸び縮みする性質を使い、汗や体温で開閉するスポーツウェアにした研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-16-3",
+    "date": "2026-11-16",
+    "title": "失明の誕生会を3D再現",
+    "pattern": "文脈×技術",
+    "seed": "The Last Birthdayの「皆が失明しようとする誕生会」を、PixARMeshで1枚の室内写真から3D化し、DualSense Haptic Designerの振動と手応えで再現したら、視力のない世界を手の感触だけで体験させられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "association-valentin-hauy-the-last-birthday",
+        "title": "The Last Birthday",
+        "desc": "60歳過ぎの失明への補償の薄さを、誕生会を舞台にしたブラックコメディで訴えた仏の動画。"
+      },
+      {
+        "type": "tech",
+        "id": "pixarmesh",
+        "title": "PixARMesh",
+        "desc": "1枚の室内写真から、部屋の配置と編集できる3Dモデルをまとめて作る技術。"
+      },
+      {
+        "type": "tech",
+        "id": "dualsense-haptic-designer",
+        "title": "DualSense Haptic Designer",
+        "desc": "PS5コントローラーの振動やトリガーの手応えを、音やグラフから設計できるツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-16-4",
+    "date": "2026-11-16",
+    "title": "踊る人と分離した音の合成",
+    "pattern": "技術×技術",
+    "seed": "python-audio-separatorで曲をステムに分け、MACE-Danceに楽器ごとに別々の人物写真と渡したら、ドラム担当・ベース担当が同じ曲で踊り分けるバンド型の群舞動画ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "python-audio-separator",
+        "title": "python-audio-separator (audio-separator)",
+        "desc": "曲をボーカルやドラムなどのパートに、コマンド一つで分けられる開発者向けツール。"
+      },
+      {
+        "type": "tech",
+        "id": "mace-dance",
+        "title": "MACE-Dance",
+        "desc": "1枚の人物写真と1曲の音楽から、リズムに合わせて踊る動画を自動で作る技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-16-5",
+    "date": "2026-11-16",
+    "title": "ジャズ癖で動く映画カメラ",
+    "pattern": "技術×技術",
+    "seed": "Jazz Pianist Styleが奏者ごとの弾き癖で続きを作る仕組みを、Cinematic Director Camera DSLの撮影用語に翻訳したら、ピアニストの癖がそのままカメラワークになるジャズ映像ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "jazz-pianist-style",
+        "title": "Jazz Pianist Style (Learning Jazz Pianist Style with Cross-Attention Conditioning)",
+        "desc": "ジャズピアニスト12人の弾き癖を学び、その奏者らしい続きを作るピアノAI。"
+      },
+      {
+        "type": "tech",
+        "id": "cinematic-director-camera-dsl",
+        "title": "Cinematic Director Camera DSL",
+        "desc": "短い撮影用語を書くと、各AI動画モデル向けのカメラ指示文に変換する仕組み。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-16-6",
+    "date": "2026-11-16",
+    "title": "砂漠の光を再構成する",
+    "pattern": "技術×技術",
+    "seed": "Gaussian Splat to Blender Nodesで砂漠の夜景を編集可能な形にし、PPISPで露出ムラを物理的に整えたら、光の粒だけを入れ替えて何度も夜を作り直せる展示素材になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "gaussian-splat-to-blender-nodes",
+        "title": "Gaussian Splat to Blender Nodes (World to World Mapping)",
+        "desc": "Gaussian Splatで撮った場面を、Blenderで編集できる形に作り直すツール。"
+      },
+      {
+        "type": "tech",
+        "id": "ppisp",
+        "title": "PPISP (Physically-Plausible Compensation and Control of Photometric Variations)",
+        "desc": "3Dスキャン映像の明るさや色のズレを、物理的に自然な形で直すNVIDIAの技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-16-7",
+    "date": "2026-11-16",
+    "title": "スタジアムで撮るテニスの癖",
+    "pattern": "転用",
+    "seed": "HTD-Refineは普通のスマホ動画から人体の3Dモーションを復元する技術だが、街の老人のラジオ体操を撮って復元し、AdaPTで人型ロボに「その人らしい動き」を継がせる記録保存に使えるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "htd-refine",
+        "title": "HTD-Refine",
+        "desc": "スマホで撮った普通の動画から、人の体の3Dな動きを取り出すAI技術。"
+      },
+      {
+        "type": "tech",
+        "id": "adapt",
+        "title": "AdaPT",
+        "desc": "テニス選手らしいフォームのまま、人型ロボットにサーブを打たせる技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-16-8",
+    "date": "2026-11-16",
+    "title": "映画音声分離で作る無音の抗議",
+    "pattern": "転用",
+    "seed": "ComfyUI-DBSは映画やCMの音声を3つに分ける道具だが、Shoutのリメイク映画から声だけを抜いた版を作り、男らしさの圧力を「叫べない沈黙」として見せる転用ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-dbs",
+        "title": "ComfyUI-DBS",
+        "desc": "映画やCMの音声を音楽・効果音・セリフに分け、セリフだけ消すこともできるノード。"
+      },
+      {
+        "type": "case",
+        "id": "telefonica-shout",
+        "title": "Shout",
+        "desc": "ボクシングを舞台に同性愛嫌悪と男らしさの圧力を描いた、Tears for Fears曲のリメイク映画。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-16-9",
+    "date": "2026-11-16",
+    "title": "顔補正で読む有害図書館",
+    "pattern": "転用",
+    "seed": "ComfyUI-H3-FaceRefineは小さな顔を描き直す補正ツールだが、Worst Children's Libraryの有害コンテンツ映像で群衆の小さな顔だけを鮮明にし、保護者が見落としがちな加害の気配を見せる教材にできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "comfyui-h3-facerefine",
+        "title": "ComfyUI-H3-FaceRefine",
+        "desc": "動画生成AIが苦手な、画面で小さく映る顔だけを拡大して描き直すツール。"
+      },
+      {
+        "type": "case",
+        "id": "samsung-worst-children-s-library",
+        "title": "Worst Children's Library",
+        "desc": "子どもが出会う有害なネット情報を本にして並べた、小学校図書館型の体験施設。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-16-10",
+    "date": "2026-11-16",
+    "title": "入国の誓いを編集する動画",
+    "pattern": "自由枠",
+    "seed": "パラオのPALAU PLEDGEのスタンプ誓約を、FireRed-OpenStorylineに読み込ませ、入国者一人ひとりの旅の素材を編集エージェントが誓いの言葉に沿って自動で短編に仕立てれば、制度が個人の記録に変わるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "palau-pledge",
+        "title": "PALAU PLEDGE",
+        "desc": "パラオ入国時に、自然を守る誓いのスタンプをパスポートへ押す制度。"
+      },
+      {
+        "type": "tech",
+        "id": "firered-openstoryline",
+        "title": "FireRed-OpenStoryline",
+        "desc": "話しかけると、素材選びからカット、つなぎまで進める動画編集エージェント。"
+      }
+    ]
   }
 ]
