@@ -116816,5 +116816,542 @@
       "Theme/Food"
     ],
     "thumbnail": "/thumbnails/kfc-anything-for-the-taste.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "macpac-weather-anything",
+    "title": "Weather Anything",
+    "summary": "崖にぶら下がった登山者たちが、掴んだ1枚のジャケットが裂けないことで製品の耐久性を伝えた、Macpacのデッドパンなコメディ広告。",
+    "client": "Macpac",
+    "agency": "THE MONKEYS, PART OF ACCENTURE / SONG, Melbourne",
+    "categories": [
+      "Film"
+    ],
+    "award": "Cannes Lions 2023 Film Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://themonkeys.com.au/work/weather-anything",
+    "videoId": "",
+    "overview": "ニュージーランドのアウトドアブランドMacpacが、The Monkeys Melbourneと展開した「Weather Anything」プラットフォームの施策。映画の「崖っぷち」の定番シーンをパロディにし、ジャケットの信頼性を45秒のスポットで見せた。",
+    "background": "Adweek AgencySpyによれば、Macpacはニュージーランドの一流アルピニストが設計・試験した高い耐久性の装備を売りにしている。The Monkeysは2020年から同ブランドのエージェンシー・オブ・レコードを務めており、その訴求を派手な演出ではなくカイウィらしい乾いたユーモアで伝える方針をとった。",
+    "execution": "スポットでは、崖の縁にぶら下がった男が落とした携帯電話を気にしつつ、上の男が掴むジャケットが映画のように裂けないか冗談を言い合う。ジャケットはMacpac製なので裂けず、カメラが引くと冷静な登山者たちが連なって宙づりになっている。監督はSweetshopのDamien Shatford。TV、屋外広告、ソーシャル、オンライン、店頭でオーストラリアとニュージーランドに展開した（Adweek AgencySpy、Ragtrader）。",
+    "evaluationImpact": "カンヌライオンズ2023のFilm部門でBronzeを受賞した。業界メディアでは、高所恐怖症の人には向かないほどのスリルと笑いを組み合わせた点が取り上げられた（B&T）。",
+    "tags": [
+      "Form/Film",
+      "Theme/Retail"
+    ],
+    "thumbnail": "/thumbnails/macpac-weather-anything.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "dutch-state-lottery-don-t-wait-for-luck-to-happen",
+    "title": "Don't Wait For Luck To Happen",
+    "summary": "「幸運が来るのを待つな」と締める、息子が父を人生の旅へ連れ出す大晦日向けフィルム。オランダ国営宝くじの年末キャンペーン。",
+    "client": "Dutch State Lottery",
+    "agency": "TBWA\\NEBOKO, Amsterdam",
+    "categories": [
+      "Film"
+    ],
+    "award": "Cannes Lions 2023 Film Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.thestable.com.au/tbwaneboko-dutch-state-lottery-its-not-all-about-winning/",
+    "videoId": "",
+    "overview": "TBWA\\NEBOKO Amsterdamが制作したオランダ国営宝くじ（Staatsloterij）の大晦日抽選向けTVスポット。大賞の当選よりも大切なものがあるというメッセージで、「Don't wait for happiness to happen to you」という呼びかけで終わる。",
+    "background": "同ブランドは近年、犬のFrekkel（2018）、ハリネズミのFreddie（2019）、猫のFrummel（2020）、鳩時計のFritsie（2021）といったキャラクターで年末のキャンペーンを続けてきた（The Stable）。2022年はキャラクターから離れ、「当せん金より価値のあるもの」を人間のドラマで描いた。この点は本案件が2023年の応募作であることを前提にした推定で、2022年12月の施策を応募作と見なしている。",
+    "execution": "2022年12月10日にオランダの全TVチャンネルで公開された。息子が運を待たずに父を人生の旅に連れ出す物語で、制作はPink Rabbit、監督はIsmael。ソーシャル、オンライン、ラジオ、屋外、店頭でも12月31日まで展開した（The Stable）。",
+    "evaluationImpact": "カンヌライオンズ2023のFilm部門でBronzeを受賞した。オランダの視聴者投票で2022年のベスト・コマーシャルに選ばれたと報じられている（Shots）。",
+    "tags": [
+      "Form/Film",
+      "Theme/Entertainment"
+    ],
+    "thumbnail": "/thumbnails/dutch-state-lottery-don-t-wait-for-luck-to-happen.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "alzheimer-s-society-the-ultimate-vow",
+    "title": "The Ultimate Vow",
+    "summary": "結婚の誓いの言葉に重ねて、認知症が夫婦にもたらす試練を描いたAlzheimer's Societyのブランド刷新キャンペーン映像。",
+    "client": "Alzheimer's Society",
+    "agency": "NEW COMMERCIAL ARTS, London",
+    "categories": [
+      "Film"
+    ],
+    "award": "Cannes Lions 2023 Film Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creative.salon/articles/work/nca-alzheimer-s-society-the-ultimate-vow",
+    "videoId": "",
+    "overview": "英国のAlzheimer's Societyが、New Commercial Artsと制作した約90秒のフィルム。妻Lauraが結婚の誓いの言葉を語り続ける中で、夫Adamの認知症が進んでいく過程を見せる。新しいブランドの約束とロゴの発表と同時に公開された。",
+    "background": "同団体のマーケティング担当者は、英国で今日生まれた人の3人に1人が生涯のうちに認知症になるとし、国の最大の保健・社会ケアの課題だと述べている（Creative Salon）。団体はこのタイミングで、忘れな草をモチーフにした新ロゴと「Together we are help & hope for everyone living with dementia」という新しいブランドの約束を打ち出した。",
+    "execution": "2023年3月9日、ITVの「Good Morning Britain」内で90秒版を放送した。幸せだった結婚式の日の誓いと、病が進むなかでの最も苦しい時期を対比させ、団体の認知症アドバイザーが2人を支える姿を挟む。最後はColin Firthのナレーションによる寄付の呼びかけで終わる。監督はBiscuit FilmworksのJames Rouse。TV、映画館、屋外、新聞雑誌、ラジオ、ソーシャルで展開し、Mary McCartneyが撮影した実在の3組の夫婦のポートレートも使った（Creative Salon）。",
+    "evaluationImpact": "カンヌライオンズ2023のFilm部門でBronzeを受賞した。放送後、視聴者から涙を誘う、病気の描き方が正確だという反応が報じられた。",
+    "tags": [
+      "Form/Film",
+      "Theme/Health",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/alzheimer-s-society-the-ultimate-vow.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "pot-noodle-nothing-fills-a-hole-like-pot-noodle",
+    "title": "Nothing Fills A Hole Like Pot Noodle",
+    "summary": "英国の道路の穴（ポットホール）や玉突き台のポケット、郵便ポストなど、あらゆる「穴」をPot Noodleで埋めてみせたユーモア広告。",
+    "client": "Pot Noodle",
+    "agency": "adam&eveDDB, London",
+    "categories": [
+      "Film",
+      "Outdoor"
+    ],
+    "award": "Cannes Lions 2023 Film Lions Bronze / Cannes Lions 2023 Outdoor Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Outdoor",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.marketing-beat.co.uk/2023/03/31/pot-noodle-pothole-campaign/",
+    "videoId": "",
+    "overview": "Unileverのインスタント麺Pot Noodleが、adam&eveDDBと展開した「Nothing Fills A Hole Like Pot Noodle」。英語の俗語で「fill a hole」が「空腹を満たす」を意味することに掛け、実際の穴を埋めて満腹感を表現した。",
+    "background": "英国の道路は9マイルに1マイルが緊急の補修を要する状態とされ、ポットホールは身近な不満の種になっている（Marketing Beat）。ブランドはこの社会的な話題に乗り、政府の対応の遅れを茶化す形で商品の「満たす」力を語った。",
+    "execution": "2023年3月下旬に開始した。50秒のTVスポットでは、ポットホール、玉突き台のポケット、郵便ポストなどの穴をPot Noodleが埋める。TVは1週間放送し、デジタルOOH、新聞雑誌、ソーシャル、PRで支えた。サリー、エセックス、ノーサンプトンシャーなどポットホールの多い地域を対象にした。Instagramストーリーズ用のGIFステッカーも用意された（Marketing Beat、Creative Salon）。撮影はAcademy FilmsのFrederick Paxton、メディアはMindshare。",
+    "evaluationImpact": "カンヌライオンズ2023でFilm部門とOutdoor部門のBronzeを受賞した。道路問題への皮肉を込めた企画として英国の業界メディアで広く紹介された。",
+    "tags": [
+      "Form/Film",
+      "Form/OOH",
+      "Form/Stunt",
+      "Theme/Food"
+    ],
+    "thumbnail": "/thumbnails/pot-noodle-nothing-fills-a-hole-like-pot-noodle.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "apple-privacy-on-iphone-data-auction",
+    "title": "Privacy On Iphone - Data Auction",
+    "summary": "自分の個人データがレコード店の奥で競売にかけられる様子をコミカルに描き、iPhoneのプライバシー機能を伝えたAppleの90秒映像。",
+    "client": "Apple",
+    "agency": "TBWA\\MEDIA ARTS LAB, Los Angeles",
+    "categories": [
+      "Film"
+    ],
+    "award": "Cannes Lions 2023 Film Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.macrumors.com/2022/05/18/apple-data-auction-iphone-privacy-ad/",
+    "videoId": "",
+    "overview": "AppleとTBWA\\Media Arts Labによる「Privacy on iPhone」シリーズの映像「Data Auction」。若い女性エリーが、レコード店の奥の部屋で自分の位置情報やメール閲覧などのデータが競売にかけられているのを目撃する。2022年5月に公開された。",
+    "background": "MacRumorsなどの報道によれば、この映像はiOSのApp Tracking TransparencyやMail Privacy Protectionなど、Appleが標準で備えるトラッキング対策を訴求する目的で作られた。広告業界でデータ取引が日常的に行われている状況を、誰にでも分かる「競売」に置き換えて見せた。",
+    "execution": "店の奥の「Ellie's Data Auction」と書かれた扉の先で、入札者たちがエリーの行動データに値を付けている。エリーがiPhoneの設定でトラッキングを拒否し、メールのプライバシー保護を有効にすると、入札者たちは次々と姿を消す。ほかにApple Payが取引記録を残さない点や、位置情報の制御も描かれる。監督はSMUGGLERのIvan Zacharias。90秒の尺に収めるため、Private Relayなど一部の機能は盛り込まれなかったと報じられた。放映は24か国に及んだとされる。",
+    "evaluationImpact": "TechRadarは「面白いが、どこか恐ろしい」と評した。一方で、Appleの広告事業の拡大や、EUのデジタル市場法への対応をめぐり、Apple自身のプライバシー姿勢への指摘も報じられた。Campaign Indiaは、2020年の21N78E制作の広告と発想が似ていると報じている。カンヌライオンズ2023のFilm部門でBronzeを受賞した。",
+    "tags": [
+      "Form/Film",
+      "Tech/Data"
+    ],
+    "thumbnail": "/thumbnails/apple-privacy-on-iphone-data-auction.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "samsung-join-the-flip-side",
+    "title": "Join The Flip Side",
+    "summary": "折りたたむ動きを見ると街中の物が全部Flipに見えてしまう女性を描き、「Flip側に来よう」と乗り換えを促したSamsungの映像。",
+    "client": "Samsung",
+    "agency": "WIEDEN+KENNEDY, Amsterdam",
+    "categories": [
+      "Film"
+    ],
+    "award": "Cannes Lions 2023 Film Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creativereview.co.uk/wieden-kennedy-samsung-flip",
+    "videoId": "",
+    "overview": "Samsung Galaxy Z Flip4の訴求として、Wieden+Kennedy Amsterdamが制作した約2分の映像「Join the Flip Side」。Contagiousは、ブランド名は出さないものの、iPhoneの利用者を意識した内容だと報じている。",
+    "background": "Contagiousなどによれば、毎年ほぼ同じ見た目の端末を出す競合から、折りたたみ式のFlipへ乗り換えることを促す狙いだった。「自分のブランドからは乗り換えない」と言う人を否定せず、気持ちを理解したうえで背中を押すトーンを取った。Flip4の発売は2022年8月で、映像は同年9月ごろに公開された。",
+    "execution": "主人公のエレナは普通のスマートフォン利用者で、友人の新しいFlip4の開閉動作に目を奪われる。椅子やメニュー、便座など、身の回りの物が折りたたまれて見え始め、最後にエレナは乗り換えて「Flip側」に加わる。監督はBaconのMatias & Mathias。2023年の続編「Season 2」とは別の作品で、本件は2022年の最初の映像である。",
+    "evaluationImpact": "The Drumは「奇妙で印象的」な広告として、Creative Reviewは乗り換えをためらう人の心理を突いた作品として紹介した。カンヌライオンズ2023のFilm部門でBronzeを受賞した。",
+    "tags": [
+      "Form/Film",
+      "Tech/Device"
+    ],
+    "thumbnail": "/thumbnails/samsung-join-the-flip-side.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "squarespac-e-the-singularity-bts",
+    "title": "The Singularity: Bts",
+    "summary": "スーパーボウル広告に出る大量のアダム・ドライバーが撮影現場に全員集まっていたら、という設定のメイキング風映像。本編の予告と出演者発表を兼ねた。",
+    "client": "Squarespac E",
+    "agency": "SQUARESPACE, New York",
+    "categories": [
+      "Film"
+    ],
+    "award": "Cannes Lions 2023 Film Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.squarespace.com/press-releases/2023/3/8/squarespaces-2023-super-bowl-campaign-the-singularity-stars-adam-driver",
+    "videoId": "",
+    "overview": "Squarespaceが2023年のスーパーボウル広告「The Singularity」の公開前に出した「BTS（舞台裏）」映像。本編では俳優アダム・ドライバーが複数の自分を演じるが、舞台裏映像ではその全員が現場にいる前提で、撮影の合間の様子を描く。",
+    "background": "Squarespaceのプレスリリースによれば、本編は創業20周年に合わせ、創業者アンソニー・カサレーナが2003年に語った「ウェブサイトを作るウェブサイト」という構想を出発点にしている。AdweekはVP of Creativeのベン・ヒューズの談話を伝えている。BTS映像は、本編に先立つ展開の第1弾という位置づけだった。",
+    "execution": "BTS映像は社内の制作チームが監督し、2023年1月末にInstagram、Twitter、TikTok、YouTubeで公開された。ドライバーの複数の人格が撮影の待ち時間に雑談したりふざけたりする。ドライバー本人も追加の場面や冗談の案出しに加わったとされる。本編30秒は2月12日のスーパーボウルで第1クォーター終了後に放映され、監督はSMUGGLERのAoife McArdle。",
+    "evaluationImpact": "BTS映像の公開を機に、ドライバーに関する投稿が増え、本編公開前から話題を呼んだ。カンヌライオンズ2023のFilm部門でBronzeを受賞した。",
+    "tags": [
+      "Form/Film",
+      "Form/SNS",
+      "Theme/Entertainment"
+    ],
+    "thumbnail": "/thumbnails/squarespac-e-the-singularity-bts.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "brady-war-stories",
+    "title": "War Stories",
+    "summary": "ベトナム戦争に従軍した元海軍兵が戦場の手記を読み、その書き手が6歳で銃乱射事件を生き延びた少年だと知る、銃規制団体Bradyの映像。",
+    "client": "Brady",
+    "agency": "BCW, New York",
+    "categories": [
+      "Film"
+    ],
+    "award": "Cannes Lions 2023 Film Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://lbbonline.com/news/harrowing-gun-control-campaign-sees-veteran-face-an-uncomfortable-truth",
+    "videoId": "",
+    "overview": "米国の銃規制団体Bradyが、BCWと組んで2023年春に展開した攻撃用銃器の禁止を訴える「War Stories」キャンペーンの映像「A Story of Survival」。Guardianが独占で報じた。",
+    "background": "Guardianによれば、Bradyは攻撃用銃器は戦場にあるべきもので、地域社会にあるべきではないという立場から、退役軍人を起用して禁止の再導入を訴えた。軍の経験者に語らせることで、銃規制に慎重な層にも届く形を狙った。",
+    "execution": "海軍の退役軍人ダン・カーチナーが、実際の戦場の体験談のような文章を朗読する。読み終えた後、文章の書き手が、6歳のときにデイキャンプで銃撃に遭ったジョシュだと明かされる。映像は「Ban assault weapons」という呼びかけで終わる。制作はBURNが担当したとLBBが伝えている。",
+    "evaluationImpact": "GuardianやLBBが取り上げ、Advertising Week New York 2023でも事例として紹介された。カンヌライオンズ2023のFilm部門でBronzeを受賞した。なお、応募名は「War Stories」で、本文の映像「A Story of Survival」はその中心となる映像である。",
+    "tags": [
+      "Form/Film",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/brady-war-stories.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "heineken-the-ghosted-bar",
+    "title": "The Ghosted Bar",
+    "summary": "会社に残って来られない友人が、バーでは幽霊として現れる。そんな心霊現象のバーを実際に開き、「友達をゴーストにするな」と働き方を問いかけたHeinekenの施策。",
+    "client": "Heineken",
+    "agency": "PUBLICIS ITALY | LEPUB, Milan",
+    "categories": [
+      "Film"
+    ],
+    "award": "Cannes Lions 2023 Film Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州",
+      "アジア"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/the-ghosted-bar",
+    "videoId": "",
+    "overview": "HeinekenとLePubによる「#WorkResponsibly」の第3弾。韓国の俳優パク・ヒョンシクを起用し、2023年4月にシンガポールとマレーシアで展開した。",
+    "background": "bandtなどの報道によれば、仕事を理由に友人との約束を断る、いわゆる「ゴースティング」を題材にした。会社に残る人が友人との時間を失う状況を、バーに現れる幽霊として表現した。調査会社YouGovの調査を引用した報道もあるが、数値は報道により異なる。",
+    "execution": "パク・ヒョンシクがInstagramに、グラスが勝手に動き椅子が滑る心霊現象が起きるバーの映像を投稿した。映像は「友達をゴーストにするな」で締めくくられる。シンガポールでは4月19日に「Ghosted Bar」の体験イベントを開いた。マレーシアでは5月9日から31日の平日夜に、全国で40回の体験を実施した。",
+    "evaluationImpact": "The DrumやB&T、Campaign Asiaなどが取り上げ、働き過ぎを軽い笑いで問い直す施策として紹介された。カンヌライオンズ2023のFilm部門でBronzeを受賞した。",
+    "tags": [
+      "Form/Film",
+      "Form/Event",
+      "Theme/Entertainment"
+    ],
+    "thumbnail": "/thumbnails/heineken-the-ghosted-bar.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "quilmes-coincidences",
+    "title": "Coincidences",
+    "summary": "2022年W杯カタール大会に向け、1986年の優勝時との「偶然の一致」を探して「今回も優勝する」と信じさせた、Quilmesの社内エージェンシー制作のビール広告。",
+    "client": "Quilmes",
+    "agency": "AB INBEV, Buenos Aires / DRAFTLINE, Buenos / Aires",
+    "categories": [
+      "Film",
+      "Media"
+    ],
+    "award": "Cannes Lions 2023 Film Lions Bronze / Cannes Lions 2023 Media Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.forbesargentina.com/lifestyle/eugenio-cucu-raffo-cerveceria-malteria-quilmes-fue-premio-historia-publicidad-argentina-n36262",
+    "videoId": "",
+    "overview": "アルゼンチンのビールブランドQuilmesが、AB InBev傘下の社内エージェンシーDraftlineと制作した2022年W杯向けの施策。1986年メキシコ大会（アルゼンチン優勝）と2022年カタール大会の間にある偶然の一致を並べ、ファンが今大会への期待を持てるようにした。",
+    "background": "Forbes Argentinaのインタビューによると、サッカーが人々に希望を与える時期に、その希望をユーモアと感情を通して届けることが狙いだった。アルゼンチンは1986年を最後にW杯を制していなかった。",
+    "execution": "2022年10月下旬、大会の約1か月前に公式SNSで広告を公開した。広告は1986年のチームと現代表の共通点を挙げ、締めくくりでは1986年のチームに「世界最高の選手」マラドーナがいたことを思い出し、今回の代表にはメッシがいると気づく。Forbes Argentinaによれば、テレビ放映より前にWhatsAppで拡散し、視聴者もSNSで独自の「偶然の一致」を投稿して参加した。決勝の審判の誕生日が1986年決勝の審判と同じ、という例も紹介された。",
+    "evaluationImpact": "アルゼンチンはその後W杯で優勝し、本施策はForbes Argentinaで、ブランドと社内エージェンシーDraftlineにとって記録的な受賞だったと報じられた。カンヌライオンズ2023ではFilm部門とMedia部門でBronzeを受賞した。",
+    "tags": [
+      "Form/Film",
+      "Theme/Sports",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/quilmes-coincidences.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "j-b-she",
+    "title": "She",
+    "summary": "トランスジェンダーの孫娘のため、こっそりメイクを練習する祖父を描いた、J&Bのクリスマス向けフィルム。",
+    "client": "J&B",
+    "agency": "EL RUSO DE ROCKY, Madrid",
+    "categories": [
+      "Film"
+    ],
+    "award": "Cannes Lions 2023 Film Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.reasonwhy.es/actualidad/she-anuncio-navidad-jb-gran-premio-nacional-creatividad-2023",
+    "videoId": "",
+    "overview": "ディアジオのウイスキーブランドJ&Bが、マドリードのEl Ruso de Rockyと制作した2022年のクリスマス広告。LGBTI+の人々が家族に拒まれ、クリスマスに感じる孤独に光を当て、愛が偏見を超えるという「おとぎ話」として作られた。",
+    "background": "reasonwhyによれば、J&Bはブランドの多様性・インクルージョンの取り組みの一環として、受容・尊重・寛容を訴える内容にした。クリスマスに家族から拒絶されるLGBTI+の人々の孤独（「homosoledad navideña」）が着想源とされる。",
+    "execution": "高齢の男性が口紅やアイメイクをこっそり買い、美容誌を読みふけって練習する。理由は、クリスマスに訪ねてくるトランスジェンダーの孫娘を支えるためだと分かる。家族が集まる夕食の席で、祖父が孫娘にメイクを施して家族に紹介する場面で終わる。制作はAgosto、監督はGabe Ibáñez、メディアエージェンシーはPHD。楽曲は「She」のカバーが使われた。",
+    "evaluationImpact": "公開後、スペインのアーティストや政治家、著名人がシェアして急速に広まったと報じられた。一方で、クリスマス時期の「便乗」だとする批判も一部にあった。スペインのClub de Creativosの2023年Gran Premio Nacional de Creatividadを受賞し、カンヌライオンズ2023ではFilm部門でBronzeを受賞した。",
+    "tags": [
+      "Form/Film",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/j-b-she.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "pairi-daeza-iran-e-man",
+    "title": "Iran-E Man",
+    "summary": "イランの女性解放運動を支えるスカーフ・コレクションを、台詞なしの象徴的な映像で見せた、Pairi Daezaのショートフィルム。",
+    "client": "Pairi Daeza",
+    "agency": "NEW-LAND, Copenhagen",
+    "categories": [
+      "Film",
+      "Film Craft"
+    ],
+    "award": "Cannes Lions 2023 Film Lions Bronze / Cannes Lions 2023 Film Craft Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Film Craft",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://newland.tv/work/iran-e-man/",
+    "videoId": "",
+    "overview": "Pairi Daezaの「Woman Life Freedom」プロジェクトのためにコペンハーゲンのNEW-LANDが制作した短編。イラン出身の監督Naghmeh Pourが、イラン出身の12人のアーティストが手がけたスカーフ・コレクションを主役に撮った。",
+    "background": "スカーフの販売利益は全額、人権団体Abdorrahman Boroumand Centerに寄付される。映像は、イランの文化の歴史を称え、運動への希望を広げることを意図している。",
+    "execution": "台詞はなく、ザクロ、回転する水、太鼓、白い鳩などの象徴で語る。砂漠でペルシャ絨毯の上で踊る女性たちや、なびくスカーフが映る。スカーフのプリントには握りしめた拳、ピースサイン、女性の顔、太陽が使われている。C41 Magazineは、伝統工芸の絨毯と現代の革命を表すスカーフを対比した作品と評している。撮影はJoão de Botelho、主演はValentine。",
+    "evaluationImpact": "Naghmeh PourはYoung Director AwardでOnline Branded FilmのGold Screenを受賞したと報じられた。カンヌライオンズ2023ではFilm部門とFilm Craft部門でBronzeを受賞した。",
+    "tags": [
+      "Form/Film",
+      "Theme/Fashion",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/pairi-daeza-iran-e-man.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "ea-sports-apple-fifa-23-x-ted-lasso",
+    "title": "Fifa 23 X Ted Lasso",
+    "summary": "Apple TV+の人気ドラマ『Ted Lasso』の架空クラブAFC RichmondとTed Lassoを、『FIFA 23』内で実在クラブと同等に遊べるようにした、EA SportsとAppleの提携施策。",
+    "client": "Ea Sports & Apple",
+    "agency": "APPLE, Cupertino / EA SPORTS, Redwood / City / EA SPORTS, Redwood City",
+    "categories": [
+      "Brand Experience & Activation",
+      "Entertainment Lions for Gaming"
+    ],
+    "award": "Cannes Lions 2023 Brand Experience & Activation Lions Grand Prix / Cannes Lions 2023 Entertainment Lions for Gaming Gold / Cannes Lions 2023 Entertainment Lions for Gaming Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Brand Experience & Activation",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Entertainment Lions for Gaming",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/fifa-23-x-ted-lasso",
+    "videoId": "",
+    "overview": "EA SportsとAppleが、ドラマの制作側のWarner Bros.と組んで実施した。Ted LassoとAFC Richmondの選手を『FIFA 23』に登場させ、ドラマの世界をゲームの一部として遊べるようにした。",
+    "background": "Adweekによれば、EA Sportsは前年にTed Lassoを『FIFA』の世界に迎え入れた。Ted Lassoはエミー賞を受賞したドラマの主人公で、架空チームの監督という設定。",
+    "execution": "2022年9月にEA Sportsが発表し、『FIFA 23』でキャリアモード、キックオフ、オンライン対戦などでAFC Richmondを使えるようにした。9月30日からはTed Lassoを監督として選べた。ホームスタジアムNelson Roadも収録され、ユニフォームやティフォなどのコスメ要素もUltimate TeamやPro Clubsで解放できた。選手の能力値やプレースタイルは、ドラマの設定に沿って作られた。",
+    "evaluationImpact": "カンヌライオンズ2023でBrand Experience & Activation部門のGrand Prixを受賞し、Entertainment Lions for GamingでもGoldとSilverを受賞した。Adweekは、ドラマの主人公をゲームに登場させた提携が同部門の最高賞に選ばれたと報じた。",
+    "tags": [
+      "Tech/Game",
+      "Theme/Sports",
+      "Theme/Entertainment"
+    ],
+    "thumbnail": "/thumbnails/ea-sports-apple-fifa-23-x-ted-lasso.jpg"
   }
 ]
