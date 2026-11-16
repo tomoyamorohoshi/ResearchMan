@@ -119032,5 +119032,99 @@
       "Theme/SocialGood"
     ],
     "thumbnail": "/thumbnails/columbia-journalism-review-are-you-press-worthy.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "barilla-passive-cooking",
+    "title": "Passive Cooking",
+    "summary": "パスタを「2分だけ沸騰させ、火を止めて余熱で仕上げる」昔ながらの調理法に光を当て、省エネの調理法として広めたBarillaのグローバル施策。",
+    "client": "Barilla",
+    "agency": "PUBLICIS ITALY | LEPUB, Milan",
+    "categories": [
+      "Brand Experience & Activation",
+      "Innovation"
+    ],
+    "award": "Cannes Lions 2023 Brand Experience & Activation Lions Bronze / Cannes Lions 2023 Innovation Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Innovation",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.thestable.com.au/publicis-italy-le-pub-barilla-helps-the-world-make-pasta-more-sustainable/",
+    "videoId": "",
+    "overview": "BarillaがPublicis Italy/LePubと展開したグローバルキャンペーン。ブランドのサインオフ「Barilla. A Sign of Love.」を土台に、日常の小さな行動が地球への愛情表現になるというメッセージで、パスタを茹でる際の「パッシブクッキング」を提案した。ビジュアルはイメージ中心のアート誌TOILETPAPERと共同で作った。",
+    "background": "The Stableの報道によれば、パスタは世界で1日あたり約4億3,800万食が提供されるとされる。Barillaは19世紀から1960年代の高度成長期までイタリアで使われていた調理法に着目し、調理時のエネルギー消費を減らす日常の行動として再提案した。",
+    "execution": "通常は沸騰したお湯で約10分茹でるところを、約2分だけ沸騰させたら火を止め、蓋をして余熱で仕上げる。Barillaはこの方法に合わせたアルデンテの時間を各パスタの種類ごとにパッケージ、ウェブサイト、オンラインレシピへ表示した。WhatsAppボットで手順の案内や質問への回答も行った。Publicis Italyの技術部門Le Garageは、鍋の上に置いてスマートフォンのアプリと連携し、食べ頃を通知する試作デバイス「Passive Cooker」も開発し、ソフトウェアはオープンソースとして公開された（量産向けではない試作品）。SNSやインフルエンサーとの連携でも展開した。",
+    "evaluationImpact": "独立した報道で裏付けられた成果数値は確認できていない。カンヌライオンズ2023のBrand Experience & Activation部門とInnovation部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Food",
+      "Theme/Sustainability",
+      "Tech/Device",
+      "Form/Product",
+      "Tech/App"
+    ],
+    "thumbnail": "/thumbnails/barilla-passive-cooking.jpg"
+  },
+  {
+    "year": "2023",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2023"
+    ],
+    "id": "mortein-suraksha-ka-teeka",
+    "title": "Suraksha Ka Teeka",
+    "summary": "インドで子どもの額に塗る伝統の黒い印「kaala teeka」を蚊よけとして作り直し、マラリア対策として母親たちに配ったMorteinの施策。",
+    "client": "Mortein",
+    "agency": "DENTSU CREATIVE, Gurgaon",
+    "categories": [
+      "Brand Experience & Activation",
+      "Media"
+    ],
+    "award": "Cannes Lions 2023 Brand Experience & Activation Lions Bronze / Cannes Lions 2023 Media Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2023,
+        "category": "Media",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://campaignbriefasia.com/?p=148471",
+    "videoId": "",
+    "overview": "Reckitt傘下の殺虫剤ブランドMorteinとDENTSU CREATIVE Indiaによるマラリア啓発の取り組み。邪視から子どもを守るために額へ黒い印を付ける習慣を活かし、その印自体を蚊から守る製品にした。",
+    "background": "Campaign Brief Asiaによれば、インドのマラリア症例の約50%がウッタルプラデシュ州で発生している。Reckitt側はインドが2030年までにマラリア撲滅を目指す目標を支援する立場にあり、すでに根づいた習慣に製品を重ねることで、啓発を日常の行動に結びつけようとした。",
+    "execution": "Mortein Advanced Research Labで、伝統的なteekaを天然成分を配合して再処方し、蚊よけとして機能する製品にした。この製品はウッタルプラデシュ州バレイリー地区で、啓発活動の一環として母親たちに配布された。",
+    "evaluationImpact": "独立した報道で裏付けられた成果数値は確認できていない。カンヌライオンズ2023のBrand Experience & Activation部門とMedia部門でBronzeを受賞した。受賞前には、VMLY&RのMaxx Flash「Arogya Bindu」と着想・実施が似ているとインドの業界メディアexchange4mediaが報じ、両代理店が互いの正当性を巡って主張した。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Health",
+      "Form/Product"
+    ],
+    "thumbnail": "/thumbnails/mortein-suraksha-ka-teeka.jpg"
   }
 ]
