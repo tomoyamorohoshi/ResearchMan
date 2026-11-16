@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "statusAsOf": "2026-11-15",
+  "statusAsOf": "2026-11-16",
   "items": [
     {
       "id": "2026-hyper-museum-hanno-emi-kusano-end-of-nostalgia",
@@ -978,7 +978,7 @@
       "city": "横浜市",
       "startDate": "2026-10-16",
       "endDate": "2026-11-15",
-      "status": "ongoing",
+      "status": "ended",
       "admission": "一般1,000円",
       "tags": [
         "installation",
