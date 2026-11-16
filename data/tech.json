@@ -1,5 +1,174 @@
 [
   {
+    "id": "recavsr",
+    "title": "ReCaVSR",
+    "org": "USTC（中国科学技術大学）/ ComfyUI版: PedroMarinhoDev",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "動画を1ステップの拡散モデルで4倍に高画質化するアップスケーラー。ComfyUIノードとint8軽量版が公開され、8GBのGPUでも動かせる。",
+    "point": "低解像度の動画を4倍の解像度（例: 960×480→3840×1920）に引き上げる、動画用の超解像ツールです。すごい点は、拡散モデルでありながら「1ブロックにつき1ステップ」で処理するため速いことと、フレームを順に書き出す仕組みなので長い動画でもメモリが増えにくいことです。論文ではA100で1080×1920出力が毎秒約21フレーム、従来のFlashVSR Tinyより2.7倍速いと報告されています。広告・体験づくりでは、生成AI映像の下書きを高解像度の納品素材に仕上げる、昔の素材や小さく書き出したLED用素材を大画面向けに引き伸ばす、といった「最後の仕上げ工程」に使えそうです。ComfyUIに組み込めるので、生成→アップスケールを1本のワークフローにまとめられます。",
+    "detail": "仕組み: ReCaVSRはWan2.2（5Bの動画生成モデル）を土台に、動画を21フレーム、その後は8フレームずつの「ブロック」に区切って順番に処理します。各ブロックは1回だけノイズ除去を行い、直前のブロックの結果と過去の情報（キャッシュ）を引き継ぐので、つなぎ目のちらつきを抑えられます。どの層が過去をどれだけ覚えておくかは学習で決まり、これが論文の言う「学習されたキャッシュ・ルーティング」です。出力はFlashDecoderという専用デコーダが1ブロックごとに書き出します。\n\n従来との違い: 拡散モデル系の動画超解像は何十ステップも回すため重く、長尺は難しいものでした。本手法は1ステップ化とキャッシュの工夫で、速度とメモリ消費を同時に下げています。ComfyUI版のint8重み（6.3GB）では、1440p出力の4倍処理が8GBカードで動くと説明されています。3840×1920を16GBカードで回す場合はkv_offload設定が必要で、速度が7〜16%落ちます。\n\n使うには: NVIDIA GPU（int8は計算能力7.5以上）が必要です。ComfyUI-Managerで「ReCaVSR」を検索するか、`comfy node install comfyui-recavsr`で導入し、モデルファイル3種をmodels/recavsrへ置きます。原典のコマンドライン版はLinuxとCUDA 13対応ドライバが前提です。Windowsではトリトンが無いと注意が必要で、速度が大きく落ちると案内されています。音声は出力されないため、納品時は元音声を別途合わせます。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "本体コードはApache-2.0、ComfyUIノードはGPL-3.0。モデル重み（Hugging Face）にはライセンス明記がないため、商用利用前に要確認。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/kopperx/ReCaVSR"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/PedroMarinhoDev/ComfyUI-ReCaVSR"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2609.37831"
+      },
+      {
+        "kind": "post",
+        "url": "https://comfyui-wiki.com/en/news/2026-11-14-recavsr-comfyui"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/recavsr.jpg",
+    "relatedWorks": [
+      {
+        "title": "FlashVSR",
+        "description": "ストリーミング向けの1ステップ拡散動画超解像。ReCaVSRが速度比較の相手にしている先行研究。",
+        "url": "https://github.com/OpenImagingLab/FlashVSR"
+      },
+      {
+        "title": "SeedVR2",
+        "description": "ByteDanceによる1ステップ動画超解像モデル（3B/7B）。ComfyUIでも使える。",
+        "url": "https://comfyui-wiki.com/en/models/seedvr/seedvr2"
+      },
+      {
+        "title": "DOVE",
+        "description": "実写向けの1ステップ拡散動画超解像。コードが公開されている。",
+        "url": "https://github.com/zhengchen1999/DOVE"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "taomate-fvsr",
+    "title": "TaoMate-FVSR",
+    "org": "TaoLive AIGC",
+    "type": "Research",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "生成AI動画の小さくぼやけた顔を、音声を手がかりに復元し、差し替え音声に口の動きも合わせ直す顔動画修復モデル。",
+    "point": "AIで作った動画では、引きの画で顔が小さくぼやけたり、口の形が崩れたりしがちです。TaoMate-FVSRは頭部を切り出して顔だけを高精細に直し、元の場面へ貼り戻します。しかも音声を条件に使うので、元の声に合った口の動きに直せるほか、別の言語や台詞に差し替えた音声に口を合わせ直す「ビジュアル吹き替え」にも使えます。150クリップの評価では、比較した復元手法の中で知覚品質（LPIPS・DISTS）と口の同期（Sync-C）が最良と報告されています。広告では、AIで作った人物映像の顔だけを後から直す、多言語版CMの口元を言語ごとに合わせる、といった使い方が考えられます。",
+    "detail": "仕組み: 動画から頭部を切り出し、最初のフレームを基準画像（その人らしさの手本）として固定します。そこへ「過去に生成したフレーム（動きの履歴）」と「音声」を加えて顔を再生成し、色とマスクを整えて元のショットに貼り戻します。見た目は基準画像から、動きは履歴から、口は音声から、と役割を分けて与えるのが特徴です。デフォルトは512×512で、2倍の1024×1024モードもあります。\n\n従来との違い: 一般的な顔修復（GFPGANなど）は1枚ずつ直すため、動画ではちらつきやすく、口の動きは音声と無関係でした。本手法は動画の時間的なつながりと音声を使うので、安定性と口の同期を両立します。1つのモデルで「元音声のまま修復」と「差し替え音声での吹き替え」の両方を扱える点も新しい部分です。\n\n使うには: Linux、Python 3.10、PyTorch 2.9が受け入れ環境で、モデルと設定ファイルは約15GBです。16GB VRAMでの動作は検証済みで、8GB・12GBは未検証、Windowsも手順はあるものの未検証です。コードはGitHubのinfer.pyから使え、ComfyUI版はcomfyuiブランチを手動で入れます。ComfyUI-Managerには未登録です。デモは事前計算した研究成果で、オンラインで試せるサービスはありません。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "コードはApache-2.0。モデル重み（Hugging Face）のライセンスは未確認で、商用利用前に要確認。ComfyUI版は実験的なブランチ。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/TaoLiveAIGC/TaoMate-FVSR"
+      },
+      {
+        "kind": "project",
+        "url": "https://taoliveaigc.github.io/TaoMate-FVSR/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2611.03393"
+      },
+      {
+        "kind": "post",
+        "url": "https://comfyui-wiki.com/en/news/2026-11-14-taomate-fvsr"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/taomate-fvsr.jpg",
+    "relatedWorks": [
+      {
+        "title": "GFPGAN",
+        "description": "実写の劣化した顔を復元する定番ツール。1枚ずつの処理で、動画の時間的整合性は扱わない。",
+        "url": "https://github.com/TencentARC/GFPGAN"
+      },
+      {
+        "title": "ReCaVSR",
+        "description": "動画全体を1ステップで4倍に高画質化するアップスケーラー。顔だけでなく画面全体の解像度向け。",
+        "url": "https://github.com/kopperx/ReCaVSR"
+      },
+      {
+        "title": "FlashVSR",
+        "description": "ストリーミング向けの1ステップ拡散動画超解像。全体の高解像度化の先行研究。",
+        "url": "https://github.com/OpenImagingLab/FlashVSR"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "ltx-alpha-gen-for-davinci-resolve",
+    "title": "LTX Alpha Gen for DaVinci Resolve (cvt-ltx-alpha-gen)",
+    "org": "Creative Video Tips",
+    "type": "Tool",
+    "domains": [
+      "CreatorTools",
+      "GenVideo"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "LightricksのLTX-2.5 Alpha Genモデルを使い、DaVinci Resolve/Fusion内で映像の切り抜き（ロトスコープ）マットを生成するOFXプラグイン。",
+    "point": "人物や物体を背景から切り抜く「ロト作業」を、AIに任せられるプラグインです。大まかなマスクを描いて注目領域（Guided ROI）を指定すると、LTX-2.5 Alpha Genが毎フレームのアルファマット（透明度の切り抜き画像）を生成します。処理はMacのGPUでローカル実行され、素材をクラウドへ送らずに済みます。広告・映像制作では、CMの被写体の切り抜き、背景差し替え、文字や3D要素の背面への回し込みなど、時間のかかるロト作業の下ごしらえに使えそうです。11月5〜7日にv1.44〜v1.49が続けて出ており、更新が活発です。",
+    "detail": "仕組み: OFXはDaVinci ResolveやFusionに追加できるエフェクト規格です。このプラグインは、Resolveのノードとして「LTX Alpha Gen」を呼び出し、裏でLTX-2.5のAlpha Genモデルを動かして、各フレームの切り抜き画像を作ります。ユーザーは大まかなマスクで、どこを切り抜きたいかを伝えるだけです。Flame向けに作られたJan Klier氏のプラグインを独自に移植したものと、READMEに書かれています。\n\n従来との違い: 従来のロトは、人が輪郭を1フレームずつ調整するか、一般的なAI切り抜き（セグメンテーション）を使っていました。本ツールは生成モデルが「前景の要素」を取り出すため、髪の毛や半透明の部分でも扱いやすいことが狙いです。ただし精度は公式に検証した数値がなく、実際の素材で確かめる必要があります。\n\n使うには: Apple Silicon Mac（macOS 15以降）専用で、WindowsとNVIDIA版はありません。128GBのメモリが推奨で、64GB以下は非推奨とされています。モデルの置き場として約80GB（機種によって約125GB）のディスクも必要です。Resolve StudioとFusion Studioで動作確認済みで、無料版Resolveは未検証です。インストーラ（pkg）をReleasesから入れ、セットアップ画面でHugging Faceのトークンを入力してモデルをダウンロードします。ソースはsrc/にあり、build.shで自分でもビルドできます。",
+    "license": {
+      "spdx": "MPL-2.0",
+      "commercial": "conditional",
+      "note": "プラグインはMPL-2.0。モデルはLTX-2.x Community License（年商1,000万ドル未満は無償、それ以上は有償）。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/creativevideotips/cvt-ltx-alpha-gen"
+      },
+      {
+        "kind": "product",
+        "url": "https://ltx.io/model/capabilities/alpha-channel-video-generation"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/ltx-alpha-gen-for-davinci-resolve.jpg",
+    "relatedWorks": [
+      {
+        "title": "LTX Alpha Gen (LTX公式)",
+        "description": "映像から前景のマットを返すLTX-2.5の機能。ProResや連番EXRで受け渡せる。",
+        "url": "https://ltx.io/model/capabilities/alpha-channel-video-generation"
+      },
+      {
+        "title": "CorridorKey-Runtime",
+        "description": "Corridor Digitalと作ったResolve向けAIキーイングのOFXプラグイン。WindowsのRTXとMacに対応。",
+        "url": "https://github.com/alexandremendoncaalvaro/CorridorKey-Runtime"
+      },
+      {
+        "title": "resolve-ai-editor",
+        "description": "DaVinci Resolve向けの、AIによる自動粗編集プラグイン（MIT）。",
+        "url": "https://github.com/legifx/resolve-ai-editor"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "vauss",
     "title": "Vauss",
     "org": "voyager-so",
