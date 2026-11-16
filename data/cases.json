@@ -1,5 +1,137 @@
 [
   {
+    "id": "funny-weather-2026",
+    "title": "Funny Weather",
+    "summary": "天気と野鳥の目撃データをローカルLLM「AI Oracle」に読ませ、マンチェスターの空を訪れるたび違う姿で描くメディアウォール作品。",
+    "client": "Factory International / Theo Triantafyllidis",
+    "agency": "",
+    "categories": [
+      "AIクリエイティブ",
+      "空間体験",
+      "データクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.designboom.com/art/bird-plane-funny-weather-theo-triantafyllidis/",
+    "thumbnail": "/thumbnails/funny-weather-2026.jpg",
+    "videoId": "",
+    "overview": "Theo Triantafyllidisによる、マンチェスターのAviva Studios内「the Social」のメディアウォールで展開される無料のライブ作品。雲・鳥・凧が天気に応じて変化する空のシミュレーションを映す。会期は2026年11月11日〜12月6日と2027年1月19日〜3月26日。",
+    "background": "Factory Internationalが、ACMI、Onassis ONX、M+とともに立ち上げたデジタルアート・ネットワーク「Behind the Screen」の最初の委託作品。画面を媒体とするデジタルアートを共同で委託・巡回させる枠組みの第1作にあたる。2026年11月11日に無料のローンチイベントが開かれた。",
+    "execution": "ライブの大気データと最近の野鳥の目撃情報を、ローカルでホストされた生成システム（作家が「AI Oracle」と呼ぶ）が組み合わせて空を生成する。Kill Screenによると、空は時間帯で変わる雲の層、独自の動きで飛ぶ鳥の群れ、凧の層という重なりで構成され、訪れるたびに異なる表情になる。",
+    "evaluationImpact": "天気予報の数値や観察記録といった公開データを、LLMを介して「その場の空」という体験に読み替える点が要となる。データがその都市のものなので、同じ仕組みでも場所ごとに別の空になる。ネットワークの第1作として、今後の巡回展開の手本にもなる。なお、航空機データの利用と巡回先ごとの空の変化は、今回の検索では確認できなかった。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/Data",
+      "Form/Installation",
+      "Theme/Art"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "designboom",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "3d-biocement-printing-and-robotic-biocementation-spraying-ka",
+    "title": "3D biocement printing and robotic biocementation spraying（Karen Antorveza Paez / ETH Zurich）",
+    "summary": "生きた細菌入りの砂ゲルを3Dプリントし、ロボットで層状に吹き付けて常温で固める建築製作手法。",
+    "client": "ETH Zurich Digital Building Technologies / Complex Materials",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.designboom.com/architecture/bacteria-builders-eth-zurich-exploration-living-architecture-karen-antorveza-paez/",
+    "thumbnail": "/thumbnails/3d-biocement-printing-and-robotic-biocementation-spraying-ka.jpg",
+    "videoId": "",
+    "overview": "ETH Zurichの建築家Karen Antorveza Paezらが、砂・水系ゲル・細菌Sporosarcina pasteurii を混ぜたバイオインクを3Dプリントし、尿素と塩化カルシウム溶液で炭酸カルシウムを析出させて砂粒を固める手法。ロボットアームが砂・細菌・鉱物形成溶液を層状に吹き付ける方式もある。焼成を要さず、数日で固化する。",
+    "background": "セメントや焼成レンガは大量のCO2を排出するため、微生物誘導方解石析出（MICP）で砂を固める建材が注目されている。ETH Zurichでは2024年に Antorveza Paez、Andrea Shin Ling、Benjamin Dillenburger らが「Digital Fabrication of Biologically Cemented Spatial Structures」を発表し、3Dプリントと生物固化の組み合わせを探ってきた。",
+    "execution": "天然ガムと砂、生きた細菌からなるバイオインクを押し出して造形し、後から尿素と塩化カルシウムの溶液に浸して固化させる。吹付け方式は、ストロマトライトに着想を得て、ロボットアームが砂・細菌・溶液を層状に重ねる。2026年の論文「3D biocement printing: scaling up living mineral structures」では、層間の結合と力学性能を高め、数十cm規模まで拡大したと報告されている。",
+    "evaluationImpact": "細菌を「焼かずに砂を固める職人」として製作工程に組み込んだ点が新しい。一方、強度はモルタル程度で非構造の間仕切りやファサード向きとされる。反応でアンモニウムが出るため、Paez自身も副産物の処理を考えなければ持続可能とは言えないと述べている。コストや建築への適用可否も未確認で、現状は研究段階にある。",
+    "relatedWorks": [
+      {
+        "title": "ETH Zurich Uses Bacteria To 3D Print Facade Elements",
+        "description": "細菌入りの砂ペーストを3Dプリントしてファサード部材を作る手法を紹介した記事。",
+        "url": "https://3dprint.com/334981/eth-zurich-uses-bacteria-to-3d-print-facade-elements/"
+      },
+      {
+        "title": "Living building material that stores carbon (ETH Zurich)",
+        "description": "シアノバクテリアをハイドロゲルに含ませて印刷し、CO2を鉱物として固定する関連研究。",
+        "url": "https://www.designboom.com/technology/scientists-living-building-material-stores-carbon-dioxide-growing-bacteria-eth-zurich-06-21-2025/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Tech/3D",
+      "Form/Installation",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "designboom",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "ten-lives-how-what-we-have-shapes-who-we-are-2026",
+    "title": "Ten Lives: How What We Have Shapes Who We Are",
+    "summary": "米国の所得十分位から10人を5年追い、手描きのデータ絵で富の格差を体感させる書籍",
+    "client": "Mona Chalabi",
+    "agency": "",
+    "categories": [
+      "データクリエイティブ",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.itsnicethat.com/features/mona-chalabi-ten-lives-illustration-spotlight-091126",
+    "thumbnail": "/thumbnails/ten-lives-how-what-we-have-shapes-who-we-are-2026.jpg",
+    "videoId": "",
+    "overview": "手描きのデータビジュアライゼーションで知られるMona Chalabiの初の著書。米国の異なる所得十分位に属する10人を約5年にわたり取材し、お金が人間関係・教育・健康・自己評価にどう影響するかを追う。回想録、ルポ、データ可視化を組み合わせた構成で、図版は全編を通して彼女自身の手描きによる。",
+    "background": "Chalabiは米ガーディアン紙のデータ編集者を務めたニューヨーク拠点のデータジャーナリスト兼イラストレーターで、ピュリッツァー賞受賞者とされる。以前から統計を手描きの絵にして発信してきた。経済格差は数字の羅列だと実感しにくく、「自分は数字が苦手」という読者も多い。その壁を絵で下げることが出発点になっている。",
+    "execution": "所得分布を10等分した各層から1人ずつ選び、5年間インタビューを続けた。統計の平均値ではなく個人の生活を軸にし、章ごとにデータ絵を差し込む。図は驚きのある数字だけでなく、直感に反する知見を選んで描いている。所得を連続した幅として捉えさせる視点も採る。手描きを選ぶ理由として、描き手の手と偏りが見えるぶん誠実だと語っている。",
+    "evaluationImpact": "統計を個人の生活史に結び付け、手描きの図で読み手の数字への苦手意識を下げる構成は、調査報道や広報、教育コンテンツにも転用しやすい。Brian Enoは「富の格差について読んだ中で最も鮮明で読みやすい」と評している。刊行は米国で2026年11月10日、英国で12日とされるが、版元ページでは頁数などの記載が一致しない。",
+    "relatedWorks": [
+      {
+        "title": "Stats to Help You Breathe",
+        "description": "コロナ禍にChalabiが発表した、手描きの統計イラストのシリーズ。",
+        "url": "https://www.dezeen.com/?p=1494941"
+      },
+      {
+        "title": "Mona Chalabi on channelling complex societal issues into viral data visualisations",
+        "description": "D&ADによるChalabiのインタビュー記事。複雑な社会課題をデータ可視化に落とす手法を語る。",
+        "url": "https://www.dandad.org/insights/features/mona-chalabi-societal-issues-into-data-visualisations-features-opinions"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Print",
+      "Tech/Data",
+      "Theme/Art"
+    ],
+    "gateCriterion": "D",
+    "sourceId": "itsnicethat",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
     "id": "i-am-ai-2026",
     "title": "i am Ai",
     "summary": "来場者が立つと体が「i」の縦線になり、AIは人がいて完成すると示す彫刻",
