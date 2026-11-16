@@ -4,10 +4,9 @@
     "label": "見立て変換",
     "description": "既存の形式・データを別のモチーフの形に置き換えて意味を重ねる発想",
     "exemplarCaseIds": [
-      "schattenrequisit-column-2026",
-      "invisible-dominion-crystal-city-substation-2026",
-      "bristol-myers-squibb-canada-autumn-leaves-as-a-guide-to-spot",
-      "vinya-llarga-wine-label-atipus-2026",
+      "masglo-100-vegan-nail-polish-posters-2026",
+      "attenboulder-greenpeace-uk-2026",
+      "the-scamcrow-whoscall-2026",
       "fjord-id-2026"
     ]
   },
@@ -16,22 +15,21 @@
     "label": "媒体の物理特性活用",
     "description": "媒体そのものの物理素材・特性に機能や意味を持たせる発想",
     "exemplarCaseIds": [
-      "mango-scented-front-page-ad-2024",
-      "fold-your-stress-away-2024",
+      "porcelain-foam-porous-silence-2026",
       "scratch-n-sniff-2008",
-      "case-l8z2b4-2021",
-      "kincho-2017"
+      "mango-scented-front-page-ad-2024",
+      "vollebak-rock-jacket-2026"
     ]
   },
   {
     "id": "function-repurposing",
-    "label": "機能の転用",
-    "description": "既存インフラや日常の仕組みをそのまま広告・メディアに転用する発想",
+    "label": "機能・場の転用",
+    "description": "既存のインフラ・仕組みや公共空間をそのまま別目的の広告・体験・メディアに転用する発想",
     "exemplarCaseIds": [
       "audi-denmark-powered-by-detour-ooh-2026",
-      "pubscription-heineken-amazon-fire-tv-2026",
-      "ai-knittakers-authentic-icelandic-knittakers-2026",
-      "norway-makes-shithouses-great-again-visit-norway-2026"
+      "the-mattress-atm-nedbank-justsave-2026",
+      "house-of-vans-london-2014",
+      "pub-museums-2024"
     ]
   },
   {
@@ -41,7 +39,8 @@
     "exemplarCaseIds": [
       "annahar-blank-edition",
       "no-smiles-2023",
-      "annahar-elections-edition"
+      "dove-the-dove-code",
+      "budweiser-ad-free-movies"
     ]
   },
   {
@@ -49,22 +48,21 @@
     "label": "参加型UGCエンジン",
     "description": "受け手の投稿や行動がそのままコンテンツ・キャンペーンを完成させる発想",
     "exemplarCaseIds": [
-      "spotify-wrapped-design-2023",
-      "telfar-bag-security-program",
       "straight-outta-somewhere",
-      "barbie-selfie-ai"
+      "barbie-selfie-ai",
+      "dove-turnyourback",
+      "the-dr-pepper-jingle"
     ]
   },
   {
     "id": "data-as-material",
     "label": "データの素材化",
-    "description": "既存データを収集・変換し創作物や体験の素材として使う発想",
+    "description": "既存データや個人データを収集・変換し創作物や体験の素材として使う発想",
     "exemplarCaseIds": [
-      "the-afterlife-of-pi-2026",
-      "kevin-bacon-the-pudding-2026",
-      "life-after-death-the-pudding-2026",
+      "berlin-s-trees-2026",
       "mountain-peaks-to-show-the-shifts-bloomberg-2026-2026",
-      "berlin-s-trees-2026"
+      "natwest-savings-index-2026",
+      "spotify-wrapped-design-2023"
     ]
   },
   {
@@ -72,10 +70,10 @@
     "label": "制約を武器に",
     "description": "技術的・予算的制約をあえて課しそれを表現の武器に変える発想",
     "exemplarCaseIds": [
-      "ok-go-love",
-      "ok-go-a-stone-only-rolls-downhill",
-      "coinbase-your-way-out",
-      "beefeater-0-0-jamiroquai-virtual-insanity-2026"
+      "p-a-c-bakery-identity-polar-2026",
+      "cornect-exhibition-booth-system-if-2018",
+      "10-pm-bed-verts",
+      "alberflex-boost-booth-if-2016"
     ]
   },
   {
@@ -87,7 +85,8 @@
       "cloverfield-arg",
       "prometheus-weyland-industries",
       "jurassic-world-park-site",
-      "discover-westworld-aideden"
+      "discover-westworld-aideden",
+      "longlegs-birthday-murders"
     ]
   },
   {
@@ -98,7 +97,7 @@
       "heinz-look-familiar",
       "heinz-coincidence",
       "doritos-the-triangle-theory",
-      "ikea-alsulaiman-is-that-a-pinntorp"
+      "billboard-rock-dna"
     ]
   },
   {
@@ -107,10 +106,9 @@
     "description": "当事者本人を制作・設計の主体として巻き込むデザイン発想",
     "exemplarCaseIds": [
       "tilt-accessible-beauty-inclusive-design",
-      "tilt-accessible-beauty-product-design",
-      "dear-ai-disability-representation-campaign-2026",
+      "girlguiding-uniform-redesign-2026",
       "asics-the-undropped-kit",
-      "supernova-rise-3-adaptive"
+      "dear-ai-disability-representation-campaign-2026"
     ]
   },
   {
@@ -118,11 +116,10 @@
     "label": "タブーへの正面突破",
     "description": "社会的に隠されてきたテーマに正面から向き合い可視化し、制度や規範の変更にまで繋げる発想",
     "exemplarCaseIds": [
-      "the-tampon-book-2019",
       "kotex-arts-missing-period",
       "bodyform-womb-stories",
-      "send-nudes-send-nudes-to-yourself-2026",
-      "aviva-menopause-monopoly-2026"
+      "the-mouth-library-hpb-less-salt-your-way-2026",
+      "thanks-for-your-service-33-2026"
     ]
   },
   {
@@ -130,10 +127,10 @@
     "label": "逆説の文脈転換",
     "description": "ブランドや競合との前提関係をあえて逆転させ意外性を生む発想",
     "exemplarCaseIds": [
-      "norway-makes-shithouses-great-again-visit-norway-2026",
-      "the-soy-bouncer-2026",
+      "samsung-canada-iphone-duo-crack-ads-2026",
       "maple-leaf-foods-look-for-the-leaf",
-      "heineken-tocayos"
+      "the-choice-pepsi",
+      "skoda-redditor-edit"
     ]
   },
   {
@@ -141,33 +138,22 @@
     "label": "実演による証明",
     "description": "主張を誇張やCGでなく現実のライブ実演で証明してみせる発想",
     "exemplarCaseIds": [
-      "the-big-drop-let-it-pour-2026",
-      "lego-the-impossible-drive",
-      "delonghi-tiny-coffee-shops",
-      "apple-no-frame-missed"
+      "volvo-epic-split",
+      "red-bull-stratos",
+      "honda-the-cog",
+      "mercedes-amg-250-reasons-not-to-buy-the-mercedes-amg-purespeed"
     ]
   },
   {
     "id": "archive-revival",
     "label": "アーカイブ復元",
-    "description": "過去の記録・人物・場を最新技術で蘇らせ再体験させる発想",
+    "description": "過去の記録・人物・場を3Dスキャンや最新技術で蘇らせ再体験させる発想",
     "exemplarCaseIds": [
       "relievos-2013",
       "michelangelo-s-david-3d-printed-replica-italy-pavilion-expo",
-      "down-boy-world-s-first-3d-printed-record-bacardi-3d-printing",
-      "heritage-databank-2024",
-      "our-shurijo-2019"
-    ]
-  },
-  {
-    "id": "space-takeover",
-    "label": "空間の一時ジャック",
-    "description": "既存の公共・商業空間や廃れた施設を期間限定・用途変更で別の目的に転用する発想",
-    "exemplarCaseIds": [
-      "house-of-vans-london-2014",
-      "j-wave-2018",
-      "loewe-2019",
-      "musinsa-2026"
+      "our-shurijo-2019",
+      "johnnie-walker-errata-88",
+      "gorillaz-kong-studios-revival"
     ]
   },
   {
@@ -175,21 +161,21 @@
     "label": "ゲームと現実の連動",
     "description": "ゲーム内の要素と現実の出来事・制度を直接連動させる発想",
     "exemplarCaseIds": [
-      "la-poste-delivered-by-tetris",
-      "clash-royale-pocket-sized-halftime-show",
-      "ea-sports-the-club-is-yours",
-      "fanatics-signed-by-fanatics"
+      "clash-royale-copycats-welcome",
+      "call-of-duty-endowment-loot-for-good",
+      "diablo-blood-harvest",
+      "goatrs-greatest-of-all-tims-runners-2026"
     ]
   },
   {
     "id": "realtime-trigger-response",
     "label": "リアルタイム連動反応",
-    "description": "天候・生体・試合展開など外部信号が媒体や商品を即座に変化させる発想",
+    "description": "天候・生体・環境データなど外部信号が媒体や商品を即座に変化させる発想",
     "exemplarCaseIds": [
       "the-burnable-billboard-2025",
       "zerooh-noise-a-real-time-decibel-sensing-billboard-2025",
-      "tryvann-snowing-billboard-2009",
-      "find-your-summer-2024"
+      "magic-of-flying-lookup-2013",
+      "volvo-lightning-powered-billboard-purepower-2017"
     ]
   },
   {
@@ -197,10 +183,10 @@
     "label": "生成的一点物システム",
     "description": "アルゴリズムが個体ごとに異なる唯一無二の出力を作り続ける仕組み",
     "exemplarCaseIds": [
-      "martin-obenaus-for-mousey-wine-6-000-unique-generative-label",
       "absolut-unique-2012",
       "casa-da-m-sica-identity-logo-generator-2007",
-      "mit-media-lab-identity-2010"
+      "mit-media-lab-identity-2010",
+      "cohere-brand-identity-by-pentagram-2023"
     ]
   },
   {
@@ -209,9 +195,9 @@
     "description": "計画外に起きた事件・時事ネタへ即座に反応しブランド機会に転換する発想",
     "exemplarCaseIds": [
       "pope-yes-popeyes",
-      "koda-transforms-tour-de-france-penis-graffiti-to-promote-wom",
-      "samsung-canada-iphone-duo-crack-ads-2026",
-      "kitkat-the-kitkat-heist"
+      "kitkat-security-detail",
+      "mcdonald-s-olympic-curry",
+      "wendy-s-frosty-fix"
     ]
   },
   {
@@ -220,9 +206,9 @@
     "description": "AI生成物が氾濫する中で非AI・実写・人間性を積極的に証明・宣言する発想",
     "exemplarCaseIds": [
       "tennessee-tourism-realseal-campaign-2026",
-      "the-phoney-club-redefines-ai-made-worlds-2026",
-      "jazz-is-dead-played-by-humans",
-      "apple-a-critter-carol"
+      "dove-real-beauty-sketches",
+      "coinbase-your-way-out",
+      "apple-shot-on-iphone"
     ]
   },
   {
@@ -230,10 +216,9 @@
     "label": "AI生成美学の全面採用",
     "description": "生成AI特有の質感やゆらぎを隠さず前面に押し出し新しい映像表現の様式美とする発想",
     "exemplarCaseIds": [
-      "the-hardest-part-2024",
-      "i-just-want-to-be-a-sound-2025",
-      "love-you-more-2024",
-      "maestro-2024",
+      "dystopia-2024",
+      "lost-2023",
+      "vultures-havoc-version-2024",
       "ubu-2026"
     ]
   },
@@ -245,7 +230,7 @@
       "stranger-things-vecna-drone-show-las-vegas-finale-event-2025",
       "intel-drone-light-show-pyeongchang-2018-winter-olympics-open",
       "coca-cola-holiday-drone-show-2024",
-      "drone-100-2015"
+      "yokohama-star-night-drone-show-2026"
     ]
   },
   {
@@ -254,10 +239,9 @@
     "description": "鑑賞者や演者の存在・動き・生体情報を技術が検知し、光や音・映像で応答・拡張する発想",
     "exemplarCaseIds": [
       "aeolus-2026",
-      "teamlab-everything-exists-in-infinite-continuity-2026",
-      "da-vinci-s-robot-a-will-dwelling-in-shadow-2026",
-      "brain-on-bikes-outride-summit-2026",
-      "resonating-forest-2016"
+      "drift-us-2025",
+      "hyundai-kinetic-sculpture-goyang-if-2018",
+      "affinity-in-autonomy-2019"
     ]
   },
   {
@@ -266,9 +250,9 @@
     "description": "産業廃棄物や生物プロセスを新たな素材・建材へ転生させサステナビリティを物質で語る発想",
     "exemplarCaseIds": [
       "red-mud-studio-thusthat-2026",
-      "eating-scoby-emma-sicher-2026",
-      "sara-farha-and-khaled-shalkha-turn-date-pits-into-pavers-dat",
-      "g-desmet-2026"
+      "baleworks-buildfest-2026-bethel-woods-2026",
+      "buoy-series-the-new-raw-2026",
+      "sara-farha-and-khaled-shalkha-turn-date-pits-into-pavers-dat"
     ]
   },
   {
@@ -277,10 +261,21 @@
     "description": "他者・他種の感覚や知覚を疑似体験させ、言葉でなく体感で理解を促す発想",
     "exemplarCaseIds": [
       "parallel-world-moth-colour-vision-2026",
-      "fuelled-by-silence-2026",
-      "only-for-children-2013",
-      "weird-sensation-feels-good-asmr-2022",
-      "in-the-eyes-of-the-animal-2015"
+      "ai-legory-of-the-cave-confined-to-representations-of-the-wor",
+      "in-the-eyes-of-the-animal-2015",
+      "capture-resemble-simulating-self-aware-machine-behaviour-202"
+    ]
+  },
+  {
+    "id": "loophole-exploit",
+    "label": "制度の抜け穴活用",
+    "description": "規制・商標・税制などの形式的ルールの隙間を逆手に取って実現する発想",
+    "exemplarCaseIds": [
+      "gulf-of-mexico-bar-2025",
+      "heinz-ketchup-insurance",
+      "taco-bell-freeing-taco-t-day",
+      "ikea-u-up",
+      "norway-makes-shithouses-great-again-visit-norway-2026"
     ]
   }
 ]

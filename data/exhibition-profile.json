@@ -1,7 +1,7 @@
 {
   "_description": "Exhibitionタブ日次ジョブ(scripts/auto-research-exhibition.mjs)がプロンプトに読み込む機械可読プロファイル。根拠は docs/EXHIBITION_RESEARCH.md。重みやしきい値の更新は隔週チューンアップ(お気に入り/ごみ箱/intake)経由。sources.urlは2026-10-04に取得確認済みのもののみ",
   "version": 1,
-  "updatedAt": "2026-11-09",
+  "updatedAt": "2026-11-16",
   "scope": {
     "region": "日本全国（地域で差をつけない）",
     "includeStatuses": [
@@ -216,7 +216,12 @@
       "玉山拓郎",
       "高木由利子",
       "三澤遥",
-      "三澤デザイン研究室"
+      "三澤デザイン研究室",
+      "矢後直規",
+      "株式会社LEP",
+      "永井健治（大阪大学産業科学研究所）",
+      "Studio Raw Material",
+      "colorless studio (natsume, alpha)"
     ],
     "venues": [
       "NEORT++",
@@ -238,7 +243,12 @@
       "GYRE GALLERY",
       "KANDA SQUARE HALL",
       "真宗大谷派 東本願寺 大玄関",
-      "TOKYO NODE GALLERY A/B/C・SKY GARDEN & POOL"
+      "TOKYO NODE GALLERY A/B/C・SKY GARDEN & POOL",
+      "渋谷サクラステージ にぎわいSTAGE しぶS前",
+      "SKAC（SKWAT KAMEARI ART CENTRE）space III",
+      "KATA",
+      "神田錦町の旧カプセルホテル（旧ナインアワーズ大手町）",
+      "seeen Harajuku"
     ],
     "discoveryQueries": [
       "メディアアート 展覧会 {月}",
