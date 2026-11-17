@@ -1,5 +1,231 @@
 [
   {
+    "id": "judith-sanders-willow-bark-shoe-2026",
+    "title": "Judith Sanders – Willow bark shoe",
+    "summary": "燃料にされがちな柳の樹皮繊維を、結着剤と足型乾燥だけで継ぎ目のない非織布の靴アッパーに変えた素材研究。",
+    "client": "Judith Sanders (Studio JUSA)",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://materialdistrict.com/article/judith-sanders-turns-willow-bark-into-a-shoe/",
+    "thumbnail": "/thumbnails/judith-sanders-willow-bark-shoe-2026.jpg",
+    "videoId": "",
+    "overview": "オランダのStudio JUSA主宰Judith Sandersによる素材研究。柳の樹皮の繊維にグリセロールとCMCの結着剤を加え、足型に被せて乾かすことで、継ぎ目のない非織布の靴アッパーにする。参照記事（Material District）の内容に基づく。",
+    "background": "柳の樹皮は多くが燃料として燃やされる素材だとされる。Sandersはスタジオ JUSA（オランダ・ヘルモント拠点）で、イグサなど地元の植物素材とかご編み技法による靴づくりを手がけてきた（Virtual Shoe Museum掲載）。今回はその延長として樹皮の活用を探った。",
+    "execution": "樹皮から取り出した繊維にグリセロールとCMCを結着剤として加え、足型に直接被せて乾燥させる。織る・縫うといった工程を使わず、継ぎ目のない非織布状のアッパーが得られる。制作者や詳細な工程は検索では確認できなかった。",
+    "evaluationImpact": "廃棄・燃料用途の副産物を、編組や縫製なしで立体の靴アッパーに成形できる点に新規性がある。足型に被せて乾かすだけという簡素な手法は、他の植物系副産物や製品形状への転用が考えられる。受賞は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Judith Sanders（Virtual Shoe Museum）",
+        "description": "Studio JUSA主宰のSandersの作品ページ。かご編み技法でイグサ等から靴を制作している。",
+        "url": "https://virtualshoemuseum.com/judith-sanders"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/Product",
+      "Theme/Fashion",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "materialdistrict",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "baltic-reed-boards-ut-island-michelle-heising-konstfack-kth",
+    "title": "Baltic Reed Boards（Utö island / Michelle Heising, Konstfack × KTH）",
+    "summary": "バルト海で刈る葦を漁業・飲食廃棄物由来の完全バイオ接着剤で固め、島内で使う建材ボードにした",
+    "client": "Michelle Heising / Initiativ Utö",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "社会包摂"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://materialdistrict.com/article/baltic-reed-pressed-into-biodegradable-boards-for-an-island-community/",
+    "thumbnail": "/thumbnails/baltic-reed-boards-ut-island-michelle-heising-konstfack-kth.jpg",
+    "videoId": "",
+    "overview": "ストックホルム群島のUtö島で、バルト海の水質改善のために刈り取られる葦を、刻んでパーティクルボードに加工した試作。接着剤は漁業の副産物やレストランの厨房廃棄物など地域の廃棄物流から作る完全バイオベース品で、使用後は土壌改良材として分解できる。販売製品ではなく、プロトタイプ兼研究プロジェクトとされる。",
+    "background": "葦は水中の栄養分を吸って育つため、刈り取りはバルト海の富栄養化対策になる。一方で刈った葦の使い道が課題になる。本件はKonstfack（ストックホルム）の修士論文（Design Ecologies）としてMichelle Heisingが取り組み、湿地を運営する財団Initiativ Utöが試験地として関わった。接着剤はKTH王立工科大学の繊維・ポリマー技術学科のチームが開発した。",
+    "execution": "刻んだ葦を接着剤で固めたボードの表面には、撥水性と質感を高める織り模様を付けた。ボードは軽量な木製フレームにはめ込み、葦の茎の束を柱にして赤いコネクターで接合する。屋根は茅葺きで防水する。島の小規模構造物やインフラ向けに、組み替えられるモジュラー式システムとして構成している。",
+    "evaluationImpact": "「地域で刈る葦」と「地域の廃棄物由来の接着剤」を組み合わせ、素材の調達から使用後の分解までを島内で完結させる構想が評価点。分解後はコミュニティガーデンの土壌改良材に使え、Initiativ Utöによれば葦はピートの代替にもなるという。Konstfackの卒業展とヘルシンキのReed to Revenue Fair（2026）で紹介された。受賞の記載は確認できなかった。",
+    "relatedWorks": [
+      {
+        "title": "Locally Harvested Reed Forms Lightweight Furniture",
+        "description": "MaterialDistrictが関連記事として挙げた、地元で刈った葦で作る軽量家具の事例",
+        "url": "https://materialdistrict.com/article/locally-harvested-reeds-form-lightweight-furniture/"
+      },
+      {
+        "title": "Regenerative Binderless Panels from Baltic Reed（Hana Rehorčíková / Aalto大学）",
+        "description": "接着剤を使わず、葦のセルロースの自己結合性を利用してバルト海の葦を熱圧成形した生分解パネル",
+        "url": "https://www.aalto.fi/en/contemporary-design/regenerative-binderless-panels-from-baltic-reed-by-hana-rehorcikova"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Tech/3D",
+      "Theme/Sustainability",
+      "Theme/Art"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "materialdistrict",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "major-league-baseball-brand-refresh-mlb-franklin-clarendon-b",
+    "title": "Major League Baseball brand refresh（MLB Franklin / Clarendon / Block ほか5書体）",
+    "summary": "野球史に実在した書体を5人の書体デザイナーが復刻し、MLBのブランド全体を書体の系譜で組み直した",
+    "client": "Major League Baseball",
+    "agency": "Mother Design",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.itsnicethat.com/articles/mother-design-major-league-baseball-brand-refresh-graphic-design-project-161126",
+    "thumbnail": "/thumbnails/major-league-baseball-brand-refresh-mlb-franklin-clarendon-b.jpg",
+    "videoId": "",
+    "overview": "Mother DesignがMajor League Baseballのために、野球の歴史に登場した書体を参照した5書体のカスタムタイプ体系を制作した。Mother Designの案件ページによると、書体は複数の書体デザイナーが分担して開発した。Nick ShermanがMLB Franklin、David Jonathan RossがMLB Clarendon、Skye DillonがMLB Block、TipotypeがMLB Flareを担当した。OH no Typeは同プロジェクトでスクリプト体を手がけたと自社ページで述べている。",
+    "background": "Mother Designの案件ページには、MLBとの約2年半にわたるパートナーシップとの記載がある。野球は長い年月の中でFranklin Gothic系のサンセリフ、Clarendon系のスラブセリフ、球場やユニフォームの数字や名前に使われる八角形のブロック体、手描きレタリングの伝統など、多様な文字文化を積み重ねてきた。今回の取り組みは、これらを統一ブランドの土台に据え直す試みである。",
+    "execution": "Mother Designの案件ページによれば、MLB FranklinはFranklin Gothicを再描画した書体で、19世紀アメリカのデザインを象徴する書体を土台にしている。MLB Clarendonは1845年発表のClarendonに由来し、Job Clarendonをカスタマイズしたもので、MLBパートナーがMLBブランド素材に使える。MLB BlockはEbbets Fieldなどの史跡やユニフォームの数字・名前に見られる八角形の書体を基にしている。MLB Flareは手描きレタリングの細部を呼び起こす。",
+    "evaluationImpact": "ロゴや色ではなく書体の系譜をブランドの中心に置き、野球の視覚的な記憶を一貫したシステムとして再構築した点が特徴である。書体ごとに別の書体デザイナーを起用することで、復刻の精度と多様性を両立している。OH no Typeのページでは2026年完了の案件とされ、展開は完全には終わっていないと記載されている。なお、受賞は公式ソースで確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Mother Design: MLB",
+        "description": "",
+        "url": "https://www.motherdesign.com/work/mlb"
+      },
+      {
+        "title": "OH no Type: MLB Script",
+        "description": "",
+        "url": "https://ohnotype.co/custom/mlb-script"
+      },
+      {
+        "title": "David Jonathan Ross: MLB Clarendon",
+        "description": "",
+        "url": "https://djr.com/mlb-clarendon-9452309"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/Sports"
+    ],
+    "gateCriterion": "B",
+    "sourceId": "itsnicethat",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "grotti-cheetah-gta-vi-west-coast-customs-selfridges-2026",
+    "title": "Grotti Cheetah（GTA VI × West Coast Customs / Selfridges）",
+    "summary": "実在のフェラーリ・テスタロッサをゲーム内架空車Grotti Cheetahに改造し、Selfridgesのポップアップで約100万ポンドで販売した。",
+    "client": "Rockstar Games",
+    "agency": "West Coast Customs",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/gta-vi-grotti-cheetah-ferrari-selfridges-20261116",
+    "thumbnail": "/thumbnails/grotti-cheetah-gta-vi-west-coast-customs-selfridges-2026.jpg",
+    "videoId": "",
+    "overview": "Rockstar GamesがGTA VIの発売に合わせ、West Coast Customsと協力して、ゲーム内の架空車Grotti Cheetahを実車として製作した。ベースはフェラーリ・テスタロッサで、ロンドンのSelfridges Oxford Street「Corner Shop」のポップアップに展示された。Selfridgesの掲載では、カスタムのレトロスポーツカーとして約100万ポンドで、パーソナルショッピング経由で購入できる。",
+    "background": "Grotti CheetahはGTAシリーズに過去作から登場する架空のスポーツカーで、実在のフェラーリがモデルとされる。GTA VIではUltimate Editionの特典車両の一つとして公式に紹介されている。ゲーム内の車は予約特典の仮想アイテムだが、今回は同じ車を現実の高級品として売り場に出した。ポップアップは2026年11月9日〜28日で、11月19日のゲーム発売前後に重なる。",
+    "execution": "West Coast Customsがテスタロッサをゲーム内のCheetahの外観に改造し、走行可能な実車に仕立てた。Selfridgesのポップアップ「Vice City」内に展示し、通常のオンライン決済ではなく、パーソナルショッピングへの問い合わせで販売する形をとった。WCCはGTA VIをテーマにした車を計6台製作したと報じられているが、販売対象として明示されたのはCheetahのみである。",
+    "evaluationImpact": "ゲーム内では予約特典で手に入る車を、現実では100万ポンド級の高級品として売るという対比が話題になった。ゲームの世界観を実物の工芸品として売り場に持ち込み、発売前の注目を集める施策として複数のゲーム・自動車メディアが報じている。一方、価格の一部は報道により換算額が異なり、Selfridges公式の掲載以外の確認は取れていない。受賞情報は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Game",
+      "Form/Product",
+      "Form/Event",
+      "Theme/Retail"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "cybernetic-listening-2-2026",
+    "title": "Cybernetic Listening 2",
+    "summary": "鏡張りの部屋でローカル動作のAIエージェントと来場者が向き合い、機械のアイデンティティを問うインスタレーション",
+    "client": "Michael Ang（NYU Abu Dhabi）ほか",
+    "agency": "Isaac Sullivan / Zaid El Sajdi / Neda Salmanpour / Ruby Bailey / Michael Ang",
+    "categories": [
+      "AIクリエイティブ",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "中東・アフリカ"
+    ],
+    "link": "https://www.wam.ae/en/article/c35hxnr-artists-showcase-experiences-blending-art-isea",
+    "thumbnail": "/thumbnails/cybernetic-listening-2-2026.jpg",
+    "videoId": "",
+    "overview": "NYU Abu Dhabiのインタラクティブメディア教授Michael Angらによるインタラクティブ・インスタレーション。ISEA2026ドバイ（11月6〜15日）の一環として、ドバイ・モールのARTE Museumで展示された。鏡張りの部屋の中で、来場者がローカルで動作するAIエージェントと関係を結ぶ構成で、ドバイでの初公開となる。",
+    "background": "本作は「Cybernetic Listening」の続編にあたる。2023年の前作はEcho Holdingsと1800s Internetによる、深い傾聴や種間コミュニケーションを探る現場応答型の実験で、レモンの木とAI「Chyron」を対話させた。制作チームはUAE・ヨルダン・南アフリカの出身者で構成される。ISEA2026のテーマは「ELYAH: Constellating Place, Data and Identity」。",
+    "execution": "クレジットはIsaac Sullivan、Zaid El Sajdi、Neda Salmanpour、Ruby Bailey、Michael Ang。音・計算システム・フィードバックを用い、生物とデジタルのシステムのつながりを探る。AIエージェントはクラウドではなくローカルで動作し、鏡張りの部屋で人との関係が築かれる。AIのモデルや過去のやり取りをどう保持するかなどの技術的な詳細は、検索では確認できなかった。",
+    "evaluationImpact": "ISEA2026は100以上の作品が20以上の会場に広がる規模のフェスティバルで、本作はその中のAI系展示のひとつとして紹介された。確認できたのは公式通信社WAMによる主催者側の紹介が中心で、独立した批評や受賞は確認できていない。ドバイでの体験の要素を、今後の海外展示にも引き継ぐ方針を作家が述べている。",
+    "relatedWorks": [
+      {
+        "title": "Cybernetic Listening: echo holdings & 1800s internet",
+        "description": "2023年の前作。深い傾聴や種間コミュニケーションを探る現場応答型の実験で、レモンの木とAIを対話させた。",
+        "url": "https://mmagfoundation.org/en/programs/cybernetic-listening-echo-holdings-and-1800s-internet"
+      },
+      {
+        "title": "ISEA2026 transforms Dubai into one broad canvas",
+        "description": "ISEA2026ドバイの全体像を紹介する記事。100以上の展示が20以上の会場で行われる。",
+        "url": "https://www.wam.ae/en/article/c35hxti-isea2026-transforms-dubai-into-one-broad-canvas"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/Audio",
+      "Form/Installation",
+      "Theme/Art"
+    ],
+    "gateCriterion": "D",
+    "sourceId": "",
+    "gateTier": "accept",
+    "discoveryLens": 4
+  },
+  {
     "id": "funny-weather-2026",
     "title": "Funny Weather",
     "summary": "天気と野鳥の目撃データをローカルLLM「AI Oracle」に読ませ、マンチェスターの空を訪れるたび違う姿で描くメディアウォール作品。",
