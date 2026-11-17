@@ -28285,5 +28285,215 @@
         "desc": "話しかけると、素材選びからカット、つなぎまで進める動画編集エージェント。"
       }
     ]
+  },
+  {
+    "id": "2026-11-17-1",
+    "date": "2026-11-17",
+    "title": "水位の船を骨格で動かす",
+    "pattern": "文脈×技術",
+    "seed": "E.ON Italyの「水面から75cm浮いた船」に、ComfyUI-GEM-Xで取り出した人の歩きの揺れを重ねたら、水位低下を見に来た人の身体の動きが船の浮遊の揺れに変わる展示になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "e-on-italy-make-italy-green-the-floating-boat",
+        "title": "Make Italy Green - The Floating Boat",
+        "desc": "ガルダ湖の水位低下を、水面から75cm浮いた船で見せた気候変動の啓発展示。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-gem-x",
+        "title": "ComfyUI-GEM-X",
+        "desc": "1本の動画から全身の動きを取り出し、ゲーム用キャラのFBXに当てはめるComfyUIの部品。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-17-2",
+    "date": "2026-11-17",
+    "title": "雨の日だけ開く4D映画館",
+    "pattern": "文脈×技術",
+    "seed": "Globoplayの「雨の予報の日だけセナが無料」に、AEONの自由な角度で見られる4D世界を掛けたら、雨の日だけ雨粒の中を歩くようにレース場面を覗ける体験になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "globoplay-cheering-for-the-rain",
+        "title": "Cheering For The Rain",
+        "desc": "雨予報の日だけドキュメンタリーを無料で見られるようにしたブラジルの動画配信の施策。"
+      },
+      {
+        "type": "tech",
+        "id": "aeon",
+        "title": "AEON",
+        "desc": "文章や1枚の画像から、後で好きな角度から見られる動く3D空間を作る世界モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-17-3",
+    "date": "2026-11-17",
+    "title": "刑務所リーグの動きを非人間化",
+    "pattern": "文脈×技術",
+    "seed": "Coronaの受刑者サッカーリーグの試合動画を、anymoveで竜や蜘蛛のリグ付きキャラの動きに変えたら、名前のない選手の動きが神話の生き物として残る表現になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "corona-second-opportunity-league",
+        "title": "Second Opportunity League",
+        "desc": "メキシコの刑務所の受刑者によるサッカーリーグを全国放送し、出所後の道も開いた施策。"
+      },
+      {
+        "type": "tech",
+        "id": "anymove",
+        "title": "anymove",
+        "desc": "AI動画から、竜や蜘蛛など人間以外のキャラの動きを作りGLBで書き出す手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-17-4",
+    "date": "2026-11-17",
+    "title": "酔いを測る誤読フォント",
+    "pattern": "文脈×技術",
+    "seed": "City of BalenのSobercoinsに、Decoy Fontを組み合わせたら、酔っていない人にだけ正しく読めて、カメラ越しのAIには別の単語に見えるクーポン表示ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "city-of-balen-sobercoins",
+        "title": "Sobercoins",
+        "desc": "呼気検査で酔っていない若者に最初の3杯を市が無料で出した、ベルギーの施策。"
+      },
+      {
+        "type": "tech",
+        "id": "decoy-font",
+        "title": "Decoy Font",
+        "desc": "人には正しく読めるのに、AIの文字認識には別の単語に誤読される文字を作れるフォント。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-17-5",
+    "date": "2026-11-17",
+    "title": "夢の言葉を点群の砂に変換",
+    "pattern": "技術×技術",
+    "seed": "PCD Splatterでレーザー点群を学習なしでスプラットにし、SplatlightでBlenderのライトに反応する陰影を足したら、ライトを動かすたびに表情が変わる記録の風景が作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "pcd-splatter",
+        "title": "PCD Splatter (Point Cloud Density Splatter)",
+        "desc": "レーザースキャンの点群を、AI学習なしでその場でガウシアンスプラットに変えるBlenderアドオン。"
+      },
+      {
+        "type": "tech",
+        "id": "splatlight",
+        "title": "Splatlight",
+        "desc": "3Dスキャンした実写に、Blenderのライトに反応する自己影を後付けするアドオン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-17-6",
+    "date": "2026-11-17",
+    "title": "漫画から作る物理の世界",
+    "pattern": "技術×技術",
+    "seed": "Manga2Animateで漫画を台本と絵コンテに分け、PAN 2に「行動を書いたテキスト」と最初の1コマとして渡したら、漫画の1コマ目から物理的に動く20秒の続きが生まれるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "manga2animate",
+        "title": "Manga2Animate",
+        "desc": "漫画の数ページと設定画から、台本、絵コンテ、動画の順にアニメ化するフレームワーク。"
+      },
+      {
+        "type": "tech",
+        "id": "pan-2",
+        "title": "PAN 2",
+        "desc": "行動を書いた文章と最初の1コマから、最長20秒の映像を作る290億パラメータの世界モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-17-7",
+    "date": "2026-11-17",
+    "title": "ロボ皮膚で踊る読み取り",
+    "pattern": "技術×技術",
+    "seed": "Mirror Skinのロボット皮膚に、UNITASが予測する手と空間の変化を映したら、触れる前に「これから起きる接触」が皮膚に浮かぶ、予兆を見せる舞台装置になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "mirror-skin",
+        "title": "Mirror Skin",
+        "desc": "ロボットの皮膚に、これから触れる人の体の部位を映して事前に知らせる表示手法。"
+      },
+      {
+        "type": "tech",
+        "id": "unitas",
+        "title": "UNITAS",
+        "desc": "手の動きと空間の変化を同じ3D座標でまとめて予測する3D世界モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-17-8",
+    "date": "2026-11-17",
+    "title": "採譜を刺繍の設計図へ",
+    "pattern": "転用",
+    "seed": "Omnizartは音楽の採譜道具だが、望郷の音を拍・コード・旋律に分けて布の織りや刺繍の設計図にしたら、Jalasatの音を触れる物に変えられるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "omnizart",
+        "title": "Omnizart",
+        "desc": "1曲の音声から旋律、ドラム、コード、拍の位置までまとめて採譜するオープンソースツール。"
+      },
+      {
+        "type": "case",
+        "id": "homesickness-and-loss-in-sound-layan-srour-jalasat-2026",
+        "title": "Homesickness and Loss in Sound: Layan Srour（Jalasat イベントシリーズ）",
+        "desc": "ベイルート出身の音楽家が、望郷と喪失を音にして月例で演奏するシリーズ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-17-9",
+    "date": "2026-11-17",
+    "title": "確率を部屋の写真に貼る",
+    "pattern": "文脈×技術",
+    "seed": "Stella ArtoisのArtois Probabilityに、PixARMeshで1枚の部屋写真から3D配置を作る力を掛けたら、自分の部屋に缶ビットが何%あるかを重ねる家庭内検算ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "stella-artois-the-artois-probability",
+        "title": "The Artois Probability",
+        "desc": "名画のビールがStella Artoisである確率を計算し、絵に％で重ねた展示。"
+      },
+      {
+        "type": "tech",
+        "id": "pixarmesh",
+        "title": "PixARMesh",
+        "desc": "1枚の室内写真から、部屋全体の配置と編集できる3Dメッシュを作る手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-17-10",
+    "date": "2026-11-17",
+    "title": "不在の船を測る制度",
+    "pattern": "引き算・不在",
+    "seed": "Visit Swedenの「その場所でしか聴けない物語」から音声を引き、OpenFilmが作るWebページ動画の余白だけを残したら、行った人にしか意味が分からない無音の観光案内ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "visit-sweden-spellbound-by-sweden",
+        "title": "Spellbound By Sweden",
+        "desc": "ホラー作家の音声物語を、特定の場所でしか聴けないようにした観光施策。"
+      },
+      {
+        "type": "tech",
+        "id": "openfilm",
+        "title": "OpenFilm",
+        "desc": "コーディングAIにWebページとして動画を作らせ、ブラウザで手直しできるオープンソース。"
+      }
+    ]
   }
 ]
