@@ -1,5 +1,104 @@
 [
   {
+    "id": "simdps",
+    "title": "SimDPS (Similarity-Guided Diffusion Posterior Sampling for Music Inpainting)",
+    "org": "Sean Turland, Eloi Moliner, Vesa Välimäki(アルト大学の研究者と見られる。arXivページに所属の記載なし)",
+    "type": "Research",
+    "domains": [
+      "Audio/Music"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "録音された音楽の「数秒〜十数秒の欠落部分」を、同じ曲の別の場所から似た文脈の断片を探し出し、それを手がかりに拡散モデルで自然に埋め直す手法。追加学習なしで既存の音楽生成モデルに差し込め、CLIとPythonで使える。",
+    "point": "曲のサビ前など、音が途切れたり欠けたりした区間を、その曲自身の「似た場面」を参考にして自然に埋め直せる点が新しい。従来の穴埋めは前後の音だけを頼りに作るため、長い欠落になると別の曲のような音になりがちだった。SimDPSは曲の中から前後の流れが似ている箇所を探し、その断片を手本にしてAIの生成をそっと誘導する。そのため曲の雰囲気や楽器の質感が崩れにくい。広告・映像づくりでは、尺に合わせて曲を切り貼りしたときの継ぎ目をなめらかに埋める、足りない数秒をその曲らしい音で延ばす、録音事故で欠けた台詞の裏のBGMを復元する、といった使い方が考えられる。既存のBGMを短くも長くも自然に調整できるため、編集の手戻りを減らせそうだ。",
+    "detail": "仕組み：拡散モデルは、ノイズだらけの状態から少しずつ音を整えていくAIで、画像生成と同じ原理で音も作れる。SimDPSはその整える途中で、「欠けた場所の前後と文脈が似ている区間」を同じ録音の中から探し(候補数は設定で変更可)、その区間の特徴に近づくよう生成を少しずつ誘導する。文章でいうと、空欄を埋めるときに同じ文書内の似た言い回しを参考にするイメージ。追加の学習は不要で、既存の学習済みモデルをそのまま使える。\n\n従来との違い：RePaintなど従来の穴埋め手法は、欠落部の両端の音だけを条件にするため、穴が長いと内容がぼやけたり曲調から外れたりする。著者らはこれらの手法より、音の特徴量での距離でも聴取実験(23人のwebMUSHRA)でも自然に聞こえたと報告している。似た断片の見つけ方が多少外れても結果が崩れにくい点も示されている。波形領域(ピアノ向けCQTdiff)と潜在領域(ACE-Step 1.5のオートエンコーダ)の両方に対応する。\n\n使うには：PythonとPyTorch 2.6以上が必要。インストールは pip install \"simdps[acestep] @ git+https://github.com/s-turland/SimDPSInpainting\" で、実行は simdps inpaint take.wav --gap 62.5 64.5 のように欠落区間の秒数を指定する。個人PCならGPUメモリ8GB以上が推奨で、初回に約5GBの重みを取得する。Colabのクイックスタートと実験的なWebアプリも用意されている。費用はローカル実行なら無料。ただし著者はGPU環境を前提にしており、動作の再現は確認していない。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "コードはMIT。内蔵のACE-Step 1.5部分はApache-2.0、CQTdiff部分はMIT。ACE-Stepの重み(約5GB)は初回に自動ダウンロードされる。重みの利用条件は各配布元で別途確認が必要。プロジェクトページの文章・音声デモはCC BY-SA 4.0。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/s-turland/SimDPSInpainting"
+      },
+      {
+        "kind": "project",
+        "url": "https://s-turland.github.io/SimDPSInpainting/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2611.11522"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/simdps.jpg",
+    "relatedWorks": [
+      {
+        "title": "ACE-Step 1.5",
+        "description": "ローカルで動くオープンソースの音楽生成モデル。SimDPSの潜在領域モードがこの基盤を利用している。",
+        "url": "https://github.com/ace-step/ACE-Step-1.5"
+      },
+      {
+        "title": "audio-diffusion-pytorch",
+        "description": "音の拡散モデルを扱うPyTorchライブラリ。音声生成の土台として広く使われている。",
+        "url": "https://github.com/archinetai/audio-diffusion-pytorch"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "dopplergeist",
+    "title": "DOPPLERGEIST",
+    "org": "Cinna Davis（個人開発・1337isnot1337）",
+    "type": "Research",
+    "domains": [
+      "Audio/Music",
+      "CreatorTools"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "録音に混ざった飛行機の通過音（ドップラー効果）を手がかりに、過去の飛行記録（ADS-B）と照合して録音地点を推定するPythonツール。2026年11月に公開・PyPI配布。",
+    "point": "音だけで「どこで録ったか」を推理する、音響フォレンジック風の実験ツールです。飛行機が頭上を通ると、近づくときは音が高く、遠ざかるときは低く聞こえます（ドップラー効果）。この音の変化の形は飛行経路ごとに異なります。DOPPLERGEISTは録音からその変化を探し、過去の飛行記録と照合して録音地点の候補を順位づけします。ブラウザ上の画面で候補を確認でき、確証がなければ「結論なし」を返す設計です。広告や体験づくりでは、音の裏にある場所や時間を暴くインタラクティブ作品や、スペクトログラム（音の周波数を絵にしたもの）と地図を重ねる映像表現の素材になりそうです。フィールドレコーディング（街中の環境音収録）を使ったサウンドアート、音から地図をたどる体験展示も考えられます。ただし作者自身が、盲検での位置特定はまだ確立していないと明記しています。",
+    "detail": "仕組みは4段階です。①録音の周波数分析から、時間とともに音程が動く筋（スペクトログラム上の斜めの線）と、倍音のまとまりを探し、1機分の通過音の候補にします。②録音の時間帯に飛んでいた航空機の軌跡データ（ADS-B）を取得または読み込みます。③飛行経路と受信地点の位置関係から、ドップラーによる音程のずれと音の到達の遅れを計算します。④場所の候補をスコア順に並べます。証拠が弱ければ「結論なし」を返します。\n\n従来、こうした分析は研究者が手作業で行うか、特定の検証動画を人が見て確かめる形でした。このツールはCLIとローカルのブラウザUIで一連の作業を自動化します。作者の検証では、スマホ録音40本のうち36本で通過音の候補が見つかりました。一方、公開フィールド録音5本では3本が順位を返したものの、1km以内に入った候補はありませんでした。有効性はまだ限定的で、作者も結論の確かさを認めていません。\n\n使うにはPython 3.11以上とFFmpegが必要で、pipxまたはpipでインストールします（PyPI v0.1.3、2026-11-16）。フル機能はLinuxかmacOSで動き、Windowsは探索機能のみで、全機能はWSLを推奨しています。オンラインでの初回データ取得には数時間と数十GBのディスクが必要になる場合があります。商用利用はライセンス上、別途許諾が要ります。",
+    "license": {
+      "spdx": "PolyForm-Noncommercial-1.0.0",
+      "commercial": "conditional",
+      "note": "ソース公開だがOSI非承認のPolyForm Noncommercial 1.0.0。非商用は可、商用は別途契約が必要。録音・航空機データ・地形データは各データのライセンスに従う。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/1337isnot1337/DOPPLERGEIST"
+      },
+      {
+        "kind": "product",
+        "url": "https://pypi.org/project/dopplergeist/"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=UytYrhYLOKI"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/dopplergeist.jpg",
+    "relatedWorks": [
+      {
+        "title": "flyover-scrub",
+        "description": "録音から航空機のドップラー痕跡を取り除く、2026年11月公開の逆方向ツール。",
+        "url": "https://github.com/lizTheDeveloper/flyover-scrub"
+      },
+      {
+        "title": "Colsto氏の飛行機ドップラー位置推定デモ動画",
+        "description": "DOPPLERGEISTが着想を得たと明記しているYouTube動画（作者のコードは未公開）。",
+        "url": "https://www.youtube.com/watch?v=UytYrhYLOKI"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "recavsr",
     "title": "ReCaVSR",
     "org": "USTC（中国科学技術大学）/ ComfyUI版: PedroMarinhoDev",
