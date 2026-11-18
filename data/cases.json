@@ -1,5 +1,44 @@
 [
   {
+    "id": "perfume-concept-movie-2026",
+    "title": "Perfume『ふめつのあなた』Concept Movie",
+    "summary": "Crescent Inc.がHOLOSYSとGaussian Splattingを世界初導入し、Perfumeの過去ライブモチーフとコールドスリープ中のメンバーを3DCGで描いたコンセプトムービー。",
+    "client": "Perfume",
+    "agency": "Crescent Inc.",
+    "categories": [
+      "コンテンツ革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://3dvf.com/en/japanese-band-perfume-unveils-a-music-video-created-using-gaussian-splats/",
+    "thumbnail": "/thumbnails/perfume-concept-movie-2026.jpg",
+    "videoId": "e35POMk10do",
+    "overview": "Perfumeの楽曲「ふめつのあなた」に合わせて制作されたコンセプトムービー。Crescent Inc.が4DViewsのボリュメトリック撮影システムHOLOSYSとGaussian Splattingを組み合わせたパイプラインを世界で初めて導入し、Perfumeの過去ライブパフォーマンスのモチーフとコールドスリープ状態にあるメンバーの姿を3DCGで描いている。",
+    "background": "長年活動を続けるPerfumeの楽曲世界を映像化するにあたり、過去のライブパフォーマンスの記憶と未来的なコールドスリープという設定を一つの映像言語の中で結びつける企画が必要とされた。従来の実写撮影やCG合成とは異なる、立体的な質感を持つ映像表現を模索する中で、ボリュメトリック撮影技術の活用が検討された。",
+    "execution": "Crescent Inc.が4DViewsのボリュメトリック撮影システムHOLOSYSを用いてパフォーマンスを3Dデータとして取得し、取得した点群をGaussian Splattingで処理するパイプラインを構築。このパイプラインを世界で初めて導入し、Perfumeの過去ライブを想起させるモチーフと、コールドスリープ中のメンバーの姿を3DCGとして一本のコンセプトムービーに仕上げた。",
+    "evaluationImpact": "4DViewsのHOLOSYSとGaussian Splattingを組み合わせたパイプラインの世界初導入事例として、3dvf.comなど海外のCG/VFX専門メディアで紹介された。音楽アーティストのコンセプトムービーにおいて、ボリュメトリックキャプチャと最新のレンダリング手法を組み合わせた表現の先行例として取り上げられている。",
+    "relatedWorks": [
+      {
+        "title": "3DVF.com記事",
+        "description": "Crescent Inc.によるHOLOSYSとGaussian Splattingの世界初導入について解説した記事。",
+        "url": "https://3dvf.com/en/japanese-band-perfume-unveils-a-music-video-created-using-gaussian-splats/"
+      }
+    ],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/MV",
+      "Theme/Music",
+      "Theme/Entertainment"
+    ]
+  },
+  {
     "id": "muse-ft-ellie-goulding-hush-2026",
     "title": "Muse ft. Ellie Goulding 'Hush'",
     "summary": "インターステラーの重力レンズ方程式を改変し、NASAの12Kスキャン素材を用いて宇宙を旅する宇宙飛行士をワンショットCGIで描いたMuse「Hush」のミュージックビジュアライザー。",
