@@ -7,36 +7,44 @@
 import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import {
+  PopGate,
   assignName,
   caseIdFromPath,
   clearName,
   decideMode,
   detectDirection,
   isPlainLeftClick,
+  makeScrollRecord,
+  parseScrollRecord,
   persistVariant,
   readStoredVariant,
+  remaining,
   resolveVariant,
   type Direction,
 } from "@/lib/flipTransition";
 
 const SCROLL_KEY = "rm-flip-scroll";
-const NAV_TIMEOUT = 2000; // ルート確定待ちの上限（超えたら諦めて通常描画）
-const TARGET_TIMEOUT = 1200; // 戻り先カード出現待ちの上限（超えたらフェード）
+// 更新コールバック中は描画が止まるので、待ちの合計をここで打ち切る（超えたら通常描画/フェード）
+const BUDGET = 600;
+const DECODE_CAP = 100; // 戻り先サムネのdecode待ち上限（BUDGETの内数）
 
 let router: ReturnType<typeof useRouter> | null = null;
 let currentPath: string | null = null;
 let prevPath: string | null = null;
 let active = false;
+let replaying = false;
+let lastY = 0; // 表示中ページのスクロール位置（scrollイベントで更新。popstate時の復元済み値と区別するため）
 let pathWaiter: (() => void) | null = null;
+const gate = new PopGate<unknown>();
 
 const supported = () => typeof document !== "undefined" && typeof document.startViewTransition === "function";
 const reduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const hero = () => document.querySelector<HTMLElement>("[data-flip-hero]");
 const cardOf = (id: string) => document.querySelector<HTMLElement>(`[data-case-id="${CSS.escape(id)}"]`);
 
-function waitPath(): Promise<void> {
+function waitPath(ms: number): Promise<void> {
   return new Promise((resolve) => {
-    const t = setTimeout(done, NAV_TIMEOUT);
+    const t = setTimeout(done, ms);
     function done() {
       clearTimeout(t);
       pathWaiter = null;
@@ -48,7 +56,7 @@ function waitPath(): Promise<void> {
 
 function waitFor<T>(find: () => T | null, ms: number): Promise<T | null> {
   const first = find();
-  if (first) return Promise.resolve(first);
+  if (first || ms <= 0) return Promise.resolve(first);
   return new Promise((resolve) => {
     const mo = new MutationObserver(() => {
       const el = find();
@@ -64,28 +72,39 @@ function waitFor<T>(find: () => T | null, ms: number): Promise<T | null> {
   });
 }
 
-// 戻り先カード探し: 一覧(非同期ロード)が描画されるまで待ち、描画後は目標が無ければ即諦める（60件窓の外等）
-async function findBackCard(id: string): Promise<HTMLElement | null> {
-  const any = await waitFor(() => document.querySelector<HTMLElement>("[data-case-id]"), TARGET_TIMEOUT);
-  return any ? waitFor(() => cardOf(id), 150) : null;
+// 戻り先カード探し: 一覧(非同期ロード)が描画されるまで締切内で待ち、描画後は目標が無ければ即諦める（60件窓の外等）
+async function findBackCard(id: string, deadline: number): Promise<HTMLElement | null> {
+  const any = await waitFor(() => document.querySelector<HTMLElement>("[data-case-id]"), remaining(deadline, performance.now()));
+  return any ? waitFor(() => cardOf(id), Math.min(150, remaining(deadline, performance.now()))) : null;
+}
+
+// lazyサムネが未ロードだと新スナップショットが空白になるため、短い上限でdecodeを待つ
+async function decodeWithin(el: HTMLElement, ms: number): Promise<void> {
+  const img = el.querySelector("img");
+  if (!img || ms <= 0 || (img.complete && img.naturalWidth > 0)) return;
+  img.loading = "eager";
+  await Promise.race([img.decode().catch(() => {}), new Promise<void>((r) => setTimeout(r, ms))]);
 }
 
 function saveScroll(id: string) {
   try {
-    sessionStorage.setItem(SCROLL_KEY, JSON.stringify({ id, y: window.scrollY }));
+    const rec = makeScrollRecord(window.location.pathname, id, window.scrollY);
+    if (rec) sessionStorage.setItem(SCROLL_KEY, rec);
   } catch {}
 }
 function savedScroll(id: string): number | null {
   try {
-    const v = JSON.parse(sessionStorage.getItem(SCROLL_KEY) ?? "null");
-    return v && v.id === id && typeof v.y === "number" ? v.y : null;
+    return parseScrollRecord(sessionStorage.getItem(SCROLL_KEY), id);
   } catch {
     return null;
   }
 }
 
-/** navigate: 遷移を起こす処理（router.push等。popstate起点なら何もしない） */
-function run(dir: Direction, id: string, navigate: () => void) {
+/**
+ * navigate: 遷移を起こす処理（router.push等）。
+ * rescue: 更新コールバックが走らなかった/開始に失敗した場合の救済（保留したpopstateの再送）。冪等であること。
+ */
+function run(dir: Direction, id: string, navigate: () => void, rescue?: () => void) {
   const html = document.documentElement;
   active = true;
   const named: (HTMLElement | null)[] = [];
@@ -94,6 +113,7 @@ function run(dir: Direction, id: string, navigate: () => void) {
     delete html.dataset.flipDir;
     delete html.dataset.flipV;
     active = false;
+    rescue?.();
   };
   try {
     const search = window.location.search;
@@ -104,7 +124,10 @@ function run(dir: Direction, id: string, navigate: () => void) {
   }
   html.dataset.flipDir = "fade";
   // 旧側: forwardは押されたカード、backは詳細のヒーローだけに名前を付ける
-  const oldEl = dir === "forward" ? cardOf(id) : hero();
+  const oldCand = dir === "forward" ? cardOf(id) : hero();
+  // 画面外の要素は撮っても見えない＝裏返さずフェードに落とす
+  const oldRect = oldCand?.getBoundingClientRect();
+  const oldEl = oldRect && oldRect.bottom > 0 && oldRect.top < window.innerHeight ? oldCand : null;
   const startsFlip = !!oldEl;
   if (startsFlip) {
     assignName(oldEl);
@@ -112,72 +135,104 @@ function run(dir: Direction, id: string, navigate: () => void) {
   }
   if (dir === "forward") saveScroll(id);
 
-  const t = document.startViewTransition(async () => {
-    const nav = waitPath();
+  let t: ViewTransition;
+  try {
+    t = document.startViewTransition(async () => {
+      const deadline = performance.now() + BUDGET;
+      const nav = waitPath(BUDGET);
+      navigate();
+      await nav;
+      // 新側: forwardは詳細ヒーロー、backは戻り先カード（無ければフェードに落とす）
+      const target =
+        dir === "forward"
+          ? await waitFor(hero, remaining(deadline, performance.now()))
+          : await findBackCard(id, deadline);
+      if (target) {
+        if (dir === "back") {
+          const y = savedScroll(id);
+          if (y !== null) window.scrollTo({ top: y, behavior: "instant" });
+          const r = target.getBoundingClientRect();
+          if (r.bottom < 0 || r.top > window.innerHeight) target.scrollIntoView({ block: "center", behavior: "instant" });
+        }
+        await decodeWithin(target, Math.min(DECODE_CAP, remaining(deadline, performance.now())));
+      }
+      const mode = decideMode({ supported: true, reducedMotion: false, targetFound: startsFlip && !!target });
+      if (mode === "flip" && target) {
+        assignName(target);
+        named.push(target);
+        html.dataset.flipDir = dir;
+      }
+    });
+  } catch {
+    // 同期例外: 遷移だけは確実に行い、後始末する
+    cleanup();
     navigate();
-    await nav;
-    // 新側: forwardは詳細ヒーロー、backは戻り先カード（無ければフェードに落とす）
-    const target =
-      dir === "forward"
-        ? await waitFor(hero, 300)
-        : await findBackCard(id);
-    if (dir === "back" && target) {
-      const y = savedScroll(id);
-      if (y !== null) window.scrollTo({ top: y, behavior: "instant" });
-      const r = target.getBoundingClientRect();
-      if (r.bottom < 0 || r.top > window.innerHeight) target.scrollIntoView({ block: "center", behavior: "instant" });
-    }
-    const mode = decideMode({ supported: true, reducedMotion: false, targetFound: startsFlip && !!target });
-    if (mode === "flip" && target) {
-      assignName(target);
-      named.push(target);
-      html.dataset.flipDir = dir;
-    }
-  });
+    return;
+  }
   t.ready.catch(() => {});
   t.updateCallbackDone.catch(cleanup);
   t.finished.then(cleanup, cleanup);
 }
 
 function onClick(e: MouseEvent) {
-  if (active || !router || !isPlainLeftClick(e) || !supported() || reduced()) return;
+  if (active || !router || !isPlainLeftClick(e)) return;
   const a = (e.target as Element | null)?.closest?.("a");
   if (!a || a.target === "_blank" || a.hasAttribute("download")) return;
-  const card = a.closest<HTMLElement>("[data-case-id]");
   const r = router;
+  if (a.hasAttribute("data-flip-back")) {
+    const id = caseIdFromPath(window.location.pathname);
+    if (!id) return;
+    // 一覧から来ていれば履歴を戻す（スクロール復元。モーション無効時も同じ挙動）
+    if (prevPath === "/") {
+      e.preventDefault();
+      history.back();
+      return;
+    }
+    if (!supported() || reduced()) return;
+    e.preventDefault();
+    run("back", id, () => r.push("/"));
+    return;
+  }
+  if (!supported() || reduced()) return;
+  const card = a.closest<HTMLElement>("[data-case-id]");
   if (card && /^\/cases\/[^/]+\/?$/.test(a.getAttribute("href") ?? "")) {
     const id = card.dataset.caseId!;
     e.preventDefault(); // captureで先取り＝Next Link側は defaultPrevented で何もしない
     run("forward", id, () => r.push(`/cases/${encodeURIComponent(id)}`));
-  } else if (a.hasAttribute("data-flip-back")) {
-    const id = caseIdFromPath(window.location.pathname);
-    if (!id) return;
-    e.preventDefault();
-    // 一覧から来ていれば履歴を戻す（スクロール復元）。popstate側が遷移を起こす
-    if (prevPath === "/") history.back();
-    else run("back", id, () => r.push("/"));
   }
 }
 
-let replaying = false;
+// 保留したpopstateをNextへ1回だけ再送（最新のstate。locationも最新なので食い違わない）
+function replayPop() {
+  if (!gate.isHeld) return;
+  const state = gate.release();
+  replaying = true;
+  try {
+    window.dispatchEvent(new PopStateEvent("popstate", { state }));
+  } finally {
+    replaying = false;
+  }
+}
 
 // 戻る/進むボタン。Next側のpopstateが先に描画してしまうと「旧画面」を撮れないため、
 // captureで先取りして一旦止め、旧画面のスナップショット後(更新コールバック内)にNextへ再送する。
+// 待機中に来た後続のpopstateも止めて最新1件だけ再送する（再送後に来たものはNextへそのまま渡す）。
 function onPopState(e: PopStateEvent) {
-  if (replaying || active || !supported() || reduced()) return;
+  if (replaying) return;
+  if (gate.intercept(e.state)) {
+    e.stopImmediatePropagation();
+    return;
+  }
+  if (active || !supported() || reduced()) return;
   const d = detectDirection(currentPath, window.location.pathname);
   if (!d) return;
   e.stopImmediatePropagation();
-  const state = e.state;
-  run(d.dir, d.id, () => {
-    replaying = true;
-    try {
-      window.dispatchEvent(new PopStateEvent("popstate", { state }));
-    } finally {
-      replaying = false;
-    }
-  });
+  // ブラウザは遷移先エントリのスクロールを先に復元してしまう。旧画面は自分のスクロール位置で撮る
+  if (Math.abs(window.scrollY - lastY) > 1) window.scrollTo({ top: lastY, behavior: "instant" });
+  gate.hold(e.state);
+  run(d.dir, d.id, replayPop, replayPop);
 }
+
 export default function FlipBridge() {
   const pathname = usePathname();
   const r = useRouter();
@@ -195,9 +250,15 @@ export default function FlipBridge() {
   }, [pathname]);
 
   useEffect(() => {
+    const onScroll = () => {
+      lastY = window.scrollY;
+    };
+    lastY = window.scrollY;
+    window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("click", onClick, true);
     window.addEventListener("popstate", onPopState, true);
     return () => {
+      window.removeEventListener("scroll", onScroll);
       document.removeEventListener("click", onClick, true);
       window.removeEventListener("popstate", onPopState, true);
     };

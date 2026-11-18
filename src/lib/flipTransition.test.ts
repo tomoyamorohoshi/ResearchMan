@@ -100,3 +100,33 @@ test("assignName/clearName: 付与した要素だけ名前を持ち、clearで�
   assert.doesNotThrow(() => clearName(null));
   assert.doesNotThrow(() => assignName(null));
 });
+
+import { PopGate, remaining, makeScrollRecord, parseScrollRecord } from "./flipTransition";
+
+test("remaining: 残りmsは負にならない", () => {
+  assert.equal(remaining(1000, 400), 600);
+  assert.equal(remaining(1000, 1500), 0);
+});
+
+test("PopGate: 保留中の後続popstateは最新stateで上書きされ、releaseで1回だけ取り出せる", () => {
+  const g = new PopGate<string>();
+  assert.equal(g.intercept("x"), false); // 保留前は素通し
+  g.hold("first");
+  assert.equal(g.isHeld, true);
+  assert.equal(g.intercept("second"), true);
+  assert.equal(g.release(), "second");
+  assert.equal(g.isHeld, false);
+  assert.equal(g.intercept("third"), false); // 再送後は素通し
+  assert.equal(g.release(), undefined);
+});
+
+test("scroll record: 一覧(/)でのみ保存、id・パス不一致は無視", () => {
+  assert.equal(makeScrollRecord("/cases/a", "a", 100), null);
+  assert.equal(makeScrollRecord("/", "a", NaN), null);
+  const raw = makeScrollRecord("/", "a", 320)!;
+  assert.equal(parseScrollRecord(raw, "a"), 320);
+  assert.equal(parseScrollRecord(raw, "b"), null);
+  assert.equal(parseScrollRecord(JSON.stringify({ id: "a", y: 5 }), "a"), null); // 旧形式(path無し)
+  assert.equal(parseScrollRecord("garbage", "a"), null);
+  assert.equal(parseScrollRecord(null, "a"), null);
+});
