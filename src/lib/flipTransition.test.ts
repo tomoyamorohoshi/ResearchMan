@@ -130,3 +130,13 @@ test("scroll record: 一覧(/)でのみ保存、id・パス不一致は無視", 
   assert.equal(parseScrollRecord("garbage", "a"), null);
   assert.equal(parseScrollRecord(null, "a"), null);
 });
+
+test("clipToViewport/releaseClip: 固定表示+scrollTopで切り詰め、解除で元に戻る", async () => {
+  const { clipToViewport, releaseClip } = await import("./flipTransition");
+  const el = { style: { position: "", inset: "", overflow: "" }, scrollTop: 0 };
+  clipToViewport(el, 320);
+  assert.deepEqual(el.style, { position: "fixed", inset: "0", overflow: "hidden" });
+  assert.equal(el.scrollTop, 320);
+  releaseClip(el);
+  assert.deepEqual(el.style, { position: "", inset: "", overflow: "" });
+});

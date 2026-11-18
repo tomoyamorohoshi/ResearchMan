@@ -11,6 +11,8 @@ import {
   assignName,
   caseIdFromPath,
   clearName,
+  clipToViewport,
+  releaseClip,
   decideMode,
   detectDirection,
   isPlainLeftClick,
@@ -43,9 +45,9 @@ const gate = new PopGate<unknown>();
 const supported = () => typeof document !== "undefined" && typeof document.startViewTransition === "function";
 const reduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const hero = () => document.querySelector<HTMLElement>("[data-flip-hero]");
-// カード全体ではなく画像部分（先頭のリンク）だけを変形対象にする。文章部分まで含めると遷移中の枠が詳細の見出しに被る
+// 変形対象は一覧のカード全体（画像・文章・ハッシュタグを含む [data-case-id] ルート）
 const cardOf = (id: string) =>
-  document.querySelector<HTMLElement>(`[data-case-id="${CSS.escape(id)}"]`)?.querySelector<HTMLElement>("a") ?? null;
+  document.querySelector<HTMLElement>(`[data-case-id="${CSS.escape(id)}"]`) ?? null;
 
 // ルート確定（pathname更新）を待つ。時間内に確定したら true
 function waitPath(ms: number): Promise<boolean> {
@@ -92,6 +94,18 @@ async function decodeWithin(el: HTMLElement, ms: number): Promise<void> {
   await Promise.race([img.decode().catch(() => {}), new Promise<void>((r) => setTimeout(r, ms))]);
 }
 
+// 戻りが中止された時、遅れて一覧が確定した後に保存位置へスクロールを戻す（Nextの先頭スクロールの後勝ちにするため数回当てる）
+async function restoreScrollOnArrival(y: number | null) {
+  if (y === null) return;
+  const el = await waitFor(() => (window.location.pathname === "/" ? document.querySelector<HTMLElement>("[data-case-id]") : null), 15000);
+  if (!el) return;
+  for (const ms of [0, 60, 200, 500]) {
+    setTimeout(() => {
+      if (!active && window.location.pathname === "/") window.scrollTo({ top: y, behavior: "instant" });
+    }, ms);
+  }
+}
+
 function saveScroll(id: string) {
   try {
     const rec = makeScrollRecord(window.location.pathname, id, window.scrollY);
@@ -114,8 +128,14 @@ function run(dir: Direction, id: string, navigate: () => void, rescue?: () => vo
   const html = document.documentElement;
   active = true;
   const named: (HTMLElement | null)[] = [];
+  const clipped: HTMLElement[] = [];
+  let oldY = 0;
   const cleanup = () => {
     named.forEach(clearName);
+    const hadClip = clipped.length > 0;
+    clipped.forEach(releaseClip);
+    // 詳細を固定表示にした分、ドキュメントが縮んでスクロールが0に戻る。中止時は元の位置へ戻す
+    if (hadClip && dir === "back" && oldY > 0) window.scrollTo({ top: oldY, behavior: "instant" });
     delete html.dataset.flipDir;
     delete html.dataset.flipV;
     active = false;
@@ -142,6 +162,12 @@ function run(dir: Direction, id: string, navigate: () => void, rescue?: () => vo
   const oldEl = oldRect && oldRect.bottom > 0 && oldRect.top < window.innerHeight ? oldCand : null;
   const startsFlip = !!oldEl;
   if (startsFlip) {
+    // 詳細ページ全体は縦長なので、今見えている範囲(ビューポート)だけに切り詰めてから名前を付ける
+    if (dir === "back") {
+      oldY = window.scrollY;
+      clipToViewport(oldEl, oldY);
+      clipped.push(oldEl);
+    }
     assignName(oldEl);
     named.push(oldEl);
   }
@@ -155,6 +181,7 @@ function run(dir: Direction, id: string, navigate: () => void, rescue?: () => vo
       navigate();
       if (!(await nav)) {
         // 確定しなかった: 旧ページのスナップショットを二重に見せないよう遷移ごと中止（遷移自体は素のNextが続行する）
+        if (dir === "back") restoreScrollOnArrival(savedScroll(id));
         throw new Error("flip: route not settled");
       }
       // ルート確定後の待ち（対象要素・decode）は短い予算で打ち切る
@@ -175,6 +202,10 @@ function run(dir: Direction, id: string, navigate: () => void, rescue?: () => vo
       }
       const mode = decideMode({ supported: true, reducedMotion: false, targetFound: startsFlip && !!target });
       if (mode === "flip" && target) {
+        if (dir === "forward") {
+          clipToViewport(target, 0);
+          clipped.push(target);
+        }
         assignName(target);
         named.push(target);
         html.dataset.flipDir = dir;

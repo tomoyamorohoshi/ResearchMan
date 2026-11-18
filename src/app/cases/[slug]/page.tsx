@@ -37,7 +37,7 @@ export default async function CasePage({
   const placeholder = pickThumbnailSrc(c.thumbnail, false);
 
   return (
-    <div className="min-h-screen bg-[#eeece7]">
+    <div data-flip-hero className="min-h-screen bg-[#eeece7]">
       {/* ヘッダー */}
       <header className="border-b border-gray-300 px-4 py-4 flex items-center gap-6">
         <Link href="/" data-flip-back className="text-xl font-black tracking-tight text-gray-900 leading-none">
@@ -53,7 +53,7 @@ export default async function CasePage({
       </header>
       <div className="max-w-3xl mx-auto px-4 py-10">
 
-        <div data-flip-hero>
+        <div>
         {c.videoId ? (
           <VideoPlayer videoId={c.videoId} title={c.title} placeholder={placeholder} />
         ) : (

@@ -146,3 +146,22 @@ export function parseScrollRecord(raw: string | null, id: string): number | null
     return null;
   }
 }
+
+/** 縦長の要素をビューポート大に切り詰める（スナップショットを画面サイズにし、今見えている範囲を写す）。scrollTopで表示位置を合わせる */
+export type ClipTarget = {
+  style: { position: string; inset: string; overflow: string };
+  scrollTop: number;
+};
+
+export function clipToViewport(el: ClipTarget, scrollTop: number): void {
+  el.style.position = "fixed";
+  el.style.inset = "0";
+  el.style.overflow = "hidden";
+  el.scrollTop = scrollTop;
+}
+
+export function releaseClip(el: ClipTarget): void {
+  el.style.position = "";
+  el.style.inset = "";
+  el.style.overflow = "";
+}
