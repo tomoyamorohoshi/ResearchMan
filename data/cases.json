@@ -1,5 +1,44 @@
 [
   {
+    "id": "the-rolling-stones-in-the-stars-official-video-2026",
+    "title": "The Rolling Stones - In The Stars (Official Video)",
+    "summary": "ミック・ジャガーらローリング・ストーンズのメンバーをAIディープフェイクで1970年代の若い姿にデ・エイジングしたオフィシャルミュージックビデオ。",
+    "client": "The Rolling Stones",
+    "agency": "Riff Raff Films / Deep Voodoo",
+    "categories": [
+      "コンテンツ革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "UK Music Video Awards 2026 ノミネート（Shortlist, 受賞ではない）／部門: Best Visual Effects in a Video",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.promonews.tv/videos/2026/05/18/rolling-stones-stars-fran%C3%A7ois-rousselet/94973",
+    "thumbnail": "/thumbnails/the-rolling-stones-in-the-stars-official-video-2026.jpg",
+    "videoId": "oT5LwwEHgnc",
+    "overview": "ローリング・ストーンズの楽曲「In The Stars」のオフィシャルミュージックビデオ。Riff Raff Filmsが制作を手がけ、South Park制作陣発のAI企業Deep Voodooのディープフェイク技術を用いて、ミック・ジャガー、キース・リチャーズ、ロニー・ウッドら実演者を1970年代当時の若い姿へデ・エイジングして登場させている。",
+    "background": "長年活動を続けるバンドの新曲のミュージックビデオにおいて、現在のメンバーの姿ではなく全盛期の若い頃の姿を映像上に再現するという企画課題があった。実写の若返り合成では難しい自然さと説得力を、AIによるディープフェイク技術で実現することが狙いとされた。",
+    "execution": "Riff Raff FilmsがSouth Park制作陣発のAI企業Deep Voodooと組み、ミック・ジャガー、キース・リチャーズ、ロニー・ウッドら実演者本人の映像にディープフェイク技術を適用し、1970年代当時の姿へデ・エイジングした上で楽曲「In The Stars」のミュージックビデオとして構成した。",
+    "evaluationImpact": "現役で活動する著名ミュージシャン自身をAIで過去の姿に戻すという表現がミュージックビデオの文脈で成立した点が注目され、UK Music Video Awards 2026でBest Visual Effects in a Video部門のノミネート（Shortlist）対象となった。AIディープフェイクの実用例としても業界内で話題となった。",
+    "relatedWorks": [
+      {
+        "title": "promonews.tv記事",
+        "description": "本作の制作背景とDeep Voodooによるディープフェイク手法を解説した記事。",
+        "url": "https://www.promonews.tv/videos/2026/05/18/rolling-stones-stars-fran%C3%A7ois-rousselet/94973"
+      }
+    ],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/MV",
+      "Theme/Music",
+      "Theme/Entertainment"
+    ]
+  },
+  {
     "id": "a-ap-rocky-helicopter-official-video-2026",
     "title": "A$AP Rocky - HELICOPTER (Official Video)",
     "summary": "56台のRGB-Dカメラによる4Dボリュメトリック撮影と動的Gaussian Splattingで実演者を全編3Dスキャン化したA$AP Rockyのミュージックビデオ",
