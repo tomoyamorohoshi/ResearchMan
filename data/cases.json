@@ -1,5 +1,364 @@
 [
   {
+    "id": "exki-nature-s-kitchen-2026",
+    "title": "EXKi: Nature's Kitchen 野生植物の道しるべ",
+    "summary": "歩道の隙間に生える野生植物を目印に、最寄り店舗への方向と距離を地面に描き、雑草を無償の道案内媒体に変えた。",
+    "client": "EXKi",
+    "agency": "Marcel",
+    "categories": [
+      "OOH革新",
+      "メディア発明"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/exki-plantes-sauvages-restaurants-paris-bruxelles-marcel-20261117",
+    "thumbnail": "/thumbnails/exki-nature-s-kitchen-2026.jpg",
+    "videoId": "",
+    "overview": "フード チェーンのEXKiが、広告代理店Marcelと組み、パリとブリュッセルの街で実施したストリート施策。舗道の割れ目に生える野生植物のそばの地面に、最寄りのEXKi店舗までの方向と距離を示すマーキングを施し、雑草を道しるべに見立てた。一部の報道ではQRコードで正確な経路も案内するとされる。",
+    "background": "EXKiのブランドシグネチャーは「Nature's Kitchen」で、新鮮で季節感のある食材の選択を打ち出している。施策はこの自然志向を、都市のひび割れから伸びる雑草の「たくましさ」と結びつけた。報道（Creapills等）では、雑草が抵抗や生命力の象徴として語られている。",
+    "execution": "街中で見つけた野生植物の足元に、EXKiの最寄り店舗の方向と距離を示す地面のマーキングを描いた。植物は新たに植えたものではなく、もともとそこにある植物を使う。マーキングには一部でQRコードが添えられ、植物の場所から店までの具体的な道順を確認できると報じられている。実施都市はパリとブリュッセル。",
+    "evaluationImpact": "新たな看板や設置物を足さず、すでにそこにある雑草を道案内という機能を持つ媒体に読み替えた点が明快で、ブランドの「自然」の主張と手段が一致している。フランスのメディアは「街の草を広告に変える」と一文で要約でき、ストリートマーケティングの好例として紹介した。受賞は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Toulouse：歩道の植物名をチョークで記す植物学者",
+        "description": "歩道に生える植物の名前をチョークで書き込むToulouseの取り組みで、地面の草を街の情報媒体に変えた先行例。",
+        "url": "https://creapills.com/toulouse-inventaire-plante-trottoirs-20190827"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Form/Stunt",
+      "Theme/Food",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "palmallantir-original-silicon-max-cameron-2026",
+    "title": "Palmallantir Original Silicon（Max Cameron のタバコ箱風パッケージ）",
+    "summary": "AI業界の誇大な物言いを、タバコ箱の健康警告欄に置き換えて皮肉った、本物そっくりの偽パッケージ。",
+    "client": "Max Cameron（個人制作）",
+    "agency": "",
+    "categories": [
+      "カルチャーインサイト",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.creativeboom.com/news/max-cameron-roasts-the-arrogance-of-ai-tech-bros-with-subversive-cigarette-packaging/",
+    "thumbnail": "/thumbnails/palmallantir-original-silicon-max-cameron-2026.jpg",
+    "videoId": "",
+    "overview": "Max Cameronが制作した「Palmallantir Original Silicon」は、実在の20本入りタバコ箱に近い形で作った風刺パッケージ。健康警告欄には「Keep smoking, AI will save you」「AI cancer cure definitely on the horizon」といった文言が入る。AI企業トップの誇張した主張を皮肉る作品で、Creative Boomが2026年11月16日に紹介した。",
+    "background": "きっかけは、PalantirのCTOが2026年10月にCBSの番組で語った発言。AI研究者がAIによるがん治療を確信して喫煙を始めている、という趣旨だった。名指しも証拠もなく、記事はこれを「集団的妄想」の文脈で伝えている。Max本人はAIを毎日使い役にも立つと認めつつ、同時に怖さも感じていると語り、全面否定ではないと説明している。",
+    "execution": "本物のパッケージに近づけ、デザインはできるだけ真面目で現実的に扱った。一瞬見ただけでは気づかない「blink-and-you-miss-it」な作り込みを狙ったという。警告欄は本来の形式をなぞり、中身だけをAI礼賛にすり替えた。撮影は、理由を作ってパブへ行き、スマホで大量に撮って「見つかった」ように見せる方法。ブランド名はPall Mallを捩った言葉遊びと記事は伝える。",
+    "evaluationImpact": "「健康警告」という誰もが読み慣れた形式に、AI礼賛の文言を入れるだけで、誇大な物言いの危うさが一目で伝わる。反応は割れ、面白がる人、嫌う人、AIが人類を滅ぼす証拠と信じた人、ボットの仕業と言う人までいたと本人は語る。その混乱も狙いのうちだという。受賞は記事では確認できない。",
+    "relatedWorks": [
+      {
+        "title": "AI would never smoke a cigarette with you（Air）",
+        "description": "AIクリエイティブ運用プラットフォームAirが、ニューヨーク・タイムズに全面広告として出した作品。「AIはあなたとタバコを吸わない」という切り口で、AIでは置き換えられない創作を訴えた。",
+        "url": "https://www.bandt.com.au/ai-would-never-smoke-a-cigarette-with-you-ai-creative-operations-platform-air-places-eye-catching-full-page-ad-in-the-new-york-times/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Form/Stunt",
+      "Tech/AI",
+      "Theme/Entertainment"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creativeboom",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "simulated-moon-dust-3d-printed-interlocking-bricks-for-lunar",
+    "title": "Simulated moon dust 3D-printed interlocking bricks for lunar homes（University of Arkansas ほか）",
+    "summary": "模擬月面土壌をバインダー無しでレーザー焼結し、LEGO状に噛み合う再構成可能な建材ブロックにした",
+    "client": "University of Arkansas（Wan Shou / Cole McCallum）、University of Houston、Tampere University",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.designboom.com/technology/simulated-moon-dust-3d-printed-bricks-lunar-homes/",
+    "thumbnail": "/thumbnails/simulated-moon-dust-3d-printed-interlocking-bricks-for-lunar.jpg",
+    "videoId": "",
+    "overview": "アーカンソー大学のWan Shou准教授らの研究チームが、市販の模擬月面土壌LHS-1をレーザー粉末床溶融で焼結し、数cm角の十字形・H字形ブロックを造形した。ブロックはLEGOのように噛み合い、接着剤なしで組み替えられる。論文はnpj Advanced Manufacturingに掲載され、第一著者は当時学部生のCole McCallum。",
+    "background": "月面基地の建設では、地球から資材や結合剤を運ぶ輸送コストが大きな壁になる。現地の月面土壌(レゴリス)を使う案は多いが、多くはバインダーを併用するため、そのバインダーを地球から運ぶ必要があった。研究チームはこの依存を減らすため、レゴリス粉末だけで造形する方法を探った。共同研究者にはヒューストン大学とタンペレ大学が加わっている。",
+    "execution": "原料はアポロ試料を模した市販のLHS-1。比較的低出力の光源によるレーザー粉末床溶融で、バインダーを加えずに粉末同士を焼結させた。形状は、はめ込み式の接合を応用した十字形とH字形のブロック。同じ部材を何度も組み替えられるので、構造物全体を印刷するより量産しやすい点が特徴とされる。",
+    "evaluationImpact": "バインダー無しでレゴリス単体から再構成可能な建材を造れると初めて示した点が評価される。一方、純レゴリス製は多孔質で強度が低く、プレプリントの圧縮試験では最大応力は約1.5MPaだった。微小重力や真空下での挙動も未検証で、月面での実用化には追加研究が必要とされている。",
+    "relatedWorks": [
+      {
+        "title": "LEGO bricks from space dust(ESA)",
+        "description": "隕石粉末から3D印刷した、噛み合う月面建材ブロックの試作",
+        "url": "https://www.esa.int/ESA_Multimedia/Images/2024/06/LEGO_bricks_from_space_dust"
+      },
+      {
+        "title": "HASSELL Lunar Habitat Masterplan(ESA)",
+        "description": "月の土から作る3Dプリント部材で構成するモジュラー月面居住施設の構想",
+        "url": "https://www.designboom.com/architecture/hassell-modular-moon-habitat-european-space-agency-3d-printed-01-19-2024/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/Product",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "designboom",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "the-north-face-nuptse-manhattan-2026",
+    "title": "The North Face: Nuptse ダウンジャケット立体看板（Manhattan）",
+    "summary": "屋外広告パネル自体をNuptseの前面に造形し、商品が看板の枠からはみ出す立体OOHにした",
+    "client": "The North Face",
+    "agency": "Within Co",
+    "categories": [
+      "OOH革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://creapills.com/the-north-face-panneau-doudoune-nuptse-20261116",
+    "thumbnail": "/thumbnails/the-north-face-nuptse-manhattan-2026.jpg",
+    "videoId": "",
+    "overview": "The North Faceが、ニューヨーク・マンハッタンのラファイエット通りとブリーカー通りの角で、広告パネルをダウンジャケット「Nuptse」の前面として立体的に造形した。パネルから黄色いチューブ状の膨らみが3本突き出し、中央には大きなファスナー、上部には黒い帯、高い位置には白いHalf Domeロゴが付く。制作はWithin Co。設置は11月15日までと報じられている(記事の公開日は11月16日で、日付に食い違いがある)。",
+    "background": "Nuptseは1992年に登場し、1990年代にニューヨークのストリートファッションに定着した象徴的なダウンジャケットとされる。今回の設置場所はそのニューヨークにあたる。報道によれば、特定モデルの販促かどうかはブランドから明らかにされていない。直近のバリエーションとしてSummit Nuptseの名が記事中で挙げられている。素材や制作期間などの詳細は確認できていない。",
+    "execution": "パネルの支持体から、ジャケットのキルティング区画を思わせる太い黄色の膨らみが3本せり出している。中央にはオーバーサイズのファスナーが通り、上部に黒い帯、胸の位置に相当する高さに白いHalf Domeロゴを置く。スローガン、モデル、写真は一切使わず、商品の形そのものを看板にしている。素材や施工方法は確認できなかった。",
+    "evaluationImpact": "言葉や人物に頼らず、ブランドの象徴であるNuptseの造形だけで伝える点が評価できる。商品が文字通り「枠から出てくる」構図は、通行人が写真を撮りたくなる対象になると報じられ、SNSでの拡散にもつながりうる。ただし受賞や数値的な成果は確認できていない。評価は造形のわかりやすさと、看板を商品に読み替えるアイデアの明快さに限られる。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Form/Installation",
+      "Theme/Fashion"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "everleaf-love-2026",
+    "title": "Everleaf ブランド＆パッケージ刷新（Love）",
+    "summary": "実際の植物を感光紙に並べ日光で焼いたシアノタイプを全フレーバーの絵柄に使い、ボトルも再生ガラスで軽量化した酒類パッケージ刷新。",
+    "client": "Everleaf",
+    "agency": "Love",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.creativeboom.com/news/this-non-alcoholic-aperitif-packaging-was-made-with-real-plants-sunlight-and-embossed-glass/",
+    "thumbnail": "/thumbnails/everleaf-love-2026.jpg",
+    "videoId": "",
+    "overview": "ノンアルコール・アペリティフ「Everleaf」を、英マンチェスターとNYに拠点を置くLoveがブランド＆パッケージ刷新した。フレーバーごとのラベルやカートンに、実際の植物を感光紙に並べ日光に当てて焼き付けたシアノタイプの植物画を採用した。ボトルは100%再生ガラスで385gと従来の500gから23%軽量化し、底にアカシアの葉を型押しした。",
+    "background": "Everleafは保全生物学者でバーテンダーのPaul Mathewが創業したブランドで、バーやレストランでは評価を得ていた。次の課題は、小売で一般の買い手にも届くことだった。Loveは作り直しではなく、既存の自然をモチーフにした世界観を磨く方針を取った。同社のNick Johnsonは「Everleafに必要だったのは作り直しではなく、自然のブランド世界をもっと機能させることだった」と述べている。",
+    "execution": "Loveは1840年代に生まれたシアノタイプを社内で制作した。植物を紙に並べて日光に当て、焼き付けた像をスキャンして整えている。ラベルでは、その像が柔らかな色の滲みとして新しいワードマークの背後に置かれる。ボトルは曲線を強め、首を長くして持ちやすくした。底にアカシアの葉、首に細かな凹凸、肩に葉のマークを型押ししている。色は Marine が青、Forest がオレンジ、Mountain がピンクで、ラベルとキャップの円盤に使った。",
+    "evaluationImpact": "植物の香味が売りの商品に、実際の植物と日光で作った絵柄を載せた。商品の中身と見た目が同じ素材でつながっている点が評価できる。再生ガラス100%と23%の軽量化、再生パルプのラベル、再生可能な段ボールの外装も合わせて採用し、サステナビリティを意匠と両立させた。販路はバー、レストラン、公式サイト、Ocado、Majesticに広がる。公式の受賞は確認できなかった。",
+    "relatedWorks": [
+      {
+        "title": "B&B studio による Everleaf のアイデンティティ刷新（2021）",
+        "description": "今回の前身にあたる2021年のEverleafブランド刷新。Creative Boomが関連記事として紹介している。",
+        "url": "https://www.creativeboom.com/work/bb-studio-reimagines-leading-non-alcoholic-aperitif-everleaf/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Form/Print",
+      "Theme/Food",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "B",
+    "sourceId": "creativeboom",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "sainsbury-museum-and-art-centre-identity-north-design-2026",
+    "title": "Sainsbury Museum and Art Centre identity（North Design）",
+    "summary": "フォスターの初期スケッチをマークにし、機能と表現を切り替える専用等幅書体で美術館の新名称を体現するID",
+    "client": "Sainsbury Museum and Art Centre",
+    "agency": "North Design",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.itsnicethat.com/articles/north-design-sainsbury-museum-and-art-centre-graphic-design-171126",
+    "thumbnail": "/thumbnails/sainsbury-museum-and-art-centre-identity-north-design-2026.jpg",
+    "videoId": "",
+    "overview": "英ノーリッジのSainsbury Centreが、創設時の文書にあった原名「Sainsbury Museum and Art Centre」に改称し、North Designが新しいビジュアルアイデンティティを制作した。ノーマン・フォスターの初期スケッチを元にしたロゴと、専用のuniwidth書体「SM Baumer Mono」が柱となっている。",
+    "background": "建物はフォスターの設計で1978年に開館し、ロバート＆リサ・サインズベリー夫妻の収集品をイースト・アングリア大学に寄贈して生まれた。改称に合わせ、建築と所蔵作品の双方にふさわしい、厳格さと抑制を備えた視覚表現が求められた。North DesignのSean Perkinsは、フォスターとオトル・アイヒャーの遺産の上に築くことを光栄としている。",
+    "execution": "ロゴはフォスターが描いた最も初期のスケッチの一つに基づく。アイヒャーの「知的な幾何学」の考え方を取り入れ、数学的なグリッドと均一性を表現的に使った。書体SM Baumer Monoは全字幅が同じで、事務的な案内サイン向けの規律あるFunctionalモードと、Expressive（Living）モードを切り替えられる。",
+    "evaluationImpact": "建築家の設計過程のスケッチを施設の顔に据え、建築のグリッド思想をマークと書体の仕組みにまで通した点が評価できる。1つの書体で案内の明快さと表現の自由を両立させる設計は、文化施設のID設計に転用しやすい。受賞は公式ソースでは確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "A 1970s architectural sketch and Otl Aicher inspire North Design's new art centre brand mark",
+        "description": "It's Nice Thatによる本件の紹介記事",
+        "url": "https://www.itsnicethat.com/articles/north-design-sainsbury-museum-and-art-centre-graphic-design-171126"
+      },
+      {
+        "title": "Behind the rebrand: Sainsbury Museum and Art Centre",
+        "description": "施設公式サイトによるリブランドの解説",
+        "url": "https://sainsburymuseum.com/channel/behind-the-rebrand-sainsbury-museum-and-art-centre/"
+      },
+      {
+        "title": "Southbank Centre identity（North）",
+        "description": "同スタジオによるブルータリズム建築に着想した文化施設のID",
+        "url": "https://www.designweek.co.uk/issues/19-25-june-2017/southbank-centre-reveals-first-rebrand-10-years-inspired-brutalism/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Print",
+      "Theme/Art",
+      "Tech/Web"
+    ],
+    "gateCriterion": "B",
+    "sourceId": "itsnicethat",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "toneveld-a-growing-collection-of-browser-based-sound-machine",
+    "title": "TONEVELD – A growing collection of browser-based sound machines",
+    "summary": "合成手法ごとに発想を変えた複数のサウンドマシンを、ブラウザだけで遊べる形で公開しているコレクション。",
+    "client": "Jumpel",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.creativeapplications.net/member/toneveld-a-growing-collection-of-browser-based-sound-machines/",
+    "thumbnail": "/thumbnails/toneveld-a-growing-collection-of-browser-based-sound-machine.jpg",
+    "videoId": "",
+    "overview": "Toneveldは、ブラウザ上で演奏できるサウンドマシンを集めたプロジェクト。公式サイトでは、粒状合成のStarfish、倍音ドローンシンセのToad、音を動く映像に変えるCicadeなどが確認できる。多くはダウンロードやインストール不要で、ブラウザから遊べるとされる。依頼メモにあるPENDRAなど6種の内訳と、Web Audio API・Canvas 2Dのみという実装は、検索では裏取りできていない。",
+    "background": "運営元とみられるJumpelは、ケルン拠点の作曲家・サウンドデザイナーJoachim Dürbeckのソロ名義。仮想楽器メーカーCinematique Instrumentsの共同創業者でもあり、現在はJumpelとToneveldに注力すると本人の経歴ページにある。ただしToneveldのマシンをJumpelが制作したと明記する資料は確認できておらず、両者の関係は推定にとどまる。制作体制も確認できていない。",
+    "execution": "確認できた範囲では、Toneveldは機械ごとに音の作り方が異なる。Starfishは音声ファイルを粒状の音の雲に変え、Toadは調和的なドローンを鳴らし、Cicadeは音を動く視覚表現にする。MOTHは4ヘッドのテープルーパー、NAUTILUSは生成的な共鳴楽器として紹介されている。WHALEとCONCHは無料のVST3ベータ版も出ている。メモにある振り子が共鳴体を叩くPENDRAと、1つのオシレーターを9つの倍音に分けるTOADの仕組みは、一次情報で確認できていない。",
+    "evaluationImpact": "CreativeApplications.Netで取り上げられたとされるが、同サイトの該当記事そのものは確認できていない。受賞も確認できていない。合成手法ごとに別のメタファーで操作と見た目を設計し、同じ入口で並べている点が評価の軸になりそうだ。ただし、個々のマシンに固有の発明があるかは未検証で、採用基準の「あと一歩」の状態。",
+    "relatedWorks": [
+      {
+        "title": "Toneveld",
+        "description": "ブラウザで遊べるマシン群とプラグインを公開する公式サイト。",
+        "url": "https://toneveld.com/"
+      },
+      {
+        "title": "Whale by Toneveld",
+        "description": "同プロジェクトの宇宙的なシンセVSTプラグイン。",
+        "url": "https://www.kvraudio.com/product/whale-by-toneveld"
+      },
+      {
+        "title": "Jumpel — Biography",
+        "description": "Jumpel（Joachim Dürbeck）の経歴ページ。",
+        "url": "https://jumpel.de/web2026/bio.html"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Tech/Audio",
+      "Form/App",
+      "Theme/Music"
+    ],
+    "gateCriterion": "B",
+    "sourceId": "creativeapplications",
+    "gateTier": "borderline",
+    "discoveryLens": 4
+  },
+  {
+    "id": "biobased-edge-seals-for-insulating-glass-units-universit-t-s",
+    "title": "Biobased edge seals for insulating glass units（Universität Siegen × Glaszentrum Weber + Wagener）",
+    "summary": "複層ガラスの周縁シールを、有害物質を含む従来品からバイオ由来シーラントへ置き換える研究プロジェクト。",
+    "client": "Universität Siegen / Glaszentrum Weber + Wagener",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://materialdistrict.com/article/biobased-edge-seals-could-replace-hazardous-glazing-sealants/",
+    "thumbnail": "/thumbnails/biobased-edge-seals-for-insulating-glass-units-universit-t-s.jpg",
+    "videoId": "",
+    "overview": "ジーゲン大学の構造設計講座が、フロイデンベルク傘下のGlaszentrum Weber + Wagenerと共同で、バイオ由来のエッジシール(周縁シール)を使った複層ガラスの開発に取り組む研究プロジェクト。研究期間は2026年3月〜2028年2月で、現時点で技術的な成果は公表されていない。",
+    "background": "複層ガラスの断熱性能は、周縁シールの耐久性に大きく左右される。大学は、バイオ由来のシーラントは従来品より有害な化学物質が少なく、生分解性の成分を含むと説明している。複層ガラスの環境負荷を下げ、サステナビリティを高めることが狙い。",
+    "execution": "ジーゲン大学とGlaszentrum Weber + Wagenerによる産学共同開発。資金はドイツ連邦経済・エネルギー省(BMWE)が拠出し、AiF Projekt GmbHが管理する。2層以上の多層複層ガラスで、バイオ由来シーラントを周縁シールに用いる仕様を開発する。具体的な材料組成や試験方法は、確認できた範囲では公表されていない。",
+    "evaluationImpact": "周縁シールは複層ガラスの耐久性を決める部位で、ここを有害物質の少ないバイオ由来素材に替える方向性は建築素材の持続可能性につながる。ただし研究は始まったばかりで、性能や実用性を示す成果は未公表。評価は今後の結果次第。",
+    "relatedWorks": [
+      {
+        "title": "Development of multi-pane insulating glass units with bio-based sealants in the edge seal(ジーゲン大学ニュース)",
+        "description": "本プロジェクトの大学公式発表。共同開発体制・資金・研究期間を掲載。",
+        "url": "https://www.uni-siegen.de/en/news/development-of-multi-pane-insulating-glass-units-with-bio-based-sealants-in-the-edge-seal"
+      },
+      {
+        "title": "Examination of the Load-Bearing Behavior of a Bonded Edge Seal for Fluid-Filled Insulating Glass Units(TU Dresden)",
+        "description": "液体充填複層ガラス向けの接着式エッジシールの耐荷挙動を検討した研究。",
+        "url": "https://fis.tu-dresden.de/portal/en/publications/examination-of-the-loadbearing-behavior-of-a-bonded-edge-seal-for-fluidfilled-insulating-glass-units(c9c39927-2cdc-4a36-a4b9-17df130e42af).html"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "materialdistrict",
+    "gateTier": "borderline",
+    "discoveryLens": 3
+  },
+  {
     "id": "nouera-exe-2026",
     "title": "NouerA『.exe』ミュージックビデオ",
     "summary": "韓国発グループNouerAのMV『.exe』、21台のRGB-Dカメラによる4D Gaussian Splattingでダンスシーンを自由視点の映像に再構成",
