@@ -33,6 +33,7 @@ let currentPath: string | null = null;
 let prevPath: string | null = null;
 let active = false;
 let replaying = false;
+let prevRestoration: ScrollRestoration | null = null;
 let lastY = 0; // 表示中ページのスクロール位置（scrollイベントで更新。popstate時の復元済み値と区別するため）
 let pathWaiter: (() => void) | null = null;
 const gate = new PopGate<unknown>();
@@ -113,6 +114,12 @@ function run(dir: Direction, id: string, navigate: () => void, rescue?: () => vo
     delete html.dataset.flipDir;
     delete html.dataset.flipV;
     active = false;
+    if (prevRestoration) {
+      try {
+        history.scrollRestoration = prevRestoration;
+      } catch {}
+      prevRestoration = null;
+    }
     rescue?.();
   };
   try {
@@ -227,8 +234,19 @@ function onPopState(e: PopStateEvent) {
   const d = detectDirection(currentPath, window.location.pathname);
   if (!d) return;
   e.stopImmediatePropagation();
-  // ブラウザは遷移先エントリのスクロールを先に復元してしまう。旧画面は自分のスクロール位置で撮る
-  if (Math.abs(window.scrollY - lastY) > 1) window.scrollTo({ top: lastY, behavior: "instant" });
+  // ブラウザはpopstateの後に遷移先エントリのスクロールを復元し、旧スナップショットがずれる。
+  // 遷移中だけ復元を止め、旧画面は自分のスクロール位置で撮る（一覧側の復元は更新コールバック内で行う）
+  try {
+    prevRestoration = history.scrollRestoration;
+    history.scrollRestoration = "manual";
+  } catch {}
+  // ブラウザの復元は次フレーム頭（rAFより前）に適用されるため、rAF内でも固定し直す（スナップショットはその後に撮られる）
+  const pinY = lastY;
+  const pin = () => {
+    if (Math.abs(window.scrollY - pinY) > 1) window.scrollTo({ top: pinY, behavior: "instant" });
+  };
+  pin();
+  requestAnimationFrame(pin);
   gate.hold(e.state);
   run(d.dir, d.id, replayPop, replayPop);
 }
