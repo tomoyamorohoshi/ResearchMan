@@ -25,8 +25,10 @@ import {
 
 const SCROLL_KEY = "rm-flip-scroll";
 // 更新コールバック中は描画が止まるので、待ちの合計をここで打ち切る（超えたら通常描画/フェード）
-const BUDGET = 600;
-const DECODE_CAP = 100; // 戻り先サムネのdecode待ち上限（BUDGETの内数）
+const ROUTE_BUDGET = 3000; // ルート確定の待ち上限（行き・戻り共通）
+const POST_BUDGET = 300; // 確定後の対象要素待ち＋decodeの合計上限
+const DECODE_CAP = 100; // 戻り先サムネのdecode待ち上限（POST_BUDGETの内数）
+const prefetched = new Set<string>();
 
 let router: ReturnType<typeof useRouter> | null = null;
 let currentPath: string | null = null;
@@ -45,15 +47,16 @@ const hero = () => document.querySelector<HTMLElement>("[data-flip-hero]");
 const cardOf = (id: string) =>
   document.querySelector<HTMLElement>(`[data-case-id="${CSS.escape(id)}"]`)?.querySelector<HTMLElement>("a") ?? null;
 
-function waitPath(ms: number): Promise<void> {
+// ルート確定（pathname更新）を待つ。時間内に確定したら true
+function waitPath(ms: number): Promise<boolean> {
   return new Promise((resolve) => {
-    const t = setTimeout(done, ms);
-    function done() {
+    const t = setTimeout(() => finish(false), ms);
+    function finish(ok: boolean) {
       clearTimeout(t);
       pathWaiter = null;
-      resolve();
+      resolve(ok);
     }
-    pathWaiter = done;
+    pathWaiter = () => finish(true);
   });
 }
 
@@ -147,10 +150,15 @@ function run(dir: Direction, id: string, navigate: () => void, rescue?: () => vo
   let t: ViewTransition;
   try {
     t = document.startViewTransition(async () => {
-      const deadline = performance.now() + BUDGET;
-      const nav = waitPath(BUDGET);
+      // 通常のNextと同じく、新ルートが確定するまで旧ページを見せ続ける。ChromeのコールバックTimeout(約4s)より手前で諦める
+      const nav = waitPath(ROUTE_BUDGET);
       navigate();
-      await nav;
+      if (!(await nav)) {
+        // 確定しなかった: 旧ページのスナップショットを二重に見せないよう遷移ごと中止（遷移自体は素のNextが続行する）
+        throw new Error("flip: route not settled");
+      }
+      // ルート確定後の待ち（対象要素・decode）は短い予算で打ち切る
+      const deadline = performance.now() + POST_BUDGET;
       // 新側: forwardは詳細ヒーロー、backは戻り先カード（無ければフェードに落とす）
       const target =
         dir === "forward"
@@ -181,6 +189,18 @@ function run(dir: Direction, id: string, navigate: () => void, rescue?: () => vo
   t.ready.catch(() => {});
   t.updateCallbackDone.catch(cleanup);
   t.finished.then(cleanup, cleanup);
+}
+
+// カードにホバー/タップした時点で詳細ルートを先読み（href毎に1回。コールド時のルート確定待ちを短くする）
+function onPointerPrefetch(e: PointerEvent) {
+  if (!router) return;
+  const a = (e.target as Element | null)?.closest?.("a");
+  const href = a?.getAttribute("href") ?? "";
+  if (!a || !a.closest("[data-case-id]") || !/^\/cases\/[^/]+\/?$/.test(href) || prefetched.has(href)) return;
+  prefetched.add(href);
+  try {
+    router.prefetch(href);
+  } catch {}
 }
 
 function onClick(e: MouseEvent) {
@@ -276,8 +296,12 @@ export default function FlipBridge() {
     lastY = window.scrollY;
     window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("click", onClick, true);
+    document.addEventListener("pointerover", onPointerPrefetch, { capture: true, passive: true });
+    document.addEventListener("pointerdown", onPointerPrefetch, { capture: true, passive: true });
     window.addEventListener("popstate", onPopState, true);
     return () => {
+      document.removeEventListener("pointerover", onPointerPrefetch, true);
+      document.removeEventListener("pointerdown", onPointerPrefetch, true);
       window.removeEventListener("scroll", onScroll);
       document.removeEventListener("click", onClick, true);
       window.removeEventListener("popstate", onPopState, true);
