@@ -28495,5 +28495,215 @@
         "desc": "コーディングAIにWebページとして動画を作らせ、ブラウザで手直しできるオープンソース。"
       }
     ]
+  },
+  {
+    "id": "2026-11-18-1",
+    "date": "2026-11-18",
+    "title": "掛け売り帳簿を3D空間の記録に",
+    "pattern": "文脈×技術",
+    "seed": "Data Tienda（Gahr Wecapital）の小規模店の掛け売り帳簿を、LocalMeshで店先の写真1枚から3Dの店舗モデルにして信用の裏づけに添えたら、帳簿が薄い店でも「実在する商い」として融資審査で見てもらえるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "gahr-wecapital-data-tienda",
+        "title": "Data Tienda",
+        "desc": "メキシコの小規模店の掛け売り帳簿を信用履歴に変え、女性が融資を受けられるようにした施策。"
+      },
+      {
+        "type": "tech",
+        "id": "localmesh",
+        "title": "LocalMesh",
+        "desc": "写真1枚から3Dの立体モデルを、クラウドなしで自分のWindows PCで作れるアプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-18-2",
+    "date": "2026-11-18",
+    "title": "ソープの劇中を宝探しの舞台に",
+    "pattern": "文脈×技術",
+    "seed": "Prize & Seek（KISS / Channel 4）の宝探しで、Matrix-Game 4.0のように粗い映像をリアルタイムに描き直す仕組みを使い、視聴者の操作で劇中の街が変わる「もう一つのHollyoaks」が出せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "prize-seek-2026",
+        "title": "Prize & Seek",
+        "desc": "人気ソープの劇中に手がかりを隠し、ラジオとTVをまたいで1カ月続いた宝探し。"
+      },
+      {
+        "type": "tech",
+        "id": "matrix-game-4-0",
+        "title": "Matrix-Game 4.0",
+        "desc": "粗いゲーム映像を動画生成AIがその場で精細な映像に描き直し、操作もできる技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-18-3",
+    "date": "2026-11-18",
+    "title": "着るたび切れる服の記録装置",
+    "pattern": "文脈×技術",
+    "seed": "オノ・ヨーコ《Cut Piece》の再演で、観客が衣服を切る動きをEITWatchの手首センサーで読み取れば、ハサミを入れる手の迷いや強さが残り、参加の度合いを見える形にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "cut-piece-22-2026",
+        "title": "オノ・ヨーコ《Cut Piece》菊池宏子による22年ぶり再演",
+        "desc": "観客が壇上で衣服を切る参加型作品を、22年ぶりに東京で再演した公演。"
+      },
+      {
+        "type": "tech",
+        "id": "eitwatch",
+        "title": "EITWatch",
+        "desc": "スマートウォッチの裏ぶたの電極で、手のジェスチャーを読むセンサー。設計図も公開。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-18-4",
+    "date": "2026-11-18",
+    "title": "頭の傾きで鳴る遊びの展覧会",
+    "pattern": "文脈×技術",
+    "seed": "Anima Ludens（アルルの礼拝堂での現代美術×インディーゲーム展）に、bFaaaPの頭の傾きペダルを置き、来場者が首をかしげるだけで作品の音や仕掛けが動く「体の遊び」の展示にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "anima-ludens-la-vie-en-jeu-2026",
+        "title": "Anima Ludens（アニマ・ルーデンス） — La vie en jeu",
+        "desc": "現代美術とインディーゲームを「遊び」でつなぐ、フランス・アルルでの国際展。"
+      },
+      {
+        "type": "tech",
+        "id": "bfaaap",
+        "title": "bFaaaP (barrier-Free assist as a Pedal)",
+        "desc": "頭の傾きでピアノのペダルを動かせる、日本発のオープンソース支援楽器。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-18-5",
+    "date": "2026-11-18",
+    "title": "漫画を踊る人型ロボット劇へ",
+    "pattern": "技術×技術",
+    "seed": "Manga2Animateで漫画を台本と絵コンテにし、SONICの全身動作基盤モデルにその台本を渡して、人型ロボットが漫画の場面を身体で演じる舞台ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "manga2animate",
+        "title": "Manga2Animate",
+        "desc": "漫画とキャラ設定から台本、絵コンテ、動画へと順に作るAIの仕組み。"
+      },
+      {
+        "type": "tech",
+        "id": "sonic",
+        "title": "SONIC（GR00T Whole-Body Control）",
+        "desc": "歩く・跳ぶ・物を渡すなど人型ロボットの全身の動きを担う基盤モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-18-6",
+    "date": "2026-11-18",
+    "title": "AIが奏でる顔の口パク補正",
+    "pattern": "技術×技術",
+    "seed": "OBSIDIAN Neuralがライブで生成したループ音を、TaoMate-FVSRに音声の手がかりとして渡し、ぼやけた顔のキャラが演奏に合わせて口を動かす映像を即興で作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "obsidian-neural",
+        "title": "OBSIDIAN Neural",
+        "desc": "AIがその場でループ音を作り出す、ライブ演奏向けのオープンソース楽器。"
+      },
+      {
+        "type": "tech",
+        "id": "taomate-fvsr",
+        "title": "TaoMate-FVSR",
+        "desc": "ぼやけた顔を音声を頼りに直し、口の動きも合わせ直すモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-18-7",
+    "date": "2026-11-18",
+    "title": "書体体系を動くキャラの骨組みに",
+    "pattern": "文脈×技術",
+    "seed": "Louisiana typographic systemの4書体と80ピクトグラムを、PuppetLoomでレイヤー分けして自動リギングし、美術館の記号が館内を歩いて案内するデスクトップの住人にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "louisiana-typographic-system-louisiana-museum-of-modern-art",
+        "title": "Louisiana typographic system（Louisiana Museum of Modern Art）",
+        "desc": "美術館の印刷物を調べ、4書体と80のピクトグラムをまとめた文字の体系。"
+      },
+      {
+        "type": "tech",
+        "id": "puppetloom",
+        "title": "PuppetLoom",
+        "desc": "レイヤー分けしたキャラ絵から自動で骨組みを作り、画面上で動かすツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-18-8",
+    "date": "2026-11-18",
+    "title": "撥水コートを図面でなく3Dコード化",
+    "pattern": "技術×技術",
+    "seed": "Code Video ModelのThree.jsで組んだ粗い3D映像を、MaskVidExperimentsで雨粒の部分だけ切り出して高精細に描き直せば、水滴が窓を流れる細部を自在に作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "code-video-model",
+        "title": "Code Video Model (CodeVideoBench)",
+        "desc": "文章から3Dシーンのコードを作り、その粗い映像を見本に動画をAIに生成させる手法。"
+      },
+      {
+        "type": "tech",
+        "id": "maskvidexperiments",
+        "title": "MaskVidExperiments",
+        "desc": "動く被写体だけを切り出して加工し、ジッターなく元の映像に戻すツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-18-9",
+    "date": "2026-11-18",
+    "title": "シンセを街の標識に転用",
+    "pattern": "転用",
+    "seed": "CA-72のアナログ・モノシンセの波形やツマミの動きを、Studio Herrströmの道路標識と車窓ステッカーの記号体系に当てはめ、音の設計図をそのまま交通標識風のグラフィックに転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ca-72",
+        "title": "CA-72",
+        "desc": "1970年代のアナログ・モノシンセを回路レベルで再現した無料のプラグイン。"
+      },
+      {
+        "type": "case",
+        "id": "studio-herrstr-m-disruptor-music-label-identity-2026",
+        "title": "Studio Herrström × disruptor music label identity",
+        "desc": "車の窓ステッカーと道路標識の記号を借りて作った音楽レーベルのアイデンティティ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-18-10",
+    "date": "2026-11-18",
+    "title": "沈黙を破る質問を写真から3D化",
+    "pattern": "文脈×技術",
+    "seed": "LALCEC『One More Question』の沈黙を破る最後の質問に、InstantHMRの人体ポーズ復元を掛け、取材中の身ぶりが固まる瞬間を3Dで残し、言いにくさを可視化できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "lalcec-one-more-question",
+        "title": "One More Question",
+        "desc": "インタビューの最後に前立腺検診を尋ね、話しにくい沈黙を破ったメディア施策。"
+      },
+      {
+        "type": "tech",
+        "id": "instanthmr",
+        "title": "InstantHMR (ComfyUI-InstantHMR)",
+        "desc": "写真や動画の人物の3D体形とポーズを、1人あたり約1msで復元する軽量モデル。"
+      }
+    ]
   }
 ]
