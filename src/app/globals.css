@@ -17,3 +17,35 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
+
+/* ── カード⇄詳細の裏返し遷移（FlipBridge.tsx が html に data-flip-dir / data-flip-v を付ける）──
+   変形はすべてブラウザ合成レイヤー上のCSSアニメ。dir: forward|back|fade、v: a(同時)|b(裏返し→拡大) */
+::view-transition-group(root) { animation-duration: 200ms; }
+::view-transition-group(case-hero) { animation-duration: 450ms; animation-timing-function: ease-in-out; }
+::view-transition-image-pair(case-hero) { isolation: auto; }
+::view-transition-old(case-hero),
+::view-transition-new(case-hero) {
+  animation-duration: 450ms; animation-fill-mode: both; animation-timing-function: ease-in-out;
+  mix-blend-mode: normal; backface-visibility: hidden;
+}
+::view-transition-old(case-hero) { animation-name: flip-out; }
+::view-transition-new(case-hero) { animation-name: flip-in; }
+@keyframes flip-out { 0% { transform: perspective(1400px) rotateY(0); } 50%, 100% { transform: perspective(1400px) rotateY(90deg); } }
+@keyframes flip-in { 0%, 50% { transform: perspective(1400px) rotateY(-90deg); } 100% { transform: perspective(1400px) rotateY(0); } }
+/* B: forward=その場で裏返し(0-300ms)→拡大(300-600ms) / back=縮小(0-300ms)→その場で裏返し(300-600ms) */
+html[data-flip-v="b"]::view-transition-group(case-hero) { animation-duration: 300ms; }
+html[data-flip-v="b"][data-flip-dir="forward"]::view-transition-group(case-hero) { animation-delay: 300ms; animation-fill-mode: both; }
+html[data-flip-v="b"]::view-transition-old(case-hero),
+html[data-flip-v="b"]::view-transition-new(case-hero) { animation-duration: 150ms; }
+html[data-flip-v="b"][data-flip-dir="forward"]::view-transition-new(case-hero) { animation-delay: 150ms; }
+html[data-flip-v="b"][data-flip-dir="back"]::view-transition-old(case-hero) { animation-delay: 300ms; }
+html[data-flip-v="b"][data-flip-dir="back"]::view-transition-new(case-hero) { animation-delay: 450ms; }
+/* 戻り先カードが無い等: 回転せず素早いクロスフェード */
+html[data-flip-dir="fade"]::view-transition-group(case-hero) { animation: none; }
+html[data-flip-dir="fade"]::view-transition-old(case-hero) { animation: flip-fade-out 150ms both; }
+html[data-flip-dir="fade"]::view-transition-new(case-hero) { animation: flip-fade-in 150ms both; }
+@keyframes flip-fade-out { to { opacity: 0; } }
+@keyframes flip-fade-in { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation-duration: 0s !important; animation-delay: 0s !important; }
+}

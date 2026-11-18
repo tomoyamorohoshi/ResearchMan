@@ -37,11 +37,12 @@ export default async function CasePage({
     <div className="min-h-screen bg-[#eeece7]">
       {/* ヘッダー */}
       <header className="border-b border-gray-300 px-4 py-4 flex items-center gap-6">
-        <Link href="/" className="text-xl font-black tracking-tight text-gray-900 leading-none">
+        <Link href="/" data-flip-back className="text-xl font-black tracking-tight text-gray-900 leading-none">
           ResearchMan
         </Link>
         <Link
           href="/"
+          data-flip-back
           className="text-[9px] tracking-[0.25em] uppercase text-gray-400 hover:text-gray-900 transition-colors"
         >
           ← Archive
@@ -49,6 +50,7 @@ export default async function CasePage({
       </header>
       <div className="max-w-3xl mx-auto px-4 py-10">
 
+        <div data-flip-hero>
         {c.videoId ? (
           <VideoPlayer videoId={c.videoId} title={c.title} />
         ) : (
@@ -62,6 +64,7 @@ export default async function CasePage({
             />
           </div>
         )}
+        </div>
 
         <div className="flex flex-wrap gap-2 mb-4">
           {c.categories.map((cat) => (
