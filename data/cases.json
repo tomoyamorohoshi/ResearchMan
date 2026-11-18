@@ -1,5 +1,38 @@
 [
   {
+    "id": "barry-can-t-swim-dance-dance-dance-2026",
+    "title": "Barry Can't Swim – Dance Dance Dance",
+    "summary": "VRでオペレーターが操作する実物の人型ロボットがロンドンの街中で踊り続ける姿を追ったミュージックビデオ。",
+    "client": "Barry Can't Swim（Atlantic Records）",
+    "agency": "Stink/UK",
+    "categories": [
+      "コンテンツ革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://shots.net/news/view/barry-cant-swims-robot-dance-dance-dance",
+    "thumbnail": "/thumbnails/barry-can-t-swim-dance-dance-dance-2026.jpg",
+    "videoId": "4cPwPHzExSA",
+    "overview": "Barry Can't Swimの楽曲「Dance Dance Dance」のミュージックビデオ。Stink/UK（監督Dan French）が制作を手がけ、VRでオペレーターが操作する実物の人型ロボットがロンドンの街中に現れ、通行人の間で踊り続ける姿を追ったもの。CG合成ではなく実機のロボットを使用している点が特徴。",
+    "background": "ミュージックビデオの表現としてAIやCG合成によるキャラクター演出が増える中、実在するロボット本体を街中に送り出すという企画が立てられた。踊るロボットと、それに遭遇する一般の通行人の自然な反応を同時に捉えることが狙いとされた。",
+    "execution": "VRヘッドセットを装着したオペレーターが人型ロボットをリアルタイムで操作し、ロンドンの街中へ送り出した。ロボットは楽曲「Dance Dance Dance」に合わせて踊り続け、周囲の通行人の反応を交えながら、ドキュメンタリー的な手触りでミュージックビデオ全編が構成されている。",
+    "evaluationImpact": "AI生成が主流になりつつあるミュージックビデオ領域で、CGではなく実物のVR操作ロボットというプラクティカルな手法を採用した点が特徴的な事例。街中での一般人の予期せぬ反応を素材に取り込み、企画と撮影手法が一致した作品として紹介された。",
+    "relatedWorks": [],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Tech/XR",
+      "Form/MV",
+      "Theme/Music"
+    ]
+  },
+  {
     "id": "the-rolling-stones-in-the-stars-official-video-2026",
     "title": "The Rolling Stones - In The Stars (Official Video)",
     "summary": "ミック・ジャガーらローリング・ストーンズのメンバーをAIディープフェイクで1970年代の若い姿にデ・エイジングしたオフィシャルミュージックビデオ。",
