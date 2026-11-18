@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import VideoPlayer from "@/components/VideoPlayer";
 import { tagLabel } from "@/lib/tags";
+import { pickThumbnailSrc } from "@/lib/thumbSm";
 
 export function generateStaticParams() {
   return cases.map((c) => ({ slug: c.id }));
@@ -32,16 +33,19 @@ export default async function CasePage({
   const { slug } = await params;
   const c = getCaseById(slug);
   if (!c) notFound();
+  // 裏返し遷移の新側スナップショットが空白にならないよう、一覧で読込済みの縮小サムネを下敷きにする
+  const placeholder = pickThumbnailSrc(c.thumbnail, false);
 
   return (
-    <div className="min-h-screen bg-[#eeece7]">
+    <div data-flip-hero className="min-h-screen bg-[#eeece7]">
       {/* ヘッダー */}
       <header className="border-b border-gray-300 px-4 py-4 flex items-center gap-6">
-        <Link href="/" className="text-xl font-black tracking-tight text-gray-900 leading-none">
+        <Link href="/" data-flip-back className="text-xl font-black tracking-tight text-gray-900 leading-none">
           ResearchMan
         </Link>
         <Link
           href="/"
+          data-flip-back
           className="text-[9px] tracking-[0.25em] uppercase text-gray-400 hover:text-gray-900 transition-colors"
         >
           ← Archive
@@ -49,10 +53,14 @@ export default async function CasePage({
       </header>
       <div className="max-w-3xl mx-auto px-4 py-10">
 
+        <div>
         {c.videoId ? (
-          <VideoPlayer videoId={c.videoId} title={c.title} />
+          <VideoPlayer videoId={c.videoId} title={c.title} placeholder={placeholder} />
         ) : (
-          <div className="relative aspect-video rounded-xl overflow-hidden mb-8 bg-gray-100">
+          <div
+            className="relative aspect-video rounded-xl overflow-hidden mb-8 bg-gray-100 bg-cover bg-center"
+            style={{ backgroundImage: `url("${placeholder}")` }}
+          >
             <Image
               src={c.thumbnail}
               alt={c.title}
@@ -62,6 +70,7 @@ export default async function CasePage({
             />
           </div>
         )}
+        </div>
 
         <div className="flex flex-wrap gap-2 mb-4">
           {c.categories.map((cat) => (
