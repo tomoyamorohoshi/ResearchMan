@@ -8,6 +8,10 @@ import {
   isPlainLeftClick,
   assignName,
   clearName,
+  shouldRestoreScrollOnCleanup,
+  needsArrivalRestore,
+  scrollSaveSource,
+  routeWillChange,
 } from "./flipTransition";
 
 test("caseIdFromPath: /cases/<id> のみ。末尾スラッシュ・エンコード対応", () => {
@@ -98,4 +102,31 @@ test("clipToViewport/releaseClip: 固定表示+scrollTopで切り詰め、解除
   assert.equal(el.scrollTop, 320);
   releaseClip(el);
   assert.deepEqual(el.style, { position: "", inset: "", overflow: "" });
+});
+
+test("shouldRestoreScrollOnCleanup: 中止時(旧要素が接続中)のbackだけ復元。成功(切り離し済み)では復元しない", () => {
+  const base = { hadClip: true, dir: "back" as const, oldY: 600, oldConnected: true };
+  assert.equal(shouldRestoreScrollOnCleanup(base), true);
+  assert.equal(shouldRestoreScrollOnCleanup({ ...base, oldConnected: false }), false);
+  assert.equal(shouldRestoreScrollOnCleanup({ ...base, dir: "forward" }), false);
+  assert.equal(shouldRestoreScrollOnCleanup({ ...base, oldY: 0 }), false);
+  assert.equal(shouldRestoreScrollOnCleanup({ ...base, hadClip: false }), false);
+});
+
+test("needsArrivalRestore: backで戻り先カードが無い時だけ到着後スクロール復元", () => {
+  assert.equal(needsArrivalRestore("back", false), true);
+  assert.equal(needsArrivalRestore("back", true), false);
+  assert.equal(needsArrivalRestore("forward", false), false);
+});
+
+test("scrollSaveSource: popstateは遷移前パスと最後に知ったscrollY、クリックは現在地とscrollY", () => {
+  assert.deepEqual(scrollSaveSource({ viaPop: true, currentPath: "/", locationPath: "/cases/a", lastY: 1200, scrollY: 0 }), { path: "/", y: 1200 });
+  assert.deepEqual(scrollSaveSource({ viaPop: false, currentPath: "/", locationPath: "/", lastY: 5, scrollY: 900 }), { path: "/", y: 900 });
+  assert.deepEqual(scrollSaveSource({ viaPop: true, currentPath: null, locationPath: "/cases/a", lastY: 3, scrollY: 0 }), { path: "/cases/a", y: 3 });
+});
+
+test("routeWillChange: 同一パスならルート変更なし(待っても確定しない)", () => {
+  assert.equal(routeWillChange("/", "/"), false);
+  assert.equal(routeWillChange("/", "/cases/a"), true);
+  assert.equal(routeWillChange(null, "/"), true);
 });

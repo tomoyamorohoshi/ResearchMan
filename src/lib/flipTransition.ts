@@ -122,3 +122,29 @@ export function releaseClip(el: ClipTarget): void {
   el.style.inset = "";
   el.style.overflow = "";
 }
+
+/** 後始末でスクロールを元へ戻すか。成功時は旧詳細が切り離し済み(=戻さない)、中止時だけ接続中のまま残る */
+export function shouldRestoreScrollOnCleanup(o: { hadClip: boolean; dir: Direction; oldY: number; oldConnected: boolean }): boolean {
+  return o.hadClip && o.dir === "back" && o.oldY > 0 && o.oldConnected;
+}
+
+/** backで戻り先カードが見つからずフェードに落ちる時は、到着後にスクロール復元を当てる */
+export function needsArrivalRestore(dir: Direction, targetFound: boolean): boolean {
+  return dir === "back" && !targetFound;
+}
+
+/** スクロール保存の元。popstateは既にlocationが遷移先なので、遷移前パスと最後に知ったscrollYを使う */
+export function scrollSaveSource(o: {
+  viaPop: boolean;
+  currentPath: string | null;
+  locationPath: string;
+  lastY: number;
+  scrollY: number;
+}): { path: string; y: number } {
+  return o.viaPop ? { path: o.currentPath ?? o.locationPath, y: o.lastY } : { path: o.locationPath, y: o.scrollY };
+}
+
+/** popstate後のlocationが現在表示中のパスと違う時だけルート確定が起きる（同一パスなら待っても来ない） */
+export function routeWillChange(currentPath: string | null, locationPath: string): boolean {
+  return currentPath !== locationPath;
+}

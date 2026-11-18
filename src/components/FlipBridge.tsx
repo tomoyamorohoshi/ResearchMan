@@ -19,6 +19,10 @@ import {
   makeScrollRecord,
   parseScrollRecord,
   remaining,
+  shouldRestoreScrollOnCleanup,
+  needsArrivalRestore,
+  scrollSaveSource,
+  routeWillChange,
   type Direction,
 } from "@/lib/flipTransition";
 
@@ -92,20 +96,37 @@ async function decodeWithin(el: HTMLElement, ms: number): Promise<void> {
 }
 
 // 戻りが中止された時、遅れて一覧が確定した後に保存位置へスクロールを戻す（Nextの先頭スクロールの後勝ちにするため数回当てる）
+// ユーザーが操作（スクロール/タッチ/キー/クリック）したら即座に手を引く。タイマーも全て止める
 async function restoreScrollOnArrival(y: number | null) {
   if (y === null) return;
-  const el = await waitFor(() => (window.location.pathname === "/" ? document.querySelector<HTMLElement>("[data-case-id]") : null), 15000);
-  if (!el) return;
-  for (const ms of [0, 60, 200, 500]) {
-    setTimeout(() => {
-      if (!active && window.location.pathname === "/") window.scrollTo({ top: y, behavior: "instant" });
-    }, ms);
+  let stopped = false;
+  const timers: ReturnType<typeof setTimeout>[] = [];
+  const events = ["wheel", "touchstart", "pointerdown", "keydown"];
+  const stop = () => {
+    stopped = true;
+    timers.forEach(clearTimeout);
+    events.forEach((n) => window.removeEventListener(n, stop, true));
+  };
+  events.forEach((n) => window.addEventListener(n, stop, { capture: true, passive: true }));
+  const el = await waitFor(() => (!stopped && window.location.pathname === "/" ? document.querySelector<HTMLElement>("[data-case-id]") : null), 15000);
+  if (stopped || !el) {
+    stop();
+    return;
   }
+  for (const ms of [0, 60, 200, 500]) {
+    timers.push(
+      setTimeout(() => {
+        if (!stopped && window.location.pathname === "/") window.scrollTo({ top: y, behavior: "instant" });
+      }, ms),
+    );
+  }
+  timers.push(setTimeout(stop, 700));
 }
 
-function saveScroll(id: string) {
+function saveScroll(id: string, viaPop: boolean) {
   try {
-    const rec = makeScrollRecord(window.location.pathname, id, window.scrollY);
+    const src = scrollSaveSource({ viaPop, currentPath, locationPath: window.location.pathname, lastY, scrollY: window.scrollY });
+    const rec = makeScrollRecord(src.path, id, src.y);
     if (rec) sessionStorage.setItem(SCROLL_KEY, rec);
   } catch {}
 }
@@ -132,7 +153,8 @@ function run(dir: Direction, id: string, navigate: () => void, rescue?: () => vo
     const hadClip = clipped.length > 0;
     clipped.forEach(releaseClip);
     // 詳細を固定表示にした分、ドキュメントが縮んでスクロールが0に戻る。中止時は元の位置へ戻す
-    if (hadClip && dir === "back" && oldY > 0) window.scrollTo({ top: oldY, behavior: "instant" });
+    // 成功時は旧詳細が切り離し済みなので戻さない（戻すと一覧が詳細のscrollYへ飛ぶ）。中止時だけ元の位置へ
+    if (shouldRestoreScrollOnCleanup({ hadClip, dir, oldY, oldConnected: !!clipped[0]?.isConnected })) window.scrollTo({ top: oldY, behavior: "instant" });
     delete html.dataset.flipDir;
     active = false;
     if (prevRestoration) {
@@ -143,6 +165,8 @@ function run(dir: Direction, id: string, navigate: () => void, rescue?: () => vo
     }
     rescue?.();
   };
+  let t: ViewTransition;
+  try {
   html.dataset.flipDir = "fade";
   // 旧側: forwardは押されたカード、backは詳細のヒーローだけに名前を付ける
   const oldCand = dir === "forward" ? cardOf(id) : hero();
@@ -160,12 +184,15 @@ function run(dir: Direction, id: string, navigate: () => void, rescue?: () => vo
     assignName(oldEl);
     named.push(oldEl);
   }
-  if (dir === "forward") saveScroll(id);
+  if (dir === "forward") saveScroll(id, !!rescue);
 
-  let t: ViewTransition;
-  try {
     t = document.startViewTransition(async () => {
       // 通常のNextと同じく、新ルートが確定するまで旧ページを見せ続ける。ChromeのコールバックTimeout(約4s)より手前で諦める
+      // 戻る/進むの最終URLが現在と同じパスなら、ルート確定は来ない＝待たずに再送して中止
+      if (rescue && !routeWillChange(currentPath, window.location.pathname)) {
+        navigate();
+        throw new Error("flip: no route change");
+      }
       const nav = waitPath(ROUTE_BUDGET);
       navigate();
       if (!(await nav)) {
@@ -180,6 +207,7 @@ function run(dir: Direction, id: string, navigate: () => void, rescue?: () => vo
         dir === "forward"
           ? await waitFor(hero, remaining(deadline, performance.now()))
           : await findBackCard(id, deadline);
+      if (needsArrivalRestore(dir, !!target)) restoreScrollOnArrival(savedScroll(id));
       if (target) {
         if (dir === "back") {
           const y = savedScroll(id);
@@ -274,7 +302,7 @@ function onPopState(e: PopStateEvent) {
   }
   if (active || !supported() || reduced()) return;
   const d = detectDirection(currentPath, window.location.pathname);
-  if (!d) return;
+  if (!d || !routeWillChange(currentPath, window.location.pathname)) return;
   e.stopImmediatePropagation();
   // ブラウザはpopstateの後に遷移先エントリのスクロールを復元し、旧スナップショットがずれる。
   // 遷移中だけ復元を止め、旧画面は自分のスクロール位置で撮る（一覧側の復元は更新コールバック内で行う）
