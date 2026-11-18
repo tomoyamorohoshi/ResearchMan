@@ -1,5 +1,39 @@
 [
   {
+    "id": "king-gnu-aizo-music-video-2026",
+    "title": "King Gnu「AIZO」MUSIC VIDEO",
+    "summary": "呪術廻戦OPテーマのMVを、監督OSRINとPERIMETRON傘下の5チームが世界観ごとに分担制作し、Flameで一本の映像に統合した大規模コラボレーション作品。",
+    "client": "King Gnu（Sony Music Labels）",
+    "agency": "PERIMETRON（XOR / THIS MAN / TEAM ANJI / Khaki 他、5チーム体制）",
+    "categories": [
+      "コンテンツ革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://youtu.be/zz2a9Q2Wru0",
+    "thumbnail": "/thumbnails/king-gnu-aizo-music-video-2026.jpg",
+    "videoId": "zz2a9Q2Wru0",
+    "overview": "King Gnuの楽曲「AIZO」（呪術廻戦OPテーマ）のために制作されたミュージックビデオ。監督OSRINのもとPERIMETRON傘下のXOR、THIS MAN、TEAM ANJI、Khakiなど5チームが参加し、各チームが独立した世界観のパートを制作、最終的にFlameで一本の映像へ統合する体制が組まれている。",
+    "background": "呪術廻戦という人気IPのOPテーマとして、楽曲の持つ複数のムードやテンションの変化を単一の映像言語ではなく、複数の異なる世界観で表現する企画が構想された。短い楽曲尺の中に多様なビジュアルレイヤーを成立させるため、1チームによる一括制作ではなく、複数の制作チームが並行してパートごとに世界観を作り込む分業体制が採られた。",
+    "execution": "監督OSRINが全体の構成とディレクションを統括し、PERIMETRON傘下のXOR、THIS MAN、TEAM ANJI、Khakiなど5チームがそれぞれ独立したパートを担当。各チームはHoudini/SolarisとUSDパイプラインを用いたCG制作、および画像生成AIをリファレンス作成に活用しながら実写とCGが交差する演出を構築し、最終的にFlame上で全パートを統合して一本のMVとして完成させた。",
+    "evaluationImpact": "単一チームでの一括制作ではなく、監督のもとに複数の制作チームが世界観ごとに分業しFlameで統合するという大規模な協業体制でMVを完成させた事例。Houdini/Solaris+USDパイプラインと画像生成AIリファレンスを組み合わせた実写×CGの表現手法は、人気アニメIPのタイアップ映像における制作プロセスの一つのモデルとなっている。",
+    "relatedWorks": [],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Tech/3D",
+      "Form/MV",
+      "Theme/Music",
+      "Theme/Entertainment"
+    ]
+  },
+  {
     "id": "utsutsu-no-carnival-mv-ai-2026",
     "title": "現のカーニバル utsutsu no carnival MV（完全AI制作ミュージックビデオ）",
     "summary": "goateatspoem.の新曲MVを、撮影を一切行わず絵コンテ・人物設定などの企画設計のみ人間が担い、映像生成をすべてAIで行う手法で制作した約6分の完全AI制作ミュージックビデオ。",
