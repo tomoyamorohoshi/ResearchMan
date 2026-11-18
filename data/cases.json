@@ -1,5 +1,43 @@
 [
   {
+    "id": "nouera-exe-2026",
+    "title": "NouerA『.exe』ミュージックビデオ",
+    "summary": "韓国発グループNouerAのMV『.exe』、21台のRGB-Dカメラによる4D Gaussian Splattingでダンスシーンを自由視点の映像に再構成",
+    "client": "NouerA（누에라）",
+    "agency": "SL8 Studio（制作）／Tricomtek（4Dキャプチャ施設）／Evercoast（ボリュメトリック技術提供）",
+    "categories": [
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://radiancefields.com/nouera-s-.exe-uses-4d-gaussian-splatting-%E2%80%94-with-21-cameras-in-seoul",
+    "thumbnail": "/thumbnails/nouera-exe-2026.jpg",
+    "videoId": "YEXrv3_uIxQ",
+    "overview": "韓国のグループNouerA（누에라）のミュージックビデオ『.exe』。ソウルのTricomtekスタジオで21台のRGB-Dカメラを360度リング状に配置してダンスパフォーマンスを収録し、4D Gaussian SplattingとEvercoastのUnreal Engine向けプラグインで自在なカメラワークの映像に再構成した。参照記事（Radiance Fields）の内容に基づく。",
+    "background": "ボリュメトリックキャプチャはこれまで専用施設と多数のカメラ・大規模な処理コストを要する技術だったが、Gaussian Splattingの発展により、少数カメラでのリアルタイム性の高い再構成が可能になってきている。本件はSL8 Studioが制作を手がけ、4Dキャプチャ施設Tricomtek（ソウル）とボリュメトリック技術提供元Evercoastが組んで、MV制作にこの技術を導入した。",
+    "execution": "Tricomtekのスタジオにダンサーを立たせ、21台のRGB-Dカメラを360度のリング状に配置してパフォーマンスを収録。得られたデータを4D Gaussian Splattingで処理し、EvercoastのUnreal Engine向けプラグイン（リライティング機能を含む）に取り込むことで、収録後に自由な角度・動きでカメラワークを組み直せる映像として仕上げた。",
+    "evaluationImpact": "21台という比較的少ないカメラ数で、ダンスの動きを自由視点かつリライティング可能な状態で再構成できた点が技術的なトピックとして紹介されている。ボリュメトリックキャプチャをMV制作のワークフローに実用的な形で組み込んだ事例として、Radiance Fieldsが技術解説記事で取り上げた。受賞は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "NouerA's .exe uses 4D Gaussian Splatting — with 21 cameras in Seoul",
+        "description": "Radiance Fieldsによる技術解説記事。21台のRGB-Dカメラ構成とEvercoastプラグインによる再構成プロセスを紹介",
+        "url": "https://radiancefields.com/nouera-s-.exe-uses-4d-gaussian-splatting-%E2%80%94-with-21-cameras-in-seoul"
+      }
+    ],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/MV",
+      "Theme/Music",
+      "Theme/Entertainment"
+    ]
+  },
+  {
     "id": "judith-sanders-willow-bark-shoe-2026",
     "title": "Judith Sanders – Willow bark shoe",
     "summary": "燃料にされがちな柳の樹皮繊維を、結着剤と足型乾燥だけで継ぎ目のない非織布の靴アッパーに変えた素材研究。",
