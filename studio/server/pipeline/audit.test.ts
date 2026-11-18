@@ -389,3 +389,8 @@ test("run: maxBuffer以内の出力は従来どおりok:trueで全文取得で�
   assert.equal(result.ok, true);
   assert.equal(result.stdout, "short-output");
 });
+
+test("AUDIT_INTEGRITY_TIMEOUT_MS は15分（実測326秒超・データ増加に対する余裕）", async () => {
+  const { AUDIT_INTEGRITY_TIMEOUT_MS } = await import("./audit.js");
+  assert.equal(AUDIT_INTEGRITY_TIMEOUT_MS, 15 * 60_000);
+});

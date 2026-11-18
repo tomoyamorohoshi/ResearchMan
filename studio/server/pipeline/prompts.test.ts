@@ -102,3 +102,11 @@ test("buildOrderTagPrompt: テーマを含み英語タグを要求する", () =>
   const p = buildOrderTagPrompt("アーティストの新アルバムプロモーション");
   assert.match(p, /アーティストの新アルバムプロモーション/);
 });
+
+test("buildLinkCheckerPrompt: titleMatchは表記差を無視し同一作品か否かで判定する定義", () => {
+  const p = buildLinkCheckerPrompt([{ id: "a-2026", title: "A", link: "https://example.com/a", youtubeId: "abc" }]);
+  assert.match(p, /同じ作品/);
+  assert.match(p, /表記差だけではfalseにしない/);
+  assert.match(p, /Official Video/);
+  assert.doesNotMatch(p, /事例と一致すればtrue/);
+});

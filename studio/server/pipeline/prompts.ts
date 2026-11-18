@@ -76,8 +76,8 @@ ${items}
 ]
 
 - alive: URLが実在し、事例と関係する内容ならtrue
-- titleMatch: youtubeIdがある場合のみ、oEmbedタイトルが事例と一致すればtrue。youtubeIdが無い項目は true を返してよい${prefetchNote}
-- 判定に迷ったらfalse側に倒すこと`;
+- titleMatch: youtubeIdがある場合のみ判定する（目的は別の動画を指すvideoIdの取り違え検知）。oEmbedタイトルが事例と同じ作品を指していればtrue（アーティスト名・作品名/曲名が同じなら、括弧・記号・語順・Official Video/MV/Music Video等のラベル・副題・言語表記の違いは無視する）。別作品・別アーティスト・無関係の動画ならfalse。表記差だけではfalseにしないこと。youtubeIdが無い項目は true を返してよい${prefetchNote}
+- aliveの判定に迷ったらfalse側に倒すこと`;
 }
 
 export interface AwardVerifyCandidate {

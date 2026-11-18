@@ -136,8 +136,11 @@ export function run(
 export const runAuditThumbnails = (cwd: string): Promise<CommandResult> =>
   run("node", ["scripts/audit-thumbnails.mjs"], cwd, 60_000);
 
+// 実測326秒（2026-11-18・2933件）で旧5分制限を超過した。データ増加を見込み15分。
+export const AUDIT_INTEGRITY_TIMEOUT_MS = 15 * 60_000;
+
 export const runAuditIntegrity = (cwd: string): Promise<CommandResult> =>
-  run("node", ["scripts/audit-integrity.mjs"], cwd, 5 * 60_000);
+  run("node", ["scripts/audit-integrity.mjs"], cwd, AUDIT_INTEGRITY_TIMEOUT_MS);
 
 // Technology用（DESIGN.md §5: テーマ系はTechの場合 audit-tech + tsc/lint/build）
 export const runAuditTech = (cwd: string): Promise<CommandResult> => run("node", ["scripts/audit-tech.mjs"], cwd, 60_000);
