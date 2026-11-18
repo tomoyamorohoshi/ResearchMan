@@ -1,5 +1,161 @@
 [
   {
+    "id": "flashmotion",
+    "title": "FlashMotion",
+    "org": "Kaixing Yang ほか（FlashMotion 研究チーム）",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "Audio/Music"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "文章・音声・音楽のどれからでも、長尺の3D人体モーション（動作・身振り・ダンス）を1〜4ステップの少ない計算で一気に作る研究。コードと学習済み重みが公開されている。",
+    "point": "すごいのは速さです。従来のAIモーション生成は、ノイズから何十回も少しずつ整えて動きを作るため、長い動きほど待ち時間が膨らみました。FlashMotion は1〜4回の計算で仕上げます。1万フレームという非常に長い動きでも、文章からの生成で13.6倍、音声からの身振りで4.4倍、音楽からのダンスで9.8倍と、比較対象の最速手法より速いと報告されています。使い道は広告・体験づくりに直結します。たとえば、キャンペーン曲を流すと踊るデジタルアバター、ナレーションに合わせて身振りをつけるバーチャル案内役、「ゆっくり歩いて手を振る」と入力するだけで動くキャラクターが挙げられます。プロジェクトページには、ロボット動作・XRキャラクター・スマホアバターへの応用デモも載っています。待ち時間が短いので、クライアントの前でその場で動きを作り直すような使い方にも向きます。",
+    "detail": "仕組みは2つの工夫でできています。1つ目は「MeanFlow」という考え方です。従来の手法は、ノイズだらけの状態から完成形まで坂道を少しずつ下るように何十回も計算していました。MeanFlow は「この地点から完成形までの平均的な進み方」を学習しておき、坂道を数歩で一気に下ります。これに、関節が不自然に曲がらない、前後のフレームがなめらかにつながる、という制約を加えています。2つ目は、各ステップの計算を軽くする工夫です。長い動きの処理に Transformer ではなく Mamba 系の軽量な構造（BiMamba）を使い、文章・音声・音楽といった条件の情報を各層に混ぜ込む方式で、長さが伸びても計算量が膨らみにくくしています。さらに、動きの一部だけを差し替える編集では、境目をなめらかにぼかすマスクを使っています。\n\n従来との違いは、速さと品質を両立したと主張している点と、1つの枠組みで3種類の入力（文章→動き、音声→身振り、音楽→ダンス）を扱える点です。1ステップ版と4ステップ版の学習済みモデルが、タスクごとに計6個用意されています。\n\n使うには、Linux と NVIDIA GPU が必要です（動作確認は Linux 前提）。環境は conda で構築し、推論は GPU 1枚で動きます。ただしデータセット（BABEL・BEAT2・FineDance）と人体モデル SMPL-X は自分で申請・入手する必要があり、評価用データは約35GBあります。費用はGPU環境のみで、導入には Python と深層学習環境の知識が要ります。出力は人体の骨格データなので、Blender などに読み込んで使うには変換の作業が別途必要です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "FlashMotion のコードは MIT。SMPL-X 等の身体モデルや BABEL・BEAT2・FineDance の各データセットは別ライセンス・申請制で、商用利用は個別確認が必要。学習済み重みは Hugging Face（yangkaixing/FlashMotion-models）で公開。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Sun-Happy-YKX/FlashMotion-release"
+      },
+      {
+        "kind": "project",
+        "url": "https://sun-happy-ykx.github.io/FlashMotion-Project/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2611.13626"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/flashmotion.jpg",
+    "relatedWorks": [
+      {
+        "title": "T2M-GPT",
+        "description": "文章から3D人体モーションを生成する代表的な公開実装（VQ-VAE + Transformer）。",
+        "url": "https://github.com/Mael-zys/T2M-GPT"
+      },
+      {
+        "title": "Motion Diffusion Model (MDM)",
+        "description": "拡散モデルによる文章→モーション生成の基礎的な研究。コード公開。",
+        "url": "https://github.com/GuyTevet/motion-diffusion-model"
+      },
+      {
+        "title": "EDGE",
+        "description": "音楽からダンスを生成する拡散モデル。編集機能つき。",
+        "url": "https://github.com/Stanford-TML/EDGE"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "pianoid",
+    "title": "Pianoid",
+    "org": "KAIST（Joonhyung Bae, Juhan Nam）",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "Audio/Music"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "ピアノ演奏のMIDIデータだけから、ピアニストの上半身〜下半身26関節の3D動きを生成する研究（ISMIR 2026）。コードと学習済み重み（GitHub Release）が公開されている。",
+    "point": "すごいのは、音符のデータ（MIDI）を入れるだけで、ピアニストらしい体の動きが付くところです。手や指だけでなく、頭・肩・胴体・ひじ・下半身まで、26個の関節が連動して動きます。曲を聴きながら体を揺らしたり、盛り上がる場面で上体を傾けたりといった「演奏の表情」が出るよう作られています。論文では、位置の誤差の数字が良い手法ほど動きが平均的な姿勢に固まって棒立ちになりがちだという問題を指摘し、動きの豊かさを測る別の指標も導入しています。一般の視聴者28人による比較では、Pianoid の動きが、比較した他の手法や設計の一部を外した版より87〜95%の割合で好まれました。広告・体験づくりでは、実在のピアニストを撮影せずに、楽曲に合わせて演奏するCGキャラクターのMVや、コンサート映像・音楽アプリの演出、展示で曲に合わせて弾く等身大アバターなどに応用できそうです。",
+    "detail": "仕組みは4段階のリレー式です。①MIDIから両手首の位置を予測（BiLSTM）、②手首の動きから頭・胴体・肩を予測（拡散モデルMDM）、③手首と胴体からひじを予測（BiLSTM）、④背骨から下半身を予測（FiLM条件つきネットワーク）。たとえるなら、まず「どの鍵盤をどの手で弾くか」を決め、次にそれに合う上半身の揺れを決め、最後に腕と脚を矛盾なくつなぐ流れです。拡散モデルは「同じ曲でも体の揺らし方が複数ありうる」胴体の段階だけに使い、手首など曲で一意に決まる部分は軽いモデルで確実に出しています。\n\n従来は、手や指の動きだけを生成する研究が中心でした。ピアニストの全身を26関節でMIDIから生成するのは、論文では初と主張されています。プロジェクトページには、実際の演奏記録とPianoidの出力を同じMIDIで並べ、音声と同期して見比べられるデモがあり、YouTube動画もあります。\n\n使うには、Python 3.11 と GPU 1枚（A6000で再現確認）が必要です。学習済みチェックポイント約188MBは GitHub Release v1.0.0 で入手でき、論文の数値の再現は inference.sh でデータ準備後に10〜20分です。ただし再現には動作記録データ MOSA（約40GB）の別途ダウンロードが必要で、ゼロから学習するなら1枚のGPUで3〜5日かかります。MIDIは音符の位置と長さのみで、強弱（ベロシティ）は使えません。出力は骨格データなので、CGキャラクターに乗せるには変換作業が必要です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "コードは MIT。vendor/ 内の MDM・EDGE・aria は各自のライセンス。学習データ MOSA は CC BY 4.0 で、別途ダウンロード（約40GB）が必要。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/joonhyungbae/pianoid"
+      },
+      {
+        "kind": "project",
+        "url": "https://joonhyungbae.github.io/pianoid/"
+      },
+      {
+        "kind": "video",
+        "url": "https://youtu.be/GaFwqai4PsE"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/pianoid.jpg",
+    "relatedWorks": [
+      {
+        "title": "Motion Diffusion Model (MDM)",
+        "description": "Pianoid の胴体段階が使う拡散モデルの元になった研究。",
+        "url": "https://github.com/GuyTevet/motion-diffusion-model"
+      },
+      {
+        "title": "EDGE",
+        "description": "音楽からダンスを生成する拡散モデル。音楽→全身動作の代表例。",
+        "url": "https://github.com/Stanford-TML/EDGE"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "lynnreal-hand",
+    "title": "LynnReal-Hand",
+    "org": "LynnReal-AI（Shaohao Rui ら）",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "GenVideo",
+      "HCI/MediaArt"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "最初の1枚の画像・文章・手の動きの映像を入れると、手の動きに合わせて物に触れる・動かす様子を映像として生成する「手で操作できる世界モデル」。推論コードと重みが公開されている。",
+    "point": "手の動きだけで、映像の中の世界に触れて操作できる生成モデルです。最初の1枚の画像と文章、そして手の動きを撮った映像を入れると、その手に合わせて物をつかむ・押す・撫でるといった様子が映像として作られます。論文では、540pの映像を1枚のGPU（NVIDIA H200）で毎秒約18コマ、遅延約0.74秒で生成できると報告されており、「手を動かすとほぼ即座に画面が反応する」感覚に近づいています。広告・体験づくりでは、来場者が空中で手を動かすと映像の中の商品や生き物が反応するインタラクティブ展示、ハンドトラッキングで動かせる商品デモ、実写の風景に手を伸ばして触れるシーンの事前検証（プレビズ）などが考えられます。3Dゲームのように一から作り込まなくても、1枚の絵から「触れる世界」の見本を素早く作れる可能性があります。",
+    "detail": "仕組み：約10万本の「手が物と関わる映像」で学習した330億パラメータの映像生成モデルです。手の骨格（MANOという手の3Dモデル）の動きを条件として与えるため、「指がどう動いたか」まで映像に反映されます。通常の映像生成は数十ステップかけて少しずつ絵を整えますが、このモデルのFast版は3ステップで1区間（17コマ）ずつ順番に作るので、遅延が小さくなります。デコーダ（潜在表現から映像に戻す部品）も軽量なUltra-Fast-VAEに置き換えて高速化しています。\n\n従来との違い：これまでの対話型の世界モデルは、主にカメラ移動やキー入力で「見て回る」ものでした。本モデルは手の動きを直接入力にして、物に触れる操作そのものを生成する点が新しいところです。ただし作者自身が、手の形の崩れ、見た目のずれ、長時間でのちらつきを制限として挙げています。\n\n使うには：Linux、Python 3.10、PyTorch 2.9.1（CUDA 12.8）、FlashAttention-3が必要で、高速な経路はH200級GPU 1枚が前提です。ローカルのRTX 3080（16GB）では動かせない規模で、クラウドGPUが現実的です。重みはHugging Face（shaohao011）から付属スクリプトで取得し、`lynnreal-hand` のCLI（prepare / validate / infer）で実行します。リポジトリにはサンプル入力7件と出力動画が付属しています。費用はGPUレンタル代、ライセンスはMiniMax H3 Community Licenseです。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "リポジトリ・重みとも MiniMax H3 Community License Agreement に従う。商用条件の中身は未確認のため、利用前に LICENSE 本文の確認が必要。第三者コンポーネントは各ライセンス。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/LynnReal-AI/LynnReal"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2611.21479"
+      },
+      {
+        "kind": "project",
+        "url": "https://huggingface.co/shaohao011/LynnReal-Hand-Fast-preview"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/lynnreal-hand.jpg",
+    "relatedWorks": [
+      {
+        "title": "BiWM",
+        "description": "同チームの先行研究。双方向の映像生成モデルを、カメラ・操作で動かせる対話型の世界モデルにする枠組み。",
+        "url": "https://arxiv.org/abs/2606.10135"
+      },
+      {
+        "title": "LynnReal-Omni",
+        "description": "同チームの320億パラメータ映像生成モデル。テキスト・画像・3Dレンダリングなどから制御可能な映像を作る。",
+        "url": "https://arxiv.org/abs/2609.15863"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "simdps",
     "title": "SimDPS (Similarity-Guided Diffusion Posterior Sampling for Music Inpainting)",
     "org": "Sean Turland, Eloi Moliner, Vesa Välimäki(アルト大学の研究者と見られる。arXivページに所属の記載なし)",
