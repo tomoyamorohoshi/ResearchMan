@@ -18,10 +18,7 @@ import {
   isPlainLeftClick,
   makeScrollRecord,
   parseScrollRecord,
-  persistVariant,
-  readStoredVariant,
   remaining,
-  resolveVariant,
   type Direction,
 } from "@/lib/flipTransition";
 
@@ -137,7 +134,6 @@ function run(dir: Direction, id: string, navigate: () => void, rescue?: () => vo
     // 詳細を固定表示にした分、ドキュメントが縮んでスクロールが0に戻る。中止時は元の位置へ戻す
     if (hadClip && dir === "back" && oldY > 0) window.scrollTo({ top: oldY, behavior: "instant" });
     delete html.dataset.flipDir;
-    delete html.dataset.flipV;
     active = false;
     if (prevRestoration) {
       try {
@@ -147,13 +143,6 @@ function run(dir: Direction, id: string, navigate: () => void, rescue?: () => vo
     }
     rescue?.();
   };
-  try {
-    const search = window.location.search;
-    persistVariant(search, localStorage);
-    html.dataset.flipV = resolveVariant(search, readStoredVariant(localStorage));
-  } catch {
-    html.dataset.flipV = "a";
-  }
   html.dataset.flipDir = "fade";
   // 旧側: forwardは押されたカード、backは詳細のヒーローだけに名前を付ける
   const oldCand = dir === "forward" ? cardOf(id) : hero();

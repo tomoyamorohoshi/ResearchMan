@@ -3,51 +3,8 @@
 // 名前(view-transition-name)は遷移中の1要素にだけ付け、終わったら外す（全カードには付けない）。
 
 export const FLIP_NAME = "case-hero";
-export type Variant = "a" | "b";
 export type Direction = "forward" | "back";
 export type Mode = "flip" | "fade" | "none";
-
-export type StorageLike = {
-  getItem(k: string): string | null;
-  setItem(k: string, v: string): void;
-};
-
-const VARIANT_KEY = "rm-flip-variant";
-
-function validVariant(v: string | null | undefined): v is Variant {
-  return v === "a" || v === "b";
-}
-
-function safeGet(s: StorageLike | null | undefined, k: string): string | null {
-  try {
-    return s ? s.getItem(k) : null;
-  } catch {
-    return null;
-  }
-}
-
-/** ?flip=a|b（有効なら最優先）> localStorage > 既定a */
-export function resolveVariant(search: string, stored: string | null, storage?: StorageLike | null): Variant {
-  const q = new URLSearchParams(search).get("flip");
-  if (validVariant(q)) return q;
-  const s = stored ?? safeGet(storage, VARIANT_KEY);
-  return validVariant(s) ? s : "a";
-}
-
-/** クエリが有効な時だけ保存（localStorage不可でも落ちない） */
-export function persistVariant(search: string, storage: StorageLike | null | undefined): void {
-  const q = new URLSearchParams(search).get("flip");
-  if (!validVariant(q)) return;
-  try {
-    storage?.setItem(VARIANT_KEY, q);
-  } catch {
-    /* 保存できなくても遷移は動く */
-  }
-}
-
-export function readStoredVariant(storage: StorageLike | null | undefined): string | null {
-  return safeGet(storage, VARIANT_KEY);
-}
 
 export function caseIdFromPath(pathname: string): string | null {
   const m = /^\/cases\/([^/]+)\/?$/.exec(pathname);

@@ -18,8 +18,8 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ── カード⇄詳細の裏返し遷移（FlipBridge.tsx が html に data-flip-dir / data-flip-v を付ける）──
-   変形はすべてブラウザ合成レイヤー上のCSSアニメ。dir: forward|back|fade、v: a(同時)|b(裏返し→拡大) */
+/* ── カード⇄詳細の裏返し遷移（FlipBridge.tsx が html に data-flip-dir を付ける）──
+   変形はすべてブラウザ合成レイヤー上のCSSアニメ。dir: forward|back|fade（裏返しと拡大は同時） */
 /* root: クロスフェードだと両ページの文字が重なる。旧を素早く消し→背景だけ→新を出す（名前付き要素は最前面で動き続ける） */
 ::view-transition { background: var(--background); }
 ::view-transition-group(root) { animation-duration: 220ms; }
@@ -40,19 +40,6 @@ body {
 ::view-transition-new(case-hero) { animation-name: flip-in; }
 @keyframes flip-out { 0% { transform: perspective(1400px) rotateY(0); } 50%, 100% { transform: perspective(1400px) rotateY(90deg); } }
 @keyframes flip-in { 0%, 50% { transform: perspective(1400px) rotateY(-90deg); } 100% { transform: perspective(1400px) rotateY(0); } }
-/* B: forward=その場で裏返し(旧0-150ms→新150-300ms、途切れなし)→拡大(300-600ms) / back=縮小(0-300ms)→旧300-450ms→新450-600ms
-   B専用キーフレームは0→100%の1区間＝旧が90degに達した瞬間に新が-90degから始まり、空白フレームが出ない */
-@keyframes flip-out-b { from { transform: perspective(1400px) rotateY(0); } to { transform: perspective(1400px) rotateY(90deg); } }
-@keyframes flip-in-b { from { transform: perspective(1400px) rotateY(-90deg); } to { transform: perspective(1400px) rotateY(0); } }
-html[data-flip-v="b"]::view-transition-old(case-hero) { animation-name: flip-out-b; }
-html[data-flip-v="b"]::view-transition-new(case-hero) { animation-name: flip-in-b; }
-html[data-flip-v="b"]::view-transition-group(case-hero) { animation-duration: 300ms; }
-html[data-flip-v="b"][data-flip-dir="forward"]::view-transition-group(case-hero) { animation-delay: 300ms; animation-fill-mode: both; }
-html[data-flip-v="b"]::view-transition-old(case-hero),
-html[data-flip-v="b"]::view-transition-new(case-hero) { animation-duration: 150ms; }
-html[data-flip-v="b"][data-flip-dir="forward"]::view-transition-new(case-hero) { animation-delay: 150ms; }
-html[data-flip-v="b"][data-flip-dir="back"]::view-transition-old(case-hero) { animation-delay: 300ms; }
-html[data-flip-v="b"][data-flip-dir="back"]::view-transition-new(case-hero) { animation-delay: 450ms; }
 /* 戻り先カードが無い等: 回転せず素早いクロスフェード */
 html[data-flip-dir="fade"]::view-transition-group(case-hero) { animation: none; }
 html[data-flip-dir="fade"]::view-transition-old(case-hero) { animation: flip-fade-out 150ms both; }

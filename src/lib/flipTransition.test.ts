@@ -2,54 +2,13 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   FLIP_NAME,
-  resolveVariant,
-  persistVariant,
   caseIdFromPath,
   detectDirection,
   decideMode,
   isPlainLeftClick,
   assignName,
   clearName,
-  type StorageLike,
 } from "./flipTransition";
-
-function mem(init: Record<string, string> = {}): StorageLike {
-  const m = { ...init };
-  return {
-    getItem: (k) => (k in m ? m[k] : null),
-    setItem: (k, v) => {
-      m[k] = v;
-    },
-  };
-}
-
-test("resolveVariant: クエリ > 保存値 > 既定a。不正値は無視", () => {
-  assert.equal(resolveVariant("?flip=b", null), "b");
-  assert.equal(resolveVariant("?flip=a", "b"), "a");
-  assert.equal(resolveVariant("", "b"), "b");
-  assert.equal(resolveVariant("", null), "a");
-  assert.equal(resolveVariant("?flip=zzz", "b"), "b");
-  assert.equal(resolveVariant("?flip=zzz", "q"), "a");
-  assert.equal(resolveVariant("?x=1&flip=B", null), "a"); // 大文字は不正扱い
-});
-
-test("persistVariant: クエリが有効な時だけ保存。storageが例外でも落ちない", () => {
-  const s = mem();
-  persistVariant("?flip=b", s);
-  assert.equal(s.getItem("rm-flip-variant"), "b");
-  persistVariant("?flip=zzz", s);
-  assert.equal(s.getItem("rm-flip-variant"), "b");
-  const bad: StorageLike = {
-    getItem: () => {
-      throw new Error("x");
-    },
-    setItem: () => {
-      throw new Error("x");
-    },
-  };
-  assert.doesNotThrow(() => persistVariant("?flip=a", bad));
-  assert.equal(resolveVariant("", null, bad), "a");
-});
 
 test("caseIdFromPath: /cases/<id> のみ。末尾スラッシュ・エンコード対応", () => {
   assert.equal(caseIdFromPath("/cases/abc-1"), "abc-1");
