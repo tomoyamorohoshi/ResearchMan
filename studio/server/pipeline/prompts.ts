@@ -76,7 +76,7 @@ ${items}
 ]
 
 - alive: URLが実在し、事例と関係する内容ならtrue
-- titleMatch: youtubeIdがある場合のみ判定する（目的は別の動画を指すvideoIdの取り違え検知）。oEmbedタイトルが事例と同じ作品を指していればtrue（アーティスト名と作品名/曲名の両方が同じなら、括弧・記号・語順・Official Video/MV/Music Video等のラベル・副題・言語表記の違いは無視する）。同じ曲でもLive・Remix・Cover・別バージョンは別作品として扱いfalse。別作品・別アーティスト・無関係の動画もfalse。表記差だけではfalseにしないこと。youtubeIdが無い項目は true を返してよい${prefetchNote}
+- titleMatch: youtubeIdがある場合のみ判定する（目的は別の動画を指すvideoIdの取り違え検知）。oEmbedタイトルが事例と同じ作品を指していればtrue。音楽事例はアーティスト名と作品名/曲名の両方が一致ならtrue。広告・キャンペーン・インスタレーション等の非音楽事例や、事例タイトルにアーティスト名が無い場合は、作品名とブランド名/制作者名で同じ作品・キャンペーンを指すかを判定し、アーティスト名が見つからないだけではfalseにしない。次の違いは無視する: Official Video/Official Music Video/MV/Music Video/Visualiser/Visualizer/Concept Movie/Lyric Video/Official Audio等のラベル、括弧・記号、語順、言語・文字種。表記差だけではfalseにしない。別バージョン（音源・演奏が事例と異なるLive・Remix・Cover・Acoustic・Instrumental・Short Ver.等）は、事例が指すバージョンと異なる場合のみfalse（事例自体がLive動画やCoverなら、同じLive/Cover動画はtrue）。別作品・別アーティスト/ブランド・無関係の動画はfalse。youtubeIdが無い項目は true を返してよい${prefetchNote}
 - aliveの判定に迷ったらfalse側に倒すこと`;
 }
 
