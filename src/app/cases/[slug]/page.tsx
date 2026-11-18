@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import VideoPlayer from "@/components/VideoPlayer";
 import { tagLabel } from "@/lib/tags";
+import { pickThumbnailSrc } from "@/lib/thumbSm";
 
 export function generateStaticParams() {
   return cases.map((c) => ({ slug: c.id }));
@@ -32,6 +33,8 @@ export default async function CasePage({
   const { slug } = await params;
   const c = getCaseById(slug);
   if (!c) notFound();
+  // 裏返し遷移の新側スナップショットが空白にならないよう、一覧で読込済みの縮小サムネを下敷きにする
+  const placeholder = pickThumbnailSrc(c.thumbnail, false);
 
   return (
     <div className="min-h-screen bg-[#eeece7]">
@@ -52,9 +55,12 @@ export default async function CasePage({
 
         <div data-flip-hero>
         {c.videoId ? (
-          <VideoPlayer videoId={c.videoId} title={c.title} />
+          <VideoPlayer videoId={c.videoId} title={c.title} placeholder={placeholder} />
         ) : (
-          <div className="relative aspect-video rounded-xl overflow-hidden mb-8 bg-gray-100">
+          <div
+            className="relative aspect-video rounded-xl overflow-hidden mb-8 bg-gray-100 bg-cover bg-center"
+            style={{ backgroundImage: `url("${placeholder}")` }}
+          >
             <Image
               src={c.thumbnail}
               alt={c.title}

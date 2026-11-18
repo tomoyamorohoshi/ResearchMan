@@ -41,7 +41,9 @@ const gate = new PopGate<unknown>();
 const supported = () => typeof document !== "undefined" && typeof document.startViewTransition === "function";
 const reduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const hero = () => document.querySelector<HTMLElement>("[data-flip-hero]");
-const cardOf = (id: string) => document.querySelector<HTMLElement>(`[data-case-id="${CSS.escape(id)}"]`);
+// カード全体ではなく画像部分（先頭のリンク）だけを変形対象にする。文章部分まで含めると遷移中の枠が詳細の見出しに被る
+const cardOf = (id: string) =>
+  document.querySelector<HTMLElement>(`[data-case-id="${CSS.escape(id)}"]`)?.querySelector<HTMLElement>("a") ?? null;
 
 function waitPath(ms: number): Promise<void> {
   return new Promise((resolve) => {

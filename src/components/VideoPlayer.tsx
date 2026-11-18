@@ -6,14 +6,19 @@ import Image from "next/image";
 type Props = {
   videoId: string;
   title: string;
+  // 本画像の読込前に見せる下敷き画像（一覧で読込済みの縮小サムネ）
+  placeholder?: string;
 };
 
-export default function VideoPlayer({ videoId, title }: Props) {
+export default function VideoPlayer({ videoId, title, placeholder }: Props) {
   const [playing, setPlaying] = useState(false);
   const thumb = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 
   return (
-    <div className="relative aspect-video rounded-xl overflow-hidden mb-8 bg-black">
+    <div
+      className="relative aspect-video rounded-xl overflow-hidden mb-8 bg-black bg-cover bg-center"
+      style={placeholder ? { backgroundImage: `url("${placeholder}")` } : undefined}
+    >
       {playing ? (
         <iframe
           src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`}
