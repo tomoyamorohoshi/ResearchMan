@@ -1,7 +1,47 @@
 {
   "version": 1,
-  "statusAsOf": "2026-11-17",
+  "statusAsOf": "2026-11-18",
   "items": [
+    {
+      "id": "2026-museum-of-art-kochi-akiko-nakayama-fluid-form",
+      "slug": "2026-museum-of-art-kochi-akiko-nakayama-fluid-form",
+      "title": "ARTIST FOCUS #06 中山晃子「泡沫の形」",
+      "artists": [
+        "中山晃子"
+      ],
+      "venue": "高知県立美術館 展示室D(1階)",
+      "venueType": "museum",
+      "prefecture": "高知県",
+      "city": "高知市",
+      "startDate": "2026-11-07",
+      "endDate": "2027-01-17",
+      "status": "ongoing",
+      "admission": "一般(当日)400円 / 大学生280円 / 高校生以下無料",
+      "tags": [
+        "video_art",
+        "installation",
+        "media_art"
+      ],
+      "score": 60,
+      "matchReason": "液状の絵具を流動させ、その変化を映像で見せる「Alive Painting」の近作と過去の記録映像を展示する。公立美術館での初個展で、カンヴァスを用いた新作インスタレーションも初めて発表する。",
+      "sources": [
+        {
+          "name": "ARTIST FOCUS #06 中山晃子「泡沫の形」",
+          "url": "https://moak.jp/event/exhibitions/artistfocus_06.html",
+          "kind": "official"
+        },
+        {
+          "name": "文化庁メディア芸術連携促進事業 メディアアートの展覧会・イベント情報［2026年11月］",
+          "url": "https://macc.bunka.go.jp/595/",
+          "kind": "listing"
+        }
+      ],
+      "link": "https://moak.jp/event/exhibitions/artistfocus_06.html",
+      "thumbnail": "/thumbnails/exhibition/2026-museum-of-art-kochi-akiko-nakayama-fluid-form.jpg",
+      "addedAt": "2026-11-18T01:58:02.191Z",
+      "origin": "auto",
+      "highlight": false
+    },
     {
       "id": "2026-hyper-museum-hanno-emi-kusano-end-of-nostalgia",
       "slug": "2026-hyper-museum-hanno-emi-kusano-end-of-nostalgia",
