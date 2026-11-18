@@ -1,5 +1,38 @@
 [
   {
+    "id": "utsutsu-no-carnival-mv-ai-2026",
+    "title": "現のカーニバル utsutsu no carnival MV（完全AI制作ミュージックビデオ）",
+    "summary": "goateatspoem.の新曲MVを、撮影を一切行わず絵コンテ・人物設定などの企画設計のみ人間が担い、映像生成をすべてAIで行う手法で制作した約6分の完全AI制作ミュージックビデオ。",
+    "client": "goateatspoem.",
+    "agency": "株式会社HYPEUP（藤原隆輔監督）",
+    "categories": [
+      "コンテンツ革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://prtimes.jp/main/html/rd/p/000000001.000179905.html",
+    "thumbnail": "/thumbnails/utsutsu-no-carnival-mv-ai-2026.jpg",
+    "videoId": "jc2RtG8BYJs",
+    "overview": "goateatspoem.の新曲「現のカーニバル」のために制作された約6分のミュージックビデオ。実写撮影を一切行わず、絵コンテ・人物設定・カメラレンジ・照明といった企画設計のみを人間が担い、実際の映像生成はすべてAIが行う手法で制作されている。監督は株式会社HYPEUPの藤原隆輔。",
+    "background": "楽曲の世界観を映像化するにあたり、従来のロケーションや撮影クルーを必要とする実写制作とは異なるアプローチが検討された。人間が映像の設計図にあたる絵コンテ・人物設定・カメラレンジ・照明計画を詳細に作り込み、その実現をAIによる生成に委ねることで、新たなMV制作のワークフローを構築することが目指された。",
+    "execution": "藤原隆輔監督が絵コンテ、人物設定、カメラレンジ、照明などの映像設計を人間の手で緻密に構築し、撮影工程を介さずにAIによる画像・映像生成へと橋渡しした。実際のカメラや役者を用いた撮影を行わず、設計された指示に基づきAIが約6分間の映像をすべて生成するという制作手法で一本の作品を完成させた。",
+    "evaluationImpact": "撮影を伴わずAIが全編の映像生成を担う手法で長尺のミュージックビデオを完成させた事例として、PR TIMESを通じて発表された。企画設計を人間が担い、実制作をAIに委ねるという役割分担のモデルケースとして、MV制作における新しいワークフローの一例となっている。",
+    "relatedWorks": [],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/MV",
+      "Theme/Music",
+      "Theme/Entertainment"
+    ]
+  },
+  {
     "id": "perfume-concept-movie-2026",
     "title": "Perfume『ふめつのあなた』Concept Movie",
     "summary": "Crescent Inc.がHOLOSYSとGaussian Splattingを世界初導入し、Perfumeの過去ライブモチーフとコールドスリープ中のメンバーを3DCGで描いたコンセプトムービー。",
