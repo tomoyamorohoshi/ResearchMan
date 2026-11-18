@@ -1,5 +1,43 @@
 [
   {
+    "id": "a-ap-rocky-helicopter-official-video-2026",
+    "title": "A$AP Rocky - HELICOPTER (Official Video)",
+    "summary": "56台のRGB-Dカメラによる4Dボリュメトリック撮影と動的Gaussian Splattingで実演者を全編3Dスキャン化したA$AP Rockyのミュージックビデオ",
+    "client": "A$AP Rocky",
+    "agency": "Somesuch / Grin Machine（監督: Dan Streit）",
+    "categories": [
+      "コンテンツ革新",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://radiancefields.com/a-ap-rocky-releases-helicopter-music-video-featuring-gaussian-splatting",
+    "thumbnail": "/thumbnails/a-ap-rocky-helicopter-official-video-2026.jpg",
+    "videoId": "g1-46Nu3HxQ",
+    "overview": "A$AP Rockyの楽曲「HELICOPTER」のオフィシャルミュージックビデオ。Somesuch/Grin Machine（監督: Dan Streit）が制作を手がけ、Evercoastの56台のRGB-Dカメラによる4Dボリュメトリック撮影と動的Gaussian Splattingを用い、実演者のパフォーマンスをほぼ全編にわたって3Dスキャンデータとして取得・再構成した映像となっている。生成AIによるものではないことが明言されている。",
+    "background": "ミュージックビデオの表現としてボリュメトリックキャプチャやGaussian Splattingといった3Dスキャン技術が普及し始める中、A$AP Rockyの新曲「HELICOPTER」で実演者の動きを立体データとして取得し、従来の実写撮影やCG合成とは異なるビジュアル言語を模索する企画として制作された。",
+    "execution": "Evercoastの56台のRGB-Dカメラを用いた4Dボリュメトリック撮影でA$AP Rockyのパフォーマンスをキャプチャし、取得した点群データを動的Gaussian Splattingで処理。Houdini（GSOPs）、Octane、Blenderを組み合わせたパイプラインで仕上げを行い、3Dスキャンならではの質感を持つ映像としてミュージックビデオ全編を構成した。",
+    "evaluationImpact": "生成AIの台頭が目立つ時期に、AIではなくボリュメトリックキャプチャとGaussian Splattingという実写ベースの3D技術でミュージックビデオの大部分を構成した点が特徴。実演者の実在性を保ったまま立体的な映像表現を実現する手法として、業界内で技術的な注目を集めた事例。",
+    "relatedWorks": [
+      {
+        "title": "Radiance Fields記事",
+        "description": "本作のGaussian Splatting活用について解説した記事。",
+        "url": "https://radiancefields.com/a-ap-rocky-releases-helicopter-music-video-featuring-gaussian-splatting"
+      }
+    ],
+    "sources": [
+      "User"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/MV",
+      "Theme/Music"
+    ]
+  },
+  {
     "id": "exki-nature-s-kitchen-2026",
     "title": "EXKi: Nature's Kitchen 野生植物の道しるべ",
     "summary": "歩道の隙間に生える野生植物を目印に、最寄り店舗への方向と距離を地面に描き、雑草を無償の道案内媒体に変えた。",
