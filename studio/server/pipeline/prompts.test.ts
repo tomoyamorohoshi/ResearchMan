@@ -109,4 +109,7 @@ test("buildLinkCheckerPrompt: titleMatchは表記差を無視し同一作品か�
   assert.match(p, /表記差だけではfalseにしない/);
   assert.match(p, /Official Video/);
   assert.doesNotMatch(p, /事例と一致すればtrue/);
+  assert.match(p, /アーティスト名と作品名\/曲名の両方が同じなら/);
+  assert.doesNotMatch(p, /アーティスト名・作品名\/曲名が同じなら/);
+  assert.match(p, /Live・Remix・Cover・別バージョンは別作品として扱いfalse/);
 });
