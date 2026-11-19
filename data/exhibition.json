@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "statusAsOf": "2026-11-18",
+  "statusAsOf": "2026-11-19",
   "items": [
     {
       "id": "2026-museum-of-art-kochi-akiko-nakayama-fluid-form",
@@ -650,7 +650,7 @@
       "city": "渋谷区",
       "startDate": "2026-11-19",
       "endDate": "2026-11-23",
-      "status": "upcoming",
+      "status": "ongoing",
       "admission": "無料",
       "tags": [
         "light",
@@ -1069,7 +1069,7 @@
       "city": "金沢市",
       "startDate": "2026-11-19",
       "endDate": "2026-12-01",
-      "status": "upcoming",
+      "status": "ongoing",
       "admission": "一般1,200円（展覧会「今日から明日へ 作品を継承すること」観覧料）",
       "tags": [
         "installation",
