@@ -1,5 +1,294 @@
 [
   {
+    "id": "2878-vhils-marcelo-cidade-2026",
+    "title": "2878（Vhils × Marcelo Cidade）",
+    "summary": "植民地時代の建物を救急用の銀色保温シートで包み、建物を保護される患者に読み替えた公共空間の介入作品",
+    "client": "Vhils / Marcelo Cidade",
+    "agency": "",
+    "categories": [
+      "空間体験",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "中南米"
+    ],
+    "link": "https://www.thisiscolossal.com/2026/11/vhils-marcelo-cidade-sao-paolo-2878/",
+    "thumbnail": "/thumbnails/2878-vhils-marcelo-cidade-2026.jpg",
+    "videoId": "",
+    "overview": "ポルトガルのアーティストVhilsとブラジルのMarcelo Cidadeが、サンパウロ・ピニェイロスのRua Cardeal Arcoverde 2878にある植民地風の古い建物のファサードを、反射性の銀色の保温シートで包んだ一時的なインスタレーション。作品名は建物の住所に由来する。シートはトウモロコシ澱粉系の接着剤で貼られ、アーチ窓や装飾の凹凸が浮かび上がる。ギャラリーGalleria Continuaでの展覧会「ATRITO: Arqueologia do Presente」(2026年11月14日開幕)に連動する。",
+    "background": "建物は、取り壊される前から人々の意識の中で見えなくなっていく。Colossalはこの「消失」を作品の主題として伝えている。メディアにより、取り壊しが予定された建物とする報道もあるが、確認は取れていない。Vhilsは壁面を削る手法などで都市の記憶を扱う作家で、Cidadeは都市空間や建築への介入で知られるブラジルの作家。今回の展覧会は「現在の考古学」を掲げ、都市の痕跡を主題にしている。",
+    "execution": "救急時に体を保温するために使われる銀色のサーマルシートで、建物のファサード全体を覆った。固定にはトウモロコシ澱粉系の接着剤が使われ、シートが壁面に密着して窓のアーチや装飾のレリーフがそのまま浮き出る。反射する表面は日光の当たり方で見え方が変わる。建物を災害現場の被災者のように包むことで、保存と、元の姿を覆い隠すことの両方を示す。素材の詳しい施工手順や期間は確認できなかった。",
+    "evaluationImpact": "救急用の保温シートという身近な素材を建築に転用し、「建物を患者として保護する」という一文で言える読み替えを成立させた点が評価できる。街の中で埋もれがちな住所を目立たせ、都市の建築遺産が気づかれないまま失われる問題を可視化する。報道はDesignboom、Colossalほか複数のメディアに広がった。受賞は確認できず、会期や存続期間の詳細も未確認。",
+    "relatedWorks": [
+      {
+        "title": "Vhils and Marcelo Cidade Cloak a São Paulo Colonial Building in Silver Thermal Blankets (Colossal)",
+        "description": "本作を紹介するColossalの記事",
+        "url": "https://www.thisiscolossal.com/2026/11/vhils-marcelo-cidade-sao-paolo-2878/"
+      },
+      {
+        "title": "Vhils and Marcelo Cidade shroud historic São Paulo building in a shimmering silver skin (Designboom)",
+        "description": "本作を紹介するDesignboomの記事",
+        "url": "https://www.designboom.com/art/vhils-marcelo-cidade-sao-paulo-building-facade-shimmering-silver-skin-2878-installation/"
+      },
+      {
+        "title": "ATRITO: Arqueologia do Presente (Perfil Brasil)",
+        "description": "Vhilsによる連動展覧会を紹介するPerfil Brasilの記事",
+        "url": "https://brasil.perfil.com/entretenimento/vhils-expo-atrito-arqueologia-do-presente-sao-paulo.phtml"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Theme/Art",
+      "Tech/3D"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "colossal",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "bianni-arudeko-2026",
+    "title": "Bianni（Arudeko）廃ウールから作る紙状素材",
+    "summary": "オアハカの絨毯端材ウールを再生紙の帯と織り込み、添加物なしで難燃性と透光性を備えた紙状素材にした。",
+    "client": "Arudeko",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "カルチャーインサイト"
+    ],
+    "award": "Dezeen Awards 2026 テキスタイルデザイン・オブ・ザ・イヤー（審査員賞）",
+    "year": "2026",
+    "regions": [
+      "中南米"
+    ],
+    "link": "https://www.dezeen.com/2026/11/14/arudeko-bianni-waste-wool-paper-material/",
+    "thumbnail": "/thumbnails/bianni-arudeko-2026.jpg",
+    "videoId": "",
+    "overview": "Arudekoが開発したBianniは、廃ウールから作る紙のような素材である。メキシコ・オアハカの織り手が絨毯やクッションの製造で出す端材のウールを、再生紙と織り合わせて作る。ランプシェードから間仕切りまで、立体的に成形できる素材として紹介されている。",
+    "background": "原料のウールは、オアハカ州テオティトラン・デル・バジェの織り手のコミュニティから出る絨毯・クッション製造の余りである。共同創業者は、この端材に新しい命を与えるプロジェクトだと説明している。素材ライブラリーの紹介では、天然染料という古い伝統を復活させる狙いにも触れている。",
+    "execution": "カラフルな廃ウールを再生紙と織り合わせ、紙状のシート素材に仕上げる。Dezeenによると、ウールが紙に難燃性を与え、添加物は使っていない。光を通すと紙の中に隠れた色が見える半透明性があり、この性質から照明用途が着想された。",
+    "evaluationImpact": "Dezeen Awards 2026で、テキスタイルデザイン・オブ・ザ・イヤー（審査員賞）に選ばれた。審査員は、廃棄物に価値を加えた点を評価している。地域の織りの端材という身近な廃棄物を、難燃性と透光性をもつ建材・照明素材へ転換する手法は、他の素材分野にも応用できる。",
+    "relatedWorks": [
+      {
+        "title": "Wool (Re)discovered exhibition at New Order of Fashion LAB",
+        "description": "Dutch Design Week 2025で羊毛の再発見をテーマにした展示。Dezeenが紹介。",
+        "url": "https://www.dezeen.com/2025/10/24/new-order-of-fashion-dutch-design-week-2025-exhibition/"
+      },
+      {
+        "title": "Tacchini Flock project by Formafantasma",
+        "description": "ウールを使った革新的なデザイン製品の事例。Dezeenが紹介。",
+        "url": "https://www.dezeen.com/2023/11/27/innovative-wool-design-products/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Product",
+      "Theme/Sustainability",
+      "Theme/Fashion"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "dezeen",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "caroline-zimbalist-bioplastic-gown-for-emma-watson-lacma-art",
+    "title": "Caroline Zimbalist bioplastic gown for Emma Watson（LACMA Art+Film Gala）",
+    "summary": "植物由来バイオポリマーを加熱して絹地に手で流し込み、乾燥で絹と一体化させた一点物ガウンをレッドカーペットで披露した。",
+    "client": "Caroline Zimbalist",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.dezeen.com/2026/11/18/caroline-zimbalist-biomaterial-dress-emma-watson/",
+    "thumbnail": "/thumbnails/caroline-zimbalist-bioplastic-gown-for-emma-watson-lacma-art.jpg",
+    "videoId": "",
+    "overview": "2026年11月7日、ロサンゼルスのLACMA Art+Film Galaで、エマ・ワトソンがアーティスト兼デザイナーのCaroline Zimbalistによる深紅のガウンを着用した。赤い絹地の上にバイオポリマーを手で流し込んで作った一点物で、ワトソン本人のSNSでも素材と製法が紹介された。Dezeenは11月18日にこの制作を取り上げた。",
+    "background": "Zimbalistはコーンスターチや海藻由来の増粘剤など、生分解性の素材で装飾を作り、衣服に仕立てる作家。Chappell Roanらセレブの衣装も手がけてきた。ワトソンは2016年のMet Galaでもリサイクルプラスチック素材のドレスを着ており、サステナブルな素材を衣装で見せる姿勢が続いている。",
+    "execution": "バイオポリマーの配合液を加熱・混合し、絹地へ手で直接流し込む。水分が蒸発すると素材が固まり、絹と結合する。表面に凹凸と立体感が生まれ、下地の絹は柔らかなドレープを保つ。石油由来の素材を使わない点も特徴。Dezeenはワトソンとの共同制作と記し、他メディアは依頼制作として報じる。",
+    "evaluationImpact": "成形品を後から縫い付けるのではなく、液状の素材を布に直接流して一体化させる点が手法としての新しさである。生地の質感と素材の立体感を両立できる。著名人が公の場で着ることで、バイオマテリアルをファッションの表現手段として広く知らせた。報道では素材配合の細部が一致せず、詳細は未確定。",
+    "relatedWorks": [
+      {
+        "title": "Caroline Zimbalist SS25（バイオプラスチックのイブニングウェア）",
+        "description": "コーンスターチや海藻由来素材で装飾を作ったコレクション。",
+        "url": "https://fizzymag.com/articles/caroline-zimbalist-ss25-bioplastics-eco-friendly-eveningwear"
+      },
+      {
+        "title": "Emma Watson Met Gala 2016 ドレス（Calvin Klein）",
+        "description": "リサイクルペットボトル由来の糸で織った生地で作られたドレス。",
+        "url": "https://theweek.com/speedreads/622019/emma-watsons-met-gala-dress-made-recycled-plastic-bottles"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Product",
+      "Theme/Fashion",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "dezeen",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "mcrib-bib-2026",
+    "title": "McRib Bib",
+    "summary": "ドライブスルーの持ち帰り紙袋を、切り取り線で折るだけで首に掛けられる『よだれ掛け』に読み替えたマクリブ復活施策。",
+    "client": "Macca's (McDonald's Australia)",
+    "agency": "Akcelo",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://campaignbrief.com/maccas-transforms-drive-thru-takeaway-bag-into-protective-mcrib-bib-in-new-campaign-via-akcelo/",
+    "thumbnail": "/thumbnails/mcrib-bib-2026.jpg",
+    "videoId": "",
+    "overview": "マクドナルド・オーストラリア（Macca's）が、2026年11月18日からのマクリブ／マクリブ・デラックスの期間限定復活に合わせて公開した限定「McRib Bib」。持ち帰り用の紙袋をミシン目に沿って切り取り、折って襟元に差し込むと、よだれ掛けとして使える。全国の店舗、MyMacca'sアプリ、McDelivery で、なくなり次第終了で提供される。",
+    "background": "Macca's はマクリブを「最も要望の多いメニュー」と位置づけており、今回は期間限定の復活だった。マクリブはソースが多く、食べると汚れやすい。公式リリースは、このバッグを「最大限の楽しさと最小限の汚れ」を狙った設計と説明している。同社は2026年10月にも、マックカフェのドリンクキャリアを使った限定「トレイバッグ」を出している。包装を話題化する流れの延長にある。",
+    "execution": "新しい容器は作らず、すでに客の手元に渡る持ち帰り紙袋そのものを媒体にした。袋にミシン目を入れ、切って折って襟に掛ける手順を、公式リリースが説明している。ソースが飛ぶというメニューの特徴が、そのまま使い道になる。ローンチ映像を大発明の発表風に作っているというメモがあるが、映像の内容は今回の検索では確認できなかった。",
+    "evaluationImpact": "商品の弱点（汚れやすさ）を隠さず、袋の形を変えるだけで楽しさに変えた点が評価できる。追加の素材や物流を足さず、袋の印刷と加工で済むため、他の食品ブランドにも転用しやすい。ただし、受賞や売上、SNSでの反響といった成果は、今回の検索では確認できなかった。制作会社 Akcelo の関与も、公式リリースでは確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "McCafé Tray Bag（Macca's）",
+        "description": "2026年10月に Macca's が出した、マックカフェのドリンクキャリアを使った限定のトレイバッグ。",
+        "url": "https://www.mcdonalds.com/au/en-au/newsroom/article/australias-newest-it-bag-doesnt-come-from-paris-it-comes-from-ma.html"
+      },
+      {
+        "title": "The McRib and McRib Deluxe are back（公式ニュースルーム）",
+        "description": "McRib Bib を含む2026年11月の復活発表。",
+        "url": "https://www.mcdonalds.com/au/en-au/newsroom/article/the-mcrib-and-mcrib-deluxe-are-back.html"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Theme/Food",
+      "Theme/Retail"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "campaignbrief",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "0-01-person-rawlab-xyz-zkm-un_ctrl-2026",
+    "title": "0.01% Person（rawlab.xyz / ZKM UN_CTRL ワークショップ）",
+    "summary": "AIに人がどう見えるかを、機械学習データセット由来の人体特徴を組み替えて体験させる、ZKMのドロップイン型ワークショップ。",
+    "client": "ZKM | Zentrum für Kunst und Medien Karlsruhe",
+    "agency": "rawlab.xyz",
+    "categories": [
+      "テクノロジー×アイデア",
+      "AIクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://zkm.de/de/2026/11/unctrl-festival-fuer-gemeinschaftliche-technologien-und-kunst",
+    "thumbnail": "/thumbnails/0-01-person-rawlab-xyz-zkm-un_ctrl-2026.jpg",
+    "videoId": "",
+    "overview": "「0.01% Person」は、ブルガリア発のrawlab（rawlab.xyz）によるプロジェクト。2026年11月12〜14日にZKM（カールスルーエ）で開かれたUN_CTRL（Festival for Convivial Technologies and Arts）で、ドロップイン形式のワークショップとして実施された。ZKMの案内では、ドゥルーズとガタリの「分人（dividual）」の概念から、アルゴリズムによる抽象化で人がデータ化される過程を扱う。",
+    "background": "UN_CTRLは、技術・資源・アートを共同で、連帯的に使うことを掲げるZKM主催のフェスティバル。ワークショップ、インパルストーク、ラウンドテーブル、パフォーマンスなど参加型のプログラムが中心で、ディレクターはAlistair Hudson。rawlabは同名の作品をAMAZE Berlin 2026にもインタラクティブ・インスタレーションとして出品しており、「AIにあなたはどう見えているか」という問いを掲げている。",
+    "execution": "ZKMのプログラムによると、ワークショップは展示スペース（Atrium 8+9、1階）で11:00〜14:00と15:00〜17:00に実施された。AMAZE Berlinの紹介文では、公開された機械学習データセットから取り出した人間の特徴を来場者が組み合わせるとされる。ご依頼メモにある「リアルタイム画像認識」と「印刷した断片での再結合」は、今回の検索では一次情報で裏づけを確認できなかった。",
+    "evaluationImpact": "人を一つの固定した個人ではなく、データ上の断片の集合（分人）として扱う視点を、参加者が手を動かして体験できる点が評価できる。AIの認識の仕組みを説明で済ませず、体験に変える手法は他の企画にも転用できる。ただし、具体的な仕組みや参加者の反応、成果物の確認が取れておらず、手法の新規性を言い切るには材料が足りない。",
+    "relatedWorks": [
+      {
+        "title": "UN_CTRL – Festival for Convivial Technologies and Arts",
+        "description": "本ワークショップが開かれたZKMのフェスティバル公式ページ（2026年11月12〜14日）。",
+        "url": "https://zkm.de/en/node/71850"
+      },
+      {
+        "title": "0.01% Person（AMAZE Berlin 2026）",
+        "description": "rawlabによるインタラクティブ・インスタレーションとしての同名作品の出品ページ。",
+        "url": "https://2026.amaze-berlin.de/submissions/001-person"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/AI",
+      "Form/Event",
+      "Form/Installation",
+      "Theme/Art"
+    ],
+    "gateCriterion": "D",
+    "sourceId": "",
+    "gateTier": "borderline",
+    "discoveryLens": 4
+  },
+  {
+    "id": "cerave-dune-troisi-me-partie-d-fiez-le-d-sert-ressource-pr-c",
+    "title": "CeraVe × Dune: Troisième Partie「Défiez le désert / Ressource précieuse」",
+    "summary": "CeraVeが『デューン PART3』の公式保湿剤となり、砂漠から保湿クリームの瓶が砂虫の代わりに現れる映像で映画世界に溶け込んだ。",
+    "client": "CeraVe",
+    "agency": "OBB Bolded（OBB）",
+    "categories": [
+      "コンテンツ革新",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://creapills.com/cerave-hydratant-officiel-arrakis-dune-20261117",
+    "thumbnail": "/thumbnails/cerave-dune-troisi-me-partie-d-fiez-le-d-sert-ressource-pr-c.jpg",
+    "videoId": "",
+    "overview": "CeraVeは映画『デューン PART3』（2026年12月18日公開）とのタイアップで、同ブランド初の映画パートナーシップとして「アラキスの公式保湿クリーム」を名乗った。Warner Bros. PicturesとLegendary Picturesとの提携で、砂漠から保湿クリームが砂虫の代わりに現れるティザーや、短編「Defy the Desert」（11月11日公開）などを展開している。",
+    "background": "CeraVeは医療・教育系の「メディテインメント」型のソーシャル発信を得意とするスキンケアブランドである。今回は映画に初めて参入し、世界観の中心にある砂漠と砂虫の「乾燥」を、同ブランドの訴求である保湿（最大120時間）と結びつけた。公開に先立ち世界で展開される。",
+    "execution": "主軸は、砂漠から砂虫の代わりに保湿クリームが現れるティザーと、砂虫の乾燥した肌にクリームを塗る調教師を描く、メイキング風の映像「Sandworm Wrangler」である。短編「Defy the Desert」は11月11日に公開された。制作はOBBのブランデッドコンテンツ部門OBB Bolded。屋外広告、映画に着想を得たメディア、クリエイターへの提供、一部市場での上映も計画されている。なお、砂を叩くリズム音を合図に瓶が現れる演出は、今回の調査では確認できなかった。",
+    "evaluationImpact": "映画IPの世界観（砂漠・砂虫）とブランド便益（保湿）を結ぶ読み替えは一文で言え、ソーシャル映像とのなじみもよい。ただし確認できた範囲では、仕組みや技術の新規性は乏しく、中心は映像を軸にしたIPタイアップである。受賞も確認できていないため、採用には「あと一歩」の評価とした。",
+    "relatedWorks": [
+      {
+        "title": "CeraVe named 'official moisturiser of Arrakis' with Dune Part Three film tie-up",
+        "description": "CeraVeによるDune Part Threeとの映画タイアップを伝える記事。",
+        "url": "https://cosmeticsbusiness.com/cerave-named-official-moisturiser-of-arrakis-with-dune"
+      },
+      {
+        "title": "Dune turns CeraVe's 120-hour moisturizer into Arrakis lore",
+        "description": "保湿クリームをアラキスの世界観に組み込んだ展開を伝える記事。",
+        "url": "https://www.contentgrip.com/cerave-dune-arrakis-moisturizer/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Form/SNS",
+      "Theme/Entertainment"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "borderline",
+    "discoveryLens": 1
+  },
+  {
     "id": "kilo-kent-40-s-official-music-video-2026",
     "title": "Kilo Kent - 40's (Official Music Video)",
     "summary": "ロンドン・トッテナムを舞台にしたUKラップMVで、AI生成のコウモリの群れを3D質感調整で実写映像になじませ、象徴的な肖像を描いた作品。",
