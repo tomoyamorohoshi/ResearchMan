@@ -28705,5 +28705,221 @@
         "desc": "写真や動画の人物の3D体形とポーズを、1人あたり約1msで復元する軽量モデル。"
       }
     ]
+  },
+  {
+    "id": "2026-11-19-1",
+    "date": "2026-11-19",
+    "title": "採譜で読む偽ニュース紙面",
+    "pattern": "文脈×技術",
+    "seed": "La Prensaの「Reprinting Nica」の、印刷を止められた新聞を読者が自宅で刷って配る発想に、Omnizartの採譜を掛けたら、紙面の見出しを楽譜として記録し、音で届ける禁じられた新聞に変えられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "la-prensa-newspaper-reprinting-nica",
+        "title": "Reprinting Nica",
+        "desc": "印刷を止められた新聞社が、船上で作った紙面を読者が自宅で印刷して配れる形にした施策。"
+      },
+      {
+        "type": "tech",
+        "id": "omnizart",
+        "title": "Omnizart",
+        "desc": "1曲の音声から、メロディ・ドラム・コード・ビートまで楽譜に書き起こせるオープンソースの道具。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-19-2",
+    "date": "2026-11-19",
+    "title": "空想の保険を3D世界で体験",
+    "pattern": "文脈×技術",
+    "seed": "Rcn/Primeの「Fictional Insurance」でドラマの登場人物に保険をかけた発想を、DreamX-World 1.0の歩ける3D世界に持ち込むと、火事や事故が起きる架空の街を歩いて保険の必要性を体感できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "rcn-prime-fictional-insurance",
+        "title": "Fictional Insurance",
+        "desc": "ドラマの登場人物に架空の保険をかけられるようにし、視聴者を実際の保険契約へ導いた施策。"
+      },
+      {
+        "type": "tech",
+        "id": "dreamx-world-1-0",
+        "title": "DreamX-World 1.0",
+        "desc": "文章の指示だけで、歩き回っても矛盾しない3D世界の映像を作れるAIモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-19-3",
+    "date": "2026-11-19",
+    "title": "洗濯機ダンスを振り付け化",
+    "pattern": "文脈×技術",
+    "seed": "Whirlpoolの「Dancing Washers」で流行した洗濯機の揺れ動画に、MotionMindを使えば、揺れのリズムを振り付けとして分解し、人が踊って返せる公式ダンスにできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "whirlpool-dancing-washers",
+        "title": "Dancing Washers",
+        "desc": "洗濯機が揺れる動画の流行を利用し、投稿者に自社ECの特典を用意した施策。"
+      },
+      {
+        "type": "tech",
+        "id": "motionmind",
+        "title": "MotionMind",
+        "desc": "ダンス動画から3Dアバターが動きを再現し、AIが振り付けを分解して教えてくれるパイプライン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-19-4",
+    "date": "2026-11-19",
+    "title": "傷のあるアバターを再生",
+    "pattern": "文脈×技術",
+    "seed": "Kiehl'sの「Pubic Service Announcement」のように検閲で消された表現を、EDGARで補修する逆手の発想にして、規制で壊れた映像や顔を「補修過程ごと作品」として見せられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "kiehl-s-pubic-service-announcement",
+        "title": "Pubic Service Announcement",
+        "desc": "陰毛写真の検閲への返答として、人の陰毛で作った書体を使った印刷広告。"
+      },
+      {
+        "type": "tech",
+        "id": "edgar",
+        "title": "EDGAR (Efficient Diffusion-Driven Gaussian Avatar Refinement via Synthetic Failure)",
+        "desc": "ぼやけやちらつきが出たGaussian Splatの頭部アバターを、1枚の参照画像で補修する手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-19-5",
+    "date": "2026-11-19",
+    "title": "ピアニストの動きで磁石浮遊",
+    "pattern": "技術×技術",
+    "seed": "PianoidでMIDIから生成したピアニストの3D動作を、LeviFabの超伝導ピン止め浮遊に重ねたら、演奏に合わせて小さな物体が空中で踊る楽器のような彫刻になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "pianoid",
+        "title": "Pianoid",
+        "desc": "ピアノ演奏のMIDIだけから、ピアニストの全身の3D動きを生成する研究。"
+      },
+      {
+        "type": "tech",
+        "id": "levifab",
+        "title": "LeviFab",
+        "desc": "超伝導体のピン止め効果で、磁石入りの3Dプリント物体を空中に浮かべて操作する研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-19-6",
+    "date": "2026-11-19",
+    "title": "寄せ集め写真で作る音の街",
+    "pattern": "技術×技術",
+    "seed": "Wild3Rで観光客の寄せ集め写真から復元した3D空間を、Gausserで動かし、さらにAuKの話者分離で街の話し声を位置ごとに割り当てたら、歩くほど会話が変わる記憶の街になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "wild3r",
+        "title": "Wild3R",
+        "desc": "不特定多数がバラバラに撮った写真だけから、3D空間を一度の推論で復元する技術。"
+      },
+      {
+        "type": "tech",
+        "id": "gausser",
+        "title": "Gausser",
+        "desc": "Cinema 4DでGaussian Splatを読み込み、MoGraphで動かして出力できるプラグイン。"
+      },
+      {
+        "type": "tech",
+        "id": "auk",
+        "title": "AuK",
+        "desc": "声の生成・変換・ノイズ除去・話者分離を1つのモデルでこなす音声基盤モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-19-7",
+    "date": "2026-11-19",
+    "title": "ダンスAIで刑務所リーグ",
+    "pattern": "文脈×技術",
+    "seed": "Coronaの「Second Opportunity League」の出所後の道づくりに、Wan-Dancer-14Bを掛けたら、受刑者の1枚の写真から踊る映像を生成し、スポーツ以外の自己表現の履歴書にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "corona-second-opportunity-league",
+        "title": "Second Opportunity League",
+        "desc": "メキシコの刑務所でサッカーリーグを開き、全国放送して出所後の進路も開いた施策。"
+      },
+      {
+        "type": "tech",
+        "id": "wan-dancer-14b",
+        "title": "Wan-Dancer-14B",
+        "desc": "1枚の人物写真と音楽から、1分超のダンス動画を生成するオープンソースモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-19-8",
+    "date": "2026-11-19",
+    "title": "成層圏から届く撮影網",
+    "pattern": "転用",
+    "seed": "TuttiCamは3Dモデル用の同時撮影アプリだが、Project Loonのように風任せで漂う気球に多数のスマホを載せて同時撮影すれば、巨大な空の一瞬を立体で残せるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "tutticam",
+        "title": "TuttiCam",
+        "desc": "最大8台のスマホやカメラで同じ瞬間に自動連続撮影する、Gaussian Splatting用の撮影アプリ。"
+      },
+      {
+        "type": "case",
+        "id": "project-loon-2013",
+        "title": "Project Loon（成層圏バルーンによるインターネット配信）",
+        "desc": "成層圏に気球を飛ばし、未接続地域へネットを届けるGoogle Xの構想。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-19-9",
+    "date": "2026-11-19",
+    "title": "ささやきで解禁する展示",
+    "pattern": "技術×技術",
+    "seed": "NasoVoceのささやき認識を、YuE2 Studioの楽譜が見える歌生成につなげ、ささやいた言葉が楽譜になって歌い直される、声を出せない場所向けの作曲体験ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "nasovoce",
+        "title": "NasoVoce",
+        "desc": "鼻当てのマイクで、ささやき声でも音声を認識するスマートグラス向けインターフェース。"
+      },
+      {
+        "type": "tech",
+        "id": "yue2-studio",
+        "title": "YuE2 Studio",
+        "desc": "手元のGPUで歌付き楽曲を作り、楽譜を直して作り直せるデスクトップアプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-19-10",
+    "date": "2026-11-19",
+    "title": "Jell-Oを奏者の癖で測る",
+    "pattern": "文脈×技術",
+    "seed": "Jell-Oの「Jell-Ometer」が計る会場の熱狂のジグルを、Jazz Pianist Styleに入力して、揺れの強さに応じてジャズ奏者らしい続きを即興で弾く観客参加型の楽器にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "jell-o-jell-ometer",
+        "title": "Jell-Ometer",
+        "desc": "スポーツ会場の熱狂を、ゼリーの揺れで測る世界初のファン強度測定デバイス。"
+      },
+      {
+        "type": "tech",
+        "id": "jazz-pianist-style",
+        "title": "Jazz Pianist Style (Learning Jazz Pianist Style with Cross-Attention Conditioning)",
+        "desc": "ジャズピアニスト12人の弾き癖を学習し、その奏者らしい続きを作るピアノAI。"
+      }
+    ]
   }
 ]
