@@ -1,5 +1,178 @@
 [
   {
+    "id": "open4dgs",
+    "title": "Open4DGS",
+    "org": "Arizona State University NEM Program（Contrast Media Labs 実装協力）",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "GoPro やアクションカメラなど、同期装置（genlock）のない普通のマルチカメラ映像から、動く3Dシーン（4D Gaussian Splatting）を作るオープンソースのパイプライン。映像の撮影タイミングのズレを、ソフトウェアで自動補正します。",
+    "point": "高価な同期用ハードウェアがなくても、GoPro や Sony のアクションカメラを複数台並べるだけで、人の動きを丸ごと3Dで撮る「ボリュメトリック撮影」ができるようになる点がすごいところです。カメラごとの撮影タイミングのズレ（サブフレーム単位）と、ローリングシャッターによる映像の歪みを、映像だけから推定して補正します。ダンスやスポーツのような速い動きが崩れにくいよう、動きが速いコマには学習を多めに割り当てます。広告・体験づくりでは、ダンサーやアスリートを撮って、あとから好きなカメラワークで見せるフリービューポイント映像が作れます。Blender や Unreal Engine に書き出して CG と合成することも、Web 上で見られる3D映像にすることもできそうです。これまで放送用カメラを何十台も並べる必要があった表現が、小規模な制作チームの手の届く範囲に近づきます。",
+    "detail": "仕組みは7段階のパイプラインです。まず各カメラの映像からコマを取り出して、タイムコードで大まかにそろえます。次に COLMAP でカメラの位置を求め、背景を除いて人物だけを切り出します（SAM 2 などを利用）。続いて calculate-sync.py が、2台のカメラの映像を見比べて「このカメラは何ミリ秒ずれているか」を推定します。たとえるなら、複数人が撮った動画を見比べて、ボールが同じ位置に来る瞬間から時間のズレを割り出すようなものです。そのうえで、点の対応づけ（RoMa v2、MEMFOF）と、TRiGS という4D Gaussian Splatting の学習を行います。TRiGS は、3D の小さな粒（Gaussian）の動きを、回転と移動をまとめた滑らかな軌道として表します。粒の数を固定するので、長い映像でもメモリ量が増えません。\n\n従来の4D Gaussian Splatting は、全カメラが同時に撮影している前提で、同期装置を備えた高価な撮影スタジオが必要でした。Open4DGS は、そのズレをソフトウェアで吸収するところが違います。公式ページによると、動きの速いコマの画質が約2.5dB（PSNR）上がるとされています。出力は .trigsbin 形式と、コマごとの PLY ファイルです。学習中の様子を見られるビューアも付いています。\n\n使うには、Ubuntu 24.04、Python 3.11、CUDA 12.8、NVIDIA GPU（検証は RTX 3090）が必要です。COLMAP などの導入とコマンド操作の知識も要ります。README には「初期の研究リリース」と書かれていて、新しい環境で最初から最後まで通した検証は未完了とされています。そのため、まずは試験導入から始めるのが現実的です。費用は、カメラとGPUの機材代以外にかかりません。",
+    "license": {
+      "spdx": "MIT / AGPL-3.0",
+      "commercial": "conditional",
+      "note": "前処理側の open4dgs-core は MIT。学習側の open4dgs-trigs は AGPL-3.0 で、商用のクローズド利用には注意が必要です。サンプルデータは私的・非商用の評価に限定されます。RoMa v2 が使う DINOv3 の重みには別ライセンスがあります。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/ASU-NEM-Labs/open4dgs-core"
+      },
+      {
+        "kind": "project",
+        "url": "https://open4dgs.asunemlabs.com/"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/asu-open-sources-open4dgs-for-genlock-free-4d-gaussian-splatting"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2604.00538"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/open4dgs.jpg",
+    "relatedWorks": [
+      {
+        "title": "TRiGS",
+        "description": "Open4DGS の学習部分の元になった、剛体運動ベースの4D Gaussian Splatting 手法。",
+        "url": "https://arxiv.org/abs/2604.00538"
+      },
+      {
+        "title": "Dynamic Gaussian Scene Reconstruction from Unsynchronized Videos",
+        "description": "同期していない動画から動的ガウシアンシーンを再構成する関連研究。",
+        "url": "https://arxiv.org/abs/2511.11175"
+      },
+      {
+        "title": "4C4D",
+        "description": "4Dガウシアンの再構成を扱う関連プロジェクト。",
+        "url": "https://github.com/mrnerf/4c4d"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "",
+    "title": "π⁴ (Pi4)",
+    "org": "Shanghai AI Laboratory / 上海交通大学 / 浙江大学",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "Motion/Body"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "1枚の画像・写真の束・動画から、カメラの位置、3D形状、動く物体の軌跡、動く物体のマスクを、1回の推論でまとめて推定する約5億パラメータのモデルです。カメラの校正は必要ありません。",
+    "point": "普通のスマホ動画を入れるだけで、シーンの3D形状、カメラの動き、画面内の点が3D空間でどう動くかを、一度にまとめて取り出せる点がすごいところです。これまでは「3D再構成」と「動きの追跡」を別々のツールでつないでいましたが、π⁴ はこれを1つのモデルにまとめました。広告・体験づくりでは、撮影済みの映像からカメラの動きを自動で読み取って CG をぴったり重ねたり、動く被写体の軌跡を3Dの線として可視化して見せたりする使い方が考えられます。動く物体だけを自動で分けられるので、背景と人物を別々に扱う演出の下準備にも役立ちそうです。公式ページには、フィギュアスケートやサーフィンなどの動画を入力した結果を、ブラウザで回して見られるデモが12本あります。",
+    "detail": "仕組みは2本立てです。1本目の「ジオメトリ枝」が、各コマの奥行き、カメラの位置、スケール（実寸感）を推定します。2本目の「モーション枝」は、その3D情報を手がかりに、コマ間で同じ点がどこへ動いたかを予測します。写真の中の点に付箋を貼り、パラパラ漫画をめくるように付箋の移動先を追うと、カメラの動きと物体の動きを分けて考えられます。それと同じ発想です。学習時は最大64枚の画像で訓練していますが、推論では数千枚の長い映像も扱えるとされています。\n\n従来は、3D再構成（DUSt3R 系など）と点追跡、動体分割を別のモデルで処理していました。π⁴ は半分以下のモデルサイズで、これらを1回の順伝播にまとめています。論文によると、ジオメトリ評価で平均順位が1位、追跡と動体分割でも競争力のある結果とされています。\n\n使うには、Linux（x86-64）、Python 3.11、BF16 対応の NVIDIA GPU、CUDA 12.6 対応ドライバが必要です。重みは Hugging Face（yyfz233/Pi4）から自動で取得されます。README の例では、150コマ、解像度512×288の動画で、ピーク約12GiBのGPUメモリを使います（80GBのA800で計測）。実行は python example.py で動画を指定するだけで、結果は付属のブラウザビューアで見られます。ブラウザ上で試せる Hugging Face Space も公開されています。ライセンスは非商用限定です。",
+    "license": {
+      "spdx": "CC-BY-NC-4.0",
+      "commercial": "research-only",
+      "note": "コードもモデル重みも CC BY-NC 4.0 で、商用利用はできません。クライアント案件の納品物には使えないため、企画の検討やプロトタイプ作りに限られます。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/yyfz/Pi4"
+      },
+      {
+        "kind": "project",
+        "url": "https://yyfz.github.io/pi4"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2611.23144"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/spaces/yyfz233/Pi4"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/.jpg",
+    "relatedWorks": [
+      {
+        "title": "VGGT",
+        "description": "単一のフィードフォワード推論で3D属性を推定する基盤モデル。",
+        "url": "https://github.com/facebookresearch/vggt"
+      },
+      {
+        "title": "DUSt3R",
+        "description": "キャリブレーション不要の画像ペアからの3D再構成モデル。",
+        "url": "https://github.com/naver/dust3r"
+      },
+      {
+        "title": "MegaSaM",
+        "description": "動的な動画からカメラと奥行きを推定する手法。",
+        "url": "https://github.com/mega-sam/mega-sam"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "splat-repair",
+    "title": "Splat Repair",
+    "org": "Nicolas Drum(個人開発)",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "3Dスキャン(Gaussian Splat)に写り込んだ不要物や穴を、ブラシでなぞるだけで埋めて直せる無料のデスクトップ編集ソフト。",
+    "point": "Gaussian Splat は実物を撮影して作る3Dデータで、床の影・看板・撮影者の足元などが写り込みやすいのが悩みでした。Splat Repair は、消したい部分を3D空間でブラシでなぞると、その下の面の形・色・見る角度による色の変化まで作り直して穴を埋めてくれます。写真編集ソフトの「修復ブラシ」を3Dスキャンに持ち込んだ道具です。広告・体験づくりでは、ロケ地や店舗、商品を3Dスキャンして使う案件で、通行人やスタッフ、不要な看板を消してクリーンな3Dシーンに仕上げる、といった後処理に使えそうです。納品前のデータ整理を自社だけで完結でき、再撮影のコストも減らせます。ブラシ以外に投げ縄・矩形選択・クローンスタンプ・浮遊ノイズの自動検出もあり、整理から修復まで1本でこなせます。",
+    "detail": "仕組みは2種類の埋め方です。「Fast Fill」は穴の周りの面の形を推定し、近くのスプラット(3Dデータを構成する小さな光の粒)をコピーして埋める幾何的な方法で、約55万粒のスキャンで0.3〜1.5秒(CPU、README記載)。「Deep Fill」は穴の部分を画像としてレンダリングし、画像補完AI(LaMa)で埋めてから、その結果をまた3Dの粒に戻します(RTX 4090で約20秒、README記載)。さらに手元の Photoshop に画像を渡して Content-Aware/Generative Fill を使う経路もあります。\n\nこれまでスプラットの編集は、不要な粒を「消す」ことが中心で、消した後にできた穴を自然に埋める手段は乏しい状況でした。本ツールは「消す→埋める」を同じ画面で行えるのが違いです。一方で、靴底のような細かい繰り返し模様は苦手で、手動のクローンスタンプでの補正が必要になると記事で報告されています。\n\n使うには Windows 10/11、Node.js 22以上、Python 3.10〜3.13が必要で、GitHub のリポジトリをクローンして install.cmd を実行する方式です(配布はソース形式で、実行ファイルは付属しません)。Deep Fill を使う場合は NVIDIA GPU・CUDA toolkit・MSVC ビルドツール・約3GBのダウンロードが追加で必要です。macOS/Linux は未検証。.ply/.splat/.spz を読み書きでき、費用はかかりません。コマンドラインの基本操作ができる人向けです。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "Apache 2.0。ただし Deep Fill で使う LaMa モデルの学習データ(Places2)には別の利用条件がある。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/NicolasDrum/splat-repair"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/splat-repair-brings-a-repair-brush-to-gaussian-splats"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=qwjmxt8kfl0"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/splat-repair.jpg",
+    "relatedWorks": [
+      {
+        "title": "Gaussian Splat Patch",
+        "description": "スプラットの欠損部分にパッチを当てて補修する別ツール(同記事で別物と明記)。",
+        "url": "https://radiancefields.com/splat-repair-brings-a-repair-brush-to-gaussian-splats"
+      },
+      {
+        "title": "SuperSplat",
+        "description": "PlayCanvas製のブラウザ/デスクトップ向けGaussian Splat編集ツール。",
+        "url": "https://github.com/playcanvas/supersplat"
+      },
+      {
+        "title": "LaMa",
+        "description": "Deep Fill が内部で使う画像補完(インペインティング)モデル。",
+        "url": "https://github.com/advimman/lama"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "flashmotion",
     "title": "FlashMotion",
     "org": "Kaixing Yang ほか（FlashMotion 研究チーム）",
