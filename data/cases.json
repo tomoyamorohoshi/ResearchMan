@@ -1,5 +1,426 @@
 [
   {
+    "id": "matthew-wilcock-cycle-series-systems-2026",
+    "title": "Matthew Wilcock – Cycle Series / Systems",
+    "summary": "高速道路の車が縦線を横切るたびに音を鳴らし、日常の動きをそのまま楽曲にする再生ヘッド式サウンド手法。",
+    "client": "Matthew Wilcock",
+    "agency": "",
+    "categories": [
+      "コンテンツ革新",
+      "データクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.itsnicethat.com/articles/matthew-wilcock-sound-design-project-181126",
+    "thumbnail": "/thumbnails/matthew-wilcock-cycle-series-systems-2026.jpg",
+    "videoId": "",
+    "overview": "サウンドデザイナーのMatthew Wilcockは、実世界の動きを音楽に読み替える「Cycles | Playhead」を展開している。映像に縦の再生ヘッドを重ね、車などが線を横切る瞬間に音を鳴らす。ロンドンのM25/M11ジャンクションのドローン映像を使った「Motorway Cycle XI」は2026年1月にBandcampで公開された。",
+    "background": "Wilcockはロンドンを拠点に、電気バスの接近通報音(AVAS)やMicrosoftのUI音を手がけてきたとされる。日常の騒音や交通の反復を、作曲素材として捉え直す関心が一貫している。エスカレーターなど他の日常的な動きを音にした作品も別途発表している。",
+    "execution": "ドローンや俯瞰映像の上に垂直線を置き、各車両が線を通過するたびに音階の音を発音させる。ダブリンの高速道路の俯瞰映像では、ピアノと弦の構成で瞑想的な楽曲に仕上げている。交通量の増減がそのままリズムと密度になり、作曲者が音符を打たなくても楽曲が成立する。",
+    "evaluationImpact": "「映像に線を引き、通過を発音のトリガーにする」と一文で言える手法で、交通・群衆・自然現象などデータ化できる動きに広く転用できる。素材は誰でも撮れる日常の映像だけで、手法の汎用性が高い。なお、鳥の群れや4都市の列車到着時刻データを使った展開は、今回の検索では確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Matthew Wilcock turns motorway traffic and movement in the real world into sound art",
+        "description": "Higher Plain Musicによる、Wilcockの高速道路交通を音楽化するMotorway Cycleの紹介記事",
+        "url": "https://higherplainmusic.com/2026/01/01/matthew-wilcock-turns-motorway-traffic-and-movement-in-the-real-world-into-sound-art/"
+      },
+      {
+        "title": "Motorway Cycles XI (Junction M25/M11)",
+        "description": "M25/M11ジャンクションの映像から作られた楽曲。Bandcampで公開",
+        "url": "https://matthewwilcock.bandcamp.com"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Audio",
+      "Tech/Data",
+      "Form/MV",
+      "Theme/Music"
+    ],
+    "gateCriterion": "D",
+    "sourceId": "itsnicethat",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "cromawaltz-2026",
+    "title": "CROMAWALTZ",
+    "summary": "2層の色付きスラットを重ね、電力なしで歩行者の動きだけがモアレの波や図像を浮かび上がらせる恒久彫刻",
+    "client": "Q-Park / Paris La Défense",
+    "agency": "GRRIZ",
+    "categories": [
+      "OOH革新",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.designboom.com/art/grriz-moire-sculpture-paris-la-defense-parking-entrance-cromawaltz/",
+    "thumbnail": "/thumbnails/cromawaltz-2026.jpg",
+    "videoId": "",
+    "overview": "CROMAWALTZは、伊仏のスタジオGRRIZがパリ・ラ・デファンスのパルヴィ（グランダルシュ前広場）にある駐車場入口の上に設置した恒久的なモアレ彫刻。色付きの縦スラットを2層の格子状に重ねた構造で、通行人が歩くと見る角度が変わり、モアレの波や図像が現れる。Designboomは、通行人の歩く動きだけで見え方が変わると伝えている。",
+    "background": "設置場所はレ・キャトル・タン駐車場P2の入口で、Q-Park Franceが発注し、Archibald Verney-Carronがキュレーションした。GRRIZ自身の投稿によれば、同スタジオにとってフランス初の恒久作品。設置時期は2026年7月下旬とする投稿と、開幕を2026年9月とする投稿があり、ソースによって食い違う。",
+    "execution": "素材は、アート制作の情報サイトartproject.proの記載によれば、エポキシ塗装のスチールとアルミ、アルミ複合パネル、ビニール。2つの格子が重なることで模様が作品の表面ではなく見る人の側に生まれる、とGRRIZは説明している。New York Metropolitanは、急ぎ足の歩行速度でモアレが最も強く出ると伝えている。モーターや電力を使わない点は、依頼時のメモにはあるが、今回の検索では別の資料で確認できていない。",
+    "evaluationImpact": "歩行という日常の動きを、そのまま作品の動力にした点が核。駐車場入口という通過の場所を、通る人自身が作品を動かす場に変えた。恒久設置の公共作品で、単純な光学原理を色とスケールで見せる手法は、他の公共空間にも転用できる。ただし受賞は確認できていない。作者名はソースにより「GRRIZ」「Grizz」と表記が揺れており、完全には確定できていない。",
+    "relatedWorks": [
+      {
+        "title": "GRRIZ's moiré sculpture set atop paris parking entrance moves only when people walk past it (designboom)",
+        "description": "CROMAWALTZを紹介するDesignboomの記事",
+        "url": "https://www.designboom.com/art/grriz-moire-sculpture-paris-la-defense-parking-entrance-cromawaltz/"
+      },
+      {
+        "title": "Fabrication from Grizz's artwork - Cromawaltz (artproject.pro)",
+        "description": "素材・制作情報を掲載したページ",
+        "url": "https://artproject.pro/en/artworks/grizz-cromawaltz/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/OOH",
+      "Theme/Art",
+      "Theme/Mobility"
+    ],
+    "gateCriterion": "B",
+    "sourceId": "designboom",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "specsavers-gta-gta-transport-2026",
+    "title": "Specsavers × GTA（「史上最大のパートナーシップ」の正体はレスターの運送会社 GTA Transport）",
+    "summary": "GTA VI発売前日に「GTAとの史上最大の提携」を匂わせ、実は同名の運送会社を支援して全ドライバーに無料視力検査を提供した。",
+    "client": "Specsavers",
+    "agency": "Golin Ketchum London（PR）",
+    "categories": [
+      "コンテンツ革新",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/specsavers-partenariat-gta-transport-20261119",
+    "thumbnail": "/thumbnails/specsavers-gta-gta-transport-2026.jpg",
+    "videoId": "",
+    "overview": "英国の眼鏡チェーンSpecsavers が「史上最大のパートナーシップ」をGTAと結ぶと予告した。発売前日に明かされた相手は、ゲームのGTA VIではなく、レスターの運送会社GTA Transport Ltd だった。スポンサーとして同社の全ドライバーに無料の視力検査を提供する。ブランドの定番コピー「Should've gone to Specsavers（Specsaversに行くべきだったのに）」の読み間違いネタに沿った仕掛けで、複数メディアが報じた。",
+    "background": "GTA VIは発売前から世界的な話題を集め、各国のブランドが便乗を試みていた（B&T が事例をまとめている）。Specsavers は「見間違い・読み間違い」を笑いに変える広告を長く続けてきた。「GTA」という3文字は、ゲームを指すのか別のものかという読み違いを自然に誘発する。この特性を、視力ケアというブランドの本業と結び付けられる点が着眼点になった。",
+    "execution": "まず「GTAとの史上最大の提携」を匂わせ、多くの人がゲームのGTAを想像する状態をつくった。発売前日に相手がGTA Transport Ltd（レスターの道路運送会社）だと公表した。支援の中身は、スポンサー担当のNeil Liddle 氏が語った通り、同社の全ドライバーへの無料視力検査の提供。便乗する素振りを見せて外し、実際の支援は本物のGTAに行う構成になっている。",
+    "evaluationImpact": "ゲーム発売の熱量に乗りつつ、読み間違いというブランドの定番ネタをそのまま体現した点が評価できる。ジョークだけで終わらず、ドライバーの視力という安全に直結する実利を伴うため、単なる便乗広告と一線を画す。Mediaweek や LBB など複数のメディアが「どのGTAか」という切り口で取り上げた。受賞や成果数値は公式ソースで確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Specsavers Unveils 'Biggest Partnership of All Time' with GTA",
+        "description": "LBBによる本件の報道記事",
+        "url": "https://lbbonline.com/news/specsavers-gta-partnership-grand-theft-auto-six"
+      },
+      {
+        "title": "Specsavers GTA stunt swaps game hype for trucking",
+        "description": "ContentGripによる本件の解説記事",
+        "url": "https://www.contentgrip.com/specsavers-gta-transport-stunt/"
+      },
+      {
+        "title": "Specsavers Giant Big Issue Eye Hearing Care",
+        "description": "SpecsaversがBig Issueと組み、通常の2倍サイズの雑誌を3,000部限定で印刷した事例",
+        "url": "https://lbbonline.com/news/Specsavers-Giant-Big-Issue-Eye-Hearing-Care"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Stunt",
+      "Theme/Entertainment",
+      "Theme/Health"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "heartbelts-2026",
+    "title": "HEARTBELTS",
+    "summary": "「腰囲は身長の半分未満」という心臓リスク指標を、電池もアプリも不要のベルトの目印だけで可視化した技術のないウェアラブル。",
+    "client": "Pumping Marvellous Foundation",
+    "agency": "Havas Life London",
+    "categories": [
+      "社会包摂",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/heartbelts-ceinture-sante-cardiaque-20261119",
+    "thumbnail": "/thumbnails/heartbelts-2026.jpg",
+    "videoId": "",
+    "overview": "英国の心不全患者支援団体Pumping Marvellous FoundationとHavas Life Londonが、International Men's Dayに合わせて公開した「HEARTBELTS」。腰囲は身長の半分未満が望ましいという心血管リスクの指標を、ベルトという日用品で示す「技術のないウェアラブル」として打ち出した。サイト上で腰囲と身長比を計算でき、自分用のHeartBeltを作って、特製ベルトが当たる抽選にも参加できる。",
+    "background": "「腰囲を身長の半分未満に保つ」という目安は、英国のNICEの指針でも扱われている（導入時期は報道により2022年・2025年と記述が分かれる）。あまり知られていない一方で、覚えやすく正確な指標である。制作側は、この規則の単純さと正確さに着目したと語っている。男性の心臓の健康への関心を高めることが狙いで、情報を増やすのではなく、重要な1つの情報を忘れにくくする方針をとった。",
+    "execution": "ベルトに付けた目印を、自分の身長の半分の位置に合わせる。腰囲がそれ以下なら収まる、という仕組みで、バッテリーもアプリもセンサーも使わない。「世界初のノーテック心臓健康ウェアラブル」と位置づけられている。特設サイトでは腰囲と身長の比を計算して心血管リスクについて学べ、自分のHeartBeltを作成し、カスタムメイドのベルトが当たる抽選に応募できる。ベルトの目印の詳細な造りは、確認できた情報源では不明。",
+    "evaluationImpact": "複雑なデータやデバイスに頼らず、ベルトという毎日身につける物に指針そのものを埋め込んだ点が評価できる。健康情報の「量」ではなく「記憶への残りやすさ」を設計対象にしており、ヘルスケア啓発の手法として他の指標にも転用できる。ただし受賞や行動変容の効果といった成果は、確認できた範囲では見当たらない。確認できた情報源はLBBの記事のみで、数値による成果は未確認。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Theme/Health",
+      "Form/Stunt"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "the-ikea-marathon-ikea-croydon-2026",
+    "title": "The IKEA Marathon（IKEA Croydon）",
+    "summary": "IKEA Croydon店内の通路やレジを周回して42.195kmを走らせ、完走メダルを自分で組み立てるフラットパックにした店内マラソン企画。",
+    "client": "IKEA",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/marathon-magasin-ikea-croydon-medaille-kit-20261118",
+    "thumbnail": "/thumbnails/the-ikea-marathon-ikea-croydon-2026.jpg",
+    "videoId": "",
+    "overview": "2026年12月13日(日)に、ロンドン南部のIKEA Croydon店内だけを使って開催予定の世界初とされるマラソン。店内を周回して26.2マイル(42.195km)を走る。完走者のメダルは自分で組み立てる自己組み立て式で、参加費の収益の16%は住宅問題に取り組む慈善団体Shelterへ寄付される。現時点では告知段階で、実施結果は未確認。",
+    "background": "IKEAは家具を箱に詰めて届け、客が自分で組み立てる「フラットパック」で知られる。英国ではIKEAがShelterと、掛け布団の売上寄付や「Real Life Roomsets」など住宅問題の啓発施策を重ねてきた。Croydon店のスタッフがShelter向け募金ページを立ち上げた例もある。今回はこの関係を、ブランドの象徴である店舗空間とフラットパックに載せたスポーツイベントとして展開した形と読める。",
+    "execution": "コースは店内の通路、トラベレーター、レジなどを使った周回路で、1周約1.5km、約17周とする報道がある。夜間開催で、制限時間は6時間。定員は100人(一般販売80枠)、参加費は約80〜82ポンド。観客は店内に入れない。完走メダルは部品の状態で渡され、説明書付きで自分で組み立てる。主催運営はSussex Trail Eventsとする報道がある。傾斜トレッドミルの使用は確認できなかった。",
+    "evaluationImpact": "「店舗そのものをコースにする」「完走の証をフラットパックにする」というIKEAらしさが一文で伝わり、ランニング系メディアを中心に各国で報じられた。収益の一部をShelterへ寄付する設計で、社会課題との接続もある。一方、定員100人の小規模イベントで、受賞や成果の公式データはなく、実際の評価は開催後の検証が必要。",
+    "relatedWorks": [
+      {
+        "title": "IKEA × Shelter Real Life Roomsets",
+        "description": "IKEAとShelterが英国の住宅危機を訴えるため、店舗内に実際の生活状況を再現した展示を行った施策。",
+        "url": "https://www.yorkshirepost.co.uk/read-this/ikea-and-shelter-launch-real-life-roomsets-in-four-stores-to-highlight-uk-housing-emergency-4052947"
+      },
+      {
+        "title": "IKEA's duvet that does good",
+        "description": "IKEAが売上をShelterへ寄付する掛け布団を発売した取り組み。",
+        "url": "https://www.ikea.com/gb/en/newsroom/corporate-news/ikeas-duvet-that-does-good-goes-on-sale-today-to-raise-money-for-shelter-pubf9e7d250"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Event",
+      "Theme/Sports",
+      "Theme/Retail",
+      "Theme/SocialGood"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "al-a-work-mycelial-patterns-dirty-chairs-back-to-dirt-2026",
+    "title": "aléa work: Mycelial Patterns / Dirty Chairs / Back to Dirt",
+    "summary": "土そのものを型にして椅子を地中で菌糸に育て、菌に染料を分解させて布に模様を出す素材実験",
+    "client": "aléa work (Miriam Josi, Stella Lee Prowse)",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.designboom.com/design/material-agency-alea-work-grows-chairs-underground-fungi-textiles-mycelium-interview/",
+    "thumbnail": "/thumbnails/al-a-work-mycelial-patterns-dirty-chairs-back-to-dirt-2026.jpg",
+    "videoId": "",
+    "overview": "パリ拠点のデザインスタジオ aléa work(Miriam Josi、Stella Lee Prowse)による菌糸体の素材研究。土を型にして廃棄物基材と菌糸から椅子などを地中で育てる「Back to Dirt」、ガラス水槽で育てる「Dirty Chairs」、菌が布の染料を分解して模様を現す「Mycelial Patterns」を展開している。",
+    "background": "二人は2021年にENSCI(パリ)の自然着想デザイン修士課程を終えてスタジオを設立した。同年のBoisbuchet Residency Awardで、実寸の地中培養による最初の椅子を試作した。菌糸の自然色は白く、染色が難しいとされる点も、染料分解という逆転の発想につながっている。",
+    "execution": "Back to Dirtでは土に掘った型へ菌糸と廃棄物基材を入れ、地中で育てて収穫する。Dirty Chairs(例:No.8、2023年)はデニム端材と菌糸を土とガラス水槽で育て、白くなった時点を収穫の目安にする。Mycelial Patternsは、デッドストックの布に菌糸を接種し、菌が染料を消費した跡を模様にする(この項は二次的な情報のみで確認)。",
+    "evaluationImpact": "型・接着剤・加熱を使わず、土と菌の成長で形を作る点が他の素材制作に転用できる。菌を染料の分解に使い、模様を出す発想も新しい。ただし参照記事はインタビューで、個別の新作発表ではない。受賞は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Back to Dirt (designwanted)",
+        "description": "土を型に地元の廃棄物と菌糸体でモノを育てるプロジェクトの紹介記事",
+        "url": "https://designwanted.com/back-to-dirt-uses-local-waste-as-a-resource/"
+      },
+      {
+        "title": "Organic Innovations: Alea Work Studio's Myco-Fabrication Journey",
+        "description": "aléa work の菌糸体製作の取り組みを紹介する記事",
+        "url": "https://www.mycostories.com/post/organic-innovations-alea-work-studio-s-myco-fabrication-journey"
+      },
+      {
+        "title": "Interview with Aléa Work (Boisbuchet)",
+        "description": "素材との交渉という制作姿勢を語るインタビュー",
+        "url": "https://www.boisbuchet.org/?p=22231"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/Product",
+      "Theme/Sustainability",
+      "Theme/Fashion"
+    ],
+    "gateCriterion": "D",
+    "sourceId": "designboom",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "aectual-caracol-locally-printed-recycled-architectural-produ",
+    "title": "Aectual × Caracol: locally printed recycled architectural products (Origami Curve ceiling)",
+    "summary": "建築用リサーチ材を施工地近くのロボット3Dプリンタで製造し、使用後は回収して再印刷する循環型の製造網を築く。",
+    "client": "Aectual / Caracol",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://materialdistrict.com/article/aectual-and-caracol-print-recycled-architectural-products-locally/",
+    "thumbnail": "/thumbnails/aectual-caracol-locally-printed-recycled-architectural-produ.jpg",
+    "videoId": "",
+    "overview": "オランダの3Dプリント建築部材メーカーAectualが、大型ロボット3Dプリンタ(Heron AM)を手がけるCaracolと提携した。リサイクル材から作る建築製品を、需要地に近いCaracolの製造パートナー網で現地印刷できるようにし、使用後は回収して再印刷する。対象製品にはOrigami Curveの天井パネルが挙がっている。ただしこの製品の詳細は、WebSearchでは裏づけを取れていない。",
+    "background": "Aectualは2017年にHans VermeulenとHedwig Heinsmanが設立したアムステルダムの会社で、リサイクル材やバイオ由来素材から建築部材を3Dプリントしてきた。製品を回収し、粉砕して再印刷するCircular Serviceを持つ。これまでlululemon店舗の天井などを手がけた。課題は製造拠点が限られ、輸送負荷や規模拡大に制約があることだった。",
+    "execution": "Caracolが持つ各地の製造パートナー網を使い、Aectualの設計データから現地で建築部材を印刷する。engineering.comはヒューストンの案件から国際展開を始めると伝える。材料はリサイクル素材で、使用後は顧客から回収し、粉砕して新製品として再印刷する。Origami Curveの具体的な仕様や、提携発表日の一次確認は取れていない。",
+    "evaluationImpact": "設計・素材・製造・回収を一つの流れにつなぎ、輸送を減らしつつ循環を地域単位で回す製造モデルを示した点が評価できる。ロボットによる大型3Dプリントは、これまで試作や単発の案件が中心だった。それを建築部材の継続的な供給網に広げる試みとなる。ただし、まだ提携の発表段階で、実際の出荷量や環境負荷の削減効果は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Aectual partners with Caracol to scale circular architecture",
+        "description": "AectualとCaracolの提携を伝える記事",
+        "url": "https://www.engineering.com/aectual-partners-with-caracol-to-scale-circular-architecture/"
+      },
+      {
+        "title": "Aectual Circular (3DPrint.com)",
+        "description": "3Dプリント建築部材を回収・再印刷するAectualの循環サービス",
+        "url": "https://3dprint.com/277882/aectual-circular-allows-3d-printed-architecture-pieces-to-be-recycled/"
+      },
+      {
+        "title": "lululemon × Aectual 3Dプリント天井",
+        "description": "Aectualの3Dプリント天井を店舗に展開した事例",
+        "url": "https://3dadept.com/lululemon-transforms-its-stores-with-aectuals-3d-printed-ceilings-and-storefronts/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Tech/3D",
+      "Form/Product",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "materialdistrict",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "fox-news-wnba-this-wnba-that-2026",
+    "title": "Fox News: WNBA this, WNBA that...",
+    "summary": "Fox NewsのWNBA報道を約3万本の記事とテレビ字幕から分析し、政治色が強まる過程を可視化したデータ記事。",
+    "client": "The Pudding",
+    "agency": "",
+    "categories": [
+      "データクリエイティブ",
+      "メディア発明"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://pudding.cool/2026/11/wnba-politics/",
+    "thumbnail": "/thumbnails/fox-news-wnba-this-wnba-that-2026.jpg",
+    "videoId": "",
+    "overview": "The Pudding(2026年)が公開したデータ記事。依頼メモによると、約30,000本の記事と数千本のテレビ字幕(chyron)を分析し、Fox NewsのWNBA報道が政治化していく様子を示している。ただしWebSearchでは記事本体を確認できず、分析手法や図表の詳細は未確認。",
+    "background": "WebSearchで確認できた周辺情報では、Media Mattersが2026年6月25日から8月11日にFoxのWNBA関連が206本、計13時間超あったと集計している。きっかけはAlyssa ThomasによるCaitlin Clarkへのハードファウルとされる。Dana Perinoが番組内で「週に3〜4回話題にしている」と述べたと報じられている。これはThe Puddingとは別の調査である。",
+    "execution": "メモによれば、報道テキストとテレビ字幕という2種類の大量データを突き合わせ、時系列で語り口がどう変わるかを見せる構成。具体的な分類手法や可視化の形式はWebSearchで確認できなかったため、ここでは記載しない。",
+    "evaluationImpact": "メディア報道の偏りを、事例の引用ではなく大規模なテキスト・字幕データで示す手法は、他のメディア分析にも転用できる可能性がある。一方、記事本体の中身を確認できていないため、手法や表現の新規性は評価しきれない。受賞は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Fox News has spent over 13.5 hours waging WNBA culture war this summer (Media Matters)",
+        "description": "2026年6〜8月のFox News放送のWNBA関連セグメントを集計した別調査。",
+        "url": "https://www.mediamatters.org/fox-news/fox-news-has-spent-over-13-12-hours-waging-wnba-culture-war-summer"
+      },
+      {
+        "title": "How the WNBA became a political prop in the culture wars (NPR)",
+        "description": "WNBAが文化戦争に使われている経緯を扱ったNPRの報道。",
+        "url": "https://npr.org/2026/09/10/nx-s1-5957546/wnba-culture-wars"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/Website",
+      "Theme/Sports",
+      "Theme/Entertainment"
+    ],
+    "gateCriterion": "D",
+    "sourceId": "pudding",
+    "gateTier": "borderline",
+    "discoveryLens": 2
+  },
+  {
+    "id": "inside-out-earth-2026",
+    "title": "Inside Out Earth",
+    "summary": "全地点の標高を海面基準で反転し、海溝が山に、大陸が海に沈む地球を回して見られる3D地図。",
+    "client": "Danielle Carrick",
+    "agency": "",
+    "categories": [
+      "データクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://daniellecarrick.github.io/30-day-map-challenge/day15/",
+    "thumbnail": "/thumbnails/inside-out-earth-2026.jpg",
+    "videoId": "",
+    "overview": "Danielle Carrickが#30DayMapChallengeのDay 15として公開したインタラクティブな地球儀表現。全地点の高さを海面基準で反転(h→−h)し、海溝は山に、大陸は海に沈む。ドラッグで回転、スクロールでズームでき、任意の地点にカーソルを合わせるとその標高を確認できる。",
+    "background": "#30DayMapChallengeは、11月に毎日テーマに沿った地図を作って公開する、参加型のオンライン企画。本作はその15日目の投稿で、作者のGitHub Pages上で公開されている。このお題の正式テーマ名や制作の動機は、参照ページからは確認できていない。",
+    "execution": "海面を0として標高と水深の符号を入れ替え、地形を裏返して3Dの地球に描く。ページの注記によると、色と数値は実際の海面基準のまま保ち、反転した起伏は海洋底の中央値から立ち上げ、強調して表示する。起伏の誇張倍率は画面上のUIで調整でき、初期値は120倍。使用データや実装ツールは確認できていない。",
+    "evaluationImpact": "陸と海を入れ替えるだけで、海底地形の大きさと起伏を直感的に見せる点が分かりやすい。ただし反転自体は既存の地形表現でも見られる発想で、手法の新規性や他の仕事への転用性を示す根拠は、確認できた範囲では乏しい。受賞や外部での評価は確認できていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Tech/3D",
+      "Form/Website"
+    ],
+    "gateCriterion": "D",
+    "sourceId": "",
+    "gateTier": "borderline",
+    "discoveryLens": 2
+  },
+  {
     "id": "2878-vhils-marcelo-cidade-2026",
     "title": "2878（Vhils × Marcelo Cidade）",
     "summary": "植民地時代の建物を救急用の銀色保温シートで包み、建物を保護される患者に読み替えた公共空間の介入作品",
