@@ -28921,5 +28921,209 @@
         "desc": "ジャズピアニスト12人の弾き癖を学習し、その奏者らしい続きを作るピアノAI。"
       }
     ]
+  },
+  {
+    "id": "2026-11-20-1",
+    "date": "2026-11-20",
+    "title": "港の係船柱を骨格アニメへ",
+    "pattern": "文脈×技術",
+    "seed": "Made of Rotterdam（Wooning）は港の係船柱やクレーンを日用品に読み替えた。UniMateなら骨格の違うものを1モデルで動かせるので、クレーンやロープを生き物のように歩かせる港の擬人化映像もできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "made-of-rotterdam-wooning-david-derksen-2026",
+        "title": "Made of Rotterdam（Wooning × David Derksen）",
+        "desc": "ロッテルダム港の係船柱やクレーンを、浴室・キッチン小物7点の限定コレクションにした企画。"
+      },
+      {
+        "type": "tech",
+        "id": "unimate",
+        "title": "UniMate",
+        "desc": "文章で指示するだけで、人や動物など骨格が違うキャラクターを1つのAIで動かせる技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-20-2",
+    "date": "2026-11-20",
+    "title": "書体の系譜をバンド演奏に",
+    "pattern": "文脈×技術",
+    "seed": "MLBの書体復刻（Major League Baseball brand refresh）の系譜を、Basic Pitchで音に変えられるかも。年代ごとの球場の歓声や応援歌をMIDI化し、書体が変わるたび旋律も変わる音のブランド史になりそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "major-league-baseball-brand-refresh-mlb-franklin-clarendon-b",
+        "title": "Major League Baseball brand refresh（MLB Franklin / Clarendon / Block ほか5書体）",
+        "desc": "野球史に実在した書体を復刻し、MLBのブランドを書体の歴史で組み直した取り組み。"
+      },
+      {
+        "type": "tech",
+        "id": "basic-pitch",
+        "title": "Basic Pitch",
+        "desc": "音楽ファイルを、複数の楽器が鳴っていてもMIDIデータに変換できる自動採譜AI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-20-3",
+    "date": "2026-11-20",
+    "title": "逆再生の自撮りを手の世界へ",
+    "pattern": "文脈×技術",
+    "seed": "Doveの Reverse Selfie は加工を巻き戻して見せた。LynnReal-Handで、加工アプリを操作する指の動きから「触る前の素の顔」を生成し、指が離れるたび本来の姿へ戻る映像にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "dove-reverse-selfie",
+        "title": "Reverse Selfie",
+        "desc": "加工した自撮りを逆再生で元に戻し、SNS加工が少女の自己肯定感に与える影響を描いたフィルム。"
+      },
+      {
+        "type": "tech",
+        "id": "lynnreal-hand",
+        "title": "LynnReal-Hand",
+        "desc": "最初の画像と手の動きの映像から、手で物を触り動かす様子を生成する世界モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-20-4",
+    "date": "2026-11-20",
+    "title": "海上バーの音を3層に分解",
+    "pattern": "文脈×技術",
+    "seed": "Tecateの Gulf of Mexico (Bar) は地図をメディア化した。ComfyUI-DBSで現地バーの映像を音楽・効果音・セリフに分け、波音だけ・会話だけを地図上のピンごとに聴ける地図体験にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "gulf-of-mexico-bar-2025",
+        "title": "Gulf of Mexico (Bar)",
+        "desc": "海上に実在のバーを作りGoogleマップに登録し、地図自体を広告媒体にしたTecateの施策。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-dbs",
+        "title": "ComfyUI-DBS",
+        "desc": "映画やCMの音声を音楽・効果音・セリフの3つに分けるComfyUIのノード。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-20-5",
+    "date": "2026-11-20",
+    "title": "舌で踊るボリュメトリックMV",
+    "pattern": "技術×技術",
+    "seed": "MouthPadの舌操作と、BE:FIRSTのMVで使われたキヤノンのボリュメトリックビデオを組み合わせたら、体を動かせない人が舌でカメラ視点を操り、3Dダンスを自由に見回す鑑賞体験になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "mouthpad-vox",
+        "title": "MouthPad (第2世代) / VOX",
+        "desc": "舌で操作するマウスピース型デバイスと、皮膚に貼る音声入力デバイス。"
+      },
+      {
+        "type": "case",
+        "id": "be-first-i-want-you-back-music-video-2025",
+        "title": "BE:FIRST「I Want You Back」Music Video",
+        "desc": "メンバーを3Dデータ化し、あらゆる角度から見られるダンス映像にしたMV。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-20-6",
+    "date": "2026-11-20",
+    "title": "歌詞の楽譜を人形が演じる",
+    "pattern": "技術×技術",
+    "seed": "YuE2が出す「人が読める楽譜」をPuppetLoomの2Dキャラに読ませたら、デスクトップ上のキャラが楽譜どおり口パクし呼吸する歌手になり、楽譜を直すと歌い方も変わる仕組みができそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "yue2",
+        "title": "YuE2",
+        "desc": "歌詞とスタイルから、人が直せる楽譜を経由して曲を作る音楽生成AI。"
+      },
+      {
+        "type": "tech",
+        "id": "puppetloom",
+        "title": "PuppetLoom",
+        "desc": "レイヤー分けしたキャラ画像を自動で動かせる状態にし、デスクトップで呼吸や口パクをさせるツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-20-7",
+    "date": "2026-11-20",
+    "title": "セリフ空間を3Dで指し示す",
+    "pattern": "技術×技術",
+    "seed": "Sonic Stageの立体音響と、LEGOの「言葉で3D空間の物を指せる」階層理解をつなげたら、「あの花瓶の左の声」と言うだけで音の定位が動く、視覚に頼らない空間ガイドになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "sonic-stage",
+        "title": "Sonic Stage",
+        "desc": "セリフ中心の動画を、見えにくい人にも場面が分かる立体音響へ自動変換するシステム。"
+      },
+      {
+        "type": "tech",
+        "id": "lego",
+        "title": "LEGO",
+        "desc": "3D空間の写真から物の部分と全体の関係を理解し、言葉で物や場所を指せる研究技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-20-8",
+    "date": "2026-11-20",
+    "title": "膨らむ民主主義の動作取得",
+    "pattern": "文脈×技術",
+    "seed": "Pump for Democracy は空気を送り続ける労力を体感させた。CYANPUPPETSで来場者のポンプ動作を全身取得し、全員の動きを重ねた巨大な群衆アニメとして像の隣に映すと、手間の総量が見えそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "pump-for-democracy-2026",
+        "title": "Pump for Democracy",
+        "desc": "民主の女神像を膨張式にし、空気を送り続けないと潰れる仕掛けで民主主義の維持の手間を体感させる展示。"
+      },
+      {
+        "type": "tech",
+        "id": "cyanpuppets-1b-parameter-ai-motion-capture",
+        "title": "CYANPUPPETS 1B-parameter AI Motion Capture",
+        "desc": "ウェブカメラ2台や動画から、全身・顔・指の動きをリアルタイムで読み取るモーキャプ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-20-9",
+    "date": "2026-11-20",
+    "title": "文字26個を動きでつなぐ",
+    "pattern": "文脈×技術",
+    "seed": "The 26 Signs は乳がんのサインを26文字に割り当てた。Length-varying Neural Motion Stitchingで文字ごとの短い動作をつなぎ、A〜Zを順に踊ると体のセルフチェックが一続きの振付で覚えられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "alexander-monro-hospital-breast-care-foundation-the-26-signs",
+        "title": "The 26 Signs",
+        "desc": "乳がんの兆候を26文字に割り当て、若い世代にしこり以外のサインを伝えた啓発キャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "length-varying-neural-motion-stitching-via-cluster-transitio",
+        "title": "Length-varying Neural Motion Stitching via Cluster Transition Graph",
+        "desc": "2つの動作クリップを、つなぎ目の長さを自動で決めて自然につなぐ手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-20-10",
+    "date": "2026-11-20",
+    "title": "議事録の沈黙を消す楽器",
+    "pattern": "転用",
+    "seed": "Audionautは音声編集ソフトだが、本来の使い方ではなく、会議の録音から「誰も話さなかった沈黙」だけを並べて曲にする楽器として使えるかも。AIエージェントに編集を任せ、沈黙の長さを可視化する。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "audionaut",
+        "title": "Audionaut",
+        "desc": "AIエージェントからMCP経由で編集を指示できる、無料のオープンソース音声編集ソフト。"
+      }
+    ]
   }
 ]
