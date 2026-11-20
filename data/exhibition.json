@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "statusAsOf": "2026-11-19",
+  "statusAsOf": "2026-11-20",
   "items": [
     {
       "id": "2026-museum-of-art-kochi-akiko-nakayama-fluid-form",
@@ -361,7 +361,7 @@
       "city": "港区",
       "startDate": "2026-11-20",
       "endDate": "2026-11-23",
-      "status": "upcoming",
+      "status": "ongoing",
       "admission": "無料（4F 畳の視聴プログラムは1回1,000円・要予約）",
       "tags": [
         "media_art",
@@ -1125,7 +1125,7 @@
       "city": "港区",
       "startDate": "2026-11-20",
       "endDate": "2027-03-22",
-      "status": "upcoming",
+      "status": "ongoing",
       "admission": "一般2,500円（前売2,300円）/U25 1,100円（前売900円）/小中高生550円（前売350円）/未就学児無料",
       "tags": [
         "media_art",
