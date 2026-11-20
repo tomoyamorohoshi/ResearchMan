@@ -1,5 +1,155 @@
 [
   {
+    "id": "longcat-video-avatar-1-6",
+    "title": "LongCat-Video-Avatar 1.6",
+    "org": "Meituan LongCat Team",
+    "type": "Research",
+    "domains": [
+      "GenVideo",
+      "Motion/Body"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "1枚の人物写真と音声から、口パクと身振りが同期したトーキングアバター動画を生成するオープンな動画生成モデルの最新版。10分を超える長尺でも顔や体の崩れが起きにくくなった。",
+    "point": "1枚の顔写真と音声ファイルだけで、その人が話したり歌ったりする動画を作れるモデルの新バージョンです。これまでのこの種の技術は、数十秒を超えると顔つきが少しずつ別人のようになったり、口の形がちらついたりしがちでしたが、1.6では10分を超える長さでも顔と体の形を保てると報告されています。広告・体験づくりでは、ブランドキャラクターや架空の案内役が長尺のトークや歌を披露する映像、展示会や店頭サイネージで流し続けるバーチャル接客、ライブ配信風の企画映像などの試作に使えそうです。音声さえ差し替えれば同じキャラクターで多言語版を量産する、といった発想も考えられます。重みとコードが公開されているので、自社PCやクラウドGPUで試せる点も実験しやすい利点です。ただし商用利用の可否は注記が食い違っているため、案件で使う前に確認が必要です。",
+    "detail": "仕組みは、動画生成用の大きなAIモデル（LongCat-Video）に「音声に合わせて顔と体を動かす」追加学習を施したものです。1.6では1.5と同じ構造のまま、学習後の調整方法を見直して、長い動画を作るときに小さなズレが積み重なって崩れてしまう問題を減らしています。さらに「DMD」「OPSD」という2種類の小型追加パーツ（LoRA）を組み合わせると、少ない計算回数（8ステップ）で速く生成でき、重さを半分程度に抑えるINT8版も用意されています。\n\n従来の1.5と比べて、口の動きが音声に自然に合い、手で物を扱う動きや表情・頭の動きも豊かになったとされます。プロジェクトページには、音楽・パフォーマンス・ライブ配信・アニメなど7種類の例や、OmniHuman-2.0、HeyGen、Kling Avatar 2.0との並べ比較動画があり、実際の出来を映像で確認できます。メーカー自身の人手評価では2位という位置づけです。\n\n使うには、GitHubのコードとHugging Faceの重み（本体は約30GB、INT8版は約15GB）が必要で、公式デモは2枚のGPUで動かす設定です。ComfyUIでの対応は1.6ではまだなく、1.5までの有志ノードのみのため、Pythonでの実行スキルが要ります。ライセンスはREADME上MITですが、プロジェクトページに学術目的限定の注記があるため、商用案件では要確認です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "GitHubのREADMEではMITライセンスと記載。一方プロジェクトページには「生成物は学術目的のみ・商用利用不可」との注記があり、商用利用前に要確認。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/meituan-longcat/LongCat-Video"
+      },
+      {
+        "kind": "project",
+        "url": "https://meigen-ai.github.io/LongCat-Video-Avatar-1.6-Page/"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/meituan-longcat/LongCat-Video-Avatar-1.6"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/longcat-video-avatar-1-6.jpg",
+    "relatedWorks": [
+      {
+        "title": "LongCat-Video",
+        "description": "Meituan公開のベースとなる動画生成モデル（テキスト・画像から動画を生成）。",
+        "url": "https://github.com/meituan-longcat/LongCat-Video"
+      },
+      {
+        "title": "LongCat-Video-Avatar 1.6 モデル重み",
+        "description": "1.6のチェックポイントとLoRAの配布ページ。",
+        "url": "https://huggingface.co/meituan-longcat/LongCat-Video-Avatar-1.6"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "geiru-context-suite",
+    "title": "Geiru Context Suite",
+    "org": "roycho87（個人開発者）",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "ComfyUIでMiniMax H3の長尺動画を作るときの「だんだん画質や雰囲気が劣化する」問題を抑える、9ノード入りのカスタムノード集。",
+    "point": "AI動画は短いクリップをつなげて長くしていくと、回を重ねるごとに色味や顔つきが少しずつ崩れていく問題があります。このノード集は、最初のクリップの最初のコマ（キーストーン）を、後続のすべてのクリップに「基準」として引き戻し続けることで、崩れの積み重なりを防ぎます。2分間の動画を重なり合う16個の窓に分けて一気に描く機能もあり、メモリは窓1つ分で済みます。広告・体験づくりでは、ブランドの世界観や主役キャラクターを崩さない長尺のミュージックビデオ風映像、ショートドラマ、展示用の延々と流れるループ映像などの制作に役立ちそうです。シーンごとに「採用・撮り直し・巻き戻し」を選べるため、監督が一場面ずつ確認しながら作る流れにも向いています。",
+    "detail": "仕組みは大きく3つです。まず「Keystone」が最初のクリップの最初のコマ（必要なら終わりのコマも）を、続く各ショットの下書き（潜在表現）に埋め込みます。次に「Late Lock」が、その情報を生成の何段階目で効かせるかを調整し、「Context Noise」が埋め込んだコマにわざとノイズを混ぜて、つなぎ目で一字一句コピーしてしまうのを防ぎます。さらに「Hybrid Windows」は長い動画を重なり合う窓に分けて1回の処理で描き、「Window Director」は窓ごとに承認や撮り直し、巻き戻し、ブレンドを行えます。\n\n従来のように前のクリップの最後のコマだけを引き継ぐ方法では、ズレが連鎖して劣化しますが、この方法は常に最初の基準に戻れる点が違います。READMEには50クリップの比較画像と、2分間の描画例の動画が載っています。\n\n使うには、ComfyUIと、MiniMax H3を動かせる環境が必要です。追加のモデルファイルは不要で、ComfyUI Managerからの導入かリポジトリのクローンで入れられます。Hybrid Windowsは、H3用のコンテキストウィンドウ機能を含む比較的新しいComfyUIが要ります。クリップ長は3の倍数のコマ数（141、192、243など）にすると音ズレを避けられます。GPL-3.0です。",
+    "license": {
+      "spdx": "GPL-3.0",
+      "commercial": "ok",
+      "note": "GPL-3.0。ノード自体は商用利用可だが、改変して配布する場合はソース公開義務あり。生成物の扱いは利用するH3モデル側の条件に従う。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/roycho87/geiru_context_suite"
+      },
+      {
+        "kind": "post",
+        "url": "https://comfyui-wiki.com/en/news/2026-11-12-geiru-context-suite"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/geiru-context-suite.jpg",
+    "relatedWorks": [
+      {
+        "title": "HR Endless Sampler",
+        "description": "MiniMax H3で16GB VRAMでも任意の長さの動画を作る有志ノード。",
+        "url": "https://comfyui-wiki.com/en/news/2026-08-31-hr-endless-sampler"
+      },
+      {
+        "title": "LTX Director 2.0",
+        "description": "ComfyUI上でタイムライン編集やIC-LoRAを扱う動画編集ノード。",
+        "url": "https://comfyui-wiki.com/en/news/2026-06-24-ltx-director-20"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "wevisone-vl",
+    "title": "WeVisOne-VL",
+    "org": "Tencent WeChat Vision Team",
+    "type": "Research",
+    "domains": [
+      "CreatorTools",
+      "GenVideo"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "画像と言葉（例:「人物」）を入れると、位置の枠・切り抜きマスク・アルファマット（半透明の縁を含む切り抜き）を1つのモデルで返す視覚言語モデル。11月にComfyUI本体でも使えるようになった。",
+    "point": "「この画像の人物を切り抜いて」と文章で頼むだけで、物体の位置、切り抜き用のマスク、髪の毛のような半透明の縁まで含めたアルファマットを1つのモデルで出せます。従来はSAMのような分割専用モデルや別のマット用ツールを組み合わせる必要がありましたが、これ1つでできます。写っていない物を頼むと、でたらめに枠を出さず「None」と返す点も実用的です。広告・体験づくりでは、実写素材の合成、背景の差し替え、商品や人物の切り出し、映像から指定した物だけを消す・変える前処理などの下ごしらえを、言葉だけで素早く進められそうです。2Bの軽量版は圧縮すると約3GBで、手元のPCでも試しやすいサイズです。ただし1枚ずつの処理で、動画の追跡には使えません。",
+    "detail": "仕組みは、画像と文章を理解するAI（Qwen3-VL）に、約960万パラメータの小さなマスク生成部を付け足したものです。位置は座標を表す特別な文字列として出力し、「ここの形を描いて」という合図の文字が出たときだけマスク生成部が動いて、切り抜きやアルファマットを作ります。約1億枚の画像で、教師あり学習と強化学習を段階的に行ったとされます。\n\n従来と違うのは、検出・指示した物の特定・数える・文字読み取り・切り抜き・半透明マットまでを1つのモデルがこなす点です。READMEの例では、入力写真から人物のアルファマットと切り抜き画像を作る様子が確認でき、対象が写っていないときは「None」を返します。ComfyUIでは本体に「WeVisOne-VL Detect」ノードが追加され、マスク・枠・点・テキストを出力できます。\n\n使うには、GitHubのコードを取得してPython 3.10環境に導入する方法のほか、ComfyUI最新のmasterとHugging Faceの再配布版の重み（2B・int8で約2.9GB、4B・bf16で約9.7GB）をtext_encodersフォルダに置く方法があります。Hugging Faceにはブラウザで試せるデモもあります。注意点として、動画の追跡には使えず、強い隠れや透明物では縁がずれることがあります。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "ok",
+      "note": "コードはApache-2.0。第三者コンポーネントは元のライセンスに従う。モデル重みの条件はHugging Faceのページで確認のこと。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Tencent/WeVisOne-VL"
+      },
+      {
+        "kind": "project",
+        "url": "https://tencent.github.io/WeVisOne-VL"
+      },
+      {
+        "kind": "paper",
+        "url": "https://huggingface.co/papers/2610.31329"
+      },
+      {
+        "kind": "post",
+        "url": "https://comfyui-wiki.com/en/news/2026-11-09-wevisone-vl"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/wevisone-vl.jpg",
+    "relatedWorks": [
+      {
+        "title": "Segment Anything (SAM)",
+        "description": "画像の分割に特化したMetaのモデル。WeVisOne-VLは言葉で指定して分割も検出もこなす。",
+        "url": "https://github.com/facebookresearch/segment-anything"
+      },
+      {
+        "title": "WeVisOne-VL ComfyUI対応記事",
+        "description": "ComfyUI本体でのノードの使い方と必要ファイル。",
+        "url": "https://comfyui-wiki.com/en/news/2026-11-09-wevisone-vl"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "open4dgs",
     "title": "Open4DGS",
     "org": "Arizona State University NEM Program（Contrast Media Labs 実装協力）",
