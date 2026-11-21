@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "statusAsOf": "2026-11-20",
+  "statusAsOf": "2026-11-21",
   "items": [
     {
       "id": "2026-museum-of-art-kochi-akiko-nakayama-fluid-form",
@@ -1313,7 +1313,7 @@
       "city": "中央区",
       "startDate": "2026-11-21",
       "endDate": "2026-11-29",
-      "status": "upcoming",
+      "status": "ongoing",
       "admission": "平日800円/土日祝1000円（高校生以上）",
       "tags": [
         "installation",
