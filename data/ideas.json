@@ -29125,5 +29125,215 @@
         "desc": "AIエージェントからMCP経由で編集を指示できる、無料のオープンソース音声編集ソフト。"
       }
     ]
+  },
+  {
+    "id": "2026-11-21-1",
+    "date": "2026-11-21",
+    "title": "ゲーム課金を可視化する4D追跡",
+    "pattern": "文脈×技術",
+    "seed": "Sparkassenの「Unhide The Price」は課金の実質価格を見えるようにした。R4DGS / ReferGaussianで「手前で走っている人」のように指定して動くシーンから対象を追えば、ゲーム実況で課金アイテムが出た瞬間だけユーロ換算が浮かぶ映像ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "deutscher-sparkassen-und-giroverband-e-v-s-communicati-on-services-gmbh-unhide-the-price",
+        "title": "Unhide The Price",
+        "desc": "ゲーム内通貨の金額をユーロに換算し、課金の実質価格が分かる無料ツール。"
+      },
+      {
+        "type": "tech",
+        "id": "r4dgs-refergaussian",
+        "title": "R4DGS / ReferGaussian",
+        "desc": "動く3D映像から「手前で走っている人」など言葉で指定した対象を追跡して切り出せる手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-21-2",
+    "date": "2026-11-21",
+    "title": "走る恐怖を再現する世界モデル",
+    "pattern": "文脈×技術",
+    "seed": "Alma Pretaの「Running In Fear」は、走るだけで疑われる恐怖を可視化した。ForgeWMの操作に反応して映像が生成され続ける世界モデルなら、自分が走る操作をするほど街の視線が変わる体験で、疑われる側の視点を体験できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "alma-preta-running-in-fear",
+        "title": "Running In Fear",
+        "desc": "黒人ランナーが防弾チョッキで走り、走るだけで疑われる恐怖を見せた施策。"
+      },
+      {
+        "type": "tech",
+        "id": "forgewm",
+        "title": "ForgeWM",
+        "desc": "キーボード等の操作に反応して次の映像をAIが生成し続ける世界モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-21-3",
+    "date": "2026-11-21",
+    "title": "溶ける文字を3Dシーンに拡張",
+    "pattern": "文脈×技術",
+    "seed": "Helsingin Sanomatの「Climate Crisis」は海氷データで文字が溶ける可変フォントだった。ComfyUI-SpEdEでGaussian Splatの街から建物や氷を少しずつ削除・差し替えれば、年を進めるほど風景が消えていく『溶ける3D写真』になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "climate-crisis-2021",
+        "title": "Climate Crisis（気候危機を可視化する可変フォント）",
+        "desc": "北極海氷データに合わせて文字が溶けていく可変フォントの紙面広告。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-spede",
+        "title": "ComfyUI-SpEdE (Splat Edit Engine)",
+        "desc": "3Dスキャンのシーン内で物体を選んで削除・差し替えできるComfyUIノード群。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-21-4",
+    "date": "2026-11-21",
+    "title": "記憶ラジオを自分の音で学習",
+    "pattern": "文脈×技術",
+    "seed": "ニチイ学館の「RADIO TIME MACHINE」はダイヤルで記憶の時代を呼び戻した。Iblisに家族の手持ち音源フォルダを学習させれば、その人だけの『青春の音』スタイルで新曲が生まれ、思い出の続きを聴ける仕組みになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "radio-time-machine",
+        "title": "RADIO TIME MACHINE",
+        "desc": "ダイヤルで1950〜2025年の記憶を再現し認知症ケアに使うラジオ。"
+      },
+      {
+        "type": "tech",
+        "id": "iblis",
+        "title": "Iblis",
+        "desc": "文章から自分のGPUで曲を作り、手持ち音源のスタイルも学習できるアプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-21-5",
+    "date": "2026-11-21",
+    "title": "弦シンセ×リアルタイム分離",
+    "pattern": "技術×技術",
+    "seed": "HS-TasNetで音を23ミリ秒でリアルタイム分離し、各パートをJAS-I Khorloの円形の弦を弾く回転ばちに割り当てたら、ライブ演奏が勝手にガラス円筒の弦楽器へ作り替わる演出ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "hs-tasnet",
+        "title": "HS-TasNet",
+        "desc": "ボーカルやドラムを約23ミリ秒でリアルタイムに分離する音源分離モデル。"
+      },
+      {
+        "type": "tech",
+        "id": "jas-i-khorlo",
+        "title": "JAS-I Khorlo",
+        "desc": "円筒の周りの弦を回転するばちで弾く無料の物理モデリングシンセ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-21-6",
+    "date": "2026-11-21",
+    "title": "文字で動く人体をロボ皮膚に",
+    "pattern": "技術×技術",
+    "seed": "ARDYでテキスト指示から人体モーションを生成し続け、その動きの接触予定部位をMirror Skinのロボット皮膚に映したら、見えない振付が触れる前に肌へ現れる身体インターフェースができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ardy",
+        "title": "ARDY",
+        "desc": "テキスト指示で人体の3D動作を約33ミリ秒ごとに生成し続けるAIモデル。"
+      },
+      {
+        "type": "tech",
+        "id": "mirror-skin",
+        "title": "Mirror Skin",
+        "desc": "ロボットの皮膚に、これから触れる人の体の部位を映して予告する表示手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-21-7",
+    "date": "2026-11-21",
+    "title": "キャラの骨組みを3D世界へ",
+    "pattern": "技術×技術",
+    "seed": "Rev2Dでエージェントが2Dキャラの骨組みを作り、Recursive Code World Modelsで1枚絵から編集可能な3D世界を組み上げれば、キャラが自分の住む部屋を自分で建てて動く自走型の世界ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "rev2d",
+        "title": "Rev2D",
+        "desc": "2Dキャラの動かす骨組みをAIエージェントが読み書きできるOSSツール。"
+      },
+      {
+        "type": "tech",
+        "id": "recursive-code-world-models",
+        "title": "Recursive Code World Models (RCWM)",
+        "desc": "1枚の絵から編集できる3D世界をAIがコードで再帰的に組む研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-21-8",
+    "date": "2026-11-21",
+    "title": "電柱広告を4Dで探す遊び",
+    "pattern": "文脈×技術",
+    "seed": "講談社の「ちいかわ電柱広告」はレア柄探しで街を回遊させた。WeVisOne-VLの言葉指定の切り抜きで、街の動画から「セイレーン柄の電柱」だけを抜き出して見せる、AR的な探索ゲームにできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-1vr47sh-2026",
+        "title": "『ちいかわ』コミックス重版記念 電柱広告（セイレーン編）",
+        "desc": "池袋の電柱20本にレア柄を含む25種を掲出し回遊させたOOH。"
+      },
+      {
+        "type": "tech",
+        "id": "wevisone-vl",
+        "title": "WeVisOne-VL",
+        "desc": "言葉を入れると枠・切り抜き・半透明縁のマスクを返す視覚言語モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-21-9",
+    "date": "2026-11-21",
+    "title": "ボーカル分離を花火の演出へ",
+    "pattern": "転用",
+    "seed": "Ultimate Vocal Removerは本来ボーカル除去のアプリだが、STAR ISLANDの花火の爆発音から「歓声だけ」を分離して取り出し、観客の声だけで次の花火とドローンの配置を決める参加型演出に転用できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "ultimate-vocal-remover",
+        "title": "Ultimate Vocal Remover (UVR)",
+        "desc": "AIでボーカルと楽器を分離する無料デスクトップアプリ。"
+      },
+      {
+        "type": "case",
+        "id": "star-island-2025-2025",
+        "title": "STAR ISLAND 2025",
+        "desc": "花火とドローン計3,600機が夜空に絵を描く未来型花火イベント。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-21-10",
+    "date": "2026-11-21",
+    "title": "工芸の手を採譜して再解釈",
+    "pattern": "文脈×技術",
+    "seed": "Craft x Tech Tokaiは職人技を海外デザイナーが再解釈した。Omnizartでの採譜のように、職人の作業音から拍やリズムを書き起こして『工芸の楽譜』にすれば、異分野の人が技を読み解く共通言語になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "craft-x-tech-tokai-project-2026",
+        "title": "Craft x Tech Tokai Project",
+        "desc": "東海の職人と海外デザイナーが協働し、職人技を再解釈して展示した企画。"
+      },
+      {
+        "type": "tech",
+        "id": "omnizart",
+        "title": "Omnizart",
+        "desc": "1曲からメロディ・ドラム・コード・ビートまで採譜するOSSツール。"
+      }
+    ]
   }
 ]
