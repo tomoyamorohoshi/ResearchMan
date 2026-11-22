@@ -29335,5 +29335,209 @@
         "desc": "1曲からメロディ・ドラム・コード・ビートまで採譜するOSSツール。"
       }
     ]
+  },
+  {
+    "id": "2026-11-22-1",
+    "date": "2026-11-22",
+    "title": "忘れるロボット給仕の注文体験",
+    "pattern": "文脈×技術",
+    "seed": "The Impossible Orderの「注文できない混乱」を、ProActの記憶と状況判断で自分から話しかけるロボットに担わせ、注文を少しずつ忘れ言い間違える給仕と向き合う体験にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "the-impossible-order-2024",
+        "title": "The Impossible Order",
+        "desc": "モールの仮想レストランで注文し、アルツハイマー病患者の混乱を追体験するキャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "proact",
+        "title": "ProAct",
+        "desc": "人と話しながら声と身ぶりを生成し、自分から話しかけるヒューマノイド向けの対話システム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-22-2",
+    "date": "2026-11-22",
+    "title": "紙幣を3Dで描き直すWeb署名",
+    "pattern": "文脈×技術",
+    "seed": "Change The Billの描き直した20ドル札を、Three.js Native Gaussian Splat Rendererでブラウザ上の立体として見せ、手に取るように傾けながら署名できる展示にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "native-women-s-association-of-canada-change-the-bill",
+        "title": "Change The Bill",
+        "desc": "先住民女性が登場しない紙幣を、先住民アーティストが描き直した取り組み。"
+      },
+      {
+        "type": "tech",
+        "id": "three-js-native-gaussian-splat-renderer",
+        "title": "Three.js Native Gaussian Splat Renderer",
+        "desc": "Three.jsの標準機能だけで、写真から作った実写の3D空間をブラウザに描けるようになった。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-22-3",
+    "date": "2026-11-22",
+    "title": "検閲下の試合を音と映像で生成",
+    "pattern": "文脈×技術",
+    "seed": "A Mother's Commentaryの「解説席から語りかける」型を、LTX-2の音声と映像の同時生成で拡張し、報道が封じられた国の試合を母の声つきの架空中継として世界に流せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "reporters-without-borders-a-mothers-commentary",
+        "title": "A Mother's Commentary",
+        "desc": "収監された息子へ、母がサッカー中継の解説席から生放送で語りかけた実話の訴え。"
+      },
+      {
+        "type": "tech",
+        "id": "ltx-2",
+        "title": "LTX-2",
+        "desc": "音声と映像を同時に作れる、重みまで全公開のオープンソース基盤モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-22-4",
+    "date": "2026-11-22",
+    "title": "巨大な手の像を瞬時に3D化",
+    "pattern": "文脈×技術",
+    "seed": "Cheetle In Cheadleの巨大な手の像を、PCD Splatterで建設前後のレーザースキャンから学習なしで即座にスプラット化し、ファンが各地で像を「撮って足せる」仕組みにできそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "cheetos-cheetle-in-cheadle",
+        "title": "Cheetle In Cheadle",
+        "desc": "チートスの粉をCheetleと名付け、同音の地名の集落に巨大な手の像を建てた施策。"
+      },
+      {
+        "type": "tech",
+        "id": "pcd-splatter",
+        "title": "PCD Splatter (Point Cloud Density Splatter)",
+        "desc": "レーザースキャンの点群を、AI学習なしでその場でガウシアンスプラットに変えるBlenderアドオン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-22-5",
+    "date": "2026-11-22",
+    "title": "ペンギン行進を手書きMVに",
+    "pattern": "文脈×技術",
+    "seed": "Protest March of the Penguinsのライブ配信を、Vocaloid-Style MV Pipelineで抗議のシュプレヒコールを歌詞にした手書きMVへ自動変換し、笑える抗議歌として拡散できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "penguins-international-protest-march-of-the-penguins",
+        "title": "Protest March of the Penguins",
+        "desc": "ペンギンの年次移動を関税への抗議デモに見立てたライブストリーム活動。"
+      },
+      {
+        "type": "tech",
+        "id": "vocaloid-style-mv-pipeline",
+        "title": "Vocaloid-Style MV Pipeline",
+        "desc": "曲と歌詞から手書き風の歌詞MVを自動で作るClaude Code用の雛形。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-22-6",
+    "date": "2026-11-22",
+    "title": "スウィングの跳ねを手に伝える",
+    "pattern": "技術×技術",
+    "seed": "SwingScribeが読み取ったジャズソロの跳ねたリズムを、DualSense Haptic Designerのトリガーの手応えに写せば、譜面を見ずに「スウィングの重心」を指で覚える教材になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "swingscribe",
+        "title": "SwingScribe",
+        "desc": "ジャズ録音のソロを抜き出し、跳ねるリズムを読みやすい譜面に起こす無料ソフト。"
+      },
+      {
+        "type": "tech",
+        "id": "dualsense-haptic-designer",
+        "title": "DualSense Haptic Designer",
+        "desc": "PS5コントローラーの振動やトリガーの手応えを設計できるツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-22-7",
+    "date": "2026-11-22",
+    "title": "小型ロボ視点の街を夜に点灯",
+    "pattern": "技術×技術",
+    "seed": "Microduckの低い目線で歩き回って撮った街並みをスプラット化し、StarLightGSでUE5の照明を焚き直せば、25cmの視点から見る「夜の街」を後付けで作れそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "microduck",
+        "title": "Microduck",
+        "desc": "体重800g・全長25cmの、歩行やボール蹴りができる二足歩行ロボット。"
+      },
+      {
+        "type": "tech",
+        "id": "starlightgs",
+        "title": "StarLightGS",
+        "desc": "ガウシアンスプラットをUE5のライトで照らし直せるオープンソースのプラグイン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-22-8",
+    "date": "2026-11-22",
+    "title": "工場の音を楽譜にする",
+    "pattern": "転用",
+    "seed": "MT3は楽器の採譜モデルだが、工場や駅の機械音を入れて「ドラムはプレス機、ピアノは換気扇」のように別トラックの楽譜にし、働く音を演奏曲として公演できるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "mt3",
+        "title": "MT3 (Multi-Task Multitrack Music Transcription)",
+        "desc": "1本の音源から複数の楽器パートを別々のMIDIとして書き起こすAIモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-22-9",
+    "date": "2026-11-22",
+    "title": "VR公園を歩く文字指示の住人",
+    "pattern": "技術×技術",
+    "seed": "Spatialographyのように記録した公園のスプラット空間へ、Mocara for Unreal Engineの文章だけで動くキャラを置けば、「3歩進んで振り返る」住人がいるVR作品にできるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "spatialography",
+        "title": "Spatialography",
+        "desc": "実在の公園や滝をスプラットで記録し、VRで歩ける作品にしたVRChatワールド。"
+      },
+      {
+        "type": "tech",
+        "id": "mocara-for-unreal-engine",
+        "title": "Mocara for Unreal Engine",
+        "desc": "文章を打つだけでUE5内にキャラクターアニメを生成するエディタ拡張。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-22-10",
+    "date": "2026-11-22",
+    "title": "棚田の宿を四季ごと素材化",
+    "pattern": "文脈×技術",
+    "seed": "ウミトタの棚田と海に挟まれた古民家を季節ごとにスプラットで記録し、Gaussian Splat to Blender Nodesで編集可能な形に直せば、宿に泊まれない季節の景色も作品素材になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2019-te04",
+        "title": "ウミトタ",
+        "desc": "豊島の棚田と海に挟まれた古民家を再生した、一棟貸しの宿。"
+      },
+      {
+        "type": "tech",
+        "id": "gaussian-splat-to-blender-nodes",
+        "title": "Gaussian Splat to Blender Nodes (World to World Mapping)",
+        "desc": "スプラットで撮った景色をAIとBlenderの編集できる形に作り直すツール。"
+      }
+    ]
   }
 ]
