@@ -79345,7 +79345,10 @@
       "Form/Film",
       "Theme/Mobility"
     ],
-    "thumbnail": "/thumbnails/renault-argentina.jpg"
+    "thumbnail": "/thumbnails/renault-argentina.jpg",
+    "quarantined": true,
+    "quarantineReason": "link-dead(二重確認済): 到達不能（Jina救済も失敗）: https://www.autoweb.com.ar/?p=44139",
+    "quarantineTs": "2026-11-22T09:38:53.790Z"
   },
   {
     "year": "2025",
@@ -104253,7 +104256,10 @@
       "Theme/SocialGood",
       "Form/Film"
     ],
-    "thumbnail": "/thumbnails/paws-ny-the-bridge.jpg"
+    "thumbnail": "/thumbnails/paws-ny-the-bridge.jpg",
+    "quarantined": true,
+    "quarantineReason": "link-dead(二重確認済): 404: https://pawsny.org/the-bridge-short-film/",
+    "quarantineTs": "2026-11-22T09:38:53.790Z"
   },
   {
     "year": "2023",
@@ -109129,7 +109135,10 @@
       "Form/Film",
       "Form/Website"
     ],
-    "thumbnail": "/thumbnails/transklar-e-v-trans-ident-e-v-rosa-strippe-saved-memories.jpg"
+    "thumbnail": "/thumbnails/transklar-e-v-trans-ident-e-v-rosa-strippe-saved-memories.jpg",
+    "quarantined": true,
+    "quarantineReason": "link-dead(二重確認済): 404: https://www.house-of-communication.com/uk/en/cases/transklar-saved-memories.html",
+    "quarantineTs": "2026-11-22T09:38:53.790Z"
   },
   {
     "year": "2023",
@@ -110802,7 +110811,10 @@
       "Theme/Food",
       "Form/SNS"
     ],
-    "thumbnail": "/thumbnails/mcdonald-s-unbranded-menu.jpg"
+    "thumbnail": "/thumbnails/mcdonald-s-unbranded-menu.jpg",
+    "quarantined": true,
+    "quarantineReason": "link-dead(二重確認済): 404: https://leoburnett.com/news/leo-burnett-manila-and-mcdonalds-enter-the-gaming-mu",
+    "quarantineTs": "2026-11-22T09:38:53.790Z"
   },
   {
     "year": "2023",
@@ -115637,7 +115649,10 @@
       "Tech/Game",
       "Form/Film"
     ],
-    "thumbnail": "/thumbnails/maybelline-new-york-through-their-eyes.jpg"
+    "thumbnail": "/thumbnails/maybelline-new-york-through-their-eyes.jpg",
+    "quarantined": true,
+    "quarantineReason": "link-dead(二重確認済): 到達不能（Jina救済も失敗）: https://adnews.com.au/campaigns/maybelline-spotlights-toxic-harassment-in-austra",
+    "quarantineTs": "2026-11-22T09:38:53.790Z"
   },
   {
     "year": "2023",
