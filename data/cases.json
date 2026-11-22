@@ -1,5 +1,205 @@
 [
   {
+    "id": "nike-tuned-air-2026",
+    "title": "NIKE Tuned Air",
+    "summary": "エアユニット内部に専用デジタルインクを印刷して接着を防ぎ、印刷パターンで反発特性を設計する新製法。",
+    "client": "Nike",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.designboom.com/technology/nike-tuned-air-digital-ink-sneaker-cushioning/",
+    "thumbnail": "/thumbnails/nike-tuned-air-2026.jpg",
+    "videoId": "",
+    "overview": "Nikeが2026年11月に発表したエアクッション技術「Tuned Air」。エアユニットの内部に独自のデジタルインクを印刷し、選択的ラミネーションで印刷のない部分だけを接合する。インクの載った部分は内側のコアが接着されず、そのパターンが内部構造とクッション特性になる。従来のピンや硬いパーツに頼らず、競技や選手ごとに反発を調整できる。ランニングシューズでの初採用は2027年後半と報じられている。",
+    "background": "Nikeはエアユニットの内部構造を、物理的なピンや硬いゾーン、ユニットの高さで調整してきた。Nikeの発表では、新方式によりエアユニットの機械的な高さの制約が外れるという。開発には10年以上かかったと報じられている。目的は、競技や選手の要求に応じてクッション性・快適性・反発性を調整することだ。なお同名の「Tuned Air」はAir Max Plusにも使われているが、今回は別の技術として報じられている。",
+    "execution": "エアユニットの製造工程で、内部の層の間に専用のデジタルインクを印刷する。インクは層同士の接着を妨げる。続く選択的ラミネーションで、インクのない部分だけが内側のコアと接合される。印刷パターンの設計が、そのままユニット内部の構造と足裏の反応になる。従来必要だったピンや硬いパーツを置き換える仕組みである。Soleretrieverは、試作のサンプル製作が3週間から3日に短縮されたと報じている。",
+    "evaluationImpact": "「何を接着しないか」をインクで描くという発想で、クッション設計をデジタル印刷の問題に置き換えた点が新しい。パターンを変えるだけで特性を調整できるため、競技別・選手別の最適化や試作の高速化につながる。製法の転用先は靴以外にも考えられる。ただし製品の実機性能は未発売で検証されておらず、評価は発表情報と報道に基づく。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Device",
+      "Form/Product",
+      "Theme/Sports"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "designboom",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "la-fracture-les-restos-du-c-ur-42-2026",
+    "title": "La Fracture（Les Restos du Cœur 第42回冬季キャンペーン）",
+    "summary": "社会の分断を街や家に走る巨大な亀裂として描き、連帯行為がその進行を止める仏Restos du Cœurの冬季キャンペーン映像",
+    "client": "Les Restos du Cœur",
+    "agency": "Change（監督 Thomas Bertrand／制作 Mathematic／音楽 Jain）",
+    "categories": [
+      "コンテンツ革新",
+      "社会包摂"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/la-fracture",
+    "thumbnail": "/thumbnails/la-fracture-les-restos-du-c-ur-42-2026.jpg",
+    "videoId": "",
+    "overview": "Les Restos du Cœurの第42回冬季キャンペーンとして2026年11月17日にTF1で放送が始まったアニメーション映像。社会の分断(fracture sociale)を、街や家に走る亀裂という目に見える存在に置き換えた。食事の配布や手助けといった連帯の行為が亀裂の進行を止める。登場人物は最後にボランティアだと明かされる。AIを使わずに制作されたと報じられている。",
+    "background": "Les Restos du Cœurは、食料の無償配布などで貧困に取り組むフランスの団体。2027年の大統領選を前に、貧困問題を公の議論の中に置き続けたいという狙いが報じられている。毎年の冬季キャンペーンの開始時期にあたる11月に、第42回の広告として公開された。",
+    "execution": "代理店Changeが企画し、Thomas Bertrandが監督、制作はMathematic、音楽はJainが担当した。分断を抽象的な言葉ではなく、物語の中を進む亀裂という character として描いている。連帯の行為で亀裂が止まる構成で、最後に登場人物がボランティア本人だと明かされる。ポスター等のOOHも展開され、スローガンは「Faites le choix d'agir」とされる。",
+    "evaluationImpact": "抽象的な社会課題を「亀裂」という一つの図像に置き換え、小さな連帯の行為が分断を止める流れで、行動への参加を促す。ラストのボランティアの種明かしは、団体の活動と物語をつなぐ。AI不使用という点は、キャンペーン側の発信に基づく。放送後の視聴数・成果の数値や受賞は、確認できた範囲では見つかっていない。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Theme/SocialGood"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "mains-sans-tabac-sant-publique-france-betc-2026",
+    "title": "Mains sans tabac（Santé publique France / BETC）",
+    "summary": "禁煙で消せない「手の癖」を、ペン回しや手影絵など別の手遊びに置き換えるSNSチャレンジ",
+    "client": "Santé publique France（Mois sans tabac 第11回）",
+    "agency": "BETC",
+    "categories": [
+      "カルチャーインサイト",
+      "社会包摂"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.cbnews.fr/node/104215",
+    "thumbnail": "/thumbnails/mains-sans-tabac-sant-publique-france-betc-2026.jpg",
+    "videoId": "",
+    "overview": "フランスの公衆衛生機関Santé publique Franceが、禁煙キャンペーン「Mois sans tabac」第11回に合わせて始めたデジタル施策。制作はBETC。タバコを持つという手の習慣を、ハンドダンス、ペン回し、手品、手のヨガ、手影絵、手話などの手遊びに置き換えるよう促す。SNS上の参加型チャレンジで、トレード誌CB Newsによれば11月2日に開始した。",
+    "background": "禁煙では、ニコチン依存に加えて、タバコを手に持つという動作の習慣(無意識の自動的な動作)も手放しにくい。Mois sans tabacは2016年開始の30日間の禁煙チャレンジで、公式発表では累計250万人超が参加し、2025年の登録は11万7千人超。今回はこの手の動作に着目し、禁煙に伴う手持ち無沙汰を埋める方向で企画された。",
+    "execution": "施策名は「Mains sans tabac」。喫煙の動作を消すのではなく、手を別の遊びに使う方向に誘導する。CB Newsは例として、ハンドダンス、ペン回し、手品、手のヨガ、手影絵、手話を挙げる。公式発表では、喫煙に関わる動作を新しい習慣に置き換えるチュートリアルを含むデジタル企画と説明されている。参加者はSNSで自分の手遊びを共有する。",
+    "evaluationImpact": "「やめる」ではなく「手の使い道を変える」という発想で、禁煙の負担を遊びに変える点が評価できる。手遊びは誰でもすぐ試せ、SNSで共有しやすい。一方、参加者数や効果などの成果指標は、今回の検索では確認できていない。受賞も確認できていない。内容の詳細はCB Newsの記事と公式発表に基づく。",
+    "relatedWorks": [
+      {
+        "title": "Mois sans tabac : BETC donne de nouvelles occupations aux mains des fumeurs",
+        "description": "CB Newsによる本施策の紹介記事",
+        "url": "https://www.cbnews.fr/node/104215"
+      },
+      {
+        "title": "Mois sans tabac 2026 : le défi est lancé(Santé publique France)",
+        "description": "第11回Mois sans tabacの公式プレスリリース",
+        "url": "https://www.santepubliquefrance.fr/presse/mois-sans-tabac-2026-le-defi-est-lance"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/SNS",
+      "Theme/Health",
+      "Theme/SocialGood"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "insomnia-cookies-rebrand-walsh-2026",
+    "title": "Insomnia Cookies rebrand（&Walsh）",
+    "summary": "月に見立てたイラストロゴを、溶けたチョコが見える食べかけクッキーの実写写真ロゴに置き換え、温かさを示した",
+    "client": "Insomnia Cookies",
+    "agency": "&Walsh",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.creativeboom.com/news/walsh-takes-a-bite-out-of-the-moon-for-insomnia-cookies/",
+    "thumbnail": "/thumbnails/insomnia-cookies-rebrand-walsh-2026.jpg",
+    "videoId": "",
+    "overview": "米国のクッキーチェーン Insomnia Cookies が、&Walsh と進めたブランド刷新を2026年11月に発表した。従来の三日月イラストのロゴをやめ、溶けたチョコチャンクが見える食べかけクッキーの写真を新ロゴに採用した。プラットフォームは「Always Warm Since 2003」。紫は残し、書体・パッケージ・写真表現も一新した。",
+    "background": "同社は約375店舗を展開するチェーンで、深夜営業の温かいクッキー宅配で知られる。Z世代とミレニアル世代への消費者調査では、顧客がこのブランドに結び付けるのはクッキー単体より、温かさ・安らぎ・懐かしさだと分かった。この結果が、温かさを軸に据える刷新につながった。",
+    "execution": "ロゴは実物のチョコチャンククッキーを撮った写真で、一部がかじられ、溶けたチョコが見える。月のモチーフはかじった跡の三日月形として残した。紫のブランドカラーに、クッキー由来の茶色や中間色、鮮やかなアクセントを加えた。書体、パッケージ、写真も更新し、3時間保温できる加熱式のケータリングボックスも追加した。",
+    "evaluationImpact": "商品の写真をそのままロゴにすることで、見た目と食べるものを直結させた。ブランドの約束を、ロゴ自体のシズル感で示している。一方、写真ロゴは小さいサイズでの再現が難しいという指摘もあり、&Walsh は別にベクター版を用意しているとされる。ロゴに実写を使う挑戦的な例として注目できる。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Theme/Food",
+      "Theme/Retail"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creativeboom",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "star-patterned-timber-canopy-of-976-triangular-modules-edyta",
+    "title": "Star-patterned timber canopy of 976 triangular modules（Edyta Augustynowicz × Summum Engineering / ERNE AG Holzbau）",
+    "summary": "主応力線に沿って折り上げた屋根を、約3,000本の直線梁と976の三角モジュールで治具なしに組み上げた",
+    "client": "Edyta Augustynowicz",
+    "agency": "Summum Engineering / ERNE AG Holzbau",
+    "categories": [
+      "テクノロジー×アイデア",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.designboom.com/architecture/976-triangular-modules-compose-star-patterned-timber-canopy-in-switzerland/",
+    "thumbnail": "/thumbnails/star-patterned-timber-canopy-of-976-triangular-modules-edyta.jpg",
+    "videoId": "",
+    "overview": "スイス・アールガウ州シュタインに建つ19.8m四方の木造キャノピー「Stellar Pavilion」。Edyta AugustynowiczがSummum Engineeringと共同で設計し、4本の分岐する柱の上に、約3,000本の直線梁で構成した976個の三角形モジュールを星形に広げている。",
+    "background": "木造の大スパン屋根は、曲面ほど部材が複雑になり、型枠や治具の手間とコストが増えやすい。設計者らはパラメトリックモデルで構造の流れそのものを形にし、直線部材だけで曲面的な屋根を成立させることを目指した。写真は施工を担ったERNE AG Holzbauが提供している。",
+    "execution": "パラメトリックモデルで4本の柱から主応力線に沿って屋根を立ち上げた。各モジュールは2本の斜材と1本の放射方向の圧縮材で構成する。放射線を高低交互に配して屋根を折り、剛性を確保しつつ雨水を柱へ導く。梁はCNCで切り出し、柱はロボットで削った。大工が治具なしで三角形に組み、工房で翼状のセグメントにまとめて現場でクレーン架設した。",
+    "evaluationImpact": "構造・排水・施工性を一つの幾何学ルールで解いた点が評価できる。直線梁と単純なモジュールの繰り返しで複雑な形状を作るため、治具を減らせる。デジタル設計とロボット加工を、実際の大工の組立工程につなげた事例として、他の木造建築にも応用しやすい。公式な受賞は確認できなかった。",
+    "relatedWorks": [
+      {
+        "title": "Portalen Pavilion（Map13 Barcelona + Summum Engineering + Edyta Augustynowicz）",
+        "description": "同じ設計者・構造チームが関わった、展開式の木造グリッドシェルのパビリオン。",
+        "url": "https://www.archdaily.com/949152/portalen-pavilion-map13-barcelona-plus-summum-engineering-plus-edyta-augustynowicz"
+      },
+      {
+        "title": "Future Tree（iStructE Structural Awards 2021）",
+        "description": "ERNE AG Holzbauが施工を担った、380個の木造要素による樹冠状の構造物。",
+        "url": "https://www.istructe.org/structural-awards/projects/2021/future-tree/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Robotics",
+      "Tech/3D",
+      "Form/Installation",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "D",
+    "sourceId": "designboom",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
     "id": "st-john-pocket-aed-life-size-campaign-2026",
     "title": "St John Pocket AED: life-size campaign",
     "summary": "広告枠を除細動器の実寸まで縮め、TVや紙面の大半を空白にして携帯性を枠で伝えた",
