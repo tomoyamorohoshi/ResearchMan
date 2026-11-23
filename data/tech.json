@@ -1,5 +1,102 @@
 [
   {
+    "id": "pinchdrop",
+    "title": "PinchDrop",
+    "org": "Bihe Xi（xibihe）",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "HCI/MediaArt"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "スマホに映した写真を Vision Pro で見てつまむと、手を開く動きに合わせて写真の中のGaussian Splat（3Dシーン）が空間に展開されるvisionOSアプリ。ソースがGitHubで公開されている。",
+    "point": "すごい点は、写真というただの平面が「世界への入り口」になる演出です。Vision Pro の装着者がスマホの写真をつまんで手を開くと、その写真と対になった3Dシーンが目の前に広がります。クラウド認識や学習は使わず、写真の位置と手の動きを端末内でトラッキングして描画するので、体験が軽快です。広告・体験づくりでは、ポスターや商品パッケージ、展示パネルの写真を「ひらく」と、その場の風景や商品世界が立ち上がるAR体験、美術館・観光地・不動産の展示、ブランドの思い出アルバムを空間で見せる演出などに応用できます。写真と3Dシーンを1組ずつ登録する仕組みなので、自分の素材に差し替えるスクリプトも用意されており、企画段階の試作にも使えます。",
+    "detail": "仕組み：アプリは、選んだシーンに対応する参照写真とその実寸サイズを ARKit（Appleの空間認識機能）に登録します。装着者がスマホ上の写真をつまむと、写真の位置と手の動きを追跡し、写真の色を取り出して、対になった Gaussian Splat をその場で描画します。描画には MetalSplatter（MIT）を取り込んだ実装が使われます。同梱は銀杏、滝、雪の街角など4つの写真とシーンの組です。\n\n従来との違い：Gaussian Splat を見せる従来のアプリは、シーンを一覧から選んで開くものが中心でした。PinchDrop は「現実の写真を物理的につまんで開く」という入口の体験を作っている点が新しいところです。\n\n使うには：Apple Vision Pro と visionOS 26（開発者モード）、Xcode が必要です。リポジトリには Phone/（写真）、Tools/（add_scene.py）、Vision/（Xcodeプロジェクト）が入っています。自分のシーンを作るには、写真と SOG・SPLAT・SPZ・PLY のいずれかを add_scene.py で組にします（上限は既定で65万ガウシアン）。写真からのシーン生成には無料のMacアプリか Apple の ML-SHARP を使えますが、ML-SHARP は非商用研究限定です。ライセンスが非商用のため、案件で使う場合は作者へ相談が必要です。なお、記事で言及される作者のデモ動画はX上のもので、URLは確認できていません。",
+    "license": {
+      "spdx": "PolyForm-Noncommercial-1.0.0",
+      "commercial": "research-only",
+      "note": "コードは PolyForm Noncommercial 1.0.0（ソース公開・非商用）。同梱の写真4点も非商用。Apple ML-SHARP の重みは非商用研究のみで、本リポジトリには含まれない。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/xibihe/PinchDrop"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/pinchdrop-unfolds-phone-photos-as-splats-on-vision-pro"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/pinchdrop.jpg",
+    "relatedWorks": [
+      {
+        "title": "Walk Into Memory",
+        "description": "同作者によるMITライセンスの写真→Splatパイプライン兼visionOSアプリ（2026年10月公開）。",
+        "url": "https://github.com/xibihe/walk-into-memory"
+      },
+      {
+        "title": "MetalSplatter",
+        "description": "Apple向けのGaussian Splat描画ライブラリ（MIT）。PinchDropが取り込んで使用。",
+        "url": "https://github.com/scier/MetalSplatter"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "quicksplat",
+    "title": "QuickSplat",
+    "org": "Gabriele Verga（個人開発）",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "Windows のエクスプローラーや macOS の Finder で、Gaussian Splat ファイルを選んでスペースキーを押すだけで3Dプレビューできるツール。",
+    "point": "写真や動画の画像プレビューと同じ感覚で、3D空間のスキャンデータ（Gaussian Splat）を中身が見える形でその場で確認できます。これまでは、ファイルの中身を見るために専用の重いビューアを毎回起動する必要がありました。このツールを入れると、フォルダ内のファイルにスペースキーを押すだけで、ぐるぐる回して見られる3Dプレビューが開きます。広告や展示の制作では、ロケ現場で撮った大量のスキャンデータから「使えるテイク」を選ぶ場面がよくあります。そこで一つずつアプリを開く手間がなくなり、素材選びが速くなります。ネットにつながない環境でも動くので、機密案件の素材確認にも向きます。ポイントクラウド（点の集まり）だけのファイルにも対応しています。",
+    "detail": "仕組み：Windows 版は、スペースキーでファイルを覗き見できる既存ソフト「QuickLook」の拡張機能（プラグイン）として動きます。macOS 版は、Finder の標準プレビュー機能（Quick Look）に差し込む拡張機能と、単体で開けるビューアのセットです。どちらも中では同じWebベースのビューアが動いています。このビューアは three.js と Spark という3D表示ライブラリで作られており、ネット接続なしで動作します。対応形式は PLY（SuperSplat の圧縮 PLY を含む）、.splat、.ksplat、.spz、.sog です。点だけの PLY は点群として表示され、点の大きさを調節できます。ファイルの形式・点の数・サイズ・読み込み時間を見られる情報パネルや、上方向の軸（Y-down／Z-up／Y-up）の切り替えもあります。切り替えた設定は覚えてくれます。\n\n従来との違い：これまでは Gaussian Splat を確認するのに、SuperSplat などのエディタをブラウザや別アプリで開く必要がありました。QuickSplat は OS 標準のプレビュー操作に載せたので、画像を確認するのと同じ速さで3D素材をざっと見られます。ロードマップには、LAS／LAZ／E57 形式の点群対応と、エクスプローラー・Finder のサムネイル表示が挙がっています。\n\n使うには：Windows は QuickLook をインストールし、リリースページの .qlplugin ファイルを QuickLook に追加します。WebView2 Runtime が必要です。macOS は 13 以降で、README のインストールスクリプトをターミナルで実行します。アプリは公証（Appleの審査）を受けていないため、システム設定で許可する操作が必要です。費用は無料です。",
+    "license": {
+      "spdx": "GPL-3.0",
+      "commercial": "ok",
+      "note": "GPL-3.0（Windows版は QuickLook プラグイン）。内部で使う Spark と three.js は MIT。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/gabriverga/QuickSplat"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/quicksplat-previews-gaussian-splats-with-the-space-bar"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/quicksplat.jpg",
+    "relatedWorks": [
+      {
+        "title": "SuperSplat",
+        "description": "PlayCanvas製のブラウザ型 Gaussian Splat エディタ・ビューア。",
+        "url": "https://github.com/playcanvas/supersplat"
+      },
+      {
+        "title": "Spark",
+        "description": "three.js 向けの Gaussian Splat 描画ライブラリ。QuickSplat の表示部分に使われている。",
+        "url": "https://github.com/sparkjsdev/spark"
+      },
+      {
+        "title": "QuickLook",
+        "description": "Windows でスペースキーによるファイルプレビューを実現するOSSユーティリティ。",
+        "url": "https://github.com/QL-Win/QuickLook"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "paspa",
     "title": "PASPA",
     "org": "Tongji University / The University of Tokyo / Alibaba Group",
