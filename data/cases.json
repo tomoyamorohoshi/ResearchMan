@@ -1,5 +1,318 @@
 [
   {
+    "id": "the-pancake-index-2026",
+    "title": "The Pancake Index",
+    "summary": "パンケーキ材料の価格を物差しに、28か国の購買力の10年変化を「買える枚数」で見せるデータ企画。",
+    "client": "CORRECTIV.Europe",
+    "agency": "",
+    "categories": [
+      "データクリエイティブ",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://correctiv.org/en/europe/2026/11/10/pancake-index/",
+    "thumbnail": "/thumbnails/the-pancake-index-2026.jpg",
+    "videoId": "",
+    "overview": "ドイツの調査報道機関CORRECTIVの欧州向け部門が2026年11月に公開した「Pancake Index」。パンケーキの材料の価格と所得を組み合わせ、1日の所得の5%でパンケーキが何枚作れるかを欧州28か国で算出し、10年間の変化とともに比較する。オーストリアは約18枚、北マケドニアは約3枚という差が示されている。",
+    "background": "欧州ではインフレで食料品が値上がりしたが、物価指数や所得統計の数字は生活実感として伝わりにくい。CORRECTIVは、材料と作り方が国を超えて共通する素朴な食べ物を価格の物差しにすることで、国ごとの比較をしやすくした。制作の背景はメイキング記事「how we invented the pancake index」でも公開されている。",
+    "execution": "各国の食材価格（5,182件の価格データ、32か国分）を整理し、パンケーキ材料の価格を算出する。これを所得統計（Eurostat EU-SILC）と組み合わせ、1日の所得の5%で何枚作れるかを国別・年別に出す。結果は「パンケーキの山」として28か国で並べる。食材価格は約68.4%上昇し、所得の上昇約40.1%を上回った。ドイツは山の減り方が最も大きい国として報じられた。",
+    "evaluationImpact": "「物価高で購買力がどれだけ落ちたか」という抽象的な数字を、枚数という身近な単位に置き換えた点が評価できる。国ごとの差と10年の変化が一目で分かり、ドイツの報道でも取り上げられた。一方、所得は厳密な中央値ではなく所得層ごとの平均に基づくという方法論上の注記があり、指標の解釈には注意が要る。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Data",
+      "Form/Website",
+      "Theme/Food"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "fits-3d-printed-children-s-shoe-2026",
+    "title": "Fits（3D printed children's shoe）",
+    "summary": "靴の外周を分節構造にして圧力で広げ、5サイズ分の成長に対応する子ども靴を、改造3Dプリンタで単一素材から一体造形した。",
+    "client": "Daniel Winter",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.designboom.com/technology/mono-material-3d-printed-childrens-shoe-five-sizes-foot-shape-fits-daniel-winter/",
+    "thumbnail": "/thumbnails/fits-3d-printed-children-s-shoe-2026.jpg",
+    "videoId": "",
+    "overview": "Daniel Winterによる「Fits」は、子どもの足の成長に合わせて広がる3Dプリント靴。外周を連結した分節構造にして、圧力で外へ開くようにした。子ども向けモデルは5サイズ分の着用テストを終えたとされる。靴底と甲は柔らかい75Aのフレキシブル素材で一体造形する。素材が単一なので、役目を終えたあとはリサイクルできる。",
+    "background": "子どもの足はすぐ成長するため、靴は短期間で買い替えられ、廃棄も多くなる。Fitsは2022年にコンセプトとして始まった。靴のサイズごとに作り分けるのをやめ、1足が成長に追従できる構造を目指した。貼り合わせや縫製をなくして単一素材にする狙いも、リサイクルしやすさにつながっている。",
+    "execution": "外周を関節のように連結した分節構造にして、力がかかると広がる。靴全体はつながったままで、記事はこれをintegral articulationと呼ぶ。素材は75Aの軟質フィラメントで、靴底と甲を一体で印刷する。この造形のためにプリンタを改造している。別に、3サイズ幅で足の形に適応する大人用ソールの試作もあり、ニットのアッパーと組み合わせる計画がある。",
+    "evaluationImpact": "成長に合わせて寸法が変わる構造を、素材の分節だけで実現した点が評価できる。接着剤も縫製も使わないので、分別しにくい複合素材の問題を避けられる。3Dプリントの靴は個別採寸に使われることが多いが、これは1足を複数サイズに使い回す方向を示す。ただし5サイズの着用テストの結果は、確認できたかぎりdesignboomの記事のみで、独立した検証は見つかっていない。",
+    "relatedWorks": [
+      {
+        "title": "4Steps（Michele di Carlo）",
+        "description": "子どもの成長に合わせて分解や伸長ができる、調整式の3Dプリントスニーカー。",
+        "url": "https://www.designboom.com/design/3d-printed-adjustable-sneakers-kids-4steps-michele-di-carlo-04-04-2024/"
+      },
+      {
+        "title": "The Shoe That Grows",
+        "description": "子どもの成長に合わせて複数サイズに伸びる靴。貧困地域の子どもを支援する取り組み。",
+        "url": "https://www.designboom.com/design/the-shoe-that-grows-updated-sole-children-poverty-bigger-strides-08-30-2023/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/Product",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "designboom",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "kintsu-bee-ava-roth-2026",
+    "title": "Kintsu-Bee（Ava Roth）",
+    "summary": "割れた陶器を巣箱に入れ、蜂が作る蜜蝋の巣で破片を接合する、金継ぎの「金」を蜂に置き換えた共作。",
+    "client": "Ava Roth",
+    "agency": "",
+    "categories": [
+      "カルチャーインサイト",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.designboom.com/art/when-bees-humans-make-art-together/",
+    "thumbnail": "/thumbnails/kintsu-bee-ava-roth-2026.jpg",
+    "videoId": "",
+    "overview": "トロントを拠点とするアーティストAva Rothによるシリーズ「Kintsu-Bee」。意図的に割った陶器を稼働中の蜂の巣箱に入れ、蜂が形成するハニカム(蜜蝋の巣)が破片のあいだに新しい結びつきを作る。日本の修復技法・金継ぎの名を踏まえた作品で、金の代わりに蜂の巣が割れ目をつなぐ。2026年5月にThis Is Colossalなどで紹介された。",
+    "background": "Rothはもともと蜜蝋と顔料を溶かして描くエンカウスティック(蜜蝋画)の作家で、蜂との協働を軸に制作してきた。以前は刺繍やコラージュを入れた木枠を蜂に渡し、蜂が巣を足して完成させる作品を発表している。人間と自然環境の関係を探る問題意識があり、designboomは蜂が労力と作者性を分かち合う協働者だと紹介している。",
+    "execution": "割れた陶器を蜂の巣箱の中に置き、蜂が自らの営みとして蜜蝋の巣を築く。巣が破片のあいだを埋めて接合する。金継ぎは漆と金粉で人が修復する技法だが、本作はその修復を蜂の造巣行動に委ねる。仕上がりは人の手で完全には制御できず、蜂の振る舞いが造形を決める。一部の陶器にはSatoshi Yoshikawa作の皿というキャプションがある(designboom)。",
+    "evaluationImpact": "金継ぎの「壊れたものを美しく直す」思想を、蜂という別種の手に移した読み替えが一文で伝わる。ある批評は、壊れた人間の器を蜂に預ける構図を、蜂の個体数が減る時代の人と送粉者の関係の反転として読んでいる。転用性が高いのは、素材の性質に造形を任せる共作の手法である。受賞や展示日程、価格は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Ava Roth honeycomb embroideries",
+        "description": "刺繍を入れた枠を蜂の巣箱に渡し、蜂が巣を足して完成させる、Ava Rothの蜂との共作シリーズ。",
+        "url": "https://www.thisiscolossal.com/2022/07/ava-roth-honeycomb-embroideries/"
+      },
+      {
+        "title": "in collaboration with honeybees, ava roth's artwork is encased in honeycomb",
+        "description": "designboomによる、蜂の巣に包まれたAva Rothの作品の紹介記事(2021年)。",
+        "url": "https://www.designboom.com/art/ava-roth-honeycomb-honeybees-collaboration-09-11-2021/"
+      },
+      {
+        "title": "when bees become collaborators, artists learn to make by listening",
+        "description": "蜂を協働者として迎える複数の作家を扱ったdesignboomの特集。",
+        "url": "https://www.designboom.com/art/bees-collaborators-honeycomb-sculpture-hulacova-puett-ren-yue-berseth-dyck-libertiny/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Theme/Art",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "designboom",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "kagaku-no-sato-main-house-kengo-kuma-associates-2026",
+    "title": "Kagaku no Sato Main House（Kengo Kuma & Associates）",
+    "summary": "形がばらばらの間伐材28本を1本ずつ3Dスキャンし、地元の職人がその形に合わせて継手を加工する茅葺き住宅",
+    "client": "Kengo Kuma & Associates",
+    "agency": "Kengo Kuma & Associates",
+    "categories": [
+      "テクノロジー×アイデア",
+      "空間体験"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.designboom.com/architecture/kengo-kuma-circular-thatched-house-timber-earth-japan/",
+    "thumbnail": "/thumbnails/kagaku-no-sato-main-house-kengo-kuma-associates-2026.jpg",
+    "videoId": "",
+    "overview": "隈研吾建築都市設計事務所が茨城県で完成させた「科学の里 母屋」。円形の茅葺き屋根の小さな木造建築で、屋根は近隣の森の間伐材28本が放射状に組まれて支える。Designboomによれば、各材は3Dスキャンされ、地元の職人が継手を加工して組み上げた。",
+    "background": "事務所の公式ページによると、この母屋は里山再生プロジェクトの中核にあたる茅葺きの母屋で、2025年9月に完成した。設計は茨城の伝統的な茅葺き民家とその丸みのある形に学んでいる。日本テレビ系のテレビ番組(所ジョージ氏が主導)でも取り上げられた。",
+    "execution": "屋根は、放射状に配した地場の間伐材28本によるシェル構造で、2本の中心柱と1本の棟木による門型フレームが支える。事務所は、地元大工の伝統技術と3D CADの活用を組み合わせたと説明している。Designboomは、屋根が茨城地域の稲わらとヨシを使う工法の茅葺きだと伝え、敷地の土を使った土間にも触れている。",
+    "evaluationImpact": "形が不揃いで製材には向かない間伐材を、3D計測で形ごと設計に取り込み、伝統的な継手の技術で構造材として使った点が評価できる。デジタル計測が職人の技を置き換えず、地場素材の活用を後押しする使い方で、他の木造や改修の仕事にも転用できる手法である。なお、三和土と和紙の使用は今回の検索では確認できなかった。",
+    "relatedWorks": [
+      {
+        "title": "Kagaku no Sato Main House(KKAA公式プロジェクトページ)",
+        "description": "隈研吾建築都市設計事務所による母屋の公式プロジェクト紹介。",
+        "url": "https://kkaa.co.jp/en/project/kagaku-no-sato-main-house-project/"
+      },
+      {
+        "title": "kengo kuma builds a circular thatched house from local timber and earth in japan(designboom)",
+        "description": "母屋の完成を伝える記事。",
+        "url": "https://www.designboom.com/architecture/kengo-kuma-circular-thatched-house-timber-earth-japan/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/Installation",
+      "Theme/Sustainability",
+      "Theme/Art"
+    ],
+    "gateCriterion": "C",
+    "sourceId": "designboom",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "vital-farms-egg-carton-qr-code-showing-where-the-hens-are-ra",
+    "title": "Vital Farms: egg carton QR code showing where the hens are raised",
+    "summary": "卵パックのQRコードから、その卵を産んだ実在の農場の360度映像を見られるようにした、箱を透明性メディアに変える施策。",
+    "client": "Vital Farms",
+    "agency": "",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "メディア発明"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://creapills.com/vital-farms-boites-oeufs-fermes-20261117",
+    "thumbnail": "/thumbnails/vital-farms-egg-carton-qr-code-showing-where-the-hens-are-ra.jpg",
+    "videoId": "",
+    "overview": "Vital Farmsは、卵のパッケージを消費者と産地をつなぐ媒体として使っている。箱側面のQRコードを読み取り、箱に印字された農場名を入力すると、その卵を産んだ実在の農場の360度映像を見られる。2026年10月には「Behind Every Carton」キャンペーンで、600超の提携農場の存在を改めて前面に出した。",
+    "background": "放牧飼育(pasture-raised)をうたう卵は、消費者が主張を自分で検証しにくい商品だ。Vital Farmsは2020年に「See The Farm」を始め、箱から農場を確認できる仕組みを用意した。今回のキャンペーンは、その仕組みを「実在する農家と農場」というメッセージに据え直したものだ。一方で、農場の規模を疑問視するTikTok投稿も出ている。",
+    "execution": "各カートンのQRコードと農場名を入口とし、スキャンまたはvitalfarms.com/farmへの入力で該当農場の360度映像に遷移する。同社の発表では、映像はほぼ全ての提携農場分が揃っている。キャンペーンでは店頭ツアーも行い、来場者はVRヘッドセットで農場を訪問できる。制作会社は確認できなかった。",
+    "evaluationImpact": "新しい広告枠を買わず、既に毎日手に取られる卵の箱をそのまま検証メディアに変えた点が要点だ。購入時に産地の実在を確かめられるため、「放牧飼育」という主張が信頼されやすくなる。ただし仕組み自体は2020年からあり、今回の新規性はキャンペーン化にある。農場映像の中立性を第三者が検証した情報は見つからなかった。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Tech/XR",
+      "Theme/Food",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "james-blunt-airplane-mode-signed-sick-bag-merch-2026",
+    "title": "James Blunt「Airplane Mode」signed sick bag merch",
+    "summary": "アルバム名「Airplane Mode」に合わせ、「曲で気分が悪くなる」という揶揄を機内の酔い止め袋グッズに読み替えた。",
+    "client": "James Blunt",
+    "agency": "",
+    "categories": [
+      "カルチャーインサイト",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/james-blunt-sac-vomi-dedicace-airplane-mode-20261119",
+    "thumbnail": "/thumbnails/james-blunt-airplane-mode-signed-sick-bag-merch-2026.jpg",
+    "videoId": "",
+    "overview": "James Bluntは2026年11月発売のアルバム「Airplane Mode」の公式オンラインストアで、ヴァイナル+CDバンドルの予約特典として本人サイン入りの機内用酔い止め袋（sick bag）を付けた。B&Tなどによれば、サイン入りは短期間で完売した。なお一部の店舗ページでは同じ袋がサインなしと記載されている。",
+    "background": "Bluntは「音楽を聴くと気分が悪くなる」といった批判や揶揄を長年受けてきた。本人もそれを自虐ネタとして扱ってきた。本作は2026年11月6日発売の8作目のスタジオアルバムで、題名「Airplane Mode」は機内モードを指す。同時期には「1位になれば改名する」という宣伝企画も行っている。",
+    "execution": "アルバム名の飛行機モチーフを、航空機の座席に備え付けられる酔い止め袋というグッズに落とし込んだ。公式ストアのヴァイナル+CDバンドル予約者に、本人サイン入りの袋を付ける。「聴くと気分が悪くなる」という揶揄をそのまま商品に変え、ファンが笑って買える形にした。",
+    "evaluationImpact": "批判される側が、その批判を先回りして商品にする自虐型プロモーションだ。アルバム名との語呂合わせで一文に言え、広告業界メディア（B&T、Ads With Benefits、Famous Campaigns）にも取り上げられた。サイン入りの限定感でバンドル購入を促す設計も手堅い。ただし制作会社は確認できず、受賞も確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "James Blunt vows to legally change his name to Ryan Air if he makes Number 1",
+        "description": "同アルバムで1位になれば改名すると宣言した宣伝企画（Official Charts）",
+        "url": "https://www.officialcharts.com/chart-news/james-blunt-vows-to-legally-change-his-name-to-ryan-air-if-he-makes-number-1/"
+      },
+      {
+        "title": "James Blunt Sick Bag Sells Out In New Album Launch",
+        "description": "サイン入り酔い止め袋の完売を伝えるB&Tの記事",
+        "url": "https://www.bandt.com.au/james-blunt-sick-bag-sells-out-in-new-album-launch/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Theme/Music",
+      "Theme/Entertainment"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "tauranga-city-brand-identity-time-for-tauranga-2026",
+    "title": "Tauranga city brand identity「Time for Tauranga」",
+    "summary": "潮の満ち引きを軸に、Guardiansがタウランガ初の公式プレイスブランドと「Time for Tauranga」を構築した",
+    "client": "Tauranga City / Tourism Bay of Plenty / Western Bay of Plenty District",
+    "agency": "Guardians",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://creapills.com/tauranga-identite-marque-marees-20261119",
+    "thumbnail": "/thumbnails/tauranga-city-brand-identity-time-for-tauranga-2026.jpg",
+    "videoId": "",
+    "overview": "ニュージーランドのTauranga City Council、Tourism Bay of Plenty、Western Bay of Plenty Districtが、エージェンシーGuardiansとつくった都市のプレイスブランド。ブランドプラットフォーム「Time for Tauranga」と、潮の動きに着想したビジュアルアイデンティティで構成される。制作会社Supernormalのグレッグ・ウッド監督がローンチフィルム「Tauranga」を手がけた。",
+    "background": "Tourism Bay of Plenty と Tauranga City Council は、観光・市民向け広報・投資誘致をまたいで使える公式のプレイスブランドを求めてGuardiansを選んだ。それまでは「Our Tauranga Region」という暫定的なホワイトラベルのアイデンティティが使われており、新ブランドの完成後に廃止される予定とされる。",
+    "execution": "創業者のアンザック・タスカーは、タウランガで過ごすと潮の満ち引きが風景にも街のリズムにも表れていることに気づく、と語っている。アイデンティティは海(モアナ)の動きや月の引力、地域の文化的な物語に着想を得ており、読む前から言葉のように感じられるものを目指した。フィールドレコーディングを用いた展開も報じられている。",
+    "evaluationImpact": "潮という土地固有の自然現象を、ビジュアルとプラットフォームの両方の軸にした点が特徴。観光だけでなく市民向け広報や投資誘致にも使える柔軟性を狙っている。一方、ロゴの文字造形の詳細や受賞は、今回の検索では公式ソースで確認できなかった。",
+    "relatedWorks": [
+      {
+        "title": "Tourism Bay of Plenty and Tauranga City Council tap Guardians for landmark place brand project",
+        "description": "Guardians起用とプレイスブランドの狙いを伝える発表記事",
+        "url": "https://campaignbrief.co.nz/?p=125598"
+      },
+      {
+        "title": "Tourism Bay of Plenty - Tauranga - Brand Identity",
+        "description": "LBB掲載のブランドアイデンティティ作品ページ",
+        "url": "https://lbbonline.com/work/187695"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Theme/Art",
+      "Theme/SocialGood"
+    ],
+    "gateCriterion": "B",
+    "sourceId": "creapills",
+    "gateTier": "borderline",
+    "discoveryLens": 1
+  },
+  {
     "id": "nike-tuned-air-2026",
     "title": "NIKE Tuned Air",
     "summary": "エアユニット内部に専用デジタルインクを印刷して接着を防ぎ、印刷パターンで反発特性を設計する新製法。",
