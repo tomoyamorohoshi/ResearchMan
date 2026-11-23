@@ -29539,5 +29539,215 @@
         "desc": "スプラットで撮った景色をAIとBlenderの編集できる形に作り直すツール。"
       }
     ]
+  },
+  {
+    "id": "2026-11-23-1",
+    "date": "2026-11-23",
+    "title": "国芳の浮世絵を触覚で展示",
+    "pattern": "技術×技術",
+    "seed": "HapticLensで国芳の波や大蛇の動きから振動を作り、浮世絵スーパークリエイター 歌川国芳展のプロジェクション没入ゾーンに重ねたら、絵を「触れて感じる」展示になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "hapticlens",
+        "title": "HapticLens",
+        "desc": "動画の選んだ部分の細かな動きから、振動を自動で作れるツール。"
+      },
+      {
+        "type": "case",
+        "id": "case-477dlp-2026",
+        "title": "浮世絵スーパークリエイター 歌川国芳展",
+        "desc": "歌川国芳の原画約200点と3DCG投影の没入ゾーンを組み合わせた京都の展覧会。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-23-2",
+    "date": "2026-11-23",
+    "title": "被災集落を3D記録して再建議論",
+    "pattern": "文脈×技術",
+    "seed": "NOTUNの「壊れても直せる集落」という発想に、LocalMeshで写真1枚から作る3Dスプラットを掛け、被災前の家並みを住民が各自の写真から復元して再建の話し合いに使えるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "notun-designing-for-damage-in-cyclone-prone-bangladesh-2026",
+        "title": "NOTUN – Designing for damage in cyclone-prone Bangladesh",
+        "desc": "壊れても直せる集落を、シミュレーションと植物の根で土を固めて設計した研究。"
+      },
+      {
+        "type": "tech",
+        "id": "localmesh",
+        "title": "LocalMesh",
+        "desc": "写真1枚から3Dスプラットと3Dメッシュを作れるWindows向けローカルアプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-23-3",
+    "date": "2026-11-23",
+    "title": "耳で見る植物の声",
+    "pattern": "転用",
+    "seed": "Event Topology-based Visual Vibrometerは機械の振動計測用だが、観光地の木の葉や柱の微細な振動を「音」として取り出せば、Tennessee Tourismの「本物の証明」に続く「本物の音の証明」になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "event-topology-based-visual-vibrometer",
+        "title": "Event Topology-based Visual Vibrometer",
+        "desc": "高速カメラの生データから、物体の細かな振動を音として取り出す計測手法。"
+      },
+      {
+        "type": "case",
+        "id": "tennessee-tourism-realseal-campaign-2026",
+        "title": "Tennessee Tourism \"RealSeal\" Campaign",
+        "desc": "自社写真が実写だと証明するため、メタデータ認証を導入した観光局の施策。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-23-4",
+    "date": "2026-11-23",
+    "title": "頭で奏でるアバター演奏",
+    "pattern": "技術×技術",
+    "seed": "bFaaaPの頭の傾きによるペダル操作と、LivLiv Playerのウェブカメラ顔トラッキングを組み合わせ、頭を傾けるだけで2.5Dキャラが弾き、ペダルも踏む合奏ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "bfaaap",
+        "title": "bFaaaP (barrier-Free assist as a Pedal)",
+        "desc": "頭の傾きでピアノのサスティンペダルを操作できる支援楽器システム。"
+      },
+      {
+        "type": "tech",
+        "id": "livliv-player",
+        "title": "LivLiv Player",
+        "desc": "ブラウザ上で2.5Dキャラを顔トラッキングやリップシンクで動かせるライブラリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-23-5",
+    "date": "2026-11-23",
+    "title": "月と塩の記憶をスプラット化",
+    "pattern": "文脈×技術",
+    "seed": "瀬戸内の「月と塩をめぐる３つの作品」の沙弥島を、Spirula Studioで来場者が撮った写真と動画から3Dスプラット化し、季節や月齢ごとの風景を持ち寄るアーカイブにできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2019-sm06",
+        "title": "月と塩をめぐる３つの作品",
+        "desc": "月と塩を主題にした沙弥島の3点構成の芸術祭作品。"
+      },
+      {
+        "type": "tech",
+        "id": "spirula-studio",
+        "title": "Spirula Studio",
+        "desc": "写真や動画から3Dスプラットとメッシュを作れる無料の3D学習アプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-23-6",
+    "date": "2026-11-23",
+    "title": "憲法を各国語で吹き替え",
+    "pattern": "文脈×技術",
+    "seed": "Mercado Libreが事件数時間後に憲法を99%引きにした素早さに、VoiceStudioのローカル吹き替えを掛け、事件当日に市民の声で憲法条文を多言語で読み上げる動画を即日出せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "mercado-libre-the-best-seller-constitution",
+        "title": "The Best-Seller Constitution",
+        "desc": "襲撃事件の数時間後に連邦憲法の全在庫を99%引きにした施策。"
+      },
+      {
+        "type": "tech",
+        "id": "voicestudio",
+        "title": "VoiceStudio",
+        "desc": "声のクローンや動画の多言語吹き替えを無料でローカル実行できるツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-23-7",
+    "date": "2026-11-23",
+    "title": "ロボットが演じる国芳の妖怪",
+    "pattern": "転用",
+    "seed": "robot_retargeterは人の動きをロボットに移す変換ツールだが、国芳の浮世絵に描かれた妖怪のポーズを役者が演じて人型ロボットに移し、展示空間で動く原画として見せられるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "robot-retargeter",
+        "title": "robot_retargeter",
+        "desc": "人のモーションデータを体格の違う人型ロボット向けに変換する無料ツール。"
+      },
+      {
+        "type": "case",
+        "id": "case-477dlp-2026",
+        "title": "浮世絵スーパークリエイター 歌川国芳展",
+        "desc": "歌川国芳の原画展と3DCG投影の没入体験を併設した企画展。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-23-8",
+    "date": "2026-11-23",
+    "title": "試合前の予告編を撮影用語で量産",
+    "pattern": "文脈×技術",
+    "seed": "Champions League Crashersのレジェンド突撃を、Cinematic Director Camera DSLの「/DOLLYIN」などの短い指示で各ファンの家向けに映画風の到着予告として量産できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "pepsico-purchase-champions-league-crashers",
+        "title": "Champions League Crashers",
+        "desc": "試合日にサッカーのレジェンドがファン宅を訪ね一緒に観戦する施策。"
+      },
+      {
+        "type": "tech",
+        "id": "cinematic-director-camera-dsl",
+        "title": "Cinematic Director Camera DSL",
+        "desc": "短い撮影用語をAI動画モデル向けのカメラ指示文に変換するDSL。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-23-9",
+    "date": "2026-11-23",
+    "title": "積み重なる部屋を切り出す",
+    "pattern": "技術×技術",
+    "seed": "WorldSculptで雑然とした部屋の映像を物体ごとの3Dに切り出し、SculptForgeで彫刻し直せば、散らかった日常を一点ずつ作品に変える造形ワークショップができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "worldsculpt",
+        "title": "WorldSculpt",
+        "desc": "雑然とした映像から、重なった物を1つずつ3Dメッシュに切り出す技術。"
+      },
+      {
+        "type": "tech",
+        "id": "sculptforge",
+        "title": "SculptForge",
+        "desc": "スマホ動画からスプラットを作り彫刻できる無料のオープンソース彫刻アプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-23-10",
+    "date": "2026-11-23",
+    "title": "シニアの記憶を骨格で測る",
+    "pattern": "文脈×技術",
+    "seed": "Samsung The Mind Guardianの街歩きゲームに、UniQuery4Rの動きの予測を掛け、歩き方の将来軌跡のズレから認知の変化の兆候を見つけられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "samsung-the-mind-guardian",
+        "title": "The Mind Guardian",
+        "desc": "街を歩くゲームで記憶力を測り、認知症の前段階を早期に見つけるSamsungの無料アプリ。"
+      },
+      {
+        "type": "tech",
+        "id": "uniquery4r",
+        "title": "UniQuery4R",
+        "desc": "動画中の点の将来位置や3D座標、動きの向きをまとめて予測する4Dシーン復元技術。"
+      }
+    ]
   }
 ]
