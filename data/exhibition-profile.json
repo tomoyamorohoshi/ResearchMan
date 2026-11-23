@@ -369,7 +369,7 @@
       "type": "listing",
       "tier": "core",
       "fetch": "WebFetchで一覧。URL構造 /events/-/{slug}/{venueId}/{startDate}",
-      "notes": "ユーザー実使用ソース筆頭。RSSなし"
+      "notes": "ユーザー実使用ソース筆頭。RSSなし。2026-11-23検証: 一覧・並び替え・エリア・館ページとも展覧会データがJS描画(HTML内のJSONのみ)でWebFetchはナビしか取れない。個別ページURLが分かっている場合のみ有効"
     },
     {
       "name": "artscape",
@@ -397,11 +397,11 @@
     },
     {
       "name": "ワタリウム美術館",
-      "url": "http://www.watarium.co.jp/jp/exhibition/",
+      "url": "https://artscape.jp/museum/1859/",
       "type": "venue",
       "tier": "core",
-      "fetch": "WebFetch。httpのみ(httpsは証明書不一致)。個別 /jp/exhibition/{YYYYMM}/",
-      "notes": "監視対象確定"
+      "fetch": "WebFetch(artscapeの館ページ。開催中/予定の展覧会と公式サイトURLが静的に読める)。公式 www.watarium.co.jp はWebFetchがhttpsへ自動昇格し証明書不一致で取得不可(2026-11-23確認)。公式の個別URLは http://www.watarium.co.jp/jp/exhibition/{YYYYMM}/ の形式で、取得できなくても officialUrl として記録してよい",
+      "notes": "監視対象確定。2026-11-23 URLを公式一覧からartscape館ページへ変更"
     },
     {
       "name": "ギンザ・グラフィック・ギャラリー",
@@ -530,6 +530,46 @@
       "tier": "supplementary",
       "fetch": "WebFetch",
       "notes": ""
+    },
+    {
+      "name": "金沢21世紀美術館",
+      "url": "https://www.kanazawa21.jp/exhibitions/",
+      "type": "venue",
+      "tier": "core",
+      "fetch": "WebFetch(取得確認済)。開催中の展覧会が会期付きで並ぶ。個別 /data_list.php?g=65&d={id}",
+      "notes": "trial 2026-11-23〜11-30(1週間試行。件数と使用量を見て継続判断)"
+    },
+    {
+      "name": "アーツ前橋",
+      "url": "https://artsmaebashi.jp/exhibition/current/",
+      "type": "venue",
+      "tier": "core",
+      "fetch": "WebFetch(取得確認済)。開催中の展覧会＋会期＋個別URL。個別 /exhibition_post/{slug}/",
+      "notes": "trial 2026-11-23〜11-30(1週間試行。件数と使用量を見て継続判断)"
+    },
+    {
+      "name": "CCBT(シビック・クリエイティブ・ベース東京)",
+      "url": "https://ccbt.rekibun.or.jp/events",
+      "type": "venue",
+      "tier": "core",
+      "fetch": "WebFetch(取得確認済)。展覧会・ワークショップ混在。展覧会のみ拾う。個別 /events/{slug}",
+      "notes": "trial 2026-11-23〜11-30(1週間試行。件数と使用量を見て継続判断)"
+    },
+    {
+      "name": "日本科学未来館",
+      "url": "https://www.miraikan.jst.go.jp/exhibitions/spexhibition/",
+      "type": "venue",
+      "tier": "core",
+      "fetch": "WebFetch(取得確認済)。特別展の開催中/予定が会期付き。個別 /exhibitions/spexhibition/{slug}.html",
+      "notes": "trial 2026-11-23〜11-30(1週間試行。件数と使用量を見て継続判断)"
+    },
+    {
+      "name": "ポーラ美術館",
+      "url": "https://www.polamuseum.or.jp/exhibition/",
+      "type": "venue",
+      "tier": "core",
+      "fetch": "WebFetch(取得確認済)。開催中の企画展・コレクション展が会期付き。個別 /exhibition/{YYYYMMDDNN}/",
+      "notes": "trial 2026-11-23〜11-30(1週間試行。件数と使用量を見て継続判断)"
     }
   ],
   "unreachable": [
