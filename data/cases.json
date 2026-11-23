@@ -130797,5 +130797,630 @@
       "Form/App"
     ],
     "thumbnail": "/thumbnails/canadian-down-syndrome-society-the-mindsets-paper.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "pill-id",
+    "title": "Pill-Id",
+    "summary": "スマホで錠剤を撮影すると種類・リスクを判定する、パーティー向けのハームリダクション用アプリ。",
+    "client": "Pill-Id",
+    "agency": "HEREZIE, Paris",
+    "categories": [
+      "Health & Wellness"
+    ],
+    "award": "Cannes Lions 2022 Health & Wellness Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Health & Wellness",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.itsnicethat.com/news/rehab-herezie-by-the-network-pill-id-digital-080621",
+    "videoId": "",
+    "overview": "フランスの独立系エージェンシーHerezieと、英国のRehab（By The Networkの加盟社）が開発した錠剤識別アプリ。ユーザーが錠剤を撮影すると、機械学習モデルが種類を特定し、用量の目安、リスクレベル、想定される副作用を示す。",
+    "background": "It's Nice Thatの記事によれば、英国でロックダウンが緩和されクラブやフェスの再開が近づく時期に発表された。同記事は、英国の犯罪統計をもとに2020年に約130万人の成人がクラスA薬物を使用したとしており、薬物使用を前提に事故を減らすハームリダクションの道具として位置づけられている。アイデアはHerezieのクリエイター、Rehabが制作とテストを担った。",
+    "execution": "錠剤をカメラで撮影するか既存の画像をアップロードすると、ブラウザ上で動くTensorFlow.jsのモデルが形・色・刻印を手がかりに、欧州市場で知られる錠剤のデータベース（スイスのNuit Blanche）と照合する。データは匿名で追跡されないとされる。CB Newsによれば、データベースは国ごとに差があるため今後ローカライズしたい意向で、普及には広告主や公的機関などの資金が必要としている。なお、確認できた記事は2021年6月のプロトタイプ発表と2022年6月の受賞報道で、公開版の提供状況は確認できていない。",
+    "evaluationImpact": "カンヌライオンズ2022のHealth & Wellness部門でBronzeを受賞した。CB Newsはこれを同年フランス勢最初のライオンと報じている。利用者数や識別精度などの成果数値は確認できなかった。",
+    "tags": [
+      "Theme/Health",
+      "Tech/AI",
+      "Form/App"
+    ],
+    "thumbnail": "/thumbnails/pill-id.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "coordow-n-just-the-two-of-us",
+    "title": "Just The Two Of Us",
+    "summary": "ダウン症のカップルが家族や支援者の目に囲まれて二人きりになれない様子をユーモアで描き、恋愛や性への権利を訴えた短編映像キャンペーン。",
+    "client": "Coordow N",
+    "agency": "SMALL, New York",
+    "categories": [
+      "Health & Wellness"
+    ],
+    "award": "Cannes Lions 2022 Health & Wellness Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Health & Wellness",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://musebyclios.com/advertising/new-campaign-explores-romance-and-privacy-for-people-with-down-syndrome/",
+    "videoId": "",
+    "overview": "イタリアのダウン症支援団体CoorDownが、ニューヨークのSMALLと制作した世界ダウン症の日（2022年3月21日）向けの施策。ダウン症のある人が恋愛・性的関係を持つ権利と、正確で分かりやすい情報を得る権利を主題にした。",
+    "background": "Muse by Clioの記事によれば、SMALLとCoorDownの協働は10年に及び、性と恋愛を扱うのはこれが初めて。ダウン症や学習障害のある人の性は今もタブー視されやすく、権利・同意・安全な性行為を学ぶ教育（RSE）が届きにくいと、英国ダウン症協会は指摘している。",
+    "execution": "映像は、二人きりの時間を持ちたいカップルのそばに、カウンセラーや家族、友人が次々と付き添う様子を誇張して描くコメディ。出演は実生活でも交際しているKenya KoeneとLiam de Waele。曲は「Just the Two of Us」を、歌詞と映像の落差を生かすため、ゆったりしたデュエットにアレンジしたカバー。コンドームブランドのControlが主要スポンサーとなり、専用サイトjustthetwoofus.orgも設けられた。英国ダウン症協会は関連資料「Let's Talk About Relationships and Sex」を無料でダウンロードできるようにした。",
+    "evaluationImpact": "カンヌライオンズ2022のHealth & Wellness部門でBronzeを受賞した。D&ADでもWood Pencilを受けたとCreativepoolは伝えている。視聴数などの成果数値は独立した報道では確認できなかった。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Health",
+      "Form/Film"
+    ],
+    "thumbnail": "/thumbnails/coordow-n-just-the-two-of-us.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "the-foundatio-n-k-i-d-s-little-headhunters-powered-by-linkedin",
+    "title": "Little Headhunters Powered By Linkedin",
+    "summary": "小児病院の入院経験がある子どもたちがLinkedInで専門家に直接動画で声をかけ、病院のIT化を手伝うボランティアを集めた施策。",
+    "client": "The Foundatio N K.I.D.S.",
+    "agency": "PUBLICIS WORLDWIDE POLAND, Warszawa",
+    "categories": [
+      "Health & Wellness"
+    ],
+    "award": "Cannes Lions 2022 Health & Wellness Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Health & Wellness",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://lbbonline.com/news/young-headhunters-are-transforming-polish-childrens-hospitals-for-charity-kids",
+    "videoId": "",
+    "overview": "ポーランドの財団K.I.D.S.（Klub Innowatorów Dziecięcych Szpitali）のために、Publicis Worldwide Polandが企画した。子どもを「世界最年少のヘッドハンター」に見立て、LinkedIn上でテクノロジー人材を勧誘した。",
+    "background": "財団はポーランドの小児病院を現代化したいが、必要なITやシステムの専門家を雇う予算がなかった。そのため無償で協力してくれる人材を探す必要があった。",
+    "execution": "財団のターゲットとなる専門家をLinkedInで見つけ、かつて患者だった子どもたちがそれぞれに宛てた個別の動画を14本録画して送った。報酬はお金ではなくお菓子やペストリーという設定。専門家は動画を自分のネットワークで共有し、他の組織も協力を申し出た。ビル・ゲイツ宛の動画も作られ、本人の返信はなかったがMicrosoftから支援の連絡があったとLBBは伝えている。",
+    "evaluationImpact": "カンヌライオンズ2022のHealth & Wellness部門でBronzeを受賞した。成果数値は独立した報道では確認できなかった。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Health",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/the-foundatio-n-k-i-d-s-little-headhunters-powered-by-linkedin.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "garvan-institute-of-medical-research-disease-dilemmas",
+    "title": "Disease Dilemmas",
+    "summary": "実在の患者2人のどちらに寄付するかを問いかけ、特定の病気の慈善団体より、多くの病気に共通する研究に寄付する意義を訴えた施策。",
+    "client": "Garvan Institute Of Medical Research",
+    "agency": "DENTSU CREATIVE, Sydney",
+    "categories": [
+      "Health & Wellness"
+    ],
+    "award": "Cannes Lions 2022 Health & Wellness Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Health & Wellness",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://mumbrella.com.au/garvan-institute-highlights-crucial-research-in-disease-dilemmas-campaign-673241",
+    "videoId": "",
+    "overview": "オーストラリアのGarvan医学研究所が、BWM dentsu（現Dentsu Creative）と手がけた同研究所初の全国キャンペーン。ゲノム研究が多様な病気の患者の助けになることを伝える。",
+    "background": "Mumbrellaによれば、オーストラリアには病気ごとの慈善団体が数多くある。キャンペーンは、寄付先を選ぶ際の「不快な問い」を視聴者に突きつけることで、一つの病気に限らない研究機関への支援へ目を向けさせようとした。",
+    "execution": "実際に病気とともに生きる人々を起用し、2人の患者を並べて「どちらにあなたの寄付を」と問う構成。たとえば膵臓がんの若い母親とパーキンソン病の元ミュージシャンといった組み合わせが使われた（LBBの紹介による）。その上で、Garvanの研究は両方の患者に役立ち得ると明かし、寄付を呼びかける。",
+    "evaluationImpact": "カンヌライオンズ2022のHealth & Wellness部門でBronzeを受賞した。寄付額やリーチなどの成果数値は、Garvanや代理店の発表以外では確認できなかった。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Health",
+      "Form/Film"
+    ],
+    "thumbnail": "/thumbnails/garvan-institute-of-medical-research-disease-dilemmas.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "fundacion-nuestros-hijos-the-legacy-of-tomiii11-38",
+    "title": "The Legacy Of Tomiii11 38",
+    "summary": "亡くなった人気YouTuberの遺族とともに、そのチャンネルを使い、がんと闘う11人の子どもが自分の物語を発信できるようにした施策。",
+    "client": "Fundación Nuestros Hijos",
+    "agency": "BBDO CHILE, Huechuraba",
+    "categories": [
+      "Health & Wellness"
+    ],
+    "award": "Cannes Lions 2022 Health & Wellness Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Health & Wellness",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.biobiochile.cl/noticias/ciencia-y-tecnologia/videojuegos/2022/02/17/el-legado-de-tomiii-11-lanzan-campana-para-que-once-ninos-con-cancer-sean-youtubers.shtml",
+    "videoId": "",
+    "overview": "チリの小児がん支援団体Fundación Nuestros Hijosが、BBDO Chileと組み、12歳で亡くなったYouTuber「Tomiii11」ことTomás Blanchのチャンネルを引き継ぐ形で実施した。財団の支援を受ける11人の子どもが、彼と同じようにYouTuberとして登場する。",
+    "background": "BioBioChileによれば、Tomás Blanchは2021年8月に脳腫瘍で亡くなった。夢はYouTubeで100万人のフォロワーを得ることで、その目標を短時間で達成していた。チリでは毎年490〜500人の子どもが小児がんと診断され、その83%が公的医療で治療を受けている。施策は国際小児がんデー（2月15日）に合わせて2022年2月に発表された。",
+    "execution": "短い告知動画で施策を知らせ、11人の子どもの物語を順に動画で公開した。動画はTomiii11のチャンネルと財団のデジタルプラットフォームで公開され、両親も協力している。最初に紹介されたのはAgustín Cabello Quezada（ベイブレード、ポケモン、フレディ・マーキュリー、ヘビが好き）で、公開直後のコメントは好意的だったとLevelUpは伝えている。",
+    "evaluationImpact": "カンヌライオンズ2022のHealth & Wellness部門でBronzeを受賞した。再生数や寄付額などの成果数値は、独立した報道では確認できなかった。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Health",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/fundacion-nuestros-hijos-the-legacy-of-tomiii11-38.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "coinbase-less-talk-more-bitcoin",
+    "title": "Less Talk, More Bitcoin",
+    "summary": "スーパーボウル中継で、黒い画面にQRコードが跳ね回るだけの60秒CMを流し、スキャンした人を新規登録に誘導したCoinbaseの施策。",
+    "client": "Coinbase",
+    "agency": "ACCENTURE SONG, New York / COINBASE, San Francisco",
+    "categories": [
+      "Direct"
+    ],
+    "award": "Cannes Lions 2022 Direct Lions Grand Prix",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Direct",
+        "level": "Grand Prix"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.thedrum.com/news/2022/02/14/ad-the-day-coinbase-breaks-internet-with-qr-code-super-bowl-stunt",
+    "videoId": "",
+    "overview": "暗号資産取引所Coinbaseが、Accenture Songと組んでスーパーボウルLVI（2022年2月13日）に出稿した広告。音声も説明もなく、DVDの待機画面のようにQRコードが画面上を動き続ける。",
+    "background": "暗号資産の広告が相次いだ2022年のスーパーボウルで、Coinbaseは凝った映像や有名人ではなく、視聴者が自分でスマホを向けるという行動そのものを広告にした。Adweekなどは、画面保護機能のような見た目の広告として報じた。",
+    "execution": "QRコードを読み取ると専用ページに移動し、新規ユーザーは15ドル分のビットコインを受け取れる。既存ユーザー向けには300万ドルの懸賞も用意された。放送中にQRコードのスキャンが集中し、アクセスが急増した。",
+    "evaluationImpact": "放送直後にCoinbaseのサイトとアプリがアクセス集中で不安定になり、同社はトラフィックを絞る対応を取った（Fortune、Yahoo Finance等の報道）。The Blockの調査として、アプリのApp Storeランキングが186位から2位に上がったと報じられた。一方で、情報セキュリティの専門家からは、不明なQRコードを読み取らせる手法への懸念も出た。カンヌライオンズ2022のDirect部門でGrand Prixを受賞した。",
+    "tags": [
+      "Form/Film",
+      "Tech/Web"
+    ],
+    "thumbnail": "/thumbnails/coinbase-less-talk-more-bitcoin.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "ikea-cirkular",
+    "title": "Cirkulär",
+    "summary": "ブラックフレンデーに合わせ、IKEAが使用済み家具を買い取って再販売するCirkulärサービスを打ち出し、消費を促さないセールとして見せた施策。",
+    "client": "Ikea",
+    "agency": "HJALTELIN STAHL, PART OF ACCENTURE SONG, Copenhagen / IKEA DANMARK, Taastrup / MARKETSQUARE, Copenhagen",
+    "categories": [
+      "Direct"
+    ],
+    "award": "Cannes Lions 2022 Direct Lions Gold / Cannes Lions 2022 Direct Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Direct",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Direct",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://lbbonline.com/news/ikea-and-accenture-song-on-promoting-sustainability-in-retail",
+    "videoId": "",
+    "overview": "IKEA Danmarkとコペンハーゲンの Hjaltelin Stahl（Accenture Song）による施策。不要になったIKEA家具をIKEAが買い取り、修復して再び売る仕組みを、ブラックフライデーの時期に告知した。",
+    "background": "IKEAは近年ブラックフライデーでの値引き販売をやめ、再利用や修繕に焦点を当てている。デンマークのIKEAも2021年のブラックフライデーに合わせ、「一緒にムダを減らそう」という方向で中古品の販売を打ち出していた（IKEA Denmarkのプレスリリース、Dansk Markedsføring）。",
+    "execution": "Cirkulärは、顧客が使わなくなったIKEA家具を売り、店舗で修復された商品がより安い価格で再販される循環型サービス。D&ADの掲載情報では、後に多数の国で通年のサービスになったとされる。本件の広告表現の詳細は、公開されたデンマークの報道では確認できなかったため、サービスの概要に絞って記載する。",
+    "evaluationImpact": "カンヌライオンズ2022のDirect部門でGoldとSilverを受賞した。The One ShowではPR部門でBronze Pencil、D&ADでは入選した。",
+    "tags": [
+      "Theme/Sustainability",
+      "Theme/Retail"
+    ],
+    "thumbnail": "/thumbnails/ikea-cirkular.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "kfc-chickenstock",
+    "title": "Chickenstock",
+    "summary": "KFC商品写真の無断転用に対し、訴訟ではなく高画質写真を無料配布するストックサイトを作り、ダウンロード元に看板で対抗したとされるKFCの施策。",
+    "client": "Kfc",
+    "agency": "TBWA\\RAAD, Dubai",
+    "categories": [
+      "Direct"
+    ],
+    "award": "Cannes Lions 2022 Direct Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Direct",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "中東"
+    ],
+    "link": "https://thedieline.com/kfc-launches-chicken-stock-so-folks-wont-steal-their-images-dont-worry-its-free/",
+    "videoId": "",
+    "overview": "中東・北アフリカ地域のKFCが、TBWA\\RAAD Dubaiと2022年3月に始めた「ChickenStock」。飲食店などが低画質・変形したKFCの商品写真を勝手に使う問題に対処した。",
+    "background": "The DielineやGizmodo Japanの報道によれば、地域の飲食店がKFCの商品写真を無断で使い、画像が引き伸ばされたり粗かったりすることが問題になっていた。通常なら警告書や法的措置になる場面で、KFCは別の方法を選んだ。",
+    "execution": "高解像度のKFC商品写真を、誰でも無料でダウンロードできるストックサイトとして公開した。報道では、ダウンロード時のIPなどから利用場所が分かり、その周辺に本物と無断利用画像を比べるポスターや看板を出したとされる。この位置情報の活用は、一部の報道と応募文に基づく説明である。",
+    "evaluationImpact": "公開後、アクセス集中でサイトが一時的に利用できなくなったと報じられた。成果の数値は独立した報道では確認できなかった。カンヌライオンズ2022のDirect部門でSilverを受賞した（Dubai Lynxでも受賞）。",
+    "tags": [
+      "Form/Website",
+      "Form/OOH",
+      "Theme/Food"
+    ],
+    "thumbnail": "/thumbnails/kfc-chickenstock.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "institutiona-l-the-refugee-jatoba",
+    "title": "The Refugee Jatoba",
+    "summary": "アマゾンの森林破壊に抗議し、先住民団体APIBが絶滅の危機にある樹木ジャトバに「難民申請」をさせ、各国大使館に庇護を求めた施策。",
+    "client": "Institutiona L",
+    "agency": "AFRICA DDB, São Paulo",
+    "categories": [
+      "Direct",
+      "Outdoor",
+      "Social & Influencer"
+    ],
+    "award": "Cannes Lions 2022 Direct Lions Silver / Cannes Lions 2022 Outdoor Lions Gold / Cannes Lions 2022 Outdoor Lions Silver / Cannes Lions 2022 Outdoor Lions Bronze / Cannes Lions 2022 Social & Influencer Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Direct",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Outdoor",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Outdoor",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Outdoor",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Social & Influencer",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.euronews.com/2021/09/22/why-does-this-tree-need-refugee-status",
+    "videoId": "",
+    "overview": "Africa DDB São Pauloが、ブラジル先住民族連合（APIB）のために作った環境キャンペーン。ジャトバという在来種の木を「難民」に見立て、大使館に保護を求めた。",
+    "background": "2021年9月、ボルソナーロ大統領が国連総会で演説する時期に合わせ、森林伐採と火入れによるアマゾンの破壊を訴える必要があった。APIBは、自国で守られないなら木が国外に逃れるしかないという構図を作った。",
+    "execution": "植樹の日にあたる2021年9月21日ごろ、当時APIB代表だったソニア・グアジャジャラらがブラジリアのノルウェー大使館前でジャトバの庇護を求めた。IHUの報道では、交渉の末にノルウェー側が受け入れ、木は大使館の敷地に植え替えられた。Africaは50以上の大使館に「難民申請」を送り、大使館周辺で屋外広告も展開した。映画は Hungry Man が制作し、5年間の森林伐採停止を求める署名も呼びかけた。",
+    "evaluationImpact": "Euronews、Yahoo、Inquirerなど国際メディアが「木が難民申請」と報じ、森林伐採問題を国外に伝えた。カンヌライオンズ2022ではOutdoor部門でGold・Silver・Bronze、Direct部門でSilver、Social & Influencer部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Sustainability",
+      "Form/OOH",
+      "Form/Stunt"
+    ],
+    "thumbnail": "/thumbnails/institutiona-l-the-refugee-jatoba.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "fnac-unreccomended-by-algorithm",
+    "title": "Fnac - Unreccomended By Algorithm",
+    "summary": "推薦アルゴリズムを逆に使い、利用者の関心と反対の本・CD・映画をバナーで見せて、文化の選択肢を広げようとしたFnacのキャンペーン。",
+    "client": "Fnac",
+    "agency": "PUBLICIS CONSEIL, Paris",
+    "categories": [
+      "Direct",
+      "Media"
+    ],
+    "award": "Cannes Lions 2022 Direct Lions Silver / Cannes Lions 2022 Media Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Direct",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Media",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://lbbonline.com/news/retail-store-fnacs-digital-banners-start-the-fight-for-cultural-freedom",
+    "videoId": "",
+    "overview": "フランスの文化・家電小売Fnacが、Publicis Conseil Parisと2022年6月に始めた「Libérons la culture（文化を解放しよう）」の一環。アルゴリズムによる囲い込みを批判する内容。",
+    "background": "ネット上のおすすめは過去の好みに基づくため、見るものが似通っていく。Fnacはこれを文化の多様性への脅威と位置づけ、書店・レコード店の売り手として反対の立場を取った。",
+    "execution": "Contagiousによれば、広告サーバー上のプロフィールを読み取り、その人の関心に反する本・CD・映画を組み合わせてバナーで表示した。Publicis Conseilは、人が好む確率が約2%の作品を選んで見せたと説明している。ニュースや文化系サイトのバナーに加え、逆の趣味を投稿するTwitterボットや印刷広告も展開された。2023年2月にはパリとマルセイユで連動した屋外広告も出た。",
+    "evaluationImpact": "Contagious、LBB、Shootなどの広告メディアが取り上げた。成果の数値は独立した報道では確認できなかった。カンヌライオンズ2022ではDirect部門でSilver、Media部門でBronzeを受賞した。",
+    "tags": [
+      "Tech/Data",
+      "Theme/Retail",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/fnac-unreccomended-by-algorithm.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "spark-beyond-binary-code",
+    "title": "Beyond Binary Code",
+    "summary": "性別を男女に限らない入力欄を作れるコードを無償公開し、ウェブサイトの性別データの取り方を変えようとしたSparkの施策。",
+    "client": "Spark",
+    "agency": "COLENSO BBDO, Auckland",
+    "categories": [
+      "Direct"
+    ],
+    "award": "Cannes Lions 2022 Direct Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Direct",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://www.thedrum.com/creative-works/colenso-bbdo-beyond-binary-code",
+    "videoId": "",
+    "overview": "ニュージーランドの通信大手SparkとColenso BBDOによる施策。サイト運営者が自社のフォームに貼り付けるだけで、男女以外のジェンダーも選べる入力欄にできるコードを無償で提供した。",
+    "background": "The Drumとcampaignbriefの報道によれば、ノンバイナリーの人は企業とのやり取りで日常的に誤った性別で扱われたり、選択肢から除外されたりしている。レインボー系のメンタルヘルス団体OutLine Aotearoaは、こうした経験が当事者のウェルビーイングを損なう環境につながると指摘している。Sparkは、フォームという身近な接点から変えることを狙った。",
+    "execution": "2022年2月21日に、フィルムとデジタル施策、専用サイトで公開した。事業者はまず性別情報を本当に集める必要があるかを確認し、必要な場合だけ、用途に合わせたHTMLコードを生成する。コードはOutLine Aotearoaおよびノンバイナリーのコミュニティと共同開発された。データ保護の原則、社内の合意形成、オンライン・オフラインで安心できる場づくりのガイドも併せて提供された（campaignbrief）。制作はFINCH、監督はZia Mandviwalla。",
+    "evaluationImpact": "campaignbriefとThe Drumは、コードを無償・オープンな形で提供するとともに教育リソースを備えた取り組みとして報じた。カンヌライオンズ2022のDirect部門でSilverを受賞した。",
+    "tags": [
+      "Theme/SocialGood",
+      "Tech/Web",
+      "Form/Website",
+      "Form/Film"
+    ],
+    "thumbnail": "/thumbnails/spark-beyond-binary-code.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "twitter-hello-literally-everyone",
+    "title": "Hello Literally Everyone",
+    "summary": "Facebook・Instagram・WhatsAppの大規模障害の最中に、Twitter公式アカウントが「hello literally everyone」と投稿し、移ってきた人々を迎えた施策。",
+    "client": "Twitter",
+    "agency": "TWITTER, San Francisco",
+    "categories": [
+      "Direct"
+    ],
+    "award": "Cannes Lions 2022 Direct Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Direct",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.aljazeera.com/news/2021/10/5/hello-everyone-twitter-pokes-fun-at-facebook-owned-app-outage",
+    "videoId": "",
+    "overview": "2021年10月4日、Facebook、Instagram、WhatsAppが約6時間つながらなくなった際、Twitter公式アカウントが「hello literally everyone」と投稿した。競合を茶化さず、押し寄せた人々をただ歓迎する短い一言で、会話のきっかけにした。なお2022年のDirect部門応募文の中身は応募文以外で確認できなかったため、本文は当時の投稿とその報道に基づく。",
+    "background": "Al Jazeeraの報道によれば、障害は約6時間続き、Downdetectorには1,060万件の不具合報告が寄せられた。多くの利用者が代わりにTwitterへ流れ、冗談やミームが広がった。Marketing Brewは、この投稿でTwitter公式がほぼ誰もフォローしていないことも話題になったと伝えている。",
+    "execution": "Twitter公式アカウントが一言だけ投稿した。これに対しInstagramとWhatsAppの公式アカウントが返信したほか、McDonald's、Burger King、Alexa、Microsoft Teams、Manchester Unitedなど多くのブランドが返信し、Twitter側も「59.6 million nuggets for my friends」と返して、ブランド同士のやり取りが広がった（Campaign、Retail Brew等の報道）。",
+    "evaluationImpact": "各国の報道が、障害時のブランドの反応を象徴する事例として取り上げた。カンヌライオンズ2022のDirect部門でSilverを受賞した。",
+    "tags": [
+      "Form/SNS",
+      "Theme/Entertainment"
+    ],
+    "thumbnail": "/thumbnails/twitter-hello-literally-everyone.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "canon-belgium-restory",
+    "title": "Restory",
+    "summary": "2021年夏のベルギー洪水で傷んだ家族写真を、ボランティアのレタッチャーと修復ラボが無料で復元したCanon Belgiumの取り組み。",
+    "client": "Canon Belgium",
+    "agency": "HAPPINESS, AN FCB ALLIANCE, Brussels",
+    "categories": [
+      "Direct"
+    ],
+    "award": "Cannes Lions 2022 Direct Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Direct",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.canon-europe.com/get-inspired/stories/restoring-flood-damaged-photos/",
+    "videoId": "",
+    "overview": "Canon Belgiumと広告会社Happiness Brusselsが、洪水で水浸しになった写真を無料で集めて修復し、持ち主に返したプロジェクト。写真に残る思い出を取り戻すことを狙った。",
+    "background": "Brussels Timesによれば、2021年夏の洪水を伝えるテレビ報道を見たHappiness BrusselsのGeoffrey Hantsonが発案した。家を失った被災者にとって、記憶を呼び起こす写真は数少ない拠り所になる、という考えが出発点にある（LBB）。",
+    "execution": "被災者は専用サイトrestory.photoで申し込み、運営側が写真を回収した。Brussels Timesの報道では、写真を乾かして綿棒で丁寧に洗浄し、スキャンしてデジタル処理を施し、プリントして返した。修復は文化財修復ラボのObject Careと、ボランティアのデジタルレタッチャーが担った（Canon Europe）。2021年10月には、修復した写真と持ち主の物語がブリュッセルの会場で展示された。",
+    "evaluationImpact": "Brussels TimesやMediaPostなどが、被災者向けの無料修復として報じた。LBBによれば、一部は損傷が激しく復元できなかった。カンヌライオンズ2022のDirect部門でSilverを受賞した。",
+    "tags": [
+      "Theme/SocialGood",
+      "Tech/Data",
+      "Form/Event"
+    ],
+    "thumbnail": "/thumbnails/canon-belgium-restory.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "curtice-brothers-ketchup-to-the-rescue",
+    "title": "Ketchup To The Rescue",
+    "summary": "ドイツのレビューサイトで最低評価の飲食店にケチャップを贈り、評価がどう変わるかを見せたCurtice Brothersの施策。",
+    "client": "Curtice Brothers",
+    "agency": "OGILVY GERMANY, Frankfurt",
+    "categories": [
+      "Direct"
+    ],
+    "award": "Cannes Lions 2022 Direct Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Direct",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://musebyclios.com/advertising/ketchup-brand-helps-terrible-restaurants-get-ever-so-slightly-better-reviews/",
+    "videoId": "",
+    "overview": "ドイツのケチャップブランドCurtice Brothersが、Ogilvyと組んで行った施策。レビューサイトで評価の低い店のテーブルに自社ケチャップを置き、新しい口コミの変化を検証して広告にした。",
+    "background": "Muse by Clioによれば、Curtice Brothersは2020年にドイツのベストケチャップ賞を獲得していた。Ogilvyの調査では、シェフや大会よりもオンラインのレビュアーが飲食ブランドに最も厳しい審査員だった。普段は高級店と取引するブランドが、あえて低評価の店と組んだ。",
+    "execution": "Tripadvisorで評価が最も低いベルリンの飲食店を探し、店ごとにボトルを届けてテーブルに置いてもらった。新しいレビューが付くまで平均約2か月待ち、各店の近くに、前後の口コミを並べた屋外広告を出した。コピーは「making not OK food OK since 1868」（Muse）。",
+    "evaluationImpact": "Museの報道では、評価の改善はわずかだった。たとえば星1の店が星2に上がり、「horrible」が「OKish」になった例が紹介されている。この控えめさを自虐的に見せた点が特徴で、カンヌライオンズ2022のDirect部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Food",
+      "Form/OOH",
+      "Form/Stunt"
+    ],
+    "thumbnail": "/thumbnails/curtice-brothers-ketchup-to-the-rescue.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "h-m-one-second-suit",
+    "title": "One/Second/Suit",
+    "summary": "就職面接を控えた人に、H&Mのメンズスーツを24時間無料で貸し出した施策。",
+    "client": "H&M",
+    "agency": "UNCOMMON CREATIVE STUDIO, London",
+    "categories": [
+      "Direct"
+    ],
+    "award": "Cannes Lions 2022 Direct Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Direct",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州",
+      "北米"
+    ],
+    "link": "https://lbbonline.com/news/hms-suit-rental-service-opens-doors-to-job-interview-confidence",
+    "videoId": "",
+    "overview": "H&MがUncommon Creative Studioと組み、面接のある人なら誰でも、メンズスーツを24時間無料で借りられるサービスを英国と米国で始めた。企画名は、第一印象が一瞬で決まるという発想に由来する。",
+    "background": "Creative BriefやLBBの報道によれば、雇用主は面接で会った最初の1秒で応募者を判断するという調査が着想になっている。H&MはそれをもとにH&Mの服で面接の自信を支えることを狙い、貸し出しは購入より持続可能な選択肢としても位置付けられた（FashionUnited）。",
+    "execution": "英国では2021年4月15日、米国では5月に開始し、約3か月の試験運用とされた。利用者はオンラインで予約すると自宅に届き、着用後に店舗へ返却し、H&Mがクリーニングした。ジャケットの内側のラベルは、折ると数字の1の形になるデザインとした。ローンチ映像はMark Romanekが監督し、面接当日の緊張を描いた（LBB）。",
+    "evaluationImpact": "FashionUnited、GMAなどが、H&M初のレンタルサービスとして報じた。カンヌライオンズ2022のDirect部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Fashion",
+      "Theme/Retail",
+      "Theme/Sustainability",
+      "Form/Film"
+    ],
+    "thumbnail": "/thumbnails/h-m-one-second-suit.jpg"
   }
 ]
