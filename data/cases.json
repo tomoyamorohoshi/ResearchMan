@@ -125840,5 +125840,665 @@
       "Theme/SocialGood"
     ],
     "thumbnail": "/thumbnails/heroes-of-today-platform-laliga-iberia-amc-networks-dk-v-durex-baviera-fepm-the-dream.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "lacoste-the-9th-lane",
+    "title": "The 9Th Lane",
+    "summary": "東京五輪の50m自由形決勝に、パリのプールで泳ぐパラ水泳選手を「9番目のレーン」として加えたLacosteの生中継企画。",
+    "client": "Lacoste",
+    "agency": "BETC, Paris",
+    "categories": [
+      "Entertainment Lions for Sport"
+    ],
+    "award": "Cannes Lions 2022 Entertainment Lions for Sport Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Entertainment Lions for Sport",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://lareclame.fr/betc-lacoste-le9emecouloir-252477",
+    "videoId": "",
+    "overview": "Lacosteが BETC Paris と実施した施策。2021年8月1日、東京の五輪決勝を泳ぐ8人の選手に、パラリンピック水泳選手のローラン・シャルダール（Laurent Chardard）がパリから同時に挑んだ。",
+    "background": "Lacosteはフランス五輪・パラリンピック代表チームの公式サプライヤー。Handicap.frの記事によれば、シャルダールは2016年のサメの襲撃で片腕と右脚を失った後に競技を続け、パラリンピックのメダリストとなった選手。五輪の決勝にパラ選手が並んで泳ぐ前例はなく、その場を作ることでインクルージョンを訴えた。",
+    "execution": "シャルダールはパリに用意したプールの9レーン目で泳ぎ、東京で泳ぐ8人の動きは光のビームでパリのプールに中継された（Handicap.fr）。レースはフランス時間の午前3時30分に行われ、LacosteのFacebookとInstagramでライブ配信された。解説はジャーナリストのフランス・ピエロンと、シャルダールのコーチが担当した。",
+    "evaluationImpact": "カンヌライオンズ2022のEntertainment Lions for SportでBronzeを受賞した。D&ADでもシュートリストに入った。五輪とパラの境界を技術で埋める発想として、フランスの広告・スポーツ系メディアで取り上げられた。",
+    "tags": [
+      "Theme/Sports",
+      "Form/Stunt",
+      "Theme/Fashion"
+    ],
+    "thumbnail": "/thumbnails/lacoste-the-9th-lane.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "tennis-australia-australian-open-metaverse",
+    "title": "Australian Open Metaverse",
+    "summary": "全豪オープンの会場をDecentraland上に再現し、試合データ連動のNFTも発行したTennis Australiaのメタバース施策。",
+    "client": "Tennis Australia",
+    "agency": "RUN IT WILD, Melbourne",
+    "categories": [
+      "Entertainment Lions for Sport"
+    ],
+    "award": "Cannes Lions 2022 Entertainment Lions for Sport Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Entertainment Lions for Sport",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://www.bandt.com.au/ao-metaverse-and-run-it-wild-set-new-standards-for-the-industry-at-cannes-lions/",
+    "videoId": "",
+    "overview": "Tennis AustraliaがWeb3スタジオRun It Wildと組み、2022年大会に合わせて実施した。会場のメルボルン・パークをDecentralandに再現した「AO Metaverse」と、試合データに紐づくNFT「AO Art Ball」で構成される。",
+    "background": "B&Tによれば、全豪オープンはグランドスラムとして初めて、会場一帯をDecentralandに再現した。CoinDeskは2022年1月、四大大会で初のブロックチェーン企画として、Art Ball NFTとDecentralandでの開催を報じた。",
+    "execution": "Art Ballは6,776点のNFTで、大会の約600試合のウィナーショットに1点ずつ対応する。ポイントのデータは電子ライン判定の技術に由来し、NFTは1点0.067ETH、1月13日に発行された（CoinDesk）。メタバース側では、来場者が毎日無料で訪れ、試合のリプレイや記者会見、練習コートを見られた。クエストをこなすとNFT、POAP、ウェアラブルがもらえた（B&T）。",
+    "evaluationImpact": "カンヌライオンズ2022のEntertainment Lions for SportでBronzeを受賞し、B&Tはスポーツ部門で初のNFT・メタバース案件の受賞と報じた。独立した報道で確認できた来場数や売上の数値はない。",
+    "tags": [
+      "Theme/Sports",
+      "Tech/3D",
+      "Tech/Web",
+      "Tech/Data"
+    ],
+    "thumbnail": "/thumbnails/tennis-australia-australian-open-metaverse.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "centauro-the-uniform-that-never-existed",
+    "title": "The Uniform That Never Existed",
+    "summary": "1964年東京五輪に支援もユニフォームもなく出場した陸上選手アイーダ・ドス・サントスへ、57年越しに「本来あるべきだったユニフォーム」を贈ったCentauroの施策。",
+    "client": "Centauro",
+    "agency": "TRACYLOCKE BRASIL, São Paulo",
+    "categories": [
+      "Entertainment Lions for Sport",
+      "Glass: The Lion for Change"
+    ],
+    "award": "Cannes Lions 2022 Entertainment Lions for Sport Bronze / Cannes Lions 2022 Glass: The Lion for Change Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Entertainment Lions for Sport",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Glass: The Lion for Change",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://marcaspelomundo.com.br/anunciantes/centauro-homenageia-a-ex-atleta-brasileira-aida-dos-santos/",
+    "videoId": "",
+    "overview": "ブラジルのスポーツ用品チェーンCentauroとTracyLocke Brasilによる2021年の企画。五輪に出場しながらユニフォームを与えられなかった選手の功績を、新しく作ったユニフォームと映像で称えた。",
+    "background": "LBBの記事によれば、アイーダ・ドス・サントスは1964年東京大会のブラジル代表で唯一の女性選手で、渡航費を自分で負担し、コーチもユニフォームもないまま走高跳に出場して4位に入った。Marcas pelo Mundoは、その功績が十分に知られてこなかったことを企画の出発点として伝えている。",
+    "execution": "デザイナーのカロル・バレット（Carol Barreto）が、彼女に与えられるはずだったユニフォームを制作した。84歳のアイーダは、リオのエンジェニャン競技場のトラックで、事前に何も知らされないままこれを受け取った。映像「O Uniforme que nunca existiu」ではサンドラ・ジ・サーがナレーションを務め、限定20着が販売されて収益はNGOに充てられた（LBB）。",
+    "evaluationImpact": "カンヌライオンズ2022のEntertainment Lions for SportとGlass: The Lion for Change部門でそれぞれBronzeを受賞した。ブラジルの広告メディアが受賞前から取り上げた。独立報道で確認できた成果数値はない。",
+    "tags": [
+      "Theme/Sports",
+      "Theme/SocialGood",
+      "Theme/Fashion",
+      "Form/Film"
+    ],
+    "thumbnail": "/thumbnails/centauro-the-uniform-that-never-existed.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "ywca-add-the-m-22",
+    "title": "Add The M 22",
+    "summary": "NHLやNBAなど男子リーグのロゴに「M」を足し、女子リーグだけが性別を付けて呼ばれる非対称を可視化したYWCAの啓発キャンペーン。",
+    "client": "Ywca",
+    "agency": "RETHINK, Toronto",
+    "categories": [
+      "Entertainment Lions for Sport"
+    ],
+    "award": "Cannes Lions 2022 Entertainment Lions for Sport Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Entertainment Lions for Sport",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.campaigncanada.ca/article/ywca-underscores-gender-inequity-in-sports-with-add-the-m-campaign/4q2cghj4g0qq45axhrbw345sw9",
+    "videoId": "",
+    "overview": "カナダのYWCAがRethink（Toronto）と2022年3月に始めた。NBAをMNBA、NHLをMNHLのように、男子リーグの名称に「M」を付けたロゴを公開し、スポーツのジェンダー格差を訴えた。",
+    "background": "Campaign Canadaによれば、WNBAやLPGAのように女子リーグだけが性別を示す名前を持ち、男子のNBAやPGAには付かない。着想のきっかけは、カナダサッカー協会の会長が、カナダに女子プロサッカーリーグがない理由に答えられなかったインタビューだった。",
+    "execution": "MNHL、MNBA、MPGA、MMLSなどの修正ロゴを、専用サイトLetsAddTheM.comでダウンロードできるようにした。クリスティン・シンクレアらが出演する動画も展開した。有料メディアは主体にせず、メディアでの露出を軸にした（Campaign Canada）。ロゴの商標を使った点について、開始後にリーグ側から連絡はなかったとYWCAは述べている。",
+    "evaluationImpact": "カンヌライオンズ2022のEntertainment Lions for SportでBronzeを受賞した。CBCやNBC Sportsなどカナダ・米国の媒体が取り上げ、サッカーファンの団体がプレミアリーグなど他のリーグ名にも「M」を付けて広めた。独立報道で確認できた成果数値はない。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Sports",
+      "Form/SNS",
+      "Form/Website"
+    ],
+    "thumbnail": "/thumbnails/ywca-add-the-m-22.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "wingstop-thighstop",
+    "title": "Thighstop",
+    "summary": "鶏手羽の供給難と価格高騰に対し、手羽先専門店のWingstopが「もも肉」専門のバーチャルブランドをほぼ即席で立ち上げた施策。",
+    "client": "Wingstop",
+    "agency": "LEO BURNETT, Chicago",
+    "categories": [
+      "Creative Commerce"
+    ],
+    "award": "Cannes Lions 2022 Creative Commerce Lions Grand Prix",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Commerce",
+        "level": "Grand Prix"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.cnbc.com/2021/06/21/wingstop-launches-virtual-restaurant-thighstop-as-chicken-wing-prices-rise.html",
+    "videoId": "",
+    "overview": "WingstopとLeo Burnett Chicagoによる2021年6月の施策。既存店の厨房を使うゴーストキッチン型ブランド「Thighstop」で、もも肉料理を売り出した。カンヌライオンズ2022で新設のCreative Commerce部門のGrand Prixを受賞した。",
+    "background": "CNBCによれば、コロナ禍で手羽の需要が高まる一方、人手不足や供給問題で鶏肉の生産が減り、手羽の価格が上がっていた。Wingstopは、手羽に依存しない収益源として、供給に余裕のあるもも肉に目を向けた。",
+    "execution": "Thighstopは骨付き・骨なしのもも肉を、Wingstopの11種類のフレーバーで提供する。全米約1,400店で、DoorDash配達、店頭受け取り、Thighstop.comから注文できた（CNBC）。Creative Salonによれば、審査員長のベス・アン・カミンコウは、パッケージ、インフルエンサー、広告まで全チャネルに展開した点を評価した。",
+    "evaluationImpact": "カンヌライオンズ2022のCreative Commerce部門でGrand Prixを受賞した。審査員長は、事業課題に勇敢に応えた点を評価した。その後Wingstopはもも肉を通常メニューに加えたと報じられている（Restaurant Dive）。独立報道で確認できた売上などの数値はない。",
+    "tags": [
+      "Theme/Food",
+      "Theme/Retail",
+      "Form/Website"
+    ],
+    "thumbnail": "/thumbnails/wingstop-thighstop.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "volvo-car-belux-volvo-street-configurator",
+    "title": "Volvo Street Configurator",
+    "summary": "撮影した街中のボルボの車種・色・グレードをAIで認識し、そのまま公式コンフィギュレータに引き継げるウェブアプリ。",
+    "client": "Volvo Car Belux",
+    "agency": "FAMOUSGREY, Brussels",
+    "categories": [
+      "Creative Commerce"
+    ],
+    "award": "Cannes Lions 2022 Creative Commerce Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Commerce",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://it.motor1.com/news/565751/volvo-street-configurator-auto/",
+    "videoId": "",
+    "overview": "ボルボ・カー・ベルギー（Belux）とFAMOUSGREYによる施策。道ばたで見かけたボルボの写真を撮る（または読み込む）と、モデル、ボディカラー、ホイール、グレードなどを表示し、同じ仕様の車を公式の見積もりツールで設定できる。",
+    "background": "パンデミックでモーターショーやディーラーが閉まり、実車を見る機会が減ったことが出発点。「街全体を巨大なショールームにする」というコンセプトで企画された（WPPの事例ページ、Motor1の報道）。",
+    "execution": "アプリはダウンロード不要のウェブアプリで、スマートフォンから使える。認識用に全モデル・全ボディカラー・全ホイールを含む約10万枚の写真を集め、3Dモデリングも使ってAIを学習させたとMotor1は伝えている。認識結果から公式コンフィギュレータへ進むと、同じ仕様が選ばれた状態で価格つきの見積もりが始まる。Motor1の記事時点の対象地域はベルギーとオランダ。",
+    "evaluationImpact": "カンヌライオンズ2022のCreative Commerce部門でGoldを受賞した。コロナ禍で実車に触れられない状況を逆手に取った発想が、媒体でも「街をショールームにするアプリ」として紹介された。",
+    "tags": [
+      "Tech/AI",
+      "Tech/Web",
+      "Theme/Mobility",
+      "Theme/Retail"
+    ],
+    "thumbnail": "/thumbnails/volvo-car-belux-volvo-street-configurator.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "ujjivan-small-finance-bank-shagun-ka-lifafa",
+    "title": "Shagun Ka Lifafa",
+    "summary": "結婚式のご祝儀袋「シャグン・カ・リファファ」を銀行口座の開設フォームに作り替え、新婦が自分の口座を持つきっかけにしたインドの施策。",
+    "client": "Ujjivan Small Finance Bank",
+    "agency": "McCANN INDIA, Mumbai",
+    "categories": [
+      "Creative Commerce"
+    ],
+    "award": "Cannes Lions 2022 Creative Commerce Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Commerce",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/shagun-ka-lifafa",
+    "videoId": "",
+    "overview": "ウジヴァン・スモールファイナンスバンクとマッキャン・インドによる施策。インドの結婚式で現金を入れて贈る伝統的なご祝儀袋を、見た目はそのままに口座開設フォームとして使えるようにした。",
+    "background": "インドのご祝儀袋には、縁起物の1ルピー硬貨があらかじめ付いている。多くの世帯では金融の管理を男性が担い、女性が自分の口座を持ちにくい。結婚式という誰もが集まる場面に口座開設の入口を置いた（Ads of the World、ANI配信記事）。",
+    "execution": "袋は一般的な装飾つきのご祝儀袋と同じ見た目で、従来の袋が置かれる場所に並べた。招待客が現金を入れて渡すと、袋がそのまま口座の申込書になる。ANI配信の記事では、新婚夫婦向けの共同貯蓄口座として説明されている。",
+    "evaluationImpact": "カンヌライオンズ2022のCreative Commerce部門でGoldを受賞した（ANI配信記事）。その後もGerety Awards 2023のGoldなどを受けている。",
+    "tags": [
+      "Theme/SocialGood",
+      "Form/Product",
+      "Theme/Retail"
+    ],
+    "thumbnail": "/thumbnails/ujjivan-small-finance-bank-shagun-ka-lifafa.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "dento-design-kobo-inc-favorite-food-soy-sauce",
+    "title": "Favorite Food Soy Sauce",
+    "summary": "醤油の袖（スリーブ）に「相性のよい好きな料理」を描き、料理から醤油を選べるようにした匠醤油の100mlボトル。",
+    "client": "Dento Design Kobo Inc.",
+    "agency": "HAKUHODO INC., Tokyo",
+    "categories": [
+      "Creative Commerce"
+    ],
+    "award": "Cannes Lions 2022 Creative Commerce Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Commerce",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.hakuhodo-global.com/work/favorite-food-soy-sauce.html",
+    "videoId": "",
+    "overview": "東天紅デザイン工房の醤油専門店「匠醤油」向けに、博報堂が開発した新ブランド「Favorite Food Soy Sauce」。日本人の好きな料理のイラストをスリーブに描いた100mlボトルで、醤油と料理の相性を伝える。",
+    "background": "醤油には種類があり、料理との相性もワインのペアリングのように異なるが、その事実は知られておらず、多くの人が1種類の醤油をすべての料理に使っている。日本の醤油メーカーは50年で約6,000社から約1,200社に減った（博報堂の事例ページ）。",
+    "execution": "スリーブに料理のイラストを描き、買う人が使い道から直感的に選べるようにした。購入後にスリーブを外すと醤油の銘柄名が現れ、醸造元からの直接購入につながる仕組み。消費者がこの醤油で味付けした好きな料理の写真をSNSに投稿する形でも広がり、卸売は全国に拡大した。今後は各国の好きな料理に差し替えて海外展開する構想も示されている。",
+    "evaluationImpact": "カンヌライオンズ2022のCreative Commerce部門（Food & Drink）でSilverを受賞した（博報堂の公式発表）。",
+    "tags": [
+      "Form/Product",
+      "Theme/Food",
+      "Theme/Retail",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/dento-design-kobo-inc-favorite-food-soy-sauce.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "children-of-female-prisoners-association-breakchains-with-blockchain",
+    "title": "Breakchains With Blockchain",
+    "summary": "借金を返せず投獄されたエジプトの女性を救うため、1人ずつの物語をNFTにし、売上で債務を返済した施策。",
+    "client": "Children Of Female Prisoners' Association",
+    "agency": "HORIZON FCB, Dubai",
+    "categories": [
+      "Creative Commerce",
+      "Digital Craft",
+      "Media"
+    ],
+    "award": "Cannes Lions 2022 Creative Commerce Lions Silver / Cannes Lions 2022 Digital Craft Lions Silver / Cannes Lions 2022 Media Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Commerce",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Digital Craft",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Media",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "中東"
+    ],
+    "link": "https://lbbonline.com/news/problem-solved-how-nfts-might-help-to-free-egyptian-women-from-prison",
+    "videoId": "",
+    "overview": "UAEのHorizon FCB Dubaiと、エジプトのNGO「Children of Female Prisoners' Association」による施策。世界のアーティストが、投獄された女性それぞれの事情を描いたNFTを制作し、その売上で債務を返済する。",
+    "background": "少額の借金を返せずに収監される女性が多く、bitcoin.com Newsは毎年1万人超のエジプト人女性が投獄されると伝えている。借金は医療費や生活費など、小さな出費が原因だった。",
+    "execution": "各NFTは1人の女性が投獄された理由や人生を表し、価格はその女性を解放するのに必要な債務額に設定された。2022年3月21日（エジプトの母の日）にOpenSeaで公開した。NFTという新しい手法で、女性とその家族の状況を世界に知らせることも狙った。",
+    "evaluationImpact": "bitcoin.com Newsは、公開当日にNFTの売上で債務が返済され、3人の母親が家族のもとに戻ったと報じた。カンヌライオンズ2022でCreative Commerce、Digital Craft、Mediaの3部門でSilverを受賞した。",
+    "tags": [
+      "Theme/SocialGood",
+      "Tech/Web",
+      "Theme/Art"
+    ],
+    "thumbnail": "/thumbnails/children-of-female-prisoners-association-breakchains-with-blockchain.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "ikea-trapped-in-the-90s",
+    "title": "Trapped In The 90S",
+    "summary": "IKEAのない1990年代の家に若者6人を閉じ込め、実際のリアリティ番組として配信したスペインIKEAの25周年企画。",
+    "client": "Ikea",
+    "agency": "McCANN SPAIN, Madrid",
+    "categories": [
+      "Creative Commerce",
+      "Media"
+    ],
+    "award": "Cannes Lions 2022 Creative Commerce Lions Silver / Cannes Lions 2022 Creative Commerce Lions Bronze / Cannes Lions 2022 Media Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Commerce",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Commerce",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Media",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adweek.com/brand-marketing/ikea-made-a-reality-show-that-traps-contestants-in-the-1990s/",
+    "videoId": "",
+    "overview": "イケア・スペインのスペイン進出25周年を記念して、マッキャン・スペインが制作したウェブシリーズ。IKEAがある暮らししか知らない1996年以降生まれの6人が、90年代のスペインの家を再現したセットで共同生活をした。",
+    "background": "スペインで25周年を迎えたIKEAが、「IKEAがなかった頃の暮らし」を見せることで、家庭の暮らしを身近にしてきた存在だと示すことを狙った（directnewideas、Marketing Oops）。",
+    "execution": "出演者は、ダイヤル式の電話や重い毛布、IKEA製の収納がない狭い浴室といった90年代の暮らしを体験した。ときどき新製品の「支援パッケージ」が届く。20台のカメラで約100時間を撮影し、全8話のウェブシリーズとしてYouTube、IKEAの公式サイト、SNSで公開した。広告らしく見せず、本物のリアリティ番組として作った。",
+    "evaluationImpact": "カンヌライオンズ2022でCreative CommerceのSilverとBronze、MediaのSilverを受賞した。D&AD 2023でもGraphite Pencilを受けている。",
+    "tags": [
+      "Form/Film",
+      "Theme/Entertainment",
+      "Theme/Retail",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/ikea-trapped-in-the-90s.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "yellowstone-forever-the-inheritance-pass",
+    "title": "The Inheritance Pass",
+    "summary": "イエローストーン国立公園の150周年に合わせ、150年後の2172年に入園できるパスを寄付者に贈った、非営利団体Yellowstone Foreverの資金調達施策。",
+    "client": "Yellowstone Forever",
+    "agency": "HAVAS, Chicago",
+    "categories": [
+      "Creative Commerce",
+      "Direct"
+    ],
+    "award": "Cannes Lions 2022 Creative Commerce Lions Silver / Cannes Lions 2022 Direct Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Commerce",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Direct",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/inheritance-pass",
+    "videoId": "",
+    "overview": "Havas Chicagoが、公園の公式パートナーである非営利団体Yellowstone Foreverのために手がけた施策。1,500ドルの寄付と引き換えに、公園の300周年にあたる2172年に使える入園パスを渡す。パスは家族の財産として子孫に引き継ぐ想定で、寄付者には2022年に1回使い始めれば1年間有効な通常パスも付く。",
+    "background": "2022年はイエローストーンが世界初の国立公園として指定されて150周年にあたる。Yellowstone Foreverは公園の保全と教育を支える資金調達団体で、「次の150年を守る」ことを記念年の寄付の呼びかけに結び付けた。",
+    "execution": "パスは1,500ドル以上の寄付で入手でき、有効になるのは2172年。パス自体は遺産のように家族で受け継ぐ物として設計された。Spokesman-Reviewの報道によれば、寄付金は遊歩道の整備、青少年教育、在来魚の保全、鳥・クマ・ピューマ・オオカミを対象にした科学調査などに使われる。寄付そのものは150年後ではなく、すぐに必要な活動に充てられる。",
+    "evaluationImpact": "「150年後に使える入園パス」という発想がTime Outなど複数のメディアで取り上げられ、世界的な話題になった。カンヌライオンズ2022のCreative Commerce部門とDirect部門でそれぞれSilverを受賞した。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Sustainability"
+    ],
+    "thumbnail": "/thumbnails/yellowstone-forever-the-inheritance-pass.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "santander-bank-santander-we-stand",
+    "title": "Santander We Stand",
+    "summary": "ブラジルで苦戦する新聞スタンドを、Santanderが改装と小口融資で複合サービス拠点に変え、広告媒体にもした事業再生型の施策。",
+    "client": "Santander Bank",
+    "agency": "VMLY&R, São Paulo / SUNO UNITED CREATORS, Sao Paulo",
+    "categories": [
+      "Creative Commerce"
+    ],
+    "award": "Cannes Lions 2022 Creative Commerce Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Commerce",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://startupi.com.br/2020/05/projeto-transforma-bancas-de-jornal-em-novos-modelos-de-negocios/",
+    "videoId": "",
+    "overview": "VMLY&R São Pauloが手がけたSantander Brasilの取り組み（Cannes応募名 \"We Stand\"。ポルトガル語のプロジェクト名は「A Gente Banca」）。新聞・雑誌の売上が落ち込むスタンドの店主に、店の改装、新しい副業サービス、融資を提供する。この資料の施策内容は、2020年当時のプロジェクト報道に基づく。",
+    "background": "Startupiの報道によれば、ブラジルには40万以上の新聞スタンドがあるが、出版市場は3年で21%縮小し、サンパウロでは10年でスタンド数が3,178から2,638に減った。Santanderは広告を出すだけでなく、小規模事業者の収入源を増やす形で関わることを狙った。",
+    "execution": "2020年にパラナ州クリチバで、5軒のスタンドを使ったパイロットとして始まった。Santanderと店主が追加する事業（裁縫、ネイル、携帯修理、花屋、鍵屋など）を決め、銀行が専用の家具、試着スペース、照明を含む改装を行う。スタンドにはLEDスクリーンが付き、広告枠として貸し出せるため店主の収入源になる。融資はSantander Prosperaマイクロファイナンスから15,000〜60,000レアルで、銀行が債務の3分の1を負担する代わりに、契約期間中はLEDスクリーンで銀行の広告を流す。",
+    "evaluationImpact": "カンヌライオンズ2022のCreative Commerce部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Retail",
+      "Theme/SocialGood",
+      "Form/OOH"
+    ],
+    "thumbnail": "/thumbnails/santander-bank-santander-we-stand.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "test-la-redoute",
+    "title": "La Redoute",
+    "summary": "ホテルの客室をそのまま家具のショールームにし、QRコードで購入できるようにしたLa Redouteの返品削減施策（Showroom Hôtel）。",
+    "client": "Test",
+    "agency": "FRED & FARID, Paris",
+    "categories": [
+      "Creative Commerce"
+    ],
+    "award": "Cannes Lions 2022 Creative Commerce Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Commerce",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.cbnews.fr/creation/image-cannes-lions-2022-creative-commerce-du-bronze-redoute-70141",
+    "videoId": "",
+    "overview": "フランスのEC・家具ブランドLa Redouteが、Fred & Farid Parisと実施した施策。Ibis Stylesのホテル240軒に同社の家具を置き、宿泊客が実物を試せる場にした。",
+    "background": "CB Newsによれば、オンライン家具販売の約27%が返品されている。椅子の座り心地や家具のサイズ感がネットでは分からないことが主な理由で、返品は物流面の負担にもなっていた。",
+    "execution": "フランス国内の約240のIbis Stylesホテルの客室や共用部にLa Redouteの家具を設置し、各家具にQRコードを付けた。宿泊客は使ってみて気に入った家具をその場でスマートフォンから注文できる。",
+    "evaluationImpact": "施策はフランスの業界メディアで報じられ、カンヌライオンズ2022のCreative Commerce部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Retail",
+      "Form/Installation",
+      "Theme/Sustainability"
+    ],
+    "thumbnail": "/thumbnails/test-la-redoute.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "under-armour-the-first-meta-sneaker",
+    "title": "The First Meta Sneaker",
+    "summary": "ステフィン・カリーの3ポイント記録を記念し、実際の試合用シューズを複数のメタバースで「履ける」NFTとして発売したUnder Armourの施策。",
+    "client": "Under Armour",
+    "agency": "BERLIN CAMERON, New York",
+    "categories": [
+      "Creative Commerce",
+      "Entertainment",
+      "Social & Influencer"
+    ],
+    "award": "Cannes Lions 2022 Creative Commerce Lions Bronze / Cannes Lions 2022 Entertainment Lions Silver / Cannes Lions 2022 Social & Influencer Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Commerce",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Entertainment",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Social & Influencer",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.marketingdive.com/news/under-armours-wearable-nfts-honor-steph-curry-shattering-3-point-record/616472",
+    "videoId": "",
+    "overview": "Berlin Cameronが手がけた、Under ArmourのGenesis Curry Flow NFT。Cannesの応募名は \"The First Meta Sneaker\" で、メタバース横断で使える初のウェアラブルNFTと位置づけられた。",
+    "background": "2021年12月14日、契約選手のステフィン・カリーがNBA歴代最多3ポイント記録を更新した。Under Armourはこの記録を、NFTを持つ意味が分かりにくいと感じる消費者にも伝わる形で祝おうとした。",
+    "execution": "記録達成時にカリーが履いたGenesis Curry Flowを、デジタルシューズとして2,974点発行した（記録更新時の3ポイント成功数と同数）。価格は1点333ドルで、収益は青少年のスポーツ機会を広げる団体に寄付される。保有者はDecentraland、The Sandbox、Gala Games、Rumble Kong Leagueなどのメタバースでアバターに履かせられる。制作にはNFT制作会社NewKinoとマーケットプレイスLunaが協力した。",
+    "evaluationImpact": "Marketing Diveの報道では、初回販売は完売した。カンヌライオンズ2022でSocial & Influencer部門Gold、Entertainment部門Silver、Creative Commerce部門Bronzeを受賞した。",
+    "tags": [
+      "Theme/Sports",
+      "Theme/Fashion",
+      "Tech/3D",
+      "Tech/XR"
+    ],
+    "thumbnail": "/thumbnails/under-armour-the-first-meta-sneaker.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "supermax-online-the-eye-tracker",
+    "title": "The Eye Tracker",
+    "summary": "ハリケーンの目の進路を一人称視点の3Dで見せ、家族構成に応じた備蓄量を提案して買い占めを抑えようとしたプエルトリコのスーパーSuperMaxのモバイルツール。",
+    "client": "Supermax Online",
+    "agency": "DE LA CRUZ OGILVY, Guaynabo",
+    "categories": [
+      "Creative Commerce",
+      "Mobile"
+    ],
+    "award": "Cannes Lions 2022 Creative Commerce Lions Bronze / Cannes Lions 2022 Mobile Lions Gold / Cannes Lions 2022 Mobile Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Commerce",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Mobile",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Mobile",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "中南米"
+    ],
+    "link": "https://www.ogilvy.com/work/eye-tracker",
+    "videoId": "",
+    "overview": "プエルトリコのスーパーマーケットSuperMaxが、De La Cruz Ogilvyと作ったハリケーン対策ツール。ハリケーンの進路を3Dで追い、準備すべき物資の量を示し、そのままSuperMax Onlineで注文して配達してもらえる。",
+    "background": "ハリケーンの接近時には、住民が不安から水や食料を過剰に買い込む「パニック買い」が起きやすい。SuperMaxは、必要な量を事前に知らせることでそれを減らすことを狙った。",
+    "execution": "DPL Newsによれば、ツールはハリケーンの目の進路を第一人称視点の3D表示で見せる。応募の記載では、世帯の人数など家族構成に合わせて必要な物資の量を提案し、SuperMax Onlineでの注文につなげる。気象予報士のDeborah Martorellがハリケーンシーズンのスポークスパーソンを務めた。",
+    "evaluationImpact": "カンヌライオンズ2022でMobile部門のGoldとBronze、Creative Commerce部門のBronzeを受賞した。",
+    "tags": [
+      "Tech/App",
+      "Form/App",
+      "Tech/3D",
+      "Theme/Retail"
+    ],
+    "thumbnail": "/thumbnails/supermax-online-the-eye-tracker.jpg"
   }
 ]
