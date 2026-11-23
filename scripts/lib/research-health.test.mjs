@@ -76,7 +76,10 @@ function buildFixture(opts = {}) {
     for (let i = 0; i < ccAdds(n); i++) cases.push({ id: `c${seq++}`, title: `事例${seq}`, overview: "ふつうの概要", ...(opts.caseExtra ? opts.caseExtra(n, i) : {}) });
     for (let i = 0; i < techAdds(n); i++) tech.push({ id: `t${seq++}`, title: `技術${seq}` });
     for (let i = 0; i < exAdds(n); i++)
-      exItems.push({ id: `e${seq++}`, title: `展示${seq}`, venue: "会場A", startDate: "2026-11-01", endDate: "2026-12-01", addedAt: `${day(n)}T01:30:00.000Z` });
+      exItems.push({ id: `e${seq++}`, title: `展示${seq}`, venue: "会場A", startDate: "2026-11-01", endDate: "2026-12-01", addedAt: `${day(n)}T01:30:00.000Z`, ...(opts.exOrigin ? { origin: opts.exOrigin } : {}) });
+    if (opts.exIntakeBulk && opts.exIntakeBulk.n === n)
+      for (let i = 0; i < opts.exIntakeBulk.count; i++)
+        exItems.push({ id: `i${seq++}`, title: `投稿${seq}`, venue: "会場B", startDate: "2026-11-01", endDate: "2026-12-01", addedAt: `${day(n)}T01:30:00.000Z`, origin: "intake" });
     if (opts.misclass && n === 2) cases.push({ id: "mis1", title: "森万里子展 燦燦", overview: "2026年10月1日〜2026年12月20日 会場にて開催" });
     if (opts.exFlip && n <= 10 && n >= 6) {
       // 同一id「flip」の開始日が毎日変わる
@@ -245,6 +248,26 @@ test("絶対下限: 基準自体が低下済み(週3件で安定)でも検知す
   assert.ok(c.includes("tech:pace-floor"), c.join());
   assert.ok(c.includes("exhibition:pace-floor"), c.join());
   assert.ok(!c.includes("cc:pace-drop"), c.join());
+});
+
+test("Exhibition pace-drop: intake の一括投入で baseline が膨らんでも誤検知しない(autoだけで集計)", async () => {
+  const { root, logDir } = buildFixture({ exAddsPerDay: (n) => (n % 3 === 0 ? 1 : 0), exOrigin: "auto", exIntakeBulk: { n: 20, count: 20 } });
+  const r = await runResearchHealthReview({ root, now: NOW, logDir, dryRun: true });
+  assert.ok(!codes(r).includes("exhibition:pace-drop"), codes(r).join());
+});
+
+test("Exhibition pace-drop: origin 欠落の古い項目は自動発見扱いで数える", async () => {
+  const { root, logDir } = buildFixture({ exAddsPerDay: (n) => (n >= 7 && n % 2 === 0 ? 1 : n === 0 ? 1 : 0), exIntakeBulk: { n: 3, count: 20 } });
+  const r = await runResearchHealthReview({ root, now: NOW, logDir, dryRun: true });
+  assert.ok(codes(r).includes("exhibition:pace-drop"), codes(r).join());
+  assert.equal(r.findings.find((f) => f.code === "pace-drop").evidence.recent7d, 1);
+});
+
+test("Exhibition pace-drop: autoが本当に減れば intake が直近に入っていても検知する", async () => {
+  const { root, logDir } = buildFixture({ exAddsPerDay: (n) => (n >= 7 && n % 2 === 0 ? 1 : n === 0 ? 1 : 0), exOrigin: "auto", exIntakeBulk: { n: 3, count: 20 } });
+  const r = await runResearchHealthReview({ root, now: NOW, logDir, dryRun: true });
+  assert.ok(codes(r).includes("exhibition:pace-drop"), codes(r).join());
+  assert.equal(r.findings.find((f) => f.code === "pace-drop").evidence.recent7d, 1);
 });
 
 test("llm=true で runLlm の findings が『AIレビュー』節に載る", async () => {

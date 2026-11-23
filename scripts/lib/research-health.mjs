@@ -667,6 +667,9 @@ export async function runResearchHealthReview({ root, now = new Date(), logDir =
   guard("追加履歴(tech)", () => { adds.tech = addsFromGit(root, "data/tech.json", since, AUTO_COMMIT_GREP.tech); return []; });
   guard("追加履歴(exhibition)", () => {
     for (const it of itemsOf(readJson(path.join(root, "data/exhibition.json"), {}))) {
+      // intake（Studio/LINE投稿の取り込み）は自動発見の健全性の指標ではない。一括投入で baseline が膨らみ pace-drop を誤検知するため除外。
+      // origin 欠落の古い項目は intake 導入前＝自動発見由来なので数える（intake は常に origin:"intake" を付ける）
+      if (it.origin === "intake") continue;
       const d = isoToDay(it.addedAt);
       if (d) adds.exhibition.set(d, (adds.exhibition.get(d) || 0) + 1);
     }
