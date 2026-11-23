@@ -19,6 +19,7 @@ import { fetchKeyVisual } from "./tech-thumbs.mjs";
 import { normalizeAndEnforceMinBytes } from "./lib/thumbnail-constraints.mjs";
 import { isUrlAlive } from "./verify-video.mjs";
 import { logRejection } from "./lib/rejection-log.mjs";
+import { toId } from "./lib/tech-id.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const TECH_PATH = path.join(__dirname, "../data/tech.json");
@@ -36,16 +37,6 @@ const inputFiles = process.argv
 
 // サムネイルの下限バイト数チェックは tech-thumbs.mjs の MIN_THUMB_BYTES / fetchThumbBuf（正規化前）と
 // lib/thumbnail-constraints.mjs の normalizeAndEnforceMinBytes（正規化後）の両方で実施
-
-function toId(name) {
-  return name
-    .toLowerCase()
-    .replace(/[（(].*?[）)]/g, "")
-    .replace(/[:：].*$/, "")
-    .replace(/[^a-z0-9぀-ヿ一-龯]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .slice(0, 60);
-}
 
 function normTitle(t) {
   return (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
@@ -109,6 +100,7 @@ async function main() {
     const title = r.techName.replace(/[:：].*$/, "").trim() || r.techName;
     const id = toId(r.techName);
     console.log(`── ${title} (${id})`);
+    if (!id) { failed.push({ id: r.techName, reason: "id生成不可" }); continue; }
 
     if (existingIds.has(id)) { console.log("  スキップ: 既存"); continue; }
     // プロンプトで「元URLを書け・r.jina.ai/t.coは出力禁止」と指示しているが、
