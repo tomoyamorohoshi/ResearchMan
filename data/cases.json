@@ -124018,5 +124018,685 @@
       "Tech/Data"
     ],
     "thumbnail": "/thumbnails/raparigas-da-bola-the-day-after-women-s-day-newspapers.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "laut-gegen-nazis-e-v-hetzjaeger-antifascist-algorithms",
+    "title": "Hetzjaeger. Antifascist Algorithms.",
+    "summary": "極右ロックそっくりの架空バンドを作り、ストリーミングの推薦アルゴリズムを逆手に取ってネオナチ層に反ナチの曲を届けた、ドイツの団体Laut gegen Nazisの施策。",
+    "client": "Laut Gegen Nazis E.V.",
+    "agency": "PHILIPP UND KEUNTJE, Hamburg",
+    "categories": [
+      "Creative Data",
+      "Media",
+      "PR"
+    ],
+    "award": "Cannes Lions 2022 Creative Data Lions Gold / Cannes Lions 2022 Media Lions Silver / Cannes Lions 2022 PR Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Data",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Media",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "PR",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://forthejury.puk-creative-tech.de/hetzjaeger-en",
+    "videoId": "",
+    "overview": "ドイツの反ナチ団体Laut gegen Nazis e.V.とPhilipp und Keuntje（Hamburg）による施策。ネオナチ風の架空バンド「Hetzjaeger」をつくり、デビュー曲「Kameraden」で極右音楽のファンに曲を推薦させた。曲は途中から反ナチのメッセージに転じる。",
+    "background": "同団体のプレスリリースによれば、SpotifyやYouTubeの推薦機能は、極右バンドを1組聴いた人にさらに極右の音楽を勧めてしまう。団体は、プラットフォームはこうしたバンドに対して無力ではないと示すことを狙った。",
+    "execution": "制作チームは極右ロックの曲を分析し、テンポ・音色・音量の傾向をティザーに反映した。歌詞や映像にも、その界隈で通用する言い回しやコードを使った。実在のネオナチバンドのファンに音源が届くよう、アーティスト類似度に基づく配信設定を使い、InstagramやTelegramでは身分を伏せた投稿で、バンドが界隈で話題だという痕跡も作った。ティザーを約1か月流してアルゴリズムに学習させたあと、2022年1月30日（ヒトラー政権掌握89周年）にフル曲とミュージックビデオを公開した。曲は2番から、極右とそれをホストするプラットフォームに向けた告発に変わる。",
+    "evaluationImpact": "カンヌライオンズ2022のCreative Data部門でGold、Media部門でSilver、PR部門でBronzeを受賞した。Webby Awards 2023でも3部門にノミネートされた。一方、右派系紙Junge Freiheitの論評は、この施策は大きな成果を挙げられなかったと批判している。",
+    "tags": [
+      "Tech/Audio",
+      "Tech/Data",
+      "Theme/Music",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/laut-gegen-nazis-e-v-hetzjaeger-antifascist-algorithms.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "vodacom-anti-hijack-ad-s",
+    "title": "Vodacom Anti-Hijack Ad's",
+    "summary": "ナビアプリWazeの広告枠を使い、車両強奪が多発する道路に近づいたドライバーへ警告と迂回ルートを表示した、南アフリカのVodacomの施策。",
+    "client": "Vodacom",
+    "agency": "VMLY&R, Johannesburg",
+    "categories": [
+      "Creative Data",
+      "Media"
+    ],
+    "award": "Cannes Lions 2022 Creative Data Lions Bronze / Cannes Lions 2022 Media Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Data",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Media",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "アフリカ"
+    ],
+    "link": "https://www.vml.com/work/vodacom-waze",
+    "videoId": "",
+    "overview": "南アフリカの通信大手VodacomとVMLY&R Johannesburgによる施策。警察データなどから車両強奪の多い道路を割り出し、その周辺でWazeアプリ内に警告広告を出して、安全な迂回路を1クリックで案内する。",
+    "background": "Wazeは基本的に所要時間の短さで経路を選び、安全性は考慮しない。車両強奪が深刻な南アフリカで、通信会社として運転者の安全に役立つ形でデータを使うことを狙った。",
+    "execution": "国の警察データ、車両追跡サービスのデータ、過去の事件報告を突き合わせ、強奪が集中する道路を特定した。その道路をジオフェンスとして設定し、信号待ちなどで停車中のドライバーに警告広告を表示する。広告は道路標識や警告表示を思わせるデザインで、迂回を選んでも目的地は変わらない。2022年3月25日にヨハネスブルグで始まった（Mediaupdate）。",
+    "evaluationImpact": "カンヌライオンズ2022のMedia部門でSilver、Creative Data部門でBronzeを受賞した。D&AD 2023でも評価された。",
+    "tags": [
+      "Tech/Data",
+      "Theme/Mobility",
+      "Tech/App"
+    ],
+    "thumbnail": "/thumbnails/vodacom-anti-hijack-ad-s.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "national-grid-green-light-signal",
+    "title": "Green Light Signal",
+    "summary": "家庭の電気が低炭素の電源で賄われている時間だけ緑に光るスマート電球で、電力の「きれいな時間帯」を可視化した英National Gridの施策。",
+    "client": "National Grid",
+    "agency": "EDELMAN, London",
+    "categories": [
+      "Creative Data",
+      "PR"
+    ],
+    "award": "Cannes Lions 2022 Creative Data Lions Bronze / Cannes Lions 2022 PR Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Data",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "PR",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.nationalgrid.com/stories/journey-to-net-zero-stories/green-light-signals-clean-energy-10-downing-street",
+    "videoId": "",
+    "overview": "英国の送電会社National GridとEdelman Londonが、COP26（2021年11月）に向けて始めた施策。電力の炭素強度データを家庭のスマート電球につなぎ、風力や太陽光など低炭素の電気が主な時間帯に電球が緑になる。",
+    "background": "National GridはCOP26のプリンシパルパートナーで、この施策は消費者向けコミュニケーションの最初の節目に位置づけられた。いつ電気を使うかで環境負荷が変わることを、日常の道具で直感的に伝えることを狙った。",
+    "execution": "National Grid ESOの炭素強度予測データをAPIで配信し、LIFXのスマート電球（LIFX Mini Colour）とIFTTTのアプリで連携させた。炭素強度が「低い」「非常に低い」の間は電球が緑になり、それ以外は消灯する。National Gridによると約750個の電球が記者、著名人、インフルエンサー、閣僚・議員、経営者に配られた。2021年10月28日〜11月5日にはロンドンの首相官邸（10 Downing Street）のアーチがこの発想の緑のLED照明になり、首相官邸の公式アカウントも発信した。",
+    "evaluationImpact": "カンヌライオンズ2022のCreative Data部門とPR部門でBronzeを受賞した。首相官邸の照明にも採用され、英国政府の発信と結びつく形で注目を集めた。",
+    "tags": [
+      "Tech/Data",
+      "Theme/Sustainability",
+      "Form/Product",
+      "Tech/Device"
+    ],
+    "thumbnail": "/thumbnails/national-grid-green-light-signal.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "pringles-the-pringlesonic-chip",
+    "title": "The Pringlesonic Chip",
+    "summary": "ポテトチップスの絵を、ZX Spectrumのカセット読み込み音と同じ形式の「バイナリ音」で作り、40年前のPC世代のファンに音で届けたPringlesの施策。",
+    "client": "Pringles",
+    "agency": "GREY, London",
+    "categories": [
+      "Radio & Audio"
+    ],
+    "award": "Cannes Lions 2022 Radio & Audio Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Radio & Audio",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.thedrum.com/news/pringles-creates-8-bit-potato-chip-binary-code-sound-celebrate-retro-gaming",
+    "videoId": "",
+    "overview": "Pringlesの「Stay in the Game」キャンペーンの一環として、Grey Londonが2022年4月、英国の名機ZX Spectrumの発売40周年に合わせて公開した。8ビット画像のチップスを、バイナリコードの音として表現した。",
+    "background": "ゲーム好きの層に向けた「Stay in the Game」で、Pringlesはレトロゲームを入り口にした。ZX Spectrumはカセットテープの音でプログラムを読み込む機種で、その音を知る世代に刺さる仕掛けにした。",
+    "execution": "ティザー映像で、聞き慣れない電子音が流れる。この音をZX Spectrumに読み込ませると、8ビット画像のポテトチップ「Pringlesonic Chip」と、1点ものの8ビット缶「Pringlesonic Original Computer Chips」が当たるコンテストの案内が表示される。MiSTer FPGAのフォーラムでは、この動画の音声が実際にSpectrum用コアで読み込めたと報告されている。",
+    "evaluationImpact": "カンヌライオンズ2022のRadio & Audio部門でSilverを受賞した。実機で動く音声としてレトロPCファンの間で話題になった。",
+    "tags": [
+      "Tech/Audio",
+      "Tech/Game",
+      "Theme/Food"
+    ],
+    "thumbnail": "/thumbnails/pringles-the-pringlesonic-chip.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "burger-king-mom-but-not-his-mom",
+    "title": "Mom But Not His Mom",
+    "summary": "ナレーションが日常の「ややこしいこと」を皮肉たっぷりに列挙し、最後にBurger Kingの肉なしチキンナゲットを加えるシリーズのラジオ作品。",
+    "client": "Burger King",
+    "agency": "DAVID, Madrid",
+    "categories": [
+      "Radio & Audio"
+    ],
+    "award": "Cannes Lions 2022 Radio & Audio Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Radio & Audio",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://musebyclios.com/advertising/burger-king-finds-comedy-in-these-even-more-confusing-times/",
+    "videoId": "",
+    "overview": "Burger King SpainとDAVID Madridによる「Even More Confusing Times」の一編。本稿では、Radio & Audio部門でBronzeを受賞した作品「Mom But Not His Mom」そのものの内容は応募文以外で確認できなかったため、同じシリーズ全体の説明を記す。",
+    "background": "シリーズは、2021年にプラントベースのWhopperを扱った「Confusing Times」の続編。Burger Kingは、肉を使わないナゲットなどが普及しつつあるなかで、その分野を主導したいとしている。",
+    "execution": "2022年4月14日にスペインとポルトガルで始まり、映像、印刷、ラジオで展開した。ナレーターが落ち着いた皮肉っぽい口調で、環境、人間関係、子育てといった話題の「ややこしさ」を挙げていき、最後に、いまは鶏肉を使わないBurger Kingの新ナゲットもその一つだとオチをつける。映像はBlur、音楽はPickle Music（ニューヨーク）、We are sicarios Studio（サンパウロ）が参加した。",
+    "evaluationImpact": "カンヌライオンズ2022のRadio & Audio部門で「Mom But Not His Mom」がBronzeを受賞した。同シリーズはスペイン勢で最多の計6つのLionsを獲得した（Reason Why）。One ShowのRadio & AudioでGold Pencilも受けた。",
+    "tags": [
+      "Tech/Audio",
+      "Theme/Food",
+      "Form/Film"
+    ],
+    "thumbnail": "/thumbnails/burger-king-mom-but-not-his-mom.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "frauen-aufs-podium-e-v-pension-gap",
+    "title": "Pension Gap",
+    "summary": "男女2人の人生を同時に語る音声で、年金格差が生まれる過程を「聞こえる差」にしたドイツのラジオ広告。",
+    "client": "Frauen Aufs Podium E.V.",
+    "agency": "+KNAUSS, Hamburg",
+    "categories": [
+      "Radio & Audio"
+    ],
+    "award": "Cannes Lions 2022 Radio & Audio Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Radio & Audio",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.red-dot.org/project/gender-gaps-55388",
+    "videoId": "",
+    "overview": "ドイツの非営利団体Frauen aufs Podium e.V.と+KNAUSS（ハンブルク）による「Gender Gaps」シリーズのうち、年金格差を扱った音声スポット。2021年の連邦議会選挙の年に、年金・ケア労働・政治の権力の3つの男女格差を音で伝えるために制作された。",
+    "background": "WuVの報道によれば、シリーズは選挙の年に、年金格差（Rentenschere）、ケア労働の格差（Gender-Care-Gap）、政治的な権力格差（Machtschere）への注目を集めるために作られた。格差は数字で語られることが多く、聞き手が体感しにくい点が課題だった。",
+    "execution": "女性と男性の2人が自分の人生の経歴を同時に語り始める。最初は同じ内容で重なっているが、出産や初任給の差などをきっかけに少しずつずれ、最後には内容も音の作りも完全に分かれる。Red Dotの掲載情報によれば、演出は意図的に簡素で、SNSでは字幕が絡み合い、要所で途切れる映像を添えた。音響制作はハンブルクのDie Stubeで、クリエイティブディレクターはJan Knauss。",
+    "evaluationImpact": "カンヌライオンズ2022のRadio & Audio部門でBronzeを受賞した（WuVは+KNAUSSがこの部門で銅賞3つを得たと報じた）。ClioやRed Dot Awardなど他の賞にも出品され、2021年のRed Dotでは Brands & Communication Design 部門のGrand Prixとされている。",
+    "tags": [
+      "Theme/SocialGood",
+      "Tech/Audio"
+    ],
+    "thumbnail": "/thumbnails/frauen-aufs-podium-e-v-pension-gap.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "jif-lil-jif-project",
+    "title": "Lil Jif Project",
+    "summary": "ピーナッツバターのJifが、ラッパーのLudacrisとGunnaを起用し、「ピーナッツバターを口に含んだようなラップ」という世代間の批評をネタに作ったヒップホップ施策。",
+    "client": "Jif",
+    "agency": "PUBLICIS, New York / PSONE, New York",
+    "categories": [
+      "Entertainment Lions for Music",
+      "Film"
+    ],
+    "award": "Cannes Lions 2022 Entertainment Lions for Music Gold / Cannes Lions 2022 Entertainment Lions for Music Silver / Cannes Lions 2022 Film Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Entertainment Lions for Music",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Entertainment Lions for Music",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Film",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://marketingdive.com/news/jif-bridges-raps-different-styles-with-epically-absurd-ads-featuring-lud/605001",
+    "videoId": "",
+    "overview": "J.M. SmuckerのJifとPublicis New York／PSOneによる2021年の施策。LudacrisのオリジナルシングルButter.ATLを軸に、テレビ・デジタル動画・TikTokチャレンジを展開した。",
+    "background": "Marketing Diveによれば、ソーシャルリスニングで、新世代のラップを「口にピーナッツバターを含んだよう」と批判する声があることを見つけたのが出発点。Jifは前年にGIFの発音論争に参加して話題を集めており、ミーム寄りの文化的な発信にブランドを広げていた。",
+    "execution": "Ludacrisが単独シングルButter.ATLを発表し、Gunnaも参加。監督Dave Meyersのヒーロー広告では、Ludacrisがスプーン1杯のJifを食べてレコーディングブースで自分のサウンドを見つける。TikTokでは、ピーナッツバターを口に含んだままヴァースを披露する#JifRapChallengeを実施し、Ludacrisや人気クリエイターが参加した。Ludacrisが選んだBoys & Girls Clubsへの寄付や、Iceboxと作ったダイヤ・ルビー付きのジャーのオークション企画も組んだ。",
+    "evaluationImpact": "カンヌライオンズ2022でEntertainment Lions for MusicのGoldとSilver、FilmでSilverを受賞した（MSLの受賞リストとShotsの受賞報道）。D&ADでもペンシルを獲得している。",
+    "tags": [
+      "Theme/Music",
+      "Theme/Food",
+      "Theme/Entertainment",
+      "Form/SNS",
+      "Form/Film"
+    ],
+    "thumbnail": "/thumbnails/jif-lil-jif-project.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "sandy-hook-promise-teenage-dream",
+    "title": "Teenage Dream",
+    "summary": "ケイティ・ペリーの「Teenage Dream」を、学校銃撃事件の生存者が歌詞を朗読する形で録り直し、10代の夢が奪われる現実を訴えた銃暴力防止のPSA。",
+    "client": "Sandy Hook Promise",
+    "agency": "HUMAN MUSIC & SOUND DESIGN, New York BBDO, New York",
+    "categories": [
+      "Entertainment Lions for Music",
+      "Film Craft",
+      "Health & Wellness"
+    ],
+    "award": "Cannes Lions 2022 Entertainment Lions for Music Gold / Cannes Lions 2022 Entertainment Lions for Music Bronze / Cannes Lions 2022 Film Craft Lions Silver / Cannes Lions 2022 Health & Wellness Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Entertainment Lions for Music",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Entertainment Lions for Music",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Film Craft",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Health & Wellness",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.shootonline.com/video/top-spot-week-sandy-hook-promise-bbdo-ny-director-henry-alex-rubin-share-teenage-dream",
+    "videoId": "",
+    "overview": "銃暴力防止の団体Sandy Hook PromiseとNew York BBDOによる2021年9月公開のPSA。新学期に合わせ、10代の日常が当たり前ではない人々の存在を示した。",
+    "background": "SHOOTonlineによれば、公開は学校が再開する時期で、銃暴力が記録的に多かった1年の後だった。団体は過去にも、学校銃撃防止をテーマにしたPSAを繰り返し制作している。Good Morning Americaは、共同創設者のNicole Hockleyが、予防啓発より生存者の経験と長期的な影響に焦点を当てたと語ったと伝えている。",
+    "execution": "曲を録り直し、パークランドやチャードンなどの銃撃事件の生存者が歌詞を朗読する。監督はSMUGGLERのHenry-Alex Rubin、音楽はHumanのSloan Alexander。映像の最後で、暴力の警告サインを学ぶ団体のガイド「Know the Signs」へ誘導する。公開に合わせ、ケイティ・ペリーが自身のSNSで紹介したと報じられている（LBB）。",
+    "evaluationImpact": "カンヌライオンズ2022でEntertainment Lions for MusicのGoldとBronze、Film CraftのSilver、Health & WellnessのSilverを受賞した。Good Morning Americaなど主要メディアが取り上げた。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Health",
+      "Theme/Music",
+      "Form/Film",
+      "Tech/Audio"
+    ],
+    "thumbnail": "/thumbnails/sandy-hook-promise-teenage-dream.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "applebee-s-fancy-like",
+    "title": "Fancy Like",
+    "summary": "TikTokで広まったWalker Hayesの曲「Fancy Like」を、Applebee'sが自社の広告・メニュー施策に取り込み、曲の流行を売り場につなげた事例。",
+    "client": "Applebee's",
+    "agency": "GREY, New York",
+    "categories": [
+      "Entertainment Lions for Music",
+      "Social & Influencer"
+    ],
+    "award": "Cannes Lions 2022 Entertainment Lions for Music Gold / Cannes Lions 2022 Social & Influencer Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Entertainment Lions for Music",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Social & Influencer",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.adweek.com/brand-marketing/applebees-fancy-like-walker-hayes-brand-partner/",
+    "videoId": "",
+    "overview": "カントリー歌手Walker Hayesの「Fancy Like」は、Applebee'sでのデートを歌った曲で、同社が依頼したものではない。流行を受けてApplebee'sは公式にタイアップし、広告に曲を使った。",
+    "background": "Adweekによれば、曲はApplebee'sの依頼ではなく、Hayesが娘のLelaと振り付けたTikTokのダンス動画から広まった。Applebee'sはその自然発生的な流行をブランドとの提携に変えた。",
+    "execution": "Wikipediaによれば、曲が触れたOreo Cookie Shakeは、パンデミックで販売終了していたが、曲の人気を受けて復活した。Applebee'sは2021年8月23日からこの曲をCMに使い始めた。本件のカンヌ応募の内容は、この流行を活かした施策全体である。",
+    "evaluationImpact": "Adweekによれば、曲に関連するTikTok動画は80万本超となり、曲はBillboardのHot Country Songsで1位になった（Hot 100の最高位はWikipediaで3位）。カンヌライオンズ2022ではEntertainment Lions for MusicでGold、Social & InfluencerでSilverを受賞した。同年の米Effie AwardsではGrand Effieを獲得した（Effie公式）。",
+    "tags": [
+      "Theme/Music",
+      "Theme/Food",
+      "Theme/Retail",
+      "Form/SNS",
+      "Theme/Entertainment"
+    ],
+    "thumbnail": "/thumbnails/applebee-s-fancy-like.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "columbia-records-industry-baby",
+    "title": "Industry Baby",
+    "summary": "裁判のパロディ映像から刑務所脱走のMVへとつなげ、保釈金基金への寄付も呼びかけたLil Nas Xの「Industry Baby」の展開。",
+    "client": "Columbia Records",
+    "agency": "LONDON ALLEY, Los Angeles",
+    "categories": [
+      "Entertainment Lions for Music"
+    ],
+    "award": "Cannes Lions 2022 Entertainment Lions for Music Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Entertainment Lions for Music",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://en.wikipedia.org/wiki/Industry_Baby",
+    "videoId": "UTHLKHL_whs",
+    "overview": "Columbia RecordsのLil Nas Xが2021年7月に公開したシングル「Industry Baby」の展開。前振りの映像で刑務所行きの判決を受け、MVでJack Harlowと脱走する流れを作った。",
+    "background": "Wikipediaによれば、前振りの「Industry Baby (Prelude)」は7月19日に公開され、「Satan Shoes」を巡るNikeの訴訟をネタにした寸劇で、Lil Nas Xが複数の役を演じる。判決は「モンテロ州立刑務所で5年」で、本名Montero Lamar Hillにちなむ。",
+    "execution": "7月23日公開のMVは、Christian Breslauer監督、Lil Nas Xの原案。刑務所の房を舞台に、仲間と脱走する話で『ショーシャンクの空に』への目配せがある。Jack Harlowが出演する。公開日にThe Bail Projectと組んだBail X Fundで寄付を呼びかけ、現金保釈の廃止を訴えた（Wikipedia、Yahoo）。",
+    "evaluationImpact": "カンヌライオンズ2022のEntertainment Lions for MusicでSilverを受賞した。MVのYouTube再生は、2025年2月時点で4億9,100万回超（Wikipedia）。",
+    "tags": [
+      "Theme/Music",
+      "Form/MV",
+      "Form/Film",
+      "Theme/Entertainment",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/columbia-records-industry-baby.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "nego-bala-sonho",
+    "title": "Sonho",
+    "summary": "少年鑑別所で歌詞を書いたファンク歌手Nego Balaの半生を、楽曲「Sonho」に乗せて描いた約15分の短編音楽映画。",
+    "client": "Nego Bala",
+    "agency": "AKQA, São Paulo",
+    "categories": [
+      "Entertainment Lions for Music"
+    ],
+    "award": "Cannes Lions 2022 Entertainment Lions for Music Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Entertainment Lions for Music",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://akqa.com/work/nego-bala/sonho",
+    "videoId": "",
+    "overview": "AKQA Coala.LABが、サンパウロ出身のアーティストNego Bala（本名Marcelo Generoso）のデビューアルバム発売に合わせて制作した音楽映画。収監、希望、立ち直る力を、アルバムの中心曲「Sonho（夢）」に合わせて描く。",
+    "background": "WPPの事例紹介によれば、Nego Balaはサンパウロのボカ・ド・リショで機会に恵まれない環境に育ち、犯罪に関わった後、音楽に自由を見いだした。「Sonho」の歌詞は、11歳で初めて少年鑑別所に収容されていた時に書いたとされる。クリエイティブ・ディレクターのChristiano Vellutiniは、特にコロナ禍で諦めかけた人々の自己肯定感を高めることを狙いとして挙げている。",
+    "execution": "楽曲をそのままミュージックビデオにするのでなく、悲劇を詩に変えることを掲げた約15分の短編映画に仕立てた（尺は出典により14分とも）。WPPの事例紹介によると、メッセージをより多くの人に届けるため複数の形式を用意し、コミュニティ、学校、刑務所、少年鑑別所での上映を想定している。",
+    "evaluationImpact": "カンヌライオンズ2022のEntertainment Lions for MusicでSilverを受賞した。Clio Music Awards 2022では4作品に与えられるGrand Clioの1つに選ばれた（Muse by Clio報道）。",
+    "tags": [
+      "Form/Film",
+      "Form/MV",
+      "Theme/Music",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/nego-bala-sonho.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "prime-video-staraoke",
+    "title": "Staraoke",
+    "summary": "500機のドローンでローマの夜空に歌詞を描き、2,000人のファンが歌手と一緒に歌う「空のカラオケ」を実現したPrime Videoの映画公開告知。",
+    "client": "Prime Video",
+    "agency": "OGILVY, Milan",
+    "categories": [
+      "Entertainment Lions for Music",
+      "Media",
+      "Outdoor"
+    ],
+    "award": "Cannes Lions 2022 Entertainment Lions for Music Bronze / Cannes Lions 2022 Media Lions Silver / Cannes Lions 2022 Outdoor Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Entertainment Lions for Music",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Media",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Outdoor",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://shots.net/news/view/prime-video-uses-drones-to-create-staraoke-for-new-movie-release",
+    "videoId": "",
+    "overview": "Amazon Prime VideoとOgilvy Italyによる施策。Prime Videoの新作オリジナル映画『Laura Pausini - Piacere di conoscerti』の配信開始を告げるため、ドローンの群れで巨大なカラオケ画面を空に描いた。",
+    "background": "対象はイタリアの人気歌手Laura Pausiniのドキュメンタリー映画。映画の公開を、ファンが歌って参加できる体験として知らせることを狙った。",
+    "execution": "2022年4月6日、ローマのコロッセオ考古学公園の上空で、約500機のドローンが高度100mまで上がり、映画のオリジナル曲「Scatola」の歌詞を曲に同期して描いた。招待された約2,000人のファンがPausiniと一緒に歌った。ドローンの制御はローマのT3kneがArtech、フランスのDronisosと協力して3週間以上かけてプログラミングした（shots.net、Ogilvy Italyの報道）。映画は翌4月7日にPrime Videoで配信された。",
+    "evaluationImpact": "カンヌライオンズ2022でEntertainment Lions for MusicのBronze、MediaのSilver、OutdoorのSilverを受賞した。",
+    "tags": [
+      "Form/Event",
+      "Form/OOH",
+      "Theme/Entertainment",
+      "Theme/Music"
+    ],
+    "thumbnail": "/thumbnails/prime-video-staraoke.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "pepsi-verizon-pepsi-halftime-ultra-pass",
+    "title": "Pepsi Halftime Ultra Pass",
+    "summary": "スーパーボウルLVIのハーフタイムショウを、Verizon 5G回線の360度映像で視点を選びながら見られるようにしたPepsiの専用アプリ。",
+    "client": "Pepsi + Verizon",
+    "agency": "R/GA, New York / VERIZON COMMUNICATIONS, Basking Ridge / PEPSI, Purchase / TRIGGER GLOBAL, Los Angeles",
+    "categories": [
+      "Entertainment Lions for Music"
+    ],
+    "award": "Cannes Lions 2022 Entertainment Lions for Music Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Entertainment Lions for Music",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.pepsico.com/newsroom/press-releases/2022/pepsi-develops-new-platform-with-verizon-to-immerse-fans-into-pepsi-super-bowl-halftime-show-with-live-360-degree-mobile-experience",
+    "videoId": "",
+    "overview": "PepsiとVerizonがR/GAらと組み、2022年2月13日のスーパーボウルLVIのハーフタイムショウ向けに用意したセカンドスクリーン体験。放送とは別に、スマートフォンで会場のさまざまな位置からの映像を選んで見られる。",
+    "background": "Pepsiはハーフタイムショウのタイトルスポンサーで、VerizonはこのときNFLの5G提供企業として5G Ultra Widebandをスーパーボウルで打ち出していた。放送では見られない視点を足し、ショウを自分好みに見る形を提案した。",
+    "execution": "PepsiCoの発表によれば、Verizon 5G Ultra Widebandで、ショウの12分間を会場各所に置いた8K対応の360度カメラの映像で配信した。視聴者は「Pepsi Super Bowl LVI Halftime Show」アプリ（App StoreとGoogle Playで無料）からULTRA PASSに入り、ステージやフィールド上にいるような視点に切り替えられた。放送はNBCで行われた。XR制作にはTrigger（ロサンゼルス）が加わった。",
+    "evaluationImpact": "カンヌライオンズ2022のEntertainment Lions for MusicでBronzeを受賞した。Clio Sportsでも2022年にGoldを受賞し、2023年のWebby Awardsにも選ばれた。",
+    "tags": [
+      "Form/App",
+      "Tech/XR",
+      "Theme/Sports",
+      "Theme/Music"
+    ],
+    "thumbnail": "/thumbnails/pepsi-verizon-pepsi-halftime-ultra-pass.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "tim-hortons-timbiebs",
+    "title": "Timbiebs",
+    "summary": "ジャスティン・ビーバーが味を考案した限定版Timbit（ドーナツ菓子）3種とグッズを出した、Tim Hortonsの歌手コラボ施策。",
+    "client": "Tim Hortons",
+    "agency": "GUT, Toronto",
+    "categories": [
+      "Entertainment Lions for Music"
+    ],
+    "award": "Cannes Lions 2022 Entertainment Lions for Music Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Entertainment Lions for Music",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://newswire.ca/news-releases/justin-bieber-and-tim-hortons-announce-collaboration-to-bring-new-menu-and-merch-items-to-restaurants-in-canada-and-the-u-s-starting-with-limited-edition-timbiebs-timbits-843483308.html",
+    "videoId": "",
+    "overview": "Tim HortonsとGUTが、カナダ出身の歌手ジャスティン・ビーバーをブランドアンバサダーに迎えて展開した施策。歌手を広告に出すだけでなく、メニューとグッズとして店頭に並べた。",
+    "background": "ニュースリリースによれば、ビーバーはTimbitsが店で一番好きなメニューだと同社に伝えており、Tim Hortonsとの協業は以前からの夢だったと語っている。長年のファンであることが、そのまま企画の物語になった。",
+    "execution": "2021年11月10日に発表し、11月29日からカナダと米国の参加店舗で販売した。商品はChocolate White Fudge、Sour Cream Chocolate Chip、Birthday Cake Waffleの限定3フレーバーのTimbiebsで、ビーバーが同社のCulinary Innovation責任者と複数回の試作を重ねて作った。ビーバー出演のCMと、ビーニー、ウエストポーチ、トートバッグなどのグッズも用意した。翌年にはフレンチバニラのコールドブリュー「Biebs Brew」も加わった。",
+    "evaluationImpact": "カンヌライオンズ2022のEntertainment Lions for MusicでBronzeを受賞した（strategy報道。アーティストをブランドアンバサダーに起用する部門）。",
+    "tags": [
+      "Theme/Food",
+      "Theme/Music",
+      "Form/Product"
+    ],
+    "thumbnail": "/thumbnails/tim-hortons-timbiebs.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "sony-interactive-entertainme-nt-play-has-no-limits-feat-kenshi-yonezu",
+    "title": "Play Has No Limits Feat. Kenshi Yonezu",
+    "summary": "米津玄師の新曲「POP SONG」を使い、遊びのない世界から兵士たちが遊びの世界へ踏み出すまでを描いたPlayStationの映像キャンペーン。",
+    "client": "Sony Interactive Entertainment",
+    "agency": "SIX INC., Tokyo / HAKUHODO INC., Tokyo / HAKUHODO KETTLE INC., Tokyo",
+    "categories": [
+      "Entertainment Lions for Music"
+    ],
+    "award": "Cannes Lions 2022 Entertainment Lions for Music Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Entertainment Lions for Music",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.gematsu.com/2022/01/playstation-japan-a-world-without-play-tv-commercial-featuring-kenshi-yonezu",
+    "videoId": "xhOobsomWnI",
+    "overview": "ソニー・インタラクティブエンタテインメントのPlayStationが、米津玄師を起用して2022年1月に公開した「遊びのない世界なんて｜Play Has No Limits」のCM。新曲「POP SONG」を軸に、PlayStationが掲げる遊びの可能性を表現した。",
+    "background": "キャンペーンのスローガン「1-2-3」は、初代PlayStationが日本で発売された12月3日にちなむ（PlayStation Japan公式Twitterの説明、Gematsu報道）。米津玄師は楽曲だけでなく、変身というアイデアやキャラクターデザインなど企画段階から参加した（GameWatch報道）。",
+    "execution": "2022年1月24日に30秒版を公式YouTubeで公開し、同日から地上波で放映した。映像は、整然と並ぶ兵士たちの中の一人が変身し、歌いながら兵士たちを翻弄し、最後に巨大な扉が開いて兵士たちが遊びの世界へ歩み出す内容。公開前日の23日にはPS5/PS4ユーザー向けに先行配信を行い、アーティストの新曲がPlayStationプラットフォームで解禁されるのは国内初とされる。SHIBUYA109渋谷店の壁面にも米津玄師の全身広告を1月28日まで掲出した。2月17日には123秒版も公開した（ファミ通報道）。",
+    "evaluationImpact": "カンヌライオンズ2022のEntertainment Lions for MusicでBronzeを受賞した。Clio Entertainmentでも2022年のGrand受賞作に挙げられている。",
+    "tags": [
+      "Form/Film",
+      "Theme/Music",
+      "Theme/Entertainment",
+      "Tech/Game"
+    ],
+    "thumbnail": "/thumbnails/sony-interactive-entertainme-nt-play-has-no-limits-feat-kenshi-yonezu.jpg"
   }
 ]
