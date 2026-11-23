@@ -131422,5 +131422,604 @@
       "Form/Film"
     ],
     "thumbnail": "/thumbnails/h-m-one-second-suit.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "transavia-not-paris",
+    "title": "Not Paris",
+    "summary": "実在しない行き先「Pas Paris」の航空券を毎朝限定販売し、行き先を伏せたままパリ市民に売ったTransaviaのソーシャル施策。",
+    "client": "Transavia",
+    "agency": "MARCEL, Paris",
+    "categories": [
+      "Direct"
+    ],
+    "award": "Cannes Lions 2022 Direct Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Direct",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://lareclame.fr/marcel-transavia-pasparis-2021-250578",
+    "videoId": "",
+    "overview": "航空会社TransaviaとMARCEL（パリ）による施策。パリ在住者に向けて「パリ以外のどこか」を行き先とする往復航空券を、専用サイトで日替わりの限定枠として販売した。",
+    "background": "ロックダウン明けのパリ市民は、パリを離れて気分転換をしたいと考えていた。Transaviaはこの気分を捉え、特定の観光地ではなく「パリではないこと」自体を商品にした。なお実施は2021年6月で、カンヌライオンズでは2022年に受賞した。",
+    "execution": "2021年6月14日〜18日の毎朝9時に専用サイトで販売を開始した。往復航空券は計300枚で、各日の先着30名が2人分の往復航空券を1人68ユーロで購入できた（有効期限は6月30日）。行き先は抽選で決まり、バルセロナ、ナポリ、ビアリッツなど10都市が候補だった。ソーシャルメディアとTransaviaのニュースレターでパリ在住者に告知し、枠が売り切れた後は通常の行き先ページへ誘導した（CB News、J'ai un pote dans la com'、La Réclame）。",
+    "evaluationImpact": "カンヌライオンズ2022のDirect部門でBronzeを受賞した。販売結果などの成果数値は、独立した報道では確認できなかった。",
+    "tags": [
+      "Form/SNS",
+      "Theme/Mobility"
+    ],
+    "thumbnail": "/thumbnails/transavia-not-paris.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "ikea-3d-printed-meatballs",
+    "title": "3D Printed Meatballs",
+    "summary": "3Dプリンターで作った植物由来のミートボールを面接で振る舞い、IKEAのテック人材採用をアピールした採用キャンペーン。",
+    "client": "Ikea",
+    "agency": "INGO, Stockholm",
+    "categories": [
+      "Direct"
+    ],
+    "award": "Cannes Lions 2022 Direct Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Direct",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://vegconomist.com/companies-and-portraits/ikea-to-recruit-tech-talents-with-3d-printed-vegan-meatballs/",
+    "videoId": "",
+    "overview": "IKEAとINGO（ストックホルム）による採用キャンペーン「Taste the Future」。選ばれたテック職の候補者との面接で、これまで提供されたことのない3Dプリント製の植物由来ミートボールを試食してもらう。",
+    "background": "IKEAは欧州でテック・イノベーション職150名の採用を目指していた。他社がテクノロジーを語る中で、IKEAは食と人間らしさを軸に差別化を図った。背景には、食品分野で植物由来への移行を進める同社の方針と、持続可能な食品生産の探求がある（Inter IKEA、vegconomist、The Drum）。",
+    "execution": "2022年2月に始まった。求人広告では「地に足のついたデータサイエンティスト」「未来の建築家」など、IKEAらしい言い回しで職種を紹介した。候補者は面接の場で、3Dプリンターで出力した実験的なミートボールを味わう。Inter IKEA Group CIOのPascal Pauwels氏は「会話を始めるのに最適な方法」と述べた。",
+    "evaluationImpact": "カンヌライオンズ2022のDirect部門でBronzeを受賞した。採用数などの成果数値は、独立した報道では確認できなかった。",
+    "tags": [
+      "Theme/Food",
+      "Tech/3D"
+    ],
+    "thumbnail": "/thumbnails/ikea-3d-printed-meatballs.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "alcaldia-de-soacha-the-most-wanted-portrait",
+    "title": "The Most Wanted Portrait",
+    "summary": "ビデオゲームのキャラクター作成技術で犯人の似顔絵を3Dカラーで素早く作り、住民からの通報を促したコロンビア・ソアチャ市の施策。",
+    "client": "Alcaldia De Soacha",
+    "agency": "SANCHO BBDO, Bogotá",
+    "categories": [
+      "Direct"
+    ],
+    "award": "Cannes Lions 2022 Direct Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Direct",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.reasonwhy.es/actualidad/campana-videojuegos-para-identificar-delincuentes",
+    "videoId": "",
+    "overview": "ソアチャ市役所とSancho BBDO（ボゴタ）による治安施策「El Retrato más Buscado」。目撃者の証言から描く手描きの似顔絵を、ゲームのアバター作成技術で置き換え、より実物に近い顔を短時間で作る。",
+    "background": "従来の似顔絵は木炭による白黒の手描きで、約2時間かかっていた。ソアチャはボゴタ近郊の自治体で、治安の悪さが課題だった。市はゲームの高度なカスタマイズ機能を使えば、より現実に近い顔を早く作れると考えた（El Tiempo、Reason Why）。",
+    "execution": "人体の形態と解剖学に詳しい担当者が研修を受け、ゲームのキャラクター作成ツールで証言から顔を作る。3Dのカラー表示で、変更をその場で確認できる。市の説明では1枚あたり30〜40分で作成でき、最初の施策では20日間で100枚を作った。完成した似顔絵は街頭の看板やテレビCMなどで公開し、情報提供者には報奨金（最大1,500ドル）が用意された（El Tiempo、Reason Why）。",
+    "evaluationImpact": "カンヌライオンズ2022のDirect部門でBronzeを受賞した。検挙数など治安面の成果は、独立した報道では確認できなかった。",
+    "tags": [
+      "Tech/3D",
+      "Tech/Game",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/alcaldia-de-soacha-the-most-wanted-portrait.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "samsung-itest",
+    "title": "Samsung Itest",
+    "summary": "iPhoneのホーム画面に追加するだけでSamsung Galaxyの操作感を体験できるWebアプリを作り、Appleユーザーに乗り換えを想像させたSamsung NZの施策。",
+    "client": "Samsung",
+    "agency": "DDB NEW ZEALAND, Auckland / TRIBAL AOTEAROA, Auckland",
+    "categories": [
+      "Direct",
+      "Media",
+      "Social & Influencer"
+    ],
+    "award": "Cannes Lions 2022 Direct Lions Bronze / Cannes Lions 2022 Media Lions Gold / Cannes Lions 2022 Social & Influencer Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Direct",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Media",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Social & Influencer",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://www.dandad.org/work/annual-2022/behind-the-work/behind-the-work-campaign-that-turned-iphone-into-android",
+    "videoId": "",
+    "overview": "Samsung New ZealandとTribal Aotearoa（DDB Group）による「iTest」。iPhone上でSamsungの操作や画面アニメーションを再現し、Androidに切り替わったかのような体験を提供する。",
+    "background": "もともとはGalaxy Note20発売のキャンペーンとして依頼された。チームはiPhoneユーザーがiMessageやApp Storeに慣れ、乗り換えそのものを恐れていることに着目し、乗り換え後の暮らしを試せる体験へ発展させた（D&AD）。",
+    "execution": "Samsungから提供された端末と画像をもとに、操作画面とアニメーションを再現し、PWA（Progressive Web App）として構築した。ホーム画面に追加するとアプリのように動作し、Webで配信するためApp Storeの審査を通らずにiPhoneで使える。ニュージーランド限定でソーシャル広告から告知を始め、海外のテックメディアやYouTube、TikTokにも広く共有された（D&AD、LBB）。",
+    "evaluationImpact": "カンヌライオンズ2022でMedia部門のGold、Direct部門とSocial & Influencer部門のBronzeを受賞した。D&AD、Webby、Spikes Asiaなど他の賞でも評価された。成果数値は、独立した報道では確認できなかった。",
+    "tags": [
+      "Tech/Web",
+      "Form/SNS",
+      "Tech/Device"
+    ],
+    "thumbnail": "/thumbnails/samsung-itest.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "verizon-9-12-the-untold-story-of-reconnecting-new-york",
+    "title": "9/12 - The Untold Story Of Reconnecting New York",
+    "summary": "9.11から20年の節目に、Verizon社員が2001年9月12日にニューヨークの通信網を復旧させた実話を、テキストメッセージだけで1日かけて追体験させた社内向け施策。",
+    "client": "Verizon",
+    "agency": "VERIZON, New York",
+    "categories": [
+      "Direct",
+      "PR"
+    ],
+    "award": "Cannes Lions 2022 Direct Lions Bronze / Cannes Lions 2022 PR Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Direct",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "PR",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://archive.unit9.com/project/verizon-912-reconnecting-new-york/",
+    "videoId": "",
+    "overview": "Verizonが自社の制作チームと進めた、9.11の20周年企画。ニューヨーク下マンハッタンの通信復旧に当たった社員の物語を、現在の社員がSMS/MMSで受け取る形にした。",
+    "background": "Communicate Magazineの記事によれば、Verizonは2001年9月12日に下マンハッタンやウォール街の通信を回復させた社員の物語を、今の社員に知ってもらうことを狙った。記事は、メタバースやNFTなど未来志向の応募が多い中での、過去に目を向けた作品として紹介している。",
+    "execution": "登録した社員に、当時の出来事と同じ時刻に合わせて、オペレーター役からのメッセージが届く。内容は、実際の通話を再現した音声、下マンハッタンの360°インタラクティブ地図、ビフォー・アフターのARフィルター、ポッドキャストや写真などで、専用アプリを使わず既存の電話機能の上に作られた。制作にはUNIT9が参加し、SMS配信にTwilio、3D表現にARとWebGLを使ったと同社の事例ページは記している。",
+    "evaluationImpact": "カンヌライオンズ2022のPR部門でGold、Direct部門でBronzeを受賞した。Communicate Magazineによると、PR部門のGoldはVerizon初のGold Lionだった。",
+    "tags": [
+      "Tech/XR",
+      "Tech/Audio",
+      "Tech/Web"
+    ],
+    "thumbnail": "/thumbnails/verizon-9-12-the-untold-story-of-reconnecting-new-york.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "amazon-amason-logo",
+    "title": "Amason Logo",
+    "summary": "TikTokクリエイターが作ったAmazonのパロディロゴ「AmaSon」を、Amazonが公式に受け入れて自社アカウントのアイコンやパロディ動画に使い、SNSで話題にした施策。",
+    "client": "Amazon",
+    "agency": "AMAZON, Seattle",
+    "categories": [
+      "Direct"
+    ],
+    "award": "Cannes Lions 2022 Direct Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Direct",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://winners.webbyawards.com/2022/advertising-media-pr/pr/best-launch/222930/amason-logo",
+    "videoId": "",
+    "overview": "Amazonのソーシャルチームが、ブランドのパロディロゴを作るTikTokクリエイターEmily Zugayの投稿に反応し、彼女の「AmaSon」ロゴを自社で使ってみせた。",
+    "background": "Emily Zugayは有名企業のロゴを大げさに作り変えて投稿し、話題になっていた。Amazonの応募情報によれば、同社のソーシャルチームはTikTokのフォロワー増を狙い、ソーシャルリスニングで彼女を見つけた。",
+    "execution": "Amazonは彼女の投稿にコメントで反応し、その後に彼女が「AmaSon」ロゴを投稿した。Amazonはこのロゴを箱やトラック、飛行機に載せるパロディ動画を公開し、複数のブランドアカウントのプロフィール画像にも使った。さらに、ロゴ入りグッズを詰めた箱を彼女に送り、彼女がそれを投稿してさらに広まった。",
+    "evaluationImpact": "カンヌライオンズ2022のDirect部門でBronzeを受賞した。Webby Awards 2022のAdvertising, Media & PR部門Best Launch or Dropでも受賞している。",
+    "tags": [
+      "Form/SNS",
+      "Theme/Entertainment"
+    ],
+    "thumbnail": "/thumbnails/amazon-amason-logo.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "burger-king-duet-delivery",
+    "title": "Duet Delivery",
+    "summary": "TikTokのデュエット機能への返信をそのまま注文にして、アプリを離れずにハンバーガーを配達したバーガーキング・ブラジルの施策。",
+    "client": "Burger King",
+    "agency": "DAVID, Sao Paulo",
+    "categories": [
+      "Direct"
+    ],
+    "award": "Cannes Lions 2022 Direct Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Direct",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://tiinside.com.br/en/10/03/2022/burger-king-takes-orders-on-tiktok/",
+    "videoId": "",
+    "overview": "DAVID São Pauloが、バーガーキング・ブラジルのTikTokで、ユーザーがデュエット動画で注文する仕組みを作った。同社がTikTokでの注文に対応して配達を行うのは初だとされている（応募側の主張）。",
+    "background": "バーガーキング・ブラジルは2021年からTikTokと連携した施策を重ねており、2022年3月のこの企画では、動画への返信そのものを注文窓口にした。",
+    "execution": "ブランドは店員との掛け合いの動画を投稿し、ユーザーはそれにデュエットで自分の注文を返す。ユーザーはハッシュタグ #DuetoBK を付け、ブランド側が連絡を取って支払いと配達を手配した。Money Timesなどの報道によれば、期間は2022年3月9日〜15日で、先着100件にR$15の割引が付いた。",
+    "evaluationImpact": "カンヌライオンズ2022のDirect部門でBronzeを受賞した。同作品はThe One Show 2023のDirect部門にも入選している。",
+    "tags": [
+      "Form/SNS",
+      "Theme/Food",
+      "Theme/Retail"
+    ],
+    "thumbnail": "/thumbnails/burger-king-duet-delivery.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "institutiona-l-unbreakable-courts",
+    "title": "Unbreakable Courts",
+    "summary": "ブラジルの街角バスケットボールコートを、壁画で文化遺産に指定させて取り壊しから守る方法を、Budweiserがオープンソースで公開した施策。",
+    "client": "Institutiona L",
+    "agency": "AFRICA DDB, São Paulo",
+    "categories": [
+      "Direct",
+      "Entertainment Lions for Sport",
+      "Outdoor"
+    ],
+    "award": "Cannes Lions 2022 Direct Lions Bronze / Cannes Lions 2022 Entertainment Lions for Sport Bronze / Cannes Lions 2022 Outdoor Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Direct",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Entertainment Lions for Sport",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Outdoor",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://fastcompanybrasil.com/co-design/acao-de-marketing-ajuda-a-salvar-quadras-publicas-de-basquete-no-brasil/",
+    "videoId": "",
+    "overview": "Budweiserと代理店Africa DDBによる「Unbreakable Courts（壊せないコート）」。文化的価値のある場所は取り壊しから保護されるという法制度を使い、コートを守る手順を広めた。",
+    "background": "ブラジルでは、公共のバスケットボールコートが開発や建物、駐車場に置き換わる脅威にさらされていた。Fast Company Brasilによれば、文化的に重要と認められた場所は解体から守られるという法律の仕組みに着目した。",
+    "execution": "コートに壁画を描いて芸術作品にしたうえで、文化遺産としての登録を申請する。Africaはこの手順を5段階にまとめたオープンソースの方法として公開した。専用サイトが地域の人とコートに壁画を描くアーティストをつなぎ、ラッパーのRincon Sapiênciaの楽曲でも関連法を伝えた。",
+    "evaluationImpact": "カンヌライオンズ2022のDirect部門、Entertainment Lions for Sport部門、Outdoor部門でそれぞれBronzeを受賞した。2023年にはD&AD（Graphite Pencil）やThe One Showでも評価されている。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Sports",
+      "Theme/Art",
+      "Theme/Music"
+    ],
+    "thumbnail": "/thumbnails/institutiona-l-unbreakable-courts.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "kia-the-first-car-showroom-inside-a-bus",
+    "title": "The First Car Showroom Inside A Bus",
+    "summary": "バスの車内を自動車ショールームに変え、通勤客のいる場所で車を売ろうとしたKiaのエルサルバドルでの施策。",
+    "client": "Kia",
+    "agency": "OGILVY EL SALVADOR, San Salvador",
+    "categories": [
+      "Direct"
+    ],
+    "award": "Cannes Lions 2022 Direct Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Direct",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "中南米"
+    ],
+    "link": "https://www.ogilvy.com/work/first-car-showroom-inside-bus",
+    "videoId": "",
+    "overview": "Ogilvy El Salvadorが、現地ディストリビューターのExcel El SalvadorとKiaのために行った企画。バスにKia Picantoを載せ、走るショールームにした。",
+    "background": "Ogilvyの事例ページによれば、エルサルバドルのバスは移動手段であると同時に、野菜や宝飾品、本などの物売りが乗り込んで買い物ができる場でもある。そこで、バスの中で車を売るという、これまで誰も試していない発想に結びつけた。",
+    "execution": "車内に車を収めたバスを仕立て、乗客が移動しながら車を見られるようにした。Campaigns of the Worldの掲載名は「Kia Picanto: A car inside a bus」。",
+    "evaluationImpact": "カンヌライオンズ2022のDirect部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Mobility",
+      "Theme/Retail",
+      "Form/Stunt"
+    ],
+    "thumbnail": "/thumbnails/kia-the-first-car-showroom-inside-a-bus.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "vienna-tourist-board-vienna-strips-on-onlyfans",
+    "title": "Vienna Strips On Onlyfans",
+    "summary": "ヌードを含む美術作品がSNSで検閲される問題への抗議として、ウィーン観光局が市内の美術館の名画をOnlyFansで公開した施策。",
+    "client": "Vienna Tourist Board",
+    "agency": "JUNG VON MATT DONAU, Vienna",
+    "categories": [
+      "Direct",
+      "PR",
+      "Social & Influencer"
+    ],
+    "award": "Cannes Lions 2022 Direct Lions Bronze / Cannes Lions 2022 PR Lions Gold / Cannes Lions 2022 Social & Influencer Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Direct",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "PR",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Social & Influencer",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.npr.org/2021/10/20/1047623196/vienna-museums-artwork-onlyfans",
+    "videoId": "",
+    "overview": "ウィーン観光局とJung von Matt Donauによる施策。アルベルティーナ、レオポルド、美術史、自然史の各美術館の協力で、成人向け会員制サービスOnlyFansに「Vienna's 18+ content」のアカウントを開設し、ヌードを含む所蔵作品を見せた。",
+    "background": "各館は、ヌード作品を載せた投稿やアカウントをSNSに制限・停止されていた。ArtReviewによれば、レオポルド美術館のシーレ作品はFacebookで拒否され、自然史博物館の「ヴィレンドルフのヴィーナス」の写真も2018年に検閲された。Yahoo（Guardian配信）の記事では、FacebookやTwitterがOnlyFansへのリンク掲載も拒み、観光局が各社の担当と数週間やり取りしたとされる。観光局長は、SNSのアルゴリズムが世界的な名画まで検閲することへの疑問を語っている。",
+    "execution": "2021年10月、観光局がOnlyFansに専用アカウントを開き、シーレ、モディリアーニ、ルーベンス、VALIE EXPORT、ヴィレンドルフのヴィーナスなどの作品を公開した。最初の購読者にはウィーン・シティカードか対象美術館の入場券が贈られた。NPRやTime Out、NBCなど各国メディアが取り上げた。",
+    "evaluationImpact": "開設時にNPR、NBC、Time Out、ArtReview、Hyperallergicなど多数のメディアが報じ、SNS検閲と美術の関係を考える話題になった。カンヌライオンズ2022ではPR部門でGold、Direct部門とSocial & Influencer部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Art",
+      "Form/SNS",
+      "Form/Stunt"
+    ],
+    "thumbnail": "/thumbnails/vienna-tourist-board-vienna-strips-on-onlyfans.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "heineken-the-night-is-young-55",
+    "title": "The Night Is Young 55",
+    "summary": "ワクチン接種を済ませた高齢者がクラブやバーなど若者の領域に繰り出す姿を描き、若い世代の接種を促したハイネケンの施策。",
+    "client": "Heineken",
+    "agency": "PUBLICIS ITALY, Milan",
+    "categories": [
+      "Direct"
+    ],
+    "award": "Cannes Lions 2022 Direct Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Direct",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adweek.com/brand-marketing/the-old-are-young-again-heineken-shows-what-vaccinated-people-get-up-to-at-night/",
+    "videoId": "",
+    "overview": "ハイネケンとPublicis Italy／Le Pubによるグローバルキャンペーン「The Night Is Young」。Direct部門の応募名には「55」が付くが、その意味と応募内容の個別の説明は確認できなかった。本文は親キャンペーンの公開情報に基づく。",
+    "background": "ロックダウンが緩み、バーやクラブが再開し始めた2021年夏の施策。The Stableの報道によれば、若者はナイトライフで「楽しみを逃すこと」を嫌う傾向があり、米国では18〜24歳の接種率が低い層の一つだった。ハイネケンは、接種を済ませた人が夜を楽しめるというメッセージを打ち出した。",
+    "execution": "完全接種を済ませた高齢者が、ナイトクラブ、バー、ビーチなど「若者の領域」を占める様子を描くTV映像とSNS素材を制作した。監督はAli Ali、制作はGood People。撮影はアテネで行われ、Publicis Italy／Le Pubはリモートで関わった。ハイネケンの新プラットフォーム「#FreshBeginnings」の最初の施策でもある。",
+    "evaluationImpact": "公開後、反ワクチン派がSNSでハイネケンのボイコットを呼びかけ、FortuneやThe Drumが報じた。ハイネケンは親ワクチンの立場を明確にした施策として注目された。カンヌライオンズ2022ではDirect部門でBronzeを受賞した。",
+    "tags": [
+      "Form/Film",
+      "Theme/Health",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/heineken-the-night-is-young-55.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "netflix-the-art-of-stealing",
+    "title": "The Art Of Stealing",
+    "summary": "ポーランド最高額の名画『白貂を抱く貴婦人』から首飾りが盗まれたように見せ、Netflixのドラマ『Lupin』を告知した屋外広告の施策。",
+    "client": "Netflix",
+    "agency": "GONG, Gliwice / NETFLIX, Amsterdam",
+    "categories": [
+      "Outdoor"
+    ],
+    "award": "Cannes Lions 2022 Outdoor Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Outdoor",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://musebyclios.com/film-tv/netflixs-art-of-stealing-campaign-takes-a-swipe-at-polands-most-valuable-painting/",
+    "videoId": "",
+    "overview": "Netflixの『Lupin』をポーランドで宣伝するため、Gongが企画した施策。国立美術館の協力のもと、レオナルド・ダ・ヴィンチの『白貂を抱く貴婦人』の首飾りを消した偽の絵を展示し、怪盗の仕業だと見せた。",
+    "background": "『Lupin』は怪盗アルセーヌ・ルパンに着想を得たNetflixのシリーズで、主人公は首飾りに執着する。Muse by Cliosによると、この作品が盗みを題材にすることと、絵の婦人が首飾りをつけていることが結び付いた。同作は公開当時、Netflixで最も視聴された非英語シリーズとされる。",
+    "execution": "美術館の協力で、首飾りを消した偽の絵を展示した。館外では首飾りのない絵の広告を屋外広告枠に出し、その上に、首飾りを手にした主演オマール・シーと「Merci Madame」の文字を載せたLupinの広告を、ゲリラ的に貼り重ねた。",
+    "evaluationImpact": "Muse by Cliosが2022年1月に、ポーランドの国宝を使った施策として紹介した。カンヌライオンズ2022のOutdoor部門でGoldを受賞した。",
+    "tags": [
+      "Form/OOH",
+      "Theme/Entertainment",
+      "Form/Stunt"
+    ],
+    "thumbnail": "/thumbnails/netflix-the-art-of-stealing.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "starmed-healthcar-e-wilmore-funeral-home",
+    "title": "Wilmore Funeral Home",
+    "summary": "「ワクチンを打つな」と書いたトラックを架空の葬儀社の広告に見せかけて走らせ、実は接種を促すメッセージだった米シャーロットの施策。",
+    "client": "Starmed Healthcar E",
+    "agency": "STARMED HEALTHCARE, Charlotte / BOONEOAKLEY, Charlotte",
+    "categories": [
+      "Outdoor"
+    ],
+    "award": "Cannes Lions 2022 Outdoor Lions Gold / Cannes Lions 2022 Outdoor Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Outdoor",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Outdoor",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.spectrumlocalnews.com/nc/charlotte/news/2021/10/05/fake-charlotte-funeral-home-ad-leads-to-increase-in-vaccine-appointments/",
+    "videoId": "",
+    "overview": "医療機関StarMed HealthcareとBooneOakleyによる施策。架空の葬儀社「Wilmore Funeral Home」の名で「Don't Get Vaccinated」と掲げたトラックを走らせ、サイトにアクセスさせて接種を呼びかけた。",
+    "background": "2021年9月は、12歳以上が接種対象になっていた時期だった。KOLDなどの報道によれば、コピーライターのMary Grossが、1歳の子を持つ立場から接種を促すアイデアを出したのが発端。BooneOakley創業者David Oakleyは、社屋のある地区の名から架空の葬儀社名を付けたと説明している。",
+    "execution": "2021年9月、シャーロット中心部でトラックの広告を走らせた。メッセージはワクチン反対に見えるが、WilmoreFuneralHome.comには「Get Vaccinated Now, If Not See You Soon」と表示され、StarMedのサイトへ誘導した。写真や動画がSNSで広まり、StarMedは接種者の一部にこの葬儀社名入りのTシャツを贈った。",
+    "evaluationImpact": "トラックの写真が広まり、「反ワクチン広告」として拡散したのち、実は接種を促す広告だったと各地のTV局が報じた。David Oakleyは、反応は圧倒的に好意的で、医療従事者などから数十通の感謝の手紙が届いたと述べている。カンヌライオンズ2022のOutdoor部門でGoldとSilverを受賞した。",
+    "tags": [
+      "Form/OOH",
+      "Theme/Health",
+      "Form/Stunt"
+    ],
+    "thumbnail": "/thumbnails/starmed-healthcar-e-wilmore-funeral-home.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "cadbury-flags-of-generosity",
+    "title": "Flags Of Generosity",
+    "summary": "ロックダウンで困窮した家庭が掲げた「白い旗」に応え、余裕のある家庭が「紫の旗」で支援を申し出る仕組みを作ったキャドバリーの施策。",
+    "client": "Cadbury",
+    "agency": "OGILVY, Singapore / OGILVY MALAYSIA, Kuala Lumpur",
+    "categories": [
+      "Outdoor"
+    ],
+    "award": "Cannes Lions 2022 Outdoor Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Outdoor",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.ogilvy.com/work/flags-generosity",
+    "videoId": "",
+    "overview": "キャドバリーとOgilvy Singapore／Ogilvy Malaysiaによる、ブランドの理念「generosity（寛大さ）」を示す施策。ブランドカラーの紫の旗を、助けられる側の目印にした。パートナーはKitaJaga.co（Terato Tech）。",
+    "background": "マレーシアではロックダウンが約1年続き、仕事、お金、食料を失った低所得世帯が、助けを求める合図として白い旗を家の外に掲げるようになっていた。",
+    "execution": "キャドバリーは紫の旗を作り、裕福な地域のスーパーや小売店などを通じて配った。余った食料や物資を分けられる家は紫の旗を掲げる。その家庭から寄付を集め、白い旗を掲げた困窮家庭に届けた。",
+    "evaluationImpact": "D&ADで入選し、One Showでも2022年にMeritを得た。カンヌライオンズ2022のOutdoor部門でGoldを受賞した。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Food",
+      "Form/Stunt"
+    ],
+    "thumbnail": "/thumbnails/cadbury-flags-of-generosity.jpg"
   }
 ]
