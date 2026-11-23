@@ -126500,5 +126500,631 @@
       "Theme/Retail"
     ],
     "thumbnail": "/thumbnails/supermax-online-the-eye-tracker.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "corona-jersey-pay",
+    "title": "Jersey Pay",
+    "summary": "サッカーのユニフォームのエンブレム裏にRFIDタグを仕込み、スタジアムでかざすだけでビールなどを買える「デジタル財布」にしたCoronaの施策。",
+    "client": "Corona",
+    "agency": "VMLY&R COMMERCE MEXICO, Mexico City",
+    "categories": [
+      "Creative Commerce",
+      "Mobile"
+    ],
+    "award": "Cannes Lions 2022 Creative Commerce Lions Bronze / Cannes Lions 2022 Mobile Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Commerce",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Mobile",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "中南米"
+    ],
+    "link": "https://expansion.mx/mercadotecnia/2022/11/18/jersey-pay-billetera-digital-pagar-cerveza-corona-mundial",
+    "videoId": "",
+    "overview": "Coronaのビール販売を担うGrupo ModeloとVMLY&R Commerce Mexicoによる施策。ファンが着るユニフォーム自体を決済手段に変え、スタジアム内でのビール購入を手軽にすることを狙った。",
+    "background": "Expansiónの報道によれば、出発点は「スタジアムでビールをより多く売るにはどうするか」という問いだった。観客は荷物を減らしたい一方、混雑する会場では財布や携帯電話の盗難が起きやすい。観客が試合にユニフォームを着て行く習慣があることも着想につながった。",
+    "execution": "ユニフォームのエンブレムの裏に防水のRFIDタグを固定し、ゴム製カバーで保護して洗濯やアイロンにも耐えるようにした。支払い端末にかざして決済する。Expansiónによれば、100着以上の試作を失敗させ、4社のサプライヤーと防水性・耐久性を改善した。スタジアムのWi-Fiで大量の取引を処理しにくい点も課題で、初期の端末は接続とレシート発行に約2分かかった。最初の試験では、Grupo Modelo系の販売網Modeloramaを通じて3万着を配布した。対象はClub Américaのファンで、Estadio Azteca（アステカ・スタジアム）で使われた。他クラブやCorona Capital、ワールドカップなどへの展開も構想されている。",
+    "evaluationImpact": "Expansiónは、Grupo Modeloの担当者がこの取り組みを他クラブやイベントへ広げたいパイロット事業と位置づけていると伝えている。カンヌライオンズ2022のMobile部門でSilver、Creative Commerce部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Sports",
+      "Theme/Retail",
+      "Tech/Device",
+      "Form/Product"
+    ],
+    "thumbnail": "/thumbnails/corona-jersey-pay.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "bank-of-montreal-gear-up-17",
+    "title": "Gear Up 17",
+    "summary": "使い古したサッカー用品を寄付で集めて整え、機会に恵まれない子どもが無料で選べるようにしたBMOの用品提供プログラム。",
+    "client": "Bank Of Montreal",
+    "agency": "FCB CANADA, Toronto",
+    "categories": [
+      "Creative Commerce"
+    ],
+    "award": "Cannes Lions 2022 Creative Commerce Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Commerce",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.shots.net/news/view/bmo-aims-to-give-youth-universal-access-to-soccer",
+    "videoId": "",
+    "overview": "BMOとFCB Canada（FCB Montréal）による施策。CF Montréalのスポンサーであるバンクが、子どもたちのサッカーへの参加を妨げる用具費用を取り除くことを狙った。",
+    "background": "Shots（広告業界メディア）の報道によれば、BMOは2021年8月に、若い世代が誰でもサッカーを始められる環境を目指してこのプログラムを開始した。立ち上げは、モントリオール都市圏での用品回収キャンペーンを軸にしていた。",
+    "execution": "BMOの支店やCF Montréalのショップで不要な用品を回収し、Stade Saputoでは用品1点を入場の条件にしたイベントも開いた。集めた用品は洗浄・撮影され、専用サイトに掲載された。地域団体が対象の子どもにコードを配り、子どもは最大4点まで無料で選べて、専用パッケージで自宅に届く。広告にはデジタル、SNS、屋外、TVを使った（Shots、Strategy）。",
+    "evaluationImpact": "カンヌライオンズ2022のCreative Commerce部門でBronzeを受賞した。カナダの広告賞Strategy Awards 2022でも入賞している。",
+    "tags": [
+      "Theme/Sports",
+      "Theme/SocialGood",
+      "Theme/Sustainability",
+      "Form/Website"
+    ],
+    "thumbnail": "/thumbnails/bank-of-montreal-gear-up-17.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "kraft-heinz-draw-ketchup",
+    "title": "Draw Ketchup",
+    "summary": "世界各地の人に「ケチャップを描いて」とだけ頼み、多くがHeinzの特徴を描いた結果を広告に転用した、Heinzの生活者実験キャンペーン。",
+    "client": "Kraft Heinz",
+    "agency": "RETHINK, Toronto",
+    "categories": [
+      "Creative Strategy",
+      "Film",
+      "Media",
+      "Print & Publishing"
+    ],
+    "award": "Cannes Lions 2022 Creative Strategy Lions Gold / Cannes Lions 2022 Film Lions Bronze / Cannes Lions 2022 Media Lions Bronze / Cannes Lions 2022 Print & Publishing Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Strategy",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Film",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Media",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Print & Publishing",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.campaigncanada.ca/article/a-very-drawn-out-campaign-for-heinz-ketchup/4302d2vn4q2bzw3xdaf16fhjmt",
+    "videoId": "",
+    "overview": "Kraft Heinz CanadaとRethinkによる施策。「ケチャップといえばHeinz」という直感的な結びつきを、参加者が自分の手で描いた絵として見せることを狙った。",
+    "background": "Packaging Insightsによれば、Kraft Heinz Canadaの担当者は、消費者がケチャップとHeinzを無意識に結びつける関係を明らかにすることが目的だったと述べている。Campaign Canadaは、Kraft Heinzが広告とPRの境目をぼかした共有されやすい施策を続けてきた流れに位置づけている。",
+    "execution": "5大陸の参加者に、ブランド名を伏せたまま「ケチャップを描いて」とだけ依頼した。参加者は戸惑いながら描き始め、多くがHeinzの名前、ボトル形状、キーストーン型ラベル、「57」の表記を描いた。この様子を映像にし、描かれた絵をデジタルや屋外の広告に使った。DrawKetchup.caでは一般からも絵を募集し、抽選で250人に、その絵を載せた特別ボトルを贈った。メディアはCarat、PRはColony Projectが担当した（Campaign Canada、Packaging Insights）。",
+    "evaluationImpact": "Marketing BrewやPackaging Insightsは、参加者の多くがHeinzの特徴を描いたと報じたが、参加人数などの数値は示されていない。カンヌライオンズ2022のCreative StrategyとPrint & PublishingでGold、FilmとMediaでBronzeを受賞した。",
+    "tags": [
+      "Theme/Food",
+      "Form/Film",
+      "Form/OOH",
+      "Form/Print"
+    ],
+    "thumbnail": "/thumbnails/kraft-heinz-draw-ketchup.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "visit-sweden-discover-the-originals",
+    "title": "Discover The Originals",
+    "summary": "IKEAの商品名の由来になったスウェーデンの実在の地名21か所を、「本家（オリジナル）」として観光客に紹介したVisit Swedenの施策。",
+    "client": "Visit Sweden",
+    "agency": "FORSMAN & BODENFORS, Gothenburg",
+    "categories": [
+      "Creative Strategy",
+      "Film"
+    ],
+    "award": "Cannes Lions 2022 Creative Strategy Lions Gold / Cannes Lions 2022 Creative Strategy Lions Silver / Cannes Lions 2022 Film Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Strategy",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Strategy",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Film",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://visitsweden.com/discover-the-originals/",
+    "videoId": "",
+    "overview": "Visit SwedenとForsman & Bodenforsによる2021年11月の施策。世界中で知られるIKEAの商品名を入り口に、その名の元になったスウェーデン各地へ関心を向けることを狙った。",
+    "background": "ForsmanのページとLonely Planetによれば、Ektorpのソファ、Kallaxの棚、Bolmenのトイレブラシなど、IKEAの商品名の多くはスウェーデンの地名に由来する。しかしその由来はほとんど知られていない。キャンペーンはこの状況を「地名を取り戻す」という切り口にし、ユーモアを添えて紹介した。",
+    "execution": "スウェーデン全21地域から、商品名の由来となった21か所を紹介した。問題の状況を説明するコミカルな映像のほか、SNS投稿や、IKEAの商品名で検索した人に表示される検索広告を使った。現地ではBolmen湖畔で式典を開き、湖に「Bolmen – more than an IKEA toilet brush」という新しいキャッチコピーを公式に付けた（Forsman & Bodenfors）。紹介ページはvisitsweden.com/discover-the-originals/にある。",
+    "evaluationImpact": "Lonely Planetなど海外の旅行・一般メディアが取り上げた。カンヌライオンズ2022のCreative StrategyでGoldとSilver、FilmでBronzeを受賞した。",
+    "tags": [
+      "Form/Film",
+      "Form/Stunt",
+      "Form/Website",
+      "Theme/Retail"
+    ],
+    "thumbnail": "/thumbnails/visit-sweden-discover-the-originals.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "colgate-palmolive-the-smile-that-changed-an-industry",
+    "title": "The Smile That Changed An Industry",
+    "summary": "マスク生活で見えにくくなった笑顔を「逆境を乗り越える力」として描き、製品訴求中心だったコルゲートのブランド戦略を転換した欧州キャンペーン。",
+    "client": "Colgate Palmolive",
+    "agency": "VMLY&R, Paris / RED FUSE, Paris",
+    "categories": [
+      "Creative Strategy"
+    ],
+    "award": "Cannes Lions 2022 Creative Strategy Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Strategy",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.dandad.org/work/d-ad-awards-archive/smiles-always-find-a-way",
+    "videoId": "",
+    "overview": "コルゲート・パルモリーブが、VMLY&R Paris と Red Fuse Communication と組んで展開した欧州向けのブランド戦略。「Smiles Always Find a Way」を軸に、笑顔を表情ではなく困難に立ち向かう強さとして位置づけた。",
+    "background": "コロナ禍でマスクの着用が日常になり、笑顔が見えにくくなった。コルゲートは製品訴求に偏りがちだったブランドの語り口を改め、笑顔そのものの価値を語る方向へ移した。なお本文は、同じ戦略に基づく「Smiles Always Find a Way」の公開情報をもとに記述している。",
+    "execution": "写真家マチュー・メンブレによる白黒の人物写真シリーズが中心で、感情のこもった瞬間を切り取り、笑顔の大切さを伝える。英国で印刷物とデジタル屋外広告から始まり、ドイツとポーランドを経て欧州全域へ広げる計画だった（CB News、2021年5月）。",
+    "evaluationImpact": "カンヌライオンズ2022のCreative Strategy部門でSilverを受賞した（CB News報道）。同キャンペーンはD&ADでも評価されている。",
+    "tags": [
+      "Form/Print",
+      "Form/OOH",
+      "Theme/Health"
+    ],
+    "thumbnail": "/thumbnails/colgate-palmolive-the-smile-that-changed-an-industry.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "woojer-sick-beats",
+    "title": "Sick Beats",
+    "summary": "音楽を振動に変えるハプティックベストで、嚢胞性線維症の子どもの気道クリアランス療法を「好きな音楽を聴く時間」に変えた施策。",
+    "client": "Woojer",
+    "agency": "AREA 23, AN IPG HEALTH NETWORK COMPANY, New York",
+    "categories": [
+      "Creative Strategy"
+    ],
+    "award": "Cannes Lions 2022 Creative Strategy Lions Silver / Cannes Lions 2022 Creative Strategy Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Strategy",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Strategy",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.adweek.com/creativity/sick-beats-wins-cannes-radio-and-audio-grand-prix/",
+    "videoId": "",
+    "overview": "ハプティック技術のWoojerと嚢胞性線維症（CF）支援団体Claire's Place Foundation、Area 23が作った、音楽駆動の気道クリアランス用ベスト。毎日の苦痛な治療を、子どもが楽しめる体験に置き換えることを狙った。",
+    "background": "CFの子どもは気道の粘液を排出するため毎日ベスト型の装置を着けるが、不快で続けにくい。Sick Beatsは標準的なベストの、より楽しい代替として作られた。なお本文は2021年に公開された施策の説明に基づく。同作は2021年にカンヌのRadio & AudioとPharmaでGrand Prixを獲得している。",
+    "execution": "Woojerの市販ハプティックベストに振動子を追加し、肺の位置に合わせて配置を最適化、40Hzの出力を強化した。スマホと連携して音楽の周波数を胸への振動に変える。Spotify上の約3,000万曲からAIで治療に適した40Hz帯の曲を探し、子どもが専用プレイリストを作れる。CF家族20組への聞き取りと、Claire's Placeの若い支援対象者からの意見が設計に反映された。市販はされておらず、同財団ネットワークの2,000家族超に提供されている。",
+    "evaluationImpact": "カンヌライオンズ2022のCreative Strategy部門でSilverとBronzeを受賞した。ベストは臨床試験中で、効果を示す独立した検証結果は確認できていない。",
+    "tags": [
+      "Theme/Health",
+      "Theme/Music",
+      "Tech/Device",
+      "Tech/Audio",
+      "Tech/AI"
+    ],
+    "thumbnail": "/thumbnails/woojer-sick-beats.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "australian-federal-police-crime-interrupted",
+    "title": "Crime Interrupted",
+    "summary": "実際の捜査を題材にした6話の犯罪ポッドキャストで、警察の採用広告に代わる募集手法を試みたオーストラリア連邦警察の施策。",
+    "client": "Australian Federal Police",
+    "agency": "HOST HAVAS, Sydney",
+    "categories": [
+      "Creative Strategy",
+      "Entertainment"
+    ],
+    "award": "Cannes Lions 2022 Creative Strategy Lions Silver / Cannes Lions 2022 Entertainment Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Strategy",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Entertainment",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://afp.gov.au/news-centre/media-release/afp-podcast-wins-big-cannes-lions-awards",
+    "videoId": "",
+    "overview": "オーストラリア連邦警察（AFP）がHost/Havas Sydneyと人気ポッドキャストCasefileと組んで制作した、全6話のシリーズ。複雑な捜査の舞台裏を、解決した捜査官へのインタビューで語り、新世代の応募者を呼び込む採用ツールとした。",
+    "background": "AFPは女性、多様な背景を持つ人々、先住民ファースト・ネーションズの人々など、これまで届きにくかった層を採用したかった。従来型の警察採用広告に代わる手段として、ポッドキャストが選ばれた。",
+    "execution": "人身取引、テロ対策、国際誘拐などのAFP捜査を扱い、捜査に必要な多様なスキルと手法を解説する約6時間の音声コンテンツ。AFPのYouTubeチャンネルで2022年2月4日に公開された。『True Detective』のタイトルシーケンスを手がけたパトリック・クレアが第1話の30秒予告編を監督した。",
+    "evaluationImpact": "カンヌライオンズ2022でCreative Strategy部門Silver、Entertainment部門Bronzeを受賞した（AFP公式発表）。D&ADでもWood Pencilを2つ獲得している。",
+    "tags": [
+      "Tech/Audio",
+      "Theme/Entertainment",
+      "Form/Film"
+    ],
+    "thumbnail": "/thumbnails/australian-federal-police-crime-interrupted.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "sncf-hexagonal",
+    "title": "Sncf - Hexagonal",
+    "summary": "SNCFが新しいブランドシグネチャー「Pour nous tous」とともに発表した、不完全さも含めたフランス社会の多様さを詩で語るマニフェストフィルム。",
+    "client": "Sncf",
+    "agency": "PUBLICIS CONSEIL, Paris",
+    "categories": [
+      "Creative Strategy"
+    ],
+    "award": "Cannes Lions 2022 Creative Strategy Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Strategy",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://lareclame.fr/publicisconseil/realisations/hexagonal",
+    "videoId": "",
+    "overview": "Publicis ConseilがSNCFのために制作したブランドフィルム。SNCFとフランス人の関係の過去・現在・未来を、フランス社会を映す鏡として描いた。",
+    "background": "2021年8月に新ブランドシグネチャー「Pour nous tous」の第1弾として発表され、SNCFとフランス人の歴史的な絆を結び直すことを狙った。仏業界メディアは、SNCFにとって約7年ぶりの企業キャンペーンと伝えている。",
+    "execution": "シンガーソングライターのガエル・ファイユがスラム詩人として、SNCFと鉄道員の誇りと責任をナレーションで語る。詩的で素朴な語り口で、共通点だけでなく違いや矛盾、不完全さも含めたフランス人の多様な姿を映す。監督はラファエル・レヴィ。キーヴィジュアル4点が併せて展開された。",
+    "evaluationImpact": "カンヌライオンズ2022のCreative Strategy部門でBronzeを受賞した。SNS上でも話題になったと仏業界メディアが報じている。",
+    "tags": [
+      "Form/Film",
+      "Theme/Mobility",
+      "Theme/Music"
+    ],
+    "thumbnail": "/thumbnails/sncf-hexagonal.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "cox-communications-project-convey",
+    "title": "Project Convey",
+    "summary": "自閉スペクトラム症の人がビデオ通話で相手の感情を読み取れるよう、表情・言葉・声の調子を絵文字で示すプロトタイプを公開した施策。",
+    "client": "Cox Communications",
+    "agency": "COX COMMUNICATIONS, Atlanta / 180LA",
+    "categories": [
+      "Creative Strategy",
+      "Health & Wellness"
+    ],
+    "award": "Cannes Lions 2022 Creative Strategy Lions Bronze / Cannes Lions 2022 Health & Wellness Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Strategy",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Health & Wellness",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.telecompetitor.com/cox-project-convey-tailors-videoconferencing-for-people-with-autism/",
+    "videoId": "",
+    "overview": "Cox Communicationsが180LAと進めた、自閉スペクトラム症の人向けのビデオ通話プロトタイプ。自閉症啓発月間に合わせて2022年3月31日に発表した。",
+    "background": "ビデオ通話の普及で、自閉症の人にとって相手の様子が読み取りにくい場面が増えた。自閉症の専門家ミシェル・ディーン博士の助言によれば、自閉症の人は絵文字を好む傾向があるため、その形式を使った。",
+    "execution": "通話中の表情、言葉、声の調子を分析し、相手の気持ちを示唆する絵文字として表示する。自閉症の若者4人が登場する2分の映像で紹介した。Coxは研究開発の成果を自閉症コミュニティと動画技術企業に公開し、他者が発展させられるようにしている。製品ではなくプロトタイプで、CoxはビデオチャットのプラットフォームをCox自身では持たない。社内の新規事業組織が自社サービスへの組み込みを検討している。",
+    "evaluationImpact": "カンヌライオンズ2022のHealth & Wellness部門でGold、Creative Strategy部門でBronzeを受賞した。2023年にはThe One ShowでGold Pencilも獲得している。",
+    "tags": [
+      "Tech/AI",
+      "Theme/Health",
+      "Tech/Web",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/cox-communications-project-convey.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "danish-road-safety-council-helmet-has-always-been-a-good-idea",
+    "title": "Helmet Has Always Been A Good Idea",
+    "summary": "ヘルメットを嫌がる頑固なヴァイキングの族長を主役に、デンマークの自転車利用者へ着用を呼びかけたユーモア映像キャンペーン。",
+    "client": "Danish Road Safety Council",
+    "agency": "&Co. / NoA, Copenhagen",
+    "categories": [
+      "Creative Strategy",
+      "Film"
+    ],
+    "award": "Cannes Lions 2022 Creative Strategy Lions Bronze / Cannes Lions 2022 Film Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Strategy",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Film",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/helmet-has-always-been-a-good-idea",
+    "videoId": "",
+    "overview": "デンマーク交通安全評議会（Rådet for Sikker Trafik）と&Co.による2021年6月公開の施策。ヴァイキングの歴史を題材にした約2分の映像で、「ヘルメットは昔からいい考えだった」というメッセージを笑いとともに伝えた。",
+    "background": "Euro Weekly Newsの報道によれば、デンマークの都市部でヘルメットを着用する自転車利用者は約47%にとどまり、2015〜2019年は着用率が伸びていた一方、その後は頭打ちになっていた。同期間に警察が記録した、頭部外傷で重傷または死亡した自転車利用者は633人（うちコペンハーゲン249人）。髪型が崩れる、格好悪いといった理由で着用を避ける層が対象になった。",
+    "execution": "物語の主役は、ヘルメットなしでイングランド襲撃に出ようとする頑固な族長スヴェン。頭がかゆい、三つ編みが崩れると文句を言う彼に、息子がヘルメットを差し出し、赤ん坊を抱いた妻が「略奪に行ってもいいが、ヘルメットはかぶりなさい」と諭す。最後は馬で出発するスヴェンが頭をぶつけて終わる。「本物のヴァイキングはヘルメットをかぶる」というスローガンで、馬に乗るヴァイキングも髪型を理由に外さなかったと皮肉り、重いテーマを軽いトーンで届けた（My Modern Met、Euro Weekly News）。",
+    "evaluationImpact": "カンヌライオンズ2022のFilm部門でSilver、Creative Strategy部門でBronzeを受賞した。ヴァイキングを使った切り口は海外メディアでも取り上げられた。",
+    "tags": [
+      "Form/Film",
+      "Theme/SocialGood",
+      "Theme/Health",
+      "Theme/Mobility"
+    ],
+    "thumbnail": "/thumbnails/danish-road-safety-council-helmet-has-always-been-a-good-idea.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "b-rns-vikar-empty-chairs",
+    "title": "Empty Chairs",
+    "summary": "不登校の子ども7万5千人を象徴する空の椅子500脚を、デンマーク国会の開会日に議事堂前へ並べた児童支援団体の施策。",
+    "client": "Børns Vikår",
+    "agency": "UNCLE GREY, Copenhagen",
+    "categories": [
+      "Creative Strategy"
+    ],
+    "award": "Cannes Lions 2022 Creative Strategy Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Strategy",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creativecircle.dk/arbejder/tomme-stole/",
+    "videoId": "",
+    "overview": "デンマークの児童権利団体Børns VilkårとUNCLE GREYによる施策。心の不調で学校に通えない子どもたちの存在を、議員が登院する国会開会日の議事堂前に置いた500脚の空の椅子で可視化した。",
+    "background": "Creative Circleの掲載ページによれば、Børns Vilkårが2019年に出した報告書は、デンマークで7万5千人の子どもがメンタルヘルスの問題で学校を休んでいると示していた。数字だけでは政治の場で動きにならないため、議員の目に直接入る形で見せることを狙った。",
+    "execution": "国会の開会日に、議事堂前へ空の椅子500脚を設置した。椅子は学校に来られない子どもたち一人ひとりを表し、説明は最小限に抑えた。メディア出稿費はかけず、報道とSNSでの拡散に任せた（Creative Circle）。",
+    "evaluationImpact": "Creative Circleの掲載ページは、全国紙の一面や主要テレビニュースで取り上げられ、ある野党党首が開会式での演説を書き直したと紹介している。同ページはBørns Vilkår史上最も成功した施策とも記す。カンヌライオンズ2022のCreative Strategy部門でBronzeを受賞した。",
+    "tags": [
+      "Form/Installation",
+      "Form/Stunt",
+      "Theme/SocialGood",
+      "Theme/Health",
+      "Theme/Education"
+    ],
+    "thumbnail": "/thumbnails/b-rns-vikar-empty-chairs.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "heineken-shutter-ads",
+    "title": "Shutter Ads",
+    "summary": "コロナ禍で閉まったままのバーのシャッターを広告枠として買い取り、屋外広告費を店の支援に回したハイネケンの施策。",
+    "client": "Heineken",
+    "agency": "PUBLICIS ITALY, Milan",
+    "categories": [
+      "Creative Strategy"
+    ],
+    "award": "Cannes Lions 2022 Creative Strategy Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Strategy",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/shutter-ads",
+    "videoId": "",
+    "overview": "ハイネケンとPublicis Italyによる施策。営業できないバーのシャッターを屋外広告の媒体に見立て、通常の屋外広告に使う予算を店に直接渡す形で支援した。カンヌ2021ではOutdoor部門のGrand Prixを取った作品で、2022年はCreative Strategy部門に出品された。",
+    "background": "パンデミックでバーは約1年にわたり休業が続いていた（DesignTaxi）。ハイネケンにとってバーは主要な販売の場であり、店が潰れれば自社の販路も失われる。広告をただ出すのではなく、広告費そのものを店の存続に使う発想になった。",
+    "execution": "DesignTaxiの2020年12月の報道では、まずバルセロナの休業中のバー15店のシャッターに広告を掲出した。広告は商品の宣伝ではなく、「今日この広告を見て、明日このバーを楽しもう」「閉まっているように見えて、力を蓄えている」といった、再開を待つ明るいメッセージだった。店ごとに内容を変えた。",
+    "evaluationImpact": "カンヌライオンズ2022のCreative Strategy部門でBronzeを受賞した。同じ施策はカンヌ2021のOutdoor部門でGrand Prixも獲得している。",
+    "tags": [
+      "Form/OOH",
+      "Theme/Retail",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/heineken-shutter-ads.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "burger-king-stevenage-challenge",
+    "title": "Stevenage Challenge",
+    "summary": "4部リーグのStevenage FCをスポンサーし、FIFA 20内のユニフォームに自社ロゴを載せて、ゲーム内チャレンジ達成者に無料の食事を配ったバーガーキングの施策。",
+    "client": "Burger King",
+    "agency": "DAVID, Madrid / DAVID, Miami",
+    "categories": [
+      "Creative Strategy"
+    ],
+    "award": "Cannes Lions 2022 Creative Strategy Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Strategy",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州",
+      "北米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/bk-stevenage-challenge",
+    "videoId": "",
+    "overview": "バーガーキングとDAVID（マドリード／マイアミ）による2019年の施策。実在のイングランド4部クラブStevenage FCのスポンサーとなり、ゲーム「FIFA 20」で同クラブのバーガーキング入りユニフォームを使うこと自体を広告にした。2021年にはDirect・Social & Influencer・Brand Experience & ActivationでGrand Prixを取った作品で、2022年はCreative Strategy部門にも出品された。",
+    "background": "サッカーゲームでは、プレイヤーが好きなクラブを選べる。スポンサー契約は通常、実際の試合の看板やユニフォームが目的だが、バーガーキングはゲームの中のユニフォームに注目した。小さなクラブとの契約でも、ゲームを通じて世界中のプレイヤーに自社ロゴを着せられると考えた（marketing4ecommerce）。",
+    "execution": "2019年10月、FIFA 20内でStevenage FCを使う7つのチャレンジを発表した。ゴールを決める、ハットトリックを決めるなどの課題を、バーガーキングのユニフォームを着て達成する。プレイヤーは達成動画をTwitterに投稿し、@BurgerKingGamesをタグ付けしてハッシュタグ #StevenageChallenge を付けると、無料の食事と交換できるコードが得られた。期間は2週間強だった（marketing4ecommerce）。",
+    "evaluationImpact": "カンヌライオンズ2022のCreative Strategy部門でBronzeを受賞した。2021年の同祭では、Direct・Social & Influencer・Brand Experience & ActivationでGrand Prix、さらにTitaniumも獲得した（marketing4ecommerce）。",
+    "tags": [
+      "Tech/Game",
+      "Theme/Sports",
+      "Theme/Food",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/burger-king-stevenage-challenge.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "oreo-thins-protection-program-19",
+    "title": "Oreo Thins Protection Program 19",
+    "summary": "料理本や冷凍野菜、車の取扱説明書に見せかけたパッケージで、子どもにクッキーを食べられたくない親を助けたオレオ・シンズの施策。",
+    "client": "Oreo",
+    "agency": "THE COMMUNITY, Miami",
+    "categories": [
+      "Creative Strategy"
+    ],
+    "award": "Cannes Lions 2022 Creative Strategy Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Strategy",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.mashed.com/463511/oreo-thins-new-protection-program-helps-parents-camouflage-their-cookies-from-kids",
+    "videoId": "",
+    "overview": "オレオ・シンズ（Oreo Thins）の施策。親が子どもからクッキーを隠す悩みを逆手に取り、家庭にある日用品そっくりの限定パッケージを用意した。実施はThe Community（マイアミ）で、2021年7月に発表された。2022年の応募作は「Protection Program 19」の名称で出品されている。",
+    "background": "Adweekの取材に対し、ブランド担当者は、親たちが何年も前から子どもにオレオ・シンズを食べられてしまうとSNSで不満を書いていたと述べている。シンズを大人向けのクッキーとして位置づける狙いがあり、家庭内で「隠す」という行動を広告の入口にした。",
+    "execution": "パッケージは、Better Homes & Gardensの料理本の背表紙、Green Giantのカリフラワーライス、Fordの取扱説明書、Hanesのタグなしシャツ3枚組に似せた。パートナーは各ブランドで、横から見ても本物らしく見える作りだった。ケビン＆ダニエル・ジョナスがカモフラージュした箱をInstagramに投稿し、一般には限定パックか賞金2万5,000ドルが当たるキャンペーンとして展開した。販売はせず、応募者に配る形だった（Mashed）。",
+    "evaluationImpact": "カンヌライオンズ2022のCreative Strategy部門でBronzeを受賞した。発表時にはSNSで好意的な反応が多く見られた（Mashed）。",
+    "tags": [
+      "Form/Product",
+      "Form/SNS",
+      "Theme/Food"
+    ],
+    "thumbnail": "/thumbnails/oreo-thins-protection-program-19.jpg"
   }
 ]
