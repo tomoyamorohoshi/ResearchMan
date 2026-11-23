@@ -136299,5 +136299,600 @@
       "Theme/Sustainability"
     ],
     "thumbnail": "/thumbnails/oumph-human-meat-burger.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "heineken-the-virtual-heineken-silver",
+    "title": "The Virtual Heineken Silver",
+    "summary": "メタバースに進出するブランドを皮肉り、メタバース上のDecentralandでだけ「醸造」して発売した、飲めないバーチャルビール。",
+    "client": "Heineken",
+    "agency": "PUBLICIS ITALY, Milan",
+    "categories": [
+      "Brand Experience & Activation",
+      "Digital Craft",
+      "Social & Influencer"
+    ],
+    "award": "Cannes Lions 2022 Brand Experience & Activation Lions Silver / Cannes Lions 2022 Digital Craft Lions Silver / Cannes Lions 2022 Social & Influencer Lions Silver / Cannes Lions 2022 Social & Influencer Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Brand Experience & Activation",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Digital Craft",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Social & Influencer",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Social & Influencer",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.marketingdive.com/news/heineken-parodies-metaverse-with-virtual-brew/620597/",
+    "videoId": "",
+    "overview": "HeinekenがPublicis Italyと組み、2022年3月に発表した「Heineken Silver」。Decentraland内のバーチャル醸造所でだけ作られる世界初のバーチャルビールとして売り出した。",
+    "background": "HeinekenのBram Westenbrink氏は、実物で楽しむほうがよい商品をメタバースで売るブランドを茶化す「皮肉なジョーク」だと説明している（Marketing Dive）。ブランド認知と、ビールの作り方を伝える狙いもあった。",
+    "execution": "仮想の醸造所では、実際のA酵母の代わりに「A-Pixels」と呼ぶ仮想酵母がタンクで働き、プログラムで作ったホップをNPCの農夫が育て、NPCのブルワーが工程を見守る。ローンチイベントはDecentralandで行われ、ブランドアンバサダーのThierry Henryも出席した。街頭アーティストのJ.Demskyが仮想空間の一部をデザインした（Marketing Dive、shots）。映像はPerlorian Brothersが監督し、Hobby Filmが制作した。",
+    "evaluationImpact": "カンヌライオンズ2022のBrand Experience & ActivationとDigital CraftでSilver、Social & InfluencerでSilverとBronzeを受賞した。",
+    "tags": [
+      "Tech/XR",
+      "Form/SNS",
+      "Theme/Food"
+    ],
+    "thumbnail": "/thumbnails/heineken-the-virtual-heineken-silver.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "kraft-heinz-heinz-hot-dog-pact",
+    "title": "Heinz Hot Dog Pact",
+    "summary": "ホットドッグのソーセージ（10本入り）とパン（8個入り）の数のずれを突き、メーカーに同数パックを求める署名を集めたHeinzの施策。",
+    "client": "Kraft Heinz",
+    "agency": "RETHINK, Toronto",
+    "categories": [
+      "Brand Experience & Activation",
+      "PR",
+      "Social & Influencer"
+    ],
+    "award": "Cannes Lions 2022 Brand Experience & Activation Lions Silver / Cannes Lions 2022 PR Lions Silver / Cannes Lions 2022 Social & Influencer Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Brand Experience & Activation",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "PR",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Social & Influencer",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://strategyonline.ca/2022/06/20/heinz-ketchup-celebrates-the-signing-of-the-hot-dog-pact",
+    "videoId": "",
+    "overview": "Kraft Heinz CanadaとRethink Torontoによる「Heinz Hot Dog Pact」。2021年7月、全米ホットドッグ月間に合わせ、ソーセージ会社とパン会社に同数パックの販売を求める署名サイトを立ち上げた。",
+    "background": "ソーセージは10本入り、パンは8個入りという不一致は、長年消費者がSNSで不満を述べてきた話題だった。Heinzは「ホットドッグを完成させる調味料」として、この問題の代弁者を名乗った（CNWのプレスリリース）。",
+    "execution": "HeinzHotDogPact.comとChange.orgで署名を募り、ソーシャル動画やトロントのヤング・ダンダス広場の屋外広告で呼びかけた。制作はRethink、全国的な認知拡大はCarat、SNSはThe Kitchenが担当した（Canadian Grocer、Marketing Dive）。",
+    "evaluationImpact": "Marketing Diveによれば、署名は2万8,000件を超え、米TV番組The Late Showにも取り上げられた。同じKraft Heinz系のOscar Mayerは、パン2個入りの限定パックを検討すると表明した。カンヌライオンズ2022のBrand Experience & ActivationとPRでSilver、Social & InfluencerでBronzeを受賞した。",
+    "tags": [
+      "Theme/Food",
+      "Form/SNS",
+      "Form/OOH"
+    ],
+    "thumbnail": "/thumbnails/kraft-heinz-heinz-hot-dog-pact.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "ipdc-finance-ltd-amal-foundation-child-marriage-prevention-loan",
+    "title": "Child Marriage Prevention Loan",
+    "summary": "貧困家庭の親に、娘の早婚をさせず高校卒業まで通わせることを条件に無利子・無担保のマイクロローンを貸し、児童婚を減らそうとしたバングラデシュの施策。",
+    "client": "Ipdc Finance Ltd. & Amal Foundation",
+    "agency": "GREY BANGLADESH, Dhaka",
+    "categories": [
+      "Brand Experience & Activation"
+    ],
+    "award": "Cannes Lions 2022 Brand Experience & Activation Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Brand Experience & Activation",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.tbsnews.net/node/400334",
+    "videoId": "",
+    "overview": "IPDC FinanceとNGOのAmal Foundationが、Grey Bangladeshと組んで始めた「Child Marriage Prevention Loan」。12〜18歳の娘を持つ親が、娘を法定年齢前に結婚させず高校卒業まで教育することを約束すると、事業を始めるための無利子ローンを受けられる。",
+    "background": "Prothom Aloの記事によれば、バングラデシュでは児童婚が貧困と結びついており、貧しい農村の親は娘を経済的・社会的な負担と捉えがちだとされる。コロナ禍のロックダウンで低賃金労働者の収入が途絶えたことも、早期の結婚につながりうる要因として挙げられている。",
+    "execution": "TBS NewsとProthom Aloによれば、2022年3月にボグラ県で試験導入された。応募者は12〜18歳の娘を持つ親で、娘が法定年齢前に結婚しないこと、高校卒業まで教育を受けることの3条件を満たす必要がある。IPDCとAmalが申請を審査し、コミュニティの前でローンを手渡す。Amalが事業の立ち上げと経営研修を支援し、30日の返済猶予の後は週払いの返済をIPDCに代わって回収しつつ、娘の通学と事業の状況を確認する。返済金は他の家庭へのローンの原資に回る。",
+    "evaluationImpact": "独立した報道で確認できた成果数値はない。カンヌライオンズ2022のBrand Experience & Activation部門でSilverを受賞した。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Education"
+    ],
+    "thumbnail": "/thumbnails/ipdc-finance-ltd-amal-foundation-child-marriage-prevention-loan.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "maeil-dairies-co-ltd-greeting-milk",
+    "title": "Greeting Milk",
+    "summary": "毎日の牛乳配達を高齢者の安否確認に使い、一人暮らしの高齢者を見守る「牛乳安否」キャンペーンを広告化した、韓国の乳業メーカーの施策。",
+    "client": "Maeil Dairies Co. ,Ltd",
+    "agency": "INNORED, Seoul",
+    "categories": [
+      "Brand Experience & Activation",
+      "PR"
+    ],
+    "award": "Cannes Lions 2022 Brand Experience & Activation Lions Silver / Cannes Lions 2022 PR Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Brand Experience & Activation",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "PR",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.dailian.co.kr/news/view/1125999/",
+    "videoId": "",
+    "overview": "韓国の乳業メーカー・毎日乳業（Maeil Dairies）が、代理店Innoredと制作した「Greeting Milk」。毎日乳業が後援する「お年寄りの安否を尋ねる牛乳配達」活動を、一般の人の寄付参加につなげる広告として展開した。",
+    "background": "Dailianの報道によれば、この活動は一人暮らしの高齢者に毎日牛乳を届け、孤独死を防ぐもの。2022年5月時点で3,494人が対象で、毎日乳業は2016年から後援している。2020年6月には「消化のよい牛乳」の売上の1%を寄付する「1%の約束」も発表している。",
+    "execution": "配達員が一人暮らしの高齢者に毎日牛乳を届け、前日分の牛乳が残っていれば役所や家族に連絡する。広告には芸能人やインフルエンサーでなく受益者本人が出演し、「毎日届く牛乳が大きな慰めになる」という実体験を語った。個人や団体は専用サイトなどから寄付に参加できる。",
+    "evaluationImpact": "独立した報道で確認できた成果数値はない。毎日乳業は、カンヌライオンズ2022のBrand Experience & Activation部門でSilver、PR部門でBronzeを受賞した。Dailianは、中堅企業が本賞を受けるのは珍しいと報じている。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Food",
+      "Theme/Health"
+    ],
+    "thumbnail": "/thumbnails/maeil-dairies-co-ltd-greeting-milk.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "whirlpool-plasticoff",
+    "title": "Plasticoff",
+    "summary": "家電の梱包に使うプラスチックフィルムを、水に溶ける生分解性素材に置き換え、洗濯機の最初の洗濯で溶かして使う、Whirlpoolの包装施策。",
+    "client": "Whirlpool",
+    "agency": "VMLY&R MEXICO, Mexico City",
+    "categories": [
+      "Brand Experience & Activation"
+    ],
+    "award": "Cannes Lions 2022 Brand Experience & Activation Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "中南米"
+    ],
+    "link": "https://www.informabtl.com/whirlpool-vmlyr-leon-de-bronce-cannes-lions/",
+    "videoId": "",
+    "overview": "WhirlpoolがVMLY&R Mexicoと進めた「Plasticoff」。家電の梱包で使うプラスチックフィルムを、水溶性で生分解性・堆肥化可能とされる素材に替え、梱包の構造はそのままでプラスチックごみをなくすことを狙った。",
+    "background": "Informa BTLによれば、消費財の包装ではプラスチックが一般的で、多くの企業はリサイクルに頼っている。Whirlpoolはそれにとどまらず、ブランドの環境メッセージ「#OnlyOneEarth」の下で、包装そのものからプラスチックを減らそうとした。",
+    "execution": "Informa BTLの報道では、プラスチックフィルムを水溶性の技術で置き換え、洗濯の工程を「ライフサイクル」に重ねて消費者を物語に巻き込んだ。ブランドを、環境に配慮する革新的な企業として見せることを狙っている。",
+    "evaluationImpact": "独立した報道で確認できた成果数値はない。Informa BTLは、消費者の反応が好意的で、日常のプラスチック使用への意識が高まったと伝えている。カンヌライオンズ2022のBrand Experience & Activation部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Sustainability",
+      "Form/Product"
+    ],
+    "thumbnail": "/thumbnails/whirlpool-plasticoff.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "entourage-homeless-in-the-metaverse",
+    "title": "Homeless In The Metaverse",
+    "summary": "メタバース上に「最初のホームレス」Willを登場させ、仮想空間への巨額投資より現実の路上生活者支援を問いかけた、フランスの非営利団体Entourageの施策。",
+    "client": "Entourage",
+    "agency": "TBWA, Paris",
+    "categories": [
+      "Brand Experience & Activation"
+    ],
+    "award": "Cannes Lions 2022 Brand Experience & Activation Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.thestable.com.au/tbwaparis-entourage-the-first-homeless-person-in-the-metaverse/",
+    "videoId": "",
+    "overview": "フランスのNPO・EntourageとTBWA Parisによる、2022年4月のキャンペーン。メタバースに住む「最初のホームレス」Willというキャラクターを立て、仮想世界に投資する前に現実の困窮に目を向けるよう訴えた。",
+    "background": "The StableとReason Whyによれば、メタバースでは仮想不動産に数百万ユーロが投じられていた。Entourageは約15万人のボランティアを擁し、ホームレスの人々の支えとなる関係づくりを行っている。キャンペーンは冬季の緊急宿泊措置が終わる3月31日と、4月の大統領選の直前に合わせて始まった。",
+    "execution": "Willはテレビ用フィルム、現在または元ホームレスの人々との対談、ニュースに連動したSNS投稿に登場した。Willは仮想の豪邸やヨットへの支出を疑問視し、画面越しの関係による孤立と、フランスで約30万人とされるホームレスの現実を対比させる。視聴者はEntourageのアプリで近隣の路上生活者とつながるよう促される。Entourageは同時に、85%のホームレスが通行人に拒絶されていると感じ、市民の26%しか話しかけないという調査結果を公表した。",
+    "evaluationImpact": "独立した報道で確認できた成果数値はない。カンヌライオンズ2022のBrand Experience & Activation部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/SocialGood",
+      "Tech/XR",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/entourage-homeless-in-the-metaverse.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "the-kraft-heinz-co-heinz-hidden-spots",
+    "title": "Heinz Hidden Spots",
+    "summary": "Call of Duty: Warzoneのマップ上に、食事をしても安全な「隠れ場所」をストリーマーと探し出して示した、Heinzのゲーム内施策。",
+    "client": "The Kraft Heinz Co",
+    "agency": "GUT, Sao Paulo",
+    "categories": [
+      "Brand Experience & Activation",
+      "Direct",
+      "Media",
+      "Social & Influencer"
+    ],
+    "award": "Cannes Lions 2022 Brand Experience & Activation Lions Bronze / Cannes Lions 2022 Direct Lions Silver / Cannes Lions 2022 Media Lions Silver / Cannes Lions 2022 Social & Influencer Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Direct",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Media",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Social & Influencer",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.adweek.com/brand-marketing/heinz-gives-call-of-duty-players-a-safe-place-to-snack/",
+    "videoId": "",
+    "overview": "Kraft HeinzがGUT São Paulo、Activisionと組んだ「Heinz Hidden Spots」。『Call of Duty: Warzone Pacific』の新マップ「Caldera」で、プレイヤーがハンバーガーなどを食べても襲われにくい隠れ場所を提示した。",
+    "background": "Adweekによれば、このゲームには、プレイ可能な範囲から一時的に外れて敵を避けたり待ち伏せしたりできる、マップ上の場所がある。Heinzはこの特性を、ゲームの試合中でも安全に食事休憩を取れる場所として売り込んだ。",
+    "execution": "試合中に食事をすると気が散ってキャラクターが倒されるという30秒の広告で始め、TwitchとYouTubeの人気ストリーマーにCalderaマップ上の「安全に食べられる場所」を紹介させた。European Gamingなどの報道では、2021年12月17〜19日にカスタムのHeinzケチャップ瓶を使った配信が行われた。その後、他のゲームでも隠れ場所が見つけられ、共有されていった。",
+    "evaluationImpact": "独立した報道で確認できた成果数値はない。カンヌライオンズ2022でBrand Experience & Activation部門Bronze、Direct部門Silver、Media部門Silver、Social & Influencer部門Bronzeを受賞した。",
+    "tags": [
+      "Tech/Game",
+      "Theme/Food",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/the-kraft-heinz-co-heinz-hidden-spots.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "mercado-livre-ebazar-new-iconic-kisses",
+    "title": "New Iconic Kisses",
+    "summary": "広告や映画で「アイコニック」とされてきた有名なキスを、実在のLGBTQIA+カップルで撮り直したMercado Livreのプライド月施策。",
+    "client": "Mercado Livre (Ebazar)",
+    "agency": "GUT, Sao Paulo",
+    "categories": [
+      "Brand Experience & Activation",
+      "Film",
+      "Print & Publishing"
+    ],
+    "award": "Cannes Lions 2022 Brand Experience & Activation Lions Bronze / Cannes Lions 2022 Film Lions Bronze / Cannes Lions 2022 Print & Publishing Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Film",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Print & Publishing",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://aberje.com.br/en/mercado-livre-seeks-to-normalize-lgbtqia-kisses-with-the-new-iconic-kisses-campaign",
+    "videoId": "",
+    "overview": "ブラジルのEC大手Mercado Livreが、広告代理店GUTと2021年6月のプライド月に展開した施策。映画や歴史、ポップカルチャーの有名なキスの場面を、多様なカップルによる写真と映像で再現し、LGBTQIA+のキスも「アイコニック」だと示した。",
+    "background": "Aberjeの記事によれば、GUTのECDは、象徴的とされる有名なキスの多くが異性愛カップルによるものだという点を出発点にした。Mercado Livreは、多様性と包摂があってこそ、より多元的で自由な社会が築けるという立場を示している。",
+    "execution": "公開はPride SP Onlineでのプレミアから始まり、SNSと屋外広告で展開した。写真は無料でダウンロードでき、1回ダウンロードされるごとにMercado LivreがLGBTQIA+の人々を支援するCasa1にR$1を寄付する。デジタルインフルエンサーが有名なキスを再現して参加を促し、LGBTQIA+のイラストレーターが自身の経験をもとにキスを描いた。ハッシュタグは#BeijosIconicos。サンパウロのパウリスタ大通りでの屋外展示（Forbes Brasilの見出し）や、2021年10月のGoogle Arts and Cultureでのデジタル展示化も報じられた（ABC da Comunicação）。",
+    "evaluationImpact": "ブラジルの広告賞Effieのブランデッドコンテンツ部門でGoldを受賞したと、Meio & Mensagemが伝えている。カンヌライオンズ2022ではPrint & Publishing部門でSilver、Brand Experience & ActivationとFilmの両部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/SocialGood",
+      "Form/Film",
+      "Form/OOH",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/mercado-livre-ebazar-new-iconic-kisses.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "l-observatoire-des-inegalites-monopoly-of-inequalities",
+    "title": "Monopoly Of Inequalities",
+    "summary": "定番ボードゲームMonopolyのルールを性別・肌の色・出自などで不利になる設定に変え、社会の不平等を体験させるフランスの教材。",
+    "client": "L'Observatoire Des Inegalites",
+    "agency": "HEREZIE, Paris",
+    "categories": [
+      "Brand Experience & Activation",
+      "PR"
+    ],
+    "award": "Cannes Lions 2022 Brand Experience & Activation Lions Bronze / Cannes Lions 2022 PR Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "PR",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.cbnews.fr/node/66283",
+    "videoId": "",
+    "overview": "フランスの民間団体Observatoire des inégalitésと広告代理店HEREZIEが、Hasbroの許可を得て作った教育用の拡張キット。プレイヤーは配られた人物になりきり、その属性によって変わるルールの下でMonopolyを進める。",
+    "background": "きっかけはHEREZIEが2017年にObservatoireのために作った動画「Un jeu de société」。cbnews.frによれば、この動画はFacebookで3,000万回以上のオーガニック視聴を記録した。これを実際に遊べる教材にしたのが、2022年の施策である。",
+    "execution": "11歳以上向けの教材として、Observatoireのサイトから注文できる。ルールとイベントカードは各種データに基づく。例えば、女の子はスタートで受け取る金額が少なく、初期資産の有無や使えるサイコロの数にも差がつく。進行役はこのルールを手がかりに、客観的に議論を進められる。Observatoireは学校や企業向けのワークショップも実施している。Monopoly本体の盤は同梱されない。",
+    "evaluationImpact": "cbnews.frの報道では、当時の男女平等担当大臣Elisabeth Morenoが、若者が社会問題に関心を持つきっかけになるとして好意的に評価した。カンヌライオンズ2022ではPR部門でSilver、Brand Experience & Activation部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Education",
+      "Form/Product"
+    ],
+    "thumbnail": "/thumbnails/l-observatoire-des-inegalites-monopoly-of-inequalities.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "samsung-quest-for-dyslexia",
+    "title": "Quest For Dyslexia",
+    "summary": "中国で人気のゲーム内クエストを漢字の読み間違いを見つける仕掛けに作り替え、遊ぶだけでディスレクシアの兆候を拾うSamsungの施策。",
+    "client": "Samsung",
+    "agency": "CHEIL WORLDWIDE, Beijing / CHEIL, Hong Kong",
+    "categories": [
+      "Brand Experience & Activation",
+      "Media",
+      "Mobile"
+    ],
+    "award": "Cannes Lions 2022 Brand Experience & Activation Lions Bronze / Cannes Lions 2022 Media Lions Bronze / Cannes Lions 2022 Mobile Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Media",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Mobile",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://cheil.com/hk/work/detail?wkNo=280",
+    "videoId": "",
+    "overview": "Samsungの依頼でCheil Worldwide BeijingとCheil Hong Kongが手がけた。人気アドベンチャーゲーム「Young Warrior」のクエストを改変し、子どもが普段どおり遊ぶだけで、ディスレクシア（読字障害）の可能性を見つける。",
+    "background": "Cheilの事例ページによれば、中国ではディスレクシアの子どもが1,500万人以上いるとされるが、診断を受けるのは5%未満にとどまる。親が検査センターに連れて行くことをためらい、支援の開始が遅れていた。",
+    "execution": "ゲーム開発会社と協力し、ディスレクシアの子どもが形を取り違えやすい漢字100語以上を使ってクエストを再設計した。例として、「水」と「木」、「左」と「右」、「明」と「暗」の取り違えが挙げられている。機械学習でプレイヤーの読み間違いの傾向を分析し、繰り返し間違える子どもについて保護者に通知して、詳しい診断を促す。",
+    "evaluationImpact": "カンヌライオンズ2022ではMobile部門でSilver、Brand Experience & ActivationとMediaの両部門でBronzeを受賞した。D&AD 2023でもWood Pencilを受賞している。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Health",
+      "Tech/Game",
+      "Tech/AI"
+    ],
+    "thumbnail": "/thumbnails/samsung-quest-for-dyslexia.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "pilsen-callao-e-nterpreters",
+    "title": "E-Nterpreters",
+    "summary": "オンラインゲーム中の音声会話をリアルタイムで手話に変換するDiscordボットを無料公開した、ペルーのビールPilsen Callaoの施策。",
+    "client": "Pilsen Callao",
+    "agency": "FAHRENHEIT DDB, Lima",
+    "categories": [
+      "Brand Experience & Activation",
+      "Digital Craft",
+      "Direct",
+      "Entertainment Lions for Sport"
+    ],
+    "award": "Cannes Lions 2022 Brand Experience & Activation Lions Bronze / Cannes Lions 2022 Digital Craft Lions Silver / Cannes Lions 2022 Direct Lions Bronze / Cannes Lions 2022 Entertainment Lions for Sport Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Digital Craft",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Direct",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Entertainment Lions for Sport",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/e-nterpreters",
+    "videoId": "",
+    "overview": "ペルーのビールブランドPilsen CallaoとFahrenheit DDB（リマ）が2022年3月に公開した、ろう者・難聴者と聴者の友人が一緒にゲームを遊ぶためのボット。ブランドの「Friendship Without Differences（違いを超えた友情）」という考えに沿っている。",
+    "background": "Shotsの記事によれば、オンラインゲームの主なコミュニケーション手段はマイクとヘッドホンで、聴覚に困難がある人には使いにくい。ろう者のゲーマーは仲間との会話から取り残されやすかった。",
+    "execution": "Discord上で動くボットで、プレイヤーごとの声を識別するアルゴリズムが各人の音声を別のチャンネルに分け、内容を視覚的な手話に変換して表示する。10か月以上かけ、世界各地、特にラテンアメリカのろう者ゲーマーのコミュニティと協力し、実際に使われる動きや表現の取り込みと、使いやすさのテストを行った。オープンソースとして開発され、18歳以上のDiscordユーザーは無料で使える。",
+    "evaluationImpact": "カンヌライオンズ2022ではDigital CraftでSilver、Brand Experience & Activation・Direct・Entertainment Lions for SportでBronzeを受賞した。2023年にはシーズン2が公開され、One Show 2023とD&ADでも受賞している。",
+    "tags": [
+      "Theme/SocialGood",
+      "Tech/AI",
+      "Tech/Game",
+      "Tech/App"
+    ],
+    "thumbnail": "/thumbnails/pilsen-callao-e-nterpreters.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "macma-the-art-of-self-examintion",
+    "title": "The Art Of Self Examintion",
+    "summary": "美術館の名画に触れられる特別展で、絵の中の乳がんの兆候を触診で体験させ、自己検診を促したアルゼンチンの啓発施策。",
+    "client": "Macma",
+    "agency": "DAVID, Buenos Aires",
+    "categories": [
+      "Brand Experience & Activation",
+      "Outdoor"
+    ],
+    "award": "Cannes Lions 2022 Brand Experience & Activation Lions Bronze / Cannes Lions 2022 Outdoor Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Outdoor",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://ogilvy.com/work/art-self-examination",
+    "videoId": "",
+    "overview": "乳がん患者を支援する非営利団体Macmaと広告代理店DAVID Buenos Airesが、ブエノスアイレスのIsaac Fernández Blanco美術館で実施した体験型展示。美術館では禁じられている「作品に触れる」行為を一週間だけ解禁し、触診で乳がんの症状を見分ける方法を学んでもらった。",
+    "background": "MarCommNewsによれば、Lancet誌の記事とDr. Liliana Sosaの研究で、Rembrandt、Rubens、Raphaelの作品に描かれた女性モデルに、乳がんの可能性を示す図像的な兆候が見つかった。この発見をもとに企画した。Macmaの会長は、自己検診だけでは不十分で、年1回の医師の診察とマンモグラフィーなどの検査が必要だと述べている。",
+    "execution": "3点の作品に手を加え、しこり、皮膚のひきつれ、リンパ節の腫れなどの兆候を、触って確かめられるようにした。Museの報道では、科学的な正確さを出すために素材を何度も試したという。展示は美術館の通常の来館者に開放され、早期発見のための定期的な自己検診を訴えた。DAVIDとMacmaは「TetasxTetas/Manboobs」「Todos Aman las Tetas」でも組んでいる。",
+    "evaluationImpact": "カンヌライオンズ2022ではOutdoor部門でGold、Brand Experience & Activation部門でBronzeを受賞した。美術と医療啓発を結び付けた体験として、MuseやTrendWatchingなど海外メディアでも紹介された。",
+    "tags": [
+      "Theme/Health",
+      "Theme/Art",
+      "Form/Exhibition",
+      "Form/Installation"
+    ],
+    "thumbnail": "/thumbnails/macma-the-art-of-self-examintion.jpg"
   }
 ]
