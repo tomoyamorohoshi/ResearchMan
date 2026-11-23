@@ -594,7 +594,7 @@
     ]
   },
   {
-    "id": "",
+    "id": "pi4",
     "title": "π⁴ (Pi4)",
     "org": "Shanghai AI Laboratory / 上海交通大学 / 浙江大学",
     "type": "Research",
@@ -630,7 +630,7 @@
         "url": "https://huggingface.co/spaces/yyfz233/Pi4"
       }
     ],
-    "thumbnail": "/thumbnails/tech/.jpg",
+    "thumbnail": "/thumbnails/tech/pi4.jpg",
     "relatedWorks": [
       {
         "title": "VGGT",
