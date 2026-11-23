@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "statusAsOf": "2026-11-22",
+  "statusAsOf": "2026-11-23",
   "items": [
     {
       "id": "2026-museum-of-art-kochi-akiko-nakayama-fluid-form",
@@ -1226,7 +1226,7 @@
       "city": "京都市",
       "startDate": "2026-11-07",
       "endDate": "2026-11-22",
-      "status": "ongoing",
+      "status": "ended",
       "admission": "無料",
       "tags": [
         "media_art",
