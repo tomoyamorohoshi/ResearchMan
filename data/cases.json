@@ -123137,5 +123137,510 @@
       "Form/Film"
     ],
     "thumbnail": "/thumbnails/google-real-tone-product-innovation-global-campaign.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "burger-king-whopper-heist",
+    "title": "Whopper Heist",
+    "summary": "街中のデジタル看板に隠したワッパーを、スマホをかざして「盗める」ようにしたバーガーキング・アルゼンチンとNetflixの共同施策。",
+    "client": "Burger King",
+    "agency": "WE BELIEVERS, Brooklyn",
+    "categories": [
+      "Mobile"
+    ],
+    "award": "Cannes Lions 2022 Mobile Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Mobile",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.dandad.org/work/d-ad-awards-archive/burger-king-whopper-heist",
+    "videoId": "",
+    "overview": "バーガーキング・アルゼンチンとNetflix、WE BELIEVERSによる施策。Netflixのスペイン発ドラマ『ペーパー・ハウス（Money Heist）』の最終シーズン公開に合わせ、人々を「ワッパー泥棒」にする体験をつくった。",
+    "background": "Netflixにとって最重要のスペイン語作品の最終シーズン公開に合わせ、同作の象徴と、バーガーキングの象徴であるワッパーを結びつける共同プロモーションとして企画された。",
+    "execution": "ブエノスアイレスのデジタル屋外広告に、仮想のワッパーを多数仕込んだ。看板に付いたNFCチップにスマホをかざすと、看板上のワッパーが消えてスマホ側に現れ、バーガーキングの店舗で引き換えられる。バーガーキングのアプリでは残りのワッパーの数と場所が分かり、盗めるワッパーが近くにあると通知が届く。",
+    "evaluationImpact": "D&AD 2022でGraphite Pencil 2つとWood Pencil 5つを受賞し、The One Showでも入賞した（D&AD、One Show掲載）。カンヌライオンズ2022ではMobile部門でSilverを受賞した。",
+    "tags": [
+      "Form/OOH",
+      "Tech/Device",
+      "Theme/Food",
+      "Theme/Entertainment"
+    ],
+    "thumbnail": "/thumbnails/burger-king-whopper-heist.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "horizon-therapeutic-s-eyedar",
+    "title": "Eyedar",
+    "summary": "iPhoneのLiDARで周囲を3D計測し、音に変えて視覚障害者にエコーロケーション（反響定位）を教える無料アプリ。",
+    "client": "Horizon Therapeutic S",
+    "agency": "AREA 23, AN IPG HEALTH NETWORK COMPANY, New York",
+    "categories": [
+      "Mobile",
+      "Pharma"
+    ],
+    "award": "Cannes Lions 2022 Mobile Lions Silver / Cannes Lions 2022 Pharma Lions Gold / Cannes Lions 2022 Pharma Lions Silver / Cannes Lions 2022 Pharma Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Mobile",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Pharma",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Pharma",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Pharma",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.blindpig.tv/portfolio/eyedar",
+    "videoId": "",
+    "overview": "製薬企業Horizon TherapeuticsとAREA 23（IPG Health）によるiPhone向けアプリ。LiDARで取得した周囲の空間情報を立体的な音に変換し、視覚障害者が音で周囲を把握する練習ができる。",
+    "background": "エコーロケーションは習得に年単位の訓練が要るとされ、広く使える形になっていなかった。Marketing Media Magazineによれば、開発には視覚障害のあるUX担当者が加わり、画面読み上げの速度は当事者の助言で通常の2倍超に引き上げられた。",
+    "execution": "iPhone 12 Pro/Pro MaxおよびiPhone 13 Pro/Pro Max（LiDAR搭載機）が対象のApp Store掲載の無料アプリ。LiDARで環境を3Dマップ化して空間音響に変換し、物体の認識から複雑な課題へ進む段階的な訓練を備える。操作はVoiceOverとジェスチャーで完結する。Blind Pigがアニメーションと映像、アプリの視覚表現を制作した。",
+    "evaluationImpact": "カンヌライオンズ2022ではPharma部門でGold・Silver・Bronze、Mobile部門でSilverを受賞した。The Drumは2023年の受賞数が多いヘルス＆ファーマ事例の第3位に挙げた。",
+    "tags": [
+      "Theme/Health",
+      "Form/App",
+      "Tech/Audio",
+      "Tech/Device"
+    ],
+    "thumbnail": "/thumbnails/horizon-therapeutic-s-eyedar.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "abinbev-whtspp-records",
+    "title": "Whtspp Records",
+    "summary": "ラテンアメリカの人気アーティストの電話番号を公開し、新人にWhatsAppのボイスメッセージでデモ音源を送ってもらった、ビール「Budweiser」の新人発掘施策。",
+    "client": "Abinbev",
+    "agency": "DAVID, Bogotá",
+    "categories": [
+      "Mobile",
+      "Radio & Audio"
+    ],
+    "award": "Cannes Lions 2022 Mobile Lions Bronze / Cannes Lions 2022 Radio & Audio Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Mobile",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Radio & Audio",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://ogilvy.com/work/whtspp-records",
+    "videoId": "",
+    "overview": "AB InBevのBudweiserと、同社のレーベルBudX Recordsが、Ogilvy系のDAVID Bogotáと実施した。人気の都市系（アーバン）アーティストが電話番号を公開し、新人からのデモをボイスメッセージで直接受け付けた。",
+    "background": "新人ミュージシャンが人気アーティストに聴いてもらえる機会は限られる。BudX Recordsは新人アーティスト支援のプラットフォームとして立ち上がり、コロンビアで新人の契約を競うコンテストを行っていた。",
+    "execution": "人気アーティストが電話番号を公に示し、新人はWhatsAppのボイスメッセージで自作曲を送る。各アーティストは送られた音源から有望な新人を選び、次の注目株として紹介しながら一緒に活動する。なお2022年の第2回BUDX Recordsでは、Ryan Castro、Farinaなどが参加し、応募者がキャンペーン用のWhatsApp回線に楽曲を送る方式だった（El Espectador掲載のスポンサード記事）。この記事は関連施策の説明で、本作そのものの詳細ではない。",
+    "evaluationImpact": "カンヌライオンズ2022でMobile部門とRadio & Audio部門のBronzeを受賞した。",
+    "tags": [
+      "Theme/Music",
+      "Form/SNS",
+      "Tech/Audio"
+    ],
+    "thumbnail": "/thumbnails/abinbev-whtspp-records.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "vodacom-anti-hijack-ad-s-21",
+    "title": "Vodacom Anti-Hijack Ad's 21",
+    "summary": "ナビアプリWazeに、車両乗っ取り（ハイジャック）の多発地帯で警告と迂回路を出す位置連動広告を配信した、南アフリカのVodacomの施策。",
+    "client": "Vodacom",
+    "agency": "VMLY&R, Johannesburg",
+    "categories": [
+      "Mobile"
+    ],
+    "award": "Cannes Lions 2022 Mobile Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Mobile",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "アフリカ"
+    ],
+    "link": "https://admin.mediaupdate.co.za/publicity/151896/default.aspx?f=top",
+    "videoId": "",
+    "overview": "南アフリカの通信大手VodacomとVMLY&R Johannesburgによる施策。警察データなどから特定した危険な道路の周辺で、Wazeを使うドライバーに警告広告を表示し、安全な迂回を提案した。",
+    "background": "南アフリカでは車両乗っ取りが深刻な問題で、対策は危険地帯への路上看板が中心だった。Wazeは速さを基準に経路を案内するため、犯罪リスクは考慮されない。Vodacomは自社のネットワークとデータで道路を安全にすることを狙った。",
+    "execution": "警察の全国データ、車両追跡データ、過去の事件報告を突き合わせ、事件が多い道路を特定してWaze上にジオフェンスを設定した。信号待ちや渋滞で停車中のドライバーに、道路標識風のデザインで危険区域を知らせ、ワンタップで目的地は変えずに迂回できる。新たに報告された危険地帯にはリアルタイムで広告を出し、リスクの高い時間帯に集中させた。2022年3月25日からヨハネスブルグで始まった。",
+    "evaluationImpact": "カンヌライオンズ2022でMobile部門のBronzeを受賞した。",
+    "tags": [
+      "Tech/Data",
+      "Theme/Mobility",
+      "Form/App"
+    ],
+    "thumbnail": "/thumbnails/vodacom-anti-hijack-ad-s-21.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "sce-the-prevention-grid",
+    "title": "The Prevention Grid",
+    "summary": "ドローンと地上の点検データを統合し、機械学習と独自AIで山火事の予防につなげた、Deloitte DigitalとカリフォルニアのSCE（電力会社）の取り組み。",
+    "client": "Sce",
+    "agency": "DELOITTE DIGITAL, New York",
+    "categories": [
+      "Creative Business Transformation"
+    ],
+    "award": "Cannes Lions 2022 Creative Business Transformation Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Business Transformation",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.deloittedigital.com/us/en/insights/perspective/cannes-lions-2022.html",
+    "videoId": "",
+    "overview": "南カリフォルニアの電力会社Southern California Edison（SCE）とDeloitte Digitalによる取り組み。送電設備の点検データを1つに統合し、AIで山火事のリスク予測と予防に活用する。",
+    "background": "送電設備に起因する山火事の防止が、SCEにとって事業上の重要課題だった。SCEは2019年からドローンによる点検を行っており、人が行きにくい危険な場所の電柱や送電線の損傷を見つけている（ABC7）。",
+    "execution": "Deloitte DigitalはSCEのチームと組み、ドローンによる点検と地上の点検のデータを統合した。機械学習と独自のAIを使って、山火事の防止に役立てる。Deloitte Digitalの公式ページには作品名の記載はなく、この説明は同社のカンヌ2022受賞紹介による。",
+    "evaluationImpact": "カンヌライオンズ2022のCreative Business Transformation部門でGoldを受賞した。Deloitte Digitalは同部門初のGold Lionとしている。",
+    "tags": [
+      "Tech/AI",
+      "Tech/Data",
+      "Theme/Sustainability",
+      "Tech/Robotics"
+    ],
+    "thumbnail": "/thumbnails/sce-the-prevention-grid.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "ab-inbev-how-creativity-helped-ab-inbev-to-grow",
+    "title": "How Creativity Helped Ab Inbev To Grow",
+    "summary": "クリエイティビティを事業成長の仕組みとして社内に根づかせてきたAB InBevの取り組み。",
+    "client": "Ab Inbev",
+    "agency": "AB INBEV, New York",
+    "categories": [
+      "Creative Business Transformation"
+    ],
+    "award": "Cannes Lions 2022 Creative Business Transformation Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Business Transformation",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.marketingdive.com/news/ab-inbev-cannes-lions-marketing/646024/",
+    "videoId": "",
+    "overview": "世界最大のビール企業AB InBevが、クリエイティブを広告制作にとどめず、人材・プロセス・パートナーの仕組みとして全社に組み込んだ取り組みを扱う作品。2022年応募作そのものの説明は確認できず、Marketing Diveなどの報道で確認できた社内の仕組みをもとに記す。",
+    "background": "Marketing Diveの報道によれば、2018年にメキシコで開いた幹部サミットで、「人」「プロセス」「パートナー」の3点が優先事項になった。買収で拡大してきた同社には、ブランドを育てる力を高める狙いがあった。",
+    "execution": "Marketing Diveによれば、2018年に米国でマーケティング文化・能力開発のチームを作り、2019年末に世界へ広げた。社員向けのマーケティング・アカデミーも設けた。2018年にコロンビアで生まれた社内エージェンシーDraftlineは米国やメキシコにも広がり、外部代理店とも併用する。キャンペーンを市場横断で比較し、主観的な評価に共通の言葉を使い、外部の著名クリエイターによる評議会が作品を採点して追跡している。",
+    "evaluationImpact": "カンヌライオンズ2022のCreative Business Transformation部門でSilverを受賞した。AB InBevは同年のCreative Marketer of the Yearにも選ばれ、2016年以降に獲得したLionsは146に上る（Marketing Dive）。",
+    "tags": [
+      "Theme/Education"
+    ],
+    "thumbnail": "/thumbnails/ab-inbev-how-creativity-helped-ab-inbev-to-grow.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "budweiser-the-budweiser-energy-collective",
+    "title": "The Budweiser Energy Collective",
+    "summary": "バーやスタジアムが再生可能電力に切り替えやすくなるよう、Budweiserが販売規模を使って現地の電力事業者と店をつなぐ仕組み。",
+    "client": "Budweiser",
+    "agency": "AB INBEV, New York / REVOLT, London",
+    "categories": [
+      "Creative Business Transformation"
+    ],
+    "award": "Cannes Lions 2022 Creative Business Transformation Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Business Transformation",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.prnewswire.com/in/news-releases/budweiser-launches-the-energy-collective-to-help-power-the-world-with-renewable-electricity-839077694.html",
+    "videoId": "",
+    "overview": "Budweiserが2022年4月に発表した、バー・音楽会場・スタジアムを再生可能電力につなぐグローバルな取り組み。ビールの醸造だけでなく、販売先の電力も再生可能にすることを目指す。",
+    "background": "Budweiserは醸造に使う電力を2025年までにすべて再生可能にする目標を掲げており、多くの市場で達成している。AB InBevのバリューチェーン全体のネットゼロ（2040年）につなげるため、販売先の電力にも対象を広げた。店にとってエネルギー費は大きな支出であり、費用面の利点も訴求できる。",
+    "execution": "各市場の電力事業者と組み、Budweiserの規模を使って店に再生可能電力を提供する。発表時の稼働国はアイルランドとブラジルで、コロンビアで2022年にパイロットを行い、英国・チリ・ウルグアイなどを検討していた。ブラジルではLemon Energyが提携先。発表時には、2025年までに25万拠点の転換を目標に掲げた（発表資料）。",
+    "evaluationImpact": "カンヌライオンズ2022のCreative Business Transformation部門でSilverを受賞した。",
+    "tags": [
+      "Theme/Sustainability"
+    ],
+    "thumbnail": "/thumbnails/budweiser-the-budweiser-energy-collective.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "unilever-smart-fill",
+    "title": "Smart Fill",
+    "summary": "店頭の自販機で、空の容器を持参するだけで洗剤などを詰め替えられるようにし、インドのプラスチックごみ削減を狙ったHULの施策。",
+    "client": "Unilever",
+    "agency": "VMLY&R COMMERCE INDIA, Mumbai",
+    "categories": [
+      "Creative Business Transformation",
+      "Creative Commerce"
+    ],
+    "award": "Cannes Lions 2022 Creative Business Transformation Lions Bronze / Cannes Lions 2022 Creative Commerce Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Business Transformation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Commerce",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.printweek.in/news/hul-introduces-instore-vending-machine-54911",
+    "videoId": "",
+    "overview": "Hindustan Unilever（HUL）とVMLY&R Commerce Indiaが2021年に始めた、店内設置の詰め替え自販機。容器を使い捨てにせず、買い物の場で再利用してもらう仕組みを、商品販売につなげた。",
+    "background": "HULは包装プラスチックの廃棄管理と循環型経済を課題にしており、PrintWeekの報道では、このパイロットで得た知見を小売店向けに拡大できる詰め替え事業モデルへつなげる意向を示した。",
+    "execution": "ムンバイのReliance Smart Acme Mallにパイロット設置された。Surf Excel、Comfort、Vimなどの家庭用品を、自分の空き容器、または店で買う容器に詰め替えられる（PrintWeek、BestMediaInfo）。",
+    "evaluationImpact": "カンヌライオンズ2022のCreative Commerce部門でGold、Creative Business Transformation部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Sustainability",
+      "Theme/Retail",
+      "Form/Product"
+    ],
+    "thumbnail": "/thumbnails/unilever-smart-fill.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "ministry-of-digital-transformation-of-ukraine-diia-9",
+    "title": "Diia 9",
+    "summary": "ウクライナ政府のデジタル行政サービスを「Diia（行動）」という一つのブランドにまとめた取り組み。ボタンを押す程度の簡単な行為で行政とやり取りできる、という考え方を打ち出した。",
+    "client": "Ministry Of Digital Transformation Of Ukraine",
+    "agency": "FEDORIV AGENCY, Kyiv / MINISTRY OF DIGITAL TRANSFORMATION OF UKRAINE, Kyiv",
+    "categories": [
+      "Creative Business Transformation"
+    ],
+    "award": "Cannes Lions 2022 Creative Business Transformation Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Business Transformation",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://en.interfax.com.ua/news/general/841093.html",
+    "videoId": "",
+    "overview": "ウクライナのデジタル変革省とFedoriv Agencyが手がけた、行政デジタルサービスのブランド「Diia」。ポータルとアプリを同じ名前と見た目で束ね、国民と国家の関係を簡単で分かりやすいものとして示した。",
+    "background": "Diiaはウクライナ政府の電子サービスのポータルであり、同名のアプリでもある。Diiaは「行動」を意味し、国家とのやり取りを一つの行動に縮めるという発想が名前に込められている（mind.ua）。デジタル変革の各プロジェクトを一つのブランドに統合することが狙いだった。なお、依頼上の作品名「Diia 9」という名称は確認できず、ここではカンヌのCreative Business Transformation部門で受賞したDiiaブランドに関する報道に基づいて記述している。",
+    "execution": "デジタル変革省とFedoriv Agencyがブランドを開発した（mind.ua）。ブランドのコンセプトは「国家と私」で、個人と政府のやり取りは簡単で分かりやすく速くあるべきだという考えに立つ。ブランドはオンラインポータルとモバイルアプリの両方に展開された。",
+    "evaluationImpact": "カンヌライオンズ2022のCreative Business Transformation部門でBronzeを受賞した。デジタル変革大臣のミハイロ・フェドロフ氏はTelegramで「Diiaにとって初のカンヌライオン」と述べ、チームとFedoriv Agencyに謝意を示した（Interfax-Ukraine）。同ブランドはService DesignとExperience Transformationの2部門でショートリストにも入っていた。",
+    "tags": [
+      "Tech/App",
+      "Form/App",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/ministry-of-digital-transformation-of-ukraine-diia-9.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "spotify-rachel",
+    "title": "Rachel",
+    "summary": "Spotifyが、広告主企業のCMOごとに好みのジャンルで書き下ろした「CMOのための曲」。Frito-LayのCMO向けのラップ曲が「Rachel」にあたる。",
+    "client": "Spotify",
+    "agency": "FCB NEW YORK",
+    "categories": [
+      "Radio & Audio"
+    ],
+    "award": "Cannes Lions 2022 Radio & Audio Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Radio & Audio",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://ads.spotify.com/en-US/news-and-insights/introducing-a-song-for-every-cmo/",
+    "videoId": "",
+    "overview": "Spotify AdvertisingとFCB New Yorkによる「A Song for Every CMO」のうち、Frito-LayのCMO、Rachel Ferdinandoに贈られたラップ曲。広告主のマーケターを、音楽という自社の強みで称える企画だった。",
+    "background": "Spotifyの説明では、カンヌやCES、SXSWなど対面イベントでの交流の代わりとして企画された。音楽がSpotifyの中核であり、CMOも音楽好きだという着想から、広告主のCMOに曲を贈る形にした。CVS、Frito-Lay、Indeed、Kimberly-Clark、Intuitの5人から始まった。",
+    "execution": "各CMOに好きな音楽ジャンルを聞き、その人の趣味に合わせ、本人を称える歌詞の曲を作った。歌詞とカットは本人が確認した。Frito-Layの Rachel Ferdinando 向けはラップで、ジャケットのグラフィックもそのジャンルに合わせた。作曲・歌唱・制作はWatt Whiteが担当した（Adweek、Muse by Clios）。告知には大げさな盛り上げ動画を用意し、CMOにはカレンダー招待で5分間の「音楽ミーティング」を設けて完成曲を聴かせ、Spotifyチャート入りを記念した額入りのプラチナ盤も贈った。",
+    "evaluationImpact": "カンヌライオンズ2022のRadio & Audio部門でGoldを受賞した。Spotifyは同キャンペーンで自社初のGold Lionを獲得したと発表している。Adweekによると、初回に曲を贈られたCMOから好意的な反応があり、それが2回目の実施につながった。",
+    "tags": [
+      "Theme/Music",
+      "Tech/Audio"
+    ],
+    "thumbnail": "/thumbnails/spotify-rachel.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "distell-jab-jab",
+    "title": "\"Jab Jab\"",
+    "summary": "南アフリカの言葉に多い音節の繰り返しを使い、「2回目のワクチン接種（2 jabs）」を促したSavanna Ciderのラジオ広告。",
+    "client": "Distell",
+    "agency": "GREY SOUTH AFRICA, Johannesburg",
+    "categories": [
+      "Radio & Audio"
+    ],
+    "award": "Cannes Lions 2022 Radio & Audio Lions Gold / Cannes Lions 2022 Radio & Audio Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Radio & Audio",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Radio & Audio",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "アフリカ"
+    ],
+    "link": "https://grey.com/ideas/savanna-cider-jab-jab",
+    "videoId": "",
+    "overview": "DistellのサイダーブランドSavannaがGrey South Africaと作ったラジオ広告。「toyi-toyi」「gogo」のように音節を重ねる現地の言い回しを使い、新型コロナワクチンの2回接種を呼びかけた。",
+    "background": "2021年の年末商戦期に、Savannaは18〜24歳の主要顧客層へ向けて発信した。この層は2回目の接種をあまり意識しておらず、1回で十分だと誤解している人も多かった。そこで2回接種のPfizerワクチンを例に、「2回目も打つ」ことを伝えようとした（Grey）。",
+    "execution": "音節を繰り返す言葉が南アフリカの言語に多いことに着目し、そのような語を集めて脚本に使った。繰り返しの語感で「2回が1回に勝る」ことをユーモラスに伝えるラジオ広告「Jab Jab」にした。ラジオは南アフリカで広く聴かれる媒体で、広告の言い回しは日常会話にも広がったとされる。",
+    "evaluationImpact": "カンヌライオンズ2022のRadio & Audio部門でGoldとBronzeを受賞した。Bizcommunityは南アフリカにとってこの年のカンヌ初のGoldと報じた。Distellの担当者は、ユーモアで国を元気づける公共的なワクチンメッセージだと評している。",
+    "tags": [
+      "Theme/Health",
+      "Tech/Audio",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/distell-jab-jab.jpg"
+  },
+  {
+    "year": "2022",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2022"
+    ],
+    "id": "the-coca-cola-company-south-africa-the-coca-cola-beatcan-campaign",
+    "title": "The Coca-Cola Beatcan Campaign",
+    "summary": "コカ・コーラの缶をきっかけに、南アフリカの若者が自分たちの音楽を作って楽しむよう促したFCB Joburgのキャンペーン。",
+    "client": "The Coca- Cola Company South Africa",
+    "agency": "FCB JOHANNESBURG",
+    "categories": [
+      "Radio & Audio"
+    ],
+    "award": "Cannes Lions 2022 Radio & Audio Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Radio & Audio",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "アフリカ"
+    ],
+    "link": "https://pressportal.co.za/leisure-and-entertainment/story/fcb-joburg-bags-a-cannes-for-coca-cola-south-africas-beatcan-campaign.html",
+    "videoId": "",
+    "overview": "Coca-Cola South AfricaとFCB Joburgによる施策。若者を音楽でつなぎ、自分たちを表す音楽を「缶1本ずつ」作ることを後押しする、消費者参加型のキャンペーンだった。",
+    "background": "南アフリカの若者を称え、音楽を通じてつなぐことが狙いだった。2022年の応募作そのものの詳しい仕組みは、公開された報道では確認できなかった。",
+    "execution": "報道で確認できる範囲では、缶を起点に若者が自分らしい音楽を作る参加型の施策である。制作にはAudio Militia、CAKE、Digital Unionなどが関わった。",
+    "evaluationImpact": "カンヌライオンズ2022のRadio & Audio部門でSilverを受賞し、Use of MusicとAudio Led Creativityでショートリスト入りした。2022年のLoeriesではRadio部門のGrand Prixを含む7賞を獲得し、FCB Joburgは同部門の南アフリカ勢で唯一のGrand Prixを得た（LBB、mediaupdate）。",
+    "tags": [
+      "Theme/Music",
+      "Tech/Audio",
+      "Theme/Food"
+    ],
+    "thumbnail": "/thumbnails/the-coca-cola-company-south-africa-the-coca-cola-beatcan-campaign.jpg"
   }
 ]
