@@ -1,7 +1,7 @@
 {
   "_description": "Exhibitionタブ日次ジョブ(scripts/auto-research-exhibition.mjs)がプロンプトに読み込む機械可読プロファイル。根拠は docs/EXHIBITION_RESEARCH.md。重みやしきい値の更新は隔週チューンアップ(お気に入り/ごみ箱/intake)経由。sources.urlは2026-10-04に取得確認済みのもののみ",
   "version": 1,
-  "updatedAt": "2026-11-16",
+  "updatedAt": "2026-11-23",
   "scope": {
     "region": "日本全国（地域で差をつけない）",
     "includeStatuses": [
@@ -221,7 +221,12 @@
       "株式会社LEP",
       "永井健治（大阪大学産業科学研究所）",
       "Studio Raw Material",
-      "colorless studio (natsume, alpha)"
+      "colorless studio (natsume, alpha)",
+      "ftrygry",
+      "NEXTLIGHT (purini B2B Mi7s3)",
+      "Plan2+",
+      "so1anew",
+      "夜間同好会"
     ],
     "venues": [
       "NEORT++",
@@ -248,7 +253,12 @@
       "SKAC（SKWAT KAMEARI ART CENTRE）space III",
       "KATA",
       "神田錦町の旧カプセルホテル（旧ナインアワーズ大手町）",
-      "seeen Harajuku"
+      "seeen Harajuku",
+      "SAS® SHOWROOMING AND SPACE",
+      "札幌文化芸術交流センター SCARTS",
+      "金沢21世紀美術館",
+      "Art Center NEW",
+      "MoN Takanawa: The Museum of Narratives（Box1500）"
     ],
     "discoveryQueries": [
       "メディアアート 展覧会 {月}",
