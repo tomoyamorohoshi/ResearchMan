@@ -29749,5 +29749,215 @@
         "desc": "動画中の点の将来位置や3D座標、動きの向きをまとめて予測する4Dシーン復元技術。"
       }
     ]
+  },
+  {
+    "id": "2026-11-24-1",
+    "date": "2026-11-24",
+    "title": "解約弁護士をAI字幕合唱に",
+    "pattern": "文脈×技術",
+    "seed": "Wom「Take My Lawyers」の競合契約トラブル救済を、OpenMontageで相談事例を毎週ショート映像化する広報に転用したら、他社の不満が自社の「味方の物語」に変わるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "wom-take-my-lawyers",
+        "title": "Take My Lawyers",
+        "desc": "新規参入の通信会社が、競合の契約で困る人に自社弁護士の無料支援を出した施策。"
+      },
+      {
+        "type": "tech",
+        "id": "openmontage",
+        "title": "OpenMontage",
+        "desc": "AIアシスタントで企画から編集まで動画制作を自動で進めるシステム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-24-2",
+    "date": "2026-11-24",
+    "title": "チャット口座を2Dキャラ窓口に",
+    "pattern": "文脈×技術",
+    "seed": "Itaú「A Chat Away From Everything」のWhatsApp口座に、ChibiRigKitで作った瞬きする2D行員キャラを添えたら、チャットだけの銀行に表情のある窓口が生まれるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "itau-bank-a-chat-away-from-everything",
+        "title": "A Chat Away From Everything",
+        "desc": "WhatsAppのチャットだけで口座開設から取引までできる無料口座の施策。"
+      },
+      {
+        "type": "tech",
+        "id": "chibirigkit",
+        "title": "ChibiRigKit",
+        "desc": "1枚のイラストから瞬きや視線で動く2Dキャラを作れるオープンソース。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-24-3",
+    "date": "2026-11-24",
+    "title": "先住民言語実況を3D空間で",
+    "pattern": "文脈×技術",
+    "seed": "Native Sportscasters の6言語ラジオ実況に、Lyra 2.0で試合会場の3D空間を生成し重ねたら、声だけだった言語が歩ける故郷スタジアムとして体験できるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ab-inbev-native-sportscasters",
+        "title": "Native Sportscasters",
+        "desc": "代表戦のラジオ中継を先住民言語の実況者で6言語に届けた施策。"
+      },
+      {
+        "type": "tech",
+        "id": "lyra-2-0",
+        "title": "Lyra 2.0",
+        "desc": "1枚の画像や短い動画から歩き回れる3D空間を自動で作る技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-24-4",
+    "date": "2026-11-24",
+    "title": "若き自分と踊る動きの分身",
+    "pattern": "文脈×技術",
+    "seed": "Mcenroe Vs Mcenroeの「若い自分との対戦」に、MotionPersonaで怒り・酔っ払いなど歩き方スタイルを指定した分身を加えたら、本人が自分の癖と戦う競技が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "michelob-ultra-mcenroe-vs-mcenroe",
+        "title": "Mcenroe Vs Mcenroe",
+        "desc": "マッケンローがAIで再現した若い頃の自分5体とテニスで対戦する特番。"
+      },
+      {
+        "type": "tech",
+        "id": "motionpersona",
+        "title": "MotionPersona",
+        "desc": "人物・体型・スタイルを指定し操作に応じて歩く動きを生成するモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-24-5",
+    "date": "2026-11-24",
+    "title": "標識テーブルを点群で量産",
+    "pattern": "文脈×技術",
+    "seed": "Traffic Sign Urban Tablesの廃標識テーブルを、Point Cloud Merger for Blenderで街の点群に統合して設置位置をシミュレーションしたら、まちの余白に置く場所探しが進むかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "traffic-sign-urban-tables-2026",
+        "title": "Traffic Sign Urban Tables",
+        "desc": "廃棄された道路標識を曲げて街路の立ち食いテーブルに変える作品。"
+      },
+      {
+        "type": "tech",
+        "id": "point-cloud-merger-for-blender",
+        "title": "Point Cloud Merger for Blender (PCM)",
+        "desc": "別々の点群データをBlender上で位置合わせして1つに統合するアドオン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-24-6",
+    "date": "2026-11-24",
+    "title": "ガラス弦楽器で踊る骨格",
+    "pattern": "技術×技術",
+    "seed": "JAS-I Khorloの回転ばちが弦を弾くリズムをFlashMotionに音楽として渡したら、ガラス円筒シンセの響きだけで長尺の3Dダンスが生まれるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "jas-i-khorlo",
+        "title": "JAS-I Khorlo",
+        "desc": "ガラス円筒の周りの弦を回転するばちで弾く無料の物理モデリングシンセ。"
+      },
+      {
+        "type": "tech",
+        "id": "flashmotion",
+        "title": "FlashMotion",
+        "desc": "文章・音声・音楽から長尺の3D人体モーションを作る研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-24-7",
+    "date": "2026-11-24",
+    "title": "浮遊ロボと動画編集の共演",
+    "pattern": "技術×技術",
+    "seed": "Cuddle-Fishが人について歩く浮遊ロボなら、R4DGS / ReferGaussianで「手前で走る人」と指定して追跡する撮影係にしたら、風船のような静かなカメラマンになるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "cuddle-fish",
+        "title": "Cuddle-Fish（Floating Companion）",
+        "desc": "ヘリウムと柔らかいヒレで浮遊し人についていく安全なソフトロボット。"
+      },
+      {
+        "type": "tech",
+        "id": "r4dgs-refergaussian",
+        "title": "R4DGS / ReferGaussian",
+        "desc": "動く3Dシーンで言葉で指定した対象を時間をまたいで追跡する手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-24-8",
+    "date": "2026-11-24",
+    "title": "採譜機で譜面を街に貼る",
+    "pattern": "技術×技術",
+    "seed": "Omnizartでコード進行とビート位置を書き起こし、Machinistaに流し込んだら、パソコンなしで街角の1曲を即興でパッドに再構成して叩ける屋外楽器になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "omnizart",
+        "title": "Omnizart",
+        "desc": "音声から旋律・ドラム・コード・ビートまでまとめて採譜するツールキット。"
+      },
+      {
+        "type": "tech",
+        "id": "machinista",
+        "title": "Machinista",
+        "desc": "Maschineコントローラーをラズパイにつなぐだけで単体で使えるようにするもの。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-24-9",
+    "date": "2026-11-24",
+    "title": "高級おむつ炎上を音で逆再生",
+    "pattern": "転用",
+    "seed": "python-audio-separatorは音源分離ツールだが、The DiapÉRの炎上ニュース音声を声・BGM・拍手に分けて並べ直したら、世論の温度を耳で見える風刺作品にできるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "baby2baby-the-diaper",
+        "title": "The DiapÉR",
+        "desc": "高級おむつを発表して炎上させ、おむつ課税への抗議と明かした風刺施策。"
+      },
+      {
+        "type": "tech",
+        "id": "python-audio-separator",
+        "title": "python-audio-separator (audio-separator)",
+        "desc": "数百種の学習済みモデルで音源をステム分離できる開発者向けツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-24-10",
+    "date": "2026-11-24",
+    "title": "ヘルプは尊厳のスプラット化",
+    "pattern": "文脈×技術",
+    "seed": "リフレのパッケージ刷新が掲げる「やさしさと尊厳」を、Quick GS Editorで介護室の3Dスプラットから生活感を消さず整える体験にしたら、見せ方の設計が変わるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-168111r-2026",
+        "title": "リフレ パッケージデザインシステム刷新",
+        "desc": "大人用紙おむつの包装情報を、尊厳を軸に分かりやすく刷新した施策。"
+      },
+      {
+        "type": "tech",
+        "id": "quick-gs-editor",
+        "title": "Quick GS Editor（Quick Gaussian Splat Editor）",
+        "desc": "ブラウザ上で3Dスプラットを穴埋め・合成・変形できる無料エディタ。"
+      }
+    ]
   }
 ]
