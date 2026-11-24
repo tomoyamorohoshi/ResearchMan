@@ -1,5 +1,157 @@
 [
   {
+    "id": "fastframes",
+    "title": "FastFrames",
+    "org": "Apple（apple-aiml-research）",
+    "type": "Research",
+    "domains": [
+      "GenVideo"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "キーボード操作に合わせて、1フレームあたり約36ミリ秒（B200 GPU 1基）で480p動画を生成するAppleの高速動画生成モデル。コードとモデルの重みが公開されています。",
+    "point": "これまでの動画生成AIは、プロンプトを入れてから数十秒から数分待つ「待つ道具」でした。FastFrames-Sは、1フレームを約36ミリ秒で作ります。体感では、キーを押した瞬間に映像が変わる速さです。ゲームのように、操作に合わせて映像がその場で生成され続けます。公式デモでは、キーボードでカメラを動かす世界生成モデル（LingBot）と、画面をドラッグして物体を動かす物理ベースのデモ（RealWonder）で、従来実装との同時比較が見られます。広告・体験づくりでは、来場者が触るたびに映像が変わる展示、操作に反応する生成背景、その場で何パターンも見せるリアルタイムのプレビズに使えそうです。ただし動作確認の環境は最新のNVIDIA B200級GPUで、14B版は8基構成です。まずは研究プロトタイプとして、体験設計の可能性を探る段階と考えるのが現実的です。",
+    "detail": "仕組みはこうです。自己回帰型の動画生成は、1コマずつ絵を描き足して動画を作る方式で、インタラクティブ向きです。論文の調査では、遅延の半分以上が、潜在表現から実際の画像に戻す処理（VAEデコード）と、過去コマの記憶（KVキャッシュ）の更新に使われていました。FastFrames は、この2か所を軽量な代替ネットワークに置き換えています。いわば、絵を描く画家はそのままに、清書と整理の係を速い人に替えた形です。生成自体も2ステップの蒸留（大きな先生モデルの技を、少ない手順で真似させる学習）で短縮しています。1回の生成の遅延は271.8msから35.8msに下がったと報告されています。\n\n従来と違うのは、品質を保ったまま50ミリ秒以下に到達した点です。1.3B版（FastFrames-S）は約8倍遅い最先端モデル（CF++）と同等の品質とされます。14B版（FastFrames-L）は、Wan2.1-14Bを蒸留して視覚品質を上げた版です。既存のカメラ操作型の世界モデル LingBot 1.3B に適用すると16倍速になると説明されています。\n\n使うには、Linux（x86-64）、NVIDIA GPU、CUDA 12.8互換ドライバーが必要です。セットアップは uv で行い、重みはHugging Faceから取得します。出力は832×480、81フレーム、16fpsです。公式の36msという数値はB200 1基の値で、家庭用GPUで同じ速度が出るかは確認できていません。ライセンスは構成物ごとに異なり、LingBot関連は非商用のCC BY-NC-SAです。商用案件では各LICENSEの確認が必須です。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "FastFrames本体のコードはApple Sample Code License。重みはHugging Face上で「apple-amlr」表記。LingBot関連部分はCC BY-NC-SA 4.0（非商用）。商用利用の前に各LICENSEの確認が必要です。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/apple-aiml-research/ml-fastframes"
+      },
+      {
+        "kind": "project",
+        "url": "https://apple-aiml-research.github.io/ml-fastframes/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2611.23226"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/apple/FastFrames-S"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/fastframes.jpg",
+    "relatedWorks": [
+      {
+        "title": "Wan2.1",
+        "description": "FastFrames-Sのベースになった、オープンな動画生成モデル。",
+        "url": "https://huggingface.co/Wan-AI/Wan2.1-T2V-1.3B"
+      },
+      {
+        "title": "Causal Forcing++ (CF++)",
+        "description": "FastFrames が比較対象にした、自己回帰型動画拡散の先行手法。",
+        "url": "https://apple-aiml-research.github.io/ml-fastframes/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "comfyui-reavideobreakdown",
+    "title": "ComfyUI-ReaVideoBreakdown",
+    "org": "benjiyaya（手法の元は JuneYaooo/rea-video）",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "参照動画をショットごとに分解し、制作手法の判定・カメラワークの数値化・動画生成用プロンプトの作成までを行うComfyUIカスタムノードです。",
+    "point": "気に入った映像を見つけても、「どう撮って、どう作ったのか」を言葉にするのは意外と大変です。このノードは動画を渡すと、カットごとに分けて、実写かAI動画か3Dレンダーかモーショングラフィックスかを判定します。被写体・背景・照明・色・スタイルの説明と、パン（px/秒）やズーム（%/秒）などのカメラワークの数値、手持ちかスムーズかも出力します。さらに、ショットごとのtext-to-video用プロンプトも1つ作ります。広告の現場では、参考映像のコンテ起こしや、「このトーンで別の商品を撮るならどうなるか」の再現プロンプト作りが速くなりそうです。AI動画の制作で、参照動画から新しい映像へつなぐ下ごしらえとして使えます。",
+    "detail": "仕組みは2段階です。まずOpenCV（CPU処理）で、画面の色の分布（HSVヒストグラム）と画素の差分を見て、映像が切り替わる場所を探します。しきい値は自動で調整されます。次に、各ショットから取り出した数枚のコマを、画像を理解できるAI（VLM、視覚言語モデル）に渡し、内容を文章にしてもらいます。カメラの動きはAIの推測ではなく、Lucas–Kanadeオプティカルフロー（コマ間で点がどう動いたかの追跡）とRANSAC（外れ値を除く推定）で計算するため、数値として出ます。結果は、VIDEO.md形式のレポート、JSON、ショット別プロンプト、キーフレームとして出力されます。\n\n従来は、リファレンス動画の分析を人が見て手書きするか、ChatGPT等に動画を投げて曖昧な回答を得るのが主流でした。ここでは分析がComfyUI内で完結し、外部APIの記載はなく、手元のGPUとモデルだけで動かせます。手法の元は、同じくショット分析を行うOSSの rea-video（GitHubスター約12.7k）で、それをComfyUIのノードとして使えるようにした点が新しい部分です。\n\n使うには、ComfyUIと、画像を扱えるVLMのモデル（READMEの例ではQwen3.5 9B。CLIPLoaderでqwen3vlやgemma系などを読み込む）が必要です。依存はnumpyとopencv-python-headlessです。作者の注記では、説明やプロンプトの品質はVLMの性能に左右されます。ゆっくりしたディゾルブ（溶ける切替）は検出しにくいため、sensitivityの調整が必要です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "本ノードはMIT。手法の元の rea-video は Apache-2.0。別途必要なVLMモデルのライセンスには従う必要があります。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/benjiyaya/ComfyUI-ReaVideoBreakdown"
+      },
+      {
+        "kind": "github",
+        "url": "https://github.com/JuneYaooo/rea-video"
+      },
+      {
+        "kind": "video",
+        "url": "https://www.youtube.com/watch?v=oYRpAddkki8"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/comfyui-reavideobreakdown.jpg",
+    "relatedWorks": [
+      {
+        "title": "rea-video",
+        "description": "動画をショット単位で分析し、実写・AI生成・コード制作を判定してVIDEO.mdを出力するOSS。",
+        "url": "https://github.com/JuneYaooo/rea-video"
+      },
+      {
+        "title": "ComfyUI-CapCut",
+        "description": "ComfyUI上で多トラック編集・動画生成・字幕などを行うワークスペース（独自の個人利用ライセンス）。",
+        "url": "https://github.com/leisongde/ComfyUI-CapCut"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "movieroll",
+    "title": "MovieRoll",
+    "org": "Tencent Hunyuan / 北京大学 / HKUST",
+    "type": "Research",
+    "domains": [
+      "GenVideo"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "1本のプロンプトまたは複数の「出来事」プロンプトから、10〜60秒の長尺動画を作るTencent Hunyuanのオープンな動画生成フレームワーク。コードと重みが公開された。",
+    "point": "動画生成AIは数秒の短いクリップなら綺麗ですが、長くすると途中から絵が崩れたり、人物の顔や色が変わったりしがちです。MovieRollはこの「長くなるほど劣化する」問題を、学習のしかたと生成のしかたの両方で抑えることを狙った枠組みです。10秒から最大約60秒まで、続けて生成できます。「朝の街を歩く→カフェに入る→席に座る」のように出来事を複数並べて書くと、場面を引き継ぎながら次の出来事へ進めます。広告では、商品が登場してから使われるまでを1カットで見せる長回し風のコンセプト映像、絵コンテ段階の動くプレビズ、SNS向けの短編ストーリーの下書きなどに向きます。5ステップで生成できる軽量版も用意され、試行錯誤の回数を増やしやすい点も魅力です。ただし現状は480pで、動かすには大型GPUが必要な研究段階のコードです。",
+    "detail": "仕組み: 動画を一度に丸ごと作るのではなく、短い区間（窓）を順番に延ばして作り足していきます。新しい区間を作るときに、直前までの映像の情報を参照することで、つながりを保ちます。READMEによると、学習時に長い動画の続きを作る練習をさせる「ストリーミング微調整」、長い連続生成そのものを蒸留する「ロングロールアウト蒸留」、長尺向けの推論方法を組み合わせています。例えるなら、リレーで前の走者の走り方を見ながらバトンを受ける方式です。モデルはMovieRoll-Base（50ステップ、T2V/I2V）と、5ステップで動く蒸留版（480×864または864×480）の2系統です。\n\n従来との違い: 一般的な動画モデルは数秒用に学習されているため、続きを何度も作ると少しずつ劣化（ドリフト）します。MovieRollは長尺を前提に学習・蒸留する点が異なります。プロジェクトページでは専門家59人によるペア比較で蒸留版が各比較対象に対する勝敗を報告しています（自己報告）。デモ動画本体は公開準備中と記載されており、独立した検証は今後待ちです。\n\n使うには: GitHubからコードを取得し、Python 3.12とCUDA対応PyTorch、FlashAttention-2/3が必要です。FlashAttention-3はH100などHopper世代GPUが前提で、単体GPUでは96GB級のメモリ、または8GPU構成が目安です。CPUオフロードや4090/5090向け対応は未実装でTODO扱い、ComfyUI対応もまだありません。重みはHugging Face（yunyangge/MovieRoll）から、利用規約に同意して取得します。すぐ制作に使うというより、長尺生成の最新動向を押さえ、クラウドGPUで試す人向けです。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "Tencent Hunyuan Community License Agreement（リポジトリのLICENSE）。HunyuanVideo-1.5のフォークで、商用利用の可否や地域・用途の制限は条文で要確認。Hugging Face上の重みは利用規約への同意が必要なゲート付き。"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Tencent-Hunyuan/MovieRoll"
+      },
+      {
+        "kind": "project",
+        "url": "https://tencent-hunyuan.github.io/MovieRoll/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2611.21339"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/movieroll.jpg",
+    "relatedWorks": [
+      {
+        "title": "ComfyUI-LTXVideo",
+        "description": "LightricksによるLTX動画モデルのComfyUIノード群。ループ生成で任意の長さの動画を作る機能を持つ。",
+        "url": "https://github.com/Lightricks/ComfyUI-LTXVideo"
+      },
+      {
+        "title": "VideoGym",
+        "description": "LTX-2.3を手続き生成の動画で微調整し、動画生成モデルの推論力を調べる研究（OpenMOSS）。",
+        "url": "https://github.com/VideoGym/VideoGym"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "pinchdrop",
     "title": "PinchDrop",
     "org": "Bihe Xi（xibihe）",
