@@ -1,5 +1,235 @@
 [
   {
+    "id": "traffic-sign-urban-tables-2026",
+    "title": "Traffic Sign Urban Tables",
+    "summary": "廃棄された道路標識を曲げ、既存の標識支柱にボルト留めするだけで街路の立ち食いテーブルに変える。",
+    "client": "Juan Fernandez Gonzalez",
+    "agency": "Serett（加工）／Mercer County 交通局（廃標識提供）",
+    "categories": [
+      "空間体験",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://materialdistrict.com/article/discarded-traffic-signs-fold-into-street-tables-in-new-york/",
+    "thumbnail": "/thumbnails/traffic-sign-urban-tables-2026.jpg",
+    "videoId": "",
+    "overview": "建築家Juan Fernández Gonzálezによる、役目を終えたアルミ製の道路標識を立ち食い用テーブルに作り替えるプロジェクト。標識は塗装のうえプレスブレーキで曲げ、ニューヨークの標準的なUチャンネル支柱に取り付ける。Designboomによると、Union SquareやInwoodのGreenmarketなどファーマーズマーケットで使われている。",
+    "background": "市場やフードトラックの脇には、買った物を置いて食べる場所が足りないことが多い。一方で、交換された道路標識は廃棄される。Designboomによれば、素材はニュージャージー州のMercer County交通・インフラ局が使わなくなった標識で、これを街路の不足を補う什器に回している。",
+    "execution": "Designboomによれば、標識はニュージャージー州Jersey Cityの加工会社Serett Corp.でプレスブレーキにより折り曲げて成形される。その後、デザイナーが使い捨てのストリートフード用テーブルクロスを連想させるピンクと白の市松模様を手描きで塗る。完成品は既存の標識支柱に取り付ける構造で、新しい基礎や枠組みを必要としない。",
+    "evaluationImpact": "「廃棄標識」と「すでに街にある支柱」という2つの既存資産だけで什器を成立させた点が評価できる。新規インフラ工事が要らないため、導入のハードルが低い。他の廃材や既存の街路設備にも応用できる考え方だ。ただし、確認できた情報源はDesignboom中心で、設置規模や運用実績は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Street Sign Seating（Boris Bally）",
+        "description": "廃標識を椅子やテーブルに作り替えた先行例。",
+        "url": "https://www.trendhunter.com/trends/transit-chairs-and-tables-by-boris-bally"
+      },
+      {
+        "title": "re:Stockholm",
+        "description": "建設廃材を公共家具に再生するプロジェクト。",
+        "url": "https://materialdistrict.com/article/restockholm-turns-construction-waste-into-public-furniture/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Form/Installation",
+      "Theme/Sustainability",
+      "Theme/Food"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "materialdistrict",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "jede-zweite-frau-one-in-two-women-2026",
+    "title": "Jede zweite Frau（One in Two Women）",
+    "summary": "団体ロゴの並んだ二人の女性の横顔を、「2人に1人が被害」という統計の可視化に読み替えたOOHキャンペーン。",
+    "client": "TERRE DES FEMMES",
+    "agency": "KNSK",
+    "categories": [
+      "社会包摂",
+      "OOH革新",
+      "データクリエイティブ"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/one-in-two-women",
+    "thumbnail": "/thumbnails/jede-zweite-frau-one-in-two-women-2026.jpg",
+    "videoId": "",
+    "overview": "ドイツの女性人権団体TERRE DES FEMMESが、ベルリンのKNSKと展開した「Jede zweite Frau（2人に1人の女性）」。団体ロゴに描かれた並ぶ二人の女性の横顔を使い、一方が幸せな関係を語り、もう一方が親密なパートナーからの暴力を明かす構成にした。屋外広告とデジタル屋外広告を中心に、ラジオ、映画館、SNS広告でも展開した。11月13日に始まり、12月3日までの実施。",
+    "background": "女性に対する暴力撤廃の国際デー（11月25日）の直前に合わせた啓発施策。キャンペーンは、ドイツ連邦刑事庁（BKA）の調査を根拠に、ドイツの女性の2人に1人が生涯のどこかで関係の中で心理的・身体的・性的・デジタルな暴力を経験すると訴える。KNSKのキム・ノッツ氏は、社会がロマンチックに語る関係の幸せと、暴力の現実を並べることが狙いだと述べた。",
+    "execution": "中心は団体ロゴの横顔モチーフで、白黒の二人の女性が並ぶ。Ads of the Worldによると、同じロゴの二人が異なる現実を表し、一方は幸せな関係を、もう一方は暴力を語る。「2人に1人」という数字を、並んだ二人のどちらか一方という形でロゴ自体に見せる設計になっている。メディアはStröer、PRはStorypark、音声はNot a Machineが無償で支援した。クリエイティブディレクターはMax SeidlerとOleg Friesen。",
+    "evaluationImpact": "新しい図像を作らず、既存のロゴの形を統計の意味に読み替えた点が評価点。ロゴを見るたびに「2人に1人」が思い出されるため、団体の認知と問題提起が一体になる。ただし「2人に1人」は広い範囲の暴力を含む数字で、以前に団体がBundestagへ示したRKI調査の「4人に1人」（身体的・性的暴力）とは定義が異なり、単純比較はできない。受賞は公式ソースで確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Open Your Eyes（TERRE DES FEMMES）",
+        "description": "同団体のDV啓発キャンペーン。iF Design Awardの受賞プロジェクトページに掲載されている。",
+        "url": "https://ifdesign.com/en/winner-ranking/project/terre-des-femmes-open-your-eyes/256463"
+      },
+      {
+        "title": "Terre des Femmes: The Photo Booth Against Domestic Violence（DDB Berlin）",
+        "description": "同団体がDDB Berlinと実施した、DVに関する別のキャンペーン。",
+        "url": "https://www.thedrum.com/creative-works/project/ddb-berlin-terre-des-femmes-the-photo-booth-against-domestic-violence"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/OOH",
+      "Form/Print",
+      "Theme/SocialGood",
+      "Tech/Data"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "artificial-ai-2026",
+    "title": "Artificial 手描きポスター（AIの誤りを人の手で再現）",
+    "summary": "AI画像に特有の誤りをあえて人間のイラストレーターが手描きし、「人が作った」と明記した映画ポスター",
+    "client": "NEON（映画『Artificial』）",
+    "agency": "Gravillis Inc.",
+    "categories": [
+      "カルチャーインサイト",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://creapills.com/affiche-artificial-erreurs-ia-humains-20261123",
+    "thumbnail": "/thumbnails/artificial-ai-2026.jpg",
+    "videoId": "",
+    "overview": "NEONがルカ・グァダニーノ監督の映画『Artificial』(アンドリュー・ガーフィールドがサム・オルトマン役)のために公開したポスター。一見AI生成に見えるが、半分水没したゴールデンゲートブリッジ、木の幹に現れるピノキオ風の顔、逆さまに飛ぶ飛行機といった「AIにありがちな誤り」が盛り込まれている。これらは人間が手描きしたもので、人の制作であることも明記されている。",
+    "background": "映画ポスターはAI生成を疑われて批判される例が続いており、2024年にはA24の『Civil War』のポスターがAI画像と受け取られて議論になった。『Artificial』はOpenAIとサム・オルトマンを題材にした作品で、AIそのものがテーマになっている。World of Reelは、本作が2026年6月にAmazon/MGMの手を離れたことにも触れており、AI業界への皮肉を含む宣伝になっている。公開は12月25日に米国の一部劇場で予定されている。",
+    "execution": "ポスターは一見するとAI生成画像のように見える。よく見ると半分水没した橋、逆さの飛行機、蛇のように見える枝や木の幹の顔など、AI特有の破綻が意図的に描き込まれている。それを人間のイラストレーターが手作業で描き、人が作ったことを示す表記を添えた。AIの失敗を人間が精密に再現するという逆転の構図になっている。制作はGravillis Inc.とされるが、今回の検索では確認できていない。",
+    "evaluationImpact": "主題のAI批判と手法が一致しており、「AIの誤りを人の手で描く」という一文で企画の核を説明できる。AI生成物への疑念が広がる中で、手描きの技術そのものを訴求にした点が新しい。AIの失敗を模倣できるのは人間の意図と技量があるからだ、という逆説も含んでいる。World of Reelなど複数の映画メディアが取り上げたと確認できたのは1媒体で、受賞や広告賞での評価は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Civil War posters (A24)",
+        "description": "2024年、A24がAI生成と批判された『Civil War』のポスター。AI疑惑が映画宣伝に波及した例。",
+        "url": "https://petapixel.com/2024/04/23/a24-criticized-for-using-ai-generated-movie-posters-for-civil-war"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Print",
+      "Form/OOH",
+      "Theme/Entertainment",
+      "Tech/AI"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "brand-ai-visual-identity-2026",
+    "title": "Brand.ai visual identity",
+    "summary": "1つのデザインルールから専用ツールでシンボルの変種を大量生成し、画像やホバーに反応して動くブランドID",
+    "client": "Brand.ai",
+    "agency": "Mouthwash Studio（協力: Serious / Dly / Cult Commune / Rafa Kobiela）",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://designcompass.org/en/2026/11/13/brand-ai-generative-visual-identity-mouthwash-studio/",
+    "thumbnail": "/thumbnails/brand-ai-visual-identity-2026.jpg",
+    "videoId": "",
+    "overview": "Brand.aiのビジュアルアイデンティティを、Mouthwash Studioが協業して制作した。1つのルールから複数のシンボルを生み出す生成的な仕組みが核で、シンボルを作る専用ツールを開発している。生成した変種はライブラリ化し、タッチポイントごとに使い分ける。ウェブでは、ホームのシンボルが近くの画像に反応して動き、メニューにホバーしてもアニメーションが出る。",
+    "background": "Design Compassの記事によれば、動きはBrand.aiのプロダクトが掲げる「素材をつなぐ」という考え方と結びついている。固定のロゴを1つ置くのでなく、ルールそのものをブランドの核に据える発想で設計された。クリエイティブディレクションとデジタル・モーションデザインはMouthwash Studioが担当した。UXはSeriousとDly、3DレンダリングはCult CommuneのNicolas Ardelle、開発はRafa Kobielaが担った。",
+    "execution": "シンボルを作るための専用ツールを新たに制作し、1つのデザインルールからバリエーションを大量に生成できるようにした。生成物はライブラリとして管理し、接点ごとに適したシンボルを選んで使う。ウェブ上ではシンボルが近くの画像に反応して動き、メニューのホバー時にもアニメーションする。デザイン、モーション、UX、3D、開発の協力体制で実装した。",
+    "evaluationImpact": "ブランドの核を単一のロゴでなくルールとして定義し、そこから変種を量産してタッチポイントごとに使い分ける点が、他のブランド開発にも転用できる手法である。ツールの開発まで含めた設計が特徴だ。ただし確認できた情報源はDesign Compassの記事が中心で、公式な受賞や定量的な成果は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "Philharmonie Luxembourg Identity（NB Studio）",
+        "description": "演奏の波形にロゴの柱がリアルタイムで反応する生成的ブランドID",
+        "url": "https://bpando.org/2023/11/14/music-branding-philharmonie-luxembourg-nb-studio/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/Web",
+      "Form/Website",
+      "Theme/Art"
+    ],
+    "gateCriterion": "D",
+    "sourceId": "",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "little-caesars-2026",
+    "title": "Little Caesars: 追加の手でコントローラーを離さずピザを食べる",
+    "summary": "ゲーム中に両手が塞がる悩みを、ピザを持つ「追加の手」の小道具で解決する体で見せた広告",
+    "client": "Little Caesars",
+    "agency": "",
+    "categories": [
+      "カルチャーインサイト",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://creapills.com/little-caesars-mains-pizza-gamers-manette-20261123",
+    "thumbnail": "/thumbnails/little-caesars-2026.jpg",
+    "videoId": "",
+    "overview": "Little Caesarsが2026年11月19日に公開した「An Extra Set of Pizza Hands」。ゲーマーがコントローラーから親指を離さずにピザを食べられるよう、スライスを保持する追加の「手」を紹介する。商品として販売はされない。実物の小道具が作られ、ゲーム系クリエイターのSenpapi Gabeとのコラボで使われた。",
+    "background": "ゲーム中はコントローラーで両手が塞がるため、ピザを食べると手が汚れたり操作が止まったりする。これはゲーマーに身近な悩みである。Little Caesarsは近年ゲーム文脈の施策を重ねてきた。Call of Dutyとのダブル経験値企画などがその例である。今回はその流れで、ゲーマーの日常の不便を笑いにする切り口を選んだ。",
+    "execution": "制作はMcKinney、制作パートナーはCYLNDR Studiosと確認できた。広告では、ピザ専用で他の用途には使えないと明言し、それ以外の用事は本物の手でやるよう呼びかけるジョーク仕立てにしている。実物の小道具を作り、クリエイターのSenpapi Gabeとのコラボで使った。11月19〜22日には、コード「GAMEON」で2リットルのMountain Dew購入時に$6のSlices-N-Stixを提供する販促も連動した。",
+    "evaluationImpact": "「ゲーマーの手が塞がる」という一文で伝わる着想で、商品そのものを笑いの小道具にした点は分かりやすい。一方で非売品のジョーク広告であり、新しい技術や手法の発明までは確認できなかった。受賞や反響の数値も、確認できた範囲では見つかっていない。ゲーマー向け販促の切り口としての参考事例にとどまる。",
+    "relatedWorks": [
+      {
+        "title": "Little Caesars: An Extra Set of Pizza Hands（Ads of the World）",
+        "description": "本施策の掲載ページ。",
+        "url": "https://www.adsoftheworld.com/campaigns/an-extra-set-of-pizza-hands"
+      },
+      {
+        "title": "Little Caesars × Call of Duty（Dual 2XP施策）",
+        "description": "Little Caesarsが過去に行ったCall of Dutyとのゲーム連動プロモーション。",
+        "url": "https://www.ilitchnewshub.com/post/little-caesars-and-call-of-duty-join-forces-again-to-elevate-gaming-experience-for-fans-ahead-of-call-of-duty-modern-warfare-iii-release"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Film",
+      "Form/Product",
+      "Tech/Game",
+      "Theme/Food"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "borderline",
+    "discoveryLens": 1
+  },
+  {
     "id": "the-pancake-index-2026",
     "title": "The Pancake Index",
     "summary": "パンケーキ材料の価格を物差しに、28か国の購買力の10年変化を「買える枚数」で見せるデータ企画。",
@@ -123157,7 +123387,7 @@
       "Tech/Audio",
       "Tech/Device"
     ],
-    "thumbnail": "/thumbnails/horizon-therapeutic-s-eyedar-kv2.jpg"
+    "thumbnail": "/thumbnails/horizon-therapeutic-s-eyedar.jpg"
   },
   {
     "year": "2022",
@@ -123524,7 +123754,7 @@
       "Tech/Audio",
       "Theme/Food"
     ],
-    "thumbnail": "/thumbnails/the-coca-cola-company-south-africa-the-coca-cola-beatcan-campaign-kv2.jpg"
+    "thumbnail": "/thumbnails/the-coca-cola-company-south-africa-the-coca-cola-beatcan-campaign.jpg"
   },
   {
     "year": "2022",
@@ -123569,7 +123799,7 @@
       "Form/SNS",
       "Tech/App"
     ],
-    "thumbnail": "/thumbnails/itau-bank-a-chat-away-from-everything-kv2.jpg"
+    "thumbnail": "/thumbnails/itau-bank-a-chat-away-from-everything.jpg"
   },
   {
     "year": "2022",
@@ -128167,7 +128397,7 @@
       "Theme/Entertainment",
       "Form/Film"
     ],
-    "thumbnail": "/thumbnails/abinbev-the-match-of-ages-21-kv2.jpg"
+    "thumbnail": "/thumbnails/abinbev-the-match-of-ages-21.jpg"
   },
   {
     "year": "2022",
@@ -131151,7 +131381,7 @@
       "欧州"
     ],
     "link": "https://lbbonline.com/news/retail-store-fnacs-digital-banners-start-the-fight-for-cultural-freedom",
-    "videoId": "",
+    "videoId": "adVGScCEpxI",
     "overview": "フランスの文化・家電小売Fnacが、Publicis Conseil Parisと2022年6月に始めた「Libérons la culture（文化を解放しよう）」の一環。アルゴリズムによる囲い込みを批判する内容。",
     "background": "ネット上のおすすめは過去の好みに基づくため、見るものが似通っていく。Fnacはこれを文化の多様性への脅威と位置づけ、書店・レコード店の売り手として反対の立場を取った。",
     "execution": "Contagiousによれば、広告サーバー上のプロフィールを読み取り、その人の関心に反する本・CD・映画を組み合わせてバナーで表示した。Publicis Conseilは、人が好む確率が約2%の作品を選んで見せたと説明している。ニュースや文化系サイトのバナーに加え、逆の趣味を投稿するTwitterボットや印刷広告も展開された。2023年2月にはパリとマルセイユで連動した屋外広告も出た。",
@@ -131161,7 +131391,7 @@
       "Theme/Retail",
       "Form/SNS"
     ],
-    "thumbnail": "/thumbnails/fnac-unreccomended-by-algorithm-kv2.jpg"
+    "thumbnail": "/thumbnails/fnac-unreccomended-by-algorithm.jpg"
   },
   {
     "year": "2022",
@@ -131239,7 +131469,7 @@
       "Form/SNS",
       "Theme/Entertainment"
     ],
-    "thumbnail": "/thumbnails/twitter-hello-literally-everyone-kv2.jpg"
+    "thumbnail": "/thumbnails/twitter-hello-literally-everyone.jpg"
   },
   {
     "year": "2022",
@@ -131526,7 +131756,7 @@
       "Form/SNS",
       "Tech/Device"
     ],
-    "thumbnail": "/thumbnails/samsung-itest-kv2.jpg"
+    "thumbnail": "/thumbnails/samsung-itest.jpg"
   },
   {
     "year": "2022",
@@ -132433,7 +132663,7 @@
       "Form/OOH",
       "Theme/Food"
     ],
-    "thumbnail": "/thumbnails/mcdonald-s-reqruitment-kv2.jpg"
+    "thumbnail": "/thumbnails/mcdonald-s-reqruitment.jpg"
   },
   {
     "year": "2022",
@@ -133890,7 +134120,7 @@
       "Theme/SocialGood",
       "Theme/Retail"
     ],
-    "thumbnail": "/thumbnails/ikea-the-suitcase-kv2.jpg"
+    "thumbnail": "/thumbnails/ikea-the-suitcase.jpg"
   },
   {
     "year": "2022",
@@ -134521,7 +134751,7 @@
       "Theme/SocialGood",
       "Form/Film"
     ],
-    "thumbnail": "/thumbnails/procter-gamble-india-see-equal-sharetheload-integrated-57-kv2.jpg"
+    "thumbnail": "/thumbnails/procter-gamble-india-see-equal-sharetheload-integrated-57.jpg"
   },
   {
     "year": "2022",
@@ -134818,7 +135048,7 @@
       "Form/OOH",
       "Theme/Art"
     ],
-    "thumbnail": "/thumbnails/national-magazine-awards-foundation-national-magazine-awards-kv2.jpg"
+    "thumbnail": "/thumbnails/national-magazine-awards-foundation-national-magazine-awards.jpg"
   },
   {
     "year": "2022",
@@ -135797,7 +136027,7 @@
       "Tech/Audio",
       "Theme/SocialGood"
     ],
-    "thumbnail": "/thumbnails/ab-inbev-native-sportscasters-kv2.jpg"
+    "thumbnail": "/thumbnails/ab-inbev-native-sportscasters.jpg"
   },
   {
     "year": "2022",
@@ -135929,7 +136159,7 @@
       "Tech/AI",
       "Form/App"
     ],
-    "thumbnail": "/thumbnails/dot-go-the-first-object-interaction-app-for-the-visually-impaired-kv2.jpg"
+    "thumbnail": "/thumbnails/dot-go-the-first-object-interaction-app-for-the-visually-impaired.jpg"
   },
   {
     "year": "2022",
@@ -137665,7 +137895,7 @@
       "Theme/SocialGood",
       "Theme/Entertainment"
     ],
-    "thumbnail": "/thumbnails/humane-society-internationa-l-save-ralph-kv2.jpg"
+    "thumbnail": "/thumbnails/humane-society-internationa-l-save-ralph.jpg"
   },
   {
     "year": "2022",
@@ -138637,7 +138867,7 @@
       "Form/Film",
       "Theme/Entertainment"
     ],
-    "thumbnail": "/thumbnails/cheers-party-kv2.jpg"
+    "thumbnail": "/thumbnails/cheers-party.jpg"
   },
   {
     "year": "2022",
