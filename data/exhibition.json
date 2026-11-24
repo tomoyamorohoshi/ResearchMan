@@ -1,7 +1,87 @@
 {
   "version": 1,
-  "statusAsOf": "2026-11-23",
+  "statusAsOf": "2026-11-24",
   "items": [
+    {
+      "id": "2026-ccbt-enchanted-moments-as-resistance",
+      "slug": "2026-ccbt-enchanted-moments-as-resistance",
+      "title": "Daily tous les jours×CCBT 展覧会「Enchanted Moments as Resistance —その上で踊る」",
+      "artists": [
+        "Daily tous les jours"
+      ],
+      "venue": "シビック・クリエイティブ・ベース東京[CCBT] B1 STUDIO／旧渋谷川遊歩道路広場",
+      "venueType": "alt_space",
+      "prefecture": "東京都",
+      "city": "渋谷区",
+      "startDate": "2026-11-14",
+      "endDate": "2027-01-17",
+      "status": "ongoing",
+      "admission": "無料",
+      "tags": [
+        "installation",
+        "sound"
+      ],
+      "score": 62,
+      "matchReason": "モントリオールのアート&デザインスタジオ Daily tous les jours が、2会場に「人間の精神のためのインフラ」と呼ぶソフトなインスタレーションを設置します。空間設計は iii architects、音は Tokyo Shiokouji（《Walk Walk Dance》）が担当し、アート・デザイン・テクノロジーの境界領域にあたります。",
+      "sources": [
+        {
+          "name": "Daily tous les jours×CCBT 展覧会「Enchanted Moments as Resistance —その上で踊る」",
+          "url": "https://ccbt.rekibun.or.jp/events/dailytouslesjours",
+          "kind": "official"
+        },
+        {
+          "name": "CCBT イベント一覧",
+          "url": "https://ccbt.rekibun.or.jp/events",
+          "kind": "listing"
+        }
+      ],
+      "link": "https://ccbt.rekibun.or.jp/events/dailytouslesjours",
+      "thumbnail": "/thumbnails/exhibition/2026-ccbt-enchanted-moments-as-resistance.jpg",
+      "addedAt": "2026-11-24T01:49:31.503Z",
+      "origin": "auto",
+      "highlight": false
+    },
+    {
+      "id": "2026-kanazawa21-noto-to-ushijima-sawa-hiraki",
+      "slug": "2026-kanazawa21-noto-to-ushijima-sawa-hiraki",
+      "title": "シリーズ「能登と」 牛嶋均 さわひらき ともにある風景",
+      "artists": [
+        "牛嶋均",
+        "さわひらき"
+      ],
+      "venue": "金沢21世紀美術館 長期インスタレーションルーム・プロジェクト工房",
+      "venueType": "museum",
+      "prefecture": "石川県",
+      "city": "金沢市",
+      "startDate": "2026-09-08",
+      "endDate": "2027-04-18",
+      "status": "ongoing",
+      "admission": "無料",
+      "tags": [
+        "video_art",
+        "installation",
+        "sculpture"
+      ],
+      "score": 66,
+      "matchReason": "さわひらきの新作《くろとしろ》(2026)は、珠洲でのリサーチをもとにした映像インスタレーションです。同展では牛嶋均の被災した屋外彫刻の移送・再構成作品も展示されます。会期は2027-04-18までで、残りは7日以上あります。",
+      "sources": [
+        {
+          "name": "シリーズ「能登と」 牛嶋均 さわひらき　ともにある風景",
+          "url": "https://www.kanazawa21.jp/data_list.php?g=65&d=1855",
+          "kind": "official"
+        },
+        {
+          "name": "金沢21世紀美術館 展覧会一覧",
+          "url": "https://www.kanazawa21.jp/exhibitions/",
+          "kind": "listing"
+        }
+      ],
+      "link": "https://www.kanazawa21.jp/data_list.php?g=65&d=1855",
+      "thumbnail": "/thumbnails/exhibition/2026-kanazawa21-noto-to-ushijima-sawa-hiraki.jpg",
+      "addedAt": "2026-11-24T01:49:30.594Z",
+      "origin": "auto",
+      "highlight": false
+    },
     {
       "id": "2026-museum-of-art-kochi-akiko-nakayama-fluid-form",
       "slug": "2026-museum-of-art-kochi-akiko-nakayama-fluid-form",
@@ -217,7 +297,7 @@
       "city": "横浜市",
       "startDate": "2026-07-24",
       "endDate": "2026-11-23",
-      "status": "ongoing",
+      "status": "ended",
       "admission": "無料",
       "tags": [
         "installation",
@@ -361,7 +441,7 @@
       "city": "港区",
       "startDate": "2026-11-20",
       "endDate": "2026-11-23",
-      "status": "ongoing",
+      "status": "ended",
       "admission": "無料（4F 畳の視聴プログラムは1回1,000円・要予約）",
       "tags": [
         "media_art",
@@ -650,7 +730,7 @@
       "city": "渋谷区",
       "startDate": "2026-11-19",
       "endDate": "2026-11-23",
-      "status": "ongoing",
+      "status": "ended",
       "admission": "無料",
       "tags": [
         "light",
@@ -1902,7 +1982,7 @@
       "city": "渋谷区",
       "startDate": "2026-07-19",
       "endDate": "2026-11-23",
-      "status": "ongoing",
+      "status": "ended",
       "admission": "大人1,500円",
       "tags": [
         "video_art",
