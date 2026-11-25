@@ -1,7 +1,149 @@
 {
   "version": 1,
-  "statusAsOf": "2026-11-24",
+  "statusAsOf": "2026-11-25",
   "items": [
+    {
+      "id": "2026-hakone-open-air-museum-kyota-takahashi-atmos",
+      "slug": "2026-hakone-open-air-museum-kyota-takahashi-atmos",
+      "title": "髙橋匡太「atmos」",
+      "artists": [
+        "髙橋匡太"
+      ],
+      "venue": "彫刻の森美術館",
+      "venueType": "museum",
+      "prefecture": "神奈川県",
+      "city": "足柄下郡箱根町",
+      "startDate": "2026-11-28",
+      "endDate": "2027-01-11",
+      "status": "upcoming",
+      "admission": "UNKNOWN",
+      "tags": [
+        "light",
+        "installation",
+        "glass"
+      ],
+      "score": 74,
+      "matchReason": "光の作家・髙橋匡太が新シリーズ「atmos」を初めて発表する展示です。照明ポールに付けたカラープレートを透過した光を、直径5mの円形コンクリート面に映します。ほかにガブリエル・ロアールのステンドグラス彫刻を内側から照らし、カフェの壁面を色光で満たします。鑑賞時間は夕暮れの約1時間（16:00〜17:00頃）に限られます。",
+      "sources": [
+        {
+          "name": "髙橋匡太「atmos」",
+          "url": "https://www.hakone-oam.or.jp/exhibitions/article.cgi?id=13182954",
+          "kind": "official"
+        },
+        {
+          "name": "彫刻の森美術館 開催情報",
+          "url": "https://www.hakone-oam.or.jp/exhibitions/",
+          "kind": "listing"
+        },
+        {
+          "name": "Tokyo Art Beat",
+          "url": "https://www.tokyoartbeat.com/events/-/Kyota-Takahashi-Atmos/A575-A177/2026-11-28",
+          "kind": "listing"
+        }
+      ],
+      "link": "https://www.hakone-oam.or.jp/exhibitions/article.cgi?id=13182954",
+      "thumbnail": "/thumbnails/exhibition/2026-hakone-open-air-museum-kyota-takahashi-atmos.jpg",
+      "addedAt": "2026-11-25T01:38:21.519Z",
+      "origin": "auto",
+      "highlight": false
+    },
+    {
+      "id": "2026-mon-takanawa-ryuichi-sakamoto-dialogue",
+      "slug": "2026-mon-takanawa-ryuichi-sakamoto-dialogue",
+      "title": "Ryuichi Sakamoto | Dialogue",
+      "artists": [
+        "坂本龍一",
+        "角野隼斗",
+        "真鍋大度",
+        "古舘健",
+        "濱哲史"
+      ],
+      "venue": "MoN Takanawa: The Museum of Narratives（Box1000）",
+      "venueType": "media_art_center",
+      "prefecture": "東京都",
+      "city": "港区",
+      "startDate": "2026-12-24",
+      "endDate": "2027-01-17",
+      "status": "upcoming",
+      "admission": "一般4,800円〜15,400円（公演により異なる）",
+      "tags": [
+        "media_art",
+        "sound",
+        "video_art",
+        "installation"
+      ],
+      "score": 75,
+      "matchReason": "坂本龍一の演奏データ（MIDI）で鍵盤・ペダル・ハンマーが自動で動くピアノを使う2部構成の公演です。第1部「D」（12/24〜26）は真鍋大度と角野隼斗が出演します。第2部「Opus — dialogue」（2027/1/8〜17）は古舘健と濱哲史が手がけ、21m×9mのLEDスクリーンと空間音響を使います。展覧会ではなくチケット制の公演です。",
+      "sources": [
+        {
+          "name": "坂本龍一 | Dialogue",
+          "url": "https://montakanawa.jp/programs/dialogue",
+          "kind": "official"
+        },
+        {
+          "name": "MoN Takanawa プログラム一覧",
+          "url": "https://www.montakanawa.jp/",
+          "kind": "listing"
+        }
+      ],
+      "link": "https://montakanawa.jp/programs/dialogue",
+      "thumbnail": "/thumbnails/exhibition/2026-mon-takanawa-ryuichi-sakamoto-dialogue.jpg",
+      "addedAt": "2026-11-25T01:38:20.558Z",
+      "origin": "auto",
+      "highlight": false
+    },
+    {
+      "id": "2026-tokyo-waterfront-tokyo-atlas-2026",
+      "slug": "2026-tokyo-waterfront-tokyo-atlas-2026",
+      "title": "国際美術展 TOKYO ATLAS",
+      "artists": [
+        "草間彌生",
+        "石毛健太",
+        "ハルーン・ミルザ",
+        "ケイティ・パターソン",
+        "ジュリアン・シャリエール",
+        "笹岡由梨子",
+        "キムスージャ",
+        "アブラハム・ポワンシュヴァル"
+      ],
+      "venue": "台場公園・お台場海浜公園・テレコムセンタービル・青海南ふ頭公園・アイルしながわ ほか",
+      "venueType": "other",
+      "prefecture": "東京都",
+      "city": "港区・江東区・品川区",
+      "startDate": "2026-10-10",
+      "endDate": "2026-12-20",
+      "status": "ongoing",
+      "admission": "無料（一部有料プログラムあり）",
+      "tags": [
+        "installation",
+        "sound",
+        "video_art"
+      ],
+      "score": 60,
+      "matchReason": "台場・青海・天王洲の屋外や地下駐車場（197.5m）に作品を置く国際美術展。公式ページには石毛健太のサウンド・インスタレーションと笹岡由梨子のビデオ・インスタレーションが載っていて、ハルーン・ミルザ、ケイティ・パターソン、ジュリアン・シャリエールも参加する。",
+      "sources": [
+        {
+          "name": "国際美術展 TOKYO ATLAS",
+          "url": "https://tokyoatlas.jp/exhibition",
+          "kind": "official"
+        },
+        {
+          "name": "artscape RSS（村田真｜美術遊歩15）",
+          "url": "https://artscape.jp/article/83369/",
+          "kind": "news"
+        },
+        {
+          "name": "museum.or.jp",
+          "url": "https://www.museum.or.jp/event/127192",
+          "kind": "listing"
+        }
+      ],
+      "link": "https://tokyoatlas.jp/exhibition",
+      "thumbnail": "/thumbnails/exhibition/2026-tokyo-waterfront-tokyo-atlas-2026.jpg",
+      "addedAt": "2026-11-25T01:35:04.628Z",
+      "origin": "auto",
+      "highlight": false
+    },
     {
       "id": "2026-ccbt-enchanted-moments-as-resistance",
       "slug": "2026-ccbt-enchanted-moments-as-resistance",
