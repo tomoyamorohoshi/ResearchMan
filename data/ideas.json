@@ -29959,5 +29959,203 @@
         "desc": "ブラウザ上で3Dスプラットを穴埋め・合成・変形できる無料エディタ。"
       }
     ]
+  },
+  {
+    "id": "2026-11-25-1",
+    "date": "2026-11-25",
+    "title": "同じ音程で叫ぶと点く広告",
+    "pattern": "文脈×技術",
+    "seed": "Et Le Buuuuudのゴール連動を、JIT-MPEでスタンドの歓声の音程を20ms刻みで推定する仕組みに替えたら、観客全員が同じ音で叫べた瞬間にだけビールの広告が点くかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "budweiser-et-le-buuuuud",
+        "title": "Et Le Buuuuud",
+        "desc": "ホッケーでゴールを叫ぶ声にブランド名を重ね、地元チームの得点に連動して広告を出したBudweiserの施策。"
+      },
+      {
+        "type": "tech",
+        "id": "jit-mpe",
+        "title": "JIT-MPE (Just-in-Time Multi-Pitch Estimation)",
+        "desc": "ライブ演奏の音から今どの音が鳴っているかを20ms刻みで推定し、後から修正していく軽量AI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-25-2",
+    "date": "2026-11-25",
+    "title": "MIDIから蘇る演奏家の姿",
+    "pattern": "文脈×技術",
+    "seed": "ボルタンスキー −Lifetimeの心臓音アーカイブのように、亡き演奏家が残したMIDI録音だけをPianoidに通せば、もう居ない人が弾く姿を体ごと立ち上げる追悼展示ができるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "lifetime-2019",
+        "title": "クリスチャン・ボルタンスキー −Lifetime",
+        "desc": "心臓音や写真アーカイブで「生と死」や存在の記憶を主題にした、ボルタンスキーの国内最大規模の回顧展。"
+      },
+      {
+        "type": "tech",
+        "id": "pianoid",
+        "title": "Pianoid",
+        "desc": "ピアノ演奏のMIDIデータだけから、ピアニストの全身26関節の3Dの動きを生成する研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-25-3",
+    "date": "2026-11-25",
+    "title": "台所ごと比べる購買力",
+    "pattern": "文脈×技術",
+    "seed": "The Pancake Indexの「買える枚数」を、Mira-Sceneで各国の家庭の台所写真1枚から3D化した部屋に積み上げれば、10年前と今のパンケーキの高さを部屋ごと見比べる体験にできそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "the-pancake-index-2026",
+        "title": "The Pancake Index",
+        "desc": "パンケーキ材料の価格を物差しに、28か国の購買力の10年変化を「買える枚数」で見せたデータ企画。"
+      },
+      {
+        "type": "tech",
+        "id": "mira-scene",
+        "title": "Mira-Scene",
+        "desc": "1枚の写真から、家具や物がそれぞれ独立したパーツとして並ぶ「編集できる3Dシーン」を自動生成する研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-25-4",
+    "date": "2026-11-25",
+    "title": "歩いた跡に漂うごみの残像",
+    "pattern": "文脈×技術",
+    "seed": "Plastic Reflecticの「プラスチックの影」を、ReLiftで来場者の動画の全ピクセルの3D軌跡に置き換えれば、歩いた跡に601個のごみが漂い続ける残像の彫刻になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "plastic-reflectic-2016",
+        "title": "Plastic Reflectic",
+        "desc": "海で集めたプラスチックごみ601個が来場者の動きに反応し、その人の「プラスチックの影」を映す展示。"
+      },
+      {
+        "type": "tech",
+        "id": "relift",
+        "title": "ReLift (Dense 3D Tracking as Lifted Trajectory Repair)",
+        "desc": "普通の動画1本から、映っている全ピクセルが3D空間でどう動いたかを追跡するモデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-25-5",
+    "date": "2026-11-25",
+    "title": "霧の光を夜ごと照らし直す",
+    "pattern": "文脈×技術",
+    "seed": "FogBoxが庭園の霧に描いた光の軌跡を、WallGS Proで旧芝離宮の3Dスキャンの中に照らし直して再現すれば、天候に左右されない常設版を夜ごと違う光で灯せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "fogbox-2025",
+        "title": "FogBox",
+        "desc": "旧芝離宮恩賜庭園で、霧とレーザーの密度を精密に制御し光の軌跡を立体的に浮かばせた屋外展示。"
+      },
+      {
+        "type": "tech",
+        "id": "wallgs-pro",
+        "title": "WallGS Pro",
+        "desc": "3Dスキャン映像（Gaussian Splat）をUnreal Engine 5の中で照らし直せる有償プラグイン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-25-6",
+    "date": "2026-11-25",
+    "title": "DJの手つきが物を動かす",
+    "pattern": "技術×技術",
+    "seed": "Backspnを操るDJの手元映像をLynnReal-Handに流し込めば、ステムを抜き差しする手つきがそのまま画面内の物をつまみ動かす映像になり、音の分解が目で見えるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "backspn",
+        "title": "Backspn",
+        "desc": "曲をドラムやボーカル等に分解する機能やビート同期エフェクトを備えた、無料のオープンソースDJソフト。"
+      },
+      {
+        "type": "tech",
+        "id": "lynnreal-hand",
+        "title": "LynnReal-Hand",
+        "desc": "最初の画像・文章・手の動きの映像から、手で物に触れ動かす様子を映像として生成する世界モデル。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-25-7",
+    "date": "2026-11-25",
+    "title": "解体前夜の街を丸ごと保存",
+    "pattern": "技術×技術",
+    "seed": "PCD Splatterで測量用のレーザー点群を学習なしでスプラットに変え、Gaussian Point Splattingで1億個超を一度に描けば、解体前夜の商店街を丸ごと歩ける3Dで残せるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "pcd-splatter",
+        "title": "PCD Splatter (Point Cloud Density Splatter)",
+        "desc": "レーザースキャンの点群を、AI学習を挟まずその場でガウシアンスプラットに変換するBlenderアドオン。"
+      },
+      {
+        "type": "tech",
+        "id": "gaussian-point-splatting",
+        "title": "Gaussian Point Splatting",
+        "desc": "1億個を超えるGaussian Splatを、並べ替え処理なしでリアルタイムに描画できる新しい描画手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-25-8",
+    "date": "2026-11-25",
+    "title": "ベースで固くなる聴ける布",
+    "pattern": "技術×技術",
+    "seed": "StemgenRTで曲を4トラックに分けた音量を、MetaBeadsのビーズと糸の装置の硬さ切り替えに送れば、ベースが鳴る間だけ固くなる、触って聴ける布が作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "stemgenrt",
+        "title": "StemgenRT",
+        "desc": "再生中の曲をボーカル・ドラム・ベース・その他の4トラックに11.6ミリ秒の遅延で分離するプラグイン。"
+      },
+      {
+        "type": "tech",
+        "id": "metabeads",
+        "title": "MetaBeads",
+        "desc": "ふつうのビーズと糸だけで、形が変わり硬さも切り替えられる素材・装置をつくる手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-25-9",
+    "date": "2026-11-25",
+    "title": "ロボが真似できない人の癖",
+    "pattern": "転用",
+    "seed": "SuperMimicはロボットに人の全身動作を真似させる手法だが、真似しきれずズレた箇所の方を可視化すれば、ダンスや介護の動きに潜む「人間にしかできない癖」を見つける鏡になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "supermimic",
+        "title": "SuperMimic",
+        "desc": "人型ロボットに人の全身の動きを追従させる学習を、1つの世界モデルで大幅に短時間化した手法。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-25-10",
+    "date": "2026-11-25",
+    "title": "ロボット目線の家族記録",
+    "pattern": "転用",
+    "seed": "Rerun × Booster Robotics K1はロボットのセンサーを時系列で記録・可視化するデモだが、家族の1日を音・位置・動きごとロギングして再生すれば、ロボット目線の家族の記録映画になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "rerun-booster-robotics-k1",
+        "title": "Rerun × Booster Robotics K1",
+        "desc": "OSSの可視化ツールRerunで、人型ロボットがボールを蹴る動作のセンサーと3D状態を記録・表示したデモ。"
+      }
+    ]
   }
 ]
