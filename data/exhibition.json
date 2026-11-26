@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "statusAsOf": "2026-11-25",
+  "statusAsOf": "2026-11-26",
   "items": [
+    {
+      "id": "2026-yoyogi-park-panorama-plaza-meet-your-art-festival-annex",
+      "slug": "2026-yoyogi-park-panorama-plaza-meet-your-art-festival-annex",
+      "title": "MEET YOUR ART FESTIVAL Annex",
+      "artists": [
+        "磯村暖",
+        "山内祥太",
+        "米澤柊"
+      ],
+      "venue": "代々木公園 パノラマ広場",
+      "venueType": "other",
+      "prefecture": "東京都",
+      "city": "渋谷区",
+      "startDate": "2026-12-04",
+      "endDate": "2026-12-27",
+      "status": "upcoming",
+      "admission": "UNKNOWN",
+      "tags": [
+        "media_art",
+        "installation",
+        "video_art",
+        "sound"
+      ],
+      "score": 68,
+      "matchReason": "屋外の公園で開かれる展示です。山内祥太の作品は、音や声、環境の変化に反応して動く彫刻構造のインスタレーションです。米澤柊の作品は、公園で録った環境音から生成したLEDアニメーションです。CCBTが一部共催しています。",
+      "sources": [
+        {
+          "name": "MEET YOUR ART FESTIVAL Annex (ART in the PARK)",
+          "url": "https://avex.jp/meetyourart/festival/annex/",
+          "kind": "official"
+        },
+        {
+          "name": "東京都 報道発表",
+          "url": "https://www.metro.tokyo.lg.jp/information/press/2026/09/2026091518",
+          "kind": "news"
+        }
+      ],
+      "link": "https://avex.jp/meetyourart/festival/annex/",
+      "thumbnail": "/thumbnails/exhibition/2026-yoyogi-park-panorama-plaza-meet-your-art-festival-annex.jpg",
+      "addedAt": "2026-11-26T01:40:29.317Z",
+      "origin": "auto",
+      "highlight": false
+    },
     {
       "id": "2026-hakone-open-air-museum-kyota-takahashi-atmos",
       "slug": "2026-hakone-open-air-museum-kyota-takahashi-atmos",
