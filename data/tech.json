@@ -1,5 +1,158 @@
 [
   {
+    "id": "anymachine",
+    "title": "AnyMachine",
+    "org": "Apekshik Panigrahi（個人。fal所属のエンジニア）",
+    "type": "Prototype",
+    "domains": [
+      "AI/Agents",
+      "Motion/Body",
+      "Spatial/3D"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "Claude CodeなどのAIエージェントがBlenderのPythonスクリプトを書き、機械や日用品を「関節が実際に動く3Dモデル」として作り上げる実験的な制作手順。全高30mの歩行機械、4本脚・8本脚のロボット、ノートPCの蝶番、リュックの開閉などの完成例がコードごと公開されている。",
+    "point": "すごいのは、AIが見た目だけの3Dモデルを作って終わりにせず、「関節がどこで、どこまで曲がり、ぶつからずに動くか」までを自分で組み立て、自分で検査するところです。たとえば全高30mの歩行機械は、160個の部品、14本の油圧シリンダー、104本の骨（ボーン）から成るモデルで、歩く・待機するなど3種類の動きまでAIが作っています。各関節は「0＝閉じる、1＝開く」のような0〜1のつまみに整理されているので、人間はつまみを動かすだけでポーズを決められます。さらにつまみを端から端まで動かして部品がめり込まないか、足が地面を滑らないかを自動で確かめ、ゲームエンジンで使えるglTF形式で書き出します。広告や体験づくりでは、商品（ノートPC、バッグ、家電など）の開閉ギミックを短時間で3Dアニメ化してWebの3Dビューアーや商品紹介動画に使う、ブランドのマスコットロボットを1枚のコンセプト画から歩かせてARで街に出す、といった使い方が考えられます。",
+    "detail": "仕組みは、3D制作の分業をAIに順番にやらせる手順書（PIPELINE.md）です。生成AIで作った1枚のコンセプト画から、正面・側面などの三面図や部品のアップ画像を作り、AIが「どの部品がどこにつながるか」という部品表を書きます。そのうえでBlenderを操作するPythonスクリプトを書いて形・材質・骨組み（リグ）・アニメーションを組み、参考画像と並べたチェック画像を出して見比べながら直します。MeshyやTripoで作った3Dメッシュを使う場合は、そのメッシュを「型紙」として扱い、関節の軸を測って動く部品をきれいな形で作り直します。各工程の区切りで人間が承認する進め方です。\n\nこれまでの画像から3Dを作るAIは、形は作れても骨組みや関節が入っておらず、動かすには人間が一からリギングし直す必要がありました。AnyMachineはリギングと「本当に動くか」の検査まで含めた点が違います。うまくいかなかった例（リュック2種の一部の検査が通らない）も正直に記録されています。\n\n使うには、Blender 5.0〜5.2、Claude Codeのようなコーディングエージェント、Python・Blenderの基礎知識が必要です。参考画像の再生成にはfalのAPIキー（従量課金）、作例によってはテクスチャ焼き付け用のGPUが要ります。GitHubから無料で入手でき、作者自身も「実験」と位置付けているため、そのまま使える製品というより、手順をまねて自分の題材に当てはめる教材に近いものです。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "コードはMITで商用利用可。ただし参考画像の再生成にfalのAPIキー（従量課金）が必要。元メッシュを作るMeshy／Tripoはそれぞれのサービス規約に従う"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/apekshik/anymachine"
+      },
+      {
+        "kind": "video",
+        "url": "https://github.com/apekshik/anymachine/raw/main/stilt/renders/stilt_walk.gif"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/anymachine.jpg",
+    "relatedWorks": [
+      {
+        "title": "Blender MCP",
+        "description": "Claudeなどの対話AIからBlenderを直接操作するためのアドオン＋MCPサーバー",
+        "url": "https://github.com/ahujasid/blender-mcp"
+      },
+      {
+        "title": "Meshy",
+        "description": "テキストや画像から3Dモデルを生成するサービス。AnyMachineで元メッシュの生成に使用",
+        "url": "https://www.meshy.ai/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "sign-language-mocap-archive",
+    "title": "Sign Language Mocap Archive",
+    "org": "Studio Galt",
+    "type": "Tool",
+    "domains": [
+      "Motion/Body",
+      "CreatorTools"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "アメリカ手話（ASL）約2,100語・約2,700本のモーションキャプチャーデータ（指文字・数字を含む）を、Blender・Unreal Engine（MetaHuman含む）・Mixamo／Unity・Rigify・glTF向けの形式で無料公開したアーカイブ。2026年11月にZenodoでの正式版とソフト別のダウンロードパックを公開した。",
+    "point": "すごいのは、作るのがとても難しい「手話の動き」を、プロ仕様の機材で2,000語以上収録し、主要な3Dソフトでそのまま使える形にして誰でも無料で使えるようにした点です。手話は腕だけでなく指1本1本の形や向きで意味が変わるため、普通のモーションキャプチャーやAIによる動き生成では指先が崩れがちでした。このアーカイブは全身スーツと指の曲がりを測る専用手袋で収録し、手作業で整えたうえで、MetaHumanやMixamoのキャラクターにすぐ載せられる形式まで用意しています。広告や体験づくりでは、手話で話しかけるバーチャル案内係を駅や展示会、Webサイトに置く、キャラクターやVTuberがCMの中で手話を交えて語る、ゲームやメタバースのアバターに手話のエモートを持たせる、といったアクセシビリティを打ち出す企画の土台になります。CC0なのでクライアントワークでも権利処理の手間がほとんどかかりません。",
+    "detail": "仕組みとしては、2020年から続けている収録をまとめた「動きの辞書」です。演者がXsensの慣性センサー式モーションキャプチャースーツ（体に付けた小さなセンサーで関節の角度を測る服）とStretchSenseの手袋（伸び縮みするセンサーで指の曲がりを測る手袋）を着けて1語ずつ演じ、そのデータをBlenderでノイズ除去・修正しています。1語ごとのフォルダーに、Blenderファイル、ソフト別のFBX、収録したままの元データ、字幕付きの確認動画、要所のポーズのCSV／JSONが入っています。Webのギャラリーでは対応ソフトで絞り込んで1語ずつダウンロードでき、まだない単語はリクエストできます。リクエストの多い語から収録され、ほぼ毎週追加されています。\n\n従来、手話アニメーションは1語ずつ手付けで作るか高額な受託収録に頼ることが多く、自由に使える大規模なデータはほとんどありませんでした。11月の公開で、Zenodoの研究用DOI、Hugging Faceでの配布、ソフト別の一括パック（391MB〜1.9GB）が整い、研究にも制作にも使いやすくなりました。\n\n使うのに費用はかかりません。BlenderやUnreal Engineでキャラクターに動きを当てはめる基本操作ができれば十分です。リポジトリ全体は約45GBあるので、必要な語かソフト別のパックだけを落とすのが現実的です。公開の場で使う際は、ろう者の監修を受けることを推奨します。",
+    "license": {
+      "spdx": "CC0-1.0",
+      "commercial": "ok",
+      "note": "すべてCC0（パブリックドメイン相当）で、商用利用・改変・クレジット表記なしでの利用も可。ただし演者は聴者の手話者で、制作側は「ろう者主導の翻訳の代わりにはならない」と明記している"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive"
+      },
+      {
+        "kind": "project",
+        "url": "https://studiogalt.github.io/Sign-Language-Mocap-Archive/"
+      },
+      {
+        "kind": "post",
+        "url": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive/releases"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/sign-language-mocap-archive.jpg",
+    "relatedWorks": [
+      {
+        "title": "Xsens Motion Capture",
+        "description": "このアーカイブの収録に使われた、センサー内蔵スーツ型のモーションキャプチャー機材",
+        "url": "https://www.xsens.com/products/motion-capture"
+      },
+      {
+        "title": "Mixamo",
+        "description": "Adobeの無料自動リギング＆モーション配布サービス。アーカイブはMixamoの骨格向けの形式も提供",
+        "url": "https://www.mixamo.com/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "3agamefactory-motion",
+    "title": "3AGameFactory-Motion（Agentic Motion Framework）",
+    "org": "上海交通大学・香港科技大学・中国科学院自動化研究所・Tencent Hunyuan ほか（OpenDCAI / GameFactory-3A）",
+    "type": "Research",
+    "domains": [
+      "Motion/Body",
+      "AI/Agents",
+      "CreatorTools"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "人型だけでなく、四足獣・鳥・ヘビ型・機械など形がバラバラな3Dモデルに、AIエージェントが骨組みを入れて文章の指示どおりに動かすオープンソースの仕組み。",
+    "point": "すごいのは、AIに1コマずつ関節の角度を書かせるのをやめた点です。かわりに「骨の構成」と「動きのプログラム」を短い設定ファイル（JSON）で書かせます。「腕を弧を描くように振る」「この方向を向く」「ばねのように揺れる」といった7種類の動きの部品を組み合わせる方式です。骨の長さを保つ計算、関節の角度計算、メッシュのめり込み補正は、毎回同じ結果を返す専用プログラム（executor）が受け持ちます。論文の評価では、元のメッシュに沿って骨を入れられた割合が、試した2種類のAIエージェントの両方で100%になりました。指示どおりに動いたかの点数も上がり、1件あたりのコストは下がっています。広告や体験づくりでは、ブランドのマスコットや商品そのもの（車、家電、ロボット型のキャラクターなど）を3Dモデルにするだけで、「3回ジャンプして右を向き、羽を2回はばたかせる」といった細かい演出を文章で指示して試せます。生成した動きはBVH（動きのデータ形式）と動くGLB（3Dモデル形式）で書き出せるので、Webの3D表示やゲームエンジンでのインタラクティブ広告にそのまま持ち込めます。",
+    "detail": "仕組みは、映画の監督と特殊効果チームの分業に近いものです。監督役のAIエージェント（Claude Code、Codex、Gemini CLI など）は、リポジトリにある手順書（SKILL.md）を読みます。そのうえで「どこに何本の骨を入れるか」と「どのリズムで、どの部位を、どれだけ動かすか」を rhythm・style・program の3つのブロックに分けて書きます。特殊効果チーム役の実行プログラムが、それを実際の骨組み、肌への割り当て（スキニング）、キーフレームに変換します。結果は vibe_report.json という検査レポートに出るので、失敗項目を見て設定を直す、という往復で仕上げます。\n\n従来の方法には、それぞれ弱点がありました。人の動きに特化した生成モデル（MoMask など）は安くて自然ですが、決まった人型の骨にしか使えません。動画を生成してから動きを抜き出す方法は、見た目は良くても1件あたり約0.4ドルかかり、タイミングや振り幅の指定が崩れやすいとされています。AIが関節を全部手書きする方法は、骨の長さが伸び縮みするなど物理的に破綻しがちでした。この研究は、論文で数値として示されている形の多様さ（6カテゴリ・50体）と指示の細かさ（850課題）の両方に対応しています。\n\n使うには、Python 3.11 と NumPy・SciPy などのライブラリを用意し、リポジトリを手元に複製（git clone）します。コーディングエージェントに設定ファイルを書かせるか、同梱の例（人・キツネ・馬など）をもとに手で書きます。そのうえで GenMotionOperator を実行します。骨組みと動きを計算する部分はCPUで動く設計ですが、エージェントにはAPIの利用料がかかります（論文の実測では1件あたり約0.01〜0.05ドル）。",
+    "license": {
+      "spdx": "Apache-2.0",
+      "commercial": "conditional",
+      "note": "コード本体はApache-2.0。リギングや動き生成で呼び出す外部モデル（Puppeteer、MoMask、Tripoのクラウドモデルなど）にはそれぞれ別のライセンスと利用規約がある。ベンチマーク用データDivDynBench（Hugging Face）のデータカードにはライセンスが書かれていない"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/OpenDCAI/GameFactory-3A"
+      },
+      {
+        "kind": "project",
+        "url": "https://github.com/OpenDCAI/GameFactory-3A/blob/main/docs/GameFactory3A-Motion/README.md"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2611.30013"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/3agamefactory-motion.jpg",
+    "relatedWorks": [
+      {
+        "title": "UniRig",
+        "description": "どんな形の3Dモデルにも骨とスキニングを自動で付ける、SIGGRAPH 2025の自動リギングモデル",
+        "url": "https://github.com/VAST-AI-Research/UniRig"
+      },
+      {
+        "title": "MotionBricks",
+        "description": "NVIDIAの、キャラクターとロボットをリアルタイムに動かす部品組み合わせ型の動き生成モデル",
+        "url": "https://github.com/NVlabs/motionbricks"
+      },
+      {
+        "title": "DivDynBench",
+        "description": "この研究と一緒に公開された、人型以外も含む50体・850課題のリギング＋動き生成ベンチマーク",
+        "url": "https://huggingface.co/datasets/zbhpku/DivDynBench"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "music-circuit",
     "title": "Music Circuit",
     "org": "Ruiji Yu, Wenye Ma, Gus Xia（arXiv 2611.29475）",
