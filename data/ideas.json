@@ -30157,5 +30157,215 @@
         "desc": "OSSの可視化ツールRerunで、人型ロボットがボールを蹴る動作のセンサーと3D状態を記録・表示したデモ。"
       }
     ]
+  },
+  {
+    "id": "2026-11-26-1",
+    "date": "2026-11-26",
+    "title": "児童婚の招待状のその後の絵",
+    "pattern": "文脈×技術",
+    "seed": "子どもが描いた絵1枚をAnima Reference Adapterに渡し、同じ画風のまま『結婚させられなかった未来』の続きを描き起こせば、Child Wedding Cardsの招待状の次に、議員へ届く『その後の人生』の絵本が作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "un-women-child-wedding-cards",
+        "title": "Child Wedding Cards",
+        "desc": "子どもが描いた架空の結婚式の招待状を国会議員に郵送し、児童婚の年齢引き上げを訴えたUN Womenの施策。"
+      },
+      {
+        "type": "tech",
+        "id": "anima-reference-adapter",
+        "title": "Anima Reference Adapter (ComfyUI-Anima-Ref-Adapter)",
+        "desc": "参照画像1枚から、キャラクターと画風を保ったままポーズや背景を文章で変えられるアニメ系画像AI用の追加機能。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-26-2",
+    "date": "2026-11-26",
+    "title": "飛行機の音で刻む空の記憶",
+    "pattern": "転用",
+    "seed": "録音地点を割り出す鑑識的なDOPPLERGEISTを逆に使い、ARTE TOKYOの浜離宮の夜間アートで来場者の声と上空を通った飛行機の音をセットで記録すれば、『いつ・どの空の下にいたか』が残る音のタイムカプセルになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "arte-tokyo-2026",
+        "title": "ARTE TOKYO（東京国際文化芸術祭）",
+        "desc": "2026年秋に東京で初開催された都市型の文化芸術祭で、浜離宮庭園で期間限定の夜間アートを行う。"
+      },
+      {
+        "type": "tech",
+        "id": "dopplergeist",
+        "title": "DOPPLERGEIST",
+        "desc": "録音に入った飛行機の通過音を過去の飛行記録と照らし合わせ、録音された場所を推定するPythonツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-26-3",
+    "date": "2026-11-26",
+    "title": "広告モデルを作り手に差し替え",
+    "pattern": "文脈×技術",
+    "seed": "話題のファッション広告動画をOpenjutsuにかけ、主役のモデルを服の生産地で働く人の写真1枚に差し替えれば、Uncomfortable Truthが屋外広告で見せた『服の裏側』を動画SNSの文脈に持ち込めるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "human-rights-foundatio-n-uncomfortable-truth",
+        "title": "Uncomfortable Truth",
+        "desc": "人気ブランドの広告を真似て、ジャケットの代わりにウイグル人収容者の囚人服を見せ、強制労働を訴えた屋外広告。"
+      },
+      {
+        "type": "tech",
+        "id": "openjutsu",
+        "title": "Openjutsu",
+        "desc": "動画と人物写真1枚を渡すだけで、動画の主役をその人物に差し替えられる、PC内だけで動くツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-26-4",
+    "date": "2026-11-26",
+    "title": "AIだけが読み違える応援幕",
+    "pattern": "文脈×技術",
+    "seed": "人には『女子サッカーは誰も見ない』と読める横断幕をDecoy Fontで作り、AIの自動字幕や画像検索には『みんなが見ている』と読ませれば、Nobody Watches Women Footballの反転をネット上の機械の記録にまで残せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "heineken-nobody-watches-women-football",
+        "title": "Nobody Watches Women Football",
+        "desc": "「女子サッカーは誰も見ない」というネットの攻撃的な声に、女子欧州選手権決勝の場で行動で答えたHeinekenの施策。"
+      },
+      {
+        "type": "tech",
+        "id": "decoy-font",
+        "title": "Decoy Font",
+        "desc": "人間には正しく読めるのに、文字を読み取るAIには別の単語として誤読される文字を作れるフォント。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-26-5",
+    "date": "2026-11-26",
+    "title": "落書きの友だちがロボで来訪",
+    "pattern": "技術×技術",
+    "seed": "AniGenで子どもの落書き1枚から骨格付きの3Dキャラを起こし、その動きをTRACEで『もう少し深くお辞儀して』と会話で直して人型ロボットに移せば、絵の中の友だちが実体を持って挨拶しに来る体験が作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "anigen",
+        "title": "AniGen",
+        "desc": "1枚の画像から、骨格と皮膚の伸び縮みまで備えた、動かせる3Dキャラクターを自動で作る技術。"
+      },
+      {
+        "type": "tech",
+        "id": "trace",
+        "title": "TRACE (Typed Reference-Aware Conversational Editing for Humanoid Motion Diffusion)",
+        "desc": "「もう少し深くお辞儀して」のような会話で、人型ロボットの動きを文章から作り、そのまま手直しできるシステム。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-26-6",
+    "date": "2026-11-26",
+    "title": "実家の写真1枚がゲーム世界に",
+    "pattern": "技術×技術",
+    "seed": "PixARMeshで古い実家の室内写真1枚を3Dメッシュに起こし、その粗い映像をMatrix-Game 4.0にリアルタイムで描き直させれば、もう無い家の中をキー操作で歩き回れる思い出のゲーム世界になるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "pixarmesh",
+        "title": "PixARMesh",
+        "desc": "1枚の室内写真から、部屋全体の配置と編集できる3Dの形をまとめて作り出す研究技術。"
+      },
+      {
+        "type": "tech",
+        "id": "matrix-game-4-0",
+        "title": "Matrix-Game 4.0",
+        "desc": "ゲームエンジンの粗い映像を、動画生成AIがリアルタイムで精細なゲーム映像に描き直す操作可能な仕組み。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-26-7",
+    "date": "2026-11-26",
+    "title": "向きで物語が変わる全天球劇",
+    "pattern": "技術×技術",
+    "seed": "SpheRoPEで継ぎ目のない360°動画を生成し、AudionautにAIエージェントからMCP経由で方位ごとの音の配置を指示すれば、振り向く方向で聞こえる物語が変わる全天球の音の劇場を少人数で作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "spherope",
+        "title": "SpheRoPE",
+        "desc": "既存の画像・動画生成AIに追加学習なしで手を加え、継ぎ目のない360°パノラマを作れるようにする手法。"
+      },
+      {
+        "type": "tech",
+        "id": "audionaut",
+        "title": "Audionaut",
+        "desc": "AIエージェントからも編集指示を出せる、無料でオープンソースの複数トラック対応の音声編集ソフト。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-26-8",
+    "date": "2026-11-26",
+    "title": "地元の川に映る汚水の濁り",
+    "pattern": "文脈×技術",
+    "seed": "GRayの正確な反射・屈折描画で地元の川を3D化し、水面に映る景色だけを下水の濁りで歪ませれば、Dirty Businessの汚水噴水をロンドンに行かずとも自分の町の川でスマホ越しに突きつけられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "channel-4-dirty-business",
+        "title": "Dirty Business – The Fountain of Filth",
+        "desc": "英国の下水汚染問題を訴えるため、ロンドンの公共空間に実物大の「汚水噴水」を置いたChannel 4の施策。"
+      },
+      {
+        "type": "tech",
+        "id": "gray",
+        "title": "GRay",
+        "desc": "実写を光の粒で3D化する技術を、反射・屈折・影まで正確に描画できるようにした新しい描き方。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-26-9",
+    "date": "2026-11-26",
+    "title": "笑顔になる前の泣き顔アルバム",
+    "pattern": "転用",
+    "seed": "小さな顔を綺麗に描き直すComfyUI-H3-FaceRefineを、家族動画の隅で泣いている子の顔を拾い上げる用途に使えば、Not Every Smile Starts As A Smileのように『笑顔になる前』を残すアルバムが作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "colgate-not-every-smile-starts-as-a-smile",
+        "title": "Not Every Smile Starts As A Smile",
+        "desc": "歯磨きを嫌がって泣く子どもの写真を前面に出し、「笑顔は最初から笑顔ではない」と親に寄り添った広告。"
+      },
+      {
+        "type": "tech",
+        "id": "comfyui-h3-facerefine",
+        "title": "ComfyUI-H3-FaceRefine",
+        "desc": "AI動画の中で小さく映る顔だけを見つけて拡大・描き直し、元の映像に自然に戻す拡張ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-26-10",
+    "date": "2026-11-26",
+    "title": "貼り重なり続ける広告史映像",
+    "pattern": "文脈×技術",
+    "seed": "HR Endless Samplerに街角のポスターを1枚ずつ台本として与え続け、上から貼られては剥がれる何時間もの映像を生成すれば、Accidental Collageの偶然の層を『終わらない広告史』として街頭ビジョンに流せるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "accidental-collage-2026",
+        "title": "Accidental Collage",
+        "desc": "剥がれて重なった街角ポスターの偶然の層を、約400ページの広告史の本にまとめた出版物。"
+      },
+      {
+        "type": "tech",
+        "id": "hr-endless-sampler",
+        "title": "HR Endless Sampler (ComfyUI-HR-Endless-Sampler)",
+        "desc": "AIに台本を書かせ続けることで、人物や背景がずれないまま何分でもAI動画を作り続けられる仕組み。"
+      }
+    ]
   }
 ]
