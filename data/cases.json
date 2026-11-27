@@ -58850,26 +58850,27 @@
   {
     "id": "stillspeakingup-deeptruth",
     "title": "#StillSpeakingUp",
-    "summary": "暗殺されたジャーナリストをディープフェイクで蘇らせ、生前に言えなかった真実を語らせる——国境なき記者団（RSF）が報道の自由を訴えた広告。",
-    "client": "RSF（国境なき記者団）",
-    "agency": "Publicis Mexico / Publicis Worldwide",
+    "summary": "メキシコで殺害されたジャーナリストの声をSNSやディープフェイク動画で蘇らせ、報道への暴力と不処罰を訴えた人権団体の啓発キャンペーン。",
+    "client": "Propuesta Cívica / RSF（国境なき記者団）",
+    "agency": "PUBLICIS MEXICO, Mexico City / Publicis WW Riga, Riga",
     "categories": [
       "テクノロジー×アイデア",
       "社会包摂",
-      "AIクリエイティブ"
+      "AIクリエイティブ",
+      "Creative Effectiveness"
     ],
     "award": "Cannes Lions 2021 Grand Prix for Good / Direct Gold / SDGs Gold",
     "year": "2021",
     "regions": [
-      "グローバル"
+      "中南米"
     ],
-    "link": "https://www.lovethework.com/campaigns/stillspeakingup-deeptruth-710063",
+    "link": "https://lbbonline.com/news/publics-brings-mexican-journalist-javier-valdez-back-to-life-with-ai-technology",
     "thumbnail": "/thumbnails/stillspeakingup-deeptruth.jpg",
     "videoId": "R9BlHObma_o",
-    "overview": "メキシコ・ロシア・サウジアラビアなどで暗殺された実在のジャーナリスト5人をAIディープフェイクで復元。生前に沈黙させられた「言えなかった真実」を彼らの口から語らせる動画キャンペーン。ディープフェイク技術の破壊的用途を「報道の自由のための兵器」として逆用した。",
-    "background": "2021年時点でジャーナリストの暗殺・投獄が世界規模で増加しており、RSFは毎年多くのジャーナリストが沈黙させられていると報告していた。ディープフェイク技術の普及による「フェイクニュース」の問題が社会的焦点になっている中、RSFとPublicis Mexicoはその技術を逆手に取り、「真実を語ることを奪われた人が、死後に語る」という構造を設計した。",
-    "execution": "実在の故人ジャーナリスト5人（ジャマル・カショギほか）の写真・映像資料をもとにAIで顔と声を復元。各ジャーナリストが生前に報道しようとしていた内容を調査し、彼らの言葉として動画化。映像はSNSでオーガニックに拡散され、RSFのウェブサイトへ誘導する設計。ディープフェイク技術の倫理的使用についての議論も意図的に喚起した。",
-    "evaluationImpact": "Cannes Lions 2021 Grand Prix for Goodをはじめ複数の最高賞を受賞。ディープフェイクを社会的善のために使うという発想の転換が評価された。報道の自由への注目度が向上し、技術の倫理的応用というデバイトを喚起した点でも社会的意義が認められた。「危険技術を正義に使う」という構造は後の多くのディープフェイク応用キャンペーンの原型となった。",
+    "overview": "ジャーナリスト支援団体Propuesta CívicaとPublicis Méxicoによる#SeguimosHablando（#StillSpeakingUp）。2019年に殺害記者のTwitterアカウントを再開し、2020年には2017年に殺害されたJavier Valdezの映像と声をAIで再現して大統領に呼びかける動画を公開した。2022年のCreative Effectiveness部門の受賞対象は、この一連の施策。",
+    "background": "メキシコは記者にとって世界有数の危険な国で、elDiario.esは2006年以降126人の記者が殺害され、うち約9割が未処罰と伝えている。国際不処罰反対デー（11月2日）に合わせ、記者を黙らせても声は止まらないという主張を打ち出した。",
+    "execution": "第1弾（2019年）では殺害された記者のTwitterアカウントを1週間再開し、彼らが追っていた問題を再び投稿した。第2弾（2020年）では、既存のインタビュー映像をもとにディープフェイクでValdezを再現し、López Obrador大統領に事件の解明を求めた。elDiario.esによれば、妻のGriselda Trianaが帽子など個人的な要素の提供と脚本づくりに関わり、家族が承認と監修を行った。",
+    "evaluationImpact": "カンヌライオンズ2021でGrand Prix for Good・Direct Gold・SDGs Goldなどを受賞し、2022年にはCreative Effectiveness部門でBronzeを受賞した（InformaBTL報道）。動画はスペインのelDiario.esなど国内外のメディアで報じられた。",
     "relatedWorks": [
       {
         "title": "Reporters Without Borders「The Uncensored Library」(2020年)",
@@ -58891,6 +58892,17 @@
       "Tech/AI",
       "Form/Film",
       "Theme/SocialGood"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2022,
+        "category": "Creative Effectiveness",
+        "level": "Bronze"
+      }
+    ],
+    "sources": [
+      "Cannes 2022"
     ]
   },
   {
@@ -129063,45 +129075,6 @@
       "Theme/Entertainment"
     ],
     "thumbnail": "/thumbnails/mcdonald-s-the-travis-scott-meal.jpg"
-  },
-  {
-    "year": "2022",
-    "relatedWorks": [],
-    "sources": [
-      "Cannes 2022"
-    ],
-    "id": "propuesta-civica-ac-stillspeakingup-deeptruth",
-    "title": "#Stillspeakingup Deeptruth",
-    "summary": "メキシコで殺害されたジャーナリストの声をSNSやディープフェイク動画で蘇らせ、報道への暴力と不処罰を訴えた人権団体の啓発キャンペーン。",
-    "client": "Propuesta Civica Ac",
-    "agency": "PUBLICIS MEXICO, Mexico City / Publicis WW Riga, Riga",
-    "categories": [
-      "Creative Effectiveness"
-    ],
-    "award": "Cannes Lions 2022 Creative Effectiveness Lions Bronze",
-    "awardEntries": [
-      {
-        "org": "cannes",
-        "year": 2022,
-        "category": "Creative Effectiveness",
-        "level": "Bronze"
-      }
-    ],
-    "regions": [
-      "中南米"
-    ],
-    "link": "https://lbbonline.com/news/publics-brings-mexican-journalist-javier-valdez-back-to-life-with-ai-technology",
-    "videoId": "",
-    "overview": "ジャーナリスト支援団体Propuesta CívicaとPublicis Méxicoによる#SeguimosHablando（#StillSpeakingUp）。2019年に殺害記者のTwitterアカウントを再開し、2020年には2017年に殺害されたJavier Valdezの映像と声をAIで再現して大統領に呼びかける動画を公開した。2022年のCreative Effectiveness部門の受賞対象は、この一連の施策。",
-    "background": "メキシコは記者にとって世界有数の危険な国で、elDiario.esは2006年以降126人の記者が殺害され、うち約9割が未処罰と伝えている。国際不処罰反対デー（11月2日）に合わせ、記者を黙らせても声は止まらないという主張を打ち出した。",
-    "execution": "第1弾（2019年）では殺害された記者のTwitterアカウントを1週間再開し、彼らが追っていた問題を再び投稿した。第2弾（2020年）では、既存のインタビュー映像をもとにディープフェイクでValdezを再現し、López Obrador大統領に事件の解明を求めた。elDiario.esによれば、妻のGriselda Trianaが帽子など個人的な要素の提供と脚本づくりに関わり、家族が承認と監修を行った。",
-    "evaluationImpact": "動画はスペインのelDiario.esなど国内外のメディアで報じられた。カンヌライオンズ2022のCreative Effectiveness部門でBronzeを受賞した（InformaBTL報道）。",
-    "tags": [
-      "Theme/SocialGood",
-      "Tech/AI",
-      "Form/Film"
-    ],
-    "thumbnail": "/thumbnails/propuesta-civica-ac-stillspeakingup-deeptruth.jpg"
   },
   {
     "year": "2022",
