@@ -30367,5 +30367,209 @@
         "desc": "AIに台本を書かせ続けることで、人物や背景がずれないまま何分でもAI動画を作り続けられる仕組み。"
       }
     ]
+  },
+  {
+    "id": "2026-11-27-1",
+    "date": "2026-11-27",
+    "title": "家族の手で話す手話アバター",
+    "pattern": "文脈×技術",
+    "seed": "Kikiは文字を手話動画に変えるバーチャル通訳だが、BlendCapで聴覚障害のある人の家族が動画を1本撮るだけで手・顔の動きを取り込めば、見知らぬCGではなく「母の手」で話す手話アバターが作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "nhk-enterprises-nhk-global-media-services-kiki-virtual-human-interpreter",
+        "title": "Kiki, Virtual Human Interpreter",
+        "desc": "入力した文章を日本手話の動画に変換する、NHK関連会社などが作った手話通訳のバーチャルヒューマン。"
+      },
+      {
+        "type": "tech",
+        "id": "blendcap",
+        "title": "BlendCap",
+        "desc": "ビデオを1本撮るだけで、Blenderの中で体・手・顔の動きをまとめて取り込めるアドオン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-27-2",
+    "date": "2026-11-27",
+    "title": "顔を出さないファンの分身",
+    "pattern": "文脈×技術",
+    "seed": "Adoの「顔を見せない」世界ツアーにならい、vector-avatorでファン各自が描いたイラスト1枚を身振りで動くアバターにすれば、観客も素顔を出さずに会場の大画面で一緒に踊れる参加型ライブができそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "ado-world-tour-wish",
+        "title": "Ado THE FIRST WORLD TOUR「Wish」",
+        "desc": "素顔を一度も公開していない歌手Adoが、顔を見せないまま初のワールドアリーナツアーを完走した事例。"
+      },
+      {
+        "type": "tech",
+        "id": "vector-avator",
+        "title": "vector-avator",
+        "desc": "キャラクターのイラスト1枚から、身振り手振りで動く2Dアバターをブラウザ上で作れるオープンソース。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-27-3",
+    "date": "2026-11-27",
+    "title": "毎日刷り直される汚職紙幣",
+    "pattern": "文脈×技術",
+    "seed": "The Currency Of Corruptionの模擬紙幣を、Editable Visual Designで汚職報道が出るたびに額面や肖像・文言を書き換え続ければ、腐敗の進み具合が「毎日変わる紙幣」として手元に届く仕組みになるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "transparen-cy-internationa-l-lebanon-no-corruption-ti-lb-the-currency-of-corruption",
+        "title": "The Currency Of Corruption",
+        "desc": "通貨危機のレバノンで、汚職を風刺した模擬紙幣をATMから配った反汚職キャンペーン。"
+      },
+      {
+        "type": "tech",
+        "id": "editable-visual-design",
+        "title": "Editable Visual Design（Editable-Design）",
+        "desc": "AIが画像生成とHTML/CSSを組み合わせ、後から文字や配置を直せるポスターやチラシを作る研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-27-4",
+    "date": "2026-11-27",
+    "title": "外に出さない自助具の記録",
+    "pattern": "文脈×技術",
+    "seed": "「生活のデザイン」展の自助具は、使った人の暮らしそのもの。写真をクラウドに送らないModlyで資料館の中だけで3D化すれば、繊細な来歴を外部に出さず、手に取る角度で工夫を見せるアーカイブにできそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "case-1t9pmk3-2022",
+        "title": "企画展「生活のデザイン」ポスター・図録",
+        "desc": "ハンセン病療養所の入所者が生み出した自助具を紹介する企画展「生活のデザイン」のポスターと図録。"
+      },
+      {
+        "type": "tech",
+        "id": "modly",
+        "title": "Modly",
+        "desc": "写真をクラウドに送らず、自分のPCのGPUだけで3Dの形データに変換するデスクトップアプリ。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-27-5",
+    "date": "2026-11-27",
+    "title": "架空言語のヒットソング",
+    "pattern": "文脈×技術",
+    "seed": "DuolingoのHigh Valyrianコースに合わせ、Open-Qwen-Musicで劇中の架空言語を歌詞にしたポップスを量産すれば、単語帳ではなく「口ずさめる歌」で存在しない言語が広まるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "duolingo-high-valyrian-lessons",
+        "title": "High Valyrian Lessons",
+        "desc": "ドラマ放送前に、劇中の架空言語ハイ・ヴァリリア語のDuolingoコースを拡充した提携施策。"
+      },
+      {
+        "type": "tech",
+        "id": "open-qwen-music",
+        "title": "Open-Qwen-Music",
+        "desc": "歌詞や曲の構成を書いた文章から、ステレオの音楽を生成するText-to-Musicの公開実装。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-27-6",
+    "date": "2026-11-27",
+    "title": "指で聴くベースライン",
+    "pattern": "技術×技術",
+    "seed": "HS-TasNetでライブ音源からベースとドラムを瞬時に分け、DualSense Haptic Designerでベースはトリガーの重さ、ドラムは振動に割り当てれば、耳でなく指先で曲の骨格を聴くコントローラーになりそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "hs-tasnet",
+        "title": "HS-TasNet",
+        "desc": "音をボーカル・ドラム・ベース・その他に、23ミリ秒の短い単位でリアルタイムに分ける音源分離AI。"
+      },
+      {
+        "type": "tech",
+        "id": "dualsense-haptic-designer",
+        "title": "DualSense Haptic Designer",
+        "desc": "PS5コントローラーの振動とトリガーの手応えを、音ファイルやグラフから設計できるツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-27-7",
+    "date": "2026-11-27",
+    "title": "街の建物を解剖する授業",
+    "pattern": "技術×技術",
+    "seed": "VGGT-Ωで取り壊し前の建物を写真群から3D化し、Dissectible Anatomyの「切る・裂く」操作を当てはめれば、人体解剖のように壁の中の配管や増築の層を輪切りで見る建物の解剖授業ができるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "vggt",
+        "title": "VGGT-Ω (VGGT-Omega)",
+        "desc": "複数の写真や動画から、カメラの位置・角度・奥行きを数秒でまとめて推定するMetaとOxfordのモデル。"
+      },
+      {
+        "type": "tech",
+        "id": "dissectible-anatomy",
+        "title": "Dissectible Anatomy",
+        "desc": "実在の人体の輪切りデータから作った3Dモデルを、リアルタイムに切ったり裂いたりできる仮想解剖。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-27-8",
+    "date": "2026-11-27",
+    "title": "答弁の沈黙だけを集める",
+    "pattern": "転用",
+    "seed": "Kerfの無音カット機能は本来沈黙を消す道具だが、逆に国会答弁から「消される側の沈黙」だけを抜き出してつなげれば、言葉に詰まった時間の長さで説明責任を可視化する映像になりそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "kerf",
+        "title": "Kerf",
+        "desc": "Premiere ProやDaVinci Resolveの中で動く、無音カットや字幕付けができる無料の編集支援ツール。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-27-9",
+    "date": "2026-11-27",
+    "title": "弱っていくロゴの動物たち",
+    "pattern": "文脈×技術",
+    "seed": "The X-Tinction Timelineの「ロゴから鳥が消える」発想を広げ、UniMateで企業ロゴの鳥・魚・昆虫を1つのモデルで動かし、実際の個体数減少に合わせて動きが鈍くなるアニメロゴを作れるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "wwf-the-x-tinction-timeline",
+        "title": "The X-Tinction Timeline",
+        "desc": "TwitterのロゴがXに変わったことを「鳥の絶滅」に見立て、絶滅危機を訴えたWWFドイツの投稿。"
+      },
+      {
+        "type": "tech",
+        "id": "unimate",
+        "title": "UniMate",
+        "desc": "人・四足動物・鳥・魚・昆虫など骨格の違うキャラを、文章の指示だけで1つのAIモデルで動かす技術。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-27-10",
+    "date": "2026-11-27",
+    "title": "化石の中を歩く博物館",
+    "pattern": "文脈×技術",
+    "seed": "ROMのImmortalは胎児の視点で人類史を描いたが、Lyra 2.0で収蔵品の写真1枚から歩き回れる3D空間を生成すれば、来館者が化石や土器の「内側」に入り込んで時間を遡る展示になりそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "royal-ontario-museum-rom-immortal",
+        "title": "Immortal",
+        "desc": "胎児の視点で生命の誕生から人類の歴史までを6分で描いた、王立オンタリオ博物館の短編映像。"
+      },
+      {
+        "type": "tech",
+        "id": "lyra-2-0",
+        "title": "Lyra 2.0",
+        "desc": "1枚の画像や短い動画から、歩き回れる3D空間を自動で生成するNVIDIAの技術。"
+      }
+    ]
   }
 ]
