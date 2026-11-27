@@ -1,5 +1,174 @@
 [
   {
+    "id": "perf-gs",
+    "title": "PERF-GS",
+    "org": "Electronic Arts SEED",
+    "type": "Tool",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "写真の束から3D Gaussian Splattingの立体シーンを約10〜20秒で学習する、EA（エレクトロニック・アーツ）研究部門製のオープンソース学習ツール。NVIDIA専用のCUDAを使わずVulkan/D3D12で動くため、AMDのGPUでも使える。",
+    "point": "すごい点は、写真から立体シーンを作る「学習」がとにかく速いことです。3D Gaussian Splattingは、たくさんの半透明の色つき粒を空間に並べて実写そっくりの3Dを再現する技術ですが、従来は1シーンの学習に数分〜数十分かかるのが普通でした。PERF-GSはRTX 4090で最速約10秒、標準設定で約16秒、高画質設定でも約23秒で学習を終えます。開発元のEAによれば、RTX 4080で比較した他のツールは約326秒かかったのに対し、同等以上の画質を約32秒で出しています。さらに、NVIDIA専用のCUDAやPyTorchに依存せず、AMDのRadeonでも動作が確認されています。広告や体験づくりでは、イベント会場で来場者や展示物を撮影し、数十秒後にその場で立体として見せる「即席3Dフォトブース」や、ロケハン当日に現場を3D化して、カメラワークをその日のうちに検討するといった使い方が考えられます。",
+    "detail": "仕組みは、写真フォルダを渡すとCOLMAP（写真同士を見比べて、各写真を撮ったカメラの位置を割り出す定番ツール）が撮影位置と大まかな点群を求め、そのあと粒の位置・色・形を写真に合うよう繰り返し調整するというものです。この調整の計算をゲームエンジン向けのシェーダ言語Slangで書き、GPUで効率よく回るよう、計算の逆算部分の一部を手書きで最適化しています。Mip-Splatting（拡大縮小時のちらつき対策）や、TamingGS・SAD-GS（粒の増やし方の工夫）といった既存研究の良い部分も組み込んでいます。\n\n従来の主要な学習ツールの多くはNVIDIA GPUとCUDA環境が前提で、学習にも数分以上かかっていました。PERF-GSはVulkan/D3D12という汎用のグラフィックスAPIで動くため、GPUメーカーを選びません。ビューア付きの専用アプリ（Hub）とコマンドライン実行の両方が用意されています。\n\n使うには、Windows 11、Python 3.10以上、Vulkan対応GPU（RTX 4050 Laptopの6GBから動作確認済み、標準設定でVRAM約3GB）が必要です。GitHubからcloneし、pip install -e . でインストールします。Linux/macOSは未検証です。費用は無料ですが、最速モードだけはNVIDIAの研究用マスクの別ライセンスが絡む点に注意してください。",
+    "license": {
+      "spdx": "BSD-3-Clause",
+      "commercial": "conditional",
+      "note": "本体はBSD-3-Clauseで商用可。ただし最速プリセットUltrafastは、別ライセンスのNVIDIA研究用マスクが必要。利用条件はNOTICE.mdを確認すること"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/electronicarts/perf-gs"
+      },
+      {
+        "kind": "project",
+        "url": "https://electronicarts.github.io/perf-gs/"
+      },
+      {
+        "kind": "post",
+        "url": "https://radiancefields.com/electronic-arts-seed-open-sources-perf-gs-splat-trainer"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/perf-gs.jpg",
+    "relatedWorks": [
+      {
+        "title": "Taming 3DGS",
+        "description": "限られた計算資源で高速に学習する3DGS手法。PERF-GSの逆算処理の参考元",
+        "url": "https://arxiv.org/abs/2406.15643"
+      },
+      {
+        "title": "SAD-GS",
+        "description": "形状を意識して粒を増やす手法。PERF-GSが改良して採用",
+        "url": "https://vcai.mpi-inf.mpg.de/projects/SAD-GS/"
+      },
+      {
+        "title": "PPISP",
+        "description": "写真ごとの明るさ・色のばらつきを補正するNVIDIAの手法。READMEで参照",
+        "url": "https://research.nvidia.com/labs/sil/projects/ppisp/"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "direct3d-v3",
+    "title": "Direct3D-V3",
+    "org": "南京大学 / DreamTech / 香港大学 / オックスフォード大学",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "CreatorTools"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "画像と粗い3Dモデルから、細部まで精密な3Dメッシュを生成するAI。一般的な「圧縮してから生成する」工程を省き、最大1536³の立体格子を直接生成する。ACM TOG掲載。2026-11-19にコードと学習済みモデルが公開された。",
+    "point": "すごい点は、3D形状を「圧縮せずにそのまま」生成するため、細部が潰れにくいことです。これまでの画像から3Dを作るAIの多くは、立体をいったん小さな暗号のようなデータ（潜在表現）に圧縮し、その中で生成してから元に戻していました。この圧縮と復元の過程で、彫刻の細かい溝や機械部品の小さな凹凸が失われがちでした。Direct3D-V3は圧縮を挟まず、最大1536×1536×1536マスの立体格子に直接形を描くので、より細かい形状が出せます。穴の空いた壊れた面ができにくい工夫も入っています。広告や体験づくりでは、商品写真やキャラクター画から精密な3Dモデルを起こし、3Dプリントのノベルティや、AR・CG映像用のアセットを作る用途が考えられます。他のAIで作った粗い3Dを「高精細化」する仕上げ工程としても使えるので、制作フローに組み込みやすいのも利点です。",
+    "detail": "仕組みは、3D空間を細かい立方体のマス目に区切り、各マスに「表面からどれだけ離れているか（SDF）」の値を書き込む形で形状を表すものです。全部を一度に扱うと計算量が膨大になるため、大きなブロック単位で全体の形を決める担当と、各マスの細部を整える軽量な担当の二段構えのTransformerで処理します。さらに、表面の向き（法線マップ）を手本にした学習や、入力画像との向き合わせを助けるカメラ推定の仕組みも加えています。\n\n従来の潜在表現ベースの手法（同チームの旧版Direct3D、Direct3D-S2など）は、圧縮で細部が失われるという弱点を抱えていました。V3はその工程自体をなくした点が根本的な違いで、論文では最先端手法と同等以上の精細さが報告されています。\n\n使うには、Linux、Python 3.12、CUDA 13.0対応のNVIDIA GPU、FlashAttention 2などの環境構築が必要で、中級以上のエンジニアリング知識が求められます。入力は法線マップ（または白い粘土風の画像）と、位置を合わせた粗いメッシュです。粗いメッシュはHunyuan3D-2.1などで別途作る前提で、粗いメッシュを作るモデルとテクスチャ生成は未公開です。必要VRAMは明記されていません。GitHubのinfer.pyかGradioのデモ（app.py）で動かせ、出力はGLB形式です。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "conditional",
+      "note": "本体はMIT。前処理で任意に使うQwen-Image-2.1は非商用限定。下書きメッシュ作成に推奨されるHunyuan3D-2.1/UltraShapeはTencent Hunyuan 3D 2.1 Community License"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/DreamTechAI/Direct3D-V3"
+      },
+      {
+        "kind": "project",
+        "url": "https://dreamtechai.github.io/Direct3D-V3"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/html/2611.26511"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/wushuang98/Direct3D-V3"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/direct3d-v3.jpg",
+    "relatedWorks": [
+      {
+        "title": "Direct3D (NeurIPS 2024)",
+        "description": "同チームの初代。潜在表現で画像から3Dを生成",
+        "url": "https://huggingface.co/DreamTechAI/Direct3D"
+      },
+      {
+        "title": "Direct3D-S2",
+        "description": "スパースボクセルの潜在表現で高解像度化した前作",
+        "url": "https://arxiv.org/abs/2505.17412"
+      },
+      {
+        "title": "Direct3D: Scalable Image-to-3D Generation",
+        "description": "初代の論文",
+        "url": "https://arxiv.org/abs/2405.14832"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "depth-pro-2",
+    "title": "Depth Pro 2",
+    "org": "Apple",
+    "type": "Research",
+    "domains": [
+      "Spatial/3D",
+      "GenVideo"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "1枚の写真や動画から、各画素までの実際の距離（メートル単位）を推定するAppleの奥行き推定AI。物の輪郭がくっきりしていて、動画でもフレーム間でちらつかないのが特徴。macOS用のCore MLデモアプリも付属する。",
+    "point": "すごい点は、普通のカメラ映像だけで「どこまで何メートル離れているか」を、輪郭までシャープに、しかも動画で揺らがずに出せることです。奥行き推定は以前からありましたが、髪の毛や指先のような細い部分がぼやけたり、動画にするとフレームごとに奥行きがチラついたりするのが弱点でした。Depth Pro 2は複数のフレームをまとめて見て推定するので、輪郭の鋭さと時間方向の安定性の両方で既存手法を上回ったと報告されています。2K〜4Kの映像をそのままの解像度で扱える点も魅力です。広告や体験づくりでは、撮影済みの実写映像に後から霧や光の粒子を「奥行きどおりに」重ねる合成、2D素材の立体視・空間ビデオ化、背景だけをぼかすリフォーカス演出などが考えられます。ただし重みは研究用途限定なので、まずは企画検証やプロトタイプでの活用が現実的です。",
+    "detail": "仕組みは、入力した複数のフレームを、複数の視点を同時に扱えるTransformerでまとめて解析し、DPTと呼ばれる出力部が各フレームの奥行きマップを描き出すというものです。1枚ずつ別々に推定するのではなく前後のフレームを見比べるので、同じ壁が急に近づいたり遠ざかったりするチラつきが抑えられます。結果は相対的な前後関係ではなく、メートル単位の実際の距離として出ます。\n\n従来の単一フレーム型（初代Depth Proなど）は動画で揺らぎやすく、複数フレーム型は輪郭が甘くなりがちでした。本手法はSintel・Springの評価で、輪郭の鋭さ（Boundary F1）と揺らぎの少なさ（Jitter）の両方で既存手法を上回ったとされています。\n\n使うには、GitHubのコード（推論のみ。学習コードはなし）を入れ、uv run depth-pro-2 predict で実行します。モデルは24M〜872Mパラメータの4サイズがあり、最小のSは97MB、既定のH+は3.5GBです。Hugging Faceにも重みがあり、MacではCore ML版のデモアプリで試せます。重みは非商用の研究用途に限られるため、案件での本番利用には別途確認が必要です。",
+    "license": {
+      "spdx": null,
+      "commercial": "research-only",
+      "note": "モデル重みはLICENSE_MODELにより非商用の研究目的に限定。コードのライセンス種別はページ上で明示されていない"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/apple-aiml-research/ml-depth-pro-2"
+      },
+      {
+        "kind": "project",
+        "url": "https://apple-aiml-research.github.io/ml-depth-pro-2/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2611.26603"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/depth-pro-2.jpg",
+    "relatedWorks": [
+      {
+        "title": "Depth Pro 2 Core MLモデル",
+        "description": "Apple端末で動かすための変換済みモデル",
+        "url": "https://huggingface.co/apple/DepthPro2-coreml/"
+      },
+      {
+        "title": "ACCORD",
+        "description": "1台のカメラ＋IMUと奥行き基盤モデルで、メートル精度の密な3D地図を作るオープンソース",
+        "url": "https://github.com/be2rlab/ACCORD"
+      },
+      {
+        "title": "LingBot-Map",
+        "description": "動画ストリームから約20FPSで3D再構成する手法",
+        "url": "https://github.com/robbyant/lingbot-map"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "anymachine",
     "title": "AnyMachine",
     "org": "Apekshik Panigrahi（個人。fal所属のエンジニア）",
