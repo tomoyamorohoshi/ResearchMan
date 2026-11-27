@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "statusAsOf": "2026-11-26",
+  "statusAsOf": "2026-11-27",
   "items": [
+    {
+      "id": "2026-ntticc-who-decides-what-this-body-is",
+      "slug": "2026-ntticc-who-decides-what-this-body-is",
+      "title": "わたしの身体はだれのもの？",
+      "artists": [
+        "池添俊",
+        "小宮りさ麻吏奈",
+        "花形槙",
+        "ヒワ・K",
+        "福原志保"
+      ],
+      "venue": "NTTインターコミュニケーション・センター [ICC] ギャラリーA",
+      "venueType": "media_art_center",
+      "prefecture": "東京都",
+      "city": "新宿区",
+      "startDate": "2026-12-05",
+      "endDate": "2027-03-07",
+      "status": "upcoming",
+      "admission": "一般800円",
+      "tags": [
+        "media_art",
+        "installation"
+      ],
+      "score": 62,
+      "matchReason": "ICCの企画展。医療・法・テクノロジーが身体の境界をどう決めるかを、5作家の作品で問う。細胞培養、ウェアラブル技術などを扱い、福原志保は新作を出品する。",
+      "sources": [
+        {
+          "name": "わたしの身体はだれのもの？",
+          "url": "https://www.ntticc.or.jp/ja/exhibitions/2026/who-decides-what-this-body-is/",
+          "kind": "official"
+        },
+        {
+          "name": "ICC 展覧会一覧",
+          "url": "https://www.ntticc.or.jp/ja/exhibitions/",
+          "kind": "listing"
+        }
+      ],
+      "link": "https://www.ntticc.or.jp/ja/exhibitions/2026/who-decides-what-this-body-is/",
+      "thumbnail": "/thumbnails/exhibition/2026-ntticc-who-decides-what-this-body-is.jpg",
+      "addedAt": "2026-11-27T01:46:38.414Z",
+      "origin": "auto",
+      "highlight": false
+    },
     {
       "id": "2026-yoyogi-park-panorama-plaza-meet-your-art-festival-annex",
       "slug": "2026-yoyogi-park-panorama-plaza-meet-your-art-festival-annex",
