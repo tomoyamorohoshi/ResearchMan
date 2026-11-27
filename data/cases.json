@@ -144000,5 +144000,604 @@
       "Theme/Art"
     ],
     "thumbnail": "/thumbnails/yakushima-treasure-another-live-from-yakushima.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "netflix-dark-interactive-netflix-guide",
+    "title": "Dark: Interactive Netflix Guide",
+    "summary": "時間軸が入り組んだNetflixドラマ『ダーク』を、ネタバレせずに整理して追えるようにした公式インタラクティブガイドサイト。",
+    "client": "Netflix",
+    "agency": "MEDIAMONKS, Hilversum / HENRIK & SOFIA, Västerås",
+    "categories": [
+      "Digital Craft"
+    ],
+    "award": "Cannes Lions 2021 Digital Craft Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Digital Craft",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.commarts.com/webpicks/dark",
+    "videoId": "",
+    "overview": "Netflixのドイツ発オリジナルシリーズ『ダーク』の公式ガイドサイト。Henrik & Sofiaがコンセプト・UX・デザインを担当し、MediaMonksがサイト構築とアニメーション、サウンドデザインを手がけた（Communication Arts）。",
+    "background": "『ダーク』は複数の時代と世代を行き来する時間旅行ものの物語で、登場人物の関係や出来事の因果をつかむのが難しい作品として知られる。Rolling Stone Brasilは、Netflixが視聴者の混乱を見越し、シーズン3の配信前にこのサイトを公開したと報じた。",
+    "execution": "利用者が見終えたシーズンと話数を選ぶと、サイトの中心となる家系図と記事がその時点までの内容に絞り込まれ、先の展開が表示されない。主要な出来事750件を記事とアニメーション付きの年表で解説し、人物・物・場所・時代ごとの記事も用意した。8言語に対応し、作中の三角形の紋章（トリケトラ）や万華鏡風の画面切り替え、不穏な効果音で作品の世界観を再現している。技術面ではWebGLやGSAP、Vue.jsを使った（Communication Arts）。",
+    "evaluationImpact": "Webby AwardsのBest User Experience部門を受賞し、Awwwardsでは2020年のSite of the Year（Users' Choice）に選ばれた。カンヌライオンズ2021のDigital Craft部門でBronzeを受賞した。",
+    "tags": [
+      "Form/Website",
+      "Tech/Web",
+      "Theme/Entertainment"
+    ],
+    "thumbnail": "/thumbnails/netflix-dark-interactive-netflix-guide.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "belong-carbon-thumbprint",
+    "title": "Belong Carbon Thumbprint",
+    "summary": "スマホのデータ通信で出るCO2を「Carbon Thumbprint」という指標で見積もり、ARで目の前に見せるアプリを軸にした、オーストラリアの通信会社Belongの施策。",
+    "client": "Belong",
+    "agency": "DELOITTE DIGITAL, Melbourne",
+    "categories": [
+      "Digital Craft"
+    ],
+    "award": "Cannes Lions 2021 Digital Craft Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Digital Craft",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://en.reset.org/carbon-thumbprint-01102021/",
+    "videoId": "",
+    "overview": "Telstra傘下の格安通信ブランドBelongが、Deloitte Digitalと組んで実施した施策。モバイルデータ利用による排出量を個人単位で見える化し、カーボンニュートラルな同社サービスへの乗り換えを促した。",
+    "background": "Belongは2019年12月にカーボンニュートラル認証を取得した。一方で、多くのオーストラリア人はモバイルデータの利用とCO2排出を結びつけて考えていなかった。同社は、国内のモバイルデータ通信が年間50万トン超のCO2を排出していると見積もっている（RESET、Belong公式ページ）。",
+    "execution": "2020年の世界環境デーに公開したアプリでは、動画視聴やSNS、アプリのダウンロードといったスマホの使い方を質問に答えて入力すると、データ使用量と排出量が見積もられる。結果はARで、現実の風景に浮かぶCO2の塊として表示される（RESET、Green Queen）。広告では「あなたのCarbon Thumbprintは？」と問いかけてアプリに誘導した。",
+    "evaluationImpact": "RESETは、アプリがAndroidとiOSで1万件超ダウンロードされたと報じた。カンヌライオンズ2021のDigital Craft部門でBronzeを受賞した。",
+    "tags": [
+      "Form/App",
+      "Tech/XR",
+      "Tech/Data",
+      "Theme/Sustainability"
+    ],
+    "thumbnail": "/thumbnails/belong-carbon-thumbprint.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "distell-decoloniseautocorrect",
+    "title": "#Decoloniseautocorrect",
+    "summary": "スマホの自動修正（オートコレクト）に南アフリカの先住民族の言語を「覚えさせる」連絡先ファイルを、サイダーブランドSavannaが配布した施策。",
+    "client": "Distell",
+    "agency": "GREY SOUTH AFRICA, Johannesburg / WPP TEAM LIQUID, Johannesburg",
+    "categories": [
+      "Digital Craft",
+      "Direct"
+    ],
+    "award": "Cannes Lions 2021 Digital Craft Lions Bronze / Cannes Lions 2021 Direct Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Digital Craft",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Direct",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "アフリカ"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/decolonise-autocorrect",
+    "videoId": "",
+    "overview": "Distellのサイダーブランド「Savanna」とGreyによるキャンペーン。#DecoloniseAutocorrectを掲げ、英語以外の公用語で打った言葉が勝手に直されてしまう問題に、無料でダウンロードできるファイルで応えた。",
+    "background": "南アフリカには11の公用語があるが、スマホの自動修正が前提にしているのは事実上英語だけで、先住民族の言語で打った単語は誤りとして書き換えられてしまう。",
+    "execution": "自動修正は、連絡先に登録された語を直さない。この仕組みを使い、各言語でよく使われる約500語を収めた連絡先ファイルを言語ごとに用意し、専用のモバイルサイトで配布した。ファイルを読み込むだけで、その言語の単語が自動修正されなくなる。告知はSNSとディスプレイ広告で行い、2019年末から展開した。",
+    "evaluationImpact": "D&AD Awards 2021で入選し、Clio AwardsではSilverを受賞した。カンヌライオンズ2021ではDigital Craft部門とDirect部門でそれぞれBronzeを受賞した。",
+    "tags": [
+      "Theme/SocialGood",
+      "Form/Website",
+      "Form/SNS",
+      "Tech/Device"
+    ],
+    "thumbnail": "/thumbnails/distell-decoloniseautocorrect.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "verizon-the-met-unframed",
+    "title": "The Met Unframed",
+    "summary": "メトロポリタン美術館のバーチャル展示室をスマホで巡り、ゲームに挑むと名作を自宅にARで飾れる、Verizonとの期間限定のデジタル体験。",
+    "client": "Verizon",
+    "agency": "140NYC, New Jersey / VERIZON, New York / METROPOLITAN COLLEGE OF NEW YORK, New York",
+    "categories": [
+      "Digital Craft",
+      "Mobile"
+    ],
+    "award": "Cannes Lions 2021 Digital Craft Lions Bronze / Cannes Lions 2021 Mobile Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Digital Craft",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Mobile",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.metmuseum.org/press-releases/the-met-unframed-2021-news",
+    "videoId": "",
+    "overview": "メトロポリタン美術館とVerizonが2021年1月に公開した、無料のウェブ体験。アプリのダウンロードなしにスマホのブラウザで遊べる。制作はUnit9が担当した（同館プレスリリース、The Art Newspaper）。",
+    "background": "コロナ禍で来館が難しかった時期に、同館のコレクションを家庭に届ける試みとして実施された。Verizonにとっては、5G Ultra Widebandネットワークの体験価値を示す機会でもあった。",
+    "execution": "「Power」「Home」「Nature」「Journey」といったテーマごとに、デジタルで描き起こした十数室の展示室を用意し、所蔵作品約50点を展示した。クイズや謎解き、作品の細部を探すゲームに加え、赤外線などの調査画像で下描きを見せるゲームもあり、クリアすると作品を自宅の床や壁にARで一定時間飾れる。4作品には、5G利用者向けに作品が動き出す追加の演出があった。4Gと5Gのどちらでも利用でき、公開期間は5週間に限った。",
+    "evaluationImpact": "The Art NewspaperのXRレビュー（3人の評者による採点）では4/5と評価され、確立したVR・AR技術を洗練された形で使っている点が評価された。一方で、公開期間の短さを惜しむ声もあった。カンヌライオンズ2021ではMobile部門でSilver、Digital Craft部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Art",
+      "Tech/XR",
+      "Tech/Web",
+      "Tech/Game",
+      "Form/Exhibition"
+    ],
+    "thumbnail": "/thumbnails/verizon-the-met-unframed.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "the-ddr-musuem-tear-down-this-wall",
+    "title": "Tear Down This Wall",
+    "summary": "ARゲーム「Minecraft Earth」上に実物大のベルリンの壁を再現し、若い世代が友人と一緒に壁を壊しながら歴史を学べるようにしたDDR博物館の教育施策。",
+    "client": "The Ddr Musuem",
+    "agency": "VIRTUE, Copenhagen / NO SLEEP, Copenhagen",
+    "categories": [
+      "Digital Craft"
+    ],
+    "award": "Cannes Lions 2021 Digital Craft Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Digital Craft",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://blooloop.com/museum/news/ddr-museums-tear-down-this-wall-minecraft/",
+    "videoId": "",
+    "overview": "ベルリンのDDR博物館（旧東ドイツの暮らしを伝える博物館）とVIRTUEによる取り組み。Minecraft EarthのAR機能を使い、壁の建設から崩壊までを体験しながら学ぶ教材にした。",
+    "background": "ベルリンの壁の崩壊から30年以上が経ち、当時を知らない若い世代が増えている。博物館は、若者に身近なゲームを入り口に、壁の歴史への関心を呼び起こそうとした。",
+    "execution": "史実に沿って作った1:1スケールの壁を、卓上サイズで組み立てたあと、現実の空間や元の壁があったベルリンの場所に実物大で置ける。友人や同級生を招き、つるはしで壁を壊して1989年の出来事を追体験できるほか、壁が崩れる前の東ドイツの暮らしも学べる。開発には14か月をかけた。6〜9年生向けの授業プログラム（グループ課題と討論の手引き）を教員と共同で作り、teardownwalls.orgで建築データ（Buildplate）と教材を配布した（blooloop、2020年12月）。",
+    "evaluationImpact": "Eurobestで金賞1つと銅賞2つを受賞し、D&AD Awards 2021でも入選した。カンヌライオンズ2021のDigital Craft部門でBronzeを受賞した。",
+    "tags": [
+      "Tech/XR",
+      "Tech/Game",
+      "Theme/Education"
+    ],
+    "thumbnail": "/thumbnails/the-ddr-musuem-tear-down-this-wall.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "parkwood-entertainment-beyonce-blue-ivy-saint-jhn-wizkid-brown-skin-girl",
+    "title": "Beyoncé, Blue Ivy, Saint Jhn, Wizkid - Brown Skin Girl",
+    "summary": "ビジュアルアルバム『Black Is King』の1曲を独立したMVとして公開し、黒人女性をはじめ濃い肌の色を持つ女性たちの美しさを讃えた作品。",
+    "client": "Parkwood Entertainment",
+    "agency": "PARKWOOD ENTERTAINMENT, New York / ICONOCLAST, London",
+    "categories": [
+      "Entertainment Lions for Music"
+    ],
+    "award": "Cannes Lions 2021 Entertainment Lions for Music Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Entertainment Lions for Music",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://en.wikipedia.org/wiki/Brown_Skin_Girl",
+    "videoId": "vRFS0MYTC1I",
+    "overview": "Beyoncé、Blue Ivy、SAINt JHN、Wizkidによる楽曲「Brown Skin Girl」のミュージックビデオ。Disney+で2020年7月31日に配信された映画『Black Is King』の一編で、2020年8月24日に単独のMVとしてBeyoncéのYouTubeチャンネルで公開された。監督はナイジェリア系英国人のJenn Nkiru。",
+    "background": "Wikipediaによれば、映像は「濃い肌の美しさを讃え、肯定する」ことを狙っている。Essenceによれば、Nkiruは『Black Is King』で唯一の女性監督で、作品の中で黒人女性が監督した唯一のMVでもある。報道では、黒人以外のコミュニティでも肌の色による差別（カラリズム）に向き合う女性がいることを示すため、ブラジル先住民や東南アジア系の女性も出演させたとされる。",
+    "execution": "黒人のデビュタント・ボール（社交界デビューの舞踏会）を軸に、アフリカの伝統的な髪型や、マンベトゥ族に着想を得た冠などを取り入れた。撮影は主に南ロンドンで行われた。Lupita Nyong'o、Naomi Campbell、Kelly Rowland、Tina Knowles-Lawson、モデルのAdut Akechらが出演し、Beyoncéの娘Blue IvyとRumiも登場する（Rolling Stone、Wikipedia）。",
+    "evaluationImpact": "第63回グラミー賞で最優秀ミュージックビデオ賞を受賞したほか、Soul Train Music AwardsのVideo of the Year、MTV VMAの最優秀撮影賞、NAACP Image Awardも受賞した（Wikipedia）。楽曲は米Billboard Hot 100で最高76位を記録した。カンヌライオンズ2021のEntertainment Lions for MusicでGoldを受賞した。",
+    "tags": [
+      "Form/MV",
+      "Theme/Music",
+      "Theme/SocialGood",
+      "Theme/Fashion"
+    ],
+    "thumbnail": "/thumbnails/parkwood-entertainment-beyonce-blue-ivy-saint-jhn-wizkid-brown-skin-girl.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "pokemon-p25-music",
+    "title": "P25 Music",
+    "summary": "ポケモン25周年を記念して、Universal Music Groupと組み、人気アーティストのバーチャルライブや楽曲・アルバムを1年かけて展開した音楽プログラム。",
+    "client": "Pokémon",
+    "agency": "MEDIACOM, New York / MEDIACOM CREATIVE SYSTEMS, New York",
+    "categories": [
+      "Entertainment Lions for Music"
+    ],
+    "award": "Cannes Lions 2021 Entertainment Lions for Music Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Entertainment Lions for Music",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://www.rollingstone.com/music/music-news/pokemon-p25-album-universal-katy-perry-j-balvin-post-malone-1133408/",
+    "videoId": "nQCRYhO7JNE",
+    "overview": "The Pokémon Company InternationalとUniversal Music Groupによる、25周年記念の1年間の音楽プログラム「P25 Music」。Post Maloneのバーチャルコンサートを皮切りに、Katy Perry、J Balvin、Lil Yachty、Vince Staples、Tierra Whack、Mabelら多ジャンルのアーティストがポケモンに着想を得た楽曲を発表した。",
+    "background": "ポケモンは2021年に25周年を迎えた。ゲームやアニメのファンにとどまらず、各国の音楽ファンにも記念年を届けるため、大手音楽レーベルと組んで音楽を軸にした1年間の企画を組んだ（Rolling Stone、Nintendo Life）。",
+    "execution": "ポケモンデー（2021年2月）に、Post Maloneのバーチャルコンサートをポケモン公式YouTubeなどで配信した。約13分の映像で、モーションキャプチャーで再現したPost Maloneがポケモンの世界で演奏し、Hootie & the Blowfishの「Only Wanna Be with You」のカバーなどを披露した（Nintendo Life）。5月にはKaty Perryの「Electric」が公開された。その後2021年10月15日には、11組のアーティストによる14曲を収めた『Pokémon 25: The Album』がCapitol Recordsから発売された（Good Morning America、Rolling Stone）。",
+    "evaluationImpact": "ゲームのIPと世界的なアーティストを掛け合わせた記念企画として、Rolling StoneやGood Morning Americaなど一般メディアでも広く報じられた。カンヌライオンズ2021のEntertainment Lions for MusicでGoldを受賞した。",
+    "tags": [
+      "Theme/Music",
+      "Theme/Entertainment",
+      "Tech/Game",
+      "Form/Event",
+      "Tech/3D"
+    ],
+    "thumbnail": "/thumbnails/pokemon-p25-music.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "aigel-you-re-born",
+    "title": "You'Re Born",
+    "summary": "氷に穿った十字の穴に飛び込んだ権力者が若い男になって現れる寓話で、終わらない権力を描いたロシアのデュオAigelのMV。",
+    "client": "Aigel",
+    "agency": "TAKE-SHOT, Moscow",
+    "categories": [
+      "Entertainment Lions for Music"
+    ],
+    "award": "Cannes Lions 2021 Entertainment Lions for Music Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Entertainment Lions for Music",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://shots.net/news/view/youre-born-draws-on-both-the-wicked-and-divine",
+    "videoId": "",
+    "overview": "ロシアのエレクトロニック・デュオAigelの楽曲「You're Born」のミュージックビデオ。脚本・監督はAndzej Gavriss、制作はモスクワのTake-Shot。2020年に公開された。",
+    "background": "Metalocusによれば、作品は「ロシア政府で実際に起きた出来事に着想を得た」超自然的なスリラーとして作られた。shotsは、オリガルヒが支配する国への批評として読める作品だと評している。",
+    "execution": "飛行機を降りた男がシベリアの凍ったタイガへ向かい、聖職者が氷上に切り開いた十字形の水穴に、ロシア正教の慣習にならって身を沈める。男は氷の下に消え、はるかに若い男となって浮かび上がり、権力を無期限に握り続けることを暗示する（shots、Metalocus）。広大な雪原と硬質な照明の対比、低く脈打つビートで緊張感を高めている。",
+    "evaluationImpact": "shotsやMetalocusなど海外の映像・デザインメディアで取り上げられた。カンヌライオンズ2021のEntertainment Lions for MusicでSilverを受賞した。",
+    "tags": [
+      "Form/MV",
+      "Theme/Music",
+      "Theme/Art"
+    ],
+    "thumbnail": "/thumbnails/aigel-you-re-born.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "riz-ahmed-wepresent-the-long-goodbye-aneil-karia",
+    "title": "The Long Goodbye - Aneil Karia",
+    "summary": "Riz Ahmedのアルバムと対になる短編映画で、南アジア系英国人の家族が武装集団に連れ去られる近未来の英国を描き、人種差別を問うた作品。",
+    "client": "Riz Ahmed / Wepresent",
+    "agency": "SOMESUCH, London / WEPRESENT, London",
+    "categories": [
+      "Entertainment Lions for Music",
+      "Film Craft"
+    ],
+    "award": "Cannes Lions 2021 Entertainment Lions for Music Silver / Cannes Lions 2021 Film Craft Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Entertainment Lions for Music",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Film Craft",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://wepresent.wetransfer.com/story/riz-ahmed-the-long-goodbye",
+    "videoId": "",
+    "overview": "俳優・ラッパーのRiz Ahmedが共同脚本・主演を務め、Aneil Kariaが監督した約12分の短編映画。Ahmedのアルバム『The Long Goodbye』に合わせて制作され、2020年3月6日にWeTransferの編集プラットフォームWePresentとAhmedのYouTubeチャンネルで同時に公開された。",
+    "background": "アルバムは、英国と南アジア系住民との関係を「国から別れを告げられる」失恋になぞらえて描いた。映画はその主題を、ありえなくはないディストピアとして映像化した（WePresent、Short of the Week）。",
+    "execution": "結婚式の準備をする南アジア系英国人の家族の日常が、突然押し入った武装集団によって壊され、家族が通りへ引きずり出されて黒いバンに押し込まれていく様子を描く。俳優は台本なしで演じた。終盤ではAhmedがカメラに向かってラップ／独白を放つ（WePresent、Short of the Week）。",
+    "evaluationImpact": "第94回アカデミー賞（2022年）で短編実写映画賞を受賞し、Ahmedにとって初のオスカーとなった（Time Out、Irish Examiner）。英国インディペンデント映画賞（BIFA）の最優秀英国短編賞も受賞した。カンヌライオンズ2021ではFilm Craft部門でGold、Entertainment Lions for MusicでSilverを受賞した。",
+    "tags": [
+      "Form/Film",
+      "Theme/Music",
+      "Theme/SocialGood",
+      "Theme/Entertainment"
+    ],
+    "thumbnail": "/thumbnails/riz-ahmed-wepresent-the-long-goodbye-aneil-karia.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "yamaha-corporation-dear-glenn",
+    "title": "Dear Glenn",
+    "summary": "伝説的ピアニスト、グレン・グールドの演奏をAIに学ばせ、どんな楽譜でも「グールドらしく」弾き、人間と合奏もできる自動演奏ピアノを作ったヤマハのプロジェクト。",
+    "client": "Yamaha Corporation",
+    "agency": "DENTSU INC., Tokyo",
+    "categories": [
+      "Entertainment Lions for Music"
+    ],
+    "award": "Cannes Lions 2021 Entertainment Lions for Music Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Entertainment Lions for Music",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.yamaha.com/en/stories/new-values/dear-glenn",
+    "videoId": "",
+    "overview": "ヤマハが電通などと進めたAIプロジェクト「Dear Glenn」。グールドの録音を深層学習で解析し、その演奏の癖（強弱・タイミング・音の長さ）を推定したうえで、任意の楽譜からグールド風の演奏データを生成し、自動演奏ピアノ「ディスクラビア」で鳴らす。",
+    "background": "ヤマハ公式によれば、プロジェクト名はグールドの創作姿勢への敬意から名付けられ、「愛をもってつくられたAI」をテーマに、AIを通じて音楽の未来を探ることを目的とした。グレン・グールド財団の協力を得て、100時間以上の録音を学習に用いた。",
+    "execution": "2019年9月7日、オーストリア・リンツのアルスエレクトロニカ・フェスティバル（聖フローリアン修道院）で初公開。学習に使っていないバッハ「ゴールドベルク変奏曲」などを独奏したほか、ピアニストのフランチェスコ・トリスターノとのデュオや、ブルックナー管弦楽団リンツのメンバーとの合奏も行った。合奏では、人間の演奏をほぼ即時に解析し、先読みして合わせる「AI合奏技術」を使った。ドキュメンタリー映像とコンサート映像も公開された（ヤマハ公式ニュースリリース）。",
+    "evaluationImpact": "MusicRadar、Classic FM、ギズモード・ジャパンなど海外・国内の音楽メディアやテックメディアが取り上げた。カンヌライオンズ2021のEntertainment Lions for Music部門でSilverを受賞し、ヤマハとして初のカンヌライオンズ受賞となった（ヤマハ公式発表）。2022年にはグールド生誕90年を記念したグレン・グールド財団のイベントでもAIピアノが演奏した。",
+    "tags": [
+      "Tech/AI",
+      "Theme/Music",
+      "Form/Event",
+      "Tech/Device"
+    ],
+    "thumbnail": "/thumbnails/yamaha-corporation-dear-glenn.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "google-hum-to-search",
+    "title": "Hum To Search",
+    "summary": "鼻歌で曲を探せるGoogleの新機能「Hum to Search」を、Billboardと組んだ「最も鼻歌検索された曲」チャートや、鼻歌で吹き替えたCMで広めたキャンペーン。",
+    "client": "Google",
+    "agency": "GOOGLE, San Francisco / BILLBOARD, New York / PHD, New York",
+    "categories": [
+      "Entertainment Lions for Music"
+    ],
+    "award": "Cannes Lions 2021 Entertainment Lions for Music Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Entertainment Lions for Music",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://9to5google.com/2020/12/07/google-billboard-top-100-songs-hum-to-search/",
+    "videoId": "",
+    "overview": "Googleが2020年10月に発表した、鼻歌・口笛・歌声から曲名を特定する検索機能「Hum to Search」の普及施策。Google、Billboard、メディアエージェンシーのPHDが手がけた。",
+    "background": "Google公式ブログによれば、Hum to Searchは2020年10月15日のイベント「Search On」で発表された。歌詞やアーティスト名が分からなくても、10〜15秒ほど鼻歌を歌えば候補曲を表示する。機械学習でメロディを数値の並びに変換し、楽曲と照合する仕組みで、iOSでは英語、Androidでは20以上の言語に対応した。",
+    "execution": "Lil Nas X「Old Town Road」を使ったGoogleの広告で機能を紹介し、2020年12月にはBillboardと共同で、Hum to Searchで検索された曲の年間トップ100チャートを公開した（9to5Google報道）。PHDの事例ページによれば、米深夜番組「The Late Late Show with James Corden」で鼻歌対決のコーナー「The Hum-Off」も展開した。",
+    "evaluationImpact": "Billboardとの年間チャートは9to5Googleなどのテックメディアや各国の音楽メディアが取り上げ、1位は広告にも使われた「Old Town Road」、2位はRick Astley「Never Gonna Give You Up」だった。カンヌライオンズ2021のEntertainment Lions for Music部門でSilverを受賞した。",
+    "tags": [
+      "Tech/AI",
+      "Tech/Audio",
+      "Theme/Music",
+      "Tech/Data",
+      "Form/Film"
+    ],
+    "thumbnail": "/thumbnails/google-hum-to-search.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "sony-music-incucai-through-your-eyes",
+    "title": "Through Your Eyes",
+    "summary": "スマホのカメラを他人の目に向けた時だけ映像がはっきり見えるMVで、角膜提供を呼びかけたアルゼンチンの施策。",
+    "client": "Sony Music / Incucai",
+    "agency": "WUNDERMAN THOMPSON, Buenos Aires",
+    "categories": [
+      "Entertainment Lions for Music",
+      "Mobile"
+    ],
+    "award": "Cannes Lions 2021 Entertainment Lions for Music Silver / Cannes Lions 2021 Mobile Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Entertainment Lions for Music",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Mobile",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.directnewideas.com/magazine/wunderman_thompson_argentina_sony_launches_new_music_video_that_you_can_not_see/?id=3058",
+    "videoId": "",
+    "overview": "Sony Music Argentinaと、アルゼンチンの臓器移植を担う公的機関INCUCAIが、歌手ダンテ・スピネッタ、Wunderman Thompson Buenos Airesと組んで制作した。スピネッタの楽曲「Aves」のミュージックビデオを、角膜提供の啓発キャンペーン「#XTUSOJOS（あなたの目で）」に使った。",
+    "background": "角膜は1人の提供で2人が再び見えるようになるとされ、INCUCAIは角膜提供への理解を広げようとしていた。楽曲「Aves（鳥）」は、鳥の目を通して世界を見るというシャーマン的な発想を題材にしており、「他人の目を借りて見る」という企画の軸と重なる（indiehoy、Vice報道）。",
+    "execution": "2020年2月に公開。MVは専用サイト（portusojos.com）でスマートフォンからのみ再生でき、カメラを別の人の目に向けた時だけ映像がはっきり見える。それ以外では、角膜移植を待つ人の見え方のように、ぼやけて影と強い色に覆われる。PCでアクセスした場合はQRコードでスマホへ誘導した。アーティストのTokyytoが制作したInstagramフィルターで、ストーリーズでの拡散も促した（indiehoy、Direct New Ideas）。",
+    "evaluationImpact": "アルゼンチンの音楽メディアindiehoyやViceのスペイン語版などが取り上げた。カンヌライオンズ2021ではEntertainment Lions for Music部門とMobile部門でそれぞれSilverを受賞した。",
+    "tags": [
+      "Form/MV",
+      "Theme/Health",
+      "Theme/SocialGood",
+      "Theme/Music",
+      "Form/Website",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/sony-music-incucai-through-your-eyes.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "adidas-jd-sports-3-bar-superstar",
+    "title": "3 Bar Superstar",
+    "summary": "Kanoの新曲から3小節を抜き、その空白を埋めるラップを一般から募って新人を発掘した、adidas Superstar 50周年のタレントオーディション。",
+    "client": "Adidas & Jd Sports",
+    "agency": "McCANN, London",
+    "categories": [
+      "Entertainment Lions for Music",
+      "Mobile"
+    ],
+    "award": "Cannes Lions 2021 Entertainment Lions for Music Bronze / Cannes Lions 2021 Mobile Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Entertainment Lions for Music",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Mobile",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://mixmag.net/read/kano-adidas-originals-jd-sports-3-bar-superstar-music",
+    "videoId": "",
+    "overview": "adidas OriginalsとJD Sportsが、英国グライムの第一人者Kanoと組んで実施した。スニーカー「Superstar」の50周年を記念した企画で、McCann Londonが手がけた。",
+    "background": "Superstarの象徴である「3本線」を「3小節（3 bars）」に置き換えたのが発想の起点。音楽、特にグライムやラップと結びつきの強いブランドの文脈を、若い無名のアーティストを見いだす機会に変えた（Mixmag報道）。",
+    "execution": "KanoはMixmag報道でいう新曲「Pan Fried」から3小節分のボーカルを抜き、応募者はその空白に自作の3小節のラップを録音して投稿した。応募はJD SportsのWebサイト（JDsports.co.uk/3barsuperstar）から2020年2月13日に始まり、ロンドン・マンチェスター・バーミンガムを巡回する録音ブースでも受け付けた。優勝者には、自分の3小節をレコーディングする機会と、Kano本人による指導が与えられた（Mixmag、SGI Europe）。",
+    "evaluationImpact": "Mixmagやスポーツ用品の業界誌SGI Europeなどが取り上げた。カンヌライオンズ2021ではEntertainment Lions for Music部門とMobile部門でそれぞれBronzeを受賞した。",
+    "tags": [
+      "Theme/Music",
+      "Theme/Fashion",
+      "Theme/Retail",
+      "Form/Website",
+      "Form/Event"
+    ],
+    "thumbnail": "/thumbnails/adidas-jd-sports-3-bar-superstar.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "tiktok-levitating-campaign",
+    "title": "#Levitating Campaign",
+    "summary": "ドゥア・リパの「Levitating」MVを、TikTokユーザーから集めた振付・メイク・アニメーションと、選ばれたクリエイター16人の出演で共作したキャンペーン。",
+    "client": "Tiktok",
+    "agency": "DRUM, London",
+    "categories": [
+      "Entertainment Lions for Music"
+    ],
+    "award": "Cannes Lions 2021 Entertainment Lions for Music Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Entertainment Lions for Music",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://newsroom.tiktok.com/en-us/dua-lipa-land-levitating-video-with-help-from-tiktok",
+    "videoId": "",
+    "overview": "TikTokが、Tap Music、Warner Records、クリエイティブ・パートナーシップ・エージェンシーのDrum（ロンドン）と組み、ドゥア・リパ「Levitating（feat. DaBaby）」のリミックス版MVをファン参加型で制作した。",
+    "background": "ファンが楽曲に合わせて動画を作るTikTokの文化を、アーティスト本人の公式作品づくりにつなげ、TikTokを音楽プロモーションの起点として示す狙いがあった。Drumは、提携の取りまとめと制作面の統括を担った。",
+    "execution": "世界中のTikTokユーザーから、グラムメイク、アニメーション、ダンスの振付を募集し、選ばれた作品をMVに採用した。選抜されたクリエイター16人は、Warren Fu監督のもとでMVづくりに参加し、一部はドゥア・リパのダンサーやローラーガール役として出演した。あわせて、TikTokのスローモーション機能で「浮遊する」動画を投稿する #Levitating チャレンジも始めた。2020年10月2日のMV公開に合わせ、ニューヨークのタイムズスクエアや欧州の都市での屋外広告、デジタル・SNS広告を世界で展開した（TikTok Newsroom、Music Week）。",
+    "evaluationImpact": "Music Weekなどの音楽業界メディアが取り上げ、ドゥア・リパ本人が応募動画を紹介したこともマレーシアの英字紙The Starなどで報じられた。カンヌライオンズ2021のEntertainment Lions for Music部門でBronzeを受賞した。",
+    "tags": [
+      "Form/SNS",
+      "Form/MV",
+      "Theme/Music",
+      "Theme/Entertainment",
+      "Form/OOH"
+    ],
+    "thumbnail": "/thumbnails/tiktok-levitating-campaign.jpg"
   }
 ]
