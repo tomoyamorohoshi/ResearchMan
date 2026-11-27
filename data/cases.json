@@ -143328,5 +143328,677 @@
       "Tech/Device"
     ],
     "thumbnail": "/thumbnails/vice-media-the-8-bit-journo.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "interval-house-freedom-tampons",
+    "title": "Freedom Tampons",
+    "summary": "DV被害者が家を出るために必要な情報を、加害者がまず見ない場所であるタンポンに印刷して届けた、トロントの女性シェルターの施策。",
+    "client": "Interval House",
+    "agency": "UNION, Toronto",
+    "categories": [
+      "Creative Strategy",
+      "Media"
+    ],
+    "award": "Cannes Lions 2021 Creative Strategy Lions Silver / Cannes Lions 2021 Media Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Creative Strategy",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Media",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://creativepool.com/adam-thur/projects/freedom-tampons-for-interval-house",
+    "videoId": "",
+    "overview": "トロントのDV被害女性向けシェルターInterval HouseとUNIONによる施策。危機相談ホットラインの番号や虐待のサインなどを印刷した専用タンポン「Freedom Tampons」を作り、被害女性の手元へひそかに届けることを狙った。",
+    "background": "虐待関係にある女性は、パートナーから行動や持ち物を細かく監視されていることが多く、支援団体のパンフレットや連絡先を持ち歩くこと自体が危険になり得る。そこで、男性の加害者が手に取ったり調べたりする可能性の低い生理用品を情報の運び手に選んだ。",
+    "execution": "タンポン本体に、Interval Houseの危機相談ホットラインの番号、虐待のサイン、家を出るときの持ち物チェックリストなどを印刷し、中身が分からない再封可能なパッケージに入れた。ソーシャルワーカーなど被害女性と接する現場の支援者を通じて配ったほか、公共の女性用トイレのディスペンサーにも置いた。",
+    "evaluationImpact": "カナダ国内の広告賞でも受賞を重ね、カンヌライオンズ2021ではCreative Strategy部門とMedia部門でそれぞれSilverを受賞した。",
+    "tags": [
+      "Theme/SocialGood",
+      "Form/Product",
+      "Theme/Health"
+    ],
+    "thumbnail": "/thumbnails/interval-house-freedom-tampons.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "xxx-filled-by-palsy",
+    "title": "Filled By Palsy",
+    "summary": "脳性まひのある人たちを確定申告の代行チームに育て、申告を手伝う代わりに所得税の0.5%を協会へ寄付してもらう、リスボン脳性まひ協会の施策。",
+    "client": "Xxx",
+    "agency": "HAVAS, Lisbon",
+    "categories": [
+      "Creative Strategy"
+    ],
+    "award": "Cannes Lions 2021 Creative Strategy Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Creative Strategy",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://echoboomer.pt/utentes-paralisia-cerebral-declaram-irs-portugueses",
+    "videoId": "",
+    "overview": "リスボン脳性まひ協会（APCL）とHavas Lisbonによるプロジェクト「Preenchido pela Paralisia（Filled by Palsy）」。脳性まひのある当事者による会計チームが、市民の所得税申告書（Modelo 3）の作成を無料で代行する。",
+    "background": "ポルトガルでは、納税者は所得税の0.5%を追加負担なしでNPOなどに振り向けられる。しかしEcho Boomerの報道によれば、前年はおよそ7割の納税者がこの制度を使っていなかった。申告作業の手間も壁になっており、APCLはこの寄付の取り込みと同時に、「障害は能力がないことを意味しない」と示すことを狙った。",
+    "execution": "研修を終えた脳性まひのある4人がチームを組み、公認会計士の監督のもとで申告書を作成する。納税者はプロジェクトのサイトから依頼でき、条件は所得税の0.5%をAPCLに振り向けることだけ。振り向けても還付額が減ったり納税額が増えたりはしない（Echo Boomer、2020年4月）。",
+    "evaluationImpact": "当事者を支援される側ではなく、専門的な役務を提供する側として描いた点が注目された。カンヌライオンズ2021のCreative Strategy部門でSilverを受賞した。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Health"
+    ],
+    "thumbnail": "/thumbnails/xxx-filled-by-palsy.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "canon-truthmark",
+    "title": "Truthmark",
+    "summary": "報道写真が別の文脈で使われてフェイクニュースに悪用されるのを防ぐため、撮影者が写真と本当の経緯をセットで登録できる照合データベースをCanonが立ち上げた施策。",
+    "client": "Canon",
+    "agency": "UNCLE GREY, Copenhagen",
+    "categories": [
+      "Creative Strategy"
+    ],
+    "award": "Cannes Lions 2021 Creative Strategy Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Creative Strategy",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.itsnicethat.com/news/truthmark-photo-database-canon-uncle-grey-copenhagen-photography-280720",
+    "videoId": "",
+    "overview": "Canon NordicとUncle Grey Copenhagenが2020年7月に公開した写真データベース「Truthmark」。写真家が画像と撮影時の文脈を登録し、記者や一般の人が無料の画像検索で写真の出どころと本来の文脈を確かめられる。",
+    "background": "古い写真が文脈を外れて使われ、誤情報の「証拠」になる事例が増えていた。It's Nice Thatの報道では、ノルウェーの空の病院を写した古い写真が「新型コロナはノルウェーに存在しない」という主張に使われた例が挙げられている。カメラメーカーとして写真の真実性を守る役割を打ち出した。",
+    "execution": "写真家は著作権を保持したまま、写真と撮影の経緯を登録する。画像と情報は1つのファイルとして暗号化され、デジタル指紋の技術で、多少加工された画像でも元の写真と説明を照合できる。ローンチ時にはWorld Press Photo受賞者のIvor Prickett、Johnny Haglund、ピュリッツァー賞受賞者のDaniel Etterへのインタビュー映像をSNSで展開した（It's Nice That、The Stable）。",
+    "evaluationImpact": "デザインやテクノロジー系のメディアで広く紹介された。一方、写真家が原本を登録していなければ照合できず、確認する習慣のない人には届かないという限界も指摘された。カンヌライオンズ2021のCreative Strategy部門でBronzeを受賞した。",
+    "tags": [
+      "Tech/Data",
+      "Form/Website",
+      "Theme/Art"
+    ],
+    "thumbnail": "/thumbnails/canon-truthmark.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "child-focus-porn-re-enactment",
+    "title": "Porn Re-Enactment",
+    "summary": "性科学者が「初のポルノ映画を撮る」と予告して注目を集め、公開されたのは実際の児童性的虐待映像を大人の俳優で再現した啓発映画だった、Child Focusの施策。",
+    "client": "Child Focus",
+    "agency": "WUNDERMAN THOMPSON, Antwerp",
+    "categories": [
+      "Creative Strategy",
+      "PR"
+    ],
+    "award": "Cannes Lions 2021 Creative Strategy Lions Bronze / Cannes Lions 2021 PR Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Creative Strategy",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "PR",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.brusselstimes.com/all-news/belgium-all-news/79124/adults-reenact-sexual-abuse-of-8-year-old-girl-in-child-focus-campaign-porn-movie-goedele-liekens-chalet-film/",
+    "videoId": "",
+    "overview": "ベルギーの児童保護団体Child FocusとWunderman Thompson Antwerpによる2019年11月の施策。性科学者のGoedele Liekensが監督し、通報窓口に寄せられた実在の虐待映像を、大人の俳優による露骨な再現映画「Chalet」にした。",
+    "background": "児童性的虐待の画像は「ポルノ」の一種として軽く扱われがちで、その裏に実際に虐待された子どもがいることが見過ごされていた。VRTの報道によれば、Child Focusへの通報は2018年に1,728件で前年から136%増えていた。団体は、こうした画像をめぐるタブーを破り、市民と政策決定者に行動を促すことを狙った。",
+    "execution": "公開前日、Liekensが自身のSNSで初のポルノ映画を撮ると予告した。欧州児童性的虐待防止デー（11月18日）に、特設サイトchaletfilm.beで再現映画の全編を公開した。サイトでは虐待画像の通報方法を案内し、そうした画像を探している人には匿名の相談窓口Stop it Nowを紹介した（VRT、Brussels Times）。",
+    "evaluationImpact": "テレビニュースなどで大きく取り上げられた一方、強い反発も招いた。RTBFによればChild Focusは公開後に虐待被害者へ謝罪し、被害者団体は広告倫理審査機関（JEP）に申し立てた。カンヌライオンズ2021ではCreative Strategy部門とPR部門でそれぞれBronzeを受賞した。",
+    "tags": [
+      "Theme/SocialGood",
+      "Form/Film",
+      "Form/Stunt",
+      "Form/Website"
+    ],
+    "thumbnail": "/thumbnails/child-focus-porn-re-enactment.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "home-centre-a-dad-s-job",
+    "title": "A Dad's Job",
+    "summary": "父の日に子どもたちが「お父さん」への感謝を語る映像で、最後に語りかけていた相手がシングルマザーだと明かし、中東で語られにくい片親家庭に光を当てたHome Centreの施策。",
+    "client": "Home Centre",
+    "agency": "FP7 McCANN, Dubai",
+    "categories": [
+      "Creative Strategy",
+      "Media"
+    ],
+    "award": "Cannes Lions 2021 Creative Strategy Lions Bronze / Cannes Lions 2021 Media Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Creative Strategy",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Media",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "中東"
+    ],
+    "link": "https://wfanet.org/knowledge/item/2021/05/25/Case-study--Home-Centre-A-Dads-Job",
+    "videoId": "",
+    "overview": "中東の家具・インテリア小売Home CentreとFP7 McCann Dubaiによる2020年の父の日キャンペーン。俳優ではなく実在のシングルマザーとその子どもたちが出演し、父親の役目も担う母親たちをたたえた。",
+    "background": "中東では家庭の約15%に父親がいないとされる一方、シングルマザーはアラブ社会で文化的なタブーとされ、広告にはほとんど登場しなかった。Home Centreは購買の中心である母親たちに寄り添い、このタブーに向き合うことを選んだ（Contagious／WFA）。",
+    "execution": "2020年6月21日の父の日に、子どもたちが父の日に伝えたい言葉を語る映像をSNSで公開し、最後に語りかけている相手がシングルマザーだと明かした。地域のインフルエンサーや女性リーダーが「I Stand For Single Moms」のメッセージで拡散したほか、父親の役割とされる作業を母親がこなす動画シリーズを制作した。母親の名前を入れられるドアプレートの販売や、収益を支援団体に寄付するギフトなど、店頭の商品にも展開した（Campaign Middle East、Contagious／WFA）。",
+    "evaluationImpact": "Contagiousの事例紹介によれば、タブーに触れたことでオンライン上の反応の約半数は否定的だったが、ブランドはこれを想定したうえで翌年2月まで展開を続けた。カンヌライオンズ2021ではCreative Strategy部門とMedia部門でそれぞれBronzeを受賞した。",
+    "tags": [
+      "Form/Film",
+      "Form/SNS",
+      "Theme/Retail",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/home-centre-a-dad-s-job.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "cox-communications-drawn-closer",
+    "title": "Drawn Closer",
+    "summary": "コロナ禍で中止になった中学校の演劇を、生徒が自宅から声と表情で演じるアニメーション短編に作り変えた、Cox Communicationsの施策。",
+    "client": "Cox Communications",
+    "agency": "COX COMMUNICATIONS, Atlanta / 180LA",
+    "categories": [
+      "Digital Craft",
+      "Entertainment"
+    ],
+    "award": "Cannes Lions 2021 Digital Craft Lions Gold / Cannes Lions 2021 Digital Craft Lions Silver / Cannes Lions 2021 Entertainment Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Digital Craft",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Digital Craft",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Entertainment",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://itsnicethat.com/news/nexus-studios-cox-communications-180la-drawn-closer-animation-070521",
+    "videoId": "0ukcZed0GIA",
+    "overview": "米ケーブル・通信会社のCox Communicationsが、広告会社180LA、アニメーションスタジオNexus Studiosと組んで制作した短編アニメーション『Drawn Closer』。米ネバダ州ヘンダーソンのThurman White Academy of the Performing Artsの演劇部の生徒22人が出演した。脚本・監督はアカデミー賞受賞監督のPatrick Osborne。",
+    "background": "パンデミックで学校の舞台が閉ざされ、課外活動の多くが止まった。Coxのプレスリリースは、Educational Theatre Associationの調査を引き、2020年に85%の学校が公演を中止したと伝えている。Coxは、生徒が表現の場と仲間とのつながりを保てるよう支援することを狙った。",
+    "execution": "生徒をもとにキャラクターを描き起こした。デジタルキャラクターは生徒の動きと表情にリアルタイムで連動するよう作られ、生徒は自宅から演じながら画面上の自分の姿を確認できた。台詞はバーチャルの録音ブースで収録し、演技は顔のトラッキングで記録した。Osborne監督はZoomで演技を指導した（It's Nice That、PR Newswire）。完成作は2021年5月9日（母の日）、Coxが運営するローカル局YurViewで初放送され、オンラインのレッドカーペット付きプレミアも開かれた。",
+    "evaluationImpact": "It's Nice That、LBB Online、Shootなどの業界メディアが制作手法を取り上げた。カンヌライオンズ2021のDigital Craft部門でGoldとSilver、Entertainment部門でBronzeを受賞した。",
+    "tags": [
+      "Form/Film",
+      "Theme/Education",
+      "Theme/Entertainment"
+    ],
+    "thumbnail": "/thumbnails/cox-communications-drawn-closer.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "reporter-without-borders-rsf-the-uncensored-library",
+    "title": "The Uncensored Library",
+    "summary": "検閲で読めなくなった記事を、検閲下の国でも遊べるゲーム「Minecraft」の中の図書館に収め、若者に届けた国境なき記者団（RSF）の施策。",
+    "client": "Reporter Without Borders (Rsf)",
+    "agency": "DDB GERMANY, Berlin",
+    "categories": [
+      "Digital Craft",
+      "Direct",
+      "Entertainment",
+      "PR",
+      "Social & Influencer"
+    ],
+    "award": "Cannes Lions 2021 Digital Craft Lions Gold / Cannes Lions 2021 Direct Lions Silver / Cannes Lions 2021 Entertainment Lions Silver / Cannes Lions 2021 PR Lions Gold / Cannes Lions 2021 PR Lions Silver / Cannes Lions 2021 Social & Influencer Lions Gold / Cannes Lions 2021 Social & Influencer Lions Silver / Cannes Lions 2021 Social & Influencer Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Digital Craft",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Direct",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Entertainment",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "PR",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "PR",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Social & Influencer",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Social & Influencer",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Social & Influencer",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://rsf.org/en/news/rsf-opens-uncensored-library-digital-home-press-freedom-within-global-computer-game",
+    "videoId": "",
+    "overview": "国境なき記者団（RSF）が、DDB Germany、デザインスタジオBlockWorks、制作会社MediaMonksと組んで、Minecraft内に作った仮想図書館。自国で検閲・遮断された記事を、ゲーム内の本として誰でも読めるようにした。",
+    "background": "多くの国でニュースサイトやブログが遮断され、記者が投獄や命の危険にさらされている。一方、Minecraftはそうした国でもアクセスできた。RSFは、報道の自由度が低い国とMinecraftの利用が多い国を重ね合わせて対象国を選び、15〜30歳前後のゲーマーに検閲された報道を届けることを狙った（RSF、Dezeen）。",
+    "execution": "2020年3月12日の「サイバー検閲に反対する世界デー」に公開した。新古典主義様式の巨大な図書館を約1,250万ブロックで建設し、16か国の24人のビルダーが約3か月かけて作った。エジプト（Mada Masr）、メキシコ（Javier Valdez）、ロシア（grani.ru）、サウジアラビア（Jamal Khashoggi）、ベトナム（Nguyen Van Dai）の記事を、国ごとの展示室に本として収めた。本は読めるが書き換えはできない。中央の部屋にはRSFの「世界報道自由度ランキング」を置いた。公式サーバーへの接続のほか、オフラインで使えるマップを配布しており、複製・再配布されるため遮断されにくい（RSF、Dezeen）。のちにブラジル、ベラルーシなどの展示室や、COVID-19下の報道を扱う部屋も加わった（Wikipedia）。",
+    "evaluationImpact": "公開後にSNSで広く拡散し、BBC、CNN、The Verge、Gizmodoなど各国のメディアが取り上げた。2022年にはPeabody賞（Interactive部門）を受賞した。カンヌライオンズ2021ではDigital Craft・PR・Social & Influencer部門でGoldを受賞し、Direct・Entertainment部門などでもSilver、Bronzeを獲得した。",
+    "tags": [
+      "Tech/Game",
+      "Theme/SocialGood",
+      "Tech/3D"
+    ],
+    "thumbnail": "/thumbnails/reporter-without-borders-rsf-the-uncensored-library.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "metropolitan-transit-authority-the-mta-live-subway-map",
+    "title": "The Mta Live Subway Map",
+    "summary": "ニューヨーク地下鉄の路線図を、運行状況と列車の位置がリアルタイムで反映されるウェブ版の「生きた地図」に作り変えたMTAの施策。",
+    "client": "Metropolitan Transit Authority",
+    "agency": "MTA, New York / WORK & CO, New York",
+    "categories": [
+      "Digital Craft"
+    ],
+    "award": "Cannes Lions 2021 Digital Craft Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Digital Craft",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://work.co/news/mta-new-live-subway-map/",
+    "videoId": "",
+    "overview": "ニューヨーク都市交通局（MTA）が、デザイン会社Work & Co、Transit Innovation Partnershipと18か月かけて共同開発したウェブ版の路線図「Live Subway Map」（map.mta.info）。Work & Coは無償で、デザインから技術設計、開発、品質保証までを担った。2020年10月20日にベータ版として公開された。MTAは北米の交通機関で初の試みとしている。",
+    "background": "従来の紙の路線図（Michael Hertz Associatesらのデザイン）は、夜間・週末の運休や経路変更を表せず、利用者は別の告知を確認する必要があった。新しい地図は、Massimo Vignelliの図式的な分かりやすさとHertz版の地理的な正確さを組み合わせることを目指した（designboom、Work & Co）。",
+    "execution": "MTAのリアルタイムデータを使い、運行に合わせて路線を描き直す。運休区間は薄く表示し、片方向運転は破線で示し、走行中の列車を動く点で表示する。「今」「今夜」「週末」の切り替えで先の運行も確認できる。駅をタップすると停車路線と1時間以内の到着予定が出る。拡大すると出入口や街路まで表示され、バリアフリー駅やエレベーター・エスカレーターの稼働情報、緊急のお知らせも載る。アプリのダウンロードは不要で、ブラウザから使える。開発の過程はGary Hustwit監督の短編ドキュメンタリー『The Map』に記録された。",
+    "evaluationImpact": "designboomやCreative Boomなどのデザインメディア、現地報道が広く取り上げた。2021年のWebby Award（Best Mobile User Experience）を受賞した。カンヌライオンズ2021ではDigital Craft部門でGoldを受賞した。",
+    "tags": [
+      "Form/Website",
+      "Tech/Data",
+      "Theme/Mobility"
+    ],
+    "thumbnail": "/thumbnails/metropolitan-transit-authority-the-mta-live-subway-map.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "spotify-in-house-alone-with-me",
+    "title": "Alone With Me",
+    "summary": "ツアーができなくなったThe Weekndを、AIで再現した本人がファン一人ひとりの再生履歴をもとに語りかけ、1対1の試聴会を開くSpotifyのウェブ体験。",
+    "client": "Spotify In-House",
+    "agency": "SPOTIFY IN-HOUSE, New York",
+    "categories": [
+      "Digital Craft",
+      "Entertainment Lions for Music"
+    ],
+    "award": "Cannes Lions 2021 Digital Craft Lions Gold / Cannes Lions 2021 Digital Craft Lions Silver / Cannes Lions 2021 Entertainment Lions for Music Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Digital Craft",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Digital Craft",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Entertainment Lions for Music",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://mobilesyrup.com/2020/08/18/spotify-alone-with-me-the-weeknd/",
+    "videoId": "",
+    "overview": "Spotifyの社内チームが、The Weekndのアルバム『After Hours』のために2020年8月18日に公開したAIマイクロサイト「Alone With Me」。ファンのSpotifyの再生データと深層学習を使い、本人そっくりのThe Weekndが一人ひとりに個別に語りかける。制作はデジタルスタジオJam3が担った（Motionographer）。",
+    "background": "パンデミックで『After Hours』のツアーが中止になり、ファンがアーティストと直接触れ合う場が失われた。Spotifyは、ライブの代わりになる個人的な体験をオンラインで作ることを狙った。",
+    "execution": "サイトに入ると、AIと3Dで再現されたThe Weekndが画面に現れ、ファンの名前を呼ぶ。そのファンがどれだけ長く彼の曲を聴いてきたか、最もよく聴いた曲は何かを語り、応援への感謝を伝える。その後、アルバムから3曲を流す試聴会に移り、全身の3Dモデルが歩いたり座ったり、こちらを見つめたりしながら演じる（MobileSyrup、Hypebeast）。",
+    "evaluationImpact": "Hypebeast、MobileSyrup、uDiscover Musicなどの音楽・カルチャー系メディアが、ファンと1対1で過ごすAI体験として取り上げた。2021年のWebby賞（People's Voice）、D&ADのGraphite Pencilも受賞した。カンヌライオンズ2021ではDigital Craft部門でGoldとSilver、Entertainment Lions for Music部門でBronzeを受賞した。",
+    "tags": [
+      "Tech/AI",
+      "Tech/Data",
+      "Theme/Music",
+      "Form/Website"
+    ],
+    "thumbnail": "/thumbnails/spotify-in-house-alone-with-me.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "u-s-air-force-echo",
+    "title": "Echo",
+    "summary": "空軍の仕事に必要な「頭の力」を3つのゲームで測り、適性のある職種を提示するオンライン体験。アメリカ空軍の新兵募集施策。",
+    "client": "U.S. Air Force",
+    "agency": "GSD&M, Austin",
+    "categories": [
+      "Digital Craft"
+    ],
+    "award": "Cannes Lions 2021 Digital Craft Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Digital Craft",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.af.mil/News/Article-Display/Article/2483457/air-force-recruiting-launches-echo-to-test-cognitive-skills/",
+    "videoId": "",
+    "overview": "アメリカ空軍の新兵募集部門（Air Force Recruiting Service）とGSD&Mによるインタラクティブ体験「E.C.H.O.（Enhanced Cognitive Human Ops）」。戦闘機や迫力ある映像に頼りがちな軍の募集広告とは異なり、空軍が求める認知能力そのものを体験させる。",
+    "background": "GSD&Mの説明によれば、パンデミックで対面の募集活動が難しくなり、空軍が募集体験のオンライン化を求めたことが出発点となった。米空軍の発表では、募集担当者が特定の職種を勧めやすくし、志願者を職種ごとに絞り込む狙いがあるとされる。",
+    "execution": "実在の空軍兵のホログラムが案内役となり、3つのミッションで反応速度・状況把握力・冷静さなど6つの認知スキルを測る。終了時に認知スコアと、その結果に合った空軍の職種が示され、何度でも挑戦してスコアを伸ばせる。デスクトップ、モバイル、VRで動き、開発はActive Theory、サウンドデザインはPlan8が担当した（ADC Awardsのクレジット）。イベント向けにVR版を載せた移動式の設備も計画された（米空軍発表）。",
+    "evaluationImpact": "カンヌライオンズ2021のDigital Craft部門でSilverを受賞した。同年のADC AwardsでMerit、Webby Awardsでも受賞している。",
+    "tags": [
+      "Tech/Game",
+      "Form/Website",
+      "Tech/XR",
+      "Tech/3D"
+    ],
+    "thumbnail": "/thumbnails/u-s-air-force-echo.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "meter-environment-meltdown-flags",
+    "title": "Meltdown Flags",
+    "summary": "氷河のある国の国旗から白い部分を減らし、1995年から2050年までの氷河の後退を国旗そのもので見せたデータ可視化プロジェクト。",
+    "client": "Meter Environment",
+    "agency": "SERVICEPLAN GERMANY, Munich",
+    "categories": [
+      "Digital Craft"
+    ],
+    "award": "Cannes Lions 2021 Digital Craft Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Digital Craft",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.thisiscolossal.com/2020/03/meltdown-flags-glaciers/",
+    "videoId": "",
+    "overview": "環境計測機器メーカーのMETERが発起し、Serviceplanが手がけたオープンソースの気候プロジェクト。氷河を持つ国の国旗の「白」を氷河の量に見立て、過去のデータと将来予測に応じて白を細らせた旗をつくった。",
+    "background": "Serviceplanの事例ページによれば、氷河は世界で利用できる淡水の69%を蓄えており、その融解は飲み水・農業・エネルギー供給に影響し、海面上昇も招く。複雑な科学データを誰にでも分かる形にし、政治への圧力にすることを狙った。",
+    "execution": "期間は、第1回国連気候変動会議が開かれた1995年から、国連が実質ゼロ排出の目標年とする2050年まで。METER、UNESCO、NASA、世界氷河モニタリングサービス（WGMS）、チューリッヒ大学などのデータを基にした。Colossalの紹介では、カナダ国旗の中央の白帯や米国旗の白い縞が2050年に向けて細くなる。Webサイトmeltdownflags.orgでは国ごとの氷河後退の統計や人口・排出量を見られる。2019年12月にマドリードのCOP25で公開され、Instagramを通じて活動家やイベントのネットワークを広げた。",
+    "evaluationImpact": "カンヌライオンズ2021のDigital Craft部門でSilverを受賞した。Colossalなどのデザインメディアが取り上げ、D&ADやRed Dotでも受賞している。",
+    "tags": [
+      "Theme/Sustainability",
+      "Tech/Data",
+      "Form/Website",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/meter-environment-meltdown-flags.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "shiseido-the-continuously-changing-brand-identity-shiseido-karakusa",
+    "title": "The Continuously Changing Brand Identity “Shiseido Karakusa”",
+    "summary": "約100年使われてきた資生堂の唐草模様をプログラムで生成できるようにし、環境データに応じて姿を変え続けるブランドアイデンティティにした取り組み。",
+    "client": "Shiseido",
+    "agency": "DENTSU INC., Tokyo / SHISEIDO CO., LTD., Tokyo",
+    "categories": [
+      "Digital Craft"
+    ],
+    "award": "Cannes Lions 2021 Digital Craft Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Digital Craft",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "国内"
+    ],
+    "link": "https://qosmo.jp/en/news/shiseido-karakusa",
+    "videoId": "",
+    "overview": "資生堂、電通、Qosmoなどによるプロジェクト。資生堂の製品や広告に1920年代から使われてきた唐草模様を、手描きの作法を受け継いだまま、デジタル時代に合わせて自動生成できるデザインシステムに作り替えた。",
+    "background": "唐草は資生堂を象徴する渦巻きの文様で、これまでは社内のデザイナーが手で描いてきた。伝統と革新の両方を伝えるブランドの表現として、描き手の技に頼らず唐草を際限なく生み出せる仕組みが求められた。",
+    "execution": "One Showの作品ページの説明では、Truchetタイル（向きを変えて並べると模様がつながるタイル）と、面を埋める数学的な手法を組み合わせて唐草を際限なく生成する。このシステムを使い、Qosmoのビジュアルプログラマー堂園翔矢がインタラクティブ作品「GINZA KARAKUSA BIOTOPE」を制作した。日照・降雨・CO2など自然や人の活動による環境の変化に反応して唐草が成長する様子を可視化した作品で、銀座の展覧会「The Shiseido Karakusa: Original Designs and Drawings」（GINZA COMMUNICATION SPACE、2020年1月17日まで）で展示された（Qosmo発表）。",
+    "evaluationImpact": "カンヌライオンズ2021のDigital Craft部門でBronzeを受賞した。The One Show 2020（Branding/Identity System）でBronze、AD STARS 2020でSilver、ADC AwardsでMeritも受けている。",
+    "tags": [
+      "Tech/Data",
+      "Theme/Art",
+      "Form/Installation"
+    ],
+    "thumbnail": "/thumbnails/shiseido-the-continuously-changing-brand-identity-shiseido-karakusa.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "fondation-de-france-bee-influencer",
+    "title": "Bee_Influencer",
+    "summary": "CGのミツバチ「B.」をInstagramのインフルエンサーにし、企業タイアップの収入をミツバチ保護の基金に回す仕組みをつくったフランスの施策。",
+    "client": "Fondation De France",
+    "agency": "PUBLICIS CONSEIL, Paris",
+    "categories": [
+      "Digital Craft",
+      "Mobile",
+      "Social & Influencer"
+    ],
+    "award": "Cannes Lions 2021 Digital Craft Lions Bronze / Cannes Lions 2021 Mobile Lions Silver / Cannes Lions 2021 Social & Influencer Lions Gold / Cannes Lions 2021 Social & Influencer Lions Silver / Cannes Lions 2021 Social & Influencer Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Digital Craft",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Mobile",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Social & Influencer",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Social & Influencer",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Social & Influencer",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.euronews.com/living/2019/07/22/this-insect-influencer-is-saving-the-bees",
+    "videoId": "",
+    "overview": "フランスの慈善財団Fondation de FranceとPublicis Conseilによる施策。CGで作ったミツバチ「B.」が@bee_nfluencerとしてInstagramに投稿し、フォロワーが増えるほど稼げるタイアップ収入を、財団が設けた基金「BEEFUND」に寄付する。",
+    "background": "Fondation de Franceは、フランスでは毎年30%を超えるミツバチの群れが失われているとしている（Euronews）。インフルエンサーがフォロワー数に応じて企業から報酬を得る仕組みを、そのまま保護資金を集める手段に転用した。",
+    "execution": "2019年6月ごろにアカウントを開設し、ミツバチの目線で花や自然を写したインフルエンサー風の投稿を続けた。タイアップ収入はBEEFUNDを通じて、ミツバチに優しい農業の実験、野生・飼育ミツバチの生息地の再生、農薬が生物多様性やミツバチの健康に与える影響の研究に充てられる（財団の発表）。ジェール県オーシュでの植樹と養蜂場設置などが支援先に選ばれた。メディアとPRはPublicis Consultantsが担当した。",
+    "evaluationImpact": "Euronewsは、開設から約1か月の2019年7月時点でフォロワーが約10万2,000人に達したと報じた。カンヌライオンズ2021ではSocial & Influencer部門のGoldをはじめ、Mobile部門Silver、Digital Craft部門Bronzeなど計5つのライオンを受賞した。",
+    "tags": [
+      "Form/SNS",
+      "Theme/SocialGood",
+      "Theme/Sustainability",
+      "Tech/3D"
+    ],
+    "thumbnail": "/thumbnails/fondation-de-france-bee-influencer.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "yakushima-treasure-another-live-from-yakushima",
+    "title": "Yakushima Treasure Another Live From Yakushima",
+    "summary": "屋久島の森でのライブを3D点群データとして記録し、視聴者が森の中を自由に動き回って演奏を見られるオンライン映像作品。",
+    "client": "Yakushima Treasure",
+    "agency": "DENTSU CRAFT, TOKYO",
+    "categories": [
+      "Digital Craft"
+    ],
+    "award": "Cannes Lions 2021 Digital Craft Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Digital Craft",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "国内"
+    ],
+    "link": "https://bijutsutecho.com/magazine/news/exhibition/23593",
+    "videoId": "",
+    "overview": "コムアイとオオルタイチの音楽プロジェクト「YAKUSHIMA TREASURE」が、映像作家の辻川幸一郎と制作したインタラクティブなライブ映像作品。2021年2月11日〜3月31日にオンラインで有料配信された（美術手帖）。",
+    "background": "コロナ禍で観客を入れたライブが難しかった時期の作品。演奏を映像ではなくデータとして記録することで、作品テーマである「輪廻」の死生観を表すことを狙ったとされる。",
+    "execution": "屋久島のガジュマルの森に360度サラウンドのPAシステムを組み、一発録りで演奏した。空間を360度の3D点群データとしてスキャンし、色・動き・音像を再構築した。視聴者はブラウザ上で演奏者に近づいたり森の中を移動したりしながら鑑賞できる。コムアイはこの作品のために作った「UFO琴」を演奏した。視聴料は500円。",
+    "evaluationImpact": "カンヌライオンズ2021のDigital Craft部門でBronzeを受賞した。D&AD 2022でもショートリストに選ばれている。",
+    "tags": [
+      "Theme/Music",
+      "Tech/3D",
+      "Tech/Audio",
+      "Form/Website",
+      "Theme/Art"
+    ],
+    "thumbnail": "/thumbnails/yakushima-treasure-another-live-from-yakushima.jpg"
   }
 ]
