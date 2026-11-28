@@ -147526,5 +147526,560 @@
       "Theme/Food"
     ],
     "thumbnail": "/thumbnails/burger-king-the-king-of-stream.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "walmart-bedtime-stories",
+    "title": "Bedtime Stories",
+    "summary": "収監中の親が絵本を読み上げた声を録音し、家にいる子どもがスマホを絵本にかざすとページごとに親の声で読み聞かせが再生されるアプリ。",
+    "client": "Walmart",
+    "agency": "FCB Chicago",
+    "categories": [
+      "Radio & Audio"
+    ],
+    "award": "Cannes Lions 2021 Radio & Audio Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Radio & Audio",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://citizennewspapergroup.com/news/2021/sep/08/contextos-chicago-public-library-and-walmart-conne",
+    "videoId": "",
+    "overview": "WalmartがFCB Chicagoと組み、NPOのConTextosとシカゴ公共図書館と協力して始めた読書プログラム。Walmartは主な資金提供者として、アプリの開発と運用を支えた。",
+    "background": "親が収監されると、家族は精神面・社会面・経済面で大きな負担を抱える。Chicago Defenderの報道によれば、クック郡では半年間に推計3万7,000人以上の子どもの親が収監されていた。離れて暮らす親子をつなぐ手段として、毎晩の読み聞かせに着目した。",
+    "execution": "全米で2番目に大きいとされるクック郡刑務所でスタートした。ConTextosが図書館の絵本を刑務所に持ち込み、親が読み上げる声を録音する。就学前から小学5年生向けまでの選定された40冊は1ページずつスキャンされ、ページごとに音声が対応付けられている。子どもが家でスマホを絵本にかざすと、そのページの親の声が流れ、ARで声の波形がページ上を動く（Chicago Citizen報道）。",
+    "evaluationImpact": "カンヌライオンズ2021のRadio & Audio部門でSilverを受賞した。一方で広告業界のポッドキャスト「Advertisers Watching Ads」では、アプリが刑務所にいる親の不在を埋められるのか、小売企業は一つの刑務所を超えて地域社会に何を負うべきかといった問いも投げかけられた。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Education",
+      "Tech/App",
+      "Tech/Audio",
+      "Tech/XR"
+    ],
+    "thumbnail": "/thumbnails/walmart-bedtime-stories.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "brussels-public-transport-voices-of-brussels",
+    "title": "Voices Of Brussels",
+    "summary": "コロナ禍のロックダウン中、市民から集めた音声メッセージを、スピーカーを積んだ路線バスが受け取る人の家の前まで届けて流したブリュッセル交通局の施策。",
+    "client": "STIB-MIVB (Brussels Public Transport)",
+    "agency": "Mortierbrigade, Brussels",
+    "categories": [
+      "Radio & Audio"
+    ],
+    "award": "Cannes Lions 2021 Radio & Audio Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Radio & Audio",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.brusselstimes.com/106387/stib-offers-to-broadcast-your-voice-through-brussels",
+    "videoId": "",
+    "overview": "ブリュッセルの公共交通事業者STIB-MIVBとMortierbrigadeによる施策。外出制限で会えない家族や友人に向けた声のメッセージを、赤いバスが街中で読み上げた。地元では「ラブバス」と呼ばれた。",
+    "background": "2020年4月、新型コロナウイルスの感染拡大でブリュッセル市民は自宅にとどまっていた。互いに連絡を取り合うことが難しい一方で、つながりがこれまで以上に大切になっていた。バスは普段、遅延や混雑で利用者から批判されることも多かった。",
+    "execution": "市民はSTIBのFacebook Messengerに音声メッセージと再生先の住所を送る。声を出したくない人は文章で送ると、STIBが代わりに録音した。電動バスが4月16・17・21・22・24日の17〜20時に市内を巡回し、受け取る人の家の前で外部スピーカーから流した。運行ルートはFacebookで事前に告知され、不適切な言葉を含むメッセージは流さないルールとした（Brussels Times報道）。",
+    "evaluationImpact": "AP通信の報道では、広報担当者の話として750件を超えるメッセージの応募があった。窓から聞いた住民の「心が温まり、ロックダウン中でも人をつなげてくれる」という声や、運転士の「喜んでもらえている」というコメントも伝えられた。同年のクリスマスには「Voices of Christmas」として、歌のメッセージを届ける続編が行われた。カンヌライオンズ2021のRadio & Audio部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/SocialGood",
+      "Theme/Mobility",
+      "Tech/Audio",
+      "Form/Stunt"
+    ],
+    "thumbnail": "/thumbnails/brussels-public-transport-voices-of-brussels.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "wwf-fire-siren",
+    "title": "Fire Siren",
+    "summary": "森林火災のあいだに消防車のサイレンを覚えてまねるようになった鳥の鳴き声を、そのままラジオCMにして森林破壊を訴えたWWFチリの施策。",
+    "client": "WWF Chile",
+    "agency": "Wunderman Thompson, Santiago",
+    "categories": [
+      "Radio & Audio"
+    ],
+    "award": "Cannes Lions 2021 Radio & Audio Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Radio & Audio",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.mediapost.com/publications/article/358019/wt-chiles-nature-is-calling-for-help-campaign-f.html",
+    "videoId": "",
+    "overview": "Wunderman Thompson ChileがWWFチリのために制作したラジオキャンペーン「Nature Is Calling For Help」の1本。森が失われていく最中に録音された本物の鳥の鳴き声で作った、初のラジオ広告とうたわれた。",
+    "background": "オーストラリアの大規模な森林火災のあいだ、周囲の音を覚えてまねることで知られるカササギフエガラスが、何か月も聞き続けた消防車のサイレンをまねて鳴くようになった。森林火災と森林破壊の深刻さを、自然そのものの声で伝えることを狙った。",
+    "execution": "本作では、サイレンをまねるカササギフエガラスの実際の録音をラジオCMとして流した。同じキャンペーンには、伐採のチェーンソー音をまねるコトドリを使った「Chainsaw」もある。ラジオCMと事例動画はデジタルメディアやSNSで公開され、チリのラジオ局Más Radio FMでも放送された。WWFの各国ネットワークでも共有された（LBB、MediaPost報道）。",
+    "evaluationImpact": "カンヌライオンズ2021のRadio & Audio部門でBronzeを受賞した。同じキャンペーンはD&AD 2021のRadio & AudioでGraphite Pencilも受賞している。",
+    "tags": [
+      "Theme/Sustainability",
+      "Theme/SocialGood",
+      "Tech/Audio"
+    ],
+    "thumbnail": "/thumbnails/wwf-fire-siren.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "burger-king-what-s-wrong-with-this-baby",
+    "title": "What's Wrong With This Baby?",
+    "summary": "矛盾だらけの日常を皮肉たっぷりに並べ、「こんな混乱した時代こそ、牛肉を使わないのにワッパーの味がするImpossible Whopperの出番だ」と結ぶBurger Kingのラジオシリーズ「Confusing Times」の1本。",
+    "client": "Burger King",
+    "agency": "DAVID, Madrid",
+    "categories": [
+      "Radio & Audio"
+    ],
+    "award": "Cannes Lions 2021 Radio & Audio Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Radio & Audio",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.thestable.com.au/david-madrid-burger-king-revels-in-confusion/",
+    "videoId": "",
+    "overview": "DAVID MadridがBurger Kingの植物肉バーガー「Impossible Whopper」（スペインではWhopper Vegetal）のために制作したラジオシリーズ「Confusing Times」の1本。本稿は個別スポットではなく、シリーズ全体の公開情報をもとに記述している。",
+    "background": "Impossible Whopperは、牛肉を使っていないのに元のワッパーと同じ味がするという、それ自体が混乱を招く商品だった。コロナ禍で人々の生活はちぐはぐな行動であふれていた。この時代の空気と商品の特徴を重ね、より幅広い層に試してもらうことを狙った。",
+    "execution": "ラジオCMは2021年3月に先行して流れ、身の回りの矛盾した出来事を次々に挙げたあと、「混乱した時代だ。Impossible Whopperを食べるにはちょうどいい」と締める構成をとった。同じアイデアは2021年4月にJuan Cabral監督による90秒のテレビCMへ広がり、米国から欧州・中南米へと展開された（The Drum、The Stable報道）。",
+    "evaluationImpact": "カンヌライオンズ2021のRadio & Audio部門でBronzeを受賞した。シリーズはD&AD 2021でもWriting for AdvertisingのGraphite PencilとRadio & AudioのWood Pencilを受賞した。2022年の「Even More Confusing Times」、2023年の「A Little More Confusing」へと続編が作られた。",
+    "tags": [
+      "Theme/Food",
+      "Tech/Audio"
+    ],
+    "thumbnail": "/thumbnails/burger-king-what-s-wrong-with-this-baby.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "brazilian-association-of-psychiatry-alexa-s-burnout",
+    "title": "Alexa's Burnout",
+    "summary": "Amazonの音声アシスタント「Alexa」に「Alexa、元気？」と尋ねると、燃え尽き症候群（バーンアウト）の兆候を知らせる注意喚起が返ってくるようにした、ブラジル精神医学会の啓発施策。",
+    "client": "Brazilian Association Of Psychiatry",
+    "agency": "AFRICA DDB, São Paulo",
+    "categories": [
+      "Radio & Audio"
+    ],
+    "award": "Cannes Lions 2021 Radio & Audio Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Radio & Audio",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://canaltech.com.br/comportamento/alexa-com-sindrome-de-burnout-entenda-como-a-ia-pode-conscientizar-sobre-o-tema-178739/",
+    "videoId": "",
+    "overview": "ブラジル精神医学会（ABP）とAmazonのAlexa、代理店Africaが共同で実施した施策。2021年2月にブラジルで公開された（Canaltech報道）。",
+    "background": "Canaltechの報道によれば、キャンペーンではISMA-BRの調査が引かれ、ブラジルの就労者の72%がストレスに起因する何らかの不調を抱え、32%がバーンアウトを抱えるとされる。バーンアウトを抱える人の10人中9人は働き続け、治療を求めていないという。",
+    "execution": "ユーザーが「Alexa, tudo bem?（Alexa、元気？）」と話しかけると、普段の豆知識や雑談の代わりにバーンアウトについての注意喚起を返し、「バーンアウトとは何か」を続けて尋ねるよう促す。回答内容はABPの協力で作成された。Echoシリーズなどのスマートスピーカー、Fire TV Stick Lite、Android／iOSの無料Alexaアプリで利用できた（Canaltech）。",
+    "evaluationImpact": "Canaltech、TecMundoなどブラジルのテック系メディアが取り上げた。カンヌライオンズ2021のRadio & Audio部門でBronzeを受賞した。",
+    "tags": [
+      "Tech/Audio",
+      "Tech/Device",
+      "Tech/AI",
+      "Theme/Health"
+    ],
+    "thumbnail": "/thumbnails/brazilian-association-of-psychiatry-alexa-s-burnout.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "ikea-baby-proof-spotify-ads",
+    "title": "Baby Proof Spotify Ads",
+    "summary": "Spotifyの赤ちゃん向け睡眠用プレイリストの広告枠を買い、赤ちゃんを起こさない静かな音声広告で、起きている親に寝室用品を売り込んだIKEAカナダの施策。",
+    "client": "Ikea",
+    "agency": "RETHINK, Vancouver",
+    "categories": [
+      "Radio & Audio"
+    ],
+    "award": "Cannes Lions 2021 Radio & Audio Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Radio & Audio",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://campaignsoftheworld.com/?p=25741",
+    "videoId": "",
+    "overview": "IKEAカナダとRethinkによるSpotify音声広告。「Won't Wake the Baby Ads」とも呼ばれ、IKEAの寝室用品の販促イベントに合わせて実施された（Campaigns of the World）。",
+    "background": "Spotifyの無料プランでは、睡眠用プレイリストの途中にも音声広告が流れる。寝かしつけにホワイトノイズのプレイリストを使う親にとって、急に大きな音の広告が流れると赤ちゃんが起きてしまうという悩みがある。IKEAはこの場面を、寝不足の親に睡眠を良くする商品を届ける機会として捉えた。",
+    "execution": "赤ちゃん向けの人気睡眠プレイリストの広告枠を押さえ、曲の雰囲気に合わせた静かな音声広告を制作した。広告はささやき声で、まだ起きている親に向けて寝室用品を紹介する。各広告は関連する寝室用品の商品ページにつながり、ワンタップで買い物ができる（Campaigns of the World）。",
+    "evaluationImpact": "Campaigns of the Worldなど海外の広告メディアで紹介された。カンヌライオンズ2021のRadio & Audio部門でBronzeを受賞した。",
+    "tags": [
+      "Tech/Audio",
+      "Theme/Retail",
+      "Theme/Music"
+    ],
+    "thumbnail": "/thumbnails/ikea-baby-proof-spotify-ads.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "dove-amanda",
+    "title": "Amanda",
+    "summary": "マスクや防護具の跡が残る医療従事者の素顔を「Courage is beautiful（勇気は美しい）」の言葉とともに見せた、Doveのシリーズ「Courage is Beautiful」の印刷広告の1枚。",
+    "client": "Dove",
+    "agency": "OGILVY, London / OGILVY, Toronto",
+    "categories": [
+      "Print & Publishing"
+    ],
+    "award": "Cannes Lions 2021 Print & Publishing Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Print & Publishing",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米",
+      "グローバル"
+    ],
+    "link": "https://www.wpp.com/en/case-studies/ogilvy-dove-courage-is-beautiful",
+    "videoId": "",
+    "overview": "Ogilvy CanadaとOgilvy UKがDoveのために制作した「Courage is Beautiful」の1点で、「Amanda」という名の医療従事者の顔を写した作品。キャンペーンは2020年4月にカナダで始まり（Muse by Clios）、その後15か国に広がった（WPP）。",
+    "background": "新型コロナウイルスの流行初期、病院には撮影隊が入れなかった。一方で医療従事者は、長時間の勤務でマスクや防護具の跡が残った顔の写真を自分のSNSに投稿していた。Doveは長年の「リアルビューティー」の考え方に沿って、一般には美しいとされない勤務明けの顔を、その勇気ゆえに美しいものとして示した。",
+    "execution": "制作チームは主にInstagramで医師や看護師に直接連絡し、本人の許可を得て写真を使った（Muse by Clios）。顔の跡が残るポートレートに「Courage is beautiful」の3語だけを添えたポスターや印刷広告、50秒のフィルムを展開した。Doveは各国で医療従事者へのケア製品の寄付も行った。",
+    "evaluationImpact": "キャンペーンはカンヌライオンズ2021でPrint & Publishing部門とOutdoor部門のGrand Prixを獲得し、単体作品の「Amanda」はPrint & Publishing部門でSilverを受賞した。",
+    "tags": [
+      "Form/Print",
+      "Form/OOH",
+      "Theme/Health",
+      "Theme/SocialGood",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/dove-amanda.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "procter-gamble-chapter-10",
+    "title": "Chapter 10",
+    "summary": "Old Spiceの新しい香り「Captain」を説明するために、Instagramでユーザーと作った海洋伝説を、章ごとのイラストにした印刷広告シリーズの1枚（第10章）。",
+    "client": "Procter&Gamble",
+    "agency": "LEO BURNETT, Madrid",
+    "categories": [
+      "Print & Publishing"
+    ],
+    "award": "Cannes Lions 2021 Print & Publishing Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Print & Publishing",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.dandad.org/awards/professional/2021/234129/the-most-epic-seafaring-legend-ever-told/",
+    "videoId": "",
+    "overview": "Leo Burnett MadridがP&GのOld Spice（スペイン）向けに作った「The Most Epic Seafaring Legend Ever Told（史上最も壮大な海の伝説）」の一部。全10点の印刷広告の1枚で、物語のオーディオブック版を宣伝する。",
+    "background": "新しい香り「Captain」の爽やかで壮大な香りを伝えるには、たとえに使えるものが存在しなかった。そこでエージェンシーは、たとえの対象になる海の伝説そのものを作ることにした（The One Show）。",
+    "execution": "Instagram上で約1,500人のユーザーと物語を共同で作り、ユーザーは展開を決めたり、写真を送って登場人物の顔や体になったりした。各章は毎週イラスト化され、全章をつなげると物語全体を描く1枚の大きな絵になる（D&AD）。物語は後にオーディオブックとして収録された。印刷広告は各章の絵の下に章のあらすじを1行添え、「史上最も壮大な海の伝説を生きたかのような香りを」というタグラインと、スペイン語版オーディオブックにつながるQRコードを載せた（The One Show）。",
+    "evaluationImpact": "カンヌライオンズ2021のPrint & Publishing部門で、本作「Chapter 10」がSilverを受賞した。キャンペーンはD&AD 2021のIllustration部門でGraphite Pencilも獲得し、審査員から「とんでもないバイユーのタペストリー」と評された。",
+    "tags": [
+      "Form/Print",
+      "Form/SNS",
+      "Theme/Art",
+      "Tech/Audio"
+    ],
+    "thumbnail": "/thumbnails/procter-gamble-chapter-10.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "folha-de-s-paulo-newspaper-femicide",
+    "title": "Femicide",
+    "summary": "本物のニュースの価値を伝えるため、紙幣と同じ偽造防止技術で印刷したFolha de S.Pauloのキャンペーン「The Most Valuable News」から生まれた、女性殺害（フェミサイド）を扱う印刷広告。",
+    "client": "Folha De S.Paulo Newspaper",
+    "agency": "AFRICA DDB, São Paulo",
+    "categories": [
+      "Print & Publishing"
+    ],
+    "award": "Cannes Lions 2021 Print & Publishing Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Print & Publishing",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/the-most-valuable-news",
+    "videoId": "",
+    "overview": "ブラジルの日刊紙Folha de S.PauloとAfricaによる印刷広告。AdForumの掲載情報では、2021年のキャンペーン「The Most Valuable News」の1点として登録されている。紙面の具体的な内容は公開情報で確認できなかったため、以下はキャンペーン全体の説明である。",
+    "background": "フェイクニュースが広がるなかで、Folhaは確かめられた報道こそ最も価値のある「通貨」だと訴えた（LBB Online、Ad Age）。ブラジルでは女性が性別を理由に殺害されるフェミサイドが深刻な社会問題になっている。",
+    "execution": "キャンペーンでは、紙幣と同じ基準で印刷した特別版の新聞を発行し、透かしやセキュリティ用紙、紫外線で浮かぶ要素などの偽造防止技術を紙面に使った。その紙面の画像は屋外広告にも展開された（Ad Age）。Ads of the Worldによれば、キャンペーンは2021年3月にブラジルで実施された。",
+    "evaluationImpact": "Ad Age、LBB Onlineなど海外の広告メディアがキャンペーンを報じた。カンヌライオンズ2021のPrint & Publishing部門で、本作「Femicide」がSilverを受賞した。",
+    "tags": [
+      "Form/Print",
+      "Theme/SocialGood",
+      "Form/OOH"
+    ],
+    "thumbnail": "/thumbnails/folha-de-s-paulo-newspaper-femicide.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "rape-crisis-the-rape-page",
+    "title": "The Rape Page",
+    "summary": "地域紙の1ページを「レイプ被害に遭ったら、このページを使って」という証拠保全の道具に変えた、Rape Crisis Cape Townの新聞広告。",
+    "client": "Rape Crisis",
+    "agency": "Ogilvy, Cape Town",
+    "categories": [
+      "Print & Publishing"
+    ],
+    "award": "Cannes Lions 2021 Print & Publishing Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Print & Publishing",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "アフリカ"
+    ],
+    "link": "https://www.printpower.eu/case-studies/cannes-lions-silver-rape-crisis/",
+    "videoId": "",
+    "overview": "南アフリカの支援団体Rape Crisis Cape TownとOgilvy Cape Townによる新聞広告。ビニール袋に入れるとDNAなどの証拠が損なわれる一方、紙なら保全できることを伝え、紙面そのものを証拠を包む道具として使えるようにした。",
+    "background": "Rape CrisisとOgilvyによれば、南アフリカでは女性の約40%が生涯でレイプ被害に遭うと推計される一方、加害者の有罪率は1割に満たない。その一因が証拠の弱さで、多くの人が証拠はビニール袋に入れるものと思い込んでいるが、ビニールは証拠を劣化させ、法廷で使えなくすることがある。",
+    "execution": "レイプ件数が特に多いケープタウンの地域を狙い、地域紙Athlone Newsの中面見開きに掲載した。白地に黒の見出し「When raped, use this page.」の下に、衣服を洗わないこと、所持品をこの紙で包んでDNAを保全することを記し、24時間の相談ダイヤル番号を載せた。インフルエンサーや女性団体、医療の専門家らを通じてオンラインでも拡散し、Rape Crisisの担当者が全国ラジオに出演した（Print Powerの事例紹介）。",
+    "evaluationImpact": "紙面広告の役割を「見せる」から「使う」へ広げた点が評価され、カンヌライオンズ2021のPrint & Publishing部門でSilverを受賞した。OgilvyのサイトではLIA Silver、One Show Meritの受賞も挙げられている。",
+    "tags": [
+      "Form/Print",
+      "Theme/SocialGood",
+      "Theme/Health"
+    ],
+    "thumbnail": "/thumbnails/rape-crisis-the-rape-page.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "relate-mark-andrew",
+    "title": "Mark & Andrew",
+    "summary": "60代の男性カップル、マークとアンドリューの親密な姿を写真家Rankinが撮影し、高齢期の性をタブーにしない会話を促したRelateのビジュアル。",
+    "client": "Relate",
+    "agency": "Ogilvy, London",
+    "categories": [
+      "Print & Publishing"
+    ],
+    "award": "Cannes Lions 2021 Print & Publishing Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Print & Publishing",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.out.com/media/2021/5/18/older-gay-couple-featured-nude-new-billboard-campaign",
+    "videoId": "",
+    "overview": "英国の関係カウンセリング団体RelateとOgilvy UKによるキャンペーン「Let's Talk The Joy of Later Life Sex」の1作。写真家Rankinと組み、高齢のカップルが性と親密さについて率直に語る姿を見せた。「Mark & Andrew」は、そのうち男性カップルを扱ったビジュアル。",
+    "background": "高齢期の性や親密さは、英国でも話題にしにくいテーマとされてきた。関係の悩みを支援してきたRelateは、このタブーを崩し、メディアや世間で話題にしてもらうことを目指した（Ogilvy UK）。",
+    "execution": "Rankinが5組の高齢カップルと1人の女性を、それぞれの最も親密な場面で撮影した。マークとアンドリューは31年連れ添う60代のゲイカップルで、裸で抱き合いキスする姿で登場し、動画では2人の親密な関係を語っている。キャッチコピーは「Some men discover they love golf. Some men discover they love men.」と報じられた。2021年5月に動画と看板で展開された（Out）。",
+    "evaluationImpact": "高齢の同性カップルを正面から描いた表現として、LGBTQメディアや英国紙に取り上げられた。キャンペーンはThe Drum Awards for PR 2021のCSR部門も受賞し、Mark & Andrewはカンヌライオンズ2021のPrint & Publishing部門でSilverを受賞した。",
+    "tags": [
+      "Form/Print",
+      "Form/OOH",
+      "Theme/Health",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/relate-mark-andrew.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "procter-gamble-olay-skincare-olay-face-the-stem-gap",
+    "title": "Olay Face The Stem Gap",
+    "summary": "STEM分野で働く実在の女性4人が数式やプログラミング言語に暗号化したメッセージを届ける、Olayの女性×STEM支援の新聞・雑誌広告。",
+    "client": "Procter & Gamble - Olay Skincare",
+    "agency": "Saatchi & Saatchi, New York",
+    "categories": [
+      "Print & Publishing"
+    ],
+    "award": "Cannes Lions 2021 Print & Publishing Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Print & Publishing",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.marketingdive.com/news/olay-extends-stem-focused-mission-in-womens-equality-day-campaign/584119/",
+    "videoId": "",
+    "overview": "P&GのスキンケアブランドOlayが、Saatchi & Saatchi New Yorkと展開した#FaceTheSTEMGapキャンペーンの印刷広告。STEM（科学・技術・工学・数学）分野の男女格差を取り上げ、2020年8月26日の「女性平等の日」に合わせて公開された。",
+    "background": "Olayは2020年のスーパーボウルCMでGirls Who Codeと提携するなど、STEM分野の女性支援を続けてきた。2030年までにSTEM教育の男女同数化、業界で働く女性の倍増、多様な人種の女性の3倍増を目標に掲げ、10年で100万ドルを拠出すると表明した（Marketing Dive）。",
+    "execution": "プロのモデルではなく、STEM分野で活躍する実在の女性4人をロールモデルとして起用した。各広告には、科学の数式やプログラミング言語に暗号化したメッセージを載せ、読み解くことで意味が分かる作りにした。The New York Times、Harper's Bazaar、Allureに掲載された（Marketing Dive）。",
+    "evaluationImpact": "美容ブランドがSTEM分野の格差という社会課題に踏み込んだ印刷広告として、カンヌライオンズ2021のPrint & Publishing部門でSilverを受賞した。D&AD 2021でもGraphite Pencilを受賞している。",
+    "tags": [
+      "Form/Print",
+      "Theme/Education",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/procter-gamble-olay-skincare-olay-face-the-stem-gap.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "molson-coors-print-insertion",
+    "title": "Print Insertion",
+    "summary": "スーパーボウルでライバルのCMが流れる間に、836文字の長いURLを打ち込ませてカロリー1つ分を消費させるMiller Liteの新聞広告。",
+    "client": "Molson Coors",
+    "agency": "DDB, Chicago",
+    "categories": [
+      "Print & Publishing"
+    ],
+    "award": "Cannes Lions 2021 Print & Publishing Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Print & Publishing",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.marketingdive.com/news/miller-lite-offers-super-bowl-fans-calorie-burning-distraction-in-shot-acro/594289/",
+    "videoId": "",
+    "overview": "Molson CoorsのMiller LiteとDDB Chicagoによる、2021年スーパーボウル期の新聞広告。Creative SalonのカンヌライオンズPrint部門の受賞作まとめでは、この応募作「Print Insertion」を、長いURLを載せた全面広告として紹介している。本文はその施策「Ridiculously Long Calorie-Burning URL」の報道に基づく。",
+    "background": "AB InBevがNFLとビールの独占契約を持つため、Molson Coorsのブランドはスーパーボウル中にCMを流せない。Miller Liteは96kcalでライバルのMichelob Ultraより1kcal多く、そのUltraがスーパーボウルで60秒CMを流す予定だった（Marketing Dive）。",
+    "execution": "「www.ThisMillerLiteMarketingStuntWillDistractYouFromUltrasBigGameAd.com」で始まる836文字のURLを、打ち込むと1kcal消費できるものとして提示し、UltraのCMが流れる間に入力した人の中から6缶パックを買える8ドルが当たるとした。コピー＆ペーストできないよう画像だけで公開し、2021年2月1日、両ブランドの地元紙Milwaukee Journal SentinelとSt. Louis Post-Dispatch、The New York Timesの全面に掲載した（Marketing Dive）。",
+    "evaluationImpact": "CMを出せないブランドが紙面でライバルの大型CMに便乗する手法が業界メディアで取り上げられ、カンヌライオンズ2021のPrint & Publishing部門でBronzeを受賞した。",
+    "tags": [
+      "Form/Print",
+      "Form/Stunt",
+      "Theme/Sports",
+      "Tech/Web"
+    ],
+    "thumbnail": "/thumbnails/molson-coors-print-insertion.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "magnum-unilever-legs",
+    "title": "Legs",
+    "summary": "米国の画家Brendan Monroeが、Magnumのアイスバーの形をモノクロの脚の絵に溶け込ませた、アート路線の印刷広告。",
+    "client": "Magnum/Unilever",
+    "agency": "LOLA MullenLowe, Madrid",
+    "categories": [
+      "Print & Publishing"
+    ],
+    "award": "Cannes Lions 2021 Print & Publishing Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Print & Publishing",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://wemedia.be/magazinemedia/nieuws/cannes-lions-print-publishing-magnum-unilever/",
+    "videoId": "",
+    "overview": "UnileverのアイスブランドMagnumとLOLA MullenLowe Madridが、アーティストに依頼して作る手描き作品シリーズの1点。米カリフォルニア州サンタバーバラを拠点とする画家Brendan Monroeが手がけた。「Legs」の画面を詳しく説明した資料は見つからなかったため、表現の説明には同シリーズを紹介した2019年の記事を参照している。",
+    "background": "Magnumは「プレミアムな快楽」とファインアートをブランドの軸に置き、広告をアーティストとの共作で作ってきた。LOLA MullenLoweのTomás Ostigliaは、アートを通じてブランドを芸術・文化・快楽と結び付け、価値を高める狙いを語っている（WE MEDIA）。",
+    "execution": "シリーズでは、アイスバーの象徴的な形を白黒のイラストに溶け込ませ、快楽の瞬間を表した。Muse by Cliosの2019年の記事によれば、MonroeはロンドンのShoreditchに高さ約22フィート（約6.7m）の壁画を描き、その脚のモチーフがポスターにも使われた。帽子とサングラスの人物、波のような形などの作品と並ぶシリーズとして展開された。",
+    "evaluationImpact": "アイスの形を絵の中に隠す手描き表現が評価され、カンヌライオンズ2021のPrint & Publishing部門でBronzeを受賞した（WE MEDIA）。",
+    "tags": [
+      "Form/Print",
+      "Theme/Art",
+      "Theme/Food"
+    ],
+    "thumbnail": "/thumbnails/magnum-unilever-legs.jpg"
   }
 ]
