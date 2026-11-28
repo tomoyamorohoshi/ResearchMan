@@ -1,5 +1,178 @@
 [
   {
+    "id": "codecopsd",
+    "title": "CodecOPSD (On-Policy Codec Distillation)",
+    "org": "Adobe Research / University of Virginia（Boyang Wang, Kevin Blackburn-Matzen, Oindrila Saha, Matheus Gadelha, Zezhou Cheng）",
+    "type": "Research",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "参照画像や参照動画をたくさん渡す映像生成AIで、中身が重複している部分を昔ながらの動画圧縮（H.264）の仕組みで見つけて捨て、約7割の入力を削って生成を約2倍、条件によっては最大8倍ほど速くする研究。コードとMiniMax-H3向けLoRAが公開されている。",
+    "point": "最近の映像生成AIは「この人の顔」「この服」「この動き」のように参照素材を何枚・何本も渡せます。ただ、そのぶん計算量とメモリが大きく増えるという弱点がありました。CodecOPSDは、動画ファイルを小さくするときに使われてきた圧縮技術を使い、参照素材のうち「前のコマとほぼ同じで新しい情報がない部分」を見つけて生成前に捨てます。そのうえで、削った入力でも元と同じ品質で作れるように小さな追加学習（LoRA）で調整します。著者の報告では、MiniMax-H3の参照付き動画生成で入力が約70%減り、ノイズ除去が1.87倍、参照動画3本や高解像度の条件では最大8.4倍速くなりました。16人分の顔写真を参照する集合写真では7.6倍という例もあります。広告制作では、出演者・商品・衣装・背景など複数の参照を固定したまま何十パターンもの動画を出し分ける場面で効きます。キャラクターや商品の見た目を保ったシリーズ動画や、737フレームの短編を5回に分けて作った例のような長めの映像を、待ち時間と費用を抑えて試行錯誤しやすくなります。",
+    "detail": "仕組みはパラパラ漫画に似ています。2枚目以降は前のページから変わった線だけ描き足せば済む、という発想で、動画圧縮のコーデックは前のコマから「変わった部分」だけを記録します。CodecOPSDはこの判定を参照素材にかけ、AIに渡す情報のかけら（トークン）のうち新しい部分だけを残します。とはいえ、いきなり入力を減らすと画質が落ちます。そこで、全部の入力を見た元のモデル（先生役）の出力に、削った入力で動く小さな追加部品（LoRA）が近づくよう学習させています。これを「オンポリシー自己蒸留」と呼びます。\n\n従来の高速化は、生成するステップ数を減らすか、アテンション（画面内の関係を計算する部分）を間引くのが中心でした。CodecOPSDは「入力された参照素材そのものの無駄」に着目しているので、それらの手法と組み合わせられます。著者の自社モデルでは、スケッチ・深度・動きなど16種類の条件で平均66%の入力を削り、メモリ（KVキャッシュ）も最大73%減らしました。MiniMax-H3やCosmos3-Nanoなど、ほかの公開モデルにも効果があったと報告されています。ただし、9割を削るような極端な設定では劣化することがあると明記されています。\n\n使うには、Linux・Python 3.12の環境でGitHubからcloneし、`pip install -e \".[app]\"`で入れます。Gradioのデモ画面（`python app.py ref2va`）から試せます。フル品質では80GB以上のGPUが必要ですが、12〜32GB級（RTX 3090/4090/5090）向けの480p用の手順も用意されています。ディスクはデモ1つにつき約104〜115GB必要です。ComfyUIのノードはまだなく、学習コードも「確認中」の段階です。商用案件で使うには別途ライセンス契約が要ります。",
+    "license": {
+      "spdx": null,
+      "commercial": "research-only",
+      "note": "コードは研究用途は無償で、商用利用には別途ライセンスが必要（問い合わせ先はREADME上でまだ未記載）。LoRAの重みはMiniMax H3 Community License（MiniMax H3の派生モデル扱い）"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/Kiteretsu77/CodecOPSD"
+      },
+      {
+        "kind": "project",
+        "url": "https://kiteretsu77.github.io/CodecOPSD_website/"
+      },
+      {
+        "kind": "paper",
+        "url": "https://arxiv.org/abs/2611.31184"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/HikariDawn/CodecOPSD-H3-Ref2VA"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/codecopsd.jpg",
+    "relatedWorks": [
+      {
+        "title": "MiniMax-H3",
+        "description": "CodecOPSDが高速化の対象にした、テキスト・画像・動画・音声をまとめて扱う公開映像生成モデル",
+        "url": "https://huggingface.co/MiniMaxAI/MiniMax-H3"
+      },
+      {
+        "title": "ToMe for Stable Diffusion (tomesd)",
+        "description": "似たトークンを統合して画像生成を速くする先行手法。入力の冗長性を減らすという点が共通",
+        "url": "https://github.com/dbolya/tomesd"
+      },
+      {
+        "title": "CodecOPSD H3-Ref2VA LoRA",
+        "description": "MiniMax-H3の参照付き動画生成向けに公開された学習済みLoRA（2.6GB）",
+        "url": "https://huggingface.co/HikariDawn/CodecOPSD-H3-Ref2VA"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "steppe",
+    "title": "Steppe（Generative Latent Upscaler / ComfyUI-Steppe）",
+    "org": "TensorForger",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "生成AIが画像・動画を絵に戻す前の「圧縮された中間データ（潜在表現）」の段階で、解像度とフレームレートを1ステップで2倍にするComfyUI用アップスケーラー。Wan 2.1/2.2・Qwen-Image・Krea 2の出力に使える。",
+    "point": "生成AIで作った動画を高解像度にするには、これまで「一度絵に戻してから別の拡大ツールにかける」か「もう一度AIに描き直させる（hires fix）」のが一般的でした。前者は細部がぼやけやすく、後者は時間がかかって絵が変わってしまうこともあります。Steppeは、AIが絵として出力する直前の圧縮データ（潜在表現）のまま、細部を補いながら一気に2倍にします。縦横の拡大と、コマを補ってフレームレートを2倍にする処理を同時にでき、2回重ねれば4倍になります。作者のベンチマーク（512→1024）では、細部の自然さを測る指標（Patch FID）がReal-ESRGANの13.83に対して4.36と大きく良く、1枚あたり約0.18秒、VRAMは約5GBです。広告・体験づくりでは、軽い設定で大量に試作した動画を、採用カットだけ短時間で高解像度・なめらかな動きに仕上げる使い方が考えられます。サイネージ向けの大判映像や、SNS用の縦長動画の高精細化を、手元のGPUで回せるのも利点です。",
+    "detail": "仕組みは、縮小コピーの設計図を受け取って、細かい線を描き足しながら倍の大きさで清書する職人に似ています。中身は「ウィンドウ・トランスフォーマー」という画像の小区画ごとに見るAIで、時間方向の処理も備えているため動画のコマ補間も同時に行えます。もともと数十ステップかけていた処理を、蒸留という学習方法で1ステップに縮めました。`hff`という0〜1のつまみで仕上がりのシャープさを決められ、参照画像からこの値を測るノードもあります。\n\n従来の拡大ツール（Real-ESRGANなど）は、絵に戻した後の画素をもとに推測で拡大していました。Steppeは生成モデルと同じ潜在空間の中で拡大するので、AI生成画像の質感に合った細部を足せます。2回目の生成をしないので、元の構図や人物が変わりにくいのも違いです。ただし対応するのはWan 2.1系の16チャンネルの潜在表現（Wan 2.1、Wan 2.2 14B、Qwen-Image、Krea 2）とFLUX.2用モデルだけで、Wan 2.2 5BやSDXL・SD3には使えません。\n\n導入はComfyUI-Managerで「Steppe」を検索するか、`comfy node install steppe`を実行するだけです。モデル（445MBの標準版、39MBの軽量版など）は初回実行時に自動でダウンロードされます。481×832の81フレーム動画を960×1664・倍のフレームレートにする処理は、RTX 5090で3.5秒、ピークVRAMは約9GBでした。MITライセンスなので商用でも使えます。ブラウザで試せるデモ（Hugging Face Space）もあります。",
+    "license": {
+      "spdx": "MIT",
+      "commercial": "ok",
+      "note": "コードとモデルはMIT。対象のWan 2.1 / FLUX.2のVAEはApache-2.0（NOTICEに記載。VAEの重みは同梱されていない）"
+    },
+    "links": [
+      {
+        "kind": "github",
+        "url": "https://github.com/TensorForger/ComfyUI-Steppe"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/TensorForger/Steppe-Wan2.1"
+      },
+      {
+        "kind": "project",
+        "url": "https://huggingface.co/spaces/TensorForger/Steppe"
+      },
+      {
+        "kind": "post",
+        "url": "https://comfyui-wiki.com/en/news/2026-11-21-steppe-wan21"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/steppe.jpg",
+    "relatedWorks": [
+      {
+        "title": "Real-ESRGAN",
+        "description": "絵に戻した後の画素で拡大する定番のアップスケーラー。Steppeの比較対象",
+        "url": "https://github.com/xinntao/Real-ESRGAN"
+      },
+      {
+        "title": "RIFE (ECCV2022)",
+        "description": "動画のコマの間を補ってフレームレートを上げる定番のOSS",
+        "url": "https://github.com/hzwer/ECCV2022-RIFE"
+      },
+      {
+        "title": "Steppe Latent Upscaler デモ",
+        "description": "ブラウザ上でSteppeの拡大結果を試せるHugging Face Space",
+        "url": "https://huggingface.co/spaces/TensorForger/Steppe"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
+    "id": "mtvedit-h3-h3-mt-vae",
+    "title": "MTVEdit-H3 ＋ H3-MT-VAE（多段編集での劣化を抑える MiniMax-H3 用アダプター）",
+    "org": "Lovart AI（Lovart Research）",
+    "type": "Tool",
+    "domains": [
+      "GenVideo",
+      "CreatorTools"
+    ],
+    "date": "2026-11",
+    "year": "2026",
+    "summary": "生成AIで動画に「服の色を変える→帽子を足す→外す…」と何度も編集を重ねると画質と音質が劣化していく問題を抑える、MiniMax-H3用のLoRA（MTVEdit-H3）と再学習したVAE（H3-MT-VAE）。ComfyUIでそのまま使える。",
+    "point": "AIでの動画編集は1回なら綺麗でも、修正指示を重ねるたびに画質がにじみ、音もこもっていきます。コピーのコピーを取り続けると文字が潰れていくのと同じ現象です。Lovartはこの問題に2つの部品で対処しました。H3-MT-VAEは、動画を圧縮データに変換して元に戻す処理（VAE）を作り直したものです。10回繰り返したあとの画質指標（PSNR）は24.28dBから30.64dBへ大きく改善しています。MTVEdit-H3は、編集を重ねても劣化しにくいように学習した追加部品（LoRA）で、デモでは1本の動画にドレスの色替え・シャツ替え・帽子の追加と削除・サングラス追加の5回の編集をかけて比較しています。広告の現場では、クライアントの修正指示を受けて同じAI生成カットを何度も手直しするのが日常です。そのたびに一から作り直さず、同じ動画に修正を積み重ねていくワークフローが現実的になります。衣装違い・小物違いのバリエーション展開にも向いています。",
+    "detail": "動画生成AIは、動画をいったん小さな圧縮データ（潜在表現）に変えて編集し、また動画に戻します。この「変換して戻す」を繰り返すたびに少しずつ情報が失われます。H3-MT-VAEは、戻す側（デコーダー）だけを繰り返し使っても崩れにくいように再学習したものです。変換する側は元のままなので、既存のH3ワークフローとそのまま互換性があります。MTVEdit-H3は、編集AI本体が連続編集で劣化を積み重ねないように調整するLoRAです。編集できる内容が増えるわけではなく、「何度編集しても品質を保つ」ことに特化しています。\n\n従来は、編集が重なって劣化したら元の動画に戻って指示をまとめて書き直すしかありませんでした。今回は劣化そのものを抑える専用の部品として公開された点が新しいところです。ただし、効果が確認されているのは5〜10回の編集までで、それ以上は未検証です。小さな顔や文字の再現、音の高音域が落ちる弱点はVAEでも残ります。また、VAEとLoRAを同時に使った検証はまだ行われていません（作者の注記）。\n\n使うには、MiniMax-H3が動く環境（ComfyUIまたはDiffusers）が必要です。ComfyUIでは、動画VAE（5.2GB）と音声VAE（603MB）をmodels/vae/に置いてVAELoaderで読み込み、LoRA（447MB）はLoraLoaderModelOnlyでH3のRef2VAワークフローにつなぐだけです。費用はかかりませんが、MiniMax H3コミュニティライセンスの条件（地域によっては利用申請が必要）を確認する必要があります。",
+    "license": {
+      "spdx": null,
+      "commercial": "conditional",
+      "note": "MiniMax H3 Community License Agreement（MiniMax H3の派生モデル扱い。条件はMiniMax側のライセンスに従う）"
+    },
+    "links": [
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/lovartai/MTVEdit-H3"
+      },
+      {
+        "kind": "product",
+        "url": "https://huggingface.co/lovartai/H3-VAE-MT"
+      },
+      {
+        "kind": "post",
+        "url": "https://comfyui-wiki.com/en/news/2026-11-20-h3-mt-vae"
+      }
+    ],
+    "thumbnail": "/thumbnails/tech/mtvedit-h3-h3-mt-vae.jpg",
+    "relatedWorks": [
+      {
+        "title": "MiniMax-H3",
+        "description": "MTVEdit-H3とH3-MT-VAEの土台になっている、映像と音声を同時に生成するモデル",
+        "url": "https://huggingface.co/MiniMaxAI/MiniMax-H3"
+      },
+      {
+        "title": "H3-MT-VAE",
+        "description": "変換と復元を繰り返しても劣化しにくいよう再学習した、H3用の動画・音声VAE",
+        "url": "https://huggingface.co/lovartai/H3-VAE-MT"
+      },
+      {
+        "title": "Steppe",
+        "description": "生成した動画を潜在表現のまま高解像度化・高フレームレート化するComfyUIノード",
+        "url": "https://github.com/TensorForger/ComfyUI-Steppe"
+      }
+    ],
+    "sources": [
+      "Tech Radar"
+    ]
+  },
+  {
     "id": "perf-gs",
     "title": "PERF-GS",
     "org": "Electronic Arts SEED",
