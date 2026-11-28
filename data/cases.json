@@ -135294,19 +135294,13 @@
     "categories": [
       "Film Craft"
     ],
-    "award": "Cannes Lions 2022 Film Craft Lions Bronze / Cannes Lions 2021 Film Craft Lions Gold",
+    "award": "Cannes Lions 2022 Film Craft Lions Bronze",
     "awardEntries": [
       {
         "org": "cannes",
         "year": 2022,
         "category": "Film Craft",
         "level": "Bronze"
-      },
-      {
-        "org": "cannes",
-        "year": 2021,
-        "category": "Film Craft",
-        "level": "Gold"
       }
     ],
     "regions": [
@@ -151958,9 +151952,10 @@
     "client": "New York Times",
     "agency": "WAVE STUDIOS, New York / DROGA5, PART OF ACCENTURE INTERACTIVE, New York / SOMESUCH, Los Angeles",
     "categories": [
-      "Film Craft"
+      "Film Craft",
+      "Film"
     ],
-    "award": "Cannes Lions 2021 Film Craft Lions Bronze / Cannes Lions 2021 Film Craft Lions Silver",
+    "award": "Cannes Lions 2021 Film Craft Lions Bronze / Cannes Lions 2021 Film Craft Lions Silver / Cannes Lions 2021 Film Craft Lions Gold / Cannes Lions 2021 Film Lions Silver",
     "awardEntries": [
       {
         "org": "cannes",
@@ -151973,6 +151968,18 @@
         "year": 2021,
         "category": "Film Craft",
         "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Film Craft",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Film",
+        "level": "Silver"
       }
     ],
     "regions": [
@@ -151983,7 +151990,7 @@
     "overview": "The New York TimesがDroga5 New Yorkと制作した「The Truth Is Essential」キャンペーンの次の段階として、2020年8月に公開した映像。監督はSomesuchのKim Gehrigで、Wave Studiosがサウンドデザインとミックスを担当した。",
     "background": "SHOOTによれば、キャンペーンの狙いは、ニュースだけでなくポッドキャスト、オピニオン、料理、テクノロジー、住まいまで、同紙のジャーナリズムが日常生活の一部になっていることを伝えることだった。前作「The Truth Is Worth It」を手がけたクリエイティブチームが続投した。",
     "execution": "移民問題から在宅勤務、政府予算、深夜のパスタレシピまでを扱う同紙の見出しから5連の詩を組み立て、ナレーションを使わず、写真や映像の上にタイプされる文字だけで見せた（It's Nice That）。音楽はジャズミュージシャンMakaya McCravenの楽曲で、タイピング音を重ねて詩のリズムを際立たせた。ニュースの変化に合わせて、制作中も詩を最新の見出しに書き換えた。",
-    "evaluationImpact": "音楽・音響と編集の完成度が評価され、カンヌライオンズ2021のFilm Craft部門でBronzeとSilverを受賞した。ADC AwardsでもBronze Cubeを受賞している。",
+    "evaluationImpact": "音楽・音響と編集の完成度が評価され、カンヌライオンズ2021のFilm Craft部門でGold、Silver、Bronze、Film部門でSilverを受賞した。ADC AwardsでもBronze Cubeを受賞している。",
     "tags": [
       "Form/Film",
       "Theme/Music"
