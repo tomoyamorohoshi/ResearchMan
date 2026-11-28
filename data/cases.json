@@ -61008,11 +61008,10 @@
     "categories": [
       "社会包摂",
       "テクノロジー×アイデア",
-      "Design",
       "Design"
     ],
-    "award": "Cannes Lions 2024 Innovation Grand Prix / Cannes Lions 2021 Design Lions Silver / Cannes Lions 2021 Design Lions Bronze",
-    "year": "2024",
+    "award": "Cannes Lions 2019 Creative Data Lions Bronze / Cannes Lions 2019 Innovation Lions Grand Prix / Cannes Lions 2019 Mobile Lions Gold / Cannes Lions 2019 Mobile Lions Silver / Cannes Lions 2021 Design Lions Silver / Cannes Lions 2021 Design Lions Bronze",
+    "year": "2019",
     "regions": [
       "北米"
     ],
@@ -61052,9 +61051,27 @@
     "awardEntries": [
       {
         "org": "cannes",
-        "year": 2024,
+        "year": 2019,
+        "category": "Creative Data",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2019,
         "category": "Innovation",
         "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2019,
+        "category": "Mobile",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2019,
+        "category": "Mobile",
+        "level": "Silver"
       },
       {
         "org": "cannes",
@@ -147388,7 +147405,7 @@
     "regions": [
       "欧州"
     ],
-    "link": "https://www.thedrum.com/creative-works/project/janssen-breaking-depression",
+    "link": "https://www.thedrum.com/news/2020/10/09/brands-back-world-mental-health-day-asics-dave-snap-more-unveil-initiatives",
     "videoId": "",
     "overview": "製薬会社Janssen（EMEA）が患者団体GAMIAN-Europeなどと進めた汎欧州の啓発キャンペーン「Breaking Depression」。大うつ病性障害（MDD）とともに生きる人の実話をもとに、金継ぎ作品8点を制作した。",
     "background": "GAMIAN-Europeの紹介ページによれば、キャンペーンの狙いはMDDを含むさまざまなうつ病と生きることの難しさへの理解を広げることにある。うつ病は外から見えにくく、回復には時間と周囲の支えが要ることを伝える必要があった。",
