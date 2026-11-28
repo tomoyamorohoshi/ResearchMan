@@ -1,7 +1,46 @@
 {
   "version": 1,
-  "statusAsOf": "2026-11-27",
+  "statusAsOf": "2026-11-28",
   "items": [
+    {
+      "id": "2026-gallery-chidousetsu-yoshirotten-heliocentric-light",
+      "slug": "2026-gallery-chidousetsu-yoshirotten-heliocentric-light",
+      "title": "YOSHIROTTEN『光の地動説』",
+      "artists": [
+        "YOSHIROTTEN"
+      ],
+      "venue": "Gallery 地動説",
+      "venueType": "gallery",
+      "prefecture": "東京都",
+      "city": "品川区",
+      "startDate": "2026-11-25",
+      "endDate": "2027-01-16",
+      "status": "ongoing",
+      "admission": "UNKNOWN",
+      "tags": [
+        "light",
+        "graphic_design"
+      ],
+      "score": 60,
+      "matchReason": "YOSHIROTTEN（ウォッチ対象の作家）の個展。太陽と地球、光と人間の知覚の関係をテーマに、《SUN》《Tranthrow》《The Earth》を展示する（南條史生・沓名美和キュレーション）。",
+      "sources": [
+        {
+          "name": "YOSHIROTTEN『光の地動説』",
+          "url": "https://nanjo.com/yoshirotten_heliocentric-light",
+          "kind": "official"
+        },
+        {
+          "name": "美術手帖",
+          "url": "https://bijutsutecho.com/exhibitions/19130",
+          "kind": "listing"
+        }
+      ],
+      "link": "https://nanjo.com/yoshirotten_heliocentric-light",
+      "thumbnail": "/thumbnails/exhibition/2026-gallery-chidousetsu-yoshirotten-heliocentric-light.jpg",
+      "addedAt": "2026-11-28T01:49:18.037Z",
+      "origin": "auto",
+      "highlight": false
+    },
     {
       "id": "2026-ntticc-who-decides-what-this-body-is",
       "slug": "2026-ntticc-who-decides-what-this-body-is",
@@ -101,7 +140,7 @@
       "city": "足柄下郡箱根町",
       "startDate": "2026-11-28",
       "endDate": "2027-01-11",
-      "status": "upcoming",
+      "status": "ongoing",
       "admission": "UNKNOWN",
       "tags": [
         "light",

@@ -15,6 +15,13 @@
       "query": "東京都品川区東品川1-32-8 TERRADA ART COMPLEX II（Tokyo Artbeat の会場座標）",
       "checkedAt": "2026-10-24"
     },
+    "Gallery 地動説": {
+      "lat": 35.6205425,
+      "lng": 139.7481606,
+      "source": "nominatim",
+      "query": "Gallery 地動説 品川区 東京都",
+      "checkedAt": "2026-11-28"
+    },
     "KARIMOKU RESEARCH CENTER": {
       "lat": 35.661377,
       "lng": 139.721053,
