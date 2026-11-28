@@ -59176,7 +59176,7 @@
       "AIクリエイティブ",
       "Creative Effectiveness"
     ],
-    "award": "Cannes Lions 2021 Grand Prix for Good / Direct Gold / SDGs Gold",
+    "award": "Cannes Lions 2021 Grand Prix for Good / Direct Gold / SDGs Gold / Cannes Lions 2022 Creative Effectiveness Lions Bronze",
     "year": "2021",
     "regions": [
       "中南米"
@@ -61007,9 +61007,11 @@
     "agency": "Area 23 / FCB Health",
     "categories": [
       "社会包摂",
-      "テクノロジー×アイデア"
+      "テクノロジー×アイデア",
+      "Design",
+      "Design"
     ],
-    "award": "Cannes Lions 2024 Innovation Grand Prix",
+    "award": "Cannes Lions 2024 Innovation Grand Prix / Cannes Lions 2021 Design Lions Silver / Cannes Lions 2021 Design Lions Bronze",
     "year": "2024",
     "regions": [
       "北米"
@@ -61022,7 +61024,7 @@
     "evaluation": "シンプルな物理デバイスが情報格差を解消する事例。生活グレードで実用化した設計思想が評価された。",
     "background": "米国には約1,500万人以上の聴覚障害者・難聴者が生活しており、日常生活の中で音による警告・通知を受け取れないことが安全上の大きなリスクとなっている。既存の補助機器は高価で設置に専門知識が必要なものが多く、一般家庭への普及が進んでいなかった。また、聴覚障害者向けと銘打った製品はニッチ市場として見なされがちで、大手テクノロジー企業が積極的に参入していなかった領域だった。生活の安心・安全を技術的にシンプルなデバイスで解決することを目指して開発が進められた。",
     "execution": "コンセントに差し込むだけで起動するコンパクトなAIデバイスとして設計し、設置の煩雑さをゼロにした。赤ちゃんの泣き声・火災警報・ドアベル・ガラスの破損音など75種類の生活音を識別するモデルはYouTubeから収集した数百万件の音声クリップで学習。BLE（Bluetooth Low Energy）でスマートフォンアプリに即時プッシュ通知を送る仕組みを採用し、専用機器不要の設計にした。聴覚障害者だけでなく、乳幼児を持つ親・高齢者にも有用なユニバーサルデザインとして展開した。",
-    "evaluationImpact": "米国の聴覚障害者コミュニティでSNSを中心に急速に口コミが広がり、「初めて家の音が分かるようになった」という当事者の声が多数投稿された。インクルーシブデザインと機械学習の実用化を生活レベルで融合させた設計思想が評価され、テクノロジー系アワードだけでなく社会課題解決型イノベーション賞でも受賞した。情報格差の解消に向けてシンプルかつスケーラブルなアプローチを採った点が審査員から高く評価された。",
+    "evaluationImpact": "米国の聴覚障害者コミュニティでSNSを中心に急速に口コミが広がり、「初めて家の音が分かるようになった」という当事者の声が多数投稿された。インクルーシブデザインと機械学習の実用化を生活レベルで融合させた設計思想が評価され、テクノロジー系アワードだけでなく社会課題解決型イノベーション賞でも受賞した。情報格差の解消に向けてシンプルかつスケーラブルなアプローチを採った点が審査員から高く評価された。 2021年にはカンヌライオンズのDesign部門でSilverとBronzeも受賞した（受賞時の題名は「See Sound」）。",
     "relatedWorks": [
       {
         "title": "Christine Sun Kim の音響インスタレーション群",
@@ -61046,6 +61048,26 @@
       "Tech/Device",
       "Form/Product",
       "Theme/SocialGood"
+    ],
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2024,
+        "category": "Innovation",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Design",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Design",
+        "level": "Bronze"
+      }
     ]
   },
   {
@@ -61743,9 +61765,12 @@
     "agency": "INGO Stockholm / DAVID Miami / Publicis Bucharest",
     "categories": [
       "カルチャーインサイト",
-      "コンテンツ革新"
+      "コンテンツ革新",
+      "Outdoor",
+      "Industry Craft",
+      "Print & Publishing"
     ],
-    "award": "Cannes Lions 2020 Titanium Lions / Film Grand Prix / Cannes Lions 2022 Creative Effectiveness Lions Gold / Cannes Lions 2022 Creative Effectiveness Lions Bronze / Cannes Lions 2021 Film Lions Gold / Cannes Lions 2021 Film Lions Silver / Cannes Lions 2021 Film Lions Bronze / Cannes Lions 2021 PR Lions Gold",
+    "award": "Cannes Lions 2020 Titanium Lions / Film Grand Prix / Cannes Lions 2022 Creative Effectiveness Lions Gold / Cannes Lions 2022 Creative Effectiveness Lions Bronze / Cannes Lions 2021 Film Lions Gold / Cannes Lions 2021 Film Lions Silver / Cannes Lions 2021 Film Lions Bronze / Cannes Lions 2021 PR Lions Gold / Cannes Lions 2021 Outdoor Lions Grand Prix / Cannes Lions 2021 Outdoor Lions Gold / Cannes Lions 2021 Industry Craft Lions Bronze / Cannes Lions 2021 Print & Publishing Lions Gold",
     "year": "2020",
     "regions": [
       "グローバル"
@@ -61758,7 +61783,7 @@
     "evaluation": "「見せたくないものを見せた」勇気が評価の核。消費者への正直さをビジュアルで体現したブランドの誠実さ。",
     "background": "Burger Kingは2018年から「食品添加物・人工保存料ゼロ」への転換を開始し、グローバルで8,500トンの人工保存料を3年間かけて除去してきた。しかし消費者への伝わり方が弱く、マクドナルドとの差別化ポイントにできていなかった。INGO Stockholm・DAVID Miamiが「証明できるなら見せろ」というクリエイティブ思想で企画。競合他社のバーガーとの腐敗速度の差というアイデアも検討されたが、Whopper単体の34日間タイムラプスが最もインパクトが高いと判断した。",
     "execution": "実際のWhopperを防腐剤なしの環境に34日間放置し、タイムラプスで撮影。スタジオ撮影・照明・カメラ固定という通常の商品撮影のインフラを使いながら、意図的に「美しく腐らせる」演出を加えた。Enya风の静かな音楽と共にカビが繁殖する映像を流す逆説的な美学。「The Beauty of Real Food Is That It Gets Ugly」のコピーをFranklyn（タイポグラフィ）が担当。INGO、DAVID、Publicis Bucharestの3エージェンシーが分担制作。",
-    "evaluationImpact": "Cannes 2020 Titanium Lions・Film Grand Prix受賞。世界中で賛否両論を呼んだが、SNSでの自発的拡散がTVCM以上の露出を生んだ。「Real Food」ブランドポジションが確立され、GMO・人工添加物フリーのQSR業界トレンドを加速。「見せたくないものを広告にする」勇気の事例として、マーケターが最も研究するケーススタディの一つとなった。競合他社による類似「正直系」広告の増加にも影響。",
+    "evaluationImpact": "Cannes 2020 Titanium Lions・Film Grand Prix受賞。世界中で賛否両論を呼んだが、SNSでの自発的拡散がTVCM以上の露出を生んだ。「Real Food」ブランドポジションが確立され、GMO・人工添加物フリーのQSR業界トレンドを加速。「見せたくないものを広告にする」勇気の事例として、マーケターが最も研究するケーススタディの一つとなった。競合他社による類似「正直系」広告の増加にも影響。印刷・屋外版（Day 28、Day 35）は、カンヌライオンズ2021でOutdoor部門のGrand PrixとGold、Print & Publishing部門のGold、Industry Craft部門のBronzeを受賞した。",
     "relatedWorks": [
       {
         "title": "Dove「Evolution」(2006年)",
@@ -61816,6 +61841,30 @@
         "org": "cannes",
         "year": 2021,
         "category": "PR",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Outdoor",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Outdoor",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Industry Craft",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Print & Publishing",
         "level": "Gold"
       }
     ]
@@ -141451,7 +141500,7 @@
     ],
     "link": "https://creativepool.com/cannes-lions-winners-2021/projects/kingo-for-kingo",
     "videoId": "",
-    "overview": "グアテマラの太陽光エネルギー企業Kingoと、Ogilvy Colombia・Ogilvy Guatemalaによる事業づくり。名前はマヤの太陽神「Kin」と「Go」を組み合わせたもの。2021年の応募内容の詳細は独立した資料で確認できなかったため、以下はKingoの事業そのものについての公開情報に基づく。",
+    "overview": "グアテマラの太陽光エネルギー企業Kingoと、Ogilvy Colombia・Ogilvy Guatemalaによる事業づくり。名前はマヤの太陽神「Kin」と「Go」を組み合わせたもの。",
     "background": "Kingoは2013年にグアテマラの起業家4人が創業した（FMO、Estrategia & Negocios）。中央の送電網につながっていない農村の世帯は、ろうそくや灯油など割高な代替手段に頼っていた。Kingoは既存の代替手段より安く、安全でクリーンな電気を届けることを掲げている（FMO）。",
     "execution": "FMOの発表によれば、Kingoは屋根置きの太陽光パネル、バッテリー式の電球、USBポートを備えたシステムを世帯に貸し出し、設置費や保守費は取らない。利用者は地域の商店で「ソーラークレジット」を買う。時間・週・月単位で購入でき、クレジットに付いたコードを入力すると機器が使えるようになる、プリペイド式の携帯電話に似た仕組みである。Ogilvyのグアテマラとコロンビアのチームは、この事業のブランドづくりなどに関わってきた。",
     "evaluationImpact": "2018年にはオランダの開発金融機関FMOが主導する1,550万ドルの融資が組まれ、当時30万人超だった利用者を約55万人へ広げる計画と発表された（FMO）。カンヌライオンズ2021のCreative Business Transformation部門でBronzeを受賞した。",
@@ -141460,7 +141509,10 @@
       "Theme/SocialGood",
       "Tech/Device"
     ],
-    "thumbnail": "/thumbnails/kingo.jpg"
+    "thumbnail": "/thumbnails/kingo.jpg",
+    "quarantined": true,
+    "quarantineReason": "2021年の応募内容が独立した資料で確認できず、出典も受賞作ギャラリー（Creativepool）のみ。本文はKingoの事業一般の情報（2026-11-28 手動）",
+    "quarantineTs": "2026-11-28T06:03:23.673Z"
   },
   {
     "year": "2021",
@@ -144607,53 +144659,6 @@
     "sources": [
       "Cannes 2021"
     ],
-    "id": "riz-ahmed-wepresent-the-long-goodbye-aneil-karia",
-    "title": "The Long Goodbye - Aneil Karia",
-    "summary": "Riz Ahmedのアルバムと対になる短編映画で、南アジア系英国人の家族が武装集団に連れ去られる近未来の英国を描き、人種差別を問うた作品。",
-    "client": "Riz Ahmed / Wepresent",
-    "agency": "SOMESUCH, London / WEPRESENT, London",
-    "categories": [
-      "Entertainment Lions for Music",
-      "Film Craft"
-    ],
-    "award": "Cannes Lions 2021 Entertainment Lions for Music Silver / Cannes Lions 2021 Film Craft Lions Gold",
-    "awardEntries": [
-      {
-        "org": "cannes",
-        "year": 2021,
-        "category": "Entertainment Lions for Music",
-        "level": "Silver"
-      },
-      {
-        "org": "cannes",
-        "year": 2021,
-        "category": "Film Craft",
-        "level": "Gold"
-      }
-    ],
-    "regions": [
-      "欧州"
-    ],
-    "link": "https://wepresent.wetransfer.com/story/riz-ahmed-the-long-goodbye",
-    "videoId": "",
-    "overview": "俳優・ラッパーのRiz Ahmedが共同脚本・主演を務め、Aneil Kariaが監督した約12分の短編映画。Ahmedのアルバム『The Long Goodbye』に合わせて制作され、2020年3月6日にWeTransferの編集プラットフォームWePresentとAhmedのYouTubeチャンネルで同時に公開された。",
-    "background": "アルバムは、英国と南アジア系住民との関係を「国から別れを告げられる」失恋になぞらえて描いた。映画はその主題を、ありえなくはないディストピアとして映像化した（WePresent、Short of the Week）。",
-    "execution": "結婚式の準備をする南アジア系英国人の家族の日常が、突然押し入った武装集団によって壊され、家族が通りへ引きずり出されて黒いバンに押し込まれていく様子を描く。俳優は台本なしで演じた。終盤ではAhmedがカメラに向かってラップ／独白を放つ（WePresent、Short of the Week）。",
-    "evaluationImpact": "第94回アカデミー賞（2022年）で短編実写映画賞を受賞し、Ahmedにとって初のオスカーとなった（Time Out、Irish Examiner）。英国インディペンデント映画賞（BIFA）の最優秀英国短編賞も受賞した。カンヌライオンズ2021ではFilm Craft部門でGold、Entertainment Lions for MusicでSilverを受賞した。",
-    "tags": [
-      "Form/Film",
-      "Theme/Music",
-      "Theme/SocialGood",
-      "Theme/Entertainment"
-    ],
-    "thumbnail": "/thumbnails/riz-ahmed-wepresent-the-long-goodbye-aneil-karia.jpg"
-  },
-  {
-    "year": "2021",
-    "relatedWorks": [],
-    "sources": [
-      "Cannes 2021"
-    ],
     "id": "yamaha-corporation-dear-glenn",
     "title": "Dear Glenn",
     "summary": "伝説的ピアニスト、グレン・グールドの演奏をAIに学ばせ、どんな楽譜でも「グールドらしく」弾き、人間と合奏もできる自動演奏ピアノを作ったヤマハのプロジェクト。",
@@ -146002,7 +146007,7 @@
     ],
     "link": "https://nlab.itmedia.co.jp/cont/articles/3295767/",
     "videoId": "MShRwYcFLkM",
-    "overview": "P&Gのヘアケアブランド「パンテーン」が続ける「#HairWeGo さあ、この髪でいこう。」シリーズの一つ。Creativepoolの2021年カンヌ受賞作ページの記載から、2019年の「#令和の就活ヘアをもっと自由に」を中心とする就活ヘア施策を指すとみられる。",
+    "overview": "P&Gのヘアケアブランド「パンテーン」が続ける「#HairWeGo さあ、この髪でいこう。」シリーズの一つ。うち、2019年の「#令和の就活ヘアをもっと自由に」を中心とする就活ヘア施策。",
     "background": "日本の就職活動では、黒髪をまとめた同じ髪型が暗黙のルールになっている。パンテーンは2018年の内定式の日に就活生の本音を伝える広告を出して以来、就活や校則などで髪型が画一的になっている問題を提起してきた。",
     "execution": "2019年7月にプロジェクトを始め、約1カ月で経済産業省、サイバーエージェント、サイボウズ、日本テレビ放送網、日本IBMなど139社が賛同した。9月17日には賛同企業の若手社員を起用した新聞広告を出し、令和初の内定式に向けて9月23日から新宿・渋谷・東京・梅田の各駅で交通広告を出したほか、テレビCMを全国で放送した。YouTubeで公開した60秒のWebムービーでは、内定式に臨む女性たちが就活中の本音を語り、自分らしい髪で踏み出す姿を描いた（ねとらぼ報道）。",
     "evaluationImpact": "ねとらぼなどのWebメディアが取り上げ、賛同企業の人事担当者からも、入社後のミスマッチを防ぐために個性を出せる就活が大切だという声が寄せられた。シリーズはその後、LGBTQ+の就活生に焦点を当てた#PrideHairなどへ広がった。カンヌライオンズ2021のPR部門でSilverとBronzeを受賞した。",
@@ -146323,7 +146328,7 @@
     ],
     "link": "https://thinkmarketingmagazine.com/burger-king-ksa-pushes-localization-with-new-arabic-alphabet-letter/",
     "videoId": "",
-    "overview": "Burger Kingサウジアラビアと、Wunderman Thompson Riyadh（旧J. Walter Thompson KSA）による施策。ブランド名の綴りと発音をめぐる議論そのものを、Twitter上の話題づくりと動画に使った。なお、ここで確認できた施策の詳細は2019年の展開を報じた記事に基づくもので、2021年の応募作の説明そのものではない。",
+    "overview": "Burger Kingサウジアラビアと、Wunderman Thompson Riyadh（旧J. Walter Thompson KSA）による施策。ブランド名の綴りと発音をめぐる議論そのものを、Twitter上の話題づくりと動画に使った。",
     "background": "アラビア語には英語の「G」にあたる音がないため、「Burger」はアラビア文字で「برجر」「برقر」など綴りも発音もばらつく。Think Marketing Magazineは、国の言語を広告でいじることは一般に好まれないとしつつ、この施策がブランドの認知に役立ちうると論じた。",
     "execution": "Think Marketing Magazine（2019年8月15日）によれば、2019年7月25日にサウジ人の好みに合わせた大きなバーガーの広告を投稿したところ、ブランド名の発音をめぐる返信が相次いだ。ブランドはそれに「言語のレッスンが必要か」と応じる広告で返し、8月6日には「ج（ジーム）」に点を加えて「G」の音に近づけた新しい文字を発表した。発表ツイートや公式Twitterアカウント名にもこの文字を使った。その後、わざと誤った綴りや発音を使った投稿や、ドライブスルーで2人の若者が正しい読み方を言い争う動画へと展開した。",
     "evaluationImpact": "Think Marketing Magazineは、新しい文字の発表ツイートが1週間で72万回以上閲覧され、好意的に受け止められたと報じた。WARC Prize for MENA Strategy 2020の候補にも選ばれた（Arab News）。カンヌライオンズ2021のSocial & Influencer部門でSilverを受賞した。",
@@ -146481,7 +146486,7 @@
     ],
     "link": "https://www.glossy.co/beauty/eyeshadow-with-a-side-of-guac-e-l-f-debuts-second-chipotle-collab",
     "videoId": "",
-    "overview": "Chipotle Mexican Grillとe.l.f. Cosmeticsのコラボ施策。2020年5月の限定メイクキットに続き、2021年3月に第2弾のコレクションとヴィーガンボウルを発売した。どちらもSNSとインフルエンサーを軸に展開した。応募作が2回のどちらを対象にしたかは確認できなかったため、ここでは両方を記す。",
+    "overview": "Chipotle Mexican Grillとe.l.f. Cosmeticsのコラボ施策。2020年5月の限定メイクキットに続き、2021年3月に第2弾のコレクションとヴィーガンボウルを発売した。どちらもSNSとインフルエンサーを軸に展開した。",
     "background": "e.l.f.は2019年、オリジナル曲「Eyes. Lips. Face.」を使ったTikTokチャレンジで多数の投稿を集めていた（Marketing Dive）。Z世代に強いブランド同士が組み、食とメイクという意外な組み合わせで話題を狙った。",
     "execution": "第1弾（2020年5月）は、ブリトーの包装に似た銀色のケースに10点を詰めた54ドルの限定キットで、15ドル分のChipotleギフトカードが付いた（Nylon）。第2弾（2021年3月10日発売）は、アイシャドウパレット、リップグロス、アボカド型スポンジ、ポーチで、価格は8〜18ドル。購入者にはチップス＆ワカモレ無料のコードを配った。e.l.f.の曲をChipotle版に作り替えた「Eyes. Chips. Face.」をTikTokで展開し、ドラァグクイーンのTrixie MattelとKim Chiが監修したヴィーガンボウルを期間限定で販売した。ほかに、YouTubeでのメイク＆モクバン動画、ライブコマースアプリNTWRKでの販売、Clubhouseでのトークも組み合わせた（Glossy、Marketing Dive）。",
     "evaluationImpact": "Glossyによれば、第1弾のキットは4分で完売した。第2弾もGood Morning America、Fox Newsなど幅広いメディアが報じた。カンヌライオンズ2021のSocial & Influencer部門でBronzeを受賞した。",
@@ -146962,7 +146967,7 @@
     "videoId": "",
     "overview": "血友病A治療薬Hemlibraを持つGenentechが、21GRAMSと手がけたブランデッドコンテンツ。Twitchの大会シリーズ「Twitch Rivals」の枠で、eスポーツ大会「Bloodless Battle」を開いた。",
     "background": "血友病の患者、とくに若い男性はテレビ広告などでは届きにくい層とされる。Genentechは、ゲーム配信の場で血友病のある配信者に光を当て、病気への理解を広げることを狙った。",
-    "execution": "eスポーツ専門のニュースレターThe Final Circleによれば、Twitch Rivalsが主催し、Genentechが協賛、Cloudfuelが運営した。種目は『Apex Legends』で、招待された20チームのうち2チームが血友病のあるプレイヤーを含んでいた。賞金総額は5万ドル。AdForumには、Hemlibraのブランデッドコンテンツとして動画が登録されている。",
+    "execution": "eスポーツ専門のニュースレターThe Final Circleによれば、Twitch Rivalsが主催し、Genentechが協賛、Cloudfuelが運営した。種目は『Apex Legends』で、招待された20チームのうち2チームが血友病のあるプレイヤーを含んでいた。賞金総額は5万ドル。",
     "evaluationImpact": "The Final Circleによれば、配信の同時視聴者数はピークで4万8,000人を超えた。一方で同誌は、プロ選手の参加が中心の大会になり、血友病の啓発よりゲームの宣伝になったという配信者からの批判も伝えている。カンヌライオンズ2021のPharma部門でSilverを受賞した（Fierce Pharma、pharmaphorum報道）。",
     "tags": [
       "Theme/Health",
@@ -147389,7 +147394,7 @@
     "regions": [
       "欧州"
     ],
-    "link": "https://www.gamian.eu/understanding-agitation-report-copy/",
+    "link": "https://www.thedrum.com/creative-works/project/janssen-breaking-depression",
     "videoId": "",
     "overview": "製薬会社Janssen（EMEA）が患者団体GAMIAN-Europeなどと進めた汎欧州の啓発キャンペーン「Breaking Depression」。大うつ病性障害（MDD）とともに生きる人の実話をもとに、金継ぎ作品8点を制作した。",
     "background": "GAMIAN-Europeの紹介ページによれば、キャンペーンの狙いはMDDを含むさまざまなうつ病と生きることの難しさへの理解を広げることにある。うつ病は外から見えにくく、回復には時間と周囲の支えが要ることを伝える必要があった。",
@@ -147942,7 +147947,7 @@
     ],
     "link": "https://www.thestable.com.au/david-madrid-burger-king-revels-in-confusion/",
     "videoId": "",
-    "overview": "DAVID MadridがBurger Kingの植物肉バーガー「Impossible Whopper」（スペインではWhopper Vegetal）のために制作したラジオシリーズ「Confusing Times」の1本。本稿は個別スポットではなく、シリーズ全体の公開情報をもとに記述している。",
+    "overview": "DAVID MadridがBurger Kingの植物肉バーガー「Impossible Whopper」（スペインではWhopper Vegetal）のために制作したラジオシリーズ「Confusing Times」の1本。",
     "background": "Impossible Whopperは、牛肉を使っていないのに元のワッパーと同じ味がするという、それ自体が混乱を招く商品だった。コロナ禍で人々の生活はちぐはぐな行動であふれていた。この時代の空気と商品の特徴を重ね、より幅広い層に試してもらうことを狙った。",
     "execution": "ラジオCMは2021年3月に先行して流れ、身の回りの矛盾した出来事を次々に挙げたあと、「混乱した時代だ。Impossible Whopperを食べるにはちょうどいい」と締める構成をとった。同じアイデアは2021年4月にJuan Cabral監督による90秒のテレビCMへ広がり、米国から欧州・中南米へと展開された（The Drum、The Stable報道）。",
     "evaluationImpact": "カンヌライオンズ2021のRadio & Audio部門でBronzeを受賞した。シリーズはD&AD 2021でもWriting for AdvertisingのGraphite PencilとRadio & AudioのWood Pencilを受賞した。2022年の「Even More Confusing Times」、2023年の「A Little More Confusing」へと続編が作られた。",
@@ -148112,45 +148117,6 @@
       "Tech/Audio"
     ],
     "thumbnail": "/thumbnails/procter-gamble-chapter-10.jpg"
-  },
-  {
-    "year": "2021",
-    "relatedWorks": [],
-    "sources": [
-      "Cannes 2021"
-    ],
-    "id": "folha-de-s-paulo-newspaper-femicide",
-    "title": "Femicide",
-    "summary": "本物のニュースの価値を伝えるため、紙幣と同じ偽造防止技術で印刷したFolha de S.Pauloのキャンペーン「The Most Valuable News」から生まれた、女性殺害（フェミサイド）を扱う印刷広告。",
-    "client": "Folha De S.Paulo Newspaper",
-    "agency": "AFRICA DDB, São Paulo",
-    "categories": [
-      "Print & Publishing"
-    ],
-    "award": "Cannes Lions 2021 Print & Publishing Lions Silver",
-    "awardEntries": [
-      {
-        "org": "cannes",
-        "year": 2021,
-        "category": "Print & Publishing",
-        "level": "Silver"
-      }
-    ],
-    "regions": [
-      "南米"
-    ],
-    "link": "https://www.adsoftheworld.com/campaigns/the-most-valuable-news",
-    "videoId": "",
-    "overview": "ブラジルの日刊紙Folha de S.PauloとAfricaによる印刷広告。AdForumの掲載情報では、2021年のキャンペーン「The Most Valuable News」の1点として登録されている。紙面の具体的な内容は公開情報で確認できなかったため、以下はキャンペーン全体の説明である。",
-    "background": "フェイクニュースが広がるなかで、Folhaは確かめられた報道こそ最も価値のある「通貨」だと訴えた（LBB Online、Ad Age）。ブラジルでは女性が性別を理由に殺害されるフェミサイドが深刻な社会問題になっている。",
-    "execution": "キャンペーンでは、紙幣と同じ基準で印刷した特別版の新聞を発行し、透かしやセキュリティ用紙、紫外線で浮かぶ要素などの偽造防止技術を紙面に使った。その紙面の画像は屋外広告にも展開された（Ad Age）。Ads of the Worldによれば、キャンペーンは2021年3月にブラジルで実施された。",
-    "evaluationImpact": "Ad Age、LBB Onlineなど海外の広告メディアがキャンペーンを報じた。カンヌライオンズ2021のPrint & Publishing部門で、本作「Femicide」がSilverを受賞した。",
-    "tags": [
-      "Form/Print",
-      "Theme/SocialGood",
-      "Form/OOH"
-    ],
-    "thumbnail": "/thumbnails/folha-de-s-paulo-newspaper-femicide.jpg"
   },
   {
     "year": "2021",
@@ -148338,7 +148304,7 @@
     ],
     "link": "https://wemedia.be/magazinemedia/nieuws/cannes-lions-print-publishing-magnum-unilever/",
     "videoId": "",
-    "overview": "UnileverのアイスブランドMagnumとLOLA MullenLowe Madridが、アーティストに依頼して作る手描き作品シリーズの1点。米カリフォルニア州サンタバーバラを拠点とする画家Brendan Monroeが手がけた。「Legs」の画面を詳しく説明した資料は見つからなかったため、表現の説明には同シリーズを紹介した2019年の記事を参照している。",
+    "overview": "UnileverのアイスブランドMagnumとLOLA MullenLowe Madridが、アーティストに依頼して作る手描き作品シリーズの1点。米カリフォルニア州サンタバーバラを拠点とする画家Brendan Monroeが手がけた。",
     "background": "Magnumは「プレミアムな快楽」とファインアートをブランドの軸に置き、広告をアーティストとの共作で作ってきた。LOLA MullenLoweのTomás Ostigliaは、アートを通じてブランドを芸術・文化・快楽と結び付け、価値を高める狙いを語っている（WE MEDIA）。",
     "execution": "シリーズでは、アイスバーの象徴的な形を白黒のイラストに溶け込ませ、快楽の瞬間を表した。Muse by Cliosの2019年の記事によれば、MonroeはロンドンのShoreditchに高さ約22フィート（約6.7m）の壁画を描き、その脚のモチーフがポスターにも使われた。帽子とサングラスの人物、波のような形などの作品と並ぶシリーズとして展開された。",
     "evaluationImpact": "アイスの形を絵の中に隠す手描き表現が評価され、カンヌライオンズ2021のPrint & Publishing部門でBronzeを受賞した（WE MEDIA）。",
@@ -148417,7 +148383,7 @@
     ],
     "link": "https://www.cbnews.fr/creation/image-tbwaparis-signe-campagne-the-world-deserves-witnesses-leica-57943",
     "videoId": "",
-    "overview": "ドイツのカメラメーカーLeicaとTBWA\\Parisによるブランドキャンペーン「The World Deserves Witnesses（世界には目撃者が必要だ）」の1枚。受賞した「Ghost(s)」が具体的にどの写真かは公開情報で確認できないため、以下はキャンペーン全体の説明。",
+    "overview": "ドイツのカメラメーカーLeicaとTBWA\\Parisによるブランドキャンペーン「The World Deserves Witnesses（世界には目撃者が必要だ）」の1枚「Ghost(s)」。",
     "background": "Leicaは、世界の美しさ、歴史の転換点、人間のもろさを記録してきた写真家たちを主役にしたブランド表現を打ち出した。記録写真の誠実さを守るため、このキャンペーンのために撮影・演出した写真は使わない方針をとった（CB News）。",
     "execution": "30人以上の写真家が撮った既存の写真だけを使い、修整や加工もしていない。印刷広告とオンライン広告として2021年1月から15か国以上で展開し、ビジュアルは順次入れ替える計画だった。写真家Joel Meyerowitzがナレーションを務めるマニフェスト動画も世界に配信した。広告にはM10-R、M10 Monochrom、Q2などの機種が登場する（CB News）。",
     "evaluationImpact": "同年半ばに第2弾が出て、その後も続くシリーズになった（CB Newsはシリーズを「サーガ」と表現）。カンヌライオンズ2021のPrint & Publishing部門でBronzeを受賞した（CB News報道）。",
@@ -148615,7 +148581,7 @@
       "Outdoor",
       "Print & Publishing"
     ],
-    "award": "Cannes Lions 2021 Industry Craft Lions Gold / Cannes Lions 2021 Outdoor Lions Silver / Cannes Lions 2021 Print & Publishing Lions Gold",
+    "award": "Cannes Lions 2021 Industry Craft Lions Gold / Cannes Lions 2021 Outdoor Lions Silver / Cannes Lions 2021 Print & Publishing Lions Gold / Cannes Lions 2021 Print & Publishing Lions Silver",
     "awardEntries": [
       {
         "org": "cannes",
@@ -148634,6 +148600,12 @@
         "year": 2021,
         "category": "Print & Publishing",
         "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Print & Publishing",
+        "level": "Silver"
       }
     ],
     "regions": [
@@ -148644,7 +148616,7 @@
     "overview": "ブラジルの日刊紙Folha de S.Pauloが、代理店Africa（サンパウロ）と組んで2021年3月に実施した施策。紙幣の印刷に使われる基準と技術で新聞の特別版を刷り、検証された報道の価値を「通貨」になぞらえて訴えた。",
     "background": "SNSを中心に虚偽の情報が真実のニュースより速く広がるなか、新聞は使い捨ての消費財のように扱われがちだった。Folhaは、プロの報道が確かめた事実こそ今もっとも価値があるというメッセージを、紙面そのもので伝えることを狙った（LBB Online、D&AD）。",
     "execution": "特別版は、紙幣と同じ偽造防止用の用紙、濃淡のある透かし、紫外線を当てると浮かび上がる要素、蛍光繊維、ホログラム、マイクロ文字、微細な穴あけによる番号、触ってわかる印刷などを使って印刷された（D&AD、LBB Online）。キャッチフレーズは「真実がこれほど価値を持ったことはない」。紙面の見た目と手触りで、本物の紙幣のように偽物と区別できる「本物のニュース」を表現した。",
-    "evaluationImpact": "カンヌライオンズ2021ではIndustry Craft部門とPrint & Publishing部門でGold、Outdoor部門でSilverを受賞した。D&AD 2021でもPencilを受賞し、審査員のGarima Khandelwal（MullenLowe Lintas）は、使い捨てになっていた新聞を価値ある一品に変えたクラフトを評価した。",
+    "evaluationImpact": "カンヌライオンズ2021ではIndustry Craft部門とPrint & Publishing部門でGold、Outdoor部門でSilverを受賞し、同キャンペーンの別エントリー「Femicide」もPrint & Publishing部門でSilverを受賞した。D&AD 2021でもPencilを受賞し、審査員のGarima Khandelwal（MullenLowe Lintas）は、使い捨てになっていた新聞を価値ある一品に変えたクラフトを評価した。",
     "tags": [
       "Form/Print",
       "Theme/SocialGood",
@@ -148693,9 +148665,9 @@
     ],
     "link": "https://arn.com/work/red-cross/",
     "videoId": "",
-    "overview": "Arnold Worldwide（ボストン）が赤十字（クライアント表記はブラジル赤十字）のために制作した写真ポスターのシリーズ「Run. For. Life.」のうち、ジンバブエを舞台にした1枚。同シリーズにはベトナム編もある。",
+    "overview": "Arnold Worldwide（ボストン）が赤十字（D&ADのアーカイブではブラジル赤十字と表記）のために制作した写真ポスターのシリーズ「Run. For. Life.」のうち、ジンバブエを舞台にした1枚。同シリーズにはベトナム編もある。",
     "background": "赤十字の使命は、あらゆる緊急事態で人の苦しみを防ぎ和らげることにある。キャンペーンは「人道危機が起きて誰もが逃げるとき、赤十字はそこへ向かって走る」という一点に絞り、世界各地での支援の意味を伝えることを狙った（The One Show、D&AD）。",
-    "execution": "ジンバブエとベトナムの現地の光景を写真で描いたポスターで、危険から遠ざかる人々と、それに向かっていく赤十字という対比を一枚の画で見せる。Arnoldの事例ページは「When there's danger, the Red Cross runs towards it」というコピーとともにジンバブエ編とベトナム編を掲載している。Cresta Awardsの応募情報では、写真家はVincent Dixon。",
+    "execution": "ジンバブエとベトナムの現地の光景を写真で描いたポスターで、危険から遠ざかる人々と、それに向かっていく赤十字という対比を一枚の画で見せる。Arnoldの事例ページは「When there's danger, the Red Cross runs towards it」というコピーとともにジンバブエ編とベトナム編を掲載している。写真家はVincent Dixon（Cresta Awards）。",
     "evaluationImpact": "カンヌライオンズ2021ではIndustry Craft部門でGoldとBronze、Outdoor部門でGoldを受賞した。シリーズはThe One Show 2020でSilver Pencilを受賞し、D&ADやCresta Awardsでも入賞している。",
     "tags": [
       "Form/OOH",
@@ -148968,7 +148940,7 @@
     ],
     "link": "https://arn.com/work/red-cross/",
     "videoId": "",
-    "overview": "Arnold Worldwideが赤十字のために制作したプリント／ポスターシリーズ「Run. For. Life.」のうち、ベトナムで撮影した1作。D&ADのアーカイブではクライアントがブラジル赤十字と記載されている。メッセージは「危機が起きて誰もが逃げるとき、赤十字はそこへ向かって走る」。",
+    "overview": "Arnold Worldwideが赤十字のために制作したプリント／ポスターシリーズ「Run. For. Life.」のうち、ベトナムで撮影した1作。D&ADのアーカイブではクライアントはブラジル赤十字と表記されている。メッセージは「危機が起きて誰もが逃げるとき、赤十字はそこへ向かって走る」。",
     "background": "赤十字の唯一の目的は、あらゆる緊急事態で人間の苦しみを防ぎ和らげることにある。代理店Arnoldの事例ページによれば、世界各地での赤十字の支援の意味を、シンプルかつ力強く伝えることを狙った。",
     "execution": "ベトナムとジンバブエで撮影し、群衆として地元の住民を起用した。住民が必死に走って逃げる方向とは逆向きに、赤十字のボランティアが走っていく構図にしている。ボランティアのベストに付いた赤十字のマークを、そのまま広告のロゴとして使った。",
     "evaluationImpact": "D&AD 2020のPress & Outdoor部門でショートリストに入り、カンヌライオンズ2021のIndustry Craft部門でSilverを受賞した。",
@@ -149217,51 +149189,6 @@
       "Theme/Food"
     ],
     "thumbnail": "/thumbnails/burger-king-finland-love-conquers-all.jpg"
-  },
-  {
-    "year": "2021",
-    "relatedWorks": [],
-    "sources": [
-      "Cannes 2021"
-    ],
-    "id": "burger-king-day-28",
-    "title": "Day 28",
-    "summary": "人工保存料をやめたことを伝えるため、カビだらけになった28日目のワッパーをそのまま写した印刷広告。",
-    "client": "Burger King",
-    "agency": "BURGER KING, Miami / INGO, Stockholm / DAVID, Miami / PUBLICIS ROMANIA, Bucharest",
-    "categories": [
-      "Industry Craft",
-      "Print & Publishing"
-    ],
-    "award": "Cannes Lions 2021 Industry Craft Lions Bronze / Cannes Lions 2021 Print & Publishing Lions Gold",
-    "awardEntries": [
-      {
-        "org": "cannes",
-        "year": 2021,
-        "category": "Industry Craft",
-        "level": "Bronze"
-      },
-      {
-        "org": "cannes",
-        "year": 2021,
-        "category": "Print & Publishing",
-        "level": "Gold"
-      }
-    ],
-    "regions": [
-      "グローバル"
-    ],
-    "link": "https://www.nbcnews.com/news/us-news/burger-king-announces-move-be-preservative-free-moldy-whopper-ad-n1138566",
-    "videoId": "",
-    "overview": "Burger Kingの「Moldy Whopper」キャンペーンの印刷広告。作ってから28日たち、青緑のカビに覆われたワッパーを大きく写し、人工保存料を使っていないことを示した。2020年2月に始まったグローバルキャンペーンの一部で、INGO（ストックホルム）、DAVID（マイアミ）、Publicis Romaniaなどが関わった。",
-    "background": "NBC NewsやMarketing Diveによれば、Burger Kingはワッパーから人工保存料を除く取り組みを進めていた。欧州の多くの国と米国の一部市場ですでに切り替えを済ませ、2020年中に米国の全店舗へ広げる計画だった。グローバルCMOのFernando Machadoは「本物の食べ物のほうがおいしい」と語り、「リアルフード」を打ち出していた。",
-    "execution": "ハンバーガー広告の常識である「おいしそうな商品写真」を捨て、腐ったワッパーを主役にした。印刷広告では28日目の姿を見せ、合わせて34日間のカビの広がりをタイムラプスで追った動画も公開した。締めのコピーは「The beauty of no artificial preservatives（人工保存料なしの美しさ）」で、ハッシュタグ #MoldyWhopper も使った（Marketing Dive）。",
-    "evaluationImpact": "米国の一般ニュースや業界メディアに広く取り上げられ、「食欲をそぐ」という否定的な声と「話題作りとして成功」という評価に反応が分かれた。この印刷広告はカンヌライオンズ2021のPrint & Publishing部門でGold、Industry Craft部門でBronzeを受賞した。",
-    "tags": [
-      "Form/Print",
-      "Theme/Food"
-    ],
-    "thumbnail": "/thumbnails/burger-king-day-28.jpg"
   },
   {
     "year": "2021",
@@ -151290,9 +151217,10 @@
     "client": "Burberry",
     "agency": "MPC London / Riff Raff, London",
     "categories": [
-      "Film Craft"
+      "Film Craft",
+      "Film"
     ],
-    "award": "Cannes Lions 2021 Film Craft Lions Gold / Cannes Lions 2021 Film Craft Lions Silver",
+    "award": "Cannes Lions 2021 Film Craft Lions Gold / Cannes Lions 2021 Film Craft Lions Silver / Cannes Lions 2021 Film Lions Gold",
     "awardEntries": [
       {
         "org": "cannes",
@@ -151305,6 +151233,12 @@
         "year": 2021,
         "category": "Film Craft",
         "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Film",
+        "level": "Gold"
       }
     ],
     "regions": [
@@ -151312,10 +151246,10 @@
     ],
     "link": "https://www.stashmedia.tv/hail-megaforce-mpc-keeping-burberry-festive/",
     "videoId": "",
-    "overview": "Burberryが2020年11月に公開したホリデーシーズンのブランドフィルム。監督はRiff Raff Films所属のMegaforce、VFXとカラーグレーディングはMPCが担当した。",
+    "overview": "Burberryが2020年11月に公開したホリデーシーズンのブランドフィルム。監督はRiff Raff Films所属のMegaforce、VFXとカラーグレーディングはMPCが担当した。キャンペーンの顔にはサッカー選手のマーカス・ラッシュフォードを起用した。",
     "background": "最高クリエイティブ責任者のRiccardo Tisciは、この作品のテーマを「境界を押し広げる恐れを知らない精神と想像力」と語っている（Stash）。天候に強いトーマス・バーバリーの防水アウターの系譜を、極端な悪天候の中で踊る姿で表現した。",
     "execution": "ロンドンのペチコート・レーンで、ケバブ店から出てきた女性たちの頭上に突然雹と巨大な氷塊が降り注ぎ、4人のダンサーがそれをかわしながら踊る。振付はフランスの集団(LA)HORDE、音楽はDreya Macが歌う「Singin' in the Rain」のカバー。MPCは通りのフォトグラメトリ撮影と、実際に氷塊を落とす素材撮影を行ってCGの氷を作り、全ダンサーを3Dでロトアニメーションして動きと速度を氷に合わせた（Stash）。",
-    "evaluationImpact": "カンヌライオンズ2021のFilm Craft部門で、カラーグレーディングでGold、VFXでSilverを受賞した（LBB報道）。同年のOne Show、D&ADでも入賞した。",
+    "evaluationImpact": "カンヌライオンズ2021のFilm Craft部門で、カラーグレーディングでGold、VFXでSilverを受賞した（LBB報道）。Film部門でもGoldを受賞した。同年のOne Show、D&ADでも入賞した。",
     "tags": [
       "Form/Film",
       "Theme/Fashion",
@@ -151329,57 +151263,27 @@
     "sources": [
       "Cannes 2021"
     ],
-    "id": "new-york-times-life-needs-truth-kim-gehrig",
-    "title": "Life Needs Truth - Kim Gehrig",
-    "summary": "ニューヨーク・タイムズの見出しだけで組んだ5連の「映像詩」で、混乱した2020年の暮らしに報道がどう寄り添うかを描いたブランドフィルム。",
-    "client": "The New York Times",
-    "agency": "Somesuch, Los Angeles / Droga5, part of Accenture Interactive, New York",
-    "categories": [
-      "Film Craft"
-    ],
-    "award": "Cannes Lions 2021 Film Craft Lions Silver",
-    "awardEntries": [
-      {
-        "org": "cannes",
-        "year": 2021,
-        "category": "Film Craft",
-        "level": "Silver"
-      }
-    ],
-    "regions": [
-      "北米"
-    ],
-    "link": "https://campaignbriefasia.com/2020/08/20/aussie-expat-director-kim-gehrig-helms-brilliant-chaotic-ny-times-campaign-via-droga5-new-york/",
-    "videoId": "",
-    "overview": "The New York TimesとDroga5が2020年8月に公開したフィルム。既存の「The Truth Is Worth It」キャンペーンの新展開で、監督はSomesuchのKim Gehrig。",
-    "background": "パンデミック下で生活が混乱するなか、Timesの報道を「生活の一部」として示すことが狙いとされる。ニュースだけでなく、ポッドキャスト、オピニオン、料理、テクノロジー、家庭生活の記事が日常を導く様子を描いた（Campaign Brief Asia）。",
-    "execution": "Timesの見出しから言葉を拾って5つの連で構成した約2分半の映像詩で、ナレーションは使わない。慌ただしい日常の断片を短いカットで次々につなぎ、Makaya McCravenのジャズにタイピング音を重ねた。",
-    "evaluationImpact": "カンヌライオンズ2021のFilm Craft部門でSilverを受賞した。同年のOne ShowやD&AD、ADC Awardsでも入賞している。",
-    "tags": [
-      "Form/Film"
-    ],
-    "thumbnail": "/thumbnails/new-york-times-life-needs-truth-kim-gehrig.jpg"
-  },
-  {
-    "year": "2021",
-    "relatedWorks": [],
-    "sources": [
-      "Cannes 2021"
-    ],
     "id": "macmillan-whatever-it-takes",
     "title": "Macmillan - Whatever It Takes",
     "summary": "がん患者に寄り添うMacmillanの看護師らを「思いやりある戦士」として描き、パンデミック下でもがん支援は止まらないと伝えたフィルム。",
     "client": "Macmillan Cancer Support",
     "agency": "Macmillan Cancer Support, London / AMV BBDO, London",
     "categories": [
-      "Film Craft"
+      "Film Craft",
+      "Film"
     ],
-    "award": "Cannes Lions 2021 Film Craft Lions Silver",
+    "award": "Cannes Lions 2021 Film Craft Lions Silver / Cannes Lions 2021 Film Lions Silver",
     "awardEntries": [
       {
         "org": "cannes",
         "year": 2021,
         "category": "Film Craft",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Film",
         "level": "Silver"
       }
     ],
@@ -151391,7 +151295,7 @@
     "overview": "英国のがん支援団体Macmillan Cancer SupportがAMV BBDOと2021年1月に公開したブランドフィルム「Whatever It Takes」。監督はIconoclast所属で、The Blazeのミュージックビデオで知られるJonathan Alric。",
     "background": "コロナ禍の英国では医療の関心がパンデミックに集中したが、がんは待ってくれない。Macmillanは看護師を前面に出し、患者のためなら「何でもする」支援者の姿を示した（Thinkboxの後続施策の事例ページも、2021年のこのキャンペーンが看護師に焦点を当てたと記している）。制作は当初2020年3月に予定されていたが、最初のロックダウンで延期され、2度目のロックダウン中に撮影された。",
     "execution": "約2分のフィルムで、がんが患者と家族・友人の生活に与える影響を和らげずに描く。患者を笑わせようと踊る医療者や、患者を見舞う若い女性を看護師が立ち上がって慰める場面などを重ねる。音楽はMax Richterの「Spring 1」。",
-    "evaluationImpact": "カンヌライオンズ2021のFilm Craft部門でSilverを受賞した。同年のD&ADやOne Showでも評価され、2022年の後続作「Whatever You Need」へとプラットフォームが引き継がれた。",
+    "evaluationImpact": "カンヌライオンズ2021のFilm Craft部門とFilm部門でSilverを受賞した。同年のD&ADやOne Showでも評価され、2022年の後続作「Whatever You Need」へとプラットフォームが引き継がれた。",
     "tags": [
       "Form/Film",
       "Theme/Health",
@@ -151409,17 +151313,30 @@
     "title": "The Long Goodbye",
     "summary": "Riz Ahmedのアルバムと対になる12分の短編映画。英国の南アジア系の家族が極右の暴力に引き裂かれる近未来を描き、WeTransferのメディアWePresentで公開された。",
     "client": "Riz Ahmed / Wepresent",
-    "agency": "WETRANSFER, Amsterdam / RIZ AHMED, London",
+    "agency": "WETRANSFER, Amsterdam / RIZ AHMED, London / SOMESUCH, London / WEPRESENT, London",
     "categories": [
-      "Film Craft"
+      "Film Craft",
+      "Entertainment Lions for Music"
     ],
-    "award": "Cannes Lions 2021 Film Craft Lions Silver",
+    "award": "Cannes Lions 2021 Film Craft Lions Silver / Cannes Lions 2021 Entertainment Lions for Music Silver / Cannes Lions 2021 Film Craft Lions Gold",
     "awardEntries": [
       {
         "org": "cannes",
         "year": 2021,
         "category": "Film Craft",
         "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Entertainment Lions for Music",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Film Craft",
+        "level": "Gold"
       }
     ],
     "regions": [
@@ -151430,7 +151347,7 @@
     "overview": "俳優・ミュージシャンのRiz Ahmedと監督Aneil Kariaが共同で脚本を書き、WeTransferの文化メディアWePresentとの協業で制作した短編映画。2020年3月6日、同名アルバム『The Long Goodbye』の発売に合わせてWePresentで公開された。",
     "background": "アルバムは、ブレグジット後の英国で強まる極右勢力と反移民の言説を背景に、英国を「有害な元恋人」に見立てた作品。Short of the Weekによれば、Ahmedは短編を「暮らしている国に別れを告げられること」についての物語だと語っている。",
     "execution": "結婚式の準備で賑わう南アジア系の家族の家に、覆面の武装集団が押し入り、家族を黒いバンへ連れ去る。WePresentの記事によれば、撮影はサリーに組んだ通りのセットで行い、俳優は台本なしで演じた。クライマックスではAhmedがカメラに向かってラップを披露し、映画とアルバムの音楽が一体になっている。",
-    "evaluationImpact": "WePresentの短編としてオンラインで広く見られ、英国インディペンデント映画賞（BIFA）の最優秀英国短編賞を受賞した。2022年には第94回アカデミー賞の短編実写映画賞も受賞している。カンヌライオンズ2021ではFilm Craft部門でSilverを受賞した。",
+    "evaluationImpact": "WePresentの短編としてオンラインで広く見られ、英国インディペンデント映画賞（BIFA）の最優秀英国短編賞を受賞した。2022年には第94回アカデミー賞の短編実写映画賞も受賞している。カンヌライオンズ2021ではFilm Craft部門でGoldとSilver、Entertainment Lions for MusicでSilverを受賞した。",
     "tags": [
       "Form/Film",
       "Form/MV",
@@ -152039,17 +151956,23 @@
     "title": "Life Needs Truth",
     "summary": "New York Timesの見出しや言い回しをつないだ5連の詩を、ジャズのリズムに合わせて画面上のタイプ文字で見せ、同紙の報道が日々の暮らしに入り込んでいることを示したブランドフィルム。",
     "client": "New York Times",
-    "agency": "WAVE STUDIOS, New York / DROGA5, PART OF ACCENTURE INTERACTIVE, New York",
+    "agency": "WAVE STUDIOS, New York / DROGA5, PART OF ACCENTURE INTERACTIVE, New York / SOMESUCH, Los Angeles",
     "categories": [
       "Film Craft"
     ],
-    "award": "Cannes Lions 2021 Film Craft Lions Bronze",
+    "award": "Cannes Lions 2021 Film Craft Lions Bronze / Cannes Lions 2021 Film Craft Lions Silver",
     "awardEntries": [
       {
         "org": "cannes",
         "year": 2021,
         "category": "Film Craft",
         "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Film Craft",
+        "level": "Silver"
       }
     ],
     "regions": [
@@ -152060,7 +151983,7 @@
     "overview": "The New York TimesがDroga5 New Yorkと制作した「The Truth Is Essential」キャンペーンの次の段階として、2020年8月に公開した映像。監督はSomesuchのKim Gehrigで、Wave Studiosがサウンドデザインとミックスを担当した。",
     "background": "SHOOTによれば、キャンペーンの狙いは、ニュースだけでなくポッドキャスト、オピニオン、料理、テクノロジー、住まいまで、同紙のジャーナリズムが日常生活の一部になっていることを伝えることだった。前作「The Truth Is Worth It」を手がけたクリエイティブチームが続投した。",
     "execution": "移民問題から在宅勤務、政府予算、深夜のパスタレシピまでを扱う同紙の見出しから5連の詩を組み立て、ナレーションを使わず、写真や映像の上にタイプされる文字だけで見せた（It's Nice That）。音楽はジャズミュージシャンMakaya McCravenの楽曲で、タイピング音を重ねて詩のリズムを際立たせた。ニュースの変化に合わせて、制作中も詩を最新の見出しに書き換えた。",
-    "evaluationImpact": "音楽・音響と編集の完成度が評価され、カンヌライオンズ2021のFilm Craft部門でBronzeを受賞した。ADC AwardsでもBronze Cubeを受賞している。",
+    "evaluationImpact": "音楽・音響と編集の完成度が評価され、カンヌライオンズ2021のFilm Craft部門でBronzeとSilverを受賞した。ADC AwardsでもBronze Cubeを受賞している。",
     "tags": [
       "Form/Film",
       "Theme/Music"
@@ -154768,54 +154691,6 @@
     "sources": [
       "Cannes 2021"
     ],
-    "id": "see-sound",
-    "title": "See Sound",
-    "summary": "家の中の音をAIで聞き分け、スマートフォンなどに知らせる、聴覚障害者向けのスマートホーム機器。",
-    "client": "See Sound",
-    "agency": "AREA 23, AN FCB HEALTH NETWORK COMPANY, New York",
-    "categories": [
-      "Design"
-    ],
-    "award": "Cannes Lions 2021 Design Lions Silver / Cannes Lions 2021 Design Lions Bronze",
-    "awardEntries": [
-      {
-        "org": "cannes",
-        "year": 2021,
-        "category": "Design",
-        "level": "Silver"
-      },
-      {
-        "org": "cannes",
-        "year": 2021,
-        "category": "Design",
-        "level": "Bronze"
-      }
-    ],
-    "regions": [
-      "北米"
-    ],
-    "link": "https://campaignsoftheworld.com/tech-innovations/see-sound/",
-    "videoId": "",
-    "overview": "ヘルスケア広告会社AREA 23（FCB Health Network）が、ろう者が創業した音声認識ソフトウェア企業Wavioと共同開発した製品。コンセントに挿す小型ユニットが生活音を認識し、接続した機器に通知する。",
-    "background": "Campaigns of the Worldの記事によれば、聴覚障害者向けの既存の支援機器は機能が限られ、高価で古く、用途も1つに限られていた。Purdue大学のニュースによれば、AREA 23社内のアイデア支援プログラムから生まれた企画で、同社のアソシエイト・クリエイティブ・ディレクター2人が共同発明者となった。",
-    "execution": "約3.2平方インチのユニットをコンセントに挿し、Wi-FiとBluetoothで接続する。YouTube動画から集めた短い音声で学習したAIモデルが、叫び声・電子音・サイレンなど75種類の生活音を認識し、スマートフォン、スマートウォッチ、スマート照明にリアルタイムで知らせる（Purdue大学、Campaigns of the World）。ユニットを部屋ごとに置くと、どの部屋の音かまで特定できる。アプリでは音のデータを確認でき、知らせる音を選べる。ハードウェアはAREA 23、ソフトウェアはWavioが担当した。",
-    "evaluationImpact": "Purdue大学のニュースによれば、構想段階の2019年にカンヌライオンズのInnovation部門でGrand Prixを受賞し、その後米国で予約受付を始めた。2021年にはDesign部門でSilverとBronzeを受賞した。",
-    "tags": [
-      "Theme/Health",
-      "Theme/SocialGood",
-      "Tech/AI",
-      "Tech/Audio",
-      "Tech/Device",
-      "Form/Product"
-    ],
-    "thumbnail": "/thumbnails/see-sound.jpg"
-  },
-  {
-    "year": "2021",
-    "relatedWorks": [],
-    "sources": [
-      "Cannes 2021"
-    ],
     "id": "pride-of-africa",
     "title": "Pride Of Africa",
     "summary": "ヨハネスブルグ・プライドを「Pride of Africa」として刷新し、アフリカ54か国の国旗から作ったレインボーフラッグを象徴にしたブランディング。",
@@ -155477,51 +155352,6 @@
     "sources": [
       "Cannes 2021"
     ],
-    "id": "burger-king-day-35",
-    "title": "Day 35",
-    "summary": "カビの生えたワッパーをそのまま広告にし、人工保存料を使わなくなったことを「腐ること」で証明したバーガーキング「Moldy Whopper」の屋外広告版。",
-    "client": "Burger King",
-    "agency": "BURGER KING, Miami / INGO, Stockholm / DAVID, Miami / PUBLICIS ROMANIA, Bucharest",
-    "categories": [
-      "Outdoor"
-    ],
-    "award": "Cannes Lions 2021 Outdoor Lions Grand Prix / Cannes Lions 2021 Outdoor Lions Gold",
-    "awardEntries": [
-      {
-        "org": "cannes",
-        "year": 2021,
-        "category": "Outdoor",
-        "level": "Grand Prix"
-      },
-      {
-        "org": "cannes",
-        "year": 2021,
-        "category": "Outdoor",
-        "level": "Gold"
-      }
-    ],
-    "regions": [
-      "グローバル"
-    ],
-    "link": "https://www.nbcnews.com/news/us-news/burger-king-announces-move-be-preservative-free-moldy-whopper-ad-n1138566",
-    "videoId": "",
-    "overview": "バーガーキングがDAVID Miami、INGO Stockholm、Publicis Romaniaと組んだ「Moldy Whopper」キャンペーンのうち、ワッパーが日ごとにカビに覆われていく様子を写したポスター（Day 28／Day 32／Day 35）。Day 35は35日目の姿を写した1枚。",
-    "background": "バーガーキングはワッパーから人工保存料を取り除く取り組みを進めていた。NBC Newsによれば、2020年2月時点で米国の400店超で保存料抜きに切り替えており、年内に全米へ広げる計画だった。Marketing Diveは欧州の大半の国でも導入済みと伝えている。",
-    "execution": "2020年2月19日に公開。34日かけてワッパーが腐っていく様子をタイムラプスで撮った動画（BGMはDinah Washingtonの「What a Difference a Day Makes」）を軸に、同じハンバーガーの経過日数ごとの姿を大判の写真で見せる屋外広告・印刷広告を複数の国で展開した。コピーは「The beauty of no artificial preservatives（人工保存料なしの美しさ）」。",
-    "evaluationImpact": "食べ物の広告でカビを見せる手法は大きな話題となり、NBC Newsなど一般メディアも広く報じた。反応は驚きや皮肉まじりのものも多く、ライバルのマクドナルドへの当てこすりとも受け取られた。カンヌライオンズ2021のOutdoor部門でGrand PrixとGoldを受賞した。",
-    "tags": [
-      "Form/OOH",
-      "Form/Print",
-      "Theme/Food"
-    ],
-    "thumbnail": "/thumbnails/burger-king-day-35.jpg"
-  },
-  {
-    "year": "2021",
-    "relatedWorks": [],
-    "sources": [
-      "Cannes 2021"
-    ],
     "id": "mcdonald-s-modern",
     "title": "Modern",
     "summary": "ゴールデンアーチの半分を「家の窓へ差し込む黄色い光の弧」として描き、ロックダウン中にマクドナルドが家まで届けることをロゴもほぼ使わずに伝えたポスター。",
@@ -155747,7 +155577,7 @@
     ],
     "link": "https://www.dezeen.com/2020/02/12/mcdonalds-advertisement-leo-burnett/",
     "videoId": "",
-    "overview": "Leo Burnett Londonが英国マクドナルド向けに制作した屋外広告。応募作「Big Mac」は、2020年1月に英国で展開された無ロゴの文字ポスターシリーズ「Iconic Stacks」のBig Mac版とみられる。",
+    "overview": "Leo Burnett Londonが英国マクドナルド向けに制作した屋外広告。応募作「Big Mac」は、2020年2月に英国で公開された無ロゴの文字ポスターシリーズ「Iconic Stacks」のBig Mac版（Dezeen）。",
     "background": "Dezeenの報道によれば、出発点は「商品が誰のものか言わなくても分かるほど、うちの商品は認知されているか」という問いだった。Leo BurnettのクリエイティブディレクターPete Heyesは「これができるグローバルブランドはひと握りしかない」と語っている。",
     "execution": "バンズ、ビーフ、ピクルス、レタス、ソースといった具材名をHelveticaで重ね、ハンバーガーの断面のように見せた。ロゴも商品写真も入れていない。タイポグラファーDavid Schwenの2011年の作品「Type Sandwiches」の手法を使い、Leo Burnettと同氏が共同で制作した。シリーズにはSausage & Egg McMuffinやFilet-O-Fish版もあり、英国全国のデジタル屋外看板で展開された（Dezeen、Creative Boom）。",
     "evaluationImpact": "引き算の表現で、ブランドの認知度の高さそのものを見せたシリーズとして、DezeenやCreative Boomなどデザイン系メディアで紹介された。カンヌライオンズ2021のOutdoor部門でSilverを受賞した。",
@@ -156176,7 +156006,7 @@
       "Cannes 2021"
     ],
     "id": "le-chocolat-des-francais-the-2-cv",
-    "title": "The 2 Cv",
+    "title": "The 2CV",
     "summary": "フランスの良い面も悪い面も含めた「お決まりのイメージ」を限定パッケージのイラストにし、観光客に土産として持ち帰ってもらうことを狙ったLe Chocolat des Françaisのキャンペーンのうち、シトロエン2CVを描いた1点。",
     "client": "Le Chocolat Des Français",
     "agency": "TBWA\\Paris",
@@ -159347,46 +159177,6 @@
     "sources": [
       "Cannes 2021"
     ],
-    "id": "burberry-brand-campaign-2020-festive-season",
-    "title": "Burberry Brand Campaign 2020 (Festive Season)",
-    "summary": "映画『雨に唄えば』の名場面を下敷きに、雨の代わりに空から降る巨大な氷塊をよけて仲間たちが踊る、バーバリーの2020年ホリデーシーズンのフィルム。",
-    "client": "Burberry",
-    "agency": "BURBERRY, London / RIFF RAFF, London / RIFF RAFF FILMS (DIRECTORS & CREATIVE: MEGAFORCE), London",
-    "categories": [
-      "Film"
-    ],
-    "award": "Cannes Lions 2021 Film Lions Gold",
-    "awardEntries": [
-      {
-        "org": "cannes",
-        "year": 2021,
-        "category": "Film",
-        "level": "Gold"
-      }
-    ],
-    "regions": [
-      "欧州"
-    ],
-    "link": "https://musebyclios.com/advertising/burberrys-spectacular-holiday-ad-will-put-a-spring-in-your-winter-step/",
-    "videoId": "",
-    "overview": "バーバリーが2020年11月に公開したホリデーキャンペーンのフィルム「Festive」。チーフ・クリエイティブ・オフィサーのリカルド・ティッシが統括し、Megaforceが監督、Riff Raff Filmsが制作した。キャンペーンの顔にはサッカー選手のマーカス・ラッシュフォードを起用した。",
-    "background": "制作陣は、2020年が誰にとっても困難な年だったことを踏まえ、原作の雨を氷塊に、主人公1人を友人グループに置き換えて、逆境を仲間と乗り越える姿を表現した。極地探検家向けの防水アウターを作った創業者トーマス・バーバリーにも通じるモチーフとされる（Muse by Clios）。",
-    "execution": "ロンドンのペチコート・レーンで、最新コレクションを着たダンサーたちが落ちてくる氷塊をよけながら踊る。振付はフランスの集団(LA)HORDE、音楽はロンドンのヒップホップアーティスト、ドレヤ・マックが歌う「Singin' in the Rain」のカバー。MPCが実際の氷塊を落とす素材撮影とフォトグラメトリーをもとにCGの氷を作り、ダンサー全員を3Dでロトアニメーションして動きを合わせた（Stash報道）。",
-    "evaluationImpact": "雨を氷塊に置き換えた発想と、ダンスとVFXを組み合わせた映像が業界メディアで広く取り上げられた。カンヌライオンズ2021のFilm部門でGoldを受賞した。",
-    "tags": [
-      "Form/Film",
-      "Theme/Fashion",
-      "Theme/Music",
-      "Tech/3D"
-    ],
-    "thumbnail": "/thumbnails/burberry-brand-campaign-2020-festive-season.jpg"
-  },
-  {
-    "year": "2021",
-    "relatedWorks": [],
-    "sources": [
-      "Cannes 2021"
-    ],
     "id": "equal-pay-day-eternal-pregnancy",
     "title": "Eternal Pregnancy",
     "summary": "男性と同じだけ稼ぐには子どもを持つのは退職後まで待つしかない、という皮肉で男女の賃金格差を突いた、ベルギーのEqual Pay Day向けフィルム。",
@@ -159587,45 +159377,6 @@
       "Form/SNS"
     ],
     "thumbnail": "/thumbnails/sickkids-foundation-sickkids-moms-vs-hard-days.jpg"
-  },
-  {
-    "year": "2021",
-    "relatedWorks": [],
-    "sources": [
-      "Cannes 2021"
-    ],
-    "id": "macmillan-cancer-support-whatever-it-takes",
-    "title": "Whatever It Takes",
-    "summary": "がん支援団体マクミランのスタッフを、優しさとたくましさを併せ持つ「Compassionate Warriors（思いやりある戦士）」として描き直した新しいブランド・プラットフォームの立ち上げフィルム。",
-    "client": "Macmillan Cancer Support",
-    "agency": "AMV BBDO, London",
-    "categories": [
-      "Film"
-    ],
-    "award": "Cannes Lions 2021 Film Lions Silver",
-    "awardEntries": [
-      {
-        "org": "cannes",
-        "year": 2021,
-        "category": "Film",
-        "level": "Silver"
-      }
-    ],
-    "regions": [
-      "欧州"
-    ],
-    "link": "https://shootonline.com/shoot_video2/best-work-you-may-never-see-jonathan-alric-directs-tender-yet-tough-macmillan-cancer-support",
-    "videoId": "",
-    "overview": "英国のがん支援団体Macmillan Cancer SupportとAMV BBDOが2021年1月に立ち上げたブランド・プラットフォーム「Whatever It Takes」。その第1弾フィルム「Tender yet Tough」は、がんと生きる人のためなら何でもするスタッフの粘り強さ、技能、工夫、ユーモア、優しさを描いた。",
-    "background": "マクミランは「寄り添う」イメージは強い一方、目的のためにやり抜く側面はあまり知られていなかった。さらにパンデミックで資金が大きく落ち込み、英国では新型コロナによる医療の混乱で最大5万人ががんの診断を受けられずにいると推計されていた。サービスの重要性を改めて伝え、寄付と支援の利用を促す必要があった（Shoot）。",
-    "execution": "スタッフを「Compassionate Warriors」として描く映像を、IconoclastのJonathan Alric監督が2度目のロックダウン中に撮影した。音楽はMax Richterの「Spring 1」。フィルムは英国のオーディション番組The Voiceの放送枠で初公開され、TV、デジタル、SNS、ラジオで展開した（Shoot、LBB）。2022年の「Whatever You Need」など、後続のキャンペーンもこのプラットフォーム上で展開されている。",
-    "evaluationImpact": "慈善団体のイメージを「優しさ」から「たくましさ」へ広げたブランド刷新として業界メディアで紹介され、英国のThinkbox賞も受けた。カンヌライオンズ2021のFilm部門でSilverを受賞した。",
-    "tags": [
-      "Form/Film",
-      "Theme/Health",
-      "Theme/SocialGood"
-    ],
-    "thumbnail": "/thumbnails/macmillan-cancer-support-whatever-it-takes.jpg"
   },
   {
     "year": "2021",
