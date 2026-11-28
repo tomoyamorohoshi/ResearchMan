@@ -1,5 +1,272 @@
 [
   {
+    "id": "opentoequalpay-2026",
+    "title": "#OpenToEqualPay",
+    "summary": "LinkedInの「#OpenToWork」枠を同一賃金の要求に読み替え、プロフィール写真を雇用主への訴えの場に変えた",
+    "client": "Bureau Clara Wichmann",
+    "agency": "Dawn",
+    "categories": [
+      "メディア発明",
+      "社会包摂"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/opentoequalpay-badge-linkedin-egalite-salariale-20261127",
+    "thumbnail": "/thumbnails/opentoequalpay-2026.jpg",
+    "videoId": "",
+    "overview": "オランダのEqual Pay Day（2026年11月26日）に合わせて、フェミニスト法律団体Bureau Clara Wichmann（BCW）とアムステルダムのエージェンシーDawnが始めたLinkedInキャンペーン。転職先を探していることを示す「#OpenToWork」の緑の枠をまねて、「#OpenToEqualPay」の枠をプロフィール写真に付けられるようにした。性別を問わず誰でも参加でき、同一賃金を支持する意思を表せる。",
+    "background": "オランダでは女性の時給が男性より平均9.8%低いとされ、Equal Pay Dayは「この日から年末まで、女性は実質的に無給で働いている」ことを示す日として扱われている。BCWは40年にわたり、オランダで女性の法的・社会的地位の向上と男女平等に取り組んできた法律団体。今回のキャンペーンは、BCWのリブランディング直後に実施された。",
+    "execution": "参加者はキャンペーンのランディングページ（clara-wichmann.nl/equalpay）で写真をアップロードし、#OpenToEqualPayの枠が付いたプロフィール画像をダウンロードして、LinkedInのアイコンに設定する。キャンペーンフィルムとSNS施策を組み合わせ、11月26日からLinkedInほかのSNSで展開した。DawnのクリエイティブディレクターBrenda Waegemaekersは、このバッジを「給与を見直し、男女の賃金格差を埋めよ」という雇用主へのシグナルだと説明している。",
+    "evaluationImpact": "LinkedInの求職バッジは「自分は仕事を探している」という個人のサインとして定着している。その見慣れた形式を借り、意味を「雇用主に賃金の平等を求める」という逆向きのメッセージに変えた点が新しい。メディアを買わず、利用者のプロフィール写真という無償の場所を媒体にしたことで、人事担当者や経営者が毎日見るタイムラインに直接メッセージが届く。LBBやCampaign Briefなど各国の広告メディアでも取り上げられた。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/SNS",
+      "Theme/SocialGood"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "noop-2026",
+    "title": "Noop",
+    "summary": "2本の指をつなぐリングで煙草を挟む動作そのものを不自然にし、禁煙の意思を身体で思い出させるプロダクト",
+    "client": "Indian Cancer Society",
+    "agency": "Sideways Consulting",
+    "categories": [
+      "テクノロジー×アイデア",
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://creapills.com/noop-double-bague-arret-tabac-20261127",
+    "thumbnail": "/thumbnails/noop-2026.jpg",
+    "videoId": "",
+    "overview": "インドの非営利団体Indian Cancer Societyが、クリエイティブエージェンシーSideways Consultingと開発した禁煙支援リング「Noop」。2本の指にまたがって装着するダブルリングで、装着すると煙草をいつもの持ち方で挟みにくくなる。手を伸ばすたびに禁煙の意思を思い出させる仕掛けとして、同協会の創立75周年（Platinum Jubilee）に合わせて発表された。",
+    "background": "Indian Cancer SocietyとSidewaysはこれまでも世界禁煙デーに合わせ、恐怖を煽る画像に頼らない禁煙啓発キャンペーンを手がけてきた。警告表示や啓発映像のような「言葉で説得する」手法では、無意識に繰り返される喫煙の動作そのものには届きにくい。そこで習慣を支える手の動きに直接介入するアプローチがとられた。",
+    "execution": "2本の指をつなぐ二連リングを製作し、装着すると煙草を指で挟む動作が窮屈になるようにした。喫煙を禁止するのではなく、手を伸ばした瞬間の違和感を禁煙の意思を思い出すきっかけにする設計。リングは非営利価格でWear NObとIndian Cancer Societyのサイトで販売され、同時に啓発短編映画「Muh Dikhai」も公開された。",
+    "evaluationImpact": "禁煙を情報や意志の問題ではなく、身体の動作の問題として捉え直した点が新しい。アクセサリーという日常的に身につけられる形で行動を物理的に制約し、習慣が始まるその瞬間に介入する。言葉に頼らず行動変容を促すこの考え方は、他の依存や悪習慣への介入にも応用できる。",
+    "relatedWorks": [],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Product",
+      "Theme/Health",
+      "Theme/SocialGood"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "human-glasses-rack-rack-friday-2026",
+    "title": "Human Glasses Rack（Rack Friday）",
+    "summary": "Black Fridayの眼鏡陳列什器を、壁から顔を出す25人の「人間の顔の列」に置き換えて、顔型に合うフレーム選びを体験させた",
+    "client": "Specsavers",
+    "agency": "Golin London",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "空間体験",
+      "カルチャーインサイト"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://creapills.com/specsavers-presentoir-lunettes-humain-20261127",
+    "thumbnail": "/thumbnails/human-glasses-rack-rack-friday-2026.jpg",
+    "videoId": "",
+    "overview": "英国の眼鏡チェーンSpecsaversが、Black Fridayに合わせた「Rack Friday」キャンペーンとして、ロンドンのWestfieldに幅8mの「Human Glasses Rack（人間メガネ什器）」を設置した。壁の穴から25人の本物の人が顔を出し、それぞれが自分の顔型に合わせて選ばれたデザイナーフレームをかけて並んだ。制作はGolin Ketchum London。",
+    "background": "Specsaversの調査では、英国人の6割が自分の顔型を把握しておらず、半数以上が自分の顔型に合うフレームの形を知らなかった。一方で同社はBlack Friday月間に、数十のデザイナーブランドを25%オフで販売していた。値引きを伝えるだけでなく、どのフレームが自分に合うか分からないという、眼鏡選びの迷いに応える必要があった。",
+    "execution": "店頭でフレームを並べる陳列什器を、幅8mの壁に置き換えた。壁の穴から顔を出した25人が、それぞれの顔型に合わせて選ばれたフレームをかけ、什器のように整然と並ぶ。会場にはSpecsaversの検眼士が待機し、買い物客と顔型や似合うスタイルについて話した。値引き率の25%と、顔を出す人数の25人がそろえてある。",
+    "evaluationImpact": "眼鏡は通常、フレーム単体で並べて売られる。この施策はその陳列を「かけた顔」の列に置き換えることで、フレームが顔型によってどう見えるかを一目で比べられるようにした。Black Fridayのセール告知を、顔型診断という実用的な体験に変えた点が新しい。ただし、売上やエンゲージメントの結果は公表されていない。",
+    "relatedWorks": [
+      {
+        "title": "The BIGGER Issue（Specsavers × Big Issue）",
+        "description": "同じGolin Ketchum Londonが手がけたSpecsaversの施策。ホームレス状態の人が目と耳のケアを受けにくい現状を、巨大なBig Issue誌で訴えた。",
+        "url": "https://lbbonline.com/news/Specsavers-Giant-Big-Issue-Eye-Hearing-Care"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Installation",
+      "Form/Stunt",
+      "Form/Event",
+      "Theme/Retail",
+      "Theme/Fashion"
+    ],
+    "gateCriterion": "A",
+    "sourceId": "creapills",
+    "gateTier": "accept",
+    "discoveryLens": 1
+  },
+  {
+    "id": "pennsylvania-horticultural-society-identity-grow-like-nature",
+    "title": "Pennsylvania Horticultural Society identity（grow like nature / flipbook logo）",
+    "summary": "PHSの頭文字から植物が育つ様子を1コマずつ手描きで動かし、印刷物でも動きが伝わるようパラパラ漫画にした200周年ブランドID",
+    "client": "Pennsylvania Horticultural Society",
+    "agency": "Smith & Diction",
+    "categories": [
+      "ブランドエクスペリエンス",
+      "コンテンツ革新"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://creativebloq.com/news/this-beautiful-logo-design-was-created-to-grow-like-nature",
+    "thumbnail": "/thumbnails/pennsylvania-horticultural-society-identity-grow-like-nature.jpg",
+    "videoId": "",
+    "overview": "米国の園芸団体Pennsylvania Horticultural Society（PHS）が、2027年の創立200周年を前に新しいブランドIDを発表した。制作はフィラデルフィアのスタジオSmith & Diction。ロゴは頭文字「PHS」から3種の植物が伸びる構成で、フィラデルフィアの街路グリッドを控えめに引用し、庭をイメージした色と手描きの植物イラストを組み合わせる。ロゴの成長はHenrique Baroneが1コマずつ手描きでアニメーションにした。",
+    "background": "PHSは長い歴史を持つ園芸団体で、都市の緑化にも取り組んでいる。200周年の1年間にわたる記念行事の始まりに合わせ、約3年かけてブランドを刷新した。報道によれば新しいIDは自然界から着想を得ており、PHSが果たす役割の変化も反映している。新しいWebサイトも同時に公開された。",
+    "execution": "PHSの頭文字から植物が芽吹いて伸びる様子を、Henrique Baroneがフレームごとに手描きで作画した。完成した映像は自然ドキュメンタリーのタイムラプスのような見え方をする。そのコマを使ってパラパラ漫画も作った。スタジオは「ロゴが育って咲くことを、動かない印刷物で見せる手段はパラパラ漫画しかなかった」と説明している。別にJustin Lawesが、植物が風に揺れる様子のアニメーションも制作した。",
+    "evaluationImpact": "評価できるのは、ロゴを「育っていく植物」として扱い、手描きのコマ送りという手間のかかる方法で、生き物らしい成長を表した点。動きのあるロゴを紙の上で再現するためにパラパラ漫画を使い、動くIDを印刷物に持ち込んだ点も具体的な工夫といえる。Creative Bloqなどデザイン系メディアで取り上げられた。受賞は確認できなかった。",
+    "relatedWorks": [
+      {
+        "title": "Philharmonie Luxembourg Identity（NB Studio）",
+        "description": "演奏の波形にロゴの柱がリアルタイムで反応する、動くブランドID",
+        "url": "https://bpando.org/2023/11/14/music-branding-philharmonie-luxembourg-nb-studio/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Print",
+      "Form/Film",
+      "Theme/Art",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "B",
+    "sourceId": "",
+    "gateTier": "accept",
+    "discoveryLens": 2
+  },
+  {
+    "id": "moulded-cotton-pulp-paper-lamps-binder-free-cotton-pulp-lamp",
+    "title": "Moulded Cotton Pulp Paper Lamps（binder-free cotton pulp lampshades）",
+    "summary": "3Dプリントした2分割の型で綿パルプを圧着乾燥させ、接着剤なしに繊維の絡みだけで成形し厚みで透光を設計するランプ",
+    "client": "Yaëlle Gaussinel / Marie-Claire Beauchesne（UQAM School of Design）",
+    "agency": "",
+    "categories": [
+      "テクノロジー×アイデア"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "北米"
+    ],
+    "link": "https://materialdistrict.com/article/moulded-cotton-pulp-forms-paper-lamps-without-added-binders/",
+    "thumbnail": "/thumbnails/moulded-cotton-pulp-paper-lamps-binder-free-cotton-pulp-lamp.jpg",
+    "videoId": "",
+    "overview": "カナダ・ケベック大学モントリオール校（UQAM）デザイン学部のYaëlle GaussinelとMarie-Claire Beauchesneによる卒業制作の照明コレクション「Béco」。綿パルプが、ランプシェードの形と光の効果を同時に生み出す実験的な照明シリーズとして紹介されている。シェードは3Dプリントした2分割の型で成形され、接着剤も添加バインダーも使わず、乾燥時に絡み合う綿の繊維だけで形を保つ。ドーム型・先細り型・楕円型の3種のペンダントランプがある。",
+    "background": "パルプ成形の照明は多いが、形を保つために糊や石膏などのバインダーを混ぜる作り方も一般的である。本作は、綿の繊維が乾くときに絡み合う性質だけで、自立する殻をつくることに挑んだ。名称のBécoはフランス語の「キス」に由来し、2つの縁が合わさってシェードになる構造を指す。卒業制作であり、作品の年はMaterialDistrictの記事（2026年11月27日公開）で確認できる。",
+    "execution": "2つの型の両側に綿パルプを詰め、乾燥中に型同士を押し合わせて成形する。3Dプリントした型には穴が開いており、濡れたパルプから水を抜くと同時に、紙の表面に凸状の模様を残す。縁が接する部分では繊維がつながり、2つの半分が糊なしで1つの殻になる。パルプを少しずつ重ねて部分ごとに厚みを変え、乾いた殻の剛性を確保する。点灯すると、薄い部分は光をよく通し、厚い部分は不透明に見える。シェードは3Dプリントしたホルダーに載せて吊る。",
+    "evaluationImpact": "評価点は、繊維の分布という1つの変数で構造（形の保持）と光の透過を同時に設計している点にある。3Dプリントの型に排水と表面模様の役割を兼ねさせ、2つの部品を糊でなく繊維の絡みで一体化する作り方は、単一素材でリサイクルしやすいパルプ製品の手法としてほかの用途にも転用できる。一方、記事では厚みや透過率の数値、綿の調達元は示されておらず、受賞・展示の記載もない。",
+    "relatedWorks": [
+      {
+        "title": "Palefire U/V Collection（Palefire Studio）",
+        "description": "再生紙パルプを型で成形し手描きで仕上げたモジュール式ランプ。塗装後はリサイクルできないと作者自身が述べている。",
+        "url": "https://www.dezeen.com/2022/07/27/palefire-studio-paper-pulp-lamps/amp/"
+      },
+      {
+        "title": "Sustainable Lighting Design – A Lamp Made from Cotton Paper",
+        "description": "デンマークのデザインスクール・コリングの学生（Iben Iuel Hersoug、Patrik Fredegaard Olsen）による、綿紙を使ったランプの授業課題。",
+        "url": "https://www.designskolenkolding.dk/en/course-project-example/sustainable-lighting-design-a-lamp-made-from-cotton-paper-by-iben-iuel-hersoug-and-patrik-fredegaard-olsen"
+      },
+      {
+        "title": "Paper Paste Living（再生紙の家具）",
+        "description": "再生紙パルプを型に押し込み、天日で乾かして作る家具と照明。記事では糊を加えていないと紹介されている。",
+        "url": "https://materialdistrict.com/article/furniture-made-of-recycled-paper/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Tech/3D",
+      "Form/Product",
+      "Theme/Sustainability"
+    ],
+    "gateCriterion": "D",
+    "sourceId": "materialdistrict",
+    "gateTier": "accept",
+    "discoveryLens": 3
+  },
+  {
+    "id": "futurebrand-relaunch-angled-f-identity-future-display-sonic",
+    "title": "FutureBrand relaunch（angled F identity / Future Display / sonic identity）",
+    "summary": "FutureBrandが固定ロゴを捨て、回転し視点を変え石膏や粘土の手作り質感もまとう可変「F」と社名の音から作ったサウンドロゴで自社IDを再構築",
+    "client": "FutureBrand",
+    "agency": "FutureBrand（自社）",
+    "categories": [
+      "ブランドエクスペリエンス"
+    ],
+    "award": "",
+    "year": "2026",
+    "regions": [
+      "グローバル",
+      "中南米"
+    ],
+    "link": "https://designweek.co.uk/the-outline-futurebrand-relaunch-gta-vi-heist-kits-and-a-dalek-23-11-2026",
+    "thumbnail": "/thumbnails/futurebrand-relaunch-angled-f-identity-future-display-sonic.jpg",
+    "videoId": "",
+    "overview": "ブランドコンサルティング・デザインの国際ネットワークFutureBrandが2026年11月17日、新ポジショニング「Always Unmistakable」とともに自社のブランド表現を刷新した。中心は固定のマークではなく柔軟なシステムとして働く傾いた「F」で、傾いたワードマーク、独自書体Future Display、Fから派生した可変のボックス要素、社名の発音から作ったサウンドアイデンティティ、新ウェブサイトで構成される。プロジェクトはサンパウロ拠点が主導した。",
+    "background": "FutureBrandは、接点の増加とAI生成コンテンツの急増によって従来のブランディングの型が通用しにくくなったと捉え、ロゴやガイドラインを固定するのではなく、継続的に運用・最適化される「生きた」ブランドシステムへの転換を掲げた。新ポジショニングでは、自社の振る舞いを「異なる視点を探り、より良い未来をつくること」と定義し、それをすべての表現の軸に置いた。この考え方を、まず自社のIDで実践した。",
+    "execution": "傾いた「F」は固定せず、回転や視点の変化に合わせて形を変え、用途ごとに構成が変わるモジュール式のシステムとして設計した。石膏や粘土などの手作りの質感でも展開され、デジタルだけでなく物質感のある表現も持つ。Fからは可変のボックス要素が派生し、独自書体Future Displayと傾いたワードマークが組み合わさる。音では社名の音韻からサウンドアイデンティティを作り、音程や音色を変えて展開する。",
+    "evaluationImpact": "「異なる視点を探る」というブランドの振る舞いを、視点によって姿を変えるFという形に直接置き換えた点が明快で、ブランドエージェンシー自身が可変IDの考え方を自社で示した例といえる。一方、可変ロゴ、手作り質感の展開、社名由来のサウンドロゴはそれぞれ既存の手法であり、生成的な仕組みなど固有の技術的発明は確認できない。受賞情報は確認できていない。",
+    "relatedWorks": [
+      {
+        "title": "FutureBrand（公式ケース）",
+        "description": "FutureBrand公式サイトに掲載された自社リブランドのケースページ",
+        "url": "https://www.futurebrand.com/work/futurebrand/"
+      },
+      {
+        "title": "A new positioning for FutureBrand",
+        "description": "新ポジショニング「Always Unmistakable」とブランドの振る舞いの定義を説明する公式記事",
+        "url": "https://www.futurebrand.com/thinking/a-new-positioning-for-futurebrand/"
+      },
+      {
+        "title": "FutureBrand Champions New Era of 'Always Unmistakable' Brand Behaviour",
+        "description": "LBBによる新ポジショニングとアイデンティティ刷新の報道",
+        "url": "https://lbbonline.com/news/futurebrand-champions-new-era-of-always-unmistakable-brand-behaviour"
+      },
+      {
+        "title": "FutureBrand renova identidade global em projeto liderado pelo Brasil",
+        "description": "サンパウロ拠点がグローバルIDを主導したことを伝えるpropmarkの記事",
+        "url": "https://propmark.com.br/agencias/futurebrand-renova-identidade-global-em-projeto-liderado-pelo-brasil/"
+      }
+    ],
+    "sources": [
+      "Radar"
+    ],
+    "tags": [
+      "Form/Website",
+      "Tech/Audio",
+      "Theme/Art"
+    ],
+    "gateCriterion": "B",
+    "sourceId": "",
+    "gateTier": "borderline",
+    "discoveryLens": 2
+  },
+  {
     "id": "a-wake-up-call-2026",
     "title": "A Wake Up Call",
     "summary": "IKEAの店内展示に置いた電話を、DV通報の平均間隔16分ごとに鳴らし、買い物の時間そのものをDVの頻度を体感させる時計に変えた。",
