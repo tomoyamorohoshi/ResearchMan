@@ -154345,5 +154345,623 @@
       "Form/Product"
     ],
     "thumbnail": "/thumbnails/burger-king-your-way-way-better.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "kraft-heinz-canada-pour-perfectly",
+    "title": "Pour Perfectly",
+    "summary": "ケチャップのボトルのラベルをわざと傾けて貼り、ラベルがまっすぐ見える角度で注ぐと一番よく出る、という注ぎ方ガイドにしたHeinzの限定パッケージ。",
+    "client": "Kraft Heinz Canada",
+    "agency": "RETHINK, Toronto",
+    "categories": [
+      "Design"
+    ],
+    "award": "Cannes Lions 2021 Design Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Design",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/heinz-ketchup-pour-perfectly",
+    "videoId": "7E1rjbfkwp4",
+    "overview": "Kraft Heinz CanadaとカナダのRethinkによる限定ボトル。Heinzケチャップのラベルを斜めに配置し、ラベルが水平に見えるようにボトルを傾けると、ケチャップが注ぎやすい角度になる仕組みにした。",
+    "background": "ガラス瓶のケチャップは「なかなか出てこない」ことで知られる。Heinzは長年のこの悩みに対し、正しい注ぎ方をパッケージそのもので示すことを狙った。",
+    "execution": "ラベルは店頭では傾いて見え、注ぐ角度にすると正しい向きに見える。The Drumなどの2019年9月の報道によると、ボトルはトロント限定で数量限定販売された。あわせてHeinz CanadaはYouTubeで注ぎ方を見せる動画「Heinz Ketchup Pour Perfectly」を公開した。",
+    "evaluationImpact": "Creative Bloq、Laughing Squid、TODAYなど海外のメディアやライフスタイル系サイトで「正しいケチャップの注ぎ方」として広く取り上げられた。カンヌライオンズ2021のDesign部門でGoldを受賞した。",
+    "tags": [
+      "Form/Product",
+      "Theme/Food"
+    ],
+    "thumbnail": "/thumbnails/kraft-heinz-canada-pour-perfectly.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "google-timelapse-in-google-earth",
+    "title": "Timelapse In Google Earth",
+    "summary": "過去37年分・約2,400万枚の衛星画像をつなぎ、地球上のどこでも氷河の後退や森林の消失、都市の拡大を早回しで見られるようにしたGoogle Earthの機能。",
+    "client": "Google",
+    "agency": "GOOGLE, New York / GOOGLE CREATIVE LAB, London",
+    "categories": [
+      "Design",
+      "Sustainable Development Goals"
+    ],
+    "award": "Cannes Lions 2021 Design Lions Gold / Cannes Lions 2021 Sustainable Development Goals Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Design",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Sustainable Development Goals",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://blog.google/products/earth/timelapse-in-google-earth/",
+    "videoId": "",
+    "overview": "Googleが2021年4月にGoogle Earthへ追加した「Timelapse」。1984〜2020年の衛星画像から1本の巨大な動画モザイクを作り、地球の変化を時間軸付きの3D地球儀で見られるようにした。",
+    "background": "気候変動や土地利用の変化は、数十年単位でゆっくり進むため実感しにくい。Google公式ブログによれば、Googleは誰もが自分の目で地球の変化を確かめられるようにすることを狙い、米カーネギーメロン大学CREATE Labの協力で、NASA・米地質調査所のLandsatと欧州Copernicusの衛星画像を使った。",
+    "execution": "Google公式ブログによれば、約2,400万枚・約20ペタバイトの画像をGoogle Earth Engineで処理し、雲などを除いて年ごとに1枚の画像を作り、4.4テラピクセルの動画にまとめた。処理には200万時間超を要した。森林の変化、都市の拡大、温暖化、エネルギー源、もろい美しさの5テーマのガイド付きツアーを用意し、800本超の2D・3D動画も無料で公開した。画像は今後10年、毎年更新するとした。",
+    "evaluationImpact": "BBC、Bloomberg、Axios、EcoWatchなどが「数十年の気候変動を数秒で見せる」機能として報じた。カンヌライオンズ2021のDesign部門でGold、Sustainable Development Goals部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Sustainability",
+      "Tech/Data",
+      "Tech/Web",
+      "Tech/3D"
+    ],
+    "thumbnail": "/thumbnails/google-timelapse-in-google-earth.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "ezaki-glico-co-ltd-pocky-the-gift",
+    "title": "Pocky The Gift",
+    "summary": "ポッキーを細身でカラフルな小箱に詰め替え、好きな色の組み合わせで選んで贈る「プチギフト」に変えた江崎グリコのパッケージ施策。",
+    "client": "Ezaki Glico Co., Ltd.",
+    "agency": "DENTSU INC., Tokyo",
+    "categories": [
+      "Design"
+    ],
+    "award": "Cannes Lions 2021 Design Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Design",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "国内"
+    ],
+    "link": "https://www.spoon-tamago.com/?p=45006",
+    "videoId": "",
+    "overview": "江崎グリコと電通による「Pocky THE GIFT」。味ごとに色を変えた小さな箱を、贈る相手に合わせて組み合わせて詰める新しいポッキーの形を作った。",
+    "background": "子ども向けの身近な駄菓子というイメージが強いポッキーを、大人が日常のちょっとしたお礼に贈れるギフトとして位置付け直すことを狙った。",
+    "execution": "Spoon & Tamagoの報道によれば、電通の八木義博氏がクリエイティブディレクションを担当し、印刷を抑えたミニマルでポップな色づかいの細長いパッケージをデザインした。2018年12月から新宿マルイ地下1階のポップアップでは、好きな色を選んで3・6・9・12・27個入りのギフトボックスに詰められた。Oggiの報道では、2019年11月17日から有楽町・なんばのマルイ2店舗の専用ショップなどで、夕張メロンやあまおう苺、宇治抹茶など全6種が期間限定で販売された。",
+    "evaluationImpact": "国内の女性誌や海外のデザインメディアで「パケ買いしたくなる」パッケージとして紹介された。カンヌライオンズ2021のDesign部門でGoldを受賞した。",
+    "tags": [
+      "Form/Product",
+      "Theme/Food",
+      "Theme/Retail"
+    ],
+    "thumbnail": "/thumbnails/ezaki-glico-co-ltd-pocky-the-gift.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "american-society-for-deaf-children-fingerspelling-with-machine-learning",
+    "title": "Fingerspelling With Machine Learning",
+    "summary": "Webカメラと機械学習で手の形を読み取り、アメリカ手話の指文字をブラウザ上でその場で添削しながら練習できるようにした学習ツール。",
+    "client": "American Society For Deaf Children",
+    "agency": "HELLO MONDAY, Aarhus",
+    "categories": [
+      "Design",
+      "Digital Craft"
+    ],
+    "award": "Cannes Lions 2021 Design Lions Gold / Cannes Lions 2021 Design Lions Silver / Cannes Lions 2021 Digital Craft Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Design",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Design",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Digital Craft",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://fingerspelling.xyz/",
+    "videoId": "",
+    "overview": "American Society for Deaf Children（ASDC）とデンマークのHello Mondayによる「Fingerspelling.xyz」。アメリカ手話（ASL）のアルファベット（指文字）を、ゲームのようにレベルを進めながら覚えられるWebサイト。",
+    "background": "It's Nice Thatの記事によれば、米国では新生児1,000人に2〜3人が聴覚障害を持って生まれ、その約90%は聴者の親のもとに生まれる。サイトの説明では、手話を学ぶ機会を早く作ることで、ろう児とその親が手話を身につけやすくすることを目的にしている。",
+    "execution": "画面の3Dの手のモデルが各文字の形を示し、利用者がWebカメラの前で真似すると、指の位置ごとに正誤をリアルタイムで返す。手の追跡にはGoogleのMediaPipe Handsを使う。処理はすべて端末内で行い、カメラ映像は送信・保存しない。ASLの教授が手の形の正しさを確認した（It's Nice That）。",
+    "evaluationImpact": "It's Nice ThatやDezeenなど海外のデザインメディアで紹介され、Webby Awards 2022のBest User Interfaceも受賞した。カンヌライオンズ2021ではDesign部門でGoldとSilver、Digital Craft部門でSilverを受賞した。",
+    "tags": [
+      "Tech/AI",
+      "Form/Website",
+      "Theme/Education",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/american-society-for-deaf-children-fingerspelling-with-machine-learning.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "monash-university-a-future-without-change",
+    "title": "A Future Without Change",
+    "summary": "何も変えなかった未来に売られていそうな「存在してほしくない商品」17点を作って展示し、高校生に社会課題を自分で変える側に回ろうと呼びかけたモナシュ大学の学生募集施策。",
+    "client": "Monash University",
+    "agency": "VMLY&R, Melbourne",
+    "categories": [
+      "Design",
+      "Media"
+    ],
+    "award": "Cannes Lions 2021 Design Lions Gold / Cannes Lions 2021 Media Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Design",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Media",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "オセアニア"
+    ],
+    "link": "https://mumbrella.com.au/monash-university-and-vmlyr-warn-of-consequences-of-inaction-591853",
+    "videoId": "",
+    "overview": "オーストラリアのモナシュ大学とVMLY&R Melbourneによる、ブランドキャンペーン「Change It」の一環の施策。抗うつ剤入りシリアルや人工野菜など、課題を放置した先のディストピア的な商品を実物で作り、オープンキャンパスなどで体験させた。",
+    "background": "毎年、高校生は大学の募集広告にさらされ、その多くが理想的な未来を約束する内容になっている。モナシュ大学は逆に、変化を起こさなかった場合の暗い未来を見せることで、他大学と差別化しつつ、大学の研究と学びが課題解決につながることを伝えようとした。",
+    "execution": "Mumbrellaの2019年8月の報道によれば、各学部と協力し、抗うつ剤入りシリアル「Anti-DepressOs」、栄養ブロック、ヴィンテージのボトル入り水、若返りフェイスマスクなどの架空商品を制作し、オープンキャンパスで展示した。WPPの事例ページによれば、商品は全17点で、それぞれが同大の研究者が実際に取り組む課題と結び付いている。WPPの事例ページでは、メルボルン中心部のFederation Squareでも展示を行い、来場者が触る・嗅ぐ・味わう体験とVR体験を用意したほか、デジタルOOH、オンライン動画、SNSで会場へ誘導した。",
+    "evaluationImpact": "豪州の業界メディアMumbrellaが「行動しないことの帰結を警告する」施策として報じた。カンヌライオンズ2021のDesign部門でGold、Media部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Education",
+      "Form/Installation",
+      "Form/Event",
+      "Tech/XR"
+    ],
+    "thumbnail": "/thumbnails/monash-university-a-future-without-change.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "united-sodas-of-america",
+    "title": "United Sodas Of America",
+    "summary": "「ソーダが2020年に発明されたら？」という問いから、缶の形と単色だけで見せるミニマルなパッケージで炭酸飲料を作り直した新ブランドのデザイン。",
+    "client": "United Sodas Of America",
+    "agency": "CENTER, Brooklyn",
+    "categories": [
+      "Design"
+    ],
+    "award": "Cannes Lions 2021 Design Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Design",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.itsnicethat.com/articles/center-united-sodas-of-america-graphic-design-040121",
+    "videoId": "",
+    "overview": "ニューヨーク・ブルックリンの炭酸飲料スタートアップUnited Sodas of Americaのブランドとパッケージを、同じブルックリンのデザイン会社CENTERが手がけた。12色・12フレーバーの缶を、色と最小限の文字だけで構成している。",
+    "background": "BevNETによれば、同社は2019年にMarisa Zupan氏らが共同で創業し、2020年3月のコロナ禍初期に発売した。It's Nice Thatによれば、ブリーフは「ソーダが2020年に発明されたら？」というもの。避けられがちな「アメリカの定番飲料」というソーダの印象を、あえて正面から引き受ける方向を選んだ。",
+    "execution": "It's Nice Thatによれば、2年以上かけて開発した。缶の形そのものを主役にし、装飾を極力省いている。星条旗の赤・白・青ではなく、エルズワース・ケリーやマーク・ロスコら20世紀半ばのアメリカの色面画家に着想を得た12色のパレットを、12のフレーバーに1色ずつ割り当てた。書体は「ブランドらしくない」印象を狙ってFounders Groteskを使用。全フレーバーを1缶ずつ詰めたバラエティパックを看板商品にした。",
+    "evaluationImpact": "It's Nice ThatやThe Dieline、BevNETなどのデザイン・飲料業界メディアが取り上げ、BevNETの2021年ベスト企画にも選ばれた。カンヌライオンズ2021のDesign部門でSilverを受賞した。",
+    "tags": [
+      "Form/Product",
+      "Theme/Food"
+    ],
+    "thumbnail": "/thumbnails/united-sodas-of-america.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "state-of-the-arts-60-culture",
+    "title": "-60% Culture",
+    "summary": "フランダース政府による文化プロジェクト補助金の約60%削減に抗議し、芸術家たちが自作の60%を政府の色である黄色で覆った画像を一斉にSNSへ投稿した運動。",
+    "client": "State Of The Arts",
+    "agency": "BBDO BELGIUM, Brussels",
+    "categories": [
+      "Design",
+      "Mobile",
+      "PR"
+    ],
+    "award": "Cannes Lions 2021 Design Lions Silver / Cannes Lions 2021 Mobile Lions Bronze / Cannes Lions 2021 PR Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Design",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Mobile",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "PR",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.brusselstimes.com/78800/new-hashtag-thisisourculture-goes-viral-as-flemish-artists-protest-culture-cutbacks-project-grants-yellow",
+    "videoId": "",
+    "overview": "ベルギー・フランダース地方の芸術家を結ぶプラットフォームState of the ArtsとBBDO Belgiumによる抗議キャンペーン。削減率の「60%」を、作品を黄色で覆う面積としてそのまま見せた。",
+    "background": "2019年11月、発足したばかりのフランダース政府（ヤン・ヤンボン首相）が、文化プロジェクト補助金を約60%削減する方針を打ち出した。Brussels Timesによれば、プロジェクト補助金は2019年の847万ユーロから2020年は339万ユーロに減る計画だった。若手が実験し育つ機会を支えてきた予算であり、State of the Artsは「今の文化はかつてのプロジェクト補助金の上に成り立っている」と訴えた。",
+    "execution": "画家・写真家・劇団・バレエ団などが、自分の作品の60%をフランダース政府の広報色である黄色で塗りつぶした画像を、2019年11月14日に#thisisourcultureのハッシュタグで一斉に投稿した。Adhuggerによれば、劇場がポスターやウェブサイトを黄色で覆ったり、ベートーヴェン「月光」の音符を60%消して演奏したりと、ほかの分野にも広がった。",
+    "evaluationImpact": "Brussels Timesによれば、投稿には200人を超える芸術家やOpera Ballet Vlaanderenなどの団体が加わり、ハッシュタグはSNSで拡散した。その後の報道では、政府はプロジェクト補助金の第1回募集に400万ユーロを確保したが、削減そのものは撤回されなかった。カンヌライオンズ2021のDesign部門でSilver、Mobile部門とPR部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Art",
+      "Theme/SocialGood",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/state-of-the-arts-60-culture.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "jfk-presidential-library-and-museum-jfk-moonshot",
+    "title": "Jfk Moonshot",
+    "summary": "アポロ11号打ち上げ50周年に、ケネディ大統領の月面着陸構想と飛行の行程をARでたどれる無料アプリを作り、記念日にはARのサターンVロケットを図書館の上空へ「打ち上げた」施策。",
+    "client": "Jfk Presidential Library And Museum",
+    "agency": "DIGITAS, Boston",
+    "categories": [
+      "Design",
+      "Mobile"
+    ],
+    "award": "Cannes Lions 2021 Design Lions Silver / Cannes Lions 2021 Mobile Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Design",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Mobile",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://cbsnews.com/boston/news/jfk-library-celebrates-50th-anniversary-apollo-11-launch-augmented-reality-reenactment",
+    "videoId": "",
+    "overview": "ボストンのジョン・F・ケネディ大統領図書館・博物館とDigitasによる、AR（拡張現実）のドキュメンタリーアプリ。制作はUnit9。iOSとAndroid向けに無料で配信した。",
+    "background": "2019年はアポロ11号の月面着陸から50年。Marketing Diveによれば、ケネディが掲げた「ムーンショット」の構想を、記念の年に新しい形で伝えることを狙った。アプリはIABのNewFrontsで発表され、図書館への寄付を受けた教育事業の一環として作られた。",
+    "execution": "アプリでは、自宅でサターンVロケットの打ち上げをARで再現できるほか、ケネディの演説や在任中の資料、NASAのアーカイブ映像、ARゲームに触れられる。CBS Bostonによれば、月までの約120時間の飛行を実時間で追い、宇宙飛行士との交信記録を当時と同じ時刻に聞ける。2019年7月16日には、打ち上げから50年後の同じ午前9時32分に、図書館の敷地で高さ363フィート（約110m）のARのサターンVを集まった人々のスマートフォン上で打ち上げた。",
+    "evaluationImpact": "記念日のARロケット打ち上げはCBS Boston、NBC Bostonなど地元テレビ局が報じ、AdweekやThe Drumなど広告業界メディアも取り上げた。カンヌライオンズ2021のMobile部門でGold、Design部門でSilverを受賞した。",
+    "tags": [
+      "Tech/XR",
+      "Form/App",
+      "Theme/Education",
+      "Form/Event"
+    ],
+    "thumbnail": "/thumbnails/jfk-presidential-library-and-museum-jfk-moonshot.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "raices-nokidsincages",
+    "title": "#Nokidsincages",
+    "summary": "国境での親子引き離しに抗議し、銀色の保温シートにくるまれた子どもの人形を入れた檻をニューヨークの報道機関前や名所に一斉に置き、収容施設で録音された泣き声を流したゲリラ・インスタレーション。",
+    "client": "RAICES",
+    "agency": "BADGER AND WINTERS, New York",
+    "categories": [
+      "Design",
+      "Media"
+    ],
+    "award": "Cannes Lions 2021 Design Lions Silver / Cannes Lions 2021 Media Lions Gold / Cannes Lions 2021 Media Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Design",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Media",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Media",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://cbsnews.com/news/art-installations-depicting-crying-children-in-cages-pop-up-across-new-york-city",
+    "videoId": "",
+    "overview": "移民・難民の法的支援を行う非営利団体RAICESとBadger & Wintersによるキャンペーン。収容施設の子どもたちの姿を、ニューヨークの街角に実物大で持ち込んだ。",
+    "background": "米国では、司法省の「ゼロ・トレランス」政策のもとで国境で親子が引き離され、子どもが施設に収容されていた。CBS Newsによれば、キャンペーンは家族の引き離しを禁じる「Keep Families Together Act」への支持を議員に働きかけるよう市民に呼びかけた。",
+    "execution": "2019年6月12日の早朝、CNN、Fox News、New York Timesなどの報道機関の前や、自然史博物館、ユニオンスクエア、ブルックリン橋の入口など、マンハッタンとブルックリンの24か所に20以上の金網の檻を置いた。檻の中には保温シートにくるまれた子どもの人形を置き、CBS Newsによれば、代理店の発表では収容施設から持ち出されたとする子どもの泣き声の録音を流した。",
+    "evaluationImpact": "CBS NewsやHyperallergic、artnetなどが当日中に報じた。ニューヨーク市警は数時間のうちに檻を撤去し、その様子も報道された。カンヌライオンズ2021のMedia部門でGoldとSilver、Design部門でSilverを受賞した。",
+    "tags": [
+      "Theme/SocialGood",
+      "Form/Installation",
+      "Form/OOH",
+      "Form/Stunt",
+      "Tech/Audio"
+    ],
+    "thumbnail": "/thumbnails/raices-nokidsincages.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "see-sound",
+    "title": "See Sound",
+    "summary": "家の中の音をAIで聞き分け、スマートフォンなどに知らせる、聴覚障害者向けのスマートホーム機器。",
+    "client": "See Sound",
+    "agency": "AREA 23, AN FCB HEALTH NETWORK COMPANY, New York",
+    "categories": [
+      "Design"
+    ],
+    "award": "Cannes Lions 2021 Design Lions Silver / Cannes Lions 2021 Design Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Design",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Design",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://campaignsoftheworld.com/tech-innovations/see-sound/",
+    "videoId": "",
+    "overview": "ヘルスケア広告会社AREA 23（FCB Health Network）が、ろう者が創業した音声認識ソフトウェア企業Wavioと共同開発した製品。コンセントに挿す小型ユニットが生活音を認識し、接続した機器に通知する。",
+    "background": "Campaigns of the Worldの記事によれば、聴覚障害者向けの既存の支援機器は機能が限られ、高価で古く、用途も1つに限られていた。Purdue大学のニュースによれば、AREA 23社内のアイデア支援プログラムから生まれた企画で、同社のアソシエイト・クリエイティブ・ディレクター2人が共同発明者となった。",
+    "execution": "約3.2平方インチのユニットをコンセントに挿し、Wi-FiとBluetoothで接続する。YouTube動画から集めた短い音声で学習したAIモデルが、叫び声・電子音・サイレンなど75種類の生活音を認識し、スマートフォン、スマートウォッチ、スマート照明にリアルタイムで知らせる（Purdue大学、Campaigns of the World）。ユニットを部屋ごとに置くと、どの部屋の音かまで特定できる。アプリでは音のデータを確認でき、知らせる音を選べる。ハードウェアはAREA 23、ソフトウェアはWavioが担当した。",
+    "evaluationImpact": "Purdue大学のニュースによれば、構想段階の2019年にカンヌライオンズのInnovation部門でGrand Prixを受賞し、その後米国で予約受付を始めた。2021年にはDesign部門でSilverとBronzeを受賞した。",
+    "tags": [
+      "Theme/Health",
+      "Theme/SocialGood",
+      "Tech/AI",
+      "Tech/Audio",
+      "Tech/Device",
+      "Form/Product"
+    ],
+    "thumbnail": "/thumbnails/see-sound.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "pride-of-africa",
+    "title": "Pride Of Africa",
+    "summary": "ヨハネスブルグ・プライドを「Pride of Africa」として刷新し、アフリカ54か国の国旗から作ったレインボーフラッグを象徴にしたブランディング。",
+    "client": "Pride Of Africa",
+    "agency": "JOE PUBLIC UNITED, Johannesburg",
+    "categories": [
+      "Design"
+    ],
+    "award": "Cannes Lions 2021 Design Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Design",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "アフリカ"
+    ],
+    "link": "https://www.bizcommunity.com/Article/196/82/198129.html",
+    "videoId": "",
+    "overview": "アフリカで最も長く続くLGBTQ+のプライドイベント、ヨハネスブルグ・プライドが、Joe Public Unitedと組んで名称と見た目を一新した。1都市のパレードから、大陸全体のLGBTQ+コミュニティのための通年の活動の場への転換を狙った。",
+    "background": "Bizcommunityの報道によれば、開催30年目を迎えたヨハネスブルグ・プライドは、アフリカ大陸全体に開かれた存在になることを目指し、コミュニティの権利や要望について通年で発信できる場への転換を図った。タグラインは「Proudly African. Authentically you.」。",
+    "execution": "Joe Public Shiftがブランド戦略とビジュアルアイデンティティを担当した。中心となる象徴として、アフリカ54か国すべての国旗から着想したオリジナルのレインボーフラッグを作り、LGBTQ+の人々が受け入れられ、歓迎され、安全であることを示した。旗は2019年10月26日のプライド当日に大きく掲げられた。Joe Public Connectは4か月にわたるSNSキャンペーン、デジタル看板、Webサイトの刷新を行った（Bizcommunity、Ads of the World）。",
+    "evaluationImpact": "アフリカ全体のLGBTQ+コミュニティに向けた新しい象徴として、業界メディアで取り上げられた。カンヌライオンズ2021のDesign部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/SocialGood",
+      "Form/Event",
+      "Form/SNS",
+      "Form/OOH"
+    ],
+    "thumbnail": "/thumbnails/pride-of-africa.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "city-of-chicago-chicago-design-system-a-city-by-design",
+    "title": "Chicago Design System: A City By Design",
+    "summary": "シカゴ市旗の星と帯と色を土台に、市の各部局のロゴ・書体・デジタルサービスを1つのデザインシステムにまとめた市の公式アイデンティティ。",
+    "client": "City Of Chicago",
+    "agency": "OGILVY, Chicago",
+    "categories": [
+      "Design"
+    ],
+    "award": "Cannes Lions 2021 Design Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Design",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.ogilvy.com/ideas/chicagos-new-branding-belongs-people",
+    "videoId": "",
+    "overview": "シカゴ市がOgilvyと組んで作ったデザインシステム。市制183周年の2020年3月4日に、ライトフット市長が新しい市のロゴとともに発表した。",
+    "background": "市の部局ごとにばらばらだった見た目を、共通の旗印のもとにまとめる狙いがあった。Ogilvyの記事によれば、市の歴史と未来の両方を表すデザインを目指し、Ogilvyから市への「誕生日の贈り物」として位置づけられた。市の公式ページによれば、テーマはOgilvyと書体デザイナーPatric King（House of Pretty）の無償協力で作られた。",
+    "execution": "4つの星が並ぶ市旗に5つ目の星を加え、各部局のブランドに展開した。公共の書体として「Big Shoulders」を用意した。デジタル面では、米連邦政府のU.S. Web Design Systemをもとに、ビジュアルアイデンティティの指針、Web UIのパターンライブラリ、市民と一緒に設計するための手法をまとめた。素材はCC0で公開され、市民や事業者もダウンロードして使える（design.chicago.gov、Ogilvy）。",
+    "evaluationImpact": "シカゴ市は2021年6月の発表で、このデザインシステムでOgilvyがカンヌで評価されたことを伝えた。カンヌライオンズ2021のDesign部門でBronzeを受賞した。",
+    "tags": [
+      "Form/Website",
+      "Tech/Web"
+    ],
+    "thumbnail": "/thumbnails/city-of-chicago-chicago-design-system-a-city-by-design.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "international-union-for-conservation-of-nature-iucn-save-our-species",
+    "title": "Iucn Save Our Species",
+    "summary": "国際自然保護連合（IUCN）の種の保全プログラム「Save Our Species」を、ドミノ倒しを使ったビジュアルで刷新したブランディング。",
+    "client": "International Union For Conservation Of Nature",
+    "agency": "LANDOR & FITCH, Paris",
+    "categories": [
+      "Design"
+    ],
+    "award": "Cannes Lions 2021 Design Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Design",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "グローバル"
+    ],
+    "link": "https://landor.com/en/our-work/iucnsos",
+    "videoId": "",
+    "overview": "IUCNの絶滅危惧種保全プログラム「IUCN Save Our Species」のブランドを、Landor & Fitchパリ・オフィスが刷新した。1種の危機が生態系全体、ひいては人間にまで連鎖することを、ドミノ1つで表した。",
+    "background": "Landorの事例ページによれば、IUCNは専門知識とデータを持っていたが、民間の寄付者をなかなか動かせていなかった。そこで、種は生態系の中で互いに支え合っており、1種が脅かされれば人間を含む全体が危うくなる、という考えでブランドを捉え直した。地球を救うことは自分たちを救うことでもあるとして、「Save Our Species（私たちの種を救え）」という名前に新しい意味を持たせた。",
+    "execution": "倒れかけたドミノを、自然の微妙な均衡と、人の行動がそれを「立たせ続ける」ことの象徴とした。ロゴ、グラフィック、ストーリー、映像を、この1つの比喩から作れる柔軟な素材として設計した。タイポグラフィも、1つの種から生態系全体までの規模に合わせて変えられるようにした（Landor）。",
+    "evaluationImpact": "Landorの事例ページによれば、IUCN側の担当者はこのアイデンティティを「一目ですべてを物語る」と評した。カンヌライオンズ2021のDesign部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Sustainability",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/international-union-for-conservation-of-nature-iucn-save-our-species.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "radgonske-gorice-untouched-by-light",
+    "title": "Untouched By Light",
+    "summary": "ブドウの収穫から瓶詰めまでを光を一切当てずに行う、スロベニアのワイナリーのスパークリングワインと、そのブランドづくり。",
+    "client": "Radgonske Gorice",
+    "agency": "BRUKETA&ZINIC&GREY CROATIA, Zagreb",
+    "categories": [
+      "Design"
+    ],
+    "award": "Cannes Lions 2021 Design Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Design",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.beveragedaily.com/Article/2019/08/19/The-world-s-first-sparkling-wine-made-in-complete-darkness",
+    "videoId": "",
+    "overview": "スロベニアの老舗ワイナリーRadgonske Goriceが、Bruketa&Žinić&Grey（ザグレブ）と作ったスパークリングワイン「Untouched by Light」。光はスパークリングワインの香りを損なうという研究を出発点に、製造工程そのものを暗闇で行った。",
+    "background": "BeverageDailyの報道によれば、短時間でも光に当たるとスパークリングワインの柑橘系の香りが減り、異臭が増えるという研究がある。代理店はワイナリーからラベルデザインを依頼されたが、新しいワインのコンセプトそのものを提案した。",
+    "execution": "シャルドネを月のない夜に収穫し、作業員は暗視ゴーグルを着けて収穫、瓶の回転、梱包を行う。瓶内二次発酵で造り、光の入らない洞窟で2〜3年熟成させる。光を通さない黒い瓶を、光と空気を遮る真空パックに封入して出荷する。生産は年間約2,000本で、専用サイトで予約販売された（BeverageDaily、Slovenian Tourist Board、The Drinks Business）。",
+    "evaluationImpact": "「世界初の完全な暗闇で造ったスパークリングワイン」として、The Drinks Business、Decanter、BeverageDailyなど海外のワイン・飲料メディアで報じられた。カンヌライオンズ2021のDesign部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Food",
+      "Form/Product"
+    ],
+    "thumbnail": "/thumbnails/radgonske-gorice-untouched-by-light.jpg"
   }
 ]
