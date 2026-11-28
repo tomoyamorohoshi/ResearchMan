@@ -30571,5 +30571,215 @@
         "desc": "1枚の画像や短い動画から、歩き回れる3D空間を自動で生成するNVIDIAの技術。"
       }
     ]
+  },
+  {
+    "id": "2026-11-28-1",
+    "date": "2026-11-28",
+    "title": "ズームで細かくなる歌う音声ガイド",
+    "pattern": "文脈×技術",
+    "seed": "Tennessee Sound Sitesの「歌う代替テキスト」をLEGOの部分と全体の階層理解と組み合わせたら、3D化した観光地を「滝→岩→苔」と細かく指すほど歌詞も細かくなる音声ガイドになりそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "tennessee-department-of-tourism-developmen-t-tennessee-sound-sites",
+        "title": "Tennessee Sound Sites",
+        "desc": "観光サイトの画像説明文を作詞家の歌詞に置き換え、目の見えない旅行者に風景を歌で伝えた施策。"
+      },
+      {
+        "type": "tech",
+        "id": "lego",
+        "title": "LEGO",
+        "desc": "写真群から3D空間の部分と全体の関係を階層的に理解し、言葉で物や場所を指せるようにする研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-28-2",
+    "date": "2026-11-28",
+    "title": "記録映像の見出しを今の統計に",
+    "pattern": "文脈×技術",
+    "seed": "History Outnumberedの「数字の置き換え」を動画に広げ、Qwen-Video-Editで戦時の記録映像に映る新聞見出しや看板だけを今日のヘイト統計に書き換えたら、過去と現在の地続きを一目で見せられるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "history-channel-history-outnumbered",
+        "title": "History Outnumbered",
+        "desc": "収容者番号の入れ墨を現代の極右やヘイトの統計値に置き換え、歴史の繰り返しを警告した広告。"
+      },
+      {
+        "type": "tech",
+        "id": "qwen-video-edit",
+        "title": "Qwen-Video-Edit",
+        "desc": "画像編集AIを流用し、コマを1枚の大きな画像のように並べて、指示文だけで動画を編集するAI。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-28-3",
+    "date": "2026-11-28",
+    "title": "登る前に集まれるVR屋上",
+    "pattern": "文脈×技術",
+    "seed": "Rooftop Revivalが衛星画像で見つけた空き屋上を、SpatialographyのようにGaussian Splattingで記録してVRChatに開放したら、実際に登る前から孤独な人同士が出会える“予告の屋上”にできそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "heineken-rooftop-revival",
+        "title": "Rooftop Revival",
+        "desc": "ソウルの使われていない屋上を衛星画像で見つけ、都市の孤独に向き合う交流の場に再生した施策。"
+      },
+      {
+        "type": "tech",
+        "id": "spatialography",
+        "title": "Spatialography",
+        "desc": "実在の公園や滝をGaussian Splattingで記録し、VRで歩いて鑑賞できる作品にしたVRChatワールド。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-28-4",
+    "date": "2026-11-28",
+    "title": "悲惨な報道ほど陽気に踊る",
+    "pattern": "文脈×技術",
+    "seed": "This Is Americaのダンスと銃撃の落差を借り、FlashMotionにニュース音声を入れて踊りを生成させたら、悲惨な報道ほど陽気な振付になる違和感で、慣れきった無関心を突けるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "childish-gambino-this-is-america",
+        "title": "THIS IS AMERICA（Childish Gambino）",
+        "desc": "ダンスの背後で銃撃が起き、アメリカの黒人の日常の暴力を4分間に凝縮したミュージックビデオ。"
+      },
+      {
+        "type": "tech",
+        "id": "flashmotion",
+        "title": "FlashMotion",
+        "desc": "文章や音声、音楽から長い3Dの人の動きやダンスを少ない計算で一気に作る研究。コードも公開。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-28-5",
+    "date": "2026-11-28",
+    "title": "顔なしで仕草だけ残すアバター",
+    "pattern": "技術×技術",
+    "seed": "HTD-Refineでスマホ動画から家族の身振りを3D復元し、Open Bot Avatarの線1本で描く顔と組み合わせたら、顔を似せずに“仕草だけ”でその人らしさが伝わるアバターが作れるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "htd-refine",
+        "title": "HTD-Refine",
+        "desc": "スマホ1台で撮った普通の動画から、専用機材なしで自然な人の3Dの動きを復元するAI技術。"
+      },
+      {
+        "type": "tech",
+        "id": "open-bot-avatar",
+        "title": "Open Bot Avatar",
+        "desc": "SVGの線1本と目の位置だけでキャラの顔を定義し、目線が追いかけるアニメにするオープンソース。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-28-6",
+    "date": "2026-11-28",
+    "title": "街の物が猫のように伸びをする",
+    "pattern": "技術×技術",
+    "seed": "MoCapAnything V2で野良猫の動きを抜き出し、TACTYC Gaussian Splat v2.0で取り込んだ商店街のベンチや看板に流し込んだら、街の物が猫のように伸びをする実写風の映像が作れそう。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "mocapanything-v2",
+        "title": "MoCapAnything V2",
+        "desc": "カメラ1台の動画から人や動物、物の動きを、どんな骨組みの3Dキャラにも使える形で作る研究。"
+      },
+      {
+        "type": "tech",
+        "id": "tactyc-gaussian-splat-v2-0",
+        "title": "TACTYC Gaussian Splat v2.0",
+        "desc": "Gaussian Splatのスキャンを、Cinema 4DとRedshiftで描画し照明も変えられる形にするプラグイン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-28-7",
+    "date": "2026-11-28",
+    "title": "音から先に作る映像企画",
+    "pattern": "技術×技術",
+    "seed": "CozyClayで組んだ仮映像のカット割りを、audio.cppで手元で動く声や効果音のモデルに先に鳴らさせたら、音のリズムから絵を決める“ラジオドラマ逆算型”の映像企画が生まれるかも。",
+    "refs": [
+      {
+        "type": "tech",
+        "id": "cozyclay",
+        "title": "CozyClay",
+        "desc": "ブラウザで動く撮影前の仮映像ツール。シーンやポーズ、カメラのカットを作りAI動画へ渡せる。"
+      },
+      {
+        "type": "tech",
+        "id": "audio-cpp",
+        "title": "audio.cpp",
+        "desc": "音声や音楽のAIモデル60種類以上を、Pythonなしで手元のパソコンで軽く動かせる推論エンジン。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-28-8",
+    "date": "2026-11-28",
+    "title": "スキャンで作る解体マニュアル",
+    "pattern": "転用",
+    "seed": "Gaussian Splat to Blender Nodesを景色づくりでなく“解体マニュアル”に転用し、(Un)Buildのストラップ接合の小屋をスキャンしてノード化すれば、部材ごとの外し方を誰でも辿れる設計図になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "un-build-2026",
+        "title": "(Un)Build – 釘もネジも接着剤も使わないストラップ締結の木造接合システム",
+        "desc": "釘やネジ、接着剤を使わず、ベルトと摩擦パッドだけで木材を固定し、解体と再利用ができる接合。"
+      },
+      {
+        "type": "tech",
+        "id": "gaussian-splat-to-blender-nodes",
+        "title": "Gaussian Splat to Blender Nodes (World to World Mapping)",
+        "desc": "Gaussian Splatで撮った場面を、AIと一緒にBlenderで編集できる形や質感に作り直す道具。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-28-9",
+    "date": "2026-11-28",
+    "title": "島の生業の音で踊る人影",
+    "pattern": "転用",
+    "seed": "人の声で体を動かすEchoAvatarに、漁船のエンジン音や網を引く音を聴かせたら、最後の避難所が描いた島から消えゆく生業を“音で踊る人影”として残す記録装置になるかも。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "setouchi-2025-ib11",
+        "title": "最後の避難所",
+        "desc": "島の木材でつくった無数の手が船を支える大型作品。人口流出で失われる文化がテーマ。"
+      },
+      {
+        "type": "tech",
+        "id": "echoavatar",
+        "title": "EchoAvatar",
+        "desc": "話し声や音楽をその場で聞き取り、全身が自然に動く3Dアバターをリアルタイムに作る研究。"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-28-10",
+    "date": "2026-11-28",
+    "title": "偽物を見破るための生成比較",
+    "pattern": "転用",
+    "seed": "Vlo 0.3の「選んだ区間をAI処理に回す」機能を編集でなく検証に転用し、The Heart Part 5のように顔が入れ替わる区間を何度も生成し直して並べたら、ディープフェイクの見破り方を学ぶ教材になりそう。",
+    "refs": [
+      {
+        "type": "case",
+        "id": "kendrick-lamar-the-heart-part-5",
+        "title": "The Heart Part 5",
+        "desc": "ケンドリック・ラマーの顔をディープフェイクで次々と別の有名人に変え、内面を語ったMV。"
+      },
+      {
+        "type": "tech",
+        "id": "vlo-0-3",
+        "title": "Vlo 0.3",
+        "desc": "ComfyUIを裏で動かし、タイムラインで選んだ区間をAI処理して編集レイヤーで戻す無料の動画編集ソフト。"
+      }
+    ]
   }
 ]
