@@ -157686,5 +157686,799 @@
       "Form/SNS"
     ],
     "thumbnail": "/thumbnails/rit-foundation-please-arrest-me.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "ikea-apartmenteka",
+    "title": "Apartmenteka",
+    "summary": "ロシアに多い旧ソ連時代の規格型集合住宅の間取りごとに、IKEA製品で家具をそろえた内装プランをオンラインで公開し、そのまま購入できるようにしたIKEAロシアのサービス。",
+    "client": "Ikea",
+    "agency": "INSTINCT, Moscow",
+    "categories": [
+      "Brand Experience & Activation"
+    ],
+    "award": "Cannes Lions 2021 Brand Experience & Activation Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Brand Experience & Activation",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://skillbox.ru/media/design/ikea-kvartiroteka-cannes-lions/",
+    "videoId": "",
+    "overview": "IKEAロシアが2019年に始めたオンラインの内装プラン集「Kvartiroteka（クヴァルチロテーカ）」。利用者が住所を入力すると自宅と同じ規格の間取りが表示され、部屋ごとに複数用意されたIKEA製品による内装案を選んで購入できる。",
+    "background": "Bloombergによれば、ロシア人の約6割は旧ソ連時代に建てられた規格型の集合住宅に住んでいる。間取りの種類が限られているため、同じ間取りの住戸が全国に大量にある。IKEAは郊外の大型店に足を運ぶ客が減るなか、オンラインでの販売を広げる手段としてこの点に着目した。",
+    "execution": "RBC不動産の2019年6月の報道によれば、開始時は代表的な12の住宅シリーズ（全国100万戸超が対象）をカバーし、1〜3部屋の住戸向けに計36案を用意した。Skillbox Mediaの2021年の記事では、対象はワンルームから4部屋まで33シリーズ、192案に拡大し、障がいのある人向けのインクルーシブな3案も含む。25人超のデザイナーが各地の店舗チームと内装を作り、INSTINCTがサイトと販促物のデザイン・コピーを、ZBRSKが3DビジュアライズとWeb構築を担当した。改装後の部屋をバーチャルで見て回り、プランのページから1点ずつでも部屋まるごとでも購入できる。",
+    "evaluationImpact": "Bloombergはこのサービスがロシアでの売上を押し上げていると報じた（具体的な数値は示していない）。カンヌライオンズ2021のBrand Experience & Activation部門でSilverを受賞した。",
+    "tags": [
+      "Form/Website",
+      "Theme/Retail",
+      "Tech/3D"
+    ],
+    "thumbnail": "/thumbnails/ikea-apartmenteka.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "spinneys-and-the-lebanese-breast-cancer-foundation-the-bread-exam",
+    "title": "The Bread Exam",
+    "summary": "レバノンの伝統的なパン職人が生地をこねて押す動作で乳がんの自己触診の手順を教える「パンのレシピ動画」。胸という言葉を使わずに、タブーの壁を越えて自己検診を広めた。",
+    "client": "Spinneys And The Lebanese Breast Cancer Foundation",
+    "agency": "McCANN, Paris",
+    "categories": [
+      "Brand Experience & Activation",
+      "Direct",
+      "Health & Wellness",
+      "Media",
+      "PR",
+      "Social & Influencer"
+    ],
+    "award": "Cannes Lions 2021 Brand Experience & Activation Lions Silver / Cannes Lions 2021 Brand Experience & Activation Lions Bronze / Cannes Lions 2021 Direct Lions Bronze / Cannes Lions 2021 Health & Wellness Lions Gold / Cannes Lions 2021 Health & Wellness Lions Silver / Cannes Lions 2021 Media Lions Gold / Cannes Lions 2021 Media Lions Bronze / Cannes Lions 2021 PR Lions Grand Prix / Cannes Lions 2021 PR Lions Gold / Cannes Lions 2021 PR Lions Bronze / Cannes Lions 2021 Social & Influencer Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Brand Experience & Activation",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Direct",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Health & Wellness",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Health & Wellness",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Media",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Media",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "PR",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "PR",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "PR",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Social & Influencer",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "中東"
+    ],
+    "link": "https://adsoftheworld.com/campaigns/the-bread-exam",
+    "videoId": "",
+    "overview": "レバノンのスーパーマーケットSpinneys、レバノン乳がん財団（LBCF）、ベイルート・アメリカン大学医療センター（AUBMC）がMcCann Parisと組み、乳がん啓発月間「ピンク・オクトーバー」に合わせて展開したキャンペーン。合言葉は「#Khabazte（パン焼いた？）」。",
+    "background": "AUBの学内誌MainGateによれば、LBCFは2011年からAUBMCの支援を受けて乳がん啓発を続けてきた。かつてレバノンでは乳がんの多くが進行した段階で見つかっていた。体や性にまつわる話題はタブー視されやすく、乳房の自己検診を正面から呼びかけにくいことが課題だった。経済危機でマンモグラフィー検査を受けにくくなっていることも背景にある。",
+    "execution": "伝統的なパン職人ウム・アリが、2つの丸い生地を使って押す・なでる・確かめるといった自己触診の手順をパン作りの動作として実演する、レシピ動画の形をとった。2020年10月のピンク・オクトーバーにSNSで公開し、同じレシピをSpinneysの小麦粉の袋やパンの包装にも載せ、スーク（市場）や店頭で実演も行った。ベイルートの街頭インタビューでタブーを扱う別動画も制作した。のちにトルコ、ドイツ、英国などのインフルエンサーが各国版を作った。",
+    "evaluationImpact": "カンヌライオンズ2021ではPR部門のGrand Prixを含め、Health & Wellness、Media部門のGoldなど計11の賞を獲得した。翌年にはClio AwardsでGrandとGold、One ShowでもCultural Driverの賞を受けた。",
+    "tags": [
+      "Theme/Health",
+      "Theme/Food",
+      "Form/Film",
+      "Form/SNS"
+    ],
+    "thumbnail": "/thumbnails/spinneys-and-the-lebanese-breast-cancer-foundation-the-bread-exam.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "andea-awa",
+    "title": "Awa",
+    "summary": "川で洗濯する習慣が残るペルーのアンデス地域向けに、汚染物質を食べる微生物を配合し、洗濯するほど川の水をきれいにする洗濯石けんを開発したミネラルウォーターブランドの施策。",
+    "client": "Andea",
+    "agency": "FAHRENHEIT DDB, Lima",
+    "categories": [
+      "Brand Experience & Activation",
+      "Innovation"
+    ],
+    "award": "Cannes Lions 2021 Brand Experience & Activation Lions Silver / Cannes Lions 2021 Brand Experience & Activation Lions Bronze / Cannes Lions 2021 Innovation Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Brand Experience & Activation",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Innovation",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.designboom.com/?p=786763",
+    "videoId": "",
+    "overview": "クスコ発のミネラルウォーターブランドandeaとFahrenheit DDBが2021年3月に発表した「AWA: The Soap That Cleans the Rivers」。プロバイオティクス（有用微生物）入りの洗濯石けんで、川で洗濯するたびに水質を改善することを狙った。",
+    "background": "designboomとReason Whyによれば、ペルーの一部地域では川での洗濯がインカに由来する文化として残り、家族や地域の人が集まる場にもなっている。一方、洗濯に使う石けんが、住民が飲み水にも使う川を汚していた。安全でない地表水に頼る人は世界で約1億6,000万人いるとされる。",
+    "execution": "ペルーのイノベーション系スタートアップCIRSYSと数か月の研究を重ね、川の汚染物質を食べる微生物を特定した。その微生物を傷めずに保持できる環境配慮型の処方に作り替え、石けんにした。クスコ近郊の共同体で試験を行い、処方は各国の政府、NGO、社会的企業、石けんメーカーに無償で公開し、キャンペーンサイトで協力団体を募った。",
+    "evaluationImpact": "designboom、Reason Why、LBBなどのデザイン・広告メディアが取り上げた。カンヌライオンズ2021ではBrand Experience & Activation部門でSilverとBronze、Innovation部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Sustainability",
+      "Theme/SocialGood",
+      "Form/Product"
+    ],
+    "thumbnail": "/thumbnails/andea-awa.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "apotek-hjartat-a-hard-pill-to-swallow",
+    "title": "A Hard Pill To Swallow",
+    "summary": "インドの製薬工場周辺の汚染された川の水から取り出した医薬成分で「錠剤」を作り、医薬品製造に環境規制がない問題を突きつけたスウェーデンの薬局チェーンの施策。",
+    "client": "Apotek Hjärtat",
+    "agency": "ÅKESTAM HOLST, Stockholm",
+    "categories": [
+      "Brand Experience & Activation",
+      "PR"
+    ],
+    "award": "Cannes Lions 2021 Brand Experience & Activation Lions Bronze / Cannes Lions 2021 PR Lions Silver / Cannes Lions 2021 PR Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "PR",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "PR",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.thenewsminute.com/article/swedish-company-makes-pill-out-pharma-residue-hyd-s-polluted-waters-111966",
+    "videoId": "",
+    "overview": "スウェーデンの薬局チェーンApotek HjärtatがÅkestam Holst、スウェーデン国立研究所（RISE）と組み、2019年11月に発表した施策。汚染水から抽出した物質で作った飲めない錠剤「Sordidum Pharmacum」を通じて、薬の製造過程で起きている環境汚染を可視化した。",
+    "background": "インドのハイデラバードは世界有数の医薬品製造拠点で、工場の排水がムシ川などの水域に流れ込んでいると現地の活動家から批判されてきた。The News Minuteによれば、薬の製造段階での環境負荷は購入者から見えず、Apotek Hjärtatはこうした規制の空白に光を当てることを狙った。",
+    "execution": "ハイデラバードの複数の製薬工場近くの水域から100リットルの水を採取し、RISEが半年かけて分析・抽出した。得られた粉末には抗真菌薬、オピオイド系鎮痛薬、抗てんかん薬、HIV治療薬、降圧薬、乳がん治療薬などの有効成分が含まれていた。それを10錠入り×5パックの錠剤に仕立て、本社で展示し、同じパッケージのダミー錠を関係する政治家に送った。あわせて、環境・持続可能性の基準を満たして作られた市販薬を選べるラベル「Välj med hjärtat」を導入した。",
+    "evaluationImpact": "インドの独立メディアThe News MinuteやMuse by Cliosなどが取り上げた。カンヌライオンズ2021ではPR部門でSilverとBronze、Brand Experience & Activation部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Health",
+      "Theme/Sustainability",
+      "Form/Product",
+      "Form/Stunt"
+    ],
+    "thumbnail": "/thumbnails/apotek-hjartat-a-hard-pill-to-swallow.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "ryohin-keikaku-co-ltd-muji-advertising-2020-pleasant-somehow",
+    "title": "Muji Advertising, 2020 \"Pleasant, Somehow\"",
+    "summary": "世界各地の「掃除」の光景を集めた映像で、日常の当たり前の行為に気持ちよさの理由を見いだす無印良品の考え方を伝えた2020年の企業広告。",
+    "client": "Ryohin Keikaku Co., Ltd.",
+    "agency": "NIPPON DESIGN CENTER, Tokyo",
+    "categories": [
+      "Brand Experience & Activation"
+    ],
+    "award": "Cannes Lions 2021 Brand Experience & Activation Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "国内"
+    ],
+    "link": "https://fukao.film/en/movie/muji-ad-2020",
+    "videoId": "",
+    "overview": "良品計画が2020年9月に始めた無印良品の企業広告「気持ちいいのはなぜだろう」（英題 Pleasant, Somehow）。テーマは「掃除」で、アートディレクションとコピーを原研哉、映像を深尾大樹、音楽を坂本龍一が担当した。",
+    "background": "無印良品の店舗記事によれば、この広告は日常の当たり前の暮らしに目をこらし、大切なものを発見して学んでいくという無印良品の姿勢を伝えるもの。深尾大樹氏のサイトでは、無印良品の商品づくりそのものを、暮らしを簡素で心地よくする一種の「掃除」と位置づけている。",
+    "execution": "中東の絨毯洗い、奈良の大仏のお身拭い、高層ビルの窓拭き、巨大タンカーの清掃など、世界各地の掃除の場面を撮影した。テレビでは放送局ごとに異なる30秒版を全国で流し、ロゴは最後にだけ出した。特設サイトでは60秒の映像5本を2週間おきに順次公開した。",
+    "evaluationImpact": "カンヌライオンズ2021のBrand Experience & Activation部門でBronzeを受賞した。",
+    "tags": [
+      "Form/Film",
+      "Theme/Retail"
+    ],
+    "thumbnail": "/thumbnails/ryohin-keikaku-co-ltd-muji-advertising-2020-pleasant-somehow.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "red-wing-shoes-labor-day-on",
+    "title": "Labor Day On",
+    "summary": "労働者の日（Labor Day）を値引きセールの日から「求人の日」に変えようと、自社店舗を求人センターにして他社にも求人の投稿を呼びかけたRed Wing Shoesの施策。",
+    "client": "Red Wing Shoes",
+    "agency": "DROGA5, PART OF ACCENTURE INTERACTIVE, New York",
+    "categories": [
+      "Brand Experience & Activation",
+      "PR"
+    ],
+    "award": "Cannes Lions 2021 Brand Experience & Activation Lions Bronze / Cannes Lions 2021 PR Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "PR",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://www.marketingbrew.com/stories/2020/09/09/brands-swap-labor-day-sales-promos-job-listings",
+    "videoId": "",
+    "overview": "米ワークブーツブランドRed Wing ShoesとDroga5による2020年の取り組み。米国の祝日Labor Dayに恒例のセール告知を出す代わりに、各社が自社のSNS・販促・店舗チャネルで求人情報を発信するよう、ハッシュタグ#LaborDayOnで呼びかけた。",
+    "background": "Twin Cities Business（TCB）によれば、施策の背景にはコロナ禍で失業者が約2,500万人に達した米国の雇用状況があった。働く人を称える日のはずのLabor Dayが、実際には小売のセール日になっていることへの問題提起でもあった。同社CMOのDave Schneiderは「アメリカを再び仕事に戻す手助けをしたい」と語り、1年がかりの取り組みと位置付けた（TCB）。",
+    "execution": "全米525店舗に求人ボードを設け、各地域で最低25件の求人を掲示した。カスタマーサービス番号800-RED-WINGをLabor Day当日に求人相談ホットラインへ切り替え、New York Timesに全面広告を出したほか、求人へのリンクを埋め込んだ短編映像も公開した（TCB、Marketing Brew）。General Mills、New Balance、Burger King、Land O'Lakes、Chobaniなど50社超が呼びかけに応じ、自社の求人を投稿した。",
+    "evaluationImpact": "50社超のブランドが参加し、Marketing BrewやTCBなどの業界・地域メディアが報じた。一方でInsideHookは、Red Wing自身の求人が約80件にとどまる点などを挙げてマーケティング色の強さを批判しており、評価は分かれる。カンヌライオンズ2021のPR部門でSilver、Brand Experience & Activation部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/SocialGood",
+      "Form/SNS",
+      "Theme/Retail"
+    ],
+    "thumbnail": "/thumbnails/red-wing-shoes-labor-day-on.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "vogue-uni-form",
+    "title": "Uni-Form",
+    "summary": "性別に関係なく自由に組み合わせて着られる学校制服11点を、デザイナーのAngus Chiangと共に作ったVogue Taiwanのプロジェクト。",
+    "client": "Vogue",
+    "agency": "OGILVY TAIWAN, Taipei City / OGILVY, Hong Kong",
+    "categories": [
+      "Brand Experience & Activation",
+      "Design"
+    ],
+    "award": "Cannes Lions 2021 Brand Experience & Activation Lions Bronze / Cannes Lions 2021 Design Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Design",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.adsoftheworld.com/campaigns/project-uni-form",
+    "videoId": "",
+    "overview": "Condé Nast Taiwan（Vogue Taiwan）とOgilvy（台北・香港）が、台湾のデザイナーAngus Chiangと組んで制作したジェンダーニュートラルな学校制服コレクション「Project UNI-FORM」。2020年10月4日、Vogue Fashion Week Taipeiで発表された（SCMP）。",
+    "background": "SCMPやAds of the Worldによれば、着想のもとは2019年に新北市立板橋高級中学で生徒が企画した、男子生徒や教員にもスカートの着用を呼びかけたイベント。ジェンダーの固定観念やいじめに対抗し、服装を自由に選べることを訴える動きだった。",
+    "execution": "Angus Chiangがシャツとスカートを一体にした「Shirtskirt」を含む11点をデザインし、生徒が自由に組み合わせたり形を変えたりできる構成にした。写真家Zhong Linが生徒をモデルにルックブックを撮影し（Ads of the World）、Shirtskirtは Vogue Taiwanのオンラインストアで限定販売された（SCMP）。",
+    "evaluationImpact": "SCMPなど域外のメディアにも取り上げられ、台湾メディアは海外での称賛を伝えた。カンヌライオンズ2021のDesign部門でSilver、Brand Experience & Activation部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Fashion",
+      "Theme/Education",
+      "Theme/SocialGood",
+      "Form/Product"
+    ],
+    "thumbnail": "/thumbnails/vogue-uni-form.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "three-ireland-the-connected-island",
+    "title": "The Connected Island",
+    "summary": "人口流出が続くアイルランドの離島アランモアに高速通信環境を整え、「世界一つながった島」として移住と仕事を呼びかけた通信会社Three Irelandの施策。",
+    "client": "Three Ireland",
+    "agency": "BOYS AND GIRLS, Dublin",
+    "categories": [
+      "Brand Experience & Activation",
+      "Creative Strategy"
+    ],
+    "award": "Cannes Lions 2021 Brand Experience & Activation Lions Bronze / Cannes Lions 2021 Creative Strategy Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Creative Strategy",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.irishexaminer.com/business/arid-30918360.html",
+    "videoId": "",
+    "overview": "Three IrelandとBoys + Girlsによる取り組み。ドニゴール沖の人口469人の島アランモア（Árainn Mhór）にThreeが通信インフラとデジタルハブを整え、島民自身が語り手となる映像や公開書簡で、島を「住んで働ける場所」として発信した。",
+    "background": "Irish ExaminerやNewstalkによれば、アランモアは150年以上にわたって人口流出が続き、住民の約4割以上が65歳以上だった。島の評議会が国外に住む島出身者に戻る条件を尋ねたところ、仕事と通信環境が最大の課題に挙がった。",
+    "execution": "2019年4月、Threeは最大100Mbpsの専用回線を引き込み、旧レストランを改装した11席のデジタルハブ「Modam」の開設を支えた。あわせてモバイル基地局を増強し、学校・コミュニティセンター・本土の医師とのビデオ診療に使う診療所にもブロードバンドを敷いた（Irish Examiner）。同年6月には島の評議会が米国とオーストラリアの人々に宛てた公開書簡を出し、島にはアプリ開発者やメディア関係者がいて世界中と仕事ができると移住を呼びかけた（Newstalk）。島で撮影した映像「The Connected Island」ではThreeの通信を島民の言葉で紹介した（Donegal Daily）。",
+    "evaluationImpact": "公開書簡はアイルランド国内外のメディアで報じられた。カンヌライオンズ2021のCreative Strategy部門でGold、Brand Experience & Activation部門でBronzeを受賞し、地元紙Donegal Dailyもその受賞を報じた。",
+    "tags": [
+      "Theme/SocialGood",
+      "Form/Film",
+      "Tech/Web"
+    ],
+    "thumbnail": "/thumbnails/three-ireland-the-connected-island.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "itau-argentina-pensions-delivery",
+    "title": "Pensions Delivery",
+    "summary": "コロナ禍のロックダウン中、高齢の顧客が年金を引き出すために支店の行列に並ばずに済むよう、現金を自宅まで届けたItaú Argentinaのサービス。",
+    "client": "Itaú Argentina",
+    "agency": "GREY ARGENTINA, Buenos Aires",
+    "categories": [
+      "Brand Experience & Activation"
+    ],
+    "award": "Cannes Lions 2021 Brand Experience & Activation Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "南米"
+    ],
+    "link": "https://www.iprofesional.com/economia/316510-delivery-de-jubilaciones-este-banco-te-lleva-la-plata-a-tu-casa",
+    "videoId": "",
+    "overview": "Itaú ArgentinaがGrey Argentinaの提案を受けて2020年5月に始めた「年金のデリバリー」。申し込んだ受給者に、年金を現金で自宅まで届けた。",
+    "background": "アルゼンチンでは2020年3月中旬から強制隔離が続くなか、現金で年金を受け取ろうとする高齢者が支店に長い列を作っていると報じられた。Grey Argentinaがこの状況を受けて発案し、Itaúは約1か月で社内手続きの一部を変えて実現した（Infonegocios）。同行のリテール部門責任者は、新型コロナで最もリスクの高い高齢者を守り、外出させないための施策だと説明した（iProfesional）。",
+    "execution": "iProfesionalによれば、受給者はItaúのサイトのフォームから申し込み、同行からの電話で配達日と金額を確認する。受け取れるのは1,000ペソ単位で1万〜5万ペソ、手数料はかからない。金額は前日に口座から引き落とされ、警備と守秘の手順を定めた外部の専門会社が封筒に入れて届ける。配達員は距離の確保やマスク・フェイスシールドなどの衛生手順を守り、受け取れるのは受給者本人だけで、不在時は口座に戻される。2020年5月22日に始まり、当初は6月20日までの受付とされた。",
+    "evaluationImpact": "iProfesionalやInfonegociosなどの現地メディアが報じた。カンヌライオンズ2021のBrand Experience & Activation部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Health",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/itau-argentina-pensions-delivery.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "nubian-jak-community-trust-the-black-plaque-project",
+    "title": "The Black Plaque Project",
+    "summary": "ロンドンの公式「ブルー・プラーク」にほとんど含まれない黒人の偉人を、建物に掲げた仮設の「黒いプラーク」で顕彰し、正式な青いプラーク化を後押ししたプロジェクト。",
+    "client": "Nubian Jak Community Trust",
+    "agency": "HAVAS, London",
+    "categories": [
+      "Brand Experience & Activation",
+      "Design"
+    ],
+    "award": "Cannes Lions 2021 Brand Experience & Activation Lions Bronze / Cannes Lions 2021 Design Lions Gold / Cannes Lions 2021 Design Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Design",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Design",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://itv.com/news/london/2020-11-27/black-plaque-project-nubian-jak-community-trust-and-havas-joint-campaign-to-honour-black-londoners",
+    "videoId": "",
+    "overview": "黒人の歴史的人物を記念するプラークの事業を手がけるNubian Jak Community TrustとHavas Londonによる2020年の施策。ゆかりの建物に約30人分の仮設の黒いプラークを設置し、市民の支持を集めて常設のプラークにつなげることを目指した。",
+    "background": "ITVによれば、ロンドンで公式のブルー・プラークで顕彰されている人物のうち、アフリカ系・カリブ系は2%に満たない。Nubian Jakは2006年のボブ・マーリーを皮切りに独自のプラークを設置してきた団体で、人選には同団体とアフリカ系・カリブ系コミュニティの委員会が当たった（ITV、Wikipedia）。",
+    "execution": "2020年11月から、ゆかりの建物に黒地のプラークを順次設置した。文面は人物の功績を短い一文で示すコピー主導のデザインで、例えばブリクストンのWinifred Atwellのプラークには「英国で初めてナンバーワン・ヒットを出した黒人で、今も唯一の女性器楽奏者」と記された（London Remembers）。あわせて、仮設のプラークを常設化するための寄付をNubian Jakへ呼びかけた。",
+    "evaluationImpact": "ITVなどの英国メディアが報じた。Atwellの黒いプラークは設置から約6週間後の2020年12月18日に常設の青いプラークへ置き換えられた（London Remembers）。英国DMA Awards 2021でもSilverを受賞し、カンヌライオンズ2021ではDesign部門でGoldとBronze、Brand Experience & Activation部門でBronzeを受賞した。",
+    "tags": [
+      "Form/OOH",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/nubian-jak-community-trust-the-black-plaque-project.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "mumbai-police-the-punishing-signal",
+    "title": "The Punishing Signal",
+    "summary": "クラクションの音が一定値を超えると赤信号が最初からやり直しになる信号機で、ムンバイの鳴らしすぎを「鳴らすほど待たされる」仕組みで抑えようとしたムンバイ警察の施策。",
+    "client": "Mumbai Police",
+    "agency": "FCB Interface, Mumbai",
+    "categories": [
+      "Brand Experience & Activation",
+      "Health & Wellness",
+      "Outdoor",
+      "PR"
+    ],
+    "award": "Cannes Lions 2021 Brand Experience & Activation Lions Bronze / Cannes Lions 2021 Health & Wellness Lions Gold / Cannes Lions 2021 Health & Wellness Lions Silver / Cannes Lions 2021 Outdoor Lions Silver / Cannes Lions 2021 Outdoor Lions Bronze / Cannes Lions 2021 PR Lions Silver",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Health & Wellness",
+        "level": "Gold"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Health & Wellness",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Outdoor",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Outdoor",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "PR",
+        "level": "Silver"
+      }
+    ],
+    "regions": [
+      "アジア"
+    ],
+    "link": "https://www.freepressjournal.in/mumbai/mumbai-traffic-police-introduce-the-punishing-signal-to-reduce-honking",
+    "videoId": "",
+    "overview": "ムンバイ警察とFCB Interfaceが2020年1月に実施した交通騒音対策。交差点に騒音計を設置して赤信号のカウントダウンと連動させ、クラクションを鳴らすドライバーほど長く待たされるようにした。",
+    "background": "ムンバイは慢性的な渋滞で、赤信号でもクラクションを鳴らし続けるドライバーが多く、騒音が市民の健康問題になっていた。The Quintなどの報道によれば、ムンバイ警察は注意喚起や罰金ではなく、鳴らすこと自体が自分の損になる仕組みで行動を変えることを狙った。",
+    "execution": "市内の一部の交差点に騒音計を設置し、信号待ち中の騒音が85デシベルを超えると赤信号のカウントダウンが最初に戻るようにした。Exchange4mediaによれば、CSMT、マリンドライブ、ペダーロード、ヒンドマタ、バンドラなど交通量の多い地点で実施された。その様子を撮った動画は「Honk more, wait more（鳴らすほど待つ）」のメッセージとともに、ムンバイ警察の公式Twitterで#HonkResponsiblyのハッシュタグを付けて公開された。",
+    "evaluationImpact": "動画は公開直後からSNSやインドの主要メディア（The Quint、Free Press Journal、Business Insider Indiaなど）で広く取り上げられた。カンヌライオンズ2021ではHealth & Wellness部門でGold、Outdoor部門とPR部門でSilverなどを受賞した。",
+    "tags": [
+      "Form/OOH",
+      "Tech/Audio",
+      "Theme/Mobility",
+      "Theme/Health"
+    ],
+    "thumbnail": "/thumbnails/mumbai-police-the-punishing-signal.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "diesel-the-re-collection",
+    "title": "The (Re)Collection",
+    "summary": "ペットボトル由来の再生素材で作ったDieselとCoca-Colaのカプセルコレクションを、世界中のリサイクルマークを読み取った人だけが先行購入できるようにした施策。",
+    "client": "Diesel",
+    "agency": "Publicis Italy, Milan",
+    "categories": [
+      "Brand Experience & Activation"
+    ],
+    "award": "Cannes Lions 2021 Brand Experience & Activation Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://www.marketingdive.com/news/coca-cola-partners-with-diesel-on-recycled-clothing-collection/564077/",
+    "videoId": "",
+    "overview": "DieselがCoca-Colaと組み、Publicis Italyと2019年秋に展開したサステナブルなカプセルコレクションのローンチ施策。リサイクルマークそのものを、限定商品への「入場券」に変えた。",
+    "background": "Coca-Colaの発表やMarketing Diveの報道によれば、両社はプラスチックごみと衣料のリサイクルへの関心を高めることを狙い、再生PETと再生コットンを使った衣料を共同で開発した。ペットボトルの再生をブランドの物語にし、リサイクル行動そのものに目を向けさせることが狙いとされる。",
+    "execution": "コレクションはボトルに再生できなくなったペットボトル由来の再生PET繊維と再生コットンを使い、Coca-Colaのロゴを配した12型ほどで構成された。2019年9月27日から、世界のどこでもリサイクルマークをスマートフォンで読み取るとdiesel.comの隠しサイトにアクセスでき、先行購入できた。9月28日にはパリのギャラリー・ラファイエットの歩道にリサイクル用ごみ箱の形をしたポップアップストアを設け、ロンドン、ベルリン、ミラノ、東京、上海、ニューヨークなどでも関連イベントを行った。10月7日から一部のDiesel店舗とdiesel.comで一般販売された。",
+    "evaluationImpact": "Marketing Dive、RetailDetail、FashionUnitedなど、ファッション業界と広告業界のメディアで広く報じられた。カンヌライオンズ2021のBrand Experience & Activation部門でBronzeを受賞した。",
+    "tags": [
+      "Theme/Fashion",
+      "Theme/Sustainability",
+      "Form/Product",
+      "Form/Website"
+    ],
+    "thumbnail": "/thumbnails/diesel-the-re-collection.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "match-group-swipe-night",
+    "title": "Swipe Night",
+    "summary": "Tinderアプリの中で週末の夜だけ配信した、スワイプで展開を選ぶ一人称視点のインタラクティブドラマで、視聴中の選択をマッチングにも反映させた施策。",
+    "client": "Match Group (Tinder)",
+    "agency": "72andSunny, Los Angeles",
+    "categories": [
+      "Brand Experience & Activation",
+      "Digital Craft",
+      "Entertainment",
+      "Media",
+      "Mobile",
+      "Social & Influencer"
+    ],
+    "award": "Cannes Lions 2021 Brand Experience & Activation Lions Bronze / Cannes Lions 2021 Digital Craft Lions Silver / Cannes Lions 2021 Entertainment Lions Grand Prix / Cannes Lions 2021 Entertainment Lions Bronze / Cannes Lions 2021 Media Lions Silver / Cannes Lions 2021 Mobile Lions Bronze / Cannes Lions 2021 Social & Influencer Lions Gold",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Digital Craft",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Entertainment",
+        "level": "Grand Prix"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Entertainment",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Media",
+        "level": "Silver"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Mobile",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Social & Influencer",
+        "level": "Gold"
+      }
+    ],
+    "regions": [
+      "北米"
+    ],
+    "link": "https://techcrunch.com/2021/08/11/tinders-interactive-swipe-night-stories-return-after-a-20-million-user-turnout/",
+    "videoId": "",
+    "overview": "Tinderが72andSunnyと制作した、アプリ内で配信するインタラクティブ動画シリーズ。地球滅亡が迫る世界を舞台に、利用者は要所で左右にスワイプして主人公の行動を選ぶ。選んだ内容はプロフィールに表示され、マッチングのきっかけにもなった。",
+    "background": "TechCrunchによれば、開始当時のTinderはエンゲージメント指標の一部が落ち込み、四半期売上も伸び悩んでいた。中心利用者であるZ世代は、プロフィール写真だけで相手を選ぶことに飽きていた。共通の体験と価値観から会話が始まる場をつくることが狙いだった。",
+    "execution": "2019年10月の毎週日曜18時〜24時だけ、米国のアクティブ会員向けにアプリ内で配信した。監督はDrakeのミュージックビデオで知られる当時23歳のKarena Evans、脚本は『Big Mouth』のNicole Delaneyと『Insecure』のBrandon Zuck（Vice、It's Nice That）。隕石が迫る中で友人たちと生き延びる物語で、道徳的なジレンマを含む選択を制限時間内にスワイプで答える。動画配信の仕組みを持たなかったTinderにとって、アプリ内でインタラクティブ動画を流す初めての試みでもあった。2020年には海外にも広げ、2021年にはミステリー仕立ての続編も配信された。",
+    "evaluationImpact": "Vice、TechCrunch、Dazed、It's Nice Thatなどが「出会い系アプリが作ったドラマ」として大きく取り上げ、その後の世界展開と続編につながった。カンヌライオンズ2021ではEntertainment部門でGrand Prix、Social & Influencer部門でGoldを受賞したほか、Digital Craft部門とMedia部門でSilverを受賞した。",
+    "tags": [
+      "Form/App",
+      "Form/Film",
+      "Theme/Entertainment",
+      "Tech/App"
+    ],
+    "thumbnail": "/thumbnails/match-group-swipe-night.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "mastercard-fly-with-a-book",
+    "title": "Fly With A Book",
+    "summary": "コロナ禍で旅行に行けない時期に、オンライン書店を旅行予約サイト風の「Booktrips.bg」に作り替え、行き先を選ぶと航空券の代わりに本が見つかるようにしたMastercardの施策。",
+    "client": "Mastercard",
+    "agency": "McCann Sofia",
+    "categories": [
+      "Brand Experience & Activation"
+    ],
+    "award": "Cannes Lions 2021 Brand Experience & Activation Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://forbesbulgaria.com/2021/07/12/mccann-sofia-cannes-lion/",
+    "videoId": "",
+    "overview": "MastercardとMcCann Sofiaがブルガリアで実施した施策。「本を通じて旅ができる」という考えを文字どおりの形にし、旅行予約サイトの体験で本を探して買えるようにした。",
+    "background": "Capital.bgなどの報道によれば、着想は2020年3月のブルガリア初のロックダウン後に生まれた。旅行が制限され、読書の機会も減るなかで、旅好きのカード利用者の気持ちを本に向け、出版社や書店の売上も支えることが狙いとされる。",
+    "execution": "既存のオンライン書店を旅行予約サイト風に作り替えたBooktrips.bgを開設した。利用者が行き先・旅行期間・旅の目的を選んで検索すると、航空券ではなくその条件に合う本が表示される。マイレージの代わりに読んだページ数を貯める「Frequent Flyer Club」も設け、貯めたページは後に実際の旅行に交換できるとされた（manager.bg、infotourism.net）。",
+    "evaluationImpact": "Forbes Bulgariaなどの報道によれば、カンヌライオンズ2021のBrand Experience & Activation部門でのBronze受賞は、ブルガリアの広告界で初めてのカンヌライオンズ受賞だった。",
+    "tags": [
+      "Form/Website",
+      "Theme/Retail"
+    ],
+    "thumbnail": "/thumbnails/mastercard-fly-with-a-book.jpg"
+  },
+  {
+    "year": "2021",
+    "relatedWorks": [],
+    "sources": [
+      "Cannes 2021"
+    ],
+    "id": "alzheimer-s-society-my-carer",
+    "title": "My Carer",
+    "summary": "初期の認知症の人が自宅で自立して暮らせるよう、食事の準備や通院などの日課を声で一つずつ案内する、英国アルツハイマー協会の無料Alexaスキル。",
+    "client": "Alzheimer's Society",
+    "agency": "MRM Germany, Frankfurt",
+    "categories": [
+      "Brand Experience & Activation",
+      "Radio & Audio"
+    ],
+    "award": "Cannes Lions 2021 Brand Experience & Activation Lions Bronze / Cannes Lions 2021 Radio & Audio Lions Bronze",
+    "awardEntries": [
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Brand Experience & Activation",
+        "level": "Bronze"
+      },
+      {
+        "org": "cannes",
+        "year": 2021,
+        "category": "Radio & Audio",
+        "level": "Bronze"
+      }
+    ],
+    "regions": [
+      "欧州"
+    ],
+    "link": "https://voicebot.ai/?p=14387",
+    "videoId": "",
+    "overview": "英国のAlzheimer's Societyが、MRM//McCann Frankfurtを中心とするMcCann Worldgroupと開発し、2019年5月に英国で公開したAmazon Alexa用の音声スキル。本人または介護者が日課を登録すると、決めた時刻にAlexaが声で知らせ、手順を案内する。",
+    "background": "Voicebot.aiの報道によれば、英国の認知症の人は85万人を超え、2025年には100万人を超えると見込まれていた。初期の段階では、手順の多い家事や予定を忘れることが自立した生活の妨げになりやすい。家族や介護者が常にそばにいなくても日常を続けられる手段が求められていた。",
+    "execution": "本人または介護者が、食事の準備、通院の支度、服薬、オーブンの消し忘れ確認などのタスクを登録する。予定の時刻になるとAlexaが音声で通知し、作業を短い手順に分けて順に読み上げる。家族や友人について思い出す手助けもできる。どのAlexa端末でも無料で使える（Voicebot.ai、The Drum）。",
+    "evaluationImpact": "Voicebot.aiやThe Drumなど、音声技術とヘルスケアの業界メディアで報じられた。カンヌライオンズ2021ではBrand Experience & Activation部門とRadio & Audio部門でBronzeを受賞した。",
+    "tags": [
+      "Tech/Audio",
+      "Tech/Device",
+      "Theme/Health",
+      "Theme/SocialGood"
+    ],
+    "thumbnail": "/thumbnails/alzheimer-s-society-my-carer.jpg"
   }
 ]
